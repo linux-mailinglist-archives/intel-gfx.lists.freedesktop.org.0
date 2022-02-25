@@ -2,62 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCDEB4C4BE3
-	for <lists+intel-gfx@lfdr.de>; Fri, 25 Feb 2022 18:19:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B8B04C4C30
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Feb 2022 18:33:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E7B6010E888;
-	Fri, 25 Feb 2022 17:18:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D63710E233;
+	Fri, 25 Feb 2022 17:33:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E75DA10E888;
- Fri, 25 Feb 2022 17:18:55 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E29810E233;
+ Fri, 25 Feb 2022 17:33:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645809535; x=1677345535;
+ t=1645810394; x=1677346394;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=DHk03IaFcQcaLCDDUZyGL/WnDQijMxfseutm/KvbU6g=;
- b=Lh92T/PaWIOIp1Fl5ZQK5PtWgJpHhb10hjm8BdeHdErNZsnjMiT8eLfL
- 2Kmp1eIazod5oZ69cUiM+mJ27PuM5kyNpViHlQqPMyOotbzxQJIymwvZI
- yKw7kGGCGFIpZX46zpePlpWHSjSwV34Aah5tvdDGn2xyTh84YShniKFm5
- OoxljozKleStnMObzYfXY3uRzHhSYHi0xYf6goE1Q4YvA1Lyp2mmN2+P9
- 2EcJOLT3VvZJnF6vUeRVZiGYg7SOrT+9Y6he0/DJGZD4HYuZ2Vy+VZ6fE
- ySitUuO9sfea+o9W9vLC10ojmSMVrO4A6GpYkYhFTUdqhIbImdmBuvEVL g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10268"; a="236046382"
-X-IronPort-AV: E=Sophos;i="5.90,136,1643702400"; d="scan'208";a="236046382"
+ bh=/1j55f8ICizY4KebmP11A2FKb4smHT5YtuC4rCmbrog=;
+ b=kIAAgBEjvcU86lX1wNdM3CYj8qu8wN92+cLPOD8oEfn9lUHvNbB57ZcA
+ /cHjzck9VVoDSxZyZnBTUsjy4Vh5HATLYo13e834PRYkBLmtMqdZIbLSy
+ LJAERl3i9Kk/5Ytme9XdwGTmSMqChms64mqNkP6BCy85oSRJKHU8Hc2T6
+ BAlH6l1+ezHDblGJmRXgvwNzGdLRxzjXvnNzoeD8lRkk1P0oGxVl6KCZI
+ tgwkmk0I9gPyOlgaoCCAQbsMnX1Yxb+8o9cEMVFI6LR/RWBO924hGjfU2
+ Vs1vWEXdXjwAimbc80opFswkHsu1BqTuvb8l03Y4FQWsMRT3jJeJibgpR Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10268"; a="252739037"
+X-IronPort-AV: E=Sophos;i="5.90,136,1643702400"; d="scan'208";a="252739037"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2022 09:18:55 -0800
-X-IronPort-AV: E=Sophos;i="5.90,136,1643702400"; d="scan'208";a="549339592"
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Feb 2022 09:33:13 -0800
+X-IronPort-AV: E=Sophos;i="5.90,136,1643702400"; d="scan'208";a="549346274"
 Received: from pkinsell-mobl.ger.corp.intel.com (HELO [10.213.234.117])
  ([10.213.234.117])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2022 09:18:53 -0800
-Message-ID: <5f1b714c-d0fd-a437-2de8-9ce2c6bd98a7@linux.intel.com>
-Date: Fri, 25 Feb 2022 17:18:51 +0000
+ 25 Feb 2022 09:33:11 -0800
+Message-ID: <0b9dd25f-63ea-9121-6326-14087f5f8e63@linux.intel.com>
+Date: Fri, 25 Feb 2022 17:33:09 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
 Content-Language: en-US
-To: John Harrison <john.c.harrison@intel.com>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Jordan Justen <jordan.l.justen@intel.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>
-References: <20220222103640.1006006-1-jordan.l.justen@intel.com>
- <20220222103640.1006006-2-jordan.l.justen@intel.com>
- <621be0f6-63e3-a8fb-93e3-e581bf4b2d4b@intel.com>
- <87y21zh70p.fsf@jljusten-skl>
- <0917f555-1303-dadd-6609-f719dcf0ad61@intel.com>
- <3376b185-6a70-c5e1-2c2c-18a4bdeba9a2@linux.intel.com>
- <72d84811-b769-4cae-7e18-d076c75ddfa6@intel.com>
+To: Michael Cheng <michael.cheng@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20220225032436.904942-1-michael.cheng@intel.com>
+ <20220225032436.904942-2-michael.cheng@intel.com>
+ <011a236d-7ed4-0d48-e8a6-c9bd98740d5b@linux.intel.com>
+ <718c6339-4a19-0de0-2666-a32be7c56dd7@intel.com>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-In-Reply-To: <72d84811-b769-4cae-7e18-d076c75ddfa6@intel.com>
+In-Reply-To: <718c6339-4a19-0de0-2666-a32be7c56dd7@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v5 1/4] drm/i915/guc: Add fetch of hwconfig
- table
+Subject: Re: [Intel-gfx] [PATCH v12 1/6] drm: Add arch arm64 for
+ drm_clflush_virt_range
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,137 +64,90 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel <dri-devel@lists.freedesktop.org>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: lucas.demarchi@intel.com, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 25/02/2022 16:46, John Harrison wrote:
+On 25/02/2022 16:52, Michael Cheng wrote:
+> Hi Tvrtko,
+> 
+> It seems without cacheflush.h being included, when I build for arm64 or 
+> x86, it stills pulls in cacheflush.h:
+> 
+> ./.drm_cache.o.cmd:838: include/linux/cacheflush.h \
+> ./.drm_cache.o.cmd:839: arch/x86/include/asm/cacheflush.h \
+> ./.drm_cache.o.cmd:920: include/asm-generic/cacheflush.h \
+> ./.drm_cache.o.cmd:830: include/linux/cacheflush.h \
+> ./.drm_cache.o.cmd:831: arch/arm64/include/asm/cacheflush.h \
+> ./.drm_cache.o.cmd:1085: include/asm-generic/cacheflush.h \
+> So it seems without including it, cacheflush.h stills get pulled in,
+> I think its because its a required kernel source to build the kernel
+> per specific architecture, but please correct if I am wrong,as I am still
+> trying to understand how things works!
 
->>> driver we don't care that much that we failed to load HWconfig and
->>> 'notice' is enough.
->>>
->>> but I'm fine with all messages being drm_err (as we will not have to
->>> change that once again after HWconfig will be mandatory for the driver
->>> as well)
->>
->> I would be against drm_err.
->>
->> #define KERN_EMERG      KERN_SOH "0"    /* system is unusable */
->> #define KERN_ALERT      KERN_SOH "1"    /* action must be taken 
->> immediately */
->> #define KERN_CRIT       KERN_SOH "2"    /* critical conditions */
->> #define KERN_ERR        KERN_SOH "3"    /* error conditions */
->> #define KERN_WARNING    KERN_SOH "4"    /* warning conditions */
->> #define KERN_NOTICE     KERN_SOH "5"    /* normal but significant 
->> condition */
->> #define KERN_INFO       KERN_SOH "6"    /* informational */
->> #define KERN_DEBUG      KERN_SOH "7"    /* debug-level messages */
->>
->> From the point of view of the kernel driver, this is not an error to 
->> its operation. It can at most be a warning, but notice is also fine by 
->> me. One could argue when reading "normal but significant condition" 
->> that it is not normal, when it is in fact unexpected, so if people 
->> prefer warning that is also okay by me. I still lean towards notice 
->> becuase of the hands-off nature i915 has with the pass-through of this 
->> blob.
->  From the point of view of the KMD, i915 will load and be 'functional' 
-> if it can't talk to the hardware at all. The UMDs won't work at all but 
+Probably:
 
-Well this reductio ad absurdum fails I think... :)
+drm_cache.c:
 
-> the driver load will be 'fine'. That's a requirement to be able to get 
-> the user to a software fallback desktop in order to work out why the 
-> hardware isn't working (e.g. no GuC firmware file). I would view this as 
-> similar. The KMD might have loaded but the UMDs are not functional. That 
-> is definitely an error condition to me.
+#include <linux/highmem.h>
 
-... If GuC fails to load there is no command submission and driver will 
-obviously log that with drm_err.
+linux/highmem.h:
 
-If blob fails to verify it depends on the userspace stack what will 
-happen. As stated before on some platforms, and/or after a certain time, 
-Mesa will not look at the blob at all. So i915 is fine (it is after all 
-just a conduit for opaque data!), system overall is fine, so it 
-definitely isn't a KERN_ERR level event.
+#include <linux/cacheflush.h>
 
->>>>>> +               ERR_PTR(ret));
->>>>>> +
->>>>>>        ret = guc_enable_communication(guc);
->>>>>>        if (ret)
->>>>>>            goto err_log_capture;
->>>>>> @@ -562,6 +567,8 @@ static void __uc_fini_hw(struct intel_uc *uc)
->>>>>>        if (intel_uc_uses_guc_submission(uc))
->>>>>>            intel_guc_submission_disable(guc);
->>>>>>    +    intel_guc_hwconfig_fini(&guc->hwconfig);
->>>>>> +
->>>>>>        __uc_sanitize(uc);
->>>>>>    }
->>>>>>    diff --git a/drivers/gpu/drm/i915/i915_pci.c 
->>>>>> b/drivers/gpu/drm/i915/i915_pci.c
->>>>>> index 76e590fcb903..1d31e35a5154 100644
->>>>>> --- a/drivers/gpu/drm/i915/i915_pci.c
->>>>>> +++ b/drivers/gpu/drm/i915/i915_pci.c
->>>>>> @@ -990,6 +990,7 @@ static const struct intel_device_info 
->>>>>> adl_p_info = {
->>>>>>            BIT(RCS0) | BIT(BCS0) | BIT(VECS0) | BIT(VCS0) | 
->>>>>> BIT(VCS2),
->>>>>>        .ppgtt_size = 48,
->>>>>>        .dma_mask_size = 39,
->>>>>> +    .has_guc_hwconfig = 1,
->>>>> Who requested this change? It was previously done this way but the
->>>>> instruction was that i915_pci.c is for hardware features only but that
->>>>> this, as you seem extremely keen about pointing out at every
->>>>> opportunity, is a software feature.
->>>>
->>>> This was requested by Michal as well. I definitely agree it is a
->>>> software feature, but I was not aware that "i915_pci.c is for hardware
->>>> features only".
->>>>
->>>> Michal, do you agree with this and returning to the previous method for
->>>> enabling the feature?
->>>
->>> now I'm little confused as some arch direction was to treat FW as
->>> extension of the HW so for me it was natural to have 'has_guc_hwconfig'
->>> flag in device_info
->>>
->>> if still for some reason it is undesired to mix HW and FW/SW flags
->>> inside single group of flags then maybe we should just add separate
->>> group of immutable flags where has_guc_hwconfig could be defined.
->>>
->>> let our maintainers decide
->>
->> Bah.. :)
->>
->> And what was the previous method?
->>
->> [comes back later]
->>
->> Okay it was:
->>
->> +static bool has_table(struct drm_i915_private *i915)
->> +{
->> +    if (IS_ALDERLAKE_P(i915))
->> +        return true;
->>
->> Which sucks a bit if we want to argue it does not belong in device info.
->>
->> Why can't we ask the GuC if the blob exists? In fact what would happen 
->> if one would call __guc_action_get_hwconfig on any GuC platform?
-> That was how I originally wrote the code. However, other parties refuse 
-> to allow a H2G call to fail. The underlying CTB layers complain loudly 
-> on any CTB error. And the GuC architects insist that a call to query the 
-> table on an unsupported platform is an error and should return an 
-> 'unsupported' error code.
-
-Oh well, shrug, sounds silly but I will not pretend I am familiar with H2G
-
-In this case has_table does sound better since it indeed isn't a 
-hardware feature. It is a GuC fw thing and if we don't have a way to 
-probe things there at runtime, then at least limit the knowledge to GuC 
-files.
+But it is more correct to explicitly include what you use. So if 
+drm_cache.c uses stuff declared in cacheflush.h, it should include it.
 
 Regards,
 
 Tvrtko
+
+> Michael Cheng
+> On 2022-02-25 8:28 a.m., Tvrtko Ursulin wrote:
+>>
+>> On 25/02/2022 03:24, Michael Cheng wrote:
+>>> Add arm64 support for drm_clflush_virt_range. caches_clean_inval_pou
+>>> performs a flush by first performing a clean, follow by an invalidation
+>>> operation.
+>>>
+>>> v2 (Michael Cheng): Use correct macro for cleaning and invalidation the
+>>>             dcache. Thanks Tvrtko for the suggestion.
+>>>
+>>> v3 (Michael Cheng): Replace asm/cacheflush.h with linux/cacheflush.h
+>>>
+>>> v4 (Michael Cheng): Arm64 does not export dcache_clean_inval_poc as a
+>>>             symbol that could be use by other modules, thus use
+>>>             caches_clean_inval_pou instead. Also this version
+>>>                 removes include for cacheflush, since its already
+>>>             included base on architecture type.
+>>
+>> What does it mean that it is included based on architecture type? Some 
+>> of the other header already pulls it in?
+>>
+>> Regards,
+>>
+>> Tvrtko
+>>
+>>> Signed-off-by: Michael Cheng <michael.cheng@intel.com>
+>>> Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+>>> ---
+>>>   drivers/gpu/drm/drm_cache.c | 5 +++++
+>>>   1 file changed, 5 insertions(+)
+>>>
+>>> diff --git a/drivers/gpu/drm/drm_cache.c b/drivers/gpu/drm/drm_cache.c
+>>> index c3e6e615bf09..81c28714f930 100644
+>>> --- a/drivers/gpu/drm/drm_cache.c
+>>> +++ b/drivers/gpu/drm/drm_cache.c
+>>> @@ -174,6 +174,11 @@ drm_clflush_virt_range(void *addr, unsigned long 
+>>> length)
+>>>         if (wbinvd_on_all_cpus())
+>>>           pr_err("Timed out waiting for cache flush\n");
+>>> +
+>>> +#elif defined(CONFIG_ARM64)
+>>> +    void *end = addr + length;
+>>> +    caches_clean_inval_pou((unsigned long)addr, (unsigned long)end);
+>>> +
+>>>   #else
+>>>       WARN_ONCE(1, "Architecture has no drm_cache.c support\n");
+>>>   #endif
