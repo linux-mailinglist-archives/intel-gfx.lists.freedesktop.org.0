@@ -2,49 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 893804C523B
-	for <lists+intel-gfx@lfdr.de>; Sat, 26 Feb 2022 00:45:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 262C14C524B
+	for <lists+intel-gfx@lfdr.de>; Sat, 26 Feb 2022 00:52:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D31B610E22D;
-	Fri, 25 Feb 2022 23:45:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F36310E252;
+	Fri, 25 Feb 2022 23:52:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF73410E223;
- Fri, 25 Feb 2022 23:45:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645832733; x=1677368733;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=kNAJDgnT8VDyCnUWMabHMNvsEQHQKPVjDGcm+9K/tWM=;
- b=GUoWAkVA+R89k7Ot4mWfQx4wxIUsDx7WrLIuva602mMNcU8ddrxlO+k4
- kQCPWqxUQcuTvanTGyAtqk3qCkyQxe+tX+HpurWnGT/+Gr2zTBWbFzuzW
- t+28r5OdpljOB6HrK1SG8pDCXmmqBdKdGX2N/0sNyAVBzd3LTCBQvWGSr
- C22rY5Bs012gwHo9Nv83jPn1vc+ImYaCFYobPPbZ8qNCUjfh+NU7WsOur
- 02QnYWyu6tX5ZV+HJWOJF3/+f5yr0RfxkXMTGEUiwgC8F4FutrZLT5EXw
- ePjdNCUMi7Eae/wHY+pSwL8RQbMyiO0YlFo8cHQpoXP0pe8BPld+0uqUZ w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10269"; a="313322603"
-X-IronPort-AV: E=Sophos;i="5.90,137,1643702400"; d="scan'208";a="313322603"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2022 15:45:32 -0800
-X-IronPort-AV: E=Sophos;i="5.90,137,1643702400"; d="scan'208";a="544202773"
-Received: from lucas-s2600cw.jf.intel.com ([10.165.21.202])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2022 15:45:32 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Fri, 25 Feb 2022 15:46:31 -0800
-Message-Id: <20220225234631.3725943-4-lucas.demarchi@intel.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220225234631.3725943-1-lucas.demarchi@intel.com>
-References: <20220225234631.3725943-1-lucas.demarchi@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E644010E252;
+ Fri, 25 Feb 2022 23:52:51 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id E1997AA0ED;
+ Fri, 25 Feb 2022 23:52:51 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8342083280123127288=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [CI 4/4] drm/i915: Use str_on_off()
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
+Date: Fri, 25 Feb 2022 23:52:51 -0000
+Message-ID: <164583317188.6270.139214994357145186@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220225174118.1320237-1-tvrtko.ursulin@linux.intel.com>
+In-Reply-To: <20220225174118.1320237-1-tvrtko.ursulin@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915=3A_Fix_assert_in_i915=5Fgg?=
+ =?utf-8?q?tt=5Fpin?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,285 +41,181 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Remove the local onoff() implementation and adopt the
-str_on_off() from linux/string_helpers.h.
+--===============8342083280123127288==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-Acked-by: Jani Nikula <jani.nikula@intel.com>
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/i915/display/g4x_dp.c              | 6 ++++--
- drivers/gpu/drm/i915/display/intel_display.c       | 7 ++++---
- drivers/gpu/drm/i915/display/intel_display_trace.h | 3 ++-
- drivers/gpu/drm/i915/display/intel_dpll.c          | 3 ++-
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c      | 7 +++++--
- drivers/gpu/drm/i915/display/intel_fdi.c           | 8 +++++---
- drivers/gpu/drm/i915/display/vlv_dsi_pll.c         | 3 ++-
- drivers/gpu/drm/i915/gt/intel_rc6.c                | 5 +++--
- drivers/gpu/drm/i915/i915_utils.h                  | 5 -----
- drivers/gpu/drm/i915/vlv_suspend.c                 | 3 ++-
- 10 files changed, 29 insertions(+), 21 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/display/g4x_dp.c b/drivers/gpu/drm/i915/display/g4x_dp.c
-index f67bbaaad8e0..22345051e667 100644
---- a/drivers/gpu/drm/i915/display/g4x_dp.c
-+++ b/drivers/gpu/drm/i915/display/g4x_dp.c
-@@ -5,6 +5,8 @@
-  * DisplayPort support for G4x,ILK,SNB,IVB,VLV,CHV (HSW+ handled by the DDI code).
-  */
- 
-+#include <linux/string_helpers.h>
-+
- #include "g4x_dp.h"
- #include "intel_audio.h"
- #include "intel_backlight.h"
-@@ -192,7 +194,7 @@ static void assert_dp_port(struct intel_dp *intel_dp, bool state)
- 	I915_STATE_WARN(cur_state != state,
- 			"[ENCODER:%d:%s] state assertion failure (expected %s, current %s)\n",
- 			dig_port->base.base.base.id, dig_port->base.base.name,
--			onoff(state), onoff(cur_state));
-+			str_on_off(state), str_on_off(cur_state));
- }
- #define assert_dp_port_disabled(d) assert_dp_port((d), false)
- 
-@@ -202,7 +204,7 @@ static void assert_edp_pll(struct drm_i915_private *dev_priv, bool state)
- 
- 	I915_STATE_WARN(cur_state != state,
- 			"eDP PLL state assertion failure (expected %s, current %s)\n",
--			onoff(state), onoff(cur_state));
-+			str_on_off(state), str_on_off(cur_state));
- }
- #define assert_edp_pll_enabled(d) assert_edp_pll((d), true)
- #define assert_edp_pll_disabled(d) assert_edp_pll((d), false)
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 2283c7bad2cd..6cae58f921a5 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -401,7 +401,7 @@ static void wait_for_pipe_scanline_moving(struct intel_crtc *crtc, bool state)
- 	if (wait_for(pipe_scanline_is_moving(dev_priv, pipe) == state, 100))
- 		drm_err(&dev_priv->drm,
- 			"pipe %c scanline %s wait timed out\n",
--			pipe_name(pipe), onoff(state));
-+			pipe_name(pipe), str_on_off(state));
- }
- 
- static void intel_wait_for_pipe_scanline_stopped(struct intel_crtc *crtc)
-@@ -457,7 +457,7 @@ void assert_transcoder(struct drm_i915_private *dev_priv,
- 	I915_STATE_WARN(cur_state != state,
- 			"transcoder %s assertion failure (expected %s, current %s)\n",
- 			transcoder_name(cpu_transcoder),
--			onoff(state), onoff(cur_state));
-+			str_on_off(state), str_on_off(cur_state));
- }
- 
- static void assert_plane(struct intel_plane *plane, bool state)
-@@ -469,7 +469,8 @@ static void assert_plane(struct intel_plane *plane, bool state)
- 
- 	I915_STATE_WARN(cur_state != state,
- 			"%s assertion failure (expected %s, current %s)\n",
--			plane->base.name, onoff(state), onoff(cur_state));
-+			plane->base.name, str_on_off(state),
-+			str_on_off(cur_state));
- }
- 
- #define assert_plane_enabled(p) assert_plane(p, true)
-diff --git a/drivers/gpu/drm/i915/display/intel_display_trace.h b/drivers/gpu/drm/i915/display/intel_display_trace.h
-index dcdd242fffd9..2dd5a4b7f5d8 100644
---- a/drivers/gpu/drm/i915/display/intel_display_trace.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_trace.h
-@@ -9,6 +9,7 @@
- #if !defined(__INTEL_DISPLAY_TRACE_H__) || defined(TRACE_HEADER_MULTI_READ)
- #define __INTEL_DISPLAY_TRACE_H__
- 
-+#include <linux/string_helpers.h>
- #include <linux/types.h>
- #include <linux/tracepoint.h>
- 
-@@ -161,7 +162,7 @@ TRACE_EVENT(intel_memory_cxsr,
- 			   ),
- 
- 	    TP_printk("%s->%s, pipe A: frame=%u, scanline=%u, pipe B: frame=%u, scanline=%u, pipe C: frame=%u, scanline=%u",
--		      onoff(__entry->old), onoff(__entry->new),
-+		      str_on_off(__entry->old), str_on_off(__entry->new),
- 		      __entry->frame[PIPE_A], __entry->scanline[PIPE_A],
- 		      __entry->frame[PIPE_B], __entry->scanline[PIPE_B],
- 		      __entry->frame[PIPE_C], __entry->scanline[PIPE_C])
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll.c b/drivers/gpu/drm/i915/display/intel_dpll.c
-index 14f5ffe27d05..0ae37fdbf2a5 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll.c
-@@ -4,6 +4,7 @@
-  */
- 
- #include <linux/kernel.h>
-+#include <linux/string_helpers.h>
- 
- #include "intel_crtc.h"
- #include "intel_de.h"
-@@ -1945,7 +1946,7 @@ static void assert_pll(struct drm_i915_private *dev_priv,
- 	cur_state = intel_de_read(dev_priv, DPLL(pipe)) & DPLL_VCO_ENABLE;
- 	I915_STATE_WARN(cur_state != state,
- 			"PLL state assertion failure (expected %s, current %s)\n",
--			onoff(state), onoff(cur_state));
-+			str_on_off(state), str_on_off(cur_state));
- }
- 
- void assert_pll_enabled(struct drm_i915_private *i915, enum pipe pipe)
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-index 569903d47aea..f10eae7a75c6 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-@@ -21,6 +21,8 @@
-  * DEALINGS IN THE SOFTWARE.
-  */
- 
-+#include <linux/string_helpers.h>
-+
- #include "intel_de.h"
- #include "intel_display_types.h"
- #include "intel_dpio_phy.h"
-@@ -178,13 +180,14 @@ void assert_shared_dpll(struct drm_i915_private *dev_priv,
- 	struct intel_dpll_hw_state hw_state;
- 
- 	if (drm_WARN(&dev_priv->drm, !pll,
--		     "asserting DPLL %s with no DPLL\n", onoff(state)))
-+		     "asserting DPLL %s with no DPLL\n", str_on_off(state)))
- 		return;
- 
- 	cur_state = intel_dpll_get_hw_state(dev_priv, pll, &hw_state);
- 	I915_STATE_WARN(cur_state != state,
- 	     "%s assertion failure (expected %s, current %s)\n",
--			pll->info->name, onoff(state), onoff(cur_state));
-+			pll->info->name, str_on_off(state),
-+			str_on_off(cur_state));
- }
- 
- static enum tc_port icl_pll_id_to_tc_port(enum intel_dpll_id id)
-diff --git a/drivers/gpu/drm/i915/display/intel_fdi.c b/drivers/gpu/drm/i915/display/intel_fdi.c
-index 4e4b43669b14..67d2484afbaa 100644
---- a/drivers/gpu/drm/i915/display/intel_fdi.c
-+++ b/drivers/gpu/drm/i915/display/intel_fdi.c
-@@ -3,6 +3,8 @@
-  * Copyright © 2020 Intel Corporation
-  */
- 
-+#include <linux/string_helpers.h>
-+
- #include "intel_atomic.h"
- #include "intel_crtc.h"
- #include "intel_ddi.h"
-@@ -34,7 +36,7 @@ static void assert_fdi_tx(struct drm_i915_private *dev_priv,
- 	}
- 	I915_STATE_WARN(cur_state != state,
- 			"FDI TX state assertion failure (expected %s, current %s)\n",
--			onoff(state), onoff(cur_state));
-+			str_on_off(state), str_on_off(cur_state));
- }
- 
- void assert_fdi_tx_enabled(struct drm_i915_private *i915, enum pipe pipe)
-@@ -55,7 +57,7 @@ static void assert_fdi_rx(struct drm_i915_private *dev_priv,
- 	cur_state = intel_de_read(dev_priv, FDI_RX_CTL(pipe)) & FDI_RX_ENABLE;
- 	I915_STATE_WARN(cur_state != state,
- 			"FDI RX state assertion failure (expected %s, current %s)\n",
--			onoff(state), onoff(cur_state));
-+			str_on_off(state), str_on_off(cur_state));
- }
- 
- void assert_fdi_rx_enabled(struct drm_i915_private *i915, enum pipe pipe)
-@@ -93,7 +95,7 @@ static void assert_fdi_rx_pll(struct drm_i915_private *i915,
- 	cur_state = intel_de_read(i915, FDI_RX_CTL(pipe)) & FDI_RX_PLL_ENABLE;
- 	I915_STATE_WARN(cur_state != state,
- 			"FDI RX PLL assertion failure (expected %s, current %s)\n",
--			onoff(state), onoff(cur_state));
-+			str_on_off(state), str_on_off(cur_state));
- }
- 
- void assert_fdi_rx_pll_enabled(struct drm_i915_private *i915, enum pipe pipe)
-diff --git a/drivers/gpu/drm/i915/display/vlv_dsi_pll.c b/drivers/gpu/drm/i915/display/vlv_dsi_pll.c
-index df880f44700a..1385b46aeb26 100644
---- a/drivers/gpu/drm/i915/display/vlv_dsi_pll.c
-+++ b/drivers/gpu/drm/i915/display/vlv_dsi_pll.c
-@@ -26,6 +26,7 @@
-  */
- 
- #include <linux/kernel.h>
-+#include <linux/string_helpers.h>
- 
- #include "i915_drv.h"
- #include "intel_de.h"
-@@ -581,7 +582,7 @@ static void assert_dsi_pll(struct drm_i915_private *i915, bool state)
- 
- 	I915_STATE_WARN(cur_state != state,
- 			"DSI PLL state assertion failure (expected %s, current %s)\n",
--			onoff(state), onoff(cur_state));
-+			str_on_off(state), str_on_off(cur_state));
- }
- 
- void assert_dsi_pll_enabled(struct drm_i915_private *i915)
-diff --git a/drivers/gpu/drm/i915/gt/intel_rc6.c b/drivers/gpu/drm/i915/gt/intel_rc6.c
-index 6df359c534fe..63db136cbc27 100644
---- a/drivers/gpu/drm/i915/gt/intel_rc6.c
-+++ b/drivers/gpu/drm/i915/gt/intel_rc6.c
-@@ -4,6 +4,7 @@
-  */
- 
- #include <linux/pm_runtime.h>
-+#include <linux/string_helpers.h>
- 
- #include "i915_drv.h"
- #include "i915_reg.h"
-@@ -430,8 +431,8 @@ static bool bxt_check_bios_rc6_setup(struct intel_rc6 *rc6)
- 	rc_sw_target >>= RC_SW_TARGET_STATE_SHIFT;
- 	drm_dbg(&i915->drm, "BIOS enabled RC states: "
- 			 "HW_CTRL %s HW_RC6 %s SW_TARGET_STATE %x\n",
--			 onoff(rc_ctl & GEN6_RC_CTL_HW_ENABLE),
--			 onoff(rc_ctl & GEN6_RC_CTL_RC6_ENABLE),
-+			 str_on_off(rc_ctl & GEN6_RC_CTL_HW_ENABLE),
-+			 str_on_off(rc_ctl & GEN6_RC_CTL_RC6_ENABLE),
- 			 rc_sw_target);
- 
- 	if (!(intel_uncore_read(uncore, RC6_LOCATION) & RC6_CTX_IN_DRAM)) {
-diff --git a/drivers/gpu/drm/i915/i915_utils.h b/drivers/gpu/drm/i915/i915_utils.h
-index 6d26920d0632..3ff9611ff81c 100644
---- a/drivers/gpu/drm/i915/i915_utils.h
-+++ b/drivers/gpu/drm/i915/i915_utils.h
-@@ -400,11 +400,6 @@ wait_remaining_ms_from_jiffies(unsigned long timestamp_jiffies, int to_wait_ms)
- #define MBps(x) KBps(1000 * (x))
- #define GBps(x) ((u64)1000 * MBps((x)))
- 
--static inline const char *onoff(bool v)
--{
--	return v ? "on" : "off";
--}
--
- void add_taint_for_CI(struct drm_i915_private *i915, unsigned int taint);
- static inline void __add_taint_for_CI(unsigned int taint)
- {
-diff --git a/drivers/gpu/drm/i915/vlv_suspend.c b/drivers/gpu/drm/i915/vlv_suspend.c
-index 1d9da32195c2..664fde244f59 100644
---- a/drivers/gpu/drm/i915/vlv_suspend.c
-+++ b/drivers/gpu/drm/i915/vlv_suspend.c
-@@ -3,6 +3,7 @@
-  * Copyright © 2020 Intel Corporation
-  */
- 
-+#include <linux/string_helpers.h>
- #include <linux/kernel.h>
- 
- #include <drm/drm_print.h>
-@@ -375,7 +376,7 @@ static void vlv_wait_for_gt_wells(struct drm_i915_private *dev_priv,
- 	if (vlv_wait_for_pw_status(dev_priv, mask, val))
- 		drm_dbg(&dev_priv->drm,
- 			"timeout waiting for GT wells to go %s\n",
--			onoff(wait_for_on));
-+			str_on_off(wait_for_on));
- }
- 
- static void vlv_check_no_gt_access(struct drm_i915_private *i915)
--- 
-2.35.1
+Series: series starting with [1/2] drm/i915: Fix assert in i915_ggtt_pin
+URL   : https://patchwork.freedesktop.org/series/100752/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_11289 -> Patchwork_22418
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22418/index.html
+
+Participating hosts (41 -> 40)
+------------------------------
+
+  Missing    (1): fi-bsw-cyan 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_22418 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-guc:         [FAIL][1] ([i915#579]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11289/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22418/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@gt_pm:
+    - {bat-jsl-2}:        [INCOMPLETE][3] -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11289/bat-jsl-2/igt@i915_selftest@live@gt_pm.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22418/bat-jsl-2/igt@i915_selftest@live@gt_pm.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - bat-dg1-6:          [DMESG-FAIL][5] ([i915#4494] / [i915#4957]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11289/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22418/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_busy@basic@flip:
+    - {bat-adlp-6}:       [DMESG-WARN][7] ([i915#3576]) -> [PASS][8] +1 similar issue
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11289/bat-adlp-6/igt@kms_busy@basic@flip.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22418/bat-adlp-6/igt@kms_busy@basic@flip.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#3576]: https://gitlab.freedesktop.org/drm/intel/issues/3576
+  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
+  [i915#4957]: https://gitlab.freedesktop.org/drm/intel/issues/4957
+  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_11289 -> Patchwork_22418
+
+  CI-20190529: 20190529
+  CI_DRM_11289: a560f8f58a191a7ff533db6448b09eb779da603e @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6359: 57049558c452272b27eeb099fac07e55a924bbf9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_22418: a6883ad8498669b10e22de8780afaba82fe177c5 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+a6883ad84986 dma-resv: Fix dma_resv_held
+4a30d90acaa9 drm/i915: Fix assert in i915_ggtt_pin
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22418/index.html
+
+--===============8342083280123127288==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/i915: Fix assert in i915_ggtt_pin</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/100752/">https://patchwork.freedesktop.org/series/100752/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22418/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22418/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11289 -&gt; Patchwork_22418</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22418/index.html</p>
+<h2>Participating hosts (41 -&gt; 40)</h2>
+<p>Missing    (1): fi-bsw-cyan </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_22418 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11289/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/579">i915#579</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22418/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_pm:</p>
+<ul>
+<li>{bat-jsl-2}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11289/bat-jsl-2/igt@i915_selftest@live@gt_pm.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22418/bat-jsl-2/igt@i915_selftest@live@gt_pm.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11289/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22418/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_busy@basic@flip:</p>
+<ul>
+<li>{bat-adlp-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11289/bat-adlp-6/igt@kms_busy@basic@flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22418/bat-adlp-6/igt@kms_busy@basic@flip.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11289 -&gt; Patchwork_22418</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11289: a560f8f58a191a7ff533db6448b09eb779da603e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6359: 57049558c452272b27eeb099fac07e55a924bbf9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_22418: a6883ad8498669b10e22de8780afaba82fe177c5 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>a6883ad84986 dma-resv: Fix dma_resv_held<br />
+4a30d90acaa9 drm/i915: Fix assert in i915_ggtt_pin</p>
+
+</body>
+</html>
+
+--===============8342083280123127288==--
