@@ -1,49 +1,62 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29BC14C4CBB
-	for <lists+intel-gfx@lfdr.de>; Fri, 25 Feb 2022 18:41:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7EDF4C4CD3
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Feb 2022 18:44:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4CAED10E8AB;
-	Fri, 25 Feb 2022 17:41:45 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B458410E8AA;
- Fri, 25 Feb 2022 17:41:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C78410E8C2;
+	Fri, 25 Feb 2022 17:44:23 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8457A10E8BC;
+ Fri, 25 Feb 2022 17:44:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645810903; x=1677346903;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=XHVKZoBzLpLXZsivE9Dv04+9mCyRs8rkvEFID12NII0=;
- b=cSuDra4RjsgE8tmh0jBanvGY+xS6pDK7kJmQEe9Fb+jRGYx6OyaLcV4L
- gPF1D/J0u9jz5eDCuTL7fw5a0YJsyM1v6+3oInOPi+1OoDlo+xQqVJwuE
- ptno/6Zuk+BX/KWrYcRHgBnsiWoy8BDLCN4hciuiveRhyPbnWsbvBG1v9
- hmCFLQGQ7KVhADuHm3BW/LbpVzF7yAAE3cuIL4Prd6SiYQRi0gfQs9U/V
- tqTP+it3NAn5yq+uR62z4s6bnJXWW4RGPCrOdlllyHyB1ljtiu8xRtZMs
- 3yntfSYjt1s96HZ0ZBXGHdjl9+4JMWuBKvyi0uIKvm+AbRtwPU2Y3ZbQ4 Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10268"; a="233168653"
-X-IronPort-AV: E=Sophos;i="5.90,136,1643702400"; d="scan'208";a="233168653"
+ t=1645811061; x=1677347061;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=kVkHZ6YSaWiHlquueguNgVcHKjFSuSIOYosMw1eLoJQ=;
+ b=LAmzPCB7zxkj1HrRmjEHa4XLSheL3IUNFebjMZQzN88JTGTxf8l5UnLN
+ L8l1GPYMz08satje/s09F9n5gg6eK00s5qudcNz8ivTXgbfFiuqmliPPP
+ ymWXxasFGg21cFFbrnFBejmjT68elJ7iftwLCS1xDhkFXQJ48movJLI/n
+ gQV6cA7lcUYxcos+SshMva+hNuKetOkuVo827z3LjdWF33tcRKtg55r2J
+ a2cnCh6XivbjAxT3Hn97xTJQeRpSHhZzodTXSa6UFFh9S9OaU7b5zhdEO
+ RU6vTNsjxZ8RQn90uobIhbbABgYXR9wmmUJ7iImEuxS6NM/0S16/1R56k w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10268"; a="252275223"
+X-IronPort-AV: E=Sophos;i="5.90,136,1643702400"; d="scan'208";a="252275223"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2022 09:41:28 -0800
-X-IronPort-AV: E=Sophos;i="5.90,136,1643702400"; d="scan'208";a="549349950"
-Received: from pkinsell-mobl.ger.corp.intel.com (HELO tursulin-mobl2.home)
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Feb 2022 09:44:21 -0800
+X-IronPort-AV: E=Sophos;i="5.90,136,1643702400"; d="scan'208";a="549351346"
+Received: from pkinsell-mobl.ger.corp.intel.com (HELO [10.213.234.117])
  ([10.213.234.117])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2022 09:41:27 -0800
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: Intel-gfx@lists.freedesktop.org
-Date: Fri, 25 Feb 2022 17:41:18 +0000
-Message-Id: <20220225174118.1320237-2-tvrtko.ursulin@linux.intel.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220225174118.1320237-1-tvrtko.ursulin@linux.intel.com>
-References: <20220225174118.1320237-1-tvrtko.ursulin@linux.intel.com>
+ 25 Feb 2022 09:44:19 -0800
+Message-ID: <58605636-42d3-1378-af81-eae4a447db9e@linux.intel.com>
+Date: Fri, 25 Feb 2022 17:44:17 +0000
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Content-Language: en-US
+To: John Harrison <john.c.harrison@intel.com>, Intel-GFX@Lists.FreeDesktop.Org
+References: <20220218213307.1338478-1-John.C.Harrison@Intel.com>
+ <20220218213307.1338478-2-John.C.Harrison@Intel.com>
+ <0d0c5a79-1285-0830-3794-e9f0644811a5@linux.intel.com>
+ <94c3184e-c1e2-668f-5824-00fd55797736@intel.com>
+ <17e69f0c-8084-10dc-b20f-7d5108260180@linux.intel.com>
+ <85105590-a8be-f4e1-69bc-cd34cad108e2@intel.com>
+ <16a2687b-4996-8d40-456e-019a112f0fb6@linux.intel.com>
+ <c1472196-260a-d2c8-c508-10fe58d4cd47@intel.com>
+ <77a7da0d-4cea-00c5-0073-44c9779b14a5@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <77a7da0d-4cea-00c5-0073-44c9779b14a5@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/2] dma-resv: Fix dma_resv_held
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/guc: Limit scheduling
+ properties to avoid overflow
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,33 +69,29 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Cc: DRI-Devel@Lists.FreeDesktop.Org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-Avoid false positives if lock state is unknown.
+On 24/02/2022 19:51, John Harrison wrote:
+> On 2/24/2022 11:19, John Harrison wrote:
+>> [snip]
+>>
+>> I'll change it to _uses_ and repost, then.
+>>
+> [    7.683149] kernel BUG at drivers/gpu/drm/i915/gt/uc/intel_guc.h:367!
+> 
+> Told you that one went bang.
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
----
- include/linux/dma-resv.h | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+intel_guc_is_used ?
 
-diff --git a/include/linux/dma-resv.h b/include/linux/dma-resv.h
-index afdfdfac729f..f475814c0d7a 100644
---- a/include/linux/dma-resv.h
-+++ b/include/linux/dma-resv.h
-@@ -278,7 +278,8 @@ static inline bool dma_resv_iter_is_restarted(struct dma_resv_iter *cursor)
- 	     fence = dma_resv_iter_first(cursor); fence;	\
- 	     fence = dma_resv_iter_next(cursor))
- 
--#define dma_resv_held(obj) lockdep_is_held(&(obj)->lock.base)
-+#define dma_resv_held(obj) \
-+	(lockdep_is_held(&(obj)->lock.base) == LOCK_STATE_HELD)
- #define dma_resv_assert_held(obj) lockdep_assert_held(&(obj)->lock.base)
- 
- #ifdef CONFIG_DEBUG_MUTEXES
--- 
-2.32.0
+My suggestion was intel_engine_uses_guc. But do note I think it would 
+not work either because of setup vs init ordering. Not sure that it 
+makes sense at engine granularity anyway.
 
+Still I do think "is wanted" is quite bad.
+
+Regards,
+
+Tvrtko
