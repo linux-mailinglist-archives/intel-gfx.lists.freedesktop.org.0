@@ -1,65 +1,75 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 290364C4DC9
-	for <lists+intel-gfx@lfdr.de>; Fri, 25 Feb 2022 19:35:22 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71C164C4DED
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Feb 2022 19:37:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67B8F10E81E;
-	Fri, 25 Feb 2022 18:35:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 865A710E897;
+	Fri, 25 Feb 2022 18:37:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2338910E81E;
- Fri, 25 Feb 2022 18:35:18 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A104C10E897
+ for <intel-gfx@lists.freedesktop.org>; Fri, 25 Feb 2022 18:37:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645814119; x=1677350119;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=yIW6oydik5oHgufdlf4hSDQHYLjshYpVXH3/Fju5ZTA=;
- b=eUbsqwbWN2PPIrhX+UNrOGMJWZc+BUiTbiYSSxTqraSqasWrTk9BkZwe
- voakjjEF2J8lj4wyvNDoZXoCvWJ6e2Pv7EtwecG08f1i0C7t9jmuVPof8
- ZTMIsT6deLZrDxQNN+mzJzfHCMRY7nfRhiWiCJrKJruLuxm4begvOPDfd
- isTMvsXpZXkniABWn4i7GmIgwT2lw85swlXcxeyOWDcFw0uxfyLkIujd5
- gF9WwfaDQ/CRjd7ohY+V0WQI+06EtnuDPkBbhiVKL7pWVe6+jwdBXP88Y
- nROl1yNx6/W3np9aMZDFD3gmhjOZtMDRCrQFT4CZTmb56WLGODA8pfrnO Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10268"; a="252285900"
-X-IronPort-AV: E=Sophos;i="5.90,136,1643702400"; d="scan'208";a="252285900"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2022 10:35:17 -0800
-X-IronPort-AV: E=Sophos;i="5.90,137,1643702400"; d="scan'208";a="549371467"
-Received: from pkinsell-mobl.ger.corp.intel.com (HELO [10.213.234.117])
- ([10.213.234.117])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2022 10:35:14 -0800
-Message-ID: <f092d019-94bc-179b-d2c4-c66d89bda89b@linux.intel.com>
-Date: Fri, 25 Feb 2022 18:35:11 +0000
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
+ t=1645814244; x=1677350244;
+ h=from:to:subject:date:message-id:references:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=JuCS0VHS7QJHFLh9cjaYxLELZNx5qjJtPPxOBIMCR94=;
+ b=EI0Y9eGcqHhSytvd3syH15LG1zJmhfB4wqhzkc2Ebn6mf4QRHbWh8LS2
+ 3CPpxe7TN0rxqffG+BDn1Tb1CjBpMFoyqu1wrBVVKZrjtSM+OWS6CxRNA
+ Sctif/wSx1GJ3SaK1NzOd42sDShAYBKjTWREcikCLOCwctPtpMZKSdi7R
+ YtGSqVn8B2v4gBOYyfzUmCkOTs62zZIfUaj9K2+OJJuP2E8IL1Axfp2lQ
+ Wug77dRWjJL2nXOcQSzQPB9YBFlRf1n4OfhJwAa3IYwpy8crJYuz4V+Ue
+ cHLpAh4KiP4cgf1H/El1HLwovOMJM/kFmeWzbryxdRbH2Wfebl2hnEnhw Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10268"; a="252752022"
+X-IronPort-AV: E=Sophos;i="5.90,137,1643702400"; d="scan'208";a="252752022"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Feb 2022 10:37:24 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,137,1643702400"; d="scan'208";a="792819782"
+Received: from orsmsx606.amr.corp.intel.com ([10.22.229.19])
+ by fmsmga005.fm.intel.com with ESMTP; 25 Feb 2022 10:37:24 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX606.amr.corp.intel.com (10.22.229.19) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.21; Fri, 25 Feb 2022 10:37:23 -0800
+Received: from pgsmsx602.gar.corp.intel.com (10.108.199.137) by
+ ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.21; Fri, 25 Feb 2022 10:37:22 -0800
+Received: from pgsmsx602.gar.corp.intel.com ([10.108.199.137]) by
+ pgsmsx602.gar.corp.intel.com ([10.108.199.137]) with mapi id 15.01.2308.020;
+ Sat, 26 Feb 2022 02:37:17 +0800
+From: "Vudum, Lakshminarayana" <lakshminarayana.vudum@intel.com>
+To: "De Marchi, Lucas" <lucas.demarchi@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: =?utf-8?B?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJtL2k5MTUvZG1jOiBEbyBu?=
+ =?utf-8?Q?ot_try_loading_wrong_DMC_version?=
+Thread-Index: AQHYKmFne1yDZqe4bkGGfeAxb9jfY6ykeSmQ
+Date: Fri, 25 Feb 2022 18:37:17 +0000
+Message-ID: <3c206c7b9f60402996cf96f66e67aae3@intel.com>
+References: <20220223210933.3049143-1-lucas.demarchi@intel.com>
+ <164577882558.6269.7127051609555719055@emeril.freedesktop.org>
+ <20220225160440.s7yxd7tgnj7azocl@ldmartin-desk2>
+In-Reply-To: <20220225160440.s7yxd7tgnj7azocl@ldmartin-desk2>
+Accept-Language: en-GB, en-US
 Content-Language: en-US
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- John Harrison <john.c.harrison@intel.com>,
- Jordan Justen <jordan.l.justen@intel.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>
-References: <20220222103640.1006006-1-jordan.l.justen@intel.com>
- <20220222103640.1006006-2-jordan.l.justen@intel.com>
- <621be0f6-63e3-a8fb-93e3-e581bf4b2d4b@intel.com>
- <87y21zh70p.fsf@jljusten-skl>
- <0917f555-1303-dadd-6609-f719dcf0ad61@intel.com>
- <3376b185-6a70-c5e1-2c2c-18a4bdeba9a2@linux.intel.com>
- <72d84811-b769-4cae-7e18-d076c75ddfa6@intel.com>
- <5f1b714c-d0fd-a437-2de8-9ce2c6bd98a7@linux.intel.com>
- <917bb13a-ba32-ba8a-64df-5e1e8fe67128@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <917bb13a-ba32-ba8a-64df-5e1e8fe67128@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v5 1/4] drm/i915/guc: Add fetch of hwconfig
- table
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.6.401.20
+x-originating-ip: [10.22.254.132]
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/dmc=3A_Do_not_try_loading_wrong_DMC_version?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,162 +82,112 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel <dri-devel@lists.freedesktop.org>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 25/02/2022 18:05, Michal Wajdeczko wrote:
-> On 25.02.2022 18:18, Tvrtko Ursulin wrote:
->>
->> On 25/02/2022 16:46, John Harrison wrote:
->>
->>>>> driver we don't care that much that we failed to load HWconfig and
->>>>> 'notice' is enough.
->>>>>
->>>>> but I'm fine with all messages being drm_err (as we will not have to
->>>>> change that once again after HWconfig will be mandatory for the driver
->>>>> as well)
->>>>
->>>> I would be against drm_err.
->>>>
->>>> #define KERN_EMERG      KERN_SOH "0"    /* system is unusable */
->>>> #define KERN_ALERT      KERN_SOH "1"    /* action must be taken
->>>> immediately */
->>>> #define KERN_CRIT       KERN_SOH "2"    /* critical conditions */
->>>> #define KERN_ERR        KERN_SOH "3"    /* error conditions */
->>>> #define KERN_WARNING    KERN_SOH "4"    /* warning conditions */
->>>> #define KERN_NOTICE     KERN_SOH "5"    /* normal but significant
->>>> condition */
->>>> #define KERN_INFO       KERN_SOH "6"    /* informational */
->>>> #define KERN_DEBUG      KERN_SOH "7"    /* debug-level messages */
->>>>
->>>>  From the point of view of the kernel driver, this is not an error to
->>>> its operation. It can at most be a warning, but notice is also fine
->>>> by me. One could argue when reading "normal but significant
->>>> condition" that it is not normal, when it is in fact unexpected, so
->>>> if people prefer warning that is also okay by me. I still lean
->>>> towards notice becuase of the hands-off nature i915 has with the
->>>> pass-through of this blob.
->>>   From the point of view of the KMD, i915 will load and be 'functional'
->>> if it can't talk to the hardware at all. The UMDs won't work at all but
->>
->> Well this reductio ad absurdum fails I think... :)
->>
->>> the driver load will be 'fine'. That's a requirement to be able to get
->>> the user to a software fallback desktop in order to work out why the
->>> hardware isn't working (e.g. no GuC firmware file). I would view this
->>> as similar. The KMD might have loaded but the UMDs are not functional.
->>> That is definitely an error condition to me.
->>
->> ... If GuC fails to load there is no command submission and driver will
->> obviously log that with drm_err.
->>
->> If blob fails to verify it depends on the userspace stack what will
->> happen. As stated before on some platforms, and/or after a certain time,
->> Mesa will not look at the blob at all. So i915 is fine (it is after all
->> just a conduit for opaque data!), system overall is fine, so it
->> definitely isn't a KERN_ERR level event.
->>
->>>>>>>> +               ERR_PTR(ret));
->>>>>>>> +
->>>>>>>>         ret = guc_enable_communication(guc);
->>>>>>>>         if (ret)
->>>>>>>>             goto err_log_capture;
->>>>>>>> @@ -562,6 +567,8 @@ static void __uc_fini_hw(struct intel_uc *uc)
->>>>>>>>         if (intel_uc_uses_guc_submission(uc))
->>>>>>>>             intel_guc_submission_disable(guc);
->>>>>>>>     +    intel_guc_hwconfig_fini(&guc->hwconfig);
->>>>>>>> +
->>>>>>>>         __uc_sanitize(uc);
->>>>>>>>     }
->>>>>>>>     diff --git a/drivers/gpu/drm/i915/i915_pci.c
->>>>>>>> b/drivers/gpu/drm/i915/i915_pci.c
->>>>>>>> index 76e590fcb903..1d31e35a5154 100644
->>>>>>>> --- a/drivers/gpu/drm/i915/i915_pci.c
->>>>>>>> +++ b/drivers/gpu/drm/i915/i915_pci.c
->>>>>>>> @@ -990,6 +990,7 @@ static const struct intel_device_info
->>>>>>>> adl_p_info = {
->>>>>>>>             BIT(RCS0) | BIT(BCS0) | BIT(VECS0) | BIT(VCS0) |
->>>>>>>> BIT(VCS2),
->>>>>>>>         .ppgtt_size = 48,
->>>>>>>>         .dma_mask_size = 39,
->>>>>>>> +    .has_guc_hwconfig = 1,
->>>>>>> Who requested this change? It was previously done this way but the
->>>>>>> instruction was that i915_pci.c is for hardware features only but
->>>>>>> that
->>>>>>> this, as you seem extremely keen about pointing out at every
->>>>>>> opportunity, is a software feature.
->>>>>>
->>>>>> This was requested by Michal as well. I definitely agree it is a
->>>>>> software feature, but I was not aware that "i915_pci.c is for hardware
->>>>>> features only".
->>>>>>
->>>>>> Michal, do you agree with this and returning to the previous method
->>>>>> for
->>>>>> enabling the feature?
->>>>>
->>>>> now I'm little confused as some arch direction was to treat FW as
->>>>> extension of the HW so for me it was natural to have 'has_guc_hwconfig'
->>>>> flag in device_info
->>>>>
->>>>> if still for some reason it is undesired to mix HW and FW/SW flags
->>>>> inside single group of flags then maybe we should just add separate
->>>>> group of immutable flags where has_guc_hwconfig could be defined.
->>>>>
->>>>> let our maintainers decide
->>>>
->>>> Bah.. :)
->>>>
->>>> And what was the previous method?
->>>>
->>>> [comes back later]
->>>>
->>>> Okay it was:
->>>>
->>>> +static bool has_table(struct drm_i915_private *i915)
->>>> +{
->>>> +    if (IS_ALDERLAKE_P(i915))
->>>> +        return true;
->>>>
->>>> Which sucks a bit if we want to argue it does not belong in device info.
->>>>
->>>> Why can't we ask the GuC if the blob exists? In fact what would
->>>> happen if one would call __guc_action_get_hwconfig on any GuC platform?
->>> That was how I originally wrote the code. However, other parties
->>> refuse to allow a H2G call to fail. The underlying CTB layers complain
->>> loudly on any CTB error. And the GuC architects insist that a call to
->>> query the table on an unsupported platform is an error and should
->>> return an 'unsupported' error code.
-> 
-> just for the background: IIRC the reason why arch didn't want 'query'
-> mode that wont fail was that HWconfig is not optional on these selected
-> platforms, so driver shall know up-front on which platforms it shall be
-> working (and driver shall even fail if blob is not available)
-> 
->>
->> Oh well, shrug, sounds silly but I will not pretend I am familiar with H2G
->>
->> In this case has_table does sound better since it indeed isn't a
->> hardware feature. It is a GuC fw thing and if we don't have a way to
->> probe things there at runtime, then at least limit the knowledge to GuC
->> files.
-> 
-> note that arch expectation is that driver itself shall be using this
-> hwconfig (ie. will decode required data). while current approach is that
-> driver acts only as a proxy to UMD, this has to change and refactoring
-> will start (likely) soon. therefore flag has_guc_hwconfig fits better
-> IMHO as this wont be just 'GuC' fw thing.
-
-There we go, Jordan's validation gets a new unexpected use. :D
-
-In this case it should maybe be like:
-
-#define I915_NEEDS_GUC_HWCONFIG(i915) (IS_PLATFORM(xxx) || VER >= nnn)
-
-Since it is still not a hardware feature like other device info flags.
-
-Regards,
-
-Tvrtko
+UmUtcmVwb3J0ZWQgYWZ0ZXIgYWRkcmVzc2luZyBhbGwgdGhlIGZhaWx1cmVzLiBTZWUgYmVsb3cg
+Zm9yIGJ1ZyBpZCdzLg0KDQotLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KRnJvbTogRGUgTWFy
+Y2hpLCBMdWNhcyA8bHVjYXMuZGVtYXJjaGlAaW50ZWwuY29tPiANClNlbnQ6IEZyaWRheSwgRmVi
+cnVhcnkgMjUsIDIwMjIgODowNSBBTQ0KVG86IGludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5v
+cmcNCkNjOiBWdWR1bSwgTGFrc2htaW5hcmF5YW5hIDxsYWtzaG1pbmFyYXlhbmEudnVkdW1AaW50
+ZWwuY29tPg0KU3ViamVjdDogUmU6IOKclyBGaS5DSS5JR1Q6IGZhaWx1cmUgZm9yIGRybS9pOTE1
+L2RtYzogRG8gbm90IHRyeSBsb2FkaW5nIHdyb25nIERNQyB2ZXJzaW9uDQoNCk9uIEZyaSwgRmVi
+IDI1LCAyMDIyIGF0IDA4OjQ3OjA1QU0gKzAwMDAsIFBhdGNod29yayB3cm90ZToNCj49PSBTZXJp
+ZXMgRGV0YWlscyA9PQ0KPg0KPlNlcmllczogZHJtL2k5MTUvZG1jOiBEbyBub3QgdHJ5IGxvYWRp
+bmcgd3JvbmcgRE1DIHZlcnNpb24NCj5VUkwgICA6IGh0dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNr
+dG9wLm9yZy9zZXJpZXMvMTAwNjY0Lw0KPlN0YXRlIDogZmFpbHVyZQ0KPg0KPj09IFN1bW1hcnkg
+PT0NCj4NCj5DSSBCdWcgTG9nIC0gY2hhbmdlcyBmcm9tIENJX0RSTV8xMTI3OV9mdWxsIC0+IFBh
+dGNod29ya18yMjM5M19mdWxsIA0KPj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT0NCj4NCj5TdW1tYXJ5DQo+LS0tLS0tLQ0KPg0KPiAgKipGQUlMVVJF
+KioNCj4NCj4gIFNlcmlvdXMgdW5rbm93biBjaGFuZ2VzIGNvbWluZyB3aXRoIFBhdGNod29ya18y
+MjM5M19mdWxsIGFic29sdXRlbHkgDQo+IG5lZWQgdG8gYmUgIHZlcmlmaWVkIG1hbnVhbGx5Lg0K
+Pg0KPiAgSWYgeW91IHRoaW5rIHRoZSByZXBvcnRlZCBjaGFuZ2VzIGhhdmUgbm90aGluZyB0byBk
+byB3aXRoIHRoZSBjaGFuZ2VzICANCj4gaW50cm9kdWNlZCBpbiBQYXRjaHdvcmtfMjIzOTNfZnVs
+bCwgcGxlYXNlIG5vdGlmeSB5b3VyIGJ1ZyB0ZWFtIHRvIA0KPiBhbGxvdyB0aGVtICB0byBkb2N1
+bWVudCB0aGlzIG5ldyBmYWlsdXJlIG1vZGUsIHdoaWNoIHdpbGwgcmVkdWNlIGZhbHNlIHBvc2l0
+aXZlcyBpbiBDSS4NCj4NCj4NCj4NCj5QYXJ0aWNpcGF0aW5nIGhvc3RzICgxMSAtPiAxMSkNCj4t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCj4NCj4gIE5vIGNoYW5nZXMgaW4gcGFydGlj
+aXBhdGluZyBob3N0cw0KPg0KPlBvc3NpYmxlIG5ldyBpc3N1ZXMNCj4tLS0tLS0tLS0tLS0tLS0t
+LS0tDQo+DQo+ICBIZXJlIGFyZSB0aGUgdW5rbm93biBjaGFuZ2VzIHRoYXQgbWF5IGhhdmUgYmVl
+biBpbnRyb2R1Y2VkIGluIFBhdGNod29ya18yMjM5M19mdWxsOg0KPg0KPiMjIyBJR1QgY2hhbmdl
+cyAjIyMNCj4NCj4jIyMjIFBvc3NpYmxlIHJlZ3Jlc3Npb25zICMjIyMNCj4NCj4gICogaWd0QGdl
+bV9laW9AaW4tZmxpZ2h0LXN1c3BlbmQ6DQo+ICAgIC0gc2hhcmQtc2tsOiAgICAgICAgICBbUEFT
+U11bMV0gLT4gW0lOQ09NUExFVEVdWzJdDQo+ICAgWzFdOiBodHRwczovL2ludGVsLWdmeC1jaS4w
+MS5vcmcvdHJlZS9kcm0tdGlwL0NJX0RSTV8xMTI3OS9zaGFyZC1za2w4L2lndEBnZW1fZWlvQGlu
+LWZsaWdodC1zdXNwZW5kLmh0bWwNCj4gICBbMl06IA0KPiBodHRwczovL2ludGVsLWdmeC1jaS4w
+MS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18yMjM5My9zaGFyZC1za2w2L2lnDQo+IHRAZ2Vt
+X2Vpb0Bpbi1mbGlnaHQtc3VzcGVuZC5odG1sDQo+DQpMYWtzaG1pOiBUaGlzIGlzIHJlbGF0ZWQg
+dG8gaHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2RybS9pbnRlbC8tL2lzc3Vlcy80ODQz
+DQppZ3RAZ2VtX2Vpb0Bpbi1mbGlnaHQtc3VzcGVuZCAtIGluY29tcGxldGUgLSBQTTogc3VzcGVu
+ZCBlbnRyeSAoZGVlcCkNCg0KPiAgKiBpZ3RAa21zX2ZsaXBAYnVzeS1mbGlwQGEtaGRtaS1hMToN
+Cj4gICAgLSBzaGFyZC1nbGs6ICAgICAgICAgIFtQQVNTXVszXSAtPiBbRkFJTF1bNF0NCj4gICBb
+M106IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzExMjc5
+L3NoYXJkLWdsazEvaWd0QGttc19mbGlwQGJ1c3ktZmxpcEBhLWhkbWktYTEuaHRtbA0KPiAgIFs0
+XTogDQo+IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3Jr
+XzIyMzkzL3NoYXJkLWdsazgvaWcNCj4gdEBrbXNfZmxpcEBidXN5LWZsaXBAYS1oZG1pLWExLmh0
+bWwNCg0KdGhpcyBjb3VsZCBvbmx5IGJlIGEgcmVncmVzc2lvbiBpZiBpdCB3YXMgaW4gYW5vdGhl
+ciBkaXNwbGF5X3ZlciA9PSAxMi4NClRob3NlIGFyZSBub3QuDQpMYWtzaG1pOiBUaGlzIGlzIHJl
+bGF0ZWQgdG8NCiBodHRwczovL2dpdGxhYi5mcmVlZGVza3RvcC5vcmcvZHJtL2ludGVsLy0vaXNz
+dWVzLzQ2MjgNCmlndEBrbXNfZmxpcEBidXN5LWZsaXBALiogLSBmYWlsIC0gRmFpbGVkIGFzc2Vy
+dGlvbjogZG9fcGFnZV9mbGlwKG8sIG5ld19mYl9pZCwgMCkgPT0gLTE2LGVycm9yOiAwICE9IC0x
+Ng0KPg0KPg0KPiMjIyMgV2FybmluZ3MgIyMjIw0KPg0KPiAgKiBpZ3RAaTkxNV9wbV9kY0BkYzNj
+by12cGItc2ltdWxhdGlvbjoNCj4gICAgLSBzaGFyZC1za2w6ICAgICAgICAgIFtTS0lQXVs1XSAo
+W2ZkbyMxMDkyNzFdIC8gW2k5MTUjNjU4XSkgLT4gW0lOQ09NUExFVEVdWzZdDQo+ICAgWzVdOiBo
+dHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL0NJX0RSTV8xMTI3OS9zaGFy
+ZC1za2wxMC9pZ3RAaTkxNV9wbV9kY0BkYzNjby12cGItc2ltdWxhdGlvbi5odG1sDQo+ICAgWzZd
+OiANCj4gaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtf
+MjIzOTMvc2hhcmQtc2tsNi9pZw0KPiB0QGk5MTVfcG1fZGNAZGMzY28tdnBiLXNpbXVsYXRpb24u
+aHRtbA0KPg0KPg0KPiMjIyMgU3VwcHJlc3NlZCAjIyMjDQo+DQo+ICBUaGUgZm9sbG93aW5nIHJl
+c3VsdHMgY29tZSBmcm9tIHVudHJ1c3RlZCBtYWNoaW5lcywgdGVzdHMsIG9yIHN0YXR1c2VzLg0K
+PiAgVGhleSBkbyBub3QgYWZmZWN0IHRoZSBvdmVyYWxsIHJlc3VsdC4NCj4NCj4gICogaWd0QGtt
+c19wbGFuZUBwbGFuZS1wYW5uaW5nLWJvdHRvbS1yaWdodC1zdXNwZW5kQHBpcGUtYi1wbGFuZXM6
+DQo+ICAgIC0ge3NoYXJkLXRnbHV9OiAgICAgICBOT1RSVU4gLT4gW0RNRVNHLVdBUk5dWzddICsx
+IHNpbWlsYXIgaXNzdWUNCj4gICBbN106IA0KPiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcv
+dHJlZS9kcm0tdGlwL1BhdGNod29ya18yMjM5My9zaGFyZC10Z2x1LTEvDQo+IGlndEBrbXNfcGxh
+bmVAcGxhbmUtcGFubmluZy1ib3R0b20tcmlnaHQtc3VzcGVuZEBwaXBlLWItcGxhbmVzLmh0bWwN
+Cg0KdGhpcyBvbmUgd29ydWxkIGJlIHN1c3BpY2lvdXMsIGJ1dCB0aGUgRE1DIGlzc3VlIHRoZXJl
+IGlzIGNhdXNlZCBieSBhbiBlYXJsaWVyIGVycm9yLiBDaGVja2luZyBhbm90aGVyIHJ1biBmb3Ig
+dGhpcyBzYW1lIG1hY2hpbmUsIGJvdGggYXJlIGxvYWRpbmcgdGhlIHNhbWUgRE1DOg0KDQpodHRw
+czovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL0NJX0RSTV8xMTI3Ni9zaGFyZC10
+Z2x1LTEvYm9vdDkudHh0DQo8Nz5bICAgIDYuMTAwMzIyXSBpOTE1IDAwMDA6MDA6MDIuMDogW2Ry
+bTppbnRlbF9kbWNfdWNvZGVfaW5pdCBbaTkxNV1dIExvYWRpbmcgaTkxNS90Z2xfZG1jX3ZlcjJf
+MTIuYmluDQo8Nz5bICAgIDYuMTAxMTgyXSBpOTE1IDAwMDA6MDA6MDIuMDogW2RybTppbnRlbF9m
+YmNfaW5pdCBbaTkxNV1dIFNhbml0aXplZCBlbmFibGVfZmJjIHZhbHVlOiAxDQo8Nz5bICAgIDYu
+MTAyMjY0XSBpOTE1IDAwMDA6MDA6MDIuMDogW2RybTppbnRlbF9wcmludF93bV9sYXRlbmN5IFtp
+OTE1XV0gR2VuOSBQbGFuZSBXTTAgbGF0ZW5jeSAzICgzLjAgdXNlYykNCjw3PlsgICAgNi4xMDI0
+ODBdIGk5MTUgMDAwMDowMDowMi4wOiBbZHJtOmludGVsX3ByaW50X3dtX2xhdGVuY3kgW2k5MTVd
+XSBHZW45IFBsYW5lIFdNMSBsYXRlbmN5IDU0ICg1NC4wIHVzZWMpDQo8Nz5bICAgIDYuMTAyNTky
+XSBpOTE1IDAwMDA6MDA6MDIuMDogW2RybTppbnRlbF9wcmludF93bV9sYXRlbmN5IFtpOTE1XV0g
+R2VuOSBQbGFuZSBXTTIgbGF0ZW5jeSA1NCAoNTQuMCB1c2VjKQ0KPDc+WyAgICA2LjEwMjcxMl0g
+aTkxNSAwMDAwOjAwOjAyLjA6IFtkcm06aW50ZWxfcHJpbnRfd21fbGF0ZW5jeSBbaTkxNV1dIEdl
+bjkgUGxhbmUgV00zIGxhdGVuY3kgNTQgKDU0LjAgdXNlYykNCjw3PlsgICAgNi4xMDI4MjBdIGk5
+MTUgMDAwMDowMDowMi4wOiBbZHJtOmludGVsX3ByaW50X3dtX2xhdGVuY3kgW2k5MTVdXSBHZW45
+IFBsYW5lIFdNNCBsYXRlbmN5IDU0ICg1NC4wIHVzZWMpDQo8Nz5bICAgIDYuMTAyOTc3XSBpOTE1
+IDAwMDA6MDA6MDIuMDogW2RybTppbnRlbF9wcmludF93bV9sYXRlbmN5IFtpOTE1XV0gR2VuOSBQ
+bGFuZSBXTTUgbGF0ZW5jeSA3MyAoNzMuMCB1c2VjKQ0KPDc+WyAgICA2LjEwMzA0MF0gaTkxNSAw
+MDAwOjAwOjAyLjA6IFtkcm06aW50ZWxfcHJpbnRfd21fbGF0ZW5jeSBbaTkxNV1dIEdlbjkgUGxh
+bmUgV002IGxhdGVuY3kgMTEwICgxMTAuMCB1c2VjKQ0KPDc+WyAgICA2LjEwMzE3Nl0gaTkxNSAw
+MDAwOjAwOjAyLjA6IFtkcm06aW50ZWxfcHJpbnRfd21fbGF0ZW5jeSBbaTkxNV1dIEdlbjkgUGxh
+bmUgV003IGxhdGVuY3kgMTE1ICgxMTUuMCB1c2VjKQ0KPDY+WyAgICA2LjEwNDAxOF0gaTkxNSAw
+MDAwOjAwOjAyLjA6IFtkcm1dIEZpbmlzaGVkIGxvYWRpbmcgRE1DIGZpcm13YXJlIGk5MTUvdGds
+X2RtY192ZXIyXzEyLmJpbiAodjIuMTIpDQoNCmFuZCBodHRwczovL2ludGVsLWdmeC1jaS4wMS5v
+cmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18yMjM5My9zaGFyZC10Z2x1LTEvYm9vdDE2LnR4dA0K
+PDc+WyAgICA2LjEwODAzMV0gaTkxNSAwMDAwOjAwOjAyLjA6IFtkcm06aW50ZWxfZG1jX3Vjb2Rl
+X2luaXQgW2k5MTVdXSBMb2FkaW5nIGk5MTUvdGdsX2RtY192ZXIyXzEyLmJpbg0KPDc+WyAgICA2
+LjEwOTMzM10gaTkxNSAwMDAwOjAwOjAyLjA6IFtkcm06aW50ZWxfZmJjX2luaXQgW2k5MTVdXSBT
+YW5pdGl6ZWQgZW5hYmxlX2ZiYyB2YWx1ZTogMQ0KPDc+WyAgICA2LjExMDY0NF0gaTkxNSAwMDAw
+OjAwOjAyLjA6IFtkcm06aW50ZWxfcHJpbnRfd21fbGF0ZW5jeSBbaTkxNV1dIEdlbjkgUGxhbmUg
+V00wIGxhdGVuY3kgMyAoMy4wIHVzZWMpDQo8Nz5bICAgIDYuMTExMTkyXSBpOTE1IDAwMDA6MDA6
+MDIuMDogW2RybTppbnRlbF9wcmludF93bV9sYXRlbmN5IFtpOTE1XV0gR2VuOSBQbGFuZSBXTTEg
+bGF0ZW5jeSA1NCAoNTQuMCB1c2VjKQ0KPDc+WyAgICA2LjExMTMxMV0gaTkxNSAwMDAwOjAwOjAy
+LjA6IFtkcm06aW50ZWxfcHJpbnRfd21fbGF0ZW5jeSBbaTkxNV1dIEdlbjkgUGxhbmUgV00yIGxh
+dGVuY3kgNTQgKDU0LjAgdXNlYykNCjw2PlsgICAgNi4xMTE0ODFdIGk5MTUgMDAwMDowMDowMi4w
+OiBbZHJtXSBGaW5pc2hlZCBsb2FkaW5nIERNQyBmaXJtd2FyZSBpOTE1L3RnbF9kbWNfdmVyMl8x
+Mi5iaW4gKHYyLjEyKQ0KPDc+WyAgICA2LjExMTQ3OV0gaTkxNSAwMDAwOjAwOjAyLjA6IFtkcm06
+aW50ZWxfcHJpbnRfd21fbGF0ZW5jeSBbaTkxNV1dIEdlbjkgUGxhbmUgV00zIGxhdGVuY3kgNTQg
+KDU0LjAgdXNlYw0KDQpDYW4ndCBiZSBjYXVzZWQgYnkgdGhpcyBzZXJpZXMuDQoNCkxha3NobWk6
+IFRoaXMgaXMgcmVsYXRlZCB0byBodHRwczovL2dpdGxhYi5mcmVlZGVza3RvcC5vcmcvZHJtL2lu
+dGVsLy0vaXNzdWVzLzUxMjINCkZldyB0ZXN0cyAtIGRtZXNnLXdhcm4vaW5jb21wbGV0ZSAtIGk5
+MTUgcmF3LXdha2VyZWZzPTEgd2FrZWxvY2tzPTEgb24gY2xlYW51cCwgV0FSTklORzogLiogYXQg
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfcnVudGltZV9wbS5jOlxkKyBpbnRlbF9ydW50aW1l
+X3BtX2RyaXZlcl9yZWxlYXNlDQpMdWNhcyBEZSBNYXJjaGkNCg==
