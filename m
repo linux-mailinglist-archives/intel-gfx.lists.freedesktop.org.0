@@ -2,84 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D26A4C5128
-	for <lists+intel-gfx@lfdr.de>; Fri, 25 Feb 2022 23:04:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 08FD04C5138
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Feb 2022 23:08:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3AFB410EA0A;
-	Fri, 25 Feb 2022 22:04:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A65410EA89;
+	Fri, 25 Feb 2022 22:08:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9415210EA0A
- for <intel-gfx@lists.freedesktop.org>; Fri, 25 Feb 2022 22:04:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1645826670;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=bO21mGiFSjxrTsAgYiuxcv8DPInIyOqBoKvJzjPiVo8=;
- b=NRG3kXXyJXT1bBdLbe4BE2v9p8Yj6TJbhqQflHAasMYZ8AI10SGGFWCkEtnW7e2u9N4yeF
- ettg9/orw7D7xk4EYmpjy+ZuczeDWmSm9qvuW+LwNmI3KRnIo3ccJyyNF2roTxQw2cEwdZ
- eBpFv+8vTL8Me0HKGuwqtiwnvB5JFFI=
-Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com
- [209.85.221.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-246-xD1xGx-ePh-vlmOOdkszfw-1; Fri, 25 Feb 2022 17:04:29 -0500
-X-MC-Unique: xD1xGx-ePh-vlmOOdkszfw-1
-Received: by mail-wr1-f69.google.com with SMTP id
- c5-20020adffb05000000b001edbbefe96dso1171685wrr.8
- for <intel-gfx@lists.freedesktop.org>; Fri, 25 Feb 2022 14:04:29 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:to:cc:references:from:in-reply-to
- :content-transfer-encoding;
- bh=bO21mGiFSjxrTsAgYiuxcv8DPInIyOqBoKvJzjPiVo8=;
- b=yurMbac7K5yeNmQ+1PlUWfS20/hfXIIwYYuIrqD+NVtNBHUTcAkSwHlbzIOy+RovkR
- 11+zhLBt8nZ1qwScgEzm+Wb7yaNtp2WTPmHDtN67Gt0QF1quliXWs6Pc/+OktD4Sobum
- QAwO0Kt06ySL9YebnpeTcaDEpzrJlDUjijLN+Ldn2g/ymRMJdZTNH1vu4BTZLd/Olm3+
- ZUx2pKNu0GOJ9bTZfZFgH282WpQR8QSrYfUH3AT9hrsAXolN3unOpjQupKzxFxyWOtn7
- DtWy6eLY0XUSPzUg2tX50hYvJbhuZceeYNILaXD2v+q5xGqfGv3MiSbiC5nXL4dt0/Nf
- VyVA==
-X-Gm-Message-State: AOAM5312+rPkiHZxn8mKjJBkp8u5BS9OI9vSjz/TA9yIpSLVhS5KHdp7
- Th7Yg4jqKQZ9PYVdltCIQlbBJqlN5eWw4AAmVaqN6GsOIRGVVKKv+bDKvS2CX2HveCsRg/7I++1
- oqxzfFhcr6jqCtcLAye0X0F5QaJPn
-X-Received: by 2002:a5d:6da3:0:b0:1e3:2f74:f025 with SMTP id
- u3-20020a5d6da3000000b001e32f74f025mr7609062wrs.59.1645826668047; 
- Fri, 25 Feb 2022 14:04:28 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJzIAVhIjXhFisDaSBcWS97jIQINaeO8cdSnnZqTT9pHKvxm2yqY6ihIXoPEmHCteAon+hDEJg==
-X-Received: by 2002:a5d:6da3:0:b0:1e3:2f74:f025 with SMTP id
- u3-20020a5d6da3000000b001e32f74f025mr7609045wrs.59.1645826667780; 
- Fri, 25 Feb 2022 14:04:27 -0800 (PST)
-Received: from [192.168.1.102] ([92.176.231.205])
- by smtp.gmail.com with ESMTPSA id
- 17-20020a05600c241100b0037c01ad7152sm4950807wmp.14.2022.02.25.14.04.26
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 25 Feb 2022 14:04:27 -0800 (PST)
-Message-ID: <cdb8e01c-1c0d-8ead-ed2e-e5bf20e54a0e@redhat.com>
-Date: Fri, 25 Feb 2022 23:04:26 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D5E9A10EA87;
+ Fri, 25 Feb 2022 22:08:14 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id D134CA008A;
+ Fri, 25 Feb 2022 22:08:14 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2004444248502886922=="
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-To: Hans de Goede <hdegoede@redhat.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-References: <20220225214934.383168-1-hdegoede@redhat.com>
- <20220225214934.383168-3-hdegoede@redhat.com>
-From: Javier Martinez Canillas <javierm@redhat.com>
-In-Reply-To: <20220225214934.383168-3-hdegoede@redhat.com>
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=javierm@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 3/5] drm/i915/dsi: Add some debug logging to
- mipi_exec_i2c
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tejas Upadhyay" <tejaskumarx.surendrakumar.upadhyay@intel.com>
+Date: Fri, 25 Feb 2022 22:08:14 -0000
+Message-ID: <164582689482.6269.11792444737254835874@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220225141550.162490-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+In-Reply-To: <20220225141550.162490-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgUENJ?=
+ =?utf-8?q?=3A_vmd=3A_Prevent_recursive_locking_on_interrupt_allocation?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,29 +40,171 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hello Hans,
+--===============2004444248502886922==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 2/25/22 22:49, Hans de Goede wrote:
-> Add some debug logging to mipi_exec_i2c, to make debugging various
-> issues seen with it easier.
-> 
-> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dsi_vbt.c | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
+== Series Details ==
 
-Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
+Series: PCI: vmd: Prevent recursive locking on interrupt allocation
+URL   : https://patchwork.freedesktop.org/series/100743/
+State : success
 
--- 
-Best regards,
+== Summary ==
 
-Javier Martinez Canillas
-Linux Engineering
-Red Hat
+CI Bug Log - changes from CI_DRM_11289 -> Patchwork_22415
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22415/index.html
+
+Participating hosts (41 -> 39)
+------------------------------
+
+  Missing    (2): fi-bsw-cyan bat-jsl-2 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_22415 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_suspend@basic-s3@smem:
+    - fi-skl-6600u:       [PASS][1] -> [INCOMPLETE][2] ([i915#4547])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11289/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22415/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-guc:         [FAIL][3] ([i915#579]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11289/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22415/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
+
+  * igt@kms_busy@basic@modeset:
+    - {bat-adlp-6}:       [DMESG-WARN][5] ([i915#3576]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11289/bat-adlp-6/igt@kms_busy@basic@modeset.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22415/bat-adlp-6/igt@kms_busy@basic@modeset.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#3576]: https://gitlab.freedesktop.org/drm/intel/issues/3576
+  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
+  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_11289 -> Patchwork_22415
+
+  CI-20190529: 20190529
+  CI_DRM_11289: a560f8f58a191a7ff533db6448b09eb779da603e @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6359: 57049558c452272b27eeb099fac07e55a924bbf9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_22415: cfcb4f87270de52f4ff90d57540e471fa3b48b55 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+cfcb4f87270d PCI: vmd: Prevent recursive locking on interrupt allocation
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22415/index.html
+
+--===============2004444248502886922==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>PCI: vmd: Prevent recursive locking on interrupt allocation</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/100743/">https://patchwork.freedesktop.org/series/100743/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22415/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22415/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11289 -&gt; Patchwork_22415</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22415/index.html</p>
+<h2>Participating hosts (41 -&gt; 39)</h2>
+<p>Missing    (2): fi-bsw-cyan bat-jsl-2 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_22415 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@gem_exec_suspend@basic-s3@smem:<ul>
+<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11289/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22415/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11289/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/579">i915#579</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22415/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_busy@basic@modeset:</p>
+<ul>
+<li>{bat-adlp-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11289/bat-adlp-6/igt@kms_busy@basic@modeset.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22415/bat-adlp-6/igt@kms_busy@basic@modeset.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11289 -&gt; Patchwork_22415</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11289: a560f8f58a191a7ff533db6448b09eb779da603e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6359: 57049558c452272b27eeb099fac07e55a924bbf9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_22415: cfcb4f87270de52f4ff90d57540e471fa3b48b55 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>cfcb4f87270d PCI: vmd: Prevent recursive locking on interrupt allocation</p>
+
+</body>
+</html>
+
+--===============2004444248502886922==--
