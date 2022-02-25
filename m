@@ -1,33 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F9934C3F05
-	for <lists+intel-gfx@lfdr.de>; Fri, 25 Feb 2022 08:28:27 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA7754C3F06
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Feb 2022 08:29:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 553CB10E50F;
-	Fri, 25 Feb 2022 07:28:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E345510E510;
+	Fri, 25 Feb 2022 07:29:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id EE12D10E510;
- Fri, 25 Feb 2022 07:28:22 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 14C4310E1DA;
+ Fri, 25 Feb 2022 07:29:44 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id EA8D2A9932;
- Fri, 25 Feb 2022 07:28:22 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 13DA6A9932;
+ Fri, 25 Feb 2022 07:29:44 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Michael Cheng" <michael.cheng@intel.com>
-Date: Fri, 25 Feb 2022 07:28:22 -0000
-Message-ID: <164577410292.6270.2088343646082263285@emeril.freedesktop.org>
+Date: Fri, 25 Feb 2022 07:29:44 -0000
+Message-ID: <164577418407.6268.11420412773053571227@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20220225032436.904942-1-michael.cheng@intel.com>
 In-Reply-To: <20220225032436.904942-1-michael.cheng@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Use_drm=5Fclflush*_instead_of_clflush?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?Use_drm=5Fclflush*_instead_of_clflush?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,18 +53,8 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-86596975e130 drm: Add arch arm64 for drm_clflush_virt_range
--:35: WARNING:LINE_SPACING: Missing a blank line after declarations
-#35: FILE: drivers/gpu/drm/drm_cache.c:180:
-+	void *end = addr + length;
-+	caches_clean_inval_pou((unsigned long)addr, (unsigned long)end);
-
-total: 0 errors, 1 warnings, 0 checks, 11 lines checked
-74d1a9bccc41 drm/i915/gt: Re-work intel_write_status_page
-08cf76981869 drm/i915/gt: Drop invalidate_csb_entries
-5568b6fef0f6 drm/i915/gt: Re-work reset_csb
-78a5efb9813c drm/i915/: Re-work clflush_write32
-43b085a28892 drm/i915/gt: replace cache_clflush_range
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
