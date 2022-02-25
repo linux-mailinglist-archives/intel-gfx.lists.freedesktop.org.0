@@ -1,157 +1,62 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAC2C4C4DA7
-	for <lists+intel-gfx@lfdr.de>; Fri, 25 Feb 2022 19:23:48 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD5FF4C4DBD
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Feb 2022 19:29:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EDE7610E7D0;
-	Fri, 25 Feb 2022 18:23:46 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F2A6D10E7CA;
- Fri, 25 Feb 2022 18:23:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0295F10E7E4;
+	Fri, 25 Feb 2022 18:29:58 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A20F10E15A;
+ Fri, 25 Feb 2022 18:29:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645813425; x=1677349425;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=HuMYbiJGrAeoUayM0NLT0sXgwovgfQxDJaIkySR2HW4=;
- b=ePjXvKTXQU5DImua8nMQgV1Vx0Iro2s+hUgIABGfzmlc3SF7DHPfRytW
- lI0cDQGH42a0gOa8azEz1EQMC+m9XZQ6Po9njArmSV6Frf5RGVCnyM58Q
- nJEzzyVRaFmo5YQ/tdXbAeNop3XOFKFdBWSL5PXRJeccSILBFfSC1OxJS
- B+uTc/oGYQIMUTHAmiG9G7sk/cc+fUunFu4T7jJ4zus/Wlz5oHIVRNzNL
- vHUutK6ntm8gdkQY557VLfOHMhwNs4DiyCAnLRNsnE0MO2PuaG6ezPRHr
- 66Uo5ORTLHxeH9J7w5GOI0H5c214cUlZ91FU/+bbpmdD8rJ/kiDH7R4ww w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10268"; a="338989608"
-X-IronPort-AV: E=Sophos;i="5.90,136,1643702400"; d="scan'208";a="338989608"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2022 10:23:44 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,136,1643702400"; d="scan'208";a="509353873"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orsmga006.jf.intel.com with ESMTP; 25 Feb 2022 10:23:44 -0800
-Received: from fmsmsx608.amr.corp.intel.com (10.18.126.88) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.21; Fri, 25 Feb 2022 10:23:43 -0800
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx608.amr.corp.intel.com (10.18.126.88) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.21 via Frontend Transport; Fri, 25 Feb 2022 10:23:43 -0800
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.100)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2308.20; Fri, 25 Feb 2022 10:23:42 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=gZSo8fnQwExeAJFvKWvoy7WHldhEAOJJbsfRqqt+ALnZLTsdaH7gnPCftOnCzQs/VOx6IH6jWKcUu4+q7mjR8WhspBHj7uHfEQA0dhgwmn7tnIV7x25RGBnUB5ihQOmbp4eVLFYwfxL2Qt1SBe3BYO54EyDwt1D6UXC0ORgwzl2NfDufkmDzN5Xpy7QzDJTtcPynoQWcZnwfHiHLVwlM1ByV2uHvvWtmvfOhoB57aiTHtSkMKshGm+EuxNjJYFv2JvWN7cGSauSuO+T/rh9evRnp+TXxK6b1dZL0JIFJnxVYAEAdz+IyMkL03URNwckSfRlvswDTwbbOQR2KHVdOXA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=cVDZA1ntiZ0EP9MVjsuR8pdag3d76j5Ur+SJLidXgCw=;
- b=Gz6/X2hb8CjppuqQ1y+xUd+jyVTMe1Trb54qYh4Mnq0WuFXGjQCo39ueG+uKVdetqbntIP3b7Xm+vpiWaud45Yw1SMv7pcaMgAk2Rv657ezHDsw5lDW4v1mEEhk6Htm2KupCamdPtnVqn5SdIb0XLnmt61653UFAdGMBKgOev33zhsaxuM/kNFAOF9pZEfiyYu2GVBJ9k/XLkWOEVKx3QyXrhH1DIS/4YtSQU1Atp6PMDHC6Yw6+7dAORSbzdOVLJn43dTvvCxNyaBx/UkqgSMd6Ecfe8YHrc82ygelTOKfeqnymkmUNztgECe9xT2TcL22Soq6GXBzPW9ijsoPWow==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MWHPR11MB1645.namprd11.prod.outlook.com (2603:10b6:301:b::12)
- by MW3PR11MB4587.namprd11.prod.outlook.com (2603:10b6:303:58::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4995.24; Fri, 25 Feb
- 2022 18:23:41 +0000
-Received: from MWHPR11MB1645.namprd11.prod.outlook.com
- ([fe80::3db4:813a:16:ba0]) by MWHPR11MB1645.namprd11.prod.outlook.com
- ([fe80::3db4:813a:16:ba0%7]) with mapi id 15.20.5017.026; Fri, 25 Feb 2022
- 18:23:40 +0000
-Message-ID: <683a9a0b-4d3b-8424-cb8f-3fa198a65d06@intel.com>
-Date: Fri, 25 Feb 2022 10:23:37 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Firefox/91.0 Thunderbird/91.5.0
-Content-Language: en-US
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- <intel-gfx@lists.freedesktop.org>
-References: <20220225032436.904942-1-michael.cheng@intel.com>
- <20220225032436.904942-2-michael.cheng@intel.com>
- <011a236d-7ed4-0d48-e8a6-c9bd98740d5b@linux.intel.com>
- <718c6339-4a19-0de0-2666-a32be7c56dd7@intel.com>
- <0b9dd25f-63ea-9121-6326-14087f5f8e63@linux.intel.com>
- <ce1fadfd-4ae3-8639-8b92-4666ac68da14@intel.com>
- <9f8dd83b-ded2-6a75-2857-2a6a3246fa03@linux.intel.com>
-From: Michael Cheng <michael.cheng@intel.com>
-In-Reply-To: <9f8dd83b-ded2-6a75-2857-2a6a3246fa03@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MWHPR10CA0057.namprd10.prod.outlook.com
- (2603:10b6:300:2c::19) To MWHPR11MB1645.namprd11.prod.outlook.com
- (2603:10b6:301:b::12)
+ t=1645813796; x=1677349796;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=v9UvyWNGPvya2VLLef32iXgQZBOEZR40xThV9gpaRtk=;
+ b=FBtbP3y13iysnScaYS3Z8dBqVYl0ZopRkptSNZIcI+dHEoBh0Jc2rJuN
+ ahfBR6YPlHr8xiY8YPRFzzHJCuymuax5+VZSZhhvmW1jJQ0+kRG8DDnAM
+ Tt7Fbrg4t2/DJfLrORIF/U1VaP2R7VWydCc1WXfBxmZFozwGUxrnqzN1/
+ dUwAUpbSkWO3Xt3k8DMB15jJFXqrTaGm0fGxHl21ULbUVn9V5xKPPt4WJ
+ Dv9pEnJ9O38N4vUR/AkjW96iR4ySl5G5QWVF5fohhL2bl3ZQczAkozb+W
+ 7h2p2fMBx42TnGVmwMhSE91ztVy2JXP9RT7/iDHJ1Z8KkK3QzmJWxRrR+ w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10268"; a="252475729"
+X-IronPort-AV: E=Sophos;i="5.90,136,1643702400"; d="scan'208";a="252475729"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Feb 2022 10:29:56 -0800
+X-IronPort-AV: E=Sophos;i="5.90,136,1643702400"; d="scan'208";a="549368993"
+Received: from pkinsell-mobl.ger.corp.intel.com (HELO [10.213.234.117])
+ ([10.213.234.117])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Feb 2022 10:29:55 -0800
+Message-ID: <34273e9e-8473-d95e-fdc0-47ca9e7ac8cb@linux.intel.com>
+Date: Fri, 25 Feb 2022 18:29:52 +0000
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: bed976f2-cf04-4e22-065f-08d9f88bf2c2
-X-MS-TrafficTypeDiagnostic: MW3PR11MB4587:EE_
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-X-Microsoft-Antispam-PRVS: <MW3PR11MB458720964D087609E54A160BE13E9@MW3PR11MB4587.namprd11.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: fEzTb2hohZhOUtzsKXLOoj2CaXCeQqmBusNbKZOgyT2tnBIwfmRulr7gshQnwAjd35BS0E5SzJ6MIA50yf3gxjovbtKVOQgyd8kD+HBvsHWLe8MfiW6PtyaDHccakh1CWv3eHYd1tgee93wlWyOAmbc1477k8LEnYd37XcnDNjfcX81Rsfi1eyi56+SVnxGMQ6UlOmBVeTbFOI0QcpDWcV8tpIzharxApUPNEWslwR/CXq4vn3hU03l9psE58/ACmxeQW+KOLvykSALEg70HPC2jgqj9qiV5LQlHHDy0IBizUV1rx2osCjSbKwT/FBQJjH9amMCxR7jexci0jd0lPUdF9MwLhSCLsw11w16eE2/Q8lIHnG/VwiKwocLKisVTVS6m8CyDFR50Ky4B7eAH0UzcXQYvrig7Yzp5K+pVwxrelkWNCPSxeTB5loMOrL8OQ/lnXnLyX6gZYBEcq0Od0bmdO9SQpU6wdI+MHPYzgKJN+UG/C0SfkQQ+e12bZ9cLqeeKuSO7PDjUwYlktVbNpzdDT+Lip6DV3+s1wwez/pe6T6JP2sgzttRhYNQB/zk3E5nYWFvqFDaik6A47d6O6VFhIgDAioUZ7Abqpx+I3E0ud5HRwnlp57tUJFgkfB8cCOzrJ5CMItinKcmLodOLUT+dhHhA5ZJzCDIs2D0z3c5APC0qOFn5i4Tb8WBf4RR7X2K10zIcMw9/dCR7WjvvGa3+1774ltl+g10YNxNFIJU=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MWHPR11MB1645.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230001)(366004)(66946007)(6486002)(2616005)(83380400001)(8936002)(86362001)(4326008)(186003)(316002)(966005)(8676002)(66476007)(66556008)(6512007)(5660300002)(508600001)(44832011)(31686004)(38100700002)(31696002)(6666004)(82960400001)(36756003)(2906002)(53546011)(6506007)(45980500001)(43740500002);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MnBjL0YxcGtzTUg1TmVkaXpTaW1tbUgvcHQzYWh4TnVEeGFZY3NOaExwdWpF?=
- =?utf-8?B?MHpTTXFSOHBSamNWNXVWVC9sd0c0YW5ycy9NQjBIUU5URUwzWEVuck5SZ1hh?=
- =?utf-8?B?K3VLU2FhZFlZekNNRFhWeW5XTDlGMGNEQVlKVjQ1YVJKZ0NUcGEwNmZJcElQ?=
- =?utf-8?B?RmdBdVpqSk9vVEZhSmRRSmFiY2Z5Mkw3Z2l4aUV0UER3SVprMDkyUS8zNUY3?=
- =?utf-8?B?WUlrVTVZMEhTWnZSQmw5RG8xQloyRWVsczVMVGdySCtxdzNFOW1hSFk3bVV3?=
- =?utf-8?B?eCsrY1JXL3BmRGdidUdqWWZMMjhFM3c1UlRYN3BRcFl1U0ZMOEJTajJlVko4?=
- =?utf-8?B?RS9aemR0VG9rdjBOV3VLdUtVN096dUN6eWgzZXoxNE5kMnNiaHhYT0ZmU0hn?=
- =?utf-8?B?b3JrbjJqQ2FkRGxNM2hIVW5KUEtJRWlFQy8vWTRKN3JNV0NyMmRzM0JhaDJT?=
- =?utf-8?B?cUUyOFgzb09Va1BZNFhmV3d1N1h6Q2I3ekxNZlhTcEhEeVhjeVdBT2NwdmtT?=
- =?utf-8?B?SnVIcU9ySFIxU3VnbFJPRWsxK1Z6TWpRanNjMFJkaE5YNFVES1puSzBKdkg1?=
- =?utf-8?B?clBOYnhHTHBlVFJEWXZ0T21oc0lBZzZBS002aGlIMTAzYnlQamhBV3RXTUY0?=
- =?utf-8?B?eExXVFNuVlRySm9yM0ZFeElDYjgwS1VWa3VVSDM3VTYzTmp0VlJmelZodEpv?=
- =?utf-8?B?Y1oxTGlhR2NPWXVxMXNQOXhOUkZXYUhEUTFtM1lyS29FMm4vdTdqditEUksw?=
- =?utf-8?B?bE40M3p3U1gvYkpOMFV4L09pZUs3Y1RSNnl1TjFORzNsZkpjazRraTM3MTd0?=
- =?utf-8?B?M3Z2eEVyOTExaTdjWmRNKzZNb2NsWFJDMTZkazZEbVh3Vi9OYkxrK2VDa3p0?=
- =?utf-8?B?cVpXV3huSXg1aUZpV3c1NmFWdmdZRTlCNEQ5WFR0WDcxK0g1NWpRenRBL3ZD?=
- =?utf-8?B?VC9mWkFKMjdrV3pVMjlnNFJTemVnZzc3MWMyeWtRWUc1VlJqM2ZucWNncWV6?=
- =?utf-8?B?dU94VFo1WXJ3alRmeEk3TWhvcC9KTDJwRE0zQkN5Vk9OcGlQQi92eWEzaDBr?=
- =?utf-8?B?RWRNaE85dk9vTTFZdGhjeS9GV25tRFBmdGp3N1NjQTZGcGsxa3B3eHVaYTht?=
- =?utf-8?B?cGJHRkdSUGxtODlsOWRmK2NYVU9CdDB0Ukw1RVhkRzE3bTJSUGhVS2FKOGtH?=
- =?utf-8?B?MXhYODE3OU4xQ0dBcm15T1RrU2JFa3RaSEdrZlRxaHUrMVQwWllPQjdQTGtR?=
- =?utf-8?B?QlVLNmlFVlIvdWFhL0QrMTF3L3NWcThWdVFVbTA1TmJ6Kzc0Tm9ROFdSTTFv?=
- =?utf-8?B?a1ZvNjBUTVBtQzU5NnhUYytiQ0k2dmM1cmVGK3J1MHJaUTU1SkY3bEZtTlhx?=
- =?utf-8?B?RGIwaHlwL1g1R0pCOEhiMlEzYThia2lMcDN5V0g1aDVLT2h2cFlNK0JFaDla?=
- =?utf-8?B?RVAydHpLb3o5WlhiRndEYkt1dUlBRGcxNnNvNkdMMmVSVVBDWWdZRkN4TWlz?=
- =?utf-8?B?V2grZWlmSGJFQ2NiUEU5bnArL3c3Y243RHBvT3E1bndFYWpkajBsOXViZStr?=
- =?utf-8?B?Yzhqc1FLWmlOaEJIcnFRTllNT1phY1BuMDRUZmhmRmt5a3I2YjJpdXphUi9s?=
- =?utf-8?B?SEE5UjBmSXF0MEw1bHhVNHdvT2psMUpkRnlCekt4dGJGNTNIaUZPdC9vU283?=
- =?utf-8?B?cHMycDd5aHMvRXl1T0xiNFo0dGNIZ0JSMmFtOG5OME80TjlVR2Zjcld4VGRF?=
- =?utf-8?B?cXcxZS9xV1ZneCtlZis1MkdBVWFnTmZXQkcwSzNxeWVtSG5iZUhTYWQvL0hS?=
- =?utf-8?B?cG9yVlJLRlFpd3A0N2hDMXpBbXVxZHMxN0RtTUlLYlZFUG56UUVBSElpMG9i?=
- =?utf-8?B?aENZUlJxNnpwb2ptdldrck5GUVVxa3J1ZThab1o4VDNzY3J0Z0oxb3ZvaFRm?=
- =?utf-8?B?N3NWT2VzbU9XV0NjTHdETVgxOGVGZk9QUDlPUkpOUzFOSURDSjBnYlp3bGEz?=
- =?utf-8?B?dTgvYWp4OHNLaUdDc0FsRGs1TkQxMTNOcUtlWUlFbWdvMzRBUW1UWjQ5NktZ?=
- =?utf-8?B?SkxWNC9iQ0ZZODFCT01XSXlKRlR2R2tNeHU4eUtQRC9nNmtyZWNxVFJMNzk0?=
- =?utf-8?B?UmRpb3paZUJ0TnF2TEc4STIzR05LREJCRnJid25XSUppS2xkNXBva3o3bWQ4?=
- =?utf-8?B?dXFqb3pKTmh0NVBqelI3WE9DMWYzY3JRd3I5L2RiNWlCUncxS3R1ZTRFaG93?=
- =?utf-8?Q?Nqcmf2i7mlqQgaYAMGZcfMQahwY+hyuzoRdhX+qC5M=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: bed976f2-cf04-4e22-065f-08d9f88bf2c2
-X-MS-Exchange-CrossTenant-AuthSource: MWHPR11MB1645.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Feb 2022 18:23:40.8298 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: RuMfL5gUph2A4sdbHcSrUD0xdkA7BB4Pp66FqGJJZRLO6eF6zrWsIxkdmaJxnQUGBVzjVCUUmn8+Rkhoc60imw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR11MB4587
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v12 1/6] drm: Add arch arm64 for
- drm_clflush_virt_range
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Content-Language: en-US
+To: John Harrison <john.c.harrison@intel.com>, Intel-GFX@Lists.FreeDesktop.Org
+References: <20220218213307.1338478-1-John.C.Harrison@Intel.com>
+ <647b611a-d159-3a6f-2e3a-c8039a9503ec@linux.intel.com>
+ <7ceb4723-7ebf-3762-ddb7-b16e48e804d3@intel.com>
+ <ccc8d37f-2bcc-b258-4969-430c609c11d0@linux.intel.com>
+ <6526515c-a4d1-1815-3ee8-6a35dfa5036f@intel.com>
+ <e3abab20-084a-146b-8c6f-274474aa7bc1@linux.intel.com>
+ <bb8d25fa-4b6f-0c53-302a-623787760bcd@intel.com>
+ <720fe7f8-a712-c755-9fbe-70ac2fa008f6@linux.intel.com>
+ <72ebab5f-1023-b590-f5a7-f5db2333e925@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <72ebab5f-1023-b590-f5a7-f5db2333e925@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH 0/3] Improve anti-pre-emption w/a for
+ compute workloads
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -164,124 +69,182 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: lucas.demarchi@intel.com, dri-devel@lists.freedesktop.org
+Cc: DRI-Devel@Lists.FreeDesktop.Org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-These seem to be pretty old arch and are day0 warnings, please refer to 
-[1] to see the warnings. Also I am not sure why my patch series didn't 
-append to the old one.
 
-[1] https://patchwork.freedesktop.org/patch/475829/?series=99450&rev=11
+On 25/02/2022 18:01, John Harrison wrote:
+> On 2/25/2022 09:39, Tvrtko Ursulin wrote:
+>> On 25/02/2022 17:11, John Harrison wrote:
+>>> On 2/25/2022 08:36, Tvrtko Ursulin wrote:
+>>>> On 24/02/2022 20:02, John Harrison wrote:
+>>>>> On 2/23/2022 04:00, Tvrtko Ursulin wrote:
+>>>>>> On 23/02/2022 02:22, John Harrison wrote:
+>>>>>>> On 2/22/2022 01:53, Tvrtko Ursulin wrote:
+>>>>>>>> On 18/02/2022 21:33, John.C.Harrison@Intel.com wrote:
+>>>>>>>>> From: John Harrison <John.C.Harrison@Intel.com>
+>>>>>>>>>
+>>>>>>>>> Compute workloads are inherently not pre-emptible on current 
+>>>>>>>>> hardware.
+>>>>>>>>> Thus the pre-emption timeout was disabled as a workaround to 
+>>>>>>>>> prevent
+>>>>>>>>> unwanted resets. Instead, the hang detection was left to the 
+>>>>>>>>> heartbeat
+>>>>>>>>> and its (longer) timeout. This is undesirable with GuC 
+>>>>>>>>> submission as
+>>>>>>>>> the heartbeat is a full GT reset rather than a per engine reset 
+>>>>>>>>> and so
+>>>>>>>>> is much more destructive. Instead, just bump the pre-emption 
+>>>>>>>>> timeout
+>>>>>>>>
+>>>>>>>> Can we have a feature request to allow asking GuC for an engine 
+>>>>>>>> reset?
+>>>>>>> For what purpose?
+>>>>>>
+>>>>>> To allow "stopped heartbeat" to reset the engine, however..
+>>>>>>
+>>>>>>> GuC manages the scheduling of contexts across engines. With 
+>>>>>>> virtual engines, the KMD has no knowledge of which engine a 
+>>>>>>> context might be executing on. Even without virtual engines, the 
+>>>>>>> KMD still has no knowledge of which context is currently 
+>>>>>>> executing on any given engine at any given time.
+>>>>>>>
+>>>>>>> There is a reason why hang detection should be left to the entity 
+>>>>>>> that is doing the scheduling. Any other entity is second guessing 
+>>>>>>> at best.
+>>>>>>>
+>>>>>>> The reason for keeping the heartbeat around even when GuC 
+>>>>>>> submission is enabled is for the case where the KMD/GuC have got 
+>>>>>>> out of sync with either other somehow or GuC itself has just 
+>>>>>>> crashed. I.e. when no submission at all is working and we need to 
+>>>>>>> reset the GuC itself and start over.
+>>>>>>
+>>>>>> .. I wasn't really up to speed to know/remember heartbeats are 
+>>>>>> nerfed already in GuC mode.
+>>>>> Not sure what you mean by that claim. Engine resets are handled by 
+>>>>> GuC because GuC handles the scheduling. You can't do the former if 
+>>>>> you aren't doing the latter. However, the heartbeat is still 
+>>>>> present and is still the watchdog by which engine resets are 
+>>>>> triggered. As per the rest of the submission process, the hang 
+>>>>> detection and recovery is split between i915 and GuC.
+>>>>
+>>>> I meant that "stopped heartbeat on engine XXX" can only do a full 
+>>>> GPU reset on GuC.
+>>> I mean that there is no 'stopped heartbeat on engine XXX' when i915 
+>>> is not handling the recovery part of the process.
+>>
+>> Hmmmm?
+>>
+>> static void
+>> reset_engine(struct intel_engine_cs *engine, struct i915_request *rq)
+>> {
+>>     if (IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM))
+>>         show_heartbeat(rq, engine);
+>>
+>>     if (intel_engine_uses_guc(engine))
+>>         /*
+>>          * GuC itself is toast or GuC's hang detection
+>>          * is disabled. Either way, need to find the
+>>          * hang culprit manually.
+>>          */
+>>         intel_guc_find_hung_context(engine);
+>>
+>>     intel_gt_handle_error(engine->gt, engine->mask,
+>>                   I915_ERROR_CAPTURE,
+>>                   "stopped heartbeat on %s",
+>>                   engine->name);
+>> }
+>>
+>> How there is no "stopped hearbeat" in guc mode? From this code it 
+>> certainly looks there is.
+> Only when the GuC is toast and it is no longer an engine reset but a 
+> full GT reset that is required. So technically, it is not a 'stopped 
+> heartbeat on engine XXX' it is 'stopped heartbeat on GT#'.
+> 
+>>
+>> You say below heartbeats are going in GuC mode. Now I totally don't 
+>> understand how they are going but there is allegedly no "stopped 
+>> hearbeat".
+> Because if GuC is handling the detection and recovery then i915 will not 
+> reach that point. GuC will do the engine reset and start scheduling the 
+> next context before the heartbeat period expires. So the notification 
+> will be a G2H about a specific context being reset rather than the i915 
+> notification about a stopped heartbeat.
+> 
+>>
+>>>>
+>>>>     intel_gt_handle_error(engine->gt, engine->mask,
+>>>>                   I915_ERROR_CAPTURE,
+>>>>                   "stopped heartbeat on %s",
+>>>>                   engine->name);
+>>>>
+>>>> intel_gt_handle_error:
+>>>>
+>>>>     /*
+>>>>      * Try engine reset when available. We fall back to full reset if
+>>>>      * single reset fails.
+>>>>      */
+>>>>     if (!intel_uc_uses_guc_submission(&gt->uc) &&
+>>>>         intel_has_reset_engine(gt) && !intel_gt_is_wedged(gt)) {
+>>>>         local_bh_disable();
+>>>>         for_each_engine_masked(engine, gt, engine_mask, tmp) {
+>>>>
+>>>> You said "However, the heartbeat is still present and is still the 
+>>>> watchdog by which engine resets are triggered", now I don't know 
+>>>> what you meant by this. It actually triggers a single engine reset 
+>>>> in GuC mode? Where in code does that happen if this block above 
+>>>> shows it not taking the engine reset path?
+>>> i915 sends down the per engine pulse.
+>>> GuC schedules the pulse
+>>> GuC attempts to pre-empt the currently active context
+>>> GuC detects the pre-emption timeout
+>>> GuC resets the engine
+>>>
+>>> The fundamental process is exactly the same as in execlist mode. It's 
+>>> just that the above blocks of code (calls to intel_gt_handle_error 
+>>> and such) are now inside the GuC not i915.
+>>>
+>>> Without the heartbeat going ping, there would be no context switching 
+>>> and thus no pre-emption, no pre-emption timeout and so no hang and 
+>>> reset recovery. And GuC cannot sent pulses by itself - it has no 
+>>> ability to generate context workloads. So we need i915 to send the 
+>>> pings and to gradually raise their priority. But the back half of the 
+>>> heartbeat code is now inside the GuC. It will simply never reach the 
+>>> i915 side timeout if GuC is doing the recovery (unless the 
+>>> heartbeat's final period is too short). We should only reach the i915 
+>>> side timeout if GuC itself is toast. At which point we need the full 
+>>> GT reset to recover the GuC.
+>>
+>> If workload is not preempting and reset does not work, like engine is 
+>> truly stuck, does the current code hit "stopped heartbeat" or not in 
+>> GuC mode?
+> Hang on, where did 'reset does not work' come into this?
+> 
+> If GuC is alive and the hardware is not broken then no, it won't. That's 
+> the whole point. GuC does the detection and recovery. The KMD will never 
+> reach 'stopped heartbeat'.
+> 
+> If the hardware is broken and the reset does not work then GuC will send 
+> a 'failed reset' notification to the KMD. The KMD treats that as a major 
+> error and immediately does a full GT reset. So there is still no 
+> 'stopped heartbeat'.
+> 
+> If GuC has died (or a KMD bug has caused sufficient confusion to make it 
+> think the GuC has died) then yes, you will reach that code. But in that 
+> case it is not an engine reset that is required, it is a full GT reset 
+> including a reset of the GuC.
 
-2022-02-25 10:19 a.m., Tvrtko Ursulin wrote:
->
-> On 25/02/2022 17:40, Michael Cheng wrote:
->> Ah, thanks for pointing that out, when I do include it though, it 
->> causes a few warning other systems such as h8300 and s390.
->
-> Errors look like? I haven't heard that kernel code is not allowed to 
-> include something from linux/ on some arch yet.
->
->> Since it is already pulled is, would it be OK to leave it out for 
->> this case? Or we could use something like !IS_H8300 and !IS_S390
->>
->> around the header file?
->
-> Unlikely, now you made me curious why it does not work.
->
-> Regards,
->
-> Tvrtko
->
->>
->> On 2022-02-25 9:33 a.m., Tvrtko Ursulin wrote:
->>>
->>> On 25/02/2022 16:52, Michael Cheng wrote:
->>>> Hi Tvrtko,
->>>>
->>>> It seems without cacheflush.h being included, when I build for 
->>>> arm64 or x86, it stills pulls in cacheflush.h:
->>>>
->>>> ./.drm_cache.o.cmd:838: include/linux/cacheflush.h \
->>>> ./.drm_cache.o.cmd:839: arch/x86/include/asm/cacheflush.h \
->>>> ./.drm_cache.o.cmd:920: include/asm-generic/cacheflush.h \
->>>> ./.drm_cache.o.cmd:830: include/linux/cacheflush.h \
->>>> ./.drm_cache.o.cmd:831: arch/arm64/include/asm/cacheflush.h \
->>>> ./.drm_cache.o.cmd:1085: include/asm-generic/cacheflush.h \
->>>> So it seems without including it, cacheflush.h stills get pulled in,
->>>> I think its because its a required kernel source to build the kernel
->>>> per specific architecture, but please correct if I am wrong,as I am 
->>>> still
->>>> trying to understand how things works!
->>>
->>> Probably:
->>>
->>> drm_cache.c:
->>>
->>> #include <linux/highmem.h>
->>>
->>> linux/highmem.h:
->>>
->>> #include <linux/cacheflush.h>
->>>
->>> But it is more correct to explicitly include what you use. So if 
->>> drm_cache.c uses stuff declared in cacheflush.h, it should include it.
->>>
->>> Regards,
->>>
->>> Tvrtko
->>>
->>>> Michael Cheng
->>>> On 2022-02-25 8:28 a.m., Tvrtko Ursulin wrote:
->>>>>
->>>>> On 25/02/2022 03:24, Michael Cheng wrote:
->>>>>> Add arm64 support for drm_clflush_virt_range. caches_clean_inval_pou
->>>>>> performs a flush by first performing a clean, follow by an 
->>>>>> invalidation
->>>>>> operation.
->>>>>>
->>>>>> v2 (Michael Cheng): Use correct macro for cleaning and 
->>>>>> invalidation the
->>>>>>             dcache. Thanks Tvrtko for the suggestion.
->>>>>>
->>>>>> v3 (Michael Cheng): Replace asm/cacheflush.h with linux/cacheflush.h
->>>>>>
->>>>>> v4 (Michael Cheng): Arm64 does not export dcache_clean_inval_poc 
->>>>>> as a
->>>>>>             symbol that could be use by other modules, thus use
->>>>>>             caches_clean_inval_pou instead. Also this version
->>>>>>                 removes include for cacheflush, since its already
->>>>>>             included base on architecture type.
->>>>>
->>>>> What does it mean that it is included based on architecture type? 
->>>>> Some of the other header already pulls it in?
->>>>>
->>>>> Regards,
->>>>>
->>>>> Tvrtko
->>>>>
->>>>>> Signed-off-by: Michael Cheng <michael.cheng@intel.com>
->>>>>> Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
->>>>>> ---
->>>>>>   drivers/gpu/drm/drm_cache.c | 5 +++++
->>>>>>   1 file changed, 5 insertions(+)
->>>>>>
->>>>>> diff --git a/drivers/gpu/drm/drm_cache.c 
->>>>>> b/drivers/gpu/drm/drm_cache.c
->>>>>> index c3e6e615bf09..81c28714f930 100644
->>>>>> --- a/drivers/gpu/drm/drm_cache.c
->>>>>> +++ b/drivers/gpu/drm/drm_cache.c
->>>>>> @@ -174,6 +174,11 @@ drm_clflush_virt_range(void *addr, unsigned 
->>>>>> long length)
->>>>>>         if (wbinvd_on_all_cpus())
->>>>>>           pr_err("Timed out waiting for cache flush\n");
->>>>>> +
->>>>>> +#elif defined(CONFIG_ARM64)
->>>>>> +    void *end = addr + length;
->>>>>> +    caches_clean_inval_pou((unsigned long)addr, (unsigned 
->>>>>> long)end);
->>>>>> +
->>>>>>   #else
->>>>>>       WARN_ONCE(1, "Architecture has no drm_cache.c support\n");
->>>>>>   #endif
+Got it, so what is actually wrong is calling intel_gt_handle_error with 
+an engine->mask in GuC mode. intel_engine_hearbeat.c/reset_engine should 
+fork into two (in some way), depending on backend, so in the case of GuC 
+it can call a variant of intel_gt_handle_error which would be explicitly 
+about a full GPU reset only, instead of a sprinkle of 
+intel_uc_uses_guc_submission in that function. Possibly even off load 
+the reset to a single per gt worker, so that if multiple active engines 
+trigger the reset roughly simultaneously, there is only one full GPU 
+reset. And it gets correctly labeled as "dead GuC" or something.
+
+Regards,
+
+Tvrtko
