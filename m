@@ -2,74 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71C164C4DED
-	for <lists+intel-gfx@lfdr.de>; Fri, 25 Feb 2022 19:37:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D8DC4C4DF9
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Feb 2022 19:42:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 865A710E897;
-	Fri, 25 Feb 2022 18:37:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B6CC10E8DE;
+	Fri, 25 Feb 2022 18:42:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A104C10E897
- for <intel-gfx@lists.freedesktop.org>; Fri, 25 Feb 2022 18:37:24 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3571110E8D4;
+ Fri, 25 Feb 2022 18:42:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645814244; x=1677350244;
- h=from:to:subject:date:message-id:references:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=JuCS0VHS7QJHFLh9cjaYxLELZNx5qjJtPPxOBIMCR94=;
- b=EI0Y9eGcqHhSytvd3syH15LG1zJmhfB4wqhzkc2Ebn6mf4QRHbWh8LS2
- 3CPpxe7TN0rxqffG+BDn1Tb1CjBpMFoyqu1wrBVVKZrjtSM+OWS6CxRNA
- Sctif/wSx1GJ3SaK1NzOd42sDShAYBKjTWREcikCLOCwctPtpMZKSdi7R
- YtGSqVn8B2v4gBOYyfzUmCkOTs62zZIfUaj9K2+OJJuP2E8IL1Axfp2lQ
- Wug77dRWjJL2nXOcQSzQPB9YBFlRf1n4OfhJwAa3IYwpy8crJYuz4V+Ue
- cHLpAh4KiP4cgf1H/El1HLwovOMJM/kFmeWzbryxdRbH2Wfebl2hnEnhw Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10268"; a="252752022"
-X-IronPort-AV: E=Sophos;i="5.90,137,1643702400"; d="scan'208";a="252752022"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2022 10:37:24 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,137,1643702400"; d="scan'208";a="792819782"
-Received: from orsmsx606.amr.corp.intel.com ([10.22.229.19])
- by fmsmga005.fm.intel.com with ESMTP; 25 Feb 2022 10:37:24 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX606.amr.corp.intel.com (10.22.229.19) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.21; Fri, 25 Feb 2022 10:37:23 -0800
-Received: from pgsmsx602.gar.corp.intel.com (10.108.199.137) by
- ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.21; Fri, 25 Feb 2022 10:37:22 -0800
-Received: from pgsmsx602.gar.corp.intel.com ([10.108.199.137]) by
- pgsmsx602.gar.corp.intel.com ([10.108.199.137]) with mapi id 15.01.2308.020;
- Sat, 26 Feb 2022 02:37:17 +0800
-From: "Vudum, Lakshminarayana" <lakshminarayana.vudum@intel.com>
-To: "De Marchi, Lucas" <lucas.demarchi@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: =?utf-8?B?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJtL2k5MTUvZG1jOiBEbyBu?=
- =?utf-8?Q?ot_try_loading_wrong_DMC_version?=
-Thread-Index: AQHYKmFne1yDZqe4bkGGfeAxb9jfY6ykeSmQ
-Date: Fri, 25 Feb 2022 18:37:17 +0000
-Message-ID: <3c206c7b9f60402996cf96f66e67aae3@intel.com>
-References: <20220223210933.3049143-1-lucas.demarchi@intel.com>
- <164577882558.6269.7127051609555719055@emeril.freedesktop.org>
- <20220225160440.s7yxd7tgnj7azocl@ldmartin-desk2>
-In-Reply-To: <20220225160440.s7yxd7tgnj7azocl@ldmartin-desk2>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.6.401.20
-x-originating-ip: [10.22.254.132]
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ t=1645814562; x=1677350562;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=ZdogFYisMfN9o/QQATua48vOJiixoKqfukYD079XBec=;
+ b=bFE40HmZzxNy1kh3pO3n2h9PIytfH3H7I5D4ne0gFaJa8+QoXYcuB04J
+ h1kqEkmnnUZyGXa2e7pb4GIUrwiW7idQJTkF/hwGyNVQTAuCsCV9Luth+
+ +VfhtUfw6Helakbj0e0KiO0LZbF0CcfWCq9o9JLcQzARbKfIeh8ulUMfU
+ U/mKgp0nbcWVH/VFPadSP7MU4XjapixunuURDnDPjAH+U7H2TWMTAof07
+ MeFCON4BvjOYgN2ggBWnEDjxXk/MTOtvpVW0inArKYfkkmlvd99rEk2fT
+ uNxTM2h9lDKC2Jl1O7CgBfvYmTzg8vcB5chHtcdD8zIgMwM0wrgGBZlAq g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10268"; a="239960912"
+X-IronPort-AV: E=Sophos;i="5.90,137,1643702400"; d="scan'208";a="239960912"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Feb 2022 10:42:41 -0800
+X-IronPort-AV: E=Sophos;i="5.90,137,1643702400"; d="scan'208";a="549374086"
+Received: from pkinsell-mobl.ger.corp.intel.com (HELO [10.213.234.117])
+ ([10.213.234.117])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Feb 2022 10:42:39 -0800
+Message-ID: <5a9b1536-2180-c3b2-d33d-217f112da056@linux.intel.com>
+Date: Fri, 25 Feb 2022 18:42:37 +0000
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/dmc=3A_Do_not_try_loading_wrong_DMC_version?=
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Content-Language: en-US
+To: Michael Cheng <michael.cheng@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20220225032436.904942-1-michael.cheng@intel.com>
+ <20220225032436.904942-2-michael.cheng@intel.com>
+ <011a236d-7ed4-0d48-e8a6-c9bd98740d5b@linux.intel.com>
+ <718c6339-4a19-0de0-2666-a32be7c56dd7@intel.com>
+ <0b9dd25f-63ea-9121-6326-14087f5f8e63@linux.intel.com>
+ <ce1fadfd-4ae3-8639-8b92-4666ac68da14@intel.com>
+ <9f8dd83b-ded2-6a75-2857-2a6a3246fa03@linux.intel.com>
+ <683a9a0b-4d3b-8424-cb8f-3fa198a65d06@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <683a9a0b-4d3b-8424-cb8f-3fa198a65d06@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v12 1/6] drm: Add arch arm64 for
+ drm_clflush_virt_range
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,112 +68,142 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: lucas.demarchi@intel.com, dri-devel@lists.freedesktop.org,
+ "Matthew Wilcox \(Oracle\)" <willy@infradead.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UmUtcmVwb3J0ZWQgYWZ0ZXIgYWRkcmVzc2luZyBhbGwgdGhlIGZhaWx1cmVzLiBTZWUgYmVsb3cg
-Zm9yIGJ1ZyBpZCdzLg0KDQotLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KRnJvbTogRGUgTWFy
-Y2hpLCBMdWNhcyA8bHVjYXMuZGVtYXJjaGlAaW50ZWwuY29tPiANClNlbnQ6IEZyaWRheSwgRmVi
-cnVhcnkgMjUsIDIwMjIgODowNSBBTQ0KVG86IGludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5v
-cmcNCkNjOiBWdWR1bSwgTGFrc2htaW5hcmF5YW5hIDxsYWtzaG1pbmFyYXlhbmEudnVkdW1AaW50
-ZWwuY29tPg0KU3ViamVjdDogUmU6IOKclyBGaS5DSS5JR1Q6IGZhaWx1cmUgZm9yIGRybS9pOTE1
-L2RtYzogRG8gbm90IHRyeSBsb2FkaW5nIHdyb25nIERNQyB2ZXJzaW9uDQoNCk9uIEZyaSwgRmVi
-IDI1LCAyMDIyIGF0IDA4OjQ3OjA1QU0gKzAwMDAsIFBhdGNod29yayB3cm90ZToNCj49PSBTZXJp
-ZXMgRGV0YWlscyA9PQ0KPg0KPlNlcmllczogZHJtL2k5MTUvZG1jOiBEbyBub3QgdHJ5IGxvYWRp
-bmcgd3JvbmcgRE1DIHZlcnNpb24NCj5VUkwgICA6IGh0dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNr
-dG9wLm9yZy9zZXJpZXMvMTAwNjY0Lw0KPlN0YXRlIDogZmFpbHVyZQ0KPg0KPj09IFN1bW1hcnkg
-PT0NCj4NCj5DSSBCdWcgTG9nIC0gY2hhbmdlcyBmcm9tIENJX0RSTV8xMTI3OV9mdWxsIC0+IFBh
-dGNod29ya18yMjM5M19mdWxsIA0KPj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT0NCj4NCj5TdW1tYXJ5DQo+LS0tLS0tLQ0KPg0KPiAgKipGQUlMVVJF
-KioNCj4NCj4gIFNlcmlvdXMgdW5rbm93biBjaGFuZ2VzIGNvbWluZyB3aXRoIFBhdGNod29ya18y
-MjM5M19mdWxsIGFic29sdXRlbHkgDQo+IG5lZWQgdG8gYmUgIHZlcmlmaWVkIG1hbnVhbGx5Lg0K
-Pg0KPiAgSWYgeW91IHRoaW5rIHRoZSByZXBvcnRlZCBjaGFuZ2VzIGhhdmUgbm90aGluZyB0byBk
-byB3aXRoIHRoZSBjaGFuZ2VzICANCj4gaW50cm9kdWNlZCBpbiBQYXRjaHdvcmtfMjIzOTNfZnVs
-bCwgcGxlYXNlIG5vdGlmeSB5b3VyIGJ1ZyB0ZWFtIHRvIA0KPiBhbGxvdyB0aGVtICB0byBkb2N1
-bWVudCB0aGlzIG5ldyBmYWlsdXJlIG1vZGUsIHdoaWNoIHdpbGwgcmVkdWNlIGZhbHNlIHBvc2l0
-aXZlcyBpbiBDSS4NCj4NCj4NCj4NCj5QYXJ0aWNpcGF0aW5nIGhvc3RzICgxMSAtPiAxMSkNCj4t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCj4NCj4gIE5vIGNoYW5nZXMgaW4gcGFydGlj
-aXBhdGluZyBob3N0cw0KPg0KPlBvc3NpYmxlIG5ldyBpc3N1ZXMNCj4tLS0tLS0tLS0tLS0tLS0t
-LS0tDQo+DQo+ICBIZXJlIGFyZSB0aGUgdW5rbm93biBjaGFuZ2VzIHRoYXQgbWF5IGhhdmUgYmVl
-biBpbnRyb2R1Y2VkIGluIFBhdGNod29ya18yMjM5M19mdWxsOg0KPg0KPiMjIyBJR1QgY2hhbmdl
-cyAjIyMNCj4NCj4jIyMjIFBvc3NpYmxlIHJlZ3Jlc3Npb25zICMjIyMNCj4NCj4gICogaWd0QGdl
-bV9laW9AaW4tZmxpZ2h0LXN1c3BlbmQ6DQo+ICAgIC0gc2hhcmQtc2tsOiAgICAgICAgICBbUEFT
-U11bMV0gLT4gW0lOQ09NUExFVEVdWzJdDQo+ICAgWzFdOiBodHRwczovL2ludGVsLWdmeC1jaS4w
-MS5vcmcvdHJlZS9kcm0tdGlwL0NJX0RSTV8xMTI3OS9zaGFyZC1za2w4L2lndEBnZW1fZWlvQGlu
-LWZsaWdodC1zdXNwZW5kLmh0bWwNCj4gICBbMl06IA0KPiBodHRwczovL2ludGVsLWdmeC1jaS4w
-MS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18yMjM5My9zaGFyZC1za2w2L2lnDQo+IHRAZ2Vt
-X2Vpb0Bpbi1mbGlnaHQtc3VzcGVuZC5odG1sDQo+DQpMYWtzaG1pOiBUaGlzIGlzIHJlbGF0ZWQg
-dG8gaHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2RybS9pbnRlbC8tL2lzc3Vlcy80ODQz
-DQppZ3RAZ2VtX2Vpb0Bpbi1mbGlnaHQtc3VzcGVuZCAtIGluY29tcGxldGUgLSBQTTogc3VzcGVu
-ZCBlbnRyeSAoZGVlcCkNCg0KPiAgKiBpZ3RAa21zX2ZsaXBAYnVzeS1mbGlwQGEtaGRtaS1hMToN
-Cj4gICAgLSBzaGFyZC1nbGs6ICAgICAgICAgIFtQQVNTXVszXSAtPiBbRkFJTF1bNF0NCj4gICBb
-M106IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzExMjc5
-L3NoYXJkLWdsazEvaWd0QGttc19mbGlwQGJ1c3ktZmxpcEBhLWhkbWktYTEuaHRtbA0KPiAgIFs0
-XTogDQo+IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3Jr
-XzIyMzkzL3NoYXJkLWdsazgvaWcNCj4gdEBrbXNfZmxpcEBidXN5LWZsaXBAYS1oZG1pLWExLmh0
-bWwNCg0KdGhpcyBjb3VsZCBvbmx5IGJlIGEgcmVncmVzc2lvbiBpZiBpdCB3YXMgaW4gYW5vdGhl
-ciBkaXNwbGF5X3ZlciA9PSAxMi4NClRob3NlIGFyZSBub3QuDQpMYWtzaG1pOiBUaGlzIGlzIHJl
-bGF0ZWQgdG8NCiBodHRwczovL2dpdGxhYi5mcmVlZGVza3RvcC5vcmcvZHJtL2ludGVsLy0vaXNz
-dWVzLzQ2MjgNCmlndEBrbXNfZmxpcEBidXN5LWZsaXBALiogLSBmYWlsIC0gRmFpbGVkIGFzc2Vy
-dGlvbjogZG9fcGFnZV9mbGlwKG8sIG5ld19mYl9pZCwgMCkgPT0gLTE2LGVycm9yOiAwICE9IC0x
-Ng0KPg0KPg0KPiMjIyMgV2FybmluZ3MgIyMjIw0KPg0KPiAgKiBpZ3RAaTkxNV9wbV9kY0BkYzNj
-by12cGItc2ltdWxhdGlvbjoNCj4gICAgLSBzaGFyZC1za2w6ICAgICAgICAgIFtTS0lQXVs1XSAo
-W2ZkbyMxMDkyNzFdIC8gW2k5MTUjNjU4XSkgLT4gW0lOQ09NUExFVEVdWzZdDQo+ICAgWzVdOiBo
-dHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL0NJX0RSTV8xMTI3OS9zaGFy
-ZC1za2wxMC9pZ3RAaTkxNV9wbV9kY0BkYzNjby12cGItc2ltdWxhdGlvbi5odG1sDQo+ICAgWzZd
-OiANCj4gaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtf
-MjIzOTMvc2hhcmQtc2tsNi9pZw0KPiB0QGk5MTVfcG1fZGNAZGMzY28tdnBiLXNpbXVsYXRpb24u
-aHRtbA0KPg0KPg0KPiMjIyMgU3VwcHJlc3NlZCAjIyMjDQo+DQo+ICBUaGUgZm9sbG93aW5nIHJl
-c3VsdHMgY29tZSBmcm9tIHVudHJ1c3RlZCBtYWNoaW5lcywgdGVzdHMsIG9yIHN0YXR1c2VzLg0K
-PiAgVGhleSBkbyBub3QgYWZmZWN0IHRoZSBvdmVyYWxsIHJlc3VsdC4NCj4NCj4gICogaWd0QGtt
-c19wbGFuZUBwbGFuZS1wYW5uaW5nLWJvdHRvbS1yaWdodC1zdXNwZW5kQHBpcGUtYi1wbGFuZXM6
-DQo+ICAgIC0ge3NoYXJkLXRnbHV9OiAgICAgICBOT1RSVU4gLT4gW0RNRVNHLVdBUk5dWzddICsx
-IHNpbWlsYXIgaXNzdWUNCj4gICBbN106IA0KPiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcv
-dHJlZS9kcm0tdGlwL1BhdGNod29ya18yMjM5My9zaGFyZC10Z2x1LTEvDQo+IGlndEBrbXNfcGxh
-bmVAcGxhbmUtcGFubmluZy1ib3R0b20tcmlnaHQtc3VzcGVuZEBwaXBlLWItcGxhbmVzLmh0bWwN
-Cg0KdGhpcyBvbmUgd29ydWxkIGJlIHN1c3BpY2lvdXMsIGJ1dCB0aGUgRE1DIGlzc3VlIHRoZXJl
-IGlzIGNhdXNlZCBieSBhbiBlYXJsaWVyIGVycm9yLiBDaGVja2luZyBhbm90aGVyIHJ1biBmb3Ig
-dGhpcyBzYW1lIG1hY2hpbmUsIGJvdGggYXJlIGxvYWRpbmcgdGhlIHNhbWUgRE1DOg0KDQpodHRw
-czovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL0NJX0RSTV8xMTI3Ni9zaGFyZC10
-Z2x1LTEvYm9vdDkudHh0DQo8Nz5bICAgIDYuMTAwMzIyXSBpOTE1IDAwMDA6MDA6MDIuMDogW2Ry
-bTppbnRlbF9kbWNfdWNvZGVfaW5pdCBbaTkxNV1dIExvYWRpbmcgaTkxNS90Z2xfZG1jX3ZlcjJf
-MTIuYmluDQo8Nz5bICAgIDYuMTAxMTgyXSBpOTE1IDAwMDA6MDA6MDIuMDogW2RybTppbnRlbF9m
-YmNfaW5pdCBbaTkxNV1dIFNhbml0aXplZCBlbmFibGVfZmJjIHZhbHVlOiAxDQo8Nz5bICAgIDYu
-MTAyMjY0XSBpOTE1IDAwMDA6MDA6MDIuMDogW2RybTppbnRlbF9wcmludF93bV9sYXRlbmN5IFtp
-OTE1XV0gR2VuOSBQbGFuZSBXTTAgbGF0ZW5jeSAzICgzLjAgdXNlYykNCjw3PlsgICAgNi4xMDI0
-ODBdIGk5MTUgMDAwMDowMDowMi4wOiBbZHJtOmludGVsX3ByaW50X3dtX2xhdGVuY3kgW2k5MTVd
-XSBHZW45IFBsYW5lIFdNMSBsYXRlbmN5IDU0ICg1NC4wIHVzZWMpDQo8Nz5bICAgIDYuMTAyNTky
-XSBpOTE1IDAwMDA6MDA6MDIuMDogW2RybTppbnRlbF9wcmludF93bV9sYXRlbmN5IFtpOTE1XV0g
-R2VuOSBQbGFuZSBXTTIgbGF0ZW5jeSA1NCAoNTQuMCB1c2VjKQ0KPDc+WyAgICA2LjEwMjcxMl0g
-aTkxNSAwMDAwOjAwOjAyLjA6IFtkcm06aW50ZWxfcHJpbnRfd21fbGF0ZW5jeSBbaTkxNV1dIEdl
-bjkgUGxhbmUgV00zIGxhdGVuY3kgNTQgKDU0LjAgdXNlYykNCjw3PlsgICAgNi4xMDI4MjBdIGk5
-MTUgMDAwMDowMDowMi4wOiBbZHJtOmludGVsX3ByaW50X3dtX2xhdGVuY3kgW2k5MTVdXSBHZW45
-IFBsYW5lIFdNNCBsYXRlbmN5IDU0ICg1NC4wIHVzZWMpDQo8Nz5bICAgIDYuMTAyOTc3XSBpOTE1
-IDAwMDA6MDA6MDIuMDogW2RybTppbnRlbF9wcmludF93bV9sYXRlbmN5IFtpOTE1XV0gR2VuOSBQ
-bGFuZSBXTTUgbGF0ZW5jeSA3MyAoNzMuMCB1c2VjKQ0KPDc+WyAgICA2LjEwMzA0MF0gaTkxNSAw
-MDAwOjAwOjAyLjA6IFtkcm06aW50ZWxfcHJpbnRfd21fbGF0ZW5jeSBbaTkxNV1dIEdlbjkgUGxh
-bmUgV002IGxhdGVuY3kgMTEwICgxMTAuMCB1c2VjKQ0KPDc+WyAgICA2LjEwMzE3Nl0gaTkxNSAw
-MDAwOjAwOjAyLjA6IFtkcm06aW50ZWxfcHJpbnRfd21fbGF0ZW5jeSBbaTkxNV1dIEdlbjkgUGxh
-bmUgV003IGxhdGVuY3kgMTE1ICgxMTUuMCB1c2VjKQ0KPDY+WyAgICA2LjEwNDAxOF0gaTkxNSAw
-MDAwOjAwOjAyLjA6IFtkcm1dIEZpbmlzaGVkIGxvYWRpbmcgRE1DIGZpcm13YXJlIGk5MTUvdGds
-X2RtY192ZXIyXzEyLmJpbiAodjIuMTIpDQoNCmFuZCBodHRwczovL2ludGVsLWdmeC1jaS4wMS5v
-cmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18yMjM5My9zaGFyZC10Z2x1LTEvYm9vdDE2LnR4dA0K
-PDc+WyAgICA2LjEwODAzMV0gaTkxNSAwMDAwOjAwOjAyLjA6IFtkcm06aW50ZWxfZG1jX3Vjb2Rl
-X2luaXQgW2k5MTVdXSBMb2FkaW5nIGk5MTUvdGdsX2RtY192ZXIyXzEyLmJpbg0KPDc+WyAgICA2
-LjEwOTMzM10gaTkxNSAwMDAwOjAwOjAyLjA6IFtkcm06aW50ZWxfZmJjX2luaXQgW2k5MTVdXSBT
-YW5pdGl6ZWQgZW5hYmxlX2ZiYyB2YWx1ZTogMQ0KPDc+WyAgICA2LjExMDY0NF0gaTkxNSAwMDAw
-OjAwOjAyLjA6IFtkcm06aW50ZWxfcHJpbnRfd21fbGF0ZW5jeSBbaTkxNV1dIEdlbjkgUGxhbmUg
-V00wIGxhdGVuY3kgMyAoMy4wIHVzZWMpDQo8Nz5bICAgIDYuMTExMTkyXSBpOTE1IDAwMDA6MDA6
-MDIuMDogW2RybTppbnRlbF9wcmludF93bV9sYXRlbmN5IFtpOTE1XV0gR2VuOSBQbGFuZSBXTTEg
-bGF0ZW5jeSA1NCAoNTQuMCB1c2VjKQ0KPDc+WyAgICA2LjExMTMxMV0gaTkxNSAwMDAwOjAwOjAy
-LjA6IFtkcm06aW50ZWxfcHJpbnRfd21fbGF0ZW5jeSBbaTkxNV1dIEdlbjkgUGxhbmUgV00yIGxh
-dGVuY3kgNTQgKDU0LjAgdXNlYykNCjw2PlsgICAgNi4xMTE0ODFdIGk5MTUgMDAwMDowMDowMi4w
-OiBbZHJtXSBGaW5pc2hlZCBsb2FkaW5nIERNQyBmaXJtd2FyZSBpOTE1L3RnbF9kbWNfdmVyMl8x
-Mi5iaW4gKHYyLjEyKQ0KPDc+WyAgICA2LjExMTQ3OV0gaTkxNSAwMDAwOjAwOjAyLjA6IFtkcm06
-aW50ZWxfcHJpbnRfd21fbGF0ZW5jeSBbaTkxNV1dIEdlbjkgUGxhbmUgV00zIGxhdGVuY3kgNTQg
-KDU0LjAgdXNlYw0KDQpDYW4ndCBiZSBjYXVzZWQgYnkgdGhpcyBzZXJpZXMuDQoNCkxha3NobWk6
-IFRoaXMgaXMgcmVsYXRlZCB0byBodHRwczovL2dpdGxhYi5mcmVlZGVza3RvcC5vcmcvZHJtL2lu
-dGVsLy0vaXNzdWVzLzUxMjINCkZldyB0ZXN0cyAtIGRtZXNnLXdhcm4vaW5jb21wbGV0ZSAtIGk5
-MTUgcmF3LXdha2VyZWZzPTEgd2FrZWxvY2tzPTEgb24gY2xlYW51cCwgV0FSTklORzogLiogYXQg
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfcnVudGltZV9wbS5jOlxkKyBpbnRlbF9ydW50aW1l
-X3BtX2RyaXZlcl9yZWxlYXNlDQpMdWNhcyBEZSBNYXJjaGkNCg==
+
+
+On 25/02/2022 18:23, Michael Cheng wrote:
+> These seem to be pretty old arch and are day0 warnings, please refer to 
+> [1] to see the warnings. Also I am not sure why my patch series didn't 
+> append to the old one.
+> 
+> [1] https://patchwork.freedesktop.org/patch/475829/?series=99450&rev=11
+
+>> include/linux/cacheflush.h:12:46: warning: declaration of 'struct folio' will not be visible outside of this function [-Wvisibility]
+
+That?
+
+Looks like the #else path needs to forward declare struct folio or include the relevant header.
+
++Matthew Wilcox
+
+Matthew, what do you think fix for this build warning on h8300 and s390 should be? Or perhaps a build environment issue with kernel test robot?
+
+Regards,
+
+Tvrtko
+  
+> 2022-02-25 10:19 a.m., Tvrtko Ursulin wrote:
+>>
+>> On 25/02/2022 17:40, Michael Cheng wrote:
+>>> Ah, thanks for pointing that out, when I do include it though, it 
+>>> causes a few warning other systems such as h8300 and s390.
+>>
+>> Errors look like? I haven't heard that kernel code is not allowed to 
+>> include something from linux/ on some arch yet.
+>>
+>>> Since it is already pulled is, would it be OK to leave it out for 
+>>> this case? Or we could use something like !IS_H8300 and !IS_S390
+>>>
+>>> around the header file?
+>>
+>> Unlikely, now you made me curious why it does not work.
+>>
+>> Regards,
+>>
+>> Tvrtko
+>>
+>>>
+>>> On 2022-02-25 9:33 a.m., Tvrtko Ursulin wrote:
+>>>>
+>>>> On 25/02/2022 16:52, Michael Cheng wrote:
+>>>>> Hi Tvrtko,
+>>>>>
+>>>>> It seems without cacheflush.h being included, when I build for 
+>>>>> arm64 or x86, it stills pulls in cacheflush.h:
+>>>>>
+>>>>> ./.drm_cache.o.cmd:838: include/linux/cacheflush.h \
+>>>>> ./.drm_cache.o.cmd:839: arch/x86/include/asm/cacheflush.h \
+>>>>> ./.drm_cache.o.cmd:920: include/asm-generic/cacheflush.h \
+>>>>> ./.drm_cache.o.cmd:830: include/linux/cacheflush.h \
+>>>>> ./.drm_cache.o.cmd:831: arch/arm64/include/asm/cacheflush.h \
+>>>>> ./.drm_cache.o.cmd:1085: include/asm-generic/cacheflush.h \
+>>>>> So it seems without including it, cacheflush.h stills get pulled in,
+>>>>> I think its because its a required kernel source to build the kernel
+>>>>> per specific architecture, but please correct if I am wrong,as I am 
+>>>>> still
+>>>>> trying to understand how things works!
+>>>>
+>>>> Probably:
+>>>>
+>>>> drm_cache.c:
+>>>>
+>>>> #include <linux/highmem.h>
+>>>>
+>>>> linux/highmem.h:
+>>>>
+>>>> #include <linux/cacheflush.h>
+>>>>
+>>>> But it is more correct to explicitly include what you use. So if 
+>>>> drm_cache.c uses stuff declared in cacheflush.h, it should include it.
+>>>>
+>>>> Regards,
+>>>>
+>>>> Tvrtko
+>>>>
+>>>>> Michael Cheng
+>>>>> On 2022-02-25 8:28 a.m., Tvrtko Ursulin wrote:
+>>>>>>
+>>>>>> On 25/02/2022 03:24, Michael Cheng wrote:
+>>>>>>> Add arm64 support for drm_clflush_virt_range. caches_clean_inval_pou
+>>>>>>> performs a flush by first performing a clean, follow by an 
+>>>>>>> invalidation
+>>>>>>> operation.
+>>>>>>>
+>>>>>>> v2 (Michael Cheng): Use correct macro for cleaning and 
+>>>>>>> invalidation the
+>>>>>>>             dcache. Thanks Tvrtko for the suggestion.
+>>>>>>>
+>>>>>>> v3 (Michael Cheng): Replace asm/cacheflush.h with linux/cacheflush.h
+>>>>>>>
+>>>>>>> v4 (Michael Cheng): Arm64 does not export dcache_clean_inval_poc 
+>>>>>>> as a
+>>>>>>>             symbol that could be use by other modules, thus use
+>>>>>>>             caches_clean_inval_pou instead. Also this version
+>>>>>>>                 removes include for cacheflush, since its already
+>>>>>>>             included base on architecture type.
+>>>>>>
+>>>>>> What does it mean that it is included based on architecture type? 
+>>>>>> Some of the other header already pulls it in?
+>>>>>>
+>>>>>> Regards,
+>>>>>>
+>>>>>> Tvrtko
+>>>>>>
+>>>>>>> Signed-off-by: Michael Cheng <michael.cheng@intel.com>
+>>>>>>> Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+>>>>>>> ---
+>>>>>>>   drivers/gpu/drm/drm_cache.c | 5 +++++
+>>>>>>>   1 file changed, 5 insertions(+)
+>>>>>>>
+>>>>>>> diff --git a/drivers/gpu/drm/drm_cache.c 
+>>>>>>> b/drivers/gpu/drm/drm_cache.c
+>>>>>>> index c3e6e615bf09..81c28714f930 100644
+>>>>>>> --- a/drivers/gpu/drm/drm_cache.c
+>>>>>>> +++ b/drivers/gpu/drm/drm_cache.c
+>>>>>>> @@ -174,6 +174,11 @@ drm_clflush_virt_range(void *addr, unsigned 
+>>>>>>> long length)
+>>>>>>>         if (wbinvd_on_all_cpus())
+>>>>>>>           pr_err("Timed out waiting for cache flush\n");
+>>>>>>> +
+>>>>>>> +#elif defined(CONFIG_ARM64)
+>>>>>>> +    void *end = addr + length;
+>>>>>>> +    caches_clean_inval_pou((unsigned long)addr, (unsigned 
+>>>>>>> long)end);
+>>>>>>> +
+>>>>>>>   #else
+>>>>>>>       WARN_ONCE(1, "Architecture has no drm_cache.c support\n");
+>>>>>>>   #endif
