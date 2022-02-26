@@ -2,32 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA5C84C542D
-	for <lists+intel-gfx@lfdr.de>; Sat, 26 Feb 2022 07:21:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 718EB4C5430
+	for <lists+intel-gfx@lfdr.de>; Sat, 26 Feb 2022 07:25:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 149CE10E1DC;
-	Sat, 26 Feb 2022 06:21:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2DEF410E1B7;
+	Sat, 26 Feb 2022 06:25:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id D10AC10E1B7;
- Sat, 26 Feb 2022 06:20:58 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C3D6EA47DF;
- Sat, 26 Feb 2022 06:20:58 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AF8B010E1B7;
+ Sat, 26 Feb 2022 06:25:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1645856720; x=1677392720;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=jjUDJdhZDhgmxsIVgcAx5JSlVHcwTt3L6UcBQ6vzFac=;
+ b=kEQg7OhSJlgIeL3MPqnKTl2oXD/CUd+HnC6cHr8gJu1myLqpVJ1hVKeu
+ Q0GELc5EhHP8CsOcf+dtZr0ThZLlA1Td1PjlWpMgwFSHoJi055C5+ooVV
+ fviaCUnK+jhLXHSRcoeb9Mw47YSA/FEBx3ZEq0oq5HnNb76KTdmC5Kixi
+ Lf/ZLaK3joiYw1kiPvOw4v6Rnrse5ooIfWFy73Z2b0wYt96WzV/tY0iwh
+ pUrkbmIgw+29XGJFG9mtgGA+i/KstEur8mUR0sB8AklPilb3uzXobNJR+
+ q6rDeu6TBI3JR0HpUvQOQ0+Pxt6/KLx48Vfj8PXSlz3cSptqAAatvBEzO g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10269"; a="233259018"
+X-IronPort-AV: E=Sophos;i="5.90,138,1643702400"; d="scan'208";a="233259018"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Feb 2022 22:25:20 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,138,1643702400"; d="scan'208";a="684864180"
+Received: from aalteres-desk.fm.intel.com ([10.80.57.53])
+ by fmsmga001.fm.intel.com with ESMTP; 25 Feb 2022 22:25:20 -0800
+From: Alan Previn <alan.previn.teres.alexis@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 25 Feb 2022 22:27:31 -0800
+Message-Id: <20220226062732.747531-1-alan.previn.teres.alexis@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Alan Previn" <alan.previn.teres.alexis@intel.com>
-Date: Sat, 26 Feb 2022 06:20:58 -0000
-Message-ID: <164585645877.9640.14071448239507933985@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220226055526.665514-1-alan.previn.teres.alexis@intel.com>
-In-Reply-To: <20220226055526.665514-1-alan.previn.teres.alexis@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBB?=
- =?utf-8?q?dd_GuC_Error_Capture_Support_=28rev6=29?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2 0/1] Fix i915 error_state_read ptr use
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,32 +53,27 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org,
+ Alan Previn <alan.previn.teres.alexis@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Fix pointer offset usage in error_state_read
+when there is no i915_gpu_coredump but buf offset
+is non-zero.
 
-Series: Add GuC Error Capture Support (rev6)
-URL   : https://patchwork.freedesktop.org/series/97187/
-State : failure
+This is the 2nd rev of this series.
 
-== Summary ==
+Changes from prior revs:
+  v2: - Fix build issue: uninitialized var
+        Reported-by: kernel test robot <lkp@intel.com>
 
-Applying: drm/i915/guc: Update GuC ADS size for error capture lists
-Using index info to reconstruct a base tree...
-M	drivers/gpu/drm/i915/gt/uc/intel_guc.h
-M	drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
-Falling back to patching base and 3-way merge...
-Auto-merging drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
-CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
-Auto-merging drivers/gpu/drm/i915/gt/uc/intel_guc.h
-error: Failed to merge in the changes.
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0001 drm/i915/guc: Update GuC ADS size for error capture lists
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+Alan Previn (1):
+  drm/i915/reset: Fix error_state_read ptr + offset use
 
+ drivers/gpu/drm/i915/i915_sysfs.c | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
+
+-- 
+2.25.1
 
