@@ -1,49 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D98674C5431
-	for <lists+intel-gfx@lfdr.de>; Sat, 26 Feb 2022 07:25:26 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66A904C543F
+	for <lists+intel-gfx@lfdr.de>; Sat, 26 Feb 2022 07:42:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B3B210EA1E;
-	Sat, 26 Feb 2022 06:25:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5CC2910EB2F;
+	Sat, 26 Feb 2022 06:42:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D9FCF10E411
- for <intel-gfx@lists.freedesktop.org>; Sat, 26 Feb 2022 06:25:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AFE6910EB32;
+ Sat, 26 Feb 2022 06:42:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645856720; x=1677392720;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=AwTG9neOJHW5H5KcQOFwc9T3oT1/D6S/x2QHdqEVJAw=;
- b=PTFRcFyvrqUuhiLDPQRrZd/LGvOzQSwECLgKTrnlsMDW+OhyB1KCxbJ9
- WzkuNOuFIybQR+cw3WFCHbBSY9WU3C75Pi4RseLNpQ36UZLfrWIyrEcck
- hW6h5N9uNT2LCJ40owbtADH97Vz5KJQDSsln+MaoNE+TwskSSXAYX0B4k
- aWDIRByMVx9sqFzRgQ4bQnPdSb6126BdET8VA2/uaUHjiO9zZZWHe96M2
- Cjm09pYNyHrcFMqbC0BMnvWipbR+IZt5i0ExVc5llei5tCXpAMj/YAck5
- 5XPLJ0/R+ysZzO9TL1knEhnSPaaYBST1mQM3zmV5CMgVYYY1COKPcIUlS Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10269"; a="233259019"
-X-IronPort-AV: E=Sophos;i="5.90,138,1643702400"; d="scan'208";a="233259019"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ t=1645857727; x=1677393727;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=zASz6t+p6cG4Fb0MKkibhlVDmDvDShSqriCFRC5tpKI=;
+ b=aJK0banVekcUcVq2xSrwSyB57EOPyjrmzKySmm+MdFdV6K8MqKx4xMIZ
+ LI6MESqB4+dCL8llV59lAVKxDbpjhiIgoUrseCIpmDPUyIZqxi59upDmO
+ dYTn2zOoOULmBs2ajBBhnROL4A02wHV6U5fouIK9bNDOsjix4ych5WCP0
+ 54SB8hO4WylaHJwdMLwZ42RhJedGveEqGph9HJxlfUwFtfMzvscNxmMFh
+ OZeLWtEsZvhyFomY7QBj0K+goNMhV5IAVITt/3YDOC/49fXxf/nxXR2f3
+ 41Yu9GmaP8JvIZcN0PaVEtJ0+FmPL6CpFN49g0MGfo0CFKGZcxzVZlUFu A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10269"; a="233259696"
+X-IronPort-AV: E=Sophos;i="5.90,138,1643702400"; d="scan'208";a="233259696"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2022 22:25:20 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,138,1643702400"; d="scan'208";a="684864183"
-Received: from aalteres-desk.fm.intel.com ([10.80.57.53])
- by fmsmga001.fm.intel.com with ESMTP; 25 Feb 2022 22:25:20 -0800
-From: Alan Previn <alan.previn.teres.alexis@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 25 Feb 2022 22:27:32 -0800
-Message-Id: <20220226062732.747531-2-alan.previn.teres.alexis@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220226062732.747531-1-alan.previn.teres.alexis@intel.com>
-References: <20220226062732.747531-1-alan.previn.teres.alexis@intel.com>
+ 25 Feb 2022 22:42:07 -0800
+X-IronPort-AV: E=Sophos;i="5.90,138,1643702400"; d="scan'208";a="795086738"
+Received: from unknown (HELO ldmartin-desk2) ([10.209.25.147])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Feb 2022 22:42:07 -0800
+Date: Fri, 25 Feb 2022 22:42:05 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Matthew Auld <matthew.auld@intel.com>
+Message-ID: <20220226064205.wi7zukcyl3a2f4zq@ldmartin-desk2>
+X-Patchwork-Hint: comment
+References: <20220225103443.225228-1-matthew.auld@intel.com>
+ <20220226011428.zeyshg37i4ovykbo@ldmartin-desk2>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 1/1] drm/i915/reset: Fix error_state_read ptr
- + offset use
+In-Reply-To: <20220226011428.zeyshg37i4ovykbo@ldmartin-desk2>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: apply PM_EARLY for non-GTT
+ mappable objects
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,106 +59,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
+Cc: Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Fix our pointer offset usage in error_state_read
-when there is no i915_gpu_coredump but buf offset
-is non-zero.
+On Fri, Feb 25, 2022 at 05:14:28PM -0800, Lucas De Marchi wrote:
+>On Fri, Feb 25, 2022 at 10:34:43AM +0000, Matthew Auld wrote:
+>>On DG2 we allow objects that are smaller than the min_page_size, under
+>>the premise that these are never mapped by the GTT, like with the paging
+>>structures. Currently the suspend-resume path will try to map such
+>>objects through the migration vm, which hits:
+>>
+>>[  560.529217] kernel BUG at drivers/gpu/drm/i915/gt/intel_migrate.c:431!
+>>[  560.536081] invalid opcode: 0000 [#1] PREEMPT SMP NOPTI
+>>[  560.541629] CPU: 4 PID: 2062 Comm: rtcwake Tainted: G        W         5.17.0-rc5-demarchi+ #175
+>>[  560.550716] Hardware name: Intel Corporation CoffeeLake Client Platform/CoffeeLake S UDIMM RVP, BIOS CNLSFWR1.R00.X220.B00.2103302221 03/30/2021
+>>[  560.563627] RIP: 0010:emit_pte+0x2e7/0x380 [i915]
+>>[  560.568665] Code: ee 02 48 89 69 04 83 c6 05 83 c0 05 39 f0 0f 4f c6 48 8b 73 08 39 d0 0f 4f c2 44 89 f2 4c 8d 4a ff 49 85 f1 0f 84 62 fe ff ff <0f> 0b 48 c7 03 00 00 00 00 4d 89 c6 8b 01 48 29 ce 48 8d 57 0c 48
+>>[  560.587691] RSP: 0018:ffffc9000104f8a0 EFLAGS: 00010206
+>>[  560.592906] RAX: 0000000000000040 RBX: ffffc9000104f908 RCX: ffffc900025114d0
+>>[  560.600024] RDX: 0000000000010000 RSI: 00000003f9fe2000 RDI: ffffc900025114dc
+>>[  560.607458] RBP: 0000000001840000 R08: ffff88810f335540 R09: 000000000000ffff
+>>[  560.614865] R10: 000000000000081b R11: 0000000000000001 R12: 000000000000081b
+>>[  560.622300] R13: 0000000000000000 R14: 0000000000010000 R15: ffff888107c3e240
+>>[  560.629716] FS:  00007f5b7c086580(0000) GS:ffff88846dc00000(0000) knlGS:0000000000000000
+>>[  560.638090] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+>>[  560.644132] CR2: 00007f3ab0a133a8 CR3: 000000010a43e003 CR4: 00000000003706e0
+>>[  560.651590] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+>>[  560.659002] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+>>[  560.666438] Call Trace:
+>>[  560.668885]  <TASK>
+>>[  560.670983]  intel_context_migrate_copy+0x1b1/0x4c0 [i915]
+>>[  560.676794]  __i915_ttm_move+0x628/0x790 [i915]
+>>[  560.681704]  ? dma_resv_iter_next+0x8f/0xb0
+>>[  560.686223]  ? dma_resv_iter_first+0xe5/0x140
+>>[  560.690894]  ? i915_deps_add_resv+0x4b/0x110 [i915]
+>>[  560.696147]  ? dma_resv_reserve_shared+0x161/0x310
+>>[  560.701228]  i915_gem_obj_copy_ttm+0x10f/0x220 [i915]
+>>[  560.706650]  i915_ttm_backup+0x191/0x2f0 [i915]
+>>[  560.711558]  i915_gem_process_region+0x266/0x3b0 [i915]
+>>[  560.717153]  ? verify_cpu+0xf0/0x100
+>>[  560.721040]  ? pci_pm_resume_early+0x20/0x20
+>>[  560.725603]  i915_ttm_backup_region+0x47/0x70 [i915]
+>>[  560.730927]  i915_gem_backup_suspend+0x141/0x170 [i91
+>>
+>>For now let's just force the memcpy path for such objects during
+>>suspend-resume.
+>>
+>>Fixes: 00e27ad85bc9 ("drm/i915/migrate: add acceleration support for DG2")
+>>Reported-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>>Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+>>Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+>
+>
+>Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-This fixes a kernel page fault can happen when
-multiple tests are running concurrently in a loop
-and one is producing engine resets and consuming
-the i915 error_state dump while the other is
-forcing full GT resets. (takes a while to trigger).
+double checked on a dg2 system it's indeed working and pushed.
 
-The dmesg call trace:
+thanks
+Lucas De Marchi
 
-5014 [ 5590.803000] BUG: unable to handle page fault for address: ffffffffa0b0e000
-5015 [ 5590.803009] #PF: supervisor read access in kernel mode
-5016 [ 5590.803013] #PF: error_code(0x0000) - not-present page
-5017 [ 5590.803016] PGD 5814067 P4D 5814067 PUD 5815063 PMD 109de4067 PTE 0
-5018 [ 5590.803022] Oops: 0000 [#1] PREEMPT SMP NOPTI
-5019 [ 5590.803026] CPU: 5 PID: 13656 Comm: i915_hangman Tainted: G U 5.17.0-rc5-
-			ups69-guc-err-capt-rev6+ #136
-5020 [ 5590.803033] Hardware name: Intel Corporation Alder Lake Client Platform/
-			AlderLake-M LP4x RVP, BIOS ADLPFWI1.R00.3031.A02.2201171222
-			01/17/2022
-5021 [ 5590.803039] RIP: 0010:memcpy_erms+0x6/0x10
-5022 [ 5590.803045] Code: fe ff ff cc eb 1e 0f 1f 00 48 89 f8 48 89 d1 48 c1 e9 03 83
-			e2 07 f3 48 a5 89 d1 f3 a4 c3 66 0f 1f 44 00 00 48 89 f8 48 89
-			d1 <f3> a4 c3 0f 1f 80 00 00 00 00 48 89 f8 48 83 fa 20 72 7e 40 38 fe
-5023 [ 5590.803054] RSP: 0018:ffffc90003a8fdf0 EFLAGS: 00010282
-5024 [ 5590.803057] RAX: ffff888107ee9000 RBX: ffff888108cb1a00 RCX: 0000000000000f8f
-5025 [ 5590.803061] RDX: 0000000000001000 RSI: ffffffffa0b0e000 RDI: ffff888107ee9071
-5026 [ 5590.803065] RBP: 0000000000000000 R08: 0000000000000001 R09: 0000000000000001
-5027 [ 5590.803069] R10: 0000000000000001 R11: 0000000000000002 R12: 0000000000000019
-5028 [ 5590.803073] R13: 0000000000174fff R14: 0000000000001000 R15: ffff888107ee9000
-5029 [ 5590.803077] FS: 00007f62a99bee80(0000) GS:ffff88849f880000(0000) knlGS:0000000000000000
-5030 [ 5590.803082] CS: 0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-5031 [ 5590.803085] CR2: ffffffffa0b0e000 CR3: 000000010a1a8004 CR4: 0000000000770ee0
-5032 [ 5590.803089] PKRU: 55555554
-5033 [ 5590.803091] Call Trace:
-5034 [ 5590.803093] <TASK>
-5035 [ 5590.803096] error_state_read+0xa1/0xd0 [i915]
-5036 [ 5590.803175] kernfs_fop_read_iter+0xb2/0x1b0
-5037 [ 5590.803180] new_sync_read+0x116/0x1a0
-5038 [ 5590.803185] vfs_read+0x114/0x1b0
-5039 [ 5590.803189] ksys_read+0x63/0xe0
-5040 [ 5590.803193] do_syscall_64+0x38/0xc0
-5041 [ 5590.803197] entry_SYSCALL_64_after_hwframe+0x44/0xae
-5042 [ 5590.803201] RIP: 0033:0x7f62aaea5912
-5043 [ 5590.803204] Code: c0 e9 b2 fe ff ff 50 48 8d 3d 5a b9 0c 00 e8 05 19 02 00 0f 1f 44 00
-			00 f3 0f 1e fa 64 8b 04 25 18 00 00 00 85 c0 75 10 0f 05 <48> 3d 00 f0
-			ff ff 77 56 c3 0f 1f 44 00 00 48 83 ec 28 48 89 54 24
-5044 [ 5590.803213] RSP: 002b:00007fff5b659ae8 EFLAGS: 00000246 ORIG_RAX: 0000000000000000
-5045 [ 5590.803218] RAX: ffffffffffffffda RBX: 0000000000100000 RCX: 00007f62aaea5912
-5046 [ 5590.803221] RDX: 000000000008b000 RSI: 00007f62a8c4000f RDI: 0000000000000006
-5047 [ 5590.803225] RBP: 00007f62a8bcb00f R08: 0000000000200010 R09: 0000000000101000
-5048 [ 5590.803229] R10: 0000000000000001 R11: 0000000000000246 R12: 0000000000000006
-5049 [ 5590.803233] R13: 0000000000075000 R14: 00007f62a8acb010 R15: 0000000000200000
-5050 [ 5590.803238] </TASK>
-5051 [ 5590.803240] Modules linked in: i915 ttm drm_buddy drm_dp_helper drm_kms_helper syscopyarea
-			sysfillrect sysimgblt fb_sys_fops prime_numbers nfnetlink br_netfilter overlay
-			mei_pxp mei_hdcp x86_pkg_temp_thermal coretemp kvm_intel snd_hda_codec_hdmi
-			snd_hda_intel snd_intel_dspcfg snd_hda_codec snd_hwdep snd_hda_core snd_pcm mei_me
-			mei fuse ip_tables x_tables crct10dif_pclmul e1000e crc32_pclmul ptp i2c_i801
-			ghash_clmulni_intel i2c_smbus pps_core [last unloa ded: ttm]
-5052 [ 5590.803277] CR2: ffffffffa0b0e000
-5053 [ 5590.803280] ---[ end trace 0000000000000000 ]---
-
-Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
----
- drivers/gpu/drm/i915/i915_sysfs.c | 8 +++++---
- 1 file changed, 5 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/i915_sysfs.c b/drivers/gpu/drm/i915/i915_sysfs.c
-index a4d1759375b9..c40e51298066 100644
---- a/drivers/gpu/drm/i915/i915_sysfs.c
-+++ b/drivers/gpu/drm/i915/i915_sysfs.c
-@@ -432,7 +432,7 @@ static ssize_t error_state_read(struct file *filp, struct kobject *kobj,
- 	struct device *kdev = kobj_to_dev(kobj);
- 	struct drm_i915_private *i915 = kdev_minor_to_i915(kdev);
- 	struct i915_gpu_coredump *gpu;
--	ssize_t ret;
-+	ssize_t ret = 0;
- 
- 	gpu = i915_first_error_state(i915);
- 	if (IS_ERR(gpu)) {
-@@ -444,8 +444,10 @@ static ssize_t error_state_read(struct file *filp, struct kobject *kobj,
- 		const char *str = "No error state collected\n";
- 		size_t len = strlen(str);
- 
--		ret = min_t(size_t, count, len - off);
--		memcpy(buf, str + off, ret);
-+		if (off < len) {
-+			ret = min_t(size_t, count, len - off);
-+			memcpy(buf, str + off, ret);
-+		}
- 	}
- 
- 	return ret;
--- 
-2.25.1
-
+>
+>thanks
+>Lucas De Marchi
