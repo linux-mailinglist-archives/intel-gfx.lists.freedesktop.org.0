@@ -1,46 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8065F4C54C8
-	for <lists+intel-gfx@lfdr.de>; Sat, 26 Feb 2022 10:09:52 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E43504C54C7
+	for <lists+intel-gfx@lfdr.de>; Sat, 26 Feb 2022 10:09:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7C85F10EB52;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A4CB10EB4E;
 	Sat, 26 Feb 2022 09:09:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 483D610EB4E
- for <intel-gfx@lists.freedesktop.org>; Sat, 26 Feb 2022 09:09:48 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CECDC10EB4E
+ for <intel-gfx@lists.freedesktop.org>; Sat, 26 Feb 2022 09:09:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645866588; x=1677402588;
+ t=1645866587; x=1677402587;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=TH87tK7H6F6u2g+j9lW2PpcEIkdMJ+mUFXH02tTk6o0=;
- b=UobNL8mM4Ji5nPZO0eMf22ycubLHzzhh33Nc1TK1VkUfEJe3XIuz/xOt
- fNbZKlS1iaQgpqVHe7wCX3f7CU/m+IHYUiVzMLVuO55GrAjUv7FlxpwO7
- 3B2hA4GjUEff0aFu6WnLnjslL4jOBnUvvP8pRis8GzUBn0BvacY1zy+3g
- KA2BFUfLoBqe2Lpci6m3WB/OfJ0/vNHfAyY5eF0QJu36KxgWfT8BKQ69b
- 4TWibztzhBxMvNuWQoS1S3YCb1Yq7KtIFFsQSRu+oRrh/ClFOA51HK8Uq
- ObCFOduWsrqMmuGXCPfHSrz6JAlUd+kmtJyTld+AmlmLDiUq2bygi2Cw8 A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10269"; a="277285886"
-X-IronPort-AV: E=Sophos;i="5.90,139,1643702400"; d="scan'208";a="277285886"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ bh=T5zlaDaj0oUrUexWkG6jnHS18Vr5ieqUJAdTIvCzxBA=;
+ b=OJGw+BEuX6g8XRFSFPx4fzVi4XAR1WxVYfjFP7zMQzMH5YwxZpFnQ6di
+ I+pQU9fPsIyinuQ6x4XmOQWpz+SuhXqbvJ5t8xoi3Qhbu4uLZ4jl6QD/z
+ jA0O3q/rXghdsv45jLGIs8zC+ct7uDSzj6LbgHxwOzR/iQMhacFCEhoiL
+ oY/3GLehWUCnlCwcILx/ql5YqdJoqHyW/YoYhVJtfotrHkkE/EG+nrkha
+ qiVGQTchqowc+OORuXNYolGXGbssBkk75I3EwPjs2bVbsazYnk0G2bvKH
+ Cgjn4k1DfN4qYkyRqrhNmo+Kv2QDYyTlNXVQKGUO/JaxtRW26TOkBvD78 A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10269"; a="250227043"
+X-IronPort-AV: E=Sophos;i="5.90,139,1643702400"; d="scan'208";a="250227043"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  26 Feb 2022 01:09:47 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,139,1643702400"; d="scan'208";a="506947321"
+X-IronPort-AV: E=Sophos;i="5.90,139,1643702400"; d="scan'208";a="640373845"
 Received: from lkp-server01.sh.intel.com (HELO 788b1cd46f0d) ([10.239.97.150])
- by orsmga002.jf.intel.com with ESMTP; 26 Feb 2022 01:09:45 -0800
+ by orsmga004.jf.intel.com with ESMTP; 26 Feb 2022 01:09:45 -0800
 Received: from kbuild by 788b1cd46f0d with local (Exim 4.92)
  (envelope-from <lkp@intel.com>)
- id 1nNt5F-0005Kc-7F; Sat, 26 Feb 2022 09:09:45 +0000
-Date: Sat, 26 Feb 2022 17:08:43 +0800
+ id 1nNt5F-0005KZ-6i; Sat, 26 Feb 2022 09:09:45 +0000
+Date: Sat, 26 Feb 2022 17:08:48 +0800
 From: kernel test robot <lkp@intel.com>
 To: Alan Previn <alan.previn.teres.alexis@intel.com>,
  intel-gfx@lists.freedesktop.org
-Message-ID: <202202261716.Sl8xnkv3-lkp@intel.com>
+Message-ID: <202202261725.qSv41wrm-lkp@intel.com>
 References: <20220226055526.665514-2-alan.previn.teres.alexis@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
@@ -61,8 +61,7 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: llvm@lists.linux.dev, kbuild-all@lists.01.org,
- Alan Previn <alan.previn.teres.alexis@intel.com>
+Cc: kbuild-all@lists.01.org, Alan Previn <alan.previn.teres.alexis@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
@@ -79,53 +78,34 @@ https://git-scm.com/docs/git-format-patch]
 
 url:    https://github.com/0day-ci/linux/commits/Alan-Previn/Add-GuC-Error-Capture-Support/20220226-135414
 base:   git://anongit.freedesktop.org/drm-intel for-linux-next
-config: x86_64-randconfig-a005 (https://download.01.org/0day-ci/archive/20220226/202202261716.Sl8xnkv3-lkp@intel.com/config)
-compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project d271fc04d5b97b12e6b797c6067d3c96a8d7470e)
+config: x86_64-randconfig-a011 (https://download.01.org/0day-ci/archive/20220226/202202261725.qSv41wrm-lkp@intel.com/config)
+compiler: gcc-9 (Debian 9.3.0-22) 9.3.0
 reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
         # https://github.com/0day-ci/linux/commit/4c1018d0e536adbe13cf0b71049b0a94073eec7e
         git remote add linux-review https://github.com/0day-ci/linux
         git fetch --no-tags linux-review Alan-Previn/Add-GuC-Error-Capture-Support/20220226-135414
         git checkout 4c1018d0e536adbe13cf0b71049b0a94073eec7e
         # save the config file to linux build tree
         mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash drivers/gpu/drm/i915/
+        make W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash drivers/gpu/drm/i915/
 
 If you fix the issue, kindly add following tag as appropriate
 Reported-by: kernel test robot <lkp@intel.com>
 
 All warnings (new ones prefixed by >>):
 
->> drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:222:1: warning: no previous prototype for function 'intel_guc_capture_getlistsize' [-Wmissing-prototypes]
-   intel_guc_capture_getlistsize(struct intel_guc *guc, u32 owner, u32 type, u32 classid,
-   ^
-   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:221:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
-   int
-   ^
-   static 
->> drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:252:1: warning: no previous prototype for function 'intel_guc_capture_getlist' [-Wmissing-prototypes]
-   intel_guc_capture_getlist(struct intel_guc *guc, u32 owner, u32 type, u32 classid,
-   ^
-   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:251:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
-   int
-   ^
-   static 
->> drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:321:6: warning: no previous prototype for function 'intel_guc_capture_destroy' [-Wmissing-prototypes]
-   void intel_guc_capture_destroy(struct intel_guc *guc)
-        ^
-   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:321:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
-   void intel_guc_capture_destroy(struct intel_guc *guc)
-   ^
-   static 
->> drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:332:5: warning: no previous prototype for function 'intel_guc_capture_init' [-Wmissing-prototypes]
-   int intel_guc_capture_init(struct intel_guc *guc)
-       ^
-   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:332:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
-   int intel_guc_capture_init(struct intel_guc *guc)
-   ^
-   static 
-   4 warnings generated.
+>> drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:222:1: warning: no previous prototype for 'intel_guc_capture_getlistsize' [-Wmissing-prototypes]
+     222 | intel_guc_capture_getlistsize(struct intel_guc *guc, u32 owner, u32 type, u32 classid,
+         | ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>> drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:252:1: warning: no previous prototype for 'intel_guc_capture_getlist' [-Wmissing-prototypes]
+     252 | intel_guc_capture_getlist(struct intel_guc *guc, u32 owner, u32 type, u32 classid,
+         | ^~~~~~~~~~~~~~~~~~~~~~~~~
+>> drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:321:6: warning: no previous prototype for 'intel_guc_capture_destroy' [-Wmissing-prototypes]
+     321 | void intel_guc_capture_destroy(struct intel_guc *guc)
+         |      ^~~~~~~~~~~~~~~~~~~~~~~~~
+>> drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:332:5: warning: no previous prototype for 'intel_guc_capture_init' [-Wmissing-prototypes]
+     332 | int intel_guc_capture_init(struct intel_guc *guc)
+         |     ^~~~~~~~~~~~~~~~~~~~~~
 
 
 vim +/intel_guc_capture_getlistsize +222 drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
