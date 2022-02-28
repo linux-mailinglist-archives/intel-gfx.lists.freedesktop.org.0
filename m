@@ -2,62 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A5FD4C7166
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Feb 2022 17:12:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 70ECC4C7237
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Feb 2022 18:10:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 628BA89760;
-	Mon, 28 Feb 2022 16:12:03 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6933489760;
- Mon, 28 Feb 2022 16:12:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6140C10E60C;
+	Mon, 28 Feb 2022 17:10:01 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 103C810E5D6;
+ Mon, 28 Feb 2022 17:09:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646064722; x=1677600722;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=InsrfAFh5NX08db4OvYyU/UTKup9xjJ4qNysiB0/miI=;
- b=mqFN+hoG57Ovn/4oraAWo+FeAal+kC3Yq2Wh7sql9/iXaeF3b5d3HcBO
- YAB6zOKQNvdDpe5o4ysUrhLbkEW1BlqAT1CvFN/7cFgHPwvQ+tDnC2hJq
- 66US323t5l97Idh4+2GRgB6LCw07G/ZQ3la2DjalVXGfAQiV9GD5J3jHc
- Qq9fUVGpaINftXr+11YIy9d5ImUSq/zYtSlyndISy6B2M3vRxbL5NoocO
- lIpb9Laq9r1IfENyBlZI8zqFF4fs4MaWrJGrBes1r7B9Mh75nDq0FVTaS
- mMEVpsYQNhoFuJ+GAPJdFZfs0z8K2vgHgs3ke7EonVlptGTXSWq5nv0zt w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10272"; a="240328097"
-X-IronPort-AV: E=Sophos;i="5.90,142,1643702400"; d="scan'208";a="240328097"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2022 08:11:54 -0800
-X-IronPort-AV: E=Sophos;i="5.90,142,1643702400"; d="scan'208";a="708693351"
-Received: from jpdecker-mobl3.ger.corp.intel.com (HELO [10.213.235.138])
- ([10.213.235.138])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2022 08:11:53 -0800
-Message-ID: <4e8888d0-f0da-12f3-4010-159b4ff2bdb3@linux.intel.com>
-Date: Mon, 28 Feb 2022 16:11:51 +0000
+ t=1646068200; x=1677604200;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=05QNDoj1Y15qdQ6Z/nJAVS0y9EQ1pt8cX5/aEbM7RQ8=;
+ b=gnbm9pXBLpLK0Aq7Vi9qrpWzr0wVtomlZlkUSVyJssZrNJLhviv7X2s0
+ MqYpvT4imGDlq2VZwut9/km2dQrHYsypDiBvQZXntRng53ZvqMskqGgXv
+ spEDfQzhh7GCC0vzVLI1kihV9krQ55oW2bm/4Ht6cnIppXOyEobfm3WkR
+ SqMlip/onBzIPr9q88Xg1O8LBvnoop6zL9R2/OyxhvAwPbLb0Z8tZQqsP
+ Ij5Fj4W4ZDAi+3Zm9+3ZaXLYAszrdcvJw7ofTuOmwj1ICmquC05oX1reC
+ RwgbKs+P0LcaTGhnNhDesYwwluKtmpbtUhBaj/Zy+8Ox7wasQZThiiNZY w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10272"; a="339367002"
+X-IronPort-AV: E=Sophos;i="5.90,142,1643702400"; d="scan'208";a="339367002"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Feb 2022 09:07:39 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,142,1643702400"; d="scan'208";a="640948256"
+Received: from aalteres-desk.fm.intel.com ([10.80.57.53])
+ by orsmga004.jf.intel.com with ESMTP; 28 Feb 2022 09:07:39 -0800
+From: Alan Previn <alan.previn.teres.alexis@intel.com>
+To: intel-gfx-trybot@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Date: Mon, 28 Feb 2022 09:09:42 -0800
+Message-Id: <20220228170955.1186833-1-alan.previn.teres.alexis@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Content-Language: en-US
-To: John Harrison <john.c.harrison@intel.com>, Intel-GFX@Lists.FreeDesktop.Org
-References: <20220218213307.1338478-1-John.C.Harrison@Intel.com>
- <20220218213307.1338478-2-John.C.Harrison@Intel.com>
- <0d0c5a79-1285-0830-3794-e9f0644811a5@linux.intel.com>
- <94c3184e-c1e2-668f-5824-00fd55797736@intel.com>
- <17e69f0c-8084-10dc-b20f-7d5108260180@linux.intel.com>
- <85105590-a8be-f4e1-69bc-cd34cad108e2@intel.com>
- <16a2687b-4996-8d40-456e-019a112f0fb6@linux.intel.com>
- <c1472196-260a-d2c8-c508-10fe58d4cd47@intel.com>
- <74d30fd4-cb72-113e-fc09-12602b3cf06d@linux.intel.com>
- <986dae97-6c68-34cc-d972-22edaddf7261@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <986dae97-6c68-34cc-d972-22edaddf7261@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/guc: Limit scheduling
- properties to avoid overflow
+Subject: [Intel-gfx] [PATCH v8 00/13] Add GuC Error Capture Support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,313 +54,187 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: DRI-Devel@Lists.FreeDesktop.Org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+This series:
+  1. Enables support of GuC to report error-state-capture
+     using a list of MMIO registers the driver registers
+     and GuC will dump, log and notify right before a GuC
+     triggered engine-reset event.
+  2. Updates the ADS blob creation to register said lists
+     of global, engine class and engine instance registers
+     with GuC.
+  3. Defines tables of register lists that are global or
+     engine class or engine instance in scope.
+  4. Updates usage and buffer-state data for the regions
+     of the shared GuC log-buffer to accomdate both
+     the existing relay logging of general debug logs
+     along with the new error state capture usage.
+  5. Using a pool of preallocated memory, provide ability
+     to extract and format the GuC reported register-capture
+     data into chunks consistent with existing i915 error-
+     state collection flows and structures.
+  6. Connects the i915_gpu_coredump reporting function
+     to the GuC error capture module to print all GuC
+     error state capture dumps that is reported.
 
-On 25/02/2022 17:39, John Harrison wrote:
-> On 2/25/2022 09:06, Tvrtko Ursulin wrote:
->>
->> On 24/02/2022 19:19, John Harrison wrote:
->>
->> [snip]
->>
->>>>>>>> ./gt/uc/intel_guc_fwif.h: u32 execution_quantum;
->>>>>>>>
->>>>>>>> ./gt/uc/intel_guc_submission.c: desc->execution_quantum = 
->>>>>>>> engine->props.timeslice_duration_ms * 1000;
->>>>>>>>
->>>>>>>> ./gt/intel_engine_types.h:              unsigned long 
->>>>>>>> timeslice_duration_ms;
->>>>>>>>
->>>>>>>> timeslice_store/preempt_timeout_store:
->>>>>>>> err = kstrtoull(buf, 0, &duration);
->>>>>>>>
->>>>>>>> So both kconfig and sysfs can already overflow GuC, not only 
->>>>>>>> because of tick conversion internally but because at backend 
->>>>>>>> level nothing was done for assigning 64-bit into 32-bit. Or I 
->>>>>>>> failed to find where it is handled.
->>>>>>> That's why I'm adding this range check to make sure we don't 
->>>>>>> allow overflows.
->>>>>>
->>>>>> Yes and no, this fixes it, but the first bug was not only due GuC 
->>>>>> internal tick conversion. It was present ever since the u64 from 
->>>>>> i915 was shoved into u32 sent to GuC. So even if GuC used the 
->>>>>> value without additional multiplication, bug was be there. My 
->>>>>> point being when GuC backend was added timeout_ms values should 
->>>>>> have been limited/clamped to U32_MAX. The tick discovery is 
->>>>>> additional limit on top.
->>>>> I'm not disagreeing. I'm just saying that the truncation wasn't 
->>>>> noticed until I actually tried using very long timeouts to debug a 
->>>>> particular problem. Now that it is noticed, we need some method of 
->>>>> range checking and this simple clamp solves all the truncation 
->>>>> problems.
->>>>
->>>> Agreed in principle, just please mention in the commit message all 
->>>> aspects of the problem.
->>>>
->>>> I think we can get away without a Fixes: tag since it requires user 
->>>> fiddling to break things in unexpected ways.
->>>>
->>>> I would though put in a code a clamping which expresses both, 
->>>> something like min(u32, ..GUC LIMIT..). So the full story is 
->>>> documented forever. Or "if > u32 || > ..GUC LIMIT..) return 
->>>> -EINVAL". Just in case GuC limit one day changes but u32 stays. 
->>>> Perhaps internal ticks go away or anything and we are left with 
->>>> plain 1:1 millisecond relationship.
->>> Can certainly add a comment along the lines of "GuC API only takes a 
->>> 32bit field but that is further reduced to GUC_LIMIT due to internal 
->>> calculations which would otherwise overflow".
->>>
->>> But if the GuC limit is > u32 then, by definition, that means the GuC 
->>> API has changed to take a u64 instead of a u32. So there will no u32 
->>> truncation any more. So I'm not seeing a need to explicitly test the 
->>> integer size when the value check covers that.
->>
->> Hmm I was thinking if the internal conversion in the GuC fw changes so 
->> that GUC_POLICY_MAX_PREEMPT_TIMEOUT_MS goes above u32, then to be 
->> extra safe by documenting in code there is the additional limit of the 
->> data structure field. Say the field was changed to take some unit 
->> larger than a millisecond. Then the check against the GuC MAX limit 
->> define would not be enough, unless that would account both for 
->> internal implementation and u32 in the protocol. Maybe that is 
->> overdefensive but I don't see that it harms. 50-50, but it's do it 
->> once and forget so I'd do it.
-> Huh?
-> 
-> How can the limit be greater than a u32 if the interface only takes a 
-> u32? By definition the limit would be clamped to u32 size.
-> 
-> If you mean that the GuC policy is in different units and those units 
-> might not overflow but ms units do, then actually that is already the 
-> case. The GuC works in us not ms. That's part of why the wrap around is 
-> so low, we have to multiply by 1000 before sending to GuC. However, that 
-> is actually irrelevant because the comparison is being done on the i915 
-> side in i915's units. We have to scale the GuC limit to match what i915 
-> is using. And the i915 side is u64 so if the scaling to i915 numbers 
-> overflows a u32 then who cares because that comparison can be done at 64 
-> bits wide.
-> 
-> If the units change then that is a backwards breaking API change that 
-> will require a manual driver code update. You can't just recompile with 
-> a new header and magically get an ms to us or ms to s conversion in your 
-> a = b assignment. The code will need to be changed to do the new unit 
-> conversion (note we already convert from ms to us, the GuC API is all 
-> expressed in us). And that code change will mean having to revisit any 
-> and all scaling, type conversions, etc. I.e. any pre-existing checks 
-> will not necessarily be valid and will need to be re-visted anyway. But 
-> as above, any scaling to GuC units has to be incorporated into the limit 
-> already because otherwise the limit would not fit in the GuC's own API.
+This is the 8th rev of this series with the first 3 revs
+labelled as RFC.
 
-Yes I get that, I was just worried that u32 field in the protocol and 
-GUC_POLICY_MAX_EXEC_QUANTUM_MS defines are separate in the source code 
-and then how to protect against forgetting to update both in sync.
+Prior receipts of rvb's:
+  - Patch #5, #12 have received R-v-b's from Umesh Nerlige Ramappa
+    <umesh.nerlige.ramappa@intel.com>
+  - Patch #6 has received an R-v-b from Matthew Brost
+    <matthew.brost@intel.com>
 
-Like if the protocol was changed to take nanoseconds, and firmware 
-implementation changed to support the full range, but define 
-left/forgotten at 100s. That would then overflow u32.
+Changes from prior revs:
+  v8: - Fix a bug found by CI in rev7: Create a cached ADS
+        capture list for null-header like the other lists.
+        
+  v7: - Rebased on lastest drm_tip that has the ADS now using
+        shmem based ads_blob_write utilities. Stress test
+        was performed with this patch included to fix a
+        legacy bug:
+        https://patchwork.freedesktop.org/series/100768/
 
-Regards,
+  v6: - In patch #1, ADS reg-list population, we now alloc
+        regular memory to create the lists and cache them for
+        simpler and faster use by GuC ADS module at init, 
+        suspend-resume and reset cycles. This was in response
+        to review comments from Lucas De Marchi that also
+        wanted to ensure the GuC ADS module owns the final
+        copying into the ADS phyical memory.
+      - Thanks to Jani Nikula for pointing out that patch #2
+        and #3 should ensure static tables as constant and
+        dynamic lists should be allocated and cached but
+        attached to the GT level for the case of multiple
+        cards with different fusings for steered registers.
+        These are addressed now along with multiple code
+        style fixups (thanks to review comment from Umesh)
+        and splitting the steered register list generation
+        as a seperate patch.
+      - The extraction functionality, Patch #10 and #11 (was
+        patch #7), has fixed all of Umesh's review comments
+        related to the code styling. Additionally, it was
+        discovered during stress tests that the extraction
+        function could be called by the ct processing thread
+        at the same time as the start of a GT reset event.
+        Thus, a redesign was done whereby the linked list of
+        processed capture-output-nodes are allocated up
+        front and reused throughout the driver's life to
+        ensure no memory locks are taken during extraction.
+      - For patch #6 (now 7, 8 and 9), updates to
+        intel_guc_log was split into smaller chunks and the
+        log_state structure was returned back to inside of
+        the intel_guc_log struct as opposed to the
+        intel_guc struct in prior rev. This is in response
+        to review comments by Matt Brost.
+      - #Patch 13 (previously #10) is mostly identical but
+        addresses all of the code styling comments reviews
+        from Umesh.
+        
+  v5: - Added Gen9->Gen11 register list for CI coverage that
+        included Gen9 with GuC submission.
+      - Redesigned the extraction of the GuC error-capture
+        dumps by grouping them into complete per-engine-reset
+        nodes. Complete here means each node includes the
+        global, engine-class and engine-instance register
+        lists in a single structure.
+      - Extraction is decoupled from the print-out. We now
+        do the extraction immediately when receiving the
+        G2H for error-capture notification. A link list of
+        nodes is maintained with a FIFO based threshold
+        while awaiting retrieval from i915_gpu_coredump's
+        capture_engine function.
+      - Added new plumbing through the i915_gpu_coredump
+        allocation and capture functions to include a flag
+        that is used indicate that GuC had triggered the
+        reset. This new plumbing guarantees an exact match
+        from i915_gpu_coredump's per-engine vma recording
+        and node-retrieval from the guc-error-capture.
+      - Broke the coredump gt_global capture and recording
+        functions into smaller subsets so we can reuse as
+        much of the existing legacy register reading + printing
+        functions and only rely on GuC error-capture for
+        the smaller subset of registers that are tied to
+        engine workload execution.
+      - Updated the register list to follow the legacy execlist
+        format of printout.
+  v4:
+      - Rebased on latest drm-tip that has been merged with the
+        support of GuC firmware version 69.0.3 that is required
+        for GuC error-state-catpure to work.
+      - Added register list for DG2 which is the same as XE_LP
+        except an additional steering register set.
+      - Fixed a bug in the end of capture parsing loop in
+        intel_guc_capture_out_print_next_group that was not
+        properly comparing the engine-instance and engine-
+        class being parsed against the one that triggered
+        the i915_gpu_coredump.
+  v3:
+      - Fixed all review comments from rev2 except the following:
+          - Michal Wajdeczko proposed adding a seperate function
+            to lookup register string nameslookup (based on offset)
+            but decided against it because of offset conflicts
+            and the current table layout is easier to maintain.
+          - Last set of checkpatch errors pertaining to "COMPLEX
+            MACROS" should be fixed on next rev.
+      - Abstracted internal-to-guc-capture information into a new
+        __guc_state_capture_priv structure that allows the exclusion
+        of intel_guc.h and intel_guc_fwif.h from intel_guc_capture.h.
+        Now, only the first 2 patches have a wider build time
+        impact because of the changes to intel_guc_fwif.h but
+        subsequent changes to guc-capture internal structures
+        or firmware interfaces used solely by guc-capture module
+        shoudn't impact the rest of the driver build.
+      - Added missing Gen12LP registers and added slice+subslice
+        indices when reporting extended steered registers.
+      - Add additional checks to ensure that the GuC reported
+        error capture information matches the i915_gpu_coredump
+        that is being printed before we print out the corresponding
+        VMA dumps such as the batch buffer.
+   v2:
+      - Ignore - failed CI retest.
 
-Tvrtko
+Alan Previn (13):
+  drm/i915/guc: Update GuC ADS size for error capture lists
+  drm/i915/guc: Add XE_LP static registers for GuC error capture.
+  drm/i915/guc: Add XE_LP steered register lists support
+  drm/i915/guc: Add DG2 registers for GuC error state capture.
+  drm/i915/guc: Add Gen9 registers for GuC error state capture.
+  drm/i915/guc: Add GuC's error state capture output structures.
+  drm/i915/guc: Update GuC-log relay function names
+  drm/i915/guc: Add capture region into intel_guc_log
+  drm/i915/guc: Check sizing of guc_capture output
+  drm/i915/guc: Extract GuC error capture lists on G2H notification.
+  drm/i915/guc: Pre-allocate output nodes for extraction
+  drm/i915/guc: Plumb GuC-capture into gpu_coredump
+  drm/i915/guc: Print the GuC error capture output register list.
 
-> John.
-> 
->>
->>>>>>>>> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
->>>>>>>>> ---
->>>>>>>>>   drivers/gpu/drm/i915/gt/intel_engine_cs.c   | 15 +++++++++++++++
->>>>>>>>>   drivers/gpu/drm/i915/gt/sysfs_engines.c     | 14 ++++++++++++++
->>>>>>>>>   drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h |  9 +++++++++
->>>>>>>>>   3 files changed, 38 insertions(+)
->>>>>>>>>
->>>>>>>>> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c 
->>>>>>>>> b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
->>>>>>>>> index e53008b4dd05..2a1e9f36e6f5 100644
->>>>>>>>> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
->>>>>>>>> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
->>>>>>>>> @@ -389,6 +389,21 @@ static int intel_engine_setup(struct 
->>>>>>>>> intel_gt *gt, enum intel_engine_id id,
->>>>>>>>>       if (GRAPHICS_VER(i915) == 12 && engine->class == 
->>>>>>>>> RENDER_CLASS)
->>>>>>>>>           engine->props.preempt_timeout_ms = 0;
->>>>>>>>>   +    /* Cap timeouts to prevent overflow inside GuC */
->>>>>>>>> +    if (intel_guc_submission_is_wanted(&gt->uc.guc)) {
->>>>>>>>> +        if (engine->props.timeslice_duration_ms > 
->>>>>>>>> GUC_POLICY_MAX_EXEC_QUANTUM_MS) {
->>>>>>>>
->>>>>>>> Hm "wanted".. There's been too much back and forth on the GuC 
->>>>>>>> load options over the years to keep track.. 
->>>>>>>> intel_engine_uses_guc work sounds like would work and read nicer.
->>>>>>> I'm not adding a new feature check here. I'm just using the 
->>>>>>> existing one. If we want to rename it yet again then that would 
->>>>>>> be a different patch set.
->>>>>>
->>>>>> $ grep intel_engine_uses_guc . -rl
->>>>>> ./i915_perf.c
->>>>>> ./i915_request.c
->>>>>> ./selftests/intel_scheduler_helpers.c
->>>>>> ./gem/i915_gem_context.c
->>>>>> ./gt/intel_context.c
->>>>>> ./gt/intel_engine.h
->>>>>> ./gt/intel_engine_cs.c
->>>>>> ./gt/intel_engine_heartbeat.c
->>>>>> ./gt/intel_engine_pm.c
->>>>>> ./gt/intel_reset.c
->>>>>> ./gt/intel_lrc.c
->>>>>> ./gt/selftest_context.c
->>>>>> ./gt/selftest_engine_pm.c
->>>>>> ./gt/selftest_hangcheck.c
->>>>>> ./gt/selftest_mocs.c
->>>>>> ./gt/selftest_workarounds.c
->>>>>>
->>>>>> Sounds better to me than intel_guc_submission_is_wanted. What does 
->>>>>> the reader know whether "is wanted" translates to "is actually 
->>>>>> used". Shrug on "is wanted".
->>>>> Yes, but isn't '_uses' the one that hits a BUG_ON if you call it 
->>>>> too early in the boot up sequence? I never understood why that was 
->>>>> necessary or why we need so many different ways to ask the same 
->>>>> question. But this version already exists and definitely works 
->>>>> without hitting any explosions.
->>>>
->>>> No idea if it causes a bug on, doesn't in the helper itself so maybe 
->>>> you are saying it is called too early? Might be.. I think over time 
->>>> the nice idea we had that "setup" and "init" phases of engine setup 
->>>> clearly separated got destroyed a bit. There would always be an 
->>>> option to move this clamping in a later phase, once the submission 
->>>> method is known. One could argue that if the submission method is 
->>>> not yet known at this point, it is even wrong to clamp based on 
->>>> something which will only be decided later. Because:
->>>>
->>>> int intel_engines_init(struct intel_gt *gt)
->>>> {
->>>>     int (*setup)(struct intel_engine_cs *engine);
->>>>     struct intel_engine_cs *engine;
->>>>     enum intel_engine_id id;
->>>>     int err;
->>>>
->>>>     if (intel_uc_uses_guc_submission(&gt->uc)) {
->>>>         gt->submission_method = INTEL_SUBMISSION_GUC;
->>>>
->>>> So this uses "uses", not "wanted". Presumably the point for having 
->>>> "wanted" and "uses" is that they can disagree, in which case if you 
->>>> clamp early based on "wanted" that suggests it could be wrong.
->>>
->>> Okay, looks like I was getting confused with intel_guc_is_used(). 
->>> That one blows up if called too early.
->>>
->>> I'll change it to _uses_ and repost, then.
->>
->> Check that it isn't called too early, before gt->submission_setup is set.
-> Obviously it is because it blew up. But I am not re-writing the driver 
-> start up sequence just to use the word 'use' instead of 'want'.
-> 
->>
->>>
->>>>
->>>>>>>> And limit to class instead of applying to all engines looks like 
->>>>>>>> a miss.
->>>>>>> As per follow up email, the class limit is not applied here.
->>>>>>>
->>>>>>>>
->>>>>>>>> + drm_info(&engine->i915->drm, "Warning, clamping timeslice 
->>>>>>>>> duration to %d to prevent possibly overflow\n",
->>>>>>>>> +                 GUC_POLICY_MAX_EXEC_QUANTUM_MS);
->>>>>>>>> +            engine->props.timeslice_duration_ms = 
->>>>>>>>> GUC_POLICY_MAX_EXEC_QUANTUM_MS;
->>>>>>>>
->>>>>>>> I am not sure logging such message during driver load is useful. 
->>>>>>>> Sounds more like a confused driver which starts with one value 
->>>>>>>> and then overrides itself. I'd just silently set the value 
->>>>>>>> appropriate for the active backend. Preemption timeout kconfig 
->>>>>>>> text already documents the fact timeouts can get overriden at 
->>>>>>>> runtime depending on platform+engine. So maybe just add same 
->>>>>>>> text to timeslice kconfig.
->>>>>>> The point is to make people aware if they compile with 
->>>>>>> unsupported config options. As far as I know, there is no way to 
->>>>>>> apply range checking or other limits to config defines. Which 
->>>>>>> means that a user would silently get unwanted behaviour. That 
->>>>>>> seems like a bad thing to me. If the driver is confused because 
->>>>>>> the user built it in a confused manner then we should let them know.
->>>>>>
->>>>>> Okay, but I think make it notice low level.
->>>>>>
->>>>>> Also consider in patch 3/3 when you triple it, and then clamp back 
->>>>>> down here. That's even more confused state since tripling gets 
->>>>>> nerfed. I think that's also an argument to always account preempt 
->>>>>> timeout in heartbeat interval calculation. Haven't got to your 
->>>>>> reply on 2/3 yet though..
->>>>> That sounds like even more reason to make sure the warning gets 
->>>>> seen. The more complex the system and the more chances there are to 
->>>>> get it wrong, the more important it is to have a nice easy to see 
->>>>> and understand notification that it did go wrong.
->>>>
->>>> I did not disagree, just said make it notice, one level higher than 
->>>> info! :)
->>> But then it won't appear unless you have explicitly said an elevated 
->>> debug level. Whereas info appears in dmesg by default (but is still 
->>> not classed as an error by CI and such).
->>
->> Notice is higher than info! :) If info appears by default so does 
->> notice, warning, err, etc...
-> Doh! I could have sworn those were the other way around.
-> 
-> Okay. Will update to use notice :).
-> 
->>
->> #define KERN_EMERG      KERN_SOH "0"    /* system is unusable */
->> #define KERN_ALERT      KERN_SOH "1"    /* action must be taken 
->> immediately */
->> #define KERN_CRIT       KERN_SOH "2"    /* critical conditions */
->> #define KERN_ERR        KERN_SOH "3"    /* error conditions */
->> #define KERN_WARNING    KERN_SOH "4"    /* warning conditions */
->> #define KERN_NOTICE     KERN_SOH "5"    /* normal but significant 
->> condition */
->> #define KERN_INFO       KERN_SOH "6"    /* informational */
->> #define KERN_DEBUG      KERN_SOH "7"    /* debug-level messages */
->>
->>>> But also think how, if we agree to go with tripling, that you'd have 
->>>> to consider that in the sysfs store when hearbeat timeout is 
->>>> written, to consider whether or not to triple and error out if 
->>>> preemption timeout is over limit.
->>> I see this as just setting the default values. If an end user is 
->>> explicitly overriding the defaults then we should obey what they have 
->>> requested. If they are changing the heartbeat interval then they can 
->>> also change the pre-emption timeout appropriately.
->>
->> Question is can they unknowingly and without any feedback configure a 
->> much worse state than they expect? Like when they set heartbeats up to 
->> some value, everything is configured as you intended - but if you go 
->> over a certain hidden limit the overall scheme degrades in some way. 
->> What is the failure mode here if you silently let them do that?
-> You can always configure things to be worse than expected. If you don't 
-> understand what you are doing then any control can make things worse 
-> instead of better. The assumption is that if a user is savvy enough to 
-> be writing to sysfs overrides of kernel parameters then they know what 
-> those parameters are and what their implications are. If they want to 
-> set a very short heartbeat with a very long pre-emption timeout then its 
-> their problem if they hit frequent TDRs. Conversely, if they want to set 
-> a very long heartbeat with a very short pre-emption timeout then its 
-> still their problem if they hit frequent TDRs.
-> 
-> But if the user explicitly requests a heartbeat period of 3s and a 
-> pre-emption timeout of 2s and the i915 arbitrarily splats their 2s and 
-> makes it 9s then that is wrong.
-> 
-> We should give the driver defaults that work for the majority of users 
-> and then let the minority specify exactly what they need.
-> 
-> And there is no silent or hidden limit. If the user specifies a value 
-> too large then they will get -EINVAL. Nothing hidden or silent about 
-> that. Any other values are legal and the behaviour will be whatever has 
-> been requested.
-> 
-> John.
-> 
-> 
->>
->> Regards,
->>
->> Tvrtko
-> 
+ drivers/gpu/drm/i915/Makefile                 |    1 +
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     |    4 +-
+ .../drm/i915/gt/intel_execlists_submission.c  |    4 +-
+ drivers/gpu/drm/i915/gt/intel_reset.c         |    2 +-
+ .../gpu/drm/i915/gt/uc/abi/guc_actions_abi.h  |    7 +
+ drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h |  217 +++
+ drivers/gpu/drm/i915/gt/uc/intel_guc.c        |   13 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc.h        |   14 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c    |  125 +-
+ .../gpu/drm/i915/gt/uc/intel_guc_capture.c    | 1652 +++++++++++++++++
+ .../gpu/drm/i915/gt/uc/intel_guc_capture.h    |   35 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h   |   12 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_log.c    |  126 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_log.h    |    7 +-
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c |   18 +-
+ drivers/gpu/drm/i915/i915_debugfs.c           |    3 +-
+ drivers/gpu/drm/i915/i915_gpu_error.c         |  282 ++-
+ drivers/gpu/drm/i915/i915_gpu_error.h         |   35 +-
+ 18 files changed, 2376 insertions(+), 181 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h
+ create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
+ create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_guc_capture.h
+
+-- 
+2.25.1
+
