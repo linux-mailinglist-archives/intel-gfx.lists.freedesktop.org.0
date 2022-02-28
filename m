@@ -2,66 +2,150 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D8E84C5FBB
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Feb 2022 00:12:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ECEB44C62F9
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Feb 2022 07:33:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4499610E143;
-	Sun, 27 Feb 2022 23:12:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 393E710E23A;
+	Mon, 28 Feb 2022 06:33:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com
- [IPv6:2a00:1450:4864:20::12b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0772210E143
- for <intel-gfx@lists.freedesktop.org>; Sun, 27 Feb 2022 23:12:02 +0000 (UTC)
-Received: by mail-lf1-x12b.google.com with SMTP id b11so18400058lfb.12
- for <intel-gfx@lists.freedesktop.org>; Sun, 27 Feb 2022 15:12:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linux-foundation.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=AJKFWkaNILgrND2ajpv99ahQRaE4hGQV9IUMvW6X5jc=;
- b=COC/4g+XK0ncFFdjTFjbGI8kwJnazvpy+Y8Z5kBv2abHG/7OdfJl8XVUO/gQJQXrgU
- 7syJ6Bl4EH1rhevEXJDyJCzV6vXIrdiBYUsB99agtvA7QQFqI7pET+wt/bULnxpe/llB
- DoHBp+DrTOur4By7IXXtsNs4+hSllcxUFM+zA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=AJKFWkaNILgrND2ajpv99ahQRaE4hGQV9IUMvW6X5jc=;
- b=HGH3ErxGZCmzH8zs3Zwi8D9wTJH77mXNgpoT9BJX0jCigjZdNYHla9L8MzbJ+3TNPZ
- s+a8gQeJ0HbC7AF2G83u1OSuTfcvNdBTMXZifSyA8BRtmof+SUyGhbjO2R+FvbEZ+Kib
- s9SfrFgPXdMXl/GdfqgXstTPRSU8Vd9/LvdVAqw5akrDEBAuS4yfiL0o0wkbhXa3AZHF
- GOl9+Y/JIMfIUqaKQ8Kz2+e7NH7diSZ1Rdlpa30Qp2SoFfwxlBqeXDKXwqLcqZ9BKTrw
- FLiVX8YPGV4EFjxMBUfYGG4qbX7mkAQPfTIr7gpdABlg8oUMfnmJej1IS/iYHBdJ8rMq
- bAWQ==
-X-Gm-Message-State: AOAM531ty0itl9Y07YjiXhO3zj34db4XmOFLhcHuhcFfW0SQpraBLeIc
- 5ykeGnxrjwO7DScWYXFrLgcAbr+oZbrSt53lXvU=
-X-Google-Smtp-Source: ABdhPJyVSJrRi93K4A7xEGUpELKOXzB/S4meIF8tQWw5kJiTx3wx8+LAf+cazvvrhkMGqknZAc1N6Q==
-X-Received: by 2002:a05:6512:3054:b0:443:95b2:d795 with SMTP id
- b20-20020a056512305400b0044395b2d795mr11181232lfb.605.1646003521058; 
- Sun, 27 Feb 2022 15:12:01 -0800 (PST)
-Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com.
- [209.85.208.180]) by smtp.gmail.com with ESMTPSA id
- u11-20020a056512128b00b00442ea96344esm749316lfs.118.2022.02.27.15.11.58
- for <intel-gfx@lists.freedesktop.org>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sun, 27 Feb 2022 15:11:58 -0800 (PST)
-Received: by mail-lj1-f180.google.com with SMTP id bn33so15052886ljb.6
- for <intel-gfx@lists.freedesktop.org>; Sun, 27 Feb 2022 15:11:58 -0800 (PST)
-X-Received: by 2002:a2e:b8cc:0:b0:246:4767:7a29 with SMTP id
- s12-20020a2eb8cc000000b0024647677a29mr12717079ljp.152.1646003517979; Sun, 27
- Feb 2022 15:11:57 -0800 (PST)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0967A10E23A
+ for <intel-gfx@lists.freedesktop.org>; Mon, 28 Feb 2022 06:33:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1646029993; x=1677565993;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=dgl5MHpfBNdimV/FG8CTQNf+n58dqrYIajNrnUwVrko=;
+ b=eZnYi7KgTsCG8r627z0ljUq0hNs4gwJ9noDhtB2XvHf1l/9EQObSNi9Y
+ MCGnyG8IzPjcblJmqNuEUDW2U4QFPZiFsK+qkDigBrmITTvVuTMb/kJ3h
+ muF/eDWMaVFPYuqJ5OV64V7ZOO8T7OYqOT74p5HbXqoeRysHa/m+rRBE+
+ rUq4youy6mHFf70FtEfkEhju7q+CxXrZfxK+TzUtiVLHvDVSbs+uMRWaO
+ VYEZgUaaRynWFxH30vs6fXiuKQdFhflTWRVRylwPxaw8IVDH0xTB5XxVb
+ +fjMOM4FugFas0zRaZTYExz5W9Y5qMW/ZAzW2Fpepku7L/dD771RMlqjP Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10271"; a="316031551"
+X-IronPort-AV: E=Sophos;i="5.90,142,1643702400"; d="scan'208";a="316031551"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Feb 2022 22:33:12 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,142,1643702400"; d="scan'208";a="509977669"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orsmga006.jf.intel.com with ESMTP; 27 Feb 2022 22:33:12 -0800
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.21; Sun, 27 Feb 2022 22:33:12 -0800
+Received: from fmsmsx604.amr.corp.intel.com (10.18.126.84) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.21; Sun, 27 Feb 2022 22:33:11 -0800
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx604.amr.corp.intel.com (10.18.126.84) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.21 via Frontend Transport; Sun, 27 Feb 2022 22:33:11 -0800
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.174)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2308.20; Sun, 27 Feb 2022 22:33:11 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=msdnxaHHWgNekCtB+GX0KjCROstWdqOVToWC0dY3QRQlxP3yWQXRARSFuBxSbKRSX9Gg7fMn0OS02xqWsc0v8+snH7AvHcbrnunfpP8uVr01Q5qiuvr8BdL37ie4W/SDStC5BFe5zH5gCpwv733LQ7SXLc599C3u79dNwPYd4WBPsqK/joYqTMFrxCCbjuMZ1GLhDEBNG02vMhOqQ2ycOQzYxa1TetrrSO5cSpoYSZElAWMDzru0HI9wAj/L41hFcmWffxZ4Vm8CLuGRnQlxy1e7v5P5y/VqWsVzEd/oZuom9/nw1rOSH4C+mRTUi8iCmeu1MIcFcX2mp6c/5veb7g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=nSyBF3NSS9yYRr6qs+FL1pRps+/qsNG1jVLpN98700Y=;
+ b=SFaqTowV2Cb/TixjqwbM91P+n8h5+PO3X1Ca5OV3eGp5Bhn1nJCxHV7VYq/IkS3IDsusiWQ8EDodtfs6WG/JVoLZ4HHW7PpZLt90jK/YU7PbMEaw41xqyzxQU5KxlzuAnAVEtGXra0ZY2bXOxPv8jsih6INeKReI/le4vXD7NkRTkyJICi7Uxp1NH+UaG5ajAKwgeLF3+NZYqo+Yyuh1j3QTy0isCMtSKfVP6sw46MhNS2YCY73WlOwIy0JyrZ4wYb98o1sQT/hIRLctvGZ9u3gflAG0MCPVJjEQIpX2C4Qc/lo5Cun6urOfOUEbaOUpKeB7f5JSP/MnQmkp6tlNEw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from PH7PR11MB5819.namprd11.prod.outlook.com (2603:10b6:510:13b::9)
+ by BYAPR11MB2837.namprd11.prod.outlook.com (2603:10b6:a02:c6::17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5017.24; Mon, 28 Feb
+ 2022 06:33:09 +0000
+Received: from PH7PR11MB5819.namprd11.prod.outlook.com
+ ([fe80::e435:95a9:4a0a:8e67]) by PH7PR11MB5819.namprd11.prod.outlook.com
+ ([fe80::e435:95a9:4a0a:8e67%8]) with mapi id 15.20.5017.027; Mon, 28 Feb 2022
+ 06:33:09 +0000
+From: "Surendrakumar Upadhyay, TejaskumarX"
+ <tejaskumarx.surendrakumar.upadhyay@intel.com>
+To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [PATCH topic/core-for-CI] PCI: vmd: Prevent recursive locking on
+ interrupt allocation
+Thread-Index: AQHYKlQaq8Kc16ejmUqAFojLkryF/ayohQYg
+Date: Mon, 28 Feb 2022 06:33:09 +0000
+Message-ID: <PH7PR11MB5819423323A534DA4076790ADF019@PH7PR11MB5819.namprd11.prod.outlook.com>
+References: <20220225141550.162490-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+In-Reply-To: <20220225141550.162490-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-version: 11.6.401.20
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 12621583-585e-47d0-0796-08d9fa842fbd
+x-ms-traffictypediagnostic: BYAPR11MB2837:EE_
+x-microsoft-antispam-prvs: <BYAPR11MB283775B2EAB8B2830D4AC368DF019@BYAPR11MB2837.namprd11.prod.outlook.com>
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 9xhB2mNSiKZFmHF4/s6as67V7wmBeolQD9YKagr/PG1x1XuV4c0nE2f44HMhFluGUFPwaM5nRqWtU3PH0f5CHFaYf6pwMIsaef8eRDXSlZ1mDuEHIZ+lmiEjEWU8XpqfnYLNMHNESlDo7jQr/erxbb1Fa/pTibG1CQG80DGaivvB9WGXVH6I+Bii+a90LvcOlLMjHrr4TAcBZ+pO0m7smQms/yAcWzt4WDx54WJrR6byUELJKEAlpYKHM/gaLLEy0UraR4TuK8XBsDgQ3xsdlZ0JC/oFXKtweSuXojlVksXsmMGH8pCOM21wFU0eed5PSZhiQuLG9/lJJ2NLenH8hiYpMLw0W5EGzHDkPPOHc7IhYyfPmO7cAtxAXGgCuaRGnK1+azvbtUP05SD9cqRPzzCI6en8KogIW3Yn/WkHbdd4EHRKHDSpqOcjS46O4Q0RKBge+6dtmSgFX6mZh7YXjzLnAEpt+KfdVurKxPnn5hvoMSnWH8Z8svA4aevFmcXWfAM1C/VT3XUntSIxAUxxYxeE+Ks2EKNRwqrBlBxjHoZg5kk9/B3QZejtBRCsxZDsn84tOsedigqoH4flfeFUHljzVSYX2YbpspIqnYUjF1Kw/lwzFq1ic6tTOvgbW2WKMxvCB7bhyxvJMPUxhQYf1OEvSwiz4GshZ5txADjVpJUxOnAag24Nm+MgbfKH27ryNGTbiU7j5upY+B00pjDyFtZrqsrRqT5QDW3YwTB1and77ot7iBla4kEgR1hu41ZytM7Ksh2qwvEkj80UaKaBq+s5OQHhkwW5dO9EK/HvWF4=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB5819.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230001)(366004)(82960400001)(38070700005)(66446008)(52536014)(966005)(71200400001)(54906003)(33656002)(316002)(6916009)(86362001)(26005)(186003)(508600001)(38100700002)(53546011)(55016003)(122000001)(2906002)(9686003)(5660300002)(66556008)(64756008)(7696005)(66476007)(6506007)(8936002)(8676002)(4326008)(83380400001)(66946007)(76116006);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 2
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?1oCrvg0pbHlLs0QBrjKo4/edn0Ymzgqj3A7dnhcbcfGs6wvD5SMX2o+nGcWA?=
+ =?us-ascii?Q?7l9kOl4zPHmZBfp8pjGgXu+iDp8hJqnZCHrFibzILvTvKWdf0BTpw50k5MkJ?=
+ =?us-ascii?Q?fEo2EaLnUu3yKaT5xPsKVxal9+09S/bHiSy7pcE3J4rhaJxKLOiKmvknOQvX?=
+ =?us-ascii?Q?Uw4uzmZALyVtuWCvcAEq4qP/hIXzYlMSKJTnThDEV+xK3RNp5gjUDsindpsM?=
+ =?us-ascii?Q?Cz8BsCTRamsWWaTTfUBX3Oy+Ey0yBybsPklOuhfr1TIdG8x3P1LE1hni5qkx?=
+ =?us-ascii?Q?Mt+mF52sKkuJDWtTXUbCVxZBhjem4LfxBm9nsEUmr6ObAmnZU0Qg+z7xNUui?=
+ =?us-ascii?Q?knVwIlkIxWesuBX7uBdyMj9EzbPO1n1EP+l5XVi7xEP73HRB3eNS++Dwk0mp?=
+ =?us-ascii?Q?8v0PvfRmpdeounDH2fJOvUJmc88Q6B7ciqu6m3C+nKe937eJghgZe/ZMNU2E?=
+ =?us-ascii?Q?KveoZAkpTAdt5qEyT5KvSZ32pqNdNRa59Td+Y1FbOi34aPczqscY4Hz34Wtu?=
+ =?us-ascii?Q?aDuMnfXSeEfdPPch06LLcKU2eFtVTGu87S/y+4boI8IKW5c3vhIot+rOog+x?=
+ =?us-ascii?Q?dtlpo4XtrnYDZblfAzTsrP4N/6o3TxwigwVlNBqZLZd0gbZ6SGbmJBL6mTuS?=
+ =?us-ascii?Q?VhK+n36uPmBmjD8XC9WeLzvkqvCtjdMlUtpXAqMnHQuoefdO4yHriR11U1ku?=
+ =?us-ascii?Q?6Z9MTZYycACSJT9WSRxni00N8IEeMT8LJlvT8DF4SYnDGK4keQ10Tuenf30k?=
+ =?us-ascii?Q?XSct381xs54PJu45Vyhaxksq8F5GMIyAxiBMy2mKkVxs3ZNKNSmtU9LLf9zu?=
+ =?us-ascii?Q?hiUcJv8f/V4pHUp9u0vgh5nL+dm9smz7JHXZA3VJ6Q7laUARN5/UF2/AC3fb?=
+ =?us-ascii?Q?Ec8GJvEsA0y5xKJKrW+NE8RAIKr5foo6B4halsQC8RNTi4UphgKXSoR8pVJI?=
+ =?us-ascii?Q?Xc/4Nb6RZPEOu4EiMyZAISs/FT3jK2ALV1j3mnRPenpMS9RoLT2F/gFntLBL?=
+ =?us-ascii?Q?bLFh/SGDgB+QV2WBTUZzjSX94p10h7emBHeJgm3xjaxo6dPqqSdkHQ9kNIx4?=
+ =?us-ascii?Q?8/Omy3Z4nxbgnlvDJ1T5GI9iKscbGKgjmZ6M95eayX6pkTpJG0LXawLhWfx9?=
+ =?us-ascii?Q?/As9wDxZWtZy9zrDXjrzVJ10isVETQK5G8/+xiQN6NLl+aU5kfPlFjglXXZm?=
+ =?us-ascii?Q?dbCSsq3tmxcxldpSfJuE1uk9isPkhDwBBNxLLXv0xFGcE1oqhvA492N6gqBe?=
+ =?us-ascii?Q?SAUcMyR79ahNHh6FYOu/eYLr3oJL6634WwsE2jyzzfYrqefK5VINkO+QsD2w?=
+ =?us-ascii?Q?I59nTRzHm7Z6AkgZy228Eo19Hu7P0nOD77uCsnWRDiJTSNYJN1Gjy5eN7Y99?=
+ =?us-ascii?Q?44UcvrleuXHShgoLGBFEw/qYiV/nco9WolrF8KVrght5oN/gBCj3QLkhEWFr?=
+ =?us-ascii?Q?RKL0ETQUkdVyhwukpthiDkNxqvZCgY1lWDhTDEyffMH21GcO6AnkMtyRbPzU?=
+ =?us-ascii?Q?SofDVZSBdbVMym4MgxlCr3jxs4uqAJRYwMy6yLPHmoH4+4vhOlHnCFxTpibo?=
+ =?us-ascii?Q?ZSvs/owVWR68+N+KJkg6nbjuWdcsmUXr07kI/WpyavJqAJyPX8vfvVSuWnHR?=
+ =?us-ascii?Q?iEuJUhUo/r3o39i9BtrFeHsacnEK84nKgr3iw1tMVM3rBX1o+MmmcbZU4EtE?=
+ =?us-ascii?Q?IIZtsVIhrgIHLOTAoLL3KiMg9WapVQvIsLlkB/OFwtezvYEWWCxocoKl4FvT?=
+ =?us-ascii?Q?LZis5Tl7AKs91Appuxx/NLGa25qoestFLfwhvGtcmRmrr+SJrGJb8FZzyVc7?=
+x-ms-exchange-antispam-messagedata-1: AREg/Fd0PxgIJQ==
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-References: <20220227215408.3180023-1-arnd@kernel.org>
- <dd41c574-05b0-23bc-646c-0bd341e6e50b@linaro.org>
-In-Reply-To: <dd41c574-05b0-23bc-646c-0bd341e6e50b@linaro.org>
-From: Linus Torvalds <torvalds@linux-foundation.org>
-Date: Sun, 27 Feb 2022 15:11:41 -0800
-X-Gmail-Original-Message-ID: <CAHk-=wg_r01OASRuSFfbEk_YHjve2BsBbkDYiEiKTaX2jm=53g@mail.gmail.com>
-Message-ID: <CAHk-=wg_r01OASRuSFfbEk_YHjve2BsBbkDYiEiKTaX2jm=53g@mail.gmail.com>
-To: Alex Elder <elder@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [greybus-dev] [PATCH] Kbuild: remove -std=gnu89
- from compiler arguments
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB5819.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 12621583-585e-47d0-0796-08d9fa842fbd
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Feb 2022 06:33:09.1930 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: AyktD0fT+lZL6AYyYMrFYYsHujsBd6tdw96dcwn6eKknqpZf9YLAHrnpgWR5+nP5lTB5NSDIS00GPgIWujwFTb9eGITydJSghTwwWkXEERX+OW+7u5epIbbvweAqMz3/Cv+Az9W69jb7B9hqCrAiLw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR11MB2837
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH topic/core-for-CI] PCI: vmd: Prevent
+ recursive locking on interrupt allocation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,40 +158,144 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Linux ARM <linux-arm-kernel@lists.infradead.org>,
- Arnd Bergmann <arnd@kernel.org>, Michal Marek <michal.lkml@markovi.net>,
- "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
- Arnd Bergmann <arnd@arndb.de>, Jonathan Corbet <corbet@lwn.net>,
- linux-staging@lists.linux.dev, Masahiro Yamada <masahiroy@kernel.org>,
- llvm@lists.linux.dev, Nick Desaulniers <ndesaulniers@google.com>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- dri-devel <dri-devel@lists.freedesktop.org>, greybus-dev@lists.linaro.org,
- Alex Shi <alexs@kernel.org>, Federico Vaga <federico.vaga@vaga.pv.it>,
- Hu Haowen <src.res@email.cn>, linux-btrfs <linux-btrfs@vger.kernel.org>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- linux-doc-tw-discuss@lists.sourceforge.net,
- Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>
+Cc: "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+ Thomas Gleixner <tglx@linutronix.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sun, Feb 27, 2022 at 3:04 PM Alex Elder <elder@linaro.org> wrote:
->
-> Glancing at the Greybus code, I don't believe there's any
-> reason it needs to shift a negative value.  Such warnings
-> could be fixed by making certain variables unsigned, for
-> example.
+Please ignore this, patch https://cgit.freedesktop.org/drm-tip/commit/?id=
+=3Dba1366f3d039e7c3ca1fc29ed00ce3ed2b8fd32f has already landed today in drm=
+-tip.
 
-As mentioned in the original thread, making things unsigned actually
-is likely to introduce bugs and make things worse.
+Thanks,
+Tejas
 
-The warning is simply bogus, and the fact that it was enabled by
--Wextra in gcc for std=gnu99 and up was a mistake that looks likely to
-be fixed in gcc.
+> -----Original Message-----
+> From: Surendrakumar Upadhyay, TejaskumarX
+> <tejaskumarx.surendrakumar.upadhyay@intel.com>
+> Sent: 25 February 2022 19:46
+> To: intel-gfx@lists.freedesktop.org
+> Cc: Thomas Gleixner <tglx@linutronix.de>; Surendrakumar Upadhyay,
+> TejaskumarX <tejaskumarx.surendrakumar.upadhyay@intel.com>; linux-
+> pci@vger.kernel.org
+> Subject: [PATCH topic/core-for-CI] PCI: vmd: Prevent recursive locking on
+> interrupt allocation
+>=20
+> From: Thomas Gleixner <tglx@linutronix.de>
+>=20
+> Tejas reported the following recursive locking issue:
+>=20
+>  swapper/0/1 is trying to acquire lock:
+>  ffff8881074fd0a0 (&md->mutex){+.+.}-{3:3}, at: msi_get_virq+0x30/0xc0
+>=20
+>  but task is already holding lock:
+>  ffff8881017cd6a0 (&md->mutex){+.+.}-{3:3}, at:
+> __pci_enable_msi_range+0xf2/0x290
+>=20
+>  stack backtrace:
+>   __mutex_lock+0x9d/0x920
+>   msi_get_virq+0x30/0xc0
+>   pci_irq_vector+0x26/0x30
+>   vmd_msi_init+0xcc/0x210
+>   msi_domain_alloc+0xbf/0x150
+>   msi_domain_alloc_irqs_descs_locked+0x3e/0xb0
+>   __pci_enable_msi_range+0x155/0x290
+>   pci_alloc_irq_vectors_affinity+0xba/0x100
+>   pcie_port_device_register+0x307/0x550
+>   pcie_portdrv_probe+0x3c/0xd0
+>   pci_device_probe+0x95/0x110
+>=20
+> This is caused by the VMD MSI code which does a lookup of the Linux
+> interrupt number for an VMD managed MSI[X] vector. The lookup function
+> tries to acquire the already held mutex.
+>=20
+> Avoid that by caching the Linux interrupt number at initialization time i=
+nstead
+> of looking it up over and over.
+>=20
+> Fixes: 82ff8e6b78fc ("PCI/MSI: Use msi_get_virq() in pci_get_vector()")
+> Reported-by: "Surendrakumar Upadhyay, TejaskumarX"
+> <tejaskumarx.surendrakumar.upadhyay@intel.com>
+> Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
+> Tested-by: "Surendrakumar Upadhyay, TejaskumarX"
+> <tejaskumarx.surendrakumar.upadhyay@intel.com>
+> Cc: linux-pci@vger.kernel.org
+> Link: https://lore.kernel.org/r/87a6euub2a.ffs@tglx
+> ---
+>  drivers/pci/controller/vmd.c | 14 +++++++-------
+>  1 file changed, 7 insertions(+), 7 deletions(-)
+>=20
+> diff --git a/drivers/pci/controller/vmd.c b/drivers/pci/controller/vmd.c =
+index
+> cc166c683638..eb05cceab964 100644
+> --- a/drivers/pci/controller/vmd.c
+> +++ b/drivers/pci/controller/vmd.c
+> @@ -99,11 +99,13 @@ struct vmd_irq {
+>   * @srcu:	SRCU struct for local synchronization.
+>   * @count:	number of child IRQs assigned to this vector; used to track
+>   *		sharing.
+> + * @virq:	The underlying VMD Linux interrupt number
+>   */
+>  struct vmd_irq_list {
+>  	struct list_head	irq_list;
+>  	struct srcu_struct	srcu;
+>  	unsigned int		count;
+> +	unsigned int		virq;
+>  };
+>=20
+>  struct vmd_dev {
+> @@ -253,7 +255,6 @@ static int vmd_msi_init(struct irq_domain *domain,
+> struct msi_domain_info *info,
+>  	struct msi_desc *desc =3D arg->desc;
+>  	struct vmd_dev *vmd =3D vmd_from_bus(msi_desc_to_pci_dev(desc)-
+> >bus);
+>  	struct vmd_irq *vmdirq =3D kzalloc(sizeof(*vmdirq), GFP_KERNEL);
+> -	unsigned int index, vector;
+>=20
+>  	if (!vmdirq)
+>  		return -ENOMEM;
+> @@ -261,10 +262,8 @@ static int vmd_msi_init(struct irq_domain *domain,
+> struct msi_domain_info *info,
+>  	INIT_LIST_HEAD(&vmdirq->node);
+>  	vmdirq->irq =3D vmd_next_irq(vmd, desc);
+>  	vmdirq->virq =3D virq;
+> -	index =3D index_from_irqs(vmd, vmdirq->irq);
+> -	vector =3D pci_irq_vector(vmd->dev, index);
+>=20
+> -	irq_domain_set_info(domain, virq, vector, info->chip, vmdirq,
+> +	irq_domain_set_info(domain, virq, vmdirq->irq->virq, info->chip,
+> +vmdirq,
+>  			    handle_untracked_irq, vmd, NULL);
+>  	return 0;
+>  }
+> @@ -685,7 +684,8 @@ static int vmd_alloc_irqs(struct vmd_dev *vmd)
+>  			return err;
+>=20
+>  		INIT_LIST_HEAD(&vmd->irqs[i].irq_list);
+> -		err =3D devm_request_irq(&dev->dev, pci_irq_vector(dev, i),
+> +		vmd->irqs[i].virq =3D pci_irq_vector(dev, i);
+> +		err =3D devm_request_irq(&dev->dev, vmd->irqs[i].virq,
+>  				       vmd_irq, IRQF_NO_THREAD,
+>  				       vmd->name, &vmd->irqs[i]);
+>  		if (err)
+> @@ -969,7 +969,7 @@ static int vmd_suspend(struct device *dev)
+>  	int i;
+>=20
+>  	for (i =3D 0; i < vmd->msix_count; i++)
+> -		devm_free_irq(dev, pci_irq_vector(pdev, i), &vmd->irqs[i]);
+> +		devm_free_irq(dev, vmd->irqs[i].virq, &vmd->irqs[i]);
+>=20
+>  	return 0;
+>  }
+> @@ -981,7 +981,7 @@ static int vmd_resume(struct device *dev)
+>  	int err, i;
+>=20
+>  	for (i =3D 0; i < vmd->msix_count; i++) {
+> -		err =3D devm_request_irq(dev, pci_irq_vector(pdev, i),
+> +		err =3D devm_request_irq(dev, vmd->irqs[i].virq,
+>  				       vmd_irq, IRQF_NO_THREAD,
+>  				       vmd->name, &vmd->irqs[i]);
+>  		if (err)
+> --
+> 2.34.1
 
-So don't try to "fix" the code to make any possible warnings go away.
-You may just make things worse.
-
-(That is often true in general for the more esoteric warnings, but in
-this case it's just painfully more obvious).
-
-              Linus
