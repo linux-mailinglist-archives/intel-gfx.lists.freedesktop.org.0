@@ -1,51 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12BA94C7BF3
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Feb 2022 22:28:40 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA37A4C7C21
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Feb 2022 22:37:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7FCC210E914;
-	Mon, 28 Feb 2022 21:28:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D4DD10E914;
+	Mon, 28 Feb 2022 21:36:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5308910E902;
- Mon, 28 Feb 2022 21:28:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646083715; x=1677619715;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=KG9oNSDftVFgYRUphVzHlzi1Cltpy49gXuysJoNOM1M=;
- b=BoXj/hHKutb6qCylua033ijpF6/QnJs8L0RfFQ8haJekrUPPXRfgV2P1
- OO43ZVoJBykCS9UM7OE53WfTKEIYX/+LGNXKKpPeSloda95iivn00Qn+x
- P4EtiWMwBQdymvCd+F0BO2FkyNQ/nXNG0OuT+BiNOQ/EQdpC5LV7UApvX
- +pMT8nPvEwcxVgzPC+SNkuZnEaeu1TG4V/AN+odg9cxnd98rjwGGka6Cv
- k+m1NIw3dTvW2GCnwwAF0l/KkpvfoJtiy2Vlhz8E/ay8YQeooJFJoqokx
- a1R54uK/nJa+YopSSlOQ2Yu9alTxS18fq3YY2ZCRCqVQ0wQXsll+7lSwP Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10272"; a="236499105"
-X-IronPort-AV: E=Sophos;i="5.90,144,1643702400"; d="scan'208";a="236499105"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2022 13:28:34 -0800
-X-IronPort-AV: E=Sophos;i="5.90,144,1643702400"; d="scan'208";a="550420236"
-Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.203.144.108])
- by orsmga008-auth.jf.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Feb 2022 13:28:33 -0800
-Date: Tue, 1 Mar 2022 02:58:54 +0530
-From: Ramalingam C <ramalingam.c@intel.com>
-To: intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>
-Message-ID: <20220228212854.GA17318@intel.com>
-References: <20220228212139.17180-1-ramalingam.c@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6566510E8C8;
+ Mon, 28 Feb 2022 21:36:58 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 618D7A0096;
+ Mon, 28 Feb 2022 21:36:58 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3279746495465640480=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20220228212139.17180-1-ramalingam.c@intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Clear compress metadata for
- Xe_HP platforms
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arnd Bergmann" <arnd@kernel.org>
+Date: Mon, 28 Feb 2022 21:36:58 -0000
+Message-ID: <164608421836.6631.5790035472749082089@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220227215408.3180023-1-arnd@kernel.org>
+In-Reply-To: <20220227215408.3180023-1-arnd@kernel.org>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgS2J1?=
+ =?utf-8?q?ild=3A_remove_-std=3Dgnu89_from_compiler_arguments?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,271 +40,304 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Matt,
+--===============3279746495465640480==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-This is the continuation of review happened at
-https://patchwork.freedesktop.org/patch/475177/?series=100419&rev=1
+== Series Details ==
 
-On 2022-03-01 at 02:51:39 +0530, Ramalingam C wrote:
-> From: Ayaz A Siddiqui <ayaz.siddiqui@intel.com>
-> 
-> Xe-HP and latest devices support Flat CCS which reserved a portion of
-> the device memory to store compression metadata, during the clearing of
-> device memory buffer object we also need to clear the associated
-> CCS buffer.
-> 
-> Flat CCS memory can not be directly accessed by S/W.
-> Address of CCS buffer associated main BO is automatically calculated
-> by device itself. KMD/UMD can only access this buffer indirectly using
-> XY_CTRL_SURF_COPY_BLT cmd via the address of device memory buffer.
-> 
-> v2: Fixed issues with platform naming [Lucas]
-> v3: Rebased [Ram]
->     Used the round_up funcs [Bob]
-> v4: Fixed ccs blk calculation [Ram]
->     Added Kdoc on flat-ccs.
-> v5: GENMASK is used [Matt]
->     mocs fix [Matt]
->     Comments Fix [Matt]
->     Flush address programming [Ram]
-> 
-> Signed-off-by: Ayaz A Siddiqui <ayaz.siddiqui@intel.com>
-> Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
-> ---
->  drivers/gpu/drm/i915/gt/intel_gpu_commands.h |  15 ++
->  drivers/gpu/drm/i915/gt/intel_migrate.c      | 146 ++++++++++++++++++-
->  2 files changed, 157 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gpu_commands.h b/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
-> index f8253012d166..237c1baccc64 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
-> @@ -203,6 +203,21 @@
->  #define GFX_OP_DRAWRECT_INFO     ((0x3<<29)|(0x1d<<24)|(0x80<<16)|(0x3))
->  #define GFX_OP_DRAWRECT_INFO_I965  ((0x7900<<16)|0x2)
->  
-> +#define XY_CTRL_SURF_INSTR_SIZE	5
-> +#define MI_FLUSH_DW_SIZE		3
-> +#define XY_CTRL_SURF_COPY_BLT		((2 << 29) | (0x48 << 22) | 3)
-> +#define   SRC_ACCESS_TYPE_SHIFT		21
-> +#define   DST_ACCESS_TYPE_SHIFT		20
-> +#define   CCS_SIZE_MASK			GENMASK(17, 8)
-> +#define   XY_CTRL_SURF_MOCS_MASK	GENMASK(31, 25)
-> +#define   NUM_CCS_BYTES_PER_BLOCK	256
-> +#define   NUM_BYTES_PER_CCS_BYTE	256
-> +#define   NUM_CCS_BLKS_PER_XFER		1024
-> +#define   INDIRECT_ACCESS		0
-> +#define   DIRECT_ACCESS			1
-> +#define  MI_FLUSH_LLC			BIT(9)
-> +#define  MI_FLUSH_CCS			BIT(16)
-> +
->  #define COLOR_BLT_CMD			(2 << 29 | 0x40 << 22 | (5 - 2))
->  #define XY_COLOR_BLT_CMD		(2 << 29 | 0x50 << 22)
->  #define SRC_COPY_BLT_CMD		(2 << 29 | 0x43 << 22)
-> diff --git a/drivers/gpu/drm/i915/gt/intel_migrate.c b/drivers/gpu/drm/i915/gt/intel_migrate.c
-> index 20444d6ceb3c..26ee6ae0e1bb 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_migrate.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_migrate.c
-> @@ -16,6 +16,8 @@ struct insert_pte_data {
->  };
->  
->  #define CHUNK_SZ SZ_8M /* ~1ms at 8GiB/s preemption delay */
-> +#define GET_CCS_BYTES(i915, size)	(HAS_FLAT_CCS(i915) ? \
-> +					 DIV_ROUND_UP(size, NUM_BYTES_PER_CCS_BYTE) : 0)
->  
->  static bool engine_supports_migration(struct intel_engine_cs *engine)
->  {
-> @@ -467,6 +469,113 @@ static bool wa_1209644611_applies(int ver, u32 size)
->  	return height % 4 == 3 && height <= 8;
->  }
->  
-> +/**
-> + * DOC: Flat-CCS - Memory compression for Local memory
-> + *
-> + * On Xe-HP and later devices, we use dedicated compression control state (CCS)
-> + * stored in local memory for each surface, to support the 3D and media
-> + * compression formats.
-> + *
-> + * The memory required for the CCS of the entire local memory is 1/256 of the
-> + * local memory size. So before the kernel boot, the required memory is reserved
-> + * for the CCS data and a secure register will be programmed with the CCS base
-> + * address.
-> + *
-> + * Flat CCS data needs to be cleared when a lmem object is allocated.
-> + * And CCS data can be copied in and out of CCS region through
-> + * XY_CTRL_SURF_COPY_BLT. CPU can't access the CCS data directly.
-> + *
-> + * When we exhaust the lmem, if the object's placements support smem, then we can
-> + * directly decompress the compressed lmem object into smem and start using it
-> + * from smem itself.
-> + *
-> + * But when we need to swapout the compressed lmem object into a smem region
-> + * though objects' placement doesn't support smem, then we copy the lmem content
-> + * as it is into smem region along with ccs data (using XY_CTRL_SURF_COPY_BLT).
-> + * When the object is referred, lmem content will be swaped in along with
-> + * restoration of the CCS data (using XY_CTRL_SURF_COPY_BLT) at corresponding
-> + * location.
-> + */
-> +
-> +static inline u32 *i915_flush_dw(u32 *cmd, u64 dst, u32 flags)
-> +{
-> +	/* Address needs to be QWORD aligned */
-> +	GEM_BUG_ON(!IS_ALIGNED(dst, 8));
-> +
-> +	*cmd++ = MI_FLUSH_DW | flags;
-> +	*cmd++ = lower_32_bits(dst);
-> +	*cmd++ = upper_32_bits(dst);
-> +
-> +	return cmd;
-> +}
-> +
-> +static u32 calc_ctrl_surf_instr_size(struct drm_i915_private *i915, int size)
-> +{
-> +	u32 num_cmds, num_blks, total_size;
-> +
-> +	if (!GET_CCS_BYTES(i915, size))
-> +		return 0;
-> +
-> +	/*
-> +	 * XY_CTRL_SURF_COPY_BLT transfers CCS in 256 byte
-> +	 * blocks. one XY_CTRL_SURF_COPY_BLT command can
-> +	 * transfer upto 1024 blocks.
-> +	 */
-> +	num_blks = DIV_ROUND_UP(GET_CCS_BYTES(i915, size),
-> +				NUM_CCS_BYTES_PER_BLOCK);
-> +	num_cmds = DIV_ROUND_UP(num_blks, NUM_CCS_BLKS_PER_XFER);
-> +	total_size = (XY_CTRL_SURF_INSTR_SIZE) * num_cmds;
-> +
-> +	/*
-> +	 * Adding a flush before and after XY_CTRL_SURF_COPY_BLT
-> +	 */
-i couldn't find any Bspec reference for this. But make the data to be
-flushed we are adding before and after.
-> +	total_size += 2 * MI_FLUSH_DW_SIZE;
-> +
-> +	return total_size;
-> +}
-> +
-> +static u32 *_i915_ctrl_surf_copy_blt(u32 *cmd, u64 src_addr, u64 dst_addr,
-> +				     u8 src_mem_access, u8 dst_mem_access,
-> +				     int src_mocs, int dst_mocs,
-> +				     u16 ccs_blocks)
-> +{
-> +	int blks_left = ccs_blocks, blks_per_copy;
-> +
-> +	/*
-> +	 * The XY_CTRL_SURF_COPY_BLT instruction is used to copy the CCS
-> +	 * data in and out of the CCS region.
-> +	 *
-> +	 * We can copy at most 1024 blocks of 256 bytes using one
-> +	 * XY_CTRL_SURF_COPY_BLT instruction.
-> +	 *
-> +	 * In case we need to copy more than 1024 blocks, we need to add
-> +	 * another instruction to the same batch buffer.
-> +	 *
-> +	 * 1024 blocks of 256 bytes of CCS represent a total 256KB of CCS.
-> +	 *
-> +	 * 256 KB of CCS represents 256 * 256 KB = 64 MB of LMEM.
-> +	 */
-> +	do {
-> +		blks_per_copy = blks_left >= NUM_CCS_BLKS_PER_XFER ?
-> +				NUM_CCS_BLKS_PER_XFER : blks_left;
-> +		*cmd++ = ((XY_CTRL_SURF_COPY_BLT) |
-> +			  (src_mem_access << SRC_ACCESS_TYPE_SHIFT) |
-> +			  (dst_mem_access << DST_ACCESS_TYPE_SHIFT) |
-> +			  FIELD_PREP(CCS_SIZE_MASK, blks_per_copy - 1));
-> +		*cmd++ = lower_32_bits(src_addr);
-> +		*cmd++ = ((upper_32_bits(src_addr) & 0xFFFF) |
-> +			  FIELD_PREP(XY_CTRL_SURF_MOCS_MASK, src_mocs));
-> +		*cmd++ = lower_32_bits(dst_addr);
-> +		*cmd++ = ((upper_32_bits(dst_addr) & 0xFFFF) |
-> +			  FIELD_PREP(XY_CTRL_SURF_MOCS_MASK, dst_mocs));
-> +		src_addr += SZ_64M;
-> +		dst_addr += SZ_64M;
-> +		blks_left -= blks_per_copy;
-> +	} while (blks_left > 0);
-> +
-> +	return cmd;
-> +}
-> +
->  static int emit_copy(struct i915_request *rq,
->  		     u32 dst_offset, u32 src_offset, int size)
->  {
-> @@ -614,16 +723,24 @@ intel_context_migrate_copy(struct intel_context *ce,
->  	return err;
->  }
->  
-> -static int emit_clear(struct i915_request *rq, u64 offset, int size, u32 value)
-> +static int emit_clear(struct i915_request *rq, u64 offset, int size,
-> +		      u32 value, bool is_lmem)
->  {
-> -	const int ver = GRAPHICS_VER(rq->engine->i915);
-> +	struct drm_i915_private *i915 = rq->engine->i915;
-> +	const int ver = GRAPHICS_VER(i915);
-> +	u32 num_ccs_blks, ccs_ring_size;
-> +	int mocs = rq->engine->gt->mocs.uc_index << 1;
-You mentioned it might be better to be rename uc_index. But this
-variable is used named after the dg1's usage for uc mocs setting..
-But for dg2 and xehpsdv this is used for pointing to uc_coherent_gomem.
+Series: Kbuild: remove -std=gnu89 from compiler arguments
+URL   : https://patchwork.freedesktop.org/series/100823/
+State : success
 
-So i leaving the variable name as it is for this patch.
+== Summary ==
 
-Ram
->  	u32 *cs;
->  
->  	GEM_BUG_ON(size >> PAGE_SHIFT > S16_MAX);
->  
->  	offset += (u64)rq->engine->instance << 32;
->  
-> -	cs = intel_ring_begin(rq, ver >= 8 ? 8 : 6);
-> +	/* Clear CCS only when value is 0 */
-> +	ccs_ring_size = (is_lmem && !value) ?
-> +			 calc_ctrl_surf_instr_size(i915, size) : 0;
-> +
-> +	cs = intel_ring_begin(rq, round_up(ver >= 8 ? 8 + ccs_ring_size : 6, 2));
->  	if (IS_ERR(cs))
->  		return PTR_ERR(cs);
->  
-> @@ -646,6 +763,27 @@ static int emit_clear(struct i915_request *rq, u64 offset, int size, u32 value)
->  		*cs++ = value;
->  	}
->  
-> +	if (is_lmem && HAS_FLAT_CCS(i915) && !value) {
-> +		num_ccs_blks = DIV_ROUND_UP(GET_CCS_BYTES(i915, size),
-> +					    NUM_CCS_BYTES_PER_BLOCK);
-> +
-> +		/*
-> +		 * Flat CCS surface can only be accessed via
-> +		 * XY_CTRL_SURF_COPY_BLT CMD and using indirect
-> +		 * mapping of associated LMEM.
-> +		 * We can clear ccs surface by writing all 0s,
-> +		 * so we will flush the previously cleared buffer
-> +		 * and use it as a source.
-> +		 */
-> +		cs = i915_flush_dw(cs, offset, MI_FLUSH_LLC | MI_FLUSH_CCS);
-> +		cs = _i915_ctrl_surf_copy_blt(cs, offset, offset,
-> +					      DIRECT_ACCESS, INDIRECT_ACCESS,
-> +					      mocs, mocs, num_ccs_blks);
-> +		cs = i915_flush_dw(cs, offset, MI_FLUSH_LLC | MI_FLUSH_CCS);
-> +
-> +		if (ccs_ring_size & 1)
-> +			*cs++ = MI_NOOP;
-> +	}
->  	intel_ring_advance(rq, cs);
->  	return 0;
->  }
-> @@ -711,7 +849,7 @@ intel_context_migrate_clear(struct intel_context *ce,
->  		if (err)
->  			goto out_rq;
->  
-> -		err = emit_clear(rq, offset, len, value);
-> +		err = emit_clear(rq, offset, len, value, is_lmem);
->  
->  		/* Arbitration is re-enabled between requests. */
->  out_rq:
-> -- 
-> 2.20.1
-> 
+CI Bug Log - changes from CI_DRM_11300 -> Patchwork_22434
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22434/index.html
+
+Participating hosts (43 -> 41)
+------------------------------
+
+  Additional (1): bat-jsl-2 
+  Missing    (3): fi-bsw-cyan fi-bdw-samus fi-pnv-d510 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_22434 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@cs-multi-fence:
+    - fi-blb-e6850:       NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22434/fi-blb-e6850/igt@amdgpu/amd_basic@cs-multi-fence.html
+
+  * igt@amdgpu/amd_cs_nop@sync-fork-compute0:
+    - fi-snb-2600:        NOTRUN -> [SKIP][2] ([fdo#109271]) +17 similar issues
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22434/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html
+
+  * igt@gem_exec_suspend@basic-s3@smem:
+    - fi-skl-6600u:       [PASS][3] -> [INCOMPLETE][4] ([i915#4547])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11300/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22434/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html
+
+  * igt@i915_pm_rps@basic-api:
+    - bat-dg1-5:          [PASS][5] -> [FAIL][6] ([i915#4032])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11300/bat-dg1-5/igt@i915_pm_rps@basic-api.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22434/bat-dg1-5/igt@i915_pm_rps@basic-api.html
+
+  * igt@i915_selftest@live@gt_engines:
+    - bat-dg1-6:          [PASS][7] -> [INCOMPLETE][8] ([i915#4418])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11300/bat-dg1-6/igt@i915_selftest@live@gt_engines.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22434/bat-dg1-6/igt@i915_selftest@live@gt_engines.html
+
+  * igt@runner@aborted:
+    - bat-dg1-6:          NOTRUN -> [FAIL][9] ([i915#4312])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22434/bat-dg1-6/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-glk-dsi:         [DMESG-FAIL][10] ([i915#541]) -> [PASS][11]
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11300/fi-glk-dsi/igt@i915_selftest@live@gt_heartbeat.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22434/fi-glk-dsi/igt@i915_selftest@live@gt_heartbeat.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-snb-2600:        [INCOMPLETE][12] ([i915#3921]) -> [PASS][13]
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11300/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22434/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+
+  * igt@i915_selftest@live@requests:
+    - fi-blb-e6850:       [DMESG-FAIL][14] ([i915#5026]) -> [PASS][15]
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11300/fi-blb-e6850/igt@i915_selftest@live@requests.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22434/fi-blb-e6850/igt@i915_selftest@live@requests.html
+
+  * igt@kms_busy@basic@modeset:
+    - bat-adlp-4:         [DMESG-WARN][16] ([i915#3576]) -> [PASS][17]
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11300/bat-adlp-4/igt@kms_busy@basic@modeset.html
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22434/bat-adlp-4/igt@kms_busy@basic@modeset.html
+
+  * igt@kms_force_connector_basic@force-connector-state:
+    - fi-cfl-8109u:       [DMESG-WARN][18] ([i915#165]) -> [PASS][19] +1 similar issue
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11300/fi-cfl-8109u/igt@kms_force_connector_basic@force-connector-state.html
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22434/fi-cfl-8109u/igt@kms_force_connector_basic@force-connector-state.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b:
+    - fi-cfl-8109u:       [DMESG-WARN][20] ([i915#165] / [i915#295]) -> [PASS][21] +13 similar issues
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11300/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22434/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html
+
+  
+#### Warnings ####
+
+  * igt@kms_busy@basic@flip:
+    - bat-adlp-4:         [DMESG-WARN][22] ([i915#3576]) -> [DMESG-WARN][23] ([i915#1982] / [i915#3576])
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11300/bat-adlp-4/igt@kms_busy@basic@flip.html
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22434/bat-adlp-4/igt@kms_busy@basic@flip.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#165]: https://gitlab.freedesktop.org/drm/intel/issues/165
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#295]: https://gitlab.freedesktop.org/drm/intel/issues/295
+  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
+  [i915#3576]: https://gitlab.freedesktop.org/drm/intel/issues/3576
+  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
+  [i915#4032]: https://gitlab.freedesktop.org/drm/intel/issues/4032
+  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4418]: https://gitlab.freedesktop.org/drm/intel/issues/4418
+  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#4898]: https://gitlab.freedesktop.org/drm/intel/issues/4898
+  [i915#5026]: https://gitlab.freedesktop.org/drm/intel/issues/5026
+  [i915#5127]: https://gitlab.freedesktop.org/drm/intel/issues/5127
+  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
+  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_11300 -> Patchwork_22434
+
+  CI-20190529: 20190529
+  CI_DRM_11300: 10eb9bc8729d3da3fe8f53c8e5b70b8a9a52b6e0 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6361: 2372a4beb6a33c5f0799a4a8ccbb93794f52dbca @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_22434: 08ac100992340795d1f5fac8b71b7e3ab8e2b7ef @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+08ac10099234 Kbuild: remove -std=gnu89 from compiler arguments
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22434/index.html
+
+--===============3279746495465640480==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Kbuild: remove -std=gnu89 from compiler arguments</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/100823/">https://patchwork.freedesktop.org/series/100823/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22434/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22434/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11300 -&gt; Patchwork_22434</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22434/index.html</p>
+<h2>Participating hosts (43 -&gt; 41)</h2>
+<p>Additional (1): bat-jsl-2 <br />
+  Missing    (3): fi-bsw-cyan fi-bdw-samus fi-pnv-d510 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_22434 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@cs-multi-fence:</p>
+<ul>
+<li>fi-blb-e6850:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22434/fi-blb-e6850/igt@amdgpu/amd_basic@cs-multi-fence.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@amdgpu/amd_cs_nop@sync-fork-compute0:</p>
+<ul>
+<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22434/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_suspend@basic-s3@smem:</p>
+<ul>
+<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11300/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22434/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rps@basic-api:</p>
+<ul>
+<li>bat-dg1-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11300/bat-dg1-5/igt@i915_pm_rps@basic-api.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22434/bat-dg1-5/igt@i915_pm_rps@basic-api.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4032">i915#4032</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_engines:</p>
+<ul>
+<li>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11300/bat-dg1-6/igt@i915_selftest@live@gt_engines.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22434/bat-dg1-6/igt@i915_selftest@live@gt_engines.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4418">i915#4418</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22434/bat-dg1-6/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>fi-glk-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11300/fi-glk-dsi/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/541">i915#541</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22434/fi-glk-dsi/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11300/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22434/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@requests:</p>
+<ul>
+<li>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11300/fi-blb-e6850/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5026">i915#5026</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22434/fi-blb-e6850/igt@i915_selftest@live@requests.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_busy@basic@modeset:</p>
+<ul>
+<li>bat-adlp-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11300/bat-adlp-4/igt@kms_busy@basic@modeset.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22434/bat-adlp-4/igt@kms_busy@basic@modeset.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-connector-state:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11300/fi-cfl-8109u/igt@kms_force_connector_basic@force-connector-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/165">i915#165</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22434/fi-cfl-8109u/igt@kms_force_connector_basic@force-connector-state.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11300/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/165">i915#165</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22434/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html">PASS</a> +13 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@kms_busy@basic@flip:<ul>
+<li>bat-adlp-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11300/bat-adlp-4/igt@kms_busy@basic@flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22434/bat-adlp-4/igt@kms_busy@basic@flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11300 -&gt; Patchwork_22434</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11300: 10eb9bc8729d3da3fe8f53c8e5b70b8a9a52b6e0 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6361: 2372a4beb6a33c5f0799a4a8ccbb93794f52dbca @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_22434: 08ac100992340795d1f5fac8b71b7e3ab8e2b7ef @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>08ac10099234 Kbuild: remove -std=gnu89 from compiler arguments</p>
+
+</body>
+</html>
+
+--===============3279746495465640480==--
