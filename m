@@ -2,33 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAF154C7EC9
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Mar 2022 00:57:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A7C2D4C7EEF
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Mar 2022 00:59:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE1E510E393;
-	Mon, 28 Feb 2022 23:57:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A4F4610E248;
+	Mon, 28 Feb 2022 23:59:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id A7A8510E393;
- Mon, 28 Feb 2022 23:57:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 84CFC10E248;
+ Mon, 28 Feb 2022 23:59:44 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A7B6FAADD4;
- Mon, 28 Feb 2022 23:57:27 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 821D8AADD4;
+ Mon, 28 Feb 2022 23:59:44 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Vivek Kasireddy" <vivek.kasireddy@intel.com>
-Date: Mon, 28 Feb 2022 23:57:27 -0000
-Message-ID: <164609264768.6632.3502754247422902088@emeril.freedesktop.org>
+Date: Mon, 28 Feb 2022 23:59:44 -0000
+Message-ID: <164609278449.6632.8284451518115018168@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20220228190429.1358951-1-vivek.kasireddy@intel.com>
 In-Reply-To: <20220228190429.1358951-1-vivek.kasireddy@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/mm=3A_Add_an_iterator_to_optimally_walk_over_holes_suit?=
- =?utf-8?q?able_for_an_allocation?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/mm=3A_Add_an_iterator_to_optimally_walk_over_holes_suitable?=
+ =?utf-8?q?_for_an_allocation?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,64 +54,8 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-0ae83c35ff14 drm/mm: Add an iterator to optimally walk over holes for an allocation (v5)
--:157: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pos' - possible side-effects?
-#157: FILE: include/drm/drm_mm.h:430:
-+#define drm_mm_for_each_suitable_hole(pos, mm, range_start, range_end, \
-+				      size, mode) \
-+	for (pos = __drm_mm_first_hole(mm, range_start, range_end, size, \
-+				       mode & ~DRM_MM_INSERT_ONCE); \
-+	     pos; \
-+	     pos = mode & DRM_MM_INSERT_ONCE ? \
-+	     NULL : __drm_mm_next_hole(mm, pos, size, \
-+				       mode & ~DRM_MM_INSERT_ONCE))
-
--:157: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'mm' - possible side-effects?
-#157: FILE: include/drm/drm_mm.h:430:
-+#define drm_mm_for_each_suitable_hole(pos, mm, range_start, range_end, \
-+				      size, mode) \
-+	for (pos = __drm_mm_first_hole(mm, range_start, range_end, size, \
-+				       mode & ~DRM_MM_INSERT_ONCE); \
-+	     pos; \
-+	     pos = mode & DRM_MM_INSERT_ONCE ? \
-+	     NULL : __drm_mm_next_hole(mm, pos, size, \
-+				       mode & ~DRM_MM_INSERT_ONCE))
-
--:157: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'size' - possible side-effects?
-#157: FILE: include/drm/drm_mm.h:430:
-+#define drm_mm_for_each_suitable_hole(pos, mm, range_start, range_end, \
-+				      size, mode) \
-+	for (pos = __drm_mm_first_hole(mm, range_start, range_end, size, \
-+				       mode & ~DRM_MM_INSERT_ONCE); \
-+	     pos; \
-+	     pos = mode & DRM_MM_INSERT_ONCE ? \
-+	     NULL : __drm_mm_next_hole(mm, pos, size, \
-+				       mode & ~DRM_MM_INSERT_ONCE))
-
--:157: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'mode' - possible side-effects?
-#157: FILE: include/drm/drm_mm.h:430:
-+#define drm_mm_for_each_suitable_hole(pos, mm, range_start, range_end, \
-+				      size, mode) \
-+	for (pos = __drm_mm_first_hole(mm, range_start, range_end, size, \
-+				       mode & ~DRM_MM_INSERT_ONCE); \
-+	     pos; \
-+	     pos = mode & DRM_MM_INSERT_ONCE ? \
-+	     NULL : __drm_mm_next_hole(mm, pos, size, \
-+				       mode & ~DRM_MM_INSERT_ONCE))
-
--:157: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'mode' may be better as '(mode)' to avoid precedence issues
-#157: FILE: include/drm/drm_mm.h:430:
-+#define drm_mm_for_each_suitable_hole(pos, mm, range_start, range_end, \
-+				      size, mode) \
-+	for (pos = __drm_mm_first_hole(mm, range_start, range_end, size, \
-+				       mode & ~DRM_MM_INSERT_ONCE); \
-+	     pos; \
-+	     pos = mode & DRM_MM_INSERT_ONCE ? \
-+	     NULL : __drm_mm_next_hole(mm, pos, size, \
-+				       mode & ~DRM_MM_INSERT_ONCE))
-
-total: 0 errors, 0 warnings, 5 checks, 114 lines checked
-81e2ccf8eadb drm/i915/gem: Don't try to map and fence large scanout buffers (v9)
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
