@@ -2,48 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15B684C743B
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Feb 2022 18:43:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 95F104C77AF
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Feb 2022 19:27:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 31B6610E199;
-	Mon, 28 Feb 2022 17:43:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C29AE10E3FA;
+	Mon, 28 Feb 2022 18:26:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D561E10E84D;
- Mon, 28 Feb 2022 17:43:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646070187; x=1677606187;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=ms2g7B4CpxD3OaGWYsJFV6y5HJWq4Miy0coNY/SeLN8=;
- b=SjhFDThpxskWyZani9KCQKO8NgC+tXaccbidqJH/040L8sTBl51deljh
- SiJVGlRAg5Efq5uXv4k/BhreNvqEOGqLLug8MmayysUXhfhBL9zOpeagp
- RgLT4uDoSxjuDA1vzmXKDrVgXuUA4bVQk5bfKKDXG3Om5wLxGH8BBVPdo
- oVqJH2Gljvvmdjp8P+cH+K+mY7vkkzPFF9+uDwzVIs/Yl7Ob8/JA+YQNJ
- KVchiCIi4PAHqKCQskfD+1nFrpij65Yo6jPHWjobKlIKBA+QVGviuxOxD
- myCyZWgaUkWCkYr6bM4ngkzBNV1GWUGT2c4sg10b2Rn0DclUtEN6ZNZ96 g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10272"; a="252866895"
-X-IronPort-AV: E=Sophos;i="5.90,144,1643702400"; d="scan'208";a="252866895"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2022 09:43:06 -0800
-X-IronPort-AV: E=Sophos;i="5.90,144,1643702400"; d="scan'208";a="575392860"
-Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2022 09:43:06 -0800
-From: Matt Roper <matthew.d.roper@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 28 Feb 2022 09:42:45 -0800
-Message-Id: <20220228174245.1569581-14-matthew.d.roper@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220228174245.1569581-1-matthew.d.roper@intel.com>
-References: <20220228174245.1569581-1-matthew.d.roper@intel.com>
+X-Greylist: delayed 361 seconds by postgrey-1.36 at gabe;
+ Mon, 28 Feb 2022 18:26:57 UTC
+Received: from relay4.hostedemail.com (relay4.hostedemail.com [64.99.140.37])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CD3A510E3FA;
+ Mon, 28 Feb 2022 18:26:57 +0000 (UTC)
+Received: from omf09.hostedemail.com (a10.router.float.18 [10.200.18.1])
+ by unirelay11.hostedemail.com (Postfix) with ESMTP id 8480C81766;
+ Mon, 28 Feb 2022 18:20:49 +0000 (UTC)
+Received: from [HIDDEN] (Authenticated sender: joe@perches.com) by
+ omf09.hostedemail.com (Postfix) with ESMTPA id 5C4272002A; 
+ Mon, 28 Feb 2022 18:20:29 +0000 (UTC)
+Message-ID: <0be9de3920442df490f01b6fb1c42521c3de6190.camel@perches.com>
+From: Joe Perches <joe@perches.com>
+To: Dan Carpenter <dan.carpenter@oracle.com>, Jakob Koschel
+ <jakobkoschel@gmail.com>
+Date: Mon, 28 Feb 2022 10:20:28 -0800
+In-Reply-To: <20220228112413.GA2812@kadam>
+References: <20220228110822.491923-1-jakobkoschel@gmail.com>
+ <20220228110822.491923-2-jakobkoschel@gmail.com>
+ <20220228112413.GA2812@kadam>
+Content-Type: text/plain; charset="ISO-8859-1"
+User-Agent: Evolution 3.40.4-1ubuntu2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 13/13] drm/i915/xehpsdv: Move render/compute
- engine reset domains related workarounds
+Content-Transfer-Encoding: 7bit
+X-Stat-Signature: 1e1i8ombnsc3cdkptu3anccezjc89zox
+X-Rspamd-Server: rspamout07
+X-Rspamd-Queue-Id: 5C4272002A
+X-Spam-Status: No, score=0.10
+X-Session-Marker: 6A6F6540706572636865732E636F6D
+X-Session-ID: U2FsdGVkX1+i6vY6IDwHpNq++UEo/5hqvP4PvgQNb4E=
+X-HE-Tag: 1646072429-12569
+Subject: Re: [Intel-gfx] [PATCH 1/6] drivers: usb: remove usage of list
+ iterator past the loop body
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,84 +54,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Cc: alsa-devel@alsa-project.org, linux-aspeed@lists.ozlabs.org,
+ "Gustavo A. R. Silva" <gustavo@embeddedor.com>, linux-iio@vger.kernel.org,
+ nouveau@lists.freedesktop.org, Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+ dri-devel@lists.freedesktop.org, Cristiano Giuffrida <c.giuffrida@vu.nl>,
+ amd-gfx@lists.freedesktop.org, samba-technical@lists.samba.org,
+ linux1394-devel@lists.sourceforge.net, drbd-dev@lists.linbit.com,
+ linux-arch <linux-arch@vger.kernel.org>, linux-cifs@vger.kernel.org,
+ kvm@vger.kernel.org, linux-scsi@vger.kernel.org, linux-rdma@vger.kernel.org,
+ linux-staging@lists.linux.dev, "Bos, H.J." <h.j.bos@vu.nl>,
+ Jason Gunthorpe <jgg@ziepe.ca>, intel-wired-lan@lists.osuosl.org,
+ kgdb-bugreport@lists.sourceforge.net, bcm-kernel-feedback-list@broadcom.com,
+ linux-media@vger.kernel.org, Kees Cook <keescook@chromium.org>,
+ Arnd Bergman <arnd@arndb.de>, linux-pm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org,
+ Brian Johannesmeyer <bjohannesmeyer@gmail.com>, linux-block@vger.kernel.org,
+ linux-fsdevel@vger.kernel.org,
+ Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+ v9fs-developer@lists.sourceforge.net, linux-tegra@vger.kernel.org,
+ Thomas Gleixner <tglx@linutronix.de>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ linux-arm-kernel@lists.infradead.org, linux-sgx@vger.kernel.org,
+ Nathan Chancellor <nathan@kernel.org>,
+ Linus Torvalds <torvalds@linux-foundation.org>, linux-usb@vger.kernel.org,
+ linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-f2fs-devel@lists.sourceforge.net, tipc-discussion@lists.sourceforge.net,
+ linux-crypto@vger.kernel.org, netdev@vger.kernel.org,
+ dmaengine@vger.kernel.org, linux-mediatek@lists.infradead.org,
+ Andrew Morton <akpm@linux-foundation.org>, linuxppc-dev@lists.ozlabs.org,
+ Mike Rapoport <rppt@kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Srinivasan Shanmugam <srinivasan.s@intel.com>
+On Mon, 2022-02-28 at 14:24 +0300, Dan Carpenter wrote:
 
-Registers that exist in the shared render/compute reset domain need to
-be placed on an engine workaround list to ensure that they are properly
-re-applied whenever an RCS or CCS engine is reset.  We have a number of
-workarounds (updating registers MLTICTXCTL, L3SQCREG1_CCS0,
-GEN12_MERT_MOD_CTRL, and GEN12_GAMCNTRL_CTRL) that are incorrectly
-implemented on the 'gt' workaround list and need to be moved
-accordingly.
+> a multi-line indent gets curly braces for readability even though
+> it's not required by C.  And then both sides would get curly braces.
 
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: Srinivasan Shanmugam <srinivasan.s@intel.com>
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_workarounds.c | 26 ++++++++++-----------
- 1 file changed, 13 insertions(+), 13 deletions(-)
+That's more your personal preference than a coding style guideline.
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index 0b9435d62808..c014b40d2e9f 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -1343,12 +1343,6 @@ xehpsdv_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wal)
- 	/* Wa_1409757795:xehpsdv */
- 	wa_write_or(wal, SCCGCTL94DC, CG3DDISURB);
- 
--	/* Wa_18011725039:xehpsdv */
--	if (IS_XEHPSDV_GRAPHICS_STEP(i915, STEP_A1, STEP_B0)) {
--		wa_masked_dis(wal, MLTICTXCTL, TDONRENDER);
--		wa_write_or(wal, L3SQCREG1_CCS0, FLUSHALLNONCOH);
--	}
--
- 	/* Wa_16011155590:xehpsdv */
- 	if (IS_XEHPSDV_GRAPHICS_STEP(i915, STEP_A0, STEP_B0))
- 		wa_write_or(wal, UNSLICE_UNIT_LEVEL_CLKGATE,
-@@ -1385,19 +1379,12 @@ xehpsdv_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wal)
- 			    GAMTLBVEBOX0_CLKGATE_DIS);
- 	}
- 
--	/* Wa_14012362059:xehpsdv */
--	wa_write_or(wal, GEN12_MERT_MOD_CTRL, FORCE_MISS_FTLB);
--
- 	/* Wa_16012725990:xehpsdv */
- 	if (IS_XEHPSDV_GRAPHICS_STEP(i915, STEP_A1, STEP_FOREVER))
- 		wa_write_or(wal, UNSLICE_UNIT_LEVEL_CLKGATE, VFUNIT_CLKGATE_DIS);
- 
- 	/* Wa_14011060649:xehpsdv */
- 	wa_14011060649(gt, wal);
--
--	/* Wa_14014368820:xehpsdv */
--	wa_write_or(wal, GEN12_GAMCNTRL_CTRL, INVALIDATION_BROADCAST_MODE_DIS |
--		    GLOBAL_INVALIDATION_MODE);
- }
- 
- static void
-@@ -2617,6 +2604,19 @@ general_render_compute_wa_init(struct intel_engine_cs *engine, struct i915_wa_li
- 		/* Wa_14010449647:xehpsdv */
- 		wa_masked_en(wal, GEN7_HALF_SLICE_CHICKEN1,
- 			     GEN7_PSD_SINGLE_PORT_DISPATCH_ENABLE);
-+
-+		/* Wa_18011725039:xehpsdv */
-+		if (IS_XEHPSDV_GRAPHICS_STEP(i915, STEP_A1, STEP_B0)) {
-+			wa_masked_dis(wal, MLTICTXCTL, TDONRENDER);
-+			wa_write_or(wal, L3SQCREG1_CCS0, FLUSHALLNONCOH);
-+		}
-+
-+		/* Wa_14012362059:xehpsdv */
-+		wa_write_or(wal, GEN12_MERT_MOD_CTRL, FORCE_MISS_FTLB);
-+
-+		/* Wa_14014368820:xehpsdv */
-+		wa_write_or(wal, GEN12_GAMCNTRL_CTRL, INVALIDATION_BROADCAST_MODE_DIS |
-+				GLOBAL_INVALIDATION_MODE);
- 	}
- }
- 
--- 
-2.34.1
 
