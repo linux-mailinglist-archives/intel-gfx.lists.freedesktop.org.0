@@ -1,38 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F8794C7A59
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Feb 2022 21:28:42 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B56F4C7ACF
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Feb 2022 21:44:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 673BC10E8D8;
-	Mon, 28 Feb 2022 20:28:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5CB9710E70E;
+	Mon, 28 Feb 2022 20:44:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sipsolutions.net (s3.sipsolutions.net
- [IPv6:2a01:4f8:191:4433::2])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 29D4710E8C6;
- Mon, 28 Feb 2022 20:28:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sipsolutions.net; s=mail; h=Content-Transfer-Encoding:MIME-Version:
- Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
- :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
- Resent-Cc:Resent-Message-ID; bh=uTSgVBk5w89AJnv82I9bqMWvwbVIn7Apzl6uMNeIbWY=; 
- t=1646080116; x=1647289716; b=RLeIb4/TCalWQHteEnBDiy0cGw9VPWRS04fRDYnsQV6M6KO
- 7TcwK8fJgaun+ghYqOsf0jgRQUa84Dl7tPxJzWI1CX+dTd0xokmZKby75xUJqTnFyBPnLBU44OoXI
- v5oLM/+PnXpTm6zZKY1NovWvagFdt9XL38JSbbtPGpzBVmVfN9jpCabOUS3t0OBxpLCT9w+qzUTHg
- cjOTxlOdRtlhksBLisDlRY13IJAiBg90n+n845fhSrMNxV5xRserN7fbYVl6uQlk870u5TWZS0KYH
- NekXnWaB9tq/xVu8GtVn+pgJbBL6R/s0SedKJqzxicicnVCONYI5Uo7Jcr7ONKGA==;
-Received: by sipsolutions.net with esmtpsa
- (TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
- (Exim 4.95) (envelope-from <johannes@sipsolutions.net>)
- id 1nOmc1-00716Q-Dh; Mon, 28 Feb 2022 21:27:17 +0100
-Message-ID: <e3bb7d0632f8ef60f18c19976d57330e1ef00584.camel@sipsolutions.net>
-From: Johannes Berg <johannes@sipsolutions.net>
-To: Matthew Wilcox <willy@infradead.org>, Linus Torvalds
- <torvalds@linux-foundation.org>
-Date: Mon, 28 Feb 2022 21:27:13 +0100
-In-Reply-To: <Yh0tl3Lni4weIMkl@casper.infradead.org>
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com
+ [IPv6:2a00:1450:4864:20::233])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B0ABA10E8BD
+ for <intel-gfx@lists.freedesktop.org>; Mon, 28 Feb 2022 20:44:33 +0000 (UTC)
+Received: by mail-lj1-x233.google.com with SMTP id e8so19130907ljj.2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 28 Feb 2022 12:44:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linux-foundation.org; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=S/LNP14iVGpJY7HEU3KoWC3rGBeIOldyeXi/18P4YEg=;
+ b=JCfpf2EkV0u8p2DIwI3SoZoRhHthQMEAy9/7LEkowc8JnTmPgsFXHlzh4U3t+Q6SEk
+ Lc7ftzGO2kIrejoWkV3dzzd0jpx1zu67BigJ1Dmt6MH2aSREOTU5VOooJKZjMGKU+kco
+ F0IyOo2hDxkf3WtcbllN4ffR7kqC0AZqO0I4w=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=S/LNP14iVGpJY7HEU3KoWC3rGBeIOldyeXi/18P4YEg=;
+ b=QcTi99221f1Z32kuegGwL+QnLxRmJZ5V3qBXDc8FVUtNMwFG4GyZnnktX9qgy8JdL8
+ Ojv2cKQnNjQWiVyOAYtyB/AgJ8fW76WZooiZr4ZuDd7ZDvkvGMen6BgP7EkH6f+1mW0B
+ usuZQq9XdLHXDKRZG/oV4MeauzQ2hWqJHQ9iTEHNw1vOfgevxyYHxuXaYizoAUJfGlzG
+ ZA5M5kJgtW0R7iQXwlOut/Pcv+VqjnSJ/1aj/uR1JAtfGdx1aPemv7/bW2KdLqvbohrg
+ 2yOPRvLY+GgG7AuvJFg71HNQL5zR0DfsMZuGGUuSbB2AchpenvDHkkYMhy64QeMP7Raq
+ sZIA==
+X-Gm-Message-State: AOAM530CpHQ9ldSlQa55gZ3ZN7GPDDfjyiO8o5/ArWUx1cqA0vnW+efW
+ rDliMSfEJCVLySzBmbXIOhCRwzQfa5JsJWDm9K8=
+X-Google-Smtp-Source: ABdhPJwWLIsc5w3iTwXM5y54Ig9XBE8o6EfT2tfHDU6vx+1whZNEe+5YbjEgIcbsZlKjl9P7bNWPqg==
+X-Received: by 2002:a05:651c:307:b0:244:c6a1:167d with SMTP id
+ a7-20020a05651c030700b00244c6a1167dmr15575868ljp.263.1646081071779; 
+ Mon, 28 Feb 2022 12:44:31 -0800 (PST)
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com.
+ [209.85.167.48]) by smtp.gmail.com with ESMTPSA id
+ j9-20020a2ea909000000b0023742cb505dsm1517367ljq.82.2022.02.28.12.44.31
+ for <intel-gfx@lists.freedesktop.org>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 28 Feb 2022 12:44:31 -0800 (PST)
+Received: by mail-lf1-f48.google.com with SMTP id b11so23415246lfb.12
+ for <intel-gfx@lists.freedesktop.org>; Mon, 28 Feb 2022 12:44:31 -0800 (PST)
+X-Received: by 2002:a2e:924d:0:b0:246:370c:5618 with SMTP id
+ v13-20020a2e924d000000b00246370c5618mr15158756ljg.358.1646080652034; Mon, 28
+ Feb 2022 12:37:32 -0800 (PST)
+MIME-Version: 1.0
 References: <20220228110822.491923-1-jakobkoschel@gmail.com>
  <20220228110822.491923-3-jakobkoschel@gmail.com>
  <2e4e95d6-f6c9-a188-e1cd-b1eae465562a@amd.com>
@@ -40,11 +58,13 @@ References: <20220228110822.491923-1-jakobkoschel@gmail.com>
  <CAHk-=wj8fkosQ7=bps5K+DDazBXk=ypfn49A0sEq+7-nZnyfXA@mail.gmail.com>
  <CAHk-=wiTCvLQkHcJ3y0hpqH7FEk9D28LDvZZogC6OVLk7naBww@mail.gmail.com>
  <Yh0tl3Lni4weIMkl@casper.infradead.org>
+In-Reply-To: <Yh0tl3Lni4weIMkl@casper.infradead.org>
+From: Linus Torvalds <torvalds@linux-foundation.org>
+Date: Mon, 28 Feb 2022 12:37:15 -0800
+X-Gmail-Original-Message-ID: <CAHk-=wgBfJ1-cPA2LTvFyyy8owpfmtCuyiZi4+um8DhFNe+CyA@mail.gmail.com>
+Message-ID: <CAHk-=wgBfJ1-cPA2LTvFyyy8owpfmtCuyiZi4+um8DhFNe+CyA@mail.gmail.com>
+To: Matthew Wilcox <willy@infradead.org>
 Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.42.4 (3.42.4-1.fc35) 
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-malware-bazaar: not-scanned
 Subject: Re: [Intel-gfx] [PATCH 2/6] treewide: remove using list iterator
  after loop body as a ptr
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -94,31 +114,46 @@ Cc: linux-wireless <linux-wireless@vger.kernel.org>,
  linux-fsdevel <linux-fsdevel@vger.kernel.org>,
  linux-mediatek@lists.infradead.org, Andrew Morton <akpm@linux-foundation.org>,
  linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
- Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
  Mike Rapoport <rppt@kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 2022-02-28 at 20:16 +0000, Matthew Wilcox wrote:
-> On Mon, Feb 28, 2022 at 12:10:24PM -0800, Linus Torvalds wrote:
-> > We can do
-> > 
-> >         typeof(pos) pos
-> > 
-> > in the 'for ()' loop, and never use __iter at all.
-> > 
-> > That means that inside the for-loop, we use a _different_ 'pos' than outside.
-> 
+On Mon, Feb 28, 2022 at 12:16 PM Matthew Wilcox <willy@infradead.org> wrote:
+>
 > Then we can never use -Wshadow ;-(  I'd love to be able to turn it on;
 > it catches real bugs.
-> 
 
-I was just going to say the same thing...
+Oh, we already can never use -Wshadow regardless of things like this.
+That bridge hasn't just been burned, it never existed in the first
+place.
 
-If we're willing to change the API for the macro, we could do
+The whole '-Wshadow' thing simply cannot work with local variables in
+macros - something that we've used since day 1.
 
-  list_for_each_entry(type, pos, head, member)
+Try this (as a "p.c" file):
 
-and then actually take advantage of -Wshadow?
+        #define min(a,b) ({                     \
+                typeof(a) __a = (a);            \
+                typeof(b) __b = (b);            \
+                __a < __b ? __a : __b; })
 
-johannes
+        int min3(int a, int b, int c)
+        {
+                return min(a,min(b,c));
+        }
+
+and now do "gcc -O2 -S t.c".
+
+Then try it with -Wshadow.
+
+In other words, -Wshadow is simply not acceptable. Never has been,
+never will be, and that has nothing to do with the
+
+        typeof(pos) pos
+
+kind of thing.
+
+Your argument just isn't an argument.
+
+              Linus
