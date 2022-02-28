@@ -1,56 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C1664C87BB
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Mar 2022 10:20:00 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3EA44C87B4
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Mar 2022 10:19:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D87410E97C;
-	Tue,  1 Mar 2022 09:19:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D6BBE10E813;
+	Tue,  1 Mar 2022 09:19:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 16CE310E290;
- Mon, 28 Feb 2022 18:25:15 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 5803460BFC;
- Mon, 28 Feb 2022 18:25:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8576AC34102;
- Mon, 28 Feb 2022 18:25:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1646072712;
- bh=W7p79vSB6J1+jxnozFyNib9GmWcAolUohfmSDG//bFo=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=bW1ZFMo50q0kPFmsangI6ntG68WPn+8ztd5psh0iHHbmPXGd2Do9g5exX/orPNmoF
- TbileAdECwDuGZ3+humcDGlnOjlNYxeI3qAjbFLAsFhTc2LHic+YIf2ERa75osRNhn
- Kqq71bFPRaIovWhnQvFqOiR1ebj4qUhN855gks3wvS+rvdXKdGJUNfOOen3tcmT4S7
- zpLTE7SvQlwyFubmoSBvPJGw1f5VxlcwUT5kGQbM5VRWy3yFRzf9kbennsbklNWQnr
- VImWf5/+PDhsYj8Ik1QLewhHGzp4RLahjjkzTll08wtY5vt0rMq16dXAFWp3Qw6QCA
- 7XcyjSwBnCISg==
-Received: by mail-wr1-f52.google.com with SMTP id b5so16884222wrr.2;
- Mon, 28 Feb 2022 10:25:12 -0800 (PST)
-X-Gm-Message-State: AOAM532BJ/7rL99//hoqgD6Sao4tl5YBClHRWRYusfj7mrEAPYt/CXAK
- zjYlD+G1/sxsTI8kG+pvpfBJtR0hzXojt7AHnnc=
-X-Google-Smtp-Source: ABdhPJz4fZLcu78yhCIhmUlg8wcyJThC/WAQ6UaeDqjOpOcx7YS8Qt8gbRJs54Y1simdrFMDrQr0lGIp9e5ElXVyTL0=
-X-Received: by 2002:adf:edc3:0:b0:1ec:5f11:5415 with SMTP id
- v3-20020adfedc3000000b001ec5f115415mr14857770wro.317.1646072710661; Mon, 28
- Feb 2022 10:25:10 -0800 (PST)
-MIME-Version: 1.0
-References: <20220228103142.3301082-1-arnd@kernel.org>
- <CAK7LNATVs-yRX4PnURkLv3fz3gAnuzG2GxZ2gdvmJX2g+0P-_w@mail.gmail.com>
-In-Reply-To: <CAK7LNATVs-yRX4PnURkLv3fz3gAnuzG2GxZ2gdvmJX2g+0P-_w@mail.gmail.com>
-From: Arnd Bergmann <arnd@kernel.org>
-Date: Mon, 28 Feb 2022 19:24:54 +0100
-X-Gmail-Original-Message-ID: <CAK8P3a2To9St5=v6EHtJ-LBEp4-NOThPmO+qYeAfnxQPm2_Keg@mail.gmail.com>
-Message-ID: <CAK8P3a2To9St5=v6EHtJ-LBEp4-NOThPmO+qYeAfnxQPm2_Keg@mail.gmail.com>
-To: Masahiro Yamada <masahiroy@kernel.org>,
- Jani Nikula <jani.nikula@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
+X-Greylist: delayed 3694 seconds by postgrey-1.36 at gabe;
+ Mon, 28 Feb 2022 22:02:42 UTC
+Received: from gate.crashing.org (gate.crashing.org [63.228.1.57])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 00EE110E8E8;
+ Mon, 28 Feb 2022 22:02:42 +0000 (UTC)
+Received: from gate.crashing.org (localhost.localdomain [127.0.0.1])
+ by gate.crashing.org (8.14.1/8.14.1) with ESMTP id 21SKr95E005627;
+ Mon, 28 Feb 2022 14:53:09 -0600
+Received: (from segher@localhost)
+ by gate.crashing.org (8.14.1/8.14.1/Submit) id 21SKr7Xe005624;
+ Mon, 28 Feb 2022 14:53:07 -0600
+X-Authentication-Warning: gate.crashing.org: segher set sender to
+ segher@kernel.crashing.org using -f
+Date: Mon, 28 Feb 2022 14:53:07 -0600
+From: Segher Boessenkool <segher@kernel.crashing.org>
+To: Linus Torvalds <torvalds@linux-foundation.org>
+Message-ID: <20220228205307.GD614@gate.crashing.org>
+References: <20220228110822.491923-1-jakobkoschel@gmail.com>
+ <20220228110822.491923-3-jakobkoschel@gmail.com>
+ <2e4e95d6-f6c9-a188-e1cd-b1eae465562a@amd.com>
+ <CAHk-=wgQps58DPEOe4y5cTh5oE9EdNTWRLXzgMiETc+mFX7jzw@mail.gmail.com>
+ <CAHk-=wj8fkosQ7=bps5K+DDazBXk=ypfn49A0sEq+7-nZnyfXA@mail.gmail.com>
+ <CAHk-=wiTCvLQkHcJ3y0hpqH7FEk9D28LDvZZogC6OVLk7naBww@mail.gmail.com>
+ <CAHk-=wj27SZQ3kPTesBzkiGhe-mA3gOQqr_adt_bMFzmg1VNaA@mail.gmail.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAHk-=wj27SZQ3kPTesBzkiGhe-mA3gOQqr_adt_bMFzmg1VNaA@mail.gmail.com>
+User-Agent: Mutt/1.4.2.3i
 X-Mailman-Approved-At: Tue, 01 Mar 2022 09:19:22 +0000
-Subject: Re: [Intel-gfx] [PATCH] [v2] Kbuild: move to -std=gnu11
+Subject: Re: [Intel-gfx] [PATCH 2/6] treewide: remove using list iterator
+ after loop body as a ptr
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,62 +53,89 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
- Michal Marek <michal.lkml@markovi.net>,
- "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
- Arnd Bergmann <arnd@arndb.de>, Jonathan Corbet <corbet@lwn.net>,
- linux-staging@lists.linux.dev, linux-doc-tw-discuss@lists.sourceforge.net,
- llvm@lists.linux.dev, Nick Desaulniers <ndesaulniers@google.com>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- dri-devel <dri-devel@lists.freedesktop.org>, greybus-dev@lists.linaro.org,
- Alex Shi <alexs@kernel.org>, Federico Vaga <federico.vaga@vaga.pv.it>,
- Hu Haowen <src.res@email.cn>, linux-btrfs <linux-btrfs@vger.kernel.org>,
- Linus Torvalds <torvalds@linux-foundation.org>,
+Cc: alsa-devel@alsa-project.org, linux-aspeed@lists.ozlabs.org,
+ "Gustavo A. R. Silva" <gustavo@embeddedor.com>, linux-iio@vger.kernel.org,
+ nouveau@lists.freedesktop.org, Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Cristiano Giuffrida <c.giuffrida@vu.nl>, "Bos, H.J." <h.j.bos@vu.nl>,
+ samba-technical@lists.samba.org, linux1394-devel@lists.sourceforge.net,
+ drbd-dev@lists.linbit.com, linux-arch <linux-arch@vger.kernel.org>,
+ CIFS <linux-cifs@vger.kernel.org>, KVM list <kvm@vger.kernel.org>,
+ linux-scsi <linux-scsi@vger.kernel.org>,
+ linux-rdma <linux-rdma@vger.kernel.org>, linux-staging@lists.linux.dev,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>, Jason Gunthorpe <jgg@ziepe.ca>,
+ intel-wired-lan@lists.osuosl.org, kgdb-bugreport@lists.sourceforge.net,
+ bcm-kernel-feedback-list@broadcom.com,
+ Dan Carpenter <dan.carpenter@oracle.com>,
+ Linux Media Mailing List <linux-media@vger.kernel.org>,
+ Kees Cook <keescook@chromium.org>, Arnd Bergman <arnd@arndb.de>,
+ Linux PM <linux-pm@vger.kernel.org>,
  intel-gfx <intel-gfx@lists.freedesktop.org>,
- Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>
+ Brian Johannesmeyer <bjohannesmeyer@gmail.com>,
+ Nathan Chancellor <nathan@kernel.org>,
+ linux-fsdevel <linux-fsdevel@vger.kernel.org>,
+ Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+ Jakob Koschel <jakobkoschel@gmail.com>, v9fs-developer@lists.sourceforge.net,
+ linux-tegra <linux-tegra@vger.kernel.org>,
+ Thomas Gleixner <tglx@linutronix.de>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>, linux-sgx@vger.kernel.org,
+ linux-block <linux-block@vger.kernel.org>, Netdev <netdev@vger.kernel.org>,
+ linux-usb@vger.kernel.org, linux-wireless <linux-wireless@vger.kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Linux F2FS Dev Mailing List <linux-f2fs-devel@lists.sourceforge.net>,
+ tipc-discussion@lists.sourceforge.net,
+ Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
+ dma <dmaengine@vger.kernel.org>, linux-mediatek@lists.infradead.org,
+ Andrew Morton <akpm@linux-foundation.org>,
+ linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Mike Rapoport <rppt@kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Feb 28, 2022 at 6:02 PM Masahiro Yamada <masahiroy@kernel.org> wrote:
->
-> On Mon, Feb 28, 2022 at 7:32 PM Arnd Bergmann <arnd@kernel.org> wrote:
+On Mon, Feb 28, 2022 at 12:14:44PM -0800, Linus Torvalds wrote:
+> On Mon, Feb 28, 2022 at 12:10 PM Linus Torvalds
+> <torvalds@linux-foundation.org> wrote:
 > >
-> > From: Arnd Bergmann <arnd@arndb.de>
+> > We can do
 > >
-> > During a patch discussion, Linus brought up the option of changing
-> > the C standard version from gnu89 to gnu99, which allows using variable
-> > declaration inside of a for() loop. While the C99, C11 and later standards
-> > introduce many other features, most of these are already available in
-> > gnu89 as GNU extensions as well.
+> >         typeof(pos) pos
 > >
-> > An earlier attempt to do this when gcc-5 started defaulting to
-> > -std=gnu11 failed because at the time that caused warnings about
-> > designated initializers with older compilers. Now that gcc-5.1 is the
-> > minimum compiler version used for building kernels, that is no longer a
-> > concern. Similarly, the behavior of 'inline' functions changes between
-> > gnu89 and gnu11, but this was taken care of by defining 'inline' to
-> > include __attribute__((gnu_inline)) in order to allow building with
-> > clang a while ago.
+> > in the 'for ()' loop, and never use __iter at all.
 > >
-> > One minor issue that remains is an added gcc warning for shifts of
-> > negative integers when building with -Werror, which happens with the
->
-> Is this a typo?
->
->    building with -Werror, ...
-> ->
->    building with -Wextra, ...
->
+> > That means that inside the for-loop, we use a _different_ 'pos' than outside.
+> 
+> The thing that makes me throw up in my mouth a bit is that in that
+> 
+>         typeof(pos) pos
+> 
+> the first 'pos' (that we use for just the typeof) is that outer-level
+> 'pos', IOW it's a *different* 'pos' than the second 'pos' in that same
+> declaration that declares the inner level shadowing new 'pos'
+> variable.
 
-I'm being slow today, Jani actually pointed out the same thing and I
-misunderstood him. Fixed it now, thanks!
+The new "pos" has not yet been declared, so this has to refer to the
+outer "pos", it cannot be the inner one.  Because it hasn't been
+declared yet :-)
 
-> Acked-by: Masahiro Yamada <masahiroy@kernel.org>
->
->
-> Please let me know if you want me to pick up this.
+Compare this to
+  typeof (pos) pos = pos;
+where that last "pos" *does* refer to the newly declared one: that
+declaration has already been done!  (So this code is UB btw, 6.3.2.1/2).
 
-Yes, that would be great. I'll send a v3 with the updated changelog,
-but will drop most of the Cc list as there are no functional changes.
+> If I was a compiler person, I would say "Linus, that thing is too ugly
+> to live", and I would hate it. I'm just hoping that even compiler
+> people say "that's *so* ugly it's almost beautiful".
 
-        Arnd
+It is perfectly well-defined.  Well, it would be good if we (GCC) would
+document it does work, and if someone tested it on LLVM as well.  But it
+is really hard to implement it to *not* work :-)
+
+> Because it does seem to work. It's not pretty, but hey, it's not like
+> our headers are really ever be winning any beauty contests...
+
+It is very pretty!  Needs a comment though :-)
+
+
+Segher
