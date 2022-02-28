@@ -1,72 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B56F4C7ACF
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Feb 2022 21:44:37 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 652644C7A98
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Feb 2022 21:37:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5CB9710E70E;
-	Mon, 28 Feb 2022 20:44:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BE5D10E8CA;
+	Mon, 28 Feb 2022 20:37:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com
- [IPv6:2a00:1450:4864:20::233])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B0ABA10E8BD
- for <intel-gfx@lists.freedesktop.org>; Mon, 28 Feb 2022 20:44:33 +0000 (UTC)
-Received: by mail-lj1-x233.google.com with SMTP id e8so19130907ljj.2
- for <intel-gfx@lists.freedesktop.org>; Mon, 28 Feb 2022 12:44:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linux-foundation.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=S/LNP14iVGpJY7HEU3KoWC3rGBeIOldyeXi/18P4YEg=;
- b=JCfpf2EkV0u8p2DIwI3SoZoRhHthQMEAy9/7LEkowc8JnTmPgsFXHlzh4U3t+Q6SEk
- Lc7ftzGO2kIrejoWkV3dzzd0jpx1zu67BigJ1Dmt6MH2aSREOTU5VOooJKZjMGKU+kco
- F0IyOo2hDxkf3WtcbllN4ffR7kqC0AZqO0I4w=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=S/LNP14iVGpJY7HEU3KoWC3rGBeIOldyeXi/18P4YEg=;
- b=QcTi99221f1Z32kuegGwL+QnLxRmJZ5V3qBXDc8FVUtNMwFG4GyZnnktX9qgy8JdL8
- Ojv2cKQnNjQWiVyOAYtyB/AgJ8fW76WZooiZr4ZuDd7ZDvkvGMen6BgP7EkH6f+1mW0B
- usuZQq9XdLHXDKRZG/oV4MeauzQ2hWqJHQ9iTEHNw1vOfgevxyYHxuXaYizoAUJfGlzG
- ZA5M5kJgtW0R7iQXwlOut/Pcv+VqjnSJ/1aj/uR1JAtfGdx1aPemv7/bW2KdLqvbohrg
- 2yOPRvLY+GgG7AuvJFg71HNQL5zR0DfsMZuGGUuSbB2AchpenvDHkkYMhy64QeMP7Raq
- sZIA==
-X-Gm-Message-State: AOAM530CpHQ9ldSlQa55gZ3ZN7GPDDfjyiO8o5/ArWUx1cqA0vnW+efW
- rDliMSfEJCVLySzBmbXIOhCRwzQfa5JsJWDm9K8=
-X-Google-Smtp-Source: ABdhPJwWLIsc5w3iTwXM5y54Ig9XBE8o6EfT2tfHDU6vx+1whZNEe+5YbjEgIcbsZlKjl9P7bNWPqg==
-X-Received: by 2002:a05:651c:307:b0:244:c6a1:167d with SMTP id
- a7-20020a05651c030700b00244c6a1167dmr15575868ljp.263.1646081071779; 
- Mon, 28 Feb 2022 12:44:31 -0800 (PST)
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com.
- [209.85.167.48]) by smtp.gmail.com with ESMTPSA id
- j9-20020a2ea909000000b0023742cb505dsm1517367ljq.82.2022.02.28.12.44.31
- for <intel-gfx@lists.freedesktop.org>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 28 Feb 2022 12:44:31 -0800 (PST)
-Received: by mail-lf1-f48.google.com with SMTP id b11so23415246lfb.12
- for <intel-gfx@lists.freedesktop.org>; Mon, 28 Feb 2022 12:44:31 -0800 (PST)
-X-Received: by 2002:a2e:924d:0:b0:246:370c:5618 with SMTP id
- v13-20020a2e924d000000b00246370c5618mr15158756ljg.358.1646080652034; Mon, 28
- Feb 2022 12:37:32 -0800 (PST)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 01BF110E8CE;
+ Mon, 28 Feb 2022 20:37:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1646080675; x=1677616675;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=qxkOGvt2l5BPJmd/uBkstQ4wSF6w24n+796l7M2hQAg=;
+ b=iO6oSDXbh0iViRl9nsRcZAXdwwbPAt+68ks4mCfL9NjKJ7aHdz4fEns+
+ 1Cz0Bzy8sVYVotZ5AcIbessR/k0X7i9dZRe0L6Xwb5JY12wI9Rt4mD9ki
+ 7SBonHLS3rgZ8jGqILBifG7EBii30p3gp6GE/0MNTUD6j7rBt6eDiU3u6
+ orlz2dp8JvyaFJXQOizxNkP9TrAl9m5/Yxmzi62AvMIjFN4Xf4d/lAWuF
+ luhQbvkEXv/5ijOcgwg1aSURbG/Yw91kgewPijvw2HBN+g+RJb7CRzLDY
+ xfuqBgqksHEPQ6LtZY2Hc+GzX4PnFcPo6t6NEOCKdEKC/p3RCjLYW5Msp Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10272"; a="233601780"
+X-IronPort-AV: E=Sophos;i="5.90,144,1643702400"; d="scan'208";a="233601780"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Feb 2022 12:37:54 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,144,1643702400"; d="scan'208";a="593353469"
+Received: from irvmail001.ir.intel.com ([10.43.11.63])
+ by fmsmga008.fm.intel.com with ESMTP; 28 Feb 2022 12:37:51 -0800
+Received: from [10.249.130.171] (mwajdecz-MOBL.ger.corp.intel.com
+ [10.249.130.171])
+ by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
+ 21SKbn17022597; Mon, 28 Feb 2022 20:37:50 GMT
+Message-ID: <28e2363a-38aa-9d68-ac59-b78c9168a814@intel.com>
+Date: Mon, 28 Feb 2022 21:37:49 +0100
 MIME-Version: 1.0
-References: <20220228110822.491923-1-jakobkoschel@gmail.com>
- <20220228110822.491923-3-jakobkoschel@gmail.com>
- <2e4e95d6-f6c9-a188-e1cd-b1eae465562a@amd.com>
- <CAHk-=wgQps58DPEOe4y5cTh5oE9EdNTWRLXzgMiETc+mFX7jzw@mail.gmail.com>
- <CAHk-=wj8fkosQ7=bps5K+DDazBXk=ypfn49A0sEq+7-nZnyfXA@mail.gmail.com>
- <CAHk-=wiTCvLQkHcJ3y0hpqH7FEk9D28LDvZZogC6OVLk7naBww@mail.gmail.com>
- <Yh0tl3Lni4weIMkl@casper.infradead.org>
-In-Reply-To: <Yh0tl3Lni4weIMkl@casper.infradead.org>
-From: Linus Torvalds <torvalds@linux-foundation.org>
-Date: Mon, 28 Feb 2022 12:37:15 -0800
-X-Gmail-Original-Message-ID: <CAHk-=wgBfJ1-cPA2LTvFyyy8owpfmtCuyiZi4+um8DhFNe+CyA@mail.gmail.com>
-Message-ID: <CAHk-=wgBfJ1-cPA2LTvFyyy8owpfmtCuyiZi4+um8DhFNe+CyA@mail.gmail.com>
-To: Matthew Wilcox <willy@infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PATCH 2/6] treewide: remove using list iterator
- after loop body as a ptr
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Firefox/91.0 Thunderbird/91.6.1
+Content-Language: en-US
+To: Andi Shyti <andi.shyti@linux.intel.com>,
+ Intel GFX <intel-gfx@lists.freedesktop.org>,
+ DRI Devel <dri-devel@lists.freedesktop.org>
+References: <20220217144158.21555-1-andi.shyti@linux.intel.com>
+ <20220217144158.21555-8-andi.shyti@linux.intel.com>
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <20220217144158.21555-8-andi.shyti@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v5 7/7] drm/i915/gt: Adding new sysfs
+ frequency attributes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,81 +66,361 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-wireless <linux-wireless@vger.kernel.org>,
- alsa-devel@alsa-project.org, KVM list <kvm@vger.kernel.org>,
- "Gustavo A. R. Silva" <gustavo@embeddedor.com>, linux-iio@vger.kernel.org,
- nouveau@lists.freedesktop.org, Rasmus Villemoes <linux@rasmusvillemoes.dk>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Cristiano Giuffrida <c.giuffrida@vu.nl>, "Bos, H.J." <h.j.bos@vu.nl>,
- linux1394-devel@lists.sourceforge.net, drbd-dev@lists.linbit.com,
- linux-arch <linux-arch@vger.kernel.org>, CIFS <linux-cifs@vger.kernel.org>,
- linux-aspeed@lists.ozlabs.org, linux-scsi <linux-scsi@vger.kernel.org>,
- linux-rdma <linux-rdma@vger.kernel.org>, linux-staging@lists.linux.dev,
- amd-gfx list <amd-gfx@lists.freedesktop.org>, Jason Gunthorpe <jgg@ziepe.ca>,
- intel-wired-lan@lists.osuosl.org, kgdb-bugreport@lists.sourceforge.net,
- bcm-kernel-feedback-list@broadcom.com,
- Dan Carpenter <dan.carpenter@oracle.com>,
- Linux Media Mailing List <linux-media@vger.kernel.org>,
- Kees Cook <keescook@chromium.org>, Arnd Bergman <arnd@arndb.de>,
- Linux PM <linux-pm@vger.kernel.org>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- Brian Johannesmeyer <bjohannesmeyer@gmail.com>,
- Nathan Chancellor <nathan@kernel.org>, dma <dmaengine@vger.kernel.org>,
- Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
- Jakob Koschel <jakobkoschel@gmail.com>, v9fs-developer@lists.sourceforge.net,
- linux-tegra <linux-tegra@vger.kernel.org>,
- Thomas Gleixner <tglx@linutronix.de>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Linux ARM <linux-arm-kernel@lists.infradead.org>, linux-sgx@vger.kernel.org,
- linux-block <linux-block@vger.kernel.org>, Netdev <netdev@vger.kernel.org>,
- linux-usb@vger.kernel.org, samba-technical@lists.samba.org,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Linux F2FS Dev Mailing List <linux-f2fs-devel@lists.sourceforge.net>,
- tipc-discussion@lists.sourceforge.net,
- Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
- linux-fsdevel <linux-fsdevel@vger.kernel.org>,
- linux-mediatek@lists.infradead.org, Andrew Morton <akpm@linux-foundation.org>,
- linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Mike Rapoport <rppt@kernel.org>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>, Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Feb 28, 2022 at 12:16 PM Matthew Wilcox <willy@infradead.org> wrote:
->
-> Then we can never use -Wshadow ;-(  I'd love to be able to turn it on;
-> it catches real bugs.
 
-Oh, we already can never use -Wshadow regardless of things like this.
-That bridge hasn't just been burned, it never existed in the first
-place.
 
-The whole '-Wshadow' thing simply cannot work with local variables in
-macros - something that we've used since day 1.
+On 17.02.2022 15:41, Andi Shyti wrote:
+> From: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>
+> 
+> This patch adds the following new sysfs frequency attributes;
+> 	- punit_req_freq_mhz
+> 	- throttle_reason_status
+> 	- throttle_reason_pl1
+> 	- throttle_reason_pl2
+> 	- throttle_reason_pl4
+> 	- throttle_reason_thermal
+> 	- throttle_reason_prochot
+> 	- throttle_reason_ratl
+> 	- throttle_reason_vr_thermalert
+> 	- throttle_reason_vr_tdc
+> 
+> Signed-off-by: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>
+> Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
+> Cc: Dale B Stimson <dale.b.stimson@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c | 142 ++++++++++++++++++++
+>  drivers/gpu/drm/i915/gt/intel_rps.c         |  83 ++++++++++++
+>  drivers/gpu/drm/i915/gt/intel_rps.h         |  10 ++
+>  drivers/gpu/drm/i915/i915_reg.h             |  11 ++
+>  4 files changed, 246 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
+> index 8e86b8f675f1..8be676cd1607 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
+> @@ -463,6 +463,141 @@ static ssize_t rps_rp_mhz_show(struct device *dev,
+>  static const struct attribute * const gen6_rps_attrs[] = GEN6_RPS_ATTR;
+>  static const struct attribute * const gen6_gt_attrs[]  = GEN6_GT_ATTR;
+>  
+> +static ssize_t punit_req_freq_mhz_show(struct device *dev,
+> +				       struct device_attribute *attr,
+> +				       char *buff)
+> +{
+> +	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(dev, attr->attr.name);
+> +	struct intel_rps *rps = &gt->rps;
+> +	u32 preq = intel_rps_read_punit_req_frequency(rps);
+> +
+> +	return scnprintf(buff, PAGE_SIZE, "%d\n", preq);
 
-Try this (as a "p.c" file):
+%u since preq is u32
 
-        #define min(a,b) ({                     \
-                typeof(a) __a = (a);            \
-                typeof(b) __b = (b);            \
-                __a < __b ? __a : __b; })
+and use sysfs_emit (also in below show functions)
 
-        int min3(int a, int b, int c)
-        {
-                return min(a,min(b,c));
-        }
+> +}
+> +
+> +static ssize_t throttle_reason_status_show(struct device *dev,
+> +					   struct device_attribute *attr,
+> +					   char *buff)
+> +{
+> +	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(dev, attr->attr.name);
+> +	struct intel_rps *rps = &gt->rps;
+> +	bool status = !!intel_rps_read_throttle_reason_status(rps);
+> +
+> +	return scnprintf(buff, PAGE_SIZE, "%u\n", status);
+> +}
+> +
+> +static ssize_t throttle_reason_pl1_show(struct device *dev,
+> +					struct device_attribute *attr,
+> +					char *buff)
+> +{
+> +	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(dev, attr->attr.name);
+> +	struct intel_rps *rps = &gt->rps;
+> +	bool pl1 = !!intel_rps_read_throttle_reason_pl1(rps);
+> +
+> +	return scnprintf(buff, PAGE_SIZE, "%u\n", pl1);
+> +}
+> +
+> +static ssize_t throttle_reason_pl2_show(struct device *dev,
+> +					struct device_attribute *attr,
+> +					char *buff)
+> +{
+> +	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(dev, attr->attr.name);
+> +	struct intel_rps *rps = &gt->rps;
+> +	bool pl2 = !!intel_rps_read_throttle_reason_pl2(rps);
+> +
+> +	return scnprintf(buff, PAGE_SIZE, "%u\n", pl2);
+> +}
+> +
+> +static ssize_t throttle_reason_pl4_show(struct device *dev,
+> +					struct device_attribute *attr,
+> +					char *buff)
+> +{
+> +	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(dev, attr->attr.name);
+> +	struct intel_rps *rps = &gt->rps;
+> +	bool pl4 = !!intel_rps_read_throttle_reason_pl4(rps);
+> +
+> +	return scnprintf(buff, PAGE_SIZE, "%u\n", pl4);
+> +}
+> +
+> +static ssize_t throttle_reason_thermal_show(struct device *dev,
+> +					    struct device_attribute *attr,
+> +					    char *buff)
+> +{
+> +	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(dev, attr->attr.name);
+> +	struct intel_rps *rps = &gt->rps;
+> +	bool thermal = !!intel_rps_read_throttle_reason_thermal(rps);
+> +
+> +	return scnprintf(buff, PAGE_SIZE, "%u\n", thermal);
+> +}
+> +
+> +static ssize_t throttle_reason_prochot_show(struct device *dev,
+> +					    struct device_attribute *attr,
+> +					    char *buff)
+> +{
+> +	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(dev, attr->attr.name);
+> +	struct intel_rps *rps = &gt->rps;
+> +	bool prochot = !!intel_rps_read_throttle_reason_prochot(rps);
+> +
+> +	return scnprintf(buff, PAGE_SIZE, "%u\n", prochot);
+> +}
+> +
+> +static ssize_t throttle_reason_ratl_show(struct device *dev,
+> +					 struct device_attribute *attr,
+> +					 char *buff)
+> +{
+> +	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(dev, attr->attr.name);
+> +	struct intel_rps *rps = &gt->rps;
+> +	bool ratl = !!intel_rps_read_throttle_reason_ratl(rps);
+> +
+> +	return scnprintf(buff, PAGE_SIZE, "%u\n", ratl);
+> +}
+> +
+> +static ssize_t throttle_reason_vr_thermalert_show(struct device *dev,
+> +						  struct device_attribute *attr,
+> +						  char *buff)
+> +{
+> +	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(dev, attr->attr.name);
+> +	struct intel_rps *rps = &gt->rps;
+> +	bool thermalert = !!intel_rps_read_throttle_reason_vr_thermalert(rps);
+> +
+> +	return scnprintf(buff, PAGE_SIZE, "%u\n", thermalert);
+> +}
+> +
+> +static ssize_t throttle_reason_vr_tdc_show(struct device *dev,
+> +					   struct device_attribute *attr,
+> +					   char *buff)
+> +{
+> +	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(dev, attr->attr.name);
+> +	struct intel_rps *rps = &gt->rps;
+> +	bool tdc = !!intel_rps_read_throttle_reason_vr_tdc(rps);
+> +
+> +	return scnprintf(buff, PAGE_SIZE, "%u\n", tdc);
+> +}
+> +
+> +static DEVICE_ATTR_RO(punit_req_freq_mhz);
+> +static DEVICE_ATTR_RO(throttle_reason_status);
+> +static DEVICE_ATTR_RO(throttle_reason_pl1);
+> +static DEVICE_ATTR_RO(throttle_reason_pl2);
+> +static DEVICE_ATTR_RO(throttle_reason_pl4);
+> +static DEVICE_ATTR_RO(throttle_reason_thermal);
+> +static DEVICE_ATTR_RO(throttle_reason_prochot);
+> +static DEVICE_ATTR_RO(throttle_reason_ratl);
+> +static DEVICE_ATTR_RO(throttle_reason_vr_thermalert);
+> +static DEVICE_ATTR_RO(throttle_reason_vr_tdc);
+> +
+> +static const struct attribute *freq_attrs[] = {
+> +	&dev_attr_punit_req_freq_mhz.attr,
+> +	&dev_attr_throttle_reason_status.attr,
+> +	&dev_attr_throttle_reason_pl1.attr,
+> +	&dev_attr_throttle_reason_pl2.attr,
+> +	&dev_attr_throttle_reason_pl4.attr,
+> +	&dev_attr_throttle_reason_thermal.attr,
+> +	&dev_attr_throttle_reason_prochot.attr,
+> +	&dev_attr_throttle_reason_ratl.attr,
+> +	&dev_attr_throttle_reason_vr_thermalert.attr,
+> +	&dev_attr_throttle_reason_vr_tdc.attr,
+> +	NULL
+> +};
+> +
+>  static int intel_sysfs_rps_init(struct intel_gt *gt, struct kobject *kobj,
+>  				const struct attribute * const *attrs)
+>  {
+> @@ -493,4 +628,11 @@ void intel_gt_sysfs_pm_init(struct intel_gt *gt, struct kobject *kobj)
+>  	if (ret)
+>  		drm_warn(&gt->i915->drm,
+>  			 "failed to create gt%u RPS sysfs files", gt->info.id);
+> +
+> +	ret = sysfs_create_files(kobj, freq_attrs);
+> +	if (ret)
+> +		drm_warn(&gt->i915->drm,
+> +			 "failed to create gt%u throttle sysfs files",
+> +			 gt->info.id);
 
-and now do "gcc -O2 -S t.c".
+nit: would be nice to see %pe why it failed
 
-Then try it with -Wshadow.
+> +
+>  }
+> diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
+> index fd95449ed46d..94c78cfaf9c9 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_rps.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_rps.c
+> @@ -2286,6 +2286,89 @@ void intel_rps_lower_unslice(struct intel_rps *rps)
+>  	mutex_unlock(&rps->lock);
+>  }
+>  
+> +static u32 __rps_read_mmio(struct intel_gt *gt, i915_reg_t reg32)
 
-In other words, -Wshadow is simply not acceptable. Never has been,
-never will be, and that has nothing to do with the
+this doesn't look like "rps" helper, rather like "gt" so it should have
+different prefix and maybe even be exported by the gt or uncore ?
 
-        typeof(pos) pos
+unless you wanted:
 
-kind of thing.
+static u32 __rps_read_mmio(struct intel_rps *rps, i915_reg_t reg32)
+{
+	struct intel_gt *gt = rps_to_gt(rps);
 
-Your argument just isn't an argument.
+> +{
+> +	intel_wakeref_t wakeref;
+> +	u32 val;
+> +
+> +	with_intel_runtime_pm(gt->uncore->rpm, wakeref)
+> +		val = intel_uncore_read(gt->uncore, reg32);
+> +
+> +	return val;
+> +}
+> +
+> +u32 intel_rps_read_throttle_reason_status(struct intel_rps *rps)
+> +{
+> +	struct intel_gt *gt = rps_to_gt(rps);
+> +	u32 status = __rps_read_mmio(gt, GT0_PERF_LIMIT_REASONS) & GT0_PERF_LIMIT_REASONS_MASK;
+> +
+> +	return status;
+> +}
+> +
+> +u32 intel_rps_read_throttle_reason_pl1(struct intel_rps *rps)
+> +{
+> +	struct intel_gt *gt = rps_to_gt(rps);
+> +	u32 pl1 = __rps_read_mmio(gt, GT0_PERF_LIMIT_REASONS) & POWER_LIMIT_1_MASK;
+> +
+> +	return pl1;
+> +}
+> +
+> +u32 intel_rps_read_throttle_reason_pl2(struct intel_rps *rps)
+> +{
+> +	struct intel_gt *gt = rps_to_gt(rps);
+> +	u32 pl2 = __rps_read_mmio(gt, GT0_PERF_LIMIT_REASONS) & POWER_LIMIT_2_MASK;
+> +
+> +	return pl2;
+> +}
+> +
+> +u32 intel_rps_read_throttle_reason_pl4(struct intel_rps *rps)
+> +{
+> +	struct intel_gt *gt = rps_to_gt(rps);
+> +	u32 pl4 = __rps_read_mmio(gt, GT0_PERF_LIMIT_REASONS) & POWER_LIMIT_4_MASK;
+> +
+> +	return pl4;
+> +}
+> +
+> +u32 intel_rps_read_throttle_reason_thermal(struct intel_rps *rps)
+> +{
+> +	struct intel_gt *gt = rps_to_gt(rps);
+> +	u32 thermal = __rps_read_mmio(gt, GT0_PERF_LIMIT_REASONS) & THERMAL_LIMIT_MASK;
+> +
+> +	return thermal;
+> +}
+> +
+> +u32 intel_rps_read_throttle_reason_prochot(struct intel_rps *rps)
+> +{
+> +	struct intel_gt *gt = rps_to_gt(rps);
+> +	u32 prochot = __rps_read_mmio(gt, GT0_PERF_LIMIT_REASONS) & PROCHOT_MASK;
+> +
+> +	return prochot;
+> +}
+> +
+> +u32 intel_rps_read_throttle_reason_ratl(struct intel_rps *rps)
+> +{
+> +	struct intel_gt *gt = rps_to_gt(rps);
+> +	u32 ratl = __rps_read_mmio(gt, GT0_PERF_LIMIT_REASONS) & RATL_MASK;
+> +
+> +	return ratl;
+> +}
+> +
+> +u32 intel_rps_read_throttle_reason_vr_thermalert(struct intel_rps *rps)
+> +{
+> +	struct intel_gt *gt = rps_to_gt(rps);
+> +	u32 thermalert = __rps_read_mmio(gt, GT0_PERF_LIMIT_REASONS) & VR_THERMALERT_MASK;
+> +
+> +	return thermalert;
+> +}
 
-              Linus
+shouldn't we return bool by all of these functions as used/expected in
+show() counterparts ?
+
+> +
+> +u32 intel_rps_read_throttle_reason_vr_tdc(struct intel_rps *rps)
+> +{
+> +	struct intel_gt *gt = rps_to_gt(rps);
+> +	u32 tdc = __rps_read_mmio(gt, GT0_PERF_LIMIT_REASONS) & VR_TDC_MASK;
+> +
+> +	return tdc;
+> +}
+> +
+>  /* External interface for intel_ips.ko */
+>  
+>  static struct drm_i915_private __rcu *ips_mchdev;
+> diff --git a/drivers/gpu/drm/i915/gt/intel_rps.h b/drivers/gpu/drm/i915/gt/intel_rps.h
+> index c6d76a3d1331..b45ab983895c 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_rps.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_rps.h
+> @@ -47,6 +47,16 @@ u32 intel_rps_read_punit_req_frequency(struct intel_rps *rps);
+>  u32 intel_rps_read_state_cap(struct intel_rps *rps);
+>  void intel_rps_raise_unslice(struct intel_rps *rps);
+>  void intel_rps_lower_unslice(struct intel_rps *rps);
+> +u32 intel_rps_read_throttle_reason(struct intel_rps *rps);
+> +u32 intel_rps_read_throttle_reason_status(struct intel_rps *rps);
+> +u32 intel_rps_read_throttle_reason_pl1(struct intel_rps *rps);
+> +u32 intel_rps_read_throttle_reason_pl2(struct intel_rps *rps);
+> +u32 intel_rps_read_throttle_reason_pl4(struct intel_rps *rps);
+> +u32 intel_rps_read_throttle_reason_thermal(struct intel_rps *rps);
+> +u32 intel_rps_read_throttle_reason_prochot(struct intel_rps *rps);
+> +u32 intel_rps_read_throttle_reason_ratl(struct intel_rps *rps);
+> +u32 intel_rps_read_throttle_reason_vr_thermalert(struct intel_rps *rps);
+> +u32 intel_rps_read_throttle_reason_vr_tdc(struct intel_rps *rps);
+>  
+>  void gen5_rps_irq_handler(struct intel_rps *rps);
+>  void gen6_rps_irq_handler(struct intel_rps *rps, u32 pm_iir);
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index 2243d9d1d941..c4f53e5404cd 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -1836,6 +1836,17 @@
+>  #define GEN9_RP_STATE_LIMITS	_MMIO(0x138148)
+>  #define XEHPSDV_RP_STATE_CAP	_MMIO(0x250014)
+>  
+> +#define GT0_PERF_LIMIT_REASONS		_MMIO(0x1381A8)
+> +#define   GT0_PERF_LIMIT_REASONS_MASK	0x00000de3
+
+this mask is different that other (FIELD_PREP/GET wont work) so maybe we
+should name it in special way ?
+
+> +#define   PROCHOT_MASK			BIT(1)
+> +#define   THERMAL_LIMIT_MASK		BIT(2)
+> +#define   RATL_MASK			BIT(6)
+> +#define   VR_THERMALERT_MASK		BIT(7)
+> +#define   VR_TDC_MASK			BIT(8)
+> +#define   POWER_LIMIT_4_MASK		BIT(9)
+> +#define   POWER_LIMIT_1_MASK		BIT(11)
+> +#define   POWER_LIMIT_2_MASK		BIT(12)
+
+REG_BIT ?
+
+Michal
+
+> +
+>  #define CHV_CLK_CTL1			_MMIO(0x101100)
+>  #define VLV_CLK_CTL2			_MMIO(0x101104)
+>  #define   CLK_CTL2_CZCOUNT_30NS_SHIFT	28
