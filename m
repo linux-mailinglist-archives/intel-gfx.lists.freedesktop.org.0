@@ -2,64 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 376244C7D59
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Feb 2022 23:29:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 179D94C7D6E
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Feb 2022 23:33:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A324310E92E;
-	Mon, 28 Feb 2022 22:29:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7BF5410E936;
+	Mon, 28 Feb 2022 22:33:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bedivere.hansenpartnership.com (bedivere.hansenpartnership.com
- [96.44.175.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DFDA410E8E8;
- Mon, 28 Feb 2022 22:29:04 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BC42610E936
+ for <intel-gfx@lists.freedesktop.org>; Mon, 28 Feb 2022 22:33:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=hansenpartnership.com; s=20151216; t=1646087344;
- bh=gnitHaDoKtFYFmdfHx7ZmUK+2K99mC4OdMWiGF3yqts=;
- h=Message-ID:Subject:From:To:Date:In-Reply-To:References:From;
- b=aDv+zUJMVLbpHnTobs88HMeKXt8e/Fsm3NyltqbtXmut8dDpKPmgZQHvU7CQAhpxT
- x8yyOH8cKkqI9wCCVd7mWgGGPtOdFvurEvTcoJzgoG8F+eqVyUcxI30U1Z3UyKmv+s
- JFRv6cmaJ/MAgdj571KO+Pve8Zec5bTLqNmzMPjU=
-Received: from localhost (localhost [127.0.0.1])
- by bedivere.hansenpartnership.com (Postfix) with ESMTP id 2FE4A1281036;
- Mon, 28 Feb 2022 17:29:04 -0500 (EST)
-Received: from bedivere.hansenpartnership.com ([127.0.0.1])
- by localhost (bedivere.hansenpartnership.com [127.0.0.1]) (amavisd-new,
- port 10024)
- with ESMTP id UdsLtl38GfVe; Mon, 28 Feb 2022 17:29:04 -0500 (EST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=hansenpartnership.com; s=20151216; t=1646087343;
- bh=gnitHaDoKtFYFmdfHx7ZmUK+2K99mC4OdMWiGF3yqts=;
- h=Message-ID:Subject:From:To:Date:In-Reply-To:References:From;
- b=u33hwQnb0VqdOXP8ulufSc5IRuZCZipVBGZNcGF9+k1EE0TmKFXpcGOMGd4fMwEgO
- 9syQhDBoNk9Z7GUqfbwA47rALQtXFHUxFeSSP/G0sxjEsJWs9EMuAmppU6twhzQzk+
- fAgT3F3AJIbVTwM2ufsCoBYKhhHBSRhleqdyR2l4=
-Received: from jarvis.int.hansenpartnership.com (unknown
- [IPv6:2601:5c4:4300:c551::527])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits))
- (No client certificate requested)
- by bedivere.hansenpartnership.com (Postfix) with ESMTPSA id C21DB1280D34;
- Mon, 28 Feb 2022 17:28:59 -0500 (EST)
-Message-ID: <73fa82a20910c06784be2352a655acc59e9942ea.camel@HansenPartnership.com>
-From: James Bottomley <James.Bottomley@HansenPartnership.com>
-To: Mike Rapoport <rppt@kernel.org>, Christian =?ISO-8859-1?Q?K=F6nig?=
- <christian.koenig@amd.com>, Linus Torvalds <torvalds@linux-foundation.org>
-Date: Mon, 28 Feb 2022 17:28:58 -0500
-In-Reply-To: <7D0C2A5D-500E-4F38-AD0C-A76E132A390E@kernel.org>
-References: <20220228110822.491923-1-jakobkoschel@gmail.com>
- <20220228110822.491923-3-jakobkoschel@gmail.com>
- <2e4e95d6-f6c9-a188-e1cd-b1eae465562a@amd.com>
- <CAHk-=wgQps58DPEOe4y5cTh5oE9EdNTWRLXzgMiETc+mFX7jzw@mail.gmail.com>
- <282f0f8d-f491-26fc-6ae0-604b367a5a1a@amd.com>
- <b2d20961dbb7533f380827a7fcc313ff849875c1.camel@HansenPartnership.com>
- <7D0C2A5D-500E-4F38-AD0C-A76E132A390E@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.34.4 
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1646087608; x=1677623608;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=Bn9izpqKBs56oc43rnakzO6sXTOcc68e/qndE3+SDl8=;
+ b=c5ZD9c0xoLZLg7Ks3MGhmGmKhAthFWyKlAQon3Dzm8MihklEx5XlHG+c
+ 4KtKrj9lRxWJUHq+RigpMhiicv5wj9+7eUimB8uOdRtfLJEvC7Gp2wmTD
+ rqWQxYYwI3DGZcZNoHoFKaQPY7yXehljsJDpsrqR7uVaW5X3Csa6ZVSow
+ o7oxW8H5loYKqRabrj055sUR0yMvt1pjlwWFJuBGMeRzbBjTBDpyXioq8
+ OVwy74sodjQ6Cd8ieVVElGssyiEsqzfld0rGQkcsSXeJGJ2wg2nNWkwUn
+ e9Iw8QsQH4t77XfF+FhoQ5PSckpROmKACuKfGhRniQM87LT0yQA06ifx5 w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10272"; a="339436817"
+X-IronPort-AV: E=Sophos;i="5.90,144,1643702400"; d="scan'208";a="339436817"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Feb 2022 14:33:28 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,144,1643702400"; d="scan'208";a="708826716"
+Received: from lkp-server01.sh.intel.com (HELO 788b1cd46f0d) ([10.239.97.150])
+ by orsmga005.jf.intel.com with ESMTP; 28 Feb 2022 14:33:26 -0800
+Received: from kbuild by 788b1cd46f0d with local (Exim 4.92)
+ (envelope-from <lkp@intel.com>)
+ id 1nOoa5-0007q1-Me; Mon, 28 Feb 2022 22:33:25 +0000
+Date: Tue, 1 Mar 2022 06:32:30 +0800
+From: kernel test robot <lkp@intel.com>
+To: Alan Previn <alan.previn.teres.alexis@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Message-ID: <202203010622.2JyDEoHX-lkp@intel.com>
+References: <20220226095541.1010534-10-alan.previn.teres.alexis@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 2/6] treewide: remove using list iterator
- after loop body as a ptr
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220226095541.1010534-10-alan.previn.teres.alexis@intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v7 09/13] drm/i915/guc: Check sizing of
+ guc_capture output
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,108 +61,130 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-wireless <linux-wireless@vger.kernel.org>,
- alsa-devel@alsa-project.org, KVM list <kvm@vger.kernel.org>,
- "Gustavo A. R. Silva" <gustavo@embeddedor.com>, linux-iio@vger.kernel.org,
- nouveau@lists.freedesktop.org, Rasmus Villemoes <linux@rasmusvillemoes.dk>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Cristiano Giuffrida <c.giuffrida@vu.nl>, "Bos, H.J." <h.j.bos@vu.nl>,
- linux1394-devel@lists.sourceforge.net, drbd-dev@lists.linbit.com,
- linux-arch <linux-arch@vger.kernel.org>, CIFS <linux-cifs@vger.kernel.org>,
- linux-aspeed@lists.ozlabs.org, linux-scsi <linux-scsi@vger.kernel.org>,
- linux-rdma <linux-rdma@vger.kernel.org>, linux-staging@lists.linux.dev,
- amd-gfx list <amd-gfx@lists.freedesktop.org>, Jason Gunthorpe <jgg@ziepe.ca>,
- intel-wired-lan@lists.osuosl.org, kgdb-bugreport@lists.sourceforge.net,
- bcm-kernel-feedback-list@broadcom.com,
- Dan Carpenter <dan.carpenter@oracle.com>,
- Linux Media Mailing List <linux-media@vger.kernel.org>,
- Kees Cook <keescook@chromium.org>, Arnd Bergman <arnd@arndb.de>,
- Linux PM <linux-pm@vger.kernel.org>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- Brian Johannesmeyer <bjohannesmeyer@gmail.com>,
- Nathan Chancellor <nathan@kernel.org>, dma <dmaengine@vger.kernel.org>,
- Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
- Jakob Koschel <jakobkoschel@gmail.com>, v9fs-developer@lists.sourceforge.net,
- linux-tegra <linux-tegra@vger.kernel.org>,
- Thomas Gleixner <tglx@linutronix.de>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Linux ARM <linux-arm-kernel@lists.infradead.org>, linux-sgx@vger.kernel.org,
- linux-block <linux-block@vger.kernel.org>, Netdev <netdev@vger.kernel.org>,
- linux-usb@vger.kernel.org, samba-technical@lists.samba.org,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Linux F2FS Dev Mailing List <linux-f2fs-devel@lists.sourceforge.net>,
- tipc-discussion@lists.sourceforge.net,
- Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
- linux-fsdevel <linux-fsdevel@vger.kernel.org>,
- linux-mediatek@lists.infradead.org, Andrew Morton <akpm@linux-foundation.org>,
- linuxppc-dev <linuxppc-dev@lists.ozlabs.org>
+Cc: llvm@lists.linux.dev, kbuild-all@lists.01.org,
+ Alan Previn <alan.previn.teres.alexis@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 2022-02-28 at 23:59 +0200, Mike Rapoport wrote:
-> 
-> On February 28, 2022 10:42:53 PM GMT+02:00, James Bottomley <
-> James.Bottomley@HansenPartnership.com> wrote:
-> > On Mon, 2022-02-28 at 21:07 +0100, Christian König wrote:
-[...]
-> > > > I do wish we could actually poison the 'pos' value after the
-> > > > loop somehow - but clearly the "might be uninitialized" I was
-> > > > hoping for isn't the way to do it.
-> > > > 
-> > > > Anybody have any ideas?
-> > > 
-> > > I think we should look at the use cases why code is touching
-> > > (pos) after the loop.
-> > > 
-> > > Just from skimming over the patches to change this and experience
-> > > with the drivers/subsystems I help to maintain I think the
-> > > primary pattern looks something like this:
-> > > 
-> > > list_for_each_entry(entry, head, member) {
-> > >      if (some_condition_checking(entry))
-> > >          break;
-> > > }
-> > > do_something_with(entry);
-> > 
-> > Actually, we usually have a check to see if the loop found
-> > anything, but in that case it should something like
-> > 
-> > if (list_entry_is_head(entry, head, member)) {
-> >    return with error;
-> > }
-> > do_somethin_with(entry);
-> > 
-> > Suffice?  The list_entry_is_head() macro is designed to cope with
-> > the bogus entry on head problem.
-> 
-> Won't suffice because the end goal of this work is to limit scope of
-> entry only to loop. Hence the need for additional variable.
+Hi Alan,
 
-Well, yes, but my objection is more to the size of churn than the
-desire to do loop local.  I'm not even sure loop local is possible,
-because it's always annoyed me that for (int i = 0; ...  in C++ defines
-i in the outer scope not the loop scope, which is why I never use it.
+Thank you for the patch! Yet something to improve:
 
-However, if the desire is really to poison the loop variable then we
-can do
+[auto build test ERROR on drm-tip/drm-tip]
+[cannot apply to drm-intel/for-linux-next drm-exynos/exynos-drm-next drm/drm-next tegra-drm/drm/tegra/for-next airlied/drm-next v5.17-rc6 next-20220228]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-#define list_for_each_entry(pos, head, member)				\
-	for (pos = list_first_entry(head, typeof(*pos), member);	\
-	     !list_entry_is_head(pos, head, member) && ((pos = NULL) == NULL;			\
-	     pos = list_next_entry(pos, member))
+url:    https://github.com/0day-ci/linux/commits/Alan-Previn/Add-GuC-Error-Capture-Support/20220226-175600
+base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
+config: i386-allyesconfig (https://download.01.org/0day-ci/archive/20220301/202203010622.2JyDEoHX-lkp@intel.com/config)
+compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project d271fc04d5b97b12e6b797c6067d3c96a8d7470e)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/0day-ci/linux/commit/4c41838b35d9a5c0bcb4380e0064cb2d5d33661f
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Alan-Previn/Add-GuC-Error-Capture-Support/20220226-175600
+        git checkout 4c41838b35d9a5c0bcb4380e0064cb2d5d33661f
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 SHELL=/bin/bash
 
-Which would at least set pos to NULL when the loop completes.
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
 
-> Besides, there are no guarantees that people won't
-> do_something_with(entry) without the check or won't compare entry to
-> NULL to check if the loop finished with break or not.
+All errors (new ones prefixed by >>):
 
-I get the wider goal, but we have to patch the problem cases now and a
-simple one-liner is better than a larger patch that may or may not work
-if we ever achieve the local definition or value poisoning idea.  I'm
-also fairly certain coccinelle can come up with a use without checking
-for loop completion semantic patch which we can add to 0day.
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:555:1: error: no previous prototype for function 'intel_guc_capture_getlistsize' [-Werror,-Wmissing-prototypes]
+   intel_guc_capture_getlistsize(struct intel_guc *guc, u32 owner, u32 type, u32 classid,
+   ^
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:554:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
+   int
+   ^
+   static 
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:585:1: error: no previous prototype for function 'intel_guc_capture_getlist' [-Werror,-Wmissing-prototypes]
+   intel_guc_capture_getlist(struct intel_guc *guc, u32 owner, u32 type, u32 classid,
+   ^
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:584:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
+   int
+   ^
+   static 
+>> drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:648:5: error: no previous prototype for function 'intel_guc_capture_output_min_size_est' [-Werror,-Wmissing-prototypes]
+   int intel_guc_capture_output_min_size_est(struct intel_guc *guc)
+       ^
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:648:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
+   int intel_guc_capture_output_min_size_est(struct intel_guc *guc)
+   ^
+   static 
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:711:6: error: no previous prototype for function 'intel_guc_capture_destroy' [-Werror,-Wmissing-prototypes]
+   void intel_guc_capture_destroy(struct intel_guc *guc)
+        ^
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:711:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
+   void intel_guc_capture_destroy(struct intel_guc *guc)
+   ^
+   static 
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:727:5: error: no previous prototype for function 'intel_guc_capture_init' [-Werror,-Wmissing-prototypes]
+   int intel_guc_capture_init(struct intel_guc *guc)
+       ^
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:727:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
+   int intel_guc_capture_init(struct intel_guc *guc)
+   ^
+   static 
+   5 errors generated.
 
-James
 
+vim +/intel_guc_capture_output_min_size_est +648 drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
 
+   646	
+   647	#define GUC_CAPTURE_OVERBUFFER_MULTIPLIER 3
+ > 648	int intel_guc_capture_output_min_size_est(struct intel_guc *guc)
+   649	{
+   650		struct intel_gt *gt = guc_to_gt(guc);
+   651		struct intel_engine_cs *engine;
+   652		enum intel_engine_id id;
+   653		int worst_min_size = 0, num_regs = 0;
+   654		size_t tmp = 0;
+   655	
+   656		/*
+   657		 * If every single engine-instance suffered a failure in quick succession but
+   658		 * were all unrelated, then a burst of multiple error-capture events would dump
+   659		 * registers for every one engine instance, one at a time. In this case, GuC
+   660		 * would even dump the global-registers repeatedly.
+   661		 *
+   662		 * For each engine instance, there would be 1 x guc_state_capture_group_t output
+   663		 * followed by 3 x guc_state_capture_t lists. The latter is how the register
+   664		 * dumps are split across different register types (where the '3' are global vs class
+   665		 * vs instance). Finally, let's multiply the whole thing by 3x (just so we are
+   666		 * not limited to just 1 round of data in a worst case full register dump log)
+   667		 *
+   668		 * NOTE: intel_guc_log that allocates the log buffer would round this size up to
+   669		 * a power of two.
+   670		 */
+   671	
+   672		for_each_engine(engine, gt, id) {
+   673			worst_min_size += sizeof(struct guc_state_capture_group_header_t) +
+   674					  (3 * sizeof(struct guc_state_capture_header_t));
+   675	
+   676			if (!intel_guc_capture_getlistsize(guc, 0, GUC_CAPTURE_LIST_TYPE_GLOBAL, 0, &tmp))
+   677				num_regs += tmp;
+   678	
+   679			if (!intel_guc_capture_getlistsize(guc, 0, GUC_CAPTURE_LIST_TYPE_ENGINE_CLASS,
+   680							   engine->class, &tmp)) {
+   681				num_regs += tmp;
+   682			}
+   683			if (!intel_guc_capture_getlistsize(guc, 0, GUC_CAPTURE_LIST_TYPE_ENGINE_INSTANCE,
+   684							   engine->class, &tmp)) {
+   685				num_regs += tmp;
+   686			}
+   687		}
+   688	
+   689		worst_min_size += (num_regs * sizeof(struct guc_mmio_reg));
+   690	
+   691		return (worst_min_size * GUC_CAPTURE_OVERBUFFER_MULTIPLIER);
+   692	}
+   693	
+
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
