@@ -1,58 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5CCE4C9938
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Mar 2022 00:22:46 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D2424C994E
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Mar 2022 00:26:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D36AF10E7D2;
-	Tue,  1 Mar 2022 23:22:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B6B4510E6A4;
+	Tue,  1 Mar 2022 23:26:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-vk1-xa2f.google.com (mail-vk1-xa2f.google.com
- [IPv6:2607:f8b0:4864:20::a2f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F1EDC10E7D2
- for <intel-gfx@lists.freedesktop.org>; Tue,  1 Mar 2022 23:22:41 +0000 (UTC)
-Received: by mail-vk1-xa2f.google.com with SMTP id m195so16428vka.5
- for <intel-gfx@lists.freedesktop.org>; Tue, 01 Mar 2022 15:22:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
- bh=MPQHz1qy9tWKEUX01tk1m93jc1oVOCglEUqkt2q1XsI=;
- b=CnYAHzBHUhb7Ka/UTSLbIUgmHZCxBEGgYIjMw1U5jNFnmxEmMQSa3O+O2JlwK3bTpn
- hAz37huhcy4rpcmnSnNG9qpD6kRs5YQGLy21HqsSUMgMWq2WyILF1EFXmPwNm2EtN799
- ibzfU5d6ODVZST4T3C+RM4Phc0reu8E847gv5vWXGD9ofx9wpS2+P1acp7+/KtUE/MoK
- gYInmtb/CpIiMsJu49B4vVF2y5BER3CH3eZmtyGnLJo4u5nSr4P3VpICcZUlJHpYa5Rf
- PgG4lnEbzm9fDKa+6/UlIAXRsdD5JFC1IT4EF1C3zkeQNI3e9f976eOY9wpVMjUxBdRw
- U8XA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to;
- bh=MPQHz1qy9tWKEUX01tk1m93jc1oVOCglEUqkt2q1XsI=;
- b=yz5YZnSw35lIymWz2GhkC/4uAZTy1Lz6vwXOy67B0r4v94uGZH74yQ5PNnUe59Glf/
- u1DwjEqc4xliiPq2Xb5BpgBjAyMWsPMpOJ5+P0fo9geRRiRp+QEAlek9C09OAry4M06o
- u33WPDSqbhQZu098U3bv/wHR3rShsx9utSbHLcEsOdgSoRFRAY6H74qAoJlQDAP+tjpx
- d3VCPio7B/m1UQtAP9MtdPUf4OCeOBR0YY4BPHNNnabzZo/Ydv52pUeT7MGjypOjNUpt
- am56vQ6jvgrABD8W9zk2X4AjpO61R0Dd5WAgIsyqy2QdwN15sv9gpYwVvoiNBQ/FBkea
- c3cg==
-X-Gm-Message-State: AOAM531FYKeMINQEAunDNx0IzraUscNh28tVRfI71LrJwXxxQmQca83W
- ic8d9EMU9pMyxp3rbcTHCGsy5m4Uc4iduC8etk6/FLFTh8k=
-X-Google-Smtp-Source: ABdhPJzXA6CDDO6MW9GgJnqtgIK9QThmmNZql9NaG6b+CJ+OwbOA27CpGjn7jFkWVXO+Wc5zeEXWz+rwkwD5PutfNl8=
-X-Received: by 2002:a1f:1355:0:b0:333:40fd:64ce with SMTP id
- 82-20020a1f1355000000b0033340fd64cemr5824360vkt.17.1646176960937; Tue, 01 Mar
- 2022 15:22:40 -0800 (PST)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F0BC10E6A4
+ for <intel-gfx@lists.freedesktop.org>; Tue,  1 Mar 2022 23:26:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1646177216; x=1677713216;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=S5mG/n5GehpQv+z2cBkwmdJP2sz5w0O3yPiQNG5OYAM=;
+ b=epIvNn5/7LFiQaPQ2WOK20fA4YACwrW5skmIH1d0gY6BDxppxjel3EXQ
+ wxtRDETZk5EPfSWBCnAIgVveKycKLl+JQIAwiP5i39Mb35EXHrIU2jZNo
+ 5ibdKuODcXBJtMLhR/gIJgB/DQ5XPdni9tq16/0OFhh9DYhEVIaasQ6yq
+ f0L3+shNJRrtDm3IgmHC6o9hQ+UlyHhO3C1tWQkon1FWgeAQqD4EqtdB3
+ R/Owtuwpm/BNELmiZiAOc0SgWPtpyAtDoTDHLAMY4CIcDfH1QgceJi9JP
+ o8NdM8PG0+ALiOHyqFZGEBR1ZaTOSiftuM4kZyAYkJ+QgTgeyhTcqXR7Q g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10273"; a="233881531"
+X-IronPort-AV: E=Sophos;i="5.90,146,1643702400"; d="scan'208";a="233881531"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Mar 2022 15:26:55 -0800
+X-IronPort-AV: E=Sophos;i="5.90,146,1643702400"; d="scan'208";a="709256123"
+Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
+ ([10.165.21.211])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Mar 2022 15:26:55 -0800
+Date: Tue, 1 Mar 2022 15:27:41 -0800
+From: "Navare, Manasi" <manasi.d.navare@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <20220301232741.GA8799@labuser-Z97X-UD5H>
+References: <20220225013055.9282-1-manasi.d.navare@intel.com>
+ <20220225013055.9282-2-manasi.d.navare@intel.com>
+ <YhidvyZ0vvxmHBwP@intel.com>
+ <20220226011055.GA13404@labuser-Z97X-UD5H>
+ <20220301193052.GA31895@labuser-Z97X-UD5H>
+ <Yh51XiI/cuj01kiu@intel.com>
 MIME-Version: 1.0
-References: <20220301164629.3814634-1-jim.cromie@gmail.com>
- <164617037032.8599.11195195015630248913@emeril.freedesktop.org>
-In-Reply-To: <164617037032.8599.11195195015630248913@emeril.freedesktop.org>
-From: jim.cromie@gmail.com
-Date: Tue, 1 Mar 2022 16:22:14 -0700
-Message-ID: <CAJfuBxwJJ99yUYGrPc_ghSwEzfQKa4QWOig=4S8o1e6938iMwA@mail.gmail.com>
-To: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] 
-	=?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgdXNl?=
-	=?utf-8?q?_dynamic-debug_under_drm=2Edebug_api_=28rev2=29?=
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <Yh51XiI/cuj01kiu@intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH v6 2/2] drm/i915/display/vrr: Reset VRR
+ capable property on a long hpd
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,76 +64,117 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 1, 2022 at 2:32 PM Patchwork
-<patchwork@emeril.freedesktop.org> wrote:
->
-> Patch Details
-> Series:use dynamic-debug under drm.debug api (rev2)
-> URL:https://patchwork.freedesktop.org/series/100289/
-> State:failure
-> Details:https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22448/index.html
->
-> CI Bug Log - changes from CI_DRM_11306 -> Patchwork_22448
->
-> Summary
->
-> FAILURE
->
-> Serious unknown changes coming with Patchwork_22448 absolutely need to be
-> verified manually.
->
-> If you think the reported changes have nothing to do with the changes
-> introduced in Patchwork_22448, please notify your bug team to allow them
-> to document this new failure mode, which will reduce false positives in CI.
->
-> External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22448/index.html
->
-> Participating hosts (50 -> 45)
->
-> Missing (5): shard-tglu fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus
->
-> Possible new issues
->
-> Here are the unknown changes that may have been introduced in Patchwork_22448:
->
-> IGT changes
->
-> Possible regressions
->
-> igt@gem_exec_suspend@basic-s3@smem:
->
-> fi-cml-u2: PASS -> INCOMPLETE
+On Tue, Mar 01, 2022 at 09:34:54PM +0200, Ville Syrjälä wrote:
+> On Tue, Mar 01, 2022 at 11:30:52AM -0800, Navare, Manasi wrote:
+> > Hi Ville,
+> > 
+> > Does it make sense to add the set prop in intel_dp_Set_edid but keep the reset to false
+> > in intel_dp_detect where we clear other parameters?
+> 
+> We don't clear stuff in .detect(), or at least shouldn't. .detect() doesn't
+> even get run when forcing the connector status.
 
+Well we do clear some compliance variables there.
+But okay I can move the VRR rest stuff in intel_dp_unset_edid(), just that this will also
+get called evertime we set edid, it will always clear this first.
 
-this one's incomplete cuz of an ext4 boot problem and panic.  unrelated.
+Manasi
 
-<2>[   77.549595] EXT4-fs error (device sda2):
-ext4_journal_check_start:83: comm dmesg: Detected aborted journal
-<3>[   77.549651] Buffer I/O error on dev sda2, logical block
-58228736, lost sync page write
-<2>[   77.549684] EXT4-fs error (device sda2):
-ext4_journal_check_start:83: comm rs:main Q:Reg: Detected aborted
-journal
-<3>[   77.550560] JBD2: Error -5 detected when updating journal
-superblock for sda2-8.
-<3>[   77.553593] Buffer I/O error on dev sda2, logical block 0, lost
-sync page write
-<3>[   77.554225] EXT4-fs (sda2): I/O error while writing superblock
-<3>[   77.554229] EXT4-fs (sda2): I/O error while writing superblock
-<0>[   77.554869] Kernel panic - not syncing: EXT4-fs (device sda2):
-panic forced after error
-<0>[   78.581703] Shutting down cpus with NMI
-<0>[   78.581733] Kernel Offset: disabled
-<4>[   78.581785] CPU: 5 PID: 957 Comm: dmesg Not tainted
-5.17.0-rc6-CI-Patchwork_22448+ #1
-
-
->
-> Known issues
->
-> Here are the changes found in Patchwork_22448 that come from known issues:
->
-> c2ed9cc02d9c dyndbg: fix static_branch manipulation
+> 
+> > 
+> > Manasi
+> > 
+> > 
+> > On Fri, Feb 25, 2022 at 05:11:02PM -0800, Navare, Manasi wrote:
+> > > On Fri, Feb 25, 2022 at 11:13:35AM +0200, Ville Syrjälä wrote:
+> > > > On Thu, Feb 24, 2022 at 05:30:55PM -0800, Manasi Navare wrote:
+> > > > > With some VRR panels, user can turn VRR ON/OFF on the fly from the panel settings.
+> > > > > When VRR is turned OFF ,sends a long HPD to the driver clearing the Ignore MSA bit
+> > > > > in the DPCD. Currently the driver parses that onevery HPD but fails to reset
+> > > > > the corresponding VRR Capable Connector property.
+> > > > > Hence the userspace still sees this as VRR Capable panel which is incorrect.
+> > > > > 
+> > > > > Fix this by explicitly resetting the connector property.
+> > > > > 
+> > > > > v2: Reset vrr capable if status == connector_disconnected
+> > > > > v3: Use i915 and use bool vrr_capable (Jani Nikula)
+> > > > > v4: Move vrr_capable to after update modes call (Jani N)
+> > > > > Remove the redundant comment (Jan N)
+> > > > > v5: Fixes the regression on older platforms by reseting the VRR
+> > > > > only if HAS_VRR
+> > > > > v6: Remove the checks from driver, add in drm core before
+> > > > > setting VRR prop (Ville)
+> > > > > 
+> > > > > Cc: Jani Nikula <jani.nikula@intel.com>
+> > > > > Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > > > > Fixes: 390a1f8beb87 ("Revert "drm/i915/display/vrr: Reset VRR capable property on a long hpd")
+> > > > > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+> > > > > ---
+> > > > >  drivers/gpu/drm/i915/display/intel_dp.c | 15 +++++++++++----
+> > > > >  1 file changed, 11 insertions(+), 4 deletions(-)
+> > > > > 
+> > > > > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> > > > > index 1046e7fe310a..f96123b56935 100644
+> > > > > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> > > > > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> > > > > @@ -4455,6 +4455,10 @@ intel_dp_detect(struct drm_connector *connector,
+> > > > >  		memset(&intel_dp->compliance, 0, sizeof(intel_dp->compliance));
+> > > > >  		memset(intel_dp->dsc_dpcd, 0, sizeof(intel_dp->dsc_dpcd));
+> > > > >  
+> > > > > +		/* Reset VRR Capable property on disconnect */
+> > > > > +		drm_connector_set_vrr_capable_property(connector,
+> > > > > +						       false);
+> > > > > +
+> > > > >  		if (intel_dp->is_mst) {
+> > > > >  			drm_dbg_kms(&dev_priv->drm,
+> > > > >  				    "MST device may have disappeared %d vs %d\n",
+> > > > > @@ -4569,15 +4573,18 @@ static int intel_dp_get_modes(struct drm_connector *connector)
+> > > > >  {
+> > > > >  	struct intel_connector *intel_connector = to_intel_connector(connector);
+> > > > >  	struct edid *edid;
+> > > > > +	struct drm_i915_private *i915 = to_i915(connector->dev);
+> > > > >  	int num_modes = 0;
+> > > > >  
+> > > > >  	edid = intel_connector->detect_edid;
+> > > > >  	if (edid) {
+> > > > > -		num_modes = intel_connector_update_modes(connector, edid);
+> > > > > +		bool vrr_capable;
+> > > > >  
+> > > > > -		if (intel_vrr_is_capable(connector))
+> > > > > -			drm_connector_set_vrr_capable_property(connector,
+> > > > > -							       true);
+> > > > > +		num_modes = intel_connector_update_modes(connector, edid);
+> > > > > +		vrr_capable = intel_vrr_is_capable(connector);
+> > > > > +		drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] VRR capable: %s\n",
+> > > > > +			    connector->base.id, connector->name, yesno(vrr_capable));
+> > > > > +		drm_connector_set_vrr_capable_property(connector, vrr_capable);
+> > > > 
+> > > > As mentioned on irc I think intel_dp_(un)set_edid() would be a better
+> > > > place for these.
+> > > 
+> > > Yes I guess I can add the above to check for vrr_capable and set it to true/false in intel_dp_set_edid()
+> > > 
+> > > But the resetting part needs to happen outside of intel_dp_unset_edid so that we dont always set it to false
+> > > before set_edid. It can just stay in intel_dp_detect where we clear other othing on connect status == disconnected.
+> > > Is that fine?
+> > > 
+> > > Manasi
+> > > 
+> > > > 
+> > > > >  	}
+> > > > >  
+> > > > >  	/* Also add fixed mode, which may or may not be present in EDID */
+> > > > > -- 
+> > > > > 2.19.1
+> > > > 
+> > > > -- 
+> > > > Ville Syrjälä
+> > > > Intel
+> 
+> -- 
+> Ville Syrjälä
+> Intel
