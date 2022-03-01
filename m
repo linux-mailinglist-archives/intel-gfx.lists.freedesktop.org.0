@@ -1,53 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BB254C9318
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Mar 2022 19:27:48 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 210154C931E
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Mar 2022 19:27:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 41C8510E78D;
-	Tue,  1 Mar 2022 18:27:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D20110E792;
+	Tue,  1 Mar 2022 18:27:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA8FB10E786
- for <intel-gfx@lists.freedesktop.org>; Tue,  1 Mar 2022 18:27:44 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8750710E786
+ for <intel-gfx@lists.freedesktop.org>; Tue,  1 Mar 2022 18:27:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1646159264;
+ s=mimecast20190719; t=1646159270;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=ewdicsLWPzXfBMC9hKfnWlF0kfyJRGxBWt4X1H48+7Q=;
- b=X7fncc8Cbf5CHB/y+6jzbTuLl2khYW8mqI5IZXzEdsenmnvMWt1cK8boS236HUaUAZ7ZQF
- 32lwrxaLIpUl3c4r7SkQlmEGTYyq2jR89sxFhA0w7qDCBqz9IQzAeszybiCfg6VuHpe8iz
- oGz8D97hLs+4H4sSFivPVBRkRsAeZIY=
+ bh=cfQFjWIyDl2bmrrDOsLZBx2orDmE+um/XvjO0hUtLH0=;
+ b=gkyhmaFc4GPbSk8Klx28mklqCQQTcARcEm4LNnDTYgkVCfSfZCA5uHvRJddRICRJloRLnD
+ Nip+9ht3XWIcFOgK36rQz+20AO8w80e51yh3oVHAuUuyiE6rd7DpwtHkgMgyWVIVykHWDK
+ 3Q1YISolzKBaXKPA7ScN4ECuXxkXZuk=
 Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
  [209.132.183.4]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-345-MH400OFRPKuW55nJtQOaVg-1; Tue, 01 Mar 2022 13:27:41 -0500
-X-MC-Unique: MH400OFRPKuW55nJtQOaVg-1
+ us-mta-558-VQBftEdxOFeYrpw5uke10Q-1; Tue, 01 Mar 2022 13:27:47 -0500
+X-MC-Unique: VQBftEdxOFeYrpw5uke10Q-1
 Received: from smtp.corp.redhat.com (int-mx02.intmail.prod.int.phx2.redhat.com
  [10.5.11.12])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 0B0561006AA5;
- Tue,  1 Mar 2022 18:27:38 +0000 (UTC)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id D0728FC82;
+ Tue,  1 Mar 2022 18:27:44 +0000 (UTC)
 Received: from localhost.localdomain (unknown [10.40.195.190])
- by smtp.corp.redhat.com (Postfix) with ESMTP id A2F1A86C51;
- Tue,  1 Mar 2022 18:27:31 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 7593D86C51;
+ Tue,  1 Mar 2022 18:27:38 +0000 (UTC)
 From: Maxim Levitsky <mlevitsk@redhat.com>
 To: kvm@vger.kernel.org
-Date: Tue,  1 Mar 2022 20:26:32 +0200
-Message-Id: <20220301182639.559568-5-mlevitsk@redhat.com>
+Date: Tue,  1 Mar 2022 20:26:33 +0200
+Message-Id: <20220301182639.559568-6-mlevitsk@redhat.com>
 In-Reply-To: <20220301182639.559568-1-mlevitsk@redhat.com>
 References: <20220301182639.559568-1-mlevitsk@redhat.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Scanned-By: MIMEDefang 2.79 on 10.5.11.12
-Subject: [Intel-gfx] [PATCH v3 04/11] x86: KVMGT: use
- kvm_page_track_write_tracking_enable
+Subject: [Intel-gfx] [PATCH v3 05/11] KVM: x86: mmu: add gfn_in_memslot
+ helper
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,79 +73,47 @@ Cc: Wanpeng Li <wanpengli@tencent.com>, David Airlie <airlied@linux.ie>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This allows to enable the write tracking only when KVMGT is
-actually used and doesn't carry any penalty otherwise.
-
-Tested by booting a VM with a kvmgt mdev device.
+This is a tiny refactoring, and can be useful to check
+if a GPA/GFN is within a memslot a bit more cleanly.
 
 Signed-off-by: Maxim Levitsky <mlevitsk@redhat.com>
 ---
- arch/x86/kvm/Kconfig             | 3 ---
- arch/x86/kvm/mmu/mmu.c           | 2 +-
- drivers/gpu/drm/i915/Kconfig     | 1 -
- drivers/gpu/drm/i915/gvt/kvmgt.c | 5 +++++
- 4 files changed, 6 insertions(+), 5 deletions(-)
+ include/linux/kvm_host.h | 10 +++++++++-
+ 1 file changed, 9 insertions(+), 1 deletion(-)
 
-diff --git a/arch/x86/kvm/Kconfig b/arch/x86/kvm/Kconfig
-index e3cbd77061364..41341905d3734 100644
---- a/arch/x86/kvm/Kconfig
-+++ b/arch/x86/kvm/Kconfig
-@@ -126,7 +126,4 @@ config KVM_XEN
+diff --git a/include/linux/kvm_host.h b/include/linux/kvm_host.h
+index f11039944c08f..c32bfe0e22b80 100644
+--- a/include/linux/kvm_host.h
++++ b/include/linux/kvm_host.h
+@@ -1574,6 +1574,13 @@ int kvm_request_irq_source_id(struct kvm *kvm);
+ void kvm_free_irq_source_id(struct kvm *kvm, int irq_source_id);
+ bool kvm_arch_irqfd_allowed(struct kvm *kvm, struct kvm_irqfd *args);
  
- 	  If in doubt, say "N".
++
++static inline bool gfn_in_memslot(struct kvm_memory_slot *slot, gfn_t gfn)
++{
++	return (gfn >= slot->base_gfn && gfn < slot->base_gfn + slot->npages);
++}
++
++
+ /*
+  * Returns a pointer to the memslot if it contains gfn.
+  * Otherwise returns NULL.
+@@ -1584,12 +1591,13 @@ try_get_memslot(struct kvm_memory_slot *slot, gfn_t gfn)
+ 	if (!slot)
+ 		return NULL;
  
--config KVM_EXTERNAL_WRITE_TRACKING
--	bool
--
- endif # VIRTUALIZATION
-diff --git a/arch/x86/kvm/mmu/mmu.c b/arch/x86/kvm/mmu/mmu.c
-index 0368ef3fe582e..ba98551f0026d 100644
---- a/arch/x86/kvm/mmu/mmu.c
-+++ b/arch/x86/kvm/mmu/mmu.c
-@@ -5692,7 +5692,7 @@ void kvm_mmu_init_vm(struct kvm *kvm)
- 	node->track_flush_slot = kvm_mmu_invalidate_zap_pages_in_memslot;
- 	kvm_page_track_register_notifier(kvm, node);
- 
--	if (IS_ENABLED(CONFIG_KVM_EXTERNAL_WRITE_TRACKING) || !tdp_enabled)
-+	if (!tdp_enabled)
- 		mmu_enable_write_tracking(kvm);
+-	if (gfn >= slot->base_gfn && gfn < slot->base_gfn + slot->npages)
++	if (gfn_in_memslot(slot, gfn))
+ 		return slot;
+ 	else
+ 		return NULL;
  }
  
-diff --git a/drivers/gpu/drm/i915/Kconfig b/drivers/gpu/drm/i915/Kconfig
-index a4c94dc2e2164..8bea99622dd58 100644
---- a/drivers/gpu/drm/i915/Kconfig
-+++ b/drivers/gpu/drm/i915/Kconfig
-@@ -126,7 +126,6 @@ config DRM_I915_GVT_KVMGT
- 	depends on DRM_I915_GVT
- 	depends on KVM
- 	depends on VFIO_MDEV
--	select KVM_EXTERNAL_WRITE_TRACKING
- 	default n
- 	help
- 	  Choose this option if you want to enable KVMGT support for
-diff --git a/drivers/gpu/drm/i915/gvt/kvmgt.c b/drivers/gpu/drm/i915/gvt/kvmgt.c
-index 20b82fb036f8c..64ced3c2bc550 100644
---- a/drivers/gpu/drm/i915/gvt/kvmgt.c
-+++ b/drivers/gpu/drm/i915/gvt/kvmgt.c
-@@ -1916,6 +1916,7 @@ static int kvmgt_guest_init(struct mdev_device *mdev)
- 	struct intel_vgpu *vgpu;
- 	struct kvmgt_vdev *vdev;
- 	struct kvm *kvm;
-+	int ret;
- 
- 	vgpu = mdev_get_drvdata(mdev);
- 	if (handle_valid(vgpu->handle))
-@@ -1931,6 +1932,10 @@ static int kvmgt_guest_init(struct mdev_device *mdev)
- 	if (__kvmgt_vgpu_exist(vgpu, kvm))
- 		return -EEXIST;
- 
-+	ret = kvm_page_track_write_tracking_enable(kvm);
-+	if (ret)
-+		return ret;
 +
- 	info = vzalloc(sizeof(struct kvmgt_guest_info));
- 	if (!info)
- 		return -ENOMEM;
+ /*
+  * Returns a pointer to the memslot that contains gfn. Otherwise returns NULL.
+  *
 -- 
 2.26.3
 
