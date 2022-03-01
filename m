@@ -2,52 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E759F4C85ED
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Mar 2022 09:07:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2496B4C8613
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Mar 2022 09:13:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 66F4A10EA86;
-	Tue,  1 Mar 2022 08:07:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE93810EAFC;
+	Tue,  1 Mar 2022 08:13:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC97A10EA70;
- Tue,  1 Mar 2022 08:07:33 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 57D1710EAF4;
+ Tue,  1 Mar 2022 08:13:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646122053; x=1677658053;
+ t=1646122400; x=1677658400;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=1OLd4oIJhF/aVNMQoJkORUhlGOG05XbmNyiN4KUpVTo=;
- b=bULy/6AiO+Fhhv8lS8EQRAtgLbsi0t8MSNEI5QXgqJi6//J4nzxr6dJa
- CyoLu1fuCNE9GGcnjZxb7Qx0Cyw4IoVagJUKsWGLLZZilpZCo3yWhuHv4
- 2M0szJ6pTle7NpvL6rvKVCCJiciamAy8+PjvH9yXsE9RQTgwUdx6YxvDc
- 7AAyBf2Yiq98OgwmPRDpN6wcQ0fo8jEmAAzegjvBozpuDfzxABIN1Skph
- qK1Wb+PZUCMWcThnMo0SvazrhWXVOFCgKIW9L9PdnkNBmU8kN78fueyQA
- iB4s+I4yKuLwFbIl1qhJc0MUf8GM9YRbIU0bc6hTKdLTwjfoY7BYSJnHG w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10272"; a="277747187"
-X-IronPort-AV: E=Sophos;i="5.90,145,1643702400"; d="scan'208";a="277747187"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Mar 2022 00:07:23 -0800
-X-IronPort-AV: E=Sophos;i="5.90,145,1643702400"; d="scan'208";a="550614555"
+ mime-version:in-reply-to;
+ bh=OqjjUYfX+BrY+XLsyJWJxPhIRLjnn7G5vgAckv7kkoU=;
+ b=iE5+Yu4bsgQP2RCqtQa9+Z6RYkNJV45oVVxGZq3hqTdqi3Mcqn+cdw6R
+ YYZWFsB8YgBpUqbclAA3LM3g3n1yFbexVaQFarwu7C7e7QQtG2tFaahdG
+ VMyAXqg7aaC412c8/rmk8H5ADicAxdq/2szkTWaJm5nIf10cpZEBuAM4l
+ Qt48v4SSdSnTDDkHWr2nsnTwpJoeuqyIYHLIiOWltHFC+6Xqp8kD1GqrO
+ SteXj2RW9xK1bJFDlVLm/Fbqesgd8cdDmSSeEUo6b7+g+IJqxlTUe+Jqu
+ JhKkBS4HPPt5NGk3Bx5LimKFPt4RgG6OImdw1PRaUqg/ccZD9nMDOp4hn A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10272"; a="339516889"
+X-IronPort-AV: E=Sophos;i="5.90,145,1643702400"; d="scan'208";a="339516889"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Mar 2022 00:13:12 -0800
+X-IronPort-AV: E=Sophos;i="5.90,145,1643702400"; d="scan'208";a="778373205"
 Received: from ramyaman-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
  ([10.212.150.64])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Mar 2022 00:07:23 -0800
-Date: Tue, 1 Mar 2022 00:07:23 -0800
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Mar 2022 00:13:12 -0800
+Date: Tue, 1 Mar 2022 00:13:11 -0800
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-Message-ID: <20220301080723.rjtghylsb65syhki@ldmartin-desk2>
+Message-ID: <20220301081311.bqx6yxysvbjybuom@ldmartin-desk2>
 X-Patchwork-Hint: comment
 References: <20220222145206.76118-1-balasubramani.vivekanandan@intel.com>
- <20220222145206.76118-5-balasubramani.vivekanandan@intel.com>
+ <20220222145206.76118-6-balasubramani.vivekanandan@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Type: text/plain; charset=us-ascii; format=flowed
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220222145206.76118-5-balasubramani.vivekanandan@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 4/7] drm/i915/guc: use the memcpy_from_wc
- call from the drm
+In-Reply-To: <20220222145206.76118-6-balasubramani.vivekanandan@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 5/7] drm/i915/selftests: use the
+ memcpy_from_wc call from the drm
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,72 +59,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: siva.mullati@intel.com, intel-gfx@lists.freedesktop.org,
- michael.cheng@intel.com, dri-devel@lists.freedesktop.org
+Cc: michael.cheng@intel.com, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, siva.mullati@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Feb 22, 2022 at 08:22:03PM +0530, Balasubramani Vivekanandan wrote:
+On Tue, Feb 22, 2022 at 08:22:04PM +0530, Balasubramani Vivekanandan wrote:
 >memcpy_from_wc functions in i915_memcpy.c will be removed and replaced
 >by the implementation in drm_cache.c.
 >Updated to use the functions provided by drm_cache.c.
 >
 >Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 >---
-> drivers/gpu/drm/i915/gt/uc/intel_guc_log.c | 11 ++++++++---
-> 1 file changed, 8 insertions(+), 3 deletions(-)
+> drivers/gpu/drm/i915/selftests/intel_memory_region.c | 8 ++++++--
+> 1 file changed, 6 insertions(+), 2 deletions(-)
 >
->diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
->index b53f61f3101f..1990762f07de 100644
->--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
->+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
->@@ -3,6 +3,7 @@
->  * Copyright © 2014-2019 Intel Corporation
->  */
+>diff --git a/drivers/gpu/drm/i915/selftests/intel_memory_region.c b/drivers/gpu/drm/i915/selftests/intel_memory_region.c
+>index 7acba1d2135e..d7531aa6965a 100644
+>--- a/drivers/gpu/drm/i915/selftests/intel_memory_region.c
+>+++ b/drivers/gpu/drm/i915/selftests/intel_memory_region.c
+>@@ -7,6 +7,7 @@
+> #include <linux/sort.h>
 >
+> #include <drm/drm_buddy.h>
 >+#include <drm/drm_cache.h>
-> #include <linux/debugfs.h>
 >
-> #include "gt/intel_gt.h"
->@@ -205,6 +206,7 @@ static void guc_read_update_log_buffer(struct intel_guc_log *log)
-> 	enum guc_log_buffer_type type;
-> 	void *src_data, *dst_data;
-> 	bool new_overflow;
+> #include "../i915_selftest.h"
+>
+>@@ -1033,7 +1034,10 @@ static inline void igt_memcpy(void *dst, const void *src, size_t size)
+>
+> static inline void igt_memcpy_from_wc(void *dst, const void *src, size_t size)
+> {
+>-	i915_memcpy_from_wc(dst, src, size);
 >+	struct iosys_map src_map;
->
-> 	mutex_lock(&log->relay.lock);
->
->@@ -281,14 +283,17 @@ static void guc_read_update_log_buffer(struct intel_guc_log *log)
-> 		}
->
-> 		/* Just copy the newly written data */
->+		iosys_map_set_vaddr(&src_map, src_data);
+>+
+>+	iosys_map_set_vaddr(&src_map, (void *)src);
 
-src is not guaranteed to come from system memory.... src is coming from:
-intel_guc_allocate_vma(), that may call either  i915_gem_object_create_lmem()
-or  i915_gem_object_create_shmem() depending if the platforma has lmem.
+src is not guaranteed to be system memory. See
+perf_memcpy():
 
-I guess you will  need to check if the obj is in lmem and initialize
-src_map accordingly.
+         for_each_memory_region(src_mr, i915, src_id) {
+                 for_each_memory_region(dst_mr, i915, dst_id) {
+			...
 
 Lucas De Marchi
 
-> 		if (read_offset > write_offset) {
->-			i915_memcpy_from_wc(dst_data, src_data, write_offset);
->+			drm_memcpy_from_wc_vaddr(dst_data, &src_map,
->+						 write_offset);
-> 			bytes_to_copy = buffer_size - read_offset;
-> 		} else {
-> 			bytes_to_copy = write_offset - read_offset;
-> 		}
->-		i915_memcpy_from_wc(dst_data + read_offset,
->-				    src_data + read_offset, bytes_to_copy);
->+		iosys_map_incr(&src_map, read_offset);
->+		drm_memcpy_from_wc_vaddr(dst_data + read_offset, &src_map,
->+					 bytes_to_copy);
+>+	drm_memcpy_from_wc_vaddr(dst, &src_map, size);
+> }
 >
-> 		src_data += buffer_size;
-> 		dst_data += buffer_size;
+> static int _perf_memcpy(struct intel_memory_region *src_mr,
+>@@ -1057,7 +1061,7 @@ static int _perf_memcpy(struct intel_memory_region *src_mr,
+> 		{
+> 			"memcpy_from_wc",
+> 			igt_memcpy_from_wc,
+>-			!i915_has_memcpy_from_wc(),
+>+			!drm_memcpy_fastcopy_supported(),
+> 		},
+> 	};
+> 	struct drm_i915_gem_object *src, *dst;
 >-- 
 >2.25.1
 >
