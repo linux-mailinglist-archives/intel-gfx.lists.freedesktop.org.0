@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EECE34C8576
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Mar 2022 08:49:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 125A84C858D
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Mar 2022 08:52:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B9E7810E582;
-	Tue,  1 Mar 2022 07:49:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 95D8B10E598;
+	Tue,  1 Mar 2022 07:52:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E6B0D10E582;
- Tue,  1 Mar 2022 07:48:59 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 73BAD10E598;
+ Tue,  1 Mar 2022 07:52:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646120939; x=1677656939;
+ t=1646121169; x=1677657169;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=yNeE3cPPu80L2a3I6/D8IPyjQ2TxUVXzDkaknObQ+xM=;
- b=E/ZOmgaEqOzap553WdD6qWUKuhBnoqnmlTo77FUuI5yQD2mlAeT6DbQk
- HmRNHu4ewyDSNBoIw+olmVAT63khfDg+3/Lwh9e+n+f6AqYTV/F31xe+w
- sFsyCQKvn2462mhPkympxPf1jffbtq1Rf4bOC5Bcon9sOiJTqySCjSGpa
- 27lzOy7lndftIXWU75e3qMuqwECcmJofZSpJj6KQEDusEmzplOMhUDdDS
- RcU5+utC/Q/a6hg49brcO8J2h+IjbLQvpgxjoZEttKhTdun/yFfKmHFlI
- G7WT0nJBl2ORU1cFsxXJjyWoM4N/nCnBPUV3Z+WukzzyWCVat562JEzwG w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10272"; a="240491839"
-X-IronPort-AV: E=Sophos;i="5.90,145,1643702400"; d="scan'208";a="240491839"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2022 23:48:59 -0800
-X-IronPort-AV: E=Sophos;i="5.90,145,1643702400"; d="scan'208";a="639282441"
+ bh=yYyK75pOzfD0du+hl77CkC3Aa5sssxmcZxU5m62PwJQ=;
+ b=kSirss2f4kn18D/7yQClc6AoS/eficHCEq7rilMuw9ukBbqoNnThzxGz
+ F7PjyEb4+M6br2pFHIzfJfjHQeLRBVWLEMIxdn9Uj3IjnDuh4ZT1S1/Oh
+ kUZ/4WtJ2plwijTss/zGzGQmQ5N7t/yKf4UT/sOTEW68o0Tar296mC9gT
+ 1B0KJ0D/fSUjby8bkg6ZKGUxlG1hv5Zqi/3EpzGJtLyqCK6uCIV6AeZob
+ k80Zo5l5McXcUeYbNIqDaThLrgx/cC47PD+Zq1K88p62zY92FYdSFuFS/
+ m1OqVcoIZrrM7hmPYEsGsPN/oLI6Bh890MWc+n9vjCxaQzLkX2yudr/el Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10272"; a="253271667"
+X-IronPort-AV: E=Sophos;i="5.90,145,1643702400"; d="scan'208";a="253271667"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Feb 2022 23:52:49 -0800
+X-IronPort-AV: E=Sophos;i="5.90,145,1643702400"; d="scan'208";a="608722765"
 Received: from ramyaman-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
  ([10.212.150.64])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2022 23:48:58 -0800
-Date: Mon, 28 Feb 2022 23:48:58 -0800
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Feb 2022 23:52:48 -0800
+Date: Mon, 28 Feb 2022 23:52:48 -0800
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-Message-ID: <20220301074858.hzq2fkjpcor35x6t@ldmartin-desk2>
+Message-ID: <20220301075248.j5ie22pk46yg5fjh@ldmartin-desk2>
 X-Patchwork-Hint: comment
 References: <20220222145206.76118-1-balasubramani.vivekanandan@intel.com>
- <20220222145206.76118-3-balasubramani.vivekanandan@intel.com>
+ <20220222145206.76118-4-balasubramani.vivekanandan@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii; format=flowed
 Content-Disposition: inline
-In-Reply-To: <20220222145206.76118-3-balasubramani.vivekanandan@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 2/7] drm: Add drm_memcpy_from_wc() variant
- which accepts destination address
+In-Reply-To: <20220222145206.76118-4-balasubramani.vivekanandan@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 3/7] drm/i915: use the memcpy_from_wc call
+ from the drm
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,147 +59,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Thomas Hellstr_m <thomas.hellstrom@linux.intel.com>,
- michael.cheng@intel.com, David Airlie <airlied@linux.ie>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- siva.mullati@intel.com, Thomas Zimmermann <tzimmermann@suse.de>
+Cc: siva.mullati@intel.com, intel-gfx@lists.freedesktop.org,
+ michael.cheng@intel.com, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Feb 22, 2022 at 08:22:01PM +0530, Balasubramani Vivekanandan wrote:
->Fast copy using non-temporal instructions for x86 currently exists at two
->locations. One is implemented in i915 driver at i915/i915_memcpy.c and
->another copy at drm_cache.c. The plan is to remove the duplicate
->implementation in i915 driver and use the functions from drm_cache.c.
->
->A variant of drm_memcpy_from_wc() is added in drm_cache.c which accepts
->address as argument instead of iosys_map for destination. It is a very
->common scenario in i915 to copy from a WC memory type, which may be an
->io memory or a system memory to a destination address pointing to system
->memory. To avoid the overhead of creating iosys_map type for the
->destination, new variant is created to accept the address directly.
->
->Also a new function is exported in drm_cache.c to find if the fast copy
->is supported by the platform or not. It is required for i915.
->
->Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->Cc: Maxime Ripard <mripard@kernel.org>
->Cc: Thomas Zimmermann <tzimmermann@suse.de>
->Cc: David Airlie <airlied@linux.ie>
->Cc: Daniel Vetter <daniel@ffwll.ch>
->Cc: Thomas Hellstr_m <thomas.hellstrom@linux.intel.com>
+On Tue, Feb 22, 2022 at 08:22:02PM +0530, Balasubramani Vivekanandan wrote:
+>memcpy_from_wc functions in i915_memcpy.c will be removed and replaced
+>by the implementation in drm_cache.c.
+>Updated to use the functions provided by drm_cache.c.
 >
 >Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 >---
-> drivers/gpu/drm/drm_cache.c | 54 +++++++++++++++++++++++++++++++++++++
-> include/drm/drm_cache.h     |  3 +++
-> 2 files changed, 57 insertions(+)
+> drivers/gpu/drm/i915/gem/i915_gem_object.c | 8 ++++----
+> 1 file changed, 4 insertions(+), 4 deletions(-)
 >
->diff --git a/drivers/gpu/drm/drm_cache.c b/drivers/gpu/drm/drm_cache.c
->index a21c1350eb09..eb0bcd33665e 100644
->--- a/drivers/gpu/drm/drm_cache.c
->+++ b/drivers/gpu/drm/drm_cache.c
->@@ -358,6 +358,54 @@ void drm_memcpy_from_wc(struct iosys_map *dst,
-> }
-> EXPORT_SYMBOL(drm_memcpy_from_wc);
+>diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+>index 2d593d573ef1..49ff8e3e71d9 100644
+>--- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
+>+++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+>@@ -449,16 +449,16 @@ static void
+> i915_gem_object_read_from_page_iomap(struct drm_i915_gem_object *obj, u64 offset, void *dst, int size)
+> {
+> 	void __iomem *src_map;
+>-	void __iomem *src_ptr;
+>+	struct iosys_map src_ptr;
+>+
+> 	dma_addr_t dma = i915_gem_object_get_dma_address(obj, offset >> PAGE_SHIFT);
 >
->+/**
->+ * drm_memcpy_from_wc_vaddr - Perform the fastest available memcpy from a source
->+ * that may be WC.
+> 	src_map = io_mapping_map_wc(&obj->mm.region->iomap,
+> 				    dma - obj->mm.region->region.start,
+> 				    PAGE_SIZE);
+>
+>-	src_ptr = src_map + offset_in_page(offset);
+>-	if (!i915_memcpy_from_wc(dst, (void __force *)src_ptr, size))
+>-		memcpy_fromio(dst, src_ptr, size);
+>+	iosys_map_set_vaddr_iomem(&src_ptr, (src_map + offset_in_page(offset)));
 
-  .... to a destination in system memory.
+Too many parenthesis -----------------------^
 
->+ * @dst: The destination pointer
->+ * @src: The source pointer
->+ * @len: The size of the area to transfer in bytes
->+ *
->+ * Same as drm_memcpy_from_wc except destination is accepted as system memory
->+ * address. Useful in situations where passing destination address as iosys_map
->+ * is simply an overhead and can be avoided.
+other than that.
 
-although one could do drm_memcpy_from_wc(IOSYS_MAP_INIT_VADDR(addr), ...
 
-(if IOSYS_MAP_INIT_VADDR provided a cast to the struct).
-
->+ */
->+void drm_memcpy_from_wc_vaddr(void *dst, const struct iosys_map *src,
-
-name here is confusing as we are copying *to* system memory. Maybe
-drm_memcpy_vaddr_from_wc()? Not sure it's better. Maybe someone in Cc
-has a better suggestion
-
-( To be honest, this whole _from_wc() suffix sound weird when are checking I/O
-   vs system memory.... it may have been the motivation, but maybe it
-   shouldn't be the name of the memcpy() variant )
-
-The implementation looks ok and follows drm_memcpy_from_wc()
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
 Lucas De Marchi
 
->+			      unsigned long len)
->+{
->+	if (WARN_ON(in_interrupt())) {
->+		iosys_map_memcpy_from(dst, src, 0, len);
->+		return;
->+	}
->+
->+	if (static_branch_likely(&has_movntdqa)) {
->+		__drm_memcpy_from_wc(dst,
->+				     src->is_iomem ?
->+				     (void const __force *)src->vaddr_iomem :
->+				     src->vaddr,
->+				     len);
->+		return;
->+	}
->+
->+	iosys_map_memcpy_from(dst, src, 0, len);
->+}
->+EXPORT_SYMBOL(drm_memcpy_from_wc_vaddr);
->+
->+/*
->+ * drm_memcpy_fastcopy_supported - Returns if fast copy using non-temporal
->+ * instructions is supported
->+ *
->+ * Returns true if platform has support for fast copying from wc memory type
->+ * using non-temporal instructions. Else false.
->+ */
->+bool drm_memcpy_fastcopy_supported(void)
->+{
->+	if (static_branch_likely(&has_movntdqa))
->+		return true;
->+
->+	return false;
->+}
->+EXPORT_SYMBOL(drm_memcpy_fastcopy_supported);
->+
-> /*
->  * drm_memcpy_init_early - One time initialization of the WC memcpy code
->  */
->@@ -382,6 +430,12 @@ void drm_memcpy_from_wc(struct iosys_map *dst,
-> }
-> EXPORT_SYMBOL(drm_memcpy_from_wc);
+>+	drm_memcpy_from_wc_vaddr(dst, &src_ptr, size);
 >
->+bool drm_memcpy_fastcopy_supported(void)
->+{
->+	return false;
->+}
->+EXPORT_SYMBOL(drm_memcpy_fastcopy_supported);
->+
-> void drm_memcpy_init_early(void)
-> {
+> 	io_mapping_unmap(src_map);
 > }
->diff --git a/include/drm/drm_cache.h b/include/drm/drm_cache.h
->index 22deb216b59c..8f48e4dcd7dc 100644
->--- a/include/drm/drm_cache.h
->+++ b/include/drm/drm_cache.h
->@@ -77,4 +77,7 @@ void drm_memcpy_init_early(void);
-> void drm_memcpy_from_wc(struct iosys_map *dst,
-> 			const struct iosys_map *src,
-> 			unsigned long len);
->+bool drm_memcpy_fastcopy_supported(void);
->+void drm_memcpy_from_wc_vaddr(void *dst, const struct iosys_map *src,
->+			      unsigned long len);
-> #endif
 >-- 
 >2.25.1
 >
