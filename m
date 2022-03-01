@@ -1,49 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B2D24C9188
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Mar 2022 18:31:36 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id F25584C918B
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Mar 2022 18:31:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3127610E5C6;
-	Tue,  1 Mar 2022 17:31:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 35BC510E669;
+	Tue,  1 Mar 2022 17:31:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 56D5910E5C6
- for <intel-gfx@lists.freedesktop.org>; Tue,  1 Mar 2022 17:31:32 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 80FCA10E600
+ for <intel-gfx@lists.freedesktop.org>; Tue,  1 Mar 2022 17:31:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646155892; x=1677691892;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=czXK93t+6qggVXblO7p2ICQK1LgpImH2U/iqPSKoA9U=;
- b=aH03c/L22gURWjEqHW99kpVCpcO9NoJv0252SRcW7hy6AuEs9ewe4TYZ
- JGphxHB18smEZKel2P3adyoyWu8q/AdcZfd3R2g++xoOlhyL4Mghe8EPr
- vKgQT4i4HUkz8UqiOhDdUrsw4YmYBgFXW9n9TG77YiOFkQ+qMaMhXdZG4
- 515E6GKxVOzaetXQDF+R2LZa3m91PblUB1/7l6p4Ezrqn0g9E0hfEHM7b
- THLca+6M6R5AC3geFyQ4seKOZGR06nWssgb23XcAZwcyB+3ZC6L+DT+Da
- LooMFDLRtKThJuR0geVbiYvx2FjIPr563MMpBk6cwYJPSfcOgUEzuKSEI A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10273"; a="252925626"
-X-IronPort-AV: E=Sophos;i="5.90,146,1643702400"; d="scan'208";a="252925626"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Mar 2022 09:31:31 -0800
+ t=1646155899; x=1677691899;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=8otEQLJA5Xcd/S90ZH7DgsAXoMkbidLUXIECBqnOrHY=;
+ b=kRO7Jbi5uXDp+a8PA2W9bRkllpvLSe2sm10OoG6G5xj9YCYUPYKeCzJ7
+ 6gqdXbQoBpupJpDIyyd5gWbT8MJtWf0xm6noxgYqAd8xaMGWbtrwtzHFq
+ rZlcB80NgVTDvyn7+HnLEzPOAbo3Q3aS0kV/PS9353xO4ENeKtQ5tG/uV
+ oBsp9KEc5R8RcbCeEbdp16jQ8j8V6bFjRzO3f9l4kHpjRqPwIp34akNoO
+ XZjTExFBmq/DP+UTwGdVyBqA8mHpRTt0Mki12npJXxH+hgyhTj9Pah4T5
+ 0uN5Qh2DwtDDq3SLuqG/hJFpdY3eGyj0Ga1D2CIgAhjBOi3zr9U4bfXm5 Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10273"; a="233810314"
+X-IronPort-AV: E=Sophos;i="5.90,146,1643702400"; d="scan'208";a="233810314"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Mar 2022 09:31:35 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,146,1643702400"; d="scan'208";a="534988769"
+X-IronPort-AV: E=Sophos;i="5.90,146,1643702400"; d="scan'208";a="510599597"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
- by orsmga007.jf.intel.com with SMTP; 01 Mar 2022 09:31:29 -0800
+ by orsmga006.jf.intel.com with SMTP; 01 Mar 2022 09:31:32 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 01 Mar 2022 19:31:28 +0200
+ Tue, 01 Mar 2022 19:31:32 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue,  1 Mar 2022 19:31:17 +0200
-Message-Id: <20220301173128.6988-1-ville.syrjala@linux.intel.com>
+Date: Tue,  1 Mar 2022 19:31:18 +0200
+Message-Id: <20220301173128.6988-2-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220301173128.6988-1-ville.syrjala@linux.intel.com>
+References: <20220301173128.6988-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 00/11] drm/i915: Clean up some dpll stuff
+Subject: [Intel-gfx] [PATCH 01/11] drm/i915: Nuke skl_wrpll_context_init()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,28 +63,48 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Clean up a bunch of struct dpll usage, and a few other
-random things around the same area.
+We can trivially replace skl_wrpll_context_init() with a single
+designated initializer.
 
-Ville Syrjälä (11):
-  drm/i915: Nuke skl_wrpll_context_init()
-  drm/i915: Move a bunch of stuff into rodata from the stack
-  drm/i915: Clean up some struct/array initializers
-  drm/i915: Store the /5 target clock in sturct dpll on vlv/chv
-  drm/i915: Remove bxt m2_frac_en
-  drm/i915: Use designated initializers for bxt_dp_clk_val[]
-  drm/i915: Store the m2 divider as a whole in bxt_clk_div
-  drm/i915: Replace bxt_clk_div with struct dpll
-  drm/i915: Replace hand rolled bxt vco calculation with
-    chv_calc_dpll_params()
-  drm/i915: Populate bxt/glk DPLL clock limits a bit more
-  drm/i915: Remove struct dp_link_dpll
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 13 +++----------
+ 1 file changed, 3 insertions(+), 10 deletions(-)
 
- drivers/gpu/drm/i915/display/g4x_dp.c         |  47 +++----
- drivers/gpu/drm/i915/display/intel_dpll.c     |  26 ++--
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 115 ++++++++----------
- 3 files changed, 77 insertions(+), 111 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+index 569903d47aea..1b1b70f0ff93 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
++++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+@@ -1330,13 +1330,6 @@ struct skl_wrpll_context {
+ 	unsigned int p;			/* chosen divider */
+ };
+ 
+-static void skl_wrpll_context_init(struct skl_wrpll_context *ctx)
+-{
+-	memset(ctx, 0, sizeof(*ctx));
+-
+-	ctx->min_deviation = U64_MAX;
+-}
+-
+ /* DCO freq must be within +1%/-6%  of the DCO central freq */
+ #define SKL_DCO_MAX_PDEVIATION	100
+ #define SKL_DCO_MAX_NDEVIATION	600
+@@ -1519,12 +1512,12 @@ skl_ddi_calculate_wrpll(int clock /* in Hz */,
+ 		{ even_dividers, ARRAY_SIZE(even_dividers) },
+ 		{ odd_dividers, ARRAY_SIZE(odd_dividers) },
+ 	};
+-	struct skl_wrpll_context ctx;
++	struct skl_wrpll_context ctx = {
++		.min_deviation = U64_MAX,
++	};
+ 	unsigned int dco, d, i;
+ 	unsigned int p0, p1, p2;
+ 
+-	skl_wrpll_context_init(&ctx);
+-
+ 	for (d = 0; d < ARRAY_SIZE(dividers); d++) {
+ 		for (dco = 0; dco < ARRAY_SIZE(dco_central_freq); dco++) {
+ 			for (i = 0; i < dividers[d].n_dividers; i++) {
 -- 
 2.34.1
 
