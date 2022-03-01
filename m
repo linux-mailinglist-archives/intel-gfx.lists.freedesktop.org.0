@@ -1,47 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 600DA4C8D53
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Mar 2022 15:08:13 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 570A44C8D78
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Mar 2022 15:14:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A06C710EF30;
-	Tue,  1 Mar 2022 14:08:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0656410E1B6;
+	Tue,  1 Mar 2022 14:14:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD68510EF2E;
- Tue,  1 Mar 2022 14:08:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B0A1410E1B6;
+ Tue,  1 Mar 2022 14:14:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646143689; x=1677679689;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=u8aICfWrsm5LsmgGfb1TEqv4Q5B0PJEBRO8v+wBFhxY=;
- b=WecxrMCCXkZiJM6kE4TvZRme/pBm0IjcMlZnfyN81V0NS1owteCDYr0s
- kcGiibMbZy6WqDoJ3VAViOGiVk0koD3ieu0BEUj0+lxrpmgmPq+QOMfsg
- SDKAuC1Ht2bKuTpY+ujpsdDOztDPJNtxp1V48oTOEeIwnu2whmStVuwzh
- 7G6cAuVmvxniAVma3ID87pnmrYGy0NeW6krIpluw1F7ybDBT6kjJlDjm9
- wUO9Eu+IaBsbtdXCEeAdTnsEFQcbSpAjfSZcoDTOs93YSHmnTQF5i1Sn9
- tQigoNuQr3GmAmHBKW6Flyoz+uMZLx3GEoiP6fJ6cGvzx2WzoLQi1x521 A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10272"; a="316349562"
-X-IronPort-AV: E=Sophos;i="5.90,146,1643702400"; d="scan'208";a="316349562"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ t=1646144084; x=1677680084;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=NjojBCsmhSp7vBxnEedXZupiso++RjCixpwrwJr/BJ4=;
+ b=gjeZB/br+eqkIOcYKDQYvxcZ/OSrhsoT3g8LRIbIssyF0vlb0lGZngJ/
+ MPRXFtGkAqnId3B6PRoa3anb/bxWOrYdzae4OEntmDDESlsDSrmN5mI2a
+ HFJr3RF2vI73LYLMNjXBVCiKZ7rwI4/LDLZ41AMZUGWhCeUwqhouHfXhA
+ aoQE2a9sps9GXr8wxq+SFa2kNPqU3xE831Y6HDdqDYmkYv+MKgtMKEIJ2
+ 4cn7HirVDwi4Cct4vppAZ3/l2LmE2sjgU5g3Z/d8qSFVhoOnjZLRiZoXI
+ diyPX7b8XGFtKg1eEVv+hJ96tiAQ7tCV9oVv89vpCOb9tXpAsllhz9hH7 w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10272"; a="316350632"
+X-IronPort-AV: E=Sophos;i="5.90,146,1643702400"; d="scan'208";a="316350632"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Mar 2022 06:08:09 -0800
-X-IronPort-AV: E=Sophos;i="5.90,146,1643702400"; d="scan'208";a="550731614"
-Received: from jkrzyszt-mobl1.ger.corp.intel.com ([10.213.22.166])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Mar 2022 06:08:08 -0800
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: igt-dev@lists.freedesktop.org
-Date: Tue,  1 Mar 2022 15:07:55 +0100
-Message-Id: <20220301140755.315472-1-janusz.krzysztofik@linux.intel.com>
-X-Mailer: git-send-email 2.25.1
+ 01 Mar 2022 06:14:44 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,146,1643702400"; d="scan'208";a="575712589"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
+ by orsmga001.jf.intel.com with SMTP; 01 Mar 2022 06:14:24 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 01 Mar 2022 16:14:24 +0200
+Date: Tue, 1 Mar 2022 16:14:24 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Imre Deak <imre.deak@intel.com>
+Message-ID: <Yh4qQD/hlQCuNUFx@intel.com>
+References: <20220228201234.1448613-1-imre.deak@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 i-g-t] lib/intel_mmio: Fix mmapped resources
- not unmapped on fini
+In-Reply-To: <20220228201234.1448613-1-imre.deak@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Add a DP1.2 compatible way to
+ read LTTPR capabilities
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,188 +60,94 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Commit 5f3cfa485eb4 ("lib: Use safe wrappers around libpciaccess
-initialization functions") took care of not leaking memory allocated by
-pci_system_init() but didn't take care of users potentially attempting to
-reinitialize global data maintained by libpciaccess.  For example,
-intel_register_access_init() mmaps device's PCI BAR0 resource with
-pci_device_map_range() but intel_register_access_fini() doesn't unmap it
-and next call to intel_register_access_init() fails on attempt to mmap it
-again with pci_device_map_range().
+On Mon, Feb 28, 2022 at 10:12:34PM +0200, Imre Deak wrote:
+> At least some DELL monitors (P2715Q) with DPCD_REV 1.2 return corrupted
+> DPCD register values when reading from the 0xF0000- LTTPR range with an
+> AUX transaction block size bigger than 1. The DP standard requires 0 to
+> be returned - as for any other reserved/invalid addresses - but these
+> monitors return the DPCD_REV register value repeated in each byte of the
+> read buffer. This will in turn corrupt the values returned by the LTTPRs
+> between the source and the monitor: LTTPRs must adjust the values they
+> read from the downstream DPRX, for instance left-shift/init the
+> downstream DP_PHY_REPEATER_CNT value. Since the value returned by the
+> monitor's DPRX is non-zero the adjusted values will be corrupt.
+> 
+> Reading the LTTPR registers one-by-one instead of reading all of them
+> with a single AUX transfer works around the issue.
+> 
+> According to the DP standard's 0xF0000 register description:
+> "LTTPR-related registers at DPCD Addresses F0000h through F02FFh are
+> valid only for DPCD r1.4 (or higher)." While it's unclear if DPCD r1.4
+> refers to the DPCD_REV or to the
+> LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV register (tickets filed
+> at the VESA site to clarify this haven't been addressed), one
+> possibility is that it's a restriction due to non-compliant monitors
+> described above. Disabling the non-transparent LTTPR mode for all such
+> monitors is not a viable solution: the transparent LTTPR mode has its
+> own issue causing link training failures and this would affect a lot of
+> monitors in use with DPCD_REV < 1.4. Instead this patch works around
+> the problem by reading the LTTPR common and PHY cap registers one-by-one
+> for any monitor with a DPCD_REV < 1.4.
+> 
+> The standard requires the DPCD capabilites to be read after the LTTPR
+> common capabilities are read, so re-read the DPCD capabilities after
+> the LTTPR common and PHY caps were read out.
+> 
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/4531
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> ---
+>  drivers/gpu/drm/dp/drm_dp.c                   | 58 ++++++++++++-------
+>  .../drm/i915/display/intel_dp_link_training.c | 30 +++++++---
+>  include/drm/dp/drm_dp_helper.h                |  2 +
+>  3 files changed, 59 insertions(+), 31 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/dp/drm_dp.c b/drivers/gpu/drm/dp/drm_dp.c
+> index 703972ae14c64..f3950d42980f9 100644
+> --- a/drivers/gpu/drm/dp/drm_dp.c
+> +++ b/drivers/gpu/drm/dp/drm_dp.c
+> @@ -2390,9 +2390,36 @@ int drm_dp_dsc_sink_supported_input_bpcs(const u8 dsc_dpcd[DP_DSC_RECEIVER_CAP_S
+>  }
+>  EXPORT_SYMBOL(drm_dp_dsc_sink_supported_input_bpcs);
+>  
+> +static int drm_dp_read_lttpr_regs(struct drm_dp_aux *aux, const u8 dpcd[DP_RECEIVER_CAP_SIZE], int address,
+> +				  u8 *buf, int buf_size)
+> +{
+> +	/*
+> +	 * Some monitors with a DPCD_REV < 0x14 return corrupted values when
+> +	 * reading from the 0xF0000- range with a block size bigger than 1.
+> +	 */
 
-Fix it, and also provide intel_mmio_umap_*() counterparts to public
-functions intel_mmio_use_pci_bar() and intel_mmio_use_dump_file().
+This sounds really scary. Have we checked what other registers might
+end up corrupted? Eg. couple of rounds of comparing full dd bs=1 vs. 
+dd bs=16.
 
-v2: apply last minute fixes, cached but unfortunately not committed before
-    sending
+> +	int block_size = dpcd[DP_DPCD_REV] < 0x14 ? 1 : buf_size;
+> +	int offset = 0;
+> +	int ret;
+> +
+> +	while (offset < buf_size) {
 
-Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
----
- lib/intel_io.h   |  4 +++
- lib/intel_mmio.c | 67 ++++++++++++++++++++++++++++++++++++++++++------
- 2 files changed, 63 insertions(+), 8 deletions(-)
+Can we use a for loop?
 
-diff --git a/lib/intel_io.h b/lib/intel_io.h
-index 1cfe4fb6b9..ea2649d9bc 100644
---- a/lib/intel_io.h
-+++ b/lib/intel_io.h
-@@ -49,6 +49,8 @@ struct intel_register_map {
- 
- struct intel_mmio_data {
- 	void *igt_mmio;
-+	size_t mmio_size;
-+	struct pci_device *dev;
- 	struct intel_register_map map;
- 	uint32_t pci_device_id;
- 	int key;
-@@ -57,7 +59,9 @@ struct intel_mmio_data {
- 
- void intel_mmio_use_pci_bar(struct intel_mmio_data *mmio_data,
- 			    struct pci_device *pci_dev);
-+void intel_mmio_unmap_pci_bar(struct intel_mmio_data *mmio_data);
- void intel_mmio_use_dump_file(struct intel_mmio_data *mmio_data, char *file);
-+void intel_mmio_unmap_dump_file(struct intel_mmio_data *mmio_data);
- 
- int intel_register_access_init(struct intel_mmio_data *mmio_data,
- 			       struct pci_device *pci_dev, int safe, int fd);
-diff --git a/lib/intel_mmio.c b/lib/intel_mmio.c
-index 667a69f5aa..cb8f9db2e5 100644
---- a/lib/intel_mmio.c
-+++ b/lib/intel_mmio.c
-@@ -82,6 +82,8 @@ void *igt_global_mmio;
-  * Sets also up mmio_data->igt_mmio to point at the data contained
-  * in @file. This allows the same code to get reused for dumping and decoding
-  * from running hardware as from register dumps.
-+ *
-+ * Users are expected to call intel_mmio_unmap_dump_file() after use.
-  */
- void
- intel_mmio_use_dump_file(struct intel_mmio_data *mmio_data, char *file)
-@@ -99,11 +101,29 @@ intel_mmio_use_dump_file(struct intel_mmio_data *mmio_data, char *file)
- 	igt_fail_on_f(mmio_data->igt_mmio == MAP_FAILED,
- 		      "Couldn't mmap %s\n", file);
- 
-+	mmio_data->mmio_size = st.st_size;
- 	igt_global_mmio = mmio_data->igt_mmio;
- 
- 	close(fd);
- }
- 
-+/**
-+ * intel_mmio_unmap_dump_file:
-+ * @mmio_data:  mmio structure for IO operations
-+ *
-+ * Unmaps a dump file mmapped with intel_mmio_use_dump_file()
-+ */
-+void intel_mmio_unmap_dump_file(struct intel_mmio_data *mmio_data)
-+{
-+	if (igt_warn_on_f(!mmio_data->mmio_size || mmio_data->dev,
-+			  "test bug: argument doesn't point to struct intel_mmio_data initialized with intel_mmio_use_dump_file()\n"))
-+		return;
-+
-+	igt_global_mmio = NULL;
-+	igt_debug_on(munmap(mmio_data->igt_mmio, mmio_data->mmio_size) < 0);
-+	mmio_data->mmio_size = 0;
-+}
-+
- /**
-  * intel_mmio_use_pci_bar:
-  * @mmio_data:  mmio structure for IO operations
-@@ -112,12 +132,14 @@ intel_mmio_use_dump_file(struct intel_mmio_data *mmio_data, char *file)
-  * Fill a mmio_data stucture with igt_mmio to point at the mmio bar.
-  *
-  * @pci_dev can be obtained from intel_get_pci_device().
-+ *
-+ * Users are expected to call intel_mmio_unmap_pci_bar() after use.
-  */
- void
- intel_mmio_use_pci_bar(struct intel_mmio_data *mmio_data, struct pci_device *pci_dev)
- {
- 	uint32_t devid, gen;
--	int mmio_bar, mmio_size;
-+	int mmio_bar;
- 	int error;
- 
- 	memset(mmio_data, 0, sizeof(struct intel_mmio_data));
-@@ -129,22 +151,42 @@ intel_mmio_use_pci_bar(struct intel_mmio_data *mmio_data, struct pci_device *pci
- 
- 	gen = intel_gen(devid);
- 	if (gen < 3)
--		mmio_size = 512*1024;
-+		mmio_data->mmio_size = 512*1024;
- 	else if (gen < 5)
--		mmio_size = 512*1024;
-+		mmio_data->mmio_size = 512*1024;
- 	else
--		mmio_size = 2*1024*1024;
-+		mmio_data->mmio_size = 2*1024*1024;
- 
- 	error = pci_device_map_range (pci_dev,
- 				      pci_dev->regions[mmio_bar].base_addr,
--				      mmio_size,
-+				      mmio_data->mmio_size,
- 				      PCI_DEV_MAP_FLAG_WRITABLE,
- 				      &mmio_data->igt_mmio);
- 
--	igt_global_mmio = mmio_data->igt_mmio;
--
- 	igt_fail_on_f(error != 0,
- 		      "Couldn't map MMIO region\n");
-+
-+	mmio_data->dev = pci_dev;
-+	igt_global_mmio = mmio_data->igt_mmio;
-+}
-+
-+/**
-+ * intel_mmio_unmap_pci_bar:
-+ * @mmio_data:  mmio structure for IO operations
-+ *
-+ * Unmaps a PCI BAR region mmapped with intel_mmio_use_pci_bar()
-+ */
-+void intel_mmio_unmap_pci_bar(struct intel_mmio_data *mmio_data)
-+{
-+	if (igt_warn_on_f(!mmio_data->dev,
-+			  "test bug: argument doesn't point to struct intel_mmio_data initialized with intel_mmio_use_pci_bar()\n"))
-+		return;
-+
-+	igt_global_mmio = NULL;
-+	igt_debug_on(pci_device_unmap_range(mmio_data->dev,
-+					    mmio_data->igt_mmio, mmio_data->mmio_size) < 0);
-+	mmio_data->dev = NULL;
-+	mmio_data->mmio_size = 0;
- }
- 
- static void
-@@ -166,6 +208,8 @@ release_forcewake_lock(int fd)
-  * It also initializes mmio_data->igt_mmio like intel_mmio_use_pci_bar().
-  *
-  * @pci_dev can be obtained from intel_get_pci_device().
-+ *
-+ * Users are expected to call intel_register_access_fini() after use.
-  */
- int
- intel_register_access_init(struct intel_mmio_data *mmio_data, struct pci_device *pci_dev, int safe, int fd)
-@@ -222,8 +266,15 @@ int intel_register_access_needs_fakewake(struct intel_mmio_data *mmio_data)
- void
- intel_register_access_fini(struct intel_mmio_data *mmio_data)
- {
--	if (mmio_data->key && intel_register_access_needs_wake(mmio_data))
-+	if (igt_warn_on_f(!mmio_data->key,
-+			  "test bug: argument doesn't point to struct intel_mmio_data initialized with intel_register_access_init()\n"))
-+		return;
-+
-+	if (intel_register_access_needs_wake(mmio_data))
- 		release_forcewake_lock(mmio_data->key);
-+	mmio_data->key = 0;
-+
-+	intel_mmio_unmap_pci_bar(mmio_data);
- }
- 
- /**
+> +		ret = drm_dp_dpcd_read(aux,
+> +				       address + offset,
+> +				       &buf[offset], block_size);
+> +		if (ret < 0)
+> +			return ret;
+> +
+> +		WARN_ON(ret != block_size);
+> +
+> +		offset += block_size;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+
 -- 
-2.25.1
-
+Ville Syrjälä
+Intel
