@@ -1,52 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1E8F4C945F
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Mar 2022 20:34:17 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 615164C9463
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Mar 2022 20:35:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 65C8610E1CD;
-	Tue,  1 Mar 2022 19:34:15 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C0D310E1CD
- for <Intel-gfx@lists.freedesktop.org>; Tue,  1 Mar 2022 19:34:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9070310E7F6;
+	Tue,  1 Mar 2022 19:34:59 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D55A510E7F6
+ for <intel-gfx@lists.freedesktop.org>; Tue,  1 Mar 2022 19:34:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646163254; x=1677699254;
+ t=1646163298; x=1677699298;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=iXjWoHjyLwBKvHDPPXK+8Fotql2cVP/gxl5vV4jhrQs=;
- b=BmayUp8LWc/JoUuxZ6W8P8NML7bfZUw5uzdVoEOq+rNe8XC3jyiSRt9A
- fh9HoQ1OtwmPoMoqUE55aQTnyS3gmlNm96SAg6Ft6cgtkJYJVbHCHBBDa
- MZZG/AcrIr7CIcYGbx0s0kUlPXCuM4co6zx/VKl4gbti9Fk74jdp1bUF2
- oFXrQXqY8cnjxbQyNvaoHITI0kox1kpSxLxoApeBDwZDChkbXWhhP795N
- vQxz3W8Zac/vD4s92zk89qMZ1rBC2GZeOUvjmtzTZZuOIaJSjeEC75d6L
- 8eCBv1MCuLu/ERWl3FdfO2kdfNNaJk+nFLkiRUqpVvD7ujkQUoWrgFDRH A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10273"; a="250801401"
-X-IronPort-AV: E=Sophos;i="5.90,146,1643702400"; d="scan'208";a="250801401"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Mar 2022 11:34:13 -0800
-X-IronPort-AV: E=Sophos;i="5.90,146,1643702400"; d="scan'208";a="709184042"
-Received: from orsosgc001.jf.intel.com (HELO unerlige-ril-10.165.21.154)
- ([10.165.21.154])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Mar 2022 11:34:12 -0800
-Date: Tue, 1 Mar 2022 11:34:09 -0800
-From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <20220301193409.GA25848@unerlige-ril-10.165.21.154>
-References: <20220222140422.1121163-1-tvrtko.ursulin@linux.intel.com>
- <20220222140422.1121163-8-tvrtko.ursulin@linux.intel.com>
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=KKl9/Vwb+pzWVbPxB9HnDUMRdFbrB1z1Z1nlTDatuUk=;
+ b=iSA5mpAng4vB9HAFzgw5XafotT6miQq6LAlsfTgsqtyR5WDP2dEG/Vqz
+ 0MTxi7J1Wm9j3AF9kVqvVbLd36h1OQiFe0XOocKkVVF8p3Z9qQw8jPkUw
+ RLpqjRV4o8EW2emqlt0N/2OEK88LyeCVi0o78XbXD0nrVlfXPSXLRa71H
+ cVzyJBmvhqHGur885ULV2c7MR3xRJNHew+LNWXgAjTWIyL1U/q9wrzGHl
+ EFFbEWv5xZprfn9juhyzy767KmN38qBf6HET6zFzdjWrRUxihkcLAPHSR
+ ifBUM+rtBHsi/qZ9gm/5yp8GIplLNYtkdmoEJmmkxjjc4t4H9KVQ4fXco g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10273"; a="252050307"
+X-IronPort-AV: E=Sophos;i="5.90,146,1643702400"; d="scan'208";a="252050307"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Mar 2022 11:34:58 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,146,1643702400"; d="scan'208";a="550861371"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
+ by orsmga008.jf.intel.com with SMTP; 01 Mar 2022 11:34:55 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 01 Mar 2022 21:34:54 +0200
+Date: Tue, 1 Mar 2022 21:34:54 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Navare, Manasi" <manasi.d.navare@intel.com>
+Message-ID: <Yh51XiI/cuj01kiu@intel.com>
+References: <20220225013055.9282-1-manasi.d.navare@intel.com>
+ <20220225013055.9282-2-manasi.d.navare@intel.com>
+ <YhidvyZ0vvxmHBwP@intel.com>
+ <20220226011055.GA13404@labuser-Z97X-UD5H>
+ <20220301193052.GA31895@labuser-Z97X-UD5H>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20220222140422.1121163-8-tvrtko.ursulin@linux.intel.com>
-User-Agent: Mutt/1.12.1 (2019-06-15)
-Subject: Re: [Intel-gfx] [PATCH 7/8] drm/i915: Count engine instances per
- uabi class
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220301193052.GA31895@labuser-Z97X-UD5H>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH v6 2/2] drm/i915/display/vrr: Reset VRR
+ capable property on a long hpd
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,74 +64,109 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rob Clark <robdclark@chromium.org>, Intel-gfx@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Feb 22, 2022 at 02:04:21PM +0000, Tvrtko Ursulin wrote:
->From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->
->This will be useful to have at hand in a following patch.
->
->Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->---
-> drivers/gpu/drm/i915/gt/intel_engine_user.c | 11 ++++++-----
-> drivers/gpu/drm/i915/i915_drv.h             |  1 +
-> 2 files changed, 7 insertions(+), 5 deletions(-)
->
->diff --git a/drivers/gpu/drm/i915/gt/intel_engine_user.c b/drivers/gpu/drm/i915/gt/intel_engine_user.c
->index 9ce85a845105..5dd559253078 100644
->--- a/drivers/gpu/drm/i915/gt/intel_engine_user.c
->+++ b/drivers/gpu/drm/i915/gt/intel_engine_user.c
->@@ -190,7 +190,6 @@ static void add_legacy_ring(struct legacy_ring *ring,
-> void intel_engines_driver_register(struct drm_i915_private *i915)
-> {
-> 	struct legacy_ring ring = {};
->-	u8 uabi_instances[4] = {};
-> 	struct list_head *it, *next;
-> 	struct rb_node **p, *prev;
-> 	LIST_HEAD(engines);
->@@ -211,8 +210,10 @@ void intel_engines_driver_register(struct drm_i915_private *i915)
-> 		GEM_BUG_ON(engine->class >= ARRAY_SIZE(uabi_classes));
-> 		engine->uabi_class = uabi_classes[engine->class];
->
->-		GEM_BUG_ON(engine->uabi_class >= ARRAY_SIZE(uabi_instances));
->-		engine->uabi_instance = uabi_instances[engine->uabi_class]++;
->+		GEM_BUG_ON(engine->uabi_class >=
->+			   ARRAY_SIZE(i915->engine_uabi_class_count));
->+		engine->uabi_instance =
->+			i915->engine_uabi_class_count[engine->uabi_class]++;
->
-> 		/* Replace the internal name with the final user facing name */
-> 		memcpy(old, engine->name, sizeof(engine->name));
->@@ -242,8 +243,8 @@ void intel_engines_driver_register(struct drm_i915_private *i915)
-> 		int class, inst;
-> 		int errors = 0;
->
->-		for (class = 0; class < ARRAY_SIZE(uabi_instances); class++) {
->-			for (inst = 0; inst < uabi_instances[class]; inst++) {
->+		for (class = 0; class < ARRAY_SIZE(i915->engine_uabi_class_count); class++) {
->+			for (inst = 0; inst < i915->engine_uabi_class_count[class]; inst++) {
-> 				engine = intel_engine_lookup_user(i915,
-> 								  class, inst);
-> 				if (!engine) {
->diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
->index b9d38276801d..68d8a751008b 100644
->--- a/drivers/gpu/drm/i915/i915_drv.h
->+++ b/drivers/gpu/drm/i915/i915_drv.h
->@@ -533,6 +533,7 @@ struct drm_i915_private {
-> 	struct pci_dev *bridge_dev;
->
-> 	struct rb_root uabi_engines;
->+	unsigned int engine_uabi_class_count[I915_LAST_UABI_ENGINE_CLASS + 1];
+On Tue, Mar 01, 2022 at 11:30:52AM -0800, Navare, Manasi wrote:
+> Hi Ville,
+> 
+> Does it make sense to add the set prop in intel_dp_Set_edid but keep the reset to false
+> in intel_dp_detect where we clear other parameters?
 
-lgtm,
-Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+We don't clear stuff in .detect(), or at least shouldn't. .detect() doesn't
+even get run when forcing the connector status.
 
-Umesh
->
-> 	struct resource mch_res;
->
->-- 
->2.32.0
->
+> 
+> Manasi
+> 
+> 
+> On Fri, Feb 25, 2022 at 05:11:02PM -0800, Navare, Manasi wrote:
+> > On Fri, Feb 25, 2022 at 11:13:35AM +0200, Ville Syrjälä wrote:
+> > > On Thu, Feb 24, 2022 at 05:30:55PM -0800, Manasi Navare wrote:
+> > > > With some VRR panels, user can turn VRR ON/OFF on the fly from the panel settings.
+> > > > When VRR is turned OFF ,sends a long HPD to the driver clearing the Ignore MSA bit
+> > > > in the DPCD. Currently the driver parses that onevery HPD but fails to reset
+> > > > the corresponding VRR Capable Connector property.
+> > > > Hence the userspace still sees this as VRR Capable panel which is incorrect.
+> > > > 
+> > > > Fix this by explicitly resetting the connector property.
+> > > > 
+> > > > v2: Reset vrr capable if status == connector_disconnected
+> > > > v3: Use i915 and use bool vrr_capable (Jani Nikula)
+> > > > v4: Move vrr_capable to after update modes call (Jani N)
+> > > > Remove the redundant comment (Jan N)
+> > > > v5: Fixes the regression on older platforms by reseting the VRR
+> > > > only if HAS_VRR
+> > > > v6: Remove the checks from driver, add in drm core before
+> > > > setting VRR prop (Ville)
+> > > > 
+> > > > Cc: Jani Nikula <jani.nikula@intel.com>
+> > > > Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > > > Fixes: 390a1f8beb87 ("Revert "drm/i915/display/vrr: Reset VRR capable property on a long hpd")
+> > > > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+> > > > ---
+> > > >  drivers/gpu/drm/i915/display/intel_dp.c | 15 +++++++++++----
+> > > >  1 file changed, 11 insertions(+), 4 deletions(-)
+> > > > 
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> > > > index 1046e7fe310a..f96123b56935 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> > > > @@ -4455,6 +4455,10 @@ intel_dp_detect(struct drm_connector *connector,
+> > > >  		memset(&intel_dp->compliance, 0, sizeof(intel_dp->compliance));
+> > > >  		memset(intel_dp->dsc_dpcd, 0, sizeof(intel_dp->dsc_dpcd));
+> > > >  
+> > > > +		/* Reset VRR Capable property on disconnect */
+> > > > +		drm_connector_set_vrr_capable_property(connector,
+> > > > +						       false);
+> > > > +
+> > > >  		if (intel_dp->is_mst) {
+> > > >  			drm_dbg_kms(&dev_priv->drm,
+> > > >  				    "MST device may have disappeared %d vs %d\n",
+> > > > @@ -4569,15 +4573,18 @@ static int intel_dp_get_modes(struct drm_connector *connector)
+> > > >  {
+> > > >  	struct intel_connector *intel_connector = to_intel_connector(connector);
+> > > >  	struct edid *edid;
+> > > > +	struct drm_i915_private *i915 = to_i915(connector->dev);
+> > > >  	int num_modes = 0;
+> > > >  
+> > > >  	edid = intel_connector->detect_edid;
+> > > >  	if (edid) {
+> > > > -		num_modes = intel_connector_update_modes(connector, edid);
+> > > > +		bool vrr_capable;
+> > > >  
+> > > > -		if (intel_vrr_is_capable(connector))
+> > > > -			drm_connector_set_vrr_capable_property(connector,
+> > > > -							       true);
+> > > > +		num_modes = intel_connector_update_modes(connector, edid);
+> > > > +		vrr_capable = intel_vrr_is_capable(connector);
+> > > > +		drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] VRR capable: %s\n",
+> > > > +			    connector->base.id, connector->name, yesno(vrr_capable));
+> > > > +		drm_connector_set_vrr_capable_property(connector, vrr_capable);
+> > > 
+> > > As mentioned on irc I think intel_dp_(un)set_edid() would be a better
+> > > place for these.
+> > 
+> > Yes I guess I can add the above to check for vrr_capable and set it to true/false in intel_dp_set_edid()
+> > 
+> > But the resetting part needs to happen outside of intel_dp_unset_edid so that we dont always set it to false
+> > before set_edid. It can just stay in intel_dp_detect where we clear other othing on connect status == disconnected.
+> > Is that fine?
+> > 
+> > Manasi
+> > 
+> > > 
+> > > >  	}
+> > > >  
+> > > >  	/* Also add fixed mode, which may or may not be present in EDID */
+> > > > -- 
+> > > > 2.19.1
+> > > 
+> > > -- 
+> > > Ville Syrjälä
+> > > Intel
+
+-- 
+Ville Syrjälä
+Intel
