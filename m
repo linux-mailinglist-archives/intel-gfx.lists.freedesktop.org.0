@@ -1,66 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EE174C90D5
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Mar 2022 17:47:44 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 570054C911E
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Mar 2022 18:09:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B94A10E79C;
-	Tue,  1 Mar 2022 16:47:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8575D8855B;
+	Tue,  1 Mar 2022 17:09:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-il1-x136.google.com (mail-il1-x136.google.com
- [IPv6:2607:f8b0:4864:20::136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 996CE10E6B3;
- Tue,  1 Mar 2022 16:47:00 +0000 (UTC)
-Received: by mail-il1-x136.google.com with SMTP id 9so12973494ily.11;
- Tue, 01 Mar 2022 08:47:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=EdO1ZIStJEydDaNsVVTQjhQ+J41BBA4J8A/jLwHByaA=;
- b=dT5dHERfA7NfWxTqoX5UtBav5p4kPFdv7+9TmqWHP2bK+wtMIESMJrFmYKma5Icf0g
- +7nH1hhjR4WQRsb9PMzzil9FEypu4su5C84YyCt6kDqnr1M6NLcZDGU/SwMSpwj2DFos
- 2vfYqxcM6kV8dFiT0U/ekaSAV9UJ41JUIN8voJPJ/Th/mun4QzZUEITNp47YhjnH1sGf
- RHg66r1G4QkiH7zmyGmQD42lVmIsQf3Kekrsvrnm5ksV+v6PLwvKvC/5CNI7DJQjGb1P
- L89SbkL5rK2xjVuAKdrnLoDaf54r35tPdpRGmlTIY1LYozgr3fHBjpLQLrcKRj0+9wPd
- JzoA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=EdO1ZIStJEydDaNsVVTQjhQ+J41BBA4J8A/jLwHByaA=;
- b=WKgCEnrEYB3weJi4XGiHj+PTsfdU7z0vDa7y7oWqay/ivXs4vF8JkHt0VzMFl/tx01
- PvOIdtd835cYSfDmUFb/NbmVGU9tW1ewJ8g4GUmc0Fz14T8Duar4p9iwIPbNqvhJj4VA
- +H2o1symIbpTNoTesHHRsGAzky0KuttJA8yGW2JjLg9yLZPLBVPB+BCNkJg0Se4HibyJ
- 4F4l9vnuAYFSHT02FIwTf0qGpYbi1fGtbCr3NR8WM0xx4hVzPHVxt7nB9mdRUdubAu44
- 9kGCyaIuRs1jZRwA/3CurtRrUuDrCEeORTj0+/T+cFRBLJ3oKkSCjRgP6cwuQf4iBXW5
- RoxQ==
-X-Gm-Message-State: AOAM5333ros1+SVzsknHMWf6y7Bjx944ZUzCCKdLWediEeYNVqmks1LA
- 9UeiYe5eM4kF0hfDGVq8rI8=
-X-Google-Smtp-Source: ABdhPJy5GYUXGxdbJtTLoRtjbRmr21Q8zu5mMzrgQM87ZqsoqtWRy3CiT7iy1mU5TW1fmPqVkcyi4A==
-X-Received: by 2002:a05:6e02:1be9:b0:2c2:85a8:50cc with SMTP id
- y9-20020a056e021be900b002c285a850ccmr24316094ilv.131.1646153219788; 
- Tue, 01 Mar 2022 08:46:59 -0800 (PST)
-Received: from frodo.hsd1.co.comcast.net ([2601:284:8204:2010::f10e])
- by smtp.googlemail.com with ESMTPSA id
- o3-20020a6b5a03000000b00640a33c5b0dsm7272411iob.17.2022.03.01.08.46.59
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 01 Mar 2022 08:46:59 -0800 (PST)
-From: Jim Cromie <jim.cromie@gmail.com>
-To: jbaron@akamai.com, gregkh@linuxfoundation.org, daniel.vetter@ffwll.ch,
- seanpaul@chromium.org, robdclark@gmail.com, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-gvt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Date: Tue,  1 Mar 2022 09:46:29 -0700
-Message-Id: <20220301164629.3814634-14-jim.cromie@gmail.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220301164629.3814634-1-jim.cromie@gmail.com>
-References: <20220301164629.3814634-1-jim.cromie@gmail.com>
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E44910E2DA
+ for <intel-gfx@lists.freedesktop.org>; Tue,  1 Mar 2022 17:09:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1646154543; x=1677690543;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=VZ9c7oJB7UTvdR8T82Ar9b9xICXZNCbJqUUUDbIXGRg=;
+ b=lPXaUYhaBahWdcsIwGASivH4OBvzJxuvPnnOZXPuZcJQuTqxgHQH3jqK
+ Yisz0GB9tMh7LDjceFoOhA7GY/YfM/N+vi3WN0+Y9mQpyWhD0n3Vf6/1Z
+ lwvj+9nD8yKsgjEst8DobEZXzaF4OgLEOkISHKsqZux5UGsDnY4K55nKV
+ QOYaDib775/KfqvZtu8+ex3tKD+NCIF3jAXLnFkvBTjQTNZd1UZLorw9y
+ tBHalhNsTkS+yy6FflB0b0Q+Q7wS7m/Uq4NY/sQywEPAF36gro9SJ8Yu0
+ pXla3L/WheTXbPAmGvqim9lKSjqcHhaW+nMQ6XQwYejixkkdClajjFa0m g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10273"; a="313904418"
+X-IronPort-AV: E=Sophos;i="5.90,146,1643702400"; d="scan'208";a="313904418"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Mar 2022 09:09:02 -0800
+X-IronPort-AV: E=Sophos;i="5.90,146,1643702400"; d="scan'208";a="493185392"
+Received: from daithiby-mobl.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
+ ([10.252.15.82])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Mar 2022 09:09:01 -0800
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  1 Mar 2022 17:08:33 +0000
+Message-Id: <20220301170835.682715-1-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 13/13] drm_print: use
- DEFINE_DYNAMIC_DEBUG_CLASSBITS for drm.debug
+Subject: [Intel-gfx] [CI 1/3] drm/i915/gtt: reduce overzealous alignment
+ constraints for GGTT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,107 +56,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jim Cromie <jim.cromie@gmail.com>
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-if CONFIG_DRM_USE_DYNAMIC_DEBUG=y, use new macro to create the sysfs
-bitmap to control drm.debug callsites.
+The 2M alignment should only be needed for the ppGTT, when dealing with
+platforms like DG2. When dealing with the GGTT we can safely limit to
+64K.
 
-DEFINE_DYNAMIC_DEBUG_CLASSBITS( debug, __drm_debug, "p",
-	"drm.debug - control summary",
-	/* inline vector of _ddebug.class_id's to be controlled, max 14 vals */
-	DRM_UT_CORE,
-	DRM_UT_DRIVER,
-	DRM_UT_KMS,
-	DRM_UT_PRIME,
-	DRM_UT_ATOMIC,
-	DRM_UT_VBL,
-	DRM_UT_STATE,
-	DRM_UT_LEASE,
-	DRM_UT_DP,
-	DRM_UT_DRMRES );
-
-NOTES:
-
-The @_flgs used here is "p", so this bitmap enables input to syslog
-only, matching legacy behavior.
-
-Also, no "fmlt" decorator flags are used here; that is discouraged, as
-it then toggles those flags along with the "p".  This would overwrite
-any customizations a user added since the sysfs-knob was last used.
-Still, there may be cases/reasons.
-
-_ddebug.class_id is uint:4, values 0-14 are valid. 15 is reserved for
-non-classified callsites (regular pr_debugs).  Using it terminates the
-scan, don't use it halfway through your list.
-
-Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Robert Beckett <bob.beckett@collabora.com>
 ---
- drivers/gpu/drm/drm_print.c | 20 ++++++++++++++++++--
- include/drm/drm_print.h     |  4 ++--
- 2 files changed, 20 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_gtt.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/drm_print.c b/drivers/gpu/drm/drm_print.c
-index c9b2a2ab0d3d..d916daa384e5 100644
---- a/drivers/gpu/drm/drm_print.c
-+++ b/drivers/gpu/drm/drm_print.c
-@@ -38,7 +38,7 @@
-  * __drm_debug: Enable debug output.
-  * Bitmask of DRM_UT_x. See include/drm/drm_print.h for details.
-  */
--unsigned int __drm_debug;
-+unsigned long __drm_debug;
- EXPORT_SYMBOL(__drm_debug);
+diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.c b/drivers/gpu/drm/i915/gt/intel_gtt.c
+index 4bcdfcab3642..a5f5b2dda332 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gtt.c
++++ b/drivers/gpu/drm/i915/gt/intel_gtt.c
+@@ -234,7 +234,8 @@ void i915_address_space_init(struct i915_address_space *vm, int subclass)
+ 	memset64(vm->min_alignment, I915_GTT_MIN_ALIGNMENT,
+ 		 ARRAY_SIZE(vm->min_alignment));
  
- MODULE_PARM_DESC(debug, "Enable debug output, where each bit enables a debug category.\n"
-@@ -50,7 +50,23 @@ MODULE_PARM_DESC(debug, "Enable debug output, where each bit enables a debug cat
- "\t\tBit 5 (0x20)  will enable VBL messages (vblank code)\n"
- "\t\tBit 7 (0x80)  will enable LEASE messages (leasing code)\n"
- "\t\tBit 8 (0x100) will enable DP messages (displayport code)");
--module_param_named(debug, __drm_debug, int, 0600);
-+
-+#if !defined(CONFIG_DRM_USE_DYNAMIC_DEBUG)
-+module_param_named(debug, __drm_debug, ulong, 0600);
-+#else
-+DEFINE_DYNAMIC_DEBUG_CLASSBITS(debug, __drm_debug, "p",
-+	"enable drm.debug categories - 1 bit per category",
-+	DRM_UT_CORE,
-+	DRM_UT_DRIVER,
-+	DRM_UT_KMS,
-+	DRM_UT_PRIME,
-+	DRM_UT_ATOMIC,
-+	DRM_UT_VBL,
-+	DRM_UT_STATE,
-+	DRM_UT_LEASE,
-+	DRM_UT_DP,
-+	DRM_UT_DRMRES);
-+#endif
- 
- void __drm_puts_coredump(struct drm_printer *p, const char *str)
- {
-diff --git a/include/drm/drm_print.h b/include/drm/drm_print.h
-index 13d52b60f388..419140bf992d 100644
---- a/include/drm/drm_print.h
-+++ b/include/drm/drm_print.h
-@@ -36,7 +36,7 @@
- #include <drm/drm.h>
- 
- /* Do *not* use outside of drm_print.[ch]! */
--extern unsigned int __drm_debug;
-+extern unsigned long __drm_debug;
- 
- /**
-  * DOC: print
-@@ -527,7 +527,7 @@ __printf(1, 2)
- void __drm_err(const char *format, ...);
- 
- #if !defined(CONFIG_DRM_USE_DYNAMIC_DEBUG)
--#define __drm_dbg(fmt, ...)		___drm_dbg(NULL, fmt, ##__VA_ARGS__)
-+#define __drm_dbg(cat, fmt, ...)	___drm_dbg(NULL, cat, fmt, ##__VA_ARGS__)
- #else
- #define __drm_dbg(cat, fmt, ...)					\
- 	_dynamic_func_call_cls(cat, fmt, ___drm_dbg,			\
+-	if (HAS_64K_PAGES(vm->i915) && NEEDS_COMPACT_PT(vm->i915)) {
++	if (HAS_64K_PAGES(vm->i915) && NEEDS_COMPACT_PT(vm->i915) &&
++	    subclass == VM_CLASS_PPGTT) {
+ 		vm->min_alignment[INTEL_MEMORY_LOCAL] = I915_GTT_PAGE_SIZE_2M;
+ 		vm->min_alignment[INTEL_MEMORY_STOLEN_LOCAL] = I915_GTT_PAGE_SIZE_2M;
+ 	} else if (HAS_64K_PAGES(vm->i915)) {
 -- 
-2.35.1
+2.34.1
 
