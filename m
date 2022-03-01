@@ -2,161 +2,123 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC7204C9541
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Mar 2022 20:57:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DAB704C9663
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Mar 2022 21:22:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA1D810E829;
-	Tue,  1 Mar 2022 19:57:25 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D88810E13F;
- Tue,  1 Mar 2022 19:57:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646164644; x=1677700644;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=LrQvRQ7MmSJ6+nhYeMhINo0SomtcFYD2WNZCP4ZycVY=;
- b=eU7x9eOwJpBs/61A+XdRjFwy/LIUwiwR7DkOc/ELR9Al4aMR8Fy1CkG+
- Lw0kSu0WXN4WOolnRVQKE2wp5GuUFCd6uLdWINCsME5ZAB7Z25/ykWtw4
- RJu+CdunLxofBsb4j8coIr3Q9g5sNwXi/1Dkh5O+AGTROhTeiOdFYDMY5
- k8xkN3W8mdtLUpkraM589in85YgY8wMp1Ixi1IB2wXhYU/LKyUyAIACeJ
- ssX2hHIkld+KHIAGqseNTa0MYCeUcAQW0R8OKWbtnyz39hsdArstWNwIA
- tgZByYJqXcecB+tE8Gxd8civCz6Vtut1lIeC/ujhnyJ5xhgjs/6JSp4JZ w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10273"; a="277894607"
-X-IronPort-AV: E=Sophos;i="5.90,146,1643702400"; d="scan'208";a="277894607"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Mar 2022 11:57:23 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,146,1643702400"; d="scan'208";a="778574449"
-Received: from fmsmsx606.amr.corp.intel.com ([10.18.126.86])
- by fmsmga006.fm.intel.com with ESMTP; 01 Mar 2022 11:57:23 -0800
-Received: from fmsmsx608.amr.corp.intel.com (10.18.126.88) by
- fmsmsx606.amr.corp.intel.com (10.18.126.86) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.21; Tue, 1 Mar 2022 11:57:22 -0800
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx608.amr.corp.intel.com (10.18.126.88) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.21 via Frontend Transport; Tue, 1 Mar 2022 11:57:22 -0800
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.169)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2308.20; Tue, 1 Mar 2022 11:57:22 -0800
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F89710E1A1;
+	Tue,  1 Mar 2022 20:22:15 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2049.outbound.protection.outlook.com [40.107.92.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E42C310E138;
+ Tue,  1 Mar 2022 20:22:13 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=LQGNgeCOJWvIJTXcGueESOSXHNDcOsthJp0N1VFlLxRy5XrlrE4O8WMnZKsoz47Wh4vDtxTtHJVOdv28yLQ7tgm3xb3hWd99V5+ovfcJqy21Q83tDe6HmwmK0UjFQfDSem/OLPiMC8KLMEH8fxA6nZtBtgxmVWeRZDzPzhvjijzqx1cIlxPDMdIMGgeIupExuMA/4YwC7KlU6rd3my/SgztoVV4ZSzV3i7DlHntVPdpZqFZOKBOa+8Qu6wEWTKgcaG+Zp3VmfB0vrNzHL9UkXE4fr8achFmKAcf00HclTkkMNmYnGfX/MBYufeEA4tc2Hnmfc1ZNVHCLRRYrp5X4LQ==
+ b=XS4T3vWCrIVP3/dYaQlDxXT95B699eRGl/qWiyXp4/XAhXgjZEEyV2Fk9pchDbai9/RcxtFKMwVujHK7RZRzwAi5lr/Pz+03DdPU5Tt78fi1mlqSi4yVpz4tax9V4EcPkM3d8d6287JfKU/Sy3rKYGQCuzBx1bzzkJ7S0491z1Gp1RMJrjLplGi6+OliH0YxePLNeyFXCI9F/xhirl0FeDrfrDs/hW+lsOHSSHOh+bMMMn4W8Bp2tmqCxkMrpGe5RpcOjO3hk+UpRCIwZ0t4SQqUk8h/oG5yj0PibyvFebItIriiwUB0QAhy7hhOwgvzbhhj5YpoBF73bIJY4a62Eg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3mQyT4LlqFTsdzAiryAyFAaCQYZdXyIAn3AFW62+5s0=;
- b=MOTww3YZaoKQNDe3Qr9W94egHbQEDwguswO+8wTX1EAAaJVRA3UfRsEVcL2kSDOWhkYupunWTcG87ylTrIrYM0Yf3X86/MpEBTHHQCs/iWTNfN5vgQKuwEt6ZEOzQC8hq0OW7ZW6F+pewFQ9gjvW8emNno4AJhKn3s8T/2ejTMBuGUc6OvnHbd6ngQjpZJSE8vek2mOMA8QH55YSed63uWwjajSrNj4K9xzDiRJqhBZIGBDUqZHmAL/0S3Ejg8oNIp7sAo7TBuMiaZ7LSK+btVS5pC8lqD4wBCCFm0XT3NflLSIPyzKaOheMMOy8NkYLFQhga0ITcN/7XqdRGc6Wyg==
+ bh=irjnVIVBcZ5gf9BAsvONNu8NRmX6t0FNBfSOFP5K/Jg=;
+ b=BPM5VvxiCFGGuEwiRSo93fXJ0+TAQ791uka9EoxlsJ2TNalGYCOPu3yu3hT+2m4IUDgMkZmGm7W37cbmt8jaUtDK+9feQ8VtiTix47bpOlP+uciGM/JMnnhli7ve+L4Rhqh7076U2y1nYChhT6cpv7Xad1UNv9u4QN/nCVUji3LJB1CDF/R5oORa/puLTCVGzQR+UhTQDf+56jWbJ1qEc/3F5jG4m/8v14V/LbT2FcvJE0BVa4btbFyMLYHK/ztqsNNpvAMLld3zcIJJn25Jz92fEWxn/McSwIWsUarpMAj1F99UddjC4/xI++vsvsmKVmO6uK50uflwNHlFdXQKqA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=irjnVIVBcZ5gf9BAsvONNu8NRmX6t0FNBfSOFP5K/Jg=;
+ b=jF3KYRApAyQhJY89WU5SLZtEx2POShi3/6Wm1FE0ZE8XoUjmDFDolhuRYVwxXEXgRiwj9StPY8oP+HagcNQs/WYGkBYGNUmz926nAhaf3MwzsZzeBiyGPk8leG79qCpdm/IdFs1A2RWb+cUS+WJnjWQOFJFHWaHHxhEeo/pvQ9I=
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BY5PR11MB3911.namprd11.prod.outlook.com (2603:10b6:a03:18d::29)
- by DM4PR11MB5309.namprd11.prod.outlook.com (2603:10b6:5:390::5) with
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from MN2PR12MB4342.namprd12.prod.outlook.com (2603:10b6:208:264::7)
+ by DM5PR12MB4679.namprd12.prod.outlook.com (2603:10b6:4:a2::37) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5017.25; Tue, 1 Mar
- 2022 19:57:20 +0000
-Received: from BY5PR11MB3911.namprd11.prod.outlook.com
- ([fe80::dd36:1843:a629:4ad7]) by BY5PR11MB3911.namprd11.prod.outlook.com
- ([fe80::dd36:1843:a629:4ad7%4]) with mapi id 15.20.5017.027; Tue, 1 Mar 2022
- 19:57:20 +0000
-Message-ID: <1b8edddb-f0c4-0ff9-a07e-25e4a496ea4d@intel.com>
-Date: Tue, 1 Mar 2022 11:57:16 -0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Firefox/91.0 Thunderbird/91.6.1
-Content-Language: en-GB
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- <Intel-GFX@Lists.FreeDesktop.Org>
-References: <20220218213307.1338478-1-John.C.Harrison@Intel.com>
- <20220218213307.1338478-2-John.C.Harrison@Intel.com>
- <0d0c5a79-1285-0830-3794-e9f0644811a5@linux.intel.com>
- <94c3184e-c1e2-668f-5824-00fd55797736@intel.com>
- <17e69f0c-8084-10dc-b20f-7d5108260180@linux.intel.com>
- <85105590-a8be-f4e1-69bc-cd34cad108e2@intel.com>
- <16a2687b-4996-8d40-456e-019a112f0fb6@linux.intel.com>
- <c1472196-260a-d2c8-c508-10fe58d4cd47@intel.com>
- <74d30fd4-cb72-113e-fc09-12602b3cf06d@linux.intel.com>
- <986dae97-6c68-34cc-d972-22edaddf7261@intel.com>
- <4e8888d0-f0da-12f3-4010-159b4ff2bdb3@linux.intel.com>
- <fc96ce57-37f7-9962-6d15-1741de9fcd89@intel.com>
- <d931b54e-0b89-877e-9a7f-ede3c3bf165f@linux.intel.com>
-From: John Harrison <john.c.harrison@intel.com>
-In-Reply-To: <d931b54e-0b89-877e-9a7f-ede3c3bf165f@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5017.26; Tue, 1 Mar
+ 2022 20:22:09 +0000
+Received: from MN2PR12MB4342.namprd12.prod.outlook.com
+ ([fe80::48e2:1306:25a3:5f14]) by MN2PR12MB4342.namprd12.prod.outlook.com
+ ([fe80::48e2:1306:25a3:5f14%5]) with mapi id 15.20.5017.027; Tue, 1 Mar 2022
+ 20:22:09 +0000
+Message-ID: <e44cdd26-c858-9a49-a470-2b4b678bba1d@amd.com>
+Date: Wed, 2 Mar 2022 02:03:10 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.2.0
+Content-Language: en-US
+To: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org
+References: <20220221164552.2434-1-Arunpravin.PaneerSelvam@amd.com>
+ <20220221164552.2434-5-Arunpravin.PaneerSelvam@amd.com>
+ <e6f7e38d-edae-de88-2527-1ea33aef990c@gmail.com>
+From: Arunpravin <arunpravin.paneerselvam@amd.com>
+In-Reply-To: <e6f7e38d-edae-de88-2527-1ea33aef990c@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MW4PR04CA0336.namprd04.prod.outlook.com
- (2603:10b6:303:8a::11) To BY5PR11MB3911.namprd11.prod.outlook.com
- (2603:10b6:a03:18d::29)
+X-ClientProxiedBy: BM1PR0101CA0015.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:b00:18::25) To MN2PR12MB4342.namprd12.prod.outlook.com
+ (2603:10b6:208:264::7)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 929c6ae8-0440-4097-dc4d-08d9fbbdb1c4
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5309:EE_
-X-Microsoft-Antispam-PRVS: <DM4PR11MB530912907CBDC39B4DD2892CBD029@DM4PR11MB5309.namprd11.prod.outlook.com>
+X-MS-Office365-Filtering-Correlation-Id: 13aee73c-af1b-488e-8176-08d9fbc1294b
+X-MS-TrafficTypeDiagnostic: DM5PR12MB4679:EE_
+X-Microsoft-Antispam-PRVS: <DM5PR12MB46794D5970E41028CA553542E4029@DM5PR12MB4679.namprd12.prod.outlook.com>
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: +PLnPOnkqG6JL3MGtfr1Davper29T3Y/Tz8XZpSnc7KekCmafl1VDvuazpkH2Aadsg4wZz/RXkxMT1xrzbr3a1ICttHbay+82k/uNe3aorvaL/hHyDvyeDZy6h02U0L37MfEqcMPG+NTfDvxv6WogA02UCb74pNx4W2p2ZfuL8vcQC8Rm8Nyzi8BH8ta2MrOxw5G0O/8eBf/1ePAdiDvbPt/pzPMRIuv2Q5ivEY2HfCyEzJ6dmxiD7FRPxvFIk3b9INk1zSU5ZdASWzSLfCILFljoU/lUvASMOnriugf7P3/167ywX00nsQ77JNbxJT1xz28A3NrV29dVuwpwC735ZkT14YG/Vy+gQ7AV+NC3zX0/W90yNz/81FrAioV4jYAXrE/qkPFrYUWwmmDZDjT5Fj3jHsWzVNl4dkn/uRr6ftPdUZdYFaaEZjmwbHr9ICVa3uJ/dgIt7/1geYCRDWAGHMOLkgCyPOHfuVh3MHgWC7WRNYcQguk/h6wHBrfMmNJs1QdcAaJDDdc+Xfu3NnMhTK3W/0Zv8lljlcSwXMv7u4hC43+xC6RUEixcAJNGs9eY/fExMtHf0ygfEiXPKAV9jt6EYDCWMQ4vL3XUStQZ0z8sSLi+PsdOtfqxAYdqu9O3gAYHo0MboOThrfbqL10v5kX2Al7JzCnaIosstv76QnaM1CbDzWgE91qaaQicM/v6YFnTjaYM0SDNS0AGQSXJVpZUNGVUEZxL+DsmXGqxCv411ggJF580zH99CPa+ou9
+X-Microsoft-Antispam-Message-Info: XkUgYWGoJ3sR1q3CAkAL7vXPJ8syFyAxgjxp0SNi4RLMgzHDIOrYPpe8WZMZYvAekcph93DBee5imi4HQHRdjtm+llc2Cj4DzUNFrmt5SOEnkIZWe/ZYiex/gCAWdRYM20DG0Qm1n1IXEeIldceJYnw7n+UZlFFeXvukZUyQJtqm/g6qRoWKClXZywo+iWJUHEob4oGNCr6q2EjJON9QyVN8v1tbvv02+KKETuCXUFonRlDwVW62ord1eGSXFP6CTg7o/ioyDoZVUwUYqhvs/vNVeRMLfxFt+JGZvJd35qVdRyYt+EVe3eTSoc+jxk/kys0DZuLsXU/IMgcLAbH+tquekErVw6hEbX6wmrUD5mq9BER6/BROGlrNOQgUDvqyLD862YOo31NTk4KqPBcJ0CNjDK6Dtkt2MKqYHgNWf71FkF3nr2zj1gHq/xPQ7eRbhPpeSRl2UhTY1tS2Wh2jynHo0uvTwayjjVcgDtwF+RtyvjiTkvOQOlSDbaKL6xMLkS3kAGsMlJqV+oo5ccA56nvEhK1hQU/rvTgU64R/rcjk1IIWNPtZ3KbK7H+fmTajBVSeZ3O/hg7yv2Q+tJkvpklGYhwppvDy7oh1a+RlwTk9I0D/PML2See2FZim44sBRrMRgu4cdBB1S67EvSWqayEntznsFeNllfQ5dv5gJmsKJeh7QNRqdr4MttmuPRBG5UOOJa2DlZE4meVSNA58iLVAeaAMhdK3wWl2ssonLVQ=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BY5PR11MB3911.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230001)(366004)(6512007)(316002)(5660300002)(31696002)(8936002)(2616005)(86362001)(8676002)(66946007)(66476007)(66556008)(4326008)(2906002)(38100700002)(30864003)(26005)(186003)(36756003)(53546011)(82960400001)(6506007)(6486002)(6666004)(83380400001)(508600001)(31686004)(43740500002)(45980500001);
- DIR:OUT; SFP:1102; 
+ IPV:NLI; SFV:NSPM; H:MN2PR12MB4342.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230001)(4636009)(366004)(66574015)(30864003)(8936002)(2906002)(2616005)(316002)(186003)(26005)(38100700002)(6506007)(53546011)(4326008)(8676002)(6666004)(5660300002)(86362001)(66556008)(66476007)(66946007)(6512007)(83380400001)(6486002)(31686004)(508600001)(36756003)(31696002)(43740500002)(45980500001);
+ DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VlovSkNnRkU4R1N1ejg2Z0hNQnBlNEc1VXZSdy9WZCs1RnBFdk55Zzk1Uk5D?=
- =?utf-8?B?U2JSUm8wakpraURXR1dTMXZDSUtMenVwNnIwdEtrd09mNzliM25wRU5aRllR?=
- =?utf-8?B?S2g4SVVjT082bVkyV1B6TTBJTVUzeWViOThGbHFlem43ZVc1TUpiL3RXL1o4?=
- =?utf-8?B?VmpJK3E4KzVNbHRROXNwNGFJSlVpMlhMejBrS3BIU1pLRFJ1ajhyUk83VDZa?=
- =?utf-8?B?VHZqMmRIazFVWUJWK1JuZlBoZ0VTSENRVitTYVlpSXcwZnY3ZXgrd1IyU3lN?=
- =?utf-8?B?bmFGT1pRNk9raUM5Z0wrSEJyN2VSbE1ZZGhLalNheENKQWVueFdta2FPUS9k?=
- =?utf-8?B?MUxXOVUvRU9iRjZvb0RoL3phaSt4QndEUzhuTHkxRGZCUGo5ZndTRklJWTMy?=
- =?utf-8?B?Y2F5RktRM1NYSXRURmRBUk05Z0FFOGRyTjErRERIOG1zbVlYL3VVejJwMmFG?=
- =?utf-8?B?d2Y4Ulc4NExpS1FlN0ZzbGJPZGJXN3liVkxUNnl6cmF5L2txcW8zdUpnajRL?=
- =?utf-8?B?T1ZwbmJOSmllOGt2WjE3SVEzcDk2SUtuK0dVclQ4emFiSHhBbXhhcEZWZlNC?=
- =?utf-8?B?RlVZRzhVZDkvQndDeTFYelZXQ0xyYk9CMXJMZVFpNjFwbUhaT24rUHJtZDVO?=
- =?utf-8?B?QkJTQmpYcDRSb29FZEtlcnluMGxGNm8xc1V3aC9xYVRiODBjbHEvaU0zV1Z0?=
- =?utf-8?B?T3Nyd0tLV3gvOUo0Q09DVlZRdzU2UEZXL1ZHU1pXNmVSc25uaG0vdkQwSC96?=
- =?utf-8?B?ZlNJbnpLbEIyVDNGWFVaUU5GNVBrdExIM2IwRVh2TjBmQytTNGJma1Y3R0t4?=
- =?utf-8?B?a0J3aHpZV0JOcWJvMnVNZzZXRTR4akVUczZicXBEZVZCVnZvUmhLcFgyc1U4?=
- =?utf-8?B?UnhoUndaa24yUGd6YjcrZWhudHVzcmVXV1hmd2EwcXdTbEpyR3BmdkdkMVAr?=
- =?utf-8?B?UXduMVR1bDNjbEdkY0FveTJiYVA4dCtWSjFmUkQ5bk16dlJRd3NtcS8xTTdi?=
- =?utf-8?B?Wk5LL3RzNTZwWHZkYnlRVVFNaEVtSVN6bml0UEJKY3ZORys0eEJMRjZMT0Zo?=
- =?utf-8?B?Y3l2MnZDMDB6M3FnQStBYTRONSsyM2VUK2p1RzBYVUNSdmpXUXBUYzgySy9n?=
- =?utf-8?B?YXREczdMOVArd2NpZzZxbVdVbkFHMytpRjlSWjBtZzlhbVNJOWptZEw5N3hN?=
- =?utf-8?B?WUxDa2RVeXQ3WEFFd000M0Ywak5xd1F2VlBqaGRUeDQ4ZEpBWG9OVU5VRDZF?=
- =?utf-8?B?VmRmTjNDcW0vYTVFb3FSUzJ1dE9HdEhpcVlkbnc0V0c2WFpiTUFDelFCcURV?=
- =?utf-8?B?UVk1U0tvZm1wRXhQNWJlSTdHTit6MzllZnFvR09zTW1jMjlhUS96U2xoTzVx?=
- =?utf-8?B?QmtSaWo2ME5MNlh6OGNXT3ZSWUV6blI4eFJlcjhrZjBTQm80cFV3eGlZc3Fl?=
- =?utf-8?B?UGlPUDVtOEF5WkdHOEt0YkZsMUNXMmtQdVpObjg0NHd0WjYySUxaQXk5bGY2?=
- =?utf-8?B?dkdjV1V5T1hsRUxZM1ZuZEV5YkxaNitiQ0pXYWdxNnc3M3F3NDNXWDRETHpV?=
- =?utf-8?B?VHdTdCtYb3I0YkgrZ213MkJhQnhaakR2M1Y3Z0lPNjk5MkMvNDdnRW4vVnV6?=
- =?utf-8?B?OTN6bVRnZm5VUStsQ0Fwb2FBZFBmUkYreXp3SjhKUjRjVFEzT01IQTdvNzV3?=
- =?utf-8?B?U3E0SC9nd3Qwd1lGbVlLUmd3cDlEVEg1N1AwUjdsNndKbDFZWkJ3UlRpMUdl?=
- =?utf-8?B?TVJBVkhrT3o1MGFhNFdmYVJiMUpvdm5xZU0yS1A1Vm1GZDN0dTBmRTg5SDk5?=
- =?utf-8?B?alR2dWQ0bEduNnpWK3hodmVCbUY0ZGszbFV5eUZGRVpteGhMT2tkVFgySjVV?=
- =?utf-8?B?dmRXNEFKbFVUWTQ0QUtZdTBsRDg3SFhUTXFvbDRVNVUrQmNQbGFxT1orajZY?=
- =?utf-8?B?dkZBOE9aTVpPWE5LMzFYaUhxVm02VC9Mbm80ajVkZmJ5c3c3S0h4QVhqUTZv?=
- =?utf-8?B?dmdSWkpERkhMbGY4aGl3aFd3cUhleVNJMS9nS1U2MC8wSUZMRlRLb1hzVDRH?=
- =?utf-8?B?eTBUd256SFAwbVRjVTl2YktJZm1FeERmSlBTYXhWeXZEVDZLRmw5c2Rsd2F4?=
- =?utf-8?B?RzU4Z3ZweldVVm5hUHN0YnhKLzNNcnNQUklDVm9rSFoxUmVyZGJZM0NLL0xI?=
- =?utf-8?B?ZE1HMUlkWW9YaWw5bktpQ0RQZjIxbjBOcDRLbnArOC92Y3pKd2QySVdXdXc4?=
- =?utf-8?Q?Byjy1UotL9O7bg64HBN3PUXveD6g+qp5vqENhEFzSA=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 929c6ae8-0440-4097-dc4d-08d9fbbdb1c4
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB3911.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TmRaVUJ4aWFWdWRjUVR0TForN2NBSE9lQWVXOE5BYmJpdDVaNG5BT3F4L1ZT?=
+ =?utf-8?B?T2UvemM5R0hDVk95d0FQTGhwcnp5L25kbWFuTWNJSHY1cmw1Ym44b25JOGU4?=
+ =?utf-8?B?RlBoOGxOZGJURXoxbzU2S3UxbFpUV2lMRndUbW5oaW1VcnhhcUw3Mi96TXJG?=
+ =?utf-8?B?ZlJLY2dwL2FzVUN6NHJLZWRONk43WjR0Z1NDY1V6a1BRU0VCZEVIa1dGRUVG?=
+ =?utf-8?B?c1I5M3RpT1VsVU1jOFZqaHl2d2UwamZJM0Ivbk5acytBK0lLZWxjd3ZQNlNY?=
+ =?utf-8?B?TW1EK293bk9EeUJ6eTQxRUYrUC82YWh1ZjEyWGg0UVNFdE8zVEs5d1A2d1pM?=
+ =?utf-8?B?M1BUNHY5RXJPU1RWYlMzcU53MU1GelFaL0JjdXUxVEtZLzUwUU0zLy9CcC9M?=
+ =?utf-8?B?ZUFueTY1WndCRU5TemhTSElwaFdwckc1NjNodjF2WEpnaUJTYVkrWEdlbW90?=
+ =?utf-8?B?N0RPVU1YN2dmNDZPZjlFVWRzSm5lVFFLSzJJUWhpTmlLa3p4QUYvWUZTQmU1?=
+ =?utf-8?B?R1hYYjZldkRCRGoxT3pleG9GSEVacjZFNjMrTGpCSVgwUUw5S1FNTExxYlJQ?=
+ =?utf-8?B?SnJkVTQ0K0Q1WnUxcnJhbUU4RU5qQ3JvZmYxcUFTK3JmR21zcW8ybStrNzNB?=
+ =?utf-8?B?WTNMWEpzd1dLRTZEOEU4eUVVMXlYN1g4TWpEMzRMdEpxcGpQWlA2ckswM3FN?=
+ =?utf-8?B?SW9sQWhYK2RXTWpDZ09xQmVvSytzN29xakZ3ckt2ZmVERHhhb0dnSGxzOVI2?=
+ =?utf-8?B?T3NSZkRqZmx2NDJoZ1N1YXRxanZKT0Q4akdobnkrMUFkMHJPSFZ6Y1ZERWZ5?=
+ =?utf-8?B?dklySHRBVUlxR29QUWVUcGpEcFF6OTlrdHlhV09STmMzN21yZzRQcTZSUUl1?=
+ =?utf-8?B?M1ZvbTUzUWx0OHkrWTF4M3h4UFBtVHVidjdZS1NSVU9LcThwdFhaK0lMTHRQ?=
+ =?utf-8?B?c0dSMGhaZzVSbVhJVi9qUmFBMCszSzZwbFNXallrSzM1cU0xL09TMko2ZE9m?=
+ =?utf-8?B?UG5teWpQNXZXaE9wcUttTHVjbTMrTFV6TDZTeFkxTEpEZXJzaHluZmhFTWpo?=
+ =?utf-8?B?N1RlRDNCaXpTM3RKcDNPYml0RkJScUZCWFE4T01yK09HL0praWcwcnlnci9a?=
+ =?utf-8?B?YWlBZmNFRlNrN0wwaGo2V0lkMEFEOHRWNENrQ1AvUkJsNEtxYUlZTit1Z09S?=
+ =?utf-8?B?a1UvMyt0L2JpVzJDNVZZSmcxRmZSQlAvM2FmWEl1Kyttb1RRYkFYN2RiTjBI?=
+ =?utf-8?B?RDNiSHp0RDlHYUllbllhTHZZaDBuSXRVUUs5Y2VseE1mVXRkK1NSQzZjWVJ0?=
+ =?utf-8?B?REREZ1lHQW9UYjVldFhTUUdZM29yVnltWHd0b3ArYXZXK0wxQUJlcFFOY3VI?=
+ =?utf-8?B?K2xoSkl2Nkdqdkt2S1hqRkpzWjJpelZ6YzFvcVYvRW54U2RSWDdLR0NpYzVm?=
+ =?utf-8?B?dDRiT3B2YzNTWjVFeTlPc3ZkeEw0TE9CdkptR1U5dURWb2RGZGR0bDdQb2FI?=
+ =?utf-8?B?bDVhb3pNWDRQZjhIVzlJN0VqUEk2UWYzWkc3RWRTeG1SRGxnMlh4V054NXVu?=
+ =?utf-8?B?bm5EaHpHdEdpTHFPaTBoaDc2TUhNK3lKcUhNbEVJam1tMk84ZkJDNnduT3A2?=
+ =?utf-8?B?bk9tQkFSREdIYU1FcWpSUlJ0bGQzQWY2azUrS2hOKzh2QmpNdkVDZTV3LzR4?=
+ =?utf-8?B?N1hxRHorMm5DSE9KTGswNkVKemVMZm16WFdDTkFKdTNYMVpoeHpsbzR5bEZo?=
+ =?utf-8?B?MC9GZWJjc0RFTmlXTlhqdjRMWUU0MXloRWRzOW5QSTMrMkUweTdoOW4zSzBN?=
+ =?utf-8?B?b2tZV1dFUklYN1pIeW5aUjNwUU8vMFdnRWlyVmwwdFpqT1lMVDJYdEc3Tk8r?=
+ =?utf-8?B?K3c5V2tIbzZWc01BNWQ2aVZ2WktaOEZTNUNXQ0s0UldjeFd3N2JkQ1NYMlJl?=
+ =?utf-8?B?T3NVTVlFSndvYzFMN1AwOTUwVTVxZGxJVWUzRFY4QW9ONVFVeGhDanVPaitR?=
+ =?utf-8?B?aEJWWTE4TDkxdllNaFNSSW1lcmF6WTRYaVpsNnFuRVpvZC9sNHBlSUM5d3pD?=
+ =?utf-8?B?Ri9TZS9VWmZKSDQxMnpoY0g1QWM5OUxxNm9lUXhEUm5iSHVhdHNxdE95ZllD?=
+ =?utf-8?B?d3YzM21qZW55QVBrSUx4WUhVUEgrZXBmYjVCTUg0LzVZalZHT2h3VlpvMXdZ?=
+ =?utf-8?Q?XU+2efJgF2NVJUfuyDfnIKs=3D?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 13aee73c-af1b-488e-8176-08d9fbc1294b
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB4342.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Mar 2022 19:57:20.0901 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Mar 2022 20:22:09.3146 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ni7HZqY39VgCB3hYywiFI4Qqb9RF65xXg9Yl9tSEpX04OQMnPY/JG+BJFdLCKSAsIkZaCWJ930QDg5qkz8nwosowNeg7cS8gJi8eZiYRW5E=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB5309
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/guc: Limit scheduling
- properties to avoid overflow
+X-MS-Exchange-CrossTenant-UserPrincipalName: y+fP5toyXQjZ/6m94Db34OAYOE8SAlAiIYT7iTm0u3OuQXKsBUAfagEgMs6GohWgtDsY19eG6o4HT2drHzLeuA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB4679
+Subject: Re: [Intel-gfx] [PATCH v13 5/5] drm/amdgpu: add drm buddy support
+ to amdgpu
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -169,400 +131,750 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: DRI-Devel@Lists.FreeDesktop.Org
+Cc: matthew.auld@intel.com, tzimmermann@suse.de, alexander.deucher@amd.com,
+ christian.koenig@amd.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 3/1/2022 02:50, Tvrtko Ursulin wrote:
-> On 28/02/2022 18:32, John Harrison wrote:
->> On 2/28/2022 08:11, Tvrtko Ursulin wrote:
->>> On 25/02/2022 17:39, John Harrison wrote:
->>>> On 2/25/2022 09:06, Tvrtko Ursulin wrote:
->>>>>
->>>>> On 24/02/2022 19:19, John Harrison wrote:
->>>>>
->>>>> [snip]
->>>>>
->>>>>>>>>>> ./gt/uc/intel_guc_fwif.h: u32 execution_quantum;
->>>>>>>>>>>
->>>>>>>>>>> ./gt/uc/intel_guc_submission.c: desc->execution_quantum = 
->>>>>>>>>>> engine->props.timeslice_duration_ms * 1000;
->>>>>>>>>>>
->>>>>>>>>>> ./gt/intel_engine_types.h: unsigned long timeslice_duration_ms;
->>>>>>>>>>>
->>>>>>>>>>> timeslice_store/preempt_timeout_store:
->>>>>>>>>>> err = kstrtoull(buf, 0, &duration);
->>>>>>>>>>>
->>>>>>>>>>> So both kconfig and sysfs can already overflow GuC, not only 
->>>>>>>>>>> because of tick conversion internally but because at backend 
->>>>>>>>>>> level nothing was done for assigning 64-bit into 32-bit. Or 
->>>>>>>>>>> I failed to find where it is handled.
->>>>>>>>>> That's why I'm adding this range check to make sure we don't 
->>>>>>>>>> allow overflows.
->>>>>>>>>
->>>>>>>>> Yes and no, this fixes it, but the first bug was not only due 
->>>>>>>>> GuC internal tick conversion. It was present ever since the 
->>>>>>>>> u64 from i915 was shoved into u32 sent to GuC. So even if GuC 
->>>>>>>>> used the value without additional multiplication, bug was be 
->>>>>>>>> there. My point being when GuC backend was added timeout_ms 
->>>>>>>>> values should have been limited/clamped to U32_MAX. The tick 
->>>>>>>>> discovery is additional limit on top.
->>>>>>>> I'm not disagreeing. I'm just saying that the truncation wasn't 
->>>>>>>> noticed until I actually tried using very long timeouts to 
->>>>>>>> debug a particular problem. Now that it is noticed, we need 
->>>>>>>> some method of range checking and this simple clamp solves all 
->>>>>>>> the truncation problems.
->>>>>>>
->>>>>>> Agreed in principle, just please mention in the commit message 
->>>>>>> all aspects of the problem.
->>>>>>>
->>>>>>> I think we can get away without a Fixes: tag since it requires 
->>>>>>> user fiddling to break things in unexpected ways.
->>>>>>>
->>>>>>> I would though put in a code a clamping which expresses both, 
->>>>>>> something like min(u32, ..GUC LIMIT..). So the full story is 
->>>>>>> documented forever. Or "if > u32 || > ..GUC LIMIT..) return 
->>>>>>> -EINVAL". Just in case GuC limit one day changes but u32 stays. 
->>>>>>> Perhaps internal ticks go away or anything and we are left with 
->>>>>>> plain 1:1 millisecond relationship.
->>>>>> Can certainly add a comment along the lines of "GuC API only 
->>>>>> takes a 32bit field but that is further reduced to GUC_LIMIT due 
->>>>>> to internal calculations which would otherwise overflow".
->>>>>>
->>>>>> But if the GuC limit is > u32 then, by definition, that means the 
->>>>>> GuC API has changed to take a u64 instead of a u32. So there will 
->>>>>> no u32 truncation any more. So I'm not seeing a need to 
->>>>>> explicitly test the integer size when the value check covers that.
->>>>>
->>>>> Hmm I was thinking if the internal conversion in the GuC fw 
->>>>> changes so that GUC_POLICY_MAX_PREEMPT_TIMEOUT_MS goes above u32, 
->>>>> then to be extra safe by documenting in code there is the 
->>>>> additional limit of the data structure field. Say the field was 
->>>>> changed to take some unit larger than a millisecond. Then the 
->>>>> check against the GuC MAX limit define would not be enough, unless 
->>>>> that would account both for internal implementation and u32 in the 
->>>>> protocol. Maybe that is overdefensive but I don't see that it 
->>>>> harms. 50-50, but it's do it once and forget so I'd do it.
->>>> Huh?
->>>>
->>>> How can the limit be greater than a u32 if the interface only takes 
->>>> a u32? By definition the limit would be clamped to u32 size.
->>>>
->>>> If you mean that the GuC policy is in different units and those 
->>>> units might not overflow but ms units do, then actually that is 
->>>> already the case. The GuC works in us not ms. That's part of why 
->>>> the wrap around is so low, we have to multiply by 1000 before 
->>>> sending to GuC. However, that is actually irrelevant because the 
->>>> comparison is being done on the i915 side in i915's units. We have 
->>>> to scale the GuC limit to match what i915 is using. And the i915 
->>>> side is u64 so if the scaling to i915 numbers overflows a u32 then 
->>>> who cares because that comparison can be done at 64 bits wide.
->>>>
->>>> If the units change then that is a backwards breaking API change 
->>>> that will require a manual driver code update. You can't just 
->>>> recompile with a new header and magically get an ms to us or ms to 
->>>> s conversion in your a = b assignment. The code will need to be 
->>>> changed to do the new unit conversion (note we already convert from 
->>>> ms to us, the GuC API is all expressed in us). And that code change 
->>>> will mean having to revisit any and all scaling, type conversions, 
->>>> etc. I.e. any pre-existing checks will not necessarily be valid and 
->>>> will need to be re-visted anyway. But as above, any scaling to GuC 
->>>> units has to be incorporated into the limit already because 
->>>> otherwise the limit would not fit in the GuC's own API.
->>>
->>> Yes I get that, I was just worried that u32 field in the protocol 
->>> and GUC_POLICY_MAX_EXEC_QUANTUM_MS defines are separate in the 
->>> source code and then how to protect against forgetting to update 
->>> both in sync.
->>>
->>> Like if the protocol was changed to take nanoseconds, and firmware 
->>> implementation changed to support the full range, but define 
->>> left/forgotten at 100s. That would then overflow u32.
->> Huh? If the API was updated to 'support the full range' then how can 
->> you get overflow by forgetting to update the limit? You could get 
->> unnecessary clamping, which hopefully would be noticed by whoever is 
->> testing the new API and/or whoever requested the change. But you 
->> can't get u32 overflow errors if all the code has been updated to u64.
->
-> 1)
-> Change the protocol so that "u32 desc->execution_quantum" now takes 
-> nano seconds.
->
-> This now makes the maximum time 4.29.. seconds.
-You seriously think this is likely to happen?
 
-That the GuC people would force an API change on us that is completely 
-backwards from what we have been asking? And that such a massive 
-backwards step would not get implemented correctly because someone 
-didn't notice just how huge an impact it was?
 
->
-> 2)
-> Forget to update GUC_POLICY_MAX_EXEC_QUANTUM_MS from 100s, since for 
-> instance that part at that point still not part of the interface 
-> contract.
-There is zero chance of the us -> ns change occurring in the foreseeable 
-future whereas the expectation is to have the limits be part of the spec 
-in the next firmware release. So this scenario is just not going to 
-happen. And as above, it would be such a big change with such a huge 
-amount of push back and discussion going on that it would be impossible 
-for the limit update to be missed/forgotten.
+On 22/02/22 6:24 pm, Christian König wrote:
+> Am 21.02.22 um 17:45 schrieb Arunpravin:
+>> - Remove drm_mm references and replace with drm buddy functionalities
+>> - Add res cursor support for drm buddy
+>>
+>> v2(Matthew Auld):
+>>    - replace spinlock with mutex as we call kmem_cache_zalloc
+>>      (..., GFP_KERNEL) in drm_buddy_alloc() function
+>>
+>>    - lock drm_buddy_block_trim() function as it calls
+>>      mark_free/mark_split are all globally visible
+>>
+>> v3(Matthew Auld):
+>>    - remove trim method error handling as we address the failure case
+>>      at drm_buddy_block_trim() function
+>>
+>> v4:
+>>    - fix warnings reported by kernel test robot <lkp@intel.com>
+>>
+>> v5:
+>>    - fix merge conflict issue
+>>
+>> v6:
+>>    - fix warnings reported by kernel test robot <lkp@intel.com>
+>>
+>> v7:
+>>    - remove DRM_BUDDY_RANGE_ALLOCATION flag usage
+>>
+>> v8:
+>>    - keep DRM_BUDDY_RANGE_ALLOCATION flag usage
+>>    - resolve conflicts created by drm/amdgpu: remove VRAM accounting v2
+>>
+>> Signed-off-by: Arunpravin <Arunpravin.PaneerSelvam@amd.com>
+>> ---
+>>   drivers/gpu/drm/Kconfig                       |   1 +
+>>   .../gpu/drm/amd/amdgpu/amdgpu_res_cursor.h    |  97 +++++--
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h       |   7 +-
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c  | 256 ++++++++++--------
+>>   4 files changed, 229 insertions(+), 132 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
+>> index 763355330b17..019ec0440ced 100644
+>> --- a/drivers/gpu/drm/Kconfig
+>> +++ b/drivers/gpu/drm/Kconfig
+>> @@ -279,6 +279,7 @@ config DRM_AMDGPU
+>>   	select HWMON
+>>   	select BACKLIGHT_CLASS_DEVICE
+>>   	select INTERVAL_TREE
+>> +	select DRM_BUDDY
+>>   	help
+>>   	  Choose this option if you have a recent AMD Radeon graphics card.
+>>   
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h
+>> index acfa207cf970..da12b4ff2e45 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h
+>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h
+>> @@ -30,12 +30,15 @@
+>>   #include <drm/ttm/ttm_resource.h>
+>>   #include <drm/ttm/ttm_range_manager.h>
+>>   
+>> +#include "amdgpu_vram_mgr.h"
+>> +
+>>   /* state back for walking over vram_mgr and gtt_mgr allocations */
+>>   struct amdgpu_res_cursor {
+>>   	uint64_t		start;
+>>   	uint64_t		size;
+>>   	uint64_t		remaining;
+>> -	struct drm_mm_node	*node;
+>> +	void			*node;
+>> +	uint32_t		mem_type;
+>>   };
+>>   
+>>   /**
+>> @@ -52,27 +55,63 @@ static inline void amdgpu_res_first(struct ttm_resource *res,
+>>   				    uint64_t start, uint64_t size,
+>>   				    struct amdgpu_res_cursor *cur)
+>>   {
+>> +	struct drm_buddy_block *block;
+>> +	struct list_head *head, *next;
+>>   	struct drm_mm_node *node;
+>>   
+>> -	if (!res || res->mem_type == TTM_PL_SYSTEM) {
+>> -		cur->start = start;
+>> -		cur->size = size;
+>> -		cur->remaining = size;
+>> -		cur->node = NULL;
+>> -		WARN_ON(res && start + size > res->num_pages << PAGE_SHIFT);
+>> -		return;
+>> -	}
+>> +	if (!res)
+>> +		goto err_out;
+> 
+> It's not really an error to not have a resource. So I would rather name 
+> the label fallback or something like that.
+> 
+>>   
+>>   	BUG_ON(start + size > res->num_pages << PAGE_SHIFT);
+>>   
+>> -	node = to_ttm_range_mgr_node(res)->mm_nodes;
+>> -	while (start >= node->size << PAGE_SHIFT)
+>> -		start -= node++->size << PAGE_SHIFT;
+>> +	cur->mem_type = res->mem_type;
+>> +
+>> +	switch (cur->mem_type) {
+>> +	case TTM_PL_VRAM:
+>> +		head = &to_amdgpu_vram_mgr_node(res)->blocks;
+>> +
+>> +		block = list_first_entry_or_null(head,
+>> +						 struct drm_buddy_block,
+>> +						 link);
+>> +		if (!block)
+>> +			goto err_out;
+>> +
+>> +		while (start >= amdgpu_node_size(block)) {
+>> +			start -= amdgpu_node_size(block);
+>> +
+>> +			next = block->link.next;
+>> +			if (next != head)
+>> +				block = list_entry(next, struct drm_buddy_block, link);
+>> +		}
+>> +
+>> +		cur->start = amdgpu_node_start(block) + start;
+>> +		cur->size = min(amdgpu_node_size(block) - start, size);
+>> +		cur->remaining = size;
+>> +		cur->node = block;
+>> +		break;
+>> +	case TTM_PL_TT:
+>> +		node = to_ttm_range_mgr_node(res)->mm_nodes;
+>> +		while (start >= node->size << PAGE_SHIFT)
+>> +			start -= node++->size << PAGE_SHIFT;
+>> +
+>> +		cur->start = (node->start << PAGE_SHIFT) + start;
+>> +		cur->size = min((node->size << PAGE_SHIFT) - start, size);
+>> +		cur->remaining = size;
+>> +		cur->node = node;
+>> +		break;
+>> +	default:
+>> +		goto err_out;
+>> +	}
+>>   
+>> -	cur->start = (node->start << PAGE_SHIFT) + start;
+>> -	cur->size = min((node->size << PAGE_SHIFT) - start, size);
+>> +	return;
+>> +
+>> +err_out:
+>> +	cur->start = start;
+>> +	cur->size = size;
+>>   	cur->remaining = size;
+>> -	cur->node = node;
+>> +	cur->node = NULL;
+>> +	WARN_ON(res && start + size > res->num_pages << PAGE_SHIFT);
+>> +	return;
+>>   }
+>>   
+>>   /**
+>> @@ -85,7 +124,9 @@ static inline void amdgpu_res_first(struct ttm_resource *res,
+>>    */
+>>   static inline void amdgpu_res_next(struct amdgpu_res_cursor *cur, uint64_t size)
+>>   {
+>> -	struct drm_mm_node *node = cur->node;
+>> +	struct drm_buddy_block *block;
+>> +	struct drm_mm_node *node;
+>> +	struct list_head *next;
+>>   
+>>   	BUG_ON(size > cur->remaining);
+>>   
+>> @@ -99,9 +140,27 @@ static inline void amdgpu_res_next(struct amdgpu_res_cursor *cur, uint64_t size)
+>>   		return;
+>>   	}
+>>   
+>> -	cur->node = ++node;
+>> -	cur->start = node->start << PAGE_SHIFT;
+>> -	cur->size = min(node->size << PAGE_SHIFT, cur->remaining);
+>> +	switch (cur->mem_type) {
+>> +	case TTM_PL_VRAM:
+>> +		block = cur->node;
+>> +
+>> +		next = block->link.next;
+>> +		block = list_entry(next, struct drm_buddy_block, link);
+>> +
+>> +		cur->node = block;
+>> +		cur->start = amdgpu_node_start(block);
+>> +		cur->size = min(amdgpu_node_size(block), cur->remaining);
+>> +		break;
+>> +	case TTM_PL_TT:
+>> +		node = cur->node;
+>> +
+>> +		cur->node = ++node;
+>> +		cur->start = node->start << PAGE_SHIFT;
+>> +		cur->size = min(node->size << PAGE_SHIFT, cur->remaining);
+>> +		break;
+>> +	default:
+>> +		return;
+>> +	}
+>>   }
+>>   
+>>   #endif
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
+>> index 9120ae80ef52..8acdb2fb3a23 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
+>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
+>> @@ -26,6 +26,7 @@
+>>   
+>>   #include <linux/dma-direction.h>
+>>   #include <drm/gpu_scheduler.h>
+>> +#include <drm/drm_buddy.h>
+>>   #include "amdgpu.h"
+>>   
+>>   #define AMDGPU_PL_GDS		(TTM_PL_PRIV + 0)
+>> @@ -40,11 +41,13 @@
+>>   
+>>   struct amdgpu_vram_mgr {
+>>   	struct ttm_resource_manager manager;
+>> -	struct drm_mm mm;
+>> -	spinlock_t lock;
+>> +	struct drm_buddy mm;
+>> +	/* protects access to buffer objects */
+>> +	struct mutex lock;
+>>   	struct list_head reservations_pending;
+>>   	struct list_head reserved_pages;
+>>   	atomic64_t vis_usage;
+>> +	u64 default_page_size;
+>>   };
+> 
+> Can we move that to amdgpu_vram_mgr.h as well?
+> 
+>>   
+>>   struct amdgpu_gtt_mgr {
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
+>> index 0a7611648573..6b2a5879e985 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
+>> @@ -32,8 +32,11 @@
+>>   #include "atom.h"
+>>   
+>>   struct amdgpu_vram_reservation {
+>> +	u64 start;
+>> +	u64 size;
+>> +	unsigned long flags;
+> 
+> Looks like we will always use the same flags and that can be dropped.
+> 
+>> +	struct list_head block;
+>>   	struct list_head node;
+>> -	struct drm_mm_node mm_node;
+>>   };
+>>   
+>>   static inline struct amdgpu_vram_mgr *
+>> @@ -194,10 +197,10 @@ const struct attribute_group amdgpu_vram_mgr_attr_group = {
+>>    * Calculate how many bytes of the MM node are inside visible VRAM
+>>    */
+>>   static u64 amdgpu_vram_mgr_vis_size(struct amdgpu_device *adev,
+>> -				    struct drm_mm_node *node)
+>> +				    struct drm_buddy_block *block)
+>>   {
+>> -	uint64_t start = node->start << PAGE_SHIFT;
+>> -	uint64_t end = (node->size + node->start) << PAGE_SHIFT;
+>> +	u64 start = amdgpu_node_start(block);
+>> +	u64 end = start + amdgpu_node_size(block);
+>>   
+>>   	if (start >= adev->gmc.visible_vram_size)
+>>   		return 0;
+>> @@ -218,9 +221,9 @@ u64 amdgpu_vram_mgr_bo_visible_size(struct amdgpu_bo *bo)
+>>   {
+>>   	struct amdgpu_device *adev = amdgpu_ttm_adev(bo->tbo.bdev);
+>>   	struct ttm_resource *res = bo->tbo.resource;
+>> -	unsigned pages = res->num_pages;
+>> -	struct drm_mm_node *mm;
+>> -	u64 usage;
+>> +	struct amdgpu_vram_mgr_node *node = to_amdgpu_vram_mgr_node(res);
+>> +	struct drm_buddy_block *block;
+>> +	u64 usage = 0;
+>>   
+>>   	if (amdgpu_gmc_vram_full_visible(&adev->gmc))
+>>   		return amdgpu_bo_size(bo);
+>> @@ -228,9 +231,8 @@ u64 amdgpu_vram_mgr_bo_visible_size(struct amdgpu_bo *bo)
+>>   	if (res->start >= adev->gmc.visible_vram_size >> PAGE_SHIFT)
+>>   		return 0;
+>>   
+>> -	mm = &container_of(res, struct ttm_range_mgr_node, base)->mm_nodes[0];
+>> -	for (usage = 0; pages; pages -= mm->size, mm++)
+>> -		usage += amdgpu_vram_mgr_vis_size(adev, mm);
+>> +	list_for_each_entry(block, &node->blocks, link)
+>> +		usage += amdgpu_vram_mgr_vis_size(adev, block);
+>>   
+>>   	return usage;
+>>   }
+>> @@ -240,23 +242,31 @@ static void amdgpu_vram_mgr_do_reserve(struct ttm_resource_manager *man)
+>>   {
+>>   	struct amdgpu_vram_mgr *mgr = to_vram_mgr(man);
+>>   	struct amdgpu_device *adev = to_amdgpu_device(mgr);
+>> -	struct drm_mm *mm = &mgr->mm;
+>> +	struct drm_buddy *mm = &mgr->mm;
+>>   	struct amdgpu_vram_reservation *rsv, *temp;
+>> +	struct drm_buddy_block *block;
+>>   	uint64_t vis_usage;
+>>   
+>>   	list_for_each_entry_safe(rsv, temp, &mgr->reservations_pending, node) {
+>> -		if (drm_mm_reserve_node(mm, &rsv->mm_node))
+>> +		if (drm_buddy_alloc_blocks(mm, rsv->start, rsv->start + rsv->size,
+>> +					   rsv->size, mm->chunk_size, &rsv->block,
+>> +					   rsv->flags))
+>>   			continue;
+>>   
+>> -		dev_dbg(adev->dev, "Reservation 0x%llx - %lld, Succeeded\n",
+>> -			rsv->mm_node.start, rsv->mm_node.size);
+>> -
+>> -		vis_usage = amdgpu_vram_mgr_vis_size(adev, &rsv->mm_node);
+>> -		atomic64_add(vis_usage, &mgr->vis_usage);
+>> -		spin_lock(&man->bdev->lru_lock);
+>> -		man->usage += rsv->mm_node.size << PAGE_SHIFT;
+>> -		spin_unlock(&man->bdev->lru_lock);
+>> -		list_move(&rsv->node, &mgr->reserved_pages);
+>> +		block = list_first_entry_or_null(&rsv->block,
+>> +						 struct drm_buddy_block,
+>> +						 link);
+>> +		if (block) {
+> 
+> Rather make that an "if (!block) continue;".
+> 
+>> +			dev_dbg(adev->dev, "Reservation 0x%llx - %lld, Succeeded\n",
+>> +				rsv->start, rsv->size);
+>> +
+>> +			vis_usage = amdgpu_vram_mgr_vis_size(adev, block);
+>> +			atomic64_add(vis_usage, &mgr->vis_usage);
+>> +			spin_lock(&man->bdev->lru_lock);
+>> +			man->usage += rsv->size;
+>> +			spin_unlock(&man->bdev->lru_lock);
+>> +			list_move(&rsv->node, &mgr->reserved_pages);
+>> +		}
+>>   	}
+>>   }
+>>   
+>> @@ -279,13 +289,16 @@ int amdgpu_vram_mgr_reserve_range(struct amdgpu_vram_mgr *mgr,
+>>   		return -ENOMEM;
+>>   
+>>   	INIT_LIST_HEAD(&rsv->node);
+>> -	rsv->mm_node.start = start >> PAGE_SHIFT;
+>> -	rsv->mm_node.size = size >> PAGE_SHIFT;
+>> +	INIT_LIST_HEAD(&rsv->block);
+>> +
+>> +	rsv->start = start;
+>> +	rsv->size = size;
+>> +	rsv->flags |= DRM_BUDDY_RANGE_ALLOCATION;
+>>   
+>> -	spin_lock(&mgr->lock);
+>> +	mutex_lock(&mgr->lock);
+>>   	list_add_tail(&rsv->node, &mgr->reservations_pending);
+>>   	amdgpu_vram_mgr_do_reserve(&mgr->manager);
+>> -	spin_unlock(&mgr->lock);
+>> +	mutex_unlock(&mgr->lock);
+>>   
+>>   	return 0;
+>>   }
+>> @@ -307,19 +320,19 @@ int amdgpu_vram_mgr_query_page_status(struct amdgpu_vram_mgr *mgr,
+>>   	struct amdgpu_vram_reservation *rsv;
+>>   	int ret;
+>>   
+>> -	spin_lock(&mgr->lock);
+>> +	mutex_lock(&mgr->lock);
+>>   
+>>   	list_for_each_entry(rsv, &mgr->reservations_pending, node) {
+>> -		if ((rsv->mm_node.start <= start) &&
+>> -		    (start < (rsv->mm_node.start + rsv->mm_node.size))) {
+>> +		if (rsv->start <= start &&
+>> +		    (start < (rsv->start + rsv->size))) {
+>>   			ret = -EBUSY;
+>>   			goto out;
+>>   		}
+>>   	}
+>>   
+>>   	list_for_each_entry(rsv, &mgr->reserved_pages, node) {
+>> -		if ((rsv->mm_node.start <= start) &&
+>> -		    (start < (rsv->mm_node.start + rsv->mm_node.size))) {
+>> +		if (rsv->start <= start &&
+>> +		    (start < (rsv->start + rsv->size))) {
+>>   			ret = 0;
+>>   			goto out;
+>>   		}
+>> @@ -327,32 +340,10 @@ int amdgpu_vram_mgr_query_page_status(struct amdgpu_vram_mgr *mgr,
+>>   
+>>   	ret = -ENOENT;
+>>   out:
+>> -	spin_unlock(&mgr->lock);
+>> +	mutex_unlock(&mgr->lock);
+>>   	return ret;
+>>   }
+>>   
+>> -/**
+>> - * amdgpu_vram_mgr_virt_start - update virtual start address
+>> - *
+>> - * @mem: ttm_resource to update
+>> - * @node: just allocated node
+>> - *
+>> - * Calculate a virtual BO start address to easily check if everything is CPU
+>> - * accessible.
+>> - */
+>> -static void amdgpu_vram_mgr_virt_start(struct ttm_resource *mem,
+>> -				       struct drm_mm_node *node)
+>> -{
+>> -	unsigned long start;
+>> -
+>> -	start = node->start + node->size;
+>> -	if (start > mem->num_pages)
+>> -		start -= mem->num_pages;
+>> -	else
+>> -		start = 0;
+>> -	mem->start = max(mem->start, start);
+>> -}
+>> -
+>>   /**
+>>    * amdgpu_vram_mgr_new - allocate new ranges
+>>    *
+>> @@ -368,13 +359,13 @@ static int amdgpu_vram_mgr_new(struct ttm_resource_manager *man,
+>>   			       const struct ttm_place *place,
+>>   			       struct ttm_resource **res)
+>>   {
+>> -	unsigned long lpfn, num_nodes, pages_per_node, pages_left, pages;
+>> +	unsigned long lpfn, pages_per_node, pages_left, pages, n_pages;
+>> +	u64 vis_usage = 0, mem_bytes, max_bytes, min_page_size;
+>>   	struct amdgpu_vram_mgr *mgr = to_vram_mgr(man);
+>>   	struct amdgpu_device *adev = to_amdgpu_device(mgr);
+>> -	uint64_t vis_usage = 0, mem_bytes, max_bytes;
+>> -	struct ttm_range_mgr_node *node;
+>> -	struct drm_mm *mm = &mgr->mm;
+>> -	enum drm_mm_insert_mode mode;
+>> +	struct amdgpu_vram_mgr_node *node;
+>> +	struct drm_buddy *mm = &mgr->mm;
+>> +	struct drm_buddy_block *block;
+>>   	unsigned i;
+>>   	int r;
+>>   
+>> @@ -387,10 +378,9 @@ static int amdgpu_vram_mgr_new(struct ttm_resource_manager *man,
+>>   		max_bytes -= AMDGPU_VM_RESERVED_VRAM;
+>>   
+>>   	mem_bytes = tbo->base.size;
+>> -	if (place->flags & TTM_PL_FLAG_CONTIGUOUS) {
+>> +	if (place->flags & TTM_PL_FLAG_CONTIGUOUS)
+>>   		pages_per_node = ~0ul;
+>> -		num_nodes = 1;
+>> -	} else {
+>> +	else {
+> 
+> Please keep the } else { here, see coding style rules.
+> 
+>>   #ifdef CONFIG_TRANSPARENT_HUGEPAGE
+>>   		pages_per_node = HPAGE_PMD_NR;
+>>   #else
+>> @@ -399,11 +389,9 @@ static int amdgpu_vram_mgr_new(struct ttm_resource_manager *man,
+>>   #endif
+>>   		pages_per_node = max_t(uint32_t, pages_per_node,
+>>   				       tbo->page_alignment);
+>> -		num_nodes = DIV_ROUND_UP_ULL(PFN_UP(mem_bytes), pages_per_node);
+>>   	}
+>>   
+>> -	node = kvmalloc(struct_size(node, mm_nodes, num_nodes),
+>> -			GFP_KERNEL | __GFP_ZERO);
+>> +	node = kzalloc(sizeof(*node), GFP_KERNEL);
+>>   	if (!node)
+>>   		return -ENOMEM;
+>>   
+>> @@ -415,9 +403,17 @@ static int amdgpu_vram_mgr_new(struct ttm_resource_manager *man,
+>>   		goto error_fini;
+>>   	}
+>>   
+>> -	mode = DRM_MM_INSERT_BEST;
+>> +	INIT_LIST_HEAD(&node->blocks);
+>> +
+>>   	if (place->flags & TTM_PL_FLAG_TOPDOWN)
+>> -		mode = DRM_MM_INSERT_HIGH;
+>> +		node->flags |= DRM_BUDDY_TOPDOWN_ALLOCATION;
+>> +
+>> +	if (place->fpfn || lpfn != man->size >> PAGE_SHIFT)
+>> +		/* Allocate blocks in desired range */
+>> +		node->flags |= DRM_BUDDY_RANGE_ALLOCATION;
+>> +
+>> +	min_page_size = mgr->default_page_size;
+>> +	BUG_ON(min_page_size < mm->chunk_size);
+>>   
+>>   	pages_left = node->base.num_pages;
+>>   
+>> @@ -425,36 +421,61 @@ static int amdgpu_vram_mgr_new(struct ttm_resource_manager *man,
+>>   	pages = min(pages_left, 2UL << (30 - PAGE_SHIFT));
+>>   
+>>   	i = 0;
+>> -	spin_lock(&mgr->lock);
+>>   	while (pages_left) {
+>> -		uint32_t alignment = tbo->page_alignment;
+>> -
+>>   		if (pages >= pages_per_node)
+>> -			alignment = pages_per_node;
+>> -
+>> -		r = drm_mm_insert_node_in_range(mm, &node->mm_nodes[i], pages,
+>> -						alignment, 0, place->fpfn,
+>> -						lpfn, mode);
+>> -		if (unlikely(r)) {
+>> -			if (pages > pages_per_node) {
+>> -				if (is_power_of_2(pages))
+>> -					pages = pages / 2;
+>> -				else
+>> -					pages = rounddown_pow_of_two(pages);
+>> -				continue;
+>> -			}
+>> -			goto error_free;
+>> +			pages = pages_per_node;
+> 
+> When I see that correctly then this is a rather bad idea.
+> 
+> That would limit each allocated block to only 2MiB, but we really want 
+> allocations up to 1GiB!
+> 
+Hi Christian,
+please review the new patch which has the following changes
 
->
-> 3)
-> User passes in 5 seconds.
->
-> Clamping check says all is good.
->
-> "engine->props.timeslice_duration_ms > GUC_POLICY_MAX_EXEC_QUANTUM_MS"
->
-> 4)
->
-> Assignment was updated:
->
-> gt/uc/intel_guc_submission.c:
->
->   desc->execution_quantum = engine->props.timeslice_duration_ms * 1e6;
->
-> But someone did not realize field is u32.
->
->   desc->execution_quantum = engine->props.timeslice_duration_ms * 1e6;
->
-> Defensive solution:
->
->   if (overflows_type(engine->props.timeslice_duration_ms * 1e6, 
-> desc->execution_quantum))
->     drm_WARN_ON...
+* Each node maximum size is 2GiB
 
-All you are saying is that bugs can happen. The above is just one more 
-place to have a bug.
+* Alignment design
+how min_page_size is determined? min_page_size is the argument passed to
+drm_buddy, If we dont find a node equivalent to min_page_size, drm_buddy
+returns -ENOSPC
 
-The purpose of the limit is to take into account all reasons for there 
-being a limit. Having a bunch of different tests that are all testing 
-the same thing is pointless.
+First we determine pages_per_node, it is the alignment size within the
+required total size, If huge page enabled pages_per_node = HPAGE_PMD_NR;
+Else, pages_per_node = 2MB, finally we take pages_per_node = max of
+(pages_per_node, tbo->page_alignment)
 
-John.
+case 1 : If required pages > pages_per_node, then min_page_size =
+pages_per_node
 
->
->   desc->execution_quantum = engine->props.timeslice_duration_ms * 1e6;
->
+case 2 : If required pages < pages_per_node, then min_page_size =
+tbo->page_alignment if available , else defaults to 4KB
+
+case 3: If CONTIGUOUS flag enabled, min_page_size = size;
+
+pages_per_node is the alignment size within the required total size
+min_page_size is the argument passed to drm_buddy
+If we dont find a node equivalent to min_page_size, drm_buddy returns
+-ENOSPC
+
+* when required size is > 2GB
+say for example required size = 3GB, since the max node size is 2GB, we
+don't get continuous 3GB of allocation if required, we get 2GB
+contiguous and 1GB contiguous
+
+Thanks,
+Arun
+>> +
+>> +		n_pages = pages;
+>> +
+>> +		if (place->flags & TTM_PL_FLAG_CONTIGUOUS) {
+>> +			n_pages = roundup_pow_of_two(n_pages);
+>> +			min_page_size = (u64)n_pages << PAGE_SHIFT;
+>> +
+>> +			if (n_pages > lpfn)
+>> +				lpfn = n_pages;
+>>   		}
+>>   
+>> -		vis_usage += amdgpu_vram_mgr_vis_size(adev, &node->mm_nodes[i]);
+>> -		amdgpu_vram_mgr_virt_start(&node->base, &node->mm_nodes[i]);
+>> +		mutex_lock(&mgr->lock);
+>> +		r = drm_buddy_alloc_blocks(mm, (u64)place->fpfn << PAGE_SHIFT,
+>> +					   (u64)lpfn << PAGE_SHIFT,
+>> +					   (u64)n_pages << PAGE_SHIFT,
+>> +					   min_page_size,
+>> +					   &node->blocks,
+>> +					   node->flags);
+>> +		mutex_unlock(&mgr->lock);
+>> +		if (unlikely(r))
+>> +			goto error_free_blocks;
+>> +
+>>   		pages_left -= pages;
+>>   		++i;
+>>   
+>>   		if (pages > pages_left)
+>>   			pages = pages_left;
+>>   	}
+>> -	spin_unlock(&mgr->lock);
+>> +
+>> +	/* Free unused pages for contiguous allocation */
+>> +	if (place->flags & TTM_PL_FLAG_CONTIGUOUS) {
+>> +		u64 actual_size = (u64)node->base.num_pages << PAGE_SHIFT;
+>> +
+>> +		mutex_lock(&mgr->lock);
+>> +		drm_buddy_block_trim(mm,
+>> +				     actual_size,
+>> +				     &node->blocks);
+>> +		mutex_unlock(&mgr->lock);
+>> +	}
+>> +
+>> +	list_for_each_entry(block, &node->blocks, link)
+>> +		vis_usage += amdgpu_vram_mgr_vis_size(adev, block);
+>> +
+>> +	block = list_first_entry_or_null(&node->blocks,
+>> +					 struct drm_buddy_block,
+>> +					 link);
+> 
+> This is a repeating patter, you should probably add a helper function 
+> for it.
+> 
 > Regards,
->
-> Tvrtko
->
->
->> John.
->>
->>>
->>> Regards,
->>>
->>> Tvrtko
->>>
->>>> John.
->>>>
->>>>>
->>>>>>>>>>>> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
->>>>>>>>>>>> ---
->>>>>>>>>>>> drivers/gpu/drm/i915/gt/intel_engine_cs.c | 15 +++++++++++++++
->>>>>>>>>>>> drivers/gpu/drm/i915/gt/sysfs_engines.c | 14 ++++++++++++++
->>>>>>>>>>>> drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h | 9 +++++++++
->>>>>>>>>>>>   3 files changed, 38 insertions(+)
->>>>>>>>>>>>
->>>>>>>>>>>> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c 
->>>>>>>>>>>> b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
->>>>>>>>>>>> index e53008b4dd05..2a1e9f36e6f5 100644
->>>>>>>>>>>> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
->>>>>>>>>>>> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
->>>>>>>>>>>> @@ -389,6 +389,21 @@ static int intel_engine_setup(struct 
->>>>>>>>>>>> intel_gt *gt, enum intel_engine_id id,
->>>>>>>>>>>>       if (GRAPHICS_VER(i915) == 12 && engine->class == 
->>>>>>>>>>>> RENDER_CLASS)
->>>>>>>>>>>> engine->props.preempt_timeout_ms = 0;
->>>>>>>>>>>>   +    /* Cap timeouts to prevent overflow inside GuC */
->>>>>>>>>>>> +    if (intel_guc_submission_is_wanted(&gt->uc.guc)) {
->>>>>>>>>>>> +        if (engine->props.timeslice_duration_ms > 
->>>>>>>>>>>> GUC_POLICY_MAX_EXEC_QUANTUM_MS) {
->>>>>>>>>>>
->>>>>>>>>>> Hm "wanted".. There's been too much back and forth on the 
->>>>>>>>>>> GuC load options over the years to keep track.. 
->>>>>>>>>>> intel_engine_uses_guc work sounds like would work and read 
->>>>>>>>>>> nicer.
->>>>>>>>>> I'm not adding a new feature check here. I'm just using the 
->>>>>>>>>> existing one. If we want to rename it yet again then that 
->>>>>>>>>> would be a different patch set.
->>>>>>>>>
->>>>>>>>> $ grep intel_engine_uses_guc . -rl
->>>>>>>>> ./i915_perf.c
->>>>>>>>> ./i915_request.c
->>>>>>>>> ./selftests/intel_scheduler_helpers.c
->>>>>>>>> ./gem/i915_gem_context.c
->>>>>>>>> ./gt/intel_context.c
->>>>>>>>> ./gt/intel_engine.h
->>>>>>>>> ./gt/intel_engine_cs.c
->>>>>>>>> ./gt/intel_engine_heartbeat.c
->>>>>>>>> ./gt/intel_engine_pm.c
->>>>>>>>> ./gt/intel_reset.c
->>>>>>>>> ./gt/intel_lrc.c
->>>>>>>>> ./gt/selftest_context.c
->>>>>>>>> ./gt/selftest_engine_pm.c
->>>>>>>>> ./gt/selftest_hangcheck.c
->>>>>>>>> ./gt/selftest_mocs.c
->>>>>>>>> ./gt/selftest_workarounds.c
->>>>>>>>>
->>>>>>>>> Sounds better to me than intel_guc_submission_is_wanted. What 
->>>>>>>>> does the reader know whether "is wanted" translates to "is 
->>>>>>>>> actually used". Shrug on "is wanted".
->>>>>>>> Yes, but isn't '_uses' the one that hits a BUG_ON if you call 
->>>>>>>> it too early in the boot up sequence? I never understood why 
->>>>>>>> that was necessary or why we need so many different ways to ask 
->>>>>>>> the same question. But this version already exists and 
->>>>>>>> definitely works without hitting any explosions.
->>>>>>>
->>>>>>> No idea if it causes a bug on, doesn't in the helper itself so 
->>>>>>> maybe you are saying it is called too early? Might be.. I think 
->>>>>>> over time the nice idea we had that "setup" and "init" phases of 
->>>>>>> engine setup clearly separated got destroyed a bit. There would 
->>>>>>> always be an option to move this clamping in a later phase, once 
->>>>>>> the submission method is known. One could argue that if the 
->>>>>>> submission method is not yet known at this point, it is even 
->>>>>>> wrong to clamp based on something which will only be decided 
->>>>>>> later. Because:
->>>>>>>
->>>>>>> int intel_engines_init(struct intel_gt *gt)
->>>>>>> {
->>>>>>>     int (*setup)(struct intel_engine_cs *engine);
->>>>>>>     struct intel_engine_cs *engine;
->>>>>>>     enum intel_engine_id id;
->>>>>>>     int err;
->>>>>>>
->>>>>>>     if (intel_uc_uses_guc_submission(&gt->uc)) {
->>>>>>>         gt->submission_method = INTEL_SUBMISSION_GUC;
->>>>>>>
->>>>>>> So this uses "uses", not "wanted". Presumably the point for 
->>>>>>> having "wanted" and "uses" is that they can disagree, in which 
->>>>>>> case if you clamp early based on "wanted" that suggests it could 
->>>>>>> be wrong.
->>>>>>
->>>>>> Okay, looks like I was getting confused with intel_guc_is_used(). 
->>>>>> That one blows up if called too early.
->>>>>>
->>>>>> I'll change it to _uses_ and repost, then.
->>>>>
->>>>> Check that it isn't called too early, before gt->submission_setup 
->>>>> is set.
->>>> Obviously it is because it blew up. But I am not re-writing the 
->>>> driver start up sequence just to use the word 'use' instead of 'want'.
->>>>
->>>>>
->>>>>>
->>>>>>>
->>>>>>>>>>> And limit to class instead of applying to all engines looks 
->>>>>>>>>>> like a miss.
->>>>>>>>>> As per follow up email, the class limit is not applied here.
->>>>>>>>>>
->>>>>>>>>>>
->>>>>>>>>>>> + drm_info(&engine->i915->drm, "Warning, clamping timeslice 
->>>>>>>>>>>> duration to %d to prevent possibly overflow\n",
->>>>>>>>>>>> + GUC_POLICY_MAX_EXEC_QUANTUM_MS);
->>>>>>>>>>>> + engine->props.timeslice_duration_ms = 
->>>>>>>>>>>> GUC_POLICY_MAX_EXEC_QUANTUM_MS;
->>>>>>>>>>>
->>>>>>>>>>> I am not sure logging such message during driver load is 
->>>>>>>>>>> useful. Sounds more like a confused driver which starts with 
->>>>>>>>>>> one value and then overrides itself. I'd just silently set 
->>>>>>>>>>> the value appropriate for the active backend. Preemption 
->>>>>>>>>>> timeout kconfig text already documents the fact timeouts can 
->>>>>>>>>>> get overriden at runtime depending on platform+engine. So 
->>>>>>>>>>> maybe just add same text to timeslice kconfig.
->>>>>>>>>> The point is to make people aware if they compile with 
->>>>>>>>>> unsupported config options. As far as I know, there is no way 
->>>>>>>>>> to apply range checking or other limits to config defines. 
->>>>>>>>>> Which means that a user would silently get unwanted 
->>>>>>>>>> behaviour. That seems like a bad thing to me. If the driver 
->>>>>>>>>> is confused because the user built it in a confused manner 
->>>>>>>>>> then we should let them know.
->>>>>>>>>
->>>>>>>>> Okay, but I think make it notice low level.
->>>>>>>>>
->>>>>>>>> Also consider in patch 3/3 when you triple it, and then clamp 
->>>>>>>>> back down here. That's even more confused state since tripling 
->>>>>>>>> gets nerfed. I think that's also an argument to always account 
->>>>>>>>> preempt timeout in heartbeat interval calculation. Haven't got 
->>>>>>>>> to your reply on 2/3 yet though..
->>>>>>>> That sounds like even more reason to make sure the warning gets 
->>>>>>>> seen. The more complex the system and the more chances there 
->>>>>>>> are to get it wrong, the more important it is to have a nice 
->>>>>>>> easy to see and understand notification that it did go wrong.
->>>>>>>
->>>>>>> I did not disagree, just said make it notice, one level higher 
->>>>>>> than info! :)
->>>>>> But then it won't appear unless you have explicitly said an 
->>>>>> elevated debug level. Whereas info appears in dmesg by default 
->>>>>> (but is still not classed as an error by CI and such).
->>>>>
->>>>> Notice is higher than info! :) If info appears by default so does 
->>>>> notice, warning, err, etc...
->>>> Doh! I could have sworn those were the other way around.
->>>>
->>>> Okay. Will update to use notice :).
->>>>
->>>>>
->>>>> #define KERN_EMERG      KERN_SOH "0"    /* system is unusable */
->>>>> #define KERN_ALERT      KERN_SOH "1"    /* action must be taken 
->>>>> immediately */
->>>>> #define KERN_CRIT       KERN_SOH "2"    /* critical conditions */
->>>>> #define KERN_ERR        KERN_SOH "3"    /* error conditions */
->>>>> #define KERN_WARNING    KERN_SOH "4"    /* warning conditions */
->>>>> #define KERN_NOTICE     KERN_SOH "5"    /* normal but significant 
->>>>> condition */
->>>>> #define KERN_INFO       KERN_SOH "6"    /* informational */
->>>>> #define KERN_DEBUG      KERN_SOH "7"    /* debug-level messages */
->>>>>
->>>>>>> But also think how, if we agree to go with tripling, that you'd 
->>>>>>> have to consider that in the sysfs store when hearbeat timeout 
->>>>>>> is written, to consider whether or not to triple and error out 
->>>>>>> if preemption timeout is over limit.
->>>>>> I see this as just setting the default values. If an end user is 
->>>>>> explicitly overriding the defaults then we should obey what they 
->>>>>> have requested. If they are changing the heartbeat interval then 
->>>>>> they can also change the pre-emption timeout appropriately.
->>>>>
->>>>> Question is can they unknowingly and without any feedback 
->>>>> configure a much worse state than they expect? Like when they set 
->>>>> heartbeats up to some value, everything is configured as you 
->>>>> intended - but if you go over a certain hidden limit the overall 
->>>>> scheme degrades in some way. What is the failure mode here if you 
->>>>> silently let them do that?
->>>> You can always configure things to be worse than expected. If you 
->>>> don't understand what you are doing then any control can make 
->>>> things worse instead of better. The assumption is that if a user is 
->>>> savvy enough to be writing to sysfs overrides of kernel parameters 
->>>> then they know what those parameters are and what their 
->>>> implications are. If they want to set a very short heartbeat with a 
->>>> very long pre-emption timeout then its their problem if they hit 
->>>> frequent TDRs. Conversely, if they want to set a very long 
->>>> heartbeat with a very short pre-emption timeout then its still 
->>>> their problem if they hit frequent TDRs.
->>>>
->>>> But if the user explicitly requests a heartbeat period of 3s and a 
->>>> pre-emption timeout of 2s and the i915 arbitrarily splats their 2s 
->>>> and makes it 9s then that is wrong.
->>>>
->>>> We should give the driver defaults that work for the majority of 
->>>> users and then let the minority specify exactly what they need.
->>>>
->>>> And there is no silent or hidden limit. If the user specifies a 
->>>> value too large then they will get -EINVAL. Nothing hidden or 
->>>> silent about that. Any other values are legal and the behaviour 
->>>> will be whatever has been requested.
->>>>
->>>> John.
->>>>
->>>>
->>>>>
->>>>> Regards,
->>>>>
->>>>> Tvrtko
->>>>
->>
-
+> Christian.
+> 
+>> +	if (!block) {
+>> +		r = -EINVAL;
+>> +		goto error_fini;
+>> +	}
+>> +
+>> +	node->base.start = amdgpu_node_start(block) >> PAGE_SHIFT;
+>>   
+>>   	if (i == 1)
+>>   		node->base.placement |= TTM_PL_FLAG_CONTIGUOUS;
+>> @@ -468,13 +489,13 @@ static int amdgpu_vram_mgr_new(struct ttm_resource_manager *man,
+>>   	*res = &node->base;
+>>   	return 0;
+>>   
+>> -error_free:
+>> -	while (i--)
+>> -		drm_mm_remove_node(&node->mm_nodes[i]);
+>> -	spin_unlock(&mgr->lock);
+>> +error_free_blocks:
+>> +	mutex_lock(&mgr->lock);
+>> +	drm_buddy_free_list(mm, &node->blocks);
+>> +	mutex_unlock(&mgr->lock);
+>>   error_fini:
+>>   	ttm_resource_fini(man, &node->base);
+>> -	kvfree(node);
+>> +	kfree(node);
+>>   
+>>   	return r;
+>>   }
+>> @@ -490,27 +511,26 @@ static int amdgpu_vram_mgr_new(struct ttm_resource_manager *man,
+>>   static void amdgpu_vram_mgr_del(struct ttm_resource_manager *man,
+>>   				struct ttm_resource *res)
+>>   {
+>> -	struct ttm_range_mgr_node *node = to_ttm_range_mgr_node(res);
+>> +	struct amdgpu_vram_mgr_node *node = to_amdgpu_vram_mgr_node(res);
+>>   	struct amdgpu_vram_mgr *mgr = to_vram_mgr(man);
+>>   	struct amdgpu_device *adev = to_amdgpu_device(mgr);
+>> +	struct drm_buddy *mm = &mgr->mm;
+>> +	struct drm_buddy_block *block;
+>>   	uint64_t vis_usage = 0;
+>> -	unsigned i, pages;
+>>   
+>> -	spin_lock(&mgr->lock);
+>> -	for (i = 0, pages = res->num_pages; pages;
+>> -	     pages -= node->mm_nodes[i].size, ++i) {
+>> -		struct drm_mm_node *mm = &node->mm_nodes[i];
+>> +	mutex_lock(&mgr->lock);
+>> +	list_for_each_entry(block, &node->blocks, link)
+>> +		vis_usage += amdgpu_vram_mgr_vis_size(adev, block);
+>>   
+>> -		drm_mm_remove_node(mm);
+>> -		vis_usage += amdgpu_vram_mgr_vis_size(adev, mm);
+>> -	}
+>>   	amdgpu_vram_mgr_do_reserve(man);
+>> -	spin_unlock(&mgr->lock);
+>> +
+>> +	drm_buddy_free_list(mm, &node->blocks);
+>> +	mutex_unlock(&mgr->lock);
+>>   
+>>   	atomic64_sub(vis_usage, &mgr->vis_usage);
+>>   
+>>   	ttm_resource_fini(man, res);
+>> -	kvfree(node);
+>> +	kfree(node);
+>>   }
+>>   
+>>   /**
+>> @@ -648,13 +668,22 @@ static void amdgpu_vram_mgr_debug(struct ttm_resource_manager *man,
+>>   				  struct drm_printer *printer)
+>>   {
+>>   	struct amdgpu_vram_mgr *mgr = to_vram_mgr(man);
+>> +	struct drm_buddy *mm = &mgr->mm;
+>> +	struct drm_buddy_block *block;
+>>   
+>>   	drm_printf(printer, "  vis usage:%llu\n",
+>>   		   amdgpu_vram_mgr_vis_usage(mgr));
+>>   
+>> -	spin_lock(&mgr->lock);
+>> -	drm_mm_print(&mgr->mm, printer);
+>> -	spin_unlock(&mgr->lock);
+>> +	mutex_lock(&mgr->lock);
+>> +	drm_printf(printer, "default_page_size: %lluKiB\n",
+>> +		   mgr->default_page_size >> 10);
+>> +
+>> +	drm_buddy_print(mm, printer);
+>> +
+>> +	drm_printf(printer, "reserved:\n");
+>> +	list_for_each_entry(block, &mgr->reserved_pages, link)
+>> +		drm_buddy_block_print(mm, block, printer);
+>> +	mutex_unlock(&mgr->lock);
+>>   }
+>>   
+>>   static const struct ttm_resource_manager_func amdgpu_vram_mgr_func = {
+>> @@ -674,16 +703,21 @@ int amdgpu_vram_mgr_init(struct amdgpu_device *adev)
+>>   {
+>>   	struct amdgpu_vram_mgr *mgr = &adev->mman.vram_mgr;
+>>   	struct ttm_resource_manager *man = &mgr->manager;
+>> +	int err;
+>>   
+>>   	ttm_resource_manager_init(man, &adev->mman.bdev,
+>>   				  adev->gmc.real_vram_size);
+>>   
+>>   	man->func = &amdgpu_vram_mgr_func;
+>>   
+>> -	drm_mm_init(&mgr->mm, 0, man->size >> PAGE_SHIFT);
+>> -	spin_lock_init(&mgr->lock);
+>> +	err = drm_buddy_init(&mgr->mm, man->size, PAGE_SIZE);
+>> +	if (err)
+>> +		return err;
+>> +
+>> +	mutex_init(&mgr->lock);
+>>   	INIT_LIST_HEAD(&mgr->reservations_pending);
+>>   	INIT_LIST_HEAD(&mgr->reserved_pages);
+>> +	mgr->default_page_size = PAGE_SIZE;
+>>   
+>>   	ttm_set_driver_manager(&adev->mman.bdev, TTM_PL_VRAM, &mgr->manager);
+>>   	ttm_resource_manager_set_used(man, true);
+>> @@ -711,16 +745,16 @@ void amdgpu_vram_mgr_fini(struct amdgpu_device *adev)
+>>   	if (ret)
+>>   		return;
+>>   
+>> -	spin_lock(&mgr->lock);
+>> +	mutex_lock(&mgr->lock);
+>>   	list_for_each_entry_safe(rsv, temp, &mgr->reservations_pending, node)
+>>   		kfree(rsv);
+>>   
+>>   	list_for_each_entry_safe(rsv, temp, &mgr->reserved_pages, node) {
+>> -		drm_mm_remove_node(&rsv->mm_node);
+>> +		drm_buddy_free_list(&mgr->mm, &rsv->block);
+>>   		kfree(rsv);
+>>   	}
+>> -	drm_mm_takedown(&mgr->mm);
+>> -	spin_unlock(&mgr->lock);
+>> +	drm_buddy_fini(&mgr->mm);
+>> +	mutex_unlock(&mgr->lock);
+>>   
+>>   	ttm_resource_manager_cleanup(man);
+>>   	ttm_set_driver_manager(&adev->mman.bdev, TTM_PL_VRAM, NULL);
+> 
