@@ -1,57 +1,74 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2650D4C9557
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Mar 2022 21:03:05 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C00784C9559
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Mar 2022 21:03:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B2A810E821;
-	Tue,  1 Mar 2022 20:03:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E89D10E82E;
+	Tue,  1 Mar 2022 20:03:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C8B6310E588;
- Tue,  1 Mar 2022 14:46:10 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 409F361520;
- Tue,  1 Mar 2022 14:46:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A403BC36AE3;
- Tue,  1 Mar 2022 14:46:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1646145969;
- bh=O7PMjYoyVgpMGjTVJdUqo4vjOgkMH6zVD28CMdfxejY=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=ScbK0J6pozv/c2GDJYHlIZpbvfONFwSIK/2j9QTvGy0h6OxUAoFSJS7ACLBifahWv
- DcEHKw3lZtb+uu9XBfWLbqlt4501Amp6VUN+Dzs96ZiZLJ0WrXZIhbPfc31qIWMyNy
- ATq4x+Oqa8aCq2GW5gs+Y/j2lbHCJQUV8G4qbfbhkoke2or1lVhj8owINILXGePjRZ
- R7WocAjuMhKmJQAgH9JZzvEWwPneWdjxvB9/qREXxhHUchmngRvsvQS8MYiNKoAhTS
- lRIGGo0c7PSqmvXlDIU+2nV4tRgWSUE8CyjB1CiW2iruBEJHgJWl3+5y31XDNWkEo7
- 0CfBGfIlQclkw==
-Received: by mail-wm1-f44.google.com with SMTP id
- l2-20020a7bc342000000b0037fa585de26so1125809wmj.1; 
- Tue, 01 Mar 2022 06:46:09 -0800 (PST)
-X-Gm-Message-State: AOAM5339YuVfddwoXv8HOO/Q/VnPwTmUhSbv1XR37SyQoXGyA5ElLI+1
- DgbcJBWcWC64jiUfc0IgZrzI8hsZ6on+lfpoJXw=
-X-Google-Smtp-Source: ABdhPJxXTbyRPUGWO5ZqEHYDoeKGRHcrrv5eZPJqecMQqdHX7hdx2ouYJfmaJG1ZffheKZ5NWAXaiF6wK5E6lkn8a4k=
-X-Received: by 2002:a7b:c001:0:b0:381:1afd:5caa with SMTP id
- c1-20020a7bc001000000b003811afd5caamr17359158wmb.35.1646145967920; Tue, 01
- Mar 2022 06:46:07 -0800 (PST)
-MIME-Version: 1.0
-References: <20220228103142.3301082-1-arnd@kernel.org>
- <CAKwvOdkLUx1td+qgUYy3w2ojtBG-mJTzpJg3BV8Xv56YHTxHCw@mail.gmail.com>
- <20220228214145.o37bgp3zl3rxpeo4@google.com>
-In-Reply-To: <20220228214145.o37bgp3zl3rxpeo4@google.com>
-From: Arnd Bergmann <arnd@kernel.org>
-Date: Tue, 1 Mar 2022 15:45:51 +0100
-X-Gmail-Original-Message-ID: <CAK8P3a2ZBOdEWTB1K9wA0v657VTZc-BC4LkDoQ0uw8Hw8FfSyg@mail.gmail.com>
-Message-ID: <CAK8P3a2ZBOdEWTB1K9wA0v657VTZc-BC4LkDoQ0uw8Hw8FfSyg@mail.gmail.com>
-To: Fangrui Song <maskray@google.com>
-Content-Type: text/plain; charset="UTF-8"
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com
+ [IPv6:2a00:1450:4864:20::62b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B5E2210E669;
+ Tue,  1 Mar 2022 17:40:08 +0000 (UTC)
+Received: by mail-ej1-x62b.google.com with SMTP id a23so32979710eju.3;
+ Tue, 01 Mar 2022 09:40:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:subject:from:in-reply-to:date:cc
+ :content-transfer-encoding:message-id:references:to;
+ bh=pFdYiycpncfTymiwtZowrsS5EyWiXpYxNs42/BHAfYg=;
+ b=jNa8kCMtl/UUGI9n6DMpRCjqu31f4wAijdvFFxZnjTmTKVAPvZHGvGIS5mEbyeVH7U
+ 2x/09r6Vjc5jlvMmGEJ/il9wQB7v0QaDJcbwnO54cttgXGRrRpdgplSbMXJLSVGPucZZ
+ 9N0BbQ67CEO0Sz9E19ATZ7SkTLFNHyfaTEafdxDnprAieU2S7WSxP1eMUqDcJyOgT3om
+ KiVwLoBVmeYUr/3jVH1Ywgf3KLmBchJpZXF9NW4w0E+aOTUpi5SfsW8FSQSkfcXvzSp5
+ ZeMWPQFNXAG0u+f0IIKFL+VZxclmrwVLcWvb/ml3Qc/gpz+jEOgbpY53v+25m0fIUJKc
+ BDYA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
+ :content-transfer-encoding:message-id:references:to;
+ bh=pFdYiycpncfTymiwtZowrsS5EyWiXpYxNs42/BHAfYg=;
+ b=8Qt79IRMfQ0LzeGSxduNOn9Pxz1BLLBYCx5eAuS0QandX99jhxFK/kYfP0PkVO19sS
+ K2bHeVpOzZnYpxTerMxcOnndf00rlYAnOu5fkz1rHAD5kzIwwWPyBH6gcRbkWxXYnYJO
+ 5dcJWloKlUTMS7er6PLS/tjbnIfUMtu+2H4v6PDmEqzBcc+4KL950PJok/M/hI4d8DDN
+ egb/CaKOovi2Pj9lpH7cAxiCuM5w6MWw2L1ClE9KNyUOc3/adOPtqGuLaAQTU9tTOcjj
+ 5m08iHEzpXALIvNP/eRcjuDzRY+nDBzdqgFdZ4o1mkvwsTGtALZrsq0hlB36XI4yyhoo
+ o1Pw==
+X-Gm-Message-State: AOAM531DjKeEa19kK6jPRoUEJHEMs5Ez6BaMG6W4o8xoRkLZNR6AYFKu
+ GPzvJ69E80+koXPgOXb9H4w=
+X-Google-Smtp-Source: ABdhPJwzanGhehpmLWEMTTJkMBhYufoyhmHURG9yND716ZZIbM/kd8Ex5thBnsVmcSvoj9ZPyJ3fsw==
+X-Received: by 2002:a17:906:948:b0:6d6:e479:1fe4 with SMTP id
+ j8-20020a170906094800b006d6e4791fe4mr3312230ejd.240.1646156406993; 
+ Tue, 01 Mar 2022 09:40:06 -0800 (PST)
+Received: from smtpclient.apple ([2a02:8109:9d80:3f6c:6db3:8d4c:747e:98ad])
+ by smtp.gmail.com with ESMTPSA id
+ a25-20020a50ff19000000b0040f84cd806csm7398100edu.59.2022.03.01.09.40.04
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Tue, 01 Mar 2022 09:40:06 -0800 (PST)
+Content-Type: text/plain;
+	charset=us-ascii
+Mime-Version: 1.0 (Mac OS X Mail 15.0 \(3693.60.0.1.1\))
+From: Jakob Koschel <jakobkoschel@gmail.com>
+In-Reply-To: <Yh5ZmwiH5AxtQ69K@kroah.com>
+Date: Tue, 1 Mar 2022 18:40:04 +0100
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <4B1AFAD9-C1B3-499C-945A-C259361ABA8C@gmail.com>
+References: <20220228110822.491923-1-jakobkoschel@gmail.com>
+ <20220228110822.491923-3-jakobkoschel@gmail.com>
+ <2e4e95d6-f6c9-a188-e1cd-b1eae465562a@amd.com>
+ <CAHk-=wgQps58DPEOe4y5cTh5oE9EdNTWRLXzgMiETc+mFX7jzw@mail.gmail.com>
+ <CAHk-=wj8fkosQ7=bps5K+DDazBXk=ypfn49A0sEq+7-nZnyfXA@mail.gmail.com>
+ <CAHk-=wiTCvLQkHcJ3y0hpqH7FEk9D28LDvZZogC6OVLk7naBww@mail.gmail.com>
+ <FC710A1A-524E-481B-A668-FC258F529A2E@gmail.com>
+ <CAHk-=whLK11HyvpUtEftOjc3Gup2V77KpAQ2fycj3uai=qceHw@mail.gmail.com>
+ <CEDAD0D9-56EE-4105-9107-72C2EAD940B0@gmail.com> <Yh5ZmwiH5AxtQ69K@kroah.com>
+To: Greg KH <greg@kroah.com>
+X-Mailer: Apple Mail (2.3693.60.0.1.1)
 X-Mailman-Approved-At: Tue, 01 Mar 2022 20:02:59 +0000
-Subject: Re: [Intel-gfx] [PATCH] [v2] Kbuild: move to -std=gnu11
+Subject: Re: [Intel-gfx] [PATCH 2/6] treewide: remove using list iterator
+ after loop body as a ptr
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,48 +81,118 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jonathan Corbet <corbet@lwn.net>, Michal Marek <michal.lkml@markovi.net>,
- "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
- Arnd Bergmann <arnd@arndb.de>,
- Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
- linux-staging@lists.linux.dev, Masahiro Yamada <masahiroy@kernel.org>,
- llvm@lists.linux.dev, Nick Desaulniers <ndesaulniers@google.com>,
+Cc: linux-wireless <linux-wireless@vger.kernel.org>,
+ alsa-devel@alsa-project.org, KVM list <kvm@vger.kernel.org>,
+ "Gustavo A. R. Silva" <gustavo@embeddedor.com>, linux-iio@vger.kernel.org,
+ nouveau@lists.freedesktop.org, Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Cristiano Giuffrida <c.giuffrida@vu.nl>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ linux1394-devel@lists.sourceforge.net, drbd-dev@lists.linbit.com,
+ linux-arch <linux-arch@vger.kernel.org>, CIFS <linux-cifs@vger.kernel.org>,
+ linux-aspeed@lists.ozlabs.org, linux-scsi <linux-scsi@vger.kernel.org>,
+ linux-rdma <linux-rdma@vger.kernel.org>, linux-staging@lists.linux.dev, "Bos,
+ H.J." <h.j.bos@vu.nl>, Jason Gunthorpe <jgg@ziepe.ca>,
+ intel-wired-lan@lists.osuosl.org, kgdb-bugreport@lists.sourceforge.net,
+ bcm-kernel-feedback-list@broadcom.com,
+ Dan Carpenter <dan.carpenter@oracle.com>,
+ Linux Media Mailing List <linux-media@vger.kernel.org>,
+ Kees Cook <keescook@chromium.org>, Arnd Bergman <arnd@arndb.de>,
+ Linux PM <linux-pm@vger.kernel.org>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+ Brian Johannesmeyer <bjohannesmeyer@gmail.com>,
+ Nathan Chancellor <nathan@kernel.org>, dma <dmaengine@vger.kernel.org>,
+ Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+ v9fs-developer@lists.sourceforge.net,
+ linux-tegra <linux-tegra@vger.kernel.org>,
+ Thomas Gleixner <tglx@linutronix.de>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>, linux-sgx@vger.kernel.org,
+ linux-block <linux-block@vger.kernel.org>, Netdev <netdev@vger.kernel.org>,
+ linux-usb@vger.kernel.org, samba-technical@lists.samba.org,
  Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- dri-devel <dri-devel@lists.freedesktop.org>, greybus-dev@lists.linaro.org,
- Linux ARM <linux-arm-kernel@lists.infradead.org>,
- Federico Vaga <federico.vaga@vaga.pv.it>, Hu Haowen <src.res@email.cn>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>,
- linux-btrfs <linux-btrfs@vger.kernel.org>,
+ Linux F2FS Dev Mailing List <linux-f2fs-devel@lists.sourceforge.net>,
+ tipc-discussion@lists.sourceforge.net,
+ Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
+ linux-fsdevel <linux-fsdevel@vger.kernel.org>,
+ linux-mediatek@lists.infradead.org, Andrew Morton <akpm@linux-foundation.org>,
  Linus Torvalds <torvalds@linux-foundation.org>,
- linux-doc-tw-discuss@lists.sourceforge.net, Alex Shi <alexs@kernel.org>
+ =?utf-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Mike Rapoport <rppt@kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Feb 28, 2022 at 10:41 PM Fangrui Song <maskray@google.com> wrote:
-> >
-> >More precisely, the semantics of "extern inline" functions changed
-> >between ISO C90 and ISO C99.
->
-> Perhaps a clearer explanation to readers is: "extern inline" and "inline" swap
-> semantics with gnu_inline (-fgnu89-inline or __attribute__((__gnu_inline__))).
->
-> >That's the only concern I have, which I doubt is an issue. The kernel
-> >is already covered by the function attribute as you note.
-> >
-> >Just to have some measure:
-> >$ git grep -rn "extern inline" | wc -l
-> >116
->
-> "^inline" behaves like C99+ "extern inline"
->
-> Agree this is handled by
->
->      #define inline inline __gnu_inline __inline_maybe_unused notrace
->
 
-Ok, I've reworded it again, but kept it a bit shorter, I don't think we
-need the full explanation in this patch description in the end.
 
-Thanks,
+> On 1. Mar 2022, at 18:36, Greg KH <greg@kroah.com> wrote:
+>=20
+> On Tue, Mar 01, 2022 at 12:28:15PM +0100, Jakob Koschel wrote:
+>>=20
+>>=20
+>>> On 1. Mar 2022, at 01:41, Linus Torvalds =
+<torvalds@linux-foundation.org> wrote:
+>>>=20
+>>> On Mon, Feb 28, 2022 at 1:47 PM Jakob Koschel =
+<jakobkoschel@gmail.com> wrote:
+>>>>=20
+>>>> The goal of this is to get compiler warnings right? This would =
+indeed be great.
+>>>=20
+>>> Yes, so I don't mind having a one-time patch that has been gathered
+>>> using some automated checker tool, but I don't think that works from =
+a
+>>> long-term maintenance perspective.
+>>>=20
+>>> So if we have the basic rule being "don't use the loop iterator =
+after
+>>> the loop has finished, because it can cause all kinds of subtle
+>>> issues", then in _addition_ to fixing the existing code paths that
+>>> have this issue, I really would want to (a) get a compiler warning =
+for
+>>> future cases and (b) make it not actually _work_ for future cases.
+>>>=20
+>>> Because otherwise it will just happen again.
+>>>=20
+>>>> Changing the list_for_each_entry() macro first will break all of =
+those cases
+>>>> (e.g. the ones using 'list_entry_is_head()).
+>>>=20
+>>> So I have no problems with breaking cases that we basically already
+>>> have a patch for due to  your automated tool. There were certainly
+>>> more than a handful, but it didn't look _too_ bad to just make the
+>>> rule be "don't use the iterator after the loop".
+>>>=20
+>>> Of course, that's just based on that patch of yours. Maybe there are =
+a
+>>> ton of other cases that your patch didn't change, because they =
+didn't
+>>> match your trigger case, so I may just be overly optimistic here.
+>>=20
+>> Based on the coccinelle script there are ~480 cases that need fixing
+>> in total. I'll now finish all of them and then split them by
+>> submodules as Greg suggested and repost a patch set per submodule.
+>> Sounds good?
+>=20
+> Sounds good to me!
+>=20
+> If you need help carving these up and maintaining them over time as
+> different subsystem maintainers accept/ignore them, just let me know.
+> Doing large patchsets like this can be tough without a lot of
+> experience.
 
-      Arnd
+Very much appreciated!
+
+There will probably be some cases that do not match one of the pattern
+we already discussed and need separate attention.
+
+I was planning to start with one subsystem and adjust the coming ones
+according to the feedback gather there instead of posting all of them
+in one go.
+
+>=20
+> thanks,
+>=20
+> greg k-h
+
+- Jakob=
