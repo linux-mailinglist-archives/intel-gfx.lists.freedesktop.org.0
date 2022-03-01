@@ -1,65 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FBE54C89A7
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Mar 2022 11:51:04 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10C384C8A2D
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Mar 2022 11:59:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E1F710EC0E;
-	Tue,  1 Mar 2022 10:51:02 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4ED9E10EC0E;
- Tue,  1 Mar 2022 10:51:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646131861; x=1677667861;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=4GB4qjiiZp+MaVtvQChHi+CT6NDxdKKe03RQpnpr8uI=;
- b=I1o7f9WsU11pBdzHra69ff6BaHbosk/SahW1TPkourkidfXn0OL0zFKL
- oz88UiuBw44B7NkkTL2uWLcpzmklcE45cqWdxjbPTDCLZ6Pbvz8zi46zp
- bS8DN818C11mY6fi3IdwsJYeoRBi4sx9OxJFKfqFg6p5UTg3WR8BN0dA6
- xmwGvwsm2gq9auJaJq+J15QpZf2Ucx51yys/WJAZyY1xLsQ5RRX30azUv
- aXzcoLfqwWaUW2t8XQanA1sAEpbV0JFw15g5VQR+SbcPHI4BmAsnDgu2R
- FUH56mMCxP927QuZNQJDkXgzQYDjK0PA3BrPNPi3NA5I4S6pwdSHz4ULo A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10272"; a="313828838"
-X-IronPort-AV: E=Sophos;i="5.90,145,1643702400"; d="scan'208";a="313828838"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Mar 2022 02:51:00 -0800
-X-IronPort-AV: E=Sophos;i="5.90,145,1643702400"; d="scan'208";a="510462472"
-Received: from ssahani-mobl.amr.corp.intel.com (HELO [10.212.127.177])
- ([10.212.127.177])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Mar 2022 02:50:59 -0800
-Message-ID: <d931b54e-0b89-877e-9a7f-ede3c3bf165f@linux.intel.com>
-Date: Tue, 1 Mar 2022 10:50:57 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id 156EC10EB6D;
+	Tue,  1 Mar 2022 10:59:24 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id ACF7510EB7A;
+ Tue,  1 Mar 2022 10:59:22 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id AA67FA00E8;
+ Tue,  1 Mar 2022 10:59:22 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4958897711955565242=="
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Content-Language: en-US
-To: John Harrison <john.c.harrison@intel.com>, Intel-GFX@Lists.FreeDesktop.Org
-References: <20220218213307.1338478-1-John.C.Harrison@Intel.com>
- <20220218213307.1338478-2-John.C.Harrison@Intel.com>
- <0d0c5a79-1285-0830-3794-e9f0644811a5@linux.intel.com>
- <94c3184e-c1e2-668f-5824-00fd55797736@intel.com>
- <17e69f0c-8084-10dc-b20f-7d5108260180@linux.intel.com>
- <85105590-a8be-f4e1-69bc-cd34cad108e2@intel.com>
- <16a2687b-4996-8d40-456e-019a112f0fb6@linux.intel.com>
- <c1472196-260a-d2c8-c508-10fe58d4cd47@intel.com>
- <74d30fd4-cb72-113e-fc09-12602b3cf06d@linux.intel.com>
- <986dae97-6c68-34cc-d972-22edaddf7261@intel.com>
- <4e8888d0-f0da-12f3-4010-159b4ff2bdb3@linux.intel.com>
- <fc96ce57-37f7-9962-6d15-1741de9fcd89@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <fc96ce57-37f7-9962-6d15-1741de9fcd89@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/guc: Limit scheduling
- properties to avoid overflow
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nathan Chancellor" <nathan@kernel.org>
+Date: Tue, 01 Mar 2022 10:59:22 -0000
+Message-ID: <164613236267.8599.1895645317022660214@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220228103142.3301082-1-arnd@kernel.org>
+In-Reply-To: <20220228103142.3301082-1-arnd@kernel.org>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgS2J1?=
+ =?utf-8?q?ild=3A_move_to_-std=3Dgnu11_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,371 +40,316 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: DRI-Devel@Lists.FreeDesktop.Org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============4958897711955565242==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 28/02/2022 18:32, John Harrison wrote:
-> On 2/28/2022 08:11, Tvrtko Ursulin wrote:
->> On 25/02/2022 17:39, John Harrison wrote:
->>> On 2/25/2022 09:06, Tvrtko Ursulin wrote:
->>>>
->>>> On 24/02/2022 19:19, John Harrison wrote:
->>>>
->>>> [snip]
->>>>
->>>>>>>>>> ./gt/uc/intel_guc_fwif.h: u32 execution_quantum;
->>>>>>>>>>
->>>>>>>>>> ./gt/uc/intel_guc_submission.c: desc->execution_quantum = 
->>>>>>>>>> engine->props.timeslice_duration_ms * 1000;
->>>>>>>>>>
->>>>>>>>>> ./gt/intel_engine_types.h:              unsigned long 
->>>>>>>>>> timeslice_duration_ms;
->>>>>>>>>>
->>>>>>>>>> timeslice_store/preempt_timeout_store:
->>>>>>>>>> err = kstrtoull(buf, 0, &duration);
->>>>>>>>>>
->>>>>>>>>> So both kconfig and sysfs can already overflow GuC, not only 
->>>>>>>>>> because of tick conversion internally but because at backend 
->>>>>>>>>> level nothing was done for assigning 64-bit into 32-bit. Or I 
->>>>>>>>>> failed to find where it is handled.
->>>>>>>>> That's why I'm adding this range check to make sure we don't 
->>>>>>>>> allow overflows.
->>>>>>>>
->>>>>>>> Yes and no, this fixes it, but the first bug was not only due 
->>>>>>>> GuC internal tick conversion. It was present ever since the u64 
->>>>>>>> from i915 was shoved into u32 sent to GuC. So even if GuC used 
->>>>>>>> the value without additional multiplication, bug was be there. 
->>>>>>>> My point being when GuC backend was added timeout_ms values 
->>>>>>>> should have been limited/clamped to U32_MAX. The tick discovery 
->>>>>>>> is additional limit on top.
->>>>>>> I'm not disagreeing. I'm just saying that the truncation wasn't 
->>>>>>> noticed until I actually tried using very long timeouts to debug 
->>>>>>> a particular problem. Now that it is noticed, we need some method 
->>>>>>> of range checking and this simple clamp solves all the truncation 
->>>>>>> problems.
->>>>>>
->>>>>> Agreed in principle, just please mention in the commit message all 
->>>>>> aspects of the problem.
->>>>>>
->>>>>> I think we can get away without a Fixes: tag since it requires 
->>>>>> user fiddling to break things in unexpected ways.
->>>>>>
->>>>>> I would though put in a code a clamping which expresses both, 
->>>>>> something like min(u32, ..GUC LIMIT..). So the full story is 
->>>>>> documented forever. Or "if > u32 || > ..GUC LIMIT..) return 
->>>>>> -EINVAL". Just in case GuC limit one day changes but u32 stays. 
->>>>>> Perhaps internal ticks go away or anything and we are left with 
->>>>>> plain 1:1 millisecond relationship.
->>>>> Can certainly add a comment along the lines of "GuC API only takes 
->>>>> a 32bit field but that is further reduced to GUC_LIMIT due to 
->>>>> internal calculations which would otherwise overflow".
->>>>>
->>>>> But if the GuC limit is > u32 then, by definition, that means the 
->>>>> GuC API has changed to take a u64 instead of a u32. So there will 
->>>>> no u32 truncation any more. So I'm not seeing a need to explicitly 
->>>>> test the integer size when the value check covers that.
->>>>
->>>> Hmm I was thinking if the internal conversion in the GuC fw changes 
->>>> so that GUC_POLICY_MAX_PREEMPT_TIMEOUT_MS goes above u32, then to be 
->>>> extra safe by documenting in code there is the additional limit of 
->>>> the data structure field. Say the field was changed to take some 
->>>> unit larger than a millisecond. Then the check against the GuC MAX 
->>>> limit define would not be enough, unless that would account both for 
->>>> internal implementation and u32 in the protocol. Maybe that is 
->>>> overdefensive but I don't see that it harms. 50-50, but it's do it 
->>>> once and forget so I'd do it.
->>> Huh?
->>>
->>> How can the limit be greater than a u32 if the interface only takes a 
->>> u32? By definition the limit would be clamped to u32 size.
->>>
->>> If you mean that the GuC policy is in different units and those units 
->>> might not overflow but ms units do, then actually that is already the 
->>> case. The GuC works in us not ms. That's part of why the wrap around 
->>> is so low, we have to multiply by 1000 before sending to GuC. 
->>> However, that is actually irrelevant because the comparison is being 
->>> done on the i915 side in i915's units. We have to scale the GuC limit 
->>> to match what i915 is using. And the i915 side is u64 so if the 
->>> scaling to i915 numbers overflows a u32 then who cares because that 
->>> comparison can be done at 64 bits wide.
->>>
->>> If the units change then that is a backwards breaking API change that 
->>> will require a manual driver code update. You can't just recompile 
->>> with a new header and magically get an ms to us or ms to s conversion 
->>> in your a = b assignment. The code will need to be changed to do the 
->>> new unit conversion (note we already convert from ms to us, the GuC 
->>> API is all expressed in us). And that code change will mean having to 
->>> revisit any and all scaling, type conversions, etc. I.e. any 
->>> pre-existing checks will not necessarily be valid and will need to be 
->>> re-visted anyway. But as above, any scaling to GuC units has to be 
->>> incorporated into the limit already because otherwise the limit would 
->>> not fit in the GuC's own API.
->>
->> Yes I get that, I was just worried that u32 field in the protocol and 
->> GUC_POLICY_MAX_EXEC_QUANTUM_MS defines are separate in the source code 
->> and then how to protect against forgetting to update both in sync.
->>
->> Like if the protocol was changed to take nanoseconds, and firmware 
->> implementation changed to support the full range, but define 
->> left/forgotten at 100s. That would then overflow u32.
-> Huh? If the API was updated to 'support the full range' then how can you 
-> get overflow by forgetting to update the limit? You could get 
-> unnecessary clamping, which hopefully would be noticed by whoever is 
-> testing the new API and/or whoever requested the change. But you can't 
-> get u32 overflow errors if all the code has been updated to u64.
+== Series Details ==
 
-1)
-Change the protocol so that "u32 desc->execution_quantum" now takes nano seconds.
+Series: Kbuild: move to -std=gnu11 (rev2)
+URL   : https://patchwork.freedesktop.org/series/100824/
+State : success
 
-This now makes the maximum time 4.29.. seconds.
+== Summary ==
 
-2)
-Forget to update GUC_POLICY_MAX_EXEC_QUANTUM_MS from 100s, since for instance that part at that point still not part of the interface contract.
+CI Bug Log - changes from CI_DRM_11302 -> Patchwork_22446
+====================================================
 
-3)
-User passes in 5 seconds.
+Summary
+-------
 
-Clamping check says all is good.
+  **SUCCESS**
 
-"engine->props.timeslice_duration_ms > GUC_POLICY_MAX_EXEC_QUANTUM_MS"
+  No regressions found.
 
-4)
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22446/index.html
 
-Assignment was updated:
+Participating hosts (47 -> 43)
+------------------------------
 
-gt/uc/intel_guc_submission.c:
+  Additional (1): fi-pnv-d510 
+  Missing    (5): shard-tglu fi-bsw-cyan fi-icl-u2 bat-jsl-2 fi-bdw-samus 
 
-   desc->execution_quantum = engine->props.timeslice_duration_ms * 1e6;
+Possible new issues
+-------------------
 
-But someone did not realize field is u32.
+  Here are the unknown changes that may have been introduced in Patchwork_22446:
 
-   desc->execution_quantum = engine->props.timeslice_duration_ms * 1e6;
+### IGT changes ###
 
-Defensive solution:
+#### Suppressed ####
 
-   if (overflows_type(engine->props.timeslice_duration_ms * 1e6, desc->execution_quantum))
-	drm_WARN_ON...
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
 
-   desc->execution_quantum = engine->props.timeslice_duration_ms * 1e6;
-
-Regards,
-
-Tvrtko
+  * igt@gem_busy@busy@all:
+    - {bat-dg2-9}:        [PASS][1] -> [DMESG-WARN][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11302/bat-dg2-9/igt@gem_busy@busy@all.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22446/bat-dg2-9/igt@gem_busy@busy@all.html
 
   
-> John.
-> 
->>
->> Regards,
->>
->> Tvrtko
->>
->>> John.
->>>
->>>>
->>>>>>>>>>> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
->>>>>>>>>>> ---
->>>>>>>>>>>   drivers/gpu/drm/i915/gt/intel_engine_cs.c   | 15 
->>>>>>>>>>> +++++++++++++++
->>>>>>>>>>>   drivers/gpu/drm/i915/gt/sysfs_engines.c     | 14 
->>>>>>>>>>> ++++++++++++++
->>>>>>>>>>>   drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h | 9 +++++++++
->>>>>>>>>>>   3 files changed, 38 insertions(+)
->>>>>>>>>>>
->>>>>>>>>>> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c 
->>>>>>>>>>> b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
->>>>>>>>>>> index e53008b4dd05..2a1e9f36e6f5 100644
->>>>>>>>>>> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
->>>>>>>>>>> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
->>>>>>>>>>> @@ -389,6 +389,21 @@ static int intel_engine_setup(struct 
->>>>>>>>>>> intel_gt *gt, enum intel_engine_id id,
->>>>>>>>>>>       if (GRAPHICS_VER(i915) == 12 && engine->class == 
->>>>>>>>>>> RENDER_CLASS)
->>>>>>>>>>>           engine->props.preempt_timeout_ms = 0;
->>>>>>>>>>>   +    /* Cap timeouts to prevent overflow inside GuC */
->>>>>>>>>>> +    if (intel_guc_submission_is_wanted(&gt->uc.guc)) {
->>>>>>>>>>> +        if (engine->props.timeslice_duration_ms > 
->>>>>>>>>>> GUC_POLICY_MAX_EXEC_QUANTUM_MS) {
->>>>>>>>>>
->>>>>>>>>> Hm "wanted".. There's been too much back and forth on the GuC 
->>>>>>>>>> load options over the years to keep track.. 
->>>>>>>>>> intel_engine_uses_guc work sounds like would work and read nicer.
->>>>>>>>> I'm not adding a new feature check here. I'm just using the 
->>>>>>>>> existing one. If we want to rename it yet again then that would 
->>>>>>>>> be a different patch set.
->>>>>>>>
->>>>>>>> $ grep intel_engine_uses_guc . -rl
->>>>>>>> ./i915_perf.c
->>>>>>>> ./i915_request.c
->>>>>>>> ./selftests/intel_scheduler_helpers.c
->>>>>>>> ./gem/i915_gem_context.c
->>>>>>>> ./gt/intel_context.c
->>>>>>>> ./gt/intel_engine.h
->>>>>>>> ./gt/intel_engine_cs.c
->>>>>>>> ./gt/intel_engine_heartbeat.c
->>>>>>>> ./gt/intel_engine_pm.c
->>>>>>>> ./gt/intel_reset.c
->>>>>>>> ./gt/intel_lrc.c
->>>>>>>> ./gt/selftest_context.c
->>>>>>>> ./gt/selftest_engine_pm.c
->>>>>>>> ./gt/selftest_hangcheck.c
->>>>>>>> ./gt/selftest_mocs.c
->>>>>>>> ./gt/selftest_workarounds.c
->>>>>>>>
->>>>>>>> Sounds better to me than intel_guc_submission_is_wanted. What 
->>>>>>>> does the reader know whether "is wanted" translates to "is 
->>>>>>>> actually used". Shrug on "is wanted".
->>>>>>> Yes, but isn't '_uses' the one that hits a BUG_ON if you call it 
->>>>>>> too early in the boot up sequence? I never understood why that 
->>>>>>> was necessary or why we need so many different ways to ask the 
->>>>>>> same question. But this version already exists and definitely 
->>>>>>> works without hitting any explosions.
->>>>>>
->>>>>> No idea if it causes a bug on, doesn't in the helper itself so 
->>>>>> maybe you are saying it is called too early? Might be.. I think 
->>>>>> over time the nice idea we had that "setup" and "init" phases of 
->>>>>> engine setup clearly separated got destroyed a bit. There would 
->>>>>> always be an option to move this clamping in a later phase, once 
->>>>>> the submission method is known. One could argue that if the 
->>>>>> submission method is not yet known at this point, it is even wrong 
->>>>>> to clamp based on something which will only be decided later. 
->>>>>> Because:
->>>>>>
->>>>>> int intel_engines_init(struct intel_gt *gt)
->>>>>> {
->>>>>>     int (*setup)(struct intel_engine_cs *engine);
->>>>>>     struct intel_engine_cs *engine;
->>>>>>     enum intel_engine_id id;
->>>>>>     int err;
->>>>>>
->>>>>>     if (intel_uc_uses_guc_submission(&gt->uc)) {
->>>>>>         gt->submission_method = INTEL_SUBMISSION_GUC;
->>>>>>
->>>>>> So this uses "uses", not "wanted". Presumably the point for having 
->>>>>> "wanted" and "uses" is that they can disagree, in which case if 
->>>>>> you clamp early based on "wanted" that suggests it could be wrong.
->>>>>
->>>>> Okay, looks like I was getting confused with intel_guc_is_used(). 
->>>>> That one blows up if called too early.
->>>>>
->>>>> I'll change it to _uses_ and repost, then.
->>>>
->>>> Check that it isn't called too early, before gt->submission_setup is 
->>>> set.
->>> Obviously it is because it blew up. But I am not re-writing the 
->>> driver start up sequence just to use the word 'use' instead of 'want'.
->>>
->>>>
->>>>>
->>>>>>
->>>>>>>>>> And limit to class instead of applying to all engines looks 
->>>>>>>>>> like a miss.
->>>>>>>>> As per follow up email, the class limit is not applied here.
->>>>>>>>>
->>>>>>>>>>
->>>>>>>>>>> + drm_info(&engine->i915->drm, "Warning, clamping timeslice 
->>>>>>>>>>> duration to %d to prevent possibly overflow\n",
->>>>>>>>>>> + GUC_POLICY_MAX_EXEC_QUANTUM_MS);
->>>>>>>>>>> + engine->props.timeslice_duration_ms = 
->>>>>>>>>>> GUC_POLICY_MAX_EXEC_QUANTUM_MS;
->>>>>>>>>>
->>>>>>>>>> I am not sure logging such message during driver load is 
->>>>>>>>>> useful. Sounds more like a confused driver which starts with 
->>>>>>>>>> one value and then overrides itself. I'd just silently set the 
->>>>>>>>>> value appropriate for the active backend. Preemption timeout 
->>>>>>>>>> kconfig text already documents the fact timeouts can get 
->>>>>>>>>> overriden at runtime depending on platform+engine. So maybe 
->>>>>>>>>> just add same text to timeslice kconfig.
->>>>>>>>> The point is to make people aware if they compile with 
->>>>>>>>> unsupported config options. As far as I know, there is no way 
->>>>>>>>> to apply range checking or other limits to config defines. 
->>>>>>>>> Which means that a user would silently get unwanted behaviour. 
->>>>>>>>> That seems like a bad thing to me. If the driver is confused 
->>>>>>>>> because the user built it in a confused manner then we should 
->>>>>>>>> let them know.
->>>>>>>>
->>>>>>>> Okay, but I think make it notice low level.
->>>>>>>>
->>>>>>>> Also consider in patch 3/3 when you triple it, and then clamp 
->>>>>>>> back down here. That's even more confused state since tripling 
->>>>>>>> gets nerfed. I think that's also an argument to always account 
->>>>>>>> preempt timeout in heartbeat interval calculation. Haven't got 
->>>>>>>> to your reply on 2/3 yet though..
->>>>>>> That sounds like even more reason to make sure the warning gets 
->>>>>>> seen. The more complex the system and the more chances there are 
->>>>>>> to get it wrong, the more important it is to have a nice easy to 
->>>>>>> see and understand notification that it did go wrong.
->>>>>>
->>>>>> I did not disagree, just said make it notice, one level higher 
->>>>>> than info! :)
->>>>> But then it won't appear unless you have explicitly said an 
->>>>> elevated debug level. Whereas info appears in dmesg by default (but 
->>>>> is still not classed as an error by CI and such).
->>>>
->>>> Notice is higher than info! :) If info appears by default so does 
->>>> notice, warning, err, etc...
->>> Doh! I could have sworn those were the other way around.
->>>
->>> Okay. Will update to use notice :).
->>>
->>>>
->>>> #define KERN_EMERG      KERN_SOH "0"    /* system is unusable */
->>>> #define KERN_ALERT      KERN_SOH "1"    /* action must be taken 
->>>> immediately */
->>>> #define KERN_CRIT       KERN_SOH "2"    /* critical conditions */
->>>> #define KERN_ERR        KERN_SOH "3"    /* error conditions */
->>>> #define KERN_WARNING    KERN_SOH "4"    /* warning conditions */
->>>> #define KERN_NOTICE     KERN_SOH "5"    /* normal but significant 
->>>> condition */
->>>> #define KERN_INFO       KERN_SOH "6"    /* informational */
->>>> #define KERN_DEBUG      KERN_SOH "7"    /* debug-level messages */
->>>>
->>>>>> But also think how, if we agree to go with tripling, that you'd 
->>>>>> have to consider that in the sysfs store when hearbeat timeout is 
->>>>>> written, to consider whether or not to triple and error out if 
->>>>>> preemption timeout is over limit.
->>>>> I see this as just setting the default values. If an end user is 
->>>>> explicitly overriding the defaults then we should obey what they 
->>>>> have requested. If they are changing the heartbeat interval then 
->>>>> they can also change the pre-emption timeout appropriately.
->>>>
->>>> Question is can they unknowingly and without any feedback configure 
->>>> a much worse state than they expect? Like when they set heartbeats 
->>>> up to some value, everything is configured as you intended - but if 
->>>> you go over a certain hidden limit the overall scheme degrades in 
->>>> some way. What is the failure mode here if you silently let them do 
->>>> that?
->>> You can always configure things to be worse than expected. If you 
->>> don't understand what you are doing then any control can make things 
->>> worse instead of better. The assumption is that if a user is savvy 
->>> enough to be writing to sysfs overrides of kernel parameters then 
->>> they know what those parameters are and what their implications are. 
->>> If they want to set a very short heartbeat with a very long 
->>> pre-emption timeout then its their problem if they hit frequent TDRs. 
->>> Conversely, if they want to set a very long heartbeat with a very 
->>> short pre-emption timeout then its still their problem if they hit 
->>> frequent TDRs.
->>>
->>> But if the user explicitly requests a heartbeat period of 3s and a 
->>> pre-emption timeout of 2s and the i915 arbitrarily splats their 2s 
->>> and makes it 9s then that is wrong.
->>>
->>> We should give the driver defaults that work for the majority of 
->>> users and then let the minority specify exactly what they need.
->>>
->>> And there is no silent or hidden limit. If the user specifies a value 
->>> too large then they will get -EINVAL. Nothing hidden or silent about 
->>> that. Any other values are legal and the behaviour will be whatever 
->>> has been requested.
->>>
->>> John.
->>>
->>>
->>>>
->>>> Regards,
->>>>
->>>> Tvrtko
->>>
-> 
+Known issues
+------------
+
+  Here are the changes found in Patchwork_22446 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_cs_nop@sync-fork-compute0:
+    - fi-snb-2600:        NOTRUN -> [SKIP][3] ([fdo#109271]) +17 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22446/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html
+
+  * igt@gem_exec_suspend@basic-s3@smem:
+    - fi-skl-6600u:       [PASS][4] -> [INCOMPLETE][5] ([i915#4547])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11302/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22446/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html
+    - fi-bdw-5557u:       [PASS][6] -> [INCOMPLETE][7] ([i915#146])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11302/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22446/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-pnv-d510:        NOTRUN -> [SKIP][8] ([fdo#109271]) +57 similar issues
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22446/fi-pnv-d510/igt@gem_huc_copy@huc-copy.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-bsw-kefka:       [PASS][9] -> [DMESG-WARN][10] ([i915#1982])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11302/fi-bsw-kefka/igt@i915_pm_rpm@module-reload.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22446/fi-bsw-kefka/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-hsw-4770:        [PASS][11] -> [INCOMPLETE][12] ([i915#3303])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11302/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22446/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_flip@basic-plain-flip@a-edp1:
+    - bat-adlp-4:         [PASS][13] -> [DMESG-WARN][14] ([i915#3576])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11302/bat-adlp-4/igt@kms_flip@basic-plain-flip@a-edp1.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22446/bat-adlp-4/igt@kms_flip@basic-plain-flip@a-edp1.html
+
+  * igt@kms_pipe_crc_basic@read-crc-pipe-b:
+    - fi-cfl-8109u:       [PASS][15] -> [DMESG-WARN][16] ([i915#295]) +12 similar issues
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11302/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22446/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
+
+  * igt@runner@aborted:
+    - fi-hsw-4770:        NOTRUN -> [FAIL][17] ([fdo#109271] / [i915#1436] / [i915#4312])
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22446/fi-hsw-4770/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - bat-dg1-6:          [DMESG-FAIL][18] ([i915#4494] / [i915#4957]) -> [PASS][19]
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11302/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22446/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
+    - fi-snb-2600:        [INCOMPLETE][20] ([i915#3921]) -> [PASS][21]
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11302/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22446/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_busy@basic@modeset:
+    - {bat-adlp-6}:       [DMESG-WARN][22] ([i915#3576]) -> [PASS][23]
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11302/bat-adlp-6/igt@kms_busy@basic@modeset.html
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22446/bat-adlp-6/igt@kms_busy@basic@modeset.html
+
+  * igt@kms_flip@basic-flip-vs-modeset@a-edp1:
+    - bat-adlp-4:         [DMESG-WARN][24] ([i915#3576]) -> [PASS][25] +1 similar issue
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11302/bat-adlp-4/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22446/bat-adlp-4/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
+  [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#295]: https://gitlab.freedesktop.org/drm/intel/issues/295
+  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
+  [i915#3576]: https://gitlab.freedesktop.org/drm/intel/issues/3576
+  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
+  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
+  [i915#4957]: https://gitlab.freedesktop.org/drm/intel/issues/4957
+  [i915#5127]: https://gitlab.freedesktop.org/drm/intel/issues/5127
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_11302 -> Patchwork_22446
+
+  CI-20190529: 20190529
+  CI_DRM_11302: 680d0d26eca3df6dc7c9cac1c7cbe7404a255c7e @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6361: 2372a4beb6a33c5f0799a4a8ccbb93794f52dbca @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_22446: 532227476fd6004994ab360f79322457ac4303e0 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+532227476fd6 Kbuild: move to -std=gnu11
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22446/index.html
+
+--===============4958897711955565242==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Kbuild: move to -std=gnu11 (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/100824/">https://patchwork.freedesktop.org/series/100824/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22446/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22446/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11302 -&gt; Patchwork_22446</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22446/index.html</p>
+<h2>Participating hosts (47 -&gt; 43)</h2>
+<p>Additional (1): fi-pnv-d510 <br />
+  Missing    (5): shard-tglu fi-bsw-cyan fi-icl-u2 bat-jsl-2 fi-bdw-samus </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_22446:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@gem_busy@busy@all:<ul>
+<li>{bat-dg2-9}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11302/bat-dg2-9/igt@gem_busy@busy@all.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22446/bat-dg2-9/igt@gem_busy@busy@all.html">DMESG-WARN</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_22446 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_cs_nop@sync-fork-compute0:</p>
+<ul>
+<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22446/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_suspend@basic-s3@smem:</p>
+<ul>
+<li>
+<p>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11302/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22446/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</p>
+</li>
+<li>
+<p>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11302/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22446/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/146">i915#146</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22446/fi-pnv-d510/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +57 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11302/fi-bsw-kefka/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22446/fi-bsw-kefka/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11302/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22446/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-plain-flip@a-edp1:</p>
+<ul>
+<li>bat-adlp-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11302/bat-adlp-4/igt@kms_flip@basic-plain-flip@a-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22446/bat-adlp-4/igt@kms_flip@basic-plain-flip@a-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@read-crc-pipe-b:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11302/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22446/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a>) +12 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22446/fi-hsw-4770/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>
+<p>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11302/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22446/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">PASS</a></p>
+</li>
+<li>
+<p>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11302/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22446/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a></p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_busy@basic@modeset:</p>
+<ul>
+<li>{bat-adlp-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11302/bat-adlp-6/igt@kms_busy@basic@modeset.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22446/bat-adlp-6/igt@kms_busy@basic@modeset.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-modeset@a-edp1:</p>
+<ul>
+<li>bat-adlp-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11302/bat-adlp-4/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22446/bat-adlp-4/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11302 -&gt; Patchwork_22446</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11302: 680d0d26eca3df6dc7c9cac1c7cbe7404a255c7e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6361: 2372a4beb6a33c5f0799a4a8ccbb93794f52dbca @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_22446: 532227476fd6004994ab360f79322457ac4303e0 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>532227476fd6 Kbuild: move to -std=gnu11</p>
+
+</body>
+</html>
+
+--===============4958897711955565242==--
