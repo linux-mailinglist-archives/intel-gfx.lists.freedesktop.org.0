@@ -2,152 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 401054C980A
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Mar 2022 22:56:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 327AF4C9814
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Mar 2022 23:00:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 155D410E38B;
-	Tue,  1 Mar 2022 21:56:54 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D589E10E38B;
- Tue,  1 Mar 2022 21:56:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646171812; x=1677707812;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=i/D3tai0Sd6z0TfEy1u/4/4eV7Fk3DH+K/4rN60mp1I=;
- b=U+nxfc3AH/gTFJBACjQ6QSJk1XeAPEOBB47ZTRbY6BIeH0lwS06wiFP8
- cw26vgQ6Zug23oR3i83B9Ag+ST623vGA6G5bDHhuAdnvJkVoqSj+k908e
- Aeg7G9aR+O7FdLOnXwWFFjdWCf856OxUHsQNYdjuRgewHIyWTeQBJ18gq
- K0qkE0ZkYn4YGZEW/jzHFZc+1AJE+98U3WWPHjqhET93iwjdPucehGLYU
- bq5Ow7ngSxIn7OPrAfXr53povMB0neUv2E4C1bH8VG0qKp5PM6uZrJdLS
- J6XClI1IYCpFoR8sxiS/0C5nDGvia4XiviG4wpxEI6t2AaifAV3nyHDbc Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10273"; a="233221341"
-X-IronPort-AV: E=Sophos;i="5.90,146,1643702400"; d="scan'208";a="233221341"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Mar 2022 13:56:52 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,146,1643702400"; d="scan'208";a="685885883"
-Received: from fmsmsx604.amr.corp.intel.com ([10.18.126.84])
- by fmsmga001.fm.intel.com with ESMTP; 01 Mar 2022 13:56:52 -0800
-Received: from fmsmsx609.amr.corp.intel.com (10.18.126.89) by
- fmsmsx604.amr.corp.intel.com (10.18.126.84) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.21; Tue, 1 Mar 2022 13:56:52 -0800
-Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
- fmsmsx609.amr.corp.intel.com (10.18.126.89) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.21; Tue, 1 Mar 2022 13:56:51 -0800
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.21 via Frontend Transport; Tue, 1 Mar 2022 13:56:51 -0800
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.174)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2308.20; Tue, 1 Mar 2022 13:56:51 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IxOvsvP9CilBOaw+FCA9htVi2wzQerhfF9zY4d+1wJlpmvmw0w7Eup6H/U4P1ZeE5R6+vg1uIdNgZBM+tkAMzKdnqJguNUNFH9h+2lFaQ3NxnW/JnKsX213HB/jZISpzIKwQP9QqwvxAeJjFulcacZAnEWkLAhhcbVXe/d7NdrjXe46XaOQLfY/8kkg/qnMhWNEe69L00t87/ZCCEAjnUzGLURyPgeZd+37CQlnfZA4CGtc0I3Wcv3v7b38/iJiu0GzoWYzAcLmOnhtXmRqawVb/zAYBa7FtSpR10I1JwwFo3o5dYiDLkD6QgMRwjIpvQe1oyRGKUz3ClyvjHGtxjQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zo8PnErV//QjhcrBzUCko44FqDMYhVNVAGqntX7JBm0=;
- b=WbFKWR6ir1tMcotlcEGGtKSzXr9rNObmP8nAV90McfQukikiKppuXAj97pfKuI9Q+wzO5etJ84TS50iTLOhj7GEhVgcPbyxKiU2288i75ezjTK9O3L8eEQ0hjXwMPz9ThtIz9ss+u/gKRFBbeoz38MzG0ANzvoBGLr7aIZJUlF+18V4+7suAPB3LWIn9tVnxzAZsclerVPRbyyjBMvhPrEYY1mGvDDHdf1JfonmPNi+wnQPMAJ37Slk9vC+djXmORKs/8BvsKdD9UQn0VzHzNFY/RgtWEXySLLuOgMaal/LboWpgUihYfYmYDTdyvzS9vDd1w0Jb4ZBf+v2BFIANjg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB5488.namprd11.prod.outlook.com (2603:10b6:5:39d::5) by
- SN6PR11MB2864.namprd11.prod.outlook.com (2603:10b6:805:63::26) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5017.22; Tue, 1 Mar 2022 21:56:50 +0000
-Received: from DM4PR11MB5488.namprd11.prod.outlook.com
- ([fe80::3c4e:eb25:76ff:a869]) by DM4PR11MB5488.namprd11.prod.outlook.com
- ([fe80::3c4e:eb25:76ff:a869%4]) with mapi id 15.20.5017.027; Tue, 1 Mar 2022
- 21:56:49 +0000
-Message-ID: <71effe00-e13c-1f3c-741a-8fc6e4a73de5@intel.com>
-Date: Tue, 1 Mar 2022 13:56:47 -0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.0
-Content-Language: en-US
-To: <John.C.Harrison@Intel.com>, <Intel-GFX@Lists.FreeDesktop.Org>
-References: <20220225015232.1939497-1-John.C.Harrison@Intel.com>
-From: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>
-In-Reply-To: <20220225015232.1939497-1-John.C.Harrison@Intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BYAPR11CA0051.namprd11.prod.outlook.com
- (2603:10b6:a03:80::28) To DM4PR11MB5488.namprd11.prod.outlook.com
- (2603:10b6:5:39d::5)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC1D810E5F0;
+	Tue,  1 Mar 2022 22:00:22 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6C6B010E5F0;
+ Tue,  1 Mar 2022 22:00:21 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 6A37FA0118;
+ Tue,  1 Mar 2022 22:00:21 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2104866970107997633=="
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 3eb1c39f-08ae-4b02-f888-08d9fbce633e
-X-MS-TrafficTypeDiagnostic: SN6PR11MB2864:EE_
-X-Microsoft-Antispam-PRVS: <SN6PR11MB286409167815D20A9E8091B5F4029@SN6PR11MB2864.namprd11.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: kb02N9UoNSngWQnOziQ3+YGSFvSjnwzB6Qe7gl3Tdx+073EFCEUFmPf94mIauf21R/Pzkx8D5dz4kCkqt0FoxkespK2k0w3XHDj/qCa+dMiEGPS33NqQ6qSZcrD343Y9epUp6fj0MJa/YRxWu8EqPOCCwVc+6sA0P9xgAeD5vufqS8aga/1AQAE+0aq+8AO/eB9eUS49WEq660ClbHjSQEhTIfmawEWDD4/jZ1GNnTvyCHXf7mxNNz2pJ5EniftyHp7MKKZDLVur1G6blhi/yqIvx0/I6MBOIU6Z2G+n3LmJxGBhbF34b1d9ZVAtCDcRLgPoR2m6eWUw+4rBAvEV18ORxBCU7PmgrUE1CWxUJe74Ae3tVSKvUsSU+/LQdULseoojfmV23ZixqwUzAe93VHIpurrQIOfP9vFMl33rL4QyWo8tLgF0xTOanzVwdImn3ELOGMuBUGGG/XPp+4Yqtg1YdcItx93Ctv02K115sv79UyNT1opWmB/7JQHsHG24XRE9UzLqJUAQgzVMjlb59LED2Sx1zu05epNvPdSlkS8hSG+TZdS2QMbvXu8THGRklt2o9a+JURCLAILMLYKg3cxTmq01AVnhA2YObdSZ8FuoQOIqSbIvMDIXYRfL159OeUh6K8uQN9BaAsUpS0MkF4g87k1NF40C3zWc6DoAWYepf5xKVn41LCrIXi2JXARslzGJ5X7Iz2xB3rTYNEYOTr6Hv5epmHBUHP9iDO5bZomO+roeCYG0tiR47PZRLyGf
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5488.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230001)(366004)(8936002)(6486002)(86362001)(2906002)(31696002)(508600001)(82960400001)(38100700002)(5660300002)(15650500001)(66946007)(186003)(66476007)(66556008)(83380400001)(8676002)(4326008)(450100002)(36756003)(26005)(31686004)(316002)(6512007)(53546011)(6506007)(2616005)(45980500001)(43740500002);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Q3ZFTnd5QkVkbjBubnhpc0hmSmt5VUptWHB0WDNNd1ZERjhRL1hHMFBsOGly?=
- =?utf-8?B?d1NRaFpldVRpVFJBYVVYd1h1U0ZtWjV0RzFlRG81UDhYZXI2OVFxNnhtakFM?=
- =?utf-8?B?MkNBY0NpNkRFK0NPb3Zhek5NclBMQ3g1eXJRWUFlV1JPM05QTThwdVRpUitU?=
- =?utf-8?B?MFZaOG0zcjhiRlJXeDBWUVVBMDZ4NHBTcWg3VTNqcWdTVnZzYS9ocTMvUzNZ?=
- =?utf-8?B?UWpVQnQ0WlNMTHAxMU1pMFlMNUlCdGtVWWFrR1FLN3oxRmErWDJleUtBMmJx?=
- =?utf-8?B?R3A0YURhSmNOdXMrOU45bGJYeThIdm9yUmVCSzZQc3BCMjV2elFZcUwrMXBJ?=
- =?utf-8?B?eGtoMmdXRlk2S0kwSS92eXBPUENZdTBYVi9nYXdEaEpnemdCWHBxY0Y2SUJn?=
- =?utf-8?B?OWx4ZVhGQTBGRlNIVUl5QjlPc3daRkdCTnB0bkFmRTV5SEZQRUNyOFpjU0JE?=
- =?utf-8?B?akFHOGZmRHNvNmdjMGltZ3lHSkNCY0ZWM1JobjdseVMxZjNEQzRQdnEwU2Jy?=
- =?utf-8?B?ZDlMT1hPR0JmRXhIOThqRFdSczBieVl1ZnBrTVBjUjVzR29mNzkvdHlieU5r?=
- =?utf-8?B?UEYrUnlmeU1ETnFYU1oyc1JVeml5Z3dsbDR1dWprblNRWFRSUUQxYlBOajV3?=
- =?utf-8?B?cU5ZVU1QenM3WWMzQmlaaFVqQzNFcUFCSVdyb1dkOG9HYlIwZVlZWHMyb1Z6?=
- =?utf-8?B?S2NmSUd0VFkwMHRlRHFHdm5PaVBsT1FvbkdLUnVKZEMyWmdIV2ZTSXpkVCtU?=
- =?utf-8?B?cEVUTFFzRWVPYkxuV1dTaDZkeFp6RXo4Z3ZNQVBlQmoxNGhDeUVRc1ZEeE5C?=
- =?utf-8?B?UjRnb2s4OG5aYUE5YUE4Mit2T25HaXdyY3MwMklxOFVDOWRaaXBwM2Zrb1FY?=
- =?utf-8?B?UkhHWitaR1ZteS9nb0pjNmtsZ3NlYmVSS1dybHpoWXVIaUdwLzR3V3JSdzJ6?=
- =?utf-8?B?RlJlaXhvMUd0SjlIOFBVeDJvSXRVVlZqQnNHQk9TeHNvenVjREVlMHdWclYv?=
- =?utf-8?B?bUF5OXVOZjdLNVdIdURjT2VKT2s3RHVndENUbDdrL3Erb2FHSU5aQThXZjMy?=
- =?utf-8?B?NTkrVHVhd282RVlkK2E0d2R2b2xRTFl4UTAyYUE4N3BnakxJcHRJdGlsQnpv?=
- =?utf-8?B?NTlKazFtWGcxM05ZZWQ3VUZFV2JveElzQ29vWGlJU2FjaXEwZXI0QkRuTVhS?=
- =?utf-8?B?Tk5sSnRYYlBLcy9hWkYzRC8rdy81OUsrWUJEbTBjeEc5QnJYWURQTVJucmZl?=
- =?utf-8?B?WVJ6aUwvNVlpcHoyUHRBZXJUU00vWElaUVlIVGM0dFRQT3NIN3lhM09uMGFa?=
- =?utf-8?B?V3NvbU4zQk91Z0xCVFkxUzV1eTVEelhhRTIvUWQ1U2pFaUtDMkJrbTROTTRl?=
- =?utf-8?B?NmdOdklLMXBZcy9oV1dhMlYrS3lQWnFlQ1NSeUV1RG5UbENqQzFUeFNPN1RW?=
- =?utf-8?B?SndSY3ZVWVc4d0M0cEZ2c0dLbWxlYk8zdDFnbm1IazhDeGJZeCtJVlU0N3hu?=
- =?utf-8?B?Y1lYUDBkdWV1Y0gxZ0hYSmd6QkVqQlpyNWNCSThqSXRjYm9Xc0daUTgzVmJs?=
- =?utf-8?B?aUIxVWF0emdIcVBnNE15bEVYTHg3T0NmYlRGYWFReXFaamN5c3ZPbjJWRW44?=
- =?utf-8?B?N2l0MjZwaEdvRDFlYTFNVG5xUHJmRHFENEVFWlpMTFFNak1idWQ2RmNNS3l3?=
- =?utf-8?B?R1lSZDRwTDJjRmY5VllycXlBemNNQ3RaNVJ0S0RRWU5wVDV1a2o5RVFta0tZ?=
- =?utf-8?B?Z2xMYnpvQW9XM3BQSDFHRkJmVjlxUGNwVHY3SklZTkxiRlE1VkQrTVgwMDVa?=
- =?utf-8?B?TnlJdlpZVmdUYjdrZVREVUVZUUc4OWFuOHI4bE5SZ1Y2Ty9Ob2tKQUp0LzQ1?=
- =?utf-8?B?cjJ2aUM3UkFzOFFRWWl0WHhBOGpKVHlRQ0hhcmluZE1xUGJoMVNtOWRWOXI2?=
- =?utf-8?B?Wkg2NjNJOXA2ODdScmRTSFZlMzZ0RHlFTitCMmdWRnpsQWFIbCtPRTBOZVB4?=
- =?utf-8?B?d2pmWkwwZk9aMUx4WjU1RkJmZENzK3M2RkV4MnpFeUVkaXhZNXY3YWRLMitt?=
- =?utf-8?B?VFkvbFRDT0ZiV0VmRGtveXR4Ry9ienRGK1RxdTFnMFoxd21YeUlBb2p3Vnla?=
- =?utf-8?B?VHkrcXBpMVgwYWNjUWgyaytSQ1pmcXY4M0cvVGF6aHBHeVA3TkhaNEw3RmdY?=
- =?utf-8?B?NjhuSlpzZktCZldLNU9iODFoQmtYeFVPcEVTRlhia3VsQW8xQm9QQS9jSC9S?=
- =?utf-8?B?TjI5bG1takI0RkQrTVp4TVJubkxRPT0=?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3eb1c39f-08ae-4b02-f888-08d9fbce633e
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5488.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Mar 2022 21:56:49.8587 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Qjr77/TjdGSuUlg5GM4i0nXoq3P3VbOpWEjXNs5dCSihFZ9f1a3SPA2JDUCSviw5T3vxmVpLgTM6ED2Qf1RyXZMdrCP624zpYk/1+qLETw0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR11MB2864
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/guc: Do not complain about
- stale reset notifications
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Date: Tue, 01 Mar 2022 22:00:21 -0000
+Message-ID: <164617202141.8599.1539649507930642056@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220301170835.682715-1-matthew.auld@intel.com>
+In-Reply-To: <20220301170835.682715-1-matthew.auld@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5BCI=2C1/3=5D_drm/i915/gtt=3A_reduce_overzea?=
+ =?utf-8?q?lous_alignment_constraints_for_GGTT?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -160,49 +41,323 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: DRI-Devel@Lists.FreeDesktop.Org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============2104866970107997633==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: series starting with [CI,1/3] drm/i915/gtt: reduce overzealous alignment constraints for GGTT
+URL   : https://patchwork.freedesktop.org/series/100898/
+State : failure
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_11306 -> Patchwork_22449
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_22449 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_22449, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22449/index.html
+
+Participating hosts (50 -> 42)
+------------------------------
+
+  Missing    (8): fi-kbl-soraka shard-tglu fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-pnv-d510 bat-jsl-2 fi-bdw-samus 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_22449:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:
+    - fi-cml-u2:          [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11306/fi-cml-u2/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22449/fi-cml-u2/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
+
+  
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@kms_busy@basic@flip:
+    - {bat-dg2-9}:        [INCOMPLETE][3] ([i915#5194]) -> [INCOMPLETE][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11306/bat-dg2-9/igt@kms_busy@basic@flip.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22449/bat-dg2-9/igt@kms_busy@basic@flip.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_22449 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_flink_basic@bad-flink:
+    - fi-skl-6600u:       [PASS][5] -> [FAIL][6] ([i915#4547])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11306/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22449/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html
+
+  * igt@gem_lmem_swapping@random-engines:
+    - fi-ivb-3770:        NOTRUN -> [SKIP][7] ([fdo#109271]) +35 similar issues
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22449/fi-ivb-3770/igt@gem_lmem_swapping@random-engines.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - bat-dg1-5:          [PASS][8] -> [DMESG-FAIL][9] ([i915#4494] / [i915#4957])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11306/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22449/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_chamelium@dp-hpd-fast:
+    - fi-ivb-3770:        NOTRUN -> [SKIP][10] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22449/fi-ivb-3770/igt@kms_chamelium@dp-hpd-fast.html
+
+  * igt@kms_pipe_crc_basic@read-crc-pipe-c:
+    - bat-adlp-4:         [PASS][11] -> [DMESG-WARN][12] ([i915#3576])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11306/bat-adlp-4/igt@kms_pipe_crc_basic@read-crc-pipe-c.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22449/bat-adlp-4/igt@kms_pipe_crc_basic@read-crc-pipe-c.html
+
+  
+#### Possible fixes ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - fi-blb-e6850:       [FAIL][13] ([i915#3194]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11306/fi-blb-e6850/igt@core_hotunplug@unbind-rebind.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22449/fi-blb-e6850/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@fbdev@eof:
+    - {bat-dg2-9}:        [FAIL][15] ([i915#5186]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11306/bat-dg2-9/igt@fbdev@eof.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22449/bat-dg2-9/igt@fbdev@eof.html
+
+  * igt@i915_selftest@live@gt_pm:
+    - {fi-jsl-1}:         [DMESG-FAIL][17] ([i915#1886]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11306/fi-jsl-1/igt@i915_selftest@live@gt_pm.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22449/fi-jsl-1/igt@i915_selftest@live@gt_pm.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-hsw-4770:        [INCOMPLETE][19] ([i915#3303]) -> [INCOMPLETE][20] ([i915#4785])
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11306/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22449/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+
+  * igt@runner@aborted:
+    - fi-skl-6600u:       [FAIL][21] ([i915#1436] / [i915#4312]) -> [FAIL][22] ([i915#4312])
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11306/fi-skl-6600u/igt@runner@aborted.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22449/fi-skl-6600u/igt@runner@aborted.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
+  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
+  [i915#3194]: https://gitlab.freedesktop.org/drm/intel/issues/3194
+  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
+  [i915#3576]: https://gitlab.freedesktop.org/drm/intel/issues/3576
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
+  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
+  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
+  [i915#4957]: https://gitlab.freedesktop.org/drm/intel/issues/4957
+  [i915#5186]: https://gitlab.freedesktop.org/drm/intel/issues/5186
+  [i915#5194]: https://gitlab.freedesktop.org/drm/intel/issues/5194
 
 
-On 2/24/2022 5:52 PM, John.C.Harrison@Intel.com wrote:
-> From: John Harrison <John.C.Harrison@Intel.com>
->
-> It is possible for reset notifications to arrive for a context that is
-> in the process of being banned. So don't flag these as an error, just
-> report it as informational (because it is still useful to know that
-> resets are happening even if they are being ignored).
->
-> v2: Better wording for the message (review feedback from Tvrtko).
-> v3: Fix rebase issue (review feedback from Daniele).
->
-> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+Build changes
+-------------
 
-Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+  * Linux: CI_DRM_11306 -> Patchwork_22449
 
-Daniele
+  CI-20190529: 20190529
+  CI_DRM_11306: 0eb492df610222f39eb2ad5a903626dd3ad9aea2 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6361: 2372a4beb6a33c5f0799a4a8ccbb93794f52dbca @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_22449: 5ba0a226203a591fd784e820075855f68fc3b157 @ git://anongit.freedesktop.org/gfx-ci/linux
 
-> ---
->   drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 7 +++----
->   1 file changed, 3 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> index b3a429a92c0d..d39d74d39794 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> @@ -4022,10 +4022,9 @@ static void guc_handle_context_reset(struct intel_guc *guc,
->   		capture_error_state(guc, ce);
->   		guc_context_replay(ce);
->   	} else {
-> -		drm_err(&guc_to_gt(guc)->i915->drm,
-> -			"Invalid GuC engine reset notificaion for 0x%04X on %s: banned = %d, blocked = %d",
-> -			ce->guc_id.id, ce->engine->name, intel_context_is_banned(ce),
-> -			context_blocked(ce));
-> +		drm_info(&guc_to_gt(guc)->i915->drm,
-> +			 "Ignoring context reset notification of banned context 0x%04X on %s",
-> +			 ce->guc_id.id, ce->engine->name);
->   	}
->   }
->   
 
+== Linux commits ==
+
+5ba0a226203a drm/i915: Use i915_gem_object_pin_map_unlocked function for lmem allocation
+4144e1582c9f drm/i915/fbdev: fixup setting screen_size
+61b713195d33 drm/i915/gtt: reduce overzealous alignment constraints for GGTT
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22449/index.html
+
+--===============2104866970107997633==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [CI,1/3] drm/i915/gtt: reduce overzealous alignment constraints for GGTT</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/100898/">https://patchwork.freedesktop.org/series/100898/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22449/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22449/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11306 -&gt; Patchwork_22449</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_22449 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_22449, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22449/index.html</p>
+<h2>Participating hosts (50 -&gt; 42)</h2>
+<p>Missing    (8): fi-kbl-soraka shard-tglu fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-pnv-d510 bat-jsl-2 fi-bdw-samus </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_22449:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:<ul>
+<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11306/fi-cml-u2/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22449/fi-cml-u2/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@kms_busy@basic@flip:<ul>
+<li>{bat-dg2-9}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11306/bat-dg2-9/igt@kms_busy@basic@flip.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5194">i915#5194</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22449/bat-dg2-9/igt@kms_busy@basic@flip.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_22449 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_flink_basic@bad-flink:</p>
+<ul>
+<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11306/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22449/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@random-engines:</p>
+<ul>
+<li>fi-ivb-3770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22449/fi-ivb-3770/igt@gem_lmem_swapping@random-engines.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +35 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>bat-dg1-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11306/bat-dg1-5/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22449/bat-dg1-5/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-hpd-fast:</p>
+<ul>
+<li>fi-ivb-3770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22449/fi-ivb-3770/igt@kms_chamelium@dp-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@read-crc-pipe-c:</p>
+<ul>
+<li>bat-adlp-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11306/bat-adlp-4/igt@kms_pipe_crc_basic@read-crc-pipe-c.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22449/bat-adlp-4/igt@kms_pipe_crc_basic@read-crc-pipe-c.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11306/fi-blb-e6850/igt@core_hotunplug@unbind-rebind.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3194">i915#3194</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22449/fi-blb-e6850/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@fbdev@eof:</p>
+<ul>
+<li>{bat-dg2-9}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11306/bat-dg2-9/igt@fbdev@eof.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5186">i915#5186</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22449/bat-dg2-9/igt@fbdev@eof.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_pm:</p>
+<ul>
+<li>{fi-jsl-1}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11306/fi-jsl-1/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22449/fi-jsl-1/igt@i915_selftest@live@gt_pm.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11306/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22449/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11306/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22449/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11306 -&gt; Patchwork_22449</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11306: 0eb492df610222f39eb2ad5a903626dd3ad9aea2 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6361: 2372a4beb6a33c5f0799a4a8ccbb93794f52dbca @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_22449: 5ba0a226203a591fd784e820075855f68fc3b157 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>5ba0a226203a drm/i915: Use i915_gem_object_pin_map_unlocked function for lmem allocation<br />
+4144e1582c9f drm/i915/fbdev: fixup setting screen_size<br />
+61b713195d33 drm/i915/gtt: reduce overzealous alignment constraints for GGTT</p>
+
+</body>
+</html>
+
+--===============2104866970107997633==--
