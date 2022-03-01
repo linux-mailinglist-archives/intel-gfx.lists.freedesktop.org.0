@@ -1,54 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AD194C8DAC
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Mar 2022 15:27:32 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 853384C8EAA
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Mar 2022 16:14:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 21AB610E34B;
-	Tue,  1 Mar 2022 14:27:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 87EDA88007;
+	Tue,  1 Mar 2022 15:14:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 87C1310E1BF;
- Tue,  1 Mar 2022 14:27:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646144843; x=1677680843;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=Olj/7Og0cDEDlC4o+iiIESvBX+/QWh5RtbWHEWn/m6c=;
- b=j85YKD1GIB+1gh9rpDqxURql62UOfd+E5wodhQ918SAxPqlR7NPpIFbO
- dMWGd0wyrZIwU6ZdNKXNh62VJrEfKx++prIGAwSH+84qoewj4yudRoJMS
- Fa1Avd14fBfLf8bBv1aO7h1WDm1Z0/OVCY+Nn4y7S0IZf/Wb8hQngTsjk
- WYX9yD4NPsqDpxHZxflKy/MrQmQZvXSvvmGAnvJnvR0135iSAESH71Xpy
- mMG7QNIKcKnfHyU1MWau6Tdb5/3Oa8zDXym5yVCT3yzxl/zzR2VbkbTkJ
- BqGRh84NX1eWdgwsNmju4XdADzd4q+o5HBHh8/SXNsMWraVMksEJi3e/p w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10272"; a="313859936"
-X-IronPort-AV: E=Sophos;i="5.90,146,1643702400"; d="scan'208";a="313859936"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Mar 2022 06:27:22 -0800
-X-IronPort-AV: E=Sophos;i="5.90,146,1643702400"; d="scan'208";a="510528592"
-Received: from ssahani-mobl.amr.corp.intel.com (HELO [10.212.127.177])
- ([10.212.127.177])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Mar 2022 06:27:21 -0800
-Message-ID: <42282635-50a8-505f-0bd5-5aef9945e3d3@linux.intel.com>
-Date: Tue, 1 Mar 2022 14:27:18 +0000
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Content-Language: en-US
-To: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7253A10E5E9;
+ Tue,  1 Mar 2022 15:14:04 +0000 (UTC)
+Date: Tue, 1 Mar 2022 16:13:59 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020; t=1646147641;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=QUGdyEgq6oh5oMSMjuG1ObSlbMWtpa9RG58i4P3AYEo=;
+ b=r7kFrtrbJ5frtNRF4Z8L8omVQm4FeAZu+9vKS/ZHE52WcNnwN+U9qlUED5J3JiiPSL1s9c
+ 9+C1alOn5DOv/BDuKynnLEA0ZT6vX68XceEBpk+AaVjn6EdvJYpBqKZMa7Ja7+KYE5tKa8
+ e5c/qdesHUufdk1hu1dHt5ahvwskmshh1TspDHDjsQDaNE36pqPwb4LAxBcLDA01VhohG9
+ tEGNRKyN7LXD35gSAEQsDcsbjgdXD4TWeXIYNlPsQGsB3JFPAg+pkgvMqzwZUElYHBi5+I
+ Tyxn+MZIz8Pla379NDEV1JhKRWClFrb8FXLvN8r8amUqsW9nv1l4r2q0ct9bxA==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020e; t=1646147641;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=QUGdyEgq6oh5oMSMjuG1ObSlbMWtpa9RG58i4P3AYEo=;
+ b=j6q775/mf8kGM1qjt0NdZyEiylQTM+yLrFtlaWI9VPb5ux3JxeByA16nNz5Xo6OjxdnhhJ
+ dhMgQ6SetMITDBBg==
+From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Message-ID: <Yh44NxT/DMhB4Sqf@linutronix.de>
 References: <YgqmfKhwU5spS069@linutronix.de> <YhlgRb1lZO38gAz5@linutronix.de>
  <474ded6f-4fe8-8355-9a96-2254401d10fc@linux.intel.com>
  <YhylgaoHtSKi7+el@linutronix.de>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <YhylgaoHtSKi7+el@linutronix.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+ <42282635-50a8-505f-0bd5-5aef9945e3d3@linux.intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <42282635-50a8-505f-0bd5-5aef9945e3d3@linux.intel.com>
 Subject: Re: [Intel-gfx] [PATCH] drm/i915: Depend on !PREEMPT_RT.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,95 +62,114 @@ Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 28/02/2022 10:35, Sebastian Andrzej Siewior wrote:
-> On 2022-02-28 10:10:48 [+0000], Tvrtko Ursulin wrote:
->> Hi,
-> Hi,
+On 2022-03-01 14:27:18 [+0000], Tvrtko Ursulin wrote:
+> > you see:
+> >     0003-drm-i915-Use-preempt_disable-enable_rt-where-recomme.patch
+> >     0004-drm-i915-Don-t-disable-interrupts-on-PREEMPT_RT-duri.patch
 > 
->> Could you paste a link to the queue of i915 patches pending for a quick
->> overview of how much work there is and in what areas?
+> Two for the display folks.
 > 
-> Last post to the list:
->    https://https://lkml.kernel.org/r/.kernel.org/all/20211214140301.520464-1-bigeasy@linutronix.de/
+> >     0005-drm-i915-Don-t-check-for-atomic-context-on-PREEMPT_R.patch
 > 
-> or if you look at the DRM section in
->     https://git.kernel.org/pub/scm/linux/kernel/git/rt/linux-rt-devel.git/tree/patches/series?h=v5.17-rc6-rt10-patches#n156
+> What do preempt_disable/enable do on PREEMPT_RT? Thinking if instead the
+> solution could be to always force the !ATOMIC path (for the whole
+> _wait_for_atomic macro) on PREEMPT_RT.
 
-Thanks!
+Could be one way to handle it. But please don't disable preemption and
+or interrupts for longer period of time as all of it increases the
+overall latency.
 
-> you see:
->     0003-drm-i915-Use-preempt_disable-enable_rt-where-recomme.patch
->     0004-drm-i915-Don-t-disable-interrupts-on-PREEMPT_RT-duri.patch
+Side note: All of these patches is a collection over time. I personally
+have only a single i7-sandybridge with i915 and here I don't really
+enter all the possible paths here. People report, I patch and look
+around and then they are quiet so I assume that it is working.
 
-Two for the display folks.
-
->     0005-drm-i915-Don-t-check-for-atomic-context-on-PREEMPT_R.patch
-
-What do preempt_disable/enable do on PREEMPT_RT? Thinking if instead the 
-solution could be to always force the !ATOMIC path (for the whole 
-_wait_for_atomic macro) on PREEMPT_RT.
-
->     0006-drm-i915-Disable-tracing-points-on-PREEMPT_RT.patch
-
-If the issue is only with certain trace points why disable all?
-
->     0007-drm-i915-skip-DRM_I915_LOW_LEVEL_TRACEPOINTS-with-NO.patch
-
-Didn't quite fully understand, why is this not fixable? Especially 
-thinking if the option of not blanket disabling all tracepoints in the 
-previous patch.
-
->     0008-drm-i915-gt-Queue-and-wait-for-the-irq_work-item.patch
-
-Not sure about why cond_resched was put between irq_work_queue and 
-irq_work_sync - would it not be like-for-like change to have the two 
-together? Commit message makes me think _queue already starts the 
-handler on x86 at least.
-
->     0009-drm-i915-gt-Use-spin_lock_irq-instead-of-local_irq_d.patch
-
-I think this is okay. The part after the unlock is serialized by the 
-tasklet already.
-
-Slight doubt due the comment:
-
-   local_irq_enable(); /* flush irq_work (e.g. breadcrumb enabling) */
-
-Makes me want to think about it harder but not now.
-
-Another thing to check is if execlists_context_status_change still needs 
-the atomic notifier chain with this change.
-
->     0010-drm-i915-Drop-the-irqs_disabled-check.patch
-
-LGTM.
-
->     Revert-drm-i915-Depend-on-PREEMPT_RT.patch
-
-Okay.
-
-And finally for this very patch (the thread I am replying to):
-
-Acked-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-
-Regards,
-
-Tvrtko
-
+> >     0006-drm-i915-Disable-tracing-points-on-PREEMPT_RT.patch
 > 
-> and you could view them from
->     https://git.kernel.org/pub/scm/linux/kernel/git/rt/linux-rt-devel.git/tree/patches?h=v5.17-rc6-rt10-patches
+> If the issue is only with certain trace points why disable all?
+
+It is a class and it is easier that way.
+
+> >     0007-drm-i915-skip-DRM_I915_LOW_LEVEL_TRACEPOINTS-with-NO.patch
 > 
->> Also, I assume due absence of ARCH_SUPPORTS_RT being defined by any arch,
->> that something more is not yet ready?
+> Didn't quite fully understand, why is this not fixable? Especially thinking
+> if the option of not blanket disabling all tracepoints in the previous
+> patch.
+
+The problem is that you can't acquire that lock from within that
+trace-point on PREEMPT_RT. On !RT it is possible but it is also
+problematic because LOCKDEP does not see possible dead locks unless that
+trace-point is enabled.
+
+I've been talking to Steven (after
+https://lkml.kernel.org/r/20211214115837.6f33a9b2@gandalf.local.home)
+and he wants to come up with something where you can pass a lock as
+argument to the tracing-API. That way the lock can be acquired before
+the trace event is invoked and lockdep will see it even if the trace
+event is disabled.
+So there is an idea how to get it to work eventually without disabling
+it in the long term.
+
+Making the register a raw_spinlock_t would solve problem immediately but
+I am a little worried given the increased latency in a quick test:
+   https://lore.kernel.org/all/20211006164628.s2mtsdd2jdbfyf7g@linutronix.de/
+
+also, this one single hardware but the upper limit atomic-polls is high.
+
+> >     0008-drm-i915-gt-Queue-and-wait-for-the-irq_work-item.patch
 > 
-> Correct. Looking at what I have queued for the next merge window I have
-> less than 20 patches (excluding i915 and printk) before ARCH_SUPPORTS_RT
-> can be enabled for x86-64.
->   
->> Regards,
->>
->> Tvrtko
+> Not sure about why cond_resched was put between irq_work_queue and
+> irq_work_sync - would it not be like-for-like change to have the two
+> together? 
+
+maybe it loops for a while and an additional scheduling would be nice.
+
+> Commit message makes me think _queue already starts the handler on
+> x86 at least.
+
+Yes, irq_work_queue() triggers the IRQ right away on x86,
+irq_work_sync() would wait for it to happen in case it did not happen.
+On architectures which don't provide an IRQ-work interrupt, it is
+delayed to the HZ tick timer interrupt. So this serves also as an
+example in case someone want to copy the code ;)
+
+> >     0009-drm-i915-gt-Use-spin_lock_irq-instead-of-local_irq_d.patch
 > 
-> Sebastian
+> I think this is okay. The part after the unlock is serialized by the tasklet
+> already.
+> 
+> Slight doubt due the comment:
+> 
+>   local_irq_enable(); /* flush irq_work (e.g. breadcrumb enabling) */
+> 
+> Makes me want to think about it harder but not now.
+
+Clark reported it and confirmed that the warning is gone on RT and
+everything appears to work ;)
+PREEMPT_RT wise there is no synchronisation vs irq_work other than an
+actual lock (in case it is needed).
+
+> Another thing to check is if execlists_context_status_change still needs the
+> atomic notifier chain with this change.
+> 
+> >     0010-drm-i915-Drop-the-irqs_disabled-check.patch
+> 
+> LGTM.
+
+Do you want me to repost that one?
+
+> >     Revert-drm-i915-Depend-on-PREEMPT_RT.patch
+> 
+> Okay.
+> 
+> And finally for this very patch (the thread I am replying to):
+> 
+> Acked-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+
+Thanks.
+
+> Regards,
+> 
+> Tvrtko
+
+Sebastian
