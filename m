@@ -1,52 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E27B74C9190
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Mar 2022 18:31:55 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B11404C9192
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Mar 2022 18:31:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1867410E6B9;
-	Tue,  1 Mar 2022 17:31:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A8C610E732;
+	Tue,  1 Mar 2022 17:31:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 091AF10E6B9
- for <intel-gfx@lists.freedesktop.org>; Tue,  1 Mar 2022 17:31:53 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C487E10E732
+ for <intel-gfx@lists.freedesktop.org>; Tue,  1 Mar 2022 17:31:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646155913; x=1677691913;
+ t=1646155915; x=1677691915;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=Yt3s9mPDU05VlJBJWqDTl8FgpNktUk4i5LPtNi1HBwI=;
- b=mIWSzy7MnT9lFMrtkDZmTgy1PiU0h91h5ZnHt2HHEDYNt1jp83kGACKY
- OGI3G6o899NxgA0hQX8n2gxKq37HIi6k2dtzguv25XCSUJRzUOG6dI41V
- z/BiXo+8pGJQIV79XIEHcmWvNPI8GG15CEbOpRC0Bn9AE6lzu7unlXfi0
- RI64scSZdc+cXmqIrr9jxDw6VZ6V3FlxekUe5abKunNN1+e1BHH5udrCz
- Wwen5mdts2o4sSrAR2etfPeTAxmIh3ZRTyRBbyIO9TupSGO4UA792beVs
- AvB4XHD4nJLOGn/yrwE+WDQI9pTBy1b5II445RTnE6IRdeCCz5W3pgumu w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10273"; a="277860443"
-X-IronPort-AV: E=Sophos;i="5.90,146,1643702400"; d="scan'208";a="277860443"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Mar 2022 09:31:52 -0800
+ bh=t/14zmKPnFL6U54/38Tg515fl7EkkTHGmb2vIJDhw0I=;
+ b=n3sHGUE6S4O3SfiqspBFNX5FGBMC0GeKjfDTrddlBwZsYmBddI2ncl+g
+ cNIir7ady+d2rmLlSsuEsbtrKSDnfwWTMEHHfw29Cik+W7k3I3j+pqPdE
+ N7Im5bGUWyTHJA7FKa49FM7e+M1KyoCLhS6GuKCq90s9qnuJbs/7iqQHB
+ mz2F1bfZ7lYx892qRJq7MopLVXQTVJdJ2ziyZQ8bOqB8lvaIKAEZkJosK
+ FRS+k44kEJb/2niwzK9uABRAmiMEaQFks+Z+d04LXX9lJFFcchtg2Wck7
+ zBPm32aqLngqaHfZKcyWlx4ZhGk91KdsTdKDvjGY3OJoiLBGV6OSi1uPe g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10273"; a="339627089"
+X-IronPort-AV: E=Sophos;i="5.90,146,1643702400"; d="scan'208";a="339627089"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Mar 2022 09:31:55 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,146,1643702400"; d="scan'208";a="545174507"
+X-IronPort-AV: E=Sophos;i="5.90,146,1643702400"; d="scan'208";a="685802503"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
- by fmsmga007.fm.intel.com with SMTP; 01 Mar 2022 09:31:50 -0800
+ by fmsmga001.fm.intel.com with SMTP; 01 Mar 2022 09:31:53 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 01 Mar 2022 19:31:50 +0200
+ Tue, 01 Mar 2022 19:31:52 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue,  1 Mar 2022 19:31:24 +0200
-Message-Id: <20220301173128.6988-8-ville.syrjala@linux.intel.com>
+Date: Tue,  1 Mar 2022 19:31:25 +0200
+Message-Id: <20220301173128.6988-9-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220301173128.6988-1-ville.syrjala@linux.intel.com>
 References: <20220301173128.6988-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 07/11] drm/i915: Store the m2 divider as a whole
- in bxt_clk_div
+Subject: [Intel-gfx] [PATCH 08/11] drm/i915: Replace bxt_clk_div with struct
+ dpll
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,81 +64,133 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Get rid of the pointless m2 int vs. frac split in bxt_clk_div
-and just store the whole divider as one.
+bxt_clk_div is basically the same as struct dpll. Just use the latter.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 33 +++++++++++--------
- 1 file changed, 19 insertions(+), 14 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 50 ++++++-------------
+ 1 file changed, 16 insertions(+), 34 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-index 899aa42a858f..4a82e630cbec 100644
+index 4a82e630cbec..58e9d5960bc6 100644
 --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
 +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-@@ -2085,8 +2085,7 @@ struct bxt_clk_div {
- 	int clock;
- 	u32 p1;
- 	u32 p2;
--	u32 m2_int;
--	u32 m2_frac;
-+	u32 m2;
- 	u32 n;
+@@ -2080,75 +2080,57 @@ static bool bxt_ddi_pll_get_hw_state(struct drm_i915_private *dev_priv,
+ 	return ret;
+ }
  
- 	int vco;
-@@ -2094,13 +2093,20 @@ struct bxt_clk_div {
- 
+-/* bxt clock parameters */
+-struct bxt_clk_div {
+-	int clock;
+-	u32 p1;
+-	u32 p2;
+-	u32 m2;
+-	u32 n;
+-
+-	int vco;
+-};
+-
  /* pre-calculated values for DP linkrates */
- static const struct bxt_clk_div bxt_dp_clk_val[] = {
--	{ .clock = 162000, .p1 = 4, .p2 = 2, .m2_int = 32, .m2_frac = 1677722, .n = 1, },
--	{ .clock = 270000, .p1 = 4, .p2 = 1, .m2_int = 27, .m2_frac =       0, .n = 1, },
--	{ .clock = 540000, .p1 = 2, .p2 = 1, .m2_int = 27, .m2_frac =       0, .n = 1, },
--	{ .clock = 216000, .p1 = 3, .p2 = 2, .m2_int = 32, .m2_frac = 1677722, .n = 1, },
--	{ .clock = 243000, .p1 = 4, .p2 = 1, .m2_int = 24, .m2_frac = 1258291, .n = 1, },
--	{ .clock = 324000, .p1 = 4, .p2 = 1, .m2_int = 32, .m2_frac = 1677722, .n = 1, },
--	{ .clock = 432000, .p1 = 3, .p2 = 1, .m2_int = 32, .m2_frac = 1677722, .n = 1, },
-+	{ .clock = 162000, .p1 = 4, .p2 = 2, .n = 1,
-+	  .m2 = 0x819999a /* .m2_int = 32, m2_frac = 1677722 */ },
-+	{ .clock = 270000, .p1 = 4, .p2 = 1, .n = 1,
-+	  .m2 = 0x6c00000 /* .m2_int = 27, m2_frac =       0 */ },
-+	{ .clock = 540000, .p1 = 2, .p2 = 1, .n = 1,
-+	  .m2 = 0x6c00000 /* .m2_int = 27, m2_frac =       0 */ },
-+	{ .clock = 216000, .p1 = 3, .p2 = 2, .n = 1,
-+	  .m2 = 0x819999a /* .m2_int = 32, m2_frac = 1677722 */ },
-+	{ .clock = 243000, .p1 = 4, .p2 = 1, .n = 1,
-+	  .m2 = 0x6133333 /* .m2_int = 24, m2_frac = 1258291 */ },
-+	{ .clock = 324000, .p1 = 4, .p2 = 1, .n = 1,
-+	  .m2 = 0x819999a /* .m2_int = 32, m2_frac = 1677722 */ },
-+	{ .clock = 432000, .p1 = 3, .p2 = 1, .n = 1,
-+	  .m2 = 0x819999a /* .m2_int = 32, m2_frac = 1677722 */ },
+-static const struct bxt_clk_div bxt_dp_clk_val[] = {
+-	{ .clock = 162000, .p1 = 4, .p2 = 2, .n = 1,
++static const struct dpll bxt_dp_clk_val[] = {
++	{ .dot = 162000, .p1 = 4, .p2 = 2, .n = 1,
+ 	  .m2 = 0x819999a /* .m2_int = 32, m2_frac = 1677722 */ },
+-	{ .clock = 270000, .p1 = 4, .p2 = 1, .n = 1,
++	{ .dot = 270000, .p1 = 4, .p2 = 1, .n = 1,
+ 	  .m2 = 0x6c00000 /* .m2_int = 27, m2_frac =       0 */ },
+-	{ .clock = 540000, .p1 = 2, .p2 = 1, .n = 1,
++	{ .dot = 540000, .p1 = 2, .p2 = 1, .n = 1,
+ 	  .m2 = 0x6c00000 /* .m2_int = 27, m2_frac =       0 */ },
+-	{ .clock = 216000, .p1 = 3, .p2 = 2, .n = 1,
++	{ .dot = 216000, .p1 = 3, .p2 = 2, .n = 1,
+ 	  .m2 = 0x819999a /* .m2_int = 32, m2_frac = 1677722 */ },
+-	{ .clock = 243000, .p1 = 4, .p2 = 1, .n = 1,
++	{ .dot = 243000, .p1 = 4, .p2 = 1, .n = 1,
+ 	  .m2 = 0x6133333 /* .m2_int = 24, m2_frac = 1258291 */ },
+-	{ .clock = 324000, .p1 = 4, .p2 = 1, .n = 1,
++	{ .dot = 324000, .p1 = 4, .p2 = 1, .n = 1,
+ 	  .m2 = 0x819999a /* .m2_int = 32, m2_frac = 1677722 */ },
+-	{ .clock = 432000, .p1 = 3, .p2 = 1, .n = 1,
++	{ .dot = 432000, .p1 = 3, .p2 = 1, .n = 1,
+ 	  .m2 = 0x819999a /* .m2_int = 32, m2_frac = 1677722 */ },
  };
  
  static bool
-@@ -2127,8 +2133,7 @@ bxt_ddi_hdmi_pll_dividers(struct intel_crtc_state *crtc_state,
- 	clk_div->p2 = best_clock.p2;
- 	drm_WARN_ON(&i915->drm, best_clock.m1 != 2);
- 	clk_div->n = best_clock.n;
--	clk_div->m2_int = best_clock.m2 >> 22;
--	clk_div->m2_frac = best_clock.m2 & ((1 << 22) - 1);
-+	clk_div->m2 = best_clock.m2;
+ bxt_ddi_hdmi_pll_dividers(struct intel_crtc_state *crtc_state,
+-			  struct bxt_clk_div *clk_div)
++			  struct dpll *clk_div)
+ {
+ 	struct drm_i915_private *i915 = to_i915(crtc_state->uapi.crtc->dev);
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+-	struct dpll best_clock;
  
- 	clk_div->vco = best_clock.vco;
+ 	/* Calculate HDMI div */
+ 	/*
+ 	 * FIXME: tie the following calculation into
+ 	 * i9xx_crtc_compute_clock
+ 	 */
+-	if (!bxt_find_best_dpll(crtc_state, &best_clock)) {
++	if (!bxt_find_best_dpll(crtc_state, clk_div)) {
+ 		drm_dbg(&i915->drm, "no PLL dividers found for clock %d pipe %c\n",
+ 			crtc_state->port_clock,
+ 			pipe_name(crtc->pipe));
+ 		return false;
+ 	}
  
-@@ -2197,11 +2202,11 @@ static bool bxt_ddi_set_dpll_hw_state(struct intel_crtc_state *crtc_state,
- 		lanestagger = 0x02;
+-	clk_div->p1 = best_clock.p1;
+-	clk_div->p2 = best_clock.p2;
+-	drm_WARN_ON(&i915->drm, best_clock.m1 != 2);
+-	clk_div->n = best_clock.n;
+-	clk_div->m2 = best_clock.m2;
+-
+-	clk_div->vco = best_clock.vco;
++	drm_WARN_ON(&i915->drm, clk_div->m1 != 2);
  
- 	dpll_hw_state->ebb0 = PORT_PLL_P1(clk_div->p1) | PORT_PLL_P2(clk_div->p2);
--	dpll_hw_state->pll0 = clk_div->m2_int;
-+	dpll_hw_state->pll0 = clk_div->m2 >> 22;
- 	dpll_hw_state->pll1 = PORT_PLL_N(clk_div->n);
--	dpll_hw_state->pll2 = clk_div->m2_frac;
-+	dpll_hw_state->pll2 = clk_div->m2 & 0x3fffff;
+ 	return true;
+ }
  
--	if (clk_div->m2_frac)
-+	if (clk_div->m2 & 0x3fffff)
- 		dpll_hw_state->pll3 = PORT_PLL_M2_FRAC_ENABLE;
+ static void bxt_ddi_dp_pll_dividers(struct intel_crtc_state *crtc_state,
+-				    struct bxt_clk_div *clk_div)
++				    struct dpll *clk_div)
+ {
+ 	int clock = crtc_state->port_clock;
+ 	int i;
  
- 	dpll_hw_state->pll6 = prop_coef | PORT_PLL_INT_COEFF(int_coef);
+ 	*clk_div = bxt_dp_clk_val[0];
+ 	for (i = 0; i < ARRAY_SIZE(bxt_dp_clk_val); ++i) {
+-		if (bxt_dp_clk_val[i].clock == clock) {
++		if (bxt_dp_clk_val[i].dot == clock) {
+ 			*clk_div = bxt_dp_clk_val[i];
+ 			break;
+ 		}
+@@ -2158,7 +2140,7 @@ static void bxt_ddi_dp_pll_dividers(struct intel_crtc_state *crtc_state,
+ }
+ 
+ static bool bxt_ddi_set_dpll_hw_state(struct intel_crtc_state *crtc_state,
+-				      const struct bxt_clk_div *clk_div)
++				      const struct dpll *clk_div)
+ {
+ 	struct drm_i915_private *i915 = to_i915(crtc_state->uapi.crtc->dev);
+ 	struct intel_dpll_hw_state *dpll_hw_state = &crtc_state->dpll_hw_state;
+@@ -2230,7 +2212,7 @@ static bool bxt_ddi_set_dpll_hw_state(struct intel_crtc_state *crtc_state,
+ static bool
+ bxt_ddi_dp_set_dpll_hw_state(struct intel_crtc_state *crtc_state)
+ {
+-	struct bxt_clk_div clk_div = {};
++	struct dpll clk_div = {};
+ 
+ 	bxt_ddi_dp_pll_dividers(crtc_state, &clk_div);
+ 
+@@ -2240,7 +2222,7 @@ bxt_ddi_dp_set_dpll_hw_state(struct intel_crtc_state *crtc_state)
+ static bool
+ bxt_ddi_hdmi_set_dpll_hw_state(struct intel_crtc_state *crtc_state)
+ {
+-	struct bxt_clk_div clk_div = {};
++	struct dpll clk_div = {};
+ 
+ 	bxt_ddi_hdmi_pll_dividers(crtc_state, &clk_div);
+ 
 -- 
 2.34.1
 
