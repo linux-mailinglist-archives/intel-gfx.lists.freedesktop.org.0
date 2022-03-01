@@ -2,50 +2,82 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12AF54C9194
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Mar 2022 18:32:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C517F4C9223
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Mar 2022 18:45:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 451FC10E728;
-	Tue,  1 Mar 2022 17:32:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CABF810E6D6;
+	Tue,  1 Mar 2022 17:45:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D746A10E784
- for <intel-gfx@lists.freedesktop.org>; Tue,  1 Mar 2022 17:32:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646155929; x=1677691929;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=shI3bnZtMGBgGK6xrv5KfwPx67fi7Q6LRovJ/5zDFxs=;
- b=Pk2hFt4ZRkd7Z153oeKvKHCjDy/f1E8HDdPDr0zjaiX8aC2qohEOtqws
- EbqvZBcSgEhrKvkoTIRfiB3wxGtBe4TYLcfPTsR1ZkvFMzRYidnmZRo3c
- lHjFKZ2j9uEydSoER6QUIvqhpBSU4IKCE79BrzhFGPBYw7XFiPMlF5FB8
- B7fq2mt42JVdLSZPrtYWqTAULOQ54VZmAXjjRCSCj0kVRYfpU31Aquzjk
- 2p1vlJ6vAirG0oaHpQKq0NSWGTyJO+Y6CnsoJRh958F5VVtHLFqgsP7cH
- SdgTsCMmy07o1P6u1udOVKwG4JUI4frbtdx2UHtVZEWaP4IJZrzQGpUmz Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10273"; a="313911717"
-X-IronPort-AV: E=Sophos;i="5.90,146,1643702400"; d="scan'208";a="313911717"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Mar 2022 09:32:04 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,146,1643702400"; d="scan'208";a="510599935"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
- by orsmga006.jf.intel.com with SMTP; 01 Mar 2022 09:32:02 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 01 Mar 2022 19:32:01 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue,  1 Mar 2022 19:31:28 +0200
-Message-Id: <20220301173128.6988-12-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220301173128.6988-1-ville.syrjala@linux.intel.com>
-References: <20220301173128.6988-1-ville.syrjala@linux.intel.com>
+X-Greylist: delayed 550 seconds by postgrey-1.36 at gabe;
+ Tue, 01 Mar 2022 17:45:46 UTC
+Received: from new3-smtp.messagingengine.com (new3-smtp.messagingengine.com
+ [66.111.4.229])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B788010E6D6;
+ Tue,  1 Mar 2022 17:45:46 +0000 (UTC)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+ by mailnew.nyi.internal (Postfix) with ESMTP id 668835801CF;
+ Tue,  1 Mar 2022 12:36:34 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+ by compute2.internal (MEProxy); Tue, 01 Mar 2022 12:36:34 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kroah.com; h=cc
+ :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+ :message-id:mime-version:references:reply-to:sender:subject
+ :subject:to:to; s=fm3; bh=5OE8xr6GO9X7MbNpDAcWFGeEO3b3B/8LX5WMVM
+ 23luQ=; b=PuP2NuoqB9WepsjY0Uqokte1F02OSePW/KnqWPOHGfC62jDMQy8d6J
+ jihmHY7jaxPeYmV/brYSLMo2rdd0E65RFIbVZNaw+d6hF5TlV5h/HTFiyyQeuhEh
+ tTvMohVc8vJzz2F3uGXDhJ11n60AMBcwryX0OIQ4h4vBoJz9sXnQjtTWmMBfJvV8
+ ASNImP/JJmHc6aQngUkaR/9ejN6V67gkY3Ss3hOhMxZ05fa2rytR+8neryd7GnHR
+ NnoILjHkJCXbghnuIwO3WAIr0wjFgm+H99CgrlgjXtrJoB87p0eZTz8QaQ9jXLS7
+ eUmDU4ThQ2iD/GAcK9q8FPfYZ3dj5Siw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-type:date:date:from:from
+ :in-reply-to:in-reply-to:message-id:mime-version:references
+ :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=5OE8xr6GO9X7MbNpD
+ AcWFGeEO3b3B/8LX5WMVM23luQ=; b=EDVGv6yEMy7PTbky8OfXVA9jYKh0oiM5+
+ sk6xt1CX3smAZYI0P9oaKzOCIkwMemVmh9foKoLwOV/IyVUBTTJc+ljLrovpUDdP
+ pIA4BCkMgcGpU96mM/8o9zjz4bY87GlxWmxlUETAhWUvR7QqjYOuAQqLjAz9vvM2
+ 9w41DE+muRcTBgXgq7R5mX2xPAK9bu7QEmldC6d/UhIWw84PgZEMMUkVZDfimvGr
+ 9rb1WTZ4HmbXffSgmjvpYAD0fz3a3kb/jxO9vzcKzkIUx9MDQUxolnVJ5gWPPm0P
+ 3SACLLdt3Ji3p4//lVUF9os4MIANF8EQiUgikZ8An4R/ZWSxaE7Og==
+X-ME-Sender: <xms:oFkeYrv0LJt2Pjt0ZOYMYd1jCK6G-Z0GZXtRlOiCbijoVlbqDToesg>
+ <xme:oFkeYsdRXoRXAxTjhPFWtM5JX8rU2-dsIwxZfpFocA89gDBFD4vx9xsWmcbxEuUyQ
+ lpRakwPpYLi7A>
+X-ME-Received: <xmr:oFkeYuzzdQb5kL72Vvj74Xn0xRRyhzff8uvNHTyUqFsrLF_56anw9-ykyIbZGqAzSj0KTqXLBgC1Qf0KKdPZ7IM>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddruddtvddguddttdcutefuodetggdotefrod
+ ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+ necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+ enucfjughrpeffhffvuffkfhggtggujgesthdtredttddtvdenucfhrhhomhepifhrvghg
+ ucfmjfcuoehgrhgvgheskhhrohgrhhdrtghomheqnecuggftrfgrthhtvghrnhepveeuhe
+ ejgfffgfeivddukedvkedtleelleeghfeljeeiueeggeevueduudekvdetnecuvehluhhs
+ thgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepghhrvghgsehkrhhorg
+ hhrdgtohhm
+X-ME-Proxy: <xmx:oFkeYqNP0oPgoNRpau1EsmnsGvsi8MuHt5Oau7Uh5DcasQw65k9YTg>
+ <xmx:oFkeYr8eoBRonSMDQgE0d2CdwAX12XsrowbLGxOxF_rvtS3YwiTEgg>
+ <xmx:oFkeYqVNxx7WBcYUGhcHc73BR9KI7xEAuh9FjZrqFDwJGYsF_7MqUw>
+ <xmx:olkeYkWtK93reuC1fg-f2X2RrUvR780eGtvCg6vOtajRgdiJ73bSmQ>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 1 Mar 2022 12:36:31 -0500 (EST)
+Date: Tue, 1 Mar 2022 18:36:27 +0100
+From: Greg KH <greg@kroah.com>
+To: Jakob Koschel <jakobkoschel@gmail.com>
+Message-ID: <Yh5ZmwiH5AxtQ69K@kroah.com>
+References: <20220228110822.491923-1-jakobkoschel@gmail.com>
+ <20220228110822.491923-3-jakobkoschel@gmail.com>
+ <2e4e95d6-f6c9-a188-e1cd-b1eae465562a@amd.com>
+ <CAHk-=wgQps58DPEOe4y5cTh5oE9EdNTWRLXzgMiETc+mFX7jzw@mail.gmail.com>
+ <CAHk-=wj8fkosQ7=bps5K+DDazBXk=ypfn49A0sEq+7-nZnyfXA@mail.gmail.com>
+ <CAHk-=wiTCvLQkHcJ3y0hpqH7FEk9D28LDvZZogC6OVLk7naBww@mail.gmail.com>
+ <FC710A1A-524E-481B-A668-FC258F529A2E@gmail.com>
+ <CAHk-=whLK11HyvpUtEftOjc3Gup2V77KpAQ2fycj3uai=qceHw@mail.gmail.com>
+ <CEDAD0D9-56EE-4105-9107-72C2EAD940B0@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 11/11] drm/i915: Remove struct dp_link_dpll
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CEDAD0D9-56EE-4105-9107-72C2EAD940B0@gmail.com>
+Subject: Re: [Intel-gfx] [PATCH 2/6] treewide: remove using list iterator
+ after loop body as a ptr
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,110 +90,93 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: linux-wireless <linux-wireless@vger.kernel.org>,
+ alsa-devel@alsa-project.org, KVM list <kvm@vger.kernel.org>,
+ "Gustavo A. R. Silva" <gustavo@embeddedor.com>, linux-iio@vger.kernel.org,
+ nouveau@lists.freedesktop.org, Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Cristiano Giuffrida <c.giuffrida@vu.nl>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ linux1394-devel@lists.sourceforge.net, drbd-dev@lists.linbit.com,
+ linux-arch <linux-arch@vger.kernel.org>, CIFS <linux-cifs@vger.kernel.org>,
+ linux-aspeed@lists.ozlabs.org, linux-scsi <linux-scsi@vger.kernel.org>,
+ linux-rdma <linux-rdma@vger.kernel.org>, linux-staging@lists.linux.dev, "Bos,
+ H.J." <h.j.bos@vu.nl>, Jason Gunthorpe <jgg@ziepe.ca>,
+ intel-wired-lan@lists.osuosl.org, kgdb-bugreport@lists.sourceforge.net,
+ bcm-kernel-feedback-list@broadcom.com,
+ Dan Carpenter <dan.carpenter@oracle.com>,
+ Linux Media Mailing List <linux-media@vger.kernel.org>,
+ Kees Cook <keescook@chromium.org>, Arnd Bergman <arnd@arndb.de>,
+ Linux PM <linux-pm@vger.kernel.org>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+ Brian Johannesmeyer <bjohannesmeyer@gmail.com>,
+ Nathan Chancellor <nathan@kernel.org>, dma <dmaengine@vger.kernel.org>,
+ Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+ v9fs-developer@lists.sourceforge.net,
+ linux-tegra <linux-tegra@vger.kernel.org>,
+ Thomas Gleixner <tglx@linutronix.de>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>, linux-sgx@vger.kernel.org,
+ linux-block <linux-block@vger.kernel.org>, Netdev <netdev@vger.kernel.org>,
+ linux-usb@vger.kernel.org, samba-technical@lists.samba.org,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Linux F2FS Dev Mailing List <linux-f2fs-devel@lists.sourceforge.net>,
+ tipc-discussion@lists.sourceforge.net,
+ Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
+ linux-fsdevel <linux-fsdevel@vger.kernel.org>,
+ linux-mediatek@lists.infradead.org, Andrew Morton <akpm@linux-foundation.org>,
+ Linus Torvalds <torvalds@linux-foundation.org>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Mike Rapoport <rppt@kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+On Tue, Mar 01, 2022 at 12:28:15PM +0100, Jakob Koschel wrote:
+> 
+> 
+> > On 1. Mar 2022, at 01:41, Linus Torvalds <torvalds@linux-foundation.org> wrote:
+> > 
+> > On Mon, Feb 28, 2022 at 1:47 PM Jakob Koschel <jakobkoschel@gmail.com> wrote:
+> >> 
+> >> The goal of this is to get compiler warnings right? This would indeed be great.
+> > 
+> > Yes, so I don't mind having a one-time patch that has been gathered
+> > using some automated checker tool, but I don't think that works from a
+> > long-term maintenance perspective.
+> > 
+> > So if we have the basic rule being "don't use the loop iterator after
+> > the loop has finished, because it can cause all kinds of subtle
+> > issues", then in _addition_ to fixing the existing code paths that
+> > have this issue, I really would want to (a) get a compiler warning for
+> > future cases and (b) make it not actually _work_ for future cases.
+> > 
+> > Because otherwise it will just happen again.
+> > 
+> >> Changing the list_for_each_entry() macro first will break all of those cases
+> >> (e.g. the ones using 'list_entry_is_head()).
+> > 
+> > So I have no problems with breaking cases that we basically already
+> > have a patch for due to  your automated tool. There were certainly
+> > more than a handful, but it didn't look _too_ bad to just make the
+> > rule be "don't use the iterator after the loop".
+> > 
+> > Of course, that's just based on that patch of yours. Maybe there are a
+> > ton of other cases that your patch didn't change, because they didn't
+> > match your trigger case, so I may just be overly optimistic here.
+> 
+> Based on the coccinelle script there are ~480 cases that need fixing
+> in total. I'll now finish all of them and then split them by
+> submodules as Greg suggested and repost a patch set per submodule.
+> Sounds good?
 
-struct dp_link_dpll is a pointless wrapper around struct dpll.
-Just store the desired link rate into struct dpll::dot and
-we're done.
+Sounds good to me!
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/g4x_dp.c | 47 ++++++++++-----------------
- 1 file changed, 18 insertions(+), 29 deletions(-)
+If you need help carving these up and maintaining them over time as
+different subsystem maintainers accept/ignore them, just let me know.
+Doing large patchsets like this can be tough without a lot of
+experience.
 
-diff --git a/drivers/gpu/drm/i915/display/g4x_dp.c b/drivers/gpu/drm/i915/display/g4x_dp.c
-index f67bbaaad8e0..559ce0fefaed 100644
---- a/drivers/gpu/drm/i915/display/g4x_dp.c
-+++ b/drivers/gpu/drm/i915/display/g4x_dp.c
-@@ -22,58 +22,47 @@
- #include "intel_pps.h"
- #include "vlv_sideband.h"
- 
--struct dp_link_dpll {
--	int clock;
--	struct dpll dpll;
-+static const struct dpll g4x_dpll[] = {
-+	{ .dot = 162000, .p1 = 2, .p2 = 10, .n = 2, .m1 = 23, .m2 = 8, },
-+	{ .dot = 270000, .p1 = 1, .p2 = 10, .n = 1, .m1 = 14, .m2 = 2, },
- };
- 
--static const struct dp_link_dpll g4x_dpll[] = {
--	{ 162000,
--		{ .p1 = 2, .p2 = 10, .n = 2, .m1 = 23, .m2 = 8 } },
--	{ 270000,
--		{ .p1 = 1, .p2 = 10, .n = 1, .m1 = 14, .m2 = 2 } }
-+static const struct dpll pch_dpll[] = {
-+	{ .dot = 162000, .p1 = 2, .p2 = 10, .n = 1, .m1 = 12, .m2 = 9, },
-+	{ .dot = 270000, .p1 = 1, .p2 = 10, .n = 2, .m1 = 14, .m2 = 8, },
- };
- 
--static const struct dp_link_dpll pch_dpll[] = {
--	{ 162000,
--		{ .p1 = 2, .p2 = 10, .n = 1, .m1 = 12, .m2 = 9 } },
--	{ 270000,
--		{ .p1 = 1, .p2 = 10, .n = 2, .m1 = 14, .m2 = 8 } }
--};
--
--static const struct dp_link_dpll vlv_dpll[] = {
--	{ 162000,
--		{ .p1 = 3, .p2 = 2, .n = 5, .m1 = 3, .m2 = 81 } },
--	{ 270000,
--		{ .p1 = 2, .p2 = 2, .n = 1, .m1 = 2, .m2 = 27 } }
-+static const struct dpll vlv_dpll[] = {
-+	{ .dot = 162000, .p1 = 3, .p2 = 2, .n = 5, .m1 = 3, .m2 = 81, },
-+	{ .dot = 270000, .p1 = 2, .p2 = 2, .n = 1, .m1 = 2, .m2 = 27, },
- };
- 
- /*
-  * CHV supports eDP 1.4 that have  more link rates.
-  * Below only provides the fixed rate but exclude variable rate.
-  */
--static const struct dp_link_dpll chv_dpll[] = {
-+static const struct dpll chv_dpll[] = {
- 	/*
- 	 * CHV requires to program fractional division for m2.
- 	 * m2 is stored in fixed point format using formula below
- 	 * (m2_int << 22) | m2_fraction
- 	 */
--	{ 162000,	/* m2_int = 32, m2_fraction = 1677722 */
--		{ .p1 = 4, .p2 = 2, .n = 1, .m1 = 2, .m2 = 0x819999a } },
--	{ 270000,	/* m2_int = 27, m2_fraction = 0 */
--		{ .p1 = 4, .p2 = 1, .n = 1, .m1 = 2, .m2 = 0x6c00000 } },
-+	{ .dot = 162000, .p1 = 4, .p2 = 2, .n = 1, .m1 = 2,
-+	  .m2 = 0x819999a /* m2_int = 32, m2_frac = 1677722 */ },
-+	{ .dot = 270000, .p1 = 4, .p2 = 1, .n = 1, .m1 = 2,
-+	  .m2 = 0x6c00000 /* m2_int = 27, m2_frac =       0 */ },
- };
- 
- const struct dpll *vlv_get_dpll(struct drm_i915_private *i915)
- {
--	return IS_CHERRYVIEW(i915) ? &chv_dpll[0].dpll : &vlv_dpll[0].dpll;
-+	return IS_CHERRYVIEW(i915) ? &chv_dpll[0] : &vlv_dpll[0];
- }
- 
- void g4x_dp_set_clock(struct intel_encoder *encoder,
- 		      struct intel_crtc_state *pipe_config)
- {
- 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
--	const struct dp_link_dpll *divisor = NULL;
-+	const struct dpll *divisor = NULL;
- 	int i, count = 0;
- 
- 	if (IS_G4X(dev_priv)) {
-@@ -92,8 +81,8 @@ void g4x_dp_set_clock(struct intel_encoder *encoder,
- 
- 	if (divisor && count) {
- 		for (i = 0; i < count; i++) {
--			if (pipe_config->port_clock == divisor[i].clock) {
--				pipe_config->dpll = divisor[i].dpll;
-+			if (pipe_config->port_clock == divisor[i].dot) {
-+				pipe_config->dpll = divisor[i];
- 				pipe_config->clock_set = true;
- 				break;
- 			}
--- 
-2.34.1
+thanks,
 
+greg k-h
