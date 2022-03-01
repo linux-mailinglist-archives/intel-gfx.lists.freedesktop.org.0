@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B7FE4C85A3
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Mar 2022 08:55:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E759F4C85ED
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Mar 2022 09:07:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 260EC10E5F8;
-	Tue,  1 Mar 2022 07:55:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 66F4A10EA86;
+	Tue,  1 Mar 2022 08:07:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F3BA10E5F8;
- Tue,  1 Mar 2022 07:55:25 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC97A10EA70;
+ Tue,  1 Mar 2022 08:07:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646121325; x=1677657325;
+ t=1646122053; x=1677658053;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=TrYNA0/1jMVVk5MPgm5lBQJkONR7pViGSK/QTI0mA1s=;
- b=LIuXLXjwy/TRYjrhZ7rkb9k0RqHEi5wGnDNSRC+TPVyC2unXSh5EPnnV
- B5L7BD/EtfCwurXwicgXcuoknpT8WZBq1qTDJQ6bKuJTaxHZPlsreTrLO
- 8jBxxC8L2z3LUYNb70WI2ThHjEsWwQwv9oSRi/XfPEHZy25azGtYQHwhY
- XftRe3EZLFbJk29OVwBLd9tR1xoY2sHYe2/4s5Bi97Qf6OeIITzUvov0m
- gUfzNEHvBd45s34SMuTe9DZ4YRro4i5icwgBQwEedX7autVs05bHrVQT7
- /a0tZyr1w3jBWrnONeUQSDeMVtofFhdyyEw8snXPjMmnHKpCZkJVigEah A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10272"; a="250662995"
-X-IronPort-AV: E=Sophos;i="5.90,145,1643702400"; d="scan'208";a="250662995"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2022 23:55:24 -0800
-X-IronPort-AV: E=Sophos;i="5.90,145,1643702400"; d="scan'208";a="639283806"
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=1OLd4oIJhF/aVNMQoJkORUhlGOG05XbmNyiN4KUpVTo=;
+ b=bULy/6AiO+Fhhv8lS8EQRAtgLbsi0t8MSNEI5QXgqJi6//J4nzxr6dJa
+ CyoLu1fuCNE9GGcnjZxb7Qx0Cyw4IoVagJUKsWGLLZZilpZCo3yWhuHv4
+ 2M0szJ6pTle7NpvL6rvKVCCJiciamAy8+PjvH9yXsE9RQTgwUdx6YxvDc
+ 7AAyBf2Yiq98OgwmPRDpN6wcQ0fo8jEmAAzegjvBozpuDfzxABIN1Skph
+ qK1Wb+PZUCMWcThnMo0SvazrhWXVOFCgKIW9L9PdnkNBmU8kN78fueyQA
+ iB4s+I4yKuLwFbIl1qhJc0MUf8GM9YRbIU0bc6hTKdLTwjfoY7BYSJnHG w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10272"; a="277747187"
+X-IronPort-AV: E=Sophos;i="5.90,145,1643702400"; d="scan'208";a="277747187"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Mar 2022 00:07:23 -0800
+X-IronPort-AV: E=Sophos;i="5.90,145,1643702400"; d="scan'208";a="550614555"
 Received: from ramyaman-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
  ([10.212.150.64])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2022 23:55:24 -0800
-Date: Mon, 28 Feb 2022 23:55:24 -0800
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Mar 2022 00:07:23 -0800
+Date: Tue, 1 Mar 2022 00:07:23 -0800
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-Message-ID: <20220301075524.t4pjiqoe43rzqzrg@ldmartin-desk2>
+Message-ID: <20220301080723.rjtghylsb65syhki@ldmartin-desk2>
 X-Patchwork-Hint: comment
 References: <20220222145206.76118-1-balasubramani.vivekanandan@intel.com>
- <20220222145206.76118-3-balasubramani.vivekanandan@intel.com>
- <20220301074858.hzq2fkjpcor35x6t@ldmartin-desk2>
+ <20220222145206.76118-5-balasubramani.vivekanandan@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
 Content-Disposition: inline
-In-Reply-To: <20220301074858.hzq2fkjpcor35x6t@ldmartin-desk2>
-Subject: Re: [Intel-gfx] [PATCH 2/7] drm: Add drm_memcpy_from_wc() variant
- which accepts destination address
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220222145206.76118-5-balasubramani.vivekanandan@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 4/7] drm/i915/guc: use the memcpy_from_wc
+ call from the drm
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,69 +60,72 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Thomas Hellstr_m <thomas.hellstrom@linux.intel.com>,
- michael.cheng@intel.com, David Airlie <airlied@linux.ie>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- siva.mullati@intel.com, Thomas Zimmermann <tzimmermann@suse.de>
+Cc: siva.mullati@intel.com, intel-gfx@lists.freedesktop.org,
+ michael.cheng@intel.com, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Feb 28, 2022 at 11:48:58PM -0800, Lucas De Marchi wrote:
->On Tue, Feb 22, 2022 at 08:22:01PM +0530, Balasubramani Vivekanandan wrote:
->>Fast copy using non-temporal instructions for x86 currently exists at two
->>locations. One is implemented in i915 driver at i915/i915_memcpy.c and
->>another copy at drm_cache.c. The plan is to remove the duplicate
->>implementation in i915 driver and use the functions from drm_cache.c.
->>
->>A variant of drm_memcpy_from_wc() is added in drm_cache.c which accepts
->>address as argument instead of iosys_map for destination. It is a very
->>common scenario in i915 to copy from a WC memory type, which may be an
->>io memory or a system memory to a destination address pointing to system
->>memory. To avoid the overhead of creating iosys_map type for the
->>destination, new variant is created to accept the address directly.
->>
->>Also a new function is exported in drm_cache.c to find if the fast copy
->>is supported by the platform or not. It is required for i915.
->>
->>Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->>Cc: Maxime Ripard <mripard@kernel.org>
->>Cc: Thomas Zimmermann <tzimmermann@suse.de>
->>Cc: David Airlie <airlied@linux.ie>
->>Cc: Daniel Vetter <daniel@ffwll.ch>
->>Cc: Thomas Hellstr_m <thomas.hellstrom@linux.intel.com>
->>
->>Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
->>---
->>drivers/gpu/drm/drm_cache.c | 54 +++++++++++++++++++++++++++++++++++++
->>include/drm/drm_cache.h     |  3 +++
->>2 files changed, 57 insertions(+)
->>
->>diff --git a/drivers/gpu/drm/drm_cache.c b/drivers/gpu/drm/drm_cache.c
->>index a21c1350eb09..eb0bcd33665e 100644
->>--- a/drivers/gpu/drm/drm_cache.c
->>+++ b/drivers/gpu/drm/drm_cache.c
->>@@ -358,6 +358,54 @@ void drm_memcpy_from_wc(struct iosys_map *dst,
->>}
->>EXPORT_SYMBOL(drm_memcpy_from_wc);
->>
->>+/**
->>+ * drm_memcpy_from_wc_vaddr - Perform the fastest available memcpy from a source
->>+ * that may be WC.
+On Tue, Feb 22, 2022 at 08:22:03PM +0530, Balasubramani Vivekanandan wrote:
+>memcpy_from_wc functions in i915_memcpy.c will be removed and replaced
+>by the implementation in drm_cache.c.
+>Updated to use the functions provided by drm_cache.c.
 >
-> .... to a destination in system memory.
+>Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+>---
+> drivers/gpu/drm/i915/gt/uc/intel_guc_log.c | 11 ++++++++---
+> 1 file changed, 8 insertions(+), 3 deletions(-)
 >
->>+ * @dst: The destination pointer
->>+ * @src: The source pointer
->>+ * @len: The size of the area to transfer in bytes
->>+ *
->>+ * Same as drm_memcpy_from_wc except destination is accepted as system memory
->>+ * address. Useful in situations where passing destination address as iosys_map
->>+ * is simply an overhead and can be avoided.
+>diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
+>index b53f61f3101f..1990762f07de 100644
+>--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
+>+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
+>@@ -3,6 +3,7 @@
+>  * Copyright © 2014-2019 Intel Corporation
+>  */
 >
->although one could do drm_memcpy_from_wc(IOSYS_MAP_INIT_VADDR(addr), ...
+>+#include <drm/drm_cache.h>
+> #include <linux/debugfs.h>
+>
+> #include "gt/intel_gt.h"
+>@@ -205,6 +206,7 @@ static void guc_read_update_log_buffer(struct intel_guc_log *log)
+> 	enum guc_log_buffer_type type;
+> 	void *src_data, *dst_data;
+> 	bool new_overflow;
+>+	struct iosys_map src_map;
+>
+> 	mutex_lock(&log->relay.lock);
+>
+>@@ -281,14 +283,17 @@ static void guc_read_update_log_buffer(struct intel_guc_log *log)
+> 		}
+>
+> 		/* Just copy the newly written data */
+>+		iosys_map_set_vaddr(&src_map, src_data);
 
-... Just making you don't take that as a suggestion, I was just thinking
-out loud. And as is, it doesn't work as the function expects a
-iosys_map *
+src is not guaranteed to come from system memory.... src is coming from:
+intel_guc_allocate_vma(), that may call either  i915_gem_object_create_lmem()
+or  i915_gem_object_create_shmem() depending if the platforma has lmem.
 
-Lucas De Marhci
+I guess you will  need to check if the obj is in lmem and initialize
+src_map accordingly.
+
+Lucas De Marchi
+
+> 		if (read_offset > write_offset) {
+>-			i915_memcpy_from_wc(dst_data, src_data, write_offset);
+>+			drm_memcpy_from_wc_vaddr(dst_data, &src_map,
+>+						 write_offset);
+> 			bytes_to_copy = buffer_size - read_offset;
+> 		} else {
+> 			bytes_to_copy = write_offset - read_offset;
+> 		}
+>-		i915_memcpy_from_wc(dst_data + read_offset,
+>-				    src_data + read_offset, bytes_to_copy);
+>+		iosys_map_incr(&src_map, read_offset);
+>+		drm_memcpy_from_wc_vaddr(dst_data + read_offset, &src_map,
+>+					 bytes_to_copy);
+>
+> 		src_data += buffer_size;
+> 		dst_data += buffer_size;
+>-- 
+>2.25.1
+>
