@@ -2,49 +2,125 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 875AA4C9BDB
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Mar 2022 04:11:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 384E14C9C1D
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Mar 2022 04:26:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0080A10E962;
-	Wed,  2 Mar 2022 03:11:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C3F7410E87A;
+	Wed,  2 Mar 2022 03:26:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A123910E962
- for <intel-gfx@lists.freedesktop.org>; Wed,  2 Mar 2022 03:11:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646190691; x=1677726691;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=JF7VR4Vc9ZeULzr8b0zQ4oJfMm402EhMKDHdtfdeIUA=;
- b=A/m/Hq9jovxwDEl6qQ4VgTwj/c5KosPrG9y+E9eiWILpywPHOZE2HsqL
- 2f682OACVty9FPDKzIh88lHYZ9tX/Yn8RrGc/fyYZGoqLjwXrx+TsfWBf
- SHH29ZEwI3uv2emW5Q1YfUu4IzGHrR89glm7I2FOmlpow7u58o6VoizRl
- y0Kl0ToTA8GjbjpOxp1jOKfRv8MfJYkd+MN1mRju+lFV2RFljXnXhuOlx
- uEMYoADhIptoXdJLfD4yBQQE2tCudELHwTdl0trCg0+jgk5gn+1XRl2KU
- /tL6PbvQ4KfzK2ffb/g/6Nn/CP7AuNapMM5Co28AA4XeHyWGMAJRQqTdD w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10273"; a="316513172"
-X-IronPort-AV: E=Sophos;i="5.90,146,1643702400"; d="scan'208";a="316513172"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Mar 2022 19:11:09 -0800
-X-IronPort-AV: E=Sophos;i="5.90,146,1643702400"; d="scan'208";a="709342765"
-Received: from nvishwa1-desk.sc.intel.com (HELO nvishwa1-DESK) ([172.25.29.76])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Mar 2022 19:11:09 -0800
-Date: Tue, 1 Mar 2022 19:13:26 -0800
-From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-Message-ID: <20220302031326.GD25117@nvishwa1-DESK>
-References: <20220222171030.690214-1-thomas.hellstrom@linux.intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Disposition: inline
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2058.outbound.protection.outlook.com [40.107.223.58])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 126AE10E74B;
+ Wed,  2 Mar 2022 03:26:18 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=XbFMl8ygbbuT4PyTmKV/u+beyNvicJ8Gt9pLl62uelHDmJcSWDQUY33kWrVnh7Dd3n1wHnzDww05i4IP7OWq+xWvKYsNlCQm5xovo2YQQDwC6Ce6kPDEcmL/zAhRd1b2S5xLYScdTF5YP7PwevykbdgRbHV0NPnE8Kgpg48Cm6WSlKM/QNLqGmyDPVjktP2yQeAcxdSt5u/14rgt5cN5ZOu7dA9YVrLu5hJrrNcRRRFHEUBePY260KDgFxAG0fG03P8p5LqdL8XOVJbdmaBq+9tZzxwldVKnvVFaC9ZYnYJMayUE2ertj5jdOs8RRkbSka7Lm2n+T/RAmwMdcPM1vg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=arZxQ1tFCEKaKTiHRpXXomAgXeTQMuwVREWTutaEJsE=;
+ b=Et4kSt/6mQZMPfAL2aeBTco4pDaFXznDLcBZi0NtjsqLZlqCHKcB8UoLL9tj+3EeQab3/wPngeWaum88iSLyDjoHk8ISudpKR22o2cMDdDZKZ2EcFLNoRfZTeuv2ke5bsKj2Qe0oHyX/mhcVX4AysHtsIbZZw1/y9ZbLiwmyihJtHGC0IVdEIq7YobWTZh6wdACG4ap1xg1H1jxsnhopi1lGpUXOhhdk7Snzlgtt1TWRkXhZQTlHs1y4qkmsNMdg4ubtq5kSna2Ob8X3yxFj/j5edDF5Kw5v4+pFof65X5UTpO/rI3NdbRwlwI9rrWjhStFYuuSQp2feHXguSD1YDQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=arZxQ1tFCEKaKTiHRpXXomAgXeTQMuwVREWTutaEJsE=;
+ b=TILwhgpX4MeFaSOL0yyS7iQw1XH0DYyEyF8YE9StfZfnZXJRdG4FZp1vp7gQCo5TzeEDM4T8pBr7idFjH0kTzJDUhnkTeL6hupzxCRnFFCW+Rj3AfK/aRK4HKuEYsWdg4244GYUd8Vj1sUw4/HZIYwU0rJSby3PjNCOOvB0T23k=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from DM5PR12MB1947.namprd12.prod.outlook.com (2603:10b6:3:111::23)
+ by BN6PR1201MB0244.namprd12.prod.outlook.com (2603:10b6:405:54::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5038.14; Wed, 2 Mar
+ 2022 03:26:15 +0000
+Received: from DM5PR12MB1947.namprd12.prod.outlook.com
+ ([fe80::a105:faab:243:1dd3]) by DM5PR12MB1947.namprd12.prod.outlook.com
+ ([fe80::a105:faab:243:1dd3%11]) with mapi id 15.20.5017.027; Wed, 2 Mar 2022
+ 03:26:15 +0000
+Message-ID: <14b6a691-d31e-2e54-cf91-352b9b30414d@amd.com>
+Date: Tue, 1 Mar 2022 22:26:12 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Content-Language: en-US
+To: Stephen Rothwell <sfr@canb.auug.org.au>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ DRI <dri-devel@lists.freedesktop.org>
+References: <20211117134926.1d339d71@canb.auug.org.au>
+ <20220120142639.02c54ae9@canb.auug.org.au>
+ <20220302123126.65bcbc82@canb.auug.org.au>
+From: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
+In-Reply-To: <20220302123126.65bcbc82@canb.auug.org.au>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220222171030.690214-1-thomas.hellstrom@linux.intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH 1/2] HAX: drm/i915: Clarify vma lifetime
+X-ClientProxiedBy: BL1PR13CA0430.namprd13.prod.outlook.com
+ (2603:10b6:208:2c3::15) To DM5PR12MB1947.namprd12.prod.outlook.com
+ (2603:10b6:3:111::23)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 8c9d8dbe-97bf-4050-fccd-08d9fbfc687a
+X-MS-TrafficTypeDiagnostic: BN6PR1201MB0244:EE_
+X-Microsoft-Antispam-PRVS: <BN6PR1201MB02448657769B44E183262301EA039@BN6PR1201MB0244.namprd12.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: rTU17CG29J0aJR9uBYuUz2w84HJ7JsGDF+ABd5NMKtJJE6F9tXRcmNgPTSRWOm5dQvt/McfvE3aT19aLO3+88VYNIjhlw7QyVEhd1BAtJ40Maecpp4LU6zUXTE6xZqAEVCaWhAkQibhMV16nC4vNiuy/eDhFHVg/D9QobVbO1oQY57jiXPVcVqxtIZa/g2cETzrLQUFgEl7uVLnflihABPS5VGprBlwHv1yFA3LK+W8RlgpNbLH2He9igiipG1eywewybtYZp7Oy8HXl7dR0F3lsRgXYZPLTGB5bgwPojQFL1+DldPhgRbZwkRHJJl+K+yKyoG5IAlWPpcDyawziYkEXMgsV4ZBUCHqo0V24cMsY9EaTTb8dRCH1jdcxDOrnkTONGuxTSjnA0Id3khc+yQw4uFyvfoqvvdtSsiquHo+FEE13e9+4dIusacIVjSyF0iDfZmw+xw4HH7ngzZ8PpS3h9CEp+ChxwwW2tzl1ULSq5bUsEbdEx1rJmqUZEhfQiF/Ebeg8Zrw2LdZdVtgRYqQeLRUEf9TKxowQrYlmCN/TWCSSnOw/VO6Rw7HfdxLXVhTlXdXt3FkdweK+d3eVKTMA8dHRd0SFfl/WCFU6vGTopgc0V3xlRyyLwy5CnhwpLbVFEdVu1L+bJ1KO/GeEjFi6XO3fAy/7RHcfTJcyvrc2NONRf0U0hIguOyrkSlYDYFq/7WfKKKvUXlgs0Ld8JWv4hSBkb6rbWhY4JtYhsoI=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM5PR12MB1947.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230001)(4636009)(366004)(38100700002)(6512007)(53546011)(6506007)(186003)(2616005)(83380400001)(2906002)(110136005)(54906003)(316002)(8936002)(4326008)(8676002)(31686004)(6486002)(66476007)(508600001)(66556008)(66946007)(31696002)(6666004)(44832011)(4744005)(36756003)(86362001)(5660300002)(43740500002)(45980500001);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OFE2bXcyMnJmUk0xNlFyOFpZa0Y4SEJ4NlFaVnJ1YzNUMWp2eGlMSXFBMzJT?=
+ =?utf-8?B?K2dsamhySndKSEQrNWsrM3JZRjZjdGZMeUdyRTE1aWNrN2FFMnBlM2Njcng0?=
+ =?utf-8?B?bEpqNUhrL1RFSnVVbG1QalRjKytGVnlRU1R2bkV2dEY1YU1CWkVDL3RZaklu?=
+ =?utf-8?B?VFhqK3FRRXBaWnFROTZSeDllWGR4Ym9QYlZrWnhuSjZ2NVo0WVNRY3pRTTgz?=
+ =?utf-8?B?U3M2Y0pPT0ljSzIzZVVlT0Z6eFhnR1U4dVFWREhINGZpdUpLc3pQYkJ3ZDda?=
+ =?utf-8?B?Umt5WUZtY3ZibzRQVDR0MHZ4OUVodTlqeVFuVkRXSGk2YlEzTStkY3d3czBC?=
+ =?utf-8?B?WnluMENKQjllN2VpY2xVK2R5Ry94aVpKOUd2OFFJTkhobVliNWxzVGVDR09E?=
+ =?utf-8?B?MHlHV1FLTmgyNmlRY1hMa0pmMXErVHVEY0R1eUE3bGpocTFDd0p5Tk5SVjI0?=
+ =?utf-8?B?bFZZek1adUJIUHlqV21GUHl6ZEVMUG9BUGNjcUtUdXJDTFl4NGpTUW1WdUlF?=
+ =?utf-8?B?dzMrTDRqNlpNblI5dWxaZzVPbmpRMEE1emJjaW5uUXJzSDRKbmxBYlNIZEFN?=
+ =?utf-8?B?ZStyZHNENEVMQzZwdkNlY1MrY1dGQ3FkZWtKdjNBR1gyQm5PK2ppS2RqNzRa?=
+ =?utf-8?B?THI0V2VTaUpITGluRkJEYllPRXZ6NnJkempiUU1iVlhYd0NXc00zMzJlaEFl?=
+ =?utf-8?B?VTc5ekdXTmhKOUpyRnJIenkxRHpwTkhjZ0F6UFpUbFdPdDJtZzRVMzhpZmV6?=
+ =?utf-8?B?b1RnZHVySjY1c2d3dVZxYXdpTm0vUkZ4QjBnTFhTVE9mcXFhY2NXRnJOK0JO?=
+ =?utf-8?B?K290Rzh1RzFFYWxLQzBsNldhYUlZQzB5TkdGZXJUMERrbys0QVU4enNKcjRW?=
+ =?utf-8?B?dnYxRzVNL0cySEFzbjhlejVlaXpRZjlaNnNkcEFQQm9OWHNPcjdtdFM1b3NK?=
+ =?utf-8?B?Mk1LK0VMSmZXa29SK1pYQ0Y0Z0tWV2tBVEJnRTAwN1puV2hMTm1MYXozT1pX?=
+ =?utf-8?B?cHYxKys2YjRKWDkrVjJjWkJ2Z0E5ME5mR3hOcWFNT3cvbzNWN1FnTkNDWHhZ?=
+ =?utf-8?B?QjdXa216M0lLMlo3YmVEamhIZVJhKys3N2N0MjBhWVdTbWk5ZEJVaUQ1NmFy?=
+ =?utf-8?B?dmhDR0gxNkVmVW01RW9TbUJmWWE5SEJPNUVKNmVKKzc3VEkvSjExRm9OdjRj?=
+ =?utf-8?B?TnRSOGtvZUdNRnJqbGg2U3FsLzhIanRKQWd1eEVzblpmbWhQYVpyem5XeU1D?=
+ =?utf-8?B?bTVnS2hGMHlnMUVWOUVCTkNoeGhmOUlDWVhaNlhvaUlPYWFWWkh5emYxaENG?=
+ =?utf-8?B?Y3VlSmhIeUdpVEpiVFhwS09XMmZTeEFqMDNkeUpPT2xsK2Fpa0tINjBhb01a?=
+ =?utf-8?B?V3pLNkh4NU1QaVJZNS8rcXdIcGVKUUVObUtCeGdxV1VGaVI5U0RWYXFzSzAr?=
+ =?utf-8?B?ZHo3OS8rUHdySC9TL1VWazVtR3E2ejVueXQvWk5ETzdRVnQxL21iSlRrSHZh?=
+ =?utf-8?B?VkdUb2VvczRIbEJnMnROWWhuYnEyRkNjcUJVNE5za3JmTTdic3djNERTRVZt?=
+ =?utf-8?B?b0puY2hLdlhkYS90eWoyM0hQNFlUZkRRNE1Sd3Nwait3N2E4S1ZNTzdhYjk3?=
+ =?utf-8?B?NWViOG5kVW9VL2lHY2lnR1d1cXdnZDBpOTNRYkNVYnJwM0JFWm01a3VhM1Zn?=
+ =?utf-8?B?eG50K3Z6ZUE2cUZIa1dMWFB1bUU2eDd4QTFpbFdHZFhoV2t4a0R1bC9sT2Vs?=
+ =?utf-8?B?SXBlMC9rVENRM09ZMFE4TWpPS2tLTmF5aHRoOUtqUkc3dmw1dXI1aWh5U3dL?=
+ =?utf-8?B?cU9EeUo2enZRakdQNnJvSXR3dDMzZHhrY2JiUEwvQThjRFZKUHdZMUNBd3Qz?=
+ =?utf-8?B?Sk1HRmk0NXJRTUxMemMyMkVpODBkQXZhdUNKSHZCUnc2NDRuTlV4V3FPZzRa?=
+ =?utf-8?B?NjRLbkpudFF0aXJXb1FDYy9aZDk1M2M0eGRlb2J1VVRzU2lRMk5nb1ovVVlP?=
+ =?utf-8?B?ZEYza0pNWjVDWVdUSHpSNEt6bHF2RHdWbEpCU0dEeHhnSUh1S293NTc0M0tl?=
+ =?utf-8?B?RkRKckdTY0sremczK05zNUo5TXRkeXlIQkErV1FQKzBNZXdKM3RRNWw1YTNw?=
+ =?utf-8?B?NWRxbmtVTHJJb0Q5Y1NDSldvbjNQSFdPTXMxNVBjSWNxUDFhVXpmWUJSYzlE?=
+ =?utf-8?B?WUk5TzdYYS9KLzBYWFEwSE1tNmc4TU9oWVRrMVJnc0ZVb1RDbkt2Q1VUQWVa?=
+ =?utf-8?Q?wL9m9pCZYOx4yQNrkcxh0ktRVxfPYIll0L+6JiiUKs=3D?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8c9d8dbe-97bf-4050-fccd-08d9fbfc687a
+X-MS-Exchange-CrossTenant-AuthSource: DM5PR12MB1947.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2022 03:26:15.7075 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: N95FvjjAkGa+XS6d3wIJDepVFrkLbXWT/JM/Qy/AfnBlptfLzKmGfK/DPM+xTOLSWlc+ESy5tT7yR45B/HJ/qQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR1201MB0244
+Subject: Re: [Intel-gfx] linux-next: build warning after merge of the
+ drm-misc tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,319 +133,29 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, matthew.auld@intel.com
+Cc: Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Feb 22, 2022 at 06:10:29PM +0100, Thomas Hellstr�m wrote:
->It's unclear what reference the initial vma kref reference refers to.
->A vma can have multiple weak references, the object vma list,
->the vm's bound list and the GT's closed_list, and the initial vma
->reference can be put from lookups of all these lists.
->
->With the current implementation this means
->that any holder of yet another vma refcount (currently only
->i915_gem_object_unbind()) needs to be holding two of either
->*) An object refcount,
->*) A vm open count
->*) A vma open count
->
->in order for us to not risk leaking a reference by having the
->initial vma reference being put twice.
->
->Address this by re-introducing i915_vma_destroy() which removes all
->weak references of the vma and *then* puts the initial vma refcount.
->This makes a strong vma reference hold on to the vma unconditionally.
->
->Perhaps a better name would be i915_vma_revoke() or i915_vma_zombify(),
->since other callers may still hold a refcount, but with the prospect of
->being able to replace the vma refcount with the object lock in the near
->future, let's stick with i915_vma_destroy().
->
->Finally this commit fixes a race in that previously i915_vma_release() and
->now i915_vma_destroy() could destroy a vma without taking the vm->mutex
->after an advisory check that the vma mm_node was not allocated.
->This would race with the ungrab_vma() function creating a trace similar
->to the below one. This was fixed in one of the __i915_vma_put() callsites
->in
->commit bc1922e5d349 ("drm/i915: Fix a race between vma / object destruction and unbinding")
->but although not seemingly triggered by CI, that
->is not sufficient. This patch is needed to fix that properly.
->
->[823.012188] Console: switching to colour dummy device 80x25
->[823.012422] [IGT] gem_ppgtt: executing
->[823.016667] [IGT] gem_ppgtt: starting subtest blt-vs-render-ctx0
->[852.436465] stack segment: 0000 [#1] PREEMPT SMP NOPTI
->[852.436480] CPU: 0 PID: 3200 Comm: gem_ppgtt Not tainted 5.16.0-CI-CI_DRM_11115+ #1
->[852.436489] Hardware name: Intel Corporation Alder Lake Client Platform/AlderLake-P DDR5 RVP, BIOS ADLPFWI1.R00.2422.A00.2110131104 10/13/2021
->[852.436499] RIP: 0010:ungrab_vma+0x9/0x80 [i915]
->[852.436711] Code: ef e8 4b 85 cf e0 e8 36 a3 d6 e0 8b 83 f8 9c 00 00 85 c0 75 e1 5b 5d 41 5c 41 5d c3 e9 d6 fd 14 00 55 53 48 8b af c0 00 00 00 <8b> 45 00 85 c0 75 03 5b 5d c3 48 8b 85 a0 02 00 00 48 89 fb 48 8b
->[852.436727] RSP: 0018:ffffc90006db7880 EFLAGS: 00010246
->[852.436734] RAX: 0000000000000000 RBX: ffffc90006db7598 RCX: 0000000000000000
->[852.436742] RDX: ffff88815349e898 RSI: ffff88815349e858 RDI: ffff88810a284140
->[852.436748] RBP: 6b6b6b6b6b6b6b6b R08: ffff88815349e898 R09: ffff88815349e8e8
->[852.436754] R10: 0000000000000001 R11: 0000000051ef1141 R12: ffff88810a284140
->[852.436762] R13: 0000000000000000 R14: ffff88815349e868 R15: ffff88810a284458
->[852.436770] FS:  00007f5c04b04e40(0000) GS:ffff88849f000000(0000) knlGS:0000000000000000
->[852.436781] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
->[852.436788] CR2: 00007f5c04b38fe0 CR3: 000000010a6e8001 CR4: 0000000000770ef0
->[852.436797] PKRU: 55555554
->[852.436801] Call Trace:
->[852.436806]  <TASK>
->[852.436811]  i915_gem_evict_for_node+0x33c/0x3c0 [i915]
->[852.437014]  i915_gem_gtt_reserve+0x106/0x130 [i915]
->[852.437211]  i915_vma_pin_ww+0x8f4/0xb60 [i915]
->[852.437412]  eb_validate_vmas+0x688/0x860 [i915]
->[852.437596]  i915_gem_do_execbuffer+0xc0e/0x25b0 [i915]
->[852.437770]  ? deactivate_slab+0x5f2/0x7d0
->[852.437778]  ? _raw_spin_unlock_irqrestore+0x50/0x60
->[852.437789]  ? i915_gem_execbuffer2_ioctl+0xc6/0x2c0 [i915]
->[852.437944]  ? init_object+0x49/0x80
->[852.437950]  ? __lock_acquire+0x5e6/0x2580
->[852.437963]  i915_gem_execbuffer2_ioctl+0x116/0x2c0 [i915]
->[852.438129]  ? i915_gem_do_execbuffer+0x25b0/0x25b0 [i915]
->[852.438300]  drm_ioctl_kernel+0xac/0x140
->[852.438310]  drm_ioctl+0x201/0x3d0
->[852.438316]  ? i915_gem_do_execbuffer+0x25b0/0x25b0 [i915]
->[852.438490]  __x64_sys_ioctl+0x6a/0xa0
->[852.438498]  do_syscall_64+0x37/0xb0
->[852.438507]  entry_SYSCALL_64_after_hwframe+0x44/0xae
->[852.438515] RIP: 0033:0x7f5c0415b317
->[852.438523] Code: b3 66 90 48 8b 05 71 4b 2d 00 64 c7 00 26 00 00 00 48 c7 c0 ff ff ff ff c3 66 2e 0f 1f 84 00 00 00 00 00 b8 10 00 00 00 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 41 4b 2d 00 f7 d8 64 89 01 48
->[852.438542] RSP: 002b:00007ffd765039a8 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
->[852.438553] RAX: ffffffffffffffda RBX: 000055e4d7829dd0 RCX: 00007f5c0415b317
->[852.438562] RDX: 00007ffd76503a00 RSI: 00000000c0406469 RDI: 0000000000000017
->[852.438571] RBP: 00007ffd76503a00 R08: 0000000000000000 R09: 0000000000000081
->[852.438579] R10: 00000000ffffff7f R11: 0000000000000246 R12: 00000000c0406469
->[852.438587] R13: 0000000000000017 R14: 00007ffd76503a00 R15: 0000000000000000
->[852.438598]  </TASK>
->[852.438602] Modules linked in: snd_hda_codec_hdmi i915 mei_hdcp x86_pkg_temp_thermal snd_hda_intel snd_intel_dspcfg drm_buddy coretemp crct10dif_pclmul crc32_pclmul snd_hda_codec ttm ghash_clmulni_intel snd_hwdep snd_hda_core e1000e drm_dp_helper ptp snd_pcm mei_me drm_kms_helper pps_core mei syscopyarea sysfillrect sysimgblt fb_sys_fops prime_numbers intel_lpss_pci smsc75xx usbnet mii
->[852.440310] ---[ end trace e52cdd2fe4fd911c ]---
->
->v2: Fix typos in the commit message.
->
->Fixes: 7e00897be8bf ("drm/i915: Add object locking to i915_gem_evict_for_node and i915_gem_evict_something, v2.")
->Fixes: bc1922e5d349 ("drm/i915: Fix a race between vma / object destruction and unbinding")
->Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->Signed-off-by: Thomas Hellstr�m <thomas.hellstrom@linux.intel.com>
->Reviewed-by: Matthew Auld <matthew.auld@intel.com>
->---
-> drivers/gpu/drm/i915/gem/i915_gem_object.c    | 14 +---
-> .../drm/i915/gem/selftests/i915_gem_mman.c    |  4 +-
-> drivers/gpu/drm/i915/gt/intel_gtt.c           | 17 +++--
-> drivers/gpu/drm/i915/i915_vma.c               | 74 ++++++++++++++++---
-> drivers/gpu/drm/i915/i915_vma.h               |  3 +
-> 5 files changed, 79 insertions(+), 33 deletions(-)
->
->diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
->index e03e362d320b..78c4cbe82031 100644
->--- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
->+++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
->@@ -267,12 +267,6 @@ void __i915_gem_object_pages_fini(struct drm_i915_gem_object *obj)
-> 	if (!list_empty(&obj->vma.list)) {
-> 		struct i915_vma *vma;
->
->-		/*
->-		 * Note that the vma keeps an object reference while
->-		 * it is active, so it *should* not sleep while we
->-		 * destroy it. Our debug code errs insits it *might*.
->-		 * For the moment, play along.
->-		 */
-> 		spin_lock(&obj->vma.lock);
-> 		while ((vma = list_first_entry_or_null(&obj->vma.list,
-> 						       struct i915_vma,
->@@ -280,13 +274,7 @@ void __i915_gem_object_pages_fini(struct drm_i915_gem_object *obj)
-> 			GEM_BUG_ON(vma->obj != obj);
-> 			spin_unlock(&obj->vma.lock);
->
->-			/* Verify that the vma is unbound under the vm mutex. */
->-			mutex_lock(&vma->vm->mutex);
->-			atomic_and(~I915_VMA_PIN_MASK, &vma->flags);
->-			__i915_vma_unbind(vma);
->-			mutex_unlock(&vma->vm->mutex);
->-
->-			__i915_vma_put(vma);
->+			i915_vma_destroy(vma);
->
-> 			spin_lock(&obj->vma.lock);
-> 		}
->diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
->index ba29767348be..af36bffd064b 100644
->--- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
->+++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
->@@ -167,7 +167,7 @@ static int check_partial_mapping(struct drm_i915_gem_object *obj,
->
-> out:
-> 	i915_gem_object_lock(obj, NULL);
->-	__i915_vma_put(vma);
->+	i915_vma_destroy(vma);
-> 	i915_gem_object_unlock(obj);
-> 	return err;
-> }
->@@ -264,7 +264,7 @@ static int check_partial_mappings(struct drm_i915_gem_object *obj,
-> 			return err;
->
-> 		i915_gem_object_lock(obj, NULL);
->-		__i915_vma_put(vma);
->+		i915_vma_destroy(vma);
-> 		i915_gem_object_unlock(obj);
->
-> 		if (igt_timeout(end_time,
->diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.c b/drivers/gpu/drm/i915/gt/intel_gtt.c
->index df23ebdfc994..4363848f7411 100644
->--- a/drivers/gpu/drm/i915/gt/intel_gtt.c
->+++ b/drivers/gpu/drm/i915/gt/intel_gtt.c
->@@ -105,14 +105,19 @@ void __i915_vm_close(struct i915_address_space *vm)
-> 	list_for_each_entry_safe(vma, vn, &vm->bound_list, vm_link) {
-> 		struct drm_i915_gem_object *obj = vma->obj;
->
->-		/* Keep the obj (and hence the vma) alive as _we_ destroy it */
->-		if (!kref_get_unless_zero(&obj->base.refcount))
->+		if (!kref_get_unless_zero(&obj->base.refcount)) {
->+			/*
->+			 * Unbind the dying vma to ensure the bound_list
->+			 * is completely drained. We leave the destruction to
->+			 * the object destructor.
->+			 */
->+			atomic_and(~I915_VMA_PIN_MASK, &vma->flags);
->+			WARN_ON(__i915_vma_unbind(vma));
-> 			continue;
->+		}
->
->-		atomic_and(~I915_VMA_PIN_MASK, &vma->flags);
->-		WARN_ON(__i915_vma_unbind(vma));
->-		__i915_vma_put(vma);
->-
->+		/* Keep the obj (and hence the vma) alive as _we_ destroy it */
->+		i915_vma_destroy_locked(vma);
-> 		i915_gem_object_put(obj);
-> 	}
-> 	GEM_BUG_ON(!list_empty(&vm->bound_list));
->diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
->index 52f43a465440..9c1582a473c6 100644
->--- a/drivers/gpu/drm/i915/i915_vma.c
->+++ b/drivers/gpu/drm/i915/i915_vma.c
->@@ -1562,15 +1562,27 @@ void i915_vma_reopen(struct i915_vma *vma)
-> void i915_vma_release(struct kref *ref)
-> {
-> 	struct i915_vma *vma = container_of(ref, typeof(*vma), ref);
->+
->+	i915_vm_put(vma->vm);
->+	i915_active_fini(&vma->active);
->+	GEM_WARN_ON(vma->resource);
->+	i915_vma_free(vma);
->+}
->+
->+static void force_unbind(struct i915_vma *vma)
->+{
->+	if (!drm_mm_node_allocated(&vma->node))
->+		return;
->+
->+	atomic_and(~I915_VMA_PIN_MASK, &vma->flags);
->+	WARN_ON(__i915_vma_unbind(vma));
->+	GEM_BUG_ON(drm_mm_node_allocated(&vma->node));
->+}
->+
->+static void release_references(struct i915_vma *vma)
->+{
-> 	struct drm_i915_gem_object *obj = vma->obj;
->
->-	if (drm_mm_node_allocated(&vma->node)) {
->-		mutex_lock(&vma->vm->mutex);
->-		atomic_and(~I915_VMA_PIN_MASK, &vma->flags);
->-		WARN_ON(__i915_vma_unbind(vma));
->-		mutex_unlock(&vma->vm->mutex);
->-		GEM_BUG_ON(drm_mm_node_allocated(&vma->node));
->-	}
-> 	GEM_BUG_ON(i915_vma_is_active(vma));
->
-> 	spin_lock(&obj->vma.lock);
->@@ -1580,11 +1592,49 @@ void i915_vma_release(struct kref *ref)
-> 	spin_unlock(&obj->vma.lock);
->
-> 	__i915_vma_remove_closed(vma);
->-	i915_vm_put(vma->vm);
->
->-	i915_active_fini(&vma->active);
->-	GEM_WARN_ON(vma->resource);
->-	i915_vma_free(vma);
->+	__i915_vma_put(vma);
->+}
->+
->+/**
->+ * i915_vma_destroy_locked - Remove all weak reference to the vma and put
->+ * the initial reference.
->+ *
->+ * This function should be called when it's decided the vma isn't needed
->+ * anymore. The caller must assure that it doesn't race with another lookup
->+ * plus destroy, typically by taking an appropriate reference.
->+ *
->+ * Current callsites are
->+ * - __i915_gem_object_pages_fini()
->+ * - __i915_vm_close() - Blocks the above function by taking a reference on
->+ * the object.
->+ * - __i915_vma_parked() - Blocks the above functions by taking an open-count on
->+ * the vm and a reference on the object.
->+ *
->+ * Because of locks taken during destruction, a vma is also guaranteed to
->+ * stay alive while the following locks are held if it was looked up while
->+ * holding one of the locks:
->+ * - vm->mutex
->+ * - obj->vma.lock
->+ * - gt->closed_lock
->+ *
->+ * A vma user can also temporarily keep the vma alive while holding a vma
->+ * reference.
->+ */
->+void i915_vma_destroy_locked(struct i915_vma *vma)
->+{
->+	lockdep_assert_held(&vma->vm->mutex);
->+
->+	force_unbind(vma);
->+	release_references(vma);
->+}
->+
->+void i915_vma_destroy(struct i915_vma *vma)
->+{
->+	mutex_lock(&vma->vm->mutex);
->+	force_unbind(vma);
->+	mutex_unlock(&vma->vm->mutex);
->+	release_references(vma);
-> }
->
-> void i915_vma_parked(struct intel_gt *gt)
->@@ -1618,7 +1668,7 @@ void i915_vma_parked(struct intel_gt *gt)
->
-> 		if (i915_gem_object_trylock(obj, NULL)) {
-> 			INIT_LIST_HEAD(&vma->closed_link);
->-			__i915_vma_put(vma);
->+			i915_vma_destroy(vma);
-> 			i915_gem_object_unlock(obj);
-> 		} else {
-> 			/* back you go.. */
+Please check you have commit c7703ce38c1e Andrey Grodzovsky   3 weeks 
+ago    drm/amdgpu: Fix htmldoc warning
 
-There is one more __i915_vma_put() in i915_gem_object_unbind (i915_gem.c).
-I am not seeing that being replaced by i915_vma_destroy().
+Andrey
 
-Other than that the patch looks fine to me.
-
-Niranjana
-
-
->diff --git a/drivers/gpu/drm/i915/i915_vma.h b/drivers/gpu/drm/i915/i915_vma.h
->index 011af044ad4f..67ae7341c7e0 100644
->--- a/drivers/gpu/drm/i915/i915_vma.h
->+++ b/drivers/gpu/drm/i915/i915_vma.h
->@@ -236,6 +236,9 @@ static inline void __i915_vma_put(struct i915_vma *vma)
-> 	kref_put(&vma->ref, i915_vma_release);
-> }
+On 2022-03-01 20:31, Stephen Rothwell wrote:
+> Hi all,
 >
->+void i915_vma_destroy_locked(struct i915_vma *vma);
->+void i915_vma_destroy(struct i915_vma *vma);
->+
-> #define assert_vma_held(vma) dma_resv_assert_held((vma)->obj->base.resv)
->
-> static inline void i915_vma_lock(struct i915_vma *vma)
->-- 
->2.34.1
+> On Thu, 20 Jan 2022 14:26:39 +1100 Stephen Rothwell <sfr@canb.auug.org.au> wrote:
+>> On Wed, 17 Nov 2021 13:49:26 +1100 Stephen Rothwell <sfr@canb.auug.org.au> wrote:
+>>> After merging the drm-misc tree, today's linux-next build (htmldocs)
+>>> produced this warning:
+>>>
+>>> include/drm/gpu_scheduler.h:316: warning: Function parameter or member 'work' not described in 'drm_sched_job'
+>>>
+>>> Introduced by commit
+>>>
+>>>    542cff7893a3 ("drm/sched: Avoid lockdep spalt on killing a processes")
+>> I am still seeing this warning.
+> I am still seeing this warning.
 >
