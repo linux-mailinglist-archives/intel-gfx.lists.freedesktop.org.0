@@ -1,61 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B5684CA7EC
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Mar 2022 15:24:32 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 527854CA7ED
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Mar 2022 15:24:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 57D0310E1C9;
-	Wed,  2 Mar 2022 14:24:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7976F10E596;
+	Wed,  2 Mar 2022 14:24:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com
- [IPv6:2607:f8b0:4864:20::444])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 283E110F30A;
- Wed,  2 Mar 2022 09:31:31 +0000 (UTC)
-Received: by mail-pf1-x444.google.com with SMTP id p8so1397304pfh.8;
- Wed, 02 Mar 2022 01:31:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:in-reply-to:references;
- bh=yRnvPGVK9XQdKYPg/H0ecgdZJeSxpiKw/X1pv37GC+w=;
- b=FSwFYVuD0cAwR74FpWh/UVnJlZEuhHuzmEJF2CmWuTU5VQk08y1iQ6Cm+4Kk/IHZ7f
- ykn4dSn+LtVJ/QNPcAOF0Kr9OP0uyQbpGUjZhyE2BsGEuIYzlTgMZwHl/BYpjMpkMG0+
- P9mnuSE0YONb1xqLwPVeO/elgzKWhvv7I7OGEBThyQYghI00EIr5RS9MGp7GsCYrqLUi
- wR7dcG4fdae3Ke7WyU9tBlNyUPSMcC8RmnmBsmKYAmxRcsIUhLqhpYW4uCJTlnf3AogC
- YxEVbABh4/fwCz1Lhf2xi5Cnii6w5cwNjqEkAadiEwyP0C/cLXPnnAaLLll6ns+CdAHq
- Ceuw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references;
- bh=yRnvPGVK9XQdKYPg/H0ecgdZJeSxpiKw/X1pv37GC+w=;
- b=AVn/+dEhaFp5DeCDbTgrvMHGGvighq1Z1GogIu1oG/RCpCHIMy1XeChOlDHTBicerw
- UDj7iJbyvWjgcQnqsdcPERpQIeYgmNJ+vH5R/pMmBcNiAmJ3aV6zXWHXDXMU6VySksEv
- JiSUGweBL2vwxbLaOnFA14dpAbkty5venJdMjhhYYPR6jtL8/BX2b2Ry97Na0rBnoGM3
- jtcbxjEgi9jAMi3aFm7jZz1c+M+Y2Z/1UnrJiXBfkrRb5jwkgX5xwGp8VmSak8FEHHiG
- XCrRaGocxCsS6Fm9D17SKZcNJ+NbkzkYWmX7QVTklnBxjWAWqE1Wq8YYcc3txekUBXY9
- di+A==
-X-Gm-Message-State: AOAM533K8NAd3vxBl7hDUJeypX6fcVP+yNUxYdvtdbZXdLoH5e6XOUx2
- YRJotdM1A0Voqj5/Ew876TU=
-X-Google-Smtp-Source: ABdhPJxxYDNcbSMxl56+YduSTiv9ULKN3/PKEO9PEtlxvCfSyuhc7esxotc8paaSBF6ReGk5V/MJxQ==
-X-Received: by 2002:a05:6a00:244b:b0:4c9:319e:ecb7 with SMTP id
- d11-20020a056a00244b00b004c9319eecb7mr31990006pfj.58.1646213490674; 
- Wed, 02 Mar 2022 01:31:30 -0800 (PST)
-Received: from ubuntu.huawei.com ([119.3.119.20])
- by smtp.googlemail.com with ESMTPSA id
- y74-20020a62644d000000b004f129e94f40sm19496506pfb.131.2022.03.02.01.31.11
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 02 Mar 2022 01:31:30 -0800 (PST)
-From: Xiaomeng Tong <xiam0nd.tong@gmail.com>
-To: torvalds@linux-foundation.org
-Date: Wed,  2 Mar 2022 17:31:06 +0800
-Message-Id: <20220302093106.8402-1-xiam0nd.tong@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <CAHk-=whLK11HyvpUtEftOjc3Gup2V77KpAQ2fycj3uai=qceHw@mail.gmail.com>
-References: <CAHk-=whLK11HyvpUtEftOjc3Gup2V77KpAQ2fycj3uai=qceHw@mail.gmail.com>
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5D13D10E4F2;
+ Wed,  2 Mar 2022 12:49:40 +0000 (UTC)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6B64C13D5;
+ Wed,  2 Mar 2022 04:49:39 -0800 (PST)
+Received: from [10.57.39.47] (unknown [10.57.39.47])
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B65673F70D;
+ Wed,  2 Mar 2022 04:49:37 -0800 (PST)
+Message-ID: <2f82d150-47c4-d7c3-50da-eaf4aa4a24af@arm.com>
+Date: Wed, 2 Mar 2022 12:49:32 +0000
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.1
+Content-Language: en-GB
+To: Michael Cheng <michael.cheng@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20220225032436.904942-1-michael.cheng@intel.com>
+ <20220225032436.904942-2-michael.cheng@intel.com>
+ <5c254623-98d2-75f3-52cb-209b8de304b6@arm.com>
+ <3750c398-e8fb-c4e1-ba31-e6ac5fbc01d0@intel.com>
+From: Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <3750c398-e8fb-c4e1-ba31-e6ac5fbc01d0@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Wed, 02 Mar 2022 14:24:27 +0000
-Subject: Re: [Intel-gfx] [PATCH 2/6] treewide: remove using list iterator
- after loop body as a ptr
+Subject: Re: [Intel-gfx] [PATCH v12 1/6] drm: Add arch arm64 for
+ drm_clflush_virt_range
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,120 +48,111 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alsa-devel@alsa-project.org, kvm@vger.kernel.org, gustavo@embeddedor.com,
- linux-iio@vger.kernel.org, kgdb-bugreport@lists.sourceforge.net,
- linux@rasmusvillemoes.dk, dri-devel@lists.freedesktop.org, c.giuffrida@vu.nl,
- amd-gfx@lists.freedesktop.org, samba-technical@lists.samba.org,
- linux1394-devel@lists.sourceforge.net, drbd-dev@lists.linbit.com,
- linux-arch@vger.kernel.org, linux-cifs@vger.kernel.org,
- linux-aspeed@lists.ozlabs.org, linux-scsi@vger.kernel.org,
- linux-rdma@vger.kernel.org, linux-staging@lists.linux.dev, h.j.bos@vu.nl,
- jgg@ziepe.ca, intel-wired-lan@lists.osuosl.org, nouveau@lists.freedesktop.org,
- bcm-kernel-feedback-list@broadcom.com, dan.carpenter@oracle.com,
- linux-media@vger.kernel.org, keescook@chromium.org, arnd@arndb.de,
- linux-pm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- bjohannesmeyer@gmail.com, linux-block@vger.kernel.org,
- linux-fsdevel@vger.kernel.org, christophe.jaillet@wanadoo.fr,
- jakobkoschel@gmail.com, v9fs-developer@lists.sourceforge.net,
- linux-tegra@vger.kernel.org, tglx@linutronix.de,
- andriy.shevchenko@linux.intel.com, linux-arm-kernel@lists.infradead.org,
- linux-sgx@vger.kernel.org, nathan@kernel.org, netdev@vger.kernel.org,
- linux-usb@vger.kernel.org, linux-wireless@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-f2fs-devel@lists.sourceforge.net,
- tipc-discussion@lists.sourceforge.net, linux-crypto@vger.kernel.org,
- dmaengine@vger.kernel.org, linux-mediatek@lists.infradead.org,
- akpm@linux-foundation.org, linuxppc-dev@lists.ozlabs.org,
- christian.koenig@amd.com, rppt@kernel.org
+Cc: Catalin Marinas <catalin.marinas@arm.com>, lucas.demarchi@intel.com,
+ dri-devel@lists.freedesktop.org, Will Deacon <will@kernel.org>,
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 28 Feb 2022 16:41:04 -0800, Linus Torvalds
-<torvalds@linux-foundation.org> wrote:
->
-> But basically to _me_, the important part is that the end result is
-> maintainable longer-term.
+On 2022-02-25 19:27, Michael Cheng wrote:
+> Hi Robin,
+> 
+> [ +arm64 maintainers for their awareness, which would have been a good 
+> thing to do from the start ]
+> 
+>   * Thanks for adding the arm64 maintainer and sorry I didn't rope them
+>     in sooner.
+> 
+> Why does i915 need to ensure the CPU's instruction cache is coherent 
+> with its data cache? Is it a self-modifying driver?
+> 
+>   * Also thanks for pointing this out. Initially I was using
+>     dcache_clean_inval_poc, which seem to be the equivalently to what
+>     x86 is doing for dcache flushing, but it was giving me build errors
+>     since its not on the global list of kernel symbols. And after
+>     revisiting the documentation for caches_clean_inval_pou, it won't
+>     fly for what we are trying to do. Moving forward, what would you (or
+>     someone in the ARM community) suggest we do? Could it be possible to
+>     export dcache_clean_inval_poc as a global symbol?
 
-I couldn't agree more. And because of that, I stick with the following
-approach because it's maintainable longer-term than "type(pos) pos" one:
- Implements a new macro for each list_for_each_entry* with _inside suffix.
-  #define list_for_each_entry_inside(pos, type, head, member)
+Unlikely, unless something with a legitimate need for CPU-centric cache 
+maintenance like kexec or CPU hotplug ever becomes modular.
 
-I have posted a patch series here to demonstrate this approach:
-https://lore.kernel.org/lkml/20220301075839.4156-3-xiam0nd.tong@gmail.com/
+In the case of a device driver, it's not even the basic issues of 
+assuming to find direct equivalents to x86 semantics in other CPU 
+architectures, or effectively reinventing parts of the DMA API, it's 
+even bigger than that. Once you move from being integrated in a single 
+vendor's system architecture to being on a discrete card, you 
+fundamentally *no longer have any control over cache coherency*. Whether 
+the host CPU architecture happens to be AArch64, RISC-V, or whatever 
+doesn't really matter, you're at the mercy of 3rd-party PCIe and 
+interconnect IP vendors, and SoC integrators. You'll find yourself in 
+systems where PCIe simply cannot snoop any caches, where you'd better 
+have the correct DMA API calls in place to have any hope of even the 
+most basic functionality working properly; you'll find yourself in 
+systems where even if the PCIe root complex claims to support No Snoop, 
+your uncached traffic will still end up snooping stale data that got 
+prefetched back into caches you thought you'd invalidated; you'll find 
+yourself in systems where your memory attributes may or may not get 
+forcibly rewritten by an IOMMU depending on the kernel config and/or 
+command line.
 
-Although we need replace all the use of list_for_each_entry* (15000+)
-with list_for_each_entry*_inside, the work can be done gradually rather
-than all at once. We can incrementally replace these callers until
-all these in the kernel are completely updated with *_inside* one. At
-that time, we can just remove the implements of origin macros and rename
-the *_inside* macro back to the origin name just in one single patch.
+It's not about simply finding a substitute for clflush, it's that the 
+reasons you have for using clflush in the first place can no longer be 
+assumed to be valid.
 
-And the "type(pos) pos" approach need teach developers to "not initialize
-the iterator variable, otherwise the use-after-loop will not be reported by
-compiler", which is unreasonable and impossible for all developers. 
+Robin.
 
-And it will mess up the following code logic and no warnning reported by
-compiler, even without initializing "ext" at the beginning:
-void foo(struct mem_extent *arg) {
-  struct mem_extent *ext;  // used both for iterator and normal ptr
-  ...
-  ext = arg;  // this assignment can alse be done in another bar() func
-  ...
-  list_for_each_entry(ext, head, member) {
-    if (found(ext))
-       break;
-  }
-  ...
-  // use ext after the loop
-  ret = ext;
-}
-If the loop hit the break, the last "ret" will be the found ext iterator.
-However, if the "type(pos) pos" approach applied, the last "ret" will be
-"arg" which is not the intention of the developers, because the "ext" is
-two different variables inside and outside the loop.
-
-Thus, my idea is *better a finger off than always aching*, let's choose
-the "list_for_each_entry_inside(pos, type, head, member)" approach.
-
-> It turns out that just syntactically, it's really nice to give the
-> type of the iterator from outside the way we do now. Yeah, it may be a
-> bit odd, and maybe it's partly because I'm so used to the
-> "list_for_each_list_entry()" syntax, but moving the type into the loop
-> construct really made it nasty - either one very complex line, or
-> having to split it over two lines which was even worse.
->
-> Maybe the place I looked at just happened to have a long typename, but
-> it's basically always going to be a struct, so it's never a _simple_
-> type. And it just looked very odd adn unnatural to have the type as
-> one of the "arguments" to that list_for_each_entry() macro.
-
-we can pass a shorter type name to list_for_each_entry_inside, thus no
-need to split it over two lines. Actually it is not a big problem.
-+ #define t struct sram_bank_info
-- list_for_each_entry(pos, head, member) {
-+ list_for_each_entry_inside(pos, t, head, member) {
-
-I put the type at the second argument not the first to avoid messing up
-the pattern match in some coccinelle scripts.
-
->  (b) gives us a nice warning for any normal use-after-loop case
-> (unless you explicitly initialized it like that
-> sgx_mmu_notifier_release() function did for no good reason
-
-sometimes developers can be confused by the reported warnning:
-"used without having been initialized", and can not figure out immediately
-that "oh, now i am using another different variable but with the same name
-of the loop iterator variable", which has changed the programming habits
-of developers.
-
->  (c) also guarantees that even if you don't get a warning,
-> non-converted (or newly written) bad code won't actually _work_
->
-> so you end up getting the new rules without any ambiguity or mistaken
-
-It will lead to a wrong/NULL pointer dereference if the pointer is used
-anywhere else, depend on which value is used to initialized with.
-
-Best regard,
---
-Xiaomeng Tong
+> On 2022-02-25 10:24 a.m., Robin Murphy wrote:
+>> [ +arm64 maintainers for their awareness, which would have been a good 
+>> thing to do from the start ]
+>>
+>> On 2022-02-25 03:24, Michael Cheng wrote:
+>>> Add arm64 support for drm_clflush_virt_range. caches_clean_inval_pou
+>>> performs a flush by first performing a clean, follow by an invalidation
+>>> operation.
+>>>
+>>> v2 (Michael Cheng): Use correct macro for cleaning and invalidation the
+>>>             dcache. Thanks Tvrtko for the suggestion.
+>>>
+>>> v3 (Michael Cheng): Replace asm/cacheflush.h with linux/cacheflush.h
+>>>
+>>> v4 (Michael Cheng): Arm64 does not export dcache_clean_inval_poc as a
+>>>             symbol that could be use by other modules, thus use
+>>>             caches_clean_inval_pou instead. Also this version
+>>>                 removes include for cacheflush, since its already
+>>>             included base on architecture type.
+>>>
+>>> Signed-off-by: Michael Cheng <michael.cheng@intel.com>
+>>> Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+>>> ---
+>>>   drivers/gpu/drm/drm_cache.c | 5 +++++
+>>>   1 file changed, 5 insertions(+)
+>>>
+>>> diff --git a/drivers/gpu/drm/drm_cache.c b/drivers/gpu/drm/drm_cache.c
+>>> index c3e6e615bf09..81c28714f930 100644
+>>> --- a/drivers/gpu/drm/drm_cache.c
+>>> +++ b/drivers/gpu/drm/drm_cache.c
+>>> @@ -174,6 +174,11 @@ drm_clflush_virt_range(void *addr, unsigned long 
+>>> length)
+>>>         if (wbinvd_on_all_cpus())
+>>>           pr_err("Timed out waiting for cache flush\n");
+>>> +
+>>> +#elif defined(CONFIG_ARM64)
+>>> +    void *end = addr + length;
+>>> +    caches_clean_inval_pou((unsigned long)addr, (unsigned long)end);
+>>
+>> Why does i915 need to ensure the CPU's instruction cache is coherent 
+>> with its data cache? Is it a self-modifying driver?
+>>
+>> Robin.
+>>
+>> (Note that the above is somewhat of a loaded question, and I do 
+>> actually have half an idea of what you're trying to do here and why it 
+>> won't fly, but I'd like to at least assume you've read the 
+>> documentation of the function you decided was OK to use)
+>>
+>>> +
+>>>   #else
+>>>       WARN_ONCE(1, "Architecture has no drm_cache.c support\n");
+>>>   #endif
