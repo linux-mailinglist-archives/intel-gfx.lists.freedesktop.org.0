@@ -1,51 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 215374C99EC
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Mar 2022 01:34:23 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4A244C9A6D
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Mar 2022 02:31:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2DF0F10E781;
-	Wed,  2 Mar 2022 00:34:02 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A325E10E666;
- Wed,  2 Mar 2022 00:33:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646181239; x=1677717239;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=2IJ7sSSfG/HfauHHGiwyGRv4WGJYp1scqsdWF8JFufM=;
- b=TfCAJ8+m6Knsas3zdO11k+HxqJUFyvcP8UmDlORRyXFiXfyMJJdl3zCL
- xw5yaL2wEzYPemYhKUlsxKbkZYePdRs78jNKtEl7N48MCAEwS/WaST9KX
- U6EmQPsi0YMmef+4RrO/o1xs8a0ZieJJMqK1vqg3U1iwrUjDgRMKYCUWu
- IlXlz8J3Br9N/pCih9dHhrYm4Bh6yQyKyuZJ544lmQwzYh7Lkcjw1O4wt
- gAwtxRWJPk232KmBKnidDP0ugsGJntqSUlsT0fLIe1GqydHzl2lXC6r8O
- wA5fnrtTQf0R+tBPnMvYFvKipS/3/XMolvub5i771qvCoBxHZIbrgkv8A g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10273"; a="233243145"
-X-IronPort-AV: E=Sophos;i="5.90,146,1643702400"; d="scan'208";a="233243145"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Mar 2022 16:33:59 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,146,1643702400"; d="scan'208";a="639577391"
-Received: from relo-linux-5.jf.intel.com ([10.165.21.134])
- by fmsmga002.fm.intel.com with ESMTP; 01 Mar 2022 16:33:58 -0800
-From: John.C.Harrison@Intel.com
-To: Intel-GFX@Lists.FreeDesktop.Org
-Date: Tue,  1 Mar 2022 16:33:57 -0800
-Message-Id: <20220302003357.4188363-9-John.C.Harrison@Intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220302003357.4188363-1-John.C.Harrison@Intel.com>
-References: <20220302003357.4188363-1-John.C.Harrison@Intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8057E10E63E;
+	Wed,  2 Mar 2022 01:31:38 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from gandalf.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A410910E63E
+ for <intel-gfx@lists.freedesktop.org>; Wed,  2 Mar 2022 01:31:36 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4K7c5q44W8z4xcq;
+ Wed,  2 Mar 2022 12:31:27 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
+ s=201702; t=1646184689;
+ bh=AvxIclA+HfdtF6uRf9ReUyXIXfyCHwRpdXWQn0y/1Iw=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=sxkcZ2xh/RJo6wV2bcrx94cmsk3Yx1Z8BEbYrfX+lRd8lcHQ3bPZcoNLUYjPgonUa
+ IjYal6WhTHU+q3xm8JCSUsJ4JjjDlqQZLkmLduVxoaVgmgCK8i6hxv5fogKeVCZrfx
+ e1tnWvlcWbdgnqyZ9xC7F/INBMbW5/HfEkSwVMkBjUZCTK8qJmkjOlLWBxg8QEOud4
+ WvlQlGer9RnbB9+0QdWn0ia77P3Cr/xe9EzoM/f3GIFEuuZFBdgcQw2o3w1RnRj9Kl
+ jLTLuuqsVIxCC5YN4fBl9mW/QQGPMUKnMpsWt17h4uwmgihyqult7cnJrG6VVcaajR
+ UhrPUSgBp4BVA==
+Date: Wed, 2 Mar 2022 12:31:26 +1100
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
+ <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>
+Message-ID: <20220302123126.65bcbc82@canb.auug.org.au>
+In-Reply-To: <20220120142639.02c54ae9@canb.auug.org.au>
+References: <20211117134926.1d339d71@canb.auug.org.au>
+ <20220120142639.02c54ae9@canb.auug.org.au>
 MIME-Version: 1.0
-Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
- Swindon SN3 1RJ
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 8/8] drm/i915/guc: Fix potential invalid
- pointer dereferences when decoding G2Hs
+Content-Type: multipart/signed; boundary="Sig_/vMoEJP4dGQ_c=PVNw9nf/n2";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
+Subject: Re: [Intel-gfx] linux-next: build warning after merge of the
+ drm-misc tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,55 +53,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: DRI-Devel@Lists.FreeDesktop.Org
+Cc: Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: John Harrison <John.C.Harrison@Intel.com>
+--Sig_/vMoEJP4dGQ_c=PVNw9nf/n2
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-Some G2H handlers were reading the context id field from the payload
-before checking the payload met the minimum length required.
+Hi all,
 
-Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
----
- drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+On Thu, 20 Jan 2022 14:26:39 +1100 Stephen Rothwell <sfr@canb.auug.org.au> =
+wrote:
+>
+> On Wed, 17 Nov 2021 13:49:26 +1100 Stephen Rothwell <sfr@canb.auug.org.au=
+> wrote:
+> >=20
+> > After merging the drm-misc tree, today's linux-next build (htmldocs)
+> > produced this warning:
+> >=20
+> > include/drm/gpu_scheduler.h:316: warning: Function parameter or member =
+'work' not described in 'drm_sched_job'
+> >=20
+> > Introduced by commit
+> >=20
+> >   542cff7893a3 ("drm/sched: Avoid lockdep spalt on killing a processes"=
+) =20
+>=20
+> I am still seeing this warning.
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-index 5dbebf15fae1..a85e10af0d24 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-@@ -3892,12 +3892,13 @@ int intel_guc_deregister_done_process_msg(struct intel_guc *guc,
- 					  u32 len)
- {
- 	struct intel_context *ce;
--	u32 ctx_id = msg[0];
-+	u32 ctx_id;
- 
- 	if (unlikely(len < 1)) {
- 		drm_err(&guc_to_gt(guc)->i915->drm, "Invalid length %u\n", len);
- 		return -EPROTO;
- 	}
-+	ctx_id = msg[0];
- 
- 	ce = g2h_context_lookup(guc, ctx_id);
- 	if (unlikely(!ce))
-@@ -3943,12 +3944,13 @@ int intel_guc_sched_done_process_msg(struct intel_guc *guc,
- {
- 	struct intel_context *ce;
- 	unsigned long flags;
--	u32 ctx_id = msg[0];
-+	u32 ctx_id;
- 
- 	if (unlikely(len < 2)) {
- 		drm_err(&guc_to_gt(guc)->i915->drm, "Invalid length %u\n", len);
- 		return -EPROTO;
- 	}
-+	ctx_id = msg[0];
- 
- 	ce = g2h_context_lookup(guc, ctx_id);
- 	if (unlikely(!ce))
--- 
-2.25.1
+I am still seeing this warning.
 
+--=20
+Cheers,
+Stephen Rothwell
+
+--Sig_/vMoEJP4dGQ_c=PVNw9nf/n2
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmIeyO4ACgkQAVBC80lX
+0Gx+ygf/U77Kq82vqHGRevDhByIucjbzp7gjA4KTD9HMV6uB7l37GEj5jXu/LC84
+KypgkQv8xxmX4ZNmwAZ3Yi591KGJx56QeEZCnXbprkXlHWq3gRPkDIlhMC6vXlNx
+uspG1ZL9Z2miNhb15n8MmyUTQ7sTYYXsvdOUFwYL/WdFC/Hc0ouS1dBBfe/nOAqi
+d92adK6DOWSB31N6XBEAAms//XgzULph/+QjK8NRujQqYNUmVQndOeGq/E+cwU7u
+iq+Bcf5s1sWiHQ/7LWCd5ZklhYlQTdorqLSB7b/0A1ls+rxH6NmnOcyas98sr06+
+GeMSeIjC9qxw3QUIDOYIcylU9FbYGw==
+=Yq//
+-----END PGP SIGNATURE-----
+
+--Sig_/vMoEJP4dGQ_c=PVNw9nf/n2--
