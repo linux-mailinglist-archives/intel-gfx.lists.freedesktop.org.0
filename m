@@ -1,52 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34BC34CA7EE
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Mar 2022 15:24:36 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E81D4CA7EB
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Mar 2022 15:24:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BDE6F10E78A;
-	Wed,  2 Mar 2022 14:24:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A092E10E55B;
+	Wed,  2 Mar 2022 14:24:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 328 seconds by postgrey-1.36 at gabe;
- Wed, 02 Mar 2022 05:07:40 UTC
-Received: from gimli.rothwell.id.au (unknown
- [IPv6:2404:9400:2:0:216:3eff:fee1:997a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B045910EAA9;
- Wed,  2 Mar 2022 05:07:40 +0000 (UTC)
-Received: from authenticated.rothwell.id.au (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mail.rothwell.id.au (Postfix) with ESMTPSA id 4K7hmr2W2DzyR1;
- Wed,  2 Mar 2022 16:02:03 +1100 (AEDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rothwell.id.au;
- s=201702; t=1646197326;
- bh=uzjcaWgkXXsocOO4l8FmrzePxqW13WJublt0pDESlHs=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=i983zv3fziLp2PBywQALnf/P1IukX8e25j0L3qxcgWqbcNX0NFGJJ2OhUJOziQEFx
- I54UUySJ1vTgUDs4DCLaYDof1bM7c0wMqPwQbaClhxMPPaRfzjTzxF4mRlYmLIFR49
- bmRNihxyauSeUmpK2qczkoO+1DaxPvjzfbpl2XpklIWAs0/3qZEWoS3078bH1GNZC2
- 5jzPMNBFnhS9Zawg9OojZMOhxOsC36aCHFENrpPQzUvaSOgRzDy9eGnOewKOdJpYcs
- BIMrYPE15YmBamkCbE7vO8Ft/GcRjCqzejnTaA5cIpiah7rJ+nA9MPLFbHqHXsJabu
- +teymvxn3QRbA==
-Date: Wed, 2 Mar 2022 16:02:01 +1100
-From: Stephen Rothwell <sfr@rothwell.id.au>
-To: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
-Message-ID: <20220302160201.6ee2c586@elm.ozlabs.ibm.com>
-In-Reply-To: <14b6a691-d31e-2e54-cf91-352b9b30414d@amd.com>
-References: <20211117134926.1d339d71@canb.auug.org.au>
- <20220120142639.02c54ae9@canb.auug.org.au>
- <20220302123126.65bcbc82@canb.auug.org.au>
- <14b6a691-d31e-2e54-cf91-352b9b30414d@amd.com>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-pc-linux-gnu)
+X-Greylist: delayed 456 seconds by postgrey-1.36 at gabe;
+ Wed, 02 Mar 2022 06:27:30 UTC
+Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A993F10EC9E;
+ Wed,  2 Mar 2022 06:27:30 +0000 (UTC)
+Received: from localhost.localdomain (unknown [124.16.138.126])
+ by APP-01 (Coremail) with SMTP id qwCowAAXHPCDDB9it50DAg--.2938S2;
+ Wed, 02 Mar 2022 14:19:48 +0800 (CST)
+From: Jiasheng Jiang <jiasheng@iscas.ac.cn>
+To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com, tvrtko.ursulin@linux.intel.com, airlied@linux.ie,
+ daniel@ffwll.ch, radhakrishna.sripada@intel.com,
+ ville.syrjala@linux.intel.com, matthew.d.roper@intel.com,
+ lucas.demarchi@intel.com, jose.souza@intel.com
+Date: Wed,  2 Mar 2022 14:19:46 +0800
+Message-Id: <20220302061946.46630-1-jiasheng@iscas.ac.cn>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/+CPxGtbE5SBkEEZMmwIvi+1";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: qwCowAAXHPCDDB9it50DAg--.2938S2
+X-Coremail-Antispam: 1UD129KBjvdXoWrKw4rJr18WFy3WF48Ww4Uurg_yoWDWwc_Ca
+ yUtr97W3ZrCFnYk3WYkr1rZFy0yan2vF48Zw18ta95try5ZwsrXanrZr1rur17WFWUtrWD
+ Aa1DuFZIvr129jkaLaAFLSUrUUUUUb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+ 9fnUUIcSsGvfJTRUUUbxAFF20E14v26r4j6ryUM7CY07I20VC2zVCF04k26cxKx2IYs7xG
+ 6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8w
+ A2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Gr1j
+ 6F4UJwA2z4x0Y4vEx4A2jsIE14v26F4UJVW0owA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
+ CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
+ 2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
+ W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
+ Y2ka0xkIwI1l42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4
+ xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43
+ MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I
+ 0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWrZr1j6s0DMIIF0xvEx4A2jsIE14v2
+ 6r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x0J
+ UdHUDUUUUU=
+X-Originating-IP: [124.16.138.126]
+X-CM-SenderInfo: pmld2xxhqjqxpvfd2hldfou0/
 X-Mailman-Approved-At: Wed, 02 Mar 2022 14:24:27 +0000
-Subject: Re: [Intel-gfx] linux-next: build warning after merge of the
- drm-misc tree
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: Handle errors for
+ i915_gem_object_trylock
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,51 +62,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Stephen Rothwell <sfr@canb.auug.org.au>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- DRI <dri-devel@lists.freedesktop.org>,
- Linux Next Mailing List <linux-next@vger.kernel.org>
+Cc: intel-gfx@lists.freedesktop.org, Jiasheng Jiang <jiasheng@iscas.ac.cn>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Sig_/+CPxGtbE5SBkEEZMmwIvi+1
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+As the potential failure of the i915_gem_object_trylock(),
+it should be better to check it and return error if fails.
 
-Hi Andrey,
+Fixes: 94ce0d65076c ("drm/i915/gt: Setup a default migration context on the GT")
+Signed-off-by: Jiasheng Jiang <jiasheng@iscas.ac.cn>
+---
+ drivers/gpu/drm/i915/gt/selftest_migrate.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
-On Tue, 1 Mar 2022 22:26:12 -0500 Andrey Grodzovsky <andrey.grodzovsky@amd.=
-com> wrote:
->
-> Please check you have commit c7703ce38c1e Andrey Grodzovsky=C2=A0=C2=A0 3=
- weeks ago=C2=A0=C2=A0=C2=A0 drm/amdgpu: Fix htmldoc warning
+diff --git a/drivers/gpu/drm/i915/gt/selftest_migrate.c b/drivers/gpu/drm/i915/gt/selftest_migrate.c
+index fa4293d2944f..79c6c68f7316 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_migrate.c
++++ b/drivers/gpu/drm/i915/gt/selftest_migrate.c
+@@ -465,7 +465,11 @@ create_init_lmem_internal(struct intel_gt *gt, size_t sz, bool try_lmem)
+ 			return obj;
+ 	}
+ 
+-	i915_gem_object_trylock(obj, NULL);
++	if (!i915_gem_object_trylock(obj, NULL)) {
++		i915_gem_object_put(obj);
++		return ERR_PTR(-EBUSY);
++	}
++
+ 	err = i915_gem_object_pin_pages(obj);
+ 	if (err) {
+ 		i915_gem_object_unlock(obj);
+-- 
+2.25.1
 
-That has arrived in linux-next today for the first time.  It is in the
-drm tree, but that tree has had build problems for some time and so has
-not been included completely until today.
-
-Thanks.
-
---=20
-Cheers,
-Stephen Rothwell
-
---Sig_/+CPxGtbE5SBkEEZMmwIvi+1
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmIe+kkACgkQAVBC80lX
-0Gy6zAf+JLyE27RwbUECLPb5aqE7lO8RcwYu0T82oZkMwLJ0dvV3vLJDWsspmOdW
-/GOOnbp3HgK+BnmzswANmXJ7AQKV+kZz345wLuAkxwIb093msrH4zTz7v2cSZzT9
-oBly2C2V427DkjeZAJ66Y4522MNq4tqMJIG/ElyrhWDgghqRCskQbnh5/eDZJIcc
-53IldotYe4YC5jhdWmd31rYOW+EobwSx8Pmu3NOBE3iRatj/qC+XvJzi79CLb0S2
-f0rWUxXu0q4lxIQ7mV4cKP2m9Psgpv33Jv6dxn3GNrcKz0tv2NIIuhllb1w+8b6G
-2IOvnB4EfX0fzlst9e2CsQPAj8Rwbw==
-=9KR5
------END PGP SIGNATURE-----
-
---Sig_/+CPxGtbE5SBkEEZMmwIvi+1--
