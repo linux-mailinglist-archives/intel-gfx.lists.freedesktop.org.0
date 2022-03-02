@@ -2,54 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E81D4CA7EB
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Mar 2022 15:24:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B5684CA7EC
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Mar 2022 15:24:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A092E10E55B;
-	Wed,  2 Mar 2022 14:24:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 57D0310E1C9;
+	Wed,  2 Mar 2022 14:24:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 456 seconds by postgrey-1.36 at gabe;
- Wed, 02 Mar 2022 06:27:30 UTC
-Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
- by gabe.freedesktop.org (Postfix) with ESMTP id A993F10EC9E;
- Wed,  2 Mar 2022 06:27:30 +0000 (UTC)
-Received: from localhost.localdomain (unknown [124.16.138.126])
- by APP-01 (Coremail) with SMTP id qwCowAAXHPCDDB9it50DAg--.2938S2;
- Wed, 02 Mar 2022 14:19:48 +0800 (CST)
-From: Jiasheng Jiang <jiasheng@iscas.ac.cn>
-To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, tvrtko.ursulin@linux.intel.com, airlied@linux.ie,
- daniel@ffwll.ch, radhakrishna.sripada@intel.com,
- ville.syrjala@linux.intel.com, matthew.d.roper@intel.com,
- lucas.demarchi@intel.com, jose.souza@intel.com
-Date: Wed,  2 Mar 2022 14:19:46 +0800
-Message-Id: <20220302061946.46630-1-jiasheng@iscas.ac.cn>
-X-Mailer: git-send-email 2.25.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: qwCowAAXHPCDDB9it50DAg--.2938S2
-X-Coremail-Antispam: 1UD129KBjvdXoWrKw4rJr18WFy3WF48Ww4Uurg_yoWDWwc_Ca
- yUtr97W3ZrCFnYk3WYkr1rZFy0yan2vF48Zw18ta95try5ZwsrXanrZr1rur17WFWUtrWD
- Aa1DuFZIvr129jkaLaAFLSUrUUUUUb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
- 9fnUUIcSsGvfJTRUUUbxAFF20E14v26r4j6ryUM7CY07I20VC2zVCF04k26cxKx2IYs7xG
- 6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8w
- A2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Gr1j
- 6F4UJwA2z4x0Y4vEx4A2jsIE14v26F4UJVW0owA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
- CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
- 2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
- W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
- Y2ka0xkIwI1l42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4
- xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43
- MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I
- 0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWrZr1j6s0DMIIF0xvEx4A2jsIE14v2
- 6r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x0J
- UdHUDUUUUU=
-X-Originating-IP: [124.16.138.126]
-X-CM-SenderInfo: pmld2xxhqjqxpvfd2hldfou0/
+Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com
+ [IPv6:2607:f8b0:4864:20::444])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 283E110F30A;
+ Wed,  2 Mar 2022 09:31:31 +0000 (UTC)
+Received: by mail-pf1-x444.google.com with SMTP id p8so1397304pfh.8;
+ Wed, 02 Mar 2022 01:31:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references;
+ bh=yRnvPGVK9XQdKYPg/H0ecgdZJeSxpiKw/X1pv37GC+w=;
+ b=FSwFYVuD0cAwR74FpWh/UVnJlZEuhHuzmEJF2CmWuTU5VQk08y1iQ6Cm+4Kk/IHZ7f
+ ykn4dSn+LtVJ/QNPcAOF0Kr9OP0uyQbpGUjZhyE2BsGEuIYzlTgMZwHl/BYpjMpkMG0+
+ P9mnuSE0YONb1xqLwPVeO/elgzKWhvv7I7OGEBThyQYghI00EIr5RS9MGp7GsCYrqLUi
+ wR7dcG4fdae3Ke7WyU9tBlNyUPSMcC8RmnmBsmKYAmxRcsIUhLqhpYW4uCJTlnf3AogC
+ YxEVbABh4/fwCz1Lhf2xi5Cnii6w5cwNjqEkAadiEwyP0C/cLXPnnAaLLll6ns+CdAHq
+ Ceuw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references;
+ bh=yRnvPGVK9XQdKYPg/H0ecgdZJeSxpiKw/X1pv37GC+w=;
+ b=AVn/+dEhaFp5DeCDbTgrvMHGGvighq1Z1GogIu1oG/RCpCHIMy1XeChOlDHTBicerw
+ UDj7iJbyvWjgcQnqsdcPERpQIeYgmNJ+vH5R/pMmBcNiAmJ3aV6zXWHXDXMU6VySksEv
+ JiSUGweBL2vwxbLaOnFA14dpAbkty5venJdMjhhYYPR6jtL8/BX2b2Ry97Na0rBnoGM3
+ jtcbxjEgi9jAMi3aFm7jZz1c+M+Y2Z/1UnrJiXBfkrRb5jwkgX5xwGp8VmSak8FEHHiG
+ XCrRaGocxCsS6Fm9D17SKZcNJ+NbkzkYWmX7QVTklnBxjWAWqE1Wq8YYcc3txekUBXY9
+ di+A==
+X-Gm-Message-State: AOAM533K8NAd3vxBl7hDUJeypX6fcVP+yNUxYdvtdbZXdLoH5e6XOUx2
+ YRJotdM1A0Voqj5/Ew876TU=
+X-Google-Smtp-Source: ABdhPJxxYDNcbSMxl56+YduSTiv9ULKN3/PKEO9PEtlxvCfSyuhc7esxotc8paaSBF6ReGk5V/MJxQ==
+X-Received: by 2002:a05:6a00:244b:b0:4c9:319e:ecb7 with SMTP id
+ d11-20020a056a00244b00b004c9319eecb7mr31990006pfj.58.1646213490674; 
+ Wed, 02 Mar 2022 01:31:30 -0800 (PST)
+Received: from ubuntu.huawei.com ([119.3.119.20])
+ by smtp.googlemail.com with ESMTPSA id
+ y74-20020a62644d000000b004f129e94f40sm19496506pfb.131.2022.03.02.01.31.11
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 02 Mar 2022 01:31:30 -0800 (PST)
+From: Xiaomeng Tong <xiam0nd.tong@gmail.com>
+To: torvalds@linux-foundation.org
+Date: Wed,  2 Mar 2022 17:31:06 +0800
+Message-Id: <20220302093106.8402-1-xiam0nd.tong@gmail.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <CAHk-=whLK11HyvpUtEftOjc3Gup2V77KpAQ2fycj3uai=qceHw@mail.gmail.com>
+References: <CAHk-=whLK11HyvpUtEftOjc3Gup2V77KpAQ2fycj3uai=qceHw@mail.gmail.com>
 X-Mailman-Approved-At: Wed, 02 Mar 2022 14:24:27 +0000
-Subject: [Intel-gfx] [PATCH] drm/i915/gt: Handle errors for
- i915_gem_object_trylock
+Subject: Re: [Intel-gfx] [PATCH 2/6] treewide: remove using list iterator
+ after loop body as a ptr
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,37 +68,120 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Jiasheng Jiang <jiasheng@iscas.ac.cn>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
+Cc: alsa-devel@alsa-project.org, kvm@vger.kernel.org, gustavo@embeddedor.com,
+ linux-iio@vger.kernel.org, kgdb-bugreport@lists.sourceforge.net,
+ linux@rasmusvillemoes.dk, dri-devel@lists.freedesktop.org, c.giuffrida@vu.nl,
+ amd-gfx@lists.freedesktop.org, samba-technical@lists.samba.org,
+ linux1394-devel@lists.sourceforge.net, drbd-dev@lists.linbit.com,
+ linux-arch@vger.kernel.org, linux-cifs@vger.kernel.org,
+ linux-aspeed@lists.ozlabs.org, linux-scsi@vger.kernel.org,
+ linux-rdma@vger.kernel.org, linux-staging@lists.linux.dev, h.j.bos@vu.nl,
+ jgg@ziepe.ca, intel-wired-lan@lists.osuosl.org, nouveau@lists.freedesktop.org,
+ bcm-kernel-feedback-list@broadcom.com, dan.carpenter@oracle.com,
+ linux-media@vger.kernel.org, keescook@chromium.org, arnd@arndb.de,
+ linux-pm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ bjohannesmeyer@gmail.com, linux-block@vger.kernel.org,
+ linux-fsdevel@vger.kernel.org, christophe.jaillet@wanadoo.fr,
+ jakobkoschel@gmail.com, v9fs-developer@lists.sourceforge.net,
+ linux-tegra@vger.kernel.org, tglx@linutronix.de,
+ andriy.shevchenko@linux.intel.com, linux-arm-kernel@lists.infradead.org,
+ linux-sgx@vger.kernel.org, nathan@kernel.org, netdev@vger.kernel.org,
+ linux-usb@vger.kernel.org, linux-wireless@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-f2fs-devel@lists.sourceforge.net,
+ tipc-discussion@lists.sourceforge.net, linux-crypto@vger.kernel.org,
+ dmaengine@vger.kernel.org, linux-mediatek@lists.infradead.org,
+ akpm@linux-foundation.org, linuxppc-dev@lists.ozlabs.org,
+ christian.koenig@amd.com, rppt@kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-As the potential failure of the i915_gem_object_trylock(),
-it should be better to check it and return error if fails.
+On Mon, 28 Feb 2022 16:41:04 -0800, Linus Torvalds
+<torvalds@linux-foundation.org> wrote:
+>
+> But basically to _me_, the important part is that the end result is
+> maintainable longer-term.
 
-Fixes: 94ce0d65076c ("drm/i915/gt: Setup a default migration context on the GT")
-Signed-off-by: Jiasheng Jiang <jiasheng@iscas.ac.cn>
----
- drivers/gpu/drm/i915/gt/selftest_migrate.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+I couldn't agree more. And because of that, I stick with the following
+approach because it's maintainable longer-term than "type(pos) pos" one:
+ Implements a new macro for each list_for_each_entry* with _inside suffix.
+  #define list_for_each_entry_inside(pos, type, head, member)
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_migrate.c b/drivers/gpu/drm/i915/gt/selftest_migrate.c
-index fa4293d2944f..79c6c68f7316 100644
---- a/drivers/gpu/drm/i915/gt/selftest_migrate.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_migrate.c
-@@ -465,7 +465,11 @@ create_init_lmem_internal(struct intel_gt *gt, size_t sz, bool try_lmem)
- 			return obj;
- 	}
- 
--	i915_gem_object_trylock(obj, NULL);
-+	if (!i915_gem_object_trylock(obj, NULL)) {
-+		i915_gem_object_put(obj);
-+		return ERR_PTR(-EBUSY);
-+	}
-+
- 	err = i915_gem_object_pin_pages(obj);
- 	if (err) {
- 		i915_gem_object_unlock(obj);
--- 
-2.25.1
+I have posted a patch series here to demonstrate this approach:
+https://lore.kernel.org/lkml/20220301075839.4156-3-xiam0nd.tong@gmail.com/
 
+Although we need replace all the use of list_for_each_entry* (15000+)
+with list_for_each_entry*_inside, the work can be done gradually rather
+than all at once. We can incrementally replace these callers until
+all these in the kernel are completely updated with *_inside* one. At
+that time, we can just remove the implements of origin macros and rename
+the *_inside* macro back to the origin name just in one single patch.
+
+And the "type(pos) pos" approach need teach developers to "not initialize
+the iterator variable, otherwise the use-after-loop will not be reported by
+compiler", which is unreasonable and impossible for all developers. 
+
+And it will mess up the following code logic and no warnning reported by
+compiler, even without initializing "ext" at the beginning:
+void foo(struct mem_extent *arg) {
+  struct mem_extent *ext;  // used both for iterator and normal ptr
+  ...
+  ext = arg;  // this assignment can alse be done in another bar() func
+  ...
+  list_for_each_entry(ext, head, member) {
+    if (found(ext))
+       break;
+  }
+  ...
+  // use ext after the loop
+  ret = ext;
+}
+If the loop hit the break, the last "ret" will be the found ext iterator.
+However, if the "type(pos) pos" approach applied, the last "ret" will be
+"arg" which is not the intention of the developers, because the "ext" is
+two different variables inside and outside the loop.
+
+Thus, my idea is *better a finger off than always aching*, let's choose
+the "list_for_each_entry_inside(pos, type, head, member)" approach.
+
+> It turns out that just syntactically, it's really nice to give the
+> type of the iterator from outside the way we do now. Yeah, it may be a
+> bit odd, and maybe it's partly because I'm so used to the
+> "list_for_each_list_entry()" syntax, but moving the type into the loop
+> construct really made it nasty - either one very complex line, or
+> having to split it over two lines which was even worse.
+>
+> Maybe the place I looked at just happened to have a long typename, but
+> it's basically always going to be a struct, so it's never a _simple_
+> type. And it just looked very odd adn unnatural to have the type as
+> one of the "arguments" to that list_for_each_entry() macro.
+
+we can pass a shorter type name to list_for_each_entry_inside, thus no
+need to split it over two lines. Actually it is not a big problem.
++ #define t struct sram_bank_info
+- list_for_each_entry(pos, head, member) {
++ list_for_each_entry_inside(pos, t, head, member) {
+
+I put the type at the second argument not the first to avoid messing up
+the pattern match in some coccinelle scripts.
+
+>  (b) gives us a nice warning for any normal use-after-loop case
+> (unless you explicitly initialized it like that
+> sgx_mmu_notifier_release() function did for no good reason
+
+sometimes developers can be confused by the reported warnning:
+"used without having been initialized", and can not figure out immediately
+that "oh, now i am using another different variable but with the same name
+of the loop iterator variable", which has changed the programming habits
+of developers.
+
+>  (c) also guarantees that even if you don't get a warning,
+> non-converted (or newly written) bad code won't actually _work_
+>
+> so you end up getting the new rules without any ambiguity or mistaken
+
+It will lead to a wrong/NULL pointer dereference if the pointer is used
+anywhere else, depend on which value is used to initialized with.
+
+Best regard,
+--
+Xiaomeng Tong
