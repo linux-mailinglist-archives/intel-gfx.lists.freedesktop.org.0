@@ -1,47 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1EC624C9DA7
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Mar 2022 07:08:12 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 682AC4C9DA8
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Mar 2022 07:08:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7397010EB9E;
-	Wed,  2 Mar 2022 06:08:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F6C110EBE5;
+	Wed,  2 Mar 2022 06:08:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E17910EB9D
- for <intel-gfx@lists.freedesktop.org>; Wed,  2 Mar 2022 06:08:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646201288; x=1677737288;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=9VLQ/GRfGZXRbDQndaDxgY7KCpEiX3i1iskd/3tO9Lw=;
- b=WLKwJJjgelCPPJeqxsI95QHS7sopjlvZzhVxC1cY6mw4WEI9L0mNy14f
- aMFJRUyu6BC+k16Q8de3+AX/pT9wcmoKC3RP2WybyNZuRgA/LKRQYGBg0
- 3bAJL8QXKdTVhHyAQ0nJ+v25OVR0+NpDcJ7gmuVAd8auO/iVhWTY+6CPO
- iUgLQHOeR+hRQ+3sbDFZPuKzY9T7LcCgAXzSTGsUsgMVjr5pla35KcaSi
- 8jrPfihUc5sFfP53IF6pMETgKjDiMxSioBUMxBxyL2JQqRgGXkBe0reDH
- Hs4M8lY14muKcZwqnjoSys5ZyojQgiYdCfnRHwjRZbX6rfrXFaNQIHl0t Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10273"; a="339750205"
-X-IronPort-AV: E=Sophos;i="5.90,148,1643702400"; d="scan'208";a="339750205"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Mar 2022 22:08:06 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,148,1643702400"; d="scan'208";a="510878937"
-Received: from mastan-system-product-name.iind.intel.com ([10.145.169.54])
- by orsmga006.jf.intel.com with ESMTP; 01 Mar 2022 22:08:05 -0800
-From: Mastan Katragadda <mastanx.katragadda@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed,  2 Mar 2022 11:38:12 +0530
-Message-Id: <20220302060812.1504143-1-mastanx.katragadda@intel.com>
-X-Mailer: git-send-email 2.25.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6316610EBE1;
+ Wed,  2 Mar 2022 06:08:52 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5CE9FA00FD;
+ Wed,  2 Mar 2022 06:08:52 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/gem: missing boundary check in
- vm_access leads to OOB read/write
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matt Roper" <matthew.d.roper@intel.com>
+Date: Wed, 02 Mar 2022 06:08:52 -0000
+Message-ID: <164620133237.11317.16086258783186723968@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220301231549.1817978-1-matthew.d.roper@intel.com>
+In-Reply-To: <20220301231549.1817978-1-matthew.d.roper@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_i915=3A_Prepare_for_Xe=5FHP_compute_engines_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,78 +40,48 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: mastanx.katragadda@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Intel ID: PSIRT-PTK0002429
+== Series Details ==
 
-A missing bounds check in vm_access() in drivers/gpu/drm/i915/gem/i915_gem_mman.c
-can lead to an out-of-bounds read or write in the adjacent memory area.
-The len attribute is not validated before the memcpy at  [1]or [2] occurs.
+Series: i915: Prepare for Xe_HP compute engines (rev4)
+URL   : https://patchwork.freedesktop.org/series/100833/
+State : warning
 
-[  183.637831] BUG: unable to handle page fault for address: ffffc90000c86000
-[  183.637934] #PF: supervisor read access in kernel mode
-[  183.637997] #PF: error_code(0x0000) - not-present page
-[  183.638059] PGD 100000067 P4D 100000067 PUD 100258067 PMD 106341067 PTE 0
-[  183.638144] Oops: 0000 [#2] PREEMPT SMP NOPTI
-[  183.638201] CPU: 3 PID: 1790 Comm: poc Tainted: G      D           5.17.0-rc6-ci-drm-11296+ #1
-[  183.638298] Hardware name: Intel Corporation CoffeeLake Client Platform/CoffeeLake H DDR4 RVP, BIOS CNLSFWR1.R00.X208.B00.1905301319 05/30/2019
-[  183.638430] RIP: 0010:memcpy_erms+0x6/0x10
-[  183.640213] RSP: 0018:ffffc90001763d48 EFLAGS: 00010246
-[  183.641117] RAX: ffff888109c14000 RBX: ffff888111bece40 RCX: 0000000000000ffc
-[  183.642029] RDX: 0000000000001000 RSI: ffffc90000c86000 RDI: ffff888109c14004
-[  183.642946] RBP: 0000000000000ffc R08: 800000000000016b R09: 0000000000000000
-[  183.643848] R10: ffffc90000c85000 R11: 0000000000000048 R12: 0000000000001000
-[  183.644742] R13: ffff888111bed190 R14: ffff888109c14000 R15: 0000000000001000
-[  183.645653] FS:  00007fe5ef807540(0000) GS:ffff88845b380000(0000) knlGS:0000000000000000
-[  183.646570] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-[  183.647481] CR2: ffffc90000c86000 CR3: 000000010ff02006 CR4: 00000000003706e0
-[  183.648384] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
-[  183.649271] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
-[  183.650142] Call Trace:
-[  183.650988]  <TASK>
-[  183.651793]  vm_access+0x1f0/0x2a0 [i915]
-[  183.652726]  __access_remote_vm+0x224/0x380
-[  183.653561]  mem_rw.isra.0+0xf9/0x190
-[  183.654402]  vfs_read+0x9d/0x1b0
-[  183.655238]  ksys_read+0x63/0xe0
-[  183.656065]  do_syscall_64+0x38/0xc0
-[  183.656882]  entry_SYSCALL_64_after_hwframe+0x44/0xae
-[  183.657663] RIP: 0033:0x7fe5ef725142
-[  183.659351] RSP: 002b:00007ffe1e81c7e8 EFLAGS: 00000246 ORIG_RAX: 0000000000000000
-[  183.660227] RAX: ffffffffffffffda RBX: 0000557055dfb780 RCX: 00007fe5ef725142
-[  183.661104] RDX: 0000000000001000 RSI: 00007ffe1e81d880 RDI: 0000000000000005
-[  183.661972] RBP: 00007ffe1e81e890 R08: 0000000000000030 R09: 0000000000000046
-[  183.662832] R10: 0000557055dfc2e0 R11: 0000000000000246 R12: 0000557055dfb1c0
-[  183.663691] R13: 00007ffe1e81e980 R14: 0000000000000000 R15: 0000000000000000
-[  183.664566]  </TASK>
+== Summary ==
 
-Signed-off-by: Mastan Katragadda <mastanx.katragadda@intel.com>
-Suggested-by: Adam Zabrocki <adamza@microsoft.com>
-Reported-by: Jackson Cody <cody.jackson@intel.com>
-Cc: Chris Wilson <chris.p.wilson@intel.com>
-Cc: Bloomfield Jon <jon.bloomfield@intel.com>
-Cc: Dutt Sudeep <sudeep.dutt@intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_mman.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+$ dim checkpatch origin/drm-tip
+ba39c8793670 drm/i915/xehp: Define compute class and engine
+290898d45efe drm/i915/xehp: CCS shares the render reset domain
+e28d189bb07d drm/i915/xehp: Add Compute CS IRQ handlers
+68fda41914af drm/i915/xehp: compute engine pipe_control
+-:100: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
+#100: FILE: drivers/gpu/drm/i915/gt/intel_gpu_commands.h:231:
++#define   PIPE_CONTROL_AMFS_FLUSH			(1<<25) /* gen12+ */
+                                  			  ^
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-index efe69d6b86f4..45913fa31e17 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-@@ -455,7 +455,9 @@ vm_access(struct vm_area_struct *area, unsigned long addr,
- 		return -EACCES;
- 
- 	addr -= area->vm_start;
--	if (addr >= obj->base.size)
-+	if (len < 1 || len > obj->base.size ||
-+	    addr >= obj->base.size ||
-+	    addr + len > obj->base.size)
- 		return -EINVAL;
- 
- 	i915_gem_ww_ctx_init(&ww, true);
--- 
-2.25.1
+-:105: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
+#105: FILE: drivers/gpu/drm/i915/gt/intel_gpu_commands.h:236:
++#define   PIPE_CONTROL_GLOBAL_SNAPSHOT_RESET		(1<<19)
+                                             		  ^
+
+-:107: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
+#107: FILE: drivers/gpu/drm/i915/gt/intel_gpu_commands.h:238:
++#define   PIPE_CONTROL_PSD_SYNC				(1<<17) /* gen11+ */
+                                				  ^
+
+total: 0 errors, 0 warnings, 3 checks, 94 lines checked
+98e524e28237 drm/i915/xehp: CCS should use RCS setup functions
+40eff9e2e9e6 drm/i915: Move context descriptor fields to intel_lrc.h
+369a79a79793 drm/i915/xehp: Define context scheduling attributes in lrc descriptor
+2e9621bdf444 drm/i915/xehp: Enable ccs/dual-ctx in RCU_MODE
+6141733015f0 drm/i915/xehp/guc: enable compute engine inside GuC
+956e0edadb91 drm/i915/xehp: Don't support parallel submission on compute / render
+d9ef4070812a drm/i915/xehp: handle fused off CCS engines
+159d8e720719 drm/i915/xehp: Add compute workarounds
+fc684cd87d6c drm/i915/xehpsdv: Move render/compute engine reset domains related workarounds
+
 
