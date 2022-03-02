@@ -1,164 +1,168 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D87F24CAC95
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Mar 2022 18:55:22 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 806EC4CACF8
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Mar 2022 19:07:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1933010E84C;
-	Wed,  2 Mar 2022 17:55:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5609210E407;
+	Wed,  2 Mar 2022 18:07:50 +0000 (UTC)
 X-Original-To: Intel-GFX@lists.freedesktop.org
 Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9705110E84C;
- Wed,  2 Mar 2022 17:55:20 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D397210E407;
+ Wed,  2 Mar 2022 18:07:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646243720; x=1677779720;
+ t=1646244468; x=1677780468;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=Qp/Njtj09zNkOEBTcvKO3vm+6pnEDOoMrr35EvY2zqI=;
- b=FLzifbpkEwqriaUhVsGHqPO+MAvFiIsgSCh0QII+toPNkYx7zAfmgy6M
- q22kDyRlZHdHGJCWt03KWVypdnt5avBMOWA6IIfF23SauXj9p8W92tSsh
- TfjW6ePvFWP/JyWfymQszGr17CikDKvwFNqMuP0krFfjQeD+ZxCcxGU/i
- wRhLUjSSnqDFR+eVDGhn/+UlpURtkdrvO+1XUPvLR8CG0P0O5EBSIU24R
- AyOIRS2X+xgzu1SXC/XhFu7P3zsp9IyFe5lxJoO9FKT1qyZUG4TEJehXe
- j4T6uid2aJTDAxtaeKBbtUdCRGh2w8B+xfd0mi4aF8T7XQ3Zhsmy1Ojwn g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10274"; a="339896489"
-X-IronPort-AV: E=Sophos;i="5.90,149,1643702400"; d="scan'208";a="339896489"
+ bh=tS6d+BIFWr6b/fgK6DjhwVctx4hsK5Vpk7JfZGwCq1o=;
+ b=ZycBX/etxvKhNWoBDZ523W3qIEmXeOw8ok631bI2m8uZnymE8ugUNf0O
+ md/MmaucN3D1A9GwzAVLOPn9v6fZJBW2zPNBIaLyPnrkG0sAYPRpUHBzP
+ Vn0psEzJzF2M00C8/gaCKzVbypywyOHG72GrJVdg2zmS1w3x8Cv0+avYO
+ uORyuqydxSRnlfsjtK5zSU1ehaqZujsoJVduj7vY/d8VTyrxjq5mEcETs
+ kBZ02hHBNaX8ywupEKbYyLSfSDZmjsgxzmok1k1/KHx5O4dlsd5hVKJhn
+ OIXwHld3V450Lj3xeZ+GZjFqwoCqEswohJUPBK4N17SKtooh2LvVfsEBs Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10274"; a="253663724"
+X-IronPort-AV: E=Sophos;i="5.90,149,1643702400"; d="scan'208";a="253663724"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2022 09:55:16 -0800
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2022 10:07:48 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,149,1643702400"; d="scan'208";a="545580139"
-Received: from fmsmsx604.amr.corp.intel.com ([10.18.126.84])
- by fmsmga007.fm.intel.com with ESMTP; 02 Mar 2022 09:55:16 -0800
-Received: from fmsmsx607.amr.corp.intel.com (10.18.126.87) by
- fmsmsx604.amr.corp.intel.com (10.18.126.84) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="5.90,149,1643702400"; d="scan'208";a="545584805"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.229.17])
+ by fmsmga007.fm.intel.com with ESMTP; 02 Mar 2022 10:07:48 -0800
+Received: from orsmsx609.amr.corp.intel.com (10.22.229.22) by
+ ORSMSX604.amr.corp.intel.com (10.22.229.17) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.21; Wed, 2 Mar 2022 09:55:16 -0800
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx607.amr.corp.intel.com (10.18.126.87) with Microsoft SMTP Server
+ 15.1.2308.21; Wed, 2 Mar 2022 10:07:47 -0800
+Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
+ ORSMSX609.amr.corp.intel.com (10.22.229.22) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.21 via Frontend Transport; Wed, 2 Mar 2022 09:55:16 -0800
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.177)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2308.21; Wed, 2 Mar 2022 10:07:47 -0800
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.21 via Frontend Transport; Wed, 2 Mar 2022 10:07:47 -0800
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.169)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2308.21; Wed, 2 Mar 2022 09:55:16 -0800
+ 15.1.2308.20; Wed, 2 Mar 2022 10:07:47 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=DgGFhyAk/CMXFmQBiFHbiJdOGCxC0HzAme1IJOJBOVV+fMfr3wsT/39UMWuOh9XGaE3R88hlPgRTlSP5gt2aWybuSvfImRLjhwz6h6inQAysbICCyy+U+c69y2Ej61f5dnb6bSx8OdlG1J2TlpPURfpotZBdmWbWg45W+kInq9NaqBh/filo9OaoAlyWvWM4lXC2/iEglVKZ1UI7zQ69PXX9TEXG2FpWzwU/Q4r5rJ/3mB9Ib4JY5ohNBo5PwdNbudGi8VX2qMJAVwbtaF44GNu9sjRsbhDZB+Lj5ZY503toNc4KW+xCrJ7sDsFI4obVv/7PItqey+lz+0xQxvRT0g==
+ b=Nu3TzdlhWZepECYggpVw/xPR+gSczIsetZZTNe554/Vii7UZuMB+nuC8SHNl86kdI93tGCmzTmGUpOCjJEug7iVOZ1FUcDndckXIExfIngFdOLlluz/WIwdilIddGfOyELvGCKWp7sdn5RQ+DqUoPhMYxI+DP8wEFY52QacIbHKvRGWQM7TF2eNNyp9nFpAUeJbPGhAb2a1EUwgX1oZuSEzJhhCr+ZiCoIvL2xsWTs3xHeSY4HRoSgQF6/wBza8HBU//QlLz6SwzfapWp6t6ntWkTjNhCIxWO4ehwRugmUq0+fcg5r/sNTxblYtfMnLbHfVHN4KK0YcUPotrOjxTJA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xSXVv1hq2yizeUQWfWcbRXay9/CKjANATVFz1LD7NwQ=;
- b=ck0B6NoBs5GxbHDvTvLmRNiHWMIiXDTUbARL0IjANsn+msu9piWmmRglM/2MwAF8WL1jO5Dkq6QW8K4eoMwyua1iav4JRPTSNN7e3nfoPJK0Xnl7bfYJTmg4GatgllCXRbAOrORAo4jIg+FW79XDe07iguEZHBNBE0DFIx93gZxk+R9cdO15IMIPuNPNTG9Km3J972h3DFwChi/sJBDuKs9izAb9lldluhZi1kIERXAQhEBu627tsB96Zd/fZ39q2m1rOrsJJIs1HKUCLPg9F7Iuxloyl3hYH3XbrE9pzOBonU7U6lxG9gKrEwzdtTm2PGocM89myYNRwqVrfXpB1A==
+ bh=ZB1Hxi3nte9OOHOXSc6xYH+CfDwTg9Ztw5KS0azelvY=;
+ b=k+UxxEDXUIUG73GLREn0PfrxByrMemnos2PHZftDG5ni4Yl4UEgx8Eez+KB8AmDrU1B7AHmJNXHrKsobiMl2Qrv/TGmLBmT2ZHTjWf/4Y+r6ZRgG7l+0cMP3VmdPkl2M0zdCXku/UwOhvhqZcST+Ik2RqN2xQSknzga5sUn1TKTsqJIQ9AfmesBBMwH6/XEzoq/OjE30D7Z+gPN+oabhy2wIPZ89yE6XpfUOQZgy/hct6qKdmXUCJ/hjMMYcxIpH1VDO/vwhYLwg7X39OyLtrgWLjGgaxzozQ31ZjElKrBnV4+c+Qe3TjdflFiAsj+a7QR8cywKDRZ+7Dc6MSzeWpw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from BY5PR11MB3911.namprd11.prod.outlook.com (2603:10b6:a03:18d::29)
- by CY4PR11MB0037.namprd11.prod.outlook.com (2603:10b6:910:77::29)
+ by BL0PR11MB3249.namprd11.prod.outlook.com (2603:10b6:208:6b::27)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5017.26; Wed, 2 Mar
- 2022 17:55:06 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5038.14; Wed, 2 Mar
+ 2022 18:07:44 +0000
 Received: from BY5PR11MB3911.namprd11.prod.outlook.com
  ([fe80::dd36:1843:a629:4ad7]) by BY5PR11MB3911.namprd11.prod.outlook.com
  ([fe80::dd36:1843:a629:4ad7%4]) with mapi id 15.20.5038.014; Wed, 2 Mar 2022
- 17:55:06 +0000
-Message-ID: <389c16df-f579-81df-8405-376fcf8ce613@intel.com>
-Date: Wed, 2 Mar 2022 09:55:03 -0800
+ 18:07:44 +0000
+Message-ID: <68a2f3db-f65c-f6e1-1c21-3b0fd50710f6@intel.com>
+Date: Wed, 2 Mar 2022 10:07:41 -0800
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
  Firefox/91.0 Thunderbird/91.6.1
 Content-Language: en-GB
 To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
  <Intel-GFX@Lists.FreeDesktop.Org>
 References: <20220218213307.1338478-1-John.C.Harrison@Intel.com>
- <20220218213307.1338478-3-John.C.Harrison@Intel.com>
- <2a486991-1bfd-9b23-0b43-9173d17b7e13@linux.intel.com>
- <e95e8710-8410-2869-dec1-7f7a9e9a74fb@intel.com>
- <18205069-1210-745f-3bcc-2eddb0d17da1@linux.intel.com>
- <94e9889d-d71a-1428-516d-2928807cbf43@intel.com>
- <6ee75384-2cf0-6b34-ed54-3c7dc9ca31a3@linux.intel.com>
- <d6624800-87b0-f992-bc83-868744e2839c@intel.com>
- <ed505a8e-2d2b-135b-aaab-7e4a0befd5ba@linux.intel.com>
- <f6c70184-121e-9a2b-6bbc-54a67af293cc@intel.com>
- <96b7ce40-12f1-9ca0-1c5a-323d63dd8153@linux.intel.com>
- <9df22764-db87-a2d2-2b03-52b4d4c6da9c@intel.com>
- <9bd316d8-004c-621a-916c-2ebad5c31b43@linux.intel.com>
- <8fb0a3a7-7968-79cb-9ea1-e31b0593acaa@intel.com>
- <42b114a7-04ea-71eb-7cd6-507fb4fb1655@linux.intel.com>
+ <20220218213307.1338478-2-John.C.Harrison@Intel.com>
+ <0d0c5a79-1285-0830-3794-e9f0644811a5@linux.intel.com>
+ <94c3184e-c1e2-668f-5824-00fd55797736@intel.com>
+ <17e69f0c-8084-10dc-b20f-7d5108260180@linux.intel.com>
+ <85105590-a8be-f4e1-69bc-cd34cad108e2@intel.com>
+ <16a2687b-4996-8d40-456e-019a112f0fb6@linux.intel.com>
+ <c1472196-260a-d2c8-c508-10fe58d4cd47@intel.com>
+ <74d30fd4-cb72-113e-fc09-12602b3cf06d@linux.intel.com>
+ <986dae97-6c68-34cc-d972-22edaddf7261@intel.com>
+ <4e8888d0-f0da-12f3-4010-159b4ff2bdb3@linux.intel.com>
+ <fc96ce57-37f7-9962-6d15-1741de9fcd89@intel.com>
+ <d931b54e-0b89-877e-9a7f-ede3c3bf165f@linux.intel.com>
+ <1b8edddb-f0c4-0ff9-a07e-25e4a496ea4d@intel.com>
+ <588709b6-c19d-eb14-dd31-cb6bc0bdb08f@linux.intel.com>
 From: John Harrison <john.c.harrison@intel.com>
-In-Reply-To: <42b114a7-04ea-71eb-7cd6-507fb4fb1655@linux.intel.com>
+In-Reply-To: <588709b6-c19d-eb14-dd31-cb6bc0bdb08f@linux.intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MW4P221CA0018.NAMP221.PROD.OUTLOOK.COM
- (2603:10b6:303:8b::23) To BY5PR11MB3911.namprd11.prod.outlook.com
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MWHPR22CA0062.namprd22.prod.outlook.com
+ (2603:10b6:300:12a::24) To BY5PR11MB3911.namprd11.prod.outlook.com
  (2603:10b6:a03:18d::29)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: cf4a6676-b3f6-4db8-67a9-08d9fc75c924
-X-MS-TrafficTypeDiagnostic: CY4PR11MB0037:EE_
-X-Microsoft-Antispam-PRVS: <CY4PR11MB003710D4343B8C6B5372329ABD039@CY4PR11MB0037.namprd11.prod.outlook.com>
+X-MS-Office365-Filtering-Correlation-Id: 70d2701d-b178-463c-f032-08d9fc778c89
+X-MS-TrafficTypeDiagnostic: BL0PR11MB3249:EE_
+X-Microsoft-Antispam-PRVS: <BL0PR11MB3249E4C8E69E3DCE11745D4EBD039@BL0PR11MB3249.namprd11.prod.outlook.com>
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: sgafITRjv39iWEI6WaKMFRcye1ATcUeZ2Yrb3cmc/9aY/lrFmjAShOfVeS523mMqhWY4AQh90lArUNSOfu974T+FXul25lIVQYd4yAuPOjUBGy9lzfq8iEWyJG6I0pxNDblzXrvmFnn/dR2OB8CkLUrgvawXBmTAq1kE2iftRoowPLufBAVT1LH+SB4eJOq993vv+/QPJ0KM6WHV0+j4rkcqoNIg/LYOTIBLtJK5NXLp7A5FYgcxf4q/dtBIUYX2nBiKcaTJYJ13taQXngML6eWWV4Nj2JI2slgArzXWYzFIHl9lE6bdKuoaiRZ+tbJPgB7gkICs/70wfaxV0r/+sMbp/GMsv88Z3s7C2npdOon836cYYRYaqL/aPPuTg9Phy0TzZRfRwTLbnq3YUVbzpU7PYTybvlIw5MdrNvPC48e+zrjs5/RZ91dAhGuXNJ/ExFe2TkdOndWt5Uyn5pttOJJQRma6yGMiou8MxFYxD6PJSQ4TUBUjoQfdfq+UYUI/Nxplve6Mf28TSjuBA4W9+snk4jmYrCRrIJxWm4Sflttr0H6tI6nIpigjmucWBv9pu6YwdPJeIhm621LLU01zbN4JjOwcpEkf83m5+tZ8x+sPVSOaZqYmn2O0+UWIwPxWOtsi1A1YWbYoPTJT9qFo6OdXkyEvobnvNl8zcvODTc5MoFoG82xgjGUezPdPp1k6+75OjS+7ZuKB4SBT5wAxuS+6rYMACTu2sXjq31t12u4V4s9+NzzGdnJWurtmMu6f
+X-Microsoft-Antispam-Message-Info: I+bdSsK64cfB15bnLNJeGd7XizWe8hNcvkSyfZRNe5ASYTN0mbR9NOXuFsNdOJLhciDfOT9VtesF5vwobaONbLaW6+xjbTIA4i7kx+dx8mp1IzCqBCpzcMEKQ4HjtU5XujNBHTsYLLRh9pNahon0iaLDJfCa7Bi3TxM+Gvh8HWKGJ3pln6OgcixWQOmWETiWqKSkINz5m1s+IeHPz0UbLsQSIeXtFSFYp5SDxFQlnDO5c6vizojk/jsBil29x5KjzzWFcOmcMl299ax5o5Xeg3ylv+Pz5ANYMJksoW0t7IOkwO0r4AlAMXDbJQOb27791Yh3VN+7C8f7NaFCcmj0F9MSBcg5iFJ1B3/trhxlJ8Qx8pA+CrBSEJF+hNc56mtgkzll7Li2qhfHaEcncN36T6JD/PDdbyl0CvzzgGgEUXTIetkcMtFQhSNwPgQlBgRsDlWmQzmFXh5agF4x1shYNpuxjrYP7r6nAtbZYgzcyoPHcqFtvfsgiC+7x8Vgr7EuezaPQjkXwPe36xdMvpF7jo00fjMALIb80YEYWj3mE6LKsAIPUsFP3wRAZhrxv+7/UjMrjCLeHmW13r1vAtGy2qw01q3GjRol5z6EQtYsBqiIEHL9GOGJHd5rC6c5ZJd4o8OdyvElACfZV9s5hvEy/zv9iQxTkuGTpMnYIJiysJltXOOiEeW7eLGcriYXPpvjH0kvJDvlITjnUEeavMYO56Ng2djZD1DkdCH6Y0jJZPTcTib57QdmY1L0C97xq+i9
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:BY5PR11MB3911.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230001)(366004)(38100700002)(66556008)(66946007)(2616005)(66476007)(53546011)(8936002)(5660300002)(31686004)(83380400001)(4326008)(6506007)(6666004)(36756003)(6512007)(186003)(26005)(8676002)(6486002)(508600001)(82960400001)(86362001)(31696002)(2906002)(30864003)(316002)(43740500002)(45980500001);
+ SFS:(13230001)(366004)(6512007)(6506007)(6666004)(36756003)(6486002)(53546011)(508600001)(8676002)(83380400001)(316002)(31686004)(66946007)(66476007)(66556008)(4326008)(5660300002)(82960400001)(31696002)(8936002)(2906002)(86362001)(26005)(186003)(30864003)(2616005)(38100700002)(45980500001)(43740500002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MEUzY2JOclpROGtXK3dpbXlQR1BKZGkrT0dYcTIvY0IraHNWTzhHbEp1cE1E?=
- =?utf-8?B?dUp5ZjBraXVPcVNlRzdHbkpKS3pNWW9MamwrTm95RlpudVQ1NXhvMkN4V3dQ?=
- =?utf-8?B?K2RiL3RpMU1HWmZybUIxeXhkWDBtdVFGNnlFRzBzb1dQam9JTDc3T0hEemlF?=
- =?utf-8?B?Rnl4S21TZ1BZcmYyZlFpSWdIZTQvci8xMjliWS9haVorNmJlMU1kVVdsK054?=
- =?utf-8?B?M1JVRE9vbTdGZ05mczhCNmZxaUtIVUtIUzA2WFdBT2JVTTlpaERzQlBXSnk4?=
- =?utf-8?B?VEQ1cWJyNzZRVUs2bkhFaFBGaExyNmw3dk91MFg5UGxiclg3MjB4cmlXejRa?=
- =?utf-8?B?OVorUkhtN3VuaXF0MTYxclM0NUtPaWhucTNlcVZhNDZXeEJ6YnZOOGcxSE43?=
- =?utf-8?B?cUVMckI5UHdOSSt0M1FnUkpoUWZpLzkyZ3VLUkovZnpUVll2VGwxamxxUzB0?=
- =?utf-8?B?b29lMDNCeEdzbkVBM3FHVElQWEZmM2NGdnF3VkJueU5Xc2xOK3pCZ0lQRGRm?=
- =?utf-8?B?cjdTV2NCYmJ2NkNSY29HenR5UExDbWhrajhyNkt2Z09FZDlBOWhlc2xsTkhr?=
- =?utf-8?B?Wm1HSExQaVhrLzlxSEV3S0x4bmxpT05qcExVL2pEdkRiUXI5MzFpZmRFMVFV?=
- =?utf-8?B?T2t3b3pQV0c4VmFNZXhZMVhHSHVBRFo5ZnpESHhIemR3c2NFdmJCUElnK1o2?=
- =?utf-8?B?YlZwTlpYYWUyaE9pWHpFUFE3QW1XUFA2YVVUWEE2VXowdUh3UTJ5b0p3Nitq?=
- =?utf-8?B?UnFPcVRMdGo2c0o0alg5cU1Kc1ROelJHMmwramVtK01RdExiTGNITzkweGdk?=
- =?utf-8?B?Q0w4a21ENWo0eHNmNm5hekZ2QkUvZzZ0aDAxZ0pKV1JvUjNTUEM5bTRHQUhD?=
- =?utf-8?B?dkJuaTRLVWRJN0tDMkZLWDlualpYV2R3b1lJOEo0SU5JVnpacVdFdGxzLzY5?=
- =?utf-8?B?dlVVYnBJbWVMR29SN2RiQ29ldTNYTE1ZQU1MWDFnRlN2b3BlOWdBbUo3SG93?=
- =?utf-8?B?Skpwd0ZLdng1YUJadEIxelE0b2YwT0Q3WW43S3VabjNnd0toOUE5aCtoVDhO?=
- =?utf-8?B?VjQvN1JuVWpuSWRtNk9iNnVUTE5wMTQzSkxrbTVadVVaY3U0MHdIa3drczVm?=
- =?utf-8?B?cnZPQVA0d3hYVVlydWVJZkIxRFVkMGprd1RXVmswWGJRUDM4ejU4UDBNWlNq?=
- =?utf-8?B?b21pWktIUUMyVXNkNWRET29HK2NIZS9HSFlYNjk4WkREWVpDdm5vanJuNVhV?=
- =?utf-8?B?dWZ1ekJzRk05WGN3RmxOSTZBamg3eTVXTlF4Ni9CVDdzYWNuVEVVbC8ybnF2?=
- =?utf-8?B?OURDS3UxWUNOQzRNcnJmUTQxMnNLY1NOUGxrMGhTWWhtUitxU1ZpOERFaTFO?=
- =?utf-8?B?eDIyVFpYdjBqL2d6aTQrOFJpTGJOU1I5ZTNRdU84VHpFZk9IaWs4cDNUSHZw?=
- =?utf-8?B?bmxpMDlTWjlVQjRJM2dlU1p1dTlDNURTQ2N2WWFNRXNWUzZ5eDVGU3JwOTFO?=
- =?utf-8?B?ZXFLTUxId2hycElORm5uVDZLYysveGVuL3ZkQlVvM09KYmhDejBUZGRJRnlx?=
- =?utf-8?B?akhLUEZGUi8zOXRSOVNPdEMyVElucXpya1o2WnY5bG1yclZoMGs3aEdpaXc3?=
- =?utf-8?B?NmdRY0R4YXdwOS8zODg5aE5Od2YyWkFOZlhyVFJIQjFJTlh4VkdieVpGb3pI?=
- =?utf-8?B?QVIyVTF5VU1NV0FxVktyUTVaZGZhRVRSenZsN2xEVFY5dFlmMy9McTF6YXNE?=
- =?utf-8?B?NjN4aGF6OHNwNmo2NzJHeUtqcE9uc2N1SURwcytwU21rWFRDK1NTdnB5OXRL?=
- =?utf-8?B?WWZHWnoxRjJ0Q1c2Z2MxOFFWaURINnAzaG8zTXpXUHh0d1ljUU41QkVFRE9Z?=
- =?utf-8?B?aTNzZGtvN3RRclZiMnIzbTVrY003MzNwdlRLRnNXOHltV2Q3cmtMaWpVSmZH?=
- =?utf-8?B?d243UXVVN21VcVZJeklicjhiN2t6b2xhVDRyV09kOE51QjFVdEZMZmx4Vmlh?=
- =?utf-8?B?aEFia1RNNzZ1UXZpYldMWTJGNy82M1JtRmhrSUZLS2xVSzNNNmN4NmJpNHVM?=
- =?utf-8?B?U3dMdER4Tzc2bVZFNzVFeDdXK2JBNEsvMXN4WkY5cWI5Mk5kZFNYaXFHWUZZ?=
- =?utf-8?B?UjZzVm1Tcko3VER0VytPck03TWFhWVcrbUV3RlpONi90S0w4eHltU1N0Z0JE?=
- =?utf-8?B?VWNzNDhGZFA4MmJSUkZnTUQ5RlUxZHR6bElYMVIySStWQVlKTTZPNXdpY05y?=
- =?utf-8?Q?X/tIX0k/i8DgnAnVB8kTXcWnuy1j6J5f/21CHDS3cg=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: cf4a6676-b3f6-4db8-67a9-08d9fc75c924
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?M2hYdTM4Z1dvTTgzVEIzNmxmOURGNEIyK00yN3NwMXlUS2k2VGJBTGtCcnBa?=
+ =?utf-8?B?eG0zT2ZrQi8yVEZ6SUl2Rzk1K2dDb0xObExlVnovdHh4WUdOcVZHYVNpbU9h?=
+ =?utf-8?B?cVlwUmthZjdMc3MrYnZVMFhxK3k1MEFiV1Z6U1o0Rk9ENlg4emd1VzB3YU5B?=
+ =?utf-8?B?NUZxZzR1TmlsODlKL0hUUXZxdXRJbjNPaXNYOVM0bDlqUnppMHZaMnlnY3dr?=
+ =?utf-8?B?b1h6L3U5UlVzOGdvVUlZandPay9VS0I5RWsyRHRsR2tJa09NRXhaUThJVDd1?=
+ =?utf-8?B?empjVFZtN01iOWlMaVl6N2hKa1gxVlg1QkMxWmV5NXlTVFdNeVg4TjcwWW8r?=
+ =?utf-8?B?bVlXSWYwb0xaVkl3NzNnTGg0eFZROG9mYlE1NkhId05FQ0NlZkV4dmcvN0pS?=
+ =?utf-8?B?WEVsSW02VVVhWUt0SVMvTG95NWI2RXJQRkRjd1pEOUtCZnFQSWluZ1ZCamhy?=
+ =?utf-8?B?L1EzVzU1T0tvQnZaUEp3LzVVMlhyWDhrSGV5NHVUWk5VZktnU21rNEZhcHA5?=
+ =?utf-8?B?alJDb3JaMmZUVDIvaU5IVWd0VEQzWTBjcStrRTYxdFdOaVF6cGpDdWtEYnA0?=
+ =?utf-8?B?MDZ5ZmVZV2w0Tkh5N3dLKytOcFY4WmJvbWZ4QnpHRnI3dDl6TzVMRnpGVlRT?=
+ =?utf-8?B?VDVOSnVSNW1IdkpLdHFoRGVNNUY0ckl2N1lodnRxZ3ZMcURZeWRxTDlSWTlv?=
+ =?utf-8?B?VWtJTVRvSExSOGNBQzNxc3NjWTlyS3NNTDlrUHU1bU1jeGdEemhOckRJWWtt?=
+ =?utf-8?B?TFZxa1JGblgvNENWdXdjL2NOaytURlJQa1FpVU5YTGorNnpQdTlOSGJLWTVD?=
+ =?utf-8?B?UUZGK05jdG8rTXlpSWIzc29FRUcrUkRJVlBiSnQ1MHFSWEVNQ0E2VStpM1lY?=
+ =?utf-8?B?c1hVREczNjIwTURRejgybGt5dk9hbDU0WjJ3eFZHMXpvcmVrWjhwdVI4Q01I?=
+ =?utf-8?B?dWVVT3k2bkJGTE5ja3ZNU1lFV0MvKy80Z3I3K3c1NHVzU3Y2eXdDaU5wVWxZ?=
+ =?utf-8?B?MjlLeFd2blRTTFNOT2MyazdRb1VhbXZOYXRPbHVRMFVPZ0JGdUtuenViNzd0?=
+ =?utf-8?B?QVprUUhYd0o1Si9BZ3Y2ZE9NdVVxVjFXcXFGTXhacDJkRVVHOWpvYjVjVjI2?=
+ =?utf-8?B?R01qVUZ0VlRKeE9VdmdldVl4Q1JUaVNYQ0dUWlJLWTFPZlZIWXM4bmh5Nklw?=
+ =?utf-8?B?aFRBemxtempSdGJ1ZTh2bzlSZU9SRVcrZS9ZVEJMZzRkQWROZkJBeGJxT0dY?=
+ =?utf-8?B?dXFjNTNyZ2tVTWc5cmNDaG9qNlJzTGVMRGFvSGM4RUhPZURZcHlqaVdQdElM?=
+ =?utf-8?B?V0xRWFhtWGJMQjNhZGZ6aCtDVTA0Nkx4Q2RJenVabUQwdWVybHA4SndEZWs1?=
+ =?utf-8?B?UVYyRzhMWC9FRkJIT0IvcW9tMUdSZDZvTGxiU0xMNWRuNGg0eHVqNjk5SWhX?=
+ =?utf-8?B?UXJneS9KTXc5WVU3d25IV012Z2hkMkNSQWN5b3NhNi9FTTYwdTZkK3h5T2ZV?=
+ =?utf-8?B?eHBPTzNqVC9pZk1xdDg5VmtSNmdPaklUV0NXM0E2QVF0K1R1ZHZwWGI2VUhk?=
+ =?utf-8?B?MDEzeFRMRHBYdUhDYXc2VzBnSWE5emVaKy83emJmOFYyR3loN2ZEN2tkcEJs?=
+ =?utf-8?B?LzNzUyt1Z0tLYjlzbHhqN2VXd2FwMzhsU2NhQXpYY2tLM2RxaTdqalAzdjNt?=
+ =?utf-8?B?eUQ0cW9pdFNNQXd2UDBYRVI0UHFHV3cwZFFqV2ltSHhLdmRpcGQzdTgrZEZN?=
+ =?utf-8?B?dHRqUHlHY3lkMmZJT01rYjkyaXdIWkY0SUR0NXVLTDA1WFJRZmhwaWRPWkww?=
+ =?utf-8?B?SitsOS9RYXhKaURLVDN6VjFmTWlQRXhPQlZHUlk3YkljejJuTkljZHhHVzN0?=
+ =?utf-8?B?TW9sUnRoY0tWTkxFUUhEVE5QZXlyQVd2VXhzc1diVHNFNXlubHhIK2ZoQ2cw?=
+ =?utf-8?B?R3hBQ0xFRFc4YlJYbUVhWUhxSmpqdjFCaDIvNVNURjZ5ZlFmTG1IakdmNng4?=
+ =?utf-8?B?V3JKQnN3SGMxdFhvV3VPSjZUQjJCamtXRXVma1RReE5Zc0kybTY2VWtvUG8w?=
+ =?utf-8?B?MDdyWGE2UnRmdDV1dklrcjBRN0Y2alR4NjNWalJGOHJaSmxDS3ZoS2xxd0JO?=
+ =?utf-8?B?MmE0K05ScWZCSVd3eUh1TVdLOWNKckdhTVBoZTRNWkd3T25QSDNFaTF0L25H?=
+ =?utf-8?B?NUZIUlhiMVZ5UzcvWnd6ZFVFNWVZbmdaZW5MZ2crT2paNGVZVWRoZkkwTEhC?=
+ =?utf-8?Q?VvT7ZMdzN7ToEeO+jMSxhD4HUimS9R19lVTjWeA+GA=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 70d2701d-b178-463c-f032-08d9fc778c89
 X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB3911.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2022 17:55:06.7177 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2022 18:07:44.0824 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 4pWb5DyTWbqWLY2r8jGZB/2/4kh8L4PtuItS+MHjgoqy5+9H6DQVgPMsqsmCn45rG5KFZ6/lgKzO2+ySCMsZSTCSEjGsc6bTh+OEZhy4VcU=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR11MB0037
+X-MS-Exchange-CrossTenant-UserPrincipalName: uLrKUKAbcUznUEyGSRGp6be3Hqomfu0cY9e6u8zZ5fKf+AYWoJa8hhMCQk0ouKsgRGFHsI267PQDF4dyfbnxq3P4vBufAP7mfUAUAegebGk=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR11MB3249
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915/gt: Make the heartbeat play
- nice with long pre-emption timeouts
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/guc: Limit scheduling
+ properties to avoid overflow
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -175,233 +179,222 @@ Cc: DRI-Devel@Lists.FreeDesktop.Org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 3/2/2022 03:07, Tvrtko Ursulin wrote:
-> On 01/03/2022 20:59, John Harrison wrote:
->> On 3/1/2022 04:09, Tvrtko Ursulin wrote:
->>>
->>> I'll trim it a bit again..
->>>
->>> On 28/02/2022 18:55, John Harrison wrote:
->>>> On 2/28/2022 09:12, Tvrtko Ursulin wrote:
->>>>> On 25/02/2022 18:48, John Harrison wrote:
->>>>>> On 2/25/2022 10:14, Tvrtko Ursulin wrote:
->>>
->>> [snip]
->>>
->>>>>>> Your only objection is that ends up with too long total time 
->>>>>>> before reset? Or something else as well?
->>>>>> An unnecessarily long total heartbeat timeout is the main 
->>>>>> objection. (2.5 + 12) * 5 = 72.5 seconds. That is a massive 
->>>>>> change from the current 12.5s.
+On 3/2/2022 01:20, Tvrtko Ursulin wrote:
+> On 01/03/2022 19:57, John Harrison wrote:
+>> On 3/1/2022 02:50, Tvrtko Ursulin wrote:
+>>> On 28/02/2022 18:32, John Harrison wrote:
+>>>> On 2/28/2022 08:11, Tvrtko Ursulin wrote:
+>>>>> On 25/02/2022 17:39, John Harrison wrote:
+>>>>>> On 2/25/2022 09:06, Tvrtko Ursulin wrote:
+>>>>>>>
+>>>>>>> On 24/02/2022 19:19, John Harrison wrote:
+>>>>>>>
+>>>>>>> [snip]
+>>>>>>>
+>>>>>>>>>>>>> ./gt/uc/intel_guc_fwif.h: u32 execution_quantum;
+>>>>>>>>>>>>>
+>>>>>>>>>>>>> ./gt/uc/intel_guc_submission.c: desc->execution_quantum = 
+>>>>>>>>>>>>> engine->props.timeslice_duration_ms * 1000;
+>>>>>>>>>>>>>
+>>>>>>>>>>>>> ./gt/intel_engine_types.h: unsigned long 
+>>>>>>>>>>>>> timeslice_duration_ms;
+>>>>>>>>>>>>>
+>>>>>>>>>>>>> timeslice_store/preempt_timeout_store:
+>>>>>>>>>>>>> err = kstrtoull(buf, 0, &duration);
+>>>>>>>>>>>>>
+>>>>>>>>>>>>> So both kconfig and sysfs can already overflow GuC, not 
+>>>>>>>>>>>>> only because of tick conversion internally but because at 
+>>>>>>>>>>>>> backend level nothing was done for assigning 64-bit into 
+>>>>>>>>>>>>> 32-bit. Or I failed to find where it is handled.
+>>>>>>>>>>>> That's why I'm adding this range check to make sure we 
+>>>>>>>>>>>> don't allow overflows.
+>>>>>>>>>>>
+>>>>>>>>>>> Yes and no, this fixes it, but the first bug was not only 
+>>>>>>>>>>> due GuC internal tick conversion. It was present ever since 
+>>>>>>>>>>> the u64 from i915 was shoved into u32 sent to GuC. So even 
+>>>>>>>>>>> if GuC used the value without additional multiplication, bug 
+>>>>>>>>>>> was be there. My point being when GuC backend was added 
+>>>>>>>>>>> timeout_ms values should have been limited/clamped to 
+>>>>>>>>>>> U32_MAX. The tick discovery is additional limit on top.
+>>>>>>>>>> I'm not disagreeing. I'm just saying that the truncation 
+>>>>>>>>>> wasn't noticed until I actually tried using very long 
+>>>>>>>>>> timeouts to debug a particular problem. Now that it is 
+>>>>>>>>>> noticed, we need some method of range checking and this 
+>>>>>>>>>> simple clamp solves all the truncation problems.
+>>>>>>>>>
+>>>>>>>>> Agreed in principle, just please mention in the commit message 
+>>>>>>>>> all aspects of the problem.
+>>>>>>>>>
+>>>>>>>>> I think we can get away without a Fixes: tag since it requires 
+>>>>>>>>> user fiddling to break things in unexpected ways.
+>>>>>>>>>
+>>>>>>>>> I would though put in a code a clamping which expresses both, 
+>>>>>>>>> something like min(u32, ..GUC LIMIT..). So the full story is 
+>>>>>>>>> documented forever. Or "if > u32 || > ..GUC LIMIT..) return 
+>>>>>>>>> -EINVAL". Just in case GuC limit one day changes but u32 
+>>>>>>>>> stays. Perhaps internal ticks go away or anything and we are 
+>>>>>>>>> left with plain 1:1 millisecond relationship.
+>>>>>>>> Can certainly add a comment along the lines of "GuC API only 
+>>>>>>>> takes a 32bit field but that is further reduced to GUC_LIMIT 
+>>>>>>>> due to internal calculations which would otherwise overflow".
+>>>>>>>>
+>>>>>>>> But if the GuC limit is > u32 then, by definition, that means 
+>>>>>>>> the GuC API has changed to take a u64 instead of a u32. So 
+>>>>>>>> there will no u32 truncation any more. So I'm not seeing a need 
+>>>>>>>> to explicitly test the integer size when the value check covers 
+>>>>>>>> that.
+>>>>>>>
+>>>>>>> Hmm I was thinking if the internal conversion in the GuC fw 
+>>>>>>> changes so that GUC_POLICY_MAX_PREEMPT_TIMEOUT_MS goes above 
+>>>>>>> u32, then to be extra safe by documenting in code there is the 
+>>>>>>> additional limit of the data structure field. Say the field was 
+>>>>>>> changed to take some unit larger than a millisecond. Then the 
+>>>>>>> check against the GuC MAX limit define would not be enough, 
+>>>>>>> unless that would account both for internal implementation and 
+>>>>>>> u32 in the protocol. Maybe that is overdefensive but I don't see 
+>>>>>>> that it harms. 50-50, but it's do it once and forget so I'd do it.
+>>>>>> Huh?
 >>>>>>
->>>>>> If we are happy with that huge increase then fine. But I'm pretty 
->>>>>> sure you are going to get a lot more bug reports about hung 
->>>>>> systems not recovering. 10-20s is just about long enough for 
->>>>>> someone to wait before leaning on the power button of their 
->>>>>> machine. Over a minute is not. That kind of delay is going to 
->>>>>> cause support issues.
+>>>>>> How can the limit be greater than a u32 if the interface only 
+>>>>>> takes a u32? By definition the limit would be clamped to u32 size.
+>>>>>>
+>>>>>> If you mean that the GuC policy is in different units and those 
+>>>>>> units might not overflow but ms units do, then actually that is 
+>>>>>> already the case. The GuC works in us not ms. That's part of why 
+>>>>>> the wrap around is so low, we have to multiply by 1000 before 
+>>>>>> sending to GuC. However, that is actually irrelevant because the 
+>>>>>> comparison is being done on the i915 side in i915's units. We 
+>>>>>> have to scale the GuC limit to match what i915 is using. And the 
+>>>>>> i915 side is u64 so if the scaling to i915 numbers overflows a 
+>>>>>> u32 then who cares because that comparison can be done at 64 bits 
+>>>>>> wide.
+>>>>>>
+>>>>>> If the units change then that is a backwards breaking API change 
+>>>>>> that will require a manual driver code update. You can't just 
+>>>>>> recompile with a new header and magically get an ms to us or ms 
+>>>>>> to s conversion in your a = b assignment. The code will need to 
+>>>>>> be changed to do the new unit conversion (note we already convert 
+>>>>>> from ms to us, the GuC API is all expressed in us). And that code 
+>>>>>> change will mean having to revisit any and all scaling, type 
+>>>>>> conversions, etc. I.e. any pre-existing checks will not 
+>>>>>> necessarily be valid and will need to be re-visted anyway. But as 
+>>>>>> above, any scaling to GuC units has to be incorporated into the 
+>>>>>> limit already because otherwise the limit would not fit in the 
+>>>>>> GuC's own API.
 >>>>>
->>>>> Sorry I wrote 12s, while you actually said tP * 12, so 7.68s, 
->>>>> chosen just so it is longer than tH * 3?
+>>>>> Yes I get that, I was just worried that u32 field in the protocol 
+>>>>> and GUC_POLICY_MAX_EXEC_QUANTUM_MS defines are separate in the 
+>>>>> source code and then how to protect against forgetting to update 
+>>>>> both in sync.
 >>>>>
->>>>> And how do you keep coming up with factor of five? Isn't it four 
->>>>> periods before "heartbeat stopped"? (Prio normal, hearbeat, 
->>>>> barrier and then reset.)
->>>> Prio starts at low not normal.
+>>>>> Like if the protocol was changed to take nanoseconds, and firmware 
+>>>>> implementation changed to support the full range, but define 
+>>>>> left/forgotten at 100s. That would then overflow u32.
+>>>> Huh? If the API was updated to 'support the full range' then how 
+>>>> can you get overflow by forgetting to update the limit? You could 
+>>>> get unnecessary clamping, which hopefully would be noticed by 
+>>>> whoever is testing the new API and/or whoever requested the change. 
+>>>> But you can't get u32 overflow errors if all the code has been 
+>>>> updated to u64.
 >>>
->>> Right, slipped my mind since I only keep seeing that one priority 
->>> ladder block in intel_engine_heartbeat.c/heartbeat()..
+>>> 1)
+>>> Change the protocol so that "u32 desc->execution_quantum" now takes 
+>>> nano seconds.
 >>>
->>>>> From the point of view of user experience I agree reasonable 
->>>>> responsiveness is needed before user "reaches for the power button".
->>>>>
->>>>> In your proposal we are talking about 3 * 2.5s + 2 * 7.5s, so 22.5s.
->>>>>
->>>>> Question of workloads.. what is the actual preempt timeout compute 
->>>>> is happy with? And I don't mean compute setups with disabled 
->>>>> hangcheck, which you say they want anyway, but if we target 
->>>>> defaults for end users. Do we have some numbers on what they are 
->>>>> likely to run?
->>>> Not that I have ever seen. This is all just finger in the air 
->>>> stuff. I don't recall if we invented the number and the compute 
->>>> people agreed with it or if they proposed the number to us.
->>>
->>> Yeah me neither. And found nothing in my email archives. :(
->>>
->>> Thinking about it today I don't see that disabled timeout is a 
->>> practical default.
->>>
->>> With it, if users have something un-preemptable to run (assuming 
->>> prio normal), it would get killed after ~13s (5 * 2.5).
->>>
->>> If we go for my scheme it gets killed in ~17.5s (3 * (2.5 + 2.5) + 
->>> 2.5 (third pulse triggers preempt timeout)).
->>>
->>> And if we go for your scheme it gets killed in ~22.5s (4 * 2.5 + 2 * 
->>> 3 * 2.5).
->> Erm, that is not an apples to apples comparison. Your 17.5 is for an 
->> engine reset tripped by the pre-emption timeout, but your 22.5s is 
->> for a GT reset tripped by the heartbeat reaching the end and nuking 
->> the universe.
->
-> Right, in your scheme I did get it wrong. It would wait for GuC to 
-> reset the engine at the end, rather than hit the fake "hearbeat 
-> stopped" in that case, full reset path.
->
-> 4 * 2.5 to trigger a max prio pulse, then 3 * 2.5 preempt timeout for 
-> GuC to reset (last hearbeat delay extended so it does not trigger). So 
-> 17.5 as well.
-
-Again, apples or oranges? I was using your tP(RCS) == 2.5s assumption in 
-all the above calculations given that the discussion was about the 
-heartbeat algorithm, not the choice of pre-emption timeout. In which 
-case the last heartbeat is max(tP * 2, tH) == 2 * 2.5s.
-
->
->> If you are saying that the first pulse at sufficient priority (third 
->> being normal prio) is what causes the reset because the system is 
->> working as expected and the pre-emption timeout trips the reset. In 
->> that case, you have two periods to get to normal prio plus one 
->> pre-emption timeout to trip the reset. I.e. (tH * 2) + tP.
+>>> This now makes the maximum time 4.29.. seconds.
+>> You seriously think this is likely to happen?
 >>
->> Your scheme is then tH(actual) = tH(user) + tP, yes?
->> So pre-emption based reset is after ((tH(user) + tP) * 2) + tP => (3 
->> * tP) + (2 * tH)
->> And GT based reset is after (tH(user) + tP) * 5 => (5 * tP) + (5 * tH)
+>> That the GuC people would force an API change on us that is 
+>> completely backwards from what we have been asking? And that such a 
+>> massive backwards step would not get implemented correctly because 
+>> someone didn't notice just how huge an impact it was?
+>
+> I don't know what we have been asking or what GuC people would do.
+Despite the views of some in the community, the GuC team are not evil 
+monsters out for world domination. We are their customers and their task 
+is to provide a usable offload device that makes the Linux experience 
+better not worse.
+
+Just from this discussion alone, ignoring any internal forums, it has 
+been made clear that the (long standing) request from the i915 team is 
+to support 64bit policy values and (more recently) to officially 
+document any and all limits involved in the policies. By definition, 
+that also means that there would be significant push back and argument 
+if the GuC team proposed making this interface worse.
+
+>
+>>> 2)
+>>> Forget to update GUC_POLICY_MAX_EXEC_QUANTUM_MS from 100s, since for 
+>>> instance that part at that point still not part of the interface 
+>>> contract.
+>> There is zero chance of the us -> ns change occurring in the 
+>> foreseeable future whereas the expectation is to have the limits be 
+>> part of the spec in the next firmware release. So this scenario is 
+>> just not going to happen. And as above, it would be such a big change 
+>> with such a huge amount of push back and discussion going on that it 
+>> would be impossible for the limit update to be missed/forgotten.
 >>
->> My scheme is tH(actual) = tH(user) for first four, then max(tH(user), 
->> tP) for fifth.
->> So pre-emption based reset is after tH(user) * 2 + tP = > tP + (2 * tH);
->> And GT based reset is after (tH(user) * 4) + (max(tH(user), tP) * 1) 
->> => greater of ((4 * tH) + tP) or (5 * tH)
+>>>
+>>> 3)
+>>> User passes in 5 seconds.
+>>>
+>>> Clamping check says all is good.
+>>>
+>>> "engine->props.timeslice_duration_ms > GUC_POLICY_MAX_EXEC_QUANTUM_MS"
+>>>
+>>> 4)
+>>>
+>>> Assignment was updated:
+>>>
+>>> gt/uc/intel_guc_submission.c:
+>>>
+>>>   desc->execution_quantum = engine->props.timeslice_duration_ms * 1e6;
+>>>
+>>> But someone did not realize field is u32.
+>>>
+>>>   desc->execution_quantum = engine->props.timeslice_duration_ms * 1e6;
+>>>
+>>> Defensive solution:
+>>>
+>>>   if (overflows_type(engine->props.timeslice_duration_ms * 1e6, 
+>>> desc->execution_quantum))
+>>>     drm_WARN_ON...
 >>
->> Either way your scheme is longer. With tH(user) = 2.5s, tP(RCS) = 
->> 7.5s, we get 27.5s for engine and 50s for GT versus my 12.5s for 
->> engine and 17.5s for GT. With tP(RCS) = 2.5s, yours is 12.5s for 
->> engine and 25s for GT versus my 7.5s for engine and 12.5s for GT.
+>> All you are saying is that bugs can happen. The above is just one 
+>> more place to have a bug.
 >>
->> Plus, not sure why your calculations above are using 2.5 for tP? Are 
->> you still arguing that 7.5s is too long? That is a separate issue and 
->> not related to the heartbeat algorithms. tP must be long enough to 
->> allow 'out of box OpenCL workloads to complete'. That doesn't just 
->> mean not being killed by the heartbeat, it also means not being 
->> killed by running two of them concurrently (or one plus desktop 
->> OpenGL rendering) and not having it killed by basic time slicing 
->> between the two contexts. The heartbeat is not involved in that 
->> process. That is purely the pre-emption timeout. And that is the 
->> fundamental reason why tP needs to be much larger on RCS/CCS.
+>> The purpose of the limit is to take into account all reasons for 
+>> there being a limit. Having a bunch of different tests that are all 
+>> testing the same thing is pointless.
 >
-> I was assuming 2.5s tP is enough and basing all calculation on that. 
-> Heartbeat or timeslicing regardless. I thought we established neither 
-> of us knows how long is enough.
+> I am saying this:
 >
-> Are you now saying 2.5s is definitely not enough? How is that usable 
-> for a default out of the box desktop?
-Show me your proof that 2.5s is enough.
-
-7.5s is what we have been using internally for a very long time. It has 
-approval from all relevant parties. If you wish to pick a new random 
-number then please provide data to back it up along with buy in from all 
-UMD teams and project management.
-
+> 1)
+> The code I pointed out is a boundary layer between two components 
+> which have independent design and development teams.
 >
->>> If I did not confuse any calculation this time round, then the 
->>> differences for default case for normal priority sound pretty 
->>> immaterial to me.
->>>
->>>>> What if we gave them a default of 2.5s? That would be 4 * (2.5s + 
->>>>> 2.5s) = 20s worst case until reset, comparable to your proposal. 
->>>>> Are there realistic workloads which are non-preemptable for 2.5s? 
->>>>> I am having hard time imagining someone would run them on a 
->>>>> general purpose desktop since it would mean frozen and unusable UI 
->>>>> anyway.
->>>>>
->>>>> Advantage still being in my mind that there would be no fudging of 
->>>>> timeouts during driver load and heartbeat periods depending on 
->>>>> priority. To me it feels more plausible to account for preempt 
->>>>> timeout in heartbeat pulses that to calculate preempt timeout to 
->>>>> be longer than hearbeat pulses, just to avoid races between the two.
->>>> Except that when the user asks for a heartbeat period of 2.5s you 
->>>> are actually setting it to 5s. How is that not a major fudge that 
->>>> is totally disregarding the user's request?
->>>
->>> This is indeed the core question. My thinking:
->>>
->>> It is not defined in the heartbeat ABI that N pulses should do 
->>> anything, just that they are periodic pulses which check the health 
->>> of an engine.
->>>
->>> If we view user priority as not under our control then we can say 
->>> that any heartbeat pulse can trigger preempt timeout and we should 
->>> let it do that.
->>>
->>> From that it follows that it is justified to account for preempt 
->>> timeout in the decision when to schedule heartbeat pulses and that 
->>> it is legitimate to do it for all of them.
->> But it can be optimised to say that it doesn't matter if you bump the 
->> priority of a pulse before waiting for the pre-emption period to 
->> expire. If the pulse was already high enough prio then the 
->> pre-emption has already been triggered and bumping the prio has no 
->> effect. If was too low then waiting for longer has no benefit at all.
->>
->> All that matters is that you don't hit the end stop and trigger the 
->> GT reset too early.
+> 2)
+> The limit in question is currently not explicitly defined by the 
+> interface provider.
 >
-> Yes I agree that it can also be argued what you are saying.
+> 3)
+> The limit in question is also implicitly defined by the hidden 
+> internal firmware implementation details not relating to the units of 
+> the interface.
 >
-> I was trying to weigh pros&cons of both approaches by bringing into 
-> the discussing the question of what are heartbeats. Given they are 
-> loosely/vaguely defined I think we have freedom to tweak things.
+> 4)
+> The source code location of the clamping check is far away (different 
+> file, different layer) from the assignment to the interface data 
+> structure.
 >
-> And I don't have a problem with extending the last pulse. It is 
-> fundamentally correct to do regardless of the backend. I just raised 
-> the question of whether to extend all heartbeats to account for 
-> preemption (and scheduling delays). (What is the point of bumping 
-> their priority and re-scheduling if we didn't give enough time to the 
-> engine to react? So opposite of the question you raise.)
-The point is that it we are giving enough time to react. Raising the 
-priority of a pre-emption that has already been triggered will have no 
-effect. So as long as the total time from when the pre-emption is 
-triggered (prio becomes sufficiently high) to the point when the reset 
-is decided is longer than the pre-emption timeout then it works. Given 
-that, it is unnecessary to increase the intermediate periods. It has no 
-advantage and has the disadvantage of making the total time unreasonably 
-long.
-
-So again, what is the point of making every period longer? What benefit 
-does it *actually* give?
-
->
-> What I do have a problem with is deriving the preempt timeout from the 
-> hearbeat period. Hence I am looking if we can instead find a fixed 
-> number which works, and so avoid having bi-directional coupling.
-Fine. "tP(RCS) = 7500;" can I merge the patch now?
-
->
->>> It also avoids the double reset problem, regardless of the backend 
->>> and regardless of how the user configured the timeouts. Without the 
->>> need to fudge them neither during driver load or during sysfs store.
->>>
->>> User has configured that heartbeat pulses should be sent every N 
->>> seconds, yes, but I think we are free to account for inherent 
->>> hardware and software latencies in our calculations. Especially 
->>> since other than flawed Gen12 RCS, other engines will be much closer 
->>> to the configured period.
->>>
->>> It is just the same as user asking for preempt timeout N and we say 
->>> on driver load "oh no you won't get it". Same for heartbeats, they 
->>> said 2.5s, we said 2.5s + broken engine factor...
->> Why would you not get the pre-emption timeout? Because it is too 
->> large? That is a physical limitation (of the GuC firmware) not an 
->> override because we think we know better. If we can obey the user 
->> then we should do so.
->
-> I was simply referring to the override in intel_engine_setup.
-Meaning the boost rather than the clamp? The other option would be to 
-add a CONFIG_DRM_I915_PREEMPT_TIMEOUT_COMPUTE option for specifying 
-tP(RCS). I can do that as a follow up patch if other maintainers agree 
-to adding yet more CONFIG options. My understanding was that they are 
-frowned upon and only to be added when there is no other way.
+> From this it sounds plausible to me to have the check at the 
+> assignment site and don't have to think about it further.
+It also sounds plausible to use the concept of consolidation. Rather 
+than scattering random different limit tests in random different places, 
+it all goes into a single helper function that can be used at the top 
+level and report any range issues before you get to the lower levels 
+where errors might not be allowed. This was your own feedback (and is 
+currently implemented in the v2 post).
 
 John.
 
