@@ -2,51 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23EBA4CA210
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Mar 2022 11:22:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 22FD24CA252
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Mar 2022 11:37:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 27A0610F436;
-	Wed,  2 Mar 2022 10:22:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2096910F499;
+	Wed,  2 Mar 2022 10:37:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA75310F42A;
- Wed,  2 Mar 2022 10:22:28 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 85D6310F497;
+ Wed,  2 Mar 2022 10:37:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646216549; x=1677752549;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=R7uJnG2qZ+8sZY6VYhb2SluNm/0vS6xjl12roqrF1Js=;
- b=IDC9YTESeyvefcFxuy/Ei//THOpDyKgApce8yYk/VVCgWLPxh1wtsSU/
- mYZwHWXex7lHdkLDTl9nsNj66jgAsmFd12F2uqGPLlApdVm2Ygh0vU4kA
- pHAbmG+F5N4MBCsyw3Sy38hluSN5wzLau4w7bRfA4ESSCa8CXZyJ3rF1O
- 5dlutK1xCWJjIu3bbHO3KtjELbNm1wNXvhwTN0BnHf68ByekimC+Gnt5e
- 8W1QDnyHviITJjMfrwIZnRUM3wl2G1gGREwfWmmckRLK6ILyVqRf02/Xu
- SU/ugF7OTS+w55cb2Y7aKZuxLK7bPFeTDFfuNjiSARH4Z3JHT1a42WSlN w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10273"; a="339798904"
-X-IronPort-AV: E=Sophos;i="5.90,148,1643702400"; d="scan'208";a="339798904"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2022 02:22:28 -0800
-X-IronPort-AV: E=Sophos;i="5.90,148,1643702400"; d="scan'208";a="493494455"
-Received: from ccrisan-mobl3.ger.corp.intel.com (HELO
- thellstr-mobl1.intel.com) ([10.249.254.224])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2022 02:22:27 -0800
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Wed,  2 Mar 2022 11:22:00 +0100
-Message-Id: <20220302102200.158637-4-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220302102200.158637-1-thomas.hellstrom@linux.intel.com>
-References: <20220302102200.158637-1-thomas.hellstrom@linux.intel.com>
+ t=1646217445; x=1677753445;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=bl/kn8wsyMQAPxCRMAmGszNM18vXJanwFRfFFWl+vmE=;
+ b=UUZot5DqM/XNrUVDN0xMDbbUEkkTow5tJqrIjsMos9SBRSxFu7FrnoMq
+ ee512Tgb6Q1tSb2GCbLdqq3fZpexkvZEoOwTURz6bVWgp2FO84CsTeuPd
+ AobIbCfHPl24t3AFv2QED7oTFWdueQWNTXR4NoxV6iCxNOX/efLJtfqLl
+ fFwRANRVhsDujoQKg/sO/Zp0sDQQm+iXbGuA3MOchd7KJEWX4Q5A90ges
+ AeaXnaRlBrHxIDbIwWfG2COsY59eM1NHVi07pfFnvigCBaLWZWJSrRf4x
+ rxYckU481ZWdoPgz4UF9ByZCjttIwosGPEXnNg6OHxuyL50Q8YKc5UQhg A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10273"; a="233336939"
+X-IronPort-AV: E=Sophos;i="5.90,148,1643702400"; d="scan'208";a="233336939"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2022 02:37:24 -0800
+X-IronPort-AV: E=Sophos;i="5.90,148,1643702400"; d="scan'208";a="641652498"
+Received: from jbuller-mobl1.ger.corp.intel.com (HELO [10.213.194.231])
+ ([10.213.194.231])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2022 02:37:21 -0800
+Message-ID: <9586bba7-ffb8-945f-eb30-88629e34737d@linux.intel.com>
+Date: Wed, 2 Mar 2022 10:37:18 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 3/3] drm/i915/gem: Remove some unnecessary
- code
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Content-Language: en-US
+To: Jiasheng Jiang <jiasheng@iscas.ac.cn>, jani.nikula@linux.intel.com,
+ joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com, airlied@linux.ie,
+ daniel@ffwll.ch, radhakrishna.sripada@intel.com,
+ ville.syrjala@linux.intel.com, matthew.d.roper@intel.com,
+ lucas.demarchi@intel.com, jose.souza@intel.com,
+ Thomas Hellstrom <thomas.hellstrom@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>
+References: <20220302061946.46630-1-jiasheng@iscas.ac.cn>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <20220302061946.46630-1-jiasheng@iscas.ac.cn>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Handle errors for
+ i915_gem_object_trylock
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,71 +67,48 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- matthew.auld@intel.com
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The test for vma should always return true, and when assigning -EBUSY
-to ret, the variable should already have that value.
 
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
----
- drivers/gpu/drm/i915/i915_gem.c | 32 ++++++++++++++------------------
- 1 file changed, 14 insertions(+), 18 deletions(-)
++ Thomas, Matt
 
-diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
-index c26110abcc0b..9747924cc57b 100644
---- a/drivers/gpu/drm/i915/i915_gem.c
-+++ b/drivers/gpu/drm/i915/i915_gem.c
-@@ -118,6 +118,7 @@ int i915_gem_object_unbind(struct drm_i915_gem_object *obj,
- 			   unsigned long flags)
- {
- 	struct intel_runtime_pm *rpm = &to_i915(obj->base.dev)->runtime_pm;
-+	bool vm_trylock = !!(flags & I915_GEM_OBJECT_UNBIND_VM_TRYLOCK);
- 	LIST_HEAD(still_in_list);
- 	intel_wakeref_t wakeref;
- 	struct i915_vma *vma;
-@@ -170,26 +171,21 @@ int i915_gem_object_unbind(struct drm_i915_gem_object *obj,
- 		 * and destroy the vma from under us.
- 		 */
- 
--		if (vma) {
--			bool vm_trylock = !!(flags & I915_GEM_OBJECT_UNBIND_VM_TRYLOCK);
--			ret = -EBUSY;
--			if (flags & I915_GEM_OBJECT_UNBIND_ASYNC) {
--				assert_object_held(vma->obj);
--				ret = i915_vma_unbind_async(vma, vm_trylock);
--			}
-+		ret = -EBUSY;
-+		if (flags & I915_GEM_OBJECT_UNBIND_ASYNC) {
-+			assert_object_held(vma->obj);
-+			ret = i915_vma_unbind_async(vma, vm_trylock);
-+		}
- 
--			if (ret == -EBUSY && (flags & I915_GEM_OBJECT_UNBIND_ACTIVE ||
--					      !i915_vma_is_active(vma))) {
--				if (vm_trylock) {
--					if (mutex_trylock(&vma->vm->mutex)) {
--						ret = __i915_vma_unbind(vma);
--						mutex_unlock(&vma->vm->mutex);
--					} else {
--						ret = -EBUSY;
--					}
--				} else {
--					ret = i915_vma_unbind(vma);
-+		if (ret == -EBUSY && (flags & I915_GEM_OBJECT_UNBIND_ACTIVE ||
-+				      !i915_vma_is_active(vma))) {
-+			if (vm_trylock) {
-+				if (mutex_trylock(&vma->vm->mutex)) {
-+					ret = __i915_vma_unbind(vma);
-+					mutex_unlock(&vma->vm->mutex);
- 				}
-+			} else {
-+				ret = i915_vma_unbind(vma);
- 			}
- 		}
- 
--- 
-2.34.1
+On 02/03/2022 06:19, Jiasheng Jiang wrote:
+> As the potential failure of the i915_gem_object_trylock(),
+> it should be better to check it and return error if fails.
+> 
+> Fixes: 94ce0d65076c ("drm/i915/gt: Setup a default migration context on the GT")
+> Signed-off-by: Jiasheng Jiang <jiasheng@iscas.ac.cn>
+> ---
+>   drivers/gpu/drm/i915/gt/selftest_migrate.c | 6 +++++-
+>   1 file changed, 5 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/selftest_migrate.c b/drivers/gpu/drm/i915/gt/selftest_migrate.c
+> index fa4293d2944f..79c6c68f7316 100644
+> --- a/drivers/gpu/drm/i915/gt/selftest_migrate.c
+> +++ b/drivers/gpu/drm/i915/gt/selftest_migrate.c
+> @@ -465,7 +465,11 @@ create_init_lmem_internal(struct intel_gt *gt, size_t sz, bool try_lmem)
+>   			return obj;
+>   	}
+>   
+> -	i915_gem_object_trylock(obj, NULL);
 
+Guys why is this a trylock to start with? (Since being added in 
+94ce0d65076c ("drm/i915/gt: Setup a default migration context on the GT").
+
+Surely it can't ever fail since the object has just been created.
+
+Regards,
+
+Tvrtko
+
+> +	if (!i915_gem_object_trylock(obj, NULL)) {
+> +		i915_gem_object_put(obj);
+> +		return ERR_PTR(-EBUSY);
+> +	}
+> +
+>   	err = i915_gem_object_pin_pages(obj);
+>   	if (err) {
+>   		i915_gem_object_unlock(obj);
