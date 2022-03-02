@@ -2,51 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B817F4CA615
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Mar 2022 14:33:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 85A5F4CA6FE
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Mar 2022 15:04:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E7A0B10E552;
-	Wed,  2 Mar 2022 13:33:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A4C2010E1DE;
+	Wed,  2 Mar 2022 14:04:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B455810E552
- for <intel-gfx@lists.freedesktop.org>; Wed,  2 Mar 2022 13:33:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646228026; x=1677764026;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=gqAFsMLccDiOd6Zjt5/jVM43w8O70uDn4CW56YnDcfQ=;
- b=VZchb87p8DE9B/DMvCOa+43Ic5Lt2mxRRyfsgWBAeWeEoN7jenWUL+z6
- byqyZJN4sD2M5y11rZmifipF8E37j4vYFyr+WAbgtxtpYMswYnfjILkCT
- lLs2gLnRjywdqrOtQHajJkTIUYLHDURYij92o6GkvDBPXYziuqTeKlq3N
- MNuvDSGMAktiHrVEgf2pWVjvCsZjiV4g5i1afW5z/NdgO3+/sMsS4hq6+
- 8kQh5cH68PF/gYIAdh3GifOH7Yvt9eCteJ4mYl2sm2aHs+7UdGDZbc2Ss
- hCGUR0kN9DfkHYlrwfQpIBHkC8Pv9UO15M5GTCAcHw/85p0+S/HDUQGZp w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10273"; a="278071969"
-X-IronPort-AV: E=Sophos;i="5.90,149,1643702400"; d="scan'208";a="278071969"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2022 05:33:27 -0800
-X-IronPort-AV: E=Sophos;i="5.90,149,1643702400"; d="scan'208";a="551251451"
-Received: from tlambe-mobl1.ger.corp.intel.com (HELO
- jhogande-mobl1.ger.corp.intel.com) ([10.252.51.133])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2022 05:33:24 -0800
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed,  2 Mar 2022 15:33:04 +0200
-Message-Id: <20220302133304.82717-3-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220302133304.82717-1-jouni.hogander@intel.com>
-References: <20220302133304.82717-1-jouni.hogander@intel.com>
+Received: from eu-smtp-delivery-151.mimecast.com
+ (eu-smtp-delivery-151.mimecast.com [185.58.85.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 049E910E372
+ for <intel-gfx@lists.freedesktop.org>; Wed,  2 Mar 2022 14:04:15 +0000 (UTC)
+Received: from AcuMS.aculab.com (156.67.243.121 [156.67.243.121]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ uk-mta-196-4Li6Fux3PdyQ14Lo-DMf3A-1; Wed, 02 Mar 2022 14:04:10 +0000
+X-MC-Unique: 4Li6Fux3PdyQ14Lo-DMf3A-1
+Received: from AcuMS.Aculab.com (fd9f:af1c:a25b:0:994c:f5c2:35d6:9b65) by
+ AcuMS.aculab.com (fd9f:af1c:a25b:0:994c:f5c2:35d6:9b65) with Microsoft SMTP
+ Server (TLS) id 15.0.1497.28; Wed, 2 Mar 2022 14:04:06 +0000
+Received: from AcuMS.Aculab.com ([fe80::994c:f5c2:35d6:9b65]) by
+ AcuMS.aculab.com ([fe80::994c:f5c2:35d6:9b65%12]) with mapi id
+ 15.00.1497.028; Wed, 2 Mar 2022 14:04:06 +0000
+From: David Laight <David.Laight@ACULAB.COM>
+To: 'Xiaomeng Tong' <xiam0nd.tong@gmail.com>, "torvalds@linux-foundation.org"
+ <torvalds@linux-foundation.org>
+Thread-Topic: [PATCH 2/6] treewide: remove using list iterator after loop body
+ as a ptr
+Thread-Index: AQHYLhg9+DU/OogLf0+tiSFmjztyUKysHu+Q
+Date: Wed, 2 Mar 2022 14:04:06 +0000
+Message-ID: <1077f17e50d34dc2bbfdf4e52a1cb2fd@AcuMS.aculab.com>
+References: <CAHk-=whLK11HyvpUtEftOjc3Gup2V77KpAQ2fycj3uai=qceHw@mail.gmail.com>
+ <20220302093106.8402-1-xiam0nd.tong@gmail.com>
+In-Reply-To: <20220302093106.8402-1-xiam0nd.tong@gmail.com>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.202.205.107]
 MIME-Version: 1.0
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=C51A453 smtp.mailfrom=david.laight@aculab.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: aculab.com
+Content-Language: en-US
 Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [RFC PATCH 2/2] drm/i915: Remove all frontbuffer
- tracking calls from the gem code
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 2/6] treewide: remove using list iterator
+ after loop body as a ptr
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,200 +62,98 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+ "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+ "gustavo@embeddedor.com" <gustavo@embeddedor.com>,
+ "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+ "kgdb-bugreport@lists.sourceforge.net" <kgdb-bugreport@lists.sourceforge.net>,
+ "linux@rasmusvillemoes.dk" <linux@rasmusvillemoes.dk>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "c.giuffrida@vu.nl" <c.giuffrida@vu.nl>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "samba-technical@lists.samba.org" <samba-technical@lists.samba.org>,
+ "linux1394-devel@lists.sourceforge.net"
+ <linux1394-devel@lists.sourceforge.net>,
+ "drbd-dev@lists.linbit.com" <drbd-dev@lists.linbit.com>,
+ "linux-arch@vger.kernel.org" <linux-arch@vger.kernel.org>,
+ "linux-cifs@vger.kernel.org" <linux-cifs@vger.kernel.org>,
+ "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+ "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>,
+ "linux-rdma@vger.kernel.org" <linux-rdma@vger.kernel.org>,
+ "linux-staging@lists.linux.dev" <linux-staging@lists.linux.dev>,
+ "h.j.bos@vu.nl" <h.j.bos@vu.nl>, "jgg@ziepe.ca" <jgg@ziepe.ca>,
+ "intel-wired-lan@lists.osuosl.org" <intel-wired-lan@lists.osuosl.org>,
+ "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
+ "bcm-kernel-feedback-list@broadcom.com"
+ <bcm-kernel-feedback-list@broadcom.com>,
+ "dan.carpenter@oracle.com" <dan.carpenter@oracle.com>,
+ "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+ "keescook@chromium.org" <keescook@chromium.org>,
+ "arnd@arndb.de" <arnd@arndb.de>,
+ "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "bjohannesmeyer@gmail.com" <bjohannesmeyer@gmail.com>,
+ "linux-block@vger.kernel.org" <linux-block@vger.kernel.org>,
+ "linux-fsdevel@vger.kernel.org" <linux-fsdevel@vger.kernel.org>,
+ "christophe.jaillet@wanadoo.fr" <christophe.jaillet@wanadoo.fr>,
+ "jakobkoschel@gmail.com" <jakobkoschel@gmail.com>,
+ "v9fs-developer@lists.sourceforge.net" <v9fs-developer@lists.sourceforge.net>,
+ "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
+ "tglx@linutronix.de" <tglx@linutronix.de>,
+ "andriy.shevchenko@linux.intel.com" <andriy.shevchenko@linux.intel.com>,
+ "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+ "linux-sgx@vger.kernel.org" <linux-sgx@vger.kernel.org>,
+ "nathan@kernel.org" <nathan@kernel.org>,
+ "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+ "linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-f2fs-devel@lists.sourceforge.net"
+ <linux-f2fs-devel@lists.sourceforge.net>,
+ "tipc-discussion@lists.sourceforge.net"
+ <tipc-discussion@lists.sourceforge.net>,
+ "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
+ "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+ "akpm@linux-foundation.org" <akpm@linux-foundation.org>,
+ "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
+ "christian.koenig@amd.com" <christian.koenig@amd.com>,
+ "rppt@kernel.org" <rppt@kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We should now rely on userspace doing dirtyfb. There is no
-need to have separate frontbuffer tracking hooks in gem code.
+From: Xiaomeng Tong
+> Sent: 02 March 2022 09:31
+>=20
+> On Mon, 28 Feb 2022 16:41:04 -0800, Linus Torvalds
+> <torvalds@linux-foundation.org> wrote:
+> >
+> > But basically to _me_, the important part is that the end result is
+> > maintainable longer-term.
+>=20
+> I couldn't agree more. And because of that, I stick with the following
+> approach because it's maintainable longer-term than "type(pos) pos" one:
+>  Implements a new macro for each list_for_each_entry* with _inside suffix=
+.
+>   #define list_for_each_entry_inside(pos, type, head, member)
 
-This patch is removing all frontbuffer tracking calls from the gem
-code.
+I think that it would be better to make any alternate loop macro
+just set the variable to NULL on the loop exit.
+That is easier to code for and the compiler might be persuaded to
+not redo the test.
 
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
-Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_overlay.c |  2 --
- drivers/gpu/drm/i915/gem/i915_gem_clflush.c  |  2 --
- drivers/gpu/drm/i915/gem/i915_gem_domain.c   |  5 ----
- drivers/gpu/drm/i915/gem/i915_gem_object.c   | 24 --------------------
- drivers/gpu/drm/i915/gem/i915_gem_object.h   | 16 -------------
- drivers/gpu/drm/i915/gem/i915_gem_phys.c     |  7 ------
- drivers/gpu/drm/i915/i915_gem.c              |  5 ----
- 7 files changed, 61 deletions(-)
+It also doesn't need an extra variable defined in the for() statement
+so can be back-ported to older kernels without required declaration
+in the middle of blocks.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_overlay.c b/drivers/gpu/drm/i915/display/intel_overlay.c
-index 76845d34ad0c..98342dec36b5 100644
---- a/drivers/gpu/drm/i915/display/intel_overlay.c
-+++ b/drivers/gpu/drm/i915/display/intel_overlay.c
-@@ -810,8 +810,6 @@ static int intel_overlay_do_put_image(struct intel_overlay *overlay,
- 		goto out_pin_section;
- 	}
- 
--	i915_gem_object_flush_frontbuffer(new_bo, ORIGIN_DIRTYFB);
+OTOH there may be alternative definitions that can be used to get
+the compiler (or other compiler-like tools) to detect broken code.
+Even if the definition can't possibly generate a working kerrnel.
+
+=09David
+
 -
- 	if (!overlay->active) {
- 		const struct intel_crtc_state *crtc_state =
- 			overlay->crtc->config;
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_clflush.c b/drivers/gpu/drm/i915/gem/i915_gem_clflush.c
-index ce91b23385cf..96a6b79fb44e 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_clflush.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_clflush.c
-@@ -22,8 +22,6 @@ static void __do_clflush(struct drm_i915_gem_object *obj)
- {
- 	GEM_BUG_ON(!i915_gem_object_has_pages(obj));
- 	drm_clflush_sg(obj->mm.pages);
--
--	i915_gem_object_flush_frontbuffer(obj, ORIGIN_CPU);
- }
- 
- static void clflush_work(struct dma_fence_work *base)
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_domain.c b/drivers/gpu/drm/i915/gem/i915_gem_domain.c
-index 3e5d6057b3ef..f467d7548e83 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_domain.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_domain.c
-@@ -64,7 +64,6 @@ flush_write_domain(struct drm_i915_gem_object *obj, unsigned int flush_domains)
- 		}
- 		spin_unlock(&obj->vma.lock);
- 
--		i915_gem_object_flush_frontbuffer(obj, ORIGIN_CPU);
- 		break;
- 
- 	case I915_GEM_DOMAIN_WC:
-@@ -616,9 +615,6 @@ i915_gem_set_domain_ioctl(struct drm_device *dev, void *data,
- out_unlock:
- 	i915_gem_object_unlock(obj);
- 
--	if (!err && write_domain)
--		i915_gem_object_invalidate_frontbuffer(obj, ORIGIN_CPU);
--
- out:
- 	i915_gem_object_put(obj);
- 	return err;
-@@ -729,7 +725,6 @@ int i915_gem_object_prepare_write(struct drm_i915_gem_object *obj,
- 	}
- 
- out:
--	i915_gem_object_invalidate_frontbuffer(obj, ORIGIN_CPU);
- 	obj->mm.dirty = true;
- 	/* return with the pages pinned */
- 	return 0;
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-index 372bc220faeb..c163ee69608f 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-@@ -393,30 +393,6 @@ static void i915_gem_free_object(struct drm_gem_object *gem_obj)
- 		queue_delayed_work(i915->wq, &i915->mm.free_work, 0);
- }
- 
--void __i915_gem_object_flush_frontbuffer(struct drm_i915_gem_object *obj,
--					 enum fb_op_origin origin)
--{
--	struct intel_frontbuffer *front;
--
--	front = __intel_frontbuffer_get(obj);
--	if (front) {
--		intel_frontbuffer_flush(front, origin);
--		intel_frontbuffer_put(front);
--	}
--}
--
--void __i915_gem_object_invalidate_frontbuffer(struct drm_i915_gem_object *obj,
--					      enum fb_op_origin origin)
--{
--	struct intel_frontbuffer *front;
--
--	front = __intel_frontbuffer_get(obj);
--	if (front) {
--		intel_frontbuffer_invalidate(front, origin);
--		intel_frontbuffer_put(front);
--	}
--}
--
- static void
- i915_gem_object_read_from_page_kmap(struct drm_i915_gem_object *obj, u64 offset, void *dst, int size)
- {
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-index 02c37fe4a535..d7a08172b239 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-@@ -578,22 +578,6 @@ void __i915_gem_object_flush_frontbuffer(struct drm_i915_gem_object *obj,
- void __i915_gem_object_invalidate_frontbuffer(struct drm_i915_gem_object *obj,
- 					      enum fb_op_origin origin);
- 
--static inline void
--i915_gem_object_flush_frontbuffer(struct drm_i915_gem_object *obj,
--				  enum fb_op_origin origin)
--{
--	if (unlikely(rcu_access_pointer(obj->frontbuffer)))
--		__i915_gem_object_flush_frontbuffer(obj, origin);
--}
--
--static inline void
--i915_gem_object_invalidate_frontbuffer(struct drm_i915_gem_object *obj,
--				       enum fb_op_origin origin)
--{
--	if (unlikely(rcu_access_pointer(obj->frontbuffer)))
--		__i915_gem_object_invalidate_frontbuffer(obj, origin);
--}
--
- int i915_gem_object_read_from_page(struct drm_i915_gem_object *obj, u64 offset, void *dst, int size);
- 
- bool i915_gem_object_is_shmem(const struct drm_i915_gem_object *obj);
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_phys.c b/drivers/gpu/drm/i915/gem/i915_gem_phys.c
-index ca6faffcc496..e98a9884cf5a 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_phys.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_phys.c
-@@ -151,19 +151,12 @@ int i915_gem_object_pwrite_phys(struct drm_i915_gem_object *obj,
- 	if (err)
- 		return err;
- 
--	/*
--	 * We manually control the domain here and pretend that it
--	 * remains coherent i.e. in the GTT domain, like shmem_pwrite.
--	 */
--	i915_gem_object_invalidate_frontbuffer(obj, ORIGIN_CPU);
--
- 	if (copy_from_user(vaddr, user_data, args->size))
- 		return -EFAULT;
- 
- 	drm_clflush_virt_range(vaddr, args->size);
- 	intel_gt_chipset_flush(to_gt(i915));
- 
--	i915_gem_object_flush_frontbuffer(obj, ORIGIN_CPU);
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
-index 2e10187cd0a0..7f5d835a95a3 100644
---- a/drivers/gpu/drm/i915/i915_gem.c
-+++ b/drivers/gpu/drm/i915/i915_gem.c
-@@ -566,8 +566,6 @@ i915_gem_gtt_pwrite_fast(struct drm_i915_gem_object *obj,
- 		goto out_rpm;
- 	}
- 
--	i915_gem_object_invalidate_frontbuffer(obj, ORIGIN_CPU);
--
- 	user_data = u64_to_user_ptr(args->data_ptr);
- 	offset = args->offset;
- 	remain = args->size;
-@@ -610,7 +608,6 @@ i915_gem_gtt_pwrite_fast(struct drm_i915_gem_object *obj,
- 	}
- 
- 	intel_gt_flush_ggtt_writes(ggtt->vm.gt);
--	i915_gem_object_flush_frontbuffer(obj, ORIGIN_CPU);
- 
- 	i915_gem_gtt_cleanup(obj, &node, vma);
- out_rpm:
-@@ -697,8 +694,6 @@ i915_gem_shmem_pwrite(struct drm_i915_gem_object *obj,
- 		offset = 0;
- 	}
- 
--	i915_gem_object_flush_frontbuffer(obj, ORIGIN_CPU);
--
- 	i915_gem_object_unpin_pages(obj);
- 	return ret;
- 
--- 
-2.25.1
+Registered Address Lakeside, Bramley Road, Mount Farm, Milton Keynes, MK1 1=
+PT, UK
+Registration No: 1397386 (Wales)
 
