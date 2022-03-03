@@ -2,45 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 051AE4CB318
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Mar 2022 00:56:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3972A4CB31E
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Mar 2022 01:11:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E7F8C10E7F2;
-	Wed,  2 Mar 2022 23:56:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB20510E827;
+	Thu,  3 Mar 2022 00:11:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B67A110E6DD
- for <intel-gfx@lists.freedesktop.org>; Wed,  2 Mar 2022 23:56:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646265412; x=1677801412;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=J70ZHfaZxRJxxIZi4Y5MOIUxVg4FiFMPrpRXSGAp8SA=;
- b=NUQrCX7MeFGWwXyg0v0yXZmvvQRVOe7c7Zp5x353PK8UcnuDdR4T/O75
- g9hrZgYwLUBYFmB57U+nH+N3Ckj9573AMlfY+qPMIPTGMJi8BdjlAKqg7
- IbC85VmpjFOI+GJ6OWNISLRlO0Qk/APudkCvmcwZuiNY2YM3yGFJW59YH
- I05LcG3/e4GpMtjaRqU+swT7VzTli0L/lHlO4T3Av1vqtbwEA424vIOth
- ens1Vm0Qti8rGROhYv4HInMuQ++T4QdwTchYFJFLANHgxBLBa61jGcy8f
- 30XwrIRW/mdrZYFobJjCLs2unYAGHQ4S8aGcHFA9hCXuv/J3Sf3iMvc4N A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10274"; a="314252536"
-X-IronPort-AV: E=Sophos;i="5.90,150,1643702400"; d="scan'208";a="314252536"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2022 15:56:51 -0800
-X-IronPort-AV: E=Sophos;i="5.90,150,1643702400"; d="scan'208";a="493728591"
-Received: from anushasr-mobl6.jf.intel.com ([10.165.21.155])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2022 15:56:51 -0800
-From: Anusha Srivatsa <anusha.srivatsa@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed,  2 Mar 2022 15:53:48 -0800
-Message-Id: <20220302235348.1262120-1-anusha.srivatsa@intel.com>
-X-Mailer: git-send-email 2.25.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id DF5CC10E827;
+ Thu,  3 Mar 2022 00:11:26 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id DC345A7DFC;
+ Thu,  3 Mar 2022 00:11:26 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3516654325103805380=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/cdclk: Add cdclk check to atomic check
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Swathi Dhanavanthri" <swathi.dhanavanthri@intel.com>
+Date: Thu, 03 Mar 2022 00:11:26 -0000
+Message-ID: <164626628687.19854.8333555105589032780@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220302231119.16876-1-swathi.dhanavanthri@intel.com>
+In-Reply-To: <20220302231119.16876-1-swathi.dhanavanthri@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/display/adlp=3A_Remove_code_related_to_underrun_recovery?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,382 +40,268 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Checking cdclk conditions during atomic check and preparing
-for commit phase so we can have atomic commit as simple
-as possible. Add the specific steps to be taken during
-cdclk changes, prepare for squashing, crawling and modeset
-scenarios.
+--===============3516654325103805380==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Rename functions intel_cdclk_can_squash() and
-intel_cdclk_can_crawl() since they no longer simply check
-if squashing and crawling can be performed.
+== Series Details ==
 
-Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
----
- drivers/gpu/drm/i915/display/intel_cdclk.c    | 169 +++++++++++-------
- drivers/gpu/drm/i915/display/intel_cdclk.h    |  16 +-
- .../drm/i915/display/intel_display_power.c    |   2 +-
- 3 files changed, 123 insertions(+), 64 deletions(-)
+Series: drm/i915/display/adlp: Remove code related to underrun recovery
+URL   : https://patchwork.freedesktop.org/series/100965/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 8888fda8b701..04f3f77ef0a8 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -1700,12 +1700,23 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
- 			  const struct intel_cdclk_config *cdclk_config,
- 			  enum pipe pipe)
- {
-+	struct intel_atomic_state *state;
-+	struct intel_cdclk_state *new_cdclk_state;
-+	struct cdclk_steps *cdclk_steps;
-+	struct intel_cdclk_state *cdclk_state;
- 	int cdclk = cdclk_config->cdclk;
- 	int vco = cdclk_config->vco;
-+	u32 squash_ctl = 0;
- 	u32 val;
- 	u16 waveform;
- 	int clock;
- 	int ret;
-+	int i;
-+
-+	cdclk_state =  to_intel_cdclk_state(dev_priv->cdclk.obj.state);
-+	state = cdclk_state->base.state;
-+	new_cdclk_state = intel_atomic_get_new_cdclk_state(state);
-+	cdclk_steps = new_cdclk_state->steps;
- 
- 	/* Inform power controller of upcoming frequency change. */
- 	if (DISPLAY_VER(dev_priv) >= 11)
-@@ -1728,40 +1739,43 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
- 		return;
- 	}
- 
--	if (HAS_CDCLK_CRAWL(dev_priv) && dev_priv->cdclk.hw.vco > 0 && vco > 0) {
--		if (dev_priv->cdclk.hw.vco != vco)
-+	for (i = 0; i < CDCLK_ACTIONS; i++) {
-+		switch (cdclk_steps[i].action) {
-+		case CDCLK_MODESET:
-+			if (DISPLAY_VER(dev_priv) >= 11) {
-+				if (dev_priv->cdclk.hw.vco != 0 &&
-+				    dev_priv->cdclk.hw.vco != vco)
-+					icl_cdclk_pll_disable(dev_priv);
-+
-+				if (dev_priv->cdclk.hw.vco != vco)
-+					icl_cdclk_pll_enable(dev_priv, vco);
-+			} else {
-+				if (dev_priv->cdclk.hw.vco != 0 &&
-+				    dev_priv->cdclk.hw.vco != vco)
-+					bxt_de_pll_disable(dev_priv);
-+
-+				if (dev_priv->cdclk.hw.vco != vco)
-+					bxt_de_pll_enable(dev_priv, vco);
-+			}
-+			clock = cdclk;
-+			break;
-+		case CDCLK_CRAWL:
- 			adlp_cdclk_pll_crawl(dev_priv, vco);
--	} else if (DISPLAY_VER(dev_priv) >= 11) {
--		if (dev_priv->cdclk.hw.vco != 0 &&
--		    dev_priv->cdclk.hw.vco != vco)
--			icl_cdclk_pll_disable(dev_priv);
--
--		if (dev_priv->cdclk.hw.vco != vco)
--			icl_cdclk_pll_enable(dev_priv, vco);
--	} else {
--		if (dev_priv->cdclk.hw.vco != 0 &&
--		    dev_priv->cdclk.hw.vco != vco)
--			bxt_de_pll_disable(dev_priv);
--
--		if (dev_priv->cdclk.hw.vco != vco)
--			bxt_de_pll_enable(dev_priv, vco);
--	}
--
--	waveform = cdclk_squash_waveform(dev_priv, cdclk);
--
--	if (waveform)
--		clock = vco / 2;
--	else
--		clock = cdclk;
--
--	if (has_cdclk_squasher(dev_priv)) {
--		u32 squash_ctl = 0;
--
--		if (waveform)
-+			clock = cdclk;
-+			break;
-+		case CDCLK_SQUASH:
-+			waveform =  cdclk_squash_waveform(dev_priv, cdclk_steps[i].cdclk);
-+			clock = vco / 2;
- 			squash_ctl = CDCLK_SQUASH_ENABLE |
- 				CDCLK_SQUASH_WINDOW_SIZE(0xf) | waveform;
--
--		intel_de_write(dev_priv, CDCLK_SQUASH_CTL, squash_ctl);
-+			intel_de_write(dev_priv, CDCLK_SQUASH_CTL, squash_ctl);
-+			break;
-+		case CDCLK_NOOP:
-+			break;
-+		default:
-+			MISSING_CASE(cdclk_steps[i].action);
-+			break;
-+		}
- 	}
- 
- 	val = bxt_cdclk_cd2x_div_sel(dev_priv, clock, vco) |
-@@ -1951,11 +1965,12 @@ void intel_cdclk_uninit_hw(struct drm_i915_private *i915)
- 		skl_cdclk_uninit_hw(i915);
- }
- 
--static bool intel_cdclk_can_crawl(struct drm_i915_private *dev_priv,
--				  const struct intel_cdclk_config *a,
--				  const struct intel_cdclk_config *b)
-+static bool intel_cdclk_crawl(struct drm_i915_private *dev_priv,
-+			      const struct intel_cdclk_state *a,
-+			      struct intel_cdclk_state *b)
- {
- 	int a_div, b_div;
-+	struct cdclk_steps *cdclk_transition = b->steps;
- 
- 	if (!HAS_CDCLK_CRAWL(dev_priv))
- 		return false;
-@@ -1964,19 +1979,25 @@ static bool intel_cdclk_can_crawl(struct drm_i915_private *dev_priv,
- 	 * The vco and cd2x divider will change independently
- 	 * from each, so we disallow cd2x change when crawling.
- 	 */
--	a_div = DIV_ROUND_CLOSEST(a->vco, a->cdclk);
--	b_div = DIV_ROUND_CLOSEST(b->vco, b->cdclk);
-+	a_div = DIV_ROUND_CLOSEST(a->actual.vco, a->actual.cdclk);
-+	b_div = DIV_ROUND_CLOSEST(b->actual.vco, b->actual.cdclk);
- 
--	return a->vco != 0 && b->vco != 0 &&
--		a->vco != b->vco &&
-+	cdclk_transition[0].action = CDCLK_CRAWL;
-+	cdclk_transition[0].cdclk = b->actual.cdclk;
-+	cdclk_transition[1].action = CDCLK_NOOP;
-+	cdclk_transition[1].cdclk = b->actual.cdclk;
-+
-+	return a->actual.vco != 0 && b->actual.vco != 0 &&
-+		a->actual.vco != b->actual.vco &&
- 		a_div == b_div &&
--		a->ref == b->ref;
-+		a->actual.ref == b->actual.ref;
- }
- 
--static bool intel_cdclk_can_squash(struct drm_i915_private *dev_priv,
--				   const struct intel_cdclk_config *a,
--				   const struct intel_cdclk_config *b)
-+static bool intel_cdclk_squash(struct drm_i915_private *dev_priv,
-+			       const struct intel_cdclk_state *a,
-+			       struct intel_cdclk_state *b)
- {
-+	struct cdclk_steps *cdclk_transition = b->steps;
- 	/*
- 	 * FIXME should store a bit more state in intel_cdclk_config
- 	 * to differentiate squasher vs. cd2x divider properly. For
-@@ -1986,10 +2007,15 @@ static bool intel_cdclk_can_squash(struct drm_i915_private *dev_priv,
- 	if (!has_cdclk_squasher(dev_priv))
- 		return false;
- 
--	return a->cdclk != b->cdclk &&
--		a->vco != 0 &&
--		a->vco == b->vco &&
--		a->ref == b->ref;
-+	cdclk_transition[0].action = CDCLK_SQUASH;
-+	cdclk_transition[0].cdclk = b->actual.cdclk;
-+	cdclk_transition[1].action = CDCLK_NOOP;
-+	cdclk_transition[1].cdclk = b->actual.cdclk;
-+
-+	return a->actual.cdclk != b->actual.cdclk &&
-+		a->actual.vco != 0 &&
-+		a->actual.vco == b->actual.vco &&
-+		a->actual.ref == b->actual.ref;
- }
- 
- /**
-@@ -2002,9 +2028,27 @@ static bool intel_cdclk_can_squash(struct drm_i915_private *dev_priv,
-  * True if changing between the two CDCLK configurations
-  * requires all pipes to be off, false if not.
-  */
--bool intel_cdclk_needs_modeset(const struct intel_cdclk_config *a,
-+bool intel_cdclk_needs_modeset(struct drm_i915_private *i915,
-+			       const struct intel_cdclk_config *a,
- 			       const struct intel_cdclk_config *b)
- {
-+	struct intel_cdclk_state *new_cdclk_state;
-+	struct cdclk_steps *cdclk_transition;
-+	struct intel_cdclk_state *cdclk_state =  to_intel_cdclk_state(i915->cdclk.obj.state);
-+	struct intel_atomic_state *state = cdclk_state->base.state;
-+
-+	new_cdclk_state = intel_atomic_get_new_cdclk_state(state);
-+	cdclk_transition = new_cdclk_state->steps;
-+
-+	if (a->cdclk != b->cdclk ||
-+	    a->vco != b->vco ||
-+	    a->ref != b->ref) {
-+		cdclk_transition[0].action = CDCLK_MODESET;
-+		cdclk_transition[0].cdclk = b->cdclk;
-+		cdclk_transition[1].action = CDCLK_NOOP;
-+		cdclk_transition[1].cdclk = b->cdclk;
-+	}
-+
- 	return a->cdclk != b->cdclk ||
- 		a->vco != b->vco ||
- 		a->ref != b->ref;
-@@ -2052,10 +2096,11 @@ static bool intel_cdclk_can_cd2x_update(struct drm_i915_private *dev_priv,
-  * Returns:
-  * True if the CDCLK configurations don't match, false if they do.
-  */
--static bool intel_cdclk_changed(const struct intel_cdclk_config *a,
-+static bool intel_cdclk_changed(struct drm_i915_private *i915,
-+				const struct intel_cdclk_config *a,
- 				const struct intel_cdclk_config *b)
- {
--	return intel_cdclk_needs_modeset(a, b) ||
-+	return intel_cdclk_needs_modeset(i915, a, b) ||
- 		a->voltage_level != b->voltage_level;
- }
- 
-@@ -2084,7 +2129,7 @@ static void intel_set_cdclk(struct drm_i915_private *dev_priv,
- {
- 	struct intel_encoder *encoder;
- 
--	if (!intel_cdclk_changed(&dev_priv->cdclk.hw, cdclk_config))
-+	if (!intel_cdclk_changed(dev_priv, &dev_priv->cdclk.hw, cdclk_config))
- 		return;
- 
- 	if (drm_WARN_ON_ONCE(&dev_priv->drm, !dev_priv->cdclk_funcs->set_cdclk))
-@@ -2131,7 +2176,7 @@ static void intel_set_cdclk(struct drm_i915_private *dev_priv,
- 	intel_audio_cdclk_change_post(dev_priv);
- 
- 	if (drm_WARN(&dev_priv->drm,
--		     intel_cdclk_changed(&dev_priv->cdclk.hw, cdclk_config),
-+		     intel_cdclk_changed(dev_priv, &dev_priv->cdclk.hw, cdclk_config),
- 		     "cdclk state doesn't match!\n")) {
- 		intel_cdclk_dump_config(dev_priv, &dev_priv->cdclk.hw, "[hw state]");
- 		intel_cdclk_dump_config(dev_priv, cdclk_config, "[sw state]");
-@@ -2155,7 +2200,7 @@ intel_set_cdclk_pre_plane_update(struct intel_atomic_state *state)
- 		intel_atomic_get_new_cdclk_state(state);
- 	enum pipe pipe = new_cdclk_state->pipe;
- 
--	if (!intel_cdclk_changed(&old_cdclk_state->actual,
-+	if (!intel_cdclk_changed(dev_priv, &old_cdclk_state->actual,
- 				 &new_cdclk_state->actual))
- 		return;
- 
-@@ -2184,7 +2229,7 @@ intel_set_cdclk_post_plane_update(struct intel_atomic_state *state)
- 		intel_atomic_get_new_cdclk_state(state);
- 	enum pipe pipe = new_cdclk_state->pipe;
- 
--	if (!intel_cdclk_changed(&old_cdclk_state->actual,
-+	if (!intel_cdclk_changed(dev_priv, &old_cdclk_state->actual,
- 				 &new_cdclk_state->actual))
- 		return;
- 
-@@ -2738,7 +2783,7 @@ int intel_modeset_calc_cdclk(struct intel_atomic_state *state)
- 	if (ret)
- 		return ret;
- 
--	if (intel_cdclk_changed(&old_cdclk_state->actual,
-+	if (intel_cdclk_changed(dev_priv, &old_cdclk_state->actual,
- 				&new_cdclk_state->actual)) {
- 		/*
- 		 * Also serialize commits across all crtcs
-@@ -2749,7 +2794,7 @@ int intel_modeset_calc_cdclk(struct intel_atomic_state *state)
- 			return ret;
- 	} else if (old_cdclk_state->active_pipes != new_cdclk_state->active_pipes ||
- 		   old_cdclk_state->force_min_cdclk != new_cdclk_state->force_min_cdclk ||
--		   intel_cdclk_changed(&old_cdclk_state->logical,
-+		   intel_cdclk_changed(dev_priv, &old_cdclk_state->logical,
- 				       &new_cdclk_state->logical)) {
- 		ret = intel_atomic_lock_global_state(&new_cdclk_state->base);
- 		if (ret)
-@@ -2776,14 +2821,14 @@ int intel_modeset_calc_cdclk(struct intel_atomic_state *state)
- 			pipe = INVALID_PIPE;
- 	}
- 
--	if (intel_cdclk_can_squash(dev_priv,
--				   &old_cdclk_state->actual,
--				   &new_cdclk_state->actual)) {
-+	if (intel_cdclk_squash(dev_priv,
-+			       old_cdclk_state,
-+			       new_cdclk_state)) {
- 		drm_dbg_kms(&dev_priv->drm,
- 			    "Can change cdclk via squasher\n");
--	} else if (intel_cdclk_can_crawl(dev_priv,
--					 &old_cdclk_state->actual,
--					 &new_cdclk_state->actual)) {
-+	} else if (intel_cdclk_crawl(dev_priv,
-+				     old_cdclk_state,
-+				     new_cdclk_state)) {
- 		drm_dbg_kms(&dev_priv->drm,
- 			    "Can change cdclk via crawl\n");
- 	} else if (pipe != INVALID_PIPE) {
-@@ -2792,7 +2837,7 @@ int intel_modeset_calc_cdclk(struct intel_atomic_state *state)
- 		drm_dbg_kms(&dev_priv->drm,
- 			    "Can change cdclk cd2x divider with pipe %c active\n",
- 			    pipe_name(pipe));
--	} else if (intel_cdclk_needs_modeset(&old_cdclk_state->actual,
-+	} else if (intel_cdclk_needs_modeset(dev_priv, &old_cdclk_state->actual,
- 					     &new_cdclk_state->actual)) {
- 		/* All pipes must be switched off while we change the cdclk. */
- 		ret = intel_modeset_all_pipes(state);
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.h b/drivers/gpu/drm/i915/display/intel_cdclk.h
-index df66f66fbad0..5008463958b1 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.h
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.h
-@@ -20,6 +20,14 @@ struct intel_cdclk_config {
- 	u8 voltage_level;
- };
- 
-+enum cdclk_actions {
-+	CDCLK_MODESET = 0,
-+	CDCLK_SQUASH,
-+	CDCLK_CRAWL,
-+	CDCLK_NOOP,
-+	CDCLK_ACTIONS
-+};
-+
- struct intel_cdclk_state {
- 	struct intel_global_state base;
- 
-@@ -49,6 +57,11 @@ struct intel_cdclk_state {
- 
- 	/* bitmask of active pipes */
- 	u8 active_pipes;
-+
-+	struct cdclk_steps {
-+		enum cdclk_actions action;
-+		u32 cdclk;
-+	} steps[CDCLK_ACTIONS];
- };
- 
- int intel_crtc_compute_min_cdclk(const struct intel_crtc_state *crtc_state);
-@@ -58,7 +71,8 @@ void intel_init_cdclk_hooks(struct drm_i915_private *dev_priv);
- void intel_update_max_cdclk(struct drm_i915_private *dev_priv);
- void intel_update_cdclk(struct drm_i915_private *dev_priv);
- u32 intel_read_rawclk(struct drm_i915_private *dev_priv);
--bool intel_cdclk_needs_modeset(const struct intel_cdclk_config *a,
-+bool intel_cdclk_needs_modeset(struct drm_i915_private *i915,
-+			       const struct intel_cdclk_config *a,
- 			       const struct intel_cdclk_config *b);
- void intel_set_cdclk_pre_plane_update(struct intel_atomic_state *state);
- void intel_set_cdclk_post_plane_update(struct intel_atomic_state *state);
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index 3dc859032bac..417a56d54056 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -1118,7 +1118,7 @@ static void gen9_disable_dc_states(struct drm_i915_private *dev_priv)
- 	intel_cdclk_get_cdclk(dev_priv, &cdclk_config);
- 	/* Can't read out voltage_level so can't use intel_cdclk_changed() */
- 	drm_WARN_ON(&dev_priv->drm,
--		    intel_cdclk_needs_modeset(&dev_priv->cdclk.hw,
-+		    intel_cdclk_needs_modeset(dev_priv, &dev_priv->cdclk.hw,
- 					      &cdclk_config));
- 
- 	gen9_assert_dbuf_enabled(dev_priv);
--- 
-2.25.1
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_11316 -> Patchwork_22466
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22466/index.html
+
+Participating hosts (48 -> 44)
+------------------------------
+
+  Additional (1): fi-pnv-d510 
+  Missing    (5): shard-tglu fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_22466 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_cs_nop@sync-fork-compute0:
+    - fi-snb-2600:        NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22466/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html
+
+  * igt@gem_exec_suspend@basic-s3@smem:
+    - fi-skl-6600u:       [PASS][2] -> [INCOMPLETE][3] ([i915#4547])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11316/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22466/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-pnv-d510:        NOTRUN -> [SKIP][4] ([fdo#109271]) +57 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22466/fi-pnv-d510/igt@gem_huc_copy@huc-copy.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-kefka:       [PASS][5] -> [INCOMPLETE][6] ([i915#2940])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11316/fi-bsw-kefka/igt@i915_selftest@live@execlists.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22466/fi-bsw-kefka/igt@i915_selftest@live@execlists.html
+
+  * igt@runner@aborted:
+    - fi-bsw-kefka:       NOTRUN -> [FAIL][7] ([fdo#109271] / [i915#1436] / [i915#2722] / [i915#3428] / [i915#4312])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22466/fi-bsw-kefka/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-icl-u2:          [FAIL][8] ([i915#3049]) -> [PASS][9]
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11316/fi-icl-u2/igt@i915_pm_rpm@module-reload.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22466/fi-icl-u2/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@evict:
+    - {bat-rpls-2}:       [DMESG-WARN][10] ([i915#4391]) -> [PASS][11] +1 similar issue
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11316/bat-rpls-2/igt@i915_selftest@live@evict.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22466/bat-rpls-2/igt@i915_selftest@live@evict.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-icl-u2:          [DMESG-WARN][12] ([i915#2867]) -> [PASS][13] +7 similar issues
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11316/fi-icl-u2/igt@i915_selftest@live@hangcheck.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22466/fi-icl-u2/igt@i915_selftest@live@hangcheck.html
+    - fi-snb-2600:        [INCOMPLETE][14] ([i915#3921]) -> [PASS][15]
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11316/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22466/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+
+  * igt@i915_selftest@live@workarounds:
+    - {bat-adlp-6}:       [DMESG-WARN][16] ([i915#5068]) -> [PASS][17]
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11316/bat-adlp-6/igt@i915_selftest@live@workarounds.html
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22466/bat-adlp-6/igt@i915_selftest@live@workarounds.html
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1:
+    - {bat-adlp-6}:       [DMESG-WARN][18] ([i915#3576]) -> [PASS][19]
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11316/bat-adlp-6/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22466/bat-adlp-6/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
+  [i915#2722]: https://gitlab.freedesktop.org/drm/intel/issues/2722
+  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
+  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
+  [i915#3049]: https://gitlab.freedesktop.org/drm/intel/issues/3049
+  [i915#3428]: https://gitlab.freedesktop.org/drm/intel/issues/3428
+  [i915#3576]: https://gitlab.freedesktop.org/drm/intel/issues/3576
+  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4391]: https://gitlab.freedesktop.org/drm/intel/issues/4391
+  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
+  [i915#5068]: https://gitlab.freedesktop.org/drm/intel/issues/5068
+  [i915#5087]: https://gitlab.freedesktop.org/drm/intel/issues/5087
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_11316 -> Patchwork_22466
+
+  CI-20190529: 20190529
+  CI_DRM_11316: 41f05cc5d1eed1879e572ef203ef2dbe9a75aff8 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6361: 2372a4beb6a33c5f0799a4a8ccbb93794f52dbca @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_22466: c483aa2df7c8a4f4625f7d5f9a3012430b6f4909 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+c483aa2df7c8 drm/i915/display/adlp: Remove code related to underrun recovery
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22466/index.html
+
+--===============3516654325103805380==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display/adlp: Remove code related to underrun recovery</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/100965/">https://patchwork.freedesktop.org/series/100965/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22466/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22466/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11316 -&gt; Patchwork_22466</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22466/index.html</p>
+<h2>Participating hosts (48 -&gt; 44)</h2>
+<p>Additional (1): fi-pnv-d510 <br />
+  Missing    (5): shard-tglu fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_22466 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_cs_nop@sync-fork-compute0:</p>
+<ul>
+<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22466/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_suspend@basic-s3@smem:</p>
+<ul>
+<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11316/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22466/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22466/fi-pnv-d510/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +57 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11316/fi-bsw-kefka/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22466/fi-bsw-kefka/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-bsw-kefka:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22466/fi-bsw-kefka/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2722">i915#2722</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3428">i915#3428</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11316/fi-icl-u2/igt@i915_pm_rpm@module-reload.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3049">i915#3049</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22466/fi-icl-u2/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@evict:</p>
+<ul>
+<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11316/bat-rpls-2/igt@i915_selftest@live@evict.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4391">i915#4391</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22466/bat-rpls-2/igt@i915_selftest@live@evict.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>
+<p>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11316/fi-icl-u2/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2867">i915#2867</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22466/fi-icl-u2/igt@i915_selftest@live@hangcheck.html">PASS</a> +7 similar issues</p>
+</li>
+<li>
+<p>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11316/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22466/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a></p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>{bat-adlp-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11316/bat-adlp-6/igt@i915_selftest@live@workarounds.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5068">i915#5068</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22466/bat-adlp-6/igt@i915_selftest@live@workarounds.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1:</p>
+<ul>
+<li>{bat-adlp-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11316/bat-adlp-6/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22466/bat-adlp-6/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11316 -&gt; Patchwork_22466</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11316: 41f05cc5d1eed1879e572ef203ef2dbe9a75aff8 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6361: 2372a4beb6a33c5f0799a4a8ccbb93794f52dbca @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_22466: c483aa2df7c8a4f4625f7d5f9a3012430b6f4909 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>c483aa2df7c8 drm/i915/display/adlp: Remove code related to underrun recovery</p>
+
+</body>
+</html>
+
+--===============3516654325103805380==--
