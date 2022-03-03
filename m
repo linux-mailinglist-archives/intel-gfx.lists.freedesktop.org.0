@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A371B4CBFBC
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Mar 2022 15:14:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 541CD4CBFBE
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Mar 2022 15:15:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C45610E3FF;
-	Thu,  3 Mar 2022 14:14:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8100A10E89C;
+	Thu,  3 Mar 2022 14:15:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C533D10E3FF
- for <intel-gfx@lists.freedesktop.org>; Thu,  3 Mar 2022 14:14:53 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2177C10E89C
+ for <intel-gfx@lists.freedesktop.org>; Thu,  3 Mar 2022 14:15:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646316893; x=1677852893;
+ t=1646316910; x=1677852910;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=581e2ALUKcMg8m+19LVSmxKu46W8w15pGhSjugscMdY=;
- b=K1OIUVOeJfn6RxvcCPjVJwayuoHf3JcZQNKrk+cYFf2zeAaMrOnU9+9Z
- lsojIcOq+z3GvHiQwmPcVDZJiq3SPGPI0XJHDo1Wnwfj9ZLXo+S6uAr8E
- UaNYlB0Vomu6zSdIT0sPFOcOdMgmE7sHz/tUrQiiDFVMxD9NUzrIY5dRb
- BIHVdoWbnnewhbkSIEjlx5htPC9d9O2f1yGP15v/8et2Bp7ZLSS7wSnG2
- zpY8rDWk3OV6mXBHFyO5BLp9wzFeTQ1luuTDKqc6GlwL2PdEPyxKnRQm1
- CBSZzUVBhVuoEsVr3BdShAYOwkWOYZ/SYEMAkh+D6rsBHUQJ4yv7Ju9dg w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10274"; a="234296168"
-X-IronPort-AV: E=Sophos;i="5.90,151,1643702400"; d="scan'208";a="234296168"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Mar 2022 06:14:51 -0800
-X-IronPort-AV: E=Sophos;i="5.90,151,1643702400"; d="scan'208";a="709937294"
+ bh=kx+fHcIcNRl4w1q+RzXgwlWS4JUdSL4gNV3JZbiJxTE=;
+ b=LfxKOd+VGvHr3O9UeDefTy2yqXU3BacUw+puxqTQuc4KNEjJZbrUgFYt
+ 5xTkto7SDtySz82ilU9IteKOPhl76/qB+Ftfr2w0yo163NobAR+5b3F0d
+ yrTD5QvA4J47q4SOooI/drWVvGfGZyYllkl9FYnXky+lCpmpM+QvVaz3V
+ ygNos/9zukZFAP9s8MlSUBFeOHkRgWi/a5X4Z0P0ySgaEv+XNT6SM4Imv
+ NSoIp4tgn7/oal0JMFpQeNw4J0MxboFGkgqxkS+8I4zTl6Hn2da3WvAgh
+ D3pI88JH6swJprk5Enr/yvaier/PNTOoQxcI4M3zgv/ZpACk2GPnNRcwp g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10274"; a="316903939"
+X-IronPort-AV: E=Sophos;i="5.90,151,1643702400"; d="scan'208";a="316903939"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Mar 2022 06:15:09 -0800
+X-IronPort-AV: E=Sophos;i="5.90,151,1643702400"; d="scan'208";a="511442550"
 Received: from unknown (HELO intel.com) ([10.237.72.65])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Mar 2022 06:14:49 -0800
-Date: Thu, 3 Mar 2022 16:14:58 +0200
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Mar 2022 06:15:08 -0800
+Date: Thu, 3 Mar 2022 16:15:35 +0200
 From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20220303141458.GA10068@intel.com>
+Message-ID: <20220303141535.GB10068@intel.com>
 References: <20220214105532.13049-1-ville.syrjala@linux.intel.com>
- <20220214105532.13049-2-ville.syrjala@linux.intel.com>
+ <20220214105532.13049-3-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220214105532.13049-2-ville.syrjala@linux.intel.com>
+In-Reply-To: <20220214105532.13049-3-ville.syrjala@linux.intel.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915: Don't skip ddb allocation if
- data_rate==0
+Subject: Re: [Intel-gfx] [PATCH 2/4] drm/i915: Check async flip capability
+ early on
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,91 +63,153 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Feb 14, 2022 at 12:55:29PM +0200, Ville Syrjala wrote:
+On Mon, Feb 14, 2022 at 12:55:30PM +0200, Ville Syrjala wrote:
 > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > 
-> data_rate==0 no longer means a plane is disabled, it could
-> also mean we want to use the minimum ddb allocation for it.
-> Hence we can't bail out early during ddb allocation or
-> else we'll simply forget to allocate any ddb for such planes.
+> Since the async flip state check is done very late and
+> thus it can see potentially all the planes in the state
+> (due to the wm/ddb optimization) we need to move the
+> "can the requested plane do async flips at all?" check
+> much earlier. For this purpose we introduce
+> intel_async_flip_check_uapi() that gets called early during
+> the atomic check.
+> 
+> And for good measure we'll throw in a couple of basic checks:
+> - is the crtc active?
+> - was a modeset flagged?
+> - is+was the plane enabled?
+> Though atm all of those should be guaranteed by the fact
+> that the async flip can only be requested through the legacy
+> page flip ioctl.
+> 
 
 Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 
-> 
 > Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> Fixes: 6a4d8cc6bbbf ("drm/i915: Don't allocate extra ddb during async flip for DG2")
+> Fixes: c3639f3be480 ("drm/i915: Use wm0 only during async flips for DG2")
 > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > ---
->  drivers/gpu/drm/i915/intel_pm.c | 30 ++++++++++++------------------
->  1 file changed, 12 insertions(+), 18 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_display.c | 79 ++++++++++++++++++--
+>  1 file changed, 72 insertions(+), 7 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-> index 1179bf31f743..ec2de4f13b5e 100644
-> --- a/drivers/gpu/drm/i915/intel_pm.c
-> +++ b/drivers/gpu/drm/i915/intel_pm.c
-> @@ -5114,12 +5114,15 @@ skl_allocate_plane_ddb(struct skl_plane_ddb_iter *iter,
->  		       const struct skl_wm_level *wm,
->  		       u64 data_rate)
->  {
-> -	u16 extra;
-> +	u16 extra = 0;
->  
-> -	extra = min_t(u16, iter->size,
-> -		      DIV64_U64_ROUND_UP(iter->size * data_rate, iter->data_rate));
-> -	iter->size -= extra;
-> -	iter->data_rate -= data_rate;
-> +	if (data_rate) {
-> +		extra = min_t(u16, iter->size,
-> +			      DIV64_U64_ROUND_UP(iter->size * data_rate,
-> +						 iter->data_rate));
-> +		iter->size -= extra;
-> +		iter->data_rate -= data_rate;
-> +	}
->  
->  	return wm->min_ddb_alloc + extra;
->  }
-> @@ -5162,9 +5165,6 @@ skl_crtc_allocate_plane_ddb(struct intel_atomic_state *state,
->  	skl_ddb_entry_init(&crtc_state->wm.skl.plane_ddb_y[PLANE_CURSOR],
->  			   alloc->end - iter.total[PLANE_CURSOR], alloc->end);
->  
-> -	if (iter.data_rate == 0)
-> -		return 0;
-> -
->  	/*
->  	 * Find the highest watermark level for which we can satisfy the block
->  	 * requirement of active planes.
-> @@ -5203,6 +5203,10 @@ skl_crtc_allocate_plane_ddb(struct intel_atomic_state *state,
->  		return -EINVAL;
->  	}
->  
-> +	/* avoid the WARN later when we don't allocate any extra DDB */
-> +	if (iter.data_rate == 0)
-> +		iter.size = 0;
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index baa291e4943f..5a8c7816d29e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -7463,7 +7463,7 @@ static void kill_bigjoiner_slave(struct intel_atomic_state *state,
+>   * Correspondingly, support is currently added for primary plane only.
+>   *
+>   * Async flip can only change the plane surface address, so anything else
+> - * changing is rejected from the intel_atomic_check_async() function.
+> + * changing is rejected from the intel_async_flip_check_hw() function.
+>   * Once this check is cleared, flip done interrupt is enabled using
+>   * the intel_crtc_enable_flip_done() function.
+>   *
+> @@ -7473,7 +7473,65 @@ static void kill_bigjoiner_slave(struct intel_atomic_state *state,
+>   * correspond to the last vblank and have no relation to the actual time when
+>   * the flip done event was sent.
+>   */
+> -static int intel_atomic_check_async(struct intel_atomic_state *state, struct intel_crtc *crtc)
+> +static int intel_async_flip_check_uapi(struct intel_atomic_state *state,
+> +				       struct intel_crtc *crtc)
+> +{
+> +	struct drm_i915_private *i915 = to_i915(state->base.dev);
+> +	const struct intel_crtc_state *new_crtc_state =
+> +		intel_atomic_get_new_crtc_state(state, crtc);
+> +	const struct intel_plane_state *old_plane_state;
+> +	struct intel_plane_state *new_plane_state;
+> +	struct intel_plane *plane;
+> +	int i;
 > +
->  	/*
->  	 * Grant each plane the blocks it requires at the highest achievable
->  	 * watermark level, plus an extra share of the leftover blocks
-> @@ -5215,20 +5219,10 @@ skl_crtc_allocate_plane_ddb(struct intel_atomic_state *state,
->  		if (plane_id == PLANE_CURSOR)
->  			continue;
+> +	if (!new_crtc_state->uapi.async_flip)
+> +		return 0;
+> +
+> +	if (!new_crtc_state->uapi.active) {
+> +		drm_dbg_kms(&i915->drm,
+> +			    "[CRTC:%d:%s] not active\n",
+> +			    crtc->base.base.id, crtc->base.name);
+> +		return -EINVAL;
+> +	}
+> +
+> +	if (intel_crtc_needs_modeset(new_crtc_state)) {
+> +		drm_dbg_kms(&i915->drm,
+> +			    "[CRTC:%d:%s] modeset required\n",
+> +			    crtc->base.base.id, crtc->base.name);
+> +		return -EINVAL;
+> +	}
+> +
+> +	for_each_oldnew_intel_plane_in_state(state, plane, old_plane_state,
+> +					     new_plane_state, i) {
+> +		if (plane->pipe != crtc->pipe)
+> +			continue;
+> +
+> +		/*
+> +		 * TODO: Async flip is only supported through the page flip IOCTL
+> +		 * as of now. So support currently added for primary plane only.
+> +		 * Support for other planes on platforms on which supports
+> +		 * this(vlv/chv and icl+) should be added when async flip is
+> +		 * enabled in the atomic IOCTL path.
+> +		 */
+> +		if (!plane->async_flip) {
+> +			drm_dbg_kms(&i915->drm,
+> +				    "[PLANE:%d:%s] async flip not supported\n",
+> +				    plane->base.base.id, plane->base.name);
+> +			return -EINVAL;
+> +		}
+> +
+> +		if (!old_plane_state->uapi.fb || !new_plane_state->uapi.fb) {
+> +			drm_dbg_kms(&i915->drm,
+> +				    "[PLANE:%d:%s] no old or new framebuffer\n",
+> +				    plane->base.base.id, plane->base.name);
+> +			return -EINVAL;
+> +		}
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int intel_async_flip_check_hw(struct intel_atomic_state *state, struct intel_crtc *crtc)
+>  {
+>  	struct drm_i915_private *i915 = to_i915(state->base.dev);
+>  	const struct intel_crtc_state *old_crtc_state, *new_crtc_state;
+> @@ -7484,6 +7542,9 @@ static int intel_atomic_check_async(struct intel_atomic_state *state, struct int
+>  	old_crtc_state = intel_atomic_get_old_crtc_state(state, crtc);
+>  	new_crtc_state = intel_atomic_get_new_crtc_state(state, crtc);
 >  
-> -		/*
-> -		 * We've accounted for all active planes; remaining planes are
-> -		 * all disabled.
-> -		 */
-> -		if (iter.data_rate == 0)
-> -			break;
-> -
->  		iter.total[plane_id] =
->  			skl_allocate_plane_ddb(&iter, &wm->wm[level],
->  					       crtc_state->plane_data_rate[plane_id]);
+> +	if (!new_crtc_state->uapi.async_flip)
+> +		return 0;
+> +
+>  	if (intel_crtc_needs_modeset(new_crtc_state)) {
+>  		drm_dbg_kms(&i915->drm, "Modeset Required. Async flip not supported\n");
+>  		return -EINVAL;
+> @@ -7675,6 +7736,12 @@ static int intel_atomic_check(struct drm_device *dev,
+>  	if (ret)
+>  		goto fail;
 >  
-> -		if (iter.data_rate == 0)
-> -			break;
-> -
->  		iter.uv_total[plane_id] =
->  			skl_allocate_plane_ddb(&iter, &wm->uv_wm[level],
->  					       crtc_state->uv_plane_data_rate[plane_id]);
+> +	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
+> +		ret = intel_async_flip_check_uapi(state, crtc);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+>  	ret = intel_bigjoiner_add_affected_crtcs(state);
+>  	if (ret)
+>  		goto fail;
+> @@ -7834,11 +7901,9 @@ static int intel_atomic_check(struct drm_device *dev,
+>  
+>  	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
+>  					    new_crtc_state, i) {
+> -		if (new_crtc_state->uapi.async_flip) {
+> -			ret = intel_atomic_check_async(state, crtc);
+> -			if (ret)
+> -				goto fail;
+> -		}
+> +		ret = intel_async_flip_check_hw(state, crtc);
+> +		if (ret)
+> +			goto fail;
+>  
+>  		if (!intel_crtc_needs_modeset(new_crtc_state) &&
+>  		    !new_crtc_state->update_pipe)
 > -- 
 > 2.34.1
 > 
