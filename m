@@ -1,33 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E04FC4CB31F
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Mar 2022 01:15:56 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3790E4CB323
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Mar 2022 01:20:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E8AE10E87E;
-	Thu,  3 Mar 2022 00:15:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5835710E7FD;
+	Thu,  3 Mar 2022 00:20:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 49F1F10E8DA;
- Thu,  3 Mar 2022 00:15:53 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1352C10E7FD;
+ Thu,  3 Mar 2022 00:20:00 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 460A0AA917;
- Thu,  3 Mar 2022 00:15:53 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 100BCAA917;
+ Thu,  3 Mar 2022 00:20:00 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Anusha Srivatsa" <anusha.srivatsa@intel.com>
-Date: Thu, 03 Mar 2022 00:15:53 -0000
-Message-ID: <164626655325.19817.17241510899270172558@emeril.freedesktop.org>
+Date: Thu, 03 Mar 2022 00:20:00 -0000
+Message-ID: <164626680006.19854.9017125555912478510@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20220302235348.1262120-1-anusha.srivatsa@intel.com>
 In-Reply-To: <20220302235348.1262120-1-anusha.srivatsa@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?drm/i915/cdclk=3A_Add_cdclk_check_to_atomic_check_=28rev2=29?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIGRy?=
+ =?utf-8?q?m/i915/cdclk=3A_Add_cdclk_check_to_atomic_check_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,8 +53,8 @@ State : warning
 
 == Summary ==
 
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
+$ make htmldocs 2>&1 > /dev/null | grep i915
+./drivers/gpu/drm/i915/display/intel_cdclk.c:2034: warning: Function parameter or member 'i915' not described in 'intel_cdclk_needs_modeset'
+./drivers/gpu/drm/i915/display/intel_cdclk.c:2102: warning: Function parameter or member 'i915' not described in 'intel_cdclk_changed'
 
 
