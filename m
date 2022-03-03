@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18E394CB607
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Mar 2022 05:58:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B98D04CB664
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Mar 2022 06:28:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E41210F15F;
-	Thu,  3 Mar 2022 04:58:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3619D10EC35;
+	Thu,  3 Mar 2022 05:28:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from eu-smtp-delivery-151.mimecast.com
- (eu-smtp-delivery-151.mimecast.com [185.58.86.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 42A5610F15D
- for <intel-gfx@lists.freedesktop.org>; Thu,  3 Mar 2022 04:58:29 +0000 (UTC)
-Received: from AcuMS.aculab.com (156.67.243.121 [156.67.243.121]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- uk-mtapsc-5-c9saVIHFMHux_Sno3vxg6w-1; Thu, 03 Mar 2022 04:58:25 +0000
-X-MC-Unique: c9saVIHFMHux_Sno3vxg6w-1
-Received: from AcuMS.Aculab.com (fd9f:af1c:a25b:0:994c:f5c2:35d6:9b65) by
- AcuMS.aculab.com (fd9f:af1c:a25b:0:994c:f5c2:35d6:9b65) with Microsoft SMTP
- Server (TLS) id 15.0.1497.28; Thu, 3 Mar 2022 04:58:23 +0000
-Received: from AcuMS.Aculab.com ([fe80::994c:f5c2:35d6:9b65]) by
- AcuMS.aculab.com ([fe80::994c:f5c2:35d6:9b65%12]) with mapi id
- 15.00.1497.028; Thu, 3 Mar 2022 04:58:23 +0000
-From: David Laight <David.Laight@ACULAB.COM>
-To: 'Xiaomeng Tong' <xiam0nd.tong@gmail.com>
-Thread-Topic: [PATCH 2/6] treewide: remove using list iterator after loop body
- as a ptr
-Thread-Index: AQHYLhg9+DU/OogLf0+tiSFmjztyUKysHu+QgADRVYCAACVtoA==
-Date: Thu, 3 Mar 2022 04:58:23 +0000
-Message-ID: <39404befad5b44b385698ff65465abe5@AcuMS.aculab.com>
-References: <1077f17e50d34dc2bbfdf4e52a1cb2fd@AcuMS.aculab.com>
- <20220303022729.9321-1-xiam0nd.tong@gmail.com>
-In-Reply-To: <20220303022729.9321-1-xiam0nd.tong@gmail.com>
-Accept-Language: en-GB, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.202.205.107]
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4277A10EC15;
+ Thu,  3 Mar 2022 05:28:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1646285316; x=1677821316;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=hjM5P8SIEGTaLJyywpqfgfstBbMpG1AHxELpGqkFLyw=;
+ b=kc1VcYA/SIv4GYCQeIrSlJcpml9UugoRPId1i+Aih2fv1epMuLXrr12p
+ g9toLLRE4n3M31KQyajm5T9QXZkMGjOCuw5yTdNGtOs0TC4JDV0eFOPXU
+ 4hxoOCR5eHiOql74z+DkZkQe3jN5ZLR/W1BngF8t3wvDH2nTPYwZ4d/7H
+ ChaG5g8MFGHBf0NvE94VEMbws2k+KQGKkOXyn3tq7OxlUc3PG+2bXRx6T
+ ycyFv0uz8m/eJAoEq/UNIVpFMU3kY5TJ80hLJRhUQoVTpmI6ljeDHL6Pn
+ IwMasjw1gVjakfJtI+Ny7kFfV1tL4xBDnqC464l2D9lGy9q6yGhqBWLly A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10274"; a="316799865"
+X-IronPort-AV: E=Sophos;i="5.90,151,1643702400"; d="scan'208";a="316799865"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2022 21:28:35 -0800
+X-IronPort-AV: E=Sophos;i="5.90,151,1643702400"; d="scan'208";a="551596377"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2022 21:28:34 -0800
+Date: Wed, 2 Mar 2022 21:28:33 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Ramalingam C <ramalingam.c@intel.com>
+Message-ID: <YiBSAae+x1nkVXv5@mdroper-desk1.amr.corp.intel.com>
+References: <20220218184752.7524-1-ramalingam.c@intel.com>
+ <20220218184752.7524-16-ramalingam.c@intel.com>
+ <YhBMKq12AilHGCyl@mdroper-desk1.amr.corp.intel.com>
+ <20220227165219.GA21148@intel.com>
 MIME-Version: 1.0
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=C51A453 smtp.mailfrom=david.laight@aculab.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: aculab.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 2/6] treewide: remove using list iterator
- after loop body as a ptr
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220227165219.GA21148@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 15/15] drm/i915/gt: Clear compress metadata
+ for Xe_HP platforms
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,132 +61,423 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
- "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
- "gustavo@embeddedor.com" <gustavo@embeddedor.com>,
- "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
- "kgdb-bugreport@lists.sourceforge.net" <kgdb-bugreport@lists.sourceforge.net>,
- "linux@rasmusvillemoes.dk" <linux@rasmusvillemoes.dk>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "c.giuffrida@vu.nl" <c.giuffrida@vu.nl>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- "torvalds@linux-foundation.org" <torvalds@linux-foundation.org>,
- "samba-technical@lists.samba.org" <samba-technical@lists.samba.org>,
- "linux1394-devel@lists.sourceforge.net"
- <linux1394-devel@lists.sourceforge.net>,
- "drbd-dev@lists.linbit.com" <drbd-dev@lists.linbit.com>,
- "linux-arch@vger.kernel.org" <linux-arch@vger.kernel.org>,
- "linux-cifs@vger.kernel.org" <linux-cifs@vger.kernel.org>,
- "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
- "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>,
- "linux-rdma@vger.kernel.org" <linux-rdma@vger.kernel.org>,
- "linux-staging@lists.linux.dev" <linux-staging@lists.linux.dev>,
- "h.j.bos@vu.nl" <h.j.bos@vu.nl>, "jgg@ziepe.ca" <jgg@ziepe.ca>,
- "intel-wired-lan@lists.osuosl.org" <intel-wired-lan@lists.osuosl.org>,
- "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
- "bcm-kernel-feedback-list@broadcom.com"
- <bcm-kernel-feedback-list@broadcom.com>,
- "dan.carpenter@oracle.com" <dan.carpenter@oracle.com>,
- "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
- "keescook@chromium.org" <keescook@chromium.org>,
- "arnd@arndb.de" <arnd@arndb.de>,
- "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "bjohannesmeyer@gmail.com" <bjohannesmeyer@gmail.com>,
- "linux-block@vger.kernel.org" <linux-block@vger.kernel.org>,
- "linux-fsdevel@vger.kernel.org" <linux-fsdevel@vger.kernel.org>,
- "christophe.jaillet@wanadoo.fr" <christophe.jaillet@wanadoo.fr>,
- "jakobkoschel@gmail.com" <jakobkoschel@gmail.com>,
- "v9fs-developer@lists.sourceforge.net" <v9fs-developer@lists.sourceforge.net>,
- "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
- "tglx@linutronix.de" <tglx@linutronix.de>,
- "andriy.shevchenko@linux.intel.com" <andriy.shevchenko@linux.intel.com>,
- "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
- "linux-sgx@vger.kernel.org" <linux-sgx@vger.kernel.org>,
- "nathan@kernel.org" <nathan@kernel.org>,
- "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
- "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
- "linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-f2fs-devel@lists.sourceforge.net"
- <linux-f2fs-devel@lists.sourceforge.net>,
- "tipc-discussion@lists.sourceforge.net"
- <tipc-discussion@lists.sourceforge.net>,
- "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
- "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- "akpm@linux-foundation.org" <akpm@linux-foundation.org>,
- "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
- "christian.koenig@amd.com" <christian.koenig@amd.com>,
- "rppt@kernel.org" <rppt@kernel.org>
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>, lucas.demarchi@intel.com,
+ CQ Tang <cq.tang@intel.com>, dri-devel <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Xiaomeng Tong
-> Sent: 03 March 2022 02:27
->=20
-> On Wed, 2 Mar 2022 14:04:06 +0000, David Laight
-> <David.Laight@ACULAB.COM> wrote:
-> > I think that it would be better to make any alternate loop macro
-> > just set the variable to NULL on the loop exit.
-> > That is easier to code for and the compiler might be persuaded to
-> > not redo the test.
->=20
-> No, that would lead to a NULL dereference.
+On Sun, Feb 27, 2022 at 10:22:20PM +0530, Ramalingam C wrote:
+> Matt,
+> 
+> Thanks for the review.
+> 
+> On 2022-02-18 at 17:47:22 -0800, Matt Roper wrote:
+> > On Sat, Feb 19, 2022 at 12:17:52AM +0530, Ramalingam C wrote:
+> > > From: Ayaz A Siddiqui <ayaz.siddiqui@intel.com>
+> > > 
+> > > Xe-HP and latest devices support Flat CCS which reserved a portion of
+> > > the device memory to store compression metadata, during the clearing of
+> > > device memory buffer object we also need to clear the associated
+> > > CCS buffer.
+> > > 
+> > > Flat CCS memory can not be directly accessed by S/W.
+> > > Address of CCS buffer associated main BO is automatically calculated
+> > > by device itself. KMD/UMD can only access this buffer indirectly using
+> > > XY_CTRL_SURF_COPY_BLT cmd via the address of device memory buffer.
+> > > 
+> > > v2: Fixed issues with platform naming [Lucas]
+> > > v3: Rebased [Ram]
+> > >     Used the round_up funcs [Bob]
+> > > v4: Fixed ccs blk calculation [Ram]
+> > >     Added Kdoc on flat-ccs.
+> > > 
+> > > Cc: CQ Tang <cq.tang@intel.com>
+> > > Signed-off-by: Ayaz A Siddiqui <ayaz.siddiqui@intel.com>
+> > > Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/gt/intel_gpu_commands.h |  15 ++
+> > >  drivers/gpu/drm/i915/gt/intel_migrate.c      | 145 ++++++++++++++++++-
+> > >  2 files changed, 156 insertions(+), 4 deletions(-)
+> > > 
+> > > diff --git a/drivers/gpu/drm/i915/gt/intel_gpu_commands.h b/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
+> > > index f8253012d166..166de5436c4a 100644
+> > > --- a/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
+> > > +++ b/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
+> > > @@ -203,6 +203,21 @@
+> > >  #define GFX_OP_DRAWRECT_INFO     ((0x3<<29)|(0x1d<<24)|(0x80<<16)|(0x3))
+> > >  #define GFX_OP_DRAWRECT_INFO_I965  ((0x7900<<16)|0x2)
+> > >  
+> > > +#define XY_CTRL_SURF_INSTR_SIZE	5
+> > > +#define MI_FLUSH_DW_SIZE		3
+> > > +#define XY_CTRL_SURF_COPY_BLT		((2 << 29) | (0x48 << 22) | 3)
+> > > +#define   SRC_ACCESS_TYPE_SHIFT		21
+> > > +#define   DST_ACCESS_TYPE_SHIFT		20
+> > > +#define   CCS_SIZE_SHIFT		8
+> > 
+> > Rather than using a shift, it might be better to just define the
+> > bitfield.  E.g.,
+> > 
+> >         #define CCS_SIZE        GENMASK(17, 8)
+> > 
+> > and then later
+> > 
+> >         FIELD_PREP(CCS_SIZE, i - 1)
+> > 
+> > to refer to the proper value.
+> > 
+> > > +#define   XY_CTRL_SURF_MOCS_SHIFT	25
+> > 
+> > Same here; we can use GENMASK(31, 25) to define the field.
+> 
+> Adapting to the GENMASK and FIELD_PREP for these two macros
+> > 
+> > > +#define   NUM_CCS_BYTES_PER_BLOCK	256
+> > > +#define   NUM_BYTES_PER_CCS_BYTE	256
+> > > +#define   NUM_CCS_BLKS_PER_XFER		1024
+> > > +#define   INDIRECT_ACCESS		0
+> > > +#define   DIRECT_ACCESS			1
+> > > +#define  MI_FLUSH_LLC			BIT(9)
+> > > +#define  MI_FLUSH_CCS			BIT(16)
+> > > +
+> > >  #define COLOR_BLT_CMD			(2 << 29 | 0x40 << 22 | (5 - 2))
+> > >  #define XY_COLOR_BLT_CMD		(2 << 29 | 0x50 << 22)
+> > >  #define SRC_COPY_BLT_CMD		(2 << 29 | 0x43 << 22)
+> > > diff --git a/drivers/gpu/drm/i915/gt/intel_migrate.c b/drivers/gpu/drm/i915/gt/intel_migrate.c
+> > > index 20444d6ceb3c..9f9cd2649377 100644
+> > > --- a/drivers/gpu/drm/i915/gt/intel_migrate.c
+> > > +++ b/drivers/gpu/drm/i915/gt/intel_migrate.c
+> > > @@ -16,6 +16,8 @@ struct insert_pte_data {
+> > >  };
+> > >  
+> > >  #define CHUNK_SZ SZ_8M /* ~1ms at 8GiB/s preemption delay */
+> > > +#define GET_CCS_BYTES(i915, size)	(HAS_FLAT_CCS(i915) ? \
+> > > +					 DIV_ROUND_UP(size, NUM_BYTES_PER_CCS_BYTE) : 0)
+> > >  
+> > >  static bool engine_supports_migration(struct intel_engine_cs *engine)
+> > >  {
+> > > @@ -467,6 +469,113 @@ static bool wa_1209644611_applies(int ver, u32 size)
+> > >  	return height % 4 == 3 && height <= 8;
+> > >  }
+> > >  
+> > > +/**
+> > > + * DOC: Flat-CCS - Memory compression for Local memory
+> > > + *
+> > > + * On Xe-HP and later devices, we use dedicated compression control state (CCS)
+> > > + * stored in local memory for each surface, to support the 3D and media
+> > > + * compression formats.
+> > > + *
+> > > + * The memory required for the CCS of the entire local memory is 1/256 of the
+> > > + * local memory size. So before the kernel boot, the required memory is reserved
+> > > + * for the CCS data and a secure register will be programmed with the CCS base
+> > > + * address.
+> > > + *
+> > > + * Flat CCS data needs to be cleared when a lmem object is allocated.
+> > > + * And CCS data can be copied in and out of CCS region through
+> > > + * XY_CTRL_SURF_COPY_BLT. CPU can't access the CCS data directly.
+> > > + *
+> > > + * When we exaust the lmem, if the object's placements support smem, then we can
+> > 
+> > Typo: exhaust
+> > 
+> > > + * directly decompress the compressed lmem object into smem and start using it
+> > > + * from smem itself.
+> > > + *
+> > > + * But when we need to swapout the compressed lmem object into a smem region
+> > > + * though objects' placement doesn't support smem, then we copy the lmem content
+> > > + * as it is into smem region along with ccs data (using XY_CTRL_SURF_COPY_BLT).
+> > > + * When the object is referred, lmem content will be swaped in along with
+> > > + * restoration of the CCS data (using XY_CTRL_SURF_COPY_BLT) at corresponding
+> > > + * location.
+> > > + */
+> > > +
+> > > +static inline u32 *i915_flush_dw(u32 *cmd, u64 dst, u32 flags)
+> > > +{
+> > > +	/* Mask the 3 LSB to use the PPGTT address space */
+> > 
+> > This comment implies that we'd be doing something like
+> > 
+> >         *cmd++ = lower_32_bits(dst) & GEN_MASK(31, 3);
+> > 
+> > but that doesn't seem to be the case.  The bspec does say the address
+> > must be qword-aligned, so maybe we should just have a drm_WARN_ON() if
+> > we get passed something that isn't aligned properly?
+> 
+> Thanks for pointing this out.
+> 
+> Bit(2) supposed to be 0 to indicate this is from ppgtt. But since the
+> address is 47:3 we need to << by 3 for the whole address.
 
-Why, it would make it b ethe same as the 'easy to use':
-=09for (item =3D head; item; item =3D item->next) {
-=09=09...
-=09=09if (...)
-=09=09=09break;
-=09=09...
-=09}
-=09if (!item)
-=09=09return;
-=20
-> The problem is the mis-use of iterator outside the loop on exit, and
-> the iterator will be the HEAD's container_of pointer which pointers
-> to a type-confused struct. Sidenote: The *mis-use* here refers to
-> mistakely access to other members of the struct, instead of the
-> list_head member which acutally is the valid HEAD.
+I don't think this is actually true; we've been bitten by similar
+registers/instructions in the past because the bspec's notation for this
+kind of stuff is really confusing.  One "pattern" that happens quite
+often in hardware is that if we're supposed to pass a memory address
+that has a specific alignment, the hardware knows that the lower bits of
+the address will always be zero so it just doesn't have us specify them
+in the register value; instead it overloads the specific bits that would
+always be 0's to represent other flags.
 
-The problem is that the HEAD's container_of pointer should never
-be calculated at all.
-This is what is fundamentally broken about the current definition.
+So in this case we're programming a 48-bit address which would usually
+require bits [47:0] to represent.  But since the hardware requires that
+we pass a qword-aligned value, the lowest three bits of the address
+don't need to be explicitly passed and dword1[2:0] get used for
+something else.  So the final value we program winds up being either
+"addr | BIT(2)" (for GGTT) or just "addr" (for PPGTT), with no actual
+shifting taking place.  The "Format: GraphicsAddress[47:3]" tag in the
+bspec is supposed to be the clue that they only actually want us to
+program the upper 45 bits of the address.
 
-> IOW, you would dereference a (NULL + offset_of_member) address here.
+> 
+> Hence planning something like
+> 
+>         /* Address needs to be QWORD aligned */
+>         WARN_ON(dst & 0x7, __stringify(dst & 0x7));
+>         *cmd++ = MI_FLUSH_DW | flags;
+> 
+>         dst <<= 3;
+>         *cmd++ = lower_32_bits(dst);
+>         *cmd++ = upper_32_bits(dst);
+> 
+> > 
+> > > +	*cmd++ = MI_FLUSH_DW | flags;
+> > > +	*cmd++ = lower_32_bits(dst);
+> > > +	*cmd++ = upper_32_bits(dst);
+> > > +
+> > > +	return cmd;
+> > > +}
+> > > +
+> > > +static u32 calc_ctrl_surf_instr_size(struct drm_i915_private *i915, int size)
+> > > +{
+> > > +	u32 num_cmds, num_blks, total_size;
+> > > +
+> > > +	if (!GET_CCS_BYTES(i915, size))
+> > > +		return 0;
+> > > +
+> > > +	/*
+> > > +	 * XY_CTRL_SURF_COPY_BLT transfers CCS in 256 byte
+> > > +	 * blocks. one XY_CTRL_SURF_COPY_BLT command can
+> > > +	 * trnasfer upto 1024 blocks.
+> > 
+> > Typo: transfer.
+> > 
+> > > +	 */
+> > > +	num_blks = DIV_ROUND_UP(GET_CCS_BYTES(i915, size),
+> > > +				NUM_CCS_BYTES_PER_BLOCK);
+> > > +	num_cmds = DIV_ROUND_UP(num_blks, NUM_CCS_BLKS_PER_XFER);
+> > > +	total_size = (XY_CTRL_SURF_INSTR_SIZE) * num_cmds;
+> > > +
+> > > +	/*
+> > > +	 * We need to add a flush before and after
+> > > +	 * XY_CTRL_SURF_COPY_BLT
+> > 
+> > Do you have a bspec reference for this?  It sounds reasonable, but I
+> > wanted to confirm with the bspec that we're programming the flush the
+> > way it wants us to.
+> 
+> For emit_clear we are first copying the CHUNK_SIZE of main memory and
+> then immediately we are using the same destination of the previous blt
+> as src for the next ccs clearing blt ops. Hence we are adding the flush
+> there and also after the blt for writing 0s for ccs data to make sure
+> that CCS chache is flused we are adding next flush.
+> > 
+> > > +	 */
+> > > +	total_size += 2 * MI_FLUSH_DW_SIZE;
+> > > +	return total_size;
+> > > +}
+> > > +
+> > > +static u32 *_i915_ctrl_surf_copy_blt(u32 *cmd, u64 src_addr, u64 dst_addr,
+> > > +				     u8 src_mem_access, u8 dst_mem_access,
+> > > +				     int src_mocs, int dst_mocs,
+> > > +				     u16 num_ccs_blocks)
+> > > +{
+> > > +	int i = num_ccs_blocks;
+> > > +
+> > > +	/*
+> > > +	 * The XY_CTRL_SURF_COPY_BLT instruction is used to copy the CCS
+> > > +	 * data in and out of the CCS region.
+> > > +	 *
+> > > +	 * We can copy at most 1024 blocks of 256 bytes using one
+> > > +	 * XY_CTRL_SURF_COPY_BLT instruction.
+> > > +	 *
+> > > +	 * In case we need to copy more than 1024 blocks, we need to add
+> > > +	 * another instruction to the same batch buffer.
+> > > +	 *
+> > > +	 * 1024 blocks of 256 bytes of CCS represent a total 256KB of CCS.
+> > > +	 *
+> > > +	 * 256 KB of CCS represents 256 * 256 KB = 64 MB of LMEM.
+> > > +	 */
+> > > +	do {
+> > > +		/*
+> > > +		 * We use logical AND with 1023 since the size field
+> > > +		 * takes values which is in the range of 0 - 1023
+> > 
+> > I think you mean 'bitwise AND' here?  A logical AND would be '&&' which
+> > isn't what you want.
+> oops thats a wrong documentation overlooked
+> > 
+> > > +		 */
+> > > +		*cmd++ = ((XY_CTRL_SURF_COPY_BLT) |
+> > > +			  (src_mem_access << SRC_ACCESS_TYPE_SHIFT) |
+> > > +			  (dst_mem_access << DST_ACCESS_TYPE_SHIFT) |
+> > > +			  (((i - 1) & 1023) << CCS_SIZE_SHIFT));
+> > > +		*cmd++ = lower_32_bits(src_addr);
+> > > +		*cmd++ = ((upper_32_bits(src_addr) & 0xFFFF) |
+> > > +			  (src_mocs << XY_CTRL_SURF_MOCS_SHIFT));
+> > > +		*cmd++ = lower_32_bits(dst_addr);
+> > > +		*cmd++ = ((upper_32_bits(dst_addr) & 0xFFFF) |
+> > > +			  (dst_mocs << XY_CTRL_SURF_MOCS_SHIFT));
+> > > +		src_addr += SZ_64M;
+> > > +		dst_addr += SZ_64M;
+> > > +		i -= NUM_CCS_BLKS_PER_XFER;
+> > > +	} while (i > 0);
+> > > +
+> > > +	return cmd;
+> > > +}
+> > > +
+> > >  static int emit_copy(struct i915_request *rq,
+> > >  		     u32 dst_offset, u32 src_offset, int size)
+> > >  {
+> > > @@ -614,16 +723,23 @@ intel_context_migrate_copy(struct intel_context *ce,
+> > >  	return err;
+> > >  }
+> > >  
+> > > -static int emit_clear(struct i915_request *rq, u64 offset, int size, u32 value)
+> > > +static int emit_clear(struct i915_request *rq, u64 offset, int size,
+> > > +		      u32 value, bool is_lmem)
+> > >  {
+> > > -	const int ver = GRAPHICS_VER(rq->engine->i915);
+> > > +	struct drm_i915_private *i915 = rq->engine->i915;
+> > > +	const int ver = GRAPHICS_VER(i915);
+> > > +	u32 num_ccs_blks, ccs_ring_size;
+> > >  	u32 *cs;
+> > >  
+> > >  	GEM_BUG_ON(size >> PAGE_SHIFT > S16_MAX);
+> > >  
+> > >  	offset += (u64)rq->engine->instance << 32;
+> > >  
+> > > -	cs = intel_ring_begin(rq, ver >= 8 ? 8 : 6);
+> > > +	/* Clear flat css only when value is 0 */
+> > 
+> > Typo: ccs
+> > 
+> > > +	ccs_ring_size = (is_lmem && !value) ?
+> > > +			 calc_ctrl_surf_instr_size(i915, size) : 0;
+> > > +
+> > > +	cs = intel_ring_begin(rq, round_up(ver >= 8 ? 8 + ccs_ring_size : 6, 2));
+> > >  	if (IS_ERR(cs))
+> > >  		return PTR_ERR(cs);
+> > >  
+> > > @@ -646,6 +762,27 @@ static int emit_clear(struct i915_request *rq, u64 offset, int size, u32 value)
+> > >  		*cs++ = value;
+> > >  	}
+> > >  
+> > > +	if (is_lmem && HAS_FLAT_CCS(i915) && !value) {
+> > > +		num_ccs_blks = DIV_ROUND_UP(GET_CCS_BYTES(i915, size),
+> > > +					    NUM_CCS_BYTES_PER_BLOCK);
+> > > +
+> > > +		/*
+> > > +		 * Flat CCS surface can only be accessed via
+> > > +		 * XY_CTRL_SURF_COPY_BLT CMD and using indirect
+> > > +		 * mapping of associated LMEM.
+> > > +		 * We can clear ccs surface by writing all 0s,
+> > > +		 * so we will flush the previously cleared buffer
+> > > +		 * and use it as a source.
+> > > +		 */
+> > > +		cs = i915_flush_dw(cs, offset, MI_FLUSH_LLC | MI_FLUSH_CCS);
+> > > +		cs = _i915_ctrl_surf_copy_blt(cs, offset, offset,
+> > > +					      DIRECT_ACCESS, INDIRECT_ACCESS,
+> > > +					      1, 1, num_ccs_blks);
+> > 
+> > The magic number '1' used for MOCS here doesn't look right.  The proper
+> > MOCS entry is probably going to vary from platform to platform.  Bspec
+> > 47980 says it should be UC with GO:Memory, so I think that would be
+> > index 2 for DG2 and Xe_HP SDV.  Since MOCS values are (index << 1), that
+> > would mean we we'd need to program a value of "4" here if I'm reading
+> > the description correctly.
+> > 
+> > Right now we have mocs->uc_index pointing to the uncached entry with
+> > GO:L3.  But I from a quick skim, I think the only places we're using
+> > that value are the programming of BLIT_CCTL (bspec 45807) and
+> > RING_CMD_CCTL (bspec 45826), both of which are supposed to be using
+> > GO:Memory instead of GO:L3.  So maybe we should fix the uc_index value
+> > for those platforms and then use "rq->engine->gt->mocs.uc_index << 1"
+> > here.  Might be worth renaming the field to "uc_index_gomemory" just to
+> > make it more explicit what it's representing to prevent mistakes during
+> > enablement of future platforms.
+> 
+> Summarizing the moc index requirement based on the uc_index usage
+> 
+> CMD_CCTL for both CS Write Format Override” and “CS Read Format Override
+> 	UC(Coherent, GO:Memory) 
+> BLIT_CCTL
+>   Src Mocs
+> 	UC(Coherent, Go:L3) with UCL3LKDIS
+>   Dst Mocs
+>   	UC(Coherent, GoMemory) with UCL3LKDIS
+> XY_CTRL_SURF_COPY_BLT
+>   Same as BLIT_CCTL for src and dst Mocs.
+> 
+> So I infer that we need to have the uc_index and uc_gomemory_index both
+> so that we can use them for src and dst mocs respectively.
+> 
+> Please correct my understanding if i have missed something.
 
-Where?
+This is another place where the bspec is often confusing --- "MOCS
+value" and "MOCS index" refer to different things.  A "MOCS value" is a
+7-bit value that consists of the MOCS index (in bits 6:1) and a flag in
+bit 0 (which for our purposes we can always consider to be 0).  So the
+"uc_index" field we have in the driver today holds the index of a
+platform's "uncached" MOCS entry; when we want to program it into one of
+these instructions that expects a 7-bit *value*, we need to use
+"uc_index << 1" to get the right behavior.
 
-> Please remind me if i missed something, thanks.
->
-> Can you share your "alternative definitions" details? thanks!
+On these recent platforms, "uncached" is further broken down into
+"uncached GO:Memory" and "uncached GO:L3" --- it seems that we've been
+assigning the "uncached GO:L3" entry to our uc_index field in the driver
+today, but that isn't quite right --- everywhere that we actually pass
+the value to the hardware is somewhere we're supposed to be passing an
+"uncached GO:Memory" entry instead.
 
-The loop should probably use as extra variable that points
-to the 'list node' in the next structure.
-Something like:
-=09for (xxx *iter =3D head->next;
-=09=09iter =3D=3D &head ? ((item =3D NULL),0) : ((item =3D list_item(iter),=
-1));
-=09=09iter =3D item->member->next) {
-=09   ...
-With a bit of casting you can use 'item' to hold 'iter'.
 
->=20
-> > OTOH there may be alternative definitions that can be used to get
-> > the compiler (or other compiler-like tools) to detect broken code.
-> > Even if the definition can't possibly generate a working kerrnel.
->=20
-> The "list_for_each_entry_inside(pos, type, head, member)" way makes
-> the iterator invisiable outside the loop, and would be catched by
-> compiler if use-after-loop things happened.
+Matt
 
-It is also a compete PITA for anything doing a search.
+> 
+> Ram.
+> 
+> > 
+> > 
+> > Matt
+> > 
+> > > +		cs = i915_flush_dw(cs, offset, MI_FLUSH_LLC | MI_FLUSH_CCS);
+> > > +
+> > > +		if (ccs_ring_size & 1)
+> > > +			*cs++ = MI_NOOP;
+> > > +	}
+> > >  	intel_ring_advance(rq, cs);
+> > >  	return 0;
+> > >  }
+> > > @@ -711,7 +848,7 @@ intel_context_migrate_clear(struct intel_context *ce,
+> > >  		if (err)
+> > >  			goto out_rq;
+> > >  
+> > > -		err = emit_clear(rq, offset, len, value);
+> > > +		err = emit_clear(rq, offset, len, value, is_lmem);
+> > >  
+> > >  		/* Arbitration is re-enabled between requests. */
+> > >  out_rq:
+> > > -- 
+> > > 2.20.1
+> > > 
+> > 
+> > -- 
+> > Matt Roper
+> > Graphics Software Engineer
+> > VTT-OSGC Platform Enablement
+> > Intel Corporation
+> > (916) 356-2795
 
-=09David
-
--
-Registered Address Lakeside, Bramley Road, Mount Farm, Milton Keynes, MK1 1=
-PT, UK
-Registration No: 1397386 (Wales)
-
+-- 
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
