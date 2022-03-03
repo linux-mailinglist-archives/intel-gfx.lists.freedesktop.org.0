@@ -1,64 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D77544CBD86
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Mar 2022 13:18:34 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5429E4CBE0A
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Mar 2022 13:41:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 54D1F10E2FE;
-	Thu,  3 Mar 2022 12:18:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 32DE210E292;
+	Thu,  3 Mar 2022 12:41:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com
- [IPv6:2a00:1450:4864:20::431])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5155910E301
- for <intel-gfx@lists.freedesktop.org>; Thu,  3 Mar 2022 12:18:30 +0000 (UTC)
-Received: by mail-wr1-x431.google.com with SMTP id b5so7566170wrr.2
- for <intel-gfx@lists.freedesktop.org>; Thu, 03 Mar 2022 04:18:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=W95klwG+EWnuJlXqfneyIPG4bMJIpYFCGfgCPBAo/s4=;
- b=BVoUYAMy6igzOx7YCxgmD2obGVeA4FBbFy39UaDXpcyotfQj1WSs4cD2dBmZ3jehpH
- Xv0H27JfD7LtNc3KTOYt5JsPQaESLbVZdrRIjVdCS/EqEN+LtHV3OI92ZhbhaxnOPsMB
- zwIbvmQMtvcWtqQz/AOpNYfJzkMTFsv4hojr0PuJEFUbZHgxYNi3BKpDV1mgkUzm+fR0
- 4lMaaRE5yh5PGutSdpreHiYAqhMDl6KUHTvi2q6aV5S93rhbYz2wGWOzwPq3hB3YVbYG
- uAhL64o8wkOM/gpLUr2Hb7oB/DraMZLkoBj2jGHmKGFPjyxdoWyrLbd/6WyXGtmMO48w
- vp2Q==
+Received: from mail-qt1-x82a.google.com (mail-qt1-x82a.google.com
+ [IPv6:2607:f8b0:4864:20::82a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 193EB10E292
+ for <intel-gfx@lists.freedesktop.org>; Thu,  3 Mar 2022 12:41:07 +0000 (UTC)
+Received: by mail-qt1-x82a.google.com with SMTP id b23so4420659qtt.6
+ for <intel-gfx@lists.freedesktop.org>; Thu, 03 Mar 2022 04:41:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=QqPRnCMM3G/u00DAjyiShGhZQzBc3VBboERQjr6zr5M=;
+ b=gLC287M9nvZnxhiYOcyBt2agbC7oVi6FRpLBNd33sUWS/sQsyzLo50i1P4gYdJy02s
+ F/E0wPW+gOatLF1inxukgo0hGeIcTVIpG5psxL/+sjxYJXlgu877H8ThODIcv8ZJHp6p
+ X5hJ8KagzJjZ1aiZDxAiTrGTvHn5cU7TNkyFCOMVrgMtEo7aQ6PzTbefXZHhlL1uz560
+ tPO25mS6onU9qvZqfejnXhRt7fS3jn++qJDgyXpcuwJNhMBQCZFUf4gGZ434j22ZV0g/
+ UgLLdwIhEGOqS71YTBubD57Ed8tkaLWVE7jHJ+BUTCE6/J13XWA5/BmToBQaIGPbICn/
+ dPgg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=W95klwG+EWnuJlXqfneyIPG4bMJIpYFCGfgCPBAo/s4=;
- b=r+3v2z1H5sX+TTLM6ij853GSp2aUDSzi9R5NyPSR28GaU55gQeRRAf9zH5k+5pCN4u
- EzvLvA8HXArEHTO8m5BKqrU/2eeAmI/9qsiu2FYnjMvSnGCfE02aQF6ZbbcGcJ49FwRQ
- 5a+L5BPfikq9SpuGpd6lkGzLCj3qR3G7ihfJGzltfa9NkyNVHIUSg5uhWWM7iGffMRYs
- I7nfFC5zvu9tJDAzY2ngkL542Bo42X+Sv7K6iKXCdXpiYMqhqpJRUPyZyC1BMDVH18Tp
- f7CgGHho4ABK1OOT49z1ZsIHE407TPIU4wA4ziHH6lxepK7staQa4zLMRzOZ/jGYuige
- QpEw==
-X-Gm-Message-State: AOAM530vRkMLLMOoMhvG394kxb9C5ADO2HRt3CU87ibFECYoNI0iOj5a
- +a/OD2yvitirOrBar66v6/90xg==
-X-Google-Smtp-Source: ABdhPJwgYeUN7RS9hQRShRziePljKQd/1cMutSSEkk4MeQ2QRRtTjZSLz5QSndDd2pML49XlqkHAqw==
-X-Received: by 2002:a5d:6d0d:0:b0:1e8:7b6a:38e7 with SMTP id
- e13-20020a5d6d0d000000b001e87b6a38e7mr26568054wrq.625.1646309908722; 
- Thu, 03 Mar 2022 04:18:28 -0800 (PST)
-Received: from maple.lan (cpc141216-aztw34-2-0-cust174.18-1.cable.virginm.net.
- [80.7.220.175]) by smtp.gmail.com with ESMTPSA id
- p6-20020a5d4586000000b001f0436cb325sm1774600wrq.52.2022.03.03.04.18.26
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 03 Mar 2022 04:18:28 -0800 (PST)
-Date: Thu, 3 Mar 2022 12:18:24 +0000
-From: Daniel Thompson <daniel.thompson@linaro.org>
-To: Xiaomeng Tong <xiam0nd.tong@gmail.com>
-Message-ID: <20220303121824.qdyrognluik74iph@maple.lan>
-References: <39404befad5b44b385698ff65465abe5@AcuMS.aculab.com>
- <20220303072657.11124-1-xiam0nd.tong@gmail.com>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=QqPRnCMM3G/u00DAjyiShGhZQzBc3VBboERQjr6zr5M=;
+ b=I3g3UKpi90wU6D7uAvRhi6JWRfLOpcmLupDE9gf8i1rkenY5fQZ1hYkkDt2JMwI5Cb
+ wbYrO+zMInQ7CMhDAoyMaUGhKWp3tvmY3/aaT/7jQ0NizxIaM7Vf9Cun6DsBSIpKzXb2
+ /Haj5d3oMs1kTWqSUEr+IegO3GQV2CiVJ6YWOwxPSxm++ZruRCcZ9Q3tTKL6pX8QxWZj
+ SKaPBCKS55CvNYr/m4+fptnt87udfBBM4hzi1KG5pTm5ODKXObjP65u7jj3MF1BBp1Ay
+ IEPFqoUL4tdFBr4lWXGG3rFaeIFKTLqvZEiQok048ev502Z852mn6HXOazUtrkoG2en2
+ 9wWQ==
+X-Gm-Message-State: AOAM531P0aeAxwKbOdCe5fPKJHY2xydhfmZIixm0DoiPuTA6a0uVlDoD
+ Y8VldYzEcgZQUQ73jE6c3LisNKfiWUkbcptfnVDBTirYZCw=
+X-Google-Smtp-Source: ABdhPJz7/tHMvRqUWYVJPlYSzem6NP71l/o/XQpayG5ZHeLxLvwKhu9WevmeYD7HNHGsxFmxnL60W/wuu1K8HetPydM=
+X-Received: by 2002:ac8:58c2:0:b0:2de:326e:9dcb with SMTP id
+ u2-20020ac858c2000000b002de326e9dcbmr27866012qta.689.1646311266172; Thu, 03
+ Mar 2022 04:41:06 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220303072657.11124-1-xiam0nd.tong@gmail.com>
-Subject: Re: [Intel-gfx] [Kgdb-bugreport] [PATCH 2/6] treewide: remove using
- list iterator after loop body as a ptr
+References: <20211209141817.16038-1-stanislav.lisovskiy@intel.com>
+In-Reply-To: <20211209141817.16038-1-stanislav.lisovskiy@intel.com>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Thu, 3 Mar 2022 12:40:39 +0000
+Message-ID: <CAM0jSHPfEanNX+roy0Jucmn6Wk5v_1EOUL9iQj4ov0OWaC3LGQ@mail.gmail.com>
+To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/dg2: Use I915_BO_ALLOC_CONTIGUOUS
+ flag for DPT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,77 +63,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-wireless@vger.kernel.org, alsa-devel@alsa-project.org,
- linux-aspeed@lists.ozlabs.org, gustavo@embeddedor.com,
- linux-iio@vger.kernel.org, kgdb-bugreport@lists.sourceforge.net,
- linux@rasmusvillemoes.dk, dri-devel@lists.freedesktop.org, c.giuffrida@vu.nl,
- amd-gfx@lists.freedesktop.org, linux1394-devel@lists.sourceforge.net,
- drbd-dev@lists.linbit.com, linux-arch@vger.kernel.org,
- linux-cifs@vger.kernel.org, kvm@vger.kernel.org, linux-scsi@vger.kernel.org,
- linux-rdma@vger.kernel.org, linux-staging@lists.linux.dev, h.j.bos@vu.nl,
- jgg@ziepe.ca, intel-wired-lan@lists.osuosl.org, nouveau@lists.freedesktop.org,
- bcm-kernel-feedback-list@broadcom.com, dan.carpenter@oracle.com,
- linux-media@vger.kernel.org, keescook@chromium.org, arnd@arndb.de,
- linux-pm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- linuxppc-dev@lists.ozlabs.org, bjohannesmeyer@gmail.com,
- linux-block@vger.kernel.org, dmaengine@vger.kernel.org,
- christophe.jaillet@wanadoo.fr, jakobkoschel@gmail.com,
- v9fs-developer@lists.sourceforge.net, linux-tegra@vger.kernel.org,
- tglx@linutronix.de, andriy.shevchenko@linux.intel.com,
- linux-arm-kernel@lists.infradead.org, linux-sgx@vger.kernel.org,
- nathan@kernel.org, netdev@vger.kernel.org, linux-usb@vger.kernel.org,
- samba-technical@lists.samba.org, linux-kernel@vger.kernel.org,
- linux-f2fs-devel@lists.sourceforge.net, david.laight@aculab.com,
- tipc-discussion@lists.sourceforge.net, linux-crypto@vger.kernel.org,
- linux-fsdevel@vger.kernel.org, linux-mediatek@lists.infradead.org,
- akpm@linux-foundation.org, torvalds@linux-foundation.org,
- christian.koenig@amd.com, rppt@kernel.org
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Mar 03, 2022 at 03:26:57PM +0800, Xiaomeng Tong wrote:
-> On Thu, 3 Mar 2022 04:58:23 +0000, David Laight wrote:
-> > on 3 Mar 2022 10:27:29 +0800, Xiaomeng Tong wrote:
-> > > The problem is the mis-use of iterator outside the loop on exit, and
-> > > the iterator will be the HEAD's container_of pointer which pointers
-> > > to a type-confused struct. Sidenote: The *mis-use* here refers to
-> > > mistakely access to other members of the struct, instead of the
-> > > list_head member which acutally is the valid HEAD.
-> >
-> > The problem is that the HEAD's container_of pointer should never
-> > be calculated at all.
-> > This is what is fundamentally broken about the current definition.
-> 
-> Yes, the rule is "the HEAD's container_of pointer should never be
-> calculated at all outside the loop", but how do you make sure everyone
-> follows this rule?
+On Thu, 9 Dec 2021 at 17:00, Stanislav Lisovskiy
+<stanislav.lisovskiy@intel.com> wrote:
+>
+> Do mapping using CONTIGUOUS flag - otherwise
+> i915_gem_object_is_contiguous warn is triggered.
+>
+> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 
-Your formulation of the rule is correct: never run container_of() on HEAD
-pointer.
+As a temporary fix,
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 
-However the rule that is introduced by list_for_each_entry_inside() is
-*not* this rule. The rule it introduces is: never access the iterator
-variable outside the loop.
-
-Making the iterator NULL on loop exit does follow the rule you proposed
-but using a different technique: do not allow HEAD to be stored in the
-iterator variable after loop exit. This also makes it impossible to run
-container_of() on the HEAD pointer.
-
-
-> Everyone makes mistakes, but we can eliminate them all from the beginning
-> with the help of compiler which can catch such use-after-loop things.
-
-Indeed but if we introduce new interfaces then we don't have to worry
-about existing usages and silent regressions. Code will have been
-written knowing the loop can exit with the iterator set to NULL.
-
-Sure it is still possible for programmers to make mistakes and
-dereference the NULL pointer but C programmers are well training w.r.t.
-NULL pointer checking so such mistakes are much less likely than with
-the current list_for_each_entry() macro. This risk must be offset
-against the way a NULLify approach can lead to more elegant code when we
-are doing a list search.
-
-
-Daniel.
+> ---
+>  drivers/gpu/drm/i915/display/intel_dpt.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dpt.c b/drivers/gpu/drm/i915/display/intel_dpt.c
+> index 963ca7155b06..f66346dcf2d8 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dpt.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dpt.c
+> @@ -244,7 +244,7 @@ intel_dpt_create(struct intel_framebuffer *fb)
+>         size = round_up(size * sizeof(gen8_pte_t), I915_GTT_PAGE_SIZE);
+>
+>         if (HAS_LMEM(i915))
+> -               dpt_obj = i915_gem_object_create_lmem(i915, size, 0);
+> +               dpt_obj = i915_gem_object_create_lmem(i915, size, I915_BO_ALLOC_CONTIGUOUS);
+>         else
+>                 dpt_obj = i915_gem_object_create_stolen(i915, size);
+>         if (IS_ERR(dpt_obj))
+> --
+> 2.24.1.485.gad05a3d8e5
+>
