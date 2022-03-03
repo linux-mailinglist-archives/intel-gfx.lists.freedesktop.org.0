@@ -1,58 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA9EC4CC4AB
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Mar 2022 19:07:24 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA3874CC4A8
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Mar 2022 19:07:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 98C8810EB58;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F94C10EB50;
 	Thu,  3 Mar 2022 18:07:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pf1-x442.google.com (mail-pf1-x442.google.com
- [IPv6:2607:f8b0:4864:20::442])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3CC4D10EBAC;
- Thu,  3 Mar 2022 08:30:35 +0000 (UTC)
-Received: by mail-pf1-x442.google.com with SMTP id j1so177878pfj.5;
- Thu, 03 Mar 2022 00:30:35 -0800 (PST)
+Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com
+ [IPv6:2607:f8b0:4864:20::434])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E30C610EF5F;
+ Thu,  3 Mar 2022 08:38:55 +0000 (UTC)
+Received: by mail-pf1-x434.google.com with SMTP id s8so92267pfk.12;
+ Thu, 03 Mar 2022 00:38:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=from:to:cc:subject:date:message-id:in-reply-to:references;
- bh=uLpTC29O7sSEzWIyhD1PQNyRAs1/upRhzEEBO0P7TrY=;
- b=R05ZV01Yp+GvJafCjJwp2DdNQL1X7N4+v2qDpWCUjxekJqjhV8nKttt+lgDdDv8VHZ
- pTpad4a62LLA8SjB/yHHEpNTxY0U28zfBa611uCN9ihzVETreTphlyPy+ETyTE4AgOSy
- RSp6pqcLA1mQfW+JjTEEtr3nMT+EN3gAPPB7pPpCIhAgeloFO+Vkph8Zctn11Qajj/U0
- QUVjSv6dTXzOO7akWefQCdrhFJznQKo01Wl+2crhxprXX9zSh/gHLWP/Xe3lMKAcW1nu
- BI3FrzUOW0QskfQ+hVH91vnr00ExY+gCD8VtMWG6RhFXS05x/6dGZMaR1NPNguf29zlo
- qAtA==
+ bh=SGMF6oSM44wO/3sji0yXCG/PEtOPShxdSQ68WLQRB2g=;
+ b=ZvINIOlHF3nZHDcX3MwxAzlzprOUAV7bE6ys/MgPVlfVq9lkuahVjDHsPLQ7QbaFo9
+ fQEFqUdMgi81YiKV62ulZnN7ZvbWazV6yRB1Qn/XiuQndMVO9fvHUymuPfTr2Dg+jh50
+ vUEnvjC71yyLrdhZGmiVJ4PzTrzLKfXKpEMH9pkW4eVCRVAqTfa9XuvSN7zcx65Vy8CK
+ d46NAYhkVq2HOhizng3Ws+JRbkWyYjQl4vq/u0RRAuHhPVUlG5PBN7oH7sIbE0gusQ26
+ 6C+XTV9PxP4Ds6jAKJQCAmbFUS0yNAc3zTUs7Z/QKxXKC+XQ8KtJ4GqninQZxzg5r19Q
+ dsow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references;
- bh=uLpTC29O7sSEzWIyhD1PQNyRAs1/upRhzEEBO0P7TrY=;
- b=brAjms7ghR/JCtWslM2u/fhBMDhb3HjmWEWZoKpdrJF371cY0LWZK2hWAeEz/F7Y61
- bGN1vtPO9mA45i7VOMWZOq3hL5vVPSusNjcJfyM4BXpbY9VvcQ26PLh6EGrJgDjP2vWW
- Y8EMw8JUadBSIzppzjW73k1lbg5jZWHJZ5uSaZafJRm6S6x/MCECtj47iSNzhUX6faEx
- 4WUUmxaUkhowhLeUvMEhcsrxcQ+RQ5WzjjPZD4xX4PCK+emioZGndmyAcIvGtUvpNn6j
- P8kq2ylJ/1qS/lZOog55xP5q+3RyM6ABBlcMT6yVPl1eEVWU2ykv1vhovRggGIGqcUQ3
- +lCw==
-X-Gm-Message-State: AOAM530TdXW2Lb8XBhENxevBqkoXjnGsCs4YtZME0PFkgZBW9NgCcrHE
- /8zxTKecF3GDmWTRcwSEBJg=
-X-Google-Smtp-Source: ABdhPJxl3tqNmXwEb6Rf4RyrJiQAiYb1f64m7AmzgvvLqhkGp3dQvJbj8a24YWybBg5gGNAc3KtcpA==
-X-Received: by 2002:a63:8bca:0:b0:370:2717:3756 with SMTP id
- j193-20020a638bca000000b0037027173756mr29011952pge.604.1646296234811; 
- Thu, 03 Mar 2022 00:30:34 -0800 (PST)
+ bh=SGMF6oSM44wO/3sji0yXCG/PEtOPShxdSQ68WLQRB2g=;
+ b=ADHvEPv0y6kxeiDCCghDA6+TBK37cfNeXfUO44fSOaPzM/6i5rAC7mw/ZG/qadBiZF
+ JfD8PBsWJ6oUzfis4L3+wABpOYjE6nCtVy/h5d5TLAVrF0UTqyNzdwqAAk6a+p4TaRyZ
+ 3DJMXhFncgzfS4bqMV2khvtybD70PR0I7tznCsVcibKrSJw3zMFyU6+Qov1DEx1WvyG/
+ ozROh1L5YdtQuPMcEFhWkO6XvKqpQw3gsyBbD665+hCZqFi0gBTQD2td/8phtzPCpZ3Y
+ z4qpDCTHwwmu7Axbz29Aowm22Qy7UMOTgOK+TTtongU/XQRA+CHuGnFYOwd3Rg8SXZep
+ IvCQ==
+X-Gm-Message-State: AOAM530X6vynzxd9sqI6cctcwqu9JMaBWntvzqhsXplxBcuxsaT77GYb
+ 57bW3TSwy2KMuxmRzKIQAWY=
+X-Google-Smtp-Source: ABdhPJxqu7M+1zWgFCPBx1x396RDv729JpxnE5pMePfUDpYTg5HqtDHmeV1ToBxB32C6BUNb5VRxjw==
+X-Received: by 2002:a63:f03:0:b0:374:50b5:1432 with SMTP id
+ e3-20020a630f03000000b0037450b51432mr28638188pgl.308.1646296735582; 
+ Thu, 03 Mar 2022 00:38:55 -0800 (PST)
 Received: from ubuntu.huawei.com ([119.3.119.19])
  by smtp.googlemail.com with ESMTPSA id
- d5-20020a17090acd0500b001b9c05b075dsm7342532pju.44.2022.03.03.00.30.12
+ q92-20020a17090a1b6500b001bc169e26aasm6405436pjq.2.2022.03.03.00.38.35
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 03 Mar 2022 00:30:34 -0800 (PST)
+ Thu, 03 Mar 2022 00:38:54 -0800 (PST)
 From: Xiaomeng Tong <xiam0nd.tong@gmail.com>
-To: jakobkoschel@gmail.com
-Date: Thu,  3 Mar 2022 16:30:07 +0800
-Message-Id: <20220303083007.11640-1-xiam0nd.tong@gmail.com>
+To: xiam0nd.tong@gmail.com
+Date: Thu,  3 Mar 2022 16:38:31 +0800
+Message-Id: <20220303083831.11833-1-xiam0nd.tong@gmail.com>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <A568BD90-FE81-4740-B1D3-C795EB636A5A@gmail.com>
-References: <A568BD90-FE81-4740-B1D3-C795EB636A5A@gmail.com>
+In-Reply-To: <20220303083007.11640-1-xiam0nd.tong@gmail.com>
+References: <20220303083007.11640-1-xiam0nd.tong@gmail.com>
 X-Mailman-Approved-At: Thu, 03 Mar 2022 18:07:12 +0000
 Subject: Re: [Intel-gfx] [PATCH 2/6] treewide: remove using list iterator
  after loop body as a ptr
@@ -83,12 +83,12 @@ Cc: alsa-devel@alsa-project.org, kvm@vger.kernel.org, gustavo@embeddedor.com,
  linux-pm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
  bjohannesmeyer@gmail.com, linux-block@vger.kernel.org,
  linux-fsdevel@vger.kernel.org, christophe.jaillet@wanadoo.fr,
- v9fs-developer@lists.sourceforge.net, linux-tegra@vger.kernel.org,
- tglx@linutronix.de, andriy.shevchenko@linux.intel.com,
- linux-arm-kernel@lists.infradead.org, linux-sgx@vger.kernel.org,
- nathan@kernel.org, netdev@vger.kernel.org, linux-usb@vger.kernel.org,
- linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-f2fs-devel@lists.sourceforge.net, xiam0nd.tong@gmail.com,
+ jakobkoschel@gmail.com, v9fs-developer@lists.sourceforge.net,
+ linux-tegra@vger.kernel.org, tglx@linutronix.de,
+ andriy.shevchenko@linux.intel.com, linux-arm-kernel@lists.infradead.org,
+ linux-sgx@vger.kernel.org, nathan@kernel.org, netdev@vger.kernel.org,
+ linux-usb@vger.kernel.org, linux-wireless@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-f2fs-devel@lists.sourceforge.net,
  David.Laight@ACULAB.COM, tipc-discussion@lists.sourceforge.net,
  linux-crypto@vger.kernel.org, dmaengine@vger.kernel.org,
  linux-mediatek@lists.infradead.org, akpm@linux-foundation.org,
@@ -96,44 +96,10 @@ Cc: alsa-devel@alsa-project.org, kvm@vger.kernel.org, gustavo@embeddedor.com,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> I think this would make sense, it would mean you only assign the containing
-> element on valid elements.
->
-> I was thinking something along the lines of:
->
-> #define list_for_each_entry(pos, head, member)					\
->	for (struct list_head *list = head->next, typeof(pos) pos;	\
->	     list == head ? 0 : (( pos = list_entry(pos, list, member), 1));	\
->	     list = list->next)
->
-> Although the initialization block of the for loop is not valid C, I'm
-> not sure there is any way to declare two variables of a different type
-> in the initialization part of the loop.
+correct for typo:
 
-It can be done using a *nested loop*, like this:
-
-#define list_for_each_entry(pos, head, member)					\
-	for (struct list_head *list = head->next, cond = (struct list_head *)-1; cond == (struct list_head *)-1; cond = NULL) \
-	  for (typeof(pos) pos;	\
-	     list == head ? 0 : (( pos = list_entry(pos, list, member), 1));	\
-	     list = list->next)
-
->
-> I believe all this does is get rid of the &pos->member == (head) check
-> to terminate the list.
-
-Indeed, although the original way is harmless.
-
-> It alone will not fix any of the other issues that using the iterator
-> variable after the loop currently has.
-
-Yes, but I stick with the list_for_each_entry_inside(pos, type, head, member)
-way to make the iterator invisiable outside the loop (before and after the loop).
-It is maintainable longer-term than "type(pos) pos" one and perfect.
-see my explain:
-https://lore.kernel.org/lkml/20220302093106.8402-1-xiam0nd.tong@gmail.com/
-and list_for_each_entry_inside(pos, type, head, member) patch here:
-https://lore.kernel.org/lkml/20220301075839.4156-3-xiam0nd.tong@gmail.com/
+-for (struct list_head *list = head->next, cond = (struct list_head *)-1; cond == (struct list_head *)-1; cond = NULL) \
++for (struct list_head *list = head->next, *cond = (struct list_head *)-1; cond == (struct list_head *)-1; cond = NULL) \
 
 --
 Xiaomeng Tong
