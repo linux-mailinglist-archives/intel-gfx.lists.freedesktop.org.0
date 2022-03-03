@@ -2,68 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 206B54CBAD5
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Mar 2022 10:55:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EA6CB4CBAE0
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Mar 2022 10:59:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A0B110EA98;
-	Thu,  3 Mar 2022 09:55:36 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4192410EA8C;
- Thu,  3 Mar 2022 09:55:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A2EC910EA98;
+	Thu,  3 Mar 2022 09:59:04 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DD5F810EA98
+ for <intel-gfx@lists.freedesktop.org>; Thu,  3 Mar 2022 09:59:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646301335; x=1677837335;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=n9/PariFFp5/KQ2RFM9KgICu8QRiePc7gKDISjJ67QE=;
- b=FjAdOIKYzRN9ivxNtzm7DPWBwHsITbeNp9xvYkzc47KYTHowlJDYciIc
- OEWuqoSbvNBKGDDA23/ris1RoKuMN/Vu0BYZtUGvXkBBx19LxSudCNaSw
- fnDCr42zELKRQyUuJTNSS40sAu/SJmrgv+lZssX+RxXq5LV2iIL6vQyWy
- uwQ50hO+hQCTgbFzU+PIA7VtTUdBvWeIhMs7PkIPgQJ41lBP30sWGrzrl
- CB/4GywGLADHtYPtiJTpspbxWU3If52xfxE+ygKgaso+cGISVjbSDuS3e
- SR1XHxea2noTaIwrYmbgXvw7Nq0vjeBEgWMprzhdLsrPManM5MCAI0NS9 g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10274"; a="241051425"
-X-IronPort-AV: E=Sophos;i="5.90,151,1643702400"; d="scan'208";a="241051425"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Mar 2022 01:55:34 -0800
-X-IronPort-AV: E=Sophos;i="5.90,151,1643702400"; d="scan'208";a="508532375"
-Received: from gerar12x-mobl1.ger.corp.intel.com (HELO [10.213.222.145])
- ([10.213.222.145])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Mar 2022 01:55:33 -0800
-Message-ID: <f9daab55-6bda-b359-352d-8e585bce899c@linux.intel.com>
-Date: Thu, 3 Mar 2022 09:55:31 +0000
+ t=1646301542; x=1677837542;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=TFqotIUrPW1w2OJikPLj6gZg5LoPVLSdUcsj+fOETAw=;
+ b=almYLB3axvXl2jLZjhOUo86EVr0Wdz++xVn2FpcZ059LupwqBcb7Ufdb
+ 75X/E2aoX0sQatg9f4dp8W1nNY41aZKyFidmzdSZvvyAUCiHEqjsDdAbV
+ 4wIpZUzUan2ka90cPUM00AjdaipGuDd/uk775uXrrGrVhaUHumg56JQ+M
+ PuUa0BxInp0GP8J9E86WnAdZBT5PsGFGee7EnAmZUG7ZvDa1ZH0D+qM05
+ Wc7bw/1APRYg2VNC0l0lqiuaKAFMt9qcfAdCfnQTK8qwHvN8YJ7vKpMwu
+ XBMm311en5ddsL5Vy4uuVsgMf7JYFXa2jjLqQjgTeGuv+M3XqLwefO+hG Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10274"; a="234245869"
+X-IronPort-AV: E=Sophos;i="5.90,151,1643702400"; d="scan'208";a="234245869"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Mar 2022 01:59:02 -0800
+X-IronPort-AV: E=Sophos;i="5.90,151,1643702400"; d="scan'208";a="511370978"
+Received: from bjoseph-mobl.ger.corp.intel.com (HELO localhost) ([10.252.1.89])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Mar 2022 01:59:00 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Anusha Srivatsa <anusha.srivatsa@intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20220302235348.1262120-1-anusha.srivatsa@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220302235348.1262120-1-anusha.srivatsa@intel.com>
+Date: Thu, 03 Mar 2022 11:58:58 +0200
+Message-ID: <87wnhb4asd.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Content-Language: en-US
-To: John Harrison <john.c.harrison@intel.com>, Intel-GFX@Lists.FreeDesktop.Org
-References: <20220218213307.1338478-1-John.C.Harrison@Intel.com>
- <20220218213307.1338478-3-John.C.Harrison@Intel.com>
- <2a486991-1bfd-9b23-0b43-9173d17b7e13@linux.intel.com>
- <e95e8710-8410-2869-dec1-7f7a9e9a74fb@intel.com>
- <18205069-1210-745f-3bcc-2eddb0d17da1@linux.intel.com>
- <94e9889d-d71a-1428-516d-2928807cbf43@intel.com>
- <6ee75384-2cf0-6b34-ed54-3c7dc9ca31a3@linux.intel.com>
- <d6624800-87b0-f992-bc83-868744e2839c@intel.com>
- <ed505a8e-2d2b-135b-aaab-7e4a0befd5ba@linux.intel.com>
- <f6c70184-121e-9a2b-6bbc-54a67af293cc@intel.com>
- <96b7ce40-12f1-9ca0-1c5a-323d63dd8153@linux.intel.com>
- <9df22764-db87-a2d2-2b03-52b4d4c6da9c@intel.com>
- <9bd316d8-004c-621a-916c-2ebad5c31b43@linux.intel.com>
- <8fb0a3a7-7968-79cb-9ea1-e31b0593acaa@intel.com>
- <42b114a7-04ea-71eb-7cd6-507fb4fb1655@linux.intel.com>
- <389c16df-f579-81df-8405-376fcf8ce613@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <389c16df-f579-81df-8405-376fcf8ce613@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915/gt: Make the heartbeat play
- nice with long pre-emption timeouts
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/cdclk: Add cdclk check to atomic
+ check
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,98 +56,420 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: DRI-Devel@Lists.FreeDesktop.Org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Wed, 02 Mar 2022, Anusha Srivatsa <anusha.srivatsa@intel.com> wrote:
+> Checking cdclk conditions during atomic check and preparing
+> for commit phase so we can have atomic commit as simple
+> as possible. Add the specific steps to be taken during
+> cdclk changes, prepare for squashing, crawling and modeset
+> scenarios.
+>
+> Rename functions intel_cdclk_can_squash() and
+> intel_cdclk_can_crawl() since they no longer simply check
+> if squashing and crawling can be performed.
+
+IMO the patch is doing too much at once. There's adding parameters (can
+be done separately at first), there's renames (can be done separately
+afterwards), there's functional changes, all in one.
+
+If you got a bisect result pointing at this commit as regressing, would
+you able to easily figure out what went wrong?
+
+Some comments inline too.
+
+BR,
+Jani.
+
+>
+> Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_cdclk.c    | 169 +++++++++++-------
+>  drivers/gpu/drm/i915/display/intel_cdclk.h    |  16 +-
+>  .../drm/i915/display/intel_display_power.c    |   2 +-
+>  3 files changed, 123 insertions(+), 64 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> index 8888fda8b701..04f3f77ef0a8 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> @@ -1700,12 +1700,23 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
+>  			  const struct intel_cdclk_config *cdclk_config,
+>  			  enum pipe pipe)
+>  {
+> +	struct intel_atomic_state *state;
+> +	struct intel_cdclk_state *new_cdclk_state;
+> +	struct cdclk_steps *cdclk_steps;
+> +	struct intel_cdclk_state *cdclk_state;
+>  	int cdclk = cdclk_config->cdclk;
+>  	int vco = cdclk_config->vco;
+> +	u32 squash_ctl = 0;
+>  	u32 val;
+>  	u16 waveform;
+>  	int clock;
+>  	int ret;
+> +	int i;
+> +
+> +	cdclk_state =  to_intel_cdclk_state(dev_priv->cdclk.obj.state);
+> +	state = cdclk_state->base.state;
+> +	new_cdclk_state = intel_atomic_get_new_cdclk_state(state);
+> +	cdclk_steps = new_cdclk_state->steps;
+>  
+>  	/* Inform power controller of upcoming frequency change. */
+>  	if (DISPLAY_VER(dev_priv) >= 11)
+> @@ -1728,40 +1739,43 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
+>  		return;
+>  	}
+>  
+> -	if (HAS_CDCLK_CRAWL(dev_priv) && dev_priv->cdclk.hw.vco > 0 && vco > 0) {
+> -		if (dev_priv->cdclk.hw.vco != vco)
+> +	for (i = 0; i < CDCLK_ACTIONS; i++) {
+> +		switch (cdclk_steps[i].action) {
+> +		case CDCLK_MODESET:
+> +			if (DISPLAY_VER(dev_priv) >= 11) {
+> +				if (dev_priv->cdclk.hw.vco != 0 &&
+> +				    dev_priv->cdclk.hw.vco != vco)
+> +					icl_cdclk_pll_disable(dev_priv);
+> +
+> +				if (dev_priv->cdclk.hw.vco != vco)
+> +					icl_cdclk_pll_enable(dev_priv, vco);
+> +			} else {
+> +				if (dev_priv->cdclk.hw.vco != 0 &&
+> +				    dev_priv->cdclk.hw.vco != vco)
+> +					bxt_de_pll_disable(dev_priv);
+> +
+> +				if (dev_priv->cdclk.hw.vco != vco)
+> +					bxt_de_pll_enable(dev_priv, vco);
+> +			}
+> +			clock = cdclk;
+> +			break;
+> +		case CDCLK_CRAWL:
+>  			adlp_cdclk_pll_crawl(dev_priv, vco);
+> -	} else if (DISPLAY_VER(dev_priv) >= 11) {
+> -		if (dev_priv->cdclk.hw.vco != 0 &&
+> -		    dev_priv->cdclk.hw.vco != vco)
+> -			icl_cdclk_pll_disable(dev_priv);
+> -
+> -		if (dev_priv->cdclk.hw.vco != vco)
+> -			icl_cdclk_pll_enable(dev_priv, vco);
+> -	} else {
+> -		if (dev_priv->cdclk.hw.vco != 0 &&
+> -		    dev_priv->cdclk.hw.vco != vco)
+> -			bxt_de_pll_disable(dev_priv);
+> -
+> -		if (dev_priv->cdclk.hw.vco != vco)
+> -			bxt_de_pll_enable(dev_priv, vco);
+> -	}
+> -
+> -	waveform = cdclk_squash_waveform(dev_priv, cdclk);
+> -
+> -	if (waveform)
+> -		clock = vco / 2;
+> -	else
+> -		clock = cdclk;
+> -
+> -	if (has_cdclk_squasher(dev_priv)) {
+> -		u32 squash_ctl = 0;
+> -
+> -		if (waveform)
+> +			clock = cdclk;
+> +			break;
+> +		case CDCLK_SQUASH:
+> +			waveform =  cdclk_squash_waveform(dev_priv, cdclk_steps[i].cdclk);
+> +			clock = vco / 2;
+>  			squash_ctl = CDCLK_SQUASH_ENABLE |
+>  				CDCLK_SQUASH_WINDOW_SIZE(0xf) | waveform;
+> -
+> -		intel_de_write(dev_priv, CDCLK_SQUASH_CTL, squash_ctl);
+> +			intel_de_write(dev_priv, CDCLK_SQUASH_CTL, squash_ctl);
+> +			break;
+> +		case CDCLK_NOOP:
+> +			break;
+> +		default:
+> +			MISSING_CASE(cdclk_steps[i].action);
+> +			break;
+> +		}
+>  	}
+>  
+>  	val = bxt_cdclk_cd2x_div_sel(dev_priv, clock, vco) |
+> @@ -1951,11 +1965,12 @@ void intel_cdclk_uninit_hw(struct drm_i915_private *i915)
+>  		skl_cdclk_uninit_hw(i915);
+>  }
+>  
+> -static bool intel_cdclk_can_crawl(struct drm_i915_private *dev_priv,
+> -				  const struct intel_cdclk_config *a,
+> -				  const struct intel_cdclk_config *b)
+> +static bool intel_cdclk_crawl(struct drm_i915_private *dev_priv,
+> +			      const struct intel_cdclk_state *a,
+> +			      struct intel_cdclk_state *b)
+>  {
+>  	int a_div, b_div;
+> +	struct cdclk_steps *cdclk_transition = b->steps;
+>  
+>  	if (!HAS_CDCLK_CRAWL(dev_priv))
+>  		return false;
+> @@ -1964,19 +1979,25 @@ static bool intel_cdclk_can_crawl(struct drm_i915_private *dev_priv,
+>  	 * The vco and cd2x divider will change independently
+>  	 * from each, so we disallow cd2x change when crawling.
+>  	 */
+> -	a_div = DIV_ROUND_CLOSEST(a->vco, a->cdclk);
+> -	b_div = DIV_ROUND_CLOSEST(b->vco, b->cdclk);
+> +	a_div = DIV_ROUND_CLOSEST(a->actual.vco, a->actual.cdclk);
+> +	b_div = DIV_ROUND_CLOSEST(b->actual.vco, b->actual.cdclk);
+>  
+> -	return a->vco != 0 && b->vco != 0 &&
+> -		a->vco != b->vco &&
+> +	cdclk_transition[0].action = CDCLK_CRAWL;
+> +	cdclk_transition[0].cdclk = b->actual.cdclk;
+> +	cdclk_transition[1].action = CDCLK_NOOP;
+> +	cdclk_transition[1].cdclk = b->actual.cdclk;
+> +
+> +	return a->actual.vco != 0 && b->actual.vco != 0 &&
+> +		a->actual.vco != b->actual.vco &&
+>  		a_div == b_div &&
+> -		a->ref == b->ref;
+> +		a->actual.ref == b->actual.ref;
+>  }
+>  
+> -static bool intel_cdclk_can_squash(struct drm_i915_private *dev_priv,
+> -				   const struct intel_cdclk_config *a,
+> -				   const struct intel_cdclk_config *b)
+> +static bool intel_cdclk_squash(struct drm_i915_private *dev_priv,
+> +			       const struct intel_cdclk_state *a,
+> +			       struct intel_cdclk_state *b)
+>  {
+> +	struct cdclk_steps *cdclk_transition = b->steps;
+>  	/*
+>  	 * FIXME should store a bit more state in intel_cdclk_config
+>  	 * to differentiate squasher vs. cd2x divider properly. For
+> @@ -1986,10 +2007,15 @@ static bool intel_cdclk_can_squash(struct drm_i915_private *dev_priv,
+>  	if (!has_cdclk_squasher(dev_priv))
+>  		return false;
+>  
+> -	return a->cdclk != b->cdclk &&
+> -		a->vco != 0 &&
+> -		a->vco == b->vco &&
+> -		a->ref == b->ref;
+> +	cdclk_transition[0].action = CDCLK_SQUASH;
+> +	cdclk_transition[0].cdclk = b->actual.cdclk;
+> +	cdclk_transition[1].action = CDCLK_NOOP;
+> +	cdclk_transition[1].cdclk = b->actual.cdclk;
+> +
+> +	return a->actual.cdclk != b->actual.cdclk &&
+> +		a->actual.vco != 0 &&
+> +		a->actual.vco == b->actual.vco &&
+> +		a->actual.ref == b->actual.ref;
+>  }
+>  
+>  /**
+> @@ -2002,9 +2028,27 @@ static bool intel_cdclk_can_squash(struct drm_i915_private *dev_priv,
+>   * True if changing between the two CDCLK configurations
+>   * requires all pipes to be off, false if not.
+>   */
+> -bool intel_cdclk_needs_modeset(const struct intel_cdclk_config *a,
+> +bool intel_cdclk_needs_modeset(struct drm_i915_private *i915,
+> +			       const struct intel_cdclk_config *a,
+>  			       const struct intel_cdclk_config *b)
+>  {
+> +	struct intel_cdclk_state *new_cdclk_state;
+> +	struct cdclk_steps *cdclk_transition;
+> +	struct intel_cdclk_state *cdclk_state =  to_intel_cdclk_state(i915->cdclk.obj.state);
+> +	struct intel_atomic_state *state = cdclk_state->base.state;
+> +
+> +	new_cdclk_state = intel_atomic_get_new_cdclk_state(state);
+> +	cdclk_transition = new_cdclk_state->steps;
+> +
+> +	if (a->cdclk != b->cdclk ||
+> +	    a->vco != b->vco ||
+> +	    a->ref != b->ref) {
+> +		cdclk_transition[0].action = CDCLK_MODESET;
+> +		cdclk_transition[0].cdclk = b->cdclk;
+> +		cdclk_transition[1].action = CDCLK_NOOP;
+> +		cdclk_transition[1].cdclk = b->cdclk;
+> +	}
+> +
+>  	return a->cdclk != b->cdclk ||
+>  		a->vco != b->vco ||
+>  		a->ref != b->ref;
+> @@ -2052,10 +2096,11 @@ static bool intel_cdclk_can_cd2x_update(struct drm_i915_private *dev_priv,
+>   * Returns:
+>   * True if the CDCLK configurations don't match, false if they do.
+>   */
+> -static bool intel_cdclk_changed(const struct intel_cdclk_config *a,
+> +static bool intel_cdclk_changed(struct drm_i915_private *i915,
+> +				const struct intel_cdclk_config *a,
+>  				const struct intel_cdclk_config *b)
+>  {
+> -	return intel_cdclk_needs_modeset(a, b) ||
+> +	return intel_cdclk_needs_modeset(i915, a, b) ||
+>  		a->voltage_level != b->voltage_level;
+>  }
+>  
+> @@ -2084,7 +2129,7 @@ static void intel_set_cdclk(struct drm_i915_private *dev_priv,
+>  {
+>  	struct intel_encoder *encoder;
+>  
+> -	if (!intel_cdclk_changed(&dev_priv->cdclk.hw, cdclk_config))
+> +	if (!intel_cdclk_changed(dev_priv, &dev_priv->cdclk.hw, cdclk_config))
+>  		return;
+>  
+>  	if (drm_WARN_ON_ONCE(&dev_priv->drm, !dev_priv->cdclk_funcs->set_cdclk))
+> @@ -2131,7 +2176,7 @@ static void intel_set_cdclk(struct drm_i915_private *dev_priv,
+>  	intel_audio_cdclk_change_post(dev_priv);
+>  
+>  	if (drm_WARN(&dev_priv->drm,
+> -		     intel_cdclk_changed(&dev_priv->cdclk.hw, cdclk_config),
+> +		     intel_cdclk_changed(dev_priv, &dev_priv->cdclk.hw, cdclk_config),
+>  		     "cdclk state doesn't match!\n")) {
+>  		intel_cdclk_dump_config(dev_priv, &dev_priv->cdclk.hw, "[hw state]");
+>  		intel_cdclk_dump_config(dev_priv, cdclk_config, "[sw state]");
+> @@ -2155,7 +2200,7 @@ intel_set_cdclk_pre_plane_update(struct intel_atomic_state *state)
+>  		intel_atomic_get_new_cdclk_state(state);
+>  	enum pipe pipe = new_cdclk_state->pipe;
+>  
+> -	if (!intel_cdclk_changed(&old_cdclk_state->actual,
+> +	if (!intel_cdclk_changed(dev_priv, &old_cdclk_state->actual,
+>  				 &new_cdclk_state->actual))
+>  		return;
+>  
+> @@ -2184,7 +2229,7 @@ intel_set_cdclk_post_plane_update(struct intel_atomic_state *state)
+>  		intel_atomic_get_new_cdclk_state(state);
+>  	enum pipe pipe = new_cdclk_state->pipe;
+>  
+> -	if (!intel_cdclk_changed(&old_cdclk_state->actual,
+> +	if (!intel_cdclk_changed(dev_priv, &old_cdclk_state->actual,
+>  				 &new_cdclk_state->actual))
+>  		return;
+>  
+> @@ -2738,7 +2783,7 @@ int intel_modeset_calc_cdclk(struct intel_atomic_state *state)
+>  	if (ret)
+>  		return ret;
+>  
+> -	if (intel_cdclk_changed(&old_cdclk_state->actual,
+> +	if (intel_cdclk_changed(dev_priv, &old_cdclk_state->actual,
+>  				&new_cdclk_state->actual)) {
+>  		/*
+>  		 * Also serialize commits across all crtcs
+> @@ -2749,7 +2794,7 @@ int intel_modeset_calc_cdclk(struct intel_atomic_state *state)
+>  			return ret;
+>  	} else if (old_cdclk_state->active_pipes != new_cdclk_state->active_pipes ||
+>  		   old_cdclk_state->force_min_cdclk != new_cdclk_state->force_min_cdclk ||
+> -		   intel_cdclk_changed(&old_cdclk_state->logical,
+> +		   intel_cdclk_changed(dev_priv, &old_cdclk_state->logical,
+>  				       &new_cdclk_state->logical)) {
+>  		ret = intel_atomic_lock_global_state(&new_cdclk_state->base);
+>  		if (ret)
+> @@ -2776,14 +2821,14 @@ int intel_modeset_calc_cdclk(struct intel_atomic_state *state)
+>  			pipe = INVALID_PIPE;
+>  	}
+>  
+> -	if (intel_cdclk_can_squash(dev_priv,
+> -				   &old_cdclk_state->actual,
+> -				   &new_cdclk_state->actual)) {
+> +	if (intel_cdclk_squash(dev_priv,
+> +			       old_cdclk_state,
+> +			       new_cdclk_state)) {
+>  		drm_dbg_kms(&dev_priv->drm,
+>  			    "Can change cdclk via squasher\n");
+> -	} else if (intel_cdclk_can_crawl(dev_priv,
+> -					 &old_cdclk_state->actual,
+> -					 &new_cdclk_state->actual)) {
+> +	} else if (intel_cdclk_crawl(dev_priv,
+> +				     old_cdclk_state,
+> +				     new_cdclk_state)) {
+>  		drm_dbg_kms(&dev_priv->drm,
+>  			    "Can change cdclk via crawl\n");
+>  	} else if (pipe != INVALID_PIPE) {
+> @@ -2792,7 +2837,7 @@ int intel_modeset_calc_cdclk(struct intel_atomic_state *state)
+>  		drm_dbg_kms(&dev_priv->drm,
+>  			    "Can change cdclk cd2x divider with pipe %c active\n",
+>  			    pipe_name(pipe));
+> -	} else if (intel_cdclk_needs_modeset(&old_cdclk_state->actual,
+> +	} else if (intel_cdclk_needs_modeset(dev_priv, &old_cdclk_state->actual,
+>  					     &new_cdclk_state->actual)) {
+>  		/* All pipes must be switched off while we change the cdclk. */
+>  		ret = intel_modeset_all_pipes(state);
+> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.h b/drivers/gpu/drm/i915/display/intel_cdclk.h
+> index df66f66fbad0..5008463958b1 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cdclk.h
+> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.h
+> @@ -20,6 +20,14 @@ struct intel_cdclk_config {
+>  	u8 voltage_level;
+>  };
+>  
+> +enum cdclk_actions {
+
+Should it be a singular instead of a plural? Contrast:
+
+	enum cdclk_action x;
+	enum cdclk_actions y;
+
+It's only one action, right?
+
+> +	CDCLK_MODESET = 0,
+> +	CDCLK_SQUASH,
+> +	CDCLK_CRAWL,
+> +	CDCLK_NOOP,
+> +	CDCLK_ACTIONS
+> +};
+> +
+
+You need to prefix these with intel_cdclk_ or INTEL_CDCLK_.
+
+>  struct intel_cdclk_state {
+>  	struct intel_global_state base;
+>  
+> @@ -49,6 +57,11 @@ struct intel_cdclk_state {
+>  
+>  	/* bitmask of active pipes */
+>  	u8 active_pipes;
+> +
+> +	struct cdclk_steps {
+
+This doesn't need to have a name, really. And if it had a name, it would
+be one step, not steps. (The array is steps with plural.)
+
+> +		enum cdclk_actions action;
+> +		u32 cdclk;
+> +	} steps[CDCLK_ACTIONS];
+
+It's a bit confusing to me that you have member action, but it's the
+same enum that defines the size of the steps, leading me to believe the
+index, as indexed by the enumerations, actually matters.
+
+Should CDCLK_ACTIONS actually be named CDCLK_MAX_ACTIONS or something?
+Or COUNT?
 
 
-On 02/03/2022 17:55, John Harrison wrote:
+>  };
+>  
+>  int intel_crtc_compute_min_cdclk(const struct intel_crtc_state *crtc_state);
+> @@ -58,7 +71,8 @@ void intel_init_cdclk_hooks(struct drm_i915_private *dev_priv);
+>  void intel_update_max_cdclk(struct drm_i915_private *dev_priv);
+>  void intel_update_cdclk(struct drm_i915_private *dev_priv);
+>  u32 intel_read_rawclk(struct drm_i915_private *dev_priv);
+> -bool intel_cdclk_needs_modeset(const struct intel_cdclk_config *a,
+> +bool intel_cdclk_needs_modeset(struct drm_i915_private *i915,
+> +			       const struct intel_cdclk_config *a,
+>  			       const struct intel_cdclk_config *b);
+>  void intel_set_cdclk_pre_plane_update(struct intel_atomic_state *state);
+>  void intel_set_cdclk_post_plane_update(struct intel_atomic_state *state);
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+> index 3dc859032bac..417a56d54056 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> @@ -1118,7 +1118,7 @@ static void gen9_disable_dc_states(struct drm_i915_private *dev_priv)
+>  	intel_cdclk_get_cdclk(dev_priv, &cdclk_config);
+>  	/* Can't read out voltage_level so can't use intel_cdclk_changed() */
+>  	drm_WARN_ON(&dev_priv->drm,
+> -		    intel_cdclk_needs_modeset(&dev_priv->cdclk.hw,
+> +		    intel_cdclk_needs_modeset(dev_priv, &dev_priv->cdclk.hw,
+>  					      &cdclk_config));
+>  
+>  	gen9_assert_dbuf_enabled(dev_priv);
 
->> I was assuming 2.5s tP is enough and basing all calculation on that. 
->> Heartbeat or timeslicing regardless. I thought we established neither 
->> of us knows how long is enough.
->>
->> Are you now saying 2.5s is definitely not enough? How is that usable 
->> for a default out of the box desktop?
-> Show me your proof that 2.5s is enough.
-> 
-> 7.5s is what we have been using internally for a very long time. It has 
-> approval from all relevant parties. If you wish to pick a new random 
-> number then please provide data to back it up along with buy in from all 
-> UMD teams and project management.
-
-And upstream disabled preemption has acks from compute. "Internally" is 
-as far away from out of the box desktop experiences we have been arguing 
-about. In fact you have argued compute disables the hearbeat anyway.
-
-Lets jump to the end of this reply please for actions.
-
->> And I don't have a problem with extending the last pulse. It is 
->> fundamentally correct to do regardless of the backend. I just raised 
->> the question of whether to extend all heartbeats to account for 
->> preemption (and scheduling delays). (What is the point of bumping 
->> their priority and re-scheduling if we didn't give enough time to the 
->> engine to react? So opposite of the question you raise.)
-> The point is that it we are giving enough time to react. Raising the 
-> priority of a pre-emption that has already been triggered will have no 
-> effect. So as long as the total time from when the pre-emption is 
-> triggered (prio becomes sufficiently high) to the point when the reset 
-> is decided is longer than the pre-emption timeout then it works. Given 
-> that, it is unnecessary to increase the intermediate periods. It has no 
-> advantage and has the disadvantage of making the total time unreasonably 
-> long.
-> 
-> So again, what is the point of making every period longer? What benefit 
-> does it *actually* give?
-
-Less special casing and pointless prio bumps ahead of giving time to 
-engine to even react. You wouldn't have to have the last pulse 2 * tP 
-but normal tH + tP. So again, it is nicer for me to derive all heartbeat 
-pulses from the same input parameters.
-
-The whole "it is very long" argument is IMO moot because now proposed 
-7.5s preempt period is I suspect wholly impractical for desktop. 
-Combined with the argument that real compute disables heartbeats anyway 
-even extra so.
-
-> Fine. "tP(RCS) = 7500;" can I merge the patch now?
-I could live with setting preempt timeout to 7.5s. The downside is 
-slower time to restoring frozen desktops. Worst case today 5 * 2.5s, 
-with changes 4 * 2.5s + 2 * 7.5s; so from 12.5s to 25s, doubling..
-
-Actions:
-
-1)
-Get a number from compute/OpenCL people for what they say is minimum 
-preempt timeout for default out of the box Linux desktop experience.
-
-This does not mean them running some tests and can't be bothered to 
-setup up the machine for the extreme use cases, but workloads average 
-users can realistically be expected to run.
-
-Say for instance some image manipulation software which is OpenCL 
-accelerated or similar. How long unpreemptable sections are expected 
-there. Or similar. I am not familiar what all OpenCL accelerated use 
-cases there are on Linux.
-
-And this number should be purely about minimum preempt timeout, not 
-considering heartbeats. This is because preempt timeout may kick in 
-sooner than stopped heartbeat if the user workload is low priority.
-
-2)
-Commit message should explain the effect on the worst case time until 
-engine reset.
-
-3)
-OpenCL/compute should ack the change publicly as well since they acked 
-the disabling of preemption.
-
-4)
-I really want overflows_type in the first patch.
-
-My position is that with the above satisfied it is okay to merge.
-
-Regards,
-
-Tvrtko
+-- 
+Jani Nikula, Intel Open Source Graphics Center
