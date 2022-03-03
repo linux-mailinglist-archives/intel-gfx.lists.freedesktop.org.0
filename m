@@ -1,43 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8AE1C4CC4AE
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Mar 2022 19:07:28 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 466344CC4A6
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Mar 2022 19:07:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 060EC10EB85;
-	Thu,  3 Mar 2022 18:07:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C04FE10E2E5;
+	Thu,  3 Mar 2022 18:07:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8623910E16A;
- Wed,  2 Mar 2022 19:10:37 +0000 (UTC)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A16A8139F;
- Wed,  2 Mar 2022 11:10:36 -0800 (PST)
-Received: from [10.57.39.47] (unknown [10.57.39.47])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 40F6A3F70D;
- Wed,  2 Mar 2022 11:10:34 -0800 (PST)
-Message-ID: <9d09be2d-34f2-212c-70c0-c698a1d8145a@arm.com>
-Date: Wed, 2 Mar 2022 19:10:29 +0000
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
- Thunderbird/91.6.1
-Content-Language: en-GB
-To: Michael Cheng <michael.cheng@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20220225032436.904942-1-michael.cheng@intel.com>
- <20220225032436.904942-2-michael.cheng@intel.com>
- <5c254623-98d2-75f3-52cb-209b8de304b6@arm.com>
- <3750c398-e8fb-c4e1-ba31-e6ac5fbc01d0@intel.com>
- <2f82d150-47c4-d7c3-50da-eaf4aa4a24af@arm.com>
- <49e4a740-c127-0d5d-e2e8-3ff482fdce3c@intel.com>
-From: Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <49e4a740-c127-0d5d-e2e8-3ff482fdce3c@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com
+ [IPv6:2607:f8b0:4864:20::636])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A51910EA01;
+ Thu,  3 Mar 2022 02:27:53 +0000 (UTC)
+Received: by mail-pl1-x636.google.com with SMTP id e2so3238669pls.10;
+ Wed, 02 Mar 2022 18:27:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references;
+ bh=C6016/38QKZUQAyk5HMPjenTvm42Pe8sPBzTcqL5vmY=;
+ b=qBGtve+IuFrAkJa+gsN1WQjHRs2fvQkSK1D44BenBKAqsyswWIPF49CjeAw6Lc/Xiz
+ 7VY9uX10GWOeYOq3Roffx9lK59MGCnSnWmLkHD6Zz3XGADMqQbIXFAspvzlfyt7tl87F
+ C44YITS/y0gKUKqqxM42VKL4jH/Xx4KasojD++jZOWXtcwkx1m//DlSoFwhQEbp4i/NS
+ eGEaCL2abI9d2Qo/vgVE47lljuFHl9RIsYb9haWI9DYl1+oIMHXMK3O9uyeK26H4D1AX
+ Jy4saNgfSyFkb5FP8pbKE6ds3BSqIpGBCoZu+qijzq/vfSl1dGYXTnehjmH9/ySByi+z
+ BIOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references;
+ bh=C6016/38QKZUQAyk5HMPjenTvm42Pe8sPBzTcqL5vmY=;
+ b=5cf522iwFwhVuW1WVYGFV4/ZJVM8GJceCTBHz131cSL57IuaCGkAw2113XOeFGj6CC
+ CGNORjoYBvb28Wko1GmLVngsCSoYkBAvzAyJ1FoXrgy7cu5t2B9svu3jT9LX0Nya5oRN
+ nkTP1FxF74QC/5a7O+RJuZRbUE9wsVNZep6yasYqOxAgg7Jz0WhOO9irSotjWWO0kNoC
+ PV4V/nw3N0keobE70BN0pwCO2JknY4Csni2D5iirjTGyEiB2eUtrMF7Bme4JLIcrmuN5
+ +fmBEP558XsGcrJDUzLwtCmmribI0MLuUvGbu6Ej6Q4AxXGHs/qsi1DPZ1hjp2DjO60y
+ PwmA==
+X-Gm-Message-State: AOAM533bSUvbYt0eMZ0FTjLOOdtwchxA1yg9l8LGwM38+y1JeGh+dL6i
+ 19RqSvGRLTKo6/nlRUlIgWE=
+X-Google-Smtp-Source: ABdhPJwdGKGtPoJbq9KB0b78P8kOQOqlHazHAUCZQHvA6TzNHcldJErwW75BUHOqmaVxrll88UvLqQ==
+X-Received: by 2002:a17:902:ec90:b0:151:a632:7ebb with SMTP id
+ x16-20020a170902ec9000b00151a6327ebbmr1936164plg.154.1646274473191; 
+ Wed, 02 Mar 2022 18:27:53 -0800 (PST)
+Received: from ubuntu.huawei.com ([119.3.119.19])
+ by smtp.googlemail.com with ESMTPSA id
+ d15-20020a17090ab30f00b001b8e65326b3sm359822pjr.9.2022.03.02.18.27.34
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 02 Mar 2022 18:27:52 -0800 (PST)
+From: Xiaomeng Tong <xiam0nd.tong@gmail.com>
+To: david.laight@aculab.com
+Date: Thu,  3 Mar 2022 10:27:29 +0800
+Message-Id: <20220303022729.9321-1-xiam0nd.tong@gmail.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <1077f17e50d34dc2bbfdf4e52a1cb2fd@AcuMS.aculab.com>
+References: <1077f17e50d34dc2bbfdf4e52a1cb2fd@AcuMS.aculab.com>
 X-Mailman-Approved-At: Thu, 03 Mar 2022 18:07:12 +0000
-Subject: Re: [Intel-gfx] [PATCH v12 1/6] drm: Add arch arm64 for
- drm_clflush_virt_range
+Subject: Re: [Intel-gfx] [PATCH 2/6] treewide: remove using list iterator
+ after loop body as a ptr
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,172 +68,62 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Catalin Marinas <catalin.marinas@arm.com>, lucas.demarchi@intel.com,
- dri-devel@lists.freedesktop.org, Will Deacon <will@kernel.org>,
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Cc: alsa-devel@alsa-project.org, kvm@vger.kernel.org, gustavo@embeddedor.com,
+ linux-iio@vger.kernel.org, kgdb-bugreport@lists.sourceforge.net,
+ linux@rasmusvillemoes.dk, dri-devel@lists.freedesktop.org, c.giuffrida@vu.nl,
+ amd-gfx@lists.freedesktop.org, torvalds@linux-foundation.org,
+ samba-technical@lists.samba.org, linux1394-devel@lists.sourceforge.net,
+ drbd-dev@lists.linbit.com, linux-arch@vger.kernel.org,
+ linux-cifs@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
+ linux-scsi@vger.kernel.org, linux-rdma@vger.kernel.org,
+ linux-staging@lists.linux.dev, h.j.bos@vu.nl, jgg@ziepe.ca,
+ intel-wired-lan@lists.osuosl.org, nouveau@lists.freedesktop.org,
+ bcm-kernel-feedback-list@broadcom.com, dan.carpenter@oracle.com,
+ linux-media@vger.kernel.org, keescook@chromium.org, arnd@arndb.de,
+ linux-pm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ bjohannesmeyer@gmail.com, linux-block@vger.kernel.org,
+ linux-fsdevel@vger.kernel.org, christophe.jaillet@wanadoo.fr,
+ jakobkoschel@gmail.com, v9fs-developer@lists.sourceforge.net,
+ linux-tegra@vger.kernel.org, tglx@linutronix.de,
+ andriy.shevchenko@linux.intel.com, linux-arm-kernel@lists.infradead.org,
+ linux-sgx@vger.kernel.org, nathan@kernel.org, netdev@vger.kernel.org,
+ linux-usb@vger.kernel.org, linux-wireless@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-f2fs-devel@lists.sourceforge.net,
+ xiam0nd.tong@gmail.com, tipc-discussion@lists.sourceforge.net,
+ linux-crypto@vger.kernel.org, dmaengine@vger.kernel.org,
+ linux-mediatek@lists.infradead.org, akpm@linux-foundation.org,
+ linuxppc-dev@lists.ozlabs.org, christian.koenig@amd.com, rppt@kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2022-03-02 15:55, Michael Cheng wrote:
-> Thanks for the feedback Robin!
-> 
-> Sorry my choices of word weren't that great, but what I meant is to 
-> understand how ARM flushes a range of dcache for device drivers, and not 
-> an equal to x86 clflush.
-> 
-> I believe the concern is if the CPU writes an update, that update might 
-> only be sitting in the CPU cache and never make it to device memory 
-> where the device can see it; there are specific places that we are 
-> supposed to flush the CPU caches to make sure our updates are visible to 
-> the hardware.
+On Wed, 2 Mar 2022 14:04:06 +0000, David Laight
+<David.Laight@ACULAB.COM> wrote:
+> I think that it would be better to make any alternate loop macro
+> just set the variable to NULL on the loop exit.
+> That is easier to code for and the compiler might be persuaded to
+> not redo the test.
 
-Ah, OK, if it's more about ordering, and it's actually write buffers 
-rather than caches that you care about flushing, then we might be a lot 
-safer, phew!
+No, that would lead to a NULL dereference.
 
-For a very simple overview, in a case where the device itself needs to 
-observe memory writes in the correct order, e.g.:
+The problem is the mis-use of iterator outside the loop on exit, and
+the iterator will be the HEAD's container_of pointer which pointers
+to a type-confused struct. Sidenote: The *mis-use* here refers to
+mistakely access to other members of the struct, instead of the
+list_head member which acutally is the valid HEAD.
 
-	data_descriptor.valid = 1;
+IOW, you would dereference a (NULL + offset_of_member) address here.
 
-	clflush(&data_descriptor);
+Please remind me if i missed something, thanks.
 
-	command_descriptor.data = &data_descriptor
+> OTOH there may be alternative definitions that can be used to get
+> the compiler (or other compiler-like tools) to detect broken code.
+> Even if the definition can't possibly generate a working kerrnel.
 
-	writel(/* control register to read command to then read data */)
+The "list_for_each_entry_inside(pos, type, head, member)" way makes
+the iterator invisiable outside the loop, and would be catched by
+compiler if use-after-loop things happened.
 
-then dma_wmb() between the first two writes should be the right tool to 
-ensure that the command does not observe the command update while the 
-data update is still sat somewhere in a CPU write buffer.
+Can you share your "alternative definitions" details? thanks!
 
-If you want a slightly stronger notion that, at a given point, all prior 
-writes have actually been issued and should now be visible (rather than 
-just that they won't become visible in the wrong order whenever they 
-do), then wmb() should suffice on arm64.
-
-Note that wioth arm64 memory types, a Non-Cacheable mapping of DRAM for 
-a non-coherent DMA mapping, or of VRAM in a prefetchable BAR, can still 
-be write-buffered, so barriers still matter even when actual cache 
-maintenance ops don't (and as before if you're trying to perform cache 
-maintenance outside the DMA API then you've already lost anyway). MMIO 
-registers should be mapped as Device memory via ioremap(), which is not 
-bufferable, hence the barrier implicit in writel() effectively pushes 
-out any prior buffered writes ahead of a register write, which is why we 
-don't need to worry about this most of the time.
-
-This is only a very rough overview, though, and I'm not familiar enough 
-with x86 semantics, your hardware, or the exact use-case to be able to 
-say whether barriers alone are anywhere near the right answer or not.
-
-Robin.
-
-> 
-> +Matt Roper
-> 
-> Matt, Lucas, any feed back here?
-> 
-> On 2022-03-02 4:49 a.m., Robin Murphy wrote:
->> On 2022-02-25 19:27, Michael Cheng wrote:
->>> Hi Robin,
->>>
->>> [ +arm64 maintainers for their awareness, which would have been a 
->>> good thing to do from the start ]
->>>
->>>   * Thanks for adding the arm64 maintainer and sorry I didn't rope them
->>>     in sooner.
->>>
->>> Why does i915 need to ensure the CPU's instruction cache is coherent 
->>> with its data cache? Is it a self-modifying driver?
->>>
->>>   * Also thanks for pointing this out. Initially I was using
->>>     dcache_clean_inval_poc, which seem to be the equivalently to what
->>>     x86 is doing for dcache flushing, but it was giving me build errors
->>>     since its not on the global list of kernel symbols. And after
->>>     revisiting the documentation for caches_clean_inval_pou, it won't
->>>     fly for what we are trying to do. Moving forward, what would you (or
->>>     someone in the ARM community) suggest we do? Could it be possible to
->>>     export dcache_clean_inval_poc as a global symbol?
->>
->> Unlikely, unless something with a legitimate need for CPU-centric 
->> cache maintenance like kexec or CPU hotplug ever becomes modular.
->>
->> In the case of a device driver, it's not even the basic issues of 
->> assuming to find direct equivalents to x86 semantics in other CPU 
->> architectures, or effectively reinventing parts of the DMA API, it's 
->> even bigger than that. Once you move from being integrated in a single 
->> vendor's system architecture to being on a discrete card, you 
->> fundamentally *no longer have any control over cache coherency*. 
->> Whether the host CPU architecture happens to be AArch64, RISC-V, or 
->> whatever doesn't really matter, you're at the mercy of 3rd-party PCIe 
->> and interconnect IP vendors, and SoC integrators. You'll find yourself 
->> in systems where PCIe simply cannot snoop any caches, where you'd 
->> better have the correct DMA API calls in place to have any hope of 
->> even the most basic functionality working properly; you'll find 
->> yourself in systems where even if the PCIe root complex claims to 
->> support No Snoop, your uncached traffic will still end up snooping 
->> stale data that got prefetched back into caches you thought you'd 
->> invalidated; you'll find yourself in systems where your memory 
->> attributes may or may not get forcibly rewritten by an IOMMU depending 
->> on the kernel config and/or command line.
->>
->> It's not about simply finding a substitute for clflush, it's that the 
->> reasons you have for using clflush in the first place can no longer be 
->> assumed to be valid.
->>
->> Robin.
->>
->>> On 2022-02-25 10:24 a.m., Robin Murphy wrote:
->>>> [ +arm64 maintainers for their awareness, which would have been a 
->>>> good thing to do from the start ]
->>>>
->>>> On 2022-02-25 03:24, Michael Cheng wrote:
->>>>> Add arm64 support for drm_clflush_virt_range. caches_clean_inval_pou
->>>>> performs a flush by first performing a clean, follow by an 
->>>>> invalidation
->>>>> operation.
->>>>>
->>>>> v2 (Michael Cheng): Use correct macro for cleaning and invalidation 
->>>>> the
->>>>>             dcache. Thanks Tvrtko for the suggestion.
->>>>>
->>>>> v3 (Michael Cheng): Replace asm/cacheflush.h with linux/cacheflush.h
->>>>>
->>>>> v4 (Michael Cheng): Arm64 does not export dcache_clean_inval_poc as a
->>>>>             symbol that could be use by other modules, thus use
->>>>>             caches_clean_inval_pou instead. Also this version
->>>>>                 removes include for cacheflush, since its already
->>>>>             included base on architecture type.
->>>>>
->>>>> Signed-off-by: Michael Cheng <michael.cheng@intel.com>
->>>>> Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
->>>>> ---
->>>>>   drivers/gpu/drm/drm_cache.c | 5 +++++
->>>>>   1 file changed, 5 insertions(+)
->>>>>
->>>>> diff --git a/drivers/gpu/drm/drm_cache.c b/drivers/gpu/drm/drm_cache.c
->>>>> index c3e6e615bf09..81c28714f930 100644
->>>>> --- a/drivers/gpu/drm/drm_cache.c
->>>>> +++ b/drivers/gpu/drm/drm_cache.c
->>>>> @@ -174,6 +174,11 @@ drm_clflush_virt_range(void *addr, unsigned 
->>>>> long length)
->>>>>         if (wbinvd_on_all_cpus())
->>>>>           pr_err("Timed out waiting for cache flush\n");
->>>>> +
->>>>> +#elif defined(CONFIG_ARM64)
->>>>> +    void *end = addr + length;
->>>>> +    caches_clean_inval_pou((unsigned long)addr, (unsigned long)end);
->>>>
->>>> Why does i915 need to ensure the CPU's instruction cache is coherent 
->>>> with its data cache? Is it a self-modifying driver?
->>>>
->>>> Robin.
->>>>
->>>> (Note that the above is somewhat of a loaded question, and I do 
->>>> actually have half an idea of what you're trying to do here and why 
->>>> it won't fly, but I'd like to at least assume you've read the 
->>>> documentation of the function you decided was OK to use)
->>>>
->>>>> +
->>>>>   #else
->>>>>       WARN_ONCE(1, "Architecture has no drm_cache.c support\n");
->>>>>   #endif
+--
+Xiaomeng Tong
