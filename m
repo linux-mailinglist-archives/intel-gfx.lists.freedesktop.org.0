@@ -1,66 +1,66 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CCD44CC4A9
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Mar 2022 19:07:23 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A8D84CC3EA
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Mar 2022 18:32:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF93510EB5D;
-	Thu,  3 Mar 2022 18:07:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C0F0510EB10;
+	Thu,  3 Mar 2022 17:32:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com
- [IPv6:2607:f8b0:4864:20::102d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C82BA10E26E;
- Thu,  3 Mar 2022 12:37:48 +0000 (UTC)
-Received: by mail-pj1-x102d.google.com with SMTP id
- c16-20020a17090aa61000b001befad2bfaaso4256798pjq.1; 
- Thu, 03 Mar 2022 04:37:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=FF/MJjppdIPbLAPuX69GDDcuetlfqDD+38vpsQJKjV4=;
- b=bORDDPjE3HJ8Q+lkuHUI9YXm2z2OfuiHyYo73LjCVUqKH+mzapaLyTx7j6vUSzodyH
- H1fbBW3W0VvnP5bKsE/Cw0qa3UKie6z+yV023jD/NJPLY9kKDIxXXIT7NvpcVUCfUtIs
- KFg6MVSLFINqOtsOfPJChC2DDL1HsjgJIQ8T87wI93Fz/8cIhc43z3LdnIXEJu5YqpzN
- mnmxIpvlp/TKF5EWx4k9hHupAU2T1e2iVIXLRuFiSvdgN4U8XMzx7dalBaWhuU90/nq+
- yD0rNidPjh7VKui8oE8v/Ywp+ZPTs/OvJCCqJBXBdG8sdbvMpiVPMu/2SHGpauCCE/Ok
- XUow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=FF/MJjppdIPbLAPuX69GDDcuetlfqDD+38vpsQJKjV4=;
- b=2HnFN393A8feApNVh8TxT43zg7BVHpaA9O+oTQJMH1JctO0hGVWMLfNhqTTZJiuAd5
- /9h6fl2U4kL8/Qgd9mV+SDutF7lOHHp9aC3WMPSoaHeJbZPaB1BEvRGEAjxxC+qE1Ham
- 7348f0qFJMq06ZFlwTH5YqXzs7vx3sDzKrjopPqs+ZKEqvr299naU5BU5vX+hUkN1dvW
- c4xakpnEVk6zjEa+uKZjw0EoNhGEhHdrLOGRm6Gpw4S9xT3eQxYCRtxwyZjSnYBaO4W2
- UY/Tujsafj3H5cqV+13C0g1NFlwy5sw0gQtK7j8aN/XQ6vuLsBt8XtEg28QkH522/3oH
- T5MA==
-X-Gm-Message-State: AOAM531xUH8JwiYL35srQ+M+JGRPjQ2V3GiKshyoryjE1d2dL+AZ2ZCD
- HGDqhzY0bFYV2Z1f849MkIXhZqWGrVV0VQ==
-X-Google-Smtp-Source: ABdhPJwaQutGx29a4puPWhBgOBT74prgxxfsvHgGuVwO/yqGuQ+dVL8XCd59bWLeDERLYwR3js66yQ==
-X-Received: by 2002:a17:903:22d0:b0:151:97f5:db54 with SMTP id
- y16-20020a17090322d000b0015197f5db54mr7837971plg.58.1646311068298; 
- Thu, 03 Mar 2022 04:37:48 -0800 (PST)
-Received: from ubuntu.huawei.com ([119.3.119.19])
- by smtp.googlemail.com with ESMTPSA id
- t7-20020a17090a024700b001bf12386db4sm1483030pje.47.2022.03.03.04.37.24
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 03 Mar 2022 04:37:47 -0800 (PST)
-From: Xiaomeng Tong <xiam0nd.tong@gmail.com>
-To: david.laight@aculab.com
-Date: Thu,  3 Mar 2022 20:37:18 +0800
-Message-Id: <20220303123718.12426-1-xiam0nd.tong@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <2d208771c50b4c6db4f43039e9d62851@AcuMS.aculab.com>
-References: <2d208771c50b4c6db4f43039e9d62851@AcuMS.aculab.com>
+Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com
+ [199.106.114.38])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0925010E2FA;
+ Thu,  3 Mar 2022 17:32:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+ t=1646328766; x=1677864766;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=Pvc+1yI9+Saj6jWbYLlm12/SDydBTInIKsgdaW6gPXs=;
+ b=QbSar3d/hWHvEaGvlbN8UheUAhOtnyl6FSr34XXscFJpbukRXGJmHPN/
+ 4hS6T/6f4Q/dqNQ0pez0YfNDZexH84vGzdtb73Dce40kt2iBDx8G51kq3
+ LkaL9QJai0DhZcnaFMJ4QIg4fh+9DcMOg2Y2vBvrTF0UmzpHQWp8pxxwO w=;
+Received: from unknown (HELO ironmsg02-sd.qualcomm.com) ([10.53.140.142])
+ by alexa-out-sd-01.qualcomm.com with ESMTP; 03 Mar 2022 09:32:45 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+ by ironmsg02-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Mar 2022 09:32:44 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.15; Thu, 3 Mar 2022 09:32:44 -0800
+Received: from [10.110.60.142] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.15; Thu, 3 Mar 2022
+ 09:32:43 -0800
+Message-ID: <0cfd36a2-26e4-309d-d8e9-e3bf8a5d2417@quicinc.com>
+Date: Thu, 3 Mar 2022 09:32:42 -0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.1
+Content-Language: en-US
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+References: <Yfp8Q6OFqTAvESOi@pendragon.ideasonboard.com>
+ <87y22ts948.fsf@intel.com> <YfqGbqQQz5vrDaLI@pendragon.ideasonboard.com>
+ <87v8xxs2hz.fsf@intel.com>
+ <CAF6AEGtdnWWhGp7U7nAPD4r3Uoe5BJKVm2rQ2MS=q5GqF6MYDA@mail.gmail.com>
+ <YhyB0WmJDWVFO1se@pendragon.ideasonboard.com> <871qzn6vmc.fsf@intel.com>
+ <Yhy/6+z7QshG+qOo@pendragon.ideasonboard.com>
+ <YhzROBOwTUkZw3Ez@pendragon.ideasonboard.com>
+ <4d8daabe-10d9-a3cf-d305-68414cffe4ed@quicinc.com>
+ <Yh+4EOKA5FgrlZrF@pendragon.ideasonboard.com>
+From: Abhinav Kumar <quic_abhinavk@quicinc.com>
+In-Reply-To: <Yh+4EOKA5FgrlZrF@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 03 Mar 2022 18:07:12 +0000
-Subject: Re: [Intel-gfx] [PATCH 2/6] treewide: remove using list iterator
- after loop body as a ptr
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+Subject: Re: [Intel-gfx] [PATCH 5/6] drm/rcar_du: changes to rcar-du driver
+ resulting from drm_writeback_connector structure changes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,163 +73,198 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alsa-devel@alsa-project.org, kvm@vger.kernel.org, gustavo@embeddedor.com,
- linux-iio@vger.kernel.org, kgdb-bugreport@lists.sourceforge.net,
- linux@rasmusvillemoes.dk, dri-devel@lists.freedesktop.org, c.giuffrida@vu.nl,
- amd-gfx@lists.freedesktop.org, torvalds@linux-foundation.org,
- samba-technical@lists.samba.org, linux1394-devel@lists.sourceforge.net,
- drbd-dev@lists.linbit.com, linux-arch@vger.kernel.org,
- linux-cifs@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
- linux-scsi@vger.kernel.org, linux-rdma@vger.kernel.org,
- linux-staging@lists.linux.dev, h.j.bos@vu.nl, jgg@ziepe.ca,
- intel-wired-lan@lists.osuosl.org, nouveau@lists.freedesktop.org,
- bcm-kernel-feedback-list@broadcom.com, dan.carpenter@oracle.com,
- linux-media@vger.kernel.org, keescook@chromium.org, arnd@arndb.de,
- linux-pm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- bjohannesmeyer@gmail.com, linux-block@vger.kernel.org,
- linux-fsdevel@vger.kernel.org, christophe.jaillet@wanadoo.fr,
- jakobkoschel@gmail.com, v9fs-developer@lists.sourceforge.net,
- linux-tegra@vger.kernel.org, tglx@linutronix.de,
- andriy.shevchenko@linux.intel.com, linux-arm-kernel@lists.infradead.org,
- linux-sgx@vger.kernel.org, nathan@kernel.org, netdev@vger.kernel.org,
- linux-usb@vger.kernel.org, linux-wireless@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-f2fs-devel@lists.sourceforge.net,
- xiam0nd.tong@gmail.com, tipc-discussion@lists.sourceforge.net,
- linux-crypto@vger.kernel.org, dmaengine@vger.kernel.org,
- linux-mediatek@lists.infradead.org, akpm@linux-foundation.org,
- linuxppc-dev@lists.ozlabs.org, christian.koenig@amd.com, rppt@kernel.org
+Cc: Carsten Haitzler <carsten.haitzler@arm.com>,
+ Jani Nikula <jani.nikula@intel.com>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>, David Airlie <airlied@linux.ie>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> From: Xiaomeng Tong
-> > Sent: 03 March 2022 07:27
-> > 
-> > On Thu, 3 Mar 2022 04:58:23 +0000, David Laight wrote:
-> > > on 3 Mar 2022 10:27:29 +0800, Xiaomeng Tong wrote:
-> > > > The problem is the mis-use of iterator outside the loop on exit, and
-> > > > the iterator will be the HEAD's container_of pointer which pointers
-> > > > to a type-confused struct. Sidenote: The *mis-use* here refers to
-> > > > mistakely access to other members of the struct, instead of the
-> > > > list_head member which acutally is the valid HEAD.
-> > >
-> > > The problem is that the HEAD's container_of pointer should never
-> > > be calculated at all.
-> > > This is what is fundamentally broken about the current definition.
-> > 
-> > Yes, the rule is "the HEAD's container_of pointer should never be
-> > calculated at all outside the loop", but how do you make sure everyone
-> > follows this rule?
-> > Everyone makes mistakes, but we can eliminate them all from the beginning
-> > with the help of compiler which can catch such use-after-loop things.
-> > 
-> > > > IOW, you would dereference a (NULL + offset_of_member) address here.
-> > >
-> > >Where?
-> > 
-> > In the case where a developer do not follows the above rule, and mistakely
-> > access a non-list-head member of the HEAD's container_of pointer outside
-> > the loop. For example:
-> >     struct req{
-> >       int a;
-> >       struct list_head h;
-> >     }
-> >     struct req *r;
-> >     list_for_each_entry(r, HEAD, h) {
-> >       if (r->a == 0x10)
-> >         break;
-> >     }
-> >     // the developer made a mistake: he didn't take this situation into
-> >     // account where all entries in the list are *r->a != 0x10*, and now
-> >     // the r is the HEAD's container_of pointer.
-> >     r->a = 0x20;
-> > Thus the "r->a = 0x20" would dereference a (NULL + offset_of_member)
-> > address here.
+
+
+On 3/2/2022 10:31 AM, Laurent Pinchart wrote:
+> Hi Abhinav,
 > 
-> That is just a bug.
-> No different to failing to check anything else might 'return'
-> a NULL pointer.
-
-Yes, but it‘s a mistake everyone has made and will make, we should avoid
-this at the beginning with the help of compiler.
-
-> Because it is a NULL dereference you find out pretty quickly.
-
-AFAIK，NULL dereference is a undefined bahavior, can compiler quickly
-catch it? Or it can only be applied to some simple/restricted cases.
-
-> The existing loop leaves you with a valid pointer to something
-> that isn't a list item.
+> On Wed, Mar 02, 2022 at 10:28:03AM -0800, Abhinav Kumar wrote:
+>> On 2/28/2022 5:42 AM, Laurent Pinchart wrote:
+>>> On Mon, Feb 28, 2022 at 02:28:27PM +0200, Laurent Pinchart wrote:
+>>>> On Mon, Feb 28, 2022 at 02:09:15PM +0200, Jani Nikula wrote:
+>>>>> On Mon, 28 Feb 2022, Laurent Pinchart wrote:
+>>>>>> On Sat, Feb 26, 2022 at 10:27:59AM -0800, Rob Clark wrote:
+>>>>>>> On Wed, Feb 2, 2022 at 7:41 AM Jani Nikula wrote:
+>>>>>>>> On Wed, 02 Feb 2022, Laurent Pinchart wrote:
+>>>>>>>>> On Wed, Feb 02, 2022 at 03:15:03PM +0200, Jani Nikula wrote:
+>>>>>>>>>> On Wed, 02 Feb 2022, Laurent Pinchart wrote:
+>>>>>>>>>>> On Wed, Feb 02, 2022 at 02:24:28PM +0530, Kandpal Suraj wrote:
+>>>>>>>>>>>> Changing rcar_du driver to accomadate the change of
+>>>>>>>>>>>> drm_writeback_connector.base and drm_writeback_connector.encoder
+>>>>>>>>>>>> to a pointer the reason for which is explained in the
+>>>>>>>>>>>> Patch(drm: add writeback pointers to drm_connector).
+>>>>>>>>>>>>
+>>>>>>>>>>>> Signed-off-by: Kandpal Suraj <suraj.kandpal@intel.com>
+>>>>>>>>>>>> ---
+>>>>>>>>>>>>    drivers/gpu/drm/rcar-du/rcar_du_crtc.h      | 2 ++
+>>>>>>>>>>>>    drivers/gpu/drm/rcar-du/rcar_du_writeback.c | 8 +++++---
+>>>>>>>>>>>>    2 files changed, 7 insertions(+), 3 deletions(-)
+>>>>>>>>>>>>
+>>>>>>>>>>>> diff --git a/drivers/gpu/drm/rcar-du/rcar_du_crtc.h b/drivers/gpu/drm/rcar-du/rcar_du_crtc.h
+>>>>>>>>>>>> index 66e8839db708..68f387a04502 100644
+>>>>>>>>>>>> --- a/drivers/gpu/drm/rcar-du/rcar_du_crtc.h
+>>>>>>>>>>>> +++ b/drivers/gpu/drm/rcar-du/rcar_du_crtc.h
+>>>>>>>>>>>> @@ -72,6 +72,8 @@ struct rcar_du_crtc {
+>>>>>>>>>>>>     const char *const *sources;
+>>>>>>>>>>>>     unsigned int sources_count;
+>>>>>>>>>>>>
+>>>>>>>>>>>> + struct drm_connector connector;
+>>>>>>>>>>>> + struct drm_encoder encoder;
+>>>>>>>>>>>
+>>>>>>>>>>> Those fields are, at best, poorly named. Furthermore, there's no need in
+>>>>>>>>>>> this driver or in other drivers using drm_writeback_connector to create
+>>>>>>>>>>> an encoder or connector manually. Let's not polute all drivers because
+>>>>>>>>>>> i915 doesn't have its abstractions right.
+>>>>>>>>>>
+>>>>>>>>>> i915 uses the quite common model for struct inheritance:
+>>>>>>>>>>
+>>>>>>>>>>        struct intel_connector {
+>>>>>>>>>>                struct drm_connector base;
+>>>>>>>>>>                /* ... */
+>>>>>>>>>>        }
+>>>>>>>>>>
+>>>>>>>>>> Same with at least amd, ast, fsl-dcu, hisilicon, mga200, msm, nouveau,
+>>>>>>>>>> radeon, tilcdc, and vboxvideo.
+>>>>>>>>>>
+>>>>>>>>>> We could argue about the relative merits of that abstraction, but I
+>>>>>>>>>> think the bottom line is that it's popular and the drivers using it are
+>>>>>>>>>> not going to be persuaded to move away from it.
+>>>>>>>>>
+>>>>>>>>> Nobody said inheritance is bad.
+>>>>>>>>>
+>>>>>>>>>> It's no coincidence that the drivers who've implemented writeback so far
+>>>>>>>>>> (komeda, mali, rcar-du, vc4, and vkms) do not use the abstraction,
+>>>>>>>>>> because the drm_writeback_connector midlayer does, forcing the issue.
+>>>>>>>>>
+>>>>>>>>> Are you sure it's not a coincidence ? :-)
+>>>>>>>>>
+>>>>>>>>> The encoder and especially connector created by drm_writeback_connector
+>>>>>>>>> are there only because KMS requires a drm_encoder and a drm_connector to
+>>>>>>>>> be exposed to userspace (and I could argue that using a connector for
+>>>>>>>>> writeback is a hack, but that won't change). The connector is "virtual",
+>>>>>>>>> I still fail to see why i915 or any other driver would need to wrap it
+>>>>>>>>> into something else. The whole point of the drm_writeback_connector
+>>>>>>>>> abstraction is that drivers do not have to manage the writeback
+>>>>>>>>> drm_connector manually, they shouldn't touch it at all.
+>>>>>>>>
+>>>>>>>> The thing is, drm_writeback_connector_init() calling
+>>>>>>>> drm_connector_init() on the drm_connector embedded in
+>>>>>>>> drm_writeback_connector leads to that connector being added to the
+>>>>>>>> drm_device's list of connectors. Ditto for the encoder.
+>>>>>>>>
+>>>>>>>> All the driver code that handles drm_connectors would need to take into
+>>>>>>>> account they might not be embedded in intel_connector. Throughout the
+>>>>>>>> driver. Ditto for the encoders.
+>>>>>>>
+>>>>>>> The assumption that a connector is embedded in intel_connector doesn't
+>>>>>>> really play that well with how bridge and panel connectors work.. so
+>>>>>>> in general this seems like a good thing to unwind.
+>>>>>>>
+>>>>>>> But as a point of practicality, i915 is a large driver covering a lot
+>>>>>>> of generations of hw with a lot of users.  So I can understand
+>>>>>>> changing this design isn't something that can happen quickly or
+>>>>>>> easily.  IMO we should allow i915 to create it's own connector for
+>>>>>>> writeback, and just document clearly that this isn't the approach new
+>>>>>>> drivers should take.  I mean, I understand idealism, but sometimes a
+>>>>>>> dose of pragmatism is needed. :-)
+>>>>>>
+>>>>>> i915 is big, but so is Intel. It's not fair to treat everybody else as a
+>>>>>> second class citizen and let Intel get away without doing its homework.
+>>>>>
+>>>>> Laurent, as you accuse us of not doing our homework, I'll point out that
+>>>>> we've been embedding drm crtc, encoder and connector ever since
+>>>>> modesetting support was added to i915 in 2008, since before *any* of the
+>>>>> things you now use as a rationale for asking us to do a massive rewrite
+>>>>> of the driver existed.
+>>>>>
+>>>>> It's been ok to embed those structures for well over ten years. It's a
+>>>>> common pattern, basically throughout the kernel. Other drivers do it
+>>>>> too, not just i915. There hasn't been the slightest hint this should not
+>>>>> be done until this very conversation.
+>>>>>
+>>>>>> I want to see this refactoring effort moving forward in i915 (and moving
+>>>>>> to drm_bridge would then be a good idea too). If writeback support in
+>>>>>> i915 urgent, then we can discuss *temporary* pragmatic stopgap measures,
+>>>>>> but not without a real effort to fix the core issue.
+>>>>>
+>>>>> I think the onus is on you to first convince everyone that embedding the
+>>>>> drm core kms structures is an antipattern that all drivers, not just
+>>>>> i915, should stop using. In OO terms, you're saying they are classes
+>>>>> that should be final and not extended.
+>>>>>
+>>>>> And even then, to be totally honest, refactoring the structures is not
+>>>>> going to be anywhere near the top of our list of things to do, for a
+>>>>> very long time.
+>>>>
+>>>> I may have not expressed myself correctly. There's nothing wrong as such
+>>>> in embedded those structures in driver-specific structures (a.k.a. C
+>>>> inheritance). That doesn't need to change (albeit for drm_encoder I
+>>>> think we should move away from that pattern, but that's an entirely
+>>>> different issue, and nothing that needs to be addressed soonà.
+>>>>
+>>>> The issue here is assuming that every drm_connector instance can be
+>>>> up-casted to an i915-specific structure.
+>>>
+>>> Thinking some more about this, I wonder a way forward could be to drop
+>>> the writeback connectors from the connectors list, or at least make them
+>>> invisible to drivers. The connectors list is used extensively for two
+>>> different purposes: tracking all drm_connector instances, and tracking
+>>> all real connectors. The former is mostly needed by the DRM core for
+>>> bookkeeping purposes and to expose all drm_connector instances to
+>>> userspace, while the latter is also used by drivers, in many cases in
+>>> locations that don't expect writeback connectors. Using a drm_connector
+>>> to implement writeback isn't something we can revisit, but we could
+>>> avoid exposing that to drivers by considering "real" connectors and
+>>> writeback connectors two different types of entities in the APIs the DRM
+>>> core exposes to drivers. What do you think, would it help for i915 ?
+>>
+>> Hi Jani and Suraj
+>>
+>> Since atleast there is agreement on changing the drm_encoder to a
+>> pointer in the drm_writeback_connector, can we re-arrange the series OR
+>> split it into encoder first and then connector so that atleast those
+>> bits can go in first? It will benefit both our (i915 & MSM )
+>> implementations.
+>>
+>> Hi Laurent
+>>
+>> For the connector part, can you please post a RFC for your proposal?
+>> Perhaps myself and Suraj can evaluate our implementations on top of that
+>> and the encoder change.
 > 
-> > > > Please remind me if i missed something, thanks.
-> > > >
-> > > > Can you share your "alternative definitions" details? thanks!
-> > >
-> > > The loop should probably use as extra variable that points
-> > > to the 'list node' in the next structure.
-> > > Something like:
-> > > 	for (xxx *iter = head->next;
-> > > 		iter == &head ? ((item = NULL),0) : ((item = list_item(iter),1));
-> > > 		iter = item->member->next) {
-> > > 	   ...
-> > > With a bit of casting you can use 'item' to hold 'iter'.
-> > 
-> > you still can not make sure everyone follows this rule:
-> > "do not use iterator outside the loop" without the help of compiler,
-> > because item is declared outside the loop.
+> I'm afraid I won't have time to work on this personally for at least
+> several weeks, if not more.
 > 
-> That one has 'iter' defined in the loop.
+Hi Laurent
 
-Oh, sorry, I misunderstood. Then this is the same way with my way of
-list_for_each_entry_inside(pos, type, head, member), which declare
-the iterator inside the loop.
-You go further and make things like "&pos->member == (head)" goes away
-to avoid calculate the HEAD's container_of pointer, although the
-calculation is harmless.
+Ok sure, I can take this up but I need to understand the proposal a 
+little bit more before proceeding on this. So we will discuss this in 
+another email where we specifically talk about the connector changes.
 
+Also, I am willing to take this up once the encoder part is done and 
+merged so that atleast we keep moving on that as MSM WB implementation 
+can proceed with that first.
+
+Hi Jani and Suraj
+
+Any concerns with splitting up the series into encoder and connector OR 
+re-arranging them?
+
+Let me know if you can do this OR I can also split this up keeping 
+Suraj's name in the Co-developed by tag.
+
+Thanks
+
+Abhinav
+>>>>>>>> The point is, you can't initialize a connector or an encoder for a
+>>>>>>>> drm_device in isolation of the rest of the driver, even if it were
+>>>>>>>> supposed to be hidden away.
 > 
-> > BTW, to avoid ambiguity，the "alternative definitions" here i asked is
-> > something from you in this context:
-> > "OTOH there may be alternative definitions that can be used to get
-> > the compiler (or other compiler-like tools) to detect broken code.
-> > Even if the definition can't possibly generate a working kerrnel."
-> 
-> I was thinking of something like:
-> 	if ((pos = list_first)), 1) pos = NULL else
-> so that unchecked dereferences after the loop will be detectable
-> as NULL pointer offsets - but that in itself isn't enough to avoid
-> other warnings.
-> 
-
-Do you mean put this right after the loop (I changed somthing that i
-do not understand, please correct me if i am worng, thanks):
-       if (pos == list_first) pos = NULL; else
-and compiler can detect the following NULL derefernce?
-But if the NULL derefernce is just right after the loop originally,
-it will be masked by the *else* keyword。
-
-> > > > The "list_for_each_entry_inside(pos, type, head, member)" way makes
-> > > > the iterator invisiable outside the loop, and would be catched by
-> > > > compiler if use-after-loop things happened.
-> > 
-> > > It is also a compete PITA for anything doing a search.
-> > 
-> > You mean it would be a burden on search? can you show me some examples?
-> 
-> The whole business of having to save the pointer to the located item
-> before breaking the loop, remembering to have set it to NULL earlier etc.
-
-Ok, i see. And then you need pass a "item" to the list_for_each_entry macro
-as a new argument.
-
-> 
-> It is so much better if you can just do:
-> 		if (found)
-> 			break;
-> 
-> 	David
-
-this confused me. this way is better or the "save the pointer to the located item
-before breaking the loop" one?
-
---
-Xiaomeng Tong
