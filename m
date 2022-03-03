@@ -1,47 +1,150 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 116894CC94F
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Mar 2022 23:43:36 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DBDD4CC96D
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Mar 2022 23:49:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A6EE10E396;
-	Thu,  3 Mar 2022 22:43:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D06110E3AA;
+	Thu,  3 Mar 2022 22:49:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA90F10E396;
- Thu,  3 Mar 2022 22:43:30 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9198810E3AA;
+ Thu,  3 Mar 2022 22:49:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646347410; x=1677883410;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Bfe74/pswJBUcIiOnR1+ZK7IlMs0nRNmaYuOLRNRSQ8=;
- b=k09oy9uyCrphqsSTelsGGLszJC7ntdA4MTCpgndJsVpUc2JXQvENskPL
- lOfQP7BsyIOxXzT8t3lcH9/LREsp4HPQB8QfxgAF7DnWke/t7/fUYZBhY
- YNZ30mg0GdHAySMW3bua8JSrG+AG6bxZOw1eTtrOc7J1Mp4UfaqNG/6y/
- PGZRqZk4xERRvCK16QfJHxmlcCsCXmSMvwvBmeuzR3tzhaMBm3OklWUBI
- nb4R+8CJ/B1Ziir6KtJ9Qs0vqYBgWGi2B9rIEW7s4gEfkDzZASeHs7V9e
- p/vle+gZv4aLO3G904jB1hQqIFSVKGivtB3R+umKadmjQsWnMBaWRaOsi A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10275"; a="253766400"
-X-IronPort-AV: E=Sophos;i="5.90,153,1643702400"; d="scan'208";a="253766400"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Mar 2022 14:43:30 -0800
-X-IronPort-AV: E=Sophos;i="5.90,153,1643702400"; d="scan'208";a="710115885"
-Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Mar 2022 14:43:30 -0800
-From: Matt Roper <matthew.d.roper@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  3 Mar 2022 14:42:56 -0800
-Message-Id: <20220303224256.2793639-1-matthew.d.roper@intel.com>
-X-Mailer: git-send-email 2.34.1
+ t=1646347761; x=1677883761;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=B8+BLd39ERpJkk8yRloFC8LbzM1BeU+hAxXItgMaRfw=;
+ b=g8WsK0r9sdwJp8TnXKWgq/ruyY4ZwcM8ctzfbjY9kccHYGpCqoFBhIIK
+ uSl2wAy/QZushH6grRgwh8C9rl23x7ErwBwXJMJ+GQhSYGJ7Gd8I28bn9
+ JZMzErlSKsesxpQCbUxgZ0lFB4pom70PDASrDZyMDIrc2LNqrUrGovV6a
+ XZLYVtpHE2wesK/soqJyYbbhqg36bqRLNVndzwJv5CDnCX4YuDN1vh6ir
+ JYCoAlVM5z9313jNvX7DRXWe6F30Y2qSjKNsiKTCv2dm2f5lF6vLDQs6K
+ 6URoCqb72W/UP0cZfDfK1NJ7UZQBKAmwDowhjf9zi7xwgP9hBl8L0Rr9/ Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10275"; a="278524295"
+X-IronPort-AV: E=Sophos;i="5.90,153,1643702400"; d="scan'208";a="278524295"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Mar 2022 14:49:21 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,153,1643702400"; d="scan'208";a="642300474"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by orsmga004.jf.intel.com with ESMTP; 03 Mar 2022 14:49:20 -0800
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.21; Thu, 3 Mar 2022 14:49:19 -0800
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.21 via Frontend Transport; Thu, 3 Mar 2022 14:49:19 -0800
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.43) by
+ edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2308.21; Thu, 3 Mar 2022 14:49:19 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=aROlQZwTxTQzMKtOWLA+LB+cVIzdfuPAIB5DmQdTR5dQACv6kZzeCSes18DyohSJ7aMIveweEbJ8X/XREjSfJ+0Nxa2SywYRq1UQtKJ7EtFs02Bzp5aMs2VXaCboKQixqPri6Y1qijF1U+4uVS6NNuW2D61c2YyRnHAOfmU8orFJcf+eyrqyT9Qob580qS9DdvfcsAgRwQEVRadrz2INQBCA8g1Yr7n9uOJ7sv75c5KoaJzguFa09+Z4yaReiSrSUcNHCSA0ID7AIufNrtP2hbbamzsUlAWwA1S3epmxwY78jYAgyFNUOngIKxuNIFKo0afMY3SQVV330/l9DId+Rw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=uUMkFTiHAxEdfEGdqpZJrb/EyBQTALFB/0LkvNj4Ue4=;
+ b=RAT5E0GbIuTCED5g3H+DHVUnZZnkP6dsuSwnZmHEUdNS4xZXyLQ6VZtvHcdOMAZ7pWCaYIw/WZUaG1DsrYQF00ScPRdugaI2+/KAE4HqFynGZIxvq54yLesYhx5WDVP+X2iPQblypLtDdSI2Ekpf+/iiXkWLqQp5rGoMiLS+g1k8/QjA9gOhpqac3wM18fE30bwYc5StjiHMTaAXcqCQ3XUSDnJvUZVUbwv2BKaQoBjbaS1WxLTmEHv6IjzAMmoh6dMSIEe834uzFAjviX0+eypolwXfLdo/oR6X7JBhjIQsaLrEddcYvzN6zEIMUdYc4V0vp73pSwfe75N6THBQYw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from BY5PR11MB3911.namprd11.prod.outlook.com (2603:10b6:a03:18d::29)
+ by DM6PR11MB4316.namprd11.prod.outlook.com (2603:10b6:5:205::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5017.25; Thu, 3 Mar
+ 2022 22:49:16 +0000
+Received: from BY5PR11MB3911.namprd11.prod.outlook.com
+ ([fe80::dd36:1843:a629:4ad7]) by BY5PR11MB3911.namprd11.prod.outlook.com
+ ([fe80::dd36:1843:a629:4ad7%4]) with mapi id 15.20.5038.014; Thu, 3 Mar 2022
+ 22:49:15 +0000
+Message-ID: <ca14d77e-1b27-2a8a-90f0-b0f2b5ec393c@intel.com>
+Date: Thu, 3 Mar 2022 14:49:13 -0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Firefox/91.0 Thunderbird/91.6.1
+Content-Language: en-GB
+To: Matt Roper <matthew.d.roper@intel.com>, <intel-gfx@lists.freedesktop.org>
+References: <20220303223435.2793124-1-matthew.d.roper@intel.com>
+ <20220303223435.2793124-2-matthew.d.roper@intel.com>
+From: John Harrison <john.c.harrison@intel.com>
+In-Reply-To: <20220303223435.2793124-2-matthew.d.roper@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: CO2PR04CA0163.namprd04.prod.outlook.com
+ (2603:10b6:104:4::17) To BY5PR11MB3911.namprd11.prod.outlook.com
+ (2603:10b6:a03:18d::29)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/dg2: Add preemption changes for
- Wa_14015141709
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: dae40c5f-2f1d-43e8-5fef-08d9fd680b35
+X-MS-TrafficTypeDiagnostic: DM6PR11MB4316:EE_
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-Microsoft-Antispam-PRVS: <DM6PR11MB43162385737A3EC764CFFE9BBD049@DM6PR11MB4316.namprd11.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Cq+Fu5rfdtFVHXQpmHwop0eLgzBQvWlAGX+9oGcYfD0pSq9XeEh/cFgkgmSHe17F9Wb/wItl3fBBynhu7gR5PBMn0bJAtOIlYZ9Ly7WPH1hznDy00rWPJU0aA/wqGOQWTqV5jV/Vzcaxuo9iJkdZfpDXRkqPNZZmfvLpTg0Z4fM+q8g9RzubxdwbBtCpEYLHUvoYCKAEtBdNweWEUqRY/uBMdTuroRnau19m+FvYULhzYI7Pxe33VN0Kx28Wmw8V8QZKHcpDnWx1tIGcWWGC1ctBJizafcn/XbPyOMc95w2C8BZQSbp5rH+yzUWuKX+exsn0ZxIcBOfUUTCY39e/3asifD5eFnnu6cSw8En3bMfWeMAzxkKdt6v0Dn/Ubs4jnIGbZ0NMkrb2Xz4FzduIZYkWmkwD9jpI0g8poGDBoh5UO9ELKxKWSm8vIUxFYxz0i5Anq5sFPEaDRsU4LEfYQXzCxwBfLYdGr9geV8zLw9AR0PvnaAWPIX1fnbnF4+b9ewP7dr4iHFt4GDdqJJ9p4HRpuIvaRHEQ0sghcsFXiW4Bv+JLh6u3fYkvDaAhWnEhXwSyOwIMRIJAT5ZwaK9ea9dA4gU5PBRsBN1EGT8CssknCB+gTE0fB197gZuym3I6ttHAQifp+iTZ7nLUS9H3b0yrzuEMgDp4WK48FbAUrvePkrk2TK08/XtsNd09KMxuvu6qHpII7mDmTY5lXkGZe3eHfme5YHaiXHrkCKy4WC8l5oscR1ekk5qWhSBjkZ/3
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BY5PR11MB3911.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230001)(366004)(5660300002)(2616005)(31686004)(6506007)(86362001)(8936002)(316002)(66946007)(66556008)(66476007)(450100002)(8676002)(53546011)(31696002)(2906002)(186003)(26005)(38100700002)(36756003)(82960400001)(6486002)(83380400001)(508600001)(6512007)(4326008)(45980500001)(43740500002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cUljcmNpZ3JqbkgvSURTRmx4cnNFZUhwVElJWlAyaXl1UStvMERyQzhXOVYy?=
+ =?utf-8?B?WUNUaTRCZ09GekVlNyt0TDNBYW5QOUZHQkZWcU12aGd0dmtVZnBLUEtQR2di?=
+ =?utf-8?B?WURPdnU3RHhWYnNGQVVUMjc2ZEg5c0lKNS80THQ3T2ZoeklRc1NidWpPUG1M?=
+ =?utf-8?B?bnkzemlKSW5TYTdKNTRKMy95MVBlcFFTbnpOek9reEM2NHhRc0dPY0crUGNE?=
+ =?utf-8?B?SDMrV1V0R0Uzejd3WTJocjFqQUZ2N0lxalRvOHA0cGJMS09wTkhZWE9aRE8y?=
+ =?utf-8?B?Y3ZLc240dnl0WEF1TlJLQUJtYjljWGZ1bDZRZG91Ykl1MTMzdk9ZZkdNMUNI?=
+ =?utf-8?B?N2pxOGZRb0FjcG9QZWhRb2JGckxpZHkrNFFxNVlkamNsWUZZYzZSU1FIUmxa?=
+ =?utf-8?B?dVpqUk9hR3RYVnVRVzJ3WEJwWUEwMk9NdXRUNXJaVW00aVZucjBkOXBSTW9Y?=
+ =?utf-8?B?T3AwVDdDZnVsZ3hPQW9PR2NzNDE0TzFLVndsWDFTandublF1MUtmc0xXaGY2?=
+ =?utf-8?B?cGtvbVcyd1FJMFJHSzFMZ2RYbTQ2V0dzNGpFZ2ZqTVVUMGVHQzZFK1o2bmRS?=
+ =?utf-8?B?aVhDN2M1VHRZdWx1VHNWRzNMMVl0U29WQXE3ZGpBM1F6b0xXTXJJV3ptdDZE?=
+ =?utf-8?B?QXFsaUlIdXdTSTJ1Y0lEbHFpOTd3T1hiSzJUTWNuNDVGd0VkOGNVQ1RzVnZi?=
+ =?utf-8?B?YnRkOCt6UjRjak5nSUQ2MDBwT1IrVllPQzJ5bHM2RU96d2Rzckt3bDVJZTI4?=
+ =?utf-8?B?Y0g4eWxvNzFHMVVYTG0zUXVrSFBUcTFKb1JuOWpnNHJjZjlSK3N4a002TWNh?=
+ =?utf-8?B?aktKanI5cGJwNUk3ZFcyeUZDQ1V2bGI1anNPSU92MUhNajlUSE94eWhHWkl1?=
+ =?utf-8?B?NGhBakhHN3pkYys2QzZMdUhqTG5TMTE5WTh1SG1naXAySEpmNDBSdklKaUs5?=
+ =?utf-8?B?RFpXa0d0RzdoR3MvVUNwMFZtUi9yR2tVSUZ6SFZnbDJTdUdXWStJMVYvZ3pL?=
+ =?utf-8?B?ckhLZkVQSUNqeWUzM0R0M3I1REZiUmR1SlN6Z214UGNXandxM1pmWDVWaGQz?=
+ =?utf-8?B?TU5ab1JlTjJxT2FBbzdkWjl4anhOS3VHK1BOQ0RvYnkvMm1zSTdXcllKZEll?=
+ =?utf-8?B?cmloZ0JUaUZrdTRWNWgxVFJCZzB0SzVDM1p0Tk55NVlKY3k1OFlTQzVnRzRM?=
+ =?utf-8?B?ejRpRlhENnl6WEQ3aklGWlB4Nlo2RUdtaEp2cUgxdmR3V2dHSlptd3BaRWMw?=
+ =?utf-8?B?RXpmZmNyendqcUU2UXVXSDlIYnpjUXRzajRObG5Vck9pZHVCRnQ1ZmlEM2Iy?=
+ =?utf-8?B?djUxbWFJT3VTYktnc21meXRKMjdpSEIydnQzTkRzSktremVrR2g0Tjg2dWRL?=
+ =?utf-8?B?dHdFMHNlalZGY2dDdFFvUkc2RWpaWG84dWdPcUNIMXg2eHVKdFJSY2tpTW5T?=
+ =?utf-8?B?bVVlUG5uTzc1MlNrZEpuV3MyTjhDaG52UjAyUDhoOFJYcUxFeFErLzRMbnZk?=
+ =?utf-8?B?R3doVTJjd3lZQjlROVkzcnNlL0Y0Zy9lNUNJbytYaXEzOG5yeEc4NEFJbG9r?=
+ =?utf-8?B?b0gwWUpJZUZDRzR0R0g3ekZCb0FDVU9qWnEyNk5lb2tqb2Z1d3hwa0Q2bGhE?=
+ =?utf-8?B?QzkrWUx4UHl2eC9HZWM2RkQ1UFNhaWlxSWRVNm1kbHZJd1F3QXNhWjBYZWVJ?=
+ =?utf-8?B?djN4OFVBdUxVaHViVFQzM3ZuaWlJVFFFeVBrOTNROUlWWW5VdGo3Q2J1UFB6?=
+ =?utf-8?B?ZEJVQUxtSmRqandSU2o0SHFkOGhidDd3M0lLQmRtTlMrOFJaSTVDa0hIYVZE?=
+ =?utf-8?B?ZzVqRTN2ZEQ2eGR2Ni9mQmZxMjZJeHR6bFhNTVgrTGhmb1huZXBPZHZIbnJx?=
+ =?utf-8?B?cEx2b2huQzNxcXdYSzN2czFOSll0NHJ5dlMwZHNrakZqZTNQR21HUmRabnZL?=
+ =?utf-8?B?MFZyMEJ0RGVYVFZwVWRBMUduOUJhQjZpRTduaFdtSHZ6eENkVzBlblFhdHY0?=
+ =?utf-8?B?THF1b0ZRbE5RSElveUM0RFhDa09oTFQvdlpkRHRJN0xGOG5McDRSbDJKTjM4?=
+ =?utf-8?B?bXU4TWJOQzlHOFUwak9UVWtmQU52RXhaMXhnUGx2Q2hhY3dPRDNXZm16cWxz?=
+ =?utf-8?B?ZWRER3NhNVFBV0dOa0laRTQyTjM2cWxqMmk0MlEvQlVIQTJ2SFZvWjNCMEFP?=
+ =?utf-8?B?ZlFnOUVOQlhJS0dSeEFWbTl2ZTN3UCtSTzdUK1phdUlZOWZwcklNMmhyNXpD?=
+ =?utf-8?Q?ASjAbmgpelWXsORluJArTQYxu+b0oHJOuOo9d716pU=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: dae40c5f-2f1d-43e8-5fef-08d9fd680b35
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB3911.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Mar 2022 22:49:15.8765 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: yORmpPdRcFniYkSmDtAYL6QHXcXlx3zjh6ZcRqoORfeUwjbrRbVVJMBVVgn9Mpfa3LW7RANsaAgofBVs3T+bQZPLmQ26VIHr/I+0+5voDY0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4316
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: Add RCS mask to GuC ADS params
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,141 +161,33 @@ Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Akeem G Abodunrin <akeem.g.abodunrin@intel.com>
+On 3/3/2022 14:34, Matt Roper wrote:
+> From: Stuart Summers <stuart.summers@intel.com>
+>
+> If RCS is not enumerated, GuC will return invalid parameters.
+> Make sure we do not send RCS supported when we have not enumerated
+> it.
+>
+> Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+> Signed-off-by: Stuart Summers <stuart.summers@intel.com>
+> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
 
-Starting with DG2, preemption can no longer be controlled using userspace
-on a per-context basis. Instead, the hardware only allows us to enable or
-disable preemption in a global, system-wide basis. Also, we lose the
-ability to specify the preemption granularity (such as batch-level vs
-command-level vs object-level).
-
-As a result of this - for debugging purposes, this patch adds debugfs
-interface to configure (disable/enable) preemption globally.
-
-Jira: VLK-27831
-
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: Prathap Kumar Valsan <prathap.kumar.valsan@intel.com>
-Cc: John Harrison <john.c.harrison@intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Signed-off-by: Akeem G Abodunrin <akeem.g.abodunrin@intel.com>
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_gt_regs.h     |  3 ++
- drivers/gpu/drm/i915/gt/intel_workarounds.c |  2 +-
- drivers/gpu/drm/i915/i915_debugfs.c         | 50 +++++++++++++++++++++
- drivers/gpu/drm/i915/i915_drv.h             |  3 ++
- 4 files changed, 57 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-index 19cd34f24263..21ede1887b9f 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-@@ -468,6 +468,9 @@
- #define VF_PREEMPTION				_MMIO(0x83a4)
- #define   PREEMPTION_VERTEX_COUNT		REG_GENMASK(15, 0)
- 
-+#define GEN12_VFG_PREEMPTION_CHICKEN		_MMIO(0x83b4)
-+#define   GEN12_VFG_PREEMPT_CHICKEN_DISABLE	REG_BIT(8)
-+
- #define GEN8_RC6_CTX_INFO			_MMIO(0x8504)
- 
- #define GEN12_SQCM				_MMIO(0x8724)
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index c014b40d2e9f..18dc82f29776 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -2310,7 +2310,7 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
- 			     FF_DOP_CLOCK_GATE_DISABLE);
- 	}
- 
--	if (IS_GRAPHICS_VER(i915, 9, 12)) {
-+	if (HAS_PERCTX_PREEMPT_CTRL(i915)) {
- 		/* FtrPerCtxtPreemptionGranularityControl:skl,bxt,kbl,cfl,cnl,icl,tgl */
- 		wa_masked_en(wal,
- 			     GEN7_FF_SLICE_CS_CHICKEN1,
-diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
-index 747fe9f41e1f..40e6e17e2950 100644
---- a/drivers/gpu/drm/i915/i915_debugfs.c
-+++ b/drivers/gpu/drm/i915/i915_debugfs.c
-@@ -571,6 +571,55 @@ static int i915_wa_registers(struct seq_file *m, void *unused)
- 	return 0;
- }
- 
-+static void i915_global_preemption_config(struct drm_i915_private *i915,
-+					  u32 val)
-+{
-+	const u32 bit = GEN12_VFG_PREEMPT_CHICKEN_DISABLE;
-+
-+	if (val)
-+		intel_uncore_write(&i915->uncore, GEN12_VFG_PREEMPTION_CHICKEN,
-+				   _MASKED_BIT_DISABLE(bit));
-+	else
-+		intel_uncore_write(&i915->uncore, GEN12_VFG_PREEMPTION_CHICKEN,
-+				   _MASKED_BIT_ENABLE(bit));
-+}
-+
-+static int i915_global_preempt_support_get(void *data, u64 *val)
-+{
-+	struct drm_i915_private *i915 = data;
-+	intel_wakeref_t wakeref;
-+	u32 curr_status = 0;
-+
-+	if (HAS_PERCTX_PREEMPT_CTRL(i915) || GRAPHICS_VER(i915) < 11)
-+		return -EINVAL;
-+
-+	with_intel_runtime_pm(&i915->runtime_pm, wakeref)
-+		curr_status = intel_uncore_read(&i915->uncore,
-+						GEN12_VFG_PREEMPTION_CHICKEN);
-+	*val = (curr_status & GEN12_VFG_PREEMPT_CHICKEN_DISABLE) ? 0 : 1;
-+
-+	return 0;
-+}
-+
-+static int i915_global_preempt_support_set(void *data, u64 val)
-+{
-+	struct drm_i915_private *i915 = data;
-+	intel_wakeref_t wakeref;
-+
-+	if (HAS_PERCTX_PREEMPT_CTRL(i915) || GRAPHICS_VER(i915) < 11)
-+		return -EINVAL;
-+
-+	with_intel_runtime_pm(&i915->runtime_pm, wakeref)
-+		i915_global_preemption_config(i915, val);
-+
-+	return 0;
-+}
-+
-+DEFINE_SIMPLE_ATTRIBUTE(i915_global_preempt_support_fops,
-+			i915_global_preempt_support_get,
-+			i915_global_preempt_support_set,
-+			"%lld\n");
-+
- static int i915_wedged_get(void *data, u64 *val)
- {
- 	struct drm_i915_private *i915 = data;
-@@ -765,6 +814,7 @@ static const struct i915_debugfs_files {
- 	const struct file_operations *fops;
- } i915_debugfs_files[] = {
- 	{"i915_perf_noa_delay", &i915_perf_noa_delay_fops},
-+	{"i915_global_preempt_support", &i915_global_preempt_support_fops},
- 	{"i915_wedged", &i915_wedged_fops},
- 	{"i915_gem_drop_caches", &i915_drop_caches_fops},
- #if IS_ENABLED(CONFIG_DRM_I915_CAPTURE_ERROR)
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 457bc1993d19..8c3f69c87d36 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -1407,6 +1407,9 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
- #define HAS_GUC_DEPRIVILEGE(dev_priv) \
- 	(INTEL_INFO(dev_priv)->has_guc_deprivilege)
- 
-+#define HAS_PERCTX_PREEMPT_CTRL(i915) \
-+	((GRAPHICS_VER(i915) >= 9) &&  GRAPHICS_VER_FULL(i915) < IP_VER(12, 55))
-+
- static inline bool run_as_guest(void)
- {
- 	return !hypervisor_is_type(X86_HYPER_NATIVE);
--- 
-2.34.1
+> ---
+>   drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
+> index 32c2053f2f08..acc4a3766dc1 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
+> @@ -433,7 +433,7 @@ static void guc_mmio_reg_state_init(struct intel_guc *guc)
+>   static void fill_engine_enable_masks(struct intel_gt *gt,
+>   				     struct iosys_map *info_map)
+>   {
+> -	info_map_write(info_map, engine_enabled_masks[GUC_RENDER_CLASS], 1);
+> +	info_map_write(info_map, engine_enabled_masks[GUC_RENDER_CLASS], RCS_MASK(gt));
+>   	info_map_write(info_map, engine_enabled_masks[GUC_COMPUTE_CLASS], CCS_MASK(gt));
+>   	info_map_write(info_map, engine_enabled_masks[GUC_BLITTER_CLASS], 1);
+>   	info_map_write(info_map, engine_enabled_masks[GUC_VIDEO_CLASS], VDBOX_MASK(gt));
 
