@@ -2,47 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F13F4CC919
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Mar 2022 23:35:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FBB84CC92C
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Mar 2022 23:37:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2549010E38E;
-	Thu,  3 Mar 2022 22:35:13 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2A8B710E35F;
- Thu,  3 Mar 2022 22:35:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B171D10E396;
+	Thu,  3 Mar 2022 22:37:39 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 59DD710E38C;
+ Thu,  3 Mar 2022 22:37:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646346910; x=1677882910;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=NVP29WBTDKcjiuhOgTg+Kjsy8yhnY7PeQp0LpmSQMp8=;
- b=grwn44z8oTm2UUNWqgCPsNZr2j+YazVXRj8h/Mcf/TnwmNQIXqYv9KiZ
- px/Z8i1qPitNqB+oqfMZYRodfUU6xNeTa/pudefdbiqPFoWyhCIoJdNIz
- xTxf1rd1ri7p0/x3V9yoc2Fa6ta1UmvI/KR6f6lzyqUDD+M2E42NNkjie
- OjY2DRjFBKt96Zy4HxGbFqYNQJw9bw7hyLCO46Ur9bzYC3cIz5T9W0bQn
- mwxfxu7FjtNjjpOsavaIZTqdQfH9T3yTSB5CfGOXYeou7JlAO+YQ9PYGO
- +X3QfDDOINvLhkh2RFC3p6gI48fY9/Wa2nm8lXD9bPQ9zSf5ThekTMgPY w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10275"; a="254025408"
-X-IronPort-AV: E=Sophos;i="5.90,153,1643702400"; d="scan'208";a="254025408"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Mar 2022 14:35:09 -0800
-X-IronPort-AV: E=Sophos;i="5.90,153,1643702400"; d="scan'208";a="536043492"
-Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Mar 2022 14:35:09 -0800
-From: Matt Roper <matthew.d.roper@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  3 Mar 2022 14:34:35 -0800
-Message-Id: <20220303223435.2793124-2-matthew.d.roper@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220303223435.2793124-1-matthew.d.roper@intel.com>
-References: <20220303223435.2793124-1-matthew.d.roper@intel.com>
+ t=1646347058; x=1677883058;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=SAIZn7QMcErgUj045llNbSAaHZzAH+QF2uvWKFGNeXg=;
+ b=dI7O9OBt+ullKZjoGAQHCGBtEPRrJumOdMIhZwGnTNI4Y2agMRC23GWV
+ 4DOSVubWp0TIZ6O72pCkfcAxi9aP9QRbeqeXqSyFWYVybkhF4YpT03PPU
+ tHby3QG/WrUFkTTu0n5EYA5scYauK0kh3qInzhrFY7HVjHEC/6aLosH4w
+ ugXs6JVeJ+tQ1FSm6fEHl/S3utb+zIKJ49ae75if8g1HeupdJtCdw0otM
+ TQlUjAhyYQZwGqIaNZsL5sFrtWWhtpAQRbIn2Fdm12X2AR8jcLXTMy+BJ
+ YNSe1cNInqr7hmUyeFve8M9Tdxk+n9OtCk3gEtpUhgEd7iAIjNZE+nWan Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10275"; a="233794761"
+X-IronPort-AV: E=Sophos;i="5.90,153,1643702400"; d="scan'208";a="233794761"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Mar 2022 14:37:37 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,153,1643702400"; d="scan'208";a="609745278"
+Received: from relo-linux-5.jf.intel.com ([10.165.21.134])
+ by fmsmga004.fm.intel.com with ESMTP; 03 Mar 2022 14:37:37 -0800
+From: John.C.Harrison@Intel.com
+To: Intel-GFX@Lists.FreeDesktop.Org
+Date: Thu,  3 Mar 2022 14:37:33 -0800
+Message-Id: <20220303223737.708659-1-John.C.Harrison@Intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
+ Swindon SN3 1RJ
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915: Add RCS mask to GuC ADS params
+Subject: [Intel-gfx] [PATCH v3 0/4] Improve anti-pre-emption w/a for compute
+ workloads
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,36 +57,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Cc: DRI-Devel@Lists.FreeDesktop.Org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Stuart Summers <stuart.summers@intel.com>
+From: John Harrison <John.C.Harrison@Intel.com>
 
-If RCS is not enumerated, GuC will return invalid parameters.
-Make sure we do not send RCS supported when we have not enumerated
-it.
+Compute workloads are inherently not pre-emptible on current hardware.
+Thus the pre-emption timeout was disabled as a workaround to prevent
+unwanted resets. Instead, the hang detection was left to the heartbeat
+and its (longer) timeout. This is undesirable with GuC submission as
+the heartbeat is a full GT reset rather than a per engine reset and so
+is much more destructive. Instead, just bump the pre-emption timeout
+to a big value. Also, update the heartbeat to allow such a long
+pre-emption delay in the final heartbeat period.
 
-Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-Signed-off-by: Stuart Summers <stuart.summers@intel.com>
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+v2: Add clamping helpers.
+v3: Remove long timeout algorithm and replace with hard coded value
+(review feedback from Tvrtko). Also, fix execlist selftest failure and
+fix bug in compute enabling patch related to pre-emption timeouts.
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
-index 32c2053f2f08..acc4a3766dc1 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
-@@ -433,7 +433,7 @@ static void guc_mmio_reg_state_init(struct intel_guc *guc)
- static void fill_engine_enable_masks(struct intel_gt *gt,
- 				     struct iosys_map *info_map)
- {
--	info_map_write(info_map, engine_enabled_masks[GUC_RENDER_CLASS], 1);
-+	info_map_write(info_map, engine_enabled_masks[GUC_RENDER_CLASS], RCS_MASK(gt));
- 	info_map_write(info_map, engine_enabled_masks[GUC_COMPUTE_CLASS], CCS_MASK(gt));
- 	info_map_write(info_map, engine_enabled_masks[GUC_BLITTER_CLASS], 1);
- 	info_map_write(info_map, engine_enabled_masks[GUC_VIDEO_CLASS], VDBOX_MASK(gt));
+Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+
+
+John Harrison (4):
+  drm/i915/guc: Limit scheduling properties to avoid overflow
+  drm/i915: Fix compute pre-emption w/a to apply to compute engines
+  drm/i915: Make the heartbeat play nice with long pre-emption timeouts
+  drm/i915: Improve long running OCL w/a for GuC submission
+
+ drivers/gpu/drm/i915/Kconfig.profile          | 26 +++++-
+ drivers/gpu/drm/i915/gt/intel_engine.h        |  6 ++
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     | 92 +++++++++++++++++--
+ .../gpu/drm/i915/gt/intel_engine_heartbeat.c  | 18 ++++
+ drivers/gpu/drm/i915/gt/sysfs_engines.c       | 25 +++--
+ drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h   |  9 ++
+ 6 files changed, 153 insertions(+), 23 deletions(-)
+
 -- 
-2.34.1
+2.25.1
 
