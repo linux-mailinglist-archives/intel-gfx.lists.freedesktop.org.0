@@ -2,46 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FEA74CB6A6
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Mar 2022 07:04:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BA2E4CB6F2
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Mar 2022 07:29:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF75610E1CA;
-	Thu,  3 Mar 2022 06:04:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6AD6010EA81;
+	Thu,  3 Mar 2022 06:29:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7544510E1CA
- for <intel-gfx@lists.freedesktop.org>; Thu,  3 Mar 2022 06:04:25 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D328310EA81;
+ Thu,  3 Mar 2022 06:29:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646287465; x=1677823465;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=9FNbFXnLRmfoB0jO1rfYey6bhIvdfeAc16T8quKZgS4=;
- b=JPu/UxgqXWj2zKHNwhVSHIN9ybngJgiojoN/jwy6WbIQ6vdYH9EVc9Rz
- MR4lYTMqo665MUD9vTd50wYb6LFRw5cd1mQiLRMZQW/Is/TEivXp1+iUB
- C7g1UzgQj3+CDuoRV/H0I+FAyXG1bAq9T2LYHMdaM4Lwob7jLKUxtIBVu
- xEIMmXIYezATbP7yWSYNCk2bFZf4rlobuvEoriwuslnMOj/2bh3qh3K+V
- xB7oq8b1IrQhnR1OzakfhIsnL4n30QwEsny2GQM7QfDnBY2pjLV87H1l6
- BGqBeYHJQUSXOduqH85/ZZKXEVngwcO+cPsLE2CW7MdEI6kAt4BIuGOR4 A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10274"; a="234201132"
-X-IronPort-AV: E=Sophos;i="5.90,151,1643702400"; d="scan'208";a="234201132"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2022 22:04:21 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,151,1643702400"; d="scan'208";a="511294217"
-Received: from mastan-system-product-name.iind.intel.com ([10.145.169.54])
- by orsmga006.jf.intel.com with ESMTP; 02 Mar 2022 22:04:19 -0800
-From: Mastan Katragadda <mastanx.katragadda@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  3 Mar 2022 11:34:28 +0530
-Message-Id: <20220303060428.1668844-1-mastanx.katragadda@intel.com>
-X-Mailer: git-send-email 2.25.1
+ t=1646288950; x=1677824950;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=XEnn5MCbG6f2oWpeSqNY0xJn7fmIJXcLPQNX9vnVH14=;
+ b=hPwoLhVWpLBdq2QNuGsFoqf45rBoebJakxy58F7GgUQXK7tCLbDTAOQg
+ vA9RlHyUb5CjbfnN9hJH+Pw9O01Mrz5q/yiE7FjtcXPDwaAoF0BczGPgS
+ wWd4+newbxfbN2ezOvL5LMGjmth4nbceVQu/3rz+PQnHNgKPbuT2NY9Zh
+ hgfznfP9E/grBLQj1VfiWBA4Sfr09aN2iezxF1r8HbwP0bLsPwHo/FWUj
+ rZDgFaUE9KuMlYtRV5yAarB4/zeWxgo6JQMPyGfHt9vaTK3t50vUtbvvY
+ LrCIN/7DfOJvOytyqkgGpJWKTaZ6beW2HqoKlPbld6FTHPwevYGAd+lMn w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10274"; a="252418824"
+X-IronPort-AV: E=Sophos;i="5.90,151,1643702400"; d="scan'208";a="252418824"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2022 22:29:10 -0800
+X-IronPort-AV: E=Sophos;i="5.90,151,1643702400"; d="scan'208";a="641991656"
+Received: from dstacken-mobl1.ger.corp.intel.com (HELO [10.249.254.234])
+ ([10.249.254.234])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2022 22:29:08 -0800
+Message-ID: <efe060b412b43045124341e7550e3c2a55da81bf.camel@linux.intel.com>
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+Date: Thu, 03 Mar 2022 07:29:05 +0100
+In-Reply-To: <20220302220139.GH25117@nvishwa1-DESK>
+References: <20220302102200.158637-1-thomas.hellstrom@linux.intel.com>
+ <20220302102200.158637-3-thomas.hellstrom@linux.intel.com>
+ <20220302220139.GH25117@nvishwa1-DESK>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.4 (3.40.4-2.fc34) 
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [v2] drm/i915/gem: missing boundary check in vm_access
- leads to OOB read/write
+Subject: Re: [Intel-gfx] [PATCH v2 2/3] drm/i915: Remove the vma refcount
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,79 +59,209 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: mastanx.katragadda@intel.com, tejaskumarx.surendrakumar.upadhyay@intel.com
+Cc: intel-gfx@lists.freedesktop.org, matthew.auld@intel.com,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Intel ID: PSIRT-PTK0002429
+On Wed, 2022-03-02 at 14:01 -0800, Niranjana Vishwanathapura wrote:
+> On Wed, Mar 02, 2022 at 11:21:59AM +0100, Thomas Hellström wrote:
+> > Now that i915_vma_parked() is taking the object lock on vma
+> > destruction,
+> > and the only user of the vma refcount, i915_gem_object_unbind()
+> > also takes the object lock, remove the vma refcount.
+> > 
+> > Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> > ---
+> > drivers/gpu/drm/i915/i915_gem.c       | 17 +++++++++++++----
+> > drivers/gpu/drm/i915/i915_vma.c       | 14 +++-----------
+> > drivers/gpu/drm/i915/i915_vma.h       | 14 --------------
+> > drivers/gpu/drm/i915/i915_vma_types.h |  1 -
+> > 4 files changed, 16 insertions(+), 30 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/i915_gem.c
+> > b/drivers/gpu/drm/i915/i915_gem.c
+> > index dd84ebabb50f..c26110abcc0b 100644
+> > --- a/drivers/gpu/drm/i915/i915_gem.c
+> > +++ b/drivers/gpu/drm/i915/i915_gem.c
+> > @@ -151,14 +151,25 @@ int i915_gem_object_unbind(struct
+> > drm_i915_gem_object *obj,
+> >                         break;
+> >                 }
+> > 
+> > +               /*
+> > +                * Requiring the vm destructor to take the object
+> > lock
+> > +                * before destroying a vma would help us eliminate
+> > the
+> > +                * i915_vm_tryget() here, AND thus also the barrier
+> > stuff
+> > +                * at the end. That's an easy fix, but sleeping
+> > locks in
+> > +                * a kthread should generally be avoided.
+> > +                */
+> >                 ret = -EAGAIN;
+> >                 if (!i915_vm_tryget(vma->vm))
+> >                         break;
+> > 
+> > -               /* Prevent vma being freed by i915_vma_parked as we
+> > unbind */
+> > -               vma = __i915_vma_get(vma);
+> >                 spin_unlock(&obj->vma.lock);
+> > 
+> > +               /*
+> > +                * Since i915_vma_parked() takes the object lock
+> > +                * before vma destruction, it won't race us here,
+> > +                * and destroy the vma from under us.
+> > +                */
+> > +
+> >                 if (vma) {
+> >                         bool vm_trylock = !!(flags &
+> > I915_GEM_OBJECT_UNBIND_VM_TRYLOCK);
+> >                         ret = -EBUSY;
+> > @@ -180,8 +191,6 @@ int i915_gem_object_unbind(struct
+> > drm_i915_gem_object *obj,
+> >                                         ret = i915_vma_unbind(vma);
+> >                                 }
+> >                         }
+> > -
+> > -                       __i915_vma_put(vma);
+> >                 }
+> > 
+> >                 i915_vm_put(vma->vm);
+> 
+> One issue still left in i915_gem_object_unbind is that it temporarily
+> removes
+> vmas from the obj->vma.list and adds back later as vma needs to be
+> unbind outside
+> the obj->vma.lock spinlock. This is an issue for other places where
+> we iterate
+> over the obj->vma.list. i915_debugfs_describe_obj is one such case
+> (upcoming
+> vm_bind will be another) that iterates over this list.
+> What is the plan here? Do we need to take object lock while iterating
+> over the
+> list?
 
-A missing bounds check in vm_access()can lead to an out-of-bounds read or
-write in the adjacent memory area.The len attribute is not validated before
-the memcpy at  [1]or [2] occurs.
+Yeah, I guess that's an option if that's at all possible (we might need
+to iterate over the list in the mmu notifier, for example).
 
-[  183.637831] BUG: unable to handle page fault for address: ffffc90000c86000
-[  183.637934] #PF: supervisor read access in kernel mode
-[  183.637997] #PF: error_code(0x0000) - not-present page
-[  183.638059] PGD 100000067 P4D 100000067 PUD 100258067 PMD 106341067 PTE 0
-[  183.638144] Oops: 0000 [#2] PREEMPT SMP NOPTI
-[  183.638201] CPU: 3 PID: 1790 Comm: poc Tainted: G      D           5.17.0-rc6-ci-drm-11296+ #1
-[  183.638298] Hardware name: Intel Corporation CoffeeLake Client Platform/CoffeeLake H DDR4 RVP, BIOS CNLSFWR1.R00.X208.B00.1905301319 05/30/2019
-[  183.638430] RIP: 0010:memcpy_erms+0x6/0x10
-[  183.640213] RSP: 0018:ffffc90001763d48 EFLAGS: 00010246
-[  183.641117] RAX: ffff888109c14000 RBX: ffff888111bece40 RCX: 0000000000000ffc
-[  183.642029] RDX: 0000000000001000 RSI: ffffc90000c86000 RDI: ffff888109c14004
-[  183.642946] RBP: 0000000000000ffc R08: 800000000000016b R09: 0000000000000000
-[  183.643848] R10: ffffc90000c85000 R11: 0000000000000048 R12: 0000000000001000
-[  183.644742] R13: ffff888111bed190 R14: ffff888109c14000 R15: 0000000000001000
-[  183.645653] FS:  00007fe5ef807540(0000) GS:ffff88845b380000(0000) knlGS:0000000000000000
-[  183.646570] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-[  183.647481] CR2: ffffc90000c86000 CR3: 000000010ff02006 CR4: 00000000003706e0
-[  183.648384] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
-[  183.649271] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
-[  183.650142] Call Trace:
-[  183.650988]  <TASK>
-[  183.651793]  vm_access+0x1f0/0x2a0 [i915]
-[  183.652726]  __access_remote_vm+0x224/0x380
-[  183.653561]  mem_rw.isra.0+0xf9/0x190
-[  183.654402]  vfs_read+0x9d/0x1b0
-[  183.655238]  ksys_read+0x63/0xe0
-[  183.656065]  do_syscall_64+0x38/0xc0
-[  183.656882]  entry_SYSCALL_64_after_hwframe+0x44/0xae
-[  183.657663] RIP: 0033:0x7fe5ef725142
-[  183.659351] RSP: 002b:00007ffe1e81c7e8 EFLAGS: 00000246 ORIG_RAX: 0000000000000000
-[  183.660227] RAX: ffffffffffffffda RBX: 0000557055dfb780 RCX: 00007fe5ef725142
-[  183.661104] RDX: 0000000000001000 RSI: 00007ffe1e81d880 RDI: 0000000000000005
-[  183.661972] RBP: 00007ffe1e81e890 R08: 0000000000000030 R09: 0000000000000046
-[  183.662832] R10: 0000557055dfc2e0 R11: 0000000000000246 R12: 0000557055dfb1c0
-[  183.663691] R13: 00007ffe1e81e980 R14: 0000000000000000 R15: 0000000000000000
-[  183.664566]  </TASK>
+The other option is to
+*) get rid of the GGTT / PPGTT sorting of vmas in the list,
+*) being able to determine per vma *before we unlock* if we need to
+unlock the list spinlock to take action,
+*) re-add all vmas we've previously iterated over at the *tail* of the
+list before unlocking the list lock.
 
-Changes since v1:
-     - Updated if condition with range_overflows_t [Chris Wilson]
+Then a termination criterion for iterating would be that we reached the
+end of the list without unlocking. Otherwise we need to restart
+iteration after unlocking.
 
-Signed-off-by: Mastan Katragadda <mastanx.katragadda@intel.com>
-Suggested-by: Adam Zabrocki <adamza@microsoft.com>
-Reported-by: Jackson Cody <cody.jackson@intel.com>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Bloomfield Jon <jon.bloomfield@intel.com>
-Cc: Dutt Sudeep <sudeep.dutt@intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_mman.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+This would typically give us O(2N) complexity for the iteration. If we
+re-add at the *head* of the list, we'd see O(N²), but to be able to re-
+add previous vmas to the tail of the list requires us to get rid of the
+sorting.
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-index efe69d6b86f4..c3ea243d414d 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-@@ -455,7 +455,7 @@ vm_access(struct vm_area_struct *area, unsigned long addr,
- 		return -EACCES;
- 
- 	addr -= area->vm_start;
--	if (addr >= obj->base.size)
-+	if (range_overflows_t(u64, addr, len, obj->base.size))
- 		return -EINVAL;
- 
- 	i915_gem_ww_ctx_init(&ww, true);
--- 
-2.25.1
+> 
+> But this just something I noticed and not related to this patch.
+> This patch looks good to me.
+> Reviewed-by: Niranjana Vishwanathapura
+> <niranjana.vishwanathapura@intel.com>
+>  
+
+Thanks for reviewing. I noticed there is some documentation needing
+updating as well, so I'll send out a v3 without functional changes.
+
+/Thomas
+
+
+> 
+> > diff --git a/drivers/gpu/drm/i915/i915_vma.c
+> > b/drivers/gpu/drm/i915/i915_vma.c
+> > index 91538bc38110..6fd25b39748f 100644
+> > --- a/drivers/gpu/drm/i915/i915_vma.c
+> > +++ b/drivers/gpu/drm/i915/i915_vma.c
+> > @@ -122,7 +122,6 @@ vma_create(struct drm_i915_gem_object *obj,
+> >         if (vma == NULL)
+> >                 return ERR_PTR(-ENOMEM);
+> > 
+> > -       kref_init(&vma->ref);
+> >         vma->ops = &vm->vma_ops;
+> >         vma->obj = obj;
+> >         vma->size = obj->base.size;
+> > @@ -1628,15 +1627,6 @@ void i915_vma_reopen(struct i915_vma *vma)
+> >                 __i915_vma_remove_closed(vma);
+> > }
+> > 
+> > -void i915_vma_release(struct kref *ref)
+> > -{
+> > -       struct i915_vma *vma = container_of(ref, typeof(*vma),
+> > ref);
+> > -
+> > -       i915_active_fini(&vma->active);
+> > -       GEM_WARN_ON(vma->resource);
+> > -       i915_vma_free(vma);
+> > -}
+> > -
+> > static void force_unbind(struct i915_vma *vma)
+> > {
+> >         if (!drm_mm_node_allocated(&vma->node))
+> > @@ -1665,7 +1655,9 @@ static void release_references(struct
+> > i915_vma *vma, bool vm_ddestroy)
+> >         if (vm_ddestroy)
+> >                 i915_vm_resv_put(vma->vm);
+> > 
+> > -       __i915_vma_put(vma);
+> > +       i915_active_fini(&vma->active);
+> > +       GEM_WARN_ON(vma->resource);
+> > +       i915_vma_free(vma);
+> > }
+> > 
+> > /**
+> > diff --git a/drivers/gpu/drm/i915/i915_vma.h
+> > b/drivers/gpu/drm/i915/i915_vma.h
+> > index 67ae7341c7e0..6034991d89fe 100644
+> > --- a/drivers/gpu/drm/i915/i915_vma.h
+> > +++ b/drivers/gpu/drm/i915/i915_vma.h
+> > @@ -222,20 +222,6 @@ void i915_vma_unlink_ctx(struct i915_vma
+> > *vma);
+> > void i915_vma_close(struct i915_vma *vma);
+> > void i915_vma_reopen(struct i915_vma *vma);
+> > 
+> > -static inline struct i915_vma *__i915_vma_get(struct i915_vma
+> > *vma)
+> > -{
+> > -       if (kref_get_unless_zero(&vma->ref))
+> > -               return vma;
+> > -
+> > -       return NULL;
+> > -}
+> > -
+> > -void i915_vma_release(struct kref *ref);
+> > -static inline void __i915_vma_put(struct i915_vma *vma)
+> > -{
+> > -       kref_put(&vma->ref, i915_vma_release);
+> > -}
+> > -
+> > void i915_vma_destroy_locked(struct i915_vma *vma);
+> > void i915_vma_destroy(struct i915_vma *vma);
+> > 
+> > diff --git a/drivers/gpu/drm/i915/i915_vma_types.h
+> > b/drivers/gpu/drm/i915/i915_vma_types.h
+> > index eac36be184e5..be6e028c3b57 100644
+> > --- a/drivers/gpu/drm/i915/i915_vma_types.h
+> > +++ b/drivers/gpu/drm/i915/i915_vma_types.h
+> > @@ -211,7 +211,6 @@ struct i915_vma {
+> >          * handles (but same file) for execbuf, i.e. the number of
+> > aliases
+> >          * that exist in the ctx->handle_vmas LUT for this vma.
+> >          */
+> > -       struct kref ref;
+> >         atomic_t open_count;
+> >         atomic_t flags;
+> >         /**
+> > -- 
+> > 2.34.1
+> > 
+
 
