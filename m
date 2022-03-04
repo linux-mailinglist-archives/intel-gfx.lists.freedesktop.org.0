@@ -2,43 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0281E4CE014
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Mar 2022 23:10:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B668C4CE02E
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Mar 2022 23:19:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 64F3D113C44;
-	Fri,  4 Mar 2022 22:10:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AECED113AD1;
+	Fri,  4 Mar 2022 22:19:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5FD91113C43;
- Fri,  4 Mar 2022 22:10:19 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B223113478;
+ Fri,  4 Mar 2022 22:19:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646431819; x=1677967819;
+ t=1646432387; x=1677968387;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=tFJSRfFp/QZNOJs7QeJYvRJfDl9QKjPbE3tqREkgXxU=;
- b=hUTc5aNY3tCdxDZ5OcZLkSE33qKn+ie8hqcwNFNIIAtFGQcoZqfN55k3
- F0SiD5U6FJp7dQ8il9FBpgoBwI2zQdWQGC0HRKAxLbfYkGX7FgE8WFMQx
- 63gzPJIGrLPkqn39uvykHmHSWbfxbqTbUKh/pwWcUT7aWpv6kHkhjyykD
- JAaVCRI2VWqYPsgIaJzLIkS3ot7Skcp7ARGeijZPWXCweIHTeUm9dZEDn
- RpbdQpRd9Yom0OpTxVh+hBBecso5Dti2W2ZmbdEfMwM27YmXpOLny7TMC
- GGI4tRxgZQ8JV5gBqtzLhKLvlhoLieOxK+mVcN83aM65n+RfvoFooHPYS g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10276"; a="317306229"
-X-IronPort-AV: E=Sophos;i="5.90,156,1643702400"; d="scan'208";a="317306229"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2022 14:10:18 -0800
-X-IronPort-AV: E=Sophos;i="5.90,156,1643702400"; d="scan'208";a="494460284"
+ bh=cKHRnfT7FKFbtrTJu5rOU1u7ylmmcSMBlej6L5aQpz8=;
+ b=nG5vACScm1v580OqHJbBVUPlK+V1ZA3NtmxNIdeQtWpD8lFvKi4UrRoc
+ OfL+dGLu8y/iI9MG5zVNd9iGtfItvLIYChjOZw8ZzGYi/I8N2ki5dKW3Z
+ +OkN/pMQoNZ05sUQM3Zd9yTdv0WoLI7R4IXrGwZrYfAfBeSu7j7u+jp0/
+ fkJUi5GHfkSjaONSYCj8J0hnX3T1YO9hdsQxBOngEk4tmo2KFw4Uwk/M5
+ O0sKYkOXKLKhEMSuV4KJBAI5Rlrk1PYNVgOqSh5g2rhmSqtuwVfY80Rs0
+ D8qw5a7ysT7ggBSvvdWfRuQwhz1TJZqK15K3v0Uh97O0Yx6kUarvdiGbO w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10276"; a="234682146"
+X-IronPort-AV: E=Sophos;i="5.90,156,1643702400"; d="scan'208";a="234682146"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Mar 2022 14:19:46 -0800
+X-IronPort-AV: E=Sophos;i="5.90,156,1643702400"; d="scan'208";a="642650604"
 Received: from fphy-dev.jf.intel.com (HELO fyang16-desk.jf.intel.com)
  ([134.134.244.167])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2022 14:10:18 -0800
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Mar 2022 14:19:46 -0800
 From: fei.yang@intel.com
 To: intel-gfx@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
-Date: Fri,  4 Mar 2022 14:04:38 -0800
-Message-Id: <20220304220438.2416660-1-fei.yang@intel.com>
+Date: Fri,  4 Mar 2022 14:14:07 -0800
+Message-Id: <20220304221407.2416898-1-fei.yang@intel.com>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -117,7 +117,7 @@ index 1c82caf525c3..0ec4986e4805 100644
  }
  
 diff --git a/drivers/gpu/drm/i915/gt/gen6_engine_cs.c b/drivers/gpu/drm/i915/gt/gen6_engine_cs.c
-index 5e65550b4dfb..aceb571c8212 100644
+index 5e65550b4dfb..efe51c4662fe 100644
 --- a/drivers/gpu/drm/i915/gt/gen6_engine_cs.c
 +++ b/drivers/gpu/drm/i915/gt/gen6_engine_cs.c
 @@ -137,6 +137,9 @@ int gen6_emit_flush_rcs(struct i915_request *rq, u32 mode)
@@ -125,7 +125,7 @@ index 5e65550b4dfb..aceb571c8212 100644
  	intel_ring_advance(rq, cs);
  
 +	/* hsdes: 1809175790. No fixup needed for gen6 */
-+        rq->aux_inv_fixup = NULL;
++	rq->aux_inv_fixup = NULL;
 +
  	return 0;
  }
@@ -135,7 +135,7 @@ index 5e65550b4dfb..aceb571c8212 100644
  	intel_ring_advance(rq, cs);
  
 +	/* hsdes: 1809175790. No fixup needed for gen6 */
-+        rq->aux_inv_fixup = NULL;
++	rq->aux_inv_fixup = NULL;
 +
  	return 0;
  }
