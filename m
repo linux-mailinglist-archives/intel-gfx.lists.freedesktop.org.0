@@ -1,65 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2593A4CDA81
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Mar 2022 18:31:25 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BC924CDA59
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Mar 2022 18:28:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D38D310FD11;
-	Fri,  4 Mar 2022 17:31:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2FCCD112B33;
+	Fri,  4 Mar 2022 17:28:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 347 seconds by postgrey-1.36 at gabe;
- Fri, 04 Mar 2022 17:31:17 UTC
-Received: from ste-pvt-msa2.bahnhof.se (ste-pvt-msa2.bahnhof.se
- [213.80.101.71])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B39BE10F951;
- Fri,  4 Mar 2022 17:31:17 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by ste-pvt-msa2.bahnhof.se (Postfix) with ESMTP id D22E7408A9;
- Fri,  4 Mar 2022 18:25:28 +0100 (CET)
-X-Virus-Scanned: Debian amavisd-new at bahnhof.se
-X-Spam-Flag: NO
-X-Spam-Score: -2.11
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.11 tagged_above=-999 required=6.31
- tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
- DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, NICE_REPLY_A=-0.001,
- T_SCC_BODY_TEXT_LINE=-0.01, URIBL_BLOCKED=0.001]
- autolearn=ham autolearn_force=no
-Authentication-Results: ste-ftg-msa2.bahnhof.se (amavisd-new);
- dkim=pass (1024-bit key) header.d=shipmail.org
-Received: from ste-pvt-msa2.bahnhof.se ([127.0.0.1])
- by localhost (ste-ftg-msa2.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id c3Vjh5jF4ANB; Fri,  4 Mar 2022 18:25:27 +0100 (CET)
-Received: by ste-pvt-msa2.bahnhof.se (Postfix) with ESMTPA id 8D68740657;
- Fri,  4 Mar 2022 18:25:27 +0100 (CET)
-Authentication-Results: ste-pvt-msa2.bahnhof.se; dkim=pass (1024-bit key;
- unprotected) header.d=shipmail.org header.i=@shipmail.org header.b="gCXtasJd";
- dkim-atps=neutral
-Received: from [192.168.0.209] (unknown [192.55.54.50])
- by mail1.shipmail.org (Postfix) with ESMTPSA id 638F63602D9;
- Fri,  4 Mar 2022 18:25:25 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
- t=1646414727; bh=mR4aNrIzdnBiHfLDuZWLgPKjbJzB0irlhj9gZaGh+dY=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=gCXtasJdhkNe7J5/0mugiM2UyL+maeUWcFnTJ0LuZLQ+aabLZu/a28SHpfnNfU7az
- EBqQGqbqLoZSA0N2FAfyx30cmJ6CRV39Xmf7d8ht4OgpsBTy1BJ67xbIXca21SsZiF
- +jDmorJ13tQj+jIxcQx+sm7Psr/ewOpwTh04AP0o=
-Message-ID: <bcc30997-a759-ca1b-c3d5-38b7de856146@shipmail.org>
-Date: Fri, 4 Mar 2022 18:25:22 +0100
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F17B112B31
+ for <intel-gfx@lists.freedesktop.org>; Fri,  4 Mar 2022 17:28:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1646414917; x=1677950917;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=S82fbtPQ7vBWw7N2TuW8JsGAOmrACtt4ziU2Auy65Vw=;
+ b=M5zygAhab8Z0c27bC1gBun+AmFKj8KInni16r20mtCZ7ibdNCxzgF9Yv
+ LxSiA7ePPcX3sgcbrcyCBeT7uwreDEY03pAB7JHQdIVqWZHAsuFeJZYkF
+ YfadNtuZuqKu5tmxLSCqCUEYHaJ2c+uQyO5dIYq6QetCMFXW7JlY8vHin
+ 6bYk0HeE1kMcgOgoHLudpZhqyObJ4QPd6KUG7NPUCwNt92RvXO6QMGXnk
+ 5ZQxdRZWwghzMxyJOVThYrX3buO4hlgXqFRSZw4EuRdO06IHPExcwLy3x
+ DwKlqkwX6XLalEy1xnHWd58LsxdYn3wU5IWbUOgDIuJRUDPHGYpGH0DR4 w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10276"; a="241444962"
+X-IronPort-AV: E=Sophos;i="5.90,155,1643702400"; d="scan'208";a="241444962"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Mar 2022 09:28:36 -0800
+X-IronPort-AV: E=Sophos;i="5.90,155,1643702400"; d="scan'208";a="509042079"
+Received: from vkats-mobl1.ccr.corp.intel.com (HELO [10.252.28.8])
+ ([10.252.28.8])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Mar 2022 09:28:35 -0800
+Message-ID: <3bb37dc6-85a5-eb24-f474-8b393479eab9@intel.com>
+Date: Fri, 4 Mar 2022 17:28:33 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.0
-Content-Language: en-US
-To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20220303100229.839282-1-matthew.auld@intel.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
-In-Reply-To: <20220303100229.839282-1-matthew.auld@intel.com>
+ Thunderbird/91.5.0
+Content-Language: en-GB
+To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20220304095934.925036-1-matthew.auld@intel.com>
+ <20220304095934.925036-2-matthew.auld@intel.com>
+ <fe19ddd39d48916c382e5bfe1c6a9f720358728b.camel@linux.intel.com>
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <fe19ddd39d48916c382e5bfe1c6a9f720358728b.camel@linux.intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gtt: reduce overzealous alignment
- constraints for GGTT
+Subject: Re: [Intel-gfx] [CI 2/2] drm/i915: limit the async bind to
+ bind_async_flags
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,43 +63,82 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
- dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On 04/03/2022 16:41, Thomas Hellström wrote:
+> On Fri, 2022-03-04 at 09:59 +0000, Matthew Auld wrote:
+>> If the vm doesn't request async binding, like for example with the
+>> dpt,
+>> then we should be able to skip the async path and avoid calling
+>> i915_vm_lock_objects() altogether. Currently if we have a moving
+>> fence
+>> set for the BO(even though it might have signalled), we still take
+>> the
+>> async patch regardless of the bind_async setting, and then later
+>> still
+>> end up just doing i915_gem_object_wait_moving_fence() anyway.
+>>
+>> Alternatively we would need to add dummy scratch object which can be
+>> locked, just for the dpt.
+>>
+>> Suggested-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+>> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+>> Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/i915_vma.c | 4 ++--
+>>   1 file changed, 2 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/i915_vma.c
+>> b/drivers/gpu/drm/i915/i915_vma.c
+>> index 94fcdb7bd21d..4d4d3659c938 100644
+>> --- a/drivers/gpu/drm/i915/i915_vma.c
+>> +++ b/drivers/gpu/drm/i915/i915_vma.c
+>> @@ -1360,8 +1360,7 @@ int i915_vma_pin_ww(struct i915_vma *vma,
+>> struct i915_gem_ww_ctx *ww,
+>>          if (flags & PIN_GLOBAL)
+>>                  wakeref = intel_runtime_pm_get(&vma->vm->i915-
+>>> runtime_pm);
+>>   
+>> -       moving = vma->obj ?
+> 
+> Is there a chance that "moving" will be used uninitialized later?
 
-On 3/3/22 11:02, Matthew Auld wrote:
-> Currently this will enforce both 2M alignment and padding for any LMEM
-> pages inserted into the GGTT. However, this was only meant to be applied
-> to the compact-pt layout with the ppGTT. For the GGTT we can reduce the
-> alignment and padding to 64K.
->
-> Bspec: 45015
-> Fixes: 87bd701ee268 ("drm/i915: enforce min GTT alignment for discrete cards")
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> Cc: Robert Beckett <bob.beckett@collabora.com>
-> Cc: Ramalingam C <ramalingam.c@intel.com>
+It looks to be initialised with NULL further up.
 
-Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> 
+> 
+>> i915_gem_object_get_moving_fence(vma->obj) : NULL;
+>> -       if (flags & vma->vm->bind_async_flags || moving) {
+>> +       if (flags & vma->vm->bind_async_flags) {
+>>                  /* lock VM */
+>>                  err = i915_vm_lock_objects(vma->vm, ww);
+>>                  if (err)
+>> @@ -1375,6 +1374,7 @@ int i915_vma_pin_ww(struct i915_vma *vma,
+>> struct i915_gem_ww_ctx *ww,
+>>   
+>>                  work->vm = i915_vm_get(vma->vm);
+>>   
+>> +               moving = vma->obj ?
+>> i915_gem_object_get_moving_fence(vma->obj) : NULL;
+> 
+> IIRC, with Maarten's recent changes, vma->obj is always non-NULL.
 
+Yup, a number of these seem to have crept back in. I was going to send a 
+follow up patch to fix all of them at once.
 
-> ---
->   drivers/gpu/drm/i915/gt/intel_gtt.c | 3 ++-
->   1 file changed, 2 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.c b/drivers/gpu/drm/i915/gt/intel_gtt.c
-> index 4bcdfcab3642..a5f5b2dda332 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gtt.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gtt.c
-> @@ -234,7 +234,8 @@ void i915_address_space_init(struct i915_address_space *vm, int subclass)
->   	memset64(vm->min_alignment, I915_GTT_MIN_ALIGNMENT,
->   		 ARRAY_SIZE(vm->min_alignment));
->   
-> -	if (HAS_64K_PAGES(vm->i915) && NEEDS_COMPACT_PT(vm->i915)) {
-> +	if (HAS_64K_PAGES(vm->i915) && NEEDS_COMPACT_PT(vm->i915) &&
-> +	    subclass == VM_CLASS_PPGTT) {
->   		vm->min_alignment[INTEL_MEMORY_LOCAL] = I915_GTT_PAGE_SIZE_2M;
->   		vm->min_alignment[INTEL_MEMORY_STOLEN_LOCAL] = I915_GTT_PAGE_SIZE_2M;
->   	} else if (HAS_64K_PAGES(vm->i915)) {
+> 
+> Otherwise LGTM.
+> Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+
+Thanks.
+
+> 
+> 
+>>                  dma_fence_work_chain(&work->base, moving);
+>>   
+>>                  /* Allocate enough page directories to used PTE */
+> 
+> /Thomas
+> 
+> 
