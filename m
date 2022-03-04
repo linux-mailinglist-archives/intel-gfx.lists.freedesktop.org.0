@@ -1,50 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 973114CDB3F
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Mar 2022 18:47:23 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A3CF4CDD4D
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Mar 2022 20:23:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 91F92112C0C;
-	Fri,  4 Mar 2022 17:47:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D06311336F;
+	Fri,  4 Mar 2022 19:23:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC343112C07;
- Fri,  4 Mar 2022 17:47:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646416034; x=1677952034;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=WwYCsmGdii4uIdENmdZGozG7FHzVrJro2nJEiTUpn+4=;
- b=IJXe9CTipM3W8+P+3CVFHskZfetFix+oO+Sz1qZ1EdVW0LwEsMe9WPFp
- DSSndSogiySCDQ5kSYU6vkHJdmnKryZWq55b3txHAs2f9OcLwCjxff+sv
- C68sJci7SCiD+fjJEoMABMkRUjKeg2fvNwNxLrgAaGJMHyrgvpXuAqMgt
- XkEVakTvSOERliZbRsKPVSV+Wq+cmYE/yk/uAshqGjA2VySjwWMB6+Qd0
- lrfwa8Brfj8wjS1dN3w5JGKVq36BGpuNEfJGEqaUd+ChxcoVjVho4oWC8
- 5PyTfd4Y5A+9UZ2EJ03kzbbiM5DBIQFBoCXipFutmj2WM9WPYn3KZ4pTG Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10276"; a="233984431"
-X-IronPort-AV: E=Sophos;i="5.90,155,1643702400"; d="scan'208";a="233984431"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2022 09:47:13 -0800
-X-IronPort-AV: E=Sophos;i="5.90,155,1643702400"; d="scan'208";a="494396023"
-Received: from mmazarel-mobl.ger.corp.intel.com (HELO [10.249.254.59])
- ([10.249.254.59])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2022 09:47:12 -0800
-Message-ID: <5c0043cbf8debcda7cd16b5fcc5f5e8b358795ba.camel@linux.intel.com>
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
-Date: Fri, 04 Mar 2022 18:47:09 +0100
-In-Reply-To: <20220304174252.1000238-1-matthew.auld@intel.com>
-References: <20220304174252.1000238-1-matthew.auld@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4 (3.40.4-2.fc34) 
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 32A6011336A;
+ Fri,  4 Mar 2022 19:23:46 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 2F190A66C9;
+ Fri,  4 Mar 2022 19:23:46 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: stop checking for NULL vma->obj
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Date: Fri, 04 Mar 2022 19:23:46 -0000
+Message-ID: <164642182618.21309.13594869289143301685@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220304172333.991778-1-matthew.auld@intel.com>
+In-Reply-To: <20220304172333.991778-1-matthew.auld@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Some_more_bits_for_small_BAR_enabling?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,73 +40,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 2022-03-04 at 17:42 +0000, Matthew Auld wrote:
-> This is no longer possible since e6e1a304d759 ("drm/i915: vma is
-> always
-> backed by an object.").
-> 
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+== Series Details ==
 
-LGTM. 
-Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Series: Some more bits for small BAR enabling
+URL   : https://patchwork.freedesktop.org/series/101052/
+State : warning
 
-> ---
->  drivers/gpu/drm/i915/i915_vma.c | 17 +++++++----------
->  1 file changed, 7 insertions(+), 10 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_vma.c
-> b/drivers/gpu/drm/i915/i915_vma.c
-> index 94fcdb7bd21d..7acfbbc63d17 100644
-> --- a/drivers/gpu/drm/i915/i915_vma.c
-> +++ b/drivers/gpu/drm/i915/i915_vma.c
-> @@ -515,21 +515,18 @@ int i915_vma_bind(struct i915_vma *vma,
->                 if (!work->vma_res->bi.pages_rsgt)
->                         work->pinned = i915_gem_object_get(vma->obj);
->         } else {
-> -               if (vma->obj) {
-> -                       ret = i915_gem_object_wait_moving_fence(vma-
-> >obj, true);
-> -                       if (ret) {
-> -                               i915_vma_resource_free(vma-
-> >resource);
-> -                               vma->resource = NULL;
-> +               ret = i915_gem_object_wait_moving_fence(vma->obj,
-> true);
-> +               if (ret) {
-> +                       i915_vma_resource_free(vma->resource);
-> +                       vma->resource = NULL;
->  
-> -                               return ret;
-> -                       }
-> +                       return ret;
->                 }
->                 vma->ops->bind_vma(vma->vm, NULL, vma->resource,
-> cache_level,
->                                    bind_flags);
->         }
->  
-> -       if (vma->obj)
-> -               set_bit(I915_BO_WAS_BOUND_BIT, &vma->obj->flags);
-> +       set_bit(I915_BO_WAS_BOUND_BIT, &vma->obj->flags);
->  
->         atomic_or(bind_flags, &vma->flags);
->         return 0;
-> @@ -1360,7 +1357,7 @@ int i915_vma_pin_ww(struct i915_vma *vma,
-> struct i915_gem_ww_ctx *ww,
->         if (flags & PIN_GLOBAL)
->                 wakeref = intel_runtime_pm_get(&vma->vm->i915-
-> >runtime_pm);
->  
-> -       moving = vma->obj ? i915_gem_object_get_moving_fence(vma-
-> >obj) : NULL;
-> +       moving = i915_gem_object_get_moving_fence(vma->obj);
->         if (flags & vma->vm->bind_async_flags || moving) {
->                 /* lock VM */
->                 err = i915_vm_lock_objects(vma->vm, ww);
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+a3f0e7b2e0d0 drm/i915/lmem: don't treat small BAR as an error
+2cdb743c5a4e drm/i915/stolen: don't treat small BAR as an error
+74db3d383272 drm/i915: add i915_gem_object_create_region_at()
+3f5470e8098d drm/i915/buddy: tweak CONTIGUOUS rounding
+80375509e058 drm/i915/ttm: wire up the object offset
+28a20a817e9c drm/i915/display: Check mappable aperture when pinning preallocated vma
+4d5d41ab2df8 drm/i915: fixup the initial fb base on DG1
+-:34: WARNING:TYPO_SPELLING: 'inital' may be misspelled - perhaps 'initial'?
+#34: FILE: drivers/gpu/drm/i915/display/intel_plane_initial.c:66:
++		 * need to choose between inital fb vs fbc, if space is limited.
+ 		                          ^^^^^^
+
+total: 0 errors, 1 warnings, 0 checks, 28 lines checked
+b9bdff2b6be6 drm/i915: fixup the initial fb on DG2
 
 
