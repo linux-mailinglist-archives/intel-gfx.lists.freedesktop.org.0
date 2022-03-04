@@ -1,69 +1,69 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A16404CD5A9
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Mar 2022 14:56:36 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B27DB4CD5A6
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Mar 2022 14:56:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EBA1310F986;
-	Fri,  4 Mar 2022 13:56:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B32CA10F97F;
+	Fri,  4 Mar 2022 13:56:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com
- [IPv6:2a00:1450:4864:20::62f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B2F6E10F8C6;
- Fri,  4 Mar 2022 08:33:16 +0000 (UTC)
-Received: by mail-ej1-x62f.google.com with SMTP id hw13so15859033ejc.9;
- Fri, 04 Mar 2022 00:33:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=message-id:date:mime-version:user-agent:subject:content-language:to
- :cc:references:from:in-reply-to:content-transfer-encoding;
- bh=lDiOxjq8VtEYhY51PjP5Jo5kppkOrtHrp1SH5d1zTiw=;
- b=WuzmpDWLP6LMICAashm3BAp+W+G+CXDZ0Ze5FwHyE/ne8/NbWnRv/j56zqPbw6x7uz
- Lq+c4jQcI+ZO1HEdL9UJGlJj2gric65ba+nXc8h71lkbAJuQfA/8qwTgy+df7P8S7WkB
- jHl9dzLeWEPfgWMaFDZ+d/avAzvoBi6G5x8MyPoe6JUszHKpZy5quMBjfjRBQ0maOtLe
- KbD7MYrbUKxBoG/DJqdBx9URft6RDbS9WTAgL+N+8lMpycwCNTLQSHxGgNryK2JaN1Cs
- 9/Mn1yBJfDOkuiT0ddxq7P3nHchd+2SC+dTe6rIVwP9uExVDCjTlJM7Ywk63S8lyijP3
- J6tA==
+Received: from mail-qv1-xf33.google.com (mail-qv1-xf33.google.com
+ [IPv6:2607:f8b0:4864:20::f33])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5F76410E452
+ for <intel-gfx@lists.freedesktop.org>; Fri,  4 Mar 2022 10:40:08 +0000 (UTC)
+Received: by mail-qv1-xf33.google.com with SMTP id j5so6258065qvs.13
+ for <intel-gfx@lists.freedesktop.org>; Fri, 04 Mar 2022 02:40:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=zbDq9quib58Fk+PBMAEUVZmBaVEvpUtaQmHtuQ7muG8=;
+ b=nmtva93elKGwhs2mPAHboSsPjgVtvzntXgTHQIn7C0ttujlW+nc1cXtA25sX3Yk3/2
+ wnO9AODGuNmcR2cKayiUz0D0EsrMSt73EFH3eJV2Gsokfsgker6YoAKV7rl5QiVrjKOo
+ FNiOj5JTBKWr8E9/J9b+thfZQA2F/MSX3L+m4ld2C23NgaQMyV5iaFhbNmSTPc4Q9ngk
+ WQTJ4tMNPM8Qkz+nNSNihGPdw3JqTcCJCB9BHpmFb4J3mmBGT+a0PAFhFb7z2e4bNTaK
+ N5907LrF1kn/1bsCjyF1pw57bI7W64A/0sn2Bj+LCK7Ws2nR7o6z+K4nl9lWjx/L12LP
+ ITqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:to:cc:references:from:in-reply-to
- :content-transfer-encoding;
- bh=lDiOxjq8VtEYhY51PjP5Jo5kppkOrtHrp1SH5d1zTiw=;
- b=XsmjYA0mbpmWxVGlIkjYSZNuTVkHhg/jYxiumJXsNL1n5HgBF0o9zvvNEODI4G0+h9
- LINbR9stW2aapOvBfyPgOenrR+ZSFrLMn5vtaA/UwOdMMeiDqz7fRBfUi8IBDQJArYCy
- u5Mpx5diL19VILpTjmi9TeAa7SwPZFxpMFW0gtX4sKbJD/TScffjmPisroXp7ZW/gSJk
- bcRmhieFrMVJ3a2KDUr61Rc75E81rFtpQ5f0ERzk9XoO1AJTKm5ov+IpQ7VgX/bKy7Yf
- FCXNqh4Hr9EbqSys7JQZVcC2bGFmmtxKxR4V1N7vIaAiR/7EAaRbWx4JOSPsq5sLYe9H
- AcAQ==
-X-Gm-Message-State: AOAM530PWI8DDGgQc68OFMoz8W9vUuCVIWT77XsauMccR0BhIo9urSyJ
- U/NwqU7uNZixZoluWxeFtcw=
-X-Google-Smtp-Source: ABdhPJwjHXO6A5HxJWJqm04oZvcDeq/6Wsc6jK18km2ZhgGx4zFjItWl9NDMD/krZKlyA20vpb0n4Q==
-X-Received: by 2002:a17:907:e8c:b0:6d7:1289:278b with SMTP id
- ho12-20020a1709070e8c00b006d71289278bmr12324307ejc.355.1646382795122; 
- Fri, 04 Mar 2022 00:33:15 -0800 (PST)
-Received: from [192.168.178.21] (p5b0eab60.dip0.t-ipconnect.de. [91.14.171.96])
- by smtp.gmail.com with ESMTPSA id
- q15-20020a1709060e4f00b006cdf4535cf2sm1518361eji.67.2022.03.04.00.33.14
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 04 Mar 2022 00:33:14 -0800 (PST)
-Message-ID: <4b1cf649-5f0a-33cb-032d-aefb616ce877@gmail.com>
-Date: Fri, 4 Mar 2022 09:33:13 +0100
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=zbDq9quib58Fk+PBMAEUVZmBaVEvpUtaQmHtuQ7muG8=;
+ b=YNBe9tJ+ncWSU+U6l+Nr6az73XD/AmgXvRYfaJ60V4KqT9DphIPSwzl5iazg+hTIjN
+ W4M1EwCKxPnsgLM18TKZPAjPGl7Vg5Wf3Q1h4zf+YiMRSxa/meykofa3G4F8l2ZERc9V
+ 7aQgcj3sNM9n6gdQ2qRR+Zb+aPTVASbY9FOwB4y4DTVLVExqco0ZdsK07Nv/WE5cNYKM
+ pYtIZYaYk2C8cpuyYvwwoB8kEody4S89Kb9Z+VSLb1FYEivPvaH6wXDFpNQCHeOjiENa
+ YORqjUot1WI+DXnVVUjRIq6DAFmasdQTp7Zbn0m6pL4wT+6grgQR6vU4FjVJzo7d/YLk
+ 8Jsw==
+X-Gm-Message-State: AOAM532wplmta/tDiu4weDmWmVme0RzILhOjWuNjddBfKfxJRxuI5UGD
+ TIsKXZU6ElyhhO0EU+yPsY54gT+E3/YXJk3Fxqv++g==
+X-Google-Smtp-Source: ABdhPJzFXawxoj+vD6cMYTgvA+eTMfOf8d9Z1o2rob/+npaEevrujz/Cy78Xv54/HE5GQuGkck+XUp+0hSqBumWsqVk=
+X-Received: by 2002:ad4:53a4:0:b0:430:1d8c:18ea with SMTP id
+ j4-20020ad453a4000000b004301d8c18eamr27277433qvv.115.1646390407361; Fri, 04
+ Mar 2022 02:40:07 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Content-Language: en-US
-To: Arunpravin <Arunpravin.PaneerSelvam@amd.com>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-References: <20220303201602.2365-1-Arunpravin.PaneerSelvam@amd.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-In-Reply-To: <20220303201602.2365-1-Arunpravin.PaneerSelvam@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <Yfp8Q6OFqTAvESOi@pendragon.ideasonboard.com>
+ <87y22ts948.fsf@intel.com>
+ <YfqGbqQQz5vrDaLI@pendragon.ideasonboard.com> <87v8xxs2hz.fsf@intel.com>
+ <CAF6AEGtdnWWhGp7U7nAPD4r3Uoe5BJKVm2rQ2MS=q5GqF6MYDA@mail.gmail.com>
+ <YhyB0WmJDWVFO1se@pendragon.ideasonboard.com> <871qzn6vmc.fsf@intel.com>
+ <Yhy/6+z7QshG+qOo@pendragon.ideasonboard.com>
+ <YhzROBOwTUkZw3Ez@pendragon.ideasonboard.com>
+ <4d8daabe-10d9-a3cf-d305-68414cffe4ed@quicinc.com>
+ <Yh+4EOKA5FgrlZrF@pendragon.ideasonboard.com>
+ <0cfd36a2-26e4-309d-d8e9-e3bf8a5d2417@quicinc.com>
+ <MWHPR11MB174187335183FC24BE0F1EA5E3059@MWHPR11MB1741.namprd11.prod.outlook.com>
+In-Reply-To: <MWHPR11MB174187335183FC24BE0F1EA5E3059@MWHPR11MB1741.namprd11.prod.outlook.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Fri, 4 Mar 2022 13:39:56 +0300
+Message-ID: <CAA8EJppTVN1EnytD5mCmr4ZTi4M8u9ENOmJuweNyDRkB3LEHnw@mail.gmail.com>
+To: "Kandpal, Suraj" <suraj.kandpal@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Fri, 04 Mar 2022 13:56:25 +0000
-Subject: Re: [Intel-gfx] [PATCH] drm/selftests: fix a shift-out-of-bounds bug
+Subject: Re: [Intel-gfx] [PATCH 5/6] drm/rcar_du: changes to rcar-du driver
+ resulting from drm_writeback_connector structure changes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,99 +76,79 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com, oliver.sang@intel.com, matthew.auld@intel.com,
- christian.koenig@amd.com
+Cc: Carsten Haitzler <carsten.haitzler@arm.com>, "Nikula,
+ Jani" <jani.nikula@intel.com>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ dri-devel <dri-devel@lists.freedesktop.org>, David Airlie <airlied@linux.ie>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Am 03.03.22 um 21:16 schrieb Arunpravin:
-> pass the correct size value computed using the max_order.
->
-> <log snip>
->
-> [ 68.124177][ T1] UBSAN: shift-out-of-bounds in include/linux/log2.h:67:13
-> [ 68.125333][ T1] shift exponent 4294967295 is too large for 32-bit type 'long
-> unsigned int'
-> [ 68.126563][ T1] CPU: 0 PID: 1 Comm: swapper Not tainted
-> 5.17.0-rc2-00311-g39ec47bbfd5d #2
-> [ 68.127758][ T1] Call Trace:
-> [ 68.128187][ T1] dump_stack_lvl (lib/dump_stack.c:108)
-> [ 68.128793][ T1] dump_stack (lib/dump_stack.c:114)
-> [ 68.129331][ T1] ubsan_epilogue (lib/ubsan.c:152)
-> [ 68.129958][ T1] __ubsan_handle_shift_out_of_bounds.cold (arch/x86/include/asm/smap.h:85)
->
-> [ 68.130791][ T1] ? drm_block_alloc+0x28/0x80
-> [ 68.131582][ T1] ? rcu_read_lock_sched_held (kernel/rcu/update.c:125)
-> [ 68.132215][ T1] ? kmem_cache_alloc (include/trace/events/kmem.h:54 mm/slab.c:3501)
-> [ 68.132878][ T1] ? mark_free+0x2e/0x80
-> [ 68.133524][ T1] drm_buddy_init.cold (include/linux/log2.h:67
-> drivers/gpu/drm/drm_buddy.c:131)
-> [ 68.134145][ T1] ? test_drm_cmdline_init (drivers/gpu/drm/selftests/test-drm_buddy.c:87)
->
-> [ 68.134770][ T1] igt_buddy_alloc_limit (drivers/gpu/drm/selftests/test-drm_buddy.c:30)
-> [ 68.135472][ T1] ? vprintk_default (kernel/printk/printk.c:2257)
-> [ 68.136057][ T1] ? test_drm_cmdline_init (drivers/gpu/drm/selftests/test-drm_buddy.c:87)
->
-> [ 68.136812][ T1] test_drm_buddy_init (drivers/gpu/drm/selftests/drm_selftest.c:77
-> drivers/gpu/drm/selftests/test-drm_buddy.c:95)
-> [ 68.137475][ T1] do_one_initcall (init/main.c:1300)
-> [ 68.138111][ T1] ? parse_args (kernel/params.c:609 kernel/params.c:146
-> kernel/params.c:188)
-> [ 68.138717][ T1] do_basic_setup (init/main.c:1372 init/main.c:1389 init/main.c:1408)
-> [ 68.139366][ T1] kernel_init_freeable (init/main.c:1617)
-> [ 68.140040][ T1] ? rest_init (init/main.c:1494)
-> [ 68.140634][ T1] kernel_init (init/main.c:1504)
-> [ 68.141155][ T1] ret_from_fork (arch/x86/entry/entry_32.S:772)
-> [ 68.141607][ T1]
-> ================================================================================
-> [ 68.146730][ T1] ------------[ cut here ]------------
-> [ 68.147460][ T1] kernel BUG at drivers/gpu/drm/drm_buddy.c:140!
-> [ 68.148280][ T1] invalid opcode: 0000 [#1]
-> [ 68.148895][ T1] CPU: 0 PID: 1 Comm: swapper Not tainted
-> 5.17.0-rc2-00311-g39ec47bbfd5d #2
-> [ 68.149896][ T1] EIP: drm_buddy_init (drivers/gpu/drm/drm_buddy.c:140 (discriminator 1))
->
-> For more details: https://lists.01.org/hyperkitty/list/lkp@lists.01.org/thread/FDIF3HCILZNN5UQAZMOR7E3MQSMHHKWU/
->
-> Signed-off-by: Arunpravin <Arunpravin.PaneerSelvam@amd.com>
-> Reported-by: kernel test robot <oliver.sang@intel.com>
+Hi,
 
-Acked-by: Christian König <christian.koenig@amd.com>
-
-> ---
->   drivers/gpu/drm/selftests/test-drm_buddy.c | 6 +++---
->   1 file changed, 3 insertions(+), 3 deletions(-)
+On Fri, 4 Mar 2022 at 12:56, Kandpal, Suraj <suraj.kandpal@intel.com> wrote=
+:
 >
-> diff --git a/drivers/gpu/drm/selftests/test-drm_buddy.c b/drivers/gpu/drm/selftests/test-drm_buddy.c
-> index fa997f89522b..913cbd7eae04 100644
-> --- a/drivers/gpu/drm/selftests/test-drm_buddy.c
-> +++ b/drivers/gpu/drm/selftests/test-drm_buddy.c
-> @@ -902,14 +902,13 @@ static int igt_buddy_alloc_range(void *arg)
->   
->   static int igt_buddy_alloc_limit(void *arg)
->   {
-> -	u64 end, size = U64_MAX, start = 0;
-> +	u64 size = U64_MAX, start = 0;
->   	struct drm_buddy_block *block;
->   	unsigned long flags = 0;
->   	LIST_HEAD(allocated);
->   	struct drm_buddy mm;
->   	int err;
->   
-> -	size = end = round_down(size, 4096);
->   	err = drm_buddy_init(&mm, size, PAGE_SIZE);
->   	if (err)
->   		return err;
-> @@ -921,7 +920,8 @@ static int igt_buddy_alloc_limit(void *arg)
->   		goto out_fini;
->   	}
->   
-> -	err = drm_buddy_alloc_blocks(&mm, start, end, size,
-> +	size = mm.chunk_size << mm.max_order;
-> +	err = drm_buddy_alloc_blocks(&mm, start, size, size,
->   				     PAGE_SIZE, &allocated, flags);
->   
->   	if (unlikely(err))
->
-> base-commit: 6be340ee8f5beae574dae6f5e17a22e67beeff3e
+> Hi Abhinav,
+> > Hi Laurent
+> >
+> > Ok sure, I can take this up but I need to understand the proposal a lit=
+tle bit
+> > more before proceeding on this. So we will discuss this in another emai=
+l
+> > where we specifically talk about the connector changes.
+> >
+> > Also, I am willing to take this up once the encoder part is done and me=
+rged
+> > so that atleast we keep moving on that as MSM WB implementation can
+> > proceed with that first.
+> >
+> > Hi Jani and Suraj
+> >
+> > Any concerns with splitting up the series into encoder and connector OR=
+ re-
+> > arranging them?
+> >
+> > Let me know if you can do this OR I can also split this up keeping Sura=
+j's
+> > name in the Co-developed by tag.
+> I was actually thinking of floating a new patch series with both encoder =
+and
+> connector pointer changes but with a change in initialization functions w=
+herein
+> we allocate a connector and encoder incase the driver doesn=E2=80=99t hav=
+e its own this
+> should minimize the effect on other drivers already using current drm wri=
+teback
+> framework and also allow i915 to create its own connector.
 
+I thought that Laurent was quite strict about the connector. So I'd
+suggest targeting drm_writeback_connector with an optionally created
+encoder and the builtin connector
+
+> We can work on Laurent's suggestion but that would first require the init=
+ial RFC
+> patches and then a rework from both of our drivers side to see if they ge=
+l well
+> with our current code which will take a considerable amount of time. We c=
+an for
+> now however float the patch series up which minimally affects the current=
+ drivers
+> and also allows i915 and msm to move forward with its writeback implement=
+ation
+> off course with a proper documentation stating new drivers shouldn't try =
+to make
+> their own connectors and encoders and that drm_writeback will do that for=
+ them.
+> Once that's done and merged we can work with Laurent on his proposal to i=
+mprove
+> the drm writeback framework so that this issue can be side stepped entire=
+ly in future.
+> For now I would like to keep the encoder and connector pointer changes to=
+gether.
+
+
+--=20
+With best wishes
+Dmitry
