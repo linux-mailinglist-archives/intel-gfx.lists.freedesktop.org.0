@@ -2,32 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D11BE4CCB54
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Mar 2022 02:31:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AEF34CCB88
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Mar 2022 03:05:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E140A10E40E;
-	Fri,  4 Mar 2022 01:31:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 32D2310E40E;
+	Fri,  4 Mar 2022 02:05:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5392610E409;
- Fri,  4 Mar 2022 01:31:25 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 92C3510E254;
+ Fri,  4 Mar 2022 02:05:05 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 545A3A8836;
- Fri,  4 Mar 2022 01:31:25 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 6DC49A0096;
+ Fri,  4 Mar 2022 02:05:05 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Roper" <matthew.d.roper@intel.com>
-Date: Fri, 04 Mar 2022 01:31:25 -0000
-Message-ID: <164635748534.21338.8283214096836527141@emeril.freedesktop.org>
+To: "Navare, Manasi" <manasi.d.navare@intel.com>
+Date: Fri, 04 Mar 2022 02:05:05 -0000
+Message-ID: <164635950541.21335.4761617925243594136@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20220303224256.2793639-1-matthew.d.roper@intel.com>
-In-Reply-To: <20220303224256.2793639-1-matthew.d.roper@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?drm/i915/dg2=3A_Add_preemption_changes_for_Wa=5F14015141709?=
+References: <20220303233222.4698-1-manasi.d.navare@intel.com>
+In-Reply-To: <20220303233222.4698-1-manasi.d.navare@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/display/vrr=3A_Reset_VRR_capable_property_on_a_lon?=
+ =?utf-8?q?g_hpd_=28rev5=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,14 +48,23 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915/dg2: Add preemption changes for Wa_14015141709
-URL   : https://patchwork.freedesktop.org/series/101023/
+Series: drm/i915/display/vrr: Reset VRR capable property on a long hpd (rev5)
+URL   : https://patchwork.freedesktop.org/series/98801/
 State : warning
 
 == Summary ==
 
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
+$ dim checkpatch origin/drm-tip
+b7eb4985f027 drm/i915/display/vrr: Reset VRR capable property on a long hpd
+-:10: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#10: 
+With some VRR panels, user can turn VRR ON/OFF on the fly from the panel settings.
+
+-:22: WARNING:TYPO_SPELLING: 'reseting' may be misspelled - perhaps 'resetting'?
+#22: 
+v5: Fixes the regression on older platforms by reseting the VRR
+                                               ^^^^^^^^
+
+total: 0 errors, 2 warnings, 0 checks, 44 lines checked
 
 
