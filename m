@@ -1,68 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A42AC4CD5A4
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Mar 2022 14:56:27 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89CB34CD5A8
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Mar 2022 14:56:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A368D10F97D;
-	Fri,  4 Mar 2022 13:56:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D20B10F985;
+	Fri,  4 Mar 2022 13:56:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oi1-x235.google.com (mail-oi1-x235.google.com
- [IPv6:2607:f8b0:4864:20::235])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9851110E416
- for <intel-gfx@lists.freedesktop.org>; Fri,  4 Mar 2022 01:06:40 +0000 (UTC)
-Received: by mail-oi1-x235.google.com with SMTP id q5so6472991oij.6
- for <intel-gfx@lists.freedesktop.org>; Thu, 03 Mar 2022 17:06:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=t3nWe6fM1HVkjBUMHf+CEsn0gIjJiNshvBUlw4zjlyA=;
- b=i5APB157kDLH4uugQLkW+WkhLxdZwPfQVwcwK501fx9upDZvwwlFYv8llMCQHJJ+Q1
- kVyKqLvBaFvvnD0ftWnH9Ve/tEv68SUr988i3iLC4T//ZgB6H+2FI+qV8odSfMb9wYHU
- PmoKw9idfKa67meyFAm0sWAOJiBuMXWR72dEziYskZbAbsyRJeLfWfDnoD6ccf8nfpPv
- w1G6QDXFJ9CX/l3s8dTaZjwMuzQtvVSprZUGzdZDLyJOCnB1YNz+qCjNoQ9ubv/OrpwO
- cGGK1+MUeKgoFiysDeOAd1SHgKpHAxCKG6daaWnvRUR7SMwplRMQ8359+XCjsCULbduy
- 0jpw==
+Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com
+ [IPv6:2607:f8b0:4864:20::435])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9EEBC10F1DF;
+ Fri,  4 Mar 2022 07:00:21 +0000 (UTC)
+Received: by mail-pf1-x435.google.com with SMTP id d17so6928086pfl.0;
+ Thu, 03 Mar 2022 23:00:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references;
+ bh=0a+oQu3LYTAbOOyoILb+F/zkApGIum0yjd+xPCLEHo4=;
+ b=UcHSzcmMAevEFsqxc8gimvoSIew96LrW3UYvjfgkcaeLb/Edql9668oTELTgMdhcyh
+ uwTLYgNgPfuwuQfZCbkLtuIX59UkP2xXrD0mK6eOfNdOu/KSihdjQUFHL7gwAFzgpb4Z
+ PeSQfhLMwS3uLkuXfSSL1QQyblGTA4kTyWBkcty1viz6EkWmIbbGn99xu95lY6jAsJ0c
+ CbisDo/RPFGn8gAJnKluj00ht4OQ80XaXmCEvGalnXTnvAWrV5UWFfWh6kgUBnLZJvSQ
+ W0PYU136vUwP4grvjJEIhDxHc0WM1lPQ2cysIXPjh+breTQ07tU9AM0RgZ3Jr4UsSFjT
+ NaGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=t3nWe6fM1HVkjBUMHf+CEsn0gIjJiNshvBUlw4zjlyA=;
- b=yimG/huK3jOGixn33PA9uZPTwJDckYIZxDsNVM/J4gK8u0zJmKVx1cNIUdRvdnxi78
- wtd9WC4HewjLoYQBjMfFwrfHHumPa/66ZfJRU7coLZsq+f3IQvSziQINv8saBc/gRnzZ
- XDvFyvBXDLt5PvDk5crj8JJWf+E5pj/Crl2AFnfM8m/mDcNo6WKZ2FD3xGsdm8ORoyf3
- /zDc9Eq5aYzvbr4TetJvnk+9lus3/JndwC5lc5Pg78xVd4dd0LsDbyLhwOlLjfkiEQhe
- q5uMiQ10Ayh5LGZgEfNgyQ6ldxgZfdxrMJm3Pzsm4RsUvQI8KiLZCQYKFr08t9XMvZUk
- BbSw==
-X-Gm-Message-State: AOAM532UO2DyIjZk009fUz62phCiKXjyxM+cr+4y1ufZHeiymcRTzK5c
- D4mikbHykVVF8fHzfwCAgYvKZA==
-X-Google-Smtp-Source: ABdhPJzBW6NhSImLIQGWIXESHt/Soyu/H4xnVElo6ZgoPx6e1MiwPxrDZcYL/A+g7+o36t3OX+tdjw==
-X-Received: by 2002:aca:1807:0:b0:2cf:216:3d5b with SMTP id
- h7-20020aca1807000000b002cf02163d5bmr7220144oih.18.1646355999802; 
- Thu, 03 Mar 2022 17:06:39 -0800 (PST)
-Received: from ripper.. ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
- by smtp.gmail.com with ESMTPSA id
- l14-20020a4ac60e000000b002e0e75dcb82sm1709080ooq.12.2022.03.03.17.06.38
+ :references;
+ bh=0a+oQu3LYTAbOOyoILb+F/zkApGIum0yjd+xPCLEHo4=;
+ b=hXzdQdFR7uRrMbDpGvxS2ZPGew7M6SJb0ulSwysgx7DWWXsT3bQzprQd9X21VOYFWG
+ tjU5i6+SWz30Kzz5mJjuwSb7gCtAJyzHD11O045UeWjtFbmrnAAuIN1MdUWUdqpQoCPV
+ eH/oJInZYAGMlFtqgHk0MhBQSEIaOAERrAS6tIcN1X+PubhaYyjMgzDzD658gunS0gF7
+ DrQYJeMqf4gjg+eXtXWjIl94TJtJZimrudO6UC/9tPpPcizRkDnaPuwgEuSacEFyOtma
+ BELAeSuFEyTi2gs7VQtnT3lCZanMENYcrHL8DoKzEbM7sJNfFMjxKc/kLeKNsPnrV58H
+ H8pg==
+X-Gm-Message-State: AOAM532SB0yXyGEhnflNiaEmCF7fEIo3+3woOnbr144ZnnNNUOH4nUxP
+ PxSzsoNEXKNNnnkHRV3H3Ao=
+X-Google-Smtp-Source: ABdhPJxBFOb3A6C/RlDh1uHGrWM51HjSkR68cXfNAhNGErUbSC2hd/FilwMHkJmidt1eEHAWD7GVrA==
+X-Received: by 2002:a05:6a00:cc7:b0:4ec:c6f3:ad29 with SMTP id
+ b7-20020a056a000cc700b004ecc6f3ad29mr41958698pfv.66.1646377221067; 
+ Thu, 03 Mar 2022 23:00:21 -0800 (PST)
+Received: from ubuntu.huawei.com ([119.3.119.19])
+ by smtp.googlemail.com with ESMTPSA id
+ f6-20020a654006000000b00346193b405fsm3665134pgp.44.2022.03.03.23.00.01
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 03 Mar 2022 17:06:39 -0800 (PST)
-From: Bjorn Andersson <bjorn.andersson@linaro.org>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Rob Clark <robdclark@gmail.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Thu,  3 Mar 2022 17:08:27 -0800
-Message-Id: <20220304010827.998080-2-bjorn.andersson@linaro.org>
-X-Mailer: git-send-email 2.33.1
-In-Reply-To: <20220304010827.998080-1-bjorn.andersson@linaro.org>
-References: <20220304010827.998080-1-bjorn.andersson@linaro.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+ Thu, 03 Mar 2022 23:00:20 -0800 (PST)
+From: Xiaomeng Tong <xiam0nd.tong@gmail.com>
+To: daniel.thompson@linaro.org
+Date: Fri,  4 Mar 2022 14:59:57 +0800
+Message-Id: <20220304065957.16799-1-xiam0nd.tong@gmail.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20220303121824.qdyrognluik74iph@maple.lan>
+References: <20220303121824.qdyrognluik74iph@maple.lan>
 X-Mailman-Approved-At: Fri, 04 Mar 2022 13:56:25 +0000
-Subject: [Intel-gfx] [PATCH v2 2/2] drm/msm/dp: Implement oob_hotplug_event()
+Subject: Re: [Intel-gfx] [PATCH 2/6] treewide: remove using list iterator
+ after loop body as a ptr
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,198 +68,128 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: freedreno@lists.freedesktop.org,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- intel-gfx@lists.freedesktop.org, linux-usb@vger.kernel.org,
- Abhinav Kumar <quic_abhinavk@quicinc.com>, Maxime Ripard <mripard@kernel.org>,
- Stephen Boyd <swboyd@chromium.org>, dri-devel@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: alsa-devel@alsa-project.org, kvm@vger.kernel.org, gustavo@embeddedor.com,
+ linux-iio@vger.kernel.org, kgdb-bugreport@lists.sourceforge.net,
+ linux@rasmusvillemoes.dk, dri-devel@lists.freedesktop.org, c.giuffrida@vu.nl,
+ amd-gfx@lists.freedesktop.org, torvalds@linux-foundation.org,
+ samba-technical@lists.samba.org, linux1394-devel@lists.sourceforge.net,
+ drbd-dev@lists.linbit.com, linux-arch@vger.kernel.org,
+ linux-cifs@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
+ linux-scsi@vger.kernel.org, linux-rdma@vger.kernel.org,
+ linux-staging@lists.linux.dev, h.j.bos@vu.nl, jgg@ziepe.ca,
+ intel-wired-lan@lists.osuosl.org, nouveau@lists.freedesktop.org,
+ bcm-kernel-feedback-list@broadcom.com, dan.carpenter@oracle.com,
+ linux-media@vger.kernel.org, keescook@chromium.org, arnd@arndb.de,
+ linux-pm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ bjohannesmeyer@gmail.com, linux-block@vger.kernel.org,
+ linux-fsdevel@vger.kernel.org, christophe.jaillet@wanadoo.fr,
+ jakobkoschel@gmail.com, v9fs-developer@lists.sourceforge.net,
+ linux-tegra@vger.kernel.org, tglx@linutronix.de,
+ andriy.shevchenko@linux.intel.com, linux-arm-kernel@lists.infradead.org,
+ linux-sgx@vger.kernel.org, nathan@kernel.org, netdev@vger.kernel.org,
+ linux-usb@vger.kernel.org, linux-wireless@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-f2fs-devel@lists.sourceforge.net,
+ xiam0nd.tong@gmail.com, david.laight@aculab.com,
+ tipc-discussion@lists.sourceforge.net, linux-crypto@vger.kernel.org,
+ dmaengine@vger.kernel.org, linux-mediatek@lists.infradead.org,
+ akpm@linux-foundation.org, linuxppc-dev@lists.ozlabs.org,
+ christian.koenig@amd.com, rppt@kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The Qualcomm DisplayPort driver contains traces of the necessary
-plumbing to hook up USB HPD, in the form of the dp_hpd module and the
-dp_usbpd_cb struct. Use this as basis for implementing the
-oob_hotplug_event() callback, by amending the dp_hpd module with the
-missing logic.
+On Thu, 3 Mar 2022 12:18:24 +0000, Daniel Thompson wrote:
+> On Thu, Mar 03, 2022 at 03:26:57PM +0800, Xiaomeng Tong wrote:
+> > On Thu, 3 Mar 2022 04:58:23 +0000, David Laight wrote:
+> > > on 3 Mar 2022 10:27:29 +0800, Xiaomeng Tong wrote:
+> > > > The problem is the mis-use of iterator outside the loop on exit, and
+> > > > the iterator will be the HEAD's container_of pointer which pointers
+> > > > to a type-confused struct. Sidenote: The *mis-use* here refers to
+> > > > mistakely access to other members of the struct, instead of the
+> > > > list_head member which acutally is the valid HEAD.
+> > >
+> > > The problem is that the HEAD's container_of pointer should never
+> > > be calculated at all.
+> > > This is what is fundamentally broken about the current definition.
+> > 
+> > Yes, the rule is "the HEAD's container_of pointer should never be
+> > calculated at all outside the loop", but how do you make sure everyone
+> > follows this rule?
+> 
+> Your formulation of the rule is correct: never run container_of() on HEAD
+> pointer.
 
-Overall the solution is similar to what's done downstream, but upstream
-all the code to disect the HPD notification lives on the calling side of
-drm_connector_oob_hotplug_event().
+Actually, it is not my rule. My rule is that never access other members
+of the struct except for the list_head member after the loop, because
+this is a invalid member after loop exit, but valid for the list_head
+member which just is HEAD and the lately caculation (&pos->head) seems
+harmless.
 
-drm_connector_oob_hotplug_event() performs the lookup of the
-drm_connector based on fwnode, hence the need to assign the fwnode in
-dp_drm_connector_init().
+I have considered the case that the HEAD's container "pos" is layouted
+across the max and the min address boundary, which means the address of
+HEAD is likely 0x60, and the address of pos is likely 0xffffffe0.
+It seems ok to caculate pos with:
+((type *)(__mptr - offsetof(type, member)));
+and it seems ok to caculate head outside the loop with:
+if (&pos->head == &HEAD)
+    return NULL;
 
-Changes in v2:
-- Adopt enum drm_connector_hpd_state
+The only case I can think of with the rule "never run container_of()
+on HEAD" must be followed is when the first argument (which is &HEAD)
+passing to container_of() is NULL + some offset, it may lead to the
+resulting "pos->member" access being a NULL dereference. But maybe
+the caller can take the responsibility to check if it is NULL, not
+container_of() itself.
 
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
----
- drivers/gpu/drm/msm/dp/dp_display.c |  9 +++++++++
- drivers/gpu/drm/msm/dp/dp_display.h |  3 +++
- drivers/gpu/drm/msm/dp/dp_drm.c     | 11 +++++++++++
- drivers/gpu/drm/msm/dp/dp_hpd.c     | 21 +++++++++++++++++++++
- drivers/gpu/drm/msm/dp/dp_hpd.h     |  5 +++++
- 5 files changed, 49 insertions(+)
+Please remind me if i missed somthing, thanks.
 
-diff --git a/drivers/gpu/drm/msm/dp/dp_display.c b/drivers/gpu/drm/msm/dp/dp_display.c
-index 178b774a5fbd..3d9d754a75f3 100644
---- a/drivers/gpu/drm/msm/dp/dp_display.c
-+++ b/drivers/gpu/drm/msm/dp/dp_display.c
-@@ -449,6 +449,14 @@ static int dp_display_usbpd_configure_cb(struct device *dev)
- 	return dp_display_process_hpd_high(dp);
- }
- 
-+void dp_display_oob_hotplug_event(struct msm_dp *dp_display,
-+				  enum drm_connector_hpd_state hpd_state)
-+{
-+	struct dp_display_private *dp = container_of(dp_display, struct dp_display_private, dp_display);
-+
-+	dp->usbpd->oob_event(dp->usbpd, hpd_state);
-+}
-+
- static int dp_display_usbpd_disconnect_cb(struct device *dev)
- {
- 	struct dp_display_private *dp = dev_get_dp_display_private(dev);
-@@ -1296,6 +1304,7 @@ static int dp_display_probe(struct platform_device *pdev)
- 	dp->pdev = pdev;
- 	dp->name = "drm_dp";
- 	dp->dp_display.connector_type = desc->connector_type;
-+	dp->dp_display.dev = &pdev->dev;
- 
- 	rc = dp_init_sub_modules(dp);
- 	if (rc) {
-diff --git a/drivers/gpu/drm/msm/dp/dp_display.h b/drivers/gpu/drm/msm/dp/dp_display.h
-index 7af2b186d2d9..16658270df2c 100644
---- a/drivers/gpu/drm/msm/dp/dp_display.h
-+++ b/drivers/gpu/drm/msm/dp/dp_display.h
-@@ -11,6 +11,7 @@
- #include "disp/msm_disp_snapshot.h"
- 
- struct msm_dp {
-+	struct device *dev;
- 	struct drm_device *drm_dev;
- 	struct device *codec_dev;
- 	struct drm_bridge *bridge;
-@@ -40,5 +41,7 @@ bool dp_display_check_video_test(struct msm_dp *dp_display);
- int dp_display_get_test_bpp(struct msm_dp *dp_display);
- void dp_display_signal_audio_start(struct msm_dp *dp_display);
- void dp_display_signal_audio_complete(struct msm_dp *dp_display);
-+void dp_display_oob_hotplug_event(struct msm_dp *dp_display,
-+				  enum drm_connector_hpd_state hpd_state);
- 
- #endif /* _DP_DISPLAY_H_ */
-diff --git a/drivers/gpu/drm/msm/dp/dp_drm.c b/drivers/gpu/drm/msm/dp/dp_drm.c
-index 80f59cf99089..76904b1601b1 100644
---- a/drivers/gpu/drm/msm/dp/dp_drm.c
-+++ b/drivers/gpu/drm/msm/dp/dp_drm.c
-@@ -123,6 +123,14 @@ static enum drm_mode_status dp_connector_mode_valid(
- 	return dp_display_validate_mode(dp_disp, mode->clock);
- }
- 
-+static void dp_oob_hotplug_event(struct drm_connector *connector,
-+				 enum drm_connector_hpd_state hpd_state)
-+{
-+	struct msm_dp *dp_disp = to_dp_connector(connector)->dp_display;
-+
-+	dp_display_oob_hotplug_event(dp_disp, hpd_state);
-+}
-+
- static const struct drm_connector_funcs dp_connector_funcs = {
- 	.detect = dp_connector_detect,
- 	.fill_modes = drm_helper_probe_single_connector_modes,
-@@ -130,6 +138,7 @@ static const struct drm_connector_funcs dp_connector_funcs = {
- 	.reset = drm_atomic_helper_connector_reset,
- 	.atomic_duplicate_state = drm_atomic_helper_connector_duplicate_state,
- 	.atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
-+	.oob_hotplug_event = dp_oob_hotplug_event,
- };
- 
- static const struct drm_connector_helper_funcs dp_connector_helper_funcs = {
-@@ -160,6 +169,8 @@ struct drm_connector *dp_drm_connector_init(struct msm_dp *dp_display)
- 	if (ret)
- 		return ERR_PTR(ret);
- 
-+	connector->fwnode = fwnode_handle_get(dev_fwnode(dp_display->dev));
-+
- 	drm_connector_helper_add(connector, &dp_connector_helper_funcs);
- 
- 	/*
-diff --git a/drivers/gpu/drm/msm/dp/dp_hpd.c b/drivers/gpu/drm/msm/dp/dp_hpd.c
-index db98a1d431eb..cdb1feea5ebf 100644
---- a/drivers/gpu/drm/msm/dp/dp_hpd.c
-+++ b/drivers/gpu/drm/msm/dp/dp_hpd.c
-@@ -7,6 +7,8 @@
- 
- #include <linux/slab.h>
- #include <linux/device.h>
-+#include <drm/drm_connector.h>
-+#include <drm/drm_print.h>
- 
- #include "dp_hpd.h"
- 
-@@ -45,6 +47,24 @@ int dp_hpd_connect(struct dp_usbpd *dp_usbpd, bool hpd)
- 	return rc;
- }
- 
-+static void dp_hpd_oob_event(struct dp_usbpd *dp_usbpd,
-+			     enum drm_connector_hpd_state hpd_state)
-+{
-+	struct dp_hpd_private *hpd_priv = container_of(dp_usbpd, struct dp_hpd_private, dp_usbpd);
-+
-+	DRM_DEBUG_DP("hpd_state: %d connected: %d\n", hpd_state, dp_usbpd->connected);
-+
-+	if (!dp_usbpd->connected && hpd_state == DRM_CONNECTOR_HPD_HIGH) {
-+		dp_usbpd->connected = true;
-+		hpd_priv->dp_cb->configure(hpd_priv->dev);
-+	} else if (hpd_state == DRM_CONNECTOR_HPD_LOW) {
-+		dp_usbpd->connected = false;
-+		hpd_priv->dp_cb->disconnect(hpd_priv->dev);
-+	} else {
-+		hpd_priv->dp_cb->attention(hpd_priv->dev);
-+	}
-+}
-+
- struct dp_usbpd *dp_hpd_get(struct device *dev, struct dp_usbpd_cb *cb)
- {
- 	struct dp_hpd_private *dp_hpd;
-@@ -62,6 +82,7 @@ struct dp_usbpd *dp_hpd_get(struct device *dev, struct dp_usbpd_cb *cb)
- 	dp_hpd->dp_cb = cb;
- 
- 	dp_hpd->dp_usbpd.connect = dp_hpd_connect;
-+	dp_hpd->dp_usbpd.oob_event = dp_hpd_oob_event;
- 
- 	return &dp_hpd->dp_usbpd;
- }
-diff --git a/drivers/gpu/drm/msm/dp/dp_hpd.h b/drivers/gpu/drm/msm/dp/dp_hpd.h
-index 8feec5aa5027..4166e5fd3156 100644
---- a/drivers/gpu/drm/msm/dp/dp_hpd.h
-+++ b/drivers/gpu/drm/msm/dp/dp_hpd.h
-@@ -29,7 +29,9 @@ enum plug_orientation {
-  * @hpd_irq: Change in the status since last message
-  * @alt_mode_cfg_done: bool to specify alt mode status
-  * @debug_en: bool to specify debug mode
-+ * @connected: cable currently connected
-  * @connect: simulate disconnect or connect for debug mode
-+ * @oob_event: deliver oob event to the usbpd code
-  */
- struct dp_usbpd {
- 	enum plug_orientation orientation;
-@@ -41,8 +43,11 @@ struct dp_usbpd {
- 	bool hpd_irq;
- 	bool alt_mode_cfg_done;
- 	bool debug_en;
-+	bool connected;
- 
- 	int (*connect)(struct dp_usbpd *dp_usbpd, bool hpd);
-+	void (*oob_event)(struct dp_usbpd *dp_usbpd,
-+			  enum drm_connector_hpd_state hpd_state);
- };
- 
- /**
--- 
-2.33.1
+> 
+> However the rule that is introduced by list_for_each_entry_inside() is
+> *not* this rule. The rule it introduces is: never access the iterator
+> variable outside the loop.
 
+Sorry for the confusion, indeed, that is two *different* rule.
+
+> 
+> Making the iterator NULL on loop exit does follow the rule you proposed
+> but using a different technique: do not allow HEAD to be stored in the
+> iterator variable after loop exit. This also makes it impossible to run
+> container_of() on the HEAD pointer.
+> 
+
+It does not. My rule is: never access the iterator variable outside the loop.
+The "Making the iterator NULL on loop exit" way still leak the pos with NULL
+outside the loop, may lead to a NULL deference.
+
+> 
+> > Everyone makes mistakes, but we can eliminate them all from the beginning
+> > with the help of compiler which can catch such use-after-loop things.
+> 
+> Indeed but if we introduce new interfaces then we don't have to worry
+> about existing usages and silent regressions. Code will have been
+> written knowing the loop can exit with the iterator set to NULL.
+
+Yes, it is more simple and compatible with existing interfaces. Howerver,
+you should make every developers to remember that "pos will be set NULL on
+loop exit", which is unreasonable and impossible for *every* single person.
+Otherwise the mis-use-after-loop will lead to a NULL dereference.
+But we can kill this problem by declaring iterator inside the loop and the
+complier will catch it if somebody mis-use-after-loop.
+
+> 
+> Sure it is still possible for programmers to make mistakes and
+> dereference the NULL pointer but C programmers are well training w.r.t.
+> NULL pointer checking so such mistakes are much less likely than with
+> the current list_for_each_entry() macro. This risk must be offset
+> against the way a NULLify approach can lead to more elegant code when we
+> are doing a list search.
+> 
+
+Yes, the NULLify approach is better than the current list_for_each_entry()
+macro, but i stick with that the list_for_each_entry_inside() way is best
+and perfect _technically_.
+
+Thus, my idea is *better a finger off than always aching*, let's settle this
+damn problem once and for all, with list_for_each_entry_inside().
+
+--
+Xiaomeng Tong
