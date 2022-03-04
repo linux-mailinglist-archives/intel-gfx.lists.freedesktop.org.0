@@ -2,71 +2,78 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C02D54CDEE0
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Mar 2022 21:47:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 19BF54CDF80
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Mar 2022 22:04:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B783810FD38;
-	Fri,  4 Mar 2022 20:47:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 45B7A10F4D6;
+	Fri,  4 Mar 2022 21:04:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 712B710FD38;
- Fri,  4 Mar 2022 20:47:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
- t=1646426826; x=1677962826;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=hPTgJohT2MiLKgzSozcpMTCfimzaXVpOkcf5sg116as=;
- b=Zmb1LphEavikpCg6XeCvP1sUdQEUfyxgCvxQ1MHRlxzXSw6W3+SiWL7w
- eE42q704qNAr7hBy4/S8M/g/H9m24hVLX4V+LCVQ/+WdZoM597iTgHvWS
- 8jWG8xrgJHkKbcYR61yFMRbBqZ/AoS6k5nbayN1+huZq+nCCyHs0zTt2l w=;
-Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
- by alexa-out.qualcomm.com with ESMTP; 04 Mar 2022 12:47:06 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
- by ironmsg07-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2022 12:47:05 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.15; Fri, 4 Mar 2022 12:47:04 -0800
-Received: from [10.110.60.142] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.15; Fri, 4 Mar 2022
- 12:47:04 -0800
-Message-ID: <9ae6ae27-b8fb-712a-64ec-c5e069059689@quicinc.com>
-Date: Fri, 4 Mar 2022 12:47:03 -0800
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA5461138C0
+ for <intel-gfx@lists.freedesktop.org>; Fri,  4 Mar 2022 21:04:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1646427848;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=aB6Kk4CiP7ma9Bi5vpnU1x/1xVJ2+zGmFV9PkjhVvyE=;
+ b=gGcddDWLc8a3OrCHm9HObJXk1v3kt3IX2c5ir/3p8AvIaoz2iejSBvAUVF4Au5bfJJJ2jg
+ Z3MVaP7i/h2RDT2WV4D13XWZPPHSzIY6l7vuQYFLtGa13Wen5Lje32DZ1TGEW2KN7dq3FZ
+ ViqM5tWX+6vq2chgkujpx5cyv3rZQYc=
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com
+ [209.85.219.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-542-xSlIS0k8NDGxlNdPifyjUQ-1; Fri, 04 Mar 2022 16:04:06 -0500
+X-MC-Unique: xSlIS0k8NDGxlNdPifyjUQ-1
+Received: by mail-qv1-f71.google.com with SMTP id
+ p12-20020a0c9a0c000000b0043299cbbd36so7891320qvd.16
+ for <intel-gfx@lists.freedesktop.org>; Fri, 04 Mar 2022 13:04:06 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=aB6Kk4CiP7ma9Bi5vpnU1x/1xVJ2+zGmFV9PkjhVvyE=;
+ b=Cf17o1m9DLtevC9K0ULEwS9Rw0pEpJO5eCtgbvGAQNXezCFAXfJJc6wbWm0Bsi+Ngc
+ qF8xTyILuwG1lbcxc+4FATo+123IkhKjfTWJ2zRcdWi53TfH2plp8NePeI8Ja6VHYH/h
+ BSLg+YpL30/iAGgTVV/AS+Bl29hGx+PnQJ8re0Sh4um8dsf/V/gWzCOQQ9cipr+1Bz5i
+ Au5UHZlH2LGjIKOh/m6CbxGVGkyZCfh3xBm3zsQgIDM+Tu/fIX62jtMrA61jyJEDy/uc
+ n2Zm3kL7My5pJqKXt3jSv9PSJ78clIuWM8t/7XDdcpI2f8gez0XWGgcJZ4Wmkcbn3dCx
+ VYdA==
+X-Gm-Message-State: AOAM531qox06blif93Y6N/O6TF+byUzA4rcZKt+02hqdKwLe9eMyHhdu
+ sD8WWeRPzG7Y5NeWA9I8jnM/JhtFbH/qOTO1LLVm29y3RfLVy1Oq9lnrG28EU5TCRiz8Ajh0MHW
+ pUqAGdjFuxI/9YqX7/MM62cSlsr5m
+X-Received: by 2002:ac8:7d0d:0:b0:2e0:4e16:d3e3 with SMTP id
+ g13-20020ac87d0d000000b002e04e16d3e3mr596087qtb.140.1646427845904; 
+ Fri, 04 Mar 2022 13:04:05 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJzl8+Ou2jNdvl2lw+bUe6/hKRdnkUMPqvw52WVW8CnKDZfAXFw9zzSyaFkAoX7LqTGuVUhhjg==
+X-Received: by 2002:ac8:7d0d:0:b0:2e0:4e16:d3e3 with SMTP id
+ g13-20020ac87d0d000000b002e04e16d3e3mr596051qtb.140.1646427845459; 
+ Fri, 04 Mar 2022 13:04:05 -0800 (PST)
+Received: from localhost.localdomain.com (024-205-208-113.res.spectrum.com.
+ [24.205.208.113]) by smtp.gmail.com with ESMTPSA id
+ d15-20020a05622a15cf00b002de711a190bsm4066708qty.71.2022.03.04.13.04.02
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 04 Mar 2022 13:04:05 -0800 (PST)
+From: trix@redhat.com
+To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com, tvrtko.ursulin@linux.intel.com, airlied@linux.ie,
+ daniel@ffwll.ch, nathan@kernel.org, ndesaulniers@google.com,
+ ville.syrjala@linux.intel.com, matthew.d.roper@intel.com,
+ lucas.demarchi@intel.com, airlied@redhat.com, imre.deak@intel.com
+Date: Fri,  4 Mar 2022 13:03:55 -0800
+Message-Id: <20220304210355.608898-1-trix@redhat.com>
+X-Mailer: git-send-email 2.26.3
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.1
-Content-Language: en-US
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>, Dmitry Baryshkov
- <dmitry.baryshkov@linaro.org>
-References: <Yfp8Q6OFqTAvESOi@pendragon.ideasonboard.com>
- <87y22ts948.fsf@intel.com> <YfqGbqQQz5vrDaLI@pendragon.ideasonboard.com>
- <87v8xxs2hz.fsf@intel.com>
- <CAF6AEGtdnWWhGp7U7nAPD4r3Uoe5BJKVm2rQ2MS=q5GqF6MYDA@mail.gmail.com>
- <YhyB0WmJDWVFO1se@pendragon.ideasonboard.com> <871qzn6vmc.fsf@intel.com>
- <Yhy/6+z7QshG+qOo@pendragon.ideasonboard.com>
- <YhzROBOwTUkZw3Ez@pendragon.ideasonboard.com>
- <4d8daabe-10d9-a3cf-d305-68414cffe4ed@quicinc.com>
- <Yh+4EOKA5FgrlZrF@pendragon.ideasonboard.com>
- <0cfd36a2-26e4-309d-d8e9-e3bf8a5d2417@quicinc.com>
- <MWHPR11MB174187335183FC24BE0F1EA5E3059@MWHPR11MB1741.namprd11.prod.outlook.com>
- <CAA8EJppTVN1EnytD5mCmr4ZTi4M8u9ENOmJuweNyDRkB3LEHnw@mail.gmail.com>
- <MWHPR11MB1741708DEFD56E02C1BBC7A3E3059@MWHPR11MB1741.namprd11.prod.outlook.com>
- <CAA8EJppHOJzJt=oapYhshajWt3mSXKjoMUdcnb3T_i+62Xo8NA@mail.gmail.com>
- <MWHPR11MB174170C633719C9CBAC0DE18E3059@MWHPR11MB1741.namprd11.prod.outlook.com>
-From: Abhinav Kumar <quic_abhinavk@quicinc.com>
-In-Reply-To: <MWHPR11MB174170C633719C9CBAC0DE18E3059@MWHPR11MB1741.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=trix@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-Subject: Re: [Intel-gfx] [PATCH 5/6] drm/rcar_du: changes to rcar-du driver
- resulting from drm_writeback_connector structure changes
+Content-Type: text/plain; charset="US-ASCII"
+Subject: [Intel-gfx] [PATCH] drm/i915: rework the error handling in
+ *_dpll_params
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,110 +86,107 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Carsten Haitzler <carsten.haitzler@arm.com>, "Nikula,
- Jani" <jani.nikula@intel.com>, Daniel Vetter <daniel.vetter@ffwll.ch>, Intel
- Graphics Development <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>, David
- Airlie <airlied@linux.ie>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
+Cc: Tom Rix <trix@redhat.com>, intel-gfx@lists.freedesktop.org,
+ llvm@lists.linux.dev, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Suraj
+From: Tom Rix <trix@redhat.com>
 
-On 3/4/2022 6:16 AM, Kandpal, Suraj wrote:
-> Hi,
->>> Hi,
->>>>> Hi Abhinav,
->>>>>> Hi Laurent
->>>>>>
->>>>>> Ok sure, I can take this up but I need to understand the
->>>>>> proposal a little bit more before proceeding on this. So we will
->>>>>> discuss this in another email where we specifically talk about the
->> connector changes.
->>>>>>
->>>>>> Also, I am willing to take this up once the encoder part is done
->>>>>> and merged so that atleast we keep moving on that as MSM WB
->>>>>> implementation can proceed with that first.
->>>>>>
->>>>>> Hi Jani and Suraj
->>>>>>
->>>>>> Any concerns with splitting up the series into encoder and
->>>>>> connector OR re- arranging them?
->>>>>>
->>>>>> Let me know if you can do this OR I can also split this up
->>>>>> keeping Suraj's name in the Co-developed by tag.
->>>>> I was actually thinking of floating a new patch series with both
->>>>> encoder and connector pointer changes but with a change in
->>>>> initialization functions wherein we allocate a connector and
->>>>> encoder incase the driver doesn’t have its own this should
->>>>> minimize the effect on other drivers already using current drm
->>>>> writeback framework and also
->>>> allow i915 to create its own connector.
->>>>
+Clang static analysis reports this issue
+intel_dpll.c:472:31: warning: The left operand of '-'
+  is a garbage value [core.UndefinedBinaryOperatorResult]
+  this_err = abs(clock.dot - target);
+                 ~~~~~~~~~ ^
 
-I was proposing to split up the encoder and connector because the 
-comments from Laurent meant we were in agreement about the encoder but 
-not about the connector.
+In a loop clock.dot is set on successful call to
+i9xx_calc_dpll_params().  If the call fails, the later
+*is_valid() will use the previous loop's clock.dot.
 
-I am afraid another attempt with the similar idea is only going to stall 
-the series again and hence i gave this option.
+The *_dpll_params functions return an arithmetic statement
+with the clock.dot as the variable.  Change the error handler
+to set clock.dot to 0 and jump to the return statement.
 
-Eventually its upto Laurent and the other maintainers to guide us 
-forward on this as this series has been stalled for weeks now.
+Fixes: dccbea3b0704 ("drm/i915: calculate the port clock rate along with other PLL params")
+Signed-off-by: Tom Rix <trix@redhat.com>
+---
+ drivers/gpu/drm/i915/display/intel_dpll.c | 32 ++++++++++++++---------
+ 1 file changed, 20 insertions(+), 12 deletions(-)
 
->>>> I thought that Laurent was quite strict about the connector. So I'd
->>>> suggest targeting drm_writeback_connector with an optionally created
->>>> encoder and the builtin connector
->>> In that case even if we target that i915 will not be able to move
->>> forward with its implementation of writeback as builtin connector does
->>> not work for us right now as explained earlier, optionally creating
->>> encoder and connector will help everyone move forward and once done
->> we
->>> can actually sit and work on how to side step this issue using
->>> Laurent's suggestion
->>
->> This is up to Laurent & other DRM maintainers to decide whether this
->> approach would be accepted or not.
->> So far unfortunately I have mostly seen the pushback and a strong
->> suggestion to stop treating each drm_connector as i915_connector.
->> I haven't checked the exact details, but IMO adding a branch if the
->> connector's type is DRM_CONNECTOR_VIRTUAL should be doable.
-> Bringing in the change where we don’t treat each drm_connector as
-> an intel_connector or even adding a branch which checks if
-> drm_connector is DRM_CONNECTOR_VIRTUAL and conditionally cast it
-> to intel_connector is quite a lot of work for i915.
-> That's why I was suggesting if for now we could move forward with optionally
-> creating both encoder and connector minimizing affects on other drivers as
-> well as allowing us to move forward.
-> What do you think, Launrent?
-> 
->>
->>>>
->>>>> We can work on Laurent's suggestion but that would first require
->>>>> the initial RFC patches and then a rework from both of our drivers
->>>>> side to see if they gel well with our current code which will take
->>>>> a considerable amount of time. We can for now however float the
->>>>> patch series up which minimally affects the current drivers and
->>>>> also allows
->>>>> i915 and msm to move forward with its writeback implementation off
->>>>> course with a proper documentation stating new drivers shouldn't
->>>>> try to
->>>> make their own connectors and encoders and that drm_writeback will
->>>> do that for them.
->>>>> Once that's done and merged we can work with Laurent on his
->>>>> proposal to improve the drm writeback framework so that this issue
->>>>> can be side
->>>> stepped entirely in future.
->>>>> For now I would like to keep the encoder and connector pointer
->>>>> changes
->>>> together.
->>>
->>
->>
->>
->> --
->> With best wishes
->> Dmitry
-> 
-> Best Regards,
-> Suraj Kandpal
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll.c b/drivers/gpu/drm/i915/display/intel_dpll.c
+index 0ae37fdbf2a5b..ba7cada704288 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll.c
++++ b/drivers/gpu/drm/i915/display/intel_dpll.c
+@@ -309,11 +309,13 @@ int pnv_calc_dpll_params(int refclk, struct dpll *clock)
+ {
+ 	clock->m = clock->m2 + 2;
+ 	clock->p = clock->p1 * clock->p2;
+-	if (WARN_ON(clock->n == 0 || clock->p == 0))
+-		return 0;
++	if (WARN_ON(clock->n == 0 || clock->p == 0)) {
++		clock->dot = 0;
++		goto end;
++	}
+ 	clock->vco = DIV_ROUND_CLOSEST(refclk * clock->m, clock->n);
+ 	clock->dot = DIV_ROUND_CLOSEST(clock->vco, clock->p);
+-
++end:
+ 	return clock->dot;
+ }
+ 
+@@ -326,11 +328,13 @@ int i9xx_calc_dpll_params(int refclk, struct dpll *clock)
+ {
+ 	clock->m = i9xx_dpll_compute_m(clock);
+ 	clock->p = clock->p1 * clock->p2;
+-	if (WARN_ON(clock->n + 2 == 0 || clock->p == 0))
+-		return 0;
++	if (WARN_ON(clock->n + 2 == 0 || clock->p == 0)) {
++		clock->dot = 0;
++		goto end;
++	}
+ 	clock->vco = DIV_ROUND_CLOSEST(refclk * clock->m, clock->n + 2);
+ 	clock->dot = DIV_ROUND_CLOSEST(clock->vco, clock->p);
+-
++end:
+ 	return clock->dot;
+ }
+ 
+@@ -338,11 +342,13 @@ int vlv_calc_dpll_params(int refclk, struct dpll *clock)
+ {
+ 	clock->m = clock->m1 * clock->m2;
+ 	clock->p = clock->p1 * clock->p2;
+-	if (WARN_ON(clock->n == 0 || clock->p == 0))
+-		return 0;
++	if (WARN_ON(clock->n == 0 || clock->p == 0)) {
++		clock->dot = 0;
++		goto end;
++	}
+ 	clock->vco = DIV_ROUND_CLOSEST(refclk * clock->m, clock->n);
+ 	clock->dot = DIV_ROUND_CLOSEST(clock->vco, clock->p);
+-
++end:
+ 	return clock->dot / 5;
+ }
+ 
+@@ -350,12 +356,14 @@ int chv_calc_dpll_params(int refclk, struct dpll *clock)
+ {
+ 	clock->m = clock->m1 * clock->m2;
+ 	clock->p = clock->p1 * clock->p2;
+-	if (WARN_ON(clock->n == 0 || clock->p == 0))
+-		return 0;
++	if (WARN_ON(clock->n == 0 || clock->p == 0)) {
++		clock->dot = 0;
++		goto end;
++	}
+ 	clock->vco = DIV_ROUND_CLOSEST_ULL(mul_u32_u32(refclk, clock->m),
+ 					   clock->n << 22);
+ 	clock->dot = DIV_ROUND_CLOSEST(clock->vco, clock->p);
+-
++end:
+ 	return clock->dot / 5;
+ }
+ 
+-- 
+2.26.3
+
