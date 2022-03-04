@@ -1,61 +1,69 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89CB34CD5A8
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Mar 2022 14:56:35 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A16404CD5A9
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Mar 2022 14:56:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D20B10F985;
-	Fri,  4 Mar 2022 13:56:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EBA1310F986;
+	Fri,  4 Mar 2022 13:56:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com
- [IPv6:2607:f8b0:4864:20::435])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9EEBC10F1DF;
- Fri,  4 Mar 2022 07:00:21 +0000 (UTC)
-Received: by mail-pf1-x435.google.com with SMTP id d17so6928086pfl.0;
- Thu, 03 Mar 2022 23:00:21 -0800 (PST)
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com
+ [IPv6:2a00:1450:4864:20::62f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B2F6E10F8C6;
+ Fri,  4 Mar 2022 08:33:16 +0000 (UTC)
+Received: by mail-ej1-x62f.google.com with SMTP id hw13so15859033ejc.9;
+ Fri, 04 Mar 2022 00:33:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:in-reply-to:references;
- bh=0a+oQu3LYTAbOOyoILb+F/zkApGIum0yjd+xPCLEHo4=;
- b=UcHSzcmMAevEFsqxc8gimvoSIew96LrW3UYvjfgkcaeLb/Edql9668oTELTgMdhcyh
- uwTLYgNgPfuwuQfZCbkLtuIX59UkP2xXrD0mK6eOfNdOu/KSihdjQUFHL7gwAFzgpb4Z
- PeSQfhLMwS3uLkuXfSSL1QQyblGTA4kTyWBkcty1viz6EkWmIbbGn99xu95lY6jAsJ0c
- CbisDo/RPFGn8gAJnKluj00ht4OQ80XaXmCEvGalnXTnvAWrV5UWFfWh6kgUBnLZJvSQ
- W0PYU136vUwP4grvjJEIhDxHc0WM1lPQ2cysIXPjh+breTQ07tU9AM0RgZ3Jr4UsSFjT
- NaGQ==
+ h=message-id:date:mime-version:user-agent:subject:content-language:to
+ :cc:references:from:in-reply-to:content-transfer-encoding;
+ bh=lDiOxjq8VtEYhY51PjP5Jo5kppkOrtHrp1SH5d1zTiw=;
+ b=WuzmpDWLP6LMICAashm3BAp+W+G+CXDZ0Ze5FwHyE/ne8/NbWnRv/j56zqPbw6x7uz
+ Lq+c4jQcI+ZO1HEdL9UJGlJj2gric65ba+nXc8h71lkbAJuQfA/8qwTgy+df7P8S7WkB
+ jHl9dzLeWEPfgWMaFDZ+d/avAzvoBi6G5x8MyPoe6JUszHKpZy5quMBjfjRBQ0maOtLe
+ KbD7MYrbUKxBoG/DJqdBx9URft6RDbS9WTAgL+N+8lMpycwCNTLQSHxGgNryK2JaN1Cs
+ 9/Mn1yBJfDOkuiT0ddxq7P3nHchd+2SC+dTe6rIVwP9uExVDCjTlJM7Ywk63S8lyijP3
+ J6tA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references;
- bh=0a+oQu3LYTAbOOyoILb+F/zkApGIum0yjd+xPCLEHo4=;
- b=hXzdQdFR7uRrMbDpGvxS2ZPGew7M6SJb0ulSwysgx7DWWXsT3bQzprQd9X21VOYFWG
- tjU5i6+SWz30Kzz5mJjuwSb7gCtAJyzHD11O045UeWjtFbmrnAAuIN1MdUWUdqpQoCPV
- eH/oJInZYAGMlFtqgHk0MhBQSEIaOAERrAS6tIcN1X+PubhaYyjMgzDzD658gunS0gF7
- DrQYJeMqf4gjg+eXtXWjIl94TJtJZimrudO6UC/9tPpPcizRkDnaPuwgEuSacEFyOtma
- BELAeSuFEyTi2gs7VQtnT3lCZanMENYcrHL8DoKzEbM7sJNfFMjxKc/kLeKNsPnrV58H
- H8pg==
-X-Gm-Message-State: AOAM532SB0yXyGEhnflNiaEmCF7fEIo3+3woOnbr144ZnnNNUOH4nUxP
- PxSzsoNEXKNNnnkHRV3H3Ao=
-X-Google-Smtp-Source: ABdhPJxBFOb3A6C/RlDh1uHGrWM51HjSkR68cXfNAhNGErUbSC2hd/FilwMHkJmidt1eEHAWD7GVrA==
-X-Received: by 2002:a05:6a00:cc7:b0:4ec:c6f3:ad29 with SMTP id
- b7-20020a056a000cc700b004ecc6f3ad29mr41958698pfv.66.1646377221067; 
- Thu, 03 Mar 2022 23:00:21 -0800 (PST)
-Received: from ubuntu.huawei.com ([119.3.119.19])
- by smtp.googlemail.com with ESMTPSA id
- f6-20020a654006000000b00346193b405fsm3665134pgp.44.2022.03.03.23.00.01
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 03 Mar 2022 23:00:20 -0800 (PST)
-From: Xiaomeng Tong <xiam0nd.tong@gmail.com>
-To: daniel.thompson@linaro.org
-Date: Fri,  4 Mar 2022 14:59:57 +0800
-Message-Id: <20220304065957.16799-1-xiam0nd.tong@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220303121824.qdyrognluik74iph@maple.lan>
-References: <20220303121824.qdyrognluik74iph@maple.lan>
+ h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+ :content-language:to:cc:references:from:in-reply-to
+ :content-transfer-encoding;
+ bh=lDiOxjq8VtEYhY51PjP5Jo5kppkOrtHrp1SH5d1zTiw=;
+ b=XsmjYA0mbpmWxVGlIkjYSZNuTVkHhg/jYxiumJXsNL1n5HgBF0o9zvvNEODI4G0+h9
+ LINbR9stW2aapOvBfyPgOenrR+ZSFrLMn5vtaA/UwOdMMeiDqz7fRBfUi8IBDQJArYCy
+ u5Mpx5diL19VILpTjmi9TeAa7SwPZFxpMFW0gtX4sKbJD/TScffjmPisroXp7ZW/gSJk
+ bcRmhieFrMVJ3a2KDUr61Rc75E81rFtpQ5f0ERzk9XoO1AJTKm5ov+IpQ7VgX/bKy7Yf
+ FCXNqh4Hr9EbqSys7JQZVcC2bGFmmtxKxR4V1N7vIaAiR/7EAaRbWx4JOSPsq5sLYe9H
+ AcAQ==
+X-Gm-Message-State: AOAM530PWI8DDGgQc68OFMoz8W9vUuCVIWT77XsauMccR0BhIo9urSyJ
+ U/NwqU7uNZixZoluWxeFtcw=
+X-Google-Smtp-Source: ABdhPJwjHXO6A5HxJWJqm04oZvcDeq/6Wsc6jK18km2ZhgGx4zFjItWl9NDMD/krZKlyA20vpb0n4Q==
+X-Received: by 2002:a17:907:e8c:b0:6d7:1289:278b with SMTP id
+ ho12-20020a1709070e8c00b006d71289278bmr12324307ejc.355.1646382795122; 
+ Fri, 04 Mar 2022 00:33:15 -0800 (PST)
+Received: from [192.168.178.21] (p5b0eab60.dip0.t-ipconnect.de. [91.14.171.96])
+ by smtp.gmail.com with ESMTPSA id
+ q15-20020a1709060e4f00b006cdf4535cf2sm1518361eji.67.2022.03.04.00.33.14
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 04 Mar 2022 00:33:14 -0800 (PST)
+Message-ID: <4b1cf649-5f0a-33cb-032d-aefb616ce877@gmail.com>
+Date: Fri, 4 Mar 2022 09:33:13 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Content-Language: en-US
+To: Arunpravin <Arunpravin.PaneerSelvam@amd.com>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+References: <20220303201602.2365-1-Arunpravin.PaneerSelvam@amd.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+In-Reply-To: <20220303201602.2365-1-Arunpravin.PaneerSelvam@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Fri, 04 Mar 2022 13:56:25 +0000
-Subject: Re: [Intel-gfx] [PATCH 2/6] treewide: remove using list iterator
- after loop body as a ptr
+Subject: Re: [Intel-gfx] [PATCH] drm/selftests: fix a shift-out-of-bounds bug
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,128 +76,99 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alsa-devel@alsa-project.org, kvm@vger.kernel.org, gustavo@embeddedor.com,
- linux-iio@vger.kernel.org, kgdb-bugreport@lists.sourceforge.net,
- linux@rasmusvillemoes.dk, dri-devel@lists.freedesktop.org, c.giuffrida@vu.nl,
- amd-gfx@lists.freedesktop.org, torvalds@linux-foundation.org,
- samba-technical@lists.samba.org, linux1394-devel@lists.sourceforge.net,
- drbd-dev@lists.linbit.com, linux-arch@vger.kernel.org,
- linux-cifs@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
- linux-scsi@vger.kernel.org, linux-rdma@vger.kernel.org,
- linux-staging@lists.linux.dev, h.j.bos@vu.nl, jgg@ziepe.ca,
- intel-wired-lan@lists.osuosl.org, nouveau@lists.freedesktop.org,
- bcm-kernel-feedback-list@broadcom.com, dan.carpenter@oracle.com,
- linux-media@vger.kernel.org, keescook@chromium.org, arnd@arndb.de,
- linux-pm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- bjohannesmeyer@gmail.com, linux-block@vger.kernel.org,
- linux-fsdevel@vger.kernel.org, christophe.jaillet@wanadoo.fr,
- jakobkoschel@gmail.com, v9fs-developer@lists.sourceforge.net,
- linux-tegra@vger.kernel.org, tglx@linutronix.de,
- andriy.shevchenko@linux.intel.com, linux-arm-kernel@lists.infradead.org,
- linux-sgx@vger.kernel.org, nathan@kernel.org, netdev@vger.kernel.org,
- linux-usb@vger.kernel.org, linux-wireless@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-f2fs-devel@lists.sourceforge.net,
- xiam0nd.tong@gmail.com, david.laight@aculab.com,
- tipc-discussion@lists.sourceforge.net, linux-crypto@vger.kernel.org,
- dmaengine@vger.kernel.org, linux-mediatek@lists.infradead.org,
- akpm@linux-foundation.org, linuxppc-dev@lists.ozlabs.org,
- christian.koenig@amd.com, rppt@kernel.org
+Cc: alexander.deucher@amd.com, oliver.sang@intel.com, matthew.auld@intel.com,
+ christian.koenig@amd.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 3 Mar 2022 12:18:24 +0000, Daniel Thompson wrote:
-> On Thu, Mar 03, 2022 at 03:26:57PM +0800, Xiaomeng Tong wrote:
-> > On Thu, 3 Mar 2022 04:58:23 +0000, David Laight wrote:
-> > > on 3 Mar 2022 10:27:29 +0800, Xiaomeng Tong wrote:
-> > > > The problem is the mis-use of iterator outside the loop on exit, and
-> > > > the iterator will be the HEAD's container_of pointer which pointers
-> > > > to a type-confused struct. Sidenote: The *mis-use* here refers to
-> > > > mistakely access to other members of the struct, instead of the
-> > > > list_head member which acutally is the valid HEAD.
-> > >
-> > > The problem is that the HEAD's container_of pointer should never
-> > > be calculated at all.
-> > > This is what is fundamentally broken about the current definition.
-> > 
-> > Yes, the rule is "the HEAD's container_of pointer should never be
-> > calculated at all outside the loop", but how do you make sure everyone
-> > follows this rule?
-> 
-> Your formulation of the rule is correct: never run container_of() on HEAD
-> pointer.
+Am 03.03.22 um 21:16 schrieb Arunpravin:
+> pass the correct size value computed using the max_order.
+>
+> <log snip>
+>
+> [ 68.124177][ T1] UBSAN: shift-out-of-bounds in include/linux/log2.h:67:13
+> [ 68.125333][ T1] shift exponent 4294967295 is too large for 32-bit type 'long
+> unsigned int'
+> [ 68.126563][ T1] CPU: 0 PID: 1 Comm: swapper Not tainted
+> 5.17.0-rc2-00311-g39ec47bbfd5d #2
+> [ 68.127758][ T1] Call Trace:
+> [ 68.128187][ T1] dump_stack_lvl (lib/dump_stack.c:108)
+> [ 68.128793][ T1] dump_stack (lib/dump_stack.c:114)
+> [ 68.129331][ T1] ubsan_epilogue (lib/ubsan.c:152)
+> [ 68.129958][ T1] __ubsan_handle_shift_out_of_bounds.cold (arch/x86/include/asm/smap.h:85)
+>
+> [ 68.130791][ T1] ? drm_block_alloc+0x28/0x80
+> [ 68.131582][ T1] ? rcu_read_lock_sched_held (kernel/rcu/update.c:125)
+> [ 68.132215][ T1] ? kmem_cache_alloc (include/trace/events/kmem.h:54 mm/slab.c:3501)
+> [ 68.132878][ T1] ? mark_free+0x2e/0x80
+> [ 68.133524][ T1] drm_buddy_init.cold (include/linux/log2.h:67
+> drivers/gpu/drm/drm_buddy.c:131)
+> [ 68.134145][ T1] ? test_drm_cmdline_init (drivers/gpu/drm/selftests/test-drm_buddy.c:87)
+>
+> [ 68.134770][ T1] igt_buddy_alloc_limit (drivers/gpu/drm/selftests/test-drm_buddy.c:30)
+> [ 68.135472][ T1] ? vprintk_default (kernel/printk/printk.c:2257)
+> [ 68.136057][ T1] ? test_drm_cmdline_init (drivers/gpu/drm/selftests/test-drm_buddy.c:87)
+>
+> [ 68.136812][ T1] test_drm_buddy_init (drivers/gpu/drm/selftests/drm_selftest.c:77
+> drivers/gpu/drm/selftests/test-drm_buddy.c:95)
+> [ 68.137475][ T1] do_one_initcall (init/main.c:1300)
+> [ 68.138111][ T1] ? parse_args (kernel/params.c:609 kernel/params.c:146
+> kernel/params.c:188)
+> [ 68.138717][ T1] do_basic_setup (init/main.c:1372 init/main.c:1389 init/main.c:1408)
+> [ 68.139366][ T1] kernel_init_freeable (init/main.c:1617)
+> [ 68.140040][ T1] ? rest_init (init/main.c:1494)
+> [ 68.140634][ T1] kernel_init (init/main.c:1504)
+> [ 68.141155][ T1] ret_from_fork (arch/x86/entry/entry_32.S:772)
+> [ 68.141607][ T1]
+> ================================================================================
+> [ 68.146730][ T1] ------------[ cut here ]------------
+> [ 68.147460][ T1] kernel BUG at drivers/gpu/drm/drm_buddy.c:140!
+> [ 68.148280][ T1] invalid opcode: 0000 [#1]
+> [ 68.148895][ T1] CPU: 0 PID: 1 Comm: swapper Not tainted
+> 5.17.0-rc2-00311-g39ec47bbfd5d #2
+> [ 68.149896][ T1] EIP: drm_buddy_init (drivers/gpu/drm/drm_buddy.c:140 (discriminator 1))
+>
+> For more details: https://lists.01.org/hyperkitty/list/lkp@lists.01.org/thread/FDIF3HCILZNN5UQAZMOR7E3MQSMHHKWU/
+>
+> Signed-off-by: Arunpravin <Arunpravin.PaneerSelvam@amd.com>
+> Reported-by: kernel test robot <oliver.sang@intel.com>
 
-Actually, it is not my rule. My rule is that never access other members
-of the struct except for the list_head member after the loop, because
-this is a invalid member after loop exit, but valid for the list_head
-member which just is HEAD and the lately caculation (&pos->head) seems
-harmless.
+Acked-by: Christian König <christian.koenig@amd.com>
 
-I have considered the case that the HEAD's container "pos" is layouted
-across the max and the min address boundary, which means the address of
-HEAD is likely 0x60, and the address of pos is likely 0xffffffe0.
-It seems ok to caculate pos with:
-((type *)(__mptr - offsetof(type, member)));
-and it seems ok to caculate head outside the loop with:
-if (&pos->head == &HEAD)
-    return NULL;
+> ---
+>   drivers/gpu/drm/selftests/test-drm_buddy.c | 6 +++---
+>   1 file changed, 3 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/selftests/test-drm_buddy.c b/drivers/gpu/drm/selftests/test-drm_buddy.c
+> index fa997f89522b..913cbd7eae04 100644
+> --- a/drivers/gpu/drm/selftests/test-drm_buddy.c
+> +++ b/drivers/gpu/drm/selftests/test-drm_buddy.c
+> @@ -902,14 +902,13 @@ static int igt_buddy_alloc_range(void *arg)
+>   
+>   static int igt_buddy_alloc_limit(void *arg)
+>   {
+> -	u64 end, size = U64_MAX, start = 0;
+> +	u64 size = U64_MAX, start = 0;
+>   	struct drm_buddy_block *block;
+>   	unsigned long flags = 0;
+>   	LIST_HEAD(allocated);
+>   	struct drm_buddy mm;
+>   	int err;
+>   
+> -	size = end = round_down(size, 4096);
+>   	err = drm_buddy_init(&mm, size, PAGE_SIZE);
+>   	if (err)
+>   		return err;
+> @@ -921,7 +920,8 @@ static int igt_buddy_alloc_limit(void *arg)
+>   		goto out_fini;
+>   	}
+>   
+> -	err = drm_buddy_alloc_blocks(&mm, start, end, size,
+> +	size = mm.chunk_size << mm.max_order;
+> +	err = drm_buddy_alloc_blocks(&mm, start, size, size,
+>   				     PAGE_SIZE, &allocated, flags);
+>   
+>   	if (unlikely(err))
+>
+> base-commit: 6be340ee8f5beae574dae6f5e17a22e67beeff3e
 
-The only case I can think of with the rule "never run container_of()
-on HEAD" must be followed is when the first argument (which is &HEAD)
-passing to container_of() is NULL + some offset, it may lead to the
-resulting "pos->member" access being a NULL dereference. But maybe
-the caller can take the responsibility to check if it is NULL, not
-container_of() itself.
-
-Please remind me if i missed somthing, thanks.
-
-> 
-> However the rule that is introduced by list_for_each_entry_inside() is
-> *not* this rule. The rule it introduces is: never access the iterator
-> variable outside the loop.
-
-Sorry for the confusion, indeed, that is two *different* rule.
-
-> 
-> Making the iterator NULL on loop exit does follow the rule you proposed
-> but using a different technique: do not allow HEAD to be stored in the
-> iterator variable after loop exit. This also makes it impossible to run
-> container_of() on the HEAD pointer.
-> 
-
-It does not. My rule is: never access the iterator variable outside the loop.
-The "Making the iterator NULL on loop exit" way still leak the pos with NULL
-outside the loop, may lead to a NULL deference.
-
-> 
-> > Everyone makes mistakes, but we can eliminate them all from the beginning
-> > with the help of compiler which can catch such use-after-loop things.
-> 
-> Indeed but if we introduce new interfaces then we don't have to worry
-> about existing usages and silent regressions. Code will have been
-> written knowing the loop can exit with the iterator set to NULL.
-
-Yes, it is more simple and compatible with existing interfaces. Howerver,
-you should make every developers to remember that "pos will be set NULL on
-loop exit", which is unreasonable and impossible for *every* single person.
-Otherwise the mis-use-after-loop will lead to a NULL dereference.
-But we can kill this problem by declaring iterator inside the loop and the
-complier will catch it if somebody mis-use-after-loop.
-
-> 
-> Sure it is still possible for programmers to make mistakes and
-> dereference the NULL pointer but C programmers are well training w.r.t.
-> NULL pointer checking so such mistakes are much less likely than with
-> the current list_for_each_entry() macro. This risk must be offset
-> against the way a NULLify approach can lead to more elegant code when we
-> are doing a list search.
-> 
-
-Yes, the NULLify approach is better than the current list_for_each_entry()
-macro, but i stick with that the list_for_each_entry_inside() way is best
-and perfect _technically_.
-
-Thus, my idea is *better a finger off than always aching*, let's settle this
-damn problem once and for all, with list_for_each_entry_inside().
-
---
-Xiaomeng Tong
