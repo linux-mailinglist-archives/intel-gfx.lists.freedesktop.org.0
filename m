@@ -1,54 +1,63 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1E7F4CDFB2
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Mar 2022 22:22:12 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 831E34CDFF7
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Mar 2022 22:57:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7186B10F70D;
-	Fri,  4 Mar 2022 21:22:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 12672113B79;
+	Fri,  4 Mar 2022 21:57:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA5BE10F70D;
- Fri,  4 Mar 2022 21:22:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646428929; x=1677964929;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=FBq4YMXkDCMDlmkSi28XJCFzFJEgkEgL4Rj6jX5JxjY=;
- b=gJBnmD4qyQNHzGv6PPRP91lDOh2Yn16p8N9DKtFxcgfhcHG1YWF48uCq
- KvH2Lg5bOhKzvmXP1dPC3XH9YEZwB+sFQ0M9ALdTrGKAMw7KubLJhVrGQ
- M5E9fxqyVXMtpb3KHZtq70LFM/VKv36WWOClK6cxdaDFJP4FxpOQd8hCP
- /lLfChEBE+548hQhCh6BBgvj5EDpxFCpcCqfKPNhz3IUYhPtSaxV2GXpn
- w5PUOm9ts4+7qylonJk6f/4D4Gz6E4ztF+XRyNNd3RUWjlFWL4G0eu88E
- InXabEZWy4Xu6m7s4teYUQPIf9UxPQmgOx9Z4U4vPktAq2cOdGUXxIw7H g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10276"; a="252894527"
-X-IronPort-AV: E=Sophos;i="5.90,156,1643702400"; d="scan'208";a="252894527"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2022 13:22:08 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,156,1643702400"; d="scan'208";a="536412656"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
- by orsmga007.jf.intel.com with SMTP; 04 Mar 2022 13:22:02 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 04 Mar 2022 23:22:01 +0200
-Date: Fri, 4 Mar 2022 23:22:01 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: trix@redhat.com
-Message-ID: <YiKC+Zb2pHxQOLpO@intel.com>
-References: <20220304210355.608898-1-trix@redhat.com>
- <YiKAmhXEye0fpAyF@intel.com>
+Received: from mail-ua1-x931.google.com (mail-ua1-x931.google.com
+ [IPv6:2607:f8b0:4864:20::931])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8903F113B79;
+ Fri,  4 Mar 2022 21:57:22 +0000 (UTC)
+Received: by mail-ua1-x931.google.com with SMTP id l45so4118952uad.1;
+ Fri, 04 Mar 2022 13:57:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :content-transfer-encoding;
+ bh=kzw6QuVm+EBqAnL95ABBmHf9VAnd3ZR56Wc0DpU/Pas=;
+ b=hs1s6xg+8GLsUsdVH6mHfvxJO4HtzBUpJxpirMSpc8rKZvMv7z1sZZrNqha63u7aRI
+ PnOlVbw4S1b5X5hUjpT4DeOEXyQDVz0OtWzRWc/CtgsHyyXC10hHBMygO8/ExkJPCguV
+ LSsHFLavgcQ0re40RsGY+9uGLW/Z2aTDIDnunxDtx8YGnaSqV1n08Ko5Gr67vojWvzVJ
+ p1p7MLaDPwnU8eQ2iSaCHAtr0dyNg0ZT9Pn6QG1+NaoFiuKzxAOGkgLYh8aRoEWofimd
+ Yf6GqEGWS3a7bHRh2CvWcz4OxXMoAkHOuxcAV6X183oWWkcc6+W+hffEos/DYlLzNHE/
+ BJRg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:content-transfer-encoding;
+ bh=kzw6QuVm+EBqAnL95ABBmHf9VAnd3ZR56Wc0DpU/Pas=;
+ b=m5eAMVlJsBBAoEgYQLmDoXMV5HUvcHmjeXjtQx5+nFJC7NTcRnVW16hBe/Z/T6T7eI
+ A20MvoXEz0AHS2wR3CqVEmcTWjC/QUOcJJPB1lQ86GM6q9s9NfG6S80XxElpcpr+p0u7
+ P/iYm0thXtxEA3JbcDdykNprbiGNom6WlhfWJPi4vUoA4NXDpVRReuCJIn3Yts2IImCS
+ BqL5m3jOefmbOGicx8AclFXMpCsfCZi4I/7BDfwAa4ePzqEkUrGMWVKLYyiQ0gFQ3Vmw
+ WiH1P87jvsIriaVtjA2y6deBN3YIhagyKWcdZfrpSSrRPueDbuVcxKttAAXplAbPu3Rg
+ AgCA==
+X-Gm-Message-State: AOAM533G9AdpRDGBq0htMEkPyM6sDR3/XRSoIl4C7bVSuB/pscrX1fwW
+ MjAbQfCXU7kI136ngsk/Rivs/lMQG+tUQJdhI15kh2MA
+X-Google-Smtp-Source: ABdhPJwN7hcq6zhnUlTGWNm4JNy3Izxjiyu9zetu1tfresupJUcvFkAfT+Eu3dhZLYopdQCwLALi7+jGpgCAyXAlHPY=
+X-Received: by 2002:a9f:2c4b:0:b0:341:3619:215 with SMTP id
+ s11-20020a9f2c4b000000b0034136190215mr258805uaj.75.1646431041372; Fri, 04 Mar
+ 2022 13:57:21 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <YiKAmhXEye0fpAyF@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: rework the error handling in
- *_dpll_params
+References: <20220301164629.3814634-1-jim.cromie@gmail.com>
+ <164616821973.8601.9122442025972091120@emeril.freedesktop.org>
+In-Reply-To: <164616821973.8601.9122442025972091120@emeril.freedesktop.org>
+From: jim.cromie@gmail.com
+Date: Fri, 4 Mar 2022 14:56:55 -0700
+Message-ID: <CAJfuBxy_guKp0w49Fxg79Mu6KkohOhvE9taTQK110wxwsA-c7A@mail.gmail.com>
+To: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Jason Baron <jbaron@akamai.com>, Greg KH <gregkh@linuxfoundation.org>,
+ Rasmus Villemoes <linux@rasmusvillemoes.dk>, 
+ dri-devel <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] 
+	=?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+	=?utf-8?q?for_use_dynamic-debug_under_drm=2Edebug_api_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,137 +70,68 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: llvm@lists.linux.dev, airlied@linux.ie, lucas.demarchi@intel.com,
- ndesaulniers@google.com, linux-kernel@vger.kernel.org, nathan@kernel.org,
- dri-devel@lists.freedesktop.org, rodrigo.vivi@intel.com, airlied@redhat.com,
- intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Mar 04, 2022 at 11:11:54PM +0200, Ville Syrjälä wrote:
-> On Fri, Mar 04, 2022 at 01:03:55PM -0800, trix@redhat.com wrote:
-> > From: Tom Rix <trix@redhat.com>
-> > 
-> > Clang static analysis reports this issue
-> > intel_dpll.c:472:31: warning: The left operand of '-'
-> >   is a garbage value [core.UndefinedBinaryOperatorResult]
-> >   this_err = abs(clock.dot - target);
-> >                  ~~~~~~~~~ ^
-> > 
-> > In a loop clock.dot is set on successful call to
-> > i9xx_calc_dpll_params().  If the call fails, the later
-> > *is_valid() will use the previous loop's clock.dot.
-> 
-> I don't think this can happen. intel_pll_is_valid() validates
-> all the dividers first and bails out if they are junk.
+On Tue, Mar 1, 2022 at 1:57 PM Patchwork
+<patchwork@emeril.freedesktop.org> wrote:
+>
+> =3D=3D Series Details =3D=3D
+>
+> Series: use dynamic-debug under drm.debug api (rev2)
+> URL   : https://patchwork.freedesktop.org/series/100289/
+> State : warning
+>
+> =3D=3D Summary =3D=3D
+>
+> $ dim checkpatch origin/drm-tip
+> c2ed9cc02d9c dyndbg: fix static_branch manipulation
+> a8f6c71f283e dyndbg: add class_id field and query support
+> -:141: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'id' - possible side-e=
+ffects?
+> #141: FILE: include/linux/dynamic_debug.h:142:
+> +#define __dynamic_func_call_cls(id, cls, fmt, func, ...) do {  \
+> +       DEFINE_DYNAMIC_DEBUG_METADATA_CLS(id, cls, fmt);        \
+> +       if (DYNAMIC_DEBUG_BRANCH(id))                           \
+> +               func(&id, ##__VA_ARGS__);                       \
+>  } while (0)
+>
+> -:151: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'id' - possible side-e=
+ffects?
+> #151: FILE: include/linux/dynamic_debug.h:148:
+> +#define __dynamic_func_call_no_desc_cls(id, cls, fmt, func, ...) do {  \
+> +       DEFINE_DYNAMIC_DEBUG_METADATA_CLS(id, cls, fmt);                \
+> +       if (DYNAMIC_DEBUG_BRANCH(id))                                   \
+> +               func(__VA_ARGS__);                                      \
+>  } while (0)
+>
 
-Hmm. That said, there is actually a case to be made for fully
-initializing the struct, and even removing the WARN. If the
-BIOS (or whatever was doing stuff before i915 takes over)
-has misprogrammed the DPLL then we could potentially have
-garbage dividers on our hands, and during readout we'd just
-blindly call *_calc_dpll_params() on them.
+Can I get a pass on this ?
 
-So I'm thinking something along the lines of
- clock->vco = <divisor> ? DIV_ROUND_CLOSEST(...) : 0;
- clock->dot = <divisor> ? DIV_ROUND_CLOSEST(...) : 0;
-might be what we should do here.
+the usual approach doesnt work:
++       typeof(id) id =3D (id);           \
 
-To make it a bit less ugly a small helper function might
-be in order. intel_pll_div() perhaps?
+it appears to be due to the outer / wrapping macro inserting the
+__UNIQUE_ID(ddebug)
+which gets expanded 2x, giving:
 
-> 
-> > 
-> > The *_dpll_params functions return an arithmetic statement
-> > with the clock.dot as the variable.  Change the error handler
-> > to set clock.dot to 0 and jump to the return statement.
-> > 
-> > Fixes: dccbea3b0704 ("drm/i915: calculate the port clock rate along with other PLL params")
-> > Signed-off-by: Tom Rix <trix@redhat.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_dpll.c | 32 ++++++++++++++---------
-> >  1 file changed, 20 insertions(+), 12 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dpll.c b/drivers/gpu/drm/i915/display/intel_dpll.c
-> > index 0ae37fdbf2a5b..ba7cada704288 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dpll.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dpll.c
-> > @@ -309,11 +309,13 @@ int pnv_calc_dpll_params(int refclk, struct dpll *clock)
-> >  {
-> >  	clock->m = clock->m2 + 2;
-> >  	clock->p = clock->p1 * clock->p2;
-> > -	if (WARN_ON(clock->n == 0 || clock->p == 0))
-> > -		return 0;
-> > +	if (WARN_ON(clock->n == 0 || clock->p == 0)) {
-> > +		clock->dot = 0;
-> > +		goto end;
-> > +	}
-> >  	clock->vco = DIV_ROUND_CLOSEST(refclk * clock->m, clock->n);
-> >  	clock->dot = DIV_ROUND_CLOSEST(clock->vco, clock->p);
-> > -
-> > +end:
-> >  	return clock->dot;
-> >  }
-> >  
-> > @@ -326,11 +328,13 @@ int i9xx_calc_dpll_params(int refclk, struct dpll *clock)
-> >  {
-> >  	clock->m = i9xx_dpll_compute_m(clock);
-> >  	clock->p = clock->p1 * clock->p2;
-> > -	if (WARN_ON(clock->n + 2 == 0 || clock->p == 0))
-> > -		return 0;
-> > +	if (WARN_ON(clock->n + 2 == 0 || clock->p == 0)) {
-> > +		clock->dot = 0;
-> > +		goto end;
-> > +	}
-> >  	clock->vco = DIV_ROUND_CLOSEST(refclk * clock->m, clock->n + 2);
-> >  	clock->dot = DIV_ROUND_CLOSEST(clock->vco, clock->p);
-> > -
-> > +end:
-> >  	return clock->dot;
-> >  }
-> >  
-> > @@ -338,11 +342,13 @@ int vlv_calc_dpll_params(int refclk, struct dpll *clock)
-> >  {
-> >  	clock->m = clock->m1 * clock->m2;
-> >  	clock->p = clock->p1 * clock->p2;
-> > -	if (WARN_ON(clock->n == 0 || clock->p == 0))
-> > -		return 0;
-> > +	if (WARN_ON(clock->n == 0 || clock->p == 0)) {
-> > +		clock->dot = 0;
-> > +		goto end;
-> > +	}
-> >  	clock->vco = DIV_ROUND_CLOSEST(refclk * clock->m, clock->n);
-> >  	clock->dot = DIV_ROUND_CLOSEST(clock->vco, clock->p);
-> > -
-> > +end:
-> >  	return clock->dot / 5;
-> >  }
-> >  
-> > @@ -350,12 +356,14 @@ int chv_calc_dpll_params(int refclk, struct dpll *clock)
-> >  {
-> >  	clock->m = clock->m1 * clock->m2;
-> >  	clock->p = clock->p1 * clock->p2;
-> > -	if (WARN_ON(clock->n == 0 || clock->p == 0))
-> > -		return 0;
-> > +	if (WARN_ON(clock->n == 0 || clock->p == 0)) {
-> > +		clock->dot = 0;
-> > +		goto end;
-> > +	}
-> >  	clock->vco = DIV_ROUND_CLOSEST_ULL(mul_u32_u32(refclk, clock->m),
-> >  					   clock->n << 22);
-> >  	clock->dot = DIV_ROUND_CLOSEST(clock->vco, clock->p);
-> > -
-> > +end:
-> >  	return clock->dot / 5;
-> >  }
-> >  
-> > -- 
-> > 2.26.3
-> 
-> -- 
-> Ville Syrjälä
-> Intel
+      |         ^~~~~~~~
+/home/jimc/projects/lx/linux.git/include/linux/compiler-gcc.h:42:45:
+note: previous definition of =E2=80=98__UNIQUE_ID_ddebug437=E2=80=99 with t=
+ype =E2=80=98int=E2=80=99
+   42 | #define __UNIQUE_ID(prefix) __PASTE(__PASTE(__UNIQUE_ID_,
+prefix), __COUNTER__)
+      |                                             ^~~~~~~~~~~~
+/home/jimc/projects/lx/linux.git/include/linux/dynamic_debug.h:230:20:
+note: in definition of macro =E2=80=98__dynamic_func_call_cls=E2=80=99
+  230 |         typeof(id) id =3D (id);           \
 
--- 
-Ville Syrjälä
-Intel
+
+Moreover, these 2 macros imitate existing macros,
+which would suffer the same WARNING.
+
+My macro-fu is insufficient,
+can anyone suggest a clean way to fix this warning ?
+
+tia
+Jim
