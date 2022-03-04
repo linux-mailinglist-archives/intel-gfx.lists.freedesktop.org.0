@@ -2,32 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 309704CDD4F
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Mar 2022 20:25:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D8C44CDD58
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Mar 2022 20:33:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 370AC113384;
-	Fri,  4 Mar 2022 19:25:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C707C11340B;
+	Fri,  4 Mar 2022 19:33:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id B1D49113385;
- Fri,  4 Mar 2022 19:25:04 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B0DCAA0118;
- Fri,  4 Mar 2022 19:25:04 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Date: Fri, 04 Mar 2022 19:25:04 -0000
-Message-ID: <164642190472.21338.9522525123939065160@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6207C11340A;
+ Fri,  4 Mar 2022 19:33:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1646422423; x=1677958423;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=XIbyo0fmgYRuIIghL8IvXkaGeIZeZOyEEYxiM4DdLUA=;
+ b=fwRmzK9qZwhO6YhewEaN0VRxmOwWr2rXBgrHHMxc2CrvFCVy81aj1KC1
+ MXGVaNdeLXspp5B5tWqG1DOqtUDhf0setHI+BqKLR7GOmaipOmewx//3Z
+ OYhxKSdTdGzuicZZKRZ91VsvDRXxXHyHa1dtJBaYjztqtFuA+WhCdNYxz
+ l7+9YSz0ESje7AuWqGTzxzd4JdXV56EfbhOyLwdluSQYm2L4G0MqL13/B
+ qFbumUoGpzH2ee1c/mh3mLrnpSrBgLAKyVXCIxTdAwFyC9sahc1qVBzVS
+ Jlwmp5kYQTR3xmxB8kHQKycBAXBPLiFerq6TTdUiekKe2ePcWCVSUVwxv w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10276"; a="251621705"
+X-IronPort-AV: E=Sophos;i="5.90,156,1643702400"; d="scan'208";a="251621705"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Mar 2022 11:33:42 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,156,1643702400"; d="scan'208";a="640678340"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
+ by fmsmga002.fm.intel.com with SMTP; 04 Mar 2022 11:33:40 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 04 Mar 2022 21:33:39 +0200
+Date: Fri, 4 Mar 2022 21:33:39 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Matthew Auld <matthew.auld@intel.com>
+Message-ID: <YiJpkwFRUHIAoh0F@intel.com>
 References: <20220304172333.991778-1-matthew.auld@intel.com>
-In-Reply-To: <20220304172333.991778-1-matthew.auld@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?Some_more_bits_for_small_BAR_enabling?=
+ <20220304172333.991778-8-matthew.auld@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220304172333.991778-8-matthew.auld@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 7/8] drm/i915: fixup the initial fb base on
+ DG1
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,21 +61,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, Mar 04, 2022 at 05:23:32PM +0000, Matthew Auld wrote:
+> The offset we get looks to be the exact start of DSM, but the
+> inital_plane_vma expects the address to be relative.
+> 
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> ---
+>  .../drm/i915/display/intel_plane_initial.c    | 22 +++++++++++++++----
+>  1 file changed, 18 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_plane_initial.c b/drivers/gpu/drm/i915/display/intel_plane_initial.c
+> index f797fcef18fc..b39d3a8dfe45 100644
+> --- a/drivers/gpu/drm/i915/display/intel_plane_initial.c
+> +++ b/drivers/gpu/drm/i915/display/intel_plane_initial.c
+> @@ -56,10 +56,24 @@ initial_plane_vma(struct drm_i915_private *i915,
+>  	if (!mem || plane_config->size == 0)
+>  		return NULL;
+>  
+> -	base = round_down(plane_config->base,
+> -			  I915_GTT_MIN_ALIGNMENT);
+> -	size = round_up(plane_config->base + plane_config->size,
+> -			mem->min_page_size);
+> +	base = plane_config->base;
+> +	if (IS_DGFX(i915)) {
+> +		/*
+> +		 * On discrete the base address should be somewhere in LMEM, but
+> +		 * depending on the size of LMEM the base address might
+> +		 * intersect with the start of DSM, like on DG1, in which case
+> +		 * we need the relative address. In such cases we might also
+> +		 * need to choose between inital fb vs fbc, if space is limited.
+> +		 *
+> +		 * On future discrete HW, like DG2, we should be able to just
+> +		 * allocate directly from LMEM, due to larger LMEM size.
+> +		 */
+> +		if (base >= i915->dsm.start)
+> +			base -= i915->dsm.start;
 
-Series: Some more bits for small BAR enabling
-URL   : https://patchwork.freedesktop.org/series/101052/
-State : warning
+Subsequent code expects the object to actually be inside stolen.
+If that is not the case we should just give up.
 
-== Summary ==
+The fact that we fail to confirm any of that on integrated
+parts has always bugged me, but not enough to actually do
+anything about it. Such a check would be somewhat more involved
+since we'd have to look at the PTEs. But on discrete sounds like
+we can get away with a trivial check.
 
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
+> +	}
+> +
+> +	size = roundup(base + plane_config->size, mem->min_page_size);
+> +	base = round_down(base, I915_GTT_MIN_ALIGNMENT);
+>  	size -= base;
+>  
+>  	/*
+> -- 
+> 2.34.1
 
-
+-- 
+Ville Syrjälä
+Intel
