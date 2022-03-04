@@ -1,55 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 262E84CD755
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Mar 2022 16:10:39 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 312C84CD778
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Mar 2022 16:14:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6762710E366;
-	Fri,  4 Mar 2022 15:10:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D5F010EC2E;
+	Fri,  4 Mar 2022 15:14:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9969010E366
- for <intel-gfx@lists.freedesktop.org>; Fri,  4 Mar 2022 15:10:36 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ADB8610EB96;
+ Fri,  4 Mar 2022 15:14:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646406636; x=1677942636;
+ t=1646406874; x=1677942874;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=XB7mtJMoj9i3KN6dKW7zAJgFsK8mPufp9zWgXzAG8rw=;
- b=A0G28bqWK31+hQCM7pQamoHxmdSklNXw9/zvyueHHuTHY2o9T9g8uEae
- UjdD0/0ucty7g/BiUS1DraF9OgUPlc13dfR+X4gwrVgercf+SEoIcvFic
- yPIlTvQ2kFNwPSUsPLp7Yl0ILR/BNtyEd7xAyQeitHxtT8npBn6WTI6gs
- bVjX/hF906ur6iDbfGJnXU43Mq8q3DYuGWAKqMSHg/ze2SCNSW3bSv8Ri
- 9IYiLaHXDUk+Sc/gjyvMSXiW2AqBvPl0gb/5a6yp/cwbT4I27u2zAwbqL
- EcMgW/Zc5j3qnymYm5GAE6zoqglfsap6EPAEA4t8+uN3EJlNjoE7v7txp Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10276"; a="241415372"
-X-IronPort-AV: E=Sophos;i="5.90,155,1643702400"; d="scan'208";a="241415372"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2022 07:10:36 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,155,1643702400"; d="scan'208";a="552252537"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
- by orsmga008.jf.intel.com with SMTP; 04 Mar 2022 07:10:33 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 04 Mar 2022 17:10:33 +0200
-Date: Fri, 4 Mar 2022 17:10:33 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Navare, Manasi" <manasi.d.navare@intel.com>
-Message-ID: <YiIr6cUI3slPfjhQ@intel.com>
-References: <20220223131315.18016-1-ville.syrjala@linux.intel.com>
- <20220223131315.18016-14-ville.syrjala@linux.intel.com>
- <20220303224116.GB17231@labuser-Z97X-UD5H>
+ bh=R3hik3YL9tbGwdOvAfoNf3FpTUxGnlBrsL8LwRXVlxo=;
+ b=eNznKJQEGncr/V4A9XcnPGXcZeJ2du8RgXy8Ls42PBijpVhhJ0tK6UTV
+ Knh+6mMt+9TGM5OUUmrLcwSrVBGg2LnmlEEVaO+sX3HGYA2gKvS56gMXu
+ hH5xcsuUmZgfQw/lcM7Vs7NmQ14ieBSUsRXZTaX+yyzpE09QWSgRyCRgi
+ IXRwpRAyJ12QhJ4RmDS55RjGqMghkju3xY8qHiEvqczd5Skr7mRTVLpV8
+ X3uPEtHe0Eaiei0FYLbvKKhm25hICHw1JHwvMPXSoNPMjkc7Syw12piVM
+ jV3Ip+L/en6RFsMa7ZAXKbnc+FyXuuduxnpFIzVUuO2WIhW9dS5GyG3Vq w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10276"; a="253723000"
+X-IronPort-AV: E=Sophos;i="5.90,155,1643702400"; d="scan'208";a="253723000"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Mar 2022 07:14:07 -0800
+X-IronPort-AV: E=Sophos;i="5.90,155,1643702400"; d="scan'208";a="642533641"
+Received: from kszypryt-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.213.25.110])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Mar 2022 07:14:06 -0800
+Date: Fri, 4 Mar 2022 16:14:05 +0100
+From: Kamil Konieczny <kamil.konieczny@linux.intel.com>
+To: igt-dev@lists.freedesktop.org
+Message-ID: <YiIsvT1GlBN/HaXC@kamilkon-DESK1>
+Mail-Followup-To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
+ igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+References: <20220301140755.315472-1-janusz.krzysztofik@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220303224116.GB17231@labuser-Z97X-UD5H>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v2 13/13] drm/i915: Make the PIPESC rect
- relative to the entire bigjoiner area
+In-Reply-To: <20220301140755.315472-1-janusz.krzysztofik@linux.intel.com>
+Subject: Re: [Intel-gfx] [igt-dev] [PATCH v2 i-g-t] lib/intel_mmio: Fix
+ mmapped resources not unmapped on fini
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,163 +65,234 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Mar 03, 2022 at 02:41:23PM -0800, Navare, Manasi wrote:
-> On Wed, Feb 23, 2022 at 03:13:15PM +0200, Ville Syrjala wrote:
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > 
-> > When using bigjoiner it's useful to know the offset of each
-> > individual pipe in the whole set of joined pipes. Let's include
-> > that information in our PIPESRC rectangle. With this we can make
-> > the plane clipping code blissfully unaware of bigjoiner usage, as
-> > all we have to do is remove the pipe's offset from the final plane
-> > destination coordinates.
-> > 
-> > v2: Use intel_bigjoiner_num_pipes()
-> > 
-> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > ---
-> >  .../gpu/drm/i915/display/intel_atomic_plane.c |  7 +++---
-> >  drivers/gpu/drm/i915/display/intel_cursor.c   |  8 ++++---
-> >  drivers/gpu/drm/i915/display/intel_display.c  | 21 ++++++++++++++++++
-> >  drivers/gpu/drm/i915/display/intel_overlay.c  | 22 +++++++++----------
-> >  4 files changed, 40 insertions(+), 18 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> > index 3cbf66146da0..92ae4eebc62f 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> > @@ -824,10 +824,6 @@ int intel_atomic_plane_check_clipping(struct intel_plane_state *plane_state,
-> >  		return -ERANGE;
-> >  	}
-> >  
-> > -	/* right side of the image is on the slave crtc, adjust dst to match */
-> > -	if (intel_crtc_is_bigjoiner_slave(crtc_state))
-> > -		drm_rect_translate(dst, -drm_rect_width(&crtc_state->pipe_src), 0);
-> > -
-> >  	/*
-> >  	 * FIXME: This might need further adjustment for seamless scaling
-> >  	 * with phase information, for the 2p2 and 2p1 scenarios.
-> > @@ -844,6 +840,9 @@ int intel_atomic_plane_check_clipping(struct intel_plane_state *plane_state,
-> >  		return -EINVAL;
-> >  	}
-> >  
-> > +	/* final plane coordinates will be relative to the plane's pipe */
-> > +	drm_rect_translate(dst, -clip->x1, -clip->y1);
-> > +
-> >  	return 0;
-> >  }
-> >  
-> > diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-> > index da6cf0515164..9279e2783e7e 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_cursor.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-> > @@ -152,9 +152,11 @@ static int intel_check_cursor(struct intel_crtc_state *crtc_state,
-> >  	/* Use the unclipped src/dst rectangles, which we program to hw */
-> >  	plane_state->uapi.src = src;
-> >  	plane_state->uapi.dst = dst;
-> > -	if (intel_crtc_is_bigjoiner_slave(crtc_state))
-> > -		drm_rect_translate(&plane_state->uapi.dst,
-> > -				   -drm_rect_width(&crtc_state->pipe_src), 0);
-> > +
-> > +	/* final plane coordinates will be relative to the plane's pipe */
-> > +	drm_rect_translate(&plane_state->uapi.dst,
-> > +			   -crtc_state->pipe_src.x1,
-> > +			   -crtc_state->pipe_src.y1);
-> >  
-> >  	ret = intel_cursor_check_surface(plane_state);
-> >  	if (ret)
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> > index 7a09bb33c1eb..a9c15f27b948 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > @@ -3204,6 +3204,23 @@ static void intel_get_transcoder_timings(struct intel_crtc *crtc,
-> >  	}
-> >  }
-> >  
-> > +static void intel_bigjoiner_adjust_pipe_src(struct intel_crtc_state *crtc_state)
-> > +{
-> > +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> > +	int num_pipes = intel_bigjoiner_num_pipes(crtc_state);
-> > +	enum pipe master_pipe, pipe = crtc->pipe;
-> > +	int width;
-> > +
-> > +	if (num_pipes < 2)
-> > +		return;
-> > +
-> > +	master_pipe = bigjoiner_master_pipe(crtc_state);
-> > +	width = drm_rect_width(&crtc_state->pipe_src);
-> > +
-> > +	drm_rect_translate_to(&crtc_state->pipe_src,
-> > +			      (pipe - master_pipe) * width, 0);
-> > +}
-> > +
-> >  static void intel_get_pipe_src_size(struct intel_crtc *crtc,
-> >  				    struct intel_crtc_state *pipe_config)
-> >  {
-> > @@ -3216,6 +3233,8 @@ static void intel_get_pipe_src_size(struct intel_crtc *crtc,
-> >  	drm_rect_init(&pipe_config->pipe_src, 0, 0,
-> >  		      REG_FIELD_GET(PIPESRC_WIDTH_MASK, tmp) + 1,
-> >  		      REG_FIELD_GET(PIPESRC_HEIGHT_MASK, tmp) + 1);
-> > +
-> > +	intel_bigjoiner_adjust_pipe_src(pipe_config);
-> >  }
-> >  
-> >  static void i9xx_set_pipeconf(const struct intel_crtc_state *crtc_state)
-> > @@ -5853,6 +5872,8 @@ intel_modeset_pipe_config_late(struct intel_crtc_state *crtc_state)
-> >  	struct drm_connector *connector;
-> >  	int i;
-> >  
-> > +	intel_bigjoiner_adjust_pipe_src(crtc_state);
-> > +
-> >  	for_each_new_connector_in_state(&state->base, connector,
-> >  					conn_state, i) {
-> >  		struct intel_encoder *encoder =
-> > diff --git a/drivers/gpu/drm/i915/display/intel_overlay.c b/drivers/gpu/drm/i915/display/intel_overlay.c
-> > index 631e1f1dc5e6..ee46561b5ae8 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_overlay.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_overlay.c
-> > @@ -958,21 +958,21 @@ static void update_pfit_vscale_ratio(struct intel_overlay *overlay)
-> >  static int check_overlay_dst(struct intel_overlay *overlay,
-> >  			     struct drm_intel_overlay_put_image *rec)
-> >  {
-> > -	const struct intel_crtc_state *pipe_config =
-> > +	const struct intel_crtc_state *crtc_state =
-> >  		overlay->crtc->config;
-> > -	int pipe_src_w = drm_rect_width(&pipe_config->pipe_src);
-> > -	int pipe_src_h = drm_rect_height(&pipe_config->pipe_src);
-> > +	struct drm_rect req, clipped;
-> >  
-> > -	if (rec->dst_height == 0 || rec->dst_width == 0)
-> > -		return -EINVAL;
-> > +	drm_rect_init(&req, rec->dst_x, rec->dst_y,
-> > +		      rec->dst_width, rec->dst_height);
-> > +
-> > +	clipped = req;
-> > +	drm_rect_intersect(&clipped, &crtc_state->pipe_src);
-> >  
-> > -	if (rec->dst_x < pipe_src_w &&
-> > -	    rec->dst_x + rec->dst_width <= pipe_src_w &&
-> > -	    rec->dst_y < pipe_src_h &&
-> > -	    rec->dst_y + rec->dst_height <= pipe_src_h)
-> > -		return 0;
-> > -	else
-> > +	if (!drm_rect_visible(&clipped) ||
-> > +	    !drm_rect_equals(&clipped, &req))
-> >  		return -EINVAL;
-> > +
-> > +	return 0;
+Hi Janusz,
+
+Dnia 2022-03-01 at 15:07:55 +0100, Janusz Krzysztofik napisaÅ‚(a):
+> Commit 5f3cfa485eb4 ("lib: Use safe wrappers around libpciaccess
+> initialization functions") took care of not leaking memory allocated by
+> pci_system_init() but didn't take care of users potentially attempting to
+> reinitialize global data maintained by libpciaccess.  For example,
+> intel_register_access_init() mmaps device's PCI BAR0 resource with
+> pci_device_map_range() but intel_register_access_fini() doesn't unmap it
+> and next call to intel_register_access_init() fails on attempt to mmap it
+> again with pci_device_map_range().
+------ ^
+imho you can cut here, no need to repeat it twice.
+
 > 
-> I dont quite understand what we are trying to do here with the clipped ?
-> Can you elaborate a bit what this function does?
+> Fix it, and also provide intel_mmio_umap_*() counterparts to public
+-------------------------------------- ^
+s/umap/unmap/
 
-It checks whether the userspace provided coordinates were fully
-within the pipe source rectangle. If not we return an error.
+> functions intel_mmio_use_pci_bar() and intel_mmio_use_dump_file().
+> 
+> v2: apply last minute fixes, cached but unfortunately not committed before
+>     sending
+> 
+> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+> ---
+>  lib/intel_io.h   |  4 +++
+>  lib/intel_mmio.c | 67 ++++++++++++++++++++++++++++++++++++++++++------
+>  2 files changed, 63 insertions(+), 8 deletions(-)
+> 
+> diff --git a/lib/intel_io.h b/lib/intel_io.h
+> index 1cfe4fb6b9..ea2649d9bc 100644
+> --- a/lib/intel_io.h
+> +++ b/lib/intel_io.h
+> @@ -49,6 +49,8 @@ struct intel_register_map {
+>  
+>  struct intel_mmio_data {
+>  	void *igt_mmio;
+> +	size_t mmio_size;
+> +	struct pci_device *dev;
+>  	struct intel_register_map map;
+>  	uint32_t pci_device_id;
+>  	int key;
+> @@ -57,7 +59,9 @@ struct intel_mmio_data {
+>  
+>  void intel_mmio_use_pci_bar(struct intel_mmio_data *mmio_data,
+>  			    struct pci_device *pci_dev);
+> +void intel_mmio_unmap_pci_bar(struct intel_mmio_data *mmio_data);
+>  void intel_mmio_use_dump_file(struct intel_mmio_data *mmio_data, char *file);
+> +void intel_mmio_unmap_dump_file(struct intel_mmio_data *mmio_data);
+>  
+>  int intel_register_access_init(struct intel_mmio_data *mmio_data,
+>  			       struct pci_device *pci_dev, int safe, int fd);
+> diff --git a/lib/intel_mmio.c b/lib/intel_mmio.c
+> index 667a69f5aa..cb8f9db2e5 100644
+> --- a/lib/intel_mmio.c
+> +++ b/lib/intel_mmio.c
+> @@ -82,6 +82,8 @@ void *igt_global_mmio;
+>   * Sets also up mmio_data->igt_mmio to point at the data contained
+>   * in @file. This allows the same code to get reused for dumping and decoding
+>   * from running hardware as from register dumps.
+> + *
+> + * Users are expected to call intel_mmio_unmap_dump_file() after use.
+>   */
+>  void
+>  intel_mmio_use_dump_file(struct intel_mmio_data *mmio_data, char *file)
+> @@ -99,11 +101,29 @@ intel_mmio_use_dump_file(struct intel_mmio_data *mmio_data, char *file)
 
-I suppose technically we should be checking against the uapi
-hdisplay/vdisplay since this is uapi stuff, but no bigjoiner
-on these old platforms so this will effectively do the same
-thing.
+imho at beginning of this function there should be check
+that igt_global_mmio == NULL, and the same check should be at
+other init functions.
 
--- 
-Ville Syrjälä
-Intel
+Looks like we cannot mmap two different pcie cards at the same
+time with this lib.
+
+>  	igt_fail_on_f(mmio_data->igt_mmio == MAP_FAILED,
+>  		      "Couldn't mmap %s\n", file);
+>  
+> +	mmio_data->mmio_size = st.st_size;
+>  	igt_global_mmio = mmio_data->igt_mmio;
+>  
+>  	close(fd);
+>  }
+>  
+> +/**
+> + * intel_mmio_unmap_dump_file:
+> + * @mmio_data:  mmio structure for IO operations
+> + *
+> + * Unmaps a dump file mmapped with intel_mmio_use_dump_file()
+> + */
+> +void intel_mmio_unmap_dump_file(struct intel_mmio_data *mmio_data)
+> +{
+> +	if (igt_warn_on_f(!mmio_data->mmio_size || mmio_data->dev,
+> +			  "test bug: argument doesn't point to struct intel_mmio_data initialized with intel_mmio_use_dump_file()\n"))
+
+Please shorten text for warning, something like: arg was not
+inialized with ...
+
+Please also add check for null at global var.
+
+> +		return;
+> +
+> +	igt_global_mmio = NULL;
+> +	igt_debug_on(munmap(mmio_data->igt_mmio, mmio_data->mmio_size) < 0);
+> +	mmio_data->mmio_size = 0;
+> +}
+> +
+>  /**
+>   * intel_mmio_use_pci_bar:
+>   * @mmio_data:  mmio structure for IO operations
+> @@ -112,12 +132,14 @@ intel_mmio_use_dump_file(struct intel_mmio_data *mmio_data, char *file)
+>   * Fill a mmio_data stucture with igt_mmio to point at the mmio bar.
+>   *
+>   * @pci_dev can be obtained from intel_get_pci_device().
+> + *
+> + * Users are expected to call intel_mmio_unmap_pci_bar() after use.
+>   */
+>  void
+>  intel_mmio_use_pci_bar(struct intel_mmio_data *mmio_data, struct pci_device *pci_dev)
+>  {
+>  	uint32_t devid, gen;
+> -	int mmio_bar, mmio_size;
+> +	int mmio_bar;
+
+Please use this local var and assign it to struct only after
+succesfull initialization.
+
+>  	int error;
+>  
+>  	memset(mmio_data, 0, sizeof(struct intel_mmio_data));
+> @@ -129,22 +151,42 @@ intel_mmio_use_pci_bar(struct intel_mmio_data *mmio_data, struct pci_device *pci
+>  
+>  	gen = intel_gen(devid);
+>  	if (gen < 3)
+> -		mmio_size = 512*1024;
+> +		mmio_data->mmio_size = 512*1024;
+>  	else if (gen < 5)
+> -		mmio_size = 512*1024;
+> +		mmio_data->mmio_size = 512*1024;
+
+Both places uses the same number 512*1024, please make it one
+if check: if (gen < 5)
+
+Or maybe it is an error for gen < 3 ?
+
+>  	else
+> -		mmio_size = 2*1024*1024;
+> +		mmio_data->mmio_size = 2*1024*1024;
+>  
+>  	error = pci_device_map_range (pci_dev,
+>  				      pci_dev->regions[mmio_bar].base_addr,
+> -				      mmio_size,
+> +				      mmio_data->mmio_size,
+>  				      PCI_DEV_MAP_FLAG_WRITABLE,
+>  				      &mmio_data->igt_mmio);
+>  
+> -	igt_global_mmio = mmio_data->igt_mmio;
+> -
+>  	igt_fail_on_f(error != 0,
+>  		      "Couldn't map MMIO region\n");
+> +
+> +	mmio_data->dev = pci_dev;
+> +	igt_global_mmio = mmio_data->igt_mmio;
+> +}
+> +
+> +/**
+> + * intel_mmio_unmap_pci_bar:
+> + * @mmio_data:  mmio structure for IO operations
+> + *
+> + * Unmaps a PCI BAR region mmapped with intel_mmio_use_pci_bar()
+> + */
+> +void intel_mmio_unmap_pci_bar(struct intel_mmio_data *mmio_data)
+> +{
+> +	if (igt_warn_on_f(!mmio_data->dev,
+> +			  "test bug: argument doesn't point to struct intel_mmio_data initialized with intel_mmio_use_pci_bar()\n"))
+
+Same here, please shorten this warn.
+
+> +		return;
+> +
+> +	igt_global_mmio = NULL;
+> +	igt_debug_on(pci_device_unmap_range(mmio_data->dev,
+> +					    mmio_data->igt_mmio, mmio_data->mmio_size) < 0);
+> +	mmio_data->dev = NULL;
+> +	mmio_data->mmio_size = 0;
+>  }
+>  
+>  static void
+> @@ -166,6 +208,8 @@ release_forcewake_lock(int fd)
+>   * It also initializes mmio_data->igt_mmio like intel_mmio_use_pci_bar().
+>   *
+>   * @pci_dev can be obtained from intel_get_pci_device().
+> + *
+> + * Users are expected to call intel_register_access_fini() after use.
+>   */
+>  int
+>  intel_register_access_init(struct intel_mmio_data *mmio_data, struct pci_device *pci_dev, int safe, int fd)
+> @@ -222,8 +266,15 @@ int intel_register_access_needs_fakewake(struct intel_mmio_data *mmio_data)
+>  void
+>  intel_register_access_fini(struct intel_mmio_data *mmio_data)
+>  {
+> -	if (mmio_data->key && intel_register_access_needs_wake(mmio_data))
+> +	if (igt_warn_on_f(!mmio_data->key,
+> +			  "test bug: argument doesn't point to struct intel_mmio_data initialized with intel_register_access_init()\n"))
+
+Same here, please shorten this warn.
+
+Btw, in this lib error condition for key is -1, so maybe this
+should also be cheked ?
+
+> +		return;
+> +
+> +	if (intel_register_access_needs_wake(mmio_data))
+>  		release_forcewake_lock(mmio_data->key);
+> +	mmio_data->key = 0;
+> +
+> +	intel_mmio_unmap_pci_bar(mmio_data);
+>  }
+>  
+>  /**
+> -- 
+> 2.25.1
+>
+
+Please correct desciption of global var igt_global_mmio, there
+is one more method for initialize it: intel_mmio_use_pci_bar
+as you wrote on irc.
+
+Regards,
+Kamil Konieczny
+ 
