@@ -2,163 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36F144CD2B5
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Mar 2022 11:47:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 078004CD310
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Mar 2022 12:09:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B62C10E477;
-	Fri,  4 Mar 2022 10:47:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 16FB010EDC6;
+	Fri,  4 Mar 2022 11:09:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3054510E477;
- Fri,  4 Mar 2022 10:47:44 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2BF8210EDC6
+ for <intel-gfx@lists.freedesktop.org>; Fri,  4 Mar 2022 11:08:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646390864; x=1677926864;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=KqPHtslHiifGP0NYcMOIRwjRBXkWZ+WfF+7vBC0VYps=;
- b=L/FK/VdhL4trVmnd65WEHvOqteYCtLnVMzzT1ITgNgD4JINHBS8fpdGB
- 3xLSz+Ypq0mS6KvTHCNZVqzafJvyb4bvOK/JYE4LXrUATZX+2rls6TyX4
- ef+RTrqgLBHnajUivTq94afglApOTNmJfMCJ4UfAZwqFpaBSJee6kyIwt
- VBcs7TQBfAblUZ7d1Z3/PkT5jjz39L2gSt+IWWIXhlW+vbn/Up0zlil1d
- fMc+ovWBHbhKbd6QYsSPMdg77/zdQbSM0cZ7f/CbETI5rMn7JgVe0Fxzj
- X6+7BdBY+5d1yJ/6yUT4Fkzc6bEtdP/2kVWkYSSAIlbzLCFBezyfG7plU g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10275"; a="241373570"
-X-IronPort-AV: E=Sophos;i="5.90,154,1643702400"; d="scan'208";a="241373570"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2022 02:47:43 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,154,1643702400"; d="scan'208";a="640545206"
-Received: from fmsmsx605.amr.corp.intel.com ([10.18.126.85])
- by fmsmga002.fm.intel.com with ESMTP; 04 Mar 2022 02:47:43 -0800
-Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
- fmsmsx605.amr.corp.intel.com (10.18.126.85) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.21; Fri, 4 Mar 2022 02:47:42 -0800
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.21 via Frontend Transport; Fri, 4 Mar 2022 02:47:42 -0800
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.45) by
- edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2308.21; Fri, 4 Mar 2022 02:47:41 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Dy2rjhSPxD3kHEBfohD5iXNMtW8K9P76s73gJcmVNi7RVO6jyXBina3VXgEmrlmQFvX8dT/e141bzxosR8F2rkm5wkuEYa6rnXqNswyK1ya7Fs4Sv1TR4wfagSwnO6inQIogPz4BwBtfUPc6d3JYxCTrIO1LB26w66e8T8R2BMaJJSrtmGFiNhixqyXywUjsdwus3sPNSCDeAy4z618GEXYrr5cYoGaVY5ZnlRfu5TKi3ikIjnQd/wob/QX+Z8df/ejSipAWUYNrsfjsL32Eeu94nAZx9DzwtwDi9qLpc0yEbtN4oj6qPn5dG6FUriiwcHj7pEHKt9VSgJGzbzl3Bw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=KqPHtslHiifGP0NYcMOIRwjRBXkWZ+WfF+7vBC0VYps=;
- b=fA9WUlJlbdi9IXuKIGeMqgI9Ndgs/BYJkkEWNVBxT/Bji4BxqmzA7H0nWP6EVM3GV3fqiUcor4o2HMX5CbEYJOHmlvSuHTEaLlwl6y+8NIJWK5hs5UfCN7EN8cRJQe/pXkG/xBZKLfNbIxaf2UOuc2dnp/5yp0bD0724S5JKlRT+FNQCJmBHN2Av9RFfoK/yWUu3c/yLbzSy7xiuTMviuHXPdzf1+TZP8HG6ccHq1KtR1gil2WILZHGICVDUGXPWf2Jfqs9ZXHtBAZ1F7/MwbD2h12ZMnDUMtMANFRc7wrUbGDijx98NLaHGUDklXFxibowEgIloPeAOjq2n34D/SA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from MWHPR11MB1741.namprd11.prod.outlook.com (2603:10b6:300:10d::20)
- by DM4PR11MB5549.namprd11.prod.outlook.com (2603:10b6:5:388::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5038.14; Fri, 4 Mar
- 2022 10:47:38 +0000
-Received: from MWHPR11MB1741.namprd11.prod.outlook.com
- ([fe80::216d:6bf4:d46c:f133]) by MWHPR11MB1741.namprd11.prod.outlook.com
- ([fe80::216d:6bf4:d46c:f133%6]) with mapi id 15.20.5038.016; Fri, 4 Mar 2022
- 10:47:37 +0000
-From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Thread-Topic: [PATCH 5/6] drm/rcar_du: changes to rcar-du driver resulting
- from drm_writeback_connector structure changes
-Thread-Index: AQHYGBFjkzht//tf006vXTl+IOhLcKyANJuAgAAJCYCAAAMWAIAAJNoAgCXncoCAAnYugIAARKuAgAAFXYCAABSgAIADdIKAgAABCACAAYHWAIABC+0ggAATFQCAAACv0A==
-Date: Fri, 4 Mar 2022 10:47:37 +0000
-Message-ID: <MWHPR11MB1741708DEFD56E02C1BBC7A3E3059@MWHPR11MB1741.namprd11.prod.outlook.com>
-References: <Yfp8Q6OFqTAvESOi@pendragon.ideasonboard.com>
- <87y22ts948.fsf@intel.com> <YfqGbqQQz5vrDaLI@pendragon.ideasonboard.com>
- <87v8xxs2hz.fsf@intel.com>
- <CAF6AEGtdnWWhGp7U7nAPD4r3Uoe5BJKVm2rQ2MS=q5GqF6MYDA@mail.gmail.com>
- <YhyB0WmJDWVFO1se@pendragon.ideasonboard.com> <871qzn6vmc.fsf@intel.com>
- <Yhy/6+z7QshG+qOo@pendragon.ideasonboard.com>
- <YhzROBOwTUkZw3Ez@pendragon.ideasonboard.com>
- <4d8daabe-10d9-a3cf-d305-68414cffe4ed@quicinc.com>
- <Yh+4EOKA5FgrlZrF@pendragon.ideasonboard.com>
- <0cfd36a2-26e4-309d-d8e9-e3bf8a5d2417@quicinc.com>
- <MWHPR11MB174187335183FC24BE0F1EA5E3059@MWHPR11MB1741.namprd11.prod.outlook.com>
- <CAA8EJppTVN1EnytD5mCmr4ZTi4M8u9ENOmJuweNyDRkB3LEHnw@mail.gmail.com>
-In-Reply-To: <CAA8EJppTVN1EnytD5mCmr4ZTi4M8u9ENOmJuweNyDRkB3LEHnw@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.6.401.20
-dlp-reaction: no-action
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: dfbf6269-6b91-4fb6-a82d-08d9fdcc6637
-x-ms-traffictypediagnostic: DM4PR11MB5549:EE_
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-microsoft-antispam-prvs: <DM4PR11MB554970FBE2380C1682966A93E3059@DM4PR11MB5549.namprd11.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: NG5Nl6N9y0Eej2mqLTEXO0Is1rrfttHRY06spQbyx0bfyZkGmatTJpRyMZR0qXI+eN0YS1XL6sMtW5+0w9bTdSZCob2hFF28gNaekgO1ZSvSl3KA0MqifqP0qk0rt3vxV/HJdip9ELAWaqPyNckXNfFCmpmoyjoqlIKiI1LhJqX63HTTJAJDlXMjGUBxZJq7P2jLbdnhuuw8KSEXvhcleoyAiJD1JNDyExStIJRpPGA+B5ppR6PDy5lT79IXZu21VAEgSS+wtj9X95hNI3sy4Uj2ZSyKlzZvZIJWhLKTNn2GrcgY9yFV4VdN/+CNLFu+xWZYqKSHAneOCOZ+RvbzOudKlMYkJUaXJPg+swTlruvLMV8Q/r3Wy4UOi8SD4AVdigsivkT9LignSyhSn6fwTznpo/WOGa0WyTcPSvHw4qylQB6H/B6DONYxslvdsWE1q2WOWb7nwxyhvTE7lEnnbieN601jX+FXJLXjHFTm64+JpgWiGc9VZ6QDyXx6lg8DItJb+Y9TAb8vsBQ3/3fvBRd1kQfwjxQVLTPGigOVuiuG6wN0bdKdtiDO4zpXGZ9fcGuSYzAf72YVuFYQ8o9YallJruhuz1sN20HeEoj9RHVSg4ZfcKNNcnKSlWKmxo6YM7hRry40wS9z/yt40Je33VE5QGSsfm5SB4WZYhl1E9GcYs6MHR3VJRJLGE+k2gWTCtIj3lO0K32DGoO7YM+N9A==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MWHPR11MB1741.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230001)(366004)(8676002)(4326008)(7696005)(66446008)(76116006)(66476007)(6506007)(52536014)(5660300002)(71200400001)(508600001)(33656002)(66556008)(64756008)(66946007)(55016003)(122000001)(38100700002)(316002)(38070700005)(8936002)(54906003)(186003)(26005)(9686003)(82960400001)(2906002)(6916009)(86362001)(107886003);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?ZkZDWEFkVlBKT0pIRFN6ZjYxQkhsREE3aFRtcVl3dDNiNG1GNTNFWGZrZkVY?=
- =?utf-8?B?QjJONUVickRMUmp1Z1JsbDZoSXJZZVlZZHgreE41SmM5cTJyTmhWRS9GcHVm?=
- =?utf-8?B?dWhPZnRaWEM0bmEwVVNxNGV1NEhndklYVmRyYmFRUkFQd3VOQ24vRXQzUTBl?=
- =?utf-8?B?ek00aXh5ZkhNU2dxeGljc3BCVzBZcU1xdTlUaWUxNHdqbVFqUHZOYTNXVGxm?=
- =?utf-8?B?ZjJGMTh1YThJUlY2K2djR1lyMjFvMU5vM1NiaWZYRnBuTndmMDFUMm9IYmVL?=
- =?utf-8?B?NmdyMDdUY1NBMUFVRkROTmJGbGxRY2MwRDRaZTA1RU1PVUdFd1ZmaHQ5aUJG?=
- =?utf-8?B?UDgzVkp4ZXRsL1dySzFnSk9nVFJubXM0VFdxMVV3VTd5ZkJmQ2MwdnBaczVh?=
- =?utf-8?B?K00wNGZPcnlKZlhhYnpDQ0VlN1VMdXlwOGdDeCtLaHg1aVdseVFWRXk3UVl4?=
- =?utf-8?B?YVdVY3NQL1dqcmpPWTNhMTM5RUQ5UUYrbmJyckRJOXRoMFd3NnNlcURzQ1Jh?=
- =?utf-8?B?Ynlodkthakx1MFBacXV0MlhieGRuL3ZVdjc5dnBXWTdCdjhWVjdqYklZbTFO?=
- =?utf-8?B?M2djREF0M3pQc3Z0djQ1YU9nZU0xU3U2ZEJRVEh5NDhlaXFieHNhNVgrVDZU?=
- =?utf-8?B?VWM1aUZVOWF4Rm5YV01WRGVmV3A5T2VpVzdZaHRUYkJIa3gvQUVTcU9JY0tB?=
- =?utf-8?B?YlFtZ3FBMmZTcmNvL2R4RW1xS21yU1pBc1B3N0NXeUUvZHlLREtOVnFPeklL?=
- =?utf-8?B?VE5Cc0pPd3BueHB6cTBPVTdrdmJtdmtnQnhNSVVOblVGVnFtUzV2YXREcUdr?=
- =?utf-8?B?NG5qMWRlZlYwTXdnOVFSKy9EVmV5bWhqaEp4K3Vod0xXV1FtaGNwV3UrQjhO?=
- =?utf-8?B?ZmF0Ui9hQXh5UFNUSGZTZ3BZZFBEK1NqbnZ3RUJiQ1AvL3pNOERMS1VrNGFG?=
- =?utf-8?B?QmlGQ0dtQ0xRaW50Q1ZNM0ExVnFNTkJIS3B5VEt2dktuV3o2cC9IcElKMjlB?=
- =?utf-8?B?RnJlZlZ3cVhYWnd0OW0zWHlwczBYWWV3VTBBNXkrYVJGSjhzSTMrRkhwM0RW?=
- =?utf-8?B?YStIT1h6dzhtbjRlNExOanlQUUdOWXFJSW5iZDRxSXFwck5DRkFVbzlBNmZU?=
- =?utf-8?B?eW45aFV3TTBhNDgyV2UzbTBjU1VYd2x5RUtTVlpzV2VvTmNjalQ5RHpnRmww?=
- =?utf-8?B?NDhGODNkRlNtWDViUnJWKzA3YXU2NUdmaVZMa3QzOTl0ays2U0UxNHErbzgy?=
- =?utf-8?B?MDBJRERraWRyZjQvVFhoRHRwKzNWRDhVK3Q4YUxab05SRTI5U0o1c04xcGpj?=
- =?utf-8?B?ZzdWUzdhWVYra3Z0ajhYYitNWEtVVVgvanROT2FOZVpyNUZlSUZIYlJQS3Yz?=
- =?utf-8?B?eDB5NklvNVVFV1cyenM5OEN2M0Mzc1hLcGVZVzh3a0QvYmdyZkxuKzU1aVYy?=
- =?utf-8?B?RC9JaDI2d1NDbEl2M2w4d1J6aHYzZ2I4VjRXdWsyOW8zTkc1UEt6WVVEdmMy?=
- =?utf-8?B?UXV1Q3JKVFFFR3BYNzEzZ0JDS0dZeG9FRTQvWlVYQzhabWdaTVk4SHBVK21t?=
- =?utf-8?B?NWhaU2RJOVJTbGdrRTNadzJubjZtc3ZJS0toNnplcjNCQ094YlAzQ0RjbGRL?=
- =?utf-8?B?QThKUXU3QnpnQnVIUjlSV0MrVFcyQkVaRkV3TjN6SzhxeXlJZ2hnZUwyMUF0?=
- =?utf-8?B?ZG1DazQwVlRTbC9hVDZPU2VqWDBWNGJzNVY3Y0ZuVDN1R1JNQk5MM3MzZTRt?=
- =?utf-8?B?Uk5ENERJME15cnVNTlY1T2xuS2JVckltUlNkSHliVFNEWWcxbWo3dU1hcmRO?=
- =?utf-8?B?aU9qaGFUbGRxYkg1THRzeExiQVRQUDF0TnFxazY1emFoK3JodTBmdHBudDRT?=
- =?utf-8?B?YjdCM0lLb1kxbHR2UXdxYWdmM2h4OTJLZytZc1pTNzJtc0Y3cVNnbG90S2pY?=
- =?utf-8?B?V3J0R0lxU0Y0VTZrTStvM3RBc0FWWkFMem4xOTJORWpmbjVFckxnRitUNTIv?=
- =?utf-8?B?UjRnRW5YT2JMeER0NWliaXJERkV0RmF1RXRTcnlKSWVRQ3ppZmZFMW90VWdZ?=
- =?utf-8?B?alVCcDRGMlBSQklRZjZKMHp6L0tyZEFWWlYrRmhBWlBmUFVPMW1YY0lGVUhS?=
- =?utf-8?B?dG1JY2lBSkp3MTlwWDc1ck5YeUVZU09uVndkZmExTFY5dnQ1a1BDdU44WnM5?=
- =?utf-8?Q?MX+UyprvsGuw/xw+u3wsho4=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ t=1646392139; x=1677928139;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=8CLk/yUdAG7LDJO+2ETHyIcFKGleghPtpKRjY4npRy0=;
+ b=QVAO+urajbXGXxcqNK4SZK7pS4lx51cf3Loc890VTu+hxya4IEyj7o0z
+ TTV0nxCbzgBizxCSTHg+FaenX3aA7dbXhm2ZloNTDQA8W2NAGh1vrq4RC
+ bj8ACP6AOZvBwIFa6R3eHdP0L3sYjXUxJNwINZo+jnRNZwLg2vlrJji/b
+ aPkm3bf5TlM6g2G7Ozf/ravzB9JMb13gWWn7h0AyZP1jkCyzXCyo5ocCF
+ RL7Ea1O7emXevcaDgpYibmJjyKOQGnK5H/TesRFqgZjmNzP4VZdLtzbGI
+ 1HRntVKEoJCKALkaK1LP/AZr7wziZPpuIaFX0vJqL40MrgB9qBuy9W4Z+ A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10275"; a="234562239"
+X-IronPort-AV: E=Sophos;i="5.90,155,1643702400"; d="scan'208";a="234562239"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Mar 2022 03:08:58 -0800
+X-IronPort-AV: E=Sophos;i="5.90,155,1643702400"; d="scan'208";a="552185778"
+Received: from pruilobx-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.28.174])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Mar 2022 03:08:57 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20220221110356.5532-1-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220221110356.5532-1-ville.syrjala@linux.intel.com>
+Date: Fri, 04 Mar 2022 13:08:55 +0200
+Message-ID: <87bkym3rg8.fsf@intel.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MWHPR11MB1741.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: dfbf6269-6b91-4fb6-a82d-08d9fdcc6637
-X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Mar 2022 10:47:37.8933 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: bRGhmsv+AbP7qn1hY6JNrchYzpqjRzFU9dTyxS9He965xEzmvnjbIikFQCjCQo4GUlcAEK5VMkjFavadFnzhkg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB5549
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 5/6] drm/rcar_du: changes to rcar-du driver
- resulting from drm_writeback_connector structure changes
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915: Move framestart_delay to
+ crtc_state
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -171,58 +59,334 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Carsten Haitzler <carsten.haitzler@arm.com>, "Nikula,
- Jani" <jani.nikula@intel.com>, Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- dri-devel <dri-devel@lists.freedesktop.org>, David Airlie <airlied@linux.ie>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SGksDQo+ID4gSGkgQWJoaW5hdiwNCj4gPiA+IEhpIExhdXJlbnQNCj4gPiA+DQo+ID4gPiBPayBz
-dXJlLCBJIGNhbiB0YWtlIHRoaXMgdXAgYnV0IEkgbmVlZCB0byB1bmRlcnN0YW5kIHRoZSBwcm9w
-b3NhbCBhDQo+ID4gPiBsaXR0bGUgYml0IG1vcmUgYmVmb3JlIHByb2NlZWRpbmcgb24gdGhpcy4g
-U28gd2Ugd2lsbCBkaXNjdXNzIHRoaXMNCj4gPiA+IGluIGFub3RoZXIgZW1haWwgd2hlcmUgd2Ug
-c3BlY2lmaWNhbGx5IHRhbGsgYWJvdXQgdGhlIGNvbm5lY3RvciBjaGFuZ2VzLg0KPiA+ID4NCj4g
-PiA+IEFsc28sIEkgYW0gd2lsbGluZyB0byB0YWtlIHRoaXMgdXAgb25jZSB0aGUgZW5jb2RlciBw
-YXJ0IGlzIGRvbmUgYW5kDQo+ID4gPiBtZXJnZWQgc28gdGhhdCBhdGxlYXN0IHdlIGtlZXAgbW92
-aW5nIG9uIHRoYXQgYXMgTVNNIFdCDQo+ID4gPiBpbXBsZW1lbnRhdGlvbiBjYW4gcHJvY2VlZCB3
-aXRoIHRoYXQgZmlyc3QuDQo+ID4gPg0KPiA+ID4gSGkgSmFuaSBhbmQgU3VyYWoNCj4gPiA+DQo+
-ID4gPiBBbnkgY29uY2VybnMgd2l0aCBzcGxpdHRpbmcgdXAgdGhlIHNlcmllcyBpbnRvIGVuY29k
-ZXIgYW5kIGNvbm5lY3Rvcg0KPiA+ID4gT1IgcmUtIGFycmFuZ2luZyB0aGVtPw0KPiA+ID4NCj4g
-PiA+IExldCBtZSBrbm93IGlmIHlvdSBjYW4gZG8gdGhpcyBPUiBJIGNhbiBhbHNvIHNwbGl0IHRo
-aXMgdXAga2VlcGluZw0KPiA+ID4gU3VyYWoncyBuYW1lIGluIHRoZSBDby1kZXZlbG9wZWQgYnkg
-dGFnLg0KPiA+IEkgd2FzIGFjdHVhbGx5IHRoaW5raW5nIG9mIGZsb2F0aW5nIGEgbmV3IHBhdGNo
-IHNlcmllcyB3aXRoIGJvdGgNCj4gPiBlbmNvZGVyIGFuZCBjb25uZWN0b3IgcG9pbnRlciBjaGFu
-Z2VzIGJ1dCB3aXRoIGEgY2hhbmdlIGluDQo+ID4gaW5pdGlhbGl6YXRpb24gZnVuY3Rpb25zIHdo
-ZXJlaW4gd2UgYWxsb2NhdGUgYSBjb25uZWN0b3IgYW5kIGVuY29kZXINCj4gPiBpbmNhc2UgdGhl
-IGRyaXZlciBkb2VzbuKAmXQgaGF2ZSBpdHMgb3duIHRoaXMgc2hvdWxkIG1pbmltaXplIHRoZSBl
-ZmZlY3QNCj4gPiBvbiBvdGhlciBkcml2ZXJzIGFscmVhZHkgdXNpbmcgY3VycmVudCBkcm0gd3Jp
-dGViYWNrIGZyYW1ld29yayBhbmQgYWxzbw0KPiBhbGxvdyBpOTE1IHRvIGNyZWF0ZSBpdHMgb3du
-IGNvbm5lY3Rvci4NCj4gDQo+IEkgdGhvdWdodCB0aGF0IExhdXJlbnQgd2FzIHF1aXRlIHN0cmlj
-dCBhYm91dCB0aGUgY29ubmVjdG9yLiBTbyBJJ2Qgc3VnZ2VzdA0KPiB0YXJnZXRpbmcgZHJtX3dy
-aXRlYmFja19jb25uZWN0b3Igd2l0aCBhbiBvcHRpb25hbGx5IGNyZWF0ZWQgZW5jb2RlciBhbmQN
-Cj4gdGhlIGJ1aWx0aW4gY29ubmVjdG9yDQpJbiB0aGF0IGNhc2UgZXZlbiBpZiB3ZSB0YXJnZXQg
-dGhhdCBpOTE1IHdpbGwgbm90IGJlIGFibGUgdG8gbW92ZSBmb3J3YXJkIHdpdGggaXRzDQppbXBs
-ZW1lbnRhdGlvbiBvZiB3cml0ZWJhY2sgYXMgYnVpbHRpbiBjb25uZWN0b3IgZG9lcyBub3Qgd29y
-ayBmb3IgdXMgcmlnaHQgbm93DQphcyBleHBsYWluZWQgZWFybGllciwgb3B0aW9uYWxseSBjcmVh
-dGluZyBlbmNvZGVyIGFuZCBjb25uZWN0b3Igd2lsbCBoZWxwIGV2ZXJ5b25lDQptb3ZlIGZvcndh
-cmQgYW5kIG9uY2UgZG9uZSB3ZSBjYW4gYWN0dWFsbHkgc2l0IGFuZCB3b3JrIG9uIGhvdyB0byBz
-aWRlIHN0ZXAgdGhpcyANCmlzc3VlIHVzaW5nIExhdXJlbnQncyBzdWdnZXN0aW9uDQo+IA0KPiA+
-IFdlIGNhbiB3b3JrIG9uIExhdXJlbnQncyBzdWdnZXN0aW9uIGJ1dCB0aGF0IHdvdWxkIGZpcnN0
-IHJlcXVpcmUgdGhlDQo+ID4gaW5pdGlhbCBSRkMgcGF0Y2hlcyBhbmQgdGhlbiBhIHJld29yayBm
-cm9tIGJvdGggb2Ygb3VyIGRyaXZlcnMgc2lkZSB0bw0KPiA+IHNlZSBpZiB0aGV5IGdlbCB3ZWxs
-IHdpdGggb3VyIGN1cnJlbnQgY29kZSB3aGljaCB3aWxsIHRha2UgYQ0KPiA+IGNvbnNpZGVyYWJs
-ZSBhbW91bnQgb2YgdGltZS4gV2UgY2FuIGZvciBub3cgaG93ZXZlciBmbG9hdCB0aGUgcGF0Y2gN
-Cj4gPiBzZXJpZXMgdXAgd2hpY2ggbWluaW1hbGx5IGFmZmVjdHMgdGhlIGN1cnJlbnQgZHJpdmVy
-cyBhbmQgYWxzbyBhbGxvd3MNCj4gPiBpOTE1IGFuZCBtc20gdG8gbW92ZSBmb3J3YXJkIHdpdGgg
-aXRzIHdyaXRlYmFjayBpbXBsZW1lbnRhdGlvbiBvZmYNCj4gPiBjb3Vyc2Ugd2l0aCBhIHByb3Bl
-ciBkb2N1bWVudGF0aW9uIHN0YXRpbmcgbmV3IGRyaXZlcnMgc2hvdWxkbid0IHRyeSB0bw0KPiBt
-YWtlIHRoZWlyIG93biBjb25uZWN0b3JzIGFuZCBlbmNvZGVycyBhbmQgdGhhdCBkcm1fd3JpdGVi
-YWNrIHdpbGwgZG8NCj4gdGhhdCBmb3IgdGhlbS4NCj4gPiBPbmNlIHRoYXQncyBkb25lIGFuZCBt
-ZXJnZWQgd2UgY2FuIHdvcmsgd2l0aCBMYXVyZW50IG9uIGhpcyBwcm9wb3NhbA0KPiA+IHRvIGlt
-cHJvdmUgdGhlIGRybSB3cml0ZWJhY2sgZnJhbWV3b3JrIHNvIHRoYXQgdGhpcyBpc3N1ZSBjYW4g
-YmUgc2lkZQ0KPiBzdGVwcGVkIGVudGlyZWx5IGluIGZ1dHVyZS4NCj4gPiBGb3Igbm93IEkgd291
-bGQgbGlrZSB0byBrZWVwIHRoZSBlbmNvZGVyIGFuZCBjb25uZWN0b3IgcG9pbnRlciBjaGFuZ2Vz
-DQo+IHRvZ2V0aGVyLg0KDQpCZXN0IFJlZ2FyZHMsDQpTdXJhaiBLYW5kcGFsDQo=
+On Mon, 21 Feb 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> We need to make framestart_delay dynamic for DRRS on PCH
+> ports. To that end move it into the crtc state. As a bonus
+> we get state check+dump for it. Will also allow us to get
+> rid of the somewhat questionable framestart_delay sanitation
+> code.
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+
+On the series,
+
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c  | 40 ++++++++++++++-----
+>  .../drm/i915/display/intel_display_types.h    |  2 +
+>  .../gpu/drm/i915/display/intel_pch_display.c  | 15 +++----
+>  drivers/gpu/drm/i915/display/intel_vrr.c      |  4 +-
+>  drivers/gpu/drm/i915/i915_drv.h               |  2 -
+>  5 files changed, 42 insertions(+), 21 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index e2ca70696c05..7e80530b9b00 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -1865,7 +1865,7 @@ static void hsw_set_frame_start_delay(const struct =
+intel_crtc_state *crtc_state)
+>=20=20
+>  	val =3D intel_de_read(dev_priv, reg);
+>  	val &=3D ~HSW_FRAME_START_DELAY_MASK;
+> -	val |=3D HSW_FRAME_START_DELAY(dev_priv->framestart_delay - 1);
+> +	val |=3D HSW_FRAME_START_DELAY(crtc_state->framestart_delay - 1);
+>  	intel_de_write(dev_priv, reg, val);
+>  }
+>=20=20
+> @@ -3208,7 +3208,7 @@ static void i9xx_set_pipeconf(const struct intel_cr=
+tc_state *crtc_state)
+>=20=20
+>  	pipeconf |=3D PIPECONF_GAMMA_MODE(crtc_state->gamma_mode);
+>=20=20
+> -	pipeconf |=3D PIPECONF_FRAME_START_DELAY(dev_priv->framestart_delay - 1=
+);
+> +	pipeconf |=3D PIPECONF_FRAME_START_DELAY(crtc_state->framestart_delay -=
+ 1);
+>=20=20
+>  	intel_de_write(dev_priv, PIPECONF(crtc->pipe), pipeconf);
+>  	intel_de_posting_read(dev_priv, PIPECONF(crtc->pipe));
+> @@ -3398,6 +3398,8 @@ static bool i9xx_get_pipe_config(struct intel_crtc =
+*crtc,
+>=20=20
+>  	pipe_config->gamma_mode =3D REG_FIELD_GET(PIPECONF_GAMMA_MODE_MASK_I9XX=
+, tmp);
+>=20=20
+> +	pipe_config->framestart_delay =3D REG_FIELD_GET(PIPECONF_FRAME_START_DE=
+LAY_MASK, tmp) + 1;
+> +
+>  	if (IS_CHERRYVIEW(dev_priv))
+>  		pipe_config->cgm_mode =3D intel_de_read(dev_priv,
+>  						      CGM_PIPE_MODE(crtc->pipe));
+> @@ -3523,7 +3525,7 @@ static void ilk_set_pipeconf(const struct intel_crt=
+c_state *crtc_state)
+>=20=20
+>  	val |=3D PIPECONF_GAMMA_MODE(crtc_state->gamma_mode);
+>=20=20
+> -	val |=3D PIPECONF_FRAME_START_DELAY(dev_priv->framestart_delay - 1);
+> +	val |=3D PIPECONF_FRAME_START_DELAY(crtc_state->framestart_delay - 1);
+>=20=20
+>  	intel_de_write(dev_priv, PIPECONF(pipe), val);
+>  	intel_de_posting_read(dev_priv, PIPECONF(pipe));
+> @@ -3831,6 +3833,8 @@ static bool ilk_get_pipe_config(struct intel_crtc *=
+crtc,
+>=20=20
+>  	pipe_config->gamma_mode =3D REG_FIELD_GET(PIPECONF_GAMMA_MODE_MASK_ILK,=
+ tmp);
+>=20=20
+> +	pipe_config->framestart_delay =3D REG_FIELD_GET(PIPECONF_FRAME_START_DE=
+LAY_MASK, tmp) + 1;
+> +
+>  	pipe_config->csc_mode =3D intel_de_read(dev_priv,
+>  					      PIPE_CSC_MODE(crtc->pipe));
+>=20=20
+> @@ -4266,6 +4270,15 @@ static bool hsw_get_pipe_config(struct intel_crtc =
+*crtc,
+>  		pipe_config->pixel_multiplier =3D 1;
+>  	}
+>=20=20
+> +	if (!transcoder_is_dsi(pipe_config->cpu_transcoder)) {
+> +		tmp =3D intel_de_read(dev_priv, CHICKEN_TRANS(pipe_config->cpu_transco=
+der));
+> +
+> +		pipe_config->framestart_delay =3D REG_FIELD_GET(HSW_FRAME_START_DELAY_=
+MASK, tmp) + 1;
+> +	} else {
+> +		/* no idea if this is correct */
+> +		pipe_config->framestart_delay =3D 1;
+> +	}
+> +
+>  out:
+>  	intel_display_power_put_all_in_set(dev_priv, &power_domain_set);
+>=20=20
+> @@ -5303,6 +5316,9 @@ static void intel_dump_pipe_config(const struct int=
+el_crtc_state *pipe_config,
+>  				      &pipe_config->dp_m2_n2);
+>  	}
+>=20=20
+> +	drm_dbg_kms(&dev_priv->drm, "framestart delay: %d\n",
+> +		    pipe_config->framestart_delay);
+> +
+>  	drm_dbg_kms(&dev_priv->drm,
+>  		    "audio: %i, infoframes: %i, infoframes enabled: 0x%x\n",
+>  		    pipe_config->has_audio, pipe_config->has_infoframe,
+> @@ -5654,6 +5670,8 @@ intel_modeset_pipe_config(struct intel_atomic_state=
+ *state,
+>  	pipe_config->cpu_transcoder =3D
+>  		(enum transcoder) to_intel_crtc(crtc)->pipe;
+>=20=20
+> +	pipe_config->framestart_delay =3D 1;
+> +
+>  	/*
+>  	 * Sanitize sync polarity flags based on requested ones. If neither
+>  	 * positive or negative polarity is requested, treat this as meaning
+> @@ -6191,6 +6209,8 @@ intel_pipe_config_compare(const struct intel_crtc_s=
+tate *current_config,
+>=20=20
+>  	PIPE_CONF_CHECK_X(output_types);
+>=20=20
+> +	PIPE_CONF_CHECK_I(framestart_delay);
+> +
+>  	PIPE_CONF_CHECK_I(hw.pipe_mode.crtc_hdisplay);
+>  	PIPE_CONF_CHECK_I(hw.pipe_mode.crtc_htotal);
+>  	PIPE_CONF_CHECK_I(hw.pipe_mode.crtc_hblank_start);
+> @@ -9499,8 +9519,6 @@ int intel_modeset_init_noirq(struct drm_i915_privat=
+e *i915)
+>  	i915->flip_wq =3D alloc_workqueue("i915_flip", WQ_HIGHPRI |
+>  					WQ_UNBOUND, WQ_UNBOUND_MAX_ACTIVE);
+>=20=20
+> -	i915->framestart_delay =3D 1; /* 1-4 */
+> -
+>  	i915->window2_delay =3D 0; /* No DSB so no window2 delay */
+>=20=20
+>  	intel_mode_config_init(i915);
+> @@ -9804,12 +9822,14 @@ static bool has_pch_trancoder(struct drm_i915_pri=
+vate *dev_priv,
+>  		(HAS_PCH_LPT_H(dev_priv) && pch_transcoder =3D=3D PIPE_A);
+>  }
+>=20=20
+> -static void intel_sanitize_frame_start_delay(const struct intel_crtc_sta=
+te *crtc_state)
+> +static void intel_sanitize_frame_start_delay(struct intel_crtc_state *cr=
+tc_state)
+>  {
+>  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+>  	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
+>  	enum transcoder cpu_transcoder =3D crtc_state->cpu_transcoder;
+>=20=20
+> +	crtc_state->framestart_delay =3D 1;
+> +
+>  	if (DISPLAY_VER(dev_priv) >=3D 9 ||
+>  	    IS_BROADWELL(dev_priv) || IS_HASWELL(dev_priv)) {
+>  		i915_reg_t reg =3D CHICKEN_TRANS(cpu_transcoder);
+> @@ -9820,7 +9840,7 @@ static void intel_sanitize_frame_start_delay(const =
+struct intel_crtc_state *crtc
+>=20=20
+>  		val =3D intel_de_read(dev_priv, reg);
+>  		val &=3D ~HSW_FRAME_START_DELAY_MASK;
+> -		val |=3D HSW_FRAME_START_DELAY(dev_priv->framestart_delay - 1);
+> +		val |=3D HSW_FRAME_START_DELAY(crtc_state->framestart_delay - 1);
+>  		intel_de_write(dev_priv, reg, val);
+>  	} else {
+>  		i915_reg_t reg =3D PIPECONF(cpu_transcoder);
+> @@ -9828,7 +9848,7 @@ static void intel_sanitize_frame_start_delay(const =
+struct intel_crtc_state *crtc
+>=20=20
+>  		val =3D intel_de_read(dev_priv, reg);
+>  		val &=3D ~PIPECONF_FRAME_START_DELAY_MASK;
+> -		val |=3D PIPECONF_FRAME_START_DELAY(dev_priv->framestart_delay - 1);
+> +		val |=3D PIPECONF_FRAME_START_DELAY(crtc_state->framestart_delay - 1);
+>  		intel_de_write(dev_priv, reg, val);
+>  	}
+>=20=20
+> @@ -9841,7 +9861,7 @@ static void intel_sanitize_frame_start_delay(const =
+struct intel_crtc_state *crtc
+>=20=20
+>  		val =3D intel_de_read(dev_priv, reg);
+>  		val &=3D ~TRANS_FRAME_START_DELAY_MASK;
+> -		val |=3D TRANS_FRAME_START_DELAY(dev_priv->framestart_delay - 1);
+> +		val |=3D TRANS_FRAME_START_DELAY(crtc_state->framestart_delay - 1);
+>  		intel_de_write(dev_priv, reg, val);
+>  	} else {
+>  		enum pipe pch_transcoder =3D intel_crtc_pch_transcoder(crtc);
+> @@ -9850,7 +9870,7 @@ static void intel_sanitize_frame_start_delay(const =
+struct intel_crtc_state *crtc
+>=20=20
+>  		val =3D intel_de_read(dev_priv, reg);
+>  		val &=3D ~TRANS_CHICKEN2_FRAME_START_DELAY_MASK;
+> -		val |=3D TRANS_CHICKEN2_FRAME_START_DELAY(dev_priv->framestart_delay -=
+ 1);
+> +		val |=3D TRANS_CHICKEN2_FRAME_START_DELAY(crtc_state->framestart_delay=
+ - 1);
+>  		intel_de_write(dev_priv, reg, val);
+>  	}
+>  }
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
+/gpu/drm/i915/display/intel_display_types.h
+> index b50d0e6efe21..8e50f03f8c92 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1154,6 +1154,8 @@ struct intel_crtc_state {
+>  	/* bitmask of planes that will be updated during the commit */
+>  	u8 update_planes;
+>=20=20
+> +	u8 framestart_delay; /* 1-4 */
+> +
+>  	struct {
+>  		u32 enable;
+>  		u32 gcp;
+> diff --git a/drivers/gpu/drm/i915/display/intel_pch_display.c b/drivers/g=
+pu/drm/i915/display/intel_pch_display.c
+> index 9192769e3337..00232dab217d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_pch_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_pch_display.c
+> @@ -181,7 +181,7 @@ static void ilk_enable_pch_transcoder(const struct in=
+tel_crtc_state *crtc_state)
+>  		val |=3D TRANS_CHICKEN2_TIMING_OVERRIDE;
+>  		/* Configure frame start delay to match the CPU */
+>  		val &=3D ~TRANS_CHICKEN2_FRAME_START_DELAY_MASK;
+> -		val |=3D TRANS_CHICKEN2_FRAME_START_DELAY(dev_priv->framestart_delay -=
+ 1);
+> +		val |=3D TRANS_CHICKEN2_FRAME_START_DELAY(crtc_state->framestart_delay=
+ - 1);
+>  		intel_de_write(dev_priv, reg, val);
+>  	}
+>=20=20
+> @@ -192,7 +192,7 @@ static void ilk_enable_pch_transcoder(const struct in=
+tel_crtc_state *crtc_state)
+>  	if (HAS_PCH_IBX(dev_priv)) {
+>  		/* Configure frame start delay to match the CPU */
+>  		val &=3D ~TRANS_FRAME_START_DELAY_MASK;
+> -		val |=3D TRANS_FRAME_START_DELAY(dev_priv->framestart_delay - 1);
+> +		val |=3D TRANS_FRAME_START_DELAY(crtc_state->framestart_delay - 1);
+>=20=20
+>  		/*
+>  		 * Make the BPC in transcoder be consistent with
+> @@ -466,9 +466,11 @@ void ilk_pch_get_config(struct intel_crtc_state *crt=
+c_state)
+>  	ilk_pch_clock_get(crtc_state);
+>  }
+>=20=20
+> -static void lpt_enable_pch_transcoder(struct drm_i915_private *dev_priv,
+> -				      enum transcoder cpu_transcoder)
+> +static void lpt_enable_pch_transcoder(const struct intel_crtc_state *crt=
+c_state)
+>  {
+> +	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+> +	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
+> +	enum transcoder cpu_transcoder =3D crtc_state->cpu_transcoder;
+>  	u32 val, pipeconf_val;
+>=20=20
+>  	/* FDI must be feeding us bits for PCH ports */
+> @@ -480,7 +482,7 @@ static void lpt_enable_pch_transcoder(struct drm_i915=
+_private *dev_priv,
+>  	val |=3D TRANS_CHICKEN2_TIMING_OVERRIDE;
+>  	/* Configure frame start delay to match the CPU */
+>  	val &=3D ~TRANS_CHICKEN2_FRAME_START_DELAY_MASK;
+> -	val |=3D TRANS_CHICKEN2_FRAME_START_DELAY(dev_priv->framestart_delay - =
+1);
+> +	val |=3D TRANS_CHICKEN2_FRAME_START_DELAY(crtc_state->framestart_delay =
+- 1);
+>  	intel_de_write(dev_priv, TRANS_CHICKEN2(PIPE_A), val);
+>=20=20
+>  	val =3D TRANS_ENABLE;
+> @@ -521,7 +523,6 @@ void lpt_pch_enable(struct intel_atomic_state *state,
+>  	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
+>  	const struct intel_crtc_state *crtc_state =3D
+>  		intel_atomic_get_new_crtc_state(state, crtc);
+> -	enum transcoder cpu_transcoder =3D crtc_state->cpu_transcoder;
+>=20=20
+>  	assert_pch_transcoder_disabled(dev_priv, PIPE_A);
+>=20=20
+> @@ -530,7 +531,7 @@ void lpt_pch_enable(struct intel_atomic_state *state,
+>  	/* Set transcoder timing. */
+>  	ilk_pch_transcoder_set_timings(crtc_state, PIPE_A);
+>=20=20
+> -	lpt_enable_pch_transcoder(dev_priv, cpu_transcoder);
+> +	lpt_enable_pch_transcoder(crtc_state);
+>  }
+>=20=20
+>  void lpt_pch_disable(struct intel_atomic_state *state,
+> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i=
+915/display/intel_vrr.c
+> index 139e8936edc5..396f2f994fa0 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+> @@ -69,9 +69,9 @@ static int intel_vrr_vblank_exit_length(const struct in=
+tel_crtc_state *crtc_stat
+>=20=20
+>  	/* The hw imposes the extra scanline before frame start */
+>  	if (DISPLAY_VER(i915) >=3D 13)
+> -		return crtc_state->vrr.guardband + i915->framestart_delay + 1;
+> +		return crtc_state->vrr.guardband + crtc_state->framestart_delay + 1;
+>  	else
+> -		return crtc_state->vrr.pipeline_full + i915->framestart_delay + 1;
+> +		return crtc_state->vrr.pipeline_full + crtc_state->framestart_delay + =
+1;
+>  }
+>=20=20
+>  int intel_vrr_vmin_vblank_start(const struct intel_crtc_state *crtc_stat=
+e)
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_=
+drv.h
+> index 1c2f4ae4ebf9..f5c249f93dad 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -825,8 +825,6 @@ struct drm_i915_private {
+>  		struct file *mmap_singleton;
+>  	} gem;
+>=20=20
+> -	u8 framestart_delay;
+> -
+>  	/* Window2 specifies time required to program DSB (Window2) in number o=
+f scan lines */
+>  	u8 window2_delay;
+
+--=20
+Jani Nikula, Intel Open Source Graphics Center
