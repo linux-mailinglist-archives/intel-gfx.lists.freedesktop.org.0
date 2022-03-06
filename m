@@ -2,38 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 002CA4CE85D
-	for <lists+intel-gfx@lfdr.de>; Sun,  6 Mar 2022 03:58:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B50A4CE89D
+	for <lists+intel-gfx@lfdr.de>; Sun,  6 Mar 2022 04:52:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E072510E8B9;
-	Sun,  6 Mar 2022 02:58:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 72CC310EB55;
+	Sun,  6 Mar 2022 03:52:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from casper.infradead.org (casper.infradead.org
  [IPv6:2001:8b0:10b:1236::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1394110E8B8;
- Sun,  6 Mar 2022 02:58:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 281A310EB59;
+ Sun,  6 Mar 2022 03:52:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
  References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
  Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=TvYRN1YmUBdHSWPYQwg2K3EE2AkUEhTFgrDPAkH+IiY=; b=mKq4YwMS6eUAxFggJkyGM2x7hn
- C6PrW9vm1cR73JF+afzt0DHevDIgFxF8zX+NMeez5fBEFTChhRgNzjz71qFtB4NPllNdVa/PJHKHA
- sTyZt6GjlkEZ30FyhadWd78j/rNd6vWnWjuX6Rh84K3pLCg2Je1zHkIFf1VDTv2/Eeh3wqt/oEQyX
- UznNY0HjgIGb/bYsVBZhZu9zFIfUu7F48Q8tEEJHDryC+pNpdNViBX8BnpsvkA+FwmuCTl9+vxCCH
- BH8zaYFk9GHzvTXZA+AbTajg5+My6nID+Go5DHMCGTB7EFc3mXzx2e5FHcvkLmgKaFosZfV6fweUl
- 4HJ1/eYg==;
+ bh=9sW6PT9UhN7TdCknrB4vEZzr80Evyo9BiN2TBCQrpu8=; b=mexz5CF+uqowjqVXolKHAmICBZ
+ /gBgallofA7ozgz6jmmxeLDOiLP+ug6bK856a/z+a9w7TUyxkvWlRyWXibD8YaVX9xEhWkvXfvJ0c
+ T9CsFtuhgdywtjyO5X9YgUt7T7PWomuTwyfHCOGFUDiGUHpzGsSie9GdiLq7+5D36BobFZ/yP2NUj
+ qr1wqTzCzqTn0g1ebz0/mAsEBexkspvGujBr22b3rqg8CDfMkfi2+IvRyah//kltQsrveMxB400WD
+ J0XLKsOaVBufmV3UVpDkBZF539qZ0MxKfcyCwprq0N/9p+ZQ6jqDwbiBbdFzFrSEzsOcI1kPbIRAL
+ xGmlkpYw==;
 Received: from willy by casper.infradead.org with local (Exim 4.94.2 #2 (Red
- Hat Linux)) id 1nQh5n-00E3CB-Eu; Sun, 06 Mar 2022 02:57:55 +0000
-Date: Sun, 6 Mar 2022 02:57:55 +0000
+ Hat Linux)) id 1nQhwK-00E56f-PJ; Sun, 06 Mar 2022 03:52:12 +0000
+Date: Sun, 6 Mar 2022 03:52:12 +0000
 From: Matthew Wilcox <willy@infradead.org>
 To: Jarkko Sakkinen <jarkko@kernel.org>
-Message-ID: <YiQjM7LdwoAWpC5L@casper.infradead.org>
+Message-ID: <YiQv7JEBPzgYUTTa@casper.infradead.org>
 References: <20220306021534.83553-1-jarkko@kernel.org>
+ <YiQjM7LdwoAWpC5L@casper.infradead.org> <YiQop71ABWm7hbMy@iki.fi>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220306021534.83553-1-jarkko@kernel.org>
+In-Reply-To: <YiQop71ABWm7hbMy@iki.fi>
 Subject: Re: [Intel-gfx] [PATCH RFC] mm: Add f_ops->populate()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -57,15 +58,26 @@ Cc: Nathaniel McCallum <nathaniel@profian.com>, linux-unionfs@vger.kernel.org,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sun, Mar 06, 2022 at 04:15:33AM +0200, Jarkko Sakkinen wrote:
-> Sometimes you might want to use MAP_POPULATE to ask a device driver to
-> initialize the device memory in some specific manner. SGX driver can use
-> this to request more memory by issuing ENCLS[EAUG] x86 opcode for each
-> page in the address range.
+On Sun, Mar 06, 2022 at 05:21:11AM +0200, Jarkko Sakkinen wrote:
+> On Sun, Mar 06, 2022 at 02:57:55AM +0000, Matthew Wilcox wrote:
+> > On Sun, Mar 06, 2022 at 04:15:33AM +0200, Jarkko Sakkinen wrote:
+> > > Sometimes you might want to use MAP_POPULATE to ask a device driver to
+> > > initialize the device memory in some specific manner. SGX driver can use
+> > > this to request more memory by issuing ENCLS[EAUG] x86 opcode for each
+> > > page in the address range.
+> > > 
+> > > Add f_ops->populate() with the same parameters as f_ops->mmap() and make
+> > > it conditionally called inside call_mmap(). Update call sites
+> > > accodingly.
+> > 
+> > Your device driver has a ->mmap operation.  Why does it need another
+> > one?  More explanation required here.
 > 
-> Add f_ops->populate() with the same parameters as f_ops->mmap() and make
-> it conditionally called inside call_mmap(). Update call sites
-> accodingly.
+> f_ops->mmap() would require an additional parameter, which results
+> heavy refactoring.
+> 
+> struct file_operations has 1125 references in the kernel tree, so I
+> decided to check this way around first. 
 
-Your device driver has a ->mmap operation.  Why does it need another
-one?  More explanation required here.
+Are you saying that your device driver behaves differently if
+MAP_POPULATE is set versus if it isn't?  That seems hideously broken.
