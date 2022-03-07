@@ -1,44 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A1A14D0388
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Mar 2022 16:57:29 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F4EA4D0457
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Mar 2022 17:42:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4AEC610E00F;
-	Mon,  7 Mar 2022 15:57:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C83910E088;
+	Mon,  7 Mar 2022 16:42:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [IPv6:2607:7c80:54:e::133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C549D10E00F;
- Mon,  7 Mar 2022 15:57:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=In-Reply-To:Content-Type:MIME-Version
- :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=WrCk5Zjz4zeQvJI59w3Y1NYye/gptEQDerS0Psr1TZ4=; b=wW7FyJ7wdAgP5ZxLNFEf3eQpn9
- s8zqFBSs7eoLCpygyX9Z4BS+JtlrW3VXFyql7r4copov9R+nc+r3Nnf6PiKouoQ3GnzE/lX4O9lA5
- qtqgL9RKeZTtgw8gRuuv/SFUIU5CglX+vJdOpIkh3XPo2fAv6370VZMHInrLYfgtq0VgKP8mbn98U
- BGM12OyvkgjC+U3Uz3Ql1bFFylM+W9CTN4fhip9qJ9LDDtx5Zwk0+/CZBJZu4TvAonJOfFmJNBQQj
- fG7eq9hrelFEh0pr9otbFYrrr622HUWFXIFB1E0lSVCG7DB/Ig2g5G/VZ49wcOXg1BS2R65TowNqr
- LeKXy8DQ==;
-Received: from hch by bombadil.infradead.org with local (Exim 4.94.2 #2 (Red
- Hat Linux)) id 1nRFjB-000kY3-Ou; Mon, 07 Mar 2022 15:56:53 +0000
-Date: Mon, 7 Mar 2022 07:56:53 -0800
-From: Christoph Hellwig <hch@infradead.org>
-To: Jarkko Sakkinen <jarkko@kernel.org>
-Message-ID: <YiYrRWMp1akXY8Vb@infradead.org>
-References: <20220306053211.135762-1-jarkko@kernel.org>
- <YiSb7tsUEBRGS+HA@casper.infradead.org>
- <YiW4yurDXSifTYUt@infradead.org> <YiYIv9guOgClLKT8@iki.fi>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 70B9210E086;
+ Mon,  7 Mar 2022 16:42:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1646671347; x=1678207347;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=s0NoDX1VtPJKAdo+1GksrlvYVNf+UImED0itv2byKcM=;
+ b=nqpyli8xqEPfqInjq5awl/7V7xSWVAdpBil8kKTNN0l8ktMCGy7hZ62T
+ nFXW3MoW3odzTaCJDQZS5W/GLUEU8rTzpjSf7KOmNd4/R5AxiUzRk5JPo
+ CnQMj9epbTbz8t/ph8/IiH6ffA/5jC0Q5VB6vr+jLpquVL/neqy9LDuk8
+ mWkxUP9M7C3iuVHUD8Bi4kLdI5iZKIdV6rv7i+lKt7bNjUQHNpGQCGQ2G
+ shgBZt+BXCHgI5egA9mc3sp0VlJTbm3WBYGU/MltFIweJKjk9gNifznp+
+ alhsNAiSZl2Q1EaLGurNMraGhHCNq5zCwZAv4WCkKN7G65DeneYZunjxd A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10279"; a="241873520"
+X-IronPort-AV: E=Sophos;i="5.90,162,1643702400"; d="scan'208";a="241873520"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Mar 2022 08:41:46 -0800
+X-IronPort-AV: E=Sophos;i="5.90,162,1643702400"; d="scan'208";a="780382147"
+Received: from aaronmux-mobl.ger.corp.intel.com (HELO [10.252.2.25])
+ ([10.252.2.25])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Mar 2022 08:41:44 -0800
+Message-ID: <78232c15-0d0c-3594-ab59-63560e63eb4e@intel.com>
+Date: Mon, 7 Mar 2022 16:41:42 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YiYIv9guOgClLKT8@iki.fi>
-X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
- bombadil.infradead.org. See http://www.infradead.org/rpr.html
-Subject: Re: [Intel-gfx] [PATCH RFC 0/3] MAP_POPULATE for device memory
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Content-Language: en-GB
+To: Arunpravin <Arunpravin.PaneerSelvam@amd.com>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+References: <20220307143707.3687-1-Arunpravin.PaneerSelvam@amd.com>
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20220307143707.3687-1-Arunpravin.PaneerSelvam@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH] drm: remove min_order BUG_ON check
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,33 +61,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Michal Hocko <mhocko@suse.com>, zhangyiru <zhangyiru3@huawei.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- Dave Hansen <dave.hansen@linux.intel.com>, dri-devel@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>, linux-mm@kvack.org,
- Alexander Mikhalitsyn <alexander.mikhalitsyn@virtuozzo.com>,
- Florian Fainelli <f.fainelli@gmail.com>, linux-unionfs@vger.kernel.org,
- Matthew Wilcox <willy@infradead.org>, codalist@coda.cs.cmu.edu,
- Christoph Hellwig <hch@infradead.org>, Matthew Auld <matthew.auld@intel.com>,
- Vasily Averin <vvs@virtuozzo.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, G@iki.fi, linux-mips@vger.kernel.org,
- Shakeel Butt <shakeelb@google.com>,
- Reinette Chatre <reinette.chatre@intel.com>, linux-sgx@vger.kernel.org,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Nathaniel McCallum <nathaniel@profian.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-kernel@vger.kernel.org,
- linux-fsdevel@vger.kernel.org, Andrew Morton <akpm@linux-foundation.org>,
- Alexey Gladkov <legion@kernel.org>
+Cc: alexander.deucher@amd.com, christian.koenig@amd.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Mar 07, 2022 at 03:29:35PM +0200, Jarkko Sakkinen wrote:
-> So what would you suggest to sort out the issue? I'm happy to go with
-> ioctl if nothing else is acceptable.
+On 07/03/2022 14:37, Arunpravin wrote:
+> place BUG_ON(order < min_order) outside do..while
+> loop as it fails Unigine Heaven benchmark.
+> 
+> Unigine Heaven has buffer allocation requests for
+> example required pages are 161 and alignment request
+> is 128. To allocate the remaining 33 pages, continues
+> the iteration to find the order value which is 5 and
+> when it compares with min_order = 7, enables the
+> BUG_ON(). To avoid this problem, placed the BUG_ON
+> check outside of do..while loop.
+> 
+> Signed-off-by: Arunpravin <Arunpravin.PaneerSelvam@amd.com>
+> ---
+>   drivers/gpu/drm/drm_buddy.c | 3 ++-
+>   1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_buddy.c b/drivers/gpu/drm/drm_buddy.c
+> index 72f52f293249..ed94c56b720f 100644
+> --- a/drivers/gpu/drm/drm_buddy.c
+> +++ b/drivers/gpu/drm/drm_buddy.c
+> @@ -669,10 +669,11 @@ int drm_buddy_alloc_blocks(struct drm_buddy *mm,
+>   	order = fls(pages) - 1;
+>   	min_order = ilog2(min_page_size) - ilog2(mm->chunk_size);
+>   
+> +	BUG_ON(order < min_order);
 
-PLenty of drivers treat all mmaps as if MAP_POPULATE was specified,
-typically by using (io_)remap_pfn_range.  If there any reason to only
-optionally have the pre-fault semantics for sgx?  If not this should
-be really simple.  And if we have a real need for it to be optional
-we'll just need to find a sane way to pass that information to ->mmap.
+Isn't the issue that we are allowing a size that is not aligned to the 
+requested min_page_size? Should we not fix the caller(and throw a normal 
+error here), or perhaps add the round_up() here instead?
+
+i.e if someone does:
+
+alloc_blocks(mm, 0, end, 4096, 1<<16, &blocks, flags);
+
+This will still trigger the BUG_ON() even if we move it out of the loop, 
+AFAICT.
+
+> +
+>   	do {
+>   		order = min(order, (unsigned int)fls(pages) - 1);
+>   		BUG_ON(order > mm->max_order);
+> -		BUG_ON(order < min_order);
+>   
+>   		do {
+>   			if (flags & DRM_BUDDY_RANGE_ALLOCATION)
+> 
+> base-commit: 8025c79350b90e5a8029234d433578f12abbae2b
