@@ -1,47 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A2874D1844
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Mar 2022 13:51:01 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8F044D1849
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Mar 2022 13:51:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E85910E585;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7394A10E59D;
 	Tue,  8 Mar 2022 12:50:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from dfw.source.kernel.org (dfw.source.kernel.org
  [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E2C210F30B;
- Mon,  7 Mar 2022 13:01:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D389210EC5B;
+ Mon,  7 Mar 2022 13:17:36 +0000 (UTC)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 10C6661197;
- Mon,  7 Mar 2022 13:01:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21564C340E9;
- Mon,  7 Mar 2022 13:01:05 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 22A5B611A6;
+ Mon,  7 Mar 2022 13:17:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09884C340E9;
+ Mon,  7 Mar 2022 13:17:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1646658066;
- bh=vNwLmHMPAuTNQ58SyXP5JOCzc1E/QIa9EAucHhxuwk4=;
+ s=k20201202; t=1646659055;
+ bh=KXqVJsDGXLlSnyeaHKWpPIVZqxg9O3xVmH+wFrsgfeg=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=uvdN7XqNAxzEAmE9bN4/uMtzHnmxTF8Bf1x603RX/KNlDIprB9VVaWZhQeHHnpzbB
- L4kxbqOzloAbu6i7BoQuYqHyMOyLIeQm5T/Xe9xRq6c/W5XBudU0rcZiYQpMIqW8K8
- 1un6it52tzYgjHiFXgaZvOMiGyPNX8+j799swQCbH5hFeVmQIpZ6iuDIBfN618OhEW
- E3SyRB41KCkHqiZUuZ0YCU6MdmAWosgy6SdJC1dEwmvD9h3AKYZQWeH4JTR8WfP89z
- OZU/YwJS8GT7u3ZHIoY0Pijc0jpcUbZjNcaA6ewtS9TXcLeg8b87/dA7oNopSl/pXR
- 0BIy9frXh9DtQ==
-Date: Mon, 7 Mar 2022 15:00:25 +0200
+ b=hCpGcO8HZcqQApVVZm6OEvQrrIR4vyEHePNnzVROHw1K1NkFuEfNdTu1I59Pj136m
+ 4rX6fL04mPPpcVfgqfegolGRx6CRsxOiRqFeONVkYWTB6X9EcC5pWRk7rEUGXwdqU6
+ OvEMg+WzhEBC6xQTzvpMuPW0Z7aAedCqClhox8xbo/mIon3gdW3d/6JNZjCYFLY4FS
+ 10pjlBodTW1xrm6ejzkguCe+Ekh4JJCoJJ2mSCIq0lgnb+KYirBLVYOdxv5JfFOaTJ
+ 0Fzo4KQ6CulRfULGVd4l8OZP4WX94xCRchBbHGrVpM8g8sXszWhkjT9Jfz9c+lUM6v
+ 8PJS0P6GeVloQ==
+Date: Mon, 7 Mar 2022 15:16:54 +0200
 From: Jarkko Sakkinen <jarkko@kernel.org>
-To: Andrew Morton <akpm@linux-foundation.org>
-Message-ID: <YiYB6WWz8cbvaAqX@iki.fi>
-References: <20220306032655.97863-1-jarkko@kernel.org>
- <20220306152456.2649b1c56da2a4ce4f487be4@linux-foundation.org>
+To: Matthew Wilcox <willy@infradead.org>
+Message-ID: <YiYFxq87p2WVkZcz@iki.fi>
+References: <20220306053211.135762-1-jarkko@kernel.org>
+ <20220306053211.135762-2-jarkko@kernel.org>
+ <YiSGgCV9u9NglYsM@kroah.com> <YiTpQTM+V6rlDy6G@iki.fi>
+ <YiU5E6qqYAI+WPw9@casper.infradead.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220306152456.2649b1c56da2a4ce4f487be4@linux-foundation.org>
+In-Reply-To: <YiU5E6qqYAI+WPw9@casper.infradead.org>
 X-Mailman-Approved-At: Tue, 08 Mar 2022 12:50:52 +0000
-Subject: Re: [Intel-gfx] [PATCH RFC v2] mm: Add f_ops->populate()
+Subject: Re: [Intel-gfx] [PATCH RFC 1/3] mm: Add f_ops->populate()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,65 +56,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: codalist@telemann.coda.cs.cmu.edu, jaharkes@cs.cmu.edu,
- Nathaniel McCallum <nathaniel@profian.com>, linux-unionfs@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, Dave Hansen <dave.hansen@linux.intel.com>,
- linux-mips@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-mm@kvack.org,
- linux-fsdevel@vger.kernel.org, Reinette Chatre <reinette.chatre@intel.com>,
- linux-sgx@vger.kernel.org
+Cc: zhangyiru <zhangyiru3@huawei.com>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Dave Hansen <dave.hansen@linux.intel.com>, dri-devel@lists.freedesktop.org,
+ Chris Wilson <chris@chris-wilson.co.uk>, linux-mm@kvack.org,
+ Alexander Mikhalitsyn <alexander.mikhalitsyn@virtuozzo.com>,
+ Florian Fainelli <f.fainelli@gmail.com>, linux-unionfs@vger.kernel.org,
+ codalist@coda.cs.cmu.edu, Matthew Auld <matthew.auld@intel.com>,
+ Vasily Averin <vvs@virtuozzo.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, linux-mips@vger.kernel.org,
+ Shakeel Butt <shakeelb@google.com>,
+ Reinette Chatre <reinette.chatre@intel.com>, linux-sgx@vger.kernel.org,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ Nathaniel McCallum <nathaniel@profian.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-kernel@vger.kernel.org,
+ linux-fsdevel@vger.kernel.org, Andrew Morton <akpm@linux-foundation.org>,
+ Alexey Gladkov <legion@kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sun, Mar 06, 2022 at 03:24:56PM -0800, Andrew Morton wrote:
-> On Sun,  6 Mar 2022 05:26:55 +0200 Jarkko Sakkinen <jarkko@kernel.org> wrote:
+On Sun, Mar 06, 2022 at 10:43:31PM +0000, Matthew Wilcox wrote:
+> On Sun, Mar 06, 2022 at 07:02:57PM +0200, Jarkko Sakkinen wrote:
+> > So can I conclude from this that in general having populate available for
+> > device memory is something horrid, or just the implementation path?
 > 
-> > Sometimes you might want to use MAP_POPULATE to ask a device driver to
-> > initialize the device memory in some specific manner. SGX driver can use
-> > this to request more memory by issuing ENCLS[EAUG] x86 opcode for each
-> > page in the address range.
-> 
-> Why is this useful?  Please fully describe the benefit to kernel users.
-> Convince us that the benefit justifies the code churn, maintenance
-> cost and larger kernel footprint.
-> 
-> Do we know of any other drivers which might use this?
+> You haven't even attempted to explain what the problem is you're trying
+> to solve.  You've shown up with some terrible code and said "Hey, is
+> this a good idea".  No, no, it's not.
 
-Brutal honesty: I don't know if any other drivers would use this but
-neither I would not be surprised if they did. The need for this might
-very well be "masked" by ioctl API's.  I was first proposing a ioctl
-for this but Dave suggested to at least try out this route.
+The problem is that in order to include memory to enclave, which is
+essentially a reserved address range processes virtual address space
+there's two steps into it:
 
-> > Add f_ops->populate() with the same parameters as f_ops->mmap() and make
-> > it conditionally called inside call_mmap(). Update call sites
-> > accodingly.
-> 
-> spello
+1. Host side (kernel) does ENCLS[EAUG] to request a new page to be
+   added to the enclave.
+2. Enclave accepts request with ENCLU[EACCEPT] or ENCLU[EACCEPTCOPY].
 
-Thanks, I noticed that but did not want to spam with a new version just
-because of that :-)
+In the current SGX2 patch set this taken care by the page fault
+handler. I.e. the enclave calls ENCLU[EACCEPT] for an empty address
+and the #PF handler then does EAUG for a single page.
 
-> 
-> > -static inline int call_mmap(struct file *file, struct vm_area_struct *vma)
-> > +static inline int call_mmap(struct file *file, struct vm_area_struct *vma, bool do_populate)
-> >  {
-> > -	return file->f_op->mmap(file, vma);
-> > +	int ret = file->f_op->mmap(file, vma);
-> > +
-> > +	if (!ret && do_populate && file->f_op->populate)
-> > +		ret = file->f_op->populate(file, vma);
-> > +
-> > +	return ret;
-> >  }
-> 
-> Should this still be inlined?
+So if you want to process a batch of pages this generates O(n)
+round-trips.
 
-I think it might make sense at least to have call_mmap_populate() so and
-mmap_region_populate() instead of putting that boolean parameter to every
-flow (based on Greg's feedback). But only if this implementation approach
-is used in the first place.
+So if there was a way pre-do a batch of EAUG's, that would allow
+to load data to the enclave without causing page faults happening
+constantly.
 
-As said, I chose to use RFC to pinpoint a bottleneck for us, not claiming
-that this would be the best possible way to work around it.
+One solution for this simply add ioctl:
+
+https://lore.kernel.org/linux-sgx/YiLRBglTEbu8cHP9@iki.fi/T/#m195ec84bf85614a140abeee245c5118c22ace8f3
+
+But in practice when you wanted to use it, you would setup the
+parameters so that they match the mmap() range. So for pratical
+user space API having mmap() take care of this would be much more
+lean option.
 
 BR, Jarkko
