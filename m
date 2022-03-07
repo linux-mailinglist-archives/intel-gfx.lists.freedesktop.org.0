@@ -2,52 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15B454D151C
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Mar 2022 11:49:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D4DED4D1843
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Mar 2022 13:50:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F08D10E888;
-	Tue,  8 Mar 2022 10:49:01 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1626A10E87F;
- Tue,  8 Mar 2022 10:48:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646736540; x=1678272540;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=p1Z+mwMNu6doyIZ+PY/F2NpcypktBPpZyrwE9rUTvVI=;
- b=jo9j/rq4/YnTiPg4hLrFRwFlDBr4ubmpGS9JVESucWti9HHOlAY0X6KV
- sHvMbXY99Et9SmHf74V4KYw4BnzgMpn4VYXl5OKrIaUkXTR0YYV68Iekb
- J/33p5z+OgX8dH0bAQU8z9UfaD6iEOY9TjV+eGbKIOW4oD25emOEnfCFe
- ciReh3ttXZ8pCZWjUj92wv6vW33vHcj2U/b4v6gFo3Yhd0BdFYoO8Ty9o
- M0lXVpxHmxfah8L4F5dDU66DAI7HHSCRDvzR/V8EaJpKiIzXIJ6QOjTKR
- F/D3fmfDtCWCxyRoe/UC7elhaAdf/COgbi55tWoWVjRRN78tYUHNJnUSW g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10279"; a="341086295"
-X-IronPort-AV: E=Sophos;i="5.90,164,1643702400"; d="scan'208";a="341086295"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2022 02:48:59 -0800
-X-IronPort-AV: E=Sophos;i="5.90,164,1643702400"; d="scan'208";a="643615788"
-Received: from acushion-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.29.47])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2022 02:48:49 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: John Harrison <john.c.harrison@intel.com>, Intel-GFX@Lists.FreeDesktop.Org
-In-Reply-To: <c6aeece0-9b12-e135-c991-25793f7640bb@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220225000623.1934438-1-John.C.Harrison@Intel.com>
- <20220225000623.1934438-2-John.C.Harrison@Intel.com>
- <87ilsu2aj1.fsf@intel.com>
- <c6aeece0-9b12-e135-c991-25793f7640bb@intel.com>
-Date: Tue, 08 Mar 2022 12:48:46 +0200
-Message-ID: <87o82g1zzl.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA04010E50C;
+	Tue,  8 Mar 2022 12:50:53 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 99E9610F722;
+ Mon,  7 Mar 2022 11:28:18 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id AA6B3B80FAB;
+ Mon,  7 Mar 2022 11:28:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 232DCC340E9;
+ Mon,  7 Mar 2022 11:28:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1646652494;
+ bh=CoioyM0zIXElo8AmL5lOe9QJ9NofNT4LxKFCkZhNubU=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=SKA3As2Yp0LuIulW1zXgVDONqGP5hbS9VFG+vVYQod0UmHUi6UPA8Y8VxsEutOIxK
+ RdqcQTK2KdDpqkLso/Ze/vknDLOudeZqMzI4IyWs1I1RKkLK9P4P8w6EaAO5sjx6G4
+ Y9jdSiMw8DWfTtAdMHy3mhqsUDbwHqjgPm4WPBVE5pmFou86QdYv7Icu79rkyLMlr3
+ y1FObIg9d+jqzRRs3JF8h6WBEky7RdBwEqh/+KVxkT2O6t/pnHpmZTmzwMpPCJ5g6Y
+ eSn+tbxZFwThOFwyhU36MfvqJjhZ/XfObC59oeVuDQX1k2u5PfI3xt16lzDpGvD12s
+ qH+rdZcT7wO/w==
+Date: Mon, 7 Mar 2022 13:27:33 +0200
+From: Jarkko Sakkinen <jarkko@kernel.org>
+To: Dave Hansen <dave.hansen@intel.com>
+Message-ID: <YiXsJRE8CWOvFNWH@iki.fi>
+References: <20220306032655.97863-1-jarkko@kernel.org>
+ <20220306152456.2649b1c56da2a4ce4f487be4@linux-foundation.org>
+ <c3083144-bfc1-3260-164c-e59b2d110df8@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH v2 1/8] drm/i915/guc: Do not conflate
- lrc_desc with GuC id for registration
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c3083144-bfc1-3260-164c-e59b2d110df8@intel.com>
+X-Mailman-Approved-At: Tue, 08 Mar 2022 12:50:52 +0000
+Subject: Re: [Intel-gfx] [PATCH RFC v2] mm: Add f_ops->populate()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,55 +54,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: DRI-Devel@Lists.FreeDesktop.Org
+Cc: codalist@telemann.coda.cs.cmu.edu, jaharkes@cs.cmu.edu,
+ Nathaniel McCallum <nathaniel@profian.com>, linux-unionfs@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, Dave Hansen <dave.hansen@linux.intel.com>,
+ linux-mips@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-mm@kvack.org,
+ linux-fsdevel@vger.kernel.org, Andrew Morton <akpm@linux-foundation.org>,
+ Reinette Chatre <reinette.chatre@intel.com>, linux-sgx@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 04 Mar 2022, John Harrison <john.c.harrison@intel.com> wrote:
-> On 3/4/2022 03:59, Jani Nikula wrote:
->> On Thu, 24 Feb 2022, John.C.Harrison@Intel.com wrote:
->> There are a plethora of static inlines in the guc .c files, and this
->> adds more. How about just letting the compiler decide what's the best
->> course of action, inline or not? I think hand rolling the inline is a
->> micro optimization that you'd need to justify i.e. show that you're
->> doing a better job than the compiler.
->>
->> The main downsides to using inlines are that you'll miss compiler
->> warnings for unused functions, and it sets an example for people to
->> start using inline more, while they should be an exception.
->>
->> BR,
->> Jani.
->>
->>
->> PS. I also don't much like the likely/unlikely annotations, but that's
->> another can of worms.
-> Technically, this patch isn't adding any new ones. It is just reworking 
-> existing functions in their existing style. So it basically comes under 
-> your last point of people just following the prevailing style because 
-> it's already there.
->
-> I can add a task to the clean-up backlog to remove all mention of 
-> inline. Not sure why you think the (un)likely tags are bad? Again, I 
-> have no particular view either way.
+On Sun, Mar 06, 2022 at 03:41:54PM -0800, Dave Hansen wrote:
+> On 3/6/22 15:24, Andrew Morton wrote:
+> > On Sun,  6 Mar 2022 05:26:55 +0200 Jarkko Sakkinen <jarkko@kernel.org> wrote:
+> > 
+> >> Sometimes you might want to use MAP_POPULATE to ask a device driver to
+> >> initialize the device memory in some specific manner. SGX driver can use
+> >> this to request more memory by issuing ENCLS[EAUG] x86 opcode for each
+> >> page in the address range.
+> > Why is this useful?  Please fully describe the benefit to kernel users.
+> > Convince us that the benefit justifies the code churn, maintenance
+> > cost and larger kernel footprint.
+> 
+> In short: page faults stink.  The core kernel has lots of ways of
+> avoiding page faults like madvise(MADV_WILLNEED) or mmap(MAP_POPULATE).
+>  But, those only work on normal RAM that the core mm manages.
+> 
+> SGX is weird.  SGX memory is managed outside the core mm.  It doesn't
+> have a 'struct page' and get_user_pages() doesn't work on it.  Its VMAs
+> are marked with VM_IO.  So, none of the existing methods for avoiding
+> page faults work on SGX memory.
+> 
+> This essentially helps extend existing "normal RAM" kernel ABIs to work
+> for avoiding faults for SGX too.  SGX users want to enjoy all of the
+> benefits of a delayed allocation policy (better resource use,
+> overcommit, NUMA affinity) but without the cost of millions of faults.
+> 
+> That said, this isn't how I would have implemented it.  I probably would
+> have hooked in to populate_vma_page_range() or its callers.
 
-The (un)likely annotations are similar to static inlines in that they're
-often unjustified micro optimizations. Having plenty of them gives
-people the false impression using them should be the rule rather than
-the exception. And getting them wrong could have a high performance
-penalty. They're certainly not meant for regular error handling.
+The exact implementation path is not driver in this. I'm open for
+better options. The point of these patches is more to show an issue
+rather than solution, and they do carry RFC because of that.
 
-Similar to static inlines, (un)likely have their uses, but they need to
-be used sparingly and the use needs to be justified. For static inlines,
-especially within .c files, just let the compiler do its job. For
-(un)likely, just let the CPU branch predictor do its job.
+Hooking into populate_vma_page_range() does sound like a better idea,
+because then it would be nicely embedded into __mm_populate() and
+other functionality that calls that function.
 
-The link's pretty old, but see also: https://lwn.net/Articles/420019/
+But e.g. in __mm_populate() anything with (VM_IO | VM_PFNMAP) gets
+filtered out and never reach that function.
 
+I don't know unorthodox that'd be but could we perhaps have a VM
+flag for SGX?
 
-BR,
-Jani.
-
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
+BR, Jarkko
