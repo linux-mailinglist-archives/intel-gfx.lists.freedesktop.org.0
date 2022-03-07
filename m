@@ -2,51 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 192104D0824
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Mar 2022 21:08:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 322514D086C
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Mar 2022 21:37:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E414010E164;
-	Mon,  7 Mar 2022 20:08:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E85D710E1C4;
+	Mon,  7 Mar 2022 20:37:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1B15F10E164
- for <intel-gfx@lists.freedesktop.org>; Mon,  7 Mar 2022 20:08:32 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 57A0A10E1B8;
+ Mon,  7 Mar 2022 20:37:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646683712; x=1678219712;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=O/xe+trn6s/cjshiVK9jmqru1jtwWglmIKhBPRMpg4I=;
- b=mR2iD4bkIAzVMota+o9hY+20I4iOtmavjkpT/rpJA1+R/V3cjMSGPe6l
- QvgzqsF4hXjIttkA+3QonCZdpH4UspFTXcVGz1DMr5eoeYUxcya2uzY0h
- /KWCXlngpz09A3b4tHyvD6Tst8G2eOZg/5JE3JiKPe8S3pIOvbozGngTp
- nmIzU0toc3sPhgHjXy31qOPH2OV/U/cGg0zq2qoqg98lglrcrZQ1SdlVO
- OQ/6aXug+xj4ETSJUAj+W5lVek4AHd3WUGuBlD/5eeIwlY+dsh5hieyBw
- ZRAZ3dakgq3AVAsxeMSNlrE1GIWdIv8UMaEw1FCV1IincbbjEowhrLf/g g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10279"; a="252067532"
-X-IronPort-AV: E=Sophos;i="5.90,163,1643702400"; d="scan'208";a="252067532"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Mar 2022 12:08:31 -0800
-X-IronPort-AV: E=Sophos;i="5.90,163,1643702400"; d="scan'208";a="641462809"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
- ([10.165.21.211])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Mar 2022 12:08:31 -0800
-Date: Mon, 7 Mar 2022 12:09:28 -0800
-From: "Navare, Manasi" <manasi.d.navare@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Message-ID: <20220307200928.GB23952@labuser-Z97X-UD5H>
-References: <20220303233222.4698-1-manasi.d.navare@intel.com>
+ t=1646685469; x=1678221469;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=7YRIyF4inKnkv3MNWNjoFoN0at5COmsLi2it4dNdW64=;
+ b=Cyq/uYNqBmYxWv6VIbPe5z2zLHA+W+pcclX/zCDIdjABHsMqvm6gsEJi
+ AyNInvq1pFHerZkuExT1s028MmqyihaF69jC52kjh57/tQRYookVUfdlS
+ BfIsTsNTx/QVLU2dQpyGEhylopLHjTGGrDB+oy9ePp02P2F0W091BI+4o
+ LLoGSOCKqYWWFt9xLMEWwQZt7QqgVoZ//5/vOpNH0hiXoU/fJzYfU45Ji
+ p1W2ixUEkEkmk8/+u0LEuSGTHqDW7ws4cg/d9MD9Aitizwv6WLS9EzmSz
+ +cGuTpALv+Ytv4DUx/IpjYLA+ueXz03XkUhUcoOcutEj01nBuHOWRiLkJ Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10279"; a="235107805"
+X-IronPort-AV: E=Sophos;i="5.90,163,1643702400"; d="scan'208";a="235107805"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Mar 2022 12:37:48 -0800
+X-IronPort-AV: E=Sophos;i="5.90,163,1643702400"; d="scan'208";a="509840692"
+Received: from vkasired-desk2.fm.intel.com ([10.105.128.127])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Mar 2022 12:37:48 -0800
+From: Vivek Kasireddy <vivek.kasireddy@intel.com>
+To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ tvrtko.ursulin@linux.intel.com
+Date: Mon,  7 Mar 2022 12:21:19 -0800
+Message-Id: <20220307202121.389550-1-vivek.kasireddy@intel.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220303233222.4698-1-manasi.d.navare@intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH v7] drm/i915/display/vrr: Reset VRR capable
- property on a long hpd
+Subject: [Intel-gfx] [PATCH v6 0/2] drm/mm: Add an iterator to optimally
+ walk over holes suitable for an allocation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,95 +56,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Ville,
+The first patch is a drm core patch that replaces the for loop in
+drm_mm_insert_node_in_range() with the iterator and would not
+cause any functional changes. The second patch is a i915 driver
+specific patch that also uses the iterator but solves a different
+problem.
 
-Here the VRR set/reset moved to set/unset edid like you suggested.
-Anything else needed here?
+v2:
+- Added a new patch to this series to fix a potential NULL
+  dereference.
+- Fixed a typo associated with the iterator introduced in the
+  drm core patch.
+- Added locking around the snippet in the i915 patch that
+  traverses the GGTT hole nodes.
 
-Manasi
+v3: (Tvrtko)
+- Replaced mutex_lock with mutex_lock_interruptible_nested() in
+  the i915 patch.
 
-On Thu, Mar 03, 2022 at 03:32:22PM -0800, Manasi Navare wrote:
-> With some VRR panels, user can turn VRR ON/OFF on the fly from the panel settings.
-> When VRR is turned OFF ,sends a long HPD to the driver clearing the Ignore MSA bit
-> in the DPCD. Currently the driver parses that onevery HPD but fails to reset
-> the corresponding VRR Capable Connector property.
-> Hence the userspace still sees this as VRR Capable panel which is incorrect.
-> 
-> Fix this by explicitly resetting the connector property.
-> 
-> v2: Reset vrr capable if status == connector_disconnected
-> v3: Use i915 and use bool vrr_capable (Jani Nikula)
-> v4: Move vrr_capable to after update modes call (Jani N)
-> Remove the redundant comment (Jan N)
-> v5: Fixes the regression on older platforms by reseting the VRR
-> only if HAS_VRR
-> v6: Remove the checks from driver, add in drm core before
-> setting VRR prop (Ville)
-> v7: Move VRR set/reset to set/unset_edid (Ville)
-> 
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Fixes: 390a1f8beb87 ("Revert "drm/i915/display/vrr: Reset VRR capable property on a long hpd")
-> Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 17 +++++++++++------
->  1 file changed, 11 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index d6ef33096bb6..1d0f8fc39005 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -4385,13 +4385,20 @@ intel_dp_update_420(struct intel_dp *intel_dp)
->  static void
->  intel_dp_set_edid(struct intel_dp *intel_dp)
->  {
-> +	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
->  	struct intel_connector *connector = intel_dp->attached_connector;
->  	struct edid *edid;
-> +	bool vrr_capable;
->  
->  	intel_dp_unset_edid(intel_dp);
->  	edid = intel_dp_get_edid(intel_dp);
->  	connector->detect_edid = edid;
->  
-> +	vrr_capable = intel_vrr_is_capable(&connector->base);
-> +	drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] VRR capable: %s\n",
-> +		    connector->base.base.id, connector->base.name, str_yes_no(vrr_capable));
-> +	drm_connector_set_vrr_capable_property(&connector->base, vrr_capable);
-> +
->  	intel_dp_update_dfp(intel_dp, edid);
->  	intel_dp_update_420(intel_dp);
->  
-> @@ -4424,6 +4431,9 @@ intel_dp_unset_edid(struct intel_dp *intel_dp)
->  
->  	intel_dp->dfp.ycbcr_444_to_420 = false;
->  	connector->base.ycbcr_420_allowed = false;
-> +
-> +	drm_connector_set_vrr_capable_property(&connector->base,
-> +					       false);
->  }
->  
->  static int
-> @@ -4574,14 +4584,9 @@ static int intel_dp_get_modes(struct drm_connector *connector)
->  	int num_modes = 0;
->  
->  	edid = intel_connector->detect_edid;
-> -	if (edid) {
-> +	if (edid)
->  		num_modes = intel_connector_update_modes(connector, edid);
->  
-> -		if (intel_vrr_is_capable(connector))
-> -			drm_connector_set_vrr_capable_property(connector,
-> -							       true);
-> -	}
-> -
->  	/* Also add fixed mode, which may or may not be present in EDID */
->  	if (intel_dp_is_edp(intel_attached_dp(intel_connector)) &&
->  	    intel_connector->panel.fixed_mode) {
-> -- 
-> 2.19.1
-> 
+v4: (Tvrtko)
+- Dropped the patch added in v2 as it was deemed unnecessary.
+
+v5: (Tvrtko)
+- Fixed yet another typo in the drm core patch: should have
+  passed caller_mode instead of mode to the iterator.
+
+v6: (Tvrtko)
+- Fixed the checkpatch warning that warns about precedence issues.
+
+Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Cc: Nirmoy Das <nirmoy.das@intel.com>
+Cc: Christian KÃ¶nig <christian.koenig@amd.com>
+
+Vivek Kasireddy (2):
+  drm/mm: Add an iterator to optimally walk over holes for an allocation
+    (v6)
+  drm/i915/gem: Don't try to map and fence large scanout buffers (v9)
+
+ drivers/gpu/drm/drm_mm.c        |  32 ++++----
+ drivers/gpu/drm/i915/i915_gem.c | 128 +++++++++++++++++++++++---------
+ include/drm/drm_mm.h            |  36 +++++++++
+ 3 files changed, 145 insertions(+), 51 deletions(-)
+
+-- 
+2.35.1
+
