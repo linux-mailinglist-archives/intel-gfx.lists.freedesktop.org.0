@@ -2,48 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C20754D184B
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Mar 2022 13:51:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E9834D1848
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Mar 2022 13:51:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 377E310E4EB;
-	Tue,  8 Mar 2022 12:51:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D38A10E53C;
+	Tue,  8 Mar 2022 12:50:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ams.source.kernel.org (ams.source.kernel.org
- [IPv6:2604:1380:4601:e00::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D3A5810E00F;
- Mon,  7 Mar 2022 15:58:48 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 61E75B81606;
- Mon,  7 Mar 2022 15:58:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A52D7C340E9;
- Mon,  7 Mar 2022 15:58:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1646668726;
- bh=W5kqratoVSRl9NEd4VE6Iu3BSqv9ulKVQPHP1qdhNvw=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=aurmVE6NZjU7sOJJ+E50h+AIed6RxvrashOmy+xb2DcYubmVUquVyy5I9fekqFNX5
- Cj+DSIerBr9haVVQWprk2CNueZQDWhPWsYbjZnFm5soSe9mGKZABgiP7UB87yme/N4
- 6EPfyNphy7nkrwusx8woJNJVhhRtzd+KdAwnPwTkOb1R7gnVSFeh7a2JW9/ViytEVh
- Q601UbynX2V3G3LMpsywSlFS/RXL1A8v1EyttbFgnIXyJHWxWdXHy8L4t6dm0RnGNZ
- 1nhf2OPJo2RASPa3NwFjwplBGb8ddISaD7ZUdDcGoU3Lc8nvMUP2jl9oHK4F7hlT1g
- hFXST0Agp0K8w==
-Date: Mon, 7 Mar 2022 17:58:05 +0200
-From: Jarkko Sakkinen <jarkko@kernel.org>
-To: Christoph Hellwig <hch@infradead.org>
-Message-ID: <YiYrjRW/Qmoq8c+L@iki.fi>
-References: <20220306053211.135762-1-jarkko@kernel.org>
- <YiSb7tsUEBRGS+HA@casper.infradead.org>
- <YiW4yurDXSifTYUt@infradead.org> <YiYIv9guOgClLKT8@iki.fi>
- <YiYrRWMp1akXY8Vb@infradead.org>
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com
+ [IPv6:2a00:1450:4864:20::42b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8319B10E16A;
+ Mon,  7 Mar 2022 22:00:10 +0000 (UTC)
+Received: by mail-wr1-x42b.google.com with SMTP id u1so25460246wrg.11;
+ Mon, 07 Mar 2022 14:00:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=VrXaIwOZOVtIvy4hHy4AW36uJVE3txcBuUPvIgUQUTk=;
+ b=XHgWXNwqYyjxnOvdpUvHpl/knt8ZquuiELDtEkVC3I6XKXdmxibh9o7cveOY8e3wIU
+ 4fRJhN/LdOpLZhOo0s3YPKnnbKQ65vUu+GxYY39iN5iNKVLm4dh8DL812cdKdLFIs6aR
+ 3VWNN0sxgmGH/zRZVi0F8adSG7gYSL4KQoAKZIlxWF+yQehb6FLp9JFrDiTEZXA6UAKz
+ 3JmY38syMUAr5b5rkhgU6hHoS2w4LEpybbBqWh3WFoJaUmaHMdbqjSaNN+3o8k5S/LO7
+ 6dGGt4W2vCcrgixU4UiPuilZq+eDs6OMGritSRXSUzldpXMrDkj10Y8/hMbq0DCB9xeD
+ NAfg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=VrXaIwOZOVtIvy4hHy4AW36uJVE3txcBuUPvIgUQUTk=;
+ b=jlnizS/MLH4b3QTA9GBnnmmd76LJup/AWrNiXYtPcVsTOkv70xN2eB3aKJxwDsMyaK
+ MwTRveG4/JPq7tPHKfTmF3P/CkvyyjZWQhTVokomvu2YA9Oh8ZQmYUrurJnuRA2uSc/l
+ 8jlN5ZYeHQJI/JnwbSOfGvWJiRSFnNTCWj4se1aBEFJCCtT8dwjhAc1N5py98e8quXBO
+ zYaF3F1ETeqyg0oxNQ6zhCnAAWSKs3u2DTw2DccWEuvsyvrOU/XSA2o+ORw45aZdiFo7
+ 3hg0WtQEz7utpsNBblvtGPSSZp5u+rqrn7uVwmEcmOk9J7aIElVUC0BKN7wQlC8aPZZB
+ xuqA==
+X-Gm-Message-State: AOAM53296JxnpSvqmSW8RqGo7emSf0Vu3dj0znvKVwj52sgB6Xej74Mx
+ fMB5f7ZP/BZbtDpYl+lBxH4=
+X-Google-Smtp-Source: ABdhPJyMRU1RrSDT5zpdVvAkOryRnx+5bU3JVk9GMtpjgNuO6wW51EbQcPQMSpkWh/twLP9jlWsFmA==
+X-Received: by 2002:adf:8063:0:b0:1ef:78e3:330 with SMTP id
+ 90-20020adf8063000000b001ef78e30330mr9940151wrk.424.1646690408993; 
+ Mon, 07 Mar 2022 14:00:08 -0800 (PST)
+Received: from localhost (cpc154979-craw9-2-0-cust193.16-3.cable.virginm.net.
+ [80.193.200.194]) by smtp.gmail.com with ESMTPSA id
+ o12-20020a5d62cc000000b001f048bc25dfsm12124754wrv.67.2022.03.07.14.00.08
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 07 Mar 2022 14:00:08 -0800 (PST)
+From: Colin Ian King <colin.i.king@gmail.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Date: Mon,  7 Mar 2022 22:00:07 +0000
+Message-Id: <20220307220007.162830-1-colin.i.king@gmail.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YiYrRWMp1akXY8Vb@infradead.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 08 Mar 2022 12:50:53 +0000
-Subject: Re: [Intel-gfx] [PATCH RFC 0/3] MAP_POPULATE for device memory
+Subject: [Intel-gfx] [PATCH] drm/i915/dpll: make read-only array div1_vals
+ static const
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,39 +75,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Michal Hocko <mhocko@suse.com>, zhangyiru <zhangyiru3@huawei.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- Dave Hansen <dave.hansen@linux.intel.com>, dri-devel@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>, linux-mm@kvack.org,
- Alexander Mikhalitsyn <alexander.mikhalitsyn@virtuozzo.com>,
- Florian Fainelli <f.fainelli@gmail.com>, linux-unionfs@vger.kernel.org,
- Matthew Wilcox <willy@infradead.org>, codalist@coda.cs.cmu.edu,
- Matthew Auld <matthew.auld@intel.com>, Vasily Averin <vvs@virtuozzo.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, G@iki.fi, linux-mips@vger.kernel.org,
- Shakeel Butt <shakeelb@google.com>,
- Reinette Chatre <reinette.chatre@intel.com>, linux-sgx@vger.kernel.org,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Nathaniel McCallum <nathaniel@profian.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-kernel@vger.kernel.org,
- linux-fsdevel@vger.kernel.org, Andrew Morton <akpm@linux-foundation.org>,
- Alexey Gladkov <legion@kernel.org>
+Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Mar 07, 2022 at 07:56:53AM -0800, Christoph Hellwig wrote:
-> On Mon, Mar 07, 2022 at 03:29:35PM +0200, Jarkko Sakkinen wrote:
-> > So what would you suggest to sort out the issue? I'm happy to go with
-> > ioctl if nothing else is acceptable.
-> 
-> PLenty of drivers treat all mmaps as if MAP_POPULATE was specified,
-> typically by using (io_)remap_pfn_range.  If there any reason to only
-> optionally have the pre-fault semantics for sgx?  If not this should
-> be really simple.  And if we have a real need for it to be optional
-> we'll just need to find a sane way to pass that information to ->mmap.
+Don't populate the read-only array div1_vals on the stack but
+instead make it static const. Also makes the object code a little
+smaller.
 
-Dave, what if mmap() would just unconditionally EAUG after initialization?
+Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
+---
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-It's an option, yes.
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+index 569903d47aea..17668b58b30c 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
++++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+@@ -2759,7 +2759,7 @@ static bool icl_mg_pll_find_divisors(int clock_khz, bool is_dp, bool use_ssc,
+ 				     bool is_dkl)
+ {
+ 	u32 dco_min_freq, dco_max_freq;
+-	int div1_vals[] = {7, 5, 3, 2};
++	static const int div1_vals[] = {7, 5, 3, 2};
+ 	unsigned int i;
+ 	int div2;
+ 
+-- 
+2.35.1
 
-BR, Jarkko
