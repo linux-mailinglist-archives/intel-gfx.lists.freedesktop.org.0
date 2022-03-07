@@ -1,43 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD2D44CF2E9
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Mar 2022 08:48:58 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B60B44CF384
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Mar 2022 09:27:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 11AA510E1D3;
-	Mon,  7 Mar 2022 07:48:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 04B1910E1E6;
+	Mon,  7 Mar 2022 08:27:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [IPv6:2607:7c80:54:e::133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7525110E1D3;
- Mon,  7 Mar 2022 07:48:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=In-Reply-To:Content-Type:MIME-Version
- :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=u44gcPJxldLKcwFv2Kgs/qlvzNfA8B/3/pfeFxePDMc=; b=ka9PRijrZ3eRBw1yItomT14Sqq
- jmBORx4WCv4segJPEOqcAC3tqzYtvC+BUZU4+e3vHCXkSbArBKnX45ei5WNvlf36lcWjyUgzAE7OG
- 1oA20KbtigBeQELHwPKsjqg0DOYHqmH+C8bYJm1QGOnPjx44rkEdJgP72nidrDZW/i/nFGHYMk5sJ
- XS5iV8+/7Zp5yJKt3rpIucmjX76N4zA0MRmAt1xxlFlNsVXNgR3q/FjL5Vu+0O5asOVkTIwmnnVbT
- zBu2SjEeBZ2Q6NXtgxS2ilZzHIYsyxgi3fxgw7eWR6CXDcPj2eTY9YRLOob0H05nk494vP2VOmvp4
- TM7swpKg==;
-Received: from hch by bombadil.infradead.org with local (Exim 4.94.2 #2 (Red
- Hat Linux)) id 1nR86U-00GK0Y-TY; Mon, 07 Mar 2022 07:48:26 +0000
-Date: Sun, 6 Mar 2022 23:48:26 -0800
-From: Christoph Hellwig <hch@infradead.org>
-To: Matthew Wilcox <willy@infradead.org>
-Message-ID: <YiW4yurDXSifTYUt@infradead.org>
-References: <20220306053211.135762-1-jarkko@kernel.org>
- <YiSb7tsUEBRGS+HA@casper.infradead.org>
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B526F10E1E5;
+ Mon,  7 Mar 2022 08:27:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1646641624; x=1678177624;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=a6Xj8KoslCXWQ6DWYsHB6V+nL/OfvOpxkzLN3BNe4sw=;
+ b=MCwoXMRM1Rmz0ms+bMyOwxXyGk44ipx485Hdg5cCWZcoAtpiM8NOvZ9r
+ Weq+oGq63Qzs0nLuOsXnOknV1HLg8XSbuuSyksRED4NVNGOzhanxJNyPk
+ YPMgtqK61SUEfrFLPy5scv0bwCHGdLbXKnuysRft4lKSHbWGF3K9kAQOc
+ qVSmCvvDdWJhFeYXX58PLBFfKxdrXFK9jiGqyMsuSA6Lb0Q5d0GyA5BNk
+ W3eOnfst3oQfdbYvujx/d6lbNblVBqrt1Ql4RuU/sK7qeqSR08LST4I1b
+ 4JyW5AYZhPRLOIvGoi2gzCbFRLXnZ0IElwl9PO68byGrvxHjlHUvc3zMy w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10278"; a="315050496"
+X-IronPort-AV: E=Sophos;i="5.90,161,1643702400"; d="scan'208";a="315050496"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Mar 2022 00:27:04 -0800
+X-IronPort-AV: E=Sophos;i="5.90,161,1643702400"; d="scan'208";a="553064737"
+Received: from jkrzyszt-mobl1.ger.corp.intel.com ([10.213.26.217])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Mar 2022 00:27:01 -0800
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: igt-dev@lists.freedesktop.org
+Date: Mon,  7 Mar 2022 09:26:43 +0100
+Message-Id: <20220307082643.380066-1-janusz.krzysztofik@linux.intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YiSb7tsUEBRGS+HA@casper.infradead.org>
-X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
- bombadil.infradead.org. See http://www.infradead.org/rpr.html
-Subject: Re: [Intel-gfx] [PATCH RFC 0/3] MAP_POPULATE for device memory
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v3 i-g-t] lib/intel_mmio: Fix mmapped resources
+ not unmapped on fini
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,32 +54,178 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Michal Hocko <mhocko@suse.com>, zhangyiru <zhangyiru3@huawei.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- Dave Hansen <dave.hansen@linux.intel.com>, dri-devel@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>, linux-mm@kvack.org,
- Alexander Mikhalitsyn <alexander.mikhalitsyn@virtuozzo.com>,
- Florian Fainelli <f.fainelli@gmail.com>, linux-unionfs@vger.kernel.org,
- codalist@coda.cs.cmu.edu, Matthew Auld <matthew.auld@intel.com>,
- Vasily Averin <vvs@virtuozzo.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, linux-mips@vger.kernel.org,
- Shakeel Butt <shakeelb@google.com>,
- Reinette Chatre <reinette.chatre@intel.com>, linux-sgx@vger.kernel.org,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Nathaniel McCallum <nathaniel@profian.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-kernel@vger.kernel.org,
- Jarkko Sakkinen <jarkko@kernel.org>, linux-fsdevel@vger.kernel.org,
- Andrew Morton <akpm@linux-foundation.org>, Alexey Gladkov <legion@kernel.org>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sun, Mar 06, 2022 at 11:33:02AM +0000, Matthew Wilcox wrote:
-> On Sun, Mar 06, 2022 at 07:32:04AM +0200, Jarkko Sakkinen wrote:
-> > For device memory (aka VM_IO | VM_PFNMAP) MAP_POPULATE does nothing. Allow
-> > to use that for initializing the device memory by providing a new callback
-> > f_ops->populate() for the purpose.
-> 
-> As I said, NAK.
+Commit 5f3cfa485eb4 ("lib: Use safe wrappers around libpciaccess
+initialization functions") took care of not leaking memory allocated by
+pci_system_init() but didn't take care of users potentially attempting to
+reinitialize global data maintained by libpciaccess.  For example,
+intel_register_access_init() mmaps device's PCI BAR0 resource with
+pci_device_map_range() but intel_register_access_fini() doesn't unmap it
+and next call to intel_register_access_init() fails on attempt to mmap it
+again.
 
-Agreed.  This is an amazingly bad interface.
+Fix it, and also provide intel_mmio_unmap_*() counterparts to public
+functions intel_mmio_use_pci_bar() and intel_mmio_use_dump_file().
+
+v2: apply last minute fixes, cached but unfortunately not committed before
+    sending
+v3: use .pci_device_id field content as an indicator of arg initialization
+    via intel_register_access_init(),
+  - improve checks of argument initialization status,
+  - shorten warning messages (Kamil),
+  - don't fill .mmio_size field until initialization succeeds (Kamil)
+
+Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Cc: Kamil Konieczny <kamil.konieczny@linux.intel.com>
+---
+ lib/intel_io.h   |  4 +++
+ lib/intel_mmio.c | 64 +++++++++++++++++++++++++++++++++++++++++++++---
+ 2 files changed, 65 insertions(+), 3 deletions(-)
+
+diff --git a/lib/intel_io.h b/lib/intel_io.h
+index 1cfe4fb6b9..ea2649d9bc 100644
+--- a/lib/intel_io.h
++++ b/lib/intel_io.h
+@@ -49,6 +49,8 @@ struct intel_register_map {
+ 
+ struct intel_mmio_data {
+ 	void *igt_mmio;
++	size_t mmio_size;
++	struct pci_device *dev;
+ 	struct intel_register_map map;
+ 	uint32_t pci_device_id;
+ 	int key;
+@@ -57,7 +59,9 @@ struct intel_mmio_data {
+ 
+ void intel_mmio_use_pci_bar(struct intel_mmio_data *mmio_data,
+ 			    struct pci_device *pci_dev);
++void intel_mmio_unmap_pci_bar(struct intel_mmio_data *mmio_data);
+ void intel_mmio_use_dump_file(struct intel_mmio_data *mmio_data, char *file);
++void intel_mmio_unmap_dump_file(struct intel_mmio_data *mmio_data);
+ 
+ int intel_register_access_init(struct intel_mmio_data *mmio_data,
+ 			       struct pci_device *pci_dev, int safe, int fd);
+diff --git a/lib/intel_mmio.c b/lib/intel_mmio.c
+index 667a69f5aa..d6ce0ee3ea 100644
+--- a/lib/intel_mmio.c
++++ b/lib/intel_mmio.c
+@@ -82,6 +82,8 @@ void *igt_global_mmio;
+  * Sets also up mmio_data->igt_mmio to point at the data contained
+  * in @file. This allows the same code to get reused for dumping and decoding
+  * from running hardware as from register dumps.
++ *
++ * Users are expected to call intel_mmio_unmap_dump_file() after use.
+  */
+ void
+ intel_mmio_use_dump_file(struct intel_mmio_data *mmio_data, char *file)
+@@ -99,11 +101,32 @@ intel_mmio_use_dump_file(struct intel_mmio_data *mmio_data, char *file)
+ 	igt_fail_on_f(mmio_data->igt_mmio == MAP_FAILED,
+ 		      "Couldn't mmap %s\n", file);
+ 
++	mmio_data->mmio_size = st.st_size;
+ 	igt_global_mmio = mmio_data->igt_mmio;
+ 
+ 	close(fd);
+ }
+ 
++/**
++ * intel_mmio_unmap_dump_file:
++ * @mmio_data:  mmio structure for IO operations
++ *
++ * Unmaps a dump file mmapped with intel_mmio_use_dump_file()
++ */
++void intel_mmio_unmap_dump_file(struct intel_mmio_data *mmio_data)
++{
++	if (igt_warn_on_f(mmio_data->dev,
++			  "test bug: arg initialized with intel_mmio_use_pci_bar()\n"))
++		return;
++	if (igt_warn_on_f(!mmio_data->mmio_size,
++			  "test bug: arg not initialized\n"))
++		return;
++
++	igt_global_mmio = NULL;
++	igt_debug_on(munmap(mmio_data->igt_mmio, mmio_data->mmio_size) < 0);
++	mmio_data->mmio_size = 0;
++}
++
+ /**
+  * intel_mmio_use_pci_bar:
+  * @mmio_data:  mmio structure for IO operations
+@@ -112,6 +135,8 @@ intel_mmio_use_dump_file(struct intel_mmio_data *mmio_data, char *file)
+  * Fill a mmio_data stucture with igt_mmio to point at the mmio bar.
+  *
+  * @pci_dev can be obtained from intel_get_pci_device().
++ *
++ * Users are expected to call intel_mmio_unmap_pci_bar() after use.
+  */
+ void
+ intel_mmio_use_pci_bar(struct intel_mmio_data *mmio_data, struct pci_device *pci_dev)
+@@ -141,10 +166,34 @@ intel_mmio_use_pci_bar(struct intel_mmio_data *mmio_data, struct pci_device *pci
+ 				      PCI_DEV_MAP_FLAG_WRITABLE,
+ 				      &mmio_data->igt_mmio);
+ 
+-	igt_global_mmio = mmio_data->igt_mmio;
+-
+ 	igt_fail_on_f(error != 0,
+ 		      "Couldn't map MMIO region\n");
++
++	mmio_data->mmio_size = mmio_size;
++	mmio_data->dev = pci_dev;
++	igt_global_mmio = mmio_data->igt_mmio;
++}
++
++/**
++ * intel_mmio_unmap_pci_bar:
++ * @mmio_data:  mmio structure for IO operations
++ *
++ * Unmaps a PCI BAR region mmapped with intel_mmio_use_pci_bar()
++ */
++void intel_mmio_unmap_pci_bar(struct intel_mmio_data *mmio_data)
++{
++	if (igt_warn_on_f(mmio_data->pci_device_id,
++			  "test bug: arg initialized with intel_register_access_init()\n"))
++		return;
++	if (igt_warn_on_f(!mmio_data->dev,
++			  "test bug: arg not initialized with intel_mmio_use_pci_bar()\n"))
++		return;
++
++	igt_global_mmio = NULL;
++	igt_debug_on(pci_device_unmap_range(mmio_data->dev,
++					    mmio_data->igt_mmio, mmio_data->mmio_size) < 0);
++	mmio_data->dev = NULL;
++	mmio_data->mmio_size = 0;
+ }
+ 
+ static void
+@@ -166,6 +215,8 @@ release_forcewake_lock(int fd)
+  * It also initializes mmio_data->igt_mmio like intel_mmio_use_pci_bar().
+  *
+  * @pci_dev can be obtained from intel_get_pci_device().
++ *
++ * Users are expected to call intel_register_access_fini() after use.
+  */
+ int
+ intel_register_access_init(struct intel_mmio_data *mmio_data, struct pci_device *pci_dev, int safe, int fd)
+@@ -222,8 +273,15 @@ int intel_register_access_needs_fakewake(struct intel_mmio_data *mmio_data)
+ void
+ intel_register_access_fini(struct intel_mmio_data *mmio_data)
+ {
+-	if (mmio_data->key && intel_register_access_needs_wake(mmio_data))
++	if (igt_warn_on_f(!mmio_data->pci_device_id,
++			  "test bug: arg not initialized with intel_register_access_init()\n"))
++		return;
++
++	if (intel_register_access_needs_wake(mmio_data))
+ 		release_forcewake_lock(mmio_data->key);
++
++	mmio_data->pci_device_id = 0;
++	intel_mmio_unmap_pci_bar(mmio_data);
+ }
+ 
+ /**
+-- 
+2.25.1
+
