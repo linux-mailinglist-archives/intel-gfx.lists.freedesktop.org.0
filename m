@@ -2,48 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B47B44D0A6D
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Mar 2022 23:00:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F0D3B4D0A9F
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Mar 2022 23:11:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C20310E15E;
-	Mon,  7 Mar 2022 22:00:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4AD4010E18A;
+	Mon,  7 Mar 2022 22:11:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7406C10E15E
- for <intel-gfx@lists.freedesktop.org>; Mon,  7 Mar 2022 22:00:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646690439; x=1678226439;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=zj+HCNzQfjdcJrmSvYnbK9NeKXnPbXjsp/I0t2NCs60=;
- b=MMBJCYI+bgWPpKpjefVEXYIXgYSG1A826qp7zn304rG68bq/yrGp8KTK
- fOnGm7pPt00TE4UuH6qBieqYjPkiegjywcuLobVzs+MY7JJ4ug4Od4Xuw
- kXy6f8s4AjuXT9dofQZCtNr6xkSu1wl5T1CTxHd+vtTsrrNuntOHxvqS+
- 935S0CfM+uc7KO+sKhHspGvbQFAnTMbjSdFlD18jI84kcMAE8nc9PgQ1o
- kFrJCoi52cAK5Hm0DaAs1MaTuaOT2Wgcoy2Q0KasjbaPaciSQFbVDI5Wi
- NPmCR2VgVwiz8hRg3twePYgDdMMCQGZcN9K8W3k2us7l21t4rpJNPPV3J g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10279"; a="254245975"
-X-IronPort-AV: E=Sophos;i="5.90,163,1643702400"; d="scan'208";a="254245975"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Mar 2022 14:00:32 -0800
-X-IronPort-AV: E=Sophos;i="5.90,163,1643702400"; d="scan'208";a="495211589"
-Received: from huyang1-mobl.amr.corp.intel.com (HELO
- josouza-mobl2.amr.corp.intel.com) ([10.212.9.148])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Mar 2022 14:00:30 -0800
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon,  7 Mar 2022 14:01:14 -0800
-Message-Id: <20220307220114.195268-1-jose.souza@intel.com>
-X-Mailer: git-send-email 2.35.1
+Received: from eu-smtp-delivery-151.mimecast.com
+ (eu-smtp-delivery-151.mimecast.com [185.58.86.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 09EFB10E185
+ for <intel-gfx@lists.freedesktop.org>; Mon,  7 Mar 2022 22:11:29 +0000 (UTC)
+Received: from AcuMS.aculab.com (156.67.243.121 [156.67.243.121]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ uk-mta-213-iFbUxoq8N32Ti0xfCSXC3A-1; Mon, 07 Mar 2022 22:11:23 +0000
+X-MC-Unique: iFbUxoq8N32Ti0xfCSXC3A-1
+Received: from AcuMS.Aculab.com (fd9f:af1c:a25b:0:994c:f5c2:35d6:9b65) by
+ AcuMS.aculab.com (fd9f:af1c:a25b:0:994c:f5c2:35d6:9b65) with Microsoft SMTP
+ Server (TLS) id 15.0.1497.28; Mon, 7 Mar 2022 22:11:19 +0000
+Received: from AcuMS.Aculab.com ([fe80::994c:f5c2:35d6:9b65]) by
+ AcuMS.aculab.com ([fe80::994c:f5c2:35d6:9b65%12]) with mapi id
+ 15.00.1497.028; Mon, 7 Mar 2022 22:11:19 +0000
+From: David Laight <David.Laight@ACULAB.COM>
+To: 'Christoph Hellwig' <hch@infradead.org>, Jarkko Sakkinen
+ <jarkko@kernel.org>
+Thread-Topic: [PATCH RFC 0/3] MAP_POPULATE for device memory
+Thread-Index: AQHYMjv2CAL18nxa1UOLUz+3aRpSlay0etRA
+Date: Mon, 7 Mar 2022 22:11:19 +0000
+Message-ID: <5729d03d6a174da6b66d1534ebdb1127@AcuMS.aculab.com>
+References: <20220306053211.135762-1-jarkko@kernel.org>
+ <YiSb7tsUEBRGS+HA@casper.infradead.org> <YiW4yurDXSifTYUt@infradead.org>
+ <YiYIv9guOgClLKT8@iki.fi> <YiYrRWMp1akXY8Vb@infradead.org>
+In-Reply-To: <YiYrRWMp1akXY8Vb@infradead.org>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.202.205.107]
 MIME-Version: 1.0
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=C51A453 smtp.mailfrom=david.laight@aculab.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: aculab.com
+Content-Language: en-US
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] Revert "drm/i915/edp: Ignore short pulse when
- panel powered off"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH RFC 0/3] MAP_POPULATE for device memory
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,90 +61,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: Michal Hocko <mhocko@suse.com>, zhangyiru <zhangyiru3@huawei.com>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Dave Hansen <dave.hansen@linux.intel.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ "linux-mm@kvack.org" <linux-mm@kvack.org>, Alexander
+ Mikhalitsyn <alexander.mikhalitsyn@virtuozzo.com>, Florian
+ Fainelli <f.fainelli@gmail.com>,
+ "linux-unionfs@vger.kernel.org" <linux-unionfs@vger.kernel.org>,
+ Matthew Wilcox <willy@infradead.org>,
+ "codalist@coda.cs.cmu.edu" <codalist@coda.cs.cmu.edu>,
+ Matthew Auld <matthew.auld@intel.com>, Vasily Averin <vvs@virtuozzo.com>,
+ =?iso-8859-1?Q?Thomas_Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "G@iki.fi" <G@iki.fi>,
+ "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
+ Shakeel Butt <shakeelb@google.com>,
+ Reinette Chatre <reinette.chatre@intel.com>,
+ "linux-sgx@vger.kernel.org" <linux-sgx@vger.kernel.org>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Nathaniel
+ McCallum <nathaniel@profian.com>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-fsdevel@vger.kernel.org" <linux-fsdevel@vger.kernel.org>,
+ Andrew Morton <akpm@linux-foundation.org>, Alexey Gladkov <legion@kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This reverts commit 13ea6db2cf24a797ac8c9922e3079fcb897fd32c.
+From: Christoph Hellwig
+> Sent: 07 March 2022 15:57
+>=20
+> On Mon, Mar 07, 2022 at 03:29:35PM +0200, Jarkko Sakkinen wrote:
+> > So what would you suggest to sort out the issue? I'm happy to go with
+> > ioctl if nothing else is acceptable.
+>=20
+> PLenty of drivers treat all mmaps as if MAP_POPULATE was specified,
+> typically by using (io_)remap_pfn_range.  If there any reason to only
+> optionally have the pre-fault semantics for sgx?  If not this should
+> be really simple.  And if we have a real need for it to be optional
+> we'll just need to find a sane way to pass that information to ->mmap.
 
-This patch complete broke eDP short pulse handling as VDD is
-only enabled when doing aux transactions or when port is disabled.
-Checked on several older kernel versions and that is the behavior
-that i915 always had on VDD.
+Is there any space in vma->vm_flags ?
 
-So all legit short pulses done by all the eDP panels are being
-ignored and no panel interruption errors are being handled.
+That would be better than an extra argument or function.
 
-Still trying to understand why VDD is not always left enabled but
-if it can't, those Sharp panels will need another workaround.
+=09David
 
-Cc: Anshuman Gupta <anshuman.gupta@intel.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Cc: Uma Shankar <uma.shankar@intel.com>
-Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c  |  7 +++----
- drivers/gpu/drm/i915/display/intel_pps.c | 13 -------------
- drivers/gpu/drm/i915/display/intel_pps.h |  1 -
- 3 files changed, 3 insertions(+), 18 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 619546441eae5..8ad5788e5375d 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -4866,13 +4866,12 @@ intel_dp_hpd_pulse(struct intel_digital_port *dig_port, bool long_hpd)
- 	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
- 	struct intel_dp *intel_dp = &dig_port->dp;
- 
--	if (dig_port->base.type == INTEL_OUTPUT_EDP &&
--	    (long_hpd || !intel_pps_have_power(intel_dp))) {
-+	if (long_hpd && dig_port->base.type == INTEL_OUTPUT_EDP) {
- 		/*
--		 * vdd off can generate a long/short pulse on eDP which
-+		 * vdd off can generate a long pulse on eDP which
- 		 * would require vdd on to handle it, and thus we
- 		 * would end up in an endless cycle of
--		 * "vdd off -> long/short hpd -> vdd on -> detect -> vdd off -> ..."
-+		 * "vdd off -> long hpd -> vdd on -> detect -> vdd off -> ..."
- 		 */
- 		drm_dbg_kms(&i915->drm,
- 			    "ignoring %s hpd on eDP [ENCODER:%d:%s]\n",
-diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
-index 9c986e8932f87..724947f57664e 100644
---- a/drivers/gpu/drm/i915/display/intel_pps.c
-+++ b/drivers/gpu/drm/i915/display/intel_pps.c
-@@ -1075,19 +1075,6 @@ static void intel_pps_vdd_sanitize(struct intel_dp *intel_dp)
- 	edp_panel_vdd_schedule_off(intel_dp);
- }
- 
--bool intel_pps_have_power(struct intel_dp *intel_dp)
--{
--	intel_wakeref_t wakeref;
--	bool have_power = false;
 -
--	with_intel_pps_lock(intel_dp, wakeref) {
--		have_power = edp_have_panel_power(intel_dp) &&
--						  edp_have_panel_vdd(intel_dp);
--	}
--
--	return have_power;
--}
--
- static void pps_init_timestamps(struct intel_dp *intel_dp)
- {
- 	intel_dp->pps.panel_power_off_time = ktime_get_boottime();
-diff --git a/drivers/gpu/drm/i915/display/intel_pps.h b/drivers/gpu/drm/i915/display/intel_pps.h
-index fbb47f6f453e4..799439aba6565 100644
---- a/drivers/gpu/drm/i915/display/intel_pps.h
-+++ b/drivers/gpu/drm/i915/display/intel_pps.h
-@@ -37,7 +37,6 @@ void intel_pps_vdd_on(struct intel_dp *intel_dp);
- void intel_pps_on(struct intel_dp *intel_dp);
- void intel_pps_off(struct intel_dp *intel_dp);
- void intel_pps_vdd_off_sync(struct intel_dp *intel_dp);
--bool intel_pps_have_power(struct intel_dp *intel_dp);
- void intel_pps_wait_power_cycle(struct intel_dp *intel_dp);
- 
- void intel_pps_init(struct intel_dp *intel_dp);
--- 
-2.35.1
+Registered Address Lakeside, Bramley Road, Mount Farm, Milton Keynes, MK1 1=
+PT, UK
+Registration No: 1397386 (Wales)
 
