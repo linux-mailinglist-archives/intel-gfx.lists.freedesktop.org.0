@@ -1,54 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 689464CFFE5
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Mar 2022 14:23:44 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84F824D0040
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Mar 2022 14:40:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 89C8910F8AC;
-	Mon,  7 Mar 2022 13:23:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D2ED510E420;
+	Mon,  7 Mar 2022 13:40:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9EDC610F8A9;
- Mon,  7 Mar 2022 13:23:39 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1AEC610E6E6;
+ Mon,  7 Mar 2022 13:40:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646659419; x=1678195419;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=1RMCsJ+InPpUZMDG7TVAgNBuQBu/5FhMXAbQA3lYmWA=;
- b=EdfkzeNFh8MPsQEimKM7l+XsIBvFdbaRTx9zKdkuZuxXJfdyBovPc+RE
- yx/n3YL3SGphZHL56o1zv3jkbvgZiLP4BJqM652aznrJl6u8xoXZTimSJ
- Db/CI9ebXKnfgHtlk40SJLVipjCi0IBJ0kv3R6eHTv/dxeIPO43G1mDY0
- eRPuOk7crbPKsUJmurkVPERWHHjz4gqwdoul5opJlo/C/RAUVI7Us065q
- tLEjc7ilEsYWo17Hrx3N52hOmruw56TBLXmmeOZ1IAo6kwkzsyf9lOPYq
- f/x7rC30pn0kkFLMwyPrj2yrzm61KGryJDhSZd4YWcwEdhpi6GYDpF6eC w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10278"; a="234342367"
-X-IronPort-AV: E=Sophos;i="5.90,162,1643702400"; d="scan'208";a="234342367"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Mar 2022 05:23:39 -0800
-X-IronPort-AV: E=Sophos;i="5.90,162,1643702400"; d="scan'208";a="711103092"
-Received: from jmamzax-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.213.26.201])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Mar 2022 05:23:36 -0800
-Date: Mon, 7 Mar 2022 14:23:30 +0100
-From: Kamil Konieczny <kamil.konieczny@linux.intel.com>
-To: igt-dev@lists.freedesktop.org
-Message-ID: <YiYHUju3mA6wNTGr@kamilkon-DESK1>
-Mail-Followup-To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-References: <20220307082643.380066-1-janusz.krzysztofik@linux.intel.com>
+ t=1646660415; x=1678196415;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=LX1mRjzUQl1Oq5usoOQ+HQ9DNzBd3x2I8OHaXvbweB0=;
+ b=QYwzqSyZRE6697+5ZUmVDTOm1mdcsFdWM1AqB+HvX98KoVPfYpZqjdVx
+ ibYbKiMLMXygsWaSuBLhk1eqepvtkxwqUDTfoOEoUoosXxzzFWuE4WqY5
+ bJ3qBFbkyUhPr0nlP3BOR22ZC0ILjn9OghYX2C9a9iuLJB19Uz9rB95Jg
+ 7ajguEB5bvPXthq1F1TEVZDiunM5OGQcpX2wSALju2RDvh7XZfOy56VjN
+ 29ttNzba6tlz54fDLn8nS0iLpguliJhojOpFWP9oAPquCUEbM/DHd3IZ1
+ ZDgLObMfHOQKn8qW20x9gw9U7bYz8MnvzgTCBtz8tZy1NFQ7BbZ75qB0Z A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10278"; a="251963941"
+X-IronPort-AV: E=Sophos;i="5.90,162,1643702400"; d="scan'208";a="251963941"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Mar 2022 05:40:14 -0800
+X-IronPort-AV: E=Sophos;i="5.90,162,1643702400"; d="scan'208";a="643248079"
+Received: from ramaling-i9x.iind.intel.com ([10.203.144.108])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Mar 2022 05:40:12 -0800
+From: Ramalingam C <ramalingam.c@intel.com>
+To: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>
+Date: Mon,  7 Mar 2022 19:10:32 +0530
+Message-Id: <20220307134038.30525-1-ramalingam.c@intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220307082643.380066-1-janusz.krzysztofik@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH v3 i-g-t] lib/intel_mmio: Fix mmapped
- resources not unmapped on fini
+Subject: [Intel-gfx] [PATCH v3 0/6] drm/i915/ttm: Evict and restore of
+ compressed object
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,202 +56,72 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Hellstrom Thomas <thomas.hellstrom@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>, Chris Wilson <chris@chris-wilson.co.uk>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Janusz,
+On Xe-HP and later devices, we use dedicated compression control
+state (CCS) stored in local memory for each surface, to support
+the 3D and media compression formats.
 
-Dnia 2022-03-07 at 09:26:43 +0100, Janusz Krzysztofik napisał(a):
-> Commit 5f3cfa485eb4 ("lib: Use safe wrappers around libpciaccess
-> initialization functions") took care of not leaking memory allocated by
-> pci_system_init() but didn't take care of users potentially attempting to
-> reinitialize global data maintained by libpciaccess.  For example,
-> intel_register_access_init() mmaps device's PCI BAR0 resource with
-> pci_device_map_range() but intel_register_access_fini() doesn't unmap it
-> and next call to intel_register_access_init() fails on attempt to mmap it
-> again.
-> 
-> Fix it, and also provide intel_mmio_unmap_*() counterparts to public
-> functions intel_mmio_use_pci_bar() and intel_mmio_use_dump_file().
-> 
-> v2: apply last minute fixes, cached but unfortunately not committed before
->     sending
-> v3: use .pci_device_id field content as an indicator of arg initialization
->     via intel_register_access_init(),
->   - improve checks of argument initialization status,
->   - shorten warning messages (Kamil),
->   - don't fill .mmio_size field until initialization succeeds (Kamil)
-> 
-> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-> Cc: Kamil Konieczny <kamil.konieczny@linux.intel.com>
-> ---
->  lib/intel_io.h   |  4 +++
->  lib/intel_mmio.c | 64 +++++++++++++++++++++++++++++++++++++++++++++---
->  2 files changed, 65 insertions(+), 3 deletions(-)
-> 
-> diff --git a/lib/intel_io.h b/lib/intel_io.h
-> index 1cfe4fb6b9..ea2649d9bc 100644
-> --- a/lib/intel_io.h
-> +++ b/lib/intel_io.h
-> @@ -49,6 +49,8 @@ struct intel_register_map {
->  
->  struct intel_mmio_data {
->  	void *igt_mmio;
-> +	size_t mmio_size;
-> +	struct pci_device *dev;
->  	struct intel_register_map map;
->  	uint32_t pci_device_id;
->  	int key;
-> @@ -57,7 +59,9 @@ struct intel_mmio_data {
->  
->  void intel_mmio_use_pci_bar(struct intel_mmio_data *mmio_data,
->  			    struct pci_device *pci_dev);
-> +void intel_mmio_unmap_pci_bar(struct intel_mmio_data *mmio_data);
->  void intel_mmio_use_dump_file(struct intel_mmio_data *mmio_data, char *file);
-> +void intel_mmio_unmap_dump_file(struct intel_mmio_data *mmio_data);
->  
->  int intel_register_access_init(struct intel_mmio_data *mmio_data,
->  			       struct pci_device *pci_dev, int safe, int fd);
-> diff --git a/lib/intel_mmio.c b/lib/intel_mmio.c
-> index 667a69f5aa..d6ce0ee3ea 100644
-> --- a/lib/intel_mmio.c
-> +++ b/lib/intel_mmio.c
-> @@ -82,6 +82,8 @@ void *igt_global_mmio;
->   * Sets also up mmio_data->igt_mmio to point at the data contained
->   * in @file. This allows the same code to get reused for dumping and decoding
->   * from running hardware as from register dumps.
-> + *
-> + * Users are expected to call intel_mmio_unmap_dump_file() after use.
->   */
->  void
->  intel_mmio_use_dump_file(struct intel_mmio_data *mmio_data, char *file)
-> @@ -99,11 +101,32 @@ intel_mmio_use_dump_file(struct intel_mmio_data *mmio_data, char *file)
->  	igt_fail_on_f(mmio_data->igt_mmio == MAP_FAILED,
->  		      "Couldn't mmap %s\n", file);
->  
-> +	mmio_data->mmio_size = st.st_size;
->  	igt_global_mmio = mmio_data->igt_mmio;
->  
->  	close(fd);
->  }
->  
-> +/**
-> + * intel_mmio_unmap_dump_file:
-> + * @mmio_data:  mmio structure for IO operations
-> + *
-> + * Unmaps a dump file mmapped with intel_mmio_use_dump_file()
-> + */
-> +void intel_mmio_unmap_dump_file(struct intel_mmio_data *mmio_data)
-> +{
-> +	if (igt_warn_on_f(mmio_data->dev,
-> +			  "test bug: arg initialized with intel_mmio_use_pci_bar()\n"))
-> +		return;
+The memory required for the CCS of the entire local memory is
+1/256 of the local memory size. So before the kernel
+boot, the required memory is reserved for the CCS data and a
+secure register will be programmed with the CCS base address
 
-Please add a global description about this kind of errors, this
-one is for using unmap when mmio was mmap-ed from other mmap
-type.
+So when we allocate a object in local memory we dont need to explicitly
+allocate the space for ccs data. But when we evict the obj into the smem
+to hold the compression related data along with the obj we need smem
+space of obj_size + (obj_size/256).
 
-> +	if (igt_warn_on_f(!mmio_data->mmio_size,
-> +			  "test bug: arg not initialized\n"))
-> +		return;
+Hence when we create smem for an obj with lmem placement possibility we
+create with the extra space.
 
-Can we replace this with one check igt_global_mmio != NULL ?
-Something like:
+When we are swapping out the local memory obj on flat-ccs capable platform,
+we need to capture the ccs data too along with main meory and we need to
+restore it when we are swapping in the content.
 
-	if (igt_warn_on_f(!igt_global_mmio,
-			  "mmio regs not mmap-ed\n"))
-		return;
+When lmem object is swapped into a smem obj, smem obj will
+have the extra pages required to hold the ccs data corresponding to the
+lmem main memory. So main memory of lmem will be copied into the initial
+pages of the smem and then ccs data corresponding to the main memory
+will be copied to the subsequent pages of smem.
 
-Or should we add this before all other checks in unmap functions
-and keep this additional check ?
+Swapin happens exactly in reverse order. First main memory of lmem is
+restored from the smem's initial pages and the ccs data will be restored
+from the subsequent pages of smem.
 
-> +
-> +	igt_global_mmio = NULL;
-> +	igt_debug_on(munmap(mmio_data->igt_mmio, mmio_data->mmio_size) < 0);
-> +	mmio_data->mmio_size = 0;
-> +}
-> +
->  /**
->   * intel_mmio_use_pci_bar:
->   * @mmio_data:  mmio structure for IO operations
-> @@ -112,6 +135,8 @@ intel_mmio_use_dump_file(struct intel_mmio_data *mmio_data, char *file)
->   * Fill a mmio_data stucture with igt_mmio to point at the mmio bar.
->   *
->   * @pci_dev can be obtained from intel_get_pci_device().
-> + *
-> + * Users are expected to call intel_mmio_unmap_pci_bar() after use.
->   */
->  void
->  intel_mmio_use_pci_bar(struct intel_mmio_data *mmio_data, struct pci_device *pci_dev)
-> @@ -141,10 +166,34 @@ intel_mmio_use_pci_bar(struct intel_mmio_data *mmio_data, struct pci_device *pci
->  				      PCI_DEV_MAP_FLAG_WRITABLE,
->  				      &mmio_data->igt_mmio);
->  
-> -	igt_global_mmio = mmio_data->igt_mmio;
-> -
->  	igt_fail_on_f(error != 0,
->  		      "Couldn't map MMIO region\n");
-> +
-> +	mmio_data->mmio_size = mmio_size;
-> +	mmio_data->dev = pci_dev;
-> +	igt_global_mmio = mmio_data->igt_mmio;
-> +}
-> +
-> +/**
-> + * intel_mmio_unmap_pci_bar:
-> + * @mmio_data:  mmio structure for IO operations
-> + *
-> + * Unmaps a PCI BAR region mmapped with intel_mmio_use_pci_bar()
-> + */
-> +void intel_mmio_unmap_pci_bar(struct intel_mmio_data *mmio_data)
-> +{
-> +	if (igt_warn_on_f(mmio_data->pci_device_id,
-> +			  "test bug: arg initialized with intel_register_access_init()\n"))
-> +		return;
-> +	if (igt_warn_on_f(!mmio_data->dev,
-> +			  "test bug: arg not initialized with intel_mmio_use_pci_bar()\n"))
-> +		return;
-> +
-> +	igt_global_mmio = NULL;
-> +	igt_debug_on(pci_device_unmap_range(mmio_data->dev,
-> +					    mmio_data->igt_mmio, mmio_data->mmio_size) < 0);
-> +	mmio_data->dev = NULL;
-> +	mmio_data->mmio_size = 0;
->  }
->  
->  static void
-> @@ -166,6 +215,8 @@ release_forcewake_lock(int fd)
->   * It also initializes mmio_data->igt_mmio like intel_mmio_use_pci_bar().
->   *
->   * @pci_dev can be obtained from intel_get_pci_device().
-> + *
-> + * Users are expected to call intel_register_access_fini() after use.
->   */
->  int
->  intel_register_access_init(struct intel_mmio_data *mmio_data, struct pci_device *pci_dev, int safe, int fd)
-> @@ -222,8 +273,15 @@ int intel_register_access_needs_fakewake(struct intel_mmio_data *mmio_data)
->  void
->  intel_register_access_fini(struct intel_mmio_data *mmio_data)
->  {
-> -	if (mmio_data->key && intel_register_access_needs_wake(mmio_data))
-> +	if (igt_warn_on_f(!mmio_data->pci_device_id,
-> +			  "test bug: arg not initialized with intel_register_access_init()\n"))
-> +		return;
-> +
-> +	if (intel_register_access_needs_wake(mmio_data))
->  		release_forcewake_lock(mmio_data->key);
-> +
-> +	mmio_data->pci_device_id = 0;
+Extracting and restoring the CCS data is done through a special cmd called
+XY_CTRL_SURF_COPY_BLT
 
-Here we should check other conditions so no warn triggers in unmap_pci_bar
-or make the messages generic (and document it in comments at beggining)
-or maybe make helper with no checks for unmap_pci_bar.
+v3:
+  Fast_Clear_0 is used for clearing the ccs data on obj allocation [Thomas]
+  Migration of main memory and ccs data are done in single request [Thomas]
+  Small optimization patch is added for the migration loop
+  CCS clearing is split into two patches.
 
-> +	intel_mmio_unmap_pci_bar(mmio_data);
->  }
->  
->  /**
-> -- 
-> 2.25.1
-> 
+Test-with: 20220307121042.23287-4-ramalingam.c@intel.com
+
+Ramalingam C (6):
+  drm/i915/gt: Use XY_FASR_COLOR_BLT to clear obj on graphics ver 12+
+  drm/i915/gt: Clear compress metadata for Flat-ccs objects
+  drm/ttm: Add a parameter to add extra pages into ttm_tt
+  drm/i915/gem: Add extra pages in ttm_tt for ccs data
+  drm/i915/gt: Optimize the migration loop
+  drm/i915/migrate: Evict and restore the flatccs capable lmem obj
+
+ drivers/gpu/drm/drm_gem_vram_helper.c        |   2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.c      |  23 +-
+ drivers/gpu/drm/i915/gt/intel_gpu_commands.h |  23 ++
+ drivers/gpu/drm/i915/gt/intel_migrate.c      | 390 +++++++++++++++++--
+ drivers/gpu/drm/qxl/qxl_ttm.c                |   2 +-
+ drivers/gpu/drm/ttm/ttm_agp_backend.c        |   2 +-
+ drivers/gpu/drm/ttm/ttm_tt.c                 |  12 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c   |   2 +-
+ include/drm/ttm/ttm_tt.h                     |   4 +-
+ 9 files changed, 421 insertions(+), 39 deletions(-)
+
+-- 
+2.20.1
+
