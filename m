@@ -2,46 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8F044D1849
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Mar 2022 13:51:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 835364D1847
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Mar 2022 13:51:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7394A10E59D;
-	Tue,  8 Mar 2022 12:50:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE6E710E511;
+	Tue,  8 Mar 2022 12:50:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from dfw.source.kernel.org (dfw.source.kernel.org
  [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D389210EC5B;
- Mon,  7 Mar 2022 13:17:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9DA1D10F8BB;
+ Mon,  7 Mar 2022 13:26:53 +0000 (UTC)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 22A5B611A6;
- Mon,  7 Mar 2022 13:17:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09884C340E9;
- Mon,  7 Mar 2022 13:17:35 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 043D96122C;
+ Mon,  7 Mar 2022 13:26:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4D7FC340E9;
+ Mon,  7 Mar 2022 13:26:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1646659055;
- bh=KXqVJsDGXLlSnyeaHKWpPIVZqxg9O3xVmH+wFrsgfeg=;
+ s=k20201202; t=1646659612;
+ bh=qX81leV8bx9GvO9cEY2kcfusSYlXGTfvKVJTjhs6u1k=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=hCpGcO8HZcqQApVVZm6OEvQrrIR4vyEHePNnzVROHw1K1NkFuEfNdTu1I59Pj136m
- 4rX6fL04mPPpcVfgqfegolGRx6CRsxOiRqFeONVkYWTB6X9EcC5pWRk7rEUGXwdqU6
- OvEMg+WzhEBC6xQTzvpMuPW0Z7aAedCqClhox8xbo/mIon3gdW3d/6JNZjCYFLY4FS
- 10pjlBodTW1xrm6ejzkguCe+Ekh4JJCoJJ2mSCIq0lgnb+KYirBLVYOdxv5JfFOaTJ
- 0Fzo4KQ6CulRfULGVd4l8OZP4WX94xCRchBbHGrVpM8g8sXszWhkjT9Jfz9c+lUM6v
- 8PJS0P6GeVloQ==
-Date: Mon, 7 Mar 2022 15:16:54 +0200
+ b=EC5A4Xv6QJzgcsYzCWZkTnri1S1yMA6bREkS5X2l9zN2F1BasfM3p9xw1HQ5LfMcP
+ Nwtut30wUo1NePVEIVCcgq6s0teloneCRYm3xr9DLbDZUahN5RvHxiqHLLp2j1kgWE
+ SnJUZO1FhecuEYalCzLn+5OK2E+6s07YlZ1YRsy9+eY7jdeC76jyH/Yz3Ie2bmIRIR
+ GblNgqmdg0SQr5GjqMSzE8Sc8CpWRwT4T0PJp+RCi9fKYhZYMb6/ZlLkVIA1MtvFCj
+ 2kVaAxYDvdR3laIZVSikufQ4LXJsMAB/Spv2b3PZVzr+4T2DD0EVIelk6vWCBOcCid
+ aVATXTZ8VVvmQ==
+Date: Mon, 7 Mar 2022 15:26:11 +0200
 From: Jarkko Sakkinen <jarkko@kernel.org>
 To: Matthew Wilcox <willy@infradead.org>
-Message-ID: <YiYFxq87p2WVkZcz@iki.fi>
+Message-ID: <YiYH88wJQzCMvSPC@iki.fi>
 References: <20220306053211.135762-1-jarkko@kernel.org>
  <20220306053211.135762-2-jarkko@kernel.org>
  <YiSGgCV9u9NglYsM@kroah.com> <YiTpQTM+V6rlDy6G@iki.fi>
- <YiU5E6qqYAI+WPw9@casper.infradead.org>
+ <YiU5E6qqYAI+WPw9@casper.infradead.org> <YiYFxq87p2WVkZcz@iki.fi>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <YiU5E6qqYAI+WPw9@casper.infradead.org>
+In-Reply-To: <YiYFxq87p2WVkZcz@iki.fi>
 X-Mailman-Approved-At: Tue, 08 Mar 2022 12:50:52 +0000
 Subject: Re: [Intel-gfx] [PATCH RFC 1/3] mm: Add f_ops->populate()
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -75,41 +75,50 @@ Cc: zhangyiru <zhangyiru3@huawei.com>, Daniel Vetter <daniel.vetter@ffwll.ch>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sun, Mar 06, 2022 at 10:43:31PM +0000, Matthew Wilcox wrote:
-> On Sun, Mar 06, 2022 at 07:02:57PM +0200, Jarkko Sakkinen wrote:
-> > So can I conclude from this that in general having populate available for
-> > device memory is something horrid, or just the implementation path?
+On Mon, Mar 07, 2022 at 03:16:57PM +0200, Jarkko Sakkinen wrote:
+> On Sun, Mar 06, 2022 at 10:43:31PM +0000, Matthew Wilcox wrote:
+> > On Sun, Mar 06, 2022 at 07:02:57PM +0200, Jarkko Sakkinen wrote:
+> > > So can I conclude from this that in general having populate available for
+> > > device memory is something horrid, or just the implementation path?
+> > 
+> > You haven't even attempted to explain what the problem is you're trying
+> > to solve.  You've shown up with some terrible code and said "Hey, is
+> > this a good idea".  No, no, it's not.
 > 
-> You haven't even attempted to explain what the problem is you're trying
-> to solve.  You've shown up with some terrible code and said "Hey, is
-> this a good idea".  No, no, it's not.
+> The problem is that in order to include memory to enclave, which is
+> essentially a reserved address range processes virtual address space
+> there's two steps into it:
+> 
+> 1. Host side (kernel) does ENCLS[EAUG] to request a new page to be
+>    added to the enclave.
+> 2. Enclave accepts request with ENCLU[EACCEPT] or ENCLU[EACCEPTCOPY].
+> 
+> In the current SGX2 patch set this taken care by the page fault
+> handler. I.e. the enclave calls ENCLU[EACCEPT] for an empty address
+> and the #PF handler then does EAUG for a single page.
+> 
+> So if you want to process a batch of pages this generates O(n)
+> round-trips.
+> 
+> So if there was a way pre-do a batch of EAUG's, that would allow
+> to load data to the enclave without causing page faults happening
+> constantly.
+> 
+> One solution for this simply add ioctl:
+> 
+> https://lore.kernel.org/linux-sgx/YiLRBglTEbu8cHP9@iki.fi/T/#m195ec84bf85614a140abeee245c5118c22ace8f3
+> 
+> But in practice when you wanted to use it, you would setup the
+> parameters so that they match the mmap() range. So for pratical
+> user space API having mmap() take care of this would be much more
+> lean option.
 
-The problem is that in order to include memory to enclave, which is
-essentially a reserved address range processes virtual address space
-there's two steps into it:
+For something like Graphene [1] the lazy #PF based option is probably
+a way to go. For wasm runtime that we're doing in Enarx [2] we get better
+performance by having something like this. I.e. we most of the time take
+as much as we use.
 
-1. Host side (kernel) does ENCLS[EAUG] to request a new page to be
-   added to the enclave.
-2. Enclave accepts request with ENCLU[EACCEPT] or ENCLU[EACCEPTCOPY].
-
-In the current SGX2 patch set this taken care by the page fault
-handler. I.e. the enclave calls ENCLU[EACCEPT] for an empty address
-and the #PF handler then does EAUG for a single page.
-
-So if you want to process a batch of pages this generates O(n)
-round-trips.
-
-So if there was a way pre-do a batch of EAUG's, that would allow
-to load data to the enclave without causing page faults happening
-constantly.
-
-One solution for this simply add ioctl:
-
-https://lore.kernel.org/linux-sgx/YiLRBglTEbu8cHP9@iki.fi/T/#m195ec84bf85614a140abeee245c5118c22ace8f3
-
-But in practice when you wanted to use it, you would setup the
-parameters so that they match the mmap() range. So for pratical
-user space API having mmap() take care of this would be much more
-lean option.
+[1] https://github.com/gramineproject/graphene
+[2] https://enarx.dev/
 
 BR, Jarkko
