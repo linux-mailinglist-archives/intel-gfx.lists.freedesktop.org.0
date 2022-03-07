@@ -2,82 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 906964CF9AA
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Mar 2022 11:12:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2ABAC4CFB24
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Mar 2022 11:32:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C4EBA10F114;
-	Mon,  7 Mar 2022 10:12:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E9B510F386;
+	Mon,  7 Mar 2022 10:32:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC1C010F115
- for <intel-gfx@lists.freedesktop.org>; Mon,  7 Mar 2022 10:12:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1646647970;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=EAtJPNtZqQT+pzIC8Y0yY8ijMFQMxHJn+7uAlJm9E2A=;
- b=Ap5JrlyFIm6Nqu766DUOeEhTHSDPQeURKKCN6Ik52vDoek/MTZxZZcQ5++BWaq+FEWfjM9
- jocsfvYWMN02jbIIc3X8XRmnCfAMdNGmv+cr+Dskh3+qyy2SAtU5R2vx4QYJ3lOayD3M6D
- y/JDT8AhCYNIaRQRmMKmueuXMFUgeTY=
-Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com
- [209.85.221.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-663-GcUM-z6KNsquyplOoGkE-g-1; Mon, 07 Mar 2022 05:12:47 -0500
-X-MC-Unique: GcUM-z6KNsquyplOoGkE-g-1
-Received: by mail-wr1-f71.google.com with SMTP id
- z1-20020adfec81000000b001f1f7e7ec99so394235wrn.17
- for <intel-gfx@lists.freedesktop.org>; Mon, 07 Mar 2022 02:12:47 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:to:cc:references:from:organization:in-reply-to
- :content-transfer-encoding;
- bh=EAtJPNtZqQT+pzIC8Y0yY8ijMFQMxHJn+7uAlJm9E2A=;
- b=2YSVXr+yxSWURLs/kPljUfJiiuMDt2arGB6ufVlBM4JwVRx+2suVlN8WxvSdYLKU1D
- fsXxYpz8VfFsnf7kSAIUFTGlePQqG8SN6rOEUv7i5++Nt26w1+4dy/+xnT2WJwpVfRQH
- n8Ck55D4jHhSL63ipSITtNxRw4Z46ffs7lO8hhRpBxqTR1wcmmk+gVTtH47OZZhpGVNh
- RIJmFZU+c3PY/88tiAM6OQq0I3/dBTUW8DpxlEtlASqFcvU5w6XeuXxQlRRXoY3XjOL/
- Do/44jJNmnLObtODcybL01ikW97dPQEMHkcTgKc/7vzjt6moUiwar6Kl7OEm6hNiRTQZ
- y15g==
-X-Gm-Message-State: AOAM530s/GdWBniX8w3KuNYZ0lHbC2QKWqzKqJgFhfupa+rm35v+A+Av
- hGFU6rRe/xywVhIYqpR8aA0qqvGTND3QMhPbv8EcDISVC4MkBPJS0tdMRkJN0k3UrpKwodddedt
- INbf5ZtBVvFWrtLlrE/R5zGxZrZgv
-X-Received: by 2002:a5d:6046:0:b0:1f0:4973:142f with SMTP id
- j6-20020a5d6046000000b001f04973142fmr7674916wrt.538.1646647966511; 
- Mon, 07 Mar 2022 02:12:46 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJwEV99RC6J+Vin5f1sKjrk/pcIneCd29UN8hGV1eMibccSf0NvkVF1D5zaL4pxEGhCcclmMGQ==
-X-Received: by 2002:a5d:6046:0:b0:1f0:4973:142f with SMTP id
- j6-20020a5d6046000000b001f04973142fmr7674887wrt.538.1646647966292; 
- Mon, 07 Mar 2022 02:12:46 -0800 (PST)
-Received: from ?IPV6:2003:cb:c705:1e00:8d67:f75a:a8ae:dc02?
- (p200300cbc7051e008d67f75aa8aedc02.dip0.t-ipconnect.de.
- [2003:cb:c705:1e00:8d67:f75a:a8ae:dc02])
- by smtp.gmail.com with ESMTPSA id
- bg18-20020a05600c3c9200b0037c2ef07493sm14954074wmb.3.2022.03.07.02.12.44
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 07 Mar 2022 02:12:45 -0800 (PST)
-Message-ID: <d6b09f23-f470-c119-8d3e-7d72a3448b64@redhat.com>
-Date: Mon, 7 Mar 2022 11:12:44 +0100
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B649510F37D;
+ Mon,  7 Mar 2022 10:32:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1646649159; x=1678185159;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=madTlTD3EaHL4FiSZYAPU7ws9xLb4mftuls5lT0bPaw=;
+ b=lGqFuhxq0EgsKzc88+J8kBVZyYPkd/OnQCNzupuUfvk6sm0jOjGefL4P
+ NSg6A62mvVhcONJ+/gmTlr7gJpup906jdIzsV1/c3Vy90uXWU7J+dqfVq
+ mAnWlkXfRtjkUJBRssfVdVY7hq9S0EjPj8yRFyfa9/hq+LRc48xVs3mOy
+ n8ycqEiTpnlTTtfk4dcb9YjaMhRpmGRUEH6iEU96Im7XSmBmi51Ri659x
+ eURphFY3701eAGme2lZAtcE14GvIh885XeMhR/gSngVhQEYksC5lLlvJ7
+ gsQLGiQ0jxC2Ul+OW/CLPK8ZVrS9clSjpHy2q/5BiZMfImq19msWLDg+p Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10278"; a="340791172"
+X-IronPort-AV: E=Sophos;i="5.90,161,1643702400"; d="scan'208";a="340791172"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Mar 2022 02:32:39 -0800
+X-IronPort-AV: E=Sophos;i="5.90,161,1643702400"; d="scan'208";a="780279719"
+Received: from aaronmux-mobl.ger.corp.intel.com (HELO [10.252.2.25])
+ ([10.252.2.25])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Mar 2022 02:32:38 -0800
+Message-ID: <ebfc9db8-e7b3-bb01-e96e-0b37f047bcd2@intel.com>
+Date: Mon, 7 Mar 2022 10:32:36 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-To: Jarkko Sakkinen <jarkko@kernel.org>, linux-mm@kvack.org
-References: <20220306053211.135762-1-jarkko@kernel.org>
-From: David Hildenbrand <david@redhat.com>
-Organization: Red Hat
-In-Reply-To: <20220306053211.135762-1-jarkko@kernel.org>
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=david@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH RFC 0/3] MAP_POPULATE for device memory
+Content-Language: en-GB
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+References: <20220304172333.991778-1-matthew.auld@intel.com>
+ <20220304172333.991778-8-matthew.auld@intel.com> <YiJpkwFRUHIAoh0F@intel.com>
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <YiJpkwFRUHIAoh0F@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH 7/8] drm/i915: fixup the initial fb base on
+ DG1
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,43 +61,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Michal Hocko <mhocko@suse.com>, zhangyiru <zhangyiru3@huawei.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- Dave Hansen <dave.hansen@linux.intel.com>, dri-devel@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>,
- Alexander Mikhalitsyn <alexander.mikhalitsyn@virtuozzo.com>,
- Florian Fainelli <f.fainelli@gmail.com>, linux-unionfs@vger.kernel.org,
- codalist@coda.cs.cmu.edu, Matthew Auld <matthew.auld@intel.com>,
- Vasily Averin <vvs@virtuozzo.com>,
- =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, linux-mips@vger.kernel.org,
- Shakeel Butt <shakeelb@google.com>,
- Reinette Chatre <reinette.chatre@intel.com>, linux-sgx@vger.kernel.org,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Nathaniel McCallum <nathaniel@profian.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-kernel@vger.kernel.org,
- linux-fsdevel@vger.kernel.org, Andrew Morton <akpm@linux-foundation.org>,
- Alexey Gladkov <legion@kernel.org>
+Cc: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 06.03.22 06:32, Jarkko Sakkinen wrote:
-> For device memory (aka VM_IO | VM_PFNMAP) MAP_POPULATE does nothing. Allow
-> to use that for initializing the device memory by providing a new callback
-> f_ops->populate() for the purpose.
+On 04/03/2022 19:33, Ville Syrjälä wrote:
+> On Fri, Mar 04, 2022 at 05:23:32PM +0000, Matthew Auld wrote:
+>> The offset we get looks to be the exact start of DSM, but the
+>> inital_plane_vma expects the address to be relative.
+>>
+>> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+>> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+>> ---
+>>   .../drm/i915/display/intel_plane_initial.c    | 22 +++++++++++++++----
+>>   1 file changed, 18 insertions(+), 4 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_plane_initial.c b/drivers/gpu/drm/i915/display/intel_plane_initial.c
+>> index f797fcef18fc..b39d3a8dfe45 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_plane_initial.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_plane_initial.c
+>> @@ -56,10 +56,24 @@ initial_plane_vma(struct drm_i915_private *i915,
+>>   	if (!mem || plane_config->size == 0)
+>>   		return NULL;
+>>   
+>> -	base = round_down(plane_config->base,
+>> -			  I915_GTT_MIN_ALIGNMENT);
+>> -	size = round_up(plane_config->base + plane_config->size,
+>> -			mem->min_page_size);
+>> +	base = plane_config->base;
+>> +	if (IS_DGFX(i915)) {
+>> +		/*
+>> +		 * On discrete the base address should be somewhere in LMEM, but
+>> +		 * depending on the size of LMEM the base address might
+>> +		 * intersect with the start of DSM, like on DG1, in which case
+>> +		 * we need the relative address. In such cases we might also
+>> +		 * need to choose between inital fb vs fbc, if space is limited.
+>> +		 *
+>> +		 * On future discrete HW, like DG2, we should be able to just
+>> +		 * allocate directly from LMEM, due to larger LMEM size.
+>> +		 */
+>> +		if (base >= i915->dsm.start)
+>> +			base -= i915->dsm.start;
 > 
-> SGX patches are provided to show the callback in context.
+> Subsequent code expects the object to actually be inside stolen.
+> If that is not the case we should just give up.
+
+Thanks for taking a look at this. Is that subsequent code outside 
+initial_plane_vma()? In the next patch this is now using LMEM directly 
+for dg2. Would that blow up somewhere else?
+
 > 
-> An obvious alternative is a ioctl but it is less elegant and requires
-> two syscalls (mmap + ioctl) per memory range, instead of just one
-> (mmap).
+> The fact that we fail to confirm any of that on integrated
+> parts has always bugged me, but not enough to actually do
+> anything about it. Such a check would be somewhat more involved
+> since we'd have to look at the PTEs. But on discrete sounds like
+> we can get away with a trivial check.
 
-What about extending MADV_POPULATE_READ | MADV_POPULATE_WRITE to support
-VM_IO | VM_PFNMAP (as well?) ?
+Which PTEs? Is this for the below GGTT bind? I would have assumed that 
+the create_at/for_preallocated would simply refuse to allocate the pages 
+if the requested range is outside the regions usable range? Or maybe 
+there is more going on behind the scenes here?
 
-
--- 
-Thanks,
-
-David / dhildenb
-
+> 
+>> +	}
+>> +
+>> +	size = roundup(base + plane_config->size, mem->min_page_size);
+>> +	base = round_down(base, I915_GTT_MIN_ALIGNMENT);
+>>   	size -= base;
+>>   
+>>   	/*
+>> -- 
+>> 2.34.1
+> 
