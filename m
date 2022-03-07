@@ -1,47 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B60B44CF384
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Mar 2022 09:27:07 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51E594CF53A
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Mar 2022 10:26:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 04B1910E1E6;
-	Mon,  7 Mar 2022 08:27:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5199610EB02;
+	Mon,  7 Mar 2022 09:26:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B526F10E1E5;
- Mon,  7 Mar 2022 08:27:04 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 727FA10EB02
+ for <intel-gfx@lists.freedesktop.org>; Mon,  7 Mar 2022 09:26:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646641624; x=1678177624;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=a6Xj8KoslCXWQ6DWYsHB6V+nL/OfvOpxkzLN3BNe4sw=;
- b=MCwoXMRM1Rmz0ms+bMyOwxXyGk44ipx485Hdg5cCWZcoAtpiM8NOvZ9r
- Weq+oGq63Qzs0nLuOsXnOknV1HLg8XSbuuSyksRED4NVNGOzhanxJNyPk
- YPMgtqK61SUEfrFLPy5scv0bwCHGdLbXKnuysRft4lKSHbWGF3K9kAQOc
- qVSmCvvDdWJhFeYXX58PLBFfKxdrXFK9jiGqyMsuSA6Lb0Q5d0GyA5BNk
- W3eOnfst3oQfdbYvujx/d6lbNblVBqrt1Ql4RuU/sK7qeqSR08LST4I1b
- 4JyW5AYZhPRLOIvGoi2gzCbFRLXnZ0IElwl9PO68byGrvxHjlHUvc3zMy w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10278"; a="315050496"
-X-IronPort-AV: E=Sophos;i="5.90,161,1643702400"; d="scan'208";a="315050496"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Mar 2022 00:27:04 -0800
-X-IronPort-AV: E=Sophos;i="5.90,161,1643702400"; d="scan'208";a="553064737"
-Received: from jkrzyszt-mobl1.ger.corp.intel.com ([10.213.26.217])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Mar 2022 00:27:01 -0800
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: igt-dev@lists.freedesktop.org
-Date: Mon,  7 Mar 2022 09:26:43 +0100
-Message-Id: <20220307082643.380066-1-janusz.krzysztofik@linux.intel.com>
-X-Mailer: git-send-email 2.25.1
+ t=1646645171; x=1678181171;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=VQu8YpYJAZQDTr3FB2ur6/DCCSBUZwFWcE6WyRfT1bI=;
+ b=iciBL5DbEJYbqcQ3pkORcK5nEJt20fODvp8SszA0lJEAocRLHeNi3fjX
+ W+C1N4TksQy26NDftKKygPnv3d+34F3vAnYCwHCiU4tPE06MMagXJZEJz
+ x0PUP5crbmQ6xoEJ/dssu6PfJVawWYg6EwJuWxrpQUrpOcUyeFawx6eJ5
+ TgbgGPuxxYmoX/HECP8WY0g+IKgslR6JfNMG7+y1/PmsPNnXXkogmaZ3z
+ rrYUIyXA4ahv2G+1/xGp26AKVJiQ+KIL6pYIDpdJh9bZbiRNruq3PRXdQ
+ 7zeAMFM79A1VECF4MQBGd9OlL2ektV9rofGLJv6TVmIcB8huzFrj2naLl w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10278"; a="340777795"
+X-IronPort-AV: E=Sophos;i="5.90,161,1643702400"; d="scan'208";a="340777795"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Mar 2022 01:26:10 -0800
+X-IronPort-AV: E=Sophos;i="5.90,161,1643702400"; d="scan'208";a="512613726"
+Received: from hazimham-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.27.252])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Mar 2022 01:26:09 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+In-Reply-To: <YiIxCtz1GjOXpfNn@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220304101426.1891347-1-jani.nikula@intel.com>
+ <20220304101426.1891347-2-jani.nikula@intel.com>
+ <YiIxCtz1GjOXpfNn@intel.com>
+Date: Mon, 07 Mar 2022 11:26:01 +0200
+Message-ID: <87fsnu2jx2.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 i-g-t] lib/intel_mmio: Fix mmapped resources
- not unmapped on fini
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/gmbus: use to_intel_gmbus()
+ instead of open coding
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,174 +64,90 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Commit 5f3cfa485eb4 ("lib: Use safe wrappers around libpciaccess
-initialization functions") took care of not leaking memory allocated by
-pci_system_init() but didn't take care of users potentially attempting to
-reinitialize global data maintained by libpciaccess.  For example,
-intel_register_access_init() mmaps device's PCI BAR0 resource with
-pci_device_map_range() but intel_register_access_fini() doesn't unmap it
-and next call to intel_register_access_init() fails on attempt to mmap it
-again.
+On Fri, 04 Mar 2022, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Fri, Mar 04, 2022 at 12:14:26PM +0200, Jani Nikula wrote:
+>> We have a helper for getting at the enclosing gmbus struct from the
+>> embedded i2c_adapter, use it.
+>>=20
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>
+> Series is
+> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-Fix it, and also provide intel_mmio_unmap_*() counterparts to public
-functions intel_mmio_use_pci_bar() and intel_mmio_use_dump_file().
+Thanks, pushed.
 
-v2: apply last minute fixes, cached but unfortunately not committed before
-    sending
-v3: use .pci_device_id field content as an indicator of arg initialization
-    via intel_register_access_init(),
-  - improve checks of argument initialization status,
-  - shorten warning messages (Kamil),
-  - don't fill .mmio_size field until initialization succeeds (Kamil)
+BR,
+Jani.
 
-Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Cc: Kamil Konieczny <kamil.konieczny@linux.intel.com>
----
- lib/intel_io.h   |  4 +++
- lib/intel_mmio.c | 64 +++++++++++++++++++++++++++++++++++++++++++++---
- 2 files changed, 65 insertions(+), 3 deletions(-)
+>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_gmbus.c | 18 +++++-------------
+>>  1 file changed, 5 insertions(+), 13 deletions(-)
+>>=20
+>> diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu/dr=
+m/i915/display/intel_gmbus.c
+>> index 8f26528c3dc7..21281a7bdc17 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_gmbus.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
+>> @@ -300,9 +300,7 @@ static void set_data(void *data, int state_high)
+>>  static int
+>>  intel_gpio_pre_xfer(struct i2c_adapter *adapter)
+>>  {
+>> -	struct intel_gmbus *bus =3D container_of(adapter,
+>> -					       struct intel_gmbus,
+>> -					       adapter);
+>> +	struct intel_gmbus *bus =3D to_intel_gmbus(adapter);
+>>  	struct drm_i915_private *dev_priv =3D bus->dev_priv;
+>>=20=20
+>>  	intel_gmbus_reset(dev_priv);
+>> @@ -319,9 +317,7 @@ intel_gpio_pre_xfer(struct i2c_adapter *adapter)
+>>  static void
+>>  intel_gpio_post_xfer(struct i2c_adapter *adapter)
+>>  {
+>> -	struct intel_gmbus *bus =3D container_of(adapter,
+>> -					       struct intel_gmbus,
+>> -					       adapter);
+>> +	struct intel_gmbus *bus =3D to_intel_gmbus(adapter);
+>>  	struct drm_i915_private *dev_priv =3D bus->dev_priv;
+>>=20=20
+>>  	set_data(bus, 1);
+>> @@ -619,9 +615,7 @@ static int
+>>  do_gmbus_xfer(struct i2c_adapter *adapter, struct i2c_msg *msgs, int nu=
+m,
+>>  	      u32 gmbus0_source)
+>>  {
+>> -	struct intel_gmbus *bus =3D container_of(adapter,
+>> -					       struct intel_gmbus,
+>> -					       adapter);
+>> +	struct intel_gmbus *bus =3D to_intel_gmbus(adapter);
+>>  	struct drm_i915_private *dev_priv =3D bus->dev_priv;
+>>  	int i =3D 0, inc, try =3D 0;
+>>  	int ret =3D 0;
+>> @@ -751,8 +745,7 @@ do_gmbus_xfer(struct i2c_adapter *adapter, struct i2=
+c_msg *msgs, int num,
+>>  static int
+>>  gmbus_xfer(struct i2c_adapter *adapter, struct i2c_msg *msgs, int num)
+>>  {
+>> -	struct intel_gmbus *bus =3D
+>> -		container_of(adapter, struct intel_gmbus, adapter);
+>> +	struct intel_gmbus *bus =3D to_intel_gmbus(adapter);
+>>  	struct drm_i915_private *dev_priv =3D bus->dev_priv;
+>>  	intel_wakeref_t wakeref;
+>>  	int ret;
+>> @@ -776,8 +769,7 @@ gmbus_xfer(struct i2c_adapter *adapter, struct i2c_m=
+sg *msgs, int num)
+>>=20=20
+>>  int intel_gmbus_output_aksv(struct i2c_adapter *adapter)
+>>  {
+>> -	struct intel_gmbus *bus =3D
+>> -		container_of(adapter, struct intel_gmbus, adapter);
+>> +	struct intel_gmbus *bus =3D to_intel_gmbus(adapter);
+>>  	struct drm_i915_private *dev_priv =3D bus->dev_priv;
+>>  	u8 cmd =3D DRM_HDCP_DDC_AKSV;
+>>  	u8 buf[DRM_HDCP_KSV_LEN] =3D { 0 };
+>> --=20
+>> 2.30.2
 
-diff --git a/lib/intel_io.h b/lib/intel_io.h
-index 1cfe4fb6b9..ea2649d9bc 100644
---- a/lib/intel_io.h
-+++ b/lib/intel_io.h
-@@ -49,6 +49,8 @@ struct intel_register_map {
- 
- struct intel_mmio_data {
- 	void *igt_mmio;
-+	size_t mmio_size;
-+	struct pci_device *dev;
- 	struct intel_register_map map;
- 	uint32_t pci_device_id;
- 	int key;
-@@ -57,7 +59,9 @@ struct intel_mmio_data {
- 
- void intel_mmio_use_pci_bar(struct intel_mmio_data *mmio_data,
- 			    struct pci_device *pci_dev);
-+void intel_mmio_unmap_pci_bar(struct intel_mmio_data *mmio_data);
- void intel_mmio_use_dump_file(struct intel_mmio_data *mmio_data, char *file);
-+void intel_mmio_unmap_dump_file(struct intel_mmio_data *mmio_data);
- 
- int intel_register_access_init(struct intel_mmio_data *mmio_data,
- 			       struct pci_device *pci_dev, int safe, int fd);
-diff --git a/lib/intel_mmio.c b/lib/intel_mmio.c
-index 667a69f5aa..d6ce0ee3ea 100644
---- a/lib/intel_mmio.c
-+++ b/lib/intel_mmio.c
-@@ -82,6 +82,8 @@ void *igt_global_mmio;
-  * Sets also up mmio_data->igt_mmio to point at the data contained
-  * in @file. This allows the same code to get reused for dumping and decoding
-  * from running hardware as from register dumps.
-+ *
-+ * Users are expected to call intel_mmio_unmap_dump_file() after use.
-  */
- void
- intel_mmio_use_dump_file(struct intel_mmio_data *mmio_data, char *file)
-@@ -99,11 +101,32 @@ intel_mmio_use_dump_file(struct intel_mmio_data *mmio_data, char *file)
- 	igt_fail_on_f(mmio_data->igt_mmio == MAP_FAILED,
- 		      "Couldn't mmap %s\n", file);
- 
-+	mmio_data->mmio_size = st.st_size;
- 	igt_global_mmio = mmio_data->igt_mmio;
- 
- 	close(fd);
- }
- 
-+/**
-+ * intel_mmio_unmap_dump_file:
-+ * @mmio_data:  mmio structure for IO operations
-+ *
-+ * Unmaps a dump file mmapped with intel_mmio_use_dump_file()
-+ */
-+void intel_mmio_unmap_dump_file(struct intel_mmio_data *mmio_data)
-+{
-+	if (igt_warn_on_f(mmio_data->dev,
-+			  "test bug: arg initialized with intel_mmio_use_pci_bar()\n"))
-+		return;
-+	if (igt_warn_on_f(!mmio_data->mmio_size,
-+			  "test bug: arg not initialized\n"))
-+		return;
-+
-+	igt_global_mmio = NULL;
-+	igt_debug_on(munmap(mmio_data->igt_mmio, mmio_data->mmio_size) < 0);
-+	mmio_data->mmio_size = 0;
-+}
-+
- /**
-  * intel_mmio_use_pci_bar:
-  * @mmio_data:  mmio structure for IO operations
-@@ -112,6 +135,8 @@ intel_mmio_use_dump_file(struct intel_mmio_data *mmio_data, char *file)
-  * Fill a mmio_data stucture with igt_mmio to point at the mmio bar.
-  *
-  * @pci_dev can be obtained from intel_get_pci_device().
-+ *
-+ * Users are expected to call intel_mmio_unmap_pci_bar() after use.
-  */
- void
- intel_mmio_use_pci_bar(struct intel_mmio_data *mmio_data, struct pci_device *pci_dev)
-@@ -141,10 +166,34 @@ intel_mmio_use_pci_bar(struct intel_mmio_data *mmio_data, struct pci_device *pci
- 				      PCI_DEV_MAP_FLAG_WRITABLE,
- 				      &mmio_data->igt_mmio);
- 
--	igt_global_mmio = mmio_data->igt_mmio;
--
- 	igt_fail_on_f(error != 0,
- 		      "Couldn't map MMIO region\n");
-+
-+	mmio_data->mmio_size = mmio_size;
-+	mmio_data->dev = pci_dev;
-+	igt_global_mmio = mmio_data->igt_mmio;
-+}
-+
-+/**
-+ * intel_mmio_unmap_pci_bar:
-+ * @mmio_data:  mmio structure for IO operations
-+ *
-+ * Unmaps a PCI BAR region mmapped with intel_mmio_use_pci_bar()
-+ */
-+void intel_mmio_unmap_pci_bar(struct intel_mmio_data *mmio_data)
-+{
-+	if (igt_warn_on_f(mmio_data->pci_device_id,
-+			  "test bug: arg initialized with intel_register_access_init()\n"))
-+		return;
-+	if (igt_warn_on_f(!mmio_data->dev,
-+			  "test bug: arg not initialized with intel_mmio_use_pci_bar()\n"))
-+		return;
-+
-+	igt_global_mmio = NULL;
-+	igt_debug_on(pci_device_unmap_range(mmio_data->dev,
-+					    mmio_data->igt_mmio, mmio_data->mmio_size) < 0);
-+	mmio_data->dev = NULL;
-+	mmio_data->mmio_size = 0;
- }
- 
- static void
-@@ -166,6 +215,8 @@ release_forcewake_lock(int fd)
-  * It also initializes mmio_data->igt_mmio like intel_mmio_use_pci_bar().
-  *
-  * @pci_dev can be obtained from intel_get_pci_device().
-+ *
-+ * Users are expected to call intel_register_access_fini() after use.
-  */
- int
- intel_register_access_init(struct intel_mmio_data *mmio_data, struct pci_device *pci_dev, int safe, int fd)
-@@ -222,8 +273,15 @@ int intel_register_access_needs_fakewake(struct intel_mmio_data *mmio_data)
- void
- intel_register_access_fini(struct intel_mmio_data *mmio_data)
- {
--	if (mmio_data->key && intel_register_access_needs_wake(mmio_data))
-+	if (igt_warn_on_f(!mmio_data->pci_device_id,
-+			  "test bug: arg not initialized with intel_register_access_init()\n"))
-+		return;
-+
-+	if (intel_register_access_needs_wake(mmio_data))
- 		release_forcewake_lock(mmio_data->key);
-+
-+	mmio_data->pci_device_id = 0;
-+	intel_mmio_unmap_pci_bar(mmio_data);
- }
- 
- /**
--- 
-2.25.1
-
+--=20
+Jani Nikula, Intel Open Source Graphics Center
