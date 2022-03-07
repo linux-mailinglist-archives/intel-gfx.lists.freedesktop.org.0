@@ -1,54 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0D3B4D0A9F
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Mar 2022 23:11:38 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5E4B4D0C21
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Mar 2022 00:39:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4AD4010E18A;
-	Mon,  7 Mar 2022 22:11:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A7EB010E1BB;
+	Mon,  7 Mar 2022 23:39:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from eu-smtp-delivery-151.mimecast.com
- (eu-smtp-delivery-151.mimecast.com [185.58.86.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 09EFB10E185
- for <intel-gfx@lists.freedesktop.org>; Mon,  7 Mar 2022 22:11:29 +0000 (UTC)
-Received: from AcuMS.aculab.com (156.67.243.121 [156.67.243.121]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- uk-mta-213-iFbUxoq8N32Ti0xfCSXC3A-1; Mon, 07 Mar 2022 22:11:23 +0000
-X-MC-Unique: iFbUxoq8N32Ti0xfCSXC3A-1
-Received: from AcuMS.Aculab.com (fd9f:af1c:a25b:0:994c:f5c2:35d6:9b65) by
- AcuMS.aculab.com (fd9f:af1c:a25b:0:994c:f5c2:35d6:9b65) with Microsoft SMTP
- Server (TLS) id 15.0.1497.28; Mon, 7 Mar 2022 22:11:19 +0000
-Received: from AcuMS.Aculab.com ([fe80::994c:f5c2:35d6:9b65]) by
- AcuMS.aculab.com ([fe80::994c:f5c2:35d6:9b65%12]) with mapi id
- 15.00.1497.028; Mon, 7 Mar 2022 22:11:19 +0000
-From: David Laight <David.Laight@ACULAB.COM>
-To: 'Christoph Hellwig' <hch@infradead.org>, Jarkko Sakkinen
- <jarkko@kernel.org>
-Thread-Topic: [PATCH RFC 0/3] MAP_POPULATE for device memory
-Thread-Index: AQHYMjv2CAL18nxa1UOLUz+3aRpSlay0etRA
-Date: Mon, 7 Mar 2022 22:11:19 +0000
-Message-ID: <5729d03d6a174da6b66d1534ebdb1127@AcuMS.aculab.com>
-References: <20220306053211.135762-1-jarkko@kernel.org>
- <YiSb7tsUEBRGS+HA@casper.infradead.org> <YiW4yurDXSifTYUt@infradead.org>
- <YiYIv9guOgClLKT8@iki.fi> <YiYrRWMp1akXY8Vb@infradead.org>
-In-Reply-To: <YiYrRWMp1akXY8Vb@infradead.org>
-Accept-Language: en-GB, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.202.205.107]
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1D01810E1BB
+ for <intel-gfx@lists.freedesktop.org>; Mon,  7 Mar 2022 23:39:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1646696383; x=1678232383;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=IABCT4NDzva5jPS81G9hGFeVVMYqD2JMcvTzPNlyQxQ=;
+ b=GssoC+ELhrwP10ATzF1nf8QBYxregNgXOhfwAvpw8Z+6CtJweHAKT4/Z
+ XaW4j1CwtbfGIasS5sd9b0C8qL6ahOtUF8OVRJ6mvBinWaz/R8X3cc4dy
+ X70qFq7ePtNWReMj+OT6g6aQaWcsC4UzqEtqHxp2Xq1OYxNO4vTK/B1Qq
+ VRGdG80ffr+mAF9AFeLVZWGVB3xEipjehsg5cfeXvD+Zzt8B/aWNFneim
+ v8MVvnfMdEcAk4H8VlKROxx95f+Pya8z6y3HNdkE5gZDVuLmybA1Iu+ap
+ T3tsKN5ogzIW3h8y5QeQt1NeRNeF6+sBHE1cFKwFbyyh+cgEWfOTD1yt0 g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10279"; a="252109719"
+X-IronPort-AV: E=Sophos;i="5.90,163,1643702400"; d="scan'208";a="252109719"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Mar 2022 15:39:42 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,163,1643702400"; d="scan'208";a="687720677"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
+ by fmsmga001.fm.intel.com with SMTP; 07 Mar 2022 15:39:40 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 08 Mar 2022 01:39:40 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  8 Mar 2022 01:39:32 +0200
+Message-Id: <20220307233940.4161-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=C51A453 smtp.mailfrom=david.laight@aculab.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: aculab.com
-Content-Language: en-US
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH RFC 0/3] MAP_POPULATE for device memory
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2 0/8] drm/i915: Clean up some dpll stuff
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,55 +56,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Michal Hocko <mhocko@suse.com>, zhangyiru <zhangyiru3@huawei.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- Dave Hansen <dave.hansen@linux.intel.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- Chris Wilson <chris@chris-wilson.co.uk>,
- "linux-mm@kvack.org" <linux-mm@kvack.org>, Alexander
- Mikhalitsyn <alexander.mikhalitsyn@virtuozzo.com>, Florian
- Fainelli <f.fainelli@gmail.com>,
- "linux-unionfs@vger.kernel.org" <linux-unionfs@vger.kernel.org>,
- Matthew Wilcox <willy@infradead.org>,
- "codalist@coda.cs.cmu.edu" <codalist@coda.cs.cmu.edu>,
- Matthew Auld <matthew.auld@intel.com>, Vasily Averin <vvs@virtuozzo.com>,
- =?iso-8859-1?Q?Thomas_Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "G@iki.fi" <G@iki.fi>,
- "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
- Shakeel Butt <shakeelb@google.com>,
- Reinette Chatre <reinette.chatre@intel.com>,
- "linux-sgx@vger.kernel.org" <linux-sgx@vger.kernel.org>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Nathaniel
- McCallum <nathaniel@profian.com>, Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-fsdevel@vger.kernel.org" <linux-fsdevel@vger.kernel.org>,
- Andrew Morton <akpm@linux-foundation.org>, Alexey Gladkov <legion@kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Christoph Hellwig
-> Sent: 07 March 2022 15:57
->=20
-> On Mon, Mar 07, 2022 at 03:29:35PM +0200, Jarkko Sakkinen wrote:
-> > So what would you suggest to sort out the issue? I'm happy to go with
-> > ioctl if nothing else is acceptable.
->=20
-> PLenty of drivers treat all mmaps as if MAP_POPULATE was specified,
-> typically by using (io_)remap_pfn_range.  If there any reason to only
-> optionally have the pre-fault semantics for sgx?  If not this should
-> be really simple.  And if we have a real need for it to be optional
-> we'll just need to find a sane way to pass that information to ->mmap.
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Is there any space in vma->vm_flags ?
+Clean up a bunch of struct dpll usage, and a few other
+random things around the same area.
 
-That would be better than an extra argument or function.
+v2: Clean up the BXT PLL registers and pimp a bunch of comments
 
-=09David
+Ville Syrjälä (8):
+  drm/i915: Store the /5 target clock in struct dpll on vlv/chv
+  drm/i915: Remove redundant/wrong comments
+  drm/i915: Clean up bxt/glk PLL registers
+  drm/i915: Store the m2 divider as a whole in bxt_clk_div
+  drm/i915: Replace bxt_clk_div with struct dpll
+  drm/i915: Replace hand rolled bxt vco calculation with
+    chv_calc_dpll_params()
+  drm/i915: Populate bxt/glk DPLL clock limits a bit more
+  drm/i915: Remove struct dp_link_dpll
 
--
-Registered Address Lakeside, Bramley Road, Mount Farm, Milton Keynes, MK1 1=
-PT, UK
-Registration No: 1397386 (Wales)
+ drivers/gpu/drm/i915/display/g4x_dp.c         | 55 ++++-------
+ drivers/gpu/drm/i915/display/intel_dpll.c     | 37 +++-----
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 94 ++++++++-----------
+ drivers/gpu/drm/i915/gvt/handlers.c           | 19 ++--
+ drivers/gpu/drm/i915/i915_reg.h               | 61 ++++++------
+ 5 files changed, 113 insertions(+), 153 deletions(-)
+
+-- 
+2.34.1
 
