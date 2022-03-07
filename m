@@ -1,50 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5F694D0856
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Mar 2022 21:30:19 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06ED34D0878
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Mar 2022 21:38:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2BD1B10E175;
-	Mon,  7 Mar 2022 20:30:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 272C310E1C4;
+	Mon,  7 Mar 2022 20:38:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 691A610E175;
- Mon,  7 Mar 2022 20:30:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646685012; x=1678221012;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=5N0gkIFroCOw+svEfGm5wl7vXcCMD538hE3lK74HXzU=;
- b=gLZtPTMw3Sm79doerfs9vMfkz0muudd19BHDqj1pbKTAskpScZZokAcy
- 1IH+WU31XstW16QraBBUkKFjYZqLkfQ+e0VD1vCTMHEIAO3BKqMyCIyrm
- wy/xXU6fDShbdVqiZ8DhSWxePOCePhRfNeX5V9dWDIXZAGyE1RTvmSCH8
- 2qsPkZARXm0biX55DEtV4dDfE1UNfXRs3yq9Dlg/f4JXpFwhwHB10XGVw
- efyGeYVSVuDKJGC5E78CrCAQqGzLzVmbfV93a+Ds5/B8aeTw/9tGEciOp
- VzFWmdhjRH92EKJheyXVuG7mms3KBRNbOml5PRhGi8MtDBjQgd9SSc8vS Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10279"; a="254437545"
-X-IronPort-AV: E=Sophos;i="5.90,163,1643702400"; d="scan'208";a="254437545"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Mar 2022 12:29:43 -0800
-X-IronPort-AV: E=Sophos;i="5.90,163,1643702400"; d="scan'208";a="495188052"
-Received: from nvishwa1-desk.sc.intel.com ([172.25.29.76])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-SHA;
- 07 Mar 2022 12:29:41 -0800
-From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Mon,  7 Mar 2022 12:31:46 -0800
-Message-Id: <20220307203146.648-3-niranjana.vishwanathapura@intel.com>
-X-Mailer: git-send-email 2.21.0.rc0.32.g243a4c7e27
-In-Reply-To: <20220307203146.648-1-niranjana.vishwanathapura@intel.com>
-References: <20220307203146.648-1-niranjana.vishwanathapura@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 285D810E1D1;
+ Mon,  7 Mar 2022 20:38:55 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 24420A0169;
+ Mon,  7 Mar 2022 20:38:55 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [RFC v2 2/2] drm/doc/rfc: VM_BIND uapi definition
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Niranjana Vishwanathapura" <niranjana.vishwanathapura@intel.com>
+Date: Mon, 07 Mar 2022 20:38:55 -0000
+Message-ID: <164668553514.12770.16199807189053470077@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220307203146.648-1-niranjana.vishwanathapura@intel.com>
+In-Reply-To: <20220307203146.648-1-niranjana.vishwanathapura@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/doc/rfc=3A_i915_VM=5FBIND_feature_design_+_uapi_=28rev2?=
+ =?utf-8?q?=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,201 +41,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: daniel.vetter@intel.com, thomas.hellstrom@intel.com,
- chris.p.wilson@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-VM_BIND und related uapi definitions
+== Series Details ==
 
-Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
----
- Documentation/gpu/rfc/i915_vm_bind.h | 176 +++++++++++++++++++++++++++
- 1 file changed, 176 insertions(+)
- create mode 100644 Documentation/gpu/rfc/i915_vm_bind.h
+Series: drm/doc/rfc: i915 VM_BIND feature design + uapi (rev2)
+URL   : https://patchwork.freedesktop.org/series/93447/
+State : warning
 
-diff --git a/Documentation/gpu/rfc/i915_vm_bind.h b/Documentation/gpu/rfc/i915_vm_bind.h
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+a40e87e2a2f3 drm/doc/rfc: VM_BIND feature design document
+-:11: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#11: 
 new file mode 100644
-index 000000000000..80f00ee6c8a1
---- /dev/null
-+++ b/Documentation/gpu/rfc/i915_vm_bind.h
-@@ -0,0 +1,176 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2022 Intel Corporation
-+ */
-+
-+/* VM_BIND feature availability through drm_i915_getparam */
-+#define I915_PARAM_HAS_VM_BIND		57
-+
-+/* VM_BIND related ioctls */
-+#define DRM_I915_GEM_VM_BIND		0x3d
-+#define DRM_I915_GEM_VM_UNBIND		0x3e
-+#define DRM_I915_GEM_WAIT_USER_FENCE	0x3f
-+
+
+-:16: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+#16: FILE: Documentation/gpu/rfc/i915_vm_bind.rst:1:
++==========================================
+
+-:112: WARNING:TYPO_SPELLING: 'an user' may be misspelled - perhaps 'a user'?
+#112: FILE: Documentation/gpu/rfc/i915_vm_bind.rst:97:
++wakeup the waiting process. User can wait on an user fence with the
+                                              ^^^^^^^
+
+-:117: WARNING:TYPO_SPELLING: 'an user' may be misspelled - perhaps 'a user'?
+#117: FILE: Documentation/gpu/rfc/i915_vm_bind.rst:102:
++precision on the wakeup. Each batch can signal an user fence to indicate
+                                                ^^^^^^^
+
+total: 0 errors, 4 warnings, 0 checks, 217 lines checked
+95969abb7e7c drm/doc/rfc: VM_BIND uapi definition
+-:11: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#11: 
+new file mode 100644
+
+-:29: WARNING:LONG_LINE: line length of 126 exceeds 100 columns
+#29: FILE: Documentation/gpu/rfc/i915_vm_bind.h:14:
 +#define DRM_IOCTL_I915_GEM_VM_BIND		DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_VM_BIND, struct drm_i915_gem_vm_bind)
+
+-:30: WARNING:LONG_LINE: line length of 128 exceeds 100 columns
+#30: FILE: Documentation/gpu/rfc/i915_vm_bind.h:15:
 +#define DRM_IOCTL_I915_GEM_VM_UNBIND		DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_VM_UNBIND, struct drm_i915_gem_vm_bind)
+
+-:31: WARNING:LONG_LINE: line length of 142 exceeds 100 columns
+#31: FILE: Documentation/gpu/rfc/i915_vm_bind.h:16:
 +#define DRM_IOCTL_I915_GEM_WAIT_USER_FENCE	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_WAIT_USER_FENCE, struct drm_i915_gem_wait_user_fence)
-+
-+/**
-+ * struct drm_i915_gem_vm_bind - VA to object/buffer mapping to [un]bind.
-+ */
-+struct drm_i915_gem_vm_bind {
-+	/** vm to [un]bind */
-+	__u32 vm_id;
-+
-+	/**
-+	 * BO handle or file descriptor.
-+	 * 'fd' value of -1 is reserved for system pages (SVM)
-+	 */
-+	union {
-+		__u32 handle; /* For unbind, it is reserved and must be 0 */
-+		__s32 fd;
-+	}
-+
-+	/** VA start to [un]bind */
-+	__u64 start;
-+
-+	/** Offset in object to [un]bind */
-+	__u64 offset;
-+
-+	/** VA length to [un]bind */
-+	__u64 length;
-+
-+	/** Flags */
-+	__u64 flags;
-+	/** Bind the mapping immediately instead of during next submission */
-+#define I915_GEM_VM_BIND_IMMEDIATE   (1 << 0)
-+	/** Read-only mapping */
-+#define I915_GEM_VM_BIND_READONLY    (1 << 1)
-+	/** Capture this mapping in the dump upon GPU error */
-+#define I915_GEM_VM_BIND_CAPTURE     (1 << 2)
-+
-+	/** Zero-terminated chain of extensions */
-+	__u64 extensions;
-+};
-+
-+/**
-+ * struct drm_i915_vm_bind_ext_user_fence - Bind completion signaling extension.
-+ */
-+struct drm_i915_vm_bind_ext_user_fence {
-+#define I915_VM_BIND_EXT_USER_FENCE	0
-+	/** @base: Extension link. See struct i915_user_extension. */
-+	struct i915_user_extension base;
-+
-+	/** User/Memory fence qword alinged process virtual address */
-+	__u64 addr;
-+
-+	/** User/Memory fence value to be written after bind completion */
-+	__u64 val;
-+
-+	/** Reserved for future extensions */
-+	__u64 rsvd;
-+};
-+
-+/**
-+ * struct drm_i915_gem_execbuffer_ext_user_fence - First level batch completion
-+ * signaling extension.
-+ *
-+ * This extension allows user to attach a user fence (<addr, value> pair) to an
-+ * execbuf to be signaled by the command streamer after the completion of 1st
-+ * level batch, by writing the <value> at specified <addr> and triggering an
-+ * interrupt.
-+ * User can either poll for this user fence to signal or can also wait on it
-+ * with i915_gem_wait_user_fence ioctl.
-+ * This is very much usefaul for long running contexts where waiting on dma-fence
-+ * by user (like i915_gem_wait ioctl) is not supported.
-+ */
-+struct drm_i915_gem_execbuffer_ext_user_fence {
-+#define DRM_I915_GEM_EXECBUFFER_EXT_USER_FENCE		0
-+	/** @base: Extension link. See struct i915_user_extension. */
-+	struct i915_user_extension base;
-+
-+	/**
-+	 * User/Memory fence qword aligned GPU virtual address.
-+	 * Address has to be a valid GPU virtual address at the time of
-+	 * 1st level batch completion.
-+	 */
-+	__u64 addr;
-+
-+	/**
-+	 * User/Memory fence Value to be written to above address
-+	 * after 1st level batch completes.
-+	 */
-+	__u64 value;
-+
-+	/** Reserved for future extensions */
-+	__u64 rsvd;
-+};
-+
-+struct drm_i915_gem_vm_control {
-+/** Flag to opt-in for VM_BIND mode of binding during VM creation */
-+#define I915_VM_CREATE_FLAGS_USE_VM_BIND	(1 << 0)
-+};
+
+-:129: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#129: FILE: Documentation/gpu/rfc/i915_vm_bind.h:114:
 +
 +
-+struct drm_i915_gem_create_ext {
-+/** Extension to make the object private to a specified VM */
-+#define I915_GEM_CREATE_EXT_VM_PRIVATE		2
-+};
+
+-:135: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#135: FILE: Documentation/gpu/rfc/i915_vm_bind.h:120:
 +
 +
-+struct prelim_drm_i915_gem_context_create_ext {
-+/** Flag to declare context as long running */
-+#define I915_CONTEXT_CREATE_FLAGS_LONG_RUNNING   (1u << 2)
-+};
-+
-+/**
-+ * struct drm_i915_gem_wait_user_fence
-+ *
-+ * Wait on user/memory fence. User/Memory fence can be woken up either by,
-+ *    1. GPU context indicated by 'ctx_id', or,
-+ *    2. Kerrnel driver async worker upon I915_UFENCE_WAIT_SOFT.
-+ *       'ctx_id' is ignored when this flag is set.
-+ *
-+ * Wakeup when below condition is true.
-+ * (*addr & MASK) OP (VALUE & MASK)
-+ *
-+ */
-+~struct drm_i915_gem_wait_user_fence {
-+	/** @base: Extension link. See struct i915_user_extension. */
-+	__u64 extensions;
-+
-+	/** User/Memory fence address */
-+	__u64 addr;
-+
-+	/** Id of the Context which will signal the fence. */
-+	__u32 ctx_id;
-+
-+	/** Wakeup condition operator */
-+	__u16 op;
-+#define I915_UFENCE_WAIT_EQ      0
-+#define I915_UFENCE_WAIT_NEQ     1
-+#define I915_UFENCE_WAIT_GT      2
-+#define I915_UFENCE_WAIT_GTE     3
-+#define I915_UFENCE_WAIT_LT      4
-+#define I915_UFENCE_WAIT_LTE     5
-+#define I915_UFENCE_WAIT_BEFORE  6
-+#define I915_UFENCE_WAIT_AFTER   7
-+
-+	/** Flags */
-+	__u16 flags;
-+#define I915_UFENCE_WAIT_SOFT    0x1
-+#define I915_UFENCE_WAIT_ABSTIME 0x2
-+
-+	/** Wakeup value */
-+	__u64 value;
-+
-+	/** Wakeup mask */
-+	__u64 mask;
-+#define I915_UFENCE_WAIT_U8     0xffu
-+#define I915_UFENCE_WAIT_U16    0xffffu
-+#define I915_UFENCE_WAIT_U32    0xfffffffful
-+#define I915_UFENCE_WAIT_U64    0xffffffffffffffffull
-+
-+	/** Timeout */
-+	__s64 timeout;
-+};
--- 
-2.21.0.rc0.32.g243a4c7e27
+
+total: 0 errors, 4 warnings, 2 checks, 176 lines checked
+
 
