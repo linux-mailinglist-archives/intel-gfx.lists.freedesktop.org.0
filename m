@@ -2,46 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70CCB4CFC66
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Mar 2022 12:13:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 689464CFFE5
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Mar 2022 14:23:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA1C510F652;
-	Mon,  7 Mar 2022 11:13:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 89C8910F8AC;
+	Mon,  7 Mar 2022 13:23:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C742B10E66B;
- Sun,  6 Mar 2022 17:04:36 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by sin.source.kernel.org (Postfix) with ESMTPS id DD849CE0BBB;
- Sun,  6 Mar 2022 17:04:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7A05C340EF;
- Sun,  6 Mar 2022 17:04:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1646586272;
- bh=tED8A8H7Z3qRjvyTRoi5JriL3kqYuEMhSi2umLVTsmg=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=AQhNg7YXe/vaJFTIR2+nIf26kt3Lzx8aVZcyTg633ymn96WNTMFkjjtfTEtauLmvF
- d9qG4rjcR8fppvK8o2Vy8I/igPMLB0dxVFCFiq9rZYqinCFsXgHzOP7Nstf9WEyfm8
- 00Mchrx/XAyHsyrcQKpLj2DQqne2GsFz14EQEDCHjJ36oL4pnDnkH9Mx24AHJqfeoe
- pmEZsw/XQpThL5jerZH8TmAPvnfX8U0tJr8p3rmyNw88EacPGyER+CptYFKxjw2s5P
- 4Urk3RK26GXanBGpOBYez8sRvw2/9aqELStipRW3y63QKfEL/0vjAQh70Be6U7pYlO
- 5U985cq4eNjDg==
-Date: Sun, 6 Mar 2022 19:03:51 +0200
-From: Jarkko Sakkinen <jarkko@kernel.org>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Message-ID: <YiTpd+Jf2vgIH17r@iki.fi>
-References: <20220306053211.135762-1-jarkko@kernel.org>
- <20220306053211.135762-2-jarkko@kernel.org>
- <YiSGgCV9u9NglYsM@kroah.com> <YiTpQTM+V6rlDy6G@iki.fi>
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9EDC610F8A9;
+ Mon,  7 Mar 2022 13:23:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1646659419; x=1678195419;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=1RMCsJ+InPpUZMDG7TVAgNBuQBu/5FhMXAbQA3lYmWA=;
+ b=EdfkzeNFh8MPsQEimKM7l+XsIBvFdbaRTx9zKdkuZuxXJfdyBovPc+RE
+ yx/n3YL3SGphZHL56o1zv3jkbvgZiLP4BJqM652aznrJl6u8xoXZTimSJ
+ Db/CI9ebXKnfgHtlk40SJLVipjCi0IBJ0kv3R6eHTv/dxeIPO43G1mDY0
+ eRPuOk7crbPKsUJmurkVPERWHHjz4gqwdoul5opJlo/C/RAUVI7Us065q
+ tLEjc7ilEsYWo17Hrx3N52hOmruw56TBLXmmeOZ1IAo6kwkzsyf9lOPYq
+ f/x7rC30pn0kkFLMwyPrj2yrzm61KGryJDhSZd4YWcwEdhpi6GYDpF6eC w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10278"; a="234342367"
+X-IronPort-AV: E=Sophos;i="5.90,162,1643702400"; d="scan'208";a="234342367"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Mar 2022 05:23:39 -0800
+X-IronPort-AV: E=Sophos;i="5.90,162,1643702400"; d="scan'208";a="711103092"
+Received: from jmamzax-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.213.26.201])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Mar 2022 05:23:36 -0800
+Date: Mon, 7 Mar 2022 14:23:30 +0100
+From: Kamil Konieczny <kamil.konieczny@linux.intel.com>
+To: igt-dev@lists.freedesktop.org
+Message-ID: <YiYHUju3mA6wNTGr@kamilkon-DESK1>
+Mail-Followup-To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
+ igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+References: <20220307082643.380066-1-janusz.krzysztofik@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <YiTpQTM+V6rlDy6G@iki.fi>
-X-Mailman-Approved-At: Mon, 07 Mar 2022 11:13:15 +0000
-Subject: Re: [Intel-gfx] [PATCH RFC 1/3] mm: Add f_ops->populate()
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220307082643.380066-1-janusz.krzysztofik@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH v3 i-g-t] lib/intel_mmio: Fix mmapped
+ resources not unmapped on fini
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,189 +61,202 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: zhangyiru <zhangyiru3@huawei.com>, Daniel Vetter <daniel.vetter@ffwll.ch>,
- Dave Hansen <dave.hansen@linux.intel.com>, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-mm@kvack.org,
- Alexander Mikhalitsyn <alexander.mikhalitsyn@virtuozzo.com>,
- Florian Fainelli <f.fainelli@gmail.com>, linux-unionfs@vger.kernel.org,
- codalist@coda.cs.cmu.edu, Matthew Auld <matthew.auld@intel.com>,
- Vasily Averin <vvs@virtuozzo.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, Shakeel Butt <shakeelb@google.com>,
- Reinette Chatre <reinette.chatre@intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>, linux-sgx@vger.kernel.org,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Nathaniel McCallum <nathaniel@profian.com>, linux-mips@vger.kernel.org,
- linux-fsdevel@vger.kernel.org, Andrew Morton <akpm@linux-foundation.org>,
- Alexey Gladkov <legion@kernel.org>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sun, Mar 06, 2022 at 07:03:00PM +0200, Jarkko Sakkinen wrote:
-> On Sun, Mar 06, 2022 at 11:01:36AM +0100, Greg Kroah-Hartman wrote:
-> > On Sun, Mar 06, 2022 at 07:32:05AM +0200, Jarkko Sakkinen wrote:
-> > > Sometimes you might want to use MAP_POPULATE to ask a device driver to
-> > > initialize the device memory in some specific manner. SGX driver can use
-> > > this to request more memory by issuing ENCLS[EAUG] x86 opcode for each
-> > > page in the address range.
-> > > 
-> > > Add f_ops->populate() with the same parameters as f_ops->mmap() and make
-> > > it conditionally called inside call_mmap(). Update call sites
-> > > accodingly.
-> > > ---
-> > > Signed-off-by: Jarkko Sakkinen <jarkko@kernel.org>
-> > > v3:
-> > > -       if (!ret && do_populate && file->f_op->populate)
-> > > +       if (!ret && do_populate && file->f_op->populate &&
-> > > +           !!(vma->vm_flags & (VM_IO | VM_PFNMAP)))
-> > > (reported by Matthew Wilcox)
-> > > v2:
-> > > -       if (!ret && do_populate)
-> > > +       if (!ret && do_populate && file->f_op->populate)
-> > > (reported by Jan Harkes)
-> > > ---
-> > >  arch/mips/kernel/vdso.c                    |  2 +-
-> > >  drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c |  2 +-
-> > >  fs/coda/file.c                             |  2 +-
-> > >  fs/overlayfs/file.c                        |  2 +-
-> > >  include/linux/fs.h                         | 12 ++++++++++--
-> > >  include/linux/mm.h                         |  2 +-
-> > >  ipc/shm.c                                  |  2 +-
-> > >  mm/mmap.c                                  | 10 +++++-----
-> > >  mm/nommu.c                                 |  4 ++--
-> > >  9 files changed, 23 insertions(+), 15 deletions(-)
-> > > 
-> > > diff --git a/arch/mips/kernel/vdso.c b/arch/mips/kernel/vdso.c
-> > > index 3d0cf471f2fe..89f3f3da9abd 100644
-> > > --- a/arch/mips/kernel/vdso.c
-> > > +++ b/arch/mips/kernel/vdso.c
-> > > @@ -102,7 +102,7 @@ int arch_setup_additional_pages(struct linux_binprm *bprm, int uses_interp)
-> > >  		base = mmap_region(NULL, STACK_TOP, PAGE_SIZE,
-> > >  				VM_READ | VM_EXEC |
-> > >  				VM_MAYREAD | VM_MAYWRITE | VM_MAYEXEC,
-> > > -				0, NULL);
-> > > +				0, NULL, false);
-> > >  		if (IS_ERR_VALUE(base)) {
-> > >  			ret = base;
-> > >  			goto out;
-> > > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
-> > > index 1b526039a60d..4c71f64d6a79 100644
-> > > --- a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
-> > > +++ b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
-> > > @@ -107,7 +107,7 @@ static int i915_gem_dmabuf_mmap(struct dma_buf *dma_buf, struct vm_area_struct *
-> > >  	if (!obj->base.filp)
-> > >  		return -ENODEV;
-> > >  
-> > > -	ret = call_mmap(obj->base.filp, vma);
-> > > +	ret = call_mmap(obj->base.filp, vma, false);
-> > >  	if (ret)
-> > >  		return ret;
-> > >  
-> > > diff --git a/fs/coda/file.c b/fs/coda/file.c
-> > > index 29dd87be2fb8..e14f312fdbf8 100644
-> > > --- a/fs/coda/file.c
-> > > +++ b/fs/coda/file.c
-> > > @@ -173,7 +173,7 @@ coda_file_mmap(struct file *coda_file, struct vm_area_struct *vma)
-> > >  	spin_unlock(&cii->c_lock);
-> > >  
-> > >  	vma->vm_file = get_file(host_file);
-> > > -	ret = call_mmap(vma->vm_file, vma);
-> > > +	ret = call_mmap(vma->vm_file, vma, false);
-> > >  
-> > >  	if (ret) {
-> > >  		/* if call_mmap fails, our caller will put host_file so we
-> > > diff --git a/fs/overlayfs/file.c b/fs/overlayfs/file.c
-> > > index fa125feed0ff..b963a9397e80 100644
-> > > --- a/fs/overlayfs/file.c
-> > > +++ b/fs/overlayfs/file.c
-> > > @@ -503,7 +503,7 @@ static int ovl_mmap(struct file *file, struct vm_area_struct *vma)
-> > >  	vma_set_file(vma, realfile);
-> > >  
-> > >  	old_cred = ovl_override_creds(file_inode(file)->i_sb);
-> > > -	ret = call_mmap(vma->vm_file, vma);
-> > > +	ret = call_mmap(vma->vm_file, vma, false);
-> > >  	revert_creds(old_cred);
-> > >  	ovl_file_accessed(file);
-> > >  
-> > > diff --git a/include/linux/fs.h b/include/linux/fs.h
-> > > index e2d892b201b0..2909e2d14af8 100644
-> > > --- a/include/linux/fs.h
-> > > +++ b/include/linux/fs.h
-> > > @@ -42,6 +42,7 @@
-> > >  #include <linux/mount.h>
-> > >  #include <linux/cred.h>
-> > >  #include <linux/mnt_idmapping.h>
-> > > +#include <linux/mm.h>
-> > >  
-> > >  #include <asm/byteorder.h>
-> > >  #include <uapi/linux/fs.h>
-> > > @@ -1993,6 +1994,7 @@ struct file_operations {
-> > >  	long (*unlocked_ioctl) (struct file *, unsigned int, unsigned long);
-> > >  	long (*compat_ioctl) (struct file *, unsigned int, unsigned long);
-> > >  	int (*mmap) (struct file *, struct vm_area_struct *);
-> > > +	int (*populate)(struct file *, struct vm_area_struct *);
-> > >  	unsigned long mmap_supported_flags;
-> > >  	int (*open) (struct inode *, struct file *);
-> > >  	int (*flush) (struct file *, fl_owner_t id);
-> > > @@ -2074,9 +2076,15 @@ static inline ssize_t call_write_iter(struct file *file, struct kiocb *kio,
-> > >  	return file->f_op->write_iter(kio, iter);
-> > >  }
-> > >  
-> > > -static inline int call_mmap(struct file *file, struct vm_area_struct *vma)
-> > > +static inline int call_mmap(struct file *file, struct vm_area_struct *vma, bool do_populate)
-> > >  {
-> > > -	return file->f_op->mmap(file, vma);
-> > > +	int ret = file->f_op->mmap(file, vma);
-> > > +
-> > > +	if (!ret && do_populate && file->f_op->populate &&
-> > > +	    !!(vma->vm_flags & (VM_IO | VM_PFNMAP)))
-> > > +		ret = file->f_op->populate(file, vma);
-> > > +
-> > > +	return ret;
-> > >  }
-> > >  
-> > >  extern ssize_t vfs_read(struct file *, char __user *, size_t, loff_t *);
-> > > diff --git a/include/linux/mm.h b/include/linux/mm.h
-> > > index 213cc569b192..6c8c036f423b 100644
-> > > --- a/include/linux/mm.h
-> > > +++ b/include/linux/mm.h
-> > > @@ -2683,7 +2683,7 @@ extern unsigned long get_unmapped_area(struct file *, unsigned long, unsigned lo
-> > >  
-> > >  extern unsigned long mmap_region(struct file *file, unsigned long addr,
-> > >  	unsigned long len, vm_flags_t vm_flags, unsigned long pgoff,
-> > > -	struct list_head *uf);
-> > > +	struct list_head *uf, bool do_populate);
-> > 
-> > As I have said many times before, don't add random boolean flags to
-> > function arguments, as they provide no hint as to what they do at all.
-> > When you read the code, you then have to go back and look up the
-> > function definition here and see what exactly it means and the flow is
-> > broken.
-> > 
-> > Make function names mean something obvious, for this, if it really is a
-> > good idea to have this new flag (and I doubt it, but that's not my
-> > call), then make this a mmap_region_populate() call to make it obvious
-> > it is something different than the notmal mmap_region() call.
-> 
-> I can create:
-> 
-> * mmap_region_populate()
-> * call_mmap_populate()
-> 
-> This would localize the changes and leave out those boolean parameters.
-> 
-> > But as is, this is pretty horrid, don't you agree?
-> 
-> So can I conclude from this that in general having populate available for
-> device memory is something horrid, or just the implementation path?
-> 
-> That's the main reason why I made this RFC patch set, to get clear answer
-> to that question. I.e. if it is in general sense a bad idea, I'll just
-> create ioctl. If it is the implementation, I'll try to improve it.
-> 
-> Otherwise, I don't know whether or not it is good idea to include such
-> patch into the main SGX2 patch set. No means enforcibl tryy to push support
-                                         ~~~~~
-                                         intention
+Hi Janusz,
 
-BR, Jarkko
+Dnia 2022-03-07 at 09:26:43 +0100, Janusz Krzysztofik napisał(a):
+> Commit 5f3cfa485eb4 ("lib: Use safe wrappers around libpciaccess
+> initialization functions") took care of not leaking memory allocated by
+> pci_system_init() but didn't take care of users potentially attempting to
+> reinitialize global data maintained by libpciaccess.  For example,
+> intel_register_access_init() mmaps device's PCI BAR0 resource with
+> pci_device_map_range() but intel_register_access_fini() doesn't unmap it
+> and next call to intel_register_access_init() fails on attempt to mmap it
+> again.
+> 
+> Fix it, and also provide intel_mmio_unmap_*() counterparts to public
+> functions intel_mmio_use_pci_bar() and intel_mmio_use_dump_file().
+> 
+> v2: apply last minute fixes, cached but unfortunately not committed before
+>     sending
+> v3: use .pci_device_id field content as an indicator of arg initialization
+>     via intel_register_access_init(),
+>   - improve checks of argument initialization status,
+>   - shorten warning messages (Kamil),
+>   - don't fill .mmio_size field until initialization succeeds (Kamil)
+> 
+> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+> Cc: Kamil Konieczny <kamil.konieczny@linux.intel.com>
+> ---
+>  lib/intel_io.h   |  4 +++
+>  lib/intel_mmio.c | 64 +++++++++++++++++++++++++++++++++++++++++++++---
+>  2 files changed, 65 insertions(+), 3 deletions(-)
+> 
+> diff --git a/lib/intel_io.h b/lib/intel_io.h
+> index 1cfe4fb6b9..ea2649d9bc 100644
+> --- a/lib/intel_io.h
+> +++ b/lib/intel_io.h
+> @@ -49,6 +49,8 @@ struct intel_register_map {
+>  
+>  struct intel_mmio_data {
+>  	void *igt_mmio;
+> +	size_t mmio_size;
+> +	struct pci_device *dev;
+>  	struct intel_register_map map;
+>  	uint32_t pci_device_id;
+>  	int key;
+> @@ -57,7 +59,9 @@ struct intel_mmio_data {
+>  
+>  void intel_mmio_use_pci_bar(struct intel_mmio_data *mmio_data,
+>  			    struct pci_device *pci_dev);
+> +void intel_mmio_unmap_pci_bar(struct intel_mmio_data *mmio_data);
+>  void intel_mmio_use_dump_file(struct intel_mmio_data *mmio_data, char *file);
+> +void intel_mmio_unmap_dump_file(struct intel_mmio_data *mmio_data);
+>  
+>  int intel_register_access_init(struct intel_mmio_data *mmio_data,
+>  			       struct pci_device *pci_dev, int safe, int fd);
+> diff --git a/lib/intel_mmio.c b/lib/intel_mmio.c
+> index 667a69f5aa..d6ce0ee3ea 100644
+> --- a/lib/intel_mmio.c
+> +++ b/lib/intel_mmio.c
+> @@ -82,6 +82,8 @@ void *igt_global_mmio;
+>   * Sets also up mmio_data->igt_mmio to point at the data contained
+>   * in @file. This allows the same code to get reused for dumping and decoding
+>   * from running hardware as from register dumps.
+> + *
+> + * Users are expected to call intel_mmio_unmap_dump_file() after use.
+>   */
+>  void
+>  intel_mmio_use_dump_file(struct intel_mmio_data *mmio_data, char *file)
+> @@ -99,11 +101,32 @@ intel_mmio_use_dump_file(struct intel_mmio_data *mmio_data, char *file)
+>  	igt_fail_on_f(mmio_data->igt_mmio == MAP_FAILED,
+>  		      "Couldn't mmap %s\n", file);
+>  
+> +	mmio_data->mmio_size = st.st_size;
+>  	igt_global_mmio = mmio_data->igt_mmio;
+>  
+>  	close(fd);
+>  }
+>  
+> +/**
+> + * intel_mmio_unmap_dump_file:
+> + * @mmio_data:  mmio structure for IO operations
+> + *
+> + * Unmaps a dump file mmapped with intel_mmio_use_dump_file()
+> + */
+> +void intel_mmio_unmap_dump_file(struct intel_mmio_data *mmio_data)
+> +{
+> +	if (igt_warn_on_f(mmio_data->dev,
+> +			  "test bug: arg initialized with intel_mmio_use_pci_bar()\n"))
+> +		return;
+
+Please add a global description about this kind of errors, this
+one is for using unmap when mmio was mmap-ed from other mmap
+type.
+
+> +	if (igt_warn_on_f(!mmio_data->mmio_size,
+> +			  "test bug: arg not initialized\n"))
+> +		return;
+
+Can we replace this with one check igt_global_mmio != NULL ?
+Something like:
+
+	if (igt_warn_on_f(!igt_global_mmio,
+			  "mmio regs not mmap-ed\n"))
+		return;
+
+Or should we add this before all other checks in unmap functions
+and keep this additional check ?
+
+> +
+> +	igt_global_mmio = NULL;
+> +	igt_debug_on(munmap(mmio_data->igt_mmio, mmio_data->mmio_size) < 0);
+> +	mmio_data->mmio_size = 0;
+> +}
+> +
+>  /**
+>   * intel_mmio_use_pci_bar:
+>   * @mmio_data:  mmio structure for IO operations
+> @@ -112,6 +135,8 @@ intel_mmio_use_dump_file(struct intel_mmio_data *mmio_data, char *file)
+>   * Fill a mmio_data stucture with igt_mmio to point at the mmio bar.
+>   *
+>   * @pci_dev can be obtained from intel_get_pci_device().
+> + *
+> + * Users are expected to call intel_mmio_unmap_pci_bar() after use.
+>   */
+>  void
+>  intel_mmio_use_pci_bar(struct intel_mmio_data *mmio_data, struct pci_device *pci_dev)
+> @@ -141,10 +166,34 @@ intel_mmio_use_pci_bar(struct intel_mmio_data *mmio_data, struct pci_device *pci
+>  				      PCI_DEV_MAP_FLAG_WRITABLE,
+>  				      &mmio_data->igt_mmio);
+>  
+> -	igt_global_mmio = mmio_data->igt_mmio;
+> -
+>  	igt_fail_on_f(error != 0,
+>  		      "Couldn't map MMIO region\n");
+> +
+> +	mmio_data->mmio_size = mmio_size;
+> +	mmio_data->dev = pci_dev;
+> +	igt_global_mmio = mmio_data->igt_mmio;
+> +}
+> +
+> +/**
+> + * intel_mmio_unmap_pci_bar:
+> + * @mmio_data:  mmio structure for IO operations
+> + *
+> + * Unmaps a PCI BAR region mmapped with intel_mmio_use_pci_bar()
+> + */
+> +void intel_mmio_unmap_pci_bar(struct intel_mmio_data *mmio_data)
+> +{
+> +	if (igt_warn_on_f(mmio_data->pci_device_id,
+> +			  "test bug: arg initialized with intel_register_access_init()\n"))
+> +		return;
+> +	if (igt_warn_on_f(!mmio_data->dev,
+> +			  "test bug: arg not initialized with intel_mmio_use_pci_bar()\n"))
+> +		return;
+> +
+> +	igt_global_mmio = NULL;
+> +	igt_debug_on(pci_device_unmap_range(mmio_data->dev,
+> +					    mmio_data->igt_mmio, mmio_data->mmio_size) < 0);
+> +	mmio_data->dev = NULL;
+> +	mmio_data->mmio_size = 0;
+>  }
+>  
+>  static void
+> @@ -166,6 +215,8 @@ release_forcewake_lock(int fd)
+>   * It also initializes mmio_data->igt_mmio like intel_mmio_use_pci_bar().
+>   *
+>   * @pci_dev can be obtained from intel_get_pci_device().
+> + *
+> + * Users are expected to call intel_register_access_fini() after use.
+>   */
+>  int
+>  intel_register_access_init(struct intel_mmio_data *mmio_data, struct pci_device *pci_dev, int safe, int fd)
+> @@ -222,8 +273,15 @@ int intel_register_access_needs_fakewake(struct intel_mmio_data *mmio_data)
+>  void
+>  intel_register_access_fini(struct intel_mmio_data *mmio_data)
+>  {
+> -	if (mmio_data->key && intel_register_access_needs_wake(mmio_data))
+> +	if (igt_warn_on_f(!mmio_data->pci_device_id,
+> +			  "test bug: arg not initialized with intel_register_access_init()\n"))
+> +		return;
+> +
+> +	if (intel_register_access_needs_wake(mmio_data))
+>  		release_forcewake_lock(mmio_data->key);
+> +
+> +	mmio_data->pci_device_id = 0;
+
+Here we should check other conditions so no warn triggers in unmap_pci_bar
+or make the messages generic (and document it in comments at beggining)
+or maybe make helper with no checks for unmap_pci_bar.
+
+> +	intel_mmio_unmap_pci_bar(mmio_data);
+>  }
+>  
+>  /**
+> -- 
+> 2.25.1
+> 
