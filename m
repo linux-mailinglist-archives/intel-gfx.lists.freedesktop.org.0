@@ -1,145 +1,145 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88F8E4D1300
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Mar 2022 10:03:46 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B6554D1347
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Mar 2022 10:26:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5005510EC8E;
-	Tue,  8 Mar 2022 09:03:40 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D8DB10EC7F;
- Tue,  8 Mar 2022 09:03:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E6CFB10E2F6;
+	Tue,  8 Mar 2022 09:26:04 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 824E010E2F6
+ for <intel-gfx@lists.freedesktop.org>; Tue,  8 Mar 2022 09:26:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646730217; x=1678266217;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=2J6ivfNCKMAMloYEqlF8ICKg8ziOZd+/bE4/W9184gU=;
- b=B4MPgvfkiG1B/yy8+TO64orpDa3Zb+VcIkbgwz//mThKSkpQiDgpDQb2
- CAOpP2hFkDD2bpa1bFs8kgN2aa4/4D54HeyQSYHB/ZtRJg+1HoxUwCXuZ
- duKlZztCz18fpgEyD5lAXEVF6ozlmbl5Ug8EPDxSRbDG2TINp2ZKzXDXX
- Sa0zQ/ZjeTQc2s0NxzMEDt4J4i1uK3fmAnFktdlzaufor2qNPu7RnOWf8
- R6MxWxWTPzMaaHwlpK05YkTqEaNz9K2FkgaNHBPLmrSzJMuqsPC77OvHe
- 9kOlADV4OZPk6fp55s1CWpIkSooT/uHOnuNd7VnACWK2HU3CfVupopGhf Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10279"; a="252206899"
-X-IronPort-AV: E=Sophos;i="5.90,164,1643702400"; d="scan'208";a="252206899"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2022 01:03:36 -0800
+ t=1646731563; x=1678267563;
+ h=from:to:cc:subject:date:message-id:mime-version;
+ bh=IfPR/JSdnqIV5vvVPhjuE4umYTDyB+ZL4tbQSK79lmA=;
+ b=LX2clMcUm0qQZmYX0IzrjqctmRHzC+0RVv6hDPtrjCDOoRFnW/BbSp+m
+ DPCWn36HWLO4PjnpmJi3YFHjenuO2lFHnuUFPqdIMuRYWSBJ5tbt1Oxk9
+ ExXXkanIj0YsBSPt7W/KFyCQQj3EmLnGBcHbu+e7al6vUXAR3xQ//HVA+
+ gUReDsBtCmP8IBxrZoSmY0qXbsI2cZ77/6MtOJfjfk9XnmSLMETL+Iyf8
+ GbCiET+DF69czGPAn6iJeoF869r5oG5DyzuhNUnr93dErX/IUL3kk3Vc0
+ T5u32em/ihZznZQL7VaIJbMSaRxAuIN6rw3sIc01jeq4oosApGzsPnHxn A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10279"; a="242076318"
+X-IronPort-AV: E=Sophos;i="5.90,164,1643702400"; 
+ d="scan'208,217";a="242076318"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Mar 2022 01:26:02 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,164,1643702400"; d="scan'208";a="513033475"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orsmga006.jf.intel.com with ESMTP; 08 Mar 2022 01:03:35 -0800
-Received: from fmsmsx607.amr.corp.intel.com (10.18.126.87) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="5.90,164,1643702400"; 
+ d="scan'208,217";a="780651679"
+Received: from fmsmsx606.amr.corp.intel.com ([10.18.126.86])
+ by fmsmga006.fm.intel.com with ESMTP; 08 Mar 2022 01:26:02 -0800
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx606.amr.corp.intel.com (10.18.126.86) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.21; Tue, 8 Mar 2022 01:03:34 -0800
+ 15.1.2308.21; Tue, 8 Mar 2022 01:26:02 -0800
+Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.21; Tue, 8 Mar 2022 01:26:02 -0800
 Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx607.amr.corp.intel.com (10.18.126.87) with Microsoft SMTP Server
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.21 via Frontend Transport; Tue, 8 Mar 2022 01:03:34 -0800
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (104.47.74.42) by
+ 15.1.2308.21 via Frontend Transport; Tue, 8 Mar 2022 01:26:01 -0800
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.48) by
  edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2308.21; Tue, 8 Mar 2022 01:03:33 -0800
+ 15.1.2308.21; Tue, 8 Mar 2022 01:26:01 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ijbmnaRE9hv0XwokC7hCD5f5H1AglE43OHSoxgbHDjuj8Rgxt3TynrErSmIrq3zpQ5M/DewFosBXU0HqSe1ufu4apMATHK1OsQMHbOgQ+Do+zWPjyZO/NBLDlOVTdhgh2R/0sm4QYIii+bt2Ht7cU6vFJ1bgq7PUe9tUCOLQeQkrCsAP92c+td6WWo2FywAPEpJdpUz3bBoV3EXxXS6WDY5oRGxtwICCmxBxL27KdDzn8D5vDkI4IFyjsRX20F/QlBjMkj+zjyKmtg5riqi3QY9lxXuCp7FboBkFdV7yNKH9o8fdv5XikV/Dv+ulfetSZxTd8kToJaUOUGr51luOcg==
+ b=ZiRK/3so2XftHeEVjX9tE5dzWKif8r1NuKJvS9AmTmcf4V9AYuK5Ut6pBfH31h5rjpej19cZSu8RiO9TV7Z9rUYd2Cnxzi6nVgIPdoVD4hFy1m7P85gpxQIfSn4yBLoMuetOrCriiYcOLlwy0vDpgCje9KYlDSWCmZxj3bC+4eHp1sECXB2YaR5SVbCgxRCLVEAAKVzniwX0q+7YGvRd6g+Bft2qtkuz1OgC4cvBZk0KFC24K5gJAdsI/rkLdnGIIgChBylx8MFR6F8l4d9FwFZyHsnqOYaPlwePl+oOjFapBlgnRt4gpXOn7KSL0iAjD04P9rbeH/x/ia1IESdwGQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=a827WOxq1LCTINCtmImKpSEAmRvCOoLNmg2zWTQPIM8=;
- b=lLx5JUk3G0iUn6saUQvHoitjew6Wxs0+frtigkz4Xb232jtzsdIUg+u+9HehttQBPc2lLF8i5UTLVD2hjbVPpNeszmzLUOKRANyaWTN+c4BTWTZfHRcYtKDLv8wms9dH3oiuPF/quUO7p0Q8PVSBtjiHIkHYqd9wurNaQtr6G3U1oXSa+escNYnoZK5zEx1zCFVSADRfDGQIu7+LpzqFT6yAwU5RL4wTg6REbao1ZletoRuxY74HXgTTOLpC/gPeW+NtrKPuz2/KSZC60qA2llxVx/bXPkAcfyCpEIu1e96Et4HX4Eysrr2dSXMLiywpAqYOlarl3z9W/aGPdCatuA==
+ bh=qLVGRwowIdopfcjRm6zVG99QW40L+jviIH5VEfJQsxI=;
+ b=IoLCY5lPRKY9qEInFdeWrOscfD8w7A+8XOsG2vXYEQssUcTmcoXOCV1RsjXOVkPQ2xX9hXmc0UPdopIMPV8a9NdBtn+geEaub9yQ7ZT+FlqqmcaNB6greX7kuMjqzbAYotlZQkUdKA78WvEqrSreOWCVQMKlmea+9EXLN40oKlgdayVRjddhtOSAzH3703WFN/oYdUSnpbpf1QATzuAbuunLfC5Zd3BA7IOWw5tpwLmJdOXNLPG5aGz+7JcbKN+7Y/Fv7d1c7KKyomlWwdqywVzMrKxOW6ONJFTYfBFDoIXy69XN5PNuzcwXWbaiY+/dU/hY89pK6gAjjweENkAm+w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from BN9PR11MB5275.namprd11.prod.outlook.com (2603:10b6:408:134::24)
- by DM5PR11MB1385.namprd11.prod.outlook.com (2603:10b6:3:9::21) with
+Received: from DM8PR11MB5637.namprd11.prod.outlook.com (2603:10b6:8:33::5) by
+ CY4PR11MB1349.namprd11.prod.outlook.com (2603:10b6:903:30::9) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5038.14; Tue, 8 Mar 2022 09:03:30 +0000
-Received: from BN9PR11MB5275.namprd11.prod.outlook.com
- ([fe80::8d95:891:b183:49d4]) by BN9PR11MB5275.namprd11.prod.outlook.com
- ([fe80::8d95:891:b183:49d4%5]) with mapi id 15.20.5038.027; Tue, 8 Mar 2022
- 09:03:30 +0000
-From: "Mrozek, Michal" <michal.mrozek@intel.com>
-To: "Harrison, John C" <john.c.harrison@intel.com>,
- "Intel-GFX@Lists.FreeDesktop.Org" <Intel-GFX@Lists.FreeDesktop.Org>
-Thread-Topic: [PATCH v3 4/4] drm/i915: Improve long running OCL w/a for GuC
- submission
-Thread-Index: AQHYL09Ok4sJUdFD1kStLBfh865Ry6y1OBdA
-Date: Tue, 8 Mar 2022 09:03:30 +0000
-Message-ID: <BN9PR11MB5275076DEB90701ED8C9A733E7099@BN9PR11MB5275.namprd11.prod.outlook.com>
-References: <20220303223737.708659-1-John.C.Harrison@Intel.com>
- <20220303223737.708659-5-John.C.Harrison@Intel.com>
-In-Reply-To: <20220303223737.708659-5-John.C.Harrison@Intel.com>
+ 15.20.5038.20; Tue, 8 Mar 2022 09:25:59 +0000
+Received: from DM8PR11MB5637.namprd11.prod.outlook.com
+ ([fe80::256e:ba1f:39bf:49f1]) by DM8PR11MB5637.namprd11.prod.outlook.com
+ ([fe80::256e:ba1f:39bf:49f1%4]) with mapi id 15.20.5038.027; Tue, 8 Mar 2022
+ 09:25:59 +0000
+From: "Sarvela, Tomi P" <tomi.p.sarvela@intel.com>
+To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: Intel-GFX-CI is halted due to power issue
+Thread-Index: Adgyzj1MXdBkDmVJR2qnqQGEJusS2w==
+Date: Tue, 8 Mar 2022 09:25:59 +0000
+Message-ID: <DM8PR11MB5637F73BC1D708F91A244951DE099@DM8PR11MB5637.namprd11.prod.outlook.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 dlp-product: dlpe-windows
-dlp-version: 11.6.401.20
 dlp-reaction: no-action
+dlp-version: 11.6.401.20
 authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: ff978d27-713a-41a1-4c61-08da00e2842e
-x-ms-traffictypediagnostic: DM5PR11MB1385:EE_
-x-microsoft-antispam-prvs: <DM5PR11MB1385B90D4163CCFBCAE20C2EE7099@DM5PR11MB1385.namprd11.prod.outlook.com>
+x-ms-office365-filtering-correlation-id: aadf3af7-2c72-4602-53c0-08da00e5a869
+x-ms-traffictypediagnostic: CY4PR11MB1349:EE_
+x-microsoft-antispam-prvs: <CY4PR11MB13498A0D3665F90ED2EC2A5CDE099@CY4PR11MB1349.namprd11.prod.outlook.com>
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: uYIN/sYBr4mAUttnub3GEpGmGGd+yG9YTZafDg1PM+AAxaK9SzMgh93g/K9z9MpZoK1lOfmu8pbvY/+yp+8e/puSHHd9J3A4UUnsPxObkaSrl0mAmwvgjQty1wccqfEVAs/ReyqulJY8Qxnn9SYhw3LPP8UeRDXhvKV6BpcbkWxqq7HXaMFRCuMzm7r5CqSidTS2x1WkSwtkxF8LG0v3vBGA/20sWoZBsYNtVNiykceyY7WrwXb+nfQWiIGSEH8tK8LmwGg9RbcqhUNJb3HYUMOP//PB1v1zDeX6Epy5f1U/hT/XgyuSJBiVRcw2KL8HdTLcCvA+W1Pa9jafrpc76WNf2DxG02UGA5PPxuGgPL6a4BJ3n3ONO34A6Fzj4x9HZTmVqB2nVQVSdUMLb6JOK0Uv7ILcKGrNV8z9Q/WomL3WfoZSwYp4EhAJIV0csP73rnAS2Bs+IykexrWhKyop/R+RYa5MGX7p3aWu9ihKtCE6YLqsmCGHq/Pu71qbI/H/5Chz7VdK9h+IWr4fuytEBRWjZ7lwzHvsSPID3oVHAn6UMQHHbJvlJJSNjqPwmOc2ObJOghMlNexj5cc0qrtcWGHbMqicO0VkL+uvlmRsnEgytcW/0GXcRMgU4GEeVT1E51VizG/eB7I8tto8BoRswKFau8fL+PKEpbFWFozuIS0PKdJBN3F2o6ReF/OaM0ZPa+DODUXDVBA7ZlpkAce9tA==
+x-microsoft-antispam-message-info: ZZMM43Fmb6U6xY2tRaaeuH6Jjh5covS81z9uulAoWCs0lKOV1jNYAmmJzfZWfq+6Z5MkWFCUdXxNuzxfkoIdsL09ZgFu60enFudu2w79pik0O83SZuJniBPS5oLXSJ2I74tnXWTlqMZ/EWeQLn2a8OGSZD157seXMlgiPoodEexraLym5duZqbw+JGXIn4+Umeq/BYcf5mCXG9f67+Mp3UFqv1zVAtTj/6m2ZZIHvxlgltkizJz8n1ZqNYcKxQ5eMtSJTVm+icKV2RB3Dhycvp6MFnW9v2DB6WVt1H/+uF8fSAQbeAVNLFVOJWd1u8pQHB+cstF1o8jFIFD9k0Gf5oRY7ywua/SRu0e0oU7hJe8sd+dDgXjQqIwKql4FOQVWuZi8147uZ0ROQKbYoXfX4Y5lTK5Rw0eLR1rRFJrdSubdwu3FrQvhsSS/u4RCBMV1jIYxbAT/eLd/yu3PZk4HJRxUQz25L7P4UFftso1t5In/sxry4a06/E8baSoQVYsrldJgrbkpOvVrtIyln5c0ITKpWCENRKyTl9qEwS+HZ7DbZrS+q9H7zR0ph9JGNeoAduiJWP5ZCU6LyzvGXT1sOXLiWKMj2/3LAcfvK0jYlni4PyfQMSa6T+ojvzNCxCSBz8PxslY327axw+vY3MOtYzAMduvCmoiavdmUh4skU9xviWReyLpHuH0yfDt9/INmWxhCi6oHrfRoXuPSEZ0wYA==
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN9PR11MB5275.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230001)(366004)(66446008)(7696005)(6506007)(33656002)(53546011)(86362001)(52536014)(8936002)(66556008)(5660300002)(508600001)(9686003)(107886003)(2906002)(450100002)(26005)(186003)(4326008)(76116006)(64756008)(66476007)(8676002)(66946007)(38100700002)(110136005)(38070700005)(55016003)(122000001)(82960400001)(71200400001)(316002)(54906003)(83380400001);
+ IPV:NLI; SFV:NSPM; H:DM8PR11MB5637.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230001)(366004)(5660300002)(66446008)(8676002)(64756008)(66476007)(66556008)(66946007)(76116006)(33656002)(4326008)(52536014)(2906002)(316002)(8936002)(6916009)(186003)(54906003)(4744005)(38100700002)(122000001)(38070700005)(86362001)(508600001)(107886003)(82960400001)(71200400001)(55016003)(6506007)(7696005)(9686003)(26005);
  DIR:OUT; SFP:1102; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?aCCvaXCAUScmUhve++VyHpBjXCFnId3EEJrrf0EJNa6Rblf3aX/V348UO8No?=
- =?us-ascii?Q?/DziW4scQsSpfEkPbVGSKvKCgxU3kx8DukHXeVc6EN3ryH3KbUU6eMTDJ+GU?=
- =?us-ascii?Q?jatZYUTG45shpdr+i9yL6ECc6B3LvUv2/OxTAZRmTQqUtzbFHok+CarYuDXR?=
- =?us-ascii?Q?RAFh/Oyis8Jq7hDAYDdgdDGpMmLCKTZPZmq+EPzPxKoa8kwvAArUVCl9gyGY?=
- =?us-ascii?Q?Nzz9LMtRWNYDwjRPz/25e9rjg0jscOhjEP0YA6L1KTRpqDZFXex03swNkAIB?=
- =?us-ascii?Q?Gnnmnt2LvI/x80NQPdBcjzzK1ySLitb0yXoI6HU5m38r0erEqkrgSFy5ZMGB?=
- =?us-ascii?Q?v7Kj0mYkMsv4iw347H6vHRgzlPRUl7mo8aVZmFFO8hqLYe0U3lClvs43FvXT?=
- =?us-ascii?Q?NKFlcehhfesB2ULUK5O7JHVPp2vgHnE3ixMuNCtwpvEMv06a400X4UdGd04v?=
- =?us-ascii?Q?Tx65AuwTKJEjPIn3iVSIpo5WuAvHjNbZThMyrPM+Xc5j/Awa45MfLGa5330A?=
- =?us-ascii?Q?IAZkPaR6pcF5q9tT7Ywz3nM1k7Yd985V4TssTq8u3g6iIfokYs3jIXZQFL5c?=
- =?us-ascii?Q?droDEHJb6oultMWU5gLPFMXVE4utWbpLwd/gVB6vZL/BsS694MnSCxDqqCJH?=
- =?us-ascii?Q?Vb4+u8YMIqSIlyQT5KQzL/p/E/7tto1UWpWzG5qrBLdPqK0sERlyKNYqLigr?=
- =?us-ascii?Q?FKU3eVsjHYTsmSFmaYKHJMQoHHPA0MM5xF9vl2fBjYovSgFUdxyyC1LaUX6E?=
- =?us-ascii?Q?WAF/j34J3iVmFwi9uW+1xbP91r9AFXudjXf4D1BxrCr1tTyHBsNqHPnh5BzQ?=
- =?us-ascii?Q?JDjeslBYEe73c0++eG+LG4q5dYB3AbV3e455ST4AyxQ1cQbkNVqYCry5EXVx?=
- =?us-ascii?Q?bvy8/tJO/DWXZlOey+v74yM3KyIik9JYGU3uyKibAggI/ehmqEyKa2mI2mx1?=
- =?us-ascii?Q?BeChRV07tkcU5WbJqnVtNUPwdCFyfan8g5WgJkue9P13pN83525Z2C97pBCB?=
- =?us-ascii?Q?fXPyOqyfQy0CCF5Ih/J9Jv02YJeVPK1LaAfra/DcYV2IKvtiXc3ZxCz52r1H?=
- =?us-ascii?Q?Y00vYkP19MgtFxt2cWJvNVta7BnAdEWrzCAFh5qTJFzSQ0DuzYhOiDJTidjC?=
- =?us-ascii?Q?9wXyPvyesErePiQUgl1h68cUtPbKQiOPCjHoDJXJ7z4vUA+PnOrwFEMmYrgS?=
- =?us-ascii?Q?9hN+Jtwnx8nSVMJz+mygnuV4CjuwT1Ha7rg/G+Q4YyNHbGj3M2CDGPOJo5EO?=
- =?us-ascii?Q?Zh8pJlX1/yHIErD8+ssVweYBE5CrjUt1vOn+moJbwfPxViWGtFSJYUBx9ttm?=
- =?us-ascii?Q?kg0p5fwtPR5lqkllVs/bVAc3atwWlCn1ihPykCEK9dEN0tN7luVwcMT7UGLB?=
- =?us-ascii?Q?rrL/nn/H3kEVjybJCzb6CsBZYAkUQudsiHOdf9qf+hBZTGxhsRTn8fXYBiWF?=
- =?us-ascii?Q?SujFdZPA2r9Y97CP6bwKJ5TScu7/ctp93tkX9hWaCRcBm3TtWrSqQGB3CE/Y?=
- =?us-ascii?Q?eUh8OeFp0gEnUDR/jqitlkakEZZz+jVPBRYGYLaVi8aHkDw5jGuyV79DiTEM?=
- =?us-ascii?Q?sDHorkTpEI08ph6yKo36cV5pD/XnYlyW/cFJc1wHEvTTj+oJ5YTM+f4lV5tR?=
- =?us-ascii?Q?gA=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?UOeAA0RbS2kwVrbyWLUHkULRJyGaEzkRfyYzv/HRj6nPqAn1CWDw2+9A3geO?=
+ =?us-ascii?Q?aGeYvwSEAMOKLH5dzbDS33TkpV8qz8ebTDWTtfWHMyvFY0G5qafP92UQQvol?=
+ =?us-ascii?Q?0i18LMRHv/KCBg6LbFifVDEGz/zWuBjeRwSUr/Y8NtTgEJ0XlEV57G0B5GQJ?=
+ =?us-ascii?Q?egkR6tFm6pSN/Bm4cGXqqy6Q1JpQibmqqhxutDey4GKEA6I2MicTzi83sUf4?=
+ =?us-ascii?Q?Cu+a8OVJuwUhtcD2H8cnxuJ6ePhn4GbTnz+Azv6VSr0hboQ+kfAoFAQs7nwA?=
+ =?us-ascii?Q?9hPmqn+1ofHVa/zK4SO0Hrc878qqajvTiZcUrzQUq84UvwLbdLJwP+pTFcMG?=
+ =?us-ascii?Q?AOyoSVoBj4a19bLc/stK9EQD8736JMwRltx8HoZVUc3TifhLQv+JGrzOBpcl?=
+ =?us-ascii?Q?rcFWMScH+kt0QkygsHVWjfunNfbCoznD91D3br3gwKN2+1uilbRpBPm1OUNN?=
+ =?us-ascii?Q?2jtjZ9BqXEMD+2VbcIJIihPN6d/M4h7UUr0DyyAmkd9PklQMHA3hKXRf9nK3?=
+ =?us-ascii?Q?Rk6XAP4uQMygxpA3X1qeLg7ezC/MJ1i8Fyb04RmBv4VcvJ1OeumJFXBHo+2v?=
+ =?us-ascii?Q?jv9nHbEe0Chpp5ButM+05QYDeQjv8WrpthTJbhKt5jBij4uhq12k+q02TLqF?=
+ =?us-ascii?Q?/6CBKv58tDAXFkKjJjqEFDme6AuQ3TIDAwTGmdS6PPkgZTPTPQce3axbTDvH?=
+ =?us-ascii?Q?i72pMT3UzjlpoQj/4CdZHL6rjxVGaqGffoxRc18k6lDRR68/A3NVE0SQLFk3?=
+ =?us-ascii?Q?sKwvKfoXGb0eimhw/daTQqrZn2zd82ZC0BXuDc1WzE2s+9yxp0Xo+YZ0F/qa?=
+ =?us-ascii?Q?bPfZgW1Az2cemYiDDuENxbI9n7m7mnM5am3XXti9KRB4bNADh948AehvLHut?=
+ =?us-ascii?Q?WSYAiVJyfkaRjUtKCOTZpnDmuZ26s+/Wz7tpLHc8qMPkft17GUIGjSBtKWwA?=
+ =?us-ascii?Q?q601Sz6yDhNaWgV5nXyLlf6orW7yMTngepPZJEH6LEKWg0djzNByxpI2T1p9?=
+ =?us-ascii?Q?0lfTiGjaQwORgexIg5+4yseQ4FiDA7UkKKCo4dOhMMkZn2KMIEai9bivd+PW?=
+ =?us-ascii?Q?E32I490CLMaaLEa0Q9LTAUBRiU79QdJMd+r0n9S0mhw5PF1IfR2CWxc4piQv?=
+ =?us-ascii?Q?jVtgkxVekdMEP0KsRAlMqJP9pyh8oVX5+XiRrBCpdbY/r2Ij0qk4Mpuu75LT?=
+ =?us-ascii?Q?c4zadqWDe/zCPOJE0WhKyH3P/QEKS279WH4Mkrph33P0UNSUc75MP3uAdoVZ?=
+ =?us-ascii?Q?o4pbp8zdeMB4eG0hM3ts9IdafwtWlxzI61bGn0KwEOTx475MFIuFme44wzsq?=
+ =?us-ascii?Q?K6tw2RJct+Tv1lkA9Se40vVn9l/rgNMg/5DWp2AhuSdXAVb3Xc/jLAvnsrtp?=
+ =?us-ascii?Q?vpidVPOKMFQKMUJq85/qf6TALB4t1ykNAnfeEnRBDH7YNTWHSMR+/ijo6yxk?=
+ =?us-ascii?Q?/oZW3Nwad45ibG576cPgj8BJbuo5kHk8F+1UWbDe0+5CWVol5GlIALtmx15Y?=
+ =?us-ascii?Q?KbMRBC6ghFkOC1M+Poz5E591R1kGL6ZPMVjnENkRhUcnFuWuQQEnlULmITFy?=
+ =?us-ascii?Q?nRm/VCeWPrwW5FqquuHc9a3V1QWNvs4gOIq99cqLQeVDcYRrx8jEX57tbKiI?=
+ =?us-ascii?Q?uhNUnkh5iCiKkC/jzxi5kpSz6bo++BFVdUM7pZK3VurLWoL2wFQzVF85fMJ1?=
+ =?us-ascii?Q?TBxZtg=3D=3D?=
+Content-Type: multipart/alternative;
+ boundary="_000_DM8PR11MB5637F73BC1D708F91A244951DE099DM8PR11MB5637namp_"
 MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BN9PR11MB5275.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ff978d27-713a-41a1-4c61-08da00e2842e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Mar 2022 09:03:30.5645 (UTC)
+X-MS-Exchange-CrossTenant-AuthSource: DM8PR11MB5637.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: aadf3af7-2c72-4602-53c0-08da00e5a869
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Mar 2022 09:25:59.8863 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: WhK8AI7OYCKOcUPB4HfECOviU9RV47Epjwt9DqL675iFxSHbOTXUeYg0BtJ3b06MNd6EFU2PH63uR6bcqdn/KQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR11MB1385
+X-MS-Exchange-CrossTenant-userprincipalname: D807rsEqMXJyFSgRrojnArlQ4oLs7TBx+kEkmCfcH05mt2M97km6YLwdOQaHL9XcNaLlNTIpUWWhA/FL05KeH4Jlg5RPvFL0/zd/s/KhqKs=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR11MB1349
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v3 4/4] drm/i915: Improve long running OCL
- w/a for GuC submission
+Subject: [Intel-gfx] Intel-GFX-CI is halted due to power issue
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -152,119 +152,110 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "DRI-Devel@Lists.FreeDesktop.Org" <DRI-Devel@Lists.FreeDesktop.Org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Acked-by: Michal Mrozek <michal.mrozek@intel.com>
+--_000_DM8PR11MB5637F73BC1D708F91A244951DE099DM8PR11MB5637namp_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
------Original Message-----
-From: Harrison, John C <john.c.harrison@intel.com>=20
-Sent: Thursday, March 3, 2022 11:38 PM
-To: Intel-GFX@Lists.FreeDesktop.Org
-Cc: DRI-Devel@Lists.FreeDesktop.Org; Harrison, John C <john.c.harrison@inte=
-l.com>; Ceraolo Spurio, Daniele <daniele.ceraolospurio@intel.com>; Mrozek, =
-Michal <michal.mrozek@intel.com>
-Subject: [PATCH v3 4/4] drm/i915: Improve long running OCL w/a for GuC subm=
-ission
 
-From: John Harrison <John.C.Harrison@Intel.com>
+Intel-GFX-CI has ongoing issue, assumed AC power delivery.
 
-A workaround was added to the driver to allow OpenCL workloads to run 'fore=
-ver' by disabling pre-emption on the RCS engine for Gen12.
-It is not totally unbound as the heartbeat will kick in eventually and caus=
-e a reset of the hung engine.
+At around 21:00 EET yesterday, the power was lost to several parts
+of our CI lab, most notably to PDUs that control testhosts. As the PDUs
+cannot be reached or controlled, testhosts by and large are without power.
 
-However, this does not work well in GuC submission mode. In GuC mode, the p=
-re-emption timeout is how GuC detects hung contexts and triggers a per engi=
-ne reset. Thus, disabling the timeout means also losing all per engine rese=
-t ability. A full GT reset will still occur when the heartbeat finally expi=
-res, but that is a much more destructive and undesirable mechanism.
+There has been builds but no results after the incident.
 
-The purpose of the workaround is actually to give OpenCL tasks longer to re=
-ach a pre-emption point after a pre-emption request has been issued. This i=
-s necessary because Gen12 does not support mid-thread pre-emption and OpenC=
-L can have long running threads.
+I'll inform more with ETA when I know more about the situation
 
-So, rather than disabling the timeout completely, just set it to a 'long' v=
-alue.
+Best Regards,
 
-v2: Review feedback from Tvrtko - must hard code the 'long' value instead o=
-f determining it algorithmically. So make it an extra CONFIG definition. Al=
-so, remove the execlist centric comment from the existing pre-emption timeo=
-ut CONFIG option given that it applies to more than just execlists.
+Tomi Sarvela
 
-Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com> (v1)
-Acked-by: Michal Mrozek <michal.mrozek@intel.com>
----
- drivers/gpu/drm/i915/Kconfig.profile      | 26 +++++++++++++++++++----
- drivers/gpu/drm/i915/gt/intel_engine_cs.c |  9 ++++++--
- 2 files changed, 29 insertions(+), 6 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/Kconfig.profile b/drivers/gpu/drm/i915/Kc=
-onfig.profile
-index 39328567c200..7cc38d25ee5c 100644
---- a/drivers/gpu/drm/i915/Kconfig.profile
-+++ b/drivers/gpu/drm/i915/Kconfig.profile
-@@ -57,10 +57,28 @@ config DRM_I915_PREEMPT_TIMEOUT
- 	default 640 # milliseconds
- 	help
- 	  How long to wait (in milliseconds) for a preemption event to occur
--	  when submitting a new context via execlists. If the current context
--	  does not hit an arbitration point and yield to HW before the timer
--	  expires, the HW will be reset to allow the more important context
--	  to execute.
-+	  when submitting a new context. If the current context does not hit
-+	  an arbitration point and yield to HW before the timer expires, the
-+	  HW will be reset to allow the more important context to execute.
-+
-+	  This is adjustable via
-+	  /sys/class/drm/card?/engine/*/preempt_timeout_ms
-+
-+	  May be 0 to disable the timeout.
-+
-+	  The compiled in default may get overridden at driver probe time on
-+	  certain platforms and certain engines which will be reflected in the
-+	  sysfs control.
-+
-+config DRM_I915_PREEMPT_TIMEOUT_COMPUTE
-+	int "Preempt timeout for compute engines (ms, jiffy granularity)"
-+	default 7500 # milliseconds
-+	help
-+	  How long to wait (in milliseconds) for a preemption event to occur
-+	  when submitting a new context to a compute capable engine. If the
-+	  current context does not hit an arbitration point and yield to HW
-+	  before the timer expires, the HW will be reset to allow the more
-+	  important context to execute.
-=20
- 	  This is adjustable via
- 	  /sys/class/drm/card?/engine/*/preempt_timeout_ms
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i9=
-15/gt/intel_engine_cs.c
-index 4185c7338581..cc0954ad836a 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-@@ -438,9 +438,14 @@ static int intel_engine_setup(struct intel_gt *gt, enu=
-m intel_engine_id id,
- 	engine->props.timeslice_duration_ms =3D
- 		CONFIG_DRM_I915_TIMESLICE_DURATION;
-=20
--	/* Override to uninterruptible for OpenCL workloads. */
-+	/*
-+	 * Mid-thread pre-emption is not available in Gen12. Unfortunately,
-+	 * some OpenCL workloads run quite long threads. That means they get
-+	 * reset due to not pre-empting in a timely manner. So, bump the
-+	 * pre-emption timeout value to be much higher for compute engines.
-+	 */
- 	if (GRAPHICS_VER(i915) =3D=3D 12 && (engine->flags & I915_ENGINE_HAS_RCS_=
-REG_STATE))
--		engine->props.preempt_timeout_ms =3D 0;
-+		engine->props.preempt_timeout_ms =3D=20
-+CONFIG_DRM_I915_PREEMPT_TIMEOUT_COMPUTE;
-=20
- 	/* Cap properties according to any system limits */  #define CLAMP_PROP(f=
-ield) \
 --
-2.25.1
+Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
+
+--_000_DM8PR11MB5637F73BC1D708F91A244951DE099DM8PR11MB5637namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"FI" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:bre=
+ak-word">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Intel-GFX-CI has ongoing issue,=
+ assumed AC power delivery.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">At around 21:00 EET yesterday, =
+the power was lost to several parts<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">of our CI lab, most notably to =
+PDUs that control testhosts. As the PDUs<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">cannot be reached or controlled=
+, testhosts by and large are without power.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">There has been builds but no re=
+sults after the incident.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I&#8217;ll inform more with ETA=
+ when I know more about the situation<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Best Regards,<o:p></o:p></span>=
+</p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Tomi Sarvela<o:p></o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"mso-fareast-language:F=
+I">--<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-IE" style=3D"font-size:9.5pt;font-f=
+amily:&quot;Arial&quot;,sans-serif;color:black;background:white;mso-fareast=
+-language:EN-IE">Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 =
+Espoo</span><span lang=3D"EN-IE" style=3D"mso-fareast-language:EN-IE"><o:p>=
+</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+</div>
+</body>
+</html>
+
+--_000_DM8PR11MB5637F73BC1D708F91A244951DE099DM8PR11MB5637namp_--
