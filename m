@@ -1,52 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 233D44D14DB
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Mar 2022 11:33:39 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15B454D151C
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Mar 2022 11:49:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2769710E74D;
-	Tue,  8 Mar 2022 10:33:37 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 265F910E74D;
- Tue,  8 Mar 2022 10:33:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F08D10E888;
+	Tue,  8 Mar 2022 10:49:01 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1626A10E87F;
+ Tue,  8 Mar 2022 10:48:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646735616; x=1678271616;
+ t=1646736540; x=1678272540;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=gEWsubcOX/PN2HNCoBFWS9ml0Qm8LzCRPr76qrNFf8s=;
- b=Yyk/egk1nHwslo8Ny3Iee3lKS1Jh74njJONs5gtkcI+brvWK9n13psUB
- 8FXKnStTmVFn+hmrbvLCjaHTb343W/hCqIrCUUO32HNbxJOUX9152bpST
- gKZ2K9t95Vl2QbFsyR/ItYHWhRxFXFstbLTlpApQMg9BW/KSwAqXLYxO5
- 52nothkdx08eJN7BQ4ZIUMo1UIGnYf/eYZ1N5KqBfDVa5+ZwMo2kpyB0P
- I28t9IUPi7/uzsEASeNBkutLL1cliBoFSvB9YuO1XboWVsgAszFydTTpR
- VjVlan9h+HLjwZJmgTdbcIZMtfB+OeJoqbY1oXKx9YU+WrKTdJA6Rp/HO w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10279"; a="317881617"
-X-IronPort-AV: E=Sophos;i="5.90,164,1643702400"; d="scan'208";a="317881617"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2022 02:33:34 -0800
-X-IronPort-AV: E=Sophos;i="5.90,164,1643702400"; d="scan'208";a="813843203"
+ bh=p1Z+mwMNu6doyIZ+PY/F2NpcypktBPpZyrwE9rUTvVI=;
+ b=jo9j/rq4/YnTiPg4hLrFRwFlDBr4ubmpGS9JVESucWti9HHOlAY0X6KV
+ sHvMbXY99Et9SmHf74V4KYw4BnzgMpn4VYXl5OKrIaUkXTR0YYV68Iekb
+ J/33p5z+OgX8dH0bAQU8z9UfaD6iEOY9TjV+eGbKIOW4oD25emOEnfCFe
+ ciReh3ttXZ8pCZWjUj92wv6vW33vHcj2U/b4v6gFo3Yhd0BdFYoO8Ty9o
+ M0lXVpxHmxfah8L4F5dDU66DAI7HHSCRDvzR/V8EaJpKiIzXIJ6QOjTKR
+ F/D3fmfDtCWCxyRoe/UC7elhaAdf/COgbi55tWoWVjRRN78tYUHNJnUSW g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10279"; a="341086295"
+X-IronPort-AV: E=Sophos;i="5.90,164,1643702400"; d="scan'208";a="341086295"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Mar 2022 02:48:59 -0800
+X-IronPort-AV: E=Sophos;i="5.90,164,1643702400"; d="scan'208";a="643615788"
 Received: from acushion-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.29.47])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2022 02:33:32 -0800
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Mar 2022 02:48:49 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-In-Reply-To: <YiKYu8xJlVdOuoJ/@mdroper-desk1.amr.corp.intel.com>
+To: John Harrison <john.c.harrison@intel.com>, Intel-GFX@Lists.FreeDesktop.Org
+In-Reply-To: <c6aeece0-9b12-e135-c991-25793f7640bb@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220303224256.2793639-1-matthew.d.roper@intel.com>
- <87h78e3u13.fsf@intel.com>
- <YiKYu8xJlVdOuoJ/@mdroper-desk1.amr.corp.intel.com>
-Date: Tue, 08 Mar 2022 12:33:29 +0200
-Message-ID: <87r17c20p2.fsf@intel.com>
+References: <20220225000623.1934438-1-John.C.Harrison@Intel.com>
+ <20220225000623.1934438-2-John.C.Harrison@Intel.com>
+ <87ilsu2aj1.fsf@intel.com>
+ <c6aeece0-9b12-e135-c991-25793f7640bb@intel.com>
+Date: Tue, 08 Mar 2022 12:48:46 +0200
+Message-ID: <87o82g1zzl.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dg2: Add preemption changes for
- Wa_14015141709
+Subject: Re: [Intel-gfx] [PATCH v2 1/8] drm/i915/guc: Do not conflate
+ lrc_desc with GuC id for registration
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,203 +60,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: DRI-Devel@Lists.FreeDesktop.Org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 04 Mar 2022, Matt Roper <matthew.d.roper@intel.com> wrote:
-> On Fri, Mar 04, 2022 at 12:13:12PM +0200, Jani Nikula wrote:
->> On Thu, 03 Mar 2022, Matt Roper <matthew.d.roper@intel.com> wrote:
->> > From: Akeem G Abodunrin <akeem.g.abodunrin@intel.com>
->> >
->> > Starting with DG2, preemption can no longer be controlled using userspace
->> > on a per-context basis. Instead, the hardware only allows us to enable or
->> > disable preemption in a global, system-wide basis. Also, we lose the
->> > ability to specify the preemption granularity (such as batch-level vs
->> > command-level vs object-level).
->> >
->> > As a result of this - for debugging purposes, this patch adds debugfs
->> > interface to configure (disable/enable) preemption globally.
->> >
->> > Jira: VLK-27831
->> 
->> Please remove internal Jira references.
->> 
->> > Cc: Matt Roper <matthew.d.roper@intel.com>
->> > Cc: Prathap Kumar Valsan <prathap.kumar.valsan@intel.com>
->> > Cc: John Harrison <john.c.harrison@intel.com>
->> > Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
->> > Signed-off-by: Akeem G Abodunrin <akeem.g.abodunrin@intel.com>
->> > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
->> > ---
->> >  drivers/gpu/drm/i915/gt/intel_gt_regs.h     |  3 ++
->> >  drivers/gpu/drm/i915/gt/intel_workarounds.c |  2 +-
->> >  drivers/gpu/drm/i915/i915_debugfs.c         | 50 +++++++++++++++++++++
->> >  drivers/gpu/drm/i915/i915_drv.h             |  3 ++
->> >  4 files changed, 57 insertions(+), 1 deletion(-)
->> >
->> > diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
->> > index 19cd34f24263..21ede1887b9f 100644
->> > --- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
->> > +++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
->> > @@ -468,6 +468,9 @@
->> >  #define VF_PREEMPTION				_MMIO(0x83a4)
->> >  #define   PREEMPTION_VERTEX_COUNT		REG_GENMASK(15, 0)
->> >  
->> > +#define GEN12_VFG_PREEMPTION_CHICKEN		_MMIO(0x83b4)
->> > +#define   GEN12_VFG_PREEMPT_CHICKEN_DISABLE	REG_BIT(8)
->> > +
->> >  #define GEN8_RC6_CTX_INFO			_MMIO(0x8504)
->> >  
->> >  #define GEN12_SQCM				_MMIO(0x8724)
->> > diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
->> > index c014b40d2e9f..18dc82f29776 100644
->> > --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
->> > +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
->> > @@ -2310,7 +2310,7 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
->> >  			     FF_DOP_CLOCK_GATE_DISABLE);
->> >  	}
->> >  
->> > -	if (IS_GRAPHICS_VER(i915, 9, 12)) {
->> > +	if (HAS_PERCTX_PREEMPT_CTRL(i915)) {
->> 
->> Adding HAS_PERCTX_PREEMPT_CTRL(i915) and using it is a separate change
->> from the debugfs. Please split it up.
->> 
->> >  		/* FtrPerCtxtPreemptionGranularityControl:skl,bxt,kbl,cfl,cnl,icl,tgl */
->> >  		wa_masked_en(wal,
->> >  			     GEN7_FF_SLICE_CS_CHICKEN1,
->> > diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
->> > index 747fe9f41e1f..40e6e17e2950 100644
->> > --- a/drivers/gpu/drm/i915/i915_debugfs.c
->> > +++ b/drivers/gpu/drm/i915/i915_debugfs.c
->> > @@ -571,6 +571,55 @@ static int i915_wa_registers(struct seq_file *m, void *unused)
->> >  	return 0;
->> >  }
->> >  
->> > +static void i915_global_preemption_config(struct drm_i915_private *i915,
->> > +					  u32 val)
->> > +{
->> > +	const u32 bit = GEN12_VFG_PREEMPT_CHICKEN_DISABLE;
->> 
->> We rarely use const for locals, and usually only if the function is big.
->> 
->> I'd probably use:
->> 
->> 	u32 tmp = val ?
->> 		_MASKED_BIT_DISABLE(GEN12_VFG_PREEMPT_CHICKEN_DISABLE) :
->> 		_MASKED_BIT_ENABLE(GEN12_VFG_PREEMPT_CHICKEN_DISABLE);
->> 
->> To have just one intel_uncore_write().
->> 
->> > +
->> > +	if (val)
->> > +		intel_uncore_write(&i915->uncore, GEN12_VFG_PREEMPTION_CHICKEN,
->> > +				   _MASKED_BIT_DISABLE(bit));
->> > +	else
->> > +		intel_uncore_write(&i915->uncore, GEN12_VFG_PREEMPTION_CHICKEN,
->> > +				   _MASKED_BIT_ENABLE(bit));
->> 
->> We really shouldn't be adding new direct low-level register access in
->> i915_debugfs.c.
->> 
->> Please define an interface for this and add the functionality to a
->> suitable place, and then call the functions from here.
->> 
->> > +}
->> > +
->> > +static int i915_global_preempt_support_get(void *data, u64 *val)
->> > +{
->> > +	struct drm_i915_private *i915 = data;
->> > +	intel_wakeref_t wakeref;
->> > +	u32 curr_status = 0;
->> > +
->> > +	if (HAS_PERCTX_PREEMPT_CTRL(i915) || GRAPHICS_VER(i915) < 11)
->> > +		return -EINVAL;
->> > +
->> > +	with_intel_runtime_pm(&i915->runtime_pm, wakeref)
->> > +		curr_status = intel_uncore_read(&i915->uncore,
->> > +						GEN12_VFG_PREEMPTION_CHICKEN);
->> > +	*val = (curr_status & GEN12_VFG_PREEMPT_CHICKEN_DISABLE) ? 0 : 1;
->> > +
->> > +	return 0;
->> > +}
->> > +
->> > +static int i915_global_preempt_support_set(void *data, u64 val)
->> > +{
->> > +	struct drm_i915_private *i915 = data;
->> > +	intel_wakeref_t wakeref;
->> > +
->> > +	if (HAS_PERCTX_PREEMPT_CTRL(i915) || GRAPHICS_VER(i915) < 11)
->> > +		return -EINVAL;
->> > +
->> > +	with_intel_runtime_pm(&i915->runtime_pm, wakeref)
->> > +		i915_global_preemption_config(i915, val);
->> > +
->> > +	return 0;
->> > +}
->> > +
->> > +DEFINE_SIMPLE_ATTRIBUTE(i915_global_preempt_support_fops,
->> > +			i915_global_preempt_support_get,
->> > +			i915_global_preempt_support_set,
->> > +			"%lld\n");
->> 
->> DEFINE_DEBUGFS_ATTRIBUTE.
+On Fri, 04 Mar 2022, John Harrison <john.c.harrison@intel.com> wrote:
+> On 3/4/2022 03:59, Jani Nikula wrote:
+>> On Thu, 24 Feb 2022, John.C.Harrison@Intel.com wrote:
+>> There are a plethora of static inlines in the guc .c files, and this
+>> adds more. How about just letting the compiler decide what's the best
+>> course of action, inline or not? I think hand rolling the inline is a
+>> micro optimization that you'd need to justify i.e. show that you're
+>> doing a better job than the compiler.
+>>
+>> The main downsides to using inlines are that you'll miss compiler
+>> warnings for unused functions, and it sets an example for people to
+>> start using inline more, while they should be an exception.
+>>
+>> BR,
+>> Jani.
+>>
+>>
+>> PS. I also don't much like the likely/unlikely annotations, but that's
+>> another can of worms.
+> Technically, this patch isn't adding any new ones. It is just reworking 
+> existing functions in their existing style. So it basically comes under 
+> your last point of people just following the prevailing style because 
+> it's already there.
 >
-> If I'm understanding the history correctly, I think
-> DEFINE_DEBUGFS_ATTRIBUTE is only supposed to be used if you're also
-> using debugfs_create_file_unsafe() for registration; if you're still
-> using debugfs_create_file(), then DEFINE_SIMPLE_ATTRIBUTE is preferred
-> to avoid the extra overhead of redundant protection.
->
-> Arguably we should shift over to debugfs_create_file_unsafe() +
-> DEFINE_DEBUGFS_ATTRIBUTE, but that's probably something we should do
-> driver-wide in a separate series since we're not doing that for any of
-> our debugfs today.
+> I can add a task to the clean-up backlog to remove all mention of 
+> inline. Not sure why you think the (un)likely tags are bad? Again, I 
+> have no particular view either way.
 
-I'll take your word for it, did not have the time to dig into it.
+The (un)likely annotations are similar to static inlines in that they're
+often unjustified micro optimizations. Having plenty of them gives
+people the false impression using them should be the rule rather than
+the exception. And getting them wrong could have a high performance
+penalty. They're certainly not meant for regular error handling.
 
-Thanks,
+Similar to static inlines, (un)likely have their uses, but they need to
+be used sparingly and the use needs to be justified. For static inlines,
+especially within .c files, just let the compiler do its job. For
+(un)likely, just let the CPU branch predictor do its job.
+
+The link's pretty old, but see also: https://lwn.net/Articles/420019/
+
+
+BR,
 Jani.
 
->
-> One other change we should make here is to move this into the GT debugfs
-> area, rather than having it at the i915 level.  I'll make that change in
-> the next version.
->
->
-> Matt
->
->> 
->> > +
->> >  static int i915_wedged_get(void *data, u64 *val)
->> >  {
->> >  	struct drm_i915_private *i915 = data;
->> > @@ -765,6 +814,7 @@ static const struct i915_debugfs_files {
->> >  	const struct file_operations *fops;
->> >  } i915_debugfs_files[] = {
->> >  	{"i915_perf_noa_delay", &i915_perf_noa_delay_fops},
->> > +	{"i915_global_preempt_support", &i915_global_preempt_support_fops},
->> >  	{"i915_wedged", &i915_wedged_fops},
->> >  	{"i915_gem_drop_caches", &i915_drop_caches_fops},
->> >  #if IS_ENABLED(CONFIG_DRM_I915_CAPTURE_ERROR)
->> > diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
->> > index 457bc1993d19..8c3f69c87d36 100644
->> > --- a/drivers/gpu/drm/i915/i915_drv.h
->> > +++ b/drivers/gpu/drm/i915/i915_drv.h
->> > @@ -1407,6 +1407,9 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
->> >  #define HAS_GUC_DEPRIVILEGE(dev_priv) \
->> >  	(INTEL_INFO(dev_priv)->has_guc_deprivilege)
->> >  
->> > +#define HAS_PERCTX_PREEMPT_CTRL(i915) \
->> > +	((GRAPHICS_VER(i915) >= 9) &&  GRAPHICS_VER_FULL(i915) < IP_VER(12, 55))
->> > +
->> >  static inline bool run_as_guest(void)
->> >  {
->> >  	return !hypervisor_is_type(X86_HYPER_NATIVE);
->> 
->> -- 
->> Jani Nikula, Intel Open Source Graphics Center
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
