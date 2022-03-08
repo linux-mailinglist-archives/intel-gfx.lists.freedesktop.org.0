@@ -2,48 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF3B34D1F43
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Mar 2022 18:41:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D554D4D1F48
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Mar 2022 18:42:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC75810E2D8;
-	Tue,  8 Mar 2022 17:41:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F391C10E3B6;
+	Tue,  8 Mar 2022 17:42:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6DEDD10E2D8
- for <intel-gfx@lists.freedesktop.org>; Tue,  8 Mar 2022 17:41:34 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0699C10E3B6
+ for <intel-gfx@lists.freedesktop.org>; Tue,  8 Mar 2022 17:42:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646761294; x=1678297294;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=RfICW64uekOkRxeca8pw4qZTHHz8ee1zVRMOzTb4qY8=;
- b=OWpuYdtbq3YjtgqQx0Aab4ahEPmTdSpCxbewlKUDRXEiDP73ZejIRbrK
- e5EwmEnwE7kIUW+Rbn9FxPkEZ8c3oxDOkwjzJvO3KVvZ2raoi5CP8oJxc
- RozQsl6I/aXxUGhqn2yclfk53FViE7FdgSj5AVIZXpTx2ZNJn+tVix+6g
- BGhiiPHuQ9+8+ok5+JbDBEMoN7szOo4O66lYzapx4KQwO+LwHdYPaXics
- r7jKUENUsA8JWt0Od9dhh3h4adTh9xj34Bl9oSh9Z3rkOAc8Yz+wN0vub
- koFFDroO+vJMxrxMwCXn5R795DGiOB2Vc6T2ekG614rnCzo1tNGNhisVn w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10280"; a="315476552"
-X-IronPort-AV: E=Sophos;i="5.90,165,1643702400"; d="scan'208";a="315476552"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2022 09:32:33 -0800
+ t=1646761363; x=1678297363;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=JkZbN6gD1afd/RpQvPRe+TAZ18d4sniYfW88CXAyid4=;
+ b=cqMITS4q70ilUVGv8Dn3Q+HsxtFd9BIbu0EgNOj5xOWo8U0YI0/o2Zfe
+ 8o8IKKDpnD9faYF30Emeua2BwlJloVLSHkEWOFpTjCYLt5LJ4dp2JUcf6
+ cemwyWWcaZ4hBdxjwEtzYwKXfmDsp1OPWh8u9nucf+/ih0J51r8cMhLmJ
+ obsNlTnIgrFX+9SZoUI5C2mToLm6LCuW52Q2X9MieTZoG0mBmxfSRJ9dP
+ RFnVzbn2HxpM652KzZtvbqCLqrcpG/JHI8ualHOSQccQ1G2vTpzzzfL61
+ RwVEHIo4P7s+nEhRd+untaoisggbxrko76kIAwBRSfqvzKU0SrISsvv8/ g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10280"; a="252332550"
+X-IronPort-AV: E=Sophos;i="5.90,165,1643702400"; d="scan'208";a="252332550"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Mar 2022 09:32:35 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,165,1643702400"; d="scan'208";a="510181084"
+X-IronPort-AV: E=Sophos;i="5.90,165,1643702400"; d="scan'208";a="632310358"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
- by orsmga002.jf.intel.com with SMTP; 08 Mar 2022 09:32:31 -0800
+ by FMSMGA003.fm.intel.com with SMTP; 08 Mar 2022 09:32:33 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 08 Mar 2022 19:32:30 +0200
+ Tue, 08 Mar 2022 19:32:33 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue,  8 Mar 2022 19:32:24 +0200
-Message-Id: <20220308173230.4182-1-ville.syrjala@linux.intel.com>
+Date: Tue,  8 Mar 2022 19:32:25 +0200
+Message-Id: <20220308173230.4182-2-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220308173230.4182-1-ville.syrjala@linux.intel.com>
+References: <20220308173230.4182-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 0/6] drm/i915: SAGV block time fixes
+Subject: [Intel-gfx] [PATCH 1/6] drm/i915: Remove leftover cnl SAGV block
+ time
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,23 +64,28 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Try to fix SAGV block time handling:
-- zero means no SAGV
-- avoid integer overflows
-- slightly better debug logs
-- assorted cleanups
+GLK doesn't support SAGV, so with CNL gone there is no
+use for having a DISPLAY_VER==10 SAGV block time in the code.
 
-Ville Syrjälä (6):
-  drm/i915: Remove leftover cnl SAGV block time
-  drm/i915: Rework SAGV block time probing
-  drm/i915: Treat SAGV block time 0 as SAGV disabled
-  drm/i915: Probe whether SAGV works on pre-icl
-  drm/i915: Reject excessive SAGV block time
-  drm/i915: Rename pre-icl SAGV enable/disable functions
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/intel_pm.c | 3 ---
+ 1 file changed, 3 deletions(-)
 
- drivers/gpu/drm/i915/intel_pm.c | 95 ++++++++++++++++++++-------------
- 1 file changed, 58 insertions(+), 37 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
+index f70eb10ab24d..8ee31c9590a7 100644
+--- a/drivers/gpu/drm/i915/intel_pm.c
++++ b/drivers/gpu/drm/i915/intel_pm.c
+@@ -3689,9 +3689,6 @@ skl_setup_sagv_block_time(struct drm_i915_private *dev_priv)
+ 	} else if (DISPLAY_VER(dev_priv) == 11) {
+ 		dev_priv->sagv_block_time_us = 10;
+ 		return;
+-	} else if (DISPLAY_VER(dev_priv) == 10) {
+-		dev_priv->sagv_block_time_us = 20;
+-		return;
+ 	} else if (DISPLAY_VER(dev_priv) == 9) {
+ 		dev_priv->sagv_block_time_us = 30;
+ 		return;
 -- 
 2.34.1
 
