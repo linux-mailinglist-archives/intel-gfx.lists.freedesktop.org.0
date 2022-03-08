@@ -1,54 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23EF34D1852
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Mar 2022 13:51:44 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E9984D1894
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Mar 2022 14:02:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 40A0B10E5D0;
-	Tue,  8 Mar 2022 12:51:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7FDA010E631;
+	Tue,  8 Mar 2022 13:02:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B14F510E608;
- Tue,  8 Mar 2022 12:51:39 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F122B10E61E;
+ Tue,  8 Mar 2022 13:02:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646743899; x=1678279899;
+ t=1646744528; x=1678280528;
  h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=lNPuPzRLaunxQwdSRIF6od9IRn1Yu4QpcK5gsAyVDLw=;
- b=EsEWHq16uIcOmAw+6tVAbnhct3NWRpiRU1RlS6M1/erXAz/L0R7O4S6Q
- c8BVYiCHaJDkgWA6dj5Ji2NIBYj/Ud1WADH2CbxeYSDd4jnxKWQboaeC0
- PIfPFF6HtypsQtptFyKwK5XOt6ews8rTSZmcOYrp7jFeWdZvV5p9vXPDG
- /KlC3rofOgmZDUE2qyP6KCnabxzwWL/1L4ZaO2xbAjnHh7oxcjWehAkAR
- x6GphDHgVDSUrI50sOnybG5IVD/U9CWYMK4H+G2v6x+qoPH/7k6NvUD6r
- sADrsxH+eBpnyCCQ5whxFwOty6gQeYN+4nA3XjN5ANqrw8TakBAnLkDjj Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10279"; a="317903777"
-X-IronPort-AV: E=Sophos;i="5.90,164,1643702400"; d="scan'208";a="317903777"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2022 04:51:39 -0800
-X-IronPort-AV: E=Sophos;i="5.90,164,1643702400"; d="scan'208";a="537556442"
-Received: from mrynekx-mobl3.ger.corp.intel.com (HELO [10.252.3.128])
- ([10.252.3.128])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2022 04:51:37 -0800
-Message-ID: <8189fc23-f9d7-9daf-f3a7-8e5054425e0d@intel.com>
-Date: Tue, 8 Mar 2022 12:51:35 +0000
+ from:in-reply-to;
+ bh=6w0Cw2NnRiuEX9yftsc+XScX5Mg51Zv8P11X8CazHyo=;
+ b=nSRWrSXJ4iEDsQhEL9THTKbfIRhEO/u9eofUcgs9OOVaOu7yArBK1coc
+ 66lJqhkjaIHnlgFW8MG8+eTMBlg6ugWh1nbFApQ/+TINzGO515PNNYXmY
+ 5wnvJigl8angyf3TMG6exBXSnt1AfYd3GimJJFLIFsNqKOtTYXvKMRHSb
+ fizIVPHPu/CyyUWbAGTvH/gNatkSKm6pRLyGUM8h4+zcthveR1Jdxs+6a
+ sUNDPcE4tZ8IWFRcu4nZqfaHbP2JGzY+Jsf8eYNm/O8fvzfWsENxX/xbz
+ y6oMKsYFqzLd7T/2OGDaWLp+K3f1NqeVolALVzoeBvREF4Va7tLxmNHHw Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10279"; a="234630402"
+X-IronPort-AV: E=Sophos;i="5.90,164,1643702400"; 
+ d="scan'208,217";a="234630402"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Mar 2022 05:02:07 -0800
+X-IronPort-AV: E=Sophos;i="5.90,164,1643702400"; 
+ d="scan'208,217";a="553608512"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.251.218.61])
+ ([10.251.218.61])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Mar 2022 05:02:06 -0800
+Content-Type: multipart/alternative;
+ boundary="------------FxguhPwXl54QhIFAwAFpwJHv"
+Message-ID: <42e30a3e-1724-df69-4530-383ee4f215f5@linux.intel.com>
+Date: Tue, 8 Mar 2022 14:02:04 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Content-Language: en-GB
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- intel-gfx@lists.freedesktop.org
-References: <20220208151228.344997-1-matthew.auld@intel.com>
- <4dfd15b6-e402-f15d-f793-6d31e591fb20@amd.com>
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <4dfd15b6-e402-f15d-f793-6d31e591fb20@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] drm/doc: pull in drm_buddy.c
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.1
+Content-Language: en-US
+To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20220303100229.839282-1-matthew.auld@intel.com>
+From: "Das, Nirmoy" <nirmoy.das@linux.intel.com>
+In-Reply-To: <20220303100229.839282-1-matthew.auld@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gtt: reduce overzealous alignment
+ constraints for GGTT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,45 +62,95 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org,
- Arunpravin <Arunpravin.PaneerSelvam@amd.com>
+Cc: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 09/02/2022 07:32, Christian König wrote:
-> Am 08.02.22 um 16:12 schrieb Matthew Auld:
->> Make sure we pull in the kernel-doc for this.
->>
->> Reported-by: Daniel Vetter <daniel@ffwll.ch>
->> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
->> Cc: Arunpravin <Arunpravin.PaneerSelvam@amd.com>
->> Cc: Christian König <christian.koenig@amd.com>
-> 
-> Reviewed-by: Christian König <christian.koenig@amd.com>
+This is a multi-part message in MIME format.
+--------------FxguhPwXl54QhIFAwAFpwJHv
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Thanks. Could you also push this?
+|Acked-by: Nirmoy Das <nirmoy.das@intel.com>|
 
-> 
->> ---
->>   Documentation/gpu/drm-mm.rst | 9 +++++++++
->>   1 file changed, 9 insertions(+)
->>
->> diff --git a/Documentation/gpu/drm-mm.rst b/Documentation/gpu/drm-mm.rst
->> index 198bcc1affa1..f32ccce5722d 100644
->> --- a/Documentation/gpu/drm-mm.rst
->> +++ b/Documentation/gpu/drm-mm.rst
->> @@ -466,6 +466,15 @@ DRM MM Range Allocator Function References
->>   .. kernel-doc:: drivers/gpu/drm/drm_mm.c
->>      :export:
->> +DRM Buddy Allocator
->> +===================
->> +
->> +DRM Buddy Function References
->> +-----------------------------
->> +
->> +.. kernel-doc:: drivers/gpu/drm/drm_buddy.c
->> +   :export:
->> +
->>   DRM Cache Handling and Fast WC memcpy()
->>   =======================================
-> 
+On 03/03/2022 11:02, Matthew Auld wrote:
+> Currently this will enforce both 2M alignment and padding for any LMEM
+> pages inserted into the GGTT. However, this was only meant to be applied
+> to the compact-pt layout with the ppGTT. For the GGTT we can reduce the
+> alignment and padding to 64K.
+>
+> Bspec: 45015
+> Fixes: 87bd701ee268 ("drm/i915: enforce min GTT alignment for discrete cards")
+> Signed-off-by: Matthew Auld<matthew.auld@intel.com>
+> Cc: Thomas Hellström<thomas.hellstrom@linux.intel.com>
+> Cc: Robert Beckett<bob.beckett@collabora.com>
+> Cc: Ramalingam C<ramalingam.c@intel.com>
+> ---
+>   drivers/gpu/drm/i915/gt/intel_gtt.c | 3 ++-
+>   1 file changed, 2 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.c b/drivers/gpu/drm/i915/gt/intel_gtt.c
+> index 4bcdfcab3642..a5f5b2dda332 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gtt.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gtt.c
+> @@ -234,7 +234,8 @@ void i915_address_space_init(struct i915_address_space *vm, int subclass)
+>   	memset64(vm->min_alignment, I915_GTT_MIN_ALIGNMENT,
+>   		 ARRAY_SIZE(vm->min_alignment));
+>   
+> -	if (HAS_64K_PAGES(vm->i915) && NEEDS_COMPACT_PT(vm->i915)) {
+> +	if (HAS_64K_PAGES(vm->i915) && NEEDS_COMPACT_PT(vm->i915) &&
+> +	    subclass == VM_CLASS_PPGTT) {
+>   		vm->min_alignment[INTEL_MEMORY_LOCAL] = I915_GTT_PAGE_SIZE_2M;
+>   		vm->min_alignment[INTEL_MEMORY_STOLEN_LOCAL] = I915_GTT_PAGE_SIZE_2M;
+>   	} else if (HAS_64K_PAGES(vm->i915)) {
+--------------FxguhPwXl54QhIFAwAFpwJHv
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <pre class="moz-quote-pre" wrap=""><code style="padding: 0px; tab-size: 8;" class="hljs diff language-diff"><span class="hljs-addition">Acked-by: Nirmoy Das <a class="moz-txt-link-rfc2396E" href="mailto:nirmoy.das@intel.com">&lt;nirmoy.das@intel.com&gt;</a></span></code></pre>
+    <div class="moz-cite-prefix">On 03/03/2022 11:02, Matthew Auld
+      wrote:<br>
+    </div>
+    <blockquote type="cite"
+      cite="mid:20220303100229.839282-1-matthew.auld@intel.com">
+      <pre class="moz-quote-pre" wrap="">Currently this will enforce both 2M alignment and padding for any LMEM
+pages inserted into the GGTT. However, this was only meant to be applied
+to the compact-pt layout with the ppGTT. For the GGTT we can reduce the
+alignment and padding to 64K.
+
+Bspec: 45015
+Fixes: 87bd701ee268 ("drm/i915: enforce min GTT alignment for discrete cards")
+Signed-off-by: Matthew Auld <a class="moz-txt-link-rfc2396E" href="mailto:matthew.auld@intel.com">&lt;matthew.auld@intel.com&gt;</a>
+Cc: Thomas Hellström <a class="moz-txt-link-rfc2396E" href="mailto:thomas.hellstrom@linux.intel.com">&lt;thomas.hellstrom@linux.intel.com&gt;</a>
+Cc: Robert Beckett <a class="moz-txt-link-rfc2396E" href="mailto:bob.beckett@collabora.com">&lt;bob.beckett@collabora.com&gt;</a>
+Cc: Ramalingam C <a class="moz-txt-link-rfc2396E" href="mailto:ramalingam.c@intel.com">&lt;ramalingam.c@intel.com&gt;</a>
+---
+ drivers/gpu/drm/i915/gt/intel_gtt.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.c b/drivers/gpu/drm/i915/gt/intel_gtt.c
+index 4bcdfcab3642..a5f5b2dda332 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gtt.c
++++ b/drivers/gpu/drm/i915/gt/intel_gtt.c
+@@ -234,7 +234,8 @@ void i915_address_space_init(struct i915_address_space *vm, int subclass)
+ 	memset64(vm-&gt;min_alignment, I915_GTT_MIN_ALIGNMENT,
+ 		 ARRAY_SIZE(vm-&gt;min_alignment));
+ 
+-	if (HAS_64K_PAGES(vm-&gt;i915) &amp;&amp; NEEDS_COMPACT_PT(vm-&gt;i915)) {
++	if (HAS_64K_PAGES(vm-&gt;i915) &amp;&amp; NEEDS_COMPACT_PT(vm-&gt;i915) &amp;&amp;
++	    subclass == VM_CLASS_PPGTT) {
+ 		vm-&gt;min_alignment[INTEL_MEMORY_LOCAL] = I915_GTT_PAGE_SIZE_2M;
+ 		vm-&gt;min_alignment[INTEL_MEMORY_STOLEN_LOCAL] = I915_GTT_PAGE_SIZE_2M;
+ 	} else if (HAS_64K_PAGES(vm-&gt;i915)) {
+</pre>
+    </blockquote>
+  </body>
+</html>
+
+--------------FxguhPwXl54QhIFAwAFpwJHv--
