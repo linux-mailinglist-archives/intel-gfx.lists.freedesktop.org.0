@@ -1,59 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44DD44D1B85
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Mar 2022 16:19:27 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1D484D1BEA
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Mar 2022 16:40:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A062110E324;
-	Tue,  8 Mar 2022 15:19:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1AE5A10E257;
+	Tue,  8 Mar 2022 15:40:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 114F310E26A;
- Tue,  8 Mar 2022 15:19:22 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3706D10E257
+ for <intel-gfx@lists.freedesktop.org>; Tue,  8 Mar 2022 15:40:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646752763; x=1678288763;
- h=mime-version:content-transfer-encoding:in-reply-to:
- references:from:cc:to:subject:message-id:date;
- bh=9//EF2mZkWU/vvcBOnXGX08QjjBqL6FT4wEwlorG5S4=;
- b=hS2NVVMrxmFv+WfDrzcoUNypXoH2y+IlGwjZR5k3Okb16n43415heDL5
- KbmkJJ4AaQzugVwyJyMTTJ0+oxs3yPfrB/Sl5gIge6Qq4tz50cljnuAbm
- FXmjQfjLVioT9HMx1gy9oPmDAJ6CvbbF63DuW7YNx93aUFs14Tn8rFI2I
- oBLZltqBH40H9rD+kd5vkTfJ5lS45vEFjgmfcUUx1xIbbzM5tiM07dPxq
- q733N5OrMsHlTLeA8Rec+TAIG6k5rErdZhdtFL05Y0ukNA4yMbFWXE3zT
- GEDuu4UEiQEV6xd2bPOq0T6w1qIL8Tj1vV0M4V7+fCxzjkS8/6XAZWYvf Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10280"; a="341138515"
-X-IronPort-AV: E=Sophos;i="5.90,165,1643702400"; d="scan'208";a="341138515"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2022 07:19:22 -0800
-X-IronPort-AV: E=Sophos;i="5.90,165,1643702400"; d="scan'208";a="643685252"
-Received: from nlyalyus-mobl.ccr.corp.intel.com (HELO localhost)
- ([10.249.254.147])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2022 07:19:20 -0800
-Content-Type: text/plain; charset="utf-8"
+ t=1646754045; x=1678290045;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=zj+HCNzQfjdcJrmSvYnbK9NeKXnPbXjsp/I0t2NCs60=;
+ b=ehdtFSzm3OfS1hGiJY3RdGT1NoB613XOKBjUAntq2UGMH+CW4wLCknlf
+ 8wG2z/15gQ3xKeNwfzFH2PBjNZw7cWoZ1+BCipi4VO9aC+PBlnDbSKmyG
+ St/aq0VuG6oAgQvK8CvI1WAwy5F7swnY8lbkldpK1ZbC1X5bdeFp8L21a
+ QkkKg8ugDtLFLP6SIuDZ5STtNQWR5i9BSX9lmVJWrjCPE0OV8qkqweN4k
+ HeWfvdzZQGy//kkZLPUw/bqVMiBwobx1D4qnlDzeguDym2SY9KQY2oKOF
+ 95Q3l3mtJwPDOgXuT9EiKkAZhJvVTyhjuWmEqBD9tY95y3+UNMJnDUozn A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10280"; a="254656227"
+X-IronPort-AV: E=Sophos;i="5.90,165,1643702400"; d="scan'208";a="254656227"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Mar 2022 07:40:44 -0800
+X-IronPort-AV: E=Sophos;i="5.90,165,1643702400"; d="scan'208";a="687960756"
+Received: from sshamoon-mobl1.amr.corp.intel.com (HELO
+ josouza-mobl2.amr.corp.intel.com) ([10.212.47.246])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Mar 2022 07:40:42 -0800
+From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  8 Mar 2022 07:41:35 -0800
+Message-Id: <20220308154136.406578-1-jose.souza@intel.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <ebfe0e0f-d240-8435-0517-2be3b89252ba@intel.com>
-References: <e87298d5-0efb-981c-03d6-8b1bb7ab2cd6@intel.com>
- <f869fab00a4b5757fd272b3b7e178b4dcd921e6b.camel@intel.com>
- <02808c4c-7725-2afa-1968-2177ba112872@intel.com>
- <ab642779-7efd-2bf0-6484-ca6bfd20f2d0@intel.com> <Yd2W4T1Y8X0cP/PL@intel.com>
- <0233a744-d02f-7b72-ff95-389dbc42fcbd@intel.com>
- <e38f0725-6b22-8e49-b8f6-41986b0ece06@intel.com> <87wnh422f6.fsf@intel.com>
- <ebfe0e0f-d240-8435-0517-2be3b89252ba@intel.com>
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-To: "Nikula, Jani" <jani.nikula@intel.com>, "Wang,
- Zhi A" <zhi.a.wang@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Message-ID: <164675275779.144512.4612996465580196155@jlahtine-mobl.ger.corp.intel.com>
-User-Agent: alot/0.8.1
-Date: Tue, 08 Mar 2022 17:19:17 +0200
-Subject: Re: [Intel-gfx] [GIT PULL] GVT next changes for drm-intel-next
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 1/2] Revert "drm/i915/edp: Ignore short pulse
+ when panel powered off"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,75 +56,90 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gvt-dev@lists.freedesktop.org"
- <intel-gvt-dev@lists.freedesktop.org>, "Vivi,
- Rodrigo" <rodrigo.vivi@intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Wang, Zhi A (2022-03-08 12:07:04)
-> Which suits better for you? For me, I am OK with both. If you are not in =
-a rush of closing the window, I can submit through drm-intel-next-fixes.
+This reverts commit 13ea6db2cf24a797ac8c9922e3079fcb897fd32c.
 
-I pulled this into drm-intel-next-fixes now.
+This patch complete broke eDP short pulse handling as VDD is
+only enabled when doing aux transactions or when port is disabled.
+Checked on several older kernel versions and that is the behavior
+that i915 always had on VDD.
 
-For future reference, let's have fixes only PRs as gvt-fixes and PRs
-with features as gvt-next and each as a new mail thread instead of a
-reply to older, so they will be easy to spot :)
+So all legit short pulses done by all the eDP panels are being
+ignored and no panel interruption errors are being handled.
 
-Regards, Joonas
+Still trying to understand why VDD is not always left enabled but
+if it can't, those Sharp panels will need another workaround.
 
->=20
-> Thanks,
-> Zhi.
->=20
-> On 3/8/22 9:56 AM, Nikula, Jani wrote:
-> > On Tue, 08 Mar 2022, "Wang, Zhi A" <zhi.a.wang@intel.com> wrote:
-> >> Hi folks:
-> >>
-> >> Here is a new pull request of gvt-next. It contains a small patch to a=
-dd the missing
-> >> mdev attribute name, which will be used by the middleware, like kubevi=
-rt.
-> >=20
-> > I'm wondering if I should pull this to drm-intel-next, which is already
-> > targeting v5.19, or if it should be pulled to drm-intel-next-fixes
-> > targeting v5.18. It does look like a fix.
-> >=20
-> > BR,
-> > Jani.
-> >=20
-> >=20
-> >>
-> >> This pull has been tested by:
-> >>
-> >> $ dim apply-pull drm-intel-next < this_email.eml
-> >>
-> >> The following changes since commit 30424ebae8df0f786835e7a31ad790fa007=
-64f35:
-> >>
-> >>   Merge tag 'drm-intel-gt-next-2022-02-17' of git://anongit.freedeskto=
-p.org/drm/drm-intel into drm-intel-next (2022-02-23 15:03:51 -0500)
-> >>
-> >> are available in the Git repository at:
-> >>
-> >>   https://github.com/intel/gvt-linux tags/gvt-next-2022-03-07
-> >>
-> >> for you to fetch changes up to 43d26c4fc6c446d766253d546f0083d78023d34=
-a:
-> >>
-> >>   drm/i915/gvt: add the missing mdev attribute "name" (2022-03-07 12:2=
-1:58 -0500)
-> >>
-> >> ----------------------------------------------------------------
-> >> - add the missing attribute "name" in VFIO mdev hierarchy.
-> >>
-> >> ----------------------------------------------------------------
-> >> Zhi Wang (1):
-> >>       drm/i915/gvt: add the missing mdev attribute "name"
-> >>
-> >>  drivers/gpu/drm/i915/gvt/kvmgt.c | 15 +++++++++++++++
-> >>  1 file changed, 15 insertions(+)
-> >>
-> >=20
->=20
+Cc: Anshuman Gupta <anshuman.gupta@intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: Uma Shankar <uma.shankar@intel.com>
+Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp.c  |  7 +++----
+ drivers/gpu/drm/i915/display/intel_pps.c | 13 -------------
+ drivers/gpu/drm/i915/display/intel_pps.h |  1 -
+ 3 files changed, 3 insertions(+), 18 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 619546441eae5..8ad5788e5375d 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -4866,13 +4866,12 @@ intel_dp_hpd_pulse(struct intel_digital_port *dig_port, bool long_hpd)
+ 	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+ 	struct intel_dp *intel_dp = &dig_port->dp;
+ 
+-	if (dig_port->base.type == INTEL_OUTPUT_EDP &&
+-	    (long_hpd || !intel_pps_have_power(intel_dp))) {
++	if (long_hpd && dig_port->base.type == INTEL_OUTPUT_EDP) {
+ 		/*
+-		 * vdd off can generate a long/short pulse on eDP which
++		 * vdd off can generate a long pulse on eDP which
+ 		 * would require vdd on to handle it, and thus we
+ 		 * would end up in an endless cycle of
+-		 * "vdd off -> long/short hpd -> vdd on -> detect -> vdd off -> ..."
++		 * "vdd off -> long hpd -> vdd on -> detect -> vdd off -> ..."
+ 		 */
+ 		drm_dbg_kms(&i915->drm,
+ 			    "ignoring %s hpd on eDP [ENCODER:%d:%s]\n",
+diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
+index 9c986e8932f87..724947f57664e 100644
+--- a/drivers/gpu/drm/i915/display/intel_pps.c
++++ b/drivers/gpu/drm/i915/display/intel_pps.c
+@@ -1075,19 +1075,6 @@ static void intel_pps_vdd_sanitize(struct intel_dp *intel_dp)
+ 	edp_panel_vdd_schedule_off(intel_dp);
+ }
+ 
+-bool intel_pps_have_power(struct intel_dp *intel_dp)
+-{
+-	intel_wakeref_t wakeref;
+-	bool have_power = false;
+-
+-	with_intel_pps_lock(intel_dp, wakeref) {
+-		have_power = edp_have_panel_power(intel_dp) &&
+-						  edp_have_panel_vdd(intel_dp);
+-	}
+-
+-	return have_power;
+-}
+-
+ static void pps_init_timestamps(struct intel_dp *intel_dp)
+ {
+ 	intel_dp->pps.panel_power_off_time = ktime_get_boottime();
+diff --git a/drivers/gpu/drm/i915/display/intel_pps.h b/drivers/gpu/drm/i915/display/intel_pps.h
+index fbb47f6f453e4..799439aba6565 100644
+--- a/drivers/gpu/drm/i915/display/intel_pps.h
++++ b/drivers/gpu/drm/i915/display/intel_pps.h
+@@ -37,7 +37,6 @@ void intel_pps_vdd_on(struct intel_dp *intel_dp);
+ void intel_pps_on(struct intel_dp *intel_dp);
+ void intel_pps_off(struct intel_dp *intel_dp);
+ void intel_pps_vdd_off_sync(struct intel_dp *intel_dp);
+-bool intel_pps_have_power(struct intel_dp *intel_dp);
+ void intel_pps_wait_power_cycle(struct intel_dp *intel_dp);
+ 
+ void intel_pps_init(struct intel_dp *intel_dp);
+-- 
+2.35.1
+
