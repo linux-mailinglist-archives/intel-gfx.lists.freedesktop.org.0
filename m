@@ -1,38 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91BA94D1D6E
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Mar 2022 17:39:04 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4763F4D1D6D
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Mar 2022 17:39:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E9F610E61C;
-	Tue,  8 Mar 2022 16:39:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 70C1910E60F;
+	Tue,  8 Mar 2022 16:39:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 687F310E60F
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9806010E61C
  for <intel-gfx@lists.freedesktop.org>; Tue,  8 Mar 2022 16:39:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1646757540; x=1678293540;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=jFUH4GegF6d5+JeCR9dkmblPZiL+BW4LtcHSJPjMPDI=;
- b=PbqPqHZg+KcIXvkEBEUiNuKEWattl3D5TKFaaGJvbBbt1RoV1YSxiH0C
- ArLFJddmhbmlsKF6yyx8c39sm68iYfUoGoCMuHcuCVyZ0xyiDpMJINt46
- lC25dMc+OIY7A/NqrcxprwBOfiMeRskGftIYz89GOu2f7EIz871Yaq4jK
- QADqXZdA0fYyc41lWwokhMOLs6ktjXl1YmCfx2pijFh6h5d+AKtdRsuwA
- 5rIzzJMRZZGTC518H0RIEjKQV/DBp898yLBSyeMoSRz17iazWXG3OhcSQ
- 26+jEXjItJJH4WUJCHbS8sZEBhvagbgqhKdM+CueSRx5AN74fsqfHVFXd g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10280"; a="252305033"
-X-IronPort-AV: E=Sophos;i="5.90,165,1643702400"; d="scan'208";a="252305033"
+ bh=kZ/6QRCbXKz2uPbny7BLUdY7VrneEb9rP+jgHoalIWo=;
+ b=bUVGSaSOjkCmP6CTVXNbD5d6sx2WjLJMGzdMyn4X0+WJwc3c2UWUAVsH
+ oPmdpYKinaHXK/slfH05gOgWegWmq6jJP305IZMVxfo3Jt9udDSBNIu/F
+ NHiF79JKlitqwVT66lXuTEbPjEd94Y+3ENv7hooqnZLF/VP4BNX1LJEtj
+ +/E6AfpQsznRuEVM2NY+9lIYLz6LXPxL/+0eL3+F62vQx+RLSKS6HWgbd
+ VRXNJfW/IP3sl3pYOj4+wDP0zQDkP64BaCw0IewFz/3ZbxwncqLwioVrT
+ 49c9cOgRQ92IBgOF+SYwGSqUhJASXAGbZukokU8YjNG5YAjE7n7zRpwZJ w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10280"; a="252305036"
+X-IronPort-AV: E=Sophos;i="5.90,165,1643702400"; d="scan'208";a="252305036"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  08 Mar 2022 08:38:31 -0800
-X-IronPort-AV: E=Sophos;i="5.90,165,1643702400"; d="scan'208";a="537630941"
+X-IronPort-AV: E=Sophos;i="5.90,165,1643702400"; d="scan'208";a="537630951"
 Received: from sannilnx.jer.intel.com ([10.12.231.73])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2022 08:38:20 -0800
+ 08 Mar 2022 08:38:25 -0800
 From: Alexander Usyskin <alexander.usyskin@intel.com>
 To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
  Jani Nikula <jani.nikula@linux.intel.com>,
@@ -40,14 +40,14 @@ To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
  Daniel Vetter <daniel@ffwll.ch>,
  Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Date: Tue,  8 Mar 2022 18:36:53 +0200
-Message-Id: <20220308163654.942820-5-alexander.usyskin@intel.com>
+Date: Tue,  8 Mar 2022 18:36:54 +0200
+Message-Id: <20220308163654.942820-6-alexander.usyskin@intel.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20220308163654.942820-1-alexander.usyskin@intel.com>
 References: <20220308163654.942820-1-alexander.usyskin@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v10 4/5] mei: gsc: add runtime pm handlers
+Subject: [Intel-gfx] [PATCH v10 5/5] mei: gsc: retrieve the firmware version
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,102 +60,95 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-kernel@vger.kernel.org, Tomas Winkler <tomas.winkler@intel.com>,
- Alexander Usyskin <alexander.usyskin@intel.com>,
- Vitaly Lubart <vitaly.lubart@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org,
+ Alexander Usyskin <alexander.usyskin@intel.com>, linux-kernel@vger.kernel.org,
+ Tomas Winkler <tomas.winkler@intel.com>,
+ Vitaly Lubart <vitaly.lubart@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tomas Winkler <tomas.winkler@intel.com>
+Add a hook to retrieve the firmware version of the
+GSC devices to bus-fixup.
+GSC has a different MKHI clients GUIDs but the same message structure
+to retrieve the firmware version as MEI so mei_fwver() can be reused.
 
-Implement runtime handlers for mei-gsc, to track
-idle state of the device properly.
-
-CC: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Tomas Winkler <tomas.winkler@intel.com>
+CC: Ashutosh Dixit <ashutosh.dixit@intel.com>
 Signed-off-by: Alexander Usyskin <alexander.usyskin@intel.com>
+Signed-off-by: Tomas Winkler <tomas.winkler@intel.com>
 ---
- drivers/misc/mei/gsc-me.c | 67 ++++++++++++++++++++++++++++++++++++++-
- 1 file changed, 66 insertions(+), 1 deletion(-)
+ drivers/misc/mei/bus-fixup.c | 25 +++++++++++++++++++++++++
+ drivers/misc/mei/hw-me.c     |  2 ++
+ 2 files changed, 27 insertions(+)
 
-diff --git a/drivers/misc/mei/gsc-me.c b/drivers/misc/mei/gsc-me.c
-index cf427f6fdec9..dac482ddab51 100644
---- a/drivers/misc/mei/gsc-me.c
-+++ b/drivers/misc/mei/gsc-me.c
-@@ -152,7 +152,72 @@ static int __maybe_unused mei_gsc_pm_resume(struct device *device)
- 	return 0;
+diff --git a/drivers/misc/mei/bus-fixup.c b/drivers/misc/mei/bus-fixup.c
+index 67844089db21..59506ba6fc48 100644
+--- a/drivers/misc/mei/bus-fixup.c
++++ b/drivers/misc/mei/bus-fixup.c
+@@ -30,6 +30,12 @@ static const uuid_le mei_nfc_info_guid = MEI_UUID_NFC_INFO;
+ #define MEI_UUID_MKHIF_FIX UUID_LE(0x55213584, 0x9a29, 0x4916, \
+ 			0xba, 0xdf, 0xf, 0xb7, 0xed, 0x68, 0x2a, 0xeb)
+ 
++#define MEI_UUID_IGSC_MKHI UUID_LE(0xE2C2AFA2, 0x3817, 0x4D19, \
++			0x9D, 0x95, 0x06, 0xB1, 0x6B, 0x58, 0x8A, 0x5D)
++
++#define MEI_UUID_IGSC_MKHI_FIX UUID_LE(0x46E0C1FB, 0xA546, 0x414F, \
++			0x91, 0x70, 0xB7, 0xF4, 0x6D, 0x57, 0xB4, 0xAD)
++
+ #define MEI_UUID_HDCP UUID_LE(0xB638AB7E, 0x94E2, 0x4EA2, \
+ 			      0xA5, 0x52, 0xD1, 0xC5, 0x4B, 0x62, 0x7F, 0x04)
+ 
+@@ -241,6 +247,23 @@ static void mei_mkhi_fix(struct mei_cl_device *cldev)
+ 	mei_cldev_disable(cldev);
  }
  
--static SIMPLE_DEV_PM_OPS(mei_gsc_pm_ops, mei_gsc_pm_suspend, mei_gsc_pm_resume);
-+static int __maybe_unused mei_gsc_pm_runtime_idle(struct device *device)
++static void mei_gsc_mkhi_ver(struct mei_cl_device *cldev)
 +{
-+	struct mei_device *dev = dev_get_drvdata(device);
-+
-+	if (!dev)
-+		return -ENODEV;
-+	if (mei_write_is_idle(dev))
-+		pm_runtime_autosuspend(device);
-+
-+	return -EBUSY;
-+}
-+
-+static int  __maybe_unused mei_gsc_pm_runtime_suspend(struct device *device)
-+{
-+	struct mei_device *dev = dev_get_drvdata(device);
-+	struct mei_me_hw *hw;
 +	int ret;
 +
-+	if (!dev)
-+		return -ENODEV;
++	/* No need to enable the client if nothing is needed from it */
++	if (!cldev->bus->fw_f_fw_ver_supported)
++		return;
 +
-+	mutex_lock(&dev->device_lock);
++	ret = mei_cldev_enable(cldev);
++	if (ret)
++		return;
 +
-+	if (mei_write_is_idle(dev)) {
-+		hw = to_me_hw(dev);
-+		hw->pg_state = MEI_PG_ON;
-+		ret = 0;
-+	} else {
-+		ret = -EAGAIN;
-+	}
-+
-+	mutex_unlock(&dev->device_lock);
-+
-+	return ret;
++	ret = mei_fwver(cldev);
++	if (ret < 0)
++		dev_err(&cldev->dev, "FW version command failed %d\n", ret);
++	mei_cldev_disable(cldev);
 +}
-+
-+static int __maybe_unused mei_gsc_pm_runtime_resume(struct device *device)
-+{
-+	struct mei_device *dev = dev_get_drvdata(device);
-+	struct mei_me_hw *hw;
-+	irqreturn_t irq_ret;
-+
-+	if (!dev)
-+		return -ENODEV;
-+
-+	mutex_lock(&dev->device_lock);
-+
-+	hw = to_me_hw(dev);
-+	hw->pg_state = MEI_PG_OFF;
-+
-+	mutex_unlock(&dev->device_lock);
-+
-+	irq_ret = mei_me_irq_thread_handler(1, dev);
-+	if (irq_ret != IRQ_HANDLED)
-+		dev_err(dev->dev, "thread handler fail %d\n", irq_ret);
-+
-+	return 0;
-+}
-+
-+static const struct dev_pm_ops mei_gsc_pm_ops = {
-+	SET_SYSTEM_SLEEP_PM_OPS(mei_gsc_pm_suspend,
-+				mei_gsc_pm_resume)
-+	SET_RUNTIME_PM_OPS(mei_gsc_pm_runtime_suspend,
-+			   mei_gsc_pm_runtime_resume,
-+			   mei_gsc_pm_runtime_idle)
-+};
+ /**
+  * mei_wd - wd client on the bus, change protocol version
+  *   as the API has changed.
+@@ -492,6 +515,8 @@ static struct mei_fixup {
+ 	MEI_FIXUP(MEI_UUID_NFC_HCI, mei_nfc),
+ 	MEI_FIXUP(MEI_UUID_WD, mei_wd),
+ 	MEI_FIXUP(MEI_UUID_MKHIF_FIX, mei_mkhi_fix),
++	MEI_FIXUP(MEI_UUID_IGSC_MKHI, mei_gsc_mkhi_ver),
++	MEI_FIXUP(MEI_UUID_IGSC_MKHI_FIX, mei_gsc_mkhi_ver),
+ 	MEI_FIXUP(MEI_UUID_HDCP, whitelist),
+ 	MEI_FIXUP(MEI_UUID_ANY, vt_support),
+ 	MEI_FIXUP(MEI_UUID_PAVP, whitelist),
+diff --git a/drivers/misc/mei/hw-me.c b/drivers/misc/mei/hw-me.c
+index 9748d14849a1..7e77328142ff 100644
+--- a/drivers/misc/mei/hw-me.c
++++ b/drivers/misc/mei/hw-me.c
+@@ -1577,12 +1577,14 @@ static const struct mei_cfg mei_me_pch15_sps_cfg = {
+ static const struct mei_cfg mei_me_gsc_cfg = {
+ 	MEI_CFG_TYPE_GSC,
+ 	MEI_CFG_PCH8_HFS,
++	MEI_CFG_FW_VER_SUPP,
+ };
  
- static const struct auxiliary_device_id mei_gsc_id_table[] = {
- 	{
+ /* Graphics System Controller Firmware Interface */
+ static const struct mei_cfg mei_me_gscfi_cfg = {
+ 	MEI_CFG_TYPE_GSCFI,
+ 	MEI_CFG_PCH8_HFS,
++	MEI_CFG_FW_VER_SUPP,
+ };
+ 
+ /*
 -- 
 2.32.0
 
