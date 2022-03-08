@@ -1,52 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E91E94D1F44
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Mar 2022 18:41:38 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68C484D1F3D
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Mar 2022 18:41:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D285110E3B6;
-	Tue,  8 Mar 2022 17:41:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F49310E2A7;
+	Tue,  8 Mar 2022 17:41:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5070D10E2DC
- for <intel-gfx@lists.freedesktop.org>; Tue,  8 Mar 2022 17:41:35 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C86EF10E2A7
+ for <intel-gfx@lists.freedesktop.org>; Tue,  8 Mar 2022 17:41:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646761295; x=1678297295;
+ t=1646761263; x=1678297263;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=vBlkP15UKSVCcLoiFM3+KGCbEYeYPhBYh5lrbfgLR/4=;
- b=POJ9Z2lgI0a2xQllMSpmQ9np2Htb5LqmgYiUCCkj4uoaUFcZCCHfQhb2
- kLumJoaGA8u3SexWCRjWQSMdbQFch6LhOJ1WfQ8ATZQO2CvJAzQX8LG5q
- w9YSG1dzs5QYLr9UouJ28oM+9tcVZvx4kKLYXeICuZJLpSzwvs2ceSUr7
- MVj9ODejxFUL63HW2en9xrA6VfU8rJct4VtDJ/euk8s5fEzJZX/hkCFEA
- CAA7YzMMe+yqo+xLrsaLwz28byK+qxHr76iL8Xt0Mqjk2EwMXhEObH//C
- vyaN5LL889vX27RJ3efGeMSmipVnnI5vCeAasYu7+PM0pHjR8ORy8Vzhj g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10280"; a="315476573"
-X-IronPort-AV: E=Sophos;i="5.90,165,1643702400"; d="scan'208";a="315476573"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2022 09:32:44 -0800
+ bh=+2Rr4zgvUokLjzBqc0qzAgKyUtkqyWlwsRwoDTB1RgQ=;
+ b=TkTj5BPMLByWydUoW5rkMfVn6JwoF6T03UdimmTpF7QsmM2c0eyk0tWm
+ f3RvuWtZqPHgzHEBQ+kQkuzUOB8hcsLK7OJZFbDOpPjlAasQw7jvxugEz
+ MB24qxwHC6OgcMVbifNYjs+wAKJ6XBumaOB61Nh3GJ7KA1ykJVZe8Vlcn
+ Owjwe7LzWGafOtNqMz5igxpW4vuvzgp5Ei/JbnA55U5GB0Tj20OrekHTJ
+ XPC/Zy2Se9fLDqgcCsCGLZ0VvrYjPuC8byq3VBa25R0Ga7mgkgptcA8ZA
+ FyDwlb27ynWDy1zQrumq6mbgs/stDPwo/s3QRJiEUntBT2oPnXyXUQlDt A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10280"; a="234713934"
+X-IronPort-AV: E=Sophos;i="5.90,165,1643702400"; d="scan'208";a="234713934"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Mar 2022 09:32:47 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,165,1643702400"; d="scan'208";a="547341656"
+X-IronPort-AV: E=Sophos;i="5.90,165,1643702400"; d="scan'208";a="687999590"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
- by fmsmga007.fm.intel.com with SMTP; 08 Mar 2022 09:32:42 -0800
+ by fmsmga001.fm.intel.com with SMTP; 08 Mar 2022 09:32:45 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 08 Mar 2022 19:32:41 +0200
+ Tue, 08 Mar 2022 19:32:44 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue,  8 Mar 2022 19:32:28 +0200
-Message-Id: <20220308173230.4182-5-ville.syrjala@linux.intel.com>
+Date: Tue,  8 Mar 2022 19:32:29 +0200
+Message-Id: <20220308173230.4182-6-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220308173230.4182-1-ville.syrjala@linux.intel.com>
 References: <20220308173230.4182-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 4/6] drm/i915: Probe whether SAGV works on
- pre-icl
+Subject: [Intel-gfx] [PATCH 5/6] drm/i915: Reject excessive SAGV block time
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,49 +63,35 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Instead of leaving the SAGV enable/disable to the first commit
-let's try to disable it first thing to see if we can do it or
-not (disabling SAGV is a safe thing to at any time). This avoids
-running the code in this funny intermediate state where we don't
-know if SAGV is available or not.
+If the mailbox returns an exceesively large SAGV block time let's just
+reject it. This avoids having to worry about overflows when we add the
+SAGV block time to the wm0 latency.
+
+We shall put the limit arbitrarily at U16_MAX. >65msec latency
+doesn't really make sense to me in any case.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/intel_pm.c | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+ drivers/gpu/drm/i915/intel_pm.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-index 906501d6b298..36f5bccabf64 100644
+index 36f5bccabf64..166246fa27e4 100644
 --- a/drivers/gpu/drm/i915/intel_pm.c
 +++ b/drivers/gpu/drm/i915/intel_pm.c
-@@ -57,6 +57,8 @@
- #include "vlv_sideband.h"
- #include "../../../platform/x86/intel_ips.h"
- 
-+static int intel_disable_sagv(struct drm_i915_private *dev_priv);
-+
- struct drm_i915_clock_gating_funcs {
- 	void (*init_clock_gating)(struct drm_i915_private *i915);
- };
-@@ -3697,6 +3699,18 @@ intel_sagv_block_time(struct drm_i915_private *dev_priv)
- 
- static void intel_sagv_init(struct drm_i915_private *i915)
- {
-+	if (!intel_has_sagv(i915))
-+		i915->sagv_status = I915_SAGV_NOT_CONTROLLED;
-+
-+	/*
-+	 * Probe to see if we have working SAGV control.
-+	 * For icl+ this was already determined by intel_bw_init_hw().
-+	 */
-+	if (DISPLAY_VER(i915) < 11)
-+		intel_disable_sagv(i915);
-+
-+	drm_WARN_ON(&i915->drm, i915->sagv_status == I915_SAGV_UNKNOWN);
-+
- 	i915->sagv_block_time_us = intel_sagv_block_time(i915);
- 
+@@ -3716,6 +3716,12 @@ static void intel_sagv_init(struct drm_i915_private *i915)
  	drm_dbg_kms(&i915->drm, "SAGV supported: %s, original SAGV block time: %u us\n",
+ 		    str_yes_no(intel_has_sagv(i915)), i915->sagv_block_time_us);
+ 
++	/* avoid overflow when adding with wm0 latency/etc. */
++	if (drm_WARN(&i915->drm, i915->sagv_block_time_us > U16_MAX,
++		     "Excessive SAGV block time %u, ignoring\n",
++		     i915->sagv_block_time_us))
++		i915->sagv_block_time_us = 0;
++
+ 	if (!intel_has_sagv(i915))
+ 		i915->sagv_block_time_us = 0;
+ }
 -- 
 2.34.1
 
