@@ -2,51 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 458A54D1F46
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Mar 2022 18:41:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B4AF4D1F8C
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Mar 2022 18:58:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5AB2610E2DC;
-	Tue,  8 Mar 2022 17:41:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7734110E29E;
+	Tue,  8 Mar 2022 17:58:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D808A10E45A
- for <intel-gfx@lists.freedesktop.org>; Tue,  8 Mar 2022 17:41:46 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD42B10E289;
+ Tue,  8 Mar 2022 17:58:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646761306; x=1678297306;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=vLxldgZX455BgAmsKI0ivxznPEYQG5pvWFnsApznGv4=;
- b=DnO8M0T0rqU8GdCXDnpGOLdWTs8gnJ6BIvUjcuHHfBwDQHAX38LnxsPA
- D26NSRd3+RxS9jW8SzRT6h2l93n4jhJtiG9ZHvLBS5a3Y6MsO88sg0ftl
- h3/zMt5P+e7cMPzj4DpBewCoHaEWOeJiMR9LISIuRdxdoMpA+djSHZEsf
- geXGeRn8//55ObLyo8MSbDtd6lHlCzWvbsQbPFMbOO1jC/05dwafDxjmh
- jlANVSpetqUzEOIl6E27lb6l3Zh/a/Rb3L8QZSWjcuu1NG/Out4BGTunz
- UHX8VVPtcLBngTQ/HV8xtPe1dDqBLpK9DZqlRCUiKf3z9JvJBCes1H9ZM w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10280"; a="341191389"
-X-IronPort-AV: E=Sophos;i="5.90,165,1643702400"; d="scan'208";a="341191389"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2022 09:32:50 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,165,1643702400"; d="scan'208";a="553715954"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
- by orsmga008.jf.intel.com with SMTP; 08 Mar 2022 09:32:48 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 08 Mar 2022 19:32:47 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue,  8 Mar 2022 19:32:30 +0200
-Message-Id: <20220308173230.4182-7-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220308173230.4182-1-ville.syrjala@linux.intel.com>
-References: <20220308173230.4182-1-ville.syrjala@linux.intel.com>
+ t=1646762285; x=1678298285;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=aHw/VEZHCid0Fkd+cLIMqhL7qRK0sJoC7cR57/zC4PA=;
+ b=BQe2VYj+p5p4c3WpAZQnizUQyLMqz87r+HykqeiRUoHRkUd0U51RjdkF
+ 7a7tkKn7DfpUo+YPMIbQGQrhESJKMcKgtbP5ZiokwXYxDfwSJXXdQPn8N
+ Z1Kp1Sc7n+UeEK9PAIEtwBkHUOi0mRJpKGTIb3q/kTGpvQrgGVimr9jWJ
+ L/+JFxcyLr1eCWw3ks+Lm+w5OmS/PWqhunxpyGOZ2SY2Jtrie92vqU3kp
+ dDpBulOG2iDZXWJRs94rY8S6mXqRtdTBbtgLxAwRk03GcHhNFSpV3Wlwp
+ iBKPs52wvjRh9M3Jm7kLWae6C2YPQMhWhbhxmj6t2CNdDMZg8uKjxuoxT Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10280"; a="254497373"
+X-IronPort-AV: E=Sophos;i="5.90,165,1643702400"; d="scan'208";a="254497373"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Mar 2022 09:58:04 -0800
+X-IronPort-AV: E=Sophos;i="5.90,165,1643702400"; d="scan'208";a="632322446"
+Received: from abagarwa-mobl1.amr.corp.intel.com (HELO ldmartin-desk2)
+ ([10.212.156.1])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Mar 2022 09:58:04 -0800
+Date: Tue, 8 Mar 2022 09:58:03 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Thomas =?utf-8?B?SGVsbHN0csO2bSAoSW50ZWwp?= <thomas_os@shipmail.org>
+Message-ID: <20220308175803.pszuli2ms3e7tah3@ldmartin-desk2>
+X-Patchwork-Hint: comment
+References: <20220222172649.331661-1-michael.cheng@intel.com>
+ <20220222172649.331661-3-michael.cheng@intel.com>
+ <40f820e6-6b28-fd8a-b058-13f0bbbf71fc@shipmail.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 6/6] drm/i915: Rename pre-icl SAGV
- enable/disable functions
+In-Reply-To: <40f820e6-6b28-fd8a-b058-13f0bbbf71fc@shipmail.org>
+Subject: Re: [Intel-gfx] [PATCH v3 2/3] drm/i915/gem: Remove logic for
+ wbinvd_on_all_cpus
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,131 +61,75 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org, Michael Cheng <michael.cheng@intel.com>,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+On Tue, Feb 22, 2022 at 08:24:31PM +0100, Thomas Hellstr�m (Intel) wrote:
+>Hi, Michael,
+>
+>On 2/22/22 18:26, Michael Cheng wrote:
+>>This patch removes logic for wbinvd_on_all_cpus and brings in
+>>drm_cache.h. This header has the logic that outputs a warning
+>>when wbinvd_on_all_cpus when its being used on a non-x86 platform.
+>>
+>>Signed-off-by: Michael Cheng <michael.cheng@intel.com>
+>
+>Linus has been pretty clear that he won't accept patches that add 
+>macros that works on one arch and warns on others anymore in i915 and 
+>I figure even less so in drm code.
+>
+>So we shouldn't try to move this out to drm. Instead we should 
+>restrict the wbinvd() inside our driver to integrated and X86 only. 
+>For discrete on all architectures we should be coherent and hence not 
+>be needing wbinvd().
 
-Give the pre-icl SAGV control functions a skl_ prefix instead
-of the intel_ prefix to make it a bit more clear that they
-are not some kind of universal things that can be called on
-any platform. Also make the functions void since we never
-use the return value anyway.
+the warn is there to guarantee we don't forget a code path. However
+simply adding the warning is the real issue: we should rather guarantee
+we can't take that code path. I.e., as you said refactor the code to
+guarantee it works on discrete without that logic.
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/intel_pm.c | 32 ++++++++++++++------------------
- 1 file changed, 14 insertions(+), 18 deletions(-)
+	$ git grep wbinvd_on_all_cpus -- drivers/gpu/drm/
+	drivers/gpu/drm/drm_cache.c:    if (wbinvd_on_all_cpus())
+	drivers/gpu/drm/drm_cache.c:    if (wbinvd_on_all_cpus())
+	drivers/gpu/drm/drm_cache.c:    if (wbinvd_on_all_cpus())
 
-diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-index 166246fa27e4..bd936d4c5b0f 100644
---- a/drivers/gpu/drm/i915/intel_pm.c
-+++ b/drivers/gpu/drm/i915/intel_pm.c
-@@ -57,7 +57,7 @@
- #include "vlv_sideband.h"
- #include "../../../platform/x86/intel_ips.h"
- 
--static int intel_disable_sagv(struct drm_i915_private *dev_priv);
-+static void skl_sagv_disable(struct drm_i915_private *dev_priv);
- 
- struct drm_i915_clock_gating_funcs {
- 	void (*init_clock_gating)(struct drm_i915_private *i915);
-@@ -3707,7 +3707,7 @@ static void intel_sagv_init(struct drm_i915_private *i915)
- 	 * For icl+ this was already determined by intel_bw_init_hw().
- 	 */
- 	if (DISPLAY_VER(i915) < 11)
--		intel_disable_sagv(i915);
-+		skl_sagv_disable(i915);
- 
- 	drm_WARN_ON(&i915->drm, i915->sagv_status == I915_SAGV_UNKNOWN);
- 
-@@ -3737,16 +3737,15 @@ static void intel_sagv_init(struct drm_i915_private *i915)
-  *  - All planes can enable watermarks for latencies >= SAGV engine block time
-  *  - We're not using an interlaced display configuration
-  */
--static int
--intel_enable_sagv(struct drm_i915_private *dev_priv)
-+static void skl_sagv_enable(struct drm_i915_private *dev_priv)
- {
- 	int ret;
- 
- 	if (!intel_has_sagv(dev_priv))
--		return 0;
-+		return;
- 
- 	if (dev_priv->sagv_status == I915_SAGV_ENABLED)
--		return 0;
-+		return;
- 
- 	drm_dbg_kms(&dev_priv->drm, "Enabling SAGV\n");
- 	ret = snb_pcode_write(dev_priv, GEN9_PCODE_SAGV_CONTROL,
-@@ -3761,26 +3760,24 @@ intel_enable_sagv(struct drm_i915_private *dev_priv)
- 	if (IS_SKYLAKE(dev_priv) && ret == -ENXIO) {
- 		drm_dbg(&dev_priv->drm, "No SAGV found on system, ignoring\n");
- 		dev_priv->sagv_status = I915_SAGV_NOT_CONTROLLED;
--		return 0;
-+		return;
- 	} else if (ret < 0) {
- 		drm_err(&dev_priv->drm, "Failed to enable SAGV\n");
--		return ret;
-+		return;
- 	}
- 
- 	dev_priv->sagv_status = I915_SAGV_ENABLED;
--	return 0;
- }
- 
--static int
--intel_disable_sagv(struct drm_i915_private *dev_priv)
-+static void skl_sagv_disable(struct drm_i915_private *dev_priv)
- {
- 	int ret;
- 
- 	if (!intel_has_sagv(dev_priv))
--		return 0;
-+		return;
- 
- 	if (dev_priv->sagv_status == I915_SAGV_DISABLED)
--		return 0;
-+		return;
- 
- 	drm_dbg_kms(&dev_priv->drm, "Disabling SAGV\n");
- 	/* bspec says to keep retrying for at least 1 ms */
-@@ -3795,14 +3792,13 @@ intel_disable_sagv(struct drm_i915_private *dev_priv)
- 	if (IS_SKYLAKE(dev_priv) && ret == -ENXIO) {
- 		drm_dbg(&dev_priv->drm, "No SAGV found on system, ignoring\n");
- 		dev_priv->sagv_status = I915_SAGV_NOT_CONTROLLED;
--		return 0;
-+		return;
- 	} else if (ret < 0) {
- 		drm_err(&dev_priv->drm, "Failed to disable SAGV (%d)\n", ret);
--		return ret;
-+		return;
- 	}
- 
- 	dev_priv->sagv_status = I915_SAGV_DISABLED;
--	return 0;
- }
- 
- static void skl_sagv_pre_plane_update(struct intel_atomic_state *state)
-@@ -3815,7 +3811,7 @@ static void skl_sagv_pre_plane_update(struct intel_atomic_state *state)
- 		return;
- 
- 	if (!intel_can_enable_sagv(i915, new_bw_state))
--		intel_disable_sagv(i915);
-+		skl_sagv_disable(i915);
- }
- 
- static void skl_sagv_post_plane_update(struct intel_atomic_state *state)
-@@ -3828,7 +3824,7 @@ static void skl_sagv_post_plane_update(struct intel_atomic_state *state)
- 		return;
- 
- 	if (intel_can_enable_sagv(i915, new_bw_state))
--		intel_enable_sagv(i915);
-+		skl_sagv_enable(i915);
- }
- 
- static void icl_sagv_pre_plane_update(struct intel_atomic_state *state)
--- 
-2.34.1
+	drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c:      * Currently we just do a heavy handed wbinvd_on_all_cpus() here since
+	drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c:             wbinvd_on_all_cpus();
 
+It looks like we actually go through this on other discrete graphics. Is
+this missing an update like s/IS_DG1/IS_DGFX/? Or should we be doing
+something else?
+
+	drivers/gpu/drm/i915/gem/i915_gem_pm.c:#define wbinvd_on_all_cpus() \
+	drivers/gpu/drm/i915/gem/i915_gem_pm.c:         wbinvd_on_all_cpus();
+
+Those are for suspend. Revert ac05a22cd07a ("drm/i915/gem: Almagamate clflushes on suspend")
+or extract that part to a helper function and implement it differently
+for arches != x86?
+
+	drivers/gpu/drm/i915/gem/i915_gem_pm.c: wbinvd_on_all_cpus();
+
+Probably take a similar approach to the suspend case?
+
+	drivers/gpu/drm/i915/gt/intel_ggtt.c:           wbinvd_on_all_cpus();
+
+This one comes from 64b95df91f44 ("drm/i915: Assume exclusive access to objects inside resume")
+Shouldn't that be doing the invalidate if the write domain is I915_GEM_DOMAIN_CPU
+
+
+In the end I think the warning would be ok if it was the cherry on top,
+to guarantee we don't take those paths. We should probably have a
+warn_once() to avoid spamming the console. But we  also have to rework
+the code to guarantee we are the only ones who may eventually get that
+warning, and not the end user.
+
+Lucas De Marchi
+
+>
+>Thanks,
+>
+>/Thomas
+>
+>
