@@ -2,62 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76D354D1842
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Mar 2022 13:50:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C05B74D184A
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Mar 2022 13:51:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AEFCC10E505;
-	Tue,  8 Mar 2022 12:50:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6CAF010E5B4;
+	Tue,  8 Mar 2022 12:50:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qt1-x82e.google.com (mail-qt1-x82e.google.com
- [IPv6:2607:f8b0:4864:20::82e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0435F10E3C5;
- Tue,  8 Mar 2022 09:17:05 +0000 (UTC)
-Received: by mail-qt1-x82e.google.com with SMTP id c4so15602915qtx.1;
- Tue, 08 Mar 2022 01:17:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=QmFT5oX5WhVCf23K5lxag7wmD3+cmFNslYfO7qqS0x8=;
- b=O81yMp+25f3i4Ba9tRiFQz+DjxkdQvAuD7tM0reOk09HYPu27Ez//y0oCxFyKkVdbX
- R/sSoBoeDiFo9s4tYx2XUwDDcYv11O60isHjmVp68H+cDOTvi8MFquadaAVoClk9ja+v
- tgqVtJBnuu5sX6ALII+KxtdSdNG5YJKvNgNsV1Ul3e8zr5lBnLNM1T5puAZuTVFRO7fD
- ksosDAjF0UEXLdmjHrelsegsOtaPWnWvGdg7sUT57j0chxw3HyjuLjYpPYcdYKd6K5Sg
- VpzY5pDcfNa8suOuQoEaU1G9l/32J/ptGF+spDzNB9CfSYivKYkjoiflodvPIwrU+pjK
- AQow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=QmFT5oX5WhVCf23K5lxag7wmD3+cmFNslYfO7qqS0x8=;
- b=CY+7BUzJhvfStFKTjP1Nyd3XDxDb8tkQf3JSif6Ou2l4mzylDufXPLORaURXjHx4o0
- 2Oup1NPgGoNkreGCi8lmoOT+hzfnIm4y8X5NkwUiS54Ajq2bLoRUj6Lt1z/3TYymHpMN
- 9dQ/FrwEPSDdwW7cHlSrGiMAx7CgbNtUNczrs8aIqyDnNs/Hpg63csqPBk4DghpmQSUD
- +9L9buaoyY092hKg7LSiqSLWJR4J5DdQvb2I3NIEMMu9LWmcjN9Bpu4TBvda+TiX8i0H
- VcpUc+W8Ihmp6s0Ax5JGm3DPEFg8Y7eZ8Lvh4g5o+KnE6QGYOD/bPDQ+Atw3TJnSD13j
- kFVw==
-X-Gm-Message-State: AOAM531j8yPBgRj+0f0kZ+HDkmxf2sfylJEyfhfCQ0B9q+Uy1vD9Z223
- LCik4Vypx1mp3TJeDw+e/WM=
-X-Google-Smtp-Source: ABdhPJxfpMw9rImA2Ik5e7BO7RxSWcCdqoCiOk0uGbtELOW0XSZkacMxARR5CzcafSh1EaJcCfPZNQ==
-X-Received: by 2002:a05:622a:13c6:b0:2de:8901:e3dd with SMTP id
- p6-20020a05622a13c600b002de8901e3ddmr12911101qtk.16.1646731024127; 
- Tue, 08 Mar 2022 01:17:04 -0800 (PST)
-Received: from localhost.localdomain ([193.203.214.57])
- by smtp.gmail.com with ESMTPSA id
- c6-20020ac87d86000000b002ddd9f33ed1sm10976726qtd.44.2022.03.08.01.17.00
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 08 Mar 2022 01:17:03 -0800 (PST)
-From: cgel.zte@gmail.com
-X-Google-Original-From: deng.changcheng@zte.com.cn
-To: joonas.lahtinen@linux.intel.com
-Date: Tue,  8 Mar 2022 09:16:55 +0000
-Message-Id: <20220308091655.2078825-1-deng.changcheng@zte.com.cn>
-X-Mailer: git-send-email 2.25.1
+Received: from dfw.source.kernel.org (dfw.source.kernel.org
+ [IPv6:2604:1380:4641:c500::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C1AA10E488;
+ Tue,  8 Mar 2022 10:11:27 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id C392F61501;
+ Tue,  8 Mar 2022 10:11:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F770C340EB;
+ Tue,  8 Mar 2022 10:11:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1646734286;
+ bh=fYSUhe3wecNdmSDhFtYlrEjcl8plDtdT7/KRcR78mg8=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=u4nsxISBKCbp0kWFZQFzaUS+y+q3Vc8eNVHhG0Dmv4Nb/JhF26ncQ7Echex+2TBWw
+ HzESBnHl4TLrNzabSQGNB7ZbF8RfKTG8YIJq2SApT5oCxEWRfJr2l9JoJPXihK3vfQ
+ duy0ns8W9IpIrx2oeLNdvolKx2mHVixqS4CJNaiMHhOoWN2qQZmcekG4CxoSZIyJX4
+ EJo+hN5kIQOs94WI2C6ml3xu/HoLZzZhctA1CyAepjY5M6e1IrYFTj5uS071+txQfv
+ E2z0+8a/Amxg9QK2hYAnt6jFaeTl8IVajwPvjbBMhdwUfexozvzQDosql+YtSoO6QB
+ ViNC/V8kidVXQ==
+Date: Tue, 8 Mar 2022 12:10:45 +0200
+From: Jarkko Sakkinen <jarkko@kernel.org>
+To: David Laight <David.Laight@aculab.com>
+Message-ID: <YicrpX9K1dSdCK7u@iki.fi>
+References: <20220306053211.135762-1-jarkko@kernel.org>
+ <YiSb7tsUEBRGS+HA@casper.infradead.org>
+ <YiW4yurDXSifTYUt@infradead.org> <YiYIv9guOgClLKT8@iki.fi>
+ <YiYrRWMp1akXY8Vb@infradead.org>
+ <5729d03d6a174da6b66d1534ebdb1127@AcuMS.aculab.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Tue, 08 Mar 2022 12:50:52 +0000
-Subject: [Intel-gfx] [PATCH] drm/i915/vlv_dsi_pll: use min_t() to make code
- cleaner
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <5729d03d6a174da6b66d1534ebdb1127@AcuMS.aculab.com>
+X-Mailman-Approved-At: Tue, 08 Mar 2022 12:50:53 +0000
+Subject: Re: [Intel-gfx] [PATCH RFC 0/3] MAP_POPULATE for device memory
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,39 +57,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: airlied@linux.ie, intel-gfx@lists.freedesktop.org, lucas.demarchi@intel.com,
- deng.changcheng@zte.com.cn, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, rodrigo.vivi@intel.com,
- Zeal Robot <zealci@zte.com.cn>
+Cc: Michal Hocko <mhocko@suse.com>, zhangyiru <zhangyiru3@huawei.com>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Dave Hansen <dave.hansen@linux.intel.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ "linux-mm@kvack.org" <linux-mm@kvack.org>,
+ Alexander Mikhalitsyn <alexander.mikhalitsyn@virtuozzo.com>,
+ Florian Fainelli <f.fainelli@gmail.com>,
+ "linux-unionfs@vger.kernel.org" <linux-unionfs@vger.kernel.org>,
+ Matthew Wilcox <willy@infradead.org>,
+ "codalist@coda.cs.cmu.edu" <codalist@coda.cs.cmu.edu>,
+ 'Christoph Hellwig' <hch@infradead.org>, Matthew Auld <matthew.auld@intel.com>,
+ Vasily Averin <vvs@virtuozzo.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "G@iki.fi" <G@iki.fi>,
+ "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
+ Shakeel Butt <shakeelb@google.com>,
+ Reinette Chatre <reinette.chatre@intel.com>,
+ "linux-sgx@vger.kernel.org" <linux-sgx@vger.kernel.org>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ Nathaniel McCallum <nathaniel@profian.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-fsdevel@vger.kernel.org" <linux-fsdevel@vger.kernel.org>,
+ Andrew Morton <akpm@linux-foundation.org>, Alexey Gladkov <legion@kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Changcheng Deng <deng.changcheng@zte.com.cn>
+On Mon, Mar 07, 2022 at 10:11:19PM +0000, David Laight wrote:
+> From: Christoph Hellwig
+> > Sent: 07 March 2022 15:57
+> > 
+> > On Mon, Mar 07, 2022 at 03:29:35PM +0200, Jarkko Sakkinen wrote:
+> > > So what would you suggest to sort out the issue? I'm happy to go with
+> > > ioctl if nothing else is acceptable.
+> > 
+> > PLenty of drivers treat all mmaps as if MAP_POPULATE was specified,
+> > typically by using (io_)remap_pfn_range.  If there any reason to only
+> > optionally have the pre-fault semantics for sgx?  If not this should
+> > be really simple.  And if we have a real need for it to be optional
+> > we'll just need to find a sane way to pass that information to ->mmap.
+> 
+> Is there any space in vma->vm_flags ?
+> 
+> That would be better than an extra argument or function.
 
-Use min_t() in order to make code cleaner.
+It's very dense but I'll give a shot for callback route based on Dave's
+comments in this thread. I.e. use it as filter inside __mm_populate() and
+populate_vma_page_range().
 
-Reported-by: Zeal Robot <zealci@zte.com.cn>
-Signed-off-by: Changcheng Deng <deng.changcheng@zte.com.cn>
----
- drivers/gpu/drm/i915/display/vlv_dsi_pll.c | 5 +----
- 1 file changed, 1 insertion(+), 4 deletions(-)
+For Enarx, which we are implementing being able to use MAP_POPULATE and get
+the full range EAUG'd would be best way to optimize the performance of wasm
+JIT (Enarx is a wasm run-time capable of running inside an SGX enclave, AMD
+SEV-SNP VM etc.). More so than any predictor (ra_state, madvice etc.) inside
+#PF handler, which have been suggested in this thread.
 
-diff --git a/drivers/gpu/drm/i915/display/vlv_dsi_pll.c b/drivers/gpu/drm/i915/display/vlv_dsi_pll.c
-index df880f44700a..f801f7ec3f9a 100644
---- a/drivers/gpu/drm/i915/display/vlv_dsi_pll.c
-+++ b/drivers/gpu/drm/i915/display/vlv_dsi_pll.c
-@@ -393,10 +393,7 @@ static void glk_dsi_program_esc_clock(struct drm_device *dev,
- 	/* Calculate TXESC2 divider */
- 	div2_value = DIV_ROUND_UP(div1_value, txesc1_div);
- 
--	if (div2_value < 10)
--		txesc2_div = div2_value;
--	else
--		txesc2_div = 10;
-+	txesc2_div = min_t(u32, div2_value, 10);
- 
- 	intel_de_write(dev_priv, MIPIO_TXESC_CLK_DIV1,
- 		       (1 << (txesc1_div - 1)) & GLK_TX_ESC_CLK_DIV1_MASK);
--- 
-2.25.1
+After some research on how we implement user space, I'd rather keep the #PF
+handler working on a single page (EAUG a single page) and have either ioctl
+or MAP_POPULATE to do the batch fill.
 
+We can still "not trust the user space" i.e. the populate does not have to
+guarantee to do the full length since the #PF handler will then fill the
+holes. This was one concern in this thread but it is not hard to address.
+
+BR, Jarkko
