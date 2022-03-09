@@ -1,50 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C48844D3D51
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Mar 2022 23:50:36 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79E4F4D3DAC
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Mar 2022 00:44:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA51510E550;
-	Wed,  9 Mar 2022 22:50:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC04110E60B;
+	Wed,  9 Mar 2022 23:44:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ACAD110E556
- for <intel-gfx@lists.freedesktop.org>; Wed,  9 Mar 2022 22:50:32 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB3EB10E627
+ for <intel-gfx@lists.freedesktop.org>; Wed,  9 Mar 2022 23:44:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646866232; x=1678402232;
+ t=1646869445; x=1678405445;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=aOYWBto8Vm/VppIcBO0k9HLTnV2zlzZANWZCNM8M2Oc=;
- b=ki3ilG+XrSNSYxixJjt7Bgd4JP+89sBqeqy4sLh+NVkVjmVOYGFfUbHZ
- zKMfSYH6ttPXqEr61nNTM4PuIyhur1fjapBM+I9gZPzQpaOgueCbxRNNF
- 1j20kMh2HSauWegKmeJ/W1Yg8gaA14iIQ7aTXvNpbjgsyjY2SzMVODAjo
- UeSYmAdGfJdgGkDH2SwXjZwcUaHLJcADvynAIq5Ygwl0XWY4f1ilMn7vP
- 3qNXiyp4RGE6wFmcWmSbe7YI2Rt8VlITeN/y17ve6tv3Fs5wCOhTQPRnC
- mbZjwmlF+pm/Z+IqtsVLrXOTcPrfzahjY2B2IYihrqohgd16Hy19v8LbF g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10281"; a="237277266"
-X-IronPort-AV: E=Sophos;i="5.90,169,1643702400"; d="scan'208";a="237277266"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Mar 2022 14:50:16 -0800
-X-IronPort-AV: E=Sophos;i="5.90,169,1643702400"; d="scan'208";a="510666031"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Mar 2022 14:50:16 -0800
-Date: Wed, 9 Mar 2022 14:50:15 -0800
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <YikvJzweylS9mXMF@mdroper-desk1.amr.corp.intel.com>
-References: <20220309090913.2820533-1-jani.nikula@intel.com>
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=hqGTO92a6vjtYUQKKDMQPU+JLSXCdp8ethUAepPZwT0=;
+ b=Y70qBB1WSfdfHA42BJP9PMihrWwW6PtnnlSeiOJjEfNY29d/YuwzxuqD
+ JYO810NhXAMdrBHJVtrEqkeBVrQh53vZerHwTk5QakgyDKcul0uopeY2K
+ w7kpLSH20L/Nb71uJsMNXQVS/KxhFrjMPHsEsjLQkJMPM9OTtww/LLPwC
+ K3nmUv0ckaZYxoXLMNQk9q94QJF8NRB07CxvQ+jWgZXPITKpMaOdla6ys
+ z1FnFWIBuUvyAZddPFY10d9AIiS5EU7zS7HlBrLtzexFVlyobC6J33boW
+ QqdthSYE5L3hLilkNMHKAnklhhihTS9lMw9URc8mxAxeViMxYOHSYHdG+ A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10281"; a="242560986"
+X-IronPort-AV: E=Sophos;i="5.90,169,1643702400"; d="scan'208";a="242560986"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Mar 2022 15:44:00 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,169,1643702400"; d="scan'208";a="554352040"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
+ by orsmga008.jf.intel.com with SMTP; 09 Mar 2022 15:43:58 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 10 Mar 2022 01:43:57 +0200
+Date: Thu, 10 Mar 2022 01:43:57 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Manasi Navare <manasi.d.navare@intel.com>
+Message-ID: <Yik7vRBdA7qDmxHs@intel.com>
+References: <20220303233222.4698-1-manasi.d.navare@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20220309090913.2820533-1-jani.nikula@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/regs: move GEN12_SFC_DONE_MAX
- where it belongs
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220303233222.4698-1-manasi.d.navare@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH v7] drm/i915/display/vrr: Reset VRR capable
+ property on a long hpd
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,84 +60,99 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Mar 09, 2022 at 11:09:13AM +0200, Jani Nikula wrote:
-> Commit ce2fce2513c5 ("drm/i915: Only include i915_reg.h from .c files")
-> moved GEN12_SFC_DONE_MAX from i915_regs.h to i915_reg_defs.h. Arguably
-> it belongs next to the GEN12_SFC_DONE() definition, as it describes the
-> number of GEN12_SFC_DONE instances.
-
-It should probably be replaced with an I915_MAX_SFC define instead,
-since what we really care about is the number of SFC units rather than
-the number of registers; there's always one register per SFC unit.  Or
-maybe even get rid of this completely and replace it with I915_MAX_VCS/2
-since we expect there to be a 2:1:1 ratio of VCS:VECS:SFC.
-
-
-Matt
-
+On Thu, Mar 03, 2022 at 03:32:22PM -0800, Manasi Navare wrote:
+> With some VRR panels, user can turn VRR ON/OFF on the fly from the panel settings.
+> When VRR is turned OFF ,sends a long HPD to the driver clearing the Ignore MSA bit
+> in the DPCD. Currently the driver parses that onevery HPD but fails to reset
+> the corresponding VRR Capable Connector property.
+> Hence the userspace still sees this as VRR Capable panel which is incorrect.
 > 
-> The unfortunate downside is obviously having to pull in intel_gt_regs.h
-> in i915_gpu_error.h.
+> Fix this by explicitly resetting the connector property.
 > 
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> v2: Reset vrr capable if status == connector_disconnected
+> v3: Use i915 and use bool vrr_capable (Jani Nikula)
+> v4: Move vrr_capable to after update modes call (Jani N)
+> Remove the redundant comment (Jan N)
+> v5: Fixes the regression on older platforms by reseting the VRR
+> only if HAS_VRR
+> v6: Remove the checks from driver, add in drm core before
+> setting VRR prop (Ville)
+> v7: Move VRR set/reset to set/unset_edid (Ville)
 > 
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Fixes: 390a1f8beb87 ("Revert "drm/i915/display/vrr: Reset VRR capable property on a long hpd")
+> Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+
+Looks reasoanble enough to me.
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+
+But be careful when pushing this since I don't think
+the drm_connector_set_vrr_capable_property() change has
+percolated into drm-intel-next yet.
+
 > ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 17 +++++++++++------
+>  1 file changed, 11 insertions(+), 6 deletions(-)
 > 
-> I guess the alternative is to define GEN12_SFC_DONE_MAX in
-> i915_gpu_error.h, to avoid the extra include. No matter what, IMO it's
-> really out of place in i915_reg_defs.h.
-> ---
->  drivers/gpu/drm/i915/gt/intel_gt_regs.h | 1 +
->  drivers/gpu/drm/i915/i915_gpu_error.h   | 1 +
->  drivers/gpu/drm/i915/i915_reg_defs.h    | 2 --
->  3 files changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-> index 19cd34f24263..6bb987fe3289 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-> @@ -1502,5 +1502,6 @@
->  #define GEN12_CCS2_CCS3_INTR_MASK		_MMIO(0x190104)
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index d6ef33096bb6..1d0f8fc39005 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -4385,13 +4385,20 @@ intel_dp_update_420(struct intel_dp *intel_dp)
+>  static void
+>  intel_dp_set_edid(struct intel_dp *intel_dp)
+>  {
+> +	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+>  	struct intel_connector *connector = intel_dp->attached_connector;
+>  	struct edid *edid;
+> +	bool vrr_capable;
 >  
->  #define GEN12_SFC_DONE(n)			_MMIO(0x1cc000 + (n) * 0x1000)
-> +#define GEN12_SFC_DONE_MAX			4
+>  	intel_dp_unset_edid(intel_dp);
+>  	edid = intel_dp_get_edid(intel_dp);
+>  	connector->detect_edid = edid;
 >  
->  #endif /* __INTEL_GT_REGS__ */
-> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.h b/drivers/gpu/drm/i915/i915_gpu_error.h
-> index 903d838e2e63..d29155aca84c 100644
-> --- a/drivers/gpu/drm/i915/i915_gpu_error.h
-> +++ b/drivers/gpu/drm/i915/i915_gpu_error.h
-> @@ -15,6 +15,7 @@
->  #include <drm/drm_mm.h>
+> +	vrr_capable = intel_vrr_is_capable(&connector->base);
+> +	drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] VRR capable: %s\n",
+> +		    connector->base.base.id, connector->base.name, str_yes_no(vrr_capable));
+> +	drm_connector_set_vrr_capable_property(&connector->base, vrr_capable);
+> +
+>  	intel_dp_update_dfp(intel_dp, edid);
+>  	intel_dp_update_420(intel_dp);
 >  
->  #include "gt/intel_engine.h"
-> +#include "gt/intel_gt_regs.h"
->  #include "gt/intel_gt_types.h"
->  #include "gt/uc/intel_uc_fw.h"
+> @@ -4424,6 +4431,9 @@ intel_dp_unset_edid(struct intel_dp *intel_dp)
 >  
-> diff --git a/drivers/gpu/drm/i915/i915_reg_defs.h b/drivers/gpu/drm/i915/i915_reg_defs.h
-> index d78d78fce431..8f486f77609f 100644
-> --- a/drivers/gpu/drm/i915/i915_reg_defs.h
-> +++ b/drivers/gpu/drm/i915/i915_reg_defs.h
-> @@ -123,6 +123,4 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
+>  	intel_dp->dfp.ycbcr_444_to_420 = false;
+>  	connector->base.ycbcr_420_allowed = false;
+> +
+> +	drm_connector_set_vrr_capable_property(&connector->base,
+> +					       false);
+>  }
 >  
->  #define VLV_DISPLAY_BASE		0x180000
+>  static int
+> @@ -4574,14 +4584,9 @@ static int intel_dp_get_modes(struct drm_connector *connector)
+>  	int num_modes = 0;
 >  
-> -#define GEN12_SFC_DONE_MAX		4
+>  	edid = intel_connector->detect_edid;
+> -	if (edid) {
+> +	if (edid)
+>  		num_modes = intel_connector_update_modes(connector, edid);
+>  
+> -		if (intel_vrr_is_capable(connector))
+> -			drm_connector_set_vrr_capable_property(connector,
+> -							       true);
+> -	}
 > -
->  #endif /* __I915_REG_DEFS__ */
+>  	/* Also add fixed mode, which may or may not be present in EDID */
+>  	if (intel_dp_is_edp(intel_attached_dp(intel_connector)) &&
+>  	    intel_connector->panel.fixed_mode) {
 > -- 
-> 2.30.2
-> 
+> 2.19.1
 
 -- 
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
+Ville Syrjälä
+Intel
