@@ -1,54 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D11384D2C79
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Mar 2022 10:49:07 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 666C74D2C7F
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Mar 2022 10:50:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C6E910E328;
-	Wed,  9 Mar 2022 09:49:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9591F89FD7;
+	Wed,  9 Mar 2022 09:50:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7ECCC10E349;
- Wed,  9 Mar 2022 09:48:58 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0FA6289FD7
+ for <intel-gfx@lists.freedesktop.org>; Wed,  9 Mar 2022 09:50:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646819338; x=1678355338;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=skqK4ekP+jaJdGJ2Qw2JrG7jPV40g1I3Zcdcj+wxnO4=;
- b=WNLJXFduBlBzfN66tKCkxZmT+AS+F9jXc8G9RvdOn8Foeed7Zp1+wdKk
- qLWUxT6zeld6flFNmNtdr1Z6nw6pv3I1DVmf3UniYjWYo4zc/ov9Jbz+M
- ZRQw6ydvHcLf6gChn30rsPBlZv/5Rda9rB1EggJg3k/5smN4XWEhdOC6+
- HStcrIJDvQCTwrvLFkm5N8iJaWRrLuHqALAjfRjUZT3QA1YywiIin8Mcj
- zUJE098pCrx3+q5k2lsc03snW/OCkoIJeJ1AEIwhJpNYuVmikbZD9y4y1
- 6uyPR4zciQTLTqJM8X753rAWjS8NfZSXLyl/AnzkNzWhVmCo9/t4lmn0P g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10280"; a="252505566"
-X-IronPort-AV: E=Sophos;i="5.90,167,1643702400"; d="scan'208";a="252505566"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Mar 2022 01:48:57 -0800
-X-IronPort-AV: E=Sophos;i="5.90,167,1643702400"; d="scan'208";a="537942978"
+ t=1646819434; x=1678355434;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=MPYp5XIF3Ckt9K1VtlWk387ofz82Fta9DifKLhaB3Iw=;
+ b=Q4AozHfogk5SqJNhmPQ3OKOMVb/KPk6tXYYgr3WS2ozEYnDB8Ryka6vh
+ LAFmYamBL2vhbcfIDe8xzDmoLbcxVT5y6dORXTji38YjpbLZWLzIztocE
+ 5PsEvw0tkEvTPbObRXTcDumiFAoARqDNH6lYh17JgdumDuM1U3MwZVbxm
+ fCUutHHX5yAv5m9+7dvOLs8UqmCBr/GatXazko57GpgV4jOu/lazHQp85
+ oEZM/XYK06MiLIlOBBdSD7o0+1dPrGfo4W0cqWc4XUYYe94Vj56xVntJ0
+ /9Ir/2lnAoyIZGyehHIY9KEvvYEKUDlxq8qns/OfQOHDSrO9zxwZr83aa w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10280"; a="318162604"
+X-IronPort-AV: E=Sophos;i="5.90,167,1643702400"; d="scan'208";a="318162604"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Mar 2022 01:50:32 -0800
+X-IronPort-AV: E=Sophos;i="5.90,167,1643702400"; d="scan'208";a="711886260"
 Received: from byrnec1x-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.29.235])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Mar 2022 01:48:54 -0800
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Mar 2022 01:50:31 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Colin Ian King <colin.i.king@gmail.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, David Airlie
- <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-In-Reply-To: <20220307220007.162830-1-colin.i.king@gmail.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20220307233940.4161-3-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220307220007.162830-1-colin.i.king@gmail.com>
-Date: Wed, 09 Mar 2022 11:48:52 +0200
-Message-ID: <87sfrrzcaj.fsf@intel.com>
+References: <20220307233940.4161-1-ville.syrjala@linux.intel.com>
+ <20220307233940.4161-3-ville.syrjala@linux.intel.com>
+Date: Wed, 09 Mar 2022 11:50:28 +0200
+Message-ID: <87pmmvzc7v.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dpll: make read-only array
- div1_vals static const
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH v2 2/8] drm/i915: Remove redundant/wrong
+ comments
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,39 +60,82 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 07 Mar 2022, Colin Ian King <colin.i.king@gmail.com> wrote:
-> Don't populate the read-only array div1_vals on the stack but
-> instead make it static const. Also makes the object code a little
-> smaller.
-
-Thanks, but this was just fixed in commit fe70b262e781 ("drm/i915: Move
-a bunch of stuff into rodata from the stack").
-
-BR,
-Jani.
-
+On Tue, 08 Mar 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
+> Remove the comment specifying the exact formulat for calculating
+> the DPLL frequency from the *_find_best_dpll() functions. Each
+> platform variant has its own way to calculate these and we have
+> the code already to do that. These comments are entirely redundant
+> and often even wrong so just get rid of them.
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+
+Acked-by: Jani Nikula <jani.nikula@intel.com>
+
 > ---
->  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  drivers/gpu/drm/i915/display/intel_dpll.c | 15 +++++----------
+>  1 file changed, 5 insertions(+), 10 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> index 569903d47aea..17668b58b30c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> @@ -2759,7 +2759,7 @@ static bool icl_mg_pll_find_divisors(int clock_khz, bool is_dp, bool use_ssc,
->  				     bool is_dkl)
->  {
->  	u32 dco_min_freq, dco_max_freq;
-> -	int div1_vals[] = {7, 5, 3, 2};
-> +	static const int div1_vals[] = {7, 5, 3, 2};
->  	unsigned int i;
->  	int div2;
+> diff --git a/drivers/gpu/drm/i915/display/intel_dpll.c b/drivers/gpu/drm/=
+i915/display/intel_dpll.c
+> index b3fd94538c44..f4e5290b86a4 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dpll.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dpll.c
+> @@ -425,8 +425,7 @@ i9xx_select_p2_div(const struct intel_limit *limit,
+>=20=20
+>  /*
+>   * Returns a set of divisors for the desired target clock with the given
+> - * refclk, or FALSE.  The returned values represent the clock equation:
+> - * reflck * (5 * (m1 + 2) + (m2 + 2)) / (n + 2) / p1 / p2.
+> + * refclk, or FALSE.
+>   *
+>   * Target and reference clocks are specified in kHz.
+>   *
+> @@ -484,8 +483,7 @@ i9xx_find_best_dpll(const struct intel_limit *limit,
+>=20=20
+>  /*
+>   * Returns a set of divisors for the desired target clock with the given
+> - * refclk, or FALSE.  The returned values represent the clock equation:
+> - * reflck * (5 * (m1 + 2) + (m2 + 2)) / (n + 2) / p1 / p2.
+> + * refclk, or FALSE.
+>   *
+>   * Target and reference clocks are specified in kHz.
+>   *
+> @@ -541,8 +539,7 @@ pnv_find_best_dpll(const struct intel_limit *limit,
+>=20=20
+>  /*
+>   * Returns a set of divisors for the desired target clock with the given
+> - * refclk, or FALSE.  The returned values represent the clock equation:
+> - * reflck * (5 * (m1 + 2) + (m2 + 2)) / (n + 2) / p1 / p2.
+> + * refclk, or FALSE.
+>   *
+>   * Target and reference clocks are specified in kHz.
+>   *
+> @@ -641,8 +638,7 @@ static bool vlv_PLL_is_optimal(struct drm_device *dev=
+, int target_freq,
+>=20=20
+>  /*
+>   * Returns a set of divisors for the desired target clock with the given
+> - * refclk, or FALSE.  The returned values represent the clock equation:
+> - * reflck * (5 * (m1 + 2) + (m2 + 2)) / (n + 2) / p1 / p2.
+> + * refclk, or FALSE.
+>   */
+>  static bool
+>  vlv_find_best_dpll(const struct intel_limit *limit,
+> @@ -700,8 +696,7 @@ vlv_find_best_dpll(const struct intel_limit *limit,
+>=20=20
+>  /*
+>   * Returns a set of divisors for the desired target clock with the given
+> - * refclk, or FALSE.  The returned values represent the clock equation:
+> - * reflck * (5 * (m1 + 2) + (m2 + 2)) / (n + 2) / p1 / p2.
+> + * refclk, or FALSE.
+>   */
+>  static bool
+>  chv_find_best_dpll(const struct intel_limit *limit,
 
--- 
+--=20
 Jani Nikula, Intel Open Source Graphics Center
