@@ -1,52 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DE174D2C17
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Mar 2022 10:34:30 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88D494D2C6E
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Mar 2022 10:46:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD31810E11B;
-	Wed,  9 Mar 2022 09:34:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 325E310E11B;
+	Wed,  9 Mar 2022 09:46:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3B1BC10E11B
- for <intel-gfx@lists.freedesktop.org>; Wed,  9 Mar 2022 09:34:26 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1F9D910E11B
+ for <intel-gfx@lists.freedesktop.org>; Wed,  9 Mar 2022 09:46:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646818466; x=1678354466;
+ t=1646819175; x=1678355175;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=FPAtWmZHNjgO2INZs2NEJOMMJ5Frwe0Pk9oYkKOGjqE=;
- b=REcMZqFcmaCBYDrJ4b6bVdxZydSyfkYL8/NqP45Sywb+YNb+Y20l2K6/
- 3a0I5kqRtMC5zjAcGmcyABQAI0nhWIrOapJgbFlkchbQCR4hMEFGTaQeL
- 2NNXgWLmdZnJQDCLkM2wJeVV0iSSYOhKQRNGNYdjQKXY0Pcu/aAbouwtt
- 2s/eDvmVN63WSqj2y3EA2gqbveEpIM3b8gCvCiuxT4w6Qb2nOd/0Sw1Kr
- hiZ1clznUTTwIEr2gPbwhcHbGo0/eddnHSon8h1uGLwFPMZDjZxK/eeNn
- ANrdBEtvTZuM7Gn1MiGDZLpURVO3tDr5P2v7xHXgqofrAQW8f0FOZzM0c Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10280"; a="255122515"
-X-IronPort-AV: E=Sophos;i="5.90,167,1643702400"; d="scan'208";a="255122515"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Mar 2022 01:34:14 -0800
-X-IronPort-AV: E=Sophos;i="5.90,167,1643702400"; d="scan'208";a="643979639"
+ bh=iJEKe5ulua311J0J9yBxRjAs7SBasNy1z2RJzatcPPc=;
+ b=GgCR82WyL16CIIvoDB+0RA5YBVMmQ+GHCmrUZDKZfvLP21mx5obHYbat
+ 5Vz/LuIvhC8E59ol45S+x8q/+rzMGvmHp1ZRkmg29JByrhxAAecRZLqm4
+ atg3ZEyKcCor0RYdXTIP6Yihr1ICRXe3i6baXXRFKQ1gZI0rK3ezeEnfy
+ PmxD9DH3lK86kjysotHqxtQ65XTDMmRw4wlAmN0bFAuA747TU5OBcL734
+ rUs12zrBuig0dC2I7Dvb1dN9WwFML13ixh9wf77idY4di+Qlgg+gvtQQ2
+ B0SQzAGQcCLUok0aFYoR2Usd5a/8ugE3lRr0faaN8y8Alxey9BEhmx1Rr A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10280"; a="234886025"
+X-IronPort-AV: E=Sophos;i="5.90,167,1643702400"; d="scan'208";a="234886025"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Mar 2022 01:46:14 -0800
+X-IronPort-AV: E=Sophos;i="5.90,167,1643702400"; d="scan'208";a="513466298"
 Received: from byrnec1x-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.29.235])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Mar 2022 01:34:13 -0800
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Mar 2022 01:46:11 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220307233940.4161-9-ville.syrjala@linux.intel.com>
+In-Reply-To: <20220307233940.4161-7-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20220307233940.4161-1-ville.syrjala@linux.intel.com>
- <20220307233940.4161-9-ville.syrjala@linux.intel.com>
-Date: Wed, 09 Mar 2022 11:34:10 +0200
-Message-ID: <87y21jzcz1.fsf@intel.com>
+ <20220307233940.4161-7-ville.syrjala@linux.intel.com>
+Date: Wed, 09 Mar 2022 11:46:09 +0200
+Message-ID: <87v8wnzcf2.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v2 8/8] drm/i915: Remove struct dp_link_dpll
+Subject: Re: [Intel-gfx] [PATCH v2 6/8] drm/i915: Replace hand rolled bxt
+ vco calculation with chv_calc_dpll_params()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,119 +66,92 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Tue, 08 Mar 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> struct dp_link_dpll is a pointless wrapper around struct dpll.
-> Just store the desired link rate into struct dpll::dot and
-> we're done.
+> Use chv_calc_dpll_params() to calculate the BXT DP DPLL VCO
+> frequency.
 >
-> v2: Document the full divider as a proper decimal number on chv
->     Nuke bogus eDP 1.4 comments for chv while at it
+> We need to add the m1 divider into bxt_dp_clk_val[] for this to work.
+>
+> v2: Make the WARN_ON() sensible
 >
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+
+I admit I didn't check all the computations, but the drm_WARN_ON()
+should catch any functional changes AFAICT.
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
 > ---
->  drivers/gpu/drm/i915/display/g4x_dp.c | 55 +++++++++------------------
->  1 file changed, 17 insertions(+), 38 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 23 +++++++++++--------
+>  1 file changed, 13 insertions(+), 10 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/g4x_dp.c b/drivers/gpu/drm/i915=
-/display/g4x_dp.c
-> index 22345051e667..8e1338678d91 100644
-> --- a/drivers/gpu/drm/i915/display/g4x_dp.c
-> +++ b/drivers/gpu/drm/i915/display/g4x_dp.c
-> @@ -24,58 +24,37 @@
->  #include "intel_pps.h"
->  #include "vlv_sideband.h"
->=20=20
-> -struct dp_link_dpll {
-> -	int clock;
-> -	struct dpll dpll;
-> +static const struct dpll g4x_dpll[] =3D {
-> +	{ .dot =3D 162000, .p1 =3D 2, .p2 =3D 10, .n =3D 2, .m1 =3D 23, .m2 =3D=
- 8, },
-> +	{ .dot =3D 270000, .p1 =3D 1, .p2 =3D 10, .n =3D 1, .m1 =3D 14, .m2 =3D=
- 2, },
->  };
->=20=20
-> -static const struct dp_link_dpll g4x_dpll[] =3D {
-> -	{ 162000,
-> -		{ .p1 =3D 2, .p2 =3D 10, .n =3D 2, .m1 =3D 23, .m2 =3D 8 } },
-> -	{ 270000,
-> -		{ .p1 =3D 1, .p2 =3D 10, .n =3D 1, .m1 =3D 14, .m2 =3D 2 } }
-> +static const struct dpll pch_dpll[] =3D {
-> +	{ .dot =3D 162000, .p1 =3D 2, .p2 =3D 10, .n =3D 1, .m1 =3D 12, .m2 =3D=
- 9, },
-> +	{ .dot =3D 270000, .p1 =3D 1, .p2 =3D 10, .n =3D 2, .m1 =3D 14, .m2 =3D=
- 8, },
->  };
->=20=20
-> -static const struct dp_link_dpll pch_dpll[] =3D {
-> -	{ 162000,
-> -		{ .p1 =3D 2, .p2 =3D 10, .n =3D 1, .m1 =3D 12, .m2 =3D 9 } },
-> -	{ 270000,
-> -		{ .p1 =3D 1, .p2 =3D 10, .n =3D 2, .m1 =3D 14, .m2 =3D 8 } }
-> +static const struct dpll vlv_dpll[] =3D {
-> +	{ .dot =3D 162000, .p1 =3D 3, .p2 =3D 2, .n =3D 5, .m1 =3D 3, .m2 =3D 8=
-1, },
-> +	{ .dot =3D 270000, .p1 =3D 2, .p2 =3D 2, .n =3D 1, .m1 =3D 2, .m2 =3D 2=
-7, },
->  };
->=20=20
-> -static const struct dp_link_dpll vlv_dpll[] =3D {
-> -	{ 162000,
-> -		{ .p1 =3D 3, .p2 =3D 2, .n =3D 5, .m1 =3D 3, .m2 =3D 81 } },
-> -	{ 270000,
-> -		{ .p1 =3D 2, .p2 =3D 2, .n =3D 1, .m1 =3D 2, .m2 =3D 27 } }
-> -};
-> -
-> -/*
-> - * CHV supports eDP 1.4 that have  more link rates.
-> - * Below only provides the fixed rate but exclude variable rate.
-> - */
-> -static const struct dp_link_dpll chv_dpll[] =3D {
-> -	/*
-> -	 * CHV requires to program fractional division for m2.
-> -	 * m2 is stored in fixed point format using formula below
-> -	 * (m2_int << 22) | m2_fraction
-> -	 */
-> -	{ 162000,	/* m2_int =3D 32, m2_fraction =3D 1677722 */
-> -		{ .p1 =3D 4, .p2 =3D 2, .n =3D 1, .m1 =3D 2, .m2 =3D 0x819999a } },
-> -	{ 270000,	/* m2_int =3D 27, m2_fraction =3D 0 */
-> -		{ .p1 =3D 4, .p2 =3D 1, .n =3D 1, .m1 =3D 2, .m2 =3D 0x6c00000 } },
-> +static const struct dpll chv_dpll[] =3D {
-> +	/* m2 is .22 binary fixed point  */
+> diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/=
+drm/i915/display/intel_dpll_mgr.c
+> index 4b52086aa9e9..b7071da4b7e5 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+> @@ -2086,13 +2086,13 @@ static bool bxt_ddi_pll_get_hw_state(struct drm_i=
+915_private *dev_priv,
+>  /* pre-calculated values for DP linkrates */
+>  static const struct dpll bxt_dp_clk_val[] =3D {
+>  	/* m2 is .22 binary fixed point */
+> -	{ .dot =3D 162000, .p1 =3D 4, .p2 =3D 2, .n =3D 1, .m2 =3D 0x819999a /*=
+ 32.4 */ },
+> -	{ .dot =3D 270000, .p1 =3D 4, .p2 =3D 1, .n =3D 1, .m2 =3D 0x6c00000 /*=
+ 27.0 */ },
+> -	{ .dot =3D 540000, .p1 =3D 2, .p2 =3D 1, .n =3D 1, .m2 =3D 0x6c00000 /*=
+ 27.0 */ },
+> -	{ .dot =3D 216000, .p1 =3D 3, .p2 =3D 2, .n =3D 1, .m2 =3D 0x819999a /*=
+ 32.4 */ },
+> -	{ .dot =3D 243000, .p1 =3D 4, .p2 =3D 1, .n =3D 1, .m2 =3D 0x6133333 /*=
+ 24.3 */ },
+> -	{ .dot =3D 324000, .p1 =3D 4, .p2 =3D 1, .n =3D 1, .m2 =3D 0x819999a /*=
+ 32.4 */ },
+> -	{ .dot =3D 432000, .p1 =3D 3, .p2 =3D 1, .n =3D 1, .m2 =3D 0x819999a /*=
+ 32.4 */ },
 > +	{ .dot =3D 162000, .p1 =3D 4, .p2 =3D 2, .n =3D 1, .m1 =3D 2, .m2 =3D 0=
 x819999a /* 32.4 */ },
 > +	{ .dot =3D 270000, .p1 =3D 4, .p2 =3D 1, .n =3D 1, .m1 =3D 2, .m2 =3D 0=
 x6c00000 /* 27.0 */ },
+> +	{ .dot =3D 540000, .p1 =3D 2, .p2 =3D 1, .n =3D 1, .m1 =3D 2, .m2 =3D 0=
+x6c00000 /* 27.0 */ },
+> +	{ .dot =3D 216000, .p1 =3D 3, .p2 =3D 2, .n =3D 1, .m1 =3D 2, .m2 =3D 0=
+x819999a /* 32.4 */ },
+> +	{ .dot =3D 243000, .p1 =3D 4, .p2 =3D 1, .n =3D 1, .m1 =3D 2, .m2 =3D 0=
+x6133333 /* 24.3 */ },
+> +	{ .dot =3D 324000, .p1 =3D 4, .p2 =3D 1, .n =3D 1, .m1 =3D 2, .m2 =3D 0=
+x819999a /* 32.4 */ },
+> +	{ .dot =3D 432000, .p1 =3D 3, .p2 =3D 1, .n =3D 1, .m1 =3D 2, .m2 =3D 0=
+x819999a /* 32.4 */ },
 >  };
 >=20=20
->  const struct dpll *vlv_get_dpll(struct drm_i915_private *i915)
+>  static bool
+> @@ -2122,18 +2122,21 @@ bxt_ddi_hdmi_pll_dividers(struct intel_crtc_state=
+ *crtc_state,
+>  static void bxt_ddi_dp_pll_dividers(struct intel_crtc_state *crtc_state,
+>  				    struct dpll *clk_div)
 >  {
-> -	return IS_CHERRYVIEW(i915) ? &chv_dpll[0].dpll : &vlv_dpll[0].dpll;
-> +	return IS_CHERRYVIEW(i915) ? &chv_dpll[0] : &vlv_dpll[0];
+> -	int clock =3D crtc_state->port_clock;
+> +	struct drm_i915_private *i915 =3D to_i915(crtc_state->uapi.crtc->dev);
+>  	int i;
+>=20=20
+>  	*clk_div =3D bxt_dp_clk_val[0];
+>  	for (i =3D 0; i < ARRAY_SIZE(bxt_dp_clk_val); ++i) {
+> -		if (bxt_dp_clk_val[i].dot =3D=3D clock) {
+> +		if (crtc_state->port_clock =3D=3D bxt_dp_clk_val[i].dot) {
+>  			*clk_div =3D bxt_dp_clk_val[i];
+>  			break;
+>  		}
+>  	}
+>=20=20
+> -	clk_div->vco =3D clock * 10 / 2 * clk_div->p1 * clk_div->p2;
+> +	chv_calc_dpll_params(i915->dpll.ref_clks.nssc, clk_div);
+> +
+> +	drm_WARN_ON(&i915->drm, clk_div->vco =3D=3D 0 ||
+> +		    clk_div->dot !=3D crtc_state->port_clock);
 >  }
 >=20=20
->  void g4x_dp_set_clock(struct intel_encoder *encoder,
->  		      struct intel_crtc_state *pipe_config)
->  {
->  	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
-> -	const struct dp_link_dpll *divisor =3D NULL;
-> +	const struct dpll *divisor =3D NULL;
->  	int i, count =3D 0;
->=20=20
->  	if (IS_G4X(dev_priv)) {
-> @@ -94,8 +73,8 @@ void g4x_dp_set_clock(struct intel_encoder *encoder,
->=20=20
->  	if (divisor && count) {
->  		for (i =3D 0; i < count; i++) {
-> -			if (pipe_config->port_clock =3D=3D divisor[i].clock) {
-> -				pipe_config->dpll =3D divisor[i].dpll;
-> +			if (pipe_config->port_clock =3D=3D divisor[i].dot) {
-> +				pipe_config->dpll =3D divisor[i];
->  				pipe_config->clock_set =3D true;
->  				break;
->  			}
+>  static bool bxt_ddi_set_dpll_hw_state(struct intel_crtc_state *crtc_stat=
+e,
 
 --=20
 Jani Nikula, Intel Open Source Graphics Center
