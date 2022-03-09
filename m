@@ -2,52 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88D494D2C6E
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Mar 2022 10:46:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BD064D2C76
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Mar 2022 10:49:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 325E310E11B;
-	Wed,  9 Mar 2022 09:46:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 01BF410E2FD;
+	Wed,  9 Mar 2022 09:48:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F9D910E11B
- for <intel-gfx@lists.freedesktop.org>; Wed,  9 Mar 2022 09:46:15 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F1D5910E328
+ for <intel-gfx@lists.freedesktop.org>; Wed,  9 Mar 2022 09:48:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646819175; x=1678355175;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=iJEKe5ulua311J0J9yBxRjAs7SBasNy1z2RJzatcPPc=;
- b=GgCR82WyL16CIIvoDB+0RA5YBVMmQ+GHCmrUZDKZfvLP21mx5obHYbat
- 5Vz/LuIvhC8E59ol45S+x8q/+rzMGvmHp1ZRkmg29JByrhxAAecRZLqm4
- atg3ZEyKcCor0RYdXTIP6Yihr1ICRXe3i6baXXRFKQ1gZI0rK3ezeEnfy
- PmxD9DH3lK86kjysotHqxtQ65XTDMmRw4wlAmN0bFAuA747TU5OBcL734
- rUs12zrBuig0dC2I7Dvb1dN9WwFML13ixh9wf77idY4di+Qlgg+gvtQQ2
- B0SQzAGQcCLUok0aFYoR2Usd5a/8ugE3lRr0faaN8y8Alxey9BEhmx1Rr A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10280"; a="234886025"
-X-IronPort-AV: E=Sophos;i="5.90,167,1643702400"; d="scan'208";a="234886025"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Mar 2022 01:46:14 -0800
-X-IronPort-AV: E=Sophos;i="5.90,167,1643702400"; d="scan'208";a="513466298"
-Received: from byrnec1x-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.29.235])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Mar 2022 01:46:11 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220307233940.4161-7-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220307233940.4161-1-ville.syrjala@linux.intel.com>
- <20220307233940.4161-7-ville.syrjala@linux.intel.com>
-Date: Wed, 09 Mar 2022 11:46:09 +0200
-Message-ID: <87v8wnzcf2.fsf@intel.com>
+ t=1646819336; x=1678355336;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=cFfI6vG30MN8c6f0ChAcUW0bKNeCWZvgFlXcJRGc81k=;
+ b=npO5+0CXCivrc22ylPhhSCZ0vUmHh3IFG7JxDkVRpv0R12xmp9xHIw2c
+ vUVsmQpB/16pV2IALZT8XJBH7/uURCTgjBxWt8u8Bop1MB7LVj4llP1Ss
+ gSO6R33TpRmqP1Ou/vva3y8EPZk1kCOsh1oXtW6PaBc7lAK/UMyDSESx8
+ z2BxeL6FNbRLutubs6KH7Ut9tIV1F0FGTWD0e8irWDPFHILEY5NXVYic7
+ rsNUpoRirsmDLJtZFTej/qq6avqgO2gpKaCbRHMQBIsIF8bufN4/k+NWu
+ LDwqe/fbq8/sKe1XE7PWQ4hecRYeS2bK6CTMYBY5URITeurX6ZoLmwiIm A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10280"; a="341364356"
+X-IronPort-AV: E=Sophos;i="5.90,167,1643702400"; d="scan'208";a="341364356"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Mar 2022 01:48:53 -0800
+X-IronPort-AV: E=Sophos;i="5.90,167,1643702400"; d="scan'208";a="642092100"
+Received: from hedwards-mobl1.ger.corp.intel.com (HELO [10.213.198.86])
+ ([10.213.198.86])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Mar 2022 01:48:52 -0800
+Message-ID: <f0c12164-b266-2513-b8e6-323186338181@linux.intel.com>
+Date: Wed, 9 Mar 2022 09:48:49 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v2 6/8] drm/i915: Replace hand rolled bxt
- vco calculation with chv_calc_dpll_params()
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Content-Language: en-US
+To: Takashi Iwai <tiwai@suse.de>
+References: <20220308172759.920551-1-kai.vehmanen@linux.intel.com>
+ <f9f6f831-a05d-2d20-8ade-ab717f342ba5@linux.intel.com>
+ <alpine.DEB.2.22.394.2203091035350.3088432@eliteleevi.tm.intel.com>
+ <9dabb68b-f2af-ae97-0fb2-869367c496bf@linux.intel.com>
+ <s5h5yonjx7i.wl-tiwai@suse.de>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <s5h5yonjx7i.wl-tiwai@suse.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v2] ALSA: hda/i915 - avoid hung task timeout
+ in i915 wait
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,98 +65,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: alsa-devel@alsa-project.org, Paul Menzel <pmenzel+alsa-devel@molgen.mpg.de>,
+ intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
+ amadeuszx.slawinski@linux.intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 08 Mar 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> Use chv_calc_dpll_params() to calculate the BXT DP DPLL VCO
-> frequency.
->
-> We need to add the m1 divider into bxt_dp_clk_val[] for this to work.
->
-> v2: Make the WARN_ON() sensible
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-I admit I didn't check all the computations, but the drm_WARN_ON()
-should catch any functional changes AFAICT.
+On 09/03/2022 09:23, Takashi Iwai wrote:
+> On Wed, 09 Mar 2022 10:02:13 +0100,
+> Tvrtko Ursulin wrote:
+>>
+>>
+>> On 09/03/2022 08:39, Kai Vehmanen wrote:
+>>> Hi,
+>>>
+>>> On Wed, 9 Mar 2022, Tvrtko Ursulin wrote:
+>>>
+>>>>> -			/* 60s timeout */
+>>>>
+>>>> Where does this 60s come from and why is the fix to work around
+>>>> DEFAULT_HUNG_TASK_TIMEOUT in a hacky way deemed okay? For instance would
+>>>> limiting the wait here to whatever the kconfig is set to be an option?
+>>>
+>>> this was discussed in
+>>> https://lists.freedesktop.org/archives/intel-gfx/2022-February/290821.html
+>>> ... and that thread concluded it's cleaner to split the wait than try
+>>> to figure out hung-task configuration from middle of audio driver.
+>>>
+>>> The 60sec timeout comes from 2019 patch "ALSA: hda: Extend i915 component
+>>> bind timeout" to fix an issue reported by Paul Menzel (cc'ed).
+>>>
+>>> This patch keeps the timeout intact.
+>>
+>> I did not spot discussion touching on the point I raised.
+>>
+>> How about not fight the hung task detector but mark your wait context
+>> as "I really know what I'm doing - not stuck trust me".
+> 
+> The question is how often this problem hits.  Basically it's a very
+> corner case, and I even think we may leave as is; that's a matter of
+> configuration, and lowering such a bar should expect some
+> side-effect. OTOH, if the problem happens in many cases, it's
+> beneficial to fix in the core part, indeed.
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+Yes argument you raise can be made I agree.
 
-> ---
->  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 23 +++++++++++--------
->  1 file changed, 13 insertions(+), 10 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/=
-drm/i915/display/intel_dpll_mgr.c
-> index 4b52086aa9e9..b7071da4b7e5 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> @@ -2086,13 +2086,13 @@ static bool bxt_ddi_pll_get_hw_state(struct drm_i=
-915_private *dev_priv,
->  /* pre-calculated values for DP linkrates */
->  static const struct dpll bxt_dp_clk_val[] =3D {
->  	/* m2 is .22 binary fixed point */
-> -	{ .dot =3D 162000, .p1 =3D 4, .p2 =3D 2, .n =3D 1, .m2 =3D 0x819999a /*=
- 32.4 */ },
-> -	{ .dot =3D 270000, .p1 =3D 4, .p2 =3D 1, .n =3D 1, .m2 =3D 0x6c00000 /*=
- 27.0 */ },
-> -	{ .dot =3D 540000, .p1 =3D 2, .p2 =3D 1, .n =3D 1, .m2 =3D 0x6c00000 /*=
- 27.0 */ },
-> -	{ .dot =3D 216000, .p1 =3D 3, .p2 =3D 2, .n =3D 1, .m2 =3D 0x819999a /*=
- 32.4 */ },
-> -	{ .dot =3D 243000, .p1 =3D 4, .p2 =3D 1, .n =3D 1, .m2 =3D 0x6133333 /*=
- 24.3 */ },
-> -	{ .dot =3D 324000, .p1 =3D 4, .p2 =3D 1, .n =3D 1, .m2 =3D 0x819999a /*=
- 32.4 */ },
-> -	{ .dot =3D 432000, .p1 =3D 3, .p2 =3D 1, .n =3D 1, .m2 =3D 0x819999a /*=
- 32.4 */ },
-> +	{ .dot =3D 162000, .p1 =3D 4, .p2 =3D 2, .n =3D 1, .m1 =3D 2, .m2 =3D 0=
-x819999a /* 32.4 */ },
-> +	{ .dot =3D 270000, .p1 =3D 4, .p2 =3D 1, .n =3D 1, .m1 =3D 2, .m2 =3D 0=
-x6c00000 /* 27.0 */ },
-> +	{ .dot =3D 540000, .p1 =3D 2, .p2 =3D 1, .n =3D 1, .m1 =3D 2, .m2 =3D 0=
-x6c00000 /* 27.0 */ },
-> +	{ .dot =3D 216000, .p1 =3D 3, .p2 =3D 2, .n =3D 1, .m1 =3D 2, .m2 =3D 0=
-x819999a /* 32.4 */ },
-> +	{ .dot =3D 243000, .p1 =3D 4, .p2 =3D 1, .n =3D 1, .m1 =3D 2, .m2 =3D 0=
-x6133333 /* 24.3 */ },
-> +	{ .dot =3D 324000, .p1 =3D 4, .p2 =3D 1, .n =3D 1, .m1 =3D 2, .m2 =3D 0=
-x819999a /* 32.4 */ },
-> +	{ .dot =3D 432000, .p1 =3D 3, .p2 =3D 1, .n =3D 1, .m1 =3D 2, .m2 =3D 0=
-x819999a /* 32.4 */ },
->  };
->=20=20
->  static bool
-> @@ -2122,18 +2122,21 @@ bxt_ddi_hdmi_pll_dividers(struct intel_crtc_state=
- *crtc_state,
->  static void bxt_ddi_dp_pll_dividers(struct intel_crtc_state *crtc_state,
->  				    struct dpll *clk_div)
->  {
-> -	int clock =3D crtc_state->port_clock;
-> +	struct drm_i915_private *i915 =3D to_i915(crtc_state->uapi.crtc->dev);
->  	int i;
->=20=20
->  	*clk_div =3D bxt_dp_clk_val[0];
->  	for (i =3D 0; i < ARRAY_SIZE(bxt_dp_clk_val); ++i) {
-> -		if (bxt_dp_clk_val[i].dot =3D=3D clock) {
-> +		if (crtc_state->port_clock =3D=3D bxt_dp_clk_val[i].dot) {
->  			*clk_div =3D bxt_dp_clk_val[i];
->  			break;
->  		}
->  	}
->=20=20
-> -	clk_div->vco =3D clock * 10 / 2 * clk_div->p1 * clk_div->p2;
-> +	chv_calc_dpll_params(i915->dpll.ref_clks.nssc, clk_div);
-> +
-> +	drm_WARN_ON(&i915->drm, clk_div->vco =3D=3D 0 ||
-> +		    clk_div->dot !=3D crtc_state->port_clock);
->  }
->=20=20
->  static bool bxt_ddi_set_dpll_hw_state(struct intel_crtc_state *crtc_stat=
-e,
+>> Maybe using
+>> wait_for_completion_killable_timeout would do it since
+>> snd_hdac_i915_init is allowed to fail with an error already?
+> 
+> It makes it killable -- which is a complete behavior change.
 
---=20
-Jani Nikula, Intel Open Source Graphics Center
+Complete behaviour change how? Isn't this something ran on probe so 
+likelihood of anyone sending SIGKILL to the modprobe process is only the 
+init process? And in that case what is the fundamental difference in 
+init giving up before the internal 60s in HDA driver does? I don't see a 
+difference. Either party decided to abort the wait and code can just 
+unwind and propagate the different error codes.
+
+Regards,
+
+Tvrtko
