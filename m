@@ -1,52 +1,158 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5095B4D2612
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Mar 2022 02:38:52 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B00E4D2616
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Mar 2022 02:46:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0DFD510E20E;
-	Wed,  9 Mar 2022 01:38:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D37310E201;
+	Wed,  9 Mar 2022 01:46:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9EF2D10E20E
- for <intel-gfx@lists.freedesktop.org>; Wed,  9 Mar 2022 01:38:46 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F95310E201
+ for <intel-gfx@lists.freedesktop.org>; Wed,  9 Mar 2022 01:46:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646789926; x=1678325926;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=Y5gvQno1k9/4rp6F7+9S7z/aehoejSqZjKcW6K7S6Qs=;
- b=Iifr8LjAekykSlhxo4bwmbmD+JXDSd3+0oTCdA+Sh5y8EbApVKgOoFzV
- aj0WV86QR+as/RHT3soM28QbUeq+Q1yTw9bTujWJcTv4s47eFVi84dkJ8
- xRV34+vnyJL1vusLZfJ0yS1exg+n3hFp47rl9tARMFJ26YIteaHClWWad
- bnZ0eXIGLeZ4HeHwD7dfSm6GaiHIssDwBbhUhp53kN+DxqMQTv+OGtRts
- 5WosaYYrN09ndwRjoIPYETUouqNiz8zT24GFNUhd8dZR78veDjB7ND5sA
- fxJPquB/vnnuw8M4MhJ23laGzn+of8nBRjiOLYvDE59vFbPowQlpGjF2F A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10280"; a="341291269"
-X-IronPort-AV: E=Sophos;i="5.90,165,1643702400"; d="scan'208";a="341291269"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2022 17:38:45 -0800
-X-IronPort-AV: E=Sophos;i="5.90,165,1643702400"; d="scan'208";a="495670770"
-Received: from abagarwa-mobl1.amr.corp.intel.com (HELO ldmartin-desk2)
- ([10.212.156.1])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2022 17:38:45 -0800
-Date: Tue, 8 Mar 2022 17:38:45 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Mullati Siva <siva.mullati@intel.com>
-Message-ID: <20220309013845.4jgwlbe524rgxsee@ldmartin-desk2>
-X-Patchwork-Hint: comment
-References: <20220308093805.879262-1-siva.mullati@intel.com>
- <20220308093805.879262-3-siva.mullati@intel.com>
+ t=1646790403; x=1678326403;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=PuAzsntRWsEBzAf/t3dXnLH1JGaKnSD+1uPKDL/vMmI=;
+ b=LJBj40rcOU8Iy+QBkFpX6vokswapyTvZ+l7xMXSQ3icgOEElKGplpVRa
+ hqeTkWlkPtxfYjLU5eBKOVPA7CI4IUKeCJ/dRsZhx3/R8XZucpL1lFo6u
+ YGWAmx0sccrzZH2JD/YPtOWXhoDJGIaQI4/16x/LJGWgqUXlse+PyI3HA
+ 1jVlqLlJ27EynAF7oDLAF1fz+n3Fn8WT9YrkBluWxDB2HoEp2F5VS/nmp
+ 19drekwquhO7bFccXKiokfFvjb7mfIFcULuwt2V6jBu1UY1PdJxVet0GM
+ X/RrD4Pak/s/M60OmnXOli1S5bd+X2HsxqFr5p4Aiu1sRAfe+mJuTfXqM A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10280"; a="255052588"
+X-IronPort-AV: E=Sophos;i="5.90,166,1643702400"; d="scan'208";a="255052588"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Mar 2022 17:46:42 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,166,1643702400"; d="scan'208";a="780921252"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmsmga006.fm.intel.com with ESMTP; 08 Mar 2022 17:46:42 -0800
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.21; Tue, 8 Mar 2022 17:46:42 -0800
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.21 via Frontend Transport; Tue, 8 Mar 2022 17:46:42 -0800
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com (104.47.57.40) by
+ edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2308.21; Tue, 8 Mar 2022 17:46:41 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=L4E8jTB3qBIUqia78GNuFKaKcWCXl7G/PMK79riyXZDUnChMHDrzWJnZkHS4CHPz5ckWuDFzqLJc0ZZngmXt0IAafbcNgnFZLwlpOMChSaoyzav38UyQ9BZQoEHJkn50dMOfXAIzChZ+PlAFuddx9z4DZk5tProFRQ99nvYuAx5a4OUPXeWYGIwYe8S0xAd/IIpc25QXt/A6zTtQCKN4LumU1jyixhidIbD0XaLZsRS8wet5mHI4j71DOc36D/xJ0x2HvJ2+59jbLXSbdFl0EFGlUvzZuXSdl2gKi2aUK8FvH4ZU5QDhJdoeIH8WHzygHbcvTH00JTjYCWcEVAmLaA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=PuAzsntRWsEBzAf/t3dXnLH1JGaKnSD+1uPKDL/vMmI=;
+ b=UdHFW62SkNDbwwj5tsLnDCIK354nbIi/hl8MgsAyUOoSRHAzsIejstGvq2svM6kyO4tzP/y9SLHkoagH6Vyc6BAULotVzBvwmrmSDvxnWNEBNq7iPRKrdz/HrKtT+Dzv5FZv2f6PF9wQRBemp0mOOgpHQfu7B3jqfgKlpiWVxJeiN8uCqs9bAABj7TFsUChCqkhlwsDrVmY0RGv1s1qEKRnH+cs6RQDJApTbQFtIUF3xaiai+7bcvDjFoMjO2KFEjzQijCPr4PWcX7xjTUVT2LnmAEcXxg3116ut28e7vpQGNjesUbOlAihHymlh7rWI8gA/8FLyZqI5L7YarZOjOA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from BN9PR11MB5290.namprd11.prod.outlook.com (2603:10b6:408:137::5)
+ by BN6PR11MB1316.namprd11.prod.outlook.com (2603:10b6:404:3c::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5038.14; Wed, 9 Mar
+ 2022 01:46:28 +0000
+Received: from BN9PR11MB5290.namprd11.prod.outlook.com
+ ([fe80::5cb2:8b85:7945:64c]) by BN9PR11MB5290.namprd11.prod.outlook.com
+ ([fe80::5cb2:8b85:7945:64c%5]) with mapi id 15.20.5038.027; Wed, 9 Mar 2022
+ 01:46:28 +0000
+From: "Katragadda, MastanX" <mastanx.katragadda@intel.com>
+To: "Auld, Matthew" <matthew.auld@intel.com>, Tvrtko Ursulin
+ <tvrtko.ursulin@linux.intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [v2] drm/i915/gem: missing boundary check in
+ vm_access leads to OOB read/write
+Thread-Index: AQHYLsSP/ejgBQQqOkGNOJS9LQ2Ql6ytXLYAgAAc0YCACNZVIA==
+Date: Wed, 9 Mar 2022 01:46:28 +0000
+Message-ID: <BN9PR11MB52901044F528E28982D92C04970A9@BN9PR11MB5290.namprd11.prod.outlook.com>
+References: <20220303060428.1668844-1-mastanx.katragadda@intel.com>
+ <1715f90c-6790-cbd7-9e8f-ac371d61b5dd@linux.intel.com>
+ <0b84c114-35a1-3a0b-1ef5-80cdb79f1f92@intel.com>
+In-Reply-To: <0b84c114-35a1-3a0b-1ef5-80cdb79f1f92@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 11.6.401.20
+dlp-reaction: no-action
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 3362ebf9-8879-44d2-d568-08da016ea0f8
+x-ms-traffictypediagnostic: BN6PR11MB1316:EE_
+x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+x-microsoft-antispam-prvs: <BN6PR11MB13169CE9BA532EADB51BD1B7970A9@BN6PR11MB1316.namprd11.prod.outlook.com>
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: NPp41A3WQT/p7yJKLozTzetnhvWj3S+Up/Ftym9sOi/j1OyeTGc2tgikmZrDvdcHLJD81rJ2kvX4bwJHUbMK/OlPVu+wzi6f8vWj1RLHDKB/+MuQHtGnRXtsLWD4mNJz5bJNvgQHwQw4eVs2tUnVks2Juc7Cf9TL3ke+g7HpSS2Z03uSavAierljire53dPakU/qYbYwmDrk9dl73Op+DW8F8yeynEKAtR5WMOyx2292HzjQiIikU6LY3VpS0nf/VCjWs+kJNFht+qME5Np5q1PkyckGgMPYoFlSA0e9VJZlU+kiuwjyKVu7F7g3ZoHaDu5KXZjb6S11KSr5jxFVudZ/H2UtptuZHO6kaoVPPt4PT88zS+tHIejH/hqVIgTtEjtDYFkwdhK2YF/wFPrf9/bdl3n3sKj210iFp8KBZ75i5FwhDdKHlbR7xAgNk5aEG/JwohERK7zJ6sQOSRbFfULaQ01Bl8Dhc2mtLTC86qMoozbvBrhVgjz/cFcAnfuH+PADmZyanDcOWjWFZ9NYjLNmBfuc4E9GrRcfomRiav1YWS86HAkRjmMdNxJk2/09JvtykZULb9oKLQ6GjfW5Kxr9EXrRLb8piIqIH6BomXH/u7pSbtCqvRvFKlHvC37OQiShE3dVgVSPJi1yKGvlqg4IDsGzNzEevD2r9RkoRrOAOV+C//YlaQ/BHURM3Ml9PMFI6rF1ugNLDm2GUghqUQ==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN9PR11MB5290.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230001)(366004)(86362001)(6506007)(7696005)(33656002)(55236004)(53546011)(52536014)(8936002)(508600001)(5660300002)(9686003)(66446008)(66556008)(2906002)(186003)(26005)(8676002)(76116006)(66476007)(64756008)(4326008)(71200400001)(66946007)(38070700005)(110136005)(122000001)(82960400001)(55016003)(38100700002)(316002)(83380400001);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?VGlKRjBSZU0yTWhLcFlzVGhObW96R1dMa29WcGM3Smtlb2hkUWxqRTFjTXFh?=
+ =?utf-8?B?SlFaUVlVK2NEZjBRU2dHekRxUjRVajVlSStKU05oOHh2eEdnMHd0R0txUkRS?=
+ =?utf-8?B?aU9EZ3A4aFREY0tXS3RYTTdBYWRiL003VmtaTG5RY1JzeHdxVHppK3E0MTl0?=
+ =?utf-8?B?ejhRa1JaeUlwSnFheFdmRzhEM2U1Y1NUYi9pZnROcCtKZEdtNVhueXkxd2ww?=
+ =?utf-8?B?dW4rTWp3WSs2Sk5HZ0tmN2dzdDMyczBXU2MxVWQxUlZCT3Y4Nlk4STdVWDB5?=
+ =?utf-8?B?NDBqTnIxSERtQXd1dFVpNGx2RXlQNWZ5dnpxa0FQUy9aSzlsbDVkTlljZWRs?=
+ =?utf-8?B?b0lWenE0eUdSNGZXMEczSTZwNDl4dEVJVEsySWlGQldIclVWQ1pxYW1WYkFH?=
+ =?utf-8?B?VDZPaWw0YkJFcVV1TkpKendaeEorekxiSVNXYnVtdEV1Nnh0SGN0N0Y0bUVO?=
+ =?utf-8?B?ci9DbHdDOCtKVWU1bGJpTjg3cDRmbTRQUnFiNk50NXhSS2tTUmZqTC9laDMx?=
+ =?utf-8?B?cko1dW9Dc1pqaEpTcjh4Tk5uTzgzVWd4WHlGSjJBcm4zSVpJSm9TckZncmlO?=
+ =?utf-8?B?TUd3VVNkNHlkK1EyVldYeFd5ZzdNQi9BTmRvaEhGWXpHRElzQVBSUmdUV2da?=
+ =?utf-8?B?U3NQdktJZlJyZDNIYWE1YlRmb3N1ajMxLytFcHRaRnRhSVZ2b3Z2M3ZDYVNl?=
+ =?utf-8?B?OGFZOFJyQUJ2a1cxZ1pZeWtpbzRBRnRja1ZCYlJGTlJTZ3MyM3piTFFkN05D?=
+ =?utf-8?B?ZkVFZnBaSHRRL25tajhtdS85MU9GRGVOTEZ1VmdWVEVsUmcydEtZOUNJMEx3?=
+ =?utf-8?B?akFob21mU2ZiTW9YRUpLYmREMDVFQlNscTZOdUFRNDN4Wk5zalRacEZ5dmxD?=
+ =?utf-8?B?TzROeUFma0Rua1FGdXVvNk5zdml1TTlkWjRxbWU0bmp3Q3ZrSVBscTNYVEJz?=
+ =?utf-8?B?aEZubWt1UUtkclF5Zk1rWnN0Kzg3YVVtRjVOcTlCWjNZV3dyanBtZVgzQ2xV?=
+ =?utf-8?B?cmJYcE5EcUhxQU5SZEQ2Mjd3SkR5Z2thZ0JmeUszd1FiUmxBK29RQVR4QjZ2?=
+ =?utf-8?B?RGRxbzIzeGxheWMvVzhtZlFzdzRlbVNxWGhQV2xneHl6NmozRENoOHdXQlFY?=
+ =?utf-8?B?VGdIem9tSTlkbktudnFITnZhTzNGbTNKMU1TRjFuSzRaMURTRi9RZTBrSld0?=
+ =?utf-8?B?THE2V1dkRThtWXFOYVl0eDBoZGhOQ3pKMCtXVTA3c2hieEFvRmtPOStEbEdF?=
+ =?utf-8?B?UEs1cmV5TEZQK0ZvbWo0S2J6WkRsTzF3M2E4YkpOcThCWWhCNHlicVVvSnBk?=
+ =?utf-8?B?RlZWQ0JZazVEMTJLczZzV3k2M0Rudy9sSEwwUmtQb2NXWW91VjJkcFFudTlI?=
+ =?utf-8?B?VVZJdTRvUy8wampNMmJqMlBRUnBJMVZ1T1JjanV6RmZyOGxtQVo5clFmR2Mv?=
+ =?utf-8?B?bFZXWmNqV3V1Mk8rR0Y1WG4rSGtFZERuNk9qK0UvL3J4amN5M1NNZ2ZBZnB3?=
+ =?utf-8?B?Z21LaEU4eWc5cUFPWUlpZVRtRHhXU1YveURnbmh6T2srcGtPY1V2V2QwNTZM?=
+ =?utf-8?B?cmZZRFhKWkRkYTZlL0ZuRmU1NWV4ZWZRVVRrRlFjdnZYNEcrNTVmRlovbjl1?=
+ =?utf-8?B?dFRybjZWSE9GR0RxVlRZa2syeDZkV3ZXZVJVb21XVk80aXdxamJENnFuU3NT?=
+ =?utf-8?B?dll6cmc5MUhjRmxtZSs4MytBQm1kQUhuclFGcmsxL3ZXUUtHem81Rnd1b0s0?=
+ =?utf-8?B?eE4rQ25CcXBCMGh4TjBNREhaY0hBL3oxVlVDSTRweXV2ZEhGWWhhWkRVNmhS?=
+ =?utf-8?B?REJPTFFqVXRReERGcDk5RjhIaU42ajRjcUxmTEJjSmdiK3lUdmk3Q21jaEdG?=
+ =?utf-8?B?eVg3NlFKd0VHYkt3Yy9ZMjdBRmxzSVcvbXFsa0ZDS1FqL3lEZWhGSTdOaTZh?=
+ =?utf-8?B?bDBSOEN5d3V0OEwybmRtVFJNT2VidWduSHliRDQ5bmFINzVTcWQ5WXVUV3BT?=
+ =?utf-8?B?NThiOTNNbkM4UkEwZXF2dm9XNURIVGJZVGNHV1Rzb20yTWtyTmJzSlZRV3VL?=
+ =?utf-8?B?OFVncjU2K3FHcHNoZDZXSG5sQXJwb2pqVndzVm1oSEQ0T1BOb201OXVYSGE1?=
+ =?utf-8?B?S2VRNkx5NG1Ud2hlR3NYa2dGSmZIY09mdjZ0YUVzNXBYVkExZWRlZUpWU0Q2?=
+ =?utf-8?B?TTREZGhka3d0bXVwQzZPME5jVENyV1Qva0tBVUxaUjE0ZFcyeTVKdUlGK1Nt?=
+ =?utf-8?B?R0FxdnJSM1dpN2JoUlNVVlBZZVZ3PT0=?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20220308093805.879262-3-siva.mullati@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/guc: Convert ct buffer to
- iosys_map
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BN9PR11MB5290.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3362ebf9-8879-44d2-d568-08da016ea0f8
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Mar 2022 01:46:28.4414 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: LjTN7nHy8oOG3TmXaaJbfMifYtC1nV6BKozNmuy1SELnoSKdGNxrzCqg/BH+huT52awGd0HSE2vvRT8o3qMtflNkwgIAPg5fGZFWSYQG0J8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR11MB1316
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [v2] drm/i915/gem: missing boundary check in
+ vm_access leads to OOB read/write
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,529 +165,98 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "Surendrakumar Upadhyay,
+ TejaskumarX" <tejaskumarx.surendrakumar.upadhyay@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 08, 2022 at 03:08:05PM +0530, Mullati Siva wrote:
->From: Siva Mullati <siva.mullati@intel.com>
->
->Convert CT commands and descriptors to use iosys_map rather
->than plain pointer and save it in the intel_guc_ct_buffer struct.
->This will help with ct_write and ct_read for cmd send and receive
-> after the initialization by abstracting the IO vs system memory.
->
->Signed-off-by: Siva Mullati <siva.mullati@intel.com>
->---
-> drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c | 170 +++++++++++++---------
-> drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h |   9 +-
-> 2 files changed, 110 insertions(+), 69 deletions(-)
->
->diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
->index f01325cd1b62..457deca1c25a 100644
->--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
->+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
->@@ -44,6 +44,11 @@ static inline struct drm_device *ct_to_drm(struct intel_guc_ct *ct)
-> #define CT_PROBE_ERROR(_ct, _fmt, ...) \
-> 	i915_probe_error(ct_to_i915(ct), "CT: " _fmt, ##__VA_ARGS__)
->
->+#define ct_desc_read(desc_map_, field_) \
->+	iosys_map_rd_field(desc_map_, 0, struct guc_ct_buffer_desc, field_)
-
-one thing I found useful in intel_guc_ads, was to use the first argument
-as the struct type instead of map. That's because then I enforce the
-right type to be passed rather than a random iosys_map. See :
-
-	#define ads_blob_read(guc_, field_)                                     \
-		iosys_map_rd_field(&(guc_)->ads_map, 0, struct __guc_ads_blob, field_)
-
-First arg is expected to be `struct intel_guc *`. Yes, I didn't do this
-for info_map_{read,write}, because there were situation in which I had
-to pass a info from outside (forcefully from system memory). If you
-don't have such case,  I think it would be better to pass the typed
-pointer.
-
->+#define ct_desc_write(desc_map_, field_, val_) \
->+	iosys_map_wr_field(desc_map_, 0, struct guc_ct_buffer_desc, field_, val_)
->+
-> /**
->  * DOC: CTB Blob
->  *
->@@ -113,9 +118,9 @@ void intel_guc_ct_init_early(struct intel_guc_ct *ct)
-> 	init_waitqueue_head(&ct->wq);
-> }
->
->-static void guc_ct_buffer_desc_init(struct guc_ct_buffer_desc *desc)
->+static void guc_ct_buffer_desc_init(struct iosys_map *desc)
-
-if you can apply the comment above, then leave it as
-struct intel_guc_ct_buffer.
-
-> {
->-	memset(desc, 0, sizeof(*desc));
->+	iosys_map_memset(desc, 0, 0, sizeof(struct guc_ct_buffer_desc));
-> }
->
-> static void guc_ct_buffer_reset(struct intel_guc_ct_buffer *ctb)
->@@ -128,17 +133,24 @@ static void guc_ct_buffer_reset(struct intel_guc_ct_buffer *ctb)
-> 	space = CIRC_SPACE(ctb->tail, ctb->head, ctb->size) - ctb->resv_space;
-> 	atomic_set(&ctb->space, space);
->
->-	guc_ct_buffer_desc_init(ctb->desc);
->+	guc_ct_buffer_desc_init(&ctb->desc_map);
-> }
->
-> static void guc_ct_buffer_init(struct intel_guc_ct_buffer *ctb,
->-			       struct guc_ct_buffer_desc *desc,
->-			       u32 *cmds, u32 size_in_bytes, u32 resv_space)
->+			       void *desc, void *cmds, u32 size_in_bytes,
->+			       u32 resv_space, bool lmem)
-
-bool arguments are really hard to read, because you always have to
-lookup the function prototype to understand what that is about.
-
-Here we could turn struct guc_ct_buffer_desc *desc into the map, and let
-the caller prepare it for iomem or system memory.
-
-> {
-> 	GEM_BUG_ON(size_in_bytes % 4);
->
->-	ctb->desc = desc;
->-	ctb->cmds = cmds;
->+	if (lmem) {
->+		iosys_map_set_vaddr_iomem(&ctb->desc_map,
->+					  (void __iomem *)desc);
->+		iosys_map_set_vaddr_iomem(&ctb->cmds_map,
->+					  (void __iomem *)cmds);
->+	} else {
->+		iosys_map_set_vaddr(&ctb->desc_map, desc);
->+		iosys_map_set_vaddr(&ctb->cmds_map, cmds);
->+	}
-> 	ctb->size = size_in_bytes / 4;
-> 	ctb->resv_space = resv_space / 4;
->
->@@ -218,13 +230,12 @@ static int ct_register_buffer(struct intel_guc_ct *ct, bool send,
-> int intel_guc_ct_init(struct intel_guc_ct *ct)
-> {
-> 	struct intel_guc *guc = ct_to_guc(ct);
->-	struct guc_ct_buffer_desc *desc;
-> 	u32 blob_size;
-> 	u32 cmds_size;
-> 	u32 resv_space;
->-	void *blob;
->-	u32 *cmds;
->+	void *blob, *desc, *cmds;
-> 	int err;
->+	bool lmem;
->
-> 	err = i915_inject_probe_error(guc_to_gt(guc)->i915, -ENXIO);
-> 	if (err)
->@@ -242,6 +253,8 @@ int intel_guc_ct_init(struct intel_guc_ct *ct)
->
-> 	CT_DEBUG(ct, "base=%#x size=%u\n", intel_guc_ggtt_offset(guc, ct->vma), blob_size);
->
->+	lmem = i915_gem_object_is_lmem(ct->vma->obj);
->+
-> 	/* store pointers to desc and cmds for send ctb */
-> 	desc = blob;
-> 	cmds = blob + 2 * CTB_DESC_SIZE;
->@@ -251,7 +264,8 @@ int intel_guc_ct_init(struct intel_guc_ct *ct)
-> 		 ptrdiff(desc, blob), ptrdiff(cmds, blob), cmds_size,
-> 		 resv_space);
->
->-	guc_ct_buffer_init(&ct->ctbs.send, desc, cmds, cmds_size, resv_space);
->+	guc_ct_buffer_init(&ct->ctbs.send,
->+			   desc, cmds, cmds_size, resv_space, lmem);
->
-> 	/* store pointers to desc and cmds for recv ctb */
-> 	desc = blob + CTB_DESC_SIZE;
->@@ -262,7 +276,8 @@ int intel_guc_ct_init(struct intel_guc_ct *ct)
-> 		 ptrdiff(desc, blob), ptrdiff(cmds, blob), cmds_size,
-> 		 resv_space);
->
->-	guc_ct_buffer_init(&ct->ctbs.recv, desc, cmds, cmds_size, resv_space);
->+	guc_ct_buffer_init(&ct->ctbs.recv,
->+			   desc, cmds, cmds_size, resv_space, lmem);
->
-> 	return 0;
-> }
->@@ -279,6 +294,10 @@ void intel_guc_ct_fini(struct intel_guc_ct *ct)
->
-> 	tasklet_kill(&ct->receive_tasklet);
-> 	i915_vma_unpin_and_release(&ct->vma, I915_VMA_RELEASE_MAP);
->+	iosys_map_clear(&ct->ctbs.send.desc_map);
->+	iosys_map_clear(&ct->ctbs.send.cmds_map);
->+	iosys_map_clear(&ct->ctbs.recv.desc_map);
->+	iosys_map_clear(&ct->ctbs.recv.cmds_map);
-> 	memset(ct, 0, sizeof(*ct));
-> }
->
->@@ -291,6 +310,7 @@ void intel_guc_ct_fini(struct intel_guc_ct *ct)
-> int intel_guc_ct_enable(struct intel_guc_ct *ct)
-> {
-> 	struct intel_guc *guc = ct_to_guc(ct);
->+	struct iosys_map blob_map;
-> 	u32 base, desc, cmds, size;
-> 	void *blob;
-> 	int err;
->@@ -302,9 +322,14 @@ int intel_guc_ct_enable(struct intel_guc_ct *ct)
-> 	GEM_BUG_ON(!i915_gem_object_has_pinned_pages(ct->vma->obj));
-> 	base = intel_guc_ggtt_offset(guc, ct->vma);
->
->-	/* blob should start with send descriptor */
-> 	blob = __px_vaddr(ct->vma->obj);
->-	GEM_BUG_ON(blob != ct->ctbs.send.desc);
->+	if (i915_gem_object_is_lmem(ct->vma->obj))
->+		iosys_map_set_vaddr_iomem(&blob_map, (void __iomem *)blob);
->+	else
->+		iosys_map_set_vaddr(&blob_map, blob);
-
-probably better to remove blob and pass __px_vaddr(ct->vma->obj)
-directly as argument. This avoids later having users making (wrong)
-use of the blob variable, that shouldn't be used anymore after this
-point in the function.
-
-other possibility would be to do a blob = NULL here, but I think the
-other approach is cleaner.
-
->+
->+	/* blob should start with send descriptor */
->+	GEM_BUG_ON(!iosys_map_is_equal(&blob_map, &ct->ctbs.send.desc_map));
->
-> 	/* (re)initialize descriptors */
-> 	guc_ct_buffer_reset(&ct->ctbs.send);
->@@ -314,15 +339,15 @@ int intel_guc_ct_enable(struct intel_guc_ct *ct)
-> 	 * Register both CT buffers starting with RECV buffer.
-> 	 * Descriptors are in first half of the blob.
-> 	 */
->-	desc = base + ptrdiff(ct->ctbs.recv.desc, blob);
->-	cmds = base + ptrdiff(ct->ctbs.recv.cmds, blob);
->+	desc = base + iosys_map_ptrdiff(&ct->ctbs.recv.desc_map, &blob_map);
->+	cmds = base + iosys_map_ptrdiff(&ct->ctbs.recv.cmds_map, &blob_map);
-> 	size = ct->ctbs.recv.size * 4;
-> 	err = ct_register_buffer(ct, false, desc, cmds, size);
-> 	if (unlikely(err))
-> 		goto err_out;
->
->-	desc = base + ptrdiff(ct->ctbs.send.desc, blob);
->-	cmds = base + ptrdiff(ct->ctbs.send.cmds, blob);
->+	desc = base + iosys_map_ptrdiff(&ct->ctbs.send.desc_map, &blob_map);
->+	cmds = base + iosys_map_ptrdiff(&ct->ctbs.send.cmds_map, &blob_map);
-> 	size = ct->ctbs.send.size * 4;
-> 	err = ct_register_buffer(ct, true, desc, cmds, size);
-> 	if (unlikely(err))
->@@ -371,31 +396,35 @@ static int ct_write(struct intel_guc_ct *ct,
-> 		    u32 fence, u32 flags)
-> {
-> 	struct intel_guc_ct_buffer *ctb = &ct->ctbs.send;
->-	struct guc_ct_buffer_desc *desc = ctb->desc;
->+	struct iosys_map desc = ctb->desc_map;
->+	struct iosys_map cmds = ctb->cmds_map;
-> 	u32 tail = ctb->tail;
-> 	u32 size = ctb->size;
-> 	u32 header;
-> 	u32 hxg;
-> 	u32 type;
->-	u32 *cmds = ctb->cmds;
->+	u32 status = ct_desc_read(&desc, status);
-> 	unsigned int i;
->
->-	if (unlikely(desc->status))
->+	if (unlikely(status))
-> 		goto corrupted;
->
-> 	GEM_BUG_ON(tail > size);
->
-> #ifdef CONFIG_DRM_I915_DEBUG_GUC
->-	if (unlikely(tail != READ_ONCE(desc->tail))) {
->+	if (unlikely(tail != ct_desc_read(&desc, tail))) {
-> 		CT_ERROR(ct, "Tail was modified %u != %u\n",
->-			 desc->tail, tail);
->-		desc->status |= GUC_CTB_STATUS_MISMATCH;
->+			 ct_desc_read(&desc, tail), tail);
->+		status |= GUC_CTB_STATUS_MISMATCH;
->+		ct_desc_write(&desc, status, status);
-> 		goto corrupted;
-> 	}
->-	if (unlikely(READ_ONCE(desc->head) >= size)) {
->+	if (unlikely(ct_desc_read(&desc, head) >= size)) {
-> 		CT_ERROR(ct, "Invalid head offset %u >= %u)\n",
->-			 desc->head, size);
->-		desc->status |= GUC_CTB_STATUS_OVERFLOW;
->+			 ct_desc_read(&desc, head), size);
->+		status = ct_desc_read(&desc, status) |
->+			GUC_CTB_STATUS_OVERFLOW;
->+		ct_desc_write(&desc, status, status);
-> 		goto corrupted;
-> 	}
-> #endif
->@@ -418,14 +447,14 @@ static int ct_write(struct intel_guc_ct *ct,
-> 	CT_DEBUG(ct, "writing (tail %u) %*ph %*ph %*ph\n",
-> 		 tail, 4, &header, 4, &hxg, 4 * (len - 1), &action[1]);
->
->-	cmds[tail] = header;
->+	iosys_map_wr(&cmds, (4 * tail), u32, header);
-
-hiding sizeof(u32) here. Just make it &cmds[tail]?
-
-> 	tail = (tail + 1) % size;
->
->-	cmds[tail] = hxg;
->+	iosys_map_wr(&cmds, (4 * tail), u32, hxg);
-
-ditto
-
-> 	tail = (tail + 1) % size;
->
-> 	for (i = 1; i < len; i++) {
->-		cmds[tail] = action[i];
->+		iosys_map_wr(&cmds, (4 * tail), u32, action[i]);
-
-ditto
-
-and in some other places too. I will try to finish the review later.
-
-Lucas De Marchi
-
-> 		tail = (tail + 1) % size;
-> 	}
-> 	GEM_BUG_ON(tail > size);
->@@ -442,13 +471,14 @@ static int ct_write(struct intel_guc_ct *ct,
-> 	atomic_sub(len + GUC_CTB_HDR_LEN, &ctb->space);
->
-> 	/* now update descriptor */
->-	WRITE_ONCE(desc->tail, tail);
->+	ct_desc_write(&desc, tail, tail);
->
-> 	return 0;
->
-> corrupted:
-> 	CT_ERROR(ct, "Corrupted descriptor head=%u tail=%u status=%#x\n",
->-		 desc->head, desc->tail, desc->status);
->+		 ct_desc_read(&desc, head), ct_desc_read(&desc, tail),
->+		 ct_desc_read(&desc, status));
-> 	ctb->broken = true;
-> 	return -EPIPE;
-> }
->@@ -499,20 +529,21 @@ static inline bool ct_deadlocked(struct intel_guc_ct *ct)
-> 	bool ret = ktime_ms_delta(ktime_get(), ct->stall_time) > timeout;
->
-> 	if (unlikely(ret)) {
->-		struct guc_ct_buffer_desc *send = ct->ctbs.send.desc;
->-		struct guc_ct_buffer_desc *recv = ct->ctbs.send.desc;
->+		struct iosys_map send = ct->ctbs.send.desc_map;
->+		struct iosys_map recv = ct->ctbs.recv.desc_map;
->
-> 		CT_ERROR(ct, "Communication stalled for %lld ms, desc status=%#x,%#x\n",
-> 			 ktime_ms_delta(ktime_get(), ct->stall_time),
->-			 send->status, recv->status);
->+			 ct_desc_read(&send, status),
->+			 ct_desc_read(&recv, status));
-> 		CT_ERROR(ct, "H2G Space: %u (Bytes)\n",
-> 			 atomic_read(&ct->ctbs.send.space) * 4);
->-		CT_ERROR(ct, "Head: %u (Dwords)\n", ct->ctbs.send.desc->head);
->-		CT_ERROR(ct, "Tail: %u (Dwords)\n", ct->ctbs.send.desc->tail);
->+		CT_ERROR(ct, "Head: %u (Dwords)\n", ct_desc_read(&send, head));
->+		CT_ERROR(ct, "Tail: %u (Dwords)\n", ct_desc_read(&send, tail));
-> 		CT_ERROR(ct, "G2H Space: %u (Bytes)\n",
-> 			 atomic_read(&ct->ctbs.recv.space) * 4);
->-		CT_ERROR(ct, "Head: %u\n (Dwords)", ct->ctbs.recv.desc->head);
->-		CT_ERROR(ct, "Tail: %u\n (Dwords)", ct->ctbs.recv.desc->tail);
->+		CT_ERROR(ct, "Head: %u\n (Dwords)", ct_desc_read(&recv, head));
->+		CT_ERROR(ct, "Tail: %u\n (Dwords)", ct_desc_read(&recv, tail));
->
-> 		ct->ctbs.send.broken = true;
-> 	}
->@@ -549,18 +580,20 @@ static inline void g2h_release_space(struct intel_guc_ct *ct, u32 g2h_len_dw)
-> static inline bool h2g_has_room(struct intel_guc_ct *ct, u32 len_dw)
-> {
-> 	struct intel_guc_ct_buffer *ctb = &ct->ctbs.send;
->-	struct guc_ct_buffer_desc *desc = ctb->desc;
->+	struct iosys_map desc = ctb->desc_map;
-> 	u32 head;
-> 	u32 space;
->+	u32 status = ct_desc_read(&desc, status);
->
-> 	if (atomic_read(&ctb->space) >= len_dw)
-> 		return true;
->
->-	head = READ_ONCE(desc->head);
->+	head = ct_desc_read(&desc, head);
-> 	if (unlikely(head > ctb->size)) {
-> 		CT_ERROR(ct, "Invalid head offset %u >= %u)\n",
-> 			 head, ctb->size);
->-		desc->status |= GUC_CTB_STATUS_OVERFLOW;
->+		status |= GUC_CTB_STATUS_OVERFLOW;
->+		ct_desc_write(&desc, status, status);
-> 		ctb->broken = true;
-> 		return false;
-> 	}
->@@ -803,11 +836,12 @@ static void ct_free_msg(struct ct_incoming_msg *msg)
-> static int ct_read(struct intel_guc_ct *ct, struct ct_incoming_msg **msg)
-> {
-> 	struct intel_guc_ct_buffer *ctb = &ct->ctbs.recv;
->-	struct guc_ct_buffer_desc *desc = ctb->desc;
->+	struct iosys_map desc = ctb->desc_map;
->+	struct iosys_map cmds = ctb->cmds_map;
-> 	u32 head = ctb->head;
->-	u32 tail = READ_ONCE(desc->tail);
->+	u32 tail = ct_desc_read(&desc, tail);
-> 	u32 size = ctb->size;
->-	u32 *cmds = ctb->cmds;
->+	u32 status = ct_desc_read(&desc, status);
-> 	s32 available;
-> 	unsigned int len;
-> 	unsigned int i;
->@@ -816,23 +850,26 @@ static int ct_read(struct intel_guc_ct *ct, struct ct_incoming_msg **msg)
-> 	if (unlikely(ctb->broken))
-> 		return -EPIPE;
->
->-	if (unlikely(desc->status))
->+	if (unlikely(status))
-> 		goto corrupted;
->
-> 	GEM_BUG_ON(head > size);
->
-> #ifdef CONFIG_DRM_I915_DEBUG_GUC
->-	if (unlikely(head != READ_ONCE(desc->head))) {
->+	if (unlikely(head != ct_desc_read(&desc, head))) {
-> 		CT_ERROR(ct, "Head was modified %u != %u\n",
->-			 desc->head, head);
->-		desc->status |= GUC_CTB_STATUS_MISMATCH;
->+			 ct_desc_read(&desc, head), head);
->+		status |= GUC_CTB_STATUS_MISMATCH;
->+		ct_desc_write(&desc, status, status);
-> 		goto corrupted;
-> 	}
-> #endif
-> 	if (unlikely(tail >= size)) {
-> 		CT_ERROR(ct, "Invalid tail offset %u >= %u)\n",
-> 			 tail, size);
->-		desc->status |= GUC_CTB_STATUS_OVERFLOW;
->+		status = ct_desc_read(&desc, status) |
->+			GUC_CTB_STATUS_OVERFLOW;
->+		ct_desc_write(&desc, status, status);
-> 		goto corrupted;
-> 	}
->
->@@ -849,7 +886,7 @@ static int ct_read(struct intel_guc_ct *ct, struct ct_incoming_msg **msg)
-> 	CT_DEBUG(ct, "available %d (%u:%u:%u)\n", available, head, tail, size);
-> 	GEM_BUG_ON(available < 0);
->
->-	header = cmds[head];
->+	header = iosys_map_rd(&cmds, (4 * head), u32);
-> 	head = (head + 1) % size;
->
-> 	/* message len with header */
->@@ -857,11 +894,13 @@ static int ct_read(struct intel_guc_ct *ct, struct ct_incoming_msg **msg)
-> 	if (unlikely(len > (u32)available)) {
-> 		CT_ERROR(ct, "Incomplete message %*ph %*ph %*ph\n",
-> 			 4, &header,
->+			 4 * (head + available - 1 > size ? size - head :
->+			      available - 1), (cmds.vaddr + (4 * head)),
-> 			 4 * (head + available - 1 > size ?
->-			      size - head : available - 1), &cmds[head],
->-			 4 * (head + available - 1 > size ?
->-			      available - 1 - size + head : 0), &cmds[0]);
->-		desc->status |= GUC_CTB_STATUS_UNDERFLOW;
->+			      available - 1 - size + head : 0), cmds.vaddr);
->+		status = ct_desc_read(&desc, status) |
->+			GUC_CTB_STATUS_UNDERFLOW;
->+		ct_desc_write(&desc, status, status);
-> 		goto corrupted;
-> 	}
->
->@@ -869,17 +908,17 @@ static int ct_read(struct intel_guc_ct *ct, struct ct_incoming_msg **msg)
-> 	if (!*msg) {
-> 		CT_ERROR(ct, "No memory for message %*ph %*ph %*ph\n",
-> 			 4, &header,
->+			 4 * (head + available - 1 > size ? size - head :
->+			      available - 1), (cmds.vaddr + (4 * head)),
-> 			 4 * (head + available - 1 > size ?
->-			      size - head : available - 1), &cmds[head],
->-			 4 * (head + available - 1 > size ?
->-			      available - 1 - size + head : 0), &cmds[0]);
->+			      available - 1 - size + head : 0), cmds.vaddr);
-> 		return available;
-> 	}
->
-> 	(*msg)->msg[0] = header;
->
-> 	for (i = 1; i < len; i++) {
->-		(*msg)->msg[i] = cmds[head];
->+		(*msg)->msg[i] = iosys_map_rd(&cmds, (4 * head), u32);
-> 		head = (head + 1) % size;
-> 	}
-> 	CT_DEBUG(ct, "received %*ph\n", 4 * len, (*msg)->msg);
->@@ -888,13 +927,14 @@ static int ct_read(struct intel_guc_ct *ct, struct ct_incoming_msg **msg)
-> 	ctb->head = head;
->
-> 	/* now update descriptor */
->-	WRITE_ONCE(desc->head, head);
->+	ct_desc_write(&desc, head, head);
->
-> 	return available - len;
->
-> corrupted:
-> 	CT_ERROR(ct, "Corrupted descriptor head=%u tail=%u status=%#x\n",
->-		 desc->head, desc->tail, desc->status);
->+		 ct_desc_read(&desc, head), ct_desc_read(&desc, tail),
->+		 ct_desc_read(&desc, status));
-> 	ctb->broken = true;
-> 	return -EPIPE;
-> }
->@@ -1211,13 +1251,13 @@ void intel_guc_ct_print_info(struct intel_guc_ct *ct,
-> 	drm_printf(p, "H2G Space: %u\n",
-> 		   atomic_read(&ct->ctbs.send.space) * 4);
-> 	drm_printf(p, "Head: %u\n",
->-		   ct->ctbs.send.desc->head);
->+		   ct_desc_read(&ct->ctbs.send.desc_map, head));
-> 	drm_printf(p, "Tail: %u\n",
->-		   ct->ctbs.send.desc->tail);
->+		   ct_desc_read(&ct->ctbs.send.desc_map, tail));
-> 	drm_printf(p, "G2H Space: %u\n",
-> 		   atomic_read(&ct->ctbs.recv.space) * 4);
-> 	drm_printf(p, "Head: %u\n",
->-		   ct->ctbs.recv.desc->head);
->+		   ct_desc_read(&ct->ctbs.recv.desc_map, head));
-> 	drm_printf(p, "Tail: %u\n",
->-		   ct->ctbs.recv.desc->tail);
->+		   ct_desc_read(&ct->ctbs.recv.desc_map, tail));
-> }
->diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
->index f709a19c7e21..867fe13fb47d 100644
->--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
->+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
->@@ -7,6 +7,7 @@
-> #define _INTEL_GUC_CT_H_
->
-> #include <linux/interrupt.h>
->+#include <linux/iosys-map.h>
-> #include <linux/spinlock.h>
-> #include <linux/workqueue.h>
-> #include <linux/ktime.h>
->@@ -32,8 +33,8 @@ struct drm_printer;
->  * holds the commands.
->  *
->  * @lock: protects access to the commands buffer and buffer descriptor
->- * @desc: pointer to the buffer descriptor
->- * @cmds: pointer to the commands buffer
->+ * @desc: iosys map to the buffer descriptor
->+ * @cmds: iosys map to the commands buffer
->  * @size: size of the commands buffer in dwords
->  * @resv_space: reserved space in buffer in dwords
->  * @head: local shadow copy of head in dwords
->@@ -43,8 +44,8 @@ struct drm_printer;
->  */
-> struct intel_guc_ct_buffer {
-> 	spinlock_t lock;
->-	struct guc_ct_buffer_desc *desc;
->-	u32 *cmds;
->+	struct iosys_map desc_map;
->+	struct iosys_map cmds_map;
-> 	u32 size;
-> 	u32 resv_space;
-> 	u32 tail;
->-- 
->2.33.0
->
+T24gMDMvMDMvMjAyMiAwOTowMCwgVHZydGtvIFVyc3VsaW4gd3JvdGU6DQo+IA0KPiArIE1hdHQN
+Cj4gDQo+IE9uIDAzLzAzLzIwMjIgMDY6MDQsIE1hc3RhbiBLYXRyYWdhZGRhIHdyb3RlOg0KPj4g
+SW50ZWwgSUQ6IFBTSVJULVBUSzAwMDI0MjkNCj4+DQo+PiBBIG1pc3NpbmcgYm91bmRzIGNoZWNr
+IGluIHZtX2FjY2VzcygpY2FuIGxlYWQgdG8gYW4gb3V0LW9mLWJvdW5kcyANCj4+IHJlYWQgb3Ig
+d3JpdGUgaW4gdGhlIGFkamFjZW50IG1lbW9yeSBhcmVhLlRoZSBsZW4gYXR0cmlidXRlIGlzIG5v
+dCANCj4+IHZhbGlkYXRlZCBiZWZvcmUgdGhlIG1lbWNweSBhdMKgIFsxXW9yIFsyXSBvY2N1cnMu
+DQo+IA0KPiBzL1sxXW9yIFsyXS9sYXRlciBpbiB0aGUgZnVuY3Rpb24vID8NCj4gDQo+Pg0KPj4g
+W8KgIDE4My42Mzc4MzFdIEJVRzogdW5hYmxlIHRvIGhhbmRsZSBwYWdlIGZhdWx0IGZvciBhZGRy
+ZXNzOiANCj4+IGZmZmZjOTAwMDBjODYwMDANCj4+IFvCoCAxODMuNjM3OTM0XSAjUEY6IHN1cGVy
+dmlzb3IgcmVhZCBhY2Nlc3MgaW4ga2VybmVsIG1vZGUgW8KgIA0KPj4gMTgzLjYzNzk5N10gI1BG
+OiBlcnJvcl9jb2RlKDB4MDAwMCkgLSBub3QtcHJlc2VudCBwYWdlIFvCoCAxODMuNjM4MDU5XSAN
+Cj4+IFBHRCAxMDAwMDAwNjcgUDREIDEwMDAwMDA2NyBQVUQgMTAwMjU4MDY3IFBNRCAxMDYzNDEw
+NjcgUFRFIDAgW8KgIA0KPj4gMTgzLjYzODE0NF0gT29wczogMDAwMCBbIzJdIFBSRUVNUFQgU01Q
+IE5PUFRJDQo+PiBbwqAgMTgzLjYzODIwMV0gQ1BVOiAzIFBJRDogMTc5MCBDb21tOiBwb2MgVGFp
+bnRlZDogR8KgwqDCoMKgwqAgRCAgICAgICAgICAgDQo+PiA1LjE3LjAtcmM2LWNpLWRybS0xMTI5
+NisgIzENCj4+IFvCoCAxODMuNjM4Mjk4XSBIYXJkd2FyZSBuYW1lOiBJbnRlbCBDb3Jwb3JhdGlv
+biBDb2ZmZWVMYWtlIENsaWVudCANCj4+IFBsYXRmb3JtL0NvZmZlZUxha2UgSCBERFI0IFJWUCwg
+QklPUyBDTkxTRldSMS5SMDAuWDIwOC5CMDAuMTkwNTMwMTMxOQ0KPj4gMDUvMzAvMjAxOQ0KPj4g
+W8KgIDE4My42Mzg0MzBdIFJJUDogMDAxMDptZW1jcHlfZXJtcysweDYvMHgxMCBbwqAgMTgzLjY0
+MDIxM10gUlNQOiANCj4+IDAwMTg6ZmZmZmM5MDAwMTc2M2Q0OCBFRkxBR1M6IDAwMDEwMjQ2IFvC
+oCAxODMuNjQxMTE3XSBSQVg6IA0KPj4gZmZmZjg4ODEwOWMxNDAwMCBSQlg6IGZmZmY4ODgxMTFi
+ZWNlNDAgUkNYOg0KPj4gMDAwMDAwMDAwMDAwMGZmYw0KPj4gW8KgIDE4My42NDIwMjldIFJEWDog
+MDAwMDAwMDAwMDAwMTAwMCBSU0k6IGZmZmZjOTAwMDBjODYwMDAgUkRJOiANCj4+IGZmZmY4ODgx
+MDljMTQwMDQNCj4+IFvCoCAxODMuNjQyOTQ2XSBSQlA6IDAwMDAwMDAwMDAwMDBmZmMgUjA4OiA4
+MDAwMDAwMDAwMDAwMTZiIFIwOTogDQo+PiAwMDAwMDAwMDAwMDAwMDAwDQo+PiBbwqAgMTgzLjY0
+Mzg0OF0gUjEwOiBmZmZmYzkwMDAwYzg1MDAwIFIxMTogMDAwMDAwMDAwMDAwMDA0OCBSMTI6IA0K
+Pj4gMDAwMDAwMDAwMDAwMTAwMA0KPj4gW8KgIDE4My42NDQ3NDJdIFIxMzogZmZmZjg4ODExMWJl
+ZDE5MCBSMTQ6IGZmZmY4ODgxMDljMTQwMDAgUjE1OiANCj4+IDAwMDAwMDAwMDAwMDEwMDANCj4+
+IFvCoCAxODMuNjQ1NjUzXSBGUzrCoCAwMDAwN2ZlNWVmODA3NTQwKDAwMDApIEdTOmZmZmY4ODg0
+NWIzODAwMDAoMDAwMCkNCj4+IGtubEdTOjAwMDAwMDAwMDAwMDAwMDANCj4+IFvCoCAxODMuNjQ2
+NTcwXSBDUzrCoCAwMDEwIERTOiAwMDAwIEVTOiAwMDAwIENSMDogMDAwMDAwMDA4MDA1MDAzMyBb
+wqAgDQo+PiAxODMuNjQ3NDgxXSBDUjI6IGZmZmZjOTAwMDBjODYwMDAgQ1IzOiAwMDAwMDAwMTBm
+ZjAyMDA2IENSNDoNCj4+IDAwMDAwMDAwMDAzNzA2ZTANCj4+IFvCoCAxODMuNjQ4Mzg0XSBEUjA6
+IDAwMDAwMDAwMDAwMDAwMDAgRFIxOiAwMDAwMDAwMDAwMDAwMDAwIERSMjogDQo+PiAwMDAwMDAw
+MDAwMDAwMDAwDQo+PiBbwqAgMTgzLjY0OTI3MV0gRFIzOiAwMDAwMDAwMDAwMDAwMDAwIERSNjog
+MDAwMDAwMDBmZmZlMGZmMCBEUjc6IA0KPj4gMDAwMDAwMDAwMDAwMDQwMA0KPj4gW8KgIDE4My42
+NTAxNDJdIENhbGwgVHJhY2U6DQo+PiBbwqAgMTgzLjY1MDk4OF3CoCA8VEFTSz4NCj4+IFvCoCAx
+ODMuNjUxNzkzXcKgIHZtX2FjY2VzcysweDFmMC8weDJhMCBbaTkxNV0gW8KgIDE4My42NTI3MjZd
+wqAgDQo+PiBfX2FjY2Vzc19yZW1vdGVfdm0rMHgyMjQvMHgzODAgW8KgIDE4My42NTM1NjFdwqAg
+DQo+PiBtZW1fcncuaXNyYS4wKzB4ZjkvMHgxOTAgW8KgIDE4My42NTQ0MDJdwqAgdmZzX3JlYWQr
+MHg5ZC8weDFiMCBbwqAgDQo+PiAxODMuNjU1MjM4XcKgIGtzeXNfcmVhZCsweDYzLzB4ZTAgW8Kg
+IDE4My42NTYwNjVdwqAgDQo+PiBkb19zeXNjYWxsXzY0KzB4MzgvMHhjMCBbwqAgMTgzLjY1Njg4
+Ml3CoCANCj4+IGVudHJ5X1NZU0NBTExfNjRfYWZ0ZXJfaHdmcmFtZSsweDQ0LzB4YWUNCj4+IFvC
+oCAxODMuNjU3NjYzXSBSSVA6IDAwMzM6MHg3ZmU1ZWY3MjUxNDIgW8KgIDE4My42NTkzNTFdIFJT
+UDogDQo+PiAwMDJiOjAwMDA3ZmZlMWU4MWM3ZTggRUZMQUdTOiAwMDAwMDI0NiBPUklHX1JBWDoN
+Cj4+IDAwMDAwMDAwMDAwMDAwMDANCj4+IFvCoCAxODMuNjYwMjI3XSBSQVg6IGZmZmZmZmZmZmZm
+ZmZmZGEgUkJYOiAwMDAwNTU3MDU1ZGZiNzgwIFJDWDogDQo+PiAwMDAwN2ZlNWVmNzI1MTQyDQo+
+PiBbwqAgMTgzLjY2MTEwNF0gUkRYOiAwMDAwMDAwMDAwMDAxMDAwIFJTSTogMDAwMDdmZmUxZTgx
+ZDg4MCBSREk6IA0KPj4gMDAwMDAwMDAwMDAwMDAwNQ0KPj4gW8KgIDE4My42NjE5NzJdIFJCUDog
+MDAwMDdmZmUxZTgxZTg5MCBSMDg6IDAwMDAwMDAwMDAwMDAwMzAgUjA5OiANCj4+IDAwMDAwMDAw
+MDAwMDAwNDYNCj4+IFvCoCAxODMuNjYyODMyXSBSMTA6IDAwMDA1NTcwNTVkZmMyZTAgUjExOiAw
+MDAwMDAwMDAwMDAwMjQ2IFIxMjogDQo+PiAwMDAwNTU3MDU1ZGZiMWMwDQo+PiBbwqAgMTgzLjY2
+MzY5MV0gUjEzOiAwMDAwN2ZmZTFlODFlOTgwIFIxNDogMDAwMDAwMDAwMDAwMDAwMCBSMTU6IA0K
+Pj4gMDAwMDAwMDAwMDAwMDAwMA0KPj4gW8KgIDE4My42NjQ1NjZdwqAgPC9UQVNLPg0KPj4NCj4+
+IENoYW5nZXMgc2luY2UgdjE6DQo+PiDCoMKgwqDCoMKgIC0gVXBkYXRlZCBpZiBjb25kaXRpb24g
+d2l0aCByYW5nZV9vdmVyZmxvd3NfdCBbQ2hyaXMgV2lsc29uXQ0KPj4NCj4+IFNpZ25lZC1vZmYt
+Ynk6IE1hc3RhbiBLYXRyYWdhZGRhIDxtYXN0YW54LmthdHJhZ2FkZGFAaW50ZWwuY29tPg0KPj4g
+U3VnZ2VzdGVkLWJ5OiBBZGFtIFphYnJvY2tpIDxhZGFtemFAbWljcm9zb2Z0LmNvbT4NCj4+IFJl
+cG9ydGVkLWJ5OiBKYWNrc29uIENvZHkgPGNvZHkuamFja3NvbkBpbnRlbC5jb20+DQo+PiBDYzog
+Q2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+DQo+PiBDYzogQmxvb21maWVs
+ZCBKb24gPGpvbi5ibG9vbWZpZWxkQGludGVsLmNvbT4NCj4+IENjOiBEdXR0IFN1ZGVlcCA8c3Vk
+ZWVwLmR1dHRAaW50ZWwuY29tPg0KPiANCj4gRml4ZXM6IDlmOTA5ZTIxNWZlYSAoImRybS9pOTE1
+OiBJbXBsZW1lbnQgdm1fb3BzLT5hY2Nlc3MgZm9yIGdkYiANCj4gYWNjZXNzIGludG8gbW1hcHMi
+KQ0KPiBDYzogPHN0YWJsZUB2Z2VyLmtlcm5lbC5vcmc+ICMgdjUuOCsNCj4gDQo+IFJpZ2h0Pw0K
+PiANCj4gVGhlcmUgd2FzIGEgc2VsZnRlc3QgYWRkZWQgd2l0aCB0aGUgcmVmZXJlbmNlZCBwYXRj
+aCBhbmQgaXQgc291bmRzIA0KPiBsaWtlIGl0IHdvdWxkIGJlIGEgZ29vZCBpZGVhIHRvIGV4dGVu
+ZCBpdCB0byBjb3ZlciB0aGlzIHNjZW5hcmlvLsKgIEFzIA0KPiBhIHNlcGFyYXRlIHBhdGNoIHRo
+b3VnaCBzbyB0aGlzIG9uZSBpcyBlYXN5IHRvIGJhY2twb3J0Lg0KDQpBZ3JlZWQsIGEgc2ltcGxl
+IHJlZ3Jlc3Npb24gdGVzdChlaXRoZXIgc2VsZnRlc3Qgb3IgaWd0KSBmb3IgdGhpcyB3b3VsZCBi
+ZSBuaWNlLCBpZiBwb3NzaWJsZS4NCg0KPiANCj4gUmVnYXJkcywNCj4gDQo+IFR2cnRrbw0KPiAN
+Cj4+IC0tLQ0KPj4gwqAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX21tYW4uYyB8
+IDIgKy0NCj4+IMKgIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMSBkZWxldGlvbigt
+KQ0KPj4NCj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1f
+bW1hbi5jDQo+PiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9tbWFuLmMNCj4+
+IGluZGV4IGVmZTY5ZDZiODZmNC4uYzNlYTI0M2Q0MTRkIDEwMDY0NA0KPj4gLS0tIGEvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX21tYW4uYw0KPj4gKysrIGIvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX21tYW4uYw0KPj4gQEAgLTQ1NSw3ICs0NTUsNyBAQCB2bV9h
+Y2Nlc3Moc3RydWN0IHZtX2FyZWFfc3RydWN0ICphcmVhLCB1bnNpZ25lZCANCj4+IGxvbmcgYWRk
+ciwNCj4+IMKgwqDCoMKgwqDCoMKgwqDCoCByZXR1cm4gLUVBQ0NFUzsNCj4+IMKgwqDCoMKgwqAg
+YWRkciAtPSBhcmVhLT52bV9zdGFydDsNCj4+IC3CoMKgwqAgaWYgKGFkZHIgPj0gb2JqLT5iYXNl
+LnNpemUpDQo+PiArwqDCoMKgIGlmIChyYW5nZV9vdmVyZmxvd3NfdCh1NjQsIGFkZHIsIGxlbiwg
+b2JqLT5iYXNlLnNpemUpKQ0KPj4gwqDCoMKgwqDCoMKgwqDCoMKgIHJldHVybiAtRUlOVkFMOw0K
+DQpPdGhlciB1c2VycyBsaWtlIHR0bV9ib192bV9hY2Nlc3MgYXJlIGFsc28gY2hlY2tpbmcgaWYg
+bGVuIDw9IDAsIHNob3VsZCB3ZSBhbHNvIGFkZCBhbiBleHBsaWNpdCBjaGVjayBmb3IgdGhhdCBo
+ZXJlPyBPdGhlcndpc2UgTEdUTS4NCg0KSSB0aGluayBubyBuZWVkIHRvIGFkZCBoZXJlIGxlbjw9
+MCwgIHdlIGFscmVhZHkgdmFsaWRhdGluZyBzYW1lICByYW5nZV9vdmVyZmxvd3NfdCAuIGNvbnZl
+cnRlZCBmb2xsb3dpbmcgY29uZGl0aW9uIHRvIHJhbmdlX292ZXJmbG93X3QuDQoNCmlmIChsZW4g
+PCAxIHx8IGxlbiA+IG9iai0+YmFzZS5zaXplIHx8DQoJICAgIGFkZHIgPj0gb2JqLT5iYXNlLnNp
+emUgfHwNCgkgICAgYWRkciArIGxlbiA+IG9iai0+YmFzZS5zaXplKQ0KDQo+PiDCoMKgwqDCoMKg
+IGk5MTVfZ2VtX3d3X2N0eF9pbml0KCZ3dywgdHJ1ZSk7DQo=
