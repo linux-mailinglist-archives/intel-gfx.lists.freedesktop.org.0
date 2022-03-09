@@ -2,32 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4ABBB4D3AB5
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Mar 2022 21:00:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DA8CC4D3AF5
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Mar 2022 21:21:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D3D010E3FD;
-	Wed,  9 Mar 2022 20:00:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 706CE10E421;
+	Wed,  9 Mar 2022 20:21:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7D7D610E35A;
- Wed,  9 Mar 2022 20:00:51 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 7CA41AA0EB;
- Wed,  9 Mar 2022 20:00:51 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8071623151739563371=="
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Date: Wed, 09 Mar 2022 20:00:51 -0000
-Message-ID: <164685605150.14948.3505496835909531814@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3FBDA10E41A
+ for <intel-gfx@lists.freedesktop.org>; Wed,  9 Mar 2022 20:21:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1646857311; x=1678393311;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=eh6zljM6wl5zcQMcr53FpmShLHX8Lr9dendslzhPvOw=;
+ b=TB5Q351zw1uLxqX4DRv39E/zYTCOk2lM8f/c1UWcgY79oE/IJnKnmKkz
+ cL5KGyKHjyhp5k/5X971U1wYTyPDM1qM+I1G9BVJeuarenu3YW2a4qSGu
+ 6vN3+U5rYwIw9ZoSILdZUz3NzKNrMU2D7Tek0KxKHESyktfQz1x2pm/j6
+ JqofLcH8+FBPTx2RC8aEp7PAB6McCE025Z8IBVWIyhcrR/wrx9In1FVr7
+ OrR9Brj3UjhjYBPWrs+joaFPoGDvEJ3EpNzGgTX2lqul0EwPPB2eCCaE6
+ 5/AfJjAf62ih60wGF1qPCYcopyjGEJEqyDD/N80VtODAwGgObgCyxHlYs A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10281"; a="341512441"
+X-IronPort-AV: E=Sophos;i="5.90,168,1643702400"; d="scan'208";a="341512441"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Mar 2022 12:21:50 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,168,1643702400"; d="scan'208";a="642289394"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
+ by fmsmga002.fm.intel.com with SMTP; 09 Mar 2022 12:21:48 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 09 Mar 2022 22:21:47 +0200
+Date: Wed, 9 Mar 2022 22:21:47 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+Message-ID: <YikMW6lE4QwKAHOU@intel.com>
 References: <20220309164948.10671-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20220309164948.10671-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_SAGV_block_time_fixes_=28rev2=29?=
+ <20220309164948.10671-7-ville.syrjala@linux.intel.com>
+ <20220309185959.GA9439@intel.com> <Yij7HFOvBiVg+kqD@intel.com>
+ <20220309193458.GA9556@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220309193458.GA9556@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH v2 6/8] drm/i915: Fix PSF GV point mask when
+ SAGV is not possible
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,201 +63,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8071623151739563371==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, Mar 09, 2022 at 09:34:58PM +0200, Lisovskiy, Stanislav wrote:
+> On Wed, Mar 09, 2022 at 09:08:12PM +0200, Ville Syrjälä wrote:
+> > On Wed, Mar 09, 2022 at 08:59:59PM +0200, Lisovskiy, Stanislav wrote:
+> > > On Wed, Mar 09, 2022 at 06:49:46PM +0200, Ville Syrjala wrote:
+> > > > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > > > 
+> > > > Don't just mask off all the PSF GV points when SAGV gets disabled.
+> > > > This should in fact cause the Pcode to reject the request since
+> > > > at least one PSF point must remain enabled at all times.
+> > > 
+> > > Good point, however I think this is not the full fix:
+> > > 
+> > > BSpec says:
+> > > 
+> > > "At least one GV point of each type must always remain unmasked."
+> > > 
+> > > and
+> > > 
+> > > "The GV point of each type providing the highest bandwidth 
+> > >  for display must always remain unmasked."
+> > > 
+> > > So I guess we should then also choose thr PSF GV point with
+> > > the highest bandwidth as well.
+> > 
+> > The spec says PSF GV is fast enough to now stall the display data
+> > fetch so we don't need to restrict the PSF points here.
+> 
+> But why it asks to ensure that we have the PSF GV of highest bandwidth to
+> stay always unmasked then?
 
-== Series Details ==
+I presume so you don't lock the memory bandwdith to some lower
+performance point and hurt all the other things that need
+memory bandwidth. Either that or there is some internal
+implementation detail that simply doesn't work if you try to
+permanently run at a lower performance point.
 
-Series: drm/i915: SAGV block time fixes (rev2)
-URL   : https://patchwork.freedesktop.org/series/101171/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_11346 -> Patchwork_22524
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22524/index.html
-
-Participating hosts (43 -> 35)
-------------------------------
-
-  Additional (1): fi-pnv-d510 
-  Missing    (9): bat-dg1-6 bat-dg1-5 bat-dg2-9 fi-bsw-cyan bat-adlp-6 bat-adlp-4 fi-ctg-p8600 bat-jsl-2 bat-jsl-1 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_22524 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@prime_vgem@basic-userptr:
-    - fi-pnv-d510:        NOTRUN -> [SKIP][1] ([fdo#109271]) +58 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22524/fi-pnv-d510/igt@prime_vgem@basic-userptr.html
-
-  
-#### Possible fixes ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-blb-e6850:       [FAIL][2] ([i915#3194]) -> [PASS][3]
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11346/fi-blb-e6850/igt@core_hotunplug@unbind-rebind.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22524/fi-blb-e6850/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@gem_exec_suspend@basic-s3@smem:
-    - {fi-rkl-11600}:     [INCOMPLETE][4] ([i915#5127]) -> [PASS][5]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11346/fi-rkl-11600/igt@gem_exec_suspend@basic-s3@smem.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22524/fi-rkl-11600/igt@gem_exec_suspend@basic-s3@smem.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#3012]: https://gitlab.freedesktop.org/drm/intel/issues/3012
-  [i915#3194]: https://gitlab.freedesktop.org/drm/intel/issues/3194
-  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
-  [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
-  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
-  [i915#4098]: https://gitlab.freedesktop.org/drm/intel/issues/4098
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#5127]: https://gitlab.freedesktop.org/drm/intel/issues/5127
-  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_11346 -> Patchwork_22524
-
-  CI-20190529: 20190529
-  CI_DRM_11346: ab6456d23719e60c20e8cef05a5f322eea134b88 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6373: 82306f1903c0fee8371f43a156d8b63163ca61c1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_22524: 947f302e9d2d4716c0cb2bed715c2b7085535fa9 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-947f302e9d2d drm/i915: Rename QGV request/response bits
-c745332be423 drm/i915: Unconfuses QGV vs. PSF point masks
-a21de1e7d3fd drm/i915: Fix PSF GV point mask when SAGV is not possible
-244e37910608 drm/i915: Rename pre-icl SAGV enable/disable functions
-5eaafe273039 drm/i915: Reject excessive SAGV block time
-e8e1719bfc7d drm/i915: Probe whether SAGV works on pre-icl
-bc3dfeda81e4 drm/i915: Rework SAGV block time probing
-060166c820c6 drm/i915: Treat SAGV block time 0 as SAGV disabled
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22524/index.html
-
---===============8071623151739563371==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: SAGV block time fixes (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/101171/">https://patchwork.freedesktop.org/series/101171/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22524/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22524/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11346 -&gt; Patchwork_22524</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22524/index.html</p>
-<h2>Participating hosts (43 -&gt; 35)</h2>
-<p>Additional (1): fi-pnv-d510 <br />
-  Missing    (9): bat-dg1-6 bat-dg1-5 bat-dg2-9 fi-bsw-cyan bat-adlp-6 bat-adlp-4 fi-ctg-p8600 bat-jsl-2 bat-jsl-1 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_22524 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@prime_vgem@basic-userptr:<ul>
-<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22524/fi-pnv-d510/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +58 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11346/fi-blb-e6850/igt@core_hotunplug@unbind-rebind.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3194">i915#3194</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22524/fi-blb-e6850/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s3@smem:</p>
-<ul>
-<li>{fi-rkl-11600}:     <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11346/fi-rkl-11600/igt@gem_exec_suspend@basic-s3@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5127">i915#5127</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22524/fi-rkl-11600/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11346 -&gt; Patchwork_22524</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11346: ab6456d23719e60c20e8cef05a5f322eea134b88 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6373: 82306f1903c0fee8371f43a156d8b63163ca61c1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_22524: 947f302e9d2d4716c0cb2bed715c2b7085535fa9 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>947f302e9d2d drm/i915: Rename QGV request/response bits<br />
-c745332be423 drm/i915: Unconfuses QGV vs. PSF point masks<br />
-a21de1e7d3fd drm/i915: Fix PSF GV point mask when SAGV is not possible<br />
-244e37910608 drm/i915: Rename pre-icl SAGV enable/disable functions<br />
-5eaafe273039 drm/i915: Reject excessive SAGV block time<br />
-e8e1719bfc7d drm/i915: Probe whether SAGV works on pre-icl<br />
-bc3dfeda81e4 drm/i915: Rework SAGV block time probing<br />
-060166c820c6 drm/i915: Treat SAGV block time 0 as SAGV disabled</p>
-
-</body>
-</html>
-
---===============8071623151739563371==--
+-- 
+Ville Syrjälä
+Intel
