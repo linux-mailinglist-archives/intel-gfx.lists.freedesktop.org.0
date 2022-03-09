@@ -1,48 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CC2F4D38E1
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Mar 2022 19:33:59 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7911F4D3950
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Mar 2022 19:56:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8910710E3CF;
-	Wed,  9 Mar 2022 18:33:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E26DE10E2DF;
+	Wed,  9 Mar 2022 18:56:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D336310E3CF
- for <intel-gfx@lists.freedesktop.org>; Wed,  9 Mar 2022 18:33:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646850834; x=1678386834;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=90C0XMiBh5Aansh7SM7+956445sMRVpYsh7vpnMc/RM=;
- b=SLwR9wynkyRBXk1H2H1LakboYZcbOBy5OtBqkePHr9arlz3J6h6HFUow
- ujJWlR9d5DnFP5EgbWx6gxy7Ek7H7G1j9PLDXAJ1DiByyh7rXR1ckhCLL
- gBf34AVvD5UPePDRikiPhpOX4sGPHM6aba+rerum1EYm4PhizVUOtk85z
- YeuZA8M8nZHfrb9sH7TYh8G7IooIrnnV6lF49oCF6v2REUXRHH8bo2Qmp
- o/uPU4idXUfvmkG/mAP2ZIHKd7cKxiz2SC+W43lZ/cdChhViv1TJe3SdT
- APkW5t8KERa1/DXek0/CSMyOZs/UIL+2YhvNPn00jCcLBAEecqBEocpT7 g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10281"; a="235666551"
-X-IronPort-AV: E=Sophos;i="5.90,168,1643702400"; d="scan'208";a="235666551"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Mar 2022 10:33:45 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,168,1643702400"; d="scan'208";a="596372230"
-Received: from eliteleevi.tm.intel.com ([10.237.54.20])
- by fmsmga008.fm.intel.com with ESMTP; 09 Mar 2022 10:33:43 -0800
-From: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-To: alsa-devel@alsa-project.org,
-	tiwai@suse.de
-Date: Wed,  9 Mar 2022 20:24:39 +0200
-Message-Id: <20220309182439.1053856-1-kai.vehmanen@linux.intel.com>
-X-Mailer: git-send-email 2.35.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D0D4810E2DF;
+ Wed,  9 Mar 2022 18:56:43 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id CBC86A8836;
+ Wed,  9 Mar 2022 18:56:43 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3] ALSA: hda/i915 - avoid hung task timeout in
- i915 wait
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Vivek Kasireddy" <vivek.kasireddy@intel.com>
+Date: Wed, 09 Mar 2022 18:56:43 -0000
+Message-ID: <164685220380.14948.8312836224779732613@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220307202121.389550-1-vivek.kasireddy@intel.com>
+In-Reply-To: <20220307202121.389550-1-vivek.kasireddy@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/mm=3A_Add_an_iterator_to_optimally_walk_over_holes_suit?=
+ =?utf-8?q?able_for_an_allocation_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,48 +41,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, lucas.demarchi@intel.com,
- amadeuszx.slawinski@linux.intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If kernel is built with hung task detection enabled and
-CONFIG_DEFAULT_HUNG_TASK_TIMEOUT set to less than 60 seconds,
-snd_hdac_i915_init() will trigger the hung task timeout in case i915 is
-not available and taint the kernel.
+== Series Details ==
 
-Use wait_for_completion_killable_timeout() for the wait to
-avoid this problem.
+Series: drm/mm: Add an iterator to optimally walk over holes suitable for an allocation (rev2)
+URL   : https://patchwork.freedesktop.org/series/101123/
+State : warning
 
-Co-developed-by: Ramalingam C <ramalingam.c@intel.com>
-Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
-Signed-off-by: Kai Vehmanen <kai.vehmanen@linux.intel.com>
----
- sound/hda/hdac_i915.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+== Summary ==
 
-Changes V2->V3:
- - drop the loop and just use 
-   wait_for_completion_killable_timeout() (feedback from Tvrtko Ursulin)
- - new approach, so dropped the previous reviewed-by tags
+$ dim checkpatch origin/drm-tip
+14d91959f9bf drm/mm: Add an iterator to optimally walk over holes for an allocation (v6)
+-:160: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pos' - possible side-effects?
+#160: FILE: include/drm/drm_mm.h:430:
++#define drm_mm_for_each_suitable_hole(pos, mm, range_start, range_end, \
++				      size, mode) \
++	for (pos = __drm_mm_first_hole(mm, range_start, range_end, size, \
++				       (mode) & ~DRM_MM_INSERT_ONCE); \
++	     pos; \
++	     pos = (mode) & DRM_MM_INSERT_ONCE ? \
++	     NULL : __drm_mm_next_hole(mm, pos, size, \
++				       (mode) & ~DRM_MM_INSERT_ONCE))
 
-diff --git a/sound/hda/hdac_i915.c b/sound/hda/hdac_i915.c
-index 454474ac5716..efe810af28c5 100644
---- a/sound/hda/hdac_i915.c
-+++ b/sound/hda/hdac_i915.c
-@@ -160,8 +160,8 @@ int snd_hdac_i915_init(struct hdac_bus *bus)
- 		if (!IS_ENABLED(CONFIG_MODULES) ||
- 		    !request_module("i915")) {
- 			/* 60s timeout */
--			wait_for_completion_timeout(&acomp->master_bind_complete,
--						    msecs_to_jiffies(60 * 1000));
-+			wait_for_completion_killable_timeout(&acomp->master_bind_complete,
-+							     msecs_to_jiffies(60 * 1000));
- 		}
- 	}
- 	if (!acomp->ops) {
+-:160: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'mm' - possible side-effects?
+#160: FILE: include/drm/drm_mm.h:430:
++#define drm_mm_for_each_suitable_hole(pos, mm, range_start, range_end, \
++				      size, mode) \
++	for (pos = __drm_mm_first_hole(mm, range_start, range_end, size, \
++				       (mode) & ~DRM_MM_INSERT_ONCE); \
++	     pos; \
++	     pos = (mode) & DRM_MM_INSERT_ONCE ? \
++	     NULL : __drm_mm_next_hole(mm, pos, size, \
++				       (mode) & ~DRM_MM_INSERT_ONCE))
 
-base-commit: 3a0099a1909dea6022690b0ae496938dd2e5771c
--- 
-2.35.1
+-:160: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'size' - possible side-effects?
+#160: FILE: include/drm/drm_mm.h:430:
++#define drm_mm_for_each_suitable_hole(pos, mm, range_start, range_end, \
++				      size, mode) \
++	for (pos = __drm_mm_first_hole(mm, range_start, range_end, size, \
++				       (mode) & ~DRM_MM_INSERT_ONCE); \
++	     pos; \
++	     pos = (mode) & DRM_MM_INSERT_ONCE ? \
++	     NULL : __drm_mm_next_hole(mm, pos, size, \
++				       (mode) & ~DRM_MM_INSERT_ONCE))
+
+-:160: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'mode' - possible side-effects?
+#160: FILE: include/drm/drm_mm.h:430:
++#define drm_mm_for_each_suitable_hole(pos, mm, range_start, range_end, \
++				      size, mode) \
++	for (pos = __drm_mm_first_hole(mm, range_start, range_end, size, \
++				       (mode) & ~DRM_MM_INSERT_ONCE); \
++	     pos; \
++	     pos = (mode) & DRM_MM_INSERT_ONCE ? \
++	     NULL : __drm_mm_next_hole(mm, pos, size, \
++				       (mode) & ~DRM_MM_INSERT_ONCE))
+
+total: 0 errors, 0 warnings, 4 checks, 114 lines checked
+f39e77441008 drm/i915/gem: Don't try to map and fence large scanout buffers (v9)
+
 
