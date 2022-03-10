@@ -2,51 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AC244D3E65
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Mar 2022 01:48:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 669A84D3E67
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Mar 2022 01:48:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C216D10E5BF;
-	Thu, 10 Mar 2022 00:48:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8132E10E5E1;
+	Thu, 10 Mar 2022 00:48:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E41BE10E5BF
- for <intel-gfx@lists.freedesktop.org>; Thu, 10 Mar 2022 00:48:19 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F0FE310E5E1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 10 Mar 2022 00:48:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646873299; x=1678409299;
+ t=1646873303; x=1678409303;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=adwFEo7KvhoMAtt7nM6tZk93B47FCl+skFDADOAyPHg=;
- b=d3T8HlSh6OSMlZShuKt9lP2WgcaRvKdCFngxMsfrMMhknNyn6kaHWwWV
- xKgNxYxi5SODCLCl0GmqptaVi2l1Prq0DD402MiTKYuiymKAhkjPpbh7I
- sbTmJM9azDSnGafK+uUmABZiZGmVVquAWw0lvaOUYG9ZS7XOceAKCnig+
- 4UiG/IoPMN0XaYLvRZx2fzQS60uZzPH97JY4DBS29fZ3PFoVPsD3UFaQR
- cGJr0uZwpKY3dLflNpwqg+6/XXp/Fx2mHdHM8XTVwcWWGNVEchLM8oBhD
- rN2Jm/W+lLQLxS3S5nzsIvEoOUrzUZPWsrS1zJXeRvHj8HjJ0jfA6JaSl A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10281"; a="255313213"
-X-IronPort-AV: E=Sophos;i="5.90,169,1643702400"; d="scan'208";a="255313213"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Mar 2022 16:48:19 -0800
+ bh=WI8hgrtjpzlLby0etBfpkl9AI+8Xft3hdsSszh1s/cs=;
+ b=X9hJXT0Ew4kdncsbWJZMUvjMHplVcN9kNNZDpOKeBU1H9hAGhUm5Pjyd
+ JwqG6AuWf2nMKrfSin69Sej2R1kXlTvjM0zMWMuREo8RrB2MItvJg44bx
+ +S3njv6My1DNSSLkBSVGsrxq1lw2yKxn6NEt1MGq4Wbg7wJNN6UOI0a5w
+ 5l6GZ4MU6MwcqZCVkhlvhsVjvjnD9HOugOBoO7g3y7QgjyYpKV4mjebMm
+ FaZhUnZJRus9aApOBOSW1SBNaUyope7vE9YH/xJxDZ4swnfHR5+x77ses
+ iXfhtnYl4YYGYpm+F+QfuIKtP0wGYVOqLyXsA2U9GVu34WLCfMQxaZWQ7 g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10281"; a="235733538"
+X-IronPort-AV: E=Sophos;i="5.90,169,1643702400"; d="scan'208";a="235733538"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Mar 2022 16:48:22 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,169,1643702400"; d="scan'208";a="642359087"
+X-IronPort-AV: E=Sophos;i="5.90,169,1643702400"; d="scan'208";a="547832463"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
- by fmsmga002.fm.intel.com with SMTP; 09 Mar 2022 16:48:17 -0800
+ by fmsmga007.fm.intel.com with SMTP; 09 Mar 2022 16:48:20 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 10 Mar 2022 02:48:17 +0200
+ Thu, 10 Mar 2022 02:48:20 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 10 Mar 2022 02:47:54 +0200
-Message-Id: <20220310004802.16310-6-ville.syrjala@linux.intel.com>
+Date: Thu, 10 Mar 2022 02:47:55 +0200
+Message-Id: <20220310004802.16310-7-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220310004802.16310-1-ville.syrjala@linux.intel.com>
 References: <20220310004802.16310-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 05/13] drm/i915: Program MSA timing delay on
- ilk/snb/ivb
+Subject: [Intel-gfx] [PATCH 06/13] drm/i915: Polish drrs type enum
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,97 +63,157 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Grab the DRRS MSA timing delay value from the VBT
-and program things accordingly. Only ilk/snb/ivb have
-this so presumably on hsw+ we don't need it.
+Make the drrs type enum less convoluted.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c       | 8 ++++++--
- drivers/gpu/drm/i915/display/intel_display_types.h | 1 +
- drivers/gpu/drm/i915/display/intel_drrs.c          | 3 +++
- drivers/gpu/drm/i915/i915_reg.h                    | 2 ++
- 4 files changed, 12 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_bios.c            | 10 +++++-----
+ drivers/gpu/drm/i915/display/intel_display_debugfs.c |  2 +-
+ drivers/gpu/drm/i915/display/intel_drrs.c            | 10 +++++-----
+ drivers/gpu/drm/i915/i915_drv.h                      | 12 ++++++------
+ 4 files changed, 17 insertions(+), 17 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 54db81c2cce6..b7c418677372 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -3577,6 +3577,7 @@ static void ilk_set_pipeconf(const struct intel_crtc_state *crtc_state)
- 	val |= PIPECONF_GAMMA_MODE(crtc_state->gamma_mode);
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+index 93dc32fb3e40..c7afe19dd44a 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.c
++++ b/drivers/gpu/drm/i915/display/intel_bios.c
+@@ -257,16 +257,16 @@ parse_panel_options(struct drm_i915_private *i915,
+ 	 */
+ 	switch (drrs_mode) {
+ 	case 0:
+-		i915->vbt.drrs_type = STATIC_DRRS_SUPPORT;
++		i915->vbt.drrs_type = DRRS_TYPE_STATIC;
+ 		drm_dbg_kms(&i915->drm, "DRRS supported mode is static\n");
+ 		break;
+ 	case 2:
+-		i915->vbt.drrs_type = SEAMLESS_DRRS_SUPPORT;
++		i915->vbt.drrs_type = DRRS_TYPE_SEAMLESS;
+ 		drm_dbg_kms(&i915->drm,
+ 			    "DRRS supported mode is seamless\n");
+ 		break;
+ 	default:
+-		i915->vbt.drrs_type = DRRS_NOT_SUPPORTED;
++		i915->vbt.drrs_type = DRRS_TYPE_NONE;
+ 		drm_dbg_kms(&i915->drm,
+ 			    "DRRS not supported (VBT input)\n");
+ 		break;
+@@ -740,7 +740,7 @@ parse_driver_features(struct drm_i915_private *i915,
+ 		 * driver->drrs_enabled=false
+ 		 */
+ 		if (!driver->drrs_enabled)
+-			i915->vbt.drrs_type = DRRS_NOT_SUPPORTED;
++			i915->vbt.drrs_type = DRRS_TYPE_NONE;
  
- 	val |= PIPECONF_FRAME_START_DELAY(crtc_state->framestart_delay - 1);
-+	val |= PIPECONF_MSA_TIMING_DELAY(crtc_state->msa_timing_delay);
- 
- 	intel_de_write(dev_priv, PIPECONF(pipe), val);
- 	intel_de_posting_read(dev_priv, PIPECONF(pipe));
-@@ -3865,6 +3866,8 @@ static bool ilk_get_pipe_config(struct intel_crtc *crtc,
- 
- 	pipe_config->framestart_delay = REG_FIELD_GET(PIPECONF_FRAME_START_DELAY_MASK, tmp) + 1;
- 
-+	pipe_config->msa_timing_delay = REG_FIELD_GET(PIPECONF_MSA_TIMING_DELAY_MASK, tmp);
-+
- 	pipe_config->csc_mode = intel_de_read(dev_priv,
- 					      PIPE_CSC_MODE(crtc->pipe));
- 
-@@ -5345,8 +5348,8 @@ static void intel_dump_pipe_config(const struct intel_crtc_state *pipe_config,
- 				      &pipe_config->dp_m2_n2);
+ 		i915->vbt.psr.enable = driver->psr_enabled;
  	}
+@@ -769,7 +769,7 @@ parse_power_conservation_features(struct drm_i915_private *i915,
+ 	 * power->drrs & BIT(panel_type)=false
+ 	 */
+ 	if (!(power->drrs & BIT(panel_type)))
+-		i915->vbt.drrs_type = DRRS_NOT_SUPPORTED;
++		i915->vbt.drrs_type = DRRS_TYPE_NONE;
  
--	drm_dbg_kms(&dev_priv->drm, "framestart delay: %d\n",
--		    pipe_config->framestart_delay);
-+	drm_dbg_kms(&dev_priv->drm, "framestart delay: %d, MSA timing delay: %d\n",
-+		    pipe_config->framestart_delay, pipe_config->msa_timing_delay);
+ 	if (bdb->version >= 232)
+ 		i915->vbt.edp.hobl = power->hobl & BIT(panel_type);
+diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+index 41b81d5dd5f4..28414472110e 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
++++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+@@ -1163,7 +1163,7 @@ static void drrs_status_per_crtc(struct seq_file *m,
+ 		seq_printf(m, "%s:\n", connector->name);
  
- 	drm_dbg_kms(&dev_priv->drm,
- 		    "audio: %i, infoframes: %i, infoframes enabled: 0x%x\n",
-@@ -6243,6 +6246,7 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
- 	PIPE_CONF_CHECK_X(output_types);
+ 		if (connector->connector_type == DRM_MODE_CONNECTOR_eDP &&
+-		    drrs->type == SEAMLESS_DRRS_SUPPORT)
++		    drrs->type == DRRS_TYPE_SEAMLESS)
+ 			supported = true;
  
- 	PIPE_CONF_CHECK_I(framestart_delay);
-+	PIPE_CONF_CHECK_I(msa_timing_delay);
- 
- 	PIPE_CONF_CHECK_I(hw.pipe_mode.crtc_hdisplay);
- 	PIPE_CONF_CHECK_I(hw.pipe_mode.crtc_htotal);
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 5e8d7394a394..86b2fa675124 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1155,6 +1155,7 @@ struct intel_crtc_state {
- 	u8 update_planes;
- 
- 	u8 framestart_delay; /* 1-4 */
-+	u8 msa_timing_delay; /* 0-3 */
- 
- 	struct {
- 		u32 enable;
+ 		seq_printf(m, "\tDRRS Supported: %s\n", str_yes_no(supported));
 diff --git a/drivers/gpu/drm/i915/display/intel_drrs.c b/drivers/gpu/drm/i915/display/intel_drrs.c
-index 17bedecbd7b2..5b3711fe0674 100644
+index 5b3711fe0674..7c4a3ecee93a 100644
 --- a/drivers/gpu/drm/i915/display/intel_drrs.c
 +++ b/drivers/gpu/drm/i915/display/intel_drrs.c
-@@ -83,6 +83,9 @@ intel_drrs_compute_config(struct intel_dp *intel_dp,
+@@ -65,7 +65,7 @@ static bool can_enable_drrs(struct intel_connector *connector,
+ 		return false;
+ 
+ 	return connector->panel.downclock_mode &&
+-		i915->drrs.type == SEAMLESS_DRRS_SUPPORT;
++		i915->drrs.type == DRRS_TYPE_SEAMLESS;
+ }
+ 
+ void
+@@ -155,7 +155,7 @@ static void intel_drrs_set_state(struct drm_i915_private *dev_priv,
  		return;
  	}
  
-+	if (IS_IRONLAKE(i915) || IS_SANDYBRIDGE(i915) || IS_IVYBRIDGE(i915))
-+		pipe_config->msa_timing_delay = i915->vbt.edp.drrs_msa_timing_delay;
-+
- 	pipe_config->has_drrs = true;
+-	if (dev_priv->drrs.type != SEAMLESS_DRRS_SUPPORT) {
++	if (dev_priv->drrs.type != DRRS_TYPE_SEAMLESS) {
+ 		drm_dbg_kms(&dev_priv->drm, "Only Seamless DRRS supported.\n");
+ 		return;
+ 	}
+@@ -274,7 +274,7 @@ intel_drrs_update(struct intel_dp *intel_dp,
+ {
+ 	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
  
- 	pixel_clock = connector->panel.downclock_mode->clock;
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 70484f6f2b8b..c106fb23e245 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -3706,6 +3706,8 @@
- #define   PIPECONF_INTERLACE_IF_ID_DBL_ILK	REG_FIELD_PREP(PIPECONF_INTERLACE_MASK_ILK, 4) /* ilk/snb only */
- #define   PIPECONF_INTERLACE_PF_ID_DBL_ILK	REG_FIELD_PREP(PIPECONF_INTERLACE_MASK_ILK, 5) /* ilk/snb only */
- #define   PIPECONF_EDP_RR_MODE_SWITCH		REG_BIT(20)
-+#define   PIPECONF_MSA_TIMING_DELAY_MASK	REG_GENMASK(19, 18) /* ilk/snb/ivb */
-+#define   PIPECONF_MSA_TIMING_DELAY(x)		REG_FIELD_PREP(PIPECONF_MSA_TIMING_DELAY_MASK, (x))
- #define   PIPECONF_CXSR_DOWNCLOCK		REG_BIT(16)
- #define   PIPECONF_EDP_RR_MODE_SWITCH_VLV	REG_BIT(14)
- #define   PIPECONF_COLOR_RANGE_SELECT		REG_BIT(13)
+-	if (dev_priv->drrs.type != SEAMLESS_DRRS_SUPPORT)
++	if (dev_priv->drrs.type != DRRS_TYPE_SEAMLESS)
+ 		return;
+ 
+ 	mutex_lock(&dev_priv->drrs.mutex);
+@@ -329,7 +329,7 @@ static void intel_drrs_frontbuffer_update(struct drm_i915_private *dev_priv,
+ 	struct drm_crtc *crtc;
+ 	enum pipe pipe;
+ 
+-	if (dev_priv->drrs.type != SEAMLESS_DRRS_SUPPORT)
++	if (dev_priv->drrs.type != DRRS_TYPE_SEAMLESS)
+ 		return;
+ 
+ 	cancel_delayed_work(&dev_priv->drrs.work);
+@@ -449,7 +449,7 @@ intel_drrs_init(struct intel_connector *connector,
+ 		return NULL;
+ 	}
+ 
+-	if (dev_priv->vbt.drrs_type != SEAMLESS_DRRS_SUPPORT) {
++	if (dev_priv->vbt.drrs_type != DRRS_TYPE_SEAMLESS) {
+ 		drm_dbg_kms(&dev_priv->drm,
+ 			    "[CONNECTOR:%d:%s] DRRS not supported according to VBT\n",
+ 			    connector->base.base.id, connector->base.name);
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 020c5f7602a2..0fc5d7e447b9 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -207,10 +207,10 @@ enum drrs_refresh_rate_type {
+ 	DRRS_MAX_RR, /* RR count */
+ };
+ 
+-enum drrs_support_type {
+-	DRRS_NOT_SUPPORTED = 0,
+-	STATIC_DRRS_SUPPORT = 1,
+-	SEAMLESS_DRRS_SUPPORT = 2
++enum drrs_type {
++	DRRS_TYPE_NONE,
++	DRRS_TYPE_STATIC,
++	DRRS_TYPE_SEAMLESS,
+ };
+ 
+ struct i915_drrs {
+@@ -219,7 +219,7 @@ struct i915_drrs {
+ 	struct intel_dp *dp;
+ 	unsigned busy_frontbuffer_bits;
+ 	enum drrs_refresh_rate_type refresh_rate_type;
+-	enum drrs_support_type type;
++	enum drrs_type type;
+ };
+ 
+ #define QUIRK_LVDS_SSC_DISABLE (1<<1)
+@@ -349,7 +349,7 @@ struct intel_vbt_data {
+ 	bool override_afc_startup;
+ 	u8 override_afc_startup_val;
+ 
+-	enum drrs_support_type drrs_type;
++	enum drrs_type drrs_type;
+ 
+ 	struct {
+ 		int rate;
 -- 
 2.34.1
 
