@@ -1,55 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F39F4D4565
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Mar 2022 12:12:51 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C6CF4D45A3
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Mar 2022 12:27:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 59DBD10EC1C;
-	Thu, 10 Mar 2022 11:12:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EAFF710EB53;
+	Thu, 10 Mar 2022 11:27:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5648F10EC17
- for <intel-gfx@lists.freedesktop.org>; Thu, 10 Mar 2022 11:12:46 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C68910EF11
+ for <intel-gfx@lists.freedesktop.org>; Thu, 10 Mar 2022 11:27:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646910766; x=1678446766;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=+gtOV5Pl5/f+W0Ez+ec4K4NqYOdwo2HXNuT7iatS888=;
- b=G3l99+LiptEU/O5UwlctI4bfQekJ1bCbvgO/vMndwa5O8wtAmwat298m
- Q5Wq6rRtLPUfSXvd6q0skZLx8tbdIiptSZ8nWCSkwWaNEluANsak6jIpW
- 5BJRxXt3T3+2xAEf+f5uHHcfF09fkUGovAXWpllTW8wZTbcXcd3LHcL6Y
- 4JyPz+TkxGSFwi01lwvtO2Wi2mi8Ltg+0RR9x1PPwrXfKB7hymQApjZoe
- fvErFV17ndhce1EGDbIyg538U+rkOac6uo1tmLSZIEkdWCrvx2dfbe7RZ
- PNNgZwhdiFbGr8/gTEQQL/QrGD7GZ2wbvJG1b58yUXbhUZwkUwSeF5mEx Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10281"; a="315942185"
-X-IronPort-AV: E=Sophos;i="5.90,170,1643702400"; d="scan'208";a="315942185"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2022 03:12:45 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,170,1643702400"; d="scan'208";a="688627867"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
- by fmsmga001.fm.intel.com with SMTP; 10 Mar 2022 03:12:43 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 10 Mar 2022 13:12:42 +0200
-Date: Thu, 10 Mar 2022 13:12:42 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <YindKk77xq2mmF/c@intel.com>
+ t=1646911646; x=1678447646;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=rPV9cFFP6CicaUxzNzTpoguD4d2GDmbsAPkMxhwKtIk=;
+ b=fRSTo223lJeB4JUwKWrZuHkjKTnwi4siNc1iYcmLjz8ots2umF7XSpQC
+ +i4o84l9wm+bqDWZTwrIoZxWRm35fcEfPfKE0wXaHqsSo2WbZ7MCKn2BP
+ x3SHud4kikJwBZ3DElC+OjtflMCPx0KnKxYKiAkhMAaJBADNAMI4AISmT
+ C1uljC1MpVO1IbNic1s+y7u2Mtcgg6DERb++ECpPZXXy9pu8bTo7S89Nq
+ f1RhF4TuKv5hF2m6nM3mMbTOZ80zy6ZDqMFyayNvc4X7qaL8/2bACv6/h
+ dtAIuy9gfmKUY9AT7IxLSNXkuQHmr6Yz9JsBE4+rvk2AyXEJVhrM+T3Gp Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10281"; a="254964142"
+X-IronPort-AV: E=Sophos;i="5.90,170,1643702400"; d="scan'208";a="254964142"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2022 03:27:03 -0800
+X-IronPort-AV: E=Sophos;i="5.90,170,1643702400"; d="scan'208";a="554606111"
+Received: from mgherza1-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.55.69])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2022 03:27:02 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+In-Reply-To: <Yinagk43Q4Z9e0lG@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20220310004802.16310-1-ville.syrjala@linux.intel.com>
- <20220310004802.16310-10-ville.syrjala@linux.intel.com>
- <8735jqxem1.fsf@intel.com>
+ <20220310004802.16310-14-ville.syrjala@linux.intel.com>
+ <875yomxfpt.fsf@intel.com> <Yinagk43Q4Z9e0lG@intel.com>
+Date: Thu, 10 Mar 2022 13:26:59 +0200
+Message-ID: <87zglyvyik.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <8735jqxem1.fsf@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 09/13] drm/i915: Stash DRRS state under
- intel_crtc
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 13/13] drm/i915: Implement static DRRS
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,345 +63,186 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Mar 10, 2022 at 12:53:58PM +0200, Jani Nikula wrote:
-> On Thu, 10 Mar 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> >
-> > Get rid of the ugly intel_dp dependency, and one more crtc->config
-> > usage by storing the DRRS state under intel_crtc. intel_drrs_enable()
-> > copies what it needs from the crtc state, after which DRRS can be
-> > blissfully ignorant of anything going on around it.
-> >
-> > This also lets multiple pipes do DRRS simultanously and entirely
-> > independently.
-> >
-> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> 
-> Ugh. What an annoying patch to review! :/
-> 
-> Overall it all looks sane and the direction is good, I had some
-> nitpicks, and I didn't spot any mistakes. Dunno how easy it would be to
-> split this up to smaller chunks and whether it would be worth the
-> effort.
+On Thu, 10 Mar 2022, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Thu, Mar 10, 2022 at 12:30:06PM +0200, Jani Nikula wrote:
+>> On Thu, 10 Mar 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+>> > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>> >
+>> > Let's start supporting static DRRS by trying to match the refresh
+>> > rate the user has requested, assuming the panel supports suitable
+>> > timings.
+>> >
+>> > For now we stick to just our current two timings:
+>> > - fixed_mode: the panel's preferred mode
+>> > - downclock_mode: the lowest refresh rate mode we found
+>> > Some panels may support more timings than that, but we'll
+>> > have to convert our fixed_mode/downclock_mode pointers
+>> > into a full list before we can handle that.
+>>=20
+>> So this won't fix panels with, say, a 120 Hz mode that isn't the panel's
+>> preferred mode?
+>>=20
+>> >
+>> > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>> > ---
+>> >  drivers/gpu/drm/i915/display/intel_dp.c    | 11 +++++++++++
+>> >  drivers/gpu/drm/i915/display/intel_drrs.c  |  8 +++++---
+>> >  drivers/gpu/drm/i915/display/intel_panel.c | 20 ++++++++++++++++++--
+>> >  3 files changed, 34 insertions(+), 5 deletions(-)
+>> >
+>> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm=
+/i915/display/intel_dp.c
+>> > index af659320c02e..9bd958377a54 100644
+>> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+>> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+>> > @@ -4599,6 +4599,17 @@ static int intel_dp_get_modes(struct drm_connec=
+tor *connector)
+>> >  			num_modes++;
+>> >  		}
+>> >  	}
+>> > +	if (intel_dp_is_edp(intel_attached_dp(intel_connector)) &&
+>> > +	    intel_connector->panel.downclock_mode) {
+>>=20
+>> I thought you wanted abstract access to connector->panel.downclock_mode
+>> in the previous patch.
+>
+> This part is a bit different since here we just want to list all=20
+> the supported modes. So we just duplicate our whole "fixed mode list"
+> which for now just comprises of fixed_mode and downclock_mode.
+>
+>>=20
+>> > +		struct drm_display_mode *mode;
+>> > +
+>> > +		mode =3D drm_mode_duplicate(connector->dev,
+>> > +					  intel_connector->panel.downclock_mode);
+>> > +		if (mode) {
+>> > +			drm_mode_probed_add(connector, mode);
+>> > +			num_modes++;
+>> > +		}
+>> > +	}
+>> >=20=20
+>> >  	if (num_modes)
+>> >  		return num_modes;
+>> > diff --git a/drivers/gpu/drm/i915/display/intel_drrs.c b/drivers/gpu/d=
+rm/i915/display/intel_drrs.c
+>> > index 5b2eb55c1340..dc1733c9abab 100644
+>> > --- a/drivers/gpu/drm/i915/display/intel_drrs.c
+>> > +++ b/drivers/gpu/drm/i915/display/intel_drrs.c
+>> > @@ -383,7 +383,7 @@ intel_drrs_init(struct intel_connector *connector,
+>> >  		return NULL;
+>> >  	}
+>> >=20=20
+>> > -	if (dev_priv->vbt.drrs_type !=3D DRRS_TYPE_SEAMLESS) {
+>> > +	if (dev_priv->vbt.drrs_type =3D=3D DRRS_TYPE_NONE) {
+>> >  		drm_dbg_kms(&dev_priv->drm,
+>> >  			    "[CONNECTOR:%d:%s] DRRS not supported according to VBT\n",
+>> >  			    connector->base.base.id, connector->base.name);
+>> > @@ -399,8 +399,10 @@ intel_drrs_init(struct intel_connector *connector,
+>> >  	}
+>> >=20=20
+>> >  	drm_dbg_kms(&dev_priv->drm,
+>> > -		    "[CONNECTOR:%d:%s] seamless DRRS supported\n",
+>> > -		    connector->base.base.id, connector->base.name);
+>> > +		    "[CONNECTOR:%d:%s] %s DRRS supported\n",
+>> > +		    connector->base.base.id, connector->base.name,
+>> > +		    dev_priv->vbt.drrs_type =3D=3D DRRS_TYPE_SEAMLESS ?
+>> > +		    "seamless" : "static");
+>> >=20=20
+>> >  	return downclock_mode;
+>> >  }
+>> > diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/=
+drm/i915/display/intel_panel.c
+>> > index 127ad9643360..6ddbb69dcfdc 100644
+>> > --- a/drivers/gpu/drm/i915/display/intel_panel.c
+>> > +++ b/drivers/gpu/drm/i915/display/intel_panel.c
+>> > @@ -49,14 +49,30 @@ const struct drm_display_mode *
+>> >  intel_panel_fixed_mode(struct intel_connector *connector,
+>> >  		       const struct drm_display_mode *mode)
+>> >  {
+>> > -	return connector->panel.fixed_mode;
+>> > +	const struct drm_display_mode *fixed_mode =3D connector->panel.fixed=
+_mode;
+>> > +	const struct drm_display_mode *downclock_mode =3D connector->panel.d=
+ownclock_mode;
+>> > +
+>> > +	/* pick the one that is closer in terms of vrefresh */
+>> > +	/* FIXME make this a a list of modes so we can have more than two */
+>>=20
+>> Indeed feels a bit hackish...
+>>=20
+>> This being the last and arguably fairly simple part of the series, I do
+>> wonder about the pros and cons of merging this as an interim
+>> solution.
+>
+> Shrug.
 
-I couldn't immediately think of a nice way to split it. But
-after further thought maybe I could try to eg. do the intel_dp
-elimination first, and then move stuff into the crtc. I'll give
-that a go...
+Yeah, no strong opinions, really, but we do need to get the
+non-preferred mode high refresh rate panels working sooner rather than
+later. So this would just be a hopefully short lived intermediate step.
 
-> 
-> Tentatively
-> 
-> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-> 
-> but my confidence level for spotting subtle mistakes in this one aren't
-> high I'm afraid.
-> 
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_crtc.c     |   2 +
-> >  drivers/gpu/drm/i915/display/intel_ddi.c      |   8 +-
-> >  drivers/gpu/drm/i915/display/intel_display.c  |   2 +-
-> >  .../drm/i915/display/intel_display_debugfs.c  |  97 ++----
-> >  .../drm/i915/display/intel_display_types.h    |  14 +
-> >  drivers/gpu/drm/i915/display/intel_dp.c       |   4 +-
-> >  drivers/gpu/drm/i915/display/intel_drrs.c     | 300 +++++++-----------
-> >  drivers/gpu/drm/i915/display/intel_drrs.h     |  20 +-
-> >  drivers/gpu/drm/i915/i915_drv.h               |  15 -
-> >  9 files changed, 171 insertions(+), 291 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-> > index 65827481c1b1..f655c1622877 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_crtc.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-> > @@ -24,6 +24,7 @@
-> >  #include "intel_display_debugfs.h"
-> >  #include "intel_display_trace.h"
-> >  #include "intel_display_types.h"
-> > +#include "intel_drrs.h"
-> >  #include "intel_dsi.h"
-> >  #include "intel_pipe_crc.h"
-> >  #include "intel_psr.h"
-> > @@ -367,6 +368,7 @@ int intel_crtc_init(struct drm_i915_private *dev_priv, enum pipe pipe)
-> >  
-> >  	intel_color_init(crtc);
-> >  
-> > +	intel_crtc_drrs_init(crtc);
-> >  	intel_crtc_crc_init(crtc);
-> >  
-> >  	cpu_latency_qos_add_request(&crtc->vblank_pm_qos, PM_QOS_DEFAULT_VALUE);
-> > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> > index 3e6d86a54850..a3bf4e876fb4 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> > @@ -2820,7 +2820,7 @@ static void intel_enable_ddi_dp(struct intel_atomic_state *state,
-> >  	if (!dig_port->lspcon.active || dig_port->dp.has_hdmi_sink)
-> >  		intel_dp_set_infoframes(encoder, true, crtc_state, conn_state);
-> >  
-> > -	intel_drrs_enable(intel_dp, crtc_state);
-> > +	intel_drrs_enable(crtc_state);
-> >  
-> >  	if (crtc_state->has_audio)
-> >  		intel_audio_codec_enable(encoder, crtc_state, conn_state);
-> > @@ -2963,7 +2963,7 @@ static void intel_disable_ddi_dp(struct intel_atomic_state *state,
-> >  		intel_audio_codec_disable(encoder,
-> >  					  old_crtc_state, old_conn_state);
-> >  
-> > -	intel_drrs_disable(intel_dp, old_crtc_state);
-> > +	intel_drrs_disable(old_crtc_state);
-> >  	intel_psr_disable(intel_dp, old_crtc_state);
-> >  	intel_edp_backlight_off(old_conn_state);
-> >  	/* Disable the decompression in DP Sink */
-> > @@ -3013,12 +3013,12 @@ static void intel_ddi_update_pipe_dp(struct intel_atomic_state *state,
-> >  				     const struct intel_crtc_state *crtc_state,
-> >  				     const struct drm_connector_state *conn_state)
-> >  {
-> > -	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-> > +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> >  
-> >  	intel_ddi_set_dp_msa(crtc_state, conn_state);
-> >  
-> >  	intel_dp_set_infoframes(encoder, true, crtc_state, conn_state);
-> > -	intel_drrs_update(intel_dp, crtc_state);
-> > +	intel_drrs_update(state, crtc);
-> >  
-> >  	intel_backlight_update(state, encoder, crtc_state, conn_state);
-> >  	drm_connector_update_privacy_screen(conn_state);
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> > index b7c418677372..4c7c74665819 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > @@ -1229,7 +1229,7 @@ static void intel_post_plane_update(struct intel_atomic_state *state,
-> >  
-> >  	hsw_ips_post_update(state, crtc);
-> >  	intel_fbc_post_update(state, crtc);
-> > -	intel_drrs_page_flip(state, crtc);
-> > +	intel_drrs_page_flip(crtc);
-> >  
-> >  	if (needs_async_flip_vtd_wa(old_crtc_state) &&
-> >  	    !needs_async_flip_vtd_wa(new_crtc_state))
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> > index 798bf233a60f..bbf6ebd18414 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> > @@ -1143,87 +1143,44 @@ static int i915_ddb_info(struct seq_file *m, void *unused)
-> >  	return 0;
-> >  }
-> >  
-> > -static void drrs_status_per_crtc(struct seq_file *m,
-> > -				 struct drm_device *dev,
-> > -				 struct intel_crtc *crtc)
-> > +static int i915_drrs_status(struct seq_file *m, void *unused)
-> >  {
-> > -	struct drm_i915_private *dev_priv = to_i915(dev);
-> > -	struct i915_drrs *drrs = &dev_priv->drrs;
-> > -	struct drm_connector *connector;
-> > +	struct drm_i915_private *dev_priv = node_to_i915(m->private);
-> >  	struct drm_connector_list_iter conn_iter;
-> > +	struct intel_connector *connector;
-> > +	struct intel_crtc *crtc;
-> >  
-> > -	drm_connector_list_iter_begin(dev, &conn_iter);
-> > -	drm_for_each_connector_iter(connector, &conn_iter) {
-> > -		bool supported = false;
-> > +	drm_connector_list_iter_begin(&dev_priv->drm, &conn_iter);
-> > +	for_each_intel_connector_iter(connector, &conn_iter) {
-> > +		seq_printf(m, "[CONNECTOR:%d:%s]:\n",
-> > +			   connector->base.base.id, connector->base.name);
-> >  
-> > -		if (connector->state->crtc != &crtc->base)
-> > -			continue;
-> > -
-> > -		seq_printf(m, "%s:\n", connector->name);
-> > -
-> > -		if (connector->connector_type == DRM_MODE_CONNECTOR_eDP &&
-> > -		    drrs->type == DRRS_TYPE_SEAMLESS)
-> > -			supported = true;
-> > -
-> > -		seq_printf(m, "\tDRRS Supported: %s\n", str_yes_no(supported));
-> > +		seq_printf(m, "\tDRRS Supported: %s\n",
-> > +			   str_yes_no(connector->panel.downclock_mode));
-> 
-> "Supported" in the sense that the connector/panel can support it, but...
+Forgot to add
 
-I should probably make this say static vs. seamless vs. no, so we know
-what kind of DRRS one can expect.
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-> 
-> >  	}
-> >  	drm_connector_list_iter_end(&conn_iter);
-> >  
-> >  	seq_puts(m, "\n");
-> >  
-> > -	if (to_intel_crtc_state(crtc->base.state)->has_drrs) {
-> > -		struct intel_panel *panel;
-> > +	for_each_intel_crtc(&dev_priv->drm, crtc) {
-> > +		seq_printf(m, "[CRTC:%d:%s]:\n",
-> > +			   crtc->base.base.id, crtc->base.name);
-> > +
-> > +		mutex_lock(&crtc->drrs.mutex);
-> >  
-> > -		mutex_lock(&drrs->mutex);
-> >  		/* DRRS Supported */
-> > -		seq_puts(m, "\tDRRS Enabled: Yes\n");
-> > +		seq_printf(m, "\tDRRS Enabled: %s\n",
-> > +			   str_yes_no(intel_drrs_is_enabled(crtc)));
-> >  
-> > -		/* disable_drrs() will make drrs->dp NULL */
-> > -		if (!drrs->dp) {
-> > -			seq_puts(m, "Idleness DRRS: Disabled\n");
-> > -			mutex_unlock(&drrs->mutex);
-> > -			return;
-> > -		}
-> > -
-> > -		panel = &drrs->dp->attached_connector->panel;
-> > -		seq_printf(m, "\t\tBusy_frontbuffer_bits: 0x%X",
-> > -					drrs->busy_frontbuffer_bits);
-> > -
-> > -		seq_puts(m, "\n\t\t");
-> > +		seq_printf(m, "\tBusy_frontbuffer_bits: 0x%X",
-> > +			   crtc->drrs.busy_frontbuffer_bits);
-> >  
-> >  		seq_printf(m, "DRRS refresh rate: %s\n",
-> > -			   drrs->refresh_rate == DRRS_REFRESH_RATE_LOW ?
-> > +			   crtc->drrs.refresh_rate == DRRS_REFRESH_RATE_LOW ?
-> >  			   "low" : "high");
-> > -		seq_puts(m, "\n\t\t");
-> >  
-> > -		mutex_unlock(&drrs->mutex);
-> > -	} else {
-> > -		/* DRRS not supported. Print the VBT parameter*/
-> 
-> ...this part is lost in the debug output. Seems to me the debug output
-> for not supported DDRS will be that the connector supports it but it's
-> not enabled on the crtc for whatever reason.
-> 
-> > -		seq_puts(m, "\tDRRS Enabled : No");
-> > +		mutex_unlock(&crtc->drrs.mutex);
-> >  	}
-> > -	seq_puts(m, "\n");
-> > -}
-> > -
-> > -static int i915_drrs_status(struct seq_file *m, void *unused)
-> > -{
-> > -	struct drm_i915_private *dev_priv = node_to_i915(m->private);
-> > -	struct drm_device *dev = &dev_priv->drm;
-> > -	struct intel_crtc *crtc;
-> > -	int active_crtc_cnt = 0;
-> > -
-> > -	drm_modeset_lock_all(dev);
-> > -	for_each_intel_crtc(dev, crtc) {
-> > -		if (crtc->base.state->active) {
-> > -			active_crtc_cnt++;
-> > -			seq_printf(m, "\nCRTC %d:  ", active_crtc_cnt);
-> > -
-> > -			drrs_status_per_crtc(m, dev, crtc);
-> > -		}
-> > -	}
-> > -	drm_modeset_unlock_all(dev);
-> > -
-> > -	if (!active_crtc_cnt)
-> > -		seq_puts(m, "No active crtc found\n");
-> >  
-> >  	return 0;
-> >  }
-> > @@ -1917,26 +1874,18 @@ static int i915_drrs_ctl_set(void *data, u64 val)
-> >  
-> >  		drm_connector_list_iter_begin(dev, &conn_iter);
-> >  		drm_for_each_connector_iter(connector, &conn_iter) {
-> > -			struct intel_encoder *encoder;
-> > -			struct intel_dp *intel_dp;
-> > -
-> >  			if (!(crtc_state->uapi.connector_mask &
-> >  			      drm_connector_mask(connector)))
-> >  				continue;
-> >  
-> > -			encoder = intel_attached_encoder(to_intel_connector(connector));
-> > -			if (encoder->type != INTEL_OUTPUT_EDP)
-> > -				continue;
-> > -
-> >  			drm_dbg(&dev_priv->drm,
-> >  				"Manually %sabling DRRS. %llu\n",
-> >  				val ? "en" : "dis", val);
-> >  
-> > -			intel_dp = enc_to_intel_dp(encoder);
-> >  			if (val)
-> > -				intel_drrs_enable(intel_dp, crtc_state);
-> > +				intel_drrs_enable(crtc_state);
-> >  			else
-> > -				intel_drrs_disable(intel_dp, crtc_state);
-> > +				intel_drrs_disable(crtc_state);
-> >  		}
-> >  		drm_connector_list_iter_end(&conn_iter);
-> >  
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > index 86b2fa675124..e34800ab6924 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > @@ -1252,6 +1252,11 @@ enum intel_pipe_crc_source {
-> >  	INTEL_PIPE_CRC_SOURCE_MAX,
-> >  };
-> >  
-> > +enum drrs_refresh_rate {
-> > +	DRRS_REFRESH_RATE_HIGH,
-> > +	DRRS_REFRESH_RATE_LOW,
-> > +};
-> > +
-> >  #define INTEL_PIPE_CRC_ENTRIES_NR	128
-> >  struct intel_pipe_crc {
-> >  	spinlock_t lock;
-> > @@ -1294,6 +1299,15 @@ struct intel_crtc {
-> >  		} active;
-> >  	} wm;
-> >  
-> > +	struct {
-> > +		struct mutex mutex;
-> > +		struct delayed_work work;
-> > +		enum drrs_refresh_rate refresh_rate;
-> > +		unsigned int busy_frontbuffer_bits;
-> > +		enum transcoder cpu_transcoder;
-> > +		struct intel_link_m_n m_n, m2_n2;
-> > +	} drrs;
-> > +
-> >  	int scanline_offset;
-> >  
-> >  	struct {
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> > index 619546441eae..725c3350c923 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > @@ -1895,8 +1895,8 @@ intel_dp_compute_config(struct intel_encoder *encoder,
-> >  
-> >  	intel_vrr_compute_config(pipe_config, conn_state);
-> >  	intel_psr_compute_config(intel_dp, pipe_config, conn_state);
-> > -	intel_drrs_compute_config(intel_dp, pipe_config, output_bpp,
-> > -				  constant_n);
-> > +	intel_drrs_compute_config(pipe_config, intel_connector,
-> > +				  output_bpp, constant_n);
-> >  	intel_dp_compute_vsc_sdp(intel_dp, pipe_config, conn_state);
-> >  	intel_dp_compute_hdr_metadata_infoframe_sdp(intel_dp, pipe_config, conn_state);
-> >  
-> > diff --git a/drivers/gpu/drm/i915/display/intel_drrs.c b/drivers/gpu/drm/i915/display/intel_drrs.c
-> > index c97b5dee8cae..246dd0c71194 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_drrs.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_drrs.c
-> > @@ -65,15 +65,14 @@ static bool can_enable_drrs(struct intel_connector *connector,
-> >  		return false;
-> >  
-> >  	return connector->panel.downclock_mode &&
-> > -		i915->drrs.type == DRRS_TYPE_SEAMLESS;
-> > +		i915->vbt.drrs_type == DRRS_TYPE_SEAMLESS;
-> 
-> So is i915->drrs.type just an unchanged copy of i915->vbt.drrs_type the
-> whole time?!
+as in seems to do what it says on the box.
 
-More or less. I think we skipped the assignment if we didn't find a
-downclock mode. But that logic doesn't make any sense when we aim
-to eliminate the single eDP connector assumption.
+BR,
+Jani.
 
-> This could be a prep patch perhaps.
+>
+>>=20
+>> IIUC if the user wanted to do static/manual drrs while seamless is
+>> supported, this does not disable seamless when the user chooses
+>> preferred vrefresh and a downclock vrefresh is available. So you can
+>> choose lower vrefresh and stay there, but you can't choose higher
+>> vrefresh and stay there.
+>
+> Disabling the seamless DRRS stuff is IMO an orthogonal issue. And I'm
+> not sure there is any point in disabling it actually. All the use cases
+> I can think of would just keep it in the high refresh rate mode all
+> the time anyway, and thus disabling it wouldn't achieve anything extra.
+> Also it's an i915 specific feature so coming up an acceptable uapi for
+> it is perhaps an uphill battle.
+>
+>> > +	if (fixed_mode && downclock_mode &&
+>> > +	    abs(drm_mode_vrefresh(downclock_mode) - drm_mode_vrefresh(mode))=
+ <
+>> > +	    abs(drm_mode_vrefresh(fixed_mode) - drm_mode_vrefresh(mode)))
+>> > +		return downclock_mode;
+>> > +	else
+>> > +		return fixed_mode;
+>> >  }
+>> >=20=20
+>> >  const struct drm_display_mode *
+>> >  intel_panel_downclock_mode(struct intel_connector *connector,
+>> >  			   const struct drm_display_mode *fixed_mode)
+>> >  {
+>> > -	return connector->panel.downclock_mode;
+>> > +	const struct drm_display_mode *downclock_mode =3D connector->panel.d=
+ownclock_mode;
+>> > +
+>> > +	if (downclock_mode &&
+>> > +	    drm_mode_vrefresh(downclock_mode) < drm_mode_vrefresh(fixed_mode=
+))
+>>=20
+>> With this use, I think the fixed_mode name here is a bit misleading. The
+>> downclock mode will always have a vrefresh lower than the fixed
+>> mode. But you're not always passing the fixed mode, right?
+>
+> I was thinking of it as 'the thing we chose as our "fixed mode"'. But
+> we could just as well call it "adjusted_mode" I suppose.
+>
+>>=20
+>> > +		return downclock_mode;
+>> > +	else
+>> > +		return NULL;
+>> >  }
+>> >=20=20
+>> >  int intel_panel_compute_config(struct intel_connector *connector,
+>>=20
+>> --=20
+>> Jani Nikula, Intel Open Source Graphics Center
 
-Ack.
-
--- 
-Ville Syrjälä
-Intel
+--=20
+Jani Nikula, Intel Open Source Graphics Center
