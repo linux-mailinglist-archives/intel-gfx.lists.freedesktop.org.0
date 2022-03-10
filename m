@@ -1,49 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 695234D5161
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Mar 2022 20:05:27 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F44E4D5171
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Mar 2022 20:35:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B28010E199;
-	Thu, 10 Mar 2022 19:05:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D35010ECF7;
+	Thu, 10 Mar 2022 19:35:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7777010E199
- for <intel-gfx@lists.freedesktop.org>; Thu, 10 Mar 2022 19:05:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646939123; x=1678475123;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=WnFGNKbJzycKyV82fMk3LWMbBnyeS+s9105OQY/fMpc=;
- b=JO1Mvr+6LrGPZMIk1+fL3pdZ7BrMfKurzG3i8bmMpzTWnBzlj7XGO/04
- zG62XT129C1g4JcCGHyXJQv9Ty0KtCzczFxnrXAJrIIII8qrqs88RHt3j
- UYl9x/sVPbnKN+ZLrZnVGrpkomsub38pfc4MF6dsohwvB/sEPgnDaQlYp
- vTym3UvYTdtFSBaQJg+cQ7k05g/0vRpPBDAJ22RhUYnjfOouoEdcNHBif
- z4EcSLvfpocgScmDmxCBExQfP0lZQPz08MPQ1uJcLM9o1j1KhBRHaAu6N
- elge/s1TaQxmEfuu+KRhiADwShe4stu1Bllt+BiyBx/q46GWgv3pa8MKU g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10282"; a="235294008"
-X-IronPort-AV: E=Sophos;i="5.90,171,1643702400"; d="scan'208";a="235294008"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2022 11:03:49 -0800
-X-IronPort-AV: E=Sophos;i="5.90,171,1643702400"; d="scan'208";a="554794723"
-Received: from jdubrow-mobl.amr.corp.intel.com (HELO intel.com) ([10.255.39.9])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2022 11:03:46 -0800
-Date: Thu, 10 Mar 2022 14:03:45 -0500
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Alexander Usyskin <alexander.usyskin@intel.com>
-Message-ID: <YipLkXkoZFFNuK3p@intel.com>
-References: <20220308163654.942820-1-alexander.usyskin@intel.com>
- <20220308163654.942820-5-alexander.usyskin@intel.com>
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A114910ECEF;
+ Thu, 10 Mar 2022 19:35:10 +0000 (UTC)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 37EF3212B7;
+ Thu, 10 Mar 2022 19:35:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1646940909; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=+nwP5XSM20uLQdAaU7RHlsXb87cQNUyLI84W5n7CTxY=;
+ b=jsBt9GnZhmiG+q5zw/Q6v0TpQUAi0doHYdxWGnGPBbbAFBSnMwjeK+rgeJO9rULI8uDnZy
+ e5xjRUMbf0B34+9K0VLDmetzgXCGyD3A5x12qx0fRVLeguyTpHJylBIOeUYeTjYMbCN8d9
+ n+qnhUTKW99yfgk7iDuNSFgdqBkOTTs=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1646940909;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=+nwP5XSM20uLQdAaU7RHlsXb87cQNUyLI84W5n7CTxY=;
+ b=VemL9i8Tr1SM/9iO/rvxs0sUN00JeclXpuHU8Fpxf11KmDu0F/PEFVi0XP3CSkDhB2tTCI
+ LTmH1bzUWHrofUBQ==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id E9C7A13A66;
+ Thu, 10 Mar 2022 19:35:08 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id wmPzN+xSKmIXXwAAMHmgww
+ (envelope-from <tzimmermann@suse.de>); Thu, 10 Mar 2022 19:35:08 +0000
+Date: Thu, 10 Mar 2022 20:35:07 +0100
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <YipS65Iuu7RMMlAa@linux-uq9g>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20220308163654.942820-5-alexander.usyskin@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v10 4/5] mei: gsc: add runtime pm handlers
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PULL] drm-misc-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,118 +64,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Tomas Winkler <tomas.winkler@intel.com>,
- Vitaly Lubart <vitaly.lubart@intel.com>
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 08, 2022 at 06:36:53PM +0200, Alexander Usyskin wrote:
-> From: Tomas Winkler <tomas.winkler@intel.com>
-> 
-> Implement runtime handlers for mei-gsc, to track
-> idle state of the device properly.
-> 
-> CC: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Signed-off-by: Tomas Winkler <tomas.winkler@intel.com>
-> Signed-off-by: Alexander Usyskin <alexander.usyskin@intel.com>
-> ---
->  drivers/misc/mei/gsc-me.c | 67 ++++++++++++++++++++++++++++++++++++++-
->  1 file changed, 66 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/misc/mei/gsc-me.c b/drivers/misc/mei/gsc-me.c
-> index cf427f6fdec9..dac482ddab51 100644
-> --- a/drivers/misc/mei/gsc-me.c
-> +++ b/drivers/misc/mei/gsc-me.c
-> @@ -152,7 +152,72 @@ static int __maybe_unused mei_gsc_pm_resume(struct device *device)
->  	return 0;
->  }
->  
-> -static SIMPLE_DEV_PM_OPS(mei_gsc_pm_ops, mei_gsc_pm_suspend, mei_gsc_pm_resume);
-> +static int __maybe_unused mei_gsc_pm_runtime_idle(struct device *device)
-> +{
-> +	struct mei_device *dev = dev_get_drvdata(device);
-> +
-> +	if (!dev)
-> +		return -ENODEV;
-> +	if (mei_write_is_idle(dev))
-> +		pm_runtime_autosuspend(device);
+Hi Dave and Daniel,
 
-This is not needed. The _idle() callback is called right before the autosuspend.
-so you just need to return -EBUSY if not idle.
+here's the PR for drm-misc-fixes for this week.
 
-But also I'm missing the call to enable the autosuspend and set the delay.
+Best regards
+Thomas
 
-Is this flow really working and you are getting device suspended when not in use?
-(Maybe it is just my ignorance on other flow types here)
+drm-misc-fixes-2022-03-10:
+ * drm/sun4i: Fix P010 and P210 format numbers
+The following changes since commit 62929726ef0ec72cbbe9440c5d125d4278b99894:
 
-> +
-> +	return -EBUSY;
-> +}
-> +
-> +static int  __maybe_unused mei_gsc_pm_runtime_suspend(struct device *device)
-> +{
-> +	struct mei_device *dev = dev_get_drvdata(device);
-> +	struct mei_me_hw *hw;
-> +	int ret;
-> +
-> +	if (!dev)
-> +		return -ENODEV;
-> +
-> +	mutex_lock(&dev->device_lock);
-> +
-> +	if (mei_write_is_idle(dev)) {
-> +		hw = to_me_hw(dev);
-> +		hw->pg_state = MEI_PG_ON;
-> +		ret = 0;
-> +	} else {
-> +		ret = -EAGAIN;
-> +	}
+  drm/vrr: Set VRR capable prop only if it is attached to connector (2022-03-01 11:37:21 -0800)
 
-probably not needed this here... but it would be good if you use
-the runtime_pm{get,put} to protect your write operations as well...
+are available in the Git repository at:
 
-> +
-> +	mutex_unlock(&dev->device_lock);
-> +
-> +	return ret;
-> +}
-> +
-> +static int __maybe_unused mei_gsc_pm_runtime_resume(struct device *device)
-> +{
-> +	struct mei_device *dev = dev_get_drvdata(device);
-> +	struct mei_me_hw *hw;
-> +	irqreturn_t irq_ret;
-> +
-> +	if (!dev)
-> +		return -ENODEV;
-> +
-> +	mutex_lock(&dev->device_lock);
-> +
-> +	hw = to_me_hw(dev);
-> +	hw->pg_state = MEI_PG_OFF;
-> +
-> +	mutex_unlock(&dev->device_lock);
-> +
-> +	irq_ret = mei_me_irq_thread_handler(1, dev);
-> +	if (irq_ret != IRQ_HANDLED)
-> +		dev_err(dev->dev, "thread handler fail %d\n", irq_ret);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct dev_pm_ops mei_gsc_pm_ops = {
-> +	SET_SYSTEM_SLEEP_PM_OPS(mei_gsc_pm_suspend,
-> +				mei_gsc_pm_resume)
-> +	SET_RUNTIME_PM_OPS(mei_gsc_pm_runtime_suspend,
-> +			   mei_gsc_pm_runtime_resume,
-> +			   mei_gsc_pm_runtime_idle)
-> +};
->  
->  static const struct auxiliary_device_id mei_gsc_id_table[] = {
->  	{
-> -- 
-> 2.32.0
-> 
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2022-03-10
+
+for you to fetch changes up to 9470c29faa91c804aa04de4c10634bf02462bfa5:
+
+  drm/sun4i: mixer: Fix P010 and P210 format numbers (2022-03-08 11:54:50 +0100)
+
+----------------------------------------------------------------
+ * drm/sun4i: Fix P010 and P210 format numbers
+
+----------------------------------------------------------------
+Jernej Skrabec (1):
+      drm/sun4i: mixer: Fix P010 and P210 format numbers
+
+ drivers/gpu/drm/sun4i/sun8i_mixer.h | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+-- 
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 Nürnberg, Germany
+(HRB 36809, AG Nürnberg)
+Geschäftsführer: Felix Imendörffer
