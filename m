@@ -2,158 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3EE74D3E16
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Mar 2022 01:28:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E94FB4D3E15
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Mar 2022 01:28:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA69E10E3C0;
-	Thu, 10 Mar 2022 00:28:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6603589AB3;
+	Thu, 10 Mar 2022 00:28:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 954BA10E3C0
- for <intel-gfx@lists.freedesktop.org>; Thu, 10 Mar 2022 00:28:34 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0979D89AB3
+ for <intel-gfx@lists.freedesktop.org>; Thu, 10 Mar 2022 00:28:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646872114; x=1678408114;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=aeuf1mhhr1koVpS+WovCl5660mDjg7jxPA3KwQQKu64=;
- b=gP+9DFB/Pw71XqA5XE73+1GLquOxsl2XegExsCAKpScO32SnXPog3nFO
- IGg615wa/81SaWhf+F9wp7CCa1ZmmyvMEHQ/kbkRH0vbTI1gU7bNiZdmz
- /Mq63x5pwivC0mww14Bm7gWLFJkj8MV6IxCffUegFql9DUWcMckNv9KZ0
- u7rmjjN1XDUuZX2IsK4ryMH44J2PPf/uXcMUA4LJT9s8lcTxWnOtKwP7j
- Q+BukDsQx+/nXg2yRKQy+5I9QnTJxbq7MmhJV5QzUhTIb9w6meRZe/FXo
- HV8z1MegUe2jicLMXDRV3eZu6w/stP7+HyzYfMsp4uzJUVHHkH0lmK4mI A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10281"; a="255066667"
-X-IronPort-AV: E=Sophos;i="5.90,169,1643702400"; d="scan'208";a="255066667"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Mar 2022 16:28:34 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,169,1643702400"; d="scan'208";a="513754746"
-Received: from fmsmsx604.amr.corp.intel.com ([10.18.126.84])
- by orsmga006.jf.intel.com with ESMTP; 09 Mar 2022 16:28:33 -0800
-Received: from fmsmsx607.amr.corp.intel.com (10.18.126.87) by
- fmsmsx604.amr.corp.intel.com (10.18.126.84) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.21; Wed, 9 Mar 2022 16:28:33 -0800
-Received: from fmsmsx609.amr.corp.intel.com (10.18.126.89) by
- fmsmsx607.amr.corp.intel.com (10.18.126.87) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.21; Wed, 9 Mar 2022 16:28:33 -0800
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx609.amr.corp.intel.com (10.18.126.89) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.21 via Frontend Transport; Wed, 9 Mar 2022 16:28:33 -0800
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.176)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2308.21; Wed, 9 Mar 2022 16:28:32 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=aSwvVORlAq4wsFod06CD57YzsFMIZrtEqtdriFMM0geyryibQCQQa07YQoPtfwwUjp3b2R2/032g/9ySRh4IETr1+XiZsfrHzLJCdUwmp/SXBEXNL/bZNs8eAxOKTfcCYWidiXVsS1YIN7sxrj1rXFvmHMiBleHpoOoxXEuWc2b/AKx+fEDqILof678c3ZouMwb20EF2RzWCGt3k8n5AeSXwjkGDZmfObjt8qB5wG7NkVfhdDKDJU4cwxiJq8uksv19EwLIYVJ4tkbXOiG+teOu4emEDy9CThvX/vd4llY57JegjfTU0os2mQ1CDarN3iNvgfdZRUxj0AbQIlesigA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+yj+/b5p9OZOlKz/A8QKVqyH2p1JkcYxF+iUddJRG3A=;
- b=k3kUUnA06Unl7LTv/UJW7kXXJ9wU7PCdy57ulsKnaKRe3s9e9phCyAvTWhRZ43vfc7IxqFKdUDczsdIKFFOywqynxD4HvpuczlZV0QQaHPlynM40ggDwCcNzqjw/tPP2+n92SAM/UMLK1sZHY/mJ+9Sq3NH5mryBbOsU6QxKWP1I1TjtziK3nTxpTHMVSfapyk+JVFb9ZSYuDu4sn5tw4Qud5lVse2RRnfivCZ6fSUyMZ/Iz9hDnke4gBaXZdrAi+/py1AI+2f/u0fB2Up5kw3O8GTRIxfnro2BxYRIsNAVA+esb3oGqobc1+s1Q8cPJebHN6WjHBnuN4AD4RuOZCg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB5488.namprd11.prod.outlook.com (2603:10b6:5:39d::5) by
- BN6PR11MB1345.namprd11.prod.outlook.com (2603:10b6:404:49::17) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5038.29; Thu, 10 Mar 2022 00:28:31 +0000
-Received: from DM4PR11MB5488.namprd11.prod.outlook.com
- ([fe80::3c4e:eb25:76ff:a869]) by DM4PR11MB5488.namprd11.prod.outlook.com
- ([fe80::3c4e:eb25:76ff:a869%6]) with mapi id 15.20.5038.027; Thu, 10 Mar 2022
- 00:28:30 +0000
-Message-ID: <8a8f7205-32c1-0618-a29a-c3ef66357681@intel.com>
-Date: Wed, 9 Mar 2022 16:28:27 -0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.0
-Content-Language: en-US
-To: Alexander Usyskin <alexander.usyskin@intel.com>, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>, Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>, Daniel Vetter
- <daniel@ffwll.ch>, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-References: <20220308163654.942820-1-alexander.usyskin@intel.com>
- <20220308163654.942820-4-alexander.usyskin@intel.com>
-From: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>
-In-Reply-To: <20220308163654.942820-4-alexander.usyskin@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PH0PR07CA0007.namprd07.prod.outlook.com
- (2603:10b6:510:5::12) To DM4PR11MB5488.namprd11.prod.outlook.com
- (2603:10b6:5:39d::5)
+ t=1646872082; x=1678408082;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=4nHz64G6nnxB+JXBnjB/JBS2I+U0283wlOiry7nSlTU=;
+ b=jqFIGc4PA7D27wUTAssP1Z707XtpiPv3701XxhFWTtGeTIHvqKhLiFYf
+ pX0//tzm6hC1uSM85okaA1lFMW+tD7XArIuUHjFgScvBrbei7DZ+XQVzg
+ nRNtjSiDWCc4gOTYn2KUiZhBGiysnc3Xq5fkA/UqdcHiiLDo79o6ypCR1
+ Vipf/ialyE1OC82Av7UGppgVwDak8k/FiP3BrUF2r1SBMLlXYYJqkxdEP
+ 2tD0MiS2RuzfbFoQFX5ey3PKtd8+l1FcDhkjQ90bjuED15KavyoUiZ/NW
+ gX708fRlMPgjXr5IRMVNJ9X+6J5oivSlJ+byFvkiWxrjw8SZs25Lzd8y6 g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10281"; a="279856388"
+X-IronPort-AV: E=Sophos;i="5.90,169,1643702400"; d="scan'208";a="279856388"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Mar 2022 16:28:01 -0800
+X-IronPort-AV: E=Sophos;i="5.90,169,1643702400"; d="scan'208";a="538230007"
+Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
+ ([10.165.21.211])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Mar 2022 16:28:01 -0800
+Date: Wed, 9 Mar 2022 16:29:03 -0800
+From: "Navare, Manasi" <manasi.d.navare@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <20220310002903.GB6158@labuser-Z97X-UD5H>
+References: <20220223131315.18016-1-ville.syrjala@linux.intel.com>
+ <20220223131315.18016-14-ville.syrjala@linux.intel.com>
+ <20220303224116.GB17231@labuser-Z97X-UD5H>
+ <YiIr6cUI3slPfjhQ@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 5ffe414c-366b-428c-160f-08da022ce739
-X-MS-TrafficTypeDiagnostic: BN6PR11MB1345:EE_
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-X-Microsoft-Antispam-PRVS: <BN6PR11MB1345E6D4DC2C6135A1E6F9B3F40B9@BN6PR11MB1345.namprd11.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: eTuPVS83bg/0H8B8Ni4ZbfRITbiONP8J3Ae5gi7WHj4jfg18rdnsoIgkCUiWvRnn1N9MJ60pjzdO0uQmlfYhIy3LwAz7dmfNamhyeVNyL6fMuGRwItYUwAP3iieuoQIkYjBauGuE2mW/CDzS4G+IHWr3yGPVPBKkotnv/+AvezlWqvfGqb4oqFlz0e9pzyepontBlTeQx0M4QPBvrB0iyIJP+PsoLwQ21kI5KmyzGXMvL4peUa7Y+tNm/JsEiLMnTx/0WfkLiqWu4CZuMSkbsKNfqqmG03t9XtYD8P61PgSUAo2n6BsdfItqzZ9NoHfbt0TISKKh+bqgmW3OAe3EV6kuyPAAFgZ9TsGwfWc9BcuQFzKN7hzUi6ZwJeNLsMx9JHfhpXNPtigfLMHl3bAMgNSBlLGVHz1W29suSnhdL29Xvq2heJmY9vcs+GDSVf6ubOT7+a9olfdZqgQ1moc1Wti3t7KyrYd09V/wRgYsVEZb/LnXCT7KCbkHk354HN4UfzruZxe8YaX4dXPLh/9xCvVRyaHvAEAvJVX824vefR5tQeNStKlJWzpbON0c4BOmD7G/1SwBOX1oTEWTUmLVZEt3zfis8NT+pI3zsyBUgnK7ri7BC+3YDdq4z2EC7B3ZEcUNrqncompCYckWgqYkis6POaoECcHB9C8a1IBRAwN+Ha2U7kpIggv1R2aB28uF4fv2o8GhjLoqP+SUelv7VNvGbNYma15wizJc07Q57W3zHB8l4QKEyw8kg4K0Pi5V
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5488.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230001)(366004)(508600001)(31686004)(6486002)(110136005)(54906003)(316002)(4326008)(66476007)(66556008)(8676002)(66946007)(8936002)(6506007)(5660300002)(82960400001)(26005)(186003)(2616005)(83380400001)(53546011)(6512007)(6666004)(36756003)(86362001)(2906002)(31696002)(38100700002)(45980500001)(43740500002);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?aENGbm9GWnExc0RwczAwQm80TUxaT3ExdVpFbFBtcEZmNFJZM3BkT2xVQ2lr?=
- =?utf-8?B?NSthWGozT2NGMEcwRUQ2My9zYjFKNHNBZ2N4cTgyMENLRmttbG5MUkplK0Er?=
- =?utf-8?B?Z21MMGt0eU0vU1hrVjBIMDVhbFJieklFN0RnUlJCTUJ0Q21aT016N3dnTEQr?=
- =?utf-8?B?Y1VPVlc1aWl4dDVjU3NCSkpIZWtRSERFQlNkZEI3MkZmYU9PYlorUWUzSDc4?=
- =?utf-8?B?WXJLVVdvanBzcDNGRjdtdzRLc3RwZUQ4ZHROU1FVeHBXS0lOclJBRWJLQkxi?=
- =?utf-8?B?MjRNT25jVjVNK0VlciszYVhLYytyVE8vT2pTSldVa3hGN0p3U2E5M0pqTkUy?=
- =?utf-8?B?OVI4dzdnLzFub0t0d090c3VpV3JETCtKSlRQVWtEYllxVEZuQUpDd0c2VEtO?=
- =?utf-8?B?SzUvY2htdVpZWk1CUjZFVGVjUTVlTEVHZ2lhQ2wySTlOcngwdUpDTTJ2MmZS?=
- =?utf-8?B?SC9FQ0k4T0k3Wk1KOVUyUHlkclA0T041RDV5Y1hZemVNQ2s5c3puS1g4ZC9Z?=
- =?utf-8?B?WTRoSEJDZUFrZzFOYS8yRDRnOTBSMVRlemNwQlFtd0xBLzM4bWhWZmRHMDht?=
- =?utf-8?B?alhzOUFadE5RbHFFSjBmN2tNa3FHNmdGaXc3bWRKMkNlS1p0NHlYNGpYbHE0?=
- =?utf-8?B?T2JnTHZ0OWZSTVkzWTZlOVI3UUI3VWJKUEFYb0NYL1ZubEdOeXdxSkE3YWFo?=
- =?utf-8?B?Y1lTa1IrVVBDdy9GZGhjcWx1Zm9TYWh2UmZjR3g1VThvcDdZVytjNnNGaUJr?=
- =?utf-8?B?ZjNreU5TYzVrRHp6U3YzaTQ4RXIvbTdtOFFlTDlLRG5FYzhoeVhqT2FkdTdC?=
- =?utf-8?B?SUxJNys3L1hWWnVLNkNNTHZpNitRK1k3T0ZlSHNPdUEwY2JzVzg5b3ZNcnlT?=
- =?utf-8?B?VVZMSjZrcjNEL3dTOGVXVGhlUGRXL2FFWm9DTEpDelRiNVFNNmxZditvdktP?=
- =?utf-8?B?S3MvYVYzdnZ1clhqcDN2OEtNNmU5WHl3YkQxN3pIU25qQkNzdGdvdkg5V2g5?=
- =?utf-8?B?TWh0ZDZQdm5IdVlqSi93c2VwR21mc3VIb3Frem4xbmxkQUMzNlM5ZlBzdUpr?=
- =?utf-8?B?bHhFNlJ5d0RIV1haV1M4NzI2dU9Mb0RnbGlGV04yVEtEN3J6Zkp3TWpWV2Rm?=
- =?utf-8?B?cjY1SE9QU2FJVWdmdE9UVlNPRThWdU03b1ZuNm9VbXQxYVE5b2RIYW1VS25T?=
- =?utf-8?B?UEZKd2Q5S0U5cVBqNHUyZm51VG96SkRSTms1K25lQjhxWCtlbFRDMUNPazBN?=
- =?utf-8?B?Yjk0azBhSnJOZ01QSURSdlZkeWtiK0lJVVJYbEdHZ3ZoK1ltRVNvU0RaVyts?=
- =?utf-8?B?NVM3dXJGbFA5c04ySUEvNmtyUWJ6ZzU1YzFtbDBMajBLcWxFR05BUWEyb2lG?=
- =?utf-8?B?ZE1JbnZlR05oekExZXdtMFp1YUFZdlZidy95cmtOWWdkbkZvQktDNFA3MW1R?=
- =?utf-8?B?eEoxUHNGVThvWC9xb3BYcENveGZDenBKdWlqK1dwTVBKMUZEeklIYUNPbU4w?=
- =?utf-8?B?UWV3Um5NeGdSU29pOGllSCtlZzl3WnpNRm5TQXJQOGZhd2VERGNLVDBJRmhB?=
- =?utf-8?B?cHZtSXlmMnEvSXBIeXh6ZkZJcWhYTitUelZnTGRrYk1NL2JwcDlxTXhVVlpx?=
- =?utf-8?B?U3VVZnR4d0RXbDk4aUVyYWh2YWlZTnBpa2pMbzBncGIxMGRSaXZKalVOY1Jw?=
- =?utf-8?B?dE5oQnJHR0dEWndWZXh3VTZUcUNmZDlwZkYydDMrbEZTd0NOWitwWHNVSEln?=
- =?utf-8?B?RklWZTBRaXBPWUJGRHJRVnhsUnk0OERBeUJSL0RZWmpyeWJMcDdQTDhoVTVE?=
- =?utf-8?B?ODdXSlF0U0RiZStjSkYwd3IwNERSWmVjMmg4QTFLV20rRG13NnVsYzVpbXNU?=
- =?utf-8?B?VHFQY2VVNWFyRnJjNnhxMU0vQXJWUWNXcEZiWGU3cGZlRENILzdlLzBQNldH?=
- =?utf-8?B?L1QrczdHNVVJZC9rV0ZObnlXR3ZoWVgwMitneWo4RXA5Sy9IVWVWZ1dwU3lZ?=
- =?utf-8?B?VmxGbmZ1K0svZFBpQTU0ZWZwSFBPNEk0d1loWTA4WmFJMGlOMEZDVytqQml3?=
- =?utf-8?B?U2JRRFVCeWlJQlZKUVVoOTBtWVBKNUpwcXNDQzlwcUFZWUpCangwdUNZM1F2?=
- =?utf-8?B?T1c3ZTMvMFlEaG5QdzVCVUNSbG9QUVZieFI5LzlIV2d6eU5qVE9PMDVaSVdQ?=
- =?utf-8?B?RVRaRGdxNVFlYjU2RzZVUzEwZCtrVjgrcVdCSXNxNVRJdWlqUFpheUI2eWJ1?=
- =?utf-8?B?QmlWQUhabENoelpRbjZYbTVYY2NRPT0=?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5ffe414c-366b-428c-160f-08da022ce739
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5488.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Mar 2022 00:28:30.8690 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: HLagAZEVRRqiBlmOIPU6XVvgbGZO2cHGPln0pbO+tzl0RTEa86jZwHC7MBKrwkIw3+NjwStB+l7k/CSeP+NAx2xiCgTOfou89BS1BLlj6Ug=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR11MB1345
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v10 3/5] mei: gsc: setup char driver alive
- in spite of firmware handshake failure
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <YiIr6cUI3slPfjhQ@intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH v2 13/13] drm/i915: Make the PIPESC rect
+ relative to the entire bigjoiner area
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -166,53 +62,175 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Tomas Winkler <tomas.winkler@intel.com>, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Vitaly Lubart <vitaly.lubart@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-
-On 3/8/2022 8:36 AM, Alexander Usyskin wrote:
-> Setup char device in spite of firmware handshake failure.
-> In order to provide host access to the firmware status registers and other
-> information required for the manufacturing process.
-
-IMO this patch should be moved to after the patch that adds the logic to 
-fetch the FW version, as that is interesting info for sysfs. Not a blocker.
-
+On Fri, Mar 04, 2022 at 05:10:33PM +0200, Ville Syrjälä wrote:
+> On Thu, Mar 03, 2022 at 02:41:23PM -0800, Navare, Manasi wrote:
+> > On Wed, Feb 23, 2022 at 03:13:15PM +0200, Ville Syrjala wrote:
+> > > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > > 
+> > > When using bigjoiner it's useful to know the offset of each
+> > > individual pipe in the whole set of joined pipes. Let's include
+> > > that information in our PIPESRC rectangle. With this we can make
+> > > the plane clipping code blissfully unaware of bigjoiner usage, as
+> > > all we have to do is remove the pipe's offset from the final plane
+> > > destination coordinates.
+> > > 
+> > > v2: Use intel_bigjoiner_num_pipes()
+> > > 
+> > > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > > ---
+> > >  .../gpu/drm/i915/display/intel_atomic_plane.c |  7 +++---
+> > >  drivers/gpu/drm/i915/display/intel_cursor.c   |  8 ++++---
+> > >  drivers/gpu/drm/i915/display/intel_display.c  | 21 ++++++++++++++++++
+> > >  drivers/gpu/drm/i915/display/intel_overlay.c  | 22 +++++++++----------
+> > >  4 files changed, 40 insertions(+), 18 deletions(-)
+> > > 
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> > > index 3cbf66146da0..92ae4eebc62f 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> > > @@ -824,10 +824,6 @@ int intel_atomic_plane_check_clipping(struct intel_plane_state *plane_state,
+> > >  		return -ERANGE;
+> > >  	}
+> > >  
+> > > -	/* right side of the image is on the slave crtc, adjust dst to match */
+> > > -	if (intel_crtc_is_bigjoiner_slave(crtc_state))
+> > > -		drm_rect_translate(dst, -drm_rect_width(&crtc_state->pipe_src), 0);
+> > > -
+> > >  	/*
+> > >  	 * FIXME: This might need further adjustment for seamless scaling
+> > >  	 * with phase information, for the 2p2 and 2p1 scenarios.
+> > > @@ -844,6 +840,9 @@ int intel_atomic_plane_check_clipping(struct intel_plane_state *plane_state,
+> > >  		return -EINVAL;
+> > >  	}
+> > >  
+> > > +	/* final plane coordinates will be relative to the plane's pipe */
+> > > +	drm_rect_translate(dst, -clip->x1, -clip->y1);
+> > > +
+> > >  	return 0;
+> > >  }
+> > >  
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
+> > > index da6cf0515164..9279e2783e7e 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_cursor.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_cursor.c
+> > > @@ -152,9 +152,11 @@ static int intel_check_cursor(struct intel_crtc_state *crtc_state,
+> > >  	/* Use the unclipped src/dst rectangles, which we program to hw */
+> > >  	plane_state->uapi.src = src;
+> > >  	plane_state->uapi.dst = dst;
+> > > -	if (intel_crtc_is_bigjoiner_slave(crtc_state))
+> > > -		drm_rect_translate(&plane_state->uapi.dst,
+> > > -				   -drm_rect_width(&crtc_state->pipe_src), 0);
+> > > +
+> > > +	/* final plane coordinates will be relative to the plane's pipe */
+> > > +	drm_rect_translate(&plane_state->uapi.dst,
+> > > +			   -crtc_state->pipe_src.x1,
+> > > +			   -crtc_state->pipe_src.y1);
+> > >  
+> > >  	ret = intel_cursor_check_surface(plane_state);
+> > >  	if (ret)
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> > > index 7a09bb33c1eb..a9c15f27b948 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > > @@ -3204,6 +3204,23 @@ static void intel_get_transcoder_timings(struct intel_crtc *crtc,
+> > >  	}
+> > >  }
+> > >  
+> > > +static void intel_bigjoiner_adjust_pipe_src(struct intel_crtc_state *crtc_state)
+> > > +{
+> > > +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> > > +	int num_pipes = intel_bigjoiner_num_pipes(crtc_state);
+> > > +	enum pipe master_pipe, pipe = crtc->pipe;
+> > > +	int width;
+> > > +
+> > > +	if (num_pipes < 2)
+> > > +		return;
+> > > +
+> > > +	master_pipe = bigjoiner_master_pipe(crtc_state);
+> > > +	width = drm_rect_width(&crtc_state->pipe_src);
+> > > +
+> > > +	drm_rect_translate_to(&crtc_state->pipe_src,
+> > > +			      (pipe - master_pipe) * width, 0);
+> > > +}
+> > > +
+> > >  static void intel_get_pipe_src_size(struct intel_crtc *crtc,
+> > >  				    struct intel_crtc_state *pipe_config)
+> > >  {
+> > > @@ -3216,6 +3233,8 @@ static void intel_get_pipe_src_size(struct intel_crtc *crtc,
+> > >  	drm_rect_init(&pipe_config->pipe_src, 0, 0,
+> > >  		      REG_FIELD_GET(PIPESRC_WIDTH_MASK, tmp) + 1,
+> > >  		      REG_FIELD_GET(PIPESRC_HEIGHT_MASK, tmp) + 1);
+> > > +
+> > > +	intel_bigjoiner_adjust_pipe_src(pipe_config);
+> > >  }
+> > >  
+> > >  static void i9xx_set_pipeconf(const struct intel_crtc_state *crtc_state)
+> > > @@ -5853,6 +5872,8 @@ intel_modeset_pipe_config_late(struct intel_crtc_state *crtc_state)
+> > >  	struct drm_connector *connector;
+> > >  	int i;
+> > >  
+> > > +	intel_bigjoiner_adjust_pipe_src(crtc_state);
+> > > +
+> > >  	for_each_new_connector_in_state(&state->base, connector,
+> > >  					conn_state, i) {
+> > >  		struct intel_encoder *encoder =
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_overlay.c b/drivers/gpu/drm/i915/display/intel_overlay.c
+> > > index 631e1f1dc5e6..ee46561b5ae8 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_overlay.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_overlay.c
+> > > @@ -958,21 +958,21 @@ static void update_pfit_vscale_ratio(struct intel_overlay *overlay)
+> > >  static int check_overlay_dst(struct intel_overlay *overlay,
+> > >  			     struct drm_intel_overlay_put_image *rec)
+> > >  {
+> > > -	const struct intel_crtc_state *pipe_config =
+> > > +	const struct intel_crtc_state *crtc_state =
+> > >  		overlay->crtc->config;
+> > > -	int pipe_src_w = drm_rect_width(&pipe_config->pipe_src);
+> > > -	int pipe_src_h = drm_rect_height(&pipe_config->pipe_src);
+> > > +	struct drm_rect req, clipped;
+> > >  
+> > > -	if (rec->dst_height == 0 || rec->dst_width == 0)
+> > > -		return -EINVAL;
+> > > +	drm_rect_init(&req, rec->dst_x, rec->dst_y,
+> > > +		      rec->dst_width, rec->dst_height);
+> > > +
+> > > +	clipped = req;
+> > > +	drm_rect_intersect(&clipped, &crtc_state->pipe_src);
+> > >  
+> > > -	if (rec->dst_x < pipe_src_w &&
+> > > -	    rec->dst_x + rec->dst_width <= pipe_src_w &&
+> > > -	    rec->dst_y < pipe_src_h &&
+> > > -	    rec->dst_y + rec->dst_height <= pipe_src_h)
+> > > -		return 0;
+> > > -	else
+> > > +	if (!drm_rect_visible(&clipped) ||
+> > > +	    !drm_rect_equals(&clipped, &req))
+> > >  		return -EINVAL;
+> > > +
+> > > +	return 0;
+> > 
+> > I dont quite understand what we are trying to do here with the clipped ?
+> > Can you elaborate a bit what this function does?
+> 
+> It checks whether the userspace provided coordinates were fully
+> within the pipe source rectangle. If not we return an error.
+> 
+> I suppose technically we should be checking against the uapi
+> hdisplay/vdisplay since this is uapi stuff, but no bigjoiner
+> on these old platforms so this will effectively do the same
+> thing.
 >
-> Signed-off-by: Alexander Usyskin <alexander.usyskin@intel.com>
-> Signed-off-by: Tomas Winkler <tomas.winkler@intel.com>
 
-Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Okay sounds good then
 
-Daniele
+Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
 
-> ---
->   drivers/misc/mei/gsc-me.c | 11 ++++++-----
->   1 file changed, 6 insertions(+), 5 deletions(-)
->
-> diff --git a/drivers/misc/mei/gsc-me.c b/drivers/misc/mei/gsc-me.c
-> index 0afae70e0609..cf427f6fdec9 100644
-> --- a/drivers/misc/mei/gsc-me.c
-> +++ b/drivers/misc/mei/gsc-me.c
-> @@ -79,11 +79,12 @@ static int mei_gsc_probe(struct auxiliary_device *aux_dev,
->   	pm_runtime_set_active(device);
->   	pm_runtime_enable(device);
->   
-> -	if (mei_start(dev)) {
-> -		dev_err(device, "init hw failure.\n");
-> -		ret = -ENODEV;
-> -		goto err;
-> -	}
-> +	/* Continue to char device setup in spite of firmware handshake failure.
-> +	 * In order to provide access to the firmware status registers to the user
-> +	 * space via sysfs.
-> +	 */
-> +	if (mei_start(dev))
-> +		dev_warn(device, "init hw failure.\n");
->   
->   	pm_runtime_set_autosuspend_delay(device, MEI_GSC_RPM_TIMEOUT);
->   	pm_runtime_use_autosuspend(device);
-
+Manasi
+ 
+> -- 
+> Ville Syrjälä
+> Intel
