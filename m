@@ -2,50 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2A2A4D3E63
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Mar 2022 01:48:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A1F9D4D3E64
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Mar 2022 01:48:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E778A10E568;
-	Thu, 10 Mar 2022 00:48:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C9C0F10E583;
+	Thu, 10 Mar 2022 00:48:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B9C1510E568
- for <intel-gfx@lists.freedesktop.org>; Thu, 10 Mar 2022 00:48:14 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5F59E10E583
+ for <intel-gfx@lists.freedesktop.org>; Thu, 10 Mar 2022 00:48:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646873294; x=1678409294;
+ t=1646873297; x=1678409297;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=b+r1j1W9KbR6uXWoY1lNiOBQq9inhbtBAM2y61vEDzQ=;
- b=CfGHRoup7rO5foJZ51YkrC2jzFF6yMLJEDweJrjJnmLf2OcHu6g/3ioV
- W2XIWamzcNklI4X5rib/dYyE3nr5m+SGoUuh4NSjRAtrysNVyB+IXIVF4
- WF4ezJJXp3FBmsFruWG0NS/hJ1NHKJv9THB4yEPs9B2AkqyFdKXbDCFY4
- +0K55SfwtjFSWf+6jIvAq0UKCjTpMn5QHWjDiW3ATNFT5br4JRjL+VRT3
- yVe7y3aDQrDMaY1vgfZW6pUd8Mo17GSNrwDdZD0T1UdTSlzz7rkmIzwPu
- s6ByKwTVXSj7DeTC1XiQbq1gqZParHUpaX5pmBAsWgCErRoQqXcquWw4U g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10281"; a="255313203"
-X-IronPort-AV: E=Sophos;i="5.90,169,1643702400"; d="scan'208";a="255313203"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Mar 2022 16:48:14 -0800
+ bh=RpGq7pJ2lwG5zYPAtJlULXNazza0o+0pwSfL3p5qD+g=;
+ b=T85cyT6Mb6EACQ3ImuPKQBkd+dbFARIVGHqxceELZmlQD6Eih6Hpl7yu
+ UywcHsVgWNrGg2pxcx5tmFwOxwQ9eNBFa6HlmaisAmoDS6JqyPi+wexb3
+ QmXdapEO/HoOaudb9P5xp/sNpRwGroBJhmZfehvECisXJlxqWLjOB9QYe
+ gq1YY5Bg+kTpETJWCsel0GsY67XROIW96TRGRtuMTccnhg+pfROWkBhoe
+ lp76jIypWozE/RFs9Czq+8+BBzrxAqtTK1+ofDf+cEMN2LmJJerRqDq+h
+ Y5CRGPv4fpRcaPbsGcgmfXiM6Ao7SuuQ8gWqOW1NmstM6DYeaNHTASeNt g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10281"; a="341555660"
+X-IronPort-AV: E=Sophos;i="5.90,169,1643702400"; d="scan'208";a="341555660"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Mar 2022 16:48:16 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,169,1643702400"; d="scan'208";a="632810739"
+X-IronPort-AV: E=Sophos;i="5.90,169,1643702400"; d="scan'208";a="596474712"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
- by FMSMGA003.fm.intel.com with SMTP; 09 Mar 2022 16:48:12 -0800
+ by fmsmga008.fm.intel.com with SMTP; 09 Mar 2022 16:48:15 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 10 Mar 2022 02:48:11 +0200
+ Thu, 10 Mar 2022 02:48:14 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 10 Mar 2022 02:47:52 +0200
-Message-Id: <20220310004802.16310-4-ville.syrjala@linux.intel.com>
+Date: Thu, 10 Mar 2022 02:47:53 +0200
+Message-Id: <20220310004802.16310-5-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220310004802.16310-1-ville.syrjala@linux.intel.com>
 References: <20220310004802.16310-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 03/13] drm/i915: Pimp DRRS debugs
+Subject: [Intel-gfx] [PATCH 04/13] drm/i915: Read DRRS MSA timing delay from
+ VBT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,64 +64,47 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Use the standard [CONNECTOR:%d:%s] format in the DRRS debugs.
+VBT hsa a field for the MSA timing delay, which supposedly
+should be used with DRRS. Extract the data from the VBT.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_drrs.c | 18 +++++++++++++-----
- 1 file changed, 13 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/display/intel_bios.c | 3 +++
+ drivers/gpu/drm/i915/i915_drv.h           | 5 +++--
+ 2 files changed, 6 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_drrs.c b/drivers/gpu/drm/i915/display/intel_drrs.c
-index 3b871a51eb55..17bedecbd7b2 100644
---- a/drivers/gpu/drm/i915/display/intel_drrs.c
-+++ b/drivers/gpu/drm/i915/display/intel_drrs.c
-@@ -432,26 +432,32 @@ intel_drrs_init(struct intel_connector *connector,
- 
- 	if (DISPLAY_VER(dev_priv) <= 6) {
- 		drm_dbg_kms(&dev_priv->drm,
--			    "DRRS supported for Gen7 and above\n");
-+			    "[CONNECTOR:%d:%s] DRRS not supported on platform\n",
-+			    connector->base.base.id, connector->base.name);
- 		return NULL;
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+index a559a1914588..93dc32fb3e40 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.c
++++ b/drivers/gpu/drm/i915/display/intel_bios.c
+@@ -888,6 +888,9 @@ parse_edp(struct drm_i915_private *i915, const struct bdb_header *bdb)
+ 			i915->vbt.edp.low_vswing = vswing == 0;
+ 		}
  	}
- 
- 	if ((DISPLAY_VER(dev_priv) < 8 && !HAS_GMCH(dev_priv)) &&
- 	    encoder->port != PORT_A) {
- 		drm_dbg_kms(&dev_priv->drm,
--			    "DRRS only supported on eDP port A\n");
-+			    "[CONNECTOR:%d:%s] DRRS not supported on [ENCODER:%d:%s]\n",
-+			    connector->base.base.id, connector->base.name,
-+			    encoder->base.base.id, encoder->base.name);
- 		return NULL;
- 	}
- 
- 	if (dev_priv->vbt.drrs_type != SEAMLESS_DRRS_SUPPORT) {
--		drm_dbg_kms(&dev_priv->drm, "VBT doesn't support DRRS\n");
-+		drm_dbg_kms(&dev_priv->drm,
-+			    "[CONNECTOR:%d:%s] DRRS not supported according to VBT\n",
-+			    connector->base.base.id, connector->base.name);
- 		return NULL;
- 	}
- 
- 	downclock_mode = intel_panel_edid_downclock_mode(connector, fixed_mode);
- 	if (!downclock_mode) {
- 		drm_dbg_kms(&dev_priv->drm,
--			    "Downclock mode is not found. DRRS not supported\n");
-+			    "[CONNECTOR:%d:%s] DRRS not supported due to lack of downclock mode\n",
-+			    connector->base.base.id, connector->base.name);
- 		return NULL;
- 	}
- 
-@@ -459,6 +465,8 @@ intel_drrs_init(struct intel_connector *connector,
- 
- 	dev_priv->drrs.refresh_rate_type = DRRS_HIGH_RR;
- 	drm_dbg_kms(&dev_priv->drm,
--		    "seamless DRRS supported for eDP panel.\n");
-+		    "[CONNECTOR:%d:%s] seamless DRRS supported\n",
-+		    connector->base.base.id, connector->base.name);
 +
- 	return downclock_mode;
++	i915->vbt.edp.drrs_msa_timing_delay =
++		(edp->sdrrs_msa_timing_delay >> (panel_type * 2)) & 3;
  }
+ 
+ static void
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 943267393ecb..020c5f7602a2 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -356,10 +356,11 @@ struct intel_vbt_data {
+ 		int lanes;
+ 		int preemphasis;
+ 		int vswing;
+-		bool low_vswing;
+-		bool initialized;
+ 		int bpp;
+ 		struct edp_power_seq pps;
++		u8 drrs_msa_timing_delay;
++		bool low_vswing;
++		bool initialized;
+ 		bool hobl;
+ 	} edp;
+ 
 -- 
 2.34.1
 
