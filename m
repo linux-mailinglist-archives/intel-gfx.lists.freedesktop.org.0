@@ -1,55 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E94FB4D3E15
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Mar 2022 01:28:06 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0C9D4D3E36
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Mar 2022 01:34:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6603589AB3;
-	Thu, 10 Mar 2022 00:28:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF22410E1DC;
+	Thu, 10 Mar 2022 00:34:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0979D89AB3
- for <intel-gfx@lists.freedesktop.org>; Thu, 10 Mar 2022 00:28:03 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1FED110E1DC;
+ Thu, 10 Mar 2022 00:34:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646872082; x=1678408082;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=4nHz64G6nnxB+JXBnjB/JBS2I+U0283wlOiry7nSlTU=;
- b=jqFIGc4PA7D27wUTAssP1Z707XtpiPv3701XxhFWTtGeTIHvqKhLiFYf
- pX0//tzm6hC1uSM85okaA1lFMW+tD7XArIuUHjFgScvBrbei7DZ+XQVzg
- nRNtjSiDWCc4gOTYn2KUiZhBGiysnc3Xq5fkA/UqdcHiiLDo79o6ypCR1
- Vipf/ialyE1OC82Av7UGppgVwDak8k/FiP3BrUF2r1SBMLlXYYJqkxdEP
- 2tD0MiS2RuzfbFoQFX5ey3PKtd8+l1FcDhkjQ90bjuED15KavyoUiZ/NW
- gX708fRlMPgjXr5IRMVNJ9X+6J5oivSlJ+byFvkiWxrjw8SZs25Lzd8y6 g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10281"; a="279856388"
-X-IronPort-AV: E=Sophos;i="5.90,169,1643702400"; d="scan'208";a="279856388"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Mar 2022 16:28:01 -0800
-X-IronPort-AV: E=Sophos;i="5.90,169,1643702400"; d="scan'208";a="538230007"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
- ([10.165.21.211])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Mar 2022 16:28:01 -0800
-Date: Wed, 9 Mar 2022 16:29:03 -0800
-From: "Navare, Manasi" <manasi.d.navare@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20220310002903.GB6158@labuser-Z97X-UD5H>
-References: <20220223131315.18016-1-ville.syrjala@linux.intel.com>
- <20220223131315.18016-14-ville.syrjala@linux.intel.com>
- <20220303224116.GB17231@labuser-Z97X-UD5H>
- <YiIr6cUI3slPfjhQ@intel.com>
+ t=1646872467; x=1678408467;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=sQDEtC45tv0bqxqFrd928tIIioygMY7+fgvYolKBUfA=;
+ b=M9x0rO8dWerrtn3zxNEwMs1PA6ehI/+JtsmcNO5Gju6ubkYboJGZBmuQ
+ 7NmagYcrnttSHWF6DffFMStOvxYVS22gCvvbJol8XWSaSUJVlI7YnZWA4
+ DV8DPgTxvw3d9vIjhlZ6qLg753mfQsN+BqOT20x51bYZJSrq4PyuNF9xv
+ hIOf30BLhhn1en/TM7xkLsPRhQRlilWPpcjX3kRDYLH6XtQLN4Jg0BU4w
+ QZHkafykZ6/m+1ZAme+9n88SWJaaVmeGLKvSPuB6uKo19l3kb7ePbM4U1
+ RPiOkDw6RLbzF5BYqOUsfaG+vXy+oI11/NNc1Gx7MQpPizBjodrLu2YsX w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10281"; a="252693330"
+X-IronPort-AV: E=Sophos;i="5.90,169,1643702400"; d="scan'208";a="252693330"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Mar 2022 16:34:08 -0800
+X-IronPort-AV: E=Sophos;i="5.90,169,1643702400"; d="scan'208";a="712156878"
+Received: from slsmith2-mobl.amr.corp.intel.com (HELO msatwood-mobl.intel.com)
+ ([10.209.13.34])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Mar 2022 16:34:07 -0800
+From: Matt Atwood <matthew.s.atwood@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Wed,  9 Mar 2022 16:34:04 -0800
+Message-Id: <20220310003404.27499-1-matthew.s.atwood@intel.com>
+X-Mailer: git-send-email 2.21.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <YiIr6cUI3slPfjhQ@intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH v2 13/13] drm/i915: Make the PIPESC rect
- relative to the entire bigjoiner area
+Subject: [Intel-gfx] [PATCH] drm/i915/uapi: Add
+ DRM_I915_QUERY_GEOMETRY_SUBSLICES
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,175 +56,210 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Mar 04, 2022 at 05:10:33PM +0200, Ville Syrjälä wrote:
-> On Thu, Mar 03, 2022 at 02:41:23PM -0800, Navare, Manasi wrote:
-> > On Wed, Feb 23, 2022 at 03:13:15PM +0200, Ville Syrjala wrote:
-> > > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > > 
-> > > When using bigjoiner it's useful to know the offset of each
-> > > individual pipe in the whole set of joined pipes. Let's include
-> > > that information in our PIPESRC rectangle. With this we can make
-> > > the plane clipping code blissfully unaware of bigjoiner usage, as
-> > > all we have to do is remove the pipe's offset from the final plane
-> > > destination coordinates.
-> > > 
-> > > v2: Use intel_bigjoiner_num_pipes()
-> > > 
-> > > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > > ---
-> > >  .../gpu/drm/i915/display/intel_atomic_plane.c |  7 +++---
-> > >  drivers/gpu/drm/i915/display/intel_cursor.c   |  8 ++++---
-> > >  drivers/gpu/drm/i915/display/intel_display.c  | 21 ++++++++++++++++++
-> > >  drivers/gpu/drm/i915/display/intel_overlay.c  | 22 +++++++++----------
-> > >  4 files changed, 40 insertions(+), 18 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> > > index 3cbf66146da0..92ae4eebc62f 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> > > @@ -824,10 +824,6 @@ int intel_atomic_plane_check_clipping(struct intel_plane_state *plane_state,
-> > >  		return -ERANGE;
-> > >  	}
-> > >  
-> > > -	/* right side of the image is on the slave crtc, adjust dst to match */
-> > > -	if (intel_crtc_is_bigjoiner_slave(crtc_state))
-> > > -		drm_rect_translate(dst, -drm_rect_width(&crtc_state->pipe_src), 0);
-> > > -
-> > >  	/*
-> > >  	 * FIXME: This might need further adjustment for seamless scaling
-> > >  	 * with phase information, for the 2p2 and 2p1 scenarios.
-> > > @@ -844,6 +840,9 @@ int intel_atomic_plane_check_clipping(struct intel_plane_state *plane_state,
-> > >  		return -EINVAL;
-> > >  	}
-> > >  
-> > > +	/* final plane coordinates will be relative to the plane's pipe */
-> > > +	drm_rect_translate(dst, -clip->x1, -clip->y1);
-> > > +
-> > >  	return 0;
-> > >  }
-> > >  
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-> > > index da6cf0515164..9279e2783e7e 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_cursor.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-> > > @@ -152,9 +152,11 @@ static int intel_check_cursor(struct intel_crtc_state *crtc_state,
-> > >  	/* Use the unclipped src/dst rectangles, which we program to hw */
-> > >  	plane_state->uapi.src = src;
-> > >  	plane_state->uapi.dst = dst;
-> > > -	if (intel_crtc_is_bigjoiner_slave(crtc_state))
-> > > -		drm_rect_translate(&plane_state->uapi.dst,
-> > > -				   -drm_rect_width(&crtc_state->pipe_src), 0);
-> > > +
-> > > +	/* final plane coordinates will be relative to the plane's pipe */
-> > > +	drm_rect_translate(&plane_state->uapi.dst,
-> > > +			   -crtc_state->pipe_src.x1,
-> > > +			   -crtc_state->pipe_src.y1);
-> > >  
-> > >  	ret = intel_cursor_check_surface(plane_state);
-> > >  	if (ret)
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> > > index 7a09bb33c1eb..a9c15f27b948 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > > @@ -3204,6 +3204,23 @@ static void intel_get_transcoder_timings(struct intel_crtc *crtc,
-> > >  	}
-> > >  }
-> > >  
-> > > +static void intel_bigjoiner_adjust_pipe_src(struct intel_crtc_state *crtc_state)
-> > > +{
-> > > +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> > > +	int num_pipes = intel_bigjoiner_num_pipes(crtc_state);
-> > > +	enum pipe master_pipe, pipe = crtc->pipe;
-> > > +	int width;
-> > > +
-> > > +	if (num_pipes < 2)
-> > > +		return;
-> > > +
-> > > +	master_pipe = bigjoiner_master_pipe(crtc_state);
-> > > +	width = drm_rect_width(&crtc_state->pipe_src);
-> > > +
-> > > +	drm_rect_translate_to(&crtc_state->pipe_src,
-> > > +			      (pipe - master_pipe) * width, 0);
-> > > +}
-> > > +
-> > >  static void intel_get_pipe_src_size(struct intel_crtc *crtc,
-> > >  				    struct intel_crtc_state *pipe_config)
-> > >  {
-> > > @@ -3216,6 +3233,8 @@ static void intel_get_pipe_src_size(struct intel_crtc *crtc,
-> > >  	drm_rect_init(&pipe_config->pipe_src, 0, 0,
-> > >  		      REG_FIELD_GET(PIPESRC_WIDTH_MASK, tmp) + 1,
-> > >  		      REG_FIELD_GET(PIPESRC_HEIGHT_MASK, tmp) + 1);
-> > > +
-> > > +	intel_bigjoiner_adjust_pipe_src(pipe_config);
-> > >  }
-> > >  
-> > >  static void i9xx_set_pipeconf(const struct intel_crtc_state *crtc_state)
-> > > @@ -5853,6 +5872,8 @@ intel_modeset_pipe_config_late(struct intel_crtc_state *crtc_state)
-> > >  	struct drm_connector *connector;
-> > >  	int i;
-> > >  
-> > > +	intel_bigjoiner_adjust_pipe_src(crtc_state);
-> > > +
-> > >  	for_each_new_connector_in_state(&state->base, connector,
-> > >  					conn_state, i) {
-> > >  		struct intel_encoder *encoder =
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_overlay.c b/drivers/gpu/drm/i915/display/intel_overlay.c
-> > > index 631e1f1dc5e6..ee46561b5ae8 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_overlay.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_overlay.c
-> > > @@ -958,21 +958,21 @@ static void update_pfit_vscale_ratio(struct intel_overlay *overlay)
-> > >  static int check_overlay_dst(struct intel_overlay *overlay,
-> > >  			     struct drm_intel_overlay_put_image *rec)
-> > >  {
-> > > -	const struct intel_crtc_state *pipe_config =
-> > > +	const struct intel_crtc_state *crtc_state =
-> > >  		overlay->crtc->config;
-> > > -	int pipe_src_w = drm_rect_width(&pipe_config->pipe_src);
-> > > -	int pipe_src_h = drm_rect_height(&pipe_config->pipe_src);
-> > > +	struct drm_rect req, clipped;
-> > >  
-> > > -	if (rec->dst_height == 0 || rec->dst_width == 0)
-> > > -		return -EINVAL;
-> > > +	drm_rect_init(&req, rec->dst_x, rec->dst_y,
-> > > +		      rec->dst_width, rec->dst_height);
-> > > +
-> > > +	clipped = req;
-> > > +	drm_rect_intersect(&clipped, &crtc_state->pipe_src);
-> > >  
-> > > -	if (rec->dst_x < pipe_src_w &&
-> > > -	    rec->dst_x + rec->dst_width <= pipe_src_w &&
-> > > -	    rec->dst_y < pipe_src_h &&
-> > > -	    rec->dst_y + rec->dst_height <= pipe_src_h)
-> > > -		return 0;
-> > > -	else
-> > > +	if (!drm_rect_visible(&clipped) ||
-> > > +	    !drm_rect_equals(&clipped, &req))
-> > >  		return -EINVAL;
-> > > +
-> > > +	return 0;
-> > 
-> > I dont quite understand what we are trying to do here with the clipped ?
-> > Can you elaborate a bit what this function does?
-> 
-> It checks whether the userspace provided coordinates were fully
-> within the pipe source rectangle. If not we return an error.
-> 
-> I suppose technically we should be checking against the uapi
-> hdisplay/vdisplay since this is uapi stuff, but no bigjoiner
-> on these old platforms so this will effectively do the same
-> thing.
->
+Newer platforms have DSS that aren't necessarily available for both
+geometry and compute, two queries will need to exist. This introduces
+the first, when passing a valid engine class and engine instance in the
+flags returns a topology describing geometry.
 
-Okay sounds good then
+Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+UMD (mesa): https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/14143
+Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
+---
+ drivers/gpu/drm/i915/i915_query.c | 68 ++++++++++++++++++++++---------
+ include/uapi/drm/i915_drm.h       | 24 +++++++----
+ 2 files changed, 65 insertions(+), 27 deletions(-)
 
-Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
-
-Manasi
+diff --git a/drivers/gpu/drm/i915/i915_query.c b/drivers/gpu/drm/i915/i915_query.c
+index 2dfbc22857a3..0cc2670ae09c 100644
+--- a/drivers/gpu/drm/i915/i915_query.c
++++ b/drivers/gpu/drm/i915/i915_query.c
+@@ -9,6 +9,7 @@
+ #include "i915_drv.h"
+ #include "i915_perf.h"
+ #include "i915_query.h"
++#include "gt/intel_engine_user.h"
+ #include <uapi/drm/i915_drm.h>
  
-> -- 
-> Ville Syrjälä
-> Intel
+ static int copy_query_item(void *query_hdr, size_t query_sz,
+@@ -28,36 +29,30 @@ static int copy_query_item(void *query_hdr, size_t query_sz,
+ 	return 0;
+ }
+ 
+-static int query_topology_info(struct drm_i915_private *dev_priv,
+-			       struct drm_i915_query_item *query_item)
++static int fill_topology_info(const struct sseu_dev_info *sseu,
++			      struct drm_i915_query_item *query_item,
++			      const u8 *subslice_mask)
+ {
+-	const struct sseu_dev_info *sseu = &to_gt(dev_priv)->info.sseu;
+ 	struct drm_i915_query_topology_info topo;
+ 	u32 slice_length, subslice_length, eu_length, total_length;
+ 	int ret;
+ 
+-	if (query_item->flags != 0)
+-		return -EINVAL;
++	BUILD_BUG_ON(sizeof(u8) != sizeof(sseu->slice_mask));
+ 
+ 	if (sseu->max_slices == 0)
+ 		return -ENODEV;
+ 
+-	BUILD_BUG_ON(sizeof(u8) != sizeof(sseu->slice_mask));
+-
+ 	slice_length = sizeof(sseu->slice_mask);
+ 	subslice_length = sseu->max_slices * sseu->ss_stride;
+ 	eu_length = sseu->max_slices * sseu->max_subslices * sseu->eu_stride;
+ 	total_length = sizeof(topo) + slice_length + subslice_length +
+ 		       eu_length;
+ 
+-	ret = copy_query_item(&topo, sizeof(topo), total_length,
+-			      query_item);
++	ret = copy_query_item(&topo, sizeof(topo), total_length, query_item);
++
+ 	if (ret != 0)
+ 		return ret;
+ 
+-	if (topo.flags != 0)
+-		return -EINVAL;
+-
+ 	memset(&topo, 0, sizeof(topo));
+ 	topo.max_slices = sseu->max_slices;
+ 	topo.max_subslices = sseu->max_subslices;
+@@ -69,27 +64,61 @@ static int query_topology_info(struct drm_i915_private *dev_priv,
+ 	topo.eu_stride = sseu->eu_stride;
+ 
+ 	if (copy_to_user(u64_to_user_ptr(query_item->data_ptr),
+-			   &topo, sizeof(topo)))
++			 &topo, sizeof(topo)))
+ 		return -EFAULT;
+ 
+ 	if (copy_to_user(u64_to_user_ptr(query_item->data_ptr + sizeof(topo)),
+-			   &sseu->slice_mask, slice_length))
++			 &sseu->slice_mask, slice_length))
+ 		return -EFAULT;
+ 
+ 	if (copy_to_user(u64_to_user_ptr(query_item->data_ptr +
+-					   sizeof(topo) + slice_length),
+-			   sseu->subslice_mask, subslice_length))
++					 sizeof(topo) + slice_length),
++			 subslice_mask, subslice_length))
+ 		return -EFAULT;
+ 
+ 	if (copy_to_user(u64_to_user_ptr(query_item->data_ptr +
+-					   sizeof(topo) +
+-					   slice_length + subslice_length),
+-			   sseu->eu_mask, eu_length))
++					 sizeof(topo) +
++					 slice_length + subslice_length),
++			 sseu->eu_mask, eu_length))
+ 		return -EFAULT;
+ 
+ 	return total_length;
+ }
+ 
++static int query_topology_info(struct drm_i915_private *dev_priv,
++			       struct drm_i915_query_item *query_item)
++{
++	const struct sseu_dev_info *sseu = &to_gt(dev_priv )->info.sseu;
++
++	if (query_item->flags != 0)
++		return -EINVAL;
++
++	return fill_topology_info(sseu, query_item, sseu->subslice_mask);
++}
++
++static int query_geometry_subslices(struct drm_i915_private *i915,
++				    struct drm_i915_query_item *query_item)
++{
++	const struct sseu_dev_info *sseu;
++	struct intel_engine_cs *engine;
++	u8 engine_class, engine_instance;
++
++	if (GRAPHICS_VER_FULL(i915) < IP_VER(12, 50))
++		return -ENODEV;
++
++	engine_class = query_item->flags & 0xFF;
++	engine_instance = (query_item->flags >>8) & 0xFF;
++
++	engine = intel_engine_lookup_user(i915, engine_class, engine_instance);
++
++	if(!engine)
++		return -EINVAL;
++
++	sseu = &engine->gt->info.sseu;
++
++	return fill_topology_info(sseu, query_item, sseu->geometry_subslice_mask);
++}
++
+ static int
+ query_engine_info(struct drm_i915_private *i915,
+ 		  struct drm_i915_query_item *query_item)
+@@ -485,6 +514,7 @@ static int (* const i915_query_funcs[])(struct drm_i915_private *dev_priv,
+ 	query_engine_info,
+ 	query_perf_config,
+ 	query_memregion_info,
++	query_geometry_subslices,
+ };
+ 
+ int i915_query_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+index 05c3642aaece..ac75d8b85803 100644
+--- a/include/uapi/drm/i915_drm.h
++++ b/include/uapi/drm/i915_drm.h
+@@ -2687,10 +2687,11 @@ struct drm_i915_perf_oa_config {
+ struct drm_i915_query_item {
+ 	/** @query_id: The id for this query */
+ 	__u64 query_id;
+-#define DRM_I915_QUERY_TOPOLOGY_INFO    1
+-#define DRM_I915_QUERY_ENGINE_INFO	2
+-#define DRM_I915_QUERY_PERF_CONFIG      3
+-#define DRM_I915_QUERY_MEMORY_REGIONS   4
++#define DRM_I915_QUERY_TOPOLOGY_INFO    	1
++#define DRM_I915_QUERY_ENGINE_INFO		2
++#define DRM_I915_QUERY_PERF_CONFIG      	3
++#define DRM_I915_QUERY_MEMORY_REGIONS   	4
++#define DRM_I915_QUERY_GEOMETRY_SUBSLICES	5
+ /* Must be kept compact -- no holes and well documented */
+ 
+ 	/**
+@@ -2714,6 +2715,9 @@ struct drm_i915_query_item {
+ 	 *	- DRM_I915_QUERY_PERF_CONFIG_LIST
+ 	 *      - DRM_I915_QUERY_PERF_CONFIG_DATA_FOR_UUID
+ 	 *      - DRM_I915_QUERY_PERF_CONFIG_FOR_UUID
++	 *
++	 * When query_id == DRM_I915_QUERY_GEOMETRY_SUBSLICES must have bits 0:7 set
++	 * as a valid engine class, and bits 8:15 must have a valid engine instance.
+ 	 */
+ 	__u32 flags;
+ #define DRM_I915_QUERY_PERF_CONFIG_LIST          1
+@@ -2772,16 +2776,20 @@ struct drm_i915_query {
+ };
+ 
+ /*
+- * Data written by the kernel with query DRM_I915_QUERY_TOPOLOGY_INFO :
++ * Data written by the kernel with query DRM_I915_QUERY_TOPOLOGY_INFO,
++ * DRM_I915_QUERY_GEOMETRY_SUBSLICE:
+  *
+  * data: contains the 3 pieces of information :
+  *
+- * - the slice mask with one bit per slice telling whether a slice is
+- *   available. The availability of slice X can be queried with the following
+- *   formula :
++ * - For DRM_I915_QUERY_TOPOLOGY_INFO the slice mask with one bit per slice
++ *   telling whether a slice is available. The availability of slice X can be
++ *   queried with the following formula :
+  *
+  *           (data[X / 8] >> (X % 8)) & 1
+  *
++ * - For DRM_I915_QUERY_GEOMETRY_SUBSLICES Slices are equal to 1 and this field
++ *   is not used.
++ *
+  * - the subslice mask for each slice with one bit per subslice telling
+  *   whether a subslice is available. Gen12 has dual-subslices, which are
+  *   similar to two gen11 subslices. For gen12, this array represents dual-
+-- 
+2.21.3
+
