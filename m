@@ -1,52 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAF3A4D4204
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Mar 2022 08:46:49 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3E2B4D4218
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Mar 2022 08:58:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D5F5410F652;
-	Thu, 10 Mar 2022 07:46:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B8B1D10F7B3;
+	Thu, 10 Mar 2022 07:58:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF02D10F652
- for <intel-gfx@lists.freedesktop.org>; Thu, 10 Mar 2022 07:46:45 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E4F8F10F7B2;
+ Thu, 10 Mar 2022 07:58:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646898405; x=1678434405;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=TDHtG3+gcqSyFUY/5KlOOeT6chPR7ajGNti/ofYH3hc=;
- b=NxkXq/ZjUzFccbwDT3T7DjpWw6hUQ/FsFGVVfWk+sgtNOJ8FyDSwfWRa
- QHiDlkVoDbS0lu34dU25LtYyI7Aj/hL1+/+9PduOt/HTfQ+JB/lqmrwc6
- znWyBFFoPZpBKu+2Ql6Qcan3g1Uii9QzIgdle1iTBSaCZNHere4xk0epw
- swNnWAY+jqvaBk58ih3D4HubsB6YkWyKqX4YtaXa9tewyw8lwULuj7LPS
- eoVB5LmWRrcDrPfcjDEALVYJboDvsFxy6aKYG3tditjkYpWCzjj22QFEo
- yRkJSMWyq79QrM8KDqXl6DvYxLIiPCL8edWl++RH8sRpTTJr/mYpPqShP Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10281"; a="237354355"
-X-IronPort-AV: E=Sophos;i="5.90,169,1643702400"; d="scan'208";a="237354355"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Mar 2022 23:46:44 -0800
-X-IronPort-AV: E=Sophos;i="5.90,169,1643702400"; d="scan'208";a="578705757"
-Received: from unknown (HELO intel.com) ([10.237.72.65])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Mar 2022 23:46:43 -0800
-Date: Thu, 10 Mar 2022 09:47:14 +0200
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20220310074714.GB20808@intel.com>
-References: <20220303191207.27931-1-ville.syrjala@linux.intel.com>
- <20220303191207.27931-8-ville.syrjala@linux.intel.com>
+ t=1646899112; x=1678435112;
+ h=date:from:to:cc:subject:message-id:mime-version:
+ content-transfer-encoding;
+ bh=iEBoJRUr+PIVj2h+0VZjq67F+6ydOhLcf7l5hBOruw0=;
+ b=ATeFsalCQEZYnRGLmVPH7bi0AV6KMXxWdaTsPhzsQlB7kYKzE2/4LD3n
+ F849j77eYiInmOaL9+Duqy71vbhnOsudSbXXiiniBXv7/hNZh+ZdiD/Eq
+ z1VrexMFz2uGetkVwOa2gSq60Icj8HxR/WARvxpgvglck2S3UmqOULz4f
+ 2ikQwohl490BUu9MYg4DjtW+JsluNyWQsAMh+Gp00B898rPeWQ+bps04R
+ Wf/GBf/P7GbKBfXXhrjbS+00XbqZH/kInt1wfh20j2p4+ruxvfTREPUaz
+ LAPVjDE2UvwGTMH14FyVZerlYQ5/MElX+Xoi0QtyVR2C37ex/PLR6PYRR g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10281"; a="235137504"
+X-IronPort-AV: E=Sophos;i="5.90,169,1643702400"; d="scan'208";a="235137504"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Mar 2022 23:58:31 -0800
+X-IronPort-AV: E=Sophos;i="5.90,169,1643702400"; d="scan'208";a="538350461"
+Received: from therrane-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.54.177])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Mar 2022 23:58:27 -0800
+Date: Thu, 10 Mar 2022 09:58:24 +0200
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <YimvoLOZ8RPKrITv@jlahtine-mobl.ger.corp.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220303191207.27931-8-ville.syrjala@linux.intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH v2 7/9] drm/i915: Properly write lock
- bw_state when it changes
+Subject: [Intel-gfx] [PULL] drm-intel-next-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,69 +55,74 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Mar 03, 2022 at 09:12:05PM +0200, Ville Syrjala wrote:
-> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> 
-> The current code also forgets to call intel_atomic_lock_global_state()
-> when other stuff besides the final min_cdlck changes in the state.
-> That means we may throw away data which actually has changed, and
-> thus we can't be at all sure what the code ends up doing during
-> subsequent commits. Do the write lock properly.
-> 
-> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Hi Dave & Daniel,
 
-Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Here's a batch of -next-fixes from drm-intel-next/drm-intel-gt-next.
 
-> ---
->  drivers/gpu/drm/i915/display/intel_bw.c | 24 +++++++++++++++++++++++-
->  1 file changed, 23 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-> index 0759bb95ea4b..56eebccd16e2 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bw.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bw.c
-> @@ -678,6 +678,28 @@ intel_atomic_get_bw_state(struct intel_atomic_state *state)
->  	return to_intel_bw_state(bw_state);
->  }
->  
-> +static bool intel_bw_state_changed(struct drm_i915_private *i915,
-> +				   const struct intel_bw_state *old_bw_state,
-> +				   const struct intel_bw_state *new_bw_state)
-> +{
-> +	enum pipe pipe;
-> +
-> +	for_each_pipe(i915, pipe) {
-> +		const struct intel_dbuf_bw *old_crtc_bw =
-> +			&old_bw_state->dbuf_bw[pipe];
-> +		const struct intel_dbuf_bw *new_crtc_bw =
-> +			&new_bw_state->dbuf_bw[pipe];
-> +		enum dbuf_slice slice;
-> +
-> +		for_each_dbuf_slice(i915, slice) {
-> +			if (old_crtc_bw->used_bw[slice] != new_crtc_bw->used_bw[slice])
-> +				return true;
-> +		}
-> +	}
-> +
-> +	return old_bw_state->min_cdclk != new_bw_state->min_cdclk;
-> +}
-> +
->  static void skl_crtc_calc_dbuf_bw(struct intel_bw_state *bw_state,
->  				  const struct intel_crtc_state *crtc_state)
->  {
-> @@ -765,7 +787,7 @@ int intel_bw_calc_min_cdclk(struct intel_atomic_state *state)
->  
->  	new_bw_state->min_cdclk = DIV_ROUND_UP(max_bw, 64);
->  
-> -	if (new_bw_state->min_cdclk != old_bw_state->min_cdclk) {
-> +	if (intel_bw_state_changed(dev_priv, old_bw_state, new_bw_state)) {
->  		int ret = intel_atomic_lock_global_state(&new_bw_state->base);
->  
->  		if (ret)
-> -- 
-> 2.34.1
-> 
+On GT side just a fix to relax GGTT alignment down 64K from 2M.
+Addition of missing "name" attribute for GVT mdev device.
+On display side async flip fixes and a static checker fix.
+
+CI results had some display errors on TGL, the display has been
+rebooted to fix those so should cause no worries.
+
+Regards, Joonas
+
+***
+
+drm-intel-next-fixes-2022-03-10:
+
+- Reduce overzealous alignment constraints for GGTT
+- Add missing mdev attribute "name" for GVT
+- Async flip fixes (Ville)
+- Static checker fix (Ville)
+
+The following changes since commit 6de7e4f02640fba2ffa6ac04e2be13785d614175:
+
+  Merge tag 'drm-msm-next-2022-03-01' of https://gitlab.freedesktop.org/drm/msm into drm-next (2022-03-04 14:39:00 +1000)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-next-fixes-2022-03-10
+
+for you to fetch changes up to 5e7f44b5c2c035fe2e5458193c2bbee56db6a090:
+
+  drm/i915/gtt: reduce overzealous alignment constraints for GGTT (2022-03-09 08:34:55 +0200)
+
+----------------------------------------------------------------
+- Reduce overzealous alignment constraints for GGTT
+- Add missing mdev attribute "name" for GVT
+- Async flip fixes (Ville)
+- Static checker fix (Ville)
+
+----------------------------------------------------------------
+Joonas Lahtinen (1):
+      Merge tag 'gvt-next-2022-03-07' of https://github.com/intel/gvt-linux into drm-intel-next-fixes
+
+Matthew Auld (1):
+      drm/i915/gtt: reduce overzealous alignment constraints for GGTT
+
+Ville Syrjälä (4):
+      drm/i915: Avoid negative shift due to bigjoiner_pipes==0
+      drm/i915: Don't skip ddb allocation if data_rate==0
+      drm/i915: Check async flip capability early on
+      drm/i915: Fix the async flip wm0/ddb optimization
+
+Zhi Wang (1):
+      drm/i915/gvt: add the missing mdev attribute "name"
+
+ drivers/gpu/drm/i915/display/intel_atomic.c        |   1 +
+ drivers/gpu/drm/i915/display/intel_atomic_plane.c  |   7 +-
+ drivers/gpu/drm/i915/display/intel_crtc.c          |   4 +-
+ drivers/gpu/drm/i915/display/intel_display.c       | 122 +++++++++++++++++----
+ drivers/gpu/drm/i915/display/intel_display_types.h |   6 +-
+ drivers/gpu/drm/i915/gt/intel_gtt.c                |   3 +-
+ drivers/gpu/drm/i915/gvt/kvmgt.c                   |  15 +++
+ drivers/gpu/drm/i915/intel_pm.c                    |  30 ++---
+ 8 files changed, 136 insertions(+), 52 deletions(-)
