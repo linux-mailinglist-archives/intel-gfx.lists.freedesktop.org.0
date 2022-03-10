@@ -1,49 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD5B84D4CBE
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Mar 2022 16:25:29 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A11854D4CC4
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Mar 2022 16:29:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 21A8D10E139;
-	Thu, 10 Mar 2022 15:25:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 68EDB10E646;
+	Thu, 10 Mar 2022 15:29:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 79D2610E139
- for <intel-gfx@lists.freedesktop.org>; Thu, 10 Mar 2022 15:25:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646925926; x=1678461926;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=t2Zqw3sCXSDO6XtbeYsRRNmiNNGe//O1HZQVsHgJS14=;
- b=PKJxIms+yID4W9kUvHMW9BT38F92b1cJGBZlU6ApOzAHwrZzo1GYMu8+
- d6tiV043ioZovs1rfg1FxjseJBM1THTyMtDTWD+l+6bs2Olfg54L2GF8Y
- XXagTb+xaqr2uKfCm2RweG9p6q6RScXnC5gGLkJbqIC/rvBXD87klNuyo
- Vovus3u3Izi/BMsdm40kI/5tFHXefq/qF1L7dU4IQ1nGK0AJpeVSIk5Jn
- WFLYJlopAvNy93Tt67oUtZxgxAe9KoVH2V1fR3wOa50FSLbycUXf08JOT
- vVOgpC3LwODQewD9OTF2pcJvuC3sTfSh2f6xmFuKx4odPw1hlO8uWsVpa Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10281"; a="254105717"
-X-IronPort-AV: E=Sophos;i="5.90,171,1643702400"; d="scan'208";a="254105717"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2022 07:25:25 -0800
-X-IronPort-AV: E=Sophos;i="5.90,171,1643702400"; d="scan'208";a="578828462"
-Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2022 07:25:24 -0800
-Date: Thu, 10 Mar 2022 17:25:20 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Message-ID: <20220310152520.GB2275631@ideak-desk.fi.intel.com>
-References: <20211026053821.162028-1-ankit.k.nautiyal@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2B87410E646;
+ Thu, 10 Mar 2022 15:29:10 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 260FFAADD3;
+ Thu, 10 Mar 2022 15:29:10 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4784853997470453463=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211026053821.162028-1-ankit.k.nautiyal@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Remove check for low
- voltage sku for max dp source rate
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lee Shawn C" <shawn.c.lee@intel.com>
+Date: Thu, 10 Mar 2022 15:29:10 -0000
+Message-ID: <164692615011.17006.4263291008867195906@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220310145424.32643-1-shawn.c.lee@intel.com>
+In-Reply-To: <20220310145424.32643-1-shawn.c.lee@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZW5o?=
+ =?utf-8?q?anced_edid_driver_compatibility?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,113 +40,276 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Oct 26, 2021 at 11:08:21AM +0530, Ankit Nautiyal wrote:
-> The low voltage sku check can be ignored as OEMs need to consider that
-> when designing the board and then put any limits in VBT.
-> 
-> Same is now changed in Bspec pages.
-> 
-> v2: Added debug print for combo PHY procmon reference values
-> to get voltage configuration of combo PHY ports. (Imre)
+--===============4784853997470453463==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/5272
+== Series Details ==
 
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> ---
->  .../gpu/drm/i915/display/intel_combo_phy.c    |  4 +++
->  drivers/gpu/drm/i915/display/intel_dp.c       | 32 ++-----------------
->  2 files changed, 7 insertions(+), 29 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_combo_phy.c b/drivers/gpu/drm/i915/display/intel_combo_phy.c
-> index 634e8d449457..01ff86b3ff91 100644
-> --- a/drivers/gpu/drm/i915/display/intel_combo_phy.c
-> +++ b/drivers/gpu/drm/i915/display/intel_combo_phy.c
-> @@ -112,6 +112,10 @@ static bool icl_verify_procmon_ref_values(struct drm_i915_private *dev_priv,
->  
->  	procmon = icl_get_procmon_ref_values(dev_priv, phy);
->  
-> +	drm_dbg(&dev_priv->drm,
-> +		"Combo PHY %c PROCMON values : 0x%x, 0x%x, 0x%x\n",
-> +		phy_name(phy), procmon->dw1, procmon->dw9, procmon->dw10);
+Series: enhanced edid driver compatibility
+URL   : https://patchwork.freedesktop.org/series/101241/
+State : success
 
-The expected encodings are not descriptive, could we instead add a .name
-(initing them to "0.85V dot0 (low-voltage)", "0.95V dot0", etc.) to struct
-icl_procmon and print that here?
+== Summary ==
 
-Otherwise, the spec matches now the code:
-Reviewed-by: Imre Deak <imre.deak@intel.com>
+CI Bug Log - changes from CI_DRM_11348 -> Patchwork_22531
+====================================================
 
-> +
->  	ret = check_phy_reg(dev_priv, phy, ICL_PORT_COMP_DW1(phy),
->  			    (0xff << 16) | 0xff, procmon->dw1);
->  	ret &= check_phy_reg(dev_priv, phy, ICL_PORT_COMP_DW9(phy),
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index f5dc2126d140..693d7e097295 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -385,23 +385,13 @@ static int dg2_max_source_rate(struct intel_dp *intel_dp)
->  	return intel_dp_is_edp(intel_dp) ? 810000 : 1350000;
->  }
->  
-> -static bool is_low_voltage_sku(struct drm_i915_private *i915, enum phy phy)
-> -{
-> -	u32 voltage;
-> -
-> -	voltage = intel_de_read(i915, ICL_PORT_COMP_DW3(phy)) & VOLTAGE_INFO_MASK;
-> -
-> -	return voltage == VOLTAGE_INFO_0_85V;
-> -}
-> -
->  static int icl_max_source_rate(struct intel_dp *intel_dp)
->  {
->  	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
->  	struct drm_i915_private *dev_priv = to_i915(dig_port->base.base.dev);
->  	enum phy phy = intel_port_to_phy(dev_priv, dig_port->base.port);
->  
-> -	if (intel_phy_is_combo(dev_priv, phy) &&
-> -	    (is_low_voltage_sku(dev_priv, phy) || !intel_dp_is_edp(intel_dp)))
-> +	if (intel_phy_is_combo(dev_priv, phy) && !intel_dp_is_edp(intel_dp))
->  		return 540000;
->  
->  	return 810000;
-> @@ -409,23 +399,7 @@ static int icl_max_source_rate(struct intel_dp *intel_dp)
->  
->  static int ehl_max_source_rate(struct intel_dp *intel_dp)
->  {
-> -	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
-> -	struct drm_i915_private *dev_priv = to_i915(dig_port->base.base.dev);
-> -	enum phy phy = intel_port_to_phy(dev_priv, dig_port->base.port);
-> -
-> -	if (intel_dp_is_edp(intel_dp) || is_low_voltage_sku(dev_priv, phy))
-> -		return 540000;
-> -
-> -	return 810000;
-> -}
-> -
-> -static int dg1_max_source_rate(struct intel_dp *intel_dp)
-> -{
-> -	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
-> -	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-> -	enum phy phy = intel_port_to_phy(i915, dig_port->base.port);
-> -
-> -	if (intel_phy_is_combo(i915, phy) && is_low_voltage_sku(i915, phy))
-> +	if (intel_dp_is_edp(intel_dp))
->  		return 540000;
->  
->  	return 810000;
-> @@ -468,7 +442,7 @@ intel_dp_set_source_rates(struct intel_dp *intel_dp)
->  			max_rate = dg2_max_source_rate(intel_dp);
->  		else if (IS_ALDERLAKE_P(dev_priv) || IS_ALDERLAKE_S(dev_priv) ||
->  			 IS_DG1(dev_priv) || IS_ROCKETLAKE(dev_priv))
-> -			max_rate = dg1_max_source_rate(intel_dp);
-> +			max_rate = 810000;
->  		else if (IS_JSL_EHL(dev_priv))
->  			max_rate = ehl_max_source_rate(intel_dp);
->  		else
-> -- 
-> 2.25.1
-> 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22531/index.html
+
+Participating hosts (45 -> 42)
+------------------------------
+
+  Additional (2): fi-kbl-soraka fi-adl-ddr5 
+  Missing    (5): shard-tglu fi-bsw-cyan shard-rkl shard-dg1 bat-jsl-2 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_22531 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_fence@basic-busy@bcs0:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][1] ([fdo#109271]) +9 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22531/fi-kbl-soraka/igt@gem_exec_fence@basic-busy@bcs0.html
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][2] ([fdo#109271] / [i915#2190])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22531/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
+
+  * igt@gem_lmem_swapping@parallel-random-engines:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][3] ([fdo#109271] / [i915#4613]) +3 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22531/fi-kbl-soraka/igt@gem_lmem_swapping@parallel-random-engines.html
+
+  * igt@i915_selftest@live@gt_pm:
+    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][4] ([i915#1886])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22531/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
+
+  * igt@kms_chamelium@dp-edid-read:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][5] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22531/fi-kbl-soraka/igt@kms_chamelium@dp-edid-read.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][6] ([fdo#109271] / [i915#533])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22531/fi-kbl-soraka/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@guc_multi_lrc:
+    - {bat-rpls-2}:       [DMESG-WARN][7] ([i915#4391]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11348/bat-rpls-2/igt@i915_selftest@live@guc_multi_lrc.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22531/bat-rpls-2/igt@i915_selftest@live@guc_multi_lrc.html
+
+  * igt@kms_busy@basic@modeset:
+    - {bat-adlp-6}:       [DMESG-WARN][9] ([i915#3576]) -> [PASS][10] +1 similar issue
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11348/bat-adlp-6/igt@kms_busy@basic@modeset.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22531/bat-adlp-6/igt@kms_busy@basic@modeset.html
+
+  
+#### Warnings ####
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+    - fi-rkl-guc:         [SKIP][11] ([i915#4103]) -> [SKIP][12] ([i915#4070] / [i915#4103]) +1 similar issue
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11348/fi-rkl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22531/fi-rkl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
+    - fi-rkl-guc:         [SKIP][13] ([i915#533]) -> [SKIP][14] ([i915#4070] / [i915#533])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11348/fi-rkl-guc/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22531/fi-rkl-guc/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#1155]: https://gitlab.freedesktop.org/drm/intel/issues/1155
+  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
+  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
+  [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
+  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
+  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
+  [i915#3576]: https://gitlab.freedesktop.org/drm/intel/issues/3576
+  [i915#4070]: https://gitlab.freedesktop.org/drm/intel/issues/4070
+  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+  [i915#4391]: https://gitlab.freedesktop.org/drm/intel/issues/4391
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#5087]: https://gitlab.freedesktop.org/drm/intel/issues/5087
+  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_11348 -> Patchwork_22531
+
+  CI-20190529: 20190529
+  CI_DRM_11348: 896acee3ca564ae87ab881c4805a600271a128b2 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6373: 82306f1903c0fee8371f43a156d8b63163ca61c1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_22531: bed5ef6e025a2348408b557eab10e8b684dd8e2c @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+bed5ef6e025a drm/edid: check for HF-SCDB block
+5e47f1e4e336 drm/edid: parse HF-EEODB CEA extension block
+34060e19ea5e drm/edid: read HF-EEODB ext block
+426e5a856c6d drm/edid: parse multiple CEA extension block
+a6ac1723dd25 drm/edid: seek for available CEA block from specific EDID block index
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22531/index.html
+
+--===============4784853997470453463==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>enhanced edid driver compatibility</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/101241/">https://patchwork.freedesktop.org/series/101241/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22531/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22531/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11348 -&gt; Patchwork_22531</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22531/index.html</p>
+<h2>Participating hosts (45 -&gt; 42)</h2>
+<p>Additional (2): fi-kbl-soraka fi-adl-ddr5 <br />
+  Missing    (5): shard-tglu fi-bsw-cyan shard-rkl shard-dg1 bat-jsl-2 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_22531 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_exec_fence@basic-busy@bcs0:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22531/fi-kbl-soraka/igt@gem_exec_fence@basic-busy@bcs0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +9 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22531/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22531/fi-kbl-soraka/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_pm:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22531/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-edid-read:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22531/fi-kbl-soraka/igt@kms_chamelium@dp-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22531/fi-kbl-soraka/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@guc_multi_lrc:</p>
+<ul>
+<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11348/bat-rpls-2/igt@i915_selftest@live@guc_multi_lrc.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4391">i915#4391</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22531/bat-rpls-2/igt@i915_selftest@live@guc_multi_lrc.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_busy@basic@modeset:</p>
+<ul>
+<li>{bat-adlp-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11348/bat-adlp-6/igt@kms_busy@basic@modeset.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22531/bat-adlp-6/igt@kms_busy@basic@modeset.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
+<ul>
+<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11348/fi-rkl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22531/fi-rkl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4070">i915#4070</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
+<ul>
+<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11348/fi-rkl-guc/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22531/fi-rkl-guc/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4070">i915#4070</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11348 -&gt; Patchwork_22531</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11348: 896acee3ca564ae87ab881c4805a600271a128b2 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6373: 82306f1903c0fee8371f43a156d8b63163ca61c1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_22531: bed5ef6e025a2348408b557eab10e8b684dd8e2c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>bed5ef6e025a drm/edid: check for HF-SCDB block<br />
+5e47f1e4e336 drm/edid: parse HF-EEODB CEA extension block<br />
+34060e19ea5e drm/edid: read HF-EEODB ext block<br />
+426e5a856c6d drm/edid: parse multiple CEA extension block<br />
+a6ac1723dd25 drm/edid: seek for available CEA block from specific EDID block index</p>
+
+</body>
+</html>
+
+--===============4784853997470453463==--
