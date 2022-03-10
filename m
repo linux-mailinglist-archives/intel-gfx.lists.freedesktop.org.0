@@ -2,32 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A11854D4CC4
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Mar 2022 16:29:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 404854D4CC7
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Mar 2022 16:29:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 68EDB10E646;
-	Thu, 10 Mar 2022 15:29:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D9C2A10E808;
+	Thu, 10 Mar 2022 15:29:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2B87410E646;
- Thu, 10 Mar 2022 15:29:10 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 260FFAADD3;
- Thu, 10 Mar 2022 15:29:10 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4784853997470453463=="
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EC19B10E7D2;
+ Thu, 10 Mar 2022 15:29:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1646926162; x=1678462162;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=gVGq9pgG5rukofAoVudOeifHbkS8o202PTexuCQmpzc=;
+ b=Mivcyip9bGRrZaQVwkMqCrsjm+XJ2oiak+Nma7ChuIjG7kFBnHrFIa3F
+ UM1oULxC6KVZyL6nqwFSLyHgc+6Mbqwpr/5IYQhQtqhL8gOGTENkU490g
+ kCBENc1swOFmCH/u+ktlORougpacOxvP6AM3Lg67zV7sLoRkNGrNJ8hBF
+ rQD6hMqrAIoQytBgoR4Jg9PxrvKxKIkB3Cpg2UFXF688bAjunjCRRqHGb
+ 60S2GQ2ldwvIDzx0Qs8oJHvGMkdbbZQGehuXHxI+I8nvDLcJwxCQpDvVA
+ zbRZR8iZ66tUMNexHgAjaMZg493UCcK4yGCV5KZTnny5+GR+/K4h9RqM4 Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10281"; a="318500808"
+X-IronPort-AV: E=Sophos;i="5.90,171,1643702400"; d="scan'208";a="318500808"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2022 07:29:21 -0800
+X-IronPort-AV: E=Sophos;i="5.90,171,1643702400"; d="scan'208";a="596695223"
+Received: from tcuddihy-mobl.ger.corp.intel.com (HELO [10.252.3.1])
+ ([10.252.3.1])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2022 07:29:19 -0800
+Message-ID: <c3a4f6b5-3f61-4e52-da12-cbbe629fa080@intel.com>
+Date: Thu, 10 Mar 2022 15:29:17 +0000
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lee Shawn C" <shawn.c.lee@intel.com>
-Date: Thu, 10 Mar 2022 15:29:10 -0000
-Message-ID: <164692615011.17006.4263291008867195906@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220310145424.32643-1-shawn.c.lee@intel.com>
-In-Reply-To: <20220310145424.32643-1-shawn.c.lee@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZW5o?=
- =?utf-8?q?anced_edid_driver_compatibility?=
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Content-Language: en-GB
+To: Arunpravin <arunpravin.paneerselvam@amd.com>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+References: <20220307143707.3687-1-Arunpravin.PaneerSelvam@amd.com>
+ <78232c15-0d0c-3594-ab59-63560e63eb4e@intel.com>
+ <1ff8a246-8df9-c098-302c-f73b4425ccbf@amd.com>
+ <8909011e-d18b-03cd-aeb5-bae10db41a00@intel.com>
+ <02812310-64ed-fc93-beeb-b8ee08ec14b3@amd.com>
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <02812310-64ed-fc93-beeb-b8ee08ec14b3@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH] drm: remove min_order BUG_ON check
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,276 +65,130 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: alexander.deucher@amd.com, christian.koenig@amd.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============4784853997470453463==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On 10/03/2022 14:47, Arunpravin wrote:
+> 
+> 
+> On 08/03/22 10:31 pm, Matthew Auld wrote:
+>> On 08/03/2022 13:59, Arunpravin wrote:
+>>>
+>>>
+>>> On 07/03/22 10:11 pm, Matthew Auld wrote:
+>>>> On 07/03/2022 14:37, Arunpravin wrote:
+>>>>> place BUG_ON(order < min_order) outside do..while
+>>>>> loop as it fails Unigine Heaven benchmark.
+>>>>>
+>>>>> Unigine Heaven has buffer allocation requests for
+>>>>> example required pages are 161 and alignment request
+>>>>> is 128. To allocate the remaining 33 pages, continues
+>>>>> the iteration to find the order value which is 5 and
+>>>>> when it compares with min_order = 7, enables the
+>>>>> BUG_ON(). To avoid this problem, placed the BUG_ON
+>>>>> check outside of do..while loop.
+>>>>>
+>>>>> Signed-off-by: Arunpravin <Arunpravin.PaneerSelvam@amd.com>
+>>>>> ---
+>>>>>     drivers/gpu/drm/drm_buddy.c | 3 ++-
+>>>>>     1 file changed, 2 insertions(+), 1 deletion(-)
+>>>>>
+>>>>> diff --git a/drivers/gpu/drm/drm_buddy.c b/drivers/gpu/drm/drm_buddy.c
+>>>>> index 72f52f293249..ed94c56b720f 100644
+>>>>> --- a/drivers/gpu/drm/drm_buddy.c
+>>>>> +++ b/drivers/gpu/drm/drm_buddy.c
+>>>>> @@ -669,10 +669,11 @@ int drm_buddy_alloc_blocks(struct drm_buddy *mm,
+>>>>>     	order = fls(pages) - 1;
+>>>>>     	min_order = ilog2(min_page_size) - ilog2(mm->chunk_size);
+>>>>>     
+>>>>> +	BUG_ON(order < min_order);
+>>>>
+>>>> Isn't the issue that we are allowing a size that is not aligned to the
+>>>> requested min_page_size? Should we not fix the caller(and throw a normal
+>>>> error here), or perhaps add the round_up() here instead?
+>>>>
+>>> CASE 1:
+>>> when size is not aligned to the requested min_page_size, for instance,
+>>> required size = 161 pages, min_page_size = 128 pages, here we have 3
+>>> possible options,
+>>> a. AFAIK,This kind of situation is common in any workload,the first
+>>> allocation (i.e) 128 pages is aligned to min_page_size, Should we just
+>>> allocate the left over 33 pages (2 pow 5, 2 pow 0) since the caller does
+>>> know the left over pages are not in min_page_size alignment?
+>>
+>> So IIUC looking at amdgpu_gem_create_ioctl(), userspace can specify some
+>> arbitrary physical alignment for an object? Is that not meant to apply
+>> to every page/chunk? The above example would only have the correct
+>> physical alignment guaranteed for the first chunk, or so, is this the
+>> expected ABI behaviour?
+>>
+> I gone through the function amdgpu_gem_create_ioctl(), it reads the
+> physical alignment in bytes from userspace, does i915 round up the size
+> value to the alignment or does i915 fails the allocation request if size
+> is not aligned with min_page_size? If not, I think running unigine
+> heaven or similar benchmark triggers BUG_ON() on current version of drm
+> buddy
 
-== Series Details ==
+i915 will always round_up the obj->base.size as per the 
+default_page_size. But in our case the default_page_size is selected by 
+the kernel, which is always either PAGE_SIZE, or 64K on some platforms, 
+due to the HW having some minimum GPU page-size for mapping VRAM pages. 
+We don't currently have anything similar to 
+amdgpu_gem_create_in.alignment, where userspace can request some 
+arbitrary physical alignment.
 
-Series: enhanced edid driver compatibility
-URL   : https://patchwork.freedesktop.org/series/101241/
-State : success
+>> Also looking at this some more, the other related bug here is the
+>> order-- == min_order check, since it now won't bail when order == 0,
+>> leading to order = -1, if we are unlucky...
+> will add a fix
+>>
+>> Originally, if asking for min_page_size > chunk_size, then the
+>> allocation was meant to fail if it can't fill the resource request with
+>> pages of at least that size(and also alignment). Or at least that was
+>> the original meaning in i915 IIRC.
+> we can follow the same here too, failing the allocation request if size
+> is not aligned with min_page_size?
 
-== Summary ==
+Yeah, seems reasonable to me.
 
-CI Bug Log - changes from CI_DRM_11348 -> Patchwork_22531
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22531/index.html
-
-Participating hosts (45 -> 42)
-------------------------------
-
-  Additional (2): fi-kbl-soraka fi-adl-ddr5 
-  Missing    (5): shard-tglu fi-bsw-cyan shard-rkl shard-dg1 bat-jsl-2 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_22531 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_fence@basic-busy@bcs0:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][1] ([fdo#109271]) +9 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22531/fi-kbl-soraka/igt@gem_exec_fence@basic-busy@bcs0.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][2] ([fdo#109271] / [i915#2190])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22531/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@parallel-random-engines:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][3] ([fdo#109271] / [i915#4613]) +3 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22531/fi-kbl-soraka/igt@gem_lmem_swapping@parallel-random-engines.html
-
-  * igt@i915_selftest@live@gt_pm:
-    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][4] ([i915#1886])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22531/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
-
-  * igt@kms_chamelium@dp-edid-read:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][5] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22531/fi-kbl-soraka/igt@kms_chamelium@dp-edid-read.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][6] ([fdo#109271] / [i915#533])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22531/fi-kbl-soraka/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@guc_multi_lrc:
-    - {bat-rpls-2}:       [DMESG-WARN][7] ([i915#4391]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11348/bat-rpls-2/igt@i915_selftest@live@guc_multi_lrc.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22531/bat-rpls-2/igt@i915_selftest@live@guc_multi_lrc.html
-
-  * igt@kms_busy@basic@modeset:
-    - {bat-adlp-6}:       [DMESG-WARN][9] ([i915#3576]) -> [PASS][10] +1 similar issue
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11348/bat-adlp-6/igt@kms_busy@basic@modeset.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22531/bat-adlp-6/igt@kms_busy@basic@modeset.html
-
-  
-#### Warnings ####
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-rkl-guc:         [SKIP][11] ([i915#4103]) -> [SKIP][12] ([i915#4070] / [i915#4103]) +1 similar issue
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11348/fi-rkl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22531/fi-rkl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
-    - fi-rkl-guc:         [SKIP][13] ([i915#533]) -> [SKIP][14] ([i915#4070] / [i915#533])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11348/fi-rkl-guc/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22531/fi-rkl-guc/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1155]: https://gitlab.freedesktop.org/drm/intel/issues/1155
-  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
-  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
-  [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
-  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#3576]: https://gitlab.freedesktop.org/drm/intel/issues/3576
-  [i915#4070]: https://gitlab.freedesktop.org/drm/intel/issues/4070
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-  [i915#4391]: https://gitlab.freedesktop.org/drm/intel/issues/4391
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#5087]: https://gitlab.freedesktop.org/drm/intel/issues/5087
-  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_11348 -> Patchwork_22531
-
-  CI-20190529: 20190529
-  CI_DRM_11348: 896acee3ca564ae87ab881c4805a600271a128b2 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6373: 82306f1903c0fee8371f43a156d8b63163ca61c1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_22531: bed5ef6e025a2348408b557eab10e8b684dd8e2c @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-bed5ef6e025a drm/edid: check for HF-SCDB block
-5e47f1e4e336 drm/edid: parse HF-EEODB CEA extension block
-34060e19ea5e drm/edid: read HF-EEODB ext block
-426e5a856c6d drm/edid: parse multiple CEA extension block
-a6ac1723dd25 drm/edid: seek for available CEA block from specific EDID block index
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22531/index.html
-
---===============4784853997470453463==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>enhanced edid driver compatibility</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/101241/">https://patchwork.freedesktop.org/series/101241/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22531/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22531/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11348 -&gt; Patchwork_22531</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22531/index.html</p>
-<h2>Participating hosts (45 -&gt; 42)</h2>
-<p>Additional (2): fi-kbl-soraka fi-adl-ddr5 <br />
-  Missing    (5): shard-tglu fi-bsw-cyan shard-rkl shard-dg1 bat-jsl-2 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_22531 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_fence@basic-busy@bcs0:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22531/fi-kbl-soraka/igt@gem_exec_fence@basic-busy@bcs0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +9 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22531/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22531/fi-kbl-soraka/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_pm:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22531/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-edid-read:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22531/fi-kbl-soraka/igt@kms_chamelium@dp-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22531/fi-kbl-soraka/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@guc_multi_lrc:</p>
-<ul>
-<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11348/bat-rpls-2/igt@i915_selftest@live@guc_multi_lrc.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4391">i915#4391</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22531/bat-rpls-2/igt@i915_selftest@live@guc_multi_lrc.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_busy@basic@modeset:</p>
-<ul>
-<li>{bat-adlp-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11348/bat-adlp-6/igt@kms_busy@basic@modeset.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22531/bat-adlp-6/igt@kms_busy@basic@modeset.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
-<ul>
-<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11348/fi-rkl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22531/fi-rkl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4070">i915#4070</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
-<ul>
-<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11348/fi-rkl-guc/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22531/fi-rkl-guc/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4070">i915#4070</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11348 -&gt; Patchwork_22531</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11348: 896acee3ca564ae87ab881c4805a600271a128b2 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6373: 82306f1903c0fee8371f43a156d8b63163ca61c1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_22531: bed5ef6e025a2348408b557eab10e8b684dd8e2c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>bed5ef6e025a drm/edid: check for HF-SCDB block<br />
-5e47f1e4e336 drm/edid: parse HF-EEODB CEA extension block<br />
-34060e19ea5e drm/edid: read HF-EEODB ext block<br />
-426e5a856c6d drm/edid: parse multiple CEA extension block<br />
-a6ac1723dd25 drm/edid: seek for available CEA block from specific EDID block index</p>
-
-</body>
-</html>
-
---===============4784853997470453463==--
+> 
+> I added a debug print for requested num_pages from userspace and its
+> alignment request and executed unigine heaven, I see many such instances
+> where min_page_size is not aligned to the size, how i915 handles such
+> requests?
+>>
+>>>
+>>> b. There are many such instances in unigine heaven workload (there would
+>>> be many such workloads), throwing a normal error would lower the FPS? is
+>>> it possible to fix at caller application?
+>>>
+>>> c. adding the round_up() is possible, but in every such instances we end
+>>> up allocating extra unused memory. For example, if required pages = 1028
+>>> and min_page_size = 1024 pages, we end up round up of left over 4 pages
+>>> to the min_page_size, so the total size would be 2048 pages.
+>>>
+>>>> i.e if someone does:
+>>>>
+>>>> alloc_blocks(mm, 0, end, 4096, 1<<16, &blocks, flags);
+>>> CASE 2:
+>>> I think this case should be detected (i.e) when min_page_size > size,
+>>> should we return -EINVAL?
+>>>>
+>>>> This will still trigger the BUG_ON() even if we move it out of the loop,
+>>>> AFAICT.
+>>>>
+>>>
+>>> Should we just allow the CASE 1 proceed for the allocation and return
+>>> -EINVAL for the CASE 2?
+>>>
+>>>>> +
+>>>>>     	do {
+>>>>>     		order = min(order, (unsigned int)fls(pages) - 1);
+>>>>>     		BUG_ON(order > mm->max_order);
+>>>>> -		BUG_ON(order < min_order);
+>>>>>     
+>>>>>     		do {
+>>>>>     			if (flags & DRM_BUDDY_RANGE_ALLOCATION)
+>>>>>
+>>>>> base-commit: 8025c79350b90e5a8029234d433578f12abbae2b
