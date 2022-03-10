@@ -1,52 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1F9D4D3E64
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Mar 2022 01:48:20 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AC244D3E65
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Mar 2022 01:48:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C9C0F10E583;
-	Thu, 10 Mar 2022 00:48:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C216D10E5BF;
+	Thu, 10 Mar 2022 00:48:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5F59E10E583
- for <intel-gfx@lists.freedesktop.org>; Thu, 10 Mar 2022 00:48:17 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E41BE10E5BF
+ for <intel-gfx@lists.freedesktop.org>; Thu, 10 Mar 2022 00:48:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646873297; x=1678409297;
+ t=1646873299; x=1678409299;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=RpGq7pJ2lwG5zYPAtJlULXNazza0o+0pwSfL3p5qD+g=;
- b=T85cyT6Mb6EACQ3ImuPKQBkd+dbFARIVGHqxceELZmlQD6Eih6Hpl7yu
- UywcHsVgWNrGg2pxcx5tmFwOxwQ9eNBFa6HlmaisAmoDS6JqyPi+wexb3
- QmXdapEO/HoOaudb9P5xp/sNpRwGroBJhmZfehvECisXJlxqWLjOB9QYe
- gq1YY5Bg+kTpETJWCsel0GsY67XROIW96TRGRtuMTccnhg+pfROWkBhoe
- lp76jIypWozE/RFs9Czq+8+BBzrxAqtTK1+ofDf+cEMN2LmJJerRqDq+h
- Y5CRGPv4fpRcaPbsGcgmfXiM6Ao7SuuQ8gWqOW1NmstM6DYeaNHTASeNt g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10281"; a="341555660"
-X-IronPort-AV: E=Sophos;i="5.90,169,1643702400"; d="scan'208";a="341555660"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Mar 2022 16:48:16 -0800
+ bh=adwFEo7KvhoMAtt7nM6tZk93B47FCl+skFDADOAyPHg=;
+ b=d3T8HlSh6OSMlZShuKt9lP2WgcaRvKdCFngxMsfrMMhknNyn6kaHWwWV
+ xKgNxYxi5SODCLCl0GmqptaVi2l1Prq0DD402MiTKYuiymKAhkjPpbh7I
+ sbTmJM9azDSnGafK+uUmABZiZGmVVquAWw0lvaOUYG9ZS7XOceAKCnig+
+ 4UiG/IoPMN0XaYLvRZx2fzQS60uZzPH97JY4DBS29fZ3PFoVPsD3UFaQR
+ cGJr0uZwpKY3dLflNpwqg+6/XXp/Fx2mHdHM8XTVwcWWGNVEchLM8oBhD
+ rN2Jm/W+lLQLxS3S5nzsIvEoOUrzUZPWsrS1zJXeRvHj8HjJ0jfA6JaSl A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10281"; a="255313213"
+X-IronPort-AV: E=Sophos;i="5.90,169,1643702400"; d="scan'208";a="255313213"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Mar 2022 16:48:19 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,169,1643702400"; d="scan'208";a="596474712"
+X-IronPort-AV: E=Sophos;i="5.90,169,1643702400"; d="scan'208";a="642359087"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
- by fmsmga008.fm.intel.com with SMTP; 09 Mar 2022 16:48:15 -0800
+ by fmsmga002.fm.intel.com with SMTP; 09 Mar 2022 16:48:17 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 10 Mar 2022 02:48:14 +0200
+ Thu, 10 Mar 2022 02:48:17 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 10 Mar 2022 02:47:53 +0200
-Message-Id: <20220310004802.16310-5-ville.syrjala@linux.intel.com>
+Date: Thu, 10 Mar 2022 02:47:54 +0200
+Message-Id: <20220310004802.16310-6-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220310004802.16310-1-ville.syrjala@linux.intel.com>
 References: <20220310004802.16310-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 04/13] drm/i915: Read DRRS MSA timing delay from
- VBT
+Subject: [Intel-gfx] [PATCH 05/13] drm/i915: Program MSA timing delay on
+ ilk/snb/ivb
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,47 +64,97 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-VBT hsa a field for the MSA timing delay, which supposedly
-should be used with DRRS. Extract the data from the VBT.
+Grab the DRRS MSA timing delay value from the VBT
+and program things accordingly. Only ilk/snb/ivb have
+this so presumably on hsw+ we don't need it.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bios.c | 3 +++
- drivers/gpu/drm/i915/i915_drv.h           | 5 +++--
- 2 files changed, 6 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c       | 8 ++++++--
+ drivers/gpu/drm/i915/display/intel_display_types.h | 1 +
+ drivers/gpu/drm/i915/display/intel_drrs.c          | 3 +++
+ drivers/gpu/drm/i915/i915_reg.h                    | 2 ++
+ 4 files changed, 12 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index a559a1914588..93dc32fb3e40 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.c
-+++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -888,6 +888,9 @@ parse_edp(struct drm_i915_private *i915, const struct bdb_header *bdb)
- 			i915->vbt.edp.low_vswing = vswing == 0;
- 		}
- 	}
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 54db81c2cce6..b7c418677372 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -3577,6 +3577,7 @@ static void ilk_set_pipeconf(const struct intel_crtc_state *crtc_state)
+ 	val |= PIPECONF_GAMMA_MODE(crtc_state->gamma_mode);
+ 
+ 	val |= PIPECONF_FRAME_START_DELAY(crtc_state->framestart_delay - 1);
++	val |= PIPECONF_MSA_TIMING_DELAY(crtc_state->msa_timing_delay);
+ 
+ 	intel_de_write(dev_priv, PIPECONF(pipe), val);
+ 	intel_de_posting_read(dev_priv, PIPECONF(pipe));
+@@ -3865,6 +3866,8 @@ static bool ilk_get_pipe_config(struct intel_crtc *crtc,
+ 
+ 	pipe_config->framestart_delay = REG_FIELD_GET(PIPECONF_FRAME_START_DELAY_MASK, tmp) + 1;
+ 
++	pipe_config->msa_timing_delay = REG_FIELD_GET(PIPECONF_MSA_TIMING_DELAY_MASK, tmp);
 +
-+	i915->vbt.edp.drrs_msa_timing_delay =
-+		(edp->sdrrs_msa_timing_delay >> (panel_type * 2)) & 3;
- }
+ 	pipe_config->csc_mode = intel_de_read(dev_priv,
+ 					      PIPE_CSC_MODE(crtc->pipe));
  
- static void
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 943267393ecb..020c5f7602a2 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -356,10 +356,11 @@ struct intel_vbt_data {
- 		int lanes;
- 		int preemphasis;
- 		int vswing;
--		bool low_vswing;
--		bool initialized;
- 		int bpp;
- 		struct edp_power_seq pps;
-+		u8 drrs_msa_timing_delay;
-+		bool low_vswing;
-+		bool initialized;
- 		bool hobl;
- 	} edp;
+@@ -5345,8 +5348,8 @@ static void intel_dump_pipe_config(const struct intel_crtc_state *pipe_config,
+ 				      &pipe_config->dp_m2_n2);
+ 	}
  
+-	drm_dbg_kms(&dev_priv->drm, "framestart delay: %d\n",
+-		    pipe_config->framestart_delay);
++	drm_dbg_kms(&dev_priv->drm, "framestart delay: %d, MSA timing delay: %d\n",
++		    pipe_config->framestart_delay, pipe_config->msa_timing_delay);
+ 
+ 	drm_dbg_kms(&dev_priv->drm,
+ 		    "audio: %i, infoframes: %i, infoframes enabled: 0x%x\n",
+@@ -6243,6 +6246,7 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+ 	PIPE_CONF_CHECK_X(output_types);
+ 
+ 	PIPE_CONF_CHECK_I(framestart_delay);
++	PIPE_CONF_CHECK_I(msa_timing_delay);
+ 
+ 	PIPE_CONF_CHECK_I(hw.pipe_mode.crtc_hdisplay);
+ 	PIPE_CONF_CHECK_I(hw.pipe_mode.crtc_htotal);
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 5e8d7394a394..86b2fa675124 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1155,6 +1155,7 @@ struct intel_crtc_state {
+ 	u8 update_planes;
+ 
+ 	u8 framestart_delay; /* 1-4 */
++	u8 msa_timing_delay; /* 0-3 */
+ 
+ 	struct {
+ 		u32 enable;
+diff --git a/drivers/gpu/drm/i915/display/intel_drrs.c b/drivers/gpu/drm/i915/display/intel_drrs.c
+index 17bedecbd7b2..5b3711fe0674 100644
+--- a/drivers/gpu/drm/i915/display/intel_drrs.c
++++ b/drivers/gpu/drm/i915/display/intel_drrs.c
+@@ -83,6 +83,9 @@ intel_drrs_compute_config(struct intel_dp *intel_dp,
+ 		return;
+ 	}
+ 
++	if (IS_IRONLAKE(i915) || IS_SANDYBRIDGE(i915) || IS_IVYBRIDGE(i915))
++		pipe_config->msa_timing_delay = i915->vbt.edp.drrs_msa_timing_delay;
++
+ 	pipe_config->has_drrs = true;
+ 
+ 	pixel_clock = connector->panel.downclock_mode->clock;
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 70484f6f2b8b..c106fb23e245 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -3706,6 +3706,8 @@
+ #define   PIPECONF_INTERLACE_IF_ID_DBL_ILK	REG_FIELD_PREP(PIPECONF_INTERLACE_MASK_ILK, 4) /* ilk/snb only */
+ #define   PIPECONF_INTERLACE_PF_ID_DBL_ILK	REG_FIELD_PREP(PIPECONF_INTERLACE_MASK_ILK, 5) /* ilk/snb only */
+ #define   PIPECONF_EDP_RR_MODE_SWITCH		REG_BIT(20)
++#define   PIPECONF_MSA_TIMING_DELAY_MASK	REG_GENMASK(19, 18) /* ilk/snb/ivb */
++#define   PIPECONF_MSA_TIMING_DELAY(x)		REG_FIELD_PREP(PIPECONF_MSA_TIMING_DELAY_MASK, (x))
+ #define   PIPECONF_CXSR_DOWNCLOCK		REG_BIT(16)
+ #define   PIPECONF_EDP_RR_MODE_SWITCH_VLV	REG_BIT(14)
+ #define   PIPECONF_COLOR_RANGE_SELECT		REG_BIT(13)
 -- 
 2.34.1
 
