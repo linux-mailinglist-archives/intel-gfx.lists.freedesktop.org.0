@@ -1,46 +1,155 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 054484D3E8F
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Mar 2022 02:06:49 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AB414D3E98
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Mar 2022 02:14:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 997A010E1F1;
-	Thu, 10 Mar 2022 01:06:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9EA7789D8D;
+	Thu, 10 Mar 2022 01:14:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E81810E1F1
- for <intel-gfx@lists.freedesktop.org>; Thu, 10 Mar 2022 01:06:44 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D5C288991E
+ for <intel-gfx@lists.freedesktop.org>; Thu, 10 Mar 2022 01:14:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646874404; x=1678410404;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=k4TLd48jd1HN/g1i7jMKdTvk6fh82DY0caJYSXYDF7M=;
- b=Vh1k6OqHS1iEnnHmE7awQxYSJ+AVlgcwKWjn7Wg65pbc/4iY74wdS0WR
- V9GYLX5IstZKE1468MXRl9Br3Gw9rTDF235YWb0ViMLf2RvOvFEVeq8C8
- UTKIPYAb/fXoR8qUJ6+qqysWLsxo+CKt1mC8LirfhD6igZLKSUjglF2vh
- LfAm24bVsTeS8tIz6U2jnaTbHblUozeERKs3xoKAu9rq6fcWFMymSDwih
- YrBxPx3QbGgWKNmJe0G6A0D2Kd2x9h+Ckig368MnI9cIsWIUAt8w7LLG0
- J6hOUfAmrk/TkTgw0IU4fO1Y0L9VLYneB8eTjMtFP2PB1DjDBZCzZ6JnG g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10281"; a="315846711"
-X-IronPort-AV: E=Sophos;i="5.90,169,1643702400"; d="scan'208";a="315846711"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Mar 2022 17:06:43 -0800
+ t=1646874849; x=1678410849;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=oMw8nPanez/VeDDtrmrZcAbN96hxfq7pTqcP6MBnvCM=;
+ b=bM23kvKkbDLsl72YJvyUEv2Tl34f/gR88DMdOwQLdyozSQniLZI+XmCe
+ 4q+/D7M23eBg5SoUmjtAG+G9oqO/JQeRaZsppMjkDMBbY0FAwSFUSOiWF
+ SQuHDYaC9c59DD59po4sUnTLNitGrjm/yKJvpOf/ZqNMgWglz8LJ4qsju
+ jl1AOjdDHST1T7HIwAMHYsF3PshuB00aR0J6iuj5SM+HWwW+fGYFT/vcd
+ TY8QdLFrGcHonhlq9vJp4VrzzbjqNhTDsNYjBjJMIOAtnNXniCbZk2mcR
+ 7QfgKrXQ8GDmtXnoI+MB6il6f/Apt8tEazYoBLBO4Q2iZCQyQPkYguZS+ A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10281"; a="253961077"
+X-IronPort-AV: E=Sophos;i="5.90,169,1643702400"; d="scan'208";a="253961077"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Mar 2022 17:14:08 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,169,1643702400"; d="scan'208";a="596480381"
-Received: from relo-linux-5.jf.intel.com ([10.165.21.134])
- by fmsmga008.fm.intel.com with ESMTP; 09 Mar 2022 17:06:43 -0800
-From: John.C.Harrison@Intel.com
-To: intel-gfx@lists.freedesktop.org
-Date: Wed,  9 Mar 2022 17:06:43 -0800
-Message-Id: <20220310010643.205075-1-John.C.Harrison@Intel.com>
-X-Mailer: git-send-email 2.25.1
+X-IronPort-AV: E=Sophos;i="5.90,169,1643702400"; d="scan'208";a="712168354"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orsmga005.jf.intel.com with ESMTP; 09 Mar 2022 17:14:07 -0800
+Received: from fmsmsx608.amr.corp.intel.com (10.18.126.88) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.21; Wed, 9 Mar 2022 17:14:07 -0800
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx608.amr.corp.intel.com (10.18.126.88) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.21 via Frontend Transport; Wed, 9 Mar 2022 17:14:07 -0800
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.104)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2308.21; Wed, 9 Mar 2022 17:14:07 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=lDM21pZrPrKuMuSeHBlqnV26KM8ONqqVfQhPkK8hBS8dGAd4UiGtlTif6qQNjYNmoJi+qVJqRbkf8SdwVx9GQDwCoCSPvRFHmdiU+7Tmz0gT+k4QS6+Kq9LT4+ZLvK34gABKgdVAC99zXzsoiw4/p+CVMC3NASqMHVQXdz+C6Ggg9zfwcvTIuL+UQBJueq3upu0eZB8yH/FxH7lUl01Tcy+9vS702fA0seBIS35KsQWtdmL2C2xXui1xAfWePrqRE+9f0zoz/g3toGVU3wo/iGlwJCK7h5RcHq2+uMvDfofZLV+yclr4fddiYGXwjYVg5DqgdXxk+KdLIYq1jt1N2A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=qhbAQ09Ulg/SCYcv511JqZK2n884OSsSqnoV/qPw43Y=;
+ b=H6G5LHN0lPQ2Z7URDyIYhFSE5Kt/tU+XggQX8NsGLzRDD2+5amXZ1neWLT7g/EGw6VGy7LVndfCCFH0VkmDKPfgAk+KwCtSRMTPWqNvfs6CI3jfmq/Kp0m5UoOMLAd/UA1alYck2HMp4CrGGcm4x2aLINo0lmQeEce7l2uedvkieZ/1laObZncy+5/7HOuKZfdWlZYiPVhWNSjxCOQ7aOux3NleWiwBnHTLSjKxsIP9wKbf07WuZHMptsBCBQlsTiIfFwzGGjOzzpB5sxAhnaBSQJqxY3NT5Twj15KglRpyBNY8xdYykaZr4QRpF7eGMFovvDEuCJ8ibUgEd2oHfmw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM4PR11MB5488.namprd11.prod.outlook.com (2603:10b6:5:39d::5) by
+ DM5PR11MB1338.namprd11.prod.outlook.com (2603:10b6:3:b::23) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5038.17; Thu, 10 Mar 2022 01:14:04 +0000
+Received: from DM4PR11MB5488.namprd11.prod.outlook.com
+ ([fe80::3c4e:eb25:76ff:a869]) by DM4PR11MB5488.namprd11.prod.outlook.com
+ ([fe80::3c4e:eb25:76ff:a869%6]) with mapi id 15.20.5038.027; Thu, 10 Mar 2022
+ 01:14:04 +0000
+Message-ID: <c9998ec7-bf40-e4dc-2842-c211412ad702@intel.com>
+Date: Wed, 9 Mar 2022 17:14:01 -0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.0
+Content-Language: en-US
+To: Alexander Usyskin <alexander.usyskin@intel.com>, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>, Daniel Vetter
+ <daniel@ffwll.ch>, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+References: <20220308163654.942820-1-alexander.usyskin@intel.com>
+ <20220308163654.942820-6-alexander.usyskin@intel.com>
+From: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>
+In-Reply-To: <20220308163654.942820-6-alexander.usyskin@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: PH0PR07CA0026.namprd07.prod.outlook.com
+ (2603:10b6:510:5::31) To DM4PR11MB5488.namprd11.prod.outlook.com
+ (2603:10b6:5:39d::5)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [CI] PR for new GuC v70.0.5
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 3575fe69-3710-4b7f-f238-08da02334494
+X-MS-TrafficTypeDiagnostic: DM5PR11MB1338:EE_
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-Microsoft-Antispam-PRVS: <DM5PR11MB1338417671021398033B6D23F40B9@DM5PR11MB1338.namprd11.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: s7jsFFb85IE8GBloy+Vuhf30hAJPm3vMcjoU1ijudHE1Qw/AYYIOTDFFnAIgAAmyjO+/W6ALAH+0LxG9IZlNS4VLQzhHtj92J7x/rktUyJ+acGiS2CIky895vT9wHfKemPOAXSJJue4AHN5FVEg9vzu9risulmyECN4tpRhddrxaNWGLGmXbrQi+QSwFvZ7HW5ha9o/9WjKkLfLdK7+3WdHceDrV/TalwI4+STDzfggou8v9JIurn+zf3K4Ry5nbBOIwYhzSN7c0FbW2b2MOS1HoFq77h666ze6KDf7U5Fqz5B9vYylSn7sSUz6s7eMC7Wlxz6/BNoZjcdk+TAZuJTjnTOZWejNGkm+qxsTRKJfHGH3nZ7FU5cJa85s2JVQIJRI4PoiXWcyXKndSQhPCYxSNeplTLBFI+zXQj5skTZ0dOuRySEn34zU8+TQBny96kzC+SVrK9SIDSUpHCV7UOKRmt9e0HKibKZfmqu4HYwIQIZ8coU373HFdVDTjSeO0YqxlLmg5CrsXrI4eUvDazPLDJWfn8d6iKnNsXL2op9mzPp0ST2BI/CvOm0kvI6xTbVdt97BgVRGUT8BnUQ/TxD5N1J/TD8H+6FtTTlQ6QCe5Bon0MkrvR6QLHsAcUNspQt4pOmFoq/iL2GpSu9gBxcbNSO8bhRBm9inyzr1xmiuJQc/Ak08bIOtLFT2z+IrCo60jKVetuCmeZYoY8U0JWqhqajyrbmVtOUNk84ZM/78Qzp0sAGXfZRjF6O1qAJwE
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5488.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230001)(366004)(66946007)(4326008)(26005)(8676002)(66476007)(66556008)(5660300002)(36756003)(8936002)(110136005)(38100700002)(54906003)(31686004)(316002)(83380400001)(186003)(31696002)(86362001)(508600001)(6486002)(82960400001)(6512007)(6506007)(6666004)(53546011)(2616005)(2906002)(45980500001)(43740500002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WGJxRVdLMnJXUzJOOE1WeXN3VUFQUUorN0cyOEhsTEc3UEc3UDFJWmRMdU1k?=
+ =?utf-8?B?SGFaeEtTZXEweEhkVFMyL2JOQzk3TnVjNjErWEFzR1Byc1FkZi9WZ0wwVGxY?=
+ =?utf-8?B?aWE4UXpja3phemNCN1RwM0k1SERxSUQ2VTlRR0NZOFBKN1I3ZWdXaGoxSXJx?=
+ =?utf-8?B?Tmp5dW44R3lVRnJ2a1RJa0lzemw5c0tmL3NTS0Vqdk1nRW1qOGIxQ3BENnBp?=
+ =?utf-8?B?a2NEQUZlVnZPYkkwc0l3YkZNblltVjhYVkc4RzFFSVNPcjczb2xJcWprM3Bq?=
+ =?utf-8?B?Vjd1ajhrUThiVlIyVjFYdVFkQWpJdUNWc1RSNE5zWFJ4TEIvekRGT04wNFdZ?=
+ =?utf-8?B?dDdBMk9KQ3lUcmlJY2RXYTZSOHpRc01uOXdSMm1FWnlwY0ptejJ1YzYzYTJy?=
+ =?utf-8?B?RkIwS3haZXdNQzJaUk5TOFJSVEJqalRsMEJpUDE0SFlnaWxVWjZ6Z2tialAx?=
+ =?utf-8?B?blpCb0tCU3ZZc0x3TjA3eklxUE8rbFdBOXlQN3prd0ZoNlI1aGxHUE8vOVJo?=
+ =?utf-8?B?TnB4eTQ5MTM5VjBMS2hUYmk4R29jR1I3MFMxd1ZlOG9tNEdmU1NLcVpPOHZr?=
+ =?utf-8?B?OFNmWW9SSTVOTFFCK0FXak1SUFZuZm9zREJLaUFIaDljUmQwNG1kTUdOdkdD?=
+ =?utf-8?B?aUZKMG90cFFoYWQ3N1dRNE9QTDdiSUg2aGNZY0ZwKzJYaGUrME5xMDNXNmtU?=
+ =?utf-8?B?TmpPRTlYeTlnbTVYTmxVUmRSU0lHbjhGNS81dmVIMGtHYmRwOHl6NEhsaVhz?=
+ =?utf-8?B?UEtyZGJFM3c2NzIwaFpmMjBCbE5nYnJkNXZVQnliaFlhdTl0d2FuT1krZTVX?=
+ =?utf-8?B?bkxwYzYvYXF0dm0vZlduWmJ2RHdIZ3R1NlNBQ3ZNcjZycXNDeTN6L3RlQXIx?=
+ =?utf-8?B?OTdpbEdWMWRxVXZuSnFVNEY1Vm91blFzd3lPMzRiVWtyRERKc1ZZT1BVWkZY?=
+ =?utf-8?B?TEVnZGptdHlQWUsybnZuRFVzWHM3dUN1WUxpTk1IRVpQUHRPVUgrZW8wdW1q?=
+ =?utf-8?B?MEVITE1yUVA5bWE1ZHkvWDI5RWtlZDR1akkyTHB6Ynd0ZUJxR1RZeU1aOEZn?=
+ =?utf-8?B?eDl6SzY5RnFkeG1RdU15WWY1OW1vdE54WHVXSktMMzdBTlhYNXJuakRiUjBI?=
+ =?utf-8?B?ZFN4Y0ZYMStMM3B5VEJxeWFsclRtakpNYXppMFFpakE2NDVlamdtY1FkaXpv?=
+ =?utf-8?B?c2V6UGVTSDE3ZnNROFd6OEoxdFdFei9rR2NrOWQ2OGpTa2NuQ0tkVEh1Z3Ra?=
+ =?utf-8?B?OFl5Mm8xTmMvNEVZbGFPK2o0YTl2YkQ3Z3N0bGV2SUlyV1JWSHlCV2ZNUWk3?=
+ =?utf-8?B?Vjl0K2Rza1R1azQ1bWVodHoyNWhRN0tZVWk3NEpVU3A1SmdTcHhsdm1CTzZn?=
+ =?utf-8?B?eW5UM202TkQybWdoVXZ2RnlXaTRyd1E3VkpkeTJSUllwcFlReDkvdkNVb3p0?=
+ =?utf-8?B?R09PQWpzVWpLVjYzaStaSEUzSjdXTW5OZVE1ZW94NGlEZjlCb0xvb3N3Q2Fr?=
+ =?utf-8?B?Z0dTN1VZUkhNL3MxbWdHOW5xTFBnTVpCTmdlTHJGajQvL083cVROWTVDSFBO?=
+ =?utf-8?B?MEk0bmRET3pLRU96U0VWWnhTczczSlhnbkt1VllaTXdEb2VxUlo3eW9sdEI4?=
+ =?utf-8?B?cXpLYlZGRnF5bjFmdnAwalRDNUtRTGVFeHA3U3M3MStEeWRhMWJUakhlZXJt?=
+ =?utf-8?B?OXJ1WEQzZUd5UnNwZk9OOTVwRFZkdDcrR0NFS0RodFZVQzJtcG1ZdFdDTU41?=
+ =?utf-8?B?SkZSVGdpeERzakh0dUxYQU9iWklKd3U4RGlkcVZ2ZjVBMVZIU3hwVzk0dms3?=
+ =?utf-8?B?dWdlbHlRMWErM3VYek9tQVVYOUJNNU5WVkthTnZTYzVwSHFtOE5qSGlvV0VJ?=
+ =?utf-8?B?NVJOMXRaQkNLZTlqM2RaLzViMVFCUU1rM1QwTnZzSGxKNklHWGJBZlByOG9a?=
+ =?utf-8?B?aUxSWjlOMlQrMnpzNm9ZQmdZZ3NrNmhRQ24rMEh3TW9oODVJdlZGWEpGV0NV?=
+ =?utf-8?B?T3hGQ09CZkt5aEJiTmpKRnp5R0Z6d3hHNHYzcmhmRGVzaDBhOFFETlRjaksy?=
+ =?utf-8?B?MldtV0kvVnlzS05EK1k2WHBUc0tQYkFHOWVuVTZvdlVHWXBaQnV2SWcwUjdP?=
+ =?utf-8?B?ZHY3Y3RCaUNybEFEaUtrVWh4RmpTSWpiU1k0cmZpU3pvL2ZCd00vTEx4b1gx?=
+ =?utf-8?B?NGJSRll2STE5aXF6REFMeURtZzBVMmVJQXZmOHNQekVvREhWZlBVQlBteFBN?=
+ =?utf-8?B?YnFVdlFLUExtQkdFaEtJYXJDUFV3PT0=?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3575fe69-3710-4b7f-f238-08da02334494
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5488.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Mar 2022 01:14:04.5264 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: bM5BzHIeQxqJ4oEWk7BmmaaK8sv1aT3r2hwxrLwI2tSep/ZYLCCWIo1wJbDfgbjnWjYoAizTk27Q2YO+PV8t1x87NhJ/l6O01+IAqsBXyCA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR11MB1338
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH v10 5/5] mei: gsc: retrieve the firmware
+ version
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,47 +162,102 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org, Tomas
+ Winkler <tomas.winkler@intel.com>, linux-kernel@vger.kernel.org,
+ Vitaly Lubart <vitaly.lubart@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The following changes since commit f011ccb490f952ea35e9ce4d73ca9b7d0d2453c3:
 
-  linux-firmware: add firmware for MT7986 (2022-03-04 08:43:26 -0500)
 
-are available in the Git repository at:
+On 3/8/2022 8:36 AM, Alexander Usyskin wrote:
+> Add a hook to retrieve the firmware version of the
+> GSC devices to bus-fixup.
+> GSC has a different MKHI clients GUIDs but the same message structure
+> to retrieve the firmware version as MEI so mei_fwver() can be reused.
+>
+> CC: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> Signed-off-by: Alexander Usyskin <alexander.usyskin@intel.com>
+> Signed-off-by: Tomas Winkler <tomas.winkler@intel.com>
+> ---
+>   drivers/misc/mei/bus-fixup.c | 25 +++++++++++++++++++++++++
+>   drivers/misc/mei/hw-me.c     |  2 ++
+>   2 files changed, 27 insertions(+)
+>
+> diff --git a/drivers/misc/mei/bus-fixup.c b/drivers/misc/mei/bus-fixup.c
+> index 67844089db21..59506ba6fc48 100644
+> --- a/drivers/misc/mei/bus-fixup.c
+> +++ b/drivers/misc/mei/bus-fixup.c
+> @@ -30,6 +30,12 @@ static const uuid_le mei_nfc_info_guid = MEI_UUID_NFC_INFO;
+>   #define MEI_UUID_MKHIF_FIX UUID_LE(0x55213584, 0x9a29, 0x4916, \
+>   			0xba, 0xdf, 0xf, 0xb7, 0xed, 0x68, 0x2a, 0xeb)
+>   
+> +#define MEI_UUID_IGSC_MKHI UUID_LE(0xE2C2AFA2, 0x3817, 0x4D19, \
+> +			0x9D, 0x95, 0x06, 0xB1, 0x6B, 0x58, 0x8A, 0x5D)
+> +
+> +#define MEI_UUID_IGSC_MKHI_FIX UUID_LE(0x46E0C1FB, 0xA546, 0x414F, \
+> +			0x91, 0x70, 0xB7, 0xF4, 0x6D, 0x57, 0xB4, 0xAD)
+> +
 
-  git://anongit.freedesktop.org/drm/drm-firmware guc_v70.0.5_dg2
+These matches what the HW is reporting as sub-devices got gscfi and gsc 
+respectively. I think we could use a comment to make which matches what 
+clearer, but anyway:
 
-for you to fetch changes up to 850f9be3f587b63aa43da3f4b5b85399dfd67c1f:
+Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 
-  i915: Add GuC v70.0.5 for DG2 (2022-03-08 15:14:12 -0800)
+>   #define MEI_UUID_HDCP UUID_LE(0xB638AB7E, 0x94E2, 0x4EA2, \
+>   			      0xA5, 0x52, 0xD1, 0xC5, 0x4B, 0x62, 0x7F, 0x04)
+>   
+> @@ -241,6 +247,23 @@ static void mei_mkhi_fix(struct mei_cl_device *cldev)
+>   	mei_cldev_disable(cldev);
+>   }
+>   
+> +static void mei_gsc_mkhi_ver(struct mei_cl_device *cldev)
+> +{
+> +	int ret;
+> +
+> +	/* No need to enable the client if nothing is needed from it */
+> +	if (!cldev->bus->fw_f_fw_ver_supported)
+> +		return;
+> +
+> +	ret = mei_cldev_enable(cldev);
+> +	if (ret)
+> +		return;
+> +
+> +	ret = mei_fwver(cldev);
+> +	if (ret < 0)
+> +		dev_err(&cldev->dev, "FW version command failed %d\n", ret);
+> +	mei_cldev_disable(cldev);
+> +}
+>   /**
+>    * mei_wd - wd client on the bus, change protocol version
+>    *   as the API has changed.
+> @@ -492,6 +515,8 @@ static struct mei_fixup {
+>   	MEI_FIXUP(MEI_UUID_NFC_HCI, mei_nfc),
+>   	MEI_FIXUP(MEI_UUID_WD, mei_wd),
+>   	MEI_FIXUP(MEI_UUID_MKHIF_FIX, mei_mkhi_fix),
+> +	MEI_FIXUP(MEI_UUID_IGSC_MKHI, mei_gsc_mkhi_ver),
+> +	MEI_FIXUP(MEI_UUID_IGSC_MKHI_FIX, mei_gsc_mkhi_ver),
+>   	MEI_FIXUP(MEI_UUID_HDCP, whitelist),
+>   	MEI_FIXUP(MEI_UUID_ANY, vt_support),
+>   	MEI_FIXUP(MEI_UUID_PAVP, whitelist),
+> diff --git a/drivers/misc/mei/hw-me.c b/drivers/misc/mei/hw-me.c
+> index 9748d14849a1..7e77328142ff 100644
+> --- a/drivers/misc/mei/hw-me.c
+> +++ b/drivers/misc/mei/hw-me.c
+> @@ -1577,12 +1577,14 @@ static const struct mei_cfg mei_me_pch15_sps_cfg = {
+>   static const struct mei_cfg mei_me_gsc_cfg = {
+>   	MEI_CFG_TYPE_GSC,
+>   	MEI_CFG_PCH8_HFS,
+> +	MEI_CFG_FW_VER_SUPP,
+>   };
+>   
+>   /* Graphics System Controller Firmware Interface */
+>   static const struct mei_cfg mei_me_gscfi_cfg = {
+>   	MEI_CFG_TYPE_GSCFI,
+>   	MEI_CFG_PCH8_HFS,
+> +	MEI_CFG_FW_VER_SUPP,
+>   };
+>   
+>   /*
 
-----------------------------------------------------------------
-John Harrison (2):
-      i915: Add GuC v70.0.5 for all platforms
-      i915: Add GuC v70.0.5 for DG2
-
- WHENCE                   |  33 +++++++++++++++++++++++++++++++++
- i915/adlp_guc_70.0.5.bin | Bin 0 -> 290496 bytes
- i915/bxt_guc_70.0.5.bin  | Bin 0 -> 206592 bytes
- i915/cml_guc_70.0.5.bin  | Bin 0 -> 207040 bytes
- i915/dg1_guc_70.0.5.bin  | Bin 0 -> 266112 bytes
- i915/dg2_guc_70.0.5.bin  | Bin 0 -> 365504 bytes
- i915/ehl_guc_70.0.5.bin  | Bin 0 -> 274944 bytes
- i915/glk_guc_70.0.5.bin  | Bin 0 -> 206912 bytes
- i915/icl_guc_70.0.5.bin  | Bin 0 -> 274944 bytes
- i915/kbl_guc_70.0.5.bin  | Bin 0 -> 207040 bytes
- i915/skl_guc_70.0.5.bin  | Bin 0 -> 206336 bytes
- i915/tgl_guc_70.0.5.bin  | Bin 0 -> 278400 bytes
- 12 files changed, 33 insertions(+)
- create mode 100644 i915/adlp_guc_70.0.5.bin
- create mode 100644 i915/bxt_guc_70.0.5.bin
- create mode 100644 i915/cml_guc_70.0.5.bin
- create mode 100644 i915/dg1_guc_70.0.5.bin
- create mode 100644 i915/dg2_guc_70.0.5.bin
- create mode 100644 i915/ehl_guc_70.0.5.bin
- create mode 100644 i915/glk_guc_70.0.5.bin
- create mode 100644 i915/icl_guc_70.0.5.bin
- create mode 100644 i915/kbl_guc_70.0.5.bin
- create mode 100644 i915/skl_guc_70.0.5.bin
- create mode 100644 i915/tgl_guc_70.0.5.bin
