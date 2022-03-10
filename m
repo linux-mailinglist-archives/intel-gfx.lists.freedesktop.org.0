@@ -1,57 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDA844D4388
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Mar 2022 10:27:46 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06FA74D4393
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Mar 2022 10:32:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4BF0610FD53;
-	Thu, 10 Mar 2022 09:27:42 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 554DB10FD56;
- Thu, 10 Mar 2022 09:27:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C84A10FAD7;
+	Thu, 10 Mar 2022 09:32:22 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 22E7B10FAD7
+ for <intel-gfx@lists.freedesktop.org>; Thu, 10 Mar 2022 09:32:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646904460; x=1678440460;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=9gzgYLGYE5SPT21jmlDVAPqTnO1zWIUIAzFeq9xAyc8=;
- b=Vcj1V0NGrf/ZhqUWRhRAzzp6oq9P5JIzbSRi6aHG7vXuZllBpR8I6FDr
- 1M7m51jjSbowjfml4kg4vY6zY1RsPqHg5latAvCOk1xtP3LrlDITIdmEX
- f2RfNA94W84QnpExObdOBBXNmmQV3ZjjattLB5wjwgYamskxGDJb3V/PH
- xg2UtNZFPQGkUsxN3r6JuxHPYTar+61MD+kzVu/iUnmnhoivDYD0qNC9R
- Ls+MFya+TP0gf2wfx+n+XYRieHuQJ5jCd2FTOeZwUXiQB5YXunKO2jWmH
- 22iuV6vRbqx/w4/M/AJFLzglUcJlk0k5mX6ta9D/TyjWKaWm0wtACBMpQ g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10281"; a="255149308"
-X-IronPort-AV: E=Sophos;i="5.90,170,1643702400"; d="scan'208";a="255149308"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2022 01:27:39 -0800
-X-IronPort-AV: E=Sophos;i="5.90,170,1643702400"; d="scan'208";a="547956017"
-Received: from npalmass-mobl1.amr.corp.intel.com (HELO [10.213.186.207])
- ([10.213.186.207])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2022 01:27:38 -0800
-Message-ID: <6f61e906-8149-6b39-c1ec-1b44f1bb3ca5@linux.intel.com>
-Date: Thu, 10 Mar 2022 09:27:35 +0000
+ t=1646904741; x=1678440741;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=NdBnRGQKnQOvCCWLejdnHhFCAAgh11ay8AyByKktPKI=;
+ b=PXpNOlgSsMqMG2JKAGIGLRYLIhq4s0JU1/R0234o0gYAX2oGvUuF4K6Q
+ fX+uJ3EYADT2ovuAHViVz9eabNhgCfXEzLc9ESBZmSIAaYiW7j4ghqrZ3
+ tb9PHq/ipGB9z3ew9xGPeBu08qZwrnOznFDFHe2lRJczYzZwJJ3v+17GD
+ VshX0sbToEiEUf4sCEck8LKphv0GscxNf+Vcb+zDklw/LSPwxC9i6ffYA
+ GL6ieRGnkg1hamNgsNeL4AkecNpIWoTgttykIjirJ7TlybXciZxU3FYew
+ T0cqH1PoCmXb62WZKoNcmCEl8WRlk83Q+Yyu8QspjrRY1RlqUJ/RhL4ED Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10281"; a="237374031"
+X-IronPort-AV: E=Sophos;i="5.90,170,1643702400"; d="scan'208";a="237374031"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2022 01:32:20 -0800
+X-IronPort-AV: E=Sophos;i="5.90,170,1643702400"; d="scan'208";a="554565119"
+Received: from mgherza1-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.55.69])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2022 01:32:19 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20220310004802.16310-5-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220310004802.16310-1-ville.syrjala@linux.intel.com>
+ <20220310004802.16310-5-ville.syrjala@linux.intel.com>
+Date: Thu, 10 Mar 2022 11:32:17 +0200
+Message-ID: <87v8wmxie6.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Content-Language: en-US
-To: John Harrison <john.c.harrison@intel.com>, Intel-GFX@Lists.FreeDesktop.Org
-References: <20220303223737.708659-1-John.C.Harrison@Intel.com>
- <20220303223737.708659-5-John.C.Harrison@Intel.com>
- <71a0f9af-7473-ece9-dae8-bcc1c3b55cf5@linux.intel.com>
- <991c5d38-7904-dff8-e610-c4030e526e2e@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <991c5d38-7904-dff8-e610-c4030e526e2e@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v3 4/4] drm/i915: Improve long running OCL
- w/a for GuC submission
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 04/13] drm/i915: Read DRRS MSA timing delay
+ from VBT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,152 +60,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Michal Mrozek <michal.mrozek@intel.com>, DRI-Devel@Lists.FreeDesktop.Org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Thu, 10 Mar 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> VBT hsa a field for the MSA timing delay, which supposedly
+> should be used with DRRS. Extract the data from the VBT.
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-On 09/03/2022 21:16, John Harrison wrote:
-> On 3/8/2022 01:41, Tvrtko Ursulin wrote:
->> On 03/03/2022 22:37, John.C.Harrison@Intel.com wrote:
->>> From: John Harrison <John.C.Harrison@Intel.com>
->>>
->>> A workaround was added to the driver to allow OpenCL workloads to run
->>> 'forever' by disabling pre-emption on the RCS engine for Gen12.
->>> It is not totally unbound as the heartbeat will kick in eventually
->>> and cause a reset of the hung engine.
->>>
->>> However, this does not work well in GuC submission mode. In GuC mode,
->>> the pre-emption timeout is how GuC detects hung contexts and triggers
->>> a per engine reset. Thus, disabling the timeout means also losing all
->>> per engine reset ability. A full GT reset will still occur when the
->>> heartbeat finally expires, but that is a much more destructive and
->>> undesirable mechanism.
->>>
->>> The purpose of the workaround is actually to give OpenCL tasks longer
->>> to reach a pre-emption point after a pre-emption request has been
->>> issued. This is necessary because Gen12 does not support mid-thread
->>> pre-emption and OpenCL can have long running threads.
->>>
->>> So, rather than disabling the timeout completely, just set it to a
->>> 'long' value.
->>>
->>> v2: Review feedback from Tvrtko - must hard code the 'long' value
->>> instead of determining it algorithmically. So make it an extra CONFIG
->>> definition. Also, remove the execlist centric comment from the
->>> existing pre-emption timeout CONFIG option given that it applies to
->>> more than just execlists.
->>>
->>> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
->>> Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com> 
->>> (v1)
->>> Acked-by: Michal Mrozek <michal.mrozek@intel.com>
->>> ---
->>>   drivers/gpu/drm/i915/Kconfig.profile      | 26 +++++++++++++++++++----
->>>   drivers/gpu/drm/i915/gt/intel_engine_cs.c |  9 ++++++--
->>>   2 files changed, 29 insertions(+), 6 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/Kconfig.profile 
->>> b/drivers/gpu/drm/i915/Kconfig.profile
->>> index 39328567c200..7cc38d25ee5c 100644
->>> --- a/drivers/gpu/drm/i915/Kconfig.profile
->>> +++ b/drivers/gpu/drm/i915/Kconfig.profile
->>> @@ -57,10 +57,28 @@ config DRM_I915_PREEMPT_TIMEOUT
->>>       default 640 # milliseconds
->>>       help
->>>         How long to wait (in milliseconds) for a preemption event to 
->>> occur
->>> -      when submitting a new context via execlists. If the current 
->>> context
->>> -      does not hit an arbitration point and yield to HW before the 
->>> timer
->>> -      expires, the HW will be reset to allow the more important context
->>> -      to execute.
->>> +      when submitting a new context. If the current context does not 
->>> hit
->>> +      an arbitration point and yield to HW before the timer expires, 
->>> the
->>> +      HW will be reset to allow the more important context to execute.
->>> +
->>> +      This is adjustable via
->>> +      /sys/class/drm/card?/engine/*/preempt_timeout_ms
->>> +
->>> +      May be 0 to disable the timeout.
->>> +
->>> +      The compiled in default may get overridden at driver probe 
->>> time on
->>> +      certain platforms and certain engines which will be reflected 
->>> in the
->>> +      sysfs control.
->>> +
->>> +config DRM_I915_PREEMPT_TIMEOUT_COMPUTE
->>> +    int "Preempt timeout for compute engines (ms, jiffy granularity)"
->>> +    default 7500 # milliseconds
->>> +    help
->>> +      How long to wait (in milliseconds) for a preemption event to 
->>> occur
->>> +      when submitting a new context to a compute capable engine. If the
->>> +      current context does not hit an arbitration point and yield to HW
->>> +      before the timer expires, the HW will be reset to allow the more
->>> +      important context to execute.
->>>           This is adjustable via
->>>         /sys/class/drm/card?/engine/*/preempt_timeout_ms
->>> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c 
->>> b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
->>> index 4185c7338581..cc0954ad836a 100644
->>> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
->>> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
->>> @@ -438,9 +438,14 @@ static int intel_engine_setup(struct intel_gt 
->>> *gt, enum intel_engine_id id,
->>>       engine->props.timeslice_duration_ms =
->>>           CONFIG_DRM_I915_TIMESLICE_DURATION;
->>>   -    /* Override to uninterruptible for OpenCL workloads. */
->>> +    /*
->>> +     * Mid-thread pre-emption is not available in Gen12. Unfortunately,
->>> +     * some OpenCL workloads run quite long threads. That means they 
->>> get
->>> +     * reset due to not pre-empting in a timely manner. So, bump the
->>> +     * pre-emption timeout value to be much higher for compute engines.
->>> +     */
->>>       if (GRAPHICS_VER(i915) == 12 && (engine->flags & 
->>> I915_ENGINE_HAS_RCS_REG_STATE))
->>> -        engine->props.preempt_timeout_ms = 0;
->>> +        engine->props.preempt_timeout_ms = 
->>> CONFIG_DRM_I915_PREEMPT_TIMEOUT_COMPUTE;
->>
->> I wouldn't go as far as adding a config option since as it is it only 
->> applies to Gen12 but Kconfig text says nothing about that. And I am 
->> not saying you should add a Gen12 specific config option, that would 
->> be weird. So IMO just drop it.
->>
-> You were the one arguing that the driver was illegally overriding the 
-> user's explicitly chosen settings, including the compile time config 
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-This is a bit out of context and illegally don't think used, so 
-misrepresents the earlier discussion. And I certainly did not suggest a 
-kconfig option.
+> ---
+>  drivers/gpu/drm/i915/display/intel_bios.c | 3 +++
+>  drivers/gpu/drm/i915/i915_drv.h           | 5 +++--
+>  2 files changed, 6 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/=
+i915/display/intel_bios.c
+> index a559a1914588..93dc32fb3e40 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bios.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
+> @@ -888,6 +888,9 @@ parse_edp(struct drm_i915_private *i915, const struct=
+ bdb_header *bdb)
+>  			i915->vbt.edp.low_vswing =3D vswing =3D=3D 0;
+>  		}
+>  	}
+> +
+> +	i915->vbt.edp.drrs_msa_timing_delay =3D
+> +		(edp->sdrrs_msa_timing_delay >> (panel_type * 2)) & 3;
+>  }
+>=20=20
+>  static void
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_=
+drv.h
+> index 943267393ecb..020c5f7602a2 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -356,10 +356,11 @@ struct intel_vbt_data {
+>  		int lanes;
+>  		int preemphasis;
+>  		int vswing;
+> -		bool low_vswing;
+> -		bool initialized;
+>  		int bpp;
+>  		struct edp_power_seq pps;
+> +		u8 drrs_msa_timing_delay;
+> +		bool low_vswing;
+> +		bool initialized;
+>  		bool hobl;
+>  	} edp;
 
-> options. Just having a hardcoded magic number in the driver is the 
-> absolute worst kind of override there is.
- >
-> And technically, the config option is not Gen12 specific. It is actually 
-> compute specific, hence the name. It just so happens that only Gen12 
-> onwards has compute engines. I can add an extra line to the Kconfig 
-> description if you want "NB: compute engines only exist on Gen12 but do 
-> include the RCS engine on Gen12".
-
-I am not unconditionally against it but it feels it creates more 
-problems than gives solutions.
-
-In kconfig help you say "compute *capable* engine". Here you say only 
-Gen12 has compute engines. Well before Gen12 render is compute capable, 
-but then how implemented it does not apply which is not good.
-
-Given the runtime override has the only purpose of working around broken 
-hardware then I'd still say to drop it. But if you can come up with help 
-text which won't be misleading and still not overly complicated I am not 
-opposing it.
-
-Regards,
-
-Tvrtko
+--=20
+Jani Nikula, Intel Open Source Graphics Center
