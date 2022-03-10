@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D4E84D4CD7
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Mar 2022 16:40:45 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B946F4D4DA3
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Mar 2022 16:53:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CEDB510EA0D;
-	Thu, 10 Mar 2022 15:40:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0690A10EA4F;
+	Thu, 10 Mar 2022 15:52:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1968410EA0D;
- Thu, 10 Mar 2022 15:40:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8897D10EA4F;
+ Thu, 10 Mar 2022 15:52:57 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 175ACA73C7;
- Thu, 10 Mar 2022 15:40:43 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 82A3CA0BCB;
+ Thu, 10 Mar 2022 15:52:57 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============5848957920794608432=="
+ boundary="===============3591883386271239813=="
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Katragadda, MastanX" <mastanx.katragadda@intel.com>
-Date: Thu, 10 Mar 2022 15:40:43 -0000
-Message-ID: <164692684306.17006.5833736069912806039@emeril.freedesktop.org>
+Date: Thu, 10 Mar 2022 15:52:57 -0000
+Message-ID: <164692757749.17007.10812266743437938539@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20220303060428.1668844-1-mastanx.katragadda@intel.com>
 In-Reply-To: <20220303060428.1668844-1-mastanx.katragadda@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
  =?utf-8?q?/i915/gem=3A_missing_boundary_check_in_vm=5Faccess_leads_to_OOB?=
  =?utf-8?q?_read/write_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -46,7 +46,7 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5848957920794608432==
+--===============3591883386271239813==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -55,7 +55,7 @@ Content-Transfer-Encoding: 7bit
 
 Series: drm/i915/gem: missing boundary check in vm_access leads to OOB read/write (rev2)
 URL   : https://patchwork.freedesktop.org/series/100932/
-State : failure
+State : success
 
 == Summary ==
 
@@ -65,14 +65,9 @@ CI Bug Log - changes from CI_DRM_11316 -> Patchwork_22468
 Summary
 -------
 
-  **FAILURE**
+  **SUCCESS**
 
-  Serious unknown changes coming with Patchwork_22468 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_22468, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+  No regressions found.
 
   External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22468/index.html
 
@@ -82,21 +77,6 @@ Participating hosts (50 -> 44)
   Additional (1): bat-adlp-4 
   Missing    (7): fi-kbl-soraka fi-hsw-4200u bat-dg1-5 fi-bsw-cyan fi-ctg-p8600 bat-jsl-2 fi-bdw-samus 
 
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_22468:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - fi-skl-6600u:       [PASS][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11316/fi-skl-6600u/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22468/fi-skl-6600u/igt@i915_pm_rpm@basic-pci-d3-state.html
-
-  
 Known issues
 ------------
 
@@ -107,17 +87,22 @@ Known issues
 #### Issues hit ####
 
   * igt@gem_exec_suspend@basic-s0@smem:
-    - fi-kbl-7567u:       [PASS][3] -> [DMESG-WARN][4] ([i915#4116])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11316/fi-kbl-7567u/igt@gem_exec_suspend@basic-s0@smem.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22468/fi-kbl-7567u/igt@gem_exec_suspend@basic-s0@smem.html
+    - fi-kbl-7567u:       [PASS][1] -> [DMESG-WARN][2] ([i915#4116])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11316/fi-kbl-7567u/igt@gem_exec_suspend@basic-s0@smem.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22468/fi-kbl-7567u/igt@gem_exec_suspend@basic-s0@smem.html
 
   * igt@gem_lmem_swapping@basic:
-    - bat-adlp-4:         NOTRUN -> [SKIP][5] ([i915#4613]) +3 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22468/bat-adlp-4/igt@gem_lmem_swapping@basic.html
+    - bat-adlp-4:         NOTRUN -> [SKIP][3] ([i915#4613]) +3 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22468/bat-adlp-4/igt@gem_lmem_swapping@basic.html
 
   * igt@gem_tiled_pread_basic:
-    - bat-adlp-4:         NOTRUN -> [SKIP][6] ([i915#3282])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22468/bat-adlp-4/igt@gem_tiled_pread_basic.html
+    - bat-adlp-4:         NOTRUN -> [SKIP][4] ([i915#3282])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22468/bat-adlp-4/igt@gem_tiled_pread_basic.html
+
+  * igt@i915_pm_rpm@basic-pci-d3-state:
+    - fi-skl-6600u:       [PASS][5] -> [FAIL][6] ([i915#5290])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11316/fi-skl-6600u/igt@i915_pm_rpm@basic-pci-d3-state.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22468/fi-skl-6600u/igt@i915_pm_rpm@basic-pci-d3-state.html
 
   * igt@kms_busy@basic@modeset:
     - bat-adlp-4:         NOTRUN -> [DMESG-WARN][7] ([i915#3576])
@@ -316,6 +301,7 @@ Known issues
   [i915#5068]: https://gitlab.freedesktop.org/drm/intel/issues/5068
   [i915#5076]: https://gitlab.freedesktop.org/drm/intel/issues/5076
   [i915#5176]: https://gitlab.freedesktop.org/drm/intel/issues/5176
+  [i915#5290]: https://gitlab.freedesktop.org/drm/intel/issues/5290
   [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
   [i915#658]: https://gitlab.freedesktop.org/drm/intel/issues/658
 
@@ -339,7 +325,7 @@ Build changes
 
 For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22468/index.html
 
---===============5848957920794608432==
+--===============3591883386271239813==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -361,7 +347,7 @@ Content-Transfer-Encoding: 7bit
 <table>
 <tr><td><b>Series:</b></td><td>drm/i915/gem: missing boundary check in vm_access leads to OOB read/write (rev2)</td></tr>
 <tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/100932/">https://patchwork.freedesktop.org/series/100932/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
 
     <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22468/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22468/index.html</a></td></tr>
 
@@ -370,26 +356,12 @@ Content-Transfer-Encoding: 7bit
 
     <h1>CI Bug Log - changes from CI_DRM_11316 -&gt; Patchwork_22468</h1>
 <h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_22468 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_22468, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
 <p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22468/index.html</p>
 <h2>Participating hosts (50 -&gt; 44)</h2>
 <p>Additional (1): bat-adlp-4 <br />
   Missing    (7): fi-kbl-soraka fi-hsw-4200u bat-dg1-5 fi-bsw-cyan fi-ctg-p8600 bat-jsl-2 fi-bdw-samus </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_22468:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@i915_pm_rpm@basic-pci-d3-state:<ul>
-<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11316/fi-skl-6600u/igt@i915_pm_rpm@basic-pci-d3-state.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22468/fi-skl-6600u/igt@i915_pm_rpm@basic-pci-d3-state.html">FAIL</a></li>
-</ul>
-</li>
-</ul>
 <h2>Known issues</h2>
 <p>Here are the changes found in Patchwork_22468 that come from known issues:</p>
 <h3>IGT changes</h3>
@@ -411,6 +383,12 @@ Content-Transfer-Encoding: 7bit
 <p>igt@gem_tiled_pread_basic:</p>
 <ul>
 <li>bat-adlp-4:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22468/bat-adlp-4/igt@gem_tiled_pread_basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3282">i915#3282</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@basic-pci-d3-state:</p>
+<ul>
+<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11316/fi-skl-6600u/igt@i915_pm_rpm@basic-pci-d3-state.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22468/fi-skl-6600u/igt@i915_pm_rpm@basic-pci-d3-state.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5290">i915#5290</a>)</li>
 </ul>
 </li>
 <li>
@@ -539,4 +517,4 @@ Content-Transfer-Encoding: 7bit
 </body>
 </html>
 
---===============5848957920794608432==--
+--===============3591883386271239813==--
