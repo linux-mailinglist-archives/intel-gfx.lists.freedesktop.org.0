@@ -1,57 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F44E4D5171
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Mar 2022 20:35:16 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 524354D52E8
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Mar 2022 21:10:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D35010ECF7;
-	Thu, 10 Mar 2022 19:35:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 78D7F10EA9B;
+	Thu, 10 Mar 2022 20:10:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A114910ECEF;
- Thu, 10 Mar 2022 19:35:10 +0000 (UTC)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 37EF3212B7;
- Thu, 10 Mar 2022 19:35:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1646940909; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=+nwP5XSM20uLQdAaU7RHlsXb87cQNUyLI84W5n7CTxY=;
- b=jsBt9GnZhmiG+q5zw/Q6v0TpQUAi0doHYdxWGnGPBbbAFBSnMwjeK+rgeJO9rULI8uDnZy
- e5xjRUMbf0B34+9K0VLDmetzgXCGyD3A5x12qx0fRVLeguyTpHJylBIOeUYeTjYMbCN8d9
- n+qnhUTKW99yfgk7iDuNSFgdqBkOTTs=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1646940909;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=+nwP5XSM20uLQdAaU7RHlsXb87cQNUyLI84W5n7CTxY=;
- b=VemL9i8Tr1SM/9iO/rvxs0sUN00JeclXpuHU8Fpxf11KmDu0F/PEFVi0XP3CSkDhB2tTCI
- LTmH1bzUWHrofUBQ==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id E9C7A13A66;
- Thu, 10 Mar 2022 19:35:08 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id wmPzN+xSKmIXXwAAMHmgww
- (envelope-from <tzimmermann@suse.de>); Thu, 10 Mar 2022 19:35:08 +0000
-Date: Thu, 10 Mar 2022 20:35:07 +0100
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <YipS65Iuu7RMMlAa@linux-uq9g>
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E18C310EA9B
+ for <intel-gfx@lists.freedesktop.org>; Thu, 10 Mar 2022 20:10:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1646943028; x=1678479028;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=I8Uf95sjmch7C8ucJwftg027xeN0SfDWxs17LJVKggY=;
+ b=OW6wnqTlNVwQi/PgzuK/idPFfqXh2rzT7AIVxyb9CuOeWZHL3W33NEkw
+ AKGevRWwgEnrAAjPeoVoGpp2x+5e0HOfa+ag9YG9hCPMH8UxfdsfJyXfW
+ rPBuwFwZqjwZYUmvdCoHhCKIRpaPSS4FpjmhDrGuvYIrw+Bbq+u8paROL
+ 1NgA9lNFkIWiB/PT5wcRQLDbrGtaK8aKpWPXXWXSN6U7BXf6MyJGgj/P5
+ 4/QPbjWtErpSCDtCpLTuufjmOS3sqQMraPpBQhatf0LgS21Zgk8aOOY3D
+ RdZmZstctZ3oFiWYIgb/9M1o+Wg6A68c7025b2ZXR3FN1btdOvdjKDBBH A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10282"; a="235317164"
+X-IronPort-AV: E=Sophos;i="5.90,171,1643702400"; d="scan'208";a="235317164"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2022 12:04:26 -0800
+X-IronPort-AV: E=Sophos;i="5.90,171,1643702400"; d="scan'208";a="688795403"
+Received: from josouza-mobl2.fso.intel.com (HELO josouza-mobl2.intel.com)
+ ([10.230.19.131])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2022 12:04:24 -0800
+From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 10 Mar 2022 12:05:17 -0800
+Message-Id: <20220310200518.247909-1-jose.souza@intel.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PULL] drm-misc-fixes
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915/display: Fix HPD short pulse
+ handling for eDP
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,47 +56,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave and Daniel,
+Commit 13ea6db2cf24 ("drm/i915/edp: Ignore short pulse when panel
+powered off") completely broke short pulse handling for eDP as it is
+usually generated by sink when it is displaying image and there is
+some error or status that source needs to handle.
 
-here's the PR for drm-misc-fixes for this week.
+When power panel is enabled, this state is enough to power aux
+transactions and VDD override is disabled, so intel_pps_have_power()
+is always returning false causing short pulses to be ignored.
 
-Best regards
-Thomas
+So here better naming this function that intends to check if aux
+lines are powered to avoid the endless cycle mentioned in the commit
+being fixed and fixing the check for what it is intended.
 
-drm-misc-fixes-2022-03-10:
- * drm/sun4i: Fix P010 and P210 format numbers
-The following changes since commit 62929726ef0ec72cbbe9440c5d125d4278b99894:
+Fixes: 13ea6db2cf24 ("drm/i915/edp: Ignore short pulse when panel powered off")
+Cc: Anshuman Gupta <anshuman.gupta@intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: Uma Shankar <uma.shankar@intel.com>
+Cc: Ville SyrjÃ¤lÃ¤ <ville.syrjala@linux.intel.com>
+Signed-off-by: JosÃ© Roberto de Souza <jose.souza@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp.c  | 2 +-
+ drivers/gpu/drm/i915/display/intel_pps.c | 4 ++--
+ drivers/gpu/drm/i915/display/intel_pps.h | 2 +-
+ 3 files changed, 4 insertions(+), 4 deletions(-)
 
-  drm/vrr: Set VRR capable prop only if it is attached to connector (2022-03-01 11:37:21 -0800)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2022-03-10
-
-for you to fetch changes up to 9470c29faa91c804aa04de4c10634bf02462bfa5:
-
-  drm/sun4i: mixer: Fix P010 and P210 format numbers (2022-03-08 11:54:50 +0100)
-
-----------------------------------------------------------------
- * drm/sun4i: Fix P010 and P210 format numbers
-
-----------------------------------------------------------------
-Jernej Skrabec (1):
-      drm/sun4i: mixer: Fix P010 and P210 format numbers
-
- drivers/gpu/drm/sun4i/sun8i_mixer.h | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 619546441eae5..b029b064000d6 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -4867,7 +4867,7 @@ intel_dp_hpd_pulse(struct intel_digital_port *dig_port, bool long_hpd)
+ 	struct intel_dp *intel_dp = &dig_port->dp;
+ 
+ 	if (dig_port->base.type == INTEL_OUTPUT_EDP &&
+-	    (long_hpd || !intel_pps_have_power(intel_dp))) {
++	    (long_hpd || !intel_pps_have_vdd_power(intel_dp))) {
+ 		/*
+ 		 * vdd off can generate a long/short pulse on eDP which
+ 		 * would require vdd on to handle it, and thus we
+diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
+index 9c986e8932f87..d3e6083ad5b79 100644
+--- a/drivers/gpu/drm/i915/display/intel_pps.c
++++ b/drivers/gpu/drm/i915/display/intel_pps.c
+@@ -1075,13 +1075,13 @@ static void intel_pps_vdd_sanitize(struct intel_dp *intel_dp)
+ 	edp_panel_vdd_schedule_off(intel_dp);
+ }
+ 
+-bool intel_pps_have_power(struct intel_dp *intel_dp)
++bool intel_pps_have_vdd_power(struct intel_dp *intel_dp)
+ {
+ 	intel_wakeref_t wakeref;
+ 	bool have_power = false;
+ 
+ 	with_intel_pps_lock(intel_dp, wakeref) {
+-		have_power = edp_have_panel_power(intel_dp) &&
++		have_power = edp_have_panel_power(intel_dp) ||
+ 						  edp_have_panel_vdd(intel_dp);
+ 	}
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_pps.h b/drivers/gpu/drm/i915/display/intel_pps.h
+index fbb47f6f453e4..948523ce32417 100644
+--- a/drivers/gpu/drm/i915/display/intel_pps.h
++++ b/drivers/gpu/drm/i915/display/intel_pps.h
+@@ -37,7 +37,7 @@ void intel_pps_vdd_on(struct intel_dp *intel_dp);
+ void intel_pps_on(struct intel_dp *intel_dp);
+ void intel_pps_off(struct intel_dp *intel_dp);
+ void intel_pps_vdd_off_sync(struct intel_dp *intel_dp);
+-bool intel_pps_have_power(struct intel_dp *intel_dp);
++bool intel_pps_have_vdd_power(struct intel_dp *intel_dp);
+ void intel_pps_wait_power_cycle(struct intel_dp *intel_dp);
+ 
+ void intel_pps_init(struct intel_dp *intel_dp);
 -- 
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 Nürnberg, Germany
-(HRB 36809, AG Nürnberg)
-Geschäftsführer: Felix Imendörffer
+2.35.1
+
