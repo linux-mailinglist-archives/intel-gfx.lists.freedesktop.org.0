@@ -1,34 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F9324D68FB
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Mar 2022 20:10:46 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02B954D68FE
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Mar 2022 20:12:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2DB1510E035;
-	Fri, 11 Mar 2022 19:10:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6676010E037;
+	Fri, 11 Mar 2022 19:12:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id B6B0B10E035;
- Fri, 11 Mar 2022 19:10:42 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id CAC2110E037;
+ Fri, 11 Mar 2022 19:12:06 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B249AAADD1;
- Fri, 11 Mar 2022 19:10:42 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id CA35AAADD1;
+ Fri, 11 Mar 2022 19:12:06 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Date: Fri, 11 Mar 2022 19:10:42 -0000
-Message-ID: <164702584269.23984.1656076837393307884@emeril.freedesktop.org>
+Date: Fri, 11 Mar 2022 19:12:06 -0000
+Message-ID: <164702592682.23984.12855061070557003955@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20220311172428.14685-1-ville.syrjala@linux.intel.com>
 In-Reply-To: <20220311172428.14685-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_DRRS_fixes/cleanups_and_start_of_static_DRRS_?=
- =?utf-8?b?KHJldjIp?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/i915=3A_DRRS_fixes/cleanups_and_start_of_static_DRRS_=28rev?=
+ =?utf-8?q?2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,27 +54,8 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-dda13ef0a9df drm/i915/dsi: Pass fixed_mode to *_dsi_add_properties()
-e17b931fdd3c drm/i915/sdvo: Passt the requesed mode to intel_sdvo_create_preferred_input_timing()
-bdc82c0b879a drm/i915/lvds: Pass fixed_mode to compute_is_dual_link_lvds()
-81362947328f drm/i915: Simplify intel_panel_info()
-6d8a7101ac57 drm/i915: Nuke dev_priv->drrs.type
-c2c0474c1e8d drm/i915: Introduce intel_panel_{fixed, downclock}_mode()
-c979129053ad drm/i915: Introduce intel_panel_get_modes()
-6b25a4dacf26 drm/i915: Introduce intel_panel_preferred_fixed_mode()
-9d175b312730 drm/i915: Introduce intel_panel_drrs_type()
-1345c858db5e drm/i915: Introduce intel_drrs_type_str()
-bb15348a55b1 drm/i915: Eliminate the intel_dp dependency from DRRS
-ca1a8eb54646 drm/i915: Stash DRRS state under intel_crtc
--:191: CHECK:UNCOMMENTED_DEFINITION: struct mutex definition without comment
-#191: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:1303:
-+		struct mutex mutex;
-
-total: 0 errors, 0 warnings, 1 checks, 561 lines checked
-66669c163c68 drm/i915: Move DRRS enable/disable higher up
-ad6c9abe5c1d drm/i915: Enable eDP DRRS on ilk/snb port A
-03d2ad9160a3 drm/i915: Implement static DRRS
-f06124f63b7a drm/i915: Convert fixed_mode/downclock_mode into a list
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
