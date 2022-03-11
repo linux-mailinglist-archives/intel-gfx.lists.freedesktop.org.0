@@ -1,49 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86FE44D6193
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Mar 2022 13:30:56 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3B174D6192
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Mar 2022 13:30:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12CEC10E964;
-	Fri, 11 Mar 2022 12:30:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 89F6E10E960;
+	Fri, 11 Mar 2022 12:30:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5AA6210E960;
- Fri, 11 Mar 2022 12:30:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0FC2410E960;
+ Fri, 11 Mar 2022 12:30:47 +0000 (UTC)
 From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1647001844;
+ s=2020; t=1647001845;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=t4G8akgUa9jCEUhZnTTe8VSqD7DwM4uu9SxRJBZp1fY=;
- b=OVtRWUOPbcaae1PnsieQuLEoPeD2d024oeAZgW/NAR6wi+7N6tPGVYbOocS0BOQtchaC5W
- 8LzLgRInDb9wC3Kutv1/2kSPcqvI4Szwz1+G+wuVmroK2wlqDOKEn9M4rvixJoqTvDpD1k
- 47CVXAZK7f+rq8EE4hpYZnijZkN9U/JFEpuaoItTgqTC4aJXlEZ3imZe+KrhL1nDcokkhh
- f6glSXRltm45XMNyFm5i4dxZemGtkFzujvm3zptjmXxY6fSUTSsyMeKX1A+24pOGAsIbAV
- pVb/L2VEOzsbOpoPK5zlWSIXcp3YAX/nWPZJiRzv6nfBZsV2uaPzod+PgowEFQ==
+ bh=gkQTxifYO4nWAVBPlK2Awg3pOkGqaJVi+lQhRbTjqO8=;
+ b=jC4HmJ+RMhekLXLhGcDtc84DkBCP6STQrMimm/Cn6m9EibhZr45GybSHxxsY4Okc5H1LHp
+ WW9cr9bXmwEQf63J9jWVPTUlxAZrWBQ+W31ou+A0GqisapTj2utofyLAy9l2Qi8EOemIYX
+ /qWTALo7glKUVxop9LT9kelcs99ItppC5cAOv0QbimdL95B+VzoRMlGh60Un+LI34H1m+3
+ 4t+w8H3/ItZ3Yval0uK3tcoKJS7zcHGXb7p4kF23tYd3UYLrwPlCeg+afZJRIKzqeAeqir
+ dZjSjqXQRXDcorBNzr8FYXYPkajazj4TLOa5R1HC6zO2kcVM21X4iqBtIv6dqg==
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1647001844;
+ s=2020e; t=1647001845;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=t4G8akgUa9jCEUhZnTTe8VSqD7DwM4uu9SxRJBZp1fY=;
- b=c9THJTz3V5JvEJzQ8qGudsCTludNxLtOlY65VJY2+HBhmEcfFCEKCByPHvwAyVc44lP16B
- L2SyWA7uZW2ScGAA==
+ bh=gkQTxifYO4nWAVBPlK2Awg3pOkGqaJVi+lQhRbTjqO8=;
+ b=GksLAj8S6yREdGoCwS2ApnRiNHZaySoE4aKHEqibOxvI+xj6ZtFfsq4YpraHEcyw7SYo5Z
+ X0BNoPiPEucJIvBg==
 To: dri-devel@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
-Date: Fri, 11 Mar 2022 13:30:31 +0100
-Message-Id: <20220311123032.4078431-2-bigeasy@linutronix.de>
+Date: Fri, 11 Mar 2022 13:30:32 +0100
+Message-Id: <20220311123032.4078431-3-bigeasy@linutronix.de>
 In-Reply-To: <20220311123032.4078431-1-bigeasy@linutronix.de>
 References: <20220311123032.4078431-1-bigeasy@linutronix.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-Subject: [Intel-gfx] [PATCH 1/2] drm/i915/gt: Queue and wait for the
- irq_work item.
+Subject: [Intel-gfx] [PATCH 2/2] drm/i915: Drop the irqs_disabled() check
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,51 +57,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: David Airlie <airlied@linux.ie>,
  Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- Clark Williams <williams@redhat.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Gleixner <tglx@linutronix.de>
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Gleixner <tglx@linutronix.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Disabling interrupts and invoking the irq_work function directly breaks
-on PREEMPT_RT.
-PREEMPT_RT does not invoke all irq_work from hardirq context because
-some of the user have spinlock_t locking in the callback function.
-These locks are then turned into a sleeping locks which can not be
-acquired with disabled interrupts.
+The !irqs_disabled() check triggers on PREEMPT_RT even with
+i915_sched_engine::lock acquired. The reason is the lock is transformed
+into a sleeping lock on PREEMPT_RT and does not disable interrupts.
 
-Using irq_work_queue() has the benefit that the irqwork will be invoked
-in the regular context. In general there is "no" delay between enqueuing
-the callback and its invocation because the interrupt is raised right
-away on architectures which support it (which includes x86).
+There is no need to check for disabled interrupts. The lockdep
+annotation below already check if the lock has been acquired by the
+caller and will yell if the interrupts are not disabled.
 
-Use irq_work_queue() + irq_work_sync() instead invoking the callback
-directly.
+Remove the !irqs_disabled() check.
 
-Reported-by: Clark Williams <williams@redhat.com>
+Reported-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_breadcrumbs.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/i915_request.c | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c b/drivers/gpu/drm/=
-i915/gt/intel_breadcrumbs.c
-index 209cf265bf746..98efeb97a6ba6 100644
---- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-@@ -311,9 +311,8 @@ void __intel_breadcrumbs_park(struct intel_breadcrumbs =
-*b)
- 	/* Kick the work once more to drain the signalers, and disarm the irq */
- 	irq_work_sync(&b->irq_work);
- 	while (READ_ONCE(b->irq_armed) && !atomic_read(&b->active)) {
--		local_irq_disable();
--		signal_irq_work(&b->irq_work);
--		local_irq_enable();
-+		irq_work_queue(&b->irq_work);
-+		irq_work_sync(&b->irq_work);
- 		cond_resched();
- 	}
- }
+diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i91=
+5_request.c
+index 76cf5ac91e946..41d7c1071ab52 100644
+--- a/drivers/gpu/drm/i915/i915_request.c
++++ b/drivers/gpu/drm/i915/i915_request.c
+@@ -583,7 +583,6 @@ bool __i915_request_submit(struct i915_request *request)
+=20
+ 	RQ_TRACE(request, "\n");
+=20
+-	GEM_BUG_ON(!irqs_disabled());
+ 	lockdep_assert_held(&engine->sched_engine->lock);
+=20
+ 	/*
+@@ -692,7 +691,6 @@ void __i915_request_unsubmit(struct i915_request *reque=
+st)
+ 	 */
+ 	RQ_TRACE(request, "\n");
+=20
+-	GEM_BUG_ON(!irqs_disabled());
+ 	lockdep_assert_held(&engine->sched_engine->lock);
+=20
+ 	/*
 --=20
 2.35.1
 
