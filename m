@@ -2,54 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF50A4D6704
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Mar 2022 18:02:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F2B354D677E
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Mar 2022 18:24:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F47F10E199;
-	Fri, 11 Mar 2022 17:02:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 579A410E567;
+	Fri, 11 Mar 2022 17:24:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF2DD10E199
- for <intel-gfx@lists.freedesktop.org>; Fri, 11 Mar 2022 17:02:49 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D604E10E567
+ for <intel-gfx@lists.freedesktop.org>; Fri, 11 Mar 2022 17:24:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1647018169; x=1678554169;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=oP5l2N/QHAJdBOIeC7EbQTEv8OmmNB8wg5QtDfCN4is=;
- b=JNpHel6V9CFayrrEHxBopPIN0e/rTWWP4LX8jinTlrEjFgqmxC7GRXf8
- OSAN24PXgcf3GTeFw0MWmGtMzpma7JyaUB7dAWl76vVuqboos4v125KXg
- 0nWmFKM0Tuw9viuwWdiAkyzyUBT+N5Saa3q3g4wgbJBYWzsVatxyJCg47
- fUHahCmLFSoAS9ELRKIEsa+rr5eew7NFTsGVlAyO2kVe9g/zNthaQsiEC
- 9l+C1g4pgJIa/KcAl63yd1OoSs1s4SvL/12kLcGXzasLXXigOw2XvNnlK
- HaWfBjlnPSjMsYQxChlw5ONJTHVL1mG6wOAHtuTaxY6AxIuQBMBH3za/x A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10283"; a="253173124"
-X-IronPort-AV: E=Sophos;i="5.90,174,1643702400"; d="scan'208";a="253173124"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2022 09:02:49 -0800
+ t=1647019473; x=1678555473;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=c3w6l/ATtUdp0JX6j9CR9w6QIMeSgBre+MpsqhmPeuE=;
+ b=ESLQsDKtpjw9LnYqA+ANY6cPcc8fLqCHVf6egOlntRDRh25xHOVjQZjq
+ HamuFv/p9OtRc5B0Jb0rS4HoUxUslDaQ82WqeM79Kcj6h7ey8wjftYA5k
+ PS+knNcAxmjRWeeTZnzvePXHfqSprwl03xsRo1Y84j80QyIX/o0t2W6KL
+ jIVtfiD1inLkvG+Ftk30lt+maxF5wmj4gDMAshzXzmfRZBmySdrLM7JjW
+ +YzSQBMq7t4rwvyn/f24NrVP0rfFDQIwv5nxZ9iBzL9P3lWEfGAlvQu9m
+ jjtcbcmLac+fEJ4FFC0hEa/iuJZTBPuzBoWrsDnGZIKw2f/s8+tcV1J4j A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10283"; a="243061657"
+X-IronPort-AV: E=Sophos;i="5.90,174,1643702400"; d="scan'208";a="243061657"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2022 09:24:32 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,174,1643702400"; d="scan'208";a="643037153"
+X-IronPort-AV: E=Sophos;i="5.90,174,1643702400"; d="scan'208";a="548516773"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
- by fmsmga002.fm.intel.com with SMTP; 11 Mar 2022 09:02:46 -0800
+ by fmsmga007.fm.intel.com with SMTP; 11 Mar 2022 09:24:29 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 11 Mar 2022 19:02:45 +0200
-Date: Fri, 11 Mar 2022 19:02:45 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Souza, Jose" <jose.souza@intel.com>
-Message-ID: <YiuAtdPiEk0ytmDj@intel.com>
-References: <20220310200518.247909-1-jose.souza@intel.com>
- <YipzEZQpfrjn/RN+@intel.com>
- <7d46f07565b6d25b1f71c16051273f76def2e838.camel@intel.com>
+ Fri, 11 Mar 2022 19:24:28 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 11 Mar 2022 19:24:12 +0200
+Message-Id: <20220311172428.14685-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <7d46f07565b6d25b1f71c16051273f76def2e838.camel@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/display: Fix HPD short pulse
- handling for eDP
+Subject: [Intel-gfx] [PATCH v2 00/16] drm/i915: DRRS fixes/cleanups and
+ start of static DRRS
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,118 +57,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Nikula, Jani" <jani.nikula@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Mar 11, 2022 at 01:05:49PM +0000, Souza, Jose wrote:
-> On Thu, 2022-03-10 at 23:52 +0200, Ville Syrj‰l‰ wrote:
-> > On Thu, Mar 10, 2022 at 12:05:17PM -0800, JosÈ Roberto de Souza wrote:
-> > > Commit 13ea6db2cf24 ("drm/i915/edp: Ignore short pulse when panel
-> > > powered off") completely broke short pulse handling for eDP as it is
-> > > usually generated by sink when it is displaying image and there is
-> > > some error or status that source needs to handle.
-> > > 
-> > > When power panel is enabled, this state is enough to power aux
-> > > transactions and VDD override is disabled, so intel_pps_have_power()
-> > > is always returning false causing short pulses to be ignored.
-> > 
-> > I think the times that we use the vdd override should be
-> > limited to:
-> > - aux transfers while the display off
-> > - potentially short periods of time during the modeset sequence
-> > 
-> > So I guess what you're saying here is that during those times
-> > some panel is triggering an IRQ_HPD which, if ignored, causes
-> > some problem for us?
-> 
-> No, not in those times.
-> When panel is on scanning out frames, PPS is enabled and VDD is disabled.
-> So any short pulse HPD was being ignored because (edp_have_panel_power() && edp_have_panel_vdd()) is always false.
-> 
-> > 
-> > > 
-> > > So here better naming this function that intends to check if aux
-> > > lines are powered to avoid the endless cycle mentioned in the commit
-> > > being fixed and fixing the check for what it is intended.
-> > > 
-> > > Fixes: 13ea6db2cf24 ("drm/i915/edp: Ignore short pulse when panel powered off")
-> > > Cc: Anshuman Gupta <anshuman.gupta@intel.com>
-> > > Cc: Jani Nikula <jani.nikula@intel.com>
-> > > Cc: Uma Shankar <uma.shankar@intel.com>
-> > > Cc: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
-> > > Signed-off-by: JosÈ Roberto de Souza <jose.souza@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_dp.c  | 2 +-
-> > >  drivers/gpu/drm/i915/display/intel_pps.c | 4 ++--
-> > >  drivers/gpu/drm/i915/display/intel_pps.h | 2 +-
-> > >  3 files changed, 4 insertions(+), 4 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> > > index 619546441eae5..b029b064000d6 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > > @@ -4867,7 +4867,7 @@ intel_dp_hpd_pulse(struct intel_digital_port *dig_port, bool long_hpd)
-> > >  	struct intel_dp *intel_dp = &dig_port->dp;
-> > >  
-> > >  	if (dig_port->base.type == INTEL_OUTPUT_EDP &&
-> > > -	    (long_hpd || !intel_pps_have_power(intel_dp))) {
-> > > +	    (long_hpd || !intel_pps_have_vdd_power(intel_dp))) {
-> > >  		/*
-> > >  		 * vdd off can generate a long/short pulse on eDP which
-> > >  		 * would require vdd on to handle it, and thus we
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
-> > > index 9c986e8932f87..d3e6083ad5b79 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_pps.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_pps.c
-> > > @@ -1075,13 +1075,13 @@ static void intel_pps_vdd_sanitize(struct intel_dp *intel_dp)
-> > >  	edp_panel_vdd_schedule_off(intel_dp);
-> > >  }
-> > >  
-> > > -bool intel_pps_have_power(struct intel_dp *intel_dp)
-> > > +bool intel_pps_have_vdd_power(struct intel_dp *intel_dp)
-> > >  {
-> > >  	intel_wakeref_t wakeref;
-> > >  	bool have_power = false;
-> > >  
-> > >  	with_intel_pps_lock(intel_dp, wakeref) {
-> > > -		have_power = edp_have_panel_power(intel_dp) &&
+From: Ville Syrj√§l√§ <ville.syrjala@linux.intel.com>
 
-Ah, that s/&&/||/ is the bug you're fixing. I didn't even notice,
-probably because of the broken indentation in the code here. I just
-read it and thought it only checks for panel power and not vdd.
+Fix/clean up the DRRS code sufficiently that I feel
+comfortable enabling it on all ilk+ CPU eDP ports.
+PCH ports still need a bit of work.
 
-Can you also fix up the indentation a bit so the code doesn't
-look so weird?
+The other thing I slapped on top is the beginnings of
+static DRRS support (ie. actually changing the refresh
+rate based on what the user asked). This initial version
+is still limited to just two refresh rates though. We'll
+have to expand on that further to also allow switching
+the other supported refresh rates.
 
-I think I'd call the function intel_pps_have_panel_power_or_vdd()
-(or something along those lines) to make it clear what it does.
+For the moment the user initiated refresh rate change
+will cause a full modeset. But I think we should be able
+to skip that if the hardware supports seamless DRRS, at least
+on BDW+ with its double buffered M/N registers. Some extra
+work will likely be needed for the modeset sequence to make
+sure the DRRS frontbuffer stuff won't interfere with the
+fastset reprogramming, and to make sure the reprogrmming
+happens atomically with all the plane updates. The biggest
+sticking point will probably be the fastset state check/copy
+stuff. As is that is pretty much a big hack when it comes to
+anything dotclock related and so probably needs some real
+surgery.
 
-Reviewed-by: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
+v2: Lot more refactoring and a real fixed_modes list
 
-> > > +		have_power = edp_have_panel_power(intel_dp) ||
-> > >  						  edp_have_panel_vdd(intel_dp);
-> > >  	}
-> > >  
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_pps.h b/drivers/gpu/drm/i915/display/intel_pps.h
-> > > index fbb47f6f453e4..948523ce32417 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_pps.h
-> > > +++ b/drivers/gpu/drm/i915/display/intel_pps.h
-> > > @@ -37,7 +37,7 @@ void intel_pps_vdd_on(struct intel_dp *intel_dp);
-> > >  void intel_pps_on(struct intel_dp *intel_dp);
-> > >  void intel_pps_off(struct intel_dp *intel_dp);
-> > >  void intel_pps_vdd_off_sync(struct intel_dp *intel_dp);
-> > > -bool intel_pps_have_power(struct intel_dp *intel_dp);
-> > > +bool intel_pps_have_vdd_power(struct intel_dp *intel_dp);
-> > >  void intel_pps_wait_power_cycle(struct intel_dp *intel_dp);
-> > >  
-> > >  void intel_pps_init(struct intel_dp *intel_dp);
-> > > -- 
-> > > 2.35.1
-> > 
-> 
+Ville Syrj√§l√§ (16):
+  drm/i915/dsi: Pass fixed_mode to *_dsi_add_properties()
+  drm/i915/sdvo: Passt the requesed mode to
+    intel_sdvo_create_preferred_input_timing()
+  drm/i915/lvds: Pass fixed_mode to compute_is_dual_link_lvds()
+  drm/i915: Simplify intel_panel_info()
+  drm/i915: Nuke dev_priv->drrs.type
+  drm/i915: Introduce intel_panel_{fixed,downclock}_mode()
+  drm/i915: Introduce intel_panel_get_modes()
+  drm/i915: Introduce intel_panel_preferred_fixed_mode()
+  drm/i915: Introduce intel_panel_drrs_type()
+  drm/i915: Introduce intel_drrs_type_str()
+  drm/i915: Eliminate the intel_dp dependency from DRRS
+  drm/i915: Stash DRRS state under intel_crtc
+  drm/i915: Move DRRS enable/disable higher up
+  drm/i915: Enable eDP DRRS on ilk/snb port A
+  drm/i915: Implement static DRRS
+  drm/i915: Convert fixed_mode/downclock_mode into a list
+
+ drivers/gpu/drm/i915/display/icl_dsi.c        |  11 +-
+ .../gpu/drm/i915/display/intel_connector.c    |   2 +
+ drivers/gpu/drm/i915/display/intel_crtc.c     |   2 +
+ drivers/gpu/drm/i915/display/intel_ddi.c      |   7 +-
+ drivers/gpu/drm/i915/display/intel_display.c  |   6 +-
+ .../drm/i915/display/intel_display_debugfs.c  | 152 +++-----
+ .../drm/i915/display/intel_display_types.h    |  17 +-
+ drivers/gpu/drm/i915/display/intel_dp.c       |  27 +-
+ drivers/gpu/drm/i915/display/intel_drrs.c     | 329 ++++++++----------
+ drivers/gpu/drm/i915/display/intel_drrs.h     |  20 +-
+ drivers/gpu/drm/i915/display/intel_dsi.c      |  24 +-
+ drivers/gpu/drm/i915/display/intel_dvo.c      |  20 +-
+ drivers/gpu/drm/i915/display/intel_lvds.c     |  19 +-
+ drivers/gpu/drm/i915/display/intel_panel.c    |  99 +++++-
+ drivers/gpu/drm/i915/display/intel_panel.h    |  13 +-
+ drivers/gpu/drm/i915/display/intel_sdvo.c     |  40 +--
+ drivers/gpu/drm/i915/display/vlv_dsi.c        |   9 +-
+ drivers/gpu/drm/i915/i915_drv.h               |  15 -
+ 18 files changed, 370 insertions(+), 442 deletions(-)
 
 -- 
-Ville Syrj‰l‰
-Intel
+2.34.1
+
