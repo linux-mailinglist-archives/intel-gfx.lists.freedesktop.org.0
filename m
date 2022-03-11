@@ -2,33 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02B954D68FE
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Mar 2022 20:12:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B013C4D6920
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Mar 2022 20:34:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6676010E037;
-	Fri, 11 Mar 2022 19:12:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A66110EA5A;
+	Fri, 11 Mar 2022 19:34:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id CAC2110E037;
- Fri, 11 Mar 2022 19:12:06 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id CA35AAADD1;
- Fri, 11 Mar 2022 19:12:06 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC2EB10EA54;
+ Fri, 11 Mar 2022 19:34:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1647027244; x=1678563244;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=TTznBlx0fLe7ayQYszvRc8d8cmhrxl96mSHpeeAHajQ=;
+ b=XOFmV2gdZoSwxPDVxp9idkHOylAZeoPy7b7xmpwvertVzqXBs189B0tz
+ MHOgkaws/d6pw5KhyBBVzCol9pr/mBOVkL6xPPc/Ywd9d6bQkKw7+sTcS
+ E7egaPGEWhY1yhkvAEBAZkGqhFWrD6RdHm73LoeyoPiE9Z1+8lnByJCTO
+ NFD9BnpzW9ZYqE0NynNpA9Bk1Lt0VqnDNTGLoZWXrlgTMytPR9pS46UUi
+ X3pTFqPk73xwfJ3ShFyIOuvQNx5Votw6k+Hu8IEbSobI9d3xnLJlzFQtW
+ sr4kNSL1oD4tMsE/3AhU+Nc5evpXdCmk4NHMwNhvCfLcI4YF2c+DgI+Q7 A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10283"; a="253202340"
+X-IronPort-AV: E=Sophos;i="5.90,174,1643702400"; d="scan'208";a="253202340"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2022 11:34:04 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,174,1643702400"; d="scan'208";a="514612105"
+Received: from lkp-server02.sh.intel.com (HELO 89b41b6ae01c) ([10.239.97.151])
+ by orsmga006.jf.intel.com with ESMTP; 11 Mar 2022 11:34:02 -0800
+Received: from kbuild by 89b41b6ae01c with local (Exim 4.92)
+ (envelope-from <lkp@intel.com>)
+ id 1nSl1W-0006zh-1c; Fri, 11 Mar 2022 19:34:02 +0000
+Date: Sat, 12 Mar 2022 03:33:00 +0800
+From: kernel test robot <lkp@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>, intel-gfx@lists.freedesktop.org
+Message-ID: <20220311193259.GA38493@573a85de5c97>
+References: <20220311061543.153611-2-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Date: Fri, 11 Mar 2022 19:12:06 -0000
-Message-ID: <164702592682.23984.12855061070557003955@emeril.freedesktop.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220311061543.153611-2-matthew.d.roper@intel.com>
 X-Patchwork-Hint: ignore
-References: <20220311172428.14685-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20220311172428.14685-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?drm/i915=3A_DRRS_fixes/cleanups_and_start_of_static_DRRS_=28rev?=
- =?utf-8?q?2=29?=
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: [Intel-gfx] [RFC PATCH] drm/i915/xehp:
+ intel_sseu_get_geometry_subslices() can be static
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,21 +61,28 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: kbuild-all@lists.01.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+drivers/gpu/drm/i915/gt/intel_sseu.c:59:5: warning: symbol 'intel_sseu_get_geometry_subslices' was not declared. Should it be static?
 
-Series: drm/i915: DRRS fixes/cleanups and start of static DRRS (rev2)
-URL   : https://patchwork.freedesktop.org/series/101222/
-State : warning
+Reported-by: kernel test robot <lkp@intel.com>
+Signed-off-by: kernel test robot <lkp@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_sseu.c |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-== Summary ==
-
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
-
-
+diff --git a/drivers/gpu/drm/i915/gt/intel_sseu.c b/drivers/gpu/drm/i915/gt/intel_sseu.c
+index 4d28458ab768d..99e31dcf3db06 100644
+--- a/drivers/gpu/drm/i915/gt/intel_sseu.c
++++ b/drivers/gpu/drm/i915/gt/intel_sseu.c
+@@ -56,7 +56,7 @@ u32 intel_sseu_get_subslices(const struct sseu_dev_info *sseu, u8 slice)
+ 	return _intel_sseu_get_subslices(sseu, sseu->subslice_mask, slice);
+ }
+ 
+-u32 intel_sseu_get_geometry_subslices(const struct sseu_dev_info *sseu)
++static u32 intel_sseu_get_geometry_subslices(const struct sseu_dev_info *sseu)
+ {
+ 	return _intel_sseu_get_subslices(sseu, sseu->geometry_subslice_mask, 0);
+ }
