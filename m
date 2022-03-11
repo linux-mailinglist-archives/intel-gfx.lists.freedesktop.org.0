@@ -2,49 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2B354D677E
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Mar 2022 18:24:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 950084D677F
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Mar 2022 18:24:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 579A410E567;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E6BA510E5A0;
 	Fri, 11 Mar 2022 17:24:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D604E10E567
- for <intel-gfx@lists.freedesktop.org>; Fri, 11 Mar 2022 17:24:33 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D6AA610E5A0
+ for <intel-gfx@lists.freedesktop.org>; Fri, 11 Mar 2022 17:24:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1647019473; x=1678555473;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=c3w6l/ATtUdp0JX6j9CR9w6QIMeSgBre+MpsqhmPeuE=;
- b=ESLQsDKtpjw9LnYqA+ANY6cPcc8fLqCHVf6egOlntRDRh25xHOVjQZjq
- HamuFv/p9OtRc5B0Jb0rS4HoUxUslDaQ82WqeM79Kcj6h7ey8wjftYA5k
- PS+knNcAxmjRWeeTZnzvePXHfqSprwl03xsRo1Y84j80QyIX/o0t2W6KL
- jIVtfiD1inLkvG+Ftk30lt+maxF5wmj4gDMAshzXzmfRZBmySdrLM7JjW
- +YzSQBMq7t4rwvyn/f24NrVP0rfFDQIwv5nxZ9iBzL9P3lWEfGAlvQu9m
- jjtcbcmLac+fEJ4FFC0hEa/iuJZTBPuzBoWrsDnGZIKw2f/s8+tcV1J4j A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10283"; a="243061657"
-X-IronPort-AV: E=Sophos;i="5.90,174,1643702400"; d="scan'208";a="243061657"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2022 09:24:32 -0800
+ t=1647019474; x=1678555474;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=LRBzP9WlwV/QBzQfza1GnScm8D/x08YZO8dskICnUMs=;
+ b=fZEu1yaLkHRjGM9ofoolAOeuOFql5KenNb60NZH3HqcB/oUoFQjz8z1D
+ SeMowQxl6JDTJq1cXSLJ+s0VP3qrogNokvcicYJEyPcce0sohC/E+hc9l
+ WElepSnyY26ogN1+HDXue0DyLtvlZxz0P6BkL9j46+yuBJBURFFc/VOCm
+ 7A2cUeJcagi1cS+lfB8gAgtSdOpcEgjek3VqvJjupIoFtsSBkqgmozmK+
+ +mve+c6NbAnYbOG6AFJU5zkQ2rdfmErhD1y7gUoTjz5rJc3eNawewW+Ov
+ JN0/nyXmDFeJGidJfZ9P1tNE+k9HJawoWaqg+G102XwuKNikzGNqnHBaL g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10283"; a="255803756"
+X-IronPort-AV: E=Sophos;i="5.90,174,1643702400"; d="scan'208";a="255803756"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2022 09:24:34 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,174,1643702400"; d="scan'208";a="548516773"
+X-IronPort-AV: E=Sophos;i="5.90,174,1643702400"; d="scan'208";a="689119368"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
- by fmsmga007.fm.intel.com with SMTP; 11 Mar 2022 09:24:29 -0800
+ by fmsmga001.fm.intel.com with SMTP; 11 Mar 2022 09:24:32 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 11 Mar 2022 19:24:28 +0200
+ Fri, 11 Mar 2022 19:24:31 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 11 Mar 2022 19:24:12 +0200
-Message-Id: <20220311172428.14685-1-ville.syrjala@linux.intel.com>
+Date: Fri, 11 Mar 2022 19:24:13 +0200
+Message-Id: <20220311172428.14685-2-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220311172428.14685-1-ville.syrjala@linux.intel.com>
+References: <20220311172428.14685-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 00/16] drm/i915: DRRS fixes/cleanups and
- start of static DRRS
+Subject: [Intel-gfx] [PATCH v2 01/16] drm/i915/dsi: Pass fixed_mode to
+ *_dsi_add_properties()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,71 +64,87 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Fix/clean up the DRRS code sufficiently that I feel
-comfortable enabling it on all ilk+ CPU eDP ports.
-PCH ports still need a bit of work.
+We want to eventually get rid of the connector->panel.fixed_mode
+pointer so avoid using it during DSI property setup. Since this
+all happens during the encoder init we already have the fixed_mode
+around, just pass that in.
 
-The other thing I slapped on top is the beginnings of
-static DRRS support (ie. actually changing the refresh
-rate based on what the user asked). This initial version
-is still limited to just two refresh rates though. We'll
-have to expand on that further to also allow switching
-the other supported refresh rates.
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/icl_dsi.c | 11 ++++++-----
+ drivers/gpu/drm/i915/display/vlv_dsi.c |  9 +++++----
+ 2 files changed, 11 insertions(+), 9 deletions(-)
 
-For the moment the user initiated refresh rate change
-will cause a full modeset. But I think we should be able
-to skip that if the hardware supports seamless DRRS, at least
-on BDW+ with its double buffered M/N registers. Some extra
-work will likely be needed for the modeset sequence to make
-sure the DRRS frontbuffer stuff won't interfere with the
-fastset reprogramming, and to make sure the reprogrmming
-happens atomically with all the plane updates. The biggest
-sticking point will probably be the fastset state check/copy
-stuff. As is that is pretty much a big hack when it comes to
-anything dotclock related and so probably needs some real
-surgery.
-
-v2: Lot more refactoring and a real fixed_modes list
-
-Ville Syrjälä (16):
-  drm/i915/dsi: Pass fixed_mode to *_dsi_add_properties()
-  drm/i915/sdvo: Passt the requesed mode to
-    intel_sdvo_create_preferred_input_timing()
-  drm/i915/lvds: Pass fixed_mode to compute_is_dual_link_lvds()
-  drm/i915: Simplify intel_panel_info()
-  drm/i915: Nuke dev_priv->drrs.type
-  drm/i915: Introduce intel_panel_{fixed,downclock}_mode()
-  drm/i915: Introduce intel_panel_get_modes()
-  drm/i915: Introduce intel_panel_preferred_fixed_mode()
-  drm/i915: Introduce intel_panel_drrs_type()
-  drm/i915: Introduce intel_drrs_type_str()
-  drm/i915: Eliminate the intel_dp dependency from DRRS
-  drm/i915: Stash DRRS state under intel_crtc
-  drm/i915: Move DRRS enable/disable higher up
-  drm/i915: Enable eDP DRRS on ilk/snb port A
-  drm/i915: Implement static DRRS
-  drm/i915: Convert fixed_mode/downclock_mode into a list
-
- drivers/gpu/drm/i915/display/icl_dsi.c        |  11 +-
- .../gpu/drm/i915/display/intel_connector.c    |   2 +
- drivers/gpu/drm/i915/display/intel_crtc.c     |   2 +
- drivers/gpu/drm/i915/display/intel_ddi.c      |   7 +-
- drivers/gpu/drm/i915/display/intel_display.c  |   6 +-
- .../drm/i915/display/intel_display_debugfs.c  | 152 +++-----
- .../drm/i915/display/intel_display_types.h    |  17 +-
- drivers/gpu/drm/i915/display/intel_dp.c       |  27 +-
- drivers/gpu/drm/i915/display/intel_drrs.c     | 329 ++++++++----------
- drivers/gpu/drm/i915/display/intel_drrs.h     |  20 +-
- drivers/gpu/drm/i915/display/intel_dsi.c      |  24 +-
- drivers/gpu/drm/i915/display/intel_dvo.c      |  20 +-
- drivers/gpu/drm/i915/display/intel_lvds.c     |  19 +-
- drivers/gpu/drm/i915/display/intel_panel.c    |  99 +++++-
- drivers/gpu/drm/i915/display/intel_panel.h    |  13 +-
- drivers/gpu/drm/i915/display/intel_sdvo.c     |  40 +--
- drivers/gpu/drm/i915/display/vlv_dsi.c        |   9 +-
- drivers/gpu/drm/i915/i915_drv.h               |  15 -
- 18 files changed, 370 insertions(+), 442 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
+index 13b07c6fd6be..00cae5d26637 100644
+--- a/drivers/gpu/drm/i915/display/icl_dsi.c
++++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+@@ -1965,7 +1965,8 @@ static void icl_dphy_param_init(struct intel_dsi *intel_dsi)
+ 	intel_dsi_log_params(intel_dsi);
+ }
+ 
+-static void icl_dsi_add_properties(struct intel_connector *connector)
++static void icl_dsi_add_properties(struct intel_connector *connector,
++				   const struct drm_display_mode *fixed_mode)
+ {
+ 	u32 allowed_scalers;
+ 
+@@ -1979,9 +1980,9 @@ static void icl_dsi_add_properties(struct intel_connector *connector)
+ 	connector->base.state->scaling_mode = DRM_MODE_SCALE_ASPECT;
+ 
+ 	drm_connector_set_panel_orientation_with_quirk(&connector->base,
+-				intel_dsi_get_panel_orientation(connector),
+-				connector->panel.fixed_mode->hdisplay,
+-				connector->panel.fixed_mode->vdisplay);
++						       intel_dsi_get_panel_orientation(connector),
++						       fixed_mode->hdisplay,
++						       fixed_mode->vdisplay);
+ }
+ 
+ void icl_dsi_init(struct drm_i915_private *dev_priv)
+@@ -2084,7 +2085,7 @@ void icl_dsi_init(struct drm_i915_private *dev_priv)
+ 
+ 	icl_dphy_param_init(intel_dsi);
+ 
+-	icl_dsi_add_properties(intel_connector);
++	icl_dsi_add_properties(intel_connector, fixed_mode);
+ 	return;
+ 
+ err:
+diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
+index 0d936f658b3f..c87a6e729a3c 100644
+--- a/drivers/gpu/drm/i915/display/vlv_dsi.c
++++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
+@@ -1657,7 +1657,8 @@ static const struct drm_connector_funcs intel_dsi_connector_funcs = {
+ 	.atomic_duplicate_state = intel_digital_connector_duplicate_state,
+ };
+ 
+-static void vlv_dsi_add_properties(struct intel_connector *connector)
++static void vlv_dsi_add_properties(struct intel_connector *connector,
++				   const struct drm_display_mode *fixed_mode)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+ 	u32 allowed_scalers;
+@@ -1673,8 +1674,8 @@ static void vlv_dsi_add_properties(struct intel_connector *connector)
+ 
+ 	drm_connector_set_panel_orientation_with_quirk(&connector->base,
+ 						       intel_dsi_get_panel_orientation(connector),
+-						       connector->panel.fixed_mode->hdisplay,
+-						       connector->panel.fixed_mode->vdisplay);
++						       fixed_mode->hdisplay,
++						       fixed_mode->vdisplay);
+ }
+ 
+ #define NS_KHZ_RATIO		1000000
+@@ -1989,7 +1990,7 @@ void vlv_dsi_init(struct drm_i915_private *dev_priv)
+ 	intel_panel_init(&intel_connector->panel, fixed_mode, NULL);
+ 	intel_backlight_setup(intel_connector, INVALID_PIPE);
+ 
+-	vlv_dsi_add_properties(intel_connector);
++	vlv_dsi_add_properties(intel_connector, fixed_mode);
+ 
+ 	return;
+ 
 -- 
 2.34.1
 
