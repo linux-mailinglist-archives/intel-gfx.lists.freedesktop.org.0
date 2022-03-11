@@ -1,51 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C747B4D5F46
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Mar 2022 11:19:07 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C89F4D5F47
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Mar 2022 11:19:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0547310E8B1;
-	Fri, 11 Mar 2022 10:19:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 660F810E8B6;
+	Fri, 11 Mar 2022 10:19:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE7B110E883
- for <intel-gfx@lists.freedesktop.org>; Fri, 11 Mar 2022 10:19:04 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A4CED10E8B6
+ for <intel-gfx@lists.freedesktop.org>; Fri, 11 Mar 2022 10:19:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646993944; x=1678529944;
+ t=1646993948; x=1678529948;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=vHqu6i/VpxHibTuPWPHCMievxoqXjhnQsIwUjadZc9M=;
- b=hcB2RHMRN4jftsweUzVeHVKCg83PexBVmwBDe2sOT7Miyg34UEUyf7t3
- W5Ts+XqsLhwQDUp7BNjALtRezSCM8qERNOjCkk/Zm+Ley8NJJT6T4hTP0
- Nvh6A8mtjKPtRtTHvunSsLdIah1yxUSANsV/9qDBLRMqiaZbpC3V5tjRB
- 5Hs52lgk2MbCtALMxtJech2vDFMEMh9Aj/YecaNfmbKOS1YKFNiUTF4mU
- Aa2YyZtbApJywjb6FeH/PVNC2paqGXSDDWJR91N61tSXiX+iEjB2wzA8k
- 9bw3jxcxzTfwJG7jI+eobUostqzZlJ1EyZeGh7hTuWiTp5U52n0q3V2cG w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10282"; a="254373989"
-X-IronPort-AV: E=Sophos;i="5.90,173,1643702400"; d="scan'208";a="254373989"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2022 02:19:04 -0800
-X-IronPort-AV: E=Sophos;i="5.90,173,1643702400"; d="scan'208";a="538953012"
+ bh=LgIHZGM7VPofGxGdv0my+imJe9vceCi4RIxrd0JUEdQ=;
+ b=fkhVq8jAIPN0S+YcxSexznPeS6DvlZpC8cP+2T0fvG04rfF4h18+KfOl
+ Kp0snhbTV+KG5/UU69IPPLmvGM3l01zJ4AoNwy37xD1NJQ6bP6foCTo/o
+ JTV2dYVipBmouZwzX48oAyWezb9gMbFSPfIqLM5Y2XgDnHkoOoHfKInXR
+ s1diTfF1n9l1LoO8f/hI5eGhwXQ5DfZlijtZocO5JAXQXZHG5rIFFZEJx
+ OjSrUCTEGQxGcyn1xhNhHeijgDR3w6CglKpep34jHjhBKpgwRakEuICJx
+ pu7AhbaBW2dFyJL1Yuf2kgJp0je7VGim+YZAUj1ag7Wmz3U1+VizMdV4T g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10282"; a="242993997"
+X-IronPort-AV: E=Sophos;i="5.90,173,1643702400"; d="scan'208";a="242993997"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2022 02:19:08 -0800
+X-IronPort-AV: E=Sophos;i="5.90,173,1643702400"; d="scan'208";a="514459695"
 Received: from cchitora-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.46.187])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2022 02:19:02 -0800
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2022 02:19:06 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 11 Mar 2022 12:18:53 +0200
-Message-Id: <20220311101854.146911-2-jani.nikula@intel.com>
+Date: Fri, 11 Mar 2022 12:18:54 +0200
+Message-Id: <20220311101854.146911-3-jani.nikula@intel.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20220311101854.146911-1-jani.nikula@intel.com>
 References: <20220311101854.146911-1-jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/3] drm/i915/pciids: use designated
- initializers for struct pci_device_id
+Subject: [Intel-gfx] [PATCH 3/3] drm/i915: define INTEL_VGA_DEVICE_INIT()
+ for subplatform init
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,60 +62,30 @@ Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Use designated initializers for struct pci_device_id to avoid the
-dependency on struct pci_device_id remaining unchanged. Recently, commit
-343b7258687e ("PCI: Add 'override_only' field to struct pci_device_id")
-added a new member leading to warnings about missing field initializers.
+Redefine INTEL_VGA_DEVICE_INIT() instead of INTEL_VGA_DEVICE() for
+subplatform init. This is only for completeness as we don't use
+subplatforms for Quanta devices.
 
-Any userspace using this header should switch to defining their own
-initializers. The old one is left in place for now.
-
-References: https://lore.kernel.org/all/202108272322.EipbBEAp-lkp@intel.com
-Reported-by: kernel test robot <lkp@intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- include/drm/i915_pciids.h | 20 ++++++++++++--------
- 1 file changed, 12 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/i915/intel_device_info.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/include/drm/i915_pciids.h b/include/drm/i915_pciids.h
-index 637333c9e1c0..2831614f8725 100644
---- a/include/drm/i915_pciids.h
-+++ b/include/drm/i915_pciids.h
-@@ -25,15 +25,18 @@
- #ifndef _I915_PCIIDS_H
- #define _I915_PCIIDS_H
+diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
+index 8d458226f478..62aba2fc7e45 100644
+--- a/drivers/gpu/drm/i915/intel_device_info.c
++++ b/drivers/gpu/drm/i915/intel_device_info.c
+@@ -127,8 +127,8 @@ void intel_device_info_print_runtime(const struct intel_runtime_info *info,
+ 	drm_printf(p, "rawclk rate: %u kHz\n", info->rawclk_freq);
+ }
  
-+#ifdef __KERNEL__
-+/* Initializer for struct pci_device_id */
-+#define INTEL_VGA_DEVICE_INIT(__id, __subvendor, __subdevice, __info) { \
-+		.vendor = 0x8086, .device = (__id),			\
-+		.subvendor = (__subvendor), .subdevice = (__subdevice),	\
-+		.class = 0x030000, .class_mask = 0xff0000,		\
-+		.driver_data = (kernel_ulong_t)(__info),		\
-+	}
-+#else
- /*
-- * A pci_device_id struct {
-- *	__u32 vendor, device;
-- *      __u32 subvendor, subdevice;
-- *	__u32 class, class_mask;
-- *	kernel_ulong_t driver_data;
-- * };
-- * Don't use C99 here because "class" is reserved and we want to
-- * give userspace flexibility.
-+ * Transitional, non-kernel users should define INTEL_VGA_DEVICE_INIT()
-+ * themselves.
-  */
- #define INTEL_VGA_DEVICE_INIT(__id, __subvendor, __subdevice, __info) { \
- 		0x8086, (__id),						\
-@@ -41,6 +44,7 @@
- 		0x030000, 0xff0000,					\
- 		(kernel_ulong_t)(__info),				\
- 	}
-+#endif
+-#undef INTEL_VGA_DEVICE
+-#define INTEL_VGA_DEVICE(id, info) (id)
++#undef INTEL_VGA_DEVICE_INIT
++#define INTEL_VGA_DEVICE_INIT(__id, ...) (__id)
  
- #define INTEL_VGA_DEVICE(__id, __info)			\
- 	INTEL_VGA_DEVICE_INIT(__id, ~0, ~0, __info)
+ static const u16 subplatform_ult_ids[] = {
+ 	INTEL_HSW_ULT_GT1_IDS(0),
 -- 
 2.30.2
 
