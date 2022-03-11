@@ -2,47 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3B174D6192
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Mar 2022 13:30:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FBB44D6206
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Mar 2022 14:05:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 89F6E10E960;
-	Fri, 11 Mar 2022 12:30:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BF1010E578;
+	Fri, 11 Mar 2022 13:05:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0FC2410E960;
- Fri, 11 Mar 2022 12:30:47 +0000 (UTC)
-From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1647001845;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=gkQTxifYO4nWAVBPlK2Awg3pOkGqaJVi+lQhRbTjqO8=;
- b=jC4HmJ+RMhekLXLhGcDtc84DkBCP6STQrMimm/Cn6m9EibhZr45GybSHxxsY4Okc5H1LHp
- WW9cr9bXmwEQf63J9jWVPTUlxAZrWBQ+W31ou+A0GqisapTj2utofyLAy9l2Qi8EOemIYX
- /qWTALo7glKUVxop9LT9kelcs99ItppC5cAOv0QbimdL95B+VzoRMlGh60Un+LI34H1m+3
- 4t+w8H3/ItZ3Yval0uK3tcoKJS7zcHGXb7p4kF23tYd3UYLrwPlCeg+afZJRIKzqeAeqir
- dZjSjqXQRXDcorBNzr8FYXYPkajazj4TLOa5R1HC6zO2kcVM21X4iqBtIv6dqg==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1647001845;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=gkQTxifYO4nWAVBPlK2Awg3pOkGqaJVi+lQhRbTjqO8=;
- b=GksLAj8S6yREdGoCwS2ApnRiNHZaySoE4aKHEqibOxvI+xj6ZtFfsq4YpraHEcyw7SYo5Z
- X0BNoPiPEucJIvBg==
-To: dri-devel@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Date: Fri, 11 Mar 2022 13:30:32 +0100
-Message-Id: <20220311123032.4078431-3-bigeasy@linutronix.de>
-In-Reply-To: <20220311123032.4078431-1-bigeasy@linutronix.de>
-References: <20220311123032.4078431-1-bigeasy@linutronix.de>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id EB19C10E578;
+ Fri, 11 Mar 2022 13:05:37 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id E6617A882E;
+ Fri, 11 Mar 2022 13:05:37 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915: Drop the irqs_disabled() check
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Fri, 11 Mar 2022 13:05:37 -0000
+Message-ID: <164700393793.23984.11798683199861149457@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220311101854.146911-1-jani.nikula@intel.com>
+In-Reply-To: <20220311101854.146911-1-jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?series_starting_with_=5B1/3=5D_drm/i915/pciids=3A_add_common_IN?=
+ =?utf-8?q?TEL=5FVGA=5FDEVICE=5FINIT_macro?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,50 +41,21 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>,
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Gleixner <tglx@linutronix.de>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The !irqs_disabled() check triggers on PREEMPT_RT even with
-i915_sched_engine::lock acquired. The reason is the lock is transformed
-into a sleeping lock on PREEMPT_RT and does not disable interrupts.
+== Series Details ==
 
-There is no need to check for disabled interrupts. The lockdep
-annotation below already check if the lock has been acquired by the
-caller and will yell if the interrupts are not disabled.
+Series: series starting with [1/3] drm/i915/pciids: add common INTEL_VGA_DEVICE_INIT macro
+URL   : https://patchwork.freedesktop.org/series/101280/
+State : warning
 
-Remove the !irqs_disabled() check.
+== Summary ==
 
-Reported-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
----
- drivers/gpu/drm/i915/i915_request.c | 2 --
- 1 file changed, 2 deletions(-)
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i91=
-5_request.c
-index 76cf5ac91e946..41d7c1071ab52 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -583,7 +583,6 @@ bool __i915_request_submit(struct i915_request *request)
-=20
- 	RQ_TRACE(request, "\n");
-=20
--	GEM_BUG_ON(!irqs_disabled());
- 	lockdep_assert_held(&engine->sched_engine->lock);
-=20
- 	/*
-@@ -692,7 +691,6 @@ void __i915_request_unsubmit(struct i915_request *reque=
-st)
- 	 */
- 	RQ_TRACE(request, "\n");
-=20
--	GEM_BUG_ON(!irqs_disabled());
- 	lockdep_assert_held(&engine->sched_engine->lock);
-=20
- 	/*
---=20
-2.35.1
 
