@@ -1,51 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C89F4D5F47
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Mar 2022 11:19:12 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0879C4D5F76
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Mar 2022 11:27:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 660F810E8B6;
-	Fri, 11 Mar 2022 10:19:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C4B910E641;
+	Fri, 11 Mar 2022 10:27:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A4CED10E8B6
- for <intel-gfx@lists.freedesktop.org>; Fri, 11 Mar 2022 10:19:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646993948; x=1678529948;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=LgIHZGM7VPofGxGdv0my+imJe9vceCi4RIxrd0JUEdQ=;
- b=fkhVq8jAIPN0S+YcxSexznPeS6DvlZpC8cP+2T0fvG04rfF4h18+KfOl
- Kp0snhbTV+KG5/UU69IPPLmvGM3l01zJ4AoNwy37xD1NJQ6bP6foCTo/o
- JTV2dYVipBmouZwzX48oAyWezb9gMbFSPfIqLM5Y2XgDnHkoOoHfKInXR
- s1diTfF1n9l1LoO8f/hI5eGhwXQ5DfZlijtZocO5JAXQXZHG5rIFFZEJx
- OjSrUCTEGQxGcyn1xhNhHeijgDR3w6CglKpep34jHjhBKpgwRakEuICJx
- pu7AhbaBW2dFyJL1Yuf2kgJp0je7VGim+YZAUj1ag7Wmz3U1+VizMdV4T g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10282"; a="242993997"
-X-IronPort-AV: E=Sophos;i="5.90,173,1643702400"; d="scan'208";a="242993997"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2022 02:19:08 -0800
-X-IronPort-AV: E=Sophos;i="5.90,173,1643702400"; d="scan'208";a="514459695"
-Received: from cchitora-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.46.187])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2022 02:19:06 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 11 Mar 2022 12:18:54 +0200
-Message-Id: <20220311101854.146911-3-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220311101854.146911-1-jani.nikula@intel.com>
-References: <20220311101854.146911-1-jani.nikula@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 76EF710E641;
+ Fri, 11 Mar 2022 10:27:35 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 730EFAA0EB;
+ Fri, 11 Mar 2022 10:27:35 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 3/3] drm/i915: define INTEL_VGA_DEVICE_INIT()
- for subplatform init
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Fri, 11 Mar 2022 10:27:35 -0000
+Message-ID: <164699445542.23983.16726055108873165106@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220311100639.114685-1-jani.nikula@intel.com>
+In-Reply-To: <20220311100639.114685-1-jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?series_starting_with_=5B1/2=5D_x86/gpu=3A_include_drm/i915=5Fpc?=
+ =?utf-8?q?iids=2Eh_directly_in_early_quirks?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,34 +41,21 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Redefine INTEL_VGA_DEVICE_INIT() instead of INTEL_VGA_DEVICE() for
-subplatform init. This is only for completeness as we don't use
-subplatforms for Quanta devices.
+== Series Details ==
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/intel_device_info.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Series: series starting with [1/2] x86/gpu: include drm/i915_pciids.h directly in early quirks
+URL   : https://patchwork.freedesktop.org/series/101279/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
-index 8d458226f478..62aba2fc7e45 100644
---- a/drivers/gpu/drm/i915/intel_device_info.c
-+++ b/drivers/gpu/drm/i915/intel_device_info.c
-@@ -127,8 +127,8 @@ void intel_device_info_print_runtime(const struct intel_runtime_info *info,
- 	drm_printf(p, "rawclk rate: %u kHz\n", info->rawclk_freq);
- }
- 
--#undef INTEL_VGA_DEVICE
--#define INTEL_VGA_DEVICE(id, info) (id)
-+#undef INTEL_VGA_DEVICE_INIT
-+#define INTEL_VGA_DEVICE_INIT(__id, ...) (__id)
- 
- static const u16 subplatform_ult_ids[] = {
- 	INTEL_HSW_ULT_GT1_IDS(0),
--- 
-2.30.2
+== Summary ==
+
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
+
 
