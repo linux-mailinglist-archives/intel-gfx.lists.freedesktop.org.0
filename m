@@ -2,46 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFF084D69FE
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Mar 2022 23:55:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A7524D69FF
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Mar 2022 23:55:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E420710E036;
-	Fri, 11 Mar 2022 22:55:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 405D310E037;
+	Fri, 11 Mar 2022 22:55:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D797F10E035
- for <intel-gfx@lists.freedesktop.org>; Fri, 11 Mar 2022 22:55:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A1D310E036
+ for <intel-gfx@lists.freedesktop.org>; Fri, 11 Mar 2022 22:55:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1647039306; x=1678575306;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=QCItzmWHyyjsfLH3qG4lUPvbD6qiNoOxrIlAreLp550=;
- b=Gzuqc2qbhnowpwNgZzUpQQk8yfWN1ufFiuwZcNW53zYqqcRAKAyJ+Evx
- mKrATqJw/0rg34lKxFqkza1mlCxNv63iyniadEtj8Q4clR0p0OKKa8mNc
- h4zw4ag6oRuRXPXTXOWRM4fD3x42WQrkUl8ehGIDGip4eRy2TND+lxFPt
- JicMXdU7GWdAco/4L83gIWTcynRZnXWk+oqT9ildGHBLJZV6K/iq5d3vs
- dI2qL/KEImnk5I8lawHpwygmCMqsgS9bgSl+dLxmKGaQ6ooitqDWthfZX
- 9rm2tP4NRGhBFVL0kL9vUS9521chb9Kwtx0wFLkcqsZITnnr9ZvGNumf4 g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10283"; a="342095747"
-X-IronPort-AV: E=Sophos;i="5.90,175,1643702400"; d="scan'208";a="342095747"
+ t=1647039307; x=1678575307;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=qB5CbRqbQJ8XGBIzgxkm5bKPVbTpzzwVHG5d2KiytEE=;
+ b=YHild3nGB2F3lDB01nkB1cPMO/ry3nH4R4NSk7TDSLn3MYgOIRKfTwG/
+ 8E+hSV9AXTwrn6qo3c98g4xIt95fSs8Y4K2qI7YTEyuPwuatQiZsSribT
+ B+NrRdjl+RkW3AgZtFs7w37zZKKQu0E1OuAUDQAGVsXRrcsAYz6Nky5nN
+ 9NLnNPYFvdgN+JA2x1iC5Xjk5+wcm2WWIhcKct0gFzoy1a4nUYDdP7qvg
+ LzuC4I9nHXrCrA+WIjv0oRjvMupwpem9KpXl8Irj5DMtH/hcC5J1XMAIv
+ UeK4p7UoPja4F09OhrX8lrQ7aukhlW02tsXbly0pYe0EGqbV98JoikIzB Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10283"; a="342095748"
+X-IronPort-AV: E=Sophos;i="5.90,175,1643702400"; d="scan'208";a="342095748"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  11 Mar 2022 14:55:06 -0800
-X-IronPort-AV: E=Sophos;i="5.90,175,1643702400"; d="scan'208";a="514662800"
+X-IronPort-AV: E=Sophos;i="5.90,175,1643702400"; d="scan'208";a="514662804"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2022 14:55:05 -0800
+ 11 Mar 2022 14:55:06 -0800
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 11 Mar 2022 14:54:58 -0800
-Message-Id: <20220311225459.385515-1-matthew.d.roper@intel.com>
+Date: Fri, 11 Mar 2022 14:54:59 -0800
+Message-Id: <20220311225459.385515-2-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220311225459.385515-1-matthew.d.roper@intel.com>
+References: <20220311225459.385515-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 1/2] drm/i915/sseu: Don't overallocate
- subslice storage
+Subject: [Intel-gfx] [PATCH v2 2/2] drm/i915/xehp: Update topology dumps for
+ Xe_HP
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,113 +56,188 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Xe_HP removed "slice" as a first-class unit in the hardware design.
-Instead we now have a single pool of subslices (which are now referred
-to as "DSS") that different hardware units have different ways of
-grouping ("compute slices," "geometry slices," etc.).  For the purposes
-of topology representation, we treat Xe_HP-based platforms as having a
-single slice that contains all of the platform's DSS.  There's no need
-to allocate storage space for (max legacy slices * max dss); let's
-update some of our macros to minimize the storage requirement for sseu
-topology.  We'll also document some of the constants to make it a little
-bit more clear what they represent.
+When running on Xe_HP or beyond, let's use an updated format for
+describing topology in our error state dumps and debugfs to give a
+more accurate view of the hardware:
+
+ - Just report DSS directly without the legacy "slice0" output that's no
+   longer meaningful.
+ - Indicate whether each DSS is accessible for geometry and/or compute.
+ - Rename "rcs_topology" to "sseu_topology" since the information
+   reported is common to both RCS and CCS engines now.
 
 v2:
- - s/LEGACY/HSW/ in macro names.  (Lucas)
- - Rename MAX() to SSEU_MAX() to avoid any potential clashes with other
-   definitions elsewhere.  Unfortunately max()/max_t() from
-   linux/minmax.h cannot be used in this context.  (Lucas)
+ - Name static functions in a more consistent manner.  (Lucas)
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_engine_types.h |  2 +-
- drivers/gpu/drm/i915/gt/intel_sseu.h         | 47 +++++++++++++++-----
- 2 files changed, 36 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_sseu.c         | 54 ++++++++++++++++----
+ drivers/gpu/drm/i915/gt/intel_sseu.h         |  3 +-
+ drivers/gpu/drm/i915/gt/intel_sseu_debugfs.c |  8 +--
+ drivers/gpu/drm/i915/i915_gpu_error.c        |  2 +-
+ 4 files changed, 50 insertions(+), 17 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-index 85c00025a2ff..eac20112709c 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-@@ -646,7 +646,7 @@ intel_engine_has_relative_mmio(const struct intel_engine_cs * const engine)
+diff --git a/drivers/gpu/drm/i915/gt/intel_sseu.c b/drivers/gpu/drm/i915/gt/intel_sseu.c
+index 614915ffbd37..9881a6790574 100644
+--- a/drivers/gpu/drm/i915/gt/intel_sseu.c
++++ b/drivers/gpu/drm/i915/gt/intel_sseu.c
+@@ -10,6 +10,8 @@
+ #include "intel_gt_regs.h"
+ #include "intel_sseu.h"
  
- #define for_each_instdone_gslice_dss_xehp(dev_priv_, sseu_, iter_, gslice_, dss_) \
- 	for ((iter_) = 0, (gslice_) = 0, (dss_) = 0; \
--	     (iter_) < GEN_MAX_SUBSLICES; \
-+	     (iter_) < GEN_SS_MASK_SIZE; \
- 	     (iter_)++, (gslice_) = (iter_) / GEN_DSS_PER_GSLICE, \
- 	     (dss_) = (iter_) % GEN_DSS_PER_GSLICE) \
- 		for_each_if(intel_sseu_has_subslice((sseu_), 0, (iter_)))
++#include "linux/string_helpers.h"
++
+ void intel_sseu_set_info(struct sseu_dev_info *sseu, u8 max_slices,
+ 			 u8 max_subslices, u8 max_eus_per_subslice)
+ {
+@@ -35,8 +37,8 @@ intel_sseu_subslice_total(const struct sseu_dev_info *sseu)
+ }
+ 
+ static u32
+-_intel_sseu_get_subslices(const struct sseu_dev_info *sseu,
+-			  const u8 *subslice_mask, u8 slice)
++sseu_get_subslices(const struct sseu_dev_info *sseu,
++		   const u8 *subslice_mask, u8 slice)
+ {
+ 	int i, offset = slice * sseu->ss_stride;
+ 	u32 mask = 0;
+@@ -51,12 +53,17 @@ _intel_sseu_get_subslices(const struct sseu_dev_info *sseu,
+ 
+ u32 intel_sseu_get_subslices(const struct sseu_dev_info *sseu, u8 slice)
+ {
+-	return _intel_sseu_get_subslices(sseu, sseu->subslice_mask, slice);
++	return sseu_get_subslices(sseu, sseu->subslice_mask, slice);
++}
++
++static u32 sseu_get_geometry_subslices(const struct sseu_dev_info *sseu)
++{
++	return sseu_get_subslices(sseu, sseu->geometry_subslice_mask, 0);
+ }
+ 
+ u32 intel_sseu_get_compute_subslices(const struct sseu_dev_info *sseu)
+ {
+-	return _intel_sseu_get_subslices(sseu, sseu->compute_subslice_mask, 0);
++	return sseu_get_subslices(sseu, sseu->compute_subslice_mask, 0);
+ }
+ 
+ void intel_sseu_set_subslices(struct sseu_dev_info *sseu, int slice,
+@@ -720,16 +727,11 @@ void intel_sseu_dump(const struct sseu_dev_info *sseu, struct drm_printer *p)
+ 		   str_yes_no(sseu->has_eu_pg));
+ }
+ 
+-void intel_sseu_print_topology(const struct sseu_dev_info *sseu,
+-			       struct drm_printer *p)
++static void sseu_print_hsw_topology(const struct sseu_dev_info *sseu,
++				    struct drm_printer *p)
+ {
+ 	int s, ss;
+ 
+-	if (sseu->max_slices == 0) {
+-		drm_printf(p, "Unavailable\n");
+-		return;
+-	}
+-
+ 	for (s = 0; s < sseu->max_slices; s++) {
+ 		drm_printf(p, "slice%d: %u subslice(s) (0x%08x):\n",
+ 			   s, intel_sseu_subslices_per_slice(sseu, s),
+@@ -744,6 +746,36 @@ void intel_sseu_print_topology(const struct sseu_dev_info *sseu,
+ 	}
+ }
+ 
++static void sseu_print_xehp_topology(const struct sseu_dev_info *sseu,
++				     struct drm_printer *p)
++{
++	u32 g_dss_mask = sseu_get_geometry_subslices(sseu);
++	u32 c_dss_mask = intel_sseu_get_compute_subslices(sseu);
++	int dss;
++
++	for (dss = 0; dss < sseu->max_subslices; dss++) {
++		u16 enabled_eus = sseu_get_eus(sseu, 0, dss);
++
++		drm_printf(p, "DSS_%02d: G:%3s C:%3s, %2u EUs (0x%04hx)\n", dss,
++			   str_yes_no(g_dss_mask & BIT(dss)),
++			   str_yes_no(c_dss_mask & BIT(dss)),
++			   hweight16(enabled_eus), enabled_eus);
++	}
++}
++
++void intel_sseu_print_topology(struct drm_i915_private *i915,
++			       const struct sseu_dev_info *sseu,
++			       struct drm_printer *p)
++{
++	if (sseu->max_slices == 0) {
++		drm_printf(p, "Unavailable\n");
++	} else if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 50)) {
++		sseu_print_xehp_topology(sseu, p);
++	} else {
++		sseu_print_hsw_topology(sseu, p);
++	}
++}
++
+ u16 intel_slicemask_from_dssmask(u64 dss_mask, int dss_per_slice)
+ {
+ 	u16 slice_mask = 0;
 diff --git a/drivers/gpu/drm/i915/gt/intel_sseu.h b/drivers/gpu/drm/i915/gt/intel_sseu.h
-index 8a79cd8eaab4..b763b4e3dae6 100644
+index b763b4e3dae6..5c078df4729c 100644
 --- a/drivers/gpu/drm/i915/gt/intel_sseu.h
 +++ b/drivers/gpu/drm/i915/gt/intel_sseu.h
-@@ -15,26 +15,49 @@ struct drm_i915_private;
- struct intel_gt;
- struct drm_printer;
+@@ -139,7 +139,8 @@ u32 intel_sseu_make_rpcs(struct intel_gt *gt,
+ 			 const struct intel_sseu *req_sseu);
  
--#define GEN_MAX_SLICES		(3) /* SKL upper bound */
--#define GEN_MAX_SUBSLICES	(32) /* XEHPSDV upper bound */
--#define GEN_SSEU_STRIDE(max_entries) DIV_ROUND_UP(max_entries, BITS_PER_BYTE)
--#define GEN_MAX_SUBSLICE_STRIDE GEN_SSEU_STRIDE(GEN_MAX_SUBSLICES)
--#define GEN_MAX_EUS		(16) /* TGL upper bound */
--#define GEN_MAX_EU_STRIDE GEN_SSEU_STRIDE(GEN_MAX_EUS)
-+/*
-+ * Maximum number of slices on older platforms.  Slices no longer exist
-+ * starting on Xe_HP ("gslices," "cslices," etc. are a different concept and
-+ * are not expressed through fusing).
-+ */
-+#define GEN_MAX_HSW_SLICES		3
-+
-+/*
-+ * Maximum number of subslices that can exist within a HSW-style slice.  This
-+ * is only relevant to pre-Xe_HP platforms (Xe_HP and beyond use the
-+ * GEN_MAX_DSS value below).
-+ */
-+#define GEN_MAX_SS_PER_HSW_SLICE	6
-+
-+/* Maximum number of DSS on newer platforms (Xe_HP and beyond). */
-+#define GEN_MAX_DSS			32
-+
-+/* Maximum number of EUs that can exist within a subslice or DSS. */
-+#define GEN_MAX_EUS_PER_SS		16
-+
-+#define SSEU_MAX(a, b)			((a) > (b) ? (a) : (b))
-+
-+/* The maximum number of bits needed to express each subslice/DSS independently */
-+#define GEN_SS_MASK_SIZE		SSEU_MAX(GEN_MAX_DSS, \
-+						 GEN_MAX_HSW_SLICES * GEN_MAX_SS_PER_HSW_SLICE)
-+
-+#define GEN_SSEU_STRIDE(max_entries)	DIV_ROUND_UP(max_entries, BITS_PER_BYTE)
-+#define GEN_MAX_SUBSLICE_STRIDE		GEN_SSEU_STRIDE(GEN_SS_MASK_SIZE)
-+#define GEN_MAX_EU_STRIDE		GEN_SSEU_STRIDE(GEN_MAX_EUS_PER_SS)
+ void intel_sseu_dump(const struct sseu_dev_info *sseu, struct drm_printer *p);
+-void intel_sseu_print_topology(const struct sseu_dev_info *sseu,
++void intel_sseu_print_topology(struct drm_i915_private *i915,
++			       const struct sseu_dev_info *sseu,
+ 			       struct drm_printer *p);
  
- #define GEN_DSS_PER_GSLICE	4
- #define GEN_DSS_PER_CSLICE	8
- #define GEN_DSS_PER_MSLICE	8
+ u16 intel_slicemask_from_dssmask(u64 dss_mask, int dss_per_slice);
+diff --git a/drivers/gpu/drm/i915/gt/intel_sseu_debugfs.c b/drivers/gpu/drm/i915/gt/intel_sseu_debugfs.c
+index a9d5bc49f361..6b944de48666 100644
+--- a/drivers/gpu/drm/i915/gt/intel_sseu_debugfs.c
++++ b/drivers/gpu/drm/i915/gt/intel_sseu_debugfs.c
+@@ -287,22 +287,22 @@ static int sseu_status_show(struct seq_file *m, void *unused)
+ }
+ DEFINE_INTEL_GT_DEBUGFS_ATTRIBUTE(sseu_status);
  
--#define GEN_MAX_GSLICES		(GEN_MAX_SUBSLICES / GEN_DSS_PER_GSLICE)
--#define GEN_MAX_CSLICES		(GEN_MAX_SUBSLICES / GEN_DSS_PER_CSLICE)
-+#define GEN_MAX_GSLICES		(GEN_MAX_DSS / GEN_DSS_PER_GSLICE)
-+#define GEN_MAX_CSLICES		(GEN_MAX_DSS / GEN_DSS_PER_CSLICE)
+-static int rcs_topology_show(struct seq_file *m, void *unused)
++static int sseu_topology_show(struct seq_file *m, void *unused)
+ {
+ 	struct intel_gt *gt = m->private;
+ 	struct drm_printer p = drm_seq_file_printer(m);
  
- struct sseu_dev_info {
- 	u8 slice_mask;
--	u8 subslice_mask[GEN_MAX_SLICES * GEN_MAX_SUBSLICE_STRIDE];
--	u8 geometry_subslice_mask[GEN_MAX_SLICES * GEN_MAX_SUBSLICE_STRIDE];
--	u8 compute_subslice_mask[GEN_MAX_SLICES * GEN_MAX_SUBSLICE_STRIDE];
--	u8 eu_mask[GEN_MAX_SLICES * GEN_MAX_SUBSLICES * GEN_MAX_EU_STRIDE];
-+	u8 subslice_mask[GEN_SS_MASK_SIZE];
-+	u8 geometry_subslice_mask[GEN_SS_MASK_SIZE];
-+	u8 compute_subslice_mask[GEN_SS_MASK_SIZE];
-+	u8 eu_mask[GEN_SS_MASK_SIZE * GEN_MAX_EU_STRIDE];
- 	u16 eu_total;
- 	u8 eu_per_subslice;
- 	u8 min_eu_in_pool;
+-	intel_sseu_print_topology(&gt->info.sseu, &p);
++	intel_sseu_print_topology(gt->i915, &gt->info.sseu, &p);
+ 
+ 	return 0;
+ }
+-DEFINE_INTEL_GT_DEBUGFS_ATTRIBUTE(rcs_topology);
++DEFINE_INTEL_GT_DEBUGFS_ATTRIBUTE(sseu_topology);
+ 
+ void intel_sseu_debugfs_register(struct intel_gt *gt, struct dentry *root)
+ {
+ 	static const struct intel_gt_debugfs_file files[] = {
+ 		{ "sseu_status", &sseu_status_fops, NULL },
+-		{ "rcs_topology", &rcs_topology_fops, NULL },
++		{ "sseu_topology", &sseu_topology_fops, NULL },
+ 	};
+ 
+ 	intel_gt_debugfs_register_files(root, files, ARRAY_SIZE(files), gt);
+diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
+index 866d485f47c2..a8acc6fbb299 100644
+--- a/drivers/gpu/drm/i915/i915_gpu_error.c
++++ b/drivers/gpu/drm/i915/i915_gpu_error.c
+@@ -712,7 +712,7 @@ static void err_print_gt_info(struct drm_i915_error_state_buf *m,
+ 	struct drm_printer p = i915_error_printer(m);
+ 
+ 	intel_gt_info_print(&gt->info, &p);
+-	intel_sseu_print_topology(&gt->info.sseu, &p);
++	intel_sseu_print_topology(gt->_gt->i915, &gt->info.sseu, &p);
+ }
+ 
+ static void err_print_gt(struct drm_i915_error_state_buf *m,
 -- 
 2.34.1
 
