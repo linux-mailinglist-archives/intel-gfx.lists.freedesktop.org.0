@@ -2,142 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7502A4D6F39
-	for <lists+intel-gfx@lfdr.de>; Sat, 12 Mar 2022 14:33:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C3A064D702D
+	for <lists+intel-gfx@lfdr.de>; Sat, 12 Mar 2022 18:39:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A9EE10ED9E;
-	Sat, 12 Mar 2022 13:33:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2600610E00F;
+	Sat, 12 Mar 2022 17:39:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C708310ED95;
- Sat, 12 Mar 2022 13:33:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1647091988; x=1678627988;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:reply-to:content-transfer-encoding: mime-version;
- bh=1Wtbj3Wx0DAOZTJL9tJXWaxJHWM5AzmFO6g4LzjH8oE=;
- b=ERH/SPbd0FrbASaMP1Dya3ME40ogMvcPmG7w/6KJ3mAvpyRQxhRzTpLl
- /TK1fY7Vx53F8FfUI0MNUStyiiKOftObsXhbsbJgTF+Qyd1mJg2NAPziA
- 7DImRNqr6cjt2m+1jgwoGgxoxsHvQEAAMzDGHkP+FpRystuXaSrgR5LR7
- P2710XRKkPHch0ayBHEUxQmwoUdt/5KUCy6LtLcOdBUcW/mVW/G+nTdkJ
- EYoiD1nVZbVneeK5v6SsLMo3GUu5sdCJ0tUZPn7fuQAQEHIYnH9rO5cQs
- b3LKRGmAJXFi5ZMV+/TsxFaSRpNzcZup0p3UoM0EvbgSXDn7GU9X5sley g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10283"; a="316514797"
-X-IronPort-AV: E=Sophos;i="5.90,175,1643702400"; d="scan'208";a="316514797"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2022 05:33:07 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,175,1643702400"; d="scan'208";a="579632255"
-Received: from fmsmsx606.amr.corp.intel.com ([10.18.126.86])
- by orsmga001.jf.intel.com with ESMTP; 12 Mar 2022 05:33:07 -0800
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx606.amr.corp.intel.com (10.18.126.86) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.21; Sat, 12 Mar 2022 05:33:07 -0800
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.21 via Frontend Transport; Sat, 12 Mar 2022 05:33:07 -0800
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.176)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2308.21; Sat, 12 Mar 2022 05:33:07 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=gMXcxd6GzNLzgBJ7ymiWsHt1uVvLDUXy0MiiAR0ERoPmfKB86c6gnOnBkeW52VMonY8mzbVdJSVYKr8oa+bFIC1lbGXccshA6GT7FjwqwLBWykyojooSmxWqE5jQ/2Eo6Oo0RwftBgfxilhwXhYX5lb0TziwIA1MLDyhccDcDt4YSM/96oIxsJoV6t8aQ25/VJTcJeTTBl2oCSXPSbuuoaFp9j4qsUlF6TCWIMTLT+N+WLDXWOrqGltyZwGXdKTnVsVDnLGc7DXzUqlLtaz6vVP7oDMBE/m15CtY+v0HQCpxT6YVYz8XT2txxwpQxOqBsim/3zWCQloqZf/CTclkkQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DF0DbaKpghyrCJpMVbU3l/g1FM1qQtMaBP9NNTsICAw=;
- b=mhwGgq5k7s2ilXw41vklj5u2ZuIHQxG9kwis77uYQBPzHF/4HYJ+v32h1w6XfxOtkPkZ94zMhr2EMIhgqwzDf958NiNlmSQhtFaOSUtIN33VqS6czVePT8Hfg6kxVWM7oWQcer0OXQNYJ69J4hA9nL8sD573tTFPiSrVu4EqAru4a88vE5jVUf6MhGeFzR8VFCPfS820penrLJeU3PcdApLZCMHh74AnS5/bxo+008V5DYrmQZY2PBDxw30ptmBZlRL3LcRJhf84S/uL+FDMxFctdeRoL/PJFD0VxCtZu9IHlyt4lawCuQT8waMz8KaSl7IKxKUUH15zHzFKt5ZA3w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from BYAPR11MB2710.namprd11.prod.outlook.com (2603:10b6:a02:c7::24)
- by BN6PR11MB3940.namprd11.prod.outlook.com (2603:10b6:405:82::33)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5061.22; Sat, 12 Mar
- 2022 13:33:04 +0000
-Received: from BYAPR11MB2710.namprd11.prod.outlook.com
- ([fe80::48da:a7d6:83c1:7e22]) by BYAPR11MB2710.namprd11.prod.outlook.com
- ([fe80::48da:a7d6:83c1:7e22%7]) with mapi id 15.20.5038.031; Sat, 12 Mar 2022
- 13:33:03 +0000
-From: "Lee, Shawn C" <shawn.c.lee@intel.com>
-To: Drew Davenport <ddavenport@chromium.org>
-Thread-Topic: [v6 1/5] drm/edid: seek for available CEA block from specific
- EDID block index
-Thread-Index: AQHYNaGBJH4J7OeB8UinGV2ifq93aqy7tR2A
-Date: Sat, 12 Mar 2022 13:33:03 +0000
-Message-ID: <BYAPR11MB2710B3F90A42777EB7A95930A30D9@BYAPR11MB2710.namprd11.prod.outlook.com>
-References: <20220311012218.19025-1-shawn.c.lee@intel.com>
- <20220311012218.19025-2-shawn.c.lee@intel.com>
- <YivcB+lv/BMdhoEO@chromium.org>
-In-Reply-To: <YivcB+lv/BMdhoEO@chromium.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-reaction: no-action
-dlp-version: 11.6.401.20
-dlp-product: dlpe-windows
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 9ea526e0-05f9-43fc-f471-08da042cd5cb
-x-ms-traffictypediagnostic: BN6PR11MB3940:EE_
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-microsoft-antispam-prvs: <BN6PR11MB39407BD368E23052FBDFAD93A30D9@BN6PR11MB3940.namprd11.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: /mjAMUhzpfnvwl1vFvNGPIWiE8DNmrSGH6HMcohIrUKrccq/kJTyBPh1ZSL8u7wvJjYTeug/whcBkhltWWOlg2o4KUf9SJYMl6QjhyRhkLKLcRlE8CfpPA+WaCxyf8MtwdkS7X7ta/c+Zvo8JhzwG4f93vcAGqelPfc0f5jJKFNS0YzKm5rqF/fm0rcuJRpoe+QDOGuFaDHURzzUD4jgOPht/Qp5oouuSpx7PYcNLaUSyivSK9MPjWGkzsAX5E+usWn5JmOwCL+saLfZgS2NDmYlcnHqYVIjaKfeR9KF7E3LBgkIef67Vl188Ou2wgOZbu/9sUGqO6GXZKPJeEu5cXGZ5pgZIqG/ET096nDaoaKUDl6WQtHvEIecaRcOdAzYHozAMU3ilRAUjwiPfsr11p227fSbe7NxrhvGRMlrkbSYzPnsP079EPmoJShNx7D02929Ms0Xy0YzhaPdTYdUkriZods7FghwigHo6OCojkqJs9/uLp7bfXbPDJpCusQBwWPt3Osfkhxw/NnKNJcX7YU3Q9lkQUIRKyrmICkbU6QHrbge9Av/tn69D519yGAVPzbW7s9yNlJZPw1jAz9Pc/wBtQEFP4gWdO2RQMM/AIC0kcm/gh3Pt7V15eHbfU5QvKzmcy360fdRl2wd2DvVQK3WlleU2QzbY2dd99VL21SLEcpxPjWHgzRs80VUu5710SwQkfHDiqsFJ3n7mPuueQ==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BYAPR11MB2710.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230001)(366004)(122000001)(316002)(6916009)(38070700005)(54906003)(8936002)(186003)(83380400001)(5660300002)(52536014)(26005)(8796002)(2906002)(86362001)(9686003)(7696005)(66556008)(66476007)(76116006)(66946007)(8676002)(66446008)(4326008)(64756008)(55016003)(33656002)(508600001)(71200400001)(82960400001)(38100700002)(6506007)(53546011)(55236004);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?0ltXT8K0STZ+sJW9WxwG+dd6fgWSfTQd4POGqk2xK+qaEi3sx+39qItt3b7Q?=
- =?us-ascii?Q?vPZwAZ8Muezq4xL398H7ddG7xHpniTvLdDR2OrHnHSAa7WFplBmMIHGFqio0?=
- =?us-ascii?Q?W0QPltrKqMi8K2F4cEoOXu6fPT4GZW8uEHTbXf19uMdIEZBRBgiU3aCRlyfV?=
- =?us-ascii?Q?JGY5nNY+yz1Ck0uOchHMfA3N0YBOValST3r9NMJLozIjhI6gHwwq7hb4USLI?=
- =?us-ascii?Q?y66EpmAG0d/qX2bm0iw1lVVrncFSZ9USwpYuuGApRFqS4ZVES4tRqrvNCMbJ?=
- =?us-ascii?Q?/v+RX1/FwJOVax/bVy42pJ5kaIKI+X3QWXQeWeWGzrJmZYbARunr6Q1NBO8J?=
- =?us-ascii?Q?26kKHAqL0KjNaWDewocM5rRGguKhTNFUEzmvuLw8t9vbzGCzbRAsTz5FyL1y?=
- =?us-ascii?Q?b9AKHkl27XjYDgsu8prk/YuvjLBu0PdVovfOM1mwpEeEUu7AVlEiHJgzB6bS?=
- =?us-ascii?Q?bQaLP1ds+v56FalFL0MuTKb7rzrmD8B3ndIR7tGSx12A4Q9/kXTvoCeZb683?=
- =?us-ascii?Q?Op6BgA8WfDP4z9lfAFXqv05wstORCTA30QUYYGqyHST9MjvaQvS/M2EBqKTW?=
- =?us-ascii?Q?C6ZR30D7BjlICziqHM2U961W2nL+GJbERu18sFpuvmWHiVYbUmFaZvzlkLpy?=
- =?us-ascii?Q?YUdlYb2NOWnBnSpUUyhCLWh4jqDsgIqlY9BddLE0ZZ3nXgoDDsWv1V4Oasuu?=
- =?us-ascii?Q?poapkdqX5xTskR68sp7jMwzJ054WRPTQcY9lptI2+eAfHqlvXCw4w4zFtqJ8?=
- =?us-ascii?Q?B/uOw7ulrSEpLxSf5Vg0pUENJzkCnz3HbJA87inDxMiQQR1NpGXRDaocK3xp?=
- =?us-ascii?Q?EqHuHea/rV014Bj+Zd7NxQaBbPdz+KB97pOvzncosRQ2dtF7rMZSSMuOgbdZ?=
- =?us-ascii?Q?0+jnIKOcsJ+Vctr1JU9gm4cvZucTP4HPXYoDa9TtG+SqigP1Iz2IHF0va91e?=
- =?us-ascii?Q?g+elJ7WRK1djZ7iBhjWKNDCZC0JuJp979C9rNYLF3rTZiUjwXAC9iNbOguD5?=
- =?us-ascii?Q?R85U0P+Zb0bi29ucmDjlBv75J9NzHtggkfXs8IoaxckWcVRAWbvcjONjsLwm?=
- =?us-ascii?Q?BJ35/OUVq/CXOZNHzan4rNnDafW/vcP8jbGBp5wKpa4MbQk2bfdNXFTDzExU?=
- =?us-ascii?Q?r42beC71jGgpcHHS8gz9lcqqA3G89VVQKNWsBn/W/OCXk58gmuv3jtGLaFbt?=
- =?us-ascii?Q?TLwZJBnckzWrMYD6qRz3cpyNn+4vUu2kf25tsEuANcCm6pnh8D8WF1kLtFld?=
- =?us-ascii?Q?sbElqAOLnu1Jywpo/MIfROWM6lKzgMusQ39JwUybYQrdqdI8vTWAfpHJcP4O?=
- =?us-ascii?Q?ZONULEybLea51eS9nJM6+Z9hKMdvEaaVRVEu+dpjAFfUD4hB0rrZz4u8m6Zx?=
- =?us-ascii?Q?0/GMOrYI/oE5yzdpco6EkAobHoN9DSbWHsTdh4cdD4WkDmN3nBhaQOoYgiOU?=
- =?us-ascii?Q?uKjzn/s8grsxLltZwaI2ol7GJna/cWW3?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com
+ [IPv6:2607:f8b0:4864:20::534])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C57B8931F
+ for <intel-gfx@lists.freedesktop.org>; Sat, 12 Mar 2022 17:39:14 +0000 (UTC)
+Received: by mail-pg1-x534.google.com with SMTP id o26so10149279pgb.8
+ for <intel-gfx@lists.freedesktop.org>; Sat, 12 Mar 2022 09:39:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=date:from:to:subject:message-id:mime-version:content-disposition;
+ bh=3vIABokiVenHSqnBlJrFtTPsom0JqabsqmHTsmCE1mI=;
+ b=WgsyXLM+wKOkO4n51aIpd3tW3l3oJCEYV14jWVD3nm2B+IIYn/ayYw5T/xfYoS3jL8
+ pKN3IN3q8+EtRtRTNCGfDp3eNpMB+VNYjyaqucfwrU5ZyorlrKx+kklXc/Y1QQmBIam2
+ NkhOyrmMslajeFnawsJ7G7WZxSOpWidG11ke6KrVlCuYwjDyIVo20OiPg1SRdmWeM8MO
+ B8V7ghZbEHNLsAqzKR5XFLKj6F4K49gS0/dNn7K28Zv775bBqVkqb4kiU/y+LmxV8eTE
+ B/y5aiPI+R1W5jYAmnDOVd6Y+0D0bR3jYSRRBu/FJDyjfEQO21j6J39rN/B/FWEubmfk
+ 5h5Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:date:from:to:subject:message-id:mime-version
+ :content-disposition;
+ bh=3vIABokiVenHSqnBlJrFtTPsom0JqabsqmHTsmCE1mI=;
+ b=lvshIbvw4cfodpmEXC56UZFLkt1Fnxn5CNrzHODJNwZ9dBHV2+yMxfEekFBLy5shAV
+ B+Won48YAM+Z5OeEzFXMJWyLQWwcPzUtZyDC6LeH91eo8kizGHIDByhDWsS9SD1xZJsS
+ B1PON+SbzG+G9bByYi2Ig2hHw1XlF1/OBFfT0SYTkooj3aoHLlDkd61C5Q6+P5gsPss0
+ yED8Rq9vngO10k71rRJLheNVOuWFJMYjZIXpob+GIVa43KmYNX7uaoBb572Bk7XhgFwJ
+ gXvjVMOBOsBxKSSOyXACWY8lyeMjKbydy0qomev4oXBZEKa/tEaPg6nCGrNmtVCId4Ew
+ BFJg==
+X-Gm-Message-State: AOAM532fcHLmWKxYmAioKNhiCt/+9Me3IzQ/v6pxwqQcWPMMswMAO2v9
+ zCJD6GUXr/Zygn2HyaervFdu7pRTvVs=
+X-Google-Smtp-Source: ABdhPJyWan9dmTeGtuRAdAqW5MNNOElbTysKTzcTayakW+TggGsJlnvhSsEp5K91XaPPdJ2xIYjrDg==
+X-Received: by 2002:a05:6a00:228b:b0:4f7:9155:b685 with SMTP id
+ f11-20020a056a00228b00b004f79155b685mr7809832pfe.61.1647106752323; 
+ Sat, 12 Mar 2022 09:39:12 -0800 (PST)
+Received: from gnu-tgl-3.localdomain ([172.58.38.221])
+ by smtp.gmail.com with ESMTPSA id
+ y2-20020a056a00190200b004f6ef638551sm15082558pfi.98.2022.03.12.09.39.11
+ for <intel-gfx@lists.freedesktop.org>
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 12 Mar 2022 09:39:11 -0800 (PST)
+Received: by gnu-tgl-3.localdomain (Postfix, from userid 1000)
+ id C7BD4C055A; Sat, 12 Mar 2022 09:39:10 -0800 (PST)
+Date: Sat, 12 Mar 2022 09:39:10 -0800
+From: "H.J. Lu" <hjl.tools@gmail.com>
+To: intel-gfx@lists.freedesktop.org
+Message-ID: <YizavhoUkeEDQ9hd@gmail.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB2710.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9ea526e0-05f9-43fc-f471-08da042cd5cb
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Mar 2022 13:33:03.6613 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: HjORydReCniIfTJifXjfh3wUFk9U5xIYkWPQGStb/tgoXmHhQqqkGfPGR7LB8SjHQdLa24RPtz2zMZYlufMr1w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR11MB3940
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [v6 1/5] drm/edid: seek for available CEA block
- from specific EDID block index
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Subject: [Intel-gfx] [Rebase][PATCH] drm/i915/bios: Workaround broken video
+ BIOS in LG Gram 2021
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -150,212 +70,237 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: "20220311012218.19025-2-shawn.c.lee@intel.com"
- <20220311012218.19025-2-shawn.c.lee@intel.com>
-Cc: "Chiou, Cooper" <cooper.chiou@intel.com>, "Tseng,
- William" <william.tseng@intel.com>, "Nikula, Jani" <jani.nikula@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Saturday, March 12, 2022 7:41 AM, Drew Davenport <ddavenport@chromium.or=
-g> wrote:
->On Fri, Mar 11, 2022 at 09:22:14AM +0800, Lee Shawn C wrote:
->> drm_find_cea_extension() always look for a top level CEA block. Pass=20
->> ext_index from caller then this function to search next available CEA=20
->> ext block from a specific EDID block pointer.
->>=20
->> v2: save proper extension block index if CTA data information
->>     was found in DispalyID block.
->>=20
->> Cc: Jani Nikula <jani.nikula@linux.intel.com>
->> Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
->> Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
->> Cc: intel-gfx <intel-gfx@lists.freedesktop.org>
->> Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
->> ---
->>  drivers/gpu/drm/drm_edid.c | 43=20
->> +++++++++++++++++++-------------------
->>  1 file changed, 21 insertions(+), 22 deletions(-)
->>=20
->> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c=20
->> index 561f53831e29..e267d31d5c87 100644
->> --- a/drivers/gpu/drm/drm_edid.c
->> +++ b/drivers/gpu/drm/drm_edid.c
->> @@ -3353,16 +3353,14 @@ const u8 *drm_find_edid_extension(const struct e=
-did *edid,
->>  	return edid_ext;
->>  }
->> =20
->> -static const u8 *drm_find_cea_extension(const struct edid *edid)
->> +static const u8 *drm_find_cea_extension(const struct edid *edid, int=20
->> +*ext_index)
->>  {
->>  	const struct displayid_block *block;
->>  	struct displayid_iter iter;
->>  	const u8 *cea;
->> -	int ext_index =3D 0;
->> =20
->> -	/* Look for a top level CEA extension block */
->> -	/* FIXME: make callers iterate through multiple CEA ext blocks? */
->> -	cea =3D drm_find_edid_extension(edid, CEA_EXT, &ext_index);
->> +	/* Look for a CEA extension block from ext_index */
->> +	cea =3D drm_find_edid_extension(edid, CEA_EXT, ext_index);
->>  	if (cea)
->>  		return cea;
->> =20
->> @@ -3370,6 +3368,7 @@ static const u8 *drm_find_cea_extension(const stru=
-ct edid *edid)
->>  	displayid_iter_edid_begin(edid, &iter);
->>  	displayid_iter_for_each(block, &iter) {
->>  		if (block->tag =3D=3D DATA_BLOCK_CTA) {
->> +			*ext_index =3D iter.ext_index;
->This could still end up in an infinite loop in patch 2 in the case that th=
-ere is no CEA_EXT block in the edid, but there is a CEA block in the Displa=
-yId block.
->
->Repeating my review comment from elsewhere, consider the case:
->- If there are no cea extension blocks in the EDID,
->  drm_find_edid_extension returns NULL
->- drm_find_cea_extension will then return the first DisplayId block
->  with tag DATA_BLOCK_CTA
->
->If the version of the cea data from DisplayId block is less than 3, the lo=
-op will restart and call drm_find_cea_extension the same way, returning the=
- same DisplayID block every time.
->
->Setting *ext_index inside the display_iter_for_each block doesn't change t=
-his, since we're not checking it.
->
->But I don't think we want to use the same *ext_index both to pass into drm=
-_find_edid_extension and for tracking the next DisplayId block to check.
->This might end up in similar infinite loops or skipping DisplayId blocks.
->
->Maybe you'll need to pass in two indexes to drm_find_cea_extension, one wh=
-ich is passed to drm_find_edid_extension, and the other to keep track of th=
-e next DisplayId block to check.
+Rebase against
 
-As you mentioned, this situation would cause infinite loop. We may need two=
- different parameters to store CEA and DisplayID block index.
+5b1b60c09550 drm-tip: 2022y-03m-12d-07h-42m-20s UTC integration manifest
 
-Best regards,
-Shawn
+---
+LG Gram 2021 laptop 17Z95P-K.ADE9U1 OpRegion has
 
->>  			cea =3D (const u8 *)block;
->>  			break;
->>  		}
->> @@ -3643,10 +3642,10 @@ add_alternate_cea_modes(struct drm_connector *co=
-nnector, struct edid *edid)
->>  	struct drm_device *dev =3D connector->dev;
->>  	struct drm_display_mode *mode, *tmp;
->>  	LIST_HEAD(list);
->> -	int modes =3D 0;
->> +	int modes =3D 0, ext_index =3D 0;
->> =20
->>  	/* Don't add CEA modes if the CEA extension block is missing */
->> -	if (!drm_find_cea_extension(edid))
->> +	if (!drm_find_cea_extension(edid, &ext_index))
->>  		return 0;
->> =20
->>  	/*
->> @@ -4321,11 +4320,11 @@ static void drm_parse_y420cmdb_bitmap(struct=20
->> drm_connector *connector,  static int  add_cea_modes(struct=20
->> drm_connector *connector, struct edid *edid)  {
->> -	const u8 *cea =3D drm_find_cea_extension(edid);
->> -	const u8 *db, *hdmi =3D NULL, *video =3D NULL;
->> +	const u8 *cea, *db, *hdmi =3D NULL, *video =3D NULL;
->>  	u8 dbl, hdmi_len, video_len =3D 0;
->> -	int modes =3D 0;
->> +	int modes =3D 0, ext_index =3D 0;
->> =20
->> +	cea =3D drm_find_cea_extension(edid, &ext_index);
->>  	if (cea && cea_revision(cea) >=3D 3) {
->>  		int i, start, end;
->> =20
->> @@ -4562,7 +4561,7 @@ static void drm_edid_to_eld(struct drm_connector *=
-connector, struct edid *edid)
->>  	uint8_t *eld =3D connector->eld;
->>  	const u8 *cea;
->>  	const u8 *db;
->> -	int total_sad_count =3D 0;
->> +	int total_sad_count =3D 0, ext_index =3D 0;
->>  	int mnl;
->>  	int dbl;
->> =20
->> @@ -4571,7 +4570,7 @@ static void drm_edid_to_eld(struct drm_connector *=
-connector, struct edid *edid)
->>  	if (!edid)
->>  		return;
->> =20
->> -	cea =3D drm_find_cea_extension(edid);
->> +	cea =3D drm_find_cea_extension(edid, &ext_index);
->>  	if (!cea) {
->>  		DRM_DEBUG_KMS("ELD: no CEA Extension found\n");
->>  		return;
->> @@ -4655,11 +4654,11 @@ static void drm_edid_to_eld(struct drm_connector=
- *connector, struct edid *edid)
->>   */
->>  int drm_edid_to_sad(struct edid *edid, struct cea_sad **sads)  {
->> -	int count =3D 0;
->> +	int count =3D 0, ext_index =3D 0;
->>  	int i, start, end, dbl;
->>  	const u8 *cea;
->> =20
->> -	cea =3D drm_find_cea_extension(edid);
->> +	cea =3D drm_find_cea_extension(edid, &ext_index);
->>  	if (!cea) {
->>  		DRM_DEBUG_KMS("SAD: no CEA Extension found\n");
->>  		return 0;
->> @@ -4717,11 +4716,11 @@ EXPORT_SYMBOL(drm_edid_to_sad);
->>   */
->>  int drm_edid_to_speaker_allocation(struct edid *edid, u8 **sadb)  {
->> -	int count =3D 0;
->> +	int count =3D 0, ext_index =3D 0;
->>  	int i, start, end, dbl;
->>  	const u8 *cea;
->> =20
->> -	cea =3D drm_find_cea_extension(edid);
->> +	cea =3D drm_find_cea_extension(edid, &ext_index);
->>  	if (!cea) {
->>  		DRM_DEBUG_KMS("SAD: no CEA Extension found\n");
->>  		return 0;
->> @@ -4814,9 +4813,9 @@ bool drm_detect_hdmi_monitor(struct edid *edid) =20
->> {
->>  	const u8 *edid_ext;
->>  	int i;
->> -	int start_offset, end_offset;
->> +	int start_offset, end_offset, ext_index =3D 0;
->> =20
->> -	edid_ext =3D drm_find_cea_extension(edid);
->> +	edid_ext =3D drm_find_cea_extension(edid, &ext_index);
->>  	if (!edid_ext)
->>  		return false;
->> =20
->> @@ -4853,9 +4852,9 @@ bool drm_detect_monitor_audio(struct edid *edid)
->>  	const u8 *edid_ext;
->>  	int i, j;
->>  	bool has_audio =3D false;
->> -	int start_offset, end_offset;
->> +	int start_offset, end_offset, ext_index =3D 0;
->> =20
->> -	edid_ext =3D drm_find_cea_extension(edid);
->> +	edid_ext =3D drm_find_cea_extension(edid, &ext_index);
->>  	if (!edid_ext)
->>  		goto end;
->> =20
->> @@ -5177,9 +5176,9 @@ static void drm_parse_cea_ext(struct=20
->> drm_connector *connector,  {
->>  	struct drm_display_info *info =3D &connector->display_info;
->>  	const u8 *edid_ext;
->> -	int i, start, end;
->> +	int i, start, end, ext_index =3D 0;
->> =20
->> -	edid_ext =3D drm_find_cea_extension(edid);
->> +	edid_ext =3D drm_find_cea_extension(edid, &ext_index);
->>  	if (!edid_ext)
->>  		return;
->> =20
->> --
->> 2.17.1
->> =20
+FW size: 0x2200
+VBT size: 0x2000
+BDB offset: 0x30
+BDB size: 0x216e
+
+Add intel_init_opregion_quirks to use FW size as VBT size on LG Gram
+17Z95P-K.ADE9U1 and update intel_bios_is_valid_vbt to use FW size,
+instead of VBT size if the quirk is applied, in range_overflows_t for
+BDB size overflow check.  This fixes:
+
+https://gitlab.freedesktop.org/drm/intel/-/issues/4763
+
+Signed-off-by: H.J. Lu <hjl.tools@gmail.com>
+---
+ drivers/gpu/drm/i915/display/intel_bios.c     | 15 ++++---
+ drivers/gpu/drm/i915/display/intel_bios.h     |  3 +-
+ drivers/gpu/drm/i915/display/intel_opregion.c |  9 +++--
+ drivers/gpu/drm/i915/display/intel_quirks.c   | 40 +++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_quirks.h   |  1 +
+ drivers/gpu/drm/i915/i915_drv.h               |  1 +
+ 6 files changed, 59 insertions(+), 10 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+index c7afe19dd44a..00bda2a8cc4d 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.c
++++ b/drivers/gpu/drm/i915/display/intel_bios.c
+@@ -2286,12 +2286,14 @@ static const struct bdb_header *get_bdb_header(const struct vbt_header *vbt)
+ 
+ /**
+  * intel_bios_is_valid_vbt - does the given buffer contain a valid VBT
++ * @dev_priv:	i915 device instance
+  * @buf:	pointer to a buffer to validate
+  * @size:	size of the buffer
+  *
+  * Returns true on valid VBT.
+  */
+-bool intel_bios_is_valid_vbt(const void *buf, size_t size)
++bool intel_bios_is_valid_vbt(struct drm_i915_private *dev_priv,
++			     const void *buf, size_t size)
+ {
+ 	const struct vbt_header *vbt = buf;
+ 	const struct bdb_header *bdb;
+@@ -2314,16 +2316,17 @@ bool intel_bios_is_valid_vbt(const void *buf, size_t size)
+ 		return false;
+ 	}
+ 
+-	size = vbt->vbt_size;
+-
+ 	if (range_overflows_t(size_t,
+ 			      vbt->bdb_offset,
+ 			      sizeof(struct bdb_header),
+-			      size)) {
++			      vbt->vbt_size)) {
+ 		DRM_DEBUG_DRIVER("BDB header incomplete\n");
+ 		return false;
+ 	}
+ 
++	if (!(dev_priv->quirks & QUIRK_USE_FW_SIZE_AS_VBT_SIZE))
++		size = vbt->vbt_size;
++
+ 	bdb = get_bdb_header(vbt);
+ 	if (range_overflows_t(size_t, vbt->bdb_offset, bdb->bdb_size, size)) {
+ 		DRM_DEBUG_DRIVER("BDB incomplete\n");
+@@ -2377,7 +2380,7 @@ static struct vbt_header *spi_oprom_get_vbt(struct drm_i915_private *i915)
+ 		*(vbt + store++) = data;
+ 	}
+ 
+-	if (!intel_bios_is_valid_vbt(vbt, vbt_size))
++	if (!intel_bios_is_valid_vbt(i915, vbt, vbt_size))
+ 		goto err_free_vbt;
+ 
+ 	drm_dbg_kms(&i915->drm, "Found valid VBT in SPI flash\n");
+@@ -2434,7 +2437,7 @@ static struct vbt_header *oprom_get_vbt(struct drm_i915_private *i915)
+ 
+ 	memcpy_fromio(vbt, p, vbt_size);
+ 
+-	if (!intel_bios_is_valid_vbt(vbt, vbt_size))
++	if (!intel_bios_is_valid_vbt(i915, vbt, vbt_size))
+ 		goto err_free_vbt;
+ 
+ 	pci_unmap_rom(pdev, oprom);
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.h b/drivers/gpu/drm/i915/display/intel_bios.h
+index 4709c4d29805..368ee87390e7 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.h
++++ b/drivers/gpu/drm/i915/display/intel_bios.h
+@@ -231,7 +231,8 @@ struct mipi_pps_data {
+ 
+ void intel_bios_init(struct drm_i915_private *dev_priv);
+ void intel_bios_driver_remove(struct drm_i915_private *dev_priv);
+-bool intel_bios_is_valid_vbt(const void *buf, size_t size);
++bool intel_bios_is_valid_vbt(struct drm_i915_private *dev_priv,
++			     const void *buf, size_t size);
+ bool intel_bios_is_tv_present(struct drm_i915_private *dev_priv);
+ bool intel_bios_is_lvds_present(struct drm_i915_private *dev_priv, u8 *i2c_pin);
+ bool intel_bios_is_port_present(struct drm_i915_private *dev_priv, enum port port);
+diff --git a/drivers/gpu/drm/i915/display/intel_opregion.c b/drivers/gpu/drm/i915/display/intel_opregion.c
+index f31e8c3f8ce0..607371f94cfb 100644
+--- a/drivers/gpu/drm/i915/display/intel_opregion.c
++++ b/drivers/gpu/drm/i915/display/intel_opregion.c
+@@ -36,6 +36,7 @@
+ #include "intel_display_types.h"
+ #include "intel_opregion.h"
+ #include "intel_pci_config.h"
++#include "intel_quirks.h"
+ 
+ #define OPREGION_HEADER_OFFSET 0
+ #define OPREGION_ACPI_OFFSET   0x100
+@@ -851,7 +852,7 @@ static int intel_load_vbt_firmware(struct drm_i915_private *dev_priv)
+ 		return ret;
+ 	}
+ 
+-	if (intel_bios_is_valid_vbt(fw->data, fw->size)) {
++	if (intel_bios_is_valid_vbt(dev_priv, fw->data, fw->size)) {
+ 		opregion->vbt_firmware = kmemdup(fw->data, fw->size, GFP_KERNEL);
+ 		if (opregion->vbt_firmware) {
+ 			drm_dbg_kms(&dev_priv->drm,
+@@ -968,6 +969,8 @@ int intel_opregion_setup(struct drm_i915_private *dev_priv)
+ 	if (dmi_check_system(intel_no_opregion_vbt))
+ 		goto out;
+ 
++	intel_init_opregion_quirks(dev_priv);
++
+ 	if (opregion->header->over.major >= 2 && opregion->asle &&
+ 	    opregion->asle->rvda && opregion->asle->rvds) {
+ 		resource_size_t rvda = opregion->asle->rvda;
+@@ -990,7 +993,7 @@ int intel_opregion_setup(struct drm_i915_private *dev_priv)
+ 
+ 		vbt = opregion->rvda;
+ 		vbt_size = opregion->asle->rvds;
+-		if (intel_bios_is_valid_vbt(vbt, vbt_size)) {
++		if (intel_bios_is_valid_vbt(dev_priv, vbt, vbt_size)) {
+ 			drm_dbg_kms(&dev_priv->drm,
+ 				    "Found valid VBT in ACPI OpRegion (RVDA)\n");
+ 			opregion->vbt = vbt;
+@@ -1015,7 +1018,7 @@ int intel_opregion_setup(struct drm_i915_private *dev_priv)
+ 	vbt_size = (mboxes & MBOX_ASLE_EXT) ?
+ 		OPREGION_ASLE_EXT_OFFSET : OPREGION_SIZE;
+ 	vbt_size -= OPREGION_VBT_OFFSET;
+-	if (intel_bios_is_valid_vbt(vbt, vbt_size)) {
++	if (intel_bios_is_valid_vbt(dev_priv, vbt, vbt_size)) {
+ 		drm_dbg_kms(&dev_priv->drm,
+ 			    "Found valid VBT in ACPI OpRegion (Mailbox #4)\n");
+ 		opregion->vbt = vbt;
+diff --git a/drivers/gpu/drm/i915/display/intel_quirks.c b/drivers/gpu/drm/i915/display/intel_quirks.c
+index c8488f5ebd04..c2604e8b5353 100644
+--- a/drivers/gpu/drm/i915/display/intel_quirks.c
++++ b/drivers/gpu/drm/i915/display/intel_quirks.c
+@@ -133,6 +133,36 @@ static const struct intel_dmi_quirk intel_dmi_quirks[] = {
+ 	},
+ };
+ 
++static void quirk_opregion_use_fw_size_as_vbt_size(struct drm_i915_private *i915)
++{
++	i915->quirks |= QUIRK_USE_FW_SIZE_AS_VBT_SIZE;
++	drm_info(&i915->drm, "Applying FW size as VBT size quirk in OpRegion\n");
++}
++
++static int intel_dmi_opregion_use_fw_size_as_vbt_size(const struct dmi_system_id *id)
++{
++	DRM_INFO("Use FW size as VBT size on %s in OpRegion\n", id->ident);
++	return 1;
++}
++
++static const struct intel_dmi_quirk intel_dmi_opregion_quirks[] = {
++	{
++		.dmi_id_list = &(const struct dmi_system_id[]) {
++			{
++				.callback = intel_dmi_opregion_use_fw_size_as_vbt_size,
++				.ident = "LG Gram 17Z95P-K.ADE9U1",
++				.matches = {DMI_EXACT_MATCH(DMI_SYS_VENDOR, "LG Electronics"),
++					    DMI_EXACT_MATCH(DMI_PRODUCT_NAME, "17Z95P-K.ADE9U1"),
++					    DMI_EXACT_MATCH(DMI_BIOS_VERSION, "T4ZF0040 X64"),
++					    DMI_EXACT_MATCH(DMI_BIOS_DATE, "10/06/2021"),
++				},
++			},
++			{ }
++		},
++		.hook = quirk_opregion_use_fw_size_as_vbt_size,
++	},
++};
++
+ static struct intel_quirk intel_quirks[] = {
+ 	/* Lenovo U160 cannot use SSC on LVDS */
+ 	{ 0x0046, 0x17aa, 0x3920, quirk_ssc_force_disable },
+@@ -213,3 +243,13 @@ void intel_init_quirks(struct drm_i915_private *i915)
+ 			intel_dmi_quirks[i].hook(i915);
+ 	}
+ }
++
++void intel_init_opregion_quirks(struct drm_i915_private *i915)
++{
++	int i;
++
++	for (i = 0; i < ARRAY_SIZE(intel_dmi_opregion_quirks); i++) {
++		if (dmi_check_system(*intel_dmi_opregion_quirks[i].dmi_id_list) != 0)
++			intel_dmi_opregion_quirks[i].hook(i915);
++	}
++}
+diff --git a/drivers/gpu/drm/i915/display/intel_quirks.h b/drivers/gpu/drm/i915/display/intel_quirks.h
+index b0fcff142a56..3a6a84e0d502 100644
+--- a/drivers/gpu/drm/i915/display/intel_quirks.h
++++ b/drivers/gpu/drm/i915/display/intel_quirks.h
+@@ -9,5 +9,6 @@
+ struct drm_i915_private;
+ 
+ void intel_init_quirks(struct drm_i915_private *dev_priv);
++void intel_init_opregion_quirks(struct drm_i915_private *dev_priv);
+ 
+ #endif /* __INTEL_QUIRKS_H__ */
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 7d622d1afe93..68af3db268a3 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -223,6 +223,7 @@ struct i915_drrs {
+ #define QUIRK_INCREASE_T12_DELAY (1<<6)
+ #define QUIRK_INCREASE_DDI_DISABLED_TIME (1<<7)
+ #define QUIRK_NO_PPS_BACKLIGHT_POWER_HOOK (1<<8)
++#define QUIRK_USE_FW_SIZE_AS_VBT_SIZE (1 << 9)
+ 
+ struct i915_suspend_saved_registers {
+ 	u32 saveDSPARB;
+-- 
+2.35.1
+
