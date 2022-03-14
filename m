@@ -1,49 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C81AA4D907E
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Mar 2022 00:42:14 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E95224D9087
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Mar 2022 00:43:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 368D789F41;
-	Mon, 14 Mar 2022 23:42:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 353D289F41;
+	Mon, 14 Mar 2022 23:43:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8142789F8B;
- Mon, 14 Mar 2022 23:42:10 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DE0E89F41
+ for <intel-gfx@lists.freedesktop.org>; Mon, 14 Mar 2022 23:43:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1647301330; x=1678837330;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=OizfX+XKo6M/lAi36LbJP+jiDe/BkdnpLNiwldVZxEs=;
- b=FEGQjle5o46PlnQ5l6HS4oSoAl3FBTYJB+zCC3susvI24NpVjTK0WtdN
- zq1I9SL7/ybFHDcEzqBkU3UTzB6ZR4FBOssLeWf1Bjrx/PEqKwUHR36rT
- MNaeCtN4oXqmistxCx+wZJBd3EomU5UGHiENoPurfTL5DBOxIreamFsgV
- uyzxBzVtKP/7NPCdBM4jyvianzevWa5d9c9kzdMihfSQ5PdlEuCkC6pqM
- ZGmFpccBLYJcR9XZ9kinyT2aBdfLjzTDURKJzRbDTPXad0V2HkZ6R1mbj
- Cb1eCUJVRcazppJaDh1hFtv8u1sQMiRLpVD5XX0TJygT1ncsNP2qOCT9y w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10286"; a="256359969"
-X-IronPort-AV: E=Sophos;i="5.90,181,1643702400"; d="scan'208";a="256359969"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Mar 2022 16:42:09 -0700
-X-IronPort-AV: E=Sophos;i="5.90,181,1643702400"; d="scan'208";a="549403066"
-Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Mar 2022 16:42:09 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 14 Mar 2022 16:42:03 -0700
-Message-Id: <20220314234203.799268-4-matthew.d.roper@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220314234203.799268-1-matthew.d.roper@intel.com>
-References: <20220314234203.799268-1-matthew.d.roper@intel.com>
+ t=1647301398; x=1678837398;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=IaFR249ZBL56j47CVCpKzViPFuU5uILIrhxI5mWhf2s=;
+ b=mx1dNZA8yL5j6Iq+zI0dXT0kZ0t+RuCKUUfFH6xEg2rHX8yhZV7RMyWf
+ IQ5E7SBPWedue7JLWknPrVuLFBqy7DoS84KwGOnz/O9jPOkSfwL72+pKj
+ qr3Y0alTYM4aRkOEBfiaN4X4qL711id1An3doQnrZ42zAYUqh4KebMZ5h
+ Rupp/8VU55WVs0rNoOsXEliU/AjRKg2hGgcCtKDdKlAbUfV3ESBtK/aKE
+ TorC2cA67pQGl/Z2nVsqveCJ6zKqmofPpskhIRlZeuyuMhQFVS83GoUdk
+ XcoCC+aymYSsB4x7AwH0C5y8iGWteABw+QdTxa4iSF0UWUw1QGPqftBV2 Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10286"; a="342598887"
+X-IronPort-AV: E=Sophos;i="5.90,181,1643702400"; d="scan'208";a="342598887"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Mar 2022 16:43:17 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,181,1643702400"; d="scan'208";a="690009019"
+Received: from lkp-server02.sh.intel.com (HELO 89b41b6ae01c) ([10.239.97.151])
+ by fmsmga001.fm.intel.com with ESMTP; 14 Mar 2022 16:43:15 -0700
+Received: from kbuild by 89b41b6ae01c with local (Exim 4.92)
+ (envelope-from <lkp@intel.com>)
+ id 1nTuLK-000AMF-UI; Mon, 14 Mar 2022 23:43:14 +0000
+Date: Tue, 15 Mar 2022 07:42:50 +0800
+From: kernel test robot <lkp@intel.com>
+To: Alan Previn <alan.previn.teres.alexis@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Message-ID: <202203150713.NSmDIfrY-lkp@intel.com>
+References: <20220314170954.1537154-14-alan.previn.teres.alexis@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 3/3] drm/i915: Add support for steered register
- writes
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220314170954.1537154-14-alan.previn.teres.alexis@intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v9 13/13] drm/i915/guc: Print the GuC error
+ capture output register list.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,180 +61,440 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Cc: kbuild-all@lists.01.org, Alan Previn <alan.previn.teres.alexis@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Upcoming patches will need to steer writes to multicast registers as
-well as reading them.
+Hi Alan,
 
-Although the setting of the 'multicast' bit should only really matter
-for write operations (reads always operate in a unicast manner and give
-us the result from one specific instance), Wa_22013088509 suggests that
-we leave the multicast bit enabled when performing read operations, so
-we follow suit here.
+Thank you for the patch! Yet something to improve:
 
-Cc: Harish Chegondi <harish.chegondi@intel.com>
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+[auto build test ERROR on drm-tip/drm-tip]
+[cannot apply to drm-intel/for-linux-next drm-exynos/exynos-drm-next drm/drm-next tegra-drm/drm/tegra/for-next v5.17-rc8 next-20220310]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
+
+url:    https://github.com/0day-ci/linux/commits/Alan-Previn/Add-GuC-Error-Capture-Support/20220315-010958
+base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
+config: i386-randconfig-a002-20220314 (https://download.01.org/0day-ci/archive/20220315/202203150713.NSmDIfrY-lkp@intel.com/config)
+compiler: gcc-9 (Ubuntu 9.4.0-1ubuntu1~20.04) 9.4.0
+reproduce (this is a W=1 build):
+        # https://github.com/0day-ci/linux/commit/90c08c10562cba1ebf8b31788e7a9550c7637838
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Alan-Previn/Add-GuC-Error-Capture-Support/20220315-010958
+        git checkout 90c08c10562cba1ebf8b31788e7a9550c7637838
+        # save the config file to linux build tree
+        mkdir build_dir
+        make W=1 O=build_dir ARCH=i386 SHELL=/bin/bash
+
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+All errors (new ones prefixed by >>):
+
+   In file included from include/linux/device.h:15,
+                    from include/drm/drm_print.h:32,
+                    from drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:8:
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c: In function 'intel_guc_capture_print_engine_node':
+>> drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1442:17: error: 'struct drm_i915_error_state_buf' has no member named 'drm'
+    1442 |   drm_warn((&(a)->drm), __VA_ARGS__); \
+         |                 ^~
+   include/linux/dev_printk.h:110:11: note: in definition of macro 'dev_printk_index_wrap'
+     110 |   _p_func(dev, fmt, ##__VA_ARGS__);   \
+         |           ^~~
+   include/drm/drm_print.h:425:2: note: in expansion of macro 'dev_warn'
+     425 |  dev_##level##type((drm)->dev, "[drm] " fmt, ##__VA_ARGS__)
+         |  ^~~~
+   include/drm/drm_print.h:435:2: note: in expansion of macro '__drm_printk'
+     435 |  __drm_printk((drm), warn,, fmt, ##__VA_ARGS__)
+         |  ^~~~~~~~~~~~
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1442:3: note: in expansion of macro 'drm_warn'
+    1442 |   drm_warn((&(a)->drm), __VA_ARGS__); \
+         |   ^~~~~~~~
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1497:2: note: in expansion of macro '__out'
+    1497 |  __out(ebuf, "global --- GuC Error Capture on %s command stream:\n",
+         |  ^~~~~
+>> drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1442:17: error: 'struct drm_i915_error_state_buf' has no member named 'drm'
+    1442 |   drm_warn((&(a)->drm), __VA_ARGS__); \
+         |                 ^~
+   include/linux/dev_printk.h:110:11: note: in definition of macro 'dev_printk_index_wrap'
+     110 |   _p_func(dev, fmt, ##__VA_ARGS__);   \
+         |           ^~~
+   include/drm/drm_print.h:425:2: note: in expansion of macro 'dev_warn'
+     425 |  dev_##level##type((drm)->dev, "[drm] " fmt, ##__VA_ARGS__)
+         |  ^~~~
+   include/drm/drm_print.h:435:2: note: in expansion of macro '__drm_printk'
+     435 |  __drm_printk((drm), warn,, fmt, ##__VA_ARGS__)
+         |  ^~~~~~~~~~~~
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1442:3: note: in expansion of macro 'drm_warn'
+    1442 |   drm_warn((&(a)->drm), __VA_ARGS__); \
+         |   ^~~~~~~~
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1502:3: note: in expansion of macro '__out'
+    1502 |   __out(ebuf, "  No matching ee-node\n");
+         |   ^~~~~
+>> drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1442:17: error: 'struct drm_i915_error_state_buf' has no member named 'drm'
+    1442 |   drm_warn((&(a)->drm), __VA_ARGS__); \
+         |                 ^~
+   include/linux/dev_printk.h:110:11: note: in definition of macro 'dev_printk_index_wrap'
+     110 |   _p_func(dev, fmt, ##__VA_ARGS__);   \
+         |           ^~~
+   include/drm/drm_print.h:425:2: note: in expansion of macro 'dev_warn'
+     425 |  dev_##level##type((drm)->dev, "[drm] " fmt, ##__VA_ARGS__)
+         |  ^~~~
+   include/drm/drm_print.h:435:2: note: in expansion of macro '__drm_printk'
+     435 |  __drm_printk((drm), warn,, fmt, ##__VA_ARGS__)
+         |  ^~~~~~~~~~~~
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1442:3: note: in expansion of macro 'drm_warn'
+    1442 |   drm_warn((&(a)->drm), __VA_ARGS__); \
+         |   ^~~~~~~~
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1506:2: note: in expansion of macro '__out'
+    1506 |  __out(ebuf, "Coverage:  %s\n", grptype[node->is_partial]);
+         |  ^~~~~
+>> drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1442:17: error: 'struct drm_i915_error_state_buf' has no member named 'drm'
+    1442 |   drm_warn((&(a)->drm), __VA_ARGS__); \
+         |                 ^~
+   include/linux/dev_printk.h:110:11: note: in definition of macro 'dev_printk_index_wrap'
+     110 |   _p_func(dev, fmt, ##__VA_ARGS__);   \
+         |           ^~~
+   include/drm/drm_print.h:425:2: note: in expansion of macro 'dev_warn'
+     425 |  dev_##level##type((drm)->dev, "[drm] " fmt, ##__VA_ARGS__)
+         |  ^~~~
+   include/drm/drm_print.h:435:2: note: in expansion of macro '__drm_printk'
+     435 |  __drm_printk((drm), warn,, fmt, ##__VA_ARGS__)
+         |  ^~~~~~~~~~~~
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1442:3: note: in expansion of macro 'drm_warn'
+    1442 |   drm_warn((&(a)->drm), __VA_ARGS__); \
+         |   ^~~~~~~~
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1509:3: note: in expansion of macro '__out'
+    1509 |   __out(ebuf, "  RegListType: %s\n",
+         |   ^~~~~
+>> drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1442:17: error: 'struct drm_i915_error_state_buf' has no member named 'drm'
+    1442 |   drm_warn((&(a)->drm), __VA_ARGS__); \
+         |                 ^~
+   include/linux/dev_printk.h:110:11: note: in definition of macro 'dev_printk_index_wrap'
+     110 |   _p_func(dev, fmt, ##__VA_ARGS__);   \
+         |           ^~~
+   include/drm/drm_print.h:425:2: note: in expansion of macro 'dev_warn'
+     425 |  dev_##level##type((drm)->dev, "[drm] " fmt, ##__VA_ARGS__)
+         |  ^~~~
+   include/drm/drm_print.h:435:2: note: in expansion of macro '__drm_printk'
+     435 |  __drm_printk((drm), warn,, fmt, ##__VA_ARGS__)
+         |  ^~~~~~~~~~~~
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1442:3: note: in expansion of macro 'drm_warn'
+    1442 |   drm_warn((&(a)->drm), __VA_ARGS__); \
+         |   ^~~~~~~~
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1511:3: note: in expansion of macro '__out'
+    1511 |   __out(ebuf, "    Owner-Id: %d\n", node->reginfo[i].vfid);
+         |   ^~~~~
+>> drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1442:17: error: 'struct drm_i915_error_state_buf' has no member named 'drm'
+    1442 |   drm_warn((&(a)->drm), __VA_ARGS__); \
+         |                 ^~
+   include/linux/dev_printk.h:110:11: note: in definition of macro 'dev_printk_index_wrap'
+     110 |   _p_func(dev, fmt, ##__VA_ARGS__);   \
+         |           ^~~
+   include/drm/drm_print.h:425:2: note: in expansion of macro 'dev_warn'
+     425 |  dev_##level##type((drm)->dev, "[drm] " fmt, ##__VA_ARGS__)
+         |  ^~~~
+   include/drm/drm_print.h:435:2: note: in expansion of macro '__drm_printk'
+     435 |  __drm_printk((drm), warn,, fmt, ##__VA_ARGS__)
+         |  ^~~~~~~~~~~~
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1442:3: note: in expansion of macro 'drm_warn'
+    1442 |   drm_warn((&(a)->drm), __VA_ARGS__); \
+         |   ^~~~~~~~
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1518:4: note: in expansion of macro '__out'
+    1518 |    __out(ebuf, "    GuC-Eng-Class: %d\n", node->eng_class);
+         |    ^~~~~
+>> drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1442:17: error: 'struct drm_i915_error_state_buf' has no member named 'drm'
+    1442 |   drm_warn((&(a)->drm), __VA_ARGS__); \
+         |                 ^~
+   include/linux/dev_printk.h:110:11: note: in definition of macro 'dev_printk_index_wrap'
+     110 |   _p_func(dev, fmt, ##__VA_ARGS__);   \
+         |           ^~~
+   include/drm/drm_print.h:425:2: note: in expansion of macro 'dev_warn'
+     425 |  dev_##level##type((drm)->dev, "[drm] " fmt, ##__VA_ARGS__)
+         |  ^~~~
+   include/drm/drm_print.h:435:2: note: in expansion of macro '__drm_printk'
+     435 |  __drm_printk((drm), warn,, fmt, ##__VA_ARGS__)
+         |  ^~~~~~~~~~~~
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1442:3: note: in expansion of macro 'drm_warn'
+    1442 |   drm_warn((&(a)->drm), __VA_ARGS__); \
+         |   ^~~~~~~~
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1519:4: note: in expansion of macro '__out'
+    1519 |    __out(ebuf, "    i915-Eng-Class: %d\n",
+         |    ^~~~~
+>> drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1442:17: error: 'struct drm_i915_error_state_buf' has no member named 'drm'
+    1442 |   drm_warn((&(a)->drm), __VA_ARGS__); \
+         |                 ^~
+   include/linux/dev_printk.h:110:11: note: in definition of macro 'dev_printk_index_wrap'
+     110 |   _p_func(dev, fmt, ##__VA_ARGS__);   \
+         |           ^~~
+   include/drm/drm_print.h:425:2: note: in expansion of macro 'dev_warn'
+     425 |  dev_##level##type((drm)->dev, "[drm] " fmt, ##__VA_ARGS__)
+         |  ^~~~
+   include/drm/drm_print.h:435:2: note: in expansion of macro '__drm_printk'
+     435 |  __drm_printk((drm), warn,, fmt, ##__VA_ARGS__)
+         |  ^~~~~~~~~~~~
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1442:3: note: in expansion of macro 'drm_warn'
+    1442 |   drm_warn((&(a)->drm), __VA_ARGS__); \
+         |   ^~~~~~~~
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1452:3: note: in expansion of macro '__out'
+    1452 |   __out(ebuf, "    i915-Eng-Name: %s command stream\n", \
+         |   ^~~~~
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1525:5: note: in expansion of macro 'GCAP_PRINT_INTEL_ENG_INFO'
+    1525 |     GCAP_PRINT_INTEL_ENG_INFO(ebuf, eng);
+         |     ^~~~~~~~~~~~~~~~~~~~~~~~~
+>> drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1442:17: error: 'struct drm_i915_error_state_buf' has no member named 'drm'
+    1442 |   drm_warn((&(a)->drm), __VA_ARGS__); \
+         |                 ^~
+   include/linux/dev_printk.h:110:11: note: in definition of macro 'dev_printk_index_wrap'
+     110 |   _p_func(dev, fmt, ##__VA_ARGS__);   \
+         |           ^~~
+   include/drm/drm_print.h:425:2: note: in expansion of macro 'dev_warn'
+     425 |  dev_##level##type((drm)->dev, "[drm] " fmt, ##__VA_ARGS__)
+         |  ^~~~
+   include/drm/drm_print.h:435:2: note: in expansion of macro '__drm_printk'
+     435 |  __drm_printk((drm), warn,, fmt, ##__VA_ARGS__)
+         |  ^~~~~~~~~~~~
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1442:3: note: in expansion of macro 'drm_warn'
+    1442 |   drm_warn((&(a)->drm), __VA_ARGS__); \
+         |   ^~~~~~~~
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1454:3: note: in expansion of macro '__out'
+    1454 |   __out(ebuf, "    i915-Eng-Inst-Class: 0x%02x\n", (eng)->class); \
+         |   ^~~~~
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1525:5: note: in expansion of macro 'GCAP_PRINT_INTEL_ENG_INFO'
+    1525 |     GCAP_PRINT_INTEL_ENG_INFO(ebuf, eng);
+         |     ^~~~~~~~~~~~~~~~~~~~~~~~~
+>> drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1442:17: error: 'struct drm_i915_error_state_buf' has no member named 'drm'
+    1442 |   drm_warn((&(a)->drm), __VA_ARGS__); \
+         |                 ^~
+   include/linux/dev_printk.h:110:11: note: in definition of macro 'dev_printk_index_wrap'
+     110 |   _p_func(dev, fmt, ##__VA_ARGS__);   \
+         |           ^~~
+   include/drm/drm_print.h:425:2: note: in expansion of macro 'dev_warn'
+     425 |  dev_##level##type((drm)->dev, "[drm] " fmt, ##__VA_ARGS__)
+         |  ^~~~
+   include/drm/drm_print.h:435:2: note: in expansion of macro '__drm_printk'
+     435 |  __drm_printk((drm), warn,, fmt, ##__VA_ARGS__)
+         |  ^~~~~~~~~~~~
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1442:3: note: in expansion of macro 'drm_warn'
+    1442 |   drm_warn((&(a)->drm), __VA_ARGS__); \
+         |   ^~~~~~~~
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1455:3: note: in expansion of macro '__out'
+    1455 |   __out(ebuf, "    i915-Eng-Inst-Id: 0x%02x\n", (eng)->instance); \
+         |   ^~~~~
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1525:5: note: in expansion of macro 'GCAP_PRINT_INTEL_ENG_INFO'
+    1525 |     GCAP_PRINT_INTEL_ENG_INFO(ebuf, eng);
+         |     ^~~~~~~~~~~~~~~~~~~~~~~~~
+>> drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1442:17: error: 'struct drm_i915_error_state_buf' has no member named 'drm'
+    1442 |   drm_warn((&(a)->drm), __VA_ARGS__); \
+         |                 ^~
+   include/linux/dev_printk.h:110:11: note: in definition of macro 'dev_printk_index_wrap'
+     110 |   _p_func(dev, fmt, ##__VA_ARGS__);   \
+         |           ^~~
+   include/drm/drm_print.h:425:2: note: in expansion of macro 'dev_warn'
+     425 |  dev_##level##type((drm)->dev, "[drm] " fmt, ##__VA_ARGS__)
+         |  ^~~~
+   include/drm/drm_print.h:435:2: note: in expansion of macro '__drm_printk'
+     435 |  __drm_printk((drm), warn,, fmt, ##__VA_ARGS__)
+         |  ^~~~~~~~~~~~
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1442:3: note: in expansion of macro 'drm_warn'
+    1442 |   drm_warn((&(a)->drm), __VA_ARGS__); \
+         |   ^~~~~~~~
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1456:3: note: in expansion of macro '__out'
+    1456 |   __out(ebuf, "    i915-Eng-LogicalMask: 0x%08x\n", \
+         |   ^~~~~
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1525:5: note: in expansion of macro 'GCAP_PRINT_INTEL_ENG_INFO'
+    1525 |     GCAP_PRINT_INTEL_ENG_INFO(ebuf, eng);
+         |     ^~~~~~~~~~~~~~~~~~~~~~~~~
+>> drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1442:17: error: 'struct drm_i915_error_state_buf' has no member named 'drm'
+    1442 |   drm_warn((&(a)->drm), __VA_ARGS__); \
+         |                 ^~
+   include/linux/dev_printk.h:110:11: note: in definition of macro 'dev_printk_index_wrap'
+     110 |   _p_func(dev, fmt, ##__VA_ARGS__);   \
+         |           ^~~
+   include/drm/drm_print.h:425:2: note: in expansion of macro 'dev_warn'
+     425 |  dev_##level##type((drm)->dev, "[drm] " fmt, ##__VA_ARGS__)
+         |  ^~~~
+   include/drm/drm_print.h:435:2: note: in expansion of macro '__drm_printk'
+     435 |  __drm_printk((drm), warn,, fmt, ##__VA_ARGS__)
+         |  ^~~~~~~~~~~~
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1442:3: note: in expansion of macro 'drm_warn'
+    1442 |   drm_warn((&(a)->drm), __VA_ARGS__); \
+         |   ^~~~~~~~
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1527:5: note: in expansion of macro '__out'
+    1527 |     __out(ebuf, "    i915-Eng-Lookup Fail!\n");
+         |     ^~~~~
+>> drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1442:17: error: 'struct drm_i915_error_state_buf' has no member named 'drm'
+    1442 |   drm_warn((&(a)->drm), __VA_ARGS__); \
+         |                 ^~
+   include/linux/dev_printk.h:110:11: note: in definition of macro 'dev_printk_index_wrap'
+     110 |   _p_func(dev, fmt, ##__VA_ARGS__);   \
+         |           ^~~
+   include/drm/drm_print.h:425:2: note: in expansion of macro 'dev_warn'
+     425 |  dev_##level##type((drm)->dev, "[drm] " fmt, ##__VA_ARGS__)
+         |  ^~~~
+   include/drm/drm_print.h:435:2: note: in expansion of macro '__drm_printk'
+     435 |  __drm_printk((drm), warn,, fmt, ##__VA_ARGS__)
+         |  ^~~~~~~~~~~~
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1442:3: note: in expansion of macro 'drm_warn'
+    1442 |   drm_warn((&(a)->drm), __VA_ARGS__); \
+         |   ^~~~~~~~
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1462:3: note: in expansion of macro '__out'
+    1462 |   __out(ebuf, "    GuC-Engine-Inst-Id: 0x%08x\n", \
+         |   ^~~~~
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1528:4: note: in expansion of macro 'GCAP_PRINT_GUC_INST_INFO'
+    1528 |    GCAP_PRINT_GUC_INST_INFO(ebuf, node);
+         |    ^~~~~~~~~~~~~~~~~~~~~~~~
+>> drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1442:17: error: 'struct drm_i915_error_state_buf' has no member named 'drm'
+    1442 |   drm_warn((&(a)->drm), __VA_ARGS__); \
+         |                 ^~
+   include/linux/dev_printk.h:110:11: note: in definition of macro 'dev_printk_index_wrap'
+     110 |   _p_func(dev, fmt, ##__VA_ARGS__);   \
+         |           ^~~
+   include/drm/drm_print.h:425:2: note: in expansion of macro 'dev_warn'
+     425 |  dev_##level##type((drm)->dev, "[drm] " fmt, ##__VA_ARGS__)
+         |  ^~~~
+   include/drm/drm_print.h:435:2: note: in expansion of macro '__drm_printk'
+     435 |  __drm_printk((drm), warn,, fmt, ##__VA_ARGS__)
+         |  ^~~~~~~~~~~~
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1442:3: note: in expansion of macro 'drm_warn'
+    1442 |   drm_warn((&(a)->drm), __VA_ARGS__); \
+         |   ^~~~~~~~
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1464:3: note: in expansion of macro '__out'
+    1464 |   __out(ebuf, "    GuC-Context-Id: 0x%08x\n", (node)->guc_id); \
+         |   ^~~~~
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1528:4: note: in expansion of macro 'GCAP_PRINT_GUC_INST_INFO'
+    1528 |    GCAP_PRINT_GUC_INST_INFO(ebuf, node);
+         |    ^~~~~~~~~~~~~~~~~~~~~~~~
+>> drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1442:17: error: 'struct drm_i915_error_state_buf' has no member named 'drm'
+    1442 |   drm_warn((&(a)->drm), __VA_ARGS__); \
+         |                 ^~
+   include/linux/dev_printk.h:110:11: note: in definition of macro 'dev_printk_index_wrap'
+     110 |   _p_func(dev, fmt, ##__VA_ARGS__);   \
+         |           ^~~
+   include/drm/drm_print.h:425:2: note: in expansion of macro 'dev_warn'
+     425 |  dev_##level##type((drm)->dev, "[drm] " fmt, ##__VA_ARGS__)
+         |  ^~~~
+   include/drm/drm_print.h:435:2: note: in expansion of macro '__drm_printk'
+     435 |  __drm_printk((drm), warn,, fmt, ##__VA_ARGS__)
+         |  ^~~~~~~~~~~~
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1442:3: note: in expansion of macro 'drm_warn'
+    1442 |   drm_warn((&(a)->drm), __VA_ARGS__); \
+         |   ^~~~~~~~
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1465:3: note: in expansion of macro '__out'
+    1465 |   __out(ebuf, "    LRCA: 0x%08x\n", (node)->lrca); \
+         |   ^~~~~
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1528:4: note: in expansion of macro 'GCAP_PRINT_GUC_INST_INFO'
+    1528 |    GCAP_PRINT_GUC_INST_INFO(ebuf, node);
+         |    ^~~~~~~~~~~~~~~~~~~~~~~~
+>> drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1442:17: error: 'struct drm_i915_error_state_buf' has no member named 'drm'
+    1442 |   drm_warn((&(a)->drm), __VA_ARGS__); \
+         |                 ^~
+   include/linux/dev_printk.h:110:11: note: in definition of macro 'dev_printk_index_wrap'
+     110 |   _p_func(dev, fmt, ##__VA_ARGS__);   \
+         |           ^~~
+   include/drm/drm_print.h:425:2: note: in expansion of macro 'dev_warn'
+     425 |  dev_##level##type((drm)->dev, "[drm] " fmt, ##__VA_ARGS__)
+         |  ^~~~
+   include/drm/drm_print.h:435:2: note: in expansion of macro '__drm_printk'
+     435 |  __drm_printk((drm), warn,, fmt, ##__VA_ARGS__)
+         |  ^~~~~~~~~~~~
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1442:3: note: in expansion of macro 'drm_warn'
+    1442 |   drm_warn((&(a)->drm), __VA_ARGS__); \
+         |   ^~~~~~~~
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1533:3: note: in expansion of macro '__out'
+    1533 |   __out(ebuf, "    NumRegs: %d\n", numregs);
+         |   ^~~~~
+>> drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1442:17: error: 'struct drm_i915_error_state_buf' has no member named 'drm'
+    1442 |   drm_warn((&(a)->drm), __VA_ARGS__); \
+         |                 ^~
+   include/linux/dev_printk.h:110:11: note: in definition of macro 'dev_printk_index_wrap'
+     110 |   _p_func(dev, fmt, ##__VA_ARGS__);   \
+         |           ^~~
+   include/drm/drm_print.h:425:2: note: in expansion of macro 'dev_warn'
+     425 |  dev_##level##type((drm)->dev, "[drm] " fmt, ##__VA_ARGS__)
+         |  ^~~~
+   include/drm/drm_print.h:435:2: note: in expansion of macro '__drm_printk'
+     435 |  __drm_printk((drm), warn,, fmt, ##__VA_ARGS__)
+         |  ^~~~~~~~~~~~
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1442:3: note: in expansion of macro 'drm_warn'
+    1442 |   drm_warn((&(a)->drm), __VA_ARGS__); \
+         |   ^~~~~~~~
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1540:5: note: in expansion of macro '__out'
+    1540 |     __out(ebuf, "      REG-0x%08x", regs[j].offset);
+         |     ^~~~~
+>> drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1442:17: error: 'struct drm_i915_error_state_buf' has no member named 'drm'
+    1442 |   drm_warn((&(a)->drm), __VA_ARGS__); \
+         |                 ^~
+   include/linux/dev_printk.h:110:11: note: in definition of macro 'dev_printk_index_wrap'
+     110 |   _p_func(dev, fmt, ##__VA_ARGS__);   \
+         |           ^~~
+   include/drm/drm_print.h:425:2: note: in expansion of macro 'dev_warn'
+     425 |  dev_##level##type((drm)->dev, "[drm] " fmt, ##__VA_ARGS__)
+         |  ^~~~
+   include/drm/drm_print.h:435:2: note: in expansion of macro '__drm_printk'
+     435 |  __drm_printk((drm), warn,, fmt, ##__VA_ARGS__)
+         |  ^~~~~~~~~~~~
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1442:3: note: in expansion of macro 'drm_warn'
+    1442 |   drm_warn((&(a)->drm), __VA_ARGS__); \
+         |   ^~~~~~~~
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1542:5: note: in expansion of macro '__out'
+    1542 |     __out(ebuf, "      %s", str);
+         |     ^~~~~
+>> drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1442:17: error: 'struct drm_i915_error_state_buf' has no member named 'drm'
+    1442 |   drm_warn((&(a)->drm), __VA_ARGS__); \
+         |                 ^~
+   include/linux/dev_printk.h:110:11: note: in definition of macro 'dev_printk_index_wrap'
+     110 |   _p_func(dev, fmt, ##__VA_ARGS__);   \
+         |           ^~~
+   include/drm/drm_print.h:425:2: note: in expansion of macro 'dev_warn'
+     425 |  dev_##level##type((drm)->dev, "[drm] " fmt, ##__VA_ARGS__)
+         |  ^~~~
+   include/drm/drm_print.h:435:2: note: in expansion of macro '__drm_printk'
+     435 |  __drm_printk((drm), warn,, fmt, ##__VA_ARGS__)
+         |  ^~~~~~~~~~~~
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1442:3: note: in expansion of macro 'drm_warn'
+    1442 |   drm_warn((&(a)->drm), __VA_ARGS__); \
+         |   ^~~~~~~~
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1544:5: note: in expansion of macro '__out'
+    1544 |     __out(ebuf, "[%ld][%ld]",
+         |     ^~~~~
+>> drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1442:17: error: 'struct drm_i915_error_state_buf' has no member named 'drm'
+    1442 |   drm_warn((&(a)->drm), __VA_ARGS__); \
+         |                 ^~
+   include/linux/dev_printk.h:110:11: note: in definition of macro 'dev_printk_index_wrap'
+     110 |   _p_func(dev, fmt, ##__VA_ARGS__);   \
+         |           ^~~
+   include/drm/drm_print.h:425:2: note: in expansion of macro 'dev_warn'
+     425 |  dev_##level##type((drm)->dev, "[drm] " fmt, ##__VA_ARGS__)
+         |  ^~~~
+   include/drm/drm_print.h:435:2: note: in expansion of macro '__drm_printk'
+     435 |  __drm_printk((drm), warn,, fmt, ##__VA_ARGS__)
+         |  ^~~~~~~~~~~~
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1442:3: note: in expansion of macro 'drm_warn'
+    1442 |   drm_warn((&(a)->drm), __VA_ARGS__); \
+         |   ^~~~~~~~
+   drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1547:4: note: in expansion of macro '__out'
+    1547 |    __out(ebuf, ":  0x%08x\n", regs[j].value);
+         |    ^~~~~
+
+
+vim +1442 drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
+
+  1438	
+  1439	#ifdef CONFIG_DRM_I915_DEBUG_GUC
+  1440	#define __out(a, ...) \
+  1441		do { \
+> 1442			drm_warn((&(a)->drm), __VA_ARGS__); \
+  1443			i915_error_printf((a), __VA_ARGS__); \
+  1444		} while (0)
+  1445	#else
+  1446	#define __out(a, ...) \
+  1447		i915_error_printf(a, __VA_ARGS__)
+  1448	#endif
+  1449	
+
 ---
- drivers/gpu/drm/i915/gt/intel_gt_regs.h |  1 +
- drivers/gpu/drm/i915/intel_uncore.c     | 75 ++++++++++++++++++++++---
- drivers/gpu/drm/i915/intel_uncore.h     |  4 +-
- 3 files changed, 70 insertions(+), 10 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-index 19cd34f24263..62e0f075b1de 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-@@ -46,6 +46,7 @@
- #define   GEN8_MCR_SLICE_MASK			GEN8_MCR_SLICE(3)
- #define   GEN8_MCR_SUBSLICE(subslice)		(((subslice) & 3) << 24)
- #define   GEN8_MCR_SUBSLICE_MASK		GEN8_MCR_SUBSLICE(3)
-+#define   GEN11_MCR_MULTICAST			REG_BIT(31)
- #define   GEN11_MCR_SLICE(slice)		(((slice) & 0xf) << 27)
- #define   GEN11_MCR_SLICE_MASK			GEN11_MCR_SLICE(0xf)
- #define   GEN11_MCR_SUBSLICE(subslice)		(((subslice) & 0x7) << 24)
-diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/intel_uncore.c
-index dd8fdd5863de..ef8ffc01ad19 100644
---- a/drivers/gpu/drm/i915/intel_uncore.c
-+++ b/drivers/gpu/drm/i915/intel_uncore.c
-@@ -2464,17 +2464,46 @@ intel_uncore_forcewake_for_reg(struct intel_uncore *uncore,
- 	return fw_domains;
- }
- 
--u32 intel_uncore_read_with_mcr_steering_fw(struct intel_uncore *uncore,
--					   i915_reg_t reg,
--					   int slice, int subslice)
-+/**
-+ * uncore_rw_with_mcr_steering_fw - Access a register after programming
-+ *				    the MCR selector register.
-+ * @uncore: pointer to struct intel_uncore
-+ * @reg: register being accessed
-+ * @rw_flag: FW_REG_READ for read access or FW_REG_WRITE for write access
-+ * @slice: slice number (ignored for multi-cast write)
-+ * @subslice: sub-slice number (ignored for multi-cast write)
-+ * @value: register value to be written (ignored for read)
-+ *
-+ * Return: 0 for write access. register value for read access.
-+ *
-+ * Caller needs to make sure the relevant forcewake wells are up.
-+ */
-+static u32 uncore_rw_with_mcr_steering_fw(struct intel_uncore *uncore,
-+					  i915_reg_t reg, u8 rw_flag,
-+					  int slice, int subslice, u32 value)
- {
--	u32 mcr_mask, mcr_ss, mcr, old_mcr, val;
-+	u32 mcr_mask, mcr_ss, mcr, old_mcr, val = 0;
- 
- 	lockdep_assert_held(&uncore->lock);
- 
- 	if (GRAPHICS_VER(uncore->i915) >= 11) {
- 		mcr_mask = GEN11_MCR_SLICE_MASK | GEN11_MCR_SUBSLICE_MASK;
- 		mcr_ss = GEN11_MCR_SLICE(slice) | GEN11_MCR_SUBSLICE(subslice);
-+
-+		/*
-+		 * Wa_22013088509
-+		 *
-+		 * The setting of the multicast/unicast bit usually wouldn't
-+		 * matter for read operations (which always return the value
-+		 * from a single register instance regardless of how that bit
-+		 * is set), but some platforms have a workaround requiring us
-+		 * to remain in multicast mode for reads.  There's no real
-+		 * downside to this, so we'll just go ahead and do so on all
-+		 * platforms; we'll only clear the multicast bit from the mask
-+		 * when exlicitly doing a write operation.
-+		 */
-+		if (rw_flag == FW_REG_WRITE)
-+			mcr_mask |= GEN11_MCR_MULTICAST;
- 	} else {
- 		mcr_mask = GEN8_MCR_SLICE_MASK | GEN8_MCR_SUBSLICE_MASK;
- 		mcr_ss = GEN8_MCR_SLICE(slice) | GEN8_MCR_SUBSLICE(subslice);
-@@ -2486,7 +2515,10 @@ u32 intel_uncore_read_with_mcr_steering_fw(struct intel_uncore *uncore,
- 	mcr |= mcr_ss;
- 	intel_uncore_write_fw(uncore, GEN8_MCR_SELECTOR, mcr);
- 
--	val = intel_uncore_read_fw(uncore, reg);
-+	if (rw_flag == FW_REG_READ)
-+		val = intel_uncore_read_fw(uncore, reg);
-+	else
-+		intel_uncore_write_fw(uncore, reg, value);
- 
- 	mcr &= ~mcr_mask;
- 	mcr |= old_mcr & mcr_mask;
-@@ -2496,14 +2528,16 @@ u32 intel_uncore_read_with_mcr_steering_fw(struct intel_uncore *uncore,
- 	return val;
- }
- 
--u32 intel_uncore_read_with_mcr_steering(struct intel_uncore *uncore,
--					i915_reg_t reg, int slice, int subslice)
-+static u32 uncore_rw_with_mcr_steering(struct intel_uncore *uncore,
-+				       i915_reg_t reg, u8 rw_flag,
-+				       int slice, int subslice,
-+				       u32 value)
- {
- 	enum forcewake_domains fw_domains;
- 	u32 val;
- 
- 	fw_domains = intel_uncore_forcewake_for_reg(uncore, reg,
--						    FW_REG_READ);
-+						    rw_flag);
- 	fw_domains |= intel_uncore_forcewake_for_reg(uncore,
- 						     GEN8_MCR_SELECTOR,
- 						     FW_REG_READ | FW_REG_WRITE);
-@@ -2511,7 +2545,8 @@ u32 intel_uncore_read_with_mcr_steering(struct intel_uncore *uncore,
- 	spin_lock_irq(&uncore->lock);
- 	intel_uncore_forcewake_get__locked(uncore, fw_domains);
- 
--	val = intel_uncore_read_with_mcr_steering_fw(uncore, reg, slice, subslice);
-+	val = uncore_rw_with_mcr_steering_fw(uncore, reg, rw_flag,
-+					     slice, subslice, value);
- 
- 	intel_uncore_forcewake_put__locked(uncore, fw_domains);
- 	spin_unlock_irq(&uncore->lock);
-@@ -2519,6 +2554,28 @@ u32 intel_uncore_read_with_mcr_steering(struct intel_uncore *uncore,
- 	return val;
- }
- 
-+u32 intel_uncore_read_with_mcr_steering_fw(struct intel_uncore *uncore,
-+					   i915_reg_t reg, int slice, int subslice)
-+{
-+	return uncore_rw_with_mcr_steering_fw(uncore, reg, FW_REG_READ,
-+					      slice, subslice, 0);
-+}
-+
-+u32 intel_uncore_read_with_mcr_steering(struct intel_uncore *uncore,
-+					i915_reg_t reg, int slice, int subslice)
-+{
-+	return uncore_rw_with_mcr_steering(uncore, reg, FW_REG_READ,
-+					   slice, subslice, 0);
-+}
-+
-+void intel_uncore_write_with_mcr_steering(struct intel_uncore *uncore,
-+					  i915_reg_t reg, u32 value,
-+					  int slice, int subslice)
-+{
-+	uncore_rw_with_mcr_steering(uncore, reg, FW_REG_WRITE,
-+				    slice, subslice, value);
-+}
-+
- #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
- #include "selftests/mock_uncore.c"
- #include "selftests/intel_uncore.c"
-diff --git a/drivers/gpu/drm/i915/intel_uncore.h b/drivers/gpu/drm/i915/intel_uncore.h
-index 6ff56d673e2b..9a760952d46a 100644
---- a/drivers/gpu/drm/i915/intel_uncore.h
-+++ b/drivers/gpu/drm/i915/intel_uncore.h
-@@ -214,7 +214,9 @@ u32 intel_uncore_read_with_mcr_steering_fw(struct intel_uncore *uncore,
- 					   int slice, int subslice);
- u32 intel_uncore_read_with_mcr_steering(struct intel_uncore *uncore,
- 					i915_reg_t reg,	int slice, int subslice);
--
-+void intel_uncore_write_with_mcr_steering(struct intel_uncore *uncore,
-+					  i915_reg_t reg, u32 value,
-+					  int slice, int subslice);
- void
- intel_uncore_mmio_debug_init_early(struct intel_uncore_mmio_debug *mmio_debug);
- void intel_uncore_init_early(struct intel_uncore *uncore,
--- 
-2.34.1
-
+0-DAY CI Kernel Test Service
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
