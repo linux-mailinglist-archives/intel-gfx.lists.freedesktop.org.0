@@ -2,51 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 981C74D7EF2
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Mar 2022 10:47:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C6B84D7EF8
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Mar 2022 10:47:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 98FEB10E191;
-	Mon, 14 Mar 2022 09:47:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B7DE510E1FB;
+	Mon, 14 Mar 2022 09:47:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 36A1A10E191
- for <intel-gfx@lists.freedesktop.org>; Mon, 14 Mar 2022 09:47:08 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3819B10E1FB
+ for <intel-gfx@lists.freedesktop.org>; Mon, 14 Mar 2022 09:47:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1647251228; x=1678787228;
+ t=1647251267; x=1678787267;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=S0HCnkStLYVtDmD7pPT5oTeeXrGjRr5EEpzxaSikjNs=;
- b=aCSN2KLX4oHRpUG6Xm1KGIyQ2RGP4RNvEKn9CINLI5cA84wvZtBs6p9i
- SkukHo9Vn8LmbL3Kj5Na/Vfm/X+605uQqo8iVEcQ8jHhhaIu4uN/RWUz8
- 6z+cIeDFFG+ouCNaIgrx99Jo0hcQnQDVSONHjw4a4tYdZCumpFN4FOhxh
- NKXlgY2yBDKfA2sZnEBTTT/rMvI2A2j6cU32uiZGcbKBVwh5NYjgVcj3o
- bpNa9wQ+VL6S7RAuyYFTARVyvgWsWVo4QxcOVB80CKxKGObn77ldxP7Oi
- oq5dB8AetA24p/XAXBtEIrJBWlXUaTW8BSI3/JfQzKWclWdjoNWlZBb/B w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10285"; a="316704740"
-X-IronPort-AV: E=Sophos;i="5.90,180,1643702400"; d="scan'208";a="316704740"
+ bh=zqgyIE1wAnY24i8J6UH+k3Z8PsLRVf0f6oM60AIxg/E=;
+ b=TUmLj5X88OrhpGyzELHSLdU3mAkmPoj0gD7sj/Aq2cJeo0tGc1A/XDhb
+ JKlLk72BvpjhMUgA99DnCQLZJT6beorgxiHVlFX/sXjyCct3zGtP/VsNe
+ 9JYO7V6KE4A7lcQqQj0KdWGBVHdcaHzrKp5WuyrhrCMdmArltbDLTOcQW
+ aWn9I/kX4wyADhAlK8VJ6cdeN1nGh+pfqGXdm7G4UVkw0N38h2JEFim1f
+ Xp9lWNkeF7HMHJOdZzkT863tp0Lpc3sOEuYbGIW0kgtzrFE84wjLyfYg8
+ pbfsSHTeeSFopmtUfmgHADiOsgCj8ZFiPx+rHSnlQtRgap5SKxcUm1DPb g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10285"; a="342407430"
+X-IronPort-AV: E=Sophos;i="5.90,180,1643702400"; d="scan'208";a="342407430"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Mar 2022 02:47:07 -0700
-X-IronPort-AV: E=Sophos;i="5.90,180,1643702400"; d="scan'208";a="556336261"
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Mar 2022 02:47:44 -0700
+X-IronPort-AV: E=Sophos;i="5.90,180,1643702400"; d="scan'208";a="556336538"
 Received: from vmanav-mobl.ger.corp.intel.com (HELO localhost) ([10.252.55.47])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Mar 2022 02:47:06 -0700
+ 14 Mar 2022 02:47:42 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220311172428.14685-5-ville.syrjala@linux.intel.com>
+In-Reply-To: <20220311172428.14685-6-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20220311172428.14685-1-ville.syrjala@linux.intel.com>
- <20220311172428.14685-5-ville.syrjala@linux.intel.com>
-Date: Mon, 14 Mar 2022 11:47:03 +0200
-Message-ID: <878rtcx3vs.fsf@intel.com>
+ <20220311172428.14685-6-ville.syrjala@linux.intel.com>
+Date: Mon, 14 Mar 2022 11:47:40 +0200
+Message-ID: <875yogx3ur.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v2 04/16] drm/i915: Simplify
- intel_panel_info()
+Subject: Re: [Intel-gfx] [PATCH v2 05/16] drm/i915: Nuke dev_priv->drrs.type
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,86 +64,103 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Fri, 11 Mar 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> No need for all this connector type special casing. If the
-> connector has a fixed mode just print it, otherwise don't.
+> When we found a downclock mode dev_priv->drrs.type is just a
+> straight copy of dev_priv->vbt.drrs_type. And in case we
+> couldn't find a downclock mode can_enable_drrs() won't let
+> us enable DRRS anyway so the minor distinction between the
+> two is irrelevant. So let's just nuke dev_priv->drrs.type
+> and consult the VBT version directly.
 >
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
 > ---
->  .../drm/i915/display/intel_display_debugfs.c  | 24 +++++++------------
->  1 file changed, 9 insertions(+), 15 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_display_debugfs.c |  2 +-
+>  drivers/gpu/drm/i915/display/intel_drrs.c            | 10 ++++------
+>  drivers/gpu/drm/i915/i915_drv.h                      |  1 -
+>  3 files changed, 5 insertions(+), 8 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drive=
 rs/gpu/drm/i915/display/intel_display_debugfs.c
-> index 798bf233a60f..e511500ee26a 100644
+> index e511500ee26a..2a6fd15b1471 100644
 > --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
 > +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> @@ -544,11 +544,15 @@ static void intel_encoder_info(struct seq_file *m,
->  	drm_connector_list_iter_end(&conn_iter);
+> @@ -1156,7 +1156,7 @@ static void drrs_status_per_crtc(struct seq_file *m,
+>  		seq_printf(m, "%s:\n", connector->name);
+>=20=20
+>  		if (connector->connector_type =3D=3D DRM_MODE_CONNECTOR_eDP &&
+> -		    drrs->type =3D=3D DRRS_TYPE_SEAMLESS)
+> +		    dev_priv->vbt.drrs_type =3D=3D DRRS_TYPE_SEAMLESS)
+>  			supported =3D true;
+>=20=20
+>  		seq_printf(m, "\tDRRS Supported: %s\n", str_yes_no(supported));
+> diff --git a/drivers/gpu/drm/i915/display/intel_drrs.c b/drivers/gpu/drm/=
+i915/display/intel_drrs.c
+> index c97b5dee8cae..4afbc903f169 100644
+> --- a/drivers/gpu/drm/i915/display/intel_drrs.c
+> +++ b/drivers/gpu/drm/i915/display/intel_drrs.c
+> @@ -65,7 +65,7 @@ static bool can_enable_drrs(struct intel_connector *con=
+nector,
+>  		return false;
+>=20=20
+>  	return connector->panel.downclock_mode &&
+> -		i915->drrs.type =3D=3D DRRS_TYPE_SEAMLESS;
+> +		i915->vbt.drrs_type =3D=3D DRRS_TYPE_SEAMLESS;
 >  }
 >=20=20
-> -static void intel_panel_info(struct seq_file *m, struct intel_panel *pan=
-el)
-> +static void intel_panel_info(struct seq_file *m,
-> +			     struct intel_connector *connector)
+>  void
+> @@ -154,7 +154,7 @@ static void intel_drrs_set_state(struct drm_i915_priv=
+ate *dev_priv,
+>  		return;
+>  	}
+>=20=20
+> -	if (dev_priv->drrs.type !=3D DRRS_TYPE_SEAMLESS) {
+> +	if (dev_priv->vbt.drrs_type !=3D DRRS_TYPE_SEAMLESS) {
+>  		drm_dbg_kms(&dev_priv->drm, "Only Seamless DRRS supported.\n");
+>  		return;
+>  	}
+> @@ -269,7 +269,7 @@ intel_drrs_update(struct intel_dp *intel_dp,
 >  {
-> -	const struct drm_display_mode *mode =3D panel->fixed_mode;
-> +	const struct drm_display_mode *fixed_mode =3D connector->panel.fixed_mo=
-de;
+>  	struct drm_i915_private *dev_priv =3D dp_to_i915(intel_dp);
 >=20=20
-> -	seq_printf(m, "\tfixed mode: " DRM_MODE_FMT "\n", DRM_MODE_ARG(mode));
-> +	if (!fixed_mode)
-> +		return;
-> +
-> +	seq_printf(m, "\tfixed mode: " DRM_MODE_FMT "\n", DRM_MODE_ARG(fixed_mo=
-de));
->  }
+> -	if (dev_priv->drrs.type !=3D DRRS_TYPE_SEAMLESS)
+> +	if (dev_priv->vbt.drrs_type !=3D DRRS_TYPE_SEAMLESS)
+>  		return;
 >=20=20
->  static void intel_hdcp_info(struct seq_file *m,
-> @@ -586,8 +590,6 @@ static void intel_dp_info(struct seq_file *m,
->  	seq_printf(m, "\tDPCD rev: %x\n", intel_dp->dpcd[DP_DPCD_REV]);
->  	seq_printf(m, "\taudio support: %s\n",
->  		   str_yes_no(intel_dp->has_audio));
-> -	if (intel_connector->base.connector_type =3D=3D DRM_MODE_CONNECTOR_eDP)
-> -		intel_panel_info(m, &intel_connector->panel);
+>  	mutex_lock(&dev_priv->drrs.mutex);
+> @@ -325,7 +325,7 @@ static void intel_drrs_frontbuffer_update(struct drm_=
+i915_private *dev_priv,
+>  	struct drm_crtc *crtc;
+>  	enum pipe pipe;
 >=20=20
->  	drm_dp_downstream_debug(m, intel_dp->dpcd, intel_dp->downstream_ports,
->  				edid ? edid->data : NULL, &intel_dp->aux);
-> @@ -611,12 +613,6 @@ static void intel_hdmi_info(struct seq_file *m,
->  		   str_yes_no(intel_hdmi->has_audio));
->  }
+> -	if (dev_priv->drrs.type !=3D DRRS_TYPE_SEAMLESS)
+> +	if (dev_priv->vbt.drrs_type !=3D DRRS_TYPE_SEAMLESS)
+>  		return;
 >=20=20
-> -static void intel_lvds_info(struct seq_file *m,
-> -			    struct intel_connector *intel_connector)
-> -{
-> -	intel_panel_info(m, &intel_connector->panel);
-> -}
+>  	cancel_delayed_work(&dev_priv->drrs.work);
+> @@ -460,8 +460,6 @@ intel_drrs_init(struct intel_connector *connector,
+>  		return NULL;
+>  	}
+>=20=20
+> -	dev_priv->drrs.type =3D dev_priv->vbt.drrs_type;
 > -
->  static void intel_connector_info(struct seq_file *m,
->  				 struct drm_connector *connector)
->  {
-> @@ -651,10 +647,6 @@ static void intel_connector_info(struct seq_file *m,
->  		else
->  			intel_dp_info(m, intel_connector);
->  		break;
-> -	case DRM_MODE_CONNECTOR_LVDS:
-> -		if (encoder->type =3D=3D INTEL_OUTPUT_LVDS)
-> -			intel_lvds_info(m, intel_connector);
-> -		break;
->  	case DRM_MODE_CONNECTOR_HDMIA:
->  		if (encoder->type =3D=3D INTEL_OUTPUT_HDMI ||
->  		    encoder->type =3D=3D INTEL_OUTPUT_DDI)
-> @@ -667,6 +659,8 @@ static void intel_connector_info(struct seq_file *m,
->  	seq_puts(m, "\tHDCP version: ");
->  	intel_hdcp_info(m, intel_connector);
+>  	dev_priv->drrs.refresh_rate =3D DRRS_REFRESH_RATE_HIGH;
+>  	drm_dbg_kms(&dev_priv->drm,
+>  		    "[CONNECTOR:%d:%s] seamless DRRS supported\n",
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_=
+drv.h
+> index 7d622d1afe93..6a59fc2cb9c2 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -213,7 +213,6 @@ struct i915_drrs {
+>  	struct intel_dp *dp;
+>  	unsigned busy_frontbuffer_bits;
+>  	enum drrs_refresh_rate refresh_rate;
+> -	enum drrs_type type;
+>  };
 >=20=20
-> +	intel_panel_info(m, intel_connector);
-> +
->  	seq_printf(m, "\tmodes:\n");
->  	list_for_each_entry(mode, &connector->modes, head)
->  		intel_seq_print_mode(m, 2, mode);
+>  #define QUIRK_LVDS_SSC_DISABLE (1<<1)
 
 --=20
 Jani Nikula, Intel Open Source Graphics Center
