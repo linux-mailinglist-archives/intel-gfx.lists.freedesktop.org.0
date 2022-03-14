@@ -1,51 +1,157 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E5004D80A7
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Mar 2022 12:29:22 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE4274D82B9
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Mar 2022 13:09:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 62CD510E662;
-	Mon, 14 Mar 2022 11:29:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B53FF10E718;
+	Mon, 14 Mar 2022 12:08:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 25AFD10E614;
- Mon, 14 Mar 2022 11:29:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A77610E676;
+ Mon, 14 Mar 2022 12:08:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1647257350; x=1678793350;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=7+3hGW2SIaFdMSq0P5WtUyUyzYDLuO2CneEgF1eF48E=;
- b=en5zeF5rgAaXcOA8svubcVmtJi8JcZ08t9iqYbO1NQTpOVHqe84ulYiu
- njzZzwqvxvPclRjTM17h8HyaUJPyIj53cuz0ztjtPJvyE6NHi5e2e9BZY
- TXtV+S7+/T3w2eFpNUf6y3iQidR20wGpAc5pog2i+AhmKZpfF0u36iMTT
- x5NnN0XtZhv9TU9W2lWtfNHw+jl0P+lOnXGrlqkPSlyBpWbKhL13fD+CK
- Qh8RciDR23x9siXPYikGyxG4doEqA940JPmnrR0j+BXIBvp8WqJlqhpWb
- HQlf4NqJzmLheYQ/9sLMR+V/V0f9WUHcHq6YvqZFL2DK4O9tda7piEZW+ w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10285"; a="243448271"
-X-IronPort-AV: E=Sophos;i="5.90,180,1643702400"; d="scan'208";a="243448271"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ t=1647259735; x=1678795735;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=YC+KTRKcvfmakDWF4uqXoDKaiZAdaHvkoJyOzO+J+bI=;
+ b=T2niafGb2HlQSrjAZM2ZdO4wjzEE2Shk3vT7wE0O2OXrcCxLVxdV34B1
+ n4Wj0F8+4+jd7jndGAJf8OLkQUroqElO/3M7rBlwbK1JBpfhFcgwvwBqD
+ /nDOzpIhN/J13XZ9Po6XSb1dLzrG70KrBZyRj7N4uT4zsdaiPp+Iweye6
+ J6bmZ+HNZjgXRiPEWFZjmS6ZdWRmG2g7382AswIvZSM+EwXXpw44rWkTF
+ rD2/zFpUdpiQxc8sQ9oaBeMc/m/b91ADTP3KWqPH2bbwS/GpwbW+cCur4
+ +X1p00rzVBvloea0yH0+K+sJZyWL9+FdnGISqOL+jFyvA0RS4dBc+V1Ai Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10285"; a="243456025"
+X-IronPort-AV: E=Sophos;i="5.90,180,1643702400"; d="scan'208";a="243456025"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Mar 2022 04:29:10 -0700
-X-IronPort-AV: E=Sophos;i="5.90,180,1643702400"; d="scan'208";a="556374370"
-Received: from znagyx-mobl.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
- ([10.252.7.43])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Mar 2022 04:29:08 -0700
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 14 Mar 2022 11:28:37 +0000
-Message-Id: <20220314112837.352931-8-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220314112837.352931-1-matthew.auld@intel.com>
-References: <20220314112837.352931-1-matthew.auld@intel.com>
+ 14 Mar 2022 05:08:54 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,180,1643702400"; d="scan'208";a="497585630"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.229.17])
+ by orsmga003.jf.intel.com with ESMTP; 14 Mar 2022 05:08:54 -0700
+Received: from orsmsx608.amr.corp.intel.com (10.22.229.21) by
+ ORSMSX604.amr.corp.intel.com (10.22.229.17) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.21; Mon, 14 Mar 2022 05:08:54 -0700
+Received: from orsmsx606.amr.corp.intel.com (10.22.229.19) by
+ ORSMSX608.amr.corp.intel.com (10.22.229.21) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.21; Mon, 14 Mar 2022 05:08:54 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx606.amr.corp.intel.com (10.22.229.19) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.21 via Frontend Transport; Mon, 14 Mar 2022 05:08:54 -0700
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.177)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2308.21; Mon, 14 Mar 2022 05:08:53 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=cOmZkBDd5CNd0PTWSSKqJdeunNJ4vNPM5gBPVMF+58QaMPVUtgWlJmgXmWG4mP4rNEHuypT4EoeoQ+9i8YHIdkJcqHToIAI5qVQrX3zW+GTDZHwA9NqVc89l24G3jGWqykpi9EUPNn2jZkETMU5Zu5cbtQV+JYeR4PS5y5M02eMqyCc3a7S3BgZcl8YbaEx4ejtmcD2tC3/MVd3X0XNtIIIuqiSVswTH9aY68lyG/zgYHscEAuD1mEbOt8m3FBC8DKwW9EKvyKds5hl6TR7setM0fBU+/NUXdaBZqSf+R2DZJeHBADmEDj93dcgIk9khzoOovQFu7cW1irfIQzkFxQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=d19FYIXSa/IJsxUYNC4jPlI6yhw67jqoYYmntlmHJnA=;
+ b=K7wa+L2mmWfxBvfq+pEy4GNuCIDPIPj05+R0dCtxZV1hMac21NLUTtEqwDfr206mEcji6lCwDW9i+g/iS6TajrtuOUIlXUOLmHfdHDO6BdJbjzudeUo4Rf6NV09i3Lk5XvvgMLYyTEutNslVxD7k9Rqnt1q0HsFmYMQ2FleQKfWjv3DE7J9/pxlJfpbU8GSA0XF8eubctDFY8T5RDH4h/6XJsh+Zo1XBKaTU+5EAd1ZSbAOTDLLZmyvfC5eQC4ptoFSqxMfTIPXzbzPhDZQ02Lo8pZ+WpzYqfa97cBZlPthVle06M8w6eDAD0m13rgkNM8YhovX+T8tyUuY9v4EPLQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM6PR11MB3180.namprd11.prod.outlook.com (2603:10b6:5:9::13) by
+ CY4PR11MB0008.namprd11.prod.outlook.com (2603:10b6:910:76::16) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5061.22; Mon, 14 Mar 2022 12:08:51 +0000
+Received: from DM6PR11MB3180.namprd11.prod.outlook.com
+ ([fe80::1de5:f9fb:2202:dd64]) by DM6PR11MB3180.namprd11.prod.outlook.com
+ ([fe80::1de5:f9fb:2202:dd64%3]) with mapi id 15.20.5061.028; Mon, 14 Mar 2022
+ 12:08:51 +0000
+Message-ID: <f6b14fa3-8d4e-4c93-20a7-5acde224bbbe@intel.com>
+Date: Mon, 14 Mar 2022 13:08:44 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Firefox/91.0 Thunderbird/91.6.2
+Content-Language: en-US
+To: Andi Shyti <andi.shyti@intel.com>
+References: <20220217144158.21555-1-andi.shyti@linux.intel.com>
+ <20220217144158.21555-5-andi.shyti@linux.intel.com>
+ <e096ed88-ec87-b45c-22ba-80d48f480808@intel.com>
+ <YiU9+uRCzJAZlcRh@intel.intel>
+ <70f07f08-36d8-0af8-adce-a3a4c780527c@intel.com>
+ <Yi5J1HB5uypRUIW+@intel.intel>
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <Yi5J1HB5uypRUIW+@intel.intel>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: LNXP123CA0015.GBRP123.PROD.OUTLOOK.COM
+ (2603:10a6:600:d2::27) To DM6PR11MB3180.namprd11.prod.outlook.com
+ (2603:10b6:5:9::13)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 7/7] drm/i915: fixup the initial fb base on
- DGFX
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 3dc4c2b5-bec8-4b53-468c-08da05b36724
+X-MS-TrafficTypeDiagnostic: CY4PR11MB0008:EE_
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-Microsoft-Antispam-PRVS: <CY4PR11MB00080FE9721AA7638D160BE9EB0F9@CY4PR11MB0008.namprd11.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: frVAKAJpx84vPPg32rlRQl2wHkzh0CPkcJYJ5dI5w7YhtZy99w5vPXzSClM4vH+IPg+4QchGgJDDKyAqcyR6ZwQs2FKzYhpMchAq/oXnwEWCaV0OqWH1pL7zn+p6PfpASxMe+uY3hYVFXhyydK/wGFLCwV3+uKGEjIfPHPGY/elpigcq/E2iVIeoFiZq+P6hh3RP7rkcwIkRSnRidK8zdGjVzgCJVgjI+u5xKy+y+gFXaUaN4amVh0364R4tGyudqpwpvzBYv/a4e95pGcKb7MI26YuxKzele1ZYxwru4bKf/8K+ti8MJtCm8QwOgahqmBek+8jDWyFn89QanBQ0pxEGdEaCTKqCieVF5nT/e86AKQwtV5cGb6UW2AY8zOV1NMRpIQUv4Zc01elAC/wH7+OjlN/wMmrissA6g2AgT5i1jRSoZuaDrqf0gZJhjzVYM0jtm6HElScShkeBxsEgoXZqi0v3fAS0DCQ4H4xH6mE1mS1C4oYkpbNJOIR599V0VtAljQRVbr48XnlFgK4KjoTLeY52CkfVv3zwqlNBCPuDyW5kG7dYyLIb9vowM8MfDBPUzTj0dPB7tkpEf1cxZr9RdPTBLiNUboDcdQj2Vw+rb6M4ZObsJlrDwFdngUoNzfI8ihGInnD7tmQejQ5MI7SpArtefiMP8Ht+wXxltVDcgVNw1QaDIcQNT/nCG2ua1r8GJPdn3ZfhChRQHwanXjS7sIyDLDCjriT3J8UY9ohDYu3lnU2CMHcPIUQAcP7+cYCsInOJjtIfJPBZXFGTbn0khZudziBG1bAQ77IORfi+kHekY8OOugHFUEgUO83a
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM6PR11MB3180.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230001)(366004)(6666004)(316002)(5660300002)(86362001)(6512007)(44832011)(31696002)(83380400001)(66946007)(82960400001)(53546011)(36916002)(6506007)(8676002)(6862004)(186003)(26005)(4326008)(8936002)(2616005)(66556008)(508600001)(38100700002)(36756003)(966005)(66476007)(31686004)(6486002)(54906003)(37006003)(2906002)(6636002)(43740500002)(45980500001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cHdaWkV4a1pIVm54bTJvb1B1WVptWUV2bWR1d2VjUlRBUDR6LytaSGk0Yk9u?=
+ =?utf-8?B?NzFiOUlwL0RlSEpQNW1iVjVLWHFPUXdqRDBLK1pqSkhkOXZObm5mWWJlSmdy?=
+ =?utf-8?B?Z2xvM1VPM3VKcEViUncvVkxiZHNaazVZdndEQlc5UWJsYStvTHFudmlUc3Vw?=
+ =?utf-8?B?YlhLWk1sNHliL0dHVURmQ0lZNzhST29Bd0tIMmhpWitTSXIrc1MrcXRRZ2lG?=
+ =?utf-8?B?VFhheFQwNmxEeG9qejJ5d1JjbUFUb2Q1bzZkc3dWeHZQYXBFbmFGaUx6VmJS?=
+ =?utf-8?B?TFZUNWk4RTNDNDZUUGQzV09hUDR6L1R2Y0NraWszSEdDVDltZFR4dGc5eVBo?=
+ =?utf-8?B?YkJmamdid2lCbjVscG9FQWVhanp0TS9YL0k2K3Vic0dlditmWTI0MlFGTU9K?=
+ =?utf-8?B?NUZLbm5RMkFIcUJOT3p6a0ljTWJUY2J2UjVza01sdjR1V1ZIajIrNm9LZ0NM?=
+ =?utf-8?B?STN4YUJGYk8wa0NQbldRMWpIdFN2YnlPaDR4R2xQRCt0WEN6STRkcmQwZGtk?=
+ =?utf-8?B?cmZJSEl4T3BZaE5qMlV4d1MvQlNuRlhsWmhJS3RIaVdwYkFlb1c5YlYxWFB4?=
+ =?utf-8?B?ZEdNdnlhYy92Zm1UQTZIdXFzc1JKa2NjTlljOTRhU2pPOWhyNzh0RUtMZG5K?=
+ =?utf-8?B?T3lMOWE0SDdXcnA0TFVjU05tREV1MlVFclNjQkZBRU5qTkJBV2plQzZxVFFU?=
+ =?utf-8?B?ZGFvUTN3QVNHU1ArblhzYkVWTndqQTFzbUVUS1BsNVB2aDZ6MkxRVmVqU2NU?=
+ =?utf-8?B?YmVUWDZKcGdHeW92K3g2RU1qZWxLZmxtR3QvNHJsUjBXTkkvQUxidmkyWk53?=
+ =?utf-8?B?U3A0enIwVE1mQUhQdm56NW5WTG9OR3NPK1ljVTdEeDNVTGZwMFZxMXVnUFlY?=
+ =?utf-8?B?UDFtL2RnVDBtWHBGM1RKTU1CVkNXbTlhYmdXczMwUkJPWm1hWk5Nb0F5WGQ3?=
+ =?utf-8?B?a0ZMSnNQdzFsM2xsMGFKNDNkNXA2K0F5djI4SkJLT3Myd2o2VHl1V21aTXBK?=
+ =?utf-8?B?SWV1U1ZNVG5LYmpreTVLWmZVOHlmYXgveHg1c3hBTGFBa3huRnpHUU9EaVlX?=
+ =?utf-8?B?ZFdoVnlYeUI3Q1RRdEhhT1NmdE5MMTl4bVU5RkN3cDNvMjRrMEFPUXBOTjVU?=
+ =?utf-8?B?dTZEOEFXZjMyZWtjY2pJOUd6czlSOFVHV0k0cE13L2o3VEIvNnozb3lucEsw?=
+ =?utf-8?B?akkrUHNtOGVCaGR5cWNtdENhZXVTdmE4QlFTWHM0M1M3Z29laURPV1duUFo5?=
+ =?utf-8?B?UStvUjNnWkN5SnVXOTRacU03T2VJVEkrMVloOE1KQjliWWFxdXZ1cnVpdTBC?=
+ =?utf-8?B?RmhqSDNtei9GU0djQmI3U2s5bEoxRjlDZ0xGQnhJc3EvQmViOWF3MlY5bW8r?=
+ =?utf-8?B?b3I0MlBSaFVNVHVackZyNzFDM1hNcGZTdGtMNUtBcnlZTjhHaHJSdVFuZmN5?=
+ =?utf-8?B?dHNSUVhydkZEby96aHdUa0N0c3lnTVZSOHVjcW1MM1hTS2tmeVhGZ0FZbUpl?=
+ =?utf-8?B?alBLd0g2aEQxRHZIWlF2SGVVUUw0ODM1czZEMkFqZXVtS096dlpkV1IrbGdY?=
+ =?utf-8?B?NytUNDFTRTdwb0U2U3JmWXYvVHhvRS91WU02dVo2ZnpDdlQyZFNUNmh5ZnI5?=
+ =?utf-8?B?VVJEeGlEZUhXVHJwSWZ3c2gxYTlGTE1ISnJKTzA4eFF4MlAyKytFcFlVZHE4?=
+ =?utf-8?B?R2lUOHVlSXNVcnZoZnBxMzk2RHdIOWtzL3NKMjlOS3MxUEQzMWowOHRZZzlQ?=
+ =?utf-8?B?U3pvaDRvcEJZN09pSXZXSThET0Uwd2Z1d281ODZiK2VabDN0NzJaWWRKbFBV?=
+ =?utf-8?B?aktKbDVtQnRQWDEwQ3RuWkhNbVJCbmR1N2YrVTdWVmJpSkU4RE1MWncwekts?=
+ =?utf-8?B?aHRvT3o1NFJna29RYjR5amhMRmxvOU1nSURldkJpZUQ3NTR0akZjY3U3TkZa?=
+ =?utf-8?B?K2NnMTdmTmt4dzV4dzA1YU1TZWtOUWVXZGtnU3Izd0FCNUk0SVlON2lHUHBL?=
+ =?utf-8?B?Qk9CZVZuSTd3PT0=?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3dc4c2b5-bec8-4b53-468c-08da05b36724
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB3180.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Mar 2022 12:08:51.6561 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: OVGf3ubaNy3wImGu0sw758MlNAQjJEVc+/F65PUFHSJ6s8EnhFvE5T1GzTfkN8+0HSryIMLxhytCjpWRSC1+nw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR11MB0008
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH v5 4/7] drm/i915/gt: create per-tile sysfs
+ interface
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,114 +164,110 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- dri-devel@lists.freedesktop.org
+Cc: Intel GFX <intel-gfx@lists.freedesktop.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ DRI Devel <dri-devel@lists.freedesktop.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>, Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On integrated it looks like the GGTT base should always 1:1 maps to
-somewhere within DSM. On discrete the base seems to be pre-programmed with
-a normal lmem address, and is not 1:1 mapped with the base address. On
-such devices probe the lmem address directly from the PTE.
 
-v2(Ville):
-  - The base is actually the pre-programmed GGTT address, which is then
-    meant to 1:1 map to somewhere inside dsm. In the case of dgpu the
-    base looks to just be some offset within lmem, but this also happens
-    to be the exact dsm start, on dg1. Therefore we should only need to
-    fudge the physical address, before allocating from stolen.
-  - Bail if it's not located in dsm.
-v3:
-  - Scratch that. There doesn't seem to be any relationship with the
-    base and PTE address, on at least DG1. Let's instead just grab the
-    lmem address from the PTE itself.
 
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Cc: Nirmoy Das <nirmoy.das@linux.intel.com>
----
- .../drm/i915/display/intel_plane_initial.c    | 50 ++++++++++++++++---
- 1 file changed, 44 insertions(+), 6 deletions(-)
+On 13.03.2022 20:45, Andi Shyti wrote:
+> Hi Andrzej,
+>
+> I'm sorry, but I'm not fully understanding,
+>
+>>>>> +struct intel_gt *intel_gt_sysfs_get_drvdata(struct device *dev,
+>>>>> +					    const char *name)
+>>>>> +{
+>>>>> +	struct kobject *kobj = &dev->kobj;
+>>>>> +
+>>>>> +	/*
+>>>>> +	 * We are interested at knowing from where the interface
+>>>>> +	 * has been called, whether it's called from gt/ or from
+>>>>> +	 * the parent directory.
+>>>>> +	 * From the interface position it depends also the value of
+>>>>> +	 * the private data.
+>>>>> +	 * If the interface is called from gt/ then private data is
+>>>>> +	 * of the "struct intel_gt *" type, otherwise it's * a
+>>>>> +	 * "struct drm_i915_private *" type.
+>>>>> +	 */
+>>>>> +	if (!is_object_gt(kobj)) {
+>>>>> +		struct drm_i915_private *i915 = kdev_minor_to_i915(dev);
+>>>>> +
+>>>>> +		pr_devel_ratelimited(DEPRECATED
+>>>>> +			"%s (pid %d) is accessing deprecated %s "
+>>>>> +			"sysfs control, please use gt/gt<n>/%s instead\n",
+>>>>> +			current->comm, task_pid_nr(current), name, name);
+>>>>> +		return to_gt(i915);
+>>>>> +	}
+>>>>> +
+>>>>> +	return kobj_to_gt(kobj);
+>>>> It took some time for me to understand what is going on here.
+>>>> We have dev argument which sometimes can point to "struct device", sometimes
+>>>> to "struct kobj_gt", but it's type suggests differently, quite ugly.
+>>>> I wonder if wouldn't be better to use __ATTR instead of DEVICE_ATTR* as in
+>>>> case of intel_engines_add_sysfs. This way abstractions would look better,
+>>>> hopefully.
+>>> How would it help?
+>>>
+>>> The difference is that I'm adding twice different interfaces with
+>>> the same name and different location (i.e. different object). The
+>>> legacy intrefaces inherit the object from drm and I'm preserving
+>>> that reference.
+>>>
+>>> While the new objects would derive from the previous and they are
+>>> pretty much like intel_engines_add_sysfs().
+>> I was not clear on the issue. Here in case of 'id' attribute it is defined
+>> as device_attribute, but in kobj_type.sysfs_ops you assign formally
+>> incompatible &kobj_sysfs_ops.
+> 'kobj_sysfs_ops' is of the type 'kobj_type'.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_plane_initial.c b/drivers/gpu/drm/i915/display/intel_plane_initial.c
-index f797fcef18fc..7979929bb632 100644
---- a/drivers/gpu/drm/i915/display/intel_plane_initial.c
-+++ b/drivers/gpu/drm/i915/display/intel_plane_initial.c
-@@ -47,17 +47,55 @@ static struct i915_vma *
- initial_plane_vma(struct drm_i915_private *i915,
- 		  struct intel_initial_plane_config *plane_config)
- {
--	struct intel_memory_region *mem = i915->mm.stolen_region;
-+	struct intel_memory_region *mem;
- 	struct drm_i915_gem_object *obj;
- 	struct i915_vma *vma;
-+	resource_size_t phys_base;
- 	u32 base, size;
- 	u64 pinctl;
- 
--	if (!mem || plane_config->size == 0)
-+	if (plane_config->size == 0)
-+		return NULL;
-+
-+	base = round_down(plane_config->base, I915_GTT_MIN_ALIGNMENT);
-+	if (IS_DGFX(i915)) {
-+		gen8_pte_t __iomem *gte = to_gt(i915)->ggtt->gsm;
-+		gen8_pte_t pte;
-+
-+		gte += base / I915_GTT_PAGE_SIZE;
-+
-+		pte = ioread64(gte);
-+		if (!(pte & GEN12_GGTT_PTE_LM)) {
-+			drm_err(&i915->drm,
-+				"Initial plane programming missing PTE_LM bit\n");
-+			return NULL;
-+		}
-+
-+		phys_base = pte & I915_GTT_PAGE_MASK;
-+		mem = i915->mm.regions[INTEL_REGION_LMEM];
-+
-+		/*
-+		 * We don't currently expect this to ever be placed in the
-+		 * stolen portion.
-+		 */
-+		if (phys_base >= resource_size(&mem->region)) {
-+			drm_err(&i915->drm,
-+				"Initial plane programming using invalid range, phys_base=%pa\n",
-+				&phys_base);
-+			return NULL;
-+		}
-+
-+		drm_dbg(&i915->drm,
-+			"Using phys_base=%pa, based on initial plane programming\n",
-+			&phys_base);
-+	} else {
-+		phys_base = base;
-+		mem = i915->mm.stolen_region;
-+	}
-+
-+	if (!mem)
- 		return NULL;
- 
--	base = round_down(plane_config->base,
--			  I915_GTT_MIN_ALIGNMENT);
- 	size = round_up(plane_config->base + plane_config->size,
- 			mem->min_page_size);
- 	size -= base;
-@@ -68,11 +106,11 @@ initial_plane_vma(struct drm_i915_private *i915,
- 	 * features.
- 	 */
- 	if (IS_ENABLED(CONFIG_FRAMEBUFFER_CONSOLE) &&
-+	    mem == i915->mm.stolen_region &&
- 	    size * 2 > i915->stolen_usable_size)
- 		return NULL;
- 
--	obj = i915_gem_object_create_region_at(i915->mm.stolen_region,
--					       base, size, 0);
-+	obj = i915_gem_object_create_region_at(mem, phys_base, size, 0);
- 	if (IS_ERR(obj))
- 		return NULL;
- 
--- 
-2.34.1
+Yes, but for example kobj_sysfs_ops.show points to function 
+kobj_attr_show, and kobj_attr_show expects that it's attr argument is 
+embedded in kobj_attribute[1], but this is not true in case of 'id' 
+attribute - it is embedded in device_attribute.
+In short kobj_sysfs_ops should be used only with attrs embeded in 
+kobj_attribute, unless I missed sth.
+
+[1]: https://elixir.bootlin.com/linux/latest/source/lib/kobject.c#L836
+
+>
+>> kobj_sysfs_ops expects kobj_attribute! Fortunately kobj_attribute is 'binary
+>> compatible' with device_attribute and kobj is at beginning of struct device
+>> as well, so it does not blow up, but I wouldn't say it is clean solution :)
+>> If you look at intel_engines_add_sysfs you can see that all attributes are
+>> defined as kobj_attribute.
+> That's exactly the approach I use in the next patches for the
+> power management files, I use "struct kobj_gt" wrapped around
+> "struct kobject". But I'm using that only for the GT files.
+
+But attributes are still defined using DEVICE_ATTR* macros, ie they are 
+embedded in device_attribute, so the problem is the same - you are using 
+kobj_sysfs_ops with device_attribute.
+
+>
+> Are you, btw, suggesting to use this same approache also for the
+> legacy files that for now have a pointer to the drm kobject? This
+> way I would need to add more information, like the pointer to
+> i915 and gt_id. This way I wouldn't need the files above that
+> look hacky to you. Is this what you mean?
+
+Positive feedback is more difficult :)
+I am little bit lost in possible solutions, after grepping other drivers 
+I have not good advice about proper handling of such situation, *beside 
+splitting the interface*.
+For sure attrs used in device/power must be embedded in 
+device_attribute. So if you do not want to split interface, then it 
+implies GTs attrs must be also in device_attribute. Then maybe creating 
+custom sysfs_ops would help??? I am not sure.
+
+Regards
+Andrzej
+
+
+
+>
+> Andi
 
