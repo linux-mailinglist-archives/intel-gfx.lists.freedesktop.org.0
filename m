@@ -2,33 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64BD14D8DF1
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Mar 2022 21:11:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 988F34D8DF4
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Mar 2022 21:11:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F1B210E142;
-	Mon, 14 Mar 2022 20:11:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 110EF10E057;
+	Mon, 14 Mar 2022 20:11:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3B13810E057;
- Mon, 14 Mar 2022 20:11:30 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 434EC10E057;
+ Mon, 14 Mar 2022 20:11:54 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 35498A0096;
- Mon, 14 Mar 2022 20:11:30 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1000251595565749455=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id 433B0A0096;
+ Mon, 14 Mar 2022 20:11:54 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-Date: Mon, 14 Mar 2022 20:11:30 -0000
-Message-ID: <164728869018.20568.5822355738157051860@emeril.freedesktop.org>
+To: "Alan Previn" <alan.previn.teres.alexis@intel.com>
+Date: Mon, 14 Mar 2022 20:11:54 -0000
+Message-ID: <164728871427.20567.7493453860720524448@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20220314161310.6468-1-ashutosh.dixit@intel.com>
-In-Reply-To: <20220314161310.6468-1-ashutosh.dixit@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/pmu=3A_Drop_redundant_IS=5FVALLEYVIEW_check_in_=5F=5Fget?=
- =?utf-8?b?X3JjNigpIChyZXYyKQ==?=
+References: <20220314170954.1537154-1-alan.previn.teres.alexis@intel.com>
+In-Reply-To: <20220314170954.1537154-1-alan.previn.teres.alexis@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Add_GuC_Error_Capture_Support?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,308 +45,211 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1000251595565749455==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915/pmu: Drop redundant IS_VALLEYVIEW check in __get_rc6() (rev2)
-URL   : https://patchwork.freedesktop.org/series/101301/
-State : success
+Series: Add GuC Error Capture Support
+URL   : https://patchwork.freedesktop.org/series/101348/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_11360 -> Patchwork_22559
-====================================================
+$ dim checkpatch origin/drm-tip
+d88514e8a355 drm/i915/guc: Update GuC ADS size for error capture lists
+-:39: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#39: 
+new file mode 100644
 
-Summary
--------
+-:323: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#323: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c:653:
++				ads_blob_write(guc, ads.capture_class[i][j], ads_ggtt + capture_offset);
 
-  **SUCCESS**
+-:344: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
+#344: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c:674:
++				ads_blob_write(guc, ads.capture_instance[i][j], ads_ggtt + capture_offset);
 
-  No regressions found.
+-:468: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'regslist' - possible side-effects?
+#468: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:63:
++#define MAKE_REGLIST(regslist, regsowner, regstype, class) \
++	{ \
++		regslist, \
++		ARRAY_SIZE(regslist), \
++		TO_GCAP_DEF_OWNER(regsowner), \
++		TO_GCAP_DEF_TYPE(regstype), \
++		class, \
++	}
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22559/index.html
+-:512: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (16, 16)
+#512: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:107:
++		if (reglists[i].owner == owner && reglists[i].type == type &&
+[...]
++		return &reglists[i];
 
-Participating hosts (47 -> 44)
-------------------------------
+-:688: WARNING:OOM_MESSAGE: Possible unnecessary 'out of memory' message
+#688: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:283:
++	if (!caplist) {
++		drm_dbg(&i915->drm, "GuC-capture: failed to alloc cached caplist");
 
-  Additional (1): fi-pnv-d510 
-  Missing    (4): fi-ctg-p8600 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u 
+-:730: WARNING:OOM_MESSAGE: Possible unnecessary 'out of memory' message
+#730: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:325:
++	if (!null_header) {
++		drm_dbg(&i915->drm, "GuC-capture: failed to alloc cached nulllist");
 
-Known issues
-------------
+total: 0 errors, 6 warnings, 1 checks, 749 lines checked
+5e9033716ead drm/i915/guc: Add XE_LP static registers for GuC error capture.
+-:26: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#26: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:25:
++#define COMMON_GEN12BASE_GLOBAL() \
++	{GEN12_FAULT_TLB_DATA0,    0,      0, "GEN12_FAULT_TLB_DATA0"}, \
++	{GEN12_FAULT_TLB_DATA1,    0,      0, "GEN12_FAULT_TLB_DATA1"}, \
++	{FORCEWAKE_MT,             0,      0, "FORCEWAKE"}, \
++	{GEN12_AUX_ERR_DBG,        0,      0, "AUX_ERR_DBG"}, \
++	{GEN12_GAM_DONE,           0,      0, "GAM_DONE"}, \
++	{GEN12_RING_FAULT_REG,     0,      0, "FAULT_REG"}
 
-  Here are the changes found in Patchwork_22559 that come from known issues:
+-:34: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#34: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:33:
++#define COMMON_GEN12BASE_ENGINE_INSTANCE() \
++	{RING_PSMI_CTL(0),         0,      0, "RC PSMI"}, \
++	{RING_ESR(0),              0,      0, "ESR"}, \
++	{RING_DMA_FADD(0),         0,      0, "RING_DMA_FADD_LDW"}, \
++	{RING_DMA_FADD_UDW(0),     0,      0, "RING_DMA_FADD_UDW"}, \
++	{RING_IPEIR(0),            0,      0, "IPEIR"}, \
++	{RING_IPEHR(0),            0,      0, "IPEHR"}, \
++	{RING_INSTPS(0),           0,      0, "INSTPS"}, \
++	{RING_BBADDR(0),           0,      0, "RING_BBADDR_LOW32"}, \
++	{RING_BBADDR_UDW(0),       0,      0, "RING_BBADDR_UP32"}, \
++	{RING_BBSTATE(0),          0,      0, "BB_STATE"}, \
++	{CCID(0),                  0,      0, "CCID"}, \
++	{RING_ACTHD(0),            0,      0, "ACTHD_LDW"}, \
++	{RING_ACTHD_UDW(0),        0,      0, "ACTHD_UDW"}, \
++	{RING_INSTPM(0),           0,      0, "INSTPM"}, \
++	{RING_INSTDONE(0),         0,      0, "INSTDONE"}, \
++	{RING_NOPID(0),            0,      0, "RING_NOPID"}, \
++	{RING_START(0),            0,      0, "START"}, \
++	{RING_HEAD(0),             0,      0, "HEAD"}, \
++	{RING_TAIL(0),             0,      0, "TAIL"}, \
++	{RING_CTL(0),              0,      0, "CTL"}, \
++	{RING_MI_MODE(0),          0,      0, "MODE"}, \
++	{RING_CONTEXT_CONTROL(0),  0,      0, "RING_CONTEXT_CONTROL"}, \
++	{RING_HWS_PGA(0),          0,      0, "HWS"}, \
++	{RING_MODE_GEN7(0),        0,      0, "GFX_MODE"}, \
++	{GEN8_RING_PDP_LDW(0, 0),  0,      0, "PDP0_LDW"}, \
++	{GEN8_RING_PDP_UDW(0, 0),  0,      0, "PDP0_UDW"}, \
++	{GEN8_RING_PDP_LDW(0, 1),  0,      0, "PDP1_LDW"}, \
++	{GEN8_RING_PDP_UDW(0, 1),  0,      0, "PDP1_UDW"}, \
++	{GEN8_RING_PDP_LDW(0, 2),  0,      0, "PDP2_LDW"}, \
++	{GEN8_RING_PDP_UDW(0, 2),  0,      0, "PDP2_UDW"}, \
++	{GEN8_RING_PDP_LDW(0, 3),  0,      0, "PDP3_LDW"}, \
++	{GEN8_RING_PDP_UDW(0, 3),  0,      0, "PDP3_UDW"}
 
-### IGT changes ###
+-:71: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#71: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:70:
++#define COMMON_GEN12BASE_RENDER() \
++	{GEN7_SC_INSTDONE,         0,      0, "GEN7_SC_INSTDONE"}, \
++	{GEN12_SC_INSTDONE_EXTRA,  0,      0, "GEN12_SC_INSTDONE_EXTRA"}, \
++	{GEN12_SC_INSTDONE_EXTRA2, 0,      0, "GEN12_SC_INSTDONE_EXTRA2"}
 
-#### Issues hit ####
+-:76: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#76: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:75:
++#define COMMON_GEN12BASE_VEC() \
++	{GEN12_SFC_DONE(0),        0,      0, "SFC_DONE[0]"}, \
++	{GEN12_SFC_DONE(1),        0,      0, "SFC_DONE[1]"}, \
++	{GEN12_SFC_DONE(2),        0,      0, "SFC_DONE[2]"}, \
++	{GEN12_SFC_DONE(3),        0,      0, "SFC_DONE[3]"}
 
-  * igt@gem_exec_gttfill@basic:
-    - fi-bdw-gvtdvm:      NOTRUN -> [SKIP][1] ([fdo#109271])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22559/fi-bdw-gvtdvm/igt@gem_exec_gttfill@basic.html
+total: 4 errors, 0 warnings, 0 checks, 180 lines checked
+fa824b3c1885 drm/i915/guc: Add XE_LP steered register lists support
+-:70: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (16, 16)
+#70: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:163:
++		if (reglists[i].owner == owner && reglists[i].type == type &&
+[...]
++		return &reglists[i];
 
-  * igt@gem_exec_suspend@basic-s0@smem:
-    - fi-bdw-gvtdvm:      NOTRUN -> [INCOMPLETE][2] ([i915#4831])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22559/fi-bdw-gvtdvm/igt@gem_exec_suspend@basic-s0@smem.html
+total: 0 errors, 1 warnings, 0 checks, 260 lines checked
+d517212e3bc6 drm/i915/guc: Add DG2 registers for GuC error state capture.
+cb36f6528184 drm/i915/guc: Add Gen9 registers for GuC error state capture.
+-:23: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#23: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:28:
++#define COMMON_GEN9BASE_GLOBAL() \
++	{GEN8_FAULT_TLB_DATA0,     0,      0, "GEN8_FAULT_TLB_DATA0"}, \
++	{GEN8_FAULT_TLB_DATA1,     0,      0, "GEN8_FAULT_TLB_DATA1"}, \
++	{ERROR_GEN6,               0,      0, "ERROR_GEN6"}, \
++	{DONE_REG,                 0,      0, "DONE_REG"}, \
++	{HSW_GTT_CACHE_EN,         0,      0, "HSW_GTT_CACHE_EN"}
 
-  * igt@gem_huc_copy@huc-copy:
-    - fi-pnv-d510:        NOTRUN -> [SKIP][3] ([fdo#109271]) +58 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22559/fi-pnv-d510/igt@gem_huc_copy@huc-copy.html
+-:39: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#39: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:42:
++#define COMMON_BASE_ENGINE_INSTANCE() \
+ 	{RING_PSMI_CTL(0),         0,      0, "RC PSMI"}, \
+ 	{RING_ESR(0),              0,      0, "ESR"}, \
+ 	{RING_DMA_FADD(0),         0,      0, "RING_DMA_FADD_LDW"}, \
 
-  * igt@i915_selftest@live@hangcheck:
-    - fi-bdw-5557u:       NOTRUN -> [INCOMPLETE][4] ([i915#3921])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22559/fi-bdw-5557u/igt@i915_selftest@live@hangcheck.html
+total: 2 errors, 0 warnings, 0 checks, 146 lines checked
+dbe0bc5ebd32 drm/i915/guc: Add GuC's error state capture output structures.
+bf5c9b7ad048 drm/i915/guc: Update GuC-log relay function names
+057f767cdab2 drm/i915/guc: Add capture region into intel_guc_log
+-:58: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
+#58: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_log.c:217:
++	log_buf_state = src_data = log->buf_addr;
 
-  * igt@i915_selftest@live@requests:
-    - fi-blb-e6850:       [PASS][5] -> [DMESG-FAIL][6] ([i915#4528])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11360/fi-blb-e6850/igt@i915_selftest@live@requests.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22559/fi-blb-e6850/igt@i915_selftest@live@requests.html
+total: 0 errors, 0 warnings, 1 checks, 155 lines checked
+327c5e5e8b4f drm/i915/guc: Check sizing of guc_capture output
+f177743e1ffe drm/i915/guc: Extract GuC error capture lists on G2H notification.
+d8e90d0c2a55 drm/i915/guc: Pre-allocate output nodes for extraction
+b11696a16cff drm/i915/guc: Plumb GuC-capture into gpu_coredump
+8ff05662e8d4 drm/i915/guc: Print the GuC error capture output register list.
+-:132: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'a' - possible side-effects?
+#132: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1440:
++#define __out(a, ...) \
++	do { \
++		drm_warn((&(a)->drm), __VA_ARGS__); \
++		i915_error_printf((a), __VA_ARGS__); \
++	} while (0)
 
-  * igt@kms_chamelium@vga-edid-read:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][7] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22559/fi-bdw-5557u/igt@kms_chamelium@vga-edid-read.html
+-:142: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'ebuf' - possible side-effects?
+#142: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1450:
++#define GCAP_PRINT_INTEL_ENG_INFO(ebuf, eng) \
++	do { \
++		__out(ebuf, "    i915-Eng-Name: %s command stream\n", \
++		      (eng)->name); \
++		__out(ebuf, "    i915-Eng-Inst-Class: 0x%02x\n", (eng)->class); \
++		__out(ebuf, "    i915-Eng-Inst-Id: 0x%02x\n", (eng)->instance); \
++		__out(ebuf, "    i915-Eng-LogicalMask: 0x%08x\n", \
++		      (eng)->logical_mask); \
++	} while (0)
 
-  * igt@kms_setmode@basic-clone-single-crtc:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][8] ([fdo#109271]) +14 similar issues
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22559/fi-bdw-5557u/igt@kms_setmode@basic-clone-single-crtc.html
+-:142: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'eng' - possible side-effects?
+#142: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1450:
++#define GCAP_PRINT_INTEL_ENG_INFO(ebuf, eng) \
++	do { \
++		__out(ebuf, "    i915-Eng-Name: %s command stream\n", \
++		      (eng)->name); \
++		__out(ebuf, "    i915-Eng-Inst-Class: 0x%02x\n", (eng)->class); \
++		__out(ebuf, "    i915-Eng-Inst-Id: 0x%02x\n", (eng)->instance); \
++		__out(ebuf, "    i915-Eng-LogicalMask: 0x%08x\n", \
++		      (eng)->logical_mask); \
++	} while (0)
 
-  * igt@runner@aborted:
-    - fi-blb-e6850:       NOTRUN -> [FAIL][9] ([fdo#109271] / [i915#2403] / [i915#4312])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22559/fi-blb-e6850/igt@runner@aborted.html
+-:152: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'ebuf' - possible side-effects?
+#152: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1460:
++#define GCAP_PRINT_GUC_INST_INFO(ebuf, node) \
++	do { \
++		__out(ebuf, "    GuC-Engine-Inst-Id: 0x%08x\n", \
++		      (node)->eng_inst); \
++		__out(ebuf, "    GuC-Context-Id: 0x%08x\n", (node)->guc_id); \
++		__out(ebuf, "    LRCA: 0x%08x\n", (node)->lrca); \
++	} while (0)
 
-  
-#### Possible fixes ####
+-:152: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'node' - possible side-effects?
+#152: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1460:
++#define GCAP_PRINT_GUC_INST_INFO(ebuf, node) \
++	do { \
++		__out(ebuf, "    GuC-Engine-Inst-Id: 0x%08x\n", \
++		      (node)->eng_inst); \
++		__out(ebuf, "    GuC-Context-Id: 0x%08x\n", (node)->guc_id); \
++		__out(ebuf, "    LRCA: 0x%08x\n", (node)->lrca); \
++	} while (0)
 
-  * igt@gem_basic@create-fd-close:
-    - fi-bdw-gvtdvm:      [INCOMPLETE][10] ([i915#2295]) -> [PASS][11]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11360/fi-bdw-gvtdvm/igt@gem_basic@create-fd-close.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22559/fi-bdw-gvtdvm/igt@gem_basic@create-fd-close.html
-
-  * igt@gem_exec_suspend@basic-s3@smem:
-    - {fi-rkl-11600}:     [INCOMPLETE][12] ([i915#5127]) -> [PASS][13]
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11360/fi-rkl-11600/igt@gem_exec_suspend@basic-s3@smem.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22559/fi-rkl-11600/igt@gem_exec_suspend@basic-s3@smem.html
-
-  * igt@i915_selftest@live@gem:
-    - {bat-rpls-2}:       [DMESG-WARN][14] ([i915#4391]) -> [PASS][15] +1 similar issue
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11360/bat-rpls-2/igt@i915_selftest@live@gem.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22559/bat-rpls-2/igt@i915_selftest@live@gem.html
-
-  * igt@i915_selftest@live@reset:
-    - {bat-rpls-2}:       [INCOMPLETE][16] ([i915#4983]) -> [PASS][17]
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11360/bat-rpls-2/igt@i915_selftest@live@reset.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22559/bat-rpls-2/igt@i915_selftest@live@reset.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-bsw-n3050:       [DMESG-WARN][18] ([i915#1982]) -> [PASS][19]
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11360/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22559/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#109308]: https://bugs.freedesktop.org/show_bug.cgi?id=109308
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [fdo#111825]: https://bugs.freedesktop.org/show_bug.cgi?id=111825
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1155]: https://gitlab.freedesktop.org/drm/intel/issues/1155
-  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
-  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#2295]: https://gitlab.freedesktop.org/drm/intel/issues/2295
-  [i915#2403]: https://gitlab.freedesktop.org/drm/intel/issues/2403
-  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
-  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
-  [i915#3012]: https://gitlab.freedesktop.org/drm/intel/issues/3012
-  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
-  [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
-  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#3637]: https://gitlab.freedesktop.org/drm/intel/issues/3637
-  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
-  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
-  [i915#4070]: https://gitlab.freedesktop.org/drm/intel/issues/4070
-  [i915#4098]: https://gitlab.freedesktop.org/drm/intel/issues/4098
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4391]: https://gitlab.freedesktop.org/drm/intel/issues/4391
-  [i915#4528]: https://gitlab.freedesktop.org/drm/intel/issues/4528
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#4831]: https://gitlab.freedesktop.org/drm/intel/issues/4831
-  [i915#4897]: https://gitlab.freedesktop.org/drm/intel/issues/4897
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#5087]: https://gitlab.freedesktop.org/drm/intel/issues/5087
-  [i915#5127]: https://gitlab.freedesktop.org/drm/intel/issues/5127
-  [i915#5323]: https://gitlab.freedesktop.org/drm/intel/issues/5323
-  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_11360 -> Patchwork_22559
-
-  CI-20190529: 20190529
-  CI_DRM_11360: b37605de46fef48555bf0cf463cccf355c51fac0 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6380: 5d9ef79ab61fc4e9abc8b565f298e0515265e616 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_22559: c044eaa06fcce8d2234d49f38e3909725f68a7ef @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-c044eaa06fcc drm/i915/pmu: Drop redundant IS_VALLEYVIEW check in __get_rc6()
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22559/index.html
-
---===============1000251595565749455==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/pmu: Drop redundant IS_VALLEYVIEW check in __get_rc6() (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/101301/">https://patchwork.freedesktop.org/series/101301/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22559/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22559/index.html</a></td></tr>
-
-</table>
+total: 0 errors, 0 warnings, 5 checks, 286 lines checked
 
 
-    <h1>CI Bug Log - changes from CI_DRM_11360 -&gt; Patchwork_22559</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22559/index.html</p>
-<h2>Participating hosts (47 -&gt; 44)</h2>
-<p>Additional (1): fi-pnv-d510 <br />
-  Missing    (4): fi-ctg-p8600 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_22559 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_gttfill@basic:</p>
-<ul>
-<li>fi-bdw-gvtdvm:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22559/fi-bdw-gvtdvm/igt@gem_exec_gttfill@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s0@smem:</p>
-<ul>
-<li>fi-bdw-gvtdvm:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22559/fi-bdw-gvtdvm/igt@gem_exec_suspend@basic-s0@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4831">i915#4831</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22559/fi-pnv-d510/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +58 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22559/fi-bdw-5557u/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11360/fi-blb-e6850/igt@i915_selftest@live@requests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22559/fi-blb-e6850/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@vga-edid-read:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22559/fi-bdw-5557u/igt@kms_chamelium@vga-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic-clone-single-crtc:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22559/fi-bdw-5557u/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +14 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-blb-e6850:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22559/fi-blb-e6850/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2403">i915#2403</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_basic@create-fd-close:</p>
-<ul>
-<li>fi-bdw-gvtdvm:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11360/fi-bdw-gvtdvm/igt@gem_basic@create-fd-close.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2295">i915#2295</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22559/fi-bdw-gvtdvm/igt@gem_basic@create-fd-close.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s3@smem:</p>
-<ul>
-<li>{fi-rkl-11600}:     <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11360/fi-rkl-11600/igt@gem_exec_suspend@basic-s3@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5127">i915#5127</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22559/fi-rkl-11600/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gem:</p>
-<ul>
-<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11360/bat-rpls-2/igt@i915_selftest@live@gem.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4391">i915#4391</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22559/bat-rpls-2/igt@i915_selftest@live@gem.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@reset:</p>
-<ul>
-<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11360/bat-rpls-2/igt@i915_selftest@live@reset.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22559/bat-rpls-2/igt@i915_selftest@live@reset.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
-<ul>
-<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11360/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22559/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11360 -&gt; Patchwork_22559</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11360: b37605de46fef48555bf0cf463cccf355c51fac0 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6380: 5d9ef79ab61fc4e9abc8b565f298e0515265e616 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_22559: c044eaa06fcce8d2234d49f38e3909725f68a7ef @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>c044eaa06fcc drm/i915/pmu: Drop redundant IS_VALLEYVIEW check in __get_rc6()</p>
-
-</body>
-</html>
-
---===============1000251595565749455==--
