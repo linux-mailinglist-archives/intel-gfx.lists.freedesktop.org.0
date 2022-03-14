@@ -1,34 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AEE34D872E
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Mar 2022 15:45:15 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD6034D87D6
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Mar 2022 16:12:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4682510E49B;
-	Mon, 14 Mar 2022 14:45:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7EA2610E972;
+	Mon, 14 Mar 2022 15:12:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 96D0B10E495;
- Mon, 14 Mar 2022 14:45:12 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8064EA73C7;
- Mon, 14 Mar 2022 14:45:12 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4806494914642695046=="
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0FFF910E976
+ for <intel-gfx@lists.freedesktop.org>; Mon, 14 Mar 2022 15:12:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1647270721; x=1678806721;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=C9Tkp7G1RQbVbDEKT8QLJ8upJHAlZZuipqiouPqgqeU=;
+ b=bJGjKzOLdvs/Zqbr9dgea61OOBc69w6k6xY0JpQTqC5y+X1iHP7nJLHw
+ RHmHOz/634ue5PLuNs+fUmSGsTZG96ES0Kw+Zztkv7D186C2FzZokpAcN
+ SREr60ozo9fx6FOMoUnZH2Mf9g+M2VaC8eBkVz/o0fsmNFu4y8QaRT3s/
+ qKYCsCdHa+L2HtJThXsEzHlPf3N1uiwzTDj5g8iUiuppsMMwkCloAQqtK
+ kDeUzZeDzVCR0fRrk2rNqS0sww+SnZpecjZPdkoAoDoFxAJ0mpy9eyqzA
+ 1y1kNxfJfciRG1UcIyaJ1rWgwiSkwBQa9N7UW17fvLmikowPUWbfFmg/Z g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10285"; a="243500146"
+X-IronPort-AV: E=Sophos;i="5.90,181,1643702400"; d="scan'208";a="243500146"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Mar 2022 08:11:19 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,181,1643702400"; d="scan'208";a="689849667"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
+ by fmsmga001.fm.intel.com with SMTP; 14 Mar 2022 08:11:17 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 14 Mar 2022 17:11:16 +0200
+Date: Mon, 14 Mar 2022 17:11:16 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <Yi9bFOYul7c2cvUN@intel.com>
+References: <20220311172428.14685-1-ville.syrjala@linux.intel.com>
+ <20220311172428.14685-13-ville.syrjala@linux.intel.com>
+ <87ilsgvn9q.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
-Date: Mon, 14 Mar 2022 14:45:12 -0000
-Message-ID: <164726911249.20565.4031406975925460082@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220311185149.110527-1-jose.souza@intel.com>
-In-Reply-To: <20220311185149.110527-1-jose.souza@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5Bv2=2C1/2=5D_drm/i915/display=3A_Fix_HPD_sh?=
- =?utf-8?q?ort_pulse_handling_for_eDP_=28rev2=29?=
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <87ilsgvn9q.fsf@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH v2 12/16] drm/i915: Stash DRRS state under
+ intel_crtc
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,346 +62,696 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============4806494914642695046==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, Mar 14, 2022 at 12:31:13PM +0200, Jani Nikula wrote:
+> On Fri, 11 Mar 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> >
+> > Ger rid of one more ugly crtc->config usage by storing the DRRS
+> > state under intel_crtc. intel_drrs_enable() copies what it needs
+> > from the crtc state, after which DRRS can be blissfully ignorant
+> > of anything going on around it.
+> >
+> > This also lets multiple pipes do DRRS simultanously and entirely
+> > independently.
+> 
+> One related concern for the future, do you think we might actually want
+> to sync DRRS between multiple panels, at least in some cases? What if
+> you have two panels, and they get refreshed at different rates,
+> depending on the updates?
 
-== Series Details ==
+I think the two cases where keeping things in sync would
+really matter are bigjoiner and port sync.
 
-Series: series starting with [v2,1/2] drm/i915/display: Fix HPD short pulse handling for eDP (rev2)
-URL   : https://patchwork.freedesktop.org/series/101299/
-State : success
+In the case of bigjoiner we need to change the DDRS code to only
+operate on the master crtc since the refresh rate control is
+handled by the single transcoder. I actually have this already
+typed up.
 
-== Summary ==
+For port sync I think we just have to disable DRRS since we can't
+really guarantee that the refresh rate change happens atomically
+on all the transcoders. I suspect messing that up would not end
+well.
 
-CI Bug Log - changes from CI_DRM_11358 -> Patchwork_22556
-====================================================
+That does present a bit of a chicken vs. egg situation though
+since currently we don't know that we're about to do port sync
+until .compute_config_late(), but intel_drrs_compute_config()
+gets called already during .compute_config(). Need to ponder
+a bit how to do handle this in sensible manner.
 
-Summary
--------
+But this port sync stuff doesn't seem super important right now
+as we only enable it on tiled displays, and I suspect tiled eDP
+panels aren't really a thing currently.
 
-  **SUCCESS**
+I suppose if we at some point extend our port sync stuff to
+also work without the actual hardware port sync feature (ie.
+just try to make sure the identically timed transcoders start
+up apporoximately at the same time) we also want to disable
+DRRS for them due to the refresh rate change atomicity concerns.
 
-  No regressions found.
+> 
+> We'll need the plumbing from this patch no matter what, so probably just
+> better to tackle that problem later.
+> 
+> >
+> > v2: Split out some stuff (Jani)
+> >
+> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> 
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+> 
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_crtc.c     |   2 +
+> >  drivers/gpu/drm/i915/display/intel_ddi.c      |   4 +-
+> >  drivers/gpu/drm/i915/display/intel_display.c  |   2 +-
+> >  .../drm/i915/display/intel_display_debugfs.c  |  70 ++---
+> >  .../drm/i915/display/intel_display_types.h    |  14 +
+> >  drivers/gpu/drm/i915/display/intel_drrs.c     | 257 +++++++-----------
+> >  drivers/gpu/drm/i915/display/intel_drrs.h     |   8 +-
+> >  drivers/gpu/drm/i915/i915_drv.h               |  14 -
+> >  8 files changed, 144 insertions(+), 227 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
+> > index 65827481c1b1..f655c1622877 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_crtc.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+> > @@ -24,6 +24,7 @@
+> >  #include "intel_display_debugfs.h"
+> >  #include "intel_display_trace.h"
+> >  #include "intel_display_types.h"
+> > +#include "intel_drrs.h"
+> >  #include "intel_dsi.h"
+> >  #include "intel_pipe_crc.h"
+> >  #include "intel_psr.h"
+> > @@ -367,6 +368,7 @@ int intel_crtc_init(struct drm_i915_private *dev_priv, enum pipe pipe)
+> >  
+> >  	intel_color_init(crtc);
+> >  
+> > +	intel_crtc_drrs_init(crtc);
+> >  	intel_crtc_crc_init(crtc);
+> >  
+> >  	cpu_latency_qos_add_request(&crtc->vblank_pm_qos, PM_QOS_DEFAULT_VALUE);
+> > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > index 6660fe59e387..a3bf4e876fb4 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > @@ -3013,10 +3013,12 @@ static void intel_ddi_update_pipe_dp(struct intel_atomic_state *state,
+> >  				     const struct intel_crtc_state *crtc_state,
+> >  				     const struct drm_connector_state *conn_state)
+> >  {
+> > +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> > +
+> >  	intel_ddi_set_dp_msa(crtc_state, conn_state);
+> >  
+> >  	intel_dp_set_infoframes(encoder, true, crtc_state, conn_state);
+> > -	intel_drrs_update(crtc_state);
+> > +	intel_drrs_update(state, crtc);
+> >  
+> >  	intel_backlight_update(state, encoder, crtc_state, conn_state);
+> >  	drm_connector_update_privacy_screen(conn_state);
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> > index b67520a719d9..ad82c251a0cd 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -1229,7 +1229,7 @@ static void intel_post_plane_update(struct intel_atomic_state *state,
+> >  
+> >  	hsw_ips_post_update(state, crtc);
+> >  	intel_fbc_post_update(state, crtc);
+> > -	intel_drrs_page_flip(state, crtc);
+> > +	intel_drrs_page_flip(crtc);
+> >  
+> >  	if (needs_async_flip_vtd_wa(old_crtc_state) &&
+> >  	    !needs_async_flip_vtd_wa(new_crtc_state))
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> > index 219bac411cda..24f773583dd3 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> > @@ -1138,20 +1138,15 @@ static int i915_ddb_info(struct seq_file *m, void *unused)
+> >  	return 0;
+> >  }
+> >  
+> > -static void drrs_status_per_crtc(struct seq_file *m,
+> > -				 struct drm_device *dev,
+> > -				 struct intel_crtc *crtc)
+> > +static int i915_drrs_status(struct seq_file *m, void *unused)
+> >  {
+> > -	struct drm_i915_private *dev_priv = to_i915(dev);
+> > -	struct i915_drrs *drrs = &dev_priv->drrs;
+> > +	struct drm_i915_private *dev_priv = node_to_i915(m->private);
+> > +	struct drm_connector_list_iter conn_iter;
+> >  	struct intel_connector *connector;
+> > -	struct drm_connector_list_iter conn_iter;
+> > +	struct intel_crtc *crtc;
+> >  
+> > -	drm_connector_list_iter_begin(dev, &conn_iter);
+> > +	drm_connector_list_iter_begin(&dev_priv->drm, &conn_iter);
+> >  	for_each_intel_connector_iter(connector, &conn_iter) {
+> > -		if (connector->base.state->crtc != &crtc->base)
+> > -			continue;
+> > -
+> >  		seq_printf(m, "[CONNECTOR:%d:%s] DRRS type: %s\n",
+> >  			   connector->base.base.id, connector->base.name,
+> >  			   intel_drrs_type_str(intel_panel_drrs_type(connector)));
+> > @@ -1160,56 +1155,25 @@ static void drrs_status_per_crtc(struct seq_file *m,
+> >  
+> >  	seq_puts(m, "\n");
+> >  
+> > -	if (to_intel_crtc_state(crtc->base.state)->has_drrs) {
+> > -		mutex_lock(&drrs->mutex);
+> > +	for_each_intel_crtc(&dev_priv->drm, crtc) {
+> > +		seq_printf(m, "[CRTC:%d:%s]:\n",
+> > +			   crtc->base.base.id, crtc->base.name);
+> > +
+> > +		mutex_lock(&crtc->drrs.mutex);
+> > +
+> >  		/* DRRS Supported */
+> > -		seq_puts(m, "\tDRRS Enabled: Yes\n");
+> > +		seq_printf(m, "\tDRRS Enabled: %s\n",
+> > +			   str_yes_no(intel_drrs_is_enabled(crtc)));
+> >  
+> > -		/* disable_drrs() will make drrs->dp NULL */
+> > -		if (!drrs->crtc) {
+> > -			seq_puts(m, "Idleness DRRS: Disabled\n");
+> > -			mutex_unlock(&drrs->mutex);
+> > -			return;
+> > -		}
+> > -
+> > -		seq_printf(m, "\t\tBusy_frontbuffer_bits: 0x%X",
+> > -					drrs->busy_frontbuffer_bits);
+> > -
+> > -		seq_puts(m, "\n\t\t");
+> > +		seq_printf(m, "\tBusy_frontbuffer_bits: 0x%X\n",
+> > +			   crtc->drrs.busy_frontbuffer_bits);
+> >  
+> >  		seq_printf(m, "DRRS refresh rate: %s\n",
+> > -			   drrs->refresh_rate == DRRS_REFRESH_RATE_LOW ?
+> > +			   crtc->drrs.refresh_rate == DRRS_REFRESH_RATE_LOW ?
+> >  			   "low" : "high");
+> > -		seq_puts(m, "\n\t\t");
+> >  
+> > -		mutex_unlock(&drrs->mutex);
+> > -	} else {
+> > -		/* DRRS not supported. Print the VBT parameter*/
+> > -		seq_puts(m, "\tDRRS Enabled : No");
+> > +		mutex_unlock(&crtc->drrs.mutex);
+> >  	}
+> > -	seq_puts(m, "\n");
+> > -}
+> > -
+> > -static int i915_drrs_status(struct seq_file *m, void *unused)
+> > -{
+> > -	struct drm_i915_private *dev_priv = node_to_i915(m->private);
+> > -	struct drm_device *dev = &dev_priv->drm;
+> > -	struct intel_crtc *crtc;
+> > -	int active_crtc_cnt = 0;
+> > -
+> > -	drm_modeset_lock_all(dev);
+> > -	for_each_intel_crtc(dev, crtc) {
+> > -		if (crtc->base.state->active) {
+> > -			active_crtc_cnt++;
+> > -			seq_printf(m, "\nCRTC %d:  ", active_crtc_cnt);
+> > -
+> > -			drrs_status_per_crtc(m, dev, crtc);
+> > -		}
+> > -	}
+> > -	drm_modeset_unlock_all(dev);
+> > -
+> > -	if (!active_crtc_cnt)
+> > -		seq_puts(m, "No active crtc found\n");
+> >  
+> >  	return 0;
+> >  }
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > index 86b2fa675124..e34800ab6924 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > @@ -1252,6 +1252,11 @@ enum intel_pipe_crc_source {
+> >  	INTEL_PIPE_CRC_SOURCE_MAX,
+> >  };
+> >  
+> > +enum drrs_refresh_rate {
+> > +	DRRS_REFRESH_RATE_HIGH,
+> > +	DRRS_REFRESH_RATE_LOW,
+> > +};
+> > +
+> >  #define INTEL_PIPE_CRC_ENTRIES_NR	128
+> >  struct intel_pipe_crc {
+> >  	spinlock_t lock;
+> > @@ -1294,6 +1299,15 @@ struct intel_crtc {
+> >  		} active;
+> >  	} wm;
+> >  
+> > +	struct {
+> > +		struct mutex mutex;
+> > +		struct delayed_work work;
+> > +		enum drrs_refresh_rate refresh_rate;
+> > +		unsigned int busy_frontbuffer_bits;
+> > +		enum transcoder cpu_transcoder;
+> > +		struct intel_link_m_n m_n, m2_n2;
+> > +	} drrs;
+> > +
+> >  	int scanline_offset;
+> >  
+> >  	struct {
+> > diff --git a/drivers/gpu/drm/i915/display/intel_drrs.c b/drivers/gpu/drm/i915/display/intel_drrs.c
+> > index 12d09560bc80..fd956775698e 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_drrs.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_drrs.c
+> > @@ -114,12 +114,11 @@ intel_drrs_compute_config(struct intel_connector *connector,
+> >  }
+> >  
+> >  static void
+> > -intel_drrs_set_refresh_rate_pipeconf(const struct intel_crtc_state *crtc_state,
+> > +intel_drrs_set_refresh_rate_pipeconf(struct intel_crtc *crtc,
+> >  				     enum drrs_refresh_rate refresh_rate)
+> >  {
+> > -	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> >  	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+> > -	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+> > +	enum transcoder cpu_transcoder = crtc->drrs.cpu_transcoder;
+> >  	u32 val, bit;
+> >  
+> >  	if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
+> > @@ -138,65 +137,33 @@ intel_drrs_set_refresh_rate_pipeconf(const struct intel_crtc_state *crtc_state,
+> >  }
+> >  
+> >  static void
+> > -intel_drrs_set_refresh_rate_m_n(const struct intel_crtc_state *crtc_state,
+> > +intel_drrs_set_refresh_rate_m_n(struct intel_crtc *crtc,
+> >  				enum drrs_refresh_rate refresh_rate)
+> >  {
+> > -	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> > -
+> > -	intel_cpu_transcoder_set_m1_n1(crtc, crtc_state->cpu_transcoder,
+> > +	intel_cpu_transcoder_set_m1_n1(crtc, crtc->drrs.cpu_transcoder,
+> >  				       refresh_rate == DRRS_REFRESH_RATE_LOW ?
+> > -				       &crtc_state->dp_m2_n2 : &crtc_state->dp_m_n);
+> > +				       &crtc->drrs.m2_n2 : &crtc->drrs.m_n);
+> >  }
+> >  
+> > -static void intel_drrs_set_state(struct drm_i915_private *dev_priv,
+> > -				 const struct intel_crtc_state *crtc_state,
+> > +bool intel_drrs_is_enabled(struct intel_crtc *crtc)
+> > +{
+> > +	return crtc->drrs.cpu_transcoder != INVALID_TRANSCODER;
+> > +}
+> > +
+> > +static void intel_drrs_set_state(struct intel_crtc *crtc,
+> >  				 enum drrs_refresh_rate refresh_rate)
+> >  {
+> > -	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> > +	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+> >  
+> > -	if (!dev_priv->drrs.crtc) {
+> > -		drm_dbg_kms(&dev_priv->drm, "DRRS not supported.\n");
+> > +	if (refresh_rate == crtc->drrs.refresh_rate)
+> >  		return;
+> > -	}
+> > -
+> > -	if (!crtc) {
+> > -		drm_dbg_kms(&dev_priv->drm,
+> > -			    "DRRS: intel_crtc not initialized\n");
+> > -		return;
+> > -	}
+> > -
+> > -	if (dev_priv->vbt.drrs_type != DRRS_TYPE_SEAMLESS) {
+> > -		drm_dbg_kms(&dev_priv->drm, "Only Seamless DRRS supported.\n");
+> > -		return;
+> > -	}
+> > -
+> > -	if (refresh_rate == dev_priv->drrs.refresh_rate)
+> > -		return;
+> > -
+> > -	if (!crtc_state->hw.active) {
+> > -		drm_dbg_kms(&dev_priv->drm,
+> > -			    "eDP encoder disabled. CRTC not Active\n");
+> > -		return;
+> > -	}
+> >  
+> >  	if (DISPLAY_VER(dev_priv) >= 8 && !IS_CHERRYVIEW(dev_priv))
+> > -		intel_drrs_set_refresh_rate_m_n(crtc_state, refresh_rate);
+> > +		intel_drrs_set_refresh_rate_m_n(crtc, refresh_rate);
+> >  	else if (DISPLAY_VER(dev_priv) > 6)
+> > -		intel_drrs_set_refresh_rate_pipeconf(crtc_state, refresh_rate);
+> > +		intel_drrs_set_refresh_rate_pipeconf(crtc, refresh_rate);
+> >  
+> > -	dev_priv->drrs.refresh_rate = refresh_rate;
+> > -
+> > -	drm_dbg_kms(&dev_priv->drm, "eDP Refresh Rate set to : %s\n",
+> > -		    refresh_rate == DRRS_REFRESH_RATE_LOW ? "low" : "high");
+> > -}
+> > -
+> > -static void
+> > -intel_drrs_enable_locked(struct intel_crtc *crtc)
+> > -{
+> > -	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+> > -
+> > -	dev_priv->drrs.busy_frontbuffer_bits = 0;
+> > -	dev_priv->drrs.crtc = crtc;
+> > +	crtc->drrs.refresh_rate = refresh_rate;
+> >  }
+> >  
+> >  /**
+> > @@ -213,28 +180,17 @@ void intel_drrs_enable(const struct intel_crtc_state *crtc_state)
+> >  	if (!crtc_state->has_drrs)
+> >  		return;
+> >  
+> > -	drm_dbg_kms(&dev_priv->drm, "Enabling DRRS\n");
+> > +	drm_dbg_kms(&dev_priv->drm, "[CRTC:%d:%s] Enabling DRRS\n",
+> > +		    crtc->base.base.id, crtc->base.name);
+> >  
+> > -	mutex_lock(&dev_priv->drrs.mutex);
+> > +	mutex_lock(&crtc->drrs.mutex);
+> >  
+> > -	if (dev_priv->drrs.crtc) {
+> > -		drm_warn(&dev_priv->drm, "DRRS already enabled\n");
+> > -		goto unlock;
+> > -	}
+> > +	crtc->drrs.cpu_transcoder = crtc_state->cpu_transcoder;
+> > +	crtc->drrs.m_n = crtc_state->dp_m_n;
+> > +	crtc->drrs.m2_n2 = crtc_state->dp_m2_n2;
+> > +	crtc->drrs.busy_frontbuffer_bits = 0;
+> >  
+> > -	intel_drrs_enable_locked(crtc);
+> > -
+> > -unlock:
+> > -	mutex_unlock(&dev_priv->drrs.mutex);
+> > -}
+> > -
+> > -static void
+> > -intel_drrs_disable_locked(const struct intel_crtc_state *crtc_state)
+> > -{
+> > -	struct drm_i915_private *dev_priv = to_i915(crtc_state->uapi.crtc->dev);
+> > -
+> > -	intel_drrs_set_state(dev_priv, crtc_state, DRRS_REFRESH_RATE_HIGH);
+> > -	dev_priv->drrs.crtc = NULL;
+> > +	mutex_unlock(&crtc->drrs.mutex);
+> >  }
+> >  
+> >  /**
+> > @@ -249,74 +205,54 @@ void intel_drrs_disable(const struct intel_crtc_state *old_crtc_state)
+> >  	if (!old_crtc_state->has_drrs)
+> >  		return;
+> >  
+> > -	mutex_lock(&dev_priv->drrs.mutex);
+> > -	if (dev_priv->drrs.crtc != crtc) {
+> > -		mutex_unlock(&dev_priv->drrs.mutex);
+> > -		return;
+> > -	}
+> > +	drm_dbg_kms(&dev_priv->drm, "[CRTC:%d:%s] Disabling DRRS\n",
+> > +		    crtc->base.base.id, crtc->base.name);
+> >  
+> > -	intel_drrs_disable_locked(old_crtc_state);
+> > -	mutex_unlock(&dev_priv->drrs.mutex);
+> > +	mutex_lock(&crtc->drrs.mutex);
+> >  
+> > -	cancel_delayed_work_sync(&dev_priv->drrs.work);
+> > +	if (intel_drrs_is_enabled(crtc))
+> > +		intel_drrs_set_state(crtc, DRRS_REFRESH_RATE_HIGH);
+> > +
+> > +	crtc->drrs.cpu_transcoder = INVALID_TRANSCODER;
+> > +	crtc->drrs.busy_frontbuffer_bits = 0;
+> > +
+> > +	mutex_unlock(&crtc->drrs.mutex);
+> > +
+> > +	cancel_delayed_work_sync(&crtc->drrs.work);
+> >  }
+> >  
+> >  /**
+> > - * intel_drrs_update - Update DRRS state
+> > - * @crtc_state: new CRTC state
+> > - *
+> > - * This function will update DRRS states, disabling or enabling DRRS when
+> > - * executing fastsets. For full modeset, intel_drrs_disable() and
+> > - * intel_drrs_enable() should be called instead.
+> > + * intel_drrs_update - Update DRRS during fastset
+> > + * @state: atomic state
+> > + * @crtc: crtc
+> >   */
+> > -void
+> > -intel_drrs_update(const struct intel_crtc_state *crtc_state)
+> > +void intel_drrs_update(struct intel_atomic_state *state,
+> > +		       struct intel_crtc *crtc)
+> >  {
+> > -	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> > -	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+> > +	const struct intel_crtc_state *old_crtc_state =
+> > +		intel_atomic_get_old_crtc_state(state, crtc);
+> > +	const struct intel_crtc_state *new_crtc_state =
+> > +		intel_atomic_get_new_crtc_state(state, crtc);
+> >  
+> > -	if (dev_priv->vbt.drrs_type != DRRS_TYPE_SEAMLESS)
+> > +	if (old_crtc_state->has_drrs == new_crtc_state->has_drrs)
+> >  		return;
+> >  
+> > -	mutex_lock(&dev_priv->drrs.mutex);
+> > -
+> > -	/* New state matches current one? */
+> > -	if (crtc_state->has_drrs == !!dev_priv->drrs.crtc)
+> > -		goto unlock;
+> > -
+> > -	if (crtc_state->has_drrs)
+> > -		intel_drrs_enable_locked(crtc);
+> > +	if (new_crtc_state->has_drrs)
+> > +		intel_drrs_enable(new_crtc_state);
+> >  	else
+> > -		intel_drrs_disable_locked(crtc_state);
+> > -
+> > -unlock:
+> > -	mutex_unlock(&dev_priv->drrs.mutex);
+> > +		intel_drrs_disable(old_crtc_state);
+> >  }
+> >  
+> >  static void intel_drrs_downclock_work(struct work_struct *work)
+> >  {
+> > -	struct drm_i915_private *dev_priv =
+> > -		container_of(work, typeof(*dev_priv), drrs.work.work);
+> > -	struct intel_crtc *crtc;
+> > +	struct intel_crtc *crtc = container_of(work, typeof(*crtc), drrs.work.work);
+> >  
+> > -	mutex_lock(&dev_priv->drrs.mutex);
+> > +	mutex_lock(&crtc->drrs.mutex);
+> >  
+> > -	crtc = dev_priv->drrs.crtc;
+> > -	if (!crtc)
+> > -		goto unlock;
+> > +	if (intel_drrs_is_enabled(crtc) && !crtc->drrs.busy_frontbuffer_bits)
+> > +		intel_drrs_set_state(crtc, DRRS_REFRESH_RATE_LOW);
+> >  
+> > -	/*
+> > -	 * The delayed work can race with an invalidate hence we need to
+> > -	 * recheck.
+> > -	 */
+> > -
+> > -	if (!dev_priv->drrs.busy_frontbuffer_bits) {
+> > -		intel_drrs_set_state(dev_priv, crtc->config,
+> > -				     DRRS_REFRESH_RATE_LOW);
+> > -	}
+> > -
+> > -unlock:
+> > -	mutex_unlock(&dev_priv->drrs.mutex);
+> > +	mutex_unlock(&crtc->drrs.mutex);
+> >  }
+> >  
+> >  static void intel_drrs_frontbuffer_update(struct drm_i915_private *dev_priv,
+> > @@ -328,35 +264,36 @@ static void intel_drrs_frontbuffer_update(struct drm_i915_private *dev_priv,
+> >  	if (dev_priv->vbt.drrs_type != DRRS_TYPE_SEAMLESS)
+> >  		return;
+> >  
+> > -	cancel_delayed_work(&dev_priv->drrs.work);
+> > +	for_each_intel_crtc(&dev_priv->drm, crtc) {
+> > +		cancel_delayed_work(&crtc->drrs.work);
+> >  
+> > -	mutex_lock(&dev_priv->drrs.mutex);
+> > +		mutex_lock(&crtc->drrs.mutex);
+> >  
+> > -	crtc = dev_priv->drrs.crtc;
+> > -	if (!crtc) {
+> > -		mutex_unlock(&dev_priv->drrs.mutex);
+> > -		return;
+> > +		if (!intel_drrs_is_enabled(crtc)) {
+> > +			mutex_unlock(&crtc->drrs.mutex);
+> > +			continue;
+> > +		}
+> > +
+> > +		frontbuffer_bits &= INTEL_FRONTBUFFER_ALL_MASK(crtc->pipe);
+> > +		if (invalidate)
+> > +			crtc->drrs.busy_frontbuffer_bits |= frontbuffer_bits;
+> > +		else
+> > +			crtc->drrs.busy_frontbuffer_bits &= ~frontbuffer_bits;
+> > +
+> > +		/* flush/invalidate means busy screen hence upclock */
+> > +		if (frontbuffer_bits)
+> > +			intel_drrs_set_state(crtc, DRRS_REFRESH_RATE_HIGH);
+> > +
+> > +		/*
+> > +		 * flush also means no more activity hence schedule downclock, if all
+> > +		 * other fbs are quiescent too
+> > +		 */
+> > +		if (!invalidate && !crtc->drrs.busy_frontbuffer_bits)
+> > +			schedule_delayed_work(&crtc->drrs.work,
+> > +					      msecs_to_jiffies(1000));
+> > +
+> > +		mutex_unlock(&crtc->drrs.mutex);
+> >  	}
+> > -
+> > -	frontbuffer_bits &= INTEL_FRONTBUFFER_ALL_MASK(crtc->pipe);
+> > -	if (invalidate)
+> > -		dev_priv->drrs.busy_frontbuffer_bits |= frontbuffer_bits;
+> > -	else
+> > -		dev_priv->drrs.busy_frontbuffer_bits &= ~frontbuffer_bits;
+> > -
+> > -	/* flush/invalidate means busy screen hence upclock */
+> > -	if (frontbuffer_bits)
+> > -		intel_drrs_set_state(dev_priv, crtc->config,
+> > -				     DRRS_REFRESH_RATE_HIGH);
+> > -
+> > -	/*
+> > -	 * flush also means no more activity hence schedule downclock, if all
+> > -	 * other fbs are quiescent too
+> > -	 */
+> > -	if (!invalidate && !dev_priv->drrs.busy_frontbuffer_bits)
+> > -		schedule_delayed_work(&dev_priv->drrs.work,
+> > -				      msecs_to_jiffies(1000));
+> > -	mutex_unlock(&dev_priv->drrs.mutex);
+> >  }
+> >  
+> >  /**
+> > @@ -393,22 +330,36 @@ void intel_drrs_flush(struct drm_i915_private *dev_priv,
+> >  	intel_drrs_frontbuffer_update(dev_priv, frontbuffer_bits, false);
+> >  }
+> >  
+> > -void intel_drrs_page_flip(struct intel_atomic_state *state,
+> > -			  struct intel_crtc *crtc)
+> > +void intel_drrs_page_flip(struct intel_crtc *crtc)
+> >  {
+> > -	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+> > +	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+> >  	unsigned int frontbuffer_bits = INTEL_FRONTBUFFER_ALL_MASK(crtc->pipe);
+> >  
+> >  	intel_drrs_frontbuffer_update(dev_priv, frontbuffer_bits, false);
+> >  }
+> >  
+> >  /**
+> > - * intel_drrs_init - Init basic DRRS work and mutex.
+> > + * intel_crtc_drrs_init - Init DRRS for CRTC
+> > + * @crtc: crtc
+> > + *
+> > + * This function is called only once at driver load to initialize basic
+> > + * DRRS stuff.
+> > + *
+> > + */
+> > +void intel_crtc_drrs_init(struct intel_crtc *crtc)
+> > +{
+> > +	INIT_DELAYED_WORK(&crtc->drrs.work, intel_drrs_downclock_work);
+> > +	mutex_init(&crtc->drrs.mutex);
+> > +	crtc->drrs.cpu_transcoder = INVALID_TRANSCODER;
+> > +}
+> > +
+> > +/**
+> > + * intel_drrs_init - Init DRRS for eDP connector
+> >   * @connector: eDP connector
+> >   * @fixed_mode: preferred mode of panel
+> >   *
+> > - * This function is  called only once at driver load to initialize basic
+> > - * DRRS stuff.
+> > + * This function is called only once at driver load to initialize
+> > + * DRRS support for the connector.
+> >   *
+> >   * Returns:
+> >   * Downclock mode if panel supports it, else return NULL.
+> > @@ -421,10 +372,7 @@ intel_drrs_init(struct intel_connector *connector,
+> >  {
+> >  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+> >  	struct intel_encoder *encoder = connector->encoder;
+> > -	struct drm_display_mode *downclock_mode = NULL;
+> > -
+> > -	INIT_DELAYED_WORK(&dev_priv->drrs.work, intel_drrs_downclock_work);
+> > -	mutex_init(&dev_priv->drrs.mutex);
+> > +	struct drm_display_mode *downclock_mode;
+> >  
+> >  	if (DISPLAY_VER(dev_priv) <= 6) {
+> >  		drm_dbg_kms(&dev_priv->drm,
+> > @@ -457,7 +405,6 @@ intel_drrs_init(struct intel_connector *connector,
+> >  		return NULL;
+> >  	}
+> >  
+> > -	dev_priv->drrs.refresh_rate = DRRS_REFRESH_RATE_HIGH;
+> >  	drm_dbg_kms(&dev_priv->drm,
+> >  		    "[CONNECTOR:%d:%s] %s DRRS supported\n",
+> >  		    connector->base.base.id, connector->base.name,
+> > diff --git a/drivers/gpu/drm/i915/display/intel_drrs.h b/drivers/gpu/drm/i915/display/intel_drrs.h
+> > index e202e8810c12..c6e325a91552 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_drrs.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_drrs.h
+> > @@ -16,18 +16,20 @@ struct intel_crtc_state;
+> >  struct intel_connector;
+> >  
+> >  const char *intel_drrs_type_str(enum drrs_type drrs_type);
+> > +bool intel_drrs_is_enabled(struct intel_crtc *crtc);
+> >  void intel_drrs_enable(const struct intel_crtc_state *crtc_state);
+> >  void intel_drrs_disable(const struct intel_crtc_state *crtc_state);
+> > -void intel_drrs_update(const struct intel_crtc_state *crtc_state);
+> > +void intel_drrs_update(struct intel_atomic_state *state,
+> > +		       struct intel_crtc *crtc);
+> >  void intel_drrs_invalidate(struct drm_i915_private *dev_priv,
+> >  			   unsigned int frontbuffer_bits);
+> >  void intel_drrs_flush(struct drm_i915_private *dev_priv,
+> >  		      unsigned int frontbuffer_bits);
+> > -void intel_drrs_page_flip(struct intel_atomic_state *state,
+> > -			  struct intel_crtc *crtc);
+> > +void intel_drrs_page_flip(struct intel_crtc *crtc);
+> >  void intel_drrs_compute_config(struct intel_connector *connector,
+> >  			       struct intel_crtc_state *pipe_config,
+> >  			       int output_bpp, bool constant_n);
+> > +void intel_crtc_drrs_init(struct intel_crtc *crtc);
+> >  struct drm_display_mode *intel_drrs_init(struct intel_connector *connector,
+> >  					 const struct drm_display_mode *fixed_mode);
+> >  
+> > diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> > index caf236c17a4a..26df561a4e94 100644
+> > --- a/drivers/gpu/drm/i915/i915_drv.h
+> > +++ b/drivers/gpu/drm/i915/i915_drv.h
+> > @@ -196,25 +196,12 @@ struct drm_i915_display_funcs {
+> >  
+> >  #define I915_COLOR_UNEVICTABLE (-1) /* a non-vma sharing the address space */
+> >  
+> > -enum drrs_refresh_rate {
+> > -	DRRS_REFRESH_RATE_HIGH,
+> > -	DRRS_REFRESH_RATE_LOW,
+> > -};
+> > -
+> >  enum drrs_type {
+> >  	DRRS_TYPE_NONE,
+> >  	DRRS_TYPE_STATIC,
+> >  	DRRS_TYPE_SEAMLESS,
+> >  };
+> >  
+> > -struct i915_drrs {
+> > -	struct mutex mutex;
+> > -	struct delayed_work work;
+> > -	struct intel_crtc *crtc;
+> > -	unsigned busy_frontbuffer_bits;
+> > -	enum drrs_refresh_rate refresh_rate;
+> > -};
+> > -
+> >  #define QUIRK_LVDS_SSC_DISABLE (1<<1)
+> >  #define QUIRK_INVERT_BRIGHTNESS (1<<2)
+> >  #define QUIRK_BACKLIGHT_PRESENT (1<<3)
+> > @@ -536,7 +523,6 @@ struct drm_i915_private {
+> >  
+> >  	struct i915_hotplug hotplug;
+> >  	struct intel_fbc *fbc[I915_MAX_FBCS];
+> > -	struct i915_drrs drrs;
+> >  	struct intel_opregion opregion;
+> >  	struct intel_vbt_data vbt;
+> 
+> -- 
+> Jani Nikula, Intel Open Source Graphics Center
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22556/index.html
-
-Participating hosts (40 -> 30)
-------------------------------
-
-  Additional (2): fi-icl-u2 fi-kbl-8809g 
-  Missing    (12): fi-kbl-soraka fi-bdw-samus shard-tglu shard-rkl bat-dg2-9 fi-bsw-cyan bat-adlp-6 bat-adlp-4 bat-rpls-2 shard-dg1 bat-jsl-2 bat-jsl-1 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_22556:
-
-### IGT changes ###
-
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@gem_exec_store@basic:
-    - {fi-tgl-dsi}:       [PASS][1] -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11358/fi-tgl-dsi/igt@gem_exec_store@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22556/fi-tgl-dsi/igt@gem_exec_store@basic.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_22556 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_cs_nop@fork-gfx0:
-    - fi-icl-u2:          NOTRUN -> [SKIP][3] ([fdo#109315]) +17 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22556/fi-icl-u2/igt@amdgpu/amd_cs_nop@fork-gfx0.html
-
-  * igt@gem_exec_suspend@basic-s0@smem:
-    - fi-kbl-8809g:       NOTRUN -> [DMESG-WARN][4] ([i915#4962]) +1 similar issue
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22556/fi-kbl-8809g/igt@gem_exec_suspend@basic-s0@smem.html
-    - fi-glk-dsi:         [PASS][5] -> [DMESG-WARN][6] ([i915#2943])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11358/fi-glk-dsi/igt@gem_exec_suspend@basic-s0@smem.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22556/fi-glk-dsi/igt@gem_exec_suspend@basic-s0@smem.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][7] ([fdo#109271] / [i915#2190])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22556/fi-kbl-8809g/igt@gem_huc_copy@huc-copy.html
-    - fi-icl-u2:          NOTRUN -> [SKIP][8] ([i915#2190])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22556/fi-icl-u2/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@parallel-random-engines:
-    - fi-icl-u2:          NOTRUN -> [SKIP][9] ([i915#4613]) +3 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22556/fi-icl-u2/igt@gem_lmem_swapping@parallel-random-engines.html
-
-  * igt@gem_lmem_swapping@random-engines:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][10] ([fdo#109271] / [i915#4613]) +3 similar issues
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22556/fi-kbl-8809g/igt@gem_lmem_swapping@random-engines.html
-
-  * igt@kms_chamelium@hdmi-edid-read:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][11] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22556/fi-kbl-8809g/igt@kms_chamelium@hdmi-edid-read.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-icl-u2:          NOTRUN -> [SKIP][12] ([fdo#111827]) +8 similar issues
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22556/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - fi-icl-u2:          NOTRUN -> [SKIP][13] ([fdo#109278]) +2 similar issues
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22556/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - fi-icl-u2:          NOTRUN -> [SKIP][14] ([fdo#109285])
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22556/fi-icl-u2/igt@kms_force_connector_basic@force-load-detect.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][15] ([fdo#109271] / [i915#533])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22556/fi-kbl-8809g/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
-
-  * igt@kms_psr@cursor_plane_move:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][16] ([fdo#109271]) +55 similar issues
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22556/fi-kbl-8809g/igt@kms_psr@cursor_plane_move.html
-
-  * igt@kms_setmode@basic-clone-single-crtc:
-    - fi-icl-u2:          NOTRUN -> [SKIP][17] ([i915#3555])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22556/fi-icl-u2/igt@kms_setmode@basic-clone-single-crtc.html
-
-  * igt@prime_vgem@basic-userptr:
-    - fi-icl-u2:          NOTRUN -> [SKIP][18] ([i915#3301])
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22556/fi-icl-u2/igt@prime_vgem@basic-userptr.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s3@smem:
-    - {fi-rkl-11600}:     [INCOMPLETE][19] ([i915#5127]) -> [PASS][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11358/fi-rkl-11600/igt@gem_exec_suspend@basic-s3@smem.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22556/fi-rkl-11600/igt@gem_exec_suspend@basic-s3@smem.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109278]: https://bugs.freedesktop.org/show_bug.cgi?id=109278
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#2943]: https://gitlab.freedesktop.org/drm/intel/issues/2943
-  [i915#3012]: https://gitlab.freedesktop.org/drm/intel/issues/3012
-  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
-  [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
-  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
-  [i915#4070]: https://gitlab.freedesktop.org/drm/intel/issues/4070
-  [i915#4098]: https://gitlab.freedesktop.org/drm/intel/issues/4098
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#4962]: https://gitlab.freedesktop.org/drm/intel/issues/4962
-  [i915#5127]: https://gitlab.freedesktop.org/drm/intel/issues/5127
-  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_11358 -> Patchwork_22556
-
-  CI-20190529: 20190529
-  CI_DRM_11358: 478c7a5a20f2c2a0e694418a6c0d3f412db97837 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6380: 5d9ef79ab61fc4e9abc8b565f298e0515265e616 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_22556: 2c7d99504de3ab55da801f9a4899c6917980b29c @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-2c7d99504de3 drm/i915/display: Do not re-enable PSR after it was marked as not reliable
-ec77e235dd18 drm/i915/display: Fix HPD short pulse handling for eDP
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22556/index.html
-
---===============4806494914642695046==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [v2,1/2] drm/i915/display: Fix HPD short pulse handling for eDP (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/101299/">https://patchwork.freedesktop.org/series/101299/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22556/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22556/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11358 -&gt; Patchwork_22556</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22556/index.html</p>
-<h2>Participating hosts (40 -&gt; 30)</h2>
-<p>Additional (2): fi-icl-u2 fi-kbl-8809g <br />
-  Missing    (12): fi-kbl-soraka fi-bdw-samus shard-tglu shard-rkl bat-dg2-9 fi-bsw-cyan bat-adlp-6 bat-adlp-4 bat-rpls-2 shard-dg1 bat-jsl-2 bat-jsl-1 </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_22556:</p>
-<h3>IGT changes</h3>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>igt@gem_exec_store@basic:<ul>
-<li>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11358/fi-tgl-dsi/igt@gem_exec_store@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22556/fi-tgl-dsi/igt@gem_exec_store@basic.html">DMESG-WARN</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_22556 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_cs_nop@fork-gfx0:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22556/fi-icl-u2/igt@amdgpu/amd_cs_nop@fork-gfx0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s0@smem:</p>
-<ul>
-<li>
-<p>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22556/fi-kbl-8809g/igt@gem_exec_suspend@basic-s0@smem.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4962">i915#4962</a>) +1 similar issue</p>
-</li>
-<li>
-<p>fi-glk-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11358/fi-glk-dsi/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22556/fi-glk-dsi/igt@gem_exec_suspend@basic-s0@smem.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2943">i915#2943</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>
-<p>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22556/fi-kbl-8809g/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</p>
-</li>
-<li>
-<p>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22556/fi-icl-u2/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22556/fi-icl-u2/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@random-engines:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22556/fi-kbl-8809g/igt@gem_lmem_swapping@random-engines.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-edid-read:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22556/fi-kbl-8809g/igt@kms_chamelium@hdmi-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-hpd-fast:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22556/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22556/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109278">fdo#109278</a>) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22556/fi-icl-u2/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22556/fi-kbl-8809g/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@cursor_plane_move:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22556/fi-kbl-8809g/igt@kms_psr@cursor_plane_move.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +55 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic-clone-single-crtc:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22556/fi-icl-u2/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-userptr:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22556/fi-icl-u2/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@gem_exec_suspend@basic-s3@smem:<ul>
-<li>{fi-rkl-11600}:     <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11358/fi-rkl-11600/igt@gem_exec_suspend@basic-s3@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5127">i915#5127</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22556/fi-rkl-11600/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11358 -&gt; Patchwork_22556</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11358: 478c7a5a20f2c2a0e694418a6c0d3f412db97837 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6380: 5d9ef79ab61fc4e9abc8b565f298e0515265e616 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_22556: 2c7d99504de3ab55da801f9a4899c6917980b29c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>2c7d99504de3 drm/i915/display: Do not re-enable PSR after it was marked as not reliable<br />
-ec77e235dd18 drm/i915/display: Fix HPD short pulse handling for eDP</p>
-
-</body>
-</html>
-
---===============4806494914642695046==--
+-- 
+Ville Syrjälä
+Intel
