@@ -1,48 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3B2B4D7EA8
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Mar 2022 10:33:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 265BF4D7EDB
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Mar 2022 10:41:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F240E10E0F4;
-	Mon, 14 Mar 2022 09:33:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A06A410E3C2;
+	Mon, 14 Mar 2022 09:41:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B09E10E0F4
- for <intel-gfx@lists.freedesktop.org>; Mon, 14 Mar 2022 09:33:07 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E564710E3C2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 14 Mar 2022 09:41:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1647250387; x=1678786387;
+ t=1647250875; x=1678786875;
  h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=4y4eEEDMf3vM+84VJI3h1P1l8MKR2CY9wQm7CIPK1E4=;
- b=jj82pZ12HxOYcPXH/QR2XlxViA8iaVluMyUCoKp+HIZqVSvjLdmOfwg3
- cHHIvCP9ofMUxlqSOtgAVnEOCZbaj8dzGZD3a5QonhLlic7WZ5yB/LvsV
- svgl+AgtbkSHgHegF6Rbw8+2WjAkwrVs+nE8WOUSMDBIMPP+bfuhH1iaV
- lqIS7Hm25NLe2mF2ePdGjC6FMZ2sZtKICyv4vah3jZfaq+YUs9svJBO0w
- arzf09Df4b+JhQfsdAFArkw4b7b4bCeslH3X8C+3xIRxZFTrXOQ7tXjqq
- KRnjY7LAouuhr/Aw1FwvCP4tDJMJ67/vwZWXC5XAg7o/KicJwgqBl4TnX g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10285"; a="256166634"
-X-IronPort-AV: E=Sophos;i="5.90,180,1643702400"; d="scan'208";a="256166634"
+ mime-version:content-transfer-encoding;
+ bh=BqOXfwrjVFpckBXK0tjo4H306LzABjMqAt0XCwAwTD4=;
+ b=bbROZ8Bf3PJq/IacmrKswDBFUOTCdcycZivehpthgpmzJhqO9vxn4OCO
+ yFKT6gTmai5aLRVhth38JW1D+z9yf/sxumWXHkN3aP+iX14S68H0LdMIv
+ RWHNjJViIiBJqfavLLEoKrxArg8Dk7qdjAHpX/HCjnN9oLk7/uBKOMKlU
+ rWoPivzMOPfe/cy8kB5mjeTtN02WF+JMCVUqJOdo6gkHiBC9/vxU+bJ8J
+ OwY0snaR8Qb0Ge6uB/6so7fCSvqMvPhy6ZtqCqKxSkW5+5igNYzDloIam
+ 28l17qQTyloAlzSb8uvctHxYj93JO/hKgBb60+6vjq3McpOPODIhIGBsS w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10285"; a="319205709"
+X-IronPort-AV: E=Sophos;i="5.90,180,1643702400"; d="scan'208";a="319205709"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Mar 2022 02:33:06 -0700
-X-IronPort-AV: E=Sophos;i="5.90,180,1643702400"; d="scan'208";a="556330445"
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Mar 2022 02:41:15 -0700
+X-IronPort-AV: E=Sophos;i="5.90,180,1643702400"; d="scan'208";a="556334123"
 Received: from vmanav-mobl.ger.corp.intel.com (HELO localhost) ([10.252.55.47])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Mar 2022 02:33:05 -0700
+ 14 Mar 2022 02:41:14 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ashutosh Dixit <ashutosh.dixit@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220311200027.33701-1-ashutosh.dixit@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20220311172428.14685-2-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220311200027.33701-1-ashutosh.dixit@intel.com>
-Date: Mon, 14 Mar 2022 11:33:03 +0200
-Message-ID: <87k0cwx4j4.fsf@intel.com>
+References: <20220311172428.14685-1-ville.syrjala@linux.intel.com>
+ <20220311172428.14685-2-ville.syrjala@linux.intel.com>
+Date: Mon, 14 Mar 2022 11:41:11 +0200
+Message-ID: <87h780x45k.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/pmu: Drop redundant IS_VALLEYVIEW
- check in __get_rc6()
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH v2 01/16] drm/i915/dsi: Pass fixed_mode to
+ *_dsi_add_properties()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,40 +62,98 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 11 Mar 2022, Ashutosh Dixit <ashutosh.dixit@intel.com> wrote:
-> Because VLV_GT_RENDER_RC6 == GEN6_GT_GFX_RC6, the IS_VALLEYVIEW() check is
-> not needed. Neither is the check present in other code paths which call
-> intel_rc6_residency_ns() (in functions gen6_drpc(), rc6_residency() and
-> rc6_residency_ms_show()).
-
-How about removing the dupe register macro while at it so no new users
-show up?
-
-BR,
-Jani.
-
+On Fri, 11 Mar 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> We want to eventually get rid of the connector->panel.fixed_mode
+> pointer so avoid using it during DSI property setup. Since this
+> all happens during the encoder init we already have the fixed_mode
+> around, just pass that in.
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+
 > ---
->  drivers/gpu/drm/i915/i915_pmu.c | 5 +----
->  1 file changed, 1 insertion(+), 4 deletions(-)
+>  drivers/gpu/drm/i915/display/icl_dsi.c | 11 ++++++-----
+>  drivers/gpu/drm/i915/display/vlv_dsi.c |  9 +++++----
+>  2 files changed, 11 insertions(+), 9 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
-> index cfc21042499d..3e3b09588fd3 100644
-> --- a/drivers/gpu/drm/i915/i915_pmu.c
-> +++ b/drivers/gpu/drm/i915/i915_pmu.c
-> @@ -148,10 +148,7 @@ static u64 __get_rc6(struct intel_gt *gt)
->  	struct drm_i915_private *i915 = gt->i915;
->  	u64 val;
->  
-> -	val = intel_rc6_residency_ns(&gt->rc6,
-> -				     IS_VALLEYVIEW(i915) ?
-> -				     VLV_GT_RENDER_RC6 :
-> -				     GEN6_GT_GFX_RC6);
-> +	val = intel_rc6_residency_ns(&gt->rc6, GEN6_GT_GFX_RC6);
->  
->  	if (HAS_RC6p(i915))
->  		val += intel_rc6_residency_ns(&gt->rc6, GEN6_GT_GFX_RC6p);
+> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i91=
+5/display/icl_dsi.c
+> index 13b07c6fd6be..00cae5d26637 100644
+> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
+> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+> @@ -1965,7 +1965,8 @@ static void icl_dphy_param_init(struct intel_dsi *i=
+ntel_dsi)
+>  	intel_dsi_log_params(intel_dsi);
+>  }
+>=20=20
+> -static void icl_dsi_add_properties(struct intel_connector *connector)
+> +static void icl_dsi_add_properties(struct intel_connector *connector,
+> +				   const struct drm_display_mode *fixed_mode)
+>  {
+>  	u32 allowed_scalers;
+>=20=20
+> @@ -1979,9 +1980,9 @@ static void icl_dsi_add_properties(struct intel_con=
+nector *connector)
+>  	connector->base.state->scaling_mode =3D DRM_MODE_SCALE_ASPECT;
+>=20=20
+>  	drm_connector_set_panel_orientation_with_quirk(&connector->base,
+> -				intel_dsi_get_panel_orientation(connector),
+> -				connector->panel.fixed_mode->hdisplay,
+> -				connector->panel.fixed_mode->vdisplay);
+> +						       intel_dsi_get_panel_orientation(connector),
+> +						       fixed_mode->hdisplay,
+> +						       fixed_mode->vdisplay);
+>  }
+>=20=20
+>  void icl_dsi_init(struct drm_i915_private *dev_priv)
+> @@ -2084,7 +2085,7 @@ void icl_dsi_init(struct drm_i915_private *dev_priv)
+>=20=20
+>  	icl_dphy_param_init(intel_dsi);
+>=20=20
+> -	icl_dsi_add_properties(intel_connector);
+> +	icl_dsi_add_properties(intel_connector, fixed_mode);
+>  	return;
+>=20=20
+>  err:
+> diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i91=
+5/display/vlv_dsi.c
+> index 0d936f658b3f..c87a6e729a3c 100644
+> --- a/drivers/gpu/drm/i915/display/vlv_dsi.c
+> +++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
+> @@ -1657,7 +1657,8 @@ static const struct drm_connector_funcs intel_dsi_c=
+onnector_funcs =3D {
+>  	.atomic_duplicate_state =3D intel_digital_connector_duplicate_state,
+>  };
+>=20=20
+> -static void vlv_dsi_add_properties(struct intel_connector *connector)
+> +static void vlv_dsi_add_properties(struct intel_connector *connector,
+> +				   const struct drm_display_mode *fixed_mode)
+>  {
+>  	struct drm_i915_private *dev_priv =3D to_i915(connector->base.dev);
+>  	u32 allowed_scalers;
+> @@ -1673,8 +1674,8 @@ static void vlv_dsi_add_properties(struct intel_con=
+nector *connector)
+>=20=20
+>  	drm_connector_set_panel_orientation_with_quirk(&connector->base,
+>  						       intel_dsi_get_panel_orientation(connector),
+> -						       connector->panel.fixed_mode->hdisplay,
+> -						       connector->panel.fixed_mode->vdisplay);
+> +						       fixed_mode->hdisplay,
+> +						       fixed_mode->vdisplay);
+>  }
+>=20=20
+>  #define NS_KHZ_RATIO		1000000
+> @@ -1989,7 +1990,7 @@ void vlv_dsi_init(struct drm_i915_private *dev_priv)
+>  	intel_panel_init(&intel_connector->panel, fixed_mode, NULL);
+>  	intel_backlight_setup(intel_connector, INVALID_PIPE);
+>=20=20
+> -	vlv_dsi_add_properties(intel_connector);
+> +	vlv_dsi_add_properties(intel_connector, fixed_mode);
+>=20=20
+>  	return;
 
--- 
+--=20
 Jani Nikula, Intel Open Source Graphics Center
