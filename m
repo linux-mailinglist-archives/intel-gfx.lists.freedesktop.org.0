@@ -1,33 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9CDD4DA244
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Mar 2022 19:24:07 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A60CC4DA243
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Mar 2022 19:23:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 026EE10E2CD;
-	Tue, 15 Mar 2022 18:24:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3828D10E141;
+	Tue, 15 Mar 2022 18:23:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3CA1110E2CD;
- Tue, 15 Mar 2022 18:24:04 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 38DF5AADD4;
- Tue, 15 Mar 2022 18:24:04 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1061110E141
+ for <intel-gfx@lists.freedesktop.org>; Tue, 15 Mar 2022 18:23:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1647368604; x=1678904604;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=8aDwoz9laovZQyNLS3VPgpYTPXuSXjcBdJ0XIMUzo6Y=;
+ b=RnQLtx0gHktMei6z58X6cj5hV8R4aOEd4RuL6SyXCFfJbF8M+iRPz1eX
+ efPK9rDh+yNTIPZU3I9J0gPnvNqOezK6J2/fz5qotTfEfw23PM+sl9AqZ
+ JIh66AgmrFcNyrHUPGPhncXyKBvcExQeltu/nUqsvOW5Uz0rSQJ1fZBkV
+ PWYditrtd1Ov9Rr0cIKwsjnzEBkS9o+0RNu9d2CVKQf6byPLmq9U2aZvo
+ +5w7+M17Rg90Bsgz7uUjjCZoixcsurO6Ppl0+bRe6X7HmmtB2MBQSsFo3
+ IKwZy2iuCElG7gaFAq6FYMqZ3VTDfKAZdmej4QtiQ5dZFN4qxuwGMMqj6 A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10286"; a="281166910"
+X-IronPort-AV: E=Sophos;i="5.90,184,1643702400"; d="scan'208";a="281166910"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Mar 2022 11:23:22 -0700
+X-IronPort-AV: E=Sophos;i="5.90,184,1643702400"; d="scan'208";a="512716765"
+Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
+ ([10.165.21.211])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Mar 2022 11:23:22 -0700
+Date: Tue, 15 Mar 2022 11:24:35 -0700
+From: "Navare, Manasi" <manasi.d.navare@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Message-ID: <20220315182435.GA32032@labuser-Z97X-UD5H>
+References: <20220315132752.11849-1-ville.syrjala@linux.intel.com>
+ <20220315132752.11849-9-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Teres Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com>
-Date: Tue, 15 Mar 2022 18:24:04 -0000
-Message-ID: <164736864422.20492.15417503977611416401@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220314170954.1537154-1-alan.previn.teres.alexis@intel.com>
-In-Reply-To: <20220314170954.1537154-1-alan.previn.teres.alexis@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Add_GuC_Error_Capture_Support_=28rev2=29?=
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220315132752.11849-9-ville.syrjala@linux.intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH 8/9] drm/i915: Deal with bigjoiner vs. DRRS
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,220 +59,71 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, Mar 15, 2022 at 03:27:51PM +0200, Ville Syrjala wrote:
+> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> 
+> DRRS operates on transcoder level, so we should only poke at it from
+> the master crtc rather than letting every joined pipe give it
+> potentially conflicting input.
+> 
+> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Series: Add GuC Error Capture Support (rev2)
-URL   : https://patchwork.freedesktop.org/series/101348/
-State : warning
+Looks good
 
-== Summary ==
+Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
 
-$ dim checkpatch origin/drm-tip
-41d2f067e825 drm/i915/guc: Update GuC ADS size for error capture lists
--:40: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#40: 
-new file mode 100644
+Manasi
 
--:324: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
-#324: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c:653:
-+				ads_blob_write(guc, ads.capture_class[i][j], ads_ggtt + capture_offset);
-
--:345: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
-#345: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c:674:
-+				ads_blob_write(guc, ads.capture_instance[i][j], ads_ggtt + capture_offset);
-
--:469: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'regslist' - possible side-effects?
-#469: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:63:
-+#define MAKE_REGLIST(regslist, regsowner, regstype, class) \
-+	{ \
-+		regslist, \
-+		ARRAY_SIZE(regslist), \
-+		TO_GCAP_DEF_OWNER(regsowner), \
-+		TO_GCAP_DEF_TYPE(regstype), \
-+		class, \
-+	}
-
--:513: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (16, 16)
-#513: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:107:
-+		if (reglists[i].owner == owner && reglists[i].type == type &&
-[...]
-+		return &reglists[i];
-
--:689: WARNING:OOM_MESSAGE: Possible unnecessary 'out of memory' message
-#689: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:283:
-+	if (!caplist) {
-+		drm_dbg(&i915->drm, "GuC-capture: failed to alloc cached caplist");
-
--:731: WARNING:OOM_MESSAGE: Possible unnecessary 'out of memory' message
-#731: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:325:
-+	if (!null_header) {
-+		drm_dbg(&i915->drm, "GuC-capture: failed to alloc cached nulllist");
-
-total: 0 errors, 6 warnings, 1 checks, 749 lines checked
-7b2eb12974e1 drm/i915/guc: Add XE_LP static registers for GuC error capture.
--:26: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#26: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:25:
-+#define COMMON_GEN12BASE_GLOBAL() \
-+	{GEN12_FAULT_TLB_DATA0,    0,      0, "GEN12_FAULT_TLB_DATA0"}, \
-+	{GEN12_FAULT_TLB_DATA1,    0,      0, "GEN12_FAULT_TLB_DATA1"}, \
-+	{FORCEWAKE_MT,             0,      0, "FORCEWAKE"}, \
-+	{GEN12_AUX_ERR_DBG,        0,      0, "AUX_ERR_DBG"}, \
-+	{GEN12_GAM_DONE,           0,      0, "GAM_DONE"}, \
-+	{GEN12_RING_FAULT_REG,     0,      0, "FAULT_REG"}
-
--:34: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#34: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:33:
-+#define COMMON_GEN12BASE_ENGINE_INSTANCE() \
-+	{RING_PSMI_CTL(0),         0,      0, "RC PSMI"}, \
-+	{RING_ESR(0),              0,      0, "ESR"}, \
-+	{RING_DMA_FADD(0),         0,      0, "RING_DMA_FADD_LDW"}, \
-+	{RING_DMA_FADD_UDW(0),     0,      0, "RING_DMA_FADD_UDW"}, \
-+	{RING_IPEIR(0),            0,      0, "IPEIR"}, \
-+	{RING_IPEHR(0),            0,      0, "IPEHR"}, \
-+	{RING_INSTPS(0),           0,      0, "INSTPS"}, \
-+	{RING_BBADDR(0),           0,      0, "RING_BBADDR_LOW32"}, \
-+	{RING_BBADDR_UDW(0),       0,      0, "RING_BBADDR_UP32"}, \
-+	{RING_BBSTATE(0),          0,      0, "BB_STATE"}, \
-+	{CCID(0),                  0,      0, "CCID"}, \
-+	{RING_ACTHD(0),            0,      0, "ACTHD_LDW"}, \
-+	{RING_ACTHD_UDW(0),        0,      0, "ACTHD_UDW"}, \
-+	{RING_INSTPM(0),           0,      0, "INSTPM"}, \
-+	{RING_INSTDONE(0),         0,      0, "INSTDONE"}, \
-+	{RING_NOPID(0),            0,      0, "RING_NOPID"}, \
-+	{RING_START(0),            0,      0, "START"}, \
-+	{RING_HEAD(0),             0,      0, "HEAD"}, \
-+	{RING_TAIL(0),             0,      0, "TAIL"}, \
-+	{RING_CTL(0),              0,      0, "CTL"}, \
-+	{RING_MI_MODE(0),          0,      0, "MODE"}, \
-+	{RING_CONTEXT_CONTROL(0),  0,      0, "RING_CONTEXT_CONTROL"}, \
-+	{RING_HWS_PGA(0),          0,      0, "HWS"}, \
-+	{RING_MODE_GEN7(0),        0,      0, "GFX_MODE"}, \
-+	{GEN8_RING_PDP_LDW(0, 0),  0,      0, "PDP0_LDW"}, \
-+	{GEN8_RING_PDP_UDW(0, 0),  0,      0, "PDP0_UDW"}, \
-+	{GEN8_RING_PDP_LDW(0, 1),  0,      0, "PDP1_LDW"}, \
-+	{GEN8_RING_PDP_UDW(0, 1),  0,      0, "PDP1_UDW"}, \
-+	{GEN8_RING_PDP_LDW(0, 2),  0,      0, "PDP2_LDW"}, \
-+	{GEN8_RING_PDP_UDW(0, 2),  0,      0, "PDP2_UDW"}, \
-+	{GEN8_RING_PDP_LDW(0, 3),  0,      0, "PDP3_LDW"}, \
-+	{GEN8_RING_PDP_UDW(0, 3),  0,      0, "PDP3_UDW"}
-
--:71: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#71: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:70:
-+#define COMMON_GEN12BASE_RENDER() \
-+	{GEN7_SC_INSTDONE,         0,      0, "GEN7_SC_INSTDONE"}, \
-+	{GEN12_SC_INSTDONE_EXTRA,  0,      0, "GEN12_SC_INSTDONE_EXTRA"}, \
-+	{GEN12_SC_INSTDONE_EXTRA2, 0,      0, "GEN12_SC_INSTDONE_EXTRA2"}
-
--:76: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#76: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:75:
-+#define COMMON_GEN12BASE_VEC() \
-+	{GEN12_SFC_DONE(0),        0,      0, "SFC_DONE[0]"}, \
-+	{GEN12_SFC_DONE(1),        0,      0, "SFC_DONE[1]"}, \
-+	{GEN12_SFC_DONE(2),        0,      0, "SFC_DONE[2]"}, \
-+	{GEN12_SFC_DONE(3),        0,      0, "SFC_DONE[3]"}
-
-total: 4 errors, 0 warnings, 0 checks, 180 lines checked
-fe8afd1fccca drm/i915/guc: Add XE_LP steered register lists support
--:70: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (16, 16)
-#70: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:163:
-+		if (reglists[i].owner == owner && reglists[i].type == type &&
-[...]
-+		return &reglists[i];
-
-total: 0 errors, 1 warnings, 0 checks, 260 lines checked
-9473e1b1adce drm/i915/guc: Add DG2 registers for GuC error state capture.
-d2224cffdf02 drm/i915/guc: Add Gen9 registers for GuC error state capture.
--:23: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#23: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:28:
-+#define COMMON_GEN9BASE_GLOBAL() \
-+	{GEN8_FAULT_TLB_DATA0,     0,      0, "GEN8_FAULT_TLB_DATA0"}, \
-+	{GEN8_FAULT_TLB_DATA1,     0,      0, "GEN8_FAULT_TLB_DATA1"}, \
-+	{ERROR_GEN6,               0,      0, "ERROR_GEN6"}, \
-+	{DONE_REG,                 0,      0, "DONE_REG"}, \
-+	{HSW_GTT_CACHE_EN,         0,      0, "HSW_GTT_CACHE_EN"}
-
--:39: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#39: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:42:
-+#define COMMON_BASE_ENGINE_INSTANCE() \
- 	{RING_PSMI_CTL(0),         0,      0, "RC PSMI"}, \
- 	{RING_ESR(0),              0,      0, "ESR"}, \
- 	{RING_DMA_FADD(0),         0,      0, "RING_DMA_FADD_LDW"}, \
-
-total: 2 errors, 0 warnings, 0 checks, 146 lines checked
-d570336063fd drm/i915/guc: Add GuC's error state capture output structures.
-337a718c748c drm/i915/guc: Update GuC-log relay function names
-b56a530bf6ee drm/i915/guc: Add capture region into intel_guc_log
--:58: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
-#58: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_log.c:217:
-+	log_buf_state = src_data = log->buf_addr;
-
-total: 0 errors, 0 warnings, 1 checks, 155 lines checked
-aebb26f6ac77 drm/i915/guc: Check sizing of guc_capture output
-4c1ddca98b9c drm/i915/guc: Extract GuC error capture lists on G2H notification.
-2dbcd0c5a00f drm/i915/guc: Pre-allocate output nodes for extraction
-aab27c57b88b drm/i915/guc: Plumb GuC-capture into gpu_coredump
-fc94e848f611 drm/i915/guc: Print the GuC error capture output register list.
--:35: WARNING:BAD_SIGN_OFF: Duplicate signature
-#35: 
-Reported-by: kernel test robot <lkp@intel.com>
-
--:134: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'a' - possible side-effects?
-#134: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1440:
-+#define __out(a, ...) \
-+	do { \
-+		drm_warn((&(a)->drm), __VA_ARGS__); \
-+		i915_error_printf((a), __VA_ARGS__); \
-+	} while (0)
-
--:144: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'ebuf' - possible side-effects?
-#144: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1450:
-+#define GCAP_PRINT_INTEL_ENG_INFO(ebuf, eng) \
-+	do { \
-+		__out(ebuf, "    i915-Eng-Name: %s command stream\n", \
-+		      (eng)->name); \
-+		__out(ebuf, "    i915-Eng-Inst-Class: 0x%02x\n", (eng)->class); \
-+		__out(ebuf, "    i915-Eng-Inst-Id: 0x%02x\n", (eng)->instance); \
-+		__out(ebuf, "    i915-Eng-LogicalMask: 0x%08x\n", \
-+		      (eng)->logical_mask); \
-+	} while (0)
-
--:144: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'eng' - possible side-effects?
-#144: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1450:
-+#define GCAP_PRINT_INTEL_ENG_INFO(ebuf, eng) \
-+	do { \
-+		__out(ebuf, "    i915-Eng-Name: %s command stream\n", \
-+		      (eng)->name); \
-+		__out(ebuf, "    i915-Eng-Inst-Class: 0x%02x\n", (eng)->class); \
-+		__out(ebuf, "    i915-Eng-Inst-Id: 0x%02x\n", (eng)->instance); \
-+		__out(ebuf, "    i915-Eng-LogicalMask: 0x%08x\n", \
-+		      (eng)->logical_mask); \
-+	} while (0)
-
--:154: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'ebuf' - possible side-effects?
-#154: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1460:
-+#define GCAP_PRINT_GUC_INST_INFO(ebuf, node) \
-+	do { \
-+		__out(ebuf, "    GuC-Engine-Inst-Id: 0x%08x\n", \
-+		      (node)->eng_inst); \
-+		__out(ebuf, "    GuC-Context-Id: 0x%08x\n", (node)->guc_id); \
-+		__out(ebuf, "    LRCA: 0x%08x\n", (node)->lrca); \
-+	} while (0)
-
--:154: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'node' - possible side-effects?
-#154: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:1460:
-+#define GCAP_PRINT_GUC_INST_INFO(ebuf, node) \
-+	do { \
-+		__out(ebuf, "    GuC-Engine-Inst-Id: 0x%08x\n", \
-+		      (node)->eng_inst); \
-+		__out(ebuf, "    GuC-Context-Id: 0x%08x\n", (node)->guc_id); \
-+		__out(ebuf, "    LRCA: 0x%08x\n", (node)->lrca); \
-+	} while (0)
-
-total: 0 errors, 1 warnings, 5 checks, 286 lines checked
-
-
+> ---
+>  drivers/gpu/drm/i915/display/intel_drrs.c | 16 +++++++++++++++-
+>  1 file changed, 15 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_drrs.c b/drivers/gpu/drm/i915/display/intel_drrs.c
+> index 44c9af8f8b9b..9a341ab1a848 100644
+> --- a/drivers/gpu/drm/i915/display/intel_drrs.c
+> +++ b/drivers/gpu/drm/i915/display/intel_drrs.c
+> @@ -176,8 +176,16 @@ static void intel_drrs_schedule_work(struct intel_crtc *crtc)
+>  static unsigned int intel_drrs_frontbuffer_bits(const struct intel_crtc_state *crtc_state)
+>  {
+>  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> +	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+> +	unsigned int frontbuffer_bits;
+>  
+> -	return INTEL_FRONTBUFFER_ALL_MASK(crtc->pipe);
+> +	frontbuffer_bits = INTEL_FRONTBUFFER_ALL_MASK(crtc->pipe);
+> +
+> +	for_each_intel_crtc_in_pipe_mask(&i915->drm, crtc,
+> +					 crtc_state->bigjoiner_pipes)
+> +		frontbuffer_bits |= INTEL_FRONTBUFFER_ALL_MASK(crtc->pipe);
+> +
+> +	return frontbuffer_bits;
+>  }
+>  
+>  /**
+> @@ -196,6 +204,9 @@ void intel_drrs_enable(const struct intel_crtc_state *crtc_state)
+>  	if (!crtc_state->hw.active)
+>  		return;
+>  
+> +	if (intel_crtc_is_bigjoiner_slave(crtc_state))
+> +		return;
+> +
+>  	mutex_lock(&crtc->drrs.mutex);
+>  
+>  	crtc->drrs.cpu_transcoder = crtc_state->cpu_transcoder;
+> @@ -223,6 +234,9 @@ void intel_drrs_disable(const struct intel_crtc_state *old_crtc_state)
+>  	if (!old_crtc_state->hw.active)
+>  		return;
+>  
+> +	if (intel_crtc_is_bigjoiner_slave(old_crtc_state))
+> +		return;
+> +
+>  	mutex_lock(&crtc->drrs.mutex);
+>  
+>  	if (intel_drrs_is_enabled(crtc))
+> -- 
+> 2.34.1
+> 
