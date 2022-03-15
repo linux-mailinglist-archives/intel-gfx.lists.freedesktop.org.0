@@ -2,48 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 462FB4D9601
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Mar 2022 09:16:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BD024D961E
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Mar 2022 09:25:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D42D10E43A;
-	Tue, 15 Mar 2022 08:16:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD7CE10E3B5;
+	Tue, 15 Mar 2022 08:25:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C355688503
- for <intel-gfx@lists.freedesktop.org>; Tue, 15 Mar 2022 08:16:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1647332172; x=1678868172;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=DwPjKVtRnDTA+k+LSgqCT/YnIZCEbZT8NvJdov9K07c=;
- b=NhnoCzyc4HIr22BiRQYjWMAdq3EaUub0YILqjpIhI6uRgKEPl0cyY2Fc
- vJCSzM/+rnhRMr9juFj+UtPmRNBoxzHLQhN7/s07v7x/PiKITTI1MnVmj
- CIzxlqkQ9Dg6Oxl1RIADj53OKD0aQXRQwRdYGYbFlPyriOKZrhNaGuGBa
- YW3GUuWLJMoJS7EJttFBAEN8k1E3bwD1f7uKxddmw6n0+eCumeiYqIa8i
- w5Xjg2rMFA/5mch5R4U7qiq/unF90aEPobiD6L8zuYbNJbe2b1oH3mCgV
- aaglIYXRkb2UEnC7nXIuUmj5O6cy6AGAXuzo0voVMTjAnD58w91JXYClo Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10286"; a="243694612"
-X-IronPort-AV: E=Sophos;i="5.90,182,1643702400"; d="scan'208";a="243694612"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Mar 2022 01:16:02 -0700
-X-IronPort-AV: E=Sophos;i="5.90,182,1643702400"; d="scan'208";a="714069177"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Mar 2022 01:16:00 -0700
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 15 Mar 2022 13:32:47 +0530
-Message-Id: <20220315080247.1161844-3-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220315080247.1161844-1-ankit.k.nautiyal@intel.com>
-References: <20220315080247.1161844-1-ankit.k.nautiyal@intel.com>
+X-Greylist: delayed 325 seconds by postgrey-1.36 at gabe;
+ Tue, 15 Mar 2022 08:25:06 UTC
+Received: from mx1.molgen.mpg.de (mx3.molgen.mpg.de [141.14.17.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C4B2F10E467
+ for <intel-gfx@lists.freedesktop.org>; Tue, 15 Mar 2022 08:25:06 +0000 (UTC)
+Received: from [192.168.0.3] (ip5f5ae8f9.dynamic.kabel-deutschland.de
+ [95.90.232.249])
+ (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+ (No client certificate requested) (Authenticated sender: pmenzel)
+ by mx.molgen.mpg.de (Postfix) with ESMTPSA id C3DAB61EA1928;
+ Tue, 15 Mar 2022 09:19:38 +0100 (CET)
+Message-ID: <0b9a8cc2-2f34-48c9-7960-727615eb2edb@molgen.mpg.de>
+Date: Tue, 15 Mar 2022 09:19:38 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 2/2] drm/i915/intel_combo_phy: Print procmon
- ref values
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.2
+Content-Language: en-US
+To: Arunpravin.PaneerSelvam@amd.com
+References: <20220314194049.534471-1-Arunpravin.PaneerSelvam@amd.com>
+From: Paul Menzel <pmenzel@molgen.mpg.de>
+In-Reply-To: <20220314194049.534471-1-Arunpravin.PaneerSelvam@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH] drm: Fix a infinite loop condition when
+ order becomes 0
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,77 +47,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, alexander.deucher@amd.com,
+ christian.koenig@amd.com, matthew.auld@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add debug print for Procmon Ref values, to help get the
-voltage configurations of combo PHYs.
+Dear Arunpravin,
 
-v2: Used drm_dbg_kms for logs. (Jani)
-Added names for different voltage levels. (Imre)
 
-Suggested-by: Imre Deak <imre.deak@intel.com>
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- .../gpu/drm/i915/display/intel_combo_phy.c    | 36 +++++++++++++------
- 1 file changed, 26 insertions(+), 10 deletions(-)
+Am 14.03.22 um 20:40 schrieb Arunpravin:
+> handle a situation in the condition order-- == min_order,
+> when order = 0, leading to order = -1, it now won't exit
+> the loop. To avoid this problem, added a order check in
+> the same condition, (i.e) when order is 0, we return
+> -ENOSPC
+> 
+> Signed-off-by: Arunpravin <Arunpravin.PaneerSelvam@amd.com>
 
-diff --git a/drivers/gpu/drm/i915/display/intel_combo_phy.c b/drivers/gpu/drm/i915/display/intel_combo_phy.c
-index 4dfe77351b8b..7ccf45578a7f 100644
---- a/drivers/gpu/drm/i915/display/intel_combo_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_combo_phy.c
-@@ -25,18 +25,29 @@ enum {
- };
- 
- static const struct icl_procmon {
-+	char name[30];
- 	u32 dw1, dw9, dw10;
- } icl_procmon_values[] = {
--	[PROCMON_0_85V_DOT_0] =
--		{ .dw1 = 0x00000000, .dw9 = 0x62AB67BB, .dw10 = 0x51914F96, },
--	[PROCMON_0_95V_DOT_0] =
--		{ .dw1 = 0x00000000, .dw9 = 0x86E172C7, .dw10 = 0x77CA5EAB, },
--	[PROCMON_0_95V_DOT_1] =
--		{ .dw1 = 0x00000000, .dw9 = 0x93F87FE1, .dw10 = 0x8AE871C5, },
--	[PROCMON_1_05V_DOT_0] =
--		{ .dw1 = 0x00000000, .dw9 = 0x98FA82DD, .dw10 = 0x89E46DC1, },
--	[PROCMON_1_05V_DOT_1] =
--		{ .dw1 = 0x00440000, .dw9 = 0x9A00AB25, .dw10 = 0x8AE38FF1, },
-+	[PROCMON_0_85V_DOT_0] = {
-+		.name = "0.85V dot0 (low-voltage)\0",
-+		.dw1 = 0x00000000, .dw9 = 0x62AB67BB, .dw10 = 0x51914F96,
-+	},
-+	[PROCMON_0_95V_DOT_0] = {
-+		.name = "0.95V dot0\0",
-+		.dw1 = 0x00000000, .dw9 = 0x86E172C7, .dw10 = 0x77CA5EAB,
-+	},
-+	[PROCMON_0_95V_DOT_1] = {
-+		.name = "0.95V dot1\0",
-+		.dw1 = 0x00000000, .dw9 = 0x93F87FE1, .dw10 = 0x8AE871C5,
-+	},
-+	[PROCMON_1_05V_DOT_0] = {
-+		.name = "1.05V dot0\0",
-+		.dw1 = 0x00000000, .dw9 = 0x98FA82DD, .dw10 = 0x89E46DC1,
-+	},
-+	[PROCMON_1_05V_DOT_1] = {
-+		.name = "1.05V dot1\0",
-+		.dw1 = 0x00440000, .dw9 = 0x9A00AB25, .dw10 = 0x8AE38FF1,
-+	},
- };
- 
- static const struct icl_procmon *
-@@ -113,6 +124,11 @@ static bool icl_verify_procmon_ref_values(struct drm_i915_private *dev_priv,
- 
- 	procmon = icl_get_procmon_ref_values(dev_priv, phy);
- 
-+	drm_dbg_kms(&dev_priv->drm,
-+		    "Combo PHY %c %s PROCMON values : 0x%x, 0x%x, 0x%x\n",
-+		    phy_name(phy), procmon->name, procmon->dw1, procmon->dw9,
-+		    procmon->dw10);
-+
- 	ret = check_phy_reg(dev_priv, phy, ICL_PORT_COMP_DW1(phy),
- 			    (0xff << 16) | 0xff, procmon->dw1);
- 	ret &= check_phy_reg(dev_priv, phy, ICL_PORT_COMP_DW9(phy),
--- 
-2.25.1
+Please use your full name.
 
+> ---
+>   drivers/gpu/drm/drm_buddy.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_buddy.c b/drivers/gpu/drm/drm_buddy.c
+> index 72f52f293249..5ab66aaf2bbd 100644
+> --- a/drivers/gpu/drm/drm_buddy.c
+> +++ b/drivers/gpu/drm/drm_buddy.c
+
+In what tree is that file?
+
+> @@ -685,7 +685,7 @@ int drm_buddy_alloc_blocks(struct drm_buddy *mm,
+>   			if (!IS_ERR(block))
+>   				break;
+>   
+> -			if (order-- == min_order) {
+> +			if (!order || order-- == min_order) {
+>   				err = -ENOSPC;
+>   				goto err_free;
+>   			}
+
+Kind regards,
+
+Paul
