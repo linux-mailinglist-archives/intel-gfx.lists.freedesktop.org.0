@@ -1,50 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5835D4D99E3
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Mar 2022 12:03:30 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 331E84D9A01
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Mar 2022 12:09:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4881D10E343;
-	Tue, 15 Mar 2022 11:03:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4691310E38B;
+	Tue, 15 Mar 2022 11:08:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B88A10E343;
- Tue, 15 Mar 2022 11:03:25 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE81C10E38B;
+ Tue, 15 Mar 2022 11:08:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1647342205; x=1678878205;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=Uqo2APHOgPCKOY3O397vCvshaEwUBO4/a66Vc1IJS3U=;
- b=LdeTAZFQP+wBMvIMfxjuwaQFp6VgMNZwak2I+lRpyUe/KnYaxf40NpPp
- KRpkbES0GTktZTivz88VuheRu5JIdMPYZGxLZ7U/HDwhCqgGire3dNuGe
- 4amHYrXFQq3TbapyCUHysuEj0DKSMxpgBC90h5XqR7YBnkDdhnVFp9pgX
- HIjtWcFrBPgTHNu5FrPm8igEwwAdBY3jHnn/1VWEqRrbQI5ruTn/j6xLj
- sxvxhZVtJDVPN/SXTtwxzi3Cj/rRaBvZaImGv5wi/MlytodhiBLcBWxgz
- s6qSLuWHrh+6/TVtU8hy251QhXaiecO5ydXMOac6b7s/eUw6cmvTFji5h A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10286"; a="236217115"
-X-IronPort-AV: E=Sophos;i="5.90,183,1643702400"; d="scan'208";a="236217115"
+ t=1647342537; x=1678878537;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to;
+ bh=YDKntoKDtJsPvUhWRVQc77Q2Fz4Q4Hp38TkXHid8174=;
+ b=MsfkB8bEmVRKNmkCD//iaRRk5dqREq9bhPnsaLZad6MCW9cAYj9g7+Zw
+ NMnewfxfOBtqtJJRsQmZ+fdJBU/mD4u/ZfOdcIgRPJ55OwZwOVAs3MMM2
+ 27gvrgPektPP673ACSLKotJvrEmMUyUiVZj5MZWiLc2jDm03CO+4BynMs
+ 2ofOMoSb6tZMdImdTzSJ0FaIamtZejsDw66Np5QUljG/HnilC8QTdByRd
+ xDQeQ8OEYreVCeZS8jIRxh/Eh2+COBkHboI7RjjtjCHVxDbq7frS/qOlB
+ 8cBUU1sKiFI3OtfmTLukuQVKaeccJpjgIMC5UsVVngzk7VT0BAKEeJa9K A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10286"; a="243723355"
+X-IronPort-AV: E=Sophos;i="5.90,183,1643702400"; 
+ d="scan'208,217";a="243723355"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Mar 2022 04:03:24 -0700
-X-IronPort-AV: E=Sophos;i="5.90,183,1643702400"; d="scan'208";a="556874399"
-Received: from cgrilli-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.56.234])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Mar 2022 04:08:56 -0700
+X-IronPort-AV: E=Sophos;i="5.90,183,1643702400"; 
+ d="scan'208,217";a="556876250"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.252.35.121])
+ ([10.252.35.121])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Mar 2022 04:03:22 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Lee Shawn C <shawn.c.lee@intel.com>, dri-devel@lists.freedesktop.org
-In-Reply-To: <20220313134702.24175-4-shawn.c.lee@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220313134702.24175-1-shawn.c.lee@intel.com>
- <20220313134702.24175-4-shawn.c.lee@intel.com>
-Date: Tue, 15 Mar 2022 13:03:19 +0200
-Message-ID: <87y21btr48.fsf@intel.com>
+ 15 Mar 2022 04:08:55 -0700
+Content-Type: multipart/alternative;
+ boundary="------------zTVpaDF8espvwk7rIYNBt26B"
+Message-ID: <99160b7b-130b-efe7-e9d5-1decc36017b8@linux.intel.com>
+Date: Tue, 15 Mar 2022 12:08:53 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [v7 3/5] drm/edid: read HF-EEODB ext block
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Content-Language: en-US
+To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20220314112837.352931-1-matthew.auld@intel.com>
+ <20220314112837.352931-8-matthew.auld@intel.com>
+From: "Das, Nirmoy" <nirmoy.das@linux.intel.com>
+In-Reply-To: <20220314112837.352931-8-matthew.auld@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v3 7/7] drm/i915: fixup the initial fb base
+ on DGFX
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,209 +63,252 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Drew Davenport <ddavenport@chromium.org>, intel-gfx@lists.freedesktop.org
+Cc: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sun, 13 Mar 2022, Lee Shawn C <shawn.c.lee@intel.com> wrote:
-> According to HDMI 2.1 spec.
+This is a multi-part message in MIME format.
+--------------zTVpaDF8espvwk7rIYNBt26B
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+|This seems more natural to me than the previous version. Acked-by: 
+Nirmoy Das <nirmoy.das@linux.intel.com> |
+
+Nirmoy
+
+On 14/03/2022 12:28, Matthew Auld wrote:
+> On integrated it looks like the GGTT base should always 1:1 maps to
+> somewhere within DSM. On discrete the base seems to be pre-programmed with
+> a normal lmem address, and is not 1:1 mapped with the base address. On
+> such devices probe the lmem address directly from the PTE.
 >
-> "The HDMI Forum EDID Extension Override Data Block (HF-EEODB)
-> is utilized by Sink Devices to provide an alternate method to
-> indicate an EDID Extension Block count larger than 1, while
-> avoiding the need to present a VESA Block Map in the first
-> E-EDID Extension Block."
+> v2(Ville):
+>    - The base is actually the pre-programmed GGTT address, which is then
+>      meant to 1:1 map to somewhere inside dsm. In the case of dgpu the
+>      base looks to just be some offset within lmem, but this also happens
+>      to be the exact dsm start, on dg1. Therefore we should only need to
+>      fudge the physical address, before allocating from stolen.
+>    - Bail if it's not located in dsm.
+> v3:
+>    - Scratch that. There doesn't seem to be any relationship with the
+>      base and PTE address, on at least DG1. Let's instead just grab the
+>      lmem address from the PTE itself.
 >
-> It is a mandatory for HDMI 2.1 protocol compliance as well.
-> This patch help to know how many HF_EEODB blocks report by sink
-> and read allo HF_EEODB blocks back.
->
-> v2: support to find CEA block, check EEODB block format, and return
->     available block number in drm_edid_read_hf_eeodb_blk_count().
->
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
-> Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> Cc: Drew Davenport <ddavenport@chromium.org>
-> Cc: intel-gfx <intel-gfx@lists.freedesktop.org>
-> Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
+> Signed-off-by: Matthew Auld<matthew.auld@intel.com>
+> Cc: Thomas Hellström<thomas.hellstrom@linux.intel.com>
+> Cc: Ville Syrjälä<ville.syrjala@linux.intel.com>
+> Cc: Nirmoy Das<nirmoy.das@linux.intel.com>
 > ---
->  drivers/gpu/drm/drm_connector.c |  8 +++-
->  drivers/gpu/drm/drm_edid.c      | 71 +++++++++++++++++++++++++++++++--
->  include/drm/drm_edid.h          |  1 +
->  3 files changed, 74 insertions(+), 6 deletions(-)
+>   .../drm/i915/display/intel_plane_initial.c    | 50 ++++++++++++++++---
+>   1 file changed, 44 insertions(+), 6 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
-> index a50c82bc2b2f..16011023c12e 100644
-> --- a/drivers/gpu/drm/drm_connector.c
-> +++ b/drivers/gpu/drm/drm_connector.c
-> @@ -2129,7 +2129,7 @@ int drm_connector_update_edid_property(struct drm_connector *connector,
->  				       const struct edid *edid)
->  {
->  	struct drm_device *dev = connector->dev;
-> -	size_t size = 0;
-> +	size_t size = 0, hf_eeodb_blk_count;
->  	int ret;
->  	const struct edid *old_edid;
->  
-> @@ -2137,8 +2137,12 @@ int drm_connector_update_edid_property(struct drm_connector *connector,
->  	if (connector->override_edid)
->  		return 0;
->  
-> -	if (edid)
-> +	if (edid) {
->  		size = EDID_LENGTH * (1 + edid->extensions);
-> +		hf_eeodb_blk_count = drm_edid_read_hf_eeodb_blk_count(edid);
-> +		if (hf_eeodb_blk_count)
-> +			size = EDID_LENGTH * (1 + hf_eeodb_blk_count);
-
-This approach does not scale. If the number of extensions and thus the
-total EDID size depend on HF-EEODB, this *must* be abstracted.
-
-Consider, for example, drm_edid_duplicate(), which only looks at
-edid->extensions. A subsequent HF-EEODB aware access on an EDID
-duplicated using drm_edid_duplicate() will access beyond the allocated
-buffer.
-
-Yes, it's a lot of work to introduce drm_edid_size() and
-drm_edid_extension_count() or similar, and use them everywhere, but this
-is what we must do. It's a lot more work to try to take HF-EEODB into
-account everywhere. The latter is going to be riddled with bugs with
-everyone doing it a little different.
-
-> +	}
->  
->  	/* Set the display info, using edid if available, otherwise
->  	 * resetting the values to defaults. This duplicates the work
-> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
-> index 9fa84881fbba..5ae4e83fa5e3 100644
-> --- a/drivers/gpu/drm/drm_edid.c
-> +++ b/drivers/gpu/drm/drm_edid.c
-> @@ -1992,6 +1992,7 @@ struct edid *drm_do_get_edid(struct drm_connector *connector,
->  {
->  	int i, j = 0, valid_extensions = 0;
->  	u8 *edid, *new;
-> +	size_t hf_eeodb_blk_count;
->  	struct edid *override;
->  
->  	override = drm_get_override_edid(connector);
-> @@ -2051,7 +2052,35 @@ struct edid *drm_do_get_edid(struct drm_connector *connector,
->  		}
->  
->  		kfree(edid);
-> +		return (struct edid *)new;
-> +	}
+> diff --git a/drivers/gpu/drm/i915/display/intel_plane_initial.c b/drivers/gpu/drm/i915/display/intel_plane_initial.c
+> index f797fcef18fc..7979929bb632 100644
+> --- a/drivers/gpu/drm/i915/display/intel_plane_initial.c
+> +++ b/drivers/gpu/drm/i915/display/intel_plane_initial.c
+> @@ -47,17 +47,55 @@ static struct i915_vma *
+>   initial_plane_vma(struct drm_i915_private *i915,
+>   		  struct intel_initial_plane_config *plane_config)
+>   {
+> -	struct intel_memory_region *mem = i915->mm.stolen_region;
+> +	struct intel_memory_region *mem;
+>   	struct drm_i915_gem_object *obj;
+>   	struct i915_vma *vma;
+> +	resource_size_t phys_base;
+>   	u32 base, size;
+>   	u64 pinctl;
+>   
+> -	if (!mem || plane_config->size == 0)
+> +	if (plane_config->size == 0)
+> +		return NULL;
 > +
-> +	hf_eeodb_blk_count = drm_edid_read_hf_eeodb_blk_count((struct edid *)edid);
-> +	if (hf_eeodb_blk_count >= 2) {
-> +		new = krealloc(edid, (hf_eeodb_blk_count + 1) * EDID_LENGTH, GFP_KERNEL);
-> +		if (!new)
-> +			goto out;
->  		edid = new;
+> +	base = round_down(plane_config->base, I915_GTT_MIN_ALIGNMENT);
+> +	if (IS_DGFX(i915)) {
+> +		gen8_pte_t __iomem *gte = to_gt(i915)->ggtt->gsm;
+> +		gen8_pte_t pte;
 > +
-> +		valid_extensions = hf_eeodb_blk_count - 1;
-> +		for (j = 2; j <= hf_eeodb_blk_count; j++) {
-> +			u8 *block = edid + j * EDID_LENGTH;
+> +		gte += base / I915_GTT_PAGE_SIZE;
 > +
-> +			for (i = 0; i < 4; i++) {
-> +				if (get_edid_block(data, block, j, EDID_LENGTH))
-> +					goto out;
-> +				if (drm_edid_block_valid(block, j, false, NULL))
-> +					break;
-> +			}
-> +
-> +			if (i == 4)
-> +				valid_extensions--;
+> +		pte = ioread64(gte);
+> +		if (!(pte & GEN12_GGTT_PTE_LM)) {
+> +			drm_err(&i915->drm,
+> +				"Initial plane programming missing PTE_LM bit\n");
+> +			return NULL;
 > +		}
 > +
-> +		if (valid_extensions != hf_eeodb_blk_count - 1) {
-> +			DRM_ERROR("Not able to retrieve proper EDID contain HF-EEODB data.\n");
-> +			goto out;
+> +		phys_base = pte & I915_GTT_PAGE_MASK;
+> +		mem = i915->mm.regions[INTEL_REGION_LMEM];
+> +
+> +		/*
+> +		 * We don't currently expect this to ever be placed in the
+> +		 * stolen portion.
+> +		 */
+> +		if (phys_base >= resource_size(&mem->region)) {
+> +			drm_err(&i915->drm,
+> +				"Initial plane programming using invalid range, phys_base=%pa\n",
+> +				&phys_base);
+> +			return NULL;
 > +		}
->  	}
->  
->  	return (struct edid *)edid;
-> @@ -3315,15 +3344,17 @@ add_detailed_modes(struct drm_connector *connector, struct edid *edid,
->  #define VIDEO_BLOCK     0x02
->  #define VENDOR_BLOCK    0x03
->  #define SPEAKER_BLOCK	0x04
-> -#define HDR_STATIC_METADATA_BLOCK	0x6
-> -#define USE_EXTENDED_TAG 0x07
-> -#define EXT_VIDEO_CAPABILITY_BLOCK 0x00
-> +#define EXT_VIDEO_CAPABILITY_BLOCK	0x00
-> +#define HDR_STATIC_METADATA_BLOCK	0x06
-> +#define USE_EXTENDED_TAG		0x07
->  #define EXT_VIDEO_DATA_BLOCK_420	0x0E
-> -#define EXT_VIDEO_CAP_BLOCK_Y420CMDB 0x0F
-> +#define EXT_VIDEO_CAP_BLOCK_Y420CMDB	0x0F
-> +#define EXT_VIDEO_HF_EEODB_DATA_BLOCK	0x78
->  #define EDID_BASIC_AUDIO	(1 << 6)
->  #define EDID_CEA_YCRCB444	(1 << 5)
->  #define EDID_CEA_YCRCB422	(1 << 4)
->  #define EDID_CEA_VCDB_QS	(1 << 6)
-> +#define HF_EEODB_LENGTH		2
->  
->  /*
->   * Search EDID for CEA extension block.
-> @@ -4274,9 +4305,41 @@ static bool cea_db_is_y420vdb(const u8 *db)
->  	return true;
->  }
->  
-> +static bool cea_db_is_hdmi_forum_eeodb(const u8 *db)
-> +{
-> +	if (cea_db_tag(db) != USE_EXTENDED_TAG)
-> +		return false;
 > +
-> +	if (cea_db_payload_len(db) != HF_EEODB_LENGTH)
-> +		return false;
-> +
-> +	if (cea_db_extended_tag(db) != EXT_VIDEO_HF_EEODB_DATA_BLOCK)
-> +		return false;
-> +
-> +	return true;
-> +}
-> +
->  #define for_each_cea_db(cea, i, start, end) \
->  	for ((i) = (start); (i) < (end) && (i) + cea_db_payload_len(&(cea)[(i)]) < (end); (i) += cea_db_payload_len(&(cea)[(i)]) + 1)
->  
-> +size_t drm_edid_read_hf_eeodb_blk_count(const struct edid *edid)
-> +{
-> +	const u8 *cea;
-> +	int i, start, end, cea_ext_index = 0, displayid_ext_index = 0;
-> +
-> +	if (edid->extensions) {
-> +		cea = drm_find_cea_extension(edid, &cea_ext_index, &displayid_ext_index);
-> +
-> +		if (cea && !cea_db_offsets(cea, &start, &end))
-> +			for_each_cea_db(cea, i, start, end)
-> +				if (cea_db_is_hdmi_forum_eeodb(&cea[i]))
-> +					return cea[i + 2];
+> +		drm_dbg(&i915->drm,
+> +			"Using phys_base=%pa, based on initial plane programming\n",
+> +			&phys_base);
+> +	} else {
+> +		phys_base = base;
+> +		mem = i915->mm.stolen_region;
 > +	}
 > +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL_GPL(drm_edid_read_hf_eeodb_blk_count);
+> +	if (!mem)
+>   		return NULL;
+>   
+> -	base = round_down(plane_config->base,
+> -			  I915_GTT_MIN_ALIGNMENT);
+>   	size = round_up(plane_config->base + plane_config->size,
+>   			mem->min_page_size);
+>   	size -= base;
+> @@ -68,11 +106,11 @@ initial_plane_vma(struct drm_i915_private *i915,
+>   	 * features.
+>   	 */
+>   	if (IS_ENABLED(CONFIG_FRAMEBUFFER_CONSOLE) &&
+> +	    mem == i915->mm.stolen_region &&
+>   	    size * 2 > i915->stolen_usable_size)
+>   		return NULL;
+>   
+> -	obj = i915_gem_object_create_region_at(i915->mm.stolen_region,
+> -					       base, size, 0);
+> +	obj = i915_gem_object_create_region_at(mem, phys_base, size, 0);
+>   	if (IS_ERR(obj))
+>   		return NULL;
+>   
+--------------zTVpaDF8espvwk7rIYNBt26B
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-This should be static and not exported.
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <pre class="moz-quote-pre" wrap=""><code style="padding: 0px; tab-size: 8;" class="hljs diff language-diff">This seems more natural to me than the previous version.
 
-BR,
-Jani.
+Acked-by: Nirmoy Das <a class="moz-txt-link-rfc2396E" href="mailto:nirmoy.das@linux.intel.com">&lt;nirmoy.das@linux.intel.com&gt;</a>
 
-> +
->  static void drm_parse_y420cmdb_bitmap(struct drm_connector *connector,
->  				      const u8 *db)
->  {
-> diff --git a/include/drm/drm_edid.h b/include/drm/drm_edid.h
-> index 144c495b99c4..585f0ed932d4 100644
-> --- a/include/drm/drm_edid.h
-> +++ b/include/drm/drm_edid.h
-> @@ -593,5 +593,6 @@ drm_display_mode_from_cea_vic(struct drm_device *dev,
->  const u8 *drm_find_edid_extension(const struct edid *edid,
->  				  int ext_id, int *ext_index);
->  
-> +size_t drm_edid_read_hf_eeodb_blk_count(const struct edid *edid);
->  
->  #endif /* __DRM_EDID_H__ */
+</code></pre>
+    <p>Nirmoy<br>
+    </p>
+    <div class="moz-cite-prefix">On 14/03/2022 12:28, Matthew Auld
+      wrote:<br>
+    </div>
+    <blockquote type="cite"
+      cite="mid:20220314112837.352931-8-matthew.auld@intel.com">
+      <pre class="moz-quote-pre" wrap="">On integrated it looks like the GGTT base should always 1:1 maps to
+somewhere within DSM. On discrete the base seems to be pre-programmed with
+a normal lmem address, and is not 1:1 mapped with the base address. On
+such devices probe the lmem address directly from the PTE.
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+v2(Ville):
+  - The base is actually the pre-programmed GGTT address, which is then
+    meant to 1:1 map to somewhere inside dsm. In the case of dgpu the
+    base looks to just be some offset within lmem, but this also happens
+    to be the exact dsm start, on dg1. Therefore we should only need to
+    fudge the physical address, before allocating from stolen.
+  - Bail if it's not located in dsm.
+v3:
+  - Scratch that. There doesn't seem to be any relationship with the
+    base and PTE address, on at least DG1. Let's instead just grab the
+    lmem address from the PTE itself.
+
+Signed-off-by: Matthew Auld <a class="moz-txt-link-rfc2396E" href="mailto:matthew.auld@intel.com">&lt;matthew.auld@intel.com&gt;</a>
+Cc: Thomas Hellström <a class="moz-txt-link-rfc2396E" href="mailto:thomas.hellstrom@linux.intel.com">&lt;thomas.hellstrom@linux.intel.com&gt;</a>
+Cc: Ville Syrjälä <a class="moz-txt-link-rfc2396E" href="mailto:ville.syrjala@linux.intel.com">&lt;ville.syrjala@linux.intel.com&gt;</a>
+Cc: Nirmoy Das <a class="moz-txt-link-rfc2396E" href="mailto:nirmoy.das@linux.intel.com">&lt;nirmoy.das@linux.intel.com&gt;</a>
+---
+ .../drm/i915/display/intel_plane_initial.c    | 50 ++++++++++++++++---
+ 1 file changed, 44 insertions(+), 6 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_plane_initial.c b/drivers/gpu/drm/i915/display/intel_plane_initial.c
+index f797fcef18fc..7979929bb632 100644
+--- a/drivers/gpu/drm/i915/display/intel_plane_initial.c
++++ b/drivers/gpu/drm/i915/display/intel_plane_initial.c
+@@ -47,17 +47,55 @@ static struct i915_vma *
+ initial_plane_vma(struct drm_i915_private *i915,
+ 		  struct intel_initial_plane_config *plane_config)
+ {
+-	struct intel_memory_region *mem = i915-&gt;mm.stolen_region;
++	struct intel_memory_region *mem;
+ 	struct drm_i915_gem_object *obj;
+ 	struct i915_vma *vma;
++	resource_size_t phys_base;
+ 	u32 base, size;
+ 	u64 pinctl;
+ 
+-	if (!mem || plane_config-&gt;size == 0)
++	if (plane_config-&gt;size == 0)
++		return NULL;
++
++	base = round_down(plane_config-&gt;base, I915_GTT_MIN_ALIGNMENT);
++	if (IS_DGFX(i915)) {
++		gen8_pte_t __iomem *gte = to_gt(i915)-&gt;ggtt-&gt;gsm;
++		gen8_pte_t pte;
++
++		gte += base / I915_GTT_PAGE_SIZE;
++
++		pte = ioread64(gte);
++		if (!(pte &amp; GEN12_GGTT_PTE_LM)) {
++			drm_err(&amp;i915-&gt;drm,
++				"Initial plane programming missing PTE_LM bit\n");
++			return NULL;
++		}
++
++		phys_base = pte &amp; I915_GTT_PAGE_MASK;
++		mem = i915-&gt;mm.regions[INTEL_REGION_LMEM];
++
++		/*
++		 * We don't currently expect this to ever be placed in the
++		 * stolen portion.
++		 */
++		if (phys_base &gt;= resource_size(&amp;mem-&gt;region)) {
++			drm_err(&amp;i915-&gt;drm,
++				"Initial plane programming using invalid range, phys_base=%pa\n",
++				&amp;phys_base);
++			return NULL;
++		}
++
++		drm_dbg(&amp;i915-&gt;drm,
++			"Using phys_base=%pa, based on initial plane programming\n",
++			&amp;phys_base);
++	} else {
++		phys_base = base;
++		mem = i915-&gt;mm.stolen_region;
++	}
++
++	if (!mem)
+ 		return NULL;
+ 
+-	base = round_down(plane_config-&gt;base,
+-			  I915_GTT_MIN_ALIGNMENT);
+ 	size = round_up(plane_config-&gt;base + plane_config-&gt;size,
+ 			mem-&gt;min_page_size);
+ 	size -= base;
+@@ -68,11 +106,11 @@ initial_plane_vma(struct drm_i915_private *i915,
+ 	 * features.
+ 	 */
+ 	if (IS_ENABLED(CONFIG_FRAMEBUFFER_CONSOLE) &amp;&amp;
++	    mem == i915-&gt;mm.stolen_region &amp;&amp;
+ 	    size * 2 &gt; i915-&gt;stolen_usable_size)
+ 		return NULL;
+ 
+-	obj = i915_gem_object_create_region_at(i915-&gt;mm.stolen_region,
+-					       base, size, 0);
++	obj = i915_gem_object_create_region_at(mem, phys_base, size, 0);
+ 	if (IS_ERR(obj))
+ 		return NULL;
+ 
+</pre>
+    </blockquote>
+  </body>
+</html>
+
+--------------zTVpaDF8espvwk7rIYNBt26B--
