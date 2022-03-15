@@ -2,48 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81D4E4D9600
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Mar 2022 09:16:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 462FB4D9601
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Mar 2022 09:16:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1966D10E3AD;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D42D10E43A;
 	Tue, 15 Mar 2022 08:16:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8CB4589CE1
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C355688503
  for <intel-gfx@lists.freedesktop.org>; Tue, 15 Mar 2022 08:16:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1647332172; x=1678868172;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ywFdnpXuPOxRlo7DdoPgi72WSShmK21yQWvfE3dxNgM=;
- b=FjHzNCpWZvwNWN/vBHqTEXMkXq88CUt4Ul83wNFq3Wp0XEyswD9mGyQ2
- LfKUrZTO/b2Dt1NaXJXU5zloL3rgt/I62zS9ynQHMUlcqEc43lHq6Q6Qc
- kO/3im2+XN2HGDqFyg2SldC6FFjogif2THP78RlG87gZ81wo0bMT2vJnG
- oG0FQ+QsgbpQayEYTyIb96WApfLVBZopne4BJGOFuMH9K5A0sTxPI3jPC
- 2NfChAlfmso9PoEY3GTIw8tp/QSBap0sWSR44QtzK86G/onaLtZeDUtum
- E9N0FhZQNqAfHpYQk9mGZkap0NkPBHqsmg4BuP+Z+dyoXmoUxai9B678n A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10286"; a="243694609"
-X-IronPort-AV: E=Sophos;i="5.90,182,1643702400"; d="scan'208";a="243694609"
+ bh=DwPjKVtRnDTA+k+LSgqCT/YnIZCEbZT8NvJdov9K07c=;
+ b=NhnoCzyc4HIr22BiRQYjWMAdq3EaUub0YILqjpIhI6uRgKEPl0cyY2Fc
+ vJCSzM/+rnhRMr9juFj+UtPmRNBoxzHLQhN7/s07v7x/PiKITTI1MnVmj
+ CIzxlqkQ9Dg6Oxl1RIADj53OKD0aQXRQwRdYGYbFlPyriOKZrhNaGuGBa
+ YW3GUuWLJMoJS7EJttFBAEN8k1E3bwD1f7uKxddmw6n0+eCumeiYqIa8i
+ w5Xjg2rMFA/5mch5R4U7qiq/unF90aEPobiD6L8zuYbNJbe2b1oH3mCgV
+ aaglIYXRkb2UEnC7nXIuUmj5O6cy6AGAXuzo0voVMTjAnD58w91JXYClo Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10286"; a="243694612"
+X-IronPort-AV: E=Sophos;i="5.90,182,1643702400"; d="scan'208";a="243694612"
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Mar 2022 01:16:00 -0700
-X-IronPort-AV: E=Sophos;i="5.90,182,1643702400"; d="scan'208";a="714069169"
+ 15 Mar 2022 01:16:02 -0700
+X-IronPort-AV: E=Sophos;i="5.90,182,1643702400"; d="scan'208";a="714069177"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Mar 2022 01:15:58 -0700
+ 15 Mar 2022 01:16:00 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 15 Mar 2022 13:32:46 +0530
-Message-Id: <20220315080247.1161844-2-ankit.k.nautiyal@intel.com>
+Date: Tue, 15 Mar 2022 13:32:47 +0530
+Message-Id: <20220315080247.1161844-3-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220315080247.1161844-1-ankit.k.nautiyal@intel.com>
 References: <20220315080247.1161844-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 1/2] drm/i915/display: Remove check for low
- voltage sku for max dp source rate
+Subject: [Intel-gfx] [PATCH v3 2/2] drm/i915/intel_combo_phy: Print procmon
+ ref values
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,82 +59,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The low voltage sku check can be ignored as OEMs need to consider that
-when designing the board and then put any limits in VBT.
+Add debug print for Procmon Ref values, to help get the
+voltage configurations of combo PHYs.
 
-Same is now changed in Bspec pages.
+v2: Used drm_dbg_kms for logs. (Jani)
+Added names for different voltage levels. (Imre)
 
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/5272
-
+Suggested-by: Imre Deak <imre.deak@intel.com>
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Reviewed-by: Imre Deak <imre.deak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 32 +++----------------------
- 1 file changed, 3 insertions(+), 29 deletions(-)
+ .../gpu/drm/i915/display/intel_combo_phy.c    | 36 +++++++++++++------
+ 1 file changed, 26 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index a4e4a286230f..94217ef58775 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -388,23 +388,13 @@ static int dg2_max_source_rate(struct intel_dp *intel_dp)
- 	return intel_dp_is_edp(intel_dp) ? 810000 : 1350000;
- }
+diff --git a/drivers/gpu/drm/i915/display/intel_combo_phy.c b/drivers/gpu/drm/i915/display/intel_combo_phy.c
+index 4dfe77351b8b..7ccf45578a7f 100644
+--- a/drivers/gpu/drm/i915/display/intel_combo_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_combo_phy.c
+@@ -25,18 +25,29 @@ enum {
+ };
  
--static bool is_low_voltage_sku(struct drm_i915_private *i915, enum phy phy)
--{
--	u32 voltage;
--
--	voltage = intel_de_read(i915, ICL_PORT_COMP_DW3(phy)) & VOLTAGE_INFO_MASK;
--
--	return voltage == VOLTAGE_INFO_0_85V;
--}
--
- static int icl_max_source_rate(struct intel_dp *intel_dp)
- {
- 	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
- 	struct drm_i915_private *dev_priv = to_i915(dig_port->base.base.dev);
- 	enum phy phy = intel_port_to_phy(dev_priv, dig_port->base.port);
+ static const struct icl_procmon {
++	char name[30];
+ 	u32 dw1, dw9, dw10;
+ } icl_procmon_values[] = {
+-	[PROCMON_0_85V_DOT_0] =
+-		{ .dw1 = 0x00000000, .dw9 = 0x62AB67BB, .dw10 = 0x51914F96, },
+-	[PROCMON_0_95V_DOT_0] =
+-		{ .dw1 = 0x00000000, .dw9 = 0x86E172C7, .dw10 = 0x77CA5EAB, },
+-	[PROCMON_0_95V_DOT_1] =
+-		{ .dw1 = 0x00000000, .dw9 = 0x93F87FE1, .dw10 = 0x8AE871C5, },
+-	[PROCMON_1_05V_DOT_0] =
+-		{ .dw1 = 0x00000000, .dw9 = 0x98FA82DD, .dw10 = 0x89E46DC1, },
+-	[PROCMON_1_05V_DOT_1] =
+-		{ .dw1 = 0x00440000, .dw9 = 0x9A00AB25, .dw10 = 0x8AE38FF1, },
++	[PROCMON_0_85V_DOT_0] = {
++		.name = "0.85V dot0 (low-voltage)\0",
++		.dw1 = 0x00000000, .dw9 = 0x62AB67BB, .dw10 = 0x51914F96,
++	},
++	[PROCMON_0_95V_DOT_0] = {
++		.name = "0.95V dot0\0",
++		.dw1 = 0x00000000, .dw9 = 0x86E172C7, .dw10 = 0x77CA5EAB,
++	},
++	[PROCMON_0_95V_DOT_1] = {
++		.name = "0.95V dot1\0",
++		.dw1 = 0x00000000, .dw9 = 0x93F87FE1, .dw10 = 0x8AE871C5,
++	},
++	[PROCMON_1_05V_DOT_0] = {
++		.name = "1.05V dot0\0",
++		.dw1 = 0x00000000, .dw9 = 0x98FA82DD, .dw10 = 0x89E46DC1,
++	},
++	[PROCMON_1_05V_DOT_1] = {
++		.name = "1.05V dot1\0",
++		.dw1 = 0x00440000, .dw9 = 0x9A00AB25, .dw10 = 0x8AE38FF1,
++	},
+ };
  
--	if (intel_phy_is_combo(dev_priv, phy) &&
--	    (is_low_voltage_sku(dev_priv, phy) || !intel_dp_is_edp(intel_dp)))
-+	if (intel_phy_is_combo(dev_priv, phy) && !intel_dp_is_edp(intel_dp))
- 		return 540000;
+ static const struct icl_procmon *
+@@ -113,6 +124,11 @@ static bool icl_verify_procmon_ref_values(struct drm_i915_private *dev_priv,
  
- 	return 810000;
-@@ -412,23 +402,7 @@ static int icl_max_source_rate(struct intel_dp *intel_dp)
+ 	procmon = icl_get_procmon_ref_values(dev_priv, phy);
  
- static int ehl_max_source_rate(struct intel_dp *intel_dp)
- {
--	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
--	struct drm_i915_private *dev_priv = to_i915(dig_port->base.base.dev);
--	enum phy phy = intel_port_to_phy(dev_priv, dig_port->base.port);
--
--	if (intel_dp_is_edp(intel_dp) || is_low_voltage_sku(dev_priv, phy))
--		return 540000;
--
--	return 810000;
--}
--
--static int dg1_max_source_rate(struct intel_dp *intel_dp)
--{
--	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
--	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
--	enum phy phy = intel_port_to_phy(i915, dig_port->base.port);
--
--	if (intel_phy_is_combo(i915, phy) && is_low_voltage_sku(i915, phy))
-+	if (intel_dp_is_edp(intel_dp))
- 		return 540000;
- 
- 	return 810000;
-@@ -471,7 +445,7 @@ intel_dp_set_source_rates(struct intel_dp *intel_dp)
- 			max_rate = dg2_max_source_rate(intel_dp);
- 		else if (IS_ALDERLAKE_P(dev_priv) || IS_ALDERLAKE_S(dev_priv) ||
- 			 IS_DG1(dev_priv) || IS_ROCKETLAKE(dev_priv))
--			max_rate = dg1_max_source_rate(intel_dp);
-+			max_rate = 810000;
- 		else if (IS_JSL_EHL(dev_priv))
- 			max_rate = ehl_max_source_rate(intel_dp);
- 		else
++	drm_dbg_kms(&dev_priv->drm,
++		    "Combo PHY %c %s PROCMON values : 0x%x, 0x%x, 0x%x\n",
++		    phy_name(phy), procmon->name, procmon->dw1, procmon->dw9,
++		    procmon->dw10);
++
+ 	ret = check_phy_reg(dev_priv, phy, ICL_PORT_COMP_DW1(phy),
+ 			    (0xff << 16) | 0xff, procmon->dw1);
+ 	ret &= check_phy_reg(dev_priv, phy, ICL_PORT_COMP_DW9(phy),
 -- 
 2.25.1
 
