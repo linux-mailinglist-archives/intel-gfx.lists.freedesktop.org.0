@@ -1,55 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C3284D9A68
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Mar 2022 12:31:24 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB6304D9A81
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Mar 2022 12:39:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 40F6210E3BF;
-	Tue, 15 Mar 2022 11:31:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5EDE010E3BC;
+	Tue, 15 Mar 2022 11:39:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5814F10E3B5;
- Tue, 15 Mar 2022 11:31:15 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 29CCA10E3B6
+ for <intel-gfx@lists.freedesktop.org>; Tue, 15 Mar 2022 11:39:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1647343875; x=1678879875;
- h=message-id:date:mime-version:subject:to:cc:references:
+ t=1647344377; x=1678880377;
+ h=message-id:date:mime-version:subject:to:references:cc:
  from:in-reply-to:content-transfer-encoding;
- bh=iCs162XcE1/cnIipmN5m0bOdvbMF1WgSBo898ixy8XY=;
- b=jDpc4xOWB2tddrZbNVkd3G1ghy0lx2yW4i+Y3zkm436kY47qfNewR+pk
- 5SrIv3+tUuQO4KZq0mWURTzJ/+4JpolsEntqkgzX1ZbyPCeckkTk+N8Y2
- 6HVlVG/mP9EU2DZTjh/Jwh3rdVQ9HegNpLS9SQFM4WSmRumqzNAUMQIOy
- D1bJeZ+5UBOQM+IBO8hdRPHwK9wxKGtquCgsY6x6owu01PuC/VpLaBF5R
- vE5xpdVlDQswkuchxHp/BYprhAtdANpweO4iW1JtU7r02Nke8hdo2fyFx
- PtemvAf7hNqHJbS55J67k+fampFBhvp2xIiGPdeZ1qP2dDUbIMR/tjn8h w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10286"; a="319495739"
-X-IronPort-AV: E=Sophos;i="5.90,183,1643702400"; d="scan'208";a="319495739"
+ bh=14802VU1pqA15+6FMEjmIJ05qZEJj4BJUTlZand2mzU=;
+ b=N0KPcW93bD9a+MaEw9z+5XLrINyh3nozMvOmQsnrZ2kHH6Zu+Dflt9Nu
+ nWu0ufJG2TK82PjyyOQe24vpOJ3yLrdJXT0Z4CdtiD5lq4VLDSZG2XMWL
+ SstWTepJX7b8GoAl/c2c79fTwpyeYiBVU+i8PAfJLJbE7g27BXqln4tsW
+ BwMfI15pTpZ64a5hRyzwQOOOztnKlKGXD6Mop93F597flfxyHnq+VipqC
+ RK1BgBPPLk5l8h1G+tYlDVdEiHwR53ITBogmHhTOw+Q8IzhfiaDJFqa5n
+ faQ3PV7C3riJvD0Nxjk2drOdqXZNEEnJ+QJ+rsbhAyUg3JGBWnbEtFxkR A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10286"; a="256466480"
+X-IronPort-AV: E=Sophos;i="5.90,183,1643702400"; d="scan'208";a="256466480"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Mar 2022 04:31:14 -0700
-X-IronPort-AV: E=Sophos;i="5.90,183,1643702400"; d="scan'208";a="556883345"
-Received: from sobyrne-mobl.ger.corp.intel.com (HELO [10.252.31.219])
- ([10.252.31.219])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Mar 2022 04:39:32 -0700
+X-IronPort-AV: E=Sophos;i="5.90,183,1643702400"; d="scan'208";a="556886897"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.252.35.121])
+ ([10.252.35.121])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Mar 2022 04:31:12 -0700
-Message-ID: <01c75d44-80b1-3368-e568-0e38072138d6@intel.com>
-Date: Tue, 15 Mar 2022 11:31:10 +0000
+ 15 Mar 2022 04:39:31 -0700
+Message-ID: <98dd3a33-2fff-f3f3-1d96-61294e080efd@linux.intel.com>
+Date: Tue, 15 Mar 2022 12:39:29 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Content-Language: en-GB
-To: Arunpravin <Arunpravin.PaneerSelvam@amd.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org
-References: <20220314194049.534471-1-Arunpravin.PaneerSelvam@amd.com>
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20220314194049.534471-1-Arunpravin.PaneerSelvam@amd.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Content-Language: en-US
+To: intel-gfx@lists.freedesktop.org
+References: <20220314112837.352931-1-matthew.auld@intel.com>
+From: "Das, Nirmoy" <nirmoy.das@linux.intel.com>
+In-Reply-To: <20220314112837.352931-1-matthew.auld@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] drm: Fix a infinite loop condition when
- order becomes 0
+Subject: Re: [Intel-gfx] [PATCH v3 0/7] Some more bits for small BAR enabling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,37 +59,23 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com, christian.koenig@amd.com
+Cc: Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 14/03/2022 19:40, Arunpravin wrote:
-> handle a situation in the condition order-- == min_order,
-> when order = 0, leading to order = -1, it now won't exit
-> the loop. To avoid this problem, added a order check in
-> the same condition, (i.e) when order is 0, we return
-> -ENOSPC
-> 
-> Signed-off-by: Arunpravin <Arunpravin.PaneerSelvam@amd.com>
+Hi Matt,
 
-Hmm, it sounded like we were instead going to go with the round_up(size, 
-min_page_size), or check and bail if the size is misaligned, in which 
-case we don't need this, AFAICT.
+Also feel free to upgrade my a-b to r-b for the series.
 
-> ---
->   drivers/gpu/drm/drm_buddy.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_buddy.c b/drivers/gpu/drm/drm_buddy.c
-> index 72f52f293249..5ab66aaf2bbd 100644
-> --- a/drivers/gpu/drm/drm_buddy.c
-> +++ b/drivers/gpu/drm/drm_buddy.c
-> @@ -685,7 +685,7 @@ int drm_buddy_alloc_blocks(struct drm_buddy *mm,
->   			if (!IS_ERR(block))
->   				break;
->   
-> -			if (order-- == min_order) {
-> +			if (!order || order-- == min_order) {
->   				err = -ENOSPC;
->   				goto err_free;
->   			}
+
+Regards,
+
+Nirmoy
+
+On 14/03/2022 12:28, Matthew Auld wrote:
+> The leftover bits around dealing with stolen-local memory + small BAR, plus
+> some related fixes.
+>
+> v2: some tweaks based on feedback from Ville
+> v3: directly probe the PTE to derive the physical offset within lmem
+>
