@@ -1,51 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE3954DA224
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Mar 2022 19:15:14 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F9C04DA223
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Mar 2022 19:15:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E324610E453;
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD17510E447;
 	Tue, 15 Mar 2022 18:15:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D1D7E10E141
- for <intel-gfx@lists.freedesktop.org>; Tue, 15 Mar 2022 18:15:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 54E7910E447
+ for <intel-gfx@lists.freedesktop.org>; Tue, 15 Mar 2022 18:15:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1647368106; x=1678904106;
+ t=1647368108; x=1678904108;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=+cjAF4bueyOu4R1M2lo6cn74L0Bmvv9HFHLxeTQtKKo=;
- b=BGF7xX0j3B9G+wuyLxmmHdBFOReBhQv7aRNFX2TncoMtYgz+w+3gYjr+
- FUeWI/eWq12TtkhtRnCh3ov/vDCjIttmiaP1ZVP9Ivi3eRqMuMjnoq5IK
- ETTVpyDFrm4u3hMFpwUHOtTkf7qgrKHQ6aHtofQfYCTv9Zbc2iqyzA9OQ
- DMbW798D6IANJB3GO/S34YacLP71GTJPbx9xyAcskJDX2biBME2X4+Eme
- J3dhAo//sh6XEdXwb5/iHY4TNf/4XzOATUbqDZnG6por8aUKQk+AYO+EK
- O7Xo6O5U/xgRU+xGZ2EJ3fTrw28sNSvF+P2kDIMZJBXHc45dyn6t464t7 Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10286"; a="255221144"
-X-IronPort-AV: E=Sophos;i="5.90,184,1643702400"; d="scan'208";a="255221144"
+ bh=0J5vLzdKRlYkUss/EUOPRTL4YKDphHA6lL3DLkp8v/o=;
+ b=FoD0eTEqKjBNcXNMGlXWuAypuC3413ksDWaCCI7U6N65khsbk8rW1var
+ ujfqznMQVtngo8LxABo7rX83joBrCMyjrMnuurBazzjwIaurGY+M2GivU
+ ClpmaPkHO1xBpwksa6lYT8pJlrIzBe+2HTeNWammWML/xNb3g56prZjqE
+ 0QIROVkwfuXhzk5eoIugzGhuYVlDNK6HmAe/onBBsDTL0ga0cDy21Hac4
+ eVsbv1ljOsHp0Da9H/CZD66AChKqjQikSUNw1OPuU6mTA0bdtQDZiTwnV
+ Lg4Fm51XtI4JwvLwCV6JPDRwfs+vPnfH/gtk0/9ls1P3VkxWGmxzQnhYy g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10286"; a="255221151"
+X-IronPort-AV: E=Sophos;i="5.90,184,1643702400"; d="scan'208";a="255221151"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Mar 2022 11:15:06 -0700
-X-IronPort-AV: E=Sophos;i="5.90,184,1643702400"; d="scan'208";a="498133158"
+ 15 Mar 2022 11:15:07 -0700
+X-IronPort-AV: E=Sophos;i="5.90,184,1643702400"; d="scan'208";a="498133162"
 Received: from sobyrne-mobl.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
  ([10.252.31.219])
  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Mar 2022 11:15:05 -0700
+ 15 Mar 2022 11:15:06 -0700
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 15 Mar 2022 18:14:21 +0000
-Message-Id: <20220315181425.576828-3-matthew.auld@intel.com>
+Date: Tue, 15 Mar 2022 18:14:22 +0000
+Message-Id: <20220315181425.576828-4-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220315181425.576828-1-matthew.auld@intel.com>
 References: <20220315181425.576828-1-matthew.auld@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [CI 3/7] drm/i915/stolen: consider
- I915_BO_ALLOC_GPU_ONLY
+Subject: [Intel-gfx] [CI 4/7] drm/i915: add
+ i915_gem_object_create_region_at()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,35 +61,360 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Keep the behaviour consistent with normal lmem, where we assume CPU
-access if by default required.
+Add a generic interface for allocating an object at some specific
+offset, and convert stolen over. Later we will want to hook this up to
+different backends.
 
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Reviewed-by: Nirmoy Das <nirmoy.das@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_stolen.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ .../drm/i915/display/intel_plane_initial.c    |  4 +-
+ drivers/gpu/drm/i915/gem/i915_gem_create.c    |  2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_region.c    | 47 ++++++++++--
+ drivers/gpu/drm/i915/gem/i915_gem_region.h    |  7 ++
+ drivers/gpu/drm/i915/gem/i915_gem_shmem.c     |  1 +
+ drivers/gpu/drm/i915/gem/i915_gem_stolen.c    | 74 ++++---------------
+ drivers/gpu/drm/i915/gem/i915_gem_stolen.h    |  4 -
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.c       |  1 +
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.h       |  1 +
+ drivers/gpu/drm/i915/gt/intel_rc6.c           |  8 +-
+ drivers/gpu/drm/i915/intel_memory_region.h    |  1 +
+ drivers/gpu/drm/i915/selftests/mock_region.c  |  1 +
+ 12 files changed, 77 insertions(+), 74 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_plane_initial.c b/drivers/gpu/drm/i915/display/intel_plane_initial.c
+index e207d12286b5..5227e5b35206 100644
+--- a/drivers/gpu/drm/i915/display/intel_plane_initial.c
++++ b/drivers/gpu/drm/i915/display/intel_plane_initial.c
+@@ -3,6 +3,7 @@
+  * Copyright © 2021 Intel Corporation
+  */
+ 
++#include "gem/i915_gem_region.h"
+ #include "i915_drv.h"
+ #include "intel_atomic_plane.h"
+ #include "intel_display.h"
+@@ -69,7 +70,8 @@ initial_plane_vma(struct drm_i915_private *i915,
+ 	    size * 2 > i915->stolen_usable_size)
+ 		return NULL;
+ 
+-	obj = i915_gem_object_create_stolen_for_preallocated(i915, base, size);
++	obj = i915_gem_object_create_region_at(i915->mm.stolen_region,
++					       base, size, 0);
+ 	if (IS_ERR(obj))
+ 		return NULL;
+ 
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_create.c b/drivers/gpu/drm/i915/gem/i915_gem_create.c
+index c6eb023d3d86..5802692ea604 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_create.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_create.c
+@@ -123,7 +123,7 @@ __i915_gem_object_create_user_ext(struct drm_i915_private *i915, u64 size,
+ 	 */
+ 	flags = I915_BO_ALLOC_USER;
+ 
+-	ret = mr->ops->init_object(mr, obj, size, 0, flags);
++	ret = mr->ops->init_object(mr, obj, I915_BO_INVALID_OFFSET, size, 0, flags);
+ 	if (ret)
+ 		goto object_free;
+ 
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_region.c b/drivers/gpu/drm/i915/gem/i915_gem_region.c
+index c9b2e8b91053..3428ddfb2fdb 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_region.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_region.c
+@@ -27,11 +27,12 @@ void i915_gem_object_release_memory_region(struct drm_i915_gem_object *obj)
+ 	mutex_unlock(&mem->objects.lock);
+ }
+ 
+-struct drm_i915_gem_object *
+-i915_gem_object_create_region(struct intel_memory_region *mem,
+-			      resource_size_t size,
+-			      resource_size_t page_size,
+-			      unsigned int flags)
++static struct drm_i915_gem_object *
++__i915_gem_object_create_region(struct intel_memory_region *mem,
++				resource_size_t offset,
++				resource_size_t size,
++				resource_size_t page_size,
++				unsigned int flags)
+ {
+ 	struct drm_i915_gem_object *obj;
+ 	resource_size_t default_page_size;
+@@ -86,7 +87,7 @@ i915_gem_object_create_region(struct intel_memory_region *mem,
+ 	if (default_page_size < mem->min_page_size)
+ 		flags |= I915_BO_ALLOC_PM_EARLY;
+ 
+-	err = mem->ops->init_object(mem, obj, size, page_size, flags);
++	err = mem->ops->init_object(mem, obj, offset, size, page_size, flags);
+ 	if (err)
+ 		goto err_object_free;
+ 
+@@ -98,6 +99,40 @@ i915_gem_object_create_region(struct intel_memory_region *mem,
+ 	return ERR_PTR(err);
+ }
+ 
++struct drm_i915_gem_object *
++i915_gem_object_create_region(struct intel_memory_region *mem,
++			      resource_size_t size,
++			      resource_size_t page_size,
++			      unsigned int flags)
++{
++	return __i915_gem_object_create_region(mem, I915_BO_INVALID_OFFSET,
++					       size, page_size, flags);
++}
++
++struct drm_i915_gem_object *
++i915_gem_object_create_region_at(struct intel_memory_region *mem,
++				 resource_size_t offset,
++				 resource_size_t size,
++				 unsigned int flags)
++{
++	GEM_BUG_ON(offset == I915_BO_INVALID_OFFSET);
++
++	if (GEM_WARN_ON(!IS_ALIGNED(size, mem->min_page_size)) ||
++	    GEM_WARN_ON(!IS_ALIGNED(offset, mem->min_page_size)))
++		return ERR_PTR(-EINVAL);
++
++	if (range_overflows(offset, size, resource_size(&mem->region)))
++		return ERR_PTR(-EINVAL);
++
++	if (!(flags & I915_BO_ALLOC_GPU_ONLY) &&
++	    offset + size > mem->io_size &&
++	    !i915_ggtt_has_aperture(to_gt(mem->i915)->ggtt))
++		return ERR_PTR(-ENOSPC);
++
++	return __i915_gem_object_create_region(mem, offset, size, 0,
++					       flags | I915_BO_ALLOC_CONTIGUOUS);
++}
++
+ /**
+  * i915_gem_process_region - Iterate over all objects of a region using ops
+  * to process and optionally skip objects
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_region.h b/drivers/gpu/drm/i915/gem/i915_gem_region.h
+index fcaa12d657d4..2dfcc41c0170 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_region.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_region.h
+@@ -14,6 +14,8 @@ struct sg_table;
+ 
+ struct i915_gem_apply_to_region;
+ 
++#define I915_BO_INVALID_OFFSET ((resource_size_t)-1)
++
+ /**
+  * struct i915_gem_apply_to_region_ops - ops to use when iterating over all
+  * region objects.
+@@ -56,6 +58,11 @@ i915_gem_object_create_region(struct intel_memory_region *mem,
+ 			      resource_size_t size,
+ 			      resource_size_t page_size,
+ 			      unsigned int flags);
++struct drm_i915_gem_object *
++i915_gem_object_create_region_at(struct intel_memory_region *mem,
++				 resource_size_t offset,
++				 resource_size_t size,
++				 unsigned int flags);
+ 
+ int i915_gem_process_region(struct intel_memory_region *mr,
+ 			    struct i915_gem_apply_to_region *apply);
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+index 3a1c782ed791..9e5faf0bdd4e 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+@@ -552,6 +552,7 @@ static int __create_shmem(struct drm_i915_private *i915,
+ 
+ static int shmem_object_init(struct intel_memory_region *mem,
+ 			     struct drm_i915_gem_object *obj,
++			     resource_size_t offset,
+ 			     resource_size_t size,
+ 			     resource_size_t page_size,
+ 			     unsigned int flags)
 diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-index b860ec954104..17f35892ab7e 100644
+index 17f35892ab7e..143f61aaa867 100644
 --- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
 +++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-@@ -695,6 +695,14 @@ static int _i915_gem_object_stolen_init(struct intel_memory_region *mem,
- 	if (size == 0)
- 		return -EINVAL;
+@@ -681,6 +681,7 @@ static int __i915_gem_object_create_stolen(struct intel_memory_region *mem,
  
-+	/*
-+	 * With discrete devices, where we lack a mappable aperture there is no
-+	 * possible way to ever access this memory on the CPU side.
-+	 */
-+	if (mem->type == INTEL_MEMORY_STOLEN_LOCAL && !mem->io_size &&
-+	    !(flags & I915_BO_ALLOC_GPU_ONLY))
-+		return -ENOSPC;
-+
- 	stolen = kzalloc(sizeof(*stolen), GFP_KERNEL);
+ static int _i915_gem_object_stolen_init(struct intel_memory_region *mem,
+ 					struct drm_i915_gem_object *obj,
++					resource_size_t offset,
+ 					resource_size_t size,
+ 					resource_size_t page_size,
+ 					unsigned int flags)
+@@ -707,8 +708,20 @@ static int _i915_gem_object_stolen_init(struct intel_memory_region *mem,
  	if (!stolen)
  		return -ENOMEM;
+ 
+-	ret = i915_gem_stolen_insert_node(i915, stolen, size,
+-					  mem->min_page_size);
++	if (offset != I915_BO_INVALID_OFFSET) {
++		drm_dbg(&i915->drm,
++			"creating preallocated stolen object: stolen_offset=%pa, size=%pa\n",
++			&offset, &size);
++
++		stolen->start = offset;
++		stolen->size = size;
++		mutex_lock(&i915->mm.stolen_lock);
++		ret = drm_mm_reserve_node(&i915->mm.stolen, stolen);
++		mutex_unlock(&i915->mm.stolen_lock);
++	} else {
++		ret = i915_gem_stolen_insert_node(i915, stolen, size,
++						  mem->min_page_size);
++	}
+ 	if (ret)
+ 		goto err_free;
+ 
+@@ -882,63 +895,6 @@ i915_gem_stolen_smem_setup(struct drm_i915_private *i915, u16 type,
+ 	return mem;
+ }
+ 
+-struct drm_i915_gem_object *
+-i915_gem_object_create_stolen_for_preallocated(struct drm_i915_private *i915,
+-					       resource_size_t stolen_offset,
+-					       resource_size_t size)
+-{
+-	struct intel_memory_region *mem = i915->mm.stolen_region;
+-	struct drm_i915_gem_object *obj;
+-	struct drm_mm_node *stolen;
+-	int ret;
+-
+-	if (!drm_mm_initialized(&i915->mm.stolen))
+-		return ERR_PTR(-ENODEV);
+-
+-	drm_dbg(&i915->drm,
+-		"creating preallocated stolen object: stolen_offset=%pa, size=%pa\n",
+-		&stolen_offset, &size);
+-
+-	/* KISS and expect everything to be page-aligned */
+-	if (GEM_WARN_ON(size == 0) ||
+-	    GEM_WARN_ON(!IS_ALIGNED(size, mem->min_page_size)) ||
+-	    GEM_WARN_ON(!IS_ALIGNED(stolen_offset, mem->min_page_size)))
+-		return ERR_PTR(-EINVAL);
+-
+-	stolen = kzalloc(sizeof(*stolen), GFP_KERNEL);
+-	if (!stolen)
+-		return ERR_PTR(-ENOMEM);
+-
+-	stolen->start = stolen_offset;
+-	stolen->size = size;
+-	mutex_lock(&i915->mm.stolen_lock);
+-	ret = drm_mm_reserve_node(&i915->mm.stolen, stolen);
+-	mutex_unlock(&i915->mm.stolen_lock);
+-	if (ret)
+-		goto err_free;
+-
+-	obj = i915_gem_object_alloc();
+-	if (!obj) {
+-		ret = -ENOMEM;
+-		goto err_stolen;
+-	}
+-
+-	ret = __i915_gem_object_create_stolen(mem, obj, stolen);
+-	if (ret)
+-		goto err_object_free;
+-
+-	i915_gem_object_set_cache_coherency(obj, I915_CACHE_NONE);
+-	return obj;
+-
+-err_object_free:
+-	i915_gem_object_free(obj);
+-err_stolen:
+-	i915_gem_stolen_remove_node(i915, stolen);
+-err_free:
+-	kfree(stolen);
+-	return ERR_PTR(ret);
+-}
+-
+ bool i915_gem_object_is_stolen(const struct drm_i915_gem_object *obj)
+ {
+ 	return obj->ops == &i915_gem_object_stolen_ops;
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.h b/drivers/gpu/drm/i915/gem/i915_gem_stolen.h
+index ccdf7befc571..d5005a39d130 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.h
+@@ -31,10 +31,6 @@ i915_gem_stolen_lmem_setup(struct drm_i915_private *i915, u16 type,
+ struct drm_i915_gem_object *
+ i915_gem_object_create_stolen(struct drm_i915_private *dev_priv,
+ 			      resource_size_t size);
+-struct drm_i915_gem_object *
+-i915_gem_object_create_stolen_for_preallocated(struct drm_i915_private *dev_priv,
+-					       resource_size_t stolen_offset,
+-					       resource_size_t size);
+ 
+ bool i915_gem_object_is_stolen(const struct drm_i915_gem_object *obj);
+ 
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+index 45cc5837ce00..5e543ed867a2 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+@@ -1142,6 +1142,7 @@ void i915_ttm_bo_destroy(struct ttm_buffer_object *bo)
+  */
+ int __i915_gem_ttm_object_init(struct intel_memory_region *mem,
+ 			       struct drm_i915_gem_object *obj,
++			       resource_size_t offset,
+ 			       resource_size_t size,
+ 			       resource_size_t page_size,
+ 			       unsigned int flags)
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.h b/drivers/gpu/drm/i915/gem/i915_gem_ttm.h
+index 9d698ad00853..73e371aa3850 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.h
+@@ -45,6 +45,7 @@ i915_ttm_to_gem(struct ttm_buffer_object *bo)
+ 
+ int __i915_gem_ttm_object_init(struct intel_memory_region *mem,
+ 			       struct drm_i915_gem_object *obj,
++			       resource_size_t offset,
+ 			       resource_size_t size,
+ 			       resource_size_t page_size,
+ 			       unsigned int flags);
+diff --git a/drivers/gpu/drm/i915/gt/intel_rc6.c b/drivers/gpu/drm/i915/gt/intel_rc6.c
+index 63db136cbc27..b4770690e794 100644
+--- a/drivers/gpu/drm/i915/gt/intel_rc6.c
++++ b/drivers/gpu/drm/i915/gt/intel_rc6.c
+@@ -6,6 +6,7 @@
+ #include <linux/pm_runtime.h>
+ #include <linux/string_helpers.h>
+ 
++#include "gem/i915_gem_region.h"
+ #include "i915_drv.h"
+ #include "i915_reg.h"
+ #include "i915_vgpu.h"
+@@ -325,9 +326,10 @@ static int vlv_rc6_init(struct intel_rc6 *rc6)
+ 		resource_size_t pcbr_offset;
+ 
+ 		pcbr_offset = (pcbr & ~4095) - i915->dsm.start;
+-		pctx = i915_gem_object_create_stolen_for_preallocated(i915,
+-								      pcbr_offset,
+-								      pctx_size);
++		pctx = i915_gem_object_create_region_at(i915->mm.stolen_region,
++							pcbr_offset,
++							pctx_size,
++							0);
+ 		if (IS_ERR(pctx))
+ 			return PTR_ERR(pctx);
+ 
+diff --git a/drivers/gpu/drm/i915/intel_memory_region.h b/drivers/gpu/drm/i915/intel_memory_region.h
+index 21dcbd620758..56f266020285 100644
+--- a/drivers/gpu/drm/i915/intel_memory_region.h
++++ b/drivers/gpu/drm/i915/intel_memory_region.h
+@@ -54,6 +54,7 @@ struct intel_memory_region_ops {
+ 
+ 	int (*init_object)(struct intel_memory_region *mem,
+ 			   struct drm_i915_gem_object *obj,
++			   resource_size_t offset,
+ 			   resource_size_t size,
+ 			   resource_size_t page_size,
+ 			   unsigned int flags);
+diff --git a/drivers/gpu/drm/i915/selftests/mock_region.c b/drivers/gpu/drm/i915/selftests/mock_region.c
+index f64325491f35..f16c0b7198c7 100644
+--- a/drivers/gpu/drm/i915/selftests/mock_region.c
++++ b/drivers/gpu/drm/i915/selftests/mock_region.c
+@@ -57,6 +57,7 @@ static const struct drm_i915_gem_object_ops mock_region_obj_ops = {
+ 
+ static int mock_object_init(struct intel_memory_region *mem,
+ 			    struct drm_i915_gem_object *obj,
++			    resource_size_t offset,
+ 			    resource_size_t size,
+ 			    resource_size_t page_size,
+ 			    unsigned int flags)
 -- 
 2.34.1
 
