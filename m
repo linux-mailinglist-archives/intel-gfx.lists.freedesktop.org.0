@@ -1,51 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17FED4D9CE5
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Mar 2022 15:02:38 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 369DD4D9CE2
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Mar 2022 15:02:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 566B510E496;
-	Tue, 15 Mar 2022 14:02:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 623F510E422;
+	Tue, 15 Mar 2022 14:02:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 79DC610E496
- for <intel-gfx@lists.freedesktop.org>; Tue, 15 Mar 2022 14:02:35 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4507310E422
+ for <intel-gfx@lists.freedesktop.org>; Tue, 15 Mar 2022 14:02:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1647352955; x=1678888955;
+ t=1647352942; x=1678888942;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=uPbDdx1EifCgxP6sQVjxGTG0yPy5PGMsnhXutMHLo2M=;
- b=mtWJvK8mleNiakO0KrjN4Mnh3RuOW/ht3bu6mrKLdjg9bEz7CmYQTQRV
- ienWsnwU4YQNDmpj1f6kHBOKZAS2YaoPg1q+ZtRT/WeRkovH707KG/DUe
- bfXIljDgt1BFq+nR1hoMYWs9DSaowUUbBXXnuy5joU4ef+qZIjq7OdlSy
- 1eTrZ5HFl9mXxeBNibcfj3eq1tscigk4n6aVjZDxk10htzRNQF1Tf8CTV
- 20NRo6S8w/rq5AOUnt6ZiaNPj5UaHVW9XB3ltQAj6Yprf1+zVYJpUk+Xb
- wT7Jl43KCskuWRVpyE/SVgnGRqorgFeUMIh5JImj8OK8toZ90Ubza4DVW w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10286"; a="281078642"
-X-IronPort-AV: E=Sophos;i="5.90,183,1643702400"; d="scan'208";a="281078642"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Mar 2022 07:00:13 -0700
+ bh=UalD0JJeppf0/LcebgI26Vo6KhekRgoLX2Wx4vzh6iU=;
+ b=dU/Wr+bHVrugWjl0lqYt7ykADsaVDv+pqzLADKV6YKHynhLpKERFYZhU
+ 515FHGx6v8IF4S0QcY392rYUMGb6PBaksB+Zxs31Uog35YhuSdipjsAIy
+ X3RsiTbkxXZCVxEcuSmfPQZVc/86rHWLMKvEBulKeeUPjJIc7m+poLNtr
+ ylWMPKTOKisvwDp2ZIN8mRdlNqVa1xMI7M1BoQ+IdxY7nktw61n2tSjTh
+ 3/j785gZ9rL+pSveTYhnljpIMhPjfHHOoFMykZZAvXktj2kAXsrZ59DBc
+ x5c/3jTlsf3a/wUNgIC3vTz974d51Do8vuZ9LXV31s+1z4T+IOAoSMpsw Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10286"; a="236912663"
+X-IronPort-AV: E=Sophos;i="5.90,183,1643702400"; d="scan'208";a="236912663"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Mar 2022 07:00:16 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,183,1643702400"; d="scan'208";a="690204634"
+X-IronPort-AV: E=Sophos;i="5.90,183,1643702400"; d="scan'208";a="556939452"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
- by fmsmga001.fm.intel.com with SMTP; 15 Mar 2022 07:00:11 -0700
+ by orsmga008.jf.intel.com with SMTP; 15 Mar 2022 07:00:13 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 15 Mar 2022 16:00:10 +0200
+ Tue, 15 Mar 2022 16:00:13 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 15 Mar 2022 15:59:57 +0200
-Message-Id: <20220315140001.1172-4-ville.syrjala@linux.intel.com>
+Date: Tue, 15 Mar 2022 15:59:58 +0200
+Message-Id: <20220315140001.1172-5-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220315140001.1172-1-ville.syrjala@linux.intel.com>
 References: <20220315140001.1172-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 3/7] drm/i915/fbc: Skip nuke when flip is pending
+Subject: [Intel-gfx] [PATCH 4/7] drm/i915: Remove remaining locks from i9xx
+ plane udpates
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,63 +64,83 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Don't issue a nuke from frontbuffer flush while a flip is pending.
-This avoids the DSPADDR/DSPSURF rmw abuse from the pre-snb nuke
-from racing with the DSPADDR/DSPSURF write being performed by
-the flip/plane update. The flip itself will already cause the nuke
-so a double nuke is redundant.
+Now that fbc no longer nukes while a flip is pending we can
+remove the last uncore.lock from the i9xx plane code.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_fbc.c | 10 ++++++++--
- 1 file changed, 8 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/i9xx_plane.c | 12 ------------
+ 1 file changed, 12 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index d657b5c6757b..86a0f024ef40 100644
---- a/drivers/gpu/drm/i915/display/intel_fbc.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -666,6 +666,10 @@ static bool intel_fbc_is_compressing(struct intel_fbc *fbc)
+diff --git a/drivers/gpu/drm/i915/display/i9xx_plane.c b/drivers/gpu/drm/i915/display/i9xx_plane.c
+index af190bacdd97..7fe1a4e57654 100644
+--- a/drivers/gpu/drm/i915/display/i9xx_plane.c
++++ b/drivers/gpu/drm/i915/display/i9xx_plane.c
+@@ -449,7 +449,6 @@ static void i9xx_plane_update_arm(struct intel_plane *plane,
+ 	int x = plane_state->view.color_plane[0].x;
+ 	int y = plane_state->view.color_plane[0].y;
+ 	u32 dspcntr, dspaddr_offset, linear_offset;
+-	unsigned long irqflags;
  
- static void intel_fbc_nuke(struct intel_fbc *fbc)
- {
-+	struct drm_i915_private *i915 = fbc->i915;
-+
-+	drm_WARN_ON(&i915->drm, fbc->flip_pending);
-+
- 	trace_intel_fbc_nuke(fbc->state.plane);
+ 	dspcntr = plane_state->ctl | i9xx_plane_ctl_crtc(crtc_state);
  
- 	fbc->funcs->nuke(fbc);
-@@ -968,6 +972,7 @@ static void intel_fbc_update_state(struct intel_atomic_state *state,
- 	struct intel_fbc_state *fbc_state = &fbc->state;
+@@ -490,15 +489,12 @@ static void i9xx_plane_update_arm(struct intel_plane *plane,
+ 	 */
+ 	intel_de_write_fw(dev_priv, DSPCNTR(i9xx_plane), dspcntr);
  
- 	WARN_ON(plane_state->no_fbc_reason);
-+	WARN_ON(fbc_state->plane && fbc_state->plane != plane);
- 
- 	fbc_state->plane = plane;
- 
-@@ -1272,6 +1277,7 @@ static void __intel_fbc_disable(struct intel_fbc *fbc)
- 	__intel_fbc_cleanup_cfb(fbc);
- 
- 	fbc->state.plane = NULL;
-+	fbc->flip_pending = false;
- 	fbc->busy_bits = 0;
+-	/* lock to protect against rmw in fbc nuke */
+-	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
+ 	if (DISPLAY_VER(dev_priv) >= 4)
+ 		intel_de_write_fw(dev_priv, DSPSURF(i9xx_plane),
+ 				  intel_plane_ggtt_offset(plane_state) + dspaddr_offset);
+ 	else
+ 		intel_de_write_fw(dev_priv, DSPADDR(i9xx_plane),
+ 				  intel_plane_ggtt_offset(plane_state) + dspaddr_offset);
+-	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
  }
  
-@@ -1366,12 +1372,12 @@ static void __intel_fbc_flush(struct intel_fbc *fbc,
- 	if (origin == ORIGIN_FLIP || origin == ORIGIN_CURSOR_UPDATE)
- 		goto out;
+ static void i830_plane_update_arm(struct intel_plane *plane,
+@@ -520,7 +516,6 @@ static void i9xx_plane_disable_arm(struct intel_plane *plane,
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
+ 	enum i9xx_plane_id i9xx_plane = plane->i9xx_plane;
+-	unsigned long irqflags;
+ 	u32 dspcntr;
  
--	if (fbc->busy_bits)
-+	if (fbc->busy_bits || fbc->flip_pending)
- 		goto out;
+ 	/*
+@@ -537,13 +532,10 @@ static void i9xx_plane_disable_arm(struct intel_plane *plane,
  
- 	if (fbc->active)
- 		intel_fbc_nuke(fbc);
--	else if (!fbc->flip_pending)
-+	else
- 		__intel_fbc_post_update(fbc);
+ 	intel_de_write_fw(dev_priv, DSPCNTR(i9xx_plane), dspcntr);
  
- out:
+-	/* lock to protect against rmw in fbc nuke */
+-	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
+ 	if (DISPLAY_VER(dev_priv) >= 4)
+ 		intel_de_write_fw(dev_priv, DSPSURF(i9xx_plane), 0);
+ 	else
+ 		intel_de_write_fw(dev_priv, DSPADDR(i9xx_plane), 0);
+-	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
+ }
+ 
+ static void
+@@ -556,18 +548,14 @@ g4x_primary_async_flip(struct intel_plane *plane,
+ 	u32 dspcntr = plane_state->ctl | i9xx_plane_ctl_crtc(crtc_state);
+ 	u32 dspaddr_offset = plane_state->view.color_plane[0].offset;
+ 	enum i9xx_plane_id i9xx_plane = plane->i9xx_plane;
+-	unsigned long irqflags;
+ 
+ 	if (async_flip)
+ 		dspcntr |= DISP_ASYNC_FLIP;
+ 
+ 	intel_de_write_fw(dev_priv, DSPCNTR(i9xx_plane), dspcntr);
+ 
+-	/* lock to protect against rmw in fbc nuke */
+-	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
+ 	intel_de_write_fw(dev_priv, DSPSURF(i9xx_plane),
+ 			  intel_plane_ggtt_offset(plane_state) + dspaddr_offset);
+-	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
+ }
+ 
+ static void
 -- 
 2.34.1
 
