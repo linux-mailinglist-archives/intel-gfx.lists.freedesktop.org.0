@@ -1,43 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4669F4DA1F7
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Mar 2022 19:05:28 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 188974DA221
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Mar 2022 19:15:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4DA7610E487;
-	Tue, 15 Mar 2022 18:05:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4782310E141;
+	Tue, 15 Mar 2022 18:15:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8ED1110E0D5;
- Tue, 15 Mar 2022 18:05:12 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
- (Authenticated sender: bbeckett) with ESMTPSA id 2BDFE1F4304E
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1647367511;
- bh=RKwbPfrUW2qjlvc4CHjlXd82fd97XR2D3/aFyOO8Xrw=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=XY3lKRkFtSaZHthLOjN22pfqLkKMy0lZu/zGu6zHMJEwd2hpO8/X4c4u00M/WbXnH
- hdNapswV9iaQ7czu/bz53i5jAfCZyVJRMqj7lq7wrY9xSASG38UPqP6Vc9gWroLKK3
- sgOFZoTOBoPFdEoXmBhLBslqF9dAOBBt//BWhfRtxNygLFjCkEczKYYguP/K3MZNGC
- AT6uDgQcMzvKagetM4S5gt4MYC6s45J9yRrkIpY5XYf8GhzR7spwX3noh7+UFmxU4D
- 3H0ztlxwBPe1JytmaJViyO4EditSUTlTUx1wttMkGe43ha27PmNFXB7p6a3n0yZmY2
- TW9vpHUq/5RIQ==
-From: Robert Beckett <bob.beckett@collabora.com>
-To: intel-gfx@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>
-Date: Tue, 15 Mar 2022 18:04:44 +0000
-Message-Id: <20220315180444.3327283-8-bob.beckett@collabora.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220315180444.3327283-1-bob.beckett@collabora.com>
-References: <20220315180444.3327283-1-bob.beckett@collabora.com>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B905D10E141
+ for <intel-gfx@lists.freedesktop.org>; Tue, 15 Mar 2022 18:15:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1647368105; x=1678904105;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=HlxqDOjlzAfC6JqVA1gpuKjafPAZfI2kTyHNAx6ZLBc=;
+ b=EU28TYpim4uwIISyeuFArkEo4N6w47qlA7HHz6uWbk/mIb1eKq2L5jjB
+ PP+5uxzXBRzSuZRvejy3D3jLVFsE8PUeTEP0oLXpKgjiyXhAlsUeONSkt
+ jKZGvrvgeN+Amp1eou6OmFOjU7B9/wjXTKNELUk4Rir8EwKQm/v1oPD+0
+ OzlIWWwR++3HA/9IAKv9CghkH+VbHgdrMa8VeuXaLT+bPpwBrOtQuP/iO
+ C1dSc166rrLrlLsOTWlJT9jX6yDTTES1WIRXzwxaS6KFWmuGc7NRW3JUT
+ PA67PhRmQ2wHbClVDyFJUv8uHbFAqG6zxnitknv1ddFSgZ/yjKxWt0CC8 Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10286"; a="255221131"
+X-IronPort-AV: E=Sophos;i="5.90,184,1643702400"; d="scan'208";a="255221131"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Mar 2022 11:15:04 -0700
+X-IronPort-AV: E=Sophos;i="5.90,184,1643702400"; d="scan'208";a="498133149"
+Received: from sobyrne-mobl.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
+ ([10.252.31.219])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Mar 2022 11:15:03 -0700
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 15 Mar 2022 18:14:19 +0000
+Message-Id: <20220315181425.576828-1-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [RFC PATCH 7/7] drm/i915: cleanup old stolen state
+Subject: [Intel-gfx] [CI 1/7] drm/i915/lmem: don't treat small BAR as an
+ error
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,129 +56,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-remove i915->mm.stolen
-remove i915->mm.stolen_lock
+Just pass along the probed io_size. The backend should be able to
+utilize the entire range here, even if some of it is non-mappable.
 
-they are no longer needed.
+It does leave open with what to do with stolen local-memory.
 
-Signed-off-by: Robert Beckett <bob.beckett@collabora.com>
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Reviewed-by: Nirmoy Das <nirmoy.das@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_fbc.c   |  4 ++--
- drivers/gpu/drm/i915/gem/i915_gem_stolen.c |  2 --
- drivers/gpu/drm/i915/gt/selftest_reset.c   | 16 +++++++++-------
- drivers/gpu/drm/i915/i915_drv.h            |  5 -----
- 4 files changed, 11 insertions(+), 16 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_region_lmem.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index 9df64ecab70e..644bb599eee6 100644
---- a/drivers/gpu/drm/i915/display/intel_fbc.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -805,7 +805,7 @@ static int intel_fbc_alloc_cfb(struct intel_fbc *fbc,
- err_llb:
- 	i915_gem_object_put(fetch_and_zero(&fbc->compressed_llb));
- err:
--	if (drm_mm_initialized(&i915->mm.stolen))
-+	if (IS_ERR(obj) && (PTR_ERR(obj) == -ENOMEM || PTR_ERR(obj) == -ENXIO))
- 		drm_info_once(&i915->drm, "not enough stolen space for compressed buffer (need %d more bytes), disabling. Hint: you may be able to increase stolen memory size in the BIOS to avoid this.\n", size);
- 	return -ENOSPC;
- }
-@@ -1708,7 +1708,7 @@ void intel_fbc_init(struct drm_i915_private *i915)
- {
- 	enum intel_fbc_id fbc_id;
+diff --git a/drivers/gpu/drm/i915/gt/intel_region_lmem.c b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
+index 6cecfdae07ad..783d81072c3b 100644
+--- a/drivers/gpu/drm/i915/gt/intel_region_lmem.c
++++ b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
+@@ -93,6 +93,7 @@ static struct intel_memory_region *setup_lmem(struct intel_gt *gt)
+ 	struct intel_memory_region *mem;
+ 	resource_size_t min_page_size;
+ 	resource_size_t io_start;
++	resource_size_t io_size;
+ 	resource_size_t lmem_size;
+ 	int err;
  
--	if (!drm_mm_initialized(&i915->mm.stolen))
-+	if (!i915->mm.stolen_region)
- 		mkwrite_device_info(i915)->display.fbc_mask = 0;
+@@ -124,7 +125,8 @@ static struct intel_memory_region *setup_lmem(struct intel_gt *gt)
  
- 	if (need_fbc_vtd_wa(i915))
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-index e58f9902ef47..930521a84607 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-@@ -347,8 +347,6 @@ static int i915_gem_init_stolen(struct intel_memory_region *mem)
- 	resource_size_t reserved_base, stolen_top;
- 	resource_size_t reserved_total, reserved_size;
  
--	mutex_init(&i915->mm.stolen_lock);
--
- 	if (intel_vgpu_active(i915)) {
- 		drm_notice(&i915->drm,
- 			   "%s, disabling use of stolen memory\n",
-diff --git a/drivers/gpu/drm/i915/gt/selftest_reset.c b/drivers/gpu/drm/i915/gt/selftest_reset.c
-index 37c38bdd5f47..ad2ecc582be2 100644
---- a/drivers/gpu/drm/i915/gt/selftest_reset.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_reset.c
-@@ -6,6 +6,7 @@
- #include <linux/crc32.h>
+ 	io_start = pci_resource_start(pdev, 2);
+-	if (GEM_WARN_ON(lmem_size > pci_resource_len(pdev, 2)))
++	io_size = min(pci_resource_len(pdev, 2), lmem_size);
++	if (!io_size)
+ 		return ERR_PTR(-ENODEV);
  
- #include "gem/i915_gem_stolen.h"
-+#include "intel_region_ttm.h"
- 
- #include "i915_memcpy.h"
- #include "i915_selftest.h"
-@@ -83,6 +84,7 @@ __igt_reset_stolen(struct intel_gt *gt,
- 		dma_addr_t dma = (dma_addr_t)dsm->start + (page << PAGE_SHIFT);
- 		void __iomem *s;
- 		void *in;
-+		bool busy;
- 
- 		ggtt->vm.insert_page(&ggtt->vm, dma,
- 				     ggtt->error_capture.start,
-@@ -93,9 +95,9 @@ __igt_reset_stolen(struct intel_gt *gt,
- 				      ggtt->error_capture.start,
- 				      PAGE_SIZE);
- 
--		if (!__drm_mm_interval_first(&gt->i915->mm.stolen,
--					     page << PAGE_SHIFT,
--					     ((page + 1) << PAGE_SHIFT) - 1))
-+		busy = intel_region_ttm_range_busy(gt->i915->mm.stolen_region,
-+						   PFN_PHYS(page), PFN_PHYS(page + 1) - 1);
-+		if (!busy)
- 			memset_io(s, STACK_MAGIC, PAGE_SIZE);
- 
- 		in = (void __force *)s;
-@@ -124,6 +126,7 @@ __igt_reset_stolen(struct intel_gt *gt,
- 		void __iomem *s;
- 		void *in;
- 		u32 x;
-+		bool busy;
- 
- 		ggtt->vm.insert_page(&ggtt->vm, dma,
- 				     ggtt->error_capture.start,
-@@ -139,10 +142,9 @@ __igt_reset_stolen(struct intel_gt *gt,
- 			in = tmp;
- 		x = crc32_le(0, in, PAGE_SIZE);
- 
--		if (x != crc[page] &&
--		    !__drm_mm_interval_first(&gt->i915->mm.stolen,
--					     page << PAGE_SHIFT,
--					     ((page + 1) << PAGE_SHIFT) - 1)) {
-+		busy = intel_region_ttm_range_busy(gt->i915->mm.stolen_region,
-+						   PFN_PHYS(page), PFN_PHYS(page + 1) - 1);
-+		if (x != crc[page] && !busy) {
- 			pr_debug("unused stolen page %pa modified by GPU reset\n",
- 				 &page);
- 			if (count++ == 0)
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 7d622d1afe93..1f9fa2d6d198 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -247,11 +247,6 @@ struct i915_gem_mm {
- 	 * support stolen.
- 	 */
- 	struct intel_memory_region *stolen_region;
--	/** Memory allocator for GTT stolen memory */
--	struct drm_mm stolen;
--	/** Protects the usage of the GTT stolen memory allocator. This is
--	 * always the inner lock when overlapping with struct_mutex. */
--	struct mutex stolen_lock;
- 
- 	/* Protects bound_list/unbound_list and #drm_i915_gem_object.mm.link */
- 	spinlock_t obj_lock;
+ 	min_page_size = HAS_64K_PAGES(i915) ? I915_GTT_PAGE_SIZE_64K :
+@@ -134,7 +136,7 @@ static struct intel_memory_region *setup_lmem(struct intel_gt *gt)
+ 					 lmem_size,
+ 					 min_page_size,
+ 					 io_start,
+-					 lmem_size,
++					 io_size,
+ 					 INTEL_MEMORY_LOCAL,
+ 					 0,
+ 					 &intel_region_lmem_ops);
 -- 
-2.25.1
+2.34.1
 
