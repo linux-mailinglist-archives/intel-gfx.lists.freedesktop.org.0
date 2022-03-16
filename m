@@ -1,70 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 334984DACD1
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Mar 2022 09:48:45 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F3554DAD0E
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Mar 2022 09:57:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 44F6910E497;
-	Wed, 16 Mar 2022 08:48:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A461010E365;
+	Wed, 16 Mar 2022 08:57:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ste-pvt-msa2.bahnhof.se (ste-pvt-msa2.bahnhof.se
- [213.80.101.71])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7838A10E54E;
- Wed, 16 Mar 2022 08:48:41 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by ste-pvt-msa2.bahnhof.se (Postfix) with ESMTP id 120A440483;
- Wed, 16 Mar 2022 09:48:39 +0100 (CET)
-X-Virus-Scanned: Debian amavisd-new at bahnhof.se
-X-Spam-Flag: NO
-X-Spam-Score: -2.11
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.11 tagged_above=-999 required=6.31
- tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
- DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, NICE_REPLY_A=-0.001,
- T_SCC_BODY_TEXT_LINE=-0.01, URIBL_BLOCKED=0.001]
- autolearn=ham autolearn_force=no
-Authentication-Results: ste-ftg-msa2.bahnhof.se (amavisd-new);
- dkim=pass (1024-bit key) header.d=shipmail.org
-Received: from ste-pvt-msa2.bahnhof.se ([127.0.0.1])
- by localhost (ste-ftg-msa2.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 5aE44g7miLuw; Wed, 16 Mar 2022 09:48:37 +0100 (CET)
-Received: by ste-pvt-msa2.bahnhof.se (Postfix) with ESMTPA id 0A1E640562;
- Wed, 16 Mar 2022 09:48:35 +0100 (CET)
-Authentication-Results: ste-pvt-msa2.bahnhof.se; dkim=pass (1024-bit key;
- unprotected) header.d=shipmail.org header.i=@shipmail.org header.b="V2n1xXGD";
- dkim-atps=neutral
-Received: from [192.168.0.209] (unknown [192.198.151.54])
- by mail1.shipmail.org (Postfix) with ESMTPSA id EE9F23602B5;
- Wed, 16 Mar 2022 09:48:34 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
- t=1647420515; bh=w5XsVXMynxQn5jUZ2UcMkp4Loz51WEge2Pck3icha8g=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=V2n1xXGDHSRJRXVhLN1uFmYza0n1Ju6xAmdgjnwzmTcZ/FovuySyFFlYHg7xIEtUd
- dMrOMEj5S28qKen9Py0RdGoi5YsN7RCrREcWfYiC1jCRKv+R58AZGkev/Bvjze29OZ
- luZVds2PnJ5WEh0GEoELx/P/pHeeiJee/Ki6vVzI=
-Message-ID: <ac2fe3b5-915b-1e16-58f8-702c8fb3d1e4@shipmail.org>
-Date: Wed, 16 Mar 2022 09:48:33 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 67FE810E181;
+ Wed, 16 Mar 2022 08:57:31 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 659D6AADD3;
+ Wed, 16 Mar 2022 08:57:31 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0452574266941374629=="
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.0
-Content-Language: en-US
-To: Michael Cheng <michael.cheng@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Daniel Vetter <daniel.vetter@intel.com>, Dave Airlie <airlied@gmail.com>
-References: <20220222172649.331661-1-michael.cheng@intel.com>
- <20220222172649.331661-3-michael.cheng@intel.com>
- <40f820e6-6b28-fd8a-b058-13f0bbbf71fc@shipmail.org>
- <20220308175803.pszuli2ms3e7tah3@ldmartin-desk2>
- <109ec27b-3957-f13f-aec7-18fda2819ee0@intel.com>
- <d2efdd6a-3cf1-be31-2e47-55a2bdac2b3d@intel.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
-In-Reply-To: <d2efdd6a-3cf1-be31-2e47-55a2bdac2b3d@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v3 2/3] drm/i915/gem: Remove logic for
- wbinvd_on_all_cpus
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arunpravin Paneer Selvam" <arunpravin.paneerselvam@amd.com>
+Date: Wed, 16 Mar 2022 08:57:31 -0000
+Message-ID: <164742105138.29208.10625521204389400318@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220316063416.3051-1-Arunpravin.PaneerSelvam@amd.com>
+In-Reply-To: <20220316063416.3051-1-Arunpravin.PaneerSelvam@amd.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?=3A_Fix_a_infinite_loop_condition_when_order_becomes_0_=28rev2?=
+ =?utf-8?q?=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,122 +41,208 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi, Michael, others.
+--===============0452574266941374629==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-This is the response from Linus last time we copied that already 
-pre-existing wbinvd_on_all_cpus() macro to another place in the driver:
+== Series Details ==
 
-https://lists.freedesktop.org/archives/dri-devel/2021-November/330928.html
+Series: drm: Fix a infinite loop condition when order becomes 0 (rev2)
+URL   : https://patchwork.freedesktop.org/series/101360/
+State : success
 
-My first interpretation of this is that even if there currently are 
-similar patterns in drm_cache.c, we shouldn't introduce more, 
-encouraging other drivers to use incoherent IO.
+== Summary ==
 
-Other than that I think we should move whatever wbinvds we can over to 
-the ranged versions, unless that is proven to be a performance drop.
+CI Bug Log - changes from CI_DRM_11367 -> Patchwork_22582
+====================================================
 
-Finally for any wbinvds left in our driver, ensure that they are never 
-executed for any gpu where we provide full coherency. That is all 
-discrete gpus (and to be discussed integrated gpus moving forward).
+Summary
+-------
 
-Might be that drm maintainers want to chime in here with other views.
+  **SUCCESS**
 
-Thanks,
+  No regressions found.
 
-Thomas
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22582/index.html
+
+Participating hosts (45 -> 40)
+------------------------------
+
+  Additional (1): bat-jsl-2 
+  Missing    (6): shard-tglu fi-hsw-4200u fi-ctg-p8600 shard-rkl shard-dg1 fi-bdw-samus 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_22582:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@i915_pm_rpm@module-reload:
+    - {bat-rpls-2}:       [PASS][1] -> [FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11367/bat-rpls-2/igt@i915_pm_rpm@module-reload.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22582/bat-rpls-2/igt@i915_pm_rpm@module-reload.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_22582 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - {bat-rpls-2}:       [DMESG-WARN][3] ([i915#4391]) -> [PASS][4] +1 similar issue
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11367/bat-rpls-2/igt@core_hotunplug@unbind-rebind.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22582/bat-rpls-2/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@i915_selftest@live@reset:
+    - {bat-rpls-2}:       [INCOMPLETE][5] ([i915#4983]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11367/bat-rpls-2/igt@i915_selftest@live@reset.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22582/bat-rpls-2/igt@i915_selftest@live@reset.html
+
+  * igt@kms_busy@basic@flip:
+    - {bat-adlp-6}:       [DMESG-WARN][7] ([i915#3576]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11367/bat-adlp-6/igt@kms_busy@basic@flip.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22582/bat-adlp-6/igt@kms_busy@basic@flip.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
+  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
+  [i915#3576]: https://gitlab.freedesktop.org/drm/intel/issues/3576
+  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+  [i915#4391]: https://gitlab.freedesktop.org/drm/intel/issues/4391
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#5087]: https://gitlab.freedesktop.org/drm/intel/issues/5087
+  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
 
 
+Build changes
+-------------
 
-On 3/15/22 17:59, Michael Cheng wrote:
-> +Daniel for additional feedback!
->
-> On 2022-03-14 4:06 p.m., Michael Cheng wrote:
->
->> On 2022-03-08 10:58 a.m., Lucas De Marchi wrote:
->>
->>> On Tue, Feb 22, 2022 at 08:24:31PM +0100, Thomas Hellström (Intel) 
->>> wrote:
->>>> Hi, Michael,
->>>>
->>>> On 2/22/22 18:26, Michael Cheng wrote:
->>>>> This patch removes logic for wbinvd_on_all_cpus and brings in
->>>>> drm_cache.h. This header has the logic that outputs a warning
->>>>> when wbinvd_on_all_cpus when its being used on a non-x86 platform.
->>>>>
->>>>> Signed-off-by: Michael Cheng <michael.cheng@intel.com>
->>>>
->>>> Linus has been pretty clear that he won't accept patches that add 
->>>> macros that works on one arch and warns on others anymore in i915 
->>>> and I figure even less so in drm code.
->>>>
->>>> So we shouldn't try to move this out to drm. Instead we should 
->>>> restrict the wbinvd() inside our driver to integrated and X86 only. 
->>>> For discrete on all architectures we should be coherent and hence 
->>>> not be needing wbinvd().
->>>
->>> the warn is there to guarantee we don't forget a code path. However
->>> simply adding the warning is the real issue: we should rather guarantee
->>> we can't take that code path. I.e., as you said refactor the code to
->>> guarantee it works on discrete without that logic.
->>>
->>>     $ git grep wbinvd_on_all_cpus -- drivers/gpu/drm/
->>>     drivers/gpu/drm/drm_cache.c:    if (wbinvd_on_all_cpus())
->>>     drivers/gpu/drm/drm_cache.c:    if (wbinvd_on_all_cpus())
->>>     drivers/gpu/drm/drm_cache.c:    if (wbinvd_on_all_cpus())
->>>
->>>     drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c:      * Currently we 
->>> just do a heavy handed wbinvd_on_all_cpus() here since
->>>     drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c: wbinvd_on_all_cpus();
->>>
->>> It looks like we actually go through this on other discrete 
->>> graphics. Is
->>> this missing an update like s/IS_DG1/IS_DGFX/? Or should we be doing
->>> something else?
->>>
->>>     drivers/gpu/drm/i915/gem/i915_gem_pm.c:#define 
->>> wbinvd_on_all_cpus() \
->>>     drivers/gpu/drm/i915/gem/i915_gem_pm.c: wbinvd_on_all_cpus();
->>>
->>> Those are for suspend. Revert ac05a22cd07a ("drm/i915/gem: 
->>> Almagamate clflushes on suspend")
->>> or extract that part to a helper function and implement it differently
->>> for arches != x86?
->>>
->>>     drivers/gpu/drm/i915/gem/i915_gem_pm.c: wbinvd_on_all_cpus();
->>>
->>> Probably take a similar approach to the suspend case?
->>>
->>>     drivers/gpu/drm/i915/gt/intel_ggtt.c: wbinvd_on_all_cpus();
->>
->> For a helper function, I have a #define for all non x86 architecture 
->> that gives a warn on [1] within drm_cache.h Or would it be better to 
->> implement a helper function instead?
->>
->> [1]. https://patchwork.freedesktop.org/patch/475750/?series=99991&rev=5
->>
->>>
->>> This one comes from 64b95df91f44 ("drm/i915: Assume exclusive access 
->>> to objects inside resume")
->>> Shouldn't that be doing the invalidate if the write domain is 
->>> I915_GEM_DOMAIN_CPU
->>>
->>> In the end I think the warning would be ok if it was the cherry on top,
->>> to guarantee we don't take those paths. We should probably have a
->>> warn_once() to avoid spamming the console. But we  also have to rework
->>> the code to guarantee we are the only ones who may eventually get that
->>> warning, and not the end user.
->> Could we first add the helper function/#define for now, and rework 
->> the code in a different patch series?
->>>
->>> Lucas De Marchi
->>>
->>>>
->>>> Thanks,
->>>>
->>>> /Thomas
->>>>
->>>>
+  * Linux: CI_DRM_11367 -> Patchwork_22582
+
+  CI-20190529: 20190529
+  CI_DRM_11367: 3d6f714029289bc11200d65feae049183a93bfa6 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6382: a6a5a178cb1cbe0dab8d8d092a4aee932ccb93cc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_22582: 2219781b2efc99c7c5287a1d23718bf3b28b76cc @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+2219781b2efc drm: Fix a infinite loop condition when order becomes 0
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22582/index.html
+
+--===============0452574266941374629==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm: Fix a infinite loop condition when order becomes 0 (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/101360/">https://patchwork.freedesktop.org/series/101360/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22582/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22582/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11367 -&gt; Patchwork_22582</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22582/index.html</p>
+<h2>Participating hosts (45 -&gt; 40)</h2>
+<p>Additional (1): bat-jsl-2 <br />
+  Missing    (6): shard-tglu fi-hsw-4200u fi-ctg-p8600 shard-rkl shard-dg1 fi-bdw-samus </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_22582:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@i915_pm_rpm@module-reload:<ul>
+<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11367/bat-rpls-2/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22582/bat-rpls-2/igt@i915_pm_rpm@module-reload.html">FAIL</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_22582 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11367/bat-rpls-2/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4391">i915#4391</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22582/bat-rpls-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@reset:</p>
+<ul>
+<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11367/bat-rpls-2/igt@i915_selftest@live@reset.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22582/bat-rpls-2/igt@i915_selftest@live@reset.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_busy@basic@flip:</p>
+<ul>
+<li>{bat-adlp-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11367/bat-adlp-6/igt@kms_busy@basic@flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22582/bat-adlp-6/igt@kms_busy@basic@flip.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11367 -&gt; Patchwork_22582</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11367: 3d6f714029289bc11200d65feae049183a93bfa6 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6382: a6a5a178cb1cbe0dab8d8d092a4aee932ccb93cc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_22582: 2219781b2efc99c7c5287a1d23718bf3b28b76cc @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>2219781b2efc drm: Fix a infinite loop condition when order becomes 0</p>
+
+</body>
+</html>
+
+--===============0452574266941374629==--
