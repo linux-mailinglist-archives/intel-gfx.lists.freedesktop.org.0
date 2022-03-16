@@ -1,52 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EA654DAC34
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Mar 2022 09:04:47 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF81C4DAC3E
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Mar 2022 09:12:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF3FC10E7BD;
-	Wed, 16 Mar 2022 08:04:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4119410E73A;
+	Wed, 16 Mar 2022 08:12:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F29510E7B3;
- Wed, 16 Mar 2022 08:04:40 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D032310E73A
+ for <intel-gfx@lists.freedesktop.org>; Wed, 16 Mar 2022 08:12:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1647417880; x=1678953880;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=ud3ZGW99NB2N9YtEXOyV+ImHcKiBaY2G/sDAEK31UH8=;
- b=T63nVg9YbghWWkRa6TTqNPN1w8vK7qB1k6yGzr8p0rmrNXDI9kw9lBaC
- +ILGU+T3l22Xb2YKm5yUhtDZ2dgUOCnO0f1R8tunY10aAfhvEeRy2klTX
- 5c5t5eqJe/2wFLCb3IfPvI4OHtDGcZL6BNuDci0ymSTxpMR/HNZRfz2t1
- QU9TEcVu6ekH8NxjuPZitSXp1BBGzN80rIjF4Cou4/Ajf4C1eu4/UzBYg
- noTqh4ATSDyjxPteCnkFJTVw2omXzokiTyZZP9r5czKOJF0PCltERQsLf
- ZiLa0vZxNZ8aCrE3QdLKtW8qDkZl4fZX7+fM8qz9YvrnZ26C18Xig8hEn Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10286"; a="319736929"
-X-IronPort-AV: E=Sophos;i="5.90,186,1643702400"; d="scan'208";a="319736929"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2022 01:04:39 -0700
-X-IronPort-AV: E=Sophos;i="5.90,186,1643702400"; d="scan'208";a="557333296"
+ t=1647418335; x=1678954335;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=CoHUBR3UROwpa22nO0AB9QvxRAKjqXFiSLUsTbcbjd0=;
+ b=QoZRvODdb8Kc/x60YlmhVkMKrCOd4+LD0R8lsdjDa/wpkuW4U5KEmnW/
+ 6p/DpWcejqkQfiUEfRaHU/4LUz5Dixq0UcRIBsSCltvv8B0MprzeiV4sK
+ QCmsRLxMolHgOo7XSlcqbGeMmxjAa4JAWQ57BfRoNl1SPoO67ZwAWTS1F
+ VYpdA5lwpXpAyLOP3eior1vGta/Re93jxVGmS5y8sEh+PMUqppYQcSiku
+ HFCOWqQUTv0COVY3h2baVHm42XaI/Y40bcEHKFjydcWQBXdKL62DCt4tu
+ 1Q64KHEbAvioptMSjoJ+to0X8xmrLf/uCb202obAjMDapP/r0xJ0Ay/Ak Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10286"; a="256710383"
+X-IronPort-AV: E=Sophos;i="5.90,186,1643702400"; d="scan'208";a="256710383"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Mar 2022 01:12:15 -0700
+X-IronPort-AV: E=Sophos;i="5.90,186,1643702400"; d="scan'208";a="540808402"
 Received: from jgarrosx-mobl1.amr.corp.intel.com (HELO localhost)
  ([10.252.34.45])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2022 01:04:37 -0700
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Mar 2022 01:12:13 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- dri-devel@lists.freedesktop.org
-In-Reply-To: <20220218100403.7028-20-ville.syrjala@linux.intel.com>
+To: Vinod Govindapillai <vinod.govindapillai@intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20220314225837.42816-1-vinod.govindapillai@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220218100403.7028-1-ville.syrjala@linux.intel.com>
- <20220218100403.7028-20-ville.syrjala@linux.intel.com>
-Date: Wed, 16 Mar 2022 10:04:34 +0200
-Message-ID: <871qz2pbl9.fsf@intel.com>
+References: <20220314225837.42816-1-vinod.govindapillai@intel.com>
+Date: Wed, 16 Mar 2022 10:12:10 +0200
+Message-ID: <87y21anwo5.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 19/22] drm/i915: Use drm_mode_copy()
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [RFC PATCH 0/2] suppress the wrong long hotplug
+ events
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,116 +57,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 18 Feb 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> struct drm_display_mode embeds a list head, so overwriting
-> the full struct with another one will corrupt the list
-> (if the destination mode is on a list). Use drm_mode_copy()
-> instead which explicitly preserves the list head of
-> the destination mode.
->
-> Even if we know the destination mode is not on any list
-> using drm_mode_copy() seems decent as it sets a good
-> example. Bad examples of not using it might eventually
-> get copied into code where preserving the list head
-> actually matters.
->
-> Obviously one case not covered here is when the mode
-> itself is embedded in a larger structure and the whole
-> structure is copied. But if we are careful when copying
-> into modes embedded in structures I think we can be a
-> little more reassured that bogus list heads haven't been
-> propagated in.
->
-> @is_mode_copy@
-> @@
-> drm_mode_copy(...)
-> {
-> ...
-> }
->
-> @depends on !is_mode_copy@
-> struct drm_display_mode *mode;
-> expression E, S;
-> @@
-> (
-> - *mode =3D E
-> + drm_mode_copy(mode, &E)
-> |
-> - memcpy(mode, E, S)
-> + drm_mode_copy(mode, E)
-> )
->
-> @depends on !is_mode_copy@
-> struct drm_display_mode mode;
-> expression E;
-> @@
-> (
-> - mode =3D E
-> + drm_mode_copy(&mode, &E)
-> |
-> - memcpy(&mode, E, S)
-> + drm_mode_copy(&mode, E)
-> )
->
-> @@
-> struct drm_display_mode *mode;
-> @@
-> - &*mode
-> + mode
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+On Tue, 15 Mar 2022, Vinod Govindapillai <vinod.govindapillai@intel.com> wrote:
+> Monitors like LG 27UL650-W, 27UK850 goes into power sleep state
+> and generates long duration hotplug events even when the monitor
+> is connected for display. Here is a proposal to detect and
+> suppress such hotplug events by "sleep" for 2 secs for power
+> state monitor become available before enable atomic commit.
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+I don't understand the failure mode. Please elaborate. Do we have a bug
+report?
 
+BR,
+Jani.
 
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 15 ++++++++++-----
->  1 file changed, 10 insertions(+), 5 deletions(-)
+> A debugfs entry is created to enable the suppression of the
+> hotplug event in such scenarios.
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
-rm/i915/display/intel_display.c
-> index 74c5a99ab276..661e36435793 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -5506,8 +5506,10 @@ intel_crtc_copy_uapi_to_hw_state_modeset(struct in=
-tel_atomic_state *state,
->=20=20
->  	crtc_state->hw.enable =3D crtc_state->uapi.enable;
->  	crtc_state->hw.active =3D crtc_state->uapi.active;
-> -	crtc_state->hw.mode =3D crtc_state->uapi.mode;
-> -	crtc_state->hw.adjusted_mode =3D crtc_state->uapi.adjusted_mode;
-> +	drm_mode_copy(&crtc_state->hw.mode,
-> +		      &crtc_state->uapi.mode);
-> +	drm_mode_copy(&crtc_state->hw.adjusted_mode,
-> +		      &crtc_state->uapi.adjusted_mode);
->  	crtc_state->hw.scaling_filter =3D crtc_state->uapi.scaling_filter;
->=20=20
->  	intel_crtc_copy_uapi_to_hw_state_nomodeset(state, crtc);
-> @@ -5584,9 +5586,12 @@ copy_bigjoiner_crtc_state_modeset(struct intel_ato=
-mic_state *state,
->  	memset(&slave_crtc_state->hw, 0, sizeof(slave_crtc_state->hw));
->  	slave_crtc_state->hw.enable =3D master_crtc_state->hw.enable;
->  	slave_crtc_state->hw.active =3D master_crtc_state->hw.active;
-> -	slave_crtc_state->hw.mode =3D master_crtc_state->hw.mode;
-> -	slave_crtc_state->hw.pipe_mode =3D master_crtc_state->hw.pipe_mode;
-> -	slave_crtc_state->hw.adjusted_mode =3D master_crtc_state->hw.adjusted_m=
-ode;
-> +	drm_mode_copy(&slave_crtc_state->hw.mode,
-> +		      &master_crtc_state->hw.mode);
-> +	drm_mode_copy(&slave_crtc_state->hw.pipe_mode,
-> +		      &master_crtc_state->hw.pipe_mode);
-> +	drm_mode_copy(&slave_crtc_state->hw.adjusted_mode,
-> +		      &master_crtc_state->hw.adjusted_mode);
->  	slave_crtc_state->hw.scaling_filter =3D master_crtc_state->hw.scaling_f=
-ilter;
->=20=20
->  	copy_bigjoiner_crtc_state_nomodeset(state, slave_crtc);
+> Cc: Imre Deak <imre.deak@intel.com>
+>
+> Mohammed Khajapasha (2):
+>   drm/i915/display: Add disable wait time for power state connector
+>   drm/i915/display: Add sleep for power state connector
+>
+>  .../gpu/drm/i915/display/intel_connector.c    |  3 +
+>  drivers/gpu/drm/i915/display/intel_display.c  | 80 +++++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_display.h  |  8 ++
+>  .../drm/i915/display/intel_display_debugfs.c  | 58 ++++++++++++++
+>  .../drm/i915/display/intel_display_debugfs.h  |  7 ++
+>  .../drm/i915/display/intel_display_types.h    |  2 +
+>  drivers/gpu/drm/i915/i915_drv.h               |  2 +
+>  7 files changed, 160 insertions(+)
 
---=20
+-- 
 Jani Nikula, Intel Open Source Graphics Center
