@@ -1,61 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6F054DBAA1
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Mar 2022 23:23:17 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77A264DBABE
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Mar 2022 23:49:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A1BCE10E659;
-	Wed, 16 Mar 2022 22:23:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5EFEF10E66C;
+	Wed, 16 Mar 2022 22:49:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com
- [IPv6:2a00:1450:4864:20::22c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B32F010E659
- for <intel-gfx@lists.freedesktop.org>; Wed, 16 Mar 2022 22:23:13 +0000 (UTC)
-Received: by mail-lj1-x22c.google.com with SMTP id r22so5017812ljd.4
- for <intel-gfx@lists.freedesktop.org>; Wed, 16 Mar 2022 15:23:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=N01QyUZyVRyVrO2CepkY6+caLXtyPuBAT+z3X4ujV4c=;
- b=YG7AbZeaQWw83TP1v5LG0ZApdNqTqT+Gerk5rbvsKU5ucRZgWRresINeVeuRH48++l
- gA+ul73jEI1xDcBeL3MjY6xpCFm6nVUZHpH4IwMAoimuEpdHQe26pYr0eKJfKhLTXX9s
- ugvcTKPhfhAsWTHPRnz8ruRdIz4ryfVkKPRdNWsqteU/0xqZs2yQwO7KpHkXFpK2eNlg
- ORpSYqImRiRQnK+meZ8GTKAID0s+7Jjm0y9MKuFOczMA1oZiPP08jllTD7DehZuIZwAS
- 1PrSwV3UuHByLjsCa/qiaGiDnd9V0vgkdO1uaUS61HTjTdARItKsaFK6Az5LKUt2aXFt
- XrYA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=N01QyUZyVRyVrO2CepkY6+caLXtyPuBAT+z3X4ujV4c=;
- b=OOLmD374tWKD/a/cgrEVVE2WjVGWj4UjtnoZ5/2YFGeSDrkSjklDJmgwu7mZXfeKfC
- F8vJJOY3Ur1YgOw1ip2QcGARiH6MGGe5nhRZCqRM31pc5kCu33QAVRWqPEuNzqGDHhn+
- 6KWkUuSanKAVcnswbjc9QGodfQxHOMBSdJbojC+tS6oeICoOaA65talvSpLY4PnBfrcj
- wyVkiYIfH5Czv7ep77iaDxwjf0squudCt7eVcmky8p4JMxZsoOZPUlGQ92A8XAGzpFW+
- lXAbBw6+CBnp16cJwraxF9Df3itM9VcXhQNNP6QEdKV7rlNH6KVGoCZuIq98Fli4i3w4
- Xigg==
-X-Gm-Message-State: AOAM531+5N5P7ZTb1ImjsXmJ8cSU2qD2iRy96F+2blfkVZSbcubq4KxH
- Xj+YQ2jAt6ZYP2D7S5hxNPwQu7jx++6XHO+s
-X-Google-Smtp-Source: ABdhPJzOXTLBph/yjey7mFAOkBEij5z7VEE5Hlu5wWD0xWqydGSI2DC/2Dew8gjRmMVhFzCYSaWNMA==
-X-Received: by 2002:a2e:6808:0:b0:249:1738:5cd0 with SMTP id
- c8-20020a2e6808000000b0024917385cd0mr1081886lja.174.1647469390977; 
- Wed, 16 Mar 2022 15:23:10 -0700 (PDT)
-Received: from localhost.localdomain ([213.216.209.156])
- by smtp.gmail.com with ESMTPSA id
- n13-20020a056512388d00b00443d9064160sm276204lft.125.2022.03.16.15.23.10
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 16 Mar 2022 15:23:10 -0700 (PDT)
-From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 17 Mar 2022 00:23:07 +0200
-Message-Id: <20220316222307.30066-1-juhapekka.heikkila@gmail.com>
-X-Mailer: git-send-email 2.28.0
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CFF1B10E66C;
+ Wed, 16 Mar 2022 22:49:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1647470987; x=1679006987;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=3uZAjARw/6PMcpq1YfMXT+F98av0HAL7PoFw3v0EjqE=;
+ b=d+qH0Av+WHgkwcwk2m50BKRgjQBCYQOHU5BNp6/XX7X+har6F24KNeoB
+ pKOaBr6v1143zaYRGgPhT1Sv9+k+Emu+ih/Z7OvCuU4/CzfK9PiYBaaEW
+ GJZA71Ftgzm5eM3pmlQ/4Pash0QEHmeHU7ti0zKRXUhIDbXbZGgUZ5Saf
+ 4q+flp8kkVTk9J/9Wa+VDajvdZL5shzSqxhypBuEhdKPdN9xYKB6q6e5n
+ S/ADQnH0STrhAGwYL/qfn/4egdeBUApnpTKfbucNc05/ED5oWrNYyPlFE
+ 9x/N4N3o4M3DOvmiYDNa1GUwuhyvFDL2OAZS5m6qbrhn+zDD7W2Uny5nL w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10288"; a="254287648"
+X-IronPort-AV: E=Sophos;i="5.90,187,1643702400"; d="scan'208";a="254287648"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Mar 2022 15:49:47 -0700
+X-IronPort-AV: E=Sophos;i="5.90,187,1643702400"; d="scan'208";a="690748355"
+Received: from spalurix-mobl.amr.corp.intel.com (HELO msatwood-mobl.intel.com)
+ ([10.209.38.70])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Mar 2022 15:49:47 -0700
+From: Matt Atwood <matthew.s.atwood@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Wed, 16 Mar 2022 15:49:43 -0700
+Message-Id: <20220316224943.27679-1-matthew.s.atwood@intel.com>
+X-Mailer: git-send-email 2.21.3
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/display: Add smem fallback allocation
- for dpt
+Subject: [Intel-gfx] [PATCH] drm/i915/uapi: Add
+ DRM_I915_QUERY_GEOMETRY_SUBSLICES
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,65 +59,212 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add fallback smem allocation for dpt if stolen memory
-allocation failed.
+Newer platforms have DSS that aren't necessarily available for both
+geometry and compute, two queries will need to exist. This introduces
+the first, when passing a valid engine class and engine instance in the
+flags returns a topology describing geometry.
 
-Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+v2: fix white space errors
+v3: change flags from hosting 2 8 bit numbers to holding a
+i915_engine_class_instance struct
+
+Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+UMD (mesa): https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/14143
+Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dpt.c | 18 ++++++++++++++----
- 1 file changed, 14 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/i915_query.c | 68 ++++++++++++++++++++++---------
+ include/uapi/drm/i915_drm.h       | 24 +++++++----
+ 2 files changed, 65 insertions(+), 27 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dpt.c b/drivers/gpu/drm/i915/display/intel_dpt.c
-index fb0e7e79e0cd..c8b66433d4db 100644
---- a/drivers/gpu/drm/i915/display/intel_dpt.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpt.c
-@@ -10,6 +10,7 @@
- #include "intel_display_types.h"
- #include "intel_dpt.h"
- #include "intel_fb.h"
-+#include "gem/i915_gem_internal.h"
+diff --git a/drivers/gpu/drm/i915/i915_query.c b/drivers/gpu/drm/i915/i915_query.c
+index 2dfbc22857a3..fcb374201edb 100644
+--- a/drivers/gpu/drm/i915/i915_query.c
++++ b/drivers/gpu/drm/i915/i915_query.c
+@@ -9,6 +9,7 @@
+ #include "i915_drv.h"
+ #include "i915_perf.h"
+ #include "i915_query.h"
++#include "gt/intel_engine_user.h"
+ #include <uapi/drm/i915_drm.h>
  
- struct i915_dpt {
- 	struct i915_address_space vm;
-@@ -128,6 +129,10 @@ struct i915_vma *intel_dpt_pin(struct i915_address_space *vm)
- 	void __iomem *iomem;
- 	struct i915_gem_ww_ctx ww;
- 	int err;
-+	u64 pin_flags = 0;
+ static int copy_query_item(void *query_hdr, size_t query_sz,
+@@ -28,36 +29,30 @@ static int copy_query_item(void *query_hdr, size_t query_sz,
+ 	return 0;
+ }
+ 
+-static int query_topology_info(struct drm_i915_private *dev_priv,
+-			       struct drm_i915_query_item *query_item)
++static int fill_topology_info(const struct sseu_dev_info *sseu,
++			      struct drm_i915_query_item *query_item,
++			      const u8 *subslice_mask)
+ {
+-	const struct sseu_dev_info *sseu = &to_gt(dev_priv)->info.sseu;
+ 	struct drm_i915_query_topology_info topo;
+ 	u32 slice_length, subslice_length, eu_length, total_length;
+ 	int ret;
+ 
+-	if (query_item->flags != 0)
+-		return -EINVAL;
++	BUILD_BUG_ON(sizeof(u8) != sizeof(sseu->slice_mask));
+ 
+ 	if (sseu->max_slices == 0)
+ 		return -ENODEV;
+ 
+-	BUILD_BUG_ON(sizeof(u8) != sizeof(sseu->slice_mask));
+-
+ 	slice_length = sizeof(sseu->slice_mask);
+ 	subslice_length = sseu->max_slices * sseu->ss_stride;
+ 	eu_length = sseu->max_slices * sseu->max_subslices * sseu->eu_stride;
+ 	total_length = sizeof(topo) + slice_length + subslice_length +
+ 		       eu_length;
+ 
+-	ret = copy_query_item(&topo, sizeof(topo), total_length,
+-			      query_item);
++	ret = copy_query_item(&topo, sizeof(topo), total_length, query_item);
 +
-+	if (i915_gem_object_is_stolen(dpt->obj))
-+		pin_flags |= PIN_MAPPABLE; /* for i915_vma_pin_iomap(stolen) */
+ 	if (ret != 0)
+ 		return ret;
  
- 	wakeref = intel_runtime_pm_get(&i915->runtime_pm);
- 	atomic_inc(&i915->gpu_error.pending_fb_pin);
-@@ -138,7 +143,7 @@ struct i915_vma *intel_dpt_pin(struct i915_address_space *vm)
- 			continue;
+-	if (topo.flags != 0)
+-		return -EINVAL;
+-
+ 	memset(&topo, 0, sizeof(topo));
+ 	topo.max_slices = sseu->max_slices;
+ 	topo.max_subslices = sseu->max_subslices;
+@@ -69,27 +64,61 @@ static int query_topology_info(struct drm_i915_private *dev_priv,
+ 	topo.eu_stride = sseu->eu_stride;
  
- 		vma = i915_gem_object_ggtt_pin_ww(dpt->obj, &ww, NULL, 0, 4096,
--						  HAS_LMEM(i915) ? 0 : PIN_MAPPABLE);
-+						  pin_flags);
- 		if (IS_ERR(vma)) {
- 			err = PTR_ERR(vma);
- 			continue;
-@@ -248,10 +253,15 @@ intel_dpt_create(struct intel_framebuffer *fb)
+ 	if (copy_to_user(u64_to_user_ptr(query_item->data_ptr),
+-			   &topo, sizeof(topo)))
++			 &topo, sizeof(topo)))
+ 		return -EFAULT;
  
- 	size = round_up(size * sizeof(gen8_pte_t), I915_GTT_PAGE_SIZE);
+ 	if (copy_to_user(u64_to_user_ptr(query_item->data_ptr + sizeof(topo)),
+-			   &sseu->slice_mask, slice_length))
++			 &sseu->slice_mask, slice_length))
+ 		return -EFAULT;
  
--	if (HAS_LMEM(i915))
--		dpt_obj = i915_gem_object_create_lmem(i915, size, I915_BO_ALLOC_CONTIGUOUS);
--	else
-+	dpt_obj = i915_gem_object_create_lmem(i915, size, I915_BO_ALLOC_CONTIGUOUS);
-+	if (IS_ERR(dpt_obj) && i915_ggtt_has_aperture(to_gt(i915)->ggtt))
- 		dpt_obj = i915_gem_object_create_stolen(i915, size);
-+	if (IS_ERR(dpt_obj) && !HAS_LMEM(i915)) {
-+		drm_dbg_kms(&i915->drm, "fb: [FB:%d] Allocating dpt from smem\n",
-+			    fb->base.base.id);
+ 	if (copy_to_user(u64_to_user_ptr(query_item->data_ptr +
+-					   sizeof(topo) + slice_length),
+-			   sseu->subslice_mask, subslice_length))
++					 sizeof(topo) + slice_length),
++			 subslice_mask, subslice_length))
+ 		return -EFAULT;
+ 
+ 	if (copy_to_user(u64_to_user_ptr(query_item->data_ptr +
+-					   sizeof(topo) +
+-					   slice_length + subslice_length),
+-			   sseu->eu_mask, eu_length))
++					 sizeof(topo) +
++					 slice_length + subslice_length),
++			 sseu->eu_mask, eu_length))
+ 		return -EFAULT;
+ 
+ 	return total_length;
+ }
+ 
++static int query_topology_info(struct drm_i915_private *dev_priv,
++			       struct drm_i915_query_item *query_item)
++{
++	const struct sseu_dev_info *sseu = &to_gt(dev_priv)->info.sseu;
 +
-+		dpt_obj = i915_gem_object_create_internal(i915, size);
-+	}
- 	if (IS_ERR(dpt_obj))
- 		return ERR_CAST(dpt_obj);
++	if (query_item->flags != 0)
++		return -EINVAL;
++
++	return fill_topology_info(sseu, query_item, sseu->subslice_mask);
++}
++
++static int query_geometry_subslices(struct drm_i915_private *i915,
++				    struct drm_i915_query_item *query_item)
++{
++	const struct sseu_dev_info *sseu;
++	struct intel_engine_cs *engine;
++	struct i915_engine_class_instance classinstance;
++
++	if (GRAPHICS_VER_FULL(i915) < IP_VER(12, 50))
++		return -ENODEV;
++
++	classinstance = *((struct i915_engine_class_instance *)&query_item->flags);
++
++	engine = intel_engine_lookup_user(i915, (u8) classinstance.engine_class,
++					  (u8) classinstance.engine_instance);
++
++	if (!engine)
++		return -EINVAL;
++
++	sseu = &engine->gt->info.sseu;
++
++	return fill_topology_info(sseu, query_item, sseu->geometry_subslice_mask);
++}
++
+ static int
+ query_engine_info(struct drm_i915_private *i915,
+ 		  struct drm_i915_query_item *query_item)
+@@ -485,6 +514,7 @@ static int (* const i915_query_funcs[])(struct drm_i915_private *dev_priv,
+ 	query_engine_info,
+ 	query_perf_config,
+ 	query_memregion_info,
++	query_geometry_subslices,
+ };
  
+ int i915_query_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+index 05c3642aaece..b539c83a4034 100644
+--- a/include/uapi/drm/i915_drm.h
++++ b/include/uapi/drm/i915_drm.h
+@@ -2687,10 +2687,11 @@ struct drm_i915_perf_oa_config {
+ struct drm_i915_query_item {
+ 	/** @query_id: The id for this query */
+ 	__u64 query_id;
+-#define DRM_I915_QUERY_TOPOLOGY_INFO    1
+-#define DRM_I915_QUERY_ENGINE_INFO	2
+-#define DRM_I915_QUERY_PERF_CONFIG      3
+-#define DRM_I915_QUERY_MEMORY_REGIONS   4
++#define DRM_I915_QUERY_TOPOLOGY_INFO		1
++#define DRM_I915_QUERY_ENGINE_INFO		2
++#define DRM_I915_QUERY_PERF_CONFIG		3
++#define DRM_I915_QUERY_MEMORY_REGIONS		4
++#define DRM_I915_QUERY_GEOMETRY_SUBSLICES	5
+ /* Must be kept compact -- no holes and well documented */
+ 
+ 	/**
+@@ -2714,6 +2715,9 @@ struct drm_i915_query_item {
+ 	 *	- DRM_I915_QUERY_PERF_CONFIG_LIST
+ 	 *      - DRM_I915_QUERY_PERF_CONFIG_DATA_FOR_UUID
+ 	 *      - DRM_I915_QUERY_PERF_CONFIG_FOR_UUID
++	 *
++	 * When query_id == DRM_I915_QUERY_GEOMETRY_SUBSLICES must have a valid
++	 * i915_engine_class_instance struct.
+ 	 */
+ 	__u32 flags;
+ #define DRM_I915_QUERY_PERF_CONFIG_LIST          1
+@@ -2772,16 +2776,20 @@ struct drm_i915_query {
+ };
+ 
+ /*
+- * Data written by the kernel with query DRM_I915_QUERY_TOPOLOGY_INFO :
++ * Data written by the kernel with query DRM_I915_QUERY_TOPOLOGY_INFO,
++ * DRM_I915_QUERY_GEOMETRY_SUBSLICE:
+  *
+  * data: contains the 3 pieces of information :
+  *
+- * - the slice mask with one bit per slice telling whether a slice is
+- *   available. The availability of slice X can be queried with the following
+- *   formula :
++ * - For DRM_I915_QUERY_TOPOLOGY_INFO the slice mask with one bit per slice
++ *   telling whether a slice is available. The availability of slice X can be
++ *   queried with the following formula :
+  *
+  *           (data[X / 8] >> (X % 8)) & 1
+  *
++ * - For DRM_I915_QUERY_GEOMETRY_SUBSLICES Slices are equal to 1 and this field
++ *   is not used.
++ *
+  * - the subslice mask for each slice with one bit per subslice telling
+  *   whether a subslice is available. Gen12 has dual-subslices, which are
+  *   similar to two gen11 subslices. For gen12, this array represents dual-
 -- 
-2.28.0
+2.21.3
 
