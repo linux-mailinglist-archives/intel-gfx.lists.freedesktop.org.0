@@ -1,51 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D22E74DAC60
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Mar 2022 09:23:58 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 445B24DAC74
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Mar 2022 09:28:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B53410E558;
-	Wed, 16 Mar 2022 08:23:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7112110E5E3;
+	Wed, 16 Mar 2022 08:28:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 200DD10E558
- for <intel-gfx@lists.freedesktop.org>; Wed, 16 Mar 2022 08:23:55 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D46E10E5E3
+ for <intel-gfx@lists.freedesktop.org>; Wed, 16 Mar 2022 08:28:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1647419035; x=1678955035;
+ t=1647419286; x=1678955286;
  h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=tIPIX5sTbsIVZ1h6C/tiY2jqoRok0TOtwCiHP7BAzec=;
- b=kht9XuIPk4YgcKvBTtFeCOv3gysW486gLnxOro57KXNUUW2So1sfazJw
- RoVRXse3p5bzKajd8g9K5kmHMEVlbEfUKDGRriZVDJW1ENGe08VPADTFb
- iGkoCxRH10eF8M2GSx5LkiVNSxj98PcFFXgYIJ1tqRDEE2XeFx3RuWGh3
- sleJc2Pd60QsbrYuN0gHnpf7Pp9/0zwN0x2tFIiKEGi2U7KYqaYT7m/WU
- cXvN0JrtoV5kTJjXPiyvQ7PkGSK4cQlSH3t8GDnE9dTHOP0rfSP04U1GC
- +QMEfpvuBZ9+h2yZLLQDY8/SJNmfecEORPjqGsOuJUHmmi3ZWRBpjUm30 Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10286"; a="281301238"
-X-IronPort-AV: E=Sophos;i="5.90,186,1643702400"; d="scan'208";a="281301238"
+ mime-version; bh=JpI/7HXFJwK0X6wvK5CKtUFT6zsK1dfkjnrp44EcJt8=;
+ b=ifMIAXu5TUz+4tppSD73tHR/8BQ0K1BRgtp4PGoYDm0ZjH8PMj7/Z4ZK
+ 9ElKtByaDKiY/cBO1JLfoe/UJR9wPv/orSTkur3I2bT0rXLTCzV2OWmpE
+ m8F+JnseyDEUcMkyVNvdriz9qkRirx81aaUlN6vRqv4YUNcF+S5vMVedy
+ 6ou7l7wz4kLzs04lmuwRFHo4cCs+0qSGNWzxgw2PgMWlhr+FCH7O2pxWy
+ MvfLvFdJ00qJQvUSwgO0WFZgOHMy49EHE1VZg7lhosqeUWf7+VWWq4MqW
+ +kRTR6mnRkxF8WCHwfs11xLWdUMeKKe7x2yX+MWq7pCi7z4VVBhiWd5jP Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10286"; a="256248099"
+X-IronPort-AV: E=Sophos;i="5.90,186,1643702400"; d="scan'208";a="256248099"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2022 01:23:18 -0700
-X-IronPort-AV: E=Sophos;i="5.90,186,1643702400"; d="scan'208";a="540811500"
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Mar 2022 01:28:05 -0700
+X-IronPort-AV: E=Sophos;i="5.90,186,1643702400"; d="scan'208";a="540812520"
 Received: from jgarrosx-mobl1.amr.corp.intel.com (HELO localhost)
  ([10.252.34.45])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2022 01:23:17 -0700
+ 16 Mar 2022 01:28:04 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Vinod Govindapillai <vinod.govindapillai@intel.com>,
  intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220314225837.42816-2-vinod.govindapillai@intel.com>
+In-Reply-To: <20220314225837.42816-3-vinod.govindapillai@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20220314225837.42816-1-vinod.govindapillai@intel.com>
- <20220314225837.42816-2-vinod.govindapillai@intel.com>
-Date: Wed, 16 Mar 2022 10:23:13 +0200
-Message-ID: <87v8wenw5q.fsf@intel.com>
+ <20220314225837.42816-3-vinod.govindapillai@intel.com>
+Date: Wed, 16 Mar 2022 10:28:01 +0200
+Message-ID: <87sfrinvxq.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-Subject: Re: [Intel-gfx] [RFC PATCH 1/2] drm/i915/display: Add disable wait
- time for power state connector
+Subject: Re: [Intel-gfx] [RFC PATCH 2/2] drm/i915/display: Add sleep for
+ power state connector
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,20 +64,19 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Tue, 15 Mar 2022, Vinod Govindapillai <vinod.govindapillai@intel.com> wrote:
 > From: Mohammed Khajapasha <mohammed.khajapasha@intel.com>
 >
-> Add connector disable wait time for a power state connector
-> for monitor power sleep state.
->
-> Monitors like LG 27UL650-W, 27UK850 goes into power sleep state
-> and generates long duration hotplug events even the monitor
-> connected for display, create a debugfs entry to enable sleep
-> while monitor is in power sleep state with hotplug event.
+> Add 2sec sleep for power state connector when a monitor
+> is in power sleep state before atomic commit enable.
 
-Basically this patch adds three things that don't have any connection
-between them in code, and don't actually achieve any of the things
-mentioned in the commit message. Apart from adding the debugfs, but it's
-not used for anything.
+We're absolutely not adding a sleep like this.
 
-More comments inline.
+> Monitors like LG 27UL650-W, 27UK850 goes into power
+> sleep state and generates long duration hotplug events
+> even the monitor connected for display, sleep for 2sec
+> for power state monitor become available before enable
+> atomic commit.
+
+Again, will need a better description of the failure mode and/or a
+detailed bug report to even suggest a better alternative.
 
 BR,
 Jani.
@@ -86,178 +85,134 @@ Jani.
 > Signed-off-by: Mohammed Khajapasha <mohammed.khajapasha@intel.com>
 > Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
 > ---
->  .../gpu/drm/i915/display/intel_connector.c    |  3 +
->  .../drm/i915/display/intel_display_debugfs.c  | 58 +++++++++++++++++++
->  .../drm/i915/display/intel_display_debugfs.h  |  7 +++
->  .../drm/i915/display/intel_display_types.h    |  2 +
->  drivers/gpu/drm/i915/i915_drv.h               |  2 +
->  5 files changed, 72 insertions(+)
+>  drivers/gpu/drm/i915/display/intel_display.c | 80 ++++++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_display.h |  8 ++
+>  2 files changed, 88 insertions(+)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_connector.c b/drivers/gpu/drm/i915/display/intel_connector.c
-> index c65f95a9a1ec..d7ad62df30e3 100644
-> --- a/drivers/gpu/drm/i915/display/intel_connector.c
-> +++ b/drivers/gpu/drm/i915/display/intel_connector.c
-> @@ -126,6 +126,9 @@ int intel_connector_register(struct drm_connector *connector)
->  
->  	intel_connector_debugfs_add(intel_connector);
->  
-> +	intel_connector->disabled_time =
-> +		get_jiffies_64() - msecs_to_jiffies(MSEC_PER_SEC * 10);
-> +
-
-In this patch, this is just unused code.
-
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 54db81c2cce6..a793f4234460 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -224,6 +224,81 @@ static int intel_compute_global_watermarks(struct intel_atomic_state *state)
 >  	return 0;
+>  }
 >  
->  err_backlight:
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> index 41b81d5dd5f4..e3fc42b53ea9 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> @@ -26,6 +26,17 @@
->  #include "intel_psr.h"
->  #include "intel_sprite.h"
->  
-> +struct {
-> +	/* manufacturer and product code of connector from edid data */
-> +	u8 edid_manuf_code[2];
-> +	u8 edid_prod_code[2];
-> +} wakeup_hpd_monitor_list[] = {
-> +	/* LG 27UL650-W, 27UK850 */
-> +	{{0x1e, 0x6d}, {0x06, 0x77}},
-> +	{{0x1e, 0x6d}, {0x07, 0x77}},
-> +	{{0x26, 0xcd}, {0x40, 0x66}},
-> +};
-> +
->  static inline struct drm_i915_private *node_to_i915(struct drm_info_node *node)
->  {
->  	return to_i915(node->minor->dev);
-> @@ -2021,6 +2032,52 @@ static const struct file_operations i915_fifo_underrun_reset_ops = {
->  	.llseek = default_llseek,
->  };
->  
-> +bool intel_connector_need_suppress_wakeup_hpd(struct intel_connector *connector)
+> +static void
+> +intel_connectors_wakeup_hpd_suppress(struct intel_atomic_state *state)
 > +{
+> +	struct drm_i915_private *i915 = to_i915(state->base.dev);
+> +	struct i915_hotplug *hpd = &i915->hotplug;
+> +	bool do_delay = false;
+> +	struct intel_connector *connector;
+> +	struct intel_digital_connector_state *conn_state;
 > +	int i;
-> +	struct edid *edid = connector->detect_edid;
 > +
-> +	if (!edid)
-> +		return false;
+> +	if (!hpd->suppress_wakeup_hpd_enabled)
+> +		return;
 > +
-> +	for (i = 0; i < ARRAY_SIZE(wakeup_hpd_monitor_list); i++) {
-> +		if (*((u16 *)&wakeup_hpd_monitor_list[i].edid_manuf_code) !=
-> +		    *((u16 *)&edid->mfg_id))
+> +	for_each_new_intel_connector_in_state(state, connector,
+> +					      conn_state, i) {
+> +		struct intel_crtc *crtc = to_intel_crtc(conn_state->base.crtc);
+> +		struct intel_crtc_state *crtc_state;
+> +
+> +		if (!crtc || !intel_connector_needs_modeset(state,
+> +							    &connector->base))
 > +			continue;
 > +
-> +		if (*((u16 *)&wakeup_hpd_monitor_list[i].edid_prod_code) !=
-> +		    *((u16 *)&edid->prod_code))
+> +		crtc_state = intel_atomic_get_new_crtc_state(state, crtc);
+> +		if (!crtc_state->hw.active)
 > +			continue;
 > +
-> +		return true;
+> +		if (!intel_connector_need_suppress_wakeup_hpd(connector))
+> +			continue;
+> +
+> +		if (time_is_before_jiffies64(connector->disabled_time +
+> +					     msecs_to_jiffies(MSEC_PER_SEC * 10))) {
+> +			drm_dbg_kms(&i915->drm,
+> +				    "[CONNECTOR:%d:%s] Suppress wakeup HPD for 2 secs\n",
+> +				    connector->base.base.id, connector->base.name);
+> +			do_delay = true;
+> +		}
 > +	}
 > +
-> +	return false;
+> +	if (do_delay)
+> +		msleep(2 * MSEC_PER_SEC);
 > +}
-
-Please let's not duplicate the EDID quirk mechanism from drm_edid.c.
-
 > +
-> +static int i915_suppress_wakeup_hpd_set(void *data, u64 val)
+> +static void
+> +intel_connectors_wakeup_hpd_track_disabling(struct intel_atomic_state *state)
 > +{
-> +	struct drm_i915_private *i915 = data;
+> +	struct drm_i915_private *i915 = to_i915(state->base.dev);
+> +	struct i915_hotplug *hpd = &i915->hotplug;
+> +	struct intel_connector *connector;
+> +	struct intel_digital_connector_state *conn_state;
+> +	int i;
 > +
-> +	drm_dbg(&i915->drm, "Suppress wakeup HPDs enabled: %s\n", yesno(val));
+> +	if (!hpd->suppress_wakeup_hpd_enabled)
+> +		return;
 > +
-> +	i915->hotplug.suppress_wakeup_hpd_enabled = val;
+> +	for_each_old_intel_connector_in_state(state, connector,
+> +					      conn_state, i) {
+> +		struct intel_crtc *crtc = to_intel_crtc(conn_state->base.crtc);
+> +		struct intel_crtc_state *crtc_state;
 > +
-> +	return 0;
+> +		if (!crtc || !intel_connector_needs_modeset(state,
+> +							    &connector->base))
+> +			continue;
+> +
+> +		crtc_state = intel_atomic_get_old_crtc_state(state, crtc);
+> +		if (!crtc_state->hw.active)
+> +			continue;
+> +
+> +		drm_dbg_kms(&i915->drm,
+> +			    "[CONNECTOR:%d:%s] Update disabled time for wakeup HPD handling\n",
+> +			    connector->base.base.id, connector->base.name);
+> +
+> +		connector->disabled_time = get_jiffies_64();
+> +	}
 > +}
 > +
-> +static int i915_suppress_wakeup_hpd_get(void *data, u64 *val)
-> +{
-> +	struct drm_i915_private *i915 = data;
-> +
-> +	*val = i915->hotplug.suppress_wakeup_hpd_enabled;
-> +
-> +	return 0;
-> +}
-
-So this debugfs file is completely separated from the quirk thing above,
-which seems odd. Up to the caller to handle all of them?
-
-> +
-> +DEFINE_SIMPLE_ATTRIBUTE(i915_suppress_wakeup_hpd_fops, i915_suppress_wakeup_hpd_get,
-> +			i915_suppress_wakeup_hpd_set, "%llu\n");
-> +
->  static const struct drm_info_list intel_display_debugfs_list[] = {
->  	{"i915_frontbuffer_tracking", i915_frontbuffer_tracking, 0},
->  	{"i915_ips_status", i915_ips_status, 0},
-> @@ -2055,6 +2112,7 @@ static const struct {
->  	{"i915_ipc_status", &i915_ipc_status_fops},
->  	{"i915_drrs_ctl", &i915_drrs_ctl_fops},
->  	{"i915_edp_psr_debug", &i915_edp_psr_debug_fops},
-> +	{"i915_suppress_wakeup_hpd", &i915_suppress_wakeup_hpd_fops}
->  };
+>  /* returns HPLL frequency in kHz */
+>  int vlv_get_hpll_vco(struct drm_i915_private *dev_priv)
+>  {
+> @@ -8517,6 +8592,8 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
+>  		}
+>  	}
 >  
->  void intel_display_debugfs_register(struct drm_i915_private *i915)
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.h b/drivers/gpu/drm/i915/display/intel_display_debugfs.h
-> index d3a79c07c384..58be26fcdf46 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.h
-> @@ -6,6 +6,8 @@
->  #ifndef __INTEL_DISPLAY_DEBUGFS_H__
->  #define __INTEL_DISPLAY_DEBUGFS_H__
->  
-> +#include <linux/types.h>
+> +	intel_connectors_wakeup_hpd_track_disabling(state);
 > +
->  struct drm_crtc;
->  struct drm_i915_private;
->  struct intel_connector;
-> @@ -14,10 +16,15 @@ struct intel_connector;
->  void intel_display_debugfs_register(struct drm_i915_private *i915);
->  void intel_connector_debugfs_add(struct intel_connector *connector);
->  void intel_crtc_debugfs_add(struct drm_crtc *crtc);
-> +bool intel_connector_need_suppress_wakeup_hpd(struct intel_connector *connector);
->  #else
->  static inline void intel_display_debugfs_register(struct drm_i915_private *i915) {}
->  static inline void intel_connector_debugfs_add(struct intel_connector *connector) {}
->  static inline void intel_crtc_debugfs_add(struct drm_crtc *crtc) {}
-> +static inline bool intel_connector_need_suppress_wakeup_hpd(struct intel_connector *connector)
-> +{
-> +	return false;
-> +}
-
-A functional feature should not depend on CONFIG_DEBUG_FS.
-
->  #endif
+>  	intel_commit_modeset_disables(state);
 >  
->  #endif /* __INTEL_DISPLAY_DEBUGFS_H__ */
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index 5e8d7394a394..deac7cea82c7 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -538,6 +538,8 @@ struct intel_connector {
->  	struct work_struct modeset_retry_work;
+>  	/* FIXME: Eventually get rid of our crtc->config pointer */
+> @@ -8560,6 +8637,9 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
+>  	/* Now enable the clocks, plane, pipe, and connectors that we set up. */
+>  	dev_priv->display->commit_modeset_enables(state);
 >  
->  	struct intel_hdcp hdcp;
-> +	/* Timestamp when the connector got disabled */
-> +	u64 disabled_time;
->  };
->  
->  struct intel_digital_connector_state {
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> index 943267393ecb..522c9a278172 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -145,6 +145,8 @@ struct i915_hotplug {
->  	 * blocked behind the non-DP one.
->  	 */
->  	struct workqueue_struct *dp_wq;
+> +	/* sleep for 2sec for power state connector become available */
+> +	intel_connectors_wakeup_hpd_suppress(state);
 > +
-> +	bool suppress_wakeup_hpd_enabled;
->  };
+>  	intel_encoders_update_complete(state);
 >  
->  #define I915_GEM_GPU_DOMAINS \
+>  	if (state->modeset)
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+> index 8513703086b7..12ecf1497b07 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display.h
+> @@ -539,6 +539,14 @@ enum hpd_pin {
+>  			     ((connector) = to_intel_connector((__state)->base.connectors[__i].ptr), \
+>  			     (new_connector_state) = to_intel_digital_connector_state((__state)->base.connectors[__i].new_state), 1))
+>  
+> +#define for_each_old_intel_connector_in_state(__state, connector, old_connector_state, __i) \
+> +	for ((__i) = 0; \
+> +		(__i) < (__state)->base.num_connector; \
+> +		(__i)++) \
+> +		for_each_if((__state)->base.connectors[__i].ptr && \
+> +				((connector) = to_intel_connector((__state)->base.connectors[__i].ptr), \
+> +				(old_connector_state) = to_intel_digital_connector_state((__state)->base.connectors[__i].old_state), 1))
+> +
+>  int intel_atomic_add_affected_planes(struct intel_atomic_state *state,
+>  				     struct intel_crtc *crtc);
+>  u8 intel_calc_active_pipes(struct intel_atomic_state *state,
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
