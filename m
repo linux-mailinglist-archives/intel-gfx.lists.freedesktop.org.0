@@ -1,47 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEF344DAD65
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Mar 2022 10:25:53 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC5B44DAD75
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Mar 2022 10:26:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B35D110E181;
-	Wed, 16 Mar 2022 09:25:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A8BB610E45B;
+	Wed, 16 Mar 2022 09:26:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E771210E181
- for <intel-gfx@lists.freedesktop.org>; Wed, 16 Mar 2022 09:25:50 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 89DED10E55D
+ for <intel-gfx@lists.freedesktop.org>; Wed, 16 Mar 2022 09:26:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1647422750; x=1678958750;
+ t=1647422811; x=1678958811;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=KFCqLW4LgoTklTgs7WWxcexcAEhVJJP8drftpyeE6Tg=;
- b=S0LCzfRgb3PpSq5nXai7mOVxjJeuqZ7do3vzSrnmqTtpw3hnieWGSbKZ
- g8UMClOJAGwDAVJzrQPA0rC5NZu+nrIprUJV7E62ibsale+9kyAHgSp16
- YKcbVACJn7t3hv0vbFnfJ/wTflLu/E2rKPTuk15yaOdkTgx1b9NmSsbPZ
- qCnUtlrlE7m+83IBPuhSmxXlWHktNufOcdUz+YI5aV2LLhucQP+gXu9Um
- HxEZGQrOUfvCijSEAY7LaX1zRbjrD5uOiSBPTZzkn22n4izAse0hrVKvQ
- gEgWINkbl+eh701ef9r7Ps3LOR3VsAWr7mah4ZgLtpmMhV/W++Hg4tSx4 A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10286"; a="319750795"
-X-IronPort-AV: E=Sophos;i="5.90,186,1643702400"; d="scan'208";a="319750795"
+ bh=lk0XfPiCMpi8ViJeEz9SoWodXHXGKwq40/krivhqcY8=;
+ b=K+6uYtyDD2HnXJQG63dlA9UtHJXliVg9bRfMkOmywKNtmvGA3bDrpOR9
+ dJOrTU1AV9C0ddOO8Rqmk5ZCH1yGZ0hRATjqOQLripIPHp+vT/01HpLEd
+ esUAhNvdryiSGihs6hk9Q0xnGuThZ2cnr+AmEX0bRFxK/eKpdF0oIySzD
+ Ao3Y2kZmFOYmzhOXfbxh4E8ex5Qk2gC9Kqt4XRTEdjcp6qzdcFI53lulD
+ Ry8LXpnUlfbCNOHhfJdTxGVgZ2JYhbzCEIu1YfQOop0YJs3617Fo+JYpp
+ sq8vkd2boC/C0L2ySVpp3wGtkC3xeRWkUkghebcZwMEuQ3l2wF2zQnwvT Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10286"; a="317255622"
+X-IronPort-AV: E=Sophos;i="5.90,186,1643702400"; d="scan'208";a="317255622"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2022 02:25:40 -0700
-X-IronPort-AV: E=Sophos;i="5.90,186,1643702400"; d="scan'208";a="557358702"
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Mar 2022 02:26:51 -0700
+X-IronPort-AV: E=Sophos;i="5.90,186,1643702400"; d="scan'208";a="557359215"
 Received: from jgarrosx-mobl1.amr.corp.intel.com (HELO localhost)
  ([10.252.34.45])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2022 02:25:36 -0700
+ 16 Mar 2022 02:26:47 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: Anshuman Gupta <anshuman.gupta@intel.com>, intel-gfx@lists.freedesktop.org
 In-Reply-To: <20220220163730.5021-3-anshuman.gupta@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20220220163730.5021-1-anshuman.gupta@intel.com>
  <20220220163730.5021-3-anshuman.gupta@intel.com>
-Date: Wed, 16 Mar 2022 11:25:33 +0200
-Message-ID: <87o826nt9u.fsf@intel.com>
+Date: Wed, 16 Mar 2022 11:26:43 +0200
+Message-ID: <87lexant7w.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 Subject: Re: [Intel-gfx] [PATCH v3 2/6] drm/i915/opregion: Abstract opregion
@@ -169,15 +169,6 @@ On Sun, 20 Feb 2022, Anshuman Gupta <anshuman.gupta@intel.com> wrote:
 > -		opregion->rvda = memremap(rvda, opregion->asle->rvds,
 > -					  MEMREMAP_WB);
 > +		opregion->rvda = opregion->opregion_func->alloc_rvda(dev_priv);
-
-It's a basic principle of interfaces to do corresponding things at the
-same abstraction level.
-
-Now, you set opregion->rvda at the level that calls ->alloc_rvda,
-however ->free_rvda accesses opregion->rvda directly.
-
-Similarly for ->alloc_opregion and ->free_opregion.
-
 > +		if (IS_ERR(opregion->rvda))
 > +			goto mbox4_vbt;
 >  
@@ -229,9 +220,6 @@ Similarly for ->alloc_opregion and ->free_opregion.
 >  
 > +static int
 > +intel_opregion_get_asls(struct drm_i915_private *i915)
-
-You'd expect a function named "get asls" to return asls.
-
 > +{
 > +	struct intel_opregion *opregion = &i915->opregion;
 > +	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
@@ -288,10 +276,6 @@ You'd expect a function named "get asls" to return asls.
 > +	void *opreg_rvda;
 > +
 > +	if(drm_WARN_ON(&i915->drm, !opregion->asls || !opregion->header))
-          ^
-
-Missing space.
-
 > +		return ERR_PTR(-ENODEV);
 > +
 > +	rvda = opregion->asle->rvda;
@@ -321,6 +305,9 @@ Missing space.
 > +	struct intel_opregion *opregion = &i915->opregion;
 > +
 > +	if (opregion->rvda) {
+
+Earlier code suggests opregion->rvda may be an error pointer.
+
 > +		memunmap(opregion->rvda);
 > +		opregion->rvda = NULL;
 > +	}
