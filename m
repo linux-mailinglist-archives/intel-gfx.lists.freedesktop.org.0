@@ -2,32 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E19C4DD059
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Mar 2022 22:43:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 017784DD097
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Mar 2022 23:16:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9896910E81A;
-	Thu, 17 Mar 2022 21:43:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 993ED10E124;
+	Thu, 17 Mar 2022 22:16:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id C99B610E81A;
- Thu, 17 Mar 2022 21:43:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id A0FB610E124;
+ Thu, 17 Mar 2022 22:16:44 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C8E2BA00A0;
- Thu, 17 Mar 2022 21:43:20 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9B6ECA0BCB;
+ Thu, 17 Mar 2022 22:16:44 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Alan Previn" <alan.previn.teres.alexis@intel.com>
-Date: Thu, 17 Mar 2022 21:43:20 -0000
-Message-ID: <164755340081.32162.18007556309981785385@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Thu, 17 Mar 2022 22:16:44 -0000
+Message-ID: <164755540460.32162.2138505967200155356@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20220317185655.1786958-1-alan.previn.teres.alexis@intel.com>
-In-Reply-To: <20220317185655.1786958-1-alan.previn.teres.alexis@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?Add_GuC_Error_Capture_Support?=
+References: <20220317171948.10400-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20220317171948.10400-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/bios=3A_Rework_BDB_block_handling_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,14 +47,72 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: Add GuC Error Capture Support
-URL   : https://patchwork.freedesktop.org/series/101503/
+Series: drm/i915/bios: Rework BDB block handling (rev3)
+URL   : https://patchwork.freedesktop.org/series/101496/
 State : warning
 
 == Summary ==
 
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
+$ dim checkpatch origin/drm-tip
+f78f0208e580 drm/i915/bios: Extract struct lvds_lfp_data_ptr_table
+b9aaa74b14b4 drm/i915/bios: Make copies of VBT data blocks
+2b5fbda9a559 drm/i915/bios: Use the copy of the LFP data table always
+4d30945afa1f drm/i915/bios: Validate LFP data table pointers
+-:86: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#86: FILE: drivers/gpu/drm/i915/display/intel_bios.c:219:
++		if (ptrs->ptr[i].fp_timing.offset - ptrs->ptr[i-1].fp_timing.offset != lfp_data_size ||
+
+-:86: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
+#86: FILE: drivers/gpu/drm/i915/display/intel_bios.c:219:
++		if (ptrs->ptr[i].fp_timing.offset - ptrs->ptr[i-1].fp_timing.offset != lfp_data_size ||
+ 		                                               ^
+
+-:87: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#87: FILE: drivers/gpu/drm/i915/display/intel_bios.c:220:
++		    ptrs->ptr[i].dvo_timing.offset - ptrs->ptr[i-1].dvo_timing.offset != lfp_data_size ||
+
+-:87: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
+#87: FILE: drivers/gpu/drm/i915/display/intel_bios.c:220:
++		    ptrs->ptr[i].dvo_timing.offset - ptrs->ptr[i-1].dvo_timing.offset != lfp_data_size ||
+ 		                                                ^
+
+-:88: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
+#88: FILE: drivers/gpu/drm/i915/display/intel_bios.c:221:
++		    ptrs->ptr[i].panel_pnp_id.offset - ptrs->ptr[i-1].panel_pnp_id.offset != lfp_data_size)
+
+-:88: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
+#88: FILE: drivers/gpu/drm/i915/display/intel_bios.c:221:
++		    ptrs->ptr[i].panel_pnp_id.offset - ptrs->ptr[i-1].panel_pnp_id.offset != lfp_data_size)
+ 		                                                  ^
+
+total: 0 errors, 3 warnings, 3 checks, 94 lines checked
+3163d2ce4d8e drm/i915/bios: Trust the LFP data pointers
+b88f44efc47e drm/i915/bios: Validate the panel_name table
+79016ff6119f drm/i915/bios: Reorder panel DTD parsing
+954a9b37adaa drm/i915/bios: Generate LFP data table pointers if the VBT lacks them
+-:39: CHECK:SPACING: spaces preferred around that '+' (ctx:VxV)
+#39: FILE: drivers/gpu/drm/i915/display/intel_bios.c:283:
++		if (data[i] == 0xff && data[i+1] == 0xff)
+ 		                             ^
+
+-:123: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
+#123: FILE: drivers/gpu/drm/i915/display/intel_bios.c:367:
++		next_lfp_data_ptr(&ptrs->ptr[i].fp_timing, &ptrs->ptr[i-1].fp_timing, size);
+ 		                                                       ^
+
+-:124: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
+#124: FILE: drivers/gpu/drm/i915/display/intel_bios.c:368:
++		next_lfp_data_ptr(&ptrs->ptr[i].dvo_timing, &ptrs->ptr[i-1].dvo_timing, size);
+ 		                                                        ^
+
+-:125: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
+#125: FILE: drivers/gpu/drm/i915/display/intel_bios.c:369:
++		next_lfp_data_ptr(&ptrs->ptr[i].panel_pnp_id, &ptrs->ptr[i-1].panel_pnp_id, size);
+ 		                                                          ^
+
+total: 0 errors, 0 warnings, 4 checks, 163 lines checked
+008090abbd52 drm/i915/bios: Get access to the tail end of the LFP data block
+c04a3e89df19 drm/i915/bios: Parse the seamless DRRS min refresh rate
+028a04f58900 drm/i915: Respect VBT seamless DRRS min refresh rate
 
 
