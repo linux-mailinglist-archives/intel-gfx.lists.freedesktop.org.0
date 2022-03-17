@@ -1,52 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A3D24DCE63
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Mar 2022 20:02:55 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49A294DCE67
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Mar 2022 20:03:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE37810E6BD;
-	Thu, 17 Mar 2022 19:02:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C6A010E6DC;
+	Thu, 17 Mar 2022 19:03:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D2E010E6B6
- for <intel-gfx@lists.freedesktop.org>; Thu, 17 Mar 2022 19:02:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1647543771; x=1679079771;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=uNNU0PXSNAG0KwtQEK3QO/fFdtS8sK/PQh49hXL08fA=;
- b=PoRqlXxZIWUab/3xUFtmMgtWPeBUKmYkEtjnSvl0ag4/3MbLHHa1Qyoc
- WPI2ihrzkFb2DFXQWsEzK/LD4TfKOZt7qK9Bva3CfIW7xsHqeDEzNSd6k
- kGMsvPuRlyS5cGPIP06GfF0uJNV8Pi9pG4txzUEBTCY379XkPnH6DAALY
- cGTpdK/hNc05yQbjPzmwA5WWEPZzi3mgph33YQYg3kUmg1CDoe99icIOg
- nn2hxGy/W7hQQadTclWZVsbAutCitQhlJwgw2iq4LYQKXM0KislMUwIHS
- rWsrOmMh26ueSPXpCu437id8GvzC5LEui/Kqc9HMbzztKvO/sA3Fl4US2 Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10289"; a="236901385"
-X-IronPort-AV: E=Sophos;i="5.90,188,1643702400"; d="scan'208";a="236901385"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2022 12:02:50 -0700
-X-IronPort-AV: E=Sophos;i="5.90,188,1643702400"; d="scan'208";a="558065672"
-Received: from unknown (HELO localhost) ([10.252.58.37])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2022 12:02:49 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220317171948.10400-3-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220317171948.10400-1-ville.syrjala@linux.intel.com>
- <20220317171948.10400-3-ville.syrjala@linux.intel.com>
-Date: Thu, 17 Mar 2022 21:02:46 +0200
-Message-ID: <87h77wmmg9.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id CDAA710E6DC;
+ Thu, 17 Mar 2022 19:03:08 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id CAF08A0096;
+ Thu, 17 Mar 2022 19:03:08 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5177264528492398353=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 02/11] drm/i915/bios: Make copies of VBT
- data blocks
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Thu, 17 Mar 2022 19:03:08 -0000
+Message-ID: <164754378882.32164.15027752465905254942@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220317173355.336835-1-jani.nikula@intel.com>
+In-Reply-To: <20220317173355.336835-1-jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/sdvo=3A_prefer_=5F=5Fpacked_over_=5F=5Fattribute=5F=5F=28?=
+ =?utf-8?b?KHBhY2tlZCkp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,339 +41,273 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 17 Mar 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> Make a copy of each VB data block with a guaranteed minimum
-> size. The extra (if any) will just be left zeroed.
+--===============5177264528492398353==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-*VBT
+== Series Details ==
 
->
-> This means we don't have to worry about going out of bounds
-> when accessing any of the structure members. Otherwise that
-> could easliy happen if we simply get the version check wrong,
-> or if the VBT is broken/malicious.
+Series: drm/i915/sdvo: prefer __packed over __attribute__((packed))
+URL   : https://patchwork.freedesktop.org/series/101497/
+State : success
 
-*easily
+== Summary ==
 
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+CI Bug Log - changes from CI_DRM_11376 -> Patchwork_22596
+====================================================
 
-The high level question is if we really want to save the copies until
-driver remove instead of just during parsing. The lifetime should be
-mentioned in the commit message, with rationale if you have some.
+Summary
+-------
 
-I was wondering about making the copies up front instead of as needed,
-but that means setting up a list for the min sizes. It would clean up
-the usage (avoids passing around any pointers to original data to the
-parsers). Then you could use just find_section(i915, BDB_XXX). Dunno.
+  **SUCCESS**
 
-As to details, seems to do what it says on the box,
+  No regressions found.
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22596/index.html
 
-> ---
->  drivers/gpu/drm/i915/display/intel_bios.c | 122 ++++++++++++++++++----
->  drivers/gpu/drm/i915/i915_drv.h           |   1 +
->  2 files changed, 104 insertions(+), 19 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/=
-i915/display/intel_bios.c
-> index 31fce7c92a28..ff04514eb3b7 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bios.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-> @@ -87,8 +87,28 @@ static u32 get_blocksize(const void *block_data)
->  	return _get_blocksize(block_data - 3);
->  }
->=20=20
-> +struct bdb_block_entry {
-> +	struct list_head node;
-> +	size_t min_size;
-> +	enum bdb_block_id section_id;
-> +	u8 data[];
-> +};
-> +
-> +static struct bdb_block_entry *
-> +find_bdb_block(struct drm_i915_private *i915, enum bdb_block_id section_=
-id)
-> +{
-> +	struct bdb_block_entry *entry;
-> +
-> +	list_for_each_entry(entry, &i915->vbt.bdb_blocks, node) {
-> +		if (entry->section_id =3D=3D section_id)
-> +			return entry;
-> +	}
-> +
-> +	return NULL;
-> +}
-> +
->  static const void *
-> -find_section(const void *_bdb, enum bdb_block_id section_id)
-> +find_raw_section(const void *_bdb, enum bdb_block_id section_id)
->  {
->  	const struct bdb_header *bdb =3D _bdb;
->  	const u8 *base =3D _bdb;
-> @@ -118,6 +138,47 @@ find_section(const void *_bdb, enum bdb_block_id sec=
-tion_id)
->  	return NULL;
->  }
->=20=20
-> +static const void *
-> +find_section(struct drm_i915_private *i915,
-> +	     const void *bdb, enum bdb_block_id section_id,
-> +	     size_t min_size)
-> +{
-> +	struct bdb_block_entry *entry;
-> +	const void *block;
-> +	size_t block_size;
-> +
-> +	entry =3D find_bdb_block(i915, section_id);
-> +	if (entry) {
-> +		/* make sure all callers pass in a consistent min_size */
-> +		if (drm_WARN_ON(&i915->drm, entry->min_size !=3D min_size))
-> +			return NULL;
-> +
-> +		return entry->data + 3;
-> +	}
-> +
-> +	block =3D find_raw_section(bdb, section_id);
-> +	if (!block)
-> +		return NULL;
-> +
-> +	block_size =3D get_blocksize(block);
-> +
-> +	entry =3D kzalloc(struct_size(entry, data, max(min_size, block_size) + =
-3),
-> +			GFP_KERNEL);
-> +	if (!entry)
-> +		return NULL;
-> +
-> +	entry->section_id =3D section_id;
-> +	entry->min_size =3D min_size;
-> +	memcpy(entry->data, block - 3, block_size + 3);
-> +
-> +	drm_dbg_kms(&i915->drm, "Found BDB block %d (size %zu, min size %zu)\n",
-> +		    section_id, block_size, min_size);
-> +
-> +	list_add(&entry->node, &i915->vbt.bdb_blocks);
-> +
-> +	return entry->data + 3;
-> +}
-> +
->  static void
->  fill_detail_timing_data(struct drm_display_mode *panel_fixed_mode,
->  			const struct lvds_dvo_timing *dvo_timing)
-> @@ -222,7 +283,8 @@ parse_panel_options(struct drm_i915_private *i915,
->  	int drrs_mode;
->  	int ret;
->=20=20
-> -	lvds_options =3D find_section(bdb, BDB_LVDS_OPTIONS);
-> +	lvds_options =3D find_section(i915, bdb, BDB_LVDS_OPTIONS,
-> +				    sizeof(*lvds_options));
->  	if (!lvds_options)
->  		return;
->=20=20
-> @@ -285,11 +347,13 @@ parse_lfp_panel_dtd(struct drm_i915_private *i915,
->  	struct drm_display_mode *panel_fixed_mode;
->  	int panel_type =3D i915->vbt.panel_type;
->=20=20
-> -	lvds_lfp_data =3D find_section(bdb, BDB_LVDS_LFP_DATA);
-> +	lvds_lfp_data =3D find_section(i915, bdb, BDB_LVDS_LFP_DATA,
-> +				     sizeof(*lvds_lfp_data));
->  	if (!lvds_lfp_data)
->  		return;
->=20=20
-> -	lvds_lfp_data_ptrs =3D find_section(bdb, BDB_LVDS_LFP_DATA_PTRS);
-> +	lvds_lfp_data_ptrs =3D find_section(i915, bdb, BDB_LVDS_LFP_DATA_PTRS,
-> +					  sizeof(*lvds_lfp_data_ptrs));
->  	if (!lvds_lfp_data_ptrs)
->  		return;
->=20=20
-> @@ -333,7 +397,8 @@ parse_generic_dtd(struct drm_i915_private *i915,
->  	struct drm_display_mode *panel_fixed_mode;
->  	int num_dtd;
->=20=20
-> -	generic_dtd =3D find_section(bdb, BDB_GENERIC_DTD);
-> +	generic_dtd =3D find_section(i915, bdb, BDB_GENERIC_DTD,
-> +				   sizeof(*generic_dtd));
->  	if (!generic_dtd)
->  		return;
->=20=20
-> @@ -430,7 +495,8 @@ parse_lfp_backlight(struct drm_i915_private *i915,
->  	int panel_type =3D i915->vbt.panel_type;
->  	u16 level;
->=20=20
-> -	backlight_data =3D find_section(bdb, BDB_LVDS_BACKLIGHT);
-> +	backlight_data =3D find_section(i915, bdb, BDB_LVDS_BACKLIGHT,
-> +				      sizeof(*backlight_data));
->  	if (!backlight_data)
->  		return;
->=20=20
-> @@ -531,14 +597,16 @@ parse_sdvo_panel_data(struct drm_i915_private *i915,
->  	if (index =3D=3D -1) {
->  		const struct bdb_sdvo_lvds_options *sdvo_lvds_options;
->=20=20
-> -		sdvo_lvds_options =3D find_section(bdb, BDB_SDVO_LVDS_OPTIONS);
-> +		sdvo_lvds_options =3D find_section(i915, bdb, BDB_SDVO_LVDS_OPTIONS,
-> +						 sizeof(*sdvo_lvds_options));
->  		if (!sdvo_lvds_options)
->  			return;
->=20=20
->  		index =3D sdvo_lvds_options->panel_type;
->  	}
->=20=20
-> -	dtds =3D find_section(bdb, BDB_SDVO_PANEL_DTDS);
-> +	dtds =3D find_section(i915, bdb, BDB_SDVO_PANEL_DTDS,
-> +			    sizeof(*dtds));
->  	if (!dtds)
->  		return;
->=20=20
-> @@ -575,7 +643,8 @@ parse_general_features(struct drm_i915_private *i915,
->  {
->  	const struct bdb_general_features *general;
->=20=20
-> -	general =3D find_section(bdb, BDB_GENERAL_FEATURES);
-> +	general =3D find_section(i915, bdb, BDB_GENERAL_FEATURES,
-> +			       sizeof(*general));
->  	if (!general)
->  		return;
->=20=20
-> @@ -700,7 +769,8 @@ parse_driver_features(struct drm_i915_private *i915,
->  {
->  	const struct bdb_driver_features *driver;
->=20=20
-> -	driver =3D find_section(bdb, BDB_DRIVER_FEATURES);
-> +	driver =3D find_section(i915, bdb, BDB_DRIVER_FEATURES,
-> +			      sizeof(*driver));
->  	if (!driver)
->  		return;
->=20=20
-> @@ -756,7 +826,8 @@ parse_power_conservation_features(struct drm_i915_pri=
-vate *i915,
->  	if (bdb->version < 228)
->  		return;
->=20=20
-> -	power =3D find_section(bdb, BDB_LFP_POWER);
-> +	power =3D find_section(i915, bdb, BDB_LFP_POWER,
-> +			     sizeof(*power));
->  	if (!power)
->  		return;
->=20=20
-> @@ -783,7 +854,8 @@ parse_edp(struct drm_i915_private *i915, const struct=
- bdb_header *bdb)
->  	const struct edp_fast_link_params *edp_link_params;
->  	int panel_type =3D i915->vbt.panel_type;
->=20=20
-> -	edp =3D find_section(bdb, BDB_EDP);
-> +	edp =3D find_section(i915, bdb, BDB_EDP,
-> +			   sizeof(*edp));
->  	if (!edp)
->  		return;
->=20=20
-> @@ -900,7 +972,8 @@ parse_psr(struct drm_i915_private *i915, const struct=
- bdb_header *bdb)
->  	const struct psr_table *psr_table;
->  	int panel_type =3D i915->vbt.panel_type;
->=20=20
-> -	psr =3D find_section(bdb, BDB_PSR);
-> +	psr =3D find_section(i915, bdb, BDB_PSR,
-> +			   sizeof(*psr));
->  	if (!psr) {
->  		drm_dbg_kms(&i915->drm, "No PSR BDB found.\n");
->  		return;
-> @@ -1058,7 +1131,8 @@ parse_mipi_config(struct drm_i915_private *i915,
->  	/* Parse #52 for panel index used from panel_type already
->  	 * parsed
->  	 */
-> -	start =3D find_section(bdb, BDB_MIPI_CONFIG);
-> +	start =3D find_section(i915, bdb, BDB_MIPI_CONFIG,
-> +			     sizeof(*start));
->  	if (!start) {
->  		drm_dbg_kms(&i915->drm, "No MIPI config BDB found");
->  		return;
-> @@ -1368,7 +1442,8 @@ parse_mipi_sequence(struct drm_i915_private *i915,
->  	if (i915->vbt.dsi.panel_id !=3D MIPI_DSI_GENERIC_PANEL_ID)
->  		return;
->=20=20
-> -	sequence =3D find_section(bdb, BDB_MIPI_SEQUENCE);
-> +	sequence =3D find_section(i915, bdb, BDB_MIPI_SEQUENCE,
-> +				sizeof(*sequence));
->  	if (!sequence) {
->  		drm_dbg_kms(&i915->drm,
->  			    "No MIPI Sequence found, parsing complete\n");
-> @@ -1451,7 +1526,8 @@ parse_compression_parameters(struct drm_i915_privat=
-e *i915,
->  	if (bdb->version < 198)
->  		return;
->=20=20
-> -	params =3D find_section(bdb, BDB_COMPRESSION_PARAMETERS);
-> +	params =3D find_section(i915, bdb, BDB_COMPRESSION_PARAMETERS,
-> +			      sizeof(*params));
->  	if (params) {
->  		/* Sanity checks */
->  		if (params->entry_size !=3D sizeof(params->data[0])) {
-> @@ -2097,7 +2173,8 @@ parse_general_definitions(struct drm_i915_private *=
-i915,
->  	u16 block_size;
->  	int bus_pin;
->=20=20
-> -	defs =3D find_section(bdb, BDB_GENERAL_DEFINITIONS);
-> +	defs =3D find_section(i915, bdb, BDB_GENERAL_DEFINITIONS,
-> +			    sizeof(*defs));
->  	if (!defs) {
->  		drm_dbg_kms(&i915->drm,
->  			    "No general definition block is found, no devices defined.\n");
-> @@ -2466,6 +2543,7 @@ void intel_bios_init(struct drm_i915_private *i915)
->  	const struct bdb_header *bdb;
->=20=20
->  	INIT_LIST_HEAD(&i915->vbt.display_devices);
-> +	INIT_LIST_HEAD(&i915->vbt.bdb_blocks);
->=20=20
->  	if (!HAS_DISPLAY(i915)) {
->  		drm_dbg_kms(&i915->drm,
-> @@ -2536,14 +2614,20 @@ void intel_bios_init(struct drm_i915_private *i91=
-5)
->   */
->  void intel_bios_driver_remove(struct drm_i915_private *i915)
->  {
-> -	struct intel_bios_encoder_data *devdata, *n;
-> +	struct intel_bios_encoder_data *devdata, *nd;
-> +	struct bdb_block_entry *entry, *ne;
->=20=20
-> -	list_for_each_entry_safe(devdata, n, &i915->vbt.display_devices, node) {
-> +	list_for_each_entry_safe(devdata, nd, &i915->vbt.display_devices, node)=
- {
->  		list_del(&devdata->node);
->  		kfree(devdata->dsc);
->  		kfree(devdata);
->  	}
->=20=20
-> +	list_for_each_entry_safe(entry, ne, &i915->vbt.bdb_blocks, node) {
-> +		list_del(&entry->node);
-> +		kfree(entry);
-> +	}
-> +
->  	kfree(i915->vbt.sdvo_lvds_vbt_mode);
->  	i915->vbt.sdvo_lvds_vbt_mode =3D NULL;
->  	kfree(i915->vbt.lfp_lvds_vbt_mode);
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_=
-drv.h
-> index a9aceb08fcd1..0f52ce62281e 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -382,6 +382,7 @@ struct intel_vbt_data {
->  	int crt_ddc_pin;
->=20=20
->  	struct list_head display_devices;
-> +	struct list_head bdb_blocks;
->=20=20
->  	struct intel_bios_encoder_data *ports[I915_MAX_PORTS]; /* Non-NULL if p=
-ort present. */
->  	struct sdvo_device_mapping sdvo_mappings[2];
+Participating hosts (50 -> 46)
+------------------------------
 
---=20
-Jani Nikula, Intel Open Source Graphics Center
+  Additional (1): bat-adlm-1 
+  Missing    (5): shard-tglu fi-bsw-cyan shard-rkl shard-dg1 fi-bdw-samus 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_22596 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@semaphore:
+    - fi-hsw-4770:        NOTRUN -> [SKIP][1] ([fdo#109271] / [fdo#109315]) +17 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22596/fi-hsw-4770/igt@amdgpu/amd_basic@semaphore.html
+
+  * igt@i915_pm_rps@basic-api:
+    - bat-dg1-6:          [PASS][2] -> [FAIL][3] ([i915#4032])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11376/bat-dg1-6/igt@i915_pm_rps@basic-api.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22596/bat-dg1-6/igt@i915_pm_rps@basic-api.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-bdw-5557u:       NOTRUN -> [INCOMPLETE][4] ([i915#3921])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22596/fi-bdw-5557u/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_chamelium@vga-edid-read:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][5] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22596/fi-bdw-5557u/igt@kms_chamelium@vga-edid-read.html
+
+  * igt@kms_force_connector_basic@prune-stale-modes:
+    - fi-cfl-8109u:       [PASS][6] -> [DMESG-WARN][7] ([i915#295])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11376/fi-cfl-8109u/igt@kms_force_connector_basic@prune-stale-modes.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22596/fi-cfl-8109u/igt@kms_force_connector_basic@prune-stale-modes.html
+
+  * igt@kms_setmode@basic-clone-single-crtc:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][8] ([fdo#109271]) +14 similar issues
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22596/fi-bdw-5557u/igt@kms_setmode@basic-clone-single-crtc.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@coherency:
+    - {bat-rpls-2}:       [INCOMPLETE][9] -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11376/bat-rpls-2/igt@i915_selftest@live@coherency.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22596/bat-rpls-2/igt@i915_selftest@live@coherency.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-hsw-4770:        [INCOMPLETE][11] ([i915#3303]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11376/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22596/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_flip@basic-flip-vs-modeset@a-edp1:
+    - {bat-adlp-6}:       [DMESG-WARN][13] ([i915#3576]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11376/bat-adlp-6/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22596/bat-adlp-6/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html
+
+  
+#### Warnings ####
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-cfl-8109u:       [DMESG-FAIL][15] ([i915#295]) -> [DMESG-WARN][16] ([i915#295])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11376/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22596/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
+  [fdo#111825]: https://bugs.freedesktop.org/show_bug.cgi?id=111825
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
+  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
+  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
+  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
+  [i915#295]: https://gitlab.freedesktop.org/drm/intel/issues/295
+  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
+  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
+  [i915#3546]: https://gitlab.freedesktop.org/drm/intel/issues/3546
+  [i915#3576]: https://gitlab.freedesktop.org/drm/intel/issues/3576
+  [i915#3637]: https://gitlab.freedesktop.org/drm/intel/issues/3637
+  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
+  [i915#4032]: https://gitlab.freedesktop.org/drm/intel/issues/4032
+  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+  [i915#4391]: https://gitlab.freedesktop.org/drm/intel/issues/4391
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#5337]: https://gitlab.freedesktop.org/drm/intel/issues/5337
+  [i915#5339]: https://gitlab.freedesktop.org/drm/intel/issues/5339
+  [i915#5341]: https://gitlab.freedesktop.org/drm/intel/issues/5341
+  [i915#5342]: https://gitlab.freedesktop.org/drm/intel/issues/5342
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_11376 -> Patchwork_22596
+
+  CI-20190529: 20190529
+  CI_DRM_11376: 4dfe61816f94ec49a76ba03cddfe12f05b69c5d5 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6385: f3df40281d93d5a63ee98fa30e90852d780673c9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_22596: d4541fc2b6aab27e23142f0c2df9250e6ab741e0 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+d4541fc2b6aa drm/i915/sdvo: prefer __packed over __attribute__((packed))
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22596/index.html
+
+--===============5177264528492398353==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/sdvo: prefer __packed over __attribute__((packed))</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/101497/">https://patchwork.freedesktop.org/series/101497/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22596/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22596/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11376 -&gt; Patchwork_22596</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22596/index.html</p>
+<h2>Participating hosts (50 -&gt; 46)</h2>
+<p>Additional (1): bat-adlm-1 <br />
+  Missing    (5): shard-tglu fi-bsw-cyan shard-rkl shard-dg1 fi-bdw-samus </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_22596 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@semaphore:</p>
+<ul>
+<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22596/fi-hsw-4770/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rps@basic-api:</p>
+<ul>
+<li>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11376/bat-dg1-6/igt@i915_pm_rps@basic-api.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22596/bat-dg1-6/igt@i915_pm_rps@basic-api.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4032">i915#4032</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22596/fi-bdw-5557u/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@vga-edid-read:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22596/fi-bdw-5557u/igt@kms_chamelium@vga-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@prune-stale-modes:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11376/fi-cfl-8109u/igt@kms_force_connector_basic@prune-stale-modes.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22596/fi-cfl-8109u/igt@kms_force_connector_basic@prune-stale-modes.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_setmode@basic-clone-single-crtc:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22596/fi-bdw-5557u/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +14 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@coherency:</p>
+<ul>
+<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11376/bat-rpls-2/igt@i915_selftest@live@coherency.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22596/bat-rpls-2/igt@i915_selftest@live@coherency.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11376/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22596/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-modeset@a-edp1:</p>
+<ul>
+<li>{bat-adlp-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11376/bat-adlp-6/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22596/bat-adlp-6/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@kms_frontbuffer_tracking@basic:<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11376/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22596/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11376 -&gt; Patchwork_22596</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11376: 4dfe61816f94ec49a76ba03cddfe12f05b69c5d5 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6385: f3df40281d93d5a63ee98fa30e90852d780673c9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_22596: d4541fc2b6aab27e23142f0c2df9250e6ab741e0 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>d4541fc2b6aa drm/i915/sdvo: prefer <strong>packed over __attribute</strong>((packed))</p>
+
+</body>
+</html>
+
+--===============5177264528492398353==--
