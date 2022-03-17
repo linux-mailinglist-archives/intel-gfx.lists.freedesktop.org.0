@@ -1,53 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C44364DBDF8
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Mar 2022 06:06:58 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 181454DBDFE
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Mar 2022 06:12:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 08E6110EC30;
-	Thu, 17 Mar 2022 05:06:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A18E10E1CD;
+	Thu, 17 Mar 2022 05:12:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A862E10EC30
- for <intel-gfx@lists.freedesktop.org>; Thu, 17 Mar 2022 05:06:54 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 92CF710E1CD
+ for <intel-gfx@lists.freedesktop.org>; Thu, 17 Mar 2022 05:12:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1647493614; x=1679029614;
+ t=1647493933; x=1679029933;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=tqERPqo0Vc+EGNlXGhZSghnR21REV3bETCBrzPMQWXU=;
- b=K3hdn+jdEncqhAOd35z8JCqq8V5p8fPdWiJskSzmBGbV4AfJrUfp95LP
- kXXgUbe/a4Bqy/7WJkCLba3DYDtJIcZl+EncS2St4NyKvCa+D5jyCd/cT
- /cE21S4KDNA1B5VrFTLKygvY5qJfnfZ5xAsxnP7gD+GvVDVy3zQiLQweZ
- zS0vB4uDO/hxUeya/Ha2SAwQxH+X8o6/jMF2weniEbwgYSyXYLhbLLGZL
- b/l9nwyJPZNsdKMuQoNlPg6VgpzG+ZMUX95YN4jHQTjNx+PZudIOXRpqI
- ZD0M1QN+Vk4V7yNAmM72jUONl8cKD2nqc5IIc+2DXGqL3hQ3Ca0ORzHOS Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10288"; a="255613701"
-X-IronPort-AV: E=Sophos;i="5.90,188,1643702400"; d="scan'208";a="255613701"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2022 22:06:41 -0700
-X-IronPort-AV: E=Sophos;i="5.90,188,1643702400"; d="scan'208";a="581173806"
+ mime-version:in-reply-to;
+ bh=7QWD+Yg1KX2euVt+5viWlLlsNVvKMRkFZI58xOKIFB8=;
+ b=DTnSyZZr8yWFYvNYFixsJ6frHxUc0DsYg0/m7jk2Xrhd4WCqVjDHSDyM
+ KD0h8IeFTfaVofaw0d8HRd1dA5+vlixqhPbcdB1JMbScwCZCQGY/vRbKT
+ EVbnk/N+mkKGUe3GmOZ7IZKH4wcJKO4ttz/PmcHtEcCkK3qY3ubLQsgKH
+ s8qC2Ro1l2QwwiZvt/Lj7eVU+cfY3j2+tLA7muFBmMrrxy/bEqJmwAGgi
+ d+jA3cyTsgiHAC2cQvEhAnpytSy9C86tydZ6oDR4bjRwc46vqHtSyaqO4
+ Kuduf+9IMKwLwZqVXA7SZASAlsSe8982xftZwutz4tfQtQRnc7ykIdaXf w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10288"; a="244236664"
+X-IronPort-AV: E=Sophos;i="5.90,188,1643702400"; d="scan'208";a="244236664"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Mar 2022 22:12:12 -0700
+X-IronPort-AV: E=Sophos;i="5.90,188,1643702400"; d="scan'208";a="557775412"
 Received: from rgreenle-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
  ([10.255.231.170])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2022 22:06:40 -0700
-Date: Wed, 16 Mar 2022 22:06:38 -0700
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Mar 2022 22:12:12 -0700
+Date: Wed, 16 Mar 2022 22:12:10 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Siva Mullati <siva.mullati@intel.com>
-Message-ID: <20220317050638.n4r6lpuamkm2an2k@ldmartin-desk2>
+To: Mullati Siva <siva.mullati@intel.com>
+Message-ID: <20220317051210.u4o2dfwxv6owesk7@ldmartin-desk2>
 X-Patchwork-Hint: comment
 References: <20220308093805.879262-1-siva.mullati@intel.com>
  <20220308093805.879262-3-siva.mullati@intel.com>
  <20220309013845.4jgwlbe524rgxsee@ldmartin-desk2>
- <d9dc96a6-ebf6-3988-7a40-229ff0169e1c@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Type: text/plain; charset=us-ascii; format=flowed
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <d9dc96a6-ebf6-3988-7a40-229ff0169e1c@intel.com>
+In-Reply-To: <20220309013845.4jgwlbe524rgxsee@ldmartin-desk2>
 Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/guc: Convert ct buffer to
  iosys_map
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -66,102 +64,78 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Mar 14, 2022 at 11:23:07AM +0530, Siva Mullati wrote:
+On Tue, Mar 08, 2022 at 05:38:45PM -0800, Lucas De Marchi wrote:
+>and in some other places too. I will try to finish the review later.
 >
->On 09/03/22 07:08, Lucas De Marchi wrote:
->> On Tue, Mar 08, 2022 at 03:08:05PM +0530, Mullati Siva wrote:
->>> From: Siva Mullati <siva.mullati@intel.com>
->>>
->>> Convert CT commands and descriptors to use iosys_map rather
->>> than plain pointer and save it in the intel_guc_ct_buffer struct.
->>> This will help with ct_write and ct_read for cmd send and receive
->>> after the initialization by abstracting the IO vs system memory.
->>>
->>> Signed-off-by: Siva Mullati <siva.mullati@intel.com>
->>> ---
->>> drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c | 170 +++++++++++++---------
->>> drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h |   9 +-
->>> 2 files changed, 110 insertions(+), 69 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
->>> index f01325cd1b62..457deca1c25a 100644
->>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
->>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
->>> @@ -44,6 +44,11 @@ static inline struct drm_device *ct_to_drm(struct intel_guc_ct *ct)
->>> #define CT_PROBE_ERROR(_ct, _fmt, ...) \
->>>     i915_probe_error(ct_to_i915(ct), "CT: " _fmt, ##__VA_ARGS__)
->>>
->>> +#define ct_desc_read(desc_map_, field_) \
->>> +    iosys_map_rd_field(desc_map_, 0, struct guc_ct_buffer_desc, field_)
->>
->> one thing I found useful in intel_guc_ads, was to use the first argument
->> as the struct type instead of map. That's because then I enforce the
->> right type to be passed rather than a random iosys_map. See :
->>
->>     #define ads_blob_read(guc_, field_)                                     \
->>         iosys_map_rd_field(&(guc_)->ads_map, 0, struct __guc_ads_blob, field_)
->>
->> First arg is expected to be `struct intel_guc *`. Yes, I didn't do this
->> for info_map_{read,write}, because there were situation in which I had
->> to pass a info from outside (forcefully from system memory). If you
->> don't have such case,  I think it would be better to pass the typed
->> pointer.
->>
->understood, will change it as a "typed pointer".
->>> +#define ct_desc_write(desc_map_, field_, val_) \
->>> +    iosys_map_wr_field(desc_map_, 0, struct guc_ct_buffer_desc, field_, val_)
->>> +
->>> /**
->>>  * DOC: CTB Blob
->>>  *
->>> @@ -113,9 +118,9 @@ void intel_guc_ct_init_early(struct intel_guc_ct *ct)
->>>     init_waitqueue_head(&ct->wq);
->>> }
->>>
->>> -static void guc_ct_buffer_desc_init(struct guc_ct_buffer_desc *desc)
->>> +static void guc_ct_buffer_desc_init(struct iosys_map *desc)
->>
->> if you can apply the comment above, then leave it as
->> struct intel_guc_ct_buffer.
->>
->yes
->>> {
->>> -    memset(desc, 0, sizeof(*desc));
->>> +    iosys_map_memset(desc, 0, 0, sizeof(struct guc_ct_buffer_desc));
->>> }
->>>
->>> static void guc_ct_buffer_reset(struct intel_guc_ct_buffer *ctb)
->>> @@ -128,17 +133,24 @@ static void guc_ct_buffer_reset(struct intel_guc_ct_buffer *ctb)
->>>     space = CIRC_SPACE(ctb->tail, ctb->head, ctb->size) - ctb->resv_space;
->>>     atomic_set(&ctb->space, space);
->>>
->>> -    guc_ct_buffer_desc_init(ctb->desc);
->>> +    guc_ct_buffer_desc_init(&ctb->desc_map);
->>> }
->>>
->>> static void guc_ct_buffer_init(struct intel_guc_ct_buffer *ctb,
->>> -                   struct guc_ct_buffer_desc *desc,
->>> -                   u32 *cmds, u32 size_in_bytes, u32 resv_space)
->>> +                   void *desc, void *cmds, u32 size_in_bytes,
->>> +                   u32 resv_space, bool lmem)
->>
->> bool arguments are really hard to read, because you always have to
->> lookup the function prototype to understand what that is about.
->>
->Tried to avoid bool but could not find a better alternative code path.
->Please suggest, if you have something.
 
-humn... suggestion as as below:
+getting back to the rest now.
 
 >
->> Here we could turn struct guc_ct_buffer_desc *desc into the map, and let
->> the caller prepare it for iomem or system memory.
+>>		tail = (tail + 1) % size;
+>>	}
+>>	GEM_BUG_ON(tail > size);
+>>@@ -442,13 +471,14 @@ static int ct_write(struct intel_guc_ct *ct,
+>>	atomic_sub(len + GUC_CTB_HDR_LEN, &ctb->space);
+>>
+>>	/* now update descriptor */
+>>-	WRITE_ONCE(desc->tail, tail);
+>>+	ct_desc_write(&desc, tail, tail);
+>>
+>>	return 0;
+>>
+>>corrupted:
+>>	CT_ERROR(ct, "Corrupted descriptor head=%u tail=%u status=%#x\n",
+>>-		 desc->head, desc->tail, desc->status);
+>>+		 ct_desc_read(&desc, head), ct_desc_read(&desc, tail),
+>>+		 ct_desc_read(&desc, status));
+>>	ctb->broken = true;
+>>	return -EPIPE;
+>>}
+>>@@ -499,20 +529,21 @@ static inline bool ct_deadlocked(struct intel_guc_ct *ct)
+>>	bool ret = ktime_ms_delta(ktime_get(), ct->stall_time) > timeout;
+>>
+>>	if (unlikely(ret)) {
+>>-		struct guc_ct_buffer_desc *send = ct->ctbs.send.desc;
+>>-		struct guc_ct_buffer_desc *recv = ct->ctbs.send.desc;
+>>+		struct iosys_map send = ct->ctbs.send.desc_map;
+>>+		struct iosys_map recv = ct->ctbs.recv.desc_map;
 
-In other words, maybe instead of receiving guc_ct_buffer_desc as
-parameter, receiving a struct iosys_map *desc_map. That map can be
-created by the caller and then you do:
+you should only do a copy of the struct in places that you need to
+(temporarily) increement the mapping or to overly another struct from an
+offset of the original
 
-	ctb->desc_map = *desc_map;
+Here you just use it as an alias for read operations, so a pointer would
+do fine.
 
+>>
+>>		CT_ERROR(ct, "Communication stalled for %lld ms, desc status=%#x,%#x\n",
+>>			 ktime_ms_delta(ktime_get(), ct->stall_time),
+>>-			 send->status, recv->status);
+>>+			 ct_desc_read(&send, status),
+>>+			 ct_desc_read(&recv, status));
+>>		CT_ERROR(ct, "H2G Space: %u (Bytes)\n",
+>>			 atomic_read(&ct->ctbs.send.space) * 4);
+>>-		CT_ERROR(ct, "Head: %u (Dwords)\n", ct->ctbs.send.desc->head);
+>>-		CT_ERROR(ct, "Tail: %u (Dwords)\n", ct->ctbs.send.desc->tail);
+>>+		CT_ERROR(ct, "Head: %u (Dwords)\n", ct_desc_read(&send, head));
+>>+		CT_ERROR(ct, "Tail: %u (Dwords)\n", ct_desc_read(&send, tail));
+>>		CT_ERROR(ct, "G2H Space: %u (Bytes)\n",
+>>			 atomic_read(&ct->ctbs.recv.space) * 4);
+>>-		CT_ERROR(ct, "Head: %u\n (Dwords)", ct->ctbs.recv.desc->head);
+>>-		CT_ERROR(ct, "Tail: %u\n (Dwords)", ct->ctbs.recv.desc->tail);
+>>+		CT_ERROR(ct, "Head: %u\n (Dwords)", ct_desc_read(&recv, head));
+>>+		CT_ERROR(ct, "Tail: %u\n (Dwords)", ct_desc_read(&recv, tail));
+>>
+>>		ct->ctbs.send.broken = true;
+>>	}
+>>@@ -549,18 +580,20 @@ static inline void g2h_release_space(struct intel_guc_ct *ct, u32 g2h_len_dw)
+>>static inline bool h2g_has_room(struct intel_guc_ct *ct, u32 len_dw)
+>>{
+>>	struct intel_guc_ct_buffer *ctb = &ct->ctbs.send;
+>>-	struct guc_ct_buffer_desc *desc = ctb->desc;
+>>+	struct iosys_map desc = ctb->desc_map;
+
+same thing here, and in other places in this patch. The rest of the
+patch seems to have the same pattern as things suggested above.
 
 Lucas De Marchi
