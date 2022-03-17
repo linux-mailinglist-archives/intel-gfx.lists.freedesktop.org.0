@@ -2,51 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D0944DCD9F
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Mar 2022 19:33:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 77C754DCDA6
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Mar 2022 19:36:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E4A0C10E70B;
-	Thu, 17 Mar 2022 18:33:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1DB1210E717;
+	Thu, 17 Mar 2022 18:36:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A31A510E70B
- for <intel-gfx@lists.freedesktop.org>; Thu, 17 Mar 2022 18:33:42 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A7DA10E717
+ for <intel-gfx@lists.freedesktop.org>; Thu, 17 Mar 2022 18:36:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1647542022; x=1679078022;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=AFISyCNzDP8ZDFh7RjthstJ/CageXSVkNfdffRDIkyU=;
- b=hRpk7CzhUp2QhcYcI/EBZNw8leqBnINe1wdyyqbYGy3yQnEODChk7H0L
- Me84booMGR6xb/qCA3k0BONbskoxOzqfXcyyZYChMJV7AtrJPmOq5dv1z
- f4AuUuWHPEUkhzk7tNH2AbG1xta8bfuzHdkTzQP2iymRYHP6a/O2JJ9Wt
- D4SDhLrUDP34tkSUAVmb3CawR/OboctJMXSsIFM+XtsXblDyqRmZnBN89
- v1VTq++BhMN+JMTbDH+EwSP/pFXdLBvQLMmek5aRW6ktRHIwX+9XpkPJS
- 4t18tgxzxYMKZjPxtk1FIPhBPjwcxPqvlHfpK2qhC25PW9wplhMdAO/Uw g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10289"; a="317668787"
-X-IronPort-AV: E=Sophos;i="5.90,188,1643702400"; d="scan'208";a="317668787"
+ t=1647542187; x=1679078187;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=bGnJxhYis02y49MwoHy7DeyGm6KqSqK5YKU3fMtd5cY=;
+ b=QlfVv29GBvigHPA2AlzeuhpuGsR+hKJrgXj0o1uKlxRMW36qyYhzftKA
+ juQwJQ08Pt1WR/2QC4ERT+xU/ye5+lwmTFCUNNp7Ab7GAxbRa8QyuRmiL
+ C7SHKtJRzuAfliy75Z5UemV8pHKuD4nu5awX7Uihb11SHewHniMSUItZH
+ e/YURAkJPwYL/9B8l7gfEadMu5Y8llnPZQqm9YNcv59OjIeFXO1Q07/xF
+ zH4/TJqpPVdJ0myEoeCQX7+iVk9CCX0VjC8DVpIIpONsb9Jg+zvrKjSsC
+ XoUnI+gyZR5oba+ZM5SNnYSQKJWcbIXICwRzUIvBlb4LjQ9D1XdptaREe A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10289"; a="239112538"
+X-IronPort-AV: E=Sophos;i="5.90,188,1643702400"; d="scan'208";a="239112538"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2022 11:33:42 -0700
-X-IronPort-AV: E=Sophos;i="5.90,188,1643702400"; d="scan'208";a="558055526"
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Mar 2022 11:36:26 -0700
+X-IronPort-AV: E=Sophos;i="5.90,188,1643702400"; d="scan'208";a="558056771"
 Received: from unknown (HELO localhost) ([10.252.58.37])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2022 11:33:40 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220317171948.10400-2-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220317171948.10400-1-ville.syrjala@linux.intel.com>
- <20220317171948.10400-2-ville.syrjala@linux.intel.com>
-Date: Thu, 17 Mar 2022 20:33:37 +0200
-Message-ID: <87k0csmnsu.fsf@intel.com>
+ 17 Mar 2022 11:36:25 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 17 Mar 2022 20:36:12 +0200
+Message-Id: <cover.1647542120.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 01/11] drm/i915/bios: Extract struct
- lvds_lfp_data_ptr_table
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 0/8] drm/i915/dmc: cleanups
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,83 +54,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 17 Mar 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> All the LFP data table pointers have uniform layout. Turn
-> that into a struct.
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+Clean up dmc code to hide details better in intel_dmc.c.
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+Jani Nikula (8):
+  drm/i915/dmc: simplify intel_dmc_load_program() conditions
+  drm/i915/dmc: move assert_dmc_loaded() to intel_dmc.c
+  drm/i915/dmc: move dmc debugfs to intel_dmc.c
+  drm/i915/dmc: fix i915_reg_t usage
+  drm/i915/dmc: don't register DMC debugfs file if there's no DMC
+  drm/i915/dmc: abstract GPU error state dump
+  drm/i915/dmc: hide DMC version macros
+  drm/i915/dmc: split out dmc registers to a separate file
 
-> ---
->  drivers/gpu/drm/i915/display/intel_bios.c     | 10 +++++-----
->  drivers/gpu/drm/i915/display/intel_vbt_defs.h | 13 +++++++------
->  2 files changed, 12 insertions(+), 11 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/=
-i915/display/intel_bios.c
-> index c7afe19dd44a..31fce7c92a28 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bios.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-> @@ -180,11 +180,11 @@ get_lvds_dvo_timing(const struct bdb_lvds_lfp_data =
-*lvds_lfp_data,
->  	 */
->=20=20
->  	int lfp_data_size =3D
-> -		lvds_lfp_data_ptrs->ptr[1].dvo_timing_offset -
-> -		lvds_lfp_data_ptrs->ptr[0].dvo_timing_offset;
-> +		lvds_lfp_data_ptrs->ptr[1].dvo_timing.offset -
-> +		lvds_lfp_data_ptrs->ptr[0].dvo_timing.offset;
->  	int dvo_timing_offset =3D
-> -		lvds_lfp_data_ptrs->ptr[0].dvo_timing_offset -
-> -		lvds_lfp_data_ptrs->ptr[0].fp_timing_offset;
-> +		lvds_lfp_data_ptrs->ptr[0].dvo_timing.offset -
-> +		lvds_lfp_data_ptrs->ptr[0].fp_timing.offset;
->  	char *entry =3D (char *)lvds_lfp_data->data + lfp_data_size * index;
->=20=20
->  	return (struct lvds_dvo_timing *)(entry + dvo_timing_offset);
-> @@ -205,7 +205,7 @@ get_lvds_fp_timing(const struct bdb_header *bdb,
->=20=20
->  	if (index >=3D ARRAY_SIZE(ptrs->ptr))
->  		return NULL;
-> -	ofs =3D ptrs->ptr[index].fp_timing_offset;
-> +	ofs =3D ptrs->ptr[index].fp_timing.offset;
->  	if (ofs < data_ofs ||
->  	    ofs + sizeof(struct lvds_fp_timing) > data_ofs + data_size)
->  		return NULL;
-> diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/=
-drm/i915/display/intel_vbt_defs.h
-> index e0508990df48..d727fcd6cdab 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-> +++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-> @@ -722,15 +722,16 @@ struct bdb_lvds_options {
->  /*
->   * Block 41 - LFP Data Table Pointers
->   */
-> +struct lvds_lfp_data_ptr_table {
-> +	u16 offset; /* offsets are from start of bdb */
-> +	u8 table_size;
-> +} __packed;
->=20=20
->  /* LFP pointer table contains entries to the struct below */
->  struct lvds_lfp_data_ptr {
-> -	u16 fp_timing_offset; /* offsets are from start of bdb */
-> -	u8 fp_table_size;
-> -	u16 dvo_timing_offset;
-> -	u8 dvo_table_size;
-> -	u16 panel_pnp_id_offset;
-> -	u8 pnp_table_size;
-> +	struct lvds_lfp_data_ptr_table fp_timing;
-> +	struct lvds_lfp_data_ptr_table dvo_timing;
-> +	struct lvds_lfp_data_ptr_table panel_pnp_id;
->  } __packed;
->=20=20
->  struct bdb_lvds_lfp_data_ptrs {
+ .../drm/i915/display/intel_display_debugfs.c  |  75 +----------
+ .../drm/i915/display/intel_display_power.c    |  18 +--
+ drivers/gpu/drm/i915/display/intel_dmc.c      | 125 ++++++++++++++++--
+ drivers/gpu/drm/i915/display/intel_dmc.h      |  10 +-
+ drivers/gpu/drm/i915/display/intel_dmc_regs.h |  31 +++++
+ drivers/gpu/drm/i915/gvt/handlers.c           |   1 +
+ drivers/gpu/drm/i915/i915_gpu_error.c         |  10 +-
+ drivers/gpu/drm/i915/i915_reg.h               |  21 ---
+ 8 files changed, 158 insertions(+), 133 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_dmc_regs.h
 
---=20
-Jani Nikula, Intel Open Source Graphics Center
+-- 
+2.30.2
+
