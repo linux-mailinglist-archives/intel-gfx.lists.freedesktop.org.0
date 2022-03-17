@@ -1,54 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49FD54DC29D
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Mar 2022 10:27:31 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C72914DC2AE
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Mar 2022 10:29:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7107E10E39C;
-	Thu, 17 Mar 2022 09:27:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2533A10E044;
+	Thu, 17 Mar 2022 09:29:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F236110E39C
- for <intel-gfx@lists.freedesktop.org>; Thu, 17 Mar 2022 09:27:27 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2A70D10E044
+ for <intel-gfx@lists.freedesktop.org>; Thu, 17 Mar 2022 09:29:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1647509247; x=1679045247;
+ t=1647509375; x=1679045375;
  h=message-id:date:mime-version:subject:to:references:from:
  in-reply-to:content-transfer-encoding;
- bh=Kq7MwxjmprXPhFzeSjkgst0pd3P6xEkg94/bHMvca/Y=;
- b=KAyMZqM8whKT30is9BX2kBW/mule3jPoj2ys71au4BKUsepAR7cJGI30
- VRz4cgYTns1XpbIHowbWQTgoE1tn9tjZRlOfPJltO4AAOc1YfRvjsbEm0
- btZyW0SGjiQV7mJ8G+0ItTgGgoFvCK2N3lMC5ABm6mWG0mVtJHb28U4hO
- RucUfGZCWG3jtzlv2VJ7RKvu05/naeUW765c9SODXfCFF5MOr4MZZGt+Q
- BRaeTrWLip+ZhxxzjANdaE33H6upepg4ACVdEe8lVJiD/7iz1hCAEi0B4
- wI1frZsJMUUPx0Frrwz581rLmZjU+AOIgIBMKcpQfBfRM4edlR/1VqfAX A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10288"; a="236769744"
-X-IronPort-AV: E=Sophos;i="5.90,188,1643702400"; d="scan'208";a="236769744"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2022 02:27:27 -0700
-X-IronPort-AV: E=Sophos;i="5.90,188,1643702400"; d="scan'208";a="516694945"
-Received: from liujoann-mobl.amr.corp.intel.com (HELO [10.209.162.134])
- ([10.209.162.134])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2022 02:27:26 -0700
-Message-ID: <fc7edb8e-d6af-67d0-8e0c-b3fabdb22797@linux.intel.com>
-Date: Thu, 17 Mar 2022 09:27:23 +0000
+ bh=G9LjaANueHk6K93ERdc20GREkHGUiVJmYunQp1Ij780=;
+ b=AaQUeCrgDnPSjzc1Pf99NVFyDuxQTLlnkmjAqLI4Fvzv8/tjhy7+51wP
+ oMeC41uTiEHX3h2gEPerJhEzYP6SEthNupIqSGfYQIMD1etxO8esTqNX3
+ Gpo0qAWt7Kab3D2HmhKJ76A5gJIPvcv2jNpYTAo58Trt8ibFGHkkPR3XP
+ 3j6bLV5/kRURjFD6DdF5IPMAfM5FOA4Cm9UZEKg8fvCMOxlIh/gOjPTzA
+ Y6pPMizPRF00CSizJVYzGvK3zBYNV9hFzUwyxHo8lRhrX9fn7yd8zG6wJ
+ qyWXuk+COZxeaxnF023I0XPAfQ1ZED0Puyo9P68xatkLlqhjTc41FeXnv g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10288"; a="281614395"
+X-IronPort-AV: E=Sophos;i="5.90,188,1643702400"; d="scan'208";a="281614395"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Mar 2022 02:29:34 -0700
+X-IronPort-AV: E=Sophos;i="5.90,188,1643702400"; d="scan'208";a="581236672"
+Received: from sbasierx-mobl1.ger.corp.intel.com (HELO [10.252.8.212])
+ ([10.252.8.212])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Mar 2022 02:29:32 -0700
+Message-ID: <f0285ddd-b864-1554-e817-5a67ffd81586@intel.com>
+Date: Thu, 17 Mar 2022 09:29:30 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Content-Language: en-US
-To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20220316095018.137998-1-jani.nikula@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20220316095018.137998-1-jani.nikula@intel.com>
+Content-Language: en-GB
+To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ "Bloomfield, Jon" <jon.bloomfield@intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Ramalingam C <ramalingam.c@intel.com>
+References: <162c1566-87c6-072f-d340-1693f6a71aea@linux.intel.com>
+ <164750662822.7267.9355161518284202141@jlahtine-mobl.ger.corp.intel.com>
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <164750662822.7267.9355161518284202141@jlahtine-mobl.ger.corp.intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: move
- i915_gem_object_needs_bit17_swizzle() to i915_gem_tiling.[ch]
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] Small bar recovery vs compressed content on DG2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,108 +67,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 16/03/2022 09:50, Jani Nikula wrote:
-> Move i915_gem_object_needs_bit17_swizzle() to i915_gem_tiling.[ch] as a
-> i915_gem_object function related to tiling. Also un-inline while at it;
-> does not seem like this is a function needed in hot paths.
+On 17/03/2022 08:43, Joonas Lahtinen wrote:
+> Quoting Thomas Hellström (2022-03-16 09:25:16)
+>> Hi!
+>>
+>> Do we somehow need to clarify in the headers the semantics for this?
+>>
+>>   From my understanding when discussing the CCS migration series with
+>> Ram, the kernel will never do any resolving (compressing /
+>> decompressing) migrations or evictions which basically implies the
+>> following:
+>>
+>> *) Compressed data must have LMEM only placement, otherwise the GPU
+>> would read garbage if accessing from SMEM.
 > 
-> v2: i915_gem_tiling.[ch] instead of intel_ggtt_fencing.[ch] (Chris)
-
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-
-Regards,
-
-Tvrtko
-
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->   drivers/gpu/drm/i915/gem/i915_gem_phys.c   | 1 +
->   drivers/gpu/drm/i915/gem/i915_gem_shmem.c  | 3 ++-
->   drivers/gpu/drm/i915/gem/i915_gem_tiling.c | 8 ++++++++
->   drivers/gpu/drm/i915/gem/i915_gem_tiling.h | 2 ++
->   drivers/gpu/drm/i915/i915_drv.h            | 9 ---------
->   5 files changed, 13 insertions(+), 10 deletions(-)
+> This has always been the case, so it should be documented in the uAPI
+> headers and kerneldocs.
 > 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_phys.c b/drivers/gpu/drm/i915/gem/i915_gem_phys.c
-> index ca6faffcc496..0d0e46dae559 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_phys.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_phys.c
-> @@ -14,6 +14,7 @@
->   #include "i915_drv.h"
->   #include "i915_gem_object.h"
->   #include "i915_gem_region.h"
-> +#include "i915_gem_tiling.h"
->   #include "i915_scatterlist.h"
->   
->   static int i915_gem_object_get_pages_phys(struct drm_i915_gem_object *obj)
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-> index 3a1c782ed791..c7541dc687c1 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-> @@ -12,8 +12,9 @@
->   
->   #include "gem/i915_gem_region.h"
->   #include "i915_drv.h"
-> -#include "i915_gemfs.h"
->   #include "i915_gem_object.h"
-> +#include "i915_gem_tiling.h"
-> +#include "i915_gemfs.h"
->   #include "i915_scatterlist.h"
->   #include "i915_trace.h"
->   
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_tiling.c b/drivers/gpu/drm/i915/gem/i915_gem_tiling.c
-> index d6adda5bf96b..80ac0db1ae8c 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_tiling.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_tiling.c
-> @@ -219,6 +219,14 @@ i915_gem_object_fence_prepare(struct drm_i915_gem_object *obj,
->   	return ret;
->   }
->   
-> +bool i915_gem_object_needs_bit17_swizzle(struct drm_i915_gem_object *obj)
-> +{
-> +	struct drm_i915_private *i915 = to_i915(obj->base.dev);
-> +
-> +	return to_gt(i915)->ggtt->bit_6_swizzle_x == I915_BIT_6_SWIZZLE_9_10_17 &&
-> +		i915_gem_object_is_tiled(obj);
-> +}
-> +
->   int
->   i915_gem_object_set_tiling(struct drm_i915_gem_object *obj,
->   			   unsigned int tiling, unsigned int stride)
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_tiling.h b/drivers/gpu/drm/i915/gem/i915_gem_tiling.h
-> index 9924196a8139..6bd5751abf28 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_tiling.h
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_tiling.h
-> @@ -8,8 +8,10 @@
->   
->   #include <linux/types.h>
->   
-> +struct drm_i915_gem_object;
->   struct drm_i915_private;
->   
-> +bool i915_gem_object_needs_bit17_swizzle(struct drm_i915_gem_object *obj);
->   u32 i915_gem_fence_size(struct drm_i915_private *i915, u32 size,
->   			unsigned int tiling, unsigned int stride);
->   u32 i915_gem_fence_alignment(struct drm_i915_private *i915, u32 size,
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> index 26df561a4e94..a9aceb08fcd1 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -1486,15 +1486,6 @@ void i915_gem_driver_release(struct drm_i915_private *dev_priv);
->   
->   int i915_gem_open(struct drm_i915_private *i915, struct drm_file *file);
->   
-> -/* i915_gem_tiling.c */
-> -static inline bool i915_gem_object_needs_bit17_swizzle(struct drm_i915_gem_object *obj)
-> -{
-> -	struct drm_i915_private *i915 = to_i915(obj->base.dev);
-> -
-> -	return to_gt(i915)->ggtt->bit_6_swizzle_x == I915_BIT_6_SWIZZLE_9_10_17 &&
-> -		i915_gem_object_is_tiled(obj);
-> -}
-> -
->   /* intel_device_info.c */
->   static inline struct intel_device_info *
->   mkwrite_device_info(struct drm_i915_private *dev_priv)
+>> *) Compressed data can't be assumed to be mappable by the CPU, because
+>> in order to ensure that on small BAR, the placement needs to be LMEM+SMEM.
+> 
+> Not strictly true, as we could always migrate to the mappable region in
+> the CPU fault handler. Will need the same set of tricks as with limited
+> mappable GGTT in past.
+
+With the proposed I915_GEM_CREATE_EXT_FLAG_NEEDS_CPU_ACCESS hint[1], it 
+looks like by design we always require lmem + smem, with the idea that 
+we can always spill to system memory if needed. So I guess explicit 
+NEEDS_CPU_ACCESS + compression is not supported, is this the expected 
+behaviour?
+
+[1] https://patchwork.freedesktop.org/patch/475061/
+
+> 
+>> *) Neither can compressed data be part of a CAPTURE buffer, because that
+>> requires the data to be CPU-mappable.
+> 
+> Especially this will be too big of a limitation which we can't really afford
+> when it comes to debugging.
+> 
+> Regards, Joonas
+> 
+>> Are we (and user-mode drivers) OK with these restrictions, or do we need
+>> to rethink?
+>>
+>> Thanks,
+>>
+>> Thomas
+>>
+>>
