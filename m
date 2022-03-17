@@ -2,48 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EE2C4DCC3C
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Mar 2022 18:20:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 446944DCC3D
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Mar 2022 18:20:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D14E10E601;
-	Thu, 17 Mar 2022 17:20:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8386510E630;
+	Thu, 17 Mar 2022 17:20:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 813B610E61D
- for <intel-gfx@lists.freedesktop.org>; Thu, 17 Mar 2022 17:20:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C3BC10E61D
+ for <intel-gfx@lists.freedesktop.org>; Thu, 17 Mar 2022 17:20:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1647537610; x=1679073610;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=n0zJ2m2SxAAZ2Vi+vC4ce7Hdn+WYbq2H+sehwqNjkNM=;
- b=ngM87Yzseg1XWeWDfID2bQ29ipNK98KWEcoQ1JpEfnw11oqmPpdfMV4W
- 2VLdYc85VX8KbNSgRM7rW8VmoBFOxmmoQimLXTcsV1SS0y2bKRTN+zMYs
- nEKk3hYXyB7nzpjy4DLhZJL8VHzVvSLPa4rVFhRZkskIkollefjCkrVUF
- 9Kt2H7el4enk7CKxVeuVhTY9TvIjZBKXTUCdS6mRSHmE9m56zUzK6iQpo
- pL86gWmhjyIYiaRMEPOy/BqJaZWIbrTJfjFZvbHBY0UKle9MKSZ+Kj1ex
- PArGCSL4xQHsSdt+RFAQFanBQBsn9VLC1jeyI+DUmfiauvQaa2jJw/6MO A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10289"; a="239086512"
-X-IronPort-AV: E=Sophos;i="5.90,188,1643702400"; d="scan'208";a="239086512"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ t=1647537611; x=1679073611;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=0NiAl0yD+5IEInStCZXywkQud14C5ZE7s8DcLBPTE1c=;
+ b=bGxvwhIxjlst5jcZchWrYEGkV2GahaZ3AzvQFcFycc+y5/2v2CImSMi9
+ hPzPNcTbceC+i5D4ynCWiIk6WoGnpQkWZFUce2posFm2p7mbWAeXglWtB
+ tDx9a5LJIIWiShNjUzuOWB78crDZiLuEIw/4ET+WkDh4Q0x/Iyy+IylKa
+ EyPBBCpabTNJcqam97io4M33jAKqu/Adbwlm7OviUaP8EUIiOTopvbIbx
+ oIUzwRq6tLN1CvxBRlIIwILn+AwR7bR547heaMakvl7H2Ymt6lsrgxqcC
+ ImAwyAKEvMkE5wAbbkuKysiSLQwBN0CxFHGjtP1u9G3m+5UWxtVgy4dNa w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10289"; a="239086526"
+X-IronPort-AV: E=Sophos;i="5.90,188,1643702400"; d="scan'208";a="239086526"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2022 10:19:51 -0700
+ 17 Mar 2022 10:19:53 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,188,1643702400"; d="scan'208";a="541452175"
+X-IronPort-AV: E=Sophos;i="5.90,188,1643702400"; d="scan'208";a="516844964"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
- by orsmga007.jf.intel.com with SMTP; 17 Mar 2022 10:19:49 -0700
+ by orsmga006.jf.intel.com with SMTP; 17 Mar 2022 10:19:51 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 17 Mar 2022 19:19:48 +0200
+ Thu, 17 Mar 2022 19:19:51 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 17 Mar 2022 19:19:37 +0200
-Message-Id: <20220317171948.10400-1-ville.syrjala@linux.intel.com>
+Date: Thu, 17 Mar 2022 19:19:38 +0200
+Message-Id: <20220317171948.10400-2-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220317171948.10400-1-ville.syrjala@linux.intel.com>
+References: <20220317171948.10400-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 00/11] drm/i915/bios: Rework BDB block handling
+Subject: [Intel-gfx] [PATCH 01/11] drm/i915/bios: Extract struct
+ lvds_lfp_data_ptr_table
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,52 +64,71 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Several changes to our BDB block handling:
+All the LFP data table pointers have uniform layout. Turn
+that into a struct.
 
-1)
-The current way of trusting the version checks to avoid out of
-bounds accesses to the BDB blocks is fragile. We might just get
-the version check wrong, or the VBT may be corrupted/malicious.
-So instead of doing blind accesses into the original data let's
-make a copy of each block with a gauranteed minimum size.
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_bios.c     | 10 +++++-----
+ drivers/gpu/drm/i915/display/intel_vbt_defs.h | 13 +++++++------
+ 2 files changed, 12 insertions(+), 11 deletions(-)
 
-2)
-The LFP data table pointer stuff is a horrible mess currently.
-Let's make that sensible by verifying the pointers ahead of
-time, which allows us to trust them 100% when we acually
-parse the actual data block.
-
-3)
-There's more stuff at the tail end of the LFP data block we
-need to parse. The variable size of the fp_timing table makes
-that a bit awkward, but with the pointer validation in place
-it's not too horrible.
-
-4)
-Some modern machines (seen it on TGL here) no longer include
-the LFP data table pointers block (41) in the VBT. In order to
-keep the rest of the code working as is we must therefore
-generate the pointers block from scratch.
-
-Ville Syrjälä (11):
-  drm/i915/bios: Extract struct lvds_lfp_data_ptr_table
-  drm/i915/bios: Make copies of VBT data blocks
-  drm/i915/bios: Use the copy of the LFP data table always
-  drm/i915/bios: Validate LFP data table pointers
-  drm/i915/bios: Trust the LFP data pointers
-  drm/i915/bios: Validate the panel_name table
-  drm/i915/bios: Reorder panel DTD parsing
-  drm/i915/bios: Generate LFP data table pointers if the VBT lacks them
-  drm/i915/bios: Get access to the tail end of the LFP data block
-  drm/i915/bios: Parse the seamless DRRS min refresh rate
-  drm/i915: Respect VBT seamless DRRS min refresh rate
-
- drivers/gpu/drm/i915/display/intel_bios.c     | 540 +++++++++++++++---
- drivers/gpu/drm/i915/display/intel_panel.c    |  10 +-
- drivers/gpu/drm/i915/display/intel_vbt_defs.h |  35 +-
- drivers/gpu/drm/i915/i915_drv.h               |   2 +
- 4 files changed, 489 insertions(+), 98 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+index c7afe19dd44a..31fce7c92a28 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.c
++++ b/drivers/gpu/drm/i915/display/intel_bios.c
+@@ -180,11 +180,11 @@ get_lvds_dvo_timing(const struct bdb_lvds_lfp_data *lvds_lfp_data,
+ 	 */
+ 
+ 	int lfp_data_size =
+-		lvds_lfp_data_ptrs->ptr[1].dvo_timing_offset -
+-		lvds_lfp_data_ptrs->ptr[0].dvo_timing_offset;
++		lvds_lfp_data_ptrs->ptr[1].dvo_timing.offset -
++		lvds_lfp_data_ptrs->ptr[0].dvo_timing.offset;
+ 	int dvo_timing_offset =
+-		lvds_lfp_data_ptrs->ptr[0].dvo_timing_offset -
+-		lvds_lfp_data_ptrs->ptr[0].fp_timing_offset;
++		lvds_lfp_data_ptrs->ptr[0].dvo_timing.offset -
++		lvds_lfp_data_ptrs->ptr[0].fp_timing.offset;
+ 	char *entry = (char *)lvds_lfp_data->data + lfp_data_size * index;
+ 
+ 	return (struct lvds_dvo_timing *)(entry + dvo_timing_offset);
+@@ -205,7 +205,7 @@ get_lvds_fp_timing(const struct bdb_header *bdb,
+ 
+ 	if (index >= ARRAY_SIZE(ptrs->ptr))
+ 		return NULL;
+-	ofs = ptrs->ptr[index].fp_timing_offset;
++	ofs = ptrs->ptr[index].fp_timing.offset;
+ 	if (ofs < data_ofs ||
+ 	    ofs + sizeof(struct lvds_fp_timing) > data_ofs + data_size)
+ 		return NULL;
+diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
+index e0508990df48..d727fcd6cdab 100644
+--- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
++++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
+@@ -722,15 +722,16 @@ struct bdb_lvds_options {
+ /*
+  * Block 41 - LFP Data Table Pointers
+  */
++struct lvds_lfp_data_ptr_table {
++	u16 offset; /* offsets are from start of bdb */
++	u8 table_size;
++} __packed;
+ 
+ /* LFP pointer table contains entries to the struct below */
+ struct lvds_lfp_data_ptr {
+-	u16 fp_timing_offset; /* offsets are from start of bdb */
+-	u8 fp_table_size;
+-	u16 dvo_timing_offset;
+-	u8 dvo_table_size;
+-	u16 panel_pnp_id_offset;
+-	u8 pnp_table_size;
++	struct lvds_lfp_data_ptr_table fp_timing;
++	struct lvds_lfp_data_ptr_table dvo_timing;
++	struct lvds_lfp_data_ptr_table panel_pnp_id;
+ } __packed;
+ 
+ struct bdb_lvds_lfp_data_ptrs {
 -- 
 2.34.1
 
