@@ -1,53 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C4594DCF1A
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Mar 2022 20:59:47 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DF9D4DCF1E
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Mar 2022 21:05:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E01C10E764;
-	Thu, 17 Mar 2022 19:59:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 24CC110E0EC;
+	Thu, 17 Mar 2022 20:05:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E61D210E764
- for <intel-gfx@lists.freedesktop.org>; Thu, 17 Mar 2022 19:59:43 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 91FC210E0EC
+ for <intel-gfx@lists.freedesktop.org>; Thu, 17 Mar 2022 20:05:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1647547183; x=1679083183;
+ t=1647547505; x=1679083505;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=GGzGRWMTrByaff1LGXM764fnniwA8VhM/Lv4BtBrq68=;
- b=DBUO+5+egCmic3CzI7Dmme6NZp441CehNJPzde6rPY+JtArDAF/bWYmi
- 8qEcgfO5B4nfbph1NfgU7CKuO8E+lLO4B98mXGv7JKfEdklPNIGXGJEju
- 1YveAgrD/cW3njO3L1FQjeSlR3bBeYOK9EOoD4czcpdhhun/lPhNg3zVD
- 98Mxf7mHOcuk4YRpyK1JPmg0VcRVStNt+3zQkJru1nZGKZQp0Se7Q1pfL
- gvwkz5sHNVPp1tZq2HhNYAmskg/dkMIA0s3Bp1Y8VRjvzXI2/AJ6ehqvy
- ZjYoEObATLFCCXdelTnu+RBRC5LLpYtlxDWY52Vl2q6Jf7FdVjTKw8e8s w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10289"; a="343404147"
-X-IronPort-AV: E=Sophos;i="5.90,188,1643702400"; d="scan'208";a="343404147"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2022 12:59:43 -0700
-X-IronPort-AV: E=Sophos;i="5.90,188,1643702400"; d="scan'208";a="513560243"
-Received: from cjmartin-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
- ([10.209.31.111])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2022 12:59:43 -0700
-Date: Thu, 17 Mar 2022 12:59:41 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <20220317195941.ntswlxbpb3wlhcck@ldmartin-desk2>
-X-Patchwork-Hint: comment
-References: <cover.1647542120.git.jani.nikula@intel.com>
- <6b3a6acadc33afb7171ca87e958341d1ac244f5b.1647542120.git.jani.nikula@intel.com>
+ bh=c1fgC+s3eKrDLaG/r8M6/dfAUvqTV857Kr/Spq/0l9Y=;
+ b=BhP6G4hlFpM5Ui6fP9mKnFc7jnNl/KhfdlisFZCjoBgogVIMkOpRYlOu
+ M/ugxm4QtJO56l/SrkIDWv4gWVED2O+08W58MWZJYktWgfSvUqYdriRLr
+ Z2PdmeS/YXnpnlgmu4yT6Ffs1rzYfTMrkWVC+75fQ+JTDim/aKxfW+Ipr
+ e8z76b7ZSXcwSGZtwUkz3qqxggWcX/HlboR5q25lqkANZxiyOdp5kOU+H
+ T51KfrmSfITTPY9EVg1+JjQfhqY8ZtkJWnbS4ikGZDQ/C5fE2xG1ERQgU
+ ITKfWr9eZIaCKK1Tw1oebBb7MswGOGRpgLo1Lu1xq3WvsgTCHwtwsKdBv w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10289"; a="244425609"
+X-IronPort-AV: E=Sophos;i="5.90,190,1643702400"; d="scan'208";a="244425609"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Mar 2022 13:04:16 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,190,1643702400"; d="scan'208";a="691065225"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
+ by fmsmga001.fm.intel.com with SMTP; 17 Mar 2022 13:04:14 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 17 Mar 2022 22:04:13 +0200
+Date: Thu, 17 Mar 2022 22:04:13 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <YjOUPRwkitfDYkxh@intel.com>
+References: <20220317171948.10400-1-ville.syrjala@linux.intel.com>
+ <20220317171948.10400-4-ville.syrjala@linux.intel.com>
+ <87ee30mm36.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <6b3a6acadc33afb7171ca87e958341d1ac244f5b.1647542120.git.jani.nikula@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 8/8] drm/i915/dmc: split out dmc registers
- to a separate file
+In-Reply-To: <87ee30mm36.fsf@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 03/11] drm/i915/bios: Use the copy of the
+ LFP data table always
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,74 +66,26 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Mar 17, 2022 at 08:36:20PM +0200, Jani Nikula wrote:
->Clean up the massive i915_reg.h a bit with this isolated set of
->registers.
->
->Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->---
-> drivers/gpu/drm/i915/display/intel_dmc.c      |  1 +
-> drivers/gpu/drm/i915/display/intel_dmc_regs.h | 31 +++++++++++++++++++
-> drivers/gpu/drm/i915/gvt/handlers.c           |  1 +
-> drivers/gpu/drm/i915/i915_reg.h               | 21 -------------
-> 4 files changed, 33 insertions(+), 21 deletions(-)
-> create mode 100644 drivers/gpu/drm/i915/display/intel_dmc_regs.h
->
->diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
->index 7b7c757ce0ee..4d292a016ca0 100644
->--- a/drivers/gpu/drm/i915/display/intel_dmc.c
->+++ b/drivers/gpu/drm/i915/display/intel_dmc.c
->@@ -28,6 +28,7 @@
-> #include "i915_reg.h"
-> #include "intel_de.h"
-> #include "intel_dmc.h"
->+#include "intel_dmc_regs.h"
->
-> /**
->  * DOC: DMC Firmware Support
->diff --git a/drivers/gpu/drm/i915/display/intel_dmc_regs.h b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
->new file mode 100644
->index 000000000000..e436fe93a2da
->--- /dev/null
->+++ b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
->@@ -0,0 +1,31 @@
->+/* SPDX-License-Identifier: MIT */
->+/*
->+ * Copyright © 2022 Intel Corporation
->+ */
->+
->+#ifndef __INTEL_DMC_REGS_H__
->+#define __INTEL_DMC_REGS_H__
->+
->+#include "i915_reg_defs.h"
->+
->+#define DMC_PROGRAM(addr, i)	_MMIO((addr) + (i) * 4)
->+#define DMC_SSP_BASE_ADDR_GEN9	0x00002FC0
->+#define DMC_HTP_ADDR_SKL	0x00500034
->+#define DMC_SSP_BASE		_MMIO(0x8F074)
->+#define DMC_HTP_SKL		_MMIO(0x8F004)
->+#define DMC_LAST_WRITE		_MMIO(0x8F034)
->+#define DMC_LAST_WRITE_VALUE	0xc003b400
->+/* MMIO address range for DMC program (0x80000 - 0x82FFF) */
+On Thu, Mar 17, 2022 at 09:10:37PM +0200, Jani Nikula wrote:
+> On Thu, 17 Mar 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> >
+> > Currently get_lvds_fp_timing() still returns a pointer to the original
+> > data block rather than our copy. Let's convert the data pointer offsets
+> > to be relative to the data block rather than the whole BDB. With that
+> > we can make get_lvds_fp_timing() return a pointer to the copy.
+> 
+> Ugh, so just as I R-b'd the previous patch... I realize it's all broken
+> without this, right? It does pointer arithmetics between bdb header and
+> the allocated bdb for ptrs?
+> 
+> Do we want a broken step?
 
-this comment seems outdated. Or at least unneeded
+Probably not. Somehow I convinced myself that the artihmetic was being
+done between the original block and bdb header. So now I need to figure
+out how to get out of this mess, I guess ideally without having to just
+squash the two patches together...
 
-Anyway:
-
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
-
-Lucas De Marchi
-
->+#define DMC_MMIO_START_RANGE	0x80000
->+#define DMC_MMIO_END_RANGE	0x8FFFF
->+#define SKL_DMC_DC3_DC5_COUNT	_MMIO(0x80030)
->+#define SKL_DMC_DC5_DC6_COUNT	_MMIO(0x8002C)
->+#define BXT_DMC_DC3_DC5_COUNT	_MMIO(0x80038)
->+#define TGL_DMC_DEBUG_DC5_COUNT	_MMIO(0x101084)
->+#define TGL_DMC_DEBUG_DC6_COUNT	_MMIO(0x101088)
->+#define DG1_DMC_DEBUG_DC5_COUNT	_MMIO(0x134154)
->+
->+#define TGL_DMC_DEBUG3		_MMIO(0x101090)
->+#define DG1_DMC_DEBUG3		_MMIO(0x13415c)
->+
->+#endif /* __INTEL_DMC_REGS_H__ */
+-- 
+Ville Syrjälä
+Intel
