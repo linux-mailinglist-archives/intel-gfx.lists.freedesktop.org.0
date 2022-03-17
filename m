@@ -2,72 +2,72 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F81D4DBC19
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Mar 2022 02:12:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B62584DBC23
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Mar 2022 02:16:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6169B10E038;
-	Thu, 17 Mar 2022 01:12:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B6B2B10E069;
+	Thu, 17 Mar 2022 01:16:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7181D10E038
- for <intel-gfx@lists.freedesktop.org>; Thu, 17 Mar 2022 01:12:26 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E05B410E069
+ for <intel-gfx@lists.freedesktop.org>; Thu, 17 Mar 2022 01:16:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1647479546; x=1679015546;
+ t=1647479760; x=1679015760;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=vFLXrT1Qh09HcCVDgaATLYKdPqRdy8c/h1Y4dJI6Imw=;
- b=RS9K0M4BH2TSj0ptcUGd+HXrZhKm0V08xBZ1OvS80pOdjBQ3xBkM3oMG
- WitJ84+8s/PfHcOkYns9ELD6+zdnvOtYypsdJGXGi+MD+rZnOY9P3Bloz
- SR6LQyM22xlVe7ohD/I89h2Am57eENbYgpvM4Ei8DAqRC646ATEnBOAdg
- /cE2Z9wznW6ho1MX8w0KP5LTaR7RsGj1wq+BvQQIALOOs3CfS+CG+9ZgM
- jCecmW87dNIxKCJwGSiS7hHxk5EZLgowtDCmZ45voMGU0RsPT6MBY1+Ai
- zlIadWOn90o1QsaYOJiRGmIPWnwWz8YsZvefO22P3iVGWQTANg+UX6uhi w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10288"; a="256942122"
-X-IronPort-AV: E=Sophos;i="5.90,188,1643702400"; d="scan'208";a="256942122"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2022 18:12:26 -0700
+ bh=CYlKqJNbf6Etus+zXzC/ctirfR6jdDggKgvDEL/BkjQ=;
+ b=GDqQZs7aSYGVJ0uSu0C93c3m81zXZh8QOVvUoF//Jv3pcBdwKqCg5BAF
+ mgiu0U4bXDMBSg1sYcwajXL4m0tzNlCeCArfzZmdZSrt14ynvBvJQU048
+ ZMJ3zdDZvNnendMOvVOajdKDppuVKdtKeCBRVlqMKwnPnXRFG1uDOiZD+
+ xtudXXuo+72vRyiiyySMrDCoqVvQIkUH86tjWtb44pMhyNQApt3pt8Oeg
+ iGac81NywFDfuHy2S+CkuwXMbHjytCcoICp94c9Vg5FU/bJtGYphHvsn2
+ kF/L27fh4NzYN+IWf/nIM2hXE5wYEFIwGvcBzgLBWsGJL7ZvOLTAy07tO A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10288"; a="254310582"
+X-IronPort-AV: E=Sophos;i="5.90,188,1643702400"; d="scan'208";a="254310582"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Mar 2022 18:15:54 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,188,1643702400"; d="scan'208";a="821087209"
-Received: from fmsmsx605.amr.corp.intel.com ([10.18.126.85])
- by fmsmga005.fm.intel.com with ESMTP; 16 Mar 2022 18:12:08 -0700
-Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
- fmsmsx605.amr.corp.intel.com (10.18.126.85) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="5.90,188,1643702400"; d="scan'208";a="646871467"
+Received: from fmsmsx606.amr.corp.intel.com ([10.18.126.86])
+ by orsmga004.jf.intel.com with ESMTP; 16 Mar 2022 18:15:53 -0700
+Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
+ fmsmsx606.amr.corp.intel.com (10.18.126.86) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.21; Wed, 16 Mar 2022 18:12:05 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ 15.1.2308.21; Wed, 16 Mar 2022 18:15:53 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.21 via Frontend Transport; Wed, 16 Mar 2022 18:12:05 -0700
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.169)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ 15.1.2308.21 via Frontend Transport; Wed, 16 Mar 2022 18:15:53 -0700
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.40) by
+ edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2308.21; Wed, 16 Mar 2022 18:12:04 -0700
+ 15.1.2308.21; Wed, 16 Mar 2022 18:15:52 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=a3YctdogQTzN/PWZ0TpcifYF5yIHoml+GAK3DnQckBmELm4fM7MLgIp7DOpLGQhPTZDj+/ZaDZolg8rohxOmTS9si+V3IzkYaoyfbGZZAvaf3KmGM/2aup6TsnCsJu/7M3gUAko+n8B6KIjFnyXPw6Eg8FYMt6jknN51/XrSMKtfP4VjVVqysqaseEslQAFxJtV1AHQQKvkJcbkgn9hrxmpfZQauglykvmqSu0gJKMNlhRPdB7EDgu66zhuP8OhNUdW09p8HznhUbbPdFdqvEyxN9+hI2UvZ8LZmJG6jqj4iuHSa8XTFoqk0dr6fmEHy/LNXFF5A4H0iXFDHhGxwRg==
+ b=WhKHR/KFd5DWVBvrs28C9tNRuIud+HlVPQ514tqb212vqVlYkzCmEtPq2RUOXDxWnb//5QsCRmnbe7dp6H8w13ux/GR5KOPdCZtDcHvqQrohHu56ViefPMgjNIzd/yUt18bTFgfKzyxH38fMEuvUvkZvctAwcaZUelP8ugBT8Lkot+hGb7G+AMlN5ly8JwsFbSrVrAhmFBY8b5WmA/GSfHI02tLK34DqimIx3SBNLvXFzql1saIjh1tHh8Ach8LLqWsY8UitRqu3z2W+9zpbytRVPl6GJ2yFzQ8IPlvJeq84Tm8jXRs/v90I/rUOpuecqHdi0p7eXCcQYuB19Xrrow==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=o3GbS/5IMeaBH1Gb3OPUEqFiOtLMRmnfP0xqeR5jF+o=;
- b=QaZR0XU1/zpkTqqdLo6h4WOMC9l/6aOCOisHJ3kNVm/WfZNenerqNYiWUZtcyrEJbnO+8yWe1Iu0NHnaOJdVWZeyeFe2FjV2djC3w+aNuR1EChHX8bQYvDJHq9sslJbEb3AyJh4ChEhLv0SDt8VB3DRNs4Oo8z1cyyMC9owf4VuMoe5OXMDTXzO6LPXN8fcVUScc3l35e0QLKhY+O6p2lsN3xWLY930EJ05X2XwjwnwymLPUaogE6sWBMTGuUP3mA0c3r2VW1IaemOvMgAFCHYA3DAMoYT0rBkkqfbvZ9bCovAXZKrbjnePZjLQi7Xw8ovq2Tq3hyTdQ/pEOnfZChQ==
+ bh=BDMXEU8Q818QqKj7neBdFvQrNr3A4L46YL2oPmoV0VY=;
+ b=dAJSBonb6lKpQNz3pdQwMKmlqE7Q7TCvuXI0fP1/rfUnBGbMdpxreRdnVw9br9FYfi2LPFvn8KUJgA4mPQ/mJX7e1me5grPFCsSQvTa/byFaHiCc21zPgTiYP7kRd4kQLVGlQqsjcRb/2+ITCNcPn3DcopNUCu/W0KqystL+abYxhhFrLu6A/YD6a3V5tzsjsn+EKzbsmQeOEt7DpiokVdYqQ6lb6Nrfx3JIPxwTn2IQoniJ/fZCXSXZ/GJgMX834rD5uiLLnp1bCmCPpEa3I1zWVpCVcDeyFiDxdhUljWHBoeBmUn25orEd0JOMnlKoP3kf+cd3ix5j6ZO1eBG69A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from DM4PR11MB5488.namprd11.prod.outlook.com (2603:10b6:5:39d::5) by
- MWHPR11MB1629.namprd11.prod.outlook.com (2603:10b6:301:d::21) with
+ SN6PR11MB2750.namprd11.prod.outlook.com (2603:10b6:805:54::20) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5081.15; Thu, 17 Mar 2022 01:11:56 +0000
+ 15.20.5081.15; Thu, 17 Mar 2022 01:15:50 +0000
 Received: from DM4PR11MB5488.namprd11.prod.outlook.com
  ([fe80::3c4e:eb25:76ff:a869]) by DM4PR11MB5488.namprd11.prod.outlook.com
  ([fe80::3c4e:eb25:76ff:a869%4]) with mapi id 15.20.5081.016; Thu, 17 Mar 2022
- 01:11:56 +0000
-Message-ID: <34a38062-cf2f-f76a-cf49-1e59f8a81e2c@intel.com>
-Date: Wed, 16 Mar 2022 18:11:53 -0700
+ 01:15:50 +0000
+Message-ID: <a4a51156-3b82-5048-491c-ecf278609d62@intel.com>
+Date: Wed, 16 Mar 2022 18:15:47 -0700
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
 Content-Language: en-US
@@ -77,75 +77,75 @@ To: Alexander Usyskin <alexander.usyskin@intel.com>, Greg Kroah-Hartman
  <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>, Daniel Vetter
  <daniel@ffwll.ch>, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 References: <20220315131157.3972238-1-alexander.usyskin@intel.com>
- <20220315131157.3972238-2-alexander.usyskin@intel.com>
+ <20220315131157.3972238-3-alexander.usyskin@intel.com>
 From: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>
-In-Reply-To: <20220315131157.3972238-2-alexander.usyskin@intel.com>
+In-Reply-To: <20220315131157.3972238-3-alexander.usyskin@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BYAPR05CA0091.namprd05.prod.outlook.com
- (2603:10b6:a03:e0::32) To DM4PR11MB5488.namprd11.prod.outlook.com
+X-ClientProxiedBy: SJ0PR13CA0113.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c5::28) To DM4PR11MB5488.namprd11.prod.outlook.com
  (2603:10b6:5:39d::5)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: b4149baf-1483-4d70-167b-08da07b3211b
-X-MS-TrafficTypeDiagnostic: MWHPR11MB1629:EE_
+X-MS-Office365-Filtering-Correlation-Id: 83153d4f-f774-4f40-a001-08da07b3ac8e
+X-MS-TrafficTypeDiagnostic: SN6PR11MB2750:EE_
 X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-X-Microsoft-Antispam-PRVS: <MWHPR11MB1629AA552924B0BC1CB99FF1F4129@MWHPR11MB1629.namprd11.prod.outlook.com>
+X-Microsoft-Antispam-PRVS: <SN6PR11MB2750A7577742A05C5FDFFE04F4129@SN6PR11MB2750.namprd11.prod.outlook.com>
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: BYDev+cocm6sy2tdiqi+EBbgbBVWI/41x+beXSLeS6swnTIvPfS79H+46vZWtRlxulQUazvDbGs5xJ4HGw0Pt2y7P44DHTdqcHo6RSLeHuR6P+3feKkIDtWszHoo6DmBCzFIdV+UYQlsm9swlq0MCNEVKzkmz+rL+iybjT60BCy7Ccip5HCwB8YNJP1hYWGMxUQHN00/BZ2Oy+U/OTN7GHfl881+vv5giDFMtOnA7wvJkI0HFe8hSQb6eJgmL5hAI4Ba1fRsWnNZ0TO7WFbjl9gpSwSaHQpKxJkBlOBJ7Tl36227Huqay0omaQdpOwFuoYBwSW/cywFYs6kio5Ta/NJMK9uC4DDZjKBVQHOTnzqpq+sDyWcysYe5uDj0WUhKSAreyLMxVMC8etJz8Dd8+riqjKJz3uS0dIh8krcghrIviP4GQ15ll/EBpJXQ7JYDTmFXayDmQNukBbsufzjES1hCfjJj6QaRUOibJ8owPf4ZjQxZGbYTh06FJI1Tqbrymqo7X6NNOFHQmi/9MO2PhRotcpKhTpPJj2Fmx1tZCAyTXn0oStAgtSvqLyvzBJRs3K+8PzwSHWvpNA9DqdMFB6g9pUE5I4tVl/x1zfBX7ywfTgTr6K3A/6QmeUeNlFqK+qsw30OJEVjL9CSq7WAiChILFl14PwsiRPd7rpQOya/8NIk3CndbnOxRgiUC65mcsqEoICsf3koLtMqUPzlXNFCAkD9RKpbcqGXLSwczThw=
+X-Microsoft-Antispam-Message-Info: RQ5gN2P7ngzZCFjPP+uNlYhcxlLAMJI4+Cvzi0F66iG2E2FfOqXQGBFugUzwmChyHsm2tTJIjprG8IkR+VOwU6ULh3mJbQheX8qdHUJaooqSwzDiyzsdUzaopFwCtpYPNX1+Xo88uIqJ5fQtwXCpZgGLJ2QaJcNy0wscf2iQmOfUGabpG49TaAeAM0NiYbrXO2oRv1IJFa4/1ywkGGI1Ooge5qeWXNQj2jqw02VQ257rswYa5mO7cOMnJlBMdRYDI4oJ7n0ATEsT1COZo8OBHuINUyZGbM8K4s6aBDOnUXxdntFCf/MZSGbDuMfg5IE4nSqYVkwuUK/TsMEup0azVtpTaEGHCEvtfUkp5gzv4MfCjfD2PLvNVgC+Ie7c1kT1OYx4QPgWsuObsBB/uj6nWy0iRGVF9ncwfyy9IJP1X6a9XlUvQ0SxhZXW7SdEyWi+OGKdE97I+UX5dck6pi9MOP8u+5vkZeOkvAOgkp/AZYxrDDe3cO3EiiC+fKo0UzoPW9X4UDrAtYv/cIWN9MiTV4HofVtGoqbh0BJZrFsSckhY/Ya1e7zq2gctCVE1uIqL02SU7uCjHzTWYmtp8Lw7lmK/UEU+Rl2QZ+R+YM38aGnzx1V0zWbrA5SZAd1CtGkc+SRgR3wLxYeMB358p69GQ3/j2kcmnzRhQDzwlEWLeC6LsSOVbNZesMzWr4Lchvm+lUTDxEOMHQLFf3g9u50bnhy9SO/cLqTbOO0Ff/PJgJxa/hHzovK27DiYPYJHY59r
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM4PR11MB5488.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230001)(366004)(86362001)(2616005)(31696002)(26005)(186003)(6512007)(2906002)(8936002)(38100700002)(6486002)(36756003)(82960400001)(508600001)(5660300002)(54906003)(6666004)(83380400001)(110136005)(316002)(31686004)(66476007)(4326008)(66556008)(8676002)(66946007)(6506007)(45980500001)(43740500002);
+ SFS:(13230001)(366004)(38100700002)(316002)(2906002)(31696002)(82960400001)(36756003)(53546011)(86362001)(31686004)(6506007)(2616005)(110136005)(8676002)(6486002)(8936002)(83380400001)(6666004)(26005)(508600001)(186003)(6512007)(54906003)(66946007)(5660300002)(66556008)(4326008)(66476007)(43740500002)(45980500001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OTY4NEs4WkNQamZOa1gzcE9IQkRPTFlaYkRWeERzYjFHakprVFg4RlFyZVNw?=
- =?utf-8?B?aXlWb3N1a0ZrTkR1Z0JFZmw0Q1ZKdXNqVHhVM25HczRVeEJuY2FSZXpOdzRm?=
- =?utf-8?B?czdyUHpRMitRL0o3N0xRV3FSdFB3RGNiM3Bia1o4eG0rbEprWU1SMFlaQ2pG?=
- =?utf-8?B?Y3FTNnFMb1IzM1YzVmt4V09DRkZzYXQwYjV3MEtNVlRkL1ppZ0w2QlVKTTVC?=
- =?utf-8?B?L09BTWJYNndRVDIxVVoyeFhncVo2Z05LOWdFYnRsVjlWM1Q5ZnVJQ2VDbCtP?=
- =?utf-8?B?dDZkRGZtc1BJZ0NucUh3T2FoR1d5SXJuamZHaStyNGVZc3VxQTh4am43SUFm?=
- =?utf-8?B?eFBRWTFPYk5nTjBleWlkaW9yY01SMTMwSVFFTFBwQ1ZOOVQvRDJ6WExEMmpJ?=
- =?utf-8?B?OEovRk1GaUdHYk5KZUI5S0hvZlcxcDBKWlZpbFpBbmpTSlplMm83SjZMd3E0?=
- =?utf-8?B?aGdxUEsvTTM4Y08rSDdkRXd2QnRTQlErUWkycjUraFg3Qm1FNzhhYlk0U2x1?=
- =?utf-8?B?WE5LYkJDQUNZbW42MkVLNXZkdzZlMC9GbXlyZW5rSFBHenpYaFB2QjUveElp?=
- =?utf-8?B?MnF1Vld0aHZSLzkzUmZaVkQxSysxVkpWekRuclBOQVROYTJoemRLWG1QT1BP?=
- =?utf-8?B?M013bzhsZUdZRm04cU1FTC9DdXVGSDBLVVBOQ2o5WVJkUkVNazJETURtNjhZ?=
- =?utf-8?B?MGo2c0JRTjFFWjgxaVBHNldiMHM0dG5MUXZQRUhLVlp5RlhtdzdTM0FMcE9J?=
- =?utf-8?B?QnBOdUc0RUluejFUMmZPL2VRNTM4NllmcGRabGJaN09IeVM0TCtHcEdlNC8v?=
- =?utf-8?B?M3phSjlyTmlmaUEzM2MrcG5aak9ibURVcmVaa3pZN0Q4bFUyT29HeDU5VUhx?=
- =?utf-8?B?L0xkVUs4d1JZZXF3WFVIeDJzLzMyMmM3ZmNZZ3hzUVRIM1p2TmVBOGNpdHNQ?=
- =?utf-8?B?UkgrbGlGZ0crY1B0YjZJN3hweEdGYTJlTG8zanYzZ2pvaVVickZHRnpXSE9P?=
- =?utf-8?B?UDdyOGwveExLTEhFS2IzNHhwZjdRQzVwM05aUitOd3MwK2laTGxSUHd3aVQz?=
- =?utf-8?B?VjFCOHc3VUNObG94c3VLR3dQZVNCQUU0WkxGSVFwZExRUFJMRlJtSEM0K0l5?=
- =?utf-8?B?cGN3QmpKYkgzSnNrTmJ2N09McUkveGg5YW5qd0JTOEFqM1l3NTVNMnNCbTRo?=
- =?utf-8?B?STBhNGg0TnIvTHZoVDgvZkRUbUlnNG00a3ZVMk9CUXY3c1Z5Kzdqb00zWUZR?=
- =?utf-8?B?ZGJHNktUNWhsQm9WMHhZa29XeVl6L2VJOXUwTWJqQis1QWFnSGhZb01TMU9P?=
- =?utf-8?B?MXlSVFgxZXVyZ0VmaWJBNUJ2U0lXZTdkbCtXbjUrU2tmM3FEWXRPd0hLdzFU?=
- =?utf-8?B?ZHdFcjFra0Z5SEJ0eU1YcThIRDR6WXJ5OHg1UUs4OWJtSS9oS2xybGNod3ZG?=
- =?utf-8?B?VEZNa0RlQXpkV3Z2ZEpueUdVUG9ibmlIT2F4UnJ6aFZLSDZRZitVRXgzeERw?=
- =?utf-8?B?NzI1dDFwSEZFZ1orSE1GWTRjRjBUV0pEeDd0eWp3b1BPSTdIN2Q5UUJMY2tI?=
- =?utf-8?B?bEhwY1hhdlZQVWVRL1I3dmdIQW9aZFZLOUN5ZisvQURXTGlrWmswSHlXY3F0?=
- =?utf-8?B?Z1VMbWVZQm5XdEZSYzVocGdTVkorc2gzcWxhc1JHSy9DdFFhcTNlMFpQTUhG?=
- =?utf-8?B?U0FXMFFNMTZoL3lSamRBd1hGMW1aVnNReG1uK0ZPc2QwbXgzSzZTc1VhRGZo?=
- =?utf-8?B?ZGVNUWtvZEFqaHBYRUtHcHFwWlZYQ285Q2VGMGZ2V1dVcElSUVhIbDRnQzhs?=
- =?utf-8?B?WExpR08wOWhLbjBoQWEzc0JsSVlwOTIzRE0vVTZBd1VncjVKRTQ2NHpxTm4z?=
- =?utf-8?B?Z0Nqait3WmdUZ1B3WFByVnVpTm5rc1prbmsvS2tnQTAwNjJoYWxjb2xIZEtP?=
- =?utf-8?B?YytIK1hndWdEV1JsVW9vdlhvdmFSWTIxeis1b3NZV291VTIxVFlxZXFBQ3Fj?=
- =?utf-8?Q?sZJNTERXJh4WqQXOehCjUnYhEHuYIM=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: b4149baf-1483-4d70-167b-08da07b3211b
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Vmc3alBxVXNIL21qcmY0a1NTcEkzclRVU01kLzlRMGY0aGM4SitBZ1NySExN?=
+ =?utf-8?B?QXVjR0NlSm9Zc21IU2NRTklCY25rT3hjK29sUml5U3UwWnJmL2lnNHJuSENu?=
+ =?utf-8?B?Y2UyQTJad0d0RkNIZ1k3cFNia3lCYm1QSlhTRis1SXpPbytsS2xDVGc4RUZX?=
+ =?utf-8?B?UnMwVzMyaEJ2bEZub1d5OWtEaW1hZllieUhtZmN4a2VBYTM1YWdvUUhKZUZG?=
+ =?utf-8?B?Q1haaDczTGt6V00vTjIzMUpJQWZFNXorQ2RTWmVsVnI3cnUxWGlkWHBpRTg2?=
+ =?utf-8?B?THo1VzEyRWNnVEE1RmlQN2VEYTl4c04xSS85SHFYL09hdWJtM09rZm04NFBm?=
+ =?utf-8?B?L2ZBSXlWUGd4QXgrekZUOENIYjJQME45SUdhL25PSkpZUklzalQ5ak5XbmFl?=
+ =?utf-8?B?RWdhUXZCckFvYnhFa2htOXpZNVdyMjdTTWs3VktmMnFteUVlUGs3Nnp5N1FT?=
+ =?utf-8?B?VzU3dU45S1RVWWdNenBNWmQ2L2p5TnlJd1d2TVFxcENEb2QrWm56Qm4vdW9l?=
+ =?utf-8?B?aFJ3U25XcCtOMWpqYmdlZ2o3VWw3WkYvRlFkbnRJemd1c2VDZklFTTVERC9W?=
+ =?utf-8?B?a2hqS2NHdllwWlBUamZvV0tUVlpSa21ycUVPZW1yT2E5eHJQTE1tSXV4Y0t2?=
+ =?utf-8?B?QTVqYm4wcG8wakNsSVdQeVo5ZDhGckZyalBzWmlyUmRqNitDN3hFOHppc08z?=
+ =?utf-8?B?TzBIVXVYSnRmTmZ0WmFnYkphUUhPNTJtZy9QSUpiY1YwUlhUK0lBRHpUeERy?=
+ =?utf-8?B?Z2tyREhVWDNSUzJOWHUyVmd0WU85eVVnZ1dnZ2xaN2FISEFFWFhGcWFpQmdw?=
+ =?utf-8?B?OFJJMzF3UzcwSUlvT3VLYWxZTFdZVTJjZjYzRngrM2w0b2ZiSWlndm5TbFQv?=
+ =?utf-8?B?TjVTTjZvbmRvV1dhN29lSWdXNHExZkYrMHJObzZLWG5NVlNUWEJwdEQreE0r?=
+ =?utf-8?B?WWN5ZUtXakxRNTFSc1NHNzJZdmNBd0NVaWhtVlhEL1BacnJFdEFSMDNoeVdr?=
+ =?utf-8?B?aTVITldIQngxczR5aVQwUGxnTzVIa3RJVFpEdEhrVDhSSE52L2l4MEtjV1RT?=
+ =?utf-8?B?UXhYTEFJV2N6UkQrZVNFWlBjRUxRell2NUt0V240djViYWVVTjM0RWZ6ODNh?=
+ =?utf-8?B?U1ZHNGVuWG1USWFlWjNpRUNWNVB5K2xMNzBjTUdOaFhiRXNFcml3UG9ycDhF?=
+ =?utf-8?B?YW5QM2IwQnd5WGcxeGJnR25LMHRiS0E0bnJyUTk5UWJxNE1BSXhuNFd0aE9Z?=
+ =?utf-8?B?RDFHNllSQVNwc2FHbnNoU1VGMmt4RWRNcjBDV1J1WWpaa2ViZ2tLYkV2RC9h?=
+ =?utf-8?B?ejRJYkEycTBMTXdRWHpiaGtUSngxS1QrZ2xuZGV2eDdPczgzUTVZblZieUtw?=
+ =?utf-8?B?VHNkdHUvWTdwcnhSMXE4OURza0JjNzFoQjNKamFlQWJWNkY1QlR4bVBjcHFS?=
+ =?utf-8?B?eE9NQTdsTUQ2alZQQm5rUDQvU05vRm0wQ1VkSW02eHdDUzJaZlo4Ky9CRFdy?=
+ =?utf-8?B?TXZ0K2liTEltRExZdC85RkxMQlZpc1pJU3lRbmtxZGMwaHRCbFBmdkFMcHNX?=
+ =?utf-8?B?TElNd2dOaTR1RFZVMkJDTkVlcnZrTWFFRUlwZGxCdWRjL3pGOWNpakxCTmFD?=
+ =?utf-8?B?S0ZBTTBRSndKWlM0WTZaRmtxTGFmNmtZZDQzdzZTWDE0Ym4yblZuR3RINmMx?=
+ =?utf-8?B?aEZEMnJDeFdxditaQ3NkQmpQbTB0cHFTZEJLSGp3SUZLSXFTdjVYeTFYOFQr?=
+ =?utf-8?B?VURrbVBWeW9FK29mVG1ITXl1MFpaOVZqZCt0M1J4emRZTGsxdUhoRGwyQ3hI?=
+ =?utf-8?B?a1Q2V1hFUkdoekl3dDVmbzRwWlJuM09BZFhmTUU4dldmQzJ6LzMvMUpkZVM3?=
+ =?utf-8?B?eFV6UXBQSjkyb09YdEFPQzVGQktlbldsY0tldUwweUVRQ0ZmVENaN3Rod3lp?=
+ =?utf-8?B?RXZZK2NHUm8rSnQxV2pQVnpXbk5RV1FDdEZENi9PTlQ0UDhoRi9sNWF4Y0FJ?=
+ =?utf-8?Q?5cJqqflN87EDB/0vbdJDrnE5QAvNWE=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 83153d4f-f774-4f40-a001-08da07b3ac8e
 X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5488.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Mar 2022 01:11:56.4341 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Mar 2022 01:15:50.3622 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: u8riAQFTSsCt9mDzdO/WkSVvcrjgXBK+6BOxYnwDA8smpouxknAAgaYG3Ekh1ktshneiP9IGFwkWJu5I2t5a5Z2CPaqWJMg1ESr1DoL3KtI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR11MB1629
+X-MS-Exchange-CrossTenant-UserPrincipalName: KehcoTMfHjO5gawmyG2iLHkGcW0vv/3+ij/fdNNdvlURCeDLV1dackNjnFbrPuYCi+4YCblMh8XKk39ewvEcFnm7I1jT3c4FsOS7qZdRQtk=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR11MB2750
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v11 1/5] drm/i915/gsc: add gsc as a mei
- auxiliary device
+Subject: Re: [Intel-gfx] [PATCH v11 2/5] mei: add support for graphics
+ system controller (gsc) devices
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -158,70 +158,375 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Tomas
- Winkler <tomas.winkler@intel.com>, linux-kernel@vger.kernel.org,
- Vitaly Lubart <vitaly.lubart@intel.com>
+Cc: Tomas Winkler <tomas.winkler@intel.com>, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Vitaly Lubart <vitaly.lubart@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-<snip>
 
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index ddbc7a685a50..63c56d668963 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -976,6 +976,8 @@
->   #define GEN12_COMPUTE2_RING_BASE	0x1e000
->   #define GEN12_COMPUTE3_RING_BASE	0x26000
->   #define BLT_RING_BASE		0x22000
-> +#define DG1_GSC_HECI1_BASE	0x00258000
-> +#define DG1_GSC_HECI2_BASE	0x00259000
 
-You ended up keeping the HECI1 define. Not a blocker, so:
+On 3/15/2022 6:11 AM, Alexander Usyskin wrote:
+> From: Tomas Winkler <tomas.winkler@intel.com>
+>
+> GSC is a graphics system controller, based on CSE, it provides
+> a chassis controller for graphics discrete cards, as well as it
+> supports media protection on selected devices.
+>
+> mei_gsc binds to a auxiliary devices exposed by Intel discrete
+> driver i915.
+>
+> Signed-off-by: Alexander Usyskin <alexander.usyskin@intel.com>
+> Signed-off-by: Tomas Winkler <tomas.winkler@intel.com>
 
 Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 
 Daniele
 
+> ---
+> V4: drop debug prints
+>      replace selects with depends on in Kconfig
+> V5: Rebase
+> V6: Rebase
+> V7: add Greg KH Reviewed-by
+> V8: Rebase
+> V9: Rebase
+> V11: explicitely call devm_free_irq on error path and remove
+> ---
+>   drivers/misc/mei/Kconfig  |  14 +++
+>   drivers/misc/mei/Makefile |   3 +
+>   drivers/misc/mei/gsc-me.c | 194 ++++++++++++++++++++++++++++++++++++++
+>   drivers/misc/mei/hw-me.c  |  27 +++++-
+>   drivers/misc/mei/hw-me.h  |   2 +
+>   5 files changed, 238 insertions(+), 2 deletions(-)
+>   create mode 100644 drivers/misc/mei/gsc-me.c
+>
+> diff --git a/drivers/misc/mei/Kconfig b/drivers/misc/mei/Kconfig
+> index 0e0bcd0da852..d21486d69df2 100644
+> --- a/drivers/misc/mei/Kconfig
+> +++ b/drivers/misc/mei/Kconfig
+> @@ -46,6 +46,20 @@ config INTEL_MEI_TXE
+>   	  Supported SoCs:
+>   	  Intel Bay Trail
 >   
+> +config INTEL_MEI_GSC
+> +	tristate "Intel MEI GSC embedded device"
+> +	depends on INTEL_MEI
+> +	depends on INTEL_MEI_ME
+> +	depends on X86 && PCI
+> +	depends on DRM_I915
+> +	help
+> +	  Intel auxiliary driver for GSC devices embedded in Intel graphics devices.
+> +
+> +	  An MEI device here called GSC can be embedded in an
+> +	  Intel graphics devices, to support a range of chassis
+> +	  tasks such as graphics card firmware update and security
+> +	  tasks.
+> +
+>   source "drivers/misc/mei/hdcp/Kconfig"
+>   source "drivers/misc/mei/pxp/Kconfig"
 >   
+> diff --git a/drivers/misc/mei/Makefile b/drivers/misc/mei/Makefile
+> index d8e5165917f2..fb740d754900 100644
+> --- a/drivers/misc/mei/Makefile
+> +++ b/drivers/misc/mei/Makefile
+> @@ -18,6 +18,9 @@ obj-$(CONFIG_INTEL_MEI_ME) += mei-me.o
+>   mei-me-objs := pci-me.o
+>   mei-me-objs += hw-me.o
 >   
-> diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
-> index f9b955810593..576d15a04c9e 100644
-> --- a/drivers/gpu/drm/i915/intel_device_info.h
-> +++ b/drivers/gpu/drm/i915/intel_device_info.h
-> @@ -141,6 +141,8 @@ enum intel_ppgtt_type {
->   	func(has_flat_ccs); \
->   	func(has_global_mocs); \
->   	func(has_gt_uc); \
-> +	func(has_heci_pxp); \
-> +	func(has_heci_gscfi); \
->   	func(has_guc_deprivilege); \
->   	func(has_l3_dpf); \
->   	func(has_llc); \
-> diff --git a/include/linux/mei_aux.h b/include/linux/mei_aux.h
+> +obj-$(CONFIG_INTEL_MEI_GSC) += mei-gsc.o
+> +mei-gsc-objs := gsc-me.o
+> +
+>   obj-$(CONFIG_INTEL_MEI_TXE) += mei-txe.o
+>   mei-txe-objs := pci-txe.o
+>   mei-txe-objs += hw-txe.o
+> diff --git a/drivers/misc/mei/gsc-me.c b/drivers/misc/mei/gsc-me.c
 > new file mode 100644
-> index 000000000000..587f25128848
+> index 000000000000..64b02adf3149
 > --- /dev/null
-> +++ b/include/linux/mei_aux.h
-> @@ -0,0 +1,19 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
+> +++ b/drivers/misc/mei/gsc-me.c
+> @@ -0,0 +1,194 @@
+> +// SPDX-License-Identifier: GPL-2.0
 > +/*
-> + * Copyright (c) 2022, Intel Corporation. All rights reserved.
+> + * Copyright(c) 2019-2022, Intel Corporation. All rights reserved.
+> + *
+> + * Intel Management Engine Interface (Intel MEI) Linux driver
 > + */
-> +#ifndef _LINUX_MEI_AUX_H
-> +#define _LINUX_MEI_AUX_H
 > +
-> +#include <linux/auxiliary_bus.h>
+> +#include <linux/module.h>
+> +#include <linux/mei_aux.h>
+> +#include <linux/device.h>
+> +#include <linux/irqreturn.h>
+> +#include <linux/jiffies.h>
+> +#include <linux/ktime.h>
+> +#include <linux/delay.h>
+> +#include <linux/pm_runtime.h>
 > +
-> +struct mei_aux_device {
-> +	struct auxiliary_device aux_dev;
-> +	int irq;
-> +	struct resource bar;
+> +#include "mei_dev.h"
+> +#include "hw-me.h"
+> +#include "hw-me-regs.h"
+> +
+> +#include "mei-trace.h"
+> +
+> +#define MEI_GSC_RPM_TIMEOUT 500
+> +
+> +static int mei_gsc_read_hfs(const struct mei_device *dev, int where, u32 *val)
+> +{
+> +	struct mei_me_hw *hw = to_me_hw(dev);
+> +
+> +	*val = ioread32(hw->mem_addr + where + 0xC00);
+> +
+> +	return 0;
+> +}
+> +
+> +static int mei_gsc_probe(struct auxiliary_device *aux_dev,
+> +			 const struct auxiliary_device_id *aux_dev_id)
+> +{
+> +	struct mei_aux_device *adev = auxiliary_dev_to_mei_aux_dev(aux_dev);
+> +	struct mei_device *dev;
+> +	struct mei_me_hw *hw;
+> +	struct device *device;
+> +	const struct mei_cfg *cfg;
+> +	int ret;
+> +
+> +	cfg = mei_me_get_cfg(aux_dev_id->driver_data);
+> +	if (!cfg)
+> +		return -ENODEV;
+> +
+> +	device = &aux_dev->dev;
+> +
+> +	dev = mei_me_dev_init(device, cfg);
+> +	if (IS_ERR(dev)) {
+> +		ret = PTR_ERR(dev);
+> +		goto err;
+> +	}
+> +
+> +	hw = to_me_hw(dev);
+> +	hw->mem_addr = devm_ioremap_resource(device, &adev->bar);
+> +	if (IS_ERR(hw->mem_addr)) {
+> +		dev_err(device, "mmio not mapped\n");
+> +		ret = PTR_ERR(hw->mem_addr);
+> +		goto err;
+> +	}
+> +
+> +	hw->irq = adev->irq;
+> +	hw->read_fws = mei_gsc_read_hfs;
+> +
+> +	dev_set_drvdata(device, dev);
+> +
+> +	ret = devm_request_threaded_irq(device, hw->irq,
+> +					mei_me_irq_quick_handler,
+> +					mei_me_irq_thread_handler,
+> +					IRQF_ONESHOT, KBUILD_MODNAME, dev);
+> +	if (ret) {
+> +		dev_err(device, "irq register failed %d\n", ret);
+> +		goto err;
+> +	}
+> +
+> +	pm_runtime_get_noresume(device);
+> +	pm_runtime_set_active(device);
+> +	pm_runtime_enable(device);
+> +
+> +	if (mei_start(dev)) {
+> +		dev_err(device, "init hw failure.\n");
+> +		ret = -ENODEV;
+> +		goto irq_err;
+> +	}
+> +
+> +	pm_runtime_set_autosuspend_delay(device, MEI_GSC_RPM_TIMEOUT);
+> +	pm_runtime_use_autosuspend(device);
+> +
+> +	ret = mei_register(dev, device);
+> +	if (ret)
+> +		goto register_err;
+> +
+> +	pm_runtime_put_noidle(device);
+> +	return 0;
+> +
+> +register_err:
+> +	mei_stop(dev);
+> +irq_err:
+> +	devm_free_irq(device, hw->irq, dev);
+> +
+> +err:
+> +	dev_err(device, "probe failed: %d\n", ret);
+> +	dev_set_drvdata(device, NULL);
+> +	return ret;
+> +}
+> +
+> +static void mei_gsc_remove(struct auxiliary_device *aux_dev)
+> +{
+> +	struct mei_device *dev;
+> +	struct mei_me_hw *hw;
+> +
+> +	dev = dev_get_drvdata(&aux_dev->dev);
+> +	if (!dev)
+> +		return;
+> +
+> +	hw = to_me_hw(dev);
+> +
+> +	mei_stop(dev);
+> +
+> +	mei_deregister(dev);
+> +
+> +	pm_runtime_disable(&aux_dev->dev);
+> +
+> +	mei_disable_interrupts(dev);
+> +	devm_free_irq(&aux_dev->dev, hw->irq, dev);
+> +}
+> +
+> +static int __maybe_unused mei_gsc_pm_suspend(struct device *device)
+> +{
+> +	struct mei_device *dev = dev_get_drvdata(device);
+> +
+> +	if (!dev)
+> +		return -ENODEV;
+> +
+> +	mei_stop(dev);
+> +
+> +	mei_disable_interrupts(dev);
+> +
+> +	return 0;
+> +}
+> +
+> +static int __maybe_unused mei_gsc_pm_resume(struct device *device)
+> +{
+> +	struct mei_device *dev = dev_get_drvdata(device);
+> +	int err;
+> +
+> +	if (!dev)
+> +		return -ENODEV;
+> +
+> +	err = mei_restart(dev);
+> +	if (err)
+> +		return err;
+> +
+> +	/* Start timer if stopped in suspend */
+> +	schedule_delayed_work(&dev->timer_work, HZ);
+> +
+> +	return 0;
+> +}
+> +
+> +static SIMPLE_DEV_PM_OPS(mei_gsc_pm_ops, mei_gsc_pm_suspend, mei_gsc_pm_resume);
+> +
+> +static const struct auxiliary_device_id mei_gsc_id_table[] = {
+> +	{
+> +		.name = "i915.mei-gsc",
+> +		.driver_data = MEI_ME_GSC_CFG,
+> +
+> +	},
+> +	{
+> +		.name = "i915.mei-gscfi",
+> +		.driver_data = MEI_ME_GSCFI_CFG,
+> +	},
+> +	{
+> +		/* sentinel */
+> +	}
+> +};
+> +MODULE_DEVICE_TABLE(auxiliary, mei_gsc_id_table);
+> +
+> +static struct auxiliary_driver mei_gsc_driver = {
+> +	.probe	= mei_gsc_probe,
+> +	.remove = mei_gsc_remove,
+> +	.driver = {
+> +		/* auxiliary_driver_register() sets .name to be the modname */
+> +		.pm = &mei_gsc_pm_ops,
+> +	},
+> +	.id_table = mei_gsc_id_table
+> +};
+> +module_auxiliary_driver(mei_gsc_driver);
+> +
+> +MODULE_AUTHOR("Intel Corporation");
+> +MODULE_ALIAS("auxiliary:i915.mei-gsc");
+> +MODULE_ALIAS("auxiliary:i915.mei-gscfi");
+> +MODULE_LICENSE("GPL v2");
+> diff --git a/drivers/misc/mei/hw-me.c b/drivers/misc/mei/hw-me.c
+> index d3a6c0728645..9748d14849a1 100644
+> --- a/drivers/misc/mei/hw-me.c
+> +++ b/drivers/misc/mei/hw-me.c
+> @@ -1226,6 +1226,7 @@ irqreturn_t mei_me_irq_quick_handler(int irq, void *dev_id)
+>   	me_intr_disable(dev, hcsr);
+>   	return IRQ_WAKE_THREAD;
+>   }
+> +EXPORT_SYMBOL_GPL(mei_me_irq_quick_handler);
+>   
+>   /**
+>    * mei_me_irq_thread_handler - function called after ISR to handle the interrupt
+> @@ -1320,6 +1321,7 @@ irqreturn_t mei_me_irq_thread_handler(int irq, void *dev_id)
+>   	mutex_unlock(&dev->device_lock);
+>   	return IRQ_HANDLED;
+>   }
+> +EXPORT_SYMBOL_GPL(mei_me_irq_thread_handler);
+>   
+>   static const struct mei_hw_ops mei_me_hw_ops = {
+>   
+> @@ -1433,6 +1435,12 @@ static bool mei_me_fw_type_sps(const struct pci_dev *pdev)
+>   #define MEI_CFG_KIND_ITOUCH                     \
+>   	.kind = "itouch"
+>   
+> +#define MEI_CFG_TYPE_GSC                        \
+> +	.kind = "gsc"
+> +
+> +#define MEI_CFG_TYPE_GSCFI                      \
+> +	.kind = "gscfi"
+> +
+>   #define MEI_CFG_FW_SPS                          \
+>   	.quirk_probe = mei_me_fw_type_sps
+>   
+> @@ -1565,6 +1573,18 @@ static const struct mei_cfg mei_me_pch15_sps_cfg = {
+>   	MEI_CFG_FW_SPS,
+>   };
+>   
+> +/* Graphics System Controller */
+> +static const struct mei_cfg mei_me_gsc_cfg = {
+> +	MEI_CFG_TYPE_GSC,
+> +	MEI_CFG_PCH8_HFS,
 > +};
 > +
-> +#define auxiliary_dev_to_mei_aux_dev(auxiliary_dev) \
-> +	container_of(auxiliary_dev, struct mei_aux_device, aux_dev)
+> +/* Graphics System Controller Firmware Interface */
+> +static const struct mei_cfg mei_me_gscfi_cfg = {
+> +	MEI_CFG_TYPE_GSCFI,
+> +	MEI_CFG_PCH8_HFS,
+> +};
 > +
-> +#endif /* _LINUX_MEI_AUX_H */
+>   /*
+>    * mei_cfg_list - A list of platform platform specific configurations.
+>    * Note: has to be synchronized with  enum mei_cfg_idx.
+> @@ -1585,6 +1605,8 @@ static const struct mei_cfg *const mei_cfg_list[] = {
+>   	[MEI_ME_PCH12_SPS_ITOUCH_CFG] = &mei_me_pch12_itouch_sps_cfg,
+>   	[MEI_ME_PCH15_CFG] = &mei_me_pch15_cfg,
+>   	[MEI_ME_PCH15_SPS_CFG] = &mei_me_pch15_sps_cfg,
+> +	[MEI_ME_GSC_CFG] = &mei_me_gsc_cfg,
+> +	[MEI_ME_GSCFI_CFG] = &mei_me_gscfi_cfg,
+>   };
+>   
+>   const struct mei_cfg *mei_me_get_cfg(kernel_ulong_t idx)
+> @@ -1595,7 +1617,8 @@ const struct mei_cfg *mei_me_get_cfg(kernel_ulong_t idx)
+>   		return NULL;
+>   
+>   	return mei_cfg_list[idx];
+> -};
+> +}
+> +EXPORT_SYMBOL_GPL(mei_me_get_cfg);
+>   
+>   /**
+>    * mei_me_dev_init - allocates and initializes the mei device structure
+> @@ -1630,4 +1653,4 @@ struct mei_device *mei_me_dev_init(struct device *parent,
+>   
+>   	return dev;
+>   }
+> -
+> +EXPORT_SYMBOL_GPL(mei_me_dev_init);
+> diff --git a/drivers/misc/mei/hw-me.h b/drivers/misc/mei/hw-me.h
+> index 00a7132ac7a2..a071c645e905 100644
+> --- a/drivers/misc/mei/hw-me.h
+> +++ b/drivers/misc/mei/hw-me.h
+> @@ -112,6 +112,8 @@ enum mei_cfg_idx {
+>   	MEI_ME_PCH12_SPS_ITOUCH_CFG,
+>   	MEI_ME_PCH15_CFG,
+>   	MEI_ME_PCH15_SPS_CFG,
+> +	MEI_ME_GSC_CFG,
+> +	MEI_ME_GSCFI_CFG,
+>   	MEI_ME_NUM_CFG,
+>   };
+>   
 
