@@ -2,52 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6287C4DCCA2
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Mar 2022 18:38:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B6374DCCB9
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Mar 2022 18:45:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B1B010E809;
-	Thu, 17 Mar 2022 17:38:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C7CED10E6B7;
+	Thu, 17 Mar 2022 17:45:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4423F10E809
- for <intel-gfx@lists.freedesktop.org>; Thu, 17 Mar 2022 17:38:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1647538713; x=1679074713;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=YNpcu5tniXUuEzSrnvF7yBgIvuoX5j1iTy3eL5gV3+0=;
- b=M7jihLTlR5tEQz5BHUSGpJhqu6KAI4srD7Ncvpdzeos2moXQeCKqx8YJ
- PCqXFRvh+IxZxtapNnpPQ5ZMDXUrro9XMkJilNYy76HxGj1nlejbpycY9
- qNq+AU/4F0E+uMp28u7wakCBZNa74XvMz5rOuTmgbPfHA13UZTZozkPGr
- 0cMi1SwpA11BIIoAMapLfV2DrS87dsIfRId2kRZc9L/GygooxWHm5GkfZ
- q0nuVlfRbqg/oQHlUeCNfzAcR/OCszoJJNzataJvU2+Jyw8HqHHfx09i6
- p/C8lqQo8Wl2bAUNZPMEC59GEm8h6+azjUS3plie95l3fGzBn1W9xP2c3 w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10289"; a="239092889"
-X-IronPort-AV: E=Sophos;i="5.90,188,1643702400"; d="scan'208";a="239092889"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2022 10:38:32 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,188,1643702400"; d="scan'208";a="581377493"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
- by orsmga001.jf.intel.com with SMTP; 17 Mar 2022 10:38:30 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 17 Mar 2022 19:38:29 +0200
-Date: Thu, 17 Mar 2022 19:38:29 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <YjNyFdyA3vQAT4i0@intel.com>
-References: <20220317173355.336835-1-jani.nikula@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2F11410E6B7;
+ Thu, 17 Mar 2022 17:45:39 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 2BCB6A882E;
+ Thu, 17 Mar 2022 17:45:39 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220317173355.336835-1-jani.nikula@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/sdvo: prefer __packed over
- __attribute__((packed))
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Date: Thu, 17 Mar 2022 17:45:39 -0000
+Message-ID: <164753913917.32162.8393586586309921219@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220317171948.10400-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20220317171948.10400-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/bios=3A_Rework_BDB_block_handling?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,38 +40,79 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Mar 17, 2022 at 07:33:55PM +0200, Jani Nikula wrote:
-> The kernel preference is to use the __packed macro instead of the direct
-> __attribute__.
-> 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+== Series Details ==
 
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Series: drm/i915/bios: Rework BDB block handling
+URL   : https://patchwork.freedesktop.org/series/101496/
+State : warning
 
-> ---
->  drivers/gpu/drm/i915/display/intel_sdvo.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
-> index 158e750e5b4d..328a8f20c63b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_sdvo.c
-> +++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
-> @@ -283,7 +283,7 @@ static bool intel_sdvo_read_byte(struct intel_sdvo *intel_sdvo, u8 addr, u8 *ch)
->  static const struct {
->  	u8 cmd;
->  	const char *name;
-> -} __attribute__ ((packed)) sdvo_cmd_names[] = {
-> +} __packed sdvo_cmd_names[] = {
->  	SDVO_CMD_NAME_ENTRY(RESET),
->  	SDVO_CMD_NAME_ENTRY(GET_DEVICE_CAPS),
->  	SDVO_CMD_NAME_ENTRY(GET_FIRMWARE_REV),
-> -- 
-> 2.30.2
+== Summary ==
 
--- 
-Ville Syrjälä
-Intel
+$ dim checkpatch origin/drm-tip
+42f50441c85c drm/i915/bios: Extract struct lvds_lfp_data_ptr_table
+19e4a34e174c drm/i915/bios: Make copies of VBT data blocks
+00d36301bbec drm/i915/bios: Use the copy of the LFP data table always
+5304b3a06c2b drm/i915/bios: Validate LFP data table pointers
+-:86: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#86: FILE: drivers/gpu/drm/i915/display/intel_bios.c:219:
++		if (ptrs->ptr[i].fp_timing.offset - ptrs->ptr[i-1].fp_timing.offset != lfp_data_size ||
+
+-:86: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
+#86: FILE: drivers/gpu/drm/i915/display/intel_bios.c:219:
++		if (ptrs->ptr[i].fp_timing.offset - ptrs->ptr[i-1].fp_timing.offset != lfp_data_size ||
+ 		                                               ^
+
+-:87: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#87: FILE: drivers/gpu/drm/i915/display/intel_bios.c:220:
++		    ptrs->ptr[i].dvo_timing.offset - ptrs->ptr[i-1].dvo_timing.offset != lfp_data_size ||
+
+-:87: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
+#87: FILE: drivers/gpu/drm/i915/display/intel_bios.c:220:
++		    ptrs->ptr[i].dvo_timing.offset - ptrs->ptr[i-1].dvo_timing.offset != lfp_data_size ||
+ 		                                                ^
+
+-:88: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
+#88: FILE: drivers/gpu/drm/i915/display/intel_bios.c:221:
++		    ptrs->ptr[i].panel_pnp_id.offset - ptrs->ptr[i-1].panel_pnp_id.offset != lfp_data_size)
+
+-:88: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
+#88: FILE: drivers/gpu/drm/i915/display/intel_bios.c:221:
++		    ptrs->ptr[i].panel_pnp_id.offset - ptrs->ptr[i-1].panel_pnp_id.offset != lfp_data_size)
+ 		                                                  ^
+
+total: 0 errors, 3 warnings, 3 checks, 94 lines checked
+170d50d9a43d drm/i915/bios: Trust the LFP data pointers
+c0263a7d1f46 drm/i915/bios: Validate the panel_name table
+969bfc05996e drm/i915/bios: Reorder panel DTD parsing
+b24d92ec8819 drm/i915/bios: Generate LFP data table pointers if the VBT lacks them
+-:39: CHECK:SPACING: spaces preferred around that '+' (ctx:VxV)
+#39: FILE: drivers/gpu/drm/i915/display/intel_bios.c:283:
++		if (data[i] == 0xff && data[i+1] == 0xff)
+ 		                             ^
+
+-:123: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
+#123: FILE: drivers/gpu/drm/i915/display/intel_bios.c:367:
++		next_lfp_data_ptr(&ptrs->ptr[i].fp_timing, &ptrs->ptr[i-1].fp_timing, size);
+ 		                                                       ^
+
+-:124: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
+#124: FILE: drivers/gpu/drm/i915/display/intel_bios.c:368:
++		next_lfp_data_ptr(&ptrs->ptr[i].dvo_timing, &ptrs->ptr[i-1].dvo_timing, size);
+ 		                                                        ^
+
+-:125: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
+#125: FILE: drivers/gpu/drm/i915/display/intel_bios.c:369:
++		next_lfp_data_ptr(&ptrs->ptr[i].panel_pnp_id, &ptrs->ptr[i-1].panel_pnp_id, size);
+ 		                                                          ^
+
+total: 0 errors, 0 warnings, 4 checks, 163 lines checked
+e5d803c7802f drm/i915/bios: Get access to the tail end of the LFP data block
+719b2fe6f28c drm/i915/bios: Parse the seamless DRRS min refresh rate
+3cb52c1d9024 drm/i915: Respect VBT seamless DRRS min refresh rate
+
+
