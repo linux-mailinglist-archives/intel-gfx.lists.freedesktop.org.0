@@ -1,51 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E834A4DCA19
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Mar 2022 16:35:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 002D64DCB43
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Mar 2022 17:25:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0CD8010E7CD;
-	Thu, 17 Mar 2022 15:35:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 756ED10E256;
+	Thu, 17 Mar 2022 16:25:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CDBCC10E7CD
- for <intel-gfx@lists.freedesktop.org>; Thu, 17 Mar 2022 15:35:47 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B6D9610E053;
+ Thu, 17 Mar 2022 16:25:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1647531347; x=1679067347;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=WkoAu2F5GzSTbZF+hska1jyKCEwH5Tum57gPerMKwgs=;
- b=EiUFdKduqSZJdHBTrB+2HUoVzNdxtYYndcYsz7Bod9juVEhc8V+j3+gJ
- BqxAQIAGeDaLl6m3zh4iKFSb8zks+DKEuZROaJoD848jm3Kv9VZcNbZfh
- n24XNTRL+zotSROlWu6K5jY6k8xv0n9/4FaVv1e6qGlanun9qLodUzy2r
- q0IK9POVOUFyv9iEy82fuBd+3Zo2ZCpE2Z7sp2xALQj/eY+ODJu9G368M
- mRowE49YsFYhPQFKjMAo/3w/Mx1dSUhFEM7ayWw1qmiYhMGKHYpBQfvRj
- U+iB/Fx3hYnxwqf1RjNOw+EEQ/ITyGWXxxV4YnxS9fHKjkXtSPmYExXzN w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10289"; a="256843707"
-X-IronPort-AV: E=Sophos;i="5.90,188,1643702400"; d="scan'208";a="256843707"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2022 08:35:47 -0700
-X-IronPort-AV: E=Sophos;i="5.90,188,1643702400"; d="scan'208";a="557977848"
-Received: from unknown (HELO localhost) ([10.252.58.37])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2022 08:35:46 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Navare, Manasi" <manasi.d.navare@intel.com>
-In-Reply-To: <20220316171030.GA759@labuser-Z97X-UD5H>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220315233856.30255-1-manasi.d.navare@intel.com>
- <87ee32pcce.fsf@intel.com> <20220316171030.GA759@labuser-Z97X-UD5H>
-Date: Thu, 17 Mar 2022 17:35:43 +0200
-Message-ID: <87pmmkmw1c.fsf@intel.com>
+ t=1647534310; x=1679070310;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=4Qvh/Z1KihmzgQfzG86ZfP2QXch1N2ItqC5CXFB6IRg=;
+ b=D8eELPXZ+Bof1tbhQeTjWf7topTsBPc659SkGZybeyKhWOldmnFMDxR0
+ XtIBVmj/LdTTGXzYXQlamB6X/akAqWwzugoS6gyJ+IcmQ6J71Yk5WLC9G
+ +XA80Ic2Le3s/xo2aDA6cNIyXB4NuD+SuXF/kphckyouHwwpinicOmJdk
+ 2bp/+3FCxxZwzdxwBwAIJUp1WmHwG0tHz76d6Y1jnYN4p44KBU0lfb4U0
+ T4f8qU7QeMKkDH4vIHqISqn6xA7x1NspjiNSUZDde68R/2/9uBrSTU2GY
+ I/ilChoCifxhEpi+PsTCi0SLQgzVYD5VlOJt9Sx9WLYnfAsy3ptm3MIlj A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10289"; a="257094185"
+X-IronPort-AV: E=Sophos;i="5.90,188,1643702400"; d="scan'208";a="257094185"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Mar 2022 09:25:10 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,188,1643702400"; d="scan'208";a="541429771"
+Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
+ ([10.237.72.65])
+ by orsmga007.jf.intel.com with ESMTP; 17 Mar 2022 09:25:07 -0700
+From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+To: dri-devel@lists.freedesktop.org
+Date: Thu, 17 Mar 2022 18:25:44 +0200
+Message-Id: <20220317162544.3786-1-stanislav.lisovskiy@intel.com>
+X-Mailer: git-send-email 2.24.1.485.gad05a3d8e5
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display/: Refactor hsw_crtc_enable
- for bigjoiner cleanup
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 1/2] drm: Add missing DP DSC extended capability
+ definitions.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,299 +59,104 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 16 Mar 2022, "Navare, Manasi" <manasi.d.navare@intel.com> wrote:
-> On Wed, Mar 16, 2022 at 09:48:17AM +0200, Jani Nikula wrote:
->> On Tue, 15 Mar 2022, Manasi Navare <manasi.d.navare@intel.com> wrote:
->> > This patch abstracts pieces of hsw_crtc_enable corresponding to differ=
-ent
->> > Bspec enable sequence steps into separate functions.
->> > This helps to call them in a specific order for bigjoiner master/slave
->> > in a cleaner fashion.
->>=20
->> So does this contain only refactoring or functional changes also? One or
->> the other at a time, please, not both.
->
-> No this is only refactor, no functional changes here
->
->>=20
->> Also looks like hsw_crtc_* have accumulated just way too many checks for
->> platforms instead of having a clean break at e.g. display 9 and/or 11.
->
-> These checks were already part of hsw_crtc_enable() function that I have =
-just moved to a separate
-> function. How do you recommend removing these checks?
+Adding DP DSC register definitions, we might need for further
+DSC implementation, supporting MST and DP branch pass-through mode.
 
-We use hsw_crtc_enable for all DDI platforms and later. We do have the
-difference between skl_display_funcs and ddi_display_funcs, but they
-both point to hsw_crtc_enable. Maybe it's time for them to have their
-own functions that don't have to take so many platform differences into
-account.
+Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+---
+ drivers/gpu/drm/dp/drm_dp.c    | 25 +++++++++++++++++++++++++
+ include/drm/dp/drm_dp_helper.h | 11 ++++++++++-
+ 2 files changed, 35 insertions(+), 1 deletion(-)
 
-BR,
-Jani.
+diff --git a/drivers/gpu/drm/dp/drm_dp.c b/drivers/gpu/drm/dp/drm_dp.c
+index 703972ae14c6..fe9c72055638 100644
+--- a/drivers/gpu/drm/dp/drm_dp.c
++++ b/drivers/gpu/drm/dp/drm_dp.c
+@@ -2312,6 +2312,31 @@ u8 drm_dp_dsc_sink_max_slice_count(const u8 dsc_dpcd[DP_DSC_RECEIVER_CAP_SIZE],
+ }
+ EXPORT_SYMBOL(drm_dp_dsc_sink_max_slice_count);
+ 
++/**
++  * drm_dp_dsc_sink_bpp_increment_div - Get the bits per pixel precision
++  * which DP DSC sink device supports.
++  */
++u8 drm_dp_dsc_sink_bpp_increment_div(const u8 dsc_dpcd[DP_DSC_RECEIVER_CAP_SIZE])
++{
++	u8 bpp_increment_dpcd = dsc_dpcd[DP_DSC_BITS_PER_PIXEL_INC - DP_DSC_SUPPORT];
++
++	switch (bpp_increment_dpcd) {
++	case DP_DSC_BITS_PER_PIXEL_1_16:
++		return 16;
++	case DP_DSC_BITS_PER_PIXEL_1_8:
++		return 8;
++	case DP_DSC_BITS_PER_PIXEL_1_4:
++		return 4;
++	case DP_DSC_BITS_PER_PIXEL_1_2:
++		return 2;
++	case DP_DSC_BITS_PER_PIXEL_1_1:
++		return 1;
++	}
++
++	return 0;
++}
++
++
+ /**
+  * drm_dp_dsc_sink_line_buf_depth() - Get the line buffer depth in bits
+  * @dsc_dpcd: DSC capabilities from DPCD
+diff --git a/include/drm/dp/drm_dp_helper.h b/include/drm/dp/drm_dp_helper.h
+index 51e02cf75277..e4c9f4438ccb 100644
+--- a/include/drm/dp/drm_dp_helper.h
++++ b/include/drm/dp/drm_dp_helper.h
+@@ -246,6 +246,9 @@ struct drm_panel;
+ 
+ #define DP_DSC_SUPPORT                      0x060   /* DP 1.4 */
+ # define DP_DSC_DECOMPRESSION_IS_SUPPORTED  (1 << 0)
++# define DP_DSC_PASS_THROUGH_IS_SUPPORTED   (1 << 1)
++# define DP_DSC_DYNAMIC_PPS_UPDATE_SUPPORT_COMP_TO_COMP    (1 << 2)
++# define DP_DSC_DYNAMIC_PPS_UPDATE_SUPPORT_UNCOMP_TO_COMP  (1 << 3)
+ 
+ #define DP_DSC_REV                          0x061
+ # define DP_DSC_MAJOR_MASK                  (0xf << 0)
+@@ -284,12 +287,15 @@ struct drm_panel;
+ 
+ #define DP_DSC_BLK_PREDICTION_SUPPORT       0x066
+ # define DP_DSC_BLK_PREDICTION_IS_SUPPORTED (1 << 0)
++# define DP_DSC_RGB_COLOR_CONV_BYPASS_SUPPORT (1 << 1)
+ 
+ #define DP_DSC_MAX_BITS_PER_PIXEL_LOW       0x067   /* eDP 1.4 */
+ 
+ #define DP_DSC_MAX_BITS_PER_PIXEL_HI        0x068   /* eDP 1.4 */
+ # define DP_DSC_MAX_BITS_PER_PIXEL_HI_MASK  (0x3 << 0)
+ # define DP_DSC_MAX_BITS_PER_PIXEL_HI_SHIFT 8
++# define DP_DSC_MAX_BPP_DELTA_VERSION_MASK  0x06
++# define DP_DSC_MAX_BPP_DELTA_AVAILABILITY  0x08
+ 
+ #define DP_DSC_DEC_COLOR_FORMAT_CAP         0x069
+ # define DP_DSC_RGB                         (1 << 0)
+@@ -351,11 +357,13 @@ struct drm_panel;
+ # define DP_DSC_24_PER_DP_DSC_SINK          (1 << 2)
+ 
+ #define DP_DSC_BITS_PER_PIXEL_INC           0x06F
++# define DP_DSC_RGB_YCbCr444_MAX_BPP_DELTA_MASK 0x1f
++# define DP_DSC_RGB_YCbCr420_MAX_BPP_DELTA_MASK 0xe0
+ # define DP_DSC_BITS_PER_PIXEL_1_16         0x0
+ # define DP_DSC_BITS_PER_PIXEL_1_8          0x1
+ # define DP_DSC_BITS_PER_PIXEL_1_4          0x2
+ # define DP_DSC_BITS_PER_PIXEL_1_2          0x3
+-# define DP_DSC_BITS_PER_PIXEL_1            0x4
++# define DP_DSC_BITS_PER_PIXEL_1_1          0x4
+ 
+ #define DP_PSR_SUPPORT                      0x070   /* XXX 1.2? */
+ # define DP_PSR_IS_SUPPORTED                1
+@@ -1825,6 +1833,7 @@ u8 drm_dp_dsc_sink_max_slice_count(const u8 dsc_dpcd[DP_DSC_RECEIVER_CAP_SIZE],
+ u8 drm_dp_dsc_sink_line_buf_depth(const u8 dsc_dpcd[DP_DSC_RECEIVER_CAP_SIZE]);
+ int drm_dp_dsc_sink_supported_input_bpcs(const u8 dsc_dpc[DP_DSC_RECEIVER_CAP_SIZE],
+ 					 u8 dsc_bpc[3]);
++u8 drm_dp_dsc_sink_bpp_increment_div(const u8 dsc_dpcd[DP_DSC_RECEIVER_CAP_SIZE]);
+ 
+ static inline bool
+ drm_dp_sink_supports_dsc(const u8 dsc_dpcd[DP_DSC_RECEIVER_CAP_SIZE])
+-- 
+2.24.1.485.gad05a3d8e5
 
-
-
-
->
->>=20
->> Adding references to "enable sequence step 8" is not helpful because
->> it's platform specific. (Yeah, I know there are existing references like
->> this, but they're also suspect.)
->
-> Yes agree, may be I will add the comment for what actually the step 7/8 d=
-oes?
->
-> Manasi
->
->>=20
->>=20
->> BR,
->> Jani.
->>=20
->>=20
->> >
->> > Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->> > Cc: Animesh Manna <animesh.manna@intel.com>
->> > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
->> > ---
->> >  drivers/gpu/drm/i915/display/intel_display.c | 125 ++++++++++---------
->> >  1 file changed, 66 insertions(+), 59 deletions(-)
->> >
->> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gp=
-u/drm/i915/display/intel_display.c
->> > index eb49973621f0..d8e6466c9fa0 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_display.c
->> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
->> > @@ -1865,24 +1865,6 @@ static void hsw_set_frame_start_delay(const str=
-uct intel_crtc_state *crtc_state)
->> >  	intel_de_write(dev_priv, reg, val);
->> >  }
->> >=20=20
->> > -static void icl_ddi_bigjoiner_pre_enable(struct intel_atomic_state *s=
-tate,
->> > -					 const struct intel_crtc_state *crtc_state)
->> > -{
->> > -	struct intel_crtc *master_crtc =3D intel_master_crtc(crtc_state);
->> > -
->> > -	/*
->> > -	 * Enable sequence steps 1-7 on bigjoiner master
->> > -	 */
->> > -	if (intel_crtc_is_bigjoiner_slave(crtc_state))
->> > -		intel_encoders_pre_pll_enable(state, master_crtc);
->> > -
->> > -	if (crtc_state->shared_dpll)
->> > -		intel_enable_shared_dpll(crtc_state);
->> > -
->> > -	if (intel_crtc_is_bigjoiner_slave(crtc_state))
->> > -		intel_encoders_pre_enable(state, master_crtc);
->> > -}
->> > -
->> >  static void hsw_configure_cpu_transcoder(const struct intel_crtc_stat=
-e *crtc_state)
->> >  {
->> >  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
->> > @@ -1910,70 +1892,73 @@ static void hsw_configure_cpu_transcoder(const=
- struct intel_crtc_state *crtc_sta
->> >  	hsw_set_transconf(crtc_state);
->> >  }
->> >=20=20
->> > -static void hsw_crtc_enable(struct intel_atomic_state *state,
->> > -			    struct intel_crtc *crtc)
->> > +static void hsw_crtc_pre_pll_enable(struct intel_atomic_state *state,
->> > +				    const struct intel_crtc_state *crtc_state)
->> >  {
->> > -	const struct intel_crtc_state *new_crtc_state =3D
->> > -		intel_atomic_get_new_crtc_state(state, crtc);
->> > -	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
->> > -	enum pipe pipe =3D crtc->pipe, hsw_workaround_pipe;
->> > -	enum transcoder cpu_transcoder =3D new_crtc_state->cpu_transcoder;
->> > -	bool psl_clkgate_wa;
->> > -
->> > -	if (drm_WARN_ON(&dev_priv->drm, crtc->active))
->> > -		return;
->> > +	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
->> >=20=20
->> > -	if (!new_crtc_state->bigjoiner_pipes) {
->> > -		intel_encoders_pre_pll_enable(state, crtc);
->> > +	/*
->> > +	 * Enable sequence steps 1 - 7 on all pipes
->> > +	 */
->> > +	intel_encoders_pre_pll_enable(state, crtc);
->> > +	if (crtc_state->shared_dpll)
->> > +		intel_enable_shared_dpll(crtc_state);
->> >=20=20
->> > -		if (new_crtc_state->shared_dpll)
->> > -			intel_enable_shared_dpll(new_crtc_state);
->> > +	intel_encoders_pre_enable(state, crtc);
->> > +}
->> >=20=20
->> > -		intel_encoders_pre_enable(state, crtc);
->> > -	} else {
->> > -		icl_ddi_bigjoiner_pre_enable(state, new_crtc_state);
->> > -	}
->> > +static void hsw_crtc_post_pll_enable(struct intel_atomic_state *state,
->> > +				     const struct intel_crtc_state *crtc_state)
->> > +{
->> > +	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
->> > +	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
->> > +	enum pipe pipe =3D crtc->pipe, hsw_workaround_pipe;
->> > +	enum transcoder cpu_transcoder =3D crtc_state->cpu_transcoder;
->> > +	bool psl_clkgate_wa;
->> >=20=20
->> > -	intel_dsc_enable(new_crtc_state);
->> > +	/*
->> > +	 * Enable sequence step 8
->> > +	 */
->> > +	intel_dsc_enable(crtc_state);
->> >=20=20
->> >  	if (DISPLAY_VER(dev_priv) >=3D 13)
->> > -		intel_uncompressed_joiner_enable(new_crtc_state);
->> > +		intel_uncompressed_joiner_enable(crtc_state);
->> >=20=20
->> > -	intel_set_pipe_src_size(new_crtc_state);
->> > +	intel_set_pipe_src_size(crtc_state);
->> >  	if (DISPLAY_VER(dev_priv) >=3D 9 || IS_BROADWELL(dev_priv))
->> > -		bdw_set_pipemisc(new_crtc_state);
->> > +		bdw_set_pipemisc(crtc_state);
->> >=20=20
->> > -	if (!intel_crtc_is_bigjoiner_slave(new_crtc_state) &&
->> > +	if (!intel_crtc_is_bigjoiner_slave(crtc_state) &&
->> >  	    !transcoder_is_dsi(cpu_transcoder))
->> > -		hsw_configure_cpu_transcoder(new_crtc_state);
->> > +		hsw_configure_cpu_transcoder(crtc_state);
->> >=20=20
->> >  	crtc->active =3D true;
->> >=20=20
->> >  	/* Display WA #1180: WaDisableScalarClockGating: glk */
->> >  	psl_clkgate_wa =3D DISPLAY_VER(dev_priv) =3D=3D 10 &&
->> > -		new_crtc_state->pch_pfit.enabled;
->> > +		crtc_state->pch_pfit.enabled;
->> >  	if (psl_clkgate_wa)
->> >  		glk_pipe_scaler_clock_gating_wa(dev_priv, pipe, true);
->> >=20=20
->> >  	if (DISPLAY_VER(dev_priv) >=3D 9)
->> > -		skl_pfit_enable(new_crtc_state);
->> > +		skl_pfit_enable(crtc_state);
->> >  	else
->> > -		ilk_pfit_enable(new_crtc_state);
->> > +		ilk_pfit_enable(crtc_state);
->> >=20=20
->> >  	/*
->> >  	 * On ILK+ LUT must be loaded before the pipe is running but with
->> >  	 * clocks enabled
->> >  	 */
->> > -	intel_color_load_luts(new_crtc_state);
->> > -	intel_color_commit(new_crtc_state);
->> > +	intel_color_load_luts(crtc_state);
->> > +	intel_color_commit(crtc_state);
->> >  	/* update DSPCNTR to configure gamma/csc for pipe bottom color */
->> >  	if (DISPLAY_VER(dev_priv) < 9)
->> > -		intel_disable_primary_plane(new_crtc_state);
->> > +		intel_disable_primary_plane(crtc_state);
->> >=20=20
->> > -	hsw_set_linetime_wm(new_crtc_state);
->> > +	hsw_set_linetime_wm(crtc_state);
->> >=20=20
->> >  	if (DISPLAY_VER(dev_priv) >=3D 11)
->> > -		icl_set_pipe_chicken(new_crtc_state);
->> > +		icl_set_pipe_chicken(crtc_state);
->> >=20=20
->> >  	intel_initial_watermarks(state, crtc);
->> >=20=20
->> > @@ -1984,8 +1969,8 @@ static void hsw_crtc_enable(struct intel_atomic_=
-state *state,
->> >  		icl_pipe_mbus_enable(crtc, dbuf_state->joined_mbus);
->> >  	}
->> >=20=20
->> > -	if (intel_crtc_is_bigjoiner_slave(new_crtc_state))
->> > -		intel_crtc_vblank_on(new_crtc_state);
->> > +	if (intel_crtc_is_bigjoiner_slave(crtc_state))
->> > +		intel_crtc_vblank_on(crtc_state);
->> >=20=20
->> >  	intel_encoders_enable(state, crtc);
->> >=20=20
->> > @@ -1996,7 +1981,7 @@ static void hsw_crtc_enable(struct intel_atomic_=
-state *state,
->> >=20=20
->> >  	/* If we change the relative order between pipe/planes enabling, we =
-need
->> >  	 * to change the workaround. */
->> > -	hsw_workaround_pipe =3D new_crtc_state->hsw_workaround_pipe;
->> > +	hsw_workaround_pipe =3D crtc_state->hsw_workaround_pipe;
->> >  	if (IS_HASWELL(dev_priv) && hsw_workaround_pipe !=3D INVALID_PIPE) {
->> >  		struct intel_crtc *wa_crtc;
->> >=20=20
->> > @@ -2007,6 +1992,29 @@ static void hsw_crtc_enable(struct intel_atomic=
-_state *state,
->> >  	}
->> >  }
->> >=20=20
->> > +static void hsw_crtc_enable(struct intel_atomic_state *state,
->> > +			    struct intel_crtc *crtc)
->> > +{
->> > +	const struct intel_crtc_state *new_crtc_state =3D
->> > +		intel_atomic_get_new_crtc_state(state, crtc);
->> > +	struct intel_crtc *slave_crtc;
->> > +	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
->> > +
->> > +	if (drm_WARN_ON(&dev_priv->drm, crtc->active))
->> > +		return;
->> > +
->> > +	hsw_crtc_pre_pll_enable(state, new_crtc_state);
->> > +
->> > +	for_each_intel_crtc_in_pipe_mask(&dev_priv->drm, slave_crtc,
->> > +					 intel_crtc_bigjoiner_slave_pipes(new_crtc_state)) {
->> > +		struct intel_crtc_state *slave_crtc_state =3D
->> > +			intel_atomic_get_new_crtc_state(state, slave_crtc);
->> > +
->> > +		hsw_crtc_post_pll_enable(state, slave_crtc_state);
->> > +	}
->> > +	hsw_crtc_post_pll_enable(state, new_crtc_state);
->> > +}
->> > +
->> >  void ilk_pfit_disable(const struct intel_crtc_state *old_crtc_state)
->> >  {
->> >  	struct intel_crtc *crtc =3D to_intel_crtc(old_crtc_state->uapi.crtc);
->> > @@ -8122,11 +8130,11 @@ static void intel_enable_crtc(struct intel_ato=
-mic_state *state,
->> >=20=20
->> >  	intel_crtc_update_active_timings(new_crtc_state);
->> >=20=20
->> > -	dev_priv->display->crtc_enable(state, crtc);
->> > -
->> >  	if (intel_crtc_is_bigjoiner_slave(new_crtc_state))
->> >  		return;
->> >=20=20
->> > +	dev_priv->display->crtc_enable(state, crtc);
->> > +
->> >  	intel_drrs_enable(new_crtc_state);
->> >=20=20
->> >  	/* vblanks work again, re-enable pipe CRC. */
->> > @@ -8360,8 +8368,7 @@ static void skl_commit_modeset_enables(struct in=
-tel_atomic_state *state)
->> >  			continue;
->> >=20=20
->> >  		if (intel_dp_mst_is_slave_trans(new_crtc_state) ||
->> > -		    is_trans_port_sync_master(new_crtc_state) ||
->> > -		    intel_crtc_is_bigjoiner_master(new_crtc_state))
->> > +		    is_trans_port_sync_master(new_crtc_state))
->> >  			continue;
->> >=20=20
->> >  		modeset_pipes &=3D ~BIT(pipe);
->> > @@ -8371,7 +8378,7 @@ static void skl_commit_modeset_enables(struct in=
-tel_atomic_state *state)
->> >=20=20
->> >  	/*
->> >  	 * Then we enable all remaining pipes that depend on other
->> > -	 * pipes: MST slaves and port sync masters, big joiner master
->> > +	 * pipes: MST slaves and port sync masters
->> >  	 */
->> >  	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
->> >  		enum pipe pipe =3D crtc->pipe;
->>=20
->> --=20
->> Jani Nikula, Intel Open Source Graphics Center
-
---=20
-Jani Nikula, Intel Open Source Graphics Center
