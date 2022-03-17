@@ -2,67 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52EC24DC33C
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Mar 2022 10:47:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DAFC64DC37F
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Mar 2022 11:01:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 937B210E731;
-	Thu, 17 Mar 2022 09:47:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 275D610E1B3;
+	Thu, 17 Mar 2022 10:01:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com
- [IPv6:2a00:1450:4864:20::443])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E21210E732
- for <intel-gfx@lists.freedesktop.org>; Thu, 17 Mar 2022 09:47:16 +0000 (UTC)
-Received: by mail-wr1-x443.google.com with SMTP id j26so6555508wrb.1
- for <intel-gfx@lists.freedesktop.org>; Thu, 17 Mar 2022 02:47:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=3UEmKBLoWsJRdjecUpB95k6XRI5WnnbyiojRaFUnb/4=;
- b=JNK1goL3mq5YG7FW9NnXj7OfKS8a2yZFo4KaglTPFmWZepzdWt8d2BILmweqDOfg4e
- rTYBesCSVnl5aSC+3trEXc8gPA/OGSZ0cZ/QaYjAToOomEm+HjKcrX97VJ7tozHdKzN1
- QIkCIRN1mo8ZNz8ibY0a2YJByIlhQh0YKQdE8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=3UEmKBLoWsJRdjecUpB95k6XRI5WnnbyiojRaFUnb/4=;
- b=S/elz9cPl1DXnJXDiXoJTvprh21uZWjhAMtwGE3p8g7i23hpq1Rxip6Ig83ThALvg5
- ooG4kb96OHwyRGE5XsmphB+v6ZQ+gVHVVpFfi0y9+H5UZBfkCYoAoAqDf25CLzJ0JuHA
- C2u1wgbfwmOf1WkxXmFLEfeTrxDI9+5PfNFjjctfoJrM8hy4fy/9G6lBn2K10pd+ozfB
- StqPJi80PsWpx6hoX4Cc6HgroZHrGmsEJ6Yk1YFutT5ar/193G1ELlazbuYYXSx4GbZa
- f7XO3z6kgkBSlT298AIziU6TTZxhW7R6bIfIbDWY2mlr48EjGcGLILOl8f5KAOrbUz7K
- UiQQ==
-X-Gm-Message-State: AOAM532vBMm4hzZmfOjxSH1T2Gz/i4fCTKx7NnzuJQoijcP1TTuTqooP
- F/jUl/onHbRr+sz3Sxamfh3+/w==
-X-Google-Smtp-Source: ABdhPJzQ/ICEUCNC7H7vr4qQI6kgKafYRYVAnR+wf4Fa72zQRqt2DYmiDfC8MxxEwVc4MiHjORRSYw==
-X-Received: by 2002:a5d:6cc2:0:b0:1f1:dc97:d87e with SMTP id
- c2-20020a5d6cc2000000b001f1dc97d87emr3213878wrc.470.1647510434592; 
- Thu, 17 Mar 2022 02:47:14 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id
- w6-20020adfee46000000b001e4bf01bdfbsm3553554wro.46.2022.03.17.02.47.13
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 17 Mar 2022 02:47:13 -0700 (PDT)
-Date: Thu, 17 Mar 2022 10:47:12 +0100
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <YjMDoJ7ownASO/by@phenom.ffwll.local>
-References: <20220307202121.389550-1-vivek.kasireddy@intel.com>
- <20220307202121.389550-3-vivek.kasireddy@intel.com>
- <CAKMK7uGxvC+mzmH7EPcqggZ05u--D6N29Ati0YuuEc-Tgd-0Gw@mail.gmail.com>
- <1f9db89a-0d31-d9f5-2b4d-7856aa9ffa01@linux.intel.com>
- <db9ecbf6e27f4a7d8e3d2aa24c13c9c0@intel.com>
- <a072da3c-5267-07cd-7710-7cd0ad840cb8@linux.intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <a072da3c-5267-07cd-7710-7cd0ad840cb8@linux.intel.com>
-X-Operating-System: Linux phenom 5.10.0-8-amd64 
-Subject: Re: [Intel-gfx] [PATCH v6 2/2] drm/i915/gem: Don't try to map and
- fence large scanout buffers (v9)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 726AE10E1B3
+ for <intel-gfx@lists.freedesktop.org>; Thu, 17 Mar 2022 10:01:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1647511296; x=1679047296;
+ h=from:to:cc:subject:date:message-id;
+ bh=fHAx+8EkWbqHahm6KwekjnJa8o3AVgMyVmprB6b/fvI=;
+ b=QXIpB4X1JLPS1zGuImt9V2hjAXjwQugb2PIEpKnuoXd7+7F+tcFPfk0T
+ +Dz4JMLeDYPIFx4olt8/soExlxzk4WfKV5xyRS9m1vp5jAuWYMHLfmzgJ
+ tLxqjnYy3pc2ZuhLG88+GSzbT5EXQLXYpn9Lj46sb+MXMwrUAtTqZommQ
+ h8L3j/NavQSfjXfw/UY9jDDEgnYNwXg4FZb+Ic+lxK53zvr+62IGhhDwp
+ LuGOOjigTCPaVIsyRe+hYsn67DYoVWoIxeHPRE7ZGWVIJ1qThk/JGW7He
+ RDzPGmUj6chMQG95tkZ9bg2cLlT0XV/GxAbtTbu4fkSrgE4EFZr3ecmGp w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10288"; a="343264160"
+X-IronPort-AV: E=Sophos;i="5.90,188,1643702400"; d="scan'208";a="343264160"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Mar 2022 03:01:17 -0700
+X-IronPort-AV: E=Sophos;i="5.90,188,1643702400"; d="scan'208";a="581243687"
+Received: from tsengwil-desk1.itwn.intel.com (HELO gar) ([10.5.231.22])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Mar 2022 03:01:13 -0700
+From: William Tseng <william.tseng@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 17 Mar 2022 18:00:55 +0800
+Message-Id: <20220317100055.16570-1-william.tseng@intel.com>
+X-Mailer: git-send-email 2.17.1
+Subject: [Intel-gfx] [PATCH] drm/i915/dsi: power on panel before enabling
+ DPHY
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,284 +51,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: Cooper Chiou <cooper.chiou@intel.com>,
+ William Tseng <william.tseng@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 15, 2022 at 09:45:20AM +0000, Tvrtko Ursulin wrote:
-> 
-> On 15/03/2022 07:28, Kasireddy, Vivek wrote:
-> > Hi Tvrtko, Daniel,
-> > 
-> > > 
-> > > On 11/03/2022 09:39, Daniel Vetter wrote:
-> > > > On Mon, 7 Mar 2022 at 21:38, Vivek Kasireddy <vivek.kasireddy@intel.com> wrote:
-> > > > > 
-> > > > > On platforms capable of allowing 8K (7680 x 4320) modes, pinning 2 or
-> > > > > more framebuffers/scanout buffers results in only one that is mappable/
-> > > > > fenceable. Therefore, pageflipping between these 2 FBs where only one
-> > > > > is mappable/fenceable creates latencies large enough to miss alternate
-> > > > > vblanks thereby producing less optimal framerate.
-> > > > > 
-> > > > > This mainly happens because when i915_gem_object_pin_to_display_plane()
-> > > > > is called to pin one of the FB objs, the associated vma is identified
-> > > > > as misplaced and therefore i915_vma_unbind() is called which unbinds and
-> > > > > evicts it. This misplaced vma gets subseqently pinned only when
-> > > > > i915_gem_object_ggtt_pin_ww() is called without PIN_MAPPABLE. This
-> > > > > results in a latency of ~10ms and happens every other vblank/repaint cycle.
-> > > > > Therefore, to fix this issue, we try to see if there is space to map
-> > > > > at-least two objects of a given size and return early if there isn't. This
-> > > > > would ensure that we do not try with PIN_MAPPABLE for any objects that
-> > > > > are too big to map thereby preventing unncessary unbind.
-> > > > > 
-> > > > > Testcase:
-> > > > > Running Weston and weston-simple-egl on an Alderlake_S (ADLS) platform
-> > > > > with a 8K@60 mode results in only ~40 FPS. Since upstream Weston submits
-> > > > > a frame ~7ms before the next vblank, the latencies seen between atomic
-> > > > > commit and flip event are 7, 24 (7 + 16.66), 7, 24..... suggesting that
-> > > > > it misses the vblank every other frame.
-> > > > > 
-> > > > > Here is the ftrace snippet that shows the source of the ~10ms latency:
-> > > > >                 i915_gem_object_pin_to_display_plane() {
-> > > > > 0.102 us   |    i915_gem_object_set_cache_level();
-> > > > >                   i915_gem_object_ggtt_pin_ww() {
-> > > > > 0.390 us   |      i915_vma_instance();
-> > > > > 0.178 us   |      i915_vma_misplaced();
-> > > > >                     i915_vma_unbind() {
-> > > > >                     __i915_active_wait() {
-> > > > > 0.082 us   |        i915_active_acquire_if_busy();
-> > > > > 0.475 us   |      }
-> > > > >                     intel_runtime_pm_get() {
-> > > > > 0.087 us   |        intel_runtime_pm_acquire();
-> > > > > 0.259 us   |      }
-> > > > >                     __i915_active_wait() {
-> > > > > 0.085 us   |        i915_active_acquire_if_busy();
-> > > > > 0.240 us   |      }
-> > > > >                     __i915_vma_evict() {
-> > > > >                       ggtt_unbind_vma() {
-> > > > >                         gen8_ggtt_clear_range() {
-> > > > > 10507.255 us |        }
-> > > > > 10507.689 us |      }
-> > > > > 10508.516 us |   }
-> > > > > 
-> > > > > v2: Instead of using bigjoiner checks, determine whether a scanout
-> > > > >       buffer is too big by checking to see if it is possible to map
-> > > > >       two of them into the ggtt.
-> > > > > 
-> > > > > v3 (Ville):
-> > > > > - Count how many fb objects can be fit into the available holes
-> > > > >     instead of checking for a hole twice the object size.
-> > > > > - Take alignment constraints into account.
-> > > > > - Limit this large scanout buffer check to >= Gen 11 platforms.
-> > > > > 
-> > > > > v4:
-> > > > > - Remove existing heuristic that checks just for size. (Ville)
-> > > > > - Return early if we find space to map at-least two objects. (Tvrtko)
-> > > > > - Slightly update the commit message.
-> > > > > 
-> > > > > v5: (Tvrtko)
-> > > > > - Rename the function to indicate that the object may be too big to
-> > > > >     map into the aperture.
-> > > > > - Account for guard pages while calculating the total size required
-> > > > >     for the object.
-> > > > > - Do not subject all objects to the heuristic check and instead
-> > > > >     consider objects only of a certain size.
-> > > > > - Do the hole walk using the rbtree.
-> > > > > - Preserve the existing PIN_NONBLOCK logic.
-> > > > > - Drop the PIN_MAPPABLE check while pinning the VMA.
-> > > > > 
-> > > > > v6: (Tvrtko)
-> > > > > - Return 0 on success and the specific error code on failure to
-> > > > >     preserve the existing behavior.
-> > > > > 
-> > > > > v7: (Ville)
-> > > > > - Drop the HAS_GMCH(i915), DISPLAY_VER(i915) < 11 and
-> > > > >     size < ggtt->mappable_end / 4 checks.
-> > > > > - Drop the redundant check that is based on previous heuristic.
-> > > > > 
-> > > > > v8:
-> > > > > - Make sure that we are holding the mutex associated with ggtt vm
-> > > > >     as we traverse the hole nodes.
-> > > > > 
-> > > > > v9: (Tvrtko)
-> > > > > - Use mutex_lock_interruptible_nested() instead of mutex_lock().
-> > > > > 
-> > > > > Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > > > > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> > > > > Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-> > > > > Cc: Manasi Navare <manasi.d.navare@intel.com>
-> > > > > Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> > > > > Signed-off-by: Vivek Kasireddy <vivek.kasireddy@intel.com>
-> > > > > ---
-> > > > >    drivers/gpu/drm/i915/i915_gem.c | 128 +++++++++++++++++++++++---------
-> > > > >    1 file changed, 94 insertions(+), 34 deletions(-)
-> > > > > 
-> > > > > diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
-> > > > > index 9747924cc57b..e0d731b3f215 100644
-> > > > > --- a/drivers/gpu/drm/i915/i915_gem.c
-> > > > > +++ b/drivers/gpu/drm/i915/i915_gem.c
-> > > > > @@ -49,6 +49,7 @@
-> > > > >    #include "gem/i915_gem_pm.h"
-> > > > >    #include "gem/i915_gem_region.h"
-> > > > >    #include "gem/i915_gem_userptr.h"
-> > > > > +#include "gem/i915_gem_tiling.h"
-> > > > >    #include "gt/intel_engine_user.h"
-> > > > >    #include "gt/intel_gt.h"
-> > > > >    #include "gt/intel_gt_pm.h"
-> > > > > @@ -882,6 +883,96 @@ static void discard_ggtt_vma(struct i915_vma *vma)
-> > > > >           spin_unlock(&obj->vma.lock);
-> > > > >    }
-> > > > > 
-> > > > > +static int
-> > > > > +i915_gem_object_fits_in_aperture(struct drm_i915_gem_object *obj,
-> > > > > +                                u64 alignment, u64 flags)
-> > > > 
-> > > > Tvrtko asked me to ack the first patch, but then I looked at this and
-> > > > started wondering.
-> > > > 
-> > > > Conceptually this doesn't pass the smell test. What if we have
-> > > > multiple per-crtc buffers? Multiple planes on the same crtc? What if
-> > > > the app does triple buffer? You'll be forever busy tuning this
-> > > > heuristics, which can't fundamentally be fixed I think. The old "half
-> > > > of mappable" heuristic isn't really better, but at least it was dead
-> > > > simple.
-> > > > 
-> > > > Imo what we need here is a change in approach:
-> > > > 1. Check whether the useable view for scanout exists already. If yes,
-> > > > use that. This should avoid the constant unbinding stalls.
-> > > > 2. Try to in buffer to mappabley, but without evicting anything (so
-> > > > not the non-blocking thing)
-> > > > 3. Pin the buffer with the most lenient approach
-> > > > 
-> > > > Even the non-blocking interim stage is dangerous, since it'll just
-> > > > result in other buffers (e.g. when triple-buffering) getting unbound
-> > > > and we're back to the same stall. Note that this could have an impact
-> > > > on cpu rendering compositors, where we might end up relying a lot more
-> > > > partial views. But as long as we are a tad more aggressive (i.e. the
-> > > > non-blocking binding) in the mmap path that should work out to keep
-> > > > everything balanced, since usually you render first before you display
-> > > > anything. And so the buffer should end up in the ideal place.
-> > > > 
-> > > > I'd try to first skip the 2. step since I think it'll require a bit of
-> > > > work, and frankly I don't think we care about the potential fallout.
-> > > 
-> > > To be sure I understand, you propose to stop trying to pin mappable by default. Ie. stop
-> > > respecting this comment from i915_gem_object_pin_to_display_plane:
-> > > 
-> > > 	/*
-> > > 	 * As the user may map the buffer once pinned in the display plane
-> > > 	 * (e.g. libkms for the bootup splash), we have to ensure that we
-> > > 	 * always use map_and_fenceable for all scanout buffers. However,
-> > > 	 * it may simply be too big to fit into mappable, in which case
-> > > 	 * put it anyway and hope that userspace can cope (but always first
-> > > 	 * try to preserve the existing ABI).
-> > > 	 */
-> > [Kasireddy, Vivek] Digging further, this is what the commit message that added
-> > the above comment says:
-> > commit 2efb813d5388e18255c54afac77bd91acd586908
-> > Author: Chris Wilson <chris@chris-wilson.co.uk>
-> > Date:   Thu Aug 18 17:17:06 2016 +0100
-> > 
-> >      drm/i915: Fallback to using unmappable memory for scanout
-> > 
-> >      The existing ABI says that scanouts are pinned into the mappable region
-> >      so that legacy clients (e.g. old Xorg or plymouthd) can write directly
-> >      into the scanout through a GTT mapping. However if the surface does not
-> >      fit into the mappable region, we are better off just trying to fit it
-> >      anywhere and hoping for the best. (Any userspace that is capable of
-> >      using ginormous scanouts is also likely not to rely on pure GTT
-> >      updates.) With the partial vma fault support, we are no longer
-> >      restricted to only using scanouts that we can pin (though it is still
-> >      preferred for performance reasons and for powersaving features like
-> >      FBC).
-> > 
-> > > 
-> > > By a quick look, for this case it appears we would end up creating partial views for CPU
-> > > access (since the normal mapping would be busy/unpinnable). Worst case for this is to
-> > > create a bunch of 1MiB VMAs so something to check would be how long those persist in
-> > > memory before they get released. Or perhaps the bootup splash use case is not common
-> > > these days?
-> > [Kasireddy, Vivek] AFAIK, Plymouth is still the default bootup splash service on Fedora,
-> > Ubuntu and most other distributions. And, I took a quick look at it and IIUC, it (Plymouth's
-> > drm plugin) seems to create a dumb FB, mmap and update it via the dirty_fb ioctl. This
-> > would not to be a problem on ADL-S where there is space in mappable for one 8K FB.
-> > 
-> 
-> FBC is a good point - correct me if I am wrong, but if we dropped trying to
-> map in aperture by default it looks like we would lose it and that would be
-> a significant power regression. In which case it doesn't seem like that
-> would be an option.
+This change is to power on panel before DPHY enters the lane state
+LP-11. Some panel needs this to meet its specifcation.
 
-FBC fence is only required for frontbuffer hw tracking, which is another
-thing that's somewhere between "meh" and "we should just sunset set it
-right away". I think that work has even been done.
+Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
+Cc: Lee Shawn C <shawn.c.lee@intel.com>
+Cc: Cooper Chiou <cooper.chiou@intel.com>
+Signed-off-by: William Tseng <william.tseng@intel.com>
+---
+ drivers/gpu/drm/i915/display/icl_dsi.c | 10 +++++++---
+ 1 file changed, 7 insertions(+), 3 deletions(-)
 
-So I wouldn't worry about this.
-
-If you are worried, then I'd check with display folks whether we need
-a platform based cut-off for this heuristics.
-
-> Which I think leaves us with _some_ heuristics in any case.
-> 
-> 1) N-holes heuristics.
-> 
-> 2) Don't ever try PIN_MAPPABLE for framebuffers larger than some percentage
-> of aperture.
-> 
-> Could this solve the 8k issue, most of the time, maybe? Could the current
-> "aperture / 2" test be expressed generically in some terms? Like "(aperture
-> - 10% (or some absolute value)) / 2" to account for non-fb objects? I forgot
-> what you said the relationship between aperture size and 8k fb size was.
-> 
-> 3) Don't evict for PIN_MAPPABLE mismatches when
-> i915_gem_object_ggtt_pin_ww->i915_vma_misplaced is called on behalf of
-> i915_gem_object_pin_to_display_plane. Assumption being if we ended up with a
-> non-mappable fb to start with, we must not try to re-bind it or we risk
-> ping-pong latencies.
-> 
-> The last would I guess need to distinguish between PIN_MAPPABLE passed in
-> versus opportunistically added by i915_gem_object_pin_to_display_plane.
-> 
-> How intrusive would it be to implement this option I am not sure without
-> trying myself.
-
-This won't work, see my initial mail. All you need is triple buffering (or
-multiple per-crtc buffers that flip)
-
-1. fb A gets pinned as mappable
-2. fb B gets pinned as mappable, fb A is unpinned
-3. fb C gets pinned as mappable, we don't have space and end up evicting
-fb A
-
-Repeat, and you have exactly the same old eviction loop as with two
-buffers. Not good.
-
-Therefore for this to work we don't just need to make sure that we don't
-move our own buffer, but also that we don't move any other buffer.
-
-The downside of that is that if a buffer is ever misplaced as mappable, we
-never fix up that mistake (at least not until the application entirely
-destroys all the involved fb and bo). I think that's acceptable, but
-definitely deserves a comment.
-
-Cheers, Daniel
-
-> 
-> > Given this, do you think it would work if we just preserve the existing behavior and
-> > tweak the heuristic introduced in this patch to look for space in aperture for only
-> > one FB instead of two? Or, is there no good option for solving this issue other than
-> > to create 1MB VMAs?
-> 
-> I did not get how having one hole would solve the issue. Wouldn't it still
-> hit the re-bind ping-pong? Or there isn't even a single hole for 8k fb
-> typically?
-> 
-> Regards,
-> 
-> Tvrtko
-
+diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
+index 5781e9fac8b4..b766057c95f5 100644
+--- a/drivers/gpu/drm/i915/display/icl_dsi.c
++++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+@@ -1194,8 +1194,6 @@ static void gen11_dsi_powerup_panel(struct intel_encoder *encoder)
+ 	}
+ 
+ 	/* panel power on related mipi dsi vbt sequences */
+-	intel_dsi_vbt_exec_sequence(intel_dsi, MIPI_SEQ_POWER_ON);
+-	intel_dsi_msleep(intel_dsi, intel_dsi->panel_on_delay);
+ 	intel_dsi_vbt_exec_sequence(intel_dsi, MIPI_SEQ_DEASSERT_RESET);
+ 	intel_dsi_vbt_exec_sequence(intel_dsi, MIPI_SEQ_INIT_OTP);
+ 	intel_dsi_vbt_exec_sequence(intel_dsi, MIPI_SEQ_DISPLAY_ON);
+@@ -1221,13 +1219,19 @@ static void gen11_dsi_pre_enable(struct intel_atomic_state *state,
+ 				 const struct intel_crtc_state *pipe_config,
+ 				 const struct drm_connector_state *conn_state)
+ {
++	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
++
+ 	/* step3b */
+ 	gen11_dsi_map_pll(encoder, pipe_config);
+ 
++	/* for mipi dsi vbt sequence to powerup panel */
++	intel_dsi_vbt_exec_sequence(intel_dsi, MIPI_SEQ_POWER_ON);
++	intel_dsi_msleep(intel_dsi, intel_dsi->panel_on_delay);
++
+ 	/* step4: enable DSI port and DPHY */
+ 	gen11_dsi_enable_port_and_phy(encoder, pipe_config);
+ 
+-	/* step5: program and powerup panel */
++	/* step5: program panel */
+ 	gen11_dsi_powerup_panel(encoder);
+ 
+ 	intel_dsc_dsi_pps_write(encoder, pipe_config);
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+2.17.1
+
