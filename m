@@ -1,53 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CB214DCE0D
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Mar 2022 19:52:59 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B832A4DCE1A
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Mar 2022 19:54:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4176A10E666;
-	Thu, 17 Mar 2022 18:52:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 69F4010E689;
+	Thu, 17 Mar 2022 18:54:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E9CAC10E6C1
- for <intel-gfx@lists.freedesktop.org>; Thu, 17 Mar 2022 18:52:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E41E810E00F;
+ Thu, 17 Mar 2022 18:54:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1647543175; x=1679079175;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=PqP9gcOyDA1C+XILqziFxXNIMM/VOLlHoxAIWIUdgvU=;
- b=DziMcrwpugiJQR/b2w2FOunmvrtMrgiPjUTaRVUhT64ZTYJRiuh/U3HB
- P4q1vtgfwsbZNmhquECQRyBGCc7vCVpygryaXMaHtJNIdgh/s0FrDNXBD
- AfRZ5nMABol8Ro4sp3z1wcGA22tXv2Fb7n3Tl0j1o5P09LXpxWfioXzk3
- 4BldYtrVK7Y1iXRh77K+Hk0cj8DpUNmp/Ffhp/ORNnWzHXLoVc6fbaiIp
- 3hTnbMLCyxw+w6jZ1NqPaOFULynO4qJOAAVNvAJolz/gvraCU+yP2R/xn
- KhklDOWOqc00bGwagZR/tmqCVs+G6GUNjgMgwo03zIo80b5OWYNRqDDDO w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10289"; a="281749503"
-X-IronPort-AV: E=Sophos;i="5.90,188,1643702400"; d="scan'208";a="281749503"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ t=1647543266; x=1679079266;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Mj1IebK2HeqcoSIzai7DiEFWb1fUYRbfAvFwdcHRP1w=;
+ b=E42H5XEBh0nzH3aDy6ASy28ONlKP5a/Y4r/4jzzUffUtGtl3ktx1WSK2
+ itobmTRejhqk0MHql/3IfzCIiWiXqfUSWzzA6kCCRxchcoXyWo2VoOXnh
+ sjYeBk4ZG0s4309fAinQ/hOYsms4ydA3DzQvOf5gGlpcqgaBeca1oZ3CA
+ +SVL1qZctlMRiubAxJGeAzEzBLL2vTwTLGZTWKiOsQQOJSS90bzQ4BJZK
+ aQ3/qSJfaEElzOrg8fXKevX0zOVSFBFoU75VPRDF5hL0sMNzDWCVWwxH/
+ lErQsvfOPeDjte8YgY34VBxJxsLmjgmIc5N5K56uqeC8mRi92DCZQ1E52 w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10289"; a="281749719"
+X-IronPort-AV: E=Sophos;i="5.90,188,1643702400"; d="scan'208";a="281749719"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2022 11:52:55 -0700
+ 17 Mar 2022 11:54:26 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,188,1643702400"; d="scan'208";a="516883799"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
- by orsmga006.jf.intel.com with SMTP; 17 Mar 2022 11:52:52 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 17 Mar 2022 20:52:52 +0200
-Date: Thu, 17 Mar 2022 20:52:52 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Manasi Navare <manasi.d.navare@intel.com>
-Message-ID: <YjODhPSLKXsOfWGv@intel.com>
-References: <20220315233856.30255-1-manasi.d.navare@intel.com>
+X-IronPort-AV: E=Sophos;i="5.90,188,1643702400"; d="scan'208";a="581405039"
+Received: from aalteres-desk.fm.intel.com ([10.80.57.53])
+ by orsmga001.jf.intel.com with ESMTP; 17 Mar 2022 11:54:25 -0700
+From: Alan Previn <alan.previn.teres.alexis@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 17 Mar 2022 11:56:42 -0700
+Message-Id: <20220317185655.1786958-1-alan.previn.teres.alexis@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220315233856.30255-1-manasi.d.navare@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display/: Refactor hsw_crtc_enable
- for bigjoiner cleanup
+Subject: [Intel-gfx] [PATCH v11 00/13] Add GuC Error Capture Support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,252 +53,203 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Alan Previn <alan.previn.teres.alexis@intel.com>,
+ Jani Nikula <jani.nikula@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 15, 2022 at 04:38:56PM -0700, Manasi Navare wrote:
-> This patch abstracts pieces of hsw_crtc_enable corresponding to different
-> Bspec enable sequence steps into separate functions.
-> This helps to call them in a specific order for bigjoiner master/slave
-> in a cleaner fashion.
-> 
-> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Cc: Animesh Manna <animesh.manna@intel.com>
-> Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 125 ++++++++++---------
->  1 file changed, 66 insertions(+), 59 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index eb49973621f0..d8e6466c9fa0 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -1865,24 +1865,6 @@ static void hsw_set_frame_start_delay(const struct intel_crtc_state *crtc_state)
->  	intel_de_write(dev_priv, reg, val);
->  }
->  
-> -static void icl_ddi_bigjoiner_pre_enable(struct intel_atomic_state *state,
-> -					 const struct intel_crtc_state *crtc_state)
-> -{
-> -	struct intel_crtc *master_crtc = intel_master_crtc(crtc_state);
-> -
-> -	/*
-> -	 * Enable sequence steps 1-7 on bigjoiner master
-> -	 */
-> -	if (intel_crtc_is_bigjoiner_slave(crtc_state))
-> -		intel_encoders_pre_pll_enable(state, master_crtc);
-> -
-> -	if (crtc_state->shared_dpll)
-> -		intel_enable_shared_dpll(crtc_state);
-> -
-> -	if (intel_crtc_is_bigjoiner_slave(crtc_state))
-> -		intel_encoders_pre_enable(state, master_crtc);
-> -}
-> -
->  static void hsw_configure_cpu_transcoder(const struct intel_crtc_state *crtc_state)
->  {
->  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> @@ -1910,70 +1892,73 @@ static void hsw_configure_cpu_transcoder(const struct intel_crtc_state *crtc_sta
->  	hsw_set_transconf(crtc_state);
->  }
->  
-> -static void hsw_crtc_enable(struct intel_atomic_state *state,
-> -			    struct intel_crtc *crtc)
-> +static void hsw_crtc_pre_pll_enable(struct intel_atomic_state *state,
-> +				    const struct intel_crtc_state *crtc_state)
->  {
-> -	const struct intel_crtc_state *new_crtc_state =
-> -		intel_atomic_get_new_crtc_state(state, crtc);
-> -	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-> -	enum pipe pipe = crtc->pipe, hsw_workaround_pipe;
-> -	enum transcoder cpu_transcoder = new_crtc_state->cpu_transcoder;
-> -	bool psl_clkgate_wa;
-> -
-> -	if (drm_WARN_ON(&dev_priv->drm, crtc->active))
-> -		return;
-> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
->  
-> -	if (!new_crtc_state->bigjoiner_pipes) {
-> -		intel_encoders_pre_pll_enable(state, crtc);
-> +	/*
-> +	 * Enable sequence steps 1 - 7 on all pipes
-> +	 */
-> +	intel_encoders_pre_pll_enable(state, crtc);
-> +	if (crtc_state->shared_dpll)
-> +		intel_enable_shared_dpll(crtc_state);
->  
-> -		if (new_crtc_state->shared_dpll)
-> -			intel_enable_shared_dpll(new_crtc_state);
-> +	intel_encoders_pre_enable(state, crtc);
-> +}
->  
-> -		intel_encoders_pre_enable(state, crtc);
-> -	} else {
-> -		icl_ddi_bigjoiner_pre_enable(state, new_crtc_state);
-> -	}
-> +static void hsw_crtc_post_pll_enable(struct intel_atomic_state *state,
-> +				     const struct intel_crtc_state *crtc_state)
-> +{
-> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> +	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-> +	enum pipe pipe = crtc->pipe, hsw_workaround_pipe;
-> +	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-> +	bool psl_clkgate_wa;
->  
-> -	intel_dsc_enable(new_crtc_state);
-> +	/*
-> +	 * Enable sequence step 8
-> +	 */
-> +	intel_dsc_enable(crtc_state);
->  
->  	if (DISPLAY_VER(dev_priv) >= 13)
-> -		intel_uncompressed_joiner_enable(new_crtc_state);
-> +		intel_uncompressed_joiner_enable(crtc_state);
->  
-> -	intel_set_pipe_src_size(new_crtc_state);
-> +	intel_set_pipe_src_size(crtc_state);
->  	if (DISPLAY_VER(dev_priv) >= 9 || IS_BROADWELL(dev_priv))
-> -		bdw_set_pipemisc(new_crtc_state);
-> +		bdw_set_pipemisc(crtc_state);
->  
-> -	if (!intel_crtc_is_bigjoiner_slave(new_crtc_state) &&
-> +	if (!intel_crtc_is_bigjoiner_slave(crtc_state) &&
->  	    !transcoder_is_dsi(cpu_transcoder))
-> -		hsw_configure_cpu_transcoder(new_crtc_state);
-> +		hsw_configure_cpu_transcoder(crtc_state);
->  
->  	crtc->active = true;
->  
->  	/* Display WA #1180: WaDisableScalarClockGating: glk */
->  	psl_clkgate_wa = DISPLAY_VER(dev_priv) == 10 &&
-> -		new_crtc_state->pch_pfit.enabled;
-> +		crtc_state->pch_pfit.enabled;
->  	if (psl_clkgate_wa)
->  		glk_pipe_scaler_clock_gating_wa(dev_priv, pipe, true);
->  
->  	if (DISPLAY_VER(dev_priv) >= 9)
-> -		skl_pfit_enable(new_crtc_state);
-> +		skl_pfit_enable(crtc_state);
->  	else
-> -		ilk_pfit_enable(new_crtc_state);
-> +		ilk_pfit_enable(crtc_state);
->  
->  	/*
->  	 * On ILK+ LUT must be loaded before the pipe is running but with
->  	 * clocks enabled
->  	 */
-> -	intel_color_load_luts(new_crtc_state);
-> -	intel_color_commit(new_crtc_state);
-> +	intel_color_load_luts(crtc_state);
-> +	intel_color_commit(crtc_state);
->  	/* update DSPCNTR to configure gamma/csc for pipe bottom color */
->  	if (DISPLAY_VER(dev_priv) < 9)
-> -		intel_disable_primary_plane(new_crtc_state);
-> +		intel_disable_primary_plane(crtc_state);
->  
-> -	hsw_set_linetime_wm(new_crtc_state);
-> +	hsw_set_linetime_wm(crtc_state);
->  
->  	if (DISPLAY_VER(dev_priv) >= 11)
-> -		icl_set_pipe_chicken(new_crtc_state);
-> +		icl_set_pipe_chicken(crtc_state);
->  
->  	intel_initial_watermarks(state, crtc);
->  
-> @@ -1984,8 +1969,8 @@ static void hsw_crtc_enable(struct intel_atomic_state *state,
->  		icl_pipe_mbus_enable(crtc, dbuf_state->joined_mbus);
->  	}
->  
-> -	if (intel_crtc_is_bigjoiner_slave(new_crtc_state))
-> -		intel_crtc_vblank_on(new_crtc_state);
-> +	if (intel_crtc_is_bigjoiner_slave(crtc_state))
-> +		intel_crtc_vblank_on(crtc_state);
->  
->  	intel_encoders_enable(state, crtc);
->  
-> @@ -1996,7 +1981,7 @@ static void hsw_crtc_enable(struct intel_atomic_state *state,
->  
->  	/* If we change the relative order between pipe/planes enabling, we need
->  	 * to change the workaround. */
-> -	hsw_workaround_pipe = new_crtc_state->hsw_workaround_pipe;
-> +	hsw_workaround_pipe = crtc_state->hsw_workaround_pipe;
->  	if (IS_HASWELL(dev_priv) && hsw_workaround_pipe != INVALID_PIPE) {
->  		struct intel_crtc *wa_crtc;
->  
-> @@ -2007,6 +1992,29 @@ static void hsw_crtc_enable(struct intel_atomic_state *state,
->  	}
->  }
->  
-> +static void hsw_crtc_enable(struct intel_atomic_state *state,
-> +			    struct intel_crtc *crtc)
-> +{
-> +	const struct intel_crtc_state *new_crtc_state =
-> +		intel_atomic_get_new_crtc_state(state, crtc);
-> +	struct intel_crtc *slave_crtc;
-> +	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-> +
-> +	if (drm_WARN_ON(&dev_priv->drm, crtc->active))
-> +		return;
-> +
-> +	hsw_crtc_pre_pll_enable(state, new_crtc_state);
-> +
-> +	for_each_intel_crtc_in_pipe_mask(&dev_priv->drm, slave_crtc,
-> +					 intel_crtc_bigjoiner_slave_pipes(new_crtc_state)) {
-> +		struct intel_crtc_state *slave_crtc_state =
-> +			intel_atomic_get_new_crtc_state(state, slave_crtc);
-> +
-> +		hsw_crtc_post_pll_enable(state, slave_crtc_state);
-> +	}
-> +	hsw_crtc_post_pll_enable(state, new_crtc_state);
-> +}
+This series:
+  1. Enables support of GuC to report error-state-capture
+     using a list of MMIO registers the driver registers
+     and GuC will dump, log and notify right before a GuC
+     triggered engine-reset event.
+  2. Updates the ADS blob creation to register said lists
+     of global, engine class and engine instance registers
+     with GuC.
+  3. Defines tables of register lists that are global or
+     engine class or engine instance in scope.
+  4. Updates usage and buffer-state data for the regions
+     of the shared GuC log-buffer to accomdate both
+     the existing relay logging of general debug logs
+     along with the new error state capture usage.
+  5. Using a pool of preallocated memory, provide ability
+     to extract and format the GuC reported register-capture
+     data into chunks consistent with existing i915 error-
+     state collection flows and structures.
+  6. Connects the i915_gpu_coredump reporting function
+     to the GuC error capture module to print all GuC
+     error state capture dumps that is reported.
 
-I suspect this is far too high level for bigjoiner. Eg. there's a bunch
-of things already in the disable sequence that seem to need much more
-low level sequencing between the joined pipes. So my gut feeling still
-is that we want to continue the per-pipe vs. per-transcoder split and
-do the joiner loops in lower level code.
+This is the 8th rev of this series with the first 3 revs
+labelled as RFC.
 
-> +
->  void ilk_pfit_disable(const struct intel_crtc_state *old_crtc_state)
->  {
->  	struct intel_crtc *crtc = to_intel_crtc(old_crtc_state->uapi.crtc);
-> @@ -8122,11 +8130,11 @@ static void intel_enable_crtc(struct intel_atomic_state *state,
->  
->  	intel_crtc_update_active_timings(new_crtc_state);
->  
-> -	dev_priv->display->crtc_enable(state, crtc);
-> -
->  	if (intel_crtc_is_bigjoiner_slave(new_crtc_state))
->  		return;
->  
-> +	dev_priv->display->crtc_enable(state, crtc);
-> +
->  	intel_drrs_enable(new_crtc_state);
->  
->  	/* vblanks work again, re-enable pipe CRC. */
-> @@ -8360,8 +8368,7 @@ static void skl_commit_modeset_enables(struct intel_atomic_state *state)
->  			continue;
->  
->  		if (intel_dp_mst_is_slave_trans(new_crtc_state) ||
-> -		    is_trans_port_sync_master(new_crtc_state) ||
-> -		    intel_crtc_is_bigjoiner_master(new_crtc_state))
-> +		    is_trans_port_sync_master(new_crtc_state))
->  			continue;
->  
->  		modeset_pipes &= ~BIT(pipe);
-> @@ -8371,7 +8378,7 @@ static void skl_commit_modeset_enables(struct intel_atomic_state *state)
->  
->  	/*
->  	 * Then we enable all remaining pipes that depend on other
-> -	 * pipes: MST slaves and port sync masters, big joiner master
-> +	 * pipes: MST slaves and port sync masters
->  	 */
->  	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
->  		enum pipe pipe = crtc->pipe;
-> -- 
-> 2.19.1
+Prior receipts of rvb's:
+  - Patch #2, #3, #4, #5, #10, #11, #12, #13 have received
+    R-v-b's from Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+  - Patch #6, #7, #8, #9 has received an R-v-b from Matthew Brost
+    <matthew.brost@intel.com>. NOTE: some of these came in on the
+    trybot series. https://patchwork.freedesktop.org/series/100831/
+
+Changes from prior revs:
+  v11:- Rebase again on latest drm-tip to fix merge error.
+  v10:- Rebase on latest drm-tip again. Fix a number of checkpatch
+        warnings and an error Reported-by: kernel test robot <lkp@intel.com>.
+  v9: - Rebase on latest drm-tip to solve CI merge-build error.
+  v8: - Fix a bug found by CI in rev7: Create a cached ADS
+        capture list for null-header like the other lists.
+      - Fixed a bug on the ggtt offset calculation in the
+        ADS population loop. Thanks to Matt Brost.
+      - Change the storage uses for initial allocation and
+        caching of the ADS register lists so we only store
+        a regular pointer instead of file handle.
+      - Multiple improvements on code styling, variable names,
+        comments and code reduction from Umesh suggestions
+        across multiple patches.
+
+  v7: - Rebased on lastest drm_tip that has the ADS now using
+        shmem based ads_blob_write utilities. Stress test
+        was performed with this patch included to fix a
+        legacy bug:
+        https://patchwork.freedesktop.org/series/100768/
+
+  v6: - In patch #1, ADS reg-list population, we now alloc
+        regular memory to create the lists and cache them for
+        simpler and faster use by GuC ADS module at init, 
+        suspend-resume and reset cycles. This was in response
+        to review comments from Lucas De Marchi that also
+        wanted to ensure the GuC ADS module owns the final
+        copying into the ADS phyical memory.
+      - Thanks to Jani Nikula for pointing out that patch #2
+        and #3 should ensure static tables as constant and
+        dynamic lists should be allocated and cached but
+        attached to the GT level for the case of multiple
+        cards with different fusings for steered registers.
+        These are addressed now along with multiple code
+        style fixups (thanks to review comment from Umesh)
+        and splitting the steered register list generation
+        as a seperate patch.
+      - The extraction functionality, Patch #10 and #11 (was
+        patch #7), has fixed all of Umesh's review comments
+        related to the code styling. Additionally, it was
+        discovered during stress tests that the extraction
+        function could be called by the ct processing thread
+        at the same time as the start of a GT reset event.
+        Thus, a redesign was done whereby the linked list of
+        processed capture-output-nodes are allocated up
+        front and reused throughout the driver's life to
+        ensure no memory locks are taken during extraction.
+      - For patch #6 (now 7, 8 and 9), updates to
+        intel_guc_log was split into smaller chunks and the
+        log_state structure was returned back to inside of
+        the intel_guc_log struct as opposed to the
+        intel_guc struct in prior rev. This is in response
+        to review comments by Matt Brost.
+      - #Patch 13 (previously #10) is mostly identical but
+        addresses all of the code styling comments reviews
+        from Umesh.
+        
+  v5: - Added Gen9->Gen11 register list for CI coverage that
+        included Gen9 with GuC submission.
+      - Redesigned the extraction of the GuC error-capture
+        dumps by grouping them into complete per-engine-reset
+        nodes. Complete here means each node includes the
+        global, engine-class and engine-instance register
+        lists in a single structure.
+      - Extraction is decoupled from the print-out. We now
+        do the extraction immediately when receiving the
+        G2H for error-capture notification. A link list of
+        nodes is maintained with a FIFO based threshold
+        while awaiting retrieval from i915_gpu_coredump's
+        capture_engine function.
+      - Added new plumbing through the i915_gpu_coredump
+        allocation and capture functions to include a flag
+        that is used indicate that GuC had triggered the
+        reset. This new plumbing guarantees an exact match
+        from i915_gpu_coredump's per-engine vma recording
+        and node-retrieval from the guc-error-capture.
+      - Broke the coredump gt_global capture and recording
+        functions into smaller subsets so we can reuse as
+        much of the existing legacy register reading + printing
+        functions and only rely on GuC error-capture for
+        the smaller subset of registers that are tied to
+        engine workload execution.
+      - Updated the register list to follow the legacy execlist
+        format of printout.
+  v4:
+      - Rebased on latest drm-tip that has been merged with the
+        support of GuC firmware version 69.0.3 that is required
+        for GuC error-state-catpure to work.
+      - Added register list for DG2 which is the same as XE_LP
+        except an additional steering register set.
+      - Fixed a bug in the end of capture parsing loop in
+        intel_guc_capture_out_print_next_group that was not
+        properly comparing the engine-instance and engine-
+        class being parsed against the one that triggered
+        the i915_gpu_coredump.
+  v3:
+      - Fixed all review comments from rev2 except the following:
+          - Michal Wajdeczko proposed adding a seperate function
+            to lookup register string nameslookup (based on offset)
+            but decided against it because of offset conflicts
+            and the current table layout is easier to maintain.
+          - Last set of checkpatch errors pertaining to "COMPLEX
+            MACROS" should be fixed on next rev.
+      - Abstracted internal-to-guc-capture information into a new
+        __guc_state_capture_priv structure that allows the exclusion
+        of intel_guc.h and intel_guc_fwif.h from intel_guc_capture.h.
+        Now, only the first 2 patches have a wider build time
+        impact because of the changes to intel_guc_fwif.h but
+        subsequent changes to guc-capture internal structures
+        or firmware interfaces used solely by guc-capture module
+        shoudn't impact the rest of the driver build.
+      - Added missing Gen12LP registers and added slice+subslice
+        indices when reporting extended steered registers.
+      - Add additional checks to ensure that the GuC reported
+        error capture information matches the i915_gpu_coredump
+        that is being printed before we print out the corresponding
+        VMA dumps such as the batch buffer.
+   v2:
+      - Ignore - failed CI retest.
+
+Alan Previn (13):
+  drm/i915/guc: Update GuC ADS size for error capture lists
+  drm/i915/guc: Add XE_LP static registers for GuC error capture.
+  drm/i915/guc: Add XE_LP steered register lists support
+  drm/i915/guc: Add DG2 registers for GuC error state capture.
+  drm/i915/guc: Add Gen9 registers for GuC error state capture.
+  drm/i915/guc: Add GuC's error state capture output structures.
+  drm/i915/guc: Update GuC-log relay function names
+  drm/i915/guc: Add capture region into intel_guc_log
+  drm/i915/guc: Check sizing of guc_capture output
+  drm/i915/guc: Extract GuC error capture lists on G2H notification.
+  drm/i915/guc: Pre-allocate output nodes for extraction
+  drm/i915/guc: Plumb GuC-capture into gpu_coredump
+  drm/i915/guc: Print the GuC error capture output register list.
+
+ drivers/gpu/drm/i915/Makefile                 |    1 +
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     |    4 +-
+ .../drm/i915/gt/intel_execlists_submission.c  |    4 +-
+ drivers/gpu/drm/i915/gt/intel_reset.c         |    2 +-
+ .../gpu/drm/i915/gt/uc/abi/guc_actions_abi.h  |    7 +
+ drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h |  218 +++
+ drivers/gpu/drm/i915/gt/uc/intel_guc.c        |   13 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc.h        |   12 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c    |  127 +-
+ .../gpu/drm/i915/gt/uc/intel_guc_capture.c    | 1655 +++++++++++++++++
+ .../gpu/drm/i915/gt/uc/intel_guc_capture.h    |   33 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h   |   14 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_log.c    |  127 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_log.h    |    7 +-
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c |   18 +-
+ drivers/gpu/drm/i915/i915_debugfs.c           |    3 +-
+ drivers/gpu/drm/i915/i915_gpu_error.c         |  282 ++-
+ drivers/gpu/drm/i915/i915_gpu_error.h         |   35 +-
+ 18 files changed, 2379 insertions(+), 183 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h
+ create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
+ create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_guc_capture.h
 
 -- 
-Ville Syrjälä
-Intel
+2.25.1
+
