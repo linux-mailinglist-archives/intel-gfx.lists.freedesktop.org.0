@@ -1,33 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41E534DDFCA
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Mar 2022 18:23:51 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF7CB4DDFCB
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Mar 2022 18:25:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8735410E256;
-	Fri, 18 Mar 2022 17:23:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0568D10E069;
+	Fri, 18 Mar 2022 17:25:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 589EC10E256;
- Fri, 18 Mar 2022 17:23:48 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 789CD10E02F;
+ Fri, 18 Mar 2022 17:25:05 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 52EE2A3C0D;
- Fri, 18 Mar 2022 17:23:48 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 77F76A9A42;
+ Fri, 18 Mar 2022 17:25:05 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
-Date: Fri, 18 Mar 2022 17:23:48 -0000
-Message-ID: <164762422833.31589.16279612993326669660@emeril.freedesktop.org>
+Date: Fri, 18 Mar 2022 17:25:05 -0000
+Message-ID: <164762430548.31588.13747373979139865984@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20220315194712.2113450-1-anusha.srivatsa@intel.com>
 In-Reply-To: <20220315194712.2113450-1-anusha.srivatsa@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Add_CDCLK_checks_to_atomic_check_phase_=28rev5=29?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?Add_CDCLK_checks_to_atomic_check_phase_=28rev5=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,28 +53,8 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-29531a1812df drm/i915/display: Add CDCLK actions to intel_cdclk_state
-f19caadb81b6 drm/i915/display: s/intel_cdclk_can_squash/intel_cdclk_squash
--:28: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
-#28: FILE: drivers/gpu/drm/i915/display/intel_cdclk.c:1980:
- {
-+
-
-total: 0 errors, 0 warnings, 1 checks, 40 lines checked
-4d8ae0d2e4bb drm/i915/display: s/intel_cdclk_can_crawl/intel_cdclk_crawl
--:25: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#25: FILE: drivers/gpu/drm/i915/display/intel_cdclk.c:1955:
-+static bool intel_cdclk_crawl(struct drm_i915_private *dev_priv,
-+				  const struct intel_cdclk_state *a,
-
-total: 0 errors, 0 warnings, 1 checks, 42 lines checked
-275c56be3dc3 drm/i915/display: Add cdclk checks to atomic check
--:197: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
-#197: FILE: drivers/gpu/drm/i915/display/intel_cdclk.c:2053:
- {
-+
-
-total: 0 errors, 0 warnings, 1 checks, 180 lines checked
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
