@@ -1,66 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B1864DDBD0
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Mar 2022 15:40:13 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D723E4DDBDE
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Mar 2022 15:44:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4FE7B10E9A8;
-	Fri, 18 Mar 2022 14:40:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 74AC710E061;
+	Fri, 18 Mar 2022 14:44:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B8E0410E9A8
- for <intel-gfx@lists.freedesktop.org>; Fri, 18 Mar 2022 14:40:10 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E03B10E061
+ for <intel-gfx@lists.freedesktop.org>; Fri, 18 Mar 2022 14:44:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1647614410; x=1679150410;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-id:content-transfer-encoding: mime-version;
- bh=YVEIMUpAibfXTDGzfJtXgPEcg7T/lLsBRCxtByDtsKs=;
- b=UbarmcOe2iUQgF9QsJGhSFoHuB+wMQadhD/Vhyb/QoQhcFgKJMRdKjEr
- M7W2qMI0qDLtoEof05/BI31/i966rBueJcxnvRxelpSspaUfOBjq6HN7Q
- b5jZhLQYgJ5avRDPc8dtG7HfRSTCvgnxQXm18Py/8hDNUnT/0Kc6IQJsd
- vefF6+anVRFbOlBaYA7Y2XdQWYL899r2JaAumdwf7ll8pX5BXYCkoAI7I
- LP8pq2dDlSiKt2joqBY3LIxklmLqFXbPyB0495nWIfovviDDdLT+RLF9a
- lI9cSOudNtGK2dDknS9nWfAQCiNvu4hmN4EIopKKuOP0My6Gh6nHZHQDw w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10289"; a="257334603"
-X-IronPort-AV: E=Sophos;i="5.90,192,1643702400"; d="scan'208";a="257334603"
+ t=1647614695; x=1679150695;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=6ipP1qz5zndykSfApUqRc6T2gDOPDEGq4w7mfm/TkRg=;
+ b=ji2pvDYn3dYGdrQLnqdAztUwpM5TxJO3jQrqfkXfrKyqDlp7PjE9NqhW
+ nBxgsQ8EQtKXlqtZO8KhoxyprAMEHT8tbv8epGOVIFDUmGzeOYFqrMdoq
+ lA9HRSFEJtTk2dtmLTs56xRJjnJab4uA0WiRLB0MBgWGoKqX8ekr6Zj2P
+ w691zWm2u8SraOCZGusmLJGbDw/zOH61Hq92qY1lVF9IGJ/I24TlKN4GF
+ N3n4yc+sEDzX8Wkea9vzj/XM88OISQNwf7pJdbdbWxHm+NNpaZ5Gjx35a
+ Yuf9tpkYmgPW2YOVEpLUUrdP+g2C1K3pco5H/mekIWlaju0EoTKaj/Fz/ g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10289"; a="343582322"
+X-IronPort-AV: E=Sophos;i="5.90,192,1643702400"; d="scan'208";a="343582322"
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2022 07:40:10 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,192,1643702400"; d="scan'208";a="647484624"
-Received: from irsmsx604.ger.corp.intel.com ([163.33.146.137])
- by orsmga004.jf.intel.com with ESMTP; 18 Mar 2022 07:40:09 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- IRSMSX604.ger.corp.intel.com (163.33.146.137) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.21; Fri, 18 Mar 2022 14:40:07 +0000
-Received: from fmsmsx612.amr.corp.intel.com ([10.18.126.92]) by
- fmsmsx612.amr.corp.intel.com ([10.18.126.92]) with mapi id 15.01.2308.021;
- Fri, 18 Mar 2022 07:40:06 -0700
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-Thread-Topic: [Intel-gfx] [PATCH] drm/i915/adl_p: Increase CDCLK by 15% if
- PSR2 is used
-Thread-Index: AQHYOqVt9C5fyYbzJ0256azdo8/uyazFhaqAgAAB4wCAAB/OAIAABSIA
-Date: Fri, 18 Mar 2022 14:40:06 +0000
-Message-ID: <fe43b96c70d9d29419b24373978d77a1ebf27b96.camel@intel.com>
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Mar 2022 07:44:49 -0700
+X-IronPort-AV: E=Sophos;i="5.90,192,1643702400"; d="scan'208";a="647485897"
+Received: from unknown (HELO intel.com) ([10.237.72.65])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Mar 2022 07:44:48 -0700
+Date: Fri, 18 Mar 2022 16:45:11 +0200
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: "Souza, Jose" <jose.souza@intel.com>
+Message-ID: <20220318144511.GA8558@intel.com>
 References: <20220318085226.7348-1-stanislav.lisovskiy@intel.com>
  <530cc6962b181ee01e9c00a38190ab27e5940215.camel@intel.com>
- <f60950ea65708dc7f093f5939efb164225b186c6.camel@intel.com>
- <20220318142252.GA8522@intel.com>
-In-Reply-To: <20220318142252.GA8522@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.100]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <CE5BB5F49E44B643883F8025F8FA665A@intel.com>
-Content-Transfer-Encoding: base64
+ <20220318141932.GA8492@intel.com>
+ <4fd0a9ee8c4348bb4eda4c276215b675350252d2.camel@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <4fd0a9ee8c4348bb4eda4c276215b675350252d2.camel@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Subject: Re: [Intel-gfx] [PATCH] drm/i915/adl_p: Increase CDCLK by 15% if
  PSR2 is used
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -79,63 +64,108 @@ Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gRnJpLCAyMDIyLTAzLTE4IGF0IDE2OjIyICswMjAwLCBMaXNvdnNraXksIFN0YW5pc2xhdiB3
-cm90ZToNCj4gT24gRnJpLCBNYXIgMTgsIDIwMjIgYXQgMDI6Mjc6NTNQTSArMDIwMCwgU291emEs
-IEpvc2Ugd3JvdGU6DQo+ID4gT24gRnJpLCAyMDIyLTAzLTE4IGF0IDA1OjIyIC0wNzAwLCBKb3PD
-qSBSb2JlcnRvIGRlIFNvdXphIHdyb3RlOg0KPiA+ID4gT24gRnJpLCAyMDIyLTAzLTE4IGF0IDEw
-OjUyICswMjAwLCBTdGFuaXNsYXYgTGlzb3Zza2l5IHdyb3RlOg0KPiA+ID4gPiBXZSBhcmUgY3Vy
-cmVudGx5IGdldHRpbmcgRklGTyB1bmRlcnJ1bnMsIGluIHBhcnRpY3VsYXINCj4gPiA+ID4gd2hl
-biBQU1IyIGlzIGVuYWJsZWQuIFRoZXJlIHNlZW0gdG8gYmUgbm8gZXhpc3Rpbmcgd29ya2Fyb3Vu
-ZA0KPiA+ID4gPiBvciBwYXRjaGVzLCB3aGljaCBjYW4gZml4IHRoYXQgaXNzdWUod2VyZSBleHBl
-Y3Rpbmcgc29tZSByZWNlbnQNCj4gPiA+ID4gc2VsZWN0aXZlIGZldGNoIHVwZGF0ZSBhbmQgREJ1
-ZiBidy9TQUdWIGZpeGVzIHRvIGhlbHAsDQo+ID4gPiA+IHdoaWNoIHVuZm9ydHVuYXRlbHkgZGlk
-bid0KS4NCj4gPiA+ID4gQ3VycmVudCBpZGVhIGlzIHRoYXQgaXQgbG9va3MgbGlrZSBmb3Igc29t
-ZSByZWFzb24gdGhlDQo+ID4gPiA+IERCdWYgcHJlZmlsbCB0aW1lIGlzbid0IGVub3VnaCBvbmNl
-IHdlIGV4aXQgUFNSMiwgZGVzcGl0ZSBpdHMNCj4gPiA+ID4gdGhlb3JldGljYWxseSBjb3JyZWN0
-Lg0KPiA+ID4gPiBTbyBidW1wIGl0IHVwIGEgYml0IGJ5IDE1JShtaW5pbXVtIGV4cGVyaW1lbnRh
-bCBhbW91bnQgcmVxdWlyZWQNCj4gPiA+ID4gdG8gZ2V0IGl0IHdvcmtpbmcpLCBpZiBQU1IyIGlz
-IGVuYWJsZWQuDQo+ID4gPiA+IEZvciBQU1IxIHRoZXJlIGlzIG5vIG5lZWQgaW4gdGhpcyBoYWNr
-LCBzbyB3ZSBsaW1pdCBpdCBvbmx5DQo+ID4gPiA+IHRvIFBTUjIgYW5kIEFsZGVybGFrZS4NCj4g
-PiA+IA0KPiA+ID4gSXQgdGhpcyB3b3JrYXJvdW5kIG1lYW50IHRvIGJlIHBlcm1hbmVudD8gSWYg
-eWVzIHdlIHNob3VsZCBmaWxlIGEgSFNEIGFuZCBnZXQgaGFyZHdhcmUgZm9sa3MgZmVlZGJhY2su
-DQo+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IFNpZ25lZC1vZmYtYnk6IFN0YW5pc2xhdiBMaXNv
-dnNraXkgPHN0YW5pc2xhdi5saXNvdnNraXlAaW50ZWwuY29tPg0KPiA+ID4gPiAtLS0NCj4gPiA+
-ID4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfY2RjbGsuYyB8IDEzICsrKysr
-KysrKysrKysNCj4gPiA+ID4gIDEgZmlsZSBjaGFuZ2VkLCAxMyBpbnNlcnRpb25zKCspDQo+ID4g
-PiA+IA0KPiA+ID4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
-bnRlbF9jZGNsay5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jZGNsay5j
-DQo+ID4gPiA+IGluZGV4IDg4ODhmZGE4YjcwMS4uMDk1Yjc5OTUwNzg4IDEwMDY0NA0KPiA+ID4g
-PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2NkY2xrLmMNCj4gPiA+
-ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jZGNsay5jDQo+ID4g
-PiA+IEBAIC0yMzI1LDYgKzIzMjUsMTkgQEAgaW50IGludGVsX2NydGNfY29tcHV0ZV9taW5fY2Rj
-bGsoY29uc3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUpDQo+ID4gPiA+ICAJ
-CQkJCWRldl9wcml2LT5tYXhfY2RjbGtfZnJlcSkpOw0KPiA+ID4gPiAgCX0NCj4gPiA+ID4gIA0K
-PiA+ID4gDQo+ID4gPiBQbGVhc2UgYWRkIHNvbWUgY29tbWVudCBpbiB0aGUgY29kZSBhYm91dCB0
-aGlzIHdvcmthcm91bmQuDQo+ID4gPiANCj4gPiA+IA0KPiA+ID4gPiArCWlmIChJU19BTERFUkxB
-S0VfUChkZXZfcHJpdikpIHsNCj4gPiA+ID4gKwkJc3RydWN0IGludGVsX2VuY29kZXIgKmVuY29k
-ZXI7DQo+ID4gPiA+ICsNCj4gPiA+ID4gKwkJZm9yX2VhY2hfaW50ZWxfZW5jb2Rlcl93aXRoX3Bz
-cigmZGV2X3ByaXYtPmRybSwgZW5jb2Rlcikgew0KPiA+ID4gPiArCQkJc3RydWN0IGludGVsX2Rw
-ICppbnRlbF9kcCA9IGVuY190b19pbnRlbF9kcChlbmNvZGVyKTsNCj4gPiA+ID4gKw0KPiA+ID4g
-PiArCQkJaWYgKGludGVsX2RwLT5wc3IucHNyMl9lbmFibGVkKSB7DQo+ID4gPiANCj4gPiA+IFlv
-dSBzaG91bGQgY2hlY2sgdGhlIGhhc19wc3IyIGluIHRoZSBjcnRjX3N0YXRlLCBQU1IyIGNvdWxk
-IGJlIGRpc2FibGVkIHdoZW4gdGhpcyBzdGF0ZSBpcyBjb21taXR0ZWQuDQo+ID4gDQo+ID4gQWgg
-YW5kIGlmIGEgcmVtZW1iZXIgY29ycmVjdGx5IHRob3NlIHVuZGVycnVucyBvbmx5IGhhcHBlbnMg
-aW4gYSBzY2VuYXJpbyB3aXRoIDQgcGlwZXMgZW5hYmxlZD8gb3IgaXQgYWxzbyBoYXBwZW5zIHdp
-dGggMiBhbmQgMyBwaXBlcz8NCj4gPiBBbnl3YXlzIHdvdWxkIGJlIGJldHRlciB0byBuYXJyb3cg
-ZG93biB0aGUgY2FzZXMgd2hlcmUgdGhlIHdvcmthcm91bmQgaXMgYXBwbGllZC4NCj4gPiBTbyBm
-b3IgYXQgbGVhc3QgaW4gYSBjYXNlIHdpdGggYSBzaW5nbGUgcGlwZSBlbmFibGVkIHdlIGNhbiBo
-YXZlIHRoZSBsb3dlc3QgY2RjbGsgYXMgcG9zc2libGUuIA0KPiANCj4gSSB3YXMgdGhpbmtpbmcg
-dGhlIHNhbWUgaW5pdGlhbGx5LCBidXQgdGhpcyB1bmRlcnJ1biBpcyBvYnNlcnZlZCBpbiBsZXNz
-ZXIgcGlwZSBjYXNlcywgd2hlbiBQU1IyIA0KPiBpcyBlbmFibGVkLg0KDQpQbGVhc2UgY2hlY2sg
-aWYgYXQgbGVhc3QgdGhlIG9uZSBwaXBlIGNhc2UgcmVhbGx5IG5lZWQgdGhpcyBXQS4NCg0KPiAN
-Cj4gU3Rhbg0KPiANCj4gPiANCj4gPiA+IA0KPiA+ID4gPiArCQkJCW1pbl9jZGNsayA9IERJVl9S
-T1VORF9VUChtaW5fY2RjbGsgKiAxMDAsIDg1KTsNCj4gPiA+IA0KPiA+ID4gVGhpcyBpcyBub3Qg
-aW5jcmVhc2luZyBieSAxNSUuDQo+ID4gPiANCj4gPiA+IG1pbl9jZGNsayA9IDUwMA0KPiA+ID4g
-NTAwICogMTAwID0gNTAwMDANCj4gPiA+IDUwMDAwIC8gODUgPSA1ODguMjM1Mjk0MTE4DQo+ID4g
-PiANCj4gPiA+IFdoaWxlIDE1JSBvZiA1MDAgaXMgNzUuDQo+ID4gPiANCj4gPiA+IEFsc28gaWYg
-dGhlcmUgaXMgdHdvIENSVENzIHdpdGggUFNSMiBlbmFibGVkIHlvdSB3aWxsIGJ1bXAgbWluX2Nk
-Y2xrIHR3aWNlLg0KPiA+ID4gDQo+ID4gPiA+ICsJCQkJYnJlYWs7DQo+ID4gPiA+ICsJCQl9DQo+
-ID4gPiA+ICsJCX0NCj4gPiA+ID4gKwl9DQo+ID4gPiA+ICsNCj4gPiA+ID4gIAlpZiAobWluX2Nk
-Y2xrID4gZGV2X3ByaXYtPm1heF9jZGNsa19mcmVxKSB7DQo+ID4gPiA+ICAJCWRybV9kYmdfa21z
-KCZkZXZfcHJpdi0+ZHJtLA0KPiA+ID4gPiAgCQkJICAgICJyZXF1aXJlZCBjZGNsayAoJWQga0h6
-KSBleGNlZWRzIG1heCAoJWQga0h6KVxuIiwNCj4gPiA+IA0KPiA+IA0KDQo=
+On Fri, Mar 18, 2022 at 04:38:27PM +0200, Souza, Jose wrote:
+> On Fri, 2022-03-18 at 16:19 +0200, Lisovskiy, Stanislav wrote:
+> > On Fri, Mar 18, 2022 at 02:21:10PM +0200, Souza, Jose wrote:
+> > > On Fri, 2022-03-18 at 10:52 +0200, Stanislav Lisovskiy wrote:
+> > > > We are currently getting FIFO underruns, in particular
+> > > > when PSR2 is enabled. There seem to be no existing workaround
+> > > > or patches, which can fix that issue(were expecting some recent
+> > > > selective fetch update and DBuf bw/SAGV fixes to help,
+> > > > which unfortunately didn't).
+> > > > Current idea is that it looks like for some reason the
+> > > > DBuf prefill time isn't enough once we exit PSR2, despite its
+> > > > theoretically correct.
+> > > > So bump it up a bit by 15%(minimum experimental amount required
+> > > > to get it working), if PSR2 is enabled.
+> > > > For PSR1 there is no need in this hack, so we limit it only
+> > > > to PSR2 and Alderlake.
+> > > 
+> > > It this workaround meant to be permanent? If yes we should file a HSD and get hardware folks feedback.
+> > 
+> > Nope, I hope we figure out some more elegant solution at some point.
+> 
+> So please add this information to commit message and code comment.			
+
+Yes.
+
+> 
+> > 
+> > > 
+> > > > 
+> > > > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> > > > ---
+> > > >  drivers/gpu/drm/i915/display/intel_cdclk.c | 13 +++++++++++++
+> > > >  1 file changed, 13 insertions(+)
+> > > > 
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> > > > index 8888fda8b701..095b79950788 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> > > > @@ -2325,6 +2325,19 @@ int intel_crtc_compute_min_cdclk(const struct intel_crtc_state *crtc_state)
+> > > >  					dev_priv->max_cdclk_freq));
+> > > >  	}
+> > > >  
+> > > 
+> > > Please add some comment in the code about this workaround.
+> > > 
+> > > 
+> > > > +	if (IS_ALDERLAKE_P(dev_priv)) {
+> > > > +		struct intel_encoder *encoder;
+> > > > +
+> > > > +		for_each_intel_encoder_with_psr(&dev_priv->drm, encoder) {
+> > > > +			struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+> > > > +
+> > > > +			if (intel_dp->psr.psr2_enabled) {
+> > > 
+> > > You should check the has_psr2 in the crtc_state, PSR2 could be disabled when this state is committed.
+> > > 
+> > > > +				min_cdclk = DIV_ROUND_UP(min_cdclk * 100, 85);
+> > > 
+> > > This is not increasing by 15%.
+> > > 
+> > > min_cdclk = 500
+> > > 500 * 100 = 50000
+> > > 50000 / 85 = 588.235294118
+> > > 
+> > > While 15% of 500 is 75.
+> > > 
+> > > Also if there is two CRTCs with PSR2 enabled you will bump min_cdclk twice.
+> > > 
+> > > > +				break;
+> > 
+
+So 588 here is the number of which 500 constitutes 85 %, i.e those "88,.." are 15 % of 588,
+but not of 500.
+
+Not huge difference though, but needs to be fixed.
+
+> > No, we won't bump up it twice, because we initialize min_cdclk here from pixel rate initially
+> > and only then apply all those dirty hacks and optimizations. There is similar code above as
+> > well.
+> > For each crtc we call this function but as starting point always its pixel rate is used,
+> > then the max() of those would be the actual new cdclk.
+> 
+> It will if you are iterating with for_each_intel_encoder_with_psr() and there is more than one encoder with PSR2 enabled.
+> Switching to crtc_state->has_psr2 and then increasing the min_cdclk of the pipe with PSR2 enabled, should fix it.
+
+But we call "break" there, after we meet first encoder with psr2_enabled, we exit the for cycle.
+
+Stan
+
+> 
+> > 
+> > As for 15%, good point took this from expression above in that func, but indeed this is 
+> > no a 15%.
+> > 
+> > Stan
+> > 
+> > > > +			}
+> > > > +		}
+> > > > +	}
+> > > > +
+> > > >  	if (min_cdclk > dev_priv->max_cdclk_freq) {
+> > > >  		drm_dbg_kms(&dev_priv->drm,
+> > > >  			    "required cdclk (%d kHz) exceeds max (%d kHz)\n",
+> > > 
+> 
