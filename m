@@ -2,32 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E3634DD72C
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Mar 2022 10:37:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D6824DD738
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Mar 2022 10:39:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 116C910E784;
-	Fri, 18 Mar 2022 09:36:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 91A5310E7C1;
+	Fri, 18 Mar 2022 09:39:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5480E10E784;
- Fri, 18 Mar 2022 09:36:55 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 4DBBEA0BCB;
- Fri, 18 Mar 2022 09:36:55 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0098427825744887436=="
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0FCE510E7C1;
+ Fri, 18 Mar 2022 09:38:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1647596340; x=1679132340;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=0t+HqDEC7s0bmWoigszzrkPMXknfx7V8xiIHG58Gl0o=;
+ b=TxxC/whbyZa24e0Q7xicSZ5Yk5JfsruKS9uZ/YAKezQv31ZNHgeuhBEA
+ 5dcRBoJcT77eDqIm+3V7bXmum0h3Nb/2sHGy3AMkPGL7bk/1BujJkzRvs
+ Ayy2vOSCn9fy/no/E+bU25orca33v4gzUi1ArADUcDxPjspW7awN+p+Eq
+ 9DV+4fG1CjmCKDpO06KOUy8/fdiXT7Ph7QcqVqqiInDWRWtPwj3g4gjy6
+ CKLKSdBBLHs3ltZXFu/yFWdPJqf2r+R1VCldibybkr666ySvr2P/44Fn5
+ bw5pzXKqygz/1VwMhhuHrSXrY4SeouAiTLpk44IzYVMp3gTTo0hPiBhqZ A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10289"; a="317820823"
+X-IronPort-AV: E=Sophos;i="5.90,191,1643702400"; d="scan'208";a="317820823"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Mar 2022 02:38:59 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,191,1643702400"; d="scan'208";a="715400919"
+Received: from linux.intel.com ([10.54.29.200])
+ by orsmga005.jf.intel.com with ESMTP; 18 Mar 2022 02:38:59 -0700
+Received: from [10.252.35.139] (unknown [10.252.35.139])
+ by linux.intel.com (Postfix) with ESMTP id AE80C580A5D;
+ Fri, 18 Mar 2022 02:38:56 -0700 (PDT)
+Message-ID: <49f9bcee-e49a-5d5f-f5ee-9fd246e685ac@intel.com>
+Date: Fri, 18 Mar 2022 11:38:55 +0200
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Hsin-Yi Wang" <hsinyi@chromium.org>
-Date: Fri, 18 Mar 2022 09:36:55 -0000
-Message-ID: <164759621528.31587.16514106190409707979@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220318074825.3359978-1-hsinyi@chromium.org>
-In-Reply-To: <20220318074825.3359978-1-hsinyi@chromium.org>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgU2Vw?=
- =?utf-8?q?arate_panel_orientation_property_creating_and_value_setting?=
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Content-Language: en-US
+To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20220218112242.2117968-1-matthew.auld@intel.com>
+ <20220218112242.2117968-3-matthew.auld@intel.com>
+From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+In-Reply-To: <20220218112242.2117968-3-matthew.auld@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/doc: add rfc section for small BAR
+ uapi
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,264 +63,274 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
+ Kenneth Graunke <kenneth@whitecape.org>, mesa-dev@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Daniel Vetter <daniel.vetter@ffwll.ch>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0098427825744887436==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hey Matthew, all,
 
-== Series Details ==
+This sounds like a good thing to have.
+There are a number of DG2 machines where we have a small BAR and this is 
+causing more apps to fail.
 
-Series: Separate panel orientation property creating and value setting
-URL   : https://patchwork.freedesktop.org/series/101530/
-State : success
+Anv currently reports 3 memory heaps to the app :
 
-== Summary ==
+     - local device only (not host visible) -> mapped to lmem
+     - device/cpu -> mapped to smem
+     - local device but also host visible -> mapped to lmem
 
-CI Bug Log - changes from CI_DRM_11380 -> Patchwork_22608
-====================================================
+So we could use this straight away, by just not putting the 
+I915_GEM_CREATE_EXT_FLAG_NEEDS_CPU_ACCESS flag on the allocation of the 
+first heap.
 
-Summary
--------
+One thing I don't see in this proposal is how can we get the size of the 
+2 lmem heap : cpu visible, cpu not visible
+We could use that to report the appropriate size to the app.
+We probably want to report a new drm_i915_memory_region_info and either :
+     - put one of the reserve field to use to indicate : cpu visible
+     - or define a new enum value in drm_i915_gem_memory_class
 
-  **SUCCESS**
+Cheers,
 
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22608/index.html
-
-Participating hosts (48 -> 44)
-------------------------------
-
-  Additional (1): bat-jsl-2 
-  Missing    (5): shard-tglu fi-bsw-cyan shard-rkl shard-dg1 fi-bdw-samus 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_22608:
-
-### IGT changes ###
-
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@i915_selftest@live@hugepages:
-    - {bat-rpls-2}:       NOTRUN -> [INCOMPLETE][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22608/bat-rpls-2/igt@i915_selftest@live@hugepages.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_22608 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-dg1-6:          [PASS][2] -> [DMESG-FAIL][3] ([i915#4494] / [i915#4957])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11380/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22608/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
-    - fi-bdw-5557u:       NOTRUN -> [INCOMPLETE][4] ([i915#3921])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22608/fi-bdw-5557u/igt@i915_selftest@live@hangcheck.html
-
-  * igt@kms_chamelium@vga-edid-read:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][5] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22608/fi-bdw-5557u/igt@kms_chamelium@vga-edid-read.html
-
-  * igt@kms_setmode@basic-clone-single-crtc:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][6] ([fdo#109271]) +14 similar issues
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22608/fi-bdw-5557u/igt@kms_setmode@basic-clone-single-crtc.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gtt:
-    - {bat-rpls-2}:       [INCOMPLETE][7] ([i915#4391] / [i915#5337]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11380/bat-rpls-2/igt@i915_selftest@live@gtt.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22608/bat-rpls-2/igt@i915_selftest@live@gtt.html
-
-  * igt@i915_selftest@live@objects:
-    - {bat-rpls-2}:       [DMESG-WARN][9] ([i915#4391]) -> [PASS][10] +3 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11380/bat-rpls-2/igt@i915_selftest@live@objects.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22608/bat-rpls-2/igt@i915_selftest@live@objects.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#109308]: https://bugs.freedesktop.org/show_bug.cgi?id=109308
-  [fdo#111825]: https://bugs.freedesktop.org/show_bug.cgi?id=111825
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1155]: https://gitlab.freedesktop.org/drm/intel/issues/1155
-  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
-  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
-  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
-  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#3637]: https://gitlab.freedesktop.org/drm/intel/issues/3637
-  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
-  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4391]: https://gitlab.freedesktop.org/drm/intel/issues/4391
-  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#4897]: https://gitlab.freedesktop.org/drm/intel/issues/4897
-  [i915#4957]: https://gitlab.freedesktop.org/drm/intel/issues/4957
-  [i915#5291]: https://gitlab.freedesktop.org/drm/intel/issues/5291
-  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
-  [i915#5337]: https://gitlab.freedesktop.org/drm/intel/issues/5337
-  [i915#5339]: https://gitlab.freedesktop.org/drm/intel/issues/5339
-  [i915#5341]: https://gitlab.freedesktop.org/drm/intel/issues/5341
-  [i915#5342]: https://gitlab.freedesktop.org/drm/intel/issues/5342
+-Lionel
 
 
-Build changes
--------------
+On 18/02/2022 13:22, Matthew Auld wrote:
+> Add an entry for the new uapi needed for small BAR on DG2+.
+>
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Cc: Jon Bloomfield <jon.bloomfield@intel.com>
+> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+> Cc: Jordan Justen <jordan.l.justen@intel.com>
+> Cc: Kenneth Graunke <kenneth@whitecape.org>
+> Cc: mesa-dev@lists.freedesktop.org
+> ---
+>   Documentation/gpu/rfc/i915_small_bar.h   | 153 +++++++++++++++++++++++
+>   Documentation/gpu/rfc/i915_small_bar.rst |  40 ++++++
+>   Documentation/gpu/rfc/index.rst          |   4 +
+>   3 files changed, 197 insertions(+)
+>   create mode 100644 Documentation/gpu/rfc/i915_small_bar.h
+>   create mode 100644 Documentation/gpu/rfc/i915_small_bar.rst
+>
+> diff --git a/Documentation/gpu/rfc/i915_small_bar.h b/Documentation/gpu/rfc/i915_small_bar.h
+> new file mode 100644
+> index 000000000000..fa65835fd608
+> --- /dev/null
+> +++ b/Documentation/gpu/rfc/i915_small_bar.h
+> @@ -0,0 +1,153 @@
+> +/**
+> + * struct __drm_i915_gem_create_ext - Existing gem_create behaviour, with added
+> + * extension support using struct i915_user_extension.
+> + *
+> + * Note that in the future we want to have our buffer flags here, at least for
+> + * the stuff that is immutable. Previously we would have two ioctls, one to
+> + * create the object with gem_create, and another to apply various parameters,
+> + * however this creates some ambiguity for the params which are considered
+> + * immutable. Also in general we're phasing out the various SET/GET ioctls.
+> + */
+> +struct __drm_i915_gem_create_ext {
+> +	/**
+> +	 * @size: Requested size for the object.
+> +	 *
+> +	 * The (page-aligned) allocated size for the object will be returned.
+> +	 *
+> +	 * Note that for some devices we have might have further minimum
+> +	 * page-size restrictions(larger than 4K), like for device local-memory.
+> +	 * However in general the final size here should always reflect any
+> +	 * rounding up, if for example using the I915_GEM_CREATE_EXT_MEMORY_REGIONS
+> +	 * extension to place the object in device local-memory.
+> +	 */
+> +	__u64 size;
+> +	/**
+> +	 * @handle: Returned handle for the object.
+> +	 *
+> +	 * Object handles are nonzero.
+> +	 */
+> +	__u32 handle;
+> +	/**
+> +	 * @flags: Optional flags.
+> +	 *
+> +	 * Supported values:
+> +	 *
+> +	 * I915_GEM_CREATE_EXT_FLAG_NEEDS_CPU_ACCESS - Signal to the kernel that
+> +	 * the object will need to be accessed via the CPU.
+> +	 *
+> +	 * Only valid when placing objects in I915_MEMORY_CLASS_DEVICE, and
+> +	 * only strictly required on platforms where only some of the device
+> +	 * memory is directly visible or mappable through the CPU, like on DG2+.
+> +	 *
+> +	 * One of the placements MUST also be I915_MEMORY_CLASS_SYSTEM, to
+> +	 * ensure we can always spill the allocation to system memory, if we
+> +	 * can't place the object in the mappable part of
+> +	 * I915_MEMORY_CLASS_DEVICE.
+> +	 *
+> +	 * Note that buffers that need to be captured with EXEC_OBJECT_CAPTURE,
+> +	 * will need to enable this hint, if the object can also be placed in
+> +	 * I915_MEMORY_CLASS_DEVICE, starting from DG2+. The execbuf call will
+> +	 * throw an error otherwise. This also means that such objects will need
+> +	 * I915_MEMORY_CLASS_SYSTEM set as a possible placement.
+> +	 *
+> +	 * Without this hint, the kernel will assume that non-mappable
+> +	 * I915_MEMORY_CLASS_DEVICE is preferred for this object. Note that the
+> +	 * kernel can still migrate the object to the mappable part, as a last
+> +	 * resort, if userspace ever CPU faults this object, but this might be
+> +	 * expensive, and so ideally should be avoided.
+> +	 */
+> +#define I915_GEM_CREATE_EXT_FLAG_NEEDS_CPU_ACCESS (1 << 0)
+> +	__u32 flags;
+> +	/**
+> +	 * @extensions: The chain of extensions to apply to this object.
+> +	 *
+> +	 * This will be useful in the future when we need to support several
+> +	 * different extensions, and we need to apply more than one when
+> +	 * creating the object. See struct i915_user_extension.
+> +	 *
+> +	 * If we don't supply any extensions then we get the same old gem_create
+> +	 * behaviour.
+> +	 *
+> +	 * For I915_GEM_CREATE_EXT_MEMORY_REGIONS usage see
+> +	 * struct drm_i915_gem_create_ext_memory_regions.
+> +	 *
+> +	 * For I915_GEM_CREATE_EXT_PROTECTED_CONTENT usage see
+> +	 * struct drm_i915_gem_create_ext_protected_content.
+> +	 */
+> +#define I915_GEM_CREATE_EXT_MEMORY_REGIONS 0
+> +#define I915_GEM_CREATE_EXT_PROTECTED_CONTENT 1
+> +	__u64 extensions;
+> +};
+> +
+> +#define DRM_I915_QUERY_VMA_INFO	5
+> +
+> +/**
+> + * struct __drm_i915_query_vma_info
+> + *
+> + * Given a vm and GTT address, lookup the corresponding vma, returning its set
+> + * of attributes.
+> + *
+> + * .. code-block:: C
+> + *
+> + *	struct drm_i915_query_vma_info info = {};
+> + *	struct drm_i915_query_item item = {
+> + *		.data_ptr = (uintptr_t)&info,
+> + *		.query_id = DRM_I915_QUERY_VMA_INFO,
+> + *	};
+> + *	struct drm_i915_query query = {
+> + *		.num_items = 1,
+> + *		.items_ptr = (uintptr_t)&item,
+> + *	};
+> + *	int err;
+> + *
+> + *	// Unlike some other types of queries, there is no need to first query
+> + *	// the size of the data_ptr blob here, since we already know ahead of
+> + *	// time how big this needs to be.
+> + *	item.length = sizeof(info);
+> + *
+> + *	// Next we fill in the vm_id and ppGTT address of the vma we wish
+> + *	// to query, before then firing off the query.
+> + *	info.vm_id = vm_id;
+> + *	info.offset = gtt_address;
+> + *	err = ioctl(fd, DRM_IOCTL_I915_QUERY, &query);
+> + *	if (err || item.length < 0) ...
+> + *
+> + *	// If all went well we can now inspect the returned attributes.
+> + *	if (info.attributes & DRM_I915_QUERY_VMA_INFO_CPU_VISIBLE) ...
+> + */
+> +struct __drm_i915_query_vma_info {
+> +	/**
+> +	 * @vm_id: The given vm id that contains the vma. The id is the value
+> +	 * returned by the DRM_I915_GEM_VM_CREATE. See struct
+> +	 * drm_i915_gem_vm_control.vm_id.
+> +	 */
+> +	__u32 vm_id;
+> +	/** @pad: MBZ. */
+> +	__u32 pad;
+> +	/**
+> +	 * @offset: The corresponding ppGTT address of the vma which the kernel
+> +	 * will use to perform the lookup.
+> +	 */
+> +	__u64 offset;
+> +	/**
+> +	 * @attributes: The returned attributes for the given vma.
+> +	 *
+> +	 * Possible values:
+> +	 *
+> +	 * DRM_I915_QUERY_VMA_INFO_CPU_VISIBLE - Set if the pages backing the
+> +	 * vma are currently CPU accessible. If this is not set then the vma is
+> +	 * currently backed by I915_MEMORY_CLASS_DEVICE memory, which the CPU
+> +	 * cannot directly access(this is only possible on discrete devices with
+> +	 * a small BAR). Attempting to MMAP and fault such an object will
+> +	 * require the kernel first synchronising any GPU work tied to the
+> +	 * object, before then migrating the pages, either to the CPU accessible
+> +	 * part of I915_MEMORY_CLASS_DEVICE, or I915_MEMORY_CLASS_SYSTEM, if the
+> +	 * placements permit it. See I915_GEM_CREATE_EXT_FLAG_NEEDS_CPU_ACCESS.
+> +	 *
+> +	 * Note that this is inherently racy.
+> +	 */
+> +#define DRM_I915_QUERY_VMA_INFO_CPU_VISIBLE (1<<0)
+> +	__u64 attributes;
+> +	/** @rsvd: MBZ */
+> +	__u32 rsvd[4];
+> +};
+> diff --git a/Documentation/gpu/rfc/i915_small_bar.rst b/Documentation/gpu/rfc/i915_small_bar.rst
+> new file mode 100644
+> index 000000000000..fea92d3d69ab
+> --- /dev/null
+> +++ b/Documentation/gpu/rfc/i915_small_bar.rst
+> @@ -0,0 +1,40 @@
+> +==========================
+> +I915 Small BAR RFC Section
+> +==========================
+> +Starting from DG2 we will have resizable BAR support for device local-memory,
+> +but in some cases the final BAR size might still be smaller than the total
+> +local-memory size. In such cases only part of local-memory will be CPU
+> +accessible, while the remainder is only accessible via the GPU.
+> +
+> +I915_GEM_CREATE_EXT_FLAG_NEEDS_CPU_ACCESS flag
+> +----------------------------------------------
+> +New gem_create_ext flag to tell the kernel that a BO will require CPU access.
+> +The becomes important when placing an object in LMEM, where underneath the
+> +device has a small BAR, meaning only part of it is CPU accessible. Without this
+> +flag the kernel will assume that CPU access is not required, and prioritize
+> +using the non-CPU visible portion of LMEM(if present on the device).
+> +
+> +Related to this, we now also reject any objects marked with
+> +EXEC_OBJECT_CAPTURE, which are also not tagged with NEEDS_CPU_ACCESS. This only
+> +impacts DG2+.
+> +
+> +XXX: One open here is whether we should extend the memory region query to return
+> +the CPU visible size of the region. For now the IGTs just use debugfs to query
+> +the size. However, if userspace sees a real need for this then extending the
+> +region query would be a lot nicer.
+> +
+> +.. kernel-doc:: Documentation/gpu/rfc/i915_small_bar.h
+> +   :functions: __drm_i915_gem_create_ext
+> +
+> +DRM_I915_QUERY_VMA_INFO query
+> +-----------------------------
+> +Query the attributes of some vma. Given a vm and GTT offset, find the
+> +respective vma, and return its set of attrubutes. For now we only support
+> +DRM_I915_QUERY_VMA_INFO_CPU_VISIBLE, which is set if the object/vma is
+> +currently placed in memory that is accessible by the CPU. This should always be
+> +set on devices where the CPU visible size of LMEM matches the probed size. If
+> +this is not set then CPU faulting the object will first require migrating the
+> +pages.
+> +
+> +.. kernel-doc:: Documentation/gpu/rfc/i915_small_bar.h
+> +   :functions: __drm_i915_query_vma_info
+> diff --git a/Documentation/gpu/rfc/index.rst b/Documentation/gpu/rfc/index.rst
+> index 018a8bf317a6..5b8495bdc1fd 100644
+> --- a/Documentation/gpu/rfc/index.rst
+> +++ b/Documentation/gpu/rfc/index.rst
+> @@ -19,3 +19,7 @@ host such documentation:
+>   .. toctree::
+>   
+>       i915_scheduler.rst
+> +
+> +.. toctree::
+> +
+> +    i915_small_bar.rst
 
-  * Linux: CI_DRM_11380 -> Patchwork_22608
 
-  CI-20190529: 20190529
-  CI_DRM_11380: fe83949cd4316608ea785fc376b6ed444224adad @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6385: f3df40281d93d5a63ee98fa30e90852d780673c9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_22608: 912fd1736584b803c7dac47f112e5819c16205ff @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-912fd1736584 arm64: dts: mt8183: Add panel rotation
-a6a047990b09 drm/msm: init panel orientation property
-10c78f057d39 drm/mediatek: init panel orientation property
-e49373f13754 gpu: drm: separate panel orientation property creating and value setting
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22608/index.html
-
---===============0098427825744887436==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Separate panel orientation property creating and value setting</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/101530/">https://patchwork.freedesktop.org/series/101530/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22608/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22608/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11380 -&gt; Patchwork_22608</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22608/index.html</p>
-<h2>Participating hosts (48 -&gt; 44)</h2>
-<p>Additional (1): bat-jsl-2 <br />
-  Missing    (5): shard-tglu fi-bsw-cyan shard-rkl shard-dg1 fi-bdw-samus </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_22608:</p>
-<h3>IGT changes</h3>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>igt@i915_selftest@live@hugepages:<ul>
-<li>{bat-rpls-2}:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22608/bat-rpls-2/igt@i915_selftest@live@hugepages.html">INCOMPLETE</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_22608 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>
-<p>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11380/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22608/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>)</p>
-</li>
-<li>
-<p>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22608/fi-bdw-5557u/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@vga-edid-read:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22608/fi-bdw-5557u/igt@kms_chamelium@vga-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic-clone-single-crtc:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22608/fi-bdw-5557u/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +14 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gtt:</p>
-<ul>
-<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11380/bat-rpls-2/igt@i915_selftest@live@gtt.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4391">i915#4391</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5337">i915#5337</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22608/bat-rpls-2/igt@i915_selftest@live@gtt.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@objects:</p>
-<ul>
-<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11380/bat-rpls-2/igt@i915_selftest@live@objects.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4391">i915#4391</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22608/bat-rpls-2/igt@i915_selftest@live@objects.html">PASS</a> +3 similar issues</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11380 -&gt; Patchwork_22608</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11380: fe83949cd4316608ea785fc376b6ed444224adad @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6385: f3df40281d93d5a63ee98fa30e90852d780673c9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_22608: 912fd1736584b803c7dac47f112e5819c16205ff @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>912fd1736584 arm64: dts: mt8183: Add panel rotation<br />
-a6a047990b09 drm/msm: init panel orientation property<br />
-10c78f057d39 drm/mediatek: init panel orientation property<br />
-e49373f13754 gpu: drm: separate panel orientation property creating and value setting</p>
-
-</body>
-</html>
-
---===============0098427825744887436==--
