@@ -1,62 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EF634DD62A
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Mar 2022 09:29:33 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 319C84DD5F5
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Mar 2022 09:18:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A78310E5F8;
-	Fri, 18 Mar 2022 08:29:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EF49A10E74D;
+	Fri, 18 Mar 2022 08:18:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com
- [IPv6:2607:f8b0:4864:20::432])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C98310E755
- for <intel-gfx@lists.freedesktop.org>; Fri, 18 Mar 2022 08:29:26 +0000 (UTC)
-Received: by mail-pf1-x432.google.com with SMTP id h2so8882260pfh.6
- for <intel-gfx@lists.freedesktop.org>; Fri, 18 Mar 2022 01:29:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=qYSHS1HMX6eMTWBoPQekbY/LnrHx+hVCf+4KGrQDYmc=;
- b=IFSSe8csUXjGGDosRHCGn3fO+VYoniE9x8J42lOZEudFDsNsV98ZesN6bj9YZHlSGx
- rzUUSNDgAqKWsCISlWsWoXZJ4+na9/zRejmLQtAxJeL750XBykhjuPYp5PtgjzXaioRP
- W6K8uKY7G1XRI6cPC4FJKf4UJipGp1a8UxVkU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=qYSHS1HMX6eMTWBoPQekbY/LnrHx+hVCf+4KGrQDYmc=;
- b=A3CVqMFBn+PS3illKCTKYsCymsU4LAWwZvkp8HSfwwM8SxN+BEEqSiZ8vB3oY1mIBO
- ofRtnm3TqjzZaCpxpGjZJ3JbcGrMzuVmggxYSy+8fQ3g8S6kXqzUgLT2SMt5OgxIkWB3
- wfiKnHeNepcUWldY1wrIv7q67fj1Aga1y8bIendzKybhpeGffVqWkUDRroI4bf1s6fOn
- VIptuHjn4TUimR3uP1oemX4gNup/0FjzxucPGoUOu50hFF1Pg3HLGfbyYhxckqnfGziW
- F4KuXvpxEpSytY/uoY5hNY8qXB8qDNVwpT6pK9G8bicau6lP3/w8V8+EwcsrmetczxEI
- Fvkw==
-X-Gm-Message-State: AOAM533DSqMneEINMLPDQGEpNEKq+9w3Xo7WlihInFBsJbFGteWSYy+m
- 2EXYCw9TpfWnZCkOQP+7eFwrAA==
-X-Google-Smtp-Source: ABdhPJzDLKDOl+pmopyHHP4KLg/0fWOsTqeY58M7BYm1nfrAKzxakmXqooCP00hA6BSnGX9OcZh/qg==
-X-Received: by 2002:aa7:8385:0:b0:4f6:ef47:e943 with SMTP id
- u5-20020aa78385000000b004f6ef47e943mr9052216pfm.38.1647592165505; 
- Fri, 18 Mar 2022 01:29:25 -0700 (PDT)
-Received: from hsinyi-z840.tpe.corp.google.com
- ([2401:fa00:1:10:435a:ce78:7223:1e88])
- by smtp.gmail.com with ESMTPSA id
- q2-20020a056a00084200b004f761a7287dsm9404044pfk.131.2022.03.18.01.29.22
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 18 Mar 2022 01:29:25 -0700 (PDT)
-From: Hsin-Yi Wang <hsinyi@chromium.org>
-To: dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Date: Fri, 18 Mar 2022 15:48:25 +0800
-Message-Id: <20220318074825.3359978-5-hsinyi@chromium.org>
-X-Mailer: git-send-email 2.35.1.894.gb6a874cedc-goog
-In-Reply-To: <20220318074825.3359978-1-hsinyi@chromium.org>
-References: <20220318074825.3359978-1-hsinyi@chromium.org>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E560510E74D
+ for <intel-gfx@lists.freedesktop.org>; Fri, 18 Mar 2022 08:18:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1647591482; x=1679127482;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=zfY1+HIN7aSazDjg7lrarj6F9dc9FwpUglFVZO+Z+Kk=;
+ b=Av/1A704jEUx4TJs6lmza4lYyZoIopekiQVw9RqL+G4kn59t9Tv7Zmem
+ q5UygWvQ4/USP+JRk5LUPUF5mdEK89MfEgEZQZrPkNS5d93fIE6HvIL6s
+ e0TtZ1/nbaqVBdZtsgtuNodurCBnJKnCwq1t0UQ1watCRT9QC0GoX6DXD
+ drZlpfeWka/VlogbWEPeeqWBriSzF7Rsr1djbz07EAUNMNZILTzPbJL6Y
+ WkF8QKpJsyoX/JX/4RMcpgDdw5VPOmf0YpdhnV7xOEUb1FG9+HydaAPm0
+ pRFsLIjBWuRqqW9v1C64ciA3enepGTJ+7Y7juqCcFWfE92t2zQ6Jt9Aas A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10289"; a="254646866"
+X-IronPort-AV: E=Sophos;i="5.90,191,1643702400"; d="scan'208";a="254646866"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Mar 2022 01:18:02 -0700
+X-IronPort-AV: E=Sophos;i="5.90,191,1643702400"; d="scan'208";a="558319017"
+Received: from pastorcx-mobl1.ger.corp.intel.com (HELO intel.com)
+ ([10.251.221.145])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Mar 2022 01:18:00 -0700
+Date: Fri, 18 Mar 2022 10:17:56 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Message-ID: <YjRANNv09keROx9t@intel.intel>
+References: <20220318021046.40348-1-andi.shyti@linux.intel.com>
+ <164758234860.31587.1988393489717053112@emeril.freedesktop.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v9 4/4] arm64: dts: mt8183: Add panel rotation
+In-Reply-To: <164758234860.31587.1988393489717053112@emeril.freedesktop.org>
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgSW50?=
+ =?utf-8?q?roduce_multitile_support?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,38 +60,28 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>, devicetree@vger.kernel.org,
- Simon Ser <contact@emersion.fr>, linux-kernel@vger.kernel.org,
- Maxime Ripard <mripard@kernel.org>, Alex Deucher <alexander.deucher@amd.com>,
- Rob Herring <robh+dt@kernel.org>, linux-mediatek@lists.infradead.org,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Harry Wentland <harry.wentland@amd.com>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- linux-arm-kernel@lists.infradead.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-krane, kakadu, and kodama boards have a default panel rotation.
+>   • igt@i915_selftest@mock@requests:
+> 
+>       □ shard-kbl: PASS -> DMESG-FAIL
+> 
+>       □ shard-tglb: PASS -> DMESG-FAIL
+> 
+>       □ shard-apl: PASS -> DMESG-FAIL
+> 
+>       □ shard-glk: PASS -> DMESG-FAIL
+> 
+>       □ shard-skl: PASS -> DMESG-FAIL
+> 
+>       □ shard-snb: PASS -> DMESG-FAIL
+> 
+>       □ shard-iclb: PASS -> DMESG-FAIL
 
-Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-Reviewed-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Tested-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
----
- arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+I don't see how these failures can be related to the series I
+sent.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-index 0f9480f91261..c7c6be106e2e 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-@@ -276,6 +276,7 @@ panel: panel@0 {
- 		avee-supply = <&ppvarp_lcd>;
- 		pp1800-supply = <&pp1800_lcd>;
- 		backlight = <&backlight_lcd0>;
-+		rotation = <270>;
- 		port {
- 			panel_in: endpoint {
- 				remote-endpoint = <&dsi_out>;
--- 
-2.35.1.894.gb6a874cedc-goog
+Maybe a false positive?
 
+Andi
