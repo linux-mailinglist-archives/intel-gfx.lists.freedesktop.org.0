@@ -1,53 +1,68 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A66DD4DDBCC
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Mar 2022 15:38:53 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B1864DDBD0
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Mar 2022 15:40:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E3C5210E9BC;
-	Fri, 18 Mar 2022 14:38:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4FE7B10E9A8;
+	Fri, 18 Mar 2022 14:40:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8732110E9A8;
- Fri, 18 Mar 2022 14:38:50 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B8E0410E9A8
+ for <intel-gfx@lists.freedesktop.org>; Fri, 18 Mar 2022 14:40:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1647614330; x=1679150330;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=AgmBHyO+lsFf4jy+lQqj4mvlNZpU7MRvZzrKeDxWwPQ=;
- b=EOw6cl1UCPM+3EAVD/fkRD7Nqij3sfJ1epfjsSmSf3akdpmGZicSUnSn
- Bw4b2bYbkLibRXzc3DozavnarkAVvpPb0FdMbwbnEtHWs51B9Cm8p79KY
- x2mjL4Z/Mw1V1jRStP5RsO/oqjkLOA8+PBu0w2g5Zx7p1w1LPVTMkhTmH
- ZNxNZFsTRfckn18/y5duoT8kCZqbf3uEijOFHG+LypagyAPVHlaqDk6eM
- CCjqCbXqMxcpUAKIEpcMsBqOGPkkf9+7AE6Mp6ruXvsMz/Smj6X2QJ4iD
- lzfr9Md2Pu22Y7b/9kVvU99DLw8qYfj/ebZglwnZUATOTB4Hy8bX9WfKF A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10289"; a="281957071"
-X-IronPort-AV: E=Sophos;i="5.90,192,1643702400"; d="scan'208";a="281957071"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2022 07:38:50 -0700
-X-IronPort-AV: E=Sophos;i="5.90,192,1643702400"; d="scan'208";a="558468756"
-Received: from aatouani-mobl.ger.corp.intel.com (HELO [10.213.202.184])
- ([10.213.202.184])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2022 07:38:48 -0700
-Message-ID: <8d283c4b-6f16-a235-7c57-ad8a67252ca9@linux.intel.com>
-Date: Fri, 18 Mar 2022 14:38:44 +0000
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
+ t=1647614410; x=1679150410;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-id:content-transfer-encoding: mime-version;
+ bh=YVEIMUpAibfXTDGzfJtXgPEcg7T/lLsBRCxtByDtsKs=;
+ b=UbarmcOe2iUQgF9QsJGhSFoHuB+wMQadhD/Vhyb/QoQhcFgKJMRdKjEr
+ M7W2qMI0qDLtoEof05/BI31/i966rBueJcxnvRxelpSspaUfOBjq6HN7Q
+ b5jZhLQYgJ5avRDPc8dtG7HfRSTCvgnxQXm18Py/8hDNUnT/0Kc6IQJsd
+ vefF6+anVRFbOlBaYA7Y2XdQWYL899r2JaAumdwf7ll8pX5BXYCkoAI7I
+ LP8pq2dDlSiKt2joqBY3LIxklmLqFXbPyB0495nWIfovviDDdLT+RLF9a
+ lI9cSOudNtGK2dDknS9nWfAQCiNvu4hmN4EIopKKuOP0My6Gh6nHZHQDw w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10289"; a="257334603"
+X-IronPort-AV: E=Sophos;i="5.90,192,1643702400"; d="scan'208";a="257334603"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Mar 2022 07:40:10 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,192,1643702400"; d="scan'208";a="647484624"
+Received: from irsmsx604.ger.corp.intel.com ([163.33.146.137])
+ by orsmga004.jf.intel.com with ESMTP; 18 Mar 2022 07:40:09 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ IRSMSX604.ger.corp.intel.com (163.33.146.137) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.21; Fri, 18 Mar 2022 14:40:07 +0000
+Received: from fmsmsx612.amr.corp.intel.com ([10.18.126.92]) by
+ fmsmsx612.amr.corp.intel.com ([10.18.126.92]) with mapi id 15.01.2308.021;
+ Fri, 18 Mar 2022 07:40:06 -0700
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+Thread-Topic: [Intel-gfx] [PATCH] drm/i915/adl_p: Increase CDCLK by 15% if
+ PSR2 is used
+Thread-Index: AQHYOqVt9C5fyYbzJ0256azdo8/uyazFhaqAgAAB4wCAAB/OAIAABSIA
+Date: Fri, 18 Mar 2022 14:40:06 +0000
+Message-ID: <fe43b96c70d9d29419b24373978d77a1ebf27b96.camel@intel.com>
+References: <20220318085226.7348-1-stanislav.lisovskiy@intel.com>
+ <530cc6962b181ee01e9c00a38190ab27e5940215.camel@intel.com>
+ <f60950ea65708dc7f093f5939efb164225b186c6.camel@intel.com>
+ <20220318142252.GA8522@intel.com>
+In-Reply-To: <20220318142252.GA8522@intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-To: fei.yang@intel.com, intel-gfx@lists.freedesktop.org
-References: <20220318052619.3429370-1-fei.yang@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20220318052619.3429370-1-fei.yang@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: avoid concurrent writes to aux_inv
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.100]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <CE5BB5F49E44B643883F8025F8FA665A@intel.com>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/adl_p: Increase CDCLK by 15% if
+ PSR2 is used
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,132 +75,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 18/03/2022 05:26, fei.yang@intel.com wrote:
-> From: Fei Yang <fei.yang@intel.com>
-> 
-> GPU hangs have been observed when multiple engines write to the
-> same aux_inv register at the same time. To avoid this each engine
-> should only invalidate its own auxiliary table. The function
-> gen12_emit_flush_xcs() currently invalidate the auxiliary table for
-> all engines because the rq->engine is not necessarily the engine
-> eventually carrying out the request, and potentially the engine
-> could even be a virtual one (with engine->instance being -1).
-> With the MMIO remap feature, we can actually set bit 17 of MI_LRI
-> instruction and let the hardware to figure out the local aux_inv
-> register at runtime to avoid invalidating auxiliary table for all
-> engines.
-> 
-> Bspec: 45728
-> 
-> Cc: Stuart Summers <stuart.summers@intel.com>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Signed-off-by: Chris Wilson <chris.p.wilson@intel.com>
-> Signed-off-by: Fei Yang <fei.yang@intel.com>
-> ---
->   drivers/gpu/drm/i915/gt/gen8_engine_cs.c     | 42 +++++---------------
->   drivers/gpu/drm/i915/gt/intel_gpu_commands.h |  1 +
->   2 files changed, 11 insertions(+), 32 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
-> index 36148887c699..d440c5dfb6b7 100644
-> --- a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
-> +++ b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
-> @@ -165,30 +165,6 @@ static u32 preparser_disable(bool state)
->   	return MI_ARB_CHECK | 1 << 8 | state;
->   }
->   
-> -static i915_reg_t aux_inv_reg(const struct intel_engine_cs *engine)
-> -{
-> -	static const i915_reg_t vd[] = {
-> -		GEN12_VD0_AUX_NV,
-> -		GEN12_VD1_AUX_NV,
-> -		GEN12_VD2_AUX_NV,
-> -		GEN12_VD3_AUX_NV,
-> -	};
-> -
-> -	static const i915_reg_t ve[] = {
-> -		GEN12_VE0_AUX_NV,
-> -		GEN12_VE1_AUX_NV,
-> -	};
-> -
-> -	if (engine->class == VIDEO_DECODE_CLASS)
-> -		return vd[engine->instance];
-> -
-> -	if (engine->class == VIDEO_ENHANCEMENT_CLASS)
-> -		return ve[engine->instance];
-> -
-> -	GEM_BUG_ON("unknown aux_inv reg\n");
-> -	return INVALID_MMIO_REG;
-> -}
-> -
->   static u32 *gen12_emit_aux_table_inv(const i915_reg_t inv_reg, u32 *cs)
->   {
->   	*cs++ = MI_LOAD_REGISTER_IMM(1);
-> @@ -296,7 +272,7 @@ int gen12_emit_flush_xcs(struct i915_request *rq, u32 mode)
->   		if (!HAS_FLAT_CCS(rq->engine->i915)) {
->   			aux_inv = rq->engine->mask & ~BIT(BCS0);
->   			if (aux_inv)
-> -				cmd += 2 * hweight32(aux_inv) + 2;
-> +				cmd += 4;
->   		}
->   	}
->   
-> @@ -329,14 +305,16 @@ int gen12_emit_flush_xcs(struct i915_request *rq, u32 mode)
->   	*cs++ = 0; /* value */
->   
->   	if (aux_inv) { /* hsdes: 1809175790 */
-> -		struct intel_engine_cs *engine;
-> -		unsigned int tmp;
-> -
-> -		*cs++ = MI_LOAD_REGISTER_IMM(hweight32(aux_inv));
-> -		for_each_engine_masked(engine, rq->engine->gt, aux_inv, tmp) {
-> -			*cs++ = i915_mmio_reg_offset(aux_inv_reg(engine));
-> -			*cs++ = AUX_INV;
-> +		*cs++ = MI_LOAD_REGISTER_IMM(1) | MI_LRI_MMIO_REMAP_EN;
-
-Cool, I didn't know this exists. First Bspec link I found did not 
-mention these register, but second did. That one however (29545) has a 
-worrying "removed by" tag which seems to point to a story suggesting the 
-remapping table might be gone on machines with flat ccs?! Could you 
-double check please?
-
-> +		if (rq->engine->class == VIDEO_DECODE_CLASS) {
-> +			*cs++ = i915_mmio_reg_offset(GEN12_VD0_AUX_NV);
-> +		} else if (rq->engine->class == VIDEO_ENHANCEMENT_CLASS) {
-> +			*cs++ = i915_mmio_reg_offset(GEN12_VE0_AUX_NV);
-> +		} else {
-> +			GEM_BUG_ON("unknown aux_inv reg\n");
-> +			*cs++ = i915_mmio_reg_offset(INVALID_MMIO_REG);
-
-I'd consider not emitting the LRI if we don't know what to put in unless 
-there is some hidden point to do it?
-
->   		}
-> +		*cs++ = AUX_INV;
->   		*cs++ = MI_NOOP;
->   	}
->   
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gpu_commands.h b/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
-> index d112ffd56418..2d150eec5c65 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
-> @@ -144,6 +144,7 @@
->   #define MI_LOAD_REGISTER_IMM(x)	MI_INSTR(0x22, 2*(x)-1)
->   /* Gen11+. addr = base + (ctx_restore ? offset & GENMASK(12,2) : offset) */
->   #define   MI_LRI_LRM_CS_MMIO		REG_BIT(19)
-> +#define   MI_LRI_MMIO_REMAP_EN		(1 << 17)
->   #define   MI_LRI_FORCE_POSTED		(1<<12)
-
-Passing observation - three bits, three flavours of expressing them, sigh...
-
-Regards,
-
-Tvrtko
-
->   #define MI_LOAD_REGISTER_IMM_MAX_REGS (126)
->   #define MI_STORE_REGISTER_MEM        MI_INSTR(0x24, 1)
+T24gRnJpLCAyMDIyLTAzLTE4IGF0IDE2OjIyICswMjAwLCBMaXNvdnNraXksIFN0YW5pc2xhdiB3
+cm90ZToNCj4gT24gRnJpLCBNYXIgMTgsIDIwMjIgYXQgMDI6Mjc6NTNQTSArMDIwMCwgU291emEs
+IEpvc2Ugd3JvdGU6DQo+ID4gT24gRnJpLCAyMDIyLTAzLTE4IGF0IDA1OjIyIC0wNzAwLCBKb3PD
+qSBSb2JlcnRvIGRlIFNvdXphIHdyb3RlOg0KPiA+ID4gT24gRnJpLCAyMDIyLTAzLTE4IGF0IDEw
+OjUyICswMjAwLCBTdGFuaXNsYXYgTGlzb3Zza2l5IHdyb3RlOg0KPiA+ID4gPiBXZSBhcmUgY3Vy
+cmVudGx5IGdldHRpbmcgRklGTyB1bmRlcnJ1bnMsIGluIHBhcnRpY3VsYXINCj4gPiA+ID4gd2hl
+biBQU1IyIGlzIGVuYWJsZWQuIFRoZXJlIHNlZW0gdG8gYmUgbm8gZXhpc3Rpbmcgd29ya2Fyb3Vu
+ZA0KPiA+ID4gPiBvciBwYXRjaGVzLCB3aGljaCBjYW4gZml4IHRoYXQgaXNzdWUod2VyZSBleHBl
+Y3Rpbmcgc29tZSByZWNlbnQNCj4gPiA+ID4gc2VsZWN0aXZlIGZldGNoIHVwZGF0ZSBhbmQgREJ1
+ZiBidy9TQUdWIGZpeGVzIHRvIGhlbHAsDQo+ID4gPiA+IHdoaWNoIHVuZm9ydHVuYXRlbHkgZGlk
+bid0KS4NCj4gPiA+ID4gQ3VycmVudCBpZGVhIGlzIHRoYXQgaXQgbG9va3MgbGlrZSBmb3Igc29t
+ZSByZWFzb24gdGhlDQo+ID4gPiA+IERCdWYgcHJlZmlsbCB0aW1lIGlzbid0IGVub3VnaCBvbmNl
+IHdlIGV4aXQgUFNSMiwgZGVzcGl0ZSBpdHMNCj4gPiA+ID4gdGhlb3JldGljYWxseSBjb3JyZWN0
+Lg0KPiA+ID4gPiBTbyBidW1wIGl0IHVwIGEgYml0IGJ5IDE1JShtaW5pbXVtIGV4cGVyaW1lbnRh
+bCBhbW91bnQgcmVxdWlyZWQNCj4gPiA+ID4gdG8gZ2V0IGl0IHdvcmtpbmcpLCBpZiBQU1IyIGlz
+IGVuYWJsZWQuDQo+ID4gPiA+IEZvciBQU1IxIHRoZXJlIGlzIG5vIG5lZWQgaW4gdGhpcyBoYWNr
+LCBzbyB3ZSBsaW1pdCBpdCBvbmx5DQo+ID4gPiA+IHRvIFBTUjIgYW5kIEFsZGVybGFrZS4NCj4g
+PiA+IA0KPiA+ID4gSXQgdGhpcyB3b3JrYXJvdW5kIG1lYW50IHRvIGJlIHBlcm1hbmVudD8gSWYg
+eWVzIHdlIHNob3VsZCBmaWxlIGEgSFNEIGFuZCBnZXQgaGFyZHdhcmUgZm9sa3MgZmVlZGJhY2su
+DQo+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IFNpZ25lZC1vZmYtYnk6IFN0YW5pc2xhdiBMaXNv
+dnNraXkgPHN0YW5pc2xhdi5saXNvdnNraXlAaW50ZWwuY29tPg0KPiA+ID4gPiAtLS0NCj4gPiA+
+ID4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfY2RjbGsuYyB8IDEzICsrKysr
+KysrKysrKysNCj4gPiA+ID4gIDEgZmlsZSBjaGFuZ2VkLCAxMyBpbnNlcnRpb25zKCspDQo+ID4g
+PiA+IA0KPiA+ID4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
+bnRlbF9jZGNsay5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jZGNsay5j
+DQo+ID4gPiA+IGluZGV4IDg4ODhmZGE4YjcwMS4uMDk1Yjc5OTUwNzg4IDEwMDY0NA0KPiA+ID4g
+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2NkY2xrLmMNCj4gPiA+
+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jZGNsay5jDQo+ID4g
+PiA+IEBAIC0yMzI1LDYgKzIzMjUsMTkgQEAgaW50IGludGVsX2NydGNfY29tcHV0ZV9taW5fY2Rj
+bGsoY29uc3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUpDQo+ID4gPiA+ICAJ
+CQkJCWRldl9wcml2LT5tYXhfY2RjbGtfZnJlcSkpOw0KPiA+ID4gPiAgCX0NCj4gPiA+ID4gIA0K
+PiA+ID4gDQo+ID4gPiBQbGVhc2UgYWRkIHNvbWUgY29tbWVudCBpbiB0aGUgY29kZSBhYm91dCB0
+aGlzIHdvcmthcm91bmQuDQo+ID4gPiANCj4gPiA+IA0KPiA+ID4gPiArCWlmIChJU19BTERFUkxB
+S0VfUChkZXZfcHJpdikpIHsNCj4gPiA+ID4gKwkJc3RydWN0IGludGVsX2VuY29kZXIgKmVuY29k
+ZXI7DQo+ID4gPiA+ICsNCj4gPiA+ID4gKwkJZm9yX2VhY2hfaW50ZWxfZW5jb2Rlcl93aXRoX3Bz
+cigmZGV2X3ByaXYtPmRybSwgZW5jb2Rlcikgew0KPiA+ID4gPiArCQkJc3RydWN0IGludGVsX2Rw
+ICppbnRlbF9kcCA9IGVuY190b19pbnRlbF9kcChlbmNvZGVyKTsNCj4gPiA+ID4gKw0KPiA+ID4g
+PiArCQkJaWYgKGludGVsX2RwLT5wc3IucHNyMl9lbmFibGVkKSB7DQo+ID4gPiANCj4gPiA+IFlv
+dSBzaG91bGQgY2hlY2sgdGhlIGhhc19wc3IyIGluIHRoZSBjcnRjX3N0YXRlLCBQU1IyIGNvdWxk
+IGJlIGRpc2FibGVkIHdoZW4gdGhpcyBzdGF0ZSBpcyBjb21taXR0ZWQuDQo+ID4gDQo+ID4gQWgg
+YW5kIGlmIGEgcmVtZW1iZXIgY29ycmVjdGx5IHRob3NlIHVuZGVycnVucyBvbmx5IGhhcHBlbnMg
+aW4gYSBzY2VuYXJpbyB3aXRoIDQgcGlwZXMgZW5hYmxlZD8gb3IgaXQgYWxzbyBoYXBwZW5zIHdp
+dGggMiBhbmQgMyBwaXBlcz8NCj4gPiBBbnl3YXlzIHdvdWxkIGJlIGJldHRlciB0byBuYXJyb3cg
+ZG93biB0aGUgY2FzZXMgd2hlcmUgdGhlIHdvcmthcm91bmQgaXMgYXBwbGllZC4NCj4gPiBTbyBm
+b3IgYXQgbGVhc3QgaW4gYSBjYXNlIHdpdGggYSBzaW5nbGUgcGlwZSBlbmFibGVkIHdlIGNhbiBo
+YXZlIHRoZSBsb3dlc3QgY2RjbGsgYXMgcG9zc2libGUuIA0KPiANCj4gSSB3YXMgdGhpbmtpbmcg
+dGhlIHNhbWUgaW5pdGlhbGx5LCBidXQgdGhpcyB1bmRlcnJ1biBpcyBvYnNlcnZlZCBpbiBsZXNz
+ZXIgcGlwZSBjYXNlcywgd2hlbiBQU1IyIA0KPiBpcyBlbmFibGVkLg0KDQpQbGVhc2UgY2hlY2sg
+aWYgYXQgbGVhc3QgdGhlIG9uZSBwaXBlIGNhc2UgcmVhbGx5IG5lZWQgdGhpcyBXQS4NCg0KPiAN
+Cj4gU3Rhbg0KPiANCj4gPiANCj4gPiA+IA0KPiA+ID4gPiArCQkJCW1pbl9jZGNsayA9IERJVl9S
+T1VORF9VUChtaW5fY2RjbGsgKiAxMDAsIDg1KTsNCj4gPiA+IA0KPiA+ID4gVGhpcyBpcyBub3Qg
+aW5jcmVhc2luZyBieSAxNSUuDQo+ID4gPiANCj4gPiA+IG1pbl9jZGNsayA9IDUwMA0KPiA+ID4g
+NTAwICogMTAwID0gNTAwMDANCj4gPiA+IDUwMDAwIC8gODUgPSA1ODguMjM1Mjk0MTE4DQo+ID4g
+PiANCj4gPiA+IFdoaWxlIDE1JSBvZiA1MDAgaXMgNzUuDQo+ID4gPiANCj4gPiA+IEFsc28gaWYg
+dGhlcmUgaXMgdHdvIENSVENzIHdpdGggUFNSMiBlbmFibGVkIHlvdSB3aWxsIGJ1bXAgbWluX2Nk
+Y2xrIHR3aWNlLg0KPiA+ID4gDQo+ID4gPiA+ICsJCQkJYnJlYWs7DQo+ID4gPiA+ICsJCQl9DQo+
+ID4gPiA+ICsJCX0NCj4gPiA+ID4gKwl9DQo+ID4gPiA+ICsNCj4gPiA+ID4gIAlpZiAobWluX2Nk
+Y2xrID4gZGV2X3ByaXYtPm1heF9jZGNsa19mcmVxKSB7DQo+ID4gPiA+ICAJCWRybV9kYmdfa21z
+KCZkZXZfcHJpdi0+ZHJtLA0KPiA+ID4gPiAgCQkJICAgICJyZXF1aXJlZCBjZGNsayAoJWQga0h6
+KSBleGNlZWRzIG1heCAoJWQga0h6KVxuIiwNCj4gPiA+IA0KPiA+IA0KDQo=
