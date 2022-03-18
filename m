@@ -1,34 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7726F4DE301
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Mar 2022 21:55:51 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6367A4DE384
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Mar 2022 22:28:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9876510E145;
-	Fri, 18 Mar 2022 20:55:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3FA1010E146;
+	Fri, 18 Mar 2022 21:28:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id DAFE910E145;
- Fri, 18 Mar 2022 20:55:47 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D6D74A0BCB;
- Fri, 18 Mar 2022 20:55:47 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7671968318410654160=="
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
-Date: Fri, 18 Mar 2022 20:55:47 -0000
-Message-ID: <164763694784.31586.7842300728323467433@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A23D410E146
+ for <intel-gfx@lists.freedesktop.org>; Fri, 18 Mar 2022 21:28:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1647638887; x=1679174887;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=mzMqS0J/FtjKF/J41O8r7ND0nW80YeqlukINDijTvag=;
+ b=OJl/1iGQvayO8hOgvIldDFCjnlLIA3oNmPCSmr4+QSkiTgxzuwsIgLlH
+ 2yeN+1yoxVXNz4cKbCYVltQavRT06lXyqwX1FBrsR+OZFcwMzkJ+BQeN3
+ MDBMuLgIt8aw00YC1xJ4kg/IvVKLeyFTOw/AHf8rLJAho6sjoaLBHthaS
+ EyTfXw4RdDg3FspA6U0gcUIei3otHX1hXxZCnnakMc46F2CV+MLccYyzX
+ q/SQxVmPu0VoWqtlaw1HcZgX2139I2+YVfsK6locCOSx/GG3NcstYmFqX
+ LVTIiIDF99epGetyiQgwMJPykd5xdJtSmQUMl1PUuEuRiolmFSDfgNPR/ g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10290"; a="237840478"
+X-IronPort-AV: E=Sophos;i="5.90,192,1643702400"; d="scan'208";a="237840478"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Mar 2022 14:28:07 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,192,1643702400"; d="scan'208";a="514092222"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
+ by orsmga002.jf.intel.com with SMTP; 18 Mar 2022 14:28:04 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 18 Mar 2022 23:28:03 +0200
+Date: Fri, 18 Mar 2022 23:28:03 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
+Message-ID: <YjT5Y9tSXHubPURH@intel.com>
 References: <20220318195522.456180-1-jose.souza@intel.com>
-In-Reply-To: <20220318195522.456180-1-jose.souza@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/3=5D_drm/i915/display=3A_Program_PIPE=5F?=
- =?utf-8?q?MBUS=5FDBOX=5FCTL_with_adl-p_values?=
+ <20220318195522.456180-3-jose.souza@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220318195522.456180-3-jose.souza@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915/display/adlp: Fix programing
+ of PIPE_MBUS_DBOX_CTL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,342 +61,202 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============7671968318410654160==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, Mar 18, 2022 at 12:55:22PM -0700, José Roberto de Souza wrote:
+> PIPE_MBUS_DBOX_CTL was only being programmed when a pipe is being
+> enabled leaving other pipes with a wrong A_CREDIT value in cases
+> like when going from one pipe enabled to two pipes and the first
+> pipe don't need modeset, similar when going from two or more
+> pipes to ones.
+> 
+> So here moving the PIPE_MBUS_DBOX_CTL programing to be executed before
+> the function that enables and updates all necessary pipes.
+> Leaving all pipes with the correct value of A_CREDIT.
+> 
+> As now PIPE_MBUS_DBOX_CTL is being programmed at the right time it
+> is also waiting the vblanks after adjust PIPE_MBUS_DBOX_CTL
+> as required by specification.
+> 
+> BSpec: 49213
+> BSpec: 50343
+> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c | 36 +------------
+>  drivers/gpu/drm/i915/intel_pm.c              | 55 +++++++++++++++++++-
+>  drivers/gpu/drm/i915/intel_pm.h              |  1 +
+>  3 files changed, 56 insertions(+), 36 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 2e85ae575423a..4cd2d76058b8c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -1821,34 +1821,6 @@ static void glk_pipe_scaler_clock_gating_wa(struct drm_i915_private *dev_priv,
+>  	intel_de_write(dev_priv, CLKGATE_DIS_PSL(pipe), val);
+>  }
+>  
+> -static void icl_pipe_mbus_enable(struct intel_crtc *crtc, bool joined_mbus)
+> -{
+> -	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+> -	enum pipe pipe = crtc->pipe;
+> -	u32 val = intel_de_read(dev_priv, PIPE_MBUS_DBOX_CTL(pipe));
+> -
+> -	val &= ~MBUS_DBOX_A_CREDIT_MASK;
+> -	/* Wa_22010947358:adl-p */
+> -	if (IS_ALDERLAKE_P(dev_priv))
+> -		val |= joined_mbus ? MBUS_DBOX_A_CREDIT(6) : MBUS_DBOX_A_CREDIT(4);
+> -	else
+> -		val |= MBUS_DBOX_A_CREDIT(2);
+> -
+> -	val &= ~(MBUS_DBOX_BW_CREDIT_MASK | MBUS_DBOX_B_CREDIT_MASK);
+> -	if (IS_ALDERLAKE_P(dev_priv)) {
+> -		val |= MBUS_DBOX_BW_CREDIT(2);
+> -		val |= MBUS_DBOX_B_CREDIT(8);
+> -	} else if (DISPLAY_VER(dev_priv) >= 12) {
+> -		val |= MBUS_DBOX_BW_CREDIT(2);
+> -		val |= MBUS_DBOX_B_CREDIT(12);
+> -	} else {
+> -		val |= MBUS_DBOX_BW_CREDIT(1);
+> -		val |= MBUS_DBOX_B_CREDIT(8);
+> -	}
+> -
+> -	intel_de_write(dev_priv, PIPE_MBUS_DBOX_CTL(pipe), val);
+> -}
+> -
+>  static void hsw_set_linetime_wm(const struct intel_crtc_state *crtc_state)
+>  {
+>  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> @@ -1984,13 +1956,6 @@ static void hsw_crtc_enable(struct intel_atomic_state *state,
+>  
+>  	intel_initial_watermarks(state, crtc);
+>  
+> -	if (DISPLAY_VER(dev_priv) >= 11) {
+> -		const struct intel_dbuf_state *dbuf_state =
+> -				intel_atomic_get_new_dbuf_state(state);
+> -
+> -		icl_pipe_mbus_enable(crtc, dbuf_state->joined_mbus);
+> -	}
+> -
+>  	if (intel_crtc_is_bigjoiner_slave(new_crtc_state))
+>  		intel_crtc_vblank_on(new_crtc_state);
+>  
+> @@ -8589,6 +8554,7 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
+>  	intel_encoders_update_prepare(state);
+>  
+>  	intel_dbuf_pre_plane_update(state);
+> +	intel_mbus_dbox_update(state);
+>  
+>  	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
+>  		if (new_crtc_state->do_async_flip)
+> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
+> index 96bb8ecc11668..08ba32e5eb4ad 100644
+> --- a/drivers/gpu/drm/i915/intel_pm.c
+> +++ b/drivers/gpu/drm/i915/intel_pm.c
+> @@ -6172,7 +6172,6 @@ skl_compute_ddb(struct intel_atomic_state *state)
+>  			return ret;
+>  
+>  		if (old_dbuf_state->joined_mbus != new_dbuf_state->joined_mbus) {
+> -			/* TODO: Implement vblank synchronized MBUS joining changes */
+>  			ret = intel_modeset_all_pipes(state);
+>  			if (ret)
+>  				return ret;
+> @@ -8365,3 +8364,57 @@ void intel_dbuf_post_plane_update(struct intel_atomic_state *state)
+>  	gen9_dbuf_slices_update(dev_priv,
+>  				new_dbuf_state->enabled_slices);
+>  }
+> +
+> +void intel_mbus_dbox_update(struct intel_atomic_state *state)
+> +{
+> +	struct drm_i915_private *i915 = to_i915(state->base.dev);
+> +	struct intel_crtc_state *old_crtc_state, *new_crtc_state;
+> +	struct intel_dbuf_state *old_dbuf_state, *new_dbuf_state;
+> +	struct intel_crtc *crtc;
+> +	int i;
+> +
+> +	if (DISPLAY_VER(i915) < 11 || !state->modeset)
+> +		return;
+> +
+> +	if (HAS_MBUS_JOINING(i915)) {
+> +		new_dbuf_state = intel_atomic_get_dbuf_state(state);
+> +		old_dbuf_state = intel_atomic_get_old_dbuf_state(state);
+> +	}
+> +
+> +	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state, new_crtc_state, i) {
+> +		u32 val;
+> +
+> +		val = intel_de_read(i915, PIPE_MBUS_DBOX_CTL(crtc->pipe));
 
-== Series Details ==
+In which power well does that live? and are we guaranteed to
+have that enabled here?
 
-Series: series starting with [1/3] drm/i915/display: Program PIPE_MBUS_DBOX_CTL with adl-p values
-URL   : https://patchwork.freedesktop.org/series/101545/
-State : failure
+I guess tou could just do something like
+ if (!hw.active || !needs_modeset)
+ 	continue;
+since I don't think there's much point in programming this
+for inactive pipes, or pipes that have already been enabled
+earlier. That should also avoid any power well issues.
 
-== Summary ==
+> +		val &= ~MBUS_DBOX_A_CREDIT_MASK;
+> +
+> +		/* Wa_22010947358:adl-p */
+> +		if (IS_ALDERLAKE_P(i915))
+> +			val |= new_dbuf_state->joined_mbus ? MBUS_DBOX_A_CREDIT(6) :
+> +							     MBUS_DBOX_A_CREDIT(4);
+> +		else
+> +			val |= MBUS_DBOX_A_CREDIT(2);
+> +
+> +		if (IS_ALDERLAKE_P(i915)) {
+> +			val |= MBUS_DBOX_BW_CREDIT(2);
+> +			val |= MBUS_DBOX_B_CREDIT(8);
+> +		} else if (DISPLAY_VER(i915) >= 12) {
+> +			val &= ~(MBUS_DBOX_BW_CREDIT_MASK | MBUS_DBOX_B_CREDIT_MASK);
+> +			val |= MBUS_DBOX_BW_CREDIT(2);
+> +			val |= MBUS_DBOX_B_CREDIT(12);
+> +		} else {
+> +			val &= ~(MBUS_DBOX_BW_CREDIT_MASK | MBUS_DBOX_B_CREDIT_MASK);
+> +			val |= MBUS_DBOX_BW_CREDIT(1);
+> +			val |= MBUS_DBOX_B_CREDIT(8);
+> +		}
+> +
+> +		intel_de_write(i915, PIPE_MBUS_DBOX_CTL(crtc->pipe), val);
+> +
+> +		/* If going from joined to not joined, wait a vblank */
+> +		if (HAS_MBUS_JOINING(i915) &&
+> +		    old_crtc_state->hw.active &&
+> +		    new_crtc_state->hw.active &&
+> +		    old_dbuf_state->joined_mbus &&
+> +		    !new_dbuf_state->joined_mbus)
+> +			intel_crtc_wait_for_next_vblank(crtc);
 
-CI Bug Log - changes from CI_DRM_11383 -> Patchwork_22615
-====================================================
+That check does not guarantee the pipe is active when you call this.
+It could be doing a enabled->enabled modeset. In fact that is guaranteed
+to be the case since we anyway force a full modeset on everything when
+changing mbus joining. So you can just nuke this vblank wait.
 
-Summary
--------
+> +	}
+> +}
+> diff --git a/drivers/gpu/drm/i915/intel_pm.h b/drivers/gpu/drm/i915/intel_pm.h
+> index 51705151b842f..50604cf7398c4 100644
+> --- a/drivers/gpu/drm/i915/intel_pm.h
+> +++ b/drivers/gpu/drm/i915/intel_pm.h
+> @@ -94,5 +94,6 @@ intel_atomic_get_dbuf_state(struct intel_atomic_state *state);
+>  int intel_dbuf_init(struct drm_i915_private *dev_priv);
+>  void intel_dbuf_pre_plane_update(struct intel_atomic_state *state);
+>  void intel_dbuf_post_plane_update(struct intel_atomic_state *state);
+> +void intel_mbus_dbox_update(struct intel_atomic_state *state);
 
-  **FAILURE**
+AFAICS you could just call this from intel_dbuf_pre_plane_update()
+instead of making the high level modeset code have to deal with it.
 
-  Serious unknown changes coming with Patchwork_22615 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_22615, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+>  
+>  #endif /* __INTEL_PM_H__ */
+> -- 
+> 2.35.1
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22615/index.html
-
-Participating hosts (44 -> 41)
-------------------------------
-
-  Additional (1): fi-pnv-d510 
-  Missing    (4): fi-bsw-cyan bat-adlm-1 shard-tglu fi-bdw-samus 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_22615:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@kms_busy@basic@modeset:
-    - fi-rkl-guc:         [PASS][1] -> [DMESG-WARN][2] +1 similar issue
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11383/fi-rkl-guc/igt@kms_busy@basic@modeset.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22615/fi-rkl-guc/igt@kms_busy@basic@modeset.html
-
-  
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@kms_busy@basic@flip:
-    - {bat-jsl-1}:        [PASS][3] -> [DMESG-WARN][4] +1 similar issue
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11383/bat-jsl-1/igt@kms_busy@basic@flip.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22615/bat-jsl-1/igt@kms_busy@basic@flip.html
-    - {bat-adlp-6}:       [PASS][5] -> [DMESG-WARN][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11383/bat-adlp-6/igt@kms_busy@basic@flip.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22615/bat-adlp-6/igt@kms_busy@basic@flip.html
-
-  * igt@kms_busy@basic@modeset:
-    - {bat-jsl-2}:        [PASS][7] -> [DMESG-WARN][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11383/bat-jsl-2/igt@kms_busy@basic@modeset.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22615/bat-jsl-2/igt@kms_busy@basic@modeset.html
-    - {fi-ehl-2}:         [PASS][9] -> [DMESG-WARN][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11383/fi-ehl-2/igt@kms_busy@basic@modeset.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22615/fi-ehl-2/igt@kms_busy@basic@modeset.html
-    - {fi-jsl-1}:         [PASS][11] -> [DMESG-WARN][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11383/fi-jsl-1/igt@kms_busy@basic@modeset.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22615/fi-jsl-1/igt@kms_busy@basic@modeset.html
-
-  * igt@runner@aborted:
-    - {fi-rkl-11600}:     NOTRUN -> [FAIL][13]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22615/fi-rkl-11600/igt@runner@aborted.html
-    - {fi-adl-ddr5}:      NOTRUN -> [FAIL][14]
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22615/fi-adl-ddr5/igt@runner@aborted.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_22615 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@cs-gfx:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][15] ([fdo#109271] / [fdo#109315]) +17 similar issues
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22615/fi-hsw-4770/igt@amdgpu/amd_basic@cs-gfx.html
-
-  * igt@amdgpu/amd_cs_nop@sync-fork-compute0:
-    - fi-snb-2600:        NOTRUN -> [SKIP][16] ([fdo#109271]) +17 similar issues
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22615/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c:
-    - fi-pnv-d510:        NOTRUN -> [SKIP][17] ([fdo#109271] / [i915#5341])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22615/fi-pnv-d510/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
-
-  * igt@prime_vgem@basic-userptr:
-    - fi-pnv-d510:        NOTRUN -> [SKIP][18] ([fdo#109271]) +57 similar issues
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22615/fi-pnv-d510/igt@prime_vgem@basic-userptr.html
-
-  * igt@runner@aborted:
-    - fi-bdw-5557u:       NOTRUN -> [FAIL][19] ([i915#2426] / [i915#4312])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22615/fi-bdw-5557u/igt@runner@aborted.html
-    - fi-rkl-guc:         NOTRUN -> [FAIL][20] ([i915#4312])
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22615/fi-rkl-guc/igt@runner@aborted.html
-    - fi-tgl-1115g4:      NOTRUN -> [FAIL][21] ([i915#5257])
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22615/fi-tgl-1115g4/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-hsw-4770:        [INCOMPLETE][22] ([i915#3303]) -> [PASS][23]
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11383/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22615/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-    - fi-snb-2600:        [INCOMPLETE][24] ([i915#3921]) -> [PASS][25]
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11383/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22615/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#1814]: https://gitlab.freedesktop.org/drm/intel/issues/1814
-  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
-  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
-  [i915#3576]: https://gitlab.freedesktop.org/drm/intel/issues/3576
-  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#5257]: https://gitlab.freedesktop.org/drm/intel/issues/5257
-  [i915#5291]: https://gitlab.freedesktop.org/drm/intel/issues/5291
-  [i915#5341]: https://gitlab.freedesktop.org/drm/intel/issues/5341
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_11383 -> Patchwork_22615
-
-  CI-20190529: 20190529
-  CI_DRM_11383: 6e15005a5eec391b0c001d7fe3757f5c8af02d0c @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6386: 0fcd59ad25b2960c0b654f90dfe4dd9e7c7b874d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_22615: 34e038b460c04d09973bb09868ec014071f0b8eb @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-34e038b460c0 drm/i915/display/adlp: Fix programing of PIPE_MBUS_DBOX_CTL
-04369577a128 drm/i915/display: Add HAS_MBUS_JOINING
-ac69a50fd4ef drm/i915/display: Program PIPE_MBUS_DBOX_CTL with adl-p values
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22615/index.html
-
---===============7671968318410654160==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/3] drm/i915/display: Program PIPE_MBUS_DBOX_CTL with adl-p values</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/101545/">https://patchwork.freedesktop.org/series/101545/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22615/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22615/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11383 -&gt; Patchwork_22615</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_22615 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_22615, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22615/index.html</p>
-<h2>Participating hosts (44 -&gt; 41)</h2>
-<p>Additional (1): fi-pnv-d510 <br />
-  Missing    (4): fi-bsw-cyan bat-adlm-1 shard-tglu fi-bdw-samus </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_22615:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@kms_busy@basic@modeset:<ul>
-<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11383/fi-rkl-guc/igt@kms_busy@basic@modeset.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22615/fi-rkl-guc/igt@kms_busy@basic@modeset.html">DMESG-WARN</a> +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>
-<p>igt@kms_busy@basic@flip:</p>
-<ul>
-<li>
-<p>{bat-jsl-1}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11383/bat-jsl-1/igt@kms_busy@basic@flip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22615/bat-jsl-1/igt@kms_busy@basic@flip.html">DMESG-WARN</a> +1 similar issue</p>
-</li>
-<li>
-<p>{bat-adlp-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11383/bat-adlp-6/igt@kms_busy@basic@flip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22615/bat-adlp-6/igt@kms_busy@basic@flip.html">DMESG-WARN</a></p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_busy@basic@modeset:</p>
-<ul>
-<li>
-<p>{bat-jsl-2}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11383/bat-jsl-2/igt@kms_busy@basic@modeset.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22615/bat-jsl-2/igt@kms_busy@basic@modeset.html">DMESG-WARN</a></p>
-</li>
-<li>
-<p>{fi-ehl-2}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11383/fi-ehl-2/igt@kms_busy@basic@modeset.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22615/fi-ehl-2/igt@kms_busy@basic@modeset.html">DMESG-WARN</a></p>
-</li>
-<li>
-<p>{fi-jsl-1}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11383/fi-jsl-1/igt@kms_busy@basic@modeset.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22615/fi-jsl-1/igt@kms_busy@basic@modeset.html">DMESG-WARN</a></p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>
-<p>{fi-rkl-11600}:     NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22615/fi-rkl-11600/igt@runner@aborted.html">FAIL</a></p>
-</li>
-<li>
-<p>{fi-adl-ddr5}:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22615/fi-adl-ddr5/igt@runner@aborted.html">FAIL</a></p>
-</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_22615 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@cs-gfx:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22615/fi-hsw-4770/igt@amdgpu/amd_basic@cs-gfx.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@amdgpu/amd_cs_nop@sync-fork-compute0:</p>
-<ul>
-<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22615/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c:</p>
-<ul>
-<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22615/fi-pnv-d510/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5341">i915#5341</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-userptr:</p>
-<ul>
-<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22615/fi-pnv-d510/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +57 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>
-<p>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22615/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
-</li>
-<li>
-<p>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22615/fi-rkl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
-</li>
-<li>
-<p>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22615/fi-tgl-1115g4/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5257">i915#5257</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>
-<p>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11383/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22615/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a></p>
-</li>
-<li>
-<p>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11383/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22615/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a></p>
-</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11383 -&gt; Patchwork_22615</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11383: 6e15005a5eec391b0c001d7fe3757f5c8af02d0c @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6386: 0fcd59ad25b2960c0b654f90dfe4dd9e7c7b874d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_22615: 34e038b460c04d09973bb09868ec014071f0b8eb @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>34e038b460c0 drm/i915/display/adlp: Fix programing of PIPE_MBUS_DBOX_CTL<br />
-04369577a128 drm/i915/display: Add HAS_MBUS_JOINING<br />
-ac69a50fd4ef drm/i915/display: Program PIPE_MBUS_DBOX_CTL with adl-p values</p>
-
-</body>
-</html>
-
---===============7671968318410654160==--
+-- 
+Ville Syrjälä
+Intel
