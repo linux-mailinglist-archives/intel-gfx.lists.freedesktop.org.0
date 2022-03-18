@@ -2,32 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D0924DD3AD
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Mar 2022 04:43:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AC304DD3E1
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Mar 2022 05:19:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E64F810EAF6;
-	Fri, 18 Mar 2022 03:43:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4CA1210E388;
+	Fri, 18 Mar 2022 04:19:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 881E010EB08;
- Fri, 18 Mar 2022 03:43:44 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 83C8DA882E;
- Fri, 18 Mar 2022 03:43:44 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7419329687955586531=="
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B13510E388
+ for <intel-gfx@lists.freedesktop.org>; Fri, 18 Mar 2022 04:19:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1647577170; x=1679113170;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=oevu1RVkD/3aahCQISDDKnWk/LnhWu70r/LA2LiWjdU=;
+ b=aH5VvHWYG1zWL8kPgTSEGHo2JlnblpRwuyYJr+zb7BvZ3464X/QWvEG4
+ OGASVORjt4uEJ78Pd3FU5BbMQpNOxQVHdKA3e6U+4kpGwV0VQvJAl6AWn
+ O7iiWkcXnC8zAQX1S1v4gvcqVBkzN/JBqI3iLq7buDeUIFtLp9GIvD2IO
+ 4RNyJIE5OYhcQbZrEawzeqs+dj3yio21SCDUwnar/cbl+Ur/k8atCkbXd
+ TVBFbQZueFHfO6I6po658rkEBg6jYnOFxKlZ+QZj3XOPle76GMDhPdy0z
+ kpIvqqdsPeTBShDakTfKhchJciHAUUtnTMTingFNJq8FZYVAioQgSNPq9 Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10289"; a="343478704"
+X-IronPort-AV: E=Sophos;i="5.90,191,1643702400"; d="scan'208";a="343478704"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Mar 2022 21:19:29 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,191,1643702400"; d="scan'208";a="558235583"
+Received: from kandpal.iind.intel.com ([10.190.239.32])
+ by orsmga008.jf.intel.com with ESMTP; 17 Mar 2022 21:19:26 -0700
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 18 Mar 2022 09:48:50 +0530
+Message-Id: <20220318041850.1398135-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220316093740.652925-2-suraj.kandpal@intel.com>
+References: <20220316093740.652925-2-suraj.kandpal@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Andi Shyti" <andi.shyti@linux.intel.com>
-Date: Fri, 18 Mar 2022 03:43:44 -0000
-Message-ID: <164757502450.31586.11638769982141051408@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220318021046.40348-1-andi.shyti@linux.intel.com>
-In-Reply-To: <20220318021046.40348-1-andi.shyti@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgSW50?=
- =?utf-8?q?roduce_multitile_support?=
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [RFC PATCH v2 1/3] drm/i915: Creating writeback
+ pipeline to bypass drm_writeback framework
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,237 +57,484 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============7419329687955586531==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Changes to create a i915 private pipeline to enable the WD transcoder
+without relying on the current drm_writeback framework.
 
-== Series Details ==
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+---
+ drivers/gpu/drm/i915/Makefile                 |   1 +
+ .../drm/i915/display/intel_display_types.h    |   4 +
+ .../gpu/drm/i915/display/intel_wb_connector.c | 296 ++++++++++++++++++
+ .../gpu/drm/i915/display/intel_wb_connector.h |  99 ++++++
+ drivers/gpu/drm/i915/i915_drv.h               |   3 +
+ 5 files changed, 403 insertions(+)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_wb_connector.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_wb_connector.h
 
-Series: Introduce multitile support
-URL   : https://patchwork.freedesktop.org/series/101520/
-State : success
+diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+index 1a771ee5b1d0..087bd9d1b397 100644
+--- a/drivers/gpu/drm/i915/Makefile
++++ b/drivers/gpu/drm/i915/Makefile
+@@ -286,6 +286,7 @@ i915-y += \
+ 	display/intel_tv.o \
+ 	display/intel_vdsc.o \
+ 	display/intel_vrr.o \
++	display/intel_wb_connector.o\
+ 	display/vlv_dsi.o \
+ 	display/vlv_dsi_pll.o
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index d84e82f3eab9..7a96ecba73c0 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -52,6 +52,7 @@
+ #include "intel_display_power.h"
+ #include "intel_dpll_mgr.h"
+ #include "intel_pm_types.h"
++#include "intel_wb_connector.h"
+ 
+ struct drm_printer;
+ struct __intel_global_objs_state;
+@@ -537,11 +538,14 @@ struct intel_connector {
+ 	struct work_struct modeset_retry_work;
+ 
+ 	struct intel_hdcp hdcp;
++
++	struct intel_writeback_connector wb_conn;
+ };
+ 
+ struct intel_digital_connector_state {
+ 	struct drm_connector_state base;
+ 
++	struct intel_writeback_job *job;
+ 	enum hdmi_force_audio force_audio;
+ 	int broadcast_rgb;
+ };
+diff --git a/drivers/gpu/drm/i915/display/intel_wb_connector.c b/drivers/gpu/drm/i915/display/intel_wb_connector.c
+new file mode 100644
+index 000000000000..65f4abef53d0
+--- /dev/null
++++ b/drivers/gpu/drm/i915/display/intel_wb_connector.c
+@@ -0,0 +1,296 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Copyright © 2022 Intel Corporation
++ *
++ * Permission is hereby granted, free of charge, to any person obtaining a
++ * copy of this software and associated documentation files (the "Software"),
++ * to deal in the Software without restriction, including without limitation
++ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
++ * and/or sell copies of the Software, and to permit persons to whom the
++ * Software is furnished to do so, subject to the following conditions:
++ *
++ * The above copyright notice and this permission notice (including the next
++ * paragraph) shall be included in all copies or substantial portions of the
++ * Software.
++ *
++ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
++ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
++ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
++ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
++ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
++ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
++ * IN THE SOFTWARE.
++ *
++ * Authors:
++ *	Suraj Kandpal <suraj.kandpal@intel.com>
++ *	Arun Murthy <arun.r.murthy@intel.com>
++ *
++ */
++
++
++#include <linux/dma-fence.h>
++
++#include <drm/drm_crtc.h>
++#include <drm/drm_device.h>
++#include <drm/drm_drv.h>
++#include <drm/drm_modeset_helper_vtables.h>
++#include <drm/drm_property.h>
++
++#include "i915_drv.h"
++#include "intel_wb_connector.h"
++#include "intel_display_types.h"
++
++#define fence_to_wb_connector(x) container_of(x->lock, \
++					      struct intel_writeback_connector, \
++					      fence_lock)
++
++static const char *intel_writeback_fence_get_driver_name(struct dma_fence *fence)
++{
++	struct intel_writeback_connector *wb_connector =
++		fence_to_wb_connector(fence);
++
++	return wb_connector->base->dev->driver->name;
++}
++
++static const char *
++intel_writeback_fence_get_timeline_name(struct dma_fence *fence)
++{
++	struct intel_writeback_connector *wb_connector =
++		fence_to_wb_connector(fence);
++
++	return wb_connector->timeline_name;
++}
++
++static bool intel_writeback_fence_enable_signaling(struct dma_fence *fence)
++{
++	return true;
++}
++
++static const struct dma_fence_ops intel_writeback_fence_ops = {
++	.get_driver_name = intel_writeback_fence_get_driver_name,
++	.get_timeline_name = intel_writeback_fence_get_timeline_name,
++	.enable_signaling = intel_writeback_fence_enable_signaling,
++};
++
++static int intel_create_writeback_properties(struct drm_device *dev)
++{
++	struct drm_property *prop;
++	struct drm_i915_private *i915 = to_i915(dev);
++
++	if (!i915->wb_fb_id_property) {
++		prop = drm_property_create_object(dev, DRM_MODE_PROP_ATOMIC,
++						"WRITEBACK_FB_ID",
++						DRM_MODE_OBJECT_FB);
++		if (!prop)
++			return -ENOMEM;
++		i915->wb_fb_id_property = prop;
++	}
++
++	if (!i915->wb_pixel_formats_property) {
++		prop = drm_property_create(dev, DRM_MODE_PROP_BLOB |
++					DRM_MODE_PROP_ATOMIC |
++					DRM_MODE_PROP_IMMUTABLE,
++					"WRITEBACK_PIXEL_FORMATS", 0);
++		if (!prop)
++			return -ENOMEM;
++		i915->wb_pixel_formats_property = prop;
++	}
++
++	if (!i915->wb_out_fence_ptr_property) {
++		prop = drm_property_create_range(dev, DRM_MODE_PROP_ATOMIC,
++						"WRITEBACK_OUT_FENCE_PTR", 0,
++						U64_MAX);
++		if (!prop)
++			return -ENOMEM;
++		i915->wb_out_fence_ptr_property = prop;
++	}
++
++	return 0;
++}
++
++static const struct drm_encoder_funcs intel_writeback_encoder_funcs = {
++	.destroy = drm_encoder_cleanup,
++};
++
++int intel_writeback_connector_init(struct drm_device *dev,
++				 struct intel_writeback_connector *wb_connector,
++				 const struct drm_connector_funcs *con_funcs,
++				 const struct drm_encoder_helper_funcs *enc_helper_funcs,
++				 const u32 *formats, int n_formats)
++{
++	struct drm_property_blob *blob;
++	struct drm_i915_private *i915 = to_i915(dev);
++	struct drm_connector *connector = wb_connector->base;
++	int ret;
++
++	drm_dbg_kms(&i915->drm, "\n");
++	ret = intel_create_writeback_properties(dev);
++
++	if (ret != 0)
++		return ret;
++
++	blob = drm_property_create_blob(dev, n_formats * sizeof(*formats),
++					formats);
++	if (IS_ERR(blob))
++		return PTR_ERR(blob);
++
++	drm_encoder_helper_add(wb_connector->encoder, enc_helper_funcs);
++	ret = drm_encoder_init(dev, wb_connector->encoder,
++			&intel_writeback_encoder_funcs,
++			DRM_MODE_ENCODER_VIRTUAL, NULL);
++	if (ret)
++		goto fail;
++
++	connector->interlace_allowed = 0;
++
++	ret = drm_connector_init(dev, connector, con_funcs,
++				DRM_MODE_CONNECTOR_WRITEBACK);
++	if (ret)
++		goto connector_fail;
++
++	ret = drm_connector_attach_encoder(connector,
++					wb_connector->encoder);
++	if (ret)
++		goto attach_fail;
++
++	INIT_LIST_HEAD(&wb_connector->job_queue);
++	spin_lock_init(&wb_connector->job_lock);
++
++	wb_connector->fence_context = dma_fence_context_alloc(1);
++	spin_lock_init(&wb_connector->fence_lock);
++	snprintf(wb_connector->timeline_name,
++		sizeof(wb_connector->timeline_name),
++		"CONNECTOR:%d-%s", connector->base.id, connector->name);
++
++	drm_object_attach_property(&connector->base,
++				i915->wb_out_fence_ptr_property, 0);
++
++	drm_object_attach_property(&connector->base,
++				i915->wb_fb_id_property, 0);
++
++	drm_object_attach_property(&connector->base,
++				i915->wb_pixel_formats_property,
++				blob->base.id);
++	wb_connector->pixel_formats_blob_ptr = blob;
++
++	return 0;
++
++attach_fail:
++	drm_connector_cleanup(connector);
++connector_fail:
++	drm_encoder_cleanup(wb_connector->encoder);
++fail:
++	drm_property_blob_put(blob);
++	return ret;
++}
++
++void intel_writeback_queue_job(struct intel_writeback_connector *wb_connector,
++		struct drm_connector_state *conn_state)
++{
++	struct intel_writeback_job *wb_job;
++	struct intel_digital_connector_state *intel_conn_state =
++		to_intel_digital_connector_state(conn_state);
++	unsigned long flags;
++
++	wb_job = intel_conn_state->job;
++	intel_conn_state->job = NULL;
++
++	spin_lock_irqsave(&wb_connector->job_lock, flags);
++	list_add_tail(&wb_job->list_entry, &wb_connector->job_queue);
++	spin_unlock_irqrestore(&wb_connector->job_lock, flags);
++}
++
++int intel_writeback_set_fb(struct drm_connector_state *conn_state,
++			 struct drm_framebuffer *fb)
++{
++	struct intel_connector *intel_connector = to_intel_connector(conn_state->connector);
++	struct intel_writeback_connector *wb_connector = &intel_connector->wb_conn;
++	struct intel_digital_connector_state *intel_conn_state =
++		to_intel_digital_connector_state(conn_state);
++	WARN_ON(conn_state->connector->connector_type != DRM_MODE_CONNECTOR_WRITEBACK);
++
++	if (!intel_conn_state->job) {
++		intel_conn_state->job =
++			kzalloc(sizeof(*intel_conn_state->job), GFP_KERNEL);
++		if (!intel_conn_state->job)
++			return -ENOMEM;
++
++		intel_conn_state->job->connector = wb_connector;
++	}
++
++	drm_framebuffer_assign(&intel_conn_state->job->fb, fb);
++	return 0;
++}
++
++void intel_writeback_cleanup_job(struct intel_writeback_job *job)
++{
++	if (job->fb)
++		drm_framebuffer_put(job->fb);
++
++	if (job->out_fence)
++		dma_fence_put(job->out_fence);
++
++	kfree(job);
++}
++
++static void cleanup_work(struct work_struct *work)
++{
++	struct intel_writeback_job *job = container_of(work,
++						struct intel_writeback_job,
++						cleanup_work);
++
++	intel_writeback_cleanup_job(job);
++}
++
++void
++intel_writeback_signal_completion(struct intel_writeback_connector *wb_connector,
++				int status)
++{
++	unsigned long flags;
++	struct intel_writeback_job *job;
++	struct dma_fence *out_fence;
++
++	spin_lock_irqsave(&wb_connector->job_lock, flags);
++	job = list_first_entry_or_null(&wb_connector->job_queue,
++					struct intel_writeback_job,
++					list_entry);
++	if (job)
++		list_del(&job->list_entry);
++
++	spin_unlock_irqrestore(&wb_connector->job_lock, flags);
++
++	if (WARN_ON(!job))
++		return;
++
++	out_fence = job->out_fence;
++	if (out_fence) {
++		if (status)
++			dma_fence_set_error(out_fence, status);
++		dma_fence_signal(out_fence);
++		dma_fence_put(out_fence);
++		job->out_fence = NULL;
++	}
++
++	INIT_WORK(&job->cleanup_work, cleanup_work);
++	queue_work(system_long_wq, &job->cleanup_work);
++}
++
++struct dma_fence *
++intel_writeback_get_out_fence(struct intel_writeback_connector *wb_connector)
++{
++	struct dma_fence *fence;
++
++	if (WARN_ON(wb_connector->base->connector_type !=
++		DRM_MODE_CONNECTOR_WRITEBACK))
++		return NULL;
++
++	fence = kzalloc(sizeof(*fence), GFP_KERNEL);
++	if (!fence)
++		return NULL;
++
++	dma_fence_init(fence, &intel_writeback_fence_ops,
++		&wb_connector->fence_lock, wb_connector->fence_context,
++		++wb_connector->fence_seqno);
++
++	return fence;
++}
+diff --git a/drivers/gpu/drm/i915/display/intel_wb_connector.h b/drivers/gpu/drm/i915/display/intel_wb_connector.h
+new file mode 100644
+index 000000000000..71142457b7c1
+--- /dev/null
++++ b/drivers/gpu/drm/i915/display/intel_wb_connector.h
+@@ -0,0 +1,99 @@
++/* SPDX-License-Identifier: GPL-2.0
++ * Copyright © 2022 Intel Corporation
++ *
++ * Permission is hereby granted, free of charge, to any person obtaining a
++ * copy of this software and associated documentation files (the "Software"),
++ * to deal in the Software without restriction, including without limitation
++ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
++ * and/or sell copies of the Software, and to permit persons to whom the
++ * Software is furnished to do so, subject to the following conditions:
++ *
++ * The above copyright notice and this permission notice (including the next
++ * paragraph) shall be included in all copies or substantial portions of the
++ * Software.
++ *
++ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
++ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
++ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
++ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
++ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
++ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
++ * IN THE SOFTWARE.
++ *
++ * Authors:
++ *	Suraj Kandpal <suraj.kandpal@intel.com>
++ *	Arun Murthy <arun.r.murthy@intel.com>
++ *
++ */
++
++#ifndef __INTEL_WB_CONNECTOR_H__
++#define __INTEL_WB_CONNECTOR_H__
++
++#include <drm/drm_connector.h>
++#include <drm/drm_encoder.h>
++#include <linux/workqueue.h>
++#include "intel_display.h"
++
++/**
++ * struct intel_writeback_connector - Intel writeback connector
++ * to get a idea of each individual variable please look at
++ * documentation in drm_writeback.h we emulate the same structure
++ * ditto for intel_writeback_job structure.
++ */
++struct intel_writeback_connector {
++	struct drm_connector *base;
++	struct drm_encoder *encoder;
++	struct drm_property_blob *pixel_formats_blob_ptr;
++	spinlock_t job_lock;
++	struct list_head job_queue;
++	unsigned int fence_context;
++	spinlock_t fence_lock;
++	unsigned long fence_seqno;
++	char timeline_name[32];
++};
++
++/**
++ * struct intel_writeback_job - DRM writeback job
++ */
++struct intel_writeback_job {
++	struct intel_writeback_connector *connector;
++	bool *prepared;
++	struct work_struct cleanup_work;
++	struct list_head list_entry;
++	struct drm_framebuffer *fb;
++	struct dma_fence *out_fence;
++	void *priv;
++};
++
++int intel_writeback_connector_init(struct drm_device *dev,
++			struct intel_writeback_connector *wb_connector,
++			const struct drm_connector_funcs *con_funcs,
++			const struct drm_encoder_helper_funcs *enc_helper_funcs,
++			const u32 *formats, int n_formats);
++
++int intel_writeback_set_fb(struct drm_connector_state *conn_state,
++			struct drm_framebuffer *fb);
++
++int intel_writeback_prepare_job(struct intel_writeback_job *job);
++
++void intel_writeback_queue_job(struct intel_writeback_connector *wb_connector,
++			struct drm_connector_state *conn_state);
++
++void intel_writeback_cleanup_job(struct intel_writeback_job *job);
++
++void
++intel_writeback_signal_completion(struct intel_writeback_connector *wb_connector,
++			int status);
++
++struct dma_fence *
++intel_writeback_get_out_fence(struct intel_writeback_connector *wb_connector);
++struct intel_wb_connector *intel_wb_connector_alloc(void);
++void intel_wb_connector_free(struct intel_wb_connector *connector);
++void intel_wb_connector_destroy(struct drm_connector *connector);
++bool intel_wb_connector_get_hw_state(struct intel_wb_connector *connector);
++enum pipe intel_wb_connector_get_pipe(struct intel_wb_connector *connector);
++void intel_wb_connector_attach_encoder(struct intel_wb_connector *connector,
++					struct intel_encoder *encoder);
++
++#endif /* __INTEL_WB_CONNECTOR_H__ */
++
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 26df561a4e94..9a86ee88089e 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -678,6 +678,9 @@ struct drm_i915_private {
+ 
+ 	struct drm_property *broadcast_rgb_property;
+ 	struct drm_property *force_audio_property;
++	struct drm_property *wb_fb_id_property;
++	struct drm_property *wb_out_fence_ptr_property;
++	struct drm_property *wb_pixel_formats_property;
+ 
+ 	u32 fdi_rx_config;
+ 
+-- 
+2.35.1
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_11379 -> Patchwork_22603
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22603/index.html
-
-Participating hosts (49 -> 42)
-------------------------------
-
-  Missing    (7): fi-rkl-guc shard-tglu bat-adlm-1 fi-bsw-cyan shard-rkl bat-jsl-2 fi-bdw-samus 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_22603 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@semaphore:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][1] ([fdo#109271] / [fdo#109315]) +17 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22603/fi-hsw-4770/igt@amdgpu/amd_basic@semaphore.html
-
-  * igt@i915_selftest@live@gt_engines:
-    - bat-dg1-5:          [PASS][2] -> [INCOMPLETE][3] ([i915#4418])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11379/bat-dg1-5/igt@i915_selftest@live@gt_engines.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22603/bat-dg1-5/igt@i915_selftest@live@gt_engines.html
-
-  * igt@runner@aborted:
-    - bat-dg1-5:          NOTRUN -> [FAIL][4] ([i915#4312] / [i915#5257])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22603/bat-dg1-5/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_engines:
-    - {bat-rpls-2}:       [DMESG-WARN][5] ([i915#4391]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11379/bat-rpls-2/igt@i915_selftest@live@gt_engines.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22603/bat-rpls-2/igt@i915_selftest@live@gt_engines.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-hsw-4770:        [INCOMPLETE][7] ([i915#4785]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11379/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22603/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-    - {fi-ehl-2}:         [INCOMPLETE][9] ([i915#5153]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11379/fi-ehl-2/igt@i915_selftest@live@hangcheck.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22603/fi-ehl-2/igt@i915_selftest@live@hangcheck.html
-
-  
-#### Warnings ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-dg1-6:          [DMESG-FAIL][11] ([i915#4494] / [i915#4957]) -> [DMESG-FAIL][12] ([i915#4957])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11379/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22603/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [i915#3576]: https://gitlab.freedesktop.org/drm/intel/issues/3576
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4391]: https://gitlab.freedesktop.org/drm/intel/issues/4391
-  [i915#4418]: https://gitlab.freedesktop.org/drm/intel/issues/4418
-  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
-  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
-  [i915#4957]: https://gitlab.freedesktop.org/drm/intel/issues/4957
-  [i915#5153]: https://gitlab.freedesktop.org/drm/intel/issues/5153
-  [i915#5257]: https://gitlab.freedesktop.org/drm/intel/issues/5257
-  [i915#5337]: https://gitlab.freedesktop.org/drm/intel/issues/5337
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_11379 -> Patchwork_22603
-
-  CI-20190529: 20190529
-  CI_DRM_11379: 0ff019c46b7ccbb8e14b757578cf2b24ab00100a @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6385: f3df40281d93d5a63ee98fa30e90852d780673c9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_22603: edaf552ed5dc8140fc94fafdb29b966e2001d2c3 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-edaf552ed5dc drm/i915/gt: Adding new sysfs frequency attributes
-7557c24341c1 drm/i915/gt: Create per-tile RPS sysfs interfaces
-ae068b952ed3 drm/i915/gt: Create per-tile RC6 sysfs interface
-cf66f69b18fb drm/i915/gt: create per-tile sysfs interface
-bd82c25c94b3 drm/i915: Prepare for multiple GTs
-bccf33639b42 drm/i915/gt: add gt_is_root() helper
-c8d744572c07 drm/i915: Rename INTEL_REGION_LMEM with INTEL_REGION_LMEM_0
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22603/index.html
-
---===============7419329687955586531==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Introduce multitile support</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/101520/">https://patchwork.freedesktop.org/series/101520/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22603/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22603/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11379 -&gt; Patchwork_22603</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22603/index.html</p>
-<h2>Participating hosts (49 -&gt; 42)</h2>
-<p>Missing    (7): fi-rkl-guc shard-tglu bat-adlm-1 fi-bsw-cyan shard-rkl bat-jsl-2 fi-bdw-samus </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_22603 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@semaphore:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22603/fi-hsw-4770/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_engines:</p>
-<ul>
-<li>bat-dg1-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11379/bat-dg1-5/igt@i915_selftest@live@gt_engines.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22603/bat-dg1-5/igt@i915_selftest@live@gt_engines.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4418">i915#4418</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22603/bat-dg1-5/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5257">i915#5257</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_engines:</p>
-<ul>
-<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11379/bat-rpls-2/igt@i915_selftest@live@gt_engines.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4391">i915#4391</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22603/bat-rpls-2/igt@i915_selftest@live@gt_engines.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>
-<p>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11379/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22603/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a></p>
-</li>
-<li>
-<p>{fi-ehl-2}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11379/fi-ehl-2/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5153">i915#5153</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22603/fi-ehl-2/igt@i915_selftest@live@hangcheck.html">PASS</a></p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@i915_selftest@live@hangcheck:<ul>
-<li>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11379/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22603/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11379 -&gt; Patchwork_22603</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11379: 0ff019c46b7ccbb8e14b757578cf2b24ab00100a @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6385: f3df40281d93d5a63ee98fa30e90852d780673c9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_22603: edaf552ed5dc8140fc94fafdb29b966e2001d2c3 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>edaf552ed5dc drm/i915/gt: Adding new sysfs frequency attributes<br />
-7557c24341c1 drm/i915/gt: Create per-tile RPS sysfs interfaces<br />
-ae068b952ed3 drm/i915/gt: Create per-tile RC6 sysfs interface<br />
-cf66f69b18fb drm/i915/gt: create per-tile sysfs interface<br />
-bd82c25c94b3 drm/i915: Prepare for multiple GTs<br />
-bccf33639b42 drm/i915/gt: add gt_is_root() helper<br />
-c8d744572c07 drm/i915: Rename INTEL_REGION_LMEM with INTEL_REGION_LMEM_0</p>
-
-</body>
-</html>
-
---===============7419329687955586531==--
