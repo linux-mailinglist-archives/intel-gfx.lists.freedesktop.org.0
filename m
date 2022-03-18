@@ -2,32 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7FFC4DD4D6
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Mar 2022 07:42:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EF6F4DD4C4
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Mar 2022 07:41:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D56A410E98C;
-	Fri, 18 Mar 2022 06:42:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 01C7610E92E;
+	Fri, 18 Mar 2022 06:40:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 613A210E98C;
- Fri, 18 Mar 2022 06:42:28 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 5D7A3AA0EB;
- Fri, 18 Mar 2022 06:42:28 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6339070779610768102=="
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1EA2010E4F0;
+ Fri, 18 Mar 2022 06:40:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1647585647; x=1679121647;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=/Wb3xpooDyYT4vFhkwqfbbu/oRaRja8t8G/Rj+bAQK0=;
+ b=HV0DB5d8tF6IPLd0jwsQZnpheeuwQrTlDvxErsuJiMp6Ss6/Q0I0DHQz
+ W+BKYmInsjJCmba1TsL/kAaeiywZwfS2VfhctC/HkFBspAKx0Y2s2hxx3
+ vzD/CEtcf5Mn4JBDrVxuQtdYzfgqt9HvHbolyxmp1AyzLnBpfDrKlRFST
+ UfhlZKgwEDmEFZyLNPekouujAe9cPADgI+zepSvs0bXQEZ7NVNr9rjmDz
+ bG8uaChFpj8SV0iERgNAnPYkX7IX8Fk8cJEh1vpsayMLCssQ511mNBWlo
+ QeLKI/3d31JfuTbzDp3vOroO1iIsjQ6V3fYiUs/Ex/65QIXmnX9FMLWq6 g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10289"; a="317787146"
+X-IronPort-AV: E=Sophos;i="5.90,191,1643702400"; d="scan'208";a="317787146"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Mar 2022 23:40:29 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,191,1643702400"; d="scan'208";a="691205004"
+Received: from aalteres-desk.fm.intel.com ([10.80.57.53])
+ by fmsmga001.fm.intel.com with ESMTP; 17 Mar 2022 23:40:29 -0700
+From: Alan Previn <alan.previn.teres.alexis@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 17 Mar 2022 23:42:47 -0700
+Message-Id: <20220318064300.1831909-1-alan.previn.teres.alexis@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: fei.yang@intel.com
-Date: Fri, 18 Mar 2022 06:42:28 -0000
-Message-ID: <164758574837.31589.50704874299274716@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220318052619.3429370-1-fei.yang@intel.com>
-In-Reply-To: <20220318052619.3429370-1-fei.yang@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_avoid_concurrent_writes_to_aux=5Finv_=28rev7=29?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v12 00/13] Add GuC Error Capture Support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,304 +53,205 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Alan Previn <alan.previn.teres.alexis@intel.com>,
+ Jani Nikula <jani.nikula@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============6339070779610768102==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+This series:
+  1. Enables support of GuC to report error-state-capture
+     using a list of MMIO registers the driver registers
+     and GuC will dump, log and notify right before a GuC
+     triggered engine-reset event.
+  2. Updates the ADS blob creation to register said lists
+     of global, engine class and engine instance registers
+     with GuC.
+  3. Defines tables of register lists that are global or
+     engine class or engine instance in scope.
+  4. Updates usage and buffer-state data for the regions
+     of the shared GuC log-buffer to accomdate both
+     the existing relay logging of general debug logs
+     along with the new error state capture usage.
+  5. Using a pool of preallocated memory, provide ability
+     to extract and format the GuC reported register-capture
+     data into chunks consistent with existing i915 error-
+     state collection flows and structures.
+  6. Connects the i915_gpu_coredump reporting function
+     to the GuC error capture module to print all GuC
+     error state capture dumps that is reported.
 
-== Series Details ==
+This is the 9th rev of changes in this series where the
+first 3 revs are RFC and revs #10 through to 12 are repeats
 
-Series: drm/i915: avoid concurrent writes to aux_inv (rev7)
-URL   : https://patchwork.freedesktop.org/series/100772/
-State : failure
+Prior receipts of rvb's:
+  - Patch #2, #3, #4, #5, #10, #11, #12, #13 have received
+    R-v-b's from Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+  - Patch #1, #6, #7, #8, #9 has received an R-v-b from Matthew Brost
+    <matthew.brost@intel.com>. NOTE: some of these came in on the
+    trybot series. https://patchwork.freedesktop.org/series/100831/
 
-== Summary ==
+Changes from prior revs:
+  v12:- Re-sending it because previous revs only got to intel-gfx,
+        and only cover letter was in dri-devel. Also rebased again.
+  v11:- Rebase again on latest drm-tip to fix merge error.
+  v10:- Rebase on latest drm-tip again. Fix a number of checkpatch
+        warnings and an error Reported-by: kernel test robot <lkp@intel.com>.
+  v9: - Rebase on latest drm-tip to solve CI merge-build error.
+  v8: - Fix a bug found by CI in rev7: Create a cached ADS
+        capture list for null-header like the other lists.
+      - Fixed a bug on the ggtt offset calculation in the
+        ADS population loop. Thanks to Matt Brost.
+      - Change the storage uses for initial allocation and
+        caching of the ADS register lists so we only store
+        a regular pointer instead of file handle.
+      - Multiple improvements on code styling, variable names,
+        comments and code reduction from Umesh suggestions
+        across multiple patches.
 
-CI Bug Log - changes from CI_DRM_11380 -> Patchwork_22606
-====================================================
+  v7: - Rebased on lastest drm_tip that has the ADS now using
+        shmem based ads_blob_write utilities. Stress test
+        was performed with this patch included to fix a
+        legacy bug:
+        https://patchwork.freedesktop.org/series/100768/
 
-Summary
--------
+  v6: - In patch #1, ADS reg-list population, we now alloc
+        regular memory to create the lists and cache them for
+        simpler and faster use by GuC ADS module at init, 
+        suspend-resume and reset cycles. This was in response
+        to review comments from Lucas De Marchi that also
+        wanted to ensure the GuC ADS module owns the final
+        copying into the ADS phyical memory.
+      - Thanks to Jani Nikula for pointing out that patch #2
+        and #3 should ensure static tables as constant and
+        dynamic lists should be allocated and cached but
+        attached to the GT level for the case of multiple
+        cards with different fusings for steered registers.
+        These are addressed now along with multiple code
+        style fixups (thanks to review comment from Umesh)
+        and splitting the steered register list generation
+        as a seperate patch.
+      - The extraction functionality, Patch #10 and #11 (was
+        patch #7), has fixed all of Umesh's review comments
+        related to the code styling. Additionally, it was
+        discovered during stress tests that the extraction
+        function could be called by the ct processing thread
+        at the same time as the start of a GT reset event.
+        Thus, a redesign was done whereby the linked list of
+        processed capture-output-nodes are allocated up
+        front and reused throughout the driver's life to
+        ensure no memory locks are taken during extraction.
+      - For patch #6 (now 7, 8 and 9), updates to
+        intel_guc_log was split into smaller chunks and the
+        log_state structure was returned back to inside of
+        the intel_guc_log struct as opposed to the
+        intel_guc struct in prior rev. This is in response
+        to review comments by Matt Brost.
+      - #Patch 13 (previously #10) is mostly identical but
+        addresses all of the code styling comments reviews
+        from Umesh.
+        
+  v5: - Added Gen9->Gen11 register list for CI coverage that
+        included Gen9 with GuC submission.
+      - Redesigned the extraction of the GuC error-capture
+        dumps by grouping them into complete per-engine-reset
+        nodes. Complete here means each node includes the
+        global, engine-class and engine-instance register
+        lists in a single structure.
+      - Extraction is decoupled from the print-out. We now
+        do the extraction immediately when receiving the
+        G2H for error-capture notification. A link list of
+        nodes is maintained with a FIFO based threshold
+        while awaiting retrieval from i915_gpu_coredump's
+        capture_engine function.
+      - Added new plumbing through the i915_gpu_coredump
+        allocation and capture functions to include a flag
+        that is used indicate that GuC had triggered the
+        reset. This new plumbing guarantees an exact match
+        from i915_gpu_coredump's per-engine vma recording
+        and node-retrieval from the guc-error-capture.
+      - Broke the coredump gt_global capture and recording
+        functions into smaller subsets so we can reuse as
+        much of the existing legacy register reading + printing
+        functions and only rely on GuC error-capture for
+        the smaller subset of registers that are tied to
+        engine workload execution.
+      - Updated the register list to follow the legacy execlist
+        format of printout.
+  v4:
+      - Rebased on latest drm-tip that has been merged with the
+        support of GuC firmware version 69.0.3 that is required
+        for GuC error-state-catpure to work.
+      - Added register list for DG2 which is the same as XE_LP
+        except an additional steering register set.
+      - Fixed a bug in the end of capture parsing loop in
+        intel_guc_capture_out_print_next_group that was not
+        properly comparing the engine-instance and engine-
+        class being parsed against the one that triggered
+        the i915_gpu_coredump.
+  v3:
+      - Fixed all review comments from rev2 except the following:
+          - Michal Wajdeczko proposed adding a seperate function
+            to lookup register string nameslookup (based on offset)
+            but decided against it because of offset conflicts
+            and the current table layout is easier to maintain.
+          - Last set of checkpatch errors pertaining to "COMPLEX
+            MACROS" should be fixed on next rev.
+      - Abstracted internal-to-guc-capture information into a new
+        __guc_state_capture_priv structure that allows the exclusion
+        of intel_guc.h and intel_guc_fwif.h from intel_guc_capture.h.
+        Now, only the first 2 patches have a wider build time
+        impact because of the changes to intel_guc_fwif.h but
+        subsequent changes to guc-capture internal structures
+        or firmware interfaces used solely by guc-capture module
+        shoudn't impact the rest of the driver build.
+      - Added missing Gen12LP registers and added slice+subslice
+        indices when reporting extended steered registers.
+      - Add additional checks to ensure that the GuC reported
+        error capture information matches the i915_gpu_coredump
+        that is being printed before we print out the corresponding
+        VMA dumps such as the batch buffer.
+   v2:
+      - Ignore - failed CI retest.
 
-  **FAILURE**
+Alan Previn (13):
+  drm/i915/guc: Update GuC ADS size for error capture lists
+  drm/i915/guc: Add XE_LP static registers for GuC error capture.
+  drm/i915/guc: Add XE_LP steered register lists support
+  drm/i915/guc: Add DG2 registers for GuC error state capture.
+  drm/i915/guc: Add Gen9 registers for GuC error state capture.
+  drm/i915/guc: Add GuC's error state capture output structures.
+  drm/i915/guc: Update GuC-log relay function names
+  drm/i915/guc: Add capture region into intel_guc_log
+  drm/i915/guc: Check sizing of guc_capture output
+  drm/i915/guc: Extract GuC error capture lists on G2H notification.
+  drm/i915/guc: Pre-allocate output nodes for extraction
+  drm/i915/guc: Plumb GuC-capture into gpu_coredump
+  drm/i915/guc: Print the GuC error capture output register list.
 
-  Serious unknown changes coming with Patchwork_22606 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_22606, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+ drivers/gpu/drm/i915/Makefile                 |    1 +
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     |    4 +-
+ .../drm/i915/gt/intel_execlists_submission.c  |    4 +-
+ drivers/gpu/drm/i915/gt/intel_reset.c         |    2 +-
+ .../gpu/drm/i915/gt/uc/abi/guc_actions_abi.h  |    7 +
+ drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h |  218 +++
+ drivers/gpu/drm/i915/gt/uc/intel_guc.c        |   13 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc.h        |   12 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c    |  127 +-
+ .../gpu/drm/i915/gt/uc/intel_guc_capture.c    | 1655 +++++++++++++++++
+ .../gpu/drm/i915/gt/uc/intel_guc_capture.h    |   33 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h   |   14 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_log.c    |  127 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_log.h    |    7 +-
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c |   18 +-
+ drivers/gpu/drm/i915/i915_debugfs.c           |    3 +-
+ drivers/gpu/drm/i915/i915_gpu_error.c         |  282 ++-
+ drivers/gpu/drm/i915/i915_gpu_error.h         |   35 +-
+ 18 files changed, 2379 insertions(+), 183 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h
+ create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
+ create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_guc_capture.h
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22606/index.html
+-- 
+2.25.1
 
-Participating hosts (47 -> 45)
-------------------------------
-
-  Additional (3): bat-adlm-1 bat-jsl-2 fi-pnv-d510 
-  Missing    (5): shard-tglu bat-dg1-5 fi-bsw-cyan shard-rkl fi-bdw-samus 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_22606:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:
-    - fi-tgl-1115g4:      [PASS][1] -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11380/fi-tgl-1115g4/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22606/fi-tgl-1115g4/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
-
-  
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@i915_selftest@live@hangcheck:
-    - {bat-jsl-2}:        NOTRUN -> [INCOMPLETE][3]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22606/bat-jsl-2/igt@i915_selftest@live@hangcheck.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_22606 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-pnv-d510:        NOTRUN -> [SKIP][4] ([fdo#109271]) +57 similar issues
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22606/fi-pnv-d510/igt@gem_huc_copy@huc-copy.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-dg1-6:          [PASS][5] -> [DMESG-FAIL][6] ([i915#4494] / [i915#4957])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11380/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22606/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
-    - fi-bdw-5557u:       NOTRUN -> [INCOMPLETE][7] ([i915#3921])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22606/fi-bdw-5557u/igt@i915_selftest@live@hangcheck.html
-
-  * igt@kms_chamelium@vga-edid-read:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][8] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22606/fi-bdw-5557u/igt@kms_chamelium@vga-edid-read.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c:
-    - fi-pnv-d510:        NOTRUN -> [SKIP][9] ([fdo#109271] / [i915#5341])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22606/fi-pnv-d510/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
-    - fi-cfl-8109u:       [PASS][10] -> [DMESG-WARN][11] ([i915#295] / [i915#5341])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11380/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22606/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
-
-  * igt@kms_pipe_crc_basic@read-crc-pipe-b:
-    - fi-cfl-8109u:       [PASS][12] -> [DMESG-WARN][13] ([i915#295]) +11 similar issues
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11380/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22606/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
-
-  * igt@kms_setmode@basic-clone-single-crtc:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][14] ([fdo#109271]) +14 similar issues
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22606/fi-bdw-5557u/igt@kms_setmode@basic-clone-single-crtc.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - {bat-rpls-2}:       [DMESG-WARN][15] ([i915#4391]) -> [PASS][16] +1 similar issue
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11380/bat-rpls-2/igt@i915_pm_rpm@module-reload.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22606/bat-rpls-2/igt@i915_pm_rpm@module-reload.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#111825]: https://bugs.freedesktop.org/show_bug.cgi?id=111825
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
-  [i915#295]: https://gitlab.freedesktop.org/drm/intel/issues/295
-  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
-  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#3576]: https://gitlab.freedesktop.org/drm/intel/issues/3576
-  [i915#3637]: https://gitlab.freedesktop.org/drm/intel/issues/3637
-  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-  [i915#4391]: https://gitlab.freedesktop.org/drm/intel/issues/4391
-  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#4957]: https://gitlab.freedesktop.org/drm/intel/issues/4957
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
-  [i915#5338]: https://gitlab.freedesktop.org/drm/intel/issues/5338
-  [i915#5339]: https://gitlab.freedesktop.org/drm/intel/issues/5339
-  [i915#5341]: https://gitlab.freedesktop.org/drm/intel/issues/5341
-  [i915#5342]: https://gitlab.freedesktop.org/drm/intel/issues/5342
-  [i915#5361]: https://gitlab.freedesktop.org/drm/intel/issues/5361
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_11380 -> Patchwork_22606
-
-  CI-20190529: 20190529
-  CI_DRM_11380: fe83949cd4316608ea785fc376b6ed444224adad @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6385: f3df40281d93d5a63ee98fa30e90852d780673c9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_22606: 439959df00adab483693620266652e0ba6a2ee0a @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-439959df00ad drm/i915: avoid concurrent writes to aux_inv
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22606/index.html
-
---===============6339070779610768102==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: avoid concurrent writes to aux_inv (rev7)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/100772/">https://patchwork.freedesktop.org/series/100772/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22606/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22606/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11380 -&gt; Patchwork_22606</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_22606 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_22606, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22606/index.html</p>
-<h2>Participating hosts (47 -&gt; 45)</h2>
-<p>Additional (3): bat-adlm-1 bat-jsl-2 fi-pnv-d510 <br />
-  Missing    (5): shard-tglu bat-dg1-5 fi-bsw-cyan shard-rkl fi-bdw-samus </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_22606:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:<ul>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11380/fi-tgl-1115g4/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22606/fi-tgl-1115g4/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html">DMESG-WARN</a></li>
-</ul>
-</li>
-</ul>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>igt@i915_selftest@live@hangcheck:<ul>
-<li>{bat-jsl-2}:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22606/bat-jsl-2/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_22606 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22606/fi-pnv-d510/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +57 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>
-<p>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11380/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22606/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>)</p>
-</li>
-<li>
-<p>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22606/fi-bdw-5557u/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@vga-edid-read:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22606/fi-bdw-5557u/igt@kms_chamelium@vga-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c:</p>
-<ul>
-<li>
-<p>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22606/fi-pnv-d510/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5341">i915#5341</a>)</p>
-</li>
-<li>
-<p>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11380/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22606/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5341">i915#5341</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc-pipe-b:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11380/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22606/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a>) +11 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic-clone-single-crtc:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22606/fi-bdw-5557u/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +14 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_pm_rpm@module-reload:<ul>
-<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11380/bat-rpls-2/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4391">i915#4391</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22606/bat-rpls-2/igt@i915_pm_rpm@module-reload.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11380 -&gt; Patchwork_22606</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11380: fe83949cd4316608ea785fc376b6ed444224adad @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6385: f3df40281d93d5a63ee98fa30e90852d780673c9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_22606: 439959df00adab483693620266652e0ba6a2ee0a @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>439959df00ad drm/i915: avoid concurrent writes to aux_inv</p>
-
-</body>
-</html>
-
---===============6339070779610768102==--
