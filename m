@@ -1,28 +1,28 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5950D4DD785
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Mar 2022 10:56:32 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 491A04DD788
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Mar 2022 10:57:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8918B10E792;
-	Fri, 18 Mar 2022 09:56:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B6FA10E7CA;
+	Fri, 18 Mar 2022 09:57:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5FD1410E792;
- Fri, 18 Mar 2022 09:56:29 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D157410E7CA;
+ Fri, 18 Mar 2022 09:57:20 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 5AAD9A00E8;
- Fri, 18 Mar 2022 09:56:29 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id D1E7BA00E8;
+ Fri, 18 Mar 2022 09:57:20 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
-Date: Fri, 18 Mar 2022 09:56:29 -0000
-Message-ID: <164759738936.31587.2767808931676454495@emeril.freedesktop.org>
+Date: Fri, 18 Mar 2022 09:57:20 -0000
+Message-ID: <164759744085.31587.10470611144890539966@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20220124090653.14547-1-stanislav.lisovskiy@intel.com>
 In-Reply-To: <20220124090653.14547-1-stanislav.lisovskiy@intel.com>
