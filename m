@@ -2,45 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9E5B4DD66D
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Mar 2022 09:48:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C06BB4DD686
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Mar 2022 09:51:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D84910E797;
-	Fri, 18 Mar 2022 08:48:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E8B010E7AB;
+	Fri, 18 Mar 2022 08:51:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 399C010E78E
- for <intel-gfx@lists.freedesktop.org>; Fri, 18 Mar 2022 08:48:08 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 73CAB10E7AB
+ for <intel-gfx@lists.freedesktop.org>; Fri, 18 Mar 2022 08:51:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1647593288; x=1679129288;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
+ t=1647593511; x=1679129511;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
  bh=9y5aO2jXLHXSQ7Q9tT5Hltdom7ONW/zTr2Q2mmlFAOI=;
- b=QfzB2OFWmyG/PG+wJbqxZ/aj8ptSXNeuiGrIGhRPmKE5vDfhD0AYMQHm
- xOB42+4hgDxZMuUOIloWYqMMx/cALq4g96ELcB0TbbvNR9/e+gsBSuHgo
- D0LZlJ7V8ET797cjlO8esQWAh1zOCItgjFFH1zzYPRs90S2GOBII5TxIx
- YIeg18wa89ixmi8YjD0gfJrCvMiouX7PX648CnPBqPiXbD75icMJ5Negj
- xW+F+L2j1O3eaKpnVIjo6zoxGGJWe0QmreKrd47lxz7EHkU9H7281VFAc
- r/xgGbhjrxpHDjfep/uVoHEFHXuGVHYxcVTCseahMIInpxVvBrfB9CwZw g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10289"; a="255922538"
-X-IronPort-AV: E=Sophos;i="5.90,191,1643702400"; d="scan'208";a="255922538"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2022 01:48:07 -0700
+ b=R2IbJCP1xqLhqY6PLx9s26xZZSOeE+V81dvfWVAQwMizGRVdntdYINgI
+ K/wye90CtceVsoUQW6mfLAVfYo7MlnS3Bi6WhGoh2reClVpbzHuINArh/
+ Qo9VFp3vtS0Eac0kb45iAD5Ble6i20zUCbQRCjGRXOymimeJqryOMLdNx
+ jsd39M0Hn22sNyKwexY7dMLHKn4GZwVL89lBLQATUxHhaj2rOyaGC+Hez
+ ABweKPY8qin2zyUm3rlzvIMfIB3LzvNMqHzW01xMuIpmONMCh5AGqsIls
+ RAgPmrtt2X6cu+CgyF4Vl8lGYIKJYBZK8LPsQRRp3ctEQM15rWKNHo1bo g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10289"; a="343531637"
+X-IronPort-AV: E=Sophos;i="5.90,191,1643702400"; d="scan'208";a="343531637"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Mar 2022 01:51:51 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,191,1643702400"; d="scan'208";a="581617111"
+X-IronPort-AV: E=Sophos;i="5.90,191,1643702400"; d="scan'208";a="499163987"
 Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
  ([10.237.72.65])
- by orsmga001.jf.intel.com with ESMTP; 18 Mar 2022 01:48:05 -0700
+ by orsmga003.jf.intel.com with ESMTP; 18 Mar 2022 01:51:48 -0700
 From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 18 Mar 2022 10:48:42 +0200
-Message-Id: <20220318084842.7201-1-stanislav.lisovskiy@intel.com>
+Date: Fri, 18 Mar 2022 10:52:26 +0200
+Message-Id: <20220318085226.7348-1-stanislav.lisovskiy@intel.com>
 X-Mailer: git-send-email 2.24.1.485.gad05a3d8e5
-In-Reply-To: <20220124090653.14547-5-stanislav.lisovskiy@intel.com>
-References: <20220124090653.14547-5-stanislav.lisovskiy@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Subject: [Intel-gfx] [PATCH] drm/i915/adl_p: Increase CDCLK by 15% if PSR2
