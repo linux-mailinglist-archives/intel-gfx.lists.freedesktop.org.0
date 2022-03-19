@@ -1,50 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88C0A4DEAC4
-	for <lists+intel-gfx@lfdr.de>; Sat, 19 Mar 2022 21:42:27 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CCE94DEAC7
+	for <lists+intel-gfx@lfdr.de>; Sat, 19 Mar 2022 21:45:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 032EE10EEBD;
-	Sat, 19 Mar 2022 20:42:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD84F10ECD4;
+	Sat, 19 Mar 2022 20:45:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5534B10EEBD;
- Sat, 19 Mar 2022 20:42:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1647722534; x=1679258534;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=8Mw1vNMOVMdMz9LDqz/GK2+cJn5BHvC7vLjzTKus7hU=;
- b=mO/VPPE2ZNUpd4fT0NnNMP3AHVqVck8ty2QPZTmMvprX+HaUQyEwKqOY
- aQgOCHBK106ldNYP01MTXGRjOAOhE9u5aNjfjsM2moG0J08qCrhV741gX
- gcApCtGlvwlqvaGXSfUQcASSXeHNZCS7W2IW8OfnsYL6DrYYvN80bsTjL
- QazSNCIL/EObkkn8wPxFHWxMvoLoEngPfb8Vgm1tkZzI4KCWw0w3vobQ3
- ZydaedQTEmL3RNULZK59LSUoC8HYIemb6M+CetFy1mdF56EuUFaFIreDm
- /ZmUNP32r2586/ssCKjX1qEIBoHqkjLz0Vp+gSJm+LgDlyR51dFnzfRJ4 A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10291"; a="237270107"
-X-IronPort-AV: E=Sophos;i="5.90,195,1643702400"; d="scan'208";a="237270107"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Mar 2022 13:42:14 -0700
-X-IronPort-AV: E=Sophos;i="5.90,195,1643702400"; d="scan'208";a="559245155"
-Received: from ramaling-i9x.iind.intel.com ([10.203.144.108])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Mar 2022 13:42:12 -0700
-From: Ramalingam C <ramalingam.c@intel.com>
-To: intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>
-Date: Sun, 20 Mar 2022 02:12:29 +0530
-Message-Id: <20220319204229.9846-9-ramalingam.c@intel.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20220319204229.9846-1-ramalingam.c@intel.com>
-References: <20220319204229.9846-1-ramalingam.c@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9DE8810E713;
+ Sat, 19 Mar 2022 20:45:14 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9A5B2A882E;
+ Sat, 19 Mar 2022 20:45:14 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4394508628838701011=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4 8/8] drm/i915/migrate: Evict and restore the
- flatccs capable lmem obj
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michael Cheng" <michael.cheng@intel.com>
+Date: Sat, 19 Mar 2022 20:45:14 -0000
+Message-ID: <164772271460.30529.855712882972336789@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220319194227.297639-1-michael.cheng@intel.com>
+In-Reply-To: <20220319194227.297639-1-michael.cheng@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgRHJv?=
+ =?utf-8?q?p_wbinvd=5Fon=5Fall=5Fcpus_usage?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,252 +40,163 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Hellstrom Thomas <thomas.hellstrom@intel.com>,
- Matthew Auld <matthew.auld@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-When we are swapping out the local memory obj on flat-ccs capable platform,
-we need to capture the ccs data too along with main meory and we need to
-restore it when we are swapping in the content.
+--===============4394508628838701011==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-When lmem object is swapped into a smem obj, smem obj will
-have the extra pages required to hold the ccs data corresponding to the
-lmem main memory. So main memory of lmem will be copied into the initial
-pages of the smem and then ccs data corresponding to the main memory
-will be copied to the subsequent pages of smem. ccs data is 1/256 of
-lmem size.
+== Series Details ==
 
-Swapin happens exactly in reverse order. First main memory of lmem is
-restored from the smem's initial pages and the ccs data will be restored
-from the subsequent pages of smem.
+Series: Drop wbinvd_on_all_cpus usage
+URL   : https://patchwork.freedesktop.org/series/101560/
+State : success
 
-Extracting and restoring the CCS data is done through a special cmd called
-XY_CTRL_SURF_COPY_BLT
+== Summary ==
 
-v2: Fixing the ccs handling
-v3: Handle the ccs data at same loop as main memory [Thomas]
-v4: changes for emit_copy_ccs
+CI Bug Log - changes from CI_DRM_11385 -> Patchwork_22619
+====================================================
 
-Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_migrate.c | 163 +++++++++++++++++++++++-
- 1 file changed, 159 insertions(+), 4 deletions(-)
+Summary
+-------
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_migrate.c b/drivers/gpu/drm/i915/gt/intel_migrate.c
-index b6c5a0102bc2..ddc7df3de9bc 100644
---- a/drivers/gpu/drm/i915/gt/intel_migrate.c
-+++ b/drivers/gpu/drm/i915/gt/intel_migrate.c
-@@ -651,6 +651,65 @@ static int emit_copy(struct i915_request *rq,
- 	return 0;
- }
- 
-+static int scatter_list_length(struct scatterlist *sg)
-+{
-+	int len = 0;
-+
-+	while (sg && sg_dma_len(sg)) {
-+		len += sg_dma_len(sg);
-+		sg = sg_next(sg);
-+	};
-+
-+	return len;
-+}
-+
-+static void
-+calculate_chunk_sz(struct drm_i915_private *i915, bool src_is_lmem,
-+		   int *src_sz, int *ccs_sz, u32 bytes_to_cpy,
-+		   u32 ccs_bytes_to_cpy)
-+{
-+	if (ccs_bytes_to_cpy) {
-+		/*
-+		 * We can only copy the ccs data corresponding to
-+		 * the CHUNK_SZ of lmem which is
-+		 * GET_CCS_BYTES(i915, CHUNK_SZ))
-+		 */
-+		*ccs_sz = min_t(int, ccs_bytes_to_cpy, GET_CCS_BYTES(i915, CHUNK_SZ));
-+
-+		if (!src_is_lmem)
-+			/*
-+			 * When CHUNK_SZ is passed all the pages upto CHUNK_SZ
-+			 * will be taken for the blt. in Flat-ccs supported
-+			 * platform Smem obj will have more pages than required
-+			 * for main meory hence limit it to the required size
-+			 * for main memory
-+			 */
-+			*src_sz = min_t(int, bytes_to_cpy, CHUNK_SZ);
-+	} else { /* ccs handling is not required */
-+		*src_sz = CHUNK_SZ;
-+	}
-+}
-+
-+static void get_ccs_sg_sgt(struct sgt_dma *it, u32 bytes_to_cpy)
-+{
-+	u32 len;
-+
-+	do {
-+		GEM_BUG_ON(!it->sg || !sg_dma_len(it->sg));
-+		len = it->max - it->dma;
-+		if (len > bytes_to_cpy) {
-+			it->dma += bytes_to_cpy;
-+			break;
-+		}
-+
-+		bytes_to_cpy -= len;
-+
-+		it->sg = __sg_next(it->sg);
-+		it->dma = sg_dma_address(it->sg);
-+		it->max = it->dma + sg_dma_len(it->sg);
-+	} while (bytes_to_cpy);
-+}
-+
- int
- intel_context_migrate_copy(struct intel_context *ce,
- 			   const struct i915_deps *deps,
-@@ -662,9 +721,15 @@ intel_context_migrate_copy(struct intel_context *ce,
- 			   bool dst_is_lmem,
- 			   struct i915_request **out)
- {
--	struct sgt_dma it_src = sg_sgt(src), it_dst = sg_sgt(dst);
-+	struct sgt_dma it_src = sg_sgt(src), it_dst = sg_sgt(dst), it_ccs;
-+	struct drm_i915_private *i915 = ce->engine->i915;
-+	u32 ccs_bytes_to_cpy = 0, bytes_to_cpy;
-+	enum i915_cache_level ccs_cache_level;
-+	int src_sz, dst_sz, ccs_sz;
- 	u32 src_offset, dst_offset;
-+	u8 src_access, dst_access;
- 	struct i915_request *rq;
-+	bool ccs_is_src;
- 	int err;
- 
- 	GEM_BUG_ON(ce->vm != ce->engine->gt->migrate.context->vm);
-@@ -672,6 +737,38 @@ intel_context_migrate_copy(struct intel_context *ce,
- 
- 	GEM_BUG_ON(ce->ring->size < SZ_64K);
- 
-+	src_sz = scatter_list_length(src);
-+	bytes_to_cpy = src_sz;
-+
-+	if (HAS_FLAT_CCS(i915) && src_is_lmem ^ dst_is_lmem) {
-+		src_access = !src_is_lmem && dst_is_lmem;
-+		dst_access = !src_access;
-+
-+		dst_sz = scatter_list_length(dst);
-+		if (src_is_lmem) {
-+			it_ccs = it_dst;
-+			ccs_cache_level = dst_cache_level;
-+			ccs_is_src = false;
-+		} else if (dst_is_lmem) {
-+			bytes_to_cpy = dst_sz;
-+			it_ccs = it_src;
-+			ccs_cache_level = src_cache_level;
-+			ccs_is_src = true;
-+		}
-+
-+		/*
-+		 * When there is a eviction of ccs needed smem will have the
-+		 * extra pages for the ccs data
-+		 *
-+		 * TO-DO: Want to move the size mismatch check to a WARN_ON,
-+		 * but still we have some requests of smem->lmem with same size.
-+		 * Need to fix it.
-+		 */
-+		ccs_bytes_to_cpy = src_sz != dst_sz ? GET_CCS_BYTES(i915, bytes_to_cpy) : 0;
-+		if (ccs_bytes_to_cpy)
-+			get_ccs_sg_sgt(&it_ccs, bytes_to_cpy);
-+	}
-+
- 	src_offset = 0;
- 	dst_offset = CHUNK_SZ;
- 	if (HAS_64K_PAGES(ce->engine->i915)) {
-@@ -713,8 +810,11 @@ intel_context_migrate_copy(struct intel_context *ce,
- 		if (err)
- 			goto out_rq;
- 
-+		calculate_chunk_sz(i915, src_is_lmem, &src_sz, &ccs_sz,
-+				   bytes_to_cpy, ccs_bytes_to_cpy);
-+
- 		len = emit_pte(rq, &it_src, src_cache_level, src_is_lmem,
--			       src_offset, CHUNK_SZ);
-+			       src_offset, src_sz);
- 		if (len <= 0) {
- 			err = len;
- 			goto out_rq;
-@@ -731,7 +831,46 @@ intel_context_migrate_copy(struct intel_context *ce,
- 		if (err)
- 			goto out_rq;
- 
--		err = emit_copy(rq, dst_offset, src_offset, len);
-+		err = emit_copy(rq, dst_offset,	src_offset, len);
-+		if (err)
-+			goto out_rq;
-+
-+		bytes_to_cpy -= len;
-+
-+		if (ccs_bytes_to_cpy) {
-+			err = rq->engine->emit_flush(rq, EMIT_INVALIDATE);
-+			if (err)
-+				goto out_rq;
-+
-+			err = emit_pte(rq, &it_ccs, ccs_cache_level, false,
-+				       ccs_is_src ? src_offset : dst_offset,
-+				       ccs_sz);
-+
-+			err = rq->engine->emit_flush(rq, EMIT_INVALIDATE);
-+			if (err)
-+				goto out_rq;
-+
-+			/*
-+			 * Using max of src_sz and dst_sz, as we need to
-+			 * pass the lmem size corresponding to the ccs
-+			 * blocks we need to handle.
-+			 */
-+			ccs_sz = max_t(int, ccs_is_src ? ccs_sz : src_sz,
-+				       ccs_is_src ? dst_sz : ccs_sz);
-+
-+			err = emit_copy_ccs(rq, dst_offset, dst_access,
-+					    src_offset, src_access, ccs_sz);
-+			if (err)
-+				goto out_rq;
-+
-+			err = rq->engine->emit_flush(rq, EMIT_INVALIDATE);
-+			if (err)
-+				goto out_rq;
-+
-+			/* Converting back to ccs bytes */
-+			ccs_sz = GET_CCS_BYTES(rq->engine->i915, ccs_sz);
-+			ccs_bytes_to_cpy -= ccs_sz;
-+		}
- 
- 		/* Arbitration is re-enabled between requests. */
- out_rq:
-@@ -739,9 +878,25 @@ intel_context_migrate_copy(struct intel_context *ce,
- 			i915_request_put(*out);
- 		*out = i915_request_get(rq);
- 		i915_request_add(rq);
--		if (err || !it_src.sg || !sg_dma_len(it_src.sg))
-+
-+		if (err)
- 			break;
- 
-+		if (!bytes_to_cpy && !ccs_bytes_to_cpy) {
-+			if (src_is_lmem)
-+				WARN_ON(it_src.sg && sg_dma_len(it_src.sg));
-+			else
-+				WARN_ON(it_dst.sg && sg_dma_len(it_dst.sg));
-+			break;
-+		}
-+
-+		if (WARN_ON(!it_src.sg || !sg_dma_len(it_src.sg) ||
-+			    !it_dst.sg || !sg_dma_len(it_dst.sg) ||
-+			    !it_ccs.sg || !sg_dma_len(it_ccs.sg))) {
-+			err = -EINVAL;
-+			break;
-+		}
-+
- 		cond_resched();
- 	} while (1);
- 
--- 
-2.20.1
+  **SUCCESS**
 
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22619/index.html
+
+Participating hosts (47 -> 39)
+------------------------------
+
+  Missing    (8): fi-bdw-5557u shard-tglu bat-dg2-8 fi-bsw-cyan fi-pnv-d510 shard-rkl shard-dg1 fi-bdw-samus 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_22619 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_busy@basic@modeset:
+    - {bat-adlp-6}:       [DMESG-WARN][1] ([i915#3576]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11385/bat-adlp-6/igt@kms_busy@basic@modeset.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22619/bat-adlp-6/igt@kms_busy@basic@modeset.html
+
+  * igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size:
+    - {bat-adlm-1}:       [INCOMPLETE][3] -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11385/bat-adlm-1/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22619/bat-adlm-1/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#3576]: https://gitlab.freedesktop.org/drm/intel/issues/3576
+  [i915#4258]: https://gitlab.freedesktop.org/drm/intel/issues/4258
+  [i915#5185]: https://gitlab.freedesktop.org/drm/intel/issues/5185
+  [i915#5193]: https://gitlab.freedesktop.org/drm/intel/issues/5193
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_11385 -> Patchwork_22619
+
+  CI-20190529: 20190529
+  CI_DRM_11385: 3babe046f5f5544ec772cd443f9d5ca24e342348 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6386: 0fcd59ad25b2960c0b654f90dfe4dd9e7c7b874d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_22619: 4c9cb24c8fefe438004ca31c014f9755acdb8906 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+4c9cb24c8fef drm/i915/gt: Revert ggtt_resume to previous logic
+edf596eb3f94 i915/gem: Revert i915_gem_freeze to previous logic
+6f0d153682e1 Revert "drm/i915/gem: Almagamate clflushes on suspend"
+a6e7b94ada85 i915/gem: drop wbinvd_on_all_cpus usage
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22619/index.html
+
+--===============4394508628838701011==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Drop wbinvd_on_all_cpus usage</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/101560/">https://patchwork.freedesktop.org/series/101560/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22619/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22619/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11385 -&gt; Patchwork_22619</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22619/index.html</p>
+<h2>Participating hosts (47 -&gt; 39)</h2>
+<p>Missing    (8): fi-bdw-5557u shard-tglu bat-dg2-8 fi-bsw-cyan fi-pnv-d510 shard-rkl shard-dg1 fi-bdw-samus </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_22619 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_busy@basic@modeset:</p>
+<ul>
+<li>{bat-adlp-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11385/bat-adlp-6/igt@kms_busy@basic@modeset.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22619/bat-adlp-6/igt@kms_busy@basic@modeset.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size:</p>
+<ul>
+<li>{bat-adlm-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11385/bat-adlm-1/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22619/bat-adlm-1/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11385 -&gt; Patchwork_22619</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11385: 3babe046f5f5544ec772cd443f9d5ca24e342348 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6386: 0fcd59ad25b2960c0b654f90dfe4dd9e7c7b874d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_22619: 4c9cb24c8fefe438004ca31c014f9755acdb8906 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>4c9cb24c8fef drm/i915/gt: Revert ggtt_resume to previous logic<br />
+edf596eb3f94 i915/gem: Revert i915_gem_freeze to previous logic<br />
+6f0d153682e1 Revert "drm/i915/gem: Almagamate clflushes on suspend"<br />
+a6e7b94ada85 i915/gem: drop wbinvd_on_all_cpus usage</p>
+
+</body>
+</html>
+
+--===============4394508628838701011==--
