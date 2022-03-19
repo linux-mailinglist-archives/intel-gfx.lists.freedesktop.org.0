@@ -2,48 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD2B04DE51A
-	for <lists+intel-gfx@lfdr.de>; Sat, 19 Mar 2022 03:00:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F1574DE51B
+	for <lists+intel-gfx@lfdr.de>; Sat, 19 Mar 2022 03:01:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3BB4310E362;
-	Sat, 19 Mar 2022 02:00:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1678610E36C;
+	Sat, 19 Mar 2022 02:00:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F47810E362
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C0ED10E1E6
  for <intel-gfx@lists.freedesktop.org>; Sat, 19 Mar 2022 02:00:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1647655254; x=1679191254;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=cWvBGlIjfbanITyiZtdt8rX+0GVSxRHmr0fcvuJMICM=;
- b=Dc661KXChBT3lWMG5J2YfvLtntskQZMv96+YfFXPqhUAzOjSgq9cCec3
- FJxIMNFEsOx4X9zrcQddFSp8v/lI1WNvFrncDZlvvyPki5L1G3DkvbwIw
- ELD2RP2VTLdmuImh5JJtyHplhz08INKASFYxQzKswf/1bitQ/lNJYxOlc
- h2QOeWc5Lb2RFojCw2jvw1Casrj0BN/Gt5ULXe/haf2VW5RuB8sZXbLIL
- UHVbnu2fbo5XSJo3rzFEmIpy2QAwB1xXDAdeDAUaiBbzuibMOaRGoRUBy
- 8hWp/3UmaXZNyzCYcCXgr+duImZZa5An7QyPQ1xSrxbfpanBVJvO4KHz8 w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10290"; a="254834920"
-X-IronPort-AV: E=Sophos;i="5.90,192,1643702400"; d="scan'208";a="254834920"
+ bh=JRDvGTw4E98MGx1Pyy/qPnIHs2hm5PfMZkeI6AmlOBQ=;
+ b=MwYe9elJ5ybJzF14TaeZRqPjU07s4d11MDK8KYgyhKtUzLqhmdIDik1N
+ RiK6WonYlXn0BXScX3FvDcWgpwXMf/j1B0vg7xNyJOikZZGjZT7fECfYT
+ XQuroeWrm/OeGGVVexUYktHpk/PjYJREZE9NVZQunUEqE5c7KtNGD9K0c
+ w3DJ+iiHTu7N6ypP8HxNc859Y73HdMIuUvkwfFD4gmWDiBcylSSdj7r+h
+ r9oKRRwwvslvCTnRttrhkuPxpEmq12/Jg2onZ/uW78F5JQroeNeBkgQC9
+ xp+ZdSW4Lpe63CeOa1v6OtKmQ8wKWN11gn1Q8C2aqJE45EnHwFYATK+YD w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10290"; a="254834923"
+X-IronPort-AV: E=Sophos;i="5.90,192,1643702400"; d="scan'208";a="254834923"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  18 Mar 2022 19:00:53 -0700
-X-IronPort-AV: E=Sophos;i="5.90,192,1643702400"; d="scan'208";a="514188100"
+X-IronPort-AV: E=Sophos;i="5.90,192,1643702400"; d="scan'208";a="514188103"
 Received: from lovefred-mobl1.amr.corp.intel.com (HELO
  cgbowman-desk1.amr.corp.intel.com) ([10.251.13.69])
  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  18 Mar 2022 19:00:53 -0700
 From: Casey Bowman <casey.g.bowman@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 18 Mar 2022 19:00:41 -0700
-Message-Id: <20220319020042.306649-2-casey.g.bowman@intel.com>
+Date: Fri, 18 Mar 2022 19:00:42 -0700
+Message-Id: <20220319020042.306649-3-casey.g.bowman@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220319020042.306649-1-casey.g.bowman@intel.com>
 References: <20220319020042.306649-1-casey.g.bowman@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 1/2] drm/i915: Require INTEL_GTT to depend on X86
+Subject: [Intel-gfx] [PATCH 2/2] drm/i915/gt: Split intel-gtt functions by
+ arch
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,27 +63,422 @@ Cc: thomas.hellstrom@linux.intel.com, lucas.demarchi@intel.com,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The intel-gtt module is not used on other, non-x86 platforms, so we
-will restrict it to x86 platforms only.
+Some functions defined in the intel-gtt module are used in several
+areas, but is only supported on x86 platforms.
+
+By separating these calls and their static underlying functions to
+area, we are able to compile out these functions for non-x86 builds
+and provide stubs for the non-x86 implementations.
 
 Signed-off-by: Casey Bowman <casey.g.bowman@intel.com>
 ---
- drivers/gpu/drm/i915/Kconfig | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/Makefile               |   2 +
+ drivers/gpu/drm/i915/gt/intel_ggtt.c        |  97 +----------------
+ drivers/gpu/drm/i915/gt/intel_gt.c          |   6 +-
+ drivers/gpu/drm/i915/gt/intel_gtt.h         |  10 ++
+ drivers/gpu/drm/i915/gt/intel_gtt_support.c | 113 ++++++++++++++++++++
+ drivers/gpu/drm/i915/gt/intel_gtt_support.h |  39 +++++++
+ 6 files changed, 171 insertions(+), 96 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/gt/intel_gtt_support.c
+ create mode 100644 drivers/gpu/drm/i915/gt/intel_gtt_support.h
 
-diff --git a/drivers/gpu/drm/i915/Kconfig b/drivers/gpu/drm/i915/Kconfig
-index 63db8bcf03bf..b381e14863a6 100644
---- a/drivers/gpu/drm/i915/Kconfig
-+++ b/drivers/gpu/drm/i915/Kconfig
-@@ -4,7 +4,7 @@ config DRM_I915
- 	depends on DRM
- 	depends on X86 && PCI
- 	depends on !PREEMPT_RT
--	select INTEL_GTT
-+	select INTEL_GTT if X86
- 	select INTERVAL_TREE
- 	# we need shmfs for the swappable backing store, and in particular
- 	# the shmem_readpage() which depends upon tmpfs
+diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+index 61b078bd1b32..cc332cb6833b 100644
+--- a/drivers/gpu/drm/i915/Makefile
++++ b/drivers/gpu/drm/i915/Makefile
+@@ -124,6 +124,8 @@ gt-y += \
+ 	gt/intel_workarounds.o \
+ 	gt/shmem_utils.o \
+ 	gt/sysfs_engines.o
++# x86 intel-gtt module support
++gt-$(CONFIG_X86) += gt/intel_gtt_support.o
+ # autogenerated null render state
+ gt-y += \
+ 	gt/gen6_renderstate.o \
+diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+index 04191fe2ee34..db2f1b12c273 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
++++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+@@ -3,14 +3,12 @@
+  * Copyright © 2020 Intel Corporation
+  */
+ 
+-#include <linux/agp_backend.h>
+ #include <linux/stop_machine.h>
+ 
+ #include <asm/set_memory.h>
+ #include <asm/smp.h>
+ 
+ #include <drm/i915_drm.h>
+-#include <drm/intel-gtt.h>
+ 
+ #include "gem/i915_gem_lmem.h"
+ 
+@@ -21,6 +19,7 @@
+ #include "i915_vgpu.h"
+ 
+ #include "intel_gtt.h"
++#include "intel_gtt_support.h"
+ #include "gen8_ppgtt.h"
+ 
+ static void i915_ggtt_color_adjust(const struct drm_mm_node *node,
+@@ -98,7 +97,7 @@ int i915_ggtt_init_hw(struct drm_i915_private *i915)
+  * Certain Gen5 chipsets require idling the GPU before
+  * unmapping anything from the GTT when VT-d is enabled.
+  */
+-static bool needs_idle_maps(struct drm_i915_private *i915)
++bool needs_idle_maps(struct drm_i915_private *i915)
+ {
+ 	/*
+ 	 * Query intel_iommu to see if we need the workaround. Presumably that
+@@ -229,11 +228,6 @@ static void guc_ggtt_invalidate(struct i915_ggtt *ggtt)
+ 		intel_uncore_write_fw(uncore, GEN8_GTCR, GEN8_GTCR_INVALIDATE);
+ }
+ 
+-static void gmch_ggtt_invalidate(struct i915_ggtt *ggtt)
+-{
+-	intel_gtt_chipset_flush();
+-}
+-
+ u64 gen8_ggtt_pte_encode(dma_addr_t addr,
+ 			 enum i915_cache_level level,
+ 			 u32 flags)
+@@ -467,37 +461,7 @@ static void gen6_ggtt_clear_range(struct i915_address_space *vm,
+ 		iowrite32(scratch_pte, &gtt_base[i]);
+ }
+ 
+-static void i915_ggtt_insert_page(struct i915_address_space *vm,
+-				  dma_addr_t addr,
+-				  u64 offset,
+-				  enum i915_cache_level cache_level,
+-				  u32 unused)
+-{
+-	unsigned int flags = (cache_level == I915_CACHE_NONE) ?
+-		AGP_USER_MEMORY : AGP_USER_CACHED_MEMORY;
+-
+-	intel_gtt_insert_page(addr, offset >> PAGE_SHIFT, flags);
+-}
+-
+-static void i915_ggtt_insert_entries(struct i915_address_space *vm,
+-				     struct i915_vma_resource *vma_res,
+-				     enum i915_cache_level cache_level,
+-				     u32 unused)
+-{
+-	unsigned int flags = (cache_level == I915_CACHE_NONE) ?
+-		AGP_USER_MEMORY : AGP_USER_CACHED_MEMORY;
+-
+-	intel_gtt_insert_sg_entries(vma_res->bi.pages, vma_res->start >> PAGE_SHIFT,
+-				    flags);
+-}
+-
+-static void i915_ggtt_clear_range(struct i915_address_space *vm,
+-				  u64 start, u64 length)
+-{
+-	intel_gtt_clear_range(start >> PAGE_SHIFT, length >> PAGE_SHIFT);
+-}
+-
+-static void ggtt_bind_vma(struct i915_address_space *vm,
++void ggtt_bind_vma(struct i915_address_space *vm,
+ 			  struct i915_vm_pt_stash *stash,
+ 			  struct i915_vma_resource *vma_res,
+ 			  enum i915_cache_level cache_level,
+@@ -521,7 +485,7 @@ static void ggtt_bind_vma(struct i915_address_space *vm,
+ 	vma_res->page_sizes_gtt = I915_GTT_PAGE_SIZE;
+ }
+ 
+-static void ggtt_unbind_vma(struct i915_address_space *vm,
++void ggtt_unbind_vma(struct i915_address_space *vm,
+ 			    struct i915_vma_resource *vma_res)
+ {
+ 	vm->clear_range(vm, vma_res->start, vma_res->vma_size);
+@@ -1149,54 +1113,6 @@ static int gen6_gmch_probe(struct i915_ggtt *ggtt)
+ 	return ggtt_probe_common(ggtt, size);
+ }
+ 
+-static void i915_gmch_remove(struct i915_address_space *vm)
+-{
+-	intel_gmch_remove();
+-}
+-
+-static int i915_gmch_probe(struct i915_ggtt *ggtt)
+-{
+-	struct drm_i915_private *i915 = ggtt->vm.i915;
+-	phys_addr_t gmadr_base;
+-	int ret;
+-
+-	ret = intel_gmch_probe(i915->bridge_dev, to_pci_dev(i915->drm.dev), NULL);
+-	if (!ret) {
+-		drm_err(&i915->drm, "failed to set up gmch\n");
+-		return -EIO;
+-	}
+-
+-	intel_gtt_get(&ggtt->vm.total, &gmadr_base, &ggtt->mappable_end);
+-
+-	ggtt->gmadr =
+-		(struct resource)DEFINE_RES_MEM(gmadr_base, ggtt->mappable_end);
+-
+-	ggtt->vm.alloc_pt_dma = alloc_pt_dma;
+-	ggtt->vm.alloc_scratch_dma = alloc_pt_dma;
+-
+-	if (needs_idle_maps(i915)) {
+-		drm_notice(&i915->drm,
+-			   "Flushing DMA requests before IOMMU unmaps; performance may be degraded\n");
+-		ggtt->do_idle_maps = true;
+-	}
+-
+-	ggtt->vm.insert_page = i915_ggtt_insert_page;
+-	ggtt->vm.insert_entries = i915_ggtt_insert_entries;
+-	ggtt->vm.clear_range = i915_ggtt_clear_range;
+-	ggtt->vm.cleanup = i915_gmch_remove;
+-
+-	ggtt->invalidate = gmch_ggtt_invalidate;
+-
+-	ggtt->vm.vma_ops.bind_vma    = ggtt_bind_vma;
+-	ggtt->vm.vma_ops.unbind_vma  = ggtt_unbind_vma;
+-
+-	if (unlikely(ggtt->do_idle_maps))
+-		drm_notice(&i915->drm,
+-			   "Applying Ironlake quirks for intel_iommu\n");
+-
+-	return 0;
+-}
+-
+ static int ggtt_probe_hw(struct i915_ggtt *ggtt, struct intel_gt *gt)
+ {
+ 	struct drm_i915_private *i915 = gt->i915;
+@@ -1266,10 +1182,7 @@ int i915_ggtt_probe_hw(struct drm_i915_private *i915)
+ 
+ int i915_ggtt_enable_hw(struct drm_i915_private *i915)
+ {
+-	if (GRAPHICS_VER(i915) < 6 && !intel_enable_gtt())
+-		return -EIO;
+-
+-	return 0;
++	return i915_gtt_support_enable_hw(i915);
+ }
+ 
+ void i915_ggtt_enable_guc(struct i915_ggtt *ggtt)
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
+index 57ca1e6b6203..abdf8dc8ddf7 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+@@ -4,7 +4,6 @@
+  */
+ 
+ #include <drm/drm_managed.h>
+-#include <drm/intel-gtt.h>
+ 
+ #include "gem/i915_gem_internal.h"
+ #include "gem/i915_gem_lmem.h"
+@@ -20,6 +19,7 @@
+ #include "intel_gt_pm.h"
+ #include "intel_gt_regs.h"
+ #include "intel_gt_requests.h"
++#include "intel_gtt_support.h"
+ #include "intel_migrate.h"
+ #include "intel_mocs.h"
+ #include "intel_pm.h"
+@@ -443,9 +443,7 @@ void intel_gt_flush_ggtt_writes(struct intel_gt *gt)
+ 
+ void intel_gt_chipset_flush(struct intel_gt *gt)
+ {
+-	wmb();
+-	if (GRAPHICS_VER(gt->i915) < 6)
+-		intel_gtt_chipset_flush();
++	intel_gtt_support_chipset_flush(gt);
+ }
+ 
+ void intel_gt_driver_register(struct intel_gt *gt)
+diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.h b/drivers/gpu/drm/i915/gt/intel_gtt.h
+index 4529b5e9f6e6..fd1dea85bde4 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gtt.h
++++ b/drivers/gpu/drm/i915/gt/intel_gtt.h
+@@ -547,6 +547,14 @@ i915_page_dir_dma_addr(const struct i915_ppgtt *ppgtt, const unsigned int n)
+ void ppgtt_init(struct i915_ppgtt *ppgtt, struct intel_gt *gt,
+ 		unsigned long lmem_pt_obj_flags);
+ 
++void ggtt_bind_vma(struct i915_address_space *vm,
++			  struct i915_vm_pt_stash *stash,
++			  struct i915_vma_resource *vma_res,
++			  enum i915_cache_level cache_level,
++			  u32 flags);
++void ggtt_unbind_vma(struct i915_address_space *vm,
++			    struct i915_vma_resource *vma_res);
++
+ int i915_ggtt_probe_hw(struct drm_i915_private *i915);
+ int i915_ggtt_init_hw(struct drm_i915_private *i915);
+ int i915_ggtt_enable_hw(struct drm_i915_private *i915);
+@@ -654,4 +662,6 @@ static inline struct sgt_dma {
+ 	return (struct sgt_dma){ sg, addr, addr + sg_dma_len(sg) };
+ }
+ 
++bool needs_idle_maps(struct drm_i915_private *i915);
++
+ #endif
+diff --git a/drivers/gpu/drm/i915/gt/intel_gtt_support.c b/drivers/gpu/drm/i915/gt/intel_gtt_support.c
+new file mode 100644
+index 000000000000..d6d22b1a9520
+--- /dev/null
++++ b/drivers/gpu/drm/i915/gt/intel_gtt_support.c
+@@ -0,0 +1,113 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2022 Intel Corporation
++ */
++
++#include <drm/intel-gtt.h>
++
++#include <linux/agp_backend.h>
++
++#include "i915_drv.h"
++#include "intel_gtt_support.h"
++#include "intel_gt.h"
++
++/* Wrapper for intel_gt_chipset_flush() */
++void intel_gtt_support_chipset_flush(struct intel_gt *gt)
++{
++	wmb();
++	if (GRAPHICS_VER(gt->i915) < 6)
++		intel_gtt_chipset_flush();
++}
++
++static void gmch_ggtt_invalidate(struct i915_ggtt *ggtt)
++{
++	intel_gtt_chipset_flush();
++}
++
++static void i915_ggtt_insert_page(struct i915_address_space *vm,
++				  dma_addr_t addr,
++				  u64 offset,
++				  enum i915_cache_level cache_level,
++				  u32 unused)
++{
++	unsigned int flags = (cache_level == I915_CACHE_NONE) ?
++		AGP_USER_MEMORY : AGP_USER_CACHED_MEMORY;
++
++	intel_gtt_insert_page(addr, offset >> PAGE_SHIFT, flags);
++}
++
++static void i915_ggtt_insert_entries(struct i915_address_space *vm,
++				     struct i915_vma_resource *vma_res,
++				     enum i915_cache_level cache_level,
++				     u32 unused)
++{
++	unsigned int flags = (cache_level == I915_CACHE_NONE) ?
++		AGP_USER_MEMORY : AGP_USER_CACHED_MEMORY;
++
++	intel_gtt_insert_sg_entries(vma_res->bi.pages, vma_res->start >> PAGE_SHIFT,
++				    flags);
++}
++
++static void i915_ggtt_clear_range(struct i915_address_space *vm,
++					 u64 start, u64 length)
++{
++	intel_gtt_clear_range(start >> PAGE_SHIFT, length >> PAGE_SHIFT);
++}
++
++static void i915_gmch_remove(struct i915_address_space *vm)
++{
++	intel_gmch_remove();
++}
++
++/* Original i915_gmch_probe() behavior for x86 */
++int i915_gmch_probe(struct i915_ggtt *ggtt)
++{
++	struct drm_i915_private *i915 = ggtt->vm.i915;
++	phys_addr_t gmadr_base;
++	int ret;
++
++	ret = intel_gmch_probe(i915->bridge_dev, to_pci_dev(i915->drm.dev), NULL);
++	if (!ret) {
++		drm_err(&i915->drm, "failed to set up gmch\n");
++		return -EIO;
++	}
++
++	intel_gtt_get(&ggtt->vm.total, &gmadr_base, &ggtt->mappable_end);
++
++	ggtt->gmadr =
++		(struct resource)DEFINE_RES_MEM(gmadr_base, ggtt->mappable_end);
++
++	ggtt->vm.alloc_pt_dma = alloc_pt_dma;
++	ggtt->vm.alloc_scratch_dma = alloc_pt_dma;
++
++	if (needs_idle_maps(i915)) {
++		drm_notice(&i915->drm,
++			   "Flushing DMA requests before IOMMU unmaps; performance may be degraded\n");
++		ggtt->do_idle_maps = true;
++	}
++
++	ggtt->vm.insert_page = i915_ggtt_insert_page;
++	ggtt->vm.insert_entries = i915_ggtt_insert_entries;
++	ggtt->vm.clear_range = i915_ggtt_clear_range;
++	ggtt->vm.cleanup = i915_gmch_remove;
++
++	ggtt->invalidate = gmch_ggtt_invalidate;
++
++	ggtt->vm.vma_ops.bind_vma    = ggtt_bind_vma;
++	ggtt->vm.vma_ops.unbind_vma  = ggtt_unbind_vma;
++
++	if (unlikely(ggtt->do_idle_maps))
++		drm_notice(&i915->drm,
++			   "Applying Ironlake quirks for intel_iommu\n");
++
++	return 0;
++}
++
++/* Wrapper for i915_ggtt_enable_hw() */
++int i915_gtt_support_enable_hw(struct drm_i915_private *i915)
++{
++	if (GRAPHICS_VER(i915) < 6 && !intel_enable_gtt())
++		return -EIO;
++
++	return 0;
++}
+diff --git a/drivers/gpu/drm/i915/gt/intel_gtt_support.h b/drivers/gpu/drm/i915/gt/intel_gtt_support.h
+new file mode 100644
+index 000000000000..2ebb0dd66ad7
+--- /dev/null
++++ b/drivers/gpu/drm/i915/gt/intel_gtt_support.h
+@@ -0,0 +1,39 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2022 Intel Corporation
++ */
++
++#ifndef __INTEL_GTT_SUPPORT_H__
++#define __INTEL_GTT_SUPPORT_H__
++
++#include "intel_gtt.h"
++
++/* For x86 platforms */
++#if IS_ENABLED(CONFIG_X86)
++/* Wrapper for intel_gt_chipset_flush() */
++void intel_gtt_support_chipset_flush(struct intel_gt *gt);
++/* Original i915_gmch_probe() behavior */
++int i915_gmch_probe(struct i915_ggtt *ggtt);
++/* Wrapper for i915_ggtt_enable_hw() */
++int i915_gtt_support_enable_hw(struct drm_i915_private *i915);
++
++/* Stubs for non-x86 platforms */
++#else
++static inline void intel_gtt_support_chipset_flush(struct intel_gt *gt)
++{
++	return;
++}
++static inline int i915_gmch_probe(struct i915_ggtt *ggtt)
++{
++	/* We shouldn't detect a device in this case, return fail */
++	return -1;
++}
++
++static inline int i915_gtt_support_enable_hw(struct drm_i915_private *i915)
++{
++	/* No HW should be enabled for this case, return fail */
++	return -1;
++}
++#endif
++
++#endif /* __INTEL_GTT_SUPPORT_H__ */
 -- 
 2.25.1
 
