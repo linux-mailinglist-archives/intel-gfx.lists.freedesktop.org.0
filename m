@@ -1,50 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E5FD4DEA7A
-	for <lists+intel-gfx@lfdr.de>; Sat, 19 Mar 2022 20:42:53 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E20D54DEA92
+	for <lists+intel-gfx@lfdr.de>; Sat, 19 Mar 2022 21:15:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B6D2510EE8D;
-	Sat, 19 Mar 2022 19:42:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C61C10E20F;
+	Sat, 19 Mar 2022 20:15:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8CA1E10EB71;
- Sat, 19 Mar 2022 19:42:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1647718954; x=1679254954;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=OTxUHmQQY7cQoxWryXWv/oqAfUW2bcJG5Qgzx8iJkAo=;
- b=U/9BLl0U40ymNlw39NplLv/UgloEfN+uSPKLfFtFYuN5LDQnx7+6rlNL
- zU+pr7znbrAQQUmNFuKtRP4gpVdxlqyUfD1kAPxaA9kiJxartCgqL8I5b
- U+75yD+luXT+GqEaxCQE4XXc+Im0kHU+Xzkuk1W6FGRqi7TnHZHnitNcS
- /YZvKpgPLy/ToAJojzCTXvxfK+RZH+u87qjPEqbACcXTuzaF+eqLKUeZU
- E+ErNB7mBT200Ea5QTQcMlRptNo6hguS0AwE6VperG0dSuveieI7JnWTv
- +FwjjjMpTN0OA6TUknYgItscur1L4kAv00H/V+u6p3s2piJOYlngd6q5U g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10291"; a="282145186"
-X-IronPort-AV: E=Sophos;i="5.90,195,1643702400"; d="scan'208";a="282145186"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Mar 2022 12:42:34 -0700
-X-IronPort-AV: E=Sophos;i="5.90,195,1643702400"; d="scan'208";a="600019696"
-Received: from jpulito-mobl2.amr.corp.intel.com (HELO mvcheng-desk2.intel.com)
- ([10.255.231.61])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Mar 2022 12:42:33 -0700
-From: Michael Cheng <michael.cheng@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Sat, 19 Mar 2022 12:42:27 -0700
-Message-Id: <20220319194227.297639-5-michael.cheng@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220319194227.297639-1-michael.cheng@intel.com>
-References: <20220319194227.297639-1-michael.cheng@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C4F6F10E20F;
+ Sat, 19 Mar 2022 20:15:37 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B963DA3C0D;
+ Sat, 19 Mar 2022 20:15:37 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 4/4] drm/i915/gt: Revert ggtt_resume to previous
- logic
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michael Cheng" <michael.cheng@intel.com>
+Date: Sat, 19 Mar 2022 20:15:37 -0000
+Message-ID: <164772093772.30528.1921217305385278811@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220319194227.297639-1-michael.cheng@intel.com>
+In-Reply-To: <20220319194227.297639-1-michael.cheng@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Drop_wbinvd=5Fon=5Fall=5Fcpus_usage?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,87 +40,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: thomas.hellstrom@linux.intel.com, michael.cheng@intel.com,
- daniel.vetter@ffwll.ch, lucas.demarchi@intel.com,
- dri-devel@lists.freedesktop.org, chris@chris-wilson.co.uk
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-To avoid having to call wbinvd_on_all_cpus, revert i915_ggtt_resume and
-i915_ggtt_resume_vm to previous logic [1].
+== Series Details ==
 
+Series: Drop wbinvd_on_all_cpus usage
+URL   : https://patchwork.freedesktop.org/series/101560/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+a6e7b94ada85 i915/gem: drop wbinvd_on_all_cpus usage
+-:10: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#10: 
+To make i915 more architecture-neutral and be less paranoid, lets attempt to
+
+total: 0 errors, 1 warnings, 0 checks, 24 lines checked
+6f0d153682e1 Revert "drm/i915/gem: Almagamate clflushes on suspend"
+-:9: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit ac05a22cd07a ("drm/i915/gem: Almagamate clflushes on suspend")'
+#9: 
+[1]. ac05a22cd07a ("drm/i915/gem: Almagamate clflushes on suspend")
+
+-:75: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#75: FILE: drivers/gpu/drm/i915/gem/i915_gem_pm.c:173:
++			drm_WARN_ON(&i915->drm,
++			    i915_gem_object_set_to_gtt_domain(obj, false));
+
+total: 1 errors, 0 warnings, 1 checks, 68 lines checked
+edf596eb3f94 i915/gem: Revert i915_gem_freeze to previous logic
+-:34: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#34: FILE: drivers/gpu/drm/i915/gem/i915_gem_pm.c:222:
++		drm_WARN_ON(&i915->drm,
++			i915_gem_object_set_to_cpu_domain(obj, true));
+
+total: 0 errors, 0 warnings, 1 checks, 23 lines checked
+4c9cb24c8fef drm/i915/gt: Revert ggtt_resume to previous logic
+-:9: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#9: 
 [1]. 64b95df91f44 drm/i915: Assume exclusive access to objects inside resume
 
-Suggested-by: Lucas De Marchi <lucas.demarchi@intel.com>
-Signed-off-by: Michael Cheng <michael.cheng@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_ggtt.c | 17 ++++++-----------
- drivers/gpu/drm/i915/gt/intel_gtt.h  |  2 +-
- 2 files changed, 7 insertions(+), 12 deletions(-)
+-:9: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 64b95df91f44 ("drm/i915: Assume exclusive access to objects inside resume")'
+#9: 
+[1]. 64b95df91f44 drm/i915: Assume exclusive access to objects inside resume
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-index 04191fe2ee34..811bfd9d8d80 100644
---- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-@@ -1305,10 +1305,9 @@ void i915_ggtt_disable_guc(struct i915_ggtt *ggtt)
-  * Returns %true if restoring the mapping for any object that was in a write
-  * domain before suspend.
-  */
--bool i915_ggtt_resume_vm(struct i915_address_space *vm)
-+void i915_ggtt_resume_vm(struct i915_address_space *vm)
- {
- 	struct i915_vma *vma;
--	bool write_domain_objs = false;
- 
- 	drm_WARN_ON(&vm->i915->drm, !vm->is_ggtt && !vm->is_dpt);
- 
-@@ -1325,28 +1324,24 @@ bool i915_ggtt_resume_vm(struct i915_address_space *vm)
- 		vma->ops->bind_vma(vm, NULL, vma->resource,
- 				   obj ? obj->cache_level : 0,
- 				   was_bound);
--		if (obj) { /* only used during resume => exclusive access */
--			write_domain_objs |= fetch_and_zero(&obj->write_domain);
--			obj->read_domains |= I915_GEM_DOMAIN_GTT;
-+		if (obj) {
-+			i915_gem_object_lock(obj, NULL);
-+			WARN_ON(i915_gem_object_set_to_gtt_domain(obj, false));
-+			i915_gem_object_unlock(obj);
- 		}
- 	}
- 
--	return write_domain_objs;
- }
- 
- void i915_ggtt_resume(struct i915_ggtt *ggtt)
- {
--	bool flush;
- 
- 	intel_gt_check_and_clear_faults(ggtt->vm.gt);
- 
--	flush = i915_ggtt_resume_vm(&ggtt->vm);
-+	i915_ggtt_resume_vm(&ggtt->vm);
- 
- 	ggtt->invalidate(ggtt);
- 
--	if (flush)
--		wbinvd_on_all_cpus();
--
- 	if (GRAPHICS_VER(ggtt->vm.i915) >= 8)
- 		setup_private_pat(ggtt->vm.gt->uncore);
- 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.h b/drivers/gpu/drm/i915/gt/intel_gtt.h
-index 4529b5e9f6e6..c86092054988 100644
---- a/drivers/gpu/drm/i915/gt/intel_gtt.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gtt.h
-@@ -567,7 +567,7 @@ struct i915_ppgtt *i915_ppgtt_create(struct intel_gt *gt,
- 				     unsigned long lmem_pt_obj_flags);
- 
- void i915_ggtt_suspend_vm(struct i915_address_space *vm);
--bool i915_ggtt_resume_vm(struct i915_address_space *vm);
-+void i915_ggtt_resume_vm(struct i915_address_space *vm);
- void i915_ggtt_suspend(struct i915_ggtt *gtt);
- void i915_ggtt_resume(struct i915_ggtt *ggtt);
- 
--- 
-2.25.1
+total: 1 errors, 1 warnings, 0 checks, 52 lines checked
+
 
