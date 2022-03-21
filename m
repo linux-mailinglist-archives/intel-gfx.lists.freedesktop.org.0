@@ -2,46 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F1424E24E7
-	for <lists+intel-gfx@lfdr.de>; Mon, 21 Mar 2022 12:02:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 644EA4E24E8
+	for <lists+intel-gfx@lfdr.de>; Mon, 21 Mar 2022 12:02:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F2AC10E31D;
-	Mon, 21 Mar 2022 11:02:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2DE2110E327;
+	Mon, 21 Mar 2022 11:02:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 26AA810E31D
- for <intel-gfx@lists.freedesktop.org>; Mon, 21 Mar 2022 11:02:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 84B6410E323
+ for <intel-gfx@lists.freedesktop.org>; Mon, 21 Mar 2022 11:02:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1647860549; x=1679396549;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=XMiOPEXLDXH8TSnIS+qq7u178j2Ql0qkiVRMIL+5lyE=;
- b=Ozqa9AcUze4C2dAKmkW4FtUPveMl/qdZw6ksdiXgQEh5OVNB1XxCj5QU
- Rt3ZnmoyLrFNkQJlnRwfK3RkupiciEJ73O7Q1kmRMXg/s+6PkzxUPvvJw
- Tr/bJlsWC/5hXVvyIJ+tc1Sy5sLN9uWUEn0vEmxDrN0Y9Q8VUY2IcwAUe
- 1IoAWGe/rojfjIJqgxrR1nX12HDtAEKHYLKw7c+2cMIrAp5WRXzOP5/vt
- 9TJaDdKzyWfJEbFz9BRQkAaLdODXYnOcuRGcsI9u1QhCmf5IHhu/u+zwU
- gC1ofaW8/bxv89KNwH90LvCB29LRNn24Apccjnu1ae4SKuis++dTbfwyu w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10292"; a="343952623"
-X-IronPort-AV: E=Sophos;i="5.90,198,1643702400"; d="scan'208";a="343952623"
+ t=1647860550; x=1679396550;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=NN0dRD/Tg0wMtbK0CjqZHItNw8+bc9JgyeqLd+FqyEw=;
+ b=NGufrdY+GsJF3jrSZByJhqRn6f6NvZod6WMR6P3A7kaxMSi/yduSNlcF
+ XTyADeaLrFrg4x8duvyMYwRsOugG+yOSZpERgzV5I2iPX6w1xMvcE0+Iq
+ cmY42KVsFGKa0XgKecjKTttrWozqBsKBuer2A809ZaoHL9eu8SD3pPSOV
+ 8ds3guNc5qYuaboknT27yH1w0a2gQty0gqjv/cMa/i6jP3iTA7DrPlwan
+ 1dx5gfMxq8Ud7YhUAAcvakuJnECb51aUYxsn+3FcoAAE+ROsCzIyRCdNP
+ iPYkB7lyb/YAL6mtVJvDqWpyerzUREBE4POXVc+cWkp5vPZWrypxeGIg5 w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10292"; a="343952642"
+X-IronPort-AV: E=Sophos;i="5.90,198,1643702400"; d="scan'208";a="343952642"
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2022 04:02:28 -0700
+ 21 Mar 2022 04:02:30 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,198,1643702400"; d="scan'208";a="716454755"
+X-IronPort-AV: E=Sophos;i="5.90,198,1643702400"; d="scan'208";a="716454764"
 Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
  ([10.237.72.65])
- by orsmga005.jf.intel.com with ESMTP; 21 Mar 2022 04:02:26 -0700
+ by orsmga005.jf.intel.com with ESMTP; 21 Mar 2022 04:02:28 -0700
 From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 21 Mar 2022 13:03:03 +0200
-Message-Id: <20220321110305.12853-1-stanislav.lisovskiy@intel.com>
+Date: Mon, 21 Mar 2022 13:03:04 +0200
+Message-Id: <20220321110305.12853-2-stanislav.lisovskiy@intel.com>
 X-Mailer: git-send-email 2.24.1.485.gad05a3d8e5
+In-Reply-To: <20220321110305.12853-1-stanislav.lisovskiy@intel.com>
+References: <20220321110305.12853-1-stanislav.lisovskiy@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 0/2] Add DP MST DSC support to i915
+Subject: [Intel-gfx] [PATCH 1/2] drm: Add missing DP DSC extended capability
+ definitions.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,19 +60,106 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Currently we have only DSC support for DP SST.
+Adding DP DSC register definitions, we might need for further
+DSC implementation, supporting MST and DP branch pass-through mode.
 
-Stanislav Lisovskiy (2):
-  drm: Add missing DP DSC extended capability definitions.
-  drm/i915: Add DSC support to MST path
+v2: - Fixed checkpatch comment warning
 
- drivers/gpu/drm/dp/drm_dp.c                 |  25 ++++
- drivers/gpu/drm/i915/display/intel_dp.c     |  75 +++++-----
- drivers/gpu/drm/i915/display/intel_dp.h     |  17 +++
- drivers/gpu/drm/i915/display/intel_dp_mst.c | 143 ++++++++++++++++++++
- include/drm/dp/drm_dp_helper.h              |  11 +-
- 5 files changed, 226 insertions(+), 45 deletions(-)
+Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+---
+ drivers/gpu/drm/dp/drm_dp.c    | 25 +++++++++++++++++++++++++
+ include/drm/dp/drm_dp_helper.h | 11 ++++++++++-
+ 2 files changed, 35 insertions(+), 1 deletion(-)
 
+diff --git a/drivers/gpu/drm/dp/drm_dp.c b/drivers/gpu/drm/dp/drm_dp.c
+index 703972ae14c6..45815745ba7b 100644
+--- a/drivers/gpu/drm/dp/drm_dp.c
++++ b/drivers/gpu/drm/dp/drm_dp.c
+@@ -2312,6 +2312,31 @@ u8 drm_dp_dsc_sink_max_slice_count(const u8 dsc_dpcd[DP_DSC_RECEIVER_CAP_SIZE],
+ }
+ EXPORT_SYMBOL(drm_dp_dsc_sink_max_slice_count);
+ 
++/**
++ * drm_dp_dsc_sink_bpp_increment_div - Get the bits per pixel precision
++ * which DP DSC sink device supports.
++ */
++u8 drm_dp_dsc_sink_bpp_increment_div(const u8 dsc_dpcd[DP_DSC_RECEIVER_CAP_SIZE])
++{
++	u8 bpp_increment_dpcd = dsc_dpcd[DP_DSC_BITS_PER_PIXEL_INC - DP_DSC_SUPPORT];
++
++	switch (bpp_increment_dpcd) {
++	case DP_DSC_BITS_PER_PIXEL_1_16:
++		return 16;
++	case DP_DSC_BITS_PER_PIXEL_1_8:
++		return 8;
++	case DP_DSC_BITS_PER_PIXEL_1_4:
++		return 4;
++	case DP_DSC_BITS_PER_PIXEL_1_2:
++		return 2;
++	case DP_DSC_BITS_PER_PIXEL_1_1:
++		return 1;
++	}
++
++	return 0;
++}
++
++
+ /**
+  * drm_dp_dsc_sink_line_buf_depth() - Get the line buffer depth in bits
+  * @dsc_dpcd: DSC capabilities from DPCD
+diff --git a/include/drm/dp/drm_dp_helper.h b/include/drm/dp/drm_dp_helper.h
+index 51e02cf75277..e4c9f4438ccb 100644
+--- a/include/drm/dp/drm_dp_helper.h
++++ b/include/drm/dp/drm_dp_helper.h
+@@ -246,6 +246,9 @@ struct drm_panel;
+ 
+ #define DP_DSC_SUPPORT                      0x060   /* DP 1.4 */
+ # define DP_DSC_DECOMPRESSION_IS_SUPPORTED  (1 << 0)
++# define DP_DSC_PASS_THROUGH_IS_SUPPORTED   (1 << 1)
++# define DP_DSC_DYNAMIC_PPS_UPDATE_SUPPORT_COMP_TO_COMP    (1 << 2)
++# define DP_DSC_DYNAMIC_PPS_UPDATE_SUPPORT_UNCOMP_TO_COMP  (1 << 3)
+ 
+ #define DP_DSC_REV                          0x061
+ # define DP_DSC_MAJOR_MASK                  (0xf << 0)
+@@ -284,12 +287,15 @@ struct drm_panel;
+ 
+ #define DP_DSC_BLK_PREDICTION_SUPPORT       0x066
+ # define DP_DSC_BLK_PREDICTION_IS_SUPPORTED (1 << 0)
++# define DP_DSC_RGB_COLOR_CONV_BYPASS_SUPPORT (1 << 1)
+ 
+ #define DP_DSC_MAX_BITS_PER_PIXEL_LOW       0x067   /* eDP 1.4 */
+ 
+ #define DP_DSC_MAX_BITS_PER_PIXEL_HI        0x068   /* eDP 1.4 */
+ # define DP_DSC_MAX_BITS_PER_PIXEL_HI_MASK  (0x3 << 0)
+ # define DP_DSC_MAX_BITS_PER_PIXEL_HI_SHIFT 8
++# define DP_DSC_MAX_BPP_DELTA_VERSION_MASK  0x06
++# define DP_DSC_MAX_BPP_DELTA_AVAILABILITY  0x08
+ 
+ #define DP_DSC_DEC_COLOR_FORMAT_CAP         0x069
+ # define DP_DSC_RGB                         (1 << 0)
+@@ -351,11 +357,13 @@ struct drm_panel;
+ # define DP_DSC_24_PER_DP_DSC_SINK          (1 << 2)
+ 
+ #define DP_DSC_BITS_PER_PIXEL_INC           0x06F
++# define DP_DSC_RGB_YCbCr444_MAX_BPP_DELTA_MASK 0x1f
++# define DP_DSC_RGB_YCbCr420_MAX_BPP_DELTA_MASK 0xe0
+ # define DP_DSC_BITS_PER_PIXEL_1_16         0x0
+ # define DP_DSC_BITS_PER_PIXEL_1_8          0x1
+ # define DP_DSC_BITS_PER_PIXEL_1_4          0x2
+ # define DP_DSC_BITS_PER_PIXEL_1_2          0x3
+-# define DP_DSC_BITS_PER_PIXEL_1            0x4
++# define DP_DSC_BITS_PER_PIXEL_1_1          0x4
+ 
+ #define DP_PSR_SUPPORT                      0x070   /* XXX 1.2? */
+ # define DP_PSR_IS_SUPPORTED                1
+@@ -1825,6 +1833,7 @@ u8 drm_dp_dsc_sink_max_slice_count(const u8 dsc_dpcd[DP_DSC_RECEIVER_CAP_SIZE],
+ u8 drm_dp_dsc_sink_line_buf_depth(const u8 dsc_dpcd[DP_DSC_RECEIVER_CAP_SIZE]);
+ int drm_dp_dsc_sink_supported_input_bpcs(const u8 dsc_dpc[DP_DSC_RECEIVER_CAP_SIZE],
+ 					 u8 dsc_bpc[3]);
++u8 drm_dp_dsc_sink_bpp_increment_div(const u8 dsc_dpcd[DP_DSC_RECEIVER_CAP_SIZE]);
+ 
+ static inline bool
+ drm_dp_sink_supports_dsc(const u8 dsc_dpcd[DP_DSC_RECEIVER_CAP_SIZE])
 -- 
 2.24.1.485.gad05a3d8e5
 
