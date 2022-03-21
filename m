@@ -2,57 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AD014E2662
-	for <lists+intel-gfx@lfdr.de>; Mon, 21 Mar 2022 13:29:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BE914E2699
+	for <lists+intel-gfx@lfdr.de>; Mon, 21 Mar 2022 13:33:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8997A10E230;
-	Mon, 21 Mar 2022 12:29:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F2F6910E277;
+	Mon, 21 Mar 2022 12:33:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qv1-xf2d.google.com (mail-qv1-xf2d.google.com
- [IPv6:2607:f8b0:4864:20::f2d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4CBE410E230
- for <intel-gfx@lists.freedesktop.org>; Mon, 21 Mar 2022 12:29:34 +0000 (UTC)
-Received: by mail-qv1-xf2d.google.com with SMTP id gi14so434080qvb.0
- for <intel-gfx@lists.freedesktop.org>; Mon, 21 Mar 2022 05:29:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=LM3OUC8toHjHbsQOiTHz6z/M8/SXo+c+1Wjmc4WCng0=;
- b=qPd0E5M520cTLaYrYuSJtb340WFSCA9fPlxAjlvTynFe1VN2E2qAeC5Fkzxsd8kMvb
- x8m2BVO2dlajofs7WLTFOOIUJEGvzAnTdebuQ+cxo65qbpBbVQf/YARhPIi903akUMCu
- t0f3MUUp9bx3IdmJa15VosVafOosDS7LCndOZsZ4JI/FFMPpyi9Xf7pwQZ9SqMeM4Aj9
- dA422D63WRcM4Sbn7oT0vY8fSkQGCsMmVHw7JtQIq3gD/w2gJmCHl830T/3tTwZqAGpf
- FN+WkfQTU/IDKdTbGPZL4vpWfm7/cB/aIJv6L23QK6W/+my+hN/SemJwyzj+ewPD2Ih6
- RRZw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=LM3OUC8toHjHbsQOiTHz6z/M8/SXo+c+1Wjmc4WCng0=;
- b=j/YT0QMSM0D/5JJcrOfN5KeNlDGcA/ek4IJuHzk2kIEXLkC9eWdh5NMeMAoHZBJQLn
- oO598Up2XbH2YumYmjoESqS0Q1O/sS6o6p1XrAdZfhKPljEaAW5jFaRUi3wXi0sHnb27
- BZkmCtbYsm10Kctgsn1dYhvhXgnBcykOt7f2Fo6GpeJsOAD7ss4lC6+P7vJmehUQ79TN
- RmVoCy3L3gXhhGacWRYiNj3imi7kX0b3KCI97Q7mVi5oGZrceFwUwNg33C2fgbfvhhRM
- dG3g3Hj8x1ErLNc2M1EtdHZubFmy/5XZRv0TSa0NFrP+MuwMSTVs2zUHqXjtqQR/haBt
- JaoA==
-X-Gm-Message-State: AOAM531QQF3si8hC/NVNsP7P2+0Z7oQxTau37i90zRWoAEsbP6LCSEdo
- GcnnqLr5uzp1cnUDMO4okyPLcUmXodxCEwRzRfw=
-X-Google-Smtp-Source: ABdhPJyOJzRbKjPYlbsPjDXZgRydEX0sw5DJ6CyucZvTbMjkI6FnvIyJQp8EORBT9rnTLwTOfx8qrmNXKdrsYYYdYdQ=
-X-Received: by 2002:a05:6214:c85:b0:441:2bb9:92fa with SMTP id
- r5-20020a0562140c8500b004412bb992famr2288975qvr.21.1647865773272; Mon, 21 Mar
- 2022 05:29:33 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220316222307.30066-1-juhapekka.heikkila@gmail.com>
- <CAM0jSHMC76EyN-HeKFeON4ODeGPd2Ez=dF8eTNkA8Yp3eAu-JA@mail.gmail.com>
- <6cec7503-b7ab-8d7c-dff0-b83d65a9e3df@gmail.com>
-In-Reply-To: <6cec7503-b7ab-8d7c-dff0-b83d65a9e3df@gmail.com>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Mon, 21 Mar 2022 12:29:07 +0000
-Message-ID: <CAM0jSHN63X_wANE=6LutBOWpETOkB27sQmCb=X4U_sOTvdppSA@mail.gmail.com>
-To: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3453C10E278;
+ Mon, 21 Mar 2022 12:33:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1647865991; x=1679401991;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=+JQhiHkiAO6Sssy0vN6VXlc0UIjEstqV8G5naEXVdJQ=;
+ b=eyFyG/aCA4V1QSxpKmjquZ+/k9Xr4UDw1fzH8TN+tCPCV2K0+07aA7Ar
+ n295uuYoPKxdYt5S29zvJdqrep0IaExpVgomh4Z+Bd7AD9vQ+b+hv1SCC
+ C7BKw8V2tXzzgusrHPlLKfDU1DAhTxHkF568HqcIhWr0mUdncHoxN2DEY
+ OWkgc6V+cQCRbTW+ojP479s8ouPR4lM1js7BMz9vjgjFH0znpIrdDhXSL
+ XJAiIyxBHkuy+FgS5tPyE3cNMQBF+XEHx80TUk19RH9IEYJHgUevRmYAa
+ ynAfaDKoOPTp6bfRd5Iqi04wKHaro0huLZjL89UcOtmAE/hopPYGcQwE4 Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10292"; a="320742040"
+X-IronPort-AV: E=Sophos;i="5.90,198,1643702400"; d="scan'208";a="320742040"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2022 05:33:10 -0700
+X-IronPort-AV: E=Sophos;i="5.90,198,1643702400"; d="scan'208";a="636631396"
+Received: from evinintel.ger.corp.intel.com (HELO [10.249.254.209])
+ ([10.249.254.209])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2022 05:33:07 -0700
+Message-ID: <29bde7b0e680e503fbf483a560616e2ce22cdd79.camel@linux.intel.com>
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, Michael Cheng
+ <michael.cheng@intel.com>, intel-gfx@lists.freedesktop.org
+Date: Mon, 21 Mar 2022 13:33:05 +0100
+In-Reply-To: <abdc3b07-a05e-f67d-2135-a30421cb9d12@linux.intel.com>
+References: <20220319194227.297639-1-michael.cheng@intel.com>
+ <4c86ae70-6f97-7a7c-1fd4-5e73ca29d0ba@linux.intel.com>
+ <5db61477-6064-ada0-82a7-c1dc659dacad@linux.intel.com>
+ <abdc3b07-a05e-f67d-2135-a30421cb9d12@linux.intel.com>
 Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Add smem fallback
- allocation for dpt
+User-Agent: Evolution 3.40.4 (3.40.4-2.fc34) 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH 0/4] Drop wbinvd_on_all_cpus usage
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,100 +61,146 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Cc: daniel.vetter@ffwll.ch, lucas.demarchi@intel.com,
+ dri-devel@lists.freedesktop.org, chris@chris-wilson.co.uk,
+ Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 18 Mar 2022 at 09:22, Juha-Pekka Heikkila
-<juhapekka.heikkila@gmail.com> wrote:
->
-> On 17.3.2022 13.55, Matthew Auld wrote:
-> > On Wed, 16 Mar 2022 at 22:23, Juha-Pekka Heikkila
-> > <juhapekka.heikkila@gmail.com> wrote:
-> >>
-> >> Add fallback smem allocation for dpt if stolen memory
-> >> allocation failed.
-> >>
-> >> Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-> >> ---
-> >>   drivers/gpu/drm/i915/display/intel_dpt.c | 18 ++++++++++++++----
-> >>   1 file changed, 14 insertions(+), 4 deletions(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/i915/display/intel_dpt.c b/drivers/gpu/drm/i915/display/intel_dpt.c
-> >> index fb0e7e79e0cd..c8b66433d4db 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_dpt.c
-> >> +++ b/drivers/gpu/drm/i915/display/intel_dpt.c
-> >> @@ -10,6 +10,7 @@
-> >>   #include "intel_display_types.h"
-> >>   #include "intel_dpt.h"
-> >>   #include "intel_fb.h"
-> >> +#include "gem/i915_gem_internal.h"
-> >
-> > Nit: these should be kept sorted
-> >
-> >>
-> >>   struct i915_dpt {
-> >>          struct i915_address_space vm;
-> >> @@ -128,6 +129,10 @@ struct i915_vma *intel_dpt_pin(struct i915_address_space *vm)
-> >>          void __iomem *iomem;
-> >>          struct i915_gem_ww_ctx ww;
-> >>          int err;
-> >> +       u64 pin_flags = 0;
-> >> +
-> >> +       if (i915_gem_object_is_stolen(dpt->obj))
-> >> +               pin_flags |= PIN_MAPPABLE; /* for i915_vma_pin_iomap(stolen) */
-> >>
-> >>          wakeref = intel_runtime_pm_get(&i915->runtime_pm);
-> >>          atomic_inc(&i915->gpu_error.pending_fb_pin);
-> >> @@ -138,7 +143,7 @@ struct i915_vma *intel_dpt_pin(struct i915_address_space *vm)
-> >>                          continue;
-> >>
-> >>                  vma = i915_gem_object_ggtt_pin_ww(dpt->obj, &ww, NULL, 0, 4096,
-> >> -                                                 HAS_LMEM(i915) ? 0 : PIN_MAPPABLE);
-> >> +                                                 pin_flags);
-> >>                  if (IS_ERR(vma)) {
-> >>                          err = PTR_ERR(vma);
-> >>                          continue;
-> >> @@ -248,10 +253,15 @@ intel_dpt_create(struct intel_framebuffer *fb)
-> >>
-> >>          size = round_up(size * sizeof(gen8_pte_t), I915_GTT_PAGE_SIZE);
-> >>
-> >> -       if (HAS_LMEM(i915))
-> >> -               dpt_obj = i915_gem_object_create_lmem(i915, size, I915_BO_ALLOC_CONTIGUOUS);
-> >> -       else
-> >> +       dpt_obj = i915_gem_object_create_lmem(i915, size, I915_BO_ALLOC_CONTIGUOUS);
-> >> +       if (IS_ERR(dpt_obj) && i915_ggtt_has_aperture(to_gt(i915)->ggtt))
-> >>                  dpt_obj = i915_gem_object_create_stolen(i915, size);
-> >> +       if (IS_ERR(dpt_obj) && !HAS_LMEM(i915)) {
-> >> +               drm_dbg_kms(&i915->drm, "fb: [FB:%d] Allocating dpt from smem\n",
-> >> +                           fb->base.base.id);
-> >> +
-> >> +               dpt_obj = i915_gem_object_create_internal(i915, size);
-> >
-> > Looks like we are missing some prerequisite patch to be able to
-> > directly map such memory in vma_pin_iomap?
->
-> For these functions I'm more like a consumer, I was following
-> suggestions from Chris on this. Is there something extra that should be
-> considered in this regard when use it like this?
+On Mon, 2022-03-21 at 12:22 +0000, Tvrtko Ursulin wrote:
+> 
+> On 21/03/2022 11:03, Thomas Hellström wrote:
+> > Hi, Tvrtko.
+> > 
+> > On 3/21/22 11:27, Tvrtko Ursulin wrote:
+> > > 
+> > > On 19/03/2022 19:42, Michael Cheng wrote:
+> > > > To align with the discussion in [1][2], this patch series drops
+> > > > all 
+> > > > usage of
+> > > > wbvind_on_all_cpus within i915 by either replacing the call
+> > > > with certain
+> > > > drm clflush helpers, or reverting to a previous logic.
+> > > 
+> > > AFAIU, complaint from [1] was that it is wrong to provide non x86
+> > > implementations under the wbinvd_on_all_cpus name. Instead an
+> > > arch 
+> > > agnostic helper which achieves the same effect could be created.
+> > > Does 
+> > > Arm have such concept?
+> > 
+> > I also understand Linus' email like we shouldn't leak incoherent IO
+> > to 
+> > other architectures, meaning any remaining wbinvd()s should be X86
+> > only.
+> 
+> The last part is completely obvious since it is a x86 instruction
+> name.
 
-AFAICT this will trigger the WARN_ON() in vma_pin_iomap() if we
-fallback to create_internal(), since the object is now not lmem and is
-also not map_and_fenceable(i.e PIN_MAPPABLE).
+Yeah, I meant the function implementing wbinvd() semantics.
 
-The other issue is that we need some way of CPU mapping this type of
-object, like with calling i915_gem_object_pin_map() inside
-vma_pin_iomap(). It looks like there is an internal patch that tries
-to handle both issues, so I guess we need to also bring that patch
-upstream as a prerequisite to this?
+> 
+> But I think we can't pick a solution until we know how the concept
+> maps 
+> to Arm and that will also include seeing how the drm_clflush_sg for
+> Arm 
+> would look. Is there a range based solution, or just a big hammer
+> there. 
+> If the latter, then it is no good to churn all these reverts but
+> instead 
+> an arch agnostic wrapper, with a generic name, would be the way to
+> go.
 
->
-> >
-> >> +       }
-> >>          if (IS_ERR(dpt_obj))
-> >>                  return ERR_CAST(dpt_obj);
-> >>
-> >> --
-> >> 2.28.0
-> >>
->
+But my impression was that ARM would not need the range-based interface
+either, because ARM is only for discrete and with discrete we're always
+coherent.
+
+So in essence it all would become:
+
+1) Any cache flushing intended for incoherent IO is x86 only.
+2) Prefer range-based flushing if possible and any implications sorted
+out.
+
+/Thomas
+
+
+> 
+> Regards,
+> 
+> Tvrtko
+> 
+> > Also, wbinvd_on_all_cpus() can become very costly, hence prefer the
+> > range apis when possible if they can be verified not to degrade 
+> > performance.
+> > 
+> > 
+> > > 
+> > > Given that the series seems to be taking a different route,
+> > > avoiding 
+> > > the need to call wbinvd_on_all_cpus rather than what [1] suggests
+> > > (note drm_clflush_sg can still call it!?), concern is that the
+> > > series 
+> > > has a bunch of reverts and each one needs to be analyzed.
+> > 
+> > 
+> > Agreed.
+> > 
+> > /Thomas
+> > 
+> > 
+> > 
+> > > 
+> > > For instance looking at just the last one, 64b95df91f44, who has 
+> > > looked at the locking consequences that commit describes:
+> > > 
+> > > """
+> > >     Inside gtt_restore_mappings() we currently take the 
+> > > obj->resv->lock, but
+> > >     in the future we need to avoid taking this fs-reclaim tainted
+> > > lock 
+> > > as we
+> > >     need to extend the coverage of the vm->mutex. Take advantage
+> > > of the
+> > >     single-threaded nature of the early resume phase, and do a
+> > > single
+> > >     wbinvd() to flush all the GTT objects en masse.
+> > > 
+> > > """
+> > > 
+> > > ?
+> > > 
+> > > Then there are suspend and freeze reverts which presumably can
+> > > regress 
+> > > the suspend times. Any data on those?
+> > > 
+> > > Adding Matt since he was the reviewer for that work so might
+> > > remember 
+> > > something.
+> > > 
+> > > Regards,
+> > > 
+> > > Tvrtko
+> > > 
+> > > 
+> > > > [1]. 
+> > > > https://lists.freedesktop.org/archives/dri-devel/2021-November/330928.html
+> > > >  
+> > > > 
+> > > > [2].
+> > > > https://patchwork.freedesktop.org/patch/475752/?series=99991&rev=5
+> > > > 
+> > > > Michael Cheng (4):
+> > > >    i915/gem: drop wbinvd_on_all_cpus usage
+> > > >    Revert "drm/i915/gem: Almagamate clflushes on suspend"
+> > > >    i915/gem: Revert i915_gem_freeze to previous logic
+> > > >    drm/i915/gt: Revert ggtt_resume to previous logic
+> > > > 
+> > > >   drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c |  9 +---
+> > > >   drivers/gpu/drm/i915/gem/i915_gem_pm.c     | 56
+> > > > ++++++++++++++--------
+> > > >   drivers/gpu/drm/i915/gt/intel_ggtt.c       | 17 +++----
+> > > >   drivers/gpu/drm/i915/gt/intel_gtt.h        |  2 +-
+> > > >   4 files changed, 46 insertions(+), 38 deletions(-)
+> > > > 
+
+
