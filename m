@@ -2,47 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E99F4E2812
-	for <lists+intel-gfx@lfdr.de>; Mon, 21 Mar 2022 14:50:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CE7EC4E2813
+	for <lists+intel-gfx@lfdr.de>; Mon, 21 Mar 2022 14:50:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D8C2C10E2D7;
-	Mon, 21 Mar 2022 13:50:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0228810E314;
+	Mon, 21 Mar 2022 13:50:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C47D110E2D7
- for <intel-gfx@lists.freedesktop.org>; Mon, 21 Mar 2022 13:50:49 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3191E10E324
+ for <intel-gfx@lists.freedesktop.org>; Mon, 21 Mar 2022 13:50:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1647870649; x=1679406649;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=5XW5MG464CI2G5vTaHHNYpn47BawMqbH358PN117C80=;
- b=dfRDIFxSub26b9w65MA6ltBLCIRPiyd2HKb3ZO4gQG9EnE3L3nsp8dT0
- V37gbZn5OXyOf3j5bDutTHt3TqTsPwe0MdliEpwwGoEfiFZgx1CZQUwy7
- +TK/LeKahCbG/fircx3K/lZYbTjS4jmOE1P3MsP0pQjvOW58WjIfHrRt+
- CJI3iXida6033kJXU6YDlhARCwoZlGc+UW10t9XS7V+R6FKNUYAwixSjw
- XcxCTiE/ehq7jHj0s46UapFJ2ZRuQ/8SjLzAIBC3XUWJPh+4IbfFKtt63
- oiqHkBDCIHXlpq9e/Wvofeeoq0L0RxkvvKQ6+fB/lmq/QS7lJt2fRp5vW w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10292"; a="318266146"
-X-IronPort-AV: E=Sophos;i="5.90,198,1643702400"; d="scan'208";a="318266146"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2022 06:50:49 -0700
-X-IronPort-AV: E=Sophos;i="5.90,198,1643702400"; d="scan'208";a="518443785"
+ t=1647870654; x=1679406654;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=Dl1XDwnKneWzF3OvWDTSq9KYw1HD/Oyd8KjDDToHPag=;
+ b=EvEW85KZXBUwg4cTkuKpFpBEbYrTLEkTpf3v5BJcp193RTNyHHWCSz1N
+ qI3LyXg0iCPGUYw2BVeGQvtudFtIsWHFmj2MImL2lUdC5hqdZLHemQYPJ
+ P0l1eT5rtS8at1XoUvPKOGlem6wGZquWBTgUJyDndjb4v+2i8NH/AKPRT
+ 9akjMN9Xragj0E3TT6B+BnYC8GWkBbLnNbChFl1udGCB7XQSzipNSuZQY
+ zETSV0+4RTT5WJybLtEMXOO/zPkabSgrgWvCIL6DctEqmsEmVq+dMH6gd
+ x4JxPbxQrxMAAn0yRIracGZRc0y/DdfBlDbFGJ1s/JBaOf6krS7fHQFHI w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10292"; a="237498448"
+X-IronPort-AV: E=Sophos;i="5.90,198,1643702400"; d="scan'208";a="237498448"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2022 06:50:53 -0700
+X-IronPort-AV: E=Sophos;i="5.90,198,1643702400"; d="scan'208";a="559879079"
 Received: from abhijitc-mobl.gar.corp.intel.com (HELO localhost)
  ([10.252.34.12])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2022 06:50:48 -0700
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2022 06:50:52 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 21 Mar 2022 15:50:28 +0200
-Message-Id: <cover.1647870374.git.jani.nikula@intel.com>
+Date: Mon, 21 Mar 2022 15:50:29 +0200
+Message-Id: <c8ec46a44071f80b9c97617391b30e0c61ebc3e6.1647870374.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.30.2
+In-Reply-To: <cover.1647870374.git.jani.nikula@intel.com>
+References: <cover.1647870374.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 0/7] drm/i915/dmc: cleanups
+Subject: [Intel-gfx] [PATCH v2 1/7] drm/i915/dmc: simplify
+ intel_dmc_load_program() conditions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,32 +58,78 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+Cc: jani.nikula@intel.com, Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-v2 of https://patchwork.freedesktop.org/series/101499/
+intel_dmc_load_program() is only ever called when
+intel_dmc_has_payload() is true. Move the condition within
+intel_dmc_load_program() to let it be called directly.
 
-Jani Nikula (7):
-  drm/i915/dmc: simplify intel_dmc_load_program() conditions
-  drm/i915/dmc: move assert_dmc_loaded() to intel_dmc.c
-  drm/i915/dmc: move dmc debugfs to intel_dmc.c
-  drm/i915/dmc: fix i915_reg_t usage
-  drm/i915/dmc: abstract GPU error state dump
-  drm/i915/dmc: hide DMC version macros
-  drm/i915/dmc: split out dmc registers to a separate file
+Also note that intel_dmc_has_payload() will always return false when
+HAS_DMC() is false. Remove the redundant check.
 
- .../drm/i915/display/intel_display_debugfs.c  |  75 +----------
- .../drm/i915/display/intel_display_power.c    |  18 +--
- drivers/gpu/drm/i915/display/intel_dmc.c      | 125 ++++++++++++++++--
- drivers/gpu/drm/i915/display/intel_dmc.h      |  10 +-
- drivers/gpu/drm/i915/display/intel_dmc_regs.h |  30 +++++
- drivers/gpu/drm/i915/gvt/handlers.c           |   1 +
- drivers/gpu/drm/i915/i915_gpu_error.c         |  10 +-
- drivers/gpu/drm/i915/i915_reg.h               |  21 ---
- 8 files changed, 157 insertions(+), 133 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/display/intel_dmc_regs.h
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display_power.c |  6 +++---
+ drivers/gpu/drm/i915/display/intel_dmc.c           | 11 +----------
+ 2 files changed, 4 insertions(+), 13 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+index 3dc859032bac..b3efe345567f 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+@@ -5387,7 +5387,7 @@ static void skl_display_core_init(struct drm_i915_private *dev_priv,
+ 
+ 	gen9_dbuf_enable(dev_priv);
+ 
+-	if (resume && intel_dmc_has_payload(dev_priv))
++	if (resume)
+ 		intel_dmc_load_program(dev_priv);
+ }
+ 
+@@ -5454,7 +5454,7 @@ static void bxt_display_core_init(struct drm_i915_private *dev_priv, bool resume
+ 
+ 	gen9_dbuf_enable(dev_priv);
+ 
+-	if (resume && intel_dmc_has_payload(dev_priv))
++	if (resume)
+ 		intel_dmc_load_program(dev_priv);
+ }
+ 
+@@ -5618,7 +5618,7 @@ static void icl_display_core_init(struct drm_i915_private *dev_priv,
+ 	if (IS_DG2(dev_priv))
+ 		intel_snps_phy_wait_for_calibration(dev_priv);
+ 
+-	if (resume && intel_dmc_has_payload(dev_priv))
++	if (resume)
+ 		intel_dmc_load_program(dev_priv);
+ 
+ 	/* Wa_14011508470:tgl,dg1,rkl,adl-s,adl-p */
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
+index a719c0f379ba..66fd69259e73 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc.c
++++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+@@ -276,17 +276,8 @@ void intel_dmc_load_program(struct drm_i915_private *dev_priv)
+ 	struct intel_dmc *dmc = &dev_priv->dmc;
+ 	u32 id, i;
+ 
+-	if (!HAS_DMC(dev_priv)) {
+-		drm_err(&dev_priv->drm,
+-			"No DMC support available for this platform\n");
+-		return;
+-	}
+-
+-	if (!dev_priv->dmc.dmc_info[DMC_FW_MAIN].payload) {
+-		drm_err(&dev_priv->drm,
+-			"Tried to program CSR with empty payload\n");
++	if (!intel_dmc_has_payload(dev_priv))
+ 		return;
+-	}
+ 
+ 	assert_rpm_wakelock_held(&dev_priv->runtime_pm);
+ 
 -- 
 2.30.2
 
