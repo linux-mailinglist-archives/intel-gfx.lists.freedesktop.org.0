@@ -2,66 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 967E84E5574
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Mar 2022 16:40:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A34DD4E557F
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Mar 2022 16:40:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8703310E71D;
-	Wed, 23 Mar 2022 15:40:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C1CB510E715;
+	Wed, 23 Mar 2022 15:40:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com
- [IPv6:2a00:1450:4864:20::42e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0465889FF9;
- Mon, 21 Mar 2022 13:59:20 +0000 (UTC)
-Received: by mail-wr1-x42e.google.com with SMTP id d7so20816954wrb.7;
- Mon, 21 Mar 2022 06:59:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=IRiB/8pqrJn1mJ6lfMd6SCDu1bKUwWyYQLH5w5j700I=;
- b=Zn1wwmet4pawxLOqP/cg2JwyS2ULGs2eq9xcTkt6GgsqmW0h/D4tqnXmX5Iobrir0v
- SgwwZROkbGNFSIjRReRubAM5Vg+/MdPobbYT+GlWy4s5aih+Vh77TbYJ1G+abJB+BlKC
- 6d2pdttGwss0mypXR9FbZz/GOe7H48vsclKuE7BkYMpk12Zsc+k+wOjMMXrvJaHwI3b7
- tYvC72b1Z4XfHqZBb5/Q2Xe/S1LoBOq2Zd9fc3zBXTPBdUhAeMnnQ0opZ+vq9GsgC3ZI
- r2h33shDQzHLSM1ozVgWl1KxlmBU9lhxaHFqW+0RuTi1A1sOWn+PzpqtFIUxWdHJgYhS
- cRkw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=IRiB/8pqrJn1mJ6lfMd6SCDu1bKUwWyYQLH5w5j700I=;
- b=DZdhDEe9AQMA/Lusl4wg0yeEq3G2uA3rMfNLrkOM3NjdUXwTyPPpy9lLEbarIAhu7f
- djaCYkmMhi5i7uzWFv/iPPUyGCtv1kShFzYKMjtWT4IIH0y2dR3sj71HYVqD3Fsxz2yy
- 936dXisIqdc4l9aSfRm5IhsovDj9ZUUQFcITibtk6o5xFTPvUld5ZN52Ihn0icjT/8UU
- fBt6IdWDFcFqInwZ1RhGt4XvTPGQ+0e33A6EQxxU2lsp+CVm1mq2mbvhgji7TzAriZi1
- EUZGIG7+TbpWOjtNg4VLuHb95F8nZix41xbRFoKfOStQ+lZ9KIHP0RwJHCZ88aSdVmy/
- Zlvw==
-X-Gm-Message-State: AOAM532+Nt9tMxu+KJF2c9crpwe4pBokhe0FTcAuwc+EUEpE6hBO9jdM
- OUr7vg+qUPYg8XQgOMWdc1dPvyF1TFI=
-X-Google-Smtp-Source: ABdhPJx96sZKYxJq0GD0vKeaAgQxQuDzu2xCGdw4/kDWrDSZoy2Mezt5x/iaYON3zdfdHp9R1GC21g==
-X-Received: by 2002:a5d:6d44:0:b0:1e4:9a6d:c171 with SMTP id
- k4-20020a5d6d44000000b001e49a6dc171mr18989963wri.468.1647871159523; 
- Mon, 21 Mar 2022 06:59:19 -0700 (PDT)
-Received: from able.fritz.box (p5b0eab60.dip0.t-ipconnect.de. [91.14.171.96])
- by smtp.gmail.com with ESMTPSA id
- m3-20020a5d6243000000b001e33760776fsm13317640wrv.10.2022.03.21.06.59.18
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 21 Mar 2022 06:59:19 -0700 (PDT)
-From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
-X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
- <christian.koenig@amd.com>
-To: daniel.vetter@ffwll.ch,
-	dri-devel@lists.freedesktop.org
-Date: Mon, 21 Mar 2022 14:58:55 +0100
-Message-Id: <20220321135856.1331-22-christian.koenig@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220321135856.1331-1-christian.koenig@amd.com>
-References: <20220321135856.1331-1-christian.koenig@amd.com>
+X-Greylist: delayed 429 seconds by postgrey-1.36 at gabe;
+ Mon, 21 Mar 2022 20:56:07 UTC
+Received: from mail2-relais-roc.national.inria.fr
+ (mail2-relais-roc.national.inria.fr [192.134.164.83])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7947410E48B
+ for <intel-gfx@lists.freedesktop.org>; Mon, 21 Mar 2022 20:56:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=inria.fr; s=dc;
+ h=date:from:to:cc:subject:in-reply-to:message-id:
+ references:mime-version:content-id;
+ bh=+iAje8HwoTKVVLsYWwFwzmevqMzSU+vHd9tB8rvnpPo=;
+ b=Dx/BdeKDKr6Jz7BFJAQVU4IP344Oqgt4621CERh1G1ZOrKNgWjuQFXS0
+ TgszBxQo9BVrNkSWTe/MYkTtjTTJ6UWNTsl0eswAGkKY8QiT1cC6dh8e6
+ hTgXwe4yxyWfN2ZOYAuNZcZ8eZijxucPeaoCXpl7x6bJL26PCQUMUbUJO c=;
+Authentication-Results: mail2-relais-roc.national.inria.fr;
+ dkim=none (message not signed) header.i=none;
+ spf=SoftFail smtp.mailfrom=julia.lawall@inria.fr;
+ dmarc=fail (p=none dis=none) d=inria.fr
+X-IronPort-AV: E=Sophos;i="5.90,199,1643670000"; d="scan'208";a="27317259"
+Received: from 203.107.68.85.rev.sfr.net (HELO hadrien) ([85.68.107.203])
+ by mail2-relais-roc.national.inria.fr with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Mar 2022 21:48:55 +0100
+Date: Mon, 21 Mar 2022 21:48:55 +0100 (CET)
+From: Julia Lawall <julia.lawall@inria.fr>
+X-X-Sender: jll@hadrien
+To: =?ISO-8859-15?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+In-Reply-To: <YjjKnUbcJRpcoxoI@intel.com>
+Message-ID: <alpine.DEB.2.22.394.2203212147050.3189@hadrien>
+References: <20220218100403.7028-1-ville.syrjala@linux.intel.com>
+ <20220218100403.7028-19-ville.syrjala@linux.intel.com>
+ <877d8upbsp.fsf@intel.com> <YjjKnUbcJRpcoxoI@intel.com>
+User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/mixed; BOUNDARY="8323329-1112260562-1647895664=:3189"
+Content-ID: <alpine.DEB.2.22.394.2203212148250.3189@hadrien>
 X-Mailman-Approved-At: Wed, 23 Mar 2022 15:40:20 +0000
-Subject: [Intel-gfx] [PATCH 22/23] drm/i915: drop bo->moving dependency
+Subject: Re: [Intel-gfx] [PATCH 18/22] drm/i915: Use drm_mode_init() for
+ on-stack modes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,149 +58,70 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: intel-gfx@lists.freedesktop.org, Nicolas Palix <nicolas.palix@imag.fr>,
+ dri-devel@lists.freedesktop.org, cocci@inria.fr
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-That should now be handled by the common dma_resv framework.
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-Signed-off-by: Christian KÃ¶nig <christian.koenig@amd.com>
-Cc: intel-gfx@lists.freedesktop.org
----
- drivers/gpu/drm/i915/gem/i915_gem_object.c   | 29 ++++++--------------
- drivers/gpu/drm/i915/gem/i915_gem_object.h   |  5 ++--
- drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c | 15 +---------
- drivers/gpu/drm/i915/i915_vma.c              |  9 +++++-
- 4 files changed, 19 insertions(+), 39 deletions(-)
+--8323329-1112260562-1647895664=:3189
+Content-Type: text/plain; CHARSET=ISO-8859-15
+Content-Transfer-Encoding: 8BIT
+Content-ID: <alpine.DEB.2.22.394.2203212148251.3189@hadrien>
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-index d87b508b59b1..fd240435ffef 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-@@ -742,18 +742,19 @@ static const struct drm_gem_object_funcs i915_gem_object_funcs = {
- /**
-  * i915_gem_object_get_moving_fence - Get the object's moving fence if any
-  * @obj: The object whose moving fence to get.
-+ * @fence: The resulting fence
-  *
-  * A non-signaled moving fence means that there is an async operation
-  * pending on the object that needs to be waited on before setting up
-  * any GPU- or CPU PTEs to the object's pages.
-  *
-- * Return: A refcounted pointer to the object's moving fence if any,
-- * NULL otherwise.
-+ * Return: Negative error code or 0 for success.
-  */
--struct dma_fence *
--i915_gem_object_get_moving_fence(struct drm_i915_gem_object *obj)
-+int i915_gem_object_get_moving_fence(struct drm_i915_gem_object *obj,
-+				     struct dma_fence **fence)
- {
--	return dma_fence_get(i915_gem_to_ttm(obj)->moving);
-+	return dma_resv_get_singleton(obj->base.resv, DMA_RESV_USAGE_KERNEL,
-+				      fence);
- }
- 
- /**
-@@ -771,23 +772,9 @@ i915_gem_object_get_moving_fence(struct drm_i915_gem_object *obj)
- int i915_gem_object_wait_moving_fence(struct drm_i915_gem_object *obj,
- 				      bool intr)
- {
--	struct dma_fence *fence = i915_gem_to_ttm(obj)->moving;
--	int ret;
--
- 	assert_object_held(obj);
--	if (!fence)
--		return 0;
--
--	ret = dma_fence_wait(fence, intr);
--	if (ret)
--		return ret;
--
--	if (fence->error)
--		return fence->error;
--
--	i915_gem_to_ttm(obj)->moving = NULL;
--	dma_fence_put(fence);
--	return 0;
-+	return dma_resv_wait_timeout(obj->base. resv, DMA_RESV_USAGE_KERNEL,
-+				     intr, MAX_SCHEDULE_TIMEOUT);
- }
- 
- #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-index f66d46882ea7..be57af8bfb31 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-@@ -521,9 +521,8 @@ i915_gem_object_finish_access(struct drm_i915_gem_object *obj)
- 	i915_gem_object_unpin_pages(obj);
- }
- 
--struct dma_fence *
--i915_gem_object_get_moving_fence(struct drm_i915_gem_object *obj);
--
-+int i915_gem_object_get_moving_fence(struct drm_i915_gem_object *obj,
-+				     struct dma_fence **fence);
- int i915_gem_object_wait_moving_fence(struct drm_i915_gem_object *obj,
- 				      bool intr);
- 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
-index e4a232e22f9d..4d5d0cd64f23 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
-@@ -452,19 +452,6 @@ __i915_ttm_move(struct ttm_buffer_object *bo,
- 	return fence;
- }
- 
--static int
--prev_deps(struct ttm_buffer_object *bo, struct ttm_operation_ctx *ctx,
--	  struct i915_deps *deps)
--{
--	int ret;
--
--	ret = i915_deps_add_dependency(deps, bo->moving, ctx);
--	if (!ret)
--		ret = i915_deps_add_resv(deps, bo->base.resv, ctx);
--
--	return ret;
--}
--
- /**
-  * i915_ttm_move - The TTM move callback used by i915.
-  * @bo: The buffer object.
-@@ -519,7 +506,7 @@ int i915_ttm_move(struct ttm_buffer_object *bo, bool evict,
- 		struct i915_deps deps;
- 
- 		i915_deps_init(&deps, GFP_KERNEL | __GFP_NORETRY | __GFP_NOWARN);
--		ret = prev_deps(bo, ctx, &deps);
-+		ret = i915_deps_add_resv(&deps, bo->base.resv, ctx);
- 		if (ret) {
- 			i915_refct_sgt_put(dst_rsgt);
- 			return ret;
-diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-index 52fd6705a518..8737159f4706 100644
---- a/drivers/gpu/drm/i915/i915_vma.c
-+++ b/drivers/gpu/drm/i915/i915_vma.c
-@@ -1247,10 +1247,17 @@ int i915_vma_pin_ww(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
- 	if (err)
- 		return err;
- 
-+	if (vma->obj) {
-+		err = i915_gem_object_get_moving_fence(vma->obj, &moving);
-+		if (err)
-+			return err;
-+	} else {
-+		moving = NULL;
-+	}
-+
- 	if (flags & PIN_GLOBAL)
- 		wakeref = intel_runtime_pm_get(&vma->vm->i915->runtime_pm);
- 
--	moving = vma->obj ? i915_gem_object_get_moving_fence(vma->obj) : NULL;
- 	if (flags & vma->vm->bind_async_flags || moving) {
- 		/* lock VM */
- 		err = i915_vm_lock_objects(vma->vm, ww);
--- 
-2.25.1
 
+
+On Mon, 21 Mar 2022, Ville Syrjälä wrote:
+
+> On Wed, Mar 16, 2022 at 10:00:06AM +0200, Jani Nikula wrote:
+> > On Fri, 18 Feb 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> > > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > >
+> > > Initialize on-stack modes with drm_mode_init() to guarantee
+> > > no stack garbage in the list head, or that we aren't copying
+> > > over another mode's list head.
+> > >
+> > > Based on the following cocci script, with manual fixups:
+> > > @decl@
+> > > identifier M;
+> > > expression E;
+> > > @@
+> > > - struct drm_display_mode M = E;
+> > > + struct drm_display_mode M;
+> > >
+> > > @@
+> > > identifier decl.M;
+> > > expression decl.E;
+> > > statement S, S1;
+> > > @@
+> > > struct drm_display_mode M;
+> > > ... when != S
+> > > + drm_mode_init(&M, &E);
+> > > +
+> > > S1
+> > >
+> > > @@
+> > > expression decl.E;
+> > > @@
+> > > - &*E
+> > > + E
+> > >
+> > > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> >
+> > I wonder if that cocci could be added to scripts/coccinelle or something
+> > to detect anyone adding new ones?
+>
+> Maybe.
+>
+> Julia & co, would you be open to having drm subsystem specific
+> coccinelle scripts? If so where should we put the?
+> scripts/coccinelle/drm perhaps?
+
+That would be fine.  It is possible to make a script only apply to a
+specific directory, but I think that that is not necessary in this case,
+since you mention types that are only relevant to drm code.
+
+julia
+--8323329-1112260562-1647895664=:3189--
