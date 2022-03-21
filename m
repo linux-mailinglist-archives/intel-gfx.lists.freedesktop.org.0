@@ -2,69 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99AB64E3215
-	for <lists+intel-gfx@lfdr.de>; Mon, 21 Mar 2022 21:57:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 548C04E3232
+	for <lists+intel-gfx@lfdr.de>; Mon, 21 Mar 2022 22:14:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE0A310E48C;
-	Mon, 21 Mar 2022 20:57:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D48210E48C;
+	Mon, 21 Mar 2022 21:14:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7419710E48B
- for <intel-gfx@lists.freedesktop.org>; Mon, 21 Mar 2022 20:57:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE2E489FC9;
+ Mon, 21 Mar 2022 21:14:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1647896225; x=1679432225;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-id:content-transfer-encoding: mime-version;
- bh=B/9FfZQ1ichyHgB8TMqiFNnuLrG43SYl780P7oQCfLs=;
- b=kpWOi02OUvhWG4Xv6SYPXwzux97C5DXSNoI66SWef21hH30LZLBTA88c
- dQswBKOO2KaJqNGf0GD4dBtJ3xWlahABv3Sus1MdZMbiIOB/b9INUm0bI
- xJIjJFpqwj/M/lnyCKTUZq7i6eAht1u7XvTfkR4zItWgf1ipHyMEqpfzO
- KL81wpmEMYzNKqP3OBcZ9VwiWu8jrttFNVHc+UCYyzCY07d2BI035HJOD
- WhJj1iTl4+ec/2dkmuLPStmQ4JSOXKRwEYFrmo2GhGhS9di4MiqFlkjgs
- SbaJrPYBO7ZONDy1Kk5Bj58dOftrHR7ytVJS4ejd06wZyFYzcdg3W8tBy A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10293"; a="344076541"
-X-IronPort-AV: E=Sophos;i="5.90,199,1643702400"; d="scan'208";a="344076541"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ t=1647897260; x=1679433260;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=ECq24/OIntQlZspsCb8eJBNHSoGsh/zJIIs6KoGplTs=;
+ b=Mw3hUnhkpSc0OgI7ho3gj1l6F7UBvcleG5eak9pdgLBf5s8ZLe5i9ePU
+ 2x75l31+aUsq1p+OI56XI00hZZRVrIGQpyrlEYzMmSKr5GL0cWEbGS7FZ
+ gMgy0eUD78WZA8gc1BY8buc0DJDdCUclwiSy9+9hX40ba1Ruc7IVoJ73/
+ JC0eEfekXtR69cJ6b6w10cg+tDp1ATpLw7aU5zlrLYXpRTxCSAWx+GZ0a
+ J/h8TEol2mLdiWFLyqkn24fIntK0F0P7x8E2JnWK8aFinqXCMy5QgJAFw
+ BLfhdSx0zBclMk86uTMLv3bQRjTvYhnhND/glCIwTZD9uHbe95w6hBluT Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10293"; a="344079578"
+X-IronPort-AV: E=Sophos;i="5.90,199,1643702400"; d="scan'208";a="344079578"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2022 13:57:04 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,199,1643702400"; d="scan'208";a="515067850"
-Received: from fmsmsx605.amr.corp.intel.com ([10.18.126.85])
- by orsmga002.jf.intel.com with ESMTP; 21 Mar 2022 13:57:04 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx605.amr.corp.intel.com (10.18.126.85) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.21; Mon, 21 Mar 2022 13:57:04 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.21; Mon, 21 Mar 2022 13:57:03 -0700
-Received: from fmsmsx612.amr.corp.intel.com ([10.18.126.92]) by
- fmsmsx612.amr.corp.intel.com ([10.18.126.92]) with mapi id 15.01.2308.021;
- Mon, 21 Mar 2022 13:57:03 -0700
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>
-Thread-Topic: [Intel-gfx] [PATCH 9/9] drm/i915: s/enable/active/ for DRRS
-Thread-Index: AQHYOHCbt41s9naWfEeTZwDo1gFYlazBQPAAgAAYlACACXe5AA==
-Date: Mon, 21 Mar 2022 20:57:03 +0000
-Message-ID: <a16da7d73ef7ddc87aa6cd7cafa4fdd99c10f8f6.camel@intel.com>
-References: <20220315132752.11849-1-ville.syrjala@linux.intel.com>
- <20220315132752.11849-10-ville.syrjala@linux.intel.com>
- <f83e90ee190e523c6b796b916c91b07b54649b20.camel@intel.com>
- <YjD1vpq7u4yXSopV@intel.com>
-In-Reply-To: <YjD1vpq7u4yXSopV@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.100]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <C7139A631FB0D240B7C5A75A7029D161@intel.com>
-Content-Transfer-Encoding: base64
+ 21 Mar 2022 14:14:07 -0700
+X-IronPort-AV: E=Sophos;i="5.90,199,1643702400"; d="scan'208";a="648709457"
+Received: from eliasbro-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
+ ([10.251.30.246])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2022 14:14:07 -0700
+Date: Mon, 21 Mar 2022 14:14:07 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+Message-ID: <20220321211407.ujlokc44jx4kbtvo@ldmartin-desk2>
+X-Patchwork-Hint: comment
+References: <20220303180013.512219-1-balasubramani.vivekanandan@intel.com>
+ <20220303180013.512219-5-balasubramani.vivekanandan@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 9/9] drm/i915: s/enable/active/ for DRRS
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220303180013.512219-5-balasubramani.vivekanandan@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v2 4/7] drm/i915/guc: use the memcpy_from_wc
+ call from the drm
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,69 +60,100 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: michael.cheng@intel.com, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, siva.mullati@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCAyMDIyLTAzLTE1IGF0IDIyOjIzICswMjAwLCBWaWxsZSBTeXJqw6Rsw6Qgd3JvdGU6
-DQo+IE9uIFR1ZSwgTWFyIDE1LCAyMDIyIGF0IDA2OjU0OjIxUE0gKzAwMDAsIFNvdXphLCBKb3Nl
-IHdyb3RlOg0KPiA+IE9uIFR1ZSwgMjAyMi0wMy0xNSBhdCAxNToyNyArMDIwMCwgVmlsbGUgU3ly
-amFsYSB3cm90ZToNCj4gPiA+IEZyb206IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBs
-aW51eC5pbnRlbC5jb20+DQo+ID4gPiANCj4gPiA+IFJlbmFtZSB0aGUgRFJSUyBmdW5jdGlvc24g
-dG8gc2F5ICIoZGUpYWN0aXZhdGUiIHJhdGhlciB0aGFuDQo+ID4gPiAiZW5hYmxlL2Rpc2FibGUi
-LiBUaGlzIGxldCdzIHVzIGRpZmZlcmVudGlhdGUgYmV0d2VlbiB0aGUNCj4gPiA+IGxvZ2ljYWxs
-eSBlbmFibGVkIHZzLiBhY3R1YWxseSBjdXJyZW50bHkgYWN0aXZlIGNhc2VzLg0KPiA+ID4gDQo+
-ID4gPiBTaWduZWQtb2ZmLWJ5OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXgu
-aW50ZWwuY29tPg0KPiA+ID4gLS0tDQo+ID4gPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
-eS9pbnRlbF9kaXNwbGF5LmMgIHwgIDQgKystLQ0KPiA+ID4gIC4uLi9kcm0vaTkxNS9kaXNwbGF5
-L2ludGVsX2Rpc3BsYXlfZGVidWdmcy5jICB8IDE1ICsrKysrKysrLS0tLS0NCj4gPiA+ICBkcml2
-ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RycnMuYyAgICAgfCAyMiArKysrKysrKysr
-LS0tLS0tLS0tDQo+ID4gPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcnJz
-LmggICAgIHwgIDYgKystLS0NCj4gPiA+ICA0IGZpbGVzIGNoYW5nZWQsIDI3IGluc2VydGlvbnMo
-KyksIDIwIGRlbGV0aW9ucygtKQ0KPiA+ID4gDQo+ID4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYw0KPiA+ID4gaW5kZXggODZmYzhkZGQwYjhmLi45MGQ1
-NDI4MTUzNWQgMTAwNjQ0DQo+ID4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
-L2ludGVsX2Rpc3BsYXkuYw0KPiA+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
-eS9pbnRlbF9kaXNwbGF5LmMNCj4gPiA+IEBAIC0xMjQ2LDcgKzEyNDYsNyBAQCBzdGF0aWMgdm9p
-ZCBpbnRlbF9wb3N0X3BsYW5lX3VwZGF0ZShzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRlICpzdGF0
-ZSwNCj4gPiA+ICAJICAgICFuZWVkc19jdXJzb3JjbGtfd2EobmV3X2NydGNfc3RhdGUpKQ0KPiA+
-ID4gIAkJaWNsX3dhX2N1cnNvcmNsa2dhdGluZyhkZXZfcHJpdiwgcGlwZSwgZmFsc2UpOw0KPiA+
-ID4gIA0KPiA+ID4gLQlpbnRlbF9kcnJzX2VuYWJsZShuZXdfY3J0Y19zdGF0ZSk7DQo+ID4gPiAr
-CWludGVsX2RycnNfYWN0aXZhdGUobmV3X2NydGNfc3RhdGUpOw0KPiA+ID4gIH0NCj4gPiA+ICAN
-Cj4gPiA+ICBzdGF0aWMgdm9pZCBpbnRlbF9jcnRjX2VuYWJsZV9mbGlwX2RvbmUoc3RydWN0IGlu
-dGVsX2F0b21pY19zdGF0ZSAqc3RhdGUsDQo+ID4gPiBAQCAtMTMyNCw3ICsxMzI0LDcgQEAgc3Rh
-dGljIHZvaWQgaW50ZWxfcHJlX3BsYW5lX3VwZGF0ZShzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRl
-ICpzdGF0ZSwNCj4gPiA+ICAJCWludGVsX2F0b21pY19nZXRfbmV3X2NydGNfc3RhdGUoc3RhdGUs
-IGNydGMpOw0KPiA+ID4gIAllbnVtIHBpcGUgcGlwZSA9IGNydGMtPnBpcGU7DQo+ID4gPiAgDQo+
-ID4gPiAtCWludGVsX2RycnNfZGlzYWJsZShvbGRfY3J0Y19zdGF0ZSk7DQo+ID4gPiArCWludGVs
-X2RycnNfZGVhY3RpdmF0ZShvbGRfY3J0Y19zdGF0ZSk7DQo+ID4gPiAgDQo+ID4gPiAgCWludGVs
-X3Bzcl9wcmVfcGxhbmVfdXBkYXRlKHN0YXRlLCBjcnRjKTsNCj4gPiA+ICANCj4gPiA+IGRpZmYg
-LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfZGVidWdm
-cy5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X2RlYnVnZnMu
-Yw0KPiA+ID4gaW5kZXggZTBhMTI2ZTdlYmI4Li4xOGI5ODc4OGIyM2UgMTAwNjQ0DQo+ID4gPiAt
-LS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfZGVidWdmcy5j
-DQo+ID4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlf
-ZGVidWdmcy5jDQo+ID4gPiBAQCAtMTE1OSw2ICsxMTU5LDkgQEAgc3RhdGljIGludCBpOTE1X2Ry
-cnNfc3RhdHVzKHN0cnVjdCBzZXFfZmlsZSAqbSwgdm9pZCAqdW51c2VkKQ0KPiA+ID4gIAlzZXFf
-cHV0cyhtLCAiXG4iKTsNCj4gPiA+ICANCj4gPiA+ICAJZm9yX2VhY2hfaW50ZWxfY3J0YygmZGV2
-X3ByaXYtPmRybSwgY3J0Yykgew0KPiA+ID4gKwkJY29uc3Qgc3RydWN0IGludGVsX2NydGNfc3Rh
-dGUgKmNydGNfc3RhdGUgPQ0KPiA+ID4gKwkJCXRvX2ludGVsX2NydGNfc3RhdGUoY3J0Yy0+YmFz
-ZS5zdGF0ZSk7DQo+ID4gPiArDQo+ID4gPiAgCQlzZXFfcHJpbnRmKG0sICJbQ1JUQzolZDolc106
-XG4iLA0KPiA+ID4gIAkJCSAgIGNydGMtPmJhc2UuYmFzZS5pZCwgY3J0Yy0+YmFzZS5uYW1lKTsN
-Cj4gPiA+ICANCj4gPiA+IEBAIC0xMTY2LDcgKzExNjksMTAgQEAgc3RhdGljIGludCBpOTE1X2Ry
-cnNfc3RhdHVzKHN0cnVjdCBzZXFfZmlsZSAqbSwgdm9pZCAqdW51c2VkKQ0KPiA+ID4gIA0KPiA+
-ID4gIAkJLyogRFJSUyBTdXBwb3J0ZWQgKi8NCj4gPiA+ICAJCXNlcV9wcmludGYobSwgIlx0RFJS
-UyBFbmFibGVkOiAlc1xuIiwNCj4gPiA+IC0JCQkgICBzdHJfeWVzX25vKGludGVsX2RycnNfaXNf
-ZW5hYmxlZChjcnRjKSkpOw0KPiA+ID4gKwkJCSAgIHN0cl95ZXNfbm8oY3J0Y19zdGF0ZS0+aGFz
-X2RycnMpKTsNCj4gPiA+ICsNCj4gPiA+ICsJCXNlcV9wcmludGYobSwgIlx0RFJSUyBBY3RpdmU6
-ICVzXG4iLA0KPiA+ID4gKwkJCSAgIHN0cl95ZXNfbm8oaW50ZWxfZHJyc19pc19hY3RpdmUoY3J0
-YykpKTsNCj4gPiANCj4gPiBTbyB0aGVyZSBpcyBubyB3YXkgdG8ga25vdyBpZiB0aGUgd29ya2Vy
-IHRocmVhZCBoYXZlIGFjdGl2YXRlZCB0aGUgZG93bmNsb2NrIG1vZGU/DQo+ID4gSSBwcmVmZXIg
-dG8gaGF2ZSB0aGUgImFjdGl2YXRlZCIgYXMgbWVhbmluZyB0aGF0IHRoZSBkb3dubG9jayBpcyBp
-biB1c2UuDQo+IA0KPiBUaGUgIkRSUlMgcmVmcmVzaCByYXRlIiBwcmludCBzaG93cyBpZiB3ZSdy
-ZSBhY3R1YWxseSBydW5uaW5nIGF0DQo+IGhpZ2ggb3IgbG93IHJlZnJlc2ggcmF0ZSByaWdodCBu
-b3cuDQo+IA0KDQoNCk9rYXksIHJlYWRpbmcgaXQgYWdhaW4gbWFrZXMgc2Vuc2UgdG8gaGF2ZSAn
-ZW5hYmxlZCcgd2hlbiBoYXNfZHJycyBpcyBzZXQgYW5kICdhY3RpdmUnIHdoZW4gZmVhdHVyZSBp
-cyBhcm1lZC4NCg0KUmV2aWV3ZWQtYnk6IEpvc8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291
-emFAaW50ZWwuY29tPg0KDQo=
+On Thu, Mar 03, 2022 at 11:30:10PM +0530, Balasubramani Vivekanandan wrote:
+>memcpy_from_wc functions in i915_memcpy.c will be removed and replaced
+>by the implementation in drm_cache.c.
+>Updated to use the functions provided by drm_cache.c.
+>
+>v2: Check if the log object allocated from local memory or system memory
+>    and according setup the iosys_map (Lucas)
+>
+>Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>
+>Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+>---
+> drivers/gpu/drm/i915/gt/uc/intel_guc_log.c | 15 ++++++++++++---
+> 1 file changed, 12 insertions(+), 3 deletions(-)
+>
+>diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
+>index a24dc6441872..b9db765627ea 100644
+>--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
+>+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
+>@@ -3,6 +3,7 @@
+>  * Copyright © 2014-2019 Intel Corporation
+>  */
+>
+>+#include <drm/drm_cache.h>
+> #include <linux/debugfs.h>
+> #include <linux/string_helpers.h>
+>
+>@@ -206,6 +207,7 @@ static void guc_read_update_log_buffer(struct intel_guc_log *log)
+> 	enum guc_log_buffer_type type;
+> 	void *src_data, *dst_data;
+> 	bool new_overflow;
+>+	struct iosys_map src_map;
+>
+> 	mutex_lock(&log->relay.lock);
+>
+>@@ -282,14 +284,21 @@ static void guc_read_update_log_buffer(struct intel_guc_log *log)
+> 		}
+>
+> 		/* Just copy the newly written data */
+>+		if (i915_gem_object_is_lmem(log->vma->obj))
+>+			iosys_map_set_vaddr_iomem(&src_map, (void __iomem *)src_data);
+>+		else
+>+			iosys_map_set_vaddr(&src_map, src_data);
+
+It would be better to keep this outside of the loop. So inside the loop
+we can use only iosys_map_incr(&src_map, buffer_size). However you'd
+also have to handle the read_offset. The iosys_map_ API has both a
+src_offset and dst_offset due to situations like that. Maybe this is
+missing in the new drm_memcpy_* function you're adding?
+
+This function was not correct wrt to IO memory access with the other
+2 places in this function doing plain memcpy(). Since we are starting to
+use iosys_map here, we probably should handle this commit as "migrate to
+iosys_map", and convert those. In your current final state
+we have 3 variables aliasing the same memory location. IMO it will be
+error prone to keep it like that
+
++Michal, some questions:
+
+- I'm not very familiar with the relayfs API. Is the `dst_data += PAGE_SIZE;`
+really correct?
+
+- Could you double check this patch and ack if ok?
+
+Heads up that since the log buffer is potentially in lmem, we will need
+to convert this function to take that into account. All those accesses
+to log_buf_state need to use the proper kernel abstraction for system vs
+I/O memory.
+
+thanks
+Lucas De Marchi
+
+>+
+> 		if (read_offset > write_offset) {
+>-			i915_memcpy_from_wc(dst_data, src_data, write_offset);
+>+			drm_memcpy_from_wc_vaddr(dst_data, &src_map,
+>+						 write_offset);
+> 			bytes_to_copy = buffer_size - read_offset;
+> 		} else {
+> 			bytes_to_copy = write_offset - read_offset;
+> 		}
+>-		i915_memcpy_from_wc(dst_data + read_offset,
+>-				    src_data + read_offset, bytes_to_copy);
+>+		iosys_map_incr(&src_map, read_offset);
+>+		drm_memcpy_from_wc_vaddr(dst_data + read_offset, &src_map,
+>+					 bytes_to_copy);
+>
+> 		src_data += buffer_size;
+> 		dst_data += buffer_size;
+>-- 
+>2.25.1
+>
