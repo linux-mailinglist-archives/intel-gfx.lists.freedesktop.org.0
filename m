@@ -2,51 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53E564E27F5
-	for <lists+intel-gfx@lfdr.de>; Mon, 21 Mar 2022 14:43:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E99F4E2812
+	for <lists+intel-gfx@lfdr.de>; Mon, 21 Mar 2022 14:50:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 50FB710E376;
-	Mon, 21 Mar 2022 13:42:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D8C2C10E2D7;
+	Mon, 21 Mar 2022 13:50:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0EEBC10E376
- for <intel-gfx@lists.freedesktop.org>; Mon, 21 Mar 2022 13:42:58 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C47D110E2D7
+ for <intel-gfx@lists.freedesktop.org>; Mon, 21 Mar 2022 13:50:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1647870178; x=1679406178;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=b1CuyaT8TS/HQKvER2cQ8AsoSmrICp8VtAKIuPQA4j4=;
- b=K+ZqDP8y0WdHsEdS/VannOYjaFg2YYqhnVAit/q4C5k9yaE1KbqrKQbX
- X8UZfmIUhwbZ8C5/TDeisLZ2bFtDxqygVa3rHh5mDQ+Eb1xoOBSSTSrEX
- SZ54RfgAC3AgWn0gkzP7kFRJ0XTygh5RuSTbM+BNJsy7qa32KtYWJEcvn
- NybtrJ0YDeSu0O9/kMTrO11+PqLVzKJfOVkaJhZgPrWYmqe+RuhEazVZt
- zs2dxc+XbOM5q4ARNNyWdZgowDPmIfIfd2CnA4QkOFbKK3Qx999l4qnwp
- 7O5PZFx94LKeYWDweEhjpm3RxmscuRBTQVoC9ChUFB6Xw8kf+Tzkwjkym A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10292"; a="238158709"
-X-IronPort-AV: E=Sophos;i="5.90,198,1643702400"; d="scan'208";a="238158709"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2022 06:42:57 -0700
-X-IronPort-AV: E=Sophos;i="5.90,198,1643702400"; d="scan'208";a="543229138"
+ t=1647870649; x=1679406649;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=5XW5MG464CI2G5vTaHHNYpn47BawMqbH358PN117C80=;
+ b=dfRDIFxSub26b9w65MA6ltBLCIRPiyd2HKb3ZO4gQG9EnE3L3nsp8dT0
+ V37gbZn5OXyOf3j5bDutTHt3TqTsPwe0MdliEpwwGoEfiFZgx1CZQUwy7
+ +TK/LeKahCbG/fircx3K/lZYbTjS4jmOE1P3MsP0pQjvOW58WjIfHrRt+
+ CJI3iXida6033kJXU6YDlhARCwoZlGc+UW10t9XS7V+R6FKNUYAwixSjw
+ XcxCTiE/ehq7jHj0s46UapFJ2ZRuQ/8SjLzAIBC3XUWJPh+4IbfFKtt63
+ oiqHkBDCIHXlpq9e/Wvofeeoq0L0RxkvvKQ6+fB/lmq/QS7lJt2fRp5vW w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10292"; a="318266146"
+X-IronPort-AV: E=Sophos;i="5.90,198,1643702400"; d="scan'208";a="318266146"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2022 06:50:49 -0700
+X-IronPort-AV: E=Sophos;i="5.90,198,1643702400"; d="scan'208";a="518443785"
 Received: from abhijitc-mobl.gar.corp.intel.com (HELO localhost)
  ([10.252.34.12])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2022 06:42:50 -0700
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2022 06:50:48 -0700
 From: Jani Nikula <jani.nikula@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-In-Reply-To: <YjNyFdyA3vQAT4i0@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220317173355.336835-1-jani.nikula@intel.com>
- <YjNyFdyA3vQAT4i0@intel.com>
-Date: Mon, 21 Mar 2022 15:42:42 +0200
-Message-ID: <87tubrjub1.fsf@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 21 Mar 2022 15:50:28 +0200
+Message-Id: <cover.1647870374.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/sdvo: prefer __packed over
- __attribute__((packed))
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2 0/7] drm/i915/dmc: cleanups
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,47 +55,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 17 Mar 2022, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Thu, Mar 17, 2022 at 07:33:55PM +0200, Jani Nikula wrote:
->> The kernel preference is to use the __packed macro instead of the direct
->> __attribute__.
->>=20
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->
-> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+v2 of https://patchwork.freedesktop.org/series/101499/
 
-Pushed, thanks.
+Jani Nikula (7):
+  drm/i915/dmc: simplify intel_dmc_load_program() conditions
+  drm/i915/dmc: move assert_dmc_loaded() to intel_dmc.c
+  drm/i915/dmc: move dmc debugfs to intel_dmc.c
+  drm/i915/dmc: fix i915_reg_t usage
+  drm/i915/dmc: abstract GPU error state dump
+  drm/i915/dmc: hide DMC version macros
+  drm/i915/dmc: split out dmc registers to a separate file
 
-BR,
-Jani.
+ .../drm/i915/display/intel_display_debugfs.c  |  75 +----------
+ .../drm/i915/display/intel_display_power.c    |  18 +--
+ drivers/gpu/drm/i915/display/intel_dmc.c      | 125 ++++++++++++++++--
+ drivers/gpu/drm/i915/display/intel_dmc.h      |  10 +-
+ drivers/gpu/drm/i915/display/intel_dmc_regs.h |  30 +++++
+ drivers/gpu/drm/i915/gvt/handlers.c           |   1 +
+ drivers/gpu/drm/i915/i915_gpu_error.c         |  10 +-
+ drivers/gpu/drm/i915/i915_reg.h               |  21 ---
+ 8 files changed, 157 insertions(+), 133 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_dmc_regs.h
 
->
->> ---
->>  drivers/gpu/drm/i915/display/intel_sdvo.c | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
->>=20
->> diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm=
-/i915/display/intel_sdvo.c
->> index 158e750e5b4d..328a8f20c63b 100644
->> --- a/drivers/gpu/drm/i915/display/intel_sdvo.c
->> +++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
->> @@ -283,7 +283,7 @@ static bool intel_sdvo_read_byte(struct intel_sdvo *=
-intel_sdvo, u8 addr, u8 *ch)
->>  static const struct {
->>  	u8 cmd;
->>  	const char *name;
->> -} __attribute__ ((packed)) sdvo_cmd_names[] =3D {
->> +} __packed sdvo_cmd_names[] =3D {
->>  	SDVO_CMD_NAME_ENTRY(RESET),
->>  	SDVO_CMD_NAME_ENTRY(GET_DEVICE_CAPS),
->>  	SDVO_CMD_NAME_ENTRY(GET_FIRMWARE_REV),
->> --=20
->> 2.30.2
+-- 
+2.30.2
 
---=20
-Jani Nikula, Intel Open Source Graphics Center
