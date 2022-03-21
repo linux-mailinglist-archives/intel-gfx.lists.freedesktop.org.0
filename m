@@ -1,48 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B685B4E2B2C
-	for <lists+intel-gfx@lfdr.de>; Mon, 21 Mar 2022 15:47:40 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C117B4E2B97
+	for <lists+intel-gfx@lfdr.de>; Mon, 21 Mar 2022 16:15:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C769310E327;
-	Mon, 21 Mar 2022 14:47:37 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6FE7210E327;
- Mon, 21 Mar 2022 14:47:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B51AD10E37B;
+	Mon, 21 Mar 2022 15:15:07 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CEF9B10E357;
+ Mon, 21 Mar 2022 15:15:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1647874056; x=1679410056;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=8znLqj1un3A06e6Kx1qL+vD5ZhunJnu6m83ZxrdYX2o=;
- b=g64zCSWpMiWNmevzzJc2MB6VeQMoPBxrbhtv11K9ndxu3WeO7ZOrj70u
- YQIbrM0Xzk+6QOGiGHPaV010nLERHMNBezNjvCkcJFvUN2LQzrKe8uCt3
- sKgHW39Waf2W6l6KoMcFPR3crw7E7vFZhpJR7gdqittO/8q4DqB9LMCV9
- rb1nztCqSy1nlIx9y3Vf8inB1WYDNyVqrNwmsiqc17H858qr8oEKL0P0s
- 5pCTUiAV7Ndrdm31bxC4SFXq3NR3zgpWztaJ0UxS6Myrnf71cBsFOkGY3
- D++IOi2uSiNNNiyJjtZrSWhOFDq6PLBEP4BEdewL4+drUlETsqtqlnn9H g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10292"; a="257286316"
-X-IronPort-AV: E=Sophos;i="5.90,198,1643702400"; d="scan'208";a="257286316"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2022 07:47:35 -0700
-X-IronPort-AV: E=Sophos;i="5.90,198,1643702400"; d="scan'208";a="518461921"
-Received: from atnordon-mobl1.ger.corp.intel.com (HELO tursulin-mobl2.home)
- ([10.213.230.67])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2022 07:47:34 -0700
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: Intel-gfx@lists.freedesktop.org
-Date: Mon, 21 Mar 2022 14:47:22 +0000
-Message-Id: <20220321144722.2020519-1-tvrtko.ursulin@linux.intel.com>
-X-Mailer: git-send-email 2.32.0
+ t=1647875706; x=1679411706;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=iCXxoMW/NEwbKFJN8r+yz2XewEatvO6raZs5qOz6yGs=;
+ b=Cg+UxdHBy705PrOa7QM0hA5ueoDKaIFt9W9zHDgT3wzI0O8flIU6lAQE
+ iASw9JsL/T/6LUm+y9+tKKKlt88SI4rG+H9mpcLb5aM0j1u/ZFUepgRIu
+ aL/Ovgag1n0JvcdD8TXktSwf1o+UsbcOBpP2xVknTVhYsKosZspHAt2cG
+ SBdbSuLRYhgyhVnXhFCIzDPRCrjbxglS3b7OcwnlE3p0R6vawmTJ8cQv8
+ uG9r3vm6LlK6Ykh5daEwWp09hOhRFOD7dmdh+MM9iNJyUTs+M5Wm1BSQ+
+ tujyKDQcxi2yrSSibX9z2sqjNclCPclDbEhV999qaEUnoVghX7kVpoLjC A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10292"; a="257525029"
+X-IronPort-AV: E=Sophos;i="5.90,198,1643702400"; d="scan'208";a="257525029"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2022 08:15:06 -0700
+X-IronPort-AV: E=Sophos;i="5.90,198,1643702400"; d="scan'208";a="543262908"
+Received: from evinintel.ger.corp.intel.com (HELO [10.249.254.209])
+ ([10.249.254.209])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2022 08:15:03 -0700
+Message-ID: <d6bc73c04c4c69d3d9e6cf42bd62340a61a7d4c3.camel@linux.intel.com>
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, Michael Cheng
+ <michael.cheng@intel.com>, intel-gfx@lists.freedesktop.org
+Date: Mon, 21 Mar 2022 16:15:01 +0100
+In-Reply-To: <b6bb4d03-6229-2419-97dd-f010c9890363@linux.intel.com>
+References: <20220319194227.297639-1-michael.cheng@intel.com>
+ <4c86ae70-6f97-7a7c-1fd4-5e73ca29d0ba@linux.intel.com>
+ <5db61477-6064-ada0-82a7-c1dc659dacad@linux.intel.com>
+ <abdc3b07-a05e-f67d-2135-a30421cb9d12@linux.intel.com>
+ <29bde7b0e680e503fbf483a560616e2ce22cdd79.camel@linux.intel.com>
+ <210af2db-37ec-2cff-f6a6-7ea0263e135b@linux.intel.com>
+ <1bd4ac91f24f6b4322811177f786f4867278ab83.camel@linux.intel.com>
+ <b6bb4d03-6229-2419-97dd-f010c9890363@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.4 (3.40.4-2.fc34) 
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [CI] drm/i915/uapi: Add struct
- drm_i915_query_hwconfig_blob_item
+Subject: Re: [Intel-gfx] [PATCH 0/4] Drop wbinvd_on_all_cpus usage
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,86 +65,161 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: daniel.vetter@ffwll.ch, lucas.demarchi@intel.com,
+ dri-devel@lists.freedesktop.org, chris@chris-wilson.co.uk,
+ Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Jordan Justen <jordan.l.justen@intel.com>
+On Mon, 2022-03-21 at 14:43 +0000, Tvrtko Ursulin wrote:
+> 
+> On 21/03/2022 13:40, Thomas Hellström wrote:
+> > Hi,
+> > 
+> > On Mon, 2022-03-21 at 13:12 +0000, Tvrtko Ursulin wrote:
+> > > 
+> > > On 21/03/2022 12:33, Thomas Hellström wrote:
+> > > > On Mon, 2022-03-21 at 12:22 +0000, Tvrtko Ursulin wrote:
+> > > > > 
+> > > > > On 21/03/2022 11:03, Thomas Hellström wrote:
+> > > > > > Hi, Tvrtko.
+> > > > > > 
+> > > > > > On 3/21/22 11:27, Tvrtko Ursulin wrote:
+> > > > > > > 
+> > > > > > > On 19/03/2022 19:42, Michael Cheng wrote:
+> > > > > > > > To align with the discussion in [1][2], this patch
+> > > > > > > > series
+> > > > > > > > drops
+> > > > > > > > all
+> > > > > > > > usage of
+> > > > > > > > wbvind_on_all_cpus within i915 by either replacing the
+> > > > > > > > call
+> > > > > > > > with certain
+> > > > > > > > drm clflush helpers, or reverting to a previous logic.
+> > > > > > > 
+> > > > > > > AFAIU, complaint from [1] was that it is wrong to provide
+> > > > > > > non
+> > > > > > > x86
+> > > > > > > implementations under the wbinvd_on_all_cpus name.
+> > > > > > > Instead an
+> > > > > > > arch
+> > > > > > > agnostic helper which achieves the same effect could be
+> > > > > > > created.
+> > > > > > > Does
+> > > > > > > Arm have such concept?
+> > > > > > 
+> > > > > > I also understand Linus' email like we shouldn't leak
+> > > > > > incoherent
+> > > > > > IO
+> > > > > > to
+> > > > > > other architectures, meaning any remaining wbinvd()s should
+> > > > > > be
+> > > > > > X86
+> > > > > > only.
+> > > > > 
+> > > > > The last part is completely obvious since it is a x86
+> > > > > instruction
+> > > > > name.
+> > > > 
+> > > > Yeah, I meant the function implementing wbinvd() semantics.
+> > > > 
+> > > > > 
+> > > > > But I think we can't pick a solution until we know how the
+> > > > > concept
+> > > > > maps
+> > > > > to Arm and that will also include seeing how the
+> > > > > drm_clflush_sg for
+> > > > > Arm
+> > > > > would look. Is there a range based solution, or just a big
+> > > > > hammer
+> > > > > there.
+> > > > > If the latter, then it is no good to churn all these reverts
+> > > > > but
+> > > > > instead
+> > > > > an arch agnostic wrapper, with a generic name, would be the
+> > > > > way to
+> > > > > go.
+> > > > 
+> > > > But my impression was that ARM would not need the range-based
+> > > > interface
+> > > > either, because ARM is only for discrete and with discrete
+> > > > we're
+> > > > always
+> > > > coherent.
+> > > 
+> > > Not sure what you mean here - what about flushing system memory
+> > > objects
+> > > on discrete? Those still need flushing on paths like suspend
+> > > which this
+> > > series touches. Am I missing something?
+> > 
+> > System bos on discrete should always have
+> > 
+> > I915_BO_CACHE_COHERENT_FOR_READ | I915_BO_CACHE_COHERENT_FOR_WRITE
+> > 
+> > either by the gpu being fully cache coherent (or us mapping system
+> > write-combined). Hence no need for cache clflushes or wbinvd() for
+> > incoherent IO.
+> 
+> Hmm so you are talking about the shmem ttm backend. It ends up
+> depending on the result of i915_ttm_cache_level, yes? It cannot end
+> up with I915_CACHE_NONE from that function?
 
-Also, document DRM_I915_QUERY_HWCONFIG_BLOB with this struct.
+If the object is allocated with allowable placement in either LMEM or
+SYSTEM, and it ends in system, it gets allocated with I915_CACHE_NONE,
+but then the shmem ttm backend isn't used but TTM's wc pools, and the
+object should *always* be mapped wc. Even in system.
 
-v3:
- * Add various changes suggested by Tvrtko
+> 
+> I also found in i915_drm.h:
+> 
+>          * As caching mode when specifying `I915_MMAP_OFFSET_FIXED`,
+> WC or WB will
+>          * be used, depending on the object placement on creation. WB
+> will be used
+>          * when the object can only exist in system memory, WC
+> otherwise.
+> 
+> If what you say is true, that on discrete it is _always_ WC, then
+> that needs updating as well.
 
-v5:
- * Fix documenation formatting and verified with `make htmldocs` as
-   suggested by Daniel
+If an object is allocated as system only, then it is mapped WB, and
+we're relying on the gpu being cache coherent to avoid clflushes. Same
+is actually currently true if the object happens to be accessed by the
+cpu while evicted. Might need an update for that.
 
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-Signed-off-by: Jordan Justen <jordan.l.justen@intel.com>
-Acked-by: Jon Bloomfield <jon.bloomfield@intel.com>
-Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
----
-I am resurrecthing this since I think it is the minimum we need for an
-open source friendly stack.
----
- include/uapi/drm/i915_drm.h | 43 +++++++++++++++++++++++++++++++++++++
- 1 file changed, 43 insertions(+)
+> 
+> > 
+> > That's adhering to Linus'
+> > 
+> > "And I sincerely hope to the gods that no cache-incoherent i915
+> > mess
+> > ever makes it out of the x86 world. Incoherent IO was always a
+> > historical mistake and should never ever happen again, so we should
+> > not spread that horrific pattern around."
+> 
+> Sure, but I was not talking about IO - just the CPU side access to
+> CPU side objects.
 
-diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-index 071ffd9d51f1..34ad66ddd320 100644
---- a/include/uapi/drm/i915_drm.h
-+++ b/include/uapi/drm/i915_drm.h
-@@ -3314,6 +3314,49 @@ struct drm_i915_gem_create_ext_protected_content {
- /* ID of the protected content session managed by i915 when PXP is active */
- #define I915_PROTECTED_CONTENT_DEFAULT_SESSION 0xf
- 
-+/**
-+ * DOC: GuC HWCONFIG blob uAPI
-+ *
-+ * The GuC produces a blob with information about the current device.
-+ * i915 reads this blob from GuC and makes it available via this uAPI.
-+ *
-+ * The returned blob is a sequence of items of variable length
-+ * described by struct drm_i915_query_hwconfig_blob_item.
-+ *
-+ * The overall blob returned by DRM_I915_QUERY_HWCONFIG_BLOB will end
-+ * at the same location as the end of the final struct
-+ * drm_i915_query_hwconfig_blob_item. In other words, walking through
-+ * the individual items is guaranteed to eventually arrive at the
-+ * exact end of the entire blob.
-+ */
-+
-+/**
-+ * struct drm_i915_query_hwconfig_blob_item - A single hwconfig item
-+ * within the sequence of hwconfig items returned by
-+ * DRM_I915_QUERY_HWCONFIG_BLOB.
-+ *
-+ * The length field gives the length of the data[] array. The length
-+ * is the number of u32 items in the data[] array, and *not* the
-+ * number of bytes.
-+ *
-+ * The key and length fields are required, so the minimum item size is
-+ * 2 x u32, or 8 bytes, when the length field is 0. If the length
-+ * field is 1, then the item's size is 12 bytes.
-+ *
-+ * The meaning of the key field and the data values are documented in
-+ * the Programmer's Reference Manual.
-+ */
-+struct drm_i915_query_hwconfig_blob_item {
-+	/** @key: Enum which defines how to interpret @data values. */
-+	__u32 key;
-+
-+	/** @length: The number of u32 values in the @data array. */
-+	__u32 length;
-+
-+	/** @data: Array of values with meaning defined by @key. */
-+	__u32 data[];
-+};
-+
- #if defined(__cplusplus)
- }
- #endif
--- 
-2.32.0
+OK, I was under the impression that clflushes() and wbinvd()s in i915
+was only ever used to make data visible to non-snooping GPUs. 
+
+Do you mean that there are other uses as well? Agreed the wb cache
+flush on on suspend only if gpu is !I915_BO_CACHE_COHERENT_FOR_READ?
+looks to not fit this pattern completely.
+
+Otherwise, for architectures where memory isn't always fully coherent
+with the cpu cache, I'd expect them to use the apis in
+asm/cacheflush.h, like flush_cache_range() and similar, which are nops
+on x86.
+
+Thanks,
+Thomas
+
+
+> 
+> Regards,
+> 
+> Tvrtko
+
 
