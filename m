@@ -2,52 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 548C04E3232
-	for <lists+intel-gfx@lfdr.de>; Mon, 21 Mar 2022 22:14:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DAB14E3239
+	for <lists+intel-gfx@lfdr.de>; Mon, 21 Mar 2022 22:15:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D48210E48C;
-	Mon, 21 Mar 2022 21:14:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F27B710E48E;
+	Mon, 21 Mar 2022 21:15:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE2E489FC9;
- Mon, 21 Mar 2022 21:14:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1647897260; x=1679433260;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=ECq24/OIntQlZspsCb8eJBNHSoGsh/zJIIs6KoGplTs=;
- b=Mw3hUnhkpSc0OgI7ho3gj1l6F7UBvcleG5eak9pdgLBf5s8ZLe5i9ePU
- 2x75l31+aUsq1p+OI56XI00hZZRVrIGQpyrlEYzMmSKr5GL0cWEbGS7FZ
- gMgy0eUD78WZA8gc1BY8buc0DJDdCUclwiSy9+9hX40ba1Ruc7IVoJ73/
- JC0eEfekXtR69cJ6b6w10cg+tDp1ATpLw7aU5zlrLYXpRTxCSAWx+GZ0a
- J/h8TEol2mLdiWFLyqkn24fIntK0F0P7x8E2JnWK8aFinqXCMy5QgJAFw
- BLfhdSx0zBclMk86uTMLv3bQRjTvYhnhND/glCIwTZD9uHbe95w6hBluT Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10293"; a="344079578"
-X-IronPort-AV: E=Sophos;i="5.90,199,1643702400"; d="scan'208";a="344079578"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2022 14:14:07 -0700
-X-IronPort-AV: E=Sophos;i="5.90,199,1643702400"; d="scan'208";a="648709457"
-Received: from eliasbro-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
- ([10.251.30.246])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2022 14:14:07 -0700
-Date: Mon, 21 Mar 2022 14:14:07 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-Message-ID: <20220321211407.ujlokc44jx4kbtvo@ldmartin-desk2>
-X-Patchwork-Hint: comment
-References: <20220303180013.512219-1-balasubramani.vivekanandan@intel.com>
- <20220303180013.512219-5-balasubramani.vivekanandan@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7ADB210E48E;
+ Mon, 21 Mar 2022 21:14:59 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 784DDAAA91;
+ Mon, 21 Mar 2022 21:14:59 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6119585840133693173=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220303180013.512219-5-balasubramani.vivekanandan@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v2 4/7] drm/i915/guc: use the memcpy_from_wc
- call from the drm
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Mon, 21 Mar 2022 21:14:59 -0000
+Message-ID: <164789729948.18156.16636143587010655703@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220321135955.922791-1-jani.nikula@intel.com>
+In-Reply-To: <20220321135955.922791-1-jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gt=3A_fix_i915=5Freg=5Ft_initialization?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,100 +40,252 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: michael.cheng@intel.com, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, siva.mullati@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Mar 03, 2022 at 11:30:10PM +0530, Balasubramani Vivekanandan wrote:
->memcpy_from_wc functions in i915_memcpy.c will be removed and replaced
->by the implementation in drm_cache.c.
->Updated to use the functions provided by drm_cache.c.
->
->v2: Check if the log object allocated from local memory or system memory
->    and according setup the iosys_map (Lucas)
->
->Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->
->Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
->---
-> drivers/gpu/drm/i915/gt/uc/intel_guc_log.c | 15 ++++++++++++---
-> 1 file changed, 12 insertions(+), 3 deletions(-)
->
->diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
->index a24dc6441872..b9db765627ea 100644
->--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
->+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
->@@ -3,6 +3,7 @@
->  * Copyright © 2014-2019 Intel Corporation
->  */
->
->+#include <drm/drm_cache.h>
-> #include <linux/debugfs.h>
-> #include <linux/string_helpers.h>
->
->@@ -206,6 +207,7 @@ static void guc_read_update_log_buffer(struct intel_guc_log *log)
-> 	enum guc_log_buffer_type type;
-> 	void *src_data, *dst_data;
-> 	bool new_overflow;
->+	struct iosys_map src_map;
->
-> 	mutex_lock(&log->relay.lock);
->
->@@ -282,14 +284,21 @@ static void guc_read_update_log_buffer(struct intel_guc_log *log)
-> 		}
->
-> 		/* Just copy the newly written data */
->+		if (i915_gem_object_is_lmem(log->vma->obj))
->+			iosys_map_set_vaddr_iomem(&src_map, (void __iomem *)src_data);
->+		else
->+			iosys_map_set_vaddr(&src_map, src_data);
+--===============6119585840133693173==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-It would be better to keep this outside of the loop. So inside the loop
-we can use only iosys_map_incr(&src_map, buffer_size). However you'd
-also have to handle the read_offset. The iosys_map_ API has both a
-src_offset and dst_offset due to situations like that. Maybe this is
-missing in the new drm_memcpy_* function you're adding?
+== Series Details ==
 
-This function was not correct wrt to IO memory access with the other
-2 places in this function doing plain memcpy(). Since we are starting to
-use iosys_map here, we probably should handle this commit as "migrate to
-iosys_map", and convert those. In your current final state
-we have 3 variables aliasing the same memory location. IMO it will be
-error prone to keep it like that
+Series: drm/i915/gt: fix i915_reg_t initialization
+URL   : https://patchwork.freedesktop.org/series/101594/
+State : success
 
-+Michal, some questions:
+== Summary ==
 
-- I'm not very familiar with the relayfs API. Is the `dst_data += PAGE_SIZE;`
-really correct?
+CI Bug Log - changes from CI_DRM_11393 -> Patchwork_22630
+====================================================
 
-- Could you double check this patch and ack if ok?
+Summary
+-------
 
-Heads up that since the log buffer is potentially in lmem, we will need
-to convert this function to take that into account. All those accesses
-to log_buf_state need to use the proper kernel abstraction for system vs
-I/O memory.
+  **SUCCESS**
 
-thanks
-Lucas De Marchi
+  No regressions found.
 
->+
-> 		if (read_offset > write_offset) {
->-			i915_memcpy_from_wc(dst_data, src_data, write_offset);
->+			drm_memcpy_from_wc_vaddr(dst_data, &src_map,
->+						 write_offset);
-> 			bytes_to_copy = buffer_size - read_offset;
-> 		} else {
-> 			bytes_to_copy = write_offset - read_offset;
-> 		}
->-		i915_memcpy_from_wc(dst_data + read_offset,
->-				    src_data + read_offset, bytes_to_copy);
->+		iosys_map_incr(&src_map, read_offset);
->+		drm_memcpy_from_wc_vaddr(dst_data + read_offset, &src_map,
->+					 bytes_to_copy);
->
-> 		src_data += buffer_size;
-> 		dst_data += buffer_size;
->-- 
->2.25.1
->
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22630/index.html
+
+Participating hosts (47 -> 41)
+------------------------------
+
+  Missing    (6): shard-tglu fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 shard-rkl fi-bdw-samus 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_22630 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@gem_busy@busy@all:
+    - {bat-dg2-9}:        [DMESG-WARN][1] ([i915#5195]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11393/bat-dg2-9/igt@gem_busy@busy@all.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22630/bat-dg2-9/igt@gem_busy@busy@all.html
+
+  * igt@gem_exec_suspend@basic-s3@smem:
+    - {fi-rkl-11600}:     [INCOMPLETE][3] ([i915#5127]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11393/fi-rkl-11600/igt@gem_exec_suspend@basic-s3@smem.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22630/fi-rkl-11600/igt@gem_exec_suspend@basic-s3@smem.html
+
+  * igt@i915_selftest@live@gem_contexts:
+    - {fi-tgl-dsi}:       [DMESG-WARN][5] ([i915#2867]) -> [PASS][6] +16 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11393/fi-tgl-dsi/igt@i915_selftest@live@gem_contexts.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22630/fi-tgl-dsi/igt@i915_selftest@live@gem_contexts.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - {bat-jsl-2}:        [INCOMPLETE][7] ([i915#5153]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11393/bat-jsl-2/igt@i915_selftest@live@hangcheck.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22630/bat-jsl-2/igt@i915_selftest@live@hangcheck.html
+
+  * igt@i915_selftest@live@sanitycheck:
+    - {bat-rpls-2}:       [DMESG-WARN][9] ([i915#4391]) -> [PASS][10] +1 similar issue
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11393/bat-rpls-2/igt@i915_selftest@live@sanitycheck.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22630/bat-rpls-2/igt@i915_selftest@live@sanitycheck.html
+
+  * igt@kms_busy@basic@flip:
+    - {bat-adlp-6}:       [DMESG-WARN][11] ([i915#3576]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11393/bat-adlp-6/igt@kms_busy@basic@flip.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22630/bat-adlp-6/igt@kms_busy@basic@flip.html
+
+  * igt@vgem_basic@unload:
+    - {fi-tgl-dsi}:       [DMESG-WARN][13] -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11393/fi-tgl-dsi/igt@vgem_basic@unload.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22630/fi-tgl-dsi/igt@vgem_basic@unload.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-hsw-4770:        [INCOMPLETE][15] ([i915#4785]) -> [INCOMPLETE][16] ([i915#3303])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11393/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22630/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
+  [i915#3012]: https://gitlab.freedesktop.org/drm/intel/issues/3012
+  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
+  [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
+  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
+  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
+  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
+  [i915#3576]: https://gitlab.freedesktop.org/drm/intel/issues/3576
+  [i915#3595]: https://gitlab.freedesktop.org/drm/intel/issues/3595
+  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
+  [i915#4098]: https://gitlab.freedesktop.org/drm/intel/issues/4098
+  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+  [i915#4391]: https://gitlab.freedesktop.org/drm/intel/issues/4391
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
+  [i915#5087]: https://gitlab.freedesktop.org/drm/intel/issues/5087
+  [i915#5127]: https://gitlab.freedesktop.org/drm/intel/issues/5127
+  [i915#5153]: https://gitlab.freedesktop.org/drm/intel/issues/5153
+  [i915#5192]: https://gitlab.freedesktop.org/drm/intel/issues/5192
+  [i915#5193]: https://gitlab.freedesktop.org/drm/intel/issues/5193
+  [i915#5195]: https://gitlab.freedesktop.org/drm/intel/issues/5195
+  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
+  [i915#5338]: https://gitlab.freedesktop.org/drm/intel/issues/5338
+  [i915#5339]: https://gitlab.freedesktop.org/drm/intel/issues/5339
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_11393 -> Patchwork_22630
+
+  CI-20190529: 20190529
+  CI_DRM_11393: bb39f08a81da1a7e2d82026eac394394504b7126 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6387: 04d012b18355b53798af5a55a8915afb1a421bba @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_22630: 12545608d244377d9bf30b0be9db811dbd89065b @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+12545608d244 drm/i915/gt: fix i915_reg_t initialization
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22630/index.html
+
+--===============6119585840133693173==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/gt: fix i915_reg_t initialization</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/101594/">https://patchwork.freedesktop.org/series/101594/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22630/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22630/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11393 -&gt; Patchwork_22630</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22630/index.html</p>
+<h2>Participating hosts (47 -&gt; 41)</h2>
+<p>Missing    (6): shard-tglu fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 shard-rkl fi-bdw-samus </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_22630 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_busy@busy@all:</p>
+<ul>
+<li>{bat-dg2-9}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11393/bat-dg2-9/igt@gem_busy@busy@all.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5195">i915#5195</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22630/bat-dg2-9/igt@gem_busy@busy@all.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_suspend@basic-s3@smem:</p>
+<ul>
+<li>{fi-rkl-11600}:     <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11393/fi-rkl-11600/igt@gem_exec_suspend@basic-s3@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5127">i915#5127</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22630/fi-rkl-11600/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gem_contexts:</p>
+<ul>
+<li>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11393/fi-tgl-dsi/igt@i915_selftest@live@gem_contexts.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2867">i915#2867</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22630/fi-tgl-dsi/igt@i915_selftest@live@gem_contexts.html">PASS</a> +16 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>{bat-jsl-2}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11393/bat-jsl-2/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5153">i915#5153</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22630/bat-jsl-2/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@sanitycheck:</p>
+<ul>
+<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11393/bat-rpls-2/igt@i915_selftest@live@sanitycheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4391">i915#4391</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22630/bat-rpls-2/igt@i915_selftest@live@sanitycheck.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_busy@basic@flip:</p>
+<ul>
+<li>{bat-adlp-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11393/bat-adlp-6/igt@kms_busy@basic@flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22630/bat-adlp-6/igt@kms_busy@basic@flip.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@vgem_basic@unload:</p>
+<ul>
+<li>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11393/fi-tgl-dsi/igt@vgem_basic@unload.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22630/fi-tgl-dsi/igt@vgem_basic@unload.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@i915_selftest@live@hangcheck:<ul>
+<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11393/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22630/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11393 -&gt; Patchwork_22630</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11393: bb39f08a81da1a7e2d82026eac394394504b7126 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6387: 04d012b18355b53798af5a55a8915afb1a421bba @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_22630: 12545608d244377d9bf30b0be9db811dbd89065b @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>12545608d244 drm/i915/gt: fix i915_reg_t initialization</p>
+
+</body>
+</html>
+
+--===============6119585840133693173==--
