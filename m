@@ -1,55 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC6FF4E2500
-	for <lists+intel-gfx@lfdr.de>; Mon, 21 Mar 2022 12:07:33 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00DFE4E250C
+	for <lists+intel-gfx@lfdr.de>; Mon, 21 Mar 2022 12:10:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F21710E291;
-	Mon, 21 Mar 2022 11:07:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C38D10E20B;
+	Mon, 21 Mar 2022 11:10:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 796C510E291;
- Mon, 21 Mar 2022 11:07:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1647860849; x=1679396849;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=asaezxPFoM6hbPV8et9bt4QZjyTkzaWp6xf0nVB9PHo=;
- b=bW6FKoDfojsO34WajeHATtiJilb4FcOSYrgYsY+h2HfhMwidIFz9afwm
- wY5UfEE2+aeDlEp04Biv5hnwiFG16D/UWPGQ5cItDcaj/C8jjchUsP1/N
- 2R7j2h46hbTFmFxIGfFG//pD6fMItWt0/Z6iXFGcFWssU3vuSvnpkPyge
- 5n3vREp7T54xS8Z+hjyg0YgGkYomhgXDE3Nd7x12JR2UVSQAmyJh/8TAp
- OAGHsgJsoN3hVz2tKF9sP5tUFoeEZbXY9zCa7kWKJ+2hENqI9HzKVJLN7
- oPWtSXp0HZjXbDDiJCtg7DdB/A7zauBeda4e0IDNexh8+aZFpN6f172h8 g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10292"; a="257472916"
-X-IronPort-AV: E=Sophos;i="5.90,198,1643702400"; d="scan'208";a="257472916"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2022 04:07:28 -0700
-X-IronPort-AV: E=Sophos;i="5.90,198,1643702400"; d="scan'208";a="824357016"
-Received: from evinintel.ger.corp.intel.com (HELO [10.249.254.209])
- ([10.249.254.209])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2022 04:07:25 -0700
-Message-ID: <b986f2a7-c0d3-b145-dd45-54d25e10a8be@linux.intel.com>
-Date: Mon, 21 Mar 2022 12:07:23 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 77A8610E1AA;
+ Mon, 21 Mar 2022 11:10:34 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 75413AA0EB;
+ Mon, 21 Mar 2022 11:10:34 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.0
-Content-Language: en-US
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Michael Cheng <michael.cheng@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20220319194227.297639-1-michael.cheng@intel.com>
- <20220319194227.297639-2-michael.cheng@intel.com>
- <fc7c729b-5c87-f046-04dd-7ca8296487dd@linux.intel.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <fc7c729b-5c87-f046-04dd-7ca8296487dd@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 1/4] i915/gem: drop wbinvd_on_all_cpus usage
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
+Date: Mon, 21 Mar 2022 11:10:34 -0000
+Message-ID: <164786103444.18157.17138007022376020186@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220321104904.12425-1-stanislav.lisovskiy@intel.com>
+In-Reply-To: <20220321104904.12425-1-stanislav.lisovskiy@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/adl=5Fp=3A_Increase_CDCLK_by_15=25_if_PSR2_is_used?=
+ =?utf-8?q?_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,89 +41,26 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: daniel.vetter@ffwll.ch, lucas.demarchi@intel.com,
- dri-devel@lists.freedesktop.org, chris@chris-wilson.co.uk
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
-On 3/21/22 11:30, Tvrtko Ursulin wrote:
->
-> On 19/03/2022 19:42, Michael Cheng wrote:
->> Previous concern with using drm_clflush_sg was that we don't know 
->> what the
->> sg_table is pointing to, thus the usage of wbinvd_on_all_cpus to flush
->> everything at once to avoid paranoia.
->
-> And now we know, or we know it is not a concern?
->
->> To make i915 more architecture-neutral and be less paranoid, lets 
->> attempt to
->
-> "Lets attempt" as we don't know if this will work and/or what can/will 
-> break?
->
->> use drm_clflush_sg to flush the pages for when the GPU wants to read
->> from main memory.
->>
->> Signed-off-by: Michael Cheng <michael.cheng@intel.com>
->> ---
->>   drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c | 9 ++-------
->>   1 file changed, 2 insertions(+), 7 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c 
->> b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
->> index f5062d0c6333..b0a5baaebc43 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
->> @@ -8,6 +8,7 @@
->>   #include <linux/highmem.h>
->>   #include <linux/dma-resv.h>
->>   #include <linux/module.h>
->> +#include <drm/drm_cache.h>
->>     #include <asm/smp.h>
->>   @@ -250,16 +251,10 @@ static int 
->> i915_gem_object_get_pages_dmabuf(struct drm_i915_gem_object *obj)
->>        * DG1 is special here since it still snoops transactions even 
->> with
->>        * CACHE_NONE. This is not the case with other HAS_SNOOP 
->> platforms. We
->>        * might need to revisit this as we add new discrete platforms.
->> -     *
->> -     * XXX: Consider doing a vmap flush or something, where possible.
->> -     * Currently we just do a heavy handed wbinvd_on_all_cpus() here 
->> since
->> -     * the underlying sg_table might not even point to struct pages, 
->> so we
->> -     * can't just call drm_clflush_sg or similar, like we do 
->> elsewhere in
->> -     * the driver.
->>        */
->>       if (i915_gem_object_can_bypass_llc(obj) ||
->>           (!HAS_LLC(i915) && !IS_DG1(i915)))
->> -        wbinvd_on_all_cpus();
->> +        drm_clflush_sg(pages);
->
-> And as noticed before, drm_clfush_sg still can call wbinvd_on_all_cpus 
-> so are you just punting the issue somewhere else? How will it be 
-> solved there?
+Series: drm/i915/adl_p: Increase CDCLK by 15% if PSR2 is used (rev2)
+URL   : https://patchwork.freedesktop.org/series/101533/
+State : warning
 
-I think in this case, drm_clflush_sg() can't be immediately used, 
-because pages may not contain actual page pointers; might be just the 
-dma address. It needs to be preceded with a dmabuf vmap.
+== Summary ==
 
-But otherwise this change, I figure, falls into the "prefer range-aware 
-apis" category; If the CPU supports it, flush the range only, otherwise 
-fall back to wbinvd().
+$ dim checkpatch origin/drm-tip
+5f2d79bd4ca6 drm/i915/adl_p: Increase CDCLK by 15% if PSR2 is used
+-:32: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#32: FILE: drivers/gpu/drm/i915/display/intel_cdclk.c:2328:
+ 
++
 
-/Thomas
+total: 0 errors, 0 warnings, 1 checks, 32 lines checked
 
 
-
->
-> Regards,
->
-> Tvrtko
->
->>         sg_page_sizes = i915_sg_dma_sizes(pages->sgl);
->>       __i915_gem_object_set_pages(obj, pages, sg_page_sizes);
