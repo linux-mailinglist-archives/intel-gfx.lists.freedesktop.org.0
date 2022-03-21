@@ -1,53 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E7584E27EB
-	for <lists+intel-gfx@lfdr.de>; Mon, 21 Mar 2022 14:41:40 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53E564E27F5
+	for <lists+intel-gfx@lfdr.de>; Mon, 21 Mar 2022 14:43:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8127110E376;
-	Mon, 21 Mar 2022 13:41:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 50FB710E376;
+	Mon, 21 Mar 2022 13:42:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ABD0A10E376;
- Mon, 21 Mar 2022 13:41:37 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0EEBC10E376
+ for <intel-gfx@lists.freedesktop.org>; Mon, 21 Mar 2022 13:42:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1647870097; x=1679406097;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=nKx674R/UbSLWwjFeVOusJOFQmDBeXIu1XuBfAsJMLY=;
- b=L+DHBccIAS2EuEbF/uCR8dMDNt7aRt3iCD9vcm2NV9aL1d7h67youS8D
- cEMxCAgfYkRNT9WpgX/6uF4sPysML8fIQaDtlwOhJGqh6B0UdAxEJTfMC
- 2fgORzyPhcvfSpiqMYP+6wo/dk0g8UsZF34hQyj534TmlP+F9lLZiaCkz
- zitz8bfQLsIUQ+dQXYfdHxwCGG+Lo3vZZUHiYGYtHAjh/mFwk/2soHQCr
- IwRPvVCAC857unxGFX60nV49DtVeLsVlDkv/MwMserxR2/yieOxMFBnpa
- 9ADZeWVtV6UzgZ7W6jSLoNOJAYwJpwUxQBRrqHBI+7nnZ3qkREOVp1VI8 g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10292"; a="237496840"
-X-IronPort-AV: E=Sophos;i="5.90,198,1643702400"; d="scan'208";a="237496840"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2022 06:41:37 -0700
-X-IronPort-AV: E=Sophos;i="5.90,198,1643702400"; d="scan'208";a="559874923"
-Received: from atnordon-mobl1.ger.corp.intel.com (HELO [10.213.230.67])
- ([10.213.230.67])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2022 06:41:35 -0700
-Message-ID: <be6e5c3c-93df-f664-f7d2-89f4ce0d8c7f@linux.intel.com>
-Date: Mon, 21 Mar 2022 13:41:32 +0000
+ t=1647870178; x=1679406178;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=b1CuyaT8TS/HQKvER2cQ8AsoSmrICp8VtAKIuPQA4j4=;
+ b=K+ZqDP8y0WdHsEdS/VannOYjaFg2YYqhnVAit/q4C5k9yaE1KbqrKQbX
+ X8UZfmIUhwbZ8C5/TDeisLZ2bFtDxqygVa3rHh5mDQ+Eb1xoOBSSTSrEX
+ SZ54RfgAC3AgWn0gkzP7kFRJ0XTygh5RuSTbM+BNJsy7qa32KtYWJEcvn
+ NybtrJ0YDeSu0O9/kMTrO11+PqLVzKJfOVkaJhZgPrWYmqe+RuhEazVZt
+ zs2dxc+XbOM5q4ARNNyWdZgowDPmIfIfd2CnA4QkOFbKK3Qx999l4qnwp
+ 7O5PZFx94LKeYWDweEhjpm3RxmscuRBTQVoC9ChUFB6Xw8kf+Tzkwjkym A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10292"; a="238158709"
+X-IronPort-AV: E=Sophos;i="5.90,198,1643702400"; d="scan'208";a="238158709"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2022 06:42:57 -0700
+X-IronPort-AV: E=Sophos;i="5.90,198,1643702400"; d="scan'208";a="543229138"
+Received: from abhijitc-mobl.gar.corp.intel.com (HELO localhost)
+ ([10.252.34.12])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2022 06:42:50 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+In-Reply-To: <YjNyFdyA3vQAT4i0@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220317173355.336835-1-jani.nikula@intel.com>
+ <YjNyFdyA3vQAT4i0@intel.com>
+Date: Mon, 21 Mar 2022 15:42:42 +0200
+Message-ID: <87tubrjub1.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Content-Language: en-US
-To: fei.yang@intel.com, intel-gfx@lists.freedesktop.org
-References: <20220318180825.3524125-1-fei.yang@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20220318180825.3524125-1-fei.yang@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: avoid concurrent writes to aux_inv
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/sdvo: prefer __packed over
+ __attribute__((packed))
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,133 +59,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Thu, 17 Mar 2022, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Thu, Mar 17, 2022 at 07:33:55PM +0200, Jani Nikula wrote:
+>> The kernel preference is to use the __packed macro instead of the direct
+>> __attribute__.
+>>=20
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>
+> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-On 18/03/2022 18:08, fei.yang@intel.com wrote:
-> From: Fei Yang <fei.yang@intel.com>
-> 
-> GPU hangs have been observed when multiple engines write to the
-> same aux_inv register at the same time. To avoid this each engine
-> should only invalidate its own auxiliary table. The function
-> gen12_emit_flush_xcs() currently invalidate the auxiliary table for
-> all engines because the rq->engine is not necessarily the engine
-> eventually carrying out the request, and potentially the engine
-> could even be a virtual one (with engine->instance being -1).
-> With the MMIO remap feature, we can actually set bit 17 of MI_LRI
-> instruction and let the hardware to figure out the local aux_inv
-> register at runtime to avoid invalidating auxiliary table for all
-> engines.
-> 
-> Bspec: 45728
-> 
-> Cc: Stuart Summers <stuart.summers@intel.com>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Signed-off-by: Chris Wilson <chris.p.wilson@intel.com>
-> Signed-off-by: Fei Yang <fei.yang@intel.com>
-> ---
->   drivers/gpu/drm/i915/gt/gen8_engine_cs.c     | 44 +++++---------------
->   drivers/gpu/drm/i915/gt/intel_gpu_commands.h |  1 +
->   2 files changed, 11 insertions(+), 34 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
-> index 36148887c699..6e83ac06aaf6 100644
-> --- a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
-> +++ b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
-> @@ -165,30 +165,6 @@ static u32 preparser_disable(bool state)
->   	return MI_ARB_CHECK | 1 << 8 | state;
->   }
->   
-> -static i915_reg_t aux_inv_reg(const struct intel_engine_cs *engine)
-> -{
-> -	static const i915_reg_t vd[] = {
-> -		GEN12_VD0_AUX_NV,
-> -		GEN12_VD1_AUX_NV,
-> -		GEN12_VD2_AUX_NV,
-> -		GEN12_VD3_AUX_NV,
-> -	};
-> -
-> -	static const i915_reg_t ve[] = {
-> -		GEN12_VE0_AUX_NV,
-> -		GEN12_VE1_AUX_NV,
-> -	};
-> -
-> -	if (engine->class == VIDEO_DECODE_CLASS)
-> -		return vd[engine->instance];
-> -
-> -	if (engine->class == VIDEO_ENHANCEMENT_CLASS)
-> -		return ve[engine->instance];
-> -
-> -	GEM_BUG_ON("unknown aux_inv reg\n");
-> -	return INVALID_MMIO_REG;
-> -}
-> -
->   static u32 *gen12_emit_aux_table_inv(const i915_reg_t inv_reg, u32 *cs)
->   {
->   	*cs++ = MI_LOAD_REGISTER_IMM(1);
-> @@ -293,10 +269,12 @@ int gen12_emit_flush_xcs(struct i915_request *rq, u32 mode)
->   	if (mode & EMIT_INVALIDATE) {
->   		cmd += 2;
->   
-> -		if (!HAS_FLAT_CCS(rq->engine->i915)) {
-> +		if (!HAS_FLAT_CCS(rq->engine->i915) &&
-> +		    (rq->engine->class == VIDEO_DECODE_CLASS ||
-> +		     rq->engine->class == VIDEO_ENHANCEMENT_CLASS)) {
->   			aux_inv = rq->engine->mask & ~BIT(BCS0);
->   			if (aux_inv)
-> -				cmd += 2 * hweight32(aux_inv) + 2;
-> +				cmd += 4;
->   		}
->   	}
->   
-> @@ -329,14 +307,12 @@ int gen12_emit_flush_xcs(struct i915_request *rq, u32 mode)
->   	*cs++ = 0; /* value */
->   
->   	if (aux_inv) { /* hsdes: 1809175790 */
-> -		struct intel_engine_cs *engine;
-> -		unsigned int tmp;
-> -
-> -		*cs++ = MI_LOAD_REGISTER_IMM(hweight32(aux_inv));
-> -		for_each_engine_masked(engine, rq->engine->gt, aux_inv, tmp) {
-> -			*cs++ = i915_mmio_reg_offset(aux_inv_reg(engine));
-> -			*cs++ = AUX_INV;
-> -		}
-> +		*cs++ = MI_LOAD_REGISTER_IMM(1) | MI_LRI_MMIO_REMAP_EN;
-> +		if (rq->engine->class == VIDEO_DECODE_CLASS)
-> +			*cs++ = i915_mmio_reg_offset(GEN12_VD0_AUX_NV);
-> +		else
-> +			*cs++ = i915_mmio_reg_offset(GEN12_VE0_AUX_NV);
-> +		*cs++ = AUX_INV;
->   		*cs++ = MI_NOOP;
->   	}
->   
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gpu_commands.h b/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
-> index d112ffd56418..4243be030bc1 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
-> @@ -144,6 +144,7 @@
->   #define MI_LOAD_REGISTER_IMM(x)	MI_INSTR(0x22, 2*(x)-1)
->   /* Gen11+. addr = base + (ctx_restore ? offset & GENMASK(12,2) : offset) */
->   #define   MI_LRI_LRM_CS_MMIO		REG_BIT(19)
-> +#define   MI_LRI_MMIO_REMAP_EN		REG_BIT(17)
->   #define   MI_LRI_FORCE_POSTED		(1<<12)
->   #define MI_LOAD_REGISTER_IMM_MAX_REGS (126)
->   #define MI_STORE_REGISTER_MEM        MI_INSTR(0x24, 1)
+Pushed, thanks.
 
-LGTM.
+BR,
+Jani.
 
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_sdvo.c | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>=20
+>> diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm=
+/i915/display/intel_sdvo.c
+>> index 158e750e5b4d..328a8f20c63b 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_sdvo.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
+>> @@ -283,7 +283,7 @@ static bool intel_sdvo_read_byte(struct intel_sdvo *=
+intel_sdvo, u8 addr, u8 *ch)
+>>  static const struct {
+>>  	u8 cmd;
+>>  	const char *name;
+>> -} __attribute__ ((packed)) sdvo_cmd_names[] =3D {
+>> +} __packed sdvo_cmd_names[] =3D {
+>>  	SDVO_CMD_NAME_ENTRY(RESET),
+>>  	SDVO_CMD_NAME_ENTRY(GET_DEVICE_CAPS),
+>>  	SDVO_CMD_NAME_ENTRY(GET_FIRMWARE_REV),
+>> --=20
+>> 2.30.2
 
-Affects igpus from TGL onwards? If so:
-
-Cc: stable@vger.kernel.org # v5.7+
-
-?
-
-Backporting might end up fun..
-
-Regards,
-
-Tvrtko
+--=20
+Jani Nikula, Intel Open Source Graphics Center
