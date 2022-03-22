@@ -2,49 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FDF54E488E
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Mar 2022 22:42:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6930E4E4898
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Mar 2022 22:45:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 645BD10E5C1;
-	Tue, 22 Mar 2022 21:42:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A73E10E5A9;
+	Tue, 22 Mar 2022 21:45:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E906610E5BB;
- Tue, 22 Mar 2022 21:42:30 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DBE9A10E5A9
+ for <intel-gfx@lists.freedesktop.org>; Tue, 22 Mar 2022 21:45:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1647985351; x=1679521351;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=8hIKi79ccuLZ8nZqSaqYgq9+xnpKQSB7LLQJwKuSquI=;
- b=PZaU675OAKLoMxNd793mUTGmePKpt6r7+vVpFhoVdiCc/0tGXCNugeup
- dcwtF0FU2GYFD3XBzqoB863OqTs+9wC97+EGuZDjQtUWn9Ir5Bz5KxsX1
- PA+5sDTxK6y93nW80jP/7Eij4sGnxHGx1CVfQvkrrh1S2pTGxIExeidl1
- 4MEccy3onK2PLrxr8CaT2tjxNkR+bLigmiSXTi0yTTDcLLQSYG70uufMi
- ZRkkch3mHj/T375TS6qX2MED3l69mn9U+Ov/zOZQ6VeacMZkWQTHU656f
- Yx+ZFwHCghCilbXENxtO2g+wmKkthI2Owg/28dP0W+OjEA31hZ/Dz1Da8 w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10294"; a="344385886"
-X-IronPort-AV: E=Sophos;i="5.90,202,1643702400"; d="scan'208";a="344385886"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Mar 2022 14:42:24 -0700
-X-IronPort-AV: E=Sophos;i="5.90,202,1643702400"; d="scan'208";a="717136076"
-Received: from sburacze-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.58.237])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Mar 2022 14:42:23 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: dri-devel@lists.freedesktop.org
-Date: Tue, 22 Mar 2022 23:40:48 +0200
-Message-Id: <091dcecb74a14b2cb618f2fc494fd0b52bf535b2.1647985054.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <cover.1647985054.git.jani.nikula@intel.com>
-References: <cover.1647985054.git.jani.nikula@intel.com>
+ t=1647985510; x=1679521510;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=zvi6rsdHH+v8L7qvqSWfJFW+SFf9XcYslK612i10d1M=;
+ b=OpoDyiqvnsBWejOxpG2rFe95wKzW6GcoGdeq0881oCgw2G4h5qrDDQRh
+ eEKeIYXtJgL6UHPl6kKRUFDgUamPqZvgVcwA0WAyo0PTeBl78oUvkp099
+ aA++Hkj4bmsD0rIWI4RVjc642NlFJQZYHsk5bWMk5AWXhzlBwJLMQ7FUm
+ 55O7xnobAaSskHiItybrznA6PRSWtNe7c40mJbxRjD83yKZ7z/zhqetME
+ zBmKxHeZ/++Jt1sD7J/67z+NiJGqKWMoyIBd0xpauq6XAQyfzlb9O2V86
+ AgYe+rIx05oT/1b/zbd66JjsN7wHBl3E4REQkkerFXnLW1WqEfHaFePXy g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10294"; a="282796505"
+X-IronPort-AV: E=Sophos;i="5.90,202,1643702400"; d="scan'208";a="282796505"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Mar 2022 14:45:10 -0700
+X-IronPort-AV: E=Sophos;i="5.90,202,1643702400"; d="scan'208";a="583449596"
+Received: from idwilson-mobl.amr.corp.intel.com (HELO
+ josouza-mobl2.amr.corp.intel.com) ([10.212.48.12])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Mar 2022 14:45:07 -0700
+From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 22 Mar 2022 14:46:13 -0700
+Message-Id: <20220322214616.160640-1-jose.souza@intel.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [RFC 19/19] drm/edid: sunset drm_find_cea_extension()
+Subject: [Intel-gfx] [PATCH v2 1/4] drm/i915/display: Program
+ PIPE_MBUS_DBOX_CTL with adl-p values
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,70 +56,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Convert drm_find_cea_extension() to a predicate function to check if the
-EDID has a CEA extension or a DisplayID CTA data block. This is mainly
-to avoid adding new users that only find the first CEA extension.
+From: Caz Yokoyama <caz.yokoyama@intel.com>
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+B credits set by IFWI do not match with specification default, so here
+programming the right value.
+
+Also while at it, taking the oportunity to do a read-modify-write to
+not overwrite all other bits in this register that specification don't
+ask us to change.
+
+BSpec: 49213
+BSpec: 50343
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
+Signed-off-by: Caz Yokoyama <caz.yokoyama@intel.com>
+Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
 ---
- drivers/gpu/drm/drm_edid.c | 17 ++++++++---------
- 1 file changed, 8 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 12 +++++++++---
+ 1 file changed, 9 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
-index dfaa21f00941..84314b65b75b 100644
---- a/drivers/gpu/drm/drm_edid.c
-+++ b/drivers/gpu/drm/drm_edid.c
-@@ -3422,30 +3422,29 @@ const u8 *drm_find_edid_extension(const struct edid *edid,
- 	return edid_ext;
- }
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index dc6e21e4ef0b9..424cd7e9afe60 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -1830,13 +1830,19 @@ static void icl_pipe_mbus_enable(struct intel_crtc *crtc, bool joined_mbus)
+ 	enum pipe pipe = crtc->pipe;
+ 	u32 val;
  
--static const u8 *drm_find_cea_extension(const struct edid *edid)
-+/* Return true if the EDID has a CEA extension or a DisplayID CTA data block */
-+static bool drm_edid_has_cea_extension(const struct edid *edid)
- {
- 	const struct displayid_block *block;
- 	struct displayid_iter iter;
--	const u8 *cea;
- 	int ext_index = 0;
-+	bool found = false;
++	val = intel_de_read(dev_priv, PIPE_MBUS_DBOX_CTL(pipe));
++	val &= ~MBUS_DBOX_A_CREDIT_MASK;
+ 	/* Wa_22010947358:adl-p */
+ 	if (IS_ALDERLAKE_P(dev_priv))
+-		val = joined_mbus ? MBUS_DBOX_A_CREDIT(6) : MBUS_DBOX_A_CREDIT(4);
++		val |= joined_mbus ? MBUS_DBOX_A_CREDIT(6) : MBUS_DBOX_A_CREDIT(4);
+ 	else
+-		val = MBUS_DBOX_A_CREDIT(2);
++		val |= MBUS_DBOX_A_CREDIT(2);
  
- 	/* Look for a top level CEA extension block */
--	/* FIXME: make callers iterate through multiple CEA ext blocks? */
--	cea = drm_find_edid_extension(edid, CEA_EXT, &ext_index);
--	if (cea)
--		return cea;
-+	if (drm_find_edid_extension(edid, CEA_EXT, &ext_index))
-+		return true;
- 
- 	/* CEA blocks can also be found embedded in a DisplayID block */
- 	displayid_iter_edid_begin(edid, &iter);
- 	displayid_iter_for_each(block, &iter) {
- 		if (block->tag == DATA_BLOCK_CTA) {
--			cea = (const u8 *)block;
-+			found = true;
- 			break;
- 		}
- 	}
- 	displayid_iter_end(&iter);
- 
--	return cea;
-+	return found;
- }
- 
- static __always_inline const struct drm_display_mode *cea_mode_for_vic(u8 vic)
-@@ -3715,7 +3714,7 @@ add_alternate_cea_modes(struct drm_connector *connector, struct edid *edid)
- 	int modes = 0;
- 
- 	/* Don't add CEA modes if the CEA extension block is missing */
--	if (!drm_find_cea_extension(edid))
-+	if (!drm_edid_has_cea_extension(edid))
- 		return 0;
- 
- 	/*
+-	if (DISPLAY_VER(dev_priv) >= 12) {
++	val &= ~(MBUS_DBOX_BW_CREDIT_MASK | MBUS_DBOX_B_CREDIT_MASK);
++	if (IS_ALDERLAKE_P(dev_priv)) {
++		val |= MBUS_DBOX_BW_CREDIT(2);
++		val |= MBUS_DBOX_B_CREDIT(8);
++	} else if (DISPLAY_VER(dev_priv) >= 12) {
+ 		val |= MBUS_DBOX_BW_CREDIT(2);
+ 		val |= MBUS_DBOX_B_CREDIT(12);
+ 	} else {
 -- 
-2.30.2
+2.35.1
 
