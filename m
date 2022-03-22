@@ -2,70 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB0AB4E48D0
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Mar 2022 23:02:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 36C6B4E48EE
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Mar 2022 23:07:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8036710E0D7;
-	Tue, 22 Mar 2022 22:02:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B48910E0D7;
+	Tue, 22 Mar 2022 22:07:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C690610E0D7
- for <intel-gfx@lists.freedesktop.org>; Tue, 22 Mar 2022 22:02:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1647986554; x=1679522554;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-id:content-transfer-encoding: mime-version;
- bh=KuYfC9ikflveHIOzhohBuOJoKRqYj9gLsqX1pFDq+9s=;
- b=Mu0Qr+nPtLScd0jBoDExrt9/pfZpxxb4P+MEZDSREW4YUoG8XcS9ybxX
- Hoyfo7VMN43wxLICpTlwgci8K85rYIzwcmIzwPWdepVbq5LlXNPCCTxXd
- EDmcduc+QxcJsDFppQNdmv32bodwW+5V5QV4FHeopWWl+WBnkF6iuQhR8
- R+pb6ZaDiPzRmXD8KvkApQm/KLK7I4H+VDN81qWcnX50OlqKZbsaLDFKN
- /hk+U5WV2C4Umkwb2PV1lmD1M2p5GanOILn+MhqciCkLxm6S8yAzie7fo
- mewXdKvFvJZU0cRmAcLrbKb4WfVJJGBoY8abjvDEYvSXFyGSpL3fe3WRp Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10294"; a="245432890"
-X-IronPort-AV: E=Sophos;i="5.90,203,1643702400"; d="scan'208";a="245432890"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Mar 2022 15:02:24 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,203,1643702400"; d="scan'208";a="583454297"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orsmga001.jf.intel.com with ESMTP; 22 Mar 2022 15:02:24 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Tue, 22 Mar 2022 15:02:23 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.21; Tue, 22 Mar 2022 15:02:23 -0700
-Received: from fmsmsx612.amr.corp.intel.com ([10.18.126.92]) by
- fmsmsx612.amr.corp.intel.com ([10.18.126.92]) with mapi id 15.01.2308.021;
- Tue, 22 Mar 2022 15:02:23 -0700
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "cazyokoyama@gmail.com" <cazyokoyama@gmail.com>
-Thread-Topic: [Intel-gfx] [PATCH v2 4/4] drm/i915/display: Remove MBUS joining
- invalid TODOs
-Thread-Index: AQHYPjYdUc/YFbPUSkSosY8KhzrrqqzMaP2AgAABSAA=
-Date: Tue, 22 Mar 2022 22:02:23 +0000
-Message-ID: <b91fe3cc8989d5651597cf9ac80954db5a960e49.camel@intel.com>
-References: <20220322214616.160640-1-jose.souza@intel.com>
- <20220322214616.160640-4-jose.souza@intel.com>
- <CABhNg0hh47jNo_a4EpsrhsRYcB7Mn86+f6oykX0kvGv0XPtuSg@mail.gmail.com>
-In-Reply-To: <CABhNg0hh47jNo_a4EpsrhsRYcB7Mn86+f6oykX0kvGv0XPtuSg@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.100]
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7B1C810E0D7;
+ Tue, 22 Mar 2022 22:07:54 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 77C05A00A0;
+ Tue, 22 Mar 2022 22:07:54 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
-Content-ID: <CBA3A33BFF03BB4D9F0C35944E40B6CB@intel.com>
-Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2 4/4] drm/i915/display: Remove MBUS
- joining invalid TODOs
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Tue, 22 Mar 2022 22:07:54 -0000
+Message-ID: <164798687446.20010.6599846590645776226@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <cover.1647985054.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1647985054.git.jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/edid=3A_overhaul_CEA_data_block_iteration?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,52 +40,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCAyMDIyLTAzLTIyIGF0IDE0OjU4IC0wNzAwLCBDYXogWW9rb3lhbWEgd3JvdGU6DQo+
-IA0KPiANCj4gT24gVHVlLCBNYXIgMjIsIDIwMjIgYXQgMjo0NSBQTSBKb3PDqSBSb2JlcnRvIGRl
-IFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4gd3JvdGU6DQo+ID4gc2tsX2NvbXB1dGVfZGRi
-KCkgd2lsbCBmb3IgYSBtb2Rlc2V0IGluIGFsbCBwaXBlcyB3aGVuIE1CVVMgam9pbmluZw0KPiA+
-IGNoYW5nZXMgYmV0d2VlbiBzdGF0ZXMsIHNvIGFsbCBwaXBlcyB3aWxsIGJlIGRpc2FibGVkLCBo
-YXZlIGFsbA0KPiA+IE1CVVMgcmVsYXRlZCByZWdpc3RlcnMgdXBkYXRlZCBhbmQgdGhlbiBlYWNo
-IHBpcGUgZW5hYmxlZC4NCj4gPiANCj4gDQo+IEkgYW0gbm90IGNsZWFyIHdoYXQgeW91IHdhbnQg
-dG8gc2F5IGhlcmUuIENvdWxkIHlvdSByZXBocmFzZcKgYWJvdmUgMyBsaW5lcz8NCg0KT3BzIGl0
-IHNob3VsZCBiZToNCg0Kc2tsX2NvbXB1dGVfZGRiKCkgd2lsbCBkbyBhIG1vZGVzZXQgaW4gYWxs
-IHBpcGVzIHdoZW4gTUJVUyBqb2luaW5nIGNoYW5nZXMgYmV0d2VlbiBhdG9taWMgY29tbWl0cywg
-c28gYWxsIHBpcGVzIHdpbGwgYmUgZGlzYWJsZWQsIGhhdmUgYWxsIE1CVVMNCnJlbGF0ZWQgcmVn
-aXN0ZXJzIHVwZGF0ZWQgYW5kIHRoZW4gZWFjaCBwaXBlIGVuYWJsZWQuDQoNCg0KPiDCoA0KPiA+
-IFNvIG5vIHZibGFuayBzeW5jcm9uaXphdGlvbiBpcyBuZWNlc3NhcnkgYW5kIGhlcmUgZHJvcGlu
-ZyB0aG9zZSBUT0RPcy4NCj4gPiANCj4gDQo+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIGRyb3BwaW5nDQo+IC1j
-YXoNCj4gwqANCj4gPiANCj4gPiBDYzogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxp
-bnV4LmludGVsLmNvbT4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBKb3PDqSBSb2JlcnRvIGRlIFNvdXph
-IDxqb3NlLnNvdXphQGludGVsLmNvbT4NCj4gPiAtLS0NCj4gPiDCoGRyaXZlcnMvZ3B1L2RybS9p
-OTE1L2ludGVsX3BtLmMgfCA1IC0tLS0tDQo+ID4gwqAxIGZpbGUgY2hhbmdlZCwgNSBkZWxldGlv
-bnMoLSkNCj4gPiANCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxf
-cG0uYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3BtLmMNCj4gPiBpbmRleCBjZjI5MGJi
-NzA0MjIxLi45Y2NmMGYwNjI4NjJjIDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2ludGVsX3BtLmMNCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wbS5j
-DQo+ID4gQEAgLTYwNjYsNyArNjA2Niw2IEBAIHNrbF9jb21wdXRlX2RkYihzdHJ1Y3QgaW50ZWxf
-YXRvbWljX3N0YXRlICpzdGF0ZSkNCj4gPiDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCByZXR1cm4gcmV0Ow0KPiA+IA0KPiA+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIGlmIChv
-bGRfZGJ1Zl9zdGF0ZS0+am9pbmVkX21idXMgIT0gbmV3X2RidWZfc3RhdGUtPmpvaW5lZF9tYnVz
-KSB7DQo+ID4gLcKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgLyogVE9ETzogSW1w
-bGVtZW50IHZibGFuayBzeW5jaHJvbml6ZWQgTUJVUyBqb2luaW5nIGNoYW5nZXMgKi8NCj4gPiDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCByZXQgPSBpbnRlbF9tb2Rlc2V0X2Fs
-bF9waXBlcyhzdGF0ZSk7DQo+ID4gwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-aWYgKHJldCkNCj4gPiDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCByZXR1cm4gcmV0Ow0KPiA+IEBAIC04MTk1LDEwICs4MTk0LDYgQEAgc3RhdGljIHZvaWQg
-dXBkYXRlX21idXNfcHJlX2VuYWJsZShzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSkN
-Cj4gPiDCoCDCoCDCoCDCoCBpZiAoIUhBU19NQlVTX0pPSU5JTkcoZGV2X3ByaXYpKQ0KPiA+IMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIHJldHVybjsNCj4gPiANCj4gPiAtwqAgwqAgwqAgwqAvKg0K
-PiA+IC3CoCDCoCDCoCDCoCAqIFRPRE86IEltcGxlbWVudCB2Ymxhbmsgc3luY2hyb25pemVkIE1C
-VVMgam9pbmluZyBjaGFuZ2VzLg0KPiA+IC3CoCDCoCDCoCDCoCAqIE11c3QgYmUgcHJvcGVybHkg
-Y29vcmRpbmF0ZWQgd2l0aCBkYnVmIHJlcHJvZ3JhbW1pbmcuDQo+ID4gLcKgIMKgIMKgIMKgICov
-DQo+ID4gwqAgwqAgwqAgwqAgaWYgKGRidWZfc3RhdGUtPmpvaW5lZF9tYnVzKSB7DQo+ID4gwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgbWJ1c19jdGwgPSBNQlVTX0hBU0hJTkdfTU9ERV8xeDQgfCBN
-QlVTX0pPSU4gfA0KPiA+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIE1CVVNf
-Sk9JTl9QSVBFX1NFTEVDVF9OT05FOw0KPiA+IC0tIA0KPiA+IDIuMzUuMQ0KPiA+IA0KPiANCj4g
-DQoNCg==
+== Series Details ==
+
+Series: drm/edid: overhaul CEA data block iteration
+URL   : https://patchwork.freedesktop.org/series/101659/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+a1fd8fea9724 drm/edid: add drm_edid_extension_block_count() and drm_edid_size()
+a04b9a47ee0e drm: use drm_edid_extension_block_count() and drm_edid_size()
+-:75: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "!edid"
+#75: FILE: drivers/gpu/drm/drm_edid.c:3356:
++	if (edid == NULL || drm_edid_extension_block_count(edid) == 0)
+
+total: 0 errors, 0 warnings, 1 checks, 63 lines checked
+a946b4b8093f drm/edid: clean up CEA data block tag definitions
+0d0acb1b0708 drm/edid: add iterator for EDID base and extension blocks
+-:56: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#56: FILE: drivers/gpu/drm/drm_edid.c:3389:
++#define drm_edid_iter_for_each(__block, __iter)			\
++	while (((__block) = __drm_edid_iter_next(__iter)))
+
+total: 1 errors, 0 warnings, 0 checks, 52 lines checked
+4c530a148bfe drm/edid: add iterator for CEA data blocks
+-:219: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#219: FILE: drivers/gpu/drm/drm_edid.c:4435:
++#define cea_db_iter_for_each(__db, __iter) \
++	while (((__db) = __cea_db_iter_next(__iter)))
+
+total: 1 errors, 0 warnings, 0 checks, 216 lines checked
+8f74ddc1652a drm/edid: clean up cea_db_is_*() functions
+db6dc8dd41fb drm/edid: convert add_cea_modes() to use cea db iter
+d7bef300e712 drm/edid: convert drm_edid_to_speaker_allocation() to use cea db iter
+1d63449f0022 drm/edid: convert drm_edid_to_sad() to use cea db iter
+22a1b23994a7 drm/edid: convert drm_detect_hdmi_monitor() to use cea db iter
+ffdd375908fd drm/edid: convert drm_detect_monitor_audio() to use cea db iter
+ade266ca2a2d drm/edid: convert drm_parse_cea_ext() to use cea db iter
+bdf077ccb603 drm/edid: convert drm_edid_to_eld() to use cea db iter
+0ba046c15f17 drm/edid: sunset the old unused cea data block iterators
+e3edc2173219 drm/edid: restore some type safety to cea_db_*() functions
+3fc75617d81c drm/edid: detect basic audio only on CEA extension
+-:10: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#10: 
+References: https://patchwork.freedesktop.org/patch/msgid/20220321044330.27723-1-cooper.chiou@intel.com
+
+total: 0 errors, 1 warnings, 0 checks, 27 lines checked
+6fa348a171ae drm/edid: detect color formats and CEA revision only on CEA extension
+13cc175a8ee2 drm/edid: skip CEA extension scan in drm_edid_to_eld() just for CEA rev
+a6b8101aaa65 drm/edid: sunset drm_find_cea_extension()
+
+
