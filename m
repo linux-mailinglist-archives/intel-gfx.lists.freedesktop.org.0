@@ -2,59 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 220804E435B
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Mar 2022 16:52:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E5D5C4E435C
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Mar 2022 16:53:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BEC1310E575;
-	Tue, 22 Mar 2022 15:52:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 613A310E0B1;
+	Tue, 22 Mar 2022 15:53:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C31B10E056
- for <intel-gfx@lists.freedesktop.org>; Tue, 22 Mar 2022 15:52:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1647964327; x=1679500327;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=X/+VzZYEZJASHW3WJey9P9dPzCnAMwRgzQKkNBNJnhU=;
- b=OGGRCDBJsPbJ3ViPUM4Id8eko/95oyR5k/FrNJrrQqyHqBrsZ81hsWv4
- FNmxwj31T9RACW9LMpzP+ycABJ7sHqD2D4EG+AhVb0FLZ+yUan+ewaUJ7
- ArfI9AAdP2YihgWr7S5okoaTIVyAST2kZ2fvs62TcwkwPm47dUr79Flo+
- 8AXBN269DhDKHGkyzegK3AyZI+q1bkigw56UgPcuZA3nVmHc8RaaQ9SY9
- KiZCGneber35jA96L9XCoTk6ztsb2/R//x2dgeAEHGeVM2dgO58Z4VkAn
- 17vcskELKw28g0am9U5fe/7O1VbMFwgoJZbAyvrwBiwAH2dp6htZ3LXWL A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10294"; a="238459501"
-X-IronPort-AV: E=Sophos;i="5.90,201,1643702400"; d="scan'208";a="238459501"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Mar 2022 08:52:06 -0700
-X-IronPort-AV: E=Sophos;i="5.90,201,1643702400"; d="scan'208";a="543743611"
-Received: from sburacze-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.58.237])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Mar 2022 08:52:03 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, Lucas De Marchi
- <lucas.demarchi@intel.com>
-In-Reply-To: <f60359ab-9aa9-9718-b72a-e05a469a33fa@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220215234146.304035-1-casey.g.bowman@intel.com>
- <20220215234146.304035-2-casey.g.bowman@intel.com>
- <f971fcd0-a95e-93c5-46c2-3cd9fe753f9e@intel.com>
- <20220322020144.thmvicqtlpcmkf6l@ldmartin-desk2>
- <87r16ujni0.fsf@intel.com>
- <20220322142719.f72lpelqsw7vbnuy@ldmartin-desk2>
- <87lex2jb3i.fsf@intel.com>
- <68a4e3a0-215a-27c1-0bd4-d17fd8de52c4@linux.intel.com>
- <87ils6j9e3.fsf@intel.com>
- <f60359ab-9aa9-9718-b72a-e05a469a33fa@linux.intel.com>
-Date: Tue, 22 Mar 2022 17:52:01 +0200
-Message-ID: <87fsnaj87y.fsf@intel.com>
+Received: from mail-qk1-x72b.google.com (mail-qk1-x72b.google.com
+ [IPv6:2607:f8b0:4864:20::72b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AF34910E0B1
+ for <intel-gfx@lists.freedesktop.org>; Tue, 22 Mar 2022 15:53:45 +0000 (UTC)
+Received: by mail-qk1-x72b.google.com with SMTP id k125so14327809qkf.0
+ for <intel-gfx@lists.freedesktop.org>; Tue, 22 Mar 2022 08:53:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=3ZtMC1dZdRlkCYXT1AVpLd1nEH4TJkxWmVB7xDvCPrE=;
+ b=Vttg1e1H9AgaHXAD93luIIzFQhKByL4Hn6xxl7buNod6Eb4j9aHMVwGanV8uQyJ0Ez
+ U67RZCYJQQsyywmPAbBUWfsgQanVDgCMF4N9LDcj9AKtOWEJoLW+FLQMS3lhNy4X74Nx
+ yQKNpqgQA/GD7gxDP78SZNhGynpvcXhxPjYJXAlwCe1W9jP6hvtrEGXm/jNTc/KtubBI
+ lmP0FbA73NAnaNvEUwZYQqXpUSOCfUeZj5e7OcE0FnNIDPbQbAEXQv+FGDeK4Xd1Y2NP
+ 7vmRBq/pjWwHof3tPqgK4MrQxAqS4TQMWUx/unebOl8D8fmH8VsXpMbPeStPESsFGUcX
+ hoUQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=3ZtMC1dZdRlkCYXT1AVpLd1nEH4TJkxWmVB7xDvCPrE=;
+ b=ao3eXNInLpRdBQYGUJDE0aDJjFxLMscpGDcVx+RniORLaBrvIV0LBrGHg9TUh9vhvY
+ ZtxszNh7CevpJycyCz4pFNRar7X0FVNBKwkdx2h+69qaA5tZrjMm2v3t/1EDrhM8bE5l
+ GJ9gwurdrC7YeAV8Mt6rPVMUr1SuDCbKxGBhW/Rh8+QHQyvE4OSp0xXgZKjpsmOEYZik
+ ds+otMXbNnGyMb0iPTVGAPDlsfjQ6B5BNZz6nAk37an2Pr5TSoQe/WWQyehP0qAnbjPv
+ 5XROcNb3O2iFtQZySqBGs8A5m0pzldQfcgPgr/yXiDu/JqDGk19h5l028f8knN3X5EMt
+ wn6g==
+X-Gm-Message-State: AOAM533LDP428dqtw28P3YaNmjZT6kfq/m+U3yyCIHY6vZooYL7Cy7dC
+ iBPuMOLvfDzuDpFWtAwta3eEM1sGjUEXEYfXAWSSTApZ7yY=
+X-Google-Smtp-Source: ABdhPJxdlgcp0PuLxdr3XWkJtuGhOw+98Hcbta4Jv6NnYyWN6xPrtjF6kjaVO7sYt52dpHQYIDSbPhAKXZJmlq9Bv+s=
+X-Received: by 2002:a05:620a:f0d:b0:67e:1961:b061 with SMTP id
+ v13-20020a05620a0f0d00b0067e1961b061mr15994124qkl.82.1647964424515; Tue, 22
+ Mar 2022 08:53:44 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [RFC PATCH v3 1/1] i915/drm: Split out x86/arm64
- for run_as_guest
+References: <20220316222307.30066-1-juhapekka.heikkila@gmail.com>
+ <CAM0jSHMC76EyN-HeKFeON4ODeGPd2Ez=dF8eTNkA8Yp3eAu-JA@mail.gmail.com>
+ <6cec7503-b7ab-8d7c-dff0-b83d65a9e3df@gmail.com>
+ <CAM0jSHN63X_wANE=6LutBOWpETOkB27sQmCb=X4U_sOTvdppSA@mail.gmail.com>
+ <9fea9a74-f7d2-bb36-c0c8-aea86d4ae791@gmail.com>
+ <CAM0jSHMzJwY6oRz7cbqYL91OawoXixww-c7EdvTiY8RrnG9aMA@mail.gmail.com>
+ <4533088c-3d4b-7701-9fb5-8f2316e6a491@gmail.com>
+In-Reply-To: <4533088c-3d4b-7701-9fb5-8f2316e6a491@gmail.com>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Tue, 22 Mar 2022 15:53:18 +0000
+Message-ID: <CAM0jSHOw5hvXdgse4MC4h5N7PJDUAXK+pY7iEr7z+kp2okegKw@mail.gmail.com>
+To: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Add smem fallback
+ allocation for dpt
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,125 +69,150 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: daniel.vetter@intel.com, intel-gfx@lists.freedesktop.org,
- michael.cheng@intel.com
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 22 Mar 2022, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
-> On 22/03/2022 15:26, Jani Nikula wrote:
->> On Tue, 22 Mar 2022, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
->>> On 22/03/2022 14:49, Jani Nikula wrote:
->>>> On Tue, 22 Mar 2022, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
->>>>> On Tue, Mar 22, 2022 at 12:21:59PM +0200, Jani Nikula wrote:
->>>>>> On Mon, 21 Mar 2022, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
->>>>>>> On Mon, Mar 21, 2022 at 04:34:49PM -0700, Casey Bowman wrote:
->>>>>>>> Wanted to ping this older thread to find out where we stand with this patch,
->>>>>>>> Are we OK with the current state of these changes?
->>>>>>>>
->>>>>>>> With more recent information gathered from feedback on other patches, would
->>>>>>>> we prefer changing this to a more arch-neutral control flow?
->>>>>>>>
->>>>>>>> e.g.
->>>>>>>> #if IS_ENABLED(CONFIG_X86)
->>>>>>>> ...
->>>>>>>> #else
->>>>>>>> ...
->>>>>>>> #endif
->>>>>>>>
->>>>>>>> Would we also prefer this RFC series be merged or would it be preferred to
->>>>>>>> create a new series instead?
->>>>>>>
->>>>>>> for this specific function, that is used in only 2 places I think it's
->>>>>>> ok to do:
->>>>>>>
->>>>>>> 	static inline bool run_as_guest(void)
->>>>>>> 	{
->>>>>>> 	#if IS_ENABLED(CONFIG_X86)
->>>>>>> 		return !hypervisor_is_type(X86_HYPER_NATIVE);
->>>>>>> 	#else	
->>>>>>> 		/* Not supported yet */
->>>>>>> 		return false;	
->>>>>>> 	#endif
->>>>>>> 	}
->>>>>>>
->>>>>>> For PCH it doesn't really matter as we don't execute that function
->>>>>>> for discrete. For intel_vtd_active() I figure anything other than
->>>>>>> x86 would be fine with false here.
->>>>>>>
->>>>>>> Jani, that this look good to you?
->>>>>>
->>>>>> It's more important to me to get this out of i915_drv.h, which is not
->>>>>> supposed to be a collection of random stuff anymore. I've sent patches
->>>>>> to this effect but they've stalled a bit.
->>>>>
->>>>> do you have a patch moving this particular one? got a link?
->>>>
->>>> Yeah, but it was basically shot down by Tvrtko [1], and I stalled there.
->>>>
->>>> I'd just like to get all this cruft out of i915_drv.h. Whenever we have
->>>> a file where the name isn't super specific, we seem to have a tendency
->>>> of turning it into a dumping ground for random crap. So I'd really like
->>>> to move this out of there *before* expanding on it.
->>>
->>> Sounds like we had agreement on what tweaks to make and I conceded to
->>> live for now with the IMO wrongly named intel_vtd_run_as_guest.
->>>
->>> (I mean I really disagree with file name being trumps, which I think
->>> this example illustrates - this is i915 asking whether the kernel is
->>> running as guest so intel_vtd_ prefix is just wrong. Intel VT-d is the
->>> iommu thingy so it makes no sense when called from PCH detection. But I
->>> have no better ideas at the moment. We can call it i915_run_as_guest, to
->>> signify function belongs to i915, but then we lose the first parameter
->>> names the function rule.)
->> 
->> I think the "first parameter names the function" rule has backfired in
->> gem/gt land, because it's pretty difficult to figure out *where* you'd
->> expect to find or place functions.
+On Tue, 22 Mar 2022 at 12:06, Juha-Pekka Heikkila
+<juhapekka.heikkila@gmail.com> wrote:
 >
-> Hey surely is not that bad. And I am sure if I tried to add some display 
-> feature that there's a chance I'd manage to misplace something. :))
+> On 22.3.2022 12.45, Matthew Auld wrote:
+> > On Mon, 21 Mar 2022 at 18:36, Juha-Pekka Heikkila
+> > <juhapekka.heikkila@gmail.com> wrote:
+> >>
+> >> On 21.3.2022 14.29, Matthew Auld wrote:
+> >>> On Fri, 18 Mar 2022 at 09:22, Juha-Pekka Heikkila
+> >>> <juhapekka.heikkila@gmail.com> wrote:
+> >>>>
+> >>>> On 17.3.2022 13.55, Matthew Auld wrote:
+> >>>>> On Wed, 16 Mar 2022 at 22:23, Juha-Pekka Heikkila
+> >>>>> <juhapekka.heikkila@gmail.com> wrote:
+> >>>>>>
+> >>>>>> Add fallback smem allocation for dpt if stolen memory
+> >>>>>> allocation failed.
+> >>>>>>
+> >>>>>> Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+> >>>>>> ---
+> >>>>>>     drivers/gpu/drm/i915/display/intel_dpt.c | 18 ++++++++++++++----
+> >>>>>>     1 file changed, 14 insertions(+), 4 deletions(-)
+> >>>>>>
+> >>>>>> diff --git a/drivers/gpu/drm/i915/display/intel_dpt.c b/drivers/gpu/drm/i915/display/intel_dpt.c
+> >>>>>> index fb0e7e79e0cd..c8b66433d4db 100644
+> >>>>>> --- a/drivers/gpu/drm/i915/display/intel_dpt.c
+> >>>>>> +++ b/drivers/gpu/drm/i915/display/intel_dpt.c
+> >>>>>> @@ -10,6 +10,7 @@
+> >>>>>>     #include "intel_display_types.h"
+> >>>>>>     #include "intel_dpt.h"
+> >>>>>>     #include "intel_fb.h"
+> >>>>>> +#include "gem/i915_gem_internal.h"
+> >>>>>
+> >>>>> Nit: these should be kept sorted
+> >>>>>
+> >>>>>>
+> >>>>>>     struct i915_dpt {
+> >>>>>>            struct i915_address_space vm;
+> >>>>>> @@ -128,6 +129,10 @@ struct i915_vma *intel_dpt_pin(struct i915_address_space *vm)
+> >>>>>>            void __iomem *iomem;
+> >>>>>>            struct i915_gem_ww_ctx ww;
+> >>>>>>            int err;
+> >>>>>> +       u64 pin_flags = 0;
+> >>>>>> +
+> >>>>>> +       if (i915_gem_object_is_stolen(dpt->obj))
+> >>>>>> +               pin_flags |= PIN_MAPPABLE; /* for i915_vma_pin_iomap(stolen) */
+> >>>>>>
+> >>>>>>            wakeref = intel_runtime_pm_get(&i915->runtime_pm);
+> >>>>>>            atomic_inc(&i915->gpu_error.pending_fb_pin);
+> >>>>>> @@ -138,7 +143,7 @@ struct i915_vma *intel_dpt_pin(struct i915_address_space *vm)
+> >>>>>>                            continue;
+> >>>>>>
+> >>>>>>                    vma = i915_gem_object_ggtt_pin_ww(dpt->obj, &ww, NULL, 0, 4096,
+> >>>>>> -                                                 HAS_LMEM(i915) ? 0 : PIN_MAPPABLE);
+> >>>>>> +                                                 pin_flags);
+> >>>>>>                    if (IS_ERR(vma)) {
+> >>>>>>                            err = PTR_ERR(vma);
+> >>>>>>                            continue;
+> >>>>>> @@ -248,10 +253,15 @@ intel_dpt_create(struct intel_framebuffer *fb)
+> >>>>>>
+> >>>>>>            size = round_up(size * sizeof(gen8_pte_t), I915_GTT_PAGE_SIZE);
+> >>>>>>
+> >>>>>> -       if (HAS_LMEM(i915))
+> >>>>>> -               dpt_obj = i915_gem_object_create_lmem(i915, size, I915_BO_ALLOC_CONTIGUOUS);
+> >>>>>> -       else
+> >>>>>> +       dpt_obj = i915_gem_object_create_lmem(i915, size, I915_BO_ALLOC_CONTIGUOUS);
+> >>>>>> +       if (IS_ERR(dpt_obj) && i915_ggtt_has_aperture(to_gt(i915)->ggtt))
+> >>>>>>                    dpt_obj = i915_gem_object_create_stolen(i915, size);
+> >>>>>> +       if (IS_ERR(dpt_obj) && !HAS_LMEM(i915)) {
+> >>>>>> +               drm_dbg_kms(&i915->drm, "fb: [FB:%d] Allocating dpt from smem\n",
+> >>>>>> +                           fb->base.base.id);
+> >>>>>> +
+> >>>>>> +               dpt_obj = i915_gem_object_create_internal(i915, size);
+> >>>>>
+> >>>>> Looks like we are missing some prerequisite patch to be able to
+> >>>>> directly map such memory in vma_pin_iomap?
+> >>>>
+> >>>> For these functions I'm more like a consumer, I was following
+> >>>> suggestions from Chris on this. Is there something extra that should be
+> >>>> considered in this regard when use it like this?
+> >>>
+> >>> AFAICT this will trigger the WARN_ON() in vma_pin_iomap() if we
+> >>> fallback to create_internal(), since the object is now not lmem and is
+> >>> also not map_and_fenceable(i.e PIN_MAPPABLE).
+> >>
+> >> This shouldn't affect case when dpt allocation from lmem failed, it is
+> >> expected to go to "return ERR_CAST(dpt_obj);" below these comments. On
+> >> situation when allocating lmem and stolen failed on next "if" I added
+> >> !HAS_LMEM(i915) to handle situation with lmem. Though, when I was
+> >> originally trying this patch without limiting lmem case I remember with
+> >> dg2 I got black screen but I don't remember seeing WARN_ON() in logs.
+> >>
+> >>>
+> >>> The other issue is that we need some way of CPU mapping this type of
+> >>> object, like with calling i915_gem_object_pin_map() inside
+> >>> vma_pin_iomap(). It looks like there is an internal patch that tries
+> >>> to handle both issues, so I guess we need to also bring that patch
+> >>> upstream as a prerequisite to this?
+> >>
+> >> I have above in intel_dpt_pin(..) that "pin_flags |= PIN_MAPPABLE" when
+> >> handling stolen memory. I suspect patch you are referring to is this
+> >> same patch I wrote, here just adjusted for upstreaming. This patch was
+> >> earlier tried by Lucas and Manasi to be working with adlp and apparently
+> >> cases with virtual machine this make it possible to have tiled
+> >> framebuffers. Without this patch those special cases will get -e2big
+> >> when creating tiled fb and no stolen memory available.
+> >
+> > When the GGTT pin eventually ends up returning some vma that is not
+> > within the ggtt->mappable_end, then we will start hitting the above
+> > issues, starting with the WARN_ON. If you use PIN_HIGH here for the
+> > non-stolen case, it should highlight the issue more reliably I think.
+> >
 >
-> No scheme is perfect and there are always edge cases, ambiguities and 
-> always work to cleanup further because it all evolved rather than 
-> started from scratch. If you know what the function you wrote is about, 
-> surely you can place it into a file whose name suggests it is the right 
-> area. If you want the example of GT, there is a nice collection of files 
-> per functional area.. intel_gt_<suffix>.. interrupts, power management, 
-> requests, debugfs, etc.
+> You mean once there's no space left in stolen there would be WARN_ON()?
+> This is case which was earlier tested by Lucas and Manasi on adlp to be
+> working correctly, this was on top of drm-tip. Also on internal testing
+> you can see platforms taking this path reliably with no errors.
 >
-> And if you look for functions you did not write, I certainly suggest 
-> using ctags rather than try opening random files. I think driver is just 
-> too big for the latter approach.
+> I'm not sure why use PIN_HIGH for non stolen case, my exposure to gem
+> related parts is limited hence I was following Chris's suggestion to put
+> zero flag for i915_gem_object_ggtt_pin_ww(..) when not using stolen.
 
-Obviously I use code tagging and search. The point was more about the
-surprise in expecting to find a function in some place, and finding it
-in a totally different place. And obviously for finding the right place
-for new functions.
-
-BR,
-Jani.
-
-
+Asking for PIN_MAPPABLE ensures that the vma is always placed within
+the mappable part of the GGTT(i.e ggtt->mappable_end), which is
+usually only the first 256M of the GGTT. If we don't ask for
+PIN_MAPPABLE(which is what this patch is doing for the non-stolen
+case) then the vma might now be placed outside of the special mappable
+range. This mappable range has a corresponding MMIO window which lets
+us access, via some CPU address, the memory pointed at by those GGTT
+PTEs. In the case of stolen system-memory this is the only known
+reliable way to access such memory from the CPU. However if this is
+just normal system memory(which is what this patch is now doing) then
+we can just map it directly and don't need the PIN_MAPPABLE thing, but
+that is exactly the piece we are also missing in vma_pin_iomap. The
+WARN_ON(!i915_vma_is_map_and_fenceable(vma)) should catch this issue,
+but I assume it's only by coincidence that we are not hitting it with
+this patch, since the vma just so happens to be in the mappable
+part(?), but that won't always be the case. If you look at the
+internal version of vma_pin_iomap() there is some extra code to handle
+this, which I guess should be a prerequisite to this patch.
 
 >
-> Regards,
->
-> Tvrtko
->
->
->> BR,
->> Jani.
->> 
->>>
->>> But in any case I don't see that I created any blockers in this thread.
->>> AFAICS just a respin with intel_vtd_active taking struct device is
->>> needed and job done.
->>>
->>> Regards,
->>>
->>> Tvrtko
->> 
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
+> /Juha-pekka
