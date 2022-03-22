@@ -1,33 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A3CF4E3EA9
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Mar 2022 13:41:52 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE46A4E3EB1
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Mar 2022 13:43:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C0BD10E54F;
-	Tue, 22 Mar 2022 12:41:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F3CD310E54F;
+	Tue, 22 Mar 2022 12:43:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 09D6710E54F;
- Tue, 22 Mar 2022 12:41:50 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 04B20AADD6;
- Tue, 22 Mar 2022 12:41:50 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16A6F10E54F
+ for <intel-gfx@lists.freedesktop.org>; Tue, 22 Mar 2022 12:43:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1647953005; x=1679489005;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=MMfjCOtEjWX3e7z2dvwyi5G2LmlhVjaK9xkCrHrLANM=;
+ b=cre9vqECtKsJztwQrXJUnZ5IIywE551PTjrA+MoYJUOVvQHSGAPHLOfM
+ nirHbOP5XYQ7jxcCPemKxBTq8jXILdj3YRcR5tG/CeVmKyiDT7blrPpUm
+ sEcnVtveFlXdxaZxDlmJb9e+mRbC80+D7jyRO1tLrY2dIgODcmcpwoRj1
+ mc5sZWNkX5R3FlcWx31OcFEjeE6wA8wBhXZXKhgS2HPttQTPOOzKOmg44
+ Z9uztfXQTUKbPNohsb2fc3eBz5xIGwgYRBmMuqqRxHxavnGeM0Zpf58lW
+ Hap/QDcIuweQgB8/snk7WVaMJ3kw2G234J/83wqba73wNk3VR1zcB48cE g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10293"; a="318515118"
+X-IronPort-AV: E=Sophos;i="5.90,201,1643702400"; d="scan'208";a="318515118"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Mar 2022 05:43:24 -0700
+X-IronPort-AV: E=Sophos;i="5.90,201,1643702400"; d="scan'208";a="518865283"
+Received: from mbaulin-mobl2.ccr.corp.intel.com (HELO
+ vgovind2-mobl3.intel.com) ([10.252.56.238])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Mar 2022 05:43:22 -0700
+From: Vinod Govindapillai <vinod.govindapillai@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 22 Mar 2022 14:43:07 +0200
+Message-Id: <20220322124308.308300-1-vinod.govindapillai@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Date: Tue, 22 Mar 2022 12:41:50 -0000
-Message-ID: <164795291001.20010.17535057699295971931@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220322120015.28074-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20220322120015.28074-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIGRy?=
- =?utf-8?q?m/i915=3A_Fix_up_DP_DFP_4=3A2=3A0_handling_more_=28rev2=29?=
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 0/1] [PATCH 0/1] Handle the DG2 max bw properly
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,21 +55,20 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Provide accurate max bw data for DG2.
 
-Series: drm/i915: Fix up DP DFP 4:2:0 handling more (rev2)
-URL   : https://patchwork.freedesktop.org/series/95881/
-State : warning
+cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 
-== Summary ==
+Vinod Govindapillai (1):
+  drm/i915: Handle the DG2 max bw properly
 
-$ make htmldocs 2>&1 > /dev/null | grep i915
-./drivers/gpu/drm/i915/display/intel_drrs.c:1: warning: 'intel_drrs_enable' not found
-./drivers/gpu/drm/i915/display/intel_drrs.c:1: warning: 'intel_drrs_disable' not found
+ drivers/gpu/drm/i915/display/intel_bw.c | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
 
+-- 
+2.25.1
 
