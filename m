@@ -1,66 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 578214E3ED5
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Mar 2022 13:54:09 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD31F4E3F26
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Mar 2022 14:08:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8959C10E554;
-	Tue, 22 Mar 2022 12:54:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E08A310E5C5;
+	Tue, 22 Mar 2022 13:08:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B3C710E554;
- Tue, 22 Mar 2022 12:54:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1647953646; x=1679489646;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=7vJ+TXVdMsJk7V6kXZQe7U7wk2Kfj1j2ob7NK4IUNrg=;
- b=AgDvs5bj2ZR4IFK7k8nIOOdJMDJbik3+1LSwJTXgJdyk7RFiNMiITQOe
- EjLgUcPc800nx27KesWaksNAXAkJMQ2d7LX3kQ+llijeCs6prOVo3tRlj
- A1yE+g/Cfy4m+UTSIHERQ/+YX1uPBtTt8kf/LkFsjxZMoAFXl2V5VbeMK
- UTO/JZTo6vVzddLg6cAqJG3d1W6fB2DX2ZF7jRshhkHYNwLH1IQ5QmHEq
- CmOsTN5HNDt/F90Vpje5Y37k5UMxCvS0putEFMWb+GlJS+70vM483vQwy
- 606csau2u3Nb8m842k46jPRaZC4zFUbMU7nGNhygmdCSQuArdKWaBnBmI A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10293"; a="344237788"
-X-IronPort-AV: E=Sophos;i="5.90,201,1643702400"; d="scan'208";a="344237788"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Mar 2022 05:54:00 -0700
-X-IronPort-AV: E=Sophos;i="5.90,201,1643702400"; d="scan'208";a="560372678"
-Received: from srobinso-mobl.ger.corp.intel.com (HELO [10.213.230.39])
- ([10.213.230.39])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Mar 2022 05:53:57 -0700
-Message-ID: <fda351f2-b68e-4a75-a96a-6ad1e701a1f5@linux.intel.com>
-Date: Tue, 22 Mar 2022 12:53:53 +0000
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D5B3010E5C5;
+ Tue, 22 Mar 2022 13:08:45 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id D2FECA00E8;
+ Tue, 22 Mar 2022 13:08:45 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6294216021486241722=="
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Content-Language: en-US
-To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
- Michael Cheng <michael.cheng@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20220319194227.297639-1-michael.cheng@intel.com>
- <4c86ae70-6f97-7a7c-1fd4-5e73ca29d0ba@linux.intel.com>
- <5db61477-6064-ada0-82a7-c1dc659dacad@linux.intel.com>
- <abdc3b07-a05e-f67d-2135-a30421cb9d12@linux.intel.com>
- <29bde7b0e680e503fbf483a560616e2ce22cdd79.camel@linux.intel.com>
- <210af2db-37ec-2cff-f6a6-7ea0263e135b@linux.intel.com>
- <1bd4ac91f24f6b4322811177f786f4867278ab83.camel@linux.intel.com>
- <b6bb4d03-6229-2419-97dd-f010c9890363@linux.intel.com>
- <d6bc73c04c4c69d3d9e6cf42bd62340a61a7d4c3.camel@linux.intel.com>
- <31310790-4bc5-b9a7-8d35-c0f542b4d658@linux.intel.com>
- <5931be1a37dbb9ccdce127f6173d42fa4dbee593.camel@linux.intel.com>
- <953a9d2b-1004-ab01-b914-4fa6b191add0@linux.intel.com>
- <badf14e83199a1e87b85dd4fefc7c229d3e806bd.camel@linux.intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <badf14e83199a1e87b85dd4fefc7c229d3e806bd.camel@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 0/4] Drop wbinvd_on_all_cpus usage
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Tue, 22 Mar 2022 13:08:45 -0000
+Message-ID: <164795452584.20009.7453847835468140988@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220322120015.28074-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20220322120015.28074-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Fix_up_DP_DFP_4=3A2=3A0_handling_more_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,331 +40,269 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: daniel.vetter@ffwll.ch, lucas.demarchi@intel.com,
- dri-devel@lists.freedesktop.org, chris@chris-wilson.co.uk,
- Matthew Auld <matthew.auld@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============6294216021486241722==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 22/03/2022 11:37, Thomas Hellström wrote:
-> On Tue, 2022-03-22 at 11:20 +0000, Tvrtko Ursulin wrote:
->>
->> On 22/03/2022 10:26, Thomas Hellström wrote:
->>> On Tue, 2022-03-22 at 10:13 +0000, Tvrtko Ursulin wrote:
->>>>
->>>> On 21/03/2022 15:15, Thomas Hellström wrote:
->>>>> On Mon, 2022-03-21 at 14:43 +0000, Tvrtko Ursulin wrote:
->>>>>>
->>>>>> On 21/03/2022 13:40, Thomas Hellström wrote:
->>>>>>> Hi,
->>>>>>>
->>>>>>> On Mon, 2022-03-21 at 13:12 +0000, Tvrtko Ursulin wrote:
->>>>>>>>
->>>>>>>> On 21/03/2022 12:33, Thomas Hellström wrote:
->>>>>>>>> On Mon, 2022-03-21 at 12:22 +0000, Tvrtko Ursulin
->>>>>>>>> wrote:
->>>>>>>>>>
->>>>>>>>>> On 21/03/2022 11:03, Thomas Hellström wrote:
->>>>>>>>>>> Hi, Tvrtko.
->>>>>>>>>>>
->>>>>>>>>>> On 3/21/22 11:27, Tvrtko Ursulin wrote:
->>>>>>>>>>>>
->>>>>>>>>>>> On 19/03/2022 19:42, Michael Cheng wrote:
->>>>>>>>>>>>> To align with the discussion in [1][2], this
->>>>>>>>>>>>> patch
->>>>>>>>>>>>> series
->>>>>>>>>>>>> drops
->>>>>>>>>>>>> all
->>>>>>>>>>>>> usage of
->>>>>>>>>>>>> wbvind_on_all_cpus within i915 by either
->>>>>>>>>>>>> replacing
->>>>>>>>>>>>> the
->>>>>>>>>>>>> call
->>>>>>>>>>>>> with certain
->>>>>>>>>>>>> drm clflush helpers, or reverting to a previous
->>>>>>>>>>>>> logic.
->>>>>>>>>>>>
->>>>>>>>>>>> AFAIU, complaint from [1] was that it is wrong to
->>>>>>>>>>>> provide
->>>>>>>>>>>> non
->>>>>>>>>>>> x86
->>>>>>>>>>>> implementations under the wbinvd_on_all_cpus
->>>>>>>>>>>> name.
->>>>>>>>>>>> Instead an
->>>>>>>>>>>> arch
->>>>>>>>>>>> agnostic helper which achieves the same effect
->>>>>>>>>>>> could
->>>>>>>>>>>> be
->>>>>>>>>>>> created.
->>>>>>>>>>>> Does
->>>>>>>>>>>> Arm have such concept?
->>>>>>>>>>>
->>>>>>>>>>> I also understand Linus' email like we shouldn't
->>>>>>>>>>> leak
->>>>>>>>>>> incoherent
->>>>>>>>>>> IO
->>>>>>>>>>> to
->>>>>>>>>>> other architectures, meaning any remaining
->>>>>>>>>>> wbinvd()s
->>>>>>>>>>> should
->>>>>>>>>>> be
->>>>>>>>>>> X86
->>>>>>>>>>> only.
->>>>>>>>>>
->>>>>>>>>> The last part is completely obvious since it is a x86
->>>>>>>>>> instruction
->>>>>>>>>> name.
->>>>>>>>>
->>>>>>>>> Yeah, I meant the function implementing wbinvd()
->>>>>>>>> semantics.
->>>>>>>>>
->>>>>>>>>>
->>>>>>>>>> But I think we can't pick a solution until we know
->>>>>>>>>> how
->>>>>>>>>> the
->>>>>>>>>> concept
->>>>>>>>>> maps
->>>>>>>>>> to Arm and that will also include seeing how the
->>>>>>>>>> drm_clflush_sg for
->>>>>>>>>> Arm
->>>>>>>>>> would look. Is there a range based solution, or just
->>>>>>>>>> a
->>>>>>>>>> big
->>>>>>>>>> hammer
->>>>>>>>>> there.
->>>>>>>>>> If the latter, then it is no good to churn all these
->>>>>>>>>> reverts
->>>>>>>>>> but
->>>>>>>>>> instead
->>>>>>>>>> an arch agnostic wrapper, with a generic name, would
->>>>>>>>>> be
->>>>>>>>>> the
->>>>>>>>>> way to
->>>>>>>>>> go.
->>>>>>>>>
->>>>>>>>> But my impression was that ARM would not need the
->>>>>>>>> range-
->>>>>>>>> based
->>>>>>>>> interface
->>>>>>>>> either, because ARM is only for discrete and with
->>>>>>>>> discrete
->>>>>>>>> we're
->>>>>>>>> always
->>>>>>>>> coherent.
->>>>>>>>
->>>>>>>> Not sure what you mean here - what about flushing system
->>>>>>>> memory
->>>>>>>> objects
->>>>>>>> on discrete? Those still need flushing on paths like
->>>>>>>> suspend
->>>>>>>> which this
->>>>>>>> series touches. Am I missing something?
->>>>>>>
->>>>>>> System bos on discrete should always have
->>>>>>>
->>>>>>> I915_BO_CACHE_COHERENT_FOR_READ |
->>>>>>> I915_BO_CACHE_COHERENT_FOR_WRITE
->>>>>>>
->>>>>>> either by the gpu being fully cache coherent (or us mapping
->>>>>>> system
->>>>>>> write-combined). Hence no need for cache clflushes or
->>>>>>> wbinvd()
->>>>>>> for
->>>>>>> incoherent IO.
->>>>>>
->>>>>> Hmm so you are talking about the shmem ttm backend. It ends
->>>>>> up
->>>>>> depending on the result of i915_ttm_cache_level, yes? It
->>>>>> cannot
->>>>>> end
->>>>>> up with I915_CACHE_NONE from that function?
->>>>>
->>>>> If the object is allocated with allowable placement in either
->>>>> LMEM
->>>>> or
->>>>> SYSTEM, and it ends in system, it gets allocated with
->>>>> I915_CACHE_NONE,
->>>>> but then the shmem ttm backend isn't used but TTM's wc pools,
->>>>> and
->>>>> the
->>>>> object should *always* be mapped wc. Even in system.
->>>>
->>>> I am not familiar with neither TTM backend or wc pools so maybe a
->>>> missed
->>>> question - if obj->cache_level can be set to none, and
->>>> obj->cache_coherency to zero, then during object lifetime helpers
->>>> which
->>>> consult those fields (like i915_gem_cpu_write_needs_clflush,
->>>> __start_cpu_write, etc) are giving out incorrect answers? That
->>>> is, it
->>>> is
->>>> irrelevant that they would say flushes are required, since in
->>>> actuality
->>>> those objects can never ever and from anywhere be mapped other
->>>> than
->>>> WC
->>>> so flushes aren't actually required?
->>>
->>> If we map other than WC somewhere in these situations, that should
->>> be a
->>> bug needing a fix. It might be that some of these helpers that you
->>> mention might still flag that a clflush is needed, and in that case
->>> that's an oversight that also needs fixing.
->>>
->>>>
->>>>>> I also found in i915_drm.h:
->>>>>>
->>>>>>             * As caching mode when specifying
->>>>>> `I915_MMAP_OFFSET_FIXED`,
->>>>>> WC or WB will
->>>>>>             * be used, depending on the object placement on
->>>>>> creation. WB
->>>>>> will be used
->>>>>>             * when the object can only exist in system memory,
->>>>>> WC
->>>>>> otherwise.
->>>>>>
->>>>>> If what you say is true, that on discrete it is _always_ WC,
->>>>>> then
->>>>>> that needs updating as well.
->>>>>
->>>>> If an object is allocated as system only, then it is mapped WB,
->>>>> and
->>>>> we're relying on the gpu being cache coherent to avoid
->>>>> clflushes.
->>>>> Same
->>>>> is actually currently true if the object happens to be accessed
->>>>> by
->>>>> the
->>>>> cpu while evicted. Might need an update for that.
->>>>
->>>> Hmm okay, I think I actually misunderstood something here. I
->>>> think
->>>> the
->>>> reason for difference bbtween smem+lmem object which happens to
->>>> be in
->>>> smem and smem only object is eluding me.
->>>>
->>>>>>>
->>>>>>> That's adhering to Linus'
->>>>>>>
->>>>>>> "And I sincerely hope to the gods that no cache-incoherent
->>>>>>> i915
->>>>>>> mess
->>>>>>> ever makes it out of the x86 world. Incoherent IO was
->>>>>>> always a
->>>>>>> historical mistake and should never ever happen again, so
->>>>>>> we
->>>>>>> should
->>>>>>> not spread that horrific pattern around."
->>>>>>
->>>>>> Sure, but I was not talking about IO - just the CPU side
->>>>>> access
->>>>>> to
->>>>>> CPU side objects.
->>>>>
->>>>> OK, I was under the impression that clflushes() and wbinvd()s
->>>>> in
->>>>> i915
->>>>> was only ever used to make data visible to non-snooping GPUs.
->>>>>
->>>>> Do you mean that there are other uses as well? Agreed the wb
->>>>> cache
->>>>> flush on on suspend only if gpu is
->>>>> !I915_BO_CACHE_COHERENT_FOR_READ?
->>>>> looks to not fit this pattern completely.
->>>>
->>>> Don't know, I was first trying to understand handling of the
->>>> obj->cache_coherent as discussed in the first quote block. Are
->>>> the
->>>> flags
->>>> consistently set and how the Arm low level code will look.
->>>>
->>>>> Otherwise, for architectures where memory isn't always fully
->>>>> coherent
->>>>> with the cpu cache, I'd expect them to use the apis in
->>>>> asm/cacheflush.h, like flush_cache_range() and similar, which
->>>>> are
->>>>> nops
->>>>> on x86.
->>>>
->>>> Hm do you know why there are no-ops? Like why wouldn't they map
->>>> to
->>>> clflush?
->>>
->>> I think it mostly boils down to the PIPT caches on x86. Everything
->>> is
->>> assumed to be coherent. Whereas some architextures keep different
->>> cache
->>> entries for different virtual addresses even if the physical page
->>> is
->>> the same...
->>>
->>> clflushes and wbinvds on x86 are for odd arch-specific situations
->>> where, for example where we change caching attributes of the linear
->>> kernel map mappings.
->>
->> So in summary we have flush_cache_range which is generic, not
->> implemented on x86 and works with virtual addresses so not directly
->> usable even if x86 implementation was added.
-> 
-> I think for the intended flush_cache_range() semantics: "Make this
-> range visible to all vms on all cpus", I think the x86 implementation
-> is actually a nop, and correctly implemented.
+== Series Details ==
 
-If that is so then I agree. (I did not spend much time looking for 
-desired semantics, just noticed there was no kerneldoc next to the 
-function and stopped there.)
+Series: drm/i915: Fix up DP DFP 4:2:0 handling more (rev2)
+URL   : https://patchwork.freedesktop.org/series/95881/
+State : success
 
->> There is also x86 specific clflush_cache_range which works with
->> virtual addresses as well so no good for drm_clflush_sg.
->>
->> Question you implicitly raise, correct me if I got it wrong, is
->> whether we should even be trying to extend drm_clflush_sg for Arm,
->> given how most (all?) call sites are not needed on discrete, is that
->> right?
-> 
-> Yes exactly. No need to bother figuring this out for ARM, as we don't
-> do any incoherent IO.
-> 
->>
->> Would that mean we could leave most of the code as is and just
->> replace wbinvd_on_all_cpus with something like i915_flush_cpu_caches,
->> which would then legitimately do nothing, at least on Arm if not also
->> on discrete in general?
-> 
-> Yes, with the caveat that we should, at least as a second step, make
-> i915_flush_cpu_caches() range-based if possible from a performance
-> point of view.
+== Summary ==
 
-Sounds like a plan, and I am counting on the second step part to be 
-really second step. Because that one will need to actually figure out 
-and elaborate sufficiently all three proposed reverts, which was missing 
-in this posting. So first step unblocks Arm builds very cheaply and 
-non-controversially, second step tries going the range route.
+CI Bug Log - changes from CI_DRM_11396 -> Patchwork_22641
+====================================================
 
->> If that would work it would make a small and easy to review series. I
->> don't think it would collide with what Linus asked since it is not
->> propagating undesirable things further - given how if there is no
->> actual need to flush then there is no need to make it range based
->> either.
->>
->> Exception would be the dmabuf get pages patch which needs a proper
->> implementation of a new drm flush helper.
-> 
-> I think the dmabuf get_pages (note that that's also only for integrated
-> I915_CACHE_NONE x86-only situations), can be done with
-> 
-> dma_buf_vmap(dma_buf, &virtual);
-> drm_clflush_virt_range(virtual, length);
-> dma_buf_vunmap(&virtual);
+Summary
+-------
 
-Looks plausible to me. Downside being it vmaps the whole object at once 
-so may regress, at least on 32-bit (!) builds. Would it work in theory 
-to fall back to page by page but would it be worth it just for 32-bit I 
-am not sure.
+  **SUCCESS**
 
-Regards,
+  No regressions found.
 
-Tvrtko
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22641/index.html
+
+Participating hosts (48 -> 42)
+------------------------------
+
+  Missing    (6): shard-tglu fi-hsw-4200u bat-adlm-1 fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_22641:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@i915_selftest@live@objects:
+    - {bat-rpls-2}:       [DMESG-WARN][1] ([i915#4391]) -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11396/bat-rpls-2/igt@i915_selftest@live@objects.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22641/bat-rpls-2/igt@i915_selftest@live@objects.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_22641 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@debugfs_test@read_all_entries:
+    - fi-cfl-8109u:       [PASS][3] -> [DMESG-WARN][4] ([i915#203] / [i915#262] / [i915#295])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11396/fi-cfl-8109u/igt@debugfs_test@read_all_entries.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22641/fi-cfl-8109u/igt@debugfs_test@read_all_entries.html
+
+  * igt@gem_exec_suspend@basic-s0@smem:
+    - fi-cfl-8109u:       [PASS][5] -> [DMESG-WARN][6] ([i915#203] / [i915#295])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11396/fi-cfl-8109u/igt@gem_exec_suspend@basic-s0@smem.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22641/fi-cfl-8109u/igt@gem_exec_suspend@basic-s0@smem.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - bat-dg1-6:          [DMESG-FAIL][7] ([i915#4494] / [i915#4957]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11396/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22641/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
+
+  * igt@i915_selftest@live@uncore:
+    - {bat-rpls-2}:       [DMESG-WARN][9] ([i915#4391]) -> [PASS][10] +1 similar issue
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11396/bat-rpls-2/igt@i915_selftest@live@uncore.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22641/bat-rpls-2/igt@i915_selftest@live@uncore.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c:
+    - fi-cfl-8109u:       [DMESG-WARN][11] ([i915#295] / [i915#5341]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11396/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22641/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
+
+  * igt@kms_pipe_crc_basic@read-crc-pipe-b:
+    - fi-cfl-8109u:       [DMESG-WARN][13] ([i915#295]) -> [PASS][14] +10 similar issues
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11396/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22641/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#203]: https://gitlab.freedesktop.org/drm/intel/issues/203
+  [i915#262]: https://gitlab.freedesktop.org/drm/intel/issues/262
+  [i915#295]: https://gitlab.freedesktop.org/drm/intel/issues/295
+  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
+  [i915#3576]: https://gitlab.freedesktop.org/drm/intel/issues/3576
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4391]: https://gitlab.freedesktop.org/drm/intel/issues/4391
+  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
+  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
+  [i915#4897]: https://gitlab.freedesktop.org/drm/intel/issues/4897
+  [i915#4957]: https://gitlab.freedesktop.org/drm/intel/issues/4957
+  [i915#5339]: https://gitlab.freedesktop.org/drm/intel/issues/5339
+  [i915#5341]: https://gitlab.freedesktop.org/drm/intel/issues/5341
+  [i915#5342]: https://gitlab.freedesktop.org/drm/intel/issues/5342
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_11396 -> Patchwork_22641
+
+  CI-20190529: 20190529
+  CI_DRM_11396: 18b88414e6c9660022bb464d4d5fadb07d38cf04 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6387: 04d012b18355b53798af5a55a8915afb1a421bba @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_22641: 64652ea442bdf2a86b44fad85c349c3604e07beb @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+64652ea442bd drm/i915/dp: Disable DFP RGB->YCbCr conversion for now
+f235ce9e556a drm/i915/dp: Fix DFP rgb->ycbcr conversion matrix
+acdec426d5d6 drm/i915/dp: Duplicate native HDMI TMDS clock limit handling for DP HDMI DFPs
+4db4781592e8 drm/i915/dp: Add support for "4:2:0 also" modes for DP
+a8ee0c6096e7 drm/i915/dp: Rework HDMI DFP TMDS clock handling
+25a3ac92acac drm/i915/dp: Make intel_dp_output_format() usable for "4:2:0 also" modes
+29eb939efed0 drm/i915/dp: Pass around intel_connector rather than drm_connector
+76ba76933f82 drm/i915/dp: Reorder intel_dp_compute_config() a bit
+e7f9b1bcd8f5 drm/i915/dp: s/intel_dp_hdmi_ycbcr420/intel_dp_is_ycbcr420/
+9dca4bebab65 drm/i915/dp: Extract intel_dp_has_audio()
+7c2947166301 drm/i915/dp: Respect the sink's max TMDS clock when dealing with DP->HDMI DFPs
+2006f737c4dc drm/i915/dp: Extract intel_dp_tmds_clock_valid()
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22641/index.html
+
+--===============6294216021486241722==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Fix up DP DFP 4:2:0 handling more (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/95881/">https://patchwork.freedesktop.org/series/95881/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22641/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22641/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11396 -&gt; Patchwork_22641</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22641/index.html</p>
+<h2>Participating hosts (48 -&gt; 42)</h2>
+<p>Missing    (6): shard-tglu fi-hsw-4200u bat-adlm-1 fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_22641:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@i915_selftest@live@objects:<ul>
+<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11396/bat-rpls-2/igt@i915_selftest@live@objects.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4391">i915#4391</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22641/bat-rpls-2/igt@i915_selftest@live@objects.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_22641 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@debugfs_test@read_all_entries:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11396/fi-cfl-8109u/igt@debugfs_test@read_all_entries.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22641/fi-cfl-8109u/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/203">i915#203</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/262">i915#262</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_suspend@basic-s0@smem:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11396/fi-cfl-8109u/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22641/fi-cfl-8109u/igt@gem_exec_suspend@basic-s0@smem.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/203">i915#203</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11396/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22641/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@uncore:</p>
+<ul>
+<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11396/bat-rpls-2/igt@i915_selftest@live@uncore.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4391">i915#4391</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22641/bat-rpls-2/igt@i915_selftest@live@uncore.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11396/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5341">i915#5341</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22641/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@read-crc-pipe-b:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11396/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22641/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html">PASS</a> +10 similar issues</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11396 -&gt; Patchwork_22641</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11396: 18b88414e6c9660022bb464d4d5fadb07d38cf04 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6387: 04d012b18355b53798af5a55a8915afb1a421bba @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_22641: 64652ea442bdf2a86b44fad85c349c3604e07beb @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>64652ea442bd drm/i915/dp: Disable DFP RGB-&gt;YCbCr conversion for now<br />
+f235ce9e556a drm/i915/dp: Fix DFP rgb-&gt;ycbcr conversion matrix<br />
+acdec426d5d6 drm/i915/dp: Duplicate native HDMI TMDS clock limit handling for DP HDMI DFPs<br />
+4db4781592e8 drm/i915/dp: Add support for "4:2:0 also" modes for DP<br />
+a8ee0c6096e7 drm/i915/dp: Rework HDMI DFP TMDS clock handling<br />
+25a3ac92acac drm/i915/dp: Make intel_dp_output_format() usable for "4:2:0 also" modes<br />
+29eb939efed0 drm/i915/dp: Pass around intel_connector rather than drm_connector<br />
+76ba76933f82 drm/i915/dp: Reorder intel_dp_compute_config() a bit<br />
+e7f9b1bcd8f5 drm/i915/dp: s/intel_dp_hdmi_ycbcr420/intel_dp_is_ycbcr420/<br />
+9dca4bebab65 drm/i915/dp: Extract intel_dp_has_audio()<br />
+7c2947166301 drm/i915/dp: Respect the sink's max TMDS clock when dealing with DP-&gt;HDMI DFPs<br />
+2006f737c4dc drm/i915/dp: Extract intel_dp_tmds_clock_valid()</p>
+
+</body>
+</html>
+
+--===============6294216021486241722==--
