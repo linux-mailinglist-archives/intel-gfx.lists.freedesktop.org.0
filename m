@@ -1,55 +1,68 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4CC94E4141
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Mar 2022 15:27:44 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E8374E4173
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Mar 2022 15:35:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 95BD710E2FC;
-	Tue, 22 Mar 2022 14:27:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 40E5F10E565;
+	Tue, 22 Mar 2022 14:35:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A44410E2FC
- for <intel-gfx@lists.freedesktop.org>; Tue, 22 Mar 2022 14:27:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1647959257; x=1679495257;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=ShZIYkIzKXhlXtGlI4T+kfEh0KP0ukOq4inZaTGukkI=;
- b=npYl8Rhvkh3okqdGcFPoFG+VU4bEpmULrTg6IutxWmvZJu5FJcACK+Ma
- xGx3Rbrz9Dq4EU0laRNBVCTPM68IdhZaWF806xzC+y2p/BmL6Ds7sxyfi
- hTpjh2Mino0kbSac/VZApLBigaYKgsYQHt3Awk3SiL+KX/xCpkGXvCXc7
- NwSsh8mtG3Yujt9iaGQ0kiMRCYZoNbyuCGT35/ehCokVwyWKu+3zeVXuV
- nC//Hr9ExbpBWl227kAjJB7YcUyPmW7DUC9IJBoUJ5+StirAl85WwF7VQ
- yn1mamEbKH7eO3J9Sl9vJiOgXzUt3c4vatlkdlEQO/u1BDi6ixn7voINk g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10293"; a="255393987"
-X-IronPort-AV: E=Sophos;i="5.90,201,1643702400"; d="scan'208";a="255393987"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Mar 2022 07:27:20 -0700
-X-IronPort-AV: E=Sophos;i="5.90,201,1643702400"; d="scan'208";a="518896655"
-Received: from rtsao-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
- ([10.252.134.54])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Mar 2022 07:27:19 -0700
-Date: Tue, 22 Mar 2022 07:27:19 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <20220322142719.f72lpelqsw7vbnuy@ldmartin-desk2>
-X-Patchwork-Hint: comment
-References: <20220215234146.304035-1-casey.g.bowman@intel.com>
- <20220215234146.304035-2-casey.g.bowman@intel.com>
- <f971fcd0-a95e-93c5-46c2-3cd9fe753f9e@intel.com>
- <20220322020144.thmvicqtlpcmkf6l@ldmartin-desk2>
- <87r16ujni0.fsf@intel.com>
+Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com
+ [IPv6:2a00:1450:4864:20::343])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E6D2E10E33F
+ for <intel-gfx@lists.freedesktop.org>; Tue, 22 Mar 2022 14:35:51 +0000 (UTC)
+Received: by mail-wm1-x343.google.com with SMTP id
+ p12-20020a05600c430c00b0038cbdf52227so1140492wme.2
+ for <intel-gfx@lists.freedesktop.org>; Tue, 22 Mar 2022 07:35:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=k85kloHbcIggRxVhXQ1Ho3hwIvYMNzOOfOLgKduAAmU=;
+ b=jy3DItEV5xnVFmXtuvyyw9++wb6oYKqcJ0eg3Uk2ef6JRAoX3y1C4ICOVMcxZJivy/
+ pC+huRt4/AC2WepZ17kkKEj7SRS2glFy5LsGzIoOuO9P/7W0WP63vqJOOpx0rJSW4iQC
+ wGrgVoCeNsVSJqwz2IneMgUHrXilobuv8uwrw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=k85kloHbcIggRxVhXQ1Ho3hwIvYMNzOOfOLgKduAAmU=;
+ b=XyBGGGl4WK0AG/Ywvf9uKlS6mUQc3xl67LYGVezASm/Lpu8fG6lQ57LAnxoy4mNZtO
+ MBUNjGDFH1000uUtLo/HL+q90rEuE3FeGueUVMjxRnSYCJ6wEfbt+WiU130pQWlPe4dy
+ LUG94yjdrE+wygYnN8j9vd6j75frtZqtugJErr6++2w1g2J2hGHMVayJpLHszR2iv/C3
+ Kx/ejPPeLSr7ugz18/YEUisn9ExFxWFD0Bom1HbcYeuy/XsBagFAobHTbHg8pDzF+w/v
+ 1z2jZMWZqIVei0HyYFds5nyFIfNqcps90sXJXkdbSTz5EUCkBQrU0FPYs+n6uR4stPiT
+ x+tg==
+X-Gm-Message-State: AOAM533n8Mh1y6Pk7L56gWl5MzLUUg4OiO+4UXog24OyuVSjJhUgJhNK
+ lLzdN/Y1YLFDeey/6ceuncbNuw==
+X-Google-Smtp-Source: ABdhPJwbu7ZrEmFHOQ54iFHvoiY0pRr6Om2/RqA63ZZTYwG47G1K/vbAe9ikAXBpv6lfz4pWbuUUOw==
+X-Received: by 2002:a5d:588a:0:b0:204:1f72:2d90 with SMTP id
+ n10-20020a5d588a000000b002041f722d90mr4586615wrf.651.1647959750401; 
+ Tue, 22 Mar 2022 07:35:50 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id
+ n124-20020a1ca482000000b0038c9cf6e296sm2882755wme.14.2022.03.22.07.35.49
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 22 Mar 2022 07:35:49 -0700 (PDT)
+Date: Tue, 22 Mar 2022 15:35:48 +0100
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Michael Cheng <michael.cheng@intel.com>
+Message-ID: <YjnexPTKUajqPye0@phenom.ffwll.local>
+References: <20220319194227.297639-1-michael.cheng@intel.com>
+ <20220319194227.297639-2-michael.cheng@intel.com>
+ <fc7c729b-5c87-f046-04dd-7ca8296487dd@linux.intel.com>
+ <05e56e59-81ed-0b99-6c3d-7f9f413ecd4a@intel.com>
+ <9ee954d2-4a5e-ff11-0061-b518e00e952a@linux.intel.com>
+ <6748e0f6-c628-d5cc-41f1-3dbfe5916660@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <87r16ujni0.fsf@intel.com>
-Subject: Re: [Intel-gfx] [RFC PATCH v3 1/1] i915/drm: Split out x86/arm64
- for run_as_guest
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <6748e0f6-c628-d5cc-41f1-3dbfe5916660@intel.com>
+X-Operating-System: Linux phenom 5.10.0-8-amd64 
+Subject: Re: [Intel-gfx] [PATCH 1/4] i915/gem: drop wbinvd_on_all_cpus usage
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,53 +75,128 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: daniel.vetter@intel.com, intel-gfx@lists.freedesktop.org,
- michael.cheng@intel.com
+Cc: thomas.hellstrom@linux.intel.com, daniel.vetter@ffwll.ch,
+ intel-gfx@lists.freedesktop.org, lucas.demarchi@intel.com,
+ dri-devel@lists.freedesktop.org, chris@chris-wilson.co.uk,
+ Daniel Vetter <daniel.vetter@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 22, 2022 at 12:21:59PM +0200, Jani Nikula wrote:
->On Mon, 21 Mar 2022, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
->> On Mon, Mar 21, 2022 at 04:34:49PM -0700, Casey Bowman wrote:
->>>Wanted to ping this older thread to find out where we stand with this patch,
->>>Are we OK with the current state of these changes?
->>>
->>>With more recent information gathered from feedback on other patches, would
->>>we prefer changing this to a more arch-neutral control flow?
->>>
->>>e.g.
->>>#if IS_ENABLED(CONFIG_X86)
->>>...
->>>#else
->>>...
->>>#endif
->>>
->>>Would we also prefer this RFC series be merged or would it be preferred to
->>>create a new series instead?
->>
->> for this specific function, that is used in only 2 places I think it's
->> ok to do:
->>
->> 	static inline bool run_as_guest(void)
->> 	{
->> 	#if IS_ENABLED(CONFIG_X86)
->> 		return !hypervisor_is_type(X86_HYPER_NATIVE);
->> 	#else	
->> 		/* Not supported yet */
->> 		return false;	
->> 	#endif
->> 	}
->>
->> For PCH it doesn't really matter as we don't execute that function
->> for discrete. For intel_vtd_active() I figure anything other than
->> x86 would be fine with false here.
->>
->> Jani, that this look good to you?
->
->It's more important to me to get this out of i915_drv.h, which is not
->supposed to be a collection of random stuff anymore. I've sent patches
->to this effect but they've stalled a bit.
+On Mon, Mar 21, 2022 at 10:42:03AM -0700, Michael Cheng wrote:
+> 
+> On 2022-03-21 10:28 a.m., Tvrtko Ursulin wrote:
+> > 
+> > On 21/03/2022 16:31, Michael Cheng wrote:
+> > > On 2022-03-21 3:30 a.m., Tvrtko Ursulin wrote:
+> > > 
+> > > > 
+> > > > On 19/03/2022 19:42, Michael Cheng wrote:
+> > > > > Previous concern with using drm_clflush_sg was that we don't
+> > > > > know what the
+> > > > > sg_table is pointing to, thus the usage of wbinvd_on_all_cpus to flush
+> > > > > everything at once to avoid paranoia.
+> > > > 
+> > > > And now we know, or we know it is not a concern?
+> > > > 
+> > > > > To make i915 more architecture-neutral and be less paranoid,
+> > > > > lets attempt to
+> > > > 
+> > > > "Lets attempt" as we don't know if this will work and/or what
+> > > > can/will break?
+> > > 
+> > > Yes, but it seems like there's no regression with IGT .
+> > > 
+> > > If there's a big hit in performance, or if this solution gets
+> > > accepted and the bug reports come flying in, we can explore other
+> > > solutions. But speaking to Dan Vetter, ideal solution would be to
+> > > avoid any calls directly to wbinvd, and use drm helpers in place.
+> > > 
+> > > +Daniel for any extra input.
+> > > 
+> > > > > use drm_clflush_sg to flush the pages for when the GPU wants to read
+> > > > > from main memory.
+> > > > > 
+> > > > > Signed-off-by: Michael Cheng <michael.cheng@intel.com>
+> > > > > ---
+> > > > >   drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c | 9 ++-------
+> > > > >   1 file changed, 2 insertions(+), 7 deletions(-)
+> > > > > 
+> > > > > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
+> > > > > b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
+> > > > > index f5062d0c6333..b0a5baaebc43 100644
+> > > > > --- a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
+> > > > > +++ b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
+> > > > > @@ -8,6 +8,7 @@
+> > > > >   #include <linux/highmem.h>
+> > > > >   #include <linux/dma-resv.h>
+> > > > >   #include <linux/module.h>
+> > > > > +#include <drm/drm_cache.h>
+> > > > >     #include <asm/smp.h>
+> > > > >   @@ -250,16 +251,10 @@ static int
+> > > > > i915_gem_object_get_pages_dmabuf(struct drm_i915_gem_object
+> > > > > *obj)
+> > > > >        * DG1 is special here since it still snoops
+> > > > > transactions even with
+> > > > >        * CACHE_NONE. This is not the case with other
+> > > > > HAS_SNOOP platforms. We
+> > > > >        * might need to revisit this as we add new discrete platforms.
+> > > > > -     *
+> > > > > -     * XXX: Consider doing a vmap flush or something, where possible.
+> > > > > -     * Currently we just do a heavy handed
+> > > > > wbinvd_on_all_cpus() here since
+> > > > > -     * the underlying sg_table might not even point to
+> > > > > struct pages, so we
+> > > > > -     * can't just call drm_clflush_sg or similar, like we
+> > > > > do elsewhere in
+> > > > > -     * the driver.
+> > > > >        */
+> > > > >       if (i915_gem_object_can_bypass_llc(obj) ||
+> > > > >           (!HAS_LLC(i915) && !IS_DG1(i915)))
+> > > > > -        wbinvd_on_all_cpus();
+> > > > > +        drm_clflush_sg(pages);
+> > > > 
+> > > > And as noticed before, drm_clfush_sg still can call
+> > > > wbinvd_on_all_cpus so are you just punting the issue somewhere
+> > > > else? How will it be solved there?
+> > > > 
+> > > Instead of calling an x86 asm directly, we are using what's
+> > > available to use to make the driver more architecture neutral.
+> > > Agreeing with Thomas, this solution falls within the "prefer
+> > > range-aware clflush apis", and since some other generation platform
+> > > doesn't support clflushopt, it will fall back to using wbinvd.
+> > 
+> > Right, I was trying to get the information on what will drm_clflush_sg
+> > do on Arm. Is it range based or global there, or if the latter exists.
+> > 
+> I am not too sure about the ARM side. We are currently working that out with
+> the ARM folks in a different thread.
 
-do you have a patch moving this particular one? got a link?
+It won't do anything useful on arm. The _only_ way to get special memory
+on arm is by specifying what you want at allocation time. Anything else is
+busted, more or less. Which is why none of these code paths should run on
+anything else than x86.
 
-Lucas De Marchi
+And even on x86 they're at best questionable, but some of these are
+mistakes encoded into uapi and we're stuck.
+
+We should still try to use drm_clflush_sg() imo to make the entire ordeal
+less horrible, and if that turns out to be problematic, we need to bite
+the bullet and fix the uapi architecture instead of trying to
+retroshoehorn performance fixes into uapi that just can't do it properly.
+
+In this case here this would mean fixing allocation flags with
+GEM_CREATE_EXT and fixing userspace to use that when needed (it should
+know already since pretty much all drivers have this issue in some form or
+another).
+
+Cheers, Daniel
+
+
+> > Regards,
+> > 
+> > Tvrtko
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
