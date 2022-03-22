@@ -1,54 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB6DF4E4539
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Mar 2022 18:36:54 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B93574E454B
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Mar 2022 18:40:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 13F5910E30C;
-	Tue, 22 Mar 2022 17:36:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2AE9110E034;
+	Tue, 22 Mar 2022 17:40:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D3F2F10E30C;
- Tue, 22 Mar 2022 17:36:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1647970612; x=1679506612;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=4jrwrLao+DJjYZJpoYht42d7mZ/fgQ1nwcr2x3ise2w=;
- b=glpnS6GKhBwj5fFFkNRB1UuHhFkZ2P4d1Q1d3HFhnZAAt0QW6bK30T/H
- uCBhbcbF8ovlIv3Gy5750Cc72aCjJRmzFL2hzmCYf0Ev5NrgMoSnnZkrZ
- UXN9gj/GVdIVDFv2z+ab5sJWaqxf7lNmFNMu34eN6rbgzR1Mevb84ivbG
- dl7NXwNnrTCQ4VqzxCuh7ejgv9HATvJAIRFWL/yBbkll5M1pDbcG091o1
- o4A1FSl+73fxb+nwxvDQwKfKMdIIlUd6Ahc7rldtwJy2cRbHqFfCALzQ6
- iL3/hEUh2O3S1Bkf6r8SEeaN/luCuYN7uWYQp65vfkP7inYLCJErGAkuR A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10294"; a="240053463"
-X-IronPort-AV: E=Sophos;i="5.90,202,1643702400"; d="scan'208";a="240053463"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Mar 2022 10:31:21 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,202,1643702400"; d="scan'208";a="637133705"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.61])
- by FMSMGA003.fm.intel.com with SMTP; 22 Mar 2022 10:31:18 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 22 Mar 2022 19:31:17 +0200
-Date: Tue, 22 Mar 2022 19:31:17 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>
-Message-ID: <YjoH5UbXwKmSEeEy@intel.com>
-References: <20220228201234.1448613-1-imre.deak@intel.com>
- <20220322143844.42616-1-imre.deak@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id BC69D10E030;
+ Tue, 22 Mar 2022 17:40:51 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9EFD9A9A42;
+ Tue, 22 Mar 2022 17:40:51 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4319892425221602903=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220322143844.42616-1-imre.deak@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Add a DP1.2 compatible way to
- read LTTPR capabilities
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
+Date: Tue, 22 Mar 2022 17:40:51 -0000
+Message-ID: <164797085161.20007.10196627011199660932@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220322164446.2124983-1-tvrtko.ursulin@linux.intel.com>
+In-Reply-To: <20220322164446.2124983-1-tvrtko.ursulin@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Split_out_intel=5Fvtd=5Factive_and_run=5Fas=5Fguest_to?=
+ =?utf-8?q?_own_header?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,266 +41,284 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 22, 2022 at 04:38:44PM +0200, Imre Deak wrote:
-> At least some DELL monitors (P2715Q) with DPCD_REV 1.2 return corrupted
-> DPCD register values when reading from the 0xF0000- LTTPR range with an
-> AUX transaction block size bigger than 1. The DP standard requires 0 to
-> be returned - as for any other reserved/invalid addresses - but these
-> monitors return the DPCD_REV register value repeated in each byte of the
-> read buffer. This will in turn corrupt the values returned by the LTTPRs
-> between the source and the monitor: LTTPRs must adjust the values they
-> read from the downstream DPRX, for instance left-shift/init the
-> downstream DP_PHY_REPEATER_CNT value. Since the value returned by the
-> monitor's DPRX is non-zero the adjusted values will be corrupt.
-> 
-> Reading the LTTPR registers one-by-one instead of reading all of them
-> with a single AUX transfer works around the issue.
-> 
-> According to the DP standard's 0xF0000 register description:
-> "LTTPR-related registers at DPCD Addresses F0000h through F02FFh are
-> valid only for DPCD r1.4 (or higher)." While it's unclear if DPCD r1.4
-> refers to the DPCD_REV or to the
-> LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV register (tickets filed
-> at the VESA site to clarify this haven't been addressed), one
-> possibility is that it's a restriction due to non-compliant monitors
-> described above. Disabling the non-transparent LTTPR mode for all such
-> monitors is not a viable solution: the transparent LTTPR mode has its
-> own issue causing link training failures and this would affect a lot of
-> monitors in use with DPCD_REV < 1.4. Instead this patch works around
-> the problem by reading the LTTPR common and PHY cap registers one-by-one
-> for any monitor with a DPCD_REV < 1.4.
-> 
-> The standard requires the DPCD capabilites to be read after the LTTPR
-> common capabilities are read, so re-read the DPCD capabilities after
-> the LTTPR common and PHY caps were read out.
-> 
-> v2:
-> - Use for instead of a while loop. (Ville)
-> - Add to code comment the monitor model with the problem.
-> 
-> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/4531
-> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
+--===============4319892425221602903==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+== Series Details ==
 
-> ---
->  drivers/gpu/drm/dp/drm_dp.c                   | 57 ++++++++++++-------
->  .../drm/i915/display/intel_dp_link_training.c | 30 +++++++---
->  include/drm/dp/drm_dp_helper.h                |  2 +
->  3 files changed, 58 insertions(+), 31 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/dp/drm_dp.c b/drivers/gpu/drm/dp/drm_dp.c
-> index 703972ae14c64..58744f83931af 100644
-> --- a/drivers/gpu/drm/dp/drm_dp.c
-> +++ b/drivers/gpu/drm/dp/drm_dp.c
-> @@ -2390,9 +2390,35 @@ int drm_dp_dsc_sink_supported_input_bpcs(const u8 dsc_dpcd[DP_DSC_RECEIVER_CAP_S
->  }
->  EXPORT_SYMBOL(drm_dp_dsc_sink_supported_input_bpcs);
->  
-> +static int drm_dp_read_lttpr_regs(struct drm_dp_aux *aux, const u8 dpcd[DP_RECEIVER_CAP_SIZE], int address,
-> +				  u8 *buf, int buf_size)
-> +{
-> +	/*
-> +	 * At least the DELL P2715Q monitor with a DPCD_REV < 0x14 returns
-> +	 * corrupted values when reading from the 0xF0000- range with a block
-> +	 * size bigger than 1.
-> +	 */
-> +	int block_size = dpcd[DP_DPCD_REV] < 0x14 ? 1 : buf_size;
-> +	int offset;
-> +	int ret;
-> +
-> +	for (offset = 0; offset < buf_size; offset += block_size) {
-> +		ret = drm_dp_dpcd_read(aux,
-> +				       address + offset,
-> +				       &buf[offset], block_size);
-> +		if (ret < 0)
-> +			return ret;
-> +
-> +		WARN_ON(ret != block_size);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->  /**
->   * drm_dp_read_lttpr_common_caps - read the LTTPR common capabilities
->   * @aux: DisplayPort AUX channel
-> + * @dpcd: DisplayPort configuration data
->   * @caps: buffer to return the capability info in
->   *
->   * Read capabilities common to all LTTPRs.
-> @@ -2400,25 +2426,19 @@ EXPORT_SYMBOL(drm_dp_dsc_sink_supported_input_bpcs);
->   * Returns 0 on success or a negative error code on failure.
->   */
->  int drm_dp_read_lttpr_common_caps(struct drm_dp_aux *aux,
-> +				  const u8 dpcd[DP_RECEIVER_CAP_SIZE],
->  				  u8 caps[DP_LTTPR_COMMON_CAP_SIZE])
->  {
-> -	int ret;
-> -
-> -	ret = drm_dp_dpcd_read(aux,
-> -			       DP_LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV,
-> -			       caps, DP_LTTPR_COMMON_CAP_SIZE);
-> -	if (ret < 0)
-> -		return ret;
-> -
-> -	WARN_ON(ret != DP_LTTPR_COMMON_CAP_SIZE);
-> -
-> -	return 0;
-> +	return drm_dp_read_lttpr_regs(aux, dpcd,
-> +				      DP_LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV,
-> +				      caps, DP_LTTPR_COMMON_CAP_SIZE);
->  }
->  EXPORT_SYMBOL(drm_dp_read_lttpr_common_caps);
->  
->  /**
->   * drm_dp_read_lttpr_phy_caps - read the capabilities for a given LTTPR PHY
->   * @aux: DisplayPort AUX channel
-> + * @dpcd: DisplayPort configuration data
->   * @dp_phy: LTTPR PHY to read the capabilities for
->   * @caps: buffer to return the capability info in
->   *
-> @@ -2427,20 +2447,13 @@ EXPORT_SYMBOL(drm_dp_read_lttpr_common_caps);
->   * Returns 0 on success or a negative error code on failure.
->   */
->  int drm_dp_read_lttpr_phy_caps(struct drm_dp_aux *aux,
-> +			       const u8 dpcd[DP_RECEIVER_CAP_SIZE],
->  			       enum drm_dp_phy dp_phy,
->  			       u8 caps[DP_LTTPR_PHY_CAP_SIZE])
->  {
-> -	int ret;
-> -
-> -	ret = drm_dp_dpcd_read(aux,
-> -			       DP_TRAINING_AUX_RD_INTERVAL_PHY_REPEATER(dp_phy),
-> -			       caps, DP_LTTPR_PHY_CAP_SIZE);
-> -	if (ret < 0)
-> -		return ret;
-> -
-> -	WARN_ON(ret != DP_LTTPR_PHY_CAP_SIZE);
-> -
-> -	return 0;
-> +	return drm_dp_read_lttpr_regs(aux, dpcd,
-> +				      DP_TRAINING_AUX_RD_INTERVAL_PHY_REPEATER(dp_phy),
-> +				      caps, DP_LTTPR_PHY_CAP_SIZE);
->  }
->  EXPORT_SYMBOL(drm_dp_read_lttpr_phy_caps);
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> index 5d98773efd1b3..fbee20a76cf44 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> @@ -55,6 +55,7 @@ static u8 *intel_dp_lttpr_phy_caps(struct intel_dp *intel_dp,
->  }
->  
->  static void intel_dp_read_lttpr_phy_caps(struct intel_dp *intel_dp,
-> +					 const u8 dpcd[DP_RECEIVER_CAP_SIZE],
->  					 enum drm_dp_phy dp_phy)
->  {
->  	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
-> @@ -63,7 +64,7 @@ static void intel_dp_read_lttpr_phy_caps(struct intel_dp *intel_dp,
->  
->  	intel_dp_phy_name(dp_phy, phy_name, sizeof(phy_name));
->  
-> -	if (drm_dp_read_lttpr_phy_caps(&intel_dp->aux, dp_phy, phy_caps) < 0) {
-> +	if (drm_dp_read_lttpr_phy_caps(&intel_dp->aux, dpcd, dp_phy, phy_caps) < 0) {
->  		drm_dbg_kms(&dp_to_i915(intel_dp)->drm,
->  			    "[ENCODER:%d:%s][%s] failed to read the PHY caps\n",
->  			    encoder->base.base.id, encoder->base.name, phy_name);
-> @@ -77,10 +78,11 @@ static void intel_dp_read_lttpr_phy_caps(struct intel_dp *intel_dp,
->  		    phy_caps);
->  }
->  
-> -static bool intel_dp_read_lttpr_common_caps(struct intel_dp *intel_dp)
-> +static bool intel_dp_read_lttpr_common_caps(struct intel_dp *intel_dp, const u8 dpcd[DP_RECEIVER_CAP_SIZE])
->  {
->  	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
->  	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-> +	int ret;
->  
->  	if (intel_dp_is_edp(intel_dp))
->  		return false;
-> @@ -92,8 +94,9 @@ static bool intel_dp_read_lttpr_common_caps(struct intel_dp *intel_dp)
->  	if (DISPLAY_VER(i915) < 10 || IS_GEMINILAKE(i915))
->  		return false;
->  
-> -	if (drm_dp_read_lttpr_common_caps(&intel_dp->aux,
-> -					  intel_dp->lttpr_common_caps) < 0)
-> +	ret = drm_dp_read_lttpr_common_caps(&intel_dp->aux, dpcd,
-> +					    intel_dp->lttpr_common_caps);
-> +	if (ret < 0)
->  		goto reset_caps;
->  
->  	drm_dbg_kms(&dp_to_i915(intel_dp)->drm,
-> @@ -122,14 +125,14 @@ intel_dp_set_lttpr_transparent_mode(struct intel_dp *intel_dp, bool enable)
->  	return drm_dp_dpcd_write(&intel_dp->aux, DP_PHY_REPEATER_MODE, &val, 1) == 1;
->  }
->  
-> -static int intel_dp_init_lttpr(struct intel_dp *intel_dp)
-> +static int intel_dp_init_lttpr(struct intel_dp *intel_dp, const u8 dpcd[DP_RECEIVER_CAP_SIZE])
->  {
->  	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
->  	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
->  	int lttpr_count;
->  	int i;
->  
-> -	if (!intel_dp_read_lttpr_common_caps(intel_dp))
-> +	if (!intel_dp_read_lttpr_common_caps(intel_dp, dpcd))
->  		return 0;
->  
->  	lttpr_count = drm_dp_lttpr_count(intel_dp->lttpr_common_caps);
-> @@ -168,7 +171,7 @@ static int intel_dp_init_lttpr(struct intel_dp *intel_dp)
->  	}
->  
->  	for (i = 0; i < lttpr_count; i++)
-> -		intel_dp_read_lttpr_phy_caps(intel_dp, DP_PHY_LTTPR(i));
-> +		intel_dp_read_lttpr_phy_caps(intel_dp, dpcd, DP_PHY_LTTPR(i));
->  
->  	return lttpr_count;
->  }
-> @@ -193,9 +196,18 @@ static int intel_dp_init_lttpr(struct intel_dp *intel_dp)
->   */
->  int intel_dp_init_lttpr_and_dprx_caps(struct intel_dp *intel_dp)
->  {
-> -	int lttpr_count = intel_dp_init_lttpr(intel_dp);
-> +	u8 dpcd[DP_RECEIVER_CAP_SIZE];
-> +	int lttpr_count;
->  
-> -	/* The DPTX shall read the DPRX caps after LTTPR detection. */
-> +	if (drm_dp_read_dpcd_caps(&intel_dp->aux, dpcd))
-> +		return -EIO;
-> +
-> +	lttpr_count = intel_dp_init_lttpr(intel_dp, dpcd);
-> +
-> +	/*
-> +	 * The DPTX shall read the DPRX caps after LTTPR detection, so re-read
-> +	 * it here.
-> +	 */
->  	if (drm_dp_read_dpcd_caps(&intel_dp->aux, intel_dp->dpcd)) {
->  		intel_dp_reset_lttpr_common_caps(intel_dp);
->  		return -EIO;
-> diff --git a/include/drm/dp/drm_dp_helper.h b/include/drm/dp/drm_dp_helper.h
-> index 51e02cf75277e..1eccd97419436 100644
-> --- a/include/drm/dp/drm_dp_helper.h
-> +++ b/include/drm/dp/drm_dp_helper.h
-> @@ -2148,8 +2148,10 @@ bool drm_dp_read_sink_count_cap(struct drm_connector *connector,
->  int drm_dp_read_sink_count(struct drm_dp_aux *aux);
->  
->  int drm_dp_read_lttpr_common_caps(struct drm_dp_aux *aux,
-> +				  const u8 dpcd[DP_RECEIVER_CAP_SIZE],
->  				  u8 caps[DP_LTTPR_COMMON_CAP_SIZE]);
->  int drm_dp_read_lttpr_phy_caps(struct drm_dp_aux *aux,
-> +			       const u8 dpcd[DP_RECEIVER_CAP_SIZE],
->  			       enum drm_dp_phy dp_phy,
->  			       u8 caps[DP_LTTPR_PHY_CAP_SIZE]);
->  int drm_dp_lttpr_count(const u8 cap[DP_LTTPR_COMMON_CAP_SIZE]);
-> -- 
-> 2.30.2
+Series: drm/i915: Split out intel_vtd_active and run_as_guest to own header
+URL   : https://patchwork.freedesktop.org/series/101646/
+State : success
 
--- 
-Ville Syrjälä
-Intel
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_11396 -> Patchwork_22644
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22644/index.html
+
+Participating hosts (49 -> 43)
+------------------------------
+
+  Missing    (6): shard-tglu fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 shard-rkl fi-bdw-samus 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_22644:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@i915_selftest@live@coherency:
+    - {bat-rpls-2}:       [DMESG-WARN][1] ([i915#4391]) -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11396/bat-rpls-2/igt@i915_selftest@live@coherency.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22644/bat-rpls-2/igt@i915_selftest@live@coherency.html
+
+  * igt@kms_flip@basic-plain-flip@a-dp1:
+    - {bat-adlm-1}:       [PASS][3] -> [INCOMPLETE][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11396/bat-adlm-1/igt@kms_flip@basic-plain-flip@a-dp1.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22644/bat-adlm-1/igt@kms_flip@basic-plain-flip@a-dp1.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_22644 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-hsw-4770:        [PASS][5] -> [INCOMPLETE][6] ([i915#3303])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11396/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22644/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_force_connector_basic@prune-stale-modes:
+    - fi-cfl-8109u:       [PASS][7] -> [DMESG-WARN][8] ([i915#295])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11396/fi-cfl-8109u/igt@kms_force_connector_basic@prune-stale-modes.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22644/fi-cfl-8109u/igt@kms_force_connector_basic@prune-stale-modes.html
+
+  * igt@runner@aborted:
+    - fi-hsw-4770:        NOTRUN -> [FAIL][9] ([fdo#109271] / [i915#1436] / [i915#4312])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22644/fi-hsw-4770/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s3@smem:
+    - {fi-rkl-11600}:     [INCOMPLETE][10] ([i915#5127]) -> [PASS][11]
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11396/fi-rkl-11600/igt@gem_exec_suspend@basic-s3@smem.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22644/fi-rkl-11600/igt@gem_exec_suspend@basic-s3@smem.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - bat-dg1-6:          [DMESG-FAIL][12] ([i915#4494] / [i915#4957]) -> [PASS][13]
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11396/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22644/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
+
+  * igt@i915_selftest@live@objects:
+    - {bat-rpls-2}:       [DMESG-WARN][14] ([i915#4391]) -> [PASS][15] +3 similar issues
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11396/bat-rpls-2/igt@i915_selftest@live@objects.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22644/bat-rpls-2/igt@i915_selftest@live@objects.html
+
+  * igt@kms_busy@basic@modeset:
+    - {bat-adlp-6}:       [DMESG-WARN][16] ([i915#3576]) -> [PASS][17]
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11396/bat-adlp-6/igt@kms_busy@basic@modeset.html
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22644/bat-adlp-6/igt@kms_busy@basic@modeset.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#295]: https://gitlab.freedesktop.org/drm/intel/issues/295
+  [i915#3012]: https://gitlab.freedesktop.org/drm/intel/issues/3012
+  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
+  [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
+  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
+  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
+  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
+  [i915#3576]: https://gitlab.freedesktop.org/drm/intel/issues/3576
+  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
+  [i915#4098]: https://gitlab.freedesktop.org/drm/intel/issues/4098
+  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4391]: https://gitlab.freedesktop.org/drm/intel/issues/4391
+  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#4957]: https://gitlab.freedesktop.org/drm/intel/issues/4957
+  [i915#5087]: https://gitlab.freedesktop.org/drm/intel/issues/5087
+  [i915#5127]: https://gitlab.freedesktop.org/drm/intel/issues/5127
+  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
+  [i915#5339]: https://gitlab.freedesktop.org/drm/intel/issues/5339
+  [i915#5342]: https://gitlab.freedesktop.org/drm/intel/issues/5342
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_11396 -> Patchwork_22644
+
+  CI-20190529: 20190529
+  CI_DRM_11396: 18b88414e6c9660022bb464d4d5fadb07d38cf04 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6387: 04d012b18355b53798af5a55a8915afb1a421bba @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_22644: b5d25bc040409c85d50d2fe3e3097d1e6629c45f @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+b5d25bc04040 drm/i915: Split out intel_vtd_active and run_as_guest to own header
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22644/index.html
+
+--===============4319892425221602903==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Split out intel_vtd_active and run_as_guest to own header</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/101646/">https://patchwork.freedesktop.org/series/101646/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22644/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22644/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11396 -&gt; Patchwork_22644</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22644/index.html</p>
+<h2>Participating hosts (49 -&gt; 43)</h2>
+<p>Missing    (6): shard-tglu fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 shard-rkl fi-bdw-samus </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_22644:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>
+<p>igt@i915_selftest@live@coherency:</p>
+<ul>
+<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11396/bat-rpls-2/igt@i915_selftest@live@coherency.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4391">i915#4391</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22644/bat-rpls-2/igt@i915_selftest@live@coherency.html">INCOMPLETE</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-plain-flip@a-dp1:</p>
+<ul>
+<li>{bat-adlm-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11396/bat-adlm-1/igt@kms_flip@basic-plain-flip@a-dp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22644/bat-adlm-1/igt@kms_flip@basic-plain-flip@a-dp1.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_22644 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11396/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22644/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@prune-stale-modes:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11396/fi-cfl-8109u/igt@kms_force_connector_basic@prune-stale-modes.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22644/fi-cfl-8109u/igt@kms_force_connector_basic@prune-stale-modes.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22644/fi-hsw-4770/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s3@smem:</p>
+<ul>
+<li>{fi-rkl-11600}:     <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11396/fi-rkl-11600/igt@gem_exec_suspend@basic-s3@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5127">i915#5127</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22644/fi-rkl-11600/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11396/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22644/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@objects:</p>
+<ul>
+<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11396/bat-rpls-2/igt@i915_selftest@live@objects.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4391">i915#4391</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22644/bat-rpls-2/igt@i915_selftest@live@objects.html">PASS</a> +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_busy@basic@modeset:</p>
+<ul>
+<li>{bat-adlp-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11396/bat-adlp-6/igt@kms_busy@basic@modeset.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22644/bat-adlp-6/igt@kms_busy@basic@modeset.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11396 -&gt; Patchwork_22644</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11396: 18b88414e6c9660022bb464d4d5fadb07d38cf04 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6387: 04d012b18355b53798af5a55a8915afb1a421bba @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_22644: b5d25bc040409c85d50d2fe3e3097d1e6629c45f @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>b5d25bc04040 drm/i915: Split out intel_vtd_active and run_as_guest to own header</p>
+
+</body>
+</html>
+
+--===============4319892425221602903==--
