@@ -1,33 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5BF74E4859
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Mar 2022 22:38:03 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFEF94E4866
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Mar 2022 22:41:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3472A10E105;
-	Tue, 22 Mar 2022 21:38:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A37FA10E105;
+	Tue, 22 Mar 2022 21:41:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9D67110E105;
- Tue, 22 Mar 2022 21:38:00 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 9ADB3A00E8;
- Tue, 22 Mar 2022 21:38:00 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7609C10E105;
+ Tue, 22 Mar 2022 21:41:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1647985263; x=1679521263;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=r9fnBAPvFB6USRE8reZYFiGh+uA0BlSeZOJ1ryCTEX8=;
+ b=MxqsVcOqhnwN3BhjSeQOX8KeWIKGYqNqCm2e8Oq9saT0PpjcObbKiQuC
+ eUYKSP86HhspAe8wDscfxmBXmo2gstBa2xiZdnLGZv0yGCM0UgEdwAER0
+ Ald7EGbfyT72DNEZyiLQngFe2t0uAUruct1BgRxf25J5eOjOPI0ztw1i5
+ RmnZWJDKTePchWd4buDf6aM6jq4qYOspXmkqTpMZ9ZPccNV5yLvud6IKV
+ BBCpVWNnqXiveWVUAVf0Np1M8K1dlaGogW44DBV3TTN6MbbJjDYpuxS/u
+ MeMZ3uKmMYviKoPTVIEehiVfiqVU3Ap+WQ+ljpXly8I1UYb2e4aDZdkxM g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10294"; a="238559459"
+X-IronPort-AV: E=Sophos;i="5.90,202,1643702400"; d="scan'208";a="238559459"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Mar 2022 14:41:02 -0700
+X-IronPort-AV: E=Sophos;i="5.90,202,1643702400"; d="scan'208";a="560605379"
+Received: from sburacze-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.58.237])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Mar 2022 14:40:57 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: dri-devel@lists.freedesktop.org
+Date: Tue, 22 Mar 2022 23:40:29 +0200
+Message-Id: <cover.1647985054.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ashutosh Dixit" <ashutosh.dixit@intel.com>
-Date: Tue, 22 Mar 2022 21:38:00 -0000
-Message-ID: <164798508062.20007.1919711936246306053@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220322210629.42437-1-ashutosh.dixit@intel.com>
-In-Reply-To: <20220322210629.42437-1-ashutosh.dixit@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIGRy?=
- =?utf-8?q?m/i915/rps=3A_Centralize_computation_of_freq_caps_=28rev3=29?=
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [RFC 00/19] drm/edid: overhaul CEA data block iteration
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,21 +55,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Cooper Chiou <cooper.chiou@intel.com>, william.tseng@intel.com,
+ jani.nikula@intel.com, intel-gfx@lists.freedesktop.org,
+ Drew Davenport <ddavenport@chromium.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Add iterators for EDID blocks and CEA data blocks, to iterate through
+all data blocks across all CEA extensions and CTA blocks in DisplayID
+data blocks. Fix all code assuming only one CEA extension. Fix code
+assuming CTA blocks contain everything that CEA extensions do. Sprinkle
+a bunch of cleanups on top.
 
-Series: drm/i915/rps: Centralize computation of freq caps (rev3)
-URL   : https://patchwork.freedesktop.org/series/101606/
-State : warning
+This is completely UNTESTED, didn't even smoke test it. It builds. ;)
 
-== Summary ==
+This superseeds parts of [1] and [2].
 
-$ make htmldocs 2>&1 > /dev/null | grep i915
-./drivers/gpu/drm/i915/display/intel_drrs.c:1: warning: 'intel_drrs_enable' not found
-./drivers/gpu/drm/i915/display/intel_drrs.c:1: warning: 'intel_drrs_disable' not found
+BR,
+Jani.
 
+[1] https://patchwork.freedesktop.org/series/101241/
+[2] https://patchwork.freedesktop.org/patch/msgid/20220321044330.27723-1-cooper.chiou@intel.com
+
+
+Cc: Shawn C Lee <shawn.c.lee@intel.com>
+Cc: Cooper Chiou <cooper.chiou@intel.com>
+Cc: william.tseng@intel.com
+Cc: ankit.k.nautiyal@intel.com
+Cc: ville.syrjala@linux.intel.com
+Cc: Drew Davenport <ddavenport@chromium.org>
+
+Jani Nikula (19):
+  drm/edid: add drm_edid_extension_block_count() and drm_edid_size()
+  drm: use drm_edid_extension_block_count() and drm_edid_size()
+  drm/edid: clean up CEA data block tag definitions
+  drm/edid: add iterator for EDID base and extension blocks
+  drm/edid: add iterator for CEA data blocks
+  drm/edid: clean up cea_db_is_*() functions
+  drm/edid: convert add_cea_modes() to use cea db iter
+  drm/edid: convert drm_edid_to_speaker_allocation() to use cea db iter
+  drm/edid: convert drm_edid_to_sad() to use cea db iter
+  drm/edid: convert drm_detect_hdmi_monitor() to use cea db iter
+  drm/edid: convert drm_detect_monitor_audio() to use cea db iter
+  drm/edid: convert drm_parse_cea_ext() to use cea db iter
+  drm/edid: convert drm_edid_to_eld() to use cea db iter
+  drm/edid: sunset the old unused cea data block iterators
+  drm/edid: restore some type safety to cea_db_*() functions
+  drm/edid: detect basic audio only on CEA extension
+  drm/edid: detect color formats and CEA revision only on CEA extension
+  drm/edid: skip CEA extension scan in drm_edid_to_eld() just for CEA
+    rev
+  drm/edid: sunset drm_find_cea_extension()
+
+ drivers/gpu/drm/drm_connector.c |   2 +-
+ drivers/gpu/drm/drm_debugfs.c   |   3 +-
+ drivers/gpu/drm/drm_edid.c      | 781 ++++++++++++++++++--------------
+ include/drm/drm_edid.h          |   2 +
+ 4 files changed, 455 insertions(+), 333 deletions(-)
+
+-- 
+2.30.2
 
