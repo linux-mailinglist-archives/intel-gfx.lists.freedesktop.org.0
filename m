@@ -2,33 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 232F14E42D1
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Mar 2022 16:20:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BD3E4E42E3
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Mar 2022 16:23:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 65E9D10E081;
-	Tue, 22 Mar 2022 15:20:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E410910E0FA;
+	Tue, 22 Mar 2022 15:23:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 81B1C10E02B;
- Tue, 22 Mar 2022 15:20:41 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 7D715A882E;
- Tue, 22 Mar 2022 15:20:41 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5215600699816517184=="
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8899710E02B
+ for <intel-gfx@lists.freedesktop.org>; Tue, 22 Mar 2022 15:23:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1647962614; x=1679498614;
+ h=message-id:date:mime-version:subject:from:to:cc:
+ references:in-reply-to:content-transfer-encoding;
+ bh=MGNN+QGU7mJ9jJ9CsjSsT5i5/a/PTqQjRU7XSEFoRto=;
+ b=jACqRND+KDW2j1omIs1yr1xmKlN34JNtIpQWgIEagJUPRX2gkjVeza5C
+ QbLwOIx+/Srl1MqfMWfvFznzI9qrBNpXWV54kNDASwHYfi97nn+vsMN57
+ RBGUtcW0IZcCYdjJpghvPAjR5SU/NyXoKJm4IY1LWT6psGF/TAfVWLNPE
+ 4JZpJyd9eD4+yXPwuwBBXxU5P2YwKyhCqvuEun7Ai9H7erE1Q3IUlaV2h
+ 7/qYDNNiFxEp9tYqqqLWIeV3RzpZjRdBj24qos0lQgOa1D3rS023pxaR4
+ Gkk+bxxMfBSmhZVJb2+GoOrT/3gntV/UT0+nxafpSeIXhmIDJNw++98z/ A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10294"; a="255409703"
+X-IronPort-AV: E=Sophos;i="5.90,201,1643702400"; d="scan'208";a="255409703"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Mar 2022 08:23:16 -0700
+X-IronPort-AV: E=Sophos;i="5.90,201,1643702400"; d="scan'208";a="560424709"
+Received: from srobinso-mobl.ger.corp.intel.com (HELO [10.213.230.39])
+ ([10.213.230.39])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Mar 2022 08:23:14 -0700
+Message-ID: <102002ec-96bd-3f69-7a96-34f774e326fd@linux.intel.com>
+Date: Tue, 22 Mar 2022 15:23:11 +0000
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Imre Deak" <imre.deak@intel.com>
-Date: Tue, 22 Mar 2022 15:20:41 -0000
-Message-ID: <164796244148.20010.17045247958980549845@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220228201234.1448613-1-imre.deak@intel.com>
-In-Reply-To: <20220228201234.1448613-1-imre.deak@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Add_a_DP1=2E2_compatible_way_to_read_LTTPR_capabilitie?=
- =?utf-8?q?s_=28rev2=29?=
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Content-Language: en-US
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
+References: <20220215234146.304035-1-casey.g.bowman@intel.com>
+ <20220215234146.304035-2-casey.g.bowman@intel.com>
+ <f971fcd0-a95e-93c5-46c2-3cd9fe753f9e@intel.com>
+ <20220322020144.thmvicqtlpcmkf6l@ldmartin-desk2> <87r16ujni0.fsf@intel.com>
+ <20220322142719.f72lpelqsw7vbnuy@ldmartin-desk2> <87lex2jb3i.fsf@intel.com>
+ <68a4e3a0-215a-27c1-0bd4-d17fd8de52c4@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <68a4e3a0-215a-27c1-0bd4-d17fd8de52c4@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [RFC PATCH v3 1/1] i915/drm: Split out x86/arm64
+ for run_as_guest
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,242 +67,92 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: daniel.vetter@intel.com, intel-gfx@lists.freedesktop.org,
+ michael.cheng@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5215600699816517184==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
+On 22/03/2022 15:18, Tvrtko Ursulin wrote:
+> 
+> On 22/03/2022 14:49, Jani Nikula wrote:
+>> On Tue, 22 Mar 2022, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+>>> On Tue, Mar 22, 2022 at 12:21:59PM +0200, Jani Nikula wrote:
+>>>> On Mon, 21 Mar 2022, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+>>>>> On Mon, Mar 21, 2022 at 04:34:49PM -0700, Casey Bowman wrote:
+>>>>>> Wanted to ping this older thread to find out where we stand with 
+>>>>>> this patch,
+>>>>>> Are we OK with the current state of these changes?
+>>>>>>
+>>>>>> With more recent information gathered from feedback on other 
+>>>>>> patches, would
+>>>>>> we prefer changing this to a more arch-neutral control flow?
+>>>>>>
+>>>>>> e.g.
+>>>>>> #if IS_ENABLED(CONFIG_X86)
+>>>>>> ...
+>>>>>> #else
+>>>>>> ...
+>>>>>> #endif
+>>>>>>
+>>>>>> Would we also prefer this RFC series be merged or would it be 
+>>>>>> preferred to
+>>>>>> create a new series instead?
+>>>>>
+>>>>> for this specific function, that is used in only 2 places I think it's
+>>>>> ok to do:
+>>>>>
+>>>>>     static inline bool run_as_guest(void)
+>>>>>     {
+>>>>>     #if IS_ENABLED(CONFIG_X86)
+>>>>>         return !hypervisor_is_type(X86_HYPER_NATIVE);
+>>>>>     #else
+>>>>>         /* Not supported yet */
+>>>>>         return false;
+>>>>>     #endif
+>>>>>     }
+>>>>>
+>>>>> For PCH it doesn't really matter as we don't execute that function
+>>>>> for discrete. For intel_vtd_active() I figure anything other than
+>>>>> x86 would be fine with false here.
+>>>>>
+>>>>> Jani, that this look good to you?
+>>>>
+>>>> It's more important to me to get this out of i915_drv.h, which is not
+>>>> supposed to be a collection of random stuff anymore. I've sent patches
+>>>> to this effect but they've stalled a bit.
+>>>
+>>> do you have a patch moving this particular one? got a link?
+>>
+>> Yeah, but it was basically shot down by Tvrtko [1], and I stalled there.
+>>
+>> I'd just like to get all this cruft out of i915_drv.h. Whenever we have
+>> a file where the name isn't super specific, we seem to have a tendency
+>> of turning it into a dumping ground for random crap. So I'd really like
+>> to move this out of there *before* expanding on it.
+> 
+> Sounds like we had agreement on what tweaks to make and I conceded to 
+> live for now with the IMO wrongly named intel_vtd_run_as_guest.
+> 
+> (I mean I really disagree with file name being trumps, which I think 
+> this example illustrates - this is i915 asking whether the kernel is 
+> running as guest so intel_vtd_ prefix is just wrong. Intel VT-d is the 
+> iommu thingy so it makes no sense when called from PCH detection. But I 
+> have no better ideas at the moment. We can call it i915_run_as_guest, to 
+> signify function belongs to i915, but then we lose the first parameter 
+> names the function rule.)
+> 
+> But in any case I don't see that I created any blockers in this thread. 
+> AFAICS just a respin with intel_vtd_active taking struct device is 
+> needed and job done.
 
-Series: drm/i915: Add a DP1.2 compatible way to read LTTPR capabilities (rev2)
-URL   : https://patchwork.freedesktop.org/series/100851/
-State : success
+Sorry now I see I also suggested moving intel_scanout_needs_vtd_wa, 
+intel_ggtt_update_needs_vtd_wa and intel_vm_no_concurrent_access_wa all 
+to their respective files. Which I think is also correct. They are all 
+higher components which are asking intel_vtd a question and basing a 
+decision upon the answer. I don't think intel_vtd.h should contain 
+knowledge about a mix of other driver components.
 
-== Summary ==
+Regards,
 
-CI Bug Log - changes from CI_DRM_11396 -> Patchwork_22643
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22643/index.html
-
-Participating hosts (49 -> 43)
-------------------------------
-
-  Missing    (6): shard-tglu fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 shard-rkl fi-bdw-samus 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_22643:
-
-### IGT changes ###
-
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@i915_selftest@live@requests:
-    - {bat-adlm-1}:       NOTRUN -> [INCOMPLETE][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22643/bat-adlm-1/igt@i915_selftest@live@requests.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_22643 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s0@smem:
-    - fi-glk-dsi:         [PASS][2] -> [DMESG-WARN][3] ([i915#2943])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11396/fi-glk-dsi/igt@gem_exec_suspend@basic-s0@smem.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22643/fi-glk-dsi/igt@gem_exec_suspend@basic-s0@smem.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@evict:
-    - {bat-rpls-2}:       [INCOMPLETE][4] -> [PASS][5]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11396/bat-rpls-2/igt@i915_selftest@live@evict.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22643/bat-rpls-2/igt@i915_selftest@live@evict.html
-
-  * igt@i915_selftest@live@objects:
-    - {bat-rpls-2}:       [DMESG-WARN][6] ([i915#4391]) -> [PASS][7] +4 similar issues
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11396/bat-rpls-2/igt@i915_selftest@live@objects.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22643/bat-rpls-2/igt@i915_selftest@live@objects.html
-
-  * igt@kms_force_connector_basic@force-connector-state:
-    - {bat-adlm-1}:       [INCOMPLETE][8] ([i915#5361]) -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11396/bat-adlm-1/igt@kms_force_connector_basic@force-connector-state.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22643/bat-adlm-1/igt@kms_force_connector_basic@force-connector-state.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c:
-    - fi-cfl-8109u:       [DMESG-WARN][10] ([i915#295] / [i915#5341]) -> [PASS][11]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11396/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22643/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
-
-  * igt@kms_pipe_crc_basic@read-crc-pipe-b:
-    - fi-cfl-8109u:       [DMESG-WARN][12] ([i915#295]) -> [PASS][13] +10 similar issues
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11396/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22643/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1155]: https://gitlab.freedesktop.org/drm/intel/issues/1155
-  [i915#2943]: https://gitlab.freedesktop.org/drm/intel/issues/2943
-  [i915#295]: https://gitlab.freedesktop.org/drm/intel/issues/295
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4391]: https://gitlab.freedesktop.org/drm/intel/issues/4391
-  [i915#5195]: https://gitlab.freedesktop.org/drm/intel/issues/5195
-  [i915#5341]: https://gitlab.freedesktop.org/drm/intel/issues/5341
-  [i915#5361]: https://gitlab.freedesktop.org/drm/intel/issues/5361
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_11396 -> Patchwork_22643
-
-  CI-20190529: 20190529
-  CI_DRM_11396: 18b88414e6c9660022bb464d4d5fadb07d38cf04 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6387: 04d012b18355b53798af5a55a8915afb1a421bba @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_22643: 8d7fe49b240d8f4fb1a167594706ab916e4a78cb @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-8d7fe49b240d drm/i915: Add a DP1.2 compatible way to read LTTPR capabilities
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22643/index.html
-
---===============5215600699816517184==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Add a DP1.2 compatible way to read LTTPR capabilities (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/100851/">https://patchwork.freedesktop.org/series/100851/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22643/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22643/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11396 -&gt; Patchwork_22643</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22643/index.html</p>
-<h2>Participating hosts (49 -&gt; 43)</h2>
-<p>Missing    (6): shard-tglu fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 shard-rkl fi-bdw-samus </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_22643:</p>
-<h3>IGT changes</h3>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>igt@i915_selftest@live@requests:<ul>
-<li>{bat-adlm-1}:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22643/bat-adlm-1/igt@i915_selftest@live@requests.html">INCOMPLETE</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_22643 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@gem_exec_suspend@basic-s0@smem:<ul>
-<li>fi-glk-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11396/fi-glk-dsi/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22643/fi-glk-dsi/igt@gem_exec_suspend@basic-s0@smem.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2943">i915#2943</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@evict:</p>
-<ul>
-<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11396/bat-rpls-2/igt@i915_selftest@live@evict.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22643/bat-rpls-2/igt@i915_selftest@live@evict.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@objects:</p>
-<ul>
-<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11396/bat-rpls-2/igt@i915_selftest@live@objects.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4391">i915#4391</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22643/bat-rpls-2/igt@i915_selftest@live@objects.html">PASS</a> +4 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-connector-state:</p>
-<ul>
-<li>{bat-adlm-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11396/bat-adlm-1/igt@kms_force_connector_basic@force-connector-state.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5361">i915#5361</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22643/bat-adlm-1/igt@kms_force_connector_basic@force-connector-state.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11396/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5341">i915#5341</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22643/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc-pipe-b:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11396/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22643/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html">PASS</a> +10 similar issues</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11396 -&gt; Patchwork_22643</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11396: 18b88414e6c9660022bb464d4d5fadb07d38cf04 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6387: 04d012b18355b53798af5a55a8915afb1a421bba @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_22643: 8d7fe49b240d8f4fb1a167594706ab916e4a78cb @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>8d7fe49b240d drm/i915: Add a DP1.2 compatible way to read LTTPR capabilities</p>
-
-</body>
-</html>
-
---===============5215600699816517184==--
+Tvrtko
