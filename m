@@ -1,60 +1,153 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 242654E3CBB
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Mar 2022 11:45:37 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E261A4E3D41
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Mar 2022 12:11:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C1FCE10E55A;
-	Tue, 22 Mar 2022 10:45:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3889810E0A1;
+	Tue, 22 Mar 2022 11:11:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qk1-x735.google.com (mail-qk1-x735.google.com
- [IPv6:2607:f8b0:4864:20::735])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EFBAD10E2B6
- for <intel-gfx@lists.freedesktop.org>; Tue, 22 Mar 2022 10:45:32 +0000 (UTC)
-Received: by mail-qk1-x735.google.com with SMTP id i65so7809055qkd.7
- for <intel-gfx@lists.freedesktop.org>; Tue, 22 Mar 2022 03:45:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=RTLq2Ba0QZh38S0HcRGIwN1HGgss/CwRKkQmeqbxHM8=;
- b=OIl6FFouzPoVDJCLP0kUVGeQ7kZC2P0518gEyDBqw16lPT6Ucxw8g8rouS38KsV4uP
- JIU4Bk7l7uO7vR/f6qvANTz6PthpfIkS8eyhg+WjNhf3Y4PvxHxEZLbRAt486ZRUPXjy
- HMCsoE4uVmrgXYButz7vlA27Buw3vT4iOxYszng3XYGAYtuw+8ko0XYrSvrN5CGvKNfr
- eeficz9YEZACN6sfujQsw21c0KIxnTFA1ogzcDc4g+P9CHHy7rASsn/ZX0JZlK9G8xu8
- 6oXtmAXroya4q5TOh5Iv0IPwjUJziF4ipWflartYgy01rNgUlqGq3Xpn8vbzJZ768ZzZ
- 8RSA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=RTLq2Ba0QZh38S0HcRGIwN1HGgss/CwRKkQmeqbxHM8=;
- b=60UEnPSxizhuErfdTdKvzWk5wro4heEiIfNVlUF9UYGQg0+9+Ep3IjiBusk6Qt0xCf
- /3Vk8H1jbQqdIryVTgm6cF3Tt7jDKE7rp1BfP9ZzgRzOxo/MYCr+nn9zrCHQ23AqDDCs
- AgJmFpH7cJs3XfX4UKn3W11SHNbtrxJRGl6RBwFaQuoRjAg9ysh0EDnO2VDOgzHvlWss
- fBAXLb6pe2K3elqAw1u2nGJBryZ0Lr5auigOMVi0LfzXqc4S0Gi9b1kMN/BTBKKxgt5/
- AQuEgf0UTQUzyIaI2HoLXu0eWxp4ZXTLc+cR0DCt2sb76GdjoyAu1AWgVAJo7eqSDS9/
- Uqcg==
-X-Gm-Message-State: AOAM530hjNGA7+0/Cwg7mlzmPuOhQk8OlmsAozXlfYMiIAFoN6VGM1Pq
- xVKMFar1CPNdrnK5ifA16G4zF9a/gyTJsxTOc46I5bdHnAA=
-X-Google-Smtp-Source: ABdhPJx9wfRXBIqyR8hP1/5AMoDMVht+nUFe9kP+Xh6F81tCMnVnyQGvcl7eFK0n/I5jbcWcz3BYJpxObIO0Q+5Oug0=
-X-Received: by 2002:a37:4cf:0:b0:67b:1821:f89a with SMTP id
- 198-20020a3704cf000000b0067b1821f89amr14936310qke.7.1647945932038; Tue, 22
- Mar 2022 03:45:32 -0700 (PDT)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C43AD10E09D;
+ Tue, 22 Mar 2022 11:11:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1647947462; x=1679483462;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=d+csVLsNvAGMMkX+EO967Ns2Bq0YTd16hXxWuWzaAGM=;
+ b=HtWI3Hmahiz1qR13Z9Z/jI799rAcDmauQlS4ZuhxKW9nSB0v9ahM6isi
+ 08gbFHH7dIg6Wt6oArdxEInQRJZxr9l5QHqYonOK6pGH9lRG1Ga/XUyqy
+ 49rjAq9V+OHg9kQ+4pXOPoPF9latR3WpRcI0Wi1QjjQN2dX3cM73Dyhtv
+ 3sEjcv5Y0aYXUiyXTQ45wVNzPhDiKP/rBJO+uo3SsDfPKzXbB1+124dil
+ V4ovTSB6qtxx0LJTFI3zYXq11uD5+gIclncBSbPasrBh7F92l4CQl4blv
+ 8LoybnyHE92jE0YVYedPyH8n8W1MbRo41gV+g+h6Uto6jQodEL03AJN7h A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10293"; a="320990953"
+X-IronPort-AV: E=Sophos;i="5.90,201,1643702400"; d="scan'208";a="320990953"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Mar 2022 04:10:59 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,201,1643702400"; d="scan'208";a="552060555"
+Received: from fmsmsx605.amr.corp.intel.com ([10.18.126.85])
+ by fmsmga007.fm.intel.com with ESMTP; 22 Mar 2022 04:10:58 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx605.amr.corp.intel.com (10.18.126.85) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27; Tue, 22 Mar 2022 04:10:58 -0700
+Received: from fmsmsx607.amr.corp.intel.com (10.18.126.87) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.21; Tue, 22 Mar 2022 04:10:54 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx607.amr.corp.intel.com (10.18.126.87) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.21 via Frontend Transport; Tue, 22 Mar 2022 04:10:54 -0700
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.174)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2308.21; Tue, 22 Mar 2022 04:10:54 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Klw3Ydu4BATBsJp96NZ6TH6v2hPsyeu8f1DbKDztBPj1qB31CDeaMC0qgQ/3bY65XamS4u0HivVHRFrYCBAtPHXMb7RSPXSd8yMt6pxRoAIm+LJQbMxfLXs73JqEjhWMFaoTSqK88Ye3AM5g2dPcXZOis7x3xvV6OECuypnZHjSF2epCdx5xZAZxVAeT3WnAH9qufzbr2GslUAYJuTWJDXEcoH6Y04KzmVsb4GqMnR6usqXev1xvl40Rz4fuNIpM3bNaDPPJIqRTcSU5jihe1CLQlbZIELkDtqik0TX2HmrsSC3LS5rBXRF+SDjX/4tkkk1uIDk9uXY/3aBPzkcB3g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=mQw1l/sfOVIrKjRf2itCWUOD+tKPRWXcwlRqfvzols8=;
+ b=WSZ+ijfAN8FlDq0HMp+nQporIQvdypaw/l9AegaxHgLoLTXMucZrRnYZuUbjZLk76R9ujGkyk/lcDN+SOH5ruUIwBdhiNZ/DJtPrnFOygkw5nwNPhQY0hHnR2UHQaAtg0hxEKjxrGCD2PM8s1T65oDnfPoeOVZj/BHbgaf9tDQDUVTX2dJzpInQNcY2OhrIoA92bR6U8QQ23WtpHVjqubJZpx4HuiRcxiQ2+448GHsWBvJRQnN1FDnhXprM7bOarBXnvMYLy1JOoKzG+vDaI3682ZlPYMrOiy69yxzW0pVYCQLCD4ucwIU+aSIxwXkJ1CCrLVJc2La0eMLPbnqusfw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM6PR11MB3180.namprd11.prod.outlook.com (2603:10b6:5:9::13) by
+ MW3PR11MB4732.namprd11.prod.outlook.com (2603:10b6:303:2c::11) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5102.16; Tue, 22 Mar 2022 11:10:52 +0000
+Received: from DM6PR11MB3180.namprd11.prod.outlook.com
+ ([fe80::1de5:f9fb:2202:dd64]) by DM6PR11MB3180.namprd11.prod.outlook.com
+ ([fe80::1de5:f9fb:2202:dd64%3]) with mapi id 15.20.5081.023; Tue, 22 Mar 2022
+ 11:10:52 +0000
+Message-ID: <486fbb85-d2c6-ea86-4c3b-2f9c825c5f77@intel.com>
+Date: Tue, 22 Mar 2022 12:10:46 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Firefox/91.0 Thunderbird/91.7.0
+Content-Language: en-US
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ <dri-devel@lists.freedesktop.org>
+References: <20220218100403.7028-1-ville.syrjala@linux.intel.com>
+ <20220218100403.7028-22-ville.syrjala@linux.intel.com>
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <20220218100403.7028-22-ville.syrjala@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: LO2P265CA0114.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:c::30) To DM6PR11MB3180.namprd11.prod.outlook.com
+ (2603:10b6:5:9::13)
 MIME-Version: 1.0
-References: <20220316222307.30066-1-juhapekka.heikkila@gmail.com>
- <CAM0jSHMC76EyN-HeKFeON4ODeGPd2Ez=dF8eTNkA8Yp3eAu-JA@mail.gmail.com>
- <6cec7503-b7ab-8d7c-dff0-b83d65a9e3df@gmail.com>
- <CAM0jSHN63X_wANE=6LutBOWpETOkB27sQmCb=X4U_sOTvdppSA@mail.gmail.com>
- <9fea9a74-f7d2-bb36-c0c8-aea86d4ae791@gmail.com>
-In-Reply-To: <9fea9a74-f7d2-bb36-c0c8-aea86d4ae791@gmail.com>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Tue, 22 Mar 2022 10:45:05 +0000
-Message-ID: <CAM0jSHMzJwY6oRz7cbqYL91OawoXixww-c7EdvTiY8RrnG9aMA@mail.gmail.com>
-To: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Add smem fallback
- allocation for dpt
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 85e1040c-4f25-4a80-c620-08da0bf4a029
+X-MS-TrafficTypeDiagnostic: MW3PR11MB4732:EE_
+X-Microsoft-Antispam-PRVS: <MW3PR11MB4732DBE02FB2DFCFA31AFAF0EB179@MW3PR11MB4732.namprd11.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: KWM916wMkSJBvjImEGaDlp+ONFnOgeS8wR3oT9FEkMZFlhaU+7yrS5bjK5wwR5vcSypsCbR04oCys2XDEK2BQWxcppsTWfPM6yOF/5LcTn9QR6iNUlrET4sFiUbDoe83rQtzzX2qa7OJmWRIsoD4b1J6w49oo49l/IXdU99YeMZlPt1QMNzij42GsBe+ZQ9uS+pKChcMHnz0eUvl74i17CVZI4mrwDbexn59vNGdbe2YmtckPHRnHXLXtlUvmDHMr8u4A8Lvpmx1swDjAy2+xqmzQgiEdk6mJBWuRXFoYNOOgvJ4078uqSWGUwwJpW6ZLGQ5+L/QWRzS9WRjlkFSR8D7O2/S3R9962eP6QtK1r1uTut+uQohn+U6IyOkZyKBVMCw4uxhDn6g5PI1DgyA2x2UQ7SnfCbbLRH30pL84w3Bvp1pGaCA9z3quxq7v3hTQtJYhFLLsD9RGtRkAMsMa61gZoL4F8Gsf1QfPFaL8S8jmhMhD79+tLoH1GuRFwV9cI98vZ0mSP6O8izhKZm1JN+vBril7rbofyAv1HD2Y3B2aSZ/4fyASP8VJ2DCS/w2bdQqhe1OVuUjiEMQpGLv/fzwTh+BkJSpVpjYJ/7QeNY8ZRdm/UeJh9MLiKeUQxVjkQ5QAfiWHQ8wxaMtoWMFQu8CdccMxgUTJ0nKFXeG3t3kPaY2BJ0S59nRFbP0pvGB146v/YTmWTqtdo+P+iqXcJWU+Bg6JLA4ce3Rb06oOJg=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM6PR11MB3180.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230001)(366004)(44832011)(38100700002)(2906002)(86362001)(82960400001)(508600001)(6486002)(4744005)(8936002)(5660300002)(31686004)(186003)(316002)(26005)(2616005)(4326008)(36756003)(66556008)(66476007)(66946007)(31696002)(53546011)(6506007)(6512007)(6666004)(36916002)(8676002)(45980500001)(43740500002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YWx1TE4xMW1XY002OTFaZlltQlFiR0J5U1lqOE9ZWHRaL0FzNTJFRDhVRkFO?=
+ =?utf-8?B?VnhnOWI0QjNFbjd3MzBieW44VkJPZElXWUtMM0t6dkthVjZoNWp2Tnl6anQ2?=
+ =?utf-8?B?cGQrZnptTzlCeGNaOWxKNldVM1VMcXd3cTF3UFEzVmo5SDdZNjVWZEtudzQ0?=
+ =?utf-8?B?UjlmM2pMKzRuaC90L3JGWEdmRldXSVlEelFCSVd6ZVJoTUhmVkxHSjhWcGw0?=
+ =?utf-8?B?ei9ibWFzQUVoTGNNVWFDVVBaWUtrS0k3N0laTktzQ2ZjUWNuWjlGSXh3cXBM?=
+ =?utf-8?B?VUk5SW9DUFFpNEdrTUIrUkhrWXhVMmZEK2lZcmJra1JJZ09vOExibHVIVmFN?=
+ =?utf-8?B?R0lIVENWd1Q5RGI5RS9rSWFDVm5STUo3aG9aVTY0UXhSVDBmNGp5SDMxNTNt?=
+ =?utf-8?B?NXF1WWNUNXhybmhaRDFXcitnV2d0c09YZjdyL1FOZFlYLzJJTWdoUlF2SlJh?=
+ =?utf-8?B?OG8wWnJINk0wQjQ0RnFpalYvWnNlRmFBNlpVbkFKcndmUUdseUJnM1pQOGVI?=
+ =?utf-8?B?YlFBZnhSZFlxMjFOOFdSNmljbHFQTDJtcXZuWWVMT0tmMzBieWNNUm10VUNZ?=
+ =?utf-8?B?VEtlZTRPZ01kcjl3ZHg5YXVFQmhSaGFNbVhNWm9pKzV0c1BJQTJQbUpUaE9p?=
+ =?utf-8?B?aWlDd2pmUzVpYUd3RjF3STRULzRFcjNuWTRQNTBhRjJIOUhUWmdYSmMwZUtB?=
+ =?utf-8?B?bUFWMlZDN3pzMzU3Rm9qT09WR2p1T2U5MjRMUzVrTjZtanN5Qk5Bd1Z5S0I4?=
+ =?utf-8?B?Q3drSG0rYlZnb3psSEJkeUZ4TEFqWEpRa2pWN3ZHaVpraklacmhFTndyOVVv?=
+ =?utf-8?B?SUVRUDdJd1BmRVBLeVZtOHZKL2tuYWgxN1dUSjFJSG13a29FRjBDL2M3UDhP?=
+ =?utf-8?B?ckFXWHhZOWprbmJCV0krYi96WFNnbFd2aEo4K2ZXc25PZytYMVBxbHBJZWxP?=
+ =?utf-8?B?LzZuVUgvQWhrTmdDODkxYmY4MTcyT1p5SU9sTzdRRW92QWhYS01OeENCbFBM?=
+ =?utf-8?B?R1AyaFBleVBraWpXVEcwYWFlR1BnWWtieGR0RjdwMUxBaDFCKzROZldhaThm?=
+ =?utf-8?B?UFFyNmtidXUxYVJva2hNMnNFRklSMEZ2N1lKWGVWenVaNkdOSVhhY1pPSnN3?=
+ =?utf-8?B?VHBuVVIwVGNUdlZoK2RFUzMrZVUyWkk3dmZyNDhsR2h1LzhTRWdaMlJRZlV3?=
+ =?utf-8?B?bzVwUndkazRMWDlrYUVlMEZSNlE2U1J1YnBVcGRkZHk5VVY4eStLbjhuVjhr?=
+ =?utf-8?B?Nyt5OEpvOHo2L2YwNENUUjZTZXhnSE85QUtzMWZ5dlR3cnlPVlhsVUhtajQ1?=
+ =?utf-8?B?eXJTNEs2RnlkTU5pbHRJMDlrbW9IM1R2Rm9xSDBtMlRBbG94RERqQ09YTUJ6?=
+ =?utf-8?B?OWxaa3VLOGk3eUY5bnJFS1A0Ung1dkk4Y2tkdlNYYk1jTHZPZWZsRGhJY2tF?=
+ =?utf-8?B?UVFIY3V3NEtxTUNaazh5RkI2bHJ4Y0hIYlJVYXZxTGRmVVVLMmhRTmdiZTRj?=
+ =?utf-8?B?c0xhdVBQN0tQeEtQUittSTJRWDlpVnpDRlQxMU0zUmRDNGxoZEl6c3FYY2xl?=
+ =?utf-8?B?ZFpEQldiUm96Zml1VDhmVHlLR3lJWXkwazQvR1MrRGJBbzM3L3MzTThFTmFi?=
+ =?utf-8?B?VWhhQmxqVjNCQk9EMnZoQ3BGd0U0M0h6NzBYS01aK3p2S3F1TEpTWUNkWitt?=
+ =?utf-8?B?dGRyaVlsQVQxK0xCZ1ZScjlGNkNpYm9HWm91MGJyNnBHR29JSW9sWWV6L1l4?=
+ =?utf-8?B?T2pUQlNFVlZXcmdCaG1TOGltaHpyakxKRHREcnhBS2tYUDBHNUNvWlFidHRL?=
+ =?utf-8?B?K0J0YTNLdml2dXFrS04ycC9lOE5OSVlyckI4aU4rS0tHdWh2SFd1dVRhVVRY?=
+ =?utf-8?B?b1dmSU50dTdDNDZWcmhBUWh4cDRRcUxiZDNSTE5Yb1FLSUVpY3lmZEp1M1FM?=
+ =?utf-8?B?YXQzWkRSTWQ5YWFHcldaT015Q3diQ3NldUc4ODB6SG5yUkFnZHBhd0E2c05a?=
+ =?utf-8?B?VncvQlVXTzJ3PT0=?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 85e1040c-4f25-4a80-c620-08da0bf4a029
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB3180.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Mar 2022 11:10:51.9301 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: rssxReCyerc+xc3qXN4fxUZ0B4jNpNrQNdUswi2yLXM2j/C+oPd8wmBMClMUa+BI39WO/KkYB8tb0DagfG+y0A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR11MB4732
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH 21/22] drm: Use drm_mode_init() for on-stack
+ modes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,130 +160,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 21 Mar 2022 at 18:36, Juha-Pekka Heikkila
-<juhapekka.heikkila@gmail.com> wrote:
->
-> On 21.3.2022 14.29, Matthew Auld wrote:
-> > On Fri, 18 Mar 2022 at 09:22, Juha-Pekka Heikkila
-> > <juhapekka.heikkila@gmail.com> wrote:
-> >>
-> >> On 17.3.2022 13.55, Matthew Auld wrote:
-> >>> On Wed, 16 Mar 2022 at 22:23, Juha-Pekka Heikkila
-> >>> <juhapekka.heikkila@gmail.com> wrote:
-> >>>>
-> >>>> Add fallback smem allocation for dpt if stolen memory
-> >>>> allocation failed.
-> >>>>
-> >>>> Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-> >>>> ---
-> >>>>    drivers/gpu/drm/i915/display/intel_dpt.c | 18 ++++++++++++++----
-> >>>>    1 file changed, 14 insertions(+), 4 deletions(-)
-> >>>>
-> >>>> diff --git a/drivers/gpu/drm/i915/display/intel_dpt.c b/drivers/gpu/drm/i915/display/intel_dpt.c
-> >>>> index fb0e7e79e0cd..c8b66433d4db 100644
-> >>>> --- a/drivers/gpu/drm/i915/display/intel_dpt.c
-> >>>> +++ b/drivers/gpu/drm/i915/display/intel_dpt.c
-> >>>> @@ -10,6 +10,7 @@
-> >>>>    #include "intel_display_types.h"
-> >>>>    #include "intel_dpt.h"
-> >>>>    #include "intel_fb.h"
-> >>>> +#include "gem/i915_gem_internal.h"
-> >>>
-> >>> Nit: these should be kept sorted
-> >>>
-> >>>>
-> >>>>    struct i915_dpt {
-> >>>>           struct i915_address_space vm;
-> >>>> @@ -128,6 +129,10 @@ struct i915_vma *intel_dpt_pin(struct i915_address_space *vm)
-> >>>>           void __iomem *iomem;
-> >>>>           struct i915_gem_ww_ctx ww;
-> >>>>           int err;
-> >>>> +       u64 pin_flags = 0;
-> >>>> +
-> >>>> +       if (i915_gem_object_is_stolen(dpt->obj))
-> >>>> +               pin_flags |= PIN_MAPPABLE; /* for i915_vma_pin_iomap(stolen) */
-> >>>>
-> >>>>           wakeref = intel_runtime_pm_get(&i915->runtime_pm);
-> >>>>           atomic_inc(&i915->gpu_error.pending_fb_pin);
-> >>>> @@ -138,7 +143,7 @@ struct i915_vma *intel_dpt_pin(struct i915_address_space *vm)
-> >>>>                           continue;
-> >>>>
-> >>>>                   vma = i915_gem_object_ggtt_pin_ww(dpt->obj, &ww, NULL, 0, 4096,
-> >>>> -                                                 HAS_LMEM(i915) ? 0 : PIN_MAPPABLE);
-> >>>> +                                                 pin_flags);
-> >>>>                   if (IS_ERR(vma)) {
-> >>>>                           err = PTR_ERR(vma);
-> >>>>                           continue;
-> >>>> @@ -248,10 +253,15 @@ intel_dpt_create(struct intel_framebuffer *fb)
-> >>>>
-> >>>>           size = round_up(size * sizeof(gen8_pte_t), I915_GTT_PAGE_SIZE);
-> >>>>
-> >>>> -       if (HAS_LMEM(i915))
-> >>>> -               dpt_obj = i915_gem_object_create_lmem(i915, size, I915_BO_ALLOC_CONTIGUOUS);
-> >>>> -       else
-> >>>> +       dpt_obj = i915_gem_object_create_lmem(i915, size, I915_BO_ALLOC_CONTIGUOUS);
-> >>>> +       if (IS_ERR(dpt_obj) && i915_ggtt_has_aperture(to_gt(i915)->ggtt))
-> >>>>                   dpt_obj = i915_gem_object_create_stolen(i915, size);
-> >>>> +       if (IS_ERR(dpt_obj) && !HAS_LMEM(i915)) {
-> >>>> +               drm_dbg_kms(&i915->drm, "fb: [FB:%d] Allocating dpt from smem\n",
-> >>>> +                           fb->base.base.id);
-> >>>> +
-> >>>> +               dpt_obj = i915_gem_object_create_internal(i915, size);
-> >>>
-> >>> Looks like we are missing some prerequisite patch to be able to
-> >>> directly map such memory in vma_pin_iomap?
-> >>
-> >> For these functions I'm more like a consumer, I was following
-> >> suggestions from Chris on this. Is there something extra that should be
-> >> considered in this regard when use it like this?
-> >
-> > AFAICT this will trigger the WARN_ON() in vma_pin_iomap() if we
-> > fallback to create_internal(), since the object is now not lmem and is
-> > also not map_and_fenceable(i.e PIN_MAPPABLE).
->
-> This shouldn't affect case when dpt allocation from lmem failed, it is
-> expected to go to "return ERR_CAST(dpt_obj);" below these comments. On
-> situation when allocating lmem and stolen failed on next "if" I added
-> !HAS_LMEM(i915) to handle situation with lmem. Though, when I was
-> originally trying this patch without limiting lmem case I remember with
-> dg2 I got black screen but I don't remember seeing WARN_ON() in logs.
->
-> >
-> > The other issue is that we need some way of CPU mapping this type of
-> > object, like with calling i915_gem_object_pin_map() inside
-> > vma_pin_iomap(). It looks like there is an internal patch that tries
-> > to handle both issues, so I guess we need to also bring that patch
-> > upstream as a prerequisite to this?
->
-> I have above in intel_dpt_pin(..) that "pin_flags |= PIN_MAPPABLE" when
-> handling stolen memory. I suspect patch you are referring to is this
-> same patch I wrote, here just adjusted for upstreaming. This patch was
-> earlier tried by Lucas and Manasi to be working with adlp and apparently
-> cases with virtual machine this make it possible to have tiled
-> framebuffers. Without this patch those special cases will get -e2big
-> when creating tiled fb and no stolen memory available.
+On 18.02.2022 11:04, Ville Syrjala wrote:
+> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> 
+> Initialize on-stack modes with drm_mode_init() to guarantee
+> no stack garbage in the list head, or that we aren't copying
+> over another mode's list head.
+> 
+> Based on the following cocci script, with manual fixups:
+> @decl@
+> identifier M;
+> expression E;
+> @@
+> - struct drm_display_mode M = E;
+> + struct drm_display_mode M;
+> 
+> @@
+> identifier decl.M;
+> expression decl.E;
+> statement S, S1;
+> @@
+> struct drm_display_mode M;
+> ... when != S
+> + drm_mode_init(&M, &E);
+> +
+> S1
+> 
+> @@
+> expression decl.E;
+> @@
+> - &*E
+> + E
+> 
+> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> ---
 
-When the GGTT pin eventually ends up returning some vma that is not
-within the ggtt->mappable_end, then we will start hitting the above
-issues, starting with the WARN_ON. If you use PIN_HIGH here for the
-non-stolen case, it should highlight the issue more reliably I think.
 
->
-> /Juha-Pekka
->
-> >
-> >>
-> >>>
-> >>>> +       }
-> >>>>           if (IS_ERR(dpt_obj))
-> >>>>                   return ERR_CAST(dpt_obj);
-> >>>>
-> >>>> --
-> >>>> 2.28.0
-> >>>>
-> >>
->
+Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+
+Regards
+Andrzej
