@@ -1,54 +1,64 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEE184E5436
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Mar 2022 15:26:54 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2AFC4E5470
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Mar 2022 15:42:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C5D9110E75E;
-	Wed, 23 Mar 2022 14:26:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 81EC189836;
+	Wed, 23 Mar 2022 14:42:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE4CF10E75E;
- Wed, 23 Mar 2022 14:26:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1648045610; x=1679581610;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=k/ljExPLhr/iCvWHx4Y7ER0bjNCsw3LGgldpOUp4+P0=;
- b=bD9hksCIStab16KFlKZnJvFrwklnKucofdenc/UnRdKsNMVOyPidrA6o
- paVWXYylKdrQCx+bjdiYCT2598K+g/CEpW0UOcyn0ZQSAmzi3nQCASIvP
- dBRi0Fh1L7fV36DM/6SRXrA8/u3MoMRXOOnaZAKaVxr0HHcl9AdOakjV4
- l0FuGaxNsD4LBiUysrDD1ydNIk/8i6OFqZtvz76ZIXwfqhift6lbYpa5o
- gPYbjxqS5PBWjA+WCvrtban748hzaRoAn+ZJLklRuoj9FKOZ3P7eZX7HL
- Kh8ep//8eU4t6lQmTJaRb1TigQ8zqc5O44167E7N7h77u9KKxk8qjjKQx Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10294"; a="240284139"
-X-IronPort-AV: E=Sophos;i="5.90,204,1643702400"; d="scan'208";a="240284139"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2022 07:26:50 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,204,1643702400"; d="scan'208";a="515794054"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.61])
- by orsmga002.jf.intel.com with SMTP; 23 Mar 2022 07:26:46 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 23 Mar 2022 16:26:45 +0200
-Date: Wed, 23 Mar 2022 16:26:45 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <YjsuJQvJme6sxLAo@intel.com>
-References: <20220317124202.14189-1-shawn.c.lee@intel.com>
- <20220317124202.14189-4-shawn.c.lee@intel.com>
- <8735j9j7vd.fsf@intel.com>
+Received: from mail-oa1-x2d.google.com (mail-oa1-x2d.google.com
+ [IPv6:2001:4860:4864:20::2d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2BD298966B;
+ Wed, 23 Mar 2022 14:42:41 +0000 (UTC)
+Received: by mail-oa1-x2d.google.com with SMTP id
+ 586e51a60fabf-d4164acd34so1889490fac.4; 
+ Wed, 23 Mar 2022 07:42:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=44hXVR38pi7uKbNL5EITTUlKNy1idCvTiYz/Dr/jHdc=;
+ b=lX91QCZRfJrZI2GD8M44M5j8wfkEAn1YGm/S9YxpQfZVLAzfnCai8KNAu3GbaPxX0v
+ MZJEcCrmnGI593Auw4rYf8M16OtnaRlvFydd3ziKGPIW1qVrJF0Yy+VPb8ga/LUklUkI
+ Lj0x0QnT0aTaPxFu8zvfwgPU9BzIfVZfGsPmlyt7RQwCMb6oUg/voMDieBxcSCuh2azk
+ ja1544Trrbz0KA/IDvcNgVRJI9E5V+1lmpIEe0TJO9ko0GP4JVPwZoEP3zQxE03qczOz
+ 6rWdvxfJmKZus5YQy4FMeQjl8+pDZWn1XIaxke6K7UhumcHnyw+mprA1m6BPegqv36Jd
+ BpXw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=44hXVR38pi7uKbNL5EITTUlKNy1idCvTiYz/Dr/jHdc=;
+ b=KN4UeFKaVpWX3Oc8l7TadIJ8XpNrAv83jlUu5NWyXnQ4GUpgnogoVtGllRrN/aLHjx
+ 8YLcHeI8BgCFHFLSTbwrHFjevhslovBIAr4YV5suVAHLaJV6ZSX6xant+6niByv/6fqF
+ XQHT7Yvy8QVpJBRMGw+Rhl2WMr2j9ibXKSoXi/1uvkjWFRrvTUac1AE+I5OJo2MdgMKE
+ ax6zLcMCcUzBLpFgmOBLvcIvofcmAgzYZYPNSUWWx/uBV1qFrqgJ0+KGzcnPSb5ZqKr+
+ FdLVNBOlPHfyUJfDmOX6vAx9YikTvo3rhe6c67LWPb6W5BEmaoGYVKyJCU2M7443rQu8
+ /yZg==
+X-Gm-Message-State: AOAM532K+1HoL3p0+Hmt+OGMiqGVCz/jcNSk017rK+rH3hQ2aWYcgmo/
+ NGhDzlfBgszn3Ds2CY4V3D/Cr7S6OBlzZ4GowWI=
+X-Google-Smtp-Source: ABdhPJyoqCpJsjN2C/2LC91cIdvD53OWoAYds46B1ezx8I7FBKcWppTvQlJnYLaUS/tYfurs48raWQTTszeE5bsXz9c=
+X-Received: by 2002:a05:6871:8ab:b0:dd:b74b:409a with SMTP id
+ r43-20020a05687108ab00b000ddb74b409amr4104995oaq.200.1648046560407; Wed, 23
+ Mar 2022 07:42:40 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <8735j9j7vd.fsf@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [v8 3/5] drm/edid: read HF-EEODB ext block
+References: <20220323062552.228429-1-Arunpravin.PaneerSelvam@amd.com>
+ <7addb3e7-d265-c1a7-d449-7d0056f06d63@molgen.mpg.de>
+ <fc60c561-c12a-c031-9558-abae3e3474ec@amd.com>
+ <6f0888a2-f74d-f41f-d593-a8362e7dc673@molgen.mpg.de>
+ <398f8851-d37b-4020-24ce-8f2ab9723e40@amd.com>
+ <CAPj87rMETV9UkpbGRYAT3mjVhRtW75m0e9OLON6_+gdcD0Fo2Q@mail.gmail.com>
+In-Reply-To: <CAPj87rMETV9UkpbGRYAT3mjVhRtW75m0e9OLON6_+gdcD0Fo2Q@mail.gmail.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Wed, 23 Mar 2022 10:42:29 -0400
+Message-ID: <CADnq5_NuaN_ZziNipdqvvTQ41you==VqJg5oxQovowokaJ2K1Q@mail.gmail.com>
+To: Daniel Stone <daniel@fooishbar.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] Commit messages (was: [PATCH v11] drm/amdgpu: add
+ drm buddy support to amdgpu)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,40 +71,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: cooper.chiou@intel.com, william.tseng@intel.com,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: Paul Menzel <pmenzel@molgen.mpg.de>,
+ Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>, "Deucher,
+ Alexander" <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Mar 23, 2022 at 12:11:50PM +0200, Jani Nikula wrote:
-> On Thu, 17 Mar 2022, Lee Shawn C <shawn.c.lee@intel.com> wrote:
-> > According to HDMI 2.1 spec.
+On Wed, Mar 23, 2022 at 10:00 AM Daniel Stone <daniel@fooishbar.org> wrote:
+>
+> On Wed, 23 Mar 2022 at 08:19, Christian K=C3=B6nig <christian.koenig@amd.=
+com> wrote:
+> > Am 23.03.22 um 09:10 schrieb Paul Menzel:
+> > > Sorry, I disagree. The motivation needs to be part of the commit
+> > > message. For example see recent discussion on the LWN article
+> > > *Donenfeld: Random number generator enhancements for Linux 5.17 and
+> > > 5.18* [1].
+> > >
+> > > How much the commit message should be extended, I do not know, but th=
+e
+> > > current state is insufficient (too terse).
 > >
-> > "The HDMI Forum EDID Extension Override Data Block (HF-EEODB)
-> > is utilized by Sink Devices to provide an alternate method to
-> > indicate an EDID Extension Block count larger than 1, while
-> > avoiding the need to present a VESA Block Map in the first
-> > E-EDID Extension Block."
+> > Well the key point is it's not about you to judge that.
 > >
-> > It is a mandatory for HDMI 2.1 protocol compliance as well.
-> > This patch help to know how many HF_EEODB blocks report by sink
-> > and read allo HF_EEODB blocks back.
-> 
-> It still just boggles my mind that they've implemented something like
-> this. They cite avoiding the EDID Block Map as the rationale... but it's
-> been optional since E-EDID structure v1.4, published in 2006. 15+ years
-> ago.
-> 
-> Can anyone tell me a sane reason for this? What does it provide that
-> E-EDID 1.4 does not? Do they want to use E-EDID v1.3 with this? Why?
+> > If you want to complain about the commit message then come to me with
+> > that and don't request information which isn't supposed to be publicly
+> > available.
+> >
+> > So to make it clear: The information is intentionally hold back and not
+> > made public.
+>
+> In that case, the code isn't suitable to be merged into upstream
+> trees; it can be resubmitted when it can be explained.
 
-Looks to be pretty much the same approach as the DPCD extended
-receiver cap mess we already have to deal with.
+So you are saying we need to publish the problematic RTL to be able to
+fix a HW bug in the kernel?  That seems a little unreasonable.  Also,
+links to internal documents or bug trackers don't provide much value
+to the community since they can't access them.  In general, adding
+internal documents to commit messages is frowned on.
 
-So I presume this is a hack to avoid breaking some garbage source
-devices that explode when they see too many extension blocks,
-or something along those lines.
-
--- 
-Ville Syrjälä
-Intel
+Alex
