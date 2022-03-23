@@ -1,38 +1,147 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DE764E4CD2
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Mar 2022 07:42:33 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38CE24E4D06
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Mar 2022 08:03:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 304A710E618;
-	Wed, 23 Mar 2022 06:42:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 752EA10E1C6;
+	Wed, 23 Mar 2022 07:03:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx1.molgen.mpg.de (mx3.molgen.mpg.de [141.14.17.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB56310E617;
- Wed, 23 Mar 2022 06:42:29 +0000 (UTC)
-Received: from [192.168.0.3] (ip5f5ae903.dynamic.kabel-deutschland.de
- [95.90.233.3])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits))
- (No client certificate requested) (Authenticated sender: pmenzel)
- by mx.molgen.mpg.de (Postfix) with ESMTPSA id 2E6D061EA1928;
- Wed, 23 Mar 2022 07:42:28 +0100 (CET)
-Message-ID: <7addb3e7-d265-c1a7-d449-7d0056f06d63@molgen.mpg.de>
-Date: Wed, 23 Mar 2022 07:42:27 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F338610E1C6
+ for <intel-gfx@lists.freedesktop.org>; Wed, 23 Mar 2022 07:03:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1648019016; x=1679555016;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=9dkyou2YgRel3a/+wJXB4mcGHn+IApy/TRa+xfL/jig=;
+ b=jg5BUGfIjG0zhQcAYjsr7N7pKQX82F3T4NoYcDNjE5ZMrULXt+dhBYo5
+ KBC6WN/6D1DZ88GHxLoYpZpC1kfxxilM5JooJnZfHwX5kfaXjG6Mkb0KJ
+ hwtEtsq6VRFrji2mHkZub72Xx57HJh1ArckwoPsJNAxJBgUfw+9fdUKLX
+ z+DO3cQ9xjrgq94deyZhQGJD0llk/oqJFFRjryj41g4//DNLkDYcqfg8D
+ N1DfeKGNPqxVpzognPkzbWUDRBKd7kEsRoCJTtlIn72lN+zlZVBOkUpfg
+ DvWAuVwhHdNFRTnnplJJ4YXD3IBi1T/VT0cCGqKCXYLgZY2JkKzpe55Bq g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10294"; a="237981707"
+X-IronPort-AV: E=Sophos;i="5.90,203,1643702400"; d="scan'208";a="237981707"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Mar 2022 00:03:35 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,203,1643702400"; d="scan'208";a="616316458"
+Received: from orsmsx605.amr.corp.intel.com ([10.22.229.18])
+ by fmsmga004.fm.intel.com with ESMTP; 23 Mar 2022 00:03:35 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX605.amr.corp.intel.com (10.22.229.18) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27; Wed, 23 Mar 2022 00:03:34 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.21 via Frontend Transport; Wed, 23 Mar 2022 00:03:34 -0700
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.171)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2308.21; Wed, 23 Mar 2022 00:03:34 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Jr8UPPZVRls6jj/QoojM+v6pUyAaYf79AYvG4nd/4BhEXaIz9XyEEeX9gvb2SqqytSPKSTmn2WI3/fMg0r1vjJLeV+ctVJ36Slqkl/+wWmqRR/Hjz0oaQw9ABXOU/YIolVhCRlLbFuo+d5uPOHISsVf/6zZmBEe4qxLuMaXYU8C/XYhKC6hmvRN+lLso/TjVYEgrCv8v/c9IPSKRyavwlVYrfIi6hEHUgxGRRuoJ4qJ+AFfmg1DO7FhvaQ/Nd6hY/gmYSkGMZXugRoBT58bu7cTvv0y5LCayJSOaGd/G+I7mGbxcMB9Bs28ioZD6RyuEbbEqsEzY5PKvTiUDR0gLiQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=c+9NcoyZl1p0ru/02xslO3gQ+1jn3UQlwbDQmFM4KO4=;
+ b=PMoLuYN2/SbYkA9oleXcLt6UyJ1yCKJ6VUAijelidMgS2UqspVoysZRHqsOl8gGcUxHLfG6tKDIMRCm1QzriCv0BGd3FL08dl2HY73bc7IJ5KAEi5vLJERgdGHbfGu4pRbFy8Q6HoCfQXkSUowAJ0srrnr67+0CKE420g8Py04uVO4y8oFkul1TKNAJho1V+HbhrxlvGFifpb1xNWGxiuW9P+dQFj0H1/oO6dKGA/dWYgjTolOhaQxPNKCtB3XQINs9ozb4a6u/JnOVpVXyvZmpA0gC5RBW8qiMmAzLNuCsLVb3wMl7hHaj4s7wZ+HrWpZz/VCTV4pmNmliUsL6ZWg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from BN9PR11MB5530.namprd11.prod.outlook.com (2603:10b6:408:103::8)
+ by BN6PR1101MB2211.namprd11.prod.outlook.com (2603:10b6:405:51::13)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5102.17; Wed, 23 Mar
+ 2022 07:03:32 +0000
+Received: from BN9PR11MB5530.namprd11.prod.outlook.com
+ ([fe80::65ca:5b0f:d62d:fadf]) by BN9PR11MB5530.namprd11.prod.outlook.com
+ ([fe80::65ca:5b0f:d62d:fadf%7]) with mapi id 15.20.5081.023; Wed, 23 Mar 2022
+ 07:03:32 +0000
+Message-ID: <0ef3cf31-e799-61b9-6907-7e69b0642e3e@intel.com>
+Date: Wed, 23 Mar 2022 12:33:23 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
 Content-Language: en-US
-To: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
-References: <20220323062552.228429-1-Arunpravin.PaneerSelvam@amd.com>
-From: Paul Menzel <pmenzel@molgen.mpg.de>
-In-Reply-To: <20220323062552.228429-1-Arunpravin.PaneerSelvam@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v11] drm/amdgpu: add drm buddy support to
- amdgpu
+To: Ashutosh Dixit <ashutosh.dixit@intel.com>,
+ <intel-gfx@lists.freedesktop.org>
+References: <20220322185658.31344-1-ashutosh.dixit@intel.com>
+From: "Nilawar, Badal" <badal.nilawar@intel.com>
+In-Reply-To: <20220322185658.31344-1-ashutosh.dixit@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: BMXPR01CA0089.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:b00:54::29) To BN9PR11MB5530.namprd11.prod.outlook.com
+ (2603:10b6:408:103::8)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 0569ba4d-6998-4ac1-9c4c-08da0c9b3dbd
+X-MS-TrafficTypeDiagnostic: BN6PR1101MB2211:EE_
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-Microsoft-Antispam-PRVS: <BN6PR1101MB2211AACD2F9AB0315B6B4674E5189@BN6PR1101MB2211.namprd11.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Sxus3cx42S0EHXeKcrSjOSgCtUtt9lLu0wymP1gRGuD2e7t+p7nDDYQaNXxOO4bhKBleSucQtLamWRpPTotaQ3BbSrcvqOZQ3PzmDkNCAPx3KFdqokYuBRrhweeiurXxASWshd4dfxBI+Lqi0RMP9yRIL301LZY37Vs+t6NA1G9K+ilCnhzT78+XdwXHrr4w8x/77cE482ynjL/5C/ZeRi9XAdtIPTvyc2682JVq3QZ9Jv0xp16Kd7PcQxLVNU91H6yqhL4/l3ucceoPjwvL3bLtkRAyRfllZcCIPtYTtGXeF5QQSQhuB+joeJalA4WNGDAoUdaUS99Z2DXj/HfESaVDUNMN8Ft3vUB/WVt4oA0uTDkqCyo34wvIg9MlZEK7sqWZwnBhr9StTdmf7Jem7AT7zHcZjwKjDfKY5pOSSPiWl1Gsfs0+GgkfHSlP/yIae7EcN5sZ4glLyqelddnX0x92nF+GxaRHNSYNUU1hwmOT885VFs/5Ezx81GipxVy1w5pJFivEqVh2Pbuscasf3vzsIXMDhWcbHZLQVwF0rhguewzchxvZ9qj38SVC9Uk3vmlYyLC4mYigDgw47ZJ/s7DbW2cTSp9c0xOdg2ar3SA45/RoMOMwdRfjrp0viaQDMYpByNLIOIc8ZoBj83eyJbRMLuvbnyuiBBJwS7OqC9vOrW1tSqwuuDld4ZAWHeFNpq7T0S+P83skJdXNaNCmLLWpxo17b0/x0HBOGBKGgQQ=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN9PR11MB5530.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230001)(366004)(66476007)(38100700002)(4326008)(66556008)(8676002)(66946007)(316002)(2906002)(54906003)(508600001)(6666004)(6486002)(31696002)(86362001)(82960400001)(8936002)(5660300002)(186003)(30864003)(26005)(83380400001)(107886003)(6512007)(31686004)(2616005)(36756003)(6506007)(55236004)(53546011)(45980500001)(43740500002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZjhBbnltaE1YQ1dRb1JQWERDZWZhNnJLanA0Rm9IOTNuK0g5bWFyZFdHTWdI?=
+ =?utf-8?B?a2dyQ1VYZUJiQ0JDY21RUkJOeVQ0ZjlHZ21HZDFmVkN3N2N5SmE0QTdkVDRG?=
+ =?utf-8?B?UXNNV3ZXZHhzbXVadmV5M2JDZmFoMTNLanU3ei96RmdkZ3ROaHFDZHNtOUF2?=
+ =?utf-8?B?VkFFc05reXFML3pqYU1sRHdyM1ZKZzBjcWtLenVvaXgrWUhGK3JLaThtZzUx?=
+ =?utf-8?B?dW9XWWNlY1ZuTEVzVzIyS25LOFFqd3FxOThjSFFNTk1tWDZoanVaU1NzV21L?=
+ =?utf-8?B?dlBqSWpIbzE0S05DUDZRRzEwM3V0eVdqM1FLby9IRXZ2ZHYwUGhuVW5pTDYz?=
+ =?utf-8?B?TFpncmk5WFc1YUJ2Q3J2WU5CL0NsRXEyV2JrTGZXeThOaGlGZ1Y2VTRpZ2pr?=
+ =?utf-8?B?Sng0T1EraVdjdDBaVU1UNVlpd2t6VFNoNzJzNGlyei9iQ2tFTVpvMzR6RVJ6?=
+ =?utf-8?B?SVl1RG96RS9EMEN6Mmhhemhjenc0TTdpRG9UUldiT2NyT2xPMmdDNGRIYWhL?=
+ =?utf-8?B?Y3BGRjlLVnVwZmFENUR0V1RuVTNyd2FqeWVRTTlDVDdnL1BsSDJFaXFPaG9s?=
+ =?utf-8?B?ZkNSaXFEZXlVUG0rS0VDUFVvbStzV2VYSmhzZ3pxNnpDNVRZZ21xWXNFRGhS?=
+ =?utf-8?B?d3NtaG9ZVlNqRzhSaGVUZFVkSDB3djNEdFBlU0JWUFBTNkt5OVNuZHlVRXc2?=
+ =?utf-8?B?NnhEM3pSNnVBTzdHbEp6RHZPYUcvZDlpY1daWEtVRUZCMmtVVTZLMmo3R1Ir?=
+ =?utf-8?B?RmdkUndiK08wUFZ3UWZvVCtoczRiQWxPWXB2Ykg4Zyszd0FWUU81VFBLU1RD?=
+ =?utf-8?B?V0kreHB6bVpPN0l3cE80NTBuNXV4cTZ6amoxT0kxUCtuNzB5YTExZXlZK3Yr?=
+ =?utf-8?B?dGtjWVR4MFBRNktBU0NlcFA3bXlESUJOYy9lMGZwNy9YbE1pUVl4aS9OMkxr?=
+ =?utf-8?B?V2JvdzFtSnY4eWNNTmFRbiszOHd0N2xHZ0k2bTBQeGpsK1JZRzFqQlpnN0pn?=
+ =?utf-8?B?cEQrenkvNGdpVzFhNmpSY0FiLzAxSVgxazVvR3ZHbkdYdlM4NU5uL0VPRm96?=
+ =?utf-8?B?Tko0WkxJV1NOMGQ4VDNhNk52bE1aTmU1UXBiTS9IcFRWS0tVQU1PNW1oVWtN?=
+ =?utf-8?B?ZWxWWUhIN3pzVmhDZm1PQ0dZZWZxSTRZL3NsRzZSVHJZZXlVb1p6OEk2Qm5t?=
+ =?utf-8?B?YTRpNGtUd3crOXdQQU1EanpVZmVUcmdtdldDQVlEM2grTEIxcDJFeVd5MzlZ?=
+ =?utf-8?B?cHk2Ym1jbUZTcWd3M3FiZE9NM1FiQzU3OWpFRnRHUW1ROWViWW5mL1NGMVg2?=
+ =?utf-8?B?a2dDRUFpa1NvM3ljczZ4TFkrTzVtWlArcFIvSDZYVEdwY0J2eEtDMHhvZ3Vv?=
+ =?utf-8?B?R0xvdUR3THZ4d1g0Tnk1cTlsNlhOY3dZV1pnZENSSGpkdzFtb0Q5R3F2NkRv?=
+ =?utf-8?B?dmsvdFloSURLNG1iaGxLRUo5MWhIdmowZUppL2dhMTZWZVdXSGVVVkFSRzJ0?=
+ =?utf-8?B?QWhrbExVUjJacU1nbm9IOXZSWGdYRDh3L3hCVDdzWHhoeU5IbVhsMlRsWDJI?=
+ =?utf-8?B?MTJaSXlYdlhmU0kwRXcwcUsyWEhHY0lBNG5KQTlqRTE0OGtpOG9xc1BHdmJm?=
+ =?utf-8?B?dk1mQkVPSDZSTVkvbVBOUllrV2FnZmQ0dUxWL0Jtc2wyVXhHZkhrb3V5ZlRt?=
+ =?utf-8?B?Y0RTcUIyUmIralduYVV4WmxLSEVPanorbGVvSS91S2tMd1BXdDA2WVBxOVo4?=
+ =?utf-8?B?YU9ydmFRV3gwSWd4eTFPdHJzZDVUSHg1SkNZL3lYR0ZEQWhhcDVXN09tc1lG?=
+ =?utf-8?B?Qm1UTk52NFl2WHlyZzNMWDRhU0UrbVZid2U3ZkVLQ0VNQmdXd21IT0F5WGxu?=
+ =?utf-8?B?dTY3OHdVeUpranpDV1J3VFpoNnB3ekZQUG5wOFpwcDBRVS9kRlJjcmprN3pE?=
+ =?utf-8?B?WnlFcE5LMlNPNGhJQjdhVUNFeFIxZmhueHYwZGlUcEc4ai9jdVNsem45Ujk4?=
+ =?utf-8?B?bXNaRzFOSm9RPT0=?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0569ba4d-6998-4ac1-9c4c-08da0c9b3dbd
+X-MS-Exchange-CrossTenant-AuthSource: BN9PR11MB5530.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Mar 2022 07:03:32.4447 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: N9A3vQEFYs+1PkFBj8wz+X4SY5PbWIAxJELDsyxXBAyEh7aMidHL+D0sCvbfUp8Gy0vIj5/GhgjqAPuw6A1MHg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR1101MB2211
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/rps: Centralize computation of
+ freq caps
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,746 +154,317 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, matthew.auld@intel.com,
- alexander.deucher@amd.com, christian.koenig@amd.com
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Dear Arunprivin,
 
 
-Thank you for your patch.
-
-Am 23.03.22 um 07:25 schrieb Arunpravin Paneer Selvam:
-> - Remove drm_mm references and replace with drm buddy functionalities
-
-The commit message summary to me suggested, you can somehow use both 
-allocators now. Two suggestions below:
-
-1.  Switch to drm buddy allocator
-2.  Use drm buddy alllocator
-
-> - Add res cursor support for drm buddy
-
-As an allocator switch sounds invasive, could you please extend the 
-commit message, briefly describing the current situation, saying what 
-the downsides are, and why the buddy allocator is “better”.
-
-How did you test it? How can it be tested, that there are no regressions?
-
-> v2(Matthew Auld):
-
-Nit: I’d add a space before (.
-
-
-Kind regards,
-
-Paul
-
-
->    - replace spinlock with mutex as we call kmem_cache_zalloc
->      (..., GFP_KERNEL) in drm_buddy_alloc() function
+On 23-03-2022 00:26, Ashutosh Dixit wrote:
+> Freq caps (i.e. RP0, RP1 and RPn frequencies) are read from HW. However the
+> formats (bit positions, widths, registers and units) of these vary for
+> different generations with even more variations arriving in the future. In
+> order not to have to do identical computation for these caps in multiple
+> places, here we centralize the computation of these caps. This makes the
+> code cleaner and also more extensible for the future.
 > 
->    - lock drm_buddy_block_trim() function as it calls
->      mark_free/mark_split are all globally visible
+> v2: Clarify that caps are in "hw units" in comments (Lucas De Marchi)
 > 
-> v3(Matthew Auld):
->    - remove trim method error handling as we address the failure case
->      at drm_buddy_block_trim() function
-> 
-> v4:
->    - fix warnings reported by kernel test robot <lkp@intel.com>
-> 
-> v5:
->    - fix merge conflict issue
-> 
-> v6:
->    - fix warnings reported by kernel test robot <lkp@intel.com>
-> 
-> v7:
->    - remove DRM_BUDDY_RANGE_ALLOCATION flag usage
-> 
-> v8:
->    - keep DRM_BUDDY_RANGE_ALLOCATION flag usage
->    - resolve conflicts created by drm/amdgpu: remove VRAM accounting v2
-> 
-> v9(Christian):
->    - merged the below patch
->       - drm/amdgpu: move vram inline functions into a header
->    - rename label name as fallback
->    - move struct amdgpu_vram_mgr to amdgpu_vram_mgr.h
->    - remove unnecessary flags from struct amdgpu_vram_reservation
->    - rewrite block NULL check condition
->    - change else style as per coding standard
->    - rewrite the node max size
->    - add a helper function to fetch the first entry from the list
-> 
-> v10(Christian):
->     - rename amdgpu_get_node() function name as amdgpu_vram_mgr_first_block
-> 
-> v11:
->     - if size is not aligned with min_page_size, enable is_contiguous flag,
->       therefore, the size round up to the power of two and trimmed to the
->       original size.
-> 
-> Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+> Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 > ---
->   drivers/gpu/drm/Kconfig                       |   1 +
->   .../gpu/drm/amd/amdgpu/amdgpu_res_cursor.h    |  97 +++++--
->   drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h       |  10 +-
->   drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c  | 263 ++++++++++--------
->   4 files changed, 234 insertions(+), 137 deletions(-)
+>   drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c |  24 +----
+>   drivers/gpu/drm/i915/gt/intel_rps.c           | 101 ++++++++++--------
+>   drivers/gpu/drm/i915/gt/intel_rps.h           |   2 +-
+>   drivers/gpu/drm/i915/gt/intel_rps_types.h     |  10 ++
+>   drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c   |  14 +--
+>   5 files changed, 79 insertions(+), 72 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
-> index f1422bee3dcc..5133c3f028ab 100644
-> --- a/drivers/gpu/drm/Kconfig
-> +++ b/drivers/gpu/drm/Kconfig
-> @@ -280,6 +280,7 @@ config DRM_AMDGPU
->   	select HWMON
->   	select BACKLIGHT_CLASS_DEVICE
->   	select INTERVAL_TREE
-> +	select DRM_BUDDY
->   	help
->   	  Choose this option if you have a recent AMD Radeon graphics card.
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
+> index 31dbb2b96738..f5fbb74ed076 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
+> @@ -342,17 +342,16 @@ void intel_gt_pm_frequency_dump(struct intel_gt *gt, struct drm_printer *p)
+>   	} else if (GRAPHICS_VER(i915) >= 6) {
+>   		u32 rp_state_limits;
+>   		u32 gt_perf_status;
+> -		u32 rp_state_cap;
+> +		struct intel_rps_freq_caps caps;
+>   		u32 rpmodectl, rpinclimit, rpdeclimit;
+>   		u32 rpstat, cagf, reqf;
+>   		u32 rpcurupei, rpcurup, rpprevup;
+>   		u32 rpcurdownei, rpcurdown, rpprevdown;
+>   		u32 rpupei, rpupt, rpdownei, rpdownt;
+>   		u32 pm_ier, pm_imr, pm_isr, pm_iir, pm_mask;
+> -		int max_freq;
 >   
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h
-> index acfa207cf970..864c609ba00b 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h
-> @@ -30,12 +30,15 @@
->   #include <drm/ttm/ttm_resource.h>
->   #include <drm/ttm/ttm_range_manager.h>
+>   		rp_state_limits = intel_uncore_read(uncore, GEN6_RP_STATE_LIMITS);
+> -		rp_state_cap = intel_rps_read_state_cap(rps);
+> +		intel_rps_get_freq_caps(rps, &caps);
+>   		if (IS_GEN9_LP(i915))
+>   			gt_perf_status = intel_uncore_read(uncore, BXT_GT_PERF_STATUS);
+>   		else
+> @@ -474,25 +473,12 @@ void intel_gt_pm_frequency_dump(struct intel_gt *gt, struct drm_printer *p)
+>   		drm_printf(p, "RP DOWN THRESHOLD: %d (%lldns)\n",
+>   			   rpdownt, intel_gt_pm_interval_to_ns(gt, rpdownt));
 >   
-> +#include "amdgpu_vram_mgr.h"
-> +
->   /* state back for walking over vram_mgr and gtt_mgr allocations */
->   struct amdgpu_res_cursor {
->   	uint64_t		start;
->   	uint64_t		size;
->   	uint64_t		remaining;
-> -	struct drm_mm_node	*node;
-> +	void			*node;
-> +	uint32_t		mem_type;
->   };
->   
->   /**
-> @@ -52,27 +55,63 @@ static inline void amdgpu_res_first(struct ttm_resource *res,
->   				    uint64_t start, uint64_t size,
->   				    struct amdgpu_res_cursor *cur)
->   {
-> +	struct drm_buddy_block *block;
-> +	struct list_head *head, *next;
->   	struct drm_mm_node *node;
->   
-> -	if (!res || res->mem_type == TTM_PL_SYSTEM) {
-> -		cur->start = start;
-> -		cur->size = size;
-> -		cur->remaining = size;
-> -		cur->node = NULL;
-> -		WARN_ON(res && start + size > res->num_pages << PAGE_SHIFT);
-> -		return;
-> -	}
-> +	if (!res)
-> +		goto fallback;
->   
->   	BUG_ON(start + size > res->num_pages << PAGE_SHIFT);
->   
-> -	node = to_ttm_range_mgr_node(res)->mm_nodes;
-> -	while (start >= node->size << PAGE_SHIFT)
-> -		start -= node++->size << PAGE_SHIFT;
-> +	cur->mem_type = res->mem_type;
-> +
-> +	switch (cur->mem_type) {
-> +	case TTM_PL_VRAM:
-> +		head = &to_amdgpu_vram_mgr_node(res)->blocks;
-> +
-> +		block = list_first_entry_or_null(head,
-> +						 struct drm_buddy_block,
-> +						 link);
-> +		if (!block)
-> +			goto fallback;
-> +
-> +		while (start >= amdgpu_node_size(block)) {
-> +			start -= amdgpu_node_size(block);
-> +
-> +			next = block->link.next;
-> +			if (next != head)
-> +				block = list_entry(next, struct drm_buddy_block, link);
-> +		}
-> +
-> +		cur->start = amdgpu_node_start(block) + start;
-> +		cur->size = min(amdgpu_node_size(block) - start, size);
-> +		cur->remaining = size;
-> +		cur->node = block;
-> +		break;
-> +	case TTM_PL_TT:
-> +		node = to_ttm_range_mgr_node(res)->mm_nodes;
-> +		while (start >= node->size << PAGE_SHIFT)
-> +			start -= node++->size << PAGE_SHIFT;
-> +
-> +		cur->start = (node->start << PAGE_SHIFT) + start;
-> +		cur->size = min((node->size << PAGE_SHIFT) - start, size);
-> +		cur->remaining = size;
-> +		cur->node = node;
-> +		break;
-> +	default:
-> +		goto fallback;
-> +	}
->   
-> -	cur->start = (node->start << PAGE_SHIFT) + start;
-> -	cur->size = min((node->size << PAGE_SHIFT) - start, size);
-> +	return;
-> +
-> +fallback:
-> +	cur->start = start;
-> +	cur->size = size;
->   	cur->remaining = size;
-> -	cur->node = node;
-> +	cur->node = NULL;
-> +	WARN_ON(res && start + size > res->num_pages << PAGE_SHIFT);
-> +	return;
->   }
->   
->   /**
-> @@ -85,7 +124,9 @@ static inline void amdgpu_res_first(struct ttm_resource *res,
->    */
->   static inline void amdgpu_res_next(struct amdgpu_res_cursor *cur, uint64_t size)
->   {
-> -	struct drm_mm_node *node = cur->node;
-> +	struct drm_buddy_block *block;
-> +	struct drm_mm_node *node;
-> +	struct list_head *next;
->   
->   	BUG_ON(size > cur->remaining);
->   
-> @@ -99,9 +140,27 @@ static inline void amdgpu_res_next(struct amdgpu_res_cursor *cur, uint64_t size)
->   		return;
->   	}
->   
-> -	cur->node = ++node;
-> -	cur->start = node->start << PAGE_SHIFT;
-> -	cur->size = min(node->size << PAGE_SHIFT, cur->remaining);
-> +	switch (cur->mem_type) {
-> +	case TTM_PL_VRAM:
-> +		block = cur->node;
-> +
-> +		next = block->link.next;
-> +		block = list_entry(next, struct drm_buddy_block, link);
-> +
-> +		cur->node = block;
-> +		cur->start = amdgpu_node_start(block);
-> +		cur->size = min(amdgpu_node_size(block), cur->remaining);
-> +		break;
-> +	case TTM_PL_TT:
-> +		node = cur->node;
-> +
-> +		cur->node = ++node;
-> +		cur->start = node->start << PAGE_SHIFT;
-> +		cur->size = min(node->size << PAGE_SHIFT, cur->remaining);
-> +		break;
-> +	default:
-> +		return;
-> +	}
->   }
->   
->   #endif
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
-> index 9120ae80ef52..6a70818039dd 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
-> @@ -26,6 +26,7 @@
->   
->   #include <linux/dma-direction.h>
->   #include <drm/gpu_scheduler.h>
-> +#include "amdgpu_vram_mgr.h"
->   #include "amdgpu.h"
->   
->   #define AMDGPU_PL_GDS		(TTM_PL_PRIV + 0)
-> @@ -38,15 +39,6 @@
->   
->   #define AMDGPU_POISON	0xd0bed0be
->   
-> -struct amdgpu_vram_mgr {
-> -	struct ttm_resource_manager manager;
-> -	struct drm_mm mm;
-> -	spinlock_t lock;
-> -	struct list_head reservations_pending;
-> -	struct list_head reserved_pages;
-> -	atomic64_t vis_usage;
-> -};
+> -		max_freq = (IS_GEN9_LP(i915) ? rp_state_cap >> 0 :
+> -			    rp_state_cap >> 16) & 0xff;
+> -		max_freq *= (IS_GEN9_BC(i915) ||
+> -			     GRAPHICS_VER(i915) >= 11 ? GEN9_FREQ_SCALER : 1);
+>   		drm_printf(p, "Lowest (RPN) frequency: %dMHz\n",
+> -			   intel_gpu_freq(rps, max_freq));
 > -
->   struct amdgpu_gtt_mgr {
->   	struct ttm_resource_manager manager;
->   	struct drm_mm mm;
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
-> index 0a7611648573..41fb7e6a104b 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
-> @@ -32,10 +32,18 @@
->   #include "atom.h"
+> -		max_freq = (rp_state_cap & 0xff00) >> 8;
+> -		max_freq *= (IS_GEN9_BC(i915) ||
+> -			     GRAPHICS_VER(i915) >= 11 ? GEN9_FREQ_SCALER : 1);
+> +			   intel_gpu_freq(rps, caps.min_freq));
+>   		drm_printf(p, "Nominal (RP1) frequency: %dMHz\n",
+> -			   intel_gpu_freq(rps, max_freq));
+> -
+> -		max_freq = (IS_GEN9_LP(i915) ? rp_state_cap >> 16 :
+> -			    rp_state_cap >> 0) & 0xff;
+> -		max_freq *= (IS_GEN9_BC(i915) ||
+> -			     GRAPHICS_VER(i915) >= 11 ? GEN9_FREQ_SCALER : 1);
+> +			   intel_gpu_freq(rps, caps.rp1_freq));
+>   		drm_printf(p, "Max non-overclocked (RP0) frequency: %dMHz\n",
+> -			   intel_gpu_freq(rps, max_freq));
+> +			   intel_gpu_freq(rps, caps.rp0_freq));
+>   		drm_printf(p, "Max overclocked frequency: %dMHz\n",
+>   			   intel_gpu_freq(rps, rps->max_freq));
 >   
->   struct amdgpu_vram_reservation {
-> +	u64 start;
-> +	u64 size;
-> +	struct list_head block;
->   	struct list_head node;
-> -	struct drm_mm_node mm_node;
->   };
+> diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
+> index 6c9fdf7906c5..4528da9db590 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_rps.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_rps.c
+> @@ -1070,23 +1070,59 @@ int intel_rps_set(struct intel_rps *rps, u8 val)
+>   	return 0;
+>   }
 >   
-> +static inline struct drm_buddy_block *
-> +amdgpu_vram_mgr_first_block(struct list_head *list)
-> +{
-> +	return list_first_entry_or_null(list, struct drm_buddy_block, link);
+> -static void gen6_rps_init(struct intel_rps *rps)
+> +static u32 intel_rps_read_state_cap(struct intel_rps *rps)
+>   {
+>   	struct drm_i915_private *i915 = rps_to_i915(rps);
+> -	u32 rp_state_cap = intel_rps_read_state_cap(rps);
+> +	struct intel_uncore *uncore = rps_to_uncore(rps);
+>   
+> -	/* All of these values are in units of 50MHz */
+> +	if (IS_XEHPSDV(i915))
+> +		return intel_uncore_read(uncore, XEHPSDV_RP_STATE_CAP);
+> +	else if (IS_GEN9_LP(i915))
+> +		return intel_uncore_read(uncore, BXT_RP_STATE_CAP);
+> +	else
+> +		return intel_uncore_read(uncore, GEN6_RP_STATE_CAP);
 > +}
 > +
->   static inline struct amdgpu_vram_mgr *
->   to_vram_mgr(struct ttm_resource_manager *man)
->   {
-> @@ -194,10 +202,10 @@ const struct attribute_group amdgpu_vram_mgr_attr_group = {
->    * Calculate how many bytes of the MM node are inside visible VRAM
->    */
->   static u64 amdgpu_vram_mgr_vis_size(struct amdgpu_device *adev,
-> -				    struct drm_mm_node *node)
-> +				    struct drm_buddy_block *block)
->   {
-> -	uint64_t start = node->start << PAGE_SHIFT;
-> -	uint64_t end = (node->size + node->start) << PAGE_SHIFT;
-> +	u64 start = amdgpu_node_start(block);
-> +	u64 end = start + amdgpu_node_size(block);
->   
->   	if (start >= adev->gmc.visible_vram_size)
->   		return 0;
-> @@ -218,9 +226,9 @@ u64 amdgpu_vram_mgr_bo_visible_size(struct amdgpu_bo *bo)
->   {
->   	struct amdgpu_device *adev = amdgpu_ttm_adev(bo->tbo.bdev);
->   	struct ttm_resource *res = bo->tbo.resource;
-> -	unsigned pages = res->num_pages;
-> -	struct drm_mm_node *mm;
-> -	u64 usage;
-> +	struct amdgpu_vram_mgr_node *node = to_amdgpu_vram_mgr_node(res);
-> +	struct drm_buddy_block *block;
-> +	u64 usage = 0;
->   
->   	if (amdgpu_gmc_vram_full_visible(&adev->gmc))
->   		return amdgpu_bo_size(bo);
-> @@ -228,9 +236,8 @@ u64 amdgpu_vram_mgr_bo_visible_size(struct amdgpu_bo *bo)
->   	if (res->start >= adev->gmc.visible_vram_size >> PAGE_SHIFT)
->   		return 0;
->   
-> -	mm = &container_of(res, struct ttm_range_mgr_node, base)->mm_nodes[0];
-> -	for (usage = 0; pages; pages -= mm->size, mm++)
-> -		usage += amdgpu_vram_mgr_vis_size(adev, mm);
-> +	list_for_each_entry(block, &node->blocks, link)
-> +		usage += amdgpu_vram_mgr_vis_size(adev, block);
->   
->   	return usage;
->   }
-> @@ -240,21 +247,28 @@ static void amdgpu_vram_mgr_do_reserve(struct ttm_resource_manager *man)
->   {
->   	struct amdgpu_vram_mgr *mgr = to_vram_mgr(man);
->   	struct amdgpu_device *adev = to_amdgpu_device(mgr);
-> -	struct drm_mm *mm = &mgr->mm;
-> +	struct drm_buddy *mm = &mgr->mm;
->   	struct amdgpu_vram_reservation *rsv, *temp;
-> +	struct drm_buddy_block *block;
->   	uint64_t vis_usage;
->   
->   	list_for_each_entry_safe(rsv, temp, &mgr->reservations_pending, node) {
-> -		if (drm_mm_reserve_node(mm, &rsv->mm_node))
-> +		if (drm_buddy_alloc_blocks(mm, rsv->start, rsv->start + rsv->size,
-> +					   rsv->size, mm->chunk_size, &rsv->block,
-> +					   DRM_BUDDY_RANGE_ALLOCATION))
-> +			continue;
+> +/* "Caps" frequencies should be converted to MHz using intel_gpu_freq() */
+> +void intel_rps_get_freq_caps(struct intel_rps *rps, struct intel_rps_freq_caps *capSis)
+Since this function is covering gen6 and above it would be good to 
+rename it as gen6_rps_get_freq_caps.
+
+Thanks,
+Badal
+> +{
+> +	struct drm_i915_private *i915 = rps_to_i915(rps);
+> +	u32 rp_state_cap;
 > +
-> +		block = amdgpu_vram_mgr_first_block(&rsv->block);
-> +		if (!block)
->   			continue;
+> +	rp_state_cap = intel_rps_read_state_cap(rps);
 >   
->   		dev_dbg(adev->dev, "Reservation 0x%llx - %lld, Succeeded\n",
-> -			rsv->mm_node.start, rsv->mm_node.size);
-> +			rsv->start, rsv->size);
->   
-> -		vis_usage = amdgpu_vram_mgr_vis_size(adev, &rsv->mm_node);
-> +		vis_usage = amdgpu_vram_mgr_vis_size(adev, block);
->   		atomic64_add(vis_usage, &mgr->vis_usage);
->   		spin_lock(&man->bdev->lru_lock);
-> -		man->usage += rsv->mm_node.size << PAGE_SHIFT;
-> +		man->usage += rsv->size;
->   		spin_unlock(&man->bdev->lru_lock);
->   		list_move(&rsv->node, &mgr->reserved_pages);
->   	}
-> @@ -279,13 +293,15 @@ int amdgpu_vram_mgr_reserve_range(struct amdgpu_vram_mgr *mgr,
->   		return -ENOMEM;
->   
->   	INIT_LIST_HEAD(&rsv->node);
-> -	rsv->mm_node.start = start >> PAGE_SHIFT;
-> -	rsv->mm_node.size = size >> PAGE_SHIFT;
-> +	INIT_LIST_HEAD(&rsv->block);
->   
-> -	spin_lock(&mgr->lock);
-> +	rsv->start = start;
-> +	rsv->size = size;
+>   	/* static values from HW: RP0 > RP1 > RPn (min_freq) */
+>   	if (IS_GEN9_LP(i915)) {
+> -		rps->rp0_freq = (rp_state_cap >> 16) & 0xff;
+> -		rps->rp1_freq = (rp_state_cap >>  8) & 0xff;
+> -		rps->min_freq = (rp_state_cap >>  0) & 0xff;
+> +		caps->rp0_freq = (rp_state_cap >> 16) & 0xff;
+> +		caps->rp1_freq = (rp_state_cap >>  8) & 0xff;
+> +		caps->min_freq = (rp_state_cap >>  0) & 0xff;
+>   	} else {
+> -		rps->rp0_freq = (rp_state_cap >>  0) & 0xff;
+> -		rps->rp1_freq = (rp_state_cap >>  8) & 0xff;
+> -		rps->min_freq = (rp_state_cap >> 16) & 0xff;
+> +		caps->rp0_freq = (rp_state_cap >>  0) & 0xff;
+> +		caps->rp1_freq = (rp_state_cap >>  8) & 0xff;
+> +		caps->min_freq = (rp_state_cap >> 16) & 0xff;
+> +	}
 > +
-> +	mutex_lock(&mgr->lock);
->   	list_add_tail(&rsv->node, &mgr->reservations_pending);
->   	amdgpu_vram_mgr_do_reserve(&mgr->manager);
-> -	spin_unlock(&mgr->lock);
-> +	mutex_unlock(&mgr->lock);
->   
->   	return 0;
->   }
-> @@ -307,19 +323,19 @@ int amdgpu_vram_mgr_query_page_status(struct amdgpu_vram_mgr *mgr,
->   	struct amdgpu_vram_reservation *rsv;
->   	int ret;
->   
-> -	spin_lock(&mgr->lock);
-> +	mutex_lock(&mgr->lock);
->   
->   	list_for_each_entry(rsv, &mgr->reservations_pending, node) {
-> -		if ((rsv->mm_node.start <= start) &&
-> -		    (start < (rsv->mm_node.start + rsv->mm_node.size))) {
-> +		if (rsv->start <= start &&
-> +		    (start < (rsv->start + rsv->size))) {
->   			ret = -EBUSY;
->   			goto out;
->   		}
+> +	if (IS_GEN9_BC(i915) || GRAPHICS_VER(i915) >= 11) {
+> +		/*
+> +		 * In this case rp_state_cap register reports frequencies in
+> +		 * units of 50 MHz. Convert these to the actual "hw unit", i.e.
+> +		 * units of 16.67 MHz
+> +		 */
+> +		caps->rp0_freq *= GEN9_FREQ_SCALER;
+> +		caps->rp1_freq *= GEN9_FREQ_SCALER;
+> +		caps->min_freq *= GEN9_FREQ_SCALER;
 >   	}
+> +}
+> +
+> +static void gen6_rps_init(struct intel_rps *rps)
+> +{
+> +	struct drm_i915_private *i915 = rps_to_i915(rps);
+> +	struct intel_rps_freq_caps caps;
+> +
+> +	intel_rps_get_freq_caps(rps, &caps);
+> +	rps->rp0_freq = caps.rp0_freq;
+> +	rps->rp1_freq = caps.rp1_freq;
+> +	rps->min_freq = caps.min_freq;
 >   
->   	list_for_each_entry(rsv, &mgr->reserved_pages, node) {
-> -		if ((rsv->mm_node.start <= start) &&
-> -		    (start < (rsv->mm_node.start + rsv->mm_node.size))) {
-> +		if (rsv->start <= start &&
-> +		    (start < (rsv->start + rsv->size))) {
->   			ret = 0;
->   			goto out;
->   		}
-> @@ -327,32 +343,10 @@ int amdgpu_vram_mgr_query_page_status(struct amdgpu_vram_mgr *mgr,
+>   	/* hw_max = RP0 until we check for overclocking */
+>   	rps->max_freq = rps->rp0_freq;
+> @@ -1095,26 +1131,18 @@ static void gen6_rps_init(struct intel_rps *rps)
+>   	if (IS_HASWELL(i915) || IS_BROADWELL(i915) ||
+>   	    IS_GEN9_BC(i915) || GRAPHICS_VER(i915) >= 11) {
+>   		u32 ddcc_status = 0;
+> +		u32 mult = 1;
 >   
->   	ret = -ENOENT;
->   out:
-> -	spin_unlock(&mgr->lock);
-> +	mutex_unlock(&mgr->lock);
->   	return ret;
->   }
->   
-> -/**
-> - * amdgpu_vram_mgr_virt_start - update virtual start address
-> - *
-> - * @mem: ttm_resource to update
-> - * @node: just allocated node
-> - *
-> - * Calculate a virtual BO start address to easily check if everything is CPU
-> - * accessible.
-> - */
-> -static void amdgpu_vram_mgr_virt_start(struct ttm_resource *mem,
-> -				       struct drm_mm_node *node)
-> -{
-> -	unsigned long start;
+> +		if (IS_GEN9_BC(i915) || GRAPHICS_VER(i915) >= 11)
+> +			mult = GEN9_FREQ_SCALER;
+>   		if (snb_pcode_read(i915, HSW_PCODE_DYNAMIC_DUTY_CYCLE_CONTROL,
+>   				   &ddcc_status, NULL) == 0)
+>   			rps->efficient_freq =
+> -				clamp_t(u8,
+> -					(ddcc_status >> 8) & 0xff,
+> +				clamp_t(u32,
+> +					((ddcc_status >> 8) & 0xff) * mult,
+>   					rps->min_freq,
+>   					rps->max_freq);
+>   	}
 > -
-> -	start = node->start + node->size;
-> -	if (start > mem->num_pages)
-> -		start -= mem->num_pages;
+> -	if (IS_GEN9_BC(i915) || GRAPHICS_VER(i915) >= 11) {
+> -		/* Store the frequency values in 16.66 MHZ units, which is
+> -		 * the natural hardware unit for SKL
+> -		 */
+> -		rps->rp0_freq *= GEN9_FREQ_SCALER;
+> -		rps->rp1_freq *= GEN9_FREQ_SCALER;
+> -		rps->min_freq *= GEN9_FREQ_SCALER;
+> -		rps->max_freq *= GEN9_FREQ_SCALER;
+> -		rps->efficient_freq *= GEN9_FREQ_SCALER;
+> -	}
+>   }
+>   
+>   static bool rps_reset(struct intel_rps *rps)
+> @@ -2219,19 +2247,6 @@ int intel_rps_set_min_frequency(struct intel_rps *rps, u32 val)
+>   		return set_min_freq(rps, val);
+>   }
+>   
+> -u32 intel_rps_read_state_cap(struct intel_rps *rps)
+> -{
+> -	struct drm_i915_private *i915 = rps_to_i915(rps);
+> -	struct intel_uncore *uncore = rps_to_uncore(rps);
+> -
+> -	if (IS_XEHPSDV(i915))
+> -		return intel_uncore_read(uncore, XEHPSDV_RP_STATE_CAP);
+> -	else if (IS_GEN9_LP(i915))
+> -		return intel_uncore_read(uncore, BXT_RP_STATE_CAP);
 > -	else
-> -		start = 0;
-> -	mem->start = max(mem->start, start);
+> -		return intel_uncore_read(uncore, GEN6_RP_STATE_CAP);
 > -}
 > -
->   /**
->    * amdgpu_vram_mgr_new - allocate new ranges
->    *
-> @@ -368,13 +362,14 @@ static int amdgpu_vram_mgr_new(struct ttm_resource_manager *man,
->   			       const struct ttm_place *place,
->   			       struct ttm_resource **res)
+>   static void intel_rps_set_manual(struct intel_rps *rps, bool enable)
 >   {
-> -	unsigned long lpfn, num_nodes, pages_per_node, pages_left, pages;
-> +	unsigned long lpfn, pages_per_node, pages_left, pages;
->   	struct amdgpu_vram_mgr *mgr = to_vram_mgr(man);
->   	struct amdgpu_device *adev = to_amdgpu_device(mgr);
-> -	uint64_t vis_usage = 0, mem_bytes, max_bytes;
-> -	struct ttm_range_mgr_node *node;
-> -	struct drm_mm *mm = &mgr->mm;
-> -	enum drm_mm_insert_mode mode;
-> +	u64 vis_usage = 0, max_bytes, min_page_size;
-> +	struct amdgpu_vram_mgr_node *node;
-> +	struct drm_buddy *mm = &mgr->mm;
-> +	struct drm_buddy_block *block;
-> +	bool is_contiguous = 0;
->   	unsigned i;
->   	int r;
+>   	struct intel_uncore *uncore = rps_to_uncore(rps);
+> @@ -2244,18 +2259,18 @@ static void intel_rps_set_manual(struct intel_rps *rps, bool enable)
+>   void intel_rps_raise_unslice(struct intel_rps *rps)
+>   {
+>   	struct intel_uncore *uncore = rps_to_uncore(rps);
+> -	u32 rp0_unslice_req;
 >   
-> @@ -382,14 +377,15 @@ static int amdgpu_vram_mgr_new(struct ttm_resource_manager *man,
->   	if (!lpfn)
->   		lpfn = man->size >> PAGE_SHIFT;
+>   	mutex_lock(&rps->lock);
 >   
-> +	if (place->flags & TTM_PL_FLAG_CONTIGUOUS)
-> +		is_contiguous = 1;
+>   	if (rps_uses_slpc(rps)) {
+>   		/* RP limits have not been initialized yet for SLPC path */
+> -		rp0_unslice_req = ((intel_rps_read_state_cap(rps) >> 0)
+> -				   & 0xff) * GEN9_FREQ_SCALER;
+> +		struct intel_rps_freq_caps caps;
 > +
->   	max_bytes = adev->gmc.mc_vram_size;
->   	if (tbo->type != ttm_bo_type_kernel)
->   		max_bytes -= AMDGPU_VM_RESERVED_VRAM;
+> +		intel_rps_get_freq_caps(rps, &caps);
 >   
-> -	mem_bytes = tbo->base.size;
->   	if (place->flags & TTM_PL_FLAG_CONTIGUOUS) {
->   		pages_per_node = ~0ul;
-> -		num_nodes = 1;
->   	} else {
->   #ifdef CONFIG_TRANSPARENT_HUGEPAGE
->   		pages_per_node = HPAGE_PMD_NR;
-> @@ -399,11 +395,9 @@ static int amdgpu_vram_mgr_new(struct ttm_resource_manager *man,
->   #endif
->   		pages_per_node = max_t(uint32_t, pages_per_node,
->   				       tbo->page_alignment);
-> -		num_nodes = DIV_ROUND_UP_ULL(PFN_UP(mem_bytes), pages_per_node);
->   	}
+>   		intel_rps_set_manual(rps, true);
+>   		intel_uncore_write(uncore, GEN6_RPNSWREQ,
+> -				   ((rp0_unslice_req <<
+> +				   ((caps.rp0_freq <<
+>   				   GEN9_SW_REQ_UNSLICE_RATIO_SHIFT) |
+>   				   GEN9_IGNORE_SLICE_RATIO));
+>   		intel_rps_set_manual(rps, false);
+> @@ -2269,18 +2284,18 @@ void intel_rps_raise_unslice(struct intel_rps *rps)
+>   void intel_rps_lower_unslice(struct intel_rps *rps)
+>   {
+>   	struct intel_uncore *uncore = rps_to_uncore(rps);
+> -	u32 rpn_unslice_req;
 >   
-> -	node = kvmalloc(struct_size(node, mm_nodes, num_nodes),
-> -			GFP_KERNEL | __GFP_ZERO);
-> +	node = kzalloc(sizeof(*node), GFP_KERNEL);
->   	if (!node)
->   		return -ENOMEM;
+>   	mutex_lock(&rps->lock);
 >   
-> @@ -415,48 +409,86 @@ static int amdgpu_vram_mgr_new(struct ttm_resource_manager *man,
->   		goto error_fini;
->   	}
->   
-> -	mode = DRM_MM_INSERT_BEST;
-> +	INIT_LIST_HEAD(&node->blocks);
+>   	if (rps_uses_slpc(rps)) {
+>   		/* RP limits have not been initialized yet for SLPC path */
+> -		rpn_unslice_req = ((intel_rps_read_state_cap(rps) >> 16)
+> -				   & 0xff) * GEN9_FREQ_SCALER;
+> +		struct intel_rps_freq_caps caps;
 > +
->   	if (place->flags & TTM_PL_FLAG_TOPDOWN)
-> -		mode = DRM_MM_INSERT_HIGH;
-> +		node->flags |= DRM_BUDDY_TOPDOWN_ALLOCATION;
+> +		intel_rps_get_freq_caps(rps, &caps);
 >   
-> -	pages_left = node->base.num_pages;
-> +	if (place->fpfn || lpfn != man->size >> PAGE_SHIFT)
-> +		/* Allocate blocks in desired range */
-> +		node->flags |= DRM_BUDDY_RANGE_ALLOCATION;
+>   		intel_rps_set_manual(rps, true);
+>   		intel_uncore_write(uncore, GEN6_RPNSWREQ,
+> -				   ((rpn_unslice_req <<
+> +				   ((caps.min_freq <<
+>   				   GEN9_SW_REQ_UNSLICE_RATIO_SHIFT) |
+>   				   GEN9_IGNORE_SLICE_RATIO));
+>   		intel_rps_set_manual(rps, false);
+> diff --git a/drivers/gpu/drm/i915/gt/intel_rps.h b/drivers/gpu/drm/i915/gt/intel_rps.h
+> index ba1ed9f7ecda..529774c55eb6 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_rps.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_rps.h
+> @@ -45,7 +45,7 @@ u32 intel_rps_get_rp1_frequency(struct intel_rps *rps);
+>   u32 intel_rps_get_rpn_frequency(struct intel_rps *rps);
+>   u32 intel_rps_read_punit_req(struct intel_rps *rps);
+>   u32 intel_rps_read_punit_req_frequency(struct intel_rps *rps);
+> -u32 intel_rps_read_state_cap(struct intel_rps *rps);
+> +void intel_rps_get_freq_caps(struct intel_rps *rps, struct intel_rps_freq_caps *caps);
+>   void intel_rps_raise_unslice(struct intel_rps *rps);
+>   void intel_rps_lower_unslice(struct intel_rps *rps);
 >   
-> -	/* Limit maximum size to 2GB due to SG table limitations */
-> -	pages = min(pages_left, 2UL << (30 - PAGE_SHIFT));
-> +	BUG_ON(!node->base.num_pages);
-> +	pages_left = node->base.num_pages;
+> diff --git a/drivers/gpu/drm/i915/gt/intel_rps_types.h b/drivers/gpu/drm/i915/gt/intel_rps_types.h
+> index 3941d8551f52..f755f69662c4 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_rps_types.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_rps_types.h
+> @@ -37,6 +37,16 @@ enum {
+>   	INTEL_RPS_TIMER,
+>   };
 >   
->   	i = 0;
-> -	spin_lock(&mgr->lock);
->   	while (pages_left) {
-> -		uint32_t alignment = tbo->page_alignment;
-> +		if (tbo->page_alignment)
-> +			min_page_size = tbo->page_alignment << PAGE_SHIFT;
-> +		else
-> +			min_page_size = mgr->default_page_size;
+> +/*
+> + * Freq caps exposed by HW, values are in "hw units" and intel_gpu_freq()
+> + * should be used to convert to MHz
+> +*/
+> +struct intel_rps_freq_caps {
+> +	u8 rp0_freq;		/* non-overclocked max frequency */
+> +	u8 rp1_freq;		/* "less than" RP0 power/freqency */
+> +	u8 min_freq;		/* aka RPn, minimum frequency */
+> +};
 > +
-> +		/* Limit maximum size to 2GB due to SG table limitations */
-> +		pages = min(pages_left, 2UL << (30 - PAGE_SHIFT));
+>   struct intel_rps {
+>   	struct mutex lock; /* protects enabling and the worker */
 >   
->   		if (pages >= pages_per_node)
-> -			alignment = pages_per_node;
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
+> index 9f032c65a488..aec5e986cb13 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
+> @@ -582,16 +582,12 @@ static int slpc_use_fused_rp0(struct intel_guc_slpc *slpc)
+>   static void slpc_get_rp_values(struct intel_guc_slpc *slpc)
+>   {
+>   	struct intel_rps *rps = &slpc_to_gt(slpc)->rps;
+> -	u32 rp_state_cap;
+> +	struct intel_rps_freq_caps caps;
+>   
+> -	rp_state_cap = intel_rps_read_state_cap(rps);
 > -
-> -		r = drm_mm_insert_node_in_range(mm, &node->mm_nodes[i], pages,
-> -						alignment, 0, place->fpfn,
-> -						lpfn, mode);
-> -		if (unlikely(r)) {
-> -			if (pages > pages_per_node) {
-> -				if (is_power_of_2(pages))
-> -					pages = pages / 2;
-> -				else
-> -					pages = rounddown_pow_of_two(pages);
-> -				continue;
-> -			}
-> -			goto error_free;
-> +			min_page_size = pages_per_node << PAGE_SHIFT;
-> +
-> +		if (!is_contiguous && !IS_ALIGNED(pages, min_page_size >> PAGE_SHIFT))
-> +			is_contiguous = 1;
-> +
-> +		if (is_contiguous) {
-> +			pages = roundup_pow_of_two(pages);
-> +			min_page_size = pages << PAGE_SHIFT;
-> +
-> +			if (pages > lpfn)
-> +				lpfn = pages;
->   		}
+> -	slpc->rp0_freq = REG_FIELD_GET(RP0_CAP_MASK, rp_state_cap) *
+> -					GT_FREQUENCY_MULTIPLIER;
+> -	slpc->rp1_freq = REG_FIELD_GET(RP1_CAP_MASK, rp_state_cap) *
+> -					GT_FREQUENCY_MULTIPLIER;
+> -	slpc->min_freq = REG_FIELD_GET(RPN_CAP_MASK, rp_state_cap) *
+> -					GT_FREQUENCY_MULTIPLIER;
+> +	intel_rps_get_freq_caps(rps, &caps);
+> +	slpc->rp0_freq = intel_gpu_freq(rps, caps.rp0_freq);
+> +	slpc->rp1_freq = intel_gpu_freq(rps, caps.rp1_freq);
+> +	slpc->min_freq = intel_gpu_freq(rps, caps.min_freq);
 >   
-> -		vis_usage += amdgpu_vram_mgr_vis_size(adev, &node->mm_nodes[i]);
-> -		amdgpu_vram_mgr_virt_start(&node->base, &node->mm_nodes[i]);
-> -		pages_left -= pages;
-> +		BUG_ON(min_page_size < mm->chunk_size);
-> +
-> +		mutex_lock(&mgr->lock);
-> +		r = drm_buddy_alloc_blocks(mm, (u64)place->fpfn << PAGE_SHIFT,
-> +					   (u64)lpfn << PAGE_SHIFT,
-> +					   (u64)pages << PAGE_SHIFT,
-> +					   min_page_size,
-> +					   &node->blocks,
-> +					   node->flags);
-> +		mutex_unlock(&mgr->lock);
-> +		if (unlikely(r))
-> +			goto error_free_blocks;
-> +
->   		++i;
->   
->   		if (pages > pages_left)
-> -			pages = pages_left;
-> +			pages_left = 0;
-> +		else
-> +			pages_left -= pages;
->   	}
-> -	spin_unlock(&mgr->lock);
->   
-> -	if (i == 1)
-> +	/* Free unused pages for contiguous allocation */
-> +	if (is_contiguous) {
-> +		u64 actual_size = (u64)node->base.num_pages << PAGE_SHIFT;
-> +
-> +		mutex_lock(&mgr->lock);
-> +		drm_buddy_block_trim(mm,
-> +				     actual_size,
-> +				     &node->blocks);
-> +		mutex_unlock(&mgr->lock);
-> +	}
-> +
-> +	list_for_each_entry(block, &node->blocks, link)
-> +		vis_usage += amdgpu_vram_mgr_vis_size(adev, block);
-> +
-> +	block = amdgpu_vram_mgr_first_block(&node->blocks);
-> +	if (!block) {
-> +		r = -EINVAL;
-> +		goto error_fini;
-> +	}
-> +
-> +	node->base.start = amdgpu_node_start(block) >> PAGE_SHIFT;
-> +
-> +	if (i == 1 && is_contiguous)
->   		node->base.placement |= TTM_PL_FLAG_CONTIGUOUS;
->   
->   	if (adev->gmc.xgmi.connected_to_cpu)
-> @@ -468,13 +500,13 @@ static int amdgpu_vram_mgr_new(struct ttm_resource_manager *man,
->   	*res = &node->base;
->   	return 0;
->   
-> -error_free:
-> -	while (i--)
-> -		drm_mm_remove_node(&node->mm_nodes[i]);
-> -	spin_unlock(&mgr->lock);
-> +error_free_blocks:
-> +	mutex_lock(&mgr->lock);
-> +	drm_buddy_free_list(mm, &node->blocks);
-> +	mutex_unlock(&mgr->lock);
->   error_fini:
->   	ttm_resource_fini(man, &node->base);
-> -	kvfree(node);
-> +	kfree(node);
->   
->   	return r;
->   }
-> @@ -490,27 +522,26 @@ static int amdgpu_vram_mgr_new(struct ttm_resource_manager *man,
->   static void amdgpu_vram_mgr_del(struct ttm_resource_manager *man,
->   				struct ttm_resource *res)
->   {
-> -	struct ttm_range_mgr_node *node = to_ttm_range_mgr_node(res);
-> +	struct amdgpu_vram_mgr_node *node = to_amdgpu_vram_mgr_node(res);
->   	struct amdgpu_vram_mgr *mgr = to_vram_mgr(man);
->   	struct amdgpu_device *adev = to_amdgpu_device(mgr);
-> +	struct drm_buddy *mm = &mgr->mm;
-> +	struct drm_buddy_block *block;
->   	uint64_t vis_usage = 0;
-> -	unsigned i, pages;
->   
-> -	spin_lock(&mgr->lock);
-> -	for (i = 0, pages = res->num_pages; pages;
-> -	     pages -= node->mm_nodes[i].size, ++i) {
-> -		struct drm_mm_node *mm = &node->mm_nodes[i];
-> +	mutex_lock(&mgr->lock);
-> +	list_for_each_entry(block, &node->blocks, link)
-> +		vis_usage += amdgpu_vram_mgr_vis_size(adev, block);
->   
-> -		drm_mm_remove_node(mm);
-> -		vis_usage += amdgpu_vram_mgr_vis_size(adev, mm);
-> -	}
->   	amdgpu_vram_mgr_do_reserve(man);
-> -	spin_unlock(&mgr->lock);
-> +
-> +	drm_buddy_free_list(mm, &node->blocks);
-> +	mutex_unlock(&mgr->lock);
->   
->   	atomic64_sub(vis_usage, &mgr->vis_usage);
->   
->   	ttm_resource_fini(man, res);
-> -	kvfree(node);
-> +	kfree(node);
->   }
->   
->   /**
-> @@ -648,13 +679,22 @@ static void amdgpu_vram_mgr_debug(struct ttm_resource_manager *man,
->   				  struct drm_printer *printer)
->   {
->   	struct amdgpu_vram_mgr *mgr = to_vram_mgr(man);
-> +	struct drm_buddy *mm = &mgr->mm;
-> +	struct drm_buddy_block *block;
->   
->   	drm_printf(printer, "  vis usage:%llu\n",
->   		   amdgpu_vram_mgr_vis_usage(mgr));
->   
-> -	spin_lock(&mgr->lock);
-> -	drm_mm_print(&mgr->mm, printer);
-> -	spin_unlock(&mgr->lock);
-> +	mutex_lock(&mgr->lock);
-> +	drm_printf(printer, "default_page_size: %lluKiB\n",
-> +		   mgr->default_page_size >> 10);
-> +
-> +	drm_buddy_print(mm, printer);
-> +
-> +	drm_printf(printer, "reserved:\n");
-> +	list_for_each_entry(block, &mgr->reserved_pages, link)
-> +		drm_buddy_block_print(mm, block, printer);
-> +	mutex_unlock(&mgr->lock);
->   }
->   
->   static const struct ttm_resource_manager_func amdgpu_vram_mgr_func = {
-> @@ -674,16 +714,21 @@ int amdgpu_vram_mgr_init(struct amdgpu_device *adev)
->   {
->   	struct amdgpu_vram_mgr *mgr = &adev->mman.vram_mgr;
->   	struct ttm_resource_manager *man = &mgr->manager;
-> +	int err;
->   
->   	ttm_resource_manager_init(man, &adev->mman.bdev,
->   				  adev->gmc.real_vram_size);
->   
->   	man->func = &amdgpu_vram_mgr_func;
->   
-> -	drm_mm_init(&mgr->mm, 0, man->size >> PAGE_SHIFT);
-> -	spin_lock_init(&mgr->lock);
-> +	err = drm_buddy_init(&mgr->mm, man->size, PAGE_SIZE);
-> +	if (err)
-> +		return err;
-> +
-> +	mutex_init(&mgr->lock);
->   	INIT_LIST_HEAD(&mgr->reservations_pending);
->   	INIT_LIST_HEAD(&mgr->reserved_pages);
-> +	mgr->default_page_size = PAGE_SIZE;
->   
->   	ttm_set_driver_manager(&adev->mman.bdev, TTM_PL_VRAM, &mgr->manager);
->   	ttm_resource_manager_set_used(man, true);
-> @@ -711,16 +756,16 @@ void amdgpu_vram_mgr_fini(struct amdgpu_device *adev)
->   	if (ret)
->   		return;
->   
-> -	spin_lock(&mgr->lock);
-> +	mutex_lock(&mgr->lock);
->   	list_for_each_entry_safe(rsv, temp, &mgr->reservations_pending, node)
->   		kfree(rsv);
->   
->   	list_for_each_entry_safe(rsv, temp, &mgr->reserved_pages, node) {
-> -		drm_mm_remove_node(&rsv->mm_node);
-> +		drm_buddy_free_list(&mgr->mm, &rsv->block);
->   		kfree(rsv);
->   	}
-> -	drm_mm_takedown(&mgr->mm);
-> -	spin_unlock(&mgr->lock);
-> +	drm_buddy_fini(&mgr->mm);
-> +	mutex_unlock(&mgr->lock);
->   
->   	ttm_resource_manager_cleanup(man);
->   	ttm_set_driver_manager(&adev->mman.bdev, TTM_PL_VRAM, NULL);
-> 
-> base-commit: a678f97326454b60ffbbde6abf52d23997d71a27
+>   	if (!slpc->boost_freq)
+>   		slpc->boost_freq = slpc->rp0_freq;
