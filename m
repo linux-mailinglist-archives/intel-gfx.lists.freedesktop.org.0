@@ -2,54 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABA444E5575
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Mar 2022 16:40:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B0164E5579
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Mar 2022 16:40:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B29DC10E724;
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADF1B10E722;
 	Wed, 23 Mar 2022 15:40:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com
- [IPv6:2a00:1450:4864:20::62b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C3C1610E5E1;
- Wed, 23 Mar 2022 07:37:15 +0000 (UTC)
-Received: by mail-ej1-x62b.google.com with SMTP id pv16so1154123ejb.0;
- Wed, 23 Mar 2022 00:37:15 -0700 (PDT)
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com
+ [IPv6:2a00:1450:4864:20::32e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D2BE10E5DA;
+ Wed, 23 Mar 2022 07:46:01 +0000 (UTC)
+Received: by mail-wm1-x32e.google.com with SMTP id
+ p184-20020a1c29c1000000b0037f76d8b484so438842wmp.5; 
+ Wed, 23 Mar 2022 00:46:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=message-id:date:mime-version:user-agent:subject:content-language:to
  :cc:references:from:in-reply-to:content-transfer-encoding;
- bh=2ImceWYBoPiqBBOOEytUsJtPdDggUfyLvVXnD8LV884=;
- b=mP58g6OHXBHC/7jwsh6cIx+oywVTLlbeV2mQSwtosLUv/q+bx/WR6osPLJqipFM9Tf
- rG8QUXIv10MTz4Rb2O7JEyjRc7oswiZQFefb6MtvRtsDDGRybzPJHIsog4mCmGlpH74T
- d7GiM+Blt4Gpu6/mC9asEy5T9WhyMdsgJ8BPNx7HZ7oRXU7izskJTrOuSFKYjuWKajil
- 2sc74CdZa2DrX+YB3CkrCycNHcja1HUMPFiMQATwBYOZaEPjcuUUqOC4VwyCZQYqV2bZ
- YwKnIQUbWC4AdPdNfW2f/+MbzWx+skR16Aj6YzMYj/jI3rb5/w9PZkFxKCXsVIxyHlx1
- OGUQ==
+ bh=/tI7zGGt+x41R8KiHPdUoyOyIHkSUkQkSEGje6l4sPc=;
+ b=gvXuyor1r5VScZ8n5Zh4o6Y9gQh6rZJFY1kEFcMtzVxKGQTY/7qwiDdQXNE0aWIwc+
+ jAz5swm1D9WW2q0c8up7KKaqIfSLBwSg+lbXcx3jKfO5zTO6R/OJs/QH/2e0AfDlYrC1
+ Gtc0KY7LKyBwuk8fynX25OKMTXX7EUxVzLM5dhRe8cgjbgEFrpMhNujdBQOZz5Zw42W9
+ nXxDEF/+UZ1IyH4B+/GuRno5S3KKiDlWFGRqdKwsBNVqW/vZoTm1GufSHHwJbpHM+z+R
+ VkS5pPBvNpQCYp8BKUhaCZxBEELX69MQGoG0pBGJoYNmOVHs3QnDhYRm7Ijkd7cw7hD+
+ nxYQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
  :content-language:to:cc:references:from:in-reply-to
  :content-transfer-encoding;
- bh=2ImceWYBoPiqBBOOEytUsJtPdDggUfyLvVXnD8LV884=;
- b=HdIuoVgEbJ35PvKjf4IWOMlU31mD/oA5EaQAgk5g8IXxneDqNPMpWyHah/x/AIOwHP
- 89I6Hs0ngFEHwLDPErCMiFNMD4LgLstJo9vSZIjwsbDoMIQ8jSPCTapmzlk0ANHNd03k
- BikU/4gC/SgIsqtXGbqpcoRpPsHY8RDPUr8YVXtWXh7kNfapI5LScVI0t3cNaUGQkWH1
- Xn4C6wPmokNbNzNP84UGl0KuRaxkZo/7lY5nV/yF8aXr7X0MQVr9tWEb4g4CWQ969+sz
- 2ZPrm46ju6Xnqihw6H7xEY+TVYRABboabZGxzjyfspbfzhlWHKl7/tqLbGwLY34y0nQ4
- LeoA==
-X-Gm-Message-State: AOAM532opn0ro+h5jOnF5x56osAhAzY2ICxcPinaXNYi9ke6Zmu+3w7m
- a8MzSXWfyJvCBtXA3JzPtLo=
-X-Google-Smtp-Source: ABdhPJwlzZ7eGtrjCZN0di1fzv7jPQ4mO24Cf1hi9x4fsimyB7ZWFpZ3TQ7AW2/2pJeiXjgaUZvmzQ==
-X-Received: by 2002:a17:907:7fa2:b0:6d8:2397:42 with SMTP id
- qk34-20020a1709077fa200b006d823970042mr29943989ejc.218.1648021034168; 
- Wed, 23 Mar 2022 00:37:14 -0700 (PDT)
+ bh=/tI7zGGt+x41R8KiHPdUoyOyIHkSUkQkSEGje6l4sPc=;
+ b=zZoQB0ywTipgbsTfJTQeciu11+cgNg8hakVYSblYSHS8pGMHJGgPLKHD8zIb5cdrzm
+ B0lQocI2a1ts9X0rBx1g7uwi42IgBANqWcUFC0ZwI36SVFa1gbOxNM7eHWulNuitQLDw
+ CcLG5b8i7H0Q5jgLF1l0j3VjyQWlALfs6mPTUggbT74wtPWUCZszfHVId79URLc0XZjw
+ kbRI5fatvmAl4hE2LIyJ9bNc5ZiNxcJTGGcWLEOe495o8MxhK4zjL1V7WOrNuv8tmn6y
+ 551G+wYK9Y8DurdXtBDDR5d8TgspiMCaZZHokmi7C8qPiSmXpbW2JrTCsfEBvEbJvIMA
+ sJAQ==
+X-Gm-Message-State: AOAM531Fk3aYOleQ9NmA5zVYDjl+apKtWDrNzeZqs1ddH+524Z2q3V3k
+ ntzrQwmlM2f42wWmf5D4/sI=
+X-Google-Smtp-Source: ABdhPJxFjKMowJE1R5p36CQo58LE9rKLtPs3b7wfECKQIDeNHCjHfeZUw592zFRi0CWBjFNtLQwuew==
+X-Received: by 2002:a05:600c:3b08:b0:38c:c8f1:16ca with SMTP id
+ m8-20020a05600c3b0800b0038cc8f116camr1108644wms.192.1648021559991; 
+ Wed, 23 Mar 2022 00:45:59 -0700 (PDT)
 Received: from [192.168.178.21] (p5b0eab60.dip0.t-ipconnect.de. [91.14.171.96])
  by smtp.gmail.com with ESMTPSA id
- i22-20020a170906251600b006d6d9081f46sm9475570ejb.150.2022.03.23.00.37.12
+ f13-20020a05600c4e8d00b0038c949ef0d5sm3704767wmq.8.2022.03.23.00.45.58
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 23 Mar 2022 00:37:13 -0700 (PDT)
-Message-ID: <c255f3ea-a269-1886-f79a-2d8a38b956b1@gmail.com>
-Date: Wed, 23 Mar 2022 08:37:11 +0100
+ Wed, 23 Mar 2022 00:45:59 -0700 (PDT)
+Message-ID: <72e9b499-f31f-41d3-aee2-130f83115fc1@gmail.com>
+Date: Wed, 23 Mar 2022 08:45:56 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
@@ -57,14 +58,14 @@ Content-Language: en-US
 To: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
  intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  amd-gfx@lists.freedesktop.org
-References: <20220323062552.228429-1-Arunpravin.PaneerSelvam@amd.com>
+References: <20220323073426.228866-1-Arunpravin.PaneerSelvam@amd.com>
 From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-In-Reply-To: <20220323062552.228429-1-Arunpravin.PaneerSelvam@amd.com>
+In-Reply-To: <20220323073426.228866-1-Arunpravin.PaneerSelvam@amd.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Wed, 23 Mar 2022 15:40:20 +0000
-Subject: Re: [Intel-gfx] [PATCH v11] drm/amdgpu: add drm buddy support to
- amdgpu
+Subject: Re: [Intel-gfx] [PATCH v2] drm: add a check to verify the size
+ alignment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,278 +78,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com, matthew.auld@intel.com, christian.koenig@amd.com
+Cc: alexander.deucher@amd.com, pmenzel@molgen.mpg.de, matthew.auld@intel.com,
+ christian.koenig@amd.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Am 23.03.22 um 07:25 schrieb Arunpravin Paneer Selvam:
-> [SNIP]
-> @@ -415,48 +409,86 @@ static int amdgpu_vram_mgr_new(struct ttm_resource_manager *man,
->   		goto error_fini;
->   	}
+Am 23.03.22 um 08:34 schrieb Arunpravin Paneer Selvam:
+> Add a simple check to reject any size not aligned to the
+> min_page_size.
+>
+> handle instances when size is not aligned with the min_page_size.
+> Unigine Heaven has allocation requests for example required pages
+> are 257 and alignment request is 256. To allocate the left over 1
+> page, continues the iteration to find the order value which is 0
+> and when it compares with min_order = 8, triggers the BUG_ON(order
+> < min_order). To avoid this problem, we added a simple check to
+> return -EINVAL if size is not aligned to the min_page_size.
+>
+> v2: Added more details to the commit description
+>
+> Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+> Suggested-by: Matthew Auld <matthew.auld@intel.com>
+> ---
+>   drivers/gpu/drm/drm_buddy.c | 3 +++
+>   1 file changed, 3 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/drm_buddy.c b/drivers/gpu/drm/drm_buddy.c
+> index 72f52f293249..b503c88786b0 100644
+> --- a/drivers/gpu/drm/drm_buddy.c
+> +++ b/drivers/gpu/drm/drm_buddy.c
+> @@ -661,6 +661,9 @@ int drm_buddy_alloc_blocks(struct drm_buddy *mm,
+>   	if (range_overflows(start, size, mm->size))
+>   		return -EINVAL;
 >   
-> -	mode = DRM_MM_INSERT_BEST;
-> +	INIT_LIST_HEAD(&node->blocks);
+> +	if (WARN_ON(!IS_ALIGNED(size, min_page_size)))
+> +		return -EINVAL;
 > +
->   	if (place->flags & TTM_PL_FLAG_TOPDOWN)
-> -		mode = DRM_MM_INSERT_HIGH;
-> +		node->flags |= DRM_BUDDY_TOPDOWN_ALLOCATION;
->   
-> -	pages_left = node->base.num_pages;
-> +	if (place->fpfn || lpfn != man->size >> PAGE_SHIFT)
-> +		/* Allocate blocks in desired range */
-> +		node->flags |= DRM_BUDDY_RANGE_ALLOCATION;
->   
-> -	/* Limit maximum size to 2GB due to SG table limitations */
-> -	pages = min(pages_left, 2UL << (30 - PAGE_SHIFT));
-> +	BUG_ON(!node->base.num_pages);
 
-Please drop this BUG_ON(). This is not something which prevents further 
-data corruption, so the BUG_ON() is not justified.
+I'm not that happy with the handling here.
 
-> +	pages_left = node->base.num_pages;
->   
->   	i = 0;
-> -	spin_lock(&mgr->lock);
->   	while (pages_left) {
-> -		uint32_t alignment = tbo->page_alignment;
-> +		if (tbo->page_alignment)
-> +			min_page_size = tbo->page_alignment << PAGE_SHIFT;
-> +		else
-> +			min_page_size = mgr->default_page_size;
+See a minimum page size larger than the requested size is perfectly 
+valid, it just means that the remaining pages needs to be trimmed.
 
-The handling here looks extremely awkward to me.
-
-min_page_size should be determined outside of the loop, based on 
-default_page_size, alignment and contiguous flag.
-
-Then why do you drop the lock and grab it again inside the loop? And 
-what is "i" actually good for?
-
-> +
-> +		/* Limit maximum size to 2GB due to SG table limitations */
-> +		pages = min(pages_left, 2UL << (30 - PAGE_SHIFT));
->   
->   		if (pages >= pages_per_node)
-> -			alignment = pages_per_node;
-> -
-> -		r = drm_mm_insert_node_in_range(mm, &node->mm_nodes[i], pages,
-> -						alignment, 0, place->fpfn,
-> -						lpfn, mode);
-> -		if (unlikely(r)) {
-> -			if (pages > pages_per_node) {
-> -				if (is_power_of_2(pages))
-> -					pages = pages / 2;
-> -				else
-> -					pages = rounddown_pow_of_two(pages);
-> -				continue;
-> -			}
-> -			goto error_free;
-> +			min_page_size = pages_per_node << PAGE_SHIFT;
-> +
-> +		if (!is_contiguous && !IS_ALIGNED(pages, min_page_size >> PAGE_SHIFT))
-> +			is_contiguous = 1;
-> +
-> +		if (is_contiguous) {
-> +			pages = roundup_pow_of_two(pages);
-> +			min_page_size = pages << PAGE_SHIFT;
-> +
-> +			if (pages > lpfn)
-> +				lpfn = pages;
->   		}
->   
-> -		vis_usage += amdgpu_vram_mgr_vis_size(adev, &node->mm_nodes[i]);
-> -		amdgpu_vram_mgr_virt_start(&node->base, &node->mm_nodes[i]);
-> -		pages_left -= pages;
-> +		BUG_ON(min_page_size < mm->chunk_size);
-> +
-> +		mutex_lock(&mgr->lock);
-> +		r = drm_buddy_alloc_blocks(mm, (u64)place->fpfn << PAGE_SHIFT,
-> +					   (u64)lpfn << PAGE_SHIFT,
-> +					   (u64)pages << PAGE_SHIFT,
-> +					   min_page_size,
-> +					   &node->blocks,
-> +					   node->flags);
-> +		mutex_unlock(&mgr->lock);
-> +		if (unlikely(r))
-> +			goto error_free_blocks;
-> +
->   		++i;
->   
->   		if (pages > pages_left)
-> -			pages = pages_left;
-> +			pages_left = 0;
-> +		else
-> +			pages_left -= pages;
->   	}
-> -	spin_unlock(&mgr->lock);
->   
-> -	if (i == 1)
-> +	/* Free unused pages for contiguous allocation */
-> +	if (is_contiguous) {
-
-Well that looks really odd, why is trimming not part of 
-drm_buddy_alloc_blocks() ?
-
-> +		u64 actual_size = (u64)node->base.num_pages << PAGE_SHIFT;
-> +
-> +		mutex_lock(&mgr->lock);
-> +		drm_buddy_block_trim(mm,
-> +				     actual_size,
-> +				     &node->blocks);
-
-Why is the drm_buddy_block_trim() function given all the blocks and not 
-just the last one?
+In other words when the request is to allocate 1 page with an alignment 
+of 256 we just need to give the remaining 255 pages back to the allocator.
 
 Regards,
 Christian.
 
-> +		mutex_unlock(&mgr->lock);
-> +	}
-> +
-> +	list_for_each_entry(block, &node->blocks, link)
-> +		vis_usage += amdgpu_vram_mgr_vis_size(adev, block);
-> +
-> +	block = amdgpu_vram_mgr_first_block(&node->blocks);
-> +	if (!block) {
-> +		r = -EINVAL;
-> +		goto error_fini;
-> +	}
-> +
-> +	node->base.start = amdgpu_node_start(block) >> PAGE_SHIFT;
-> +
-> +	if (i == 1 && is_contiguous)
->   		node->base.placement |= TTM_PL_FLAG_CONTIGUOUS;
->   
->   	if (adev->gmc.xgmi.connected_to_cpu)
-> @@ -468,13 +500,13 @@ static int amdgpu_vram_mgr_new(struct ttm_resource_manager *man,
->   	*res = &node->base;
->   	return 0;
->   
-> -error_free:
-> -	while (i--)
-> -		drm_mm_remove_node(&node->mm_nodes[i]);
-> -	spin_unlock(&mgr->lock);
-> +error_free_blocks:
-> +	mutex_lock(&mgr->lock);
-> +	drm_buddy_free_list(mm, &node->blocks);
-> +	mutex_unlock(&mgr->lock);
->   error_fini:
->   	ttm_resource_fini(man, &node->base);
-> -	kvfree(node);
-> +	kfree(node);
->   
->   	return r;
->   }
-> @@ -490,27 +522,26 @@ static int amdgpu_vram_mgr_new(struct ttm_resource_manager *man,
->   static void amdgpu_vram_mgr_del(struct ttm_resource_manager *man,
->   				struct ttm_resource *res)
->   {
-> -	struct ttm_range_mgr_node *node = to_ttm_range_mgr_node(res);
-> +	struct amdgpu_vram_mgr_node *node = to_amdgpu_vram_mgr_node(res);
->   	struct amdgpu_vram_mgr *mgr = to_vram_mgr(man);
->   	struct amdgpu_device *adev = to_amdgpu_device(mgr);
-> +	struct drm_buddy *mm = &mgr->mm;
-> +	struct drm_buddy_block *block;
->   	uint64_t vis_usage = 0;
-> -	unsigned i, pages;
->   
-> -	spin_lock(&mgr->lock);
-> -	for (i = 0, pages = res->num_pages; pages;
-> -	     pages -= node->mm_nodes[i].size, ++i) {
-> -		struct drm_mm_node *mm = &node->mm_nodes[i];
-> +	mutex_lock(&mgr->lock);
-> +	list_for_each_entry(block, &node->blocks, link)
-> +		vis_usage += amdgpu_vram_mgr_vis_size(adev, block);
->   
-> -		drm_mm_remove_node(mm);
-> -		vis_usage += amdgpu_vram_mgr_vis_size(adev, mm);
-> -	}
->   	amdgpu_vram_mgr_do_reserve(man);
-> -	spin_unlock(&mgr->lock);
-> +
-> +	drm_buddy_free_list(mm, &node->blocks);
-> +	mutex_unlock(&mgr->lock);
->   
->   	atomic64_sub(vis_usage, &mgr->vis_usage);
->   
->   	ttm_resource_fini(man, res);
-> -	kvfree(node);
-> +	kfree(node);
->   }
->   
->   /**
-> @@ -648,13 +679,22 @@ static void amdgpu_vram_mgr_debug(struct ttm_resource_manager *man,
->   				  struct drm_printer *printer)
->   {
->   	struct amdgpu_vram_mgr *mgr = to_vram_mgr(man);
-> +	struct drm_buddy *mm = &mgr->mm;
-> +	struct drm_buddy_block *block;
->   
->   	drm_printf(printer, "  vis usage:%llu\n",
->   		   amdgpu_vram_mgr_vis_usage(mgr));
->   
-> -	spin_lock(&mgr->lock);
-> -	drm_mm_print(&mgr->mm, printer);
-> -	spin_unlock(&mgr->lock);
-> +	mutex_lock(&mgr->lock);
-> +	drm_printf(printer, "default_page_size: %lluKiB\n",
-> +		   mgr->default_page_size >> 10);
-> +
-> +	drm_buddy_print(mm, printer);
-> +
-> +	drm_printf(printer, "reserved:\n");
-> +	list_for_each_entry(block, &mgr->reserved_pages, link)
-> +		drm_buddy_block_print(mm, block, printer);
-> +	mutex_unlock(&mgr->lock);
->   }
->   
->   static const struct ttm_resource_manager_func amdgpu_vram_mgr_func = {
-> @@ -674,16 +714,21 @@ int amdgpu_vram_mgr_init(struct amdgpu_device *adev)
->   {
->   	struct amdgpu_vram_mgr *mgr = &adev->mman.vram_mgr;
->   	struct ttm_resource_manager *man = &mgr->manager;
-> +	int err;
->   
->   	ttm_resource_manager_init(man, &adev->mman.bdev,
->   				  adev->gmc.real_vram_size);
->   
->   	man->func = &amdgpu_vram_mgr_func;
->   
-> -	drm_mm_init(&mgr->mm, 0, man->size >> PAGE_SHIFT);
-> -	spin_lock_init(&mgr->lock);
-> +	err = drm_buddy_init(&mgr->mm, man->size, PAGE_SIZE);
-> +	if (err)
-> +		return err;
-> +
-> +	mutex_init(&mgr->lock);
->   	INIT_LIST_HEAD(&mgr->reservations_pending);
->   	INIT_LIST_HEAD(&mgr->reserved_pages);
-> +	mgr->default_page_size = PAGE_SIZE;
->   
->   	ttm_set_driver_manager(&adev->mman.bdev, TTM_PL_VRAM, &mgr->manager);
->   	ttm_resource_manager_set_used(man, true);
-> @@ -711,16 +756,16 @@ void amdgpu_vram_mgr_fini(struct amdgpu_device *adev)
->   	if (ret)
->   		return;
->   
-> -	spin_lock(&mgr->lock);
-> +	mutex_lock(&mgr->lock);
->   	list_for_each_entry_safe(rsv, temp, &mgr->reservations_pending, node)
->   		kfree(rsv);
->   
->   	list_for_each_entry_safe(rsv, temp, &mgr->reserved_pages, node) {
-> -		drm_mm_remove_node(&rsv->mm_node);
-> +		drm_buddy_free_list(&mgr->mm, &rsv->block);
->   		kfree(rsv);
->   	}
-> -	drm_mm_takedown(&mgr->mm);
-> -	spin_unlock(&mgr->lock);
-> +	drm_buddy_fini(&mgr->mm);
-> +	mutex_unlock(&mgr->lock);
->   
->   	ttm_resource_manager_cleanup(man);
->   	ttm_set_driver_manager(&adev->mman.bdev, TTM_PL_VRAM, NULL);
+>   	/* Actual range allocation */
+>   	if (start + size == end)
+>   		return __drm_buddy_alloc_range(mm, start, size, blocks);
 >
-> base-commit: a678f97326454b60ffbbde6abf52d23997d71a27
+> base-commit: 056d47eaf6ea753fa2e21da31f9cbd8b721bbb7b
 
