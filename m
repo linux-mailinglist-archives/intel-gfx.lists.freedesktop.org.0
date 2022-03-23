@@ -1,51 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 725F24E586B
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Mar 2022 19:30:12 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 011144E58A2
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Mar 2022 19:43:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E84310E1B7;
-	Wed, 23 Mar 2022 18:30:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4BF0A89B7B;
+	Wed, 23 Mar 2022 18:43:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5669710E1FC
- for <intel-gfx@lists.freedesktop.org>; Wed, 23 Mar 2022 18:30:05 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4FC5A89B7B
+ for <intel-gfx@lists.freedesktop.org>; Wed, 23 Mar 2022 18:43:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1648060205; x=1679596205;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=rqyySXaBB8B/VVz53Ftt3LOqKZj5Re+UvpdNT4TmAmg=;
- b=KPp60uy0pzEA/G05dXUBaFs3W9jl+ef1GwuDXsG7BCP4kWZrTUkpSre7
- mg44cMR+ghZMNRGY2TcSoH5hnZiBqh25T1dzs/M7yThHpbgsOKVOyHBqx
- Ey5quJe/vl5G2/m9aoANP0m2dixHc2eEt+YPk/qocLx+XTUtaDeQtsTxi
- lb/FnyTzVCMiYU0Amx6UfFP5MYvfpFuBffaJSOMWZ2ZOBwOSl3pU1PsrQ
- w0oJoyv3LBzkypnFWt/xPFyRx9mmtZKI6BQpCLChoaIQlJwr9KJCfsXWy
- vVYnllM1Za29+XbF870FqCSTC1as81ZTyE3OFC5bLTkGAoVKDZB7EgVJ6 Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10295"; a="318909515"
-X-IronPort-AV: E=Sophos;i="5.90,204,1643702400"; d="scan'208";a="318909515"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2022 11:30:04 -0700
+ t=1648061034; x=1679597034;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=snae0k9AmzJuYIxCrNrGCG/hCCu0nYFG0X7zLYUSMcM=;
+ b=F+k/H3F60TsYwasp6c7XP86f3W/Cy2IX7rqUwuFk8uA9sc291PdsC7y5
+ 4mUq4RjSfuT3p3/J1LILFaULOwKCKMQoKhZ3KQRdJIzhxbzXjFJQaIYY5
+ XZ0k53NedInNekenDpTqs4CGZuJTS25JuVJOoRobQ1xU/6uTZ5y3e7Q67
+ +ZdWgrn/3VnnMMe9qOur2tepk3XqycPzZ5goFmHzxeKmSuOCLIEafyB4s
+ 6jJbZ5h6wfNY+ywoNKT5D75W4ijmcWp6rTXi9MSX36oK1hwFisWX/7e75
+ 3EM2USiM7BZFOcUsrlAlRS7G3p1ggVAsWXxgR6NvGkdHheUiIAUFJSg/F Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10295"; a="257025374"
+X-IronPort-AV: E=Sophos;i="5.90,204,1643702400"; d="scan'208";a="257025374"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Mar 2022 11:43:52 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,204,1643702400"; d="scan'208";a="552593400"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.61])
- by fmsmga007.fm.intel.com with SMTP; 23 Mar 2022 11:30:02 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 23 Mar 2022 20:30:01 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="5.90,204,1643702400"; d="scan'208";a="501114387"
+Received: from cfl-desktop.iind.intel.com ([10.190.239.20])
+ by orsmga003.jf.intel.com with ESMTP; 23 Mar 2022 11:43:51 -0700
+From: Uma Shankar <uma.shankar@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 23 Mar 2022 20:29:35 +0200
-Message-Id: <20220323182935.4701-10-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220323182935.4701-1-ville.syrjala@linux.intel.com>
-References: <20220323182935.4701-1-ville.syrjala@linux.intel.com>
+Date: Thu, 24 Mar 2022 00:15:22 +0530
+Message-Id: <20220323184522.1359329-1-uma.shankar@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 9/9] drm/i915: Change SDVO fixed mode handling
+Subject: [Intel-gfx] [PATCH] drm/i915/display: Extend DP HDR support to hsw+
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,70 +57,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+HSW+ platforms are able to send out HDR Metadata SDP DIP
+packet as GMP. Hence, extending the support for HDR on DP
+encoders for the same.
 
-SDVO is the only connector type currently returning the VBT
-fixed mode directly from .get_modes(), everyone else just
-adds it to the fixed_modes list and then returns that from
-.get_modes(). Adjust SDVO to follow the common behaviour.
-
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/5389
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: Uma Shankar <uma.shankar@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_sdvo.c | 29 ++++++++---------------
- 1 file changed, 10 insertions(+), 19 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
-index 62e2e8b4358c..c9c3f71818d9 100644
---- a/drivers/gpu/drm/i915/display/intel_sdvo.c
-+++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
-@@ -2291,27 +2291,12 @@ static int intel_sdvo_get_lvds_modes(struct drm_connector *connector)
- {
- 	struct intel_sdvo *intel_sdvo = intel_attached_sdvo(to_intel_connector(connector));
- 	struct drm_i915_private *dev_priv = to_i915(connector->dev);
--	struct drm_display_mode *newmode;
- 	int num_modes = 0;
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 9e19165fd175..e10d2c151abf 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -4939,7 +4939,7 @@ intel_dp_add_properties(struct intel_dp *intel_dp, struct drm_connector *connect
+ 		intel_attach_dp_colorspace_property(connector);
+ 	}
  
- 	drm_dbg_kms(&dev_priv->drm, "[CONNECTOR:%d:%s]\n",
- 		    connector->base.id, connector->name);
- 
--	/*
--	 * Fetch modes from VBT. For SDVO prefer the VBT mode since some
--	 * SDVO->LVDS transcoders can't cope with the EDID mode.
--	 */
--	newmode = intel_panel_vbt_sdvo_fixed_mode(to_intel_connector(connector));
--	if (newmode) {
--		drm_mode_probed_add(connector, newmode);
--		num_modes++;
--	}
--
--	/*
--	 * Attempt to get the mode list from DDC.
--	 * Assume that the preferred modes are
--	 * arranged in priority order.
--	 */
-+	num_modes += intel_panel_get_modes(to_intel_connector(connector));
- 	num_modes += intel_ddc_get_modes(connector, &intel_sdvo->ddc);
- 
- 	return num_modes;
-@@ -2915,9 +2900,15 @@ intel_sdvo_lvds_init(struct intel_sdvo *intel_sdvo, int device)
- 	if (!intel_sdvo_create_enhance_property(intel_sdvo, intel_sdvo_connector))
- 		goto err;
- 
--	intel_sdvo_get_lvds_modes(connector);
--
--	fixed_mode = intel_panel_edid_fixed_mode(intel_connector);
-+	/*
-+	 * Fetch modes from VBT. For SDVO prefer the VBT mode since some
-+	 * SDVO->LVDS transcoders can't cope with the EDID mode.
-+	 */
-+	fixed_mode = intel_panel_vbt_sdvo_fixed_mode(intel_connector);
-+	if (!fixed_mode) {
-+		intel_ddc_get_modes(connector, &intel_sdvo->ddc);
-+		fixed_mode = intel_panel_edid_fixed_mode(intel_connector);
-+	}
- 
- 	intel_panel_init(intel_connector, fixed_mode, NULL);
- 
+-	if (IS_GEMINILAKE(dev_priv) || DISPLAY_VER(dev_priv) >= 11)
++	if (IS_HASWELL(dev_priv) || DISPLAY_VER(dev_priv) >= 8)
+ 		drm_object_attach_property(&connector->base,
+ 					   connector->dev->mode_config.hdr_output_metadata_property,
+ 					   0);
 -- 
-2.34.1
+2.25.1
 
