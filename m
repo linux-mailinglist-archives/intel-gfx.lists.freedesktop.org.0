@@ -1,56 +1,66 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAE624E54EE
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Mar 2022 16:11:14 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A9D54E54FA
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Mar 2022 16:14:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D3D810E72D;
-	Wed, 23 Mar 2022 15:11:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F5AA10E706;
+	Wed, 23 Mar 2022 15:14:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E4AC10E750;
- Wed, 23 Mar 2022 15:11:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1648048268; x=1679584268;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=Ak6vruZ0s0jfULNjhGFGclYiId7Hr9OSzLl3ubjhZxA=;
- b=FzaN92rWg6wJqHjnMWUdpKyw9H+xCBDt4/SgO8JCGbK5jBcKsoZHK1oZ
- mhyfs0QE7zNTBnC5QBXWewiK7rLDcOnWbrmq7614mWrJkY+DcdfEmEfqj
- kdEjlVSmr/7rma/HzVRKYV/ChN3q7AySSUiGGDNRjK6EUMm6jt0Wjk+E2
- vNeX5aIlz/Ik4yULYWRAKn58KL0Itx4DbsDUc/+nqXoTn6r9/C17aWhxE
- zqx+8+aQ7JbREGEGiVLbCzx8D/vPiKiFFVfDQ0b1ErlNYbCIQYw1L6xZV
- Uymx1Cdpxzgqp6lf5SsaJE/Tgpo4BjlSpCNigAgGFwcfd6PF9CjiQHIMo Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10295"; a="238735960"
-X-IronPort-AV: E=Sophos;i="5.90,204,1643702400"; d="scan'208";a="238735960"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2022 08:11:07 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,204,1643702400"; d="scan'208";a="692975118"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.61])
- by fmsmga001.fm.intel.com with SMTP; 23 Mar 2022 08:10:57 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 23 Mar 2022 17:10:56 +0200
-Date: Wed, 23 Mar 2022 17:10:56 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Message-ID: <Yjs4gIBuftRyLElE@intel.com>
-References: <20220218100403.7028-1-ville.syrjala@linux.intel.com>
- <Yi+9n0eGn3rNKb4X@intel.com>
- <CADnq5_NS07TPBWSnETRhjzqtX_oUuCu86ewurFT3MJO=PcLAuQ@mail.gmail.com>
- <Yjj+RSVBWk6UO2C7@intel.com>
- <e9937a37-70c8-cc6f-15f2-1dbbb7f1bfba@linaro.org>
+Received: from mail-oa1-x2b.google.com (mail-oa1-x2b.google.com
+ [IPv6:2001:4860:4864:20::2b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 19E3710E6E8;
+ Wed, 23 Mar 2022 15:14:50 +0000 (UTC)
+Received: by mail-oa1-x2b.google.com with SMTP id
+ 586e51a60fabf-d39f741ba0so1952763fac.13; 
+ Wed, 23 Mar 2022 08:14:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=gnpxNdyYt25f0bJKJ/luTNvlpSBS08raEsQXZTYnFpY=;
+ b=PS9ahrEcbgmOHgtA7V/jSqDLnbiPESOqCmiFJ3RWyFgmzxCHviTO5VhtGxYGEEL5o3
+ aHdSO8bxsfd2eByHXum3tPKOR3bc3MQ4KHOLdIBNYpBLqaRJq5bcquO7KcI97NIHBCbp
+ f9URPD8UgkV07dlIh0s4LXTSBD5N+b7UBKSalci+k/xOTXFhHd0LOJkxzfVW2ccvDa5S
+ 0RCH0JxKdn97jn7qFV4scjHRa03Maw88vKuCT7Z8/4Hvc6YMSZF23VcX9QBtHJymru4I
+ 2kIh/eS0l8Jy7zNDErGxsLQSNgETWDI5/25azOV5rG4dB18vrrwMVes9f7SocEOSirEY
+ L6Hg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=gnpxNdyYt25f0bJKJ/luTNvlpSBS08raEsQXZTYnFpY=;
+ b=ekD4aaN3MUEBP/aIoFP5BM4VranxhWlyR0Q1XeXmNKPtWCvATQU/EwON3m8xqCiQpG
+ FkOhc3S4+1liyo//mD1h8d/BSyGQTV+EPTNt90UaU31Fs+9oDCJEH6RCpRoOUepFmmUT
+ Tvl7vxDvtGwC+se7TzKxJElZIQBN41Z+BR1uI3Xp7ijqd7aE8VIRCF6TwguvpI266YB1
+ U36SzaZ21XCzf8gakSAwWgSlvsmrgh4Is8ggKhI9jD/t7DuhdFGgs8mdtymqBs7+8r7J
+ tU/tG29Px7+77+YmBjDCd0VIYzpOaloYPkoD/3+NXoZ8BkOVYaMHvUccIdGDm6NCaI9c
+ jaqQ==
+X-Gm-Message-State: AOAM533jylqg3DnJaE3Pp2cQfBXCoa7yK9brnx1Az6RFNzuNnHrt4ZMz
+ vqTUuN6Rqzu4Ldo2f7lXO/oPdJTWqwMlOIn3drM=
+X-Google-Smtp-Source: ABdhPJzRQxM+RKXazWBSuRwso1hTJ0uokGOpGfdTQ88Nueky3sb9aMq5bwvzBNzs2FQqzTrio+/BJd09+ep0o/GbYhA=
+X-Received: by 2002:a05:6871:8ab:b0:dd:b74b:409a with SMTP id
+ r43-20020a05687108ab00b000ddb74b409amr4187501oaq.200.1648048489380; Wed, 23
+ Mar 2022 08:14:49 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <e9937a37-70c8-cc6f-15f2-1dbbb7f1bfba@linaro.org>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 00/22] drm: Review of mode copies
+References: <20220323062552.228429-1-Arunpravin.PaneerSelvam@amd.com>
+ <7addb3e7-d265-c1a7-d449-7d0056f06d63@molgen.mpg.de>
+ <fc60c561-c12a-c031-9558-abae3e3474ec@amd.com>
+ <6f0888a2-f74d-f41f-d593-a8362e7dc673@molgen.mpg.de>
+ <398f8851-d37b-4020-24ce-8f2ab9723e40@amd.com>
+ <CAPj87rMETV9UkpbGRYAT3mjVhRtW75m0e9OLON6_+gdcD0Fo2Q@mail.gmail.com>
+ <CADnq5_NuaN_ZziNipdqvvTQ41you==VqJg5oxQovowokaJ2K1Q@mail.gmail.com>
+ <CAPj87rNyjd1xkEEARMoiaEdjLxy2rvcKa03fnNCnpN91DLhF1A@mail.gmail.com>
+In-Reply-To: <CAPj87rNyjd1xkEEARMoiaEdjLxy2rvcKa03fnNCnpN91DLhF1A@mail.gmail.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Wed, 23 Mar 2022 11:14:38 -0400
+Message-ID: <CADnq5_Mt5sWCC7hLLBH_DJdvXGqSTbNNaxWpY+cWWD9Vpa8KGQ@mail.gmail.com>
+To: Daniel Stone <daniel@fooishbar.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] Commit messages (was: [PATCH v11] drm/amdgpu: add
+ drm buddy support to amdgpu)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,104 +73,75 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
- Emma Anholt <emma@anholt.net>, Neil Armstrong <narmstrong@baylibre.com>,
- Xinliang Liu <xinliang.liu@linaro.org>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>, Sam Ravnborg <sam@ravnborg.org>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- linux-rockchip@lists.infradead.org,
- Xinwei Kong <kong.kongxinwei@hisilicon.com>,
- Aurabindo Pillai <aurabindo.pillai@amd.com>,
- linux-arm-msm <linux-arm-msm@vger.kernel.org>,
- Alain Volmat <alain.volmat@foss.st.com>,
- Harry Wentland <harry.wentland@amd.com>,
- Chun-Kuang Hu <chunkuang.hu@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
- Leo Li <sunpeng.li@amd.com>, Chen Feng <puck.chen@hisilicon.com>,
+Cc: Paul Menzel <pmenzel@molgen.mpg.de>,
+ Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>,
  Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>, Maxime Ripard <mripard@kernel.org>,
- Nikola Cornij <nikola.cornij@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, John Stultz <john.stultz@linaro.org>,
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
- Tomi Valkeinen <tomba@kernel.org>, freedreno <freedreno@lists.freedesktop.org>,
- Sandy Huang <hjc@rock-chips.com>, Robert Foss <robert.foss@linaro.org>,
- Philipp Zabel <p.zabel@pengutronix.de>, Alex Deucher <alexdeucher@gmail.com>,
- Tian Tao <tiantao6@hisilicon.com>, Jyri Sarha <jyri.sarha@iki.fi>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>, "Deucher,
+ Alexander" <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Mar 23, 2022 at 01:39:44PM +0300, Dmitry Baryshkov wrote:
-> On 22/03/2022 01:37, Ville Syrjälä wrote:
-> > On Tue, Mar 15, 2022 at 02:52:38PM -0400, Alex Deucher wrote:
-> >> On Mon, Mar 14, 2022 at 6:12 PM Ville Syrjälä
-> >> <ville.syrjala@linux.intel.com> wrote:
-> >>>
-> >>> On Fri, Feb 18, 2022 at 12:03:41PM +0200, Ville Syrjala wrote:
-> >>>>    drm: Add drm_mode_init()
-> >>>>    drm/bridge: Use drm_mode_copy()
-> >>>>    drm/imx: Use drm_mode_duplicate()
-> >>>>    drm/panel: Use drm_mode_duplicate()
-> >>>>    drm/vc4: Use drm_mode_copy()
-> >>> These have been pushed to drm-misc-next.
-> >>>
-> >>>>    drm/amdgpu: Remove pointless on stack mode copies
-> >>>>    drm/amdgpu: Use drm_mode_init() for on-stack modes
-> >>>>    drm/amdgpu: Use drm_mode_copy()
-> >>> amdgpu ones are reviewed, but I'll leave them for the
-> >>> AMD folks to push to whichever tree they prefer.
-> >>
-> >> I pulled patches 2, 4, 5 into my tree.
-> > 
-> > Thanks.
-> > 
-> >> For 3, I'm happy to have it
-> >> land via drm-misc with the rest of the mode_init changes if you'd
-> >> prefer.
-> > 
-> > Either way works for me. I don't yet have reviews yet for
-> > the other drivers, so I'll proably hold off for a bit more
-> > at least. And the i915 patch I'll be merging via drm-intel.
-> > 
-> >>>>    drm/radeon: Use drm_mode_copy()
-> >>>>    drm/gma500: Use drm_mode_copy()
-> >>>>    drm/tilcdc: Use drm_mode_copy()
-> >>>>    drm/i915: Use drm_mode_copy()
-> > 
-> > Those are now all in.
-> > 
-> > Which leaves us with these stragglers:
-> >>>>    drm/hisilicon: Use drm_mode_init() for on-stack modes
-> 
-> >>>>    drm/msm: Nuke weird on stack mode copy
-> >>>>    drm/msm: Use drm_mode_init() for on-stack modes
-> >>>>    drm/msm: Use drm_mode_copy()
-> 
-> These three patches went beneath my radar for some reason.
-> 
-> I have just sent a replacement for the first patch ([1]). Other two 
-> patches can be pulled in msm/msm-next (or msm/msm-fixes) during the next 
-> development cycle if that works for you.
+On Wed, Mar 23, 2022 at 11:04 AM Daniel Stone <daniel@fooishbar.org> wrote:
+>
+> Hi Alex,
+>
+> On Wed, 23 Mar 2022 at 14:42, Alex Deucher <alexdeucher@gmail.com> wrote:
+> > On Wed, Mar 23, 2022 at 10:00 AM Daniel Stone <daniel@fooishbar.org> wr=
+ote:
+> > > On Wed, 23 Mar 2022 at 08:19, Christian K=C3=B6nig <christian.koenig@=
+amd.com> wrote:
+> > > > Well the key point is it's not about you to judge that.
+> > > >
+> > > > If you want to complain about the commit message then come to me wi=
+th
+> > > > that and don't request information which isn't supposed to be publi=
+cly
+> > > > available.
+> > > >
+> > > > So to make it clear: The information is intentionally hold back and=
+ not
+> > > > made public.
+> > >
+> > > In that case, the code isn't suitable to be merged into upstream
+> > > trees; it can be resubmitted when it can be explained.
+> >
+> > So you are saying we need to publish the problematic RTL to be able to
+> > fix a HW bug in the kernel?  That seems a little unreasonable.  Also,
+> > links to internal documents or bug trackers don't provide much value
+> > to the community since they can't access them.  In general, adding
+> > internal documents to commit messages is frowned on.
+>
+> That's not what anyone's saying here ...
+>
+> No-one's demanding AMD publish RTL, or internal design docs, or
+> hardware specs, or URLs to JIRA tickets no-one can access.
+>
+> This is a large and invasive commit with pretty big ramifications;
+> containing exactly two lines of commit message, one of which just
+> duplicates the subject.
+>
+> It cannot be the case that it's completely impossible to provide any
+> justification, background, or details, about this commit being made.
+> Unless, of course, it's to fix a non-public security issue, that is
+> reasonable justification for eliding some of the details. But then
+> again, 'huge change which is very deliberately opaque' is a really
+> good way to draw a lot of attention to the commit, and it would be
+> better to provide more detail about the change to help it slip under
+> the radar.
+>
+> If dri-devel@ isn't allowed to inquire about patches which are posted,
+> then CCing the list is just a fa=C3=A7ade; might as well just do it all
+> internally and periodically dump out pull requests.
 
-That'll do fine for me. Thanks.
+I think we are in agreement. I think the withheld information
+Christian was referring to was on another thread with Christian and
+Paul discussing a workaround for a hardware bug:
+https://www.spinics.net/lists/amd-gfx/msg75908.html
 
-> 
-> [1] https://patchwork.freedesktop.org/series/101682/
-> 
-> >>>>    drm/mtk: Use drm_mode_init() for on-stack modes
-> >>>>    drm/rockchip: Use drm_mode_copy()
-> >>>>    drm/sti: Use drm_mode_copy()
-> >>>>    drm: Use drm_mode_init() for on-stack modes
-> >>>>    drm: Use drm_mode_copy()
-> > 
-> 
-> 
-> -- 
-> With best wishes
-> Dmitry
+Alex
 
--- 
-Ville Syrjälä
-Intel
+
+Alex
