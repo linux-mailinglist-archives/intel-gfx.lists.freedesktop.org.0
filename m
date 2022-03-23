@@ -1,43 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E73964E597F
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Mar 2022 21:04:15 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EF944E5994
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Mar 2022 21:09:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A818B10E092;
-	Wed, 23 Mar 2022 20:04:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 499D410E0EC;
+	Wed, 23 Mar 2022 20:09:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com
- [199.106.114.39])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 169F210E085;
- Wed, 23 Mar 2022 20:04:11 +0000 (UTC)
+Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com
+ [199.106.114.38])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C6B410E0EA;
+ Wed, 23 Mar 2022 20:09:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
- t=1648065851; x=1679601851;
+ t=1648066155; x=1679602155;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=m/gVPbIOUw/B6IAh4NLNKzlzl2sk9Z1Cv3s7AOPuzdg=;
- b=bCQhai7GgTzzrTeqMK6fY7Zdcon2A0fX06OQyMmHvZTdN5jdx6MSfeV9
- iPsdpgEHczvp9s3JTBl8/QMCJO8/IyzhGamDWKm1SMFpXSavxQIfrhogY
- A8nQuurvc/Ea+FJniX7/Rtv2cPbPZKNjnJE2gzEkfBgBgliMuHjEtc3jE c=;
+ bh=3vw5NtjQuL3uQ5yXzFrZHiwEqyZsdFKPXNf3Lz2V6Z8=;
+ b=vXoa4fj4xkMCkoIgixpJUVLUByra8RHNywRjSrNahsoYMW2t+Phle9VN
+ xbz4luykMwOh/lDuSUKwPAI2E4w92vhVF41Ht6PQjGkrtscqa2y6/Wb/Z
+ tHQULbksVRqAsiguOOXOBBVaLu/UKL6+fJ5oDopvfboIOX4IXwbejDml3 8=;
 Received: from unknown (HELO ironmsg03-sd.qualcomm.com) ([10.53.140.143])
- by alexa-out-sd-02.qualcomm.com with ESMTP; 23 Mar 2022 13:04:10 -0700
+ by alexa-out-sd-01.qualcomm.com with ESMTP; 23 Mar 2022 13:09:14 -0700
 X-QCInternal: smtphost
 Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
  by ironmsg03-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2022 13:04:10 -0700
+ 23 Mar 2022 13:09:14 -0700
 Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
  nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Wed, 23 Mar 2022 13:04:09 -0700
+ 15.2.986.22; Wed, 23 Mar 2022 13:09:14 -0700
 Received: from [10.110.52.81] (10.80.80.8) by nalasex01a.na.qualcomm.com
  (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Wed, 23 Mar
- 2022 13:04:09 -0700
-Message-ID: <8372aeac-3d54-44f5-8341-0f9b1b604871@quicinc.com>
-Date: Wed, 23 Mar 2022 13:04:08 -0700
+ 2022 13:09:13 -0700
+Message-ID: <2a88a533-56ec-6445-aae9-ab1e97370a88@quicinc.com>
+Date: Wed, 23 Mar 2022 13:09:12 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
  Thunderbird/91.6.2
@@ -45,16 +45,15 @@ Content-Language: en-US
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  <dri-devel@lists.freedesktop.org>
 References: <20220218100403.7028-1-ville.syrjala@linux.intel.com>
- <20220218100403.7028-12-ville.syrjala@linux.intel.com>
+ <20220218100403.7028-13-ville.syrjala@linux.intel.com>
 From: Abhinav Kumar <quic_abhinavk@quicinc.com>
-In-Reply-To: <20220218100403.7028-12-ville.syrjala@linux.intel.com>
+In-Reply-To: <20220218100403.7028-13-ville.syrjala@linux.intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
 X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
-Subject: Re: [Intel-gfx] [PATCH 11/22] drm/msm: Use drm_mode_init() for
- on-stack modes
+Subject: Re: [Intel-gfx] [PATCH 12/22] drm/msm: Use drm_mode_copy()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,34 +76,61 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On 2/18/2022 2:03 AM, Ville Syrjala wrote:
 > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > 
-> Initialize on-stack modes with drm_mode_init() to guarantee
-> no stack garbage in the list head, or that we aren't copying
-> over another mode's list head.
+> struct drm_display_mode embeds a list head, so overwriting
+> the full struct with another one will corrupt the list
+> (if the destination mode is on a list). Use drm_mode_copy()
+> instead which explicitly preserves the list head of
+> the destination mode.
 > 
-> Based on the following cocci script, with manual fixups:
-> @decl@
-> identifier M;
+> Even if we know the destination mode is not on any list
+> using drm_mode_copy() seems decent as it sets a good
+> example. Bad examples of not using it might eventually
+> get copied into code where preserving the list head
+> actually matters.
+> 
+> Obviously one case not covered here is when the mode
+> itself is embedded in a larger structure and the whole
+> structure is copied. But if we are careful when copying
+> into modes embedded in structures I think we can be a
+> little more reassured that bogus list heads haven't been
+> propagated in.
+> 
+> @is_mode_copy@
+> @@
+> drm_mode_copy(...)
+> {
+> ...
+> }
+> 
+> @depends on !is_mode_copy@
+> struct drm_display_mode *mode;
+> expression E, S;
+> @@
+> (
+> - *mode = E
+> + drm_mode_copy(mode, &E)
+> |
+> - memcpy(mode, E, S)
+> + drm_mode_copy(mode, E)
+> )
+> 
+> @depends on !is_mode_copy@
+> struct drm_display_mode mode;
 > expression E;
 > @@
-> - struct drm_display_mode M = E;
-> + struct drm_display_mode M;
+> (
+> - mode = E
+> + drm_mode_copy(&mode, &E)
+> |
+> - memcpy(&mode, E, S)
+> + drm_mode_copy(&mode, E)
+> )
 > 
 > @@
-> identifier decl.M;
-> expression decl.E;
-> statement S, S1;
+> struct drm_display_mode *mode;
 > @@
-> struct drm_display_mode M;
-> ... when != S
-> + drm_mode_init(&M, &E);
-> +
-> S1
-> 
-> @@
-> expression decl.E;
-> @@
-> - &*E
-> + E
+> - &*mode
+> + mode
 > 
 > Cc: Rob Clark <robdclark@gmail.com>
 > Cc: Sean Paul <sean@poorly.run>
@@ -114,36 +140,47 @@ On 2/18/2022 2:03 AM, Ville Syrjala wrote:
 > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Reviewed-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
 > ---
->   drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys_vid.c | 7 +++++--
->   1 file changed, 5 insertions(+), 2 deletions(-)
+>   drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys_cmd.c | 2 +-
+>   drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys_vid.c | 2 +-
+>   drivers/gpu/drm/msm/dp/dp_display.c                  | 2 +-
+>   3 files changed, 3 insertions(+), 3 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys_vid.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys_vid.c
-> index ddd9d89cd456..e7813c6f7bd9 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys_vid.c
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys_vid.c
-> @@ -248,12 +248,13 @@ static void dpu_encoder_phys_vid_setup_timing_engine(
->   	unsigned long lock_flags;
->   	struct dpu_hw_intf_cfg intf_cfg = { 0 };
->   
-> +	drm_mode_init(&mode, &phys_enc->cached_mode);
-> +
->   	if (!phys_enc->hw_ctl->ops.setup_intf_cfg) {
->   		DPU_ERROR("invalid encoder %d\n", phys_enc != NULL);
+> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys_cmd.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys_cmd.c
+> index 34a6940d12c5..57592052af23 100644
+> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys_cmd.c
+> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys_cmd.c
+> @@ -157,7 +157,7 @@ static void dpu_encoder_phys_cmd_mode_set(
+>   		DPU_ERROR("invalid args\n");
 >   		return;
 >   	}
+> -	phys_enc->cached_mode = *adj_mode;
+> +	drm_mode_copy(&phys_enc->cached_mode, adj_mode);
+>   	DPU_DEBUG_CMDENC(cmd_enc, "caching mode:\n");
+>   	drm_mode_debug_printmodeline(adj_mode);
 >   
-> -	mode = phys_enc->cached_mode;
->   	if (!phys_enc->hw_intf->ops.setup_timing_gen) {
->   		DPU_ERROR("timing engine setup is not supported\n");
->   		return;
-> @@ -652,7 +653,9 @@ static int dpu_encoder_phys_vid_get_frame_count(
->   {
->   	struct intf_status s = {0};
->   	u32 fetch_start = 0;
-> -	struct drm_display_mode mode = phys_enc->cached_mode;
-> +	struct drm_display_mode mode;
-> +
-> +	drm_mode_init(&mode, &phys_enc->cached_mode);
+> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys_vid.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys_vid.c
+> index e7813c6f7bd9..d5deca07b65a 100644
+> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys_vid.c
+> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys_vid.c
+> @@ -370,7 +370,7 @@ static void dpu_encoder_phys_vid_mode_set(
+>   	struct dpu_encoder_irq *irq;
 >   
->   	if (!dpu_encoder_phys_vid_is_master(phys_enc))
->   		return -EINVAL;
+>   	if (adj_mode) {
+> -		phys_enc->cached_mode = *adj_mode;
+> +		drm_mode_copy(&phys_enc->cached_mode, adj_mode);
+>   		drm_mode_debug_printmodeline(adj_mode);
+>   		DPU_DEBUG_VIDENC(phys_enc, "caching mode:\n");
+>   	}
+> diff --git a/drivers/gpu/drm/msm/dp/dp_display.c b/drivers/gpu/drm/msm/dp/dp_display.c
+> index 7cc4d21f2091..2ed6028ca8d6 100644
+> --- a/drivers/gpu/drm/msm/dp/dp_display.c
+> +++ b/drivers/gpu/drm/msm/dp/dp_display.c
+> @@ -825,7 +825,7 @@ static int dp_display_set_mode(struct msm_dp *dp_display,
+>   
+>   	dp = container_of(dp_display, struct dp_display_private, dp_display);
+>   
+> -	dp->panel->dp_mode.drm_mode = mode->drm_mode;
+> +	drm_mode_copy(&dp->panel->dp_mode.drm_mode, &mode->drm_mode);
+>   	dp->panel->dp_mode.bpp = mode->bpp;
+>   	dp->panel->dp_mode.capabilities = mode->capabilities;
+>   	dp_panel_init_panel_info(dp->panel);
