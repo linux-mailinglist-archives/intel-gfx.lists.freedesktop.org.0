@@ -2,33 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED8444E56CB
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Mar 2022 17:46:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 488AF4E5787
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Mar 2022 18:32:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4162B10E579;
-	Wed, 23 Mar 2022 16:46:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6043D10E0E9;
+	Wed, 23 Mar 2022 17:32:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id AD7A210E6DC;
- Wed, 23 Mar 2022 16:46:39 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id AA789A882E;
- Wed, 23 Mar 2022 16:46:39 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8739011009814541236=="
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7FED010E0E9;
+ Wed, 23 Mar 2022 17:32:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1648056727; x=1679592727;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=mV2DAlwhb/5qQHufYQwBshFE+0EE7QDFgtz8YfV4P24=;
+ b=ehNWlY98Tm3omnqErsWcd0KSHz6HkyU6VI4nR0zb5NUq83fITM45vUA0
+ Ysc/D5X/M2UKDM09sN3L0nMsHuExHux15BXq3oL9NYChoOkDKoa1x5uzD
+ /cEZclvtmmUH/z9HztAo2Hur7YfB0BhiBfmyW1YaKlQT4MNZ5dj/5pTV1
+ BNEvFeDhTnCjJyBaY7tsWbGLEZUQ0QCFJQVrJ7j9cubV/bvEdrb0F2m5K
+ ozIq3jaHpyaXA1xGe8/FX8Etvl5SkNGiSluZg0apshIrizWPe3k0qosO2
+ GSG3C8XMny0vRV5KfSFHE78nV5X7bhV5lF5KDrNmNIihX4S9y2xLIxcmv Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10295"; a="240343394"
+X-IronPort-AV: E=Sophos;i="5.90,204,1643702400"; d="scan'208";a="240343394"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Mar 2022 10:26:20 -0700
+X-IronPort-AV: E=Sophos;i="5.90,204,1643702400"; d="scan'208";a="544289994"
+Received: from caliyanx-mobl.gar.corp.intel.com (HELO localhost)
+ ([10.252.57.47])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Mar 2022 10:26:18 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+In-Reply-To: <YjtANOJjTC4Q4T3m@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1647985054.git.jani.nikula@intel.com>
+ <a9b83af4adfbc10296933958a057dddbb42bf769.1647985054.git.jani.nikula@intel.com>
+ <YjtANOJjTC4Q4T3m@intel.com>
+Date: Wed, 23 Mar 2022 19:26:16 +0200
+Message-ID: <87czicinrb.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Colin Ian King" <colin.i.king@gmail.com>
-Date: Wed, 23 Mar 2022 16:46:39 -0000
-Message-ID: <164805399969.17993.17773297124068226978@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220315202449.2952845-1-colin.i.king@gmail.com>
-In-Reply-To: <20220315202449.2952845-1-colin.i.king@gmail.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/reg=3A_Fix_spelling_mistake_=22Unsupport=22_-=3E_=22Unsup?=
- =?utf-8?q?ported=22?=
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [RFC 06/19] drm/edid: clean up cea_db_is_*()
+ functions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,382 +60,209 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8739011009814541236==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, 23 Mar 2022, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Tue, Mar 22, 2022 at 11:40:35PM +0200, Jani Nikula wrote:
+>> Abstract helpers for matching vendor data blocks and extended tags, and
+>> use them to simplify all the cea_db_is_*() functions.
+>>=20
+>> Take void pointer as parameter to allow transitional use for both u8 *
+>> and struct cea_db *.
+>>=20
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>>  drivers/gpu/drm/drm_edid.c | 113 ++++++++++++-------------------------
+>>  1 file changed, 37 insertions(+), 76 deletions(-)
+>>=20
+>> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
+>> index c12c3cbab274..a0a5a7271658 100644
+>> --- a/drivers/gpu/drm/drm_edid.c
+>> +++ b/drivers/gpu/drm/drm_edid.c
+>> @@ -4196,12 +4196,6 @@ do_hdmi_vsdb_modes(struct drm_connector *connecto=
+r, const u8 *db, u8 len,
+>>  	return modes;
+>>  }
+>>=20=20
+>> -static int
+>> -cea_db_extended_tag(const u8 *db)
+>> -{
+>> -	return db[1];
+>> -}
+>> -
+>>  static int
+>>  cea_revision(const u8 *cea)
+>>  {
+>> @@ -4313,6 +4307,22 @@ static const void *cea_db_data(const struct cea_d=
+b *db)
+>>  	return db->data;
+>>  }
+>>=20=20
+>> +static bool cea_db_is_extended_tag(const struct cea_db *db, int tag)
+>> +{
+>> +	return (cea_db_tag(db) =3D=3D CEA_DB_EXTENDED_TAG &&
+>> +		cea_db_payload_len(db) >=3D 1 &&
+>> +		db->data[0] =3D=3D tag);
+>> +}
+>
+> nit: not a huge fan of the redundant parens in all of these
 
-== Series Details ==
+I guess that's something I've picked up from Python, makes the
+subsequent lines align nicely. Otherwise it's less pretty.
 
-Series: drm/i915/reg: Fix spelling mistake "Unsupport" -> "Unsupported"
-URL   : https://patchwork.freedesktop.org/series/101699/
-State : failure
+>
+>> +
+>> +static bool cea_db_is_vendor(const struct cea_db *db, int vendor_oui)
+>
+> I'd probably make the tag/oui unsigned.
 
-== Summary ==
+Only chose int because the oui() function returns an int; maybe that
+should eventually be turned into unsigned int.
 
-CI Bug Log - changes from CI_DRM_11398 -> Patchwork_22659
-====================================================
+>
+> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+>> +{
+>> +	const u8 *data =3D cea_db_data(db);
+>> +
+>> +	return (cea_db_tag(db) =3D=3D CEA_DB_VENDOR &&
+>> +		cea_db_payload_len(db) >=3D 3 &&
+>> +		oui(data[2], data[1], data[0]) =3D=3D vendor_oui);
+>> +}
+>> +
+>>  static void cea_db_iter_edid_begin(const struct edid *edid, struct cea_=
+db_iter *iter)
+>>  {
+>>  	memset(iter, 0, sizeof(*iter));
+>> @@ -4443,79 +4453,44 @@ static void cea_db_iter_end(struct cea_db_iter *=
+iter)
+>>  	memset(iter, 0, sizeof(*iter));
+>>  }
+>>=20=20
+>> -static bool cea_db_is_hdmi_vsdb(const u8 *db)
+>> +static bool cea_db_is_hdmi_vsdb(const void *db)
+>>  {
+>> -	if (cea_db_tag(db) !=3D CEA_DB_VENDOR)
+>> -		return false;
+>> -
+>> -	if (cea_db_payload_len(db) < 5)
+>> -		return false;
+>> -
+>> -	return oui(db[3], db[2], db[1]) =3D=3D HDMI_IEEE_OUI;
+>> +	return (cea_db_is_vendor(db, HDMI_IEEE_OUI) &&
+>> +		cea_db_payload_len(db) >=3D 5);
+>>  }
+>>=20=20
+>> -static bool cea_db_is_hdmi_forum_vsdb(const u8 *db)
+>> +static bool cea_db_is_hdmi_forum_vsdb(const void *db)
+>>  {
+>> -	if (cea_db_tag(db) !=3D CEA_DB_VENDOR)
+>> -		return false;
+>> -
+>> -	if (cea_db_payload_len(db) < 7)
+>> -		return false;
+>> -
+>> -	return oui(db[3], db[2], db[1]) =3D=3D HDMI_FORUM_IEEE_OUI;
+>> +	return (cea_db_is_vendor(db, HDMI_FORUM_IEEE_OUI) &&
+>> +		cea_db_payload_len(db) >=3D 7);
+>>  }
+>>=20=20
+>> -static bool cea_db_is_microsoft_vsdb(const u8 *db)
+>> +static bool cea_db_is_microsoft_vsdb(const void *db)
+>>  {
+>> -	if (cea_db_tag(db) !=3D CEA_DB_VENDOR)
+>> -		return false;
+>> -
+>> -	if (cea_db_payload_len(db) !=3D 21)
+>> -		return false;
+>> -
+>> -	return oui(db[3], db[2], db[1]) =3D=3D MICROSOFT_IEEE_OUI;
+>> +	return (cea_db_is_vendor(db, MICROSOFT_IEEE_OUI) &&
+>> +		cea_db_payload_len(db) =3D=3D 21);
+>>  }
+>>=20=20
+>> -static bool cea_db_is_vcdb(const u8 *db)
+>> +static bool cea_db_is_vcdb(const void *db)
+>>  {
+>> -	if (cea_db_tag(db) !=3D CEA_DB_EXTENDED_TAG)
+>> -		return false;
+>> -
+>> -	if (cea_db_payload_len(db) !=3D 2)
+>> -		return false;
+>> -
+>> -	if (cea_db_extended_tag(db) !=3D CEA_EXT_DB_VIDEO_CAP)
+>> -		return false;
+>> -
+>> -	return true;
+>> +	return (cea_db_is_extended_tag(db, CEA_EXT_DB_VIDEO_CAP) &&
+>> +		cea_db_payload_len(db) =3D=3D 2);
+>>  }
+>>=20=20
+>> -static bool cea_db_is_y420cmdb(const u8 *db)
+>> +static bool cea_db_is_y420cmdb(const void *db)
+>>  {
+>> -	if (cea_db_tag(db) !=3D CEA_DB_EXTENDED_TAG)
+>> -		return false;
+>> -
+>> -	if (!cea_db_payload_len(db))
+>> -		return false;
+>> -
+>> -	if (cea_db_extended_tag(db) !=3D CEA_EXT_DB_420_VIDEO_CAP_MAP)
+>> -		return false;
+>> -
+>> -	return true;
+>> +	return cea_db_is_extended_tag(db, CEA_EXT_DB_420_VIDEO_CAP_MAP);
+>>  }
+>>=20=20
+>> -static bool cea_db_is_y420vdb(const u8 *db)
+>> +static bool cea_db_is_y420vdb(const void *db)
+>>  {
+>> -	if (cea_db_tag(db) !=3D CEA_DB_EXTENDED_TAG)
+>> -		return false;
+>> -
+>> -	if (!cea_db_payload_len(db))
+>> -		return false;
+>> -
+>> -	if (cea_db_extended_tag(db) !=3D CEA_EXT_DB_420_VIDEO_DATA)
+>> -		return false;
+>> +	return cea_db_is_extended_tag(db, CEA_EXT_DB_420_VIDEO_DATA);
+>> +}
+>>=20=20
+>> -	return true;
+>> +static bool cea_db_is_hdmi_hdr_metadata_block(const void *db)
+>> +{
+>> +	return (cea_db_is_extended_tag(db, CEA_EXT_DB_HDR_STATIC_METADATA) &&
+>> +		cea_db_payload_len(db) >=3D 3);
+>>  }
+>>=20=20
+>>  #define for_each_cea_db(cea, i, start, end) \
+>> @@ -4651,20 +4626,6 @@ static void fixup_detailed_cea_mode_clock(struct =
+drm_display_mode *mode)
+>>  	mode->clock =3D clock;
+>>  }
+>>=20=20
+>> -static bool cea_db_is_hdmi_hdr_metadata_block(const u8 *db)
+>> -{
+>> -	if (cea_db_tag(db) !=3D CEA_DB_EXTENDED_TAG)
+>> -		return false;
+>> -
+>> -	if (db[1] !=3D CEA_EXT_DB_HDR_STATIC_METADATA)
+>> -		return false;
+>> -
+>> -	if (cea_db_payload_len(db) < 3)
+>> -		return false;
+>> -
+>> -	return true;
+>> -}
+>> -
+>>  static uint8_t eotf_supported(const u8 *edid_ext)
+>>  {
+>>  	return edid_ext[2] &
+>> --=20
+>> 2.30.2
 
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_22659 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_22659, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22659/index.html
-
-Participating hosts (45 -> 44)
-------------------------------
-
-  Additional (5): bat-dg2-8 bat-dg2-9 fi-kbl-8809g bat-rpls-1 bat-jsl-1 
-  Missing    (6): shard-tglu fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 shard-rkl fi-bdw-samus 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_22659:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live@gt_engines:
-    - fi-rkl-guc:         [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11398/fi-rkl-guc/igt@i915_selftest@live@gt_engines.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22659/fi-rkl-guc/igt@i915_selftest@live@gt_engines.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_22659 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_cs_nop@sync-fork-compute0:
-    - fi-snb-2600:        NOTRUN -> [SKIP][3] ([fdo#109271]) +17 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22659/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html
-
-  * igt@gem_exec_suspend@basic-s0@smem:
-    - fi-kbl-8809g:       NOTRUN -> [DMESG-WARN][4] ([i915#4962]) +1 similar issue
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22659/fi-kbl-8809g/igt@gem_exec_suspend@basic-s0@smem.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][5] ([fdo#109271] / [i915#2190])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22659/fi-kbl-8809g/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@random-engines:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][6] ([fdo#109271] / [i915#4613]) +3 similar issues
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22659/fi-kbl-8809g/igt@gem_lmem_swapping@random-engines.html
-
-  * igt@i915_pm_rpm@basic-rte:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][7] ([fdo#109271]) +54 similar issues
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22659/fi-kbl-8809g/igt@i915_pm_rpm@basic-rte.html
-
-  * igt@kms_chamelium@hdmi-edid-read:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][8] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22659/fi-kbl-8809g/igt@kms_chamelium@hdmi-edid-read.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][9] ([fdo#109271] / [i915#5341])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22659/fi-kbl-8809g/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][10] ([fdo#109271] / [i915#533])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22659/fi-kbl-8809g/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
-
-  * igt@runner@aborted:
-    - fi-rkl-guc:         NOTRUN -> [FAIL][11] ([i915#4312])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22659/fi-rkl-guc/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_timelines:
-    - {bat-rpls-2}:       [DMESG-WARN][12] ([i915#4391]) -> [PASS][13]
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11398/bat-rpls-2/igt@i915_selftest@live@gt_timelines.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22659/bat-rpls-2/igt@i915_selftest@live@gt_timelines.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-dg1-6:          [DMESG-FAIL][14] ([i915#4494] / [i915#4957]) -> [PASS][15]
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11398/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22659/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
-    - fi-snb-2600:        [INCOMPLETE][16] ([i915#3921]) -> [PASS][17]
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11398/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22659/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-
-  * igt@i915_selftest@live@requests:
-    - {bat-rpls-2}:       [INCOMPLETE][18] ([i915#5338]) -> [PASS][19]
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11398/bat-rpls-2/igt@i915_selftest@live@requests.html
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22659/bat-rpls-2/igt@i915_selftest@live@requests.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size:
-    - {bat-adlm-1}:       [INCOMPLETE][20] -> [PASS][21]
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11398/bat-adlm-1/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22659/bat-adlm-1/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c:
-    - fi-cfl-8109u:       [DMESG-WARN][22] ([i915#295] / [i915#5341]) -> [PASS][23]
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11398/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22659/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
-
-  * igt@kms_pipe_crc_basic@read-crc-pipe-b:
-    - fi-cfl-8109u:       [DMESG-WARN][24] ([i915#295]) -> [PASS][25] +10 similar issues
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11398/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22659/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
-
-  
-#### Warnings ####
-
-  * igt@runner@aborted:
-    - fi-apl-guc:         [FAIL][26] ([i915#2426] / [i915#4312]) -> [FAIL][27] ([i915#4312])
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11398/fi-apl-guc/igt@runner@aborted.html
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22659/fi-apl-guc/igt@runner@aborted.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
-  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
-  [i915#295]: https://gitlab.freedesktop.org/drm/intel/issues/295
-  [i915#3003]: https://gitlab.freedesktop.org/drm/intel/issues/3003
-  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#3576]: https://gitlab.freedesktop.org/drm/intel/issues/3576
-  [i915#3595]: https://gitlab.freedesktop.org/drm/intel/issues/3595
-  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4391]: https://gitlab.freedesktop.org/drm/intel/issues/4391
-  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#4897]: https://gitlab.freedesktop.org/drm/intel/issues/4897
-  [i915#4957]: https://gitlab.freedesktop.org/drm/intel/issues/4957
-  [i915#4962]: https://gitlab.freedesktop.org/drm/intel/issues/4962
-  [i915#5192]: https://gitlab.freedesktop.org/drm/intel/issues/5192
-  [i915#5193]: https://gitlab.freedesktop.org/drm/intel/issues/5193
-  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
-  [i915#5337]: https://gitlab.freedesktop.org/drm/intel/issues/5337
-  [i915#5338]: https://gitlab.freedesktop.org/drm/intel/issues/5338
-  [i915#5339]: https://gitlab.freedesktop.org/drm/intel/issues/5339
-  [i915#5341]: https://gitlab.freedesktop.org/drm/intel/issues/5341
-  [i915#5342]: https://gitlab.freedesktop.org/drm/intel/issues/5342
-  [i915#5361]: https://gitlab.freedesktop.org/drm/intel/issues/5361
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_11398 -> Patchwork_22659
-
-  CI-20190529: 20190529
-  CI_DRM_11398: da54e0aff302424358b14f443a9be2f84bb6ca47 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6389: fa423f527496936a759eb838b023642deea7625f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_22659: fce9e0a464ec68a46ee747536cedf504c220dd83 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-fce9e0a464ec drm/i915/reg: Fix spelling mistake "Unsupport" -> "Unsupported"
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22659/index.html
-
---===============8739011009814541236==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/reg: Fix spelling mistake &quot;Unsupport&quot; -&gt; &quot;Unsupported&quot;</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/101699/">https://patchwork.freedesktop.org/series/101699/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22659/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22659/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11398 -&gt; Patchwork_22659</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_22659 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_22659, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22659/index.html</p>
-<h2>Participating hosts (45 -&gt; 44)</h2>
-<p>Additional (5): bat-dg2-8 bat-dg2-9 fi-kbl-8809g bat-rpls-1 bat-jsl-1 <br />
-  Missing    (6): shard-tglu fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 shard-rkl fi-bdw-samus </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_22659:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@i915_selftest@live@gt_engines:<ul>
-<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11398/fi-rkl-guc/igt@i915_selftest@live@gt_engines.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22659/fi-rkl-guc/igt@i915_selftest@live@gt_engines.html">INCOMPLETE</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_22659 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_cs_nop@sync-fork-compute0:</p>
-<ul>
-<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22659/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s0@smem:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22659/fi-kbl-8809g/igt@gem_exec_suspend@basic-s0@smem.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4962">i915#4962</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22659/fi-kbl-8809g/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@random-engines:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22659/fi-kbl-8809g/igt@gem_lmem_swapping@random-engines.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@basic-rte:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22659/fi-kbl-8809g/igt@i915_pm_rpm@basic-rte.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +54 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-edid-read:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22659/fi-kbl-8809g/igt@kms_chamelium@hdmi-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22659/fi-kbl-8809g/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5341">i915#5341</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22659/fi-kbl-8809g/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22659/fi-rkl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_timelines:</p>
-<ul>
-<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11398/bat-rpls-2/igt@i915_selftest@live@gt_timelines.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4391">i915#4391</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22659/bat-rpls-2/igt@i915_selftest@live@gt_timelines.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>
-<p>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11398/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22659/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">PASS</a></p>
-</li>
-<li>
-<p>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11398/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22659/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a></p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11398/bat-rpls-2/igt@i915_selftest@live@requests.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5338">i915#5338</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22659/bat-rpls-2/igt@i915_selftest@live@requests.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size:</p>
-<ul>
-<li>{bat-adlm-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11398/bat-adlm-1/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22659/bat-adlm-1/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11398/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5341">i915#5341</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22659/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc-pipe-b:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11398/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22659/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html">PASS</a> +10 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@runner@aborted:<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11398/fi-apl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22659/fi-apl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11398 -&gt; Patchwork_22659</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11398: da54e0aff302424358b14f443a9be2f84bb6ca47 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6389: fa423f527496936a759eb838b023642deea7625f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_22659: fce9e0a464ec68a46ee747536cedf504c220dd83 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>fce9e0a464ec drm/i915/reg: Fix spelling mistake "Unsupport" -&gt; "Unsupported"</p>
-
-</body>
-</html>
-
---===============8739011009814541236==--
+--=20
+Jani Nikula, Intel Open Source Graphics Center
