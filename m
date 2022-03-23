@@ -1,34 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E4124E5126
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Mar 2022 12:19:23 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D4304E5148
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Mar 2022 12:26:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A972C10E689;
-	Wed, 23 Mar 2022 11:19:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 95EB410E6A1;
+	Wed, 23 Mar 2022 11:26:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1298510E682;
- Wed, 23 Mar 2022 11:19:20 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 10731A9932;
- Wed, 23 Mar 2022 11:19:20 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1A65A10E689;
+ Wed, 23 Mar 2022 11:26:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1648034790; x=1679570790;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=meqZnbbK7B8BK03iyZi+GqOjfSIM7QAQuJAs9z//UCY=;
+ b=jJ2WoaqGww2Op/k0gTgNUXdS5Oip0mLFzyWxgBmYT/xTdH5OrPjQYkzm
+ qcEgZDAtzIQ88mVLtsUJDjbzZsrsjhWYVppOUw+w0A7+GWzSfFGIMYokv
+ 6B11L1RSU9mUVYzdMA/3x14spzR0LieMZLVOzXCqjXTzfv0JlQ1C5D9yc
+ McbEEF8MIFYo1Ijle/rgV+QhDqo2pggTn2Bucb6wL5Y288g6db1STC9Qb
+ OmghijSfX5Yt/Af6AQzKjthOtwUXKrshGAmtmzsGsDZ/HdMR00NR2I/Y1
+ n9WGjso+rnaAkX9TjWU2DpJsYQwYE9k1Fv/ArYDr39PtPVKJgUOxiB8o1 w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10294"; a="238028784"
+X-IronPort-AV: E=Sophos;i="5.90,204,1643702400"; d="scan'208";a="238028784"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Mar 2022 04:26:29 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,204,1643702400"; d="scan'208";a="544154191"
+Received: from lkp-server02.sh.intel.com (HELO 89b41b6ae01c) ([10.239.97.151])
+ by orsmga007.jf.intel.com with ESMTP; 23 Mar 2022 04:26:27 -0700
+Received: from kbuild by 89b41b6ae01c with local (Exim 4.92)
+ (envelope-from <lkp@intel.com>)
+ id 1nWz8E-000K0P-HM; Wed, 23 Mar 2022 11:26:26 +0000
+Date: Wed, 23 Mar 2022 19:26:17 +0800
+From: kernel test robot <lkp@intel.com>
+To: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org
+Message-ID: <202203231911.crbWBIZj-lkp@intel.com>
+References: <20220323062552.228429-1-Arunpravin.PaneerSelvam@amd.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
-Date: Wed, 23 Mar 2022 11:19:20 -0000
-Message-ID: <164803436003.17991.6589138331375410539@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220315080247.1161844-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20220315080247.1161844-1-ankit.k.nautiyal@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIFJl?=
- =?utf-8?q?move_check_for_ComboPHY_I/O_voltage_for_DP_source_rate_=28rev5?=
- =?utf-8?q?=29?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220323062552.228429-1-Arunpravin.PaneerSelvam@amd.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v11] drm/amdgpu: add drm buddy support to
+ amdgpu
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,21 +62,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: alexander.deucher@amd.com, christian.koenig@amd.com,
+ kbuild-all@lists.01.org, matthew.auld@intel.com,
+ Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Arunpravin,
 
-Series: Remove check for ComboPHY I/O voltage for DP source rate (rev5)
-URL   : https://patchwork.freedesktop.org/series/96293/
-State : warning
+Thank you for the patch! Yet something to improve:
 
-== Summary ==
+[auto build test ERROR on a678f97326454b60ffbbde6abf52d23997d71a27]
 
-$ make htmldocs 2>&1 > /dev/null | grep i915
-./drivers/gpu/drm/i915/display/intel_drrs.c:1: warning: 'intel_drrs_enable' not found
-./drivers/gpu/drm/i915/display/intel_drrs.c:1: warning: 'intel_drrs_disable' not found
+url:    https://github.com/0day-ci/linux/commits/Arunpravin-Paneer-Selvam/drm-amdgpu-add-drm-buddy-support-to-amdgpu/20220323-142749
+base:   a678f97326454b60ffbbde6abf52d23997d71a27
+config: arc-allyesconfig (https://download.01.org/0day-ci/archive/20220323/202203231911.crbWBIZj-lkp@intel.com/config)
+compiler: arceb-elf-gcc (GCC) 11.2.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/0day-ci/linux/commit/5aa85728d353f9bcca7e25e17f800d014d77dee2
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Arunpravin-Paneer-Selvam/drm-amdgpu-add-drm-buddy-support-to-amdgpu/20220323-142749
+        git checkout 5aa85728d353f9bcca7e25e17f800d014d77dee2
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=arc SHELL=/bin/bash
+
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+All errors (new ones prefixed by >>):
+
+   In file included from drivers/gpu/drm/amd/amdgpu/amdgpu.h:73,
+                    from drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c:29:
+>> drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h:29:10: fatal error: amdgpu_vram_mgr.h: No such file or directory
+      29 | #include "amdgpu_vram_mgr.h"
+         |          ^~~~~~~~~~~~~~~~~~~
+   compilation terminated.
+--
+   In file included from drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgpu.h:73,
+                    from drivers/gpu/drm/amd/amdgpu/../pm/swsmu/smu11/arcturus_ppt.c:27:
+>> drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgpu_ttm.h:29:10: fatal error: amdgpu_vram_mgr.h: No such file or directory
+      29 | #include "amdgpu_vram_mgr.h"
+         |          ^~~~~~~~~~~~~~~~~~~
+   compilation terminated.
+--
+   In file included from drivers/gpu/drm/amd/amdgpu/../display/dmub/dmub_srv.h:67,
+                    from drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:35:
+   drivers/gpu/drm/amd/amdgpu/../display/dmub/inc/dmub_cmd.h: In function 'dmub_rb_flush_pending':
+   drivers/gpu/drm/amd/amdgpu/../display/dmub/inc/dmub_cmd.h:3049:26: warning: variable 'temp' set but not used [-Wunused-but-set-variable]
+    3049 |                 uint64_t temp;
+         |                          ^~~~
+   In file included from drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgpu.h:73,
+                    from drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:44:
+   drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgpu_ttm.h: At top level:
+>> drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgpu_ttm.h:29:10: fatal error: amdgpu_vram_mgr.h: No such file or directory
+      29 | #include "amdgpu_vram_mgr.h"
+         |          ^~~~~~~~~~~~~~~~~~~
+   compilation terminated.
 
 
+vim +29 drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
+
+    26	
+    27	#include <linux/dma-direction.h>
+    28	#include <drm/gpu_scheduler.h>
+  > 29	#include "amdgpu_vram_mgr.h"
+    30	#include "amdgpu.h"
+    31	
+
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
