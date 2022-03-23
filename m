@@ -1,151 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D09504E5914
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Mar 2022 20:24:45 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 267544E5970
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Mar 2022 20:54:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E56310E0EC;
-	Wed, 23 Mar 2022 19:24:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 579F789E3B;
+	Wed, 23 Mar 2022 19:54:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA9B710E08C
- for <intel-gfx@lists.freedesktop.org>; Wed, 23 Mar 2022 19:24:41 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A2B389E3B
+ for <intel-gfx@lists.freedesktop.org>; Wed, 23 Mar 2022 19:54:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1648063481; x=1679599481;
- h=from:to:subject:date:message-id:references:in-reply-to:
- content-id:content-transfer-encoding:mime-version;
- bh=UIeN7Lx8yZc2znKO+eC3/lGqIIgWw+gsT3eD4xwXk2U=;
- b=baq+hUSPJ1xhxZi2t63xe0+B0IZ+mFd6jegn2iMwmneDJxP+aT9rje8W
- sg8cEGkirVnr1eCD7Ru3QUOiT2ayeX0hI0Vy1v8lWZ7kBKmi3l7JijrRk
- kYWUal97jwacttcB103u7nG4ZUoQUTiqP7FEPAvXiTFOZYmUoYvYufX3z
- MZx7Yh6lCSJwJx8U9kjcnUCFFIdr9GvhCt+8Sq2AOFqSJzXnx58XnBBI6
- 1OaDN6OCyYHKC3VhmTV7hnaoJV3jntblZrlRbYLmUxne+Ul05aUhUROaa
- bWk57+edQhQvSGaTW94BClF8aMVddGKPjyRkM6AclnKo8oKntvAGpNG46 g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10295"; a="318919736"
-X-IronPort-AV: E=Sophos;i="5.90,204,1643702400"; d="scan'208";a="318919736"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2022 12:24:41 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,204,1643702400"; d="scan'208";a="717530339"
-Received: from orsmsx605.amr.corp.intel.com ([10.22.229.18])
- by orsmga005.jf.intel.com with ESMTP; 23 Mar 2022 12:24:41 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX605.amr.corp.intel.com (10.22.229.18) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Wed, 23 Mar 2022 12:24:40 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.21 via Frontend Transport; Wed, 23 Mar 2022 12:24:40 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.171)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2308.21; Wed, 23 Mar 2022 12:24:40 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=j0YhdWgvfW4Mly1ZnPK+ELnej3yjR636f8giN0yp7pRzxXzlcpk6camF/NEW7Nw4mm46ig2OKAwUnCNM1DJ7ch49xmdYRXzsWeYaxRB7G7HhCmQCbA+lHuQpNUtY6E8Vg4WYh237C5RSm1JLxi33SpgnsePZ40rsO+Ot8KLEZogUldjvA3u/NnetMl+tnGxgLf8IfngTGnC4guzcls52F4RLJ+mt8CgTFsfhKD6RikhPA5UOPGNQxd2w5KJN+SA5llfe+jjLJhZzPsaIg5kn1wezuXP2dFQCAPiGVuuiJ+LGi8N8nx5rlr9K4TWO/aYRE0ieRzB5uxo3aUahj9MgJQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=UIeN7Lx8yZc2znKO+eC3/lGqIIgWw+gsT3eD4xwXk2U=;
- b=FWqCZmAAg4J4cciz/KFb+CWHarZylwitjWijfbFHioXY/Cr/IPPmQKREjsrS1ghMkDp00cBwayUcIex25+OOUQ+4fLueze0Y8aDzEvp7r2wl52u96UuzzAKRuBo9aC1RzLEt+yymZ/OaeO6bUP7ZdwtXuQ4f3ddFtuh7v2cb05I63y0zt8+eZ/YgrqjnceoQ0frai0IyVqJQGMLlCgKcgRgynSX9no7MsHFIXaLjvNLSW4xdK3PXCbQAcbkf0reGfPbDFuQ+bShG3/eSJtyEm+V3lp1y0z2JdOj54Drjgmwh5aKuyS/qvmXR+KiGwDJ3qQ0ENaAr0ugSSaQu+2FMHg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from CO1PR11MB5169.namprd11.prod.outlook.com (2603:10b6:303:95::19)
- by DM6PR11MB4425.namprd11.prod.outlook.com (2603:10b6:5:1d9::31) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5102.16; Wed, 23 Mar
- 2022 19:24:38 +0000
-Received: from CO1PR11MB5169.namprd11.prod.outlook.com
- ([fe80::4818:ff2c:ac59:8bc4]) by CO1PR11MB5169.namprd11.prod.outlook.com
- ([fe80::4818:ff2c:ac59:8bc4%3]) with mapi id 15.20.5102.016; Wed, 23 Mar 2022
- 19:24:38 +0000
-From: "Tolakanahalli Pradeep, Madhumitha"
- <madhumitha.tolakanahalli.pradeep@intel.com>
-To: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH 1/2] drm/i915/dg2: Load DMC
-Thread-Index: AQHYPujWrHgAH8EJE02PUwohn8bBOazNWXQA
-Date: Wed, 23 Mar 2022 19:24:38 +0000
-Message-ID: <e51b36338ca95a1c5fa7e1e9518c3e69f489ec9a.camel@intel.com>
-References: <20220323190124.2343794-1-anusha.srivatsa@intel.com>
-In-Reply-To: <20220323190124.2343794-1-anusha.srivatsa@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Evolution 3.42.4 (3.42.4-1.fc35) 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 7d1406fe-8356-4ae2-d0d4-08da0d02c5fc
-x-ms-traffictypediagnostic: DM6PR11MB4425:EE_
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-microsoft-antispam-prvs: <DM6PR11MB442508B53DCDBCF5EAD06A96C7189@DM6PR11MB4425.namprd11.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: aiZ5Oc5NLrIOLabjkCLD1tcTaLEBAWALlz7AuEGqmcQjR1+3Ou40tbq87Y07wQeTl1qfmkPjNg33NCWnzQPCNOaqJh1lyNs+1Y4MVoLjZB28Yr0DRRqSl5dXlj9b9/yq/aMGhTkb6SoiQ+5ld4qZqc7Bpg1c3bpIFbrWM/FqRYtnyzbjw/e6MjT2Ow3SdbRSIpAVvHpEXPHH50UGl3oEjkat9RPx72YgZP/GA0p/LAIhgfxwbcs+OtLdlSi4Ih2aW/7BwNhKU8awrCWeMgqE8r7OqETuAqe1fI0kQ3o2XI5xuVTcYlaOZIIHJ9htezipVWh/HW8ytRk5Ikx5OACq4H6QjSxE8Jb4B9lpSPW3DpXHca7OGi5myjjTXu53IU2MGcfmXT/ZwI2g1dpb48vS3rKhnePesjYp8qQYdTMBJEPLkBATh6ODyOSqbgkyrzQvcDqGCbDmiOaYWIDMRqU/sa521m+9X9OpcM0Pov9bs4rW9Zoi/pmQmAg1l1k9lnN3i9gP/8imcFCIzRo/zTbeMHSh/AlST9UV/NPqW6vNUklNiLeL3b8o7npWz5aO4/ijB7L6WXMqt6ojQajb7O4vPYRSxt1qTZwmkQ/JRVJyID/gDFu2LC667mOYQ5M4tAf3dGzVGvdgklS43qPENqCXYGHMnbUXFmNe4rHKM82IbW7I+gLpKq+ShIfy/dBLlAy3cfKut6qtd2fJ3fVvCjEXcwWuP7iHyRRrAwJfGQmbL9wNWRQUwSlrm8+HG6GPo2jc
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CO1PR11MB5169.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230001)(366004)(83380400001)(2616005)(2906002)(36756003)(186003)(6512007)(6506007)(6486002)(110136005)(5660300002)(8936002)(66556008)(66946007)(122000001)(82960400001)(76116006)(316002)(71200400001)(38070700005)(508600001)(66476007)(64756008)(66446008)(86362001)(8676002)(38100700002);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?QUdoRW05MU1Ga3N5ZEZuZVduNjE1QlU5RzdjVjJiS2tRQm9xMk9BM3pCUTNI?=
- =?utf-8?B?UDJlRXJlSkVya29reXQ5c1IxK0NZV0VaSmRtcm5INU5mSTNUUDZGSk5acjJK?=
- =?utf-8?B?dmYyb3F6THREWnlUaTRPT2tUa2ZhU2R3UkRESVUvYURmVmJIdW01Y2ZCMjFZ?=
- =?utf-8?B?M3B0T240dStPak9OL2haSzd0VmE5dHlRbGNsRmh6MmkwYXpZWGlxVnUxeXZJ?=
- =?utf-8?B?RERUTllWQnB3K0xQcXhHbjRDT2lWenBMQk03T0hMdFZJeGp2YnRqTnBkVlpt?=
- =?utf-8?B?RG9qcDFOVU96ZlpzOWN0SU4yUUd3ckNWVzhIa1l0K0dOM0Q2dTFENnRqdVJs?=
- =?utf-8?B?bHlSeGNORGdWQWlSZW8wQWpPSzFBN05wd040T3Jna0N3eUtmRStCcHhRK09L?=
- =?utf-8?B?MFp5ekh6SGU4NTJIKytrWGRuTzhKeDVabGUxVWFuT2RDcm11YTV3SVFwNUc2?=
- =?utf-8?B?MzdGeDhieU9nb2d6Q3dlbkl1cUZsRmloM1BhVVFGUk90N0tpeGNGSGkzTC90?=
- =?utf-8?B?eVVUeTVyTjhsWmhzLzhMekNobUE1T1VEMkY5TEI2NmNvTnVHb3JCdGoxcGdM?=
- =?utf-8?B?MFVLY2F3TDFDbDdkRVYxMEN0d0RuL01KZEtvVGdwTjY5bDlSaXlMdzVVaFVG?=
- =?utf-8?B?NW1ZTFppQTd2T3lOeFpQWGx5ekFpa2JPQkt6SGdwNUZGbzM4RjN3QnRRTjNW?=
- =?utf-8?B?SlJKRzRaV0hvR0NmVWo1K25KemlqYXpZaldIMVFIaEdDdEpLTDF5WU9WOWwz?=
- =?utf-8?B?Ry9XekkwRHhVV1RRMFBVN3VDWE1uU0h3dW9XQU1PVkRJM2Q5bllDOHkwRUU0?=
- =?utf-8?B?NlR3TmNpc3VEUlV6UzVuRnRzNlJRcUVra1hBcjI0OVRMNXNaS2VTTTREdHhz?=
- =?utf-8?B?TFZnMTRjU3pkNDBhWW1ZRmlNNzk1eWhJT2R4RnY4QmpMV3NtZzhGRWZjVWFM?=
- =?utf-8?B?aVdLT1gvRzVLQTJoSEhCK2dKUE83TGo5U0RMM1BmUWZRSjRTYmlRNkdOZ045?=
- =?utf-8?B?R0s1R0FaSE1BeXF5RVNLUitYK3kvbTNUbTBidktycEdJbWt3OXd1bXltK0x6?=
- =?utf-8?B?WWtseEQ0cHp4bllnMHR2a2I2ZjE1Z0JkYUZvV25lU3p5Q1k4TjkrWk9UN3hW?=
- =?utf-8?B?L2o0T1F6d21mcjBsVS9qZGRpOUkvSTlJNWIzQWhXN0ZMdHdJZWdlbDU5YlRz?=
- =?utf-8?B?cTdGTk00angyei9qTDVoZFdNTzY4WnJCK3pTZ01YbGFKMjFNd281eUovT1Az?=
- =?utf-8?B?Mlk4em9RRDBZdFRoQTNIN2tMaWFvb2hxQkFYSSs5YjhPYzhUNU9oMTdVYkxU?=
- =?utf-8?B?c2Z0YjJXNFpEQWNVNzR4aXZPNXpMYml1bU5QWjFYZ0VBYVp6TUV0WjhoYURh?=
- =?utf-8?B?bVB5QnN0UHAvNG14RSsxSms0YUVVeHRVVDVWWjVCczY3czI2aHZJc3VJKzFB?=
- =?utf-8?B?RmNaK1ppRGNzTmR6UURsOHRTNFdyR3dFdW54cXNkUnU4ODJPSHV1Y0RUWTdi?=
- =?utf-8?B?MnY5QVhlQ3JIUzN3R0RKUlArMGJYRVdYUVZiVHV3ZjhGSDdiNkZiZTMvQjZV?=
- =?utf-8?B?VG85SnVnTmY1dEhkQWxuWFNmZWI2YWtsUzBaaVBuM2JpUXp5RlhySGpNVWpw?=
- =?utf-8?B?Y3o5VUxmWWVaQkJMclRxSnlaMUhjZ1NNR1M2aUtkOFFoRno5RUt0V1poSGoz?=
- =?utf-8?B?SnczbTdxRkgxZW81QUN0dUJNZGVHeit3U2pnK2l3aVdzUXAzSDl1cDdJZnhD?=
- =?utf-8?B?NlB2SForT25uVkFuak5sLzNWcktHYlZNNk5XcTIxSzJZaXlWRVU4bEV3MVUr?=
- =?utf-8?B?aU9wTkNuODFiSzBOZ1hRWmczMHYxNkxvNEdzc2JkMmlvWTh4NmZEdmVmdDB2?=
- =?utf-8?B?S0Fjcyt3Tml6L0RXRGxtS3FEZWxrS3YrSmE5NmlBSlZvTXcxV3d0N3RXWDJt?=
- =?utf-8?B?T1hHYytXSlF5MHNjN3ErN1FzVEExYXdwTWpRTStLc3AyNUM3cllQRjA1L1pn?=
- =?utf-8?B?c2hGakZ2Y0tYK3g3WmkxR0tFdElOSHRGRGxSQVppNGJlSjVIclFZQXBvc1pj?=
- =?utf-8?B?YnhQTkFRQ1Z4UDFFNHoraHVlZkNZZTRBYTFzcmNXLzRWY2krd1lHbFE3cWk5?=
- =?utf-8?Q?E8E4=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <948C49E18CB0D848BBC3E178090462E3@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+ t=1648065291; x=1679601291;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=brlyykZhvVd/m1oEVp9U+TgqcpyzaF+zMGAPoBPHbl0=;
+ b=HulRm7skVtp9sAGBvSgDXz/zG6hHnuInIcyDJYi2EKKl+zGEVb9cw6uu
+ Zf/zn8jBkxgd+ayVBdmJvicWBd9I9PxYzNI7jZ6cLaCMOovA2M2IbZJCn
+ rKtTdYzc+w4AbAY6oSZtRb/JY+HvGDFZR+Obi3kjRho8wSLnY42scVNbU
+ 1ZapRap3/fgw+8o5O06YAzqxKHAp4FC09F+X1ZVezDooiKTylybNV03D9
+ ayRs7sQ7xP2SSletoSX9SPO3Pq8+X3HRUxjdr23SppAw5TwnL4FBFxvUA
+ EUBOKmCcE05r1xI+csLOWD35VOE4K+8S3V337RNt7eb5uprGTMedKvzAz Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10295"; a="238156079"
+X-IronPort-AV: E=Sophos;i="5.90,204,1643702400"; d="scan'208";a="238156079"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Mar 2022 12:54:50 -0700
+X-IronPort-AV: E=Sophos;i="5.90,204,1643702400"; d="scan'208";a="825437018"
+Received: from orsosgc001.jf.intel.com (HELO unerlige-ril-10.165.21.154.com)
+ ([10.165.21.154])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Mar 2022 12:54:50 -0700
+From: Ashutosh Dixit <ashutosh.dixit@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 23 Mar 2022 12:54:35 -0700
+Message-Id: <20220323195435.38524-1-ashutosh.dixit@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5169.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7d1406fe-8356-4ae2-d0d4-08da0d02c5fc
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Mar 2022 19:24:38.8341 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: sH/RaRrE7Re4au50XILP8o5JMu+6Y6V06ZIhf2TrlKFXdaItl41VWWqmySD1p8zB2snBu3t6ZCy4NoEXlrv1L6CZC6DcEa0ZcAu4Mzyh631u08Fr5UYGfgV0ZtvtFAgDp6fUGBAZs0BC0ZFD2qXQ+g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4425
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/dg2: Load DMC
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/rps: Centralize computation of freq
+ caps
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -158,42 +55,315 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCAyMDIyLTAzLTIzIGF0IDEyOjAxIC0wNzAwLCBBbnVzaGEgU3JpdmF0c2Egd3JvdGU6
-Cj4gQWRkIFN1cHBvcnQgdG8gbG9hZCBkbWMgdjIuMDYKPiAKPiBDYzogTWFkaHVtaXRoYSBUb2xh
-a2FuYWhhbGxpIFByYWRlZXAKPiA8bWFkaHVtaXRoYS50b2xha2FuYWhhbGxpLnByYWRlZXBAaW50
-ZWwuY29tPgo+IFNpZ25lZC1vZmYtYnk6IEFudXNoYSBTcml2YXRzYSA8YW51c2hhLnNyaXZhdHNh
-QGludGVsLmNvbT4KPiAtLS0KPiDCoGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
-ZG1jLmMgfCAxMCArKysrKysrKystCj4gwqAxIGZpbGUgY2hhbmdlZCwgOSBpbnNlcnRpb25zKCsp
-LCAxIGRlbGV0aW9uKC0pCj4gCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
-c3BsYXkvaW50ZWxfZG1jLmMKPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
-ZG1jLmMKPiBpbmRleCBhNzE5YzBmMzc5YmEuLjQ2MjExMWExNTMwNCAxMDA2NDQKPiAtLS0gYS9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RtYy5jCj4gKysrIGIvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kbWMuYwo+IEBAIC00Nyw2ICs0NywxMCBAQAo+IMKg
-Cj4gwqAjZGVmaW5lIERJU1BMQVlfVkVSMTJfRE1DX01BWF9GV19TSVpFwqDCoElDTF9ETUNfTUFY
-X0ZXX1NJWkUKPiDCoAo+ICsjZGVmaW5lIERHMl9ETUNfUEFUSMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgRE1DX1BBVEgoZGcxLCAyLCAwNikKICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIMKgCiAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgIF5eIGRnMgoKPiArI2RlZmluZSBERzJfRE1DX1ZF
-UlNJT05fUkVRVUlSRUTCoMKgwqDCoMKgwqDCoERNQ19WRVJTSU9OKDIsIDYpCj4gK01PRFVMRV9G
-SVJNV0FSRShERzJfRE1DX1BBVEgpOwo+ICsKPiDCoCNkZWZpbmUgQURMUF9ETUNfUEFUSMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoERNQ19QQVRIKGFkbHAsIDIsIDE2KQo+IMKg
-I2RlZmluZSBBRExQX0RNQ19WRVJTSU9OX1JFUVVJUkVEwqDCoMKgwqDCoMKgRE1DX1ZFUlNJT04o
-MiwgMTYpCj4gwqBNT0RVTEVfRklSTVdBUkUoQURMUF9ETUNfUEFUSCk7Cj4gQEAgLTY4MSw3ICs2
-ODUsMTEgQEAgdm9pZCBpbnRlbF9kbWNfdWNvZGVfaW5pdChzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0
-ZQo+ICpkZXZfcHJpdikKPiDCoMKgwqDCoMKgwqDCoMKgICovCj4gwqDCoMKgwqDCoMKgwqDCoGlu
-dGVsX2RtY19ydW50aW1lX3BtX2dldChkZXZfcHJpdik7Cj4gwqAKPiAtwqDCoMKgwqDCoMKgwqBp
-ZiAoSVNfQUxERVJMQUtFX1AoZGV2X3ByaXYpKSB7Cj4gK8KgwqDCoMKgwqDCoMKgaWYgKElTX0RH
-MihkZXZfcHJpdikpIHsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgZG1jLT5md19w
-YXRoID0gREcyX0RNQ19QQVRIOwo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBkbWMt
-PnJlcXVpcmVkX3ZlcnNpb24gPSBERzJfRE1DX1ZFUlNJT05fUkVRVUlSRUQ7Cj4gK8KgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoGRtYy0+bWF4X2Z3X3NpemUgPSBESVNQTEFZX1ZFUjEzX0RN
-Q19NQVhfRldfU0laRTsKPiArwqDCoMKgwqDCoMKgwqB9IGVsc2UgaWYgKElTX0FMREVSTEFLRV9Q
-KGRldl9wcml2KSkgewo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgZG1jLT5md19w
-YXRoID0gQURMUF9ETUNfUEFUSDsKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGRt
-Yy0+cmVxdWlyZWRfdmVyc2lvbiA9IEFETFBfRE1DX1ZFUlNJT05fUkVRVUlSRUQ7Cj4gwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBkbWMtPm1heF9md19zaXplID0gRElTUExBWV9WRVIx
-M19ETUNfTUFYX0ZXX1NJWkU7CgpUZWVueSBlcnJvciBpbiBETUNfUEFUSCwgdGhlIHJlc3Qgb2Yg
-dGhlIHBhdGNoIGxvb2tzIGdvb2QuCgotIE1hZGh1bWl0aGEK
+Freq caps (i.e. RP0, RP1 and RPn frequencies) are read from HW. However the
+formats (bit positions, widths, registers and units) of these vary for
+different generations with even more variations arriving in the future. In
+order not to have to do identical computation for these caps in multiple
+places, here we centralize the computation of these caps. This makes the
+code cleaner and also more extensible for the future.
+
+v2: Clarify that caps are in "hw units" in comments (Lucas De Marchi)
+v3: Minor checkpatch fix
+v4: s/intel_rps_get_freq_caps/gen6_rps_get_freq_caps/ (Badal Nilawar)
+
+Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c |  24 +----
+ drivers/gpu/drm/i915/gt/intel_rps.c           | 101 ++++++++++--------
+ drivers/gpu/drm/i915/gt/intel_rps.h           |   2 +-
+ drivers/gpu/drm/i915/gt/intel_rps_types.h     |  10 ++
+ drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c   |  14 +--
+ 5 files changed, 79 insertions(+), 72 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
+index 31dbb2b96738..280a27cb9bdf 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
+@@ -342,17 +342,16 @@ void intel_gt_pm_frequency_dump(struct intel_gt *gt, struct drm_printer *p)
+ 	} else if (GRAPHICS_VER(i915) >= 6) {
+ 		u32 rp_state_limits;
+ 		u32 gt_perf_status;
+-		u32 rp_state_cap;
++		struct intel_rps_freq_caps caps;
+ 		u32 rpmodectl, rpinclimit, rpdeclimit;
+ 		u32 rpstat, cagf, reqf;
+ 		u32 rpcurupei, rpcurup, rpprevup;
+ 		u32 rpcurdownei, rpcurdown, rpprevdown;
+ 		u32 rpupei, rpupt, rpdownei, rpdownt;
+ 		u32 pm_ier, pm_imr, pm_isr, pm_iir, pm_mask;
+-		int max_freq;
+ 
+ 		rp_state_limits = intel_uncore_read(uncore, GEN6_RP_STATE_LIMITS);
+-		rp_state_cap = intel_rps_read_state_cap(rps);
++		gen6_rps_get_freq_caps(rps, &caps);
+ 		if (IS_GEN9_LP(i915))
+ 			gt_perf_status = intel_uncore_read(uncore, BXT_GT_PERF_STATUS);
+ 		else
+@@ -474,25 +473,12 @@ void intel_gt_pm_frequency_dump(struct intel_gt *gt, struct drm_printer *p)
+ 		drm_printf(p, "RP DOWN THRESHOLD: %d (%lldns)\n",
+ 			   rpdownt, intel_gt_pm_interval_to_ns(gt, rpdownt));
+ 
+-		max_freq = (IS_GEN9_LP(i915) ? rp_state_cap >> 0 :
+-			    rp_state_cap >> 16) & 0xff;
+-		max_freq *= (IS_GEN9_BC(i915) ||
+-			     GRAPHICS_VER(i915) >= 11 ? GEN9_FREQ_SCALER : 1);
+ 		drm_printf(p, "Lowest (RPN) frequency: %dMHz\n",
+-			   intel_gpu_freq(rps, max_freq));
+-
+-		max_freq = (rp_state_cap & 0xff00) >> 8;
+-		max_freq *= (IS_GEN9_BC(i915) ||
+-			     GRAPHICS_VER(i915) >= 11 ? GEN9_FREQ_SCALER : 1);
++			   intel_gpu_freq(rps, caps.min_freq));
+ 		drm_printf(p, "Nominal (RP1) frequency: %dMHz\n",
+-			   intel_gpu_freq(rps, max_freq));
+-
+-		max_freq = (IS_GEN9_LP(i915) ? rp_state_cap >> 16 :
+-			    rp_state_cap >> 0) & 0xff;
+-		max_freq *= (IS_GEN9_BC(i915) ||
+-			     GRAPHICS_VER(i915) >= 11 ? GEN9_FREQ_SCALER : 1);
++			   intel_gpu_freq(rps, caps.rp1_freq));
+ 		drm_printf(p, "Max non-overclocked (RP0) frequency: %dMHz\n",
+-			   intel_gpu_freq(rps, max_freq));
++			   intel_gpu_freq(rps, caps.rp0_freq));
+ 		drm_printf(p, "Max overclocked frequency: %dMHz\n",
+ 			   intel_gpu_freq(rps, rps->max_freq));
+ 
+diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
+index 6c9fdf7906c5..f21f6e454998 100644
+--- a/drivers/gpu/drm/i915/gt/intel_rps.c
++++ b/drivers/gpu/drm/i915/gt/intel_rps.c
+@@ -1070,23 +1070,59 @@ int intel_rps_set(struct intel_rps *rps, u8 val)
+ 	return 0;
+ }
+ 
+-static void gen6_rps_init(struct intel_rps *rps)
++static u32 intel_rps_read_state_cap(struct intel_rps *rps)
+ {
+ 	struct drm_i915_private *i915 = rps_to_i915(rps);
+-	u32 rp_state_cap = intel_rps_read_state_cap(rps);
++	struct intel_uncore *uncore = rps_to_uncore(rps);
+ 
+-	/* All of these values are in units of 50MHz */
++	if (IS_XEHPSDV(i915))
++		return intel_uncore_read(uncore, XEHPSDV_RP_STATE_CAP);
++	else if (IS_GEN9_LP(i915))
++		return intel_uncore_read(uncore, BXT_RP_STATE_CAP);
++	else
++		return intel_uncore_read(uncore, GEN6_RP_STATE_CAP);
++}
++
++/* "Caps" frequencies should be converted to MHz using intel_gpu_freq() */
++void gen6_rps_get_freq_caps(struct intel_rps *rps, struct intel_rps_freq_caps *caps)
++{
++	struct drm_i915_private *i915 = rps_to_i915(rps);
++	u32 rp_state_cap;
++
++	rp_state_cap = intel_rps_read_state_cap(rps);
+ 
+ 	/* static values from HW: RP0 > RP1 > RPn (min_freq) */
+ 	if (IS_GEN9_LP(i915)) {
+-		rps->rp0_freq = (rp_state_cap >> 16) & 0xff;
+-		rps->rp1_freq = (rp_state_cap >>  8) & 0xff;
+-		rps->min_freq = (rp_state_cap >>  0) & 0xff;
++		caps->rp0_freq = (rp_state_cap >> 16) & 0xff;
++		caps->rp1_freq = (rp_state_cap >>  8) & 0xff;
++		caps->min_freq = (rp_state_cap >>  0) & 0xff;
+ 	} else {
+-		rps->rp0_freq = (rp_state_cap >>  0) & 0xff;
+-		rps->rp1_freq = (rp_state_cap >>  8) & 0xff;
+-		rps->min_freq = (rp_state_cap >> 16) & 0xff;
++		caps->rp0_freq = (rp_state_cap >>  0) & 0xff;
++		caps->rp1_freq = (rp_state_cap >>  8) & 0xff;
++		caps->min_freq = (rp_state_cap >> 16) & 0xff;
++	}
++
++	if (IS_GEN9_BC(i915) || GRAPHICS_VER(i915) >= 11) {
++		/*
++		 * In this case rp_state_cap register reports frequencies in
++		 * units of 50 MHz. Convert these to the actual "hw unit", i.e.
++		 * units of 16.67 MHz
++		 */
++		caps->rp0_freq *= GEN9_FREQ_SCALER;
++		caps->rp1_freq *= GEN9_FREQ_SCALER;
++		caps->min_freq *= GEN9_FREQ_SCALER;
+ 	}
++}
++
++static void gen6_rps_init(struct intel_rps *rps)
++{
++	struct drm_i915_private *i915 = rps_to_i915(rps);
++	struct intel_rps_freq_caps caps;
++
++	gen6_rps_get_freq_caps(rps, &caps);
++	rps->rp0_freq = caps.rp0_freq;
++	rps->rp1_freq = caps.rp1_freq;
++	rps->min_freq = caps.min_freq;
+ 
+ 	/* hw_max = RP0 until we check for overclocking */
+ 	rps->max_freq = rps->rp0_freq;
+@@ -1095,26 +1131,18 @@ static void gen6_rps_init(struct intel_rps *rps)
+ 	if (IS_HASWELL(i915) || IS_BROADWELL(i915) ||
+ 	    IS_GEN9_BC(i915) || GRAPHICS_VER(i915) >= 11) {
+ 		u32 ddcc_status = 0;
++		u32 mult = 1;
+ 
++		if (IS_GEN9_BC(i915) || GRAPHICS_VER(i915) >= 11)
++			mult = GEN9_FREQ_SCALER;
+ 		if (snb_pcode_read(i915, HSW_PCODE_DYNAMIC_DUTY_CYCLE_CONTROL,
+ 				   &ddcc_status, NULL) == 0)
+ 			rps->efficient_freq =
+-				clamp_t(u8,
+-					(ddcc_status >> 8) & 0xff,
++				clamp_t(u32,
++					((ddcc_status >> 8) & 0xff) * mult,
+ 					rps->min_freq,
+ 					rps->max_freq);
+ 	}
+-
+-	if (IS_GEN9_BC(i915) || GRAPHICS_VER(i915) >= 11) {
+-		/* Store the frequency values in 16.66 MHZ units, which is
+-		 * the natural hardware unit for SKL
+-		 */
+-		rps->rp0_freq *= GEN9_FREQ_SCALER;
+-		rps->rp1_freq *= GEN9_FREQ_SCALER;
+-		rps->min_freq *= GEN9_FREQ_SCALER;
+-		rps->max_freq *= GEN9_FREQ_SCALER;
+-		rps->efficient_freq *= GEN9_FREQ_SCALER;
+-	}
+ }
+ 
+ static bool rps_reset(struct intel_rps *rps)
+@@ -2219,19 +2247,6 @@ int intel_rps_set_min_frequency(struct intel_rps *rps, u32 val)
+ 		return set_min_freq(rps, val);
+ }
+ 
+-u32 intel_rps_read_state_cap(struct intel_rps *rps)
+-{
+-	struct drm_i915_private *i915 = rps_to_i915(rps);
+-	struct intel_uncore *uncore = rps_to_uncore(rps);
+-
+-	if (IS_XEHPSDV(i915))
+-		return intel_uncore_read(uncore, XEHPSDV_RP_STATE_CAP);
+-	else if (IS_GEN9_LP(i915))
+-		return intel_uncore_read(uncore, BXT_RP_STATE_CAP);
+-	else
+-		return intel_uncore_read(uncore, GEN6_RP_STATE_CAP);
+-}
+-
+ static void intel_rps_set_manual(struct intel_rps *rps, bool enable)
+ {
+ 	struct intel_uncore *uncore = rps_to_uncore(rps);
+@@ -2244,18 +2259,18 @@ static void intel_rps_set_manual(struct intel_rps *rps, bool enable)
+ void intel_rps_raise_unslice(struct intel_rps *rps)
+ {
+ 	struct intel_uncore *uncore = rps_to_uncore(rps);
+-	u32 rp0_unslice_req;
+ 
+ 	mutex_lock(&rps->lock);
+ 
+ 	if (rps_uses_slpc(rps)) {
+ 		/* RP limits have not been initialized yet for SLPC path */
+-		rp0_unslice_req = ((intel_rps_read_state_cap(rps) >> 0)
+-				   & 0xff) * GEN9_FREQ_SCALER;
++		struct intel_rps_freq_caps caps;
++
++		gen6_rps_get_freq_caps(rps, &caps);
+ 
+ 		intel_rps_set_manual(rps, true);
+ 		intel_uncore_write(uncore, GEN6_RPNSWREQ,
+-				   ((rp0_unslice_req <<
++				   ((caps.rp0_freq <<
+ 				   GEN9_SW_REQ_UNSLICE_RATIO_SHIFT) |
+ 				   GEN9_IGNORE_SLICE_RATIO));
+ 		intel_rps_set_manual(rps, false);
+@@ -2269,18 +2284,18 @@ void intel_rps_raise_unslice(struct intel_rps *rps)
+ void intel_rps_lower_unslice(struct intel_rps *rps)
+ {
+ 	struct intel_uncore *uncore = rps_to_uncore(rps);
+-	u32 rpn_unslice_req;
+ 
+ 	mutex_lock(&rps->lock);
+ 
+ 	if (rps_uses_slpc(rps)) {
+ 		/* RP limits have not been initialized yet for SLPC path */
+-		rpn_unslice_req = ((intel_rps_read_state_cap(rps) >> 16)
+-				   & 0xff) * GEN9_FREQ_SCALER;
++		struct intel_rps_freq_caps caps;
++
++		gen6_rps_get_freq_caps(rps, &caps);
+ 
+ 		intel_rps_set_manual(rps, true);
+ 		intel_uncore_write(uncore, GEN6_RPNSWREQ,
+-				   ((rpn_unslice_req <<
++				   ((caps.min_freq <<
+ 				   GEN9_SW_REQ_UNSLICE_RATIO_SHIFT) |
+ 				   GEN9_IGNORE_SLICE_RATIO));
+ 		intel_rps_set_manual(rps, false);
+diff --git a/drivers/gpu/drm/i915/gt/intel_rps.h b/drivers/gpu/drm/i915/gt/intel_rps.h
+index ba1ed9f7ecda..1e8d56491308 100644
+--- a/drivers/gpu/drm/i915/gt/intel_rps.h
++++ b/drivers/gpu/drm/i915/gt/intel_rps.h
+@@ -45,7 +45,7 @@ u32 intel_rps_get_rp1_frequency(struct intel_rps *rps);
+ u32 intel_rps_get_rpn_frequency(struct intel_rps *rps);
+ u32 intel_rps_read_punit_req(struct intel_rps *rps);
+ u32 intel_rps_read_punit_req_frequency(struct intel_rps *rps);
+-u32 intel_rps_read_state_cap(struct intel_rps *rps);
++void gen6_rps_get_freq_caps(struct intel_rps *rps, struct intel_rps_freq_caps *caps);
+ void intel_rps_raise_unslice(struct intel_rps *rps);
+ void intel_rps_lower_unslice(struct intel_rps *rps);
+ 
+diff --git a/drivers/gpu/drm/i915/gt/intel_rps_types.h b/drivers/gpu/drm/i915/gt/intel_rps_types.h
+index 3941d8551f52..4f7a351e0997 100644
+--- a/drivers/gpu/drm/i915/gt/intel_rps_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_rps_types.h
+@@ -37,6 +37,16 @@ enum {
+ 	INTEL_RPS_TIMER,
+ };
+ 
++/*
++ * Freq caps exposed by HW, values are in "hw units" and intel_gpu_freq()
++ * should be used to convert to MHz
++ */
++struct intel_rps_freq_caps {
++	u8 rp0_freq;		/* non-overclocked max frequency */
++	u8 rp1_freq;		/* "less than" RP0 power/freqency */
++	u8 min_freq;		/* aka RPn, minimum frequency */
++};
++
+ struct intel_rps {
+ 	struct mutex lock; /* protects enabling and the worker */
+ 
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
+index 9f032c65a488..9e02355e44f1 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
+@@ -582,16 +582,12 @@ static int slpc_use_fused_rp0(struct intel_guc_slpc *slpc)
+ static void slpc_get_rp_values(struct intel_guc_slpc *slpc)
+ {
+ 	struct intel_rps *rps = &slpc_to_gt(slpc)->rps;
+-	u32 rp_state_cap;
++	struct intel_rps_freq_caps caps;
+ 
+-	rp_state_cap = intel_rps_read_state_cap(rps);
+-
+-	slpc->rp0_freq = REG_FIELD_GET(RP0_CAP_MASK, rp_state_cap) *
+-					GT_FREQUENCY_MULTIPLIER;
+-	slpc->rp1_freq = REG_FIELD_GET(RP1_CAP_MASK, rp_state_cap) *
+-					GT_FREQUENCY_MULTIPLIER;
+-	slpc->min_freq = REG_FIELD_GET(RPN_CAP_MASK, rp_state_cap) *
+-					GT_FREQUENCY_MULTIPLIER;
++	gen6_rps_get_freq_caps(rps, &caps);
++	slpc->rp0_freq = intel_gpu_freq(rps, caps.rp0_freq);
++	slpc->rp1_freq = intel_gpu_freq(rps, caps.rp1_freq);
++	slpc->min_freq = intel_gpu_freq(rps, caps.min_freq);
+ 
+ 	if (!slpc->boost_freq)
+ 		slpc->boost_freq = slpc->rp0_freq;
+-- 
+2.34.1
+
