@@ -2,53 +2,145 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 297184E52EA
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Mar 2022 14:20:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 90F784E532F
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Mar 2022 14:35:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1155310E6D2;
-	Wed, 23 Mar 2022 13:20:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0AE4310E163;
+	Wed, 23 Mar 2022 13:35:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5813510E6D2;
- Wed, 23 Mar 2022 13:20:22 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6634310E05C
+ for <intel-gfx@lists.freedesktop.org>; Wed, 23 Mar 2022 13:35:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1648041622; x=1679577622;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=zcEwH9BB9/NBV3VPr9VxS1EyuEsoHwN60DcqzRyvwWE=;
- b=Rf2kEyZScMjxLDQWqFJ+5I0nWzcv5ROPw7MYB1PuYDCosKi9EPCDx8Lq
- zBSdthMWtIxc1nz1+anQAKt/vbkjfMH/v3gbV9dv1SFrJcqF/iDhNUofB
- cxzPsaK598rDJDmXf1pcGEi1yRtN/OWYBhVyhnEyEXHTruCYMsrrTainH
- fO6fsWFKBMAYRZRWtSDRBGUhCi+CgELHLdniltP+9e2xfgEMyR9IAjPj5
- kYyBLEpMhO5tORc6k3YlNmYleU4Vx2pwLDO5rBNykRsjMvJpDLH3btsZ6
- KZs3Pw8vWTrhYYuo73Vfbuosqa8n7aW1/zWYM4D8ZylimUrPLFhv8FfNH A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10294"; a="238711251"
-X-IronPort-AV: E=Sophos;i="5.90,204,1643702400"; d="scan'208";a="238711251"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2022 06:20:00 -0700
-X-IronPort-AV: E=Sophos;i="5.90,204,1643702400"; d="scan'208";a="500996668"
-Received: from jmccorm1-mobl.ger.corp.intel.com (HELO [10.213.205.63])
- ([10.213.205.63])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2022 06:19:57 -0700
-Message-ID: <7f81de90-da3c-ea4f-4d74-c064b54b0ab2@linux.intel.com>
-Date: Wed, 23 Mar 2022 13:19:53 +0000
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
+ t=1648042531; x=1679578531;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:reply-to:content-transfer-encoding: mime-version;
+ bh=UrGCPov6hW1gzMMYhgDAlgZhqPp/5w+nfYqjjF37oTE=;
+ b=Lc1oFeVNEuBFU15CF1Xs/0foFMAGeD+fI3OeyLwL7HmUmku/+ItJkWi0
+ 2CgE/RdiBhB2A9TIJGV8lvRNXl4oRta+QwslBbV24d6p9lsB2fMup/Jw+
+ hANB/trE3DaoXX/4DLaRNkJ5NIYhhbMPr/SkXFwjKj0HYSTd5xg+GiyGu
+ slM6JrpV+iYjQp8LzsyoSsxR61SQop1NOMoAqE0p87IdM3gPOJgmt1GwQ
+ bqWHQLQhBQtGBSN6LiFuNqgtQtIm46YCtfq8cKX/yA/JG357m33YJ1dZC
+ pnN7fgAiy9hO9VObfSCPBEPYKJseGoan5e3mVSgslYYZEiDe7lOXHWrag A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10294"; a="321308042"
+X-IronPort-AV: E=Sophos;i="5.90,204,1643702400"; d="scan'208";a="321308042"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Mar 2022 06:35:30 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,204,1643702400"; d="scan'208";a="519360497"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orsmga006.jf.intel.com with ESMTP; 23 Mar 2022 06:35:30 -0700
+Received: from fmsmsx604.amr.corp.intel.com (10.18.126.84) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27; Wed, 23 Mar 2022 06:35:29 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx604.amr.corp.intel.com (10.18.126.84) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27 via Frontend Transport; Wed, 23 Mar 2022 06:35:29 -0700
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.44) by
+ edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2308.21; Wed, 23 Mar 2022 06:35:29 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=BAtCc2V8hD/joV0brHAvW9FoZ0/MxIBJY5fiVh9a3vSgIO5zJ0bMR4Py87jn1fbUT2v7yD5fUcDkoE+CsrlBNkj07RTn+DCHiHYVyDeVMjrLkJpA2oye6/MjH1WT2YhXVd8IEW1x4B/2JEJRL+Pyn6+rf/3djUG0LpsJUnD9ffR9aGzJ1t1dqzO2uDijvml/YGck65x7+4bB1Ht7bg65dAx7a3XLDlRO68ITzi17qlCIi7vmcZR2dejAsDZZeKjjS/KIn6HlrenDpP1TgEfBnpiBMjMho/60EC1LJTPqzTtPZ2H0WiTOhUe/E1iziCYys8KmGd1a27JAbAQvbF6+AQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=lUZV0Cnc4u+IxsURu1zaxROXgFI+owIKyaaXHuHroo4=;
+ b=H5n004H5+1deZMNb9T89hTZqwGlv9T479IIU6hX9rWZueEuZ23z3IS3p956v0/Dk6tYlrK9bQjn5bZ0d5KkPtK3Z3mi/a9e7TLNm0PFz4qdgvf381ZA6i6Y7gJ/BJb0ldTBVI2/C8Gbn0vCcZImdfZcQgaj4klKjs2UrUmgCHQvq4QHopFTDBMw/iM3y11DFsevjjJcc67dPcq36FD94TWgW553K5jjBN5MGB1eYKGJ5e0o6czr4S9HD3dLy3BS0xnJcGYE+Ne1qOFu1oBl7e2JWdLm2cgho/nTW5k+SICP3TbIa3R5kh+JXwRQySCnxD8Zgr8ZqGW23UE4HrS6mjw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from BYAPR11MB2710.namprd11.prod.outlook.com (2603:10b6:a02:c7::24)
+ by SN6PR11MB2672.namprd11.prod.outlook.com (2603:10b6:805:58::32)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5081.15; Wed, 23 Mar
+ 2022 13:35:26 +0000
+Received: from BYAPR11MB2710.namprd11.prod.outlook.com
+ ([fe80::48da:a7d6:83c1:7e22]) by BYAPR11MB2710.namprd11.prod.outlook.com
+ ([fe80::48da:a7d6:83c1:7e22%7]) with mapi id 15.20.5081.022; Wed, 23 Mar 2022
+ 13:35:26 +0000
+From: "Lee, Shawn C" <shawn.c.lee@intel.com>
+To: "Nikula, Jani" <jani.nikula@intel.com>, "Chiou, Cooper"
+ <cooper.chiou@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [PATCH] drm/edid: filter DisplayID v2.0 CTA block in audio
+ detection
+Thread-Index: AQHYPN7gnUc+qLr2WUmuYCZB8bB98qzMwNmAgAADNZCAAAcAgIAAK9Ow
+Date: Wed, 23 Mar 2022 13:35:26 +0000
+Message-ID: <BYAPR11MB2710208DB5592D4CA15AC5F5A3189@BYAPR11MB2710.namprd11.prod.outlook.com>
+References: <20220321044330.27723-1-cooper.chiou@intel.com>
+ <875yo5j88o.fsf@intel.com>
+ <BYAPR11MB271097CC39080E466B5C38E5A3189@BYAPR11MB2710.namprd11.prod.outlook.com>
+ <87wnglhrzc.fsf@intel.com>
+In-Reply-To: <87wnglhrzc.fsf@intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-To: Alan Previn <alan.previn.teres.alexis@intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20220321164527.2500062-1-alan.previn.teres.alexis@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20220321164527.2500062-1-alan.previn.teres.alexis@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v13 00/13] Add GuC Error Capture Support
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-reaction: no-action
+dlp-version: 11.6.401.20
+dlp-product: dlpe-windows
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 6a6b07fa-3a3e-4afc-efc1-08da0cd1fd84
+x-ms-traffictypediagnostic: SN6PR11MB2672:EE_
+x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+x-microsoft-antispam-prvs: <SN6PR11MB2672DBC49021CA8768F358A3A3189@SN6PR11MB2672.namprd11.prod.outlook.com>
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: QYA6Gyeq2NWoQpqKdFfvET0Fpp8MpQzWzgJHThdU+heF3PuPbJjqPOja+VDOy2KzQAkCWf/D96EKOTb3+mpK7qzabjR9AICJfj0hUAc/LuRpj/5vsBVpj1oI11U2qixn59qBaJGTRgOUSZ60XHV+R8BuyZf9ivSliIbwozCtNM2vLqUJKe5UC1tJA/R33PAx03lW7vWmb1FUjHXDHU7pm00CtGAUk26+NBi0GZNoG5f3Oow6THSzUw0bDO0cpvlq6a2C2453/04EsSDCGPML3/k0867jRiLxj3tegoFFxdZwlewnepIPMSKwkZc09b/QyDcZl4nZTCaWTCUCYE30o2EFdeUtJ8LE65SBx910YqBDfxKWFjSH8Hj+Dz6VEYwYOfpzbLk7e8XP7y8u7CQwa3DibDwFyRmVjZ2x4bqEqP0AqzGmeRQMd1McdZ8AW8xo3K8C7N2wv8/aCnyAWXqGBRSs3b57bxeBazLgCMofFfP1+fF0clLXmyQ4rSu+nJxGLk+FH9PH/sXIOzhqtSCHhVd17eyzXfrK7oHHqLFWg24kueYIS5jok/yS3bQFrdABFp4zzGyDMwrQnRcOma1+JF438/K09JwRL9Decp9+P8lYR50wPKQjYO7dd+r3WLxCyiOSvbO93dCvx2iETRBJDrbEmJHfyoda+3HONo86y+iwM+rbLYKpk1bHn44gFPFB53WPrv+CglRkcXO1RaGXaQ==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BYAPR11MB2710.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230001)(366004)(82960400001)(52536014)(7696005)(71200400001)(122000001)(6506007)(5660300002)(86362001)(38100700002)(508600001)(38070700005)(8796002)(9686003)(55016003)(110136005)(54906003)(4326008)(76116006)(66946007)(64756008)(66476007)(66446008)(55236004)(316002)(8676002)(66556008)(26005)(186003)(83380400001)(8936002)(2906002)(33656002);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?RCUVCSVB0+mA/k7CWliZPtoaJcwq5GdTLs2LrY0AijpRazyR2WjVt3nyxtc+?=
+ =?us-ascii?Q?Po0h5qDHDzIFaDj8mJCJ7+7v9lapZ3sBzkZngGsAr4DxznUZgEODtySj+9OH?=
+ =?us-ascii?Q?Yy1l3sXm8KPAgEx59wDRB0bVMA3Xgqc3t8/3pNAvGoNqFOuvhX9uf08+punA?=
+ =?us-ascii?Q?TBAm15kF1AImjmZb0NUXmZ+JAIbmOqtxQNbnsOEdKwwBF9Iqi8edI+OKVELt?=
+ =?us-ascii?Q?b1zUVFB5BrMDnldlxbBF8TUkz9GBNik7m4djdgT0uMjJCXkTYZTB9Hdzrlul?=
+ =?us-ascii?Q?h6y1lYhpz2fsCLpSvXGTH045DtM5uNphMgepeqqU8XKpNSpGng/RQG4qxikc?=
+ =?us-ascii?Q?XYZJ8HjPB97kAx9St0DY3H4GCVmzeNItVXW8h8OFI/dAO8DyLT3CdTzLhMF8?=
+ =?us-ascii?Q?FN+37TEPB54eaKXrfwTNOOVRqe2vmWs10ZkyIP1mfozqk/MpdCYvO3YfpXCX?=
+ =?us-ascii?Q?JQh1LIffjya7EB0OktpMRPqFeegIHpiBnyvCebQn1l85emCcCYA2LeR/T1r+?=
+ =?us-ascii?Q?XXpdN9VYnNKTnLJ/KT012/TOHwAVDlJV0Fe5vYlPcJDpDmUzRWfzyjK4fbvX?=
+ =?us-ascii?Q?ktWoj69fecvAjUXl4aYfbuHkFOLWCVsjp0FIaDju2m+AzKrK2PxOddgOQ1FC?=
+ =?us-ascii?Q?UebeuBUEBOWbULPGbhBSYnRw1xy7vR+d/2B77UN5Nm7tQfw+IakHRrY1FXul?=
+ =?us-ascii?Q?xEgQSSG47O1eE86fTKIOnCCW2qyLMsRuB7fXCNPjGinNJgEx9uolcrdE3l/8?=
+ =?us-ascii?Q?WwNuOsvlkaOOPuQjTWdhltcOBVuuw5ka/+N1aq0WImuVeo2se+UKi1NNk/7R?=
+ =?us-ascii?Q?Pipb0nkCSU0+LJn7CHsPyXdP4p+1la/tU8jCYcWOkKU+Mjh7yn+aA4pmQMi3?=
+ =?us-ascii?Q?olNDwq7fhl4sh9vKS6cmdijz07heqfGxt3xRqYLny+vvVp59/vEdvuC0b76Q?=
+ =?us-ascii?Q?e9wElU9uq9PmOvSCj0iEeu1skB6rGWrzNEXg/nn+xfMscP1QKs6VAzPU3xCx?=
+ =?us-ascii?Q?jqDUUCXpUPVQ8Cy2+gSQsb5Eo+FKohvoOPXamTITiDK4C8bJQqZnpdlVtRu1?=
+ =?us-ascii?Q?ZLyKRIZmkmQCndjSxKlC0n4BacUCVxP/xl/8uxBOL47iSnWuCpYj6aiVK8GS?=
+ =?us-ascii?Q?Q53iLh3mxj/3TvEURtbfE1BmmhmOAth4ujICMgkitjOUCncRQkYJvqd5spEp?=
+ =?us-ascii?Q?Qo0ii8DIK6PHnqM3wtsVthwCtpa+j3toHjy+f+dzFR8DYGoStSaSkBkdf7IW?=
+ =?us-ascii?Q?S/XFjK4C8c5WnPSRBW+9QYTgvs65BATkE3dTBrmUvSujNtPUXn/g6L9pCd2f?=
+ =?us-ascii?Q?PGR2peWX9nyaJ1dpm2TaDU3JdgUbwyyuYSU7GJIfvBopi4LFK6131cETFJSg?=
+ =?us-ascii?Q?oWHtSF2edmJIgZbUx4sFjSnuJhouwcSVMJX/Pv6uJhY4zhXYFLgYBfAwc2Yw?=
+ =?us-ascii?Q?iElnf890iL4PMqHHUEKTLhT1bxYGdfSt?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB2710.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6a6b07fa-3a3e-4afc-efc1-08da0cd1fd84
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Mar 2022 13:35:26.6298 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: z6brPxmw59N7mwqYlXdU2zy6+eOOHsftLQETA/beKSUsqQjAI8yHfzbOyMvP7lKbwSbobKaHHlOCeTApt1q1Mw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR11MB2672
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH] drm/edid: filter DisplayID v2.0 CTA block
+ in audio detection
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,216 +153,93 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org
+Reply-To: "20220321044330.27723-1-cooper.chiou@intel.com"
+ <20220321044330.27723-1-cooper.chiou@intel.com>
+Cc: "Chiou, Cooper" <cooper.chiou@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Wednesday, March 23, 2022 6:40 PM, Jani <jani.nikula@intel.com> wrote :
+>On Wed, 23 Mar 2022, "Lee, Shawn C" <shawn.c.lee@intel.com> wrote:
+>> On Wednesday, March 23, 2022 6:04 PM, Nikula, Jani <jani.nikula@intel.co=
+m> wrote :
+>>>On Mon, 21 Mar 2022, Cooper Chiou <cooper.chiou@intel.com> wrote:
+>>>> In DisplayID v2.0 CTS data block 0x81 case, there is no any audio=20
+>>>> information definition, but drm_detect_monitor_audio didn't filter=20
+>>>> it so that it caused eDP dummy audio card be detected improperly.
+>>>>
+>>>> We observed this issue on some AUO/BOE eDP panel with DID v2.0 CTA=20
+>>>> block, and fix issue by adding filter for edid_ext[0]=3DDATA_BLOCK_CTA=
+=20
+>>>> case.
+>>>
+>>>Out of curiosity, what does the CTA DisplayID Data Block have for Data B=
+lock revision?
+>>>
+>>>I haven't found any mention anywhere that it should have any corresponde=
+nce to the CEA *extension* revision number, which is supposed to be 1..3, a=
+nd really only 3 for about a decade now.
+>>>
+>>>Both the DisplayID v1.3 and v2.0 specs only mention revision 0.
+>>>
+>>>BR,
+>>>Jani.
+>>>
+>>
+>> We don't get many issues in EDID with DisplayID structure. In this case,=
+ the revision number is "0" as well.
+>> As you mentioned, DisplayID v1.3 and v2.0 spec define the block revision=
+ value is always 0. Do you think it would cause any problem?
+>
+>A lot of places in the EDID parser expect CEA revision >=3D 3. This isn't =
+true for DisplayID data blocks, so we end up skipping a bunch of stuff if t=
+here's no CEA extension and only a DisplayID block.
+>
+>I'm fixing this in my series.
+>
 
-Hi,
+Thanks for the information! Just like you said, block revision ID is always=
+ zero in DisplayID block.
+Do you think we have to make sure revision ID is "0" instead of the other v=
+alue?
 
-On 21/03/2022 16:45, Alan Previn wrote:
-> This series:
->    1. Enables support of GuC to report error-state-capture
->       using a list of MMIO registers the driver registers
->       and GuC will dump, log and notify right before a GuC
->       triggered engine-reset event.
->    2. Updates the ADS blob creation to register said lists
->       of global, engine class and engine instance registers
->       with GuC.
->    3. Defines tables of register lists that are global or
->       engine class or engine instance in scope.
->    4. Updates usage and buffer-state data for the regions
->       of the shared GuC log-buffer to accomdate both
->       the existing relay logging of general debug logs
->       along with the new error state capture usage.
->    5. Using a pool of preallocated memory, provide ability
->       to extract and format the GuC reported register-capture
->       data into chunks consistent with existing i915 error-
->       state collection flows and structures.
->    6. Connects the i915_gpu_coredump reporting function
->       to the GuC error capture module to print all GuC
->       error state capture dumps that is reported.
+Best regards,
+Shawn
 
-Story is finished with this series and we have everything on feature 
-parity? Intel_error_decode handles it fine?
-
-Would you have an example error capture at hand, I am curious how it looks?
-
-Regards,
-
-Tvrtko
-
-> 
-> This is the 13th rev of this series where the first 3 revs
-> are RFC
-> 
-> Prior receipts of rvb's:
->    - Patch #2, #3, #4, #5, #10, #11, #12, #13 have received
->      R-v-b's from Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
->    - Patch #1, #6, #7, #8, #9 has received an R-v-b from Matthew Brost
->      <matthew.brost@intel.com>. NOTE: some of these came in on the
->      trybot series. https://patchwork.freedesktop.org/series/100831/
-> 
-> Changes from prior revs:
->    v13:- Fixing register list definition styling as per Jani's request.
->    v12:- Re-sending it because previous revs only got to intel-gfx,
->          and only cover letter was in dri-devel. Also rebased again.
->    v11:- Rebase again on latest drm-tip to fix merge error.
->    v10:- Rebase on latest drm-tip again. Fix a number of checkpatch
->          warnings and an error Reported-by: kernel test robot <lkp@intel.com>.
->    v9: - Rebase on latest drm-tip to solve CI merge-build error.
->    v8: - Fix a bug found by CI in rev7: Create a cached ADS
->          capture list for null-header like the other lists.
->        - Fixed a bug on the ggtt offset calculation in the
->          ADS population loop. Thanks to Matt Brost.
->        - Change the storage uses for initial allocation and
->          caching of the ADS register lists so we only store
->          a regular pointer instead of file handle.
->        - Multiple improvements on code styling, variable names,
->          comments and code reduction from Umesh suggestions
->          across multiple patches.
-> 
->    v7: - Rebased on lastest drm_tip that has the ADS now using
->          shmem based ads_blob_write utilities. Stress test
->          was performed with this patch included to fix a
->          legacy bug:
->          https://patchwork.freedesktop.org/series/100768/
-> 
->    v6: - In patch #1, ADS reg-list population, we now alloc
->          regular memory to create the lists and cache them for
->          simpler and faster use by GuC ADS module at init,
->          suspend-resume and reset cycles. This was in response
->          to review comments from Lucas De Marchi that also
->          wanted to ensure the GuC ADS module owns the final
->          copying into the ADS phyical memory.
->        - Thanks to Jani Nikula for pointing out that patch #2
->          and #3 should ensure static tables as constant and
->          dynamic lists should be allocated and cached but
->          attached to the GT level for the case of multiple
->          cards with different fusings for steered registers.
->          These are addressed now along with multiple code
->          style fixups (thanks to review comment from Umesh)
->          and splitting the steered register list generation
->          as a seperate patch.
->        - The extraction functionality, Patch #10 and #11 (was
->          patch #7), has fixed all of Umesh's review comments
->          related to the code styling. Additionally, it was
->          discovered during stress tests that the extraction
->          function could be called by the ct processing thread
->          at the same time as the start of a GT reset event.
->          Thus, a redesign was done whereby the linked list of
->          processed capture-output-nodes are allocated up
->          front and reused throughout the driver's life to
->          ensure no memory locks are taken during extraction.
->        - For patch #6 (now 7, 8 and 9), updates to
->          intel_guc_log was split into smaller chunks and the
->          log_state structure was returned back to inside of
->          the intel_guc_log struct as opposed to the
->          intel_guc struct in prior rev. This is in response
->          to review comments by Matt Brost.
->        - #Patch 13 (previously #10) is mostly identical but
->          addresses all of the code styling comments reviews
->          from Umesh.
->          
->    v5: - Added Gen9->Gen11 register list for CI coverage that
->          included Gen9 with GuC submission.
->        - Redesigned the extraction of the GuC error-capture
->          dumps by grouping them into complete per-engine-reset
->          nodes. Complete here means each node includes the
->          global, engine-class and engine-instance register
->          lists in a single structure.
->        - Extraction is decoupled from the print-out. We now
->          do the extraction immediately when receiving the
->          G2H for error-capture notification. A link list of
->          nodes is maintained with a FIFO based threshold
->          while awaiting retrieval from i915_gpu_coredump's
->          capture_engine function.
->        - Added new plumbing through the i915_gpu_coredump
->          allocation and capture functions to include a flag
->          that is used indicate that GuC had triggered the
->          reset. This new plumbing guarantees an exact match
->          from i915_gpu_coredump's per-engine vma recording
->          and node-retrieval from the guc-error-capture.
->        - Broke the coredump gt_global capture and recording
->          functions into smaller subsets so we can reuse as
->          much of the existing legacy register reading + printing
->          functions and only rely on GuC error-capture for
->          the smaller subset of registers that are tied to
->          engine workload execution.
->        - Updated the register list to follow the legacy execlist
->          format of printout.
->    v4:
->        - Rebased on latest drm-tip that has been merged with the
->          support of GuC firmware version 69.0.3 that is required
->          for GuC error-state-catpure to work.
->        - Added register list for DG2 which is the same as XE_LP
->          except an additional steering register set.
->        - Fixed a bug in the end of capture parsing loop in
->          intel_guc_capture_out_print_next_group that was not
->          properly comparing the engine-instance and engine-
->          class being parsed against the one that triggered
->          the i915_gpu_coredump.
->    v3:
->        - Fixed all review comments from rev2 except the following:
->            - Michal Wajdeczko proposed adding a seperate function
->              to lookup register string nameslookup (based on offset)
->              but decided against it because of offset conflicts
->              and the current table layout is easier to maintain.
->            - Last set of checkpatch errors pertaining to "COMPLEX
->              MACROS" should be fixed on next rev.
->        - Abstracted internal-to-guc-capture information into a new
->          __guc_state_capture_priv structure that allows the exclusion
->          of intel_guc.h and intel_guc_fwif.h from intel_guc_capture.h.
->          Now, only the first 2 patches have a wider build time
->          impact because of the changes to intel_guc_fwif.h but
->          subsequent changes to guc-capture internal structures
->          or firmware interfaces used solely by guc-capture module
->          shoudn't impact the rest of the driver build.
->        - Added missing Gen12LP registers and added slice+subslice
->          indices when reporting extended steered registers.
->        - Add additional checks to ensure that the GuC reported
->          error capture information matches the i915_gpu_coredump
->          that is being printed before we print out the corresponding
->          VMA dumps such as the batch buffer.
->     v2:
->        - Ignore - failed CI retest.
-> 
-> Alan Previn (13):
->    drm/i915/guc: Update GuC ADS size for error capture lists
->    drm/i915/guc: Add XE_LP static registers for GuC error capture.
->    drm/i915/guc: Add XE_LP steered register lists support
->    drm/i915/guc: Add DG2 registers for GuC error state capture.
->    drm/i915/guc: Add Gen9 registers for GuC error state capture.
->    drm/i915/guc: Add GuC's error state capture output structures.
->    drm/i915/guc: Update GuC-log relay function names
->    drm/i915/guc: Add capture region into intel_guc_log
->    drm/i915/guc: Check sizing of guc_capture output
->    drm/i915/guc: Extract GuC error capture lists on G2H notification.
->    drm/i915/guc: Pre-allocate output nodes for extraction
->    drm/i915/guc: Plumb GuC-capture into gpu_coredump
->    drm/i915/guc: Print the GuC error capture output register list.
-> 
->   drivers/gpu/drm/i915/Makefile                 |    1 +
->   drivers/gpu/drm/i915/gt/intel_engine_cs.c     |    4 +-
->   .../drm/i915/gt/intel_execlists_submission.c  |    4 +-
->   drivers/gpu/drm/i915/gt/intel_reset.c         |    2 +-
->   .../gpu/drm/i915/gt/uc/abi/guc_actions_abi.h  |    7 +
->   drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h |  218 +++
->   drivers/gpu/drm/i915/gt/uc/intel_guc.c        |   13 +-
->   drivers/gpu/drm/i915/gt/uc/intel_guc.h        |   12 +-
->   drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c    |  127 +-
->   .../gpu/drm/i915/gt/uc/intel_guc_capture.c    | 1655 +++++++++++++++++
->   .../gpu/drm/i915/gt/uc/intel_guc_capture.h    |   33 +
->   drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h   |   14 +-
->   drivers/gpu/drm/i915/gt/uc/intel_guc_log.c    |  127 +-
->   drivers/gpu/drm/i915/gt/uc/intel_guc_log.h    |    7 +-
->   .../gpu/drm/i915/gt/uc/intel_guc_submission.c |   18 +-
->   drivers/gpu/drm/i915/i915_debugfs.c           |    3 +-
->   drivers/gpu/drm/i915/i915_gpu_error.c         |  282 ++-
->   drivers/gpu/drm/i915/i915_gpu_error.h         |   35 +-
->   18 files changed, 2379 insertions(+), 183 deletions(-)
->   create mode 100644 drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h
->   create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
->   create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_guc_capture.h
-> 
+>
+>BR,
+>Jani.
+>
+>>
+>> Best regards,
+>> Shawn
+>>
+>>>>
+>>>> Cc: Jani Nikula <jani.nikula@intel.com>
+>>>> Cc: Shawn C Lee <shawn.c.lee@intel.com>
+>>>>
+>>>> Signed-off-by: Cooper Chiou <cooper.chiou@intel.com>
+>>>> ---
+>>>>  drivers/gpu/drm/drm_edid.c | 2 +-
+>>>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c=20
+>>>> index f5f5de362ff2..6c9ae4b130bd 100644
+>>>> --- a/drivers/gpu/drm/drm_edid.c
+>>>> +++ b/drivers/gpu/drm/drm_edid.c
+>>>> @@ -4845,7 +4845,7 @@ bool drm_detect_monitor_audio(struct edid *edid)
+>>>>      int start_offset, end_offset;
+>>>>
+>>>>      edid_ext =3D drm_find_cea_extension(edid);
+>>>> -    if (!edid_ext)
+>>>> +    if (!edid_ext || (edid_ext[0] =3D=3D DATA_BLOCK_CTA))
+>>>>              goto end;
+>>>>
+>>>>      has_audio =3D ((edid_ext[3] & EDID_BASIC_AUDIO) !=3D 0);
+>>>
+>>>--
+>>>Jani Nikula, Intel Open Source Graphics Center
+>>>
+>
+>--
+>Jani Nikula, Intel Open Source Graphics Center
