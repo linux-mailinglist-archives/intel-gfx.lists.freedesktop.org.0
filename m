@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BC334E554F
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Mar 2022 16:33:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 43DE84E5589
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Mar 2022 16:43:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F51910E6E9;
-	Wed, 23 Mar 2022 15:33:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BEEEB10E739;
+	Wed, 23 Mar 2022 15:43:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2801010E6E9;
- Wed, 23 Mar 2022 15:33:22 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C66110E736;
+ Wed, 23 Mar 2022 15:43:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1648049602; x=1679585602;
+ t=1648050232; x=1679586232;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=MKK1oWyHz1JtpH5BhOmnBy9zvcSHBTGdb3YZ/fif2q8=;
- b=DtI2AJhi3DZ6hdzae+GT3jBRoF7b/7BnhJaV+z0hwHq4p+05bMxj2kfK
- XBBl85/r7PzfIo1SCrT64D/cVD9Lu0ausJpyFixScZ6RjRa0AwCnakIdF
- L85Ht/kUiXIT9WH3xOTVkyrZO8+t/KVVCPUvmjUY6CnfbELFF+RAABhzG
- umawOBwl1wmwp9WVez9VTvQjIRaHXakPm2T+JqivFbdbaYaknxv7oi4ft
- vuJsb9lslgMt9nf0Ac1aKae00asgGjjmF6y9wWpgBCZmZDKmTOkGGniIl
- QgfbHT42d4zTu9ZECxetv8XXifF185A5X3wTsV0KZwRSP6I2+SoE6vgrj w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10295"; a="238741018"
-X-IronPort-AV: E=Sophos;i="5.90,204,1643702400"; d="scan'208";a="238741018"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2022 08:33:21 -0700
+ bh=moaXWnEhfol3pD/OuYljTh1bkTU2VPPY60ptbTXn+IA=;
+ b=Gi1j7IKqG3GWw8UWFlNpnIFGEMadiP9NKXw22jYwLqgj/j/GaMxuP/1N
+ ORB8ixUD29R5IA0Wjk1aWKenYxWaR4eAPfo15TfSgVymEagV1qs8dXPI4
+ YvqFEOySDGgVnqiRXCQjpQIfayNZ3MkK+BBVrDFCzzOolx71UscdMy0oa
+ FFf72qXzKGlcVrwVeFP5dsyHMs+q5uOM8vIz1zuVKxJBn7zBbkVLe7U00
+ Exhm4r8iQHdRZz9pcdYAfRgWZfdgUmtS5KzBGLSZpOhI12FRsWnmN1BrX
+ CGOrmRdAIcQIg3KkU/Owrr2whabMF1kddLhcDC8lUxp2BQgiEAdRM8JkL Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10295"; a="258328239"
+X-IronPort-AV: E=Sophos;i="5.90,204,1643702400"; d="scan'208";a="258328239"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Mar 2022 08:43:51 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,204,1643702400"; d="scan'208";a="519398709"
+X-IronPort-AV: E=Sophos;i="5.90,204,1643702400"; d="scan'208";a="583732588"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.61])
- by orsmga006.jf.intel.com with SMTP; 23 Mar 2022 08:33:18 -0700
+ by orsmga001.jf.intel.com with SMTP; 23 Mar 2022 08:43:48 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 23 Mar 2022 17:33:18 +0200
-Date: Wed, 23 Mar 2022 17:33:18 +0200
+ Wed, 23 Mar 2022 17:43:48 +0200
+Date: Wed, 23 Mar 2022 17:43:48 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <Yjs9vvhrIhQDbChJ@intel.com>
+Message-ID: <YjtANOJjTC4Q4T3m@intel.com>
 References: <cover.1647985054.git.jani.nikula@intel.com>
- <657900c5a984a0bd7a830686cb5f919ae16912f8.1647985054.git.jani.nikula@intel.com>
+ <a9b83af4adfbc10296933958a057dddbb42bf769.1647985054.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <657900c5a984a0bd7a830686cb5f919ae16912f8.1647985054.git.jani.nikula@intel.com>
+In-Reply-To: <a9b83af4adfbc10296933958a057dddbb42bf769.1647985054.git.jani.nikula@intel.com>
 X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [RFC 03/19] drm/edid: clean up CEA data block tag
- definitions
+Subject: Re: [Intel-gfx] [RFC 06/19] drm/edid: clean up cea_db_is_*()
+ functions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,205 +65,188 @@ Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 22, 2022 at 11:40:32PM +0200, Jani Nikula wrote:
-> Add prefixed names, group, sort, add references.
+On Tue, Mar 22, 2022 at 11:40:35PM +0200, Jani Nikula wrote:
+> Abstract helpers for matching vendor data blocks and extended tags, and
+> use them to simplify all the cea_db_is_*() functions.
+> 
+> Take void pointer as parameter to allow transitional use for both u8 *
+> and struct cea_db *.
 > 
 > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 > ---
->  drivers/gpu/drm/drm_edid.c | 59 +++++++++++++++++++++-----------------
->  1 file changed, 32 insertions(+), 27 deletions(-)
+>  drivers/gpu/drm/drm_edid.c | 113 ++++++++++++-------------------------
+>  1 file changed, 37 insertions(+), 76 deletions(-)
 > 
 > diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
-> index b96906774433..6c188539493e 100644
+> index c12c3cbab274..a0a5a7271658 100644
 > --- a/drivers/gpu/drm/drm_edid.c
 > +++ b/drivers/gpu/drm/drm_edid.c
-> @@ -3329,15 +3329,20 @@ add_detailed_modes(struct drm_connector *connector, struct edid *edid,
->  	return closure.modes;
+> @@ -4196,12 +4196,6 @@ do_hdmi_vsdb_modes(struct drm_connector *connector, const u8 *db, u8 len,
+>  	return modes;
 >  }
 >  
-> -#define AUDIO_BLOCK	0x01
-> -#define VIDEO_BLOCK     0x02
-> -#define VENDOR_BLOCK    0x03
-> -#define SPEAKER_BLOCK	0x04
-> -#define HDR_STATIC_METADATA_BLOCK	0x6
-> -#define USE_EXTENDED_TAG 0x07
-> -#define EXT_VIDEO_CAPABILITY_BLOCK 0x00
-> -#define EXT_VIDEO_DATA_BLOCK_420	0x0E
-> -#define EXT_VIDEO_CAP_BLOCK_Y420CMDB 0x0F
-> +/* CEA-861-F Table 44 CEA Data Block Tag Codes */
+> -static int
+> -cea_db_extended_tag(const u8 *db)
+> -{
+> -	return db[1];
+> -}
+> -
+>  static int
+>  cea_revision(const u8 *cea)
+>  {
+> @@ -4313,6 +4307,22 @@ static const void *cea_db_data(const struct cea_db *db)
+>  	return db->data;
+>  }
+>  
+> +static bool cea_db_is_extended_tag(const struct cea_db *db, int tag)
+> +{
+> +	return (cea_db_tag(db) == CEA_DB_EXTENDED_TAG &&
+> +		cea_db_payload_len(db) >= 1 &&
+> +		db->data[0] == tag);
+> +}
 
-Table 55 in CTA-861-G, if we want to use a more recent reference.
-Though IIRC someone did say CTA-861-H might already be out as well.
+nit: not a huge fan of the redundant parens in all of these
 
-> +#define CEA_DB_AUDIO			1
-> +#define CEA_DB_VIDEO			2
-> +#define CEA_DB_VENDOR			3
-> +#define CEA_DB_SPEAKER			4
-> +#define CEA_DB_EXTENDED_TAG		7
 > +
-> +/* CEA-861-F Table 46 CEA Data Block Tag Codes */
+> +static bool cea_db_is_vendor(const struct cea_db *db, int vendor_oui)
 
-Table 57 in CTA-861-G.
+I'd probably make the tag/oui unsigned.
 
 Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-> +#define CEA_EXT_DB_VIDEO_CAP		0
-> +#define CEA_EXT_DB_VENDOR		1
-> +#define CEA_EXT_DB_HDR_STATIC_METADATA	6 /* CEA-861.3 2005 */
-> +#define CEA_EXT_DB_420_VIDEO_DATA	14
-> +#define CEA_EXT_DB_420_VIDEO_CAP_MAP	15
+> +{
+> +	const u8 *data = cea_db_data(db);
 > +
->  #define EDID_BASIC_AUDIO	(1 << 6)
->  #define EDID_CEA_YCRCB444	(1 << 5)
->  #define EDID_CEA_YCRCB422	(1 << 4)
-> @@ -4220,7 +4225,7 @@ cea_db_offsets(const u8 *cea, int *start, int *end)
->  
->  static bool cea_db_is_hdmi_vsdb(const u8 *db)
+> +	return (cea_db_tag(db) == CEA_DB_VENDOR &&
+> +		cea_db_payload_len(db) >= 3 &&
+> +		oui(data[2], data[1], data[0]) == vendor_oui);
+> +}
+> +
+>  static void cea_db_iter_edid_begin(const struct edid *edid, struct cea_db_iter *iter)
 >  {
-> -	if (cea_db_tag(db) != VENDOR_BLOCK)
-> +	if (cea_db_tag(db) != CEA_DB_VENDOR)
->  		return false;
+>  	memset(iter, 0, sizeof(*iter));
+> @@ -4443,79 +4453,44 @@ static void cea_db_iter_end(struct cea_db_iter *iter)
+>  	memset(iter, 0, sizeof(*iter));
+>  }
 >  
->  	if (cea_db_payload_len(db) < 5)
-> @@ -4231,7 +4236,7 @@ static bool cea_db_is_hdmi_vsdb(const u8 *db)
->  
->  static bool cea_db_is_hdmi_forum_vsdb(const u8 *db)
+> -static bool cea_db_is_hdmi_vsdb(const u8 *db)
+> +static bool cea_db_is_hdmi_vsdb(const void *db)
 >  {
-> -	if (cea_db_tag(db) != VENDOR_BLOCK)
-> +	if (cea_db_tag(db) != CEA_DB_VENDOR)
->  		return false;
+> -	if (cea_db_tag(db) != CEA_DB_VENDOR)
+> -		return false;
+> -
+> -	if (cea_db_payload_len(db) < 5)
+> -		return false;
+> -
+> -	return oui(db[3], db[2], db[1]) == HDMI_IEEE_OUI;
+> +	return (cea_db_is_vendor(db, HDMI_IEEE_OUI) &&
+> +		cea_db_payload_len(db) >= 5);
+>  }
 >  
->  	if (cea_db_payload_len(db) < 7)
-> @@ -4242,7 +4247,7 @@ static bool cea_db_is_hdmi_forum_vsdb(const u8 *db)
->  
->  static bool cea_db_is_microsoft_vsdb(const u8 *db)
+> -static bool cea_db_is_hdmi_forum_vsdb(const u8 *db)
+> +static bool cea_db_is_hdmi_forum_vsdb(const void *db)
 >  {
-> -	if (cea_db_tag(db) != VENDOR_BLOCK)
-> +	if (cea_db_tag(db) != CEA_DB_VENDOR)
->  		return false;
+> -	if (cea_db_tag(db) != CEA_DB_VENDOR)
+> -		return false;
+> -
+> -	if (cea_db_payload_len(db) < 7)
+> -		return false;
+> -
+> -	return oui(db[3], db[2], db[1]) == HDMI_FORUM_IEEE_OUI;
+> +	return (cea_db_is_vendor(db, HDMI_FORUM_IEEE_OUI) &&
+> +		cea_db_payload_len(db) >= 7);
+>  }
 >  
->  	if (cea_db_payload_len(db) != 21)
-> @@ -4253,13 +4258,13 @@ static bool cea_db_is_microsoft_vsdb(const u8 *db)
->  
->  static bool cea_db_is_vcdb(const u8 *db)
+> -static bool cea_db_is_microsoft_vsdb(const u8 *db)
+> +static bool cea_db_is_microsoft_vsdb(const void *db)
 >  {
-> -	if (cea_db_tag(db) != USE_EXTENDED_TAG)
-> +	if (cea_db_tag(db) != CEA_DB_EXTENDED_TAG)
->  		return false;
+> -	if (cea_db_tag(db) != CEA_DB_VENDOR)
+> -		return false;
+> -
+> -	if (cea_db_payload_len(db) != 21)
+> -		return false;
+> -
+> -	return oui(db[3], db[2], db[1]) == MICROSOFT_IEEE_OUI;
+> +	return (cea_db_is_vendor(db, MICROSOFT_IEEE_OUI) &&
+> +		cea_db_payload_len(db) == 21);
+>  }
 >  
->  	if (cea_db_payload_len(db) != 2)
->  		return false;
->  
-> -	if (cea_db_extended_tag(db) != EXT_VIDEO_CAPABILITY_BLOCK)
-> +	if (cea_db_extended_tag(db) != CEA_EXT_DB_VIDEO_CAP)
->  		return false;
->  
->  	return true;
-> @@ -4267,13 +4272,13 @@ static bool cea_db_is_vcdb(const u8 *db)
->  
->  static bool cea_db_is_y420cmdb(const u8 *db)
+> -static bool cea_db_is_vcdb(const u8 *db)
+> +static bool cea_db_is_vcdb(const void *db)
 >  {
-> -	if (cea_db_tag(db) != USE_EXTENDED_TAG)
-> +	if (cea_db_tag(db) != CEA_DB_EXTENDED_TAG)
->  		return false;
+> -	if (cea_db_tag(db) != CEA_DB_EXTENDED_TAG)
+> -		return false;
+> -
+> -	if (cea_db_payload_len(db) != 2)
+> -		return false;
+> -
+> -	if (cea_db_extended_tag(db) != CEA_EXT_DB_VIDEO_CAP)
+> -		return false;
+> -
+> -	return true;
+> +	return (cea_db_is_extended_tag(db, CEA_EXT_DB_VIDEO_CAP) &&
+> +		cea_db_payload_len(db) == 2);
+>  }
 >  
->  	if (!cea_db_payload_len(db))
->  		return false;
->  
-> -	if (cea_db_extended_tag(db) != EXT_VIDEO_CAP_BLOCK_Y420CMDB)
-> +	if (cea_db_extended_tag(db) != CEA_EXT_DB_420_VIDEO_CAP_MAP)
->  		return false;
->  
->  	return true;
-> @@ -4281,13 +4286,13 @@ static bool cea_db_is_y420cmdb(const u8 *db)
->  
->  static bool cea_db_is_y420vdb(const u8 *db)
+> -static bool cea_db_is_y420cmdb(const u8 *db)
+> +static bool cea_db_is_y420cmdb(const void *db)
 >  {
-> -	if (cea_db_tag(db) != USE_EXTENDED_TAG)
-> +	if (cea_db_tag(db) != CEA_DB_EXTENDED_TAG)
->  		return false;
+> -	if (cea_db_tag(db) != CEA_DB_EXTENDED_TAG)
+> -		return false;
+> -
+> -	if (!cea_db_payload_len(db))
+> -		return false;
+> -
+> -	if (cea_db_extended_tag(db) != CEA_EXT_DB_420_VIDEO_CAP_MAP)
+> -		return false;
+> -
+> -	return true;
+> +	return cea_db_is_extended_tag(db, CEA_EXT_DB_420_VIDEO_CAP_MAP);
+>  }
 >  
->  	if (!cea_db_payload_len(db))
->  		return false;
->  
-> -	if (cea_db_extended_tag(db) != EXT_VIDEO_DATA_BLOCK_420)
-> +	if (cea_db_extended_tag(db) != CEA_EXT_DB_420_VIDEO_DATA)
->  		return false;
->  
->  	return true;
-> @@ -4354,7 +4359,7 @@ add_cea_modes(struct drm_connector *connector, struct edid *edid)
->  			db = &cea[i];
->  			dbl = cea_db_payload_len(db);
->  
-> -			if (cea_db_tag(db) == VIDEO_BLOCK) {
-> +			if (cea_db_tag(db) == CEA_DB_VIDEO) {
->  				video = db + 1;
->  				video_len = dbl;
->  				modes += do_cea_modes(connector, video, dbl);
-> @@ -4428,10 +4433,10 @@ static void fixup_detailed_cea_mode_clock(struct drm_display_mode *mode)
->  
->  static bool cea_db_is_hdmi_hdr_metadata_block(const u8 *db)
+> -static bool cea_db_is_y420vdb(const u8 *db)
+> +static bool cea_db_is_y420vdb(const void *db)
 >  {
-> -	if (cea_db_tag(db) != USE_EXTENDED_TAG)
-> +	if (cea_db_tag(db) != CEA_DB_EXTENDED_TAG)
->  		return false;
+> -	if (cea_db_tag(db) != CEA_DB_EXTENDED_TAG)
+> -		return false;
+> -
+> -	if (!cea_db_payload_len(db))
+> -		return false;
+> -
+> -	if (cea_db_extended_tag(db) != CEA_EXT_DB_420_VIDEO_DATA)
+> -		return false;
+> +	return cea_db_is_extended_tag(db, CEA_EXT_DB_420_VIDEO_DATA);
+> +}
 >  
-> -	if (db[1] != HDR_STATIC_METADATA_BLOCK)
-> +	if (db[1] != CEA_EXT_DB_HDR_STATIC_METADATA)
->  		return false;
+> -	return true;
+> +static bool cea_db_is_hdmi_hdr_metadata_block(const void *db)
+> +{
+> +	return (cea_db_is_extended_tag(db, CEA_EXT_DB_HDR_STATIC_METADATA) &&
+> +		cea_db_payload_len(db) >= 3);
+>  }
 >  
->  	if (cea_db_payload_len(db) < 3)
-> @@ -4622,7 +4627,7 @@ static void drm_edid_to_eld(struct drm_connector *connector, struct edid *edid)
->  			dbl = cea_db_payload_len(db);
+>  #define for_each_cea_db(cea, i, start, end) \
+> @@ -4651,20 +4626,6 @@ static void fixup_detailed_cea_mode_clock(struct drm_display_mode *mode)
+>  	mode->clock = clock;
+>  }
 >  
->  			switch (cea_db_tag(db)) {
-> -			case AUDIO_BLOCK:
-> +			case CEA_DB_AUDIO:
->  				/* Audio Data Block, contains SADs */
->  				sad_count = min(dbl / 3, 15 - total_sad_count);
->  				if (sad_count >= 1)
-> @@ -4630,12 +4635,12 @@ static void drm_edid_to_eld(struct drm_connector *connector, struct edid *edid)
->  					       &db[1], sad_count * 3);
->  				total_sad_count += sad_count;
->  				break;
-> -			case SPEAKER_BLOCK:
-> +			case CEA_DB_SPEAKER:
->  				/* Speaker Allocation Data Block */
->  				if (dbl >= 1)
->  					eld[DRM_ELD_SPEAKER] = db[1];
->  				break;
-> -			case VENDOR_BLOCK:
-> +			case CEA_DB_VENDOR:
->  				/* HDMI Vendor-Specific Data Block */
->  				if (cea_db_is_hdmi_vsdb(db))
->  					drm_parse_hdmi_vsdb_audio(connector, db);
-> @@ -4696,7 +4701,7 @@ int drm_edid_to_sad(struct edid *edid, struct cea_sad **sads)
->  	for_each_cea_db(cea, i, start, end) {
->  		const u8 *db = &cea[i];
->  
-> -		if (cea_db_tag(db) == AUDIO_BLOCK) {
-> +		if (cea_db_tag(db) == CEA_DB_AUDIO) {
->  			int j;
->  
->  			dbl = cea_db_payload_len(db);
-> @@ -4758,7 +4763,7 @@ int drm_edid_to_speaker_allocation(struct edid *edid, u8 **sadb)
->  	for_each_cea_db(cea, i, start, end) {
->  		const u8 *db = &cea[i];
->  
-> -		if (cea_db_tag(db) == SPEAKER_BLOCK) {
-> +		if (cea_db_tag(db) == CEA_DB_SPEAKER) {
->  			dbl = cea_db_payload_len(db);
->  
->  			/* Speaker Allocation Data Block */
-> @@ -4888,7 +4893,7 @@ bool drm_detect_monitor_audio(struct edid *edid)
->  		goto end;
->  
->  	for_each_cea_db(edid_ext, i, start_offset, end_offset) {
-> -		if (cea_db_tag(&edid_ext[i]) == AUDIO_BLOCK) {
-> +		if (cea_db_tag(&edid_ext[i]) == CEA_DB_AUDIO) {
->  			has_audio = true;
->  			for (j = 1; j < cea_db_payload_len(&edid_ext[i]) + 1; j += 3)
->  				DRM_DEBUG_KMS("CEA audio format %d\n",
+> -static bool cea_db_is_hdmi_hdr_metadata_block(const u8 *db)
+> -{
+> -	if (cea_db_tag(db) != CEA_DB_EXTENDED_TAG)
+> -		return false;
+> -
+> -	if (db[1] != CEA_EXT_DB_HDR_STATIC_METADATA)
+> -		return false;
+> -
+> -	if (cea_db_payload_len(db) < 3)
+> -		return false;
+> -
+> -	return true;
+> -}
+> -
+>  static uint8_t eotf_supported(const u8 *edid_ext)
+>  {
+>  	return edid_ext[2] &
 > -- 
 > 2.30.2
 
