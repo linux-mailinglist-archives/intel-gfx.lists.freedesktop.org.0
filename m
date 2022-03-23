@@ -1,58 +1,70 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28F1C4E5572
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Mar 2022 16:40:29 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id ABA444E5575
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Mar 2022 16:40:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E6D9B10E70A;
-	Wed, 23 Mar 2022 15:40:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B29DC10E724;
+	Wed, 23 Mar 2022 15:40:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com
- [IPv6:2a00:1450:4864:20::631])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E25B710E0D7
- for <intel-gfx@lists.freedesktop.org>; Tue, 22 Mar 2022 21:59:11 +0000 (UTC)
-Received: by mail-ej1-x631.google.com with SMTP id r22so19017310ejs.11
- for <intel-gfx@lists.freedesktop.org>; Tue, 22 Mar 2022 14:59:11 -0700 (PDT)
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com
+ [IPv6:2a00:1450:4864:20::62b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C3C1610E5E1;
+ Wed, 23 Mar 2022 07:37:15 +0000 (UTC)
+Received: by mail-ej1-x62b.google.com with SMTP id pv16so1154123ejb.0;
+ Wed, 23 Mar 2022 00:37:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=FecU9PmWd8fUyOrd5SNagVuW8F4jdHZJjCH8ALckgvE=;
- b=IxyuWWaJpLmKQNUmzxaJK5h2Rro918BgbKEh3xUaGy9P9jwlLbpiHD+HgBcfC41DdO
- nPtSV1BnLbeLdROo/nn2AvKIz2/riJ173XPLzgrwsV1Smiu1MVm1oGYS8O8Dw9tEFWGQ
- 3MwwqMnzHisHBP0UM4GqImhouHdl7WtY1+Rcvm/EsSrranTOWGc4ZfqVcMrS83zX5u6E
- Xun0YGf0aYwXMRt7fLK0ZJzjlrLseibxKLGIoFoIF8SxlM1IAnuxvhGkqp8WhKL/C4p3
- NuCMx3+XRv8vu0yvoqyvs5f8lcl7aGzjZ4unHbjwNnIS7BxnN5dQdasnOpKPA+bphzd/
- Eyjg==
+ h=message-id:date:mime-version:user-agent:subject:content-language:to
+ :cc:references:from:in-reply-to:content-transfer-encoding;
+ bh=2ImceWYBoPiqBBOOEytUsJtPdDggUfyLvVXnD8LV884=;
+ b=mP58g6OHXBHC/7jwsh6cIx+oywVTLlbeV2mQSwtosLUv/q+bx/WR6osPLJqipFM9Tf
+ rG8QUXIv10MTz4Rb2O7JEyjRc7oswiZQFefb6MtvRtsDDGRybzPJHIsog4mCmGlpH74T
+ d7GiM+Blt4Gpu6/mC9asEy5T9WhyMdsgJ8BPNx7HZ7oRXU7izskJTrOuSFKYjuWKajil
+ 2sc74CdZa2DrX+YB3CkrCycNHcja1HUMPFiMQATwBYOZaEPjcuUUqOC4VwyCZQYqV2bZ
+ YwKnIQUbWC4AdPdNfW2f/+MbzWx+skR16Aj6YzMYj/jI3rb5/w9PZkFxKCXsVIxyHlx1
+ OGUQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=FecU9PmWd8fUyOrd5SNagVuW8F4jdHZJjCH8ALckgvE=;
- b=B2cAXBl/xZ3E2k4FKZYyI4JYP+BiFjsBwdMVwLxsGoYBaTXHnhSn0nDqursZYPRM7g
- iA4uYLJ4+gVWzFclXNHxSEhQ8z9lFG38g7QDUAzdDo1H0SOMEBm1Ji0xuc2mlvvX7kx+
- m5ip6rJGPvROqvE+6lKwbkfVnr1qVvFqxu53xiBiOi3yZGUVwsxsronPhvGIyCKQ6Ali
- AvVsA2lWDY7B7V6BTZQawoJK/AQ9wDVmuYBE2gNeBeXTw7SnXtaDfjZJyqW4kyQpT6FU
- ioW4xPGsUX7u25hQGVTS5SlFfl7LhjVf7arT59tkFLBcQ7Bp+0+jjKMydQcHgU5Jt4cP
- 5fSw==
-X-Gm-Message-State: AOAM533wWZR0bpEmU4BITmNwO3859scw3vi1jPLApY63oUcUHYYBKn8j
- rEQPvZxLIDLGjaijUVDJUMCg8kXUVaJ7wtW/kBk=
-X-Google-Smtp-Source: ABdhPJyUA3Rps+pJciLfdvNfjyQ79wbbWJtGoFrrLY6YD596pA/jpLn5AkbXUdOE0J/WwTh7WVilRn1zTLsG7PRBb74=
-X-Received: by 2002:a17:907:2053:b0:6e0:2ad8:e10e with SMTP id
- pg19-20020a170907205300b006e02ad8e10emr9190693ejb.167.1647986350205; Tue, 22
- Mar 2022 14:59:10 -0700 (PDT)
+ h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+ :content-language:to:cc:references:from:in-reply-to
+ :content-transfer-encoding;
+ bh=2ImceWYBoPiqBBOOEytUsJtPdDggUfyLvVXnD8LV884=;
+ b=HdIuoVgEbJ35PvKjf4IWOMlU31mD/oA5EaQAgk5g8IXxneDqNPMpWyHah/x/AIOwHP
+ 89I6Hs0ngFEHwLDPErCMiFNMD4LgLstJo9vSZIjwsbDoMIQ8jSPCTapmzlk0ANHNd03k
+ BikU/4gC/SgIsqtXGbqpcoRpPsHY8RDPUr8YVXtWXh7kNfapI5LScVI0t3cNaUGQkWH1
+ Xn4C6wPmokNbNzNP84UGl0KuRaxkZo/7lY5nV/yF8aXr7X0MQVr9tWEb4g4CWQ969+sz
+ 2ZPrm46ju6Xnqihw6H7xEY+TVYRABboabZGxzjyfspbfzhlWHKl7/tqLbGwLY34y0nQ4
+ LeoA==
+X-Gm-Message-State: AOAM532opn0ro+h5jOnF5x56osAhAzY2ICxcPinaXNYi9ke6Zmu+3w7m
+ a8MzSXWfyJvCBtXA3JzPtLo=
+X-Google-Smtp-Source: ABdhPJwlzZ7eGtrjCZN0di1fzv7jPQ4mO24Cf1hi9x4fsimyB7ZWFpZ3TQ7AW2/2pJeiXjgaUZvmzQ==
+X-Received: by 2002:a17:907:7fa2:b0:6d8:2397:42 with SMTP id
+ qk34-20020a1709077fa200b006d823970042mr29943989ejc.218.1648021034168; 
+ Wed, 23 Mar 2022 00:37:14 -0700 (PDT)
+Received: from [192.168.178.21] (p5b0eab60.dip0.t-ipconnect.de. [91.14.171.96])
+ by smtp.gmail.com with ESMTPSA id
+ i22-20020a170906251600b006d6d9081f46sm9475570ejb.150.2022.03.23.00.37.12
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 23 Mar 2022 00:37:13 -0700 (PDT)
+Message-ID: <c255f3ea-a269-1886-f79a-2d8a38b956b1@gmail.com>
+Date: Wed, 23 Mar 2022 08:37:11 +0100
 MIME-Version: 1.0
-References: <20220322214616.160640-1-jose.souza@intel.com>
- <20220322214616.160640-4-jose.souza@intel.com>
-In-Reply-To: <20220322214616.160640-4-jose.souza@intel.com>
-From: Caz Yokoyama <cazyokoyama@gmail.com>
-Date: Tue, 22 Mar 2022 14:58:59 -0700
-Message-ID: <CABhNg0hh47jNo_a4EpsrhsRYcB7Mn86+f6oykX0kvGv0XPtuSg@mail.gmail.com>
-To: =?UTF-8?Q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
-Content-Type: multipart/alternative; boundary="000000000000ffaef005dad5b8a9"
-X-Mailman-Approved-At: Wed, 23 Mar 2022 15:40:19 +0000
-Subject: Re: [Intel-gfx] [PATCH v2 4/4] drm/i915/display: Remove MBUS
- joining invalid TODOs
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Content-Language: en-US
+To: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org
+References: <20220323062552.228429-1-Arunpravin.PaneerSelvam@amd.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+In-Reply-To: <20220323062552.228429-1-Arunpravin.PaneerSelvam@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Wed, 23 Mar 2022 15:40:20 +0000
+Subject: Re: [Intel-gfx] [PATCH v11] drm/amdgpu: add drm buddy support to
+ amdgpu
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,151 +77,278 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: alexander.deucher@amd.com, matthew.auld@intel.com, christian.koenig@amd.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---000000000000ffaef005dad5b8a9
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Am 23.03.22 um 07:25 schrieb Arunpravin Paneer Selvam:
+> [SNIP]
+> @@ -415,48 +409,86 @@ static int amdgpu_vram_mgr_new(struct ttm_resource_manager *man,
+>   		goto error_fini;
+>   	}
+>   
+> -	mode = DRM_MM_INSERT_BEST;
+> +	INIT_LIST_HEAD(&node->blocks);
+> +
+>   	if (place->flags & TTM_PL_FLAG_TOPDOWN)
+> -		mode = DRM_MM_INSERT_HIGH;
+> +		node->flags |= DRM_BUDDY_TOPDOWN_ALLOCATION;
+>   
+> -	pages_left = node->base.num_pages;
+> +	if (place->fpfn || lpfn != man->size >> PAGE_SHIFT)
+> +		/* Allocate blocks in desired range */
+> +		node->flags |= DRM_BUDDY_RANGE_ALLOCATION;
+>   
+> -	/* Limit maximum size to 2GB due to SG table limitations */
+> -	pages = min(pages_left, 2UL << (30 - PAGE_SHIFT));
+> +	BUG_ON(!node->base.num_pages);
 
-On Tue, Mar 22, 2022 at 2:45 PM Jos=C3=A9 Roberto de Souza <jose.souza@inte=
-l.com>
-wrote:
+Please drop this BUG_ON(). This is not something which prevents further 
+data corruption, so the BUG_ON() is not justified.
 
-> skl_compute_ddb() will for a modeset in all pipes when MBUS joining
-> changes between states, so all pipes will be disabled, have all
-> MBUS related registers updated and then each pipe enabled.
+> +	pages_left = node->base.num_pages;
+>   
+>   	i = 0;
+> -	spin_lock(&mgr->lock);
+>   	while (pages_left) {
+> -		uint32_t alignment = tbo->page_alignment;
+> +		if (tbo->page_alignment)
+> +			min_page_size = tbo->page_alignment << PAGE_SHIFT;
+> +		else
+> +			min_page_size = mgr->default_page_size;
+
+The handling here looks extremely awkward to me.
+
+min_page_size should be determined outside of the loop, based on 
+default_page_size, alignment and contiguous flag.
+
+Then why do you drop the lock and grab it again inside the loop? And 
+what is "i" actually good for?
+
+> +
+> +		/* Limit maximum size to 2GB due to SG table limitations */
+> +		pages = min(pages_left, 2UL << (30 - PAGE_SHIFT));
+>   
+>   		if (pages >= pages_per_node)
+> -			alignment = pages_per_node;
+> -
+> -		r = drm_mm_insert_node_in_range(mm, &node->mm_nodes[i], pages,
+> -						alignment, 0, place->fpfn,
+> -						lpfn, mode);
+> -		if (unlikely(r)) {
+> -			if (pages > pages_per_node) {
+> -				if (is_power_of_2(pages))
+> -					pages = pages / 2;
+> -				else
+> -					pages = rounddown_pow_of_two(pages);
+> -				continue;
+> -			}
+> -			goto error_free;
+> +			min_page_size = pages_per_node << PAGE_SHIFT;
+> +
+> +		if (!is_contiguous && !IS_ALIGNED(pages, min_page_size >> PAGE_SHIFT))
+> +			is_contiguous = 1;
+> +
+> +		if (is_contiguous) {
+> +			pages = roundup_pow_of_two(pages);
+> +			min_page_size = pages << PAGE_SHIFT;
+> +
+> +			if (pages > lpfn)
+> +				lpfn = pages;
+>   		}
+>   
+> -		vis_usage += amdgpu_vram_mgr_vis_size(adev, &node->mm_nodes[i]);
+> -		amdgpu_vram_mgr_virt_start(&node->base, &node->mm_nodes[i]);
+> -		pages_left -= pages;
+> +		BUG_ON(min_page_size < mm->chunk_size);
+> +
+> +		mutex_lock(&mgr->lock);
+> +		r = drm_buddy_alloc_blocks(mm, (u64)place->fpfn << PAGE_SHIFT,
+> +					   (u64)lpfn << PAGE_SHIFT,
+> +					   (u64)pages << PAGE_SHIFT,
+> +					   min_page_size,
+> +					   &node->blocks,
+> +					   node->flags);
+> +		mutex_unlock(&mgr->lock);
+> +		if (unlikely(r))
+> +			goto error_free_blocks;
+> +
+>   		++i;
+>   
+>   		if (pages > pages_left)
+> -			pages = pages_left;
+> +			pages_left = 0;
+> +		else
+> +			pages_left -= pages;
+>   	}
+> -	spin_unlock(&mgr->lock);
+>   
+> -	if (i == 1)
+> +	/* Free unused pages for contiguous allocation */
+> +	if (is_contiguous) {
+
+Well that looks really odd, why is trimming not part of 
+drm_buddy_alloc_blocks() ?
+
+> +		u64 actual_size = (u64)node->base.num_pages << PAGE_SHIFT;
+> +
+> +		mutex_lock(&mgr->lock);
+> +		drm_buddy_block_trim(mm,
+> +				     actual_size,
+> +				     &node->blocks);
+
+Why is the drm_buddy_block_trim() function given all the blocks and not 
+just the last one?
+
+Regards,
+Christian.
+
+> +		mutex_unlock(&mgr->lock);
+> +	}
+> +
+> +	list_for_each_entry(block, &node->blocks, link)
+> +		vis_usage += amdgpu_vram_mgr_vis_size(adev, block);
+> +
+> +	block = amdgpu_vram_mgr_first_block(&node->blocks);
+> +	if (!block) {
+> +		r = -EINVAL;
+> +		goto error_fini;
+> +	}
+> +
+> +	node->base.start = amdgpu_node_start(block) >> PAGE_SHIFT;
+> +
+> +	if (i == 1 && is_contiguous)
+>   		node->base.placement |= TTM_PL_FLAG_CONTIGUOUS;
+>   
+>   	if (adev->gmc.xgmi.connected_to_cpu)
+> @@ -468,13 +500,13 @@ static int amdgpu_vram_mgr_new(struct ttm_resource_manager *man,
+>   	*res = &node->base;
+>   	return 0;
+>   
+> -error_free:
+> -	while (i--)
+> -		drm_mm_remove_node(&node->mm_nodes[i]);
+> -	spin_unlock(&mgr->lock);
+> +error_free_blocks:
+> +	mutex_lock(&mgr->lock);
+> +	drm_buddy_free_list(mm, &node->blocks);
+> +	mutex_unlock(&mgr->lock);
+>   error_fini:
+>   	ttm_resource_fini(man, &node->base);
+> -	kvfree(node);
+> +	kfree(node);
+>   
+>   	return r;
+>   }
+> @@ -490,27 +522,26 @@ static int amdgpu_vram_mgr_new(struct ttm_resource_manager *man,
+>   static void amdgpu_vram_mgr_del(struct ttm_resource_manager *man,
+>   				struct ttm_resource *res)
+>   {
+> -	struct ttm_range_mgr_node *node = to_ttm_range_mgr_node(res);
+> +	struct amdgpu_vram_mgr_node *node = to_amdgpu_vram_mgr_node(res);
+>   	struct amdgpu_vram_mgr *mgr = to_vram_mgr(man);
+>   	struct amdgpu_device *adev = to_amdgpu_device(mgr);
+> +	struct drm_buddy *mm = &mgr->mm;
+> +	struct drm_buddy_block *block;
+>   	uint64_t vis_usage = 0;
+> -	unsigned i, pages;
+>   
+> -	spin_lock(&mgr->lock);
+> -	for (i = 0, pages = res->num_pages; pages;
+> -	     pages -= node->mm_nodes[i].size, ++i) {
+> -		struct drm_mm_node *mm = &node->mm_nodes[i];
+> +	mutex_lock(&mgr->lock);
+> +	list_for_each_entry(block, &node->blocks, link)
+> +		vis_usage += amdgpu_vram_mgr_vis_size(adev, block);
+>   
+> -		drm_mm_remove_node(mm);
+> -		vis_usage += amdgpu_vram_mgr_vis_size(adev, mm);
+> -	}
+>   	amdgpu_vram_mgr_do_reserve(man);
+> -	spin_unlock(&mgr->lock);
+> +
+> +	drm_buddy_free_list(mm, &node->blocks);
+> +	mutex_unlock(&mgr->lock);
+>   
+>   	atomic64_sub(vis_usage, &mgr->vis_usage);
+>   
+>   	ttm_resource_fini(man, res);
+> -	kvfree(node);
+> +	kfree(node);
+>   }
+>   
+>   /**
+> @@ -648,13 +679,22 @@ static void amdgpu_vram_mgr_debug(struct ttm_resource_manager *man,
+>   				  struct drm_printer *printer)
+>   {
+>   	struct amdgpu_vram_mgr *mgr = to_vram_mgr(man);
+> +	struct drm_buddy *mm = &mgr->mm;
+> +	struct drm_buddy_block *block;
+>   
+>   	drm_printf(printer, "  vis usage:%llu\n",
+>   		   amdgpu_vram_mgr_vis_usage(mgr));
+>   
+> -	spin_lock(&mgr->lock);
+> -	drm_mm_print(&mgr->mm, printer);
+> -	spin_unlock(&mgr->lock);
+> +	mutex_lock(&mgr->lock);
+> +	drm_printf(printer, "default_page_size: %lluKiB\n",
+> +		   mgr->default_page_size >> 10);
+> +
+> +	drm_buddy_print(mm, printer);
+> +
+> +	drm_printf(printer, "reserved:\n");
+> +	list_for_each_entry(block, &mgr->reserved_pages, link)
+> +		drm_buddy_block_print(mm, block, printer);
+> +	mutex_unlock(&mgr->lock);
+>   }
+>   
+>   static const struct ttm_resource_manager_func amdgpu_vram_mgr_func = {
+> @@ -674,16 +714,21 @@ int amdgpu_vram_mgr_init(struct amdgpu_device *adev)
+>   {
+>   	struct amdgpu_vram_mgr *mgr = &adev->mman.vram_mgr;
+>   	struct ttm_resource_manager *man = &mgr->manager;
+> +	int err;
+>   
+>   	ttm_resource_manager_init(man, &adev->mman.bdev,
+>   				  adev->gmc.real_vram_size);
+>   
+>   	man->func = &amdgpu_vram_mgr_func;
+>   
+> -	drm_mm_init(&mgr->mm, 0, man->size >> PAGE_SHIFT);
+> -	spin_lock_init(&mgr->lock);
+> +	err = drm_buddy_init(&mgr->mm, man->size, PAGE_SIZE);
+> +	if (err)
+> +		return err;
+> +
+> +	mutex_init(&mgr->lock);
+>   	INIT_LIST_HEAD(&mgr->reservations_pending);
+>   	INIT_LIST_HEAD(&mgr->reserved_pages);
+> +	mgr->default_page_size = PAGE_SIZE;
+>   
+>   	ttm_set_driver_manager(&adev->mman.bdev, TTM_PL_VRAM, &mgr->manager);
+>   	ttm_resource_manager_set_used(man, true);
+> @@ -711,16 +756,16 @@ void amdgpu_vram_mgr_fini(struct amdgpu_device *adev)
+>   	if (ret)
+>   		return;
+>   
+> -	spin_lock(&mgr->lock);
+> +	mutex_lock(&mgr->lock);
+>   	list_for_each_entry_safe(rsv, temp, &mgr->reservations_pending, node)
+>   		kfree(rsv);
+>   
+>   	list_for_each_entry_safe(rsv, temp, &mgr->reserved_pages, node) {
+> -		drm_mm_remove_node(&rsv->mm_node);
+> +		drm_buddy_free_list(&mgr->mm, &rsv->block);
+>   		kfree(rsv);
+>   	}
+> -	drm_mm_takedown(&mgr->mm);
+> -	spin_unlock(&mgr->lock);
+> +	drm_buddy_fini(&mgr->mm);
+> +	mutex_unlock(&mgr->lock);
+>   
+>   	ttm_resource_manager_cleanup(man);
+>   	ttm_set_driver_manager(&adev->mman.bdev, TTM_PL_VRAM, NULL);
 >
-I am not clear what you want to say here. Could you rephrase above 3 lines?
+> base-commit: a678f97326454b60ffbbde6abf52d23997d71a27
 
-
-> So no vblank syncronization is necessary and here droping those TODOs.
->
-
-          dropping
--caz
-
-
->
-> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> Signed-off-by: Jos=C3=A9 Roberto de Souza <jose.souza@intel.com>
-> ---
->  drivers/gpu/drm/i915/intel_pm.c | 5 -----
->  1 file changed, 5 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/intel_pm.c
-> b/drivers/gpu/drm/i915/intel_pm.c
-> index cf290bb704221..9ccf0f062862c 100644
-> --- a/drivers/gpu/drm/i915/intel_pm.c
-> +++ b/drivers/gpu/drm/i915/intel_pm.c
-> @@ -6066,7 +6066,6 @@ skl_compute_ddb(struct intel_atomic_state *state)
->                         return ret;
->
->                 if (old_dbuf_state->joined_mbus !=3D
-> new_dbuf_state->joined_mbus) {
-> -                       /* TODO: Implement vblank synchronized MBUS
-> joining changes */
->                         ret =3D intel_modeset_all_pipes(state);
->                         if (ret)
->                                 return ret;
-> @@ -8195,10 +8194,6 @@ static void update_mbus_pre_enable(struct
-> intel_atomic_state *state)
->         if (!HAS_MBUS_JOINING(dev_priv))
->                 return;
->
-> -       /*
-> -        * TODO: Implement vblank synchronized MBUS joining changes.
-> -        * Must be properly coordinated with dbuf reprogramming.
-> -        */
->         if (dbuf_state->joined_mbus) {
->                 mbus_ctl =3D MBUS_HASHING_MODE_1x4 | MBUS_JOIN |
->                         MBUS_JOIN_PIPE_SELECT_NONE;
-> --
-> 2.35.1
->
->
-
---=20
--caz, caz at caztech dot com, 503-six one zero - five six nine nine(m)
-
---000000000000ffaef005dad5b8a9
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
-<div dir=3D"ltr" class=3D"gmail_attr">On Tue, Mar 22, 2022 at 2:45 PM Jos=
-=C3=A9 Roberto de Souza &lt;<a href=3D"mailto:jose.souza@intel.com">jose.so=
-uza@intel.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" sty=
-le=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddi=
-ng-left:1ex">skl_compute_ddb() will for a modeset in all pipes when MBUS jo=
-ining<br>
-changes between states, so all pipes will be disabled, have all<br>
-MBUS related registers updated and then each pipe enabled.<br></blockquote>=
-<div>I am not clear what you want to say here. Could you rephrase=C2=A0abov=
-e 3 lines?</div><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D=
-"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-le=
-ft:1ex">
-So no vblank syncronization is necessary and here droping those TODOs.<br><=
-/blockquote><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 dropping</div><div>-caz</div><div>=C2=A0</div><blo=
-ckquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left=
-:1px solid rgb(204,204,204);padding-left:1ex">
-<br>
-Cc: Ville Syrj=C3=A4l=C3=A4 &lt;<a href=3D"mailto:ville.syrjala@linux.intel=
-.com" target=3D"_blank">ville.syrjala@linux.intel.com</a>&gt;<br>
-Signed-off-by: Jos=C3=A9 Roberto de Souza &lt;<a href=3D"mailto:jose.souza@=
-intel.com" target=3D"_blank">jose.souza@intel.com</a>&gt;<br>
----<br>
-=C2=A0drivers/gpu/drm/i915/intel_pm.c | 5 -----<br>
-=C2=A01 file changed, 5 deletions(-)<br>
-<br>
-diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_p=
-m.c<br>
-index cf290bb704221..9ccf0f062862c 100644<br>
---- a/drivers/gpu/drm/i915/intel_pm.c<br>
-+++ b/drivers/gpu/drm/i915/intel_pm.c<br>
-@@ -6066,7 +6066,6 @@ skl_compute_ddb(struct intel_atomic_state *state)<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 return ret;<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 if (old_dbuf_state-=
-&gt;joined_mbus !=3D new_dbuf_state-&gt;joined_mbus) {<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0/* TODO: Implement vblank synchronized MBUS joining changes */<br=
->
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 ret =3D intel_modeset_all_pipes(state);<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 if (ret)<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 return ret;<br>
-@@ -8195,10 +8194,6 @@ static void update_mbus_pre_enable(struct intel_atom=
-ic_state *state)<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 if (!HAS_MBUS_JOINING(dev_priv))<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 return;<br>
-<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0/*<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0 * TODO: Implement vblank synchronized MBUS joi=
-ning changes.<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0 * Must be properly coordinated with dbuf repro=
-gramming.<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0 */<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 if (dbuf_state-&gt;joined_mbus) {<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 mbus_ctl =3D MBUS_H=
-ASHING_MODE_1x4 | MBUS_JOIN |<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 MBUS_JOIN_PIPE_SELECT_NONE;<br>
--- <br>
-2.35.1<br>
-<br>
-</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
- class=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div=
- dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div>-caz, caz at =
-caztech dot com, 503-six one zero - five six nine nine(m)<br></div></div></=
-div></div></div></div></div></div></div></div></div></div>
-
---000000000000ffaef005dad5b8a9--
