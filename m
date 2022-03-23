@@ -1,52 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65AED4E4F95
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Mar 2022 10:40:36 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31A734E4FA0
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Mar 2022 10:43:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC27F10E649;
-	Wed, 23 Mar 2022 09:40:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7903310E649;
+	Wed, 23 Mar 2022 09:43:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B32A310E634;
- Wed, 23 Mar 2022 09:40:28 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 11EDC10E649
+ for <intel-gfx@lists.freedesktop.org>; Wed, 23 Mar 2022 09:43:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1648028428; x=1679564428;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=M5XVXlJ2tYhOA7HtZrp6yt0KlYlvTs9uGq4wIH55MIg=;
- b=KG+jbv3U1CLc8LSzvo0bq4vl3gDPbznl2chIX6SAjmIrYkc1c1jEr+FN
- PLgHtqWm4LWB4GJe/9jXDGfirUo9zdltxVPCMwtn7Z5FVIvjL3ucJTD2Q
- QWh7DbBPC0t/dFb9hNv2RzVpuaZTrQLSyt2UBbS5M9qdzS71OgXsf96AW
- OGV9AB0ksINcEtbmi05psyBrxsGHdyLlPwOO5iGE52d45gc1kWH6QXauz
- hRRt3WWjuu2UpCONiEHun9fewFLNbfn5dNbX4w8g03UOn8XOfPRGBUOZ3
- umewo+oWYH89RCwNWqdwSFhFgWGiTzwWLDl6HEmaSGACc2JA6aBMD3ELL w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10294"; a="282913216"
-X-IronPort-AV: E=Sophos;i="5.90,203,1643702400"; d="scan'208";a="282913216"
+ t=1648028591; x=1679564591;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=4LZlzstACBWyIZ38OqdXAcgHbA+fj42O269GGPaARts=;
+ b=jvoBVsLl0ycbWMc3GrOQX8ONHpWu4k1B289QOONvtwutysDDmuBchM6h
+ mcXBTae9t3VjfO9IEigGIaOIuk2mj/WUqfwRedKNXpFsTWRkOMxVPX6gA
+ ovZhpVePTRPK/3dwsCFUsSlb6Op2Qxs114zLEYg+L27SufPRBj2NlqnTH
+ 4bTVrbZ9YtiAgk//NEi6uKXqLqvXG4LZN7wfFM6dTXQOo3UYU8dQE14J6
+ 2SPvOWafetV9//O6pWmNCh5vwd9tujIhhYQnMlmDIT7yA9Ov7YhsU/wzd
+ nYEexCnSiBcrSXf+9eY8IbnOSjDoYg23kv/Wj6uryp2Cw1qrd7oZW2U+B Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10294"; a="257783736"
+X-IronPort-AV: E=Sophos;i="5.90,203,1643702400"; d="scan'208";a="257783736"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2022 02:40:28 -0700
-X-IronPort-AV: E=Sophos;i="5.90,203,1643702400"; d="scan'208";a="560821663"
-Received: from caliyanx-mobl.gar.corp.intel.com (HELO localhost)
- ([10.252.57.47])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Mar 2022 02:43:10 -0700
+X-IronPort-AV: E=Sophos;i="5.90,203,1643702400"; d="scan'208";a="560822343"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2022 02:40:25 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Lee Shawn C <shawn.c.lee@intel.com>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220323054532.19840-1-shawn.c.lee@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220321044330.27723-1-cooper.chiou@intel.com>
- <20220323054532.19840-1-shawn.c.lee@intel.com>
-Date: Wed, 23 Mar 2022 11:40:22 +0200
-Message-ID: <87a6dhj9bt.fsf@intel.com>
+ 23 Mar 2022 02:43:08 -0700
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 23 Mar 2022 15:13:07 +0530
+Message-Id: <20220323094307.2439004-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220315095730.1179100-1-ankit.k.nautiyal@intel.com>
+References: <20220315095730.1179100-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [v2] drm/edid: check basic audio support on CEA
- extension block
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v5 2/2] drm/i915/intel_combo_phy: Print I/O
+ voltage info
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,61 +56,80 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Cooper Chiou <cooper.chiou@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 23 Mar 2022, Lee Shawn C <shawn.c.lee@intel.com> wrote:
-> From: Cooper Chiou <cooper.chiou@intel.com>
->
-> Tag code stored in bit7:5 for CTA block byte[3] is not the same as
-> CEA extension block definition. Only check CEA block has
-> basic audio support.
->
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Cc: Shawn C Lee <shawn.c.lee@intel.com>
-> Cc: intel-gfx <intel-gfx@lists.freedesktop.org>
-> Signed-off-by: Cooper Chiou <cooper.chiou@intel.com>
-> Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
+Print I/O voltage and process info for each combo phy ports.
 
-Fixes: e28ad544f462 ("drm/edid: parse CEA blocks embedded in DisplayID")
-Cc: <stable@vger.kernel.org> # v4.15
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+v2: Used drm_dbg_kms for logs. (Jani)
+Added names for different voltage levels. (Imre)
 
-(commit e28ad544f462 was merged in v5.3, but it has Cc: stable for
-v4.15.)
+v3: Used const char * for names. (Jani)
 
-Also drm_edid_to_eld() and drm_parse_cea_ext() are affected by the same
-issue. For the former, it doesn't really matter all that much, it just
-ends up using the DisplayID data block version instead, but the latter
-adds bogus color formats and should be fixed. Patch follows.
+v4: Dropped the procom values and changed commit msg (Imre)
 
-All of these are fixed in my recent series [1], but we'll want the
-simple fixes for stable first.
+Suggested-by: Imre Deak <imre.deak@intel.com>
+Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Reviewed-by: Imre Deak <imre.deak@intel.com>
+---
+ .../gpu/drm/i915/display/intel_combo_phy.c    | 35 +++++++++++++------
+ 1 file changed, 25 insertions(+), 10 deletions(-)
 
-BR,
-Jani.
-
-[1] https://patchwork.freedesktop.org/series/101659/
-
-> ---
->  drivers/gpu/drm/drm_edid.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
-> index 561f53831e29..f07af6786cec 100644
-> --- a/drivers/gpu/drm/drm_edid.c
-> +++ b/drivers/gpu/drm/drm_edid.c
-> @@ -4859,7 +4859,8 @@ bool drm_detect_monitor_audio(struct edid *edid)
->  	if (!edid_ext)
->  		goto end;
->  
-> -	has_audio = ((edid_ext[3] & EDID_BASIC_AUDIO) != 0);
-> +	has_audio = (edid_ext[0] == CEA_EXT &&
-> +		    (edid_ext[3] & EDID_BASIC_AUDIO) != 0);
->  
->  	if (has_audio) {
->  		DRM_DEBUG_KMS("Monitor has basic audio support\n");
-
+diff --git a/drivers/gpu/drm/i915/display/intel_combo_phy.c b/drivers/gpu/drm/i915/display/intel_combo_phy.c
+index 4dfe77351b8b..64890f39c3cc 100644
+--- a/drivers/gpu/drm/i915/display/intel_combo_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_combo_phy.c
+@@ -25,18 +25,29 @@ enum {
+ };
+ 
+ static const struct icl_procmon {
++	const char *name;
+ 	u32 dw1, dw9, dw10;
+ } icl_procmon_values[] = {
+-	[PROCMON_0_85V_DOT_0] =
+-		{ .dw1 = 0x00000000, .dw9 = 0x62AB67BB, .dw10 = 0x51914F96, },
+-	[PROCMON_0_95V_DOT_0] =
+-		{ .dw1 = 0x00000000, .dw9 = 0x86E172C7, .dw10 = 0x77CA5EAB, },
+-	[PROCMON_0_95V_DOT_1] =
+-		{ .dw1 = 0x00000000, .dw9 = 0x93F87FE1, .dw10 = 0x8AE871C5, },
+-	[PROCMON_1_05V_DOT_0] =
+-		{ .dw1 = 0x00000000, .dw9 = 0x98FA82DD, .dw10 = 0x89E46DC1, },
+-	[PROCMON_1_05V_DOT_1] =
+-		{ .dw1 = 0x00440000, .dw9 = 0x9A00AB25, .dw10 = 0x8AE38FF1, },
++	[PROCMON_0_85V_DOT_0] = {
++		.name = "0.85V dot0 (low-voltage)",
++		.dw1 = 0x00000000, .dw9 = 0x62AB67BB, .dw10 = 0x51914F96,
++	},
++	[PROCMON_0_95V_DOT_0] = {
++		.name = "0.95V dot0",
++		.dw1 = 0x00000000, .dw9 = 0x86E172C7, .dw10 = 0x77CA5EAB,
++	},
++	[PROCMON_0_95V_DOT_1] = {
++		.name = "0.95V dot1",
++		.dw1 = 0x00000000, .dw9 = 0x93F87FE1, .dw10 = 0x8AE871C5,
++	},
++	[PROCMON_1_05V_DOT_0] = {
++		.name = "1.05V dot0",
++		.dw1 = 0x00000000, .dw9 = 0x98FA82DD, .dw10 = 0x89E46DC1,
++	},
++	[PROCMON_1_05V_DOT_1] = {
++		.name = "1.05V dot1",
++		.dw1 = 0x00440000, .dw9 = 0x9A00AB25, .dw10 = 0x8AE38FF1,
++	},
+ };
+ 
+ static const struct icl_procmon *
+@@ -113,6 +124,10 @@ static bool icl_verify_procmon_ref_values(struct drm_i915_private *dev_priv,
+ 
+ 	procmon = icl_get_procmon_ref_values(dev_priv, phy);
+ 
++	drm_dbg_kms(&dev_priv->drm,
++		    "Combo PHY %c Voltage/Process Info : %s\n",
++		    phy_name(phy), procmon->name);
++
+ 	ret = check_phy_reg(dev_priv, phy, ICL_PORT_COMP_DW1(phy),
+ 			    (0xff << 16) | 0xff, procmon->dw1);
+ 	ret &= check_phy_reg(dev_priv, phy, ICL_PORT_COMP_DW9(phy),
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.25.1
+
