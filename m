@@ -1,46 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A0BB4E58D9
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Mar 2022 20:04:33 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20AD44E58DA
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Mar 2022 20:04:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B887C10E06F;
-	Wed, 23 Mar 2022 19:04:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E96A10E0E9;
+	Wed, 23 Mar 2022 19:04:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9704310E066
- for <intel-gfx@lists.freedesktop.org>; Wed, 23 Mar 2022 19:04:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 67C2D10E066
+ for <intel-gfx@lists.freedesktop.org>; Wed, 23 Mar 2022 19:04:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1648062269; x=1679598269;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=hkVv3Af7wYVSTLPDi6khXckVbbERjjkQ2DdIwzLy4fo=;
- b=cjc6V07RjDplqFKzr1xPWjxSmNxxx9SNeplfC2JNEcL54xKWX9S/ovPM
- v+bUcwFMCc6VOPtObey8UV9ZWvVpDsSGPD526wOIG3Ub+KlAQHfvoSpdj
- 97fOgD04fC64/gTu3IoDkYvcWRbkg2WVqTdLZNFO5uomMNivT2tUhLUpc
- VRxQHredlQ8UwrdFqjNTuP2BQSbaKsjjG2XNdm1Q5b+kptGZn6cY8mike
- DMbX9dj75CDsbtaszfkL/A4nKLuFvMoVIwLPUjWAjiYnn1KoOwVT4S20A
- JCEQ5gIIDiQvNiDXcHupVgu12h2hhLgXAO0EqFiCGUU/2XW1a1FudJCJX A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10295"; a="245678449"
-X-IronPort-AV: E=Sophos;i="5.90,204,1643702400"; d="scan'208";a="245678449"
+ t=1648062271; x=1679598271;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=FRdzc34QVvHT5U3sNJ/xnJY8GPw5BwJPrievIYuxOz0=;
+ b=hKdYe9g3BdAfWmQNg0gB8d3IkMi1qIELMD3R+RP7qfS7FRNw9rNbN21F
+ hqAJGN8qpXSNPbiEeU+WannfRA+bD1Tmfyqk3ldrmnd/mlYZdD8c2MART
+ FPnDncKBqb89nTAKSNNZtOs0kmRf9gR4TlEbznMTTIdswxJeUsUNuzxux
+ US1fCqbGzolR/BdRLqSgO76LyZqvBjbdIow97qtC8uu1f49FZ7b9whlAR
+ 5kmp6iveV480DC8qIeVhO4/pUFT7B+/TJreylGTxBeikcw7/j23AMEqHe
+ Wk5LDV4bCa+GRNLUDxkjUdncePpZ1CGv31XpB/epV3uQX1Gt9h8lpG7gX g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10295"; a="245678454"
+X-IronPort-AV: E=Sophos;i="5.90,204,1643702400"; d="scan'208";a="245678454"
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2022 12:04:29 -0700
-X-IronPort-AV: E=Sophos;i="5.90,204,1643702400"; d="scan'208";a="647596561"
+ 23 Mar 2022 12:04:31 -0700
+X-IronPort-AV: E=Sophos;i="5.90,204,1643702400"; d="scan'208";a="647596582"
 Received: from anushasr-mobl6.jf.intel.com ([10.165.21.155])
  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2022 12:04:28 -0700
+ 23 Mar 2022 12:04:30 -0700
 From: Anusha Srivatsa <anusha.srivatsa@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 23 Mar 2022 12:01:23 -0700
-Message-Id: <20220323190124.2343794-1-anusha.srivatsa@intel.com>
+Date: Wed, 23 Mar 2022 12:01:24 -0700
+Message-Id: <20220323190124.2343794-2-anusha.srivatsa@intel.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220323190124.2343794-1-anusha.srivatsa@intel.com>
+References: <20220323190124.2343794-1-anusha.srivatsa@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 1/2] drm/i915/dg2: Load DMC
+Subject: [Intel-gfx] [PATCH 2/2] drm/i915/dg2: DC states for DG2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,42 +58,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add Support to load dmc v2.06
+DG2 has same DC states as DG1 - upto DC5.
+
+Bspec: 49193
 
 Cc: Madhumitha Tolakanahalli Pradeep <madhumitha.tolakanahalli.pradeep@intel.com>
 Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dmc.c | 10 +++++++++-
- 1 file changed, 9 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_display_power.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index a719c0f379ba..462111a15304 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -47,6 +47,10 @@
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+index 3dc859032bac..349cc4bcea8a 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+@@ -4782,7 +4782,7 @@ static u32 get_allowed_dc_mask(const struct drm_i915_private *dev_priv,
+ 	if (!HAS_DISPLAY(dev_priv))
+ 		return 0;
  
- #define DISPLAY_VER12_DMC_MAX_FW_SIZE	ICL_DMC_MAX_FW_SIZE
- 
-+#define DG2_DMC_PATH			DMC_PATH(dg1, 2, 06)
-+#define DG2_DMC_VERSION_REQUIRED	DMC_VERSION(2, 6)
-+MODULE_FIRMWARE(DG2_DMC_PATH);
-+
- #define ADLP_DMC_PATH			DMC_PATH(adlp, 2, 16)
- #define ADLP_DMC_VERSION_REQUIRED	DMC_VERSION(2, 16)
- MODULE_FIRMWARE(ADLP_DMC_PATH);
-@@ -681,7 +685,11 @@ void intel_dmc_ucode_init(struct drm_i915_private *dev_priv)
- 	 */
- 	intel_dmc_runtime_pm_get(dev_priv);
- 
--	if (IS_ALDERLAKE_P(dev_priv)) {
-+	if (IS_DG2(dev_priv)) {
-+		dmc->fw_path = DG2_DMC_PATH;
-+		dmc->required_version = DG2_DMC_VERSION_REQUIRED;
-+		dmc->max_fw_size = DISPLAY_VER13_DMC_MAX_FW_SIZE;
-+	} else if (IS_ALDERLAKE_P(dev_priv)) {
- 		dmc->fw_path = ADLP_DMC_PATH;
- 		dmc->required_version = ADLP_DMC_VERSION_REQUIRED;
- 		dmc->max_fw_size = DISPLAY_VER13_DMC_MAX_FW_SIZE;
+-	if (IS_DG1(dev_priv))
++	if (IS_DG1(dev_priv) || IS_DG2(dev_priv))
+ 		max_dc = 3;
+ 	else if (DISPLAY_VER(dev_priv) >= 12)
+ 		max_dc = 4;
 -- 
 2.25.1
 
