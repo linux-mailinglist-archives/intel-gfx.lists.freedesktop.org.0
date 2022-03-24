@@ -1,54 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BB6D4E627D
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Mar 2022 12:30:13 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFD614E629E
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Mar 2022 12:42:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7356C10E88E;
-	Thu, 24 Mar 2022 11:30:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2292D10E890;
+	Thu, 24 Mar 2022 11:42:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A7EF610E88E
- for <intel-gfx@lists.freedesktop.org>; Thu, 24 Mar 2022 11:30:09 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 625FD10E890
+ for <intel-gfx@lists.freedesktop.org>; Thu, 24 Mar 2022 11:42:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1648121409; x=1679657409;
+ t=1648122125; x=1679658125;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=LIAEGWNDsJiHaGzzt4zPnvqlUnK5K6BvOG7XfpwBd4A=;
- b=IrM1UJpFnwfcpK5GBdat3inN8cMAr8kipN88Tjgi0S+b5uvjHpO+tsj2
- /T/FkXx4+VhhlW1aTs+CLFYpStTLWuLWEpEFCo3zl6jUvqUWxH9mpvpVB
- YvzTT4R1UWa84D30SxFwEWlIRgN0IyzLP13VlRWcmbA0Z/NYa+mG0+crU
- j3KbFOPEXPKViWYhMN/RM2EuZ4KsAORlkSVwFKWXWxQNiV5NeeIgtORJm
- mNEalFiyguq6nQ7cvIgMhu0etky8+8aPq4uvil/YUhDRScq3rUqhYcqu+
- wMLH9cAvbZQTiTXE50JuZGEvB01jEgqyzWoIjg/jUdMtTd9Wbn4A8zrlC Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10295"; a="258063190"
-X-IronPort-AV: E=Sophos;i="5.90,207,1643702400"; d="scan'208";a="258063190"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2022 04:30:09 -0700
+ bh=DfrlZLEddSFkeMhpe+QDere4fkGGZKmjprc/ioCDNFo=;
+ b=OWsBynuPmBIaC+iSLvMc5HDIQ2ne2D0cOs4h6//4dAZrmK7cILEcmNKx
+ VXWcYDsj9Ze+QVHNgNSVQsCoa8v9juWTDAIRZIpeQebHBBK0oOGW4bebb
+ id77fmMMVFIp/LkNIs4VLGzk+SyclQ3Um2lHf2yO0OmhglqTRf5KFMm+b
+ taEKpWNzLFzRqQPDXYzf6wMHG3aHDXXFEowLjhhDdjCLP5BwI0nEkohEY
+ e3IssX1rAXeVD4iBBmvbBdZ6OFvBHkqbDXIJHrqvVHQE993P8Qj8vRZuM
+ 0Gi5QdNO6bITr/ybSKWlpVfYQz3TYwPzXQvZgDelpCo8UCdovar/XFq6j A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10295"; a="238958803"
+X-IronPort-AV: E=Sophos;i="5.90,207,1643702400"; d="scan'208";a="238958803"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2022 04:42:04 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,207,1643702400"; d="scan'208";a="647833978"
+X-IronPort-AV: E=Sophos;i="5.90,207,1643702400"; d="scan'208";a="552836369"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.61])
- by fmsmga002.fm.intel.com with SMTP; 24 Mar 2022 04:30:06 -0700
+ by fmsmga007.fm.intel.com with SMTP; 24 Mar 2022 04:42:02 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 24 Mar 2022 13:30:05 +0200
-Date: Thu, 24 Mar 2022 13:30:05 +0200
+ Thu, 24 Mar 2022 13:42:02 +0200
+Date: Thu, 24 Mar 2022 13:42:02 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
-Message-ID: <YjxWPf9gjpH1yNA9@intel.com>
-References: <20220322214616.160640-1-jose.souza@intel.com>
- <20220322214616.160640-3-jose.souza@intel.com>
+To: Uma Shankar <uma.shankar@intel.com>
+Message-ID: <YjxZCqrQ9Rxw4CJx@intel.com>
+References: <20220324110959.1857869-1-uma.shankar@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220322214616.160640-3-jose.souza@intel.com>
+In-Reply-To: <20220324110959.1857869-1-uma.shankar@intel.com>
 X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v2 3/4] drm/i915/display/adlp: Fix
- programing of PIPE_MBUS_DBOX_CTL
+Subject: Re: [Intel-gfx] [v3] drm/i915/display: Extend DP HDR support to hsw+
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,185 +63,78 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 22, 2022 at 02:46:15PM -0700, José Roberto de Souza wrote:
-> PIPE_MBUS_DBOX_CTL was only being programmed when a pipe is being
-> enabled but that could potentially cause issues as it could have
-> mismatching values while pipes are being enabled.
+On Thu, Mar 24, 2022 at 04:39:59PM +0530, Uma Shankar wrote:
+> HSW+ platforms are able to send out HDR Metadata SDP DIP
+> packet as GMP. Hence, extending the support for HDR on DP
+> encoders for the same.
 > 
-> So here moving the PIPE_MBUS_DBOX_CTL programming of all pipes to be
-> executed before the function that enables all pipes, leaving all pipes
-> with a matching A_CREDIT value.
+> v2: Limited to non eDP ports on hsw/bdw and removed it for
+> lspcon as it is done separately (suggested by Ville)
 > 
-> While at it, also moving it to intel_pm.c as we are trying to reduce
-> the gigantic size of it and intel_pm.c have other MBUS programing
-> sequences.
+> v3: Added helper and limited eDP restriction to port A (Ville)
 > 
-> v2:
-> - do not program PIPE_MBUS_DBOX_CTL if pipe will not be active or
-> when it do not needs modeset
-> - remove the checks to wait a vblank
-> 
-> BSpec: 49213
-> BSpec: 50343
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/5389
 > Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+> Signed-off-by: Uma Shankar <uma.shankar@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_display.c | 37 +--------------
->  drivers/gpu/drm/i915/intel_pm.c              | 47 ++++++++++++++++++++
->  drivers/gpu/drm/i915/intel_pm.h              |  1 +
->  3 files changed, 49 insertions(+), 36 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_dp.c | 22 +++++++++++++++++++++-
+>  1 file changed, 21 insertions(+), 1 deletion(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index 424cd7e9afe60..ef5076b5e7027 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -1824,35 +1824,6 @@ static void glk_pipe_scaler_clock_gating_wa(struct drm_i915_private *dev_priv,
->  	intel_de_write(dev_priv, CLKGATE_DIS_PSL(pipe), val);
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 9e19165fd175..c993d82c7ec9 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -4913,6 +4913,26 @@ bool intel_dp_is_port_edp(struct drm_i915_private *dev_priv, enum port port)
+>  	return intel_bios_is_port_edp(dev_priv, port);
 >  }
 >  
-> -static void icl_pipe_mbus_enable(struct intel_crtc *crtc, bool joined_mbus)
-> -{
-> -	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-> -	enum pipe pipe = crtc->pipe;
-> -	u32 val;
-> -
-> -	val = intel_de_read(dev_priv, PIPE_MBUS_DBOX_CTL(pipe));
-> -	val &= ~MBUS_DBOX_A_CREDIT_MASK;
-> -	/* Wa_22010947358:adl-p */
-> -	if (IS_ALDERLAKE_P(dev_priv))
-> -		val |= joined_mbus ? MBUS_DBOX_A_CREDIT(6) : MBUS_DBOX_A_CREDIT(4);
-> -	else
-> -		val |= MBUS_DBOX_A_CREDIT(2);
-> -
-> -	val &= ~(MBUS_DBOX_BW_CREDIT_MASK | MBUS_DBOX_B_CREDIT_MASK);
-> -	if (IS_ALDERLAKE_P(dev_priv)) {
-> -		val |= MBUS_DBOX_BW_CREDIT(2);
-> -		val |= MBUS_DBOX_B_CREDIT(8);
-> -	} else if (DISPLAY_VER(dev_priv) >= 12) {
-> -		val |= MBUS_DBOX_BW_CREDIT(2);
-> -		val |= MBUS_DBOX_B_CREDIT(12);
-> -	} else {
-> -		val |= MBUS_DBOX_BW_CREDIT(1);
-> -		val |= MBUS_DBOX_B_CREDIT(8);
-> -	}
-> -
-> -	intel_de_write(dev_priv, PIPE_MBUS_DBOX_CTL(pipe), val);
-> -}
-> -
->  static void hsw_set_linetime_wm(const struct intel_crtc_state *crtc_state)
->  {
->  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> @@ -1988,13 +1959,6 @@ static void hsw_crtc_enable(struct intel_atomic_state *state,
->  
->  	intel_initial_watermarks(state, crtc);
->  
-> -	if (DISPLAY_VER(dev_priv) >= 11) {
-> -		const struct intel_dbuf_state *dbuf_state =
-> -				intel_atomic_get_new_dbuf_state(state);
-> -
-> -		icl_pipe_mbus_enable(crtc, dbuf_state->joined_mbus);
-> -	}
-> -
->  	if (intel_crtc_is_bigjoiner_slave(new_crtc_state))
->  		intel_crtc_vblank_on(new_crtc_state);
->  
-> @@ -8599,6 +8563,7 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
->  	intel_encoders_update_prepare(state);
->  
->  	intel_dbuf_pre_plane_update(state);
-> +	intel_mbus_dbox_update(state);
->  
->  	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
->  		if (new_crtc_state->do_async_flip)
-> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-> index e60c02d760ffa..cf290bb704221 100644
-> --- a/drivers/gpu/drm/i915/intel_pm.c
-> +++ b/drivers/gpu/drm/i915/intel_pm.c
-> @@ -8258,3 +8258,50 @@ void intel_dbuf_post_plane_update(struct intel_atomic_state *state)
->  	gen9_dbuf_slices_update(dev_priv,
->  				new_dbuf_state->enabled_slices);
->  }
-> +
-> +void intel_mbus_dbox_update(struct intel_atomic_state *state)
+> +static bool
+> +has_gamut_metadata_dip(struct drm_i915_private *dev_priv,
+
+s/dev_priv/i915/ for modern style
+
+> +		       struct intel_dp *intel_dp, enum port port)
 > +{
-> +	struct drm_i915_private *i915 = to_i915(state->base.dev);
-> +	struct intel_crtc_state *new_crtc_state;
-> +	struct intel_dbuf_state *new_dbuf_state;
-> +	struct intel_crtc *crtc;
-> +	int i;
+> +	if (intel_bios_is_lspcon_present(dev_priv, port))
+> +		return false;
 > +
-> +	if (DISPLAY_VER(i915) < 11 || !state->modeset)
-> +		return;
-> +
-> +	if (HAS_MBUS_JOINING(i915))
-> +		new_dbuf_state = intel_atomic_get_dbuf_state(state);
-> +
-> +	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
-> +		u32 val;
-> +
-> +		if (!new_crtc_state->hw.active ||
-> +		    !intel_crtc_needs_modeset(new_crtc_state))
-> +			continue;
-> +
-> +		val = intel_de_read(i915, PIPE_MBUS_DBOX_CTL(crtc->pipe));
-> +		val &= ~MBUS_DBOX_A_CREDIT_MASK;
-> +		/* Wa_22010947358:adl-p */
-> +		if (IS_ALDERLAKE_P(i915))
-> +			val |= new_dbuf_state->joined_mbus ? MBUS_DBOX_A_CREDIT(6) :
-> +							     MBUS_DBOX_A_CREDIT(4);
+> +	if (DISPLAY_VER(dev_priv) >= 10 && !IS_GEMINILAKE(dev_priv))
+> +		return true;
 
-Hmm. I'm not super happy with the assumption that the dbuf state
-is there. When reading this it's not immediately obvious why this
-works.
+DISPLAY_VER >= 11
 
-Might actually be nice to depend purely on the dbuf_state for this
-stuff. So how about something like:
-
-intel_mbus_dbox_update()
-{
-	if (!new_dbuf_state ||
-	    (new_dbuf_state->joined_mbus == old_dbuf_state->joined_mbus &&
-	     new_dbuf_state->active_pipes == old_dbuf_state->active_pipes))
-	     return;
-
-	for_each_pipe_masked(new_dbuf_state->active_pipes)
-		write PIPE_MBUS_DBOX_CTL
-}
-
-?
-
-> +			val |= MBUS_DBOX_A_CREDIT(2);
 > +
-> +		if (IS_ALDERLAKE_P(i915)) {
-> +			val |= MBUS_DBOX_BW_CREDIT(2);
-> +			val |= MBUS_DBOX_B_CREDIT(8);
-> +		} else if (DISPLAY_VER(i915) >= 12) {
-> +			val &= ~(MBUS_DBOX_BW_CREDIT_MASK | MBUS_DBOX_B_CREDIT_MASK);
-> +			val |= MBUS_DBOX_BW_CREDIT(2);
-> +			val |= MBUS_DBOX_B_CREDIT(12);
-> +		} else {
-> +			val &= ~(MBUS_DBOX_BW_CREDIT_MASK | MBUS_DBOX_B_CREDIT_MASK);
-> +			val |= MBUS_DBOX_BW_CREDIT(1);
-> +			val |= MBUS_DBOX_B_CREDIT(8);
-> +		}
+> +	if (port == PORT_A && intel_dp_is_edp(intel_dp))
+
+The is_edp check is still wrong. Should be just port==A.
+Also allows you to drop the intel_dp argument to the function.
+
+> +		return false;
 > +
-> +		intel_de_write(i915, PIPE_MBUS_DBOX_CTL(crtc->pipe), val);
-> +	}
+> +	if (IS_HASWELL(dev_priv) || IS_BROADWELL(dev_priv) ||
+> +	    IS_GEMINILAKE(dev_priv) || DISPLAY_VER(dev_priv) >= 9)
+> +		return true;
+
+The IS_GLK check is redundant.
+
+> +
+> +	return false;
 > +}
-> diff --git a/drivers/gpu/drm/i915/intel_pm.h b/drivers/gpu/drm/i915/intel_pm.h
-> index 51705151b842f..50604cf7398c4 100644
-> --- a/drivers/gpu/drm/i915/intel_pm.h
-> +++ b/drivers/gpu/drm/i915/intel_pm.h
-> @@ -94,5 +94,6 @@ intel_atomic_get_dbuf_state(struct intel_atomic_state *state);
->  int intel_dbuf_init(struct drm_i915_private *dev_priv);
->  void intel_dbuf_pre_plane_update(struct intel_atomic_state *state);
->  void intel_dbuf_post_plane_update(struct intel_atomic_state *state);
-> +void intel_mbus_dbox_update(struct intel_atomic_state *state);
+> +
+>  static void
+>  intel_dp_add_properties(struct intel_dp *intel_dp, struct drm_connector *connector)
+>  {
+> @@ -4939,7 +4959,7 @@ intel_dp_add_properties(struct intel_dp *intel_dp, struct drm_connector *connect
+>  		intel_attach_dp_colorspace_property(connector);
+>  	}
 >  
->  #endif /* __INTEL_PM_H__ */
+> -	if (IS_GEMINILAKE(dev_priv) || DISPLAY_VER(dev_priv) >= 11)
+> +	if (has_gamut_metadata_dip(dev_priv, intel_dp, port))
+>  		drm_object_attach_property(&connector->base,
+>  					   connector->dev->mode_config.hdr_output_metadata_property,
+>  					   0);
 > -- 
-> 2.35.1
+> 2.25.1
 
 -- 
 Ville Syrjälä
