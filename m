@@ -1,66 +1,70 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 902484E61BD
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Mar 2022 11:30:31 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C4274E6201
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Mar 2022 11:56:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9247E10E86B;
-	Thu, 24 Mar 2022 10:30:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF40610E882;
+	Thu, 24 Mar 2022 10:56:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ot1-x32e.google.com (mail-ot1-x32e.google.com
- [IPv6:2607:f8b0:4864:20::32e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A0DA10E873
- for <intel-gfx@lists.freedesktop.org>; Thu, 24 Mar 2022 10:30:28 +0000 (UTC)
-Received: by mail-ot1-x32e.google.com with SMTP id
- e25-20020a0568301e5900b005b236d5d74fso3001437otj.0
- for <intel-gfx@lists.freedesktop.org>; Thu, 24 Mar 2022 03:30:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=Uc0PNvgW6ufWHwoM+1IgKKtb8fqQsLjFVm/SIWonGWs=;
- b=bqg+cgyFjNJ2qBYF744Zd5VO3Mgd4lWaZGU+srdtz9xBUlw1n2TyG4XDUryaaAcuZp
- 711IDAn49p7J/qAfr+eSJeWuuE1SrHD6WgoTV/6iQqIqkJcapXcjv6Th81FvB7WxIta6
- EItNRGVTI9rtKlhE8jC5ZUeyfMZmO/puKh5gg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=Uc0PNvgW6ufWHwoM+1IgKKtb8fqQsLjFVm/SIWonGWs=;
- b=4OtWUOyWTFfqGfJksEvbCpigOK+CWeUgjdNEfal/pkrZYyAj4EVtIk58uGMa9zv1On
- gs/kuomTxF8y+fv5mpC0NmOg4rf9BSZEFhYW5GmVK+oQkdjXym8MRkTQe3RWhm1JMstZ
- NBhaItFNw7cfaJHi3mQitTdS1B7Tw9Pnq0ix+2KY6t3d9U2SJXdsEIq29GGQB8eMGZvE
- z/ZVmsmNeLGfFupqoTETFIvg8UO+sePwUM+XCBynvmr7eWGSb0RYjM++eoMJT+UwE8XJ
- 9rns0pIpSwSyC+WICok28fK7Rrjkc4JxsEx1Tp35LV6PxmQ4Q4+xuqxIomV0S/2Dlasn
- ylHA==
-X-Gm-Message-State: AOAM530ClcI3W0Nsn1eRMm/n8C2yM6iqayTI1ZFKl7aDsh0QjYVi2jAj
- SCi2+ddZ6MDunQN1o6j/1LBQ7N8svOzFXtERJ4bA/Q==
-X-Google-Smtp-Source: ABdhPJzmpcSL8iD3tVsd7RBA07+gKYph1USGcc1flPM/WLuJdPYArdF8YMwI0dgrF16aHdsTbxPsG8x3GpEjuc0mXRc=
-X-Received: by 2002:a9d:57c7:0:b0:5b2:3d6d:6469 with SMTP id
- q7-20020a9d57c7000000b005b23d6d6469mr1714868oti.301.1648117827484; Thu, 24
- Mar 2022 03:30:27 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220323062552.228429-1-Arunpravin.PaneerSelvam@amd.com>
- <7addb3e7-d265-c1a7-d449-7d0056f06d63@molgen.mpg.de>
- <fc60c561-c12a-c031-9558-abae3e3474ec@amd.com>
- <6f0888a2-f74d-f41f-d593-a8362e7dc673@molgen.mpg.de>
- <398f8851-d37b-4020-24ce-8f2ab9723e40@amd.com>
- <CAPj87rMETV9UkpbGRYAT3mjVhRtW75m0e9OLON6_+gdcD0Fo2Q@mail.gmail.com>
- <CADnq5_NuaN_ZziNipdqvvTQ41you==VqJg5oxQovowokaJ2K1Q@mail.gmail.com>
- <CAPj87rNyjd1xkEEARMoiaEdjLxy2rvcKa03fnNCnpN91DLhF1A@mail.gmail.com>
- <CADnq5_Mt5sWCC7hLLBH_DJdvXGqSTbNNaxWpY+cWWD9Vpa8KGQ@mail.gmail.com>
- <CAPj87rPhuVTDJSsY-HsKfvV3xkDhEn7nUd3WLsxNuJD=Mx2Zxg@mail.gmail.com>
- <c41203c8-841b-889f-5c9b-5982ee961849@amd.com>
-In-Reply-To: <c41203c8-841b-889f-5c9b-5982ee961849@amd.com>
-From: Daniel Vetter <daniel@ffwll.ch>
-Date: Thu, 24 Mar 2022 11:30:16 +0100
-Message-ID: <CAKMK7uHnFSO6spQ2iBRNcQatUZJaCfqij3Ee7YkHe3JkTzwmig@mail.gmail.com>
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-Content-Type: text/plain; charset="UTF-8"
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E9C2E10E886
+ for <intel-gfx@lists.freedesktop.org>; Thu, 24 Mar 2022 10:56:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1648119364; x=1679655364;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=SHtGugqjcKS8hnR3ZzZPEmDvCkyEiwLnRFkie2sDDFo=;
+ b=EuWuxvMR0vNEwxzUo9gjGFe0HEVbiV78LYXjvcG2MjpjqbQNmNZDe999
+ co5VBXwuErbLMdik6M6okoPwdNAwNJDWpxpuXgURhdtTTBllueaD7vGz1
+ ZhijrAOYnuu7qy5PK1SxyErdxoGlfbn3irvSOAwHqORbRbSzFnyIoir8D
+ vtexvCmN6fRIT/ppifyhSofiIxOYlUHbrvdsz4jqDV/eRdu53bi2KqdtC
+ PU4v72p9rhnuL7JOPkVluboSlD9E+gA1aqC4GNRVAE9nPR4VrJyPH97Gx
+ Zp+oS1pnCMTFKBG9SEORun30avuVpLqA0IjTqN94pQik3mMMrBXAd7joM A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10295"; a="319055449"
+X-IronPort-AV: E=Sophos;i="5.90,207,1643702400"; d="scan'208";a="319055449"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2022 03:56:04 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,207,1643702400"; d="scan'208";a="561324123"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orsmga008.jf.intel.com with ESMTP; 24 Mar 2022 03:55:59 -0700
+Received: from bgsmsx603.gar.corp.intel.com (10.109.78.82) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27; Thu, 24 Mar 2022 03:55:58 -0700
+Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
+ BGSMSX603.gar.corp.intel.com (10.109.78.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.21; Thu, 24 Mar 2022 16:25:56 +0530
+Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
+ BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.2308.021;
+ Thu, 24 Mar 2022 16:25:56 +0530
+From: "Shankar, Uma" <uma.shankar@intel.com>
+To: =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Thread-Topic: [v2] drm/i915/display: Extend DP HDR support to hsw+
+Thread-Index: AQHYP18MW17kHaqY4UmI0TBJv/TvS6zN690AgABwijA=
+Date: Thu, 24 Mar 2022 10:55:55 +0000
+Message-ID: <77ff3aa1b7c641c096b357a8533d707e@intel.com>
+References: <20220324091215.1784426-1-uma.shankar@intel.com>
+ <Yjw85i48eTsRZk1C@intel.com>
+In-Reply-To: <Yjw85i48eTsRZk1C@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.6.401.20
+x-originating-ip: [10.22.254.132]
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] Commit messages (was: [PATCH v11] drm/amdgpu: add
- drm buddy support to amdgpu)
+MIME-Version: 1.0
+Subject: Re: [Intel-gfx] [v2] drm/i915/display: Extend DP HDR support to hsw+
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,103 +77,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Paul Menzel <pmenzel@molgen.mpg.de>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
- Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>, "Deucher,
- Alexander" <alexander.deucher@amd.com>, Daniel Stone <daniel@fooishbar.org>,
- Alex Deucher <alexdeucher@gmail.com>, Matthew Auld <matthew.auld@intel.com>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 23 Mar 2022 at 16:32, Christian K=C3=B6nig <christian.koenig@amd.co=
-m> wrote:
->
-> Am 23.03.22 um 16:24 schrieb Daniel Stone:
-> > On Wed, 23 Mar 2022 at 15:14, Alex Deucher <alexdeucher@gmail.com> wrot=
-e:
-> >> On Wed, Mar 23, 2022 at 11:04 AM Daniel Stone <daniel@fooishbar.org> w=
-rote:
-> >>> That's not what anyone's saying here ...
-> >>>
-> >>> No-one's demanding AMD publish RTL, or internal design docs, or
-> >>> hardware specs, or URLs to JIRA tickets no-one can access.
-> >>>
-> >>> This is a large and invasive commit with pretty big ramifications;
-> >>> containing exactly two lines of commit message, one of which just
-> >>> duplicates the subject.
-> >>>
-> >>> It cannot be the case that it's completely impossible to provide any
-> >>> justification, background, or details, about this commit being made.
-> >>> Unless, of course, it's to fix a non-public security issue, that is
-> >>> reasonable justification for eliding some of the details. But then
-> >>> again, 'huge change which is very deliberately opaque' is a really
-> >>> good way to draw a lot of attention to the commit, and it would be
-> >>> better to provide more detail about the change to help it slip under
-> >>> the radar.
-> >>>
-> >>> If dri-devel@ isn't allowed to inquire about patches which are posted=
-,
-> >>> then CCing the list is just a fa=C3=A7ade; might as well just do it a=
-ll
-> >>> internally and periodically dump out pull requests.
-> >> I think we are in agreement. I think the withheld information
-> >> Christian was referring to was on another thread with Christian and
-> >> Paul discussing a workaround for a hardware bug:
-> >> https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fww=
-w.spinics.net%2Flists%2Famd-gfx%2Fmsg75908.html&amp;data=3D04%7C01%7Cchrist=
-ian.koenig%40amd.com%7C6a3f2815d83b4872577008da0ce1347a%7C3dd8961fe4884e608=
-e11a82d994e183d%7C0%7C0%7C637836458652370599%7CUnknown%7CTWFpbGZsb3d8eyJWIj=
-oiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000&amp;sda=
-ta=3DQtNB0XHMhTgH%2FNHMwF23Qn%2BgSdYyHJSenbpP%2FHG%2BkxE%3D&amp;reserved=3D=
-0
-> > Right, that definitely seems like some crossed wires. I don't see
-> > anything wrong with that commit at all: the commit message and a
-> > comment notes that there is a hardware issue preventing Raven from
-> > being able to do TMZ+GTT, and the code does the very straightforward
-> > and obvious thing to ensure that on VCN 1.0, any TMZ buffer must be
-> > VRAM-placed.
+
+
+> -----Original Message-----
+> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Sent: Thursday, March 24, 2022 3:12 PM
+> To: Shankar, Uma <uma.shankar@intel.com>
+> Cc: intel-gfx@lists.freedesktop.org
+> Subject: Re: [v2] drm/i915/display: Extend DP HDR support to hsw+
+>=20
+> On Thu, Mar 24, 2022 at 02:42:15PM +0530, Uma Shankar wrote:
+> > HSW+ platforms are able to send out HDR Metadata SDP DIP
+> > packet as GMP. Hence, extending the support for HDR on DP encoders for
+> > the same.
 > >
-> > This one, on the other hand, is much less clear ...
->
-> Yes, completely agree. I mean a good bunch of comments on commit
-> messages are certainly valid and we could improve them.
->
-> But this patch here was worked on by both AMD and Intel developers.
-> Where both sides and I think even people from other companies perfectly
-> understands why, what, how etc...
->
-> When now somebody comes along and asks for a whole explanation of the
-> context why we do it then that sounds really strange to me.
-
-Yeah gpus are using pages a lot more like the cpu (with bigger pages
-of benefit, but not required, hence the buddy allocator to coalesce
-them), and extremely funny contig allocations with bonkers
-requirements aren't needed anymore (which was the speciality of
-drm_mm.c). Hence why both i915 and amdgpu move over to this new buddy
-allocator for managing vram.
-
-I guess that could be added to the commit message, but also it's kinda
-well known - the i915 patches also didn't explain why we want to
-manage our vram with a buddy allocator (I think some of the earlier
-versions explained it a bit, but the version with ttm integration that
-landed didnt).
-
-But yeah the confusing comments about hiding stuff that somehow
-spilled over from other discussions into this didn't help :-/
--Daniel
-
-> Thanks for jumping in here,
-> Christian.
->
+> > v2: Limited to non eDP ports on hsw/bdw and removed it for lspcon as
+> > it is done separately (suggested by Ville)
 > >
-> > Cheers,
-> > Daniel
->
+> > Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/5389
+> > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_dp.c | 10 ++++++----
+> >  1 file changed, 6 insertions(+), 4 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
+> > b/drivers/gpu/drm/i915/display/intel_dp.c
+> > index 9e19165fd175..09382b6133bc 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> > @@ -4939,10 +4939,12 @@ intel_dp_add_properties(struct intel_dp *intel_=
+dp,
+> struct drm_connector *connect
+> >  		intel_attach_dp_colorspace_property(connector);
+> >  	}
+> >
+> > -	if (IS_GEMINILAKE(dev_priv) || DISPLAY_VER(dev_priv) >=3D 11)
+> > -		drm_object_attach_property(&connector->base,
+> > -					   connector->dev-
+> >mode_config.hdr_output_metadata_property,
+> > -					   0);
+> > +	if (!intel_bios_is_lspcon_present(dev_priv, port))
+> > +		if (((IS_HASWELL(dev_priv) || IS_BROADWELL(dev_priv)) &&
+> > +		     !intel_dp_is_edp(intel_dp)) || DISPLAY_VER(dev_priv) >=3D 9)
+>=20
+> s/is_edp/port=3D=3DA/
 
+Yeah missed to limit only for port A, will fix it.
 
---=20
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+> I would put all of that into a helper (has_gamut_metadata_dip() or
+> something) to make it actually legible.
+
+Sure, will add a helper.
+
+Regards,
+Uma Shankar
+>=20
+> > +			drm_object_attach_property(&connector->base,
+> > +					connector->dev-
+> >mode_config.hdr_output_metadata_property,
+> > +					0);
+> >
+> >  	if (intel_dp_is_edp(intel_dp)) {
+> >  		u32 allowed_scalers;
+> > --
+> > 2.25.1
+>=20
+> --
+> Ville Syrj=E4l=E4
+> Intel
