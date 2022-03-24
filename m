@@ -1,52 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 004074E63D3
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Mar 2022 14:01:41 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBBD74E63EE
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Mar 2022 14:16:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37A5D10E981;
-	Thu, 24 Mar 2022 13:01:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3257D10E8CD;
+	Thu, 24 Mar 2022 13:16:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6445410E980
- for <intel-gfx@lists.freedesktop.org>; Thu, 24 Mar 2022 13:01:38 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 84DA410E8CD;
+ Thu, 24 Mar 2022 13:16:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1648126898; x=1679662898;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=QE0n90e7cCwV/cO2jG+ZV9HAzj6cVwqjjHvFSy++LGM=;
- b=n37JRJFtAcejoESjC/BhO17tK+G6deaNesaaMr10sGP2kYheBTKi21Gs
- 1Ukn5fn3SmxInb/i2TbV5tLZgZZCP8rYGvxdDgeF8aaOmRffjDoL0nA5q
- xZ5RJ+0lFCxEQYB/1asgKU/UyH7xexn4BU9ceroHCnie9LnMB5lKB0NOE
- AfyLV6xfvRX1gu4C8ydg6aIqp1PF1iEccjcAn4cKavWuCANNERRSweCIh
- D6jMId3gKURPLiMlR9mqYXK01Bu1EH1ACH6XPF1W3Z0aPv+M7rkce6KED
- bOH/R28vjFvo/82qgw981TSZOZLdtppKnO1jOzZbQHnXTwln86vn6hA6i g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10295"; a="258557746"
-X-IronPort-AV: E=Sophos;i="5.90,207,1643702400"; d="scan'208";a="258557746"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2022 06:01:37 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,207,1643702400"; d="scan'208";a="584067656"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.61])
- by orsmga001.jf.intel.com with SMTP; 24 Mar 2022 06:01:29 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 24 Mar 2022 15:01:28 +0200
-Date: Thu, 24 Mar 2022 15:01:28 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Uma Shankar <uma.shankar@intel.com>
-Message-ID: <YjxrqLrsggg5sw0K@intel.com>
-References: <20220324120438.1876445-1-uma.shankar@intel.com>
+ t=1648127761; x=1679663761;
+ h=message-id:date:mime-version:from:to:cc:subject:
+ content-transfer-encoding;
+ bh=4e10eKbgg2UZyf/vEfxUWoBzVNSFO4yPsd/EumH65BI=;
+ b=mcSJFM3pTohOG/n7/FBU3/f9pmbEjQ9OUJmUT/m3Kt3Nbg5GjxjVDTN7
+ vNdCGB6aYPzj4j/3un2mB+Uw23eII7XQAAklzwQl4YaQp9f6ehBw2a8lf
+ /Io6B+XiEDE+9iLfBdRFsbiwl3WvBz0BVg2u9SOg+Z1NxJXwRLvVK5+E9
+ ddzBQ0D4MGKDkGLhJ7tEXRo6fnk+gsJFXTgpXdblkEXtNeCg7vUagWmOE
+ BPSd18bR9Q8BUt+UdPho8289LJ06GCvsyewtuZaUBgZtiIQAcE/Pns+f9
+ s9ZcuSUrsmb+QLGuOPgE+sNHoJZxrtfcQTFmGA+n9oDgaaUiI9EG4RzLA g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10295"; a="258327274"
+X-IronPort-AV: E=Sophos;i="5.90,207,1643702400"; d="scan'208";a="258327274"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2022 06:16:01 -0700
+X-IronPort-AV: E=Sophos;i="5.90,207,1643702400"; d="scan'208";a="544640506"
+Received: from agalan1-mobl1.ger.corp.intel.com (HELO [10.252.61.111])
+ ([10.252.61.111])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2022 06:15:58 -0700
+Message-ID: <a914e922-4404-5b56-74e6-2df6458875ec@linux.intel.com>
+Date: Thu, 24 Mar 2022 14:15:56 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220324120438.1876445-1-uma.shankar@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [v4] drm/i915/display: Extend DP HDR support to hsw+
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Firefox/91.0 Thunderbird/91.7.0
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Subject: [Intel-gfx] [PULL] drm-misc-next-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,74 +57,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Mar 24, 2022 at 05:34:38PM +0530, Uma Shankar wrote:
-> HSW+ platforms are able to send out HDR Metadata SDP DIP
-> packet as GMP. Hence, extending the support for HDR on DP
-> encoders for the same.
-> 
-> v2: Limited to non eDP ports on hsw/bdw and removed it for
-> lspcon as it is done separately (suggested by Ville)
-> 
-> v3: Added helper and limited eDP restriction to port A (Ville)
-> 
-> v4: Dropped some redundant checks (Ville)
-> 
-> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/5389
-> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+drm-misc-next-fixes-2022-03-24:
+Short summary of fixes pull (less than what git shortlog provides):
+- explain anything non-fixes (e.g. cleanups) and why it's appropriate
+- highlight regressions
+- summarize pull requests contained
+This shouldn't be more than a few lines (or it indicates your fixes pull is a
+bit too big).
+The following changes since commit f6d790e5a7fe42706756c7fa1686d08d230610fc:
 
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+  Merge tag 'drm-intel-next-fixes-2022-03-10' of git://anongit.freedesktop.org/drm/drm-intel into drm-next (2022-03-11 13:27:00 +1000)
 
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 21 ++++++++++++++++++++-
->  1 file changed, 20 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 9e19165fd175..fdcb169adb54 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -4913,6 +4913,25 @@ bool intel_dp_is_port_edp(struct drm_i915_private *dev_priv, enum port port)
->  	return intel_bios_is_port_edp(dev_priv, port);
->  }
->  
-> +static bool
-> +has_gamut_metadata_dip(struct drm_i915_private *i915, enum port port)
-> +{
-> +	if (intel_bios_is_lspcon_present(i915, port))
-> +		return false;
-> +
-> +	if (DISPLAY_VER(i915) >= 11)
-> +		return true;
-> +
-> +	if (port == PORT_A)
-> +		return false;
-> +
-> +	if (IS_HASWELL(i915) || IS_BROADWELL(i915) ||
-> +	    DISPLAY_VER(i915) >= 9)
-> +		return true;
-> +
-> +	return false;
-> +}
-> +
->  static void
->  intel_dp_add_properties(struct intel_dp *intel_dp, struct drm_connector *connector)
->  {
-> @@ -4939,7 +4958,7 @@ intel_dp_add_properties(struct intel_dp *intel_dp, struct drm_connector *connect
->  		intel_attach_dp_colorspace_property(connector);
->  	}
->  
-> -	if (IS_GEMINILAKE(dev_priv) || DISPLAY_VER(dev_priv) >= 11)
-> +	if (has_gamut_metadata_dip(dev_priv, port))
->  		drm_object_attach_property(&connector->base,
->  					   connector->dev->mode_config.hdr_output_metadata_property,
->  					   0);
-> -- 
-> 2.25.1
+are available in the Git repository at:
 
--- 
-Ville Syrjälä
-Intel
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-fixes-2022-03-24
+
+for you to fetch changes up to 7344bad7fb6daa4877a1c064b52c7d5f9182c41b:
+
+  drm/edid: fix CEA extension byte #3 parsing (2022-03-24 11:41:14 +0200)
+
+----------------------------------------------------------------
+Short summary of fixes pull (less than what git shortlog provides):
+- explain anything non-fixes (e.g. cleanups) and why it's appropriate
+- highlight regressions
+- summarize pull requests contained
+This shouldn't be more than a few lines (or it indicates your fixes pull is a
+bit too big).
+
+----------------------------------------------------------------
+Cooper Chiou (1):
+      drm/edid: check basic audio support on CEA extension block
+
+Jani Nikula (1):
+      drm/edid: fix CEA extension byte #3 parsing
+
+Nathan Chancellor (1):
+      drm/selftest: plane_helper: Put test structures in static storage
+
+Zack Rusin (1):
+      drm/ttm: Fix a kernel oops due to an invalid read
+
+ drivers/gpu/drm/drm_edid.c                        | 15 ++++++++++-----
+ drivers/gpu/drm/selftests/test-drm_plane_helper.c |  8 ++++----
+ drivers/gpu/drm/ttm/ttm_range_manager.c           |  2 +-
+ 3 files changed, 15 insertions(+), 10 deletions(-)
