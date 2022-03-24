@@ -2,56 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 037A34E6416
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Mar 2022 14:29:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DABF24E64F9
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Mar 2022 15:19:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 11ABD10E95D;
-	Thu, 24 Mar 2022 13:29:10 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D1B6510E958;
- Thu, 24 Mar 2022 13:29:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC7F210E8B7;
+	Thu, 24 Mar 2022 14:19:32 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CED1A10E0D3;
+ Thu, 24 Mar 2022 14:19:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1648128549; x=1679664549;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=WjpOQrjXOgnZIcRzUsiCfcmwFBEKm0Qbb8UT8flgdHg=;
- b=TeeGzpKMUhkSku7VTD2hxjHWkRvIGYDDFRq9Ua+2joseVMwEn8L1dQn0
- h7eLDn7E7kA4s7PwPtu2RpeneC2na29x8NgFJ58zZc6x+uxIqybReQ4RF
- k5fvyp+gqsAVmvafksv5RKxZp7y9Lvll9jZ9GfbIZFPVwRhcRCXVRWS+j
- nwGZ0Msz2z5iRdIb4HSczoyGudbf7BU2FdFA5A/iahgx1mcB+yWSDqcQT
- 9kfH7nR8iSe77hoTDU5GBotCOBJCYdBMRvUWTkuSp7AMhbfsCgfXUX1/X
- HqFdXfkikBExpjTTrT1iXzEnVZMdnrEyy/oSeS+ax9fp1ZkFpmVKZY2iw Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10295"; a="344807366"
-X-IronPort-AV: E=Sophos;i="5.90,207,1643702400"; d="scan'208";a="344807366"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2022 06:29:08 -0700
-X-IronPort-AV: E=Sophos;i="5.90,207,1643702400"; d="scan'208";a="501392799"
-Received: from keithgra-mobl.ger.corp.intel.com (HELO [10.213.230.179])
- ([10.213.230.179])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2022 06:29:06 -0700
-Message-ID: <2a91ffe1-71a2-98a0-daa3-23aee0b1c29d@linux.intel.com>
-Date: Thu, 24 Mar 2022 13:29:02 +0000
+ t=1648131571; x=1679667571;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=ThduxQcEHJZKb46KqQQqsMcCHsHJPrv898mD73J2fC8=;
+ b=ljEs0vpttPYdGnYgtQWEPjR18goUkXJ6Fs4/9LorOfTc0Ns9XOMpTYrp
+ Lzaa5gchVnI8GzjTfWd5GqU/aLIh2HIu+GTr71yYU16h15MMjeSiE/GhA
+ oN78tGBqWJC8MIILndwBnMtGchVDRvLC5+Jwnnv95CNStOv+U6tpMOrcT
+ e7TzEOeLrN5s3sTYP08NpiVKM2tgdqQb+WJX0I1l43FEHYUvLhNPuUXzH
+ JmoN+YyLDrOjf9jDicAE4fWgzbQfoAmxrS4fMxBZE6rLhUbSQs6rlA3RR
+ kAJ+s89OcRPYYl7OI1v5ckmitVEcH2me3Z+AYibp++lV6lGPc5tYi/kWP A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10295"; a="258575224"
+X-IronPort-AV: E=Sophos;i="5.90,207,1643702400"; d="scan'208";a="258575224"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2022 07:19:30 -0700
+X-IronPort-AV: E=Sophos;i="5.90,207,1643702400"; d="scan'208";a="544665036"
+Received: from ideak-desk.fi.intel.com ([10.237.72.175])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2022 07:19:28 -0700
+Date: Thu, 24 Mar 2022 16:19:24 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: "Chery, Nanley G" <nanley.g.chery@intel.com>
+Message-ID: <Yjx97IKACHS4xGPW@ideak-desk.fi.intel.com>
+References: <20220201104132.3050-1-ramalingam.c@intel.com>
+ <20220201104132.3050-16-ramalingam.c@intel.com>
+ <CAJDL4uKokNLKhx1Yd_gnxyqto+bcg+=efLZFLVxqp-D7aQW0oQ@mail.gmail.com>
+ <326a4099-f7d9-8adf-f371-d8ab0532256e@gmail.com>
+ <fd88996f283648f8b4eca3f3844d6e8d@intel.com>
+ <20220318173943.GA2622954@ideak-desk.fi.intel.com>
+ <75a48ad279d449c399693b73ee50bb97@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Content-Language: en-US
-To: Jani Nikula <jani.nikula@intel.com>, Intel-gfx@lists.freedesktop.org
-References: <20220322164446.2124983-1-tvrtko.ursulin@linux.intel.com>
- <878rszitmi.fsf@intel.com>
- <0078dd11-c958-7a60-19d1-e32446f0d9da@linux.intel.com>
- <87r16rh8b2.fsf@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <87r16rh8b2.fsf@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [RFC] drm/i915: Split out intel_vtd_active and
- run_as_guest to own header
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <75a48ad279d449c399693b73ee50bb97@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v5 15/19] drm/i915/dg2: Add DG2 unified
+ compression
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,52 +62,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org
+Reply-To: imre.deak@intel.com
+Cc: Nanley Chery <nanleychery@gmail.com>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>, "Auld,
+ Matthew" <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 24/03/2022 11:57, Jani Nikula wrote:
-> On Thu, 24 Mar 2022, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
->> On 24/03/2022 09:31, Jani Nikula wrote:
->>> On Tue, 22 Mar 2022, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
->>>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>>>
->>>> ...
->>>>
->>>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>>> Cc: Jani Nikula <jani.nikula@intel.com>
->>>> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->>>> ---
->>>> Typed up how I see it - bash away.
->>>
->>> So is intel_vtd_active() so performance critical that it needs to be
->>> inline?
->>>
->>> We're passing struct drm_i915_private * everywhere we can, and it just
->>> feels silly to use struct drm_device * to avoid the include.
->>>
->>> Static inlines considered harmful. :p
->>
->> Same as it is ;), and gee, who was it that he said he was just trying to
->> declutter i915_drv.h.. ;p
+On Thu, Mar 24, 2022 at 01:40:37AM +0200, Chery, Nanley G wrote:
+> > [...]
+> > Capturing all the above would you be ok with the following?:
+> > 
+> > Intel color control surfaces (CCS) for DG2 render compression.
+> > 
+> > The main surface is Tile 4 and at plane index 0. The CCS data is stored
+> > outside of the GEM object in a reserved memory area dedicated for the
+> > storage of the CCS data from all GEM objects. The main surface pitch is
+> > required to be a multiple of four Tile 4 widths.
+> > 
+> > 
+> > Intel color control surfaces (CCS) for DG2 media compression.
+> > 
+> > The main surface is Tile 4 and at plane index 0. For semi-planar formats
+> > like NV12, the UV plane is Tile 4 at plane index 1. The CCS data both for
+> > the main and semi-planar UV planes are stored outside of the GEM object
 > 
-> Not at the cost of clarity elsewhere!
+> This kind of implies that the Y plane is the main surface, but it's not more
+> "main" than the UV plane right? Seems like we should specifically call out the
+> Y plane for clarity. Maybe something like:
+> 
+> For semi-planar formats like NV12, the Y and UV planes are Tile 4 and are 
+> located at plane indices 0 and 1, respectively. The CCS for all planes are stored 
+> outside of the GEM object
 
-To be clear now you oppose intel_vtd_active taking struct device? I 
-thought you expressed general agreement when I presented the idea in the 
-previous thread.
+Ok, makes sense.
 
-I don't mind hugely to go either way, but I also don't see how taking 
-struct device makes anything unclear. (I only think 
-intel_vtd_run_as_guest is really wrong in this story but that's old news.)
+> > in a reserved memory area dedicated for the storage of the CCS data from
+> > all GEM objects. The main surface pitch is required to be a multiple of
+> > four Tile 4 widths.
+> 
+> Looks good to me. Main suggestion I have here is to substitute 
+> "from all GEM objects" with "for all compressible GEM objects".
 
-And if I make it take i915 then I would want to name it i915_vtd_active 
-as well. But then you wouldn't like that.
+"for all RC/RC_CC/MC CCS compressible GEM objects" would be more
+precise, in case there are other ways to compress data. Either way looks
+ok to me.
 
-Should we just stuff all this into i915_utils for now, as I think Lucas 
-suggested? Static inline or not, I don't care.
+> Happy to look at further revisions, but with that change at least,
+> Acked-by: Nanley Chery <nanley.g.chery@intel.com>
 
-Regards,
+Thanks. 
 
-Tvrtko
+--Imre
