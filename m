@@ -1,50 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41A124E652C
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Mar 2022 15:31:43 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1094F4E654B
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Mar 2022 15:33:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 85A1910E0D3;
-	Thu, 24 Mar 2022 14:31:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 278A410E8B4;
+	Thu, 24 Mar 2022 14:33:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA87610E0D3
- for <intel-gfx@lists.freedesktop.org>; Thu, 24 Mar 2022 14:31:40 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AFBAC10E8A6;
+ Thu, 24 Mar 2022 14:33:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1648132300; x=1679668300;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Jp1b+Z31BUU6tPo2/OENlpCKgWcUSYe/d7v3vI/YdNk=;
- b=WCAUtbcXbK35whxlLkaX+CisMe6rrcl3kYnisWLAQMvMOitinLH44xb7
- ZXrq5vKDTHz0z6UZjxUjMtlFuNSbyY/7Lfzriw5SP/yVrR1otZiXPfbpG
- 3Ce/KacdIhTabs9RTD36t4Z1J2DhhX74FGLcMy2uiDGL9AKqwjn3eqA77
- LU0b/ZKh2eXyOlUuZtz5cV6ighjLttqU+JNU5xKBDTiBg2IZwVOAD6jdS
- uIJgEoT9b1UDYgOATbW+s0L5F18pJHNPwLbCc9WeGRiPTBfEC2Qv+Z9Os
- fhS1zi553tMhteQtDXstYUMXLSSUyeZjns5z4A58ZI6BW7zORduavMl7C Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10295"; a="238995946"
-X-IronPort-AV: E=Sophos;i="5.90,207,1643702400"; d="scan'208";a="238995946"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2022 07:31:40 -0700
-X-IronPort-AV: E=Sophos;i="5.90,207,1643702400"; d="scan'208";a="501411486"
-Received: from smurkank-mobl.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
- ([10.252.19.102])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2022 07:31:38 -0700
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 24 Mar 2022 14:31:23 +0000
-Message-Id: <20220324143123.348590-2-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220324143123.348590-1-matthew.auld@intel.com>
-References: <20220324143123.348590-1-matthew.auld@intel.com>
+ t=1648132424; x=1679668424;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=Vny+9jgK1pl/waMOsyxlMCuOVr736cefHCU7EI2Tbas=;
+ b=cPZIqKxUPdq1qjzWtukMuh9LW8F6OMROGF+u0g7WxUdVYfW8y/Ots7ev
+ uxVQ7yOUTTRYyt8jg92qyH9cKn7XBlAis74yJI/XFlo6tqb57ux3576Pm
+ Y2BdlCRLI/SYpBRD67i8mHPklV6O3rHHSZr4lQTMFy1xvbyHLa5fVysVI
+ SZ2pm9/f/zRheI4k+DcrD6UOk7OKnc2P01pK7OhFiSf4lQC+d2NmzZ24D
+ Rn0hXoy1xkfDlm3d954dfe9vFJ4qNgxv+3pZR78P0VUKPOD8eVoJ3sSNg
+ hUTKSc2okjwQ5Yh0D8O3Cq3NpvjpCau1zsPw6r7+nFppTNChsIVl9VMzT A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10295"; a="258101934"
+X-IronPort-AV: E=Sophos;i="5.90,207,1643702400"; d="scan'208";a="258101934"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2022 07:33:44 -0700
+X-IronPort-AV: E=Sophos;i="5.90,207,1643702400"; d="scan'208";a="717842659"
+Received: from peiwangc-mobl1.ccr.corp.intel.com (HELO [10.249.254.237])
+ ([10.249.254.237])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2022 07:33:42 -0700
+Message-ID: <d2e27f20-99e3-38ad-0bb0-bf4f5a063197@linux.intel.com>
+Date: Thu, 24 Mar 2022 15:33:40 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Content-Language: en-US
+To: Matthew Auld <matthew.auld@intel.com>, igt-dev@lists.freedesktop.org
+References: <20220324142621.347452-1-matthew.auld@intel.com>
+ <20220324142621.347452-4-matthew.auld@intel.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20220324142621.347452-4-matthew.auld@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [CI 1/1] drm/i915: add lmem_size modparam
+Subject: Re: [Intel-gfx] [PATCH i-g-t 3/4] tests/gem_lmem_swapping: limit
+ lmem to 4G
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,68 +61,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- CQ Tang <cq.tang@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, CQ Tang <cq.tang@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: CQ Tang <cq.tang@intel.com>
 
-lmem_size is used to limit the amount of lmem. Default is to use
-hardware available lmem size, when setting this modpraram which is in MB
-unit.
+On 3/24/22 15:26, Matthew Auld wrote:
+> From: CQ Tang <cq.tang@intel.com>
+>
+> On some systems lmem can be as large as 16G, which seems to trigger
+> various CI timeouts, and in the best case just takes a long time. For
+> the purposes of the test we should be able to limit to 4G, without any
+> big loss in coverage.
+>
+> Signed-off-by: CQ Tang <cq.tang@intel.com>
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Cc: Nirmoy Das <nirmoy.das@linux.intel.com>
 
-Signed-off-by: CQ Tang <cq.tang@intel.com>
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Nirmoy Das <nirmoy.das@linux.intel.com>
----
- drivers/gpu/drm/i915/gt/intel_region_lmem.c | 4 ++++
- drivers/gpu/drm/i915/i915_params.c          | 3 +++
- drivers/gpu/drm/i915/i915_params.h          | 1 +
- 3 files changed, 8 insertions(+)
+Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_region_lmem.c b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-index 783d81072c3b..f5111c0a0060 100644
---- a/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-+++ b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-@@ -123,6 +123,10 @@ static struct intel_memory_region *setup_lmem(struct intel_gt *gt)
- 		lmem_size = intel_uncore_read64(&i915->uncore, GEN12_GSMBASE);
- 	}
- 
-+	if (i915->params.lmem_size > 0) {
-+		lmem_size = min_t(resource_size_t, lmem_size,
-+				  mul_u32_u32(i915->params.lmem_size, SZ_1M));
-+	}
- 
- 	io_start = pci_resource_start(pdev, 2);
- 	io_size = min(pci_resource_len(pdev, 2), lmem_size);
-diff --git a/drivers/gpu/drm/i915/i915_params.c b/drivers/gpu/drm/i915/i915_params.c
-index 5ad071e09301..701fbc98afa0 100644
---- a/drivers/gpu/drm/i915/i915_params.c
-+++ b/drivers/gpu/drm/i915/i915_params.c
-@@ -202,6 +202,9 @@ i915_param_named_unsafe(request_timeout_ms, uint, 0600,
- 			"Default request/fence/batch buffer expiration timeout.");
- #endif
- 
-+i915_param_named_unsafe(lmem_size, uint, 0400,
-+			"Set the lmem size(in MiB) for each region. (default: 0, all memory)");
-+
- static __always_inline void _print_param(struct drm_printer *p,
- 					 const char *name,
- 					 const char *type,
-diff --git a/drivers/gpu/drm/i915/i915_params.h b/drivers/gpu/drm/i915/i915_params.h
-index c779a6f85c7e..b5e7ea45d191 100644
---- a/drivers/gpu/drm/i915/i915_params.h
-+++ b/drivers/gpu/drm/i915/i915_params.h
-@@ -73,6 +73,7 @@ struct drm_printer;
- 	param(int, enable_dpcd_backlight, -1, 0600) \
- 	param(char *, force_probe, CONFIG_DRM_I915_FORCE_PROBE, 0400) \
- 	param(unsigned int, request_timeout_ms, CONFIG_DRM_I915_REQUEST_TIMEOUT, CONFIG_DRM_I915_REQUEST_TIMEOUT ? 0600 : 0) \
-+	param(unsigned int, lmem_size, 0, 0400) \
- 	/* leave bools at the end to not create holes */ \
- 	param(bool, enable_hangcheck, true, 0600) \
- 	param(bool, load_detect_test, false, 0600) \
--- 
-2.34.1
 
+
+> ---
+>   tests/i915/gem_lmem_swapping.c | 9 ++++++++-
+>   1 file changed, 8 insertions(+), 1 deletion(-)
+>
+> diff --git a/tests/i915/gem_lmem_swapping.c b/tests/i915/gem_lmem_swapping.c
+> index 995a663f..ad1c989c 100644
+> --- a/tests/i915/gem_lmem_swapping.c
+> +++ b/tests/i915/gem_lmem_swapping.c
+> @@ -526,7 +526,13 @@ igt_main_args("", long_options, help_str, opt_handler, NULL)
+>   	igt_fixture {
+>   		struct intel_execution_engine2 *e;
+>   
+> -		i915 = drm_open_driver(DRIVER_INTEL);
+> +		igt_i915_driver_unload();
+> +		if (igt_i915_driver_load("lmem_size=4096")) {
+> +			igt_debug("i915 missing lmem_size modparam support\n");
+> +			igt_assert_eq(igt_i915_driver_load(NULL), 0);
+> +		}
+> +
+> +		i915 = __drm_open_driver(DRIVER_INTEL);
+>   		igt_require_gem(i915);
+>   		igt_require(gem_has_lmem(i915));
+>   
+> @@ -554,6 +560,7 @@ igt_main_args("", long_options, help_str, opt_handler, NULL)
+>   	igt_fixture {
+>   		free(regions);
+>   		close(i915);
+> +		igt_i915_driver_unload();
+>   	}
+>   
+>   	igt_exit();
