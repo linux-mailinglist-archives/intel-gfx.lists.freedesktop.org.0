@@ -2,32 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 599B84E7504
-	for <lists+intel-gfx@lfdr.de>; Fri, 25 Mar 2022 15:24:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6ED4C4E750C
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Mar 2022 15:29:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D2BC10E67D;
-	Fri, 25 Mar 2022 14:24:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E274B10E2AD;
+	Fri, 25 Mar 2022 14:29:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1D50510E67D;
- Fri, 25 Mar 2022 14:24:28 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 191B3AADE3;
- Fri, 25 Mar 2022 14:24:28 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 79AB610E2AD
+ for <intel-gfx@lists.freedesktop.org>; Fri, 25 Mar 2022 14:29:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1648218543; x=1679754543;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=HbHIabtNHBRSLGYfgxqONapx6UQ/gKckWHy99jTOEDI=;
+ b=ZYmkdTK/hgkB7NAJKdWn31lcl/bDsYQxhzeLihPoi6DlpOcYHTyWi+KP
+ a9lD9GSTFojgUDOHWlRqVCbNLx3NpLAXcKvbixoscFoOdglVcag0DugXT
+ d7e7ekClE1/f17l/Zk90zvjlBc/ICCTXwJHwzLGGNI9c4yKbCrJLBQr3R
+ XJiIEolkZBKSNYLZaqkZZ0UvzR+3Jfa1q5n4L3ttBhuip+do0urnWSU92
+ xXc5emFO7DycRxKYG/zcXGnbo4vteiOt11Ut8zRVd8oWwPSMP0NiXaGT+
+ J6dOPRNHq1V7uvTM3UQeMmyHbJzblIz4KImG1G2GRecAeO+9nVHH1MKeR A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10296"; a="256209947"
+X-IronPort-AV: E=Sophos;i="5.90,209,1643702400"; d="scan'208";a="256209947"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2022 07:29:02 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,209,1643702400"; d="scan'208";a="650254128"
+Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
+ by orsmga004.jf.intel.com with ESMTP; 25 Mar 2022 07:29:01 -0700
+From: Animesh Manna <animesh.manna@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 25 Mar 2022 19:58:42 +0530
+Message-Id: <20220325142842.6411-1-animesh.manna@intel.com>
+X-Mailer: git-send-email 2.29.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Date: Fri, 25 Mar 2022 14:24:28 -0000
-Message-ID: <164821826809.24039.4156277569298654961@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220325123205.22140-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20220325123205.22140-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIGRy?=
- =?utf-8?q?m/i915=3A_Start_reordering_modeset_clock_calculations?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/dsb: modified to drm_info in
+ dsb_prepare()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,21 +54,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+The request to aqquire gem resources is failing for DSB in rare
+scenario where it is busy and the register programming will be done
+through mmio fallback path.
 
-Series: drm/i915: Start reordering modeset clock calculations
-URL   : https://patchwork.freedesktop.org/series/101789/
-State : warning
+DSB has extra advantage of faster register programming which may
+go away through mmio path. Adding wait for gem resource also may
+not be right as anyways losing time.
 
-== Summary ==
+To make the CI execution happy replaced drm_err() to drm_info()
+for printing debug info during dsb buffer preparation.
 
-$ make htmldocs 2>&1 > /dev/null | grep i915
-./drivers/gpu/drm/i915/display/intel_drrs.c:1: warning: 'intel_drrs_enable' not found
-./drivers/gpu/drm/i915/display/intel_drrs.c:1: warning: 'intel_drrs_disable' not found
+v1: Initial version.
+v2: Added print for mmio fallback at out label. [Nirmoy]
 
+Cc: Nirmoy Das <nirmoy.das@linux.intel.com>
+Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dsb.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
+index b34a67309976..86c0cf5a03b5 100644
+--- a/drivers/gpu/drm/i915/display/intel_dsb.c
++++ b/drivers/gpu/drm/i915/display/intel_dsb.c
+@@ -283,14 +283,12 @@ void intel_dsb_prepare(struct intel_crtc_state *crtc_state)
+ 
+ 	obj = i915_gem_object_create_internal(i915, DSB_BUF_SIZE);
+ 	if (IS_ERR(obj)) {
+-		drm_err(&i915->drm, "Gem object creation failed\n");
+ 		kfree(dsb);
+ 		goto out;
+ 	}
+ 
+ 	vma = i915_gem_object_ggtt_pin(obj, NULL, 0, 0, 0);
+ 	if (IS_ERR(vma)) {
+-		drm_err(&i915->drm, "Vma creation failed\n");
+ 		i915_gem_object_put(obj);
+ 		kfree(dsb);
+ 		goto out;
+@@ -298,7 +296,6 @@ void intel_dsb_prepare(struct intel_crtc_state *crtc_state)
+ 
+ 	buf = i915_gem_object_pin_map_unlocked(vma->obj, I915_MAP_WC);
+ 	if (IS_ERR(buf)) {
+-		drm_err(&i915->drm, "Command buffer creation failed\n");
+ 		i915_vma_unpin_and_release(&vma, I915_VMA_RELEASE_MAP);
+ 		kfree(dsb);
+ 		goto out;
+@@ -311,6 +308,9 @@ void intel_dsb_prepare(struct intel_crtc_state *crtc_state)
+ 	dsb->ins_start_offset = 0;
+ 	crtc_state->dsb = dsb;
+ out:
++	if (!crtc_state->dsb)
++		drm_info(&i915->drm, "Fallback to mmio for register programming\n");
++
+ 	intel_runtime_pm_put(&i915->runtime_pm, wakeref);
+ }
+ 
+-- 
+2.29.0
 
