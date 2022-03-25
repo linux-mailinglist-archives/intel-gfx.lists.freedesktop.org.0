@@ -1,47 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6ED4C4E750C
-	for <lists+intel-gfx@lfdr.de>; Fri, 25 Mar 2022 15:29:08 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B3A34E7519
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Mar 2022 15:32:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E274B10E2AD;
-	Fri, 25 Mar 2022 14:29:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3089210E20C;
+	Fri, 25 Mar 2022 14:32:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 79AB610E2AD
- for <intel-gfx@lists.freedesktop.org>; Fri, 25 Mar 2022 14:29:03 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F062E10E20C
+ for <intel-gfx@lists.freedesktop.org>; Fri, 25 Mar 2022 14:32:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1648218543; x=1679754543;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=HbHIabtNHBRSLGYfgxqONapx6UQ/gKckWHy99jTOEDI=;
- b=ZYmkdTK/hgkB7NAJKdWn31lcl/bDsYQxhzeLihPoi6DlpOcYHTyWi+KP
- a9lD9GSTFojgUDOHWlRqVCbNLx3NpLAXcKvbixoscFoOdglVcag0DugXT
- d7e7ekClE1/f17l/Zk90zvjlBc/ICCTXwJHwzLGGNI9c4yKbCrJLBQr3R
- XJiIEolkZBKSNYLZaqkZZ0UvzR+3Jfa1q5n4L3ttBhuip+do0urnWSU92
- xXc5emFO7DycRxKYG/zcXGnbo4vteiOt11Ut8zRVd8oWwPSMP0NiXaGT+
- J6dOPRNHq1V7uvTM3UQeMmyHbJzblIz4KImG1G2GRecAeO+9nVHH1MKeR A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10296"; a="256209947"
-X-IronPort-AV: E=Sophos;i="5.90,209,1643702400"; d="scan'208";a="256209947"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2022 07:29:02 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,209,1643702400"; d="scan'208";a="650254128"
-Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
- by orsmga004.jf.intel.com with ESMTP; 25 Mar 2022 07:29:01 -0700
-From: Animesh Manna <animesh.manna@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 25 Mar 2022 19:58:42 +0530
-Message-Id: <20220325142842.6411-1-animesh.manna@intel.com>
-X-Mailer: git-send-email 2.29.0
+ t=1648218732; x=1679754732;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=a+pY/oRuO+jdniTI5NY1rKx3c5up31sdV8sXEe4zrGQ=;
+ b=IkvMNedQ7Kh+o76luDwlGz6ARxlepEcRepuJpauWJbXatsk6+3HvwdVc
+ +79HjLkqKIjiVesPC6rmG5Bj7YjyxuG/ZLeYAwovIYxCe0hOZQp1RlbIA
+ kOr/k2HR1xi/PJEwGFG98cTn3QwAB7PGTW3cnVmsJIqHlvTnMRmbKn1CQ
+ EQnFg/F4Xo4gfzMpCWfAekPhv8WFrCRZVdpyKYq5Xt1dqbtEgAuREWXII
+ wv/UjFGdiSbyh2y7yBjglZLQf5SiXq5rKUd2/mPcvJSou8BpyQcVlWth2
+ YYqCZQBim85GOnNDV9tOah75SNUlX72qykI3ibuMW/k85xbVSunHSdSOm w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10296"; a="258611355"
+X-IronPort-AV: E=Sophos;i="5.90,209,1643702400"; d="scan'208";a="258611355"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2022 07:32:12 -0700
+X-IronPort-AV: E=Sophos;i="5.90,209,1643702400"; d="scan'208";a="561853074"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2022 07:32:12 -0700
+Date: Fri, 25 Mar 2022 07:32:10 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
+Message-ID: <Yj3SarO9Ns4yFbEu@mdroper-desk1.amr.corp.intel.com>
+References: <20220325142249.81443-1-jose.souza@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/dsb: modified to drm_info in
- dsb_prepare()
+In-Reply-To: <20220325142249.81443-1-jose.souza@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/dg2: Add Wa_22014226127
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,66 +57,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The request to aqquire gem resources is failing for DSB in rare
-scenario where it is busy and the register programming will be done
-through mmio fallback path.
+On Fri, Mar 25, 2022 at 07:22:49AM -0700, José Roberto de Souza wrote:
+> New DG2 workaround added to specification.
+> 
+> BSpec: 54077
+> BSpec: 66622
+> BSpec: 54833
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
 
-DSB has extra advantage of faster register programming which may
-go away through mmio path. Adding wait for gem resource also may
-not be right as anyways losing time.
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
-To make the CI execution happy replaced drm_err() to drm_info()
-for printing debug info during dsb buffer preparation.
+> ---
+>  drivers/gpu/drm/i915/gt/intel_gt_regs.h     | 1 +
+>  drivers/gpu/drm/i915/gt/intel_workarounds.c | 5 +++++
+>  2 files changed, 6 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+> index 62e0f075b1de7..17432b075d970 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+> @@ -1088,6 +1088,7 @@
+>  #define EU_PERF_CNTL3				_MMIO(0xe758)
+>  
+>  #define LSC_CHICKEN_BIT_0			_MMIO(0xe7c8)
+> +#define   DISABLE_D8_D16_COASLESCE		REG_BIT(30)
+>  #define   FORCE_1_SUB_MESSAGE_PER_FRAGMENT	REG_BIT(15)
+>  #define LSC_CHICKEN_BIT_0_UDW			_MMIO(0xe7c8 + 4)
+>  #define   DIS_CHAIN_2XSIMD8			REG_BIT(55 - 32)
+> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> index dc0ffff6f655a..29c8cd0a81b6f 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> @@ -2624,6 +2624,11 @@ general_render_compute_wa_init(struct intel_engine_cs *engine, struct i915_wa_li
+>  		wa_write_or(wal, GEN12_GAMCNTRL_CTRL, INVALIDATION_BROADCAST_MODE_DIS |
+>  				GLOBAL_INVALIDATION_MODE);
+>  	}
+> +
+> +	if (IS_DG2(i915)) {
+> +		/* Wa_22014226127:dg2 */
+> +		wa_write_or(wal, LSC_CHICKEN_BIT_0, DISABLE_D8_D16_COASLESCE);
+> +	}
+>  }
+>  
+>  static void
+> -- 
+> 2.35.1
+> 
 
-v1: Initial version.
-v2: Added print for mmio fallback at out label. [Nirmoy]
-
-Cc: Nirmoy Das <nirmoy.das@linux.intel.com>
-Signed-off-by: Animesh Manna <animesh.manna@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dsb.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
-index b34a67309976..86c0cf5a03b5 100644
---- a/drivers/gpu/drm/i915/display/intel_dsb.c
-+++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-@@ -283,14 +283,12 @@ void intel_dsb_prepare(struct intel_crtc_state *crtc_state)
- 
- 	obj = i915_gem_object_create_internal(i915, DSB_BUF_SIZE);
- 	if (IS_ERR(obj)) {
--		drm_err(&i915->drm, "Gem object creation failed\n");
- 		kfree(dsb);
- 		goto out;
- 	}
- 
- 	vma = i915_gem_object_ggtt_pin(obj, NULL, 0, 0, 0);
- 	if (IS_ERR(vma)) {
--		drm_err(&i915->drm, "Vma creation failed\n");
- 		i915_gem_object_put(obj);
- 		kfree(dsb);
- 		goto out;
-@@ -298,7 +296,6 @@ void intel_dsb_prepare(struct intel_crtc_state *crtc_state)
- 
- 	buf = i915_gem_object_pin_map_unlocked(vma->obj, I915_MAP_WC);
- 	if (IS_ERR(buf)) {
--		drm_err(&i915->drm, "Command buffer creation failed\n");
- 		i915_vma_unpin_and_release(&vma, I915_VMA_RELEASE_MAP);
- 		kfree(dsb);
- 		goto out;
-@@ -311,6 +308,9 @@ void intel_dsb_prepare(struct intel_crtc_state *crtc_state)
- 	dsb->ins_start_offset = 0;
- 	crtc_state->dsb = dsb;
- out:
-+	if (!crtc_state->dsb)
-+		drm_info(&i915->drm, "Fallback to mmio for register programming\n");
-+
- 	intel_runtime_pm_put(&i915->runtime_pm, wakeref);
- }
- 
 -- 
-2.29.0
-
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
