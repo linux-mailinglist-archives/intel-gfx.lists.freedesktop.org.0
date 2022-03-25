@@ -2,54 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AAFF4E71AE
-	for <lists+intel-gfx@lfdr.de>; Fri, 25 Mar 2022 11:56:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D37D94E7208
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Mar 2022 12:09:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6769410EB4E;
-	Fri, 25 Mar 2022 10:56:09 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C0AF10EB4E;
- Fri, 25 Mar 2022 10:56:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1648205768; x=1679741768;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=27UgVpdcrqaGQ3WocipXOzwtqNzZRjxThVDn13QxF+4=;
- b=EnkYQ5DkDAqgOFimQApI0Fq6RhU66LNIQJCrky7GTRsQo4b93OD3H3eT
- g2s3maa/bgSQm7KXqQE6LNYzxde4I6UrrSz1SbcYh5ZeDDNQQnn+EU2XG
- mNnQL3mJTO5YCXWK90q9+5sRlYe0CQDQnRpQnvWyTjHZK8chLsHxjzRsv
- TWHvjKLZfwtMGb/uWtG39dzAXDc1wkDu37hCB7Gw9Djn7u/RRAjA35/Ua
- 3BIES1cTd4VXNul6dmQ51ClLD0RxwJ3lAnaE/qM53QWyXAII7im0QVrw7
- w5HzHr44SbnVgm76JLfzav0mXGrn/4draq4O7vT7Uyp77G8MSldXA1tRX Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10296"; a="258325972"
-X-IronPort-AV: E=Sophos;i="5.90,209,1643702400"; d="scan'208";a="258325972"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2022 03:56:07 -0700
-X-IronPort-AV: E=Sophos;i="5.90,209,1643702400"; d="scan'208";a="561791550"
-Received: from cfmcclea-mobl.ger.corp.intel.com (HELO [10.213.232.142])
- ([10.213.232.142])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2022 03:56:05 -0700
-Message-ID: <aad940f2-c064-a623-6c15-27171d268476@linux.intel.com>
-Date: Fri, 25 Mar 2022 10:56:01 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id C676310EB81;
+	Fri, 25 Mar 2022 11:09:06 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id CA70D10EB80;
+ Fri, 25 Mar 2022 11:09:05 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C5447AADD3;
+ Fri, 25 Mar 2022 11:09:05 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Content-Language: en-US
-To: Daniel Vetter <daniel@ffwll.ch>
-References: <20220325094916.2186367-1-tvrtko.ursulin@linux.intel.com>
- <Yj2RMTTkQxC/vzre@phenom.ffwll.local>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <Yj2RMTTkQxC/vzre@phenom.ffwll.local>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/uapi: Document
- DRM_I915_QUERY_HWCONFIG_BLOB
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chuansheng Liu" <chuansheng.liu@intel.com>
+Date: Fri, 25 Mar 2022 11:09:05 -0000
+Message-ID: <164820654577.24038.13623078674752907761@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220325010328.32963-1-chuansheng.liu@intel.com>
+In-Reply-To: <20220325010328.32963-1-chuansheng.liu@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIGRy?=
+ =?utf-8?q?m/i915=3A_fix_one_mem_leak_in_mmap=5Foffset=5Fattach=28=29_=28r?=
+ =?utf-8?q?ev5=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,81 +41,21 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
-On 25/03/2022 09:53, Daniel Vetter wrote:
-> On Fri, Mar 25, 2022 at 09:49:16AM +0000, Tvrtko Ursulin wrote:
->> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>
->> UAPI with absolutely no documentation should not have been added -
->> clarify blob format and content will be described externally.
->>
->> Fixes: 78e1fb3112c0 ("drm/i915/uapi: Add query for hwconfig blob")
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->> Co-developed-by: Jordan Justen <jordan.l.justen@intel.com>
->> Cc: Jon Bloomfield <jon.bloomfield@intel.com>
->> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
->> Cc: John Harrison <john.c.harrison@intel.com>
->> Cc: Jon Ewins <jon.ewins@intel.com>
->> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
->> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->> ---
->>   include/uapi/drm/i915_drm.h | 13 +++++++++++++
->>   1 file changed, 13 insertions(+)
->>
->> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
->> index 071ffd9d51f1..8d0719bee8fc 100644
->> --- a/include/uapi/drm/i915_drm.h
->> +++ b/include/uapi/drm/i915_drm.h
->> @@ -2683,6 +2683,9 @@ struct drm_i915_perf_oa_config {
->>    *
->>    * The behaviour is determined by the @query_id. Note that exactly what
->>    * @data_ptr is also depends on the specific @query_id.
->> + *
->> + * For specific queries see:
->> + *  * `GuC HWCONFIG blob uAPI`_
-> 
-> I'd put this into the @query_id section, and then make it an item list
-> with the #define as the label, so that it becomes tidy and can neatly
-> iterate them all.
-> 
-> Anyway we can bikeshed this all more in a follow-up.
-> 
-> Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+Series: drm/i915: fix one mem leak in mmap_offset_attach() (rev5)
+URL   : https://patchwork.freedesktop.org/series/100532/
+State : warning
 
-Thanks, yes I wanted to do the minimal thing to close the gap.
->>    */
->>   struct drm_i915_query_item {
->>   	/** @query_id: The id for this query */
->> @@ -3135,6 +3138,16 @@ struct drm_i915_query_memory_regions {
->>   	struct drm_i915_memory_region_info regions[];
->>   };
->>   
->> +/**
->> + * DOC: GuC HWCONFIG blob uAPI
->> + *
->> + * The GuC produces a blob with information about the current device.
->> + * i915 reads this blob from GuC and makes it available via this uAPI.
->> + *
->> + * The format and meading of the blob content are documented in the
+== Summary ==
 
-Meading? I will fix that up while merging.
+$ make htmldocs 2>&1 > /dev/null | grep i915
+./drivers/gpu/drm/i915/display/intel_drrs.c:1: warning: 'intel_drrs_enable' not found
+./drivers/gpu/drm/i915/display/intel_drrs.c:1: warning: 'intel_drrs_disable' not found
 
-Regards,
 
-Tvrtko
-
->> + * Programmer's Reference Manual.
->> + */
->> +
->>   /**
->>    * struct drm_i915_gem_create_ext - Existing gem_create behaviour, with added
->>    * extension support using struct i915_user_extension.
->> -- 
->> 2.32.0
->>
-> 
