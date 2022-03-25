@@ -1,34 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B43CC4E7266
-	for <lists+intel-gfx@lfdr.de>; Fri, 25 Mar 2022 12:44:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 171704E72C1
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Mar 2022 13:09:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A63E10E1E1;
-	Fri, 25 Mar 2022 11:44:48 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id E528A10E1E1;
- Fri, 25 Mar 2022 11:44:46 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E112CAAA91;
- Fri, 25 Mar 2022 11:44:46 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9408D10E1E1;
+	Fri, 25 Mar 2022 12:09:46 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F87410E1E0;
+ Fri, 25 Mar 2022 12:09:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1648210184; x=1679746184;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=BhL288zfjqp8EvdHKisOhxAOVUzU8yUz8fuM6Je0E1Q=;
+ b=Wlu5WwhEO3oHgTMIR4r8eSpchD9TPJKkXa8TB6ZuT7tUUJ6UksP4V5lr
+ 60I5zYenjTCqCZnVGYN7qhrzyniBpZqCN6JPi38cQrVZlIQIBm38ozofE
+ l36vmFZAZcr7lj5YTABJ8MCnPKAunqq3V2BUz4sxjopEUyHIxrvzU7TDM
+ 3aY65f7BEdDx/wmDJ1TvvPqSrZgo6GkU1SKPBLlZlVnf8eKSl0VrG80m1
+ hYr/F2MegqQVEDxykoHer8UfBWF/PNFwQpsOVmNq3RkEXhB3RSnbR+EhI
+ V3LUFAAKMBsFHMuOgaXuRKLhVYXPeUYX76LgbsZe3cX//lK1RJacmRWnn w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10296"; a="319327678"
+X-IronPort-AV: E=Sophos;i="5.90,209,1643702400"; d="scan'208";a="319327678"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2022 05:09:41 -0700
+X-IronPort-AV: E=Sophos;i="5.90,209,1643702400"; d="scan'208";a="561813522"
+Received: from avgorshk-mobl.ccr.corp.intel.com (HELO localhost)
+ ([10.252.35.183])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2022 05:09:35 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Intel-gfx@lists.freedesktop.org
+In-Reply-To: <a08030e9-d352-1599-68ca-36605cadac1b@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220322164446.2124983-1-tvrtko.ursulin@linux.intel.com>
+ <878rszitmi.fsf@intel.com>
+ <0078dd11-c958-7a60-19d1-e32446f0d9da@linux.intel.com>
+ <87r16rh8b2.fsf@intel.com>
+ <2a91ffe1-71a2-98a0-daa3-23aee0b1c29d@linux.intel.com>
+ <87o81vgouz.fsf@intel.com>
+ <a08030e9-d352-1599-68ca-36605cadac1b@linux.intel.com>
+Date: Fri, 25 Mar 2022 14:09:33 +0200
+Message-ID: <87fsn6grnm.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
-Date: Fri, 25 Mar 2022 11:44:46 -0000
-Message-ID: <164820868688.24038.5685572357270155262@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220325094916.2186367-1-tvrtko.ursulin@linux.intel.com>
-In-Reply-To: <20220325094916.2186367-1-tvrtko.ursulin@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIGRy?=
- =?utf-8?q?m/i915/uapi=3A_Document_DRM=5FI915=5FQUERY=5FHWCONFIG=5FBLOB_?=
- =?utf-8?b?KHJldjIp?=
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [RFC] drm/i915: Split out intel_vtd_active and
+ run_as_guest to own header
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,21 +64,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, 25 Mar 2022, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
+> On 24/03/2022 18:57, Jani Nikula wrote:
+>> On Thu, 24 Mar 2022, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
+>>> On 24/03/2022 11:57, Jani Nikula wrote:
+>>>> On Thu, 24 Mar 2022, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
+>>>>> On 24/03/2022 09:31, Jani Nikula wrote:
+>>>>>> On Tue, 22 Mar 2022, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
+>>>>>>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>>>>>>
+>>>>>>> ...
+>>>>>>>
+>>>>>>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>>>>>> Cc: Jani Nikula <jani.nikula@intel.com>
+>>>>>>> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>>>>>>> ---
+>>>>>>> Typed up how I see it - bash away.
+>>>>>>
+>>>>>> So is intel_vtd_active() so performance critical that it needs to be
+>>>>>> inline?
+>>>>>>
+>>>>>> We're passing struct drm_i915_private * everywhere we can, and it just
+>>>>>> feels silly to use struct drm_device * to avoid the include.
+>>>>>>
+>>>>>> Static inlines considered harmful. :p
+>>>>>
+>>>>> Same as it is ;), and gee, who was it that he said he was just trying to
+>>>>> declutter i915_drv.h.. ;p
+>>>>
+>>>> Not at the cost of clarity elsewhere!
+>>>
+>>> To be clear now you oppose intel_vtd_active taking struct device? I
+>>> thought you expressed general agreement when I presented the idea in the
+>>> previous thread.
+>>>
+>>> I don't mind hugely to go either way, but I also don't see how taking
+>>> struct device makes anything unclear. (I only think
+>>> intel_vtd_run_as_guest is really wrong in this story but that's old news.)
+>>>
+>>> And if I make it take i915 then I would want to name it i915_vtd_active
+>>> as well. But then you wouldn't like that.
+>>>
+>>> Should we just stuff all this into i915_utils for now, as I think Lucas
+>>> suggested? Static inline or not, I don't care.
+>> 
+>> Just general grumpiness.
+>> 
+>> Acked-by: Jani Nikula <jani.nikula@intel.com>
+>
+> No worries. Ack is for this version or with i915_ prefixes in 
+> i915_utils.h/c?
 
-Series: drm/i915/uapi: Document DRM_I915_QUERY_HWCONFIG_BLOB (rev2)
-URL   : https://patchwork.freedesktop.org/series/101781/
-State : warning
+Both. Either. ;)
 
-== Summary ==
+>
+> Regards,
+>
+> Tvrtko
 
-$ make htmldocs 2>&1 > /dev/null | grep i915
-./drivers/gpu/drm/i915/display/intel_drrs.c:1: warning: 'intel_drrs_enable' not found
-./drivers/gpu/drm/i915/display/intel_drrs.c:1: warning: 'intel_drrs_disable' not found
-
-
+-- 
+Jani Nikula, Intel Open Source Graphics Center
