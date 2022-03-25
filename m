@@ -2,55 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E52974E6F88
-	for <lists+intel-gfx@lfdr.de>; Fri, 25 Mar 2022 09:40:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 486664E6F93
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Mar 2022 09:47:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 21AA510EB02;
-	Fri, 25 Mar 2022 08:40:52 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4224B10EAFE;
- Fri, 25 Mar 2022 08:40:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F3CD610E284;
+	Fri, 25 Mar 2022 08:47:21 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E94D310E247;
+ Fri, 25 Mar 2022 08:47:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1648197650; x=1679733650;
+ t=1648198039; x=1679734039;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=R3prQRlNzpzG7rO38AY2nU+II7Pihp2XW5V+Eb7ghrE=;
- b=bIvWUcwaoo/DVGVcKZunHzvw4KqHKE4JtuBBafu4dZVW8iiDLcWOCg5w
- t9rHIG1N/qyXCmf1PB4uG8vFIZNVo/floe1BfdZ7Ofx6kw3qaKEX4iwEt
- +VxwxW4cC/EQRYDluZ5u8S9E5tL12vr2fN/lFR3swk9E7x67HSfhRCt3S
- ALgDsvu6pkvSiQiq+7v2royEOD0Nr/QpDP61AciTjMNSl9uE+ERzs/6Ow
- 93ThkByupm/BUuPx/hbv3xc6GRLmATqYfEzgQaRnrkr9iheJLsEkJrF+9
- WcPcjX5tgXTO7C7a9+jPcG2XpK75NsmC/xov1VWNVzaQGY7bmGiX9mODo A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10296"; a="257415324"
-X-IronPort-AV: E=Sophos;i="5.90,209,1643702400"; d="scan'208";a="257415324"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2022 01:40:49 -0700
-X-IronPort-AV: E=Sophos;i="5.90,209,1643702400"; d="scan'208";a="545000549"
-Received: from mhenry-mobl.ger.corp.intel.com (HELO [10.252.10.83])
- ([10.252.10.83])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2022 01:40:47 -0700
-Message-ID: <af23ceff-4899-6bef-87e5-273419f030f8@intel.com>
-Date: Fri, 25 Mar 2022 08:40:45 +0000
+ bh=9CwTtiXaoVgYBa5LU2nnCfP7OxZ1TbYNsJbLV0tf9ao=;
+ b=gYomem7lid/XzgqrPE+nUs8zDxHTV/7NfjNRL4ij+SpNzh7JVSvOXn3n
+ f9EEeVWlOi1WnyNNGhyqUjQsLmXzKCIADywBRvE9gEs2B4/JW7F82bzCQ
+ Z5sievESQPAT/jFZYVjOH5KrB/NgfPLG1ceHd0jl6hhkfZMfeW7VIZBbw
+ EwkNt6Pj25657AI//BhNUrPGwx7ZhKjm/yKpxbMJvf/8LJ31X5XPwIY0Q
+ aU9H7MOHltgyk/bIjmIn/vonsqYLBKg+FJmMdUqNBl7wjiu2Z4fcwrXO1
+ Of6dP7QxlRfHrZHPQm+e10YzmS5U7+6lSHbLdPBMxgDh8Rm4sDf0yGmnn g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10296"; a="258782831"
+X-IronPort-AV: E=Sophos;i="5.90,209,1643702400"; d="scan'208";a="258782831"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2022 01:47:19 -0700
+X-IronPort-AV: E=Sophos;i="5.90,209,1643702400"; d="scan'208";a="561754417"
+Received: from cfmcclea-mobl.ger.corp.intel.com (HELO [10.213.232.142])
+ ([10.213.232.142])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2022 01:47:17 -0700
+Message-ID: <a08030e9-d352-1599-68ca-36605cadac1b@linux.intel.com>
+Date: Fri, 25 Mar 2022 08:47:13 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Content-Language: en-GB
-To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>,
- Petri Latvala <petri.latvala@intel.com>
-References: <20220324142621.347452-1-matthew.auld@intel.com>
- <20220324142621.347452-4-matthew.auld@intel.com>
- <8735j75jjk.wl-ashutosh.dixit@intel.com>
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <8735j75jjk.wl-ashutosh.dixit@intel.com>
+ Thunderbird/91.5.0
+Content-Language: en-US
+To: Jani Nikula <jani.nikula@intel.com>, Intel-gfx@lists.freedesktop.org
+References: <20220322164446.2124983-1-tvrtko.ursulin@linux.intel.com>
+ <878rszitmi.fsf@intel.com>
+ <0078dd11-c958-7a60-19d1-e32446f0d9da@linux.intel.com>
+ <87r16rh8b2.fsf@intel.com>
+ <2a91ffe1-71a2-98a0-daa3-23aee0b1c29d@linux.intel.com>
+ <87o81vgouz.fsf@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <87o81vgouz.fsf@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t 3/4]
- tests/gem_lmem_swapping: limit lmem to 4G
+Subject: Re: [Intel-gfx] [RFC] drm/i915: Split out intel_vtd_active and
+ run_as_guest to own header
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,23 +66,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org,
- =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, CQ Tang <cq.tang@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 24/03/2022 17:47, Dixit, Ashutosh wrote:
-> On Thu, 24 Mar 2022 07:26:20 -0700, Matthew Auld wrote:
->>
->> @@ -554,6 +560,7 @@ igt_main_args("", long_options, help_str, opt_handler, NULL)
->> 	igt_fixture {
->> 		free(regions);
->> 		close(i915);
->> +		igt_i915_driver_unload();
-> 
-> I thought we'd reload the module with default params here but when the next
-> test runs the module gets loaded automatically so maybe this is ok?
 
-Yeah, that at least matches my understanding. Adding Petri in case he 
-has some comments here.
+On 24/03/2022 18:57, Jani Nikula wrote:
+> On Thu, 24 Mar 2022, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
+>> On 24/03/2022 11:57, Jani Nikula wrote:
+>>> On Thu, 24 Mar 2022, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
+>>>> On 24/03/2022 09:31, Jani Nikula wrote:
+>>>>> On Tue, 22 Mar 2022, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
+>>>>>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>>>>>
+>>>>>> ...
+>>>>>>
+>>>>>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>>>>> Cc: Jani Nikula <jani.nikula@intel.com>
+>>>>>> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>>>>>> ---
+>>>>>> Typed up how I see it - bash away.
+>>>>>
+>>>>> So is intel_vtd_active() so performance critical that it needs to be
+>>>>> inline?
+>>>>>
+>>>>> We're passing struct drm_i915_private * everywhere we can, and it just
+>>>>> feels silly to use struct drm_device * to avoid the include.
+>>>>>
+>>>>> Static inlines considered harmful. :p
+>>>>
+>>>> Same as it is ;), and gee, who was it that he said he was just trying to
+>>>> declutter i915_drv.h.. ;p
+>>>
+>>> Not at the cost of clarity elsewhere!
+>>
+>> To be clear now you oppose intel_vtd_active taking struct device? I
+>> thought you expressed general agreement when I presented the idea in the
+>> previous thread.
+>>
+>> I don't mind hugely to go either way, but I also don't see how taking
+>> struct device makes anything unclear. (I only think
+>> intel_vtd_run_as_guest is really wrong in this story but that's old news.)
+>>
+>> And if I make it take i915 then I would want to name it i915_vtd_active
+>> as well. But then you wouldn't like that.
+>>
+>> Should we just stuff all this into i915_utils for now, as I think Lucas
+>> suggested? Static inline or not, I don't care.
+> 
+> Just general grumpiness.
+> 
+> Acked-by: Jani Nikula <jani.nikula@intel.com>
+
+No worries. Ack is for this version or with i915_ prefixes in 
+i915_utils.h/c?
+
+Regards,
+
+Tvrtko
