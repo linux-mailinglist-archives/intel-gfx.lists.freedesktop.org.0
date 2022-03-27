@@ -1,55 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9A8C4E7E44
-	for <lists+intel-gfx@lfdr.de>; Sat, 26 Mar 2022 01:59:09 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CCF024E855A
+	for <lists+intel-gfx@lfdr.de>; Sun, 27 Mar 2022 06:04:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A700D10E70D;
-	Sat, 26 Mar 2022 00:59:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E0B3310E501;
+	Sun, 27 Mar 2022 04:04:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3B6BA10E0D0;
- Sat, 26 Mar 2022 00:59:06 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B4C8910E501
+ for <intel-gfx@lists.freedesktop.org>; Sun, 27 Mar 2022 04:04:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1648256346; x=1679792346;
+ t=1648353891; x=1679889891;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=TRUVCM/aMJLPA+tAMYWt4cWZ/SwbCEkOWrhrehVr6CY=;
- b=Zr1mAvcpfG4vo98rWInKeD+2aFPAxGaWmnaKj7Zpbouzm/K2aS6Jcpq9
- mSYmyGwJPvHVYXNugRzEC7Zua9PQjKC+F8+RFHeJWDDEXnRJ6dB2DZUKA
- Ih1tIuh5oW4DZaG7qcpwm6dGqO0Kfc0V+8Bce/95uVkdv5Ez7x5FRl54Q
- PsHFU3hKyeIFQbWb5yFyPz0MoWhiwlIdqJ34x4C95w8cuRxBOq3HgsdEW
- UtbZm10bkHPqfD+4XiF/jYvtj5tx6H3JacXD3u/2xC9edtzaqaPGFBNTx
- 8ic3vJ8eW/ODTJX3lE3zIgTbAXTIKsdWuLDwn/s49+a2KzDhW8P+jpWWp g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10297"; a="321937758"
-X-IronPort-AV: E=Sophos;i="5.90,211,1643702400"; d="scan'208";a="321937758"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2022 17:59:05 -0700
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=kYaeggezkwVJxfT8ztKy1RtD5FymTJ42AHIIaKNKUKM=;
+ b=PAE+jniOFrQ6RvXqpHxJDD/XHkFQt5WlsviLOyYkSXq6sd+OWTUHlc7H
+ SX/+OUNlm55oYYNU9iGYWbRfcX4sqf0r8uy/Jl9SlHHdVJ/gcypVirrHH
+ HJb/NPuHmWqA+N6fJnBv3iK/51Z0m2atphlgyyaGMfM2xY3ziAZoVwHFP
+ 1A7Can97cNsZxdyebnDn3UoGh9F7ugsKlqWywAYG+kTxB/+X1nKGb5mC9
+ c9f3uKXW1KNksXmWJW7NynkKSQAyjALx20ZH44Q0wEY3/EJTrA2XCmye3
+ TMhmQKma3tzEykiI9Jw9XHzs1rpAosCQTZOxTgPYCT0AOSF8i4ePVlA/O A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10298"; a="239421227"
+X-IronPort-AV: E=Sophos;i="5.90,214,1643702400"; d="scan'208";a="239421227"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2022 21:04:51 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,211,1643702400"; d="scan'208";a="584637760"
+X-IronPort-AV: E=Sophos;i="5.90,214,1643702400"; d="scan'208";a="520612903"
 Received: from lkp-server02.sh.intel.com (HELO 89b41b6ae01c) ([10.239.97.151])
- by orsmga001.jf.intel.com with ESMTP; 25 Mar 2022 17:59:02 -0700
+ by orsmga006.jf.intel.com with ESMTP; 26 Mar 2022 21:04:49 -0700
 Received: from kbuild by 89b41b6ae01c with local (Exim 4.92)
  (envelope-from <lkp@intel.com>)
- id 1nXulh-000Mp8-SB; Sat, 26 Mar 2022 00:59:01 +0000
-Date: Sat, 26 Mar 2022 08:58:26 +0800
+ id 1nYK93-0000hz-1R; Sun, 27 Mar 2022 04:04:49 +0000
+Date: Sun, 27 Mar 2022 12:04:18 +0800
 From: kernel test robot <lkp@intel.com>
-To: Zhi Wang <zhi.wang.linux@gmail.com>, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- intel-gvt-dev@lists.freedesktop.org
-Message-ID: <202203260829.JUQaTzGt-lkp@intel.com>
-References: <20220325175251.167164-1-zhi.a.wang@intel.com>
+To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Message-ID: <202203271159.aOWDCD1Q-lkp@intel.com>
+References: <20220325153436.95045-1-jose.souza@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20220325175251.167164-1-zhi.a.wang@intel.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220325153436.95045-1-jose.souza@intel.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v7 1/3] i915/gvt: Separate the MMIO tracking
- table from GVT-g
+Subject: Re: [Intel-gfx] [PATCH] docs: gpu: i915.rst: Update DRRS functions
+ names
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,91 +62,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Zhi Wang <zhi.a.wang@gmail.com>, kbuild-all@lists.01.org,
- Christoph Hellwig <hch@lst.de>, Jason Gunthorpe <jgg@nvidia.com>,
- Vivi Rodrigo <rodrigo.vivi@intel.com>
+Cc: kbuild-all@lists.01.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Zhi,
+Hi "José,
 
-I love your patch! Yet something to improve:
+Thank you for the patch! Perhaps something to improve:
 
-[auto build test ERROR on drm-intel/for-linux-next]
-[also build test ERROR on drm-tip/drm-tip drm/drm-next next-20220325]
-[cannot apply to tegra-drm/drm/tegra/for-next airlied/drm-next v5.17]
+[auto build test WARNING on drm-intel/for-linux-next]
+[also build test WARNING on v5.17 next-20220325]
 [If your patch is applied to the wrong git tree, kindly drop us a note.
 And when submitting patch, we suggest to use '--base' as documented in
 https://git-scm.com/docs/git-format-patch]
 
-url:    https://github.com/0day-ci/linux/commits/Zhi-Wang/i915-gvt-Separate-the-MMIO-tracking-table-from-GVT-g/20220326-015627
+url:    https://github.com/intel-lab-lkp/linux/commits/Jos-Roberto-de-Souza/docs-gpu-i915-rst-Update-DRRS-functions-names/20220325-233423
 base:   git://anongit.freedesktop.org/drm-intel for-linux-next
-config: x86_64-randconfig-c002 (https://download.01.org/0day-ci/archive/20220326/202203260829.JUQaTzGt-lkp@intel.com/config)
-compiler: gcc-9 (Ubuntu 9.4.0-1ubuntu1~20.04.1) 9.4.0
-reproduce (this is a W=1 build):
-        # https://github.com/0day-ci/linux/commit/8203f91121efdcc910bde0bc4fe5ea678bdaaa5b
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Zhi-Wang/i915-gvt-Separate-the-MMIO-tracking-table-from-GVT-g/20220326-015627
-        git checkout 8203f91121efdcc910bde0bc4fe5ea678bdaaa5b
-        # save the config file to linux build tree
-        mkdir build_dir
-        make W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash drivers/gpu/
+reproduce: make htmldocs
 
 If you fix the issue, kindly add following tag as appropriate
 Reported-by: kernel test robot <lkp@intel.com>
 
-All errors (new ones prefixed by >>):
+All warnings (new ones prefixed by >>):
 
-   In file included from drivers/gpu/drm/i915/i915_driver.c:92:
->> drivers/gpu/drm/i915/intel_gvt.h:66:15: error: no previous prototype for 'intel_gvt_get_device_type' [-Werror=missing-prototypes]
-      66 | unsigned long intel_gvt_get_device_type(struct drm_i915_private *i915)
-         |               ^~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/i915/intel_gvt.h:71:41: error: 'struct intel_gvt_mmio_table_iter' declared inside parameter list will not be visible outside of this definition or declaration [-Werror]
-      71 | int intel_gvt_iterate_mmio_table(struct intel_gvt_mmio_table_iter *iter)
-         |                                         ^~~~~~~~~~~~~~~~~~~~~~~~~
->> drivers/gpu/drm/i915/intel_gvt.h:71:5: error: no previous prototype for 'intel_gvt_iterate_mmio_table' [-Werror=missing-prototypes]
-      71 | int intel_gvt_iterate_mmio_table(struct intel_gvt_mmio_table_iter *iter)
-         |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   cc1: all warnings being treated as errors
---
-   In file included from drivers/gpu/drm/i915/gvt/gvt.h:39,
-                    from <command-line>:
->> drivers/gpu/drm/i915/intel_gvt.h:66:15: error: no previous prototype for 'intel_gvt_get_device_type' [-Werror=missing-prototypes]
-      66 | unsigned long intel_gvt_get_device_type(struct drm_i915_private *i915)
-         |               ^~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/i915/intel_gvt.h:71:41: error: 'struct intel_gvt_mmio_table_iter' declared inside parameter list will not be visible outside of this definition or declaration [-Werror]
-      71 | int intel_gvt_iterate_mmio_table(struct intel_gvt_mmio_table_iter *iter)
-         |                                         ^~~~~~~~~~~~~~~~~~~~~~~~~
->> drivers/gpu/drm/i915/intel_gvt.h:71:5: error: no previous prototype for 'intel_gvt_iterate_mmio_table' [-Werror=missing-prototypes]
-      71 | int intel_gvt_iterate_mmio_table(struct intel_gvt_mmio_table_iter *iter)
-         |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   In file included from drivers/gpu/drm/i915/gvt/gvt.h:43,
-                    from <command-line>:
->> drivers/gpu/drm/i915/gvt/mmio.h:74:15: error: conflicting types for 'intel_gvt_get_device_type'
-      74 | unsigned long intel_gvt_get_device_type(struct intel_gvt *gvt);
-         |               ^~~~~~~~~~~~~~~~~~~~~~~~~
-   In file included from drivers/gpu/drm/i915/gvt/gvt.h:39,
-                    from <command-line>:
-   drivers/gpu/drm/i915/intel_gvt.h:66:15: note: previous definition of 'intel_gvt_get_device_type' was here
-      66 | unsigned long intel_gvt_get_device_type(struct drm_i915_private *i915)
-         |               ^~~~~~~~~~~~~~~~~~~~~~~~~
-   cc1: all warnings being treated as errors
+>> drivers/gpu/drm/i915/display/intel_drrs.c:1: warning: 'intel_drrs_activate' not found
+>> drivers/gpu/drm/i915/display/intel_drrs.c:1: warning: 'intel_drrs_deactivate' not found
 
+vim +/intel_drrs_activate +1 drivers/gpu/drm/i915/display/intel_drrs.c
 
-vim +/intel_gvt_get_device_type +66 drivers/gpu/drm/i915/intel_gvt.h
-
-    65	
-  > 66	unsigned long intel_gvt_get_device_type(struct drm_i915_private *i915)
-    67	{
-    68		return 0;
-    69	}
-    70	
-  > 71	int intel_gvt_iterate_mmio_table(struct intel_gvt_mmio_table_iter *iter)
-    72	{
-    73		return 0;
-    74	}
-    75	#endif
-    76	
+a1b63119ee839c8 José Roberto de Souza 2021-08-27 @1  // SPDX-License-Identifier: MIT
+a1b63119ee839c8 José Roberto de Souza 2021-08-27  2  /*
+a1b63119ee839c8 José Roberto de Souza 2021-08-27  3   * Copyright © 2021 Intel Corporation
+a1b63119ee839c8 José Roberto de Souza 2021-08-27  4   */
+a1b63119ee839c8 José Roberto de Souza 2021-08-27  5  
 
 -- 
 0-DAY CI Kernel Test Service
