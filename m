@@ -1,53 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FA384E9407
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Mar 2022 13:24:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66A1F4E9450
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Mar 2022 13:26:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 075DD10E077;
-	Mon, 28 Mar 2022 11:24:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8906410E113;
+	Mon, 28 Mar 2022 11:26:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4FB7E10E077
- for <intel-gfx@lists.freedesktop.org>; Mon, 28 Mar 2022 11:24:26 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F4A410E113
+ for <intel-gfx@lists.freedesktop.org>; Mon, 28 Mar 2022 11:26:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1648466666; x=1680002666;
+ t=1648466801; x=1680002801;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=fKwgSerMSHoVkxHXCS+wXXb727IND8+rju8fo+GSjTQ=;
- b=ivW7ucr8hhSjOcFT42d0Zp7WyGqlUKpb2cwPiq+YldvCe0MTxi12M3lk
- o9/xd1ya6ItGnoLZazbDFnUDAvylbFiq++rNV8Cft4idjRZLYLMVR2CY9
- GpBpKSBojgkTTTN6VfKMJshWte3nyZbTbS+V6FcFAVOYswSwyjp74uMBS
- 31ynuRChum12DHn5FAPHIsO6y8G7GA80ExTlr2dCIOZ8RTUZJjrSxYmYG
- ioEpOlxmkKHVDhwHvPRnexoHFzW//mY7jJwblfNlsbvHB0z51hHukE7f6
- TUMO/1Pk5xnf1VoDia13mncqZpxSqixK7eq0dRtnbijvYR7GqxOU2shEV g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10299"; a="345411047"
-X-IronPort-AV: E=Sophos;i="5.90,217,1643702400"; d="scan'208";a="345411047"
+ bh=BA8xd48IMfDBJpGrFcIZnEaYL7gfBFcfDFkrq96P40E=;
+ b=lbu01BQFMFht5BzrK82jMq0Wvb/C/LQSnQ28N16qab7+jGSYmyInP4wg
+ r6gxQv5JK8sVo3brcHTZWg6DimuiCt49cMbnuAc7H5Nn/rpPfgV3BA/rV
+ YFG4lU7aCR0NGsryw33yH2xgi6nKAaPfF/kFIyJOaogaCBYm2n7Zup8ms
+ Ekk/eZW1kiGwPRSLfI5Fgv4UGDTjpdzopSUR894WQ9kwBdnYeCLSiifwq
+ qOj6eQL3lqL/VJAAGgnzl3hdtV59sP1kqGZdVv+NAnMi6ZtNCLW9MmEQf
+ osp9zcaqjdGdv8E3Tf9bd2OrSDi2sF6zFFYmVUBVR2hM96XIGY6L8bsyA Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10299"; a="322160509"
+X-IronPort-AV: E=Sophos;i="5.90,217,1643702400"; d="scan'208";a="322160509"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2022 04:24:25 -0700
-X-IronPort-AV: E=Sophos;i="5.90,217,1643702400"; d="scan'208";a="563565913"
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2022 04:26:41 -0700
+X-IronPort-AV: E=Sophos;i="5.90,217,1643702400"; d="scan'208";a="563567454"
 Received: from aysivtso-mobl.ccr.corp.intel.com (HELO localhost)
  ([10.252.62.56])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2022 04:24:24 -0700
+ 28 Mar 2022 04:26:39 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220323182935.4701-2-ville.syrjala@linux.intel.com>
+In-Reply-To: <20220323182935.4701-3-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20220323182935.4701-1-ville.syrjala@linux.intel.com>
- <20220323182935.4701-2-ville.syrjala@linux.intel.com>
-Date: Mon, 28 Mar 2022 14:24:15 +0300
-Message-ID: <875ynyfhgg.fsf@intel.com>
+ <20220323182935.4701-3-ville.syrjala@linux.intel.com>
+Date: Mon, 28 Mar 2022 14:26:30 +0300
+Message-ID: <8735j2fhcp.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 1/9] drm/i915: Pass intel_connector to
- intel_panel_{init, fini}()
+Subject: Re: [Intel-gfx] [PATCH 2/9] drm/i915: Use
+ DRM_MODE_FMT+DRM_MODE_ARG()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,188 +66,249 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Wed, 23 Mar 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> All the other intel_panel functions take struct intel_connector,
-> so might as well make init()/fini() take one as well.
+> Replace all drm_mode_debug_printmodeline() calls with
+> DRM_MODE_FMT+DRM_MODE_ARG(). Makes the debug output a bit more
+> terse in places where we previously had a newline in the precedeing
+> drm_dbg_kms(), and avoids anything else sneaking in between the two
+> printk()s in all cases.
 >
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
 > ---
->  drivers/gpu/drm/i915/display/icl_dsi.c         |  2 +-
->  drivers/gpu/drm/i915/display/intel_connector.c |  2 +-
->  drivers/gpu/drm/i915/display/intel_dp.c        |  2 +-
->  drivers/gpu/drm/i915/display/intel_dvo.c       |  2 +-
->  drivers/gpu/drm/i915/display/intel_lvds.c      |  2 +-
->  drivers/gpu/drm/i915/display/intel_panel.c     | 11 ++++++-----
->  drivers/gpu/drm/i915/display/intel_panel.h     |  5 ++---
->  drivers/gpu/drm/i915/display/intel_sdvo.c      |  2 +-
->  drivers/gpu/drm/i915/display/vlv_dsi.c         |  2 +-
->  9 files changed, 15 insertions(+), 15 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_bios.c    | 12 +++++-----
+>  drivers/gpu/drm/i915/display/intel_display.c | 12 +++++-----
+>  drivers/gpu/drm/i915/display/intel_dp.c      |  6 ++---
+>  drivers/gpu/drm/i915/display/intel_dvo.c     |  4 ++--
+>  drivers/gpu/drm/i915/display/intel_lvds.c    |  4 ++--
+>  drivers/gpu/drm/i915/display/intel_panel.c   | 24 ++++++++++----------
+>  drivers/gpu/drm/i915/display/intel_tv.c      | 12 +++++-----
+>  7 files changed, 37 insertions(+), 37 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i91=
-5/display/icl_dsi.c
-> index 00cae5d26637..c7a6c2cce297 100644
-> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
-> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-> @@ -2057,7 +2057,7 @@ void icl_dsi_init(struct drm_i915_private *dev_priv)
->  		goto err;
->  	}
+> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/=
+i915/display/intel_bios.c
+> index c7afe19dd44a..3f3e8ccd9026 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bios.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
+> @@ -306,8 +306,8 @@ parse_lfp_panel_dtd(struct drm_i915_private *i915,
+>  	i915->vbt.lfp_lvds_vbt_mode =3D panel_fixed_mode;
 >=20=20
-> -	intel_panel_init(&intel_connector->panel, fixed_mode, NULL);
-> +	intel_panel_init(intel_connector, fixed_mode, NULL);
->  	intel_backlight_setup(intel_connector, INVALID_PIPE);
+>  	drm_dbg_kms(&i915->drm,
+> -		    "Found panel mode in BIOS VBT legacy lfp table:\n");
+> -	drm_mode_debug_printmodeline(panel_fixed_mode);
+> +		    "Found panel mode in BIOS VBT legacy lfp table: " DRM_MODE_FMT "\n=
+",
+> +		    DRM_MODE_ARG(panel_fixed_mode));
 >=20=20
->  	if (dev_priv->vbt.dsi.config->dual_link)
-> diff --git a/drivers/gpu/drm/i915/display/intel_connector.c b/drivers/gpu=
-/drm/i915/display/intel_connector.c
-> index a5f5dd55b0cb..1dcc268927a2 100644
-> --- a/drivers/gpu/drm/i915/display/intel_connector.c
-> +++ b/drivers/gpu/drm/i915/display/intel_connector.c
-> @@ -102,7 +102,7 @@ void intel_connector_destroy(struct drm_connector *co=
-nnector)
->  	if (!IS_ERR_OR_NULL(intel_connector->edid))
->  		kfree(intel_connector->edid);
+>  	fp_timing =3D get_lvds_fp_timing(bdb, lvds_lfp_data,
+>  				       lvds_lfp_data_ptrs,
+> @@ -397,8 +397,8 @@ parse_generic_dtd(struct drm_i915_private *i915,
+>  		panel_fixed_mode->flags |=3D DRM_MODE_FLAG_NVSYNC;
 >=20=20
-> -	intel_panel_fini(&intel_connector->panel);
-> +	intel_panel_fini(intel_connector);
+>  	drm_dbg_kms(&i915->drm,
+> -		    "Found panel mode in BIOS VBT generic dtd table:\n");
+> -	drm_mode_debug_printmodeline(panel_fixed_mode);
+> +		    "Found panel mode in BIOS VBT generic dtd table: " DRM_MODE_FMT "\=
+n",
+> +		    DRM_MODE_ARG(panel_fixed_mode));
 >=20=20
->  	drm_connector_cleanup(connector);
+>  	i915->vbt.lfp_lvds_vbt_mode =3D panel_fixed_mode;
+>  }
+> @@ -551,8 +551,8 @@ parse_sdvo_panel_data(struct drm_i915_private *i915,
+>  	i915->vbt.sdvo_lvds_vbt_mode =3D panel_fixed_mode;
 >=20=20
+>  	drm_dbg_kms(&i915->drm,
+> -		    "Found SDVO panel mode in BIOS VBT tables:\n");
+> -	drm_mode_debug_printmodeline(panel_fixed_mode);
+> +		    "Found SDVO panel mode in BIOS VBT tables: " DRM_MODE_FMT "\n",
+> +		    DRM_MODE_ARG(panel_fixed_mode));
+>  }
+>=20=20
+>  static int intel_bios_ssc_frequency(struct drm_i915_private *i915,
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index dc6e21e4ef0b..ff50b4bc2b3d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -5417,13 +5417,13 @@ static void intel_dump_pipe_config(const struct i=
+ntel_crtc_state *pipe_config,
+>  		    intel_vrr_vmin_vblank_start(pipe_config),
+>  		    intel_vrr_vmax_vblank_start(pipe_config));
+>=20=20
+> -	drm_dbg_kms(&dev_priv->drm, "requested mode:\n");
+> -	drm_mode_debug_printmodeline(&pipe_config->hw.mode);
+> -	drm_dbg_kms(&dev_priv->drm, "adjusted mode:\n");
+> -	drm_mode_debug_printmodeline(&pipe_config->hw.adjusted_mode);
+> +	drm_dbg_kms(&dev_priv->drm, "requested mode: " DRM_MODE_FMT "\n",
+> +		    DRM_MODE_ARG(&pipe_config->hw.mode));
+> +	drm_dbg_kms(&dev_priv->drm, "adjusted mode: " DRM_MODE_FMT "\n",
+> +		    DRM_MODE_ARG(&pipe_config->hw.adjusted_mode));
+>  	intel_dump_crtc_timings(dev_priv, &pipe_config->hw.adjusted_mode);
+> -	drm_dbg_kms(&dev_priv->drm, "pipe mode:\n");
+> -	drm_mode_debug_printmodeline(&pipe_config->hw.pipe_mode);
+> +	drm_dbg_kms(&dev_priv->drm, "pipe mode: " DRM_MODE_FMT "\n",
+> +		    DRM_MODE_ARG(&pipe_config->hw.pipe_mode));
+>  	intel_dump_crtc_timings(dev_priv, &pipe_config->hw.pipe_mode);
+>  	drm_dbg_kms(&dev_priv->drm,
+>  		    "port clock: %d, pipe src: " DRM_RECT_FMT ", pixel rate %d\n",
 > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
 15/display/intel_dp.c
-> index 9e19165fd175..3bf44f7909e5 100644
+> index 3bf44f7909e5..f54088db9862 100644
 > --- a/drivers/gpu/drm/i915/display/intel_dp.c
 > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -5060,7 +5060,7 @@ static bool intel_edp_init_connector(struct intel_d=
-p *intel_dp,
->  			    pipe_name(pipe));
->  	}
+> @@ -2579,9 +2579,9 @@ static void intel_edp_mso_mode_fixup(struct intel_c=
+onnector *connector,
+>  	drm_mode_set_name(mode);
 >=20=20
-> -	intel_panel_init(&intel_connector->panel, fixed_mode, downclock_mode);
-> +	intel_panel_init(intel_connector, fixed_mode, downclock_mode);
->  	if (!(dev_priv->quirks & QUIRK_NO_PPS_BACKLIGHT_POWER_HOOK))
->  		intel_connector->panel.backlight.power =3D intel_pps_backlight_power;
->  	intel_backlight_setup(intel_connector, pipe);
+>  	drm_dbg_kms(&i915->drm,
+> -		    "[CONNECTOR:%d:%s] using generated MSO mode: ",
+> -		    connector->base.base.id, connector->base.name);
+> -	drm_mode_debug_printmodeline(mode);
+> +		    "[CONNECTOR:%d:%s] using generated MSO mode: " DRM_MODE_FMT "\n",
+> +		    connector->base.base.id, connector->base.name,
+> +		    DRM_MODE_ARG(mode));
+>  }
+>=20=20
+>  static void intel_edp_mso_init(struct intel_dp *intel_dp)
 > diff --git a/drivers/gpu/drm/i915/display/intel_dvo.c b/drivers/gpu/drm/i=
 915/display/intel_dvo.c
-> index d4670889d26c..d4dc16a9c0dd 100644
+> index d4dc16a9c0dd..90e026cef6ee 100644
 > --- a/drivers/gpu/drm/i915/display/intel_dvo.c
 > +++ b/drivers/gpu/drm/i915/display/intel_dvo.c
-> @@ -549,7 +549,7 @@ void intel_dvo_init(struct drm_i915_private *dev_priv)
->  			 * headers, likely), so for now, just get the current
->  			 * mode being output through DVO.
->  			 */
-> -			intel_panel_init(&intel_connector->panel,
-> +			intel_panel_init(intel_connector,
->  					 intel_dvo_get_current_mode(intel_encoder),
->  					 NULL);
->  			intel_dvo->panel_wants_dither =3D true;
+> @@ -391,8 +391,8 @@ intel_dvo_get_current_mode(struct intel_encoder *enco=
+der)
+>=20=20
+>  	mode =3D intel_encoder_current_mode(encoder);
+>  	if (mode) {
+> -		DRM_DEBUG_KMS("using current (BIOS) mode: ");
+> -		drm_mode_debug_printmodeline(mode);
+> +		DRM_DEBUG_KMS("using current (BIOS) mode: " DRM_MODE_FMT "\n",
+> +			      DRM_MODE_ARG(mode));
+>  		mode->type |=3D DRM_MODE_TYPE_PREFERRED;
+>  	}
+>=20=20
 > diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c b/drivers/gpu/drm/=
 i915/display/intel_lvds.c
-> index 5449d69fbae5..cd685dbf324b 100644
+> index cd685dbf324b..b57e76b4ef04 100644
 > --- a/drivers/gpu/drm/i915/display/intel_lvds.c
 > +++ b/drivers/gpu/drm/i915/display/intel_lvds.c
-> @@ -996,7 +996,7 @@ void intel_lvds_init(struct drm_i915_private *dev_pri=
+> @@ -984,8 +984,8 @@ void intel_lvds_init(struct drm_i915_private *dev_pri=
 v)
->  out:
->  	mutex_unlock(&dev->mode_config.mutex);
+>  	 */
+>  	fixed_mode =3D intel_encoder_current_mode(intel_encoder);
+>  	if (fixed_mode) {
+> -		drm_dbg_kms(&dev_priv->drm, "using current (BIOS) mode: ");
+> -		drm_mode_debug_printmodeline(fixed_mode);
+> +		drm_dbg_kms(&dev_priv->drm, "using current (BIOS) mode: " DRM_MODE_FMT=
+ "\n",
+> +			    DRM_MODE_ARG(fixed_mode));
+>  		fixed_mode->type |=3D DRM_MODE_TYPE_PREFERRED;
+>  	}
 >=20=20
-> -	intel_panel_init(&intel_connector->panel, fixed_mode, downclock_mode);
-> +	intel_panel_init(intel_connector, fixed_mode, downclock_mode);
->  	intel_backlight_setup(intel_connector, INVALID_PIPE);
->=20=20
->  	lvds_encoder->is_dual_link =3D compute_is_dual_link_lvds(lvds_encoder, =
-fixed_mode);
 > diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm=
 /i915/display/intel_panel.c
-> index f428d0457c17..8c9e26539cc5 100644
+> index 8c9e26539cc5..2ba51222d156 100644
 > --- a/drivers/gpu/drm/i915/display/intel_panel.c
 > +++ b/drivers/gpu/drm/i915/display/intel_panel.c
-> @@ -599,10 +599,12 @@ intel_panel_mode_valid(struct intel_connector *conn=
-ector,
->  	return MODE_OK;
+> @@ -194,9 +194,9 @@ intel_panel_edid_downclock_mode(struct intel_connecto=
+r *connector,
+>  		return NULL;
+>=20=20
+>  	drm_dbg_kms(&dev_priv->drm,
+> -		    "[CONNECTOR:%d:%s] using downclock mode from EDID: ",
+> -		    connector->base.base.id, connector->base.name);
+> -	drm_mode_debug_printmodeline(downclock_mode);
+> +		    "[CONNECTOR:%d:%s] using downclock mode from EDID: " DRM_MODE_FMT =
+"\n",
+> +		    connector->base.base.id, connector->base.name,
+> +		    DRM_MODE_ARG(downclock_mode));
+>=20=20
+>  	return downclock_mode;
 >  }
+> @@ -221,9 +221,9 @@ intel_panel_edid_fixed_mode(struct intel_connector *c=
+onnector)
+>  			return NULL;
 >=20=20
-> -int intel_panel_init(struct intel_panel *panel,
-> +int intel_panel_init(struct intel_connector *connector,
->  		     struct drm_display_mode *fixed_mode,
->  		     struct drm_display_mode *downclock_mode)
->  {
-> +	struct intel_panel *panel =3D &connector->panel;
-> +
->  	intel_backlight_init_funcs(panel);
+>  		drm_dbg_kms(&dev_priv->drm,
+> -			    "[CONNECTOR:%d:%s] using preferred mode from EDID: ",
+> -			    connector->base.base.id, connector->base.name);
+> -		drm_mode_debug_printmodeline(fixed_mode);
+> +			    "[CONNECTOR:%d:%s] using preferred mode from EDID: " DRM_MODE_FMT=
+ "\n",
+> +			    connector->base.base.id, connector->base.name,
+> +			    DRM_MODE_ARG(fixed_mode));
 >=20=20
->  	if (fixed_mode)
-> @@ -613,16 +615,15 @@ int intel_panel_init(struct intel_panel *panel,
->  	return 0;
->  }
->=20=20
-> -void intel_panel_fini(struct intel_panel *panel)
-> +void intel_panel_fini(struct intel_connector *connector)
->  {
-> -	struct intel_connector *intel_connector =3D
-> -		container_of(panel, struct intel_connector, panel);
-> +	struct intel_panel *panel =3D &connector->panel;
->  	struct drm_display_mode *fixed_mode, *next;
->=20=20
->  	intel_backlight_destroy(panel);
->=20=20
->  	list_for_each_entry_safe(fixed_mode, next, &panel->fixed_modes, head) {
->  		list_del(&fixed_mode->head);
-> -		drm_mode_destroy(intel_connector->base.dev, fixed_mode);
-> +		drm_mode_destroy(connector->base.dev, fixed_mode);
+>  		return fixed_mode;
 >  	}
+> @@ -238,9 +238,9 @@ intel_panel_edid_fixed_mode(struct intel_connector *c=
+onnector)
+>  	fixed_mode->type |=3D DRM_MODE_TYPE_PREFERRED;
+>=20=20
+>  	drm_dbg_kms(&dev_priv->drm,
+> -		    "[CONNECTOR:%d:%s] using first mode from EDID: ",
+> -		    connector->base.base.id, connector->base.name);
+> -	drm_mode_debug_printmodeline(fixed_mode);
+> +		    "[CONNECTOR:%d:%s] using first mode from EDID: " DRM_MODE_FMT "\n",
+> +		    connector->base.base.id, connector->base.name,
+> +		    DRM_MODE_ARG(fixed_mode));
+>=20=20
+>  	return fixed_mode;
 >  }
-> diff --git a/drivers/gpu/drm/i915/display/intel_panel.h b/drivers/gpu/drm=
-/i915/display/intel_panel.h
-> index e86100903f9e..579200270825 100644
-> --- a/drivers/gpu/drm/i915/display/intel_panel.h
-> +++ b/drivers/gpu/drm/i915/display/intel_panel.h
-> @@ -16,12 +16,11 @@ struct drm_display_mode;
->  struct drm_i915_private;
->  struct intel_connector;
->  struct intel_crtc_state;
-> -struct intel_panel;
+> @@ -262,9 +262,9 @@ intel_panel_vbt_fixed_mode(struct intel_connector *co=
+nnector)
 >=20=20
-> -int intel_panel_init(struct intel_panel *panel,
-> +int intel_panel_init(struct intel_connector *connector,
->  		     struct drm_display_mode *fixed_mode,
->  		     struct drm_display_mode *downclock_mode);
-> -void intel_panel_fini(struct intel_panel *panel);
-> +void intel_panel_fini(struct intel_connector *connector);
->  enum drm_connector_status
->  intel_panel_detect(struct drm_connector *connector, bool force);
->  bool intel_panel_use_ssc(struct drm_i915_private *i915);
-> diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/=
-i915/display/intel_sdvo.c
-> index 328a8f20c63b..a2061b132107 100644
-> --- a/drivers/gpu/drm/i915/display/intel_sdvo.c
-> +++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
-> @@ -2928,7 +2928,7 @@ intel_sdvo_lvds_init(struct intel_sdvo *intel_sdvo,=
- int device)
->  			struct drm_display_mode *fixed_mode =3D
->  				drm_mode_duplicate(connector->dev, mode);
+>  	fixed_mode->type |=3D DRM_MODE_TYPE_PREFERRED;
 >=20=20
-> -			intel_panel_init(&intel_connector->panel,
-> +			intel_panel_init(intel_connector,
->  					 fixed_mode, NULL);
->  			break;
+> -	drm_dbg_kms(&dev_priv->drm, "[CONNECTOR:%d:%s] using mode from VBT: ",
+> -		    connector->base.base.id, connector->base.name);
+> -	drm_mode_debug_printmodeline(fixed_mode);
+> +	drm_dbg_kms(&dev_priv->drm, "[CONNECTOR:%d:%s] using mode from VBT: " D=
+RM_MODE_FMT "\n",
+> +		    connector->base.base.id, connector->base.name,
+> +		    DRM_MODE_ARG(fixed_mode));
+>=20=20
+>  	info->width_mm =3D fixed_mode->width_mm;
+>  	info->height_mm =3D fixed_mode->height_mm;
+> diff --git a/drivers/gpu/drm/i915/display/intel_tv.c b/drivers/gpu/drm/i9=
+15/display/intel_tv.c
+> index 8a39989b87ad..9379f3463344 100644
+> --- a/drivers/gpu/drm/i915/display/intel_tv.c
+> +++ b/drivers/gpu/drm/i915/display/intel_tv.c
+> @@ -1145,8 +1145,8 @@ intel_tv_get_config(struct intel_encoder *encoder,
+>=20=20
+>  	intel_tv_mode_to_mode(&mode, &tv_mode);
+>=20=20
+> -	drm_dbg_kms(&dev_priv->drm, "TV mode:\n");
+> -	drm_mode_debug_printmodeline(&mode);
+> +	drm_dbg_kms(&dev_priv->drm, "TV mode: " DRM_MODE_FMT "\n",
+> +		    DRM_MODE_ARG(&mode));
+>=20=20
+>  	intel_tv_scale_mode_horiz(&mode, hdisplay,
+>  				  xpos, mode.hdisplay - xsize - xpos);
+> @@ -1250,8 +1250,8 @@ intel_tv_compute_config(struct intel_encoder *encod=
+er,
+>  		tv_conn_state->bypass_vfilter =3D false;
+>  	}
+>=20=20
+> -	drm_dbg_kms(&dev_priv->drm, "TV mode:\n");
+> -	drm_mode_debug_printmodeline(adjusted_mode);
+> +	drm_dbg_kms(&dev_priv->drm, "TV mode: " DRM_MODE_FMT "\n",
+> +		    DRM_MODE_ARG(adjusted_mode));
+>=20=20
+>  	/*
+>  	 * The pipe scanline counter behaviour looks as follows when
+> @@ -1806,8 +1806,8 @@ intel_tv_get_modes(struct drm_connector *connector)
+>  		 */
+>  		intel_tv_mode_to_mode(mode, tv_mode);
+>  		if (count =3D=3D 0) {
+> -			drm_dbg_kms(&dev_priv->drm, "TV mode:\n");
+> -			drm_mode_debug_printmodeline(mode);
+> +			drm_dbg_kms(&dev_priv->drm, "TV mode: " DRM_MODE_FMT "\n",
+> +				    DRM_MODE_ARG(mode));
 >  		}
-> diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i91=
-5/display/vlv_dsi.c
-> index c87a6e729a3c..32f5b115c2c2 100644
-> --- a/drivers/gpu/drm/i915/display/vlv_dsi.c
-> +++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
-> @@ -1987,7 +1987,7 @@ void vlv_dsi_init(struct drm_i915_private *dev_priv)
->  		goto err_cleanup_connector;
->  	}
->=20=20
-> -	intel_panel_init(&intel_connector->panel, fixed_mode, NULL);
-> +	intel_panel_init(intel_connector, fixed_mode, NULL);
->  	intel_backlight_setup(intel_connector, INVALID_PIPE);
->=20=20
->  	vlv_dsi_add_properties(intel_connector, fixed_mode);
+>  		intel_tv_scale_mode_horiz(mode, input->w, 0, 0);
+>  		intel_tv_scale_mode_vert(mode, input->h, 0, 0);
 
 --=20
 Jani Nikula, Intel Open Source Graphics Center
