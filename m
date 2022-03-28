@@ -2,32 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 066944E9C05
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Mar 2022 18:14:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 089744E9C48
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Mar 2022 18:31:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C3B210E6FB;
-	Mon, 28 Mar 2022 16:14:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C68810E6F0;
+	Mon, 28 Mar 2022 16:31:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1804F10E6F4;
- Mon, 28 Mar 2022 16:14:37 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 1402FAAA91;
- Mon, 28 Mar 2022 16:14:37 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4761D10E6F0;
+ Mon, 28 Mar 2022 16:31:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1648485105; x=1680021105;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=Oc/kSMLWVXBeD9zz9P5gkDgMDlXCNjwf/5XWCmabFrk=;
+ b=N8w1j964j3HU1qR53BAv+2yqWt/zM103iQ5MhCHkW0HaeZFMNyQ4ZxQL
+ W6xkjblkNj5ItCX00+aTTGu0tc9j1WNIDgtco7+JNFgdYqBugO+zGIGoC
+ xMTk+zDg583gZv/7L7JbsQYYHYAYiwQyiQkNPlZdr0pYoCsGVQOKahOvC
+ AmD0CyscLDrUSAfcfaH6QDrA/Xc0bv/Q8fdt7+0gyYt8k3Dyn2JguCg8h
+ 6y2/m+bpdEoSFIZdVKgOX7zYA+eaRa7XuU02uDF6ZtDRzcocquqy7MIJx
+ bHWqgvh0AJmmSL7sxSB8zhD2MzevF+7q1BRZ2GEqCCrAPW/HgUkoaOgsQ A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10300"; a="283935500"
+X-IronPort-AV: E=Sophos;i="5.90,217,1643702400"; d="scan'208";a="283935500"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2022 09:31:44 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,217,1643702400"; d="scan'208";a="553970066"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.61])
+ by fmsmga007.fm.intel.com with SMTP; 28 Mar 2022 09:31:42 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 28 Mar 2022 19:31:41 +0300
+Date: Mon, 28 Mar 2022 19:31:41 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <YkHi7QmemzCXP6QR@intel.com>
+References: <cover.1648458971.git.jani.nikula@intel.com>
+ <8bb6a4997680685e1a6b8978ac34befd955578f4.1648458971.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Anshuman Gupta" <anshuman.gupta@intel.com>
-Date: Mon, 28 Mar 2022 16:14:37 -0000
-Message-ID: <164848407704.2846.6116645163891294593@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220328102227.14545-1-anshuman.gupta@intel.com>
-In-Reply-To: <20220328102227.14545-1-anshuman.gupta@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIGRy?=
- =?utf-8?q?m/i915/debugfs=3A_Dump_i915_children_runtime_status?=
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <8bb6a4997680685e1a6b8978ac34befd955578f4.1648458971.git.jani.nikula@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH v2 02/11] drm/edid: fix reduced blanking
+ support check
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,21 +61,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, Mar 28, 2022 at 12:17:16PM +0300, Jani Nikula wrote:
+> The reduced blanking bit is valid only for CVT, indicated by display
+> range limits flags 0x04.
+> 
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-Series: drm/i915/debugfs: Dump i915 children runtime status
-URL   : https://patchwork.freedesktop.org/series/101866/
-State : warning
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-== Summary ==
+> ---
+>  drivers/gpu/drm/drm_edid.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
+> index 1b552fe54f38..13d05062d68c 100644
+> --- a/drivers/gpu/drm/drm_edid.c
+> +++ b/drivers/gpu/drm/drm_edid.c
+> @@ -2408,7 +2408,7 @@ is_rb(struct detailed_timing *t, void *data)
+>  	if (!is_display_descriptor(r, EDID_DETAIL_MONITOR_RANGE))
+>  		return;
+>  
+> -	if (r[15] & 0x10)
+> +	if (r[10] == DRM_EDID_CVT_SUPPORT_FLAG && r[15] & 0x10)
+>  		*(bool *)data = true;
+>  }
+>  
+> -- 
+> 2.30.2
 
-$ make htmldocs 2>&1 > /dev/null | grep i915
-./drivers/gpu/drm/i915/display/intel_drrs.c:1: warning: 'intel_drrs_enable' not found
-./drivers/gpu/drm/i915/display/intel_drrs.c:1: warning: 'intel_drrs_disable' not found
-
-
+-- 
+Ville Syrjälä
+Intel
