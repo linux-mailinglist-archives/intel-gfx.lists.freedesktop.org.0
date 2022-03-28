@@ -1,48 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E0434EA299
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Mar 2022 23:59:18 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9D454EA2E0
+	for <lists+intel-gfx@lfdr.de>; Tue, 29 Mar 2022 00:26:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B0FD10EDC0;
-	Mon, 28 Mar 2022 21:59:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC08A10E049;
+	Mon, 28 Mar 2022 22:26:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2573C10EDC1
- for <intel-gfx@lists.freedesktop.org>; Mon, 28 Mar 2022 21:59:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1648504751; x=1680040751;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=ae+38MuCG1rDihjdakDeHihporQNGFHbUo95dkf9ynQ=;
- b=U6UxuZYEGyJmb5OJQyEBEybqsR/XG59HXTNCMpdZpV5L32y33wGZtKUw
- SaJ/yUgpwl1UkxedlLWXnZJJf2mzPsOolZQB2+9SM1FHaDhVxPZ7InPEb
- QabIKQWNixuj+XSwu7oJZLEVssGdPlJFvcucdgDgoasN4fG7z1zioNz/R
- W1ENwcpc3B3FSQ70F0sbyJeEFXbNZjk0LDxQKxjNbxIC1U9wJrY4QpXKO
- sNIxGWPFfhfmrEmezfZOffHYvjREIEbwWF4BiUakdGIqBXs3Qh3tHgmi8
- CUYk0wynDMj5A6fxX7t7/nVLwzhKiMyn+DP5RmX5DpgLaO3aGFmp2SMYP A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10300"; a="246599335"
-X-IronPort-AV: E=Sophos;i="5.90,218,1643702400"; d="scan'208";a="246599335"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2022 14:59:10 -0700
-X-IronPort-AV: E=Sophos;i="5.90,218,1643702400"; d="scan'208";a="546129300"
-Received: from valcore-skull-1.fm.intel.com ([10.1.27.19])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2022 14:59:10 -0700
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 28 Mar 2022 14:53:58 -0700
-Message-Id: <20220328215358.2866707-7-daniele.ceraolospurio@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220328215358.2866707-1-daniele.ceraolospurio@intel.com>
-References: <20220328215358.2866707-1-daniele.ceraolospurio@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id DAFF710E049;
+ Mon, 28 Mar 2022 22:26:50 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id D5753A9A42;
+ Mon, 28 Mar 2022 22:26:50 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [CI 6/6] HAX: drm/i915: force INTEL_MEI_GSC on for CI
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Date: Mon, 28 Mar 2022 22:26:50 -0000
+Message-ID: <164850641084.2849.131279948280811575@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220324172143.377104-1-matthew.auld@intel.com>
+In-Reply-To: <20220324172143.377104-1-matthew.auld@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIHNl?=
+ =?utf-8?q?ries_starting_with_=5B1/2=5D_drm/i915/ttm=3A_limit_where_we_app?=
+ =?utf-8?q?ly_TTM=5FPL=5FFLAG=5FCONTIGUOUS_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,31 +41,21 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.usyskin@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-After the new config option is merged we'll enable it by default in the
-CI config, but for now just force it on via the i915 Kconfig so we can
-get pre-merge CI results for it.
+== Series Details ==
 
-Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
----
- drivers/gpu/drm/i915/Kconfig.debug | 1 +
- 1 file changed, 1 insertion(+)
+Series: series starting with [1/2] drm/i915/ttm: limit where we apply TTM_PL_FLAG_CONTIGUOUS (rev3)
+URL   : https://patchwork.freedesktop.org/series/101749/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/Kconfig.debug b/drivers/gpu/drm/i915/Kconfig.debug
-index e7fd3e76f8a20..be4ef485d6c1d 100644
---- a/drivers/gpu/drm/i915/Kconfig.debug
-+++ b/drivers/gpu/drm/i915/Kconfig.debug
-@@ -48,6 +48,7 @@ config DRM_I915_DEBUG
- 	select DRM_I915_DEBUG_RUNTIME_PM
- 	select DRM_I915_SW_FENCE_DEBUG_OBJECTS
- 	select DRM_I915_SELFTEST
-+	select INTEL_MEI_GSC
- 	select BROKEN # for prototype uAPI
- 	default n
- 	help
--- 
-2.25.1
+== Summary ==
+
+$ make htmldocs 2>&1 > /dev/null | grep i915
+./drivers/gpu/drm/i915/display/intel_drrs.c:1: warning: 'intel_drrs_enable' not found
+./drivers/gpu/drm/i915/display/intel_drrs.c:1: warning: 'intel_drrs_disable' not found
+
 
