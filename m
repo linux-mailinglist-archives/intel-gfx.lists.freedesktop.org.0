@@ -2,53 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20A5B4E9198
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Mar 2022 11:40:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 603A04E91A8
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Mar 2022 11:45:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5636810E648;
-	Mon, 28 Mar 2022 09:40:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A32510E599;
+	Mon, 28 Mar 2022 09:45:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 836EA10E648;
- Mon, 28 Mar 2022 09:40:53 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 04A5E10E161;
+ Mon, 28 Mar 2022 09:45:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1648460453; x=1679996453;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=+PRpoBc5Rr6W/fFurmVgfYHQsUib90fsQy2rLOvE5Zg=;
- b=M5obSY/kz5y7hQZCpO3v1OSr7Xpr2MV7ydqI6pTmMJBbcJSCmLf0YqZW
- N4UzD+hPInSJK3q3tPK+acnlMMH4NMBTg2dvE4R+jutIHQrgvXTWAIMC7
- rfrBQ1K0A7xJAokbBBmLEvQqi5WXoLHk8PeqwUn5CMFAojDyblC+tktul
- 0Du3pJvnjF7LxqVUHEghHJ5FIdH0LbQd2y6wFHH1Z1H2Z4PsgUA/PP0By
- KihsqXHCmtZGr8B06QIQs/CMwrqmybVHFBfBFRW4gDJ5e1NoWhbC5w4tP
- cplyiXxinwiKJSZvBW7ix05vzN4HWBVwISr5O7QyQNdl+356fYyc47ga9 Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10299"; a="256534046"
-X-IronPort-AV: E=Sophos;i="5.90,217,1643702400"; d="scan'208";a="256534046"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2022 02:40:53 -0700
-X-IronPort-AV: E=Sophos;i="5.90,217,1643702400"; d="scan'208";a="719044166"
-Received: from thrakatuluk.fi.intel.com (HELO thrakatuluk) ([10.237.72.90])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2022 02:40:51 -0700
-Received: from platvala by thrakatuluk with local (Exim 4.94.2)
- (envelope-from <petri.latvala@intel.com>)
- id 1nYlrT-0004EB-EE; Mon, 28 Mar 2022 12:40:31 +0300
-Date: Mon, 28 Mar 2022 12:40:31 +0300
-From: Petri Latvala <petri.latvala@intel.com>
-To: Matthew Auld <matthew.auld@intel.com>
-Message-ID: <YkGCjznvCyAwMxz4@platvala-desk.ger.corp.intel.com>
-References: <20220328092959.790392-1-matthew.auld@intel.com>
+ t=1648460701; x=1679996701;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=zyYJu1VSsMEPPSNPsvpGdaUvX2UfOqlNWjej0mt3+yU=;
+ b=Sd6v4pclMo0bRPv+5CnSZYpSB00fsOe+e7s5mOVzbqo/CSnuY2+8XFfZ
+ CjH2aQpeEaysO/c7TKIncq2ejnfTzDoct99CcUbBGTHUFQl1f+bPb7UW9
+ OlY+MT/f9+jt29mhADZey6Bq0gpRltbkc2Ezrx027jZgi5I1wAX2Vq66x
+ EHzWLV1eePb49dRda+TGPepLvbjKnMxb3f79g+lPXQ39B1X90dMdIwHPO
+ ZYgjRN1+UjoavXzErM0VtQ6h8YSIPLuASN/iUgnidRyvxs7H3B5n5n3as
+ UKhXi9ujaA5Z9KPvAB5oEahBHLZZnYqiYGgMGTaeexyWfiaUlUfpcM6mi Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10299"; a="258674173"
+X-IronPort-AV: E=Sophos;i="5.90,217,1643702400"; d="scan'208";a="258674173"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2022 02:44:56 -0700
+X-IronPort-AV: E=Sophos;i="5.90,217,1643702400"; d="scan'208";a="563494106"
+Received: from aysivtso-mobl.ccr.corp.intel.com (HELO localhost)
+ ([10.252.62.56])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2022 02:44:53 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: dri-devel@lists.freedesktop.org
+In-Reply-To: <04c8140a780dc02155a16d8acc64dbce756739bb.1648458971.git.jani.nikula@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1648458971.git.jani.nikula@intel.com>
+ <04c8140a780dc02155a16d8acc64dbce756739bb.1648458971.git.jani.nikula@intel.com>
+Date: Mon, 28 Mar 2022 12:44:45 +0300
+Message-ID: <874k3ih0mq.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220328092959.790392-1-matthew.auld@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t v2] tests/gem_lmem_swapping:
- limit lmem to 4G
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH v2 03/11] drm/edid: slightly restructure
+ timing and non-timing descriptor structs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,73 +59,169 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, igt-dev@lists.freedesktop.org,
- CQ Tang <cq.tang@intel.com>, Nirmoy Das <nirmoy.das@intel.com>
+Cc: Leo Li <sunpeng.li@amd.com>, intel-gfx@lists.freedesktop.org,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, amd-gfx@lists.freedesktop.org,
+ Harry Wentland <harry.wentland@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Mar 28, 2022 at 10:29:59AM +0100, Matthew Auld wrote:
-> From: CQ Tang <cq.tang@intel.com>
-> 
-> On some systems lmem can be as large as 16G, which seems to trigger
-> various CI timeouts, and in the best case just takes a long time. For
-> the purposes of the test we should be able to limit to 4G, without any
-> big loss in coverage.
-> 
-> v2:
->  - No need to try again without the modparam; if it's not supported it
->    will still load the driver just fine.
-> 
-> Signed-off-by: CQ Tang <cq.tang@intel.com>
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> Cc: Nirmoy Das <nirmoy.das@linux.intel.com>
-> Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
+On Mon, 28 Mar 2022, Jani Nikula <jani.nikula@intel.com> wrote:
+> The pixel clock is conceptually part of the detailed timings, while it's
+> just zero padding for display descriptors. Modify the structures to
+> reflect this. Rename struct detailed_non_pixel to
+> edid_display_descriptor to better reflect spec while at it. (Further
+> struct renames are left for follow-up work.)
+>
+> Suggested-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+
+This one's missing:
+
+Cc: Harry Wentland <harry.wentland@amd.com>
+Cc: Leo Li <sunpeng.li@amd.com>
+Cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+Cc: amd-gfx@lists.freedesktop.org
+
 > ---
->  tests/i915/gem_lmem_swapping.c | 6 +++++-
->  1 file changed, 5 insertions(+), 1 deletion(-)
-> 
-> diff --git a/tests/i915/gem_lmem_swapping.c b/tests/i915/gem_lmem_swapping.c
-> index 31644bcd..69f7bae9 100644
-> --- a/tests/i915/gem_lmem_swapping.c
-> +++ b/tests/i915/gem_lmem_swapping.c
-> @@ -527,7 +527,10 @@ igt_main_args("", long_options, help_str, opt_handler, NULL)
->  	igt_fixture {
->  		struct intel_execution_engine2 *e;
->  
-> -		i915 = drm_open_driver(DRIVER_INTEL);
-> +		igt_i915_driver_unload();
-> +		igt_assert_eq(igt_i915_driver_load("lmem_size=4096"), 0);
-> +
-> +		i915 = __drm_open_driver(DRIVER_INTEL);
+>  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  6 +++---
+>  drivers/gpu/drm/drm_edid.c                        | 12 ++++++------
+>  include/drm/drm_edid.h                            |  9 +++++----
+>  3 files changed, 14 insertions(+), 13 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/=
+gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> index b30656959fd8..e477f4b42b6b 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> @@ -11537,7 +11537,7 @@ void amdgpu_dm_update_freesync_caps(struct drm_co=
+nnector *connector,
+>  {
+>  	int i =3D 0;
+>  	struct detailed_timing *timing;
+> -	struct detailed_non_pixel *data;
+> +	struct edid_display_descriptor *data;
+>  	struct detailed_data_monitor_range *range;
+>  	struct amdgpu_dm_connector *amdgpu_dm_connector =3D
+>  			to_amdgpu_dm_connector(connector);
+> @@ -11592,7 +11592,7 @@ void amdgpu_dm_update_freesync_caps(struct drm_co=
+nnector *connector,
+>  			for (i =3D 0; i < 4; i++) {
+>=20=20
+>  				timing	=3D &edid->detailed_timings[i];
+> -				data	=3D &timing->data.other_data;
+> +				data	=3D &timing->data.descriptor;
+>  				range	=3D &data->data.range;
+>  				/*
+>  				 * Check if monitor has continuous frequency mode
+> @@ -11629,7 +11629,7 @@ void amdgpu_dm_update_freesync_caps(struct drm_co=
+nnector *connector,
+>  		i =3D parse_hdmi_amd_vsdb(amdgpu_dm_connector, edid, &vsdb_info);
+>  		if (i >=3D 0 && vsdb_info.freesync_supported) {
+>  			timing  =3D &edid->detailed_timings[i];
+> -			data    =3D &timing->data.other_data;
+> +			data    =3D &timing->data.descriptor;
+>=20=20
+>  			amdgpu_dm_connector->min_vfreq =3D vsdb_info.min_refresh_rate_hz;
+>  			amdgpu_dm_connector->max_vfreq =3D vsdb_info.max_refresh_rate_hz;
+> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
+> index 13d05062d68c..ac80681d64f6 100644
+> --- a/drivers/gpu/drm/drm_edid.c
+> +++ b/drivers/gpu/drm/drm_edid.c
+> @@ -2742,7 +2742,7 @@ static struct drm_display_mode *drm_mode_detailed(s=
+truct drm_device *dev,
+>  	if (quirks & EDID_QUIRK_135_CLOCK_TOO_HIGH)
+>  		mode->clock =3D 1088 * 10;
+>  	else
+> -		mode->clock =3D le16_to_cpu(timing->pixel_clock) * 10;
+> +		mode->clock =3D le16_to_cpu(pt->pixel_clock) * 10;
+>=20=20
+>  	mode->hdisplay =3D hactive;
+>  	mode->hsync_start =3D mode->hdisplay + hsync_offset;
+> @@ -2984,7 +2984,7 @@ static void
+>  do_inferred_modes(struct detailed_timing *timing, void *c)
+>  {
+>  	struct detailed_mode_closure *closure =3D c;
+> -	struct detailed_non_pixel *data =3D &timing->data.other_data;
+> +	struct edid_display_descriptor *data =3D &timing->data.descriptor;
+>  	struct detailed_data_monitor_range *range =3D &data->data.range;
+>=20=20
+>  	if (!is_display_descriptor((const u8 *)timing, EDID_DETAIL_MONITOR_RANG=
+E))
+> @@ -3117,7 +3117,7 @@ static void
+>  do_standard_modes(struct detailed_timing *timing, void *c)
+>  {
+>  	struct detailed_mode_closure *closure =3D c;
+> -	struct detailed_non_pixel *data =3D &timing->data.other_data;
+> +	struct edid_display_descriptor *data =3D &timing->data.descriptor;
+>  	struct drm_connector *connector =3D closure->connector;
+>  	struct edid *edid =3D closure->edid;
+>  	int i;
+> @@ -3187,7 +3187,7 @@ static int drm_cvt_modes(struct drm_connector *conn=
+ector,
+>  	for (i =3D 0; i < 4; i++) {
+>  		int width, height;
+>=20=20
+> -		cvt =3D &(timing->data.other_data.data.cvt[i]);
+> +		cvt =3D &(timing->data.descriptor.data.cvt[i]);
+>=20=20
+>  		if (!memcmp(cvt->code, empty, 3))
+>  			continue;
+> @@ -4494,7 +4494,7 @@ monitor_name(struct detailed_timing *t, void *data)
+>  	if (!is_display_descriptor((const u8 *)t, EDID_DETAIL_MONITOR_NAME))
+>  		return;
+>=20=20
+> -	*(u8 **)data =3D t->data.other_data.data.str.str;
+> +	*(u8 **)data =3D t->data.descriptor.data.str.str;
+>  }
+>=20=20
+>  static int get_monitor_name(struct edid *edid, char name[13])
+> @@ -5223,7 +5223,7 @@ void get_monitor_range(struct detailed_timing *timi=
+ng,
+>  		       void *info_monitor_range)
+>  {
+>  	struct drm_monitor_range_info *monitor_range =3D info_monitor_range;
+> -	const struct detailed_non_pixel *data =3D &timing->data.other_data;
+> +	const struct edid_display_descriptor *data =3D &timing->data.descriptor;
+>  	const struct detailed_data_monitor_range *range =3D &data->data.range;
+>=20=20
+>  	if (!is_display_descriptor((const u8 *)timing, EDID_DETAIL_MONITOR_RANG=
+E))
+> diff --git a/include/drm/drm_edid.h b/include/drm/drm_edid.h
+> index 144c495b99c4..8e322ef173a8 100644
+> --- a/include/drm/drm_edid.h
+> +++ b/include/drm/drm_edid.h
+> @@ -68,6 +68,7 @@ struct std_timing {
+>=20=20
+>  /* If detailed data is pixel timing */
+>  struct detailed_pixel_timing {
+> +	__le16 pixel_clock; /* non-zero, need to multiply by 10 KHz */
+>  	u8 hactive_lo;
+>  	u8 hblank_lo;
+>  	u8 hactive_hblank_hi;
+> @@ -142,8 +143,9 @@ struct cvt_timing {
+>  	u8 code[3];
+>  } __attribute__((packed));
+>=20=20
+> -struct detailed_non_pixel {
+> -	u8 pad1;
+> +struct edid_display_descriptor {
+> +	u16 pad0; /* 0 for Display Descriptor */
+> +	u8 pad1; /* 0 for Display Descriptor */
+>  	u8 type; /* ff=3Dserial, fe=3Dstring, fd=3Dmonitor range, fc=3Dmonitor =
+name
+>  		    fb=3Dcolor point data, fa=3Dstandard timing data,
+>  		    f9=3Dundefined, f8=3Dmfg. reserved */
+> @@ -168,10 +170,9 @@ struct detailed_non_pixel {
+>  #define EDID_DETAIL_MONITOR_SERIAL 0xff
+>=20=20
+>  struct detailed_timing {
+> -	__le16 pixel_clock; /* need to multiply by 10 KHz */
+>  	union {
+>  		struct detailed_pixel_timing pixel_data;
+> -		struct detailed_non_pixel other_data;
+> +		struct edid_display_descriptor descriptor;
+>  	} data;
+>  } __attribute__((packed));
 
-
-A debug print would still be lovely if the param is
-missing. __igt_params_get() handily tells you if lmem_size exists.
-
-igt_debug might not be good for that kind of a print, log buffer isn't
-dumped on igt_runner timeouts. igt_info maybe, igt_warn might be
-overkill.
-
-
--- 
-Petri Latvala
-
-
-
->  		igt_require_gem(i915);
->  		igt_require(gem_has_lmem(i915));
->  
-> @@ -556,6 +559,7 @@ igt_main_args("", long_options, help_str, opt_handler, NULL)
->  		intel_ctx_destroy(i915, ctx);
->  		free(regions);
->  		close(i915);
-> +		igt_i915_driver_unload();
->  	}
->  
->  	igt_exit();
-> -- 
-> 2.34.1
-> 
+--=20
+Jani Nikula, Intel Open Source Graphics Center
