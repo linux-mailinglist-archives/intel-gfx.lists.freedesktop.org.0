@@ -1,56 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAF844E9E87
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Mar 2022 20:00:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 561E64E9F06
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Mar 2022 20:35:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC3D510E035;
-	Mon, 28 Mar 2022 18:00:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4AF8110E246;
+	Mon, 28 Mar 2022 18:35:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qk1-x732.google.com (mail-qk1-x732.google.com
- [IPv6:2607:f8b0:4864:20::732])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F64310E035;
- Mon, 28 Mar 2022 18:00:17 +0000 (UTC)
-Received: by mail-qk1-x732.google.com with SMTP id 1so12086789qke.1;
- Mon, 28 Mar 2022 11:00:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=nHWC7om6iD5W8tyT1vhbY+GXQMpipwIioTbSJCBrQ4Q=;
- b=T+8+RJzDUlmrd+04kSjsbsqg0/o3Ohv3so2CvccenYJd18nzGTONFPUPm9mywABG1b
- CQGw0W4H91yikvNoSf1Hyqz9Y/iA/V2QgUtvoDa6Wi6J7STfaVUVtPPvbm66vtFF8vqI
- WCJiVmkkFLWJOae84mXwoMA145aweDZb4dpUdeKMqX6sDIN3IliIf+pbj3vtKSE8U9OK
- jXQiAudmMEnlZ4NII/eBcpgaAB8DihVkj88Tu67KddvMGGE6weW8G1Rmudq7TgoC9EgI
- SUrbXKX9s6iGFWfIYNhWlOhgeCE3T5M9opk+/7fVvOis5IioCrstcxBvqW04XTkgcSuU
- wHEQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=nHWC7om6iD5W8tyT1vhbY+GXQMpipwIioTbSJCBrQ4Q=;
- b=tI727L92TF+mHPZSZeWy5HlWnoN/46xqEz82rJkZJu6Xp05hqax+RXYMFHM5L08qg/
- NIHNYZi3VoqY0oZE9lHVRnI2lf0QzKGmHfQIFT6Ef2uoi34jDnolsm3z7hMwbvKarRbQ
- utZUIZ1AaYwoPGZ9E9d4T5hesSSTcf59Fvx0XZOwAKTcM6y16Z3lweV2/dLZvSfLrRj+
- 5j5FOKP/dvTOFuYeIcKn3BlJwgC+GK3mwIlUoF43lPlKqWVXW02rx/J9D6KwQ8b+mquL
- EeW8CRb3IyLpFyjJcAEcdWL83r7k12NleJbNshN5gboaNa1J3mjSdFzd913Sj/tuOghB
- 7MbQ==
-X-Gm-Message-State: AOAM532vRTYuWDfRL4H4fj9/QxmbSfX86N2baJueuyteVfhx9PF3VzTJ
- FePDptw+GrGmnzA6vJcBQg7Y4VBUTKisF/IvHVo=
-X-Google-Smtp-Source: ABdhPJzXxxLGh3B1cRskmrUAph2FsusJAHAXr08Upf/XI1JAzLmxeGT+maHBVTe6XORGHt862Ni9azMZc9VPZcnGWu0=
-X-Received: by 2002:a05:620a:1a87:b0:680:cba9:ed5c with SMTP id
- bl7-20020a05620a1a8700b00680cba9ed5cmr5785637qkb.482.1648490416300; Mon, 28
- Mar 2022 11:00:16 -0700 (PDT)
-MIME-Version: 1.0
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 308ED10E069;
+ Mon, 28 Mar 2022 18:35:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1648492524; x=1680028524;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=/wk4ZM7GbD3St1mwGOgCitIXOyDKEPXbnLT1xfJ99fQ=;
+ b=a+oaIHq54aFnS4vf5hOcxacuwJDaf/l6iZ2AHAGwjqrpXhCpOQsQsIDI
+ yIxsep4Y4GKJF6RKqXcALPpMQKKYmqj9zwDiZcSt9g8kCEjNTMc6Pa1Mg
+ snEy5LM1b97QZCtg8Zq4lirDHaCI9uex0DxTTUWgmlxFOnX0WT5Rwbsxy
+ 9PaeKLOWg3fTN9g/38XB+meTeiAiBT0nUG0yEZYt8BqYp08stQvEG2zlu
+ apJH0o2gx72cTspjmD3q8IcfYtI04B8yd5BfR2lLSw5kepaXCNLWM/Ziv
+ uSyopr4r0RDeffKtfV+x4YEhYcgkDwe8xIrOtigZoMIr5pTHsuYLdlelK A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10300"; a="322264167"
+X-IronPort-AV: E=Sophos;i="5.90,218,1643702400"; d="scan'208";a="322264167"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2022 11:35:23 -0700
+X-IronPort-AV: E=Sophos;i="5.90,218,1643702400"; d="scan'208";a="563897238"
+Received: from aysivtso-mobl.ccr.corp.intel.com (HELO localhost)
+ ([10.252.62.56])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2022 11:35:21 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+In-Reply-To: <YkH02F/kGQSBQDi+@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <cover.1648477901.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1648477901.git.jani.nikula@intel.com>
-From: Emil Velikov <emil.l.velikov@gmail.com>
-Date: Mon, 28 Mar 2022 19:00:05 +0100
-Message-ID: <CACvgo53Mx7qMt7_xC32vG+yQu8xEOF9N-iruS1FDRmVMUKaHDQ@mail.gmail.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PATCH v3 00/12] drm/edid: constify EDID parsing,
- with fixes
+ <437c3c79f68d1144444fb2dd18a678f3aa97272c.1648477901.git.jani.nikula@intel.com>
+ <YkH02F/kGQSBQDi+@intel.com>
+Date: Mon, 28 Mar 2022 21:35:13 +0300
+Message-ID: <878rsudixq.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH v3 12/12] drm/edid: split
+ drm_add_edid_modes() to two
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,30 +60,116 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- ML dri-devel <dri-devel@lists.freedesktop.org>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 28 Mar 2022 at 15:34, Jani Nikula <jani.nikula@intel.com> wrote:
+On Mon, 28 Mar 2022, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Mon, Mar 28, 2022 at 05:34:33PM +0300, Jani Nikula wrote:
+>> Reduce the size of the function that actually modifies the EDID.
+>>=20
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>>  drivers/gpu/drm/drm_edid.c | 42 ++++++++++++++++++++++----------------
+>>  1 file changed, 24 insertions(+), 18 deletions(-)
+>>=20
+>> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
+>> index d1abaa517867..d79b06f7f34c 100644
+>> --- a/drivers/gpu/drm/drm_edid.c
+>> +++ b/drivers/gpu/drm/drm_edid.c
+>> @@ -5561,18 +5561,8 @@ static int add_displayid_detailed_modes(struct dr=
+m_connector *connector,
+>>  	return num_modes;
+>>  }
+>>=20=20
+>> -/**
+>> - * drm_add_edid_modes - add modes from EDID data, if available
+>> - * @connector: connector we're probing
+>> - * @edid: EDID data
+>> - *
+>> - * Add the specified modes to the connector's mode list. Also fills out=
+ the
+>> - * &drm_display_info structure and ELD in @connector with any informati=
+on which
+>> - * can be derived from the edid.
+>> - *
+>> - * Return: The number of modes added or 0 if we couldn't find any.
+>> - */
+>> -int drm_add_edid_modes(struct drm_connector *connector, struct edid *ed=
+id)
+>> +static int drm_edid_connector_update(struct drm_connector *connector,
+>> +				     const struct edid *edid)
+>>  {
+>>  	int num_modes =3D 0;
+>>  	u32 quirks;
+>> @@ -5581,12 +5571,6 @@ int drm_add_edid_modes(struct drm_connector *conn=
+ector, struct edid *edid)
+>>  		clear_eld(connector);
+>>  		return 0;
+>>  	}
+>> -	if (!drm_edid_is_valid(edid)) {
+>> -		clear_eld(connector);
+>> -		drm_warn(connector->dev, "%s: EDID invalid.\n",
+>> -			 connector->name);
+>> -		return 0;
+>> -	}
+>>=20=20
+>>  	drm_edid_to_eld(connector, edid);
+>>=20=20
+>> @@ -5638,6 +5622,28 @@ int drm_add_edid_modes(struct drm_connector *conn=
+ector, struct edid *edid)
+>>=20=20
+>>  	return num_modes;
+>>  }
+>> +
+>> +/**
+>> + * drm_add_edid_modes - add modes from EDID data, if available
+>> + * @connector: connector we're probing
+>> + * @edid: EDID data
+>> + *
+>> + * Add the specified modes to the connector's mode list. Also fills out=
+ the
+>> + * &drm_display_info structure and ELD in @connector with any informati=
+on which
+>> + * can be derived from the edid.
+>> + *
+>> + * Return: The number of modes added or 0 if we couldn't find any.
+>> + */
+>> +int drm_add_edid_modes(struct drm_connector *connector, struct edid *ed=
+id)
+>> +{
+>> +	if (edid && !drm_edid_is_valid(edid)) {
 >
-> v3 of https://patchwork.freedesktop.org/series/101787/ and
-> https://patchwork.freedesktop.org/series/101862/
+> drm_edid_is_valid() is very poorly named since it can mutate the EDID.
+> Also calling it here is kinda crazy instead of just validating when we
+> originally read the EDID. But those are things for to be fixed later.
+
+I'm trying to wrap my head around all this, but this might be the only
+validation for override or firmware EDIDs. Which really should happen
+much earlier. There's a lot of technical debt here.
+
+Thanks for the review!
+
+BR,
+Jani.
+
+
 >
-> I screwed up with the struct renamings in v2, so there's some falling
-> back to v1 and general confusion here. Sorry.
+> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
+>> +		drm_warn(connector->dev, "%s: EDID invalid.\n",
+>> +			 connector->name);
+>> +		edid =3D NULL;
+>> +	}
+>> +
+>> +	return drm_edid_connector_update(connector, edid);
+>> +}
+>>  EXPORT_SYMBOL(drm_add_edid_modes);
+>>=20=20
+>>  /**
+>> --=20
+>> 2.30.2
 
-The mutation and casting was doing my head - thanks for sorting this out.
-
-IMHO in the future we might want to (re)move the final mutation -
-header fixup - out of drm_edid_is_valid (drm_edid_block_valid really).
-Say by making it explicit and applying on DP only (as per the inline
-spec mention).
-But that is for another day.
-
-As-is the series is:
-Reviewed-by: Emil Velikov <emil.l.velikov@gmail.com>
-
-HTH
-Emil
+--=20
+Jani Nikula, Intel Open Source Graphics Center
