@@ -1,51 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32BD84E99CF
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Mar 2022 16:36:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28F9E4E9A11
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Mar 2022 16:47:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4A5D510E1EA;
-	Mon, 28 Mar 2022 14:36:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3644E10EAF1;
+	Mon, 28 Mar 2022 14:47:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0920310E69E;
- Mon, 28 Mar 2022 14:35:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1648478141; x=1680014141;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=uavPWvRU3FZsiPoVA+1rqIBcI2Waad56KNU+F32S+W8=;
- b=Gd6KuXmdNnJ7IRtm4HUdoCuDS+pMDJ38qtNwoYImwZ16b93lVdpG+ASt
- oLnHBekIh15liLWCoC1EU/CvFV7DjfEUCCW4WmvZulsnCKPlH3I5Q9Aoq
- 0NvRG+X2Jr75d2MvdiJP8tl1WCxit7vRuelEtoBGJMgtAMTgctFlnFI20
- 5xOZvjA+AwWs+qSahPUrYQaSZC9KoVAzmlnOOHpCRrv83ROwsRyR2z+N2
- rjSGduQ2pGhxVm8bZ5YlgGVSi1ZToyF7YczBVVKUOoEfH8W6uyeLbGN5T
- EgljVv3ERtH6ScwyPO2Uc3IBy35UjStLj0j9cTe9zRpSJdJaDyspFZKqS Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10299"; a="259198774"
-X-IronPort-AV: E=Sophos;i="5.90,217,1643702400"; d="scan'208";a="259198774"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2022 07:35:40 -0700
-X-IronPort-AV: E=Sophos;i="5.90,217,1643702400"; d="scan'208";a="787241249"
-Received: from aysivtso-mobl.ccr.corp.intel.com (HELO localhost)
- ([10.252.62.56])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2022 07:35:38 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: dri-devel@lists.freedesktop.org
-Date: Mon, 28 Mar 2022 17:34:33 +0300
-Message-Id: <437c3c79f68d1144444fb2dd18a678f3aa97272c.1648477901.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <cover.1648477901.git.jani.nikula@intel.com>
-References: <cover.1648477901.git.jani.nikula@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id AA0D410EAF1;
+ Mon, 28 Mar 2022 14:47:23 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id A4F46AAA91;
+ Mon, 28 Mar 2022 14:47:23 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 12/12] drm/edid: split drm_add_edid_modes()
- to two
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Mon, 28 Mar 2022 14:47:23 -0000
+Message-ID: <164847884364.2847.15065943806119022667@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <cover.1648458971.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1648458971.git.jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/edid=3A_constify_EDID_parsing=2C_with_some_fixes?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,84 +40,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Reduce the size of the function that actually modifies the EDID.
+== Series Details ==
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/drm_edid.c | 42 ++++++++++++++++++++++----------------
- 1 file changed, 24 insertions(+), 18 deletions(-)
+Series: drm/edid: constify EDID parsing, with some fixes
+URL   : https://patchwork.freedesktop.org/series/101862/
+State : warning
 
-diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
-index d1abaa517867..d79b06f7f34c 100644
---- a/drivers/gpu/drm/drm_edid.c
-+++ b/drivers/gpu/drm/drm_edid.c
-@@ -5561,18 +5561,8 @@ static int add_displayid_detailed_modes(struct drm_connector *connector,
- 	return num_modes;
- }
- 
--/**
-- * drm_add_edid_modes - add modes from EDID data, if available
-- * @connector: connector we're probing
-- * @edid: EDID data
-- *
-- * Add the specified modes to the connector's mode list. Also fills out the
-- * &drm_display_info structure and ELD in @connector with any information which
-- * can be derived from the edid.
-- *
-- * Return: The number of modes added or 0 if we couldn't find any.
-- */
--int drm_add_edid_modes(struct drm_connector *connector, struct edid *edid)
-+static int drm_edid_connector_update(struct drm_connector *connector,
-+				     const struct edid *edid)
- {
- 	int num_modes = 0;
- 	u32 quirks;
-@@ -5581,12 +5571,6 @@ int drm_add_edid_modes(struct drm_connector *connector, struct edid *edid)
- 		clear_eld(connector);
- 		return 0;
- 	}
--	if (!drm_edid_is_valid(edid)) {
--		clear_eld(connector);
--		drm_warn(connector->dev, "%s: EDID invalid.\n",
--			 connector->name);
--		return 0;
--	}
- 
- 	drm_edid_to_eld(connector, edid);
- 
-@@ -5638,6 +5622,28 @@ int drm_add_edid_modes(struct drm_connector *connector, struct edid *edid)
- 
- 	return num_modes;
- }
-+
-+/**
-+ * drm_add_edid_modes - add modes from EDID data, if available
-+ * @connector: connector we're probing
-+ * @edid: EDID data
-+ *
-+ * Add the specified modes to the connector's mode list. Also fills out the
-+ * &drm_display_info structure and ELD in @connector with any information which
-+ * can be derived from the edid.
-+ *
-+ * Return: The number of modes added or 0 if we couldn't find any.
-+ */
-+int drm_add_edid_modes(struct drm_connector *connector, struct edid *edid)
-+{
-+	if (edid && !drm_edid_is_valid(edid)) {
-+		drm_warn(connector->dev, "%s: EDID invalid.\n",
-+			 connector->name);
-+		edid = NULL;
-+	}
-+
-+	return drm_edid_connector_update(connector, edid);
-+}
- EXPORT_SYMBOL(drm_add_edid_modes);
- 
- /**
--- 
-2.30.2
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+6bf277e7683e drm/edid: don't modify EDID while parsing
+29064813a1c5 drm/edid: fix reduced blanking support check
+c3676edd8bb4 drm/edid: slightly restructure timing and non-timing descriptor structs
+-:19: WARNING:BAD_SIGN_OFF: Duplicate signature
+#19: 
+Reported-by: kernel test robot <lkp@intel.com>
+
+-:20: WARNING:BAD_SIGN_OFF: Duplicate signature
+#20: 
+Reported-by: kernel test robot <lkp@intel.com>
+
+-:89: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around timing->data.descriptor.data.cvt[i]
+#89: FILE: drivers/gpu/drm/drm_edid.c:3190:
++		cvt = &(timing->data.descriptor.data.cvt[i]);
+
+total: 0 errors, 2 warnings, 1 checks, 101 lines checked
+a750f4974472 drm/edid: pass a timing pointer to is_display_descriptor()
+6162fbd4b286 drm/edid: use struct detailed_timing member access in is_rb()
+069531d80950 drm/edid: use struct detailed_data_monitor_range member access in gtf2 functions
+d473eb44a5b1 drm/edid: constify struct detailed_timing in lower level parsing
+271e3f746308 drm/edid: constify struct detailed_timing in parsing callbacks
+faeac16dc413 drm/edid: constify struct edid passed to detailed blocks
+f608edfef2f9 drm/edid: constify struct edid passed around in callbacks and closure
+d6ab774d4fc6 drm/edid: add more general struct edid constness in the interfaces
+
 
