@@ -1,51 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D4D34E9F08
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Mar 2022 20:36:34 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EEC54E9F3A
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Mar 2022 20:55:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2ABF810E287;
-	Mon, 28 Mar 2022 18:36:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A07E110E75D;
+	Mon, 28 Mar 2022 18:55:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E090510E246;
- Mon, 28 Mar 2022 18:36:30 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 64FB610E75D;
+ Mon, 28 Mar 2022 18:55:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1648492590; x=1680028590;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=yzeVvCY6eqwG29hVG/giVQ00H2WTTuSc9twI97r1Ap8=;
- b=ZO2VNwVETm+XQq7Wk6Dhp4fErg1pvoL4EWNYAGAe11n/LEIQNKoj024w
- a8BAkFA1231gKc4gmjSpmrWjMVoPxFuEq8toqMJCkaebXHEN9Z4nDXiDr
- WGG/r+0rh66P0634XBkz8optsh9Q035rVf5i1Ci2omNgHYKgJjdeFwbF4
- ngXEHMRs/1LjRv9QVJ4Y3JmISuLYw9kl/8AbUJl42xpE4eWJ6TG/rLbX/
- XeBKtajdNJKvBMAKMeYwjkXJ0uSSRwSnDENsZDXn4zDeF2rSwd6IamjwM
- 505JWbpSDXj7Mux9Xai97Bc1F7l1yb9NglipHqELEVYkBvkJII3UtPLwE g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10300"; a="322264360"
-X-IronPort-AV: E=Sophos;i="5.90,218,1643702400"; d="scan'208";a="322264360"
+ t=1648493746; x=1680029746;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=/kVOMGipEs5lDL5nN72dENXwsF0nEarT+l+QcS0Uu7k=;
+ b=hCTwXDxFBljKM6VV9b3eGnnXCluveyPimG8kpHM1rYA5xUKNpRP+EITN
+ i2eUz/chmHPSsuwFYPGGZo8CBhN1RcqUlYgCxMXmy9QRRXmNaK10yQ/ct
+ 10S5dd9oofIN0zwiKC9uGJ9ne6h/X6bX1SmxAZLLhbeDDtunWYavu/llr
+ UXXp8miK8YQclp7Ij9NkKmnrrKeuT7WbxDML9l5VOEkcA1lwy1arvki1P
+ NOZLjZebaI+XdaBK8/WTAd7pgTuyjLeR5+Cvitx7wUnfEmn5fKnaO6cVy
+ eQv4dBREqujp9xMH2BlAg0hUaTajWt615+2q6LmmoVGNcKQZ0jxuEtW/H A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10300"; a="257909100"
+X-IronPort-AV: E=Sophos;i="5.90,218,1643702400"; d="scan'208";a="257909100"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2022 11:36:30 -0700
-X-IronPort-AV: E=Sophos;i="5.90,218,1643702400"; d="scan'208";a="546070526"
-Received: from aysivtso-mobl.ccr.corp.intel.com (HELO localhost)
- ([10.252.62.56])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2022 11:36:28 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Emil Velikov <emil.l.velikov@gmail.com>
-In-Reply-To: <CACvgo53Mx7qMt7_xC32vG+yQu8xEOF9N-iruS1FDRmVMUKaHDQ@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1648477901.git.jani.nikula@intel.com>
- <CACvgo53Mx7qMt7_xC32vG+yQu8xEOF9N-iruS1FDRmVMUKaHDQ@mail.gmail.com>
-Date: Mon, 28 Mar 2022 21:36:19 +0300
-Message-ID: <875ynxexgc.fsf@intel.com>
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2022 11:55:42 -0700
+X-IronPort-AV: E=Sophos;i="5.90,218,1643702400"; d="scan'208";a="546075467"
+Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.203.144.108])
+ by orsmga007-auth.jf.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Mar 2022 11:55:39 -0700
+Date: Tue, 29 Mar 2022 00:26:18 +0530
+From: Ramalingam C <ramalingam.c@intel.com>
+To: Thomas =?utf-8?B?SGVsbHN0csO2bSAoSW50ZWwp?= <thomas_os@shipmail.org>
+Message-ID: <20220328185618.GA19751@intel.com>
+References: <20220321224459.12223-1-ramalingam.c@intel.com>
+ <20220321224459.12223-7-ramalingam.c@intel.com>
+ <6eebe04c-da24-600d-1c46-8ae341d7a061@shipmail.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH v3 00/12] drm/edid: constify EDID parsing,
- with fixes
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <6eebe04c-da24-600d-1c46-8ae341d7a061@shipmail.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v5 6/9] drm/i915/gt: offset handling for
+ multiple copy engines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,42 +60,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- ML dri-devel <dri-devel@lists.freedesktop.org>
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ Hellstrom Thomas <thomas.hellstrom@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ dri-devel <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 28 Mar 2022, Emil Velikov <emil.l.velikov@gmail.com> wrote:
-> On Mon, 28 Mar 2022 at 15:34, Jani Nikula <jani.nikula@intel.com> wrote:
->>
->> v3 of https://patchwork.freedesktop.org/series/101787/ and
->> https://patchwork.freedesktop.org/series/101862/
->>
->> I screwed up with the struct renamings in v2, so there's some falling
->> back to v1 and general confusion here. Sorry.
->>
->
-> The mutation and casting was doing my head - thanks for sorting this out.
->
-> IMHO in the future we might want to (re)move the final mutation -
-> header fixup - out of drm_edid_is_valid (drm_edid_block_valid really).
-> Say by making it explicit and applying on DP only (as per the inline
-> spec mention).
-> But that is for another day.
+On 2022-03-24 at 17:20:28 +0100, Thomas Hellström (Intel) wrote:
+> 
+> On 3/21/22 23:44, Ramalingam C wrote:
+> > Handle the src and dst chunk offsets for different instances of the copy
+> > engines.
+> > 
+> > Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
+> > ---
+> >   drivers/gpu/drm/i915/gt/intel_migrate.c | 3 +++
+> >   1 file changed, 3 insertions(+)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_migrate.c b/drivers/gpu/drm/i915/gt/intel_migrate.c
+> > index 39a5f8ae664d..5f6341f91622 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_migrate.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_migrate.c
+> > @@ -614,6 +614,9 @@ static int emit_copy(struct i915_request *rq,
+> >   	u32 instance = rq->engine->instance;
+> >   	u32 *cs;
+> > +	src_offset += (u64)rq->engine->instance << 32;
+> > +	dst_offset += (u64)rq->engine->instance << 32;
+> > +
+> 
+> Again, these are nops since the offsets are 32-bit.
+> 
+> Also the instance selection is already handled in the functon, so I think
+> this patch can be dropped.
 
-Yes, there's a bunch more things to do, and patches will follow!
+Thanks. Dropped this patch. and made copy and clear uniform with respect to
+engine index handling for offset.
 
-> As-is the series is:
-> Reviewed-by: Emil Velikov <emil.l.velikov@gmail.com>
-
-Thanks!
-
-BR,
-Jani.
-
->
-> HTH
-> Emil
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
+Ram.
+> 
+> 
+> >   	cs = intel_ring_begin(rq, ver >= 8 ? 10 : 6);
+> >   	if (IS_ERR(cs))
+> >   		return PTR_ERR(cs);
