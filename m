@@ -1,48 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 442AF4E928E
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Mar 2022 12:34:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0EA14E926E
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Mar 2022 12:22:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 74B7310E4A9;
-	Mon, 28 Mar 2022 10:34:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E4ABD10E65A;
+	Mon, 28 Mar 2022 10:22:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 42E0E10E4A9
- for <intel-gfx@lists.freedesktop.org>; Mon, 28 Mar 2022 10:34:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6FCBA10E65A
+ for <intel-gfx@lists.freedesktop.org>; Mon, 28 Mar 2022 10:22:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1648463679; x=1679999679;
+ t=1648462970; x=1679998970;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=huIy7ac/5++0ljp5ScN7qTo2c6mvGc3lpBpACZ7AUzc=;
- b=SzBe39YttK19zfqhapSszgOhRuSQVafKKOMGdfsZQFD0algU4jRyRcMf
- gU3kXvvgeNTyBlZ70yHHqpXsSmlXklCZaS7xrDiNQnAnU0kQZ9lzaSDOB
- L8KsnfoHm3n4gHugpdQ/Dm0Wgkdt4y+bYIcmfGhjdAO2mrhuCBOYbruGM
- YoQbbnlTRuKWvdfZ/4kRQgkByDWrYwWJlQ7cpthHIPTyApNuN0a8PLcFO
- b9MLPsT8Q2EtsDmoGOiAbisNhkIGlaS112+uNRSm52PCyY4D+ZqVL8n/e
- AbuLQsp/KIGgoZHMIZnV2kmFh9jJa6oPR0YdTOwi6+45I9GZxFlijgZ7R Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10299"; a="258681488"
-X-IronPort-AV: E=Sophos;i="5.90,217,1643702400"; d="scan'208";a="258681488"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ bh=peOpJ9GiLhqaM/IInlNQSAy3028uzVWvxw2+ABqq6+E=;
+ b=GjQpOrLBZ+1bp52l/nhen2i2sagdNXhwbC5Tkp/2Lpqbb/9jn1BT3YSd
+ 1bWP1eSjIKoWnedzeaxCldjUqu+htls5cEgLIhbttV2TR3ZxGQ5cM1xLf
+ KbsHdc2IR1wOLaN6fjzusDr4iMRk/2w2lCGx6D5n696cuiCQp0q3KpSA2
+ NPxVRyKQo1wI9scYGtObCcw7pexqzM0tEbMYzRx0NQ9/TmAyAlGmbJN2y
+ zD14UyeBs8kD2XOzh+VKH2OJgCuttq4JIrPjVbO925gHekwRSR4LwuNvI
+ sfPMJ49sC3uI9LkeF4K+NFA21lNgX6SzzJwx6Kk+bgPon8iTz68h1mV3O g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10299"; a="258679698"
+X-IronPort-AV: E=Sophos;i="5.90,217,1643702400"; d="scan'208";a="258679698"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2022 03:34:38 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,217,1643702400"; d="scan'208";a="563530434"
-Received: from tejas-system-product-name.iind.intel.com ([10.145.162.130])
- by orsmga008.jf.intel.com with ESMTP; 28 Mar 2022 03:34:36 -0700
-From: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
+ 28 Mar 2022 03:22:49 -0700
+X-IronPort-AV: E=Sophos;i="5.90,217,1643702400"; d="scan'208";a="517989080"
+Received: from srr4-3-linux-105-anshuma1.iind.intel.com ([10.223.74.179])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2022 03:22:47 -0700
+From: Anshuman Gupta <anshuman.gupta@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 28 Mar 2022 15:51:44 +0530
-Message-Id: <20220328102144.1374607-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
-X-Mailer: git-send-email 2.34.1
+Date: Mon, 28 Mar 2022 15:52:27 +0530
+Message-Id: <20220328102227.14545-1-anshuman.gupta@intel.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [topic/core-for-CI] dma-buf: Check for empty
- dma_fence_array
+Subject: [Intel-gfx] [PATCH] drm/i915/debugfs: Dump i915 children runtime
+ status
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,40 +54,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: Chris Wilson <chris.p.wilson@intel.com>, rodrigo.vivi@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Signed-off-by: Christian König <christian.koenig@amd.com>
-Signed-off-by: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
----
- drivers/dma-buf/dma-fence-array.c | 5 +++++
- 1 file changed, 5 insertions(+)
+i915 doesn't use pm_suspend_ignore_children() which warrants that
+any runtime active child of i915 will block the runtime suspend
+of i915.
+i915_runtime_pm_status only exposes i915 runtime pm usage_count,
+which is not sufficient to debug in the scenarios when i915 has
+zero usage_count but there are runtime active children.
+Dump i915 child's runtime pm status to debug such
+i915 runtime suspend issues.
 
-diff --git a/drivers/dma-buf/dma-fence-array.c b/drivers/dma-buf/dma-fence-array.c
-index 52b85d292383..5c8a7084577b 100644
---- a/drivers/dma-buf/dma-fence-array.c
-+++ b/drivers/dma-buf/dma-fence-array.c
-@@ -159,6 +159,8 @@ struct dma_fence_array *dma_fence_array_create(int num_fences,
- 	struct dma_fence_array *array;
- 	size_t size = sizeof(*array);
- 
-+	WARN_ON(!num_fences || !fences);
-+
- 	/* Allocate the callback structures behind the array. */
- 	size += num_fences * sizeof(struct dma_fence_array_cb);
- 	array = kzalloc(size, GFP_KERNEL);
-@@ -231,6 +233,9 @@ struct dma_fence *dma_fence_array_first(struct dma_fence *head)
- 	if (!array)
- 		return head;
- 
-+	if (!array->num_fences)
-+		return NULL;
-+
- 	return array->fences[0];
+Cc: Chris Wilson <chris.p.wilson@intel.com>
+Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+---
+ drivers/gpu/drm/i915/i915_debugfs.c | 38 +++++++++++++++++++++++++++++
+ 1 file changed, 38 insertions(+)
+
+diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
+index 445b4da23950..ea1730419f8d 100644
+--- a/drivers/gpu/drm/i915/i915_debugfs.c
++++ b/drivers/gpu/drm/i915/i915_debugfs.c
+@@ -483,6 +483,40 @@ static int i915_rps_boost_info(struct seq_file *m, void *data)
+ 	return 0;
  }
- EXPORT_SYMBOL(dma_fence_array_first);
+ 
++#ifdef CONFIG_PM
++static int i915_runtime_dump_child_status(struct device *dev, void *data)
++{
++	struct seq_file *m = data;
++	const char *rpm_status;
++
++	/* Early return if runtime_pm is disabled */
++	if (dev->power.disable_depth)
++		return 0;
++
++	switch (dev->power.runtime_status) {
++	case RPM_SUSPENDED:
++		rpm_status = "suspended";
++		break;
++	case RPM_SUSPENDING:
++		rpm_status = "suspending";
++		break;
++	case RPM_RESUMING:
++		rpm_status = "resuming";
++		break;
++	case RPM_ACTIVE:
++		rpm_status = "active";
++		break;
++	default:
++		rpm_status = "unknown";
++	}
++
++	seq_printf(m, "\t%s %s: Runtime status: %s\n", dev_driver_string(dev),
++		   dev_name(dev), rpm_status);
++
++	return 0;
++}
++#endif
++
+ static int i915_runtime_pm_status(struct seq_file *m, void *unused)
+ {
+ 	struct drm_i915_private *dev_priv = node_to_i915(m->private);
+@@ -500,6 +534,10 @@ static int i915_runtime_pm_status(struct seq_file *m, void *unused)
+ #ifdef CONFIG_PM
+ 	seq_printf(m, "Usage count: %d\n",
+ 		   atomic_read(&dev_priv->drm.dev->power.usage_count));
++	seq_printf(m, "Runtime active children: %d\n",
++		   atomic_read(&dev_priv->drm.dev->power.child_count));
++	device_for_each_child(&pdev->dev, m, i915_runtime_dump_child_status);
++
+ #else
+ 	seq_printf(m, "Device Power Management (CONFIG_PM) disabled\n");
+ #endif
 -- 
-2.34.1
+2.26.2
 
