@@ -1,50 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F3124E9F6A
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Mar 2022 21:07:09 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0235C4E9F6B
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Mar 2022 21:07:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3953210E966;
-	Mon, 28 Mar 2022 19:07:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 62E3910E96F;
+	Mon, 28 Mar 2022 19:07:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D048610E966;
- Mon, 28 Mar 2022 19:06:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9273B10E966;
+ Mon, 28 Mar 2022 19:07:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1648494420; x=1680030420;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=4jSgDosF8PE3lKPs5HTDsyoNwLi2b9dl3OmN2PHCy60=;
- b=dYy6W1jQMqdGTG+6/EaRDhjr4lLmeNkbofxtHzX9xz4yP2bThJT8E2rI
- 3rKCgRFIPtC/tN3S1IJTIMgzmM69+JqEqnA+xoRpDA+8SjriIJF0SOuuZ
- STFpjFBh0jftuX3NaH68QGKUIXriB6bmANrbjo4TpHAAzBVFYOd0aamdd
- Oa+HUEcrwo9XzDtAuMDbsAkcyfol6luwzCpvnzt3QEtRqEJATv7kJC5/v
- gt87ApMcsLlHioMZbfmgFZoGDZTU7i1K9r/TZMXH0Fmlsa3Pd+cr65QN7
- C4jlvEOnooww/OWlfCMOWOYtMGMiclN6wazsEMrGPtVPhfw/Z4xFf+em3 Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10300"; a="239678666"
-X-IronPort-AV: E=Sophos;i="5.90,218,1643702400"; d="scan'208";a="239678666"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=kJYkSdqMSQGUhDkpBZP0CF+XSEYizdkEirLyBVcuzK0=;
+ b=ZGYNwRZNhUcamdXrmMdNQjrFU/ojFbcXvrqfnRMOi+PLwTzvuvJEwCNj
+ KRsTl6xBPWKQVcR4Tjw3EBYBPSJ8b0dlnRhkEjnjQ12+2QGD8ul+L+/jV
+ L6raOkGK/+yKOwT8rs9IOngIKFdBl3Dq3mN+SGByhh0rvC+V2gqoGflfe
+ 34GeemBI3JnTDrYISUaUOCAvslN+grKVnBw+nvxxAUyVBO5K0oggsK0Wq
+ qsI4mLFJkvcBzHcbH+tf7nFQ+GuX9ghHD8A++83Yp5AgGxVMYzgTrZPKg
+ uwlCdaunrxqg9YCVE3Zaapxsms0VOJ6zkauUblYyNkOXKMTG+XmNC/yzT Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10300"; a="239678670"
+X-IronPort-AV: E=Sophos;i="5.90,218,1643702400"; d="scan'208";a="239678670"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2022 12:06:59 -0700
-X-IronPort-AV: E=Sophos;i="5.90,218,1643702400"; d="scan'208";a="563920869"
+ 28 Mar 2022 12:07:00 -0700
+X-IronPort-AV: E=Sophos;i="5.90,218,1643702400"; d="scan'208";a="563920899"
 Received: from ramaling-i9x.iind.intel.com ([10.203.144.108])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2022 12:06:56 -0700
+ 28 Mar 2022 12:06:58 -0700
 From: Ramalingam C <ramalingam.c@intel.com>
 To: Hellstrom Thomas <thomas.hellstrom@intel.com>,
  intel-gfx <intel-gfx@lists.freedesktop.org>,
  dri-devel <dri-devel@lists.freedesktop.org>
-Date: Tue, 29 Mar 2022 00:37:27 +0530
-Message-Id: <20220328190736.19697-1-ramalingam.c@intel.com>
+Date: Tue, 29 Mar 2022 00:37:28 +0530
+Message-Id: <20220328190736.19697-2-ramalingam.c@intel.com>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20220328190736.19697-1-ramalingam.c@intel.com>
+References: <20220328190736.19697-1-ramalingam.c@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v7 0/9] drm/i915/ttm: Evict and restore of
- compressed object
+Subject: [Intel-gfx] [PATCH v7 1/9] drm/i915/gt: use engine instance
+ directly for offset
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,72 +62,56 @@ Cc: Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Xe-HP and later devices, we use dedicated compression control
-state (CCS) stored in local memory for each surface, to support
-the 3D and media compression formats.
+To make it uniform across copy and clear, use the engine offset directly
+to calculate the offset in the cmd forming for emit_clear.
 
-The memory required for the CCS of the entire local memory is
-1/256 of the local memory size. So before the kernel
-boot, the required memory is reserved for the CCS data and a
-secure register will be programmed with the CCS base address
+Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_migrate.c | 11 ++++-------
+ 1 file changed, 4 insertions(+), 7 deletions(-)
 
-So when we allocate a object in local memory we dont need to explicitly
-allocate the space for ccs data. But when we evict the obj into the smem
-to hold the compression related data along with the obj we need smem
-space of obj_size + (obj_size/256).
-
-Hence when we create smem for an obj with lmem placement possibility we
-create with the extra space.
-
-When we are swapping out the local memory obj on flat-ccs capable platform,
-we need to capture the ccs data too along with main meory and we need to
-restore it when we are swapping in the content.
-
-When lmem object is swapped into a smem obj, smem obj will
-have the extra pages required to hold the ccs data corresponding to the
-lmem main memory. So main memory of lmem will be copied into the initial
-pages of the smem and then ccs data corresponding to the main memory
-will be copied to the subsequent pages of smem.
-
-Swapin happens exactly in reverse order. First main memory of lmem is
-restored from the smem's initial pages and the ccs data will be restored
-from the subsequent pages of smem.
-
-Extracting and restoring the CCS data is done through a special cmd called
-XY_CTRL_SURF_COPY_BLT
-
-v7:
-  GEM_BUG_ON is added for catching if inflated pages are filled for
-    get_pages
-  Optimised emit_copy_clear
-  Engine index is directly used for the upper 32 bits of offset
-  Use FAT_COLOR_BLT only for FLAT_CCS capable platforms
-
-Test-with: 20220314051432.15785-1-ramalingam.c@intel.com
-
-Ramalingam C (9):
-  drm/i915/gt: use engine instance directly for offset
-  drm/i915/gt: Use XY_FAST_COLOR_BLT to clear obj on graphics ver 12+
-  drm/i915/gt: Optimize the migration and clear loop
-  drm/i915/gt: Clear compress metadata for Flat-ccs objects
-  drm/i915/selftest_migrate: Consider the possible roundup of size
-  drm/i915/selftest_migrate: Check CCS meta data clear
-  drm/ttm: Add a parameter to add extra pages into ttm_tt
-  drm/i915/gem: Add extra pages in ttm_tt for ccs data
-  drm/i915/migrate: Evict and restore the flatccs capable lmem obj
-
- drivers/gpu/drm/drm_gem_vram_helper.c        |   2 +-
- drivers/gpu/drm/i915/gem/i915_gem_ttm.c      |  30 +-
- drivers/gpu/drm/i915/gt/intel_gpu_commands.h |  21 +
- drivers/gpu/drm/i915/gt/intel_migrate.c      | 391 +++++++++++++++++--
- drivers/gpu/drm/i915/gt/selftest_migrate.c   | 253 ++++++++++--
- drivers/gpu/drm/qxl/qxl_ttm.c                |   2 +-
- drivers/gpu/drm/ttm/ttm_agp_backend.c        |   2 +-
- drivers/gpu/drm/ttm/ttm_tt.c                 |  12 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c   |   2 +-
- include/drm/ttm/ttm_tt.h                     |   4 +-
- 10 files changed, 644 insertions(+), 75 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/gt/intel_migrate.c b/drivers/gpu/drm/i915/gt/intel_migrate.c
+index 20444d6ceb3c..9e6c98a17441 100644
+--- a/drivers/gpu/drm/i915/gt/intel_migrate.c
++++ b/drivers/gpu/drm/i915/gt/intel_migrate.c
+@@ -614,15 +614,13 @@ intel_context_migrate_copy(struct intel_context *ce,
+ 	return err;
+ }
+ 
+-static int emit_clear(struct i915_request *rq, u64 offset, int size, u32 value)
++static int emit_clear(struct i915_request *rq, u32 offset, int size, u32 value)
+ {
+ 	const int ver = GRAPHICS_VER(rq->engine->i915);
+ 	u32 *cs;
+ 
+ 	GEM_BUG_ON(size >> PAGE_SHIFT > S16_MAX);
+ 
+-	offset += (u64)rq->engine->instance << 32;
+-
+ 	cs = intel_ring_begin(rq, ver >= 8 ? 8 : 6);
+ 	if (IS_ERR(cs))
+ 		return PTR_ERR(cs);
+@@ -632,17 +630,16 @@ static int emit_clear(struct i915_request *rq, u64 offset, int size, u32 value)
+ 		*cs++ = BLT_DEPTH_32 | BLT_ROP_COLOR_COPY | PAGE_SIZE;
+ 		*cs++ = 0;
+ 		*cs++ = size >> PAGE_SHIFT << 16 | PAGE_SIZE / 4;
+-		*cs++ = lower_32_bits(offset);
+-		*cs++ = upper_32_bits(offset);
++		*cs++ = offset;
++		*cs++ = rq->engine->instance;
+ 		*cs++ = value;
+ 		*cs++ = MI_NOOP;
+ 	} else {
+-		GEM_BUG_ON(upper_32_bits(offset));
+ 		*cs++ = XY_COLOR_BLT_CMD | BLT_WRITE_RGBA | (6 - 2);
+ 		*cs++ = BLT_DEPTH_32 | BLT_ROP_COLOR_COPY | PAGE_SIZE;
+ 		*cs++ = 0;
+ 		*cs++ = size >> PAGE_SHIFT << 16 | PAGE_SIZE / 4;
+-		*cs++ = lower_32_bits(offset);
++		*cs++ = offset;
+ 		*cs++ = value;
+ 	}
+ 
 -- 
 2.20.1
 
