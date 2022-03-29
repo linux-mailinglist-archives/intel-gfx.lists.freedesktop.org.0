@@ -2,32 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D68A24EB6E6
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Mar 2022 01:39:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C4A04EB744
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Mar 2022 01:58:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5058B10E4D3;
-	Tue, 29 Mar 2022 23:39:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F120910E114;
+	Tue, 29 Mar 2022 23:58:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5432A10E4D3;
- Tue, 29 Mar 2022 23:39:29 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 4FE57A00E8;
- Tue, 29 Mar 2022 23:39:29 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5350D10E114
+ for <intel-gfx@lists.freedesktop.org>; Tue, 29 Mar 2022 23:58:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1648598316; x=1680134316;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=wkYEznitHf7CmwyhvEI7kqX3WlwEmCCMV5vAycYCeh4=;
+ b=Z1ehWx5ZaKYJKPdBPVVR8fyAV0EZvhUz9u+dPNldk7jMzUL9rG/cDudy
+ wgVT976UY/LfloF/XyNblVIpG9tp2b8YM3V1jQh/9QI0SQ+6mYuMut9qg
+ ppuYbvo7Yh8dlfQQ8DPSKjecOgwOhrfXkF2HJt5H/OS7/f/B5KrXwfHwZ
+ YJCp/ADv/pgnkzNJiB9EjEGPe7W9tt3cg3Ip3d7HgPzqDwDBm46c9P/fG
+ 9mJ4nkes3sV7X4rx8jtluqQRHwvwz5GFoklLv0jCXQ/c0e4F1zQnDJtY/
+ fejcTDraT7KBYKD6HvlcWDb+NP7w9B3ELmd7ocnLBzluk2rQyL5Pt6M50 A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10301"; a="345841959"
+X-IronPort-AV: E=Sophos;i="5.90,220,1643702400"; d="scan'208";a="345841959"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Mar 2022 16:58:35 -0700
+X-IronPort-AV: E=Sophos;i="5.90,220,1643702400"; d="scan'208";a="719753823"
+Received: from brettpem-mobl1.amr.corp.intel.com (HELO
+ cgbowman-desk1.amr.corp.intel.com) ([10.209.80.244])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Mar 2022 16:58:35 -0700
+From: Casey Bowman <casey.g.bowman@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 29 Mar 2022 16:58:28 -0700
+Message-Id: <20220329235830.1025100-1-casey.g.bowman@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Casey Bowman" <casey.g.bowman@intel.com>
-Date: Tue, 29 Mar 2022 23:39:29 -0000
-Message-ID: <164859716929.5796.493491500730562280@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220329233518.1008877-1-casey.g.bowman@intel.com>
-In-Reply-To: <20220329233518.1008877-1-casey.g.bowman@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBT?=
- =?utf-8?q?plitting_intel-gtt_calls_for_non-x86_platforms_=28rev2=29?=
+Subject: [Intel-gfx] [PATCH v3 0/2] Splitting intel-gtt calls for non-x86
+ platforms
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,71 +55,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: thomas.hellstrom@linux.intel.com, lucas.demarchi@intel.com,
+ chris@chris-wilson.co.uk
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+The intel-gtt module defines some functions used by i915, but they are
+only supported by x86 platforms. In order to bring i915 to a more
+arch-neutral state, we split out these functions and provide stubs in
+the case of non-x86 builds.
 
-Series: Splitting intel-gtt calls for non-x86 platforms (rev2)
-URL   : https://patchwork.freedesktop.org/series/101552/
-State : failure
+There may be a better filename choice for the files used in splitting
+the calls, it's very much open to discussion.
 
-== Summary ==
+v2: Refactored to move gmch functions, renamed exported functions
+v3: Added drm/i915_drm.h header
 
-CALL    scripts/checksyscalls.sh
-  CALL    scripts/atomic/check-atomics.sh
-  DESCEND objtool
-  CHK     include/generated/compile.h
-  CC [M]  drivers/gpu/drm/i915/gt/intel_gt_gmch.o
-drivers/gpu/drm/i915/gt/intel_gt_gmch.c: In function ‘gen6_get_total_gtt_size’:
-drivers/gpu/drm/i915/gt/intel_gt_gmch.c:411:19: error: ‘SNB_GMCH_GGMS_SHIFT’ undeclared (first use in this function); did you mean ‘SHM_HUGE_SHIFT’?
-  snb_gmch_ctl >>= SNB_GMCH_GGMS_SHIFT;
-                   ^~~~~~~~~~~~~~~~~~~
-                   SHM_HUGE_SHIFT
-drivers/gpu/drm/i915/gt/intel_gt_gmch.c:411:19: note: each undeclared identifier is reported only once for each function it appears in
-drivers/gpu/drm/i915/gt/intel_gt_gmch.c:412:18: error: ‘SNB_GMCH_GGMS_MASK’ undeclared (first use in this function); did you mean ‘SHM_HUGE_MASK’?
-  snb_gmch_ctl &= SNB_GMCH_GGMS_MASK;
-                  ^~~~~~~~~~~~~~~~~~
-                  SHM_HUGE_MASK
-drivers/gpu/drm/i915/gt/intel_gt_gmch.c: In function ‘gen8_get_total_gtt_size’:
-drivers/gpu/drm/i915/gt/intel_gt_gmch.c:418:19: error: ‘BDW_GMCH_GGMS_SHIFT’ undeclared (first use in this function); did you mean ‘HSW_CAGF_SHIFT’?
-  bdw_gmch_ctl >>= BDW_GMCH_GGMS_SHIFT;
-                   ^~~~~~~~~~~~~~~~~~~
-                   HSW_CAGF_SHIFT
-drivers/gpu/drm/i915/gt/intel_gt_gmch.c:419:18: error: ‘BDW_GMCH_GGMS_MASK’ undeclared (first use in this function); did you mean ‘BITMAP_MEM_MASK’?
-  bdw_gmch_ctl &= BDW_GMCH_GGMS_MASK;
-                  ^~~~~~~~~~~~~~~~~~
-                  BITMAP_MEM_MASK
-drivers/gpu/drm/i915/gt/intel_gt_gmch.c: In function ‘intel_gt_gmch_gen6_probe’:
-drivers/gpu/drm/i915/gt/intel_gt_gmch.c:547:29: error: ‘SNB_GMCH_CTRL’ undeclared (first use in this function); did you mean ‘VDBX_MOD_CTRL’?
-  pci_read_config_word(pdev, SNB_GMCH_CTRL, &snb_gmch_ctl);
-                             ^~~~~~~~~~~~~
-                             VDBX_MOD_CTRL
-drivers/gpu/drm/i915/gt/intel_gt_gmch.c: In function ‘chv_get_total_gtt_size’:
-drivers/gpu/drm/i915/gt/intel_gt_gmch.c:583:16: error: ‘SNB_GMCH_GGMS_SHIFT’ undeclared (first use in this function); did you mean ‘SHM_HUGE_SHIFT’?
-  gmch_ctrl >>= SNB_GMCH_GGMS_SHIFT;
-                ^~~~~~~~~~~~~~~~~~~
-                SHM_HUGE_SHIFT
-drivers/gpu/drm/i915/gt/intel_gt_gmch.c:584:15: error: ‘SNB_GMCH_GGMS_MASK’ undeclared (first use in this function); did you mean ‘SHM_HUGE_MASK’?
-  gmch_ctrl &= SNB_GMCH_GGMS_MASK;
-               ^~~~~~~~~~~~~~~~~~
-               SHM_HUGE_MASK
-drivers/gpu/drm/i915/gt/intel_gt_gmch.c: In function ‘intel_gt_gmch_gen8_probe’:
-drivers/gpu/drm/i915/gt/intel_gt_gmch.c:605:29: error: ‘SNB_GMCH_CTRL’ undeclared (first use in this function); did you mean ‘VDBX_MOD_CTRL’?
-  pci_read_config_word(pdev, SNB_GMCH_CTRL, &snb_gmch_ctl);
-                             ^~~~~~~~~~~~~
-                             VDBX_MOD_CTRL
-scripts/Makefile.build:288: recipe for target 'drivers/gpu/drm/i915/gt/intel_gt_gmch.o' failed
-make[4]: *** [drivers/gpu/drm/i915/gt/intel_gt_gmch.o] Error 1
-scripts/Makefile.build:550: recipe for target 'drivers/gpu/drm/i915' failed
-make[3]: *** [drivers/gpu/drm/i915] Error 2
-scripts/Makefile.build:550: recipe for target 'drivers/gpu/drm' failed
-make[2]: *** [drivers/gpu/drm] Error 2
-scripts/Makefile.build:550: recipe for target 'drivers/gpu' failed
-make[1]: *** [drivers/gpu] Error 2
-Makefile:1831: recipe for target 'drivers' failed
-make: *** [drivers] Error 2
+Casey Bowman (2):
+  drm/i915/gt: Split intel-gtt functions by arch
+  drm/i915: Moved drm/i915_drm.h header to intel_gt_gmch.c
 
+ drivers/gpu/drm/i915/Kconfig            |   2 +-
+ drivers/gpu/drm/i915/Makefile           |   2 +
+ drivers/gpu/drm/i915/gt/intel_ggtt.c    | 665 +-----------------------
+ drivers/gpu/drm/i915/gt/intel_gt.c      |   4 +-
+ drivers/gpu/drm/i915/gt/intel_gt.h      |   9 +
+ drivers/gpu/drm/i915/gt/intel_gt_gmch.c | 653 +++++++++++++++++++++++
+ drivers/gpu/drm/i915/gt/intel_gt_gmch.h |  46 ++
+ drivers/gpu/drm/i915/gt/intel_gtt.h     |   9 +
+ 8 files changed, 736 insertions(+), 654 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/gt/intel_gt_gmch.c
+ create mode 100644 drivers/gpu/drm/i915/gt/intel_gt_gmch.h
+
+-- 
+2.25.1
 
