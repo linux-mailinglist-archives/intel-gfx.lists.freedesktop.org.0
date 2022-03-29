@@ -1,51 +1,63 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F296C4EAFEB
-	for <lists+intel-gfx@lfdr.de>; Tue, 29 Mar 2022 17:08:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B72CF4EB11F
+	for <lists+intel-gfx@lfdr.de>; Tue, 29 Mar 2022 17:57:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC07410F0BB;
-	Tue, 29 Mar 2022 15:08:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C33DD10E8CC;
+	Tue, 29 Mar 2022 15:57:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7468710F0B9
- for <intel-gfx@lists.freedesktop.org>; Tue, 29 Mar 2022 15:08:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1648566498; x=1680102498;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=N45I0Oj11Fw92hL3aerFd55twJ+Tn8QC1bV8Po5RY50=;
- b=F3xdw3FZdM7OOYnf9qhM8aA6YjapABVtGkyG6t6AH+dcwxKtlCAL49t2
- 2hMQeGsEVI2xMbZNvGLGSxDlWBZnXfjpmRiMyVt6gzyOcO1VPMYcdYV3M
- 9Q73zWYggQfsNV/ndfje7rcFLNuqXvySZ2tN3NpE8SQCJWkXVgKRihptP
- 2hh/FKb10WN0eJYX0Cq///ayZ/s8lkohNQnhswCG5Db/AIFI5TzLFo3+a
- d921JY1XAg3xInLjWBBO+QH9Gl8xCEmFX2Ky8e6h54aMkNYKkHklaH6zA
- 3XelRVItoYBrdagcUwBCyMz93dRgU+7oVdUa2lDGuCeZvMTFkT6LC7BZC g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10301"; a="345707247"
-X-IronPort-AV: E=Sophos;i="5.90,220,1643702400"; d="scan'208";a="345707247"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Mar 2022 08:08:17 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,220,1643702400"; d="scan'208";a="694739856"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.61])
- by fmsmga001.fm.intel.com with SMTP; 29 Mar 2022 08:08:15 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 29 Mar 2022 18:08:15 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 29 Mar 2022 18:07:42 +0300
-Message-Id: <20220329150742.31783-12-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220329150742.31783-1-ville.syrjala@linux.intel.com>
-References: <20220329150742.31783-1-ville.syrjala@linux.intel.com>
+Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
+ [IPv6:2a00:1450:4864:20::441])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 795BC10E8BE
+ for <intel-gfx@lists.freedesktop.org>; Tue, 29 Mar 2022 15:57:17 +0000 (UTC)
+Received: by mail-wr1-x441.google.com with SMTP id b19so25454562wrh.11
+ for <intel-gfx@lists.freedesktop.org>; Tue, 29 Mar 2022 08:57:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=uEDMfqAno8QNOQAOu5TceOz4HuNLgVWJ0BNZIybhuE8=;
+ b=aLVvL+jUDHXnvMmh9LJeWAmtuPkUalKtpqPc1inVnxs036FypCNUmbsLMSmNSOX4Sl
+ 6Z603jZWzsv4O98HGMzzpoxEQyIMrsK7/2uAlU3CFVyXBJ6jOHRKgO5vxTh8LRtFXg9q
+ Nq5MFmPDTDqyOz0jFhvwPgcTDzX+SVijUa7kQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=uEDMfqAno8QNOQAOu5TceOz4HuNLgVWJ0BNZIybhuE8=;
+ b=0iFuJhWuEBP4nmDmoDb116Y0XUdvW7jbQfWzawNk4/jz64pDeyQ3XfxLUSzJgjCQIa
+ Yl5/Fp5nOduywXzLBIN4uZ6UynVfEgHJlGeq3+HXnHsnBHj36zGdyLEKegkKBHQJihlC
+ g0KYlRbTw/ig7AlmyrkxMATtsBZ0JlDWCbtGpiYI17hgZg2BgR58Nw+gRhuA0ly1Rd2q
+ UYGo5m4MkLTyWiBWo/Zh/GztI/MZDmt94eySwG5V1xVajeW4vtkJPZQtjgRC13DpTde9
+ n680ohec9Fj/am5G5bmZ8pNmjrKmbhPodE5/Nkb0zy41t9JmFLu05JCVAvOetOu7E+l2
+ 51HQ==
+X-Gm-Message-State: AOAM533AIrpWcnbnLn5QvihlROdML8FhjFhJr2AiAuvoDlPVYCQh4kFI
+ fauvXt7emU8WQTkDYCNViNrqFQ==
+X-Google-Smtp-Source: ABdhPJxNamnWXBFwTS1OKQMwEBR142kBagD22eiBnjW/P60N7FoUC/KZ6dBPtk5MNvzvspElpSBwpQ==
+X-Received: by 2002:a5d:4245:0:b0:203:dc49:2604 with SMTP id
+ s5-20020a5d4245000000b00203dc492604mr33361129wrr.32.1648569435971; 
+ Tue, 29 Mar 2022 08:57:15 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id
+ n15-20020a05600c500f00b0038cfb1a43d6sm2577729wmr.24.2022.03.29.08.57.15
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 29 Mar 2022 08:57:15 -0700 (PDT)
+Date: Tue, 29 Mar 2022 17:57:13 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>
+Message-ID: <YkMsWU7Ba1UL/ZlZ@phenom.ffwll.local>
+References: <20220321135856.1331-1-christian.koenig@amd.com>
+ <20220321135856.1331-22-christian.koenig@amd.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 11/11] drm/i915: Allow static DRRS on LVDS
+In-Reply-To: <20220321135856.1331-22-christian.koenig@amd.com>
+X-Operating-System: Linux phenom 5.10.0-8-amd64 
+Subject: Re: [Intel-gfx] [PATCH 22/23] drm/i915: drop bo->moving dependency
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,33 +70,159 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: daniel.vetter@ffwll.ch, intel-gfx@lists.freedesktop.org,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+On Mon, Mar 21, 2022 at 02:58:55PM +0100, Christian K�nig wrote:
+> That should now be handled by the common dma_resv framework.
+> 
+> Signed-off-by: Christian K�nig <christian.koenig@amd.com>
+> Cc: intel-gfx@lists.freedesktop.org
 
-Nothing special about static DRRS on LVDS, it's just your
-bog standard modeset. Let's allow it.
+Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_lvds.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+> ---
+>  drivers/gpu/drm/i915/gem/i915_gem_object.c   | 29 ++++++--------------
+>  drivers/gpu/drm/i915/gem/i915_gem_object.h   |  5 ++--
+>  drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c | 15 +---------
+>  drivers/gpu/drm/i915/i915_vma.c              |  9 +++++-
+>  4 files changed, 19 insertions(+), 39 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+> index d87b508b59b1..fd240435ffef 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+> @@ -742,18 +742,19 @@ static const struct drm_gem_object_funcs i915_gem_object_funcs = {
+>  /**
+>   * i915_gem_object_get_moving_fence - Get the object's moving fence if any
+>   * @obj: The object whose moving fence to get.
+> + * @fence: The resulting fence
+>   *
+>   * A non-signaled moving fence means that there is an async operation
+>   * pending on the object that needs to be waited on before setting up
+>   * any GPU- or CPU PTEs to the object's pages.
+>   *
+> - * Return: A refcounted pointer to the object's moving fence if any,
+> - * NULL otherwise.
+> + * Return: Negative error code or 0 for success.
+>   */
+> -struct dma_fence *
+> -i915_gem_object_get_moving_fence(struct drm_i915_gem_object *obj)
+> +int i915_gem_object_get_moving_fence(struct drm_i915_gem_object *obj,
+> +				     struct dma_fence **fence)
+>  {
+> -	return dma_fence_get(i915_gem_to_ttm(obj)->moving);
+> +	return dma_resv_get_singleton(obj->base.resv, DMA_RESV_USAGE_KERNEL,
+> +				      fence);
+>  }
+>  
+>  /**
+> @@ -771,23 +772,9 @@ i915_gem_object_get_moving_fence(struct drm_i915_gem_object *obj)
+>  int i915_gem_object_wait_moving_fence(struct drm_i915_gem_object *obj,
+>  				      bool intr)
+>  {
+> -	struct dma_fence *fence = i915_gem_to_ttm(obj)->moving;
+> -	int ret;
+> -
+>  	assert_object_held(obj);
+> -	if (!fence)
+> -		return 0;
+> -
+> -	ret = dma_fence_wait(fence, intr);
+> -	if (ret)
+> -		return ret;
+> -
+> -	if (fence->error)
+> -		return fence->error;
+> -
+> -	i915_gem_to_ttm(obj)->moving = NULL;
+> -	dma_fence_put(fence);
+> -	return 0;
+> +	return dma_resv_wait_timeout(obj->base. resv, DMA_RESV_USAGE_KERNEL,
+> +				     intr, MAX_SCHEDULE_TIMEOUT);
+>  }
+>  
+>  #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+> index f66d46882ea7..be57af8bfb31 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+> @@ -521,9 +521,8 @@ i915_gem_object_finish_access(struct drm_i915_gem_object *obj)
+>  	i915_gem_object_unpin_pages(obj);
+>  }
+>  
+> -struct dma_fence *
+> -i915_gem_object_get_moving_fence(struct drm_i915_gem_object *obj);
+> -
+> +int i915_gem_object_get_moving_fence(struct drm_i915_gem_object *obj,
+> +				     struct dma_fence **fence);
+>  int i915_gem_object_wait_moving_fence(struct drm_i915_gem_object *obj,
+>  				      bool intr);
+>  
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
+> index e4a232e22f9d..4d5d0cd64f23 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
+> @@ -452,19 +452,6 @@ __i915_ttm_move(struct ttm_buffer_object *bo,
+>  	return fence;
+>  }
+>  
+> -static int
+> -prev_deps(struct ttm_buffer_object *bo, struct ttm_operation_ctx *ctx,
+> -	  struct i915_deps *deps)
+> -{
+> -	int ret;
+> -
+> -	ret = i915_deps_add_dependency(deps, bo->moving, ctx);
+> -	if (!ret)
+> -		ret = i915_deps_add_resv(deps, bo->base.resv, ctx);
+> -
+> -	return ret;
+> -}
+> -
+>  /**
+>   * i915_ttm_move - The TTM move callback used by i915.
+>   * @bo: The buffer object.
+> @@ -519,7 +506,7 @@ int i915_ttm_move(struct ttm_buffer_object *bo, bool evict,
+>  		struct i915_deps deps;
+>  
+>  		i915_deps_init(&deps, GFP_KERNEL | __GFP_NORETRY | __GFP_NOWARN);
+> -		ret = prev_deps(bo, ctx, &deps);
+> +		ret = i915_deps_add_resv(&deps, bo->base.resv, ctx);
+>  		if (ret) {
+>  			i915_refct_sgt_put(dst_rsgt);
+>  			return ret;
+> diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
+> index 52fd6705a518..8737159f4706 100644
+> --- a/drivers/gpu/drm/i915/i915_vma.c
+> +++ b/drivers/gpu/drm/i915/i915_vma.c
+> @@ -1247,10 +1247,17 @@ int i915_vma_pin_ww(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
+>  	if (err)
+>  		return err;
+>  
+> +	if (vma->obj) {
+> +		err = i915_gem_object_get_moving_fence(vma->obj, &moving);
+> +		if (err)
+> +			return err;
+> +	} else {
+> +		moving = NULL;
+> +	}
+> +
+>  	if (flags & PIN_GLOBAL)
+>  		wakeref = intel_runtime_pm_get(&vma->vm->i915->runtime_pm);
+>  
+> -	moving = vma->obj ? i915_gem_object_get_moving_fence(vma->obj) : NULL;
+>  	if (flags & vma->vm->bind_async_flags || moving) {
+>  		/* lock VM */
+>  		err = i915_vm_lock_objects(vma->vm, ww);
+> -- 
+> 2.25.1
+> 
 
-diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c b/drivers/gpu/drm/i915/display/intel_lvds.c
-index 73129d21f5e5..e8478161f8b9 100644
---- a/drivers/gpu/drm/i915/display/intel_lvds.c
-+++ b/drivers/gpu/drm/i915/display/intel_lvds.c
-@@ -968,7 +968,8 @@ void intel_lvds_init(struct drm_i915_private *dev_priv)
- 	intel_connector->edid = edid;
- 
- 	/* Try EDID first */
--	intel_panel_add_edid_fixed_modes(intel_connector, false);
-+	intel_panel_add_edid_fixed_modes(intel_connector,
-+					 dev_priv->vbt.drrs_type != DRRS_TYPE_NONE);
- 
- 	/* Failed to get EDID, what about VBT? */
- 	if (!intel_panel_preferred_fixed_mode(intel_connector))
 -- 
-2.34.1
-
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
