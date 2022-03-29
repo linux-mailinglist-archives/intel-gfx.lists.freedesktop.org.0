@@ -2,33 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF2CF4EA593
-	for <lists+intel-gfx@lfdr.de>; Tue, 29 Mar 2022 04:54:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CC0E4EA59C
+	for <lists+intel-gfx@lfdr.de>; Tue, 29 Mar 2022 04:59:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3352010E144;
-	Tue, 29 Mar 2022 02:54:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B39D110E02E;
+	Tue, 29 Mar 2022 02:59:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id CC0F110E133;
- Tue, 29 Mar 2022 02:54:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0A0CD10E02E;
+ Tue, 29 Mar 2022 02:59:28 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C8F0BA77A5;
- Tue, 29 Mar 2022 02:54:56 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 074E8AA0EA;
+ Tue, 29 Mar 2022 02:59:28 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matt Roper" <matthew.d.roper@intel.com>
-Date: Tue, 29 Mar 2022 02:54:56 -0000
-Message-ID: <164852249679.5797.15781583602724935365@emeril.freedesktop.org>
+Date: Tue, 29 Mar 2022 02:59:27 -0000
+Message-ID: <164852276799.5797.10892363939777514515@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20220329000822.1323195-1-matthew.d.roper@intel.com>
 In-Reply-To: <20220329000822.1323195-1-matthew.d.roper@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B1/2=5D_drm/i915/ats-m=3A_add_ATS-M_?=
- =?utf-8?q?platform_info?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIHNl?=
+ =?utf-8?q?ries_starting_with_=5B1/2=5D_drm/i915/ats-m=3A_add_ATS-M_platfo?=
+ =?utf-8?q?rm_info?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,21 +54,8 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-c04b9a2f4ad0 drm/i915/ats-m: add ATS-M platform info
-aa5b9f1e5976 topic/core-for-CI: Add ATS-M PCI IDs
--:63: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#63: FILE: include/drm/i915_pciids.h:717:
-+#define INTEL_ATS_M_IDS(info) \
-+	INTEL_ATS_M150_IDS(info), \
-+	INTEL_ATS_M75_IDS(info)
-
--:63: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'info' - possible side-effects?
-#63: FILE: include/drm/i915_pciids.h:717:
-+#define INTEL_ATS_M_IDS(info) \
-+	INTEL_ATS_M150_IDS(info), \
-+	INTEL_ATS_M75_IDS(info)
-
-total: 1 errors, 0 warnings, 1 checks, 40 lines checked
+$ make htmldocs 2>&1 > /dev/null | grep i915
+./drivers/gpu/drm/i915/display/intel_drrs.c:1: warning: 'intel_drrs_enable' not found
+./drivers/gpu/drm/i915/display/intel_drrs.c:1: warning: 'intel_drrs_disable' not found
 
 
