@@ -1,54 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 320404EBDEC
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Mar 2022 11:44:39 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91E984EBE19
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Mar 2022 11:53:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 61B5A10F247;
-	Wed, 30 Mar 2022 09:44:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8588910EE2A;
+	Wed, 30 Mar 2022 09:53:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E94BF10F247
- for <intel-gfx@lists.freedesktop.org>; Wed, 30 Mar 2022 09:44:36 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1149F10EE2A
+ for <intel-gfx@lists.freedesktop.org>; Wed, 30 Mar 2022 09:53:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1648633477; x=1680169477;
+ t=1648634006; x=1680170006;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=EL4u0s4U359QqJCQqVZWYw413ITjieKCcu6NeO7mAPU=;
- b=hW717Yw5XaDhpt0sEENieBFwyPFjVbD8BLVKseGYw6IMfYqKMovOxy9j
- 4dvZO29jXUz6KjgxmF1S2yxEn+r1lAptgTYV+srDRhkImZVRKO6wEitsC
- Mzxy0TzhRxOBv3Jkb++CAwc+I6o+cJkCLDp8sI1hsiyA8WvwmrRdwhNM2
- 7Hk8SXnKj4Mjixjd+INX/bRuEGVzGLkU5P3OTbWe468HpK4WgE+pv8TH+
- jiaosPncRsrqJUdby7pCK4NgXIWi9YjrMyZFM5KCTPEw3LlaGPTjyWV1H
- pEpNUGjLBecRpwO+m/h0xwZD/PSe5ebQiaqiCOkNx2vlqQf9A4Wursktp w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10301"; a="259474353"
-X-IronPort-AV: E=Sophos;i="5.90,222,1643702400"; d="scan'208";a="259474353"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Mar 2022 02:44:36 -0700
+ bh=N8LturUrJfRcPdznQpmrIxzRsSJuXGsrStM8+gu+av0=;
+ b=O4u+hV5Qy7st1pD0ZOPqGgfd6aeq65tVf+gX8GVQ5bsSIcIUwR5VZrAS
+ rcuaB/2SmDPULZYcylBKUyXVbFAnQ30SMdnkzyc1NUmOC9mf9CSOmyHQP
+ zWi3q4ZnirOatPA9JIxZ7D+oeIm7GYweOYz0bU1kOtlALTBT0V9E7vKFl
+ LbwWpoXCt+13gU7UyVzGDXUW16nhxFYvof3brZ8yv8eggUEjdi8tpzeO/
+ qx9ZmtY2GiAyCIuLAQIbS7td7c3VbgTchc3eDREQHnAIuMt1ZErDA9K0B
+ +pJzatLK1U8kTDxZHYzuCKphXWqhVsRhnA7YgfBywjhPs63vSQo3tQOXl Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10301"; a="258334434"
+X-IronPort-AV: E=Sophos;i="5.90,222,1643702400"; d="scan'208";a="258334434"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Mar 2022 02:53:25 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,222,1643702400"; d="scan'208";a="695049395"
+X-IronPort-AV: E=Sophos;i="5.90,222,1643702400"; d="scan'208";a="565468555"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.61])
- by fmsmga001.fm.intel.com with SMTP; 30 Mar 2022 02:44:33 -0700
+ by orsmga008.jf.intel.com with SMTP; 30 Mar 2022 02:53:23 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 30 Mar 2022 12:44:32 +0300
-Date: Wed, 30 Mar 2022 12:44:32 +0300
+ Wed, 30 Mar 2022 12:53:22 +0300
+Date: Wed, 30 Mar 2022 12:53:22 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Casey Bowman <casey.g.bowman@intel.com>
-Message-ID: <YkQmgGaJmWqaUnvq@intel.com>
-References: <20220329233518.1008877-1-casey.g.bowman@intel.com>
- <20220329233518.1008877-2-casey.g.bowman@intel.com>
+To: "Navare, Manasi" <manasi.d.navare@intel.com>
+Message-ID: <YkQokpy3cuXgXjnf@intel.com>
+References: <20220315233856.30255-1-manasi.d.navare@intel.com>
+ <YjODhPSLKXsOfWGv@intel.com>
+ <20220317190541.GA5382@labuser-Z97X-UD5H>
+ <YjOIiM+3GrKETf3a@intel.com>
+ <20220330000034.GA30948@labuser-Z97X-UD5H>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220329233518.1008877-2-casey.g.bowman@intel.com>
+In-Reply-To: <20220330000034.GA30948@labuser-Z97X-UD5H>
 X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v2 1/2] drm/i915/gt: Split intel-gtt
- functions by arch
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display/: Refactor hsw_crtc_enable
+ for bigjoiner cleanup
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,57 +64,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: thomas.hellstrom@linux.intel.com, intel-gfx@lists.freedesktop.org,
- lucas.demarchi@intel.com, chris@chris-wilson.co.uk
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 29, 2022 at 04:35:17PM -0700, Casey Bowman wrote:
-> @@ -1208,11 +576,11 @@ static int ggtt_probe_hw(struct i915_ggtt *ggtt, struct intel_gt *gt)
->  	dma_resv_init(&ggtt->vm._resv);
->  
->  	if (GRAPHICS_VER(i915) <= 5)
-> -		ret = i915_gmch_probe(ggtt);
-> +		ret = intel_gt_gmch_gen5_probe(ggtt);
+On Tue, Mar 29, 2022 at 05:00:39PM -0700, Navare, Manasi wrote:
+> Hi Ville,
+> 
+> I was looking at your suggestion of extracting the per pipe stuff out.
+> Currently in hsw_crtc_enable: the Only non per pipe stuff which gets enabled for the encoders is :
+> encoder specific is pre_pll_enable(), enable_shared_dpll, encoders_pre_enable and configure_cpu_transcoder() - All of this 
+> can be put in a function hsw_encoder_configure() or something that can still be called from with hsw_crtc_enable
 
-s/gen5/gen2/ to conform to the standard "name things based
-on the oldest thing" doctrine.
+I don't see a need to move that stuff anywhere. Just leave it
+in hsw_crtc_enable() IMO.
 
-Also s/intel_gt_gmch/intel_ggtt/ for all of these might be
-a good idea to actually convey what they do.
+> 
+> Then the remaining can go into a per pipe function that can be called for each slave pipe
 
->  	else if (GRAPHICS_VER(i915) < 8)
-> -		ret = gen6_gmch_probe(ggtt);
-> +		ret = intel_gt_gmch_gen6_probe(ggtt);
->  	else
-> -		ret = gen8_gmch_probe(ggtt);
-> +		ret = intel_gt_gmch_gen8_probe(ggtt);
->  	if (ret) {
->  		dma_resv_fini(&ggtt->vm._resv);
->  		return ret;
-<snip>
-> +/*
-> + * Certain Gen5 chipsets require idling the GPU before
-> + * unmapping anything from the GTT when VT-d is enabled.
-> + */
-> +static bool needs_idle_maps(struct drm_i915_private *i915)
-> +{
-> +	/*
-> +	 * Query intel_iommu to see if we need the workaround. Presumably that
-> +	 * was loaded first.
-> +	 */
-> +	if (!intel_vtd_active(i915))
-> +		return false;
-> +
-> +	if (GRAPHICS_VER(i915) == 5 && IS_MOBILE(i915))
-> +		return true;
-> +
-> +	if (GRAPHICS_VER(i915) == 12)
-> +		return true; /* XXX DMAR fault reason 7 */
+This is what I have been suggesting.
 
-This gen12 part is still dead code. Should just nuke it most likely,
-but someone should actually figure out where it came from, what it
-was supposed to fix, and did it ever actually work.
+But I think there's also some per-pipe stuff currently in the
+the encoder hooks, and some of that is only done for the master
+there whereaas the slave part I think are somewhere else. We
+should attempt to fix that as well so that every step is done
+in a consistent manner for every pipe be it master or slave.
 
 -- 
 Ville Syrjälä
