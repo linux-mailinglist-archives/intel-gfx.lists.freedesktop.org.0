@@ -1,33 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04ED84ECF8B
-	for <lists+intel-gfx@lfdr.de>; Thu, 31 Mar 2022 00:19:18 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19C7D4ECF93
+	for <lists+intel-gfx@lfdr.de>; Thu, 31 Mar 2022 00:23:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 344A810EB52;
-	Wed, 30 Mar 2022 22:19:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B4F310E088;
+	Wed, 30 Mar 2022 22:23:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id C980410E8EF;
- Wed, 30 Mar 2022 22:19:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2780A10E088;
+ Wed, 30 Mar 2022 22:23:19 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id CA44BA00E8;
- Wed, 30 Mar 2022 22:19:14 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 24368A008A;
+ Wed, 30 Mar 2022 22:23:19 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matt Atwood" <matthew.s.atwood@intel.com>
-Date: Wed, 30 Mar 2022 22:19:14 -0000
-Message-ID: <164867875482.8658.12172559584736819360@emeril.freedesktop.org>
+Date: Wed, 30 Mar 2022 22:23:19 -0000
+Message-ID: <164867899912.8657.17249985737169528520@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20220330215311.21849-1-matthew.s.atwood@intel.com>
 In-Reply-To: <20220330215311.21849-1-matthew.s.atwood@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?drm/i915/uapi=3A_Add_DRM=5FI915=5FQUERY=5FGEOMETRY=5FSUBSLICES_?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIGRy?=
+ =?utf-8?q?m/i915/uapi=3A_Add_DRM=5FI915=5FQUERY=5FGEOMETRY=5FSUBSLICES_?=
  =?utf-8?b?KHJldjQp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -54,8 +54,8 @@ State : warning
 
 == Summary ==
 
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
+$ make htmldocs 2>&1 > /dev/null | grep i915
+./drivers/gpu/drm/i915/display/intel_drrs.c:1: warning: 'intel_drrs_enable' not found
+./drivers/gpu/drm/i915/display/intel_drrs.c:1: warning: 'intel_drrs_disable' not found
 
 
