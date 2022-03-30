@@ -2,48 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE3224ED026
-	for <lists+intel-gfx@lfdr.de>; Thu, 31 Mar 2022 01:30:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 32BC74ED02C
+	for <lists+intel-gfx@lfdr.de>; Thu, 31 Mar 2022 01:31:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D0E4689C8F;
-	Wed, 30 Mar 2022 23:29:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 78AF610E20F;
+	Wed, 30 Mar 2022 23:31:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 214C310E245;
- Wed, 30 Mar 2022 23:29:18 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 97A3910E20F
+ for <intel-gfx@lists.freedesktop.org>; Wed, 30 Mar 2022 23:31:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1648682958; x=1680218958;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=PcQPznn2hYTtE4u2vihMNjjQ00nVhtIG0HWcEPnMErE=;
- b=PKQrdew11I+4m26efLTTbi9dK9oiCbcOBnReCl8ApvwrKEzscHiAEpfx
- 01SyCSm0N9O/0ZQJcCJQm0eCwQ0ObQwg7Z0exVBlMmXvUlhV1MeunzZ2/
- YvWM/RjmFP76dC4alp7eel0NjV2KhPAagk4rSlR95rjq1zjDZK2BzCqSF
- yWHtdxi5fNGytJ+1AiUrHuLoDzBwko7iatca80Bw8GcApJnhXB4CKyR6G
- 1J65m8C1FWVSY9lFQ6WjP0BY5gGHaM8eEtuFIDy7MAJeIx2FW63XU5rmZ
- dlC4c1ggSHANW7tRFjBcRwZJt0o9eg2uITrAtOPRiAljERYbsQFHiWKiN Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10302"; a="284582519"
-X-IronPort-AV: E=Sophos;i="5.90,223,1643702400"; d="scan'208";a="284582519"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Mar 2022 16:29:17 -0700
-X-IronPort-AV: E=Sophos;i="5.90,223,1643702400"; d="scan'208";a="547052036"
-Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Mar 2022 16:29:17 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
+ t=1648683103; x=1680219103;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=y8SdRDW6Ww+wjmZwNAWjCuSBOX22TQqPPbMbst9kGkM=;
+ b=h18/Jo/TkQQZO9A/IS3gTki5NyZKAfsKJcQDR8oTTZi8EPJX5/W3IcsP
+ 9VfP6LDUkght3hNGWwfw2RWwxNj/O1C9wraTUHChoVi2HWuOBY9fFqw5m
+ Fms7U+zBzsvncn5+3hs2h0ey5B+IysTlXnZRsYDULIQ4E2e/BjchaNNoH
+ JStcgZf2COvE40WGKxCg2AdFORSFoqjL1oalBo/iTK6TB7z/WfFgDlSJ8
+ MPbnr8n+BgMh6+cVPwSkXE3qe/+LshOFolQM00pb6du2pS37JJ9Cv1ZUL
+ MLiZ0UfWmPThLbi1VwnmsQsS9PquHxdWQXixEoQjfZUbZj7pphgzidcWu w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10302"; a="258500899"
+X-IronPort-AV: E=Sophos;i="5.90,223,1643702400"; d="scan'208";a="258500899"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Mar 2022 16:31:43 -0700
+X-IronPort-AV: E=Sophos;i="5.90,223,1643702400"; d="scan'208";a="554847503"
+Received: from mcbewley-mobl.ger.corp.intel.com (HELO
+ cgbowman-desk1.amr.corp.intel.com) ([10.209.48.13])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Mar 2022 16:31:42 -0700
+From: Casey Bowman <casey.g.bowman@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 30 Mar 2022 16:28:58 -0700
-Message-Id: <20220330232858.3204283-16-matthew.d.roper@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220330232858.3204283-1-matthew.d.roper@intel.com>
-References: <20220330232858.3204283-1-matthew.d.roper@intel.com>
+Date: Wed, 30 Mar 2022 16:31:36 -0700
+Message-Id: <20220330233138.1210992-1-casey.g.bowman@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 15/15] drm/i915/xehp: Eliminate shared/implicit
- steering
+Subject: [Intel-gfx] [PATCH v4 0/2] Splitting intel-gtt calls for non-x86
+ platforms
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,256 +55,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Cc: thomas.hellstrom@linux.intel.com, lucas.demarchi@intel.com,
+ chris@chris-wilson.co.uk
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Historically we've selected and programmed a single MCR group/instance
-ID at driver startup that will steer register accesses for GSLICE/DSS
-ranges to a non-terminated instance.  Any reads of these register ranges
-that don't need a specific unicast access won't bother explicitly
-resteering because the control register should already be set to a
-suitable value to receive a non-terminated response.  Any accesses to
-other types of MCR ranges (MSLICE, LNCF, etc.) that are also satisfied
-by the default steering target will also skip explicit re-steering at
-runtime.
+The intel-gtt module defines some functions used by i915, but they are
+only supported by x86 platforms. In order to bring i915 to a more
+arch-neutral state, we split out these functions and provide stubs in
+the case of non-x86 builds.
 
-This approach has worked well for many years and many platforms, but our
-hardware teams have recently advised us that they're not 100%
-comfortable with our strategy going forward.  They now suggest
-explicitly steering reads of any multicast register at the time the
-register access happens rather than relying on previously-programmed
-steering values.  In debug settings there could be external agents that
-have adjusted the default steering without the driver's knowledge (e.g.,
-we could do this manually with IGT's intel_reg today, although the
-hardware teams also have other tools they use for debug and analysis).
-In theory it would also be possible for bad firmware and/or incorrect
-handling of power management events to clobber/wipe the steering
-value we had previously initialized because they assume we'll be
-re-programming it anyway.
+There may be a better filename choice for the files used in splitting
+the calls, it's very much open to discussion.
 
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_gt_mcr.c      | 40 +++++++++
- drivers/gpu/drm/i915/gt/intel_gt_types.h    |  1 +
- drivers/gpu/drm/i915/gt/intel_workarounds.c | 98 ++++-----------------
- 3 files changed, 56 insertions(+), 83 deletions(-)
+v2: Refactored to move gmch functions, renamed exported functions
+v3: Added drm/i915_drm.h header
+v4: Rebased on drm-intel-next, resolved build and naming issues
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_mcr.c b/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
-index a9a9fa6881f2..787752367337 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
-@@ -35,6 +35,7 @@
-  */
- 
- static const char * const intel_steering_types[] = {
-+	"GSLICE/DSS",
- 	"L3BANK",
- 	"MSLICE",
- 	"LNCF",
-@@ -45,6 +46,35 @@ static const struct intel_mmio_range icl_l3bank_steering_table[] = {
- 	{},
- };
- 
-+static const struct intel_mmio_range xehpsdv_dss_steering_table[] = {
-+	{ 0x005200, 0x0052FF },
-+	{ 0x005400, 0x007FFF },
-+	{ 0x008140, 0x00815F },
-+	{ 0x008D00, 0x008DFF },
-+	{ 0x0094D0, 0x00955F },
-+	{ 0x009680, 0x0096FF },
-+	{ 0x00DC00, 0x00DCFF },
-+	{ 0x00DE80, 0x00E8FF },
-+	{ 0x017000, 0x017FFF },
-+	{ 0x024A00, 0x024A7F },
-+	{},
-+};
-+
-+static const struct intel_mmio_range dg2_dss_steering_table[] = {
-+	{ 0x005200, 0x0052FF },
-+	{ 0x005400, 0x007FFF },
-+	{ 0x008140, 0x00815F },
-+	{ 0x008D00, 0x008DFF },
-+	{ 0x0094D0, 0x00955F },
-+	{ 0x009680, 0x0096FF },
-+	{ 0x00D800, 0x00D87F },
-+	{ 0x00DC00, 0x00DCFF },
-+	{ 0x00DE80, 0x00E8FF },
-+	{ 0x017000, 0x017FFF },
-+	{ 0x024A00, 0x024A7F },
-+	{},
-+};
-+
- static const struct intel_mmio_range xehpsdv_mslice_steering_table[] = {
- 	{ 0x004000, 0x004AFF },
- 	{ 0x00C800, 0x00CFFF },
-@@ -87,9 +117,11 @@ void intel_gt_mcr_init(struct intel_gt *gt)
- 			 GEN12_MEML3_EN_MASK);
- 
- 	if (IS_DG2(i915)) {
-+		gt->steering_table[DSS] = dg2_dss_steering_table;
- 		gt->steering_table[MSLICE] = xehpsdv_mslice_steering_table;
- 		gt->steering_table[LNCF] = dg2_lncf_steering_table;
- 	} else if (IS_XEHPSDV(i915)) {
-+		gt->steering_table[DSS] = xehpsdv_dss_steering_table;
- 		gt->steering_table[MSLICE] = xehpsdv_mslice_steering_table;
- 		gt->steering_table[LNCF] = xehpsdv_lncf_steering_table;
- 	} else if (GRAPHICS_VER(i915) >= 11 &&
-@@ -317,7 +349,15 @@ static void get_valid_steering(struct intel_gt *gt,
- 			       enum intel_steering_type type,
- 			       u8 *group, u8 *instance)
- {
-+	u32 dssmask = intel_sseu_get_subslices(&gt->info.sseu, 0);
-+
- 	switch (type) {
-+	case DSS:
-+		drm_WARN_ON(&gt->i915->drm, dssmask == 0);
-+
-+		*group = __ffs(dssmask) / GEN_DSS_PER_GSLICE;
-+		*instance = __ffs(dssmask) % GEN_DSS_PER_GSLICE;
-+		break;
- 	case L3BANK:
- 		GEM_DEBUG_WARN_ON(!gt->info.l3bank_mask); /* should be impossible! */
- 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_types.h b/drivers/gpu/drm/i915/gt/intel_gt_types.h
-index 937b2e1a305e..b77bbaac7622 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_types.h
-@@ -54,6 +54,7 @@ struct intel_mmio_range {
-  * are listed here.
-  */
- enum intel_steering_type {
-+	DSS,
- 	L3BANK,
- 	MSLICE,
- 	LNCF,
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index 818ba71f4909..2486c6aa9d9d 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -1160,87 +1160,6 @@ icl_wa_init_mcr(struct intel_gt *gt, struct i915_wa_list *wal)
- 	__add_mcr_wa(gt, wal, slice, subslice);
- }
- 
--static void
--xehp_init_mcr(struct intel_gt *gt, struct i915_wa_list *wal)
--{
--	const struct sseu_dev_info *sseu = &gt->info.sseu;
--	unsigned long slice, subslice = 0, slice_mask = 0;
--	u64 dss_mask = 0;
--	u32 lncf_mask = 0;
--	int i;
--
--	/*
--	 * On Xe_HP the steering increases in complexity. There are now several
--	 * more units that require steering and we're not guaranteed to be able
--	 * to find a common setting for all of them. These are:
--	 * - GSLICE (fusable)
--	 * - DSS (sub-unit within gslice; fusable)
--	 * - L3 Bank (fusable)
--	 * - MSLICE (fusable)
--	 * - LNCF (sub-unit within mslice; always present if mslice is present)
--	 *
--	 * We'll do our default/implicit steering based on GSLICE (in the
--	 * sliceid field) and DSS (in the subsliceid field).  If we can
--	 * find overlap between the valid MSLICE and/or LNCF values with
--	 * a suitable GSLICE, then we can just re-use the default value and
--	 * skip and explicit steering at runtime.
--	 *
--	 * We only need to look for overlap between GSLICE/MSLICE/LNCF to find
--	 * a valid sliceid value.  DSS steering is the only type of steering
--	 * that utilizes the 'subsliceid' bits.
--	 *
--	 * Also note that, even though the steering domain is called "GSlice"
--	 * and it is encoded in the register using the gslice format, the spec
--	 * says that the combined (geometry | compute) fuse should be used to
--	 * select the steering.
--	 */
--
--	/* Find the potential gslice candidates */
--	dss_mask = intel_sseu_get_subslices(sseu, 0);
--	slice_mask = intel_slicemask_from_dssmask(dss_mask, GEN_DSS_PER_GSLICE);
--
--	/*
--	 * Find the potential LNCF candidates.  Either LNCF within a valid
--	 * mslice is fine.
--	 */
--	for_each_set_bit(i, &gt->info.mslice_mask, GEN12_MAX_MSLICES)
--		lncf_mask |= (0x3 << (i * 2));
--
--	/*
--	 * Are there any sliceid values that work for both GSLICE and LNCF
--	 * steering?
--	 */
--	if (slice_mask & lncf_mask) {
--		slice_mask &= lncf_mask;
--		gt->steering_table[LNCF] = NULL;
--	}
--
--	/* How about sliceid values that also work for MSLICE steering? */
--	if (slice_mask & gt->info.mslice_mask) {
--		slice_mask &= gt->info.mslice_mask;
--		gt->steering_table[MSLICE] = NULL;
--	}
--
--	slice = __ffs(slice_mask);
--	subslice = __ffs(dss_mask >> (slice * GEN_DSS_PER_GSLICE));
--	WARN_ON(subslice > GEN_DSS_PER_GSLICE);
--	WARN_ON(dss_mask >> (slice * GEN_DSS_PER_GSLICE) == 0);
--
--	__add_mcr_wa(gt, wal, slice, subslice);
--
--	/*
--	 * SQIDI ranges are special because they use different steering
--	 * registers than everything else we work with.  On XeHP SDV and
--	 * DG2-G10, any value in the steering registers will work fine since
--	 * all instances are present, but DG2-G11 only has SQIDI instances at
--	 * ID's 2 and 3, so we need to steer to one of those.  For simplicity
--	 * we'll just steer to a hardcoded "2" since that value will work
--	 * everywhere.
--	 */
--	__set_mcr_steering(wal, MCFG_MCR_SELECTOR, 0, 2);
--	__set_mcr_steering(wal, SF_MCR_SELECTOR, 0, 2);
--}
--
- static void
- icl_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wal)
- {
-@@ -1388,8 +1307,9 @@ static void
- xehpsdv_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wal)
- {
- 	struct drm_i915_private *i915 = gt->i915;
-+	struct drm_printer p = drm_debug_printer("MCR Steering:");
- 
--	xehp_init_mcr(gt, wal);
-+	intel_gt_mcr_report_steering(&p, gt, false);
- 
- 	/* Wa_1409757795:xehpsdv */
- 	wa_mcr_write_or(wal, SCCGCTL94DC, CG3DDISURB);
-@@ -1441,10 +1361,22 @@ xehpsdv_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wal)
- static void
- dg2_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wal)
- {
-+	struct drm_printer p = drm_debug_printer("MCR Steering:");
- 	struct intel_engine_cs *engine;
- 	int id;
- 
--	xehp_init_mcr(gt, wal);
-+	intel_gt_mcr_report_steering(&p, gt, false);
-+
-+	/*
-+	 * SQIDI ranges are special because they use different steering
-+	 * registers than everything else we work with.  On DG2-G10, any value
-+	 * in the steering registers will work fine since all instances are
-+	 * present, but DG2-G11 only has SQIDI instances at ID's 2 and 3, so we
-+	 * need to steer to one of those.  For simplicity we'll just steer to a
-+	 * hardcoded "2" since that value will work everywhere.
-+	 */
-+	__set_mcr_steering(wal, MCFG_MCR_SELECTOR, 0, 2);
-+	__set_mcr_steering(wal, SF_MCR_SELECTOR, 0, 2);
- 
- 	/* Wa_14011060649:dg2 */
- 	wa_14011060649(gt, wal);
+Casey Bowman (2):
+  drm/i915/gt: Split intel-gtt functions by arch
+  drm/i915: Require INTEL_GTT to depend on X86
+
+ drivers/gpu/drm/i915/Kconfig            |   2 +-
+ drivers/gpu/drm/i915/Makefile           |   2 +
+ drivers/gpu/drm/i915/gt/intel_ggtt.c    | 664 +-----------------------
+ drivers/gpu/drm/i915/gt/intel_gt.c      |   4 +-
+ drivers/gpu/drm/i915/gt/intel_gt.h      |   9 +
+ drivers/gpu/drm/i915/gt/intel_gt_gmch.c | 654 +++++++++++++++++++++++
+ drivers/gpu/drm/i915/gt/intel_gt_gmch.h |  46 ++
+ drivers/gpu/drm/i915/gt/intel_gtt.h     |   9 +
+ 8 files changed, 737 insertions(+), 653 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/gt/intel_gt_gmch.c
+ create mode 100644 drivers/gpu/drm/i915/gt/intel_gt_gmch.h
+
 -- 
-2.34.1
+2.25.1
 
