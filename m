@@ -1,48 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C7D24ECE4B
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Mar 2022 22:58:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 235724ECE4C
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Mar 2022 22:59:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B15B10E97F;
-	Wed, 30 Mar 2022 20:58:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5255A10E95D;
+	Wed, 30 Mar 2022 20:58:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3600D10E97B
- for <intel-gfx@lists.freedesktop.org>; Wed, 30 Mar 2022 20:58:47 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C984510E95D
+ for <intel-gfx@lists.freedesktop.org>; Wed, 30 Mar 2022 20:58:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1648673927; x=1680209927;
+ t=1648673926; x=1680209926;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=QaUz3RcoVDSGW/vqM4OvkIs1s8ny9E1MdQDXN4wCUzM=;
- b=O9R13V4IGaoHsdkR5/FUEzXeriFEWl9KEP6Enup4aJjIjBhe9O+Uyt1y
- zi1IzCHVUkeiBoc7fPTfhORO1XdqPLnubEUZhlXXKIFluavah5JkD4it5
- OMkPV0KKUGSsYowTGRKOETk3MPOOdEqWeGsATDt1NUWfVDKDjx4cQBck6
- n9FNAcVO+nipIHIxiayebnPHmqeMogS8QLVlUNYqdy0uVziu3cEiZ6DvL
- 92o2U7Es61T/oT9JAf6XHLGtKRKCzS/vWhlzzMTKLPUBTxtBK4Vyp3VnH
- xhthcNPYNZTtuPpBKGF6L6m0/K+qJm3TFcJTBTJvqF3xLj4PmKtvcpGsH g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10302"; a="258476273"
-X-IronPort-AV: E=Sophos;i="5.90,223,1643702400"; d="scan'208";a="258476273"
+ bh=XO8gDRo8i63LAo8uO7AyucC36Apq6wsjjat4Oop49DE=;
+ b=EF5Qb0Egy9IqQyW5o6gKKGw4mT00amz68P7uAI3qebQc7Ss3LQ0wXdOw
+ EcsJ5/TZXiZi8OcK+7/OmJ/Hu/s9CUlApVKs2GmnSQsH7pI6IMhardGer
+ r5+WbLze7Mm1+1vl4qmRCKljITvxa/vET/XLgVBrWM8/zBiKPTVuD/CxV
+ F71TC4XHB3koMpw+ujIvTfDBMT65smEwG5zL6MEOHr5hCu4iqG1eIWTCy
+ JUhDKJ9aZWwlGFmFiuH2K+t9I96Gxmy2JEKANDQtdTM5di9krmaaHux34
+ I4cVI1cB2Cknli/l0mcZi1jUblI7Kc2kil1nLLNJcExY10YRFkgqz3H04 g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10302"; a="259829076"
+X-IronPort-AV: E=Sophos;i="5.90,223,1643702400"; d="scan'208";a="259829076"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  30 Mar 2022 13:58:46 -0700
-X-IronPort-AV: E=Sophos;i="5.90,223,1643702400"; d="scan'208";a="565814547"
+X-IronPort-AV: E=Sophos;i="5.90,223,1643702400"; d="scan'208";a="565814557"
 Received: from valcore-skull-1.fm.intel.com ([10.1.27.19])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  30 Mar 2022 13:58:44 -0700
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 30 Mar 2022 13:53:29 -0700
-Message-Id: <20220330205334.3016587-2-daniele.ceraolospurio@intel.com>
+Date: Wed, 30 Mar 2022 13:53:30 -0700
+Message-Id: <20220330205334.3016587-3-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220330205334.3016587-1-daniele.ceraolospurio@intel.com>
 References: <20220330205334.3016587-1-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [CI 1/6] drm/i915/gsc: add gsc as a mei auxiliary device
+Subject: [Intel-gfx] [CI 2/6] mei: add support for graphics system
+ controller (gsc) devices
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,549 +62,354 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Tomas Winkler <tomas.winkler@intel.com>
 
-GSC is a graphics system controller, it provides
-a chassis controller for graphics discrete cards.
+GSC is a graphics system controller, based on CSE, it provides
+a chassis controller for graphics discrete cards, as well as it
+supports media protection on selected devices.
 
-There are two MEI interfaces in GSC: HECI1 and HECI2.
+mei_gsc binds to a auxiliary devices exposed by Intel discrete
+driver i915.
 
-Both interfaces are on the BAR0 at offsets 0x00258000 and 0x00259000.
-GSC is a GT Engine (class 4: instance 6). HECI1 interrupt is signaled
-via bit 15 and HECI2 via bit 14 in the interrupt register.
-
-This patch exports GSC as auxiliary device for mei driver to bind to
-for HECI2 interface and prepares for HECI1 interface as
-it will follow up soon.
-
-CC: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Tomas Winkler <tomas.winkler@intel.com>
-Signed-off-by: Vitaly Lubart <vitaly.lubart@intel.com>
 Signed-off-by: Alexander Usyskin <alexander.usyskin@intel.com>
-Acked-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Signed-off-by: Tomas Winkler <tomas.winkler@intel.com>
 Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 ---
- MAINTAINERS                              |   1 +
- drivers/gpu/drm/i915/Kconfig             |   1 +
- drivers/gpu/drm/i915/Makefile            |   3 +
- drivers/gpu/drm/i915/gt/intel_gsc.c      | 204 +++++++++++++++++++++++
- drivers/gpu/drm/i915/gt/intel_gsc.h      |  37 ++++
- drivers/gpu/drm/i915/gt/intel_gt.c       |   3 +
- drivers/gpu/drm/i915/gt/intel_gt.h       |   5 +
- drivers/gpu/drm/i915/gt/intel_gt_irq.c   |  13 ++
- drivers/gpu/drm/i915/gt/intel_gt_regs.h  |   1 +
- drivers/gpu/drm/i915/gt/intel_gt_types.h |   2 +
- drivers/gpu/drm/i915/i915_drv.h          |   8 +
- drivers/gpu/drm/i915/i915_pci.c          |   3 +-
- drivers/gpu/drm/i915/i915_reg.h          |   2 +
- drivers/gpu/drm/i915/intel_device_info.h |   2 +
- include/linux/mei_aux.h                  |  19 +++
- 15 files changed, 303 insertions(+), 1 deletion(-)
- create mode 100644 drivers/gpu/drm/i915/gt/intel_gsc.c
- create mode 100644 drivers/gpu/drm/i915/gt/intel_gsc.h
- create mode 100644 include/linux/mei_aux.h
+ drivers/misc/mei/Kconfig  |  14 +++
+ drivers/misc/mei/Makefile |   3 +
+ drivers/misc/mei/gsc-me.c | 194 ++++++++++++++++++++++++++++++++++++++
+ drivers/misc/mei/hw-me.c  |  27 +++++-
+ drivers/misc/mei/hw-me.h  |   2 +
+ 5 files changed, 238 insertions(+), 2 deletions(-)
+ create mode 100644 drivers/misc/mei/gsc-me.c
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 10476280acb84..b234ed14aaa0c 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -9833,6 +9833,7 @@ S:	Supported
- F:	Documentation/driver-api/mei/*
- F:	drivers/misc/mei/
- F:	drivers/watchdog/mei_wdt.c
-+F:	include/linux/mei_aux.h
- F:	include/linux/mei_cl_bus.h
- F:	include/uapi/linux/mei.h
- F:	samples/mei/*
-diff --git a/drivers/gpu/drm/i915/Kconfig b/drivers/gpu/drm/i915/Kconfig
-index 98c5450b8eacc..2660a85175d90 100644
---- a/drivers/gpu/drm/i915/Kconfig
-+++ b/drivers/gpu/drm/i915/Kconfig
-@@ -30,6 +30,7 @@ config DRM_I915
- 	select VMAP_PFN
- 	select DRM_TTM
- 	select DRM_BUDDY
-+	select AUXILIARY_BUS
- 	help
- 	  Choose this option if you have a system that has "Intel Graphics
- 	  Media Accelerator" or "HD Graphics" integrated graphics,
-diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-index c1d5540f60529..fdfa480370f45 100644
---- a/drivers/gpu/drm/i915/Makefile
-+++ b/drivers/gpu/drm/i915/Makefile
-@@ -200,6 +200,9 @@ i915-y += gt/uc/intel_uc.o \
- 	  gt/uc/intel_huc_debugfs.o \
- 	  gt/uc/intel_huc_fw.o
+diff --git a/drivers/misc/mei/Kconfig b/drivers/misc/mei/Kconfig
+index 0e0bcd0da8522..d21486d69df27 100644
+--- a/drivers/misc/mei/Kconfig
++++ b/drivers/misc/mei/Kconfig
+@@ -46,6 +46,20 @@ config INTEL_MEI_TXE
+ 	  Supported SoCs:
+ 	  Intel Bay Trail
  
-+# graphics system controller (GSC) support
-+i915-y += gt/intel_gsc.o
++config INTEL_MEI_GSC
++	tristate "Intel MEI GSC embedded device"
++	depends on INTEL_MEI
++	depends on INTEL_MEI_ME
++	depends on X86 && PCI
++	depends on DRM_I915
++	help
++	  Intel auxiliary driver for GSC devices embedded in Intel graphics devices.
 +
- # modesetting core code
- i915-y += \
- 	display/hsw_ips.o \
-diff --git a/drivers/gpu/drm/i915/gt/intel_gsc.c b/drivers/gpu/drm/i915/gt/intel_gsc.c
++	  An MEI device here called GSC can be embedded in an
++	  Intel graphics devices, to support a range of chassis
++	  tasks such as graphics card firmware update and security
++	  tasks.
++
+ source "drivers/misc/mei/hdcp/Kconfig"
+ source "drivers/misc/mei/pxp/Kconfig"
+ 
+diff --git a/drivers/misc/mei/Makefile b/drivers/misc/mei/Makefile
+index d8e5165917f20..fb740d7549008 100644
+--- a/drivers/misc/mei/Makefile
++++ b/drivers/misc/mei/Makefile
+@@ -18,6 +18,9 @@ obj-$(CONFIG_INTEL_MEI_ME) += mei-me.o
+ mei-me-objs := pci-me.o
+ mei-me-objs += hw-me.o
+ 
++obj-$(CONFIG_INTEL_MEI_GSC) += mei-gsc.o
++mei-gsc-objs := gsc-me.o
++
+ obj-$(CONFIG_INTEL_MEI_TXE) += mei-txe.o
+ mei-txe-objs := pci-txe.o
+ mei-txe-objs += hw-txe.o
+diff --git a/drivers/misc/mei/gsc-me.c b/drivers/misc/mei/gsc-me.c
 new file mode 100644
-index 0000000000000..21e860861f0b5
+index 0000000000000..64b02adf3149d
 --- /dev/null
-+++ b/drivers/gpu/drm/i915/gt/intel_gsc.c
-@@ -0,0 +1,204 @@
-+// SPDX-License-Identifier: MIT
++++ b/drivers/misc/mei/gsc-me.c
+@@ -0,0 +1,194 @@
++// SPDX-License-Identifier: GPL-2.0
 +/*
 + * Copyright(c) 2019-2022, Intel Corporation. All rights reserved.
++ *
++ * Intel Management Engine Interface (Intel MEI) Linux driver
 + */
 +
-+#include <linux/irq.h>
++#include <linux/module.h>
 +#include <linux/mei_aux.h>
-+#include "i915_drv.h"
-+#include "i915_reg.h"
-+#include "gt/intel_gsc.h"
-+#include "gt/intel_gt.h"
++#include <linux/device.h>
++#include <linux/irqreturn.h>
++#include <linux/jiffies.h>
++#include <linux/ktime.h>
++#include <linux/delay.h>
++#include <linux/pm_runtime.h>
 +
-+#define GSC_BAR_LENGTH  0x00000FFC
++#include "mei_dev.h"
++#include "hw-me.h"
++#include "hw-me-regs.h"
 +
-+static void gsc_irq_mask(struct irq_data *d)
++#include "mei-trace.h"
++
++#define MEI_GSC_RPM_TIMEOUT 500
++
++static int mei_gsc_read_hfs(const struct mei_device *dev, int where, u32 *val)
 +{
-+	/* generic irq handling */
++	struct mei_me_hw *hw = to_me_hw(dev);
++
++	*val = ioread32(hw->mem_addr + where + 0xC00);
++
++	return 0;
 +}
 +
-+static void gsc_irq_unmask(struct irq_data *d)
++static int mei_gsc_probe(struct auxiliary_device *aux_dev,
++			 const struct auxiliary_device_id *aux_dev_id)
 +{
-+	/* generic irq handling */
++	struct mei_aux_device *adev = auxiliary_dev_to_mei_aux_dev(aux_dev);
++	struct mei_device *dev;
++	struct mei_me_hw *hw;
++	struct device *device;
++	const struct mei_cfg *cfg;
++	int ret;
++
++	cfg = mei_me_get_cfg(aux_dev_id->driver_data);
++	if (!cfg)
++		return -ENODEV;
++
++	device = &aux_dev->dev;
++
++	dev = mei_me_dev_init(device, cfg);
++	if (IS_ERR(dev)) {
++		ret = PTR_ERR(dev);
++		goto err;
++	}
++
++	hw = to_me_hw(dev);
++	hw->mem_addr = devm_ioremap_resource(device, &adev->bar);
++	if (IS_ERR(hw->mem_addr)) {
++		dev_err(device, "mmio not mapped\n");
++		ret = PTR_ERR(hw->mem_addr);
++		goto err;
++	}
++
++	hw->irq = adev->irq;
++	hw->read_fws = mei_gsc_read_hfs;
++
++	dev_set_drvdata(device, dev);
++
++	ret = devm_request_threaded_irq(device, hw->irq,
++					mei_me_irq_quick_handler,
++					mei_me_irq_thread_handler,
++					IRQF_ONESHOT, KBUILD_MODNAME, dev);
++	if (ret) {
++		dev_err(device, "irq register failed %d\n", ret);
++		goto err;
++	}
++
++	pm_runtime_get_noresume(device);
++	pm_runtime_set_active(device);
++	pm_runtime_enable(device);
++
++	if (mei_start(dev)) {
++		dev_err(device, "init hw failure.\n");
++		ret = -ENODEV;
++		goto irq_err;
++	}
++
++	pm_runtime_set_autosuspend_delay(device, MEI_GSC_RPM_TIMEOUT);
++	pm_runtime_use_autosuspend(device);
++
++	ret = mei_register(dev, device);
++	if (ret)
++		goto register_err;
++
++	pm_runtime_put_noidle(device);
++	return 0;
++
++register_err:
++	mei_stop(dev);
++irq_err:
++	devm_free_irq(device, hw->irq, dev);
++
++err:
++	dev_err(device, "probe failed: %d\n", ret);
++	dev_set_drvdata(device, NULL);
++	return ret;
 +}
 +
-+static struct irq_chip gsc_irq_chip = {
-+	.name = "gsc_irq_chip",
-+	.irq_mask = gsc_irq_mask,
-+	.irq_unmask = gsc_irq_unmask,
-+};
-+
-+static int gsc_irq_init(int irq)
++static void mei_gsc_remove(struct auxiliary_device *aux_dev)
 +{
-+	irq_set_chip_and_handler_name(irq, &gsc_irq_chip,
-+				      handle_simple_irq, "gsc_irq_handler");
++	struct mei_device *dev;
++	struct mei_me_hw *hw;
 +
-+	return irq_set_chip_data(irq, NULL);
++	dev = dev_get_drvdata(&aux_dev->dev);
++	if (!dev)
++		return;
++
++	hw = to_me_hw(dev);
++
++	mei_stop(dev);
++
++	mei_deregister(dev);
++
++	pm_runtime_disable(&aux_dev->dev);
++
++	mei_disable_interrupts(dev);
++	devm_free_irq(&aux_dev->dev, hw->irq, dev);
 +}
 +
-+struct gsc_def {
-+	const char *name;
-+	unsigned long bar;
-+	size_t bar_size;
-+};
++static int __maybe_unused mei_gsc_pm_suspend(struct device *device)
++{
++	struct mei_device *dev = dev_get_drvdata(device);
 +
-+/* gsc resources and definitions (HECI1 and HECI2) */
-+static const struct gsc_def gsc_def_dg1[] = {
++	if (!dev)
++		return -ENODEV;
++
++	mei_stop(dev);
++
++	mei_disable_interrupts(dev);
++
++	return 0;
++}
++
++static int __maybe_unused mei_gsc_pm_resume(struct device *device)
++{
++	struct mei_device *dev = dev_get_drvdata(device);
++	int err;
++
++	if (!dev)
++		return -ENODEV;
++
++	err = mei_restart(dev);
++	if (err)
++		return err;
++
++	/* Start timer if stopped in suspend */
++	schedule_delayed_work(&dev->timer_work, HZ);
++
++	return 0;
++}
++
++static SIMPLE_DEV_PM_OPS(mei_gsc_pm_ops, mei_gsc_pm_suspend, mei_gsc_pm_resume);
++
++static const struct auxiliary_device_id mei_gsc_id_table[] = {
 +	{
-+		/* HECI1 not yet implemented. */
++		.name = "i915.mei-gsc",
++		.driver_data = MEI_ME_GSC_CFG,
++
 +	},
 +	{
-+		.name = "mei-gscfi",
-+		.bar = DG1_GSC_HECI2_BASE,
-+		.bar_size = GSC_BAR_LENGTH,
++		.name = "i915.mei-gscfi",
++		.driver_data = MEI_ME_GSCFI_CFG,
++	},
++	{
++		/* sentinel */
 +	}
 +};
++MODULE_DEVICE_TABLE(auxiliary, mei_gsc_id_table);
 +
-+static void gsc_release_dev(struct device *dev)
-+{
-+	struct auxiliary_device *aux_dev = to_auxiliary_dev(dev);
-+	struct mei_aux_device *adev = auxiliary_dev_to_mei_aux_dev(aux_dev);
-+
-+	kfree(adev);
-+}
-+
-+static void gsc_destroy_one(struct intel_gsc_intf *intf)
-+{
-+	if (intf->adev) {
-+		auxiliary_device_delete(&intf->adev->aux_dev);
-+		auxiliary_device_uninit(&intf->adev->aux_dev);
-+		intf->adev = NULL;
-+	}
-+	if (intf->irq >= 0)
-+		irq_free_desc(intf->irq);
-+	intf->irq = -1;
-+}
-+
-+static void gsc_init_one(struct drm_i915_private *i915,
-+			 struct intel_gsc_intf *intf,
-+			 unsigned int intf_id)
-+{
-+	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
-+	struct mei_aux_device *adev;
-+	struct auxiliary_device *aux_dev;
-+	const struct gsc_def *def;
-+	int ret;
-+
-+	intf->irq = -1;
-+	intf->id = intf_id;
-+
-+	if (intf_id == 0 && !HAS_HECI_PXP(i915))
-+		return;
-+
-+	def = &gsc_def_dg1[intf_id];
-+
-+	if (!def->name) {
-+		drm_warn_once(&i915->drm, "HECI%d is not implemented!\n", intf_id + 1);
-+		return;
-+	}
-+
-+	intf->irq = irq_alloc_desc(0);
-+	if (intf->irq < 0) {
-+		drm_err(&i915->drm, "gsc irq error %d\n", intf->irq);
-+		return;
-+	}
-+
-+	ret = gsc_irq_init(intf->irq);
-+	if (ret < 0) {
-+		drm_err(&i915->drm, "gsc irq init failed %d\n", ret);
-+		goto fail;
-+	}
-+
-+	adev = kzalloc(sizeof(*adev), GFP_KERNEL);
-+	if (!adev)
-+		goto fail;
-+
-+	adev->irq = intf->irq;
-+	adev->bar.parent = &pdev->resource[0];
-+	adev->bar.start = def->bar + pdev->resource[0].start;
-+	adev->bar.end = adev->bar.start + def->bar_size - 1;
-+	adev->bar.flags = IORESOURCE_MEM;
-+	adev->bar.desc = IORES_DESC_NONE;
-+
-+	aux_dev = &adev->aux_dev;
-+	aux_dev->name = def->name;
-+	aux_dev->id = (pci_domain_nr(pdev->bus) << 16) |
-+		      PCI_DEVID(pdev->bus->number, pdev->devfn);
-+	aux_dev->dev.parent = &pdev->dev;
-+	aux_dev->dev.release = gsc_release_dev;
-+
-+	ret = auxiliary_device_init(aux_dev);
-+	if (ret < 0) {
-+		drm_err(&i915->drm, "gsc aux init failed %d\n", ret);
-+		kfree(adev);
-+		goto fail;
-+	}
-+
-+	ret = auxiliary_device_add(aux_dev);
-+	if (ret < 0) {
-+		drm_err(&i915->drm, "gsc aux add failed %d\n", ret);
-+		/* adev will be freed with the put_device() and .release sequence */
-+		auxiliary_device_uninit(aux_dev);
-+		goto fail;
-+	}
-+	intf->adev = adev;
-+
-+	return;
-+fail:
-+	gsc_destroy_one(intf);
-+}
-+
-+static void gsc_irq_handler(struct intel_gt *gt, unsigned int intf_id)
-+{
-+	int ret;
-+
-+	if (intf_id >= INTEL_GSC_NUM_INTERFACES) {
-+		drm_warn_once(&gt->i915->drm, "GSC irq: intf_id %d is out of range", intf_id);
-+		return;
-+	}
-+
-+	if (!HAS_HECI_GSC(gt->i915)) {
-+		drm_warn_once(&gt->i915->drm, "GSC irq: not supported");
-+		return;
-+	}
-+
-+	if (gt->gsc.intf[intf_id].irq < 0) {
-+		drm_err_ratelimited(&gt->i915->drm, "GSC irq: irq not set");
-+		return;
-+	}
-+
-+	ret = generic_handle_irq(gt->gsc.intf[intf_id].irq);
-+	if (ret)
-+		drm_err_ratelimited(&gt->i915->drm, "error handling GSC irq: %d\n", ret);
-+}
-+
-+void intel_gsc_irq_handler(struct intel_gt *gt, u32 iir)
-+{
-+	if (iir & GSC_IRQ_INTF(0))
-+		gsc_irq_handler(gt, 0);
-+	if (iir & GSC_IRQ_INTF(1))
-+		gsc_irq_handler(gt, 1);
-+}
-+
-+void intel_gsc_init(struct intel_gsc *gsc, struct drm_i915_private *i915)
-+{
-+	unsigned int i;
-+
-+	if (!HAS_HECI_GSC(i915))
-+		return;
-+
-+	for (i = 0; i < INTEL_GSC_NUM_INTERFACES; i++)
-+		gsc_init_one(i915, &gsc->intf[i], i);
-+}
-+
-+void intel_gsc_fini(struct intel_gsc *gsc)
-+{
-+	struct intel_gt *gt = gsc_to_gt(gsc);
-+	unsigned int i;
-+
-+	if (!HAS_HECI_GSC(gt->i915))
-+		return;
-+
-+	for (i = 0; i < INTEL_GSC_NUM_INTERFACES; i++)
-+		gsc_destroy_one(&gsc->intf[i]);
-+}
-diff --git a/drivers/gpu/drm/i915/gt/intel_gsc.h b/drivers/gpu/drm/i915/gt/intel_gsc.h
-new file mode 100644
-index 0000000000000..68582f912b21a
---- /dev/null
-+++ b/drivers/gpu/drm/i915/gt/intel_gsc.h
-@@ -0,0 +1,37 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright(c) 2019-2022, Intel Corporation. All rights reserved.
-+ */
-+#ifndef __INTEL_GSC_DEV_H__
-+#define __INTEL_GSC_DEV_H__
-+
-+#include <linux/types.h>
-+
-+struct drm_i915_private;
-+struct intel_gt;
-+struct mei_aux_device;
-+
-+#define INTEL_GSC_NUM_INTERFACES 2
-+/*
-+ * The HECI1 bit corresponds to bit15 and HECI2 to bit14.
-+ * The reason for this is to allow growth for more interfaces in the future.
-+ */
-+#define GSC_IRQ_INTF(_x)  BIT(15 - (_x))
-+
-+/**
-+ * struct intel_gsc - graphics security controller
-+ * @intf : gsc interface
-+ */
-+struct intel_gsc {
-+	struct intel_gsc_intf {
-+		struct mei_aux_device *adev;
-+		int irq;
-+		unsigned int id;
-+	} intf[INTEL_GSC_NUM_INTERFACES];
++static struct auxiliary_driver mei_gsc_driver = {
++	.probe	= mei_gsc_probe,
++	.remove = mei_gsc_remove,
++	.driver = {
++		/* auxiliary_driver_register() sets .name to be the modname */
++		.pm = &mei_gsc_pm_ops,
++	},
++	.id_table = mei_gsc_id_table
 +};
++module_auxiliary_driver(mei_gsc_driver);
 +
-+void intel_gsc_init(struct intel_gsc *gsc, struct drm_i915_private *dev_priv);
-+void intel_gsc_fini(struct intel_gsc *gsc);
-+void intel_gsc_irq_handler(struct intel_gt *gt, u32 iir);
-+
-+#endif /* __INTEL_GSC_DEV_H__ */
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-index 5001a6168d566..665e78beae67e 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-@@ -456,6 +456,8 @@ void intel_gt_chipset_flush(struct intel_gt *gt)
- 
- void intel_gt_driver_register(struct intel_gt *gt)
- {
-+	intel_gsc_init(&gt->gsc, gt->i915);
-+
- 	intel_rps_driver_register(&gt->rps);
- 
- 	intel_gt_debugfs_register(gt);
-@@ -784,6 +786,7 @@ void intel_gt_driver_unregister(struct intel_gt *gt)
- 	intel_wakeref_t wakeref;
- 
- 	intel_rps_driver_unregister(&gt->rps);
-+	intel_gsc_fini(&gt->gsc);
- 
- 	intel_pxp_fini(&gt->pxp);
- 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt.h b/drivers/gpu/drm/i915/gt/intel_gt.h
-index e76168e10a21b..bd90d4ec20100 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt.h
-@@ -39,6 +39,11 @@ static inline struct intel_gt *huc_to_gt(struct intel_huc *huc)
- 	return container_of(huc, struct intel_gt, uc.huc);
++MODULE_AUTHOR("Intel Corporation");
++MODULE_ALIAS("auxiliary:i915.mei-gsc");
++MODULE_ALIAS("auxiliary:i915.mei-gscfi");
++MODULE_LICENSE("GPL v2");
+diff --git a/drivers/misc/mei/hw-me.c b/drivers/misc/mei/hw-me.c
+index d3a6c07286451..9748d14849a13 100644
+--- a/drivers/misc/mei/hw-me.c
++++ b/drivers/misc/mei/hw-me.c
+@@ -1226,6 +1226,7 @@ irqreturn_t mei_me_irq_quick_handler(int irq, void *dev_id)
+ 	me_intr_disable(dev, hcsr);
+ 	return IRQ_WAKE_THREAD;
  }
++EXPORT_SYMBOL_GPL(mei_me_irq_quick_handler);
  
-+static inline struct intel_gt *gsc_to_gt(struct intel_gsc *gsc)
-+{
-+	return container_of(gsc, struct intel_gt, gsc);
-+}
-+
- void intel_root_gt_init_early(struct drm_i915_private *i915);
- int intel_gt_assign_ggtt(struct intel_gt *gt);
- int intel_gt_init_mmio(struct intel_gt *gt);
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_irq.c b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
-index e443ac4c8059b..88b4becfcb175 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_irq.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
-@@ -68,6 +68,9 @@ gen11_other_irq_handler(struct intel_gt *gt, const u8 instance,
- 	if (instance == OTHER_KCR_INSTANCE)
- 		return intel_pxp_irq_handler(&gt->pxp, iir);
- 
-+	if (instance == OTHER_GSC_INSTANCE)
-+		return intel_gsc_irq_handler(gt, iir);
-+
- 	WARN_ONCE(1, "unhandled other interrupt instance=0x%x, iir=0x%x\n",
- 		  instance, iir);
+ /**
+  * mei_me_irq_thread_handler - function called after ISR to handle the interrupt
+@@ -1320,6 +1321,7 @@ irqreturn_t mei_me_irq_thread_handler(int irq, void *dev_id)
+ 	mutex_unlock(&dev->device_lock);
+ 	return IRQ_HANDLED;
  }
-@@ -184,6 +187,8 @@ void gen11_gt_irq_reset(struct intel_gt *gt)
- 	intel_uncore_write(uncore, GEN11_VCS_VECS_INTR_ENABLE,	  0);
- 	if (CCS_MASK(gt))
- 		intel_uncore_write(uncore, GEN12_CCS_RSVD_INTR_ENABLE, 0);
-+	if (HAS_HECI_GSC(gt->i915))
-+		intel_uncore_write(uncore, GEN11_GUNIT_CSME_INTR_ENABLE, 0);
++EXPORT_SYMBOL_GPL(mei_me_irq_thread_handler);
  
- 	/* Restore masks irqs on RCS, BCS, VCS and VECS engines. */
- 	intel_uncore_write(uncore, GEN11_RCS0_RSVD_INTR_MASK,	~0);
-@@ -201,6 +206,8 @@ void gen11_gt_irq_reset(struct intel_gt *gt)
- 		intel_uncore_write(uncore, GEN12_CCS0_CCS1_INTR_MASK, ~0);
- 	if (HAS_ENGINE(gt, CCS2) || HAS_ENGINE(gt, CCS3))
- 		intel_uncore_write(uncore, GEN12_CCS2_CCS3_INTR_MASK, ~0);
-+	if (HAS_HECI_GSC(gt->i915))
-+		intel_uncore_write(uncore, GEN11_GUNIT_CSME_INTR_MASK, ~0);
+ static const struct mei_hw_ops mei_me_hw_ops = {
  
- 	intel_uncore_write(uncore, GEN11_GPM_WGBOXPERF_INTR_ENABLE, 0);
- 	intel_uncore_write(uncore, GEN11_GPM_WGBOXPERF_INTR_MASK,  ~0);
-@@ -215,6 +222,7 @@ void gen11_gt_irq_postinstall(struct intel_gt *gt)
- {
- 	struct intel_uncore *uncore = gt->uncore;
- 	u32 irqs = GT_RENDER_USER_INTERRUPT;
-+	const u32 gsc_mask = GSC_IRQ_INTF(0) | GSC_IRQ_INTF(1);
- 	u32 dmask;
- 	u32 smask;
+@@ -1433,6 +1435,12 @@ static bool mei_me_fw_type_sps(const struct pci_dev *pdev)
+ #define MEI_CFG_KIND_ITOUCH                     \
+ 	.kind = "itouch"
  
-@@ -233,6 +241,9 @@ void gen11_gt_irq_postinstall(struct intel_gt *gt)
- 	intel_uncore_write(uncore, GEN11_VCS_VECS_INTR_ENABLE, dmask);
- 	if (CCS_MASK(gt))
- 		intel_uncore_write(uncore, GEN12_CCS_RSVD_INTR_ENABLE, smask);
-+	if (HAS_HECI_GSC(gt->i915))
-+		intel_uncore_write(uncore, GEN11_GUNIT_CSME_INTR_ENABLE,
-+				   gsc_mask);
- 
- 	/* Unmask irqs on RCS, BCS, VCS and VECS engines. */
- 	intel_uncore_write(uncore, GEN11_RCS0_RSVD_INTR_MASK, ~smask);
-@@ -250,6 +261,8 @@ void gen11_gt_irq_postinstall(struct intel_gt *gt)
- 		intel_uncore_write(uncore, GEN12_CCS0_CCS1_INTR_MASK, ~dmask);
- 	if (HAS_ENGINE(gt, CCS2) || HAS_ENGINE(gt, CCS3))
- 		intel_uncore_write(uncore, GEN12_CCS2_CCS3_INTR_MASK, ~dmask);
-+	if (HAS_HECI_GSC(gt->i915))
-+		intel_uncore_write(uncore, GEN11_GUNIT_CSME_INTR_MASK, ~gsc_mask);
- 
- 	/*
- 	 * RPS interrupts will get enabled/disabled on demand when RPS itself
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-index 62e0f075b1de7..57fe4f67f566e 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-@@ -1484,6 +1484,7 @@
- #define   OTHER_GUC_INSTANCE			0
- #define   OTHER_GTPM_INSTANCE			1
- #define   OTHER_KCR_INSTANCE			4
-+#define   OTHER_GSC_INSTANCE			6
- 
- #define GEN11_IIR_REG_SELECTOR(x)		_MMIO(0x190070 + ((x) * 4))
- 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_types.h b/drivers/gpu/drm/i915/gt/intel_gt_types.h
-index 937b2e1a305ed..b06611c1d4ada 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_types.h
-@@ -16,6 +16,7 @@
- #include <linux/workqueue.h>
- 
- #include "uc/intel_uc.h"
-+#include "intel_gsc.h"
- 
- #include "i915_vma.h"
- #include "intel_engine_types.h"
-@@ -73,6 +74,7 @@ struct intel_gt {
- 	struct i915_ggtt *ggtt;
- 
- 	struct intel_uc uc;
-+	struct intel_gsc gsc;
- 
- 	struct mutex tlb_invalidate_lock;
- 
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 217c09422711b..cd83a01ae7cc8 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -1315,6 +1315,14 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
- 
- #define HAS_DMC(dev_priv)	(INTEL_INFO(dev_priv)->display.has_dmc)
- 
-+#define HAS_HECI_PXP(dev_priv) \
-+	(INTEL_INFO(dev_priv)->has_heci_pxp)
++#define MEI_CFG_TYPE_GSC                        \
++	.kind = "gsc"
 +
-+#define HAS_HECI_GSCFI(dev_priv) \
-+	(INTEL_INFO(dev_priv)->has_heci_gscfi)
++#define MEI_CFG_TYPE_GSCFI                      \
++	.kind = "gscfi"
 +
-+#define HAS_HECI_GSC(dev_priv) (HAS_HECI_PXP(dev_priv) || HAS_HECI_GSCFI(dev_priv))
-+
- #define HAS_MSO(i915)		(DISPLAY_VER(i915) >= 12)
+ #define MEI_CFG_FW_SPS                          \
+ 	.quirk_probe = mei_me_fw_type_sps
  
- #define HAS_RUNTIME_PM(dev_priv) (INTEL_INFO(dev_priv)->has_runtime_pm)
-diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-index 67b89769f577c..a948f566bd3da 100644
---- a/drivers/gpu/drm/i915/i915_pci.c
-+++ b/drivers/gpu/drm/i915/i915_pci.c
-@@ -901,7 +901,8 @@ static const struct intel_device_info rkl_info = {
- 	.has_llc = 0, \
- 	.has_pxp = 0, \
- 	.has_snoop = 1, \
--	.is_dgfx = 1
-+	.is_dgfx = 1, \
-+	.has_heci_gscfi = 1
+@@ -1565,6 +1573,18 @@ static const struct mei_cfg mei_me_pch15_sps_cfg = {
+ 	MEI_CFG_FW_SPS,
+ };
  
- static const struct intel_device_info dg1_info = {
- 	GEN12_FEATURES,
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index a0d652f19ff93..72663a7ef6295 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -976,6 +976,8 @@
- #define GEN12_COMPUTE2_RING_BASE	0x1e000
- #define GEN12_COMPUTE3_RING_BASE	0x26000
- #define BLT_RING_BASE		0x22000
-+#define DG1_GSC_HECI1_BASE	0x00258000
-+#define DG1_GSC_HECI2_BASE	0x00259000
- 
- 
- 
-diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
-index f9b955810593b..576d15a04c9e2 100644
---- a/drivers/gpu/drm/i915/intel_device_info.h
-+++ b/drivers/gpu/drm/i915/intel_device_info.h
-@@ -141,6 +141,8 @@ enum intel_ppgtt_type {
- 	func(has_flat_ccs); \
- 	func(has_global_mocs); \
- 	func(has_gt_uc); \
-+	func(has_heci_pxp); \
-+	func(has_heci_gscfi); \
- 	func(has_guc_deprivilege); \
- 	func(has_l3_dpf); \
- 	func(has_llc); \
-diff --git a/include/linux/mei_aux.h b/include/linux/mei_aux.h
-new file mode 100644
-index 0000000000000..587f251288481
---- /dev/null
-+++ b/include/linux/mei_aux.h
-@@ -0,0 +1,19 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/*
-+ * Copyright (c) 2022, Intel Corporation. All rights reserved.
-+ */
-+#ifndef _LINUX_MEI_AUX_H
-+#define _LINUX_MEI_AUX_H
-+
-+#include <linux/auxiliary_bus.h>
-+
-+struct mei_aux_device {
-+	struct auxiliary_device aux_dev;
-+	int irq;
-+	struct resource bar;
++/* Graphics System Controller */
++static const struct mei_cfg mei_me_gsc_cfg = {
++	MEI_CFG_TYPE_GSC,
++	MEI_CFG_PCH8_HFS,
 +};
 +
-+#define auxiliary_dev_to_mei_aux_dev(auxiliary_dev) \
-+	container_of(auxiliary_dev, struct mei_aux_device, aux_dev)
++/* Graphics System Controller Firmware Interface */
++static const struct mei_cfg mei_me_gscfi_cfg = {
++	MEI_CFG_TYPE_GSCFI,
++	MEI_CFG_PCH8_HFS,
++};
 +
-+#endif /* _LINUX_MEI_AUX_H */
+ /*
+  * mei_cfg_list - A list of platform platform specific configurations.
+  * Note: has to be synchronized with  enum mei_cfg_idx.
+@@ -1585,6 +1605,8 @@ static const struct mei_cfg *const mei_cfg_list[] = {
+ 	[MEI_ME_PCH12_SPS_ITOUCH_CFG] = &mei_me_pch12_itouch_sps_cfg,
+ 	[MEI_ME_PCH15_CFG] = &mei_me_pch15_cfg,
+ 	[MEI_ME_PCH15_SPS_CFG] = &mei_me_pch15_sps_cfg,
++	[MEI_ME_GSC_CFG] = &mei_me_gsc_cfg,
++	[MEI_ME_GSCFI_CFG] = &mei_me_gscfi_cfg,
+ };
+ 
+ const struct mei_cfg *mei_me_get_cfg(kernel_ulong_t idx)
+@@ -1595,7 +1617,8 @@ const struct mei_cfg *mei_me_get_cfg(kernel_ulong_t idx)
+ 		return NULL;
+ 
+ 	return mei_cfg_list[idx];
+-};
++}
++EXPORT_SYMBOL_GPL(mei_me_get_cfg);
+ 
+ /**
+  * mei_me_dev_init - allocates and initializes the mei device structure
+@@ -1630,4 +1653,4 @@ struct mei_device *mei_me_dev_init(struct device *parent,
+ 
+ 	return dev;
+ }
+-
++EXPORT_SYMBOL_GPL(mei_me_dev_init);
+diff --git a/drivers/misc/mei/hw-me.h b/drivers/misc/mei/hw-me.h
+index 00a7132ac7a2e..a071c645e9054 100644
+--- a/drivers/misc/mei/hw-me.h
++++ b/drivers/misc/mei/hw-me.h
+@@ -112,6 +112,8 @@ enum mei_cfg_idx {
+ 	MEI_ME_PCH12_SPS_ITOUCH_CFG,
+ 	MEI_ME_PCH15_CFG,
+ 	MEI_ME_PCH15_SPS_CFG,
++	MEI_ME_GSC_CFG,
++	MEI_ME_GSCFI_CFG,
+ 	MEI_ME_NUM_CFG,
+ };
+ 
 -- 
 2.25.1
 
