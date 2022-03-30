@@ -1,33 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67B894ED031
-	for <lists+intel-gfx@lfdr.de>; Thu, 31 Mar 2022 01:32:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED9004ED05E
+	for <lists+intel-gfx@lfdr.de>; Thu, 31 Mar 2022 01:48:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D07A10E25F;
-	Wed, 30 Mar 2022 23:32:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0FB4510E07A;
+	Wed, 30 Mar 2022 23:48:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id A871310E21A;
- Wed, 30 Mar 2022 23:32:27 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A8639A47DF;
- Wed, 30 Mar 2022 23:32:27 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A32B210E07A
+ for <intel-gfx@lists.freedesktop.org>; Wed, 30 Mar 2022 23:48:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1648684093; x=1680220093;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=y8SdRDW6Ww+wjmZwNAWjCuSBOX22TQqPPbMbst9kGkM=;
+ b=UioYOEIIQL9ybVRaa731wYArHNOB+J9YyifJqUuGZZDr0KZYIgFv0eaV
+ UPkZvSpZDMyi7XIT/c/zss5dtpgTt4+V/HXjGx8SjqY0N0JEJ/K27dT/p
+ okKuBpgqXy5C716t6fw27luLTGgpO1isuwQOalJ2MZ/jV/R94KaY1vhbj
+ xBE/G9QiwB99CrDGZo3+OGCzXSEQyyJWmflbqadnW/C6Dyi82u5PELYC4
+ T9n3HRdExso6VG7rW13Vk7//7hKwy9wS90+SVeX+kIAuUY0oSocZjaBBP
+ 4gIWdcFO6e+Q7aJz9lVWwhOxe8KM5f4uoNSTl8UN/rUlnu5o4CKOpxxaZ w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10302"; a="239600462"
+X-IronPort-AV: E=Sophos;i="5.90,223,1643702400"; d="scan'208";a="239600462"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Mar 2022 16:48:13 -0700
+X-IronPort-AV: E=Sophos;i="5.90,223,1643702400"; d="scan'208";a="547057105"
+Received: from mcbewley-mobl.ger.corp.intel.com (HELO
+ cgbowman-desk1.amr.corp.intel.com) ([10.209.48.13])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Mar 2022 16:48:12 -0700
+From: Casey Bowman <casey.g.bowman@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 30 Mar 2022 16:48:07 -0700
+Message-Id: <20220330234809.1218210-1-casey.g.bowman@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Casey Bowman" <casey.g.bowman@intel.com>
-Date: Wed, 30 Mar 2022 23:32:27 -0000
-Message-ID: <164868314768.8658.2467155064019081616@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220330233138.1210992-1-casey.g.bowman@intel.com>
-In-Reply-To: <20220330233138.1210992-1-casey.g.bowman@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBT?=
- =?utf-8?q?plitting_intel-gtt_calls_for_non-x86_platforms_=28rev4=29?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v5 0/2] Splitting intel-gtt calls for non-x86
+ platforms
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,38 +55,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: thomas.hellstrom@linux.intel.com, lucas.demarchi@intel.com,
+ chris@chris-wilson.co.uk
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+The intel-gtt module defines some functions used by i915, but they are
+only supported by x86 platforms. In order to bring i915 to a more
+arch-neutral state, we split out these functions and provide stubs in
+the case of non-x86 builds.
 
-Series: Splitting intel-gtt calls for non-x86 platforms (rev4)
-URL   : https://patchwork.freedesktop.org/series/101552/
-State : failure
+There may be a better filename choice for the files used in splitting
+the calls, it's very much open to discussion.
 
-== Summary ==
+v2: Refactored to move gmch functions, renamed exported functions
+v3: Added drm/i915_drm.h header
+v4: Rebased on drm-intel-next, resolved build and naming issues
 
-Applying: drm/i915/gt: Split intel-gtt functions by arch
-Using index info to reconstruct a base tree...
-M	drivers/gpu/drm/i915/Makefile
-M	drivers/gpu/drm/i915/gt/intel_ggtt.c
-M	drivers/gpu/drm/i915/gt/intel_gt.c
-M	drivers/gpu/drm/i915/gt/intel_gt.h
-M	drivers/gpu/drm/i915/gt/intel_gtt.h
-Falling back to patching base and 3-way merge...
-Auto-merging drivers/gpu/drm/i915/gt/intel_gtt.h
-Auto-merging drivers/gpu/drm/i915/gt/intel_gt.h
-Auto-merging drivers/gpu/drm/i915/gt/intel_gt.c
-Auto-merging drivers/gpu/drm/i915/gt/intel_ggtt.c
-CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/gt/intel_ggtt.c
-Auto-merging drivers/gpu/drm/i915/Makefile
-error: Failed to merge in the changes.
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0001 drm/i915/gt: Split intel-gtt functions by arch
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+Casey Bowman (2):
+  drm/i915/gt: Split intel-gtt functions by arch
+  drm/i915: Require INTEL_GTT to depend on X86
 
+ drivers/gpu/drm/i915/Kconfig            |   2 +-
+ drivers/gpu/drm/i915/Makefile           |   2 +
+ drivers/gpu/drm/i915/gt/intel_ggtt.c    | 664 +-----------------------
+ drivers/gpu/drm/i915/gt/intel_gt.c      |   4 +-
+ drivers/gpu/drm/i915/gt/intel_gt.h      |   9 +
+ drivers/gpu/drm/i915/gt/intel_gt_gmch.c | 654 +++++++++++++++++++++++
+ drivers/gpu/drm/i915/gt/intel_gt_gmch.h |  46 ++
+ drivers/gpu/drm/i915/gt/intel_gtt.h     |   9 +
+ 8 files changed, 737 insertions(+), 653 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/gt/intel_gt_gmch.c
+ create mode 100644 drivers/gpu/drm/i915/gt/intel_gt_gmch.h
+
+-- 
+2.25.1
 
