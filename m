@@ -1,53 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0E734ECE51
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Mar 2022 23:02:09 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82A384ECEED
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Mar 2022 23:43:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9305E10E991;
-	Wed, 30 Mar 2022 21:02:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C982710EB65;
+	Wed, 30 Mar 2022 21:43:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 56D7610E95F;
- Wed, 30 Mar 2022 21:02:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1648674121; x=1680210121;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=VKsl5l0X5qZnjhCGV/8i/8Hg2/JrMfYqoAv9nloXixY=;
- b=J8lIvZFufNEaC4AnVNGeTBf8394IOzTNPPmrRG6YB6Qi1Ms+O+H4k8Ya
- 6ygv634UU4Lz02Z1/E98hS4CFeqKKRsSNQaxQTUKvsl+v7w8iu6hDzwfW
- eDRRTe8wqk7BjDYcEwgXeo+xM8imuEF30w1LnLsJ176ygoOmliYL+9oC7
- SrcTnUTuwmpYjrmlQpEuQRseAegS7ku5o4fg68FI6V66mM6h/bYV6HsPT
- U2gtlYxdy0YwlY/F9/tZ0Bs7EKwm9DKCzTInyFHFGGKlEb2txvdhZwxFl
- Rvt7jviMh7fTy1i1WLNE/UipYu1ZvGjYHq8IoD7e0qkSlVVUDbUUi119K g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10302"; a="284557741"
-X-IronPort-AV: E=Sophos;i="5.90,223,1643702400"; d="scan'208";a="284557741"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Mar 2022 14:02:00 -0700
-X-IronPort-AV: E=Sophos;i="5.90,223,1643702400"; d="scan'208";a="565817165"
-Received: from nhanus-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.62.116])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Mar 2022 14:01:59 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-In-Reply-To: <87r16jbhdq.fsf@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1648578814.git.jani.nikula@intel.com>
- <380b903fb91b1e20a1a7af61db40b6c7c5617005.1648578814.git.jani.nikula@intel.com>
- <YkRViiFfSOJQnsoI@intel.com> <87r16jbhdq.fsf@intel.com>
-Date: Thu, 31 Mar 2022 00:01:56 +0300
-Message-ID: <874k3fb1dn.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1369510EB65;
+ Wed, 30 Mar 2022 21:43:37 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 0F780AADDC;
+ Wed, 30 Mar 2022 21:43:37 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 01/12] drm/edid: use struct edid * in
- drm_do_get_edid()
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Alexander Usyskin" <alexander.usyskin@intel.com>
+Date: Wed, 30 Mar 2022 21:43:37 -0000
+Message-ID: <164867661702.8653.8313818647626094772@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220330205334.3016587-1-daniele.ceraolospurio@intel.com>
+In-Reply-To: <20220330205334.3016587-1-daniele.ceraolospurio@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Add_driver_for_GSC_controller_=28rev14=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,54 +40,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 30 Mar 2022, Jani Nikula <jani.nikula@intel.com> wrote:
-> On Wed, 30 Mar 2022, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.c=
-om> wrote:
->> This one points to extension blocks too so using=20
->> struct edid doesn't seem entirely appropriate.
->
-> So I've gone back and forth with this. I think I want to get rid of u8*
-> no matter what, because it always requires casting. I've used void* here
-> and there to allow mixed use, internally in drm_edid.c while
-> transitioning, and in public interfaces due to usage all over the place.
->
-> OTOH I don't much like arithmetics on void*. It's a gcc extension.
->
-> struct edid * is useful for e.g. ->checksum and arithmetics. In many
-> places I've named it struct edid *block to distinguish. We could have a
-> struct edid_block too, which could have ->tag and ->checksum members,
-> for example, but then it would require casting or a function for "safe"
-> typecasting.
->
-> I've also gone back and forth with the helpers for getting a pointer to
-> a block. For usage like this, kind of need both const and non-const
-> versions. And, with the plans I have for future, I'm not sure I want to
-> promote any EDID parsing outside of drm_edid.c, so maybe they should be
-> static.
->
-> Undecided. C is a bit clunky here.
+== Series Details ==
 
-Hmm. I wonder how a flexible array member would pan out.
+Series: Add driver for GSC controller (rev14)
+URL   : https://patchwork.freedesktop.org/series/98066/
+State : warning
 
-struct edid_extension {
-	u8 tag;
-        u8 revision;
-        u8 data[EDID_LENGTH - 3];
-        u8 checksum;
-} __packed;
+== Summary ==
 
-struct edid {
-	/* existing stuff*/
-        struct edid_extension extensions[];
-} __packed;
+$ dim checkpatch origin/drm-tip
+690fddb652c2 drm/i915/gsc: add gsc as a mei auxiliary device
+-:65: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#65: 
+new file mode 100644
+
+-:459: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'dev_priv' - possible side-effects?
+#459: FILE: drivers/gpu/drm/i915/i915_drv.h:1324:
++#define HAS_HECI_GSC(dev_priv) (HAS_HECI_PXP(dev_priv) || HAS_HECI_GSCFI(dev_priv))
+
+total: 0 errors, 1 warnings, 1 checks, 418 lines checked
+d075faa65299 mei: add support for graphics system controller (gsc) devices
+-:57: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#57: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 297 lines checked
+e28f8cb79125 mei: gsc: setup char driver alive in spite of firmware handshake failure
+14200a20d1aa mei: gsc: add runtime pm handlers
+0c9751c58f24 mei: gsc: retrieve the firmware version
+125e64502db3 HAX: drm/i915: force INTEL_MEI_GSC on for CI
 
 
-BR,
-Jani.
-
---=20
-Jani Nikula, Intel Open Source Graphics Center
