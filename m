@@ -2,60 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99ED14ED6C1
-	for <lists+intel-gfx@lfdr.de>; Thu, 31 Mar 2022 11:26:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CBABC4ED787
+	for <lists+intel-gfx@lfdr.de>; Thu, 31 Mar 2022 12:06:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1BC3B10EE4C;
-	Thu, 31 Mar 2022 09:26:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 001A110E657;
+	Thu, 31 Mar 2022 10:06:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 79CC110E127;
- Thu, 31 Mar 2022 09:26:01 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5039610E2E2;
+ Thu, 31 Mar 2022 10:06:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1648718761; x=1680254761;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=2W4P8lHe61lNnCqT5e+vEJ2VZUGWjS5KUG2FJv5A2k4=;
- b=E0uFrbTH73AqHi9sAPzbiDnsn6xzSr3mMjwNzx7HUNiSag3XHauIs7Y1
- MZFO2bAvP7QZmgN0UeEPjRMGhf025CAwwnIgL/u7jJlOnrrsQbU6PoslB
- qg4oQ9cW4r24SmX0VeRsDDqObkaLk6usOqmCsycK6KE9OVbM6/IuHpQfB
- qN9MrdUCSDIlsKpkzl0qlN+bo4zhtvgZROL8MO9cVwjU5ho/9yGX8cqcS
- A7VbpeNngNPgxGjV+edj8pHisYtN72EHuOT3C6QNZasTxQWobgoY12oZ8
- dfgZ/OSblwkl5+qQBPt6EyxeFtqnS+iFEkzgS4Z2LhpWo24y6y5tiJWzq g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10302"; a="257358013"
-X-IronPort-AV: E=Sophos;i="5.90,224,1643702400"; d="scan'208";a="257358013"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2022 02:26:00 -0700
-X-IronPort-AV: E=Sophos;i="5.90,224,1643702400"; d="scan'208";a="640065216"
-Received: from dtorranx-mobl.ger.corp.intel.com (HELO [10.252.18.238])
- ([10.252.18.238])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2022 02:25:58 -0700
-Message-ID: <00378547-2a1f-a288-fd2e-12fca172e3ba@intel.com>
-Date: Thu, 31 Mar 2022 10:25:55 +0100
+ t=1648721168; x=1680257168;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=aZH18WlKteagod8GE5IzIYHI6n60sWnHWRzTrCt7cSM=;
+ b=G0+e6BVHgTga/mxjaiF0zdaSSaD0b1/3AmWtd08GYoBGpnQo+04sipPs
+ fY8FHdzVwDooO+5gxaewMQ/zWeKDp50kaU1RT3/KqY9Z69wycvN5r3LEM
+ 4HVeDKu5IuvW1Ri1S+aj8OPlDJr84rNGp47WtpnjgR8HQKShS8/yXjREL
+ QxB83wxkWZmIXLKArOGnOvFixd0Xqh8fmAseL8o5/i+y7YoJ7+9ThGyUg
+ PUlwDZICABY+EV5051cuoAP+3vTNY3ktSNeQ9JaZbdp18j+PO+qHYvj8A
+ hdfB3XWCQMXWIrOz4fRmGE8y4esWTzRH8kL16oCeu/IDOpa6tDILok3pO A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10302"; a="322964364"
+X-IronPort-AV: E=Sophos;i="5.90,225,1643702400"; d="scan'208";a="322964364"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2022 03:06:07 -0700
+X-IronPort-AV: E=Sophos;i="5.90,225,1643702400"; d="scan'208";a="566337395"
+Received: from cgarnier-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.62.224])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2022 03:06:06 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+In-Reply-To: <YkSQBaW8swA7LY9M@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220330170426.349248-1-jani.nikula@intel.com>
+ <YkSQBaW8swA7LY9M@intel.com>
+Date: Thu, 31 Mar 2022 13:06:03 +0300
+Message-ID: <87r16ia12s.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Content-Language: en-GB
-To: Daniel Vetter <daniel@ffwll.ch>,
- "Bloomfield, Jon" <jon.bloomfield@intel.com>,
- Kenneth W Graunke <kenneth.w.graunke@intel.com>,
- Lionel Landwerlin <lionel.g.landwerlin@linux.intel.com>
-References: <162c1566-87c6-072f-d340-1693f6a71aea@linux.intel.com>
- <164750662822.7267.9355161518284202141@jlahtine-mobl.ger.corp.intel.com>
- <9eb06b576948707f9a0527b07b58b9640821bf19.camel@linux.intel.com>
- <d874ba08a65e4468baae737d826a85a5@intel.com>
- <ddd7af8f57320a7e2a84b3fdb94e3050eae81857.camel@linux.intel.com>
- <f80dc6ccf38343beb819e1584a9017f7@intel.com>
- <CAKMK7uGsCFJR2d-m0TsVjEy36bN1Z38fuoME6gezA9xY_MkSeA@mail.gmail.com>
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <CAKMK7uGsCFJR2d-m0TsVjEy36bN1Z38fuoME6gezA9xY_MkSeA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] Small bar recovery vs compressed content on DG2
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH] drm/edid: fix invalid EDID extension block
+ filtering
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,198 +59,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Kenneth Graunke <kenneth@whitecape.org>, "Vetter,
- Daniel" <daniel.vetter@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 18/03/2022 18:12, Daniel Vetter wrote:
-> Maybe also good to add dri-devel to these discussions.
-> 
-> I'm not sure where exactly we landed with dgpu error capture (maybe I
-> should check the code but it's really w/e here), but I think we can
-> also toss in "you need a non-recoverable context for error capture to
-> work on dgpu". Since that simplifies things even more. Maybe Thomas
-> forgot to add that to the list of restrictions.
-> 
-> Anyway on the "we can't capture lmem-only compressed buffers", I think
-> that's totally fine. Those are for render targets, and we don't
-> capture those. Adding Lionel and Ken to confirm.
+On Wed, 30 Mar 2022, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Wed, Mar 30, 2022 at 08:04:26PM +0300, Jani Nikula wrote:
+>> The invalid EDID block filtering uses the number of valid EDID
+>> extensions instead of all EDID extensions for looping the extensions in
+>> the copy. This is fine, by coincidence, if all the invalid blocks are at
+>> the end of the EDID. However, it's completely broken if there are
+>> invalid extensions in the middle; the invalid blocks are included and
+>> valid blocks are excluded.
+>>=20
+>> Fix it by modifying the base block after, not before, the copy.
+>>=20
+>> Fixes: 14544d0937bf ("drm/edid: Only print the bad edid when aborting")
+>> Reported-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>
+> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-Ken, Lionel: gentle ping on this?
+Thanks, pushed to drm-misc-next. I didn't bother with -fixes, because
+the bug is ancient and rare, and that would only cause conflicts for me.
 
-> -Daniel
-> 
-> On Fri, 18 Mar 2022 at 17:26, Bloomfield, Jon <jon.bloomfield@intel.com> wrote:
->>
->> @Thomas Hellström - I agree :-)
->>
->> My question was really to @Joonas Lahtinen, who was saying we could always migrate in the CPU fault handler. I am pushing back on that unless we have no choice. It's the very complication we were trying to avoid with the current SAS. If that's what's needed, then so be it. But I'm asking whether we can instead handle this specially, instead of adding generic complexity to the primary code paths.
->>
->> Jon
->>
->>> -----Original Message-----
->>> From: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->>> Sent: Friday, March 18, 2022 2:48 AM
->>> To: Bloomfield, Jon <jon.bloomfield@intel.com>; Joonas Lahtinen
->>> <joonas.lahtinen@linux.intel.com>; Intel Graphics Development <intel-
->>> gfx@lists.freedesktop.org>; Auld, Matthew <matthew.auld@intel.com>; C,
->>> Ramalingam <ramalingam.c@intel.com>; Vetter, Daniel
->>> <daniel.vetter@intel.com>
->>> Subject: Re: Small bar recovery vs compressed content on DG2
->>>
->>> Hi,
->>>
->>> On Thu, 2022-03-17 at 18:21 +0000, Bloomfield, Jon wrote:
->>>> +@Vetter, Daniel
->>>>
->>>> Let's not start re-inventing this on the fly again. That's how we got
->>>> into trouble in the past. The SAS/Whitepaper does currently require
->>>> the SMEM+LMEM placement for mappable, for good reasons.
->>>
->>> Just to avoid any misunderstandings here:
->>>
->>> We have two hard requirements from Arch that clash, main problem is
->>> compressed bos can't be captured on error with current designs.
->>>
->>>  From an engineering point of view we can do little more than list
->>> options available to resolve this and whether they are hard or not so
->>> hard to implemement. But IMHO Arch needs to agree on what's got to
->>> give.
->>>
->>> Thanks,
->>> Thomas
->>>
->>>
->>>>
->>>> We cannot 'always migrate to mappable in the fault handler'. Or at
->>>> least, this is not as trivial as it is to write in a sentence due to
->>>> the need to spill out other active objects, and all the usual
->>>> challenges with context synchronization etc. It is possible, perhaps
->>>> with a lot of care, but it is challenging to guarantee, easy to
->>>> break, and not needed for 99.9% of software. We are trying to
->>>> simplify our driver stack.
->>>>
->>>> If we need a special mechanism for debug, we should devise a special
->>>> mechanism, not throw out the general LMEM+SMEM requirement. Are
->>> there
->>>> any identified first-class clients that require such access, or is it
->>>> only debugging tools?
->>>>
->>>> If only debug, then why can't the tool use a copy engine submission
->>>> to access the data in place? Or perhaps a bespoke ioctl to access
->>>> this via the KMD (and kmd submitted copy-engine BB)?
->>>>
->>>> Thanks,
->>>>
->>>> Jon
->>>>
->>>>> -----Original Message-----
->>>>> From: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->>>>> Sent: Thursday, March 17, 2022 2:35 AM
->>>>> To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>; Bloomfield,
->>>>> Jon
->>>>> <jon.bloomfield@intel.com>; Intel Graphics Development <intel-
->>>>> gfx@lists.freedesktop.org>; Auld, Matthew <matthew.auld@intel.com>;
->>>>> C,
->>>>> Ramalingam <ramalingam.c@intel.com>
->>>>> Subject: Re: Small bar recovery vs compressed content on DG2
->>>>>
->>>>> On Thu, 2022-03-17 at 10:43 +0200, Joonas Lahtinen wrote:
->>>>>> Quoting Thomas Hellström (2022-03-16 09:25:16)
->>>>>>> Hi!
->>>>>>>
->>>>>>> Do we somehow need to clarify in the headers the semantics for
->>>>>>> this?
->>>>>>>
->>>>>>>   From my understanding when discussing the CCS migration series
->>>>>>> with
->>>>>>> Ram, the kernel will never do any resolving (compressing /
->>>>>>> decompressing) migrations or evictions which basically implies
->>>>>>> the
->>>>>>> following:
->>>>>>>
->>>>>>> *) Compressed data must have LMEM only placement, otherwise the
->>>>> GPU
->>>>>>> would read garbage if accessing from SMEM.
->>>>>>
->>>>>> This has always been the case, so it should be documented in the
->>>>>> uAPI
->>>>>> headers and kerneldocs.
->>>>>>
->>>>>>> *) Compressed data can't be assumed to be mappable by the CPU,
->>>>>>> because
->>>>>>> in order to ensure that on small BAR, the placement needs to be
->>>>>>> LMEM+SMEM.
->>>>>>
->>>>>> Not strictly true, as we could always migrate to the mappable
->>>>>> region
->>>>>> in
->>>>>> the CPU fault handler. Will need the same set of tricks as with
->>>>>> limited
->>>>>> mappable GGTT in past.
->>>>>
->>>>> In addition to Matt's reply:
->>>>>
->>>>> Yes, if there is sufficient space. I'm not sure we want to
->>>>> complicate
->>>>> this to migrate only part of the buffer to mappable on a fault
->>>>> basis?
->>>>> Otherwise this is likely to fail.
->>>>>
->>>>> One option is to allow cpu-mapping from SYSTEM like TTM is doing
->>>>> for
->>>>> evicted buffers, even if SYSTEM is not in the placement list, and
->>>>> then
->>>>> migrate back to LMEM for gpu access.
->>>>>
->>>>> But can user-space even interpret the compressed data when CPU-
->>>>> mapping?
->>>>> without access to the CCS metadata?
->>>>>
->>>>>>
->>>>>>> *) Neither can compressed data be part of a CAPTURE buffer,
->>>>>>> because
->>>>>>> that
->>>>>>> requires the data to be CPU-mappable.
->>>>>>
->>>>>> Especially this will be too big of a limitation which we can't
->>>>>> really
->>>>>> afford
->>>>>> when it comes to debugging.
->>>>>
->>>>> Same here WRT user-space interpretation.
->>>>>
->>>>> This will become especially tricky on small BAR, because either we
->>>>> need
->>>>> to fit all compressed buffers in the mappable portion, or be able
->>>>> to
->>>>> blit the contents of the capture buffers from within the fence
->>>>> signalling critical section, which will require a lot of work I
->>>>> guess.
->>>>>
->>>>> /Thomas
->>>>>
->>>>>
->>>>>>
->>>>>> Regards, Joonas
->>>>>>
->>>>>>> Are we (and user-mode drivers) OK with these restrictions, or
->>>>>>> do we
->>>>>>> need
->>>>>>> to rethink?
->>>>>>>
->>>>>>> Thanks,
->>>>>>>
->>>>>>> Thomas
->>>>>>>
->>>>>>>
->>>>>
->>>>
->>>
->>
-> 
-> 
+BR,
+Jani.
+
+>
+>> ---
+>>  drivers/gpu/drm/drm_edid.c | 6 +++---
+>>  1 file changed, 3 insertions(+), 3 deletions(-)
+>>=20
+>> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
+>> index d79b06f7f34c..8829120470ab 100644
+>> --- a/drivers/gpu/drm/drm_edid.c
+>> +++ b/drivers/gpu/drm/drm_edid.c
+>> @@ -2031,9 +2031,6 @@ struct edid *drm_do_get_edid(struct drm_connector =
+*connector,
+>>=20=20
+>>  		connector_bad_edid(connector, edid, edid[0x7e] + 1);
+>>=20=20
+>> -		edid[EDID_LENGTH-1] +=3D edid[0x7e] - valid_extensions;
+>> -		edid[0x7e] =3D valid_extensions;
+>> -
+>>  		new =3D kmalloc_array(valid_extensions + 1, EDID_LENGTH,
+>>  				    GFP_KERNEL);
+>>  		if (!new)
+>> @@ -2050,6 +2047,9 @@ struct edid *drm_do_get_edid(struct drm_connector =
+*connector,
+>>  			base +=3D EDID_LENGTH;
+>>  		}
+>>=20=20
+>> +		new[EDID_LENGTH - 1] +=3D new[0x7e] - valid_extensions;
+>> +		new[0x7e] =3D valid_extensions;
+>> +
+>>  		kfree(edid);
+>>  		edid =3D new;
+>>  	}
+>> --=20
+>> 2.30.2
+
+--=20
+Jani Nikula, Intel Open Source Graphics Center
