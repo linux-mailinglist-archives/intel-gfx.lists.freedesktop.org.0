@@ -2,52 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73DE54EE0FE
-	for <lists+intel-gfx@lfdr.de>; Thu, 31 Mar 2022 20:46:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BA774EE13B
+	for <lists+intel-gfx@lfdr.de>; Thu, 31 Mar 2022 21:01:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C03A10F48D;
-	Thu, 31 Mar 2022 18:46:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CFA1810E0CE;
+	Thu, 31 Mar 2022 19:01:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 13D1D10F48D;
- Thu, 31 Mar 2022 18:46:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1648752386; x=1680288386;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=ycIavbnN5Vq7Lc/HdN8u5JyGJ0thZenvJF0SF4p7i9c=;
- b=GOSmMJkRqVPBmv6cor4FkiCzBWofu+wJokegWQXlEI19OKpnsriEGG81
- sotUnlmEV6aokhde7JgrCXXCmUCKl3Bp3Z+y5zuim5WMez6UkDSXVGb+V
- Ef3nHfQU/KTGLBFRb8pPY04TVIyklxK76jQGS0L27LANmGVzGbSZN1s4U
- yZ4ervmV1n5IK5fTnBhlqm/NbUAjPDO+8SyecqxSUN5y1Y+f67EQyFZVg
- j+Ov87G7dJNw9hQD+O9BhtcnSk45KrAz+GaSalQLHrTBpzwjHsmPA/SO7
- XijoodUUxWqscMYKzTtfm/zGaXbd4m89e9CYppnhCECjuSBDvTYuopgC2 g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10302"; a="247422093"
-X-IronPort-AV: E=Sophos;i="5.90,225,1643702400"; d="scan'208";a="247422093"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2022 11:46:09 -0700
-X-IronPort-AV: E=Sophos;i="5.90,225,1643702400"; d="scan'208";a="586546497"
-Received: from gluca-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.48.194])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2022 11:46:07 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-In-Reply-To: <YkRViiFfSOJQnsoI@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1648578814.git.jani.nikula@intel.com>
- <380b903fb91b1e20a1a7af61db40b6c7c5617005.1648578814.git.jani.nikula@intel.com>
- <YkRViiFfSOJQnsoI@intel.com>
-Date: Thu, 31 Mar 2022 21:46:04 +0300
-Message-ID: <87h77e7yfn.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7731210E0CE;
+ Thu, 31 Mar 2022 19:01:03 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 664C4A00FD;
+ Thu, 31 Mar 2022 19:01:03 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 01/12] drm/edid: use struct edid * in
- drm_do_get_edid()
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
+Date: Thu, 31 Mar 2022 19:01:03 -0000
+Message-ID: <164875326338.14471.8726007595038516397@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220331140920.2986689-1-tvrtko.ursulin@linux.intel.com>
+In-Reply-To: <20220331140920.2986689-1-tvrtko.ursulin@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Per_client_GPU_utilisation_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,24 +40,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 30 Mar 2022, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Tue, Mar 29, 2022 at 09:42:08PM +0300, Jani Nikula wrote:
->> +	if (valid_extensions !=3D edid->extensions) {
->> +		struct edid *base;
->
-> This one points to extension blocks too so using=20
-> struct edid doesn't seem entirely appropriate.
+== Series Details ==
 
-Settled on calling it struct edid *dest_block in v2 with hopes that's a
-good enough compromise.
+Series: Per client GPU utilisation (rev3)
+URL   : https://patchwork.freedesktop.org/series/100573/
+State : warning
 
-BR,
-Jani.
+== Summary ==
 
---=20
-Jani Nikula, Intel Open Source Graphics Center
+$ dim checkpatch origin/drm-tip
+9ab6226114e2 drm/i915: Explicitly track DRM clients
+-:130: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#130: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 234 lines checked
+7504e8884502 drm/i915: Make GEM contexts track DRM clients
+68d691714dc8 drm/i915: Track runtime spent in closed and unreachable GEM contexts
+b49e0af9ca13 drm/i915: Track all user contexts per client
+e6f38c52c820 drm/i915: Track context current active time
+-:140: WARNING:LINE_SPACING: Missing a blank line after declarations
+#140: FILE: drivers/gpu/drm/i915/gt/intel_context_types.h:149:
++			u32 last;
++			I915_SELFTEST_DECLARE(u32 num_underflow);
+
+total: 0 errors, 1 warnings, 0 checks, 308 lines checked
+2608f8a9667f drm: Document fdinfo format specification
+-:45: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#45: 
+new file mode 100644
+
+-:50: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+#50: FILE: Documentation/gpu/drm-usage-stats.rst:1:
++.. _drm-client-usage-stats:
+
+total: 0 errors, 2 warnings, 0 checks, 113 lines checked
+6cc1ba16a6ad drm/i915: Count engine instances per uabi class
+ba944f3e5a66 drm/i915: Expose client engine utilisation via fdinfo
+
+
