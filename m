@@ -1,54 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D20B4EDB4E
-	for <lists+intel-gfx@lfdr.de>; Thu, 31 Mar 2022 16:05:39 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2647B4EDB5E
+	for <lists+intel-gfx@lfdr.de>; Thu, 31 Mar 2022 16:09:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 57C0810F00F;
-	Thu, 31 Mar 2022 14:05:37 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D30B910F3D9
- for <intel-gfx@lists.freedesktop.org>; Thu, 31 Mar 2022 14:05:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB2AC10E27D;
+	Thu, 31 Mar 2022 14:09:29 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 166A110E24B;
+ Thu, 31 Mar 2022 14:09:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1648735536; x=1680271536;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=J5IBfmTANsh3ousbNixdeDyEfYlg4Qz04P+h7LCfwsU=;
- b=Y2tZwDyZJ7W+tTXWJBaeTN1rWfTVxJ8bNfIp2IhKzC+L/eosMwpUsllm
- rY8rWqTluc5eaidVk0zImgtaIJ0MYoqc54Igi9xfowJdn9tCdMn72jVX1
- 39dtVS9wYY8aDnzfDYf6SY78A9raLF/8EUEj/ZNExq+20YPGwl/4z8+Xo
- bkaUz8KFBn3ULuxCo8mqzcVNxsrdV2j7hgCSndihlAscbFZwISnYQjBrX
- Kto3dFdyyBC5TUbK7H4AGBxnZCgeuYkWHg/xzuYt9hvu12NPG0TtQ7EUx
- wqbG+1gvNgwv7aPeig9S7vL6Ilm6eLCHlvKkC+DZ5CSGghTkOwIiVJG0U g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10302"; a="259555901"
-X-IronPort-AV: E=Sophos;i="5.90,225,1643702400"; d="scan'208";a="259555901"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2022 07:05:34 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,225,1643702400"; d="scan'208";a="586443046"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.61])
- by orsmga001.jf.intel.com with SMTP; 31 Mar 2022 07:05:31 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 31 Mar 2022 17:05:31 +0300
-Date: Thu, 31 Mar 2022 17:05:31 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <YkW1K8FGAQziqODL@intel.com>
-References: <20220331112822.11462-1-ville.syrjala@linux.intel.com>
- <20220331112822.11462-12-ville.syrjala@linux.intel.com>
- <87pmm28bps.fsf@intel.com>
+ t=1648735768; x=1680271768;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=3y1t0uS93fUnI9dDde71NLHWhxoCHp/Vnmk79acWmoo=;
+ b=YleLVREdYaOQB/8t9cmVDYQ0FTVBKaJu4e9E/psfKvaNyqbr66JYrPD9
+ w3xwb5IGwS7MqFcZdqjH4HOxS7Et710r53xbKhFJ6AbmE3VpF6SPcWLSp
+ oaQWyb1hJcu/r0ZlLQINJECLuCEAn6KrK9GoPJKdpLSF4CiFG4/2o4mEM
+ eZ3csaNQPTqsDv1Khj55V39d9WQmAMDQEMIZBGi1uyKZ8mIM/yXHAqq9P
+ UZBY1riLvhAIAHm8DfReUBgCHYRnyTGUHFXRfp1Xy8BAas5XpJr+dHDYC
+ KIralLUzqkz2IujJq6VcaRT9HRaTfd3a4S2IBOy6SGHCFhQye0NLaIsP0 g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10302"; a="259825408"
+X-IronPort-AV: E=Sophos;i="5.90,225,1643702400"; d="scan'208";a="259825408"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2022 07:09:27 -0700
+X-IronPort-AV: E=Sophos;i="5.90,225,1643702400"; d="scan'208";a="606114156"
+Received: from juanniex-mobl.ger.corp.intel.com (HELO tursulin-mobl2.home)
+ ([10.213.215.247])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2022 07:09:26 -0700
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: Intel-gfx@lists.freedesktop.org
+Date: Thu, 31 Mar 2022 15:09:12 +0100
+Message-Id: <20220331140920.2986689-1-tvrtko.ursulin@linux.intel.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <87pmm28bps.fsf@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v2 11/11] drm/i915: Allow static DRRS on LVDS
+Subject: [Intel-gfx] [PATCH 0/8] Per client GPU utilisation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,55 +55,107 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Mar 31, 2022 at 04:59:11PM +0300, Jani Nikula wrote:
-> On Thu, 31 Mar 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> > From: Ville Syrj�l� <ville.syrjala@linux.intel.com>
-> >
-> > Nothing special about static DRRS on LVDS, it's just your
-> > bog standard modeset. Let's allow it.
-> >
-> > Signed-off-by: Ville Syrj�l� <ville.syrjala@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_lvds.c | 3 ++-
-> >  1 file changed, 2 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c b/drivers/gpu/drm/i915/display/intel_lvds.c
-> > index 73129d21f5e5..e8478161f8b9 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_lvds.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_lvds.c
-> > @@ -968,7 +968,8 @@ void intel_lvds_init(struct drm_i915_private *dev_priv)
-> >  	intel_connector->edid = edid;
-> >  
-> >  	/* Try EDID first */
-> > -	intel_panel_add_edid_fixed_modes(intel_connector, false);
-> > +	intel_panel_add_edid_fixed_modes(intel_connector,
-> > +					 dev_priv->vbt.drrs_type != DRRS_TYPE_NONE);
-> 
-> I guess the final question on this, and the previous patch for that
-> matter, is why would the VBT block your regular modeset between two
-> different refresh rates?
-> 
-> It does sound like the VBT setting is more about OEM decided policy than
-> anything else.
+From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-Or just lack of validation.
+Just a rebase - fully reviewed now.
 
-> 
-> Anyway,
-> 
-> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-> 
-> >  
-> >  	/* Failed to get EDID, what about VBT? */
-> >  	if (!intel_panel_preferred_fixed_mode(intel_connector))
-> 
-> -- 
-> Jani Nikula, Intel Open Source Graphics Center
+Example of the intel_gpu_top output:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+intel-gpu-top: Intel Tigerlake (Gen12) @ /dev/dri/card0 -  220/ 221 MHz
+    70% RC6;  0.62/ 7.08 W;      760 irqs/s
+
+         ENGINES     BUSY                                 MI_SEMA MI_WAIT
+       Render/3D   23.06% |██████▊                      |      0%      0%
+         Blitter    0.00% |                             |      0%      0%
+           Video    5.40% |█▋                           |      0%      0%
+    VideoEnhance   20.67% |██████                       |      0%      0%
+
+   PID              NAME  Render/3D    Blitter      Video    VideoEnhance
+  3082               mpv |          ||          ||▌         ||██        |
+  3117         neverball |█▉        ||          ||          ||          |
+     1           systemd |▍         ||          ||          ||          |
+  2338       gnome-shell |          ||          ||          ||          |
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Example of the gputop output:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+DRM minor 0
+    PID               NAME    render       copy       video
+    3816          kwin_x11 |███▎      ||          ||          ||          |
+    3523              Xorg |▊         ||          ||          ||          |
+ 1120449               mpv |          ||          ||▋         ||          |
+ 1120529          glxgears |▋         ||          ||          ||          |
+ 1120449               mpv |▍         ||          ||          ||          |
+    3860       plasmashell |▏         ||          ||          ||          |
+    4764           krunner |          ||          ||          ||          |
+  575206            chrome |          ||          ||          ||          |
+  833481           firefox |          ||          ||          ||          |
+  892924       thunderbird |          ||          ||          ||          |
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+v2:
+ * Added prototype of possible amdgpu changes and spec updates to align with the
+   common spec.
+
+v3:
+ * Documented that 'drm-driver' tag shall correspond with
+   struct drm_driver.name.
+
+v4:
+ * Dropped amdgpu conversion from the series for now until AMD folks can find
+   some time to finish that patch.
+
+v5:
+ * Added drm-engine-capacity-* tag.
+ * Couple small tweaks.
+
+v6:
+ * Just a rebase and r-b tags updated.
+
+Test-with: 20220331140348.2985832-1-tvrtko.ursulin@linux.intel.com
+
+Tvrtko Ursulin (8):
+  drm/i915: Explicitly track DRM clients
+  drm/i915: Make GEM contexts track DRM clients
+  drm/i915: Track runtime spent in closed and unreachable GEM contexts
+  drm/i915: Track all user contexts per client
+  drm/i915: Track context current active time
+  drm: Document fdinfo format specification
+  drm/i915: Count engine instances per uabi class
+  drm/i915: Expose client engine utilisation via fdinfo
+
+ Documentation/gpu/drm-usage-stats.rst         | 112 +++++++++++++
+ Documentation/gpu/i915.rst                    |  28 ++++
+ Documentation/gpu/index.rst                   |   1 +
+ drivers/gpu/drm/i915/Makefile                 |   1 +
+ drivers/gpu/drm/i915/gem/i915_gem_context.c   |  43 ++++-
+ .../gpu/drm/i915/gem/i915_gem_context_types.h |   6 +
+ drivers/gpu/drm/i915/gt/intel_context.c       |  27 +++-
+ drivers/gpu/drm/i915/gt/intel_context.h       |  15 +-
+ drivers/gpu/drm/i915/gt/intel_context_types.h |  24 ++-
+ drivers/gpu/drm/i915/gt/intel_engine_user.c   |  11 +-
+ .../drm/i915/gt/intel_execlists_submission.c  |  23 ++-
+ .../gpu/drm/i915/gt/intel_gt_clock_utils.c    |   4 +
+ drivers/gpu/drm/i915/gt/intel_lrc.c           |  27 ++--
+ drivers/gpu/drm/i915/gt/intel_lrc.h           |  27 +++-
+ drivers/gpu/drm/i915/gt/selftest_lrc.c        |  10 +-
+ drivers/gpu/drm/i915/i915_driver.c            |   9 ++
+ drivers/gpu/drm/i915/i915_drm_client.c        | 151 ++++++++++++++++++
+ drivers/gpu/drm/i915/i915_drm_client.h        |  68 ++++++++
+ drivers/gpu/drm/i915/i915_drv.h               |   4 +
+ drivers/gpu/drm/i915/i915_file_private.h      |   3 +
+ drivers/gpu/drm/i915/i915_gem.c               |  21 ++-
+ drivers/gpu/drm/i915/i915_gpu_error.c         |   9 +-
+ drivers/gpu/drm/i915/i915_gpu_error.h         |   2 +-
+ 23 files changed, 566 insertions(+), 60 deletions(-)
+ create mode 100644 Documentation/gpu/drm-usage-stats.rst
+ create mode 100644 drivers/gpu/drm/i915/i915_drm_client.c
+ create mode 100644 drivers/gpu/drm/i915/i915_drm_client.h
 
 -- 
-Ville Syrj�l�
-Intel
+2.32.0
+
