@@ -1,52 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBABC4ED787
-	for <lists+intel-gfx@lfdr.de>; Thu, 31 Mar 2022 12:06:14 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id ABB774ED7BA
+	for <lists+intel-gfx@lfdr.de>; Thu, 31 Mar 2022 12:23:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 001A110E657;
-	Thu, 31 Mar 2022 10:06:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC38B10F309;
+	Thu, 31 Mar 2022 10:23:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5039610E2E2;
- Thu, 31 Mar 2022 10:06:08 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D1A5810F309
+ for <intel-gfx@lists.freedesktop.org>; Thu, 31 Mar 2022 10:23:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1648721168; x=1680257168;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=aZH18WlKteagod8GE5IzIYHI6n60sWnHWRzTrCt7cSM=;
- b=G0+e6BVHgTga/mxjaiF0zdaSSaD0b1/3AmWtd08GYoBGpnQo+04sipPs
- fY8FHdzVwDooO+5gxaewMQ/zWeKDp50kaU1RT3/KqY9Z69wycvN5r3LEM
- 4HVeDKu5IuvW1Ri1S+aj8OPlDJr84rNGp47WtpnjgR8HQKShS8/yXjREL
- QxB83wxkWZmIXLKArOGnOvFixd0Xqh8fmAseL8o5/i+y7YoJ7+9ThGyUg
- PUlwDZICABY+EV5051cuoAP+3vTNY3ktSNeQ9JaZbdp18j+PO+qHYvj8A
- hdfB3XWCQMXWIrOz4fRmGE8y4esWTzRH8kL16oCeu/IDOpa6tDILok3pO A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10302"; a="322964364"
-X-IronPort-AV: E=Sophos;i="5.90,225,1643702400"; d="scan'208";a="322964364"
+ t=1648722187; x=1680258187;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=M3TsZp7+dbgw9BDQJwexJhvrcw9uBDKSsYiznKI6/YM=;
+ b=HsBvk2EdbosqaQqiXqQbSDyXKBczYY4b9WoGcIsT49uu+GBBe5ghhnwM
+ hsght2WtaXycyHoSAHjJFUwnsQsgzdlQA0P4HPavxRWiu0/Vk++G4PBla
+ JBbS/Oc9DlcxnkK85TDuMqKFlsh+RYXFaOu7eO47qg4jJxKZoRk7QzR4q
+ I3xDHmdxCUV4zP/LEEOC6LHzN9XCBH1m2GGZtJwHkYpnyXsrUTe0PvAEz
+ KLuO/lJ4WUGAGkz8T3bb7lVv+ZBx7IotA2J+Yqrh060z4A8TcVGI16sqK
+ sH7QLG/XD08zfJzCg2ycFZJLq+vddpkNilpDpJ/qIQmT3B5NNIWxbb3XN A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10302"; a="258618260"
+X-IronPort-AV: E=Sophos;i="5.90,225,1643702400"; d="scan'208";a="258618260"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2022 03:06:07 -0700
-X-IronPort-AV: E=Sophos;i="5.90,225,1643702400"; d="scan'208";a="566337395"
-Received: from cgarnier-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.62.224])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2022 03:23:07 -0700
+X-IronPort-AV: E=Sophos;i="5.90,225,1643702400"; d="scan'208";a="566347259"
+Received: from mkuligo-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.213.26.86])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2022 03:06:06 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-In-Reply-To: <YkSQBaW8swA7LY9M@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220330170426.349248-1-jani.nikula@intel.com>
- <YkSQBaW8swA7LY9M@intel.com>
-Date: Thu, 31 Mar 2022 13:06:03 +0300
-Message-ID: <87r16ia12s.fsf@intel.com>
+ 31 Mar 2022 03:23:06 -0700
+From: =?UTF-8?q?Zbigniew=20Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 31 Mar 2022 12:23:01 +0200
+Message-Id: <20220331102301.34913-1-zbigniew.kempczynski@intel.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH] drm/edid: fix invalid EDID extension block
- filtering
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] Revert "drm/i915/dg2: Add relocation exception"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,67 +55,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 30 Mar 2022, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Wed, Mar 30, 2022 at 08:04:26PM +0300, Jani Nikula wrote:
->> The invalid EDID block filtering uses the number of valid EDID
->> extensions instead of all EDID extensions for looping the extensions in
->> the copy. This is fine, by coincidence, if all the invalid blocks are at
->> the end of the EDID. However, it's completely broken if there are
->> invalid extensions in the middle; the invalid blocks are included and
->> valid blocks are excluded.
->>=20
->> Fix it by modifying the base block after, not before, the copy.
->>=20
->> Fixes: 14544d0937bf ("drm/edid: Only print the bad edid when aborting")
->> Reported-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->
-> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+This reverts commit 904ebf2ba89edaeba5c7c10540e43dba63541dc6.
 
-Thanks, pushed to drm-misc-next. I didn't bother with -fixes, because
-the bug is ancient and rare, and that would only cause conflicts for me.
+Failures on dg2 tests were caused by invalid alignment when local memory
+was in use. Changes which adopt alignment according to gen were already
+merged in IGT so lets revert relocation temporary enabler for dg2. Keeping
+it is a little bit problematic for IGT because on premerge we would see
+results with kernel which supports relocation. To see no-relocation
+results we need to send disabler (like this revert), point IGT with
+"Test-with" tag what is cumbersome and time consuming so lets do this
+permanently. If we will see some failures they need to be fixed instead
+of keeping relocation enabler.
 
-BR,
-Jani.
+Signed-off-by: Zbigniew Kempczyński <zbigniew.kempczynski@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Dave Airlie <airlied@redhat.com>
+Cc: Daniel Vetter <daniel.vetter@intel.com>
+Cc: Jason Ekstrand <jason@jlekstrand.net>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
->
->> ---
->>  drivers/gpu/drm/drm_edid.c | 6 +++---
->>  1 file changed, 3 insertions(+), 3 deletions(-)
->>=20
->> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
->> index d79b06f7f34c..8829120470ab 100644
->> --- a/drivers/gpu/drm/drm_edid.c
->> +++ b/drivers/gpu/drm/drm_edid.c
->> @@ -2031,9 +2031,6 @@ struct edid *drm_do_get_edid(struct drm_connector =
-*connector,
->>=20=20
->>  		connector_bad_edid(connector, edid, edid[0x7e] + 1);
->>=20=20
->> -		edid[EDID_LENGTH-1] +=3D edid[0x7e] - valid_extensions;
->> -		edid[0x7e] =3D valid_extensions;
->> -
->>  		new =3D kmalloc_array(valid_extensions + 1, EDID_LENGTH,
->>  				    GFP_KERNEL);
->>  		if (!new)
->> @@ -2050,6 +2047,9 @@ struct edid *drm_do_get_edid(struct drm_connector =
-*connector,
->>  			base +=3D EDID_LENGTH;
->>  		}
->>=20=20
->> +		new[EDID_LENGTH - 1] +=3D new[0x7e] - valid_extensions;
->> +		new[0x7e] =3D valid_extensions;
->> +
->>  		kfree(edid);
->>  		edid =3D new;
->>  	}
->> --=20
->> 2.30.2
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+index 42a49fd2f2ab..8b0b4aeb6716 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+@@ -501,7 +501,7 @@ static bool platform_has_relocs_enabled(const struct i915_execbuffer *eb)
+ 	 */
+ 	if (GRAPHICS_VER(eb->i915) < 12 || IS_TIGERLAKE(eb->i915) ||
+ 	    IS_ROCKETLAKE(eb->i915) || IS_ALDERLAKE_S(eb->i915) ||
+-	    IS_ALDERLAKE_P(eb->i915) || IS_DG2(eb->i915))
++	    IS_ALDERLAKE_P(eb->i915))
+ 		return true;
+ 
+ 	return false;
+-- 
+2.32.0
 
---=20
-Jani Nikula, Intel Open Source Graphics Center
