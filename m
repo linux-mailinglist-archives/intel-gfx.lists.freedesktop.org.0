@@ -2,54 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AE1E4EDF40
-	for <lists+intel-gfx@lfdr.de>; Thu, 31 Mar 2022 18:58:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 616BF4EDF5E
+	for <lists+intel-gfx@lfdr.de>; Thu, 31 Mar 2022 19:07:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 356A310F413;
-	Thu, 31 Mar 2022 16:58:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94A3910F42D;
+	Thu, 31 Mar 2022 17:07:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2732510E781;
- Thu, 31 Mar 2022 16:58:50 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F6E610F42D;
+ Thu, 31 Mar 2022 17:07:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1648745930; x=1680281930;
+ t=1648746452; x=1680282452;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=wjt6iTgPQfcltJKVFjTsJLxsw2Cl60NbIFp9s2rb+I4=;
- b=XwajfJL60lJyEi1qCPaPzx8I86RdELGCy1sj/QXlgmVGmxqJiI7A0NQU
- gPNv3dV6e0PeE3Sp4oovKEAPNyD/3gf6M4zxwYBcaX8y+o6qBdweaeV6R
- LX9g7bR+6hNRCdQEyIPasBwaZbap1tbUq+TDwB7DLpjArzI0FajiwTcQG
- TAqG5s1cDrgwI5Ppc1oevzeI5/c37OzD+J/jMRdKurdrluNXp9iQIjo7e
- JJFeNqiXguoAkdoheEFFT2nM9p85Rl0O+tN7/k+xcWtJ+oc03Yu6PTBfv
- 5QXtu2YkgqcUeDO72NLR6BXEPjhAZttEfgXGbUdrgrJNBf8GMp8Qt+rwp w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10302"; a="257476525"
-X-IronPort-AV: E=Sophos;i="5.90,225,1643702400"; d="scan'208";a="257476525"
+ bh=VnajxgruJJNT5XcFrM9Uh2LW5SyRCbn3uR1hEGDGdQ0=;
+ b=YChhlnO3XT69w9PNOqym6G96g7XXwmz1Px8wusZIWbxySL4KscWnTsjk
+ OxdFWeLNUhDSmryzMtMFExSsT9G/i7IcqBs8Yv+zleUH98gxgkw/A5QKZ
+ vCNnvpXllB20psKZZ2MnkuheCncuPe5JOLC887B8JFyHzKKRJ3ReVb3XU
+ 06jbXuQRFWCH+Rkql6K7xNeXY/Kjn9zNjxB7XV+A/rGdpcUXLhxTuaatA
+ qqWeHH1Yiol8db+aW6iCB36e4UEC4lYNxvboLEx6tYy/z/6rkCkFWwnuo
+ mz6vGEUXO7/GVyV2GYLLrm9rSvDHc+sbcPPKnwyUlFEi9Fcczoy5FOCO5 w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10302"; a="240490677"
+X-IronPort-AV: E=Sophos;i="5.90,225,1643702400"; d="scan'208";a="240490677"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2022 09:58:49 -0700
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2022 10:07:32 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,225,1643702400"; d="scan'208";a="547415122"
+X-IronPort-AV: E=Sophos;i="5.90,225,1643702400"; d="scan'208";a="547420058"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.61])
- by orsmga007.jf.intel.com with SMTP; 31 Mar 2022 09:58:47 -0700
+ by orsmga007.jf.intel.com with SMTP; 31 Mar 2022 10:07:29 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 31 Mar 2022 19:58:46 +0300
-Date: Thu, 31 Mar 2022 19:58:46 +0300
+ Thu, 31 Mar 2022 20:07:28 +0300
+Date: Thu, 31 Mar 2022 20:07:28 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <YkXdxgy7Ic9M9iwx@intel.com>
+Message-ID: <YkXf0PMEqlKsOyif@intel.com>
 References: <cover.1648578814.git.jani.nikula@intel.com>
- <296443a99ce907b11d08ddc88407aa35d9bdc5a3.1648578814.git.jani.nikula@intel.com>
- <YkXAo2NceBUlGbE1@intel.com> <87k0ca83uh.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <87k0ca83uh.fsf@intel.com>
+In-Reply-To: <cover.1648578814.git.jani.nikula@intel.com>
 X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 07/12] drm/edid: split
- drm_edid_block_valid() to check and act parts
+Subject: Re: [Intel-gfx] [PATCH 00/12] drm/edid: cleanup and refactoring
+ around validity checks
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,21 +64,44 @@ Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Mar 31, 2022 at 07:49:10PM +0300, Jani Nikula wrote:
-> On Thu, 31 Mar 2022, Ville Syrjälä <ville.syrjala@linux.intel.com> wrote:
-> >> -
-> >> -		if (edid->revision > 4)
-> >> -			DRM_DEBUG("EDID minor > 4, assuming backward compatibility\n");
-> >
-> > This debug message seems to disappear. Intentional?
+On Tue, Mar 29, 2022 at 09:42:07PM +0300, Jani Nikula wrote:
+> Another day, another batch of EDID code refactoring.
 > 
-> Intentional, but failed to mention it in the commit message.
+> Mostly the goal was to simplify drm_do_get_edid(), but trying to extract
+> a const function for checking a single block validity lead me down a
+> rabbit hole...
 > 
-> Do we want to keep it? With my new approach, it basically means another
-> valid return value that's distinct from just ok.
+> BR,
+> Jani.
+> 
+> 
+> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Cc: Emil Velikov <emil.l.velikov@gmail.com>
+> 
+> Jani Nikula (12):
+>   drm/edid: use struct edid * in drm_do_get_edid()
+>   drm/edid: clean up EDID block checksum functions
+>   drm/edid: add edid_block_tag() helper to get the EDID extension tag
+>   drm/edid: make drm_edid_header_is_valid() accept void pointer
+>   drm/edid: clean up edid_is_zero()
+>   drm/edid: split out edid_header_fix()
+>   drm/edid: split drm_edid_block_valid() to check and act parts
+>   drm/edid: use a better variable name for EDID block read retries
+>   drm/edid: simplify block check when filtering invalid blocks
+>   drm/edid: split out invalid block filtering to a separate function
+>   drm/edid: track invalid blocks in drm_do_get_edid()
+>   drm/edid: reduce magic when updating the EDID block checksum
 
-Seems pretty pointless to me. Especially with DisplayID on the
-scene it seems rather unlikely that there would ever be EDID 1.5+.
+With the few bugs I spotted fixed the series is
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+
+> 
+>  drivers/gpu/drm/drm_edid.c | 293 +++++++++++++++++++++----------------
+>  include/drm/drm_edid.h     |   2 +-
+>  2 files changed, 171 insertions(+), 124 deletions(-)
+> 
+> -- 
+> 2.30.2
 
 -- 
 Ville Syrjälä
