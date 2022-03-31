@@ -2,50 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AEDD4EDB69
-	for <lists+intel-gfx@lfdr.de>; Thu, 31 Mar 2022 16:09:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0670D4EDBC3
+	for <lists+intel-gfx@lfdr.de>; Thu, 31 Mar 2022 16:35:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 80A8E10EA8B;
-	Thu, 31 Mar 2022 14:09:38 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C15A10E732;
- Thu, 31 Mar 2022 14:09:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 42D9910EA94;
+	Thu, 31 Mar 2022 14:35:20 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B966F10EA94
+ for <intel-gfx@lists.freedesktop.org>; Thu, 31 Mar 2022 14:35:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1648735776; x=1680271776;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=W/XSnfY4DJPvUodzoAJ6thuysohpm+9rYr06rYVmH5k=;
- b=i8VetgrgY4wuejudZ1CePLzpbSDGmcaZxcTnuE+bSCh5Jlljnm7MG5lu
- SDhxM0/nkqsO+ryOPW1f65YDoNQEfLEFjUOl3TW1tY8Df18ljmvXFP7sj
- zI9VDwqBdNnP2bofwdqkb7ei1v9W7DVekeX2lb+l94KAScC8ItUWTW+L0
- GAWNv8UtCOmx6csMidJM8t0X90Dkjz9n4nZis1DSqayBruOPXvI2H0/YM
- V7uXDimHKPvGe9lr69VF14IlpP5vwNkno6ix04pMyX73pW80DN0vmFARx
- IoleHUBuZJyF+GdoIxG4EA+hih4QQFncqyUDC3pQn0VKkxOKvhhnvUMGq Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10302"; a="259825456"
-X-IronPort-AV: E=Sophos;i="5.90,225,1643702400"; d="scan'208";a="259825456"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2022 07:09:35 -0700
-X-IronPort-AV: E=Sophos;i="5.90,225,1643702400"; d="scan'208";a="606114234"
-Received: from juanniex-mobl.ger.corp.intel.com (HELO tursulin-mobl2.home)
+ t=1648737318; x=1680273318;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=hpiB2L0Di77Ynun39ckuSAmIWWfb7lgHv8jME3j6VtM=;
+ b=cbYNCXgDc5TdDBQ3aEab1+jfb/zisPgB8da4W3uz2Tt3vcvzBOcZo/dg
+ GBSPL8V4QQyiIkO4M0kKuHkYoAzc3zsIE1fiNjhbm1Zq+BPaOYwCYxPK7
+ KFisveSsSOTpGmgPagCLvI0wzmvc6WGrWbnVVKAXWlxQLce6a2vG22oNN
+ JgKS4ikY61hY3Zd9V+mBstHdUXfMcVeQOuwyCbga6qSGDlZAtl9zOrx51
+ EBHAJhyv9ATbB7pP5Ht272TkLqcdWH08+Wc9H5arWqoJcPrwhBQxH0QEI
+ +fP8wk6e8cVLNgvdQXPndQ7NUvEaoUgQ9xvbFtNs8cNAg9QZLXBXwaXUk w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10302"; a="260035960"
+X-IronPort-AV: E=Sophos;i="5.90,225,1643702400"; d="scan'208";a="260035960"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2022 07:35:18 -0700
+X-IronPort-AV: E=Sophos;i="5.90,225,1643702400"; d="scan'208";a="654791910"
+Received: from juanniex-mobl.ger.corp.intel.com (HELO [10.213.215.247])
  ([10.213.215.247])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2022 07:09:34 -0700
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: Intel-gfx@lists.freedesktop.org
-Date: Thu, 31 Mar 2022 15:09:20 +0100
-Message-Id: <20220331140920.2986689-9-tvrtko.ursulin@linux.intel.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220331140920.2986689-1-tvrtko.ursulin@linux.intel.com>
-References: <20220331140920.2986689-1-tvrtko.ursulin@linux.intel.com>
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2022 07:35:16 -0700
+Message-ID: <0ad71510-0682-0179-213f-af9c623d09c1@linux.intel.com>
+Date: Thu, 31 Mar 2022 15:35:12 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 8/8] drm/i915: Expose client engine utilisation
- via fdinfo
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Content-Language: en-US
+To: Casey Bowman <casey.g.bowman@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20220331000908.1225343-1-casey.g.bowman@intel.com>
+ <20220331000908.1225343-2-casey.g.bowman@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <20220331000908.1225343-2-casey.g.bowman@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [RFC PATCH v5 1/1] Split i915_run_as_guest into x86
+ and non-x86
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,231 +62,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Cc: michael.cheng@intel.com, lucas.demarchi@intel.com, daniel.vetter@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-Similar to AMD commit
-874442541133 ("drm/amdgpu: Add show_fdinfo() interface"), using the
-infrastructure added in previous patches, we add basic client info
-and GPU engine utilisation for i915.
+On 31/03/2022 01:09, Casey Bowman wrote:
+> Splitting i915_run_as_guest into a more arch-friendly function
+> as non-x86 builds do not support this functionality.
+> 
+> Signed-off-by: Casey Bowman <casey.g.bowman@intel.com>
+> ---
+>   drivers/gpu/drm/i915/i915_utils.h | 5 +++++
+>   1 file changed, 5 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_utils.h b/drivers/gpu/drm/i915/i915_utils.h
+> index b2d89c43f24d..a42882e68eea 100644
+> --- a/drivers/gpu/drm/i915/i915_utils.h
+> +++ b/drivers/gpu/drm/i915/i915_utils.h
+> @@ -428,7 +428,12 @@ static inline bool timer_expired(const struct timer_list *t)
+>   
+>   static inline bool i915_run_as_guest(void)
+>   {
+> +#if IS_ENABLED(CONFIG_X86)
+>   	return !hypervisor_is_type(X86_HYPER_NATIVE);
+> +#else
+> +	/* Not supported yet */
+> +	return false;
+> +#endif
 
-Example of the output:
+Works for me.
 
-  pos:    0
-  flags:  0100002
-  mnt_id: 21
-  drm-driver: i915
-  drm-pdev:   0000:00:02.0
-  drm-client-id:      7
-  drm-engine-render:  9288864723 ns
-  drm-engine-copy:    2035071108 ns
-  drm-engine-video:   0 ns
-  drm-engine-video-enhance:   0 ns
+Acked-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-v2:
- * Update for removal of name and pid.
+You may want to #ifdef the inclusion of asm/hypervisor.h as well. It 
+only happens to work by chance since Arm has that file. Although it 
+becomes uglier at that point..
 
-v3:
- * Use drm_driver.name.
+There is a function in there which appears may give you a way to query 
+if under hypervisor, based on some feature flags, but you'd have to ask 
+Arm experts if that would make sense.
 
-v4:
- * Added drm-engine-capacity- tag.
- * Fix typo. (Umesh)
+Regards,
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: David M Nieto <David.Nieto@amd.com>
-Cc: Christian König <christian.koenig@amd.com>
-Cc: Daniel Vetter <daniel@ffwll.ch>
-Cc: Chris Healy <cphealy@gmail.com>
-Acked-by: Christian König <christian.koenig@amd.com>
-Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
----
- Documentation/gpu/drm-usage-stats.rst  |  6 ++
- Documentation/gpu/i915.rst             | 28 +++++++++
- drivers/gpu/drm/i915/i915_driver.c     |  3 +
- drivers/gpu/drm/i915/i915_drm_client.c | 81 ++++++++++++++++++++++++++
- drivers/gpu/drm/i915/i915_drm_client.h |  4 ++
- 5 files changed, 122 insertions(+)
+Tvrtko
 
-diff --git a/Documentation/gpu/drm-usage-stats.rst b/Documentation/gpu/drm-usage-stats.rst
-index b8cc28f4da6f..6c9f166a8d6f 100644
---- a/Documentation/gpu/drm-usage-stats.rst
-+++ b/Documentation/gpu/drm-usage-stats.rst
-@@ -104,3 +104,9 @@ object belong to this client, in the respective memory region.
- 
- Default unit shall be bytes with optional unit specifiers of 'KiB' or 'MiB'
- indicating kibi- or mebi-bytes.
-+
-+===============================
-+Driver specific implementations
-+===============================
-+
-+:ref:`i915-usage-stats`
-diff --git a/Documentation/gpu/i915.rst b/Documentation/gpu/i915.rst
-index 0f08693d05cd..54060cd6c419 100644
---- a/Documentation/gpu/i915.rst
-+++ b/Documentation/gpu/i915.rst
-@@ -697,3 +697,31 @@ The style guide for ``i915_reg.h``.
- 
- .. kernel-doc:: drivers/gpu/drm/i915/i915_reg.h
-    :doc: The i915 register macro definition style guide
-+
-+.. _i915-usage-stats:
-+
-+i915 DRM client usage stats implementation
-+==========================================
-+
-+The drm/i915 driver implements the DRM client usage stats specification as
-+documented in :ref:`drm-client-usage-stats`.
-+
-+Example of the output showing the implemented key value pairs and entirety of
-+the currently possible format options:
-+
-+::
-+
-+      pos:    0
-+      flags:  0100002
-+      mnt_id: 21
-+      drm-driver: i915
-+      drm-pdev:   0000:00:02.0
-+      drm-client-id:      7
-+      drm-engine-render:  9288864723 ns
-+      drm-engine-copy:    2035071108 ns
-+      drm-engine-video:   0 ns
-+      drm-engine-capacity-video:   2
-+      drm-engine-video-enhance:   0 ns
-+
-+Possible `drm-engine-` key names are: `render`, `copy`, `video` and
-+`video-enhance`.
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index b2df273e6d7b..3ffb617d75c9 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -1745,6 +1745,9 @@ static const struct file_operations i915_driver_fops = {
- 	.read = drm_read,
- 	.compat_ioctl = i915_ioc32_compat_ioctl,
- 	.llseek = noop_llseek,
-+#ifdef CONFIG_PROC_FS
-+	.show_fdinfo = i915_drm_client_fdinfo,
-+#endif
- };
- 
- static int
-diff --git a/drivers/gpu/drm/i915/i915_drm_client.c b/drivers/gpu/drm/i915/i915_drm_client.c
-index 91a8559bebf7..54b40f451959 100644
---- a/drivers/gpu/drm/i915/i915_drm_client.c
-+++ b/drivers/gpu/drm/i915/i915_drm_client.c
-@@ -7,7 +7,13 @@
- #include <linux/slab.h>
- #include <linux/types.h>
- 
-+#include <uapi/drm/i915_drm.h>
-+
-+#include <drm/drm_print.h>
-+
-+#include "gem/i915_gem_context.h"
- #include "i915_drm_client.h"
-+#include "i915_file_private.h"
- #include "i915_gem.h"
- #include "i915_utils.h"
- 
-@@ -68,3 +74,78 @@ void i915_drm_clients_fini(struct i915_drm_clients *clients)
- 	GEM_BUG_ON(!xa_empty(&clients->xarray));
- 	xa_destroy(&clients->xarray);
- }
-+
-+#ifdef CONFIG_PROC_FS
-+static const char * const uabi_class_names[] = {
-+	[I915_ENGINE_CLASS_RENDER] = "render",
-+	[I915_ENGINE_CLASS_COPY] = "copy",
-+	[I915_ENGINE_CLASS_VIDEO] = "video",
-+	[I915_ENGINE_CLASS_VIDEO_ENHANCE] = "video-enhance",
-+};
-+
-+static u64 busy_add(struct i915_gem_context *ctx, unsigned int class)
-+{
-+	struct i915_gem_engines_iter it;
-+	struct intel_context *ce;
-+	u64 total = 0;
-+
-+	for_each_gem_engine(ce, rcu_dereference(ctx->engines), it) {
-+		if (ce->engine->uabi_class != class)
-+			continue;
-+
-+		total += intel_context_get_total_runtime_ns(ce);
-+	}
-+
-+	return total;
-+}
-+
-+static void
-+show_client_class(struct seq_file *m,
-+		  struct i915_drm_client *client,
-+		  unsigned int class)
-+{
-+	const struct list_head *list = &client->ctx_list;
-+	u64 total = atomic64_read(&client->past_runtime[class]);
-+	const unsigned int capacity =
-+		client->clients->i915->engine_uabi_class_count[class];
-+	struct i915_gem_context *ctx;
-+
-+	rcu_read_lock();
-+	list_for_each_entry_rcu(ctx, list, client_link)
-+		total += busy_add(ctx, class);
-+	rcu_read_unlock();
-+
-+	seq_printf(m, "drm-engine-%s:\t%llu ns\n",
-+		   uabi_class_names[class], total);
-+
-+	if (capacity > 1)
-+		seq_printf(m, "drm-engine-capacity-%s:\t%u\n",
-+			   uabi_class_names[class],
-+			   capacity);
-+}
-+
-+void i915_drm_client_fdinfo(struct seq_file *m, struct file *f)
-+{
-+	struct drm_file *file = f->private_data;
-+	struct drm_i915_file_private *file_priv = file->driver_priv;
-+	struct drm_i915_private *i915 = file_priv->dev_priv;
-+	struct i915_drm_client *client = file_priv->client;
-+	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
-+	unsigned int i;
-+
-+	/*
-+	 * ******************************************************************
-+	 * For text output format description please see drm-usage-stats.rst!
-+	 * ******************************************************************
-+	 */
-+
-+	seq_printf(m, "drm-driver:\t%s\n", i915->drm.driver->name);
-+	seq_printf(m, "drm-pdev:\t%04x:%02x:%02x.%d\n",
-+		   pci_domain_nr(pdev->bus), pdev->bus->number,
-+		   PCI_SLOT(pdev->devfn), PCI_FUNC(pdev->devfn));
-+	seq_printf(m, "drm-client-id:\t%u\n", client->id);
-+
-+	for (i = 0; i < ARRAY_SIZE(uabi_class_names); i++)
-+		show_client_class(m, client, i);
-+}
-+#endif
-diff --git a/drivers/gpu/drm/i915/i915_drm_client.h b/drivers/gpu/drm/i915/i915_drm_client.h
-index 191368386ace..5f5b02b01ba0 100644
---- a/drivers/gpu/drm/i915/i915_drm_client.h
-+++ b/drivers/gpu/drm/i915/i915_drm_client.h
-@@ -59,6 +59,10 @@ static inline void i915_drm_client_put(struct i915_drm_client *client)
- 
- struct i915_drm_client *i915_drm_client_add(struct i915_drm_clients *clients);
- 
-+#ifdef CONFIG_PROC_FS
-+void i915_drm_client_fdinfo(struct seq_file *m, struct file *f);
-+#endif
-+
- void i915_drm_clients_fini(struct i915_drm_clients *clients);
- 
- #endif /* !__I915_DRM_CLIENT_H__ */
--- 
-2.32.0
-
+>   }
+>   
+>   bool i915_vtd_active(struct drm_i915_private *i915);
