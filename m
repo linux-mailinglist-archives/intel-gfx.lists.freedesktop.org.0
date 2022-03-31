@@ -1,59 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E6714EDCA0
-	for <lists+intel-gfx@lfdr.de>; Thu, 31 Mar 2022 17:20:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA4664EDE08
+	for <lists+intel-gfx@lfdr.de>; Thu, 31 Mar 2022 17:54:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E1DE010E37F;
-	Thu, 31 Mar 2022 15:20:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A78A610F405;
+	Thu, 31 Mar 2022 15:54:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com
- [IPv6:2a00:1450:4864:20::443])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 387D110E37F
- for <intel-gfx@lists.freedesktop.org>; Thu, 31 Mar 2022 15:20:29 +0000 (UTC)
-Received: by mail-wr1-x443.google.com with SMTP id h23so236128wrb.8
- for <intel-gfx@lists.freedesktop.org>; Thu, 31 Mar 2022 08:20:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=yl6OLX34D6pVvgWmEp+9CGGMulYgptJ28i/1ysySt7Y=;
- b=DV+J2wC4xr57hA/7P732w8s7ztEs6o+4E/fE426BIU28RDUYGdh+bw+p5dIXL1H8je
- khzU9F3X8IuF8doFQltF4ghx7PMmKwpBuk7HsJ9ROVLJhxM1HXwEXnYhLaYpU/Rg1sEH
- MQWRNV0F+XKYi32eAsnYq4oO7YfTU6RyimiCY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=yl6OLX34D6pVvgWmEp+9CGGMulYgptJ28i/1ysySt7Y=;
- b=vCabKY0SViz1Y4e6V/VfUwZllsKue8dEWDnawpkSxoYz+3rZ0O8q6CcoEcr7agygV3
- T5fkb122ClfQISBJl3z3X8/dIuHq5Gudh7WUVpgRJD7K/bDyRj73kH2VazhUEDFCBT4b
- 5sXOjA0hT08FHLLfCYirVnSayjbiyxHhlhMwoVUcikusRncZ6PeubsnPmTVrpjtaeVMl
- oGMzTB8OJ3PcEggdM59CeyQsVqpVkTQoNYTIcdbbjTHnxx3M2lGo5kJrmwnmVG+tcIAD
- 5OJGXDfSCzzfbcFOkjFXIIHv16f7RrrpoeZls0kIXxUH9T6KFTXKk0suuaxPlF2MbIfE
- 5gZw==
-X-Gm-Message-State: AOAM5338VuWsyHheJwab5cGfgalM6EWORCFPi3aBw4YCGxFBXIKw68G9
- UfI+cIzcj21btaCoZ3E7DP4+UA==
-X-Google-Smtp-Source: ABdhPJxeSC9lGpYWoiSwKqgW/c09oonbXh3K4eicBWBv1dodmz+76eAHXXZh4HR3Cpe0ZLlL0pmJTw==
-X-Received: by 2002:a5d:40ca:0:b0:203:e037:cd0e with SMTP id
- b10-20020a5d40ca000000b00203e037cd0emr4558104wrq.534.1648740027713; 
- Thu, 31 Mar 2022 08:20:27 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id
- p8-20020a5d59a8000000b00204178688d3sm22392080wrr.100.2022.03.31.08.20.26
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 31 Mar 2022 08:20:27 -0700 (PDT)
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-To: DRI Development <dri-devel@lists.freedesktop.org>
-Date: Thu, 31 Mar 2022 17:20:21 +0200
-Message-Id: <20220331152021.2671937-1-daniel.vetter@ffwll.ch>
-X-Mailer: git-send-email 2.34.1
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 381B010E319;
+ Thu, 31 Mar 2022 15:54:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1648742080; x=1680278080;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=jeBEjokyYyOb/sPB0w8+LIxAGzVK5eKSgo4RN3Y+zWU=;
+ b=WNZCCBjQ8YB8E18a4uXH8Gno2wFgISZRAZsDyQISyyZZ/hU48f8XKXOQ
+ w5EJJ5Mv0GfleGkVpoudTFJ9dcMoBvBBgDacB9GKxOE84Bh+8Yieud4p9
+ g7VFhSBUL1zHt4pc2fSnUnvHZzdrzbacPwzGsKgF9gOntiAIGkFQPgdr5
+ oTa+FlBysKvGQ2HuZjqI0EvZaUDhFSAW1Ani35vz+Ac2ZlMdEsmq20jKw
+ iO9Fya2cTGHqMkJQ6wGl0QaxrFhe/0q/dkz0w2nb2turlLpqX5EllWFb2
+ 9/cn19547A0rCz8BcBdb0ffK7+bsnY81FfUIICklaWSUFtMuM/OPshK9L w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10302"; a="259585690"
+X-IronPort-AV: E=Sophos;i="5.90,225,1643702400"; d="scan'208";a="259585690"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2022 08:54:39 -0700
+X-IronPort-AV: E=Sophos;i="5.90,225,1643702400"; d="scan'208";a="566592796"
+Received: from gluca-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.48.194])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2022 08:54:37 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+In-Reply-To: <YkXAo2NceBUlGbE1@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1648578814.git.jani.nikula@intel.com>
+ <296443a99ce907b11d08ddc88407aa35d9bdc5a3.1648578814.git.jani.nikula@intel.com>
+ <YkXAo2NceBUlGbE1@intel.com>
+Date: Thu, 31 Mar 2022 18:54:34 +0300
+Message-ID: <87mth686dh.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/atomic-helpers: remove legacy_cursor_update
- hacks
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 07/12] drm/edid: split
+ drm_edid_block_valid() to check and act parts
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,138 +60,255 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- =?UTF-8?q?Michel=20D=C3=A4nzer?= <michel@daenzer.net>, "Kazlauskas,
- Nicholas" <nicholas.kazlauskas@amd.com>, Maxime Ripard <maxime@cerno.tech>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Daniel Vetter <daniel.vetter@intel.com>, mikita.lipski@amd.com,
- harry.wentland@amd.com,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The stuff never really worked, and leads to lots of fun because it
-out-of-order frees atomic states. Which upsets KASAN, among other
-things.
+On Thu, 31 Mar 2022, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Tue, Mar 29, 2022 at 09:42:14PM +0300, Jani Nikula wrote:
+>> Add edid_block_check() that only checks the EDID block validity, without
+>> any actions. Turns out it's simple and crystal clear.
+>>=20
+>> Rewrite drm_edid_block_valid() around it, keeping all the functionality
+>> fairly closely the same, warts and all. Turns out it's incredibly
+>> complicated for a function you'd expect to be simple, with all the
+>> fixing and printing and special casing. (Maybe we'll want to simplify it
+>> in the future.)
+>>=20
+>> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>>  drivers/gpu/drm/drm_edid.c | 150 ++++++++++++++++++++++---------------
+>>  1 file changed, 88 insertions(+), 62 deletions(-)
+>>=20
+>> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
+>> index 481643751d10..04eb6949c9c8 100644
+>> --- a/drivers/gpu/drm/drm_edid.c
+>> +++ b/drivers/gpu/drm/drm_edid.c
+>> @@ -1668,10 +1668,55 @@ bool drm_edid_are_equal(const struct edid *edid1=
+, const struct edid *edid2)
+>>  }
+>>  EXPORT_SYMBOL(drm_edid_are_equal);
+>>=20=20
+>> +enum edid_block_status {
+>> +	EDID_BLOCK_OK =3D 0,
+>> +	EDID_BLOCK_NULL,
+>> +	EDID_BLOCK_HEADER_CORRUPT,
+>> +	EDID_BLOCK_HEADER_REPAIR,
+>> +	EDID_BLOCK_HEADER_FIXED,
+>> +	EDID_BLOCK_CHECKSUM,
+>> +	EDID_BLOCK_VERSION,
+>> +};
+>> +
+>> +static enum edid_block_status edid_block_check(const void *_block, bool=
+ base)
+>
+> s/base/is_base_block/ or something?
 
-For async updates we now have a more solid solution with the
-->atomic_async_check and ->atomic_async_commit hooks. Support for that
-for msm and vc4 landed. nouveau and i915 have their own commit
-routines, doing something similar.
+Okay.
 
-For everyone else it's probably better to remove the use-after-free
-bug, and encourage folks to use the async support instead. The
-affected drivers which register a legacy cursor plane and don't either
-use the new async stuff or their own commit routine are: amdgpu,
-atmel, mediatek, qxl, rockchip, sti, sun4i, tegra, virtio, and vmwgfx.
+>
+>> +{
+>> +	const struct edid *block =3D _block;
+>> +
+>> +	if (!block)
+>> +		return EDID_BLOCK_NULL;
+>> +
+>> +	if (base) {
+>> +		int score =3D drm_edid_header_is_valid(block);
+>> +
+>> +		if (score < clamp(edid_fixup, 6, 8))
+>
+> That should clamp to 0-8?
 
-Inspired by an amdgpu bug report.
+Indeed, thanks!
 
-v2: Drop RFC, I think with amdgpu converted over to use
-atomic_async_check/commit done in
+> Might be nicer to just define a .set() op for the modparam
+> and check it there, but that's clearly material for a separate patch.
 
-commit 674e78acae0dfb4beb56132e41cbae5b60f7d662
-Author: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
-Date:   Wed Dec 5 14:59:07 2018 -0500
+Yes.
 
-    drm/amd/display: Add fast path for cursor plane updates
+BR,
+Jani.
 
-we don't have any driver anymore where we have userspace expecting
-solid legacy cursor support _and_ they are using the atomic helpers in
-their fully glory. So we can retire this.
+>
+>> +			return EDID_BLOCK_HEADER_CORRUPT;
+>> +
+>> +		if (score < 8)
+>> +			return EDID_BLOCK_HEADER_REPAIR;
+>> +	}
+>> +
+>> +	if (edid_block_compute_checksum(block) !=3D edid_block_get_checksum(bl=
+ock))
+>> +		return EDID_BLOCK_CHECKSUM;
+>> +
+>> +	if (base) {
+>> +		if (block->version !=3D 1)
+>> +			return EDID_BLOCK_VERSION;
+>> +	}
+>> +
+>> +	return EDID_BLOCK_OK;
+>> +}
+>> +
+>> +static bool edid_block_status_valid(enum edid_block_status status, int =
+tag)
+>> +{
+>> +	return status =3D=3D EDID_BLOCK_OK ||
+>> +		status =3D=3D EDID_BLOCK_HEADER_FIXED ||
+>> +		(status =3D=3D EDID_BLOCK_CHECKSUM && tag =3D=3D CEA_EXT);
+>> +}
+>> +
+>>  /**
+>>   * drm_edid_block_valid - Sanity check the EDID block (base or extensio=
+n)
+>>   * @raw_edid: pointer to raw EDID block
+>> - * @block: type of block to validate (0 for base, extension otherwise)
+>> + * @block_num: type of block to validate (0 for base, extension otherwi=
+se)
+>>   * @print_bad_edid: if true, dump bad EDID blocks to the console
+>>   * @edid_corrupt: if true, the header or checksum is invalid
+>>   *
+>> @@ -1680,88 +1725,69 @@ EXPORT_SYMBOL(drm_edid_are_equal);
+>>   *
+>>   * Return: True if the block is valid, false otherwise.
+>>   */
+>> -bool drm_edid_block_valid(u8 *raw_edid, int block, bool print_bad_edid,
+>> +bool drm_edid_block_valid(u8 *_block, int block_num, bool print_bad_edi=
+d,
+>>  			  bool *edid_corrupt)
+>>  {
+>> -	u8 csum;
+>> -	struct edid *edid =3D (struct edid *)raw_edid;
+>> +	struct edid *block =3D (struct edid *)_block;
+>> +	enum edid_block_status status;
+>> +	bool base =3D block_num =3D=3D 0;
+>> +	bool valid;
+>>=20=20
+>> -	if (WARN_ON(!raw_edid))
+>> +	if (WARN_ON(!block))
+>>  		return false;
+>>=20=20
+>> -	if (edid_fixup > 8 || edid_fixup < 0)
+>> -		edid_fixup =3D 6;
+>> -
+>> -	if (block =3D=3D 0) {
+>> -		int score =3D drm_edid_header_is_valid(raw_edid);
+>> +	status =3D edid_block_check(block, base);
+>> +	if (status =3D=3D EDID_BLOCK_HEADER_REPAIR) {
+>> +		DRM_DEBUG("Fixing EDID header, your hardware may be failing\n");
+>> +		edid_header_fix(block);
+>>=20=20
+>> -		if (score =3D=3D 8) {
+>> -			if (edid_corrupt)
+>> -				*edid_corrupt =3D false;
+>> -		} else if (score >=3D edid_fixup) {
+>> -			/* Displayport Link CTS Core 1.2 rev1.1 test 4.2.2.6
+>> -			 * The corrupt flag needs to be set here otherwise, the
+>> -			 * fix-up code here will correct the problem, the
+>> -			 * checksum is correct and the test fails
+>> -			 */
+>> -			if (edid_corrupt)
+>> -				*edid_corrupt =3D true;
+>> -			DRM_DEBUG("Fixing EDID header, your hardware may be failing\n");
+>> -			edid_header_fix(raw_edid);
+>> -		} else {
+>> -			if (edid_corrupt)
+>> -				*edid_corrupt =3D true;
+>> -			goto bad;
+>> -		}
+>> +		/* Retry with fixed header, update status if that worked. */
+>> +		status =3D edid_block_check(block, base);
+>> +		if (status =3D=3D EDID_BLOCK_OK)
+>> +			status =3D EDID_BLOCK_HEADER_FIXED;
+>>  	}
+>>=20=20
+>> -	csum =3D edid_block_compute_checksum(raw_edid);
+>> -	if (csum !=3D edid_block_get_checksum(raw_edid)) {
+>> -		if (edid_corrupt)
+>> +	if (edid_corrupt) {
+>> +		/*
+>> +		 * Unknown major version isn't corrupt but we can't use it. Only
+>> +		 * the base block can reset edid_corrupt to false.
+>> +		 */
+>> +		if (base && (status =3D=3D EDID_BLOCK_OK || status =3D=3D EDID_BLOCK_=
+VERSION))
+>> +			*edid_corrupt =3D false;
+>> +		else if (status !=3D EDID_BLOCK_OK)
+>>  			*edid_corrupt =3D true;
+>> -
+>> -		/* allow CEA to slide through, switches mangle this */
+>> -		if (edid_block_tag(raw_edid) =3D=3D CEA_EXT) {
+>> -			DRM_DEBUG("EDID checksum is invalid, remainder is %d\n", csum);
+>> -			DRM_DEBUG("Assuming a KVM switch modified the CEA block but left the=
+ original checksum\n");
+>> -		} else {
+>> -			if (print_bad_edid)
+>> -				DRM_NOTE("EDID checksum is invalid, remainder is %d\n", csum);
+>> -
+>> -			goto bad;
+>> -		}
+>>  	}
+>>=20=20
+>> -	/* per-block-type checks */
+>> -	switch (edid_block_tag(raw_edid)) {
+>> -	case 0: /* base */
+>> -		if (edid->version !=3D 1) {
+>> -			DRM_NOTE("EDID has major version %d, instead of 1\n", edid->version);
+>> -			goto bad;
+>> +	/* Determine whether we can use this block with this status. */
+>> +	valid =3D edid_block_status_valid(status, edid_block_tag(block));
+>> +
+>> +	/* Some fairly random status printouts. */
+>> +	if (status =3D=3D EDID_BLOCK_CHECKSUM) {
+>> +		if (valid) {
+>> +			DRM_DEBUG("EDID block checksum is invalid, remainder is %d\n",
+>> +				  edid_block_compute_checksum(block));
+>> +			DRM_DEBUG("Assuming a KVM switch modified the block but left the ori=
+ginal checksum\n");
+>> +		} else if (print_bad_edid) {
+>> +			DRM_NOTE("EDID block checksum is invalid, remainder is %d\n",
+>> +				 edid_block_compute_checksum(block));
+>>  		}
+>> -
+>> -		if (edid->revision > 4)
+>> -			DRM_DEBUG("EDID minor > 4, assuming backward compatibility\n");
+>
+> This debug message seems to disappear. Intentional?
+>
+>> -		break;
+>> -
+>> -	default:
+>> -		break;
+>> +	} else if (status =3D=3D EDID_BLOCK_VERSION) {
+>> +		DRM_NOTE("EDID has major version %d, instead of 1\n",
+>> +			 block->version);
+>>  	}
+>>=20=20
+>> -	return true;
+>> -
+>> -bad:
+>> -	if (print_bad_edid) {
+>> -		if (edid_is_zero(raw_edid, EDID_LENGTH)) {
+>> +	if (!valid && print_bad_edid) {
+>> +		if (edid_is_zero(block, EDID_LENGTH)) {
+>>  			pr_notice("EDID block is all zeroes\n");
+>>  		} else {
+>>  			pr_notice("Raw EDID:\n");
+>>  			print_hex_dump(KERN_NOTICE,
+>>  				       " \t", DUMP_PREFIX_NONE, 16, 1,
+>> -				       raw_edid, EDID_LENGTH, false);
+>> +				       block, EDID_LENGTH, false);
+>>  		}
+>>  	}
+>> -	return false;
+>> +
+>> +	return valid;
+>>  }
+>>  EXPORT_SYMBOL(drm_edid_block_valid);
+>>=20=20
+>> --=20
+>> 2.30.2
 
-v3: Paper over msm and i915 regression. The complete_all is the only
-thing missing afaict.
-
-v4: Fixup i915 fixup ...
-
-References: https://bugzilla.kernel.org/show_bug.cgi?id=199425
-References: https://lore.kernel.org/all/20220221134155.125447-9-maxime@cerno.tech/
-References: https://bugzilla.kernel.org/show_bug.cgi?id=199425
-Cc: Maxime Ripard <maxime@cerno.tech>
-Tested-by: Maxime Ripard <maxime@cerno.tech>
-Cc: mikita.lipski@amd.com
-Cc: Michel Dänzer <michel@daenzer.net>
-Cc: harry.wentland@amd.com
-Cc: Rob Clark <robdclark@gmail.com>
-Cc: "Kazlauskas, Nicholas" <nicholas.kazlauskas@amd.com>
-Cc: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
----
- drivers/gpu/drm/drm_atomic_helper.c          | 13 -------------
- drivers/gpu/drm/i915/display/intel_display.c | 14 ++++++++++++++
- drivers/gpu/drm/msm/msm_atomic.c             |  2 ++
- 3 files changed, 16 insertions(+), 13 deletions(-)
-
-diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_atomic_helper.c
-index 9603193d2fa1..a2899af82b4a 100644
---- a/drivers/gpu/drm/drm_atomic_helper.c
-+++ b/drivers/gpu/drm/drm_atomic_helper.c
-@@ -1498,13 +1498,6 @@ drm_atomic_helper_wait_for_vblanks(struct drm_device *dev,
- 	int i, ret;
- 	unsigned int crtc_mask = 0;
- 
--	 /*
--	  * Legacy cursor ioctls are completely unsynced, and userspace
--	  * relies on that (by doing tons of cursor updates).
--	  */
--	if (old_state->legacy_cursor_update)
--		return;
--
- 	for_each_oldnew_crtc_in_state(old_state, crtc, old_crtc_state, new_crtc_state, i) {
- 		if (!new_crtc_state->active)
- 			continue;
-@@ -2135,12 +2128,6 @@ int drm_atomic_helper_setup_commit(struct drm_atomic_state *state,
- 			continue;
- 		}
- 
--		/* Legacy cursor updates are fully unsynced. */
--		if (state->legacy_cursor_update) {
--			complete_all(&commit->flip_done);
--			continue;
--		}
--
- 		if (!new_crtc_state->event) {
- 			commit->event = kzalloc(sizeof(*commit->event),
- 						GFP_KERNEL);
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index d2abe0e430bf..6ca5a6e7703b 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -8799,6 +8799,20 @@ static int intel_atomic_commit(struct drm_device *dev,
- 		intel_runtime_pm_put(&dev_priv->runtime_pm, state->wakeref);
- 		return ret;
- 	}
-+
-+	/*
-+	 * FIXME: Cut over to (async) commit helpers instead of hand-rolling
-+	 * everything.
-+	 */
-+	if (state->base.legacy_cursor_update) {
-+		struct intel_crtc_state *new_crtc_state;
-+		struct intel_crtc *crtc;
-+		int i;
-+
-+		for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i)
-+			complete_all(&new_crtc_state->uapi.commit->flip_done);
-+	}
-+
- 	intel_shared_dpll_swap_state(state);
- 	intel_atomic_track_fbs(state);
- 
-diff --git a/drivers/gpu/drm/msm/msm_atomic.c b/drivers/gpu/drm/msm/msm_atomic.c
-index 1686fbb611fd..b3cfabebe5d6 100644
---- a/drivers/gpu/drm/msm/msm_atomic.c
-+++ b/drivers/gpu/drm/msm/msm_atomic.c
-@@ -222,6 +222,8 @@ void msm_atomic_commit_tail(struct drm_atomic_state *state)
- 		/* async updates are limited to single-crtc updates: */
- 		WARN_ON(crtc_mask != drm_crtc_mask(async_crtc));
- 
-+		complete_all(&async_crtc->state->commit->flip_done);
-+
- 		/*
- 		 * Start timer if we don't already have an update pending
- 		 * on this crtc:
--- 
-2.34.1
-
+--=20
+Jani Nikula, Intel Open Source Graphics Center
