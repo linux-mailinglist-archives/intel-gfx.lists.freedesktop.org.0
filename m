@@ -2,32 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE4194ED9AA
-	for <lists+intel-gfx@lfdr.de>; Thu, 31 Mar 2022 14:33:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 422BC4EDA2A
+	for <lists+intel-gfx@lfdr.de>; Thu, 31 Mar 2022 15:05:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6497E10E9C9;
-	Thu, 31 Mar 2022 12:33:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7498810F1B2;
+	Thu, 31 Mar 2022 13:05:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0AFCC10E9C9;
- Thu, 31 Mar 2022 12:33:11 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 06E39A008A;
- Thu, 31 Mar 2022 12:33:11 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7629395464651009922=="
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC2F810F1B2
+ for <intel-gfx@lists.freedesktop.org>; Thu, 31 Mar 2022 13:05:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1648731914; x=1680267914;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=ppJ2b2bPs1Ifa4NAiKGX2NqWiuEjpXjucjp96sODqSg=;
+ b=gW/SglxePGdbiQX5Cc7+n/IYGio7yeNSMeVm0ekDOMOQ2sTNAY5LYubU
+ sN9hRQAjtsxgFahLFfZ6wafElR3+ffHbXPPSWVqPv1vJNpEJp02ToL+9k
+ nwyLHD1EC1xhGdqBLzScC9h8qK8I085QxeScfXaHx7ZD+O7wbOYOJu87a
+ 2hPzbLRDfRalwrt1fM7wXeuz624brbl7H8hnha2O6+pC/AMsc0yKAPUJX
+ Wn+2DngDid1WRlVQ2PzaR8jRL7W4AxuxUxqwBr/HGLfAC7cLVNpOg1AOM
+ 3snPq3+roATnwetMS0JiDEdnWfdEBO8I3UkqKr/Vd2v6pHfbRmc2ZSoB0 g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10302"; a="258663484"
+X-IronPort-AV: E=Sophos;i="5.90,225,1643702400"; d="scan'208";a="258663484"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2022 06:05:03 -0700
+X-IronPort-AV: E=Sophos;i="5.90,225,1643702400"; d="scan'208";a="566466780"
+Received: from gluca-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.48.194])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2022 06:05:00 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20220331112822.11462-3-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220331112822.11462-1-ville.syrjala@linux.intel.com>
+ <20220331112822.11462-3-ville.syrjala@linux.intel.com>
+Date: Thu, 31 Mar 2022 16:04:57 +0300
+Message-ID: <87lewq9ssm.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Zbigniew_Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>
-Date: Thu, 31 Mar 2022 12:33:10 -0000
-Message-ID: <164872999098.14471.6884611002907879996@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220331102301.34913-1-zbigniew.kempczynski@intel.com>
-In-Reply-To: <20220331102301.34913-1-zbigniew.kempczynski@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgUmV2?=
- =?utf-8?q?ert_=22drm/i915/dg2=3A_Add_relocation_exception=22_=28rev3=29?=
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH v2 02/11] drm/i915: Put fixed modes directly
+ onto the panel's fixed_modes list
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,364 +60,615 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============7629395464651009922==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, 31 Mar 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> Rather than having the connector init get the fixed mode back from
+> intel_panel and then feed it straight back into intel_panel_init()
+> let's just make the fixed mode lookup put the mode directly onto
+> the panel's fixed_modes list. Avoids the pointless round trip and
+> opens the door for further enhancements to the fixed mode handling.
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/icl_dsi.c     |  8 +--
+>  drivers/gpu/drm/i915/display/intel_dp.c    | 22 ++++----
+>  drivers/gpu/drm/i915/display/intel_drrs.c  | 20 ++-----
+>  drivers/gpu/drm/i915/display/intel_drrs.h  |  3 +-
+>  drivers/gpu/drm/i915/display/intel_dvo.c   |  9 ++-
+>  drivers/gpu/drm/i915/display/intel_lvds.c  | 31 +++++------
+>  drivers/gpu/drm/i915/display/intel_panel.c | 64 +++++++++-------------
+>  drivers/gpu/drm/i915/display/intel_panel.h | 22 +++-----
+>  drivers/gpu/drm/i915/display/intel_sdvo.c  | 10 ++--
+>  drivers/gpu/drm/i915/display/vlv_dsi.c     |  9 +--
+>  10 files changed, 81 insertions(+), 117 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i91=
+5/display/icl_dsi.c
+> index 44f4c65522b9..084cc51d1c41 100644
+> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
+> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+> @@ -1993,7 +1993,6 @@ void icl_dsi_init(struct drm_i915_private *dev_priv)
+>  	struct intel_encoder *encoder;
+>  	struct intel_connector *intel_connector;
+>  	struct drm_connector *connector;
+> -	struct drm_display_mode *fixed_mode;
+>  	enum port port;
+>=20=20
+>  	if (!intel_bios_is_dsi_present(dev_priv, &port))
+> @@ -2050,15 +2049,16 @@ void icl_dsi_init(struct drm_i915_private *dev_pr=
+iv)
+>  	intel_connector_attach_encoder(intel_connector, encoder);
+>=20=20
+>  	mutex_lock(&dev->mode_config.mutex);
+> -	fixed_mode =3D intel_panel_vbt_lfp_fixed_mode(intel_connector);
+> +	intel_panel_add_vbt_lfp_fixed_mode(intel_connector);
+>  	mutex_unlock(&dev->mode_config.mutex);
+>=20=20
+> -	if (!fixed_mode) {
+> +	if (!intel_panel_preferred_fixed_mode(intel_connector)) {
+>  		drm_err(&dev_priv->drm, "DSI fixed mode info missing\n");
+>  		goto err;
+>  	}
+>=20=20
+> -	intel_panel_init(intel_connector, fixed_mode, NULL);
+> +	intel_panel_init(intel_connector);
+> +
+>  	intel_backlight_setup(intel_connector, INVALID_PIPE);
+>=20=20
+>  	if (dev_priv->vbt.dsi.config->dual_link)
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
+15/display/intel_dp.c
+> index 2c23ec0a880a..67472555211d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -5015,8 +5015,7 @@ static bool intel_edp_init_connector(struct intel_d=
+p *intel_dp,
+>  	struct drm_i915_private *dev_priv =3D dp_to_i915(intel_dp);
+>  	struct drm_device *dev =3D &dev_priv->drm;
+>  	struct drm_connector *connector =3D &intel_connector->base;
+> -	struct drm_display_mode *fixed_mode =3D NULL;
+> -	struct drm_display_mode *downclock_mode =3D NULL;
+> +	struct drm_display_mode *fixed_mode;
+>  	bool has_dpcd;
+>  	enum pipe pipe =3D INVALID_PIPE;
+>  	struct edid *edid;
+> @@ -5073,20 +5072,22 @@ static bool intel_edp_init_connector(struct intel=
+_dp *intel_dp,
+>  	}
+>  	intel_connector->edid =3D edid;
+>=20=20
+> -	fixed_mode =3D intel_panel_edid_fixed_mode(intel_connector);
+> -	if (fixed_mode && intel_edp_has_drrs(intel_dp))
+> -		downclock_mode =3D intel_drrs_init(intel_connector, fixed_mode);
+> +	intel_panel_add_edid_fixed_mode(intel_connector);
+> +	if (intel_panel_preferred_fixed_mode(intel_connector) &&
+> +	    intel_edp_has_drrs(intel_dp))
+> +		intel_drrs_init(intel_connector);
+>=20=20
+>  	/* MSO requires information from the EDID */
+>  	intel_edp_mso_init(intel_dp);
+>=20=20
+>  	/* multiply the mode clock and horizontal timings for MSO */
+> -	intel_edp_mso_mode_fixup(intel_connector, fixed_mode);
+> -	intel_edp_mso_mode_fixup(intel_connector, downclock_mode);
+> +	list_for_each_entry(fixed_mode, &intel_connector->panel.fixed_modes, he=
+ad)
+> +		intel_edp_mso_mode_fixup(intel_connector, fixed_mode);
+>=20=20
+>  	/* fallback to VBT if available for eDP */
+> -	if (!fixed_mode)
+> -		fixed_mode =3D intel_panel_vbt_lfp_fixed_mode(intel_connector);
+> +	if (!intel_panel_preferred_fixed_mode(intel_connector))
+> +		intel_panel_add_vbt_lfp_fixed_mode(intel_connector);
+> +
+>  	mutex_unlock(&dev->mode_config.mutex);
+>=20=20
+>  	if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) {
+> @@ -5108,7 +5109,8 @@ static bool intel_edp_init_connector(struct intel_d=
+p *intel_dp,
+>  			    pipe_name(pipe));
+>  	}
+>=20=20
+> -	intel_panel_init(intel_connector, fixed_mode, downclock_mode);
+> +	intel_panel_init(intel_connector);
+> +
+>  	if (!(dev_priv->quirks & QUIRK_NO_PPS_BACKLIGHT_POWER_HOOK))
+>  		intel_connector->panel.backlight.power =3D intel_pps_backlight_power;
+>  	intel_backlight_setup(intel_connector, pipe);
+> diff --git a/drivers/gpu/drm/i915/display/intel_drrs.c b/drivers/gpu/drm/=
+i915/display/intel_drrs.c
+> index 1448c3029b8e..8fd280c7c83f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_drrs.c
+> +++ b/drivers/gpu/drm/i915/display/intel_drrs.c
+> @@ -358,7 +358,6 @@ void intel_crtc_drrs_init(struct intel_crtc *crtc)
+>  /**
+>   * intel_drrs_init - Init DRRS for eDP connector
+>   * @connector: eDP connector
+> - * @fixed_mode: preferred mode of panel
+>   *
+>   * This function is called only once at driver load to initialize
+>   * DRRS support for the connector.
+> @@ -368,25 +367,14 @@ void intel_crtc_drrs_init(struct intel_crtc *crtc)
+>   * DRRS support is determined by the presence of downclock mode (apart
+>   * from VBT setting).
+>   */
+> -struct drm_display_mode *
+> -intel_drrs_init(struct intel_connector *connector,
+> -		const struct drm_display_mode *fixed_mode)
+> +void intel_drrs_init(struct intel_connector *connector)
+>  {
+>  	struct drm_i915_private *dev_priv =3D to_i915(connector->base.dev);
+> -	struct drm_display_mode *downclock_mode;
+> -
+> -	downclock_mode =3D intel_panel_edid_downclock_mode(connector, fixed_mod=
+e);
+> -	if (!downclock_mode) {
+> -		drm_dbg_kms(&dev_priv->drm,
+> -			    "[CONNECTOR:%d:%s] DRRS not supported due to lack of downclock mo=
+de\n",
+> -			    connector->base.base.id, connector->base.name);
+> -		return NULL;
+> -	}
+> +
+> +	intel_panel_add_edid_downclock_mode(connector);
 
-== Series Details ==
+What if there's no downclock mode, just one native mode with one
+vrefresh? We'll now now say drrs type is this or that below, but it'll
+never get enabled in compute config?
 
-Series: Revert "drm/i915/dg2: Add relocation exception" (rev3)
-URL   : https://patchwork.freedesktop.org/series/101669/
-State : success
+Should intel_panel_add_edid_downclock_mode() debug log when there's no
+downclock mode?
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_11431 -> Patchwork_22747
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22747/index.html
-
-Participating hosts (47 -> 42)
-------------------------------
-
-  Additional (1): fi-hsw-4770 
-  Missing    (6): shard-tglu fi-bsw-cyan fi-pnv-d510 shard-rkl shard-dg1 fi-bdw-samus 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_22747:
-
-### IGT changes ###
-
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@gem_exec_gttfill@basic:
-    - {bat-dg2-9}:        [PASS][1] -> [SKIP][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11431/bat-dg2-9/igt@gem_exec_gttfill@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22747/bat-dg2-9/igt@gem_exec_gttfill@basic.html
-    - {bat-dg2-8}:        [PASS][3] -> [SKIP][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11431/bat-dg2-8/igt@gem_exec_gttfill@basic.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22747/bat-dg2-8/igt@gem_exec_gttfill@basic.html
-
-  * igt@prime_vgem@basic-fence-flip:
-    - {bat-adlm-1}:       NOTRUN -> [INCOMPLETE][5]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22747/bat-adlm-1/igt@prime_vgem@basic-fence-flip.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_22747 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_cs_nop@sync-fork-compute0:
-    - fi-snb-2600:        NOTRUN -> [SKIP][6] ([fdo#109271]) +17 similar issues
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22747/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html
-
-  * igt@gem_softpin@allocator-basic-reserve:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][7] ([fdo#109271]) +9 similar issues
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22747/fi-hsw-4770/igt@gem_softpin@allocator-basic-reserve.html
-
-  * igt@i915_pm_backlight@basic-brightness:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][8] ([fdo#109271] / [i915#3012])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22747/fi-hsw-4770/igt@i915_pm_backlight@basic-brightness.html
-
-  * igt@i915_selftest@live@gt_pm:
-    - fi-tgl-1115g4:      [PASS][9] -> [DMESG-FAIL][10] ([i915#3987])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11431/fi-tgl-1115g4/igt@i915_selftest@live@gt_pm.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22747/fi-tgl-1115g4/igt@i915_selftest@live@gt_pm.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-hsw-4770:        NOTRUN -> [INCOMPLETE][11] ([i915#4785])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22747/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][12] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22747/fi-hsw-4770/igt@kms_chamelium@dp-crc-fast.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][13] ([fdo#109271] / [i915#533])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22747/fi-hsw-4770/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
-
-  * igt@kms_psr@primary_mmap_gtt:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][14] ([fdo#109271] / [i915#1072]) +3 similar issues
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22747/fi-hsw-4770/igt@kms_psr@primary_mmap_gtt.html
-
-  * igt@runner@aborted:
-    - fi-hsw-4770:        NOTRUN -> [FAIL][15] ([fdo#109271] / [i915#1436] / [i915#2722] / [i915#4312])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22747/fi-hsw-4770/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-snb-2600:        [INCOMPLETE][16] ([i915#3921]) -> [PASS][17]
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11431/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22747/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-
-  * igt@i915_selftest@live@workarounds:
-    - {bat-adlp-6}:       [DMESG-WARN][18] ([i915#5068]) -> [PASS][19]
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11431/bat-adlp-6/igt@i915_selftest@live@workarounds.html
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22747/bat-adlp-6/igt@i915_selftest@live@workarounds.html
-
-  * igt@kms_busy@basic@flip:
-    - {bat-adlp-6}:       [DMESG-WARN][20] ([i915#3576]) -> [PASS][21]
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11431/bat-adlp-6/igt@kms_busy@basic@flip.html
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22747/bat-adlp-6/igt@kms_busy@basic@flip.html
-
-  * igt@kms_flip@basic-plain-flip@a-edp1:
-    - fi-tgl-u2:          [DMESG-WARN][22] ([i915#402]) -> [PASS][23] +1 similar issue
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11431/fi-tgl-u2/igt@kms_flip@basic-plain-flip@a-edp1.html
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22747/fi-tgl-u2/igt@kms_flip@basic-plain-flip@a-edp1.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c:
-    - fi-cfl-8109u:       [DMESG-WARN][24] ([i915#295] / [i915#5341]) -> [PASS][25]
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11431/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22747/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
-
-  * igt@kms_pipe_crc_basic@read-crc-pipe-b:
-    - fi-cfl-8109u:       [DMESG-WARN][26] ([i915#295]) -> [PASS][27] +11 similar issues
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11431/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22747/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#2722]: https://gitlab.freedesktop.org/drm/intel/issues/2722
-  [i915#295]: https://gitlab.freedesktop.org/drm/intel/issues/295
-  [i915#3012]: https://gitlab.freedesktop.org/drm/intel/issues/3012
-  [i915#3576]: https://gitlab.freedesktop.org/drm/intel/issues/3576
-  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
-  [i915#3987]: https://gitlab.freedesktop.org/drm/intel/issues/3987
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
-  [i915#5068]: https://gitlab.freedesktop.org/drm/intel/issues/5068
-  [i915#5195]: https://gitlab.freedesktop.org/drm/intel/issues/5195
-  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
-  [i915#5341]: https://gitlab.freedesktop.org/drm/intel/issues/5341
-  [i915#5482]: https://gitlab.freedesktop.org/drm/intel/issues/5482
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_11431 -> Patchwork_22747
-
-  CI-20190529: 20190529
-  CI_DRM_11431: fba3be0389fae2cf8735b2d0706204a58c0cb9ae @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6401: 7ee1289c5b3d3e02ec86f59f60fe304dce550be1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_22747: 7ff6b70164b5890b0070efdbdc6c08e1ed065a75 @ git://anongit.freedesktop.org/gfx-ci/linux
+BR,
+Jani.
 
 
-== Linux commits ==
+>=20=20
+>  	drm_dbg_kms(&dev_priv->drm,
+> -		    "[CONNECTOR:%d:%s] %s DRRS supported\n",
+> +		    "[CONNECTOR:%d:%s] DRRS type: %s\n",
+>  		    connector->base.base.id, connector->base.name,
+>  		    intel_drrs_type_str(dev_priv->vbt.drrs_type));
+> -
+> -	return downclock_mode;
+>  }
+> diff --git a/drivers/gpu/drm/i915/display/intel_drrs.h b/drivers/gpu/drm/=
+i915/display/intel_drrs.h
+> index e2f78cc10061..3ea52220cd69 100644
+> --- a/drivers/gpu/drm/i915/display/intel_drrs.h
+> +++ b/drivers/gpu/drm/i915/display/intel_drrs.h
+> @@ -27,7 +27,6 @@ void intel_drrs_compute_config(struct intel_connector *=
+connector,
+>  			       struct intel_crtc_state *pipe_config,
+>  			       int output_bpp, bool constant_n);
+>  void intel_crtc_drrs_init(struct intel_crtc *crtc);
+> -struct drm_display_mode *intel_drrs_init(struct intel_connector *connect=
+or,
+> -					 const struct drm_display_mode *fixed_mode);
+> +void intel_drrs_init(struct intel_connector *connector);
+>=20=20
+>  #endif /* __INTEL_DRRS_H__ */
+> diff --git a/drivers/gpu/drm/i915/display/intel_dvo.c b/drivers/gpu/drm/i=
+915/display/intel_dvo.c
+> index 8c98897d8313..5572e43026e4 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dvo.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dvo.c
+> @@ -520,8 +520,6 @@ void intel_dvo_init(struct drm_i915_private *dev_priv)
+>=20=20
+>  		intel_connector_attach_encoder(intel_connector, intel_encoder);
+>  		if (dvo->type =3D=3D INTEL_DVO_CHIP_LVDS) {
+> -			struct drm_display_mode *fixed_mode;
+> -
+>  			/*
+>  			 * For our LVDS chipsets, we should hopefully be able
+>  			 * to dig the fixed panel mode out of the BIOS data.
+> @@ -530,10 +528,11 @@ void intel_dvo_init(struct drm_i915_private *dev_pr=
+iv)
+>  			 * headers, likely), so for now, just get the current
+>  			 * mode being output through DVO.
+>  			 */
+> -			fixed_mode =3D intel_panel_encoder_fixed_mode(intel_connector,
+> -								    intel_encoder);
+> +			intel_panel_add_encoder_fixed_mode(intel_connector,
+> +							   intel_encoder);
+> +
+> +			intel_panel_init(intel_connector);
+>=20=20
+> -			intel_panel_init(intel_connector, fixed_mode, NULL);
+>  			intel_dvo->panel_wants_dither =3D true;
+>  		}
+>=20=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c b/drivers/gpu/drm/=
+i915/display/intel_lvds.c
+> index 5b2367bc3cd2..193daffadc90 100644
+> --- a/drivers/gpu/drm/i915/display/intel_lvds.c
+> +++ b/drivers/gpu/drm/i915/display/intel_lvds.c
+> @@ -829,8 +829,6 @@ void intel_lvds_init(struct drm_i915_private *dev_pri=
+v)
+>  	struct intel_connector *intel_connector;
+>  	struct drm_connector *connector;
+>  	struct drm_encoder *encoder;
+> -	struct drm_display_mode *fixed_mode =3D NULL;
+> -	struct drm_display_mode *downclock_mode =3D NULL;
+>  	struct edid *edid;
+>  	i915_reg_t lvds_reg;
+>  	u32 lvds;
+> @@ -969,30 +967,29 @@ void intel_lvds_init(struct drm_i915_private *dev_p=
+riv)
+>  	}
+>  	intel_connector->edid =3D edid;
+>=20=20
+> -	fixed_mode =3D intel_panel_edid_fixed_mode(intel_connector);
+> -	if (fixed_mode)
+> -		goto out;
+> +	/* Try EDID first */
+> +	intel_panel_add_edid_fixed_mode(intel_connector);
+>=20=20
+>  	/* Failed to get EDID, what about VBT? */
+> -	fixed_mode =3D intel_panel_vbt_lfp_fixed_mode(intel_connector);
+> -	if (fixed_mode)
+> -		goto out;
+> +	if (!intel_panel_preferred_fixed_mode(intel_connector))
+> +		intel_panel_add_vbt_lfp_fixed_mode(intel_connector);
+>=20=20
+>  	/*
+> -	 * If we didn't get EDID, try checking if the panel is already turned
+> -	 * on.  If so, assume that whatever is currently programmed is the
+> -	 * correct mode.
+> +	 * If we didn't get a fixed mode from EDID or VBT, try checking
+> +	 * if the panel is already turned on.  If so, assume that
+> +	 * whatever is currently programmed is the correct mode.
+>  	 */
+> -	fixed_mode =3D intel_panel_encoder_fixed_mode(intel_connector, intel_en=
+coder);
+> +	if (!intel_panel_preferred_fixed_mode(intel_connector))
+> +		intel_panel_add_encoder_fixed_mode(intel_connector, intel_encoder);
+> +
+> +	mutex_unlock(&dev->mode_config.mutex);
+>=20=20
+>  	/* If we still don't have a mode after all that, give up. */
+> -	if (!fixed_mode)
+> +	if (!intel_panel_preferred_fixed_mode(intel_connector))
+>  		goto failed;
+>=20=20
+> -out:
+> -	mutex_unlock(&dev->mode_config.mutex);
+> +	intel_panel_init(intel_connector);
+>=20=20
+> -	intel_panel_init(intel_connector, fixed_mode, downclock_mode);
+>  	intel_backlight_setup(intel_connector, INVALID_PIPE);
+>=20=20
+>  	lvds_encoder->is_dual_link =3D compute_is_dual_link_lvds(lvds_encoder);
+> @@ -1004,8 +1001,6 @@ void intel_lvds_init(struct drm_i915_private *dev_p=
+riv)
+>  	return;
+>=20=20
+>  failed:
+> -	mutex_unlock(&dev->mode_config.mutex);
+> -
+>  	drm_dbg_kms(&dev_priv->drm, "No LVDS modes found, disabling.\n");
+>  	drm_connector_cleanup(connector);
+>  	drm_encoder_cleanup(encoder);
+> diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm=
+/i915/display/intel_panel.c
+> index 882e424973d4..415aa381f732 100644
+> --- a/drivers/gpu/drm/i915/display/intel_panel.c
+> +++ b/drivers/gpu/drm/i915/display/intel_panel.c
+> @@ -158,11 +158,11 @@ static bool is_downclock_mode(const struct drm_disp=
+lay_mode *downclock_mode,
+>  		downclock_mode->clock < fixed_mode->clock;
+>  }
+>=20=20
+> -struct drm_display_mode *
+> -intel_panel_edid_downclock_mode(struct intel_connector *connector,
+> -				const struct drm_display_mode *fixed_mode)
+> +void intel_panel_add_edid_downclock_mode(struct intel_connector *connect=
+or)
+>  {
+>  	struct drm_i915_private *dev_priv =3D to_i915(connector->base.dev);
+> +	const struct drm_display_mode *fixed_mode =3D
+> +		intel_panel_preferred_fixed_mode(connector);
+>  	const struct drm_display_mode *scan, *best_mode =3D NULL;
+>  	struct drm_display_mode *downclock_mode;
+>  	int best_clock =3D fixed_mode->clock;
+> @@ -187,29 +187,28 @@ intel_panel_edid_downclock_mode(struct intel_connec=
+tor *connector,
+>  	}
+>=20=20
+>  	if (!best_mode)
+> -		return NULL;
+> +		return;
+>=20=20
+>  	downclock_mode =3D drm_mode_duplicate(&dev_priv->drm, best_mode);
+>  	if (!downclock_mode)
+> -		return NULL;
+> +		return;
+>=20=20
+>  	drm_dbg_kms(&dev_priv->drm,
+>  		    "[CONNECTOR:%d:%s] using downclock mode from EDID: " DRM_MODE_FMT =
+"\n",
+>  		    connector->base.base.id, connector->base.name,
+>  		    DRM_MODE_ARG(downclock_mode));
+>=20=20
+> -	return downclock_mode;
+> +	list_add_tail(&downclock_mode->head, &connector->panel.fixed_modes);
+>  }
+>=20=20
+> -struct drm_display_mode *
+> -intel_panel_edid_fixed_mode(struct intel_connector *connector)
+> +void intel_panel_add_edid_fixed_mode(struct intel_connector *connector)
+>  {
+>  	struct drm_i915_private *dev_priv =3D to_i915(connector->base.dev);
+>  	const struct drm_display_mode *scan;
+>  	struct drm_display_mode *fixed_mode;
+>=20=20
+>  	if (list_empty(&connector->base.probed_modes))
+> -		return NULL;
+> +		return;
+>=20=20
+>  	/* prefer fixed mode from EDID if available */
+>  	list_for_each_entry(scan, &connector->base.probed_modes, head) {
+> @@ -218,47 +217,45 @@ intel_panel_edid_fixed_mode(struct intel_connector =
+*connector)
+>=20=20
+>  		fixed_mode =3D drm_mode_duplicate(&dev_priv->drm, scan);
+>  		if (!fixed_mode)
+> -			return NULL;
+> +			return;
+>=20=20
+>  		drm_dbg_kms(&dev_priv->drm,
+>  			    "[CONNECTOR:%d:%s] using preferred mode from EDID: " DRM_MODE_FMT=
+ "\n",
+>  			    connector->base.base.id, connector->base.name,
+>  			    DRM_MODE_ARG(fixed_mode));
+>=20=20
+> -		return fixed_mode;
+> +		list_add_tail(&fixed_mode->head, &connector->panel.fixed_modes);
+> +		return;
+>  	}
+>=20=20
+>  	scan =3D list_first_entry(&connector->base.probed_modes,
+>  				typeof(*scan), head);
+> -
+>  	fixed_mode =3D drm_mode_duplicate(&dev_priv->drm, scan);
+>  	if (!fixed_mode)
+> -		return NULL;
+> +		return;
+>=20=20
+>  	fixed_mode->type |=3D DRM_MODE_TYPE_PREFERRED;
+> -
+>  	drm_dbg_kms(&dev_priv->drm,
+>  		    "[CONNECTOR:%d:%s] using first mode from EDID: " DRM_MODE_FMT "\n",
+>  		    connector->base.base.id, connector->base.name,
+>  		    DRM_MODE_ARG(fixed_mode));
+>=20=20
+> -	return fixed_mode;
+> +	list_add_tail(&fixed_mode->head, &connector->panel.fixed_modes);
+>  }
+>=20=20
+> -struct drm_display_mode *
+> -intel_panel_vbt_lfp_fixed_mode(struct intel_connector *connector)
+> +void intel_panel_add_vbt_lfp_fixed_mode(struct intel_connector *connecto=
+r)
+>  {
+>  	struct drm_i915_private *dev_priv =3D to_i915(connector->base.dev);
+>  	struct drm_display_info *info =3D &connector->base.display_info;
+>  	struct drm_display_mode *fixed_mode;
+>=20=20
+>  	if (!dev_priv->vbt.lfp_lvds_vbt_mode)
+> -		return NULL;
+> +		return;
+>=20=20
+>  	fixed_mode =3D drm_mode_duplicate(&dev_priv->drm,
+>  					dev_priv->vbt.lfp_lvds_vbt_mode);
+>  	if (!fixed_mode)
+> -		return NULL;
+> +		return;
+>=20=20
+>  	fixed_mode->type |=3D DRM_MODE_TYPE_PREFERRED;
+>=20=20
+> @@ -269,39 +266,37 @@ intel_panel_vbt_lfp_fixed_mode(struct intel_connect=
+or *connector)
+>  	info->width_mm =3D fixed_mode->width_mm;
+>  	info->height_mm =3D fixed_mode->height_mm;
+>=20=20
+> -	return fixed_mode;
+> +	list_add_tail(&fixed_mode->head, &connector->panel.fixed_modes);
+>  }
+>=20=20
+> -struct drm_display_mode *
+> -intel_panel_vbt_sdvo_fixed_mode(struct intel_connector *connector)
+> +void intel_panel_add_vbt_sdvo_fixed_mode(struct intel_connector *connect=
+or)
+>  {
+>  	struct drm_i915_private *i915 =3D to_i915(connector->base.dev);
+>  	struct drm_display_mode *fixed_mode;
+>=20=20
+>  	if (!i915->vbt.sdvo_lvds_vbt_mode)
+> -		return NULL;
+> +		return;
+>=20=20
+>  	fixed_mode =3D drm_mode_duplicate(&i915->drm,
+>  					i915->vbt.sdvo_lvds_vbt_mode);
+>  	if (!fixed_mode)
+> -		return NULL;
+> +		return;
+>=20=20
+>  	/* Guarantee the mode is preferred */
+>  	fixed_mode->type =3D DRM_MODE_TYPE_PREFERRED | DRM_MODE_TYPE_DRIVER;
+>=20=20
+> -	return fixed_mode;
+> +	list_add_tail(&fixed_mode->head, &connector->panel.fixed_modes);
+>  }
+>=20=20
+> -struct drm_display_mode *
+> -intel_panel_encoder_fixed_mode(struct intel_connector *connector,
+> -			       struct intel_encoder *encoder)
+> +void intel_panel_add_encoder_fixed_mode(struct intel_connector *connecto=
+r,
+> +					struct intel_encoder *encoder)
+>  {
+>  	struct drm_i915_private *i915 =3D to_i915(connector->base.dev);
+>  	struct drm_display_mode *fixed_mode;
+>=20=20
+>  	fixed_mode =3D intel_encoder_current_mode(encoder);
+>  	if (!fixed_mode)
+> -		return NULL;
+> +		return;
+>=20=20
+>  	drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] using current (BIOS) mode: "=
+ DRM_MODE_FMT "\n",
+>  		    connector->base.base.id, connector->base.name,
+> @@ -309,7 +304,7 @@ intel_panel_encoder_fixed_mode(struct intel_connector=
+ *connector,
+>=20=20
+>  	fixed_mode->type |=3D DRM_MODE_TYPE_PREFERRED;
+>=20=20
+> -	return fixed_mode;
+> +	list_add_tail(&fixed_mode->head, &connector->panel.fixed_modes);
+>  }
+>=20=20
+>  /* adjusted_mode has been preset to be the panel's fixed mode */
+> @@ -639,19 +634,12 @@ intel_panel_mode_valid(struct intel_connector *conn=
+ector,
+>  	return MODE_OK;
+>  }
+>=20=20
+> -int intel_panel_init(struct intel_connector *connector,
+> -		     struct drm_display_mode *fixed_mode,
+> -		     struct drm_display_mode *downclock_mode)
+> +int intel_panel_init(struct intel_connector *connector)
+>  {
+>  	struct intel_panel *panel =3D &connector->panel;
+>=20=20
+>  	intel_backlight_init_funcs(panel);
+>=20=20
+> -	if (fixed_mode)
+> -		list_add_tail(&fixed_mode->head, &panel->fixed_modes);
+> -	if (downclock_mode)
+> -		list_add_tail(&downclock_mode->head, &panel->fixed_modes);
+> -
+>  	return 0;
+>  }
+>=20=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_panel.h b/drivers/gpu/drm=
+/i915/display/intel_panel.h
+> index 6a6ac338e9aa..5eaa2a1c2337 100644
+> --- a/drivers/gpu/drm/i915/display/intel_panel.h
+> +++ b/drivers/gpu/drm/i915/display/intel_panel.h
+> @@ -18,9 +18,7 @@ struct intel_connector;
+>  struct intel_crtc_state;
+>  struct intel_encoder;
+>=20=20
+> -int intel_panel_init(struct intel_connector *connector,
+> -		     struct drm_display_mode *fixed_mode,
+> -		     struct drm_display_mode *downclock_mode);
+> +int intel_panel_init(struct intel_connector *connector);
+>  void intel_panel_fini(struct intel_connector *connector);
+>  enum drm_connector_status
+>  intel_panel_detect(struct drm_connector *connector, bool force);
+> @@ -42,17 +40,11 @@ int intel_panel_fitting(struct intel_crtc_state *crtc=
+_state,
+>  			const struct drm_connector_state *conn_state);
+>  int intel_panel_compute_config(struct intel_connector *connector,
+>  			       struct drm_display_mode *adjusted_mode);
+> -struct drm_display_mode *
+> -intel_panel_edid_downclock_mode(struct intel_connector *connector,
+> -				const struct drm_display_mode *fixed_mode);
+> -struct drm_display_mode *
+> -intel_panel_edid_fixed_mode(struct intel_connector *connector);
+> -struct drm_display_mode *
+> -intel_panel_vbt_lfp_fixed_mode(struct intel_connector *connector);
+> -struct drm_display_mode *
+> -intel_panel_vbt_sdvo_fixed_mode(struct intel_connector *connector);
+> -struct drm_display_mode *
+> -intel_panel_encoder_fixed_mode(struct intel_connector *connector,
+> -			       struct intel_encoder *encoder);
+> +void intel_panel_add_edid_fixed_mode(struct intel_connector *connector);
+> +void intel_panel_add_edid_downclock_mode(struct intel_connector *connect=
+or);
+> +void intel_panel_add_vbt_lfp_fixed_mode(struct intel_connector *connecto=
+r);
+> +void intel_panel_add_vbt_sdvo_fixed_mode(struct intel_connector *connect=
+or);
+> +void intel_panel_add_encoder_fixed_mode(struct intel_connector *connecto=
+r,
+> +					struct intel_encoder *encoder);
+>=20=20
+>  #endif /* __INTEL_PANEL_H__ */
+> diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/=
+i915/display/intel_sdvo.c
+> index c9c3f71818d9..866e05c1a49d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_sdvo.c
+> +++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
+> @@ -2871,7 +2871,6 @@ intel_sdvo_lvds_init(struct intel_sdvo *intel_sdvo,=
+ int device)
+>  	struct drm_connector *connector;
+>  	struct intel_connector *intel_connector;
+>  	struct intel_sdvo_connector *intel_sdvo_connector;
+> -	struct drm_display_mode *fixed_mode;
+>=20=20
+>  	DRM_DEBUG_KMS("initialising LVDS device %d\n", device);
+>=20=20
+> @@ -2904,13 +2903,14 @@ intel_sdvo_lvds_init(struct intel_sdvo *intel_sdv=
+o, int device)
+>  	 * Fetch modes from VBT. For SDVO prefer the VBT mode since some
+>  	 * SDVO->LVDS transcoders can't cope with the EDID mode.
+>  	 */
+> -	fixed_mode =3D intel_panel_vbt_sdvo_fixed_mode(intel_connector);
+> -	if (!fixed_mode) {
+> +	intel_panel_add_vbt_sdvo_fixed_mode(intel_connector);
+> +
+> +	if (!intel_panel_preferred_fixed_mode(intel_connector)) {
+>  		intel_ddc_get_modes(connector, &intel_sdvo->ddc);
+> -		fixed_mode =3D intel_panel_edid_fixed_mode(intel_connector);
+> +		intel_panel_add_edid_fixed_mode(intel_connector);
+>  	}
+>=20=20
+> -	intel_panel_init(intel_connector, fixed_mode, NULL);
+> +	intel_panel_init(intel_connector);
+>=20=20
+>  	if (!intel_panel_preferred_fixed_mode(intel_connector))
+>  		goto err;
+> diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i91=
+5/display/vlv_dsi.c
+> index dc43cb8ecb86..1954f07f0d3e 100644
+> --- a/drivers/gpu/drm/i915/display/vlv_dsi.c
+> +++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
+> @@ -1859,7 +1859,7 @@ void vlv_dsi_init(struct drm_i915_private *dev_priv)
+>  	struct drm_encoder *encoder;
+>  	struct intel_connector *intel_connector;
+>  	struct drm_connector *connector;
+> -	struct drm_display_mode *current_mode, *fixed_mode;
+> +	struct drm_display_mode *current_mode;
+>  	enum port port;
+>  	enum pipe pipe;
+>=20=20
+> @@ -1980,15 +1980,16 @@ void vlv_dsi_init(struct drm_i915_private *dev_pr=
+iv)
+>  	intel_connector_attach_encoder(intel_connector, intel_encoder);
+>=20=20
+>  	mutex_lock(&dev->mode_config.mutex);
+> -	fixed_mode =3D intel_panel_vbt_lfp_fixed_mode(intel_connector);
+> +	intel_panel_add_vbt_lfp_fixed_mode(intel_connector);
+>  	mutex_unlock(&dev->mode_config.mutex);
+>=20=20
+> -	if (!fixed_mode) {
+> +	if (!intel_panel_preferred_fixed_mode(intel_connector)) {
+>  		drm_dbg_kms(&dev_priv->drm, "no fixed mode\n");
+>  		goto err_cleanup_connector;
+>  	}
+>=20=20
+> -	intel_panel_init(intel_connector, fixed_mode, NULL);
+> +	intel_panel_init(intel_connector);
+> +
+>  	intel_backlight_setup(intel_connector, INVALID_PIPE);
+>=20=20
+>  	vlv_dsi_add_properties(intel_connector);
 
-7ff6b70164b5 Revert "drm/i915/dg2: Add relocation exception"
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22747/index.html
-
---===============7629395464651009922==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Revert &quot;drm/i915/dg2: Add relocation exception&quot; (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/101669/">https://patchwork.freedesktop.org/series/101669/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22747/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22747/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11431 -&gt; Patchwork_22747</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22747/index.html</p>
-<h2>Participating hosts (47 -&gt; 42)</h2>
-<p>Additional (1): fi-hsw-4770 <br />
-  Missing    (6): shard-tglu fi-bsw-cyan fi-pnv-d510 shard-rkl shard-dg1 fi-bdw-samus </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_22747:</p>
-<h3>IGT changes</h3>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>
-<p>igt@gem_exec_gttfill@basic:</p>
-<ul>
-<li>
-<p>{bat-dg2-9}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11431/bat-dg2-9/igt@gem_exec_gttfill@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22747/bat-dg2-9/igt@gem_exec_gttfill@basic.html">SKIP</a></p>
-</li>
-<li>
-<p>{bat-dg2-8}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11431/bat-dg2-8/igt@gem_exec_gttfill@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22747/bat-dg2-8/igt@gem_exec_gttfill@basic.html">SKIP</a></p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-fence-flip:</p>
-<ul>
-<li>{bat-adlm-1}:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22747/bat-adlm-1/igt@prime_vgem@basic-fence-flip.html">INCOMPLETE</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_22747 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_cs_nop@sync-fork-compute0:</p>
-<ul>
-<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22747/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_softpin@allocator-basic-reserve:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22747/fi-hsw-4770/igt@gem_softpin@allocator-basic-reserve.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +9 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_backlight@basic-brightness:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22747/fi-hsw-4770/igt@i915_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3012">i915#3012</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_pm:</p>
-<ul>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11431/fi-tgl-1115g4/igt@i915_selftest@live@gt_pm.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22747/fi-tgl-1115g4/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3987">i915#3987</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22747/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22747/fi-hsw-4770/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22747/fi-hsw-4770/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@primary_mmap_gtt:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22747/fi-hsw-4770/igt@kms_psr@primary_mmap_gtt.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22747/fi-hsw-4770/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2722">i915#2722</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11431/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22747/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>{bat-adlp-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11431/bat-adlp-6/igt@i915_selftest@live@workarounds.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5068">i915#5068</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22747/bat-adlp-6/igt@i915_selftest@live@workarounds.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_busy@basic@flip:</p>
-<ul>
-<li>{bat-adlp-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11431/bat-adlp-6/igt@kms_busy@basic@flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22747/bat-adlp-6/igt@kms_busy@basic@flip.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-plain-flip@a-edp1:</p>
-<ul>
-<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11431/fi-tgl-u2/igt@kms_flip@basic-plain-flip@a-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22747/fi-tgl-u2/igt@kms_flip@basic-plain-flip@a-edp1.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11431/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5341">i915#5341</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22747/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc-pipe-b:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11431/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22747/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html">PASS</a> +11 similar issues</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11431 -&gt; Patchwork_22747</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11431: fba3be0389fae2cf8735b2d0706204a58c0cb9ae @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6401: 7ee1289c5b3d3e02ec86f59f60fe304dce550be1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_22747: 7ff6b70164b5890b0070efdbdc6c08e1ed065a75 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>7ff6b70164b5 Revert "drm/i915/dg2: Add relocation exception"</p>
-
-</body>
-</html>
-
---===============7629395464651009922==--
+--=20
+Jani Nikula, Intel Open Source Graphics Center
