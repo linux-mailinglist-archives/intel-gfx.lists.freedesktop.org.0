@@ -1,33 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BA774EE13B
-	for <lists+intel-gfx@lfdr.de>; Thu, 31 Mar 2022 21:01:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE17F4EE143
+	for <lists+intel-gfx@lfdr.de>; Thu, 31 Mar 2022 21:02:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CFA1810E0CE;
-	Thu, 31 Mar 2022 19:01:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3556210E0E5;
+	Thu, 31 Mar 2022 19:02:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7731210E0CE;
- Thu, 31 Mar 2022 19:01:03 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id BE81110E0E5;
+ Thu, 31 Mar 2022 19:02:21 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 664C4A00FD;
- Thu, 31 Mar 2022 19:01:03 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id BDDDEA00FD;
+ Thu, 31 Mar 2022 19:02:21 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
-Date: Thu, 31 Mar 2022 19:01:03 -0000
-Message-ID: <164875326338.14471.8726007595038516397@emeril.freedesktop.org>
+Date: Thu, 31 Mar 2022 19:02:21 -0000
+Message-ID: <164875334177.14472.13993187284281038842@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20220331140920.2986689-1-tvrtko.ursulin@linux.intel.com>
 In-Reply-To: <20220331140920.2986689-1-tvrtko.ursulin@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Per_client_GPU_utilisation_=28rev3=29?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?Per_client_GPU_utilisation_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,34 +53,8 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-9ab6226114e2 drm/i915: Explicitly track DRM clients
--:130: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#130: 
-new file mode 100644
-
-total: 0 errors, 1 warnings, 0 checks, 234 lines checked
-7504e8884502 drm/i915: Make GEM contexts track DRM clients
-68d691714dc8 drm/i915: Track runtime spent in closed and unreachable GEM contexts
-b49e0af9ca13 drm/i915: Track all user contexts per client
-e6f38c52c820 drm/i915: Track context current active time
--:140: WARNING:LINE_SPACING: Missing a blank line after declarations
-#140: FILE: drivers/gpu/drm/i915/gt/intel_context_types.h:149:
-+			u32 last;
-+			I915_SELFTEST_DECLARE(u32 num_underflow);
-
-total: 0 errors, 1 warnings, 0 checks, 308 lines checked
-2608f8a9667f drm: Document fdinfo format specification
--:45: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#45: 
-new file mode 100644
-
--:50: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
-#50: FILE: Documentation/gpu/drm-usage-stats.rst:1:
-+.. _drm-client-usage-stats:
-
-total: 0 errors, 2 warnings, 0 checks, 113 lines checked
-6cc1ba16a6ad drm/i915: Count engine instances per uabi class
-ba944f3e5a66 drm/i915: Expose client engine utilisation via fdinfo
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
