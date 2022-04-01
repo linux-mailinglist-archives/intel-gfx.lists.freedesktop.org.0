@@ -1,51 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF0DE4EEF44
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 Apr 2022 16:22:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CC154EEFB7
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 Apr 2022 16:28:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB09910E656;
-	Fri,  1 Apr 2022 14:22:25 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B744D10E61E;
- Fri,  1 Apr 2022 14:22:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2592C10E950;
+	Fri,  1 Apr 2022 14:28:16 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD06C10E939;
+ Fri,  1 Apr 2022 14:28:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1648822942; x=1680358942;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=UiYi5ueix+AlmUt07qL7/2QzxylrwfRm4sA5+fwJN4I=;
- b=Pxd/zZK3m1mLXdP4WDoNScaGojQSjH4xd6tCwt3y8MgM1MKDjq1JN78J
- 3cf/OzFHO4GjFR/3RwbvofAKbhKM+AJuVZUcxY/pFBQtH3wYJa4eXyanh
- WhuuWOwEmk5KeKAjq+2Fe37Bj9vGSsEtKXHXPJD0SuTvcBQnpmnqyMrkc
- nnOlRGzflntsZM+vsmbgRkcLZVVKwLAfZ+L22rR3+M7G4saMWlI4Fv6RM
- dmitq5XJcRGCfe2esZ9ByAAZkbT7ibpzzf3Co5XrtJ7O9ynDzOtOszbZj
- Rik74TofFfHow2dSrXuNZSoTrO1p0g2OUo0FfZ++fg6j7ggpQXyzdKdo6 w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10304"; a="240085468"
-X-IronPort-AV: E=Sophos;i="5.90,227,1643702400"; d="scan'208";a="240085468"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2022 07:22:22 -0700
-X-IronPort-AV: E=Sophos;i="5.90,227,1643702400"; d="scan'208";a="655753604"
-Received: from ewanhaye-mobl.ger.corp.intel.com (HELO tursulin-mobl2.home)
- ([10.213.217.32])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2022 07:22:21 -0700
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: Intel-gfx@lists.freedesktop.org
-Date: Fri,  1 Apr 2022 15:22:05 +0100
-Message-Id: <20220401142205.3123159-9-tvrtko.ursulin@linux.intel.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220401142205.3123159-1-tvrtko.ursulin@linux.intel.com>
-References: <20220401142205.3123159-1-tvrtko.ursulin@linux.intel.com>
+ t=1648823294; x=1680359294;
+ h=date:from:to:subject:message-id:references:mime-version:
+ in-reply-to; bh=+zJoAIVO6WLqYb6fb3A9aUk8ZrWie8OZpraHgNKa3TM=;
+ b=mSJrKMqSCVi+CASWuCbCDl0aVpMDfd46Qev0BRvLvDmZQC16URgNWqG/
+ btuF1g2cunXmKSyio5EXgkIwnMc0D2xX1lQMjrx6nB0UEuHGF1JLuR7gG
+ Qk4waWsHLmAGoxrmmP6gjrdOTPjdijmskj2NCc+8Kduai+k8AI+V0T7rY
+ BKDMMOoBS3EB/fsLJn9T/25Xy8cVr5XMxxusLBaiX5lbH2/0zXkzAIfky
+ nK3cseTYZAQAHap9hEDq6V0y5+ZqaElzLcr4MUx0KvB1ppwyb1MrcXaKg
+ G1WxHOOb/TvcnI6f5aVLocmN4EO27OmS+2f81q6HJyIB6rKx3rKNfvVMo g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10304"; a="260326964"
+X-IronPort-AV: E=Sophos;i="5.90,227,1643702400"; d="scan'208";a="260326964"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Apr 2022 07:28:14 -0700
+X-IronPort-AV: E=Sophos;i="5.90,227,1643702400"; d="scan'208";a="522792466"
+Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.203.144.108])
+ by orsmga006-auth.jf.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Apr 2022 07:28:11 -0700
+Date: Fri, 1 Apr 2022 19:58:53 +0530
+From: Ramalingam C <ramalingam.c@intel.com>
+To: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Christian Koenig <christian.koenig@amd.com>, rodrigo.vivi@intel.com,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Message-ID: <20220401142853.GF12046@intel.com>
+References: <20220401123751.27771-1-ramalingam.c@intel.com>
+ <20220401123751.27771-8-ramalingam.c@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [CI 8/8] drm/i915: Expose client engine utilisation via
- fdinfo
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20220401123751.27771-8-ramalingam.c@intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v7 7/9] drm/ttm: Add a parameter to add
+ extra pages into ttm_tt
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,237 +60,167 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Christian, Joonas and vivi
 
-Similar to AMD commit
-874442541133 ("drm/amdgpu: Add show_fdinfo() interface"), using the
-infrastructure added in previous patches, we add basic client info
-and GPU engine utilisation for i915.
+Once the premerge results are greeen, if this patch can be merged into
+drm-intel-gt-next along with other patches could you please ack the
+request to merge into drm-intel-gt-next?
 
-Example of the output:
+Thanks
+Ram
 
-  pos:    0
-  flags:  0100002
-  mnt_id: 21
-  drm-driver: i915
-  drm-pdev:   0000:00:02.0
-  drm-client-id:      7
-  drm-engine-render:  9288864723 ns
-  drm-engine-copy:    2035071108 ns
-  drm-engine-video:   0 ns
-  drm-engine-video-enhance:   0 ns
-
-v2:
- * Update for removal of name and pid.
-
-v3:
- * Use drm_driver.name.
-
-v4:
- * Added drm-engine-capacity- tag.
- * Fix typo. (Umesh)
-
-v5:
- * Don't output engine data before Gen8.
-
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: David M Nieto <David.Nieto@amd.com>
-Cc: Christian König <christian.koenig@amd.com>
-Cc: Daniel Vetter <daniel@ffwll.ch>
-Cc: Chris Healy <cphealy@gmail.com>
-Acked-by: Christian König <christian.koenig@amd.com>
-Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
----
- Documentation/gpu/drm-usage-stats.rst  |  6 ++
- Documentation/gpu/i915.rst             | 28 +++++++++
- drivers/gpu/drm/i915/i915_driver.c     |  3 +
- drivers/gpu/drm/i915/i915_drm_client.c | 84 ++++++++++++++++++++++++++
- drivers/gpu/drm/i915/i915_drm_client.h |  4 ++
- 5 files changed, 125 insertions(+)
-
-diff --git a/Documentation/gpu/drm-usage-stats.rst b/Documentation/gpu/drm-usage-stats.rst
-index b8cc28f4da6f..6c9f166a8d6f 100644
---- a/Documentation/gpu/drm-usage-stats.rst
-+++ b/Documentation/gpu/drm-usage-stats.rst
-@@ -104,3 +104,9 @@ object belong to this client, in the respective memory region.
- 
- Default unit shall be bytes with optional unit specifiers of 'KiB' or 'MiB'
- indicating kibi- or mebi-bytes.
-+
-+===============================
-+Driver specific implementations
-+===============================
-+
-+:ref:`i915-usage-stats`
-diff --git a/Documentation/gpu/i915.rst b/Documentation/gpu/i915.rst
-index 0f08693d05cd..54060cd6c419 100644
---- a/Documentation/gpu/i915.rst
-+++ b/Documentation/gpu/i915.rst
-@@ -697,3 +697,31 @@ The style guide for ``i915_reg.h``.
- 
- .. kernel-doc:: drivers/gpu/drm/i915/i915_reg.h
-    :doc: The i915 register macro definition style guide
-+
-+.. _i915-usage-stats:
-+
-+i915 DRM client usage stats implementation
-+==========================================
-+
-+The drm/i915 driver implements the DRM client usage stats specification as
-+documented in :ref:`drm-client-usage-stats`.
-+
-+Example of the output showing the implemented key value pairs and entirety of
-+the currently possible format options:
-+
-+::
-+
-+      pos:    0
-+      flags:  0100002
-+      mnt_id: 21
-+      drm-driver: i915
-+      drm-pdev:   0000:00:02.0
-+      drm-client-id:      7
-+      drm-engine-render:  9288864723 ns
-+      drm-engine-copy:    2035071108 ns
-+      drm-engine-video:   0 ns
-+      drm-engine-capacity-video:   2
-+      drm-engine-video-enhance:   0 ns
-+
-+Possible `drm-engine-` key names are: `render`, `copy`, `video` and
-+`video-enhance`.
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index b2df273e6d7b..3ffb617d75c9 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -1745,6 +1745,9 @@ static const struct file_operations i915_driver_fops = {
- 	.read = drm_read,
- 	.compat_ioctl = i915_ioc32_compat_ioctl,
- 	.llseek = noop_llseek,
-+#ifdef CONFIG_PROC_FS
-+	.show_fdinfo = i915_drm_client_fdinfo,
-+#endif
- };
- 
- static int
-diff --git a/drivers/gpu/drm/i915/i915_drm_client.c b/drivers/gpu/drm/i915/i915_drm_client.c
-index 91a8559bebf7..e539f6b23060 100644
---- a/drivers/gpu/drm/i915/i915_drm_client.c
-+++ b/drivers/gpu/drm/i915/i915_drm_client.c
-@@ -7,7 +7,13 @@
- #include <linux/slab.h>
- #include <linux/types.h>
- 
-+#include <uapi/drm/i915_drm.h>
-+
-+#include <drm/drm_print.h>
-+
-+#include "gem/i915_gem_context.h"
- #include "i915_drm_client.h"
-+#include "i915_file_private.h"
- #include "i915_gem.h"
- #include "i915_utils.h"
- 
-@@ -68,3 +74,81 @@ void i915_drm_clients_fini(struct i915_drm_clients *clients)
- 	GEM_BUG_ON(!xa_empty(&clients->xarray));
- 	xa_destroy(&clients->xarray);
- }
-+
-+#ifdef CONFIG_PROC_FS
-+static const char * const uabi_class_names[] = {
-+	[I915_ENGINE_CLASS_RENDER] = "render",
-+	[I915_ENGINE_CLASS_COPY] = "copy",
-+	[I915_ENGINE_CLASS_VIDEO] = "video",
-+	[I915_ENGINE_CLASS_VIDEO_ENHANCE] = "video-enhance",
-+};
-+
-+static u64 busy_add(struct i915_gem_context *ctx, unsigned int class)
-+{
-+	struct i915_gem_engines_iter it;
-+	struct intel_context *ce;
-+	u64 total = 0;
-+
-+	for_each_gem_engine(ce, rcu_dereference(ctx->engines), it) {
-+		if (ce->engine->uabi_class != class)
-+			continue;
-+
-+		total += intel_context_get_total_runtime_ns(ce);
-+	}
-+
-+	return total;
-+}
-+
-+static void
-+show_client_class(struct seq_file *m,
-+		  struct i915_drm_client *client,
-+		  unsigned int class)
-+{
-+	const struct list_head *list = &client->ctx_list;
-+	u64 total = atomic64_read(&client->past_runtime[class]);
-+	const unsigned int capacity =
-+		client->clients->i915->engine_uabi_class_count[class];
-+	struct i915_gem_context *ctx;
-+
-+	rcu_read_lock();
-+	list_for_each_entry_rcu(ctx, list, client_link)
-+		total += busy_add(ctx, class);
-+	rcu_read_unlock();
-+
-+	seq_printf(m, "drm-engine-%s:\t%llu ns\n",
-+		   uabi_class_names[class], total);
-+
-+	if (capacity > 1)
-+		seq_printf(m, "drm-engine-capacity-%s:\t%u\n",
-+			   uabi_class_names[class],
-+			   capacity);
-+}
-+
-+void i915_drm_client_fdinfo(struct seq_file *m, struct file *f)
-+{
-+	struct drm_file *file = f->private_data;
-+	struct drm_i915_file_private *file_priv = file->driver_priv;
-+	struct drm_i915_private *i915 = file_priv->dev_priv;
-+	struct i915_drm_client *client = file_priv->client;
-+	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
-+	unsigned int i;
-+
-+	/*
-+	 * ******************************************************************
-+	 * For text output format description please see drm-usage-stats.rst!
-+	 * ******************************************************************
-+	 */
-+
-+	seq_printf(m, "drm-driver:\t%s\n", i915->drm.driver->name);
-+	seq_printf(m, "drm-pdev:\t%04x:%02x:%02x.%d\n",
-+		   pci_domain_nr(pdev->bus), pdev->bus->number,
-+		   PCI_SLOT(pdev->devfn), PCI_FUNC(pdev->devfn));
-+	seq_printf(m, "drm-client-id:\t%u\n", client->id);
-+
-+	if (GRAPHICS_VER(i915) < 8)
-+		return;
-+
-+	for (i = 0; i < ARRAY_SIZE(uabi_class_names); i++)
-+		show_client_class(m, client, i);
-+}
-+#endif
-diff --git a/drivers/gpu/drm/i915/i915_drm_client.h b/drivers/gpu/drm/i915/i915_drm_client.h
-index 191368386ace..5f5b02b01ba0 100644
---- a/drivers/gpu/drm/i915/i915_drm_client.h
-+++ b/drivers/gpu/drm/i915/i915_drm_client.h
-@@ -59,6 +59,10 @@ static inline void i915_drm_client_put(struct i915_drm_client *client)
- 
- struct i915_drm_client *i915_drm_client_add(struct i915_drm_clients *clients);
- 
-+#ifdef CONFIG_PROC_FS
-+void i915_drm_client_fdinfo(struct seq_file *m, struct file *f);
-+#endif
-+
- void i915_drm_clients_fini(struct i915_drm_clients *clients);
- 
- #endif /* !__I915_DRM_CLIENT_H__ */
--- 
-2.32.0
-
+On 2022-04-01 at 18:07:49 +0530, Ramalingam C wrote:
+> Add a parameter called "extra_pages" for ttm_tt_init, to indicate that
+> driver needs extra pages in ttm_tt.
+> 
+> v2:
+>   Used imperative wording [Thomas and Christian]
+> 
+> Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
+> cc: Christian Koenig <christian.koenig@amd.com>
+> cc: Hellstrom Thomas <thomas.hellstrom@intel.com>
+> Reviewed-by: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
+> Reviewed-by: Christian Konig <christian.koenig@amd.com>
+> Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
+> ---
+>  drivers/gpu/drm/drm_gem_vram_helper.c      |  2 +-
+>  drivers/gpu/drm/i915/gem/i915_gem_ttm.c    |  2 +-
+>  drivers/gpu/drm/qxl/qxl_ttm.c              |  2 +-
+>  drivers/gpu/drm/ttm/ttm_agp_backend.c      |  2 +-
+>  drivers/gpu/drm/ttm/ttm_tt.c               | 12 +++++++-----
+>  drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c |  2 +-
+>  include/drm/ttm/ttm_tt.h                   |  4 +++-
+>  7 files changed, 15 insertions(+), 11 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_gem_vram_helper.c b/drivers/gpu/drm/drm_gem_vram_helper.c
+> index dc7f938bfff2..123045b58fec 100644
+> --- a/drivers/gpu/drm/drm_gem_vram_helper.c
+> +++ b/drivers/gpu/drm/drm_gem_vram_helper.c
+> @@ -867,7 +867,7 @@ static struct ttm_tt *bo_driver_ttm_tt_create(struct ttm_buffer_object *bo,
+>  	if (!tt)
+>  		return NULL;
+>  
+> -	ret = ttm_tt_init(tt, bo, page_flags, ttm_cached);
+> +	ret = ttm_tt_init(tt, bo, page_flags, ttm_cached, 0);
+>  	if (ret < 0)
+>  		goto err_ttm_tt_init;
+>  
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> index c40aca99442f..a878910a563c 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> @@ -293,7 +293,7 @@ static struct ttm_tt *i915_ttm_tt_create(struct ttm_buffer_object *bo,
+>  		i915_tt->is_shmem = true;
+>  	}
+>  
+> -	ret = ttm_tt_init(&i915_tt->ttm, bo, page_flags, caching);
+> +	ret = ttm_tt_init(&i915_tt->ttm, bo, page_flags, caching, 0);
+>  	if (ret)
+>  		goto err_free;
+>  
+> diff --git a/drivers/gpu/drm/qxl/qxl_ttm.c b/drivers/gpu/drm/qxl/qxl_ttm.c
+> index 95df5750f47f..9ba871bd19b1 100644
+> --- a/drivers/gpu/drm/qxl/qxl_ttm.c
+> +++ b/drivers/gpu/drm/qxl/qxl_ttm.c
+> @@ -113,7 +113,7 @@ static struct ttm_tt *qxl_ttm_tt_create(struct ttm_buffer_object *bo,
+>  	ttm = kzalloc(sizeof(struct ttm_tt), GFP_KERNEL);
+>  	if (ttm == NULL)
+>  		return NULL;
+> -	if (ttm_tt_init(ttm, bo, page_flags, ttm_cached)) {
+> +	if (ttm_tt_init(ttm, bo, page_flags, ttm_cached, 0)) {
+>  		kfree(ttm);
+>  		return NULL;
+>  	}
+> diff --git a/drivers/gpu/drm/ttm/ttm_agp_backend.c b/drivers/gpu/drm/ttm/ttm_agp_backend.c
+> index 6ddc16f0fe2b..d27691f2e451 100644
+> --- a/drivers/gpu/drm/ttm/ttm_agp_backend.c
+> +++ b/drivers/gpu/drm/ttm/ttm_agp_backend.c
+> @@ -134,7 +134,7 @@ struct ttm_tt *ttm_agp_tt_create(struct ttm_buffer_object *bo,
+>  	agp_be->mem = NULL;
+>  	agp_be->bridge = bridge;
+>  
+> -	if (ttm_tt_init(&agp_be->ttm, bo, page_flags, ttm_write_combined)) {
+> +	if (ttm_tt_init(&agp_be->ttm, bo, page_flags, ttm_write_combined, 0)) {
+>  		kfree(agp_be);
+>  		return NULL;
+>  	}
+> diff --git a/drivers/gpu/drm/ttm/ttm_tt.c b/drivers/gpu/drm/ttm/ttm_tt.c
+> index d234aab800a0..1a66d9fc589a 100644
+> --- a/drivers/gpu/drm/ttm/ttm_tt.c
+> +++ b/drivers/gpu/drm/ttm/ttm_tt.c
+> @@ -134,9 +134,10 @@ void ttm_tt_destroy(struct ttm_device *bdev, struct ttm_tt *ttm)
+>  static void ttm_tt_init_fields(struct ttm_tt *ttm,
+>  			       struct ttm_buffer_object *bo,
+>  			       uint32_t page_flags,
+> -			       enum ttm_caching caching)
+> +			       enum ttm_caching caching,
+> +			       unsigned long extra_pages)
+>  {
+> -	ttm->num_pages = PAGE_ALIGN(bo->base.size) >> PAGE_SHIFT;
+> +	ttm->num_pages = (PAGE_ALIGN(bo->base.size) >> PAGE_SHIFT) + extra_pages;
+>  	ttm->caching = ttm_cached;
+>  	ttm->page_flags = page_flags;
+>  	ttm->dma_address = NULL;
+> @@ -146,9 +147,10 @@ static void ttm_tt_init_fields(struct ttm_tt *ttm,
+>  }
+>  
+>  int ttm_tt_init(struct ttm_tt *ttm, struct ttm_buffer_object *bo,
+> -		uint32_t page_flags, enum ttm_caching caching)
+> +		uint32_t page_flags, enum ttm_caching caching,
+> +		unsigned long extra_pages)
+>  {
+> -	ttm_tt_init_fields(ttm, bo, page_flags, caching);
+> +	ttm_tt_init_fields(ttm, bo, page_flags, caching, extra_pages);
+>  
+>  	if (ttm_tt_alloc_page_directory(ttm)) {
+>  		pr_err("Failed allocating page table\n");
+> @@ -180,7 +182,7 @@ int ttm_sg_tt_init(struct ttm_tt *ttm, struct ttm_buffer_object *bo,
+>  {
+>  	int ret;
+>  
+> -	ttm_tt_init_fields(ttm, bo, page_flags, caching);
+> +	ttm_tt_init_fields(ttm, bo, page_flags, caching, 0);
+>  
+>  	if (page_flags & TTM_TT_FLAG_EXTERNAL)
+>  		ret = ttm_sg_tt_alloc_page_directory(ttm);
+> diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c b/drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c
+> index b84ecc6d6611..4e3938e62c08 100644
+> --- a/drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c
+> +++ b/drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c
+> @@ -517,7 +517,7 @@ static struct ttm_tt *vmw_ttm_tt_create(struct ttm_buffer_object *bo,
+>  				     ttm_cached);
+>  	else
+>  		ret = ttm_tt_init(&vmw_be->dma_ttm, bo, page_flags,
+> -				  ttm_cached);
+> +				  ttm_cached, 0);
+>  	if (unlikely(ret != 0))
+>  		goto out_no_init;
+>  
+> diff --git a/include/drm/ttm/ttm_tt.h b/include/drm/ttm/ttm_tt.h
+> index f20832139815..17a0310e8aaa 100644
+> --- a/include/drm/ttm/ttm_tt.h
+> +++ b/include/drm/ttm/ttm_tt.h
+> @@ -140,6 +140,7 @@ int ttm_tt_create(struct ttm_buffer_object *bo, bool zero_alloc);
+>   * @bo: The buffer object we create the ttm for.
+>   * @page_flags: Page flags as identified by TTM_TT_FLAG_XX flags.
+>   * @caching: the desired caching state of the pages
+> + * @extra_pages: Extra pages needed for the driver.
+>   *
+>   * Create a struct ttm_tt to back data with system memory pages.
+>   * No pages are actually allocated.
+> @@ -147,7 +148,8 @@ int ttm_tt_create(struct ttm_buffer_object *bo, bool zero_alloc);
+>   * NULL: Out of memory.
+>   */
+>  int ttm_tt_init(struct ttm_tt *ttm, struct ttm_buffer_object *bo,
+> -		uint32_t page_flags, enum ttm_caching caching);
+> +		uint32_t page_flags, enum ttm_caching caching,
+> +		unsigned long extra_pages);
+>  int ttm_sg_tt_init(struct ttm_tt *ttm_dma, struct ttm_buffer_object *bo,
+>  		   uint32_t page_flags, enum ttm_caching caching);
+>  
+> -- 
+> 2.20.1
+> 
