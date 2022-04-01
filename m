@@ -1,53 +1,75 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 743214EF284
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 Apr 2022 17:14:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 303BD4EF54A
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 Apr 2022 17:42:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 60FBF10E40C;
-	Fri,  1 Apr 2022 15:14:17 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA7B510E40C;
- Fri,  1 Apr 2022 15:14:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3FA5010F61C;
+	Fri,  1 Apr 2022 15:42:45 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5252C10F61C
+ for <intel-gfx@lists.freedesktop.org>; Fri,  1 Apr 2022 15:42:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1648826055; x=1680362055;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=dX0S/wIcv92sOVUbwU1IHtBqyyBGvhIlNFkdz9xxBfw=;
- b=QIchIX7h3Yz8gg6/cMANJmbk8sIaGmB+AsTuQ2Bp2zbHoluzlZNrWpTW
- Imn0osvgWHvSjlXZcZCDqGNQfbenPJdwMYxUhm+5/ptcy+2vf4klAcyLF
- GoM161ZrzTeD3ShlVSrDnFSysrJQJhhznAe3q7WZfRvxTB6Pb2lH/BmSu
- heR336Jrsfnpemijpxh6aUFasPjjG+LG04jLIodGBfeCJ1GsIMNLSSjXp
- VgG0L83Ax4FRfM4I0jq/lSTPGyH2Sn+odusXRng1ZSoPLlz9Qa/UToGLN
- ED3s2YnKByBqK4saaqKzt+ETCrFo4u5g6ZutMZuq/rI5cuRAaCIyRxWRA g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10304"; a="259861275"
-X-IronPort-AV: E=Sophos;i="5.90,228,1643702400"; d="scan'208";a="259861275"
+ t=1648827764; x=1680363764;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=SDofNT+ejn6bZMGDhfgiYDfZ84mezMy7VuDaDRW2tAs=;
+ b=B3XLNQzJay+Xpc2EC4dd81EkJBDGZxxDe4WULyL5M1s/xmfQEPwEs6Mj
+ Lt7lbKU/4YOTyL2bunQntJFj5NUEhnqB1aMLliEwm6EkLtwqR1j9oA5TQ
+ sxBburjHHyZKjdaENQwLan+rcWj1Qqn+uhLnWJJeiVW8Alcw+nPuBRCH/
+ bollUvOgK0Pi+3Y0BOgmXe9xroQlMe5PWGX3HnUXewdAJwF4z5BDzJ1OB
+ BJSOofpRg0uD8+hRyyquZ2JywESV4zSM928S8xmfovlt6wch/3VAJ4N9N
+ SOW5E4tJLvoIOY8qtiBTs42TjEU1h4ul1/lk7QFgbUieokFcXH1lwW2Hn g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10304"; a="346602204"
+X-IronPort-AV: E=Sophos;i="5.90,228,1643702400"; d="scan'208";a="346602204"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2022 08:14:15 -0700
-X-IronPort-AV: E=Sophos;i="5.90,228,1643702400"; d="scan'208";a="640564633"
-Received: from orsosgc001.jf.intel.com (HELO unerlige-ril-10.165.21.154)
- ([10.165.21.154])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2022 08:14:14 -0700
-Date: Fri, 1 Apr 2022 08:14:14 -0700
-From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <20220401151414.GG59408@unerlige-ril-10.165.21.154>
-References: <20220401141155.3122817-1-tvrtko.ursulin@linux.intel.com>
- <20220401141155.3122817-2-tvrtko.ursulin@linux.intel.com>
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Apr 2022 08:42:43 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,228,1643702400"; d="scan'208";a="640572059"
+Received: from fmsmsx604.amr.corp.intel.com ([10.18.126.84])
+ by FMSMGA003.fm.intel.com with ESMTP; 01 Apr 2022 08:42:43 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx604.amr.corp.intel.com (10.18.126.84) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27; Fri, 1 Apr 2022 08:42:43 -0700
+Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27; Fri, 1 Apr 2022 08:42:40 -0700
+Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
+ BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.2308.027;
+ Fri, 1 Apr 2022 21:12:38 +0530
+From: "Gupta, Anshuman" <anshuman.gupta@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>, "Dixit, Ashutosh"
+ <ashutosh.dixit@intel.com>, "Wysocki, Rafael J" <rafael.j.wysocki@intel.com>
+Thread-Topic: [Intel-gfx] [PATCH] drm/i915/debugfs: Dump i915 children runtime
+ status
+Thread-Index: AQHYQo3ItyzC3kGzdEefAg/N2OZ/rqzWoqMAgAP8boCAAGM0kP//rAcAgABdMRD//7dwAIAAclLw
+Date: Fri, 1 Apr 2022 15:42:38 +0000
+Message-ID: <b9082786922d4941a182441b01aa2eac@intel.com>
+References: <20220328102227.14545-1-anshuman.gupta@intel.com>
+ <87v8vw8igj.wl-ashutosh.dixit@intel.com> <87czi1812s.fsf@intel.com>
+ <00a81e7f6ac14024837bcea5a9a46dbb@intel.com> <871qyh7yjx.fsf@intel.com>
+ <9c68cd03950f42b4a5a977e31d1d79f2@intel.com> <87v8vs7v4v.fsf@intel.com>
+In-Reply-To: <87v8vs7v4v.fsf@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 11.6.401.20
+dlp-reaction: no-action
+x-originating-ip: [10.223.10.1]
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220401141155.3122817-2-tvrtko.ursulin@linux.intel.com>
-User-Agent: Mutt/1.12.1 (2019-06-15)
-Subject: Re: [Intel-gfx] [PATCH i-g-t 1/3] lib: Helper library for parsing
- i915 fdinfo output
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/debugfs: Dump i915 children
+ runtime status
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,331 +82,202 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, Intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Wilson, Chris P" <chris.p.wilson@intel.com>, "Vivi,
+ Rodrigo" <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-lgtm, thanks for clarifications on the other patch.
 
-Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 
-Umesh
-
-On Fri, Apr 01, 2022 at 03:11:53PM +0100, Tvrtko Ursulin wrote:
->From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->
->Tests and intel_gpu_top will share common code for parsing this file.
->
->v2:
-> * Fix key-value parsing if valid key line ends with ':'.
-> * Return number of drm keys found.
-> * Add DRM_CLIENT_FDINFO_MAX_ENGINES. (Umesh)
-> * Always zero terminate read buffer. (Umesh)
->
->Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->---
-> lib/igt_drm_fdinfo.c | 188 +++++++++++++++++++++++++++++++++++++++++++
-> lib/igt_drm_fdinfo.h |  69 ++++++++++++++++
-> lib/meson.build      |   7 ++
-> 3 files changed, 264 insertions(+)
-> create mode 100644 lib/igt_drm_fdinfo.c
-> create mode 100644 lib/igt_drm_fdinfo.h
->
->diff --git a/lib/igt_drm_fdinfo.c b/lib/igt_drm_fdinfo.c
->new file mode 100644
->index 000000000000..b422f67a4ace
->--- /dev/null
->+++ b/lib/igt_drm_fdinfo.c
->@@ -0,0 +1,188 @@
->+/*
->+ * Copyright © 2022 Intel Corporation
->+ *
->+ * Permission is hereby granted, free of charge, to any person obtaining a
->+ * copy of this software and associated documentation files (the "Software"),
->+ * to deal in the Software without restriction, including without limitation
->+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
->+ * and/or sell copies of the Software, and to permit persons to whom the
->+ * Software is furnished to do so, subject to the following conditions:
->+ *
->+ * The above copyright notice and this permission notice (including the next
->+ * paragraph) shall be included in all copies or substantial portions of the
->+ * Software.
->+ *
->+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
->+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
->+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
->+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
->+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
->+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
->+ * IN THE SOFTWARE.
->+ *
->+ */
->+
->+#include <ctype.h>
->+#include <sys/types.h>
->+#include <sys/stat.h>
->+#include <fcntl.h>
->+#include <stdio.h>
->+#include <string.h>
->+#include <stdlib.h>
->+#include <unistd.h>
->+
->+#include "drmtest.h"
->+
->+#include "igt_drm_fdinfo.h"
->+
->+static size_t read_fdinfo(char *buf, const size_t sz, int at, const char *name)
->+{
->+	size_t count;
->+	int fd;
->+
->+	fd = openat(at, name, O_RDONLY);
->+	if (fd < 0)
->+		return 0;
->+
->+	buf[sz - 1] = 0;
->+	count = read(fd, buf, sz);
->+	buf[sz - 1] = 0;
->+	close(fd);
->+
->+	return count;
->+}
->+
->+static int parse_engine(char *line, struct drm_client_fdinfo *info,
->+			size_t prefix_len, uint64_t *val)
->+{
->+	static const char *e2class[] = {
->+		"render",
->+		"copy",
->+		"video",
->+		"video-enhance",
->+	};
->+	ssize_t name_len;
->+	char *name, *p;
->+	int found = -1;
->+	unsigned int i;
->+
->+	p = index(line, ':');
->+	if (!p || p == line)
->+		return -1;
->+
->+	name_len = p - line - prefix_len;
->+	if (name_len < 1)
->+		return -1;
->+
->+	name = line + prefix_len;
->+
->+	for (i = 0; i < ARRAY_SIZE(e2class); i++) {
->+		if (!strncmp(name, e2class[i], name_len)) {
->+			found = i;
->+			break;
->+		}
->+	}
->+
->+	if (found >= 0) {
->+		while (*++p && isspace(*p));
->+		*val = strtoull(p, NULL, 10);
->+	}
->+
->+	return found;
->+}
->+
->+static const char *find_kv(const char *buf, const char *key, size_t keylen)
->+{
->+	const char *p = buf;
->+
->+	if (strncmp(buf, key, keylen))
->+		return NULL;
->+
->+	p = index(buf, ':');
->+	if (!p || p == buf)
->+		return NULL;
->+	if ((p - buf) != keylen)
->+		return NULL;
->+
->+	p++;
->+	while (*p && isspace(*p))
->+		p++;
->+
->+	return *p ? p : NULL;
->+}
->+
->+unsigned int
->+__igt_parse_drm_fdinfo(int dir, const char *fd, struct drm_client_fdinfo *info)
->+{
->+	char buf[4096], *_buf = buf;
->+	char *l, *ctx = NULL;
->+	unsigned int good = 0, num_capacity = 0;
->+	size_t count;
->+
->+	count = read_fdinfo(buf, sizeof(buf), dir, fd);
->+	if (!count)
->+		return 0;
->+
->+	while ((l = strtok_r(_buf, "\n", &ctx))) {
->+		uint64_t val = 0;
->+		const char *v;
->+		int idx;
->+
->+		_buf = NULL;
->+
->+		if ((v = find_kv(l, "drm-driver", strlen("drm-driver")))) {
->+			strncpy(info->driver, v, sizeof(info->driver) - 1);
->+			good++;
->+		} else if ((v = find_kv(l, "drm-pdev", strlen("drm-pdev")))) {
->+			strncpy(info->pdev, v, sizeof(info->pdev) - 1);
->+		}  else if ((v = find_kv(l, "drm-client-id",
->+					 strlen("drm-client-id")))) {
->+			info->id = atol(v);
->+			good++;
->+		} else if (!strncmp(l, "drm-engine-", 11) &&
->+			   strncmp(l, "drm-engine-capacity-", 20)) {
->+			idx = parse_engine(l, info, strlen("drm-engine-"),
->+					   &val);
->+			if (idx >= 0) {
->+				if (!info->capacity[idx])
->+					info->capacity[idx] = 1;
->+				info->busy[idx] = val;
->+				info->num_engines++;
->+			}
->+		} else if (!strncmp(l, "drm-engine-capacity-", 20)) {
->+			idx = parse_engine(l, info,
->+					   strlen("drm-engine-capacity-"),
->+					   &val);
->+			if (idx >= 0) {
->+				info->capacity[idx] = val;
->+				num_capacity++;
->+			}
->+		}
->+	}
->+
->+	if (good < 2 || !info->num_engines)
->+		return 0; /* fdinfo format not as expected */
->+
->+	return good + info->num_engines + num_capacity;
->+}
->+
->+unsigned int igt_parse_drm_fdinfo(int drm_fd, struct drm_client_fdinfo *info)
->+{
->+	unsigned int res;
->+	char fd[64];
->+	int dir, ret;
->+
->+	ret = snprintf(fd, sizeof(fd), "%u", drm_fd);
->+	if (ret < 0 || ret == sizeof(fd))
->+		return false;
->+
->+	dir = open("/proc/self/fdinfo", O_DIRECTORY | O_RDONLY);
->+	if (dir < 0)
->+		return false;
->+
->+	res = __igt_parse_drm_fdinfo(dir, fd, info);
->+
->+	close(dir);
->+
->+	return res;
->+}
->diff --git a/lib/igt_drm_fdinfo.h b/lib/igt_drm_fdinfo.h
->new file mode 100644
->index 000000000000..5db63e28b07e
->--- /dev/null
->+++ b/lib/igt_drm_fdinfo.h
->@@ -0,0 +1,69 @@
->+/*
->+ * Copyright © 2022 Intel Corporation
->+ *
->+ * Permission is hereby granted, free of charge, to any person obtaining a
->+ * copy of this software and associated documentation files (the "Software"),
->+ * to deal in the Software without restriction, including without limitation
->+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
->+ * and/or sell copies of the Software, and to permit persons to whom the
->+ * Software is furnished to do so, subject to the following conditions:
->+ *
->+ * The above copyright notice and this permission notice (including the next
->+ * paragraph) shall be included in all copies or substantial portions of the
->+ * Software.
->+ *
->+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
->+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
->+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
->+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
->+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
->+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
->+ * IN THE SOFTWARE.
->+ *
->+ */
->+
->+#ifndef IGT_DRM_FDINFO_H
->+#define IGT_DRM_FDINFO_H
->+
->+#include <sys/types.h>
->+#include <dirent.h>
->+#include <stdint.h>
->+#include <stdbool.h>
->+
->+#define DRM_CLIENT_FDINFO_MAX_ENGINES 16
->+
->+struct drm_client_fdinfo {
->+	char driver[128];
->+	char pdev[128];
->+	unsigned long id;
->+
->+	unsigned int num_engines;
->+	unsigned int capacity[DRM_CLIENT_FDINFO_MAX_ENGINES];
->+	uint64_t busy[DRM_CLIENT_FDINFO_MAX_ENGINES];
->+};
->+
->+/**
->+ * igt_parse_drm_fdinfo: Parses the drm fdinfo file
->+ *
->+ * @drm_fd: DRM file descriptor
->+ * @info: Structure to populate with read data
->+ *
->+ * Returns the number of valid drm fdinfo keys found or zero if not all
->+ * mandatory keys were present or no engines found.
->+ */
->+unsigned int igt_parse_drm_fdinfo(int drm_fd, struct drm_client_fdinfo *info);
->+
->+/**
->+ * __igt_parse_drm_fdinfo: Parses the drm fdinfo file
->+ *
->+ * @dir: File descriptor pointing to /proc/pid/fdinfo directory
->+ * @fd: String representation of the file descriptor number to parse.
->+ * @info: Structure to populate with read data
->+ *
->+ * Returns the number of valid drm fdinfo keys found or zero if not all
->+ * mandatory keys were present or no engines found.
->+ */
->+unsigned int __igt_parse_drm_fdinfo(int dir, const char *fd,
->+				    struct drm_client_fdinfo *info);
->+
->+#endif /* IGT_DRM_FDINFO_H */
->diff --git a/lib/meson.build b/lib/meson.build
->index 6fc1958604b3..ccee7a596561 100644
->--- a/lib/meson.build
->+++ b/lib/meson.build
->@@ -18,6 +18,7 @@ lib_sources = [
-> 	'igt_debugfs.c',
-> 	'igt_device.c',
-> 	'igt_device_scan.c',
->+	'igt_drm_fdinfo.c',
-> 	'igt_aux.c',
-> 	'igt_gt.c',
-> 	'igt_halffloat.c',
->@@ -218,6 +219,12 @@ lib_igt_device_scan_build = static_library('igt_device_scan',
-> lib_igt_device_scan = declare_dependency(link_with : lib_igt_device_scan_build,
-> 				  include_directories : inc)
->
->+lib_igt_drm_fdinfo_build = static_library('igt_drm_fdinfo',
->+	['igt_drm_fdinfo.c'],
->+	include_directories : inc)
->+
->+lib_igt_drm_fdinfo = declare_dependency(link_with : lib_igt_drm_fdinfo_build,
->+				  include_directories : inc)
-> i915_perf_files = [
->   'igt_list.c',
->   'i915/perf.c',
->-- 
->2.32.0
->
+> -----Original Message-----
+> From: Jani Nikula <jani.nikula@linux.intel.com>
+> Sent: Friday, April 1, 2022 7:40 PM
+> To: Gupta, Anshuman <anshuman.gupta@intel.com>; Dixit, Ashutosh
+> <ashutosh.dixit@intel.com>
+> Cc: intel-gfx@lists.freedesktop.org; Wilson, Chris P <chris.p.wilson@inte=
+l.com>;
+> Vivi, Rodrigo <rodrigo.vivi@intel.com>
+> Subject: RE: [Intel-gfx] [PATCH] drm/i915/debugfs: Dump i915 children run=
+time
+> status
+>=20
+> On Fri, 01 Apr 2022, "Gupta, Anshuman" <anshuman.gupta@intel.com> wrote:
+> >> -----Original Message-----
+> >> From: Jani Nikula <jani.nikula@linux.intel.com>
+> >> Sent: Friday, April 1, 2022 6:26 PM
+> >> To: Gupta, Anshuman <anshuman.gupta@intel.com>; Dixit, Ashutosh
+> >> <ashutosh.dixit@intel.com>
+> >> Cc: intel-gfx@lists.freedesktop.org; Wilson, Chris P
+> >> <chris.p.wilson@intel.com>; Vivi, Rodrigo <rodrigo.vivi@intel.com>
+> >> Subject: RE: [Intel-gfx] [PATCH] drm/i915/debugfs: Dump i915 children
+> >> runtime status
+> >>
+> >> On Fri, 01 Apr 2022, "Gupta, Anshuman" <anshuman.gupta@intel.com>
+> wrote:
+> >> >> -----Original Message-----
+> >> >> From: Jani Nikula <jani.nikula@linux.intel.com>
+> >> >> Sent: Friday, April 1, 2022 5:31 PM
+> >> >> To: Dixit, Ashutosh <ashutosh.dixit@intel.com>; Gupta, Anshuman
+> >> >> <anshuman.gupta@intel.com>
+> >> >> Cc: intel-gfx@lists.freedesktop.org; Wilson, Chris P
+> >> >> <chris.p.wilson@intel.com>; Vivi, Rodrigo <rodrigo.vivi@intel.com>
+> >> >> Subject: Re: [Intel-gfx] [PATCH] drm/i915/debugfs: Dump i915
+> >> >> children runtime status
+> >> >>
+> >> >> On Tue, 29 Mar 2022, "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+> wrote:
+> >> >> > On Mon, 28 Mar 2022 03:22:27 -0700, Anshuman Gupta wrote:
+> >> >> >>
+> >> >> >> +#ifdef CONFIG_PM
+> >> >> >> +static int i915_runtime_dump_child_status(struct device *dev,
+> >> >> >> +void
+> >> >> >> +*data) {
+> >> >> >> +	struct seq_file *m =3D data;
+> >> >> >> +	const char *rpm_status;
+> >> >> >> +
+> >> >> >> +	/* Early return if runtime_pm is disabled */
+> >> >> >> +	if (dev->power.disable_depth)
+> >> >> >> +		return 0;
+> >> >> >> +
+> >> >> >> +	switch (dev->power.runtime_status) {
+> >> >> >> +	case RPM_SUSPENDED:
+> >> >> >> +		rpm_status =3D "suspended";
+> >> >> >> +		break;
+> >> >> >> +	case RPM_SUSPENDING:
+> >> >> >> +		rpm_status =3D "suspending";
+> >> >> >> +		break;
+> >> >> >> +	case RPM_RESUMING:
+> >> >> >> +		rpm_status =3D "resuming";
+> >> >> >> +		break;
+> >> >> >> +	case RPM_ACTIVE:
+> >> >> >> +		rpm_status =3D "active";
+> >> >> >> +		break;
+> >> >> >> +	default:
+> >> >> >> +		rpm_status =3D "unknown";
+> >> >> >> +	}
+> >> >> >> +
+> >> >> >> +	seq_printf(m, "\t%s %s: Runtime status: %s\n",
+> dev_driver_string(dev),
+> >> >> >> +		   dev_name(dev), rpm_status);
+> >> >> >> +
+> >> >> >> +	return 0;
+> >> >> >> +}
+> >> >> >> +#endif
+> >> >> >
+> >> >> > Maybe a nit, but perhaps defining a const array is better than
+> >> >> > having a switch statement? Similar to what is done in
+> >> >> > rtpm_status_str(). The function itself is very similar to
+> >> >> > rtpm_status_str() so can probably benefit from that similarity.
+> >> >> > Can perhaps even be nearly identical to
+> >> >> > rtpm_status_str() (since that is static in the genpd (generic
+> >> >> > power
+> >> >> > domain) code).
+> >> >> >
+> >> >> > See also 2bd5306a8764 ("PM / Domains: add debugfs listing of
+> >> >> > struct generic_pm_domain-s"), though I am not sure if genpd's
+> >> >> > are applicable in our case and certainly look way out of scope fo=
+r now.
+> Thanks.
+> >> >>
+> >> >> See also /sys/devices/i915/power/runtime_status and
+> >> >> /sys/devices/i915/power/runtime_active_kids.
+> >> >>
+> >> >> Kinda feels like the info should be made available there?
+> >> > runtime_active_kids we are already printing by dev_priv->drm.dev-
+> >> >power.child_count.
+> >> > About runtime_status , we already prints usage count and pci device
+> >> >power
+> >> state, IMO that is sufficient for debug ?
+> >> > If it is really needed , I will add dev->power.runtime_status in nex=
+t revision.
+> >>
+> >> My point is, the patch at hand adds runtime pm status printing that
+> >> isn't specific to drm or i915 into i915 debugfs. Why?
+> >>
+> >> What is the reason we should take on the burden of maintaining this
+> >> while the right place for it might be in runtime pm code, benefiting
+> >> other drivers in addition to ours?
+> > Benefit is there to debug CI runtime suspend failures , we need to know=
+ the
+> culprit child blocking i915 runtime PM.
+> > runtime_active_kids just revels the count , it doesn't reveal the culpr=
+it children.
+>=20
+> I understand. But how is that problem or the information specific to i915=
+? Why
+> should this be added to i915 instead of runtime pm infra?
+> Surely this is not even a new problem; how do others currently figure thi=
+s
+> information out?
+>=20
+> So I'm not going to block this if you all think this is a good idea. But =
+the point is,
+> the first solution should not be to add some i915 specific stuff when a m=
+ore
+> generic solution might exist or be preferred.
+Hi Rafael,
+Could you please provide your input,  about generic interface to dump the a=
+ctive children of a device.
+Thanks,
+Anshuman Gupta.
+>=20
+>=20
+> BR,
+> Jani.
+>=20
+>=20
+>=20
+>=20
+> > Thanks,
+> > Anshuman.
+> >>
+> >> BR,
+> >> Jani.
+> >>
+> >>
+> >> > Thanks,
+> >> > Anshuman Gupta.
+> >> >
+> >> >
+> >> >
+> >> >
+> >> >>
+> >> >> BR,
+> >> >> Jani.
+> >> >>
+> >> >> >
+> >> >> >> +
+> >> >> >>  static int i915_runtime_pm_status(struct seq_file *m, void
+> >> >> >>*unused)
+> >> >> >>  {
+> >> >> >>	struct drm_i915_private *dev_priv =3D node_to_i915(m->private);
+> >> >> >>@@
+> >> >> >>-500,6 +534,10 @@ static int i915_runtime_pm_status(struct
+> >> >> >>seq_file *m, void *unused)
+> >> >> >>  #ifdef CONFIG_PM
+> >> >> >>	seq_printf(m, "Usage count: %d\n",
+> >> >> >>		   atomic_read(&dev_priv->drm.dev-
+> >power.usage_count));
+> >> >> >> +	seq_printf(m, "Runtime active children: %d\n",
+> >> >> >> +		   atomic_read(&dev_priv->drm.dev-
+> >power.child_count));
+> >> >> >> +	device_for_each_child(&pdev->dev, m,
+> >> >> >> +i915_runtime_dump_child_status);
+> >> >> >> +
+> >> >> >>  #else
+> >> >> >>	seq_printf(m, "Device Power Management (CONFIG_PM)
+> >> >> >>disabled\n");
+> >> >> >>  #endif
+> >> >> >> --
+> >> >> >> 2.26.2
+> >> >> >>
+> >> >>
+> >> >> --
+> >> >> Jani Nikula, Intel Open Source Graphics Center
+> >>
+> >> --
+> >> Jani Nikula, Intel Open Source Graphics Center
+>=20
+> --
+> Jani Nikula, Intel Open Source Graphics Center
