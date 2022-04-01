@@ -2,72 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9EA94EED57
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 Apr 2022 14:40:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C63B84EED58
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 Apr 2022 14:40:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C72310E054;
-	Fri,  1 Apr 2022 12:40:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F153D10E064;
+	Fri,  1 Apr 2022 12:40:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 30B2C10E054
- for <intel-gfx@lists.freedesktop.org>; Fri,  1 Apr 2022 12:40:32 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A8F9210E064
+ for <intel-gfx@lists.freedesktop.org>; Fri,  1 Apr 2022 12:40:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1648816832; x=1680352832;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=TyQ3WAI7u/UmZx/rfdJoJNTGBUO23Yo85FeOWxBYiy4=;
- b=YVuiO2tSClXvbWEwctNTWksssa2jHUmxFZXBrNE2SIFiots6VrM0Up+I
- qKlHGuaBSMBwoAP/1Q96URWkVFcvLC1CdWSLXAQy5ODG19Z49F4L1dJB0
- Rp48AB/lpraWMFLM8WBLiDOa3IDVAsV7YYCnPwclrvP+0GXjP+zG0ELYB
- a9RmUpmMplvSasJcb4MzHSWVpw0X02/m8B+w/RoENTc4cWoWD0R/HIICB
- ligisSsKoNZt1uVrBTOEegfPndGiIFdyWM6QOJ8rCIE5YJcNBedpnLsGW
- mrY0cx6I8VQhHEXUYwolFoNzDD22THQWfJOggfHDKmwU8PoE0agXUMH4M g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10303"; a="242274557"
-X-IronPort-AV: E=Sophos;i="5.90,227,1643702400"; d="scan'208";a="242274557"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2022 05:40:31 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,227,1643702400"; d="scan'208";a="720874476"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orsmga005.jf.intel.com with ESMTP; 01 Apr 2022 05:40:31 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Fri, 1 Apr 2022 05:40:30 -0700
-Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Fri, 1 Apr 2022 05:40:29 -0700
-Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
- BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.2308.027;
- Fri, 1 Apr 2022 18:10:27 +0530
-From: "Gupta, Anshuman" <anshuman.gupta@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>, "Dixit, Ashutosh"
- <ashutosh.dixit@intel.com>
-Thread-Topic: [Intel-gfx] [PATCH] drm/i915/debugfs: Dump i915 children runtime
- status
-Thread-Index: AQHYQo3ItyzC3kGzdEefAg/N2OZ/rqzWoqMAgAP8boCAAGM0kA==
-Date: Fri, 1 Apr 2022 12:40:27 +0000
-Message-ID: <00a81e7f6ac14024837bcea5a9a46dbb@intel.com>
-References: <20220328102227.14545-1-anshuman.gupta@intel.com>
- <87v8vw8igj.wl-ashutosh.dixit@intel.com> <87czi1812s.fsf@intel.com>
-In-Reply-To: <87czi1812s.fsf@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.6.401.20
-dlp-reaction: no-action
-x-originating-ip: [10.223.10.1]
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ t=1648816849; x=1680352849;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=iBhVxGztLKL2ZfKv0PvFn4YVfZmhZm8UOG5K0/VnKno=;
+ b=g+UeBpj23xsKQuKgb4Soof5lGDQy++D+GBXaw7IgJt39Fla5VbdY7mAh
+ lLvUEknluppTXb4NX3HnxVKhiz+2ZJePRoHTw+Fjjc4pK9YDd6TJSQF1N
+ Yc+i8K0vmVTx/ILCQzkuTxBfjeliNv8wSwaG4klnyKE3v+ZYf7xBzedrx
+ pmtTYdsTfRvZojMzwteiNUIb2dZKxaOCls70rqBvcIzmd2X1mW+zG6bIc
+ 1v/IVVmbAzNUMZl2a8WnspbF7LGulIerFd1ygAeAG1D1MUUG7/zgPUBt6
+ WqpOtq02tRTWzTjZZ0OmZXHtzSMWO362ElUQrRWs6luKoNotaV7s5WFpP Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10303"; a="323299163"
+X-IronPort-AV: E=Sophos;i="5.90,227,1643702400"; d="scan'208";a="323299163"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Apr 2022 05:40:49 -0700
+X-IronPort-AV: E=Sophos;i="5.90,227,1643702400"; d="scan'208";a="567460321"
+Received: from kohnenth-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.62.214])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Apr 2022 05:40:46 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Bhanuprakash Modem <bhanuprakash.modem@intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20220329060731.785476-1-bhanuprakash.modem@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220328075020.708022-1-bhanuprakash.modem@intel.com>
+ <20220329060731.785476-1-bhanuprakash.modem@intel.com>
+Date: Fri, 01 Apr 2022 15:40:43 +0300
+Message-ID: <877d897z90.fsf@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/debugfs: Dump i915 children
- runtime status
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display/debugfs: Add connector
+ debugfs for "output_bpc"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,116 +60,113 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Wilson, Chris P" <chris.p.wilson@intel.com>, "Vivi,
- Rodrigo" <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Tue, 29 Mar 2022, Bhanuprakash Modem <bhanuprakash.modem@intel.com> wrot=
+e:
+> This new debugfs will expose the connector's max supported bpc
+> and the bpc currently using. It is very useful for verifying
+> whether we enter the correct output color depth from IGT.
+>
+> Example:
+> cat /sys/kernel/debug/dri/0/DP-1/output_bpc
+> Current: 8
+> Maximum: 10
+>
+> V2: Add connector's max bpc to i915_display_info
+>
+> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> Cc: Uma Shankar <uma.shankar@intel.com>
+> Cc: Swati Sharma <swati2.sharma@intel.com>
+> Signed-off-by: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
+> ---
+>  .../drm/i915/display/intel_display_debugfs.c  | 46 +++++++++++++++++++
+>  1 file changed, 46 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drive=
+rs/gpu/drm/i915/display/intel_display_debugfs.c
+> index c1e74a13a0828..694d27f3b109c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> @@ -663,6 +663,8 @@ static void intel_connector_info(struct seq_file *m,
+>  	seq_puts(m, "\tHDCP version: ");
+>  	intel_hdcp_info(m, intel_connector);
+>=20=20
+> +	seq_printf(m, "\tmax bpc: %u\n", connector->display_info.bpc);
+> +
+>  	intel_panel_info(m, intel_connector);
+>=20=20
+>  	seq_printf(m, "\tmodes:\n");
+> @@ -2275,6 +2277,47 @@ static const struct file_operations i915_dsc_bpp_f=
+ops =3D {
+>  	.write =3D i915_dsc_bpp_write
+>  };
+>=20=20
+> +/*
+> + * Returns the maximum output bpc for the connector.
+> + * Example usage: cat /sys/kernel/debug/dri/0/DP-1/output_bpc
+> + */
+> +static int output_bpc_show(struct seq_file *m, void *data)
+> +{
+> +	struct drm_connector *connector =3D m->private;
+> +	struct drm_device *dev =3D connector->dev;
+> +	struct drm_crtc *crtc;
+> +	struct intel_crtc_state *crtc_state;
+> +	struct intel_encoder *encoder =3D intel_attached_encoder(to_intel_conne=
+ctor(connector));
+> +	int res;
+> +
+> +	if (!encoder)
+> +		return -ENODEV;
+> +
+> +	res =3D drm_modeset_lock_single_interruptible(&dev->mode_config.connect=
+ion_mutex);
+> +	if (res)
+> +		return res;
+> +
+> +	crtc =3D connector->state->crtc;
+> +	if (connector->status !=3D connector_status_connected || !crtc) {
+> +		res =3D -ENODEV;
+> +		goto unlock;
+> +	}
+> +
+> +	crtc_state =3D to_intel_crtc_state(crtc->state);
+> +	if (!crtc_state->hw.active)
+> +		goto unlock;
+> +
+> +	seq_printf(m, "Current: %u\n", crtc_state->pipe_bpp / 3);
+> +	seq_printf(m, "Maximum: %u\n", connector->display_info.bpc);
+> +	res =3D 0;
+> +
+> +unlock:
+> +	drm_modeset_unlock(&dev->mode_config.connection_mutex);
+> +
+> +	return res;
+> +}
+> +DEFINE_SHOW_ATTRIBUTE(output_bpc);
 
+Looks like an excessive amount of code for a single value.
 
-> -----Original Message-----
-> From: Jani Nikula <jani.nikula@linux.intel.com>
-> Sent: Friday, April 1, 2022 5:31 PM
-> To: Dixit, Ashutosh <ashutosh.dixit@intel.com>; Gupta, Anshuman
-> <anshuman.gupta@intel.com>
-> Cc: intel-gfx@lists.freedesktop.org; Wilson, Chris P <chris.p.wilson@inte=
-l.com>;
-> Vivi, Rodrigo <rodrigo.vivi@intel.com>
-> Subject: Re: [Intel-gfx] [PATCH] drm/i915/debugfs: Dump i915 children run=
-time
-> status
->=20
-> On Tue, 29 Mar 2022, "Dixit, Ashutosh" <ashutosh.dixit@intel.com> wrote:
-> > On Mon, 28 Mar 2022 03:22:27 -0700, Anshuman Gupta wrote:
-> >>
-> >> +#ifdef CONFIG_PM
-> >> +static int i915_runtime_dump_child_status(struct device *dev, void
-> >> +*data) {
-> >> +	struct seq_file *m =3D data;
-> >> +	const char *rpm_status;
-> >> +
-> >> +	/* Early return if runtime_pm is disabled */
-> >> +	if (dev->power.disable_depth)
-> >> +		return 0;
-> >> +
-> >> +	switch (dev->power.runtime_status) {
-> >> +	case RPM_SUSPENDED:
-> >> +		rpm_status =3D "suspended";
-> >> +		break;
-> >> +	case RPM_SUSPENDING:
-> >> +		rpm_status =3D "suspending";
-> >> +		break;
-> >> +	case RPM_RESUMING:
-> >> +		rpm_status =3D "resuming";
-> >> +		break;
-> >> +	case RPM_ACTIVE:
-> >> +		rpm_status =3D "active";
-> >> +		break;
-> >> +	default:
-> >> +		rpm_status =3D "unknown";
-> >> +	}
-> >> +
-> >> +	seq_printf(m, "\t%s %s: Runtime status: %s\n", dev_driver_string(dev=
-),
-> >> +		   dev_name(dev), rpm_status);
-> >> +
-> >> +	return 0;
-> >> +}
-> >> +#endif
-> >
-> > Maybe a nit, but perhaps defining a const array is better than having
-> > a switch statement? Similar to what is done in rtpm_status_str(). The
-> > function itself is very similar to rtpm_status_str() so can probably
-> > benefit from that similarity. Can perhaps even be nearly identical to
-> > rtpm_status_str() (since that is static in the genpd (generic power
-> > domain) code).
-> >
-> > See also 2bd5306a8764 ("PM / Domains: add debugfs listing of struct
-> > generic_pm_domain-s"), though I am not sure if genpd's are applicable
-> > in our case and certainly look way out of scope for now. Thanks.
->=20
-> See also /sys/devices/i915/power/runtime_status and
-> /sys/devices/i915/power/runtime_active_kids.
->=20
-> Kinda feels like the info should be made available there?
-runtime_active_kids we are already printing by dev_priv->drm.dev->power.chi=
-ld_count.
-About runtime_status , we already prints usage count and pci device power s=
-tate, IMO that is sufficient for debug ?
-If it is really needed , I will add dev->power.runtime_status in next revis=
-ion.
-Thanks,
-Anshuman Gupta.
+BR,
+Jani.
 
+> +
+>  /**
+>   * intel_connector_debugfs_add - add i915 specific connector debugfs fil=
+es
+>   * @connector: pointer to a registered drm_connector
+> @@ -2330,6 +2373,9 @@ void intel_connector_debugfs_add(struct intel_conne=
+ctor *intel_connector)
+>  	    connector->connector_type =3D=3D DRM_MODE_CONNECTOR_HDMIB)
+>  		debugfs_create_file("i915_lpsp_capability", 0444, root,
+>  				    connector, &i915_lpsp_capability_fops);
+> +
+> +	debugfs_create_file("output_bpc", 0444, root,
+> +			    connector, &output_bpc_fops);
+>  }
+>=20=20
+>  /**
 
-
-
->=20
-> BR,
-> Jani.
->=20
-> >
-> >> +
-> >>  static int i915_runtime_pm_status(struct seq_file *m, void *unused)
-> >>  {
-> >>	struct drm_i915_private *dev_priv =3D node_to_i915(m->private);  @@
-> >>-500,6 +534,10 @@ static int i915_runtime_pm_status(struct seq_file
-> >>*m, void *unused)
-> >>  #ifdef CONFIG_PM
-> >>	seq_printf(m, "Usage count: %d\n",
-> >>		   atomic_read(&dev_priv->drm.dev->power.usage_count));
-> >> +	seq_printf(m, "Runtime active children: %d\n",
-> >> +		   atomic_read(&dev_priv->drm.dev->power.child_count));
-> >> +	device_for_each_child(&pdev->dev, m,
-> >> +i915_runtime_dump_child_status);
-> >> +
-> >>  #else
-> >>	seq_printf(m, "Device Power Management (CONFIG_PM) disabled\n");
-> >>  #endif
-> >> --
-> >> 2.26.2
-> >>
->=20
-> --
-> Jani Nikula, Intel Open Source Graphics Center
+--=20
+Jani Nikula, Intel Open Source Graphics Center
