@@ -2,49 +2,72 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8436E4EED53
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 Apr 2022 14:37:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C9EA94EED57
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 Apr 2022 14:40:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5DDE110E2E3;
-	Fri,  1 Apr 2022 12:37:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C72310E054;
+	Fri,  1 Apr 2022 12:40:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 221B910E2E3;
- Fri,  1 Apr 2022 12:37:22 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 30B2C10E054
+ for <intel-gfx@lists.freedesktop.org>; Fri,  1 Apr 2022 12:40:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1648816642; x=1680352642;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=uyZUMJ+wrhVwLV1VFV+N8lspdFwCTt0L/WuJeJCB92M=;
- b=KR9pzcXknCk6rxl6oGy4UdUsm4qMrSgxurBLlz5GpfIXUkhrnqIGewm3
- EocUTs1PqJQuIGoH6PpXd8CieewVXfEiWMQox5+ODfGeOQw8BIFX0cqye
- B2mDk0FvxRNKngZ9OnlNg6yWJg78gk78NC3e9g1ptKYugN/hsS+tun4Hp
- Px5HvuMx3nDGU5Aa6Sh9QnmwW6voXXLHLc4Bjkdv0oboiAFGFTH/8JJnW
- wW4KhZsOTKIVWqYiti/rcMHIKXjTXPw593WBZa7V9Qqzw+Pu+kdBwWscB
- Nl8V+p+fBDQkNDUAznZ1JOs+AZlqpDYLFi6zfurqh3bVH3AGYKWpg2Q0v Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10303"; a="257708078"
-X-IronPort-AV: E=Sophos;i="5.90,227,1643702400"; d="scan'208";a="257708078"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2022 05:37:22 -0700
-X-IronPort-AV: E=Sophos;i="5.90,227,1643702400"; d="scan'208";a="606725240"
-Received: from ramaling-i9x.iind.intel.com ([10.203.144.108])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2022 05:37:20 -0700
-From: Ramalingam C <ramalingam.c@intel.com>
-To: intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>
-Date: Fri,  1 Apr 2022 18:07:51 +0530
-Message-Id: <20220401123751.27771-10-ramalingam.c@intel.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20220401123751.27771-1-ramalingam.c@intel.com>
-References: <20220401123751.27771-1-ramalingam.c@intel.com>
+ t=1648816832; x=1680352832;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=TyQ3WAI7u/UmZx/rfdJoJNTGBUO23Yo85FeOWxBYiy4=;
+ b=YVuiO2tSClXvbWEwctNTWksssa2jHUmxFZXBrNE2SIFiots6VrM0Up+I
+ qKlHGuaBSMBwoAP/1Q96URWkVFcvLC1CdWSLXAQy5ODG19Z49F4L1dJB0
+ Rp48AB/lpraWMFLM8WBLiDOa3IDVAsV7YYCnPwclrvP+0GXjP+zG0ELYB
+ a9RmUpmMplvSasJcb4MzHSWVpw0X02/m8B+w/RoENTc4cWoWD0R/HIICB
+ ligisSsKoNZt1uVrBTOEegfPndGiIFdyWM6QOJ8rCIE5YJcNBedpnLsGW
+ mrY0cx6I8VQhHEXUYwolFoNzDD22THQWfJOggfHDKmwU8PoE0agXUMH4M g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10303"; a="242274557"
+X-IronPort-AV: E=Sophos;i="5.90,227,1643702400"; d="scan'208";a="242274557"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Apr 2022 05:40:31 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,227,1643702400"; d="scan'208";a="720874476"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orsmga005.jf.intel.com with ESMTP; 01 Apr 2022 05:40:31 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27; Fri, 1 Apr 2022 05:40:30 -0700
+Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27; Fri, 1 Apr 2022 05:40:29 -0700
+Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
+ BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.2308.027;
+ Fri, 1 Apr 2022 18:10:27 +0530
+From: "Gupta, Anshuman" <anshuman.gupta@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>, "Dixit, Ashutosh"
+ <ashutosh.dixit@intel.com>
+Thread-Topic: [Intel-gfx] [PATCH] drm/i915/debugfs: Dump i915 children runtime
+ status
+Thread-Index: AQHYQo3ItyzC3kGzdEefAg/N2OZ/rqzWoqMAgAP8boCAAGM0kA==
+Date: Fri, 1 Apr 2022 12:40:27 +0000
+Message-ID: <00a81e7f6ac14024837bcea5a9a46dbb@intel.com>
+References: <20220328102227.14545-1-anshuman.gupta@intel.com>
+ <87v8vw8igj.wl-ashutosh.dixit@intel.com> <87czi1812s.fsf@intel.com>
+In-Reply-To: <87czi1812s.fsf@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 11.6.401.20
+dlp-reaction: no-action
+x-originating-ip: [10.223.10.1]
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v7 9/9] drm/i915/migrate: Evict and restore the
- flatccs capable lmem obj
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/debugfs: Dump i915 children
+ runtime status
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,253 +80,116 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Wilson, Chris P" <chris.p.wilson@intel.com>, "Vivi,
+ Rodrigo" <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-When we are swapping out the local memory obj on flat-ccs capable platform,
-we need to capture the ccs data too along with main meory and we need to
-restore it when we are swapping in the content.
 
-When lmem object is swapped into a smem obj, smem obj will
-have the extra pages required to hold the ccs data corresponding to the
-lmem main memory. So main memory of lmem will be copied into the initial
-pages of the smem and then ccs data corresponding to the main memory
-will be copied to the subsequent pages of smem. ccs data is 1/256 of
-lmem size.
 
-Swapin happens exactly in reverse order. First main memory of lmem is
-restored from the smem's initial pages and the ccs data will be restored
-from the subsequent pages of smem.
+> -----Original Message-----
+> From: Jani Nikula <jani.nikula@linux.intel.com>
+> Sent: Friday, April 1, 2022 5:31 PM
+> To: Dixit, Ashutosh <ashutosh.dixit@intel.com>; Gupta, Anshuman
+> <anshuman.gupta@intel.com>
+> Cc: intel-gfx@lists.freedesktop.org; Wilson, Chris P <chris.p.wilson@inte=
+l.com>;
+> Vivi, Rodrigo <rodrigo.vivi@intel.com>
+> Subject: Re: [Intel-gfx] [PATCH] drm/i915/debugfs: Dump i915 children run=
+time
+> status
+>=20
+> On Tue, 29 Mar 2022, "Dixit, Ashutosh" <ashutosh.dixit@intel.com> wrote:
+> > On Mon, 28 Mar 2022 03:22:27 -0700, Anshuman Gupta wrote:
+> >>
+> >> +#ifdef CONFIG_PM
+> >> +static int i915_runtime_dump_child_status(struct device *dev, void
+> >> +*data) {
+> >> +	struct seq_file *m =3D data;
+> >> +	const char *rpm_status;
+> >> +
+> >> +	/* Early return if runtime_pm is disabled */
+> >> +	if (dev->power.disable_depth)
+> >> +		return 0;
+> >> +
+> >> +	switch (dev->power.runtime_status) {
+> >> +	case RPM_SUSPENDED:
+> >> +		rpm_status =3D "suspended";
+> >> +		break;
+> >> +	case RPM_SUSPENDING:
+> >> +		rpm_status =3D "suspending";
+> >> +		break;
+> >> +	case RPM_RESUMING:
+> >> +		rpm_status =3D "resuming";
+> >> +		break;
+> >> +	case RPM_ACTIVE:
+> >> +		rpm_status =3D "active";
+> >> +		break;
+> >> +	default:
+> >> +		rpm_status =3D "unknown";
+> >> +	}
+> >> +
+> >> +	seq_printf(m, "\t%s %s: Runtime status: %s\n", dev_driver_string(dev=
+),
+> >> +		   dev_name(dev), rpm_status);
+> >> +
+> >> +	return 0;
+> >> +}
+> >> +#endif
+> >
+> > Maybe a nit, but perhaps defining a const array is better than having
+> > a switch statement? Similar to what is done in rtpm_status_str(). The
+> > function itself is very similar to rtpm_status_str() so can probably
+> > benefit from that similarity. Can perhaps even be nearly identical to
+> > rtpm_status_str() (since that is static in the genpd (generic power
+> > domain) code).
+> >
+> > See also 2bd5306a8764 ("PM / Domains: add debugfs listing of struct
+> > generic_pm_domain-s"), though I am not sure if genpd's are applicable
+> > in our case and certainly look way out of scope for now. Thanks.
+>=20
+> See also /sys/devices/i915/power/runtime_status and
+> /sys/devices/i915/power/runtime_active_kids.
+>=20
+> Kinda feels like the info should be made available there?
+runtime_active_kids we are already printing by dev_priv->drm.dev->power.chi=
+ld_count.
+About runtime_status , we already prints usage count and pci device power s=
+tate, IMO that is sufficient for debug ?
+If it is really needed , I will add dev->power.runtime_status in next revis=
+ion.
+Thanks,
+Anshuman Gupta.
 
-Extracting and restoring the CCS data is done through a special cmd called
-XY_CTRL_SURF_COPY_BLT
 
-v2: Fixing the ccs handling
-v3: Handle the ccs data at same loop as main memory [Thomas]
-v4: changes for emit_copy_ccs
-v5: handle non-flat-ccs scenario
 
-Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
-Reviewed-by: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
----
- drivers/gpu/drm/i915/gt/intel_migrate.c | 164 +++++++++++++++++++++++-
- 1 file changed, 160 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_migrate.c b/drivers/gpu/drm/i915/gt/intel_migrate.c
-index a44f2d29da4e..ec417c84600b 100644
---- a/drivers/gpu/drm/i915/gt/intel_migrate.c
-+++ b/drivers/gpu/drm/i915/gt/intel_migrate.c
-@@ -633,6 +633,65 @@ static int emit_copy(struct i915_request *rq,
- 	return 0;
- }
- 
-+static int scatter_list_length(struct scatterlist *sg)
-+{
-+	int len = 0;
-+
-+	while (sg && sg_dma_len(sg)) {
-+		len += sg_dma_len(sg);
-+		sg = sg_next(sg);
-+	};
-+
-+	return len;
-+}
-+
-+static void
-+calculate_chunk_sz(struct drm_i915_private *i915, bool src_is_lmem,
-+		   int *src_sz, int *ccs_sz, u32 bytes_to_cpy,
-+		   u32 ccs_bytes_to_cpy)
-+{
-+	if (ccs_bytes_to_cpy) {
-+		/*
-+		 * We can only copy the ccs data corresponding to
-+		 * the CHUNK_SZ of lmem which is
-+		 * GET_CCS_BYTES(i915, CHUNK_SZ))
-+		 */
-+		*ccs_sz = min_t(int, ccs_bytes_to_cpy, GET_CCS_BYTES(i915, CHUNK_SZ));
-+
-+		if (!src_is_lmem)
-+			/*
-+			 * When CHUNK_SZ is passed all the pages upto CHUNK_SZ
-+			 * will be taken for the blt. in Flat-ccs supported
-+			 * platform Smem obj will have more pages than required
-+			 * for main meory hence limit it to the required size
-+			 * for main memory
-+			 */
-+			*src_sz = min_t(int, bytes_to_cpy, CHUNK_SZ);
-+	} else { /* ccs handling is not required */
-+		*src_sz = CHUNK_SZ;
-+	}
-+}
-+
-+static void get_ccs_sg_sgt(struct sgt_dma *it, u32 bytes_to_cpy)
-+{
-+	u32 len;
-+
-+	do {
-+		GEM_BUG_ON(!it->sg || !sg_dma_len(it->sg));
-+		len = it->max - it->dma;
-+		if (len > bytes_to_cpy) {
-+			it->dma += bytes_to_cpy;
-+			break;
-+		}
-+
-+		bytes_to_cpy -= len;
-+
-+		it->sg = __sg_next(it->sg);
-+		it->dma = sg_dma_address(it->sg);
-+		it->max = it->dma + sg_dma_len(it->sg);
-+	} while (bytes_to_cpy);
-+}
-+
- int
- intel_context_migrate_copy(struct intel_context *ce,
- 			   const struct i915_deps *deps,
-@@ -644,9 +703,15 @@ intel_context_migrate_copy(struct intel_context *ce,
- 			   bool dst_is_lmem,
- 			   struct i915_request **out)
- {
--	struct sgt_dma it_src = sg_sgt(src), it_dst = sg_sgt(dst);
-+	struct sgt_dma it_src = sg_sgt(src), it_dst = sg_sgt(dst), it_ccs;
-+	struct drm_i915_private *i915 = ce->engine->i915;
-+	u32 ccs_bytes_to_cpy = 0, bytes_to_cpy;
-+	enum i915_cache_level ccs_cache_level;
-+	int src_sz, dst_sz, ccs_sz;
- 	u32 src_offset, dst_offset;
-+	u8 src_access, dst_access;
- 	struct i915_request *rq;
-+	bool ccs_is_src;
- 	int err;
- 
- 	GEM_BUG_ON(ce->vm != ce->engine->gt->migrate.context->vm);
-@@ -655,6 +720,38 @@ intel_context_migrate_copy(struct intel_context *ce,
- 
- 	GEM_BUG_ON(ce->ring->size < SZ_64K);
- 
-+	src_sz = scatter_list_length(src);
-+	bytes_to_cpy = src_sz;
-+
-+	if (HAS_FLAT_CCS(i915) && src_is_lmem ^ dst_is_lmem) {
-+		src_access = !src_is_lmem && dst_is_lmem;
-+		dst_access = !src_access;
-+
-+		dst_sz = scatter_list_length(dst);
-+		if (src_is_lmem) {
-+			it_ccs = it_dst;
-+			ccs_cache_level = dst_cache_level;
-+			ccs_is_src = false;
-+		} else if (dst_is_lmem) {
-+			bytes_to_cpy = dst_sz;
-+			it_ccs = it_src;
-+			ccs_cache_level = src_cache_level;
-+			ccs_is_src = true;
-+		}
-+
-+		/*
-+		 * When there is a eviction of ccs needed smem will have the
-+		 * extra pages for the ccs data
-+		 *
-+		 * TO-DO: Want to move the size mismatch check to a WARN_ON,
-+		 * but still we have some requests of smem->lmem with same size.
-+		 * Need to fix it.
-+		 */
-+		ccs_bytes_to_cpy = src_sz != dst_sz ? GET_CCS_BYTES(i915, bytes_to_cpy) : 0;
-+		if (ccs_bytes_to_cpy)
-+			get_ccs_sg_sgt(&it_ccs, bytes_to_cpy);
-+	}
-+
- 	src_offset = 0;
- 	dst_offset = CHUNK_SZ;
- 	if (HAS_64K_PAGES(ce->engine->i915)) {
-@@ -694,8 +791,11 @@ intel_context_migrate_copy(struct intel_context *ce,
- 		if (err)
- 			goto out_rq;
- 
-+		calculate_chunk_sz(i915, src_is_lmem, &src_sz, &ccs_sz,
-+				   bytes_to_cpy, ccs_bytes_to_cpy);
-+
- 		len = emit_pte(rq, &it_src, src_cache_level, src_is_lmem,
--			       src_offset, CHUNK_SZ);
-+			       src_offset, src_sz);
- 		if (len <= 0) {
- 			err = len;
- 			goto out_rq;
-@@ -712,7 +812,46 @@ intel_context_migrate_copy(struct intel_context *ce,
- 		if (err)
- 			goto out_rq;
- 
--		err = emit_copy(rq, dst_offset, src_offset, len);
-+		err = emit_copy(rq, dst_offset,	src_offset, len);
-+		if (err)
-+			goto out_rq;
-+
-+		bytes_to_cpy -= len;
-+
-+		if (ccs_bytes_to_cpy) {
-+			err = rq->engine->emit_flush(rq, EMIT_INVALIDATE);
-+			if (err)
-+				goto out_rq;
-+
-+			err = emit_pte(rq, &it_ccs, ccs_cache_level, false,
-+				       ccs_is_src ? src_offset : dst_offset,
-+				       ccs_sz);
-+
-+			err = rq->engine->emit_flush(rq, EMIT_INVALIDATE);
-+			if (err)
-+				goto out_rq;
-+
-+			/*
-+			 * Using max of src_sz and dst_sz, as we need to
-+			 * pass the lmem size corresponding to the ccs
-+			 * blocks we need to handle.
-+			 */
-+			ccs_sz = max_t(int, ccs_is_src ? ccs_sz : src_sz,
-+				       ccs_is_src ? dst_sz : ccs_sz);
-+
-+			err = emit_copy_ccs(rq, dst_offset, dst_access,
-+					    src_offset, src_access, ccs_sz);
-+			if (err)
-+				goto out_rq;
-+
-+			err = rq->engine->emit_flush(rq, EMIT_INVALIDATE);
-+			if (err)
-+				goto out_rq;
-+
-+			/* Converting back to ccs bytes */
-+			ccs_sz = GET_CCS_BYTES(rq->engine->i915, ccs_sz);
-+			ccs_bytes_to_cpy -= ccs_sz;
-+		}
- 
- 		/* Arbitration is re-enabled between requests. */
- out_rq:
-@@ -720,9 +859,26 @@ intel_context_migrate_copy(struct intel_context *ce,
- 			i915_request_put(*out);
- 		*out = i915_request_get(rq);
- 		i915_request_add(rq);
--		if (err || !it_src.sg || !sg_dma_len(it_src.sg))
-+
-+		if (err)
- 			break;
- 
-+		if (!bytes_to_cpy && !ccs_bytes_to_cpy) {
-+			if (src_is_lmem)
-+				WARN_ON(it_src.sg && sg_dma_len(it_src.sg));
-+			else
-+				WARN_ON(it_dst.sg && sg_dma_len(it_dst.sg));
-+			break;
-+		}
-+
-+		if (WARN_ON(!it_src.sg || !sg_dma_len(it_src.sg) ||
-+			    !it_dst.sg || !sg_dma_len(it_dst.sg) ||
-+			    (ccs_bytes_to_cpy && (!it_ccs.sg ||
-+						  !sg_dma_len(it_ccs.sg))))) {
-+			err = -EINVAL;
-+			break;
-+		}
-+
- 		cond_resched();
- 	} while (1);
- 
--- 
-2.20.1
-
+>=20
+> BR,
+> Jani.
+>=20
+> >
+> >> +
+> >>  static int i915_runtime_pm_status(struct seq_file *m, void *unused)
+> >>  {
+> >>	struct drm_i915_private *dev_priv =3D node_to_i915(m->private);  @@
+> >>-500,6 +534,10 @@ static int i915_runtime_pm_status(struct seq_file
+> >>*m, void *unused)
+> >>  #ifdef CONFIG_PM
+> >>	seq_printf(m, "Usage count: %d\n",
+> >>		   atomic_read(&dev_priv->drm.dev->power.usage_count));
+> >> +	seq_printf(m, "Runtime active children: %d\n",
+> >> +		   atomic_read(&dev_priv->drm.dev->power.child_count));
+> >> +	device_for_each_child(&pdev->dev, m,
+> >> +i915_runtime_dump_child_status);
+> >> +
+> >>  #else
+> >>	seq_printf(m, "Device Power Management (CONFIG_PM) disabled\n");
+> >>  #endif
+> >> --
+> >> 2.26.2
+> >>
+>=20
+> --
+> Jani Nikula, Intel Open Source Graphics Center
