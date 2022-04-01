@@ -1,53 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C63B84EED58
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 Apr 2022 14:40:52 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 400FA4EED6B
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 Apr 2022 14:47:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F153D10E064;
-	Fri,  1 Apr 2022 12:40:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2659C10E173;
+	Fri,  1 Apr 2022 12:47:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A8F9210E064
- for <intel-gfx@lists.freedesktop.org>; Fri,  1 Apr 2022 12:40:49 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B097010E173
+ for <intel-gfx@lists.freedesktop.org>; Fri,  1 Apr 2022 12:47:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1648816849; x=1680352849;
+ t=1648817249; x=1680353249;
  h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=iBhVxGztLKL2ZfKv0PvFn4YVfZmhZm8UOG5K0/VnKno=;
- b=g+UeBpj23xsKQuKgb4Soof5lGDQy++D+GBXaw7IgJt39Fla5VbdY7mAh
- lLvUEknluppTXb4NX3HnxVKhiz+2ZJePRoHTw+Fjjc4pK9YDd6TJSQF1N
- Yc+i8K0vmVTx/ILCQzkuTxBfjeliNv8wSwaG4klnyKE3v+ZYf7xBzedrx
- pmtTYdsTfRvZojMzwteiNUIb2dZKxaOCls70rqBvcIzmd2X1mW+zG6bIc
- 1v/IVVmbAzNUMZl2a8WnspbF7LGulIerFd1ygAeAG1D1MUUG7/zgPUBt6
- WqpOtq02tRTWzTjZZ0OmZXHtzSMWO362ElUQrRWs6luKoNotaV7s5WFpP Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10303"; a="323299163"
-X-IronPort-AV: E=Sophos;i="5.90,227,1643702400"; d="scan'208";a="323299163"
+ mime-version; bh=Bv1Va18jS3zB1hpvxkGQ7uGwqe/PAkWSD1zKPkKuvEo=;
+ b=NlcyYObF265sT+OJE1KPxmCa3nSKUG6XEr73xbKcVUeFm0XJGX5fPQFQ
+ miry2RBkqrv52IrFDmHqMyyX3VANGBxRSPUaQV0Yjjl7T6/vMYCovdDRZ
+ XELenajfuF+CwpzXLHfkvr3Zo6pdlFrcu/rwg7QwB+3WFZcjpV8M2QiN8
+ qIipVAwl4gFEvlwPKcnRMPFvXeTtuoIkYZYMbKAvcT9cxtsn0/RVRmcxP
+ 6X0e54BE43JaWMhtBL3vneWmb5wBPUy3tEdjVu9dYB9ur28WfCHRqGtLD
+ pIXUbnAJ09sTofQlKR2cZ7fLrOrLXeDwCtsKZnpsKr6JhQTR9ZJWA9ED4 w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10303"; a="247635615"
+X-IronPort-AV: E=Sophos;i="5.90,227,1643702400"; d="scan'208";a="247635615"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2022 05:40:49 -0700
-X-IronPort-AV: E=Sophos;i="5.90,227,1643702400"; d="scan'208";a="567460321"
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Apr 2022 05:47:29 -0700
+X-IronPort-AV: E=Sophos;i="5.90,227,1643702400"; d="scan'208";a="567464334"
 Received: from kohnenth-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.62.214])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2022 05:40:46 -0700
+ 01 Apr 2022 05:47:27 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Bhanuprakash Modem <bhanuprakash.modem@intel.com>,
+To: Anusha Srivatsa <anusha.srivatsa@intel.com>,
  intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220329060731.785476-1-bhanuprakash.modem@intel.com>
+In-Reply-To: <20220328153445.2578957-1-anusha.srivatsa@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220328075020.708022-1-bhanuprakash.modem@intel.com>
- <20220329060731.785476-1-bhanuprakash.modem@intel.com>
-Date: Fri, 01 Apr 2022 15:40:43 +0300
-Message-ID: <877d897z90.fsf@intel.com>
+References: <20220328153445.2578957-1-anusha.srivatsa@intel.com>
+Date: Fri, 01 Apr 2022 15:47:24 +0300
+Message-ID: <874k3d7yxv.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display/debugfs: Add connector
- debugfs for "output_bpc"
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/dmc: Add DMC_EVT_HTP and
+ DMC_EVT_CTL programming
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,110 +60,101 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 29 Mar 2022, Bhanuprakash Modem <bhanuprakash.modem@intel.com> wrot=
-e:
-> This new debugfs will expose the connector's max supported bpc
-> and the bpc currently using. It is very useful for verifying
-> whether we enter the correct output color depth from IGT.
->
-> Example:
-> cat /sys/kernel/debug/dri/0/DP-1/output_bpc
-> Current: 8
-> Maximum: 10
->
-> V2: Add connector's max bpc to i915_display_info
->
-> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> Cc: Uma Shankar <uma.shankar@intel.com>
-> Cc: Swati Sharma <swati2.sharma@intel.com>
-> Signed-off-by: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
-> ---
->  .../drm/i915/display/intel_display_debugfs.c  | 46 +++++++++++++++++++
->  1 file changed, 46 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drive=
-rs/gpu/drm/i915/display/intel_display_debugfs.c
-> index c1e74a13a0828..694d27f3b109c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> @@ -663,6 +663,8 @@ static void intel_connector_info(struct seq_file *m,
->  	seq_puts(m, "\tHDCP version: ");
->  	intel_hdcp_info(m, intel_connector);
->=20=20
-> +	seq_printf(m, "\tmax bpc: %u\n", connector->display_info.bpc);
-> +
->  	intel_panel_info(m, intel_connector);
->=20=20
->  	seq_printf(m, "\tmodes:\n");
-> @@ -2275,6 +2277,47 @@ static const struct file_operations i915_dsc_bpp_f=
-ops =3D {
->  	.write =3D i915_dsc_bpp_write
->  };
->=20=20
-> +/*
-> + * Returns the maximum output bpc for the connector.
-> + * Example usage: cat /sys/kernel/debug/dri/0/DP-1/output_bpc
-> + */
-> +static int output_bpc_show(struct seq_file *m, void *data)
-> +{
-> +	struct drm_connector *connector =3D m->private;
-> +	struct drm_device *dev =3D connector->dev;
-> +	struct drm_crtc *crtc;
-> +	struct intel_crtc_state *crtc_state;
-> +	struct intel_encoder *encoder =3D intel_attached_encoder(to_intel_conne=
-ctor(connector));
-> +	int res;
-> +
-> +	if (!encoder)
-> +		return -ENODEV;
-> +
-> +	res =3D drm_modeset_lock_single_interruptible(&dev->mode_config.connect=
-ion_mutex);
-> +	if (res)
-> +		return res;
-> +
-> +	crtc =3D connector->state->crtc;
-> +	if (connector->status !=3D connector_status_connected || !crtc) {
-> +		res =3D -ENODEV;
-> +		goto unlock;
-> +	}
-> +
-> +	crtc_state =3D to_intel_crtc_state(crtc->state);
-> +	if (!crtc_state->hw.active)
-> +		goto unlock;
-> +
-> +	seq_printf(m, "Current: %u\n", crtc_state->pipe_bpp / 3);
-> +	seq_printf(m, "Maximum: %u\n", connector->display_info.bpc);
-> +	res =3D 0;
-> +
-> +unlock:
-> +	drm_modeset_unlock(&dev->mode_config.connection_mutex);
-> +
-> +	return res;
-> +}
-> +DEFINE_SHOW_ATTRIBUTE(output_bpc);
+On Mon, 28 Mar 2022, Anusha Srivatsa <anusha.srivatsa@intel.com> wrote:
+> We need add some checks around DMC reloading to
+> prevents the rare possibility of some adversary
+> writing to a random mmio register
 
-Looks like an excessive amount of code for a single value.
+I've recently merged cleanup to localize all DMC register definitions to
+a new file display/intel_dmc_regs.h, and all DMC register access to
+intel_dmc.c.
+
+Basically if it's about DMC, it should be in intel_dmc.c, not spread
+around.
 
 BR,
 Jani.
 
-> +
->  /**
->   * intel_connector_debugfs_add - add i915 specific connector debugfs fil=
-es
->   * @connector: pointer to a registered drm_connector
-> @@ -2330,6 +2373,9 @@ void intel_connector_debugfs_add(struct intel_conne=
-ctor *intel_connector)
->  	    connector->connector_type =3D=3D DRM_MODE_CONNECTOR_HDMIB)
->  		debugfs_create_file("i915_lpsp_capability", 0444, root,
->  				    connector, &i915_lpsp_capability_fops);
-> +
-> +	debugfs_create_file("output_bpc", 0444, root,
-> +			    connector, &output_bpc_fops);
->  }
->=20=20
->  /**
 
---=20
+>
+> BSpec: 49193
+>
+> Cc: Imre Deak <imre.deak@intel.com>
+> Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+> ---
+>  .../drm/i915/display/intel_display_power.c    | 23 +++++++++++++++++++
+>  drivers/gpu/drm/i915/i915_reg.h               | 10 ++++++++
+>  2 files changed, 33 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+> index 3dc859032bac..81cc4c658e3f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> @@ -29,6 +29,8 @@
+>  #include "intel_vga.h"
+>  #include "vlv_sideband.h"
+>  
+> +#define DMC_EVT_HTP_CTL_MAX	8
+> +
+>  const char *
+>  intel_display_power_domain_str(enum intel_display_power_domain domain)
+>  {
+> @@ -1101,6 +1103,26 @@ static void gen9_assert_dbuf_enabled(struct drm_i915_private *dev_priv)
+>  		 enabled_dbuf_slices);
+>  }
+>  
+> +static void tgl_dmc_mmio_prog(struct drm_i915_private *dev_priv)
+> +{
+> +	struct intel_dmc *dmc = &dev_priv->dmc;
+> +	int i, id;
+> +
+> +	for (i = 0; i <= DMC_EVT_HTP_CTL_MAX; i++) {
+> +		intel_de_write(dev_priv, TGL_MAIN_DMC_EVT_CTL(i), DMC_EVT_CTL_VAL);
+> +		intel_de_write(dev_priv, TGL_MAIN_DMC_EVT_HTP(i), DMC_EVT_HTP_VAL);
+> +	}
+> +	/* Pipe DMC MMIOs */
+> +	for (id = 1; i <= DMC_FW_MAX; id++) {
+> +		for (i = 0; i <= DMC_EVT_HTP_CTL_MAX; i++) {
+> +			intel_de_write(dev_priv, PIPEDMC_EVT_CTL_OFFSET(dmc->dmc_info[id].start_mmioaddr, i),
+> +			DMC_EVT_CTL_VAL);
+> +			intel_de_write(dev_priv, PIPEDMC_EVT_HTP_OFFSET(dmc->dmc_info[id].start_mmioaddr, i),
+> +			DMC_EVT_HTP_VAL);
+> +		}
+> +	}
+> +}
+> +
+>  static void gen9_disable_dc_states(struct drm_i915_private *dev_priv)
+>  {
+>  	struct intel_cdclk_config cdclk_config = {};
+> @@ -1139,6 +1161,7 @@ static void gen9_dc_off_power_well_enable(struct drm_i915_private *dev_priv,
+>  					  struct i915_power_well *power_well)
+>  {
+>  	gen9_disable_dc_states(dev_priv);
+> +	tgl_dmc_mmio_prog(dev_priv);
+>  }
+>  
+>  static void gen9_dc_off_power_well_disable(struct drm_i915_private *dev_priv,
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index a0d652f19ff9..7e3ef777c26d 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -5525,6 +5525,16 @@
+>  #define TGL_DMC_DEBUG3		_MMIO(0x101090)
+>  #define DG1_DMC_DEBUG3		_MMIO(0x13415c)
+>  
+> +/* Main DMC EVT_HTP and EVT_CTL registers  */
+> +#define DMC_EVT_CTL_VAL		0x00030100
+> +#define DMC_EVT_HTP_VAL		0x00000000
+> +#define TGL_MAIN_DMC_EVT_HTP(n)	_MMIO(0x8F004 + (n) * 4)
+> +#define TGL_MAIN_DMC_EVT_CTL(n)	_MMIO(0x8F034 + (n) * 4)
+> +#define PIPEDMC_EVT_HTP_BASE	0x00004
+> +#define PIPEDMC_EVT_CTL_BASE	0x00034
+> +#define PIPEDMC_EVT_HTP_OFFSET(addr, i)		_MMIO(addr + PIPEDMC_EVT_HTP_BASE + (i * 4))
+> +#define PIPEDMC_EVT_CTL_OFFSET(addr, i)		_MMIO(addr + PIPEDMC_EVT_CTL_BASE + (i * 4))
+> +
+>  /* Display Internal Timeout Register */
+>  #define RM_TIMEOUT		_MMIO(0x42060)
+>  #define  MMIO_TIMEOUT_US(us)	((us) << 0)
+
+-- 
 Jani Nikula, Intel Open Source Graphics Center
