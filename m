@@ -2,52 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 429D94EEE12
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 Apr 2022 15:27:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A8834EEE5D
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 Apr 2022 15:42:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 84BE410E361;
-	Fri,  1 Apr 2022 13:26:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 778EB10E009;
+	Fri,  1 Apr 2022 13:42:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DBD4610E361
- for <intel-gfx@lists.freedesktop.org>; Fri,  1 Apr 2022 13:26:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1648819617; x=1680355617;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=UtSniRdGlieUNoxRK0CSkH5WhCPjNuTmnPs6Lve/g6U=;
- b=Ac4VLevlqpu6llCwZ4Huv2WvGZquYV4CWkNuXfilxJGRi7xjIM3ep72M
- KVD1kmAty6INNZo8dnPOay/BtHhXQVZ2sH2CpkQRhI3mtLczYLQbFbkxQ
- B/DUk7if90PQ0kV15ZCPuEDvrjjPCp/1J3Ttaf+oDR1tk9IbtH5gm0hoT
- xZd8MdDA+X5+BFxVNjnCLjdD1fzPrQQYEDotoEQv+y0Uy+qrjJws6KeQa
- lf5nCMzSYO1Ogrh1GF1qvommSEFl7BMqDNxisbdrEFnlhc0Qsp7c+QT8W
- LjjmVqCtqujCAfPwX15n916uZPaSI4vvN+1/yYy88wrw0vc1r7J+TPIZJ Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10303"; a="247642212"
-X-IronPort-AV: E=Sophos;i="5.90,227,1643702400"; d="scan'208";a="247642212"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2022 06:26:57 -0700
-X-IronPort-AV: E=Sophos;i="5.90,227,1643702400"; d="scan'208";a="640539205"
-Received: from srr4-3-linux-105-anshuma1.iind.intel.com (HELO intel.com)
- ([10.223.74.179])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2022 06:26:54 -0700
-Date: Fri, 1 Apr 2022 18:56:50 +0530
-From: Anshuman Gupta <anshuman.gupta@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <20220401132647.GC22062@intel.com>
-References: <20220220163730.5021-1-anshuman.gupta@intel.com>
- <20220220163730.5021-3-anshuman.gupta@intel.com>
- <87o826nt9u.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A0E5F10E009;
+ Fri,  1 Apr 2022 13:42:20 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9A475AAA91;
+ Fri,  1 Apr 2022 13:42:20 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <87o826nt9u.fsf@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH v3 2/6] drm/i915/opregion: Abstract opregion
- function
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ramalingam C" <ramalingam.c@intel.com>
+Date: Fri, 01 Apr 2022 13:42:20 -0000
+Message-ID: <164882054061.22006.15396566048531286341@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220401123751.27771-1-ramalingam.c@intel.com>
+In-Reply-To: <20220401123751.27771-1-ramalingam.c@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/ttm=3A_Evict_and_restore_of_compressed_object_=28r?=
+ =?utf-8?q?ev7=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,342 +41,48 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, lucas.demarchi@intel.com,
- rodrigo.vivi@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2022-03-16 at 11:25:33 +0200, Jani Nikula wrote:
-> On Sun, 20 Feb 2022, Anshuman Gupta <anshuman.gupta@intel.com> wrote:
-> > Abstract opregion operations like get opregion base, get rvda and
-> > opregion cleanup in form of i915_opregion_ops.
-> > This will be required to converge igfx and dgfx opregion.
-> >
-> > v2:
-> > - Keep only function pointer abstraction stuff. [Jani]
-> > - Add alloc_rvda error handling.
-> >
-> > v3:
-> > - Added necessary credit to Manasi for static analysis fix around
-> >   drm_WARN_ON(&i915->drm, !opregion->asls || !opregion->header)
-> >
-> > Cc: Jani Nikula <jani.nikula@intel.com>
-> > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > Cc: Badal Nilawar <badal.nilawar@intel.com>
-> > Cc: Uma Shankar <uma.shankar@intel.com>
-> > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
-> > Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_opregion.c | 179 +++++++++++++-----
-> >  drivers/gpu/drm/i915/display/intel_opregion.h |   3 +
-> >  2 files changed, 134 insertions(+), 48 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_opregion.c b/drivers/gpu/drm/i915/display/intel_opregion.c
-> > index 9b56064ddb5d..94eb7c23fcb4 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_opregion.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_opregion.c
-> > @@ -138,6 +138,13 @@ struct opregion_asle_ext {
-> >  	u8 rsvd[764];
-> >  } __packed;
-> >  
-> > +struct i915_opregion_func {
-> > +	void *(*alloc_opregion)(struct drm_i915_private *i915);
-> > +	void *(*alloc_rvda)(struct drm_i915_private *i915);
-> > +	void (*free_rvda)(struct drm_i915_private *i915);
-> > +	void (*free_opregion)(struct drm_i915_private *i915);
-> > +};
-> > +
-> >  /* Driver readiness indicator */
-> >  #define ASLE_ARDY_READY		(1 << 0)
-> >  #define ASLE_ARDY_NOT_READY	(0 << 0)
-> > @@ -876,10 +883,7 @@ static int intel_load_vbt_firmware(struct drm_i915_private *dev_priv)
-> >  static int intel_opregion_setup(struct drm_i915_private *dev_priv)
-> >  {
-> >  	struct intel_opregion *opregion = &dev_priv->opregion;
-> > -	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
-> > -	u32 asls, mboxes;
-> > -	char buf[sizeof(OPREGION_SIGNATURE)];
-> > -	int err = 0;
-> > +	u32 mboxes;
-> >  	void *base;
-> >  	const void *vbt;
-> >  	u32 vbt_size;
-> > @@ -890,27 +894,12 @@ static int intel_opregion_setup(struct drm_i915_private *dev_priv)
-> >  	BUILD_BUG_ON(sizeof(struct opregion_asle) != 0x100);
-> >  	BUILD_BUG_ON(sizeof(struct opregion_asle_ext) != 0x400);
-> >  
-> > -	pci_read_config_dword(pdev, ASLS, &asls);
-> > -	drm_dbg(&dev_priv->drm, "graphic opregion physical addr: 0x%x\n",
-> > -		asls);
-> > -	if (asls == 0) {
-> > -		drm_dbg(&dev_priv->drm, "ACPI OpRegion not supported!\n");
-> > -		return -ENOTSUPP;
-> > -	}
-> > -
-> >  	INIT_WORK(&opregion->asle_work, asle_work);
-> >  
-> > -	base = memremap(asls, OPREGION_SIZE, MEMREMAP_WB);
-> > -	if (!base)
-> > -		return -ENOMEM;
-> > +	base = opregion->opregion_func->alloc_opregion(dev_priv);
-> > +	if (IS_ERR(base))
-> > +		return PTR_ERR(base);
-> >  
-> > -	memcpy(buf, base, sizeof(buf));
-> > -
-> > -	if (memcmp(buf, OPREGION_SIGNATURE, 16)) {
-> > -		drm_dbg(&dev_priv->drm, "opregion signature mismatch\n");
-> > -		err = -EINVAL;
-> > -		goto err_out;
-> > -	}
-> >  	opregion->header = base;
-> >  	opregion->lid_state = base + ACPI_CLID;
-> >  
-> > @@ -970,23 +959,10 @@ static int intel_opregion_setup(struct drm_i915_private *dev_priv)
-> >  
-> >  	if (opregion->header->over.major >= 2 && opregion->asle &&
-> >  	    opregion->asle->rvda && opregion->asle->rvds) {
-> > -		resource_size_t rvda = opregion->asle->rvda;
-> > -
-> > -		/*
-> > -		 * opregion 2.0: rvda is the physical VBT address.
-> > -		 *
-> > -		 * opregion 2.1+: rvda is unsigned, relative offset from
-> > -		 * opregion base, and should never point within opregion.
-> > -		 */
-> > -		if (opregion->header->over.major > 2 ||
-> > -		    opregion->header->over.minor >= 1) {
-> > -			drm_WARN_ON(&dev_priv->drm, rvda < OPREGION_SIZE);
-> > -
-> > -			rvda += asls;
-> > -		}
-> >  
-> > -		opregion->rvda = memremap(rvda, opregion->asle->rvds,
-> > -					  MEMREMAP_WB);
-> > +		opregion->rvda = opregion->opregion_func->alloc_rvda(dev_priv);
-> 
-> It's a basic principle of interfaces to do corresponding things at the
-> same abstraction level.
-> 
-> Now, you set opregion->rvda at the level that calls ->alloc_rvda,
-> however ->free_rvda accesses opregion->rvda directly.
-> 
-> Similarly for ->alloc_opregion and ->free_opregion.
-Thanks for review comment.
-Could you please shed light to make same abstraction level.
-	free_rvda(void *rvda)
-	{
-		IS_ERR(rvda)
-			return;
-		if (rvda) {
-			 memunmap(opregion->rvda);
-			 rvda = NULL;
-		}	
-	}
-I could think above kind of approach to address abstraction level
-Please guide me if that is corrects.
-> 
-> > +		if (IS_ERR(opregion->rvda))
-> > +			goto mbox4_vbt;
-> >  
-> >  		vbt = opregion->rvda;
-> >  		vbt_size = opregion->asle->rvds;
-> > @@ -999,11 +975,12 @@ static int intel_opregion_setup(struct drm_i915_private *dev_priv)
-> >  		} else {
-> >  			drm_dbg_kms(&dev_priv->drm,
-> >  				    "Invalid VBT in ACPI OpRegion (RVDA)\n");
-> > -			memunmap(opregion->rvda);
-> > -			opregion->rvda = NULL;
-> > +			opregion->opregion_func->free_rvda(dev_priv);
-> >  		}
-> >  	}
-> >  
-> > +mbox4_vbt:
-> > +
-> >  	vbt = base + OPREGION_VBT_OFFSET;
-> >  	/*
-> >  	 * The VBT specification says that if the ASLE ext mailbox is not used
-> > @@ -1028,9 +1005,6 @@ static int intel_opregion_setup(struct drm_i915_private *dev_priv)
-> >  out:
-> >  	return 0;
-> >  
-> > -err_out:
-> > -	memunmap(base);
-> > -	return err;
-> >  }
-> >  
-> >  static int intel_use_opregion_panel_type_callback(const struct dmi_system_id *id)
-> > @@ -1215,11 +1189,9 @@ void intel_opregion_unregister(struct drm_i915_private *i915)
-> >  	}
-> >  
-> >  	/* just clear all opregion memory pointers now */
-> > -	memunmap(opregion->header);
-> > -	if (opregion->rvda) {
-> > -		memunmap(opregion->rvda);
-> > -		opregion->rvda = NULL;
-> > -	}
-> > +	opregion->opregion_func->free_rvda(i915);
-> > +	opregion->opregion_func->free_opregion(i915);
-> > +
-> >  	if (opregion->vbt_firmware) {
-> >  		kfree(opregion->vbt_firmware);
-> >  		opregion->vbt_firmware = NULL;
-> > @@ -1233,6 +1205,113 @@ void intel_opregion_unregister(struct drm_i915_private *i915)
-> >  	opregion->lid_state = NULL;
-> >  }
-> >  
-> > +static int
-> > +intel_opregion_get_asls(struct drm_i915_private *i915)
-> 
-> You'd expect a function named "get asls" to return asls.
-will fix this.
-> 
-> > +{
-> > +	struct intel_opregion *opregion = &i915->opregion;
-> > +	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
-> > +	u32 asls;
-> > +
-> > +	pci_read_config_dword(pdev, ASLS, &asls);
-> > +	drm_dbg(&i915->drm, "graphic opregion physical addr: 0x%x\n",
-> > +		asls);
-> > +	if (asls == 0) {
-> > +		drm_dbg(&i915->drm, "ACPI OpRegion not supported!\n");
-> > +		return -EINVAL;
-> > +	}
-> > +
-> > +	opregion->asls = asls;
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static void *intel_igfx_alloc_opregion(struct drm_i915_private *i915)
-> > +{
-> > +	struct intel_opregion *opregion = &i915->opregion;
-> > +	char buf[sizeof(OPREGION_SIGNATURE)];
-> > +	int err = 0;
-> > +	void *base;
-> > +
-> > +	err = intel_opregion_get_asls(i915);
-> > +	if (err)
-> > +		return ERR_PTR(err);
-> > +
-> > +	base = memremap(opregion->asls, OPREGION_SIZE, MEMREMAP_WB);
-> > +	if (!base)
-> > +		return ERR_PTR(-ENOMEM);
-> > +
-> > +	memcpy(buf, base, sizeof(buf));
-> > +
-> > +	if (memcmp(buf, OPREGION_SIGNATURE, 16)) {
-> > +		drm_dbg(&i915->drm, "opregion signature mismatch\n");
-> > +		err = -EINVAL;
-> > +		goto err_out;
-> > +	}
-> > +
-> > +	return base;
-> > +
-> > +err_out:
-> > +	memunmap(base);
-> > +
-> > +	return ERR_PTR(err);
-> > +}
-> > +
-> > +static void *intel_igfx_alloc_rvda(struct drm_i915_private *i915)
-> > +{
-> > +	struct intel_opregion *opregion = &i915->opregion;
-> > +	resource_size_t rvda;
-> > +	void *opreg_rvda;
-> > +
-> > +	if(drm_WARN_ON(&i915->drm, !opregion->asls || !opregion->header))
->           ^
-> 
-> Missing space.
-Will fix this.
-Thanks,
-Anshuman.
-> 
-> > +		return ERR_PTR(-ENODEV);
-> > +
-> > +	rvda = opregion->asle->rvda;
-> > +
-> > +	/*
-> > +	 * opregion 2.0: rvda is the physical VBT address.
-> > +	 *
-> > +	 * opregion 2.1+: rvda is unsigned, relative offset from
-> > +	 * opregion base, and should never point within opregion.
-> > +	 */
-> > +	if (opregion->header->over.major > 2 ||
-> > +	    opregion->header->over.minor >= 1) {
-> > +		drm_WARN_ON(&i915->drm, rvda < OPREGION_SIZE);
-> > +
-> > +		rvda += opregion->asls;
-> > +	}
-> > +
-> > +	opreg_rvda = memremap(rvda, opregion->asle->rvds, MEMREMAP_WB);
-> > +	if (!opreg_rvda)
-> > +		return ERR_PTR(-ENOMEM);
-> > +
-> > +	return opreg_rvda;
-> > +}
-> > +
-> > +static void intel_igfx_free_rvda(struct drm_i915_private *i915)
-> > +{
-> > +	struct intel_opregion *opregion = &i915->opregion;
-> > +
-> > +	if (opregion->rvda) {
-> > +		memunmap(opregion->rvda);
-> > +		opregion->rvda = NULL;
-> > +	}
-> > +}
-> > +
-> > +static void intel_igfx_free_opregion(struct drm_i915_private *i915)
-> > +{
-> > +	struct intel_opregion *opregion = &i915->opregion;
-> > +
-> > +	if (opregion->header)
-> > +		memunmap(opregion->header);
-> > +}
-> > +
-> > +static const struct i915_opregion_func igfx_opregion_func = {
-> > +	.alloc_opregion = intel_igfx_alloc_opregion,
-> > +	.alloc_rvda = intel_igfx_alloc_rvda,
-> > +	.free_rvda = intel_igfx_free_rvda,
-> > +	.free_opregion = intel_igfx_free_opregion,
-> > +};
-> > +
-> >  /**
-> >   * intel_opregion_init() - Init ACPI opregion.
-> >   * @i915 i915 device priv data.
-> > @@ -1240,5 +1319,9 @@ void intel_opregion_unregister(struct drm_i915_private *i915)
-> >   */
-> >  int intel_opregion_init(struct drm_i915_private *i915)
-> >  {
-> > +	struct intel_opregion *opregion = &i915->opregion;
-> > +
-> > +	opregion->opregion_func = &igfx_opregion_func;
-> > +
-> >  	return intel_opregion_setup(i915);
-> >  }
-> > diff --git a/drivers/gpu/drm/i915/display/intel_opregion.h b/drivers/gpu/drm/i915/display/intel_opregion.h
-> > index 744d53c804e2..7500c396b74d 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_opregion.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_opregion.h
-> > @@ -37,6 +37,7 @@ struct opregion_acpi;
-> >  struct opregion_swsci;
-> >  struct opregion_asle;
-> >  struct opregion_asle_ext;
-> > +struct i915_opregion_func;
-> >  
-> >  struct intel_opregion {
-> >  	struct opregion_header *header;
-> > @@ -46,6 +47,8 @@ struct intel_opregion {
-> >  	u32 swsci_sbcb_sub_functions;
-> >  	struct opregion_asle *asle;
-> >  	struct opregion_asle_ext *asle_ext;
-> > +	const struct i915_opregion_func *opregion_func;
-> > +	resource_size_t asls;
-> >  	void *rvda;
-> >  	void *vbt_firmware;
-> >  	const void *vbt;
-> 
-> -- 
-> Jani Nikula, Intel Open Source Graphics Center
+== Series Details ==
+
+Series: drm/i915/ttm: Evict and restore of compressed object (rev7)
+URL   : https://patchwork.freedesktop.org/series/101106/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+c7781263ce21 drm/i915/gt: use engine instance directly for offset
+4b35aa78c844 drm/i915/gt: Use XY_FAST_COLOR_BLT to clear obj on graphics ver 12+
+cd1f1f11df1b drm/i915/gt: Optimize the migration and clear loop
+de8e6525e810 drm/i915/gt: Clear compress metadata for Flat-ccs objects
+-:44: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
+#44: FILE: drivers/gpu/drm/i915/gt/intel_gpu_commands.h:157:
++#define   MI_FLUSH_DW_CCS		(1<<16)
+                          		  ^
+
+-:47: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
+#47: FILE: drivers/gpu/drm/i915/gt/intel_gpu_commands.h:160:
++#define   MI_FLUSH_DW_LLC		(1<<9)
+                          		  ^
+
+total: 0 errors, 0 warnings, 2 checks, 197 lines checked
+c00c4ecd5d06 drm/i915/selftest_migrate: Consider the possible roundup of size
+886c492b3dfa drm/i915/selftest_migrate: Check CCS meta data clear
+b875586d6ccb drm/ttm: Add a parameter to add extra pages into ttm_tt
+-:93: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
+#93: FILE: drivers/gpu/drm/ttm/ttm_tt.c:150:
++		uint32_t page_flags, enum ttm_caching caching,
+
+-:140: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
+#140: FILE: include/drm/ttm/ttm_tt.h:151:
++		uint32_t page_flags, enum ttm_caching caching,
+
+total: 0 errors, 0 warnings, 2 checks, 88 lines checked
+b88b5b478be0 drm/i915/gem: Add extra pages in ttm_tt for ccs data
+e893bdce4102 drm/i915/migrate: Evict and restore the flatccs capable lmem obj
+
+
