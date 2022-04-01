@@ -2,154 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 852C24EEDE4
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 Apr 2022 15:13:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 429D94EEE12
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 Apr 2022 15:27:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 162A410E340;
-	Fri,  1 Apr 2022 13:13:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 84BE410E361;
+	Fri,  1 Apr 2022 13:26:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A76110E02C;
- Fri,  1 Apr 2022 13:12:58 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DBD4610E361
+ for <intel-gfx@lists.freedesktop.org>; Fri,  1 Apr 2022 13:26:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1648818778; x=1680354778;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-id:content-transfer-encoding: mime-version;
- bh=rlStFOOfCiFrb+mHGMRB2T/Ur/0vnq+9sP5mQv+HsnM=;
- b=XBVBmqLVZ/yelTHhlZvpKFIXv8wrDNWICAydLcOJtOcQUbYYyRtcy211
- pfS7cMSuycU/nhDLXbojUDsedCdz/D202fhQTk2JqkpxTg3/O0joy5f1P
- m8I69/yU1cjL81GUXt6FAV4otkailv5Ggkwvbf2yOczhsNFuNThYNeXTJ
- kCZ++RpWaa+MB9GOL5eLSUjhNrFhQvENwA1xOMOyLVMF0vmlbnq0Qdflb
- j6L+Hf85Y1FVmXzOHgOMo18Az0nyR3qvBCt+4BP5Zsu04e2Ao46n3HV8A
- e/Sg0JB84Ihf+N5iWfFZUS1vlTo9+7303nNfk8OxLEThBvxlturfHzisK g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10303"; a="260312705"
-X-IronPort-AV: E=Sophos;i="5.90,227,1643702400"; d="scan'208";a="260312705"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2022 06:12:57 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,227,1643702400"; d="scan'208";a="521388127"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orsmga002.jf.intel.com with ESMTP; 01 Apr 2022 06:12:57 -0700
-Received: from fmsmsx607.amr.corp.intel.com (10.18.126.87) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Fri, 1 Apr 2022 06:12:56 -0700
-Received: from fmsmsx607.amr.corp.intel.com (10.18.126.87) by
- fmsmsx607.amr.corp.intel.com (10.18.126.87) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Fri, 1 Apr 2022 06:12:56 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx607.amr.corp.intel.com (10.18.126.87) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27 via Frontend Transport; Fri, 1 Apr 2022 06:12:56 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.174)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2308.27; Fri, 1 Apr 2022 06:12:56 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=J8CCMblvkt+fMwPVDILNkX/A7w+UOulSBM7gsucfZRZZI2K6BJIe3H2SivEh2t9ljzO9/zwcF/+RmXV9dEg+lbhFHBg8RZ62frltUkbXiOXBjI+xM8K5jBn0s04qjJX9GfmDzR455pl8oC9rQG7rjOHDEeuQdi+q2UuuTzHKAbCqFb8rSlNItRgzTZaneHxhmcboPMxt6yd2/gTqQNtnwiCNnygNIjcepRM0q5x9xY2N4gN8b+CH6z2Eadf7bQkcb4jtEJU6BLK7uwiJ/1GcHL98y5salIXNgBZK8aOkW7YLfrhYEN4HihM3+0fvSbrpWWOFi4lx0CV+iMnsCHU1Pw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rlStFOOfCiFrb+mHGMRB2T/Ur/0vnq+9sP5mQv+HsnM=;
- b=l2MCBVbrmX9j+ioMw9W6TkmJHd+aEgzdGge3asDBBbesDz+Gp1JBJPBXjNqZS5FsaBFkPbb7V7fRmJOM4mrBL9N+OYJ6Osqt7oeGcpT3gacpWreso9TsoxC5p3GAtT4yfT5GW4980AjsRb07tf6uPfJ0ocOSPrtIO3iT2l5Zmn0VJNtY7FJExx/DrGpO4H5sMe1acVx+TWBw6Em13isaDtYvDZyVxTo7w5ATueBEOEeZO/00bk0k+WTbgWGf1/qMszJCoo4fgYYnwpAT2ErqVGZzUKOnXhTbnvBlncKl+j8vw5/B+EMBIslZFM3bLo985hp8gvsSV8I9+BS8ewhmmg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM4PR11MB5549.namprd11.prod.outlook.com (2603:10b6:5:388::7) by
- SA0PR11MB4670.namprd11.prod.outlook.com (2603:10b6:806:9a::8) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5123.27; Fri, 1 Apr 2022 13:12:54 +0000
-Received: from DM4PR11MB5549.namprd11.prod.outlook.com
- ([fe80::6807:ff2e:9ac6:4d3c]) by DM4PR11MB5549.namprd11.prod.outlook.com
- ([fe80::6807:ff2e:9ac6:4d3c%5]) with mapi id 15.20.5123.025; Fri, 1 Apr 2022
- 13:12:54 +0000
-From: "Wang, Zhi A" <zhi.a.wang@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>, Christoph Hellwig <hch@lst.de>, 
- Zhi Wang <zhi.wang.linux@gmail.com>
-Thread-Topic: [PATCH v7 1/3] i915/gvt: Separate the MMIO tracking table from
- GVT-g
-Thread-Index: AQHYQHGFbzTs9dpVNkulZ3C9zD1FsKzUXz0AgAS82gCAABTDgIAB4qaA
-Date: Fri, 1 Apr 2022 13:12:54 +0000
-Message-ID: <2817b81e-df97-fe03-4ee6-59861f4258ea@intel.com>
-References: <20220325175251.167164-1-zhi.a.wang@intel.com>
- <20220328065008.GA29798@lst.de>
- <4af59d97-b583-4022-3ec3-360e7df43689@intel.com> <871qyibkay.fsf@intel.com>
-In-Reply-To: <871qyibkay.fsf@intel.com>
-Accept-Language: en-FI, en-US
-Content-Language: aa
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: a3c695b6-e5cb-4c2f-0bc1-08da13e1550e
-x-ms-traffictypediagnostic: SA0PR11MB4670:EE_
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-microsoft-antispam-prvs: <SA0PR11MB46708E98BD232D068DFF82EACAE09@SA0PR11MB4670.namprd11.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: StN0frbQaoHBdVf68Q01OL51C6UPVAI1vE5VNLI4eSbOVMo8wIQ4nHBuB7Fy3mlenU+nY0OmWcjMAu1oZL8xknFbyc63UkUPSnCRAalCh6iMBy0eSYenjgpZQSqQlVjOsEjgbnCuZcrk46qv/HnL7VaqYi4NuVGF41NRO9Z0XIv1k0aN0Q+AxsFUVakzQkjraaqXBCk3e8TfwQSMvnwXx1u0vL+eahPk4e6GfQN+VNJpmefdDo08ZyVkkOl9EwD2v3vFpxZYmBSbGw9ZylUaZlDsa2KBrXVXx4XzXzqYAgftAWkitwViWiDHop/upK3fwYFK59oYbar6Bs9b9MGe7MZzcNPHzpgClweqT/YvWHSffCMELfOvgBpM8Ez2rx1nFV4qRvCB5zWc0pjYpyWoA7iOcUDjyyYXoSQahLW/GnQK7nUugTh2h1ukhv5jso9Xru7TyJ8783KW3pEjZrqlcqzPs+ndnPA2ZXbpDb5gRYda/6aV4nXqjWzM36YXBR8n5dJe1qj8ujjNSagdRNp6ek9AQrAtOEwkw47C17VHTP89mF9AQg2fm2SCDWXKNAUbVm1Il961TPWDVNPiH3Gdff8ltd1X3atLctPrCEzWTbUu5uRIF/rF4oW8D60kCrSZp1my7FQ0GirBZSiE6R/q64b3J7DxtyJmBAH7hl29k53bnnPB19lnXcGBQ4Nskmt/C1qh+Ihul1IUVsXp71z2jBjeI2xn7NWz6v63VYatKWySEVp9a18KdvjJBUhgl2exSUkWJ4YdMc57gE0ZaQ8nVA==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5549.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230001)(366004)(38070700005)(5660300002)(110136005)(2906002)(6506007)(6512007)(36756003)(53546011)(2616005)(316002)(31686004)(83380400001)(54906003)(26005)(186003)(8936002)(7416002)(71200400001)(91956017)(82960400001)(6486002)(4326008)(66476007)(66446008)(64756008)(66946007)(66556008)(31696002)(76116006)(122000001)(86362001)(8676002)(38100700002)(508600001)(45980500001)(43740500002);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?Windows-1252?Q?/b8VO5AHYa8hOaq5hbnfILImKw+nV6Rd1v8BBK9rUTA4pE+/txy1SLRb?=
- =?Windows-1252?Q?gv4qV1lM/tqd9fWpqXtFmKJ7Zbx6UHLTifgAncoyLqDPdHQvIdx6NnFy?=
- =?Windows-1252?Q?/JllWkcaS4WindnCZNSCw9MvVAIyqfTW8dVy3UmjABrSniiUelwbHz26?=
- =?Windows-1252?Q?yy9ylTU9lmYZZC+k61eyPLE0XlMn44RgXE1v8k0+ZOSHZAJjJqVu9npZ?=
- =?Windows-1252?Q?4hfpYjDgR95IPo9iTbpI9+Jt9lRxjT+LFamor3DqQZDLmmSNoz+JukXI?=
- =?Windows-1252?Q?H6mTYSBGR+SSDdvwAEUWPqaNkbEJyiTBjQW5T6tf9N/pjDNcRwXoS892?=
- =?Windows-1252?Q?brn26BabRwSk598bl+VKc2z7gzsgwYmSUul8C1l7j9nsB2r9/hLHjcbR?=
- =?Windows-1252?Q?SZ9yzF0jK7hUf2km7Vd331n0K9BgYVtgxdfDUHVdcfTmrAusjfp8grrx?=
- =?Windows-1252?Q?fNvxzhNcuDDRkydabkoygOgUDrATHHhb25mOVYSD7rGlVMvKZaDVAkm+?=
- =?Windows-1252?Q?Mjc5WVwcoXI+xn3DvuO2LIL74V2Lq+xlDN4VTV3cBugzC5ETDUO84H6x?=
- =?Windows-1252?Q?jsn4TrMUv4qC/buDXLQQUmscMWbjnGgxVDHtYkApLFEJONVkvX5456Ta?=
- =?Windows-1252?Q?HPztM4+FbXYONkhaWdbXvMkOJJySxpkd/pc1Sc2e+NtJ4sHlfOap4pcP?=
- =?Windows-1252?Q?FEuFWLQQ0P1Lhti8ObQp6wFJMywFXN9YYJW46JowZbmyr1Yi8SrnyADV?=
- =?Windows-1252?Q?xkQWqLIrC2HjTrTHDmhkyxOeWUUTzcE95UwP5HHCHJbnr94UoJPB/hZQ?=
- =?Windows-1252?Q?XaYEswpnu7jmOI2fWNdxlCMGA33o7Bli5w4uU6xDLB1LyJ/Z9LUdtPLN?=
- =?Windows-1252?Q?ytc2iNDiEBHzjqpERs1kOpjPjqSEwcxHkw2+UGfc/JnCrDrUuicHBHnG?=
- =?Windows-1252?Q?VrvsNjv257m+HM5d6djeDAMklkmok+mCk66X3O/miIu84JDy5CKlOg5w?=
- =?Windows-1252?Q?B01OlF+oM+FT7Hq9ih5LBbBRoianvEqrEGSOXS1NxKNujLzIi3xYBJ+N?=
- =?Windows-1252?Q?IzDHMArSSEIVlmLNmWibYWBZZa61Oqe1Ivk0xYVYfbZbVotvSqd0gSsx?=
- =?Windows-1252?Q?nQt7IH5DwHZ2SaeC5aLIS3r8Hou9ZTAquv6kvuNMQ2wCmaJi6NOI+vGK?=
- =?Windows-1252?Q?XphTEwNMd47xYzoaGgIXHuftR8AyjMIhUOyOuo4MfPd6wQ+qxv+Eg7eh?=
- =?Windows-1252?Q?60+CTWMn4Uy2siE6WRwOKneSlCB6DB1Zzz1o8GiPjL3cDQRnYVeiqr+f?=
- =?Windows-1252?Q?lmvLVLhNouymCexaN81+PiaUWpF9BRmCZPiL55FmzB7JiS+x1ph4jBF4?=
- =?Windows-1252?Q?+AW8/05u4HrbjtsKUJLY9WcuB0IwsnMDQQJrt/cPaa/fngL7oBib/BaI?=
- =?Windows-1252?Q?07fb6oAbPfq86UbQDOtOuZbfISEohnjqxqh834VWydNOEeHjf6T9Hsbw?=
- =?Windows-1252?Q?0bvtDbks1CEptIbUqrf9DQ165bPjk8zZMTLHh0EdXBZHRQVfroNnrE/n?=
- =?Windows-1252?Q?Dyv7UWwiCcTTCcB58Ftx6XyBGJp4IegKJm9RN85ELN6R0aU0d5bk9p8D?=
- =?Windows-1252?Q?BWTkHRtVWsUdsqB3KCWdfCxOAagtBEEWcNhEI9D012DHQ/j8YMrFyXU5?=
- =?Windows-1252?Q?pH16ul8S772bi+qa3QMbLCjlby4yHYGc118UP6xdkLjAwV61wIOnxBIc?=
- =?Windows-1252?Q?mPyAjUNufXYUk6DGPl5vNznXT5XCFwJy2bDyareHC9D1eAclrPUPGrer?=
- =?Windows-1252?Q?GmCVDO0ruIaGzV8+vMzpieXcIFCxmc61gRD2LaLFlyxEbEvYNASOoftm?=
- =?Windows-1252?Q?FPqvBFmaIfM8kg=3D=3D?=
-Content-Type: text/plain; charset="Windows-1252"
-Content-ID: <668DCEA50334564B8EC4049587D44C7A@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: quoted-printable
+ t=1648819617; x=1680355617;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=UtSniRdGlieUNoxRK0CSkH5WhCPjNuTmnPs6Lve/g6U=;
+ b=Ac4VLevlqpu6llCwZ4Huv2WvGZquYV4CWkNuXfilxJGRi7xjIM3ep72M
+ KVD1kmAty6INNZo8dnPOay/BtHhXQVZ2sH2CpkQRhI3mtLczYLQbFbkxQ
+ B/DUk7if90PQ0kV15ZCPuEDvrjjPCp/1J3Ttaf+oDR1tk9IbtH5gm0hoT
+ xZd8MdDA+X5+BFxVNjnCLjdD1fzPrQQYEDotoEQv+y0Uy+qrjJws6KeQa
+ lf5nCMzSYO1Ogrh1GF1qvommSEFl7BMqDNxisbdrEFnlhc0Qsp7c+QT8W
+ LjjmVqCtqujCAfPwX15n916uZPaSI4vvN+1/yYy88wrw0vc1r7J+TPIZJ Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10303"; a="247642212"
+X-IronPort-AV: E=Sophos;i="5.90,227,1643702400"; d="scan'208";a="247642212"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Apr 2022 06:26:57 -0700
+X-IronPort-AV: E=Sophos;i="5.90,227,1643702400"; d="scan'208";a="640539205"
+Received: from srr4-3-linux-105-anshuma1.iind.intel.com (HELO intel.com)
+ ([10.223.74.179])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Apr 2022 06:26:54 -0700
+Date: Fri, 1 Apr 2022 18:56:50 +0530
+From: Anshuman Gupta <anshuman.gupta@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <20220401132647.GC22062@intel.com>
+References: <20220220163730.5021-1-anshuman.gupta@intel.com>
+ <20220220163730.5021-3-anshuman.gupta@intel.com>
+ <87o826nt9u.fsf@intel.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5549.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a3c695b6-e5cb-4c2f-0bc1-08da13e1550e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Apr 2022 13:12:54.0649 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: m6IexrAZPdzN0gPJ+o+D8fmxL2txz9/QzDfYHhQ5aMXZprtDPGH1MvhRYdzxh7ng1ayVioUnof2wVcrXwgbM3g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR11MB4670
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v7 1/3] i915/gvt: Separate the MMIO tracking
- table from GVT-g
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <87o826nt9u.fsf@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH v3 2/6] drm/i915/opregion: Abstract opregion
+ function
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -162,74 +60,342 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Zhi Wang <zhi.a.wang@gmail.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- Jason Gunthorpe <jgg@nvidia.com>, "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>
+Cc: intel-gfx@lists.freedesktop.org, lucas.demarchi@intel.com,
+ rodrigo.vivi@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Jani:
-
-Thanks so much for the guidance. :) I included it in the v8 patch. :)
-
+On 2022-03-16 at 11:25:33 +0200, Jani Nikula wrote:
+> On Sun, 20 Feb 2022, Anshuman Gupta <anshuman.gupta@intel.com> wrote:
+> > Abstract opregion operations like get opregion base, get rvda and
+> > opregion cleanup in form of i915_opregion_ops.
+> > This will be required to converge igfx and dgfx opregion.
+> >
+> > v2:
+> > - Keep only function pointer abstraction stuff. [Jani]
+> > - Add alloc_rvda error handling.
+> >
+> > v3:
+> > - Added necessary credit to Manasi for static analysis fix around
+> >   drm_WARN_ON(&i915->drm, !opregion->asls || !opregion->header)
+> >
+> > Cc: Jani Nikula <jani.nikula@intel.com>
+> > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > Cc: Badal Nilawar <badal.nilawar@intel.com>
+> > Cc: Uma Shankar <uma.shankar@intel.com>
+> > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+> > Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_opregion.c | 179 +++++++++++++-----
+> >  drivers/gpu/drm/i915/display/intel_opregion.h |   3 +
+> >  2 files changed, 134 insertions(+), 48 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_opregion.c b/drivers/gpu/drm/i915/display/intel_opregion.c
+> > index 9b56064ddb5d..94eb7c23fcb4 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_opregion.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_opregion.c
+> > @@ -138,6 +138,13 @@ struct opregion_asle_ext {
+> >  	u8 rsvd[764];
+> >  } __packed;
+> >  
+> > +struct i915_opregion_func {
+> > +	void *(*alloc_opregion)(struct drm_i915_private *i915);
+> > +	void *(*alloc_rvda)(struct drm_i915_private *i915);
+> > +	void (*free_rvda)(struct drm_i915_private *i915);
+> > +	void (*free_opregion)(struct drm_i915_private *i915);
+> > +};
+> > +
+> >  /* Driver readiness indicator */
+> >  #define ASLE_ARDY_READY		(1 << 0)
+> >  #define ASLE_ARDY_NOT_READY	(0 << 0)
+> > @@ -876,10 +883,7 @@ static int intel_load_vbt_firmware(struct drm_i915_private *dev_priv)
+> >  static int intel_opregion_setup(struct drm_i915_private *dev_priv)
+> >  {
+> >  	struct intel_opregion *opregion = &dev_priv->opregion;
+> > -	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
+> > -	u32 asls, mboxes;
+> > -	char buf[sizeof(OPREGION_SIGNATURE)];
+> > -	int err = 0;
+> > +	u32 mboxes;
+> >  	void *base;
+> >  	const void *vbt;
+> >  	u32 vbt_size;
+> > @@ -890,27 +894,12 @@ static int intel_opregion_setup(struct drm_i915_private *dev_priv)
+> >  	BUILD_BUG_ON(sizeof(struct opregion_asle) != 0x100);
+> >  	BUILD_BUG_ON(sizeof(struct opregion_asle_ext) != 0x400);
+> >  
+> > -	pci_read_config_dword(pdev, ASLS, &asls);
+> > -	drm_dbg(&dev_priv->drm, "graphic opregion physical addr: 0x%x\n",
+> > -		asls);
+> > -	if (asls == 0) {
+> > -		drm_dbg(&dev_priv->drm, "ACPI OpRegion not supported!\n");
+> > -		return -ENOTSUPP;
+> > -	}
+> > -
+> >  	INIT_WORK(&opregion->asle_work, asle_work);
+> >  
+> > -	base = memremap(asls, OPREGION_SIZE, MEMREMAP_WB);
+> > -	if (!base)
+> > -		return -ENOMEM;
+> > +	base = opregion->opregion_func->alloc_opregion(dev_priv);
+> > +	if (IS_ERR(base))
+> > +		return PTR_ERR(base);
+> >  
+> > -	memcpy(buf, base, sizeof(buf));
+> > -
+> > -	if (memcmp(buf, OPREGION_SIGNATURE, 16)) {
+> > -		drm_dbg(&dev_priv->drm, "opregion signature mismatch\n");
+> > -		err = -EINVAL;
+> > -		goto err_out;
+> > -	}
+> >  	opregion->header = base;
+> >  	opregion->lid_state = base + ACPI_CLID;
+> >  
+> > @@ -970,23 +959,10 @@ static int intel_opregion_setup(struct drm_i915_private *dev_priv)
+> >  
+> >  	if (opregion->header->over.major >= 2 && opregion->asle &&
+> >  	    opregion->asle->rvda && opregion->asle->rvds) {
+> > -		resource_size_t rvda = opregion->asle->rvda;
+> > -
+> > -		/*
+> > -		 * opregion 2.0: rvda is the physical VBT address.
+> > -		 *
+> > -		 * opregion 2.1+: rvda is unsigned, relative offset from
+> > -		 * opregion base, and should never point within opregion.
+> > -		 */
+> > -		if (opregion->header->over.major > 2 ||
+> > -		    opregion->header->over.minor >= 1) {
+> > -			drm_WARN_ON(&dev_priv->drm, rvda < OPREGION_SIZE);
+> > -
+> > -			rvda += asls;
+> > -		}
+> >  
+> > -		opregion->rvda = memremap(rvda, opregion->asle->rvds,
+> > -					  MEMREMAP_WB);
+> > +		opregion->rvda = opregion->opregion_func->alloc_rvda(dev_priv);
+> 
+> It's a basic principle of interfaces to do corresponding things at the
+> same abstraction level.
+> 
+> Now, you set opregion->rvda at the level that calls ->alloc_rvda,
+> however ->free_rvda accesses opregion->rvda directly.
+> 
+> Similarly for ->alloc_opregion and ->free_opregion.
+Thanks for review comment.
+Could you please shed light to make same abstraction level.
+	free_rvda(void *rvda)
+	{
+		IS_ERR(rvda)
+			return;
+		if (rvda) {
+			 memunmap(opregion->rvda);
+			 rvda = NULL;
+		}	
+	}
+I could think above kind of approach to address abstraction level
+Please guide me if that is corrects.
+> 
+> > +		if (IS_ERR(opregion->rvda))
+> > +			goto mbox4_vbt;
+> >  
+> >  		vbt = opregion->rvda;
+> >  		vbt_size = opregion->asle->rvds;
+> > @@ -999,11 +975,12 @@ static int intel_opregion_setup(struct drm_i915_private *dev_priv)
+> >  		} else {
+> >  			drm_dbg_kms(&dev_priv->drm,
+> >  				    "Invalid VBT in ACPI OpRegion (RVDA)\n");
+> > -			memunmap(opregion->rvda);
+> > -			opregion->rvda = NULL;
+> > +			opregion->opregion_func->free_rvda(dev_priv);
+> >  		}
+> >  	}
+> >  
+> > +mbox4_vbt:
+> > +
+> >  	vbt = base + OPREGION_VBT_OFFSET;
+> >  	/*
+> >  	 * The VBT specification says that if the ASLE ext mailbox is not used
+> > @@ -1028,9 +1005,6 @@ static int intel_opregion_setup(struct drm_i915_private *dev_priv)
+> >  out:
+> >  	return 0;
+> >  
+> > -err_out:
+> > -	memunmap(base);
+> > -	return err;
+> >  }
+> >  
+> >  static int intel_use_opregion_panel_type_callback(const struct dmi_system_id *id)
+> > @@ -1215,11 +1189,9 @@ void intel_opregion_unregister(struct drm_i915_private *i915)
+> >  	}
+> >  
+> >  	/* just clear all opregion memory pointers now */
+> > -	memunmap(opregion->header);
+> > -	if (opregion->rvda) {
+> > -		memunmap(opregion->rvda);
+> > -		opregion->rvda = NULL;
+> > -	}
+> > +	opregion->opregion_func->free_rvda(i915);
+> > +	opregion->opregion_func->free_opregion(i915);
+> > +
+> >  	if (opregion->vbt_firmware) {
+> >  		kfree(opregion->vbt_firmware);
+> >  		opregion->vbt_firmware = NULL;
+> > @@ -1233,6 +1205,113 @@ void intel_opregion_unregister(struct drm_i915_private *i915)
+> >  	opregion->lid_state = NULL;
+> >  }
+> >  
+> > +static int
+> > +intel_opregion_get_asls(struct drm_i915_private *i915)
+> 
+> You'd expect a function named "get asls" to return asls.
+will fix this.
+> 
+> > +{
+> > +	struct intel_opregion *opregion = &i915->opregion;
+> > +	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
+> > +	u32 asls;
+> > +
+> > +	pci_read_config_dword(pdev, ASLS, &asls);
+> > +	drm_dbg(&i915->drm, "graphic opregion physical addr: 0x%x\n",
+> > +		asls);
+> > +	if (asls == 0) {
+> > +		drm_dbg(&i915->drm, "ACPI OpRegion not supported!\n");
+> > +		return -EINVAL;
+> > +	}
+> > +
+> > +	opregion->asls = asls;
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static void *intel_igfx_alloc_opregion(struct drm_i915_private *i915)
+> > +{
+> > +	struct intel_opregion *opregion = &i915->opregion;
+> > +	char buf[sizeof(OPREGION_SIGNATURE)];
+> > +	int err = 0;
+> > +	void *base;
+> > +
+> > +	err = intel_opregion_get_asls(i915);
+> > +	if (err)
+> > +		return ERR_PTR(err);
+> > +
+> > +	base = memremap(opregion->asls, OPREGION_SIZE, MEMREMAP_WB);
+> > +	if (!base)
+> > +		return ERR_PTR(-ENOMEM);
+> > +
+> > +	memcpy(buf, base, sizeof(buf));
+> > +
+> > +	if (memcmp(buf, OPREGION_SIGNATURE, 16)) {
+> > +		drm_dbg(&i915->drm, "opregion signature mismatch\n");
+> > +		err = -EINVAL;
+> > +		goto err_out;
+> > +	}
+> > +
+> > +	return base;
+> > +
+> > +err_out:
+> > +	memunmap(base);
+> > +
+> > +	return ERR_PTR(err);
+> > +}
+> > +
+> > +static void *intel_igfx_alloc_rvda(struct drm_i915_private *i915)
+> > +{
+> > +	struct intel_opregion *opregion = &i915->opregion;
+> > +	resource_size_t rvda;
+> > +	void *opreg_rvda;
+> > +
+> > +	if(drm_WARN_ON(&i915->drm, !opregion->asls || !opregion->header))
+>           ^
+> 
+> Missing space.
+Will fix this.
 Thanks,
-Zhi.
-
-On 3/31/22 8:25 AM, Jani Nikula wrote:
-> On Thu, 31 Mar 2022, "Wang, Zhi A" <zhi.a.wang@intel.com> wrote:
->> Hi Jani and Joonas:
->>
->> Are you OK with these patches? I noticed I need to change the license
->> of the new file. Will do that when check-in if you are OK with these.
->=20
-> Use SPDX license header instead of the full text?
->=20
-> I don't know much about the actual contents, I'll leave that part to
-> others.
->=20
-> Seems that you are dropping const in a number of places where I thought
-> you could perhaps retain it.
->=20
-> Also in drivers/gpu/drm/i915/intel_gvt_mmio_table.c:
->=20
-> #include "gvt.h"=20
->=20
-> looks bad. It should be "gvt/gvt.h". I realize you can do that because
-> gvt/Makefile has:
->=20
-> ccflags-y +=3D -I $(srctree)/$(src) -I $(srctree)/$(src)/$(GVT_DIR)/
->=20
-> which I think should be removed.
->=20
-> I sent patches fixing this to give you an idea. No need to queue them
-> first, I can rebase them later. But please make sure this builds without
-> the ccflags.
->=20
->=20
-> BR,
-> Jani.
->=20
->=20
->>
->> Thanks,
->> Zhi.
->>
->> On 3/28/22 6:50 AM, Christoph Hellwig wrote:
->>> On Fri, Mar 25, 2022 at 01:52:49PM -0400, Zhi Wang wrote:
->>>>
->>>> v7:
->>>>
->>>> - Keep the marcos of device generation in GVT-g. (Christoph, Jani)
->>>
->>> The changelog go under the "---" line (also for the other patches).
->>>
->>> Otherwise looks good:
->>>
->>> Reviewed-by: Christoph Hellwig <hch@lst.de>
->>>
->>
->=20
-
+Anshuman.
+> 
+> > +		return ERR_PTR(-ENODEV);
+> > +
+> > +	rvda = opregion->asle->rvda;
+> > +
+> > +	/*
+> > +	 * opregion 2.0: rvda is the physical VBT address.
+> > +	 *
+> > +	 * opregion 2.1+: rvda is unsigned, relative offset from
+> > +	 * opregion base, and should never point within opregion.
+> > +	 */
+> > +	if (opregion->header->over.major > 2 ||
+> > +	    opregion->header->over.minor >= 1) {
+> > +		drm_WARN_ON(&i915->drm, rvda < OPREGION_SIZE);
+> > +
+> > +		rvda += opregion->asls;
+> > +	}
+> > +
+> > +	opreg_rvda = memremap(rvda, opregion->asle->rvds, MEMREMAP_WB);
+> > +	if (!opreg_rvda)
+> > +		return ERR_PTR(-ENOMEM);
+> > +
+> > +	return opreg_rvda;
+> > +}
+> > +
+> > +static void intel_igfx_free_rvda(struct drm_i915_private *i915)
+> > +{
+> > +	struct intel_opregion *opregion = &i915->opregion;
+> > +
+> > +	if (opregion->rvda) {
+> > +		memunmap(opregion->rvda);
+> > +		opregion->rvda = NULL;
+> > +	}
+> > +}
+> > +
+> > +static void intel_igfx_free_opregion(struct drm_i915_private *i915)
+> > +{
+> > +	struct intel_opregion *opregion = &i915->opregion;
+> > +
+> > +	if (opregion->header)
+> > +		memunmap(opregion->header);
+> > +}
+> > +
+> > +static const struct i915_opregion_func igfx_opregion_func = {
+> > +	.alloc_opregion = intel_igfx_alloc_opregion,
+> > +	.alloc_rvda = intel_igfx_alloc_rvda,
+> > +	.free_rvda = intel_igfx_free_rvda,
+> > +	.free_opregion = intel_igfx_free_opregion,
+> > +};
+> > +
+> >  /**
+> >   * intel_opregion_init() - Init ACPI opregion.
+> >   * @i915 i915 device priv data.
+> > @@ -1240,5 +1319,9 @@ void intel_opregion_unregister(struct drm_i915_private *i915)
+> >   */
+> >  int intel_opregion_init(struct drm_i915_private *i915)
+> >  {
+> > +	struct intel_opregion *opregion = &i915->opregion;
+> > +
+> > +	opregion->opregion_func = &igfx_opregion_func;
+> > +
+> >  	return intel_opregion_setup(i915);
+> >  }
+> > diff --git a/drivers/gpu/drm/i915/display/intel_opregion.h b/drivers/gpu/drm/i915/display/intel_opregion.h
+> > index 744d53c804e2..7500c396b74d 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_opregion.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_opregion.h
+> > @@ -37,6 +37,7 @@ struct opregion_acpi;
+> >  struct opregion_swsci;
+> >  struct opregion_asle;
+> >  struct opregion_asle_ext;
+> > +struct i915_opregion_func;
+> >  
+> >  struct intel_opregion {
+> >  	struct opregion_header *header;
+> > @@ -46,6 +47,8 @@ struct intel_opregion {
+> >  	u32 swsci_sbcb_sub_functions;
+> >  	struct opregion_asle *asle;
+> >  	struct opregion_asle_ext *asle_ext;
+> > +	const struct i915_opregion_func *opregion_func;
+> > +	resource_size_t asls;
+> >  	void *rvda;
+> >  	void *vbt_firmware;
+> >  	const void *vbt;
+> 
+> -- 
+> Jani Nikula, Intel Open Source Graphics Center
