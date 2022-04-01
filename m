@@ -2,51 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27FC04EF804
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 Apr 2022 18:32:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 715744EF81C
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 Apr 2022 18:38:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9171D10E45E;
-	Fri,  1 Apr 2022 16:32:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 462D710E1EF;
+	Fri,  1 Apr 2022 16:38:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E66AB10F5E6;
- Fri,  1 Apr 2022 16:32:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1648830758; x=1680366758;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=BZ84mCdW2h1uvx5/kzFjGZ6MXCsrMN01GTYbXdxxPkw=;
- b=U30HV+dPdvwhHqh9IEWRDX1egd9ofdOF/SixKecMVNrdsszeHMZOgTPC
- OHhjkDdzMjMQGowUZv9a6PV6CgopOEn6+PImb31mEavwlBmlN7iWWKbpR
- g9jm5u3lVdF91rGD4MadTbqiS1EUUsswOOYNHegR/Xc1qyj2hMUR+RsKP
- 6tts0sTRBoz0Jbv2s+r2vsk24QApbutLrNHpHZaRhxIQpI5z5om0FgLJQ
- BrrytLqpGDjpl5Sjze3p3Qbam9Zi6p6hanfGqQCbsUkyRf4uXmCiqNDWH
- eMMEGiotgnUoF7tvuX7jbF4NXeFbjl6ETjvoJSSm4PLJ3+Xhtx+G2vvZ0 Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10304"; a="323348597"
-X-IronPort-AV: E=Sophos;i="5.90,228,1643702400"; d="scan'208";a="323348597"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2022 09:18:51 -0700
-X-IronPort-AV: E=Sophos;i="5.90,228,1643702400"; d="scan'208";a="547854802"
-Received: from anikolov-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.62.217])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2022 09:18:49 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-In-Reply-To: <YkcH+OO+lVBejjn4@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1648752228.git.jani.nikula@intel.com>
- <877d8989om.fsf@intel.com> <YkcH+OO+lVBejjn4@intel.com>
-Date: Fri, 01 Apr 2022 19:18:45 +0300
-Message-ID: <87sfqw7p5m.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7B15710E1EF;
+ Fri,  1 Apr 2022 16:38:30 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 79663AADDD;
+ Fri,  1 Apr 2022 16:38:30 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6454253471425632688=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v2 00/12] drm/edid: cleanup and refactoring
- around validity checks
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
+Date: Fri, 01 Apr 2022 16:38:30 -0000
+Message-ID: <164883111049.22005.11595148529014005522@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220401142205.3123159-1-tvrtko.ursulin@linux.intel.com>
+In-Reply-To: <20220401142205.3123159-1-tvrtko.ursulin@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgUGVy?=
+ =?utf-8?q?_client_GPU_utilisation_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,60 +40,249 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 01 Apr 2022, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Fri, Apr 01, 2022 at 11:55:21AM +0300, Jani Nikula wrote:
->> On Thu, 31 Mar 2022, Jani Nikula <jani.nikula@intel.com> wrote:
->> > v2 of https://patchwork.freedesktop.org/series/101931/
->> >
->> > Rebased, review comments addressed.
->>=20
->> Ville, care to double check patches 1 & 7 please?
->
-> Looks fine by me
-> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+--===============6454253471425632688==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Thanks, pushed the lot to drm-misc-next.
+== Series Details ==
 
-BR,
-Jani.
+Series: Per client GPU utilisation (rev4)
+URL   : https://patchwork.freedesktop.org/series/100573/
+State : failure
 
->
->>=20
->> Thanks,
->> Jani.
->>=20
->>=20
->> >
->> > BR,
->> > Jani.
->> >
->> >
->> >
->> > Jani Nikula (12):
->> >   drm/edid: use struct edid * in drm_do_get_edid()
->> >   drm/edid: clean up EDID block checksum functions
->> >   drm/edid: add edid_block_tag() helper to get the EDID extension tag
->> >   drm/edid: make drm_edid_header_is_valid() accept void pointer
->> >   drm/edid: clean up edid_is_zero()
->> >   drm/edid: split out edid_header_fix()
->> >   drm/edid: split drm_edid_block_valid() to check and act parts
->> >   drm/edid: use a better variable name for EDID block read retries
->> >   drm/edid: simplify block check when filtering invalid blocks
->> >   drm/edid: split out invalid block filtering to a separate function
->> >   drm/edid: track invalid blocks in drm_do_get_edid()
->> >   drm/edid: reduce magic when updating the EDID block checksum
->> >
->> >  drivers/gpu/drm/drm_edid.c | 295 +++++++++++++++++++++----------------
->> >  include/drm/drm_edid.h     |   2 +-
->> >  2 files changed, 173 insertions(+), 124 deletions(-)
->>=20
->> --=20
->> Jani Nikula, Intel Open Source Graphics Center
+== Summary ==
 
---=20
-Jani Nikula, Intel Open Source Graphics Center
+CI Bug Log - changes from CI_DRM_11439 -> Patchwork_22760
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_22760 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_22760, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22760/index.html
+
+Participating hosts (43 -> 41)
+------------------------------
+
+  Additional (1): fi-pnv-d510 
+  Missing    (3): fi-bsw-cyan fi-icl-u2 fi-bdw-samus 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_22760:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live@guc:
+    - bat-dg1-6:          [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11439/bat-dg1-6/igt@i915_selftest@live@guc.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22760/bat-dg1-6/igt@i915_selftest@live@guc.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_22760 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-flip-vs-modeset@a-edp1:
+    - fi-tgl-u2:          [PASS][3] -> [DMESG-WARN][4] ([i915#402])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11439/fi-tgl-u2/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22760/fi-tgl-u2/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c:
+    - fi-pnv-d510:        NOTRUN -> [SKIP][5] ([fdo#109271] / [i915#5341])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22760/fi-pnv-d510/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
+
+  * igt@prime_vgem@basic-userptr:
+    - fi-pnv-d510:        NOTRUN -> [SKIP][6] ([fdo#109271]) +57 similar issues
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22760/fi-pnv-d510/igt@prime_vgem@basic-userptr.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-flip-vs-modeset@a-edp1:
+    - {bat-adlp-6}:       [DMESG-WARN][7] ([i915#3576]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11439/bat-adlp-6/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22760/bat-adlp-6/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html
+
+  * igt@kms_flip@basic-plain-flip@a-edp1:
+    - fi-tgl-u2:          [DMESG-WARN][9] ([i915#402]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11439/fi-tgl-u2/igt@kms_flip@basic-plain-flip@a-edp1.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22760/fi-tgl-u2/igt@kms_flip@basic-plain-flip@a-edp1.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
+  [i915#3576]: https://gitlab.freedesktop.org/drm/intel/issues/3576
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#5341]: https://gitlab.freedesktop.org/drm/intel/issues/5341
+
+
+Build changes
+-------------
+
+  * IGT: IGT_6405 -> IGTPW_6859
+  * Linux: CI_DRM_11439 -> Patchwork_22760
+
+  CI-20190529: 20190529
+  CI_DRM_11439: 8ee0d50f44b1f5e36ee255bbff836d7c1f338ee2 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGTPW_6859: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_6859/index.html
+  IGT_6405: 50f7bc405cc1411f57855ed23322c6c4d2510b58 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_22760: 3deb854ecac2ffa5e2d99fabf5faa01215f1ef18 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+3deb854ecac2 drm/i915: Expose client engine utilisation via fdinfo
+7703ec507d49 drm/i915: Count engine instances per uabi class
+7d0f31c44ba2 drm: Document fdinfo format specification
+07ad43cd0f97 drm/i915: Track context current active time
+f5a45bb5ac9c drm/i915: Track all user contexts per client
+481b0788b111 drm/i915: Track runtime spent in closed and unreachable GEM contexts
+8f73b6a749d5 drm/i915: Make GEM contexts track DRM clients
+037908479101 drm/i915: Explicitly track DRM clients
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22760/index.html
+
+--===============6454253471425632688==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Per client GPU utilisation (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/100573/">https://patchwork.freedesktop.org/series/100573/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22760/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22760/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11439 -&gt; Patchwork_22760</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_22760 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_22760, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22760/index.html</p>
+<h2>Participating hosts (43 -&gt; 41)</h2>
+<p>Additional (1): fi-pnv-d510 <br />
+  Missing    (3): fi-bsw-cyan fi-icl-u2 fi-bdw-samus </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_22760:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@i915_selftest@live@guc:<ul>
+<li>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11439/bat-dg1-6/igt@i915_selftest@live@guc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22760/bat-dg1-6/igt@i915_selftest@live@guc.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_22760 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_flip@basic-flip-vs-modeset@a-edp1:</p>
+<ul>
+<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11439/fi-tgl-u2/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22760/fi-tgl-u2/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c:</p>
+<ul>
+<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22760/fi-pnv-d510/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5341">i915#5341</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-userptr:</p>
+<ul>
+<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22760/fi-pnv-d510/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +57 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_flip@basic-flip-vs-modeset@a-edp1:</p>
+<ul>
+<li>{bat-adlp-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11439/bat-adlp-6/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22760/bat-adlp-6/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-plain-flip@a-edp1:</p>
+<ul>
+<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11439/fi-tgl-u2/igt@kms_flip@basic-plain-flip@a-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22760/fi-tgl-u2/igt@kms_flip@basic-plain-flip@a-edp1.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_6405 -&gt; IGTPW_6859</li>
+<li>Linux: CI_DRM_11439 -&gt; Patchwork_22760</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11439: 8ee0d50f44b1f5e36ee255bbff836d7c1f338ee2 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGTPW_6859: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_6859/index.html<br />
+  IGT_6405: 50f7bc405cc1411f57855ed23322c6c4d2510b58 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_22760: 3deb854ecac2ffa5e2d99fabf5faa01215f1ef18 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>3deb854ecac2 drm/i915: Expose client engine utilisation via fdinfo<br />
+7703ec507d49 drm/i915: Count engine instances per uabi class<br />
+7d0f31c44ba2 drm: Document fdinfo format specification<br />
+07ad43cd0f97 drm/i915: Track context current active time<br />
+f5a45bb5ac9c drm/i915: Track all user contexts per client<br />
+481b0788b111 drm/i915: Track runtime spent in closed and unreachable GEM contexts<br />
+8f73b6a749d5 drm/i915: Make GEM contexts track DRM clients<br />
+037908479101 drm/i915: Explicitly track DRM clients</p>
+
+</body>
+</html>
+
+--===============6454253471425632688==--
