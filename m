@@ -1,33 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7A234EFBF0
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 Apr 2022 23:00:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4FF24EFCBD
+	for <lists+intel-gfx@lfdr.de>; Sat,  2 Apr 2022 00:20:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3974510E110;
-	Fri,  1 Apr 2022 21:00:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE28910E155;
+	Fri,  1 Apr 2022 22:20:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7440D10E110;
- Fri,  1 Apr 2022 21:00:09 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 70CA8A00E8;
- Fri,  1 Apr 2022 21:00:09 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1589595362510415076=="
+Received: from mx1.riseup.net (mx1.riseup.net [198.252.153.129])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A6F0810E102;
+ Fri,  1 Apr 2022 22:20:44 +0000 (UTC)
+Received: from fews2.riseup.net (fews2-pn.riseup.net [10.0.1.84])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256
+ client-signature RSA-PSS (2048 bits) client-digest SHA256)
+ (Client CN "mail.riseup.net", Issuer "R3" (not verified))
+ by mx1.riseup.net (Postfix) with ESMTPS id 4KVZPS1YMxzDsSG;
+ Fri,  1 Apr 2022 15:20:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=riseup.net; s=squak;
+ t=1648851644; bh=NJKfly3mTb0uO1EBNtX2kPcQp1PRa3QPBMj5s3L/C/Y=;
+ h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+ b=T07NhPkw3/PLIhteRoupt2iggia8dvuvzUMSAJ+IgXsqaOS5SE2wJy+DG/Xlm6tQ/
+ jX324aliR5dwlxcPWB1LJIS+PFwdeoMzi8A1OTHXau2d6JuBqpwzoZ8eCH7X2HYgC5
+ ge1B6E8rKOs9VvJUJRnHM0cCGF1Pp8UaWdluJmWA=
+X-Riseup-User-ID: 2BA4F5DA7CB4A4E801D8CCD2BCC4BB7FCA7BB6BD28DEA8A21978F9938C4B0DBF
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+ by fews2.riseup.net (Postfix) with ESMTPSA id 4KVZPR374lz1yQc;
+ Fri,  1 Apr 2022 15:20:43 -0700 (PDT)
+From: Francisco Jerez <currojerez@riseup.net>
+To: Daniel Vetter <daniel@ffwll.ch>, Matt Atwood <matthew.s.atwood@intel.com>
+In-Reply-To: <YkX7hTrEZN53MN+z@phenom.ffwll.local>
+References: <20220330215311.21849-1-matthew.s.atwood@intel.com>
+ <YkX7hTrEZN53MN+z@phenom.ffwll.local>
+Date: Fri, 01 Apr 2022 15:19:26 -0700
+Message-ID: <87czi0fnv5.fsf@riseup.net>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
-Date: Fri, 01 Apr 2022 21:00:09 -0000
-Message-ID: <164884680945.22004.9721553104275015319@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220401142205.3123159-1-tvrtko.ursulin@linux.intel.com>
-In-Reply-To: <20220401142205.3123159-1-tvrtko.ursulin@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgUGVy?=
- =?utf-8?q?_client_GPU_utilisation_=28rev5=29?=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Subject: Re: [Intel-gfx] [PATCH v4 RFC] drm/i915/uapi: Add
+ DRM_I915_QUERY_GEOMETRY_SUBSLICES
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,314 +53,245 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ vrtko.ursulin@linux.intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1589595362510415076==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Daniel Vetter <daniel@ffwll.ch> writes:
 
-== Series Details ==
+> On Wed, Mar 30, 2022 at 02:53:11PM -0700, Matt Atwood wrote:
+>> Newer platforms have DSS that aren't necessarily available for both
+>> geometry and compute, two queries will need to exist. This introduces
+>> the first, when passing a valid engine class and engine instance in the
+>> flags returns a topology describing geometry.
+>> 
+>> v2: fix white space errors
+>> v3: change flags from hosting 2 8 bit numbers to holding a
+>> i915_engine_class_instance struct
+>> v4: add error if non rcs engine passed.
+>> 
+>> Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
+>> Cc: Matt Roper <matthew.d.roper@intel.com>
+>> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+>> UMD (mesa): https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/14143
+>> 
+>> Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/i915_query.c | 71 ++++++++++++++++++++++---------
+>>  include/uapi/drm/i915_drm.h       | 26 +++++++----
+>>  2 files changed, 69 insertions(+), 28 deletions(-)
+>> 
+>> diff --git a/drivers/gpu/drm/i915/i915_query.c b/drivers/gpu/drm/i915/i915_query.c
+>> index b5ca00cb6cf6..32be84c95956 100644
+>> --- a/drivers/gpu/drm/i915/i915_query.c
+>> +++ b/drivers/gpu/drm/i915/i915_query.c
+>> @@ -9,6 +9,7 @@
+>>  #include "i915_drv.h"
+>>  #include "i915_perf.h"
+>>  #include "i915_query.h"
+>> +#include "gt/intel_engine_user.h"
+>>  #include <uapi/drm/i915_drm.h>
+>>  
+>>  static int copy_query_item(void *query_hdr, size_t query_sz,
+>> @@ -28,36 +29,30 @@ static int copy_query_item(void *query_hdr, size_t query_sz,
+>>  	return 0;
+>>  }
+>>  
+>> -static int query_topology_info(struct drm_i915_private *dev_priv,
+>> -			       struct drm_i915_query_item *query_item)
+>> +static int fill_topology_info(const struct sseu_dev_info *sseu,
+>> +			      struct drm_i915_query_item *query_item,
+>> +			      const u8 *subslice_mask)
+>>  {
+>> -	const struct sseu_dev_info *sseu = &to_gt(dev_priv)->info.sseu;
+>>  	struct drm_i915_query_topology_info topo;
+>>  	u32 slice_length, subslice_length, eu_length, total_length;
+>>  	int ret;
+>>  
+>> -	if (query_item->flags != 0)
+>> -		return -EINVAL;
+>> +	BUILD_BUG_ON(sizeof(u8) != sizeof(sseu->slice_mask));
+>>  
+>>  	if (sseu->max_slices == 0)
+>>  		return -ENODEV;
+>>  
+>> -	BUILD_BUG_ON(sizeof(u8) != sizeof(sseu->slice_mask));
+>> -
+>>  	slice_length = sizeof(sseu->slice_mask);
+>>  	subslice_length = sseu->max_slices * sseu->ss_stride;
+>>  	eu_length = sseu->max_slices * sseu->max_subslices * sseu->eu_stride;
+>>  	total_length = sizeof(topo) + slice_length + subslice_length +
+>>  		       eu_length;
+>>  
+>> -	ret = copy_query_item(&topo, sizeof(topo), total_length,
+>> -			      query_item);
+>> +	ret = copy_query_item(&topo, sizeof(topo), total_length, query_item);
+>> +
+>>  	if (ret != 0)
+>>  		return ret;
+>>  
+>> -	if (topo.flags != 0)
+>> -		return -EINVAL;
+>> -
+>>  	memset(&topo, 0, sizeof(topo));
+>>  	topo.max_slices = sseu->max_slices;
+>>  	topo.max_subslices = sseu->max_subslices;
+>> @@ -69,27 +64,64 @@ static int query_topology_info(struct drm_i915_private *dev_priv,
+>>  	topo.eu_stride = sseu->eu_stride;
+>>  
+>>  	if (copy_to_user(u64_to_user_ptr(query_item->data_ptr),
+>> -			   &topo, sizeof(topo)))
+>> +			 &topo, sizeof(topo)))
+>>  		return -EFAULT;
+>>  
+>>  	if (copy_to_user(u64_to_user_ptr(query_item->data_ptr + sizeof(topo)),
+>> -			   &sseu->slice_mask, slice_length))
+>> +			 &sseu->slice_mask, slice_length))
+>>  		return -EFAULT;
+>>  
+>>  	if (copy_to_user(u64_to_user_ptr(query_item->data_ptr +
+>> -					   sizeof(topo) + slice_length),
+>> -			   sseu->subslice_mask, subslice_length))
+>> +					 sizeof(topo) + slice_length),
+>> +			 subslice_mask, subslice_length))
+>>  		return -EFAULT;
+>>  
+>>  	if (copy_to_user(u64_to_user_ptr(query_item->data_ptr +
+>> -					   sizeof(topo) +
+>> -					   slice_length + subslice_length),
+>> -			   sseu->eu_mask, eu_length))
+>> +					 sizeof(topo) +
+>> +					 slice_length + subslice_length),
+>> +			 sseu->eu_mask, eu_length))
+>>  		return -EFAULT;
+>>  
+>>  	return total_length;
+>>  }
+>>  
+>> +static int query_topology_info(struct drm_i915_private *dev_priv,
+>> +			       struct drm_i915_query_item *query_item)
+>> +{
+>> +	const struct sseu_dev_info *sseu = &to_gt(dev_priv)->info.sseu;
+>> +
+>> +	if (query_item->flags != 0)
+>> +		return -EINVAL;
+>> +
+>> +	return fill_topology_info(sseu, query_item, sseu->subslice_mask);
+>> +}
+>> +
+>> +static int query_geometry_subslices(struct drm_i915_private *i915,
+>> +				    struct drm_i915_query_item *query_item)
+>> +{
+>> +	const struct sseu_dev_info *sseu;
+>> +	struct intel_engine_cs *engine;
+>> +	struct i915_engine_class_instance classinstance;
+>> +
+>> +	if (GRAPHICS_VER_FULL(i915) < IP_VER(12, 50))
+>> +		return -ENODEV;
+>> +
+>> +	classinstance = *((struct i915_engine_class_instance *)&query_item->flags);
+>> +
+>> +	engine = intel_engine_lookup_user(i915, (u8) classinstance.engine_class,
+>> +					  (u8) classinstance.engine_instance);
+>> +
+>> +	if (!engine)
+>> +		return -EINVAL;
+>> +
+>> +	if (engine->class != RENDER_CLASS)
+>> +		return -EINVAL;
+>> +
+>> +	sseu = &engine->gt->info.sseu;
+>> +
+>> +	return fill_topology_info(sseu, query_item, sseu->geometry_subslice_mask);
+>> +}
+>> +
+>>  static int
+>>  query_engine_info(struct drm_i915_private *i915,
+>>  		  struct drm_i915_query_item *query_item)
+>> @@ -508,6 +540,7 @@ static int (* const i915_query_funcs[])(struct drm_i915_private *dev_priv,
+>>  	query_perf_config,
+>>  	query_memregion_info,
+>>  	query_hwconfig_blob,
+>> +	query_geometry_subslices,
+>>  };
+>>  
+>>  int i915_query_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+>> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+>> index 9ab021c4d632..c2a18afcf791 100644
+>> --- a/include/uapi/drm/i915_drm.h
+>> +++ b/include/uapi/drm/i915_drm.h
+>> @@ -2690,11 +2690,12 @@ struct drm_i915_perf_oa_config {
+>>  struct drm_i915_query_item {
+>>  	/** @query_id: The id for this query */
+>>  	__u64 query_id;
+>> -#define DRM_I915_QUERY_TOPOLOGY_INFO    1
+>> -#define DRM_I915_QUERY_ENGINE_INFO	2
+>> -#define DRM_I915_QUERY_PERF_CONFIG      3
+>> -#define DRM_I915_QUERY_MEMORY_REGIONS   4
+>> -#define DRM_I915_QUERY_HWCONFIG_BLOB	5
+>> +#define DRM_I915_QUERY_TOPOLOGY_INFO		1
+>> +#define DRM_I915_QUERY_ENGINE_INFO		2
+>> +#define DRM_I915_QUERY_PERF_CONFIG		3
+>> +#define DRM_I915_QUERY_MEMORY_REGIONS		4
+>> +#define DRM_I915_QUERY_HWCONFIG_BLOB		5
+>> +#define DRM_I915_QUERY_GEOMETRY_SUBSLICES	6
+>>  /* Must be kept compact -- no holes and well documented */
+>>  
+>>  	/**
+>> @@ -2718,6 +2719,9 @@ struct drm_i915_query_item {
+>>  	 *	- DRM_I915_QUERY_PERF_CONFIG_LIST
+>>  	 *      - DRM_I915_QUERY_PERF_CONFIG_DATA_FOR_UUID
+>>  	 *      - DRM_I915_QUERY_PERF_CONFIG_FOR_UUID
+>> +	 *
+>> +	 * When query_id == DRM_I915_QUERY_GEOMETRY_SUBSLICES must have a valid
+>> +	 * i915_engine_class_instance struct.
 
-Series: Per client GPU utilisation (rev5)
-URL   : https://patchwork.freedesktop.org/series/100573/
-State : success
+It would also be worth adding to the documentation that the specified engine
+must be a render engine instance.
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_11440 -> Patchwork_22761
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22761/index.html
-
-Participating hosts (45 -> 41)
-------------------------------
-
-  Additional (2): bat-rpls-2 fi-pnv-d510 
-  Missing    (6): shard-tglu bat-dg2-8 fi-bsw-cyan fi-icl-u2 bat-jsl-2 fi-bdw-samus 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_22761 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@semaphore:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][1] ([fdo#109271] / [fdo#109315]) +17 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22761/fi-hsw-4770/igt@amdgpu/amd_basic@semaphore.html
-
-  * igt@amdgpu/amd_cs_nop@fork-compute0:
-    - fi-blb-e6850:       NOTRUN -> [SKIP][2] ([fdo#109271]) +17 similar issues
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22761/fi-blb-e6850/igt@amdgpu/amd_cs_nop@fork-compute0.html
-
-  * igt@gem_exec_suspend@basic-s3@smem:
-    - fi-rkl-11600:       [PASS][3] -> [INCOMPLETE][4] ([i915#5127])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11440/fi-rkl-11600/igt@gem_exec_suspend@basic-s3@smem.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22761/fi-rkl-11600/igt@gem_exec_suspend@basic-s3@smem.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-pnv-d510:        NOTRUN -> [SKIP][5] ([fdo#109271]) +57 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22761/fi-pnv-d510/igt@gem_huc_copy@huc-copy.html
-
-  * igt@i915_selftest@live@execlists:
-    - fi-bsw-nick:        [PASS][6] -> [INCOMPLETE][7] ([i915#2940])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11440/fi-bsw-nick/igt@i915_selftest@live@execlists.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22761/fi-bsw-nick/igt@i915_selftest@live@execlists.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c:
-    - fi-pnv-d510:        NOTRUN -> [SKIP][8] ([fdo#109271] / [i915#5341])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22761/fi-pnv-d510/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
-
-  * igt@runner@aborted:
-    - fi-bsw-nick:        NOTRUN -> [FAIL][9] ([fdo#109271] / [i915#1436] / [i915#3428] / [i915#4312])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22761/fi-bsw-nick/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-blb-e6850:       [FAIL][10] ([i915#3194]) -> [PASS][11]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11440/fi-blb-e6850/igt@core_hotunplug@unbind-rebind.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22761/fi-blb-e6850/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-dg1-6:          [DMESG-FAIL][12] ([i915#4494] / [i915#4957]) -> [PASS][13]
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11440/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22761/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
-    - fi-hsw-4770:        [INCOMPLETE][14] ([i915#4785]) -> [PASS][15]
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11440/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22761/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-
-  * igt@i915_selftest@live@requests:
-    - fi-blb-e6850:       [DMESG-FAIL][16] ([i915#4528]) -> [PASS][17]
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11440/fi-blb-e6850/igt@i915_selftest@live@requests.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22761/fi-blb-e6850/igt@i915_selftest@live@requests.html
-
-  * igt@kms_flip@basic-plain-flip@a-edp1:
-    - fi-tgl-u2:          [DMESG-WARN][18] ([i915#402]) -> [PASS][19] +1 similar issue
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11440/fi-tgl-u2/igt@kms_flip@basic-plain-flip@a-edp1.html
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22761/fi-tgl-u2/igt@kms_flip@basic-plain-flip@a-edp1.html
-
-  * igt@kms_force_connector_basic@force-connector-state:
-    - {bat-adlp-6}:       [DMESG-WARN][20] ([i915#3576]) -> [PASS][21] +1 similar issue
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11440/bat-adlp-6/igt@kms_force_connector_basic@force-connector-state.html
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22761/bat-adlp-6/igt@kms_force_connector_basic@force-connector-state.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
-  [i915#3194]: https://gitlab.freedesktop.org/drm/intel/issues/3194
-  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
-  [i915#3428]: https://gitlab.freedesktop.org/drm/intel/issues/3428
-  [i915#3576]: https://gitlab.freedesktop.org/drm/intel/issues/3576
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
-  [i915#4528]: https://gitlab.freedesktop.org/drm/intel/issues/4528
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
-  [i915#4957]: https://gitlab.freedesktop.org/drm/intel/issues/4957
-  [i915#5127]: https://gitlab.freedesktop.org/drm/intel/issues/5127
-  [i915#5195]: https://gitlab.freedesktop.org/drm/intel/issues/5195
-  [i915#5341]: https://gitlab.freedesktop.org/drm/intel/issues/5341
-  [i915#5482]: https://gitlab.freedesktop.org/drm/intel/issues/5482
-
-
-Build changes
--------------
-
-  * IGT: IGT_6405 -> IGTPW_6859
-  * Linux: CI_DRM_11440 -> Patchwork_22761
-
-  CI-20190529: 20190529
-  CI_DRM_11440: 1aba80b3bc8c8e2cc405cd96fe95770ecbadde71 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGTPW_6859: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_6859/index.html
-  IGT_6405: 50f7bc405cc1411f57855ed23322c6c4d2510b58 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_22761: 0fa662dc40c3c40358887cbdca2f25b534325b64 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-0fa662dc40c3 drm/i915: Expose client engine utilisation via fdinfo
-358f40a1b272 drm/i915: Count engine instances per uabi class
-d68a3dd18e32 drm: Document fdinfo format specification
-f8aa16bf3954 drm/i915: Track context current active time
-2f89085834a4 drm/i915: Track all user contexts per client
-8112c9dac44d drm/i915: Track runtime spent in closed and unreachable GEM contexts
-20138e4593a9 drm/i915: Make GEM contexts track DRM clients
-7e9efd72439e drm/i915: Explicitly track DRM clients
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22761/index.html
-
---===============1589595362510415076==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Per client GPU utilisation (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/100573/">https://patchwork.freedesktop.org/series/100573/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22761/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22761/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11440 -&gt; Patchwork_22761</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22761/index.html</p>
-<h2>Participating hosts (45 -&gt; 41)</h2>
-<p>Additional (2): bat-rpls-2 fi-pnv-d510 <br />
-  Missing    (6): shard-tglu bat-dg2-8 fi-bsw-cyan fi-icl-u2 bat-jsl-2 fi-bdw-samus </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_22761 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@semaphore:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22761/fi-hsw-4770/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@amdgpu/amd_cs_nop@fork-compute0:</p>
-<ul>
-<li>fi-blb-e6850:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22761/fi-blb-e6850/igt@amdgpu/amd_cs_nop@fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s3@smem:</p>
-<ul>
-<li>fi-rkl-11600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11440/fi-rkl-11600/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22761/fi-rkl-11600/igt@gem_exec_suspend@basic-s3@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5127">i915#5127</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22761/fi-pnv-d510/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +57 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11440/fi-bsw-nick/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22761/fi-bsw-nick/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c:</p>
-<ul>
-<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22761/fi-pnv-d510/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5341">i915#5341</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22761/fi-bsw-nick/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3428">i915#3428</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11440/fi-blb-e6850/igt@core_hotunplug@unbind-rebind.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3194">i915#3194</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22761/fi-blb-e6850/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>
-<p>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11440/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22761/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">PASS</a></p>
-</li>
-<li>
-<p>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11440/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22761/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a></p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11440/fi-blb-e6850/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22761/fi-blb-e6850/igt@i915_selftest@live@requests.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-plain-flip@a-edp1:</p>
-<ul>
-<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11440/fi-tgl-u2/igt@kms_flip@basic-plain-flip@a-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22761/fi-tgl-u2/igt@kms_flip@basic-plain-flip@a-edp1.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-connector-state:</p>
-<ul>
-<li>{bat-adlp-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11440/bat-adlp-6/igt@kms_force_connector_basic@force-connector-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22761/bat-adlp-6/igt@kms_force_connector_basic@force-connector-state.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_6405 -&gt; IGTPW_6859</li>
-<li>Linux: CI_DRM_11440 -&gt; Patchwork_22761</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11440: 1aba80b3bc8c8e2cc405cd96fe95770ecbadde71 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGTPW_6859: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_6859/index.html<br />
-  IGT_6405: 50f7bc405cc1411f57855ed23322c6c4d2510b58 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_22761: 0fa662dc40c3c40358887cbdca2f25b534325b64 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>0fa662dc40c3 drm/i915: Expose client engine utilisation via fdinfo<br />
-358f40a1b272 drm/i915: Count engine instances per uabi class<br />
-d68a3dd18e32 drm: Document fdinfo format specification<br />
-f8aa16bf3954 drm/i915: Track context current active time<br />
-2f89085834a4 drm/i915: Track all user contexts per client<br />
-8112c9dac44d drm/i915: Track runtime spent in closed and unreachable GEM contexts<br />
-20138e4593a9 drm/i915: Make GEM contexts track DRM clients<br />
-7e9efd72439e drm/i915: Explicitly track DRM clients</p>
-
-</body>
-</html>
-
---===============1589595362510415076==--
+>>  	 */
+>>  	__u32 flags;
+>>  #define DRM_I915_QUERY_PERF_CONFIG_LIST          1
+>> @@ -2776,16 +2780,20 @@ struct drm_i915_query {
+>>  };
+>>  
+>>  /*
+>
+> Can we please include this in the kerneldoc, and also make sure that the
+> queries are nicely all listed somewhere and link to each respective
+> information structure?
+>
+> Most of the doc for queries is there now, but the presentation and linking
+> lacks still a lot.
+> -Daniel
+>
+>> - * Data written by the kernel with query DRM_I915_QUERY_TOPOLOGY_INFO :
+>> + * Data written by the kernel with query DRM_I915_QUERY_TOPOLOGY_INFO,
+>> + * DRM_I915_QUERY_GEOMETRY_SUBSLICE:
+>>   *
+>>   * data: contains the 3 pieces of information :
+>>   *
+>> - * - the slice mask with one bit per slice telling whether a slice is
+>> - *   available. The availability of slice X can be queried with the following
+>> - *   formula :
+>> + * - For DRM_I915_QUERY_TOPOLOGY_INFO the slice mask with one bit per slice
+>> + *   telling whether a slice is available. The availability of slice X can be
+>> + *   queried with the following formula :
+>>   *
+>>   *           (data[X / 8] >> (X % 8)) & 1
+>>   *
+>> + * - For DRM_I915_QUERY_GEOMETRY_SUBSLICES Slices are equal to 1 and this field
+>> + *   is not used.
+>> + *
+>>   * - the subslice mask for each slice with one bit per subslice telling
+>>   *   whether a subslice is available. Gen12 has dual-subslices, which are
+>>   *   similar to two gen11 subslices. For gen12, this array represents dual-
+>> -- 
+>> 2.21.3
+>> 
+>
+> -- 
+> Daniel Vetter
+> Software Engineer, Intel Corporation
+> http://blog.ffwll.ch
