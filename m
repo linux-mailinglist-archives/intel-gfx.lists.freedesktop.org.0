@@ -2,42 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7ED24F01FC
-	for <lists+intel-gfx@lfdr.de>; Sat,  2 Apr 2022 15:11:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 623CB4F01FD
+	for <lists+intel-gfx@lfdr.de>; Sat,  2 Apr 2022 15:12:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1716210E15F;
-	Sat,  2 Apr 2022 13:11:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD10210E15F;
+	Sat,  2 Apr 2022 13:12:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E7AB410E15F
- for <intel-gfx@lists.freedesktop.org>; Sat,  2 Apr 2022 13:11:37 +0000 (UTC)
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B41310E15F
+ for <intel-gfx@lists.freedesktop.org>; Sat,  2 Apr 2022 13:12:40 +0000 (UTC)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by sin.source.kernel.org (Postfix) with ESMTPS id 0FE70CE0956;
- Sat,  2 Apr 2022 13:11:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26D8AC340EC;
- Sat,  2 Apr 2022 13:11:31 +0000 (UTC)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 69C53B808C9;
+ Sat,  2 Apr 2022 13:12:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A7787C340F0;
+ Sat,  2 Apr 2022 13:12:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1648905092;
- bh=5vJdtrnLj/TM9szyEm981tvk5iwDqD/07q5Gn9E+XsE=;
+ s=korg; t=1648905157;
+ bh=6aiBFm44j18mOw7D2nvpFAdEVUsY5CbZiWF9+mmYsgA=;
  h=Subject:To:Cc:From:Date:From;
- b=ZDZubRRa1A/y2M5vC9IuLCH6QRgpY1gYoSxDbiwatVbqTVEd7B02PpADiONaN6c21
- 2ZftgCkXQft6tARp2tgfA1tHH7IIGMGFUBxXgcm2gCcugQJ6v4I7rafP2d5ogmRPre
- tl8P83zbf6I7GgQaFXhvZ6tdd/PLyepa7NegPq20=
+ b=1dN9ciyMTllC0R+r/rew+QUFhfLNE4HzuSNusQtsGmXk2hq0ykKiZgw/NWogYnR99
+ 4fM9JprPZ0AEFtq2pL8VBDtcQONg6GvIfncQ54owRzy/AVfmnB+67+EukG3lM5dMI9
+ hQWYatHwfBxE3ScrRnNmbttCIbS0YzBVGX9jwErM=
 To: cooper.chiou@intel.com, gregkh@linuxfoundation.org,
  intel-gfx@lists.freedesktop.org, jani.nikula@intel.com, shawn.c.lee@intel.com
 From: <gregkh@linuxfoundation.org>
-Date: Sat, 02 Apr 2022 15:10:30 +0200
-Message-ID: <16489050306722@kroah.com>
+Date: Sat, 02 Apr 2022 15:10:37 +0200
+Message-ID: <1648905037248255@kroah.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=ANSI_X3.4-1968
 Content-Transfer-Encoding: 8bit
 X-stable: commit
 X-Patchwork-Hint: ignore 
 Subject: [Intel-gfx] Patch "drm/edid: check basic audio support on CEA
- extension block" has been added to the 4.19-stable tree
+ extension block" has been added to the 5.4-stable tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,12 +59,12 @@ This is a note to let you know that I've just added the patch titled
 
     drm/edid: check basic audio support on CEA extension block
 
-to the 4.19-stable tree which can be found at:
+to the 5.4-stable tree which can be found at:
     http://www.kernel.org/git/?p=linux/kernel/git/stable/stable-queue.git;a=summary
 
 The filename of the patch is:
      drm-edid-check-basic-audio-support-on-cea-extension-block.patch
-and it can be found in the queue-4.19 subdirectory.
+and it can be found in the queue-5.4 subdirectory.
 
 If you, or anyone else, feels it should not be added to the stable tree,
 please let <stable@vger.kernel.org> know about it.
@@ -102,7 +102,7 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 
 --- a/drivers/gpu/drm/drm_edid.c
 +++ b/drivers/gpu/drm/drm_edid.c
-@@ -4323,7 +4323,8 @@ bool drm_detect_monitor_audio(struct edi
+@@ -4380,7 +4380,8 @@ bool drm_detect_monitor_audio(struct edi
  	if (!edid_ext)
  		goto end;
  
@@ -116,4 +116,4 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 
 Patches currently in stable-queue which might be from cooper.chiou@intel.com are
 
-queue-4.19/drm-edid-check-basic-audio-support-on-cea-extension-block.patch
+queue-5.4/drm-edid-check-basic-audio-support-on-cea-extension-block.patch
