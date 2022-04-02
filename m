@@ -1,54 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AFD44EFE0E
-	for <lists+intel-gfx@lfdr.de>; Sat,  2 Apr 2022 05:02:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F6CD4EFE6C
+	for <lists+intel-gfx@lfdr.de>; Sat,  2 Apr 2022 06:13:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E0BE10E108;
-	Sat,  2 Apr 2022 03:02:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A18FD10E12C;
+	Sat,  2 Apr 2022 04:13:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E18C10E0F5;
- Sat,  2 Apr 2022 03:01:59 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F96210E12A
+ for <intel-gfx@lists.freedesktop.org>; Sat,  2 Apr 2022 04:13:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1648868519; x=1680404519;
+ t=1648872784; x=1680408784;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=nGLFQ+VrJ4zI+alv7uVVWx6t08ELTGEjqdxhrS7T0JY=;
- b=GvExgpq6g8gob5o8TLVlWDZgeqpPZ/6blOuA8ewKR/bcre4j7+J4EAWy
- DLdL1HLH9bqmOpOvqNmL8uDdyjnR4Mhady1CQlwvYe49u40+PLJdTJO5H
- NhYWHIeqZH/m9DCirD0Q2klE4RB21Qc4Un17iguhhpKt+yix3lZmIxfo9
- GCD3TFPgJy9iNW3tOg73R8cvxmcIG7Vo8TYOCNwPJ603YbkpzCwtkuYKU
- 0x1IR5MrMXFC+SKk/43fS3B1ZgJKlDESFXXlQ5aKIznUphAYNmUyGggRf
- jJMHQ7cX05HbH2GrmPMrtR1dn68lDFZQpKLmro2tyMqKeQpfJJ1+wFVko w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10304"; a="346709737"
-X-IronPort-AV: E=Sophos;i="5.90,229,1643702400"; d="scan'208";a="346709737"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2022 20:01:58 -0700
-X-IronPort-AV: E=Sophos;i="5.90,229,1643702400"; d="scan'208";a="522994817"
-Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.203.144.108])
- by orsmga006-auth.jf.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Apr 2022 20:01:56 -0700
-Date: Sat, 2 Apr 2022 08:32:38 +0530
-From: Ramalingam C <ramalingam.c@intel.com>
-To: Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>
-Message-ID: <20220402030237.GA29661@intel.com>
-References: <20220401123751.27771-1-ramalingam.c@intel.com>
- <20220401123751.27771-8-ramalingam.c@intel.com>
- <20220401142853.GF12046@intel.com>
- <7517726e-c828-ace8-9968-e542e23d97f1@amd.com>
+ mime-version:in-reply-to;
+ bh=1R58Ydd/SaZjNQO+r2i+g0ys6EZMC+ESm+YdnoB+2p4=;
+ b=bV1+mW5tB5IzYrsvd3L3KrgUgBx/GQov3ttE579I4r78I276lX+G8p8B
+ kB14OgkZTCHxuIVrT7lqoLgZOjHq0AUTl5sUqYyiur1hq5U5qJ+XHAEt/
+ NFCdS4F/tuUzjTEbhlQgP5EgS/Poge0TC/DN9VybvulYuzjj/OVXbK5tJ
+ PlKhI8HDXRJTSBnvgh4CmcDlRr5er5JVfgOUNj6q4z0BCAErKVxeve0OD
+ Ln03afzdi019WTomFqo1NJjSDPfTIcrEf7cC1kUzWq7jKgabQ4B073cMn
+ qg4+tIkRaJgqdAUzpVi0JYwA05shj+TE5ODzoRuFLcEK2I60g2KwMUeGH g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10304"; a="259974750"
+X-IronPort-AV: E=Sophos;i="5.90,229,1643702400"; d="scan'208";a="259974750"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Apr 2022 21:13:03 -0700
+X-IronPort-AV: E=Sophos;i="5.90,229,1643702400"; d="scan'208";a="568051416"
+Received: from kdurai-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
+ ([10.212.134.219])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Apr 2022 21:13:03 -0700
+Date: Fri, 1 Apr 2022 21:13:03 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Mullati Siva <siva.mullati@intel.com>
+Message-ID: <20220402041303.y6owr3fjnkpysyxt@ldmartin-desk2>
+X-Patchwork-Hint: comment
+References: <20220322084437.235473-1-siva.mullati@intel.com>
+ <20220322084437.235473-2-siva.mullati@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii; format=flowed
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <7517726e-c828-ace8-9968-e542e23d97f1@amd.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v7 7/9] drm/ttm: Add a parameter to add
- extra pages into ttm_tt
+In-Reply-To: <20220322084437.235473-2-siva.mullati@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 1/1] drm/i915/guc: Convert ct buffer to
+ iosys_map
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,173 +59,536 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>, rodrigo.vivi@intel.com
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2022-04-01 at 16:31:19 +0200, Christian König wrote:
-> I would be nicer to push this through drm-misc-next, but the intel branch
-> works for me as well.
-Hi Christian
+On Tue, Mar 22, 2022 at 02:14:37PM +0530, Mullati Siva wrote:
+>From: Siva Mullati <siva.mullati@intel.com>
+>
+>Convert CT commands and descriptors to use iosys_map rather
+>than plain pointer and save it in the intel_guc_ct_buffer struct.
+>This will help with ct_write and ct_read for cmd send and receive
+>after the initialization by abstracting the IO vs system memory.
+>
+>Signed-off-by: Siva Mullati <siva.mullati@intel.com>
+>---
+> drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c | 200 +++++++++++++---------
+> drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h |   9 +-
+> 2 files changed, 127 insertions(+), 82 deletions(-)
+>
+>diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+>index f01325cd1b62..1c21ced44106 100644
+>--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+>+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+>@@ -44,6 +44,11 @@ static inline struct drm_device *ct_to_drm(struct intel_guc_ct *ct)
+> #define CT_PROBE_ERROR(_ct, _fmt, ...) \
+> 	i915_probe_error(ct_to_i915(ct), "CT: " _fmt, ##__VA_ARGS__)
+>
+>+#define ct_desc_read(desc_map_, field_) \
+>+	iosys_map_rd_field(desc_map_, 0, struct guc_ct_buffer_desc, field_)
+>+#define ct_desc_write(desc_map_, field_, val_) \
+>+	iosys_map_wr_field(desc_map_, 0, struct guc_ct_buffer_desc, field_, val_)
+>+
+> /**
+>  * DOC: CTB Blob
+>  *
+>@@ -76,6 +81,11 @@ static inline struct drm_device *ct_to_drm(struct intel_guc_ct *ct)
+> #define CTB_G2H_BUFFER_SIZE	(4 * CTB_H2G_BUFFER_SIZE)
+> #define G2H_ROOM_BUFFER_SIZE	(CTB_G2H_BUFFER_SIZE / 4)
+>
+>+#define CTB_SEND_DESC_OFFSET	(0X0000)
 
-I have pushed this patch into drm-misc-next.
+0, or even better... 0u,  so you don't have to cast to unsigned in other
+places
 
-Regards,
-Ram.
-> 
-> Regards,
-> Christian.
-> 
-> Am 01.04.22 um 16:28 schrieb Ramalingam C:
-> > Christian, Joonas and vivi
-> > 
-> > Once the premerge results are greeen, if this patch can be merged into
-> > drm-intel-gt-next along with other patches could you please ack the
-> > request to merge into drm-intel-gt-next?
-> > 
-> > Thanks
-> > Ram
-> > 
-> > On 2022-04-01 at 18:07:49 +0530, Ramalingam C wrote:
-> > > Add a parameter called "extra_pages" for ttm_tt_init, to indicate that
-> > > driver needs extra pages in ttm_tt.
-> > > 
-> > > v2:
-> > >    Used imperative wording [Thomas and Christian]
-> > > 
-> > > Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
-> > > cc: Christian Koenig <christian.koenig@amd.com>
-> > > cc: Hellstrom Thomas <thomas.hellstrom@intel.com>
-> > > Reviewed-by: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
-> > > Reviewed-by: Christian Konig <christian.koenig@amd.com>
-> > > Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
-> > > ---
-> > >   drivers/gpu/drm/drm_gem_vram_helper.c      |  2 +-
-> > >   drivers/gpu/drm/i915/gem/i915_gem_ttm.c    |  2 +-
-> > >   drivers/gpu/drm/qxl/qxl_ttm.c              |  2 +-
-> > >   drivers/gpu/drm/ttm/ttm_agp_backend.c      |  2 +-
-> > >   drivers/gpu/drm/ttm/ttm_tt.c               | 12 +++++++-----
-> > >   drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c |  2 +-
-> > >   include/drm/ttm/ttm_tt.h                   |  4 +++-
-> > >   7 files changed, 15 insertions(+), 11 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/drm_gem_vram_helper.c b/drivers/gpu/drm/drm_gem_vram_helper.c
-> > > index dc7f938bfff2..123045b58fec 100644
-> > > --- a/drivers/gpu/drm/drm_gem_vram_helper.c
-> > > +++ b/drivers/gpu/drm/drm_gem_vram_helper.c
-> > > @@ -867,7 +867,7 @@ static struct ttm_tt *bo_driver_ttm_tt_create(struct ttm_buffer_object *bo,
-> > >   	if (!tt)
-> > >   		return NULL;
-> > > -	ret = ttm_tt_init(tt, bo, page_flags, ttm_cached);
-> > > +	ret = ttm_tt_init(tt, bo, page_flags, ttm_cached, 0);
-> > >   	if (ret < 0)
-> > >   		goto err_ttm_tt_init;
-> > > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> > > index c40aca99442f..a878910a563c 100644
-> > > --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> > > +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> > > @@ -293,7 +293,7 @@ static struct ttm_tt *i915_ttm_tt_create(struct ttm_buffer_object *bo,
-> > >   		i915_tt->is_shmem = true;
-> > >   	}
-> > > -	ret = ttm_tt_init(&i915_tt->ttm, bo, page_flags, caching);
-> > > +	ret = ttm_tt_init(&i915_tt->ttm, bo, page_flags, caching, 0);
-> > >   	if (ret)
-> > >   		goto err_free;
-> > > diff --git a/drivers/gpu/drm/qxl/qxl_ttm.c b/drivers/gpu/drm/qxl/qxl_ttm.c
-> > > index 95df5750f47f..9ba871bd19b1 100644
-> > > --- a/drivers/gpu/drm/qxl/qxl_ttm.c
-> > > +++ b/drivers/gpu/drm/qxl/qxl_ttm.c
-> > > @@ -113,7 +113,7 @@ static struct ttm_tt *qxl_ttm_tt_create(struct ttm_buffer_object *bo,
-> > >   	ttm = kzalloc(sizeof(struct ttm_tt), GFP_KERNEL);
-> > >   	if (ttm == NULL)
-> > >   		return NULL;
-> > > -	if (ttm_tt_init(ttm, bo, page_flags, ttm_cached)) {
-> > > +	if (ttm_tt_init(ttm, bo, page_flags, ttm_cached, 0)) {
-> > >   		kfree(ttm);
-> > >   		return NULL;
-> > >   	}
-> > > diff --git a/drivers/gpu/drm/ttm/ttm_agp_backend.c b/drivers/gpu/drm/ttm/ttm_agp_backend.c
-> > > index 6ddc16f0fe2b..d27691f2e451 100644
-> > > --- a/drivers/gpu/drm/ttm/ttm_agp_backend.c
-> > > +++ b/drivers/gpu/drm/ttm/ttm_agp_backend.c
-> > > @@ -134,7 +134,7 @@ struct ttm_tt *ttm_agp_tt_create(struct ttm_buffer_object *bo,
-> > >   	agp_be->mem = NULL;
-> > >   	agp_be->bridge = bridge;
-> > > -	if (ttm_tt_init(&agp_be->ttm, bo, page_flags, ttm_write_combined)) {
-> > > +	if (ttm_tt_init(&agp_be->ttm, bo, page_flags, ttm_write_combined, 0)) {
-> > >   		kfree(agp_be);
-> > >   		return NULL;
-> > >   	}
-> > > diff --git a/drivers/gpu/drm/ttm/ttm_tt.c b/drivers/gpu/drm/ttm/ttm_tt.c
-> > > index d234aab800a0..1a66d9fc589a 100644
-> > > --- a/drivers/gpu/drm/ttm/ttm_tt.c
-> > > +++ b/drivers/gpu/drm/ttm/ttm_tt.c
-> > > @@ -134,9 +134,10 @@ void ttm_tt_destroy(struct ttm_device *bdev, struct ttm_tt *ttm)
-> > >   static void ttm_tt_init_fields(struct ttm_tt *ttm,
-> > >   			       struct ttm_buffer_object *bo,
-> > >   			       uint32_t page_flags,
-> > > -			       enum ttm_caching caching)
-> > > +			       enum ttm_caching caching,
-> > > +			       unsigned long extra_pages)
-> > >   {
-> > > -	ttm->num_pages = PAGE_ALIGN(bo->base.size) >> PAGE_SHIFT;
-> > > +	ttm->num_pages = (PAGE_ALIGN(bo->base.size) >> PAGE_SHIFT) + extra_pages;
-> > >   	ttm->caching = ttm_cached;
-> > >   	ttm->page_flags = page_flags;
-> > >   	ttm->dma_address = NULL;
-> > > @@ -146,9 +147,10 @@ static void ttm_tt_init_fields(struct ttm_tt *ttm,
-> > >   }
-> > >   int ttm_tt_init(struct ttm_tt *ttm, struct ttm_buffer_object *bo,
-> > > -		uint32_t page_flags, enum ttm_caching caching)
-> > > +		uint32_t page_flags, enum ttm_caching caching,
-> > > +		unsigned long extra_pages)
-> > >   {
-> > > -	ttm_tt_init_fields(ttm, bo, page_flags, caching);
-> > > +	ttm_tt_init_fields(ttm, bo, page_flags, caching, extra_pages);
-> > >   	if (ttm_tt_alloc_page_directory(ttm)) {
-> > >   		pr_err("Failed allocating page table\n");
-> > > @@ -180,7 +182,7 @@ int ttm_sg_tt_init(struct ttm_tt *ttm, struct ttm_buffer_object *bo,
-> > >   {
-> > >   	int ret;
-> > > -	ttm_tt_init_fields(ttm, bo, page_flags, caching);
-> > > +	ttm_tt_init_fields(ttm, bo, page_flags, caching, 0);
-> > >   	if (page_flags & TTM_TT_FLAG_EXTERNAL)
-> > >   		ret = ttm_sg_tt_alloc_page_directory(ttm);
-> > > diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c b/drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c
-> > > index b84ecc6d6611..4e3938e62c08 100644
-> > > --- a/drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c
-> > > +++ b/drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c
-> > > @@ -517,7 +517,7 @@ static struct ttm_tt *vmw_ttm_tt_create(struct ttm_buffer_object *bo,
-> > >   				     ttm_cached);
-> > >   	else
-> > >   		ret = ttm_tt_init(&vmw_be->dma_ttm, bo, page_flags,
-> > > -				  ttm_cached);
-> > > +				  ttm_cached, 0);
-> > >   	if (unlikely(ret != 0))
-> > >   		goto out_no_init;
-> > > diff --git a/include/drm/ttm/ttm_tt.h b/include/drm/ttm/ttm_tt.h
-> > > index f20832139815..17a0310e8aaa 100644
-> > > --- a/include/drm/ttm/ttm_tt.h
-> > > +++ b/include/drm/ttm/ttm_tt.h
-> > > @@ -140,6 +140,7 @@ int ttm_tt_create(struct ttm_buffer_object *bo, bool zero_alloc);
-> > >    * @bo: The buffer object we create the ttm for.
-> > >    * @page_flags: Page flags as identified by TTM_TT_FLAG_XX flags.
-> > >    * @caching: the desired caching state of the pages
-> > > + * @extra_pages: Extra pages needed for the driver.
-> > >    *
-> > >    * Create a struct ttm_tt to back data with system memory pages.
-> > >    * No pages are actually allocated.
-> > > @@ -147,7 +148,8 @@ int ttm_tt_create(struct ttm_buffer_object *bo, bool zero_alloc);
-> > >    * NULL: Out of memory.
-> > >    */
-> > >   int ttm_tt_init(struct ttm_tt *ttm, struct ttm_buffer_object *bo,
-> > > -		uint32_t page_flags, enum ttm_caching caching);
-> > > +		uint32_t page_flags, enum ttm_caching caching,
-> > > +		unsigned long extra_pages);
-> > >   int ttm_sg_tt_init(struct ttm_tt *ttm_dma, struct ttm_buffer_object *bo,
-> > >   		   uint32_t page_flags, enum ttm_caching caching);
-> > > -- 
-> > > 2.20.1
-> > > 
-> 
+>+#define CTB_RECV_DESC_OFFSET	(CTB_DESC_SIZE)
+>+#define CTB_SEND_CMDS_OFFSET	(2 * CTB_DESC_SIZE)
+>+#define CTB_RECV_CMDS_OFFSET	(2 * CTB_DESC_SIZE + CTB_H2G_BUFFER_SIZE)
+>+
+> struct ct_request {
+> 	struct list_head link;
+> 	u32 fence;
+>@@ -113,9 +123,9 @@ void intel_guc_ct_init_early(struct intel_guc_ct *ct)
+> 	init_waitqueue_head(&ct->wq);
+> }
+>
+>-static void guc_ct_buffer_desc_init(struct guc_ct_buffer_desc *desc)
+>+static void guc_ct_buffer_desc_init(struct iosys_map *desc)
+> {
+>-	memset(desc, 0, sizeof(*desc));
+>+	iosys_map_memset(desc, 0, 0, sizeof(struct guc_ct_buffer_desc));
+> }
+>
+> static void guc_ct_buffer_reset(struct intel_guc_ct_buffer *ctb)
+>@@ -128,17 +138,18 @@ static void guc_ct_buffer_reset(struct intel_guc_ct_buffer *ctb)
+> 	space = CIRC_SPACE(ctb->tail, ctb->head, ctb->size) - ctb->resv_space;
+> 	atomic_set(&ctb->space, space);
+>
+>-	guc_ct_buffer_desc_init(ctb->desc);
+>+	guc_ct_buffer_desc_init(&ctb->desc_map);
+> }
+>
+> static void guc_ct_buffer_init(struct intel_guc_ct_buffer *ctb,
+>-			       struct guc_ct_buffer_desc *desc,
+>-			       u32 *cmds, u32 size_in_bytes, u32 resv_space)
+>+			       struct iosys_map *desc,
+>+			       struct iosys_map *cmds,
+>+			       u32 size_in_bytes, u32 resv_space)
+> {
+> 	GEM_BUG_ON(size_in_bytes % 4);
+>
+>-	ctb->desc = desc;
+>-	ctb->cmds = cmds;
+>+	ctb->desc_map = *desc;
+>+	ctb->cmds_map = *cmds;
+> 	ctb->size = size_in_bytes / 4;
+> 	ctb->resv_space = resv_space / 4;
+>
+>@@ -218,12 +229,13 @@ static int ct_register_buffer(struct intel_guc_ct *ct, bool send,
+> int intel_guc_ct_init(struct intel_guc_ct *ct)
+> {
+> 	struct intel_guc *guc = ct_to_guc(ct);
+>-	struct guc_ct_buffer_desc *desc;
+>+	struct iosys_map blob_map;
+>+	struct iosys_map desc_map;
+>+	struct iosys_map cmds_map;
+> 	u32 blob_size;
+> 	u32 cmds_size;
+> 	u32 resv_space;
+> 	void *blob;
+>-	u32 *cmds;
+> 	int err;
+>
+> 	err = i915_inject_probe_error(guc_to_gt(guc)->i915, -ENXIO);
+>@@ -242,27 +254,35 @@ int intel_guc_ct_init(struct intel_guc_ct *ct)
+>
+> 	CT_DEBUG(ct, "base=%#x size=%u\n", intel_guc_ggtt_offset(guc, ct->vma), blob_size);
+>
+>-	/* store pointers to desc and cmds for send ctb */
+>-	desc = blob;
+>-	cmds = blob + 2 * CTB_DESC_SIZE;
+>+	if (i915_gem_object_is_lmem(ct->vma->obj))
+>+		iosys_map_set_vaddr_iomem(&blob_map,
+>+					  (void __iomem *)blob);
+>+	else
+>+		iosys_map_set_vaddr(&blob_map, blob);
+>+
+>+	/* store sysmap to desc_map and cmds_map for send ctb */
+>+	desc_map = IOSYS_MAP_INIT_OFFSET(&blob_map, CTB_SEND_DESC_OFFSET);
+>+	cmds_map = IOSYS_MAP_INIT_OFFSET(&blob_map, CTB_SEND_CMDS_OFFSET);
+> 	cmds_size = CTB_H2G_BUFFER_SIZE;
+> 	resv_space = 0;
+>-	CT_DEBUG(ct, "%s desc %#tx cmds %#tx size %u/%u\n", "send",
+>-		 ptrdiff(desc, blob), ptrdiff(cmds, blob), cmds_size,
+>-		 resv_space);
+>+	CT_DEBUG(ct, "%s desc %#x cmds %#x size %u/%u\n", "send",
+>+		 (u32)CTB_SEND_DESC_OFFSET, (u32)CTB_SEND_CMDS_OFFSET,
+>+		 cmds_size, resv_space);
+>
+>-	guc_ct_buffer_init(&ct->ctbs.send, desc, cmds, cmds_size, resv_space);
+>+	guc_ct_buffer_init(&ct->ctbs.send,
+>+			   &desc_map, &cmds_map, cmds_size, resv_space);
+>
+>-	/* store pointers to desc and cmds for recv ctb */
+>-	desc = blob + CTB_DESC_SIZE;
+>-	cmds = blob + 2 * CTB_DESC_SIZE + CTB_H2G_BUFFER_SIZE;
+>+	/* store sysmap to desc_map and cmds_map for recv ctb */
+>+	desc_map = IOSYS_MAP_INIT_OFFSET(&blob_map, CTB_RECV_DESC_OFFSET);
+>+	cmds_map = IOSYS_MAP_INIT_OFFSET(&blob_map, CTB_RECV_CMDS_OFFSET);
+> 	cmds_size = CTB_G2H_BUFFER_SIZE;
+> 	resv_space = G2H_ROOM_BUFFER_SIZE;
+>-	CT_DEBUG(ct, "%s desc %#tx cmds %#tx size %u/%u\n", "recv",
+>-		 ptrdiff(desc, blob), ptrdiff(cmds, blob), cmds_size,
+>-		 resv_space);
+>+	CT_DEBUG(ct, "%s desc %#x cmds %#x size %u/%u\n", "recv",
+>+		 (u32)CTB_RECV_DESC_OFFSET, (u32)CTB_RECV_CMDS_OFFSET,
+>+		 cmds_size, resv_space);
+>
+>-	guc_ct_buffer_init(&ct->ctbs.recv, desc, cmds, cmds_size, resv_space);
+>+	guc_ct_buffer_init(&ct->ctbs.recv,
+>+			   &desc_map, &cmds_map, cmds_size, resv_space);
+>
+> 	return 0;
+> }
+>@@ -279,6 +299,10 @@ void intel_guc_ct_fini(struct intel_guc_ct *ct)
+>
+> 	tasklet_kill(&ct->receive_tasklet);
+> 	i915_vma_unpin_and_release(&ct->vma, I915_VMA_RELEASE_MAP);
+>+	iosys_map_clear(&ct->ctbs.send.desc_map);
+>+	iosys_map_clear(&ct->ctbs.send.cmds_map);
+>+	iosys_map_clear(&ct->ctbs.recv.desc_map);
+>+	iosys_map_clear(&ct->ctbs.recv.cmds_map);
+> 	memset(ct, 0, sizeof(*ct));
+> }
+>
+>@@ -291,8 +315,8 @@ void intel_guc_ct_fini(struct intel_guc_ct *ct)
+> int intel_guc_ct_enable(struct intel_guc_ct *ct)
+> {
+> 	struct intel_guc *guc = ct_to_guc(ct);
+>+	struct iosys_map blob_map;
+> 	u32 base, desc, cmds, size;
+>-	void *blob;
+> 	int err;
+>
+> 	GEM_BUG_ON(ct->enabled);
+>@@ -302,9 +326,14 @@ int intel_guc_ct_enable(struct intel_guc_ct *ct)
+> 	GEM_BUG_ON(!i915_gem_object_has_pinned_pages(ct->vma->obj));
+> 	base = intel_guc_ggtt_offset(guc, ct->vma);
+>
+>+	if (i915_gem_object_is_lmem(ct->vma->obj))
+>+		iosys_map_set_vaddr_iomem(&blob_map, (void __iomem *)
+>+					  __px_vaddr(ct->vma->obj));
+>+	else
+>+		iosys_map_set_vaddr(&blob_map, __px_vaddr(ct->vma->obj));
+>+
+> 	/* blob should start with send descriptor */
+>-	blob = __px_vaddr(ct->vma->obj);
+>-	GEM_BUG_ON(blob != ct->ctbs.send.desc);
+>+	GEM_BUG_ON(!iosys_map_is_equal(&blob_map, &ct->ctbs.send.desc_map));
+>
+> 	/* (re)initialize descriptors */
+> 	guc_ct_buffer_reset(&ct->ctbs.send);
+>@@ -314,15 +343,15 @@ int intel_guc_ct_enable(struct intel_guc_ct *ct)
+> 	 * Register both CT buffers starting with RECV buffer.
+> 	 * Descriptors are in first half of the blob.
+> 	 */
+>-	desc = base + ptrdiff(ct->ctbs.recv.desc, blob);
+>-	cmds = base + ptrdiff(ct->ctbs.recv.cmds, blob);
+>+	desc = base + CTB_RECV_DESC_OFFSET;
+>+	cmds = base + CTB_RECV_CMDS_OFFSET;
+> 	size = ct->ctbs.recv.size * 4;
+> 	err = ct_register_buffer(ct, false, desc, cmds, size);
+> 	if (unlikely(err))
+> 		goto err_out;
+>
+>-	desc = base + ptrdiff(ct->ctbs.send.desc, blob);
+>-	cmds = base + ptrdiff(ct->ctbs.send.cmds, blob);
+>+	desc = base + CTB_SEND_DESC_OFFSET;
+>+	cmds = base + CTB_SEND_CMDS_OFFSET;
+> 	size = ct->ctbs.send.size * 4;
+> 	err = ct_register_buffer(ct, true, desc, cmds, size);
+> 	if (unlikely(err))
+>@@ -371,31 +400,33 @@ static int ct_write(struct intel_guc_ct *ct,
+> 		    u32 fence, u32 flags)
+> {
+> 	struct intel_guc_ct_buffer *ctb = &ct->ctbs.send;
+>-	struct guc_ct_buffer_desc *desc = ctb->desc;
+> 	u32 tail = ctb->tail;
+> 	u32 size = ctb->size;
+> 	u32 header;
+> 	u32 hxg;
+> 	u32 type;
+>-	u32 *cmds = ctb->cmds;
+>+	u32 status = ct_desc_read(&ctb->desc_map, status);
+> 	unsigned int i;
+>
+>-	if (unlikely(desc->status))
+>+	if (unlikely(status))
+> 		goto corrupted;
+>
+> 	GEM_BUG_ON(tail > size);
+>
+> #ifdef CONFIG_DRM_I915_DEBUG_GUC
+>-	if (unlikely(tail != READ_ONCE(desc->tail))) {
+>+	if (unlikely(tail != ct_desc_read(&ctb->desc_map, tail))) {
+> 		CT_ERROR(ct, "Tail was modified %u != %u\n",
+>-			 desc->tail, tail);
+>-		desc->status |= GUC_CTB_STATUS_MISMATCH;
+>+			 ct_desc_read(&ctb->desc_map, tail), tail);
+>+		status |= GUC_CTB_STATUS_MISMATCH;
+>+		ct_desc_write(&ctb->desc_map, status, status);
+> 		goto corrupted;
+> 	}
+>-	if (unlikely(READ_ONCE(desc->head) >= size)) {
+>+	if (unlikely(ct_desc_read(&ctb->desc_map, head) >= size)) {
+> 		CT_ERROR(ct, "Invalid head offset %u >= %u)\n",
+>-			 desc->head, size);
+>-		desc->status |= GUC_CTB_STATUS_OVERFLOW;
+>+			 ct_desc_read(&ctb->desc_map, head), size);
+>+		status = ct_desc_read(&ctb->desc_map, status) |
+>+			GUC_CTB_STATUS_OVERFLOW;
+>+		ct_desc_write(&ctb->desc_map, status, status);
+> 		goto corrupted;
+> 	}
+> #endif
+>@@ -418,14 +449,14 @@ static int ct_write(struct intel_guc_ct *ct,
+> 	CT_DEBUG(ct, "writing (tail %u) %*ph %*ph %*ph\n",
+> 		 tail, 4, &header, 4, &hxg, 4 * (len - 1), &action[1]);
+>
+>-	cmds[tail] = header;
+>+	iosys_map_wr(&ctb->cmds_map, (4 * tail), u32, header);
+
+excess parenthesis	-------------^ 
+
+> 	tail = (tail + 1) % size;
+>
+>-	cmds[tail] = hxg;
+>+	iosys_map_wr(&ctb->cmds_map, (4 * tail), u32, hxg);
+
+and in other places like here
+
+> 	tail = (tail + 1) % size;
+>
+> 	for (i = 1; i < len; i++) {
+>-		cmds[tail] = action[i];
+>+		iosys_map_wr(&ctb->cmds_map, (4 * tail), u32, action[i]);
+> 		tail = (tail + 1) % size;
+> 	}
+> 	GEM_BUG_ON(tail > size);
+>@@ -442,13 +473,14 @@ static int ct_write(struct intel_guc_ct *ct,
+> 	atomic_sub(len + GUC_CTB_HDR_LEN, &ctb->space);
+>
+> 	/* now update descriptor */
+>-	WRITE_ONCE(desc->tail, tail);
+>+	ct_desc_write(&ctb->desc_map, tail, tail);
+
+too bad we will lose the _ONCE annotations. Eventually we may
+want to remove the memcpy[_fromio()] function call, but then we will
+need to pay attention to these. Not something to do here though, just
+thinking out loud.
+
+... lots of changes in a single patch, but apparently it's ok.
+with above changes
+
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+
+thanks
+Lucas De Marchi
+
+>
+> 	return 0;
+>
+> corrupted:
+> 	CT_ERROR(ct, "Corrupted descriptor head=%u tail=%u status=%#x\n",
+>-		 desc->head, desc->tail, desc->status);
+>+		 ct_desc_read(&ctb->desc_map, head), ct_desc_read(&ctb->desc_map, tail),
+>+		 ct_desc_read(&ctb->desc_map, status));
+> 	ctb->broken = true;
+> 	return -EPIPE;
+> }
+>@@ -499,20 +531,22 @@ static inline bool ct_deadlocked(struct intel_guc_ct *ct)
+> 	bool ret = ktime_ms_delta(ktime_get(), ct->stall_time) > timeout;
+>
+> 	if (unlikely(ret)) {
+>-		struct guc_ct_buffer_desc *send = ct->ctbs.send.desc;
+>-		struct guc_ct_buffer_desc *recv = ct->ctbs.send.desc;
+>-
+> 		CT_ERROR(ct, "Communication stalled for %lld ms, desc status=%#x,%#x\n",
+> 			 ktime_ms_delta(ktime_get(), ct->stall_time),
+>-			 send->status, recv->status);
+>+			 ct_desc_read(&ct->ctbs.send.desc_map, status),
+>+			 ct_desc_read(&ct->ctbs.recv.desc_map, status));
+> 		CT_ERROR(ct, "H2G Space: %u (Bytes)\n",
+> 			 atomic_read(&ct->ctbs.send.space) * 4);
+>-		CT_ERROR(ct, "Head: %u (Dwords)\n", ct->ctbs.send.desc->head);
+>-		CT_ERROR(ct, "Tail: %u (Dwords)\n", ct->ctbs.send.desc->tail);
+>+		CT_ERROR(ct, "Head: %u (Dwords)\n",
+>+			 ct_desc_read(&ct->ctbs.send.desc_map, head));
+>+		CT_ERROR(ct, "Tail: %u (Dwords)\n",
+>+			 ct_desc_read(&ct->ctbs.send.desc_map, tail));
+> 		CT_ERROR(ct, "G2H Space: %u (Bytes)\n",
+> 			 atomic_read(&ct->ctbs.recv.space) * 4);
+>-		CT_ERROR(ct, "Head: %u\n (Dwords)", ct->ctbs.recv.desc->head);
+>-		CT_ERROR(ct, "Tail: %u\n (Dwords)", ct->ctbs.recv.desc->tail);
+>+		CT_ERROR(ct, "Head: %u\n (Dwords)",
+>+			 ct_desc_read(&ct->ctbs.recv.desc_map, head));
+>+		CT_ERROR(ct, "Tail: %u\n (Dwords)",
+>+			 ct_desc_read(&ct->ctbs.recv.desc_map, tail));
+>
+> 		ct->ctbs.send.broken = true;
+> 	}
+>@@ -549,18 +583,19 @@ static inline void g2h_release_space(struct intel_guc_ct *ct, u32 g2h_len_dw)
+> static inline bool h2g_has_room(struct intel_guc_ct *ct, u32 len_dw)
+> {
+> 	struct intel_guc_ct_buffer *ctb = &ct->ctbs.send;
+>-	struct guc_ct_buffer_desc *desc = ctb->desc;
+> 	u32 head;
+> 	u32 space;
+>+	u32 status = ct_desc_read(&ctb->desc_map, status);
+>
+> 	if (atomic_read(&ctb->space) >= len_dw)
+> 		return true;
+>
+>-	head = READ_ONCE(desc->head);
+>+	head = ct_desc_read(&ctb->desc_map, head);
+> 	if (unlikely(head > ctb->size)) {
+> 		CT_ERROR(ct, "Invalid head offset %u >= %u)\n",
+> 			 head, ctb->size);
+>-		desc->status |= GUC_CTB_STATUS_OVERFLOW;
+>+		status |= GUC_CTB_STATUS_OVERFLOW;
+>+		ct_desc_write(&ctb->desc_map, status, status);
+> 		ctb->broken = true;
+> 		return false;
+> 	}
+>@@ -803,11 +838,10 @@ static void ct_free_msg(struct ct_incoming_msg *msg)
+> static int ct_read(struct intel_guc_ct *ct, struct ct_incoming_msg **msg)
+> {
+> 	struct intel_guc_ct_buffer *ctb = &ct->ctbs.recv;
+>-	struct guc_ct_buffer_desc *desc = ctb->desc;
+> 	u32 head = ctb->head;
+>-	u32 tail = READ_ONCE(desc->tail);
+>+	u32 tail = ct_desc_read(&ctb->desc_map, tail);
+> 	u32 size = ctb->size;
+>-	u32 *cmds = ctb->cmds;
+>+	u32 status = ct_desc_read(&ctb->desc_map, status);
+> 	s32 available;
+> 	unsigned int len;
+> 	unsigned int i;
+>@@ -816,23 +850,26 @@ static int ct_read(struct intel_guc_ct *ct, struct ct_incoming_msg **msg)
+> 	if (unlikely(ctb->broken))
+> 		return -EPIPE;
+>
+>-	if (unlikely(desc->status))
+>+	if (unlikely(status))
+> 		goto corrupted;
+>
+> 	GEM_BUG_ON(head > size);
+>
+> #ifdef CONFIG_DRM_I915_DEBUG_GUC
+>-	if (unlikely(head != READ_ONCE(desc->head))) {
+>+	if (unlikely(head != ct_desc_read(&ctb->desc_map, head))) {
+> 		CT_ERROR(ct, "Head was modified %u != %u\n",
+>-			 desc->head, head);
+>-		desc->status |= GUC_CTB_STATUS_MISMATCH;
+>+			 ct_desc_read(&ctb->desc_map, head), head);
+>+		status |= GUC_CTB_STATUS_MISMATCH;
+>+		ct_desc_write(&ctb->desc_map, status, status);
+> 		goto corrupted;
+> 	}
+> #endif
+> 	if (unlikely(tail >= size)) {
+> 		CT_ERROR(ct, "Invalid tail offset %u >= %u)\n",
+> 			 tail, size);
+>-		desc->status |= GUC_CTB_STATUS_OVERFLOW;
+>+		status = ct_desc_read(&ctb->desc_map, status) |
+>+			GUC_CTB_STATUS_OVERFLOW;
+>+		ct_desc_write(&ctb->desc_map, status, status);
+> 		goto corrupted;
+> 	}
+>
+>@@ -849,7 +886,7 @@ static int ct_read(struct intel_guc_ct *ct, struct ct_incoming_msg **msg)
+> 	CT_DEBUG(ct, "available %d (%u:%u:%u)\n", available, head, tail, size);
+> 	GEM_BUG_ON(available < 0);
+>
+>-	header = cmds[head];
+>+	header = iosys_map_rd(&ctb->cmds_map, (4 * head), u32);
+> 	head = (head + 1) % size;
+>
+> 	/* message len with header */
+>@@ -857,11 +894,15 @@ static int ct_read(struct intel_guc_ct *ct, struct ct_incoming_msg **msg)
+> 	if (unlikely(len > (u32)available)) {
+> 		CT_ERROR(ct, "Incomplete message %*ph %*ph %*ph\n",
+> 			 4, &header,
+>+			 4 * (head + available - 1 > size ? size - head :
+>+			      available - 1), ((__px_vaddr(ct->vma->obj) +
+>+			      CTB_RECV_CMDS_OFFSET) + (4 * head)),
+> 			 4 * (head + available - 1 > size ?
+>-			      size - head : available - 1), &cmds[head],
+>-			 4 * (head + available - 1 > size ?
+>-			      available - 1 - size + head : 0), &cmds[0]);
+>-		desc->status |= GUC_CTB_STATUS_UNDERFLOW;
+>+			      available - 1 - size + head : 0),
+>+			      (__px_vaddr(ct->vma->obj) + CTB_RECV_CMDS_OFFSET));
+>+		status = ct_desc_read(&ctb->desc_map, status) |
+>+			GUC_CTB_STATUS_UNDERFLOW;
+>+		ct_desc_write(&ctb->desc_map, status, status);
+> 		goto corrupted;
+> 	}
+>
+>@@ -869,17 +910,18 @@ static int ct_read(struct intel_guc_ct *ct, struct ct_incoming_msg **msg)
+> 	if (!*msg) {
+> 		CT_ERROR(ct, "No memory for message %*ph %*ph %*ph\n",
+> 			 4, &header,
+>+			 4 * (head + available - 1 > size ? size - head :
+>+			      available - 1), (ctb->cmds_map.vaddr + (4 * head)),
+> 			 4 * (head + available - 1 > size ?
+>-			      size - head : available - 1), &cmds[head],
+>-			 4 * (head + available - 1 > size ?
+>-			      available - 1 - size + head : 0), &cmds[0]);
+>+			      available - 1 - size + head : 0), ctb->cmds_map.vaddr);
+> 		return available;
+> 	}
+>
+> 	(*msg)->msg[0] = header;
+>
+> 	for (i = 1; i < len; i++) {
+>-		(*msg)->msg[i] = cmds[head];
+>+		(*msg)->msg[i] = iosys_map_rd(&ctb->cmds_map,
+>+					      (4 * head), u32);
+> 		head = (head + 1) % size;
+> 	}
+> 	CT_DEBUG(ct, "received %*ph\n", 4 * len, (*msg)->msg);
+>@@ -888,13 +930,15 @@ static int ct_read(struct intel_guc_ct *ct, struct ct_incoming_msg **msg)
+> 	ctb->head = head;
+>
+> 	/* now update descriptor */
+>-	WRITE_ONCE(desc->head, head);
+>+	ct_desc_write(&ctb->desc_map, head, head);
+>
+> 	return available - len;
+>
+> corrupted:
+> 	CT_ERROR(ct, "Corrupted descriptor head=%u tail=%u status=%#x\n",
+>-		 desc->head, desc->tail, desc->status);
+>+		 ct_desc_read(&ctb->desc_map, head),
+>+		 ct_desc_read(&ctb->desc_map, tail),
+>+		 ct_desc_read(&ctb->desc_map, status));
+> 	ctb->broken = true;
+> 	return -EPIPE;
+> }
+>@@ -1211,13 +1255,13 @@ void intel_guc_ct_print_info(struct intel_guc_ct *ct,
+> 	drm_printf(p, "H2G Space: %u\n",
+> 		   atomic_read(&ct->ctbs.send.space) * 4);
+> 	drm_printf(p, "Head: %u\n",
+>-		   ct->ctbs.send.desc->head);
+>+		   ct_desc_read(&ct->ctbs.send.desc_map, head));
+> 	drm_printf(p, "Tail: %u\n",
+>-		   ct->ctbs.send.desc->tail);
+>+		   ct_desc_read(&ct->ctbs.send.desc_map, tail));
+> 	drm_printf(p, "G2H Space: %u\n",
+> 		   atomic_read(&ct->ctbs.recv.space) * 4);
+> 	drm_printf(p, "Head: %u\n",
+>-		   ct->ctbs.recv.desc->head);
+>+		   ct_desc_read(&ct->ctbs.recv.desc_map, head));
+> 	drm_printf(p, "Tail: %u\n",
+>-		   ct->ctbs.recv.desc->tail);
+>+		   ct_desc_read(&ct->ctbs.recv.desc_map, tail));
+> }
+>diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
+>index f709a19c7e21..867fe13fb47d 100644
+>--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
+>+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
+>@@ -7,6 +7,7 @@
+> #define _INTEL_GUC_CT_H_
+>
+> #include <linux/interrupt.h>
+>+#include <linux/iosys-map.h>
+> #include <linux/spinlock.h>
+> #include <linux/workqueue.h>
+> #include <linux/ktime.h>
+>@@ -32,8 +33,8 @@ struct drm_printer;
+>  * holds the commands.
+>  *
+>  * @lock: protects access to the commands buffer and buffer descriptor
+>- * @desc: pointer to the buffer descriptor
+>- * @cmds: pointer to the commands buffer
+>+ * @desc: iosys map to the buffer descriptor
+>+ * @cmds: iosys map to the commands buffer
+>  * @size: size of the commands buffer in dwords
+>  * @resv_space: reserved space in buffer in dwords
+>  * @head: local shadow copy of head in dwords
+>@@ -43,8 +44,8 @@ struct drm_printer;
+>  */
+> struct intel_guc_ct_buffer {
+> 	spinlock_t lock;
+>-	struct guc_ct_buffer_desc *desc;
+>-	u32 *cmds;
+>+	struct iosys_map desc_map;
+>+	struct iosys_map cmds_map;
+> 	u32 size;
+> 	u32 resv_space;
+> 	u32 tail;
+>-- 
+>2.33.0
+>
