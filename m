@@ -1,33 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C6384EFDF9
-	for <lists+intel-gfx@lfdr.de>; Sat,  2 Apr 2022 04:37:45 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AFD44EFE0E
+	for <lists+intel-gfx@lfdr.de>; Sat,  2 Apr 2022 05:02:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1176810E098;
-	Sat,  2 Apr 2022 02:37:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E0BE10E108;
+	Sat,  2 Apr 2022 03:02:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id CA18410E02A;
- Sat,  2 Apr 2022 02:37:40 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C7886A0099;
- Sat,  2 Apr 2022 02:37:40 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2843347629052463110=="
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E18C10E0F5;
+ Sat,  2 Apr 2022 03:01:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1648868519; x=1680404519;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=nGLFQ+VrJ4zI+alv7uVVWx6t08ELTGEjqdxhrS7T0JY=;
+ b=GvExgpq6g8gob5o8TLVlWDZgeqpPZ/6blOuA8ewKR/bcre4j7+J4EAWy
+ DLdL1HLH9bqmOpOvqNmL8uDdyjnR4Mhady1CQlwvYe49u40+PLJdTJO5H
+ NhYWHIeqZH/m9DCirD0Q2klE4RB21Qc4Un17iguhhpKt+yix3lZmIxfo9
+ GCD3TFPgJy9iNW3tOg73R8cvxmcIG7Vo8TYOCNwPJ603YbkpzCwtkuYKU
+ 0x1IR5MrMXFC+SKk/43fS3B1ZgJKlDESFXXlQ5aKIznUphAYNmUyGggRf
+ jJMHQ7cX05HbH2GrmPMrtR1dn68lDFZQpKLmro2tyMqKeQpfJJ1+wFVko w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10304"; a="346709737"
+X-IronPort-AV: E=Sophos;i="5.90,229,1643702400"; d="scan'208";a="346709737"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Apr 2022 20:01:58 -0700
+X-IronPort-AV: E=Sophos;i="5.90,229,1643702400"; d="scan'208";a="522994817"
+Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.203.144.108])
+ by orsmga006-auth.jf.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Apr 2022 20:01:56 -0700
+Date: Sat, 2 Apr 2022 08:32:38 +0530
+From: Ramalingam C <ramalingam.c@intel.com>
+To: Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>
+Message-ID: <20220402030237.GA29661@intel.com>
+References: <20220401123751.27771-1-ramalingam.c@intel.com>
+ <20220401123751.27771-8-ramalingam.c@intel.com>
+ <20220401142853.GF12046@intel.com>
+ <7517726e-c828-ace8-9968-e542e23d97f1@amd.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Casey Bowman" <casey.g.bowman@intel.com>
-Date: Sat, 02 Apr 2022 02:37:40 -0000
-Message-ID: <164886706078.25497.10612833454847711374@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220330234809.1218210-1-casey.g.bowman@intel.com>
-In-Reply-To: <20220330234809.1218210-1-casey.g.bowman@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgU3Bs?=
- =?utf-8?q?itting_intel-gtt_calls_for_non-x86_platforms_=28rev7=29?=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <7517726e-c828-ace8-9968-e542e23d97f1@amd.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v7 7/9] drm/ttm: Add a parameter to add
+ extra pages into ttm_tt
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,306 +61,173 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>, rodrigo.vivi@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2843347629052463110==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On 2022-04-01 at 16:31:19 +0200, Christian König wrote:
+> I would be nicer to push this through drm-misc-next, but the intel branch
+> works for me as well.
+Hi Christian
 
-== Series Details ==
+I have pushed this patch into drm-misc-next.
 
-Series: Splitting intel-gtt calls for non-x86 platforms (rev7)
-URL   : https://patchwork.freedesktop.org/series/101552/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_11440 -> Patchwork_22763
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_22763 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_22763, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22763/index.html
-
-Participating hosts (47 -> 41)
-------------------------------
-
-  Additional (1): bat-rpls-2 
-  Missing    (7): shard-tglu bat-dg2-8 bat-adlm-1 fi-bsw-cyan shard-rkl shard-dg1 fi-bdw-samus 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_22763:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@gem_exec_fence@nb-await@bcs0:
-    - fi-icl-u2:          [PASS][1] -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11440/fi-icl-u2/igt@gem_exec_fence@nb-await@bcs0.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22763/fi-icl-u2/igt@gem_exec_fence@nb-await@bcs0.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_22763 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@semaphore:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][3] ([fdo#109271] / [fdo#109315]) +17 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22763/fi-hsw-4770/igt@amdgpu/amd_basic@semaphore.html
-
-  * igt@amdgpu/amd_cs_nop@fork-compute0:
-    - fi-blb-e6850:       NOTRUN -> [SKIP][4] ([fdo#109271]) +17 similar issues
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22763/fi-blb-e6850/igt@amdgpu/amd_cs_nop@fork-compute0.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-hsw-g3258:       [PASS][5] -> [INCOMPLETE][6] ([i915#3303] / [i915#4785])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11440/fi-hsw-g3258/igt@i915_selftest@live@hangcheck.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22763/fi-hsw-g3258/igt@i915_selftest@live@hangcheck.html
-
-  * igt@runner@aborted:
-    - fi-icl-u2:          NOTRUN -> [FAIL][7] ([i915#3690] / [i915#4312])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22763/fi-icl-u2/igt@runner@aborted.html
-    - fi-hsw-g3258:       NOTRUN -> [FAIL][8] ([fdo#109271] / [i915#1436] / [i915#4312])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22763/fi-hsw-g3258/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-blb-e6850:       [FAIL][9] ([i915#3194]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11440/fi-blb-e6850/igt@core_hotunplug@unbind-rebind.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22763/fi-blb-e6850/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-dg1-6:          [DMESG-FAIL][11] ([i915#4494] / [i915#4957]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11440/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22763/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
-    - fi-hsw-4770:        [INCOMPLETE][13] ([i915#4785]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11440/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22763/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-
-  * igt@i915_selftest@live@requests:
-    - fi-blb-e6850:       [DMESG-FAIL][15] ([i915#4528]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11440/fi-blb-e6850/igt@i915_selftest@live@requests.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22763/fi-blb-e6850/igt@i915_selftest@live@requests.html
-
-  * igt@kms_busy@basic@flip:
-    - {bat-adlp-6}:       [DMESG-WARN][17] ([i915#3576]) -> [PASS][18] +3 similar issues
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11440/bat-adlp-6/igt@kms_busy@basic@flip.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22763/bat-adlp-6/igt@kms_busy@basic@flip.html
-
-  * igt@kms_flip@basic-plain-flip@a-edp1:
-    - fi-tgl-u2:          [DMESG-WARN][19] ([i915#402]) -> [PASS][20] +1 similar issue
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11440/fi-tgl-u2/igt@kms_flip@basic-plain-flip@a-edp1.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22763/fi-tgl-u2/igt@kms_flip@basic-plain-flip@a-edp1.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#3194]: https://gitlab.freedesktop.org/drm/intel/issues/3194
-  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
-  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
-  [i915#3576]: https://gitlab.freedesktop.org/drm/intel/issues/3576
-  [i915#3690]: https://gitlab.freedesktop.org/drm/intel/issues/3690
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
-  [i915#4528]: https://gitlab.freedesktop.org/drm/intel/issues/4528
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
-  [i915#4957]: https://gitlab.freedesktop.org/drm/intel/issues/4957
-  [i915#5195]: https://gitlab.freedesktop.org/drm/intel/issues/5195
-  [i915#5482]: https://gitlab.freedesktop.org/drm/intel/issues/5482
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_11440 -> Patchwork_22763
-
-  CI-20190529: 20190529
-  CI_DRM_11440: 1aba80b3bc8c8e2cc405cd96fe95770ecbadde71 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6405: 50f7bc405cc1411f57855ed23322c6c4d2510b58 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_22763: 96ebea61b475d4de5b728e20c2e02d7e0b45e48e @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-96ebea61b475 drm/i915: Require INTEL_GTT to depend on X86
-270de0551c0b drm/i915/gt: Split intel-gtt functions by arch
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22763/index.html
-
---===============2843347629052463110==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Splitting intel-gtt calls for non-x86 platforms (rev7)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/101552/">https://patchwork.freedesktop.org/series/101552/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22763/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22763/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11440 -&gt; Patchwork_22763</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_22763 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_22763, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22763/index.html</p>
-<h2>Participating hosts (47 -&gt; 41)</h2>
-<p>Additional (1): bat-rpls-2 <br />
-  Missing    (7): shard-tglu bat-dg2-8 bat-adlm-1 fi-bsw-cyan shard-rkl shard-dg1 fi-bdw-samus </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_22763:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@gem_exec_fence@nb-await@bcs0:<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11440/fi-icl-u2/igt@gem_exec_fence@nb-await@bcs0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22763/fi-icl-u2/igt@gem_exec_fence@nb-await@bcs0.html">DMESG-WARN</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_22763 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@semaphore:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22763/fi-hsw-4770/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@amdgpu/amd_cs_nop@fork-compute0:</p>
-<ul>
-<li>fi-blb-e6850:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22763/fi-blb-e6850/igt@amdgpu/amd_cs_nop@fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-hsw-g3258:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11440/fi-hsw-g3258/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22763/fi-hsw-g3258/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>
-<p>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22763/fi-icl-u2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3690">i915#3690</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
-</li>
-<li>
-<p>fi-hsw-g3258:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22763/fi-hsw-g3258/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11440/fi-blb-e6850/igt@core_hotunplug@unbind-rebind.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3194">i915#3194</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22763/fi-blb-e6850/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>
-<p>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11440/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22763/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">PASS</a></p>
-</li>
-<li>
-<p>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11440/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22763/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a></p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11440/fi-blb-e6850/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22763/fi-blb-e6850/igt@i915_selftest@live@requests.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_busy@basic@flip:</p>
-<ul>
-<li>{bat-adlp-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11440/bat-adlp-6/igt@kms_busy@basic@flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22763/bat-adlp-6/igt@kms_busy@basic@flip.html">PASS</a> +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-plain-flip@a-edp1:</p>
-<ul>
-<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11440/fi-tgl-u2/igt@kms_flip@basic-plain-flip@a-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22763/fi-tgl-u2/igt@kms_flip@basic-plain-flip@a-edp1.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11440 -&gt; Patchwork_22763</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11440: 1aba80b3bc8c8e2cc405cd96fe95770ecbadde71 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6405: 50f7bc405cc1411f57855ed23322c6c4d2510b58 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_22763: 96ebea61b475d4de5b728e20c2e02d7e0b45e48e @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>96ebea61b475 drm/i915: Require INTEL_GTT to depend on X86<br />
-270de0551c0b drm/i915/gt: Split intel-gtt functions by arch</p>
-
-</body>
-</html>
-
---===============2843347629052463110==--
+Regards,
+Ram.
+> 
+> Regards,
+> Christian.
+> 
+> Am 01.04.22 um 16:28 schrieb Ramalingam C:
+> > Christian, Joonas and vivi
+> > 
+> > Once the premerge results are greeen, if this patch can be merged into
+> > drm-intel-gt-next along with other patches could you please ack the
+> > request to merge into drm-intel-gt-next?
+> > 
+> > Thanks
+> > Ram
+> > 
+> > On 2022-04-01 at 18:07:49 +0530, Ramalingam C wrote:
+> > > Add a parameter called "extra_pages" for ttm_tt_init, to indicate that
+> > > driver needs extra pages in ttm_tt.
+> > > 
+> > > v2:
+> > >    Used imperative wording [Thomas and Christian]
+> > > 
+> > > Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
+> > > cc: Christian Koenig <christian.koenig@amd.com>
+> > > cc: Hellstrom Thomas <thomas.hellstrom@intel.com>
+> > > Reviewed-by: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
+> > > Reviewed-by: Christian Konig <christian.koenig@amd.com>
+> > > Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
+> > > ---
+> > >   drivers/gpu/drm/drm_gem_vram_helper.c      |  2 +-
+> > >   drivers/gpu/drm/i915/gem/i915_gem_ttm.c    |  2 +-
+> > >   drivers/gpu/drm/qxl/qxl_ttm.c              |  2 +-
+> > >   drivers/gpu/drm/ttm/ttm_agp_backend.c      |  2 +-
+> > >   drivers/gpu/drm/ttm/ttm_tt.c               | 12 +++++++-----
+> > >   drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c |  2 +-
+> > >   include/drm/ttm/ttm_tt.h                   |  4 +++-
+> > >   7 files changed, 15 insertions(+), 11 deletions(-)
+> > > 
+> > > diff --git a/drivers/gpu/drm/drm_gem_vram_helper.c b/drivers/gpu/drm/drm_gem_vram_helper.c
+> > > index dc7f938bfff2..123045b58fec 100644
+> > > --- a/drivers/gpu/drm/drm_gem_vram_helper.c
+> > > +++ b/drivers/gpu/drm/drm_gem_vram_helper.c
+> > > @@ -867,7 +867,7 @@ static struct ttm_tt *bo_driver_ttm_tt_create(struct ttm_buffer_object *bo,
+> > >   	if (!tt)
+> > >   		return NULL;
+> > > -	ret = ttm_tt_init(tt, bo, page_flags, ttm_cached);
+> > > +	ret = ttm_tt_init(tt, bo, page_flags, ttm_cached, 0);
+> > >   	if (ret < 0)
+> > >   		goto err_ttm_tt_init;
+> > > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> > > index c40aca99442f..a878910a563c 100644
+> > > --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> > > +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> > > @@ -293,7 +293,7 @@ static struct ttm_tt *i915_ttm_tt_create(struct ttm_buffer_object *bo,
+> > >   		i915_tt->is_shmem = true;
+> > >   	}
+> > > -	ret = ttm_tt_init(&i915_tt->ttm, bo, page_flags, caching);
+> > > +	ret = ttm_tt_init(&i915_tt->ttm, bo, page_flags, caching, 0);
+> > >   	if (ret)
+> > >   		goto err_free;
+> > > diff --git a/drivers/gpu/drm/qxl/qxl_ttm.c b/drivers/gpu/drm/qxl/qxl_ttm.c
+> > > index 95df5750f47f..9ba871bd19b1 100644
+> > > --- a/drivers/gpu/drm/qxl/qxl_ttm.c
+> > > +++ b/drivers/gpu/drm/qxl/qxl_ttm.c
+> > > @@ -113,7 +113,7 @@ static struct ttm_tt *qxl_ttm_tt_create(struct ttm_buffer_object *bo,
+> > >   	ttm = kzalloc(sizeof(struct ttm_tt), GFP_KERNEL);
+> > >   	if (ttm == NULL)
+> > >   		return NULL;
+> > > -	if (ttm_tt_init(ttm, bo, page_flags, ttm_cached)) {
+> > > +	if (ttm_tt_init(ttm, bo, page_flags, ttm_cached, 0)) {
+> > >   		kfree(ttm);
+> > >   		return NULL;
+> > >   	}
+> > > diff --git a/drivers/gpu/drm/ttm/ttm_agp_backend.c b/drivers/gpu/drm/ttm/ttm_agp_backend.c
+> > > index 6ddc16f0fe2b..d27691f2e451 100644
+> > > --- a/drivers/gpu/drm/ttm/ttm_agp_backend.c
+> > > +++ b/drivers/gpu/drm/ttm/ttm_agp_backend.c
+> > > @@ -134,7 +134,7 @@ struct ttm_tt *ttm_agp_tt_create(struct ttm_buffer_object *bo,
+> > >   	agp_be->mem = NULL;
+> > >   	agp_be->bridge = bridge;
+> > > -	if (ttm_tt_init(&agp_be->ttm, bo, page_flags, ttm_write_combined)) {
+> > > +	if (ttm_tt_init(&agp_be->ttm, bo, page_flags, ttm_write_combined, 0)) {
+> > >   		kfree(agp_be);
+> > >   		return NULL;
+> > >   	}
+> > > diff --git a/drivers/gpu/drm/ttm/ttm_tt.c b/drivers/gpu/drm/ttm/ttm_tt.c
+> > > index d234aab800a0..1a66d9fc589a 100644
+> > > --- a/drivers/gpu/drm/ttm/ttm_tt.c
+> > > +++ b/drivers/gpu/drm/ttm/ttm_tt.c
+> > > @@ -134,9 +134,10 @@ void ttm_tt_destroy(struct ttm_device *bdev, struct ttm_tt *ttm)
+> > >   static void ttm_tt_init_fields(struct ttm_tt *ttm,
+> > >   			       struct ttm_buffer_object *bo,
+> > >   			       uint32_t page_flags,
+> > > -			       enum ttm_caching caching)
+> > > +			       enum ttm_caching caching,
+> > > +			       unsigned long extra_pages)
+> > >   {
+> > > -	ttm->num_pages = PAGE_ALIGN(bo->base.size) >> PAGE_SHIFT;
+> > > +	ttm->num_pages = (PAGE_ALIGN(bo->base.size) >> PAGE_SHIFT) + extra_pages;
+> > >   	ttm->caching = ttm_cached;
+> > >   	ttm->page_flags = page_flags;
+> > >   	ttm->dma_address = NULL;
+> > > @@ -146,9 +147,10 @@ static void ttm_tt_init_fields(struct ttm_tt *ttm,
+> > >   }
+> > >   int ttm_tt_init(struct ttm_tt *ttm, struct ttm_buffer_object *bo,
+> > > -		uint32_t page_flags, enum ttm_caching caching)
+> > > +		uint32_t page_flags, enum ttm_caching caching,
+> > > +		unsigned long extra_pages)
+> > >   {
+> > > -	ttm_tt_init_fields(ttm, bo, page_flags, caching);
+> > > +	ttm_tt_init_fields(ttm, bo, page_flags, caching, extra_pages);
+> > >   	if (ttm_tt_alloc_page_directory(ttm)) {
+> > >   		pr_err("Failed allocating page table\n");
+> > > @@ -180,7 +182,7 @@ int ttm_sg_tt_init(struct ttm_tt *ttm, struct ttm_buffer_object *bo,
+> > >   {
+> > >   	int ret;
+> > > -	ttm_tt_init_fields(ttm, bo, page_flags, caching);
+> > > +	ttm_tt_init_fields(ttm, bo, page_flags, caching, 0);
+> > >   	if (page_flags & TTM_TT_FLAG_EXTERNAL)
+> > >   		ret = ttm_sg_tt_alloc_page_directory(ttm);
+> > > diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c b/drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c
+> > > index b84ecc6d6611..4e3938e62c08 100644
+> > > --- a/drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c
+> > > +++ b/drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c
+> > > @@ -517,7 +517,7 @@ static struct ttm_tt *vmw_ttm_tt_create(struct ttm_buffer_object *bo,
+> > >   				     ttm_cached);
+> > >   	else
+> > >   		ret = ttm_tt_init(&vmw_be->dma_ttm, bo, page_flags,
+> > > -				  ttm_cached);
+> > > +				  ttm_cached, 0);
+> > >   	if (unlikely(ret != 0))
+> > >   		goto out_no_init;
+> > > diff --git a/include/drm/ttm/ttm_tt.h b/include/drm/ttm/ttm_tt.h
+> > > index f20832139815..17a0310e8aaa 100644
+> > > --- a/include/drm/ttm/ttm_tt.h
+> > > +++ b/include/drm/ttm/ttm_tt.h
+> > > @@ -140,6 +140,7 @@ int ttm_tt_create(struct ttm_buffer_object *bo, bool zero_alloc);
+> > >    * @bo: The buffer object we create the ttm for.
+> > >    * @page_flags: Page flags as identified by TTM_TT_FLAG_XX flags.
+> > >    * @caching: the desired caching state of the pages
+> > > + * @extra_pages: Extra pages needed for the driver.
+> > >    *
+> > >    * Create a struct ttm_tt to back data with system memory pages.
+> > >    * No pages are actually allocated.
+> > > @@ -147,7 +148,8 @@ int ttm_tt_create(struct ttm_buffer_object *bo, bool zero_alloc);
+> > >    * NULL: Out of memory.
+> > >    */
+> > >   int ttm_tt_init(struct ttm_tt *ttm, struct ttm_buffer_object *bo,
+> > > -		uint32_t page_flags, enum ttm_caching caching);
+> > > +		uint32_t page_flags, enum ttm_caching caching,
+> > > +		unsigned long extra_pages);
+> > >   int ttm_sg_tt_init(struct ttm_tt *ttm_dma, struct ttm_buffer_object *bo,
+> > >   		   uint32_t page_flags, enum ttm_caching caching);
+> > > -- 
+> > > 2.20.1
+> > > 
+> 
