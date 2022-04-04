@@ -2,49 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FB6B4F160F
-	for <lists+intel-gfx@lfdr.de>; Mon,  4 Apr 2022 15:39:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 46B2B4F1610
+	for <lists+intel-gfx@lfdr.de>; Mon,  4 Apr 2022 15:39:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6EC2C10F57F;
-	Mon,  4 Apr 2022 13:38:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ECA6A10F5D4;
+	Mon,  4 Apr 2022 13:38:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 695BC10E0AE
- for <intel-gfx@lists.freedesktop.org>; Mon,  4 Apr 2022 13:38:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7112E10F5CF;
+ Mon,  4 Apr 2022 13:38:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649079536; x=1680615536;
+ t=1649079538; x=1680615538;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=KKcrA5s0D28eDvqR9BU8Jwr4YDquWyOzvFY2yiWZqQw=;
- b=ZMcXlksbMduMwyOq9OQ9kQDEbLPH6rMCA+kQ+Oi66RexHwiY8UIdFzFD
- MYGdeI9dtWib3yKDIgdM5YWeInAtTvkl93HjbwqvjyOP6jZe16UwErFA5
- QfDJUF/cA9HB0DL51Mp+WltSIRtoV35oDBqIshFY+HW5tX640ah4pOd1p
- sCIoZtGECFwguG7k8xVX43bm9kboeP472l5xuXubGdJImDXpgnQHqtGZA
- rDnROV5jmp6rUaxsOEgjjnG7x4WOaRTBqKJP6ZMyGgCGtPxvH88h67Aad
- jpHXFZ5BIcK9TKjp23A7gGtsathkDA5F9Qpy2xYeVJe5h4cxaZQOGR1ay g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10306"; a="321210237"
-X-IronPort-AV: E=Sophos;i="5.90,234,1643702400"; d="scan'208";a="321210237"
+ bh=A+aL2KuJ6UEihn352iGjxL3BF6UK7i1fl8dUqaYgqzc=;
+ b=fyQi0caPUoIgNg7KsGnVKCqfZg7EEMCvUloMj/GgDMI3SzvyDJwSBH8T
+ XCxHLj/c+BHvTUeTzfCzkfAeyISzQ/a3SiYBr3A0fFw5EhHt58t08MJ2G
+ ng0WGZsdUrGzsudUUIc9Wu9i2MMJCn/3CaNMfX23BK/roEx+4FD7bVKz1
+ WM/OClqqOUqTuLVLhM1abWwdPtcGl+T92Fhn5XUtC9zkSzHor5cwQ/4gw
+ S/s89Nk1ExlvthsA5D4uDVkQ+5dQWK4sCTnzLPnDwBh0u+ZKuOIxg+YFL
+ h+YBPatkNMPQiWKkVHgAzvItqmjHcglw262q5Chmhb+2c8IAaRr5Ub82H w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10306"; a="321210253"
+X-IronPort-AV: E=Sophos;i="5.90,234,1643702400"; d="scan'208";a="321210253"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Apr 2022 06:38:55 -0700
-X-IronPort-AV: E=Sophos;i="5.90,234,1643702400"; d="scan'208";a="548655980"
+ 04 Apr 2022 06:38:58 -0700
+X-IronPort-AV: E=Sophos;i="5.90,234,1643702400"; d="scan'208";a="548656003"
 Received: from ideak-desk.fi.intel.com ([10.237.72.175])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Apr 2022 06:38:53 -0700
+ 04 Apr 2022 06:38:56 -0700
 From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon,  4 Apr 2022 16:38:44 +0300
-Message-Id: <20220404133846.131401-3-imre.deak@intel.com>
+Date: Mon,  4 Apr 2022 16:38:45 +0300
+Message-Id: <20220404133846.131401-4-imre.deak@intel.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20220404133846.131401-1-imre.deak@intel.com>
 References: <20220404133846.131401-1-imre.deak@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/4] drm/i915/dg2: Add support for DG2 render
- and media compression
+Subject: [Intel-gfx] [PATCH 3/4] drm/fourcc: Introduce format modifier for
+ DG2 clear color
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,129 +57,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?q?Juha-Pekka=20Heikkil=C3=A4?= <juha-pekka.heikkila@intel.com>
+Cc: dri-devel@lists.freedesktop.org,
+ =?UTF-8?q?Juha-Pekka=20Heikkil=C3=A4?= <juha-pekka.heikkila@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Matt Roper <matthew.d.roper@intel.com>
+From: Mika Kahola <mika.kahola@intel.com>
 
-Add support for DG2 render and media compression, for the description of
-buffer layouts see the previous patch adding the corresponding
-frame buffer modifiers.
+DG2 clear color render compression uses Tile4 layout. Therefore, we need
+to define a new format modifier for uAPI to support clear color rendering.
 
 v2:
-  Display version fix [Imre]
+  Display version is fixed. [Imre]
+  KDoc is enhanced for cc modifier. [Nanley & Lionel]
 v3:
-  Split out modifier addition to separate patch.
+  Split out the modifier addition to a separate patch.
+  Clarify the modifier layout description.
 
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+Cc: dri-devel@lists.freedesktop.org
 Signed-off-by: Mika Kahola <mika.kahola@intel.com>
 cc: Anshuman Gupta <anshuman.gupta@intel.com>
 Signed-off-by: Juha-Pekka Heikkilä <juha-pekka.heikkila@intel.com>
 Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
 Signed-off-by: Imre Deak <imre.deak@intel.com>
+Acked-by: Nanley Chery <nanley.g.chery@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_fb.c       | 13 ++++++++++
- .../drm/i915/display/skl_universal_plane.c    | 26 ++++++++++++++++---
- 2 files changed, 35 insertions(+), 4 deletions(-)
+ include/uapi/drm/drm_fourcc.h | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-index e9ad142ac40fa..447003a91160e 100644
---- a/drivers/gpu/drm/i915/display/intel_fb.c
-+++ b/drivers/gpu/drm/i915/display/intel_fb.c
-@@ -141,6 +141,14 @@ struct intel_modifier_desc {
+diff --git a/include/uapi/drm/drm_fourcc.h b/include/uapi/drm/drm_fourcc.h
+index 4a5117715db3c..e5074162bcdd4 100644
+--- a/include/uapi/drm/drm_fourcc.h
++++ b/include/uapi/drm/drm_fourcc.h
+@@ -605,6 +605,20 @@ extern "C" {
+  */
+ #define I915_FORMAT_MOD_4_TILED_DG2_MC_CCS fourcc_mod_code(INTEL, 11)
  
- static const struct intel_modifier_desc intel_modifiers[] = {
- 	{
-+		.modifier = I915_FORMAT_MOD_4_TILED_DG2_MC_CCS,
-+		.display_ver = { 13, 13 },
-+		.plane_caps = INTEL_PLANE_CAP_TILING_4 | INTEL_PLANE_CAP_CCS_MC,
-+	}, {
-+		.modifier = I915_FORMAT_MOD_4_TILED_DG2_RC_CCS,
-+		.display_ver = { 13, 13 },
-+		.plane_caps = INTEL_PLANE_CAP_TILING_4 | INTEL_PLANE_CAP_CCS_RC,
-+	}, {
- 		.modifier = I915_FORMAT_MOD_4_TILED,
- 		.display_ver = { 13, 13 },
- 		.plane_caps = INTEL_PLANE_CAP_TILING_4,
-@@ -550,6 +558,8 @@ intel_tile_width_bytes(const struct drm_framebuffer *fb, int color_plane)
- 			return 128;
- 		else
- 			return 512;
-+	case I915_FORMAT_MOD_4_TILED_DG2_RC_CCS:
-+	case I915_FORMAT_MOD_4_TILED_DG2_MC_CCS:
- 	case I915_FORMAT_MOD_4_TILED:
- 		/*
- 		 * Each 4K tile consists of 64B(8*8) subtiles, with
-@@ -752,6 +762,9 @@ unsigned int intel_surf_alignment(const struct drm_framebuffer *fb,
- 	case I915_FORMAT_MOD_4_TILED:
- 	case I915_FORMAT_MOD_Yf_TILED:
- 		return 1 * 1024 * 1024;
-+	case I915_FORMAT_MOD_4_TILED_DG2_RC_CCS:
-+	case I915_FORMAT_MOD_4_TILED_DG2_MC_CCS:
-+		return 16 * 1024;
- 	default:
- 		MISSING_CASE(fb->modifier);
- 		return 0;
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index c57fca1fe6788..b939c503bc6ff 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -773,6 +773,14 @@ static u32 skl_plane_ctl_tiling(u64 fb_modifier)
- 		return PLANE_CTL_TILED_Y;
- 	case I915_FORMAT_MOD_4_TILED:
- 		return PLANE_CTL_TILED_4;
-+	case I915_FORMAT_MOD_4_TILED_DG2_RC_CCS:
-+		return PLANE_CTL_TILED_4 |
-+			PLANE_CTL_RENDER_DECOMPRESSION_ENABLE |
-+			PLANE_CTL_CLEAR_COLOR_DISABLE;
-+	case I915_FORMAT_MOD_4_TILED_DG2_MC_CCS:
-+		return PLANE_CTL_TILED_4 |
-+			PLANE_CTL_MEDIA_DECOMPRESSION_ENABLE |
-+			PLANE_CTL_CLEAR_COLOR_DISABLE;
- 	case I915_FORMAT_MOD_Y_TILED_CCS:
- 	case I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC:
- 		return PLANE_CTL_TILED_Y | PLANE_CTL_RENDER_DECOMPRESSION_ENABLE;
-@@ -2168,6 +2176,10 @@ static bool gen12_plane_has_mc_ccs(struct drm_i915_private *i915,
- 	if (IS_ADLP_DISPLAY_STEP(i915, STEP_A0, STEP_B0))
- 		return false;
- 
-+	/* Wa_14013215631 */
-+	if (IS_DG2_DISPLAY_STEP(i915, STEP_A0, STEP_C0))
-+		return false;
++/*
++ * Intel Color Control Surface with Clear Color (CCS) for DG2 render compression.
++ *
++ * The main surface is Tile 4 and at plane index 0. The CCS data is stored
++ * outside of the GEM object in a reserved memory area dedicated for the
++ * storage of the CCS data for all RC/RC_CC/MC compressible GEM objects. The
++ * main surface pitch is required to be a multiple of four Tile 4 widths. The
++ * clear color is stored at plane index 1 and the pitch should be ignored. The
++ * format of the 256 bits of clear color data matches the one used for the
++ * I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC modifier, see its description
++ * for details.
++ */
++#define I915_FORMAT_MOD_4_TILED_DG2_RC_CCS_CC fourcc_mod_code(INTEL, 12)
 +
- 	return plane_id < PLANE_SPRITE4;
- }
- 
-@@ -2415,9 +2427,10 @@ skl_get_initial_plane_config(struct intel_crtc *crtc,
- 	case PLANE_CTL_TILED_Y:
- 		plane_config->tiling = I915_TILING_Y;
- 		if (val & PLANE_CTL_RENDER_DECOMPRESSION_ENABLE)
--			fb->modifier = DISPLAY_VER(dev_priv) >= 12 ?
--				I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS :
--				I915_FORMAT_MOD_Y_TILED_CCS;
-+			if (DISPLAY_VER(dev_priv) >= 12)
-+				fb->modifier = I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS;
-+			else
-+				fb->modifier = I915_FORMAT_MOD_Y_TILED_CCS;
- 		else if (val & PLANE_CTL_MEDIA_DECOMPRESSION_ENABLE)
- 			fb->modifier = I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS;
- 		else
-@@ -2425,7 +2438,12 @@ skl_get_initial_plane_config(struct intel_crtc *crtc,
- 		break;
- 	case PLANE_CTL_TILED_YF: /* aka PLANE_CTL_TILED_4 on XE_LPD+ */
- 		if (HAS_4TILE(dev_priv)) {
--			fb->modifier = I915_FORMAT_MOD_4_TILED;
-+			if (val & PLANE_CTL_RENDER_DECOMPRESSION_ENABLE)
-+				fb->modifier = I915_FORMAT_MOD_4_TILED_DG2_RC_CCS;
-+			else if (val & PLANE_CTL_MEDIA_DECOMPRESSION_ENABLE)
-+				fb->modifier = I915_FORMAT_MOD_4_TILED_DG2_MC_CCS;
-+			else
-+				fb->modifier = I915_FORMAT_MOD_4_TILED;
- 		} else {
- 			if (val & PLANE_CTL_RENDER_DECOMPRESSION_ENABLE)
- 				fb->modifier = I915_FORMAT_MOD_Yf_TILED_CCS;
+ /*
+  * Tiled, NV12MT, grouped in 64 (pixels) x 32 (lines) -sized macroblocks
+  *
 -- 
 2.30.2
 
