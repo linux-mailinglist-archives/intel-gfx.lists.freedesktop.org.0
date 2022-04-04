@@ -1,50 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29A9E4F19AA
-	for <lists+intel-gfx@lfdr.de>; Mon,  4 Apr 2022 20:15:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9DA24F19B9
+	for <lists+intel-gfx@lfdr.de>; Mon,  4 Apr 2022 20:22:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8006B10E5A0;
-	Mon,  4 Apr 2022 18:15:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5713010E342;
+	Mon,  4 Apr 2022 18:22:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5EFC910E12A
- for <intel-gfx@lists.freedesktop.org>; Mon,  4 Apr 2022 18:15:56 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CDB4310E5A4
+ for <intel-gfx@lists.freedesktop.org>; Mon,  4 Apr 2022 18:22:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649096156; x=1680632156;
- h=date:from:to:subject:message-id:references:mime-version:
- in-reply-to; bh=sNj2/ETf8551Ar29HNqQNpauAs6Y3TvrxVYnYuQpQu4=;
- b=krl91AQzZFWVisD99FAGaOU+RMmzRnavB/Q5q/N8Mx83Ikaq8M8qde0o
- Sy1HwWkNJ/iPWQZbPV0nN0CIOQsVtPUd5g5nzVcmZWATOscq7r70HNiTp
- paeHFQ0XoMES77S7/17cVNLbmslnG6bRbJEaetxhmNh8vKfTtWLu2o3ek
- hxDCWQEcGGUHFIz6DZSQNh+TmEiAetxJAEdIhQxKSwTNNSbEfffSwEBTj
- ZG5sV6PkuwSOVjW+isHc/8GMnU6FQXU76KKngYBH4Qu5mqs2Aac/J6qdg
- YaZXzqc5lw2SyycmVkUL0FEHs/30xTqtCnAcGtN2K4AELINq2pEwrVP36 Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10307"; a="240516225"
-X-IronPort-AV: E=Sophos;i="5.90,235,1643702400"; d="scan'208";a="240516225"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Apr 2022 11:15:55 -0700
-X-IronPort-AV: E=Sophos;i="5.90,235,1643702400"; d="scan'208";a="504994332"
-Received: from rshrader-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
- ([10.212.170.103])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Apr 2022 11:15:55 -0700
-Date: Mon, 4 Apr 2022 11:15:55 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
+ t=1649096548; x=1680632548;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=T7DlMB5CU3IPs8LxrJTdw/2RQ2bFu0scIkFYCnrvmXo=;
+ b=Ly8HhXJXtyZ0Ir+qAx9n++OpUC6VgM8SLRidD0fTqm98RA8PhMMrPKIj
+ FaPZViNcr6BWI11RBxKJVV/m8tUJ5he/UTiZA7GNYf4fFgdysjaqO2b4r
+ W90KO3eI7AnzdSl7TfV8vGJ6Le1vmwKnjjSTHtitX0+6ZLDg+mSW0YVeb
+ NzO4vhc1DKaYKb3qdzPe46CpMxn3kiy/+yUj4hw/z1x93UX65SyRVUkvc
+ InC1aRmcW3IWjvpMbMEWSHg6R+XRvKgL58Vzw9xBhIRnytK5lE1B6KMjL
+ djRUZwOZF9s3PvVEea/EdQ4dyl+x5Qd2c78BRIIE+Yrm9eVkEUOfacnIe A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10307"; a="347021169"
+X-IronPort-AV: E=Sophos;i="5.90,235,1643702400"; d="scan'208";a="347021169"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Apr 2022 11:22:27 -0700
+X-IronPort-AV: E=Sophos;i="5.90,235,1643702400"; d="scan'208";a="721748028"
+Received: from valcore-skull-1.fm.intel.com ([10.1.27.19])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Apr 2022 11:22:27 -0700
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Message-ID: <20220404181555.qz55qlb5rqgbephw@ldmartin-desk2>
-X-Patchwork-Hint: comment
-References: <20220404173453.2632031-1-lucas.demarchi@intel.com>
+Date: Mon,  4 Apr 2022 11:17:00 -0700
+Message-Id: <20220404181706.3523646-1-daniele.ceraolospurio@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20220404173453.2632031-1-lucas.demarchi@intel.com>
-Subject: Re: [Intel-gfx] [CI] drm/i915/uncore: keep track of last mmio
- accesses
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [CI 0/6] GSC support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,55 +53,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: alexander.usyskin@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Apr 04, 2022 at 10:34:53AM -0700, Lucas De Marchi wrote:
->Sine gen6 we use FPGA_DBG register to detect unclaimed MMIO registers.
->This register is in the display engine IP and can only ever detect
->unclaimed accesses to registers in this area. However sometimes there
->are reports of this triggering for registers in other areas, which
->should not be possible.
->
->This keeps track of the last 4 registers which should hopefully be
->sufficient to understand where these are coming from. And without
->increasing the debug struct too much:
->
->Before:
->	struct intel_uncore_mmio_debug {
->		spinlock_t                 lock;                 /*     0    64 */
->		/* --- cacheline 1 boundary (64 bytes) --- */
->		int                        unclaimed_mmio_check; /*    64     4 */
->		int                        saved_mmio_check;     /*    68     4 */
->		u32                        suspend_count;        /*    72     4 */
->
->		/* size: 80, cachelines: 2, members: 4 */
->		/* padding: 4 */
->		/* last cacheline: 16 bytes */
->	};
->
->After:
->	struct intel_uncore_mmio_debug {
->		spinlock_t                 lock;                 /*     0    64 */
->		/* --- cacheline 1 boundary (64 bytes) --- */
->		int                        unclaimed_mmio_check; /*    64     4 */
->		int                        saved_mmio_check;     /*    68     4 */
->		u32                        last_reg[4];          /*    72    16 */
->		u32                        last_reg_pos;         /*    88     4 */
->		u32                        suspend_count;        /*    92     4 */
->
->		/* size: 96, cachelines: 2, members: 6 */
->		/* last cacheline: 32 bytes */
->	};
->
->Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
->---
->
->Sending this for CI only for now, to get it running and hopefully
->reproduce the issues we are seeing. I didn't reproduce the issue
->mentioned with this patch applied yet.
+Same as the version already fully reviewed [1] (bar a very minor
+rebase), but with an added patch to force the new aux driver to be
+built in CI.
 
-nvm, found a way to reproduce it locally and fix up the output
-reporting. I canceled the CI execution and will submit it again.
+The Test-with in the previous CI run didn't work (not implemented yet
+for the DG1 machines in CI) so re-sending now that the IGT updates are
+merged.
 
-Lucas De Marchi
+I've renamed the series so that I get ownership on patchwork to be able
+to re-trigger the tests if necessary.
+
+[1] https://patchwork.freedesktop.org/series/98066/#rev11
+
+Cc: Alexander Usyskin <alexander.usyskin@intel.com>
+
+Alexander Usyskin (2):
+  mei: gsc: setup char driver alive in spite of firmware handshake
+    failure
+  mei: gsc: retrieve the firmware version
+
+Daniele Ceraolo Spurio (1):
+  HAX: drm/i915: force INTEL_MEI_GSC on for CI
+
+Tomas Winkler (3):
+  drm/i915/gsc: add gsc as a mei auxiliary device
+  mei: add support for graphics system controller (gsc) devices
+  mei: gsc: add runtime pm handlers
+
+ MAINTAINERS                              |   1 +
+ drivers/gpu/drm/i915/Kconfig             |   1 +
+ drivers/gpu/drm/i915/Kconfig.debug       |   1 +
+ drivers/gpu/drm/i915/Makefile            |   3 +
+ drivers/gpu/drm/i915/gt/intel_gsc.c      | 204 ++++++++++++++++++
+ drivers/gpu/drm/i915/gt/intel_gsc.h      |  37 ++++
+ drivers/gpu/drm/i915/gt/intel_gt.c       |   3 +
+ drivers/gpu/drm/i915/gt/intel_gt.h       |   5 +
+ drivers/gpu/drm/i915/gt/intel_gt_irq.c   |  13 ++
+ drivers/gpu/drm/i915/gt/intel_gt_regs.h  |   1 +
+ drivers/gpu/drm/i915/gt/intel_gt_types.h |   2 +
+ drivers/gpu/drm/i915/i915_drv.h          |   8 +
+ drivers/gpu/drm/i915/i915_pci.c          |   3 +-
+ drivers/gpu/drm/i915/i915_reg.h          |   2 +
+ drivers/gpu/drm/i915/intel_device_info.h |   2 +
+ drivers/misc/mei/Kconfig                 |  14 ++
+ drivers/misc/mei/Makefile                |   3 +
+ drivers/misc/mei/bus-fixup.c             |  25 +++
+ drivers/misc/mei/gsc-me.c                | 259 +++++++++++++++++++++++
+ drivers/misc/mei/hw-me.c                 |  29 ++-
+ drivers/misc/mei/hw-me.h                 |   2 +
+ include/linux/mei_aux.h                  |  19 ++
+ 22 files changed, 634 insertions(+), 3 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/gt/intel_gsc.c
+ create mode 100644 drivers/gpu/drm/i915/gt/intel_gsc.h
+ create mode 100644 drivers/misc/mei/gsc-me.c
+ create mode 100644 include/linux/mei_aux.h
+
+-- 
+2.25.1
+
