@@ -2,32 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9F1F4F1BB2
-	for <lists+intel-gfx@lfdr.de>; Mon,  4 Apr 2022 23:24:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 045674F1CE8
+	for <lists+intel-gfx@lfdr.de>; Mon,  4 Apr 2022 23:35:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2561410E518;
-	Mon,  4 Apr 2022 21:24:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D10E10E55E;
+	Mon,  4 Apr 2022 21:35:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id E526D10E515;
- Mon,  4 Apr 2022 21:24:41 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E1174A01BB;
- Mon,  4 Apr 2022 21:24:41 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7789195667652408651=="
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 21D5B10E55E;
+ Mon,  4 Apr 2022 21:35:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1649108149; x=1680644149;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=Gay0tKWt9zQuPse1JGiW5Xm7J4UvqDtgFwxn7J7lZtc=;
+ b=KZdGkPKdXE3JKmV2oc28u8k0z+CuounSlx+uH+RcZ0M62Qn9vBCr0HIe
+ uThx/FArEd+HZnILNHTJvlO8fIH0Dz7Qyu9Vf9KsJWA9YqwH5odvTdCgn
+ Lw/2Suycz3OTe4okJ2vy6C2yI3IrHZIAmMblDth59tynQ94/bLVykZs7X
+ B/u1jMH7YxYydN5MvhYqqxi6s0ksrjEVQSM1UH6etw/6qTjhLJW0UZcXY
+ vxSfTifVuneRkZ0zWmBFOwg++aWRXL1lpIPLig4wxQqcZ81JSqIt/MJGa
+ WicNxx9L5IpFTH6NFoXI1+BjpCCO6lmbS+VBgxUYDH/COgWRHuRhK1HUR Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10307"; a="260310079"
+X-IronPort-AV: E=Sophos;i="5.90,235,1643702400"; d="scan'208";a="260310079"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Apr 2022 14:35:38 -0700
+X-IronPort-AV: E=Sophos;i="5.90,235,1643702400"; d="scan'208";a="569558198"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Apr 2022 14:35:38 -0700
+Date: Mon, 4 Apr 2022 14:35:36 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Message-ID: <YktkqBnknXIn+6A3@mdroper-desk1.amr.corp.intel.com>
+References: <20220330232858.3204283-1-matthew.d.roper@intel.com>
+ <20220330232858.3204283-16-matthew.d.roper@intel.com>
+ <14359c1d-506c-1c60-51a6-33e1d0a50420@linux.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
-Date: Mon, 04 Apr 2022 21:24:41 -0000
-Message-ID: <164910748191.4269.4771367195401632802@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220404181706.3523646-1-daniele.ceraolospurio@intel.com>
-In-Reply-To: <20220404181706.3523646-1-daniele.ceraolospurio@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgR1ND?=
- =?utf-8?q?_support?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <14359c1d-506c-1c60-51a6-33e1d0a50420@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH 15/15] drm/i915/xehp: Eliminate
+ shared/implicit steering
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,572 +59,318 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============7789195667652408651==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: GSC support
-URL   : https://patchwork.freedesktop.org/series/102160/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_11450 -> Patchwork_22775
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_22775 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_22775, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/index.html
-
-Participating hosts (44 -> 44)
-------------------------------
-
-  Additional (2): bat-rpls-2 bat-dg1-5 
-  Missing    (2): fi-bsw-cyan fi-icl-u2 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_22775:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@gem_ringfill@basic-all:
-    - bat-dg1-5:          NOTRUN -> [TIMEOUT][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/bat-dg1-5/igt@gem_ringfill@basic-all.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_22775 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@cs-sdma:
-    - fi-hsw-g3258:       NOTRUN -> [SKIP][2] ([fdo#109271] / [fdo#109315]) +17 similar issues
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/fi-hsw-g3258/igt@amdgpu/amd_basic@cs-sdma.html
-
-  * igt@amdgpu/amd_cs_nop@sync-fork-compute0:
-    - fi-snb-2600:        NOTRUN -> [SKIP][3] ([fdo#109271]) +17 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html
-
-  * igt@fbdev@write:
-    - bat-dg1-5:          NOTRUN -> [SKIP][4] ([i915#2582]) +4 similar issues
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/bat-dg1-5/igt@fbdev@write.html
-
-  * igt@gem_exec_gttfill@basic:
-    - bat-dg1-5:          NOTRUN -> [SKIP][5] ([i915#4086])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/bat-dg1-5/igt@gem_exec_gttfill@basic.html
-
-  * igt@gem_lmem_swapping@verify-random:
-    - fi-tgl-u2:          NOTRUN -> [SKIP][6] ([i915#4613]) +1 similar issue
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/fi-tgl-u2/igt@gem_lmem_swapping@verify-random.html
-
-  * igt@gem_mmap@basic:
-    - bat-dg1-5:          NOTRUN -> [SKIP][7] ([i915#4083])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/bat-dg1-5/igt@gem_mmap@basic.html
-
-  * igt@gem_tiled_fence_blits@basic:
-    - bat-dg1-5:          NOTRUN -> [SKIP][8] ([i915#4077]) +2 similar issues
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/bat-dg1-5/igt@gem_tiled_fence_blits@basic.html
-
-  * igt@gem_tiled_pread_basic:
-    - bat-dg1-5:          NOTRUN -> [SKIP][9] ([i915#4079]) +1 similar issue
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/bat-dg1-5/igt@gem_tiled_pread_basic.html
-
-  * igt@i915_pm_backlight@basic-brightness:
-    - bat-dg1-5:          NOTRUN -> [SKIP][10] ([i915#1155])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/bat-dg1-5/igt@i915_pm_backlight@basic-brightness.html
-
-  * igt@i915_selftest@live@gt_engines:
-    - bat-dg1-5:          NOTRUN -> [INCOMPLETE][11] ([i915#4418])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/bat-dg1-5/igt@i915_selftest@live@gt_engines.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-dg1-6:          [PASS][12] -> [DMESG-FAIL][13] ([i915#4494] / [i915#4957])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11450/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
-
-  * igt@kms_addfb_basic@basic-y-tiled-legacy:
-    - bat-dg1-5:          NOTRUN -> [SKIP][14] ([i915#4215])
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/bat-dg1-5/igt@kms_addfb_basic@basic-y-tiled-legacy.html
-
-  * igt@kms_addfb_basic@tile-pitch-mismatch:
-    - bat-dg1-5:          NOTRUN -> [SKIP][15] ([i915#4212]) +7 similar issues
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/bat-dg1-5/igt@kms_addfb_basic@tile-pitch-mismatch.html
-
-  * igt@kms_busy@basic:
-    - bat-dg1-5:          NOTRUN -> [SKIP][16] ([i915#4303])
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/bat-dg1-5/igt@kms_busy@basic.html
-
-  * igt@kms_busy@basic@flip:
-    - fi-tgl-u2:          NOTRUN -> [DMESG-WARN][17] ([i915#402]) +2 similar issues
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/fi-tgl-u2/igt@kms_busy@basic@flip.html
-
-  * igt@kms_chamelium@dp-hpd-fast:
-    - fi-tgl-u2:          NOTRUN -> [SKIP][18] ([fdo#109284] / [fdo#111827]) +8 similar issues
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/fi-tgl-u2/igt@kms_chamelium@dp-hpd-fast.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - bat-dg1-5:          NOTRUN -> [SKIP][19] ([fdo#111827]) +8 similar issues
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/bat-dg1-5/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-tgl-u2:          NOTRUN -> [SKIP][20] ([i915#4103]) +1 similar issue
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/fi-tgl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - bat-dg1-5:          NOTRUN -> [SKIP][21] ([i915#4103] / [i915#4213]) +1 similar issue
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/bat-dg1-5/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-
-  * igt@kms_flip@basic-flip-vs-dpms:
-    - bat-dg1-5:          NOTRUN -> [SKIP][22] ([i915#4078]) +23 similar issues
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/bat-dg1-5/igt@kms_flip@basic-flip-vs-dpms.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - fi-tgl-u2:          NOTRUN -> [SKIP][23] ([fdo#109285])
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/fi-tgl-u2/igt@kms_force_connector_basic@force-load-detect.html
-    - bat-dg1-5:          NOTRUN -> [SKIP][24] ([fdo#109285])
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/bat-dg1-5/igt@kms_force_connector_basic@force-load-detect.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c:
-    - bat-dg1-5:          NOTRUN -> [SKIP][25] ([i915#4078] / [i915#5341])
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/bat-dg1-5/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
-
-  * igt@kms_psr@primary_page_flip:
-    - bat-dg1-5:          NOTRUN -> [SKIP][26] ([i915#1072] / [i915#4078]) +3 similar issues
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/bat-dg1-5/igt@kms_psr@primary_page_flip.html
-
-  * igt@kms_setmode@basic-clone-single-crtc:
-    - fi-tgl-u2:          NOTRUN -> [SKIP][27] ([i915#3555])
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/fi-tgl-u2/igt@kms_setmode@basic-clone-single-crtc.html
-    - bat-dg1-5:          NOTRUN -> [SKIP][28] ([i915#3555])
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/bat-dg1-5/igt@kms_setmode@basic-clone-single-crtc.html
-
-  * igt@prime_vgem@basic-fence-mmap:
-    - bat-dg1-5:          NOTRUN -> [SKIP][29] ([i915#3708] / [i915#4077]) +1 similar issue
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/bat-dg1-5/igt@prime_vgem@basic-fence-mmap.html
-
-  * igt@prime_vgem@basic-userptr:
-    - bat-dg1-5:          NOTRUN -> [SKIP][30] ([i915#3708] / [i915#4873])
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/bat-dg1-5/igt@prime_vgem@basic-userptr.html
-
-  * igt@prime_vgem@basic-write:
-    - bat-dg1-5:          NOTRUN -> [SKIP][31] ([i915#3708]) +3 similar issues
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/bat-dg1-5/igt@prime_vgem@basic-write.html
-
-  * igt@runner@aborted:
-    - bat-dg1-5:          NOTRUN -> [FAIL][32] ([i915#4312] / [i915#5257])
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/bat-dg1-5/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@dmabuf@all@dma_fence_chain:
-    - bat-dg1-6:          [INCOMPLETE][33] ([i915#4154]) -> [PASS][34]
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11450/bat-dg1-6/igt@dmabuf@all@dma_fence_chain.html
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/bat-dg1-6/igt@dmabuf@all@dma_fence_chain.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-hsw-g3258:       [INCOMPLETE][35] ([i915#3303] / [i915#4785]) -> [PASS][36]
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11450/fi-hsw-g3258/igt@i915_selftest@live@hangcheck.html
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/fi-hsw-g3258/igt@i915_selftest@live@hangcheck.html
-    - fi-snb-2600:        [INCOMPLETE][37] ([i915#3921]) -> [PASS][38]
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11450/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-
-  * igt@kms_pipe_crc_basic@read-crc-pipe-c:
-    - {bat-adlm-1}:       [INCOMPLETE][39] -> [PASS][40]
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11450/bat-adlm-1/igt@kms_pipe_crc_basic@read-crc-pipe-c.html
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/bat-adlm-1/igt@kms_pipe_crc_basic@read-crc-pipe-c.html
-
-  
-#### Warnings ####
-
-  * igt@gem_lmem_swapping@parallel-random-engines:
-    - fi-tgl-u2:          [INCOMPLETE][41] -> [SKIP][42] ([i915#4613])
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11450/fi-tgl-u2/igt@gem_lmem_swapping@parallel-random-engines.html
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/fi-tgl-u2/igt@gem_lmem_swapping@parallel-random-engines.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109284]: https://bugs.freedesktop.org/show_bug.cgi?id=109284
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1155]: https://gitlab.freedesktop.org/drm/intel/issues/1155
-  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
-  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
-  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#3576]: https://gitlab.freedesktop.org/drm/intel/issues/3576
-  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
-  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
-  [i915#4078]: https://gitlab.freedesktop.org/drm/intel/issues/4078
-  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
-  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
-  [i915#4086]: https://gitlab.freedesktop.org/drm/intel/issues/4086
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-  [i915#4154]: https://gitlab.freedesktop.org/drm/intel/issues/4154
-  [i915#4212]: https://gitlab.freedesktop.org/drm/intel/issues/4212
-  [i915#4213]: https://gitlab.freedesktop.org/drm/intel/issues/4213
-  [i915#4215]: https://gitlab.freedesktop.org/drm/intel/issues/4215
-  [i915#4303]: https://gitlab.freedesktop.org/drm/intel/issues/4303
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4391]: https://gitlab.freedesktop.org/drm/intel/issues/4391
-  [i915#4418]: https://gitlab.freedesktop.org/drm/intel/issues/4418
-  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
-  [i915#4873]: https://gitlab.freedesktop.org/drm/intel/issues/4873
-  [i915#4957]: https://gitlab.freedesktop.org/drm/intel/issues/4957
-  [i915#5257]: https://gitlab.freedesktop.org/drm/intel/issues/5257
-  [i915#5306]: https://gitlab.freedesktop.org/drm/intel/issues/5306
-  [i915#5341]: https://gitlab.freedesktop.org/drm/intel/issues/5341
-  [i915#5414]: https://gitlab.freedesktop.org/drm/intel/issues/5414
-  [i915#5482]: https://gitlab.freedesktop.org/drm/intel/issues/5482
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_11450 -> Patchwork_22775
-
-  CI-20190529: 20190529
-  CI_DRM_11450: c5b08f58a70e10765b387ad18e6c768057a80cf2 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6409: 13700f4a3ffaac3a825fe59b014c7c6c48a0a5f1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_22775: 05076da28b71df66c56832218fec2edd14563858 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-05076da28b71 HAX: drm/i915: force INTEL_MEI_GSC on for CI
-13ad942887cd mei: gsc: retrieve the firmware version
-718341199e93 mei: gsc: add runtime pm handlers
-68df54843994 mei: gsc: setup char driver alive in spite of firmware handshake failure
-2222aa4af849 mei: add support for graphics system controller (gsc) devices
-9386859db8b2 drm/i915/gsc: add gsc as a mei auxiliary device
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/index.html
-
---===============7789195667652408651==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>GSC support</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/102160/">https://patchwork.freedesktop.org/series/102160/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11450 -&gt; Patchwork_22775</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_22775 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_22775, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/index.html</p>
-<h2>Participating hosts (44 -&gt; 44)</h2>
-<p>Additional (2): bat-rpls-2 bat-dg1-5 <br />
-  Missing    (2): fi-bsw-cyan fi-icl-u2 </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_22775:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@gem_ringfill@basic-all:<ul>
-<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/bat-dg1-5/igt@gem_ringfill@basic-all.html">TIMEOUT</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_22775 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@cs-sdma:</p>
-<ul>
-<li>fi-hsw-g3258:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/fi-hsw-g3258/igt@amdgpu/amd_basic@cs-sdma.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@amdgpu/amd_cs_nop@sync-fork-compute0:</p>
-<ul>
-<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@fbdev@write:</p>
-<ul>
-<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/bat-dg1-5/igt@fbdev@write.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2582">i915#2582</a>) +4 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_gttfill@basic:</p>
-<ul>
-<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/bat-dg1-5/igt@gem_exec_gttfill@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4086">i915#4086</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@verify-random:</p>
-<ul>
-<li>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/fi-tgl-u2/igt@gem_lmem_swapping@verify-random.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_mmap@basic:</p>
-<ul>
-<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/bat-dg1-5/igt@gem_mmap@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4083">i915#4083</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_tiled_fence_blits@basic:</p>
-<ul>
-<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/bat-dg1-5/igt@gem_tiled_fence_blits@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_tiled_pread_basic:</p>
-<ul>
-<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/bat-dg1-5/igt@gem_tiled_pread_basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4079">i915#4079</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_backlight@basic-brightness:</p>
-<ul>
-<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/bat-dg1-5/igt@i915_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1155">i915#1155</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_engines:</p>
-<ul>
-<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/bat-dg1-5/igt@i915_selftest@live@gt_engines.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4418">i915#4418</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11450/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@basic-y-tiled-legacy:</p>
-<ul>
-<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/bat-dg1-5/igt@kms_addfb_basic@basic-y-tiled-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4215">i915#4215</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@tile-pitch-mismatch:</p>
-<ul>
-<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/bat-dg1-5/igt@kms_addfb_basic@tile-pitch-mismatch.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4212">i915#4212</a>) +7 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_busy@basic:</p>
-<ul>
-<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/bat-dg1-5/igt@kms_busy@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4303">i915#4303</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_busy@basic@flip:</p>
-<ul>
-<li>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/fi-tgl-u2/igt@kms_busy@basic@flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-hpd-fast:</p>
-<ul>
-<li>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/fi-tgl-u2/igt@kms_chamelium@dp-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109284">fdo#109284</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-hpd-fast:</p>
-<ul>
-<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/bat-dg1-5/igt@kms_chamelium@hdmi-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
-<ul>
-<li>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/fi-tgl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
-<ul>
-<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/bat-dg1-5/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4213">i915#4213</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-dpms:</p>
-<ul>
-<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/bat-dg1-5/igt@kms_flip@basic-flip-vs-dpms.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4078">i915#4078</a>) +23 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>
-<p>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/fi-tgl-u2/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</p>
-</li>
-<li>
-<p>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/bat-dg1-5/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c:</p>
-<ul>
-<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/bat-dg1-5/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4078">i915#4078</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5341">i915#5341</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@primary_page_flip:</p>
-<ul>
-<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/bat-dg1-5/igt@kms_psr@primary_page_flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4078">i915#4078</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic-clone-single-crtc:</p>
-<ul>
-<li>
-<p>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/fi-tgl-u2/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>)</p>
-</li>
-<li>
-<p>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/bat-dg1-5/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-fence-mmap:</p>
-<ul>
-<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/bat-dg1-5/igt@prime_vgem@basic-fence-mmap.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-userptr:</p>
-<ul>
-<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/bat-dg1-5/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4873">i915#4873</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-write:</p>
-<ul>
-<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/bat-dg1-5/igt@prime_vgem@basic-write.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/bat-dg1-5/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5257">i915#5257</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@dmabuf@all@dma_fence_chain:</p>
-<ul>
-<li>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11450/bat-dg1-6/igt@dmabuf@all@dma_fence_chain.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4154">i915#4154</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/bat-dg1-6/igt@dmabuf@all@dma_fence_chain.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>
-<p>fi-hsw-g3258:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11450/fi-hsw-g3258/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/fi-hsw-g3258/igt@i915_selftest@live@hangcheck.html">PASS</a></p>
-</li>
-<li>
-<p>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11450/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a></p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc-pipe-c:</p>
-<ul>
-<li>{bat-adlm-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11450/bat-adlm-1/igt@kms_pipe_crc_basic@read-crc-pipe-c.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/bat-adlm-1/igt@kms_pipe_crc_basic@read-crc-pipe-c.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@gem_lmem_swapping@parallel-random-engines:<ul>
-<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11450/fi-tgl-u2/igt@gem_lmem_swapping@parallel-random-engines.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22775/fi-tgl-u2/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11450 -&gt; Patchwork_22775</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11450: c5b08f58a70e10765b387ad18e6c768057a80cf2 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6409: 13700f4a3ffaac3a825fe59b014c7c6c48a0a5f1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_22775: 05076da28b71df66c56832218fec2edd14563858 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>05076da28b71 HAX: drm/i915: force INTEL_MEI_GSC on for CI<br />
-13ad942887cd mei: gsc: retrieve the firmware version<br />
-718341199e93 mei: gsc: add runtime pm handlers<br />
-68df54843994 mei: gsc: setup char driver alive in spite of firmware handshake failure<br />
-2222aa4af849 mei: add support for graphics system controller (gsc) devices<br />
-9386859db8b2 drm/i915/gsc: add gsc as a mei auxiliary device</p>
-
-</body>
-</html>
-
---===============7789195667652408651==--
+On Thu, Mar 31, 2022 at 06:35:52PM +0100, Tvrtko Ursulin wrote:
+> 
+> On 31/03/2022 00:28, Matt Roper wrote:
+> > Historically we've selected and programmed a single MCR group/instance
+> > ID at driver startup that will steer register accesses for GSLICE/DSS
+> > ranges to a non-terminated instance.  Any reads of these register ranges
+> > that don't need a specific unicast access won't bother explicitly
+> > resteering because the control register should already be set to a
+> > suitable value to receive a non-terminated response.  Any accesses to
+> > other types of MCR ranges (MSLICE, LNCF, etc.) that are also satisfied
+> > by the default steering target will also skip explicit re-steering at
+> > runtime.
+> > 
+> > This approach has worked well for many years and many platforms, but our
+> > hardware teams have recently advised us that they're not 100%
+> > comfortable with our strategy going forward.  They now suggest
+> > explicitly steering reads of any multicast register at the time the
+> > register access happens rather than relying on previously-programmed
+> > steering values.  In debug settings there could be external agents that
+> > have adjusted the default steering without the driver's knowledge (e.g.,
+> > we could do this manually with IGT's intel_reg today, although the
+> > hardware teams also have other tools they use for debug and analysis).
+> > In theory it would also be possible for bad firmware and/or incorrect
+> > handling of power management events to clobber/wipe the steering
+> > value we had previously initialized because they assume we'll be
+> > re-programming it anyway.
+> 
+> That external agent of any kind can mess with registers behind drivers back
+> is kind of a weak justification, no? Because steering is just one small part
+> of what can go wrong in this case.
+
+Apparently the assumption when the hardware was designed was that
+software would explicitly steer every MCR access; they never really
+considered the design we've been using where we try to set it up once
+and try to minimize subsequent updates to the steering control.  In a
+lot of cases different agents updating steering have their own steering
+control registers (i.e., the GuC, the command streamers, and a couple
+other internal hardware units have their own independent steering
+control registers to try to avoid racing with whatever the KMD/CPU is
+doing), but I think there may have been some cases that aren't 100%
+covered there.
+
+This is also partially motivated by the direction the general hardware
+teams want to move in the future --- they plan to reduce the number of
+different steering control registers for different agents and make more
+of them share a single register with the KMD/CPU.  There will be a
+separate "semaphore" register used for coordinating access between
+various agents (of course that will bring new challenges such as
+increased latency and what to do if some hardware unit grabs the
+semaphore and somehow fails to release it).
+
+> 
+> Also, someone at some point has to know which are the affected registers. Be
+> it a range table, or at actual point of submitting patches which add
+> register definitions. At any of those points mistakes are possible.
+
+True.  But today there are a lot of registers used by the driver that
+are multicast and I don't think the code written around them was really
+thinking about the multicast semantics of the register, especially when
+the code was copy/pasted from earlier platforms where they weren't
+multicast (the TLB invalidation registers are an example --- should we
+be waiting for an ack to come back on every mslice rather than just on a
+single random mslice?).  MCR registers seem to be an area that's pretty
+mysterious to a lot of people that haven't looked at them carefully, and
+sometimes doing a simple intel_uncore_{read,write} doesn't accomplish
+what you'd expect; forcing us to be a bit more deliberate about the type
+of behavior we expect to get seems like it will help reduce mistakes in
+the long run.
+
+> 
+> So I guess I am not immediately buying the need to refactor all this. Apart
+> from churn, the main downside that I see is that all accesses need separate
+> helpers. Question is why. Driver could choose to always steer before reading
+> today, right?
+
+You mean like making intel_uncore_read always do a steering table lookup
+for all registers?  We could, although I'm a bit hesitant to add even
+more GT-specific logic to the uncore functions that are used for non-GT
+purposes as well.  And like I said before, it still hides the fact that
+there may be multiple register instances and you're just reading one
+semi-random instance.
+
+
+Matt
+
+> 
+> Regards,
+> 
+> Tvrtko
+> 
+> > 
+> > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+> > ---
+> >   drivers/gpu/drm/i915/gt/intel_gt_mcr.c      | 40 +++++++++
+> >   drivers/gpu/drm/i915/gt/intel_gt_types.h    |  1 +
+> >   drivers/gpu/drm/i915/gt/intel_workarounds.c | 98 ++++-----------------
+> >   3 files changed, 56 insertions(+), 83 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_gt_mcr.c b/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
+> > index a9a9fa6881f2..787752367337 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
+> > @@ -35,6 +35,7 @@
+> >    */
+> >   static const char * const intel_steering_types[] = {
+> > +	"GSLICE/DSS",
+> >   	"L3BANK",
+> >   	"MSLICE",
+> >   	"LNCF",
+> > @@ -45,6 +46,35 @@ static const struct intel_mmio_range icl_l3bank_steering_table[] = {
+> >   	{},
+> >   };
+> > +static const struct intel_mmio_range xehpsdv_dss_steering_table[] = {
+> > +	{ 0x005200, 0x0052FF },
+> > +	{ 0x005400, 0x007FFF },
+> > +	{ 0x008140, 0x00815F },
+> > +	{ 0x008D00, 0x008DFF },
+> > +	{ 0x0094D0, 0x00955F },
+> > +	{ 0x009680, 0x0096FF },
+> > +	{ 0x00DC00, 0x00DCFF },
+> > +	{ 0x00DE80, 0x00E8FF },
+> > +	{ 0x017000, 0x017FFF },
+> > +	{ 0x024A00, 0x024A7F },
+> > +	{},
+> > +};
+> > +
+> > +static const struct intel_mmio_range dg2_dss_steering_table[] = {
+> > +	{ 0x005200, 0x0052FF },
+> > +	{ 0x005400, 0x007FFF },
+> > +	{ 0x008140, 0x00815F },
+> > +	{ 0x008D00, 0x008DFF },
+> > +	{ 0x0094D0, 0x00955F },
+> > +	{ 0x009680, 0x0096FF },
+> > +	{ 0x00D800, 0x00D87F },
+> > +	{ 0x00DC00, 0x00DCFF },
+> > +	{ 0x00DE80, 0x00E8FF },
+> > +	{ 0x017000, 0x017FFF },
+> > +	{ 0x024A00, 0x024A7F },
+> > +	{},
+> > +};
+> > +
+> >   static const struct intel_mmio_range xehpsdv_mslice_steering_table[] = {
+> >   	{ 0x004000, 0x004AFF },
+> >   	{ 0x00C800, 0x00CFFF },
+> > @@ -87,9 +117,11 @@ void intel_gt_mcr_init(struct intel_gt *gt)
+> >   			 GEN12_MEML3_EN_MASK);
+> >   	if (IS_DG2(i915)) {
+> > +		gt->steering_table[DSS] = dg2_dss_steering_table;
+> >   		gt->steering_table[MSLICE] = xehpsdv_mslice_steering_table;
+> >   		gt->steering_table[LNCF] = dg2_lncf_steering_table;
+> >   	} else if (IS_XEHPSDV(i915)) {
+> > +		gt->steering_table[DSS] = xehpsdv_dss_steering_table;
+> >   		gt->steering_table[MSLICE] = xehpsdv_mslice_steering_table;
+> >   		gt->steering_table[LNCF] = xehpsdv_lncf_steering_table;
+> >   	} else if (GRAPHICS_VER(i915) >= 11 &&
+> > @@ -317,7 +349,15 @@ static void get_valid_steering(struct intel_gt *gt,
+> >   			       enum intel_steering_type type,
+> >   			       u8 *group, u8 *instance)
+> >   {
+> > +	u32 dssmask = intel_sseu_get_subslices(&gt->info.sseu, 0);
+> > +
+> >   	switch (type) {
+> > +	case DSS:
+> > +		drm_WARN_ON(&gt->i915->drm, dssmask == 0);
+> > +
+> > +		*group = __ffs(dssmask) / GEN_DSS_PER_GSLICE;
+> > +		*instance = __ffs(dssmask) % GEN_DSS_PER_GSLICE;
+> > +		break;
+> >   	case L3BANK:
+> >   		GEM_DEBUG_WARN_ON(!gt->info.l3bank_mask); /* should be impossible! */
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_gt_types.h b/drivers/gpu/drm/i915/gt/intel_gt_types.h
+> > index 937b2e1a305e..b77bbaac7622 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_gt_types.h
+> > +++ b/drivers/gpu/drm/i915/gt/intel_gt_types.h
+> > @@ -54,6 +54,7 @@ struct intel_mmio_range {
+> >    * are listed here.
+> >    */
+> >   enum intel_steering_type {
+> > +	DSS,
+> >   	L3BANK,
+> >   	MSLICE,
+> >   	LNCF,
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> > index 818ba71f4909..2486c6aa9d9d 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> > @@ -1160,87 +1160,6 @@ icl_wa_init_mcr(struct intel_gt *gt, struct i915_wa_list *wal)
+> >   	__add_mcr_wa(gt, wal, slice, subslice);
+> >   }
+> > -static void
+> > -xehp_init_mcr(struct intel_gt *gt, struct i915_wa_list *wal)
+> > -{
+> > -	const struct sseu_dev_info *sseu = &gt->info.sseu;
+> > -	unsigned long slice, subslice = 0, slice_mask = 0;
+> > -	u64 dss_mask = 0;
+> > -	u32 lncf_mask = 0;
+> > -	int i;
+> > -
+> > -	/*
+> > -	 * On Xe_HP the steering increases in complexity. There are now several
+> > -	 * more units that require steering and we're not guaranteed to be able
+> > -	 * to find a common setting for all of them. These are:
+> > -	 * - GSLICE (fusable)
+> > -	 * - DSS (sub-unit within gslice; fusable)
+> > -	 * - L3 Bank (fusable)
+> > -	 * - MSLICE (fusable)
+> > -	 * - LNCF (sub-unit within mslice; always present if mslice is present)
+> > -	 *
+> > -	 * We'll do our default/implicit steering based on GSLICE (in the
+> > -	 * sliceid field) and DSS (in the subsliceid field).  If we can
+> > -	 * find overlap between the valid MSLICE and/or LNCF values with
+> > -	 * a suitable GSLICE, then we can just re-use the default value and
+> > -	 * skip and explicit steering at runtime.
+> > -	 *
+> > -	 * We only need to look for overlap between GSLICE/MSLICE/LNCF to find
+> > -	 * a valid sliceid value.  DSS steering is the only type of steering
+> > -	 * that utilizes the 'subsliceid' bits.
+> > -	 *
+> > -	 * Also note that, even though the steering domain is called "GSlice"
+> > -	 * and it is encoded in the register using the gslice format, the spec
+> > -	 * says that the combined (geometry | compute) fuse should be used to
+> > -	 * select the steering.
+> > -	 */
+> > -
+> > -	/* Find the potential gslice candidates */
+> > -	dss_mask = intel_sseu_get_subslices(sseu, 0);
+> > -	slice_mask = intel_slicemask_from_dssmask(dss_mask, GEN_DSS_PER_GSLICE);
+> > -
+> > -	/*
+> > -	 * Find the potential LNCF candidates.  Either LNCF within a valid
+> > -	 * mslice is fine.
+> > -	 */
+> > -	for_each_set_bit(i, &gt->info.mslice_mask, GEN12_MAX_MSLICES)
+> > -		lncf_mask |= (0x3 << (i * 2));
+> > -
+> > -	/*
+> > -	 * Are there any sliceid values that work for both GSLICE and LNCF
+> > -	 * steering?
+> > -	 */
+> > -	if (slice_mask & lncf_mask) {
+> > -		slice_mask &= lncf_mask;
+> > -		gt->steering_table[LNCF] = NULL;
+> > -	}
+> > -
+> > -	/* How about sliceid values that also work for MSLICE steering? */
+> > -	if (slice_mask & gt->info.mslice_mask) {
+> > -		slice_mask &= gt->info.mslice_mask;
+> > -		gt->steering_table[MSLICE] = NULL;
+> > -	}
+> > -
+> > -	slice = __ffs(slice_mask);
+> > -	subslice = __ffs(dss_mask >> (slice * GEN_DSS_PER_GSLICE));
+> > -	WARN_ON(subslice > GEN_DSS_PER_GSLICE);
+> > -	WARN_ON(dss_mask >> (slice * GEN_DSS_PER_GSLICE) == 0);
+> > -
+> > -	__add_mcr_wa(gt, wal, slice, subslice);
+> > -
+> > -	/*
+> > -	 * SQIDI ranges are special because they use different steering
+> > -	 * registers than everything else we work with.  On XeHP SDV and
+> > -	 * DG2-G10, any value in the steering registers will work fine since
+> > -	 * all instances are present, but DG2-G11 only has SQIDI instances at
+> > -	 * ID's 2 and 3, so we need to steer to one of those.  For simplicity
+> > -	 * we'll just steer to a hardcoded "2" since that value will work
+> > -	 * everywhere.
+> > -	 */
+> > -	__set_mcr_steering(wal, MCFG_MCR_SELECTOR, 0, 2);
+> > -	__set_mcr_steering(wal, SF_MCR_SELECTOR, 0, 2);
+> > -}
+> > -
+> >   static void
+> >   icl_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wal)
+> >   {
+> > @@ -1388,8 +1307,9 @@ static void
+> >   xehpsdv_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wal)
+> >   {
+> >   	struct drm_i915_private *i915 = gt->i915;
+> > +	struct drm_printer p = drm_debug_printer("MCR Steering:");
+> > -	xehp_init_mcr(gt, wal);
+> > +	intel_gt_mcr_report_steering(&p, gt, false);
+> >   	/* Wa_1409757795:xehpsdv */
+> >   	wa_mcr_write_or(wal, SCCGCTL94DC, CG3DDISURB);
+> > @@ -1441,10 +1361,22 @@ xehpsdv_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wal)
+> >   static void
+> >   dg2_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wal)
+> >   {
+> > +	struct drm_printer p = drm_debug_printer("MCR Steering:");
+> >   	struct intel_engine_cs *engine;
+> >   	int id;
+> > -	xehp_init_mcr(gt, wal);
+> > +	intel_gt_mcr_report_steering(&p, gt, false);
+> > +
+> > +	/*
+> > +	 * SQIDI ranges are special because they use different steering
+> > +	 * registers than everything else we work with.  On DG2-G10, any value
+> > +	 * in the steering registers will work fine since all instances are
+> > +	 * present, but DG2-G11 only has SQIDI instances at ID's 2 and 3, so we
+> > +	 * need to steer to one of those.  For simplicity we'll just steer to a
+> > +	 * hardcoded "2" since that value will work everywhere.
+> > +	 */
+> > +	__set_mcr_steering(wal, MCFG_MCR_SELECTOR, 0, 2);
+> > +	__set_mcr_steering(wal, SF_MCR_SELECTOR, 0, 2);
+> >   	/* Wa_14011060649:dg2 */
+> >   	wa_14011060649(gt, wal);
+
+-- 
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
