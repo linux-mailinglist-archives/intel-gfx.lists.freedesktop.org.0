@@ -2,47 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 130364F160C
-	for <lists+intel-gfx@lfdr.de>; Mon,  4 Apr 2022 15:38:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ED5D64F160E
+	for <lists+intel-gfx@lfdr.de>; Mon,  4 Apr 2022 15:39:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0BB3610E237;
-	Mon,  4 Apr 2022 13:38:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 69D7410F0CA;
+	Mon,  4 Apr 2022 13:38:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3841310E00B
- for <intel-gfx@lists.freedesktop.org>; Mon,  4 Apr 2022 13:38:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DBE0E10E00B;
+ Mon,  4 Apr 2022 13:38:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649079532; x=1680615532;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=me1+tPmf6n/070P7csOZvJPhwer7f+v9xoTPy92nUI4=;
- b=bSaUzpfHgD2/h+P0/yWMro5JkC28pnFl75/rk2md7dJpiGAzu0XkL0tE
- u4FdH5NbMTXO1p+GQhAACYJn1UVXSb6oVs2CM8UU4JA+eEZUUNQcksNbM
- EiNCO0mVN4C3xMgAqVydwxkr2EvVpVNgcyiWCDp53Nm+LCqi84p1EVRIr
- zYI1NpGv9ZzcltZCp64Q8nXClvXyXB7mtVp+B02tb/a/m0E0IsCvytu5G
- z58+Mta1jLBQIZQodCsc2wNxiSWJvc/xwAtelGoTs+/WcDT3zoRdOALEk
- t0K2NIx+PP6/hCNjZnR8aTTBcm/sPpa5naXsPF7A7Pch7nFcJU/heO3H9 Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10306"; a="321210198"
-X-IronPort-AV: E=Sophos;i="5.90,234,1643702400"; d="scan'208";a="321210198"
+ t=1649079533; x=1680615533;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=UMpeyKNRrKSm3EcvkXoFnlv4prmjWPgpum12xxlp/D0=;
+ b=RtHIGwEfO4pwT/cbx8PnlnTxzN126LWudKFScj8oTZHPsIWk237Z/cEQ
+ 3vOVKArCP8qSpXRRdSErzVI3U+wS0CCQHm1b+XC967RvfLMCsujj7ELRt
+ T24ESIDASGPWVa65LjpvzHkjURn7nJwTkhLmIilBXZH9llhXDrqygWR9a
+ akL4lQcNZmi+2scui9bUAa4NYv2DhUOdGlZSlByt4osVFdZP4RqxmGse0
+ ELjJWxdEZq6XeLMCbTynjjbRMhGZ044nWKlSoo5a29H7rJUyCjLgqwnRs
+ J/oVmwhu4rwgLA7pTvKRxY3iPJYpdAO+NEVDZNI9Mz37qDolTU9Kuntde A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10306"; a="321210209"
+X-IronPort-AV: E=Sophos;i="5.90,234,1643702400"; d="scan'208";a="321210209"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Apr 2022 06:38:51 -0700
-X-IronPort-AV: E=Sophos;i="5.90,234,1643702400"; d="scan'208";a="548655961"
+ 04 Apr 2022 06:38:53 -0700
+X-IronPort-AV: E=Sophos;i="5.90,234,1643702400"; d="scan'208";a="548655969"
 Received: from ideak-desk.fi.intel.com ([10.237.72.175])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Apr 2022 06:38:49 -0700
+ 04 Apr 2022 06:38:51 -0700
 From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon,  4 Apr 2022 16:38:42 +0300
-Message-Id: <20220404133846.131401-1-imre.deak@intel.com>
+Date: Mon,  4 Apr 2022 16:38:43 +0300
+Message-Id: <20220404133846.131401-2-imre.deak@intel.com>
 X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20220404133846.131401-1-imre.deak@intel.com>
+References: <20220404133846.131401-1-imre.deak@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 0/4] drm/i915/dg2: Add support for render/media
- decompression
+Subject: [Intel-gfx] [PATCH 1/4] drm/fourcc: Introduce format modifiers for
+ DG2 render and media compression
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,47 +56,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?q?Juha-Pekka=20Heikkil=C3=A4?= <juha-pekka.heikkila@intel.com>
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is a rebased version of patches 15-17 of [1], adding DG2 display
-engine support for decompressing render and media compressed
-framebuffers.
+From: Matt Roper <matthew.d.roper@intel.com>
 
-The dependency patches from [1] should be merged already to drm-tip.
+The render/media engines on DG2 unify render compression and media
+compression into a single format for the first time, using the Tile 4
+layout for main surfaces. The compression algorithm is different from
+any previous platform and the display engine must still be configured to
+decompress either a render or media compressed surface; as such, we
+need new RC and MC framebuffer modifiers to represent buffers in this
+format.
 
-It addresses the review comments on the modifier layout description from
-Nanley, updates the commit logs vs. flat CCS and Tile4 and splits out
-the changes adding the modifiers to drm_fourcc.h to separate patches.
+v2: Clarify modifier layout description.
 
-[1] https://patchwork.freedesktop.org/series/95686/
+Cc: dri-devel@lists.freedesktop.org
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Imre Deak <imre.deak@intel.com>
+Acked-by: Nanley Chery <nanley.g.chery@intel.com>
+---
+ include/uapi/drm/drm_fourcc.h | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
 
-Cc: Anshuman Gupta <anshuman.gupta@intel.com>
-Cc: Ramalingam C <ramalingam.c@intel.com>
-Cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: Mika Kahola <mika.kahola@intel.com>
-Cc: Juha-Pekka Heikkilä <juha-pekka.heikkila@intel.com>
-Cc: Nanley Chery <nanley.g.chery@intel.com>
-
-Anshuman Gupta (1):
-  drm/i915/dg2: Add support for DG2 clear color compression
-
-Matt Roper (2):
-  drm/fourcc: Introduce format modifiers for DG2 render and media
-    compression
-  drm/i915/dg2: Add support for DG2 render and media compression
-
-Mika Kahola (1):
-  drm/fourcc: Introduce format modifier for DG2 clear color
-
- drivers/gpu/drm/i915/display/intel_display.c  |  4 +-
- drivers/gpu/drm/i915/display/intel_fb.c       | 53 +++++++++++++++----
- .../drm/i915/display/skl_universal_plane.c    | 49 +++++++++++++----
- include/uapi/drm/drm_fourcc.h                 | 36 +++++++++++++
- 4 files changed, 122 insertions(+), 20 deletions(-)
-
+diff --git a/include/uapi/drm/drm_fourcc.h b/include/uapi/drm/drm_fourcc.h
+index b73fe6797fc37..4a5117715db3c 100644
+--- a/include/uapi/drm/drm_fourcc.h
++++ b/include/uapi/drm/drm_fourcc.h
+@@ -583,6 +583,28 @@ extern "C" {
+  */
+ #define I915_FORMAT_MOD_4_TILED         fourcc_mod_code(INTEL, 9)
+ 
++/*
++ * Intel color control surfaces (CCS) for DG2 render compression.
++ *
++ * The main surface is Tile 4 and at plane index 0. The CCS data is stored
++ * outside of the GEM object in a reserved memory area dedicated for the
++ * storage of the CCS data for all RC/RC_CC/MC compressible GEM objects. The
++ * main surface pitch is required to be a multiple of four Tile 4 widths.
++ */
++#define I915_FORMAT_MOD_4_TILED_DG2_RC_CCS fourcc_mod_code(INTEL, 10)
++
++/*
++ * Intel color control surfaces (CCS) for DG2 media compression.
++ *
++ * The main surface is Tile 4 and at plane index 0. For semi-planar formats
++ * like NV12, the Y and UV planes are Tile 4 and are located at plane indices
++ * 0 and 1, respectively. The CCS for all planes are stored outside of the
++ * GEM object in a reserved memory area dedicated for the storage of the
++ * CCS data for all RC/RC_CC/MC compressible GEM objects. The main surface
++ * pitch is required to be a multiple of four Tile 4 widths.
++ */
++#define I915_FORMAT_MOD_4_TILED_DG2_MC_CCS fourcc_mod_code(INTEL, 11)
++
+ /*
+  * Tiled, NV12MT, grouped in 64 (pixels) x 32 (lines) -sized macroblocks
+  *
 -- 
 2.30.2
 
