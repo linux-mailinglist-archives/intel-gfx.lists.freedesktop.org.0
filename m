@@ -1,55 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9127F4F1345
-	for <lists+intel-gfx@lfdr.de>; Mon,  4 Apr 2022 12:46:34 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E6584F1352
+	for <lists+intel-gfx@lfdr.de>; Mon,  4 Apr 2022 12:50:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F8CD10EEB1;
-	Mon,  4 Apr 2022 10:46:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B97710E202;
+	Mon,  4 Apr 2022 10:50:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C6B810EEB0;
- Mon,  4 Apr 2022 10:46:31 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 29CFA10E202
+ for <intel-gfx@lists.freedesktop.org>; Mon,  4 Apr 2022 10:50:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649069191; x=1680605191;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=IAWZ6QL3SqaCdeA4GnM8wFmdjMcm0DfPeYPVHyxzJTk=;
- b=TeCjsKvk3nRrp759z+V6fxoTRs5gy76ROIb+8vc/WSValoSwRGuBQ1Hs
- fx29/C+0UHvyVP88YncvivNga6lTrt3PMbom1srrKLoCmYg0U/bypvEbq
- +5F3PPpzT1EzTU0AehtXgJFCOlrYlioRtDOSy0lK+eaQ47dFLgrkHXrhI
- NLHjGo7tG1bd6eQd8f/LdRp35Ih6mrt2MIJhM3lKrjpUFIfULbgOi2hfX
- cMPA1pAGu7cxK14zvryD3wYCP4IeFEwBG8WuBh56ZaG/TG+sQf45ue4q1
- N6ofqjAt9aA9jdPK6YOXZijr0XmvgWTXL1GOSnlM6upwez3HphnxaZptE g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10306"; a="241073987"
-X-IronPort-AV: E=Sophos;i="5.90,234,1643702400"; d="scan'208";a="241073987"
+ t=1649069453; x=1680605453;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=7L58an1pPjckkdrSBxHIl014zXD14fvJoipWrLsifN4=;
+ b=V+SruE5BAcbdb21/6uQiLsgzey8OsonI11/5gMBgmuv1s5z7aESOAWSY
+ f1uUxlP0ImlbzPV/vsFYNxyn71UwtvxxhrZ6FtWaJNYuXhRNfa4xxNCv6
+ 0fi8dwhK35qdtYjecO3xmkX4tIY0b8a/+Celwh7JKHJWnZRyRpU5pkJSM
+ J9ObJ4Eez84tOjHdd9a8LlERihNsmoZDL7ec3rPRcoPRcFsJHU1yaZz8M
+ P8p7J2lGVrPQKZMfnuhwL8vZsxzBXVPhDCeJ48Zp/YNcq3LAoEJRKGiOI
+ l2f+NA9Et1JTsKk0NhM4XLJQz1pxoNWegPQyxNz3Q82SJTRDfBDXYoUWD g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10306"; a="260184991"
+X-IronPort-AV: E=Sophos;i="5.90,234,1643702400"; d="scan'208";a="260184991"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Apr 2022 03:46:30 -0700
-X-IronPort-AV: E=Sophos;i="5.90,234,1643702400"; d="scan'208";a="548605937"
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Apr 2022 03:50:52 -0700
+X-IronPort-AV: E=Sophos;i="5.90,234,1643702400"; d="scan'208";a="548606851"
 Received: from tszumski-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.249.141.89])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Apr 2022 03:46:26 -0700
+ 04 Apr 2022 03:50:50 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Modem, Bhanuprakash" <bhanuprakash.modem@intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-In-Reply-To: <b5041da6-9a2b-c687-5dc9-c587eb6230b4@intel.com>
+To: =?utf-8?Q?Jos=C3=A9?= Roberto de Souza <jose.souza@intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20220401222911.199284-1-jose.souza@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220328075020.708022-1-bhanuprakash.modem@intel.com>
- <20220329060731.785476-1-bhanuprakash.modem@intel.com>
- <877d897z90.fsf@intel.com>
- <b5041da6-9a2b-c687-5dc9-c587eb6230b4@intel.com>
-Date: Mon, 04 Apr 2022 13:46:23 +0300
-Message-ID: <87fsmt6s8w.fsf@intel.com>
+References: <20220401222911.199284-1-jose.souza@intel.com>
+Date: Mon, 04 Apr 2022 13:50:48 +0300
+Message-ID: <87czhx6s1j.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display/debugfs: Add connector
- debugfs for "output_bpc"
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/display/psr: Set partial frame
+ enable when forcing full frame fetch
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,162 +59,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>, Arkadiusz Hiler <arek@hiler.eu>,
- airlied@linux.ie
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 04 Apr 2022, "Modem, Bhanuprakash" <bhanuprakash.modem@intel.com> w=
-rote:
-> On Fri-01-04-2022 06:10 pm, Jani Nikula wrote:
->> On Tue, 29 Mar 2022, Bhanuprakash Modem <bhanuprakash.modem@intel.com> w=
-rote:
->>> This new debugfs will expose the connector's max supported bpc
->>> and the bpc currently using. It is very useful for verifying
->>> whether we enter the correct output color depth from IGT.
->>>
->>> Example:
->>> cat /sys/kernel/debug/dri/0/DP-1/output_bpc
->>> Current: 8
->>> Maximum: 10
->>>
->>> V2: Add connector's max bpc to i915_display_info
->>>
->>> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->>> Cc: Uma Shankar <uma.shankar@intel.com>
->>> Cc: Swati Sharma <swati2.sharma@intel.com>
->>> Signed-off-by: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
->>> ---
->>>   .../drm/i915/display/intel_display_debugfs.c  | 46 +++++++++++++++++++
->>>   1 file changed, 46 insertions(+)
->>>
->>> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/dri=
-vers/gpu/drm/i915/display/intel_display_debugfs.c
->>> index c1e74a13a0828..694d27f3b109c 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
->>> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
->>> @@ -663,6 +663,8 @@ static void intel_connector_info(struct seq_file *m,
->>>   	seq_puts(m, "\tHDCP version: ");
->>>   	intel_hdcp_info(m, intel_connector);
->>>=20=20=20
->>> +	seq_printf(m, "\tmax bpc: %u\n", connector->display_info.bpc);
->>> +
->>>   	intel_panel_info(m, intel_connector);
->>>=20=20=20
->>>   	seq_printf(m, "\tmodes:\n");
->>> @@ -2275,6 +2277,47 @@ static const struct file_operations i915_dsc_bpp=
-_fops =3D {
->>>   	.write =3D i915_dsc_bpp_write
->>>   };
->>>=20=20=20
->>> +/*
->>> + * Returns the maximum output bpc for the connector.
->>> + * Example usage: cat /sys/kernel/debug/dri/0/DP-1/output_bpc
->>> + */
->>> +static int output_bpc_show(struct seq_file *m, void *data)
->>> +{
->>> +	struct drm_connector *connector =3D m->private;
->>> +	struct drm_device *dev =3D connector->dev;
->>> +	struct drm_crtc *crtc;
->>> +	struct intel_crtc_state *crtc_state;
->>> +	struct intel_encoder *encoder =3D intel_attached_encoder(to_intel_con=
-nector(connector));
->>> +	int res;
->>> +
->>> +	if (!encoder)
->>> +		return -ENODEV;
->>> +
->>> +	res =3D drm_modeset_lock_single_interruptible(&dev->mode_config.conne=
-ction_mutex);
->>> +	if (res)
->>> +		return res;
->>> +
->>> +	crtc =3D connector->state->crtc;
->>> +	if (connector->status !=3D connector_status_connected || !crtc) {
->>> +		res =3D -ENODEV;
->>> +		goto unlock;
->>> +	}
->>> +
->>> +	crtc_state =3D to_intel_crtc_state(crtc->state);
->>> +	if (!crtc_state->hw.active)
->>> +		goto unlock;
->>> +
->>> +	seq_printf(m, "Current: %u\n", crtc_state->pipe_bpp / 3);
->>> +	seq_printf(m, "Maximum: %u\n", connector->display_info.bpc);
->>> +	res =3D 0;
->>> +
->>> +unlock:
->>> +	drm_modeset_unlock(&dev->mode_config.connection_mutex);
->>> +
->>> +	return res;
->>> +}
->>> +DEFINE_SHOW_ATTRIBUTE(output_bpc);
->>=20
->> Looks like an excessive amount of code for a single value.
+On Fri, 01 Apr 2022, Jos=C3=A9 Roberto de Souza <jose.souza@intel.com> wrot=
+e:
+> Following up what was done in commit 804f46885317 ("drm/i915/psr: Set
+> "SF Partial Frame Enable" also on full update") and also setting
+> partial frame enable when psr_force_hw_tracking_exit() is called.
 >
-> Yeah, but these values are very helpful in many IGT tests like=20
-> kms_color, kms_hdr, kms_dither, kms_dsc etc..
+> Also as PSR2_MAN_TRK_CTL is a double buffered registers do a RMW
+> is not a good idea so here also setting the man_trk_ctl_enable_bit()
+> that is required in TGL and only doing a register write.
 >
-> Otherwise IGT needs to request the kernel to get the EDID, and parse=20
-> that EDID to get the "Maximum" value which is redundant (Kernel is=20
-> already doing the same) and not recommended in IGT.
+> v2:
+> - not doing a rmw
 >
-> And there is no way to get the "Current" value except reading it from=20
-> i915_display_info which is again not recommended in IGT (As=20
-> i915_display_info is Intel specific).
+> Cc: Jouni H=C3=B6gander <jouni.hogander@intel.com>
+> Cc: Mika Kahola <mika.kahola@intel.com>
+> Signed-off-by: Jos=C3=A9 Roberto de Souza <jose.souza@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_psr.c | 18 +++++++++++-------
+>  1 file changed, 11 insertions(+), 7 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i=
+915/display/intel_psr.c
+> index 80002ca6a6ebe..2da2468f555ec 100644
+> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+> @@ -1436,6 +1436,11 @@ void intel_psr_resume(struct intel_dp *intel_dp)
+>  	mutex_unlock(&psr->lock);
+>  }
+>=20=20
+> +static inline u32 man_trk_ctl_enable_bit_get(struct drm_i915_private *de=
+v_priv)
 
-Note how we have intel_connector_debugfs_add() for connector debugfs and
-intel_crtc_debugfs_add() for crtc debugfs, and how this patch just mixes
-up the two by looking up crtc and state from the connector debugfs.
+As a rule of thumb, please don't use static inline in .c files, just let
+the compiler do its job.
 
-> This debugfs is already introduced & using by AMD:=20
-> https://patchwork.freedesktop.org/patch/308586
-
-Wait, what?
-
-Both amd and i915 adding the name "output_bpc" is *not* the way to
-roll. We only add i915_ prefixed debugfs files from i915.ko.
-
-If you need this to be a standard interface across drivers, IMO it
-should be added in common drm code, not sprinkled around in drivers.
-
-I see that amd is already using this in what is basically drm core
-debugfs namespace, and there's amd specific IGT built on top.
-
-Adding a bunch of Cc's to get some clarity on drm debugfs naming and
-usage.
-
+If that ever becomes unused, you won't get any error messages about it.
 
 BR,
 Jani.
 
-
->
-> - Bhanu
->
->>=20
->> BR,
->> Jani.
->>=20
->>> +
->>>   /**
->>>    * intel_connector_debugfs_add - add i915 specific connector debugfs =
-files
->>>    * @connector: pointer to a registered drm_connector
->>> @@ -2330,6 +2373,9 @@ void intel_connector_debugfs_add(struct intel_con=
-nector *intel_connector)
->>>   	    connector->connector_type =3D=3D DRM_MODE_CONNECTOR_HDMIB)
->>>   		debugfs_create_file("i915_lpsp_capability", 0444, root,
->>>   				    connector, &i915_lpsp_capability_fops);
->>> +
->>> +	debugfs_create_file("output_bpc", 0444, root,
->>> +			    connector, &output_bpc_fops);
->>>   }
->>>=20=20=20
->>>   /**
->>=20
->
+> +{
+> +	return IS_ALDERLAKE_P(dev_priv) ? 0 : PSR2_MAN_TRK_CTL_ENABLE;
+> +}
+> +
+>  static inline u32 man_trk_ctl_single_full_frame_bit_get(struct drm_i915_=
+private *dev_priv)
+>  {
+>  	return IS_ALDERLAKE_P(dev_priv) ?
+> @@ -1455,9 +1460,11 @@ static void psr_force_hw_tracking_exit(struct inte=
+l_dp *intel_dp)
+>  	struct drm_i915_private *dev_priv =3D dp_to_i915(intel_dp);
+>=20=20
+>  	if (intel_dp->psr.psr2_sel_fetch_enabled)
+> -		intel_de_rmw(dev_priv,
+> -			     PSR2_MAN_TRK_CTL(intel_dp->psr.transcoder), 0,
+> -			     man_trk_ctl_single_full_frame_bit_get(dev_priv));
+> +		intel_de_write(dev_priv,
+> +			       PSR2_MAN_TRK_CTL(intel_dp->psr.transcoder),
+> +			       man_trk_ctl_enable_bit_get(dev_priv) |
+> +			       man_trk_ctl_partial_frame_bit_get(dev_priv) |
+> +			       man_trk_ctl_single_full_frame_bit_get(dev_priv));
+>=20=20
+>  	/*
+>  	 * Display WA #0884: skl+
+> @@ -1554,10 +1561,7 @@ static void psr2_man_trk_ctl_calc(struct intel_crt=
+c_state *crtc_state,
+>  {
+>  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+>  	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
+> -	u32 val =3D 0;
+> -
+> -	if (!IS_ALDERLAKE_P(dev_priv))
+> -		val =3D PSR2_MAN_TRK_CTL_ENABLE;
+> +	u32 val =3D man_trk_ctl_enable_bit_get(dev_priv);
+>=20=20
+>  	/* SF partial frame enable has to be set even on full update */
+>  	val |=3D man_trk_ctl_partial_frame_bit_get(dev_priv);
 
 --=20
 Jani Nikula, Intel Open Source Graphics Center
