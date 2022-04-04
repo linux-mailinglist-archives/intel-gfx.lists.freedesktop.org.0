@@ -1,66 +1,67 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D9024F188B
-	for <lists+intel-gfx@lfdr.de>; Mon,  4 Apr 2022 17:36:46 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 425C04F18A7
+	for <lists+intel-gfx@lfdr.de>; Mon,  4 Apr 2022 17:42:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 61C0F10E4EA;
-	Mon,  4 Apr 2022 15:36:44 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
- [IPv6:2a00:1450:4864:20::344])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C8CD10E63B
- for <Intel-gfx@lists.freedesktop.org>; Mon,  4 Apr 2022 15:36:43 +0000 (UTC)
-Received: by mail-wm1-x344.google.com with SMTP id r7so6179966wmq.2
- for <Intel-gfx@lists.freedesktop.org>; Mon, 04 Apr 2022 08:36:43 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C6E810E1E3;
+	Mon,  4 Apr 2022 15:42:00 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com
+ [IPv6:2a00:1450:4864:20::341])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D7EC210E202
+ for <intel-gfx@lists.freedesktop.org>; Mon,  4 Apr 2022 15:41:59 +0000 (UTC)
+Received: by mail-wm1-x341.google.com with SMTP id r7so6189346wmq.2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 04 Apr 2022 08:41:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=date:from:to:cc:subject:message-id:references:mime-version
  :content-disposition:content-transfer-encoding:in-reply-to;
- bh=WqQFj1JtsCrLC9+wcvEz2jqj8nhRvOivJ56ZyXmaRu0=;
- b=iquxK/OlWPv6oWuQ/xZ/UvUTvEJHZ96YRAziiqMj7uK0OlHRY/W0ULHUitIhmKKdUt
- zU+MeRyiTVhZbV+5o7ToD55eMJYwaP6G7K2oKmYkYVUiglWxQwvrkGkjHVYMvTcgifnw
- bRZ4cPT472C7kCoD0omVY9VNSzDYsgP/WKB60=
+ bh=w/8gSEP4Y+eg37m25uJQz5khDGVPC4yhdT96CaWdyw0=;
+ b=N4+YgRJe42fB1eU5chTRyIrJsJEZk6Ohiq8wOaDzS3zQoXpNMU61NytJCd3mGxk5NB
+ RUcUsKm6dj0xPIPd9herf3yvjUUjlyMVRjGVA/BvvmqBWBdMr6hSaEYdgP4QjjQ+Bdin
+ LgbjQTU6AMYdtUAukCD9uYirxEUcgpV97u0MA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
  :mime-version:content-disposition:content-transfer-encoding
  :in-reply-to;
- bh=WqQFj1JtsCrLC9+wcvEz2jqj8nhRvOivJ56ZyXmaRu0=;
- b=cPibK6BoFU2iYV7GIOQpV8JzRtu2HjhXVW531jcB80i4gisVmS/QkfCnMaK4Ho+GvY
- scLTmiMSBmCWBXG+BwI8Wy+xSoaYhMxP9Fr8qhX/jqU7krbwAdULw5Ml0hOSMZ76xPa1
- KyUWp/F4L1j1b1Gtscrhn1WfGGKTWP5N67yjcRjU423XAU+sCjoL6c8kYNT0ZLPe6Exb
- vD0h2kCqXZXa+Pmhj6/HQ8OLXGh4l+bvo8ry2Fg4SSay6mpfj6i9A7wswbD6emIKIG9A
- SXHV2pnfV5cElIlk0DfEOPK1x1NQG93GudzB4p7D5rdFDDd+2qYaI64nIxGRLW82yQHF
- SKfg==
-X-Gm-Message-State: AOAM5337wXS8piPkg/Bxv0i65K1ElYakwrbjlGHXSmllw86UDi/Et4dH
- kbvLXGIzHdeeb7tUuoJ1iVLvlg==
-X-Google-Smtp-Source: ABdhPJzKwJoYanUD7oXJs569f3hTI7Bi9L7S4C+u5+FGDOTQH7MqUBZ3jwV3iaWtGGERGCi1xZH1Kg==
-X-Received: by 2002:a1c:f70a:0:b0:37c:533d:d296 with SMTP id
- v10-20020a1cf70a000000b0037c533dd296mr48636wmh.147.1649086600592; 
- Mon, 04 Apr 2022 08:36:40 -0700 (PDT)
+ bh=w/8gSEP4Y+eg37m25uJQz5khDGVPC4yhdT96CaWdyw0=;
+ b=unAyV4obIJZ1rJfVQKnTUYUj/C8RK80AeO4FxCUHpwJVR0hYjLzG8YjwvI1JLtMYr6
+ oJTwixEKc/0OE67B1TDGiMSzyUczruZCVnlDXAnxvwRT+QSoGRz3lK7/XBfCFC8UTROA
+ vrQMapTBEOb+vgjYk2QZi59Hpz9tC4xrcASQEYGgwXdbGcPthvE/Dko8JqMtdlXYxPVn
+ F5eeatyldBspnwzAZdWYLizbfKXxbbOomxBkxJ2biF9zaEwzEZ/tV4v7rcQMVn+KCoqk
+ DW8oTwW2lH7zhwgh65EyUUOA6IiJ9WWa7L9CKMGRdq0tfMmpOSANPWmSPRIPKfR2IH7j
+ 6U5A==
+X-Gm-Message-State: AOAM531t0XViWBwjh5Q91E5yBzmR2cjzblUO+YipZ2QFuO5m02wp/cZS
+ HmgqnURoCu3OsUQ6zEcbIEWSCA==
+X-Google-Smtp-Source: ABdhPJxvSAN9N+oXgWgJAgqJGpVN8hxCSh5GJvn81nGq8M6C/b1tKa2Ujp1uKzGkDLow5XLzpEbAqg==
+X-Received: by 2002:a05:600c:5023:b0:38d:1261:aac6 with SMTP id
+ n35-20020a05600c502300b0038d1261aac6mr104459wmr.180.1649086918325; 
+ Mon, 04 Apr 2022 08:41:58 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
  by smtp.gmail.com with ESMTPSA id
- i14-20020a0560001ace00b00203da1fa749sm13853152wry.72.2022.04.04.08.36.39
+ c11-20020a05600c0a4b00b0037c91e085ddsm20983676wmq.40.2022.04.04.08.41.57
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 04 Apr 2022 08:36:40 -0700 (PDT)
-Date: Mon, 4 Apr 2022 17:36:38 +0200
+ Mon, 04 Apr 2022 08:41:57 -0700 (PDT)
+Date: Mon, 4 Apr 2022 17:41:56 +0200
 From: Daniel Vetter <daniel@ffwll.ch>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <YksQhinav7N4/Qjk@phenom.ffwll.local>
-References: <20220401142205.3123159-1-tvrtko.ursulin@linux.intel.com>
- <20220401142205.3123159-9-tvrtko.ursulin@linux.intel.com>
- <5a6d725f-02a3-bbdf-4585-5e0b491f2721@linux.intel.com>
- <b0e7449b-c4f9-e2fb-2866-08997f0195bf@linux.intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <YksRxORJDvfigbZG@phenom.ffwll.local>
+References: <20220328075020.708022-1-bhanuprakash.modem@intel.com>
+ <20220329060731.785476-1-bhanuprakash.modem@intel.com>
+ <877d897z90.fsf@intel.com>
+ <b5041da6-9a2b-c687-5dc9-c587eb6230b4@intel.com>
+ <87fsmt6s8w.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <b0e7449b-c4f9-e2fb-2866-08997f0195bf@linux.intel.com>
+In-Reply-To: <87fsmt6s8w.fsf@intel.com>
 X-Operating-System: Linux phenom 5.10.0-8-amd64 
-Subject: Re: [Intel-gfx] [CI 8/8] drm/i915: Expose client engine utilisation
- via fdinfo
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display/debugfs: Add connector
+ debugfs for "output_bpc"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,284 +74,168 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Dave Airlie <airlied@gmail.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Cc: Arkadiusz Hiler <arek@hiler.eu>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ airlied@linux.ie, Alex Deucher <alexander.deucher@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Apr 04, 2022 at 10:23:53AM +0100, Tvrtko Ursulin wrote:
+On Mon, Apr 04, 2022 at 01:46:23PM +0300, Jani Nikula wrote:
+> On Mon, 04 Apr 2022, "Modem, Bhanuprakash" <bhanuprakash.modem@intel.com> wrote:
+> > On Fri-01-04-2022 06:10 pm, Jani Nikula wrote:
+> >> On Tue, 29 Mar 2022, Bhanuprakash Modem <bhanuprakash.modem@intel.com> wrote:
+> >>> This new debugfs will expose the connector's max supported bpc
+> >>> and the bpc currently using. It is very useful for verifying
+> >>> whether we enter the correct output color depth from IGT.
+> >>>
+> >>> Example:
+> >>> cat /sys/kernel/debug/dri/0/DP-1/output_bpc
+> >>> Current: 8
+> >>> Maximum: 10
+> >>>
+> >>> V2: Add connector's max bpc to i915_display_info
+> >>>
+> >>> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> >>> Cc: Uma Shankar <uma.shankar@intel.com>
+> >>> Cc: Swati Sharma <swati2.sharma@intel.com>
+> >>> Signed-off-by: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
+> >>> ---
+> >>>   .../drm/i915/display/intel_display_debugfs.c  | 46 +++++++++++++++++++
+> >>>   1 file changed, 46 insertions(+)
+> >>>
+> >>> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> >>> index c1e74a13a0828..694d27f3b109c 100644
+> >>> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> >>> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> >>> @@ -663,6 +663,8 @@ static void intel_connector_info(struct seq_file *m,
+> >>>   	seq_puts(m, "\tHDCP version: ");
+> >>>   	intel_hdcp_info(m, intel_connector);
+> >>>   
+> >>> +	seq_printf(m, "\tmax bpc: %u\n", connector->display_info.bpc);
+> >>> +
+> >>>   	intel_panel_info(m, intel_connector);
+> >>>   
+> >>>   	seq_printf(m, "\tmodes:\n");
+> >>> @@ -2275,6 +2277,47 @@ static const struct file_operations i915_dsc_bpp_fops = {
+> >>>   	.write = i915_dsc_bpp_write
+> >>>   };
+> >>>   
+> >>> +/*
+> >>> + * Returns the maximum output bpc for the connector.
+> >>> + * Example usage: cat /sys/kernel/debug/dri/0/DP-1/output_bpc
+> >>> + */
+> >>> +static int output_bpc_show(struct seq_file *m, void *data)
+> >>> +{
+> >>> +	struct drm_connector *connector = m->private;
+> >>> +	struct drm_device *dev = connector->dev;
+> >>> +	struct drm_crtc *crtc;
+> >>> +	struct intel_crtc_state *crtc_state;
+> >>> +	struct intel_encoder *encoder = intel_attached_encoder(to_intel_connector(connector));
+> >>> +	int res;
+> >>> +
+> >>> +	if (!encoder)
+> >>> +		return -ENODEV;
+> >>> +
+> >>> +	res = drm_modeset_lock_single_interruptible(&dev->mode_config.connection_mutex);
+> >>> +	if (res)
+> >>> +		return res;
+> >>> +
+> >>> +	crtc = connector->state->crtc;
+> >>> +	if (connector->status != connector_status_connected || !crtc) {
+> >>> +		res = -ENODEV;
+> >>> +		goto unlock;
+> >>> +	}
+> >>> +
+> >>> +	crtc_state = to_intel_crtc_state(crtc->state);
+> >>> +	if (!crtc_state->hw.active)
+> >>> +		goto unlock;
+> >>> +
+> >>> +	seq_printf(m, "Current: %u\n", crtc_state->pipe_bpp / 3);
+> >>> +	seq_printf(m, "Maximum: %u\n", connector->display_info.bpc);
+> >>> +	res = 0;
+> >>> +
+> >>> +unlock:
+> >>> +	drm_modeset_unlock(&dev->mode_config.connection_mutex);
+> >>> +
+> >>> +	return res;
+> >>> +}
+> >>> +DEFINE_SHOW_ATTRIBUTE(output_bpc);
+> >> 
+> >> Looks like an excessive amount of code for a single value.
+> >
+> > Yeah, but these values are very helpful in many IGT tests like 
+> > kms_color, kms_hdr, kms_dither, kms_dsc etc..
+> >
+> > Otherwise IGT needs to request the kernel to get the EDID, and parse 
+> > that EDID to get the "Maximum" value which is redundant (Kernel is 
+> > already doing the same) and not recommended in IGT.
+> >
+> > And there is no way to get the "Current" value except reading it from 
+> > i915_display_info which is again not recommended in IGT (As 
+> > i915_display_info is Intel specific).
 > 
-> + Dave and Daniel
+> Note how we have intel_connector_debugfs_add() for connector debugfs and
+> intel_crtc_debugfs_add() for crtc debugfs, and how this patch just mixes
+> up the two by looking up crtc and state from the connector debugfs.
 > 
-> Guys, are you okay with merging this via drm-intel-gt-next? It is one new
-> file at Documentation/gpu/drm-usage-stats.rst only which is outside i915. It
-> has acks from Christian and Rob.
+> > This debugfs is already introduced & using by AMD: 
+> > https://patchwork.freedesktop.org/patch/308586
+> 
+> Wait, what?
+> 
+> Both amd and i915 adding the name "output_bpc" is *not* the way to
+> roll. We only add i915_ prefixed debugfs files from i915.ko.
 
-Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+Yeah vendor prefix would be nice, but it's debugfs so we can always fix
+it.
+
+Also would be really good to pull that output_bpc into drm core if it's
+something standard that igts need in general, so ideally we don't just
+standardize the drm side, but also the testcases that need this and make
+them generic to run on any kms driver.
+-Daniel
 
 > 
-> Daniel, series is also fully reviewed and IGT reviewed and ready. Rob also
-> demonstrated the approach works for msm when using the vendor agnosstic
-> gputop tool I sketched out (see
-> 20220225202614.225197-3-robdclark@gmail.com).
+> If you need this to be a standard interface across drivers, IMO it
+> should be added in common drm code, not sprinkled around in drivers.
 > 
-> My plan is to merge the i915 support with the common spec and intel_gpu_top
-> on the IGT side. Then follow-up with vendor agnostic gputop and later yet
-> potentially re-visit the AMD side by re-sending the patch which tweaks the
-> fdinfo format there and adds support for relative engine utilisation as
-> provided by amdgpu.
+> I see that amd is already using this in what is basically drm core
+> debugfs namespace, and there's amd specific IGT built on top.
 > 
-> Regards,
+> Adding a bunch of Cc's to get some clarity on drm debugfs naming and
+> usage.
 > 
-> Tvrtko
 > 
-> On 04/04/2022 10:12, Tvrtko Ursulin wrote:
-> > 
-> > On 01/04/2022 15:22, Tvrtko Ursulin wrote:
-> > > From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> > > 
-> > > Similar to AMD commit
-> > > 874442541133 ("drm/amdgpu: Add show_fdinfo() interface"), using the
-> > > infrastructure added in previous patches, we add basic client info
-> > > and GPU engine utilisation for i915.
-> > > 
-> > > Example of the output:
-> > > 
-> > >    pos:    0
-> > >    flags:  0100002
-> > >    mnt_id: 21
-> > >    drm-driver: i915
-> > >    drm-pdev:   0000:00:02.0
-> > >    drm-client-id:      7
-> > >    drm-engine-render:  9288864723 ns
-> > >    drm-engine-copy:    2035071108 ns
-> > >    drm-engine-video:   0 ns
-> > >    drm-engine-video-enhance:   0 ns
-> > > 
-> > > v2:
-> > >   * Update for removal of name and pid.
-> > > 
-> > > v3:
-> > >   * Use drm_driver.name.
-> > > 
-> > > v4:
-> > >   * Added drm-engine-capacity- tag.
-> > >   * Fix typo. (Umesh)
-> > > 
-> > > v5:
-> > >   * Don't output engine data before Gen8.
-> > > 
-> > > Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> > > Cc: David M Nieto <David.Nieto@amd.com>
-> > > Cc: Christian König <christian.koenig@amd.com>
-> > > Cc: Daniel Vetter <daniel@ffwll.ch>
-> > > Cc: Chris Healy <cphealy@gmail.com>
-> > > Acked-by: Christian König <christian.koenig@amd.com>
-> > > Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-> > 
-> > Forgot to apply an earlier:
-> > 
-> > Acked-by: Rob Clark <robdclark@gmail.com>
-> > 
-> > Regards,
-> > 
-> > Tvrtko
-> > 
-> > > ---
-> > >   Documentation/gpu/drm-usage-stats.rst  |  6 ++
-> > >   Documentation/gpu/i915.rst             | 28 +++++++++
-> > >   drivers/gpu/drm/i915/i915_driver.c     |  3 +
-> > >   drivers/gpu/drm/i915/i915_drm_client.c | 84 ++++++++++++++++++++++++++
-> > >   drivers/gpu/drm/i915/i915_drm_client.h |  4 ++
-> > >   5 files changed, 125 insertions(+)
-> > > 
-> > > diff --git a/Documentation/gpu/drm-usage-stats.rst
-> > > b/Documentation/gpu/drm-usage-stats.rst
-> > > index b8cc28f4da6f..6c9f166a8d6f 100644
-> > > --- a/Documentation/gpu/drm-usage-stats.rst
-> > > +++ b/Documentation/gpu/drm-usage-stats.rst
-> > > @@ -104,3 +104,9 @@ object belong to this client, in the respective
-> > > memory region.
-> > >   Default unit shall be bytes with optional unit specifiers of 'KiB'
-> > > or 'MiB'
-> > >   indicating kibi- or mebi-bytes.
-> > > +
-> > > +===============================
-> > > +Driver specific implementations
-> > > +===============================
-> > > +
-> > > +:ref:`i915-usage-stats`
-> > > diff --git a/Documentation/gpu/i915.rst b/Documentation/gpu/i915.rst
-> > > index 0f08693d05cd..54060cd6c419 100644
-> > > --- a/Documentation/gpu/i915.rst
-> > > +++ b/Documentation/gpu/i915.rst
-> > > @@ -697,3 +697,31 @@ The style guide for ``i915_reg.h``.
-> > >   .. kernel-doc:: drivers/gpu/drm/i915/i915_reg.h
-> > >      :doc: The i915 register macro definition style guide
-> > > +
-> > > +.. _i915-usage-stats:
-> > > +
-> > > +i915 DRM client usage stats implementation
-> > > +==========================================
-> > > +
-> > > +The drm/i915 driver implements the DRM client usage stats
-> > > specification as
-> > > +documented in :ref:`drm-client-usage-stats`.
-> > > +
-> > > +Example of the output showing the implemented key value pairs and
-> > > entirety of
-> > > +the currently possible format options:
-> > > +
-> > > +::
-> > > +
-> > > +      pos:    0
-> > > +      flags:  0100002
-> > > +      mnt_id: 21
-> > > +      drm-driver: i915
-> > > +      drm-pdev:   0000:00:02.0
-> > > +      drm-client-id:      7
-> > > +      drm-engine-render:  9288864723 ns
-> > > +      drm-engine-copy:    2035071108 ns
-> > > +      drm-engine-video:   0 ns
-> > > +      drm-engine-capacity-video:   2
-> > > +      drm-engine-video-enhance:   0 ns
-> > > +
-> > > +Possible `drm-engine-` key names are: `render`, `copy`, `video` and
-> > > +`video-enhance`.
-> > > diff --git a/drivers/gpu/drm/i915/i915_driver.c
-> > > b/drivers/gpu/drm/i915/i915_driver.c
-> > > index b2df273e6d7b..3ffb617d75c9 100644
-> > > --- a/drivers/gpu/drm/i915/i915_driver.c
-> > > +++ b/drivers/gpu/drm/i915/i915_driver.c
-> > > @@ -1745,6 +1745,9 @@ static const struct file_operations
-> > > i915_driver_fops = {
-> > >       .read = drm_read,
-> > >       .compat_ioctl = i915_ioc32_compat_ioctl,
-> > >       .llseek = noop_llseek,
-> > > +#ifdef CONFIG_PROC_FS
-> > > +    .show_fdinfo = i915_drm_client_fdinfo,
-> > > +#endif
-> > >   };
-> > >   static int
-> > > diff --git a/drivers/gpu/drm/i915/i915_drm_client.c
-> > > b/drivers/gpu/drm/i915/i915_drm_client.c
-> > > index 91a8559bebf7..e539f6b23060 100644
-> > > --- a/drivers/gpu/drm/i915/i915_drm_client.c
-> > > +++ b/drivers/gpu/drm/i915/i915_drm_client.c
-> > > @@ -7,7 +7,13 @@
-> > >   #include <linux/slab.h>
-> > >   #include <linux/types.h>
-> > > +#include <uapi/drm/i915_drm.h>
-> > > +
-> > > +#include <drm/drm_print.h>
-> > > +
-> > > +#include "gem/i915_gem_context.h"
-> > >   #include "i915_drm_client.h"
-> > > +#include "i915_file_private.h"
-> > >   #include "i915_gem.h"
-> > >   #include "i915_utils.h"
-> > > @@ -68,3 +74,81 @@ void i915_drm_clients_fini(struct
-> > > i915_drm_clients *clients)
-> > >       GEM_BUG_ON(!xa_empty(&clients->xarray));
-> > >       xa_destroy(&clients->xarray);
-> > >   }
-> > > +
-> > > +#ifdef CONFIG_PROC_FS
-> > > +static const char * const uabi_class_names[] = {
-> > > +    [I915_ENGINE_CLASS_RENDER] = "render",
-> > > +    [I915_ENGINE_CLASS_COPY] = "copy",
-> > > +    [I915_ENGINE_CLASS_VIDEO] = "video",
-> > > +    [I915_ENGINE_CLASS_VIDEO_ENHANCE] = "video-enhance",
-> > > +};
-> > > +
-> > > +static u64 busy_add(struct i915_gem_context *ctx, unsigned int class)
-> > > +{
-> > > +    struct i915_gem_engines_iter it;
-> > > +    struct intel_context *ce;
-> > > +    u64 total = 0;
-> > > +
-> > > +    for_each_gem_engine(ce, rcu_dereference(ctx->engines), it) {
-> > > +        if (ce->engine->uabi_class != class)
-> > > +            continue;
-> > > +
-> > > +        total += intel_context_get_total_runtime_ns(ce);
-> > > +    }
-> > > +
-> > > +    return total;
-> > > +}
-> > > +
-> > > +static void
-> > > +show_client_class(struct seq_file *m,
-> > > +          struct i915_drm_client *client,
-> > > +          unsigned int class)
-> > > +{
-> > > +    const struct list_head *list = &client->ctx_list;
-> > > +    u64 total = atomic64_read(&client->past_runtime[class]);
-> > > +    const unsigned int capacity =
-> > > +        client->clients->i915->engine_uabi_class_count[class];
-> > > +    struct i915_gem_context *ctx;
-> > > +
-> > > +    rcu_read_lock();
-> > > +    list_for_each_entry_rcu(ctx, list, client_link)
-> > > +        total += busy_add(ctx, class);
-> > > +    rcu_read_unlock();
-> > > +
-> > > +    seq_printf(m, "drm-engine-%s:\t%llu ns\n",
-> > > +           uabi_class_names[class], total);
-> > > +
-> > > +    if (capacity > 1)
-> > > +        seq_printf(m, "drm-engine-capacity-%s:\t%u\n",
-> > > +               uabi_class_names[class],
-> > > +               capacity);
-> > > +}
-> > > +
-> > > +void i915_drm_client_fdinfo(struct seq_file *m, struct file *f)
-> > > +{
-> > > +    struct drm_file *file = f->private_data;
-> > > +    struct drm_i915_file_private *file_priv = file->driver_priv;
-> > > +    struct drm_i915_private *i915 = file_priv->dev_priv;
-> > > +    struct i915_drm_client *client = file_priv->client;
-> > > +    struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
-> > > +    unsigned int i;
-> > > +
-> > > +    /*
-> > > +     *
-> > > ******************************************************************
-> > > +     * For text output format description please see
-> > > drm-usage-stats.rst!
-> > > +     *
-> > > ******************************************************************
-> > > +     */
-> > > +
-> > > +    seq_printf(m, "drm-driver:\t%s\n", i915->drm.driver->name);
-> > > +    seq_printf(m, "drm-pdev:\t%04x:%02x:%02x.%d\n",
-> > > +           pci_domain_nr(pdev->bus), pdev->bus->number,
-> > > +           PCI_SLOT(pdev->devfn), PCI_FUNC(pdev->devfn));
-> > > +    seq_printf(m, "drm-client-id:\t%u\n", client->id);
-> > > +
-> > > +    if (GRAPHICS_VER(i915) < 8)
-> > > +        return;
-> > > +
-> > > +    for (i = 0; i < ARRAY_SIZE(uabi_class_names); i++)
-> > > +        show_client_class(m, client, i);
-> > > +}
-> > > +#endif
-> > > diff --git a/drivers/gpu/drm/i915/i915_drm_client.h
-> > > b/drivers/gpu/drm/i915/i915_drm_client.h
-> > > index 191368386ace..5f5b02b01ba0 100644
-> > > --- a/drivers/gpu/drm/i915/i915_drm_client.h
-> > > +++ b/drivers/gpu/drm/i915/i915_drm_client.h
-> > > @@ -59,6 +59,10 @@ static inline void i915_drm_client_put(struct
-> > > i915_drm_client *client)
-> > >   struct i915_drm_client *i915_drm_client_add(struct
-> > > i915_drm_clients *clients);
-> > > +#ifdef CONFIG_PROC_FS
-> > > +void i915_drm_client_fdinfo(struct seq_file *m, struct file *f);
-> > > +#endif
-> > > +
-> > >   void i915_drm_clients_fini(struct i915_drm_clients *clients);
-> > >   #endif /* !__I915_DRM_CLIENT_H__ */
+> BR,
+> Jani.
+> 
+> 
+> >
+> > - Bhanu
+> >
+> >> 
+> >> BR,
+> >> Jani.
+> >> 
+> >>> +
+> >>>   /**
+> >>>    * intel_connector_debugfs_add - add i915 specific connector debugfs files
+> >>>    * @connector: pointer to a registered drm_connector
+> >>> @@ -2330,6 +2373,9 @@ void intel_connector_debugfs_add(struct intel_connector *intel_connector)
+> >>>   	    connector->connector_type == DRM_MODE_CONNECTOR_HDMIB)
+> >>>   		debugfs_create_file("i915_lpsp_capability", 0444, root,
+> >>>   				    connector, &i915_lpsp_capability_fops);
+> >>> +
+> >>> +	debugfs_create_file("output_bpc", 0444, root,
+> >>> +			    connector, &output_bpc_fops);
+> >>>   }
+> >>>   
+> >>>   /**
+> >> 
+> >
+> 
+> -- 
+> Jani Nikula, Intel Open Source Graphics Center
 
 -- 
 Daniel Vetter
