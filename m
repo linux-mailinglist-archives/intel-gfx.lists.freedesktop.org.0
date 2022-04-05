@@ -2,49 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AA9C4F39B9
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 Apr 2022 16:54:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 161624F3AF8
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 Apr 2022 17:07:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9092910E19A;
-	Tue,  5 Apr 2022 14:54:21 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 12BF510E19A;
- Tue,  5 Apr 2022 14:54:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649170460; x=1680706460;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=oUkQbA5pN5V7a89ItbEKPba81WjVPT45OU0bMAv6p20=;
- b=OYi9+qduav0gtMUIBmxs8y3BULaGbxbPkH6W7fSMUfIXRAuPFEQI+4af
- e5Ptz+uZ1JCom0H/uxPuk8U8+KU3eAOpc5M2GoVmj1f58qyluiqh2uOWr
- bGP95RlMZZ8EXEKqPghRalXEuA18DBETo/ZmeuR6tllOSqJ7mEaj9UW2N
- Gt8YckhEe7Dl3w0FUq3NB79ZQHfEgPh1fM02f9LszDX445UYQp1YHPNOj
- hmvJQ9I1LWT4PFxZN2/SCpFBV//9KqOdf4aoDssuDgb/7lYWvXzgKcs59
- Wj2Y1h6DeCR0Hfy4OTSEDaBKybH2yrYjJrAlVNwxfqb5GxMo2Au4ft3VW Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10307"; a="241353412"
-X-IronPort-AV: E=Sophos;i="5.90,236,1643702400"; d="scan'208";a="241353412"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2022 07:54:19 -0700
-X-IronPort-AV: E=Sophos;i="5.90,236,1643702400"; d="scan'208";a="608470346"
-Received: from pmulcahy-mobl.ger.corp.intel.com (HELO tursulin-mobl2.home)
- ([10.213.235.32])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2022 07:54:18 -0700
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: Intel-gfx@lists.freedesktop.org
-Date: Tue,  5 Apr 2022 15:53:45 +0100
-Message-Id: <20220405145345.3284084-4-tvrtko.ursulin@linux.intel.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220405145345.3284084-1-tvrtko.ursulin@linux.intel.com>
-References: <20220405145345.3284084-1-tvrtko.ursulin@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0360C10E24B;
+	Tue,  5 Apr 2022 15:07:23 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1ECFD10E24B;
+ Tue,  5 Apr 2022 15:07:22 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1BD67A66C8;
+ Tue,  5 Apr 2022 15:07:22 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 3/3] drm/i915: Inherit submitter nice when
- scheduling requests
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Date: Tue, 05 Apr 2022 15:07:22 -0000
+Message-ID: <164917124208.24157.4230575541400911854@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220405105944.336896-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20220405105944.336896-1-thomas.hellstrom@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/i915=3A_Improve_on_suspend_/_resume_time_with_VT-d_enabled?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,40 +40,21 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+== Series Details ==
 
-Inherit submitter nice at point of request submission to account for
-long running processes getting either externally or self re-niced.
+Series: drm/i915: Improve on suspend / resume time with VT-d enabled
+URL   : https://patchwork.freedesktop.org/series/102187/
+State : warning
 
-Nice value will only apply to requests which originate from user
-contexts and have default context priority.
+== Summary ==
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
----
- drivers/gpu/drm/i915/i915_request.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index 960bfd517ff7..a777f14e4b87 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -1811,8 +1811,11 @@ void i915_request_add(struct i915_request *rq)
- 	/* XXX placeholder for selftests */
- 	rcu_read_lock();
- 	ctx = rcu_dereference(rq->context->gem_context);
--	if (ctx)
-+	if (ctx) {
- 		attr = ctx->sched;
-+		if (attr.priority == I915_CONTEXT_DEFAULT_PRIORITY)
-+			attr.nice = task_nice(current);
-+	}
- 	rcu_read_unlock();
- 
- 	__i915_request_queue(rq, &attr);
--- 
-2.32.0
 
