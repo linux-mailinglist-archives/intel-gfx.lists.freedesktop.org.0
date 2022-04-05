@@ -2,59 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45F964F29C2
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 Apr 2022 12:34:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F295D4F29C5
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 Apr 2022 12:40:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C4E510ED5B;
-	Tue,  5 Apr 2022 10:34:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 356DA10E61B;
+	Tue,  5 Apr 2022 10:40:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com
- [IPv6:2607:f8b0:4864:20::236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3887110ED5B
- for <intel-gfx@lists.freedesktop.org>; Tue,  5 Apr 2022 10:34:44 +0000 (UTC)
-Received: by mail-oi1-x236.google.com with SMTP id q129so12944083oif.4
- for <intel-gfx@lists.freedesktop.org>; Tue, 05 Apr 2022 03:34:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=tzmhcp5RxadQONeu9KvciYKiNgXbRJejI1iC090AVWg=;
- b=Ckyr/H4Efk9eg4/2J/KBC2fSKKkO3KzksdjLcY3RBSzT9NMCmfFcmXQP/tFtKO/470
- cq+ZnczUI9w3TuhLKpo/lVk0VJYzTyel84GgUrfYKCT9mv2hijbapBsI0e1FG7FrRJmb
- fLucT+sdtvHXDNR/H3K7C3fno1IoUuh9gjqUQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=tzmhcp5RxadQONeu9KvciYKiNgXbRJejI1iC090AVWg=;
- b=vag+alTInQEO9956vybkBwSrmwYlcLinf4qOZRDot7m3IKdwIqecRdCNdfmjTuQ5G+
- JIqlvviy4PlxFBwntLOAiHCYechgJ6kwbhBnEk20CQ3h3SV3OiPt0ix8ZwseQ184BRUl
- oW0s6Lc8a3t3EbDcB1N5FSQaxv07UnZ9mI/8+aYppd/l4uX4dmJazSX6TKjGktZrhh3S
- S3JepxTzn/zbnkgfYQiFWcEyj7kGHETtnv/U9PYvj+U2sHqRPTUBiUpVbRXWr/RDjaae
- B/LL1u9sLTSNNSCH7DqPPtFyNbsXhM4ZrZ0WfYE7PrjPLWm5TrBma5g+dLKivhKfdXRR
- ZUCg==
-X-Gm-Message-State: AOAM531EREo0id5+CNVWoUkpPyQZelvZFnxgLu0WCPJljCsp5dOy2OLC
- I5F41/i/HEPCzlqCfdihT1ilE/eckl/Gkncr8fyDqA==
-X-Google-Smtp-Source: ABdhPJzqoYVSx47i8TUU2SwXKC01iWiGjmQ1+pUIxIWzSlGlgOjCn7FBVo4L4bnb1FUmBmYZzaS59mRu1JbpVJ6Lf+k=
-X-Received: by 2002:a05:6808:1596:b0:2f7:5d89:eec7 with SMTP id
- t22-20020a056808159600b002f75d89eec7mr1125899oiw.228.1649154883395; Tue, 05
- Apr 2022 03:34:43 -0700 (PDT)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5384710E610
+ for <intel-gfx@lists.freedesktop.org>; Tue,  5 Apr 2022 10:40:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1649155229; x=1680691229;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ILOctOrMma5HgUcaxgvAJiGXFGejWzn7cNTuUfFpiHU=;
+ b=L/KLh5dJlJ4k+mYHC+ME6ug6t+evvfvrTQE+2Xl4KhyvJ9thygGrtulj
+ B70mwtyPbY2Bv+5hT2KA4VfXUG5Ag753FfppBUDvCIjTe9UCbEEtU75Jn
+ nC/D6eXqO6ZdZLS/M/3XelGoFmPX+1pTf+aDTmCZwFjJxR+rmDsvnKa6x
+ FUMmANNorL33yzY5UCkopqjh3GOBAd4K6GOvkGrmnWATdCtkyWU0VKATw
+ eVP3oH5XqU1Y685arJjBP622CahP1Nmp/a25U9uP7LVg8w70I+k3rifyU
+ tl0pEHO3EWFB0cTXZxfymoNi6VGHtGrOfG0ckFDDDrGD6fE61wX5eDckA Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10307"; a="260895089"
+X-IronPort-AV: E=Sophos;i="5.90,236,1643702400"; d="scan'208";a="260895089"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Apr 2022 03:40:28 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,236,1643702400"; d="scan'208";a="641564584"
+Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
+ ([10.237.72.65])
+ by FMSMGA003.fm.intel.com with ESMTP; 05 Apr 2022 03:40:27 -0700
+From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  5 Apr 2022 13:41:14 +0300
+Message-Id: <20220405104114.20780-1-stanislav.lisovskiy@intel.com>
+X-Mailer: git-send-email 2.24.1.485.gad05a3d8e5
 MIME-Version: 1.0
-References: <20220208210824.2238981-1-daniel.vetter@ffwll.ch>
- <20220208210824.2238981-19-daniel.vetter@ffwll.ch>
- <4ae20b63-f452-fdb4-ced6-d4968a8d69f0@redhat.com>
- <Ykv/k/WoVemoCJJA@phenom.ffwll.local> <YkwAhSt9HlbxcuZo@phenom.ffwll.local>
- <408ffe9b-f09f-dc7e-7f5e-a93b311a06fa@redhat.com>
- <CAKMK7uHf6H8mhSm6eDHUruWK5Xc2cSPkJUX6v-jpeQfjS19dKw@mail.gmail.com>
- <e124af06-4f24-277a-543a-82b383f48cea@redhat.com>
-In-Reply-To: <e124af06-4f24-277a-543a-82b383f48cea@redhat.com>
-From: Daniel Vetter <daniel@ffwll.ch>
-Date: Tue, 5 Apr 2022 12:34:31 +0200
-Message-ID: <CAKMK7uH4GgDQJZguT-k0QmgEAHYHuDEbBtjYje51_Rtqzud0yw@mail.gmail.com>
-To: Javier Martinez Canillas <javierm@redhat.com>,
- Greg KH <gregkh@linuxfoundation.org>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PATCH v2 18/19] Revert "fbdev: Prevent probing
- generic drivers if a FB is already registered"
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915: Fix skl_pcode_try_request function
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,135 +54,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-fbdev@vger.kernel.org,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- LKML <linux-kernel@vger.kernel.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Peter Jones <pjones@redhat.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- Ilya Trukhanov <lahvuun@gmail.com>, Daniel Vetter <daniel.vetter@intel.com>,
- Zack Rusin <zackr@vmware.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 5 Apr 2022 at 11:52, Javier Martinez Canillas
-<javierm@redhat.com> wrote:
->
-> On 4/5/22 11:24, Daniel Vetter wrote:
-> > On Tue, 5 Apr 2022 at 11:19, Javier Martinez Canillas
->
-> [snip]
->
-> >>
-> >> This is how I think that work, please let me know if you see something
-> >> wrong in my logic:
-> >>
-> >> 1) A PCI device of OF device is registered for the GPU, this attempt to
-> >>    match a registered driver but no driver was registered that match yet.
-> >>
-> >> 2) The efifb driver is built-in, will be initialized according to the link
-> >>    order of the objects under drivers/video and the fbdev driver is registered.
-> >>
-> >>    There is no platform device or PCI/OF device registered that matches.
-> >>
-> >> 3) The DRM driver is built-in, will be initialized according to the link
-> >>    order of the objects under drivers/gpu and the DRM driver is registered.
-> >>
-> >>    This matches the device registered in (1) and the DRM driver probes.
-> >>
-> >> 4) The DRM driver .probe kicks out any conflicting DRM drivers and pdev
-> >>    before registering the DRM device.
-> >>
-> >>    There are no conflicting drivers or platform device at this point.
-> >>
-> >> 5) Latter at some point the drivers/firmware/sysfb.c init function is
-> >>    executed, and this registers a platform device for the generic fb.
-> >>
-> >>    This device matches the efifb driver registered in (2) and the fbdev
-> >>    driver probes.
-> >>
-> >>    Since that happens *after* the DRM driver already matched, probed
-> >>    and registered the DRM device, that is a bug and what the reverted
-> >>    patch worked around.
-> >>
-> >> So we need to prevent (5) if (1) and (3) already happened. Having a flag
-> >> set in the fbdev core somewhere when remove_conflicting_framebuffers()
-> >> is called could be a solution indeed.
-> >>
-> >> That is, the fbdev core needs to know that a DRM driver already probed
-> >> and make register_framebuffer() fail if info->flag & FBINFO_MISC_FIRMWARE
-> >>
-> >> I can attempt to write a patch for that.
-> >
-> > Ah yeah that could be an issue. I think the right fix is to replace
-> > the platform dev unregister with a sysfb_unregister() function in
-> > sysfb.c, which is synced with a common lock with the sysfb_init
-> > function and a small boolean. I think I can type that up quickly for
-> > v3.
->
-> It's more complicated than that since sysfb is just *one* of the several
-> places where platform devices can be registered for video devices.
->
-> For instance, the vga16fb driver registers its own platform device in
-> its module_init() function so that can also happen after the conflicting
-> framebuffers (and associated devices) were removed by a DRM driver probe.
->
-> I tried to minimize the issue for that particular driver with commit:
->
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=0499f419b76f
->
-> But the point stands, it all boils down to the fact that you have two
-> different subsystems registering video drivers and they don't know all
-> about each other to take a proper decision.
->
-> Right now the drm_aperture_remove_conflicting_framebuffers() call signals
-> in one direction from DRM to fbdev but there isn't a communication in the
-> other direction, from fbdev to DRM.
->
-> I believe the correct fix would be for the fbdev core to keep a list of
-> the apertures struct that are passed to remove_conflicting_framebuffers(),
-> that way it will know what apertures are not available anymore and prevent
-> to register any fbdev framebuffer that conflicts with one already present.
+Currently skl_pcode_try_request function doesn't
+properly handle return value it gets from
+snb_pcode_rw, but treats status != 0 as success,
+returning true, which basically doesn't allow
+to use retry/timeout mechanisms if PCode happens
+to be busy and returns EGAIN or some other status
+code not equal to 0.
 
-Hm that still feels like reinventing a driver model, badly.
+We saw this on real hw and also tried simulating this
+by always returning -EAGAIN from snb_pcode_rw for 6 times, which
+currently will just result in false success, while it should
+have tried until timeout is reached:
 
-I think there's two cleaner solutions:
-- move all the firmware driver platform_dev into sysfb.c, and then
-just bind the special cases against that (e.g. offb, vga16fb and all
-these). Then we'd have one sysfb_try_unregister(struct device *dev)
-interface that fbmem.c uses.
-- let fbmem.c call into each of these firmware device providers, which
-means some loops most likely (like we can't call into vga16fb), so
-probably need to move that into fbmem.c and it all gets a bit messy.
+[   22.357729] i915 0000:00:02.0: [drm:intel_cdclk_dump_config [i915]] Changing CDCLK to
+307200 kHz, VCO 614400 kHz, ref 38400 kHz, bypass 19200 kHz, voltage level 0
+[   22.357831] i915 0000:00:02.0: [drm:__snb_pcode_rw [i915]] Returning EAGAIN retry 1
+[   22.357892] i915 0000:00:02.0: [drm:skl_pcode_request [i915]] Success, exiting
+[   22.357936] i915 0000:00:02.0: [drm] ERROR Failed to inform PCU about cdclk change (err -11, freq 307200)
 
-> Let me know if you think that makes sense and I can attempt to write a fix.
+We see en error because higher level api, still notices that status was wrong,
+however we still did try only once.
 
-I still think unregistering the platform_dev properly makes the most
-sense, and feels like the most proper linux device model solution
-instead of hacks on top - if the firmware fb is unuseable because a
-native driver has taken over, we should nuke that. And also the
-firmware fb driver would then just bind to that platform_dev if it
-exists, and only if it exists. Also I think it should be the
-responsibility of whichever piece of code that registers these
-platform devices to ensure that platform_dev actually still exists.
-That's why I think pushing all that code into sysfb.c is probably the
-cleanest solution.
+We fix it by requiring _both_ the status to be 0 and
+request/reply match for success(true) and function
+should return failure(false) if either status turns
+out to be EAGAIN, EBUSY or whatever or reply/request
+masks do not match.
 
-fbdev predates all that stuff by a lot, hence the hand-rolling.
+So now we see this in the logs:
 
-But maybe Greg has some more thoughts here too?
--Daniel
+[   22.318667] i915 0000:00:02.0: [drm:intel_cdclk_dump_config [i915]] Changing CDCLK to
+307200 kHz, VCO 614400 kHz, ref 38400 kHz, bypass 19200 kHz, voltage level 0
+[   22.318782] i915 0000:00:02.0: [drm:__snb_pcode_rw [i915]] Returning EAGAIN retry 1
+[   22.318849] i915 0000:00:02.0: [drm:__snb_pcode_rw [i915]] Returning EAGAIN retry 2
+[   22.319006] i915 0000:00:02.0: [drm:__snb_pcode_rw [i915]] Returning EAGAIN retry 3
+[   22.319091] i915 0000:00:02.0: [drm:__snb_pcode_rw [i915]] Returning EAGAIN retry 4
+[   22.319158] i915 0000:00:02.0: [drm:__snb_pcode_rw [i915]] Returning EAGAIN retry 5
+[   22.319224] i915 0000:00:02.0: [drm:__snb_pcode_rw [i915]] Returning EAGAIN retry 6
 
->
-> --
-> Best regards,
->
-> Javier Martinez Canillas
-> Linux Engineering
-> Red Hat
->
+Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+---
+ drivers/gpu/drm/i915/intel_pcode.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-
+diff --git a/drivers/gpu/drm/i915/intel_pcode.c b/drivers/gpu/drm/i915/intel_pcode.c
+index 391a37492ce5..fb6c43e8a02f 100644
+--- a/drivers/gpu/drm/i915/intel_pcode.c
++++ b/drivers/gpu/drm/i915/intel_pcode.c
+@@ -136,7 +136,7 @@ static bool skl_pcode_try_request(struct drm_i915_private *i915, u32 mbox,
+ {
+ 	*status = __snb_pcode_rw(i915, mbox, &request, NULL, 500, 0, true);
+ 
+-	return *status || ((request & reply_mask) == reply);
++	return (*status == 0) && ((request & reply_mask) == reply);
+ }
+ 
+ /**
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+2.24.1.485.gad05a3d8e5
+
