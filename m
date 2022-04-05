@@ -2,32 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E33A4F45A1
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Apr 2022 00:52:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E26C54F45BF
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Apr 2022 00:55:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DADFA10E569;
-	Tue,  5 Apr 2022 22:52:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B00810E5DA;
+	Tue,  5 Apr 2022 22:55:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id E38D110E569;
- Tue,  5 Apr 2022 22:52:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id F3C9110E5DA;
+ Tue,  5 Apr 2022 22:55:29 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id DFE2DA363D;
- Tue,  5 Apr 2022 22:52:08 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5167599183914100124=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id EE344A01BB;
+ Tue,  5 Apr 2022 22:55:29 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Anusha Srivatsa" <anusha.srivatsa@intel.com>
-Date: Tue, 05 Apr 2022 22:52:08 -0000
-Message-ID: <164919912889.24158.7492162552821037027@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Date: Tue, 05 Apr 2022 22:55:29 -0000
+Message-ID: <164919932994.24156.18166195553355674661@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20220405171429.3149199-1-anusha.srivatsa@intel.com>
-In-Reply-To: <20220405171429.3149199-1-anusha.srivatsa@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/dmc=3A_Add_MMIO_range_restrictions_=28rev2=29?=
+References: <20220405173410.11436-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20220405173410.11436-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/bios=3A_Rework_BDB_block_handling_and_PNPID-=3Epan?=
+ =?utf-8?q?el=5Ftype_matching?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,259 +46,85 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5167599183914100124==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915/dmc: Add MMIO range restrictions (rev2)
-URL   : https://patchwork.freedesktop.org/series/102168/
-State : failure
+Series: drm/i915/bios: Rework BDB block handling and PNPID->panel_type matching
+URL   : https://patchwork.freedesktop.org/series/102213/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_11458 -> Patchwork_22787
-====================================================
+$ dim checkpatch origin/drm-tip
+05d9638c2980 drm/i915/bios: Use the cached BDB version
+578166bc3056 drm/i915/bios: Make copies of VBT data blocks
+90add1560515 drm/i915/bios: Use the copy of the LFP data table always
+cccb9f6e5310 drm/i915/bios: Validate LFP data table pointers
+-:93: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#93: FILE: drivers/gpu/drm/i915/display/intel_bios.c:257:
++		if (ptrs->ptr[i].fp_timing.offset - ptrs->ptr[i-1].fp_timing.offset != lfp_data_size ||
 
-Summary
--------
+-:93: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
+#93: FILE: drivers/gpu/drm/i915/display/intel_bios.c:257:
++		if (ptrs->ptr[i].fp_timing.offset - ptrs->ptr[i-1].fp_timing.offset != lfp_data_size ||
+ 		                                               ^
 
-  **FAILURE**
+-:94: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#94: FILE: drivers/gpu/drm/i915/display/intel_bios.c:258:
++		    ptrs->ptr[i].dvo_timing.offset - ptrs->ptr[i-1].dvo_timing.offset != lfp_data_size ||
 
-  Serious unknown changes coming with Patchwork_22787 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_22787, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+-:94: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
+#94: FILE: drivers/gpu/drm/i915/display/intel_bios.c:258:
++		    ptrs->ptr[i].dvo_timing.offset - ptrs->ptr[i-1].dvo_timing.offset != lfp_data_size ||
+ 		                                                ^
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22787/index.html
+-:95: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
+#95: FILE: drivers/gpu/drm/i915/display/intel_bios.c:259:
++		    ptrs->ptr[i].panel_pnp_id.offset - ptrs->ptr[i-1].panel_pnp_id.offset != lfp_data_size)
 
-Participating hosts (37 -> 33)
-------------------------------
+-:95: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
+#95: FILE: drivers/gpu/drm/i915/display/intel_bios.c:259:
++		    ptrs->ptr[i].panel_pnp_id.offset - ptrs->ptr[i-1].panel_pnp_id.offset != lfp_data_size)
+ 		                                                  ^
 
-  Missing    (4): fi-hsw-4770 fi-bsw-cyan fi-bdw-samus fi-pnv-d510 
+total: 0 errors, 3 warnings, 3 checks, 100 lines checked
+73c2bd353d63 drm/i915/bios: Trust the LFP data pointers
+0ca5de1a6532 drm/i915/bios: Validate the panel_name table
+057a8b805d81 drm/i915/bios: Reorder panel DTD parsing
+086e15f0d645 drm/i915/bios: Generate LFP data table pointers if the VBT lacks them
+-:44: CHECK:SPACING: spaces preferred around that '+' (ctx:VxV)
+#44: FILE: drivers/gpu/drm/i915/display/intel_bios.c:321:
++		if (data[i] == 0xff && data[i+1] == 0xff)
+ 		                             ^
 
-Possible new issues
--------------------
+-:128: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
+#128: FILE: drivers/gpu/drm/i915/display/intel_bios.c:405:
++		next_lfp_data_ptr(&ptrs->ptr[i].fp_timing, &ptrs->ptr[i-1].fp_timing, size);
+ 		                                                       ^
 
-  Here are the unknown changes that may have been introduced in Patchwork_22787:
+-:129: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
+#129: FILE: drivers/gpu/drm/i915/display/intel_bios.c:406:
++		next_lfp_data_ptr(&ptrs->ptr[i].dvo_timing, &ptrs->ptr[i-1].dvo_timing, size);
+ 		                                                        ^
 
-### IGT changes ###
+-:130: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
+#130: FILE: drivers/gpu/drm/i915/display/intel_bios.c:407:
++		next_lfp_data_ptr(&ptrs->ptr[i].panel_pnp_id, &ptrs->ptr[i-1].panel_pnp_id, size);
+ 		                                                          ^
 
-#### Possible regressions ####
-
-  * igt@gem_exec_suspend@basic-s0@smem:
-    - fi-tgl-u2:          [PASS][1] -> [DMESG-WARN][2] +2 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11458/fi-tgl-u2/igt@gem_exec_suspend@basic-s0@smem.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22787/fi-tgl-u2/igt@gem_exec_suspend@basic-s0@smem.html
-    - fi-rkl-11600:       [PASS][3] -> [DMESG-WARN][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11458/fi-rkl-11600/igt@gem_exec_suspend@basic-s0@smem.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22787/fi-rkl-11600/igt@gem_exec_suspend@basic-s0@smem.html
-
-  * igt@gem_exec_suspend@basic-s3@smem:
-    - fi-rkl-guc:         [PASS][5] -> [DMESG-WARN][6] +2 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11458/fi-rkl-guc/igt@gem_exec_suspend@basic-s3@smem.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22787/fi-rkl-guc/igt@gem_exec_suspend@basic-s3@smem.html
-    - fi-adl-ddr5:        [PASS][7] -> [DMESG-WARN][8] +2 similar issues
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11458/fi-adl-ddr5/igt@gem_exec_suspend@basic-s3@smem.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22787/fi-adl-ddr5/igt@gem_exec_suspend@basic-s3@smem.html
-    - fi-tgl-1115g4:      [PASS][9] -> [DMESG-WARN][10] +2 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11458/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3@smem.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22787/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3@smem.html
-
-  * igt@i915_pm_rpm@basic-rte:
-    - fi-rkl-guc:         [PASS][11] -> [SKIP][12] +2 similar issues
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11458/fi-rkl-guc/igt@i915_pm_rpm@basic-rte.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22787/fi-rkl-guc/igt@i915_pm_rpm@basic-rte.html
-    - fi-adl-ddr5:        [PASS][13] -> [SKIP][14] +2 similar issues
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11458/fi-adl-ddr5/igt@i915_pm_rpm@basic-rte.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22787/fi-adl-ddr5/igt@i915_pm_rpm@basic-rte.html
-    - fi-tgl-1115g4:      [PASS][15] -> [SKIP][16] +2 similar issues
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11458/fi-tgl-1115g4/igt@i915_pm_rpm@basic-rte.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22787/fi-tgl-1115g4/igt@i915_pm_rpm@basic-rte.html
-    - fi-tgl-u2:          [PASS][17] -> [SKIP][18] +1 similar issue
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11458/fi-tgl-u2/igt@i915_pm_rpm@basic-rte.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22787/fi-tgl-u2/igt@i915_pm_rpm@basic-rte.html
-
-  
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@i915_pm_rpm@basic-rte:
-    - {fi-tgl-dsi}:       [PASS][19] -> [SKIP][20] +2 similar issues
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11458/fi-tgl-dsi/igt@i915_pm_rpm@basic-rte.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22787/fi-tgl-dsi/igt@i915_pm_rpm@basic-rte.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_22787 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_busy@basic@modeset:
-    - fi-tgl-u2:          [PASS][21] -> [DMESG-WARN][22] ([i915#402])
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11458/fi-tgl-u2/igt@kms_busy@basic@modeset.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22787/fi-tgl-u2/igt@kms_busy@basic@modeset.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#2411]: https://gitlab.freedesktop.org/drm/intel/issues/2411
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#5134]: https://gitlab.freedesktop.org/drm/intel/issues/5134
+total: 0 errors, 0 warnings, 4 checks, 160 lines checked
+d07d7dcf7c2d drm/i915/bios: Get access to the tail end of the LFP data block
+f00aa539537f drm/i915/bios: Assume panel_type==0 if the VBT has bogus data
+e1742d2d9cf5 drm/i915/bios: Split parse_driver_features() into two parts
+36484fb6dd23 drm/i915/bios: Split VBT parsing to global vs. panel specific parts
+d1fd524d3ca5 drm/i915/pps: Split PPS init+sanitize in two
+258da58b3f75 drm/i915/pps: Reinit PPS delays after VBT has been fully parsed
+90cb9845428d drm/i915/bios: Do panel specific VBT parsing later
+2c6005cc3af9 drm/i915/bios: Extract get_panel_type()
+53decd0e521a drm/i915/bios: Refactor panel_type code
+179efa1ac625 drm/i915/bios: Determine panel type via PNPID match
+00d122192a92 drm/i915/bios: Parse the seamless DRRS min refresh rate
+2d62931bb39e drm/i915: Respect VBT seamless DRRS min refresh rate
+39a5b7b20e53 drm/edid: Extract drm_edid_decode_mfg_id()
+e1e2c24beed6 drm/i915/bios: Dump PNPID and panel name
 
 
-Build changes
--------------
-
-  * Linux: CI_DRM_11458 -> Patchwork_22787
-
-  CI-20190529: 20190529
-  CI_DRM_11458: 7b4967c734a7c99ff69154d062a071181021e49d @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6410: cc359d5d2d3fc8be50340ba0379bacaf5c37bc5f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_22787: 8f8a6288aa4ad079aff7424e2ce230b8db77c79d @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-8f8a6288aa4a drm/i915/dmc: Add MMIO range restrictions
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22787/index.html
-
---===============5167599183914100124==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dmc: Add MMIO range restrictions (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/102168/">https://patchwork.freedesktop.org/series/102168/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22787/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22787/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11458 -&gt; Patchwork_22787</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_22787 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_22787, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22787/index.html</p>
-<h2>Participating hosts (37 -&gt; 33)</h2>
-<p>Missing    (4): fi-hsw-4770 fi-bsw-cyan fi-bdw-samus fi-pnv-d510 </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_22787:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0@smem:</p>
-<ul>
-<li>
-<p>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11458/fi-tgl-u2/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22787/fi-tgl-u2/igt@gem_exec_suspend@basic-s0@smem.html">DMESG-WARN</a> +2 similar issues</p>
-</li>
-<li>
-<p>fi-rkl-11600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11458/fi-rkl-11600/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22787/fi-rkl-11600/igt@gem_exec_suspend@basic-s0@smem.html">DMESG-WARN</a></p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s3@smem:</p>
-<ul>
-<li>
-<p>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11458/fi-rkl-guc/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22787/fi-rkl-guc/igt@gem_exec_suspend@basic-s3@smem.html">DMESG-WARN</a> +2 similar issues</p>
-</li>
-<li>
-<p>fi-adl-ddr5:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11458/fi-adl-ddr5/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22787/fi-adl-ddr5/igt@gem_exec_suspend@basic-s3@smem.html">DMESG-WARN</a> +2 similar issues</p>
-</li>
-<li>
-<p>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11458/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22787/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3@smem.html">DMESG-WARN</a> +2 similar issues</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@basic-rte:</p>
-<ul>
-<li>
-<p>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11458/fi-rkl-guc/igt@i915_pm_rpm@basic-rte.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22787/fi-rkl-guc/igt@i915_pm_rpm@basic-rte.html">SKIP</a> +2 similar issues</p>
-</li>
-<li>
-<p>fi-adl-ddr5:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11458/fi-adl-ddr5/igt@i915_pm_rpm@basic-rte.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22787/fi-adl-ddr5/igt@i915_pm_rpm@basic-rte.html">SKIP</a> +2 similar issues</p>
-</li>
-<li>
-<p>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11458/fi-tgl-1115g4/igt@i915_pm_rpm@basic-rte.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22787/fi-tgl-1115g4/igt@i915_pm_rpm@basic-rte.html">SKIP</a> +2 similar issues</p>
-</li>
-<li>
-<p>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11458/fi-tgl-u2/igt@i915_pm_rpm@basic-rte.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22787/fi-tgl-u2/igt@i915_pm_rpm@basic-rte.html">SKIP</a> +1 similar issue</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>igt@i915_pm_rpm@basic-rte:<ul>
-<li>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11458/fi-tgl-dsi/igt@i915_pm_rpm@basic-rte.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22787/fi-tgl-dsi/igt@i915_pm_rpm@basic-rte.html">SKIP</a> +2 similar issues</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_22787 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_busy@basic@modeset:<ul>
-<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11458/fi-tgl-u2/igt@kms_busy@basic@modeset.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22787/fi-tgl-u2/igt@kms_busy@basic@modeset.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11458 -&gt; Patchwork_22787</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11458: 7b4967c734a7c99ff69154d062a071181021e49d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6410: cc359d5d2d3fc8be50340ba0379bacaf5c37bc5f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_22787: 8f8a6288aa4ad079aff7424e2ce230b8db77c79d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>8f8a6288aa4a drm/i915/dmc: Add MMIO range restrictions</p>
-
-</body>
-</html>
-
---===============5167599183914100124==--
