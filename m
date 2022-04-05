@@ -1,33 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 829074F3CAB
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 Apr 2022 18:53:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 299BD4F3CAF
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 Apr 2022 18:58:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 766C610EB05;
-	Tue,  5 Apr 2022 16:53:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F2BA910EBFB;
+	Tue,  5 Apr 2022 16:57:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id D37C710E5BE;
- Tue,  5 Apr 2022 16:53:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 79AB410EBF9;
+ Tue,  5 Apr 2022 16:57:57 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D2A48AAA91;
- Tue,  5 Apr 2022 16:53:41 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 74943AADD2;
+ Tue,  5 Apr 2022 16:57:57 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
-Date: Tue, 05 Apr 2022 16:53:41 -0000
-Message-ID: <164917762186.24157.7046753109292006650@emeril.freedesktop.org>
+Date: Tue, 05 Apr 2022 16:57:57 -0000
+Message-ID: <164917787744.24159.2560180602827547019@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20220404181706.3523646-1-daniele.ceraolospurio@intel.com>
 In-Reply-To: <20220404181706.3523646-1-daniele.ceraolospurio@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?GSC_support_=28rev3=29?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIEdT?=
+ =?utf-8?q?C_support_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,8 +53,7 @@ State : warning
 
 == Summary ==
 
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
+$ make htmldocs 2>&1 > /dev/null | grep i915
+./drivers/gpu/drm/i915/gem/i915_gem_context_types.h:417: warning: Function parameter or member 'client_link' not described in 'i915_gem_context'
 
 
