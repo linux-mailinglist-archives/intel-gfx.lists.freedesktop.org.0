@@ -2,49 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A1D84F3887
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 Apr 2022 16:34:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BBF674F39B2
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 Apr 2022 16:54:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E512810E8B6;
-	Tue,  5 Apr 2022 14:34:26 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2057B10E8EC;
- Tue,  5 Apr 2022 14:34:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F00E810E349;
+	Tue,  5 Apr 2022 14:54:16 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3938710E120;
+ Tue,  5 Apr 2022 14:54:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649169264; x=1680705264;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=GfQ96kOJnsUHcBLMfXYuSuNXdDpqwm8PzatzaVOc7+c=;
- b=aqzFvH6NFYY60ixtCFmpPmjf2AgMoENJR2As+Fu6X9HpNUUEzZWQNxtu
- zVsnV7s9+GnbwYiRCYLSppYIRRdpPh/8ospUVA8sM2q0B4knpgfwtUen6
- l4TZssO/eNfTcMH2iQk6y9761969tWvqX27yLJoN7BGMn9Quw2DJ0ERZ3
- K4ygPlcMOyJnpgSRKwq8MbRjwC/5NKkFR7ZOkw5uoAytPXpNkR7WDHoGK
- 7+hKDffaSPHSP3WLVeSBV5iK3aZQ4d0SWTlK7h4l0gcMExmmPOZilDtUe
- NjQdbiI1NrQW7vP4BHA9oFNS8X6H/OO8nh+Cl4GobvlWFSYoXF0L9gyX8 A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10307"; a="285722222"
-X-IronPort-AV: E=Sophos;i="5.90,236,1643702400"; d="scan'208";a="285722222"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2022 07:34:23 -0700
-X-IronPort-AV: E=Sophos;i="5.90,236,1643702400"; d="scan'208";a="657959043"
-Received: from ramaling-i9x.iind.intel.com ([10.203.144.108])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2022 07:34:22 -0700
-From: Ramalingam C <ramalingam.c@intel.com>
-To: intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>
-Date: Tue,  5 Apr 2022 20:04:54 +0530
-Message-Id: <20220405143454.16358-10-ramalingam.c@intel.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20220405143454.16358-1-ramalingam.c@intel.com>
-References: <20220405143454.16358-1-ramalingam.c@intel.com>
+ t=1649170456; x=1680706456;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Kd3nlWmkEqpB3azCjuvEFm6r1dY1JSqtgZJmi1ohBjs=;
+ b=mcZYPI6hnbmzNnnO3OiR7RTvsyvdNgNwEqQBRR5yDnBCwTyheS0vi9a5
+ XQT7zMxPOmOSGPs4HEl6Kv6boRTXEjrskcTmsblVHUNzRJP5N9pBFJ8Fs
+ wzXNJlEcNDBmLi6d78YFZhbDfSurJ8pHEuZvhDMhAK2UTUcJubUvaspJH
+ NmngtKy7l1RHwGBx/GMueK+P4iEAh0CM22F7DaUnMpTnVPAA/aDKNk+td
+ N4UvX1A3eMXcfCQVLN2xdHn9wtYziL0NWNy0BrES0y64+7hRq6WhRcLwO
+ PklVz7Hub60AncxSyaQnOxw8RvUsDfBYcPwePAF8Tkq3wYO1ReeeLzVbX A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10307"; a="241353392"
+X-IronPort-AV: E=Sophos;i="5.90,236,1643702400"; d="scan'208";a="241353392"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Apr 2022 07:54:15 -0700
+X-IronPort-AV: E=Sophos;i="5.90,236,1643702400"; d="scan'208";a="608470331"
+Received: from pmulcahy-mobl.ger.corp.intel.com (HELO tursulin-mobl2.home)
+ ([10.213.235.32])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Apr 2022 07:54:14 -0700
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: Intel-gfx@lists.freedesktop.org
+Date: Tue,  5 Apr 2022 15:53:42 +0100
+Message-Id: <20220405145345.3284084-1-tvrtko.ursulin@linux.intel.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v8 9/9] drm/i915/migrate: Evict and restore the
- flatccs capable lmem obj
+Subject: [Intel-gfx] [PATCH 0/3] Inherit GPU scheduling priority from
+ process nice
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,253 +55,82 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-When we are swapping out the local memory obj on flat-ccs capable platform,
-we need to capture the ccs data too along with main meory and we need to
-restore it when we are swapping in the content.
+From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-When lmem object is swapped into a smem obj, smem obj will
-have the extra pages required to hold the ccs data corresponding to the
-lmem main memory. So main memory of lmem will be copied into the initial
-pages of the smem and then ccs data corresponding to the main memory
-will be copied to the subsequent pages of smem. ccs data is 1/256 of
-lmem size.
+Current processing landscape seems to be more and more composed of pipelines
+where computations are done on multiple hardware devices. Furthermore some of
+the non-CPU devices, like in this case many GPUs supported by the i915 driver,
+actually support priority based scheduling which is currently rather
+inaccessible to the user (in terms of being able to control it from the
+outside).
 
-Swapin happens exactly in reverse order. First main memory of lmem is
-restored from the smem's initial pages and the ccs data will be restored
-from the subsequent pages of smem.
+From these two statements a question arises on how to allow for a simple,
+effective and consolidated user experience. In other words why user would not be
+able to do something like:
 
-Extracting and restoring the CCS data is done through a special cmd called
-XY_CTRL_SURF_COPY_BLT
+ $ nice ffmmpeg ...transcode my videos...
+ $ my-favourite-game
 
-v2: Fixing the ccs handling
-v3: Handle the ccs data at same loop as main memory [Thomas]
-v4: changes for emit_copy_ccs
-v5: handle non-flat-ccs scenario
+And have the nice hint apply to GPU parts of the transcode pipeline as well?
 
-Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
-Reviewed-by: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
----
- drivers/gpu/drm/i915/gt/intel_migrate.c | 164 +++++++++++++++++++++++-
- 1 file changed, 160 insertions(+), 4 deletions(-)
+This would in fact follow the approach taken by kernel's block scheduler where
+ionice is by default inherited from process nice.
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_migrate.c b/drivers/gpu/drm/i915/gt/intel_migrate.c
-index 2446ff70ce45..dd7b89589f20 100644
---- a/drivers/gpu/drm/i915/gt/intel_migrate.c
-+++ b/drivers/gpu/drm/i915/gt/intel_migrate.c
-@@ -633,6 +633,65 @@ static int emit_copy(struct i915_request *rq,
- 	return 0;
- }
- 
-+static int scatter_list_length(struct scatterlist *sg)
-+{
-+	int len = 0;
-+
-+	while (sg && sg_dma_len(sg)) {
-+		len += sg_dma_len(sg);
-+		sg = sg_next(sg);
-+	};
-+
-+	return len;
-+}
-+
-+static void
-+calculate_chunk_sz(struct drm_i915_private *i915, bool src_is_lmem,
-+		   int *src_sz, int *ccs_sz, u32 bytes_to_cpy,
-+		   u32 ccs_bytes_to_cpy)
-+{
-+	if (ccs_bytes_to_cpy) {
-+		/*
-+		 * We can only copy the ccs data corresponding to
-+		 * the CHUNK_SZ of lmem which is
-+		 * GET_CCS_BYTES(i915, CHUNK_SZ))
-+		 */
-+		*ccs_sz = min_t(int, ccs_bytes_to_cpy, GET_CCS_BYTES(i915, CHUNK_SZ));
-+
-+		if (!src_is_lmem)
-+			/*
-+			 * When CHUNK_SZ is passed all the pages upto CHUNK_SZ
-+			 * will be taken for the blt. in Flat-ccs supported
-+			 * platform Smem obj will have more pages than required
-+			 * for main meory hence limit it to the required size
-+			 * for main memory
-+			 */
-+			*src_sz = min_t(int, bytes_to_cpy, CHUNK_SZ);
-+	} else { /* ccs handling is not required */
-+		*src_sz = CHUNK_SZ;
-+	}
-+}
-+
-+static void get_ccs_sg_sgt(struct sgt_dma *it, u32 bytes_to_cpy)
-+{
-+	u32 len;
-+
-+	do {
-+		GEM_BUG_ON(!it->sg || !sg_dma_len(it->sg));
-+		len = it->max - it->dma;
-+		if (len > bytes_to_cpy) {
-+			it->dma += bytes_to_cpy;
-+			break;
-+		}
-+
-+		bytes_to_cpy -= len;
-+
-+		it->sg = __sg_next(it->sg);
-+		it->dma = sg_dma_address(it->sg);
-+		it->max = it->dma + sg_dma_len(it->sg);
-+	} while (bytes_to_cpy);
-+}
-+
- int
- intel_context_migrate_copy(struct intel_context *ce,
- 			   const struct i915_deps *deps,
-@@ -644,9 +703,15 @@ intel_context_migrate_copy(struct intel_context *ce,
- 			   bool dst_is_lmem,
- 			   struct i915_request **out)
- {
--	struct sgt_dma it_src = sg_sgt(src), it_dst = sg_sgt(dst);
-+	struct sgt_dma it_src = sg_sgt(src), it_dst = sg_sgt(dst), it_ccs;
-+	struct drm_i915_private *i915 = ce->engine->i915;
-+	u32 ccs_bytes_to_cpy = 0, bytes_to_cpy;
-+	enum i915_cache_level ccs_cache_level;
-+	int src_sz, dst_sz, ccs_sz;
- 	u32 src_offset, dst_offset;
-+	u8 src_access, dst_access;
- 	struct i915_request *rq;
-+	bool ccs_is_src;
- 	int err;
- 
- 	GEM_BUG_ON(ce->vm != ce->engine->gt->migrate.context->vm);
-@@ -655,6 +720,38 @@ intel_context_migrate_copy(struct intel_context *ce,
- 
- 	GEM_BUG_ON(ce->ring->size < SZ_64K);
- 
-+	src_sz = scatter_list_length(src);
-+	bytes_to_cpy = src_sz;
-+
-+	if (HAS_FLAT_CCS(i915) && src_is_lmem ^ dst_is_lmem) {
-+		src_access = !src_is_lmem && dst_is_lmem;
-+		dst_access = !src_access;
-+
-+		dst_sz = scatter_list_length(dst);
-+		if (src_is_lmem) {
-+			it_ccs = it_dst;
-+			ccs_cache_level = dst_cache_level;
-+			ccs_is_src = false;
-+		} else if (dst_is_lmem) {
-+			bytes_to_cpy = dst_sz;
-+			it_ccs = it_src;
-+			ccs_cache_level = src_cache_level;
-+			ccs_is_src = true;
-+		}
-+
-+		/*
-+		 * When there is a eviction of ccs needed smem will have the
-+		 * extra pages for the ccs data
-+		 *
-+		 * TO-DO: Want to move the size mismatch check to a WARN_ON,
-+		 * but still we have some requests of smem->lmem with same size.
-+		 * Need to fix it.
-+		 */
-+		ccs_bytes_to_cpy = src_sz != dst_sz ? GET_CCS_BYTES(i915, bytes_to_cpy) : 0;
-+		if (ccs_bytes_to_cpy)
-+			get_ccs_sg_sgt(&it_ccs, bytes_to_cpy);
-+	}
-+
- 	src_offset = 0;
- 	dst_offset = CHUNK_SZ;
- 	if (HAS_64K_PAGES(ce->engine->i915)) {
-@@ -694,8 +791,11 @@ intel_context_migrate_copy(struct intel_context *ce,
- 		if (err)
- 			goto out_rq;
- 
-+		calculate_chunk_sz(i915, src_is_lmem, &src_sz, &ccs_sz,
-+				   bytes_to_cpy, ccs_bytes_to_cpy);
-+
- 		len = emit_pte(rq, &it_src, src_cache_level, src_is_lmem,
--			       src_offset, CHUNK_SZ);
-+			       src_offset, src_sz);
- 		if (!len)
- 			err = -EINVAL;
- 		if (len < 0) {
-@@ -716,7 +816,46 @@ intel_context_migrate_copy(struct intel_context *ce,
- 		if (err)
- 			goto out_rq;
- 
--		err = emit_copy(rq, dst_offset, src_offset, len);
-+		err = emit_copy(rq, dst_offset,	src_offset, len);
-+		if (err)
-+			goto out_rq;
-+
-+		bytes_to_cpy -= len;
-+
-+		if (ccs_bytes_to_cpy) {
-+			err = rq->engine->emit_flush(rq, EMIT_INVALIDATE);
-+			if (err)
-+				goto out_rq;
-+
-+			err = emit_pte(rq, &it_ccs, ccs_cache_level, false,
-+				       ccs_is_src ? src_offset : dst_offset,
-+				       ccs_sz);
-+
-+			err = rq->engine->emit_flush(rq, EMIT_INVALIDATE);
-+			if (err)
-+				goto out_rq;
-+
-+			/*
-+			 * Using max of src_sz and dst_sz, as we need to
-+			 * pass the lmem size corresponding to the ccs
-+			 * blocks we need to handle.
-+			 */
-+			ccs_sz = max_t(int, ccs_is_src ? ccs_sz : src_sz,
-+				       ccs_is_src ? dst_sz : ccs_sz);
-+
-+			err = emit_copy_ccs(rq, dst_offset, dst_access,
-+					    src_offset, src_access, ccs_sz);
-+			if (err)
-+				goto out_rq;
-+
-+			err = rq->engine->emit_flush(rq, EMIT_INVALIDATE);
-+			if (err)
-+				goto out_rq;
-+
-+			/* Converting back to ccs bytes */
-+			ccs_sz = GET_CCS_BYTES(rq->engine->i915, ccs_sz);
-+			ccs_bytes_to_cpy -= ccs_sz;
-+		}
- 
- 		/* Arbitration is re-enabled between requests. */
- out_rq:
-@@ -724,9 +863,26 @@ intel_context_migrate_copy(struct intel_context *ce,
- 			i915_request_put(*out);
- 		*out = i915_request_get(rq);
- 		i915_request_add(rq);
--		if (err || !it_src.sg || !sg_dma_len(it_src.sg))
-+
-+		if (err)
- 			break;
- 
-+		if (!bytes_to_cpy && !ccs_bytes_to_cpy) {
-+			if (src_is_lmem)
-+				WARN_ON(it_src.sg && sg_dma_len(it_src.sg));
-+			else
-+				WARN_ON(it_dst.sg && sg_dma_len(it_dst.sg));
-+			break;
-+		}
-+
-+		if (WARN_ON(!it_src.sg || !sg_dma_len(it_src.sg) ||
-+			    !it_dst.sg || !sg_dma_len(it_dst.sg) ||
-+			    (ccs_bytes_to_cpy && (!it_ccs.sg ||
-+						  !sg_dma_len(it_ccs.sg))))) {
-+			err = -EINVAL;
-+			break;
-+		}
-+
- 		cond_resched();
- 	} while (1);
- 
+This series implements the same idea by inheriting context creator and batch
+buffer submitted nice value as context nice. To avoid influencing GPU scheduling
+aware clients this is done only one for contexts where userspace hasn't
+explicitly specified a non-default scheduling priority
+
+With the series applied I simulated the scenario of a background GPU task
+running simultaneously with an interactive client, varying the hog's nice value.
+These were the results:
+
+   GPU hog (nice) |   TRex fps    |   perf drop
+   ---------------+---------------+------------
+       no hog     |     48.9      |    - n/a -
+          0       |     42.7      |     -13%
+         10       |     47.9      |      -2%
+        -10       |     29.0      |     -41%
+
+As can be seen running the background GPU task re-niced can restore the
+performance of the foreground task to almost the level when it is running alone
+on the machine.
+
+The approach is completely compatible with GuC and drm/scheduler since all
+support at least low/normal/high priority levels with just the granularity of
+available control differing. In other words with GuC scheduling there is no
+difference between nice 5 and 10, both would map to low priority, but the
+default case of positive or negative nice, versus nice 0, is still correctly
+propagated to the firmware scheduler.
+
+v2:
+ * Moved notifier outside task_rq_lock.
+ * Some improvements and restructuring on the i915 side of the series.
+
+v3:
+ * Dropped task nice notifier - inheriting nice on request submit time is good
+   enough.
+
+Tvrtko Ursulin (3):
+  drm/i915: Make some recently added vfuncs use full scheduling
+    attribute
+  drm/i915: Inherit process nice for context scheduling priority
+  drm/i915: Inherit submitter nice when scheduling requests
+
+ drivers/gpu/drm/i915/gem/i915_gem_context.c      |  6 +++++-
+ .../gpu/drm/i915/gt/intel_execlists_submission.c |  6 ++++--
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c    |  3 ++-
+ drivers/gpu/drm/i915/i915_request.c              |  7 +++++--
+ drivers/gpu/drm/i915/i915_request.h              |  5 +++++
+ drivers/gpu/drm/i915/i915_scheduler.c            | 16 ++++++++++------
+ drivers/gpu/drm/i915/i915_scheduler.h            | 14 ++++++++++++++
+ drivers/gpu/drm/i915/i915_scheduler_types.h      | 12 ++++++++++--
+ 8 files changed, 55 insertions(+), 14 deletions(-)
+
 -- 
-2.20.1
+2.32.0
 
