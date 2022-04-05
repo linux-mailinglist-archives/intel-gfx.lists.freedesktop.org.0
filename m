@@ -1,47 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F295D4F29C5
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 Apr 2022 12:40:32 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15C284F2A75
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 Apr 2022 13:00:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 356DA10E61B;
-	Tue,  5 Apr 2022 10:40:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0458A10E8ED;
+	Tue,  5 Apr 2022 11:00:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5384710E610
- for <intel-gfx@lists.freedesktop.org>; Tue,  5 Apr 2022 10:40:29 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 08D6A10E8ED;
+ Tue,  5 Apr 2022 11:00:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649155229; x=1680691229;
+ t=1649156401; x=1680692401;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=ILOctOrMma5HgUcaxgvAJiGXFGejWzn7cNTuUfFpiHU=;
- b=L/KLh5dJlJ4k+mYHC+ME6ug6t+evvfvrTQE+2Xl4KhyvJ9thygGrtulj
- B70mwtyPbY2Bv+5hT2KA4VfXUG5Ag753FfppBUDvCIjTe9UCbEEtU75Jn
- nC/D6eXqO6ZdZLS/M/3XelGoFmPX+1pTf+aDTmCZwFjJxR+rmDsvnKa6x
- FUMmANNorL33yzY5UCkopqjh3GOBAd4K6GOvkGrmnWATdCtkyWU0VKATw
- eVP3oH5XqU1Y685arJjBP622CahP1Nmp/a25U9uP7LVg8w70I+k3rifyU
- tl0pEHO3EWFB0cTXZxfymoNi6VGHtGrOfG0ckFDDDrGD6fE61wX5eDckA Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10307"; a="260895089"
-X-IronPort-AV: E=Sophos;i="5.90,236,1643702400"; d="scan'208";a="260895089"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2022 03:40:28 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,236,1643702400"; d="scan'208";a="641564584"
-Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
- ([10.237.72.65])
- by FMSMGA003.fm.intel.com with ESMTP; 05 Apr 2022 03:40:27 -0700
-From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+ bh=qSmZMLuT/yMSiEWyRNi1jIUTef/5PwQouvaMMpqq7RI=;
+ b=cfAiGOZCPE1fz/DYxDQxRRMpu6VNCwxhBpPLWIXDrsBOv7eJtCiFQzcD
+ B+x6eQ9yRXnvIzrE/LZp3GfZd6mdgx8JrzyDS00eZwKDoX1g8oQaMi6vz
+ u5nzlGZuQZMR6XFSXPSrsYrOXBqtzwLY3QY4+HpqJQvMVfuAtGXsgoZe3
+ s4Eo9UGExa2lCHkcSsePCzUoeCwh68seSn6bvu2xqqUA3TFKlT66ryzn0
+ 3tkOfavXuF1hVagaHYFx+KNNPSARMONVK4aO9RviUYDnSST7SG4adfCUG
+ 8tE1ufgdWhZnkBvATOgTgiI6p73MmrG2d55D1pRdfoqMLvXGscT/Jb5XV A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10307"; a="323894005"
+X-IronPort-AV: E=Sophos;i="5.90,236,1643702400"; d="scan'208";a="323894005"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Apr 2022 04:00:00 -0700
+X-IronPort-AV: E=Sophos;i="5.90,236,1643702400"; d="scan'208";a="523948148"
+Received: from mmlejnek-mobl2.ger.corp.intel.com (HELO
+ thellstr-mobl1.intel.com) ([10.249.254.236])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Apr 2022 03:59:59 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue,  5 Apr 2022 13:41:14 +0300
-Message-Id: <20220405104114.20780-1-stanislav.lisovskiy@intel.com>
-X-Mailer: git-send-email 2.24.1.485.gad05a3d8e5
+Date: Tue,  5 Apr 2022 12:59:44 +0200
+Message-Id: <20220405105944.336896-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: Fix skl_pcode_try_request function
+Subject: [Intel-gfx] [PATCH] drm/i915: Improve on suspend / resume time with
+ VT-d enabled
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,66 +56,247 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ matthew.auld@intel.com, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Currently skl_pcode_try_request function doesn't
-properly handle return value it gets from
-snb_pcode_rw, but treats status != 0 as success,
-returning true, which basically doesn't allow
-to use retry/timeout mechanisms if PCode happens
-to be busy and returns EGAIN or some other status
-code not equal to 0.
+When DMAR / VT-d is enabled, the display engine uses overfetching,
+presumably to deal with the increased latency. To avoid display engine
+errors and DMAR faults, as a workaround the GGTT is populated with scatch
+PTEs when VT-d is enabled. However starting with gen10, Write-combined
+writing of scratch PTES is no longer possible and as a result, populating
+the full GGTT with scratch PTEs like on resume becomes very slow as
+uncached access is needed.
 
-We saw this on real hw and also tried simulating this
-by always returning -EAGAIN from snb_pcode_rw for 6 times, which
-currently will just result in false success, while it should
-have tried until timeout is reached:
+Therefore, on integrated GPUs utilize the fact that the PTEs are stored in
+stolen memory which retain content across S3 suspend. Don't clear the PTEs
+on suspend and resume. This improves on resume time with around 100 ms.
+While 100+ms might appear like a short time it's 10% to 20% of total resume
+time and important in some applications.
 
-[   22.357729] i915 0000:00:02.0: [drm:intel_cdclk_dump_config [i915]] Changing CDCLK to
-307200 kHz, VCO 614400 kHz, ref 38400 kHz, bypass 19200 kHz, voltage level 0
-[   22.357831] i915 0000:00:02.0: [drm:__snb_pcode_rw [i915]] Returning EAGAIN retry 1
-[   22.357892] i915 0000:00:02.0: [drm:skl_pcode_request [i915]] Success, exiting
-[   22.357936] i915 0000:00:02.0: [drm] ERROR Failed to inform PCU about cdclk change (err -11, freq 307200)
+One notable exception is Intel Rapid Start Technology which may cause
+stolen memory to be lost across what the OS percieves as S3 suspend.
+If IRST is enabled or if we can't detect whether IRST is enabled, retain
+the old workaround, clearing and re-instating PTEs.
 
-We see en error because higher level api, still notices that status was wrong,
-however we still did try only once.
+As an additional measure, if we detect that the last ggtt pte was lost
+during suspend, print a warning and re-populate the GGTT ptes
 
-We fix it by requiring _both_ the status to be 0 and
-request/reply match for success(true) and function
-should return failure(false) if either status turns
-out to be EAGAIN, EBUSY or whatever or reply/request
-masks do not match.
+On discrete GPUs, the display engine scans out from LMEM which isn't
+subject to DMAR, and presumably the workaround is therefore not needed,
+but that needs to be verified and disabling the workaround for dGPU,
+if possible, will be deferred to a follow-up patch.
 
-So now we see this in the logs:
+v2:
+- Rely on retained ptes to also speed up suspend and resume re-binding.
+- Re-build GGTT ptes if Intel rst is enabled.
+v3:
+- Re-build GGTT ptes also if we can't detect whether Intel rst is enabled,
+  and if the guard page PTE and end of GGTT was lost.
 
-[   22.318667] i915 0000:00:02.0: [drm:intel_cdclk_dump_config [i915]] Changing CDCLK to
-307200 kHz, VCO 614400 kHz, ref 38400 kHz, bypass 19200 kHz, voltage level 0
-[   22.318782] i915 0000:00:02.0: [drm:__snb_pcode_rw [i915]] Returning EAGAIN retry 1
-[   22.318849] i915 0000:00:02.0: [drm:__snb_pcode_rw [i915]] Returning EAGAIN retry 2
-[   22.319006] i915 0000:00:02.0: [drm:__snb_pcode_rw [i915]] Returning EAGAIN retry 3
-[   22.319091] i915 0000:00:02.0: [drm:__snb_pcode_rw [i915]] Returning EAGAIN retry 4
-[   22.319158] i915 0000:00:02.0: [drm:__snb_pcode_rw [i915]] Returning EAGAIN retry 5
-[   22.319224] i915 0000:00:02.0: [drm:__snb_pcode_rw [i915]] Returning EAGAIN retry 6
-
-Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/i915/intel_pcode.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/gt/intel_ggtt.c | 56 +++++++++++++++++++++++++---
+ drivers/gpu/drm/i915/gt/intel_gtt.h  | 20 ++++++++++
+ drivers/gpu/drm/i915/i915_driver.c   | 16 ++++++++
+ 3 files changed, 86 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/intel_pcode.c b/drivers/gpu/drm/i915/intel_pcode.c
-index 391a37492ce5..fb6c43e8a02f 100644
---- a/drivers/gpu/drm/i915/intel_pcode.c
-+++ b/drivers/gpu/drm/i915/intel_pcode.c
-@@ -136,7 +136,7 @@ static bool skl_pcode_try_request(struct drm_i915_private *i915, u32 mbox,
- {
- 	*status = __snb_pcode_rw(i915, mbox, &request, NULL, 500, 0, true);
+diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+index 04191fe2ee34..98441b1c1b75 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
++++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+@@ -23,6 +23,13 @@
+ #include "intel_gtt.h"
+ #include "gen8_ppgtt.h"
  
--	return *status || ((request & reply_mask) == reply);
-+	return (*status == 0) && ((request & reply_mask) == reply);
++static inline bool suspend_retains_ptes(struct i915_address_space *vm)
++{
++	return GRAPHICS_VER(vm->i915) >= 8 &&
++		!HAS_LMEM(vm->i915) &&
++		vm->is_ggtt;
++}
++
+ static void i915_ggtt_color_adjust(const struct drm_mm_node *node,
+ 				   unsigned long color,
+ 				   u64 *start,
+@@ -116,6 +123,23 @@ static bool needs_idle_maps(struct drm_i915_private *i915)
+ 	return false;
  }
  
++/*
++ * Return the value of the last GGTT pte cast to an u64, if
++ * the system is supposed to retain ptes across resume. 0 otherwise.
++ */
++static u64 read_last_pte(struct i915_address_space *vm)
++{
++	struct i915_ggtt *ggtt = i915_vm_to_ggtt(vm);
++	gen8_pte_t __iomem *ptep;
++
++	if (!suspend_retains_ptes(vm))
++		return 0;
++
++	GEM_BUG_ON(GRAPHICS_VER(vm->i915) < 8);
++	ptep = (typeof(ptep))ggtt->gsm + (ggtt_total_entries(ggtt) - 1);
++	return readq(ptep);
++}
++
  /**
+  * i915_ggtt_suspend_vm - Suspend the memory mappings for a GGTT or DPT VM
+  * @vm: The VM to suspend the mappings for
+@@ -179,7 +203,10 @@ void i915_ggtt_suspend_vm(struct i915_address_space *vm)
+ 		i915_gem_object_unlock(obj);
+ 	}
+ 
+-	vm->clear_range(vm, 0, vm->total);
++	if (!suspend_retains_ptes(vm))
++		vm->clear_range(vm, 0, vm->total);
++	else
++		i915_vm_to_ggtt(vm)->probed_pte = read_last_pte(vm);
+ 
+ 	vm->skip_pte_rewrite = save_skip_rewrite;
+ 
+@@ -578,6 +605,8 @@ static int init_ggtt(struct i915_ggtt *ggtt)
+ 	struct drm_mm_node *entry;
+ 	int ret;
+ 
++	ggtt->pte_lost = true;
++
+ 	/*
+ 	 * GuC requires all resources that we're sharing with it to be placed in
+ 	 * non-WOPCM memory. If GuC is not present or not in use we still need a
+@@ -1309,11 +1338,20 @@ bool i915_ggtt_resume_vm(struct i915_address_space *vm)
+ {
+ 	struct i915_vma *vma;
+ 	bool write_domain_objs = false;
++	bool retained_ptes;
+ 
+ 	drm_WARN_ON(&vm->i915->drm, !vm->is_ggtt && !vm->is_dpt);
+ 
+-	/* First fill our portion of the GTT with scratch pages */
+-	vm->clear_range(vm, 0, vm->total);
++	/*
++	 * First fill our portion of the GTT with scratch pages if
++	 * they were not retained across suspend.
++	 */
++	retained_ptes = suspend_retains_ptes(vm) &&
++		!i915_vm_to_ggtt(vm)->pte_lost &&
++		!GEM_WARN_ON(i915_vm_to_ggtt(vm)->probed_pte != read_last_pte(vm));
++
++	if (!retained_ptes)
++		vm->clear_range(vm, 0, vm->total);
+ 
+ 	/* clflush objects bound into the GGTT and rebind them. */
+ 	list_for_each_entry(vma, &vm->bound_list, vm_link) {
+@@ -1322,9 +1360,10 @@ bool i915_ggtt_resume_vm(struct i915_address_space *vm)
+ 			atomic_read(&vma->flags) & I915_VMA_BIND_MASK;
+ 
+ 		GEM_BUG_ON(!was_bound);
+-		vma->ops->bind_vma(vm, NULL, vma->resource,
+-				   obj ? obj->cache_level : 0,
+-				   was_bound);
++		if (!retained_ptes)
++			vma->ops->bind_vma(vm, NULL, vma->resource,
++					   obj ? obj->cache_level : 0,
++					   was_bound);
+ 		if (obj) { /* only used during resume => exclusive access */
+ 			write_domain_objs |= fetch_and_zero(&obj->write_domain);
+ 			obj->read_domains |= I915_GEM_DOMAIN_GTT;
+@@ -1352,3 +1391,8 @@ void i915_ggtt_resume(struct i915_ggtt *ggtt)
+ 
+ 	intel_ggtt_restore_fences(ggtt);
+ }
++
++void i915_ggtt_mark_pte_lost(struct drm_i915_private *i915, bool val)
++{
++	to_gt(i915)->ggtt->pte_lost = val;
++}
+diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.h b/drivers/gpu/drm/i915/gt/intel_gtt.h
+index 4529b5e9f6e6..7561672c4f17 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gtt.h
++++ b/drivers/gpu/drm/i915/gt/intel_gtt.h
+@@ -345,6 +345,15 @@ struct i915_ggtt {
+ 
+ 	bool do_idle_maps;
+ 
++	/**
++	 * Whether the system was recently restored from hibernate and
++	 * thus may have lost pte content.
++	 */
++	bool pte_lost;
++
++	/** Probed pte value on suspend. Re-checked on resume. */
++	u64 probed_pte;
++
+ 	int mtrr;
+ 
+ 	/** Bit 6 swizzling required for X tiling */
+@@ -571,6 +580,17 @@ bool i915_ggtt_resume_vm(struct i915_address_space *vm);
+ void i915_ggtt_suspend(struct i915_ggtt *gtt);
+ void i915_ggtt_resume(struct i915_ggtt *ggtt);
+ 
++/**
++ * i915_ggtt_mark_pte_lost - Mark ggtt ptes as lost or clear such a marking
++ * @i915 The device private.
++ * @val whether the ptes should be marked as lost.
++ *
++ * In some cases pte content is retained across suspend, but typically lost
++ * across hibernate. Typically they should be marked as lost on
++ * hibernation restore and such marking cleared on suspend.
++ */
++void i915_ggtt_mark_pte_lost(struct drm_i915_private *i915, bool val);
++
+ void
+ fill_page_dma(struct drm_i915_gem_object *p, const u64 val, unsigned int count);
+ 
+diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+index 64e6f76861f9..f50256e4c2d2 100644
+--- a/drivers/gpu/drm/i915/i915_driver.c
++++ b/drivers/gpu/drm/i915/i915_driver.c
+@@ -98,6 +98,9 @@
+ #include "intel_region_ttm.h"
+ #include "vlv_suspend.h"
+ 
++/* Intel Rapid Start Technology ACPI device name */
++static const char irst_name[] = "INT3392";
++
+ static const struct drm_driver i915_drm_driver;
+ 
+ static int i915_get_bridge_dev(struct drm_i915_private *dev_priv)
+@@ -1425,6 +1428,8 @@ static int i915_pm_suspend(struct device *kdev)
+ 		return -ENODEV;
+ 	}
+ 
++	i915_ggtt_mark_pte_lost(i915, false);
++
+ 	if (i915->drm.switch_power_state == DRM_SWITCH_POWER_OFF)
+ 		return 0;
+ 
+@@ -1477,6 +1482,14 @@ static int i915_pm_resume(struct device *kdev)
+ 	if (i915->drm.switch_power_state == DRM_SWITCH_POWER_OFF)
+ 		return 0;
+ 
++	/*
++	 * If IRST is enabled, or if we can't detect whether it's enabled,
++	 * then we must assume we lost the GGTT page table entries, since
++	 * they are not retained if IRST decided to enter S4.
++	 */
++	if (!IS_ENABLED(CONFIG_ACPI) || acpi_dev_present(irst_name, NULL, -1))
++		i915_ggtt_mark_pte_lost(i915, true);
++
+ 	return i915_drm_resume(&i915->drm);
+ }
+ 
+@@ -1536,6 +1549,9 @@ static int i915_pm_restore_early(struct device *kdev)
+ 
+ static int i915_pm_restore(struct device *kdev)
+ {
++	struct drm_i915_private *i915 = kdev_to_i915(kdev);
++
++	i915_ggtt_mark_pte_lost(i915, true);
+ 	return i915_pm_resume(kdev);
+ }
+ 
 -- 
-2.24.1.485.gad05a3d8e5
+2.34.1
 
