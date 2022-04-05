@@ -1,47 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19FBE4F3D38
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 Apr 2022 20:42:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A9934F3D7D
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 Apr 2022 22:07:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F4EA10EC6E;
-	Tue,  5 Apr 2022 18:42:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F41910EE4D;
+	Tue,  5 Apr 2022 20:07:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7938610EC6E
- for <intel-gfx@lists.freedesktop.org>; Tue,  5 Apr 2022 18:42:09 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 70A7310EE4D
+ for <intel-gfx@lists.freedesktop.org>; Tue,  5 Apr 2022 20:07:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649184129; x=1680720129;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=tZ8fqxizXI/mVQVaI6U9WxogmNJtZXXhzJhO5oAvCy0=;
- b=kFM+heyDTWfGF1SeXwF1gCPXx8chSZ2bMj271RY8V7c1Qqd8Rhu6dqyC
- SlNmlZXuT3R52HlmEHBxkIPnUZCAhlzbBr2ee/GWqmANhRFfZgOb2En9C
- jtw49TGsWKUO7hiBvQ7rvUFaww5MkyFOMHa2/9ocs6ecJRlrkKu6VtQyY
- tTt/bq4mXvd9cO/sDRh+lQ0D4lm0XqYodDu/1PT7WzYYQKaD7mWh9eKgQ
- EgN0+bKcn9P4a7A0SYhLsfJk2rbImgtMIqMSdV2mTK1UErUzl0l7z4kc8
- 9mrdQZqT1a4UC4wb8n7000m9PN6g7LwPRoJdvTBLIqVlgRR7V1tNp18bj w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10308"; a="240771371"
-X-IronPort-AV: E=Sophos;i="5.90,236,1643702400"; d="scan'208";a="240771371"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2022 11:42:08 -0700
-X-IronPort-AV: E=Sophos;i="5.90,236,1643702400"; d="scan'208";a="570037016"
-Received: from lucas-s2600cw.jf.intel.com ([10.165.21.202])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2022 11:42:08 -0700
+ t=1649189220; x=1680725220;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=P1R4fQx7yyhYX0t3qkUIgwsdq4dhKz7YKMI2P9LVYtc=;
+ b=Zdhwi8LRbB9WM7/oUFFQKdUjuDK1OW4T9GHalmM+bBy/ciecXnjr3+1e
+ dI2XIKX+ZjnWrm0mvCZP1hJvcSPlBxgpn54wt45sAyBRdrwMrsR96nhWB
+ WsWm9oJ3AJXJEfymBWIon7pA4ajt0FPRP2dYOQ0dI3+hlrS/4wQHIomWR
+ rkKxhbAMjRedC5dNHOfrgy99D/Ek8EUHv/tF4FlGBHSWB/7yBGcrGs+M4
+ 4p8oA+qp0TJu6PibTnuqWaDTXtykL0PBczWYR+A7q0Pyvl8YCGE+RZj3W
+ rrZ6xhD1JQ10SqriJihhsujOEuK4uUMkwzT7APrCWjayZ6unv0MCbNN9/ Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10308"; a="248370223"
+X-IronPort-AV: E=Sophos;i="5.90,238,1643702400"; d="scan'208";a="248370223"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Apr 2022 13:06:59 -0700
+X-IronPort-AV: E=Sophos;i="5.90,238,1643702400"; d="scan'208";a="789995135"
+Received: from wendu-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
+ ([10.212.136.77])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Apr 2022 13:06:59 -0700
+Date: Tue, 5 Apr 2022 13:06:58 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue,  5 Apr 2022 11:41:18 -0700
-Message-Id: <20220405184118.2714322-1-lucas.demarchi@intel.com>
-X-Mailer: git-send-email 2.35.1
+To: Casey Bowman <casey.g.bowman@intel.com>
+Message-ID: <20220405200658.xukfm7y347k6joge@ldmartin-desk2>
+X-Patchwork-Hint: comment
+References: <20220331204343.1256150-1-casey.g.bowman@intel.com>
+ <20220331204343.1256150-2-casey.g.bowman@intel.com>
+ <fcf7384d-7ee4-a261-9dd8-8ff0698c3365@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH topic/core-for-CI] ALSA: hda/i915 - skip acomp
- init if no matching display
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+In-Reply-To: <fcf7384d-7ee4-a261-9dd8-8ff0698c3365@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v6 1/1] Split i915_run_as_guest into x86 and
+ non-x86
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,86 +60,20 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org, daniel.vetter@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Kai Vehmanen <kai.vehmanen@linux.intel.com>
+On Tue, Apr 05, 2022 at 11:04:54AM -0700, Casey Bowman wrote:
+>@Jani/Lucas, any other thoughts here?
 
-In systems with only a discrete i915 GPU, the acomp init will
-always timeout for the PCH HDA controller instance.
+last version didn't pass CI:
 
-Avoid the timeout by checking the PCI device hierarchy
-whether any display class PCI device can be found on the system,
-and at the same level as the HDA PCI device. If found, proceed
-with the acomp init, which will wait until i915 probe is complete
-and component binding can proceed. If no matching display
-device is found, the audio component bind can be safely skipped.
+https://patchwork.freedesktop.org/series/102041/
 
-The bind timeout will still be hit if the display is present
-in the system, but i915 driver does not bind to it by configuration
-choice or probe error. In this case the 60sec timeout will be
-hit.
+when this happens, developer should analyze the results to check if it's
+a regression from their changes. When it's not a regression we can merge
+it, but in this case it didn't pass BAT, so there wasn't even a full
+run.
 
-Signed-off-by: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-Acked-by: Lucas De Marchi <lucas.demarchi@intel.com>
-Link: https://lore.kernel.org/r/20220405123622.2874457-1-kai.vehmanen@linux.intel.com
-Signed-off-by: Takashi Iwai <tiwai@suse.de>
-(cherry picked from commit c9db8a30d9f091aa571b5fb7c3f434cde107b02c)
-[ applied on sound/for-linus - cherry-pick it in topic/core-for-CI to
-  unblock some CI tests ]
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
- sound/hda/hdac_i915.c | 29 +++++++++++++++++++----------
- 1 file changed, 19 insertions(+), 10 deletions(-)
-
-diff --git a/sound/hda/hdac_i915.c b/sound/hda/hdac_i915.c
-index c42790863805..1ce2cea137db 100644
---- a/sound/hda/hdac_i915.c
-+++ b/sound/hda/hdac_i915.c
-@@ -116,16 +116,25 @@ static int i915_component_master_match(struct device *dev, int subcomponent,
- 	return 0;
- }
- 
--/* check whether intel graphics is present */
--static bool i915_gfx_present(void)
-+/* check whether Intel graphics is present and reachable */
-+static int i915_gfx_present(struct pci_dev *hdac_pci)
- {
--	static const struct pci_device_id ids[] = {
--		{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, PCI_ANY_ID),
--		  .class = PCI_BASE_CLASS_DISPLAY << 16,
--		  .class_mask = 0xff << 16 },
--		{}
--	};
--	return pci_dev_present(ids);
-+	unsigned int class = PCI_BASE_CLASS_DISPLAY << 16;
-+	struct pci_dev *display_dev = NULL;
-+	bool match = false;
-+
-+	do {
-+		display_dev = pci_get_class(class, display_dev);
-+
-+		if (display_dev && display_dev->vendor == PCI_VENDOR_ID_INTEL &&
-+		    connectivity_check(display_dev, hdac_pci))
-+			match = true;
-+
-+		pci_dev_put(display_dev);
-+
-+	} while (!match && display_dev);
-+
-+	return match;
- }
- 
- static bool dg1_gfx_present(void)
-@@ -165,7 +174,7 @@ int snd_hdac_i915_init(struct hdac_bus *bus)
- 	struct drm_audio_component *acomp;
- 	int err;
- 
--	if (!i915_gfx_present())
-+	if (!i915_gfx_present(to_pci_dev(bus->dev)))
- 		return -ENODEV;
- 
- 	if (dg1_gfx_present())
--- 
-2.35.1
-
+Lucas De Marchi
