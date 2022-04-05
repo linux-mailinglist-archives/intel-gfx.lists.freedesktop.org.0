@@ -1,34 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AC244F4716
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Apr 2022 01:27:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D4A24F4777
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Apr 2022 01:37:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C11010ED0A;
-	Tue,  5 Apr 2022 23:27:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A81E310E987;
+	Tue,  5 Apr 2022 23:37:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3753610ED0A;
- Tue,  5 Apr 2022 23:27:16 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 33D62A47EB;
- Tue,  5 Apr 2022 23:27:16 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5891675961425862221=="
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com
+ [IPv6:2a00:1450:4864:20::530])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DEDDD10E7AA;
+ Tue,  5 Apr 2022 23:37:05 +0000 (UTC)
+Received: by mail-ed1-x530.google.com with SMTP id b24so626887edu.10;
+ Tue, 05 Apr 2022 16:37:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=oxcH17jAwGUaiE3wuBD2atyeKUFb0clhJQsWsKprZu0=;
+ b=Jaf1+Cf85aoNqD9Mkf9utDHfipbulVMqDx9Av7gYtCWspRVy6y0ge4by+CwQydFFpy
+ VCCP1b/bxX8BqcJEKhoz7gw82p0hcCpNp37OhD5frZonVGAMHd7Hg464PLYMfQVpw3Bj
+ ezjwzXdnm4LRGZPUOnT6URQuXexcDUNMlzD/z/6ubn4bTdX9llxwvP7Nn2vtjAfx4a2m
+ vzPayJj9N7pdbP1nELm6kPDj4xagWfIJrPYkKZIZuYeM7zs8zv4vQTgFwcdOO9z3CxAO
+ I+e7WImaTi2mM5fDa3ViQr65NTHUu8P/LhYj2wRMXdYsfe0aOQFXASDtTyfvI2qHM14E
+ StwA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=oxcH17jAwGUaiE3wuBD2atyeKUFb0clhJQsWsKprZu0=;
+ b=rqbR8UEsFhyLoWbXcOXS5uIxC4j7c2xiGVq/ZpjltgYclzZ0NTVdXPIpC9hWqYd/VJ
+ LYDMxNe7cyvN0NcfZKzSmztx4sbILBtfgWhWv2uEiXTEYdRHKmjGr9WK5kG1Mg0z4MXu
+ PNgtC1LFFFyIZL3Ex+XViieY6mlBcui57X31CgWnDyq7rzypWU428CaaVHiswauh7WuQ
+ ITOXAPl8rrZ1ZFBCz+QejxQbffY7QPRIW1FBBEvY+W49CSqy+uKwX9uBo4MvvJCxXp0/
+ H32V/VpHdlR41BAf+ICPEzWWIPzoNXn/MKo9UHhVHu0Cba8eVRv6WEjsqpcem5wdlEMX
+ llUA==
+X-Gm-Message-State: AOAM531r8O7GqfHPYgLHYJHIJBoewzocD4x/1W4cifTdnegWqT4gTtNq
+ ajZImfnm1hBoeD8oaGMKkD4nFaffQodZbiVUnz8=
+X-Google-Smtp-Source: ABdhPJwi4/FJ1MTGD+gEeQe9rdHBvAp/zIuPO9+vlFEkgtMTze+aKuKe2YS8+ewplGeSadBVQJ0LnW1XjjGpdLmypyk=
+X-Received: by 2002:a05:6402:11cf:b0:41c:dbc7:79d2 with SMTP id
+ j15-20020a05640211cf00b0041cdbc779d2mr6139870edw.50.1649201824353; Tue, 05
+ Apr 2022 16:37:04 -0700 (PDT)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Date: Tue, 05 Apr 2022 23:27:16 -0000
-Message-ID: <164920123618.24156.14697942584893234882@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220405173410.11436-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20220405173410.11436-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/bios=3A_Rework_BDB_block_handling_and_PNPID-=3Epanel=5Fty?=
- =?utf-8?q?pe_matching?=
+References: <20220405210335.3434130-1-daniel.vetter@ffwll.ch>
+ <20220405210335.3434130-2-daniel.vetter@ffwll.ch>
+In-Reply-To: <20220405210335.3434130-2-daniel.vetter@ffwll.ch>
+From: Fabio Estevam <festevam@gmail.com>
+Date: Tue, 5 Apr 2022 20:36:52 -0300
+Message-ID: <CAOMZO5DBrPQs-D_q-g50kqfSpr-_KAoFgVm-ZpVtHehNADA9ew@mail.gmail.com>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] [PATCH v3 01/17] fbcon: delete a few unneeded
+ forward decl
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,307 +64,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Du Cheng <ducheng2@gmail.com>,
+ Tetsuo Handa <penguin-kernel@i-love.sakura.ne.jp>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Geert Uytterhoeven <geert@linux-m68k.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Daniel Vetter <daniel.vetter@intel.com>, Sam Ravnborg <sam@ravnborg.org>,
+ Helge Deller <deller@gmx.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5891675961425862221==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, Apr 5, 2022 at 6:04 PM Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
+>
+> I didn't bother with any code movement to fix the others, these just
+> got a bit in the way.
+>
+> v2: Rebase on top of Helge's reverts.
+>
+> Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Acked-by: Sam Ravnborg <sam@ravnborg.org> (v1)
+> Reviewed-by: Geert Uytterhoeven <geert@linux-m68k.org> (v1)
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> Cc: Helge Deller <deller@gmx.de>
+> Cc: Daniel Vetter <daniel@ffwll.ch>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: Du Cheng <ducheng2@gmail.com>
+> Cc: Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>
+> Cc: Claudio Suarez <cssk@net-c.es>
 
-== Series Details ==
+From checkpatch:
 
-Series: drm/i915/bios: Rework BDB block handling and PNPID->panel_type matching
-URL   : https://patchwork.freedesktop.org/series/102213/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_11458 -> Patchwork_22788
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_22788 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_22788, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/index.html
-
-Participating hosts (37 -> 34)
-------------------------------
-
-  Missing    (3): fi-kbl-soraka fi-bsw-cyan fi-bdw-samus 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_22788:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@runner@aborted:
-    - fi-rkl-11600:       NOTRUN -> [FAIL][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/fi-rkl-11600/igt@runner@aborted.html
-    - fi-bwr-2160:        NOTRUN -> [FAIL][2]
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/fi-bwr-2160/igt@runner@aborted.html
-    - fi-rkl-guc:         NOTRUN -> [FAIL][3]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/fi-rkl-guc/igt@runner@aborted.html
-    - fi-bxt-dsi:         NOTRUN -> [FAIL][4]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/fi-bxt-dsi/igt@runner@aborted.html
-    - fi-adl-ddr5:        NOTRUN -> [FAIL][5]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/fi-adl-ddr5/igt@runner@aborted.html
-    - fi-elk-e7500:       NOTRUN -> [FAIL][6]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/fi-elk-e7500/igt@runner@aborted.html
-
-  
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@runner@aborted:
-    - {fi-jsl-1}:         NOTRUN -> [FAIL][7]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/fi-jsl-1/igt@runner@aborted.html
-    - {fi-ehl-2}:         NOTRUN -> [FAIL][8]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/fi-ehl-2/igt@runner@aborted.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_22788 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-hsw-4770:        [PASS][9] -> [INCOMPLETE][10] ([i915#4785])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11458/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-
-  * igt@runner@aborted:
-    - fi-hsw-4770:        NOTRUN -> [FAIL][11] ([fdo#109271] / [i915#2722] / [i915#4312])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/fi-hsw-4770/igt@runner@aborted.html
-    - fi-tgl-1115g4:      NOTRUN -> [FAIL][12] ([i915#3690])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/fi-tgl-1115g4/igt@runner@aborted.html
-    - fi-tgl-u2:          NOTRUN -> [FAIL][13] ([i915#3690])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/fi-tgl-u2/igt@runner@aborted.html
-    - fi-blb-e6850:       NOTRUN -> [FAIL][14] ([i915#2403])
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/fi-blb-e6850/igt@runner@aborted.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#2403]: https://gitlab.freedesktop.org/drm/intel/issues/2403
-  [i915#2722]: https://gitlab.freedesktop.org/drm/intel/issues/2722
-  [i915#3690]: https://gitlab.freedesktop.org/drm/intel/issues/3690
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_11458 -> Patchwork_22788
-
-  CI-20190529: 20190529
-  CI_DRM_11458: 7b4967c734a7c99ff69154d062a071181021e49d @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6410: cc359d5d2d3fc8be50340ba0379bacaf5c37bc5f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_22788: e1e2c24beed668c078fd7851a4e3ec8ee87329d8 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-e1e2c24beed6 drm/i915/bios: Dump PNPID and panel name
-39a5b7b20e53 drm/edid: Extract drm_edid_decode_mfg_id()
-2d62931bb39e drm/i915: Respect VBT seamless DRRS min refresh rate
-00d122192a92 drm/i915/bios: Parse the seamless DRRS min refresh rate
-179efa1ac625 drm/i915/bios: Determine panel type via PNPID match
-53decd0e521a drm/i915/bios: Refactor panel_type code
-2c6005cc3af9 drm/i915/bios: Extract get_panel_type()
-90cb9845428d drm/i915/bios: Do panel specific VBT parsing later
-258da58b3f75 drm/i915/pps: Reinit PPS delays after VBT has been fully parsed
-d1fd524d3ca5 drm/i915/pps: Split PPS init+sanitize in two
-36484fb6dd23 drm/i915/bios: Split VBT parsing to global vs. panel specific parts
-e1742d2d9cf5 drm/i915/bios: Split parse_driver_features() into two parts
-f00aa539537f drm/i915/bios: Assume panel_type==0 if the VBT has bogus data
-d07d7dcf7c2d drm/i915/bios: Get access to the tail end of the LFP data block
-086e15f0d645 drm/i915/bios: Generate LFP data table pointers if the VBT lacks them
-057a8b805d81 drm/i915/bios: Reorder panel DTD parsing
-0ca5de1a6532 drm/i915/bios: Validate the panel_name table
-73c2bd353d63 drm/i915/bios: Trust the LFP data pointers
-cccb9f6e5310 drm/i915/bios: Validate LFP data table pointers
-90add1560515 drm/i915/bios: Use the copy of the LFP data table always
-578166bc3056 drm/i915/bios: Make copies of VBT data blocks
-05d9638c2980 drm/i915/bios: Use the cached BDB version
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/index.html
-
---===============5891675961425862221==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/bios: Rework BDB block handling and PNPID-&gt;panel_type matching</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/102213/">https://patchwork.freedesktop.org/series/102213/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11458 -&gt; Patchwork_22788</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_22788 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_22788, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/index.html</p>
-<h2>Participating hosts (37 -&gt; 34)</h2>
-<p>Missing    (3): fi-kbl-soraka fi-bsw-cyan fi-bdw-samus </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_22788:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>
-<p>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/fi-rkl-11600/igt@runner@aborted.html">FAIL</a></p>
-</li>
-<li>
-<p>fi-bwr-2160:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/fi-bwr-2160/igt@runner@aborted.html">FAIL</a></p>
-</li>
-<li>
-<p>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/fi-rkl-guc/igt@runner@aborted.html">FAIL</a></p>
-</li>
-<li>
-<p>fi-bxt-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/fi-bxt-dsi/igt@runner@aborted.html">FAIL</a></p>
-</li>
-<li>
-<p>fi-adl-ddr5:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/fi-adl-ddr5/igt@runner@aborted.html">FAIL</a></p>
-</li>
-<li>
-<p>fi-elk-e7500:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/fi-elk-e7500/igt@runner@aborted.html">FAIL</a></p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>
-<p>{fi-jsl-1}:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/fi-jsl-1/igt@runner@aborted.html">FAIL</a></p>
-</li>
-<li>
-<p>{fi-ehl-2}:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/fi-ehl-2/igt@runner@aborted.html">FAIL</a></p>
-</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_22788 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11458/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>
-<p>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/fi-hsw-4770/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2722">i915#2722</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
-</li>
-<li>
-<p>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/fi-tgl-1115g4/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3690">i915#3690</a>)</p>
-</li>
-<li>
-<p>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/fi-tgl-u2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3690">i915#3690</a>)</p>
-</li>
-<li>
-<p>fi-blb-e6850:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/fi-blb-e6850/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2403">i915#2403</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11458 -&gt; Patchwork_22788</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11458: 7b4967c734a7c99ff69154d062a071181021e49d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6410: cc359d5d2d3fc8be50340ba0379bacaf5c37bc5f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_22788: e1e2c24beed668c078fd7851a4e3ec8ee87329d8 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>e1e2c24beed6 drm/i915/bios: Dump PNPID and panel name<br />
-39a5b7b20e53 drm/edid: Extract drm_edid_decode_mfg_id()<br />
-2d62931bb39e drm/i915: Respect VBT seamless DRRS min refresh rate<br />
-00d122192a92 drm/i915/bios: Parse the seamless DRRS min refresh rate<br />
-179efa1ac625 drm/i915/bios: Determine panel type via PNPID match<br />
-53decd0e521a drm/i915/bios: Refactor panel_type code<br />
-2c6005cc3af9 drm/i915/bios: Extract get_panel_type()<br />
-90cb9845428d drm/i915/bios: Do panel specific VBT parsing later<br />
-258da58b3f75 drm/i915/pps: Reinit PPS delays after VBT has been fully parsed<br />
-d1fd524d3ca5 drm/i915/pps: Split PPS init+sanitize in two<br />
-36484fb6dd23 drm/i915/bios: Split VBT parsing to global vs. panel specific parts<br />
-e1742d2d9cf5 drm/i915/bios: Split parse_driver_features() into two parts<br />
-f00aa539537f drm/i915/bios: Assume panel_type==0 if the VBT has bogus data<br />
-d07d7dcf7c2d drm/i915/bios: Get access to the tail end of the LFP data block<br />
-086e15f0d645 drm/i915/bios: Generate LFP data table pointers if the VBT lacks them<br />
-057a8b805d81 drm/i915/bios: Reorder panel DTD parsing<br />
-0ca5de1a6532 drm/i915/bios: Validate the panel_name table<br />
-73c2bd353d63 drm/i915/bios: Trust the LFP data pointers<br />
-cccb9f6e5310 drm/i915/bios: Validate LFP data table pointers<br />
-90add1560515 drm/i915/bios: Use the copy of the LFP data table always<br />
-578166bc3056 drm/i915/bios: Make copies of VBT data blocks<br />
-05d9638c2980 drm/i915/bios: Use the cached BDB version</p>
-
-</body>
-</html>
-
---===============5891675961425862221==--
+WARNING: From:/Signed-off-by: email address mismatch: 'From: Daniel
+Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter
+<daniel.vetter@intel.com>'
