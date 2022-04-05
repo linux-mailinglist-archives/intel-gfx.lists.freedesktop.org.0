@@ -2,50 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06BFB4F3CF1
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 Apr 2022 19:35:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 43D844F3CF5
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 Apr 2022 19:35:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3FD7210EDA2;
-	Tue,  5 Apr 2022 17:35:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9423F10EDC7;
+	Tue,  5 Apr 2022 17:35:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BFE5D10ED94
- for <intel-gfx@lists.freedesktop.org>; Tue,  5 Apr 2022 17:35:12 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F28110EDCB
+ for <intel-gfx@lists.freedesktop.org>; Tue,  5 Apr 2022 17:35:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649180112; x=1680716112;
+ t=1649180129; x=1680716129;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=D8MSGwAgyq/rWRnONCU8XqC/ES+2jqbhxRAZY3Dtdmc=;
- b=gMEDStl7OfVvmhtl3v3/Gu1TMTiA2cmfGZQKn07A6Tot2NKP7G9qT9w9
- xDgrDK0JUL26wuHcU67WdHhE4iaM+wiqEgRzGoDCoR6b/RL/cjoH9q9yl
- I1fXPhUxa5LWqHWqKJMBEt06LF3ru7oMxGfVeI+zU2NcQi0QnZOl4M9NO
- uwuMFED+MSfZi2bj0YwenkHpNLVh7q6De/gXm+33IEpzalvHlySr2enCa
- /9VQqFlEIhUr1d6In23kFuEG98TVom48RSq4cVJV7mf/pkrjhlB12YlJH
- m+TPrmdD9QbReHaPf1GXgyaPgttEbqbpdJMX2Z6ItDiS2vn7LNs6LDugI Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10308"; a="259648536"
-X-IronPort-AV: E=Sophos;i="5.90,236,1643702400"; d="scan'208";a="259648536"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2022 10:35:10 -0700
+ bh=IgVqLB9KUwwVuIyiRKWLG2PoiUD+gQbpHYrIBkDDLWg=;
+ b=dGZpLPv2mdVe8P3rBTdqZse0LjtaQGSl0yAPcAF0mxOohl+ro/3TzMgs
+ 6LX3Nu/nvxEI3rqi6tbCAEmcrQzkRv9KR9b97Zpg3RK950Dz9I8+8vJSj
+ 2A8CobvhhhHGwfCSaWe0/gz8tzgx/Kzd3hf6tnJ32PtVpvVadkBkVsF5O
+ KLAGUMnAadGiuc1soVYxxjWY+rMwrUvl/vRuKQZwe2aUyB5pn12MxX6yy
+ aFj044JDdQEaeNibtxMQuf+PuBUDD8hMinyBJED9SDy8ra+HYVI6Gz8R5
+ iuvE3CPjRVMmaVEGEHcBThS2DyMSOhmcIv8hjfq2R/rspv16GVg3aksZP A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10308"; a="258402699"
+X-IronPort-AV: E=Sophos;i="5.90,236,1643702400"; d="scan'208";a="258402699"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Apr 2022 10:35:12 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,236,1643702400"; d="scan'208";a="608534435"
+X-IronPort-AV: E=Sophos;i="5.90,236,1643702400"; d="scan'208";a="651984722"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.51])
- by fmsmga008.fm.intel.com with SMTP; 05 Apr 2022 10:35:07 -0700
+ by fmsmga002.fm.intel.com with SMTP; 05 Apr 2022 10:35:10 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 05 Apr 2022 20:35:07 +0300
+ Tue, 05 Apr 2022 20:35:09 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue,  5 Apr 2022 20:34:07 +0300
-Message-Id: <20220405173410.11436-20-ville.syrjala@linux.intel.com>
+Date: Tue,  5 Apr 2022 20:34:08 +0300
+Message-Id: <20220405173410.11436-21-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220405173410.11436-1-ville.syrjala@linux.intel.com>
 References: <20220405173410.11436-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 19/22] drm/i915/bios: Parse the seamless DRRS
+Subject: [Intel-gfx] [PATCH v2 20/22] drm/i915: Respect VBT seamless DRRS
  min refresh rate
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -64,55 +64,39 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Extract the seamless DRRS min refresh rate from the VBT.
-
-v2: Do a version check
+Make sure our choice of downclock mode respects the VBT
+seameless DRRS min refresh rate limit.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bios.c | 9 ++++++++-
- drivers/gpu/drm/i915/i915_drv.h           | 1 +
- 2 files changed, 9 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_panel.c | 10 +++++++---
+ 1 file changed, 7 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index cfdfe91d4ccf..d561551d6324 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.c
-+++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -802,6 +802,7 @@ parse_lfp_data(struct drm_i915_private *i915)
- 	const struct bdb_lvds_lfp_data *data;
- 	const struct bdb_lvds_lfp_data_tail *tail;
- 	const struct bdb_lvds_lfp_data_ptrs *ptrs;
-+	int panel_type = i915->vbt.panel_type;
+diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm/i915/display/intel_panel.c
+index 03398feb6676..35d8676438a3 100644
+--- a/drivers/gpu/drm/i915/display/intel_panel.c
++++ b/drivers/gpu/drm/i915/display/intel_panel.c
+@@ -75,13 +75,17 @@ const struct drm_display_mode *
+ intel_panel_downclock_mode(struct intel_connector *connector,
+ 			   const struct drm_display_mode *adjusted_mode)
+ {
++	struct drm_i915_private *i915 = to_i915(connector->base.dev);
+ 	const struct drm_display_mode *fixed_mode, *best_mode = NULL;
+-	int vrefresh = drm_mode_vrefresh(adjusted_mode);
++	int min_vrefresh = i915->vbt.seamless_drrs_min_refresh_rate;
++	int max_vrefresh = drm_mode_vrefresh(adjusted_mode);
  
- 	ptrs = find_section(i915, BDB_LVDS_LFP_DATA_PTRS);
- 	if (!ptrs)
-@@ -818,7 +819,13 @@ parse_lfp_data(struct drm_i915_private *i915)
- 	if (!tail)
- 		return;
- 
--	(void)tail;
-+	if (i915->vbt.version >= 188) {
-+		i915->vbt.seamless_drrs_min_refresh_rate =
-+			tail->seamless_drrs_min_refresh_rate[panel_type];
-+		drm_dbg_kms(&i915->drm,
-+			    "Seamless DRRS min refresh rate: %d Hz\n",
-+			    i915->vbt.seamless_drrs_min_refresh_rate);
-+	}
- }
- 
- static void
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 9274417cd87a..7b6858651420 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -327,6 +327,7 @@ struct intel_vbt_data {
- 	bool override_afc_startup;
- 	u8 override_afc_startup_val;
- 
-+	u8 seamless_drrs_min_refresh_rate;
- 	enum drrs_type drrs_type;
- 
- 	struct {
+ 	/* pick the fixed_mode with the lowest refresh rate */
+ 	list_for_each_entry(fixed_mode, &connector->panel.fixed_modes, head) {
+-		if (drm_mode_vrefresh(fixed_mode) < vrefresh) {
+-			vrefresh = drm_mode_vrefresh(fixed_mode);
++		int vrefesh = drm_mode_vrefresh(fixed_mode);
++
++		if (vrefesh >= min_vrefresh && vrefesh < max_vrefresh) {
++			max_vrefresh = vrefesh;
+ 			best_mode = fixed_mode;
+ 		}
+ 	}
 -- 
 2.35.1
 
