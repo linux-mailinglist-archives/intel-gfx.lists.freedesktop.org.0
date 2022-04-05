@@ -1,53 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BBEB4F46C5
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Apr 2022 01:18:46 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AC244F4716
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Apr 2022 01:27:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B43210EB9B;
-	Tue,  5 Apr 2022 23:18:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C11010ED0A;
+	Tue,  5 Apr 2022 23:27:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE56010EB9B
- for <intel-gfx@lists.freedesktop.org>; Tue,  5 Apr 2022 23:18:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649200721; x=1680736721;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=gythPX4VcMw1+M8OaO23NdTcHgHgyPLJFUl1FJXlkZs=;
- b=aeU6tUAr9nsSTGgtsbyhdDHoh4mbvGs1EtVfAJyB6nvQ6DuegeqbiCan
- J6u8k5uY/+GPmCmYkg/VOxeaeefBx2wFC2JVcO5hh1J8cqDajQmLca0QF
- k6J2tpdEHWUmrkv9yF31HO1IsUqUxenXCyQomEKBFKvCizZiQn6jgKWZ7
- RVUBfoU0BYJoc+RjqPIEME083eTqCe2yT3ZoCW1aUrAP5HqDEui0RrlrO
- 5l5LNTjs3i/9gMWZgZRfLxqGDFLaSSJmCAIcUfsy6pgZMe+zoWXCzYhcF
- l5pBPJIzQfJqSnT6yFos7GNjmURpYij0LTiJk7fE3LSHUF/jI4VD9nrnN A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10308"; a="258471626"
-X-IronPort-AV: E=Sophos;i="5.90,238,1643702400"; d="scan'208";a="258471626"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2022 16:18:40 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,238,1643702400"; d="scan'208";a="524204361"
-Received: from lkp-server02.sh.intel.com (HELO a44fdfb70b94) ([10.239.97.151])
- by orsmga006.jf.intel.com with ESMTP; 05 Apr 2022 16:18:39 -0700
-Received: from kbuild by a44fdfb70b94 with local (Exim 4.95)
- (envelope-from <lkp@intel.com>) id 1nbsRa-0003rR-It;
- Tue, 05 Apr 2022 23:18:38 +0000
-Date: Wed, 6 Apr 2022 07:18:14 +0800
-From: kernel test robot <lkp@intel.com>
-To: Anusha Srivatsa <anusha.srivatsa@intel.com>,
- intel-gfx@lists.freedesktop.org
-Message-ID: <202204060704.ALs2bEHY-lkp@intel.com>
-References: <20220405171429.3149199-1-anusha.srivatsa@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3753610ED0A;
+ Tue,  5 Apr 2022 23:27:16 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 33D62A47EB;
+ Tue,  5 Apr 2022 23:27:16 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5891675961425862221=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220405171429.3149199-1-anusha.srivatsa@intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dmc: Add MMIO range restrictions
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Date: Tue, 05 Apr 2022 23:27:16 -0000
+Message-ID: <164920123618.24156.14697942584893234882@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220405173410.11436-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20220405173410.11436-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/bios=3A_Rework_BDB_block_handling_and_PNPID-=3Epanel=5Fty?=
+ =?utf-8?q?pe_matching?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,161 +41,307 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>, kbuild-all@lists.01.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Anusha,
+--===============5891675961425862221==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Thank you for the patch! Yet something to improve:
+== Series Details ==
 
-[auto build test ERROR on drm-intel/for-linux-next]
-[also build test ERROR on drm-tip/drm-tip v5.18-rc1 next-20220405]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+Series: drm/i915/bios: Rework BDB block handling and PNPID->panel_type matching
+URL   : https://patchwork.freedesktop.org/series/102213/
+State : failure
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Anusha-Srivatsa/drm-i915-dmc-Add-MMIO-range-restrictions/20220406-011821
-base:   git://anongit.freedesktop.org/drm-intel for-linux-next
-config: x86_64-randconfig-c002 (https://download.01.org/0day-ci/archive/20220406/202204060704.ALs2bEHY-lkp@intel.com/config)
-compiler: gcc-11 (Debian 11.2.0-19) 11.2.0
-reproduce (this is a W=1 build):
-        # https://github.com/intel-lab-lkp/linux/commit/53017f72f2ddb095da8d5ef1cb92d0b1d02c8a2b
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Anusha-Srivatsa/drm-i915-dmc-Add-MMIO-range-restrictions/20220406-011821
-        git checkout 53017f72f2ddb095da8d5ef1cb92d0b1d02c8a2b
-        # save the config file to linux build tree
-        mkdir build_dir
-        make W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash drivers/gpu/drm/i915/
+== Summary ==
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
+CI Bug Log - changes from CI_DRM_11458 -> Patchwork_22788
+====================================================
 
-All errors (new ones prefixed by >>):
+Summary
+-------
 
-   drivers/gpu/drm/i915/display/intel_dmc.c: In function 'parse_dmc_fw_header':
->> drivers/gpu/drm/i915/display/intel_dmc.c:476:17: error: this 'if' clause does not guard... [-Werror=misleading-indentation]
-     476 |                 if (!dmc_mmio_addr_sanity_check(dmc, mmioaddr, mmio_count))
-         |                 ^~
-   drivers/gpu/drm/i915/display/intel_dmc.c:478:25: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the 'if'
-     478 |                         return 0;
-         |                         ^~~~~~
-   cc1: all warnings being treated as errors
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_22788 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_22788, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/index.html
+
+Participating hosts (37 -> 34)
+------------------------------
+
+  Missing    (3): fi-kbl-soraka fi-bsw-cyan fi-bdw-samus 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_22788:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@runner@aborted:
+    - fi-rkl-11600:       NOTRUN -> [FAIL][1]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/fi-rkl-11600/igt@runner@aborted.html
+    - fi-bwr-2160:        NOTRUN -> [FAIL][2]
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/fi-bwr-2160/igt@runner@aborted.html
+    - fi-rkl-guc:         NOTRUN -> [FAIL][3]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/fi-rkl-guc/igt@runner@aborted.html
+    - fi-bxt-dsi:         NOTRUN -> [FAIL][4]
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/fi-bxt-dsi/igt@runner@aborted.html
+    - fi-adl-ddr5:        NOTRUN -> [FAIL][5]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/fi-adl-ddr5/igt@runner@aborted.html
+    - fi-elk-e7500:       NOTRUN -> [FAIL][6]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/fi-elk-e7500/igt@runner@aborted.html
+
+  
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@runner@aborted:
+    - {fi-jsl-1}:         NOTRUN -> [FAIL][7]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/fi-jsl-1/igt@runner@aborted.html
+    - {fi-ehl-2}:         NOTRUN -> [FAIL][8]
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/fi-ehl-2/igt@runner@aborted.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_22788 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-hsw-4770:        [PASS][9] -> [INCOMPLETE][10] ([i915#4785])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11458/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+
+  * igt@runner@aborted:
+    - fi-hsw-4770:        NOTRUN -> [FAIL][11] ([fdo#109271] / [i915#2722] / [i915#4312])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/fi-hsw-4770/igt@runner@aborted.html
+    - fi-tgl-1115g4:      NOTRUN -> [FAIL][12] ([i915#3690])
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/fi-tgl-1115g4/igt@runner@aborted.html
+    - fi-tgl-u2:          NOTRUN -> [FAIL][13] ([i915#3690])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/fi-tgl-u2/igt@runner@aborted.html
+    - fi-blb-e6850:       NOTRUN -> [FAIL][14] ([i915#2403])
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/fi-blb-e6850/igt@runner@aborted.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#2403]: https://gitlab.freedesktop.org/drm/intel/issues/2403
+  [i915#2722]: https://gitlab.freedesktop.org/drm/intel/issues/2722
+  [i915#3690]: https://gitlab.freedesktop.org/drm/intel/issues/3690
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
 
 
-vim +/if +476 drivers/gpu/drm/i915/display/intel_dmc.c
+Build changes
+-------------
 
-   405	
-   406	static u32 parse_dmc_fw_header(struct intel_dmc *dmc,
-   407				       const struct intel_dmc_header_base *dmc_header,
-   408				       size_t rem_size, u8 dmc_id)
-   409	{
-   410		struct drm_i915_private *i915 = container_of(dmc, typeof(*i915), dmc);
-   411		struct dmc_fw_info *dmc_info = &dmc->dmc_info[dmc_id];
-   412		unsigned int header_len_bytes, dmc_header_size, payload_size, i;
-   413		const u32 *mmioaddr, *mmiodata;
-   414		u32 mmio_count, mmio_count_max, start_mmioaddr;
-   415		u8 *payload;
-   416	
-   417		BUILD_BUG_ON(ARRAY_SIZE(dmc_info->mmioaddr) < DMC_V3_MAX_MMIO_COUNT ||
-   418			     ARRAY_SIZE(dmc_info->mmioaddr) < DMC_V1_MAX_MMIO_COUNT);
-   419	
-   420		/*
-   421		 * Check if we can access common fields, we will checkc again below
-   422		 * after we have read the version
-   423		 */
-   424		if (rem_size < sizeof(struct intel_dmc_header_base))
-   425			goto error_truncated;
-   426	
-   427		/* Cope with small differences between v1 and v3 */
-   428		if (dmc_header->header_ver == 3) {
-   429			const struct intel_dmc_header_v3 *v3 =
-   430				(const struct intel_dmc_header_v3 *)dmc_header;
-   431	
-   432			if (rem_size < sizeof(struct intel_dmc_header_v3))
-   433				goto error_truncated;
-   434	
-   435			mmioaddr = v3->mmioaddr;
-   436			mmiodata = v3->mmiodata;
-   437			mmio_count = v3->mmio_count;
-   438			mmio_count_max = DMC_V3_MAX_MMIO_COUNT;
-   439			/* header_len is in dwords */
-   440			header_len_bytes = dmc_header->header_len * 4;
-   441			start_mmioaddr = v3->start_mmioaddr;
-   442			dmc_header_size = sizeof(*v3);
-   443		} else if (dmc_header->header_ver == 1) {
-   444			const struct intel_dmc_header_v1 *v1 =
-   445				(const struct intel_dmc_header_v1 *)dmc_header;
-   446	
-   447			if (rem_size < sizeof(struct intel_dmc_header_v1))
-   448				goto error_truncated;
-   449	
-   450			mmioaddr = v1->mmioaddr;
-   451			mmiodata = v1->mmiodata;
-   452			mmio_count = v1->mmio_count;
-   453			mmio_count_max = DMC_V1_MAX_MMIO_COUNT;
-   454			header_len_bytes = dmc_header->header_len;
-   455			start_mmioaddr = DMC_V1_MMIO_START_RANGE;
-   456			dmc_header_size = sizeof(*v1);
-   457		} else {
-   458			drm_err(&i915->drm, "Unknown DMC fw header version: %u\n",
-   459				dmc_header->header_ver);
-   460			return 0;
-   461		}
-   462	
-   463		if (header_len_bytes != dmc_header_size) {
-   464			drm_err(&i915->drm, "DMC firmware has wrong dmc header length "
-   465				"(%u bytes)\n", header_len_bytes);
-   466			return 0;
-   467		}
-   468	
-   469		/* Cache the dmc header info. */
-   470		if (mmio_count > mmio_count_max) {
-   471			drm_err(&i915->drm, "DMC firmware has wrong mmio count %u\n", mmio_count);
-   472			return 0;
-   473		}
-   474	
-   475		if (dmc_header->header_ver == 3) {
- > 476			if (!dmc_mmio_addr_sanity_check(dmc, mmioaddr, mmio_count))
-   477				drm_err(&i915->drm, "DMC firmware has Wrong MMIO Addresses\n");
-   478				return 0;
-   479		}
-   480	
-   481		for (i = 0; i < mmio_count; i++) {
-   482			dmc_info->mmioaddr[i] = _MMIO(mmioaddr[i]);
-   483			dmc_info->mmiodata[i] = mmiodata[i];
-   484		}
-   485		dmc_info->mmio_count = mmio_count;
-   486		dmc_info->start_mmioaddr = start_mmioaddr;
-   487	
-   488		rem_size -= header_len_bytes;
-   489	
-   490		/* fw_size is in dwords, so multiplied by 4 to convert into bytes. */
-   491		payload_size = dmc_header->fw_size * 4;
-   492		if (rem_size < payload_size)
-   493			goto error_truncated;
-   494	
-   495		if (payload_size > dmc->max_fw_size) {
-   496			drm_err(&i915->drm, "DMC FW too big (%u bytes)\n", payload_size);
-   497			return 0;
-   498		}
-   499		dmc_info->dmc_fw_size = dmc_header->fw_size;
-   500	
-   501		dmc_info->payload = kmalloc(payload_size, GFP_KERNEL);
-   502		if (!dmc_info->payload)
-   503			return 0;
-   504	
-   505		payload = (u8 *)(dmc_header) + header_len_bytes;
-   506		memcpy(dmc_info->payload, payload, payload_size);
-   507	
-   508		return header_len_bytes + payload_size;
-   509	
-   510	error_truncated:
-   511		drm_err(&i915->drm, "Truncated DMC firmware, refusing.\n");
-   512		return 0;
-   513	}
-   514	
+  * Linux: CI_DRM_11458 -> Patchwork_22788
 
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+  CI-20190529: 20190529
+  CI_DRM_11458: 7b4967c734a7c99ff69154d062a071181021e49d @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6410: cc359d5d2d3fc8be50340ba0379bacaf5c37bc5f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_22788: e1e2c24beed668c078fd7851a4e3ec8ee87329d8 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+e1e2c24beed6 drm/i915/bios: Dump PNPID and panel name
+39a5b7b20e53 drm/edid: Extract drm_edid_decode_mfg_id()
+2d62931bb39e drm/i915: Respect VBT seamless DRRS min refresh rate
+00d122192a92 drm/i915/bios: Parse the seamless DRRS min refresh rate
+179efa1ac625 drm/i915/bios: Determine panel type via PNPID match
+53decd0e521a drm/i915/bios: Refactor panel_type code
+2c6005cc3af9 drm/i915/bios: Extract get_panel_type()
+90cb9845428d drm/i915/bios: Do panel specific VBT parsing later
+258da58b3f75 drm/i915/pps: Reinit PPS delays after VBT has been fully parsed
+d1fd524d3ca5 drm/i915/pps: Split PPS init+sanitize in two
+36484fb6dd23 drm/i915/bios: Split VBT parsing to global vs. panel specific parts
+e1742d2d9cf5 drm/i915/bios: Split parse_driver_features() into two parts
+f00aa539537f drm/i915/bios: Assume panel_type==0 if the VBT has bogus data
+d07d7dcf7c2d drm/i915/bios: Get access to the tail end of the LFP data block
+086e15f0d645 drm/i915/bios: Generate LFP data table pointers if the VBT lacks them
+057a8b805d81 drm/i915/bios: Reorder panel DTD parsing
+0ca5de1a6532 drm/i915/bios: Validate the panel_name table
+73c2bd353d63 drm/i915/bios: Trust the LFP data pointers
+cccb9f6e5310 drm/i915/bios: Validate LFP data table pointers
+90add1560515 drm/i915/bios: Use the copy of the LFP data table always
+578166bc3056 drm/i915/bios: Make copies of VBT data blocks
+05d9638c2980 drm/i915/bios: Use the cached BDB version
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/index.html
+
+--===============5891675961425862221==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/bios: Rework BDB block handling and PNPID-&gt;panel_type matching</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/102213/">https://patchwork.freedesktop.org/series/102213/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11458 -&gt; Patchwork_22788</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_22788 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_22788, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/index.html</p>
+<h2>Participating hosts (37 -&gt; 34)</h2>
+<p>Missing    (3): fi-kbl-soraka fi-bsw-cyan fi-bdw-samus </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_22788:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>
+<p>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/fi-rkl-11600/igt@runner@aborted.html">FAIL</a></p>
+</li>
+<li>
+<p>fi-bwr-2160:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/fi-bwr-2160/igt@runner@aborted.html">FAIL</a></p>
+</li>
+<li>
+<p>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/fi-rkl-guc/igt@runner@aborted.html">FAIL</a></p>
+</li>
+<li>
+<p>fi-bxt-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/fi-bxt-dsi/igt@runner@aborted.html">FAIL</a></p>
+</li>
+<li>
+<p>fi-adl-ddr5:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/fi-adl-ddr5/igt@runner@aborted.html">FAIL</a></p>
+</li>
+<li>
+<p>fi-elk-e7500:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/fi-elk-e7500/igt@runner@aborted.html">FAIL</a></p>
+</li>
+</ul>
+</li>
+</ul>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>
+<p>{fi-jsl-1}:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/fi-jsl-1/igt@runner@aborted.html">FAIL</a></p>
+</li>
+<li>
+<p>{fi-ehl-2}:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/fi-ehl-2/igt@runner@aborted.html">FAIL</a></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_22788 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11458/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>
+<p>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/fi-hsw-4770/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2722">i915#2722</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
+</li>
+<li>
+<p>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/fi-tgl-1115g4/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3690">i915#3690</a>)</p>
+</li>
+<li>
+<p>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/fi-tgl-u2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3690">i915#3690</a>)</p>
+</li>
+<li>
+<p>fi-blb-e6850:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22788/fi-blb-e6850/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2403">i915#2403</a>)</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11458 -&gt; Patchwork_22788</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11458: 7b4967c734a7c99ff69154d062a071181021e49d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6410: cc359d5d2d3fc8be50340ba0379bacaf5c37bc5f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_22788: e1e2c24beed668c078fd7851a4e3ec8ee87329d8 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>e1e2c24beed6 drm/i915/bios: Dump PNPID and panel name<br />
+39a5b7b20e53 drm/edid: Extract drm_edid_decode_mfg_id()<br />
+2d62931bb39e drm/i915: Respect VBT seamless DRRS min refresh rate<br />
+00d122192a92 drm/i915/bios: Parse the seamless DRRS min refresh rate<br />
+179efa1ac625 drm/i915/bios: Determine panel type via PNPID match<br />
+53decd0e521a drm/i915/bios: Refactor panel_type code<br />
+2c6005cc3af9 drm/i915/bios: Extract get_panel_type()<br />
+90cb9845428d drm/i915/bios: Do panel specific VBT parsing later<br />
+258da58b3f75 drm/i915/pps: Reinit PPS delays after VBT has been fully parsed<br />
+d1fd524d3ca5 drm/i915/pps: Split PPS init+sanitize in two<br />
+36484fb6dd23 drm/i915/bios: Split VBT parsing to global vs. panel specific parts<br />
+e1742d2d9cf5 drm/i915/bios: Split parse_driver_features() into two parts<br />
+f00aa539537f drm/i915/bios: Assume panel_type==0 if the VBT has bogus data<br />
+d07d7dcf7c2d drm/i915/bios: Get access to the tail end of the LFP data block<br />
+086e15f0d645 drm/i915/bios: Generate LFP data table pointers if the VBT lacks them<br />
+057a8b805d81 drm/i915/bios: Reorder panel DTD parsing<br />
+0ca5de1a6532 drm/i915/bios: Validate the panel_name table<br />
+73c2bd353d63 drm/i915/bios: Trust the LFP data pointers<br />
+cccb9f6e5310 drm/i915/bios: Validate LFP data table pointers<br />
+90add1560515 drm/i915/bios: Use the copy of the LFP data table always<br />
+578166bc3056 drm/i915/bios: Make copies of VBT data blocks<br />
+05d9638c2980 drm/i915/bios: Use the cached BDB version</p>
+
+</body>
+</html>
+
+--===============5891675961425862221==--
