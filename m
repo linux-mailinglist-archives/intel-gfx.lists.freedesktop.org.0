@@ -2,73 +2,88 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55DE04F292B
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 Apr 2022 10:46:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A0C254F2966
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 Apr 2022 11:19:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7AF1510EE58;
-	Tue,  5 Apr 2022 08:45:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1093210ED60;
+	Tue,  5 Apr 2022 09:19:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com
- [IPv6:2a00:1450:4864:20::642])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D988910EE53
- for <intel-gfx@lists.freedesktop.org>; Tue,  5 Apr 2022 08:45:56 +0000 (UTC)
-Received: by mail-ej1-x642.google.com with SMTP id yy13so25239221ejb.2
- for <intel-gfx@lists.freedesktop.org>; Tue, 05 Apr 2022 01:45:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:mail-followup-to:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to; bh=kLwOSJh4JkUAu8bAVMQPem4swoCfWHajhhsSaSbd3wA=;
- b=bMbT3uGp3dFxXv5749rP/YEH0fwf2ipBnL4qQcoZffJmqP63odGiG48c6lrEQDoOuE
- 2Io2E+FIcefJqaP5UzCFcWumnT1yERlYhCUDpyrunp/zi7DwDGmp9jA4EjrBmXZPUbxe
- m4RBFNb29e21bIjfvB3+04nX0j65o9B8vbaPY=
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB00310EC65
+ for <intel-gfx@lists.freedesktop.org>; Tue,  5 Apr 2022 09:19:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1649150360;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=Vwp/klJZ6w8cqXIRnQlGelnzUBW3VqC3Y+5RomljZNo=;
+ b=Yo1yPJXL6GhMj/cU/cCQOyXPAQ5wMR6UzdkyPEhA651OdrL3OAuOaLAnl0D2gVOhx+B1y6
+ YbkJPt539JWM8zYxcJvz3VcUii2RSG0BwK57DOfED26cJVygxRHUBqa06mAcLajZcDErkC
+ 6JORiM9R/HEmRLqVLm8yIXmv43MI3mQ=
+Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
+ [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-146-yUf6plgGObGDgtt6Ycpdbg-1; Tue, 05 Apr 2022 05:19:17 -0400
+X-MC-Unique: yUf6plgGObGDgtt6Ycpdbg-1
+Received: by mail-wm1-f69.google.com with SMTP id
+ q6-20020a1cf306000000b0038c5726365aso990413wmq.3
+ for <intel-gfx@lists.freedesktop.org>; Tue, 05 Apr 2022 02:19:17 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:cc:subject:message-id
- :mail-followup-to:references:mime-version:content-disposition
- :content-transfer-encoding:in-reply-to;
- bh=kLwOSJh4JkUAu8bAVMQPem4swoCfWHajhhsSaSbd3wA=;
- b=PSWv0GddgYkAzuAOCYz7Xm9MewX+mRf+/RNlq0qIwRDQBzmXqQQEv+nT/4uPkcyE49
- f3OkqncBdZ0iQWbZYtKXcBOs1sId878nqTX5RQEW/ZxpyM3UACHA7DpRfJTldO/2b0MO
- sAwp2O8tEN87JV/nbeR8h5oNZ3D+1ZfLstZhBiJUoqz/pVAdR+XfaXq7I0r6eVrPypf7
- 4z33JYO53MSm37tdk1eMVMP0IYBG4QRJVmiK9lfHbxlk0fjdfFWZbI776CobxGiZm2XH
- AuMKbyoMglMb2fvZQrTed1U6bKuxulw02ya7UpJhLDl6pD63dAjoVWxe7l1ookAG7Tm7
- SQwg==
-X-Gm-Message-State: AOAM532hZqL5FPiyGP+gHS3qsPjy3GwA5Dd0TWWpNV5563bDiLOXPz6M
- UwF/w5iE3cuNCDvgoD2p+sM8hQ==
-X-Google-Smtp-Source: ABdhPJylM+dFHXlrCCet5bi78ssTO3yLx8DQZUwNTohynsB3hLO/O0NXGESroauDwjtoDMbXczTEkA==
-X-Received: by 2002:a17:906:300f:b0:6e0:b38d:777d with SMTP id
- 15-20020a170906300f00b006e0b38d777dmr2418845ejz.189.1649148355361; 
- Tue, 05 Apr 2022 01:45:55 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+ :content-language:to:references:from:in-reply-to
+ :content-transfer-encoding;
+ bh=Vwp/klJZ6w8cqXIRnQlGelnzUBW3VqC3Y+5RomljZNo=;
+ b=ph0plLDUduQ6GHJCAyVI7xwrDnFgk87/eIJV7JP9WqEsZ/EJ1Jkufm9iJo43MzCgK9
+ yTJ3hT/rgdLMsGgPOHB3Y4rLDqS4hy5fabFjvTOsYj1n1+vhbxi4NEi2f4lMK5g99qcj
+ 85l10gH1zZJFBq5To6JtS6JLnCG7DXsNkFlniIw9lnuJ3KdcpKvHSqdK7Mz5ZIAgpHHD
+ igCb+ven2f9owEHlmCpypb/EU26pUUwOmxwaYp+OJ/U8VTKZvQ5mjNN29+t8j2PSkSw8
+ KwefRkS5Xcovqy94iEfXJiXOCVCB0uFWERXfxUHBXalvTY9rt/cRIsSRS8ybjlNI5iJv
+ Dlag==
+X-Gm-Message-State: AOAM53186DE3L3ovwY/ZPEyikXrioQTsNpZWqUexe4ybbFgY2aLtVX1h
+ dewyc05fSjBvkd9qSBDW8EmGS+/t/wHryRvwkDlAXxQ2lcIfDbYZ3mEvwHrgqej9ohplXDaKkRM
+ NnfP3GpY6Wze84Q6E03LZf7YGMP4J
+X-Received: by 2002:a05:6000:1d9d:b0:206:1cf4:f9a6 with SMTP id
+ bk29-20020a0560001d9d00b002061cf4f9a6mr1914983wrb.492.1649150356447; 
+ Tue, 05 Apr 2022 02:19:16 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwLhZGbdLpNdT/GdxUoAqjrwvfb3mcQPDAmjPtZRUifF4rT2Th6dQMMAa/mHgAToD3JKo/uLg==
+X-Received: by 2002:a05:6000:1d9d:b0:206:1cf4:f9a6 with SMTP id
+ bk29-20020a0560001d9d00b002061cf4f9a6mr1914957wrb.492.1649150356175; 
+ Tue, 05 Apr 2022 02:19:16 -0700 (PDT)
+Received: from [192.168.1.102] ([92.176.231.205])
  by smtp.gmail.com with ESMTPSA id
- a22-20020a50ff16000000b00410d029ea5csm6312065edu.96.2022.04.05.01.45.54
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 05 Apr 2022 01:45:54 -0700 (PDT)
-Date: Tue, 5 Apr 2022 10:45:53 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <YkwBwW6E9gbL2Sut@phenom.ffwll.local>
-Mail-Followup-To: Thomas Zimmermann <tzimmermann@suse.de>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- linux-fbdev@vger.kernel.org, Du Cheng <ducheng2@gmail.com>,
- Tetsuo Handa <penguin-kernel@i-love.sakura.ne.jp>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- LKML <linux-kernel@vger.kernel.org>, Claudio Suarez <cssk@net-c.es>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Sam Ravnborg <sam@ravnborg.org>
-References: <20220208210824.2238981-1-daniel.vetter@ffwll.ch>
- <20220208210824.2238981-10-daniel.vetter@ffwll.ch>
- <0879a2ff-37df-a9ae-0ce1-2bfcb2d1b322@suse.de>
+ a2-20020a5d53c2000000b0020604b2667asm12159724wrw.81.2022.04.05.02.19.15
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 05 Apr 2022 02:19:15 -0700 (PDT)
+Message-ID: <408ffe9b-f09f-dc7e-7f5e-a93b311a06fa@redhat.com>
+Date: Tue, 5 Apr 2022 11:19:14 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <0879a2ff-37df-a9ae-0ce1-2bfcb2d1b322@suse.de>
-X-Operating-System: Linux phenom 5.10.0-8-amd64 
-Subject: Re: [Intel-gfx] [PATCH v2 09/19] fbcon: Extract fbcon_open/release
- helpers
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+To: DRI Development <dri-devel@lists.freedesktop.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ linux-fbdev@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Zack Rusin <zackr@vmware.com>,
+ Hans de Goede <hdegoede@redhat.com>, Ilya Trukhanov <lahvuun@gmail.com>,
+ Daniel Vetter <daniel.vetter@intel.com>, Peter Jones <pjones@redhat.com>
+References: <20220208210824.2238981-1-daniel.vetter@ffwll.ch>
+ <20220208210824.2238981-19-daniel.vetter@ffwll.ch>
+ <4ae20b63-f452-fdb4-ced6-d4968a8d69f0@redhat.com>
+ <Ykv/k/WoVemoCJJA@phenom.ffwll.local> <YkwAhSt9HlbxcuZo@phenom.ffwll.local>
+From: Javier Martinez Canillas <javierm@redhat.com>
+In-Reply-To: <YkwAhSt9HlbxcuZo@phenom.ffwll.local>
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=javierm@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v2 18/19] Revert "fbdev: Prevent probing
+ generic drivers if a FB is already registered"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,233 +96,114 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-fbdev@vger.kernel.org, Du Cheng <ducheng2@gmail.com>,
- Tetsuo Handa <penguin-kernel@i-love.sakura.ne.jp>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- LKML <linux-kernel@vger.kernel.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Daniel Vetter <daniel.vetter@intel.com>, Sam Ravnborg <sam@ravnborg.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Feb 10, 2022 at 12:46:32PM +0100, Thomas Zimmermann wrote:
-> Hi
-> 
-> Am 08.02.22 um 22:08 schrieb Daniel Vetter:
-> > There's two minor behaviour changes in here:
-> > - in error paths we now consistently call fb_ops->fb_release
-> > - fb_release really can't fail (fbmem.c ignores it too) and there's no
-> >    reasonable cleanup we can do anyway.
-> > 
-> > Note that everything in fbcon.c is protected by the big console_lock()
-> > lock (especially all the global variables), so the minor changes in
-> > ordering of setup/cleanup do not matter.
-> > 
-> > v2: Explain a bit better why this is all correct (Sam)
-> > 
-> > Acked-by: Sam Ravnborg <sam@ravnborg.org>
-> > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> > Cc: Daniel Vetter <daniel@ffwll.ch>
-> > Cc: Claudio Suarez <cssk@net-c.es>
-> > Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> > Cc: Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>
-> > Cc: Du Cheng <ducheng2@gmail.com>
-> > ---
-> >   drivers/video/fbdev/core/fbcon.c | 107 +++++++++++++++----------------
-> >   1 file changed, 53 insertions(+), 54 deletions(-)
-> > 
-> > diff --git a/drivers/video/fbdev/core/fbcon.c b/drivers/video/fbdev/core/fbcon.c
-> > index 058e885d24f6..3e1a3e7bf527 100644
-> > --- a/drivers/video/fbdev/core/fbcon.c
-> > +++ b/drivers/video/fbdev/core/fbcon.c
-> > @@ -682,19 +682,37 @@ static int fbcon_invalid_charcount(struct fb_info *info, unsigned charcount)
-> >   #endif /* CONFIG_MISC_TILEBLITTING */
-> > +static int fbcon_open(struct fb_info *info)
-> > +{
-> > +	if (!try_module_get(info->fbops->owner))
-> > +		return -ENODEV;
-> > +
-> > +	if (info->fbops->fb_open &&
-> > +	    info->fbops->fb_open(info, 0)) {
-> > +		module_put(info->fbops->owner);
-> > +		return -ENODEV;
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static void fbcon_release(struct fb_info *info)
-> > +{
-> > +	if (info->fbops->fb_release)
-> > +		info->fbops->fb_release(info, 0);
-> > +
-> > +	module_put(info->fbops->owner);
-> > +}
-> >   static int con2fb_acquire_newinfo(struct vc_data *vc, struct fb_info *info,
-> >   				  int unit, int oldidx)
-> >   {
-> >   	struct fbcon_ops *ops = NULL;
-> > -	int err = 0;
-> > -
-> > -	if (!try_module_get(info->fbops->owner))
-> > -		err = -ENODEV;
-> > +	int err;
-> > -	if (!err && info->fbops->fb_open &&
-> > -	    info->fbops->fb_open(info, 0))
-> > -		err = -ENODEV;
-> > +	err = fbcon_open(info);
-> > +	if (err)
-> > +		return err;
-> >   	if (!err) {
-> >   		ops = kzalloc(sizeof(struct fbcon_ops), GFP_KERNEL);
-> > @@ -715,7 +733,7 @@ static int con2fb_acquire_newinfo(struct vc_data *vc, struct fb_info *info,
-> >   	if (err) {
-> >   		con2fb_map[unit] = oldidx;
-> > -		module_put(info->fbops->owner);
-> > +		fbcon_release(info);
-> >   	}
-> >   	return err;
-> > @@ -726,45 +744,34 @@ static int con2fb_release_oldinfo(struct vc_data *vc, struct fb_info *oldinfo,
-> >   				  int oldidx, int found)
-> >   {
-> >   	struct fbcon_ops *ops = oldinfo->fbcon_par;
-> > -	int err = 0, ret;
-> > +	int ret;
-> > -	if (oldinfo->fbops->fb_release &&
-> > -	    oldinfo->fbops->fb_release(oldinfo, 0)) {
-> > -		con2fb_map[unit] = oldidx;
-> 
-> We don't need oldidx any longer?
-> 
-> There's some logic wrt to the parameter 'found' here and in set_con2fb_map()
-> that appears to be relevant.
+Hello Daniel,
 
-Yeah further patches clean this up more. Or did you see a potential bug
-here? I did ditch the fb_release error handling, simply because there's
-not really much we can do anyway, it shouldn't ever fail (that's a driver
-bug) and it was convoluting the code for no gain. But I might have missed
-something in this cargo-cult.
--Daniel
+On 4/5/22 10:40, Daniel Vetter wrote:
+> On Tue, Apr 05, 2022 at 10:36:35AM +0200, Daniel Vetter wrote:
+>> On Wed, Feb 09, 2022 at 01:19:26AM +0100, Javier Martinez Canillas wrote:
+>>> On 2/8/22 22:08, Daniel Vetter wrote:
+>>>> This reverts commit fb561bf9abde49f7e00fdbf9ed2ccf2d86cac8ee.
+>>>>
+>>>> With
+>>>>
+>>>> commit 27599aacbaefcbf2af7b06b0029459bbf682000d
+>>>> Author: Thomas Zimmermann <tzimmermann@suse.de>
+>>>> Date:   Tue Jan 25 10:12:18 2022 +0100
+>>>>
+>>>>     fbdev: Hot-unplug firmware fb devices on forced removal
+>>>>
+>>>> this should be fixed properly and we can remove this somewhat hackish
+>>>> check here (e.g. this won't catch drm drivers if fbdev emulation isn't
+>>>> enabled).
+>>>>
+>>>
+>>> Unfortunately this hack can't be reverted yet. Thomas' patch solves the issue
+>>> of platform devices matched with fbdev drivers to be properly unregistered if
+>>> a DRM driver attempts to remove all the conflicting framebuffers.
+>>>
+>>> But the problem that fb561bf9abde ("fbdev: Prevent probing generic drivers if
+>>> a FB is already registered") worked around is different. It happens when the
+>>> DRM driver is probed before the {efi,simple}fb and other fbdev drivers, the
+>>> kicking out of conflicting framebuffers already happened and these drivers
+>>> will be allowed to probe even when a DRM driver is already present.
+>>>
+>>> We need a clearer way to prevent it, but can't revert fb561bf9abde until that.
+>>
+>> Yeah that entire area is a mess still, ideally we'd have something else
+>> creating the platform devices, and efifb/offb and all these would just
+>> bind against them.
+>>
+>> Hm one idea that just crossed my mind: Could we have a flag in fb_info for
+>> fw drivers, and check this in framebuffer_register? Then at least all the
+>> logic would be in the fbdev core.
+>
 
-> 
-> Best regards
-> Thomas
-> 
-> 
-> > -		if (!found && newinfo->fbops->fb_release)
-> > -			newinfo->fbops->fb_release(newinfo, 0);
-> > -		if (!found)
-> > -			module_put(newinfo->fbops->owner);
-> > -		err = -ENODEV;
-> > -	}
-> > +	fbcon_release(oldinfo);
-> > -	if (!err) {
-> > -		fbcon_del_cursor_work(oldinfo);
-> > -		kfree(ops->cursor_state.mask);
-> > -		kfree(ops->cursor_data);
-> > -		kfree(ops->cursor_src);
-> > -		kfree(ops->fontbuffer);
-> > -		kfree(oldinfo->fbcon_par);
-> > -		oldinfo->fbcon_par = NULL;
-> > -		module_put(oldinfo->fbops->owner);
-> > -		/*
-> > -		  If oldinfo and newinfo are driving the same hardware,
-> > -		  the fb_release() method of oldinfo may attempt to
-> > -		  restore the hardware state.  This will leave the
-> > -		  newinfo in an undefined state. Thus, a call to
-> > -		  fb_set_par() may be needed for the newinfo.
-> > -		*/
-> > -		if (newinfo && newinfo->fbops->fb_set_par) {
-> > -			ret = newinfo->fbops->fb_set_par(newinfo);
-> > +	fbcon_del_cursor_work(oldinfo);
-> > +	kfree(ops->cursor_state.mask);
-> > +	kfree(ops->cursor_data);
-> > +	kfree(ops->cursor_src);
-> > +	kfree(ops->fontbuffer);
-> > +	kfree(oldinfo->fbcon_par);
-> > +	oldinfo->fbcon_par = NULL;
-> > +	/*
-> > +	  If oldinfo and newinfo are driving the same hardware,
-> > +	  the fb_release() method of oldinfo may attempt to
-> > +	  restore the hardware state.  This will leave the
-> > +	  newinfo in an undefined state. Thus, a call to
-> > +	  fb_set_par() may be needed for the newinfo.
-> > +	*/
-> > +	if (newinfo && newinfo->fbops->fb_set_par) {
-> > +		ret = newinfo->fbops->fb_set_par(newinfo);
-> > -			if (ret)
-> > -				printk(KERN_ERR "con2fb_release_oldinfo: "
-> > -					"detected unhandled fb_set_par error, "
-> > -					"error code %d\n", ret);
-> > -		}
-> > +		if (ret)
-> > +			printk(KERN_ERR "con2fb_release_oldinfo: "
-> > +				"detected unhandled fb_set_par error, "
-> > +				"error code %d\n", ret);
-> >   	}
-> > -	return err;
-> > +	return 0;
-> >   }
-> >   static void con2fb_init_display(struct vc_data *vc, struct fb_info *info,
-> > @@ -919,7 +926,6 @@ static const char *fbcon_startup(void)
-> >   	struct fbcon_display *p = &fb_display[fg_console];
-> >   	struct vc_data *vc = vc_cons[fg_console].d;
-> >   	const struct font_desc *font = NULL;
-> > -	struct module *owner;
-> >   	struct fb_info *info = NULL;
-> >   	struct fbcon_ops *ops;
-> >   	int rows, cols;
-> > @@ -938,17 +944,12 @@ static const char *fbcon_startup(void)
-> >   	if (!info)
-> >   		return NULL;
-> >   	
-> > -	owner = info->fbops->owner;
-> > -	if (!try_module_get(owner))
-> > +	if (fbcon_open(info))
-> >   		return NULL;
-> > -	if (info->fbops->fb_open && info->fbops->fb_open(info, 0)) {
-> > -		module_put(owner);
-> > -		return NULL;
-> > -	}
-> >   	ops = kzalloc(sizeof(struct fbcon_ops), GFP_KERNEL);
-> >   	if (!ops) {
-> > -		module_put(owner);
-> > +		fbcon_release(info);
-> >   		return NULL;
-> >   	}
-> > @@ -3314,10 +3315,6 @@ static void fbcon_exit(void)
-> >   		}
-> >   		if (mapped) {
-> > -			if (info->fbops->fb_release)
-> > -				info->fbops->fb_release(info, 0);
-> > -			module_put(info->fbops->owner);
-> > -
-> >   			if (info->fbcon_par) {
-> >   				struct fbcon_ops *ops = info->fbcon_par;
-> > @@ -3327,6 +3324,8 @@ static void fbcon_exit(void)
-> >   				kfree(info->fbcon_par);
-> >   				info->fbcon_par = NULL;
-> >   			}
-> > +
-> > +			fbcon_release(info);
-> >   		}
-> >   	}
-> >   }
-> 
-> -- 
-> Thomas Zimmermann
-> Graphics Driver Developer
-> SUSE Software Solutions Germany GmbH
-> Maxfeldstr. 5, 90409 Nürnberg, Germany
-> (HRB 36809, AG Nürnberg)
-> Geschäftsführer: Ivo Totev
+I can't answer right away since I've since forgotten this part of the code
+and will require to do a detailed read to refresh my memory.
 
+I'll answer later but preferred to mention the other question ASAP.
+ 
+> Ok coffee just kicked in, how exactly does your scenario work?
+> 
+> This code I'm reverting here is in the platform_dev->probe function.
+> Thomas' patch removes the platform_dev. How exactly can you still probe
+> against a platform dev if that platform dev is gone?
+>
 
+Because the platform was not even registered by the time the DRM driver
+probed and all the devices for the conflicting drivers were unregistered.
+ 
+> Iow, now that I reponder your case after a few weeks I'm no longer sure
+> things work like you claim.
+>
 
+This is how I think that work, please let me know if you see something
+wrong in my logic:
+
+1) A PCI device of OF device is registered for the GPU, this attempt to
+   match a registered driver but no driver was registered that match yet.
+
+2) The efifb driver is built-in, will be initialized according to the link
+   order of the objects under drivers/video and the fbdev driver is registered.
+
+   There is no platform device or PCI/OF device registered that matches.
+
+3) The DRM driver is built-in, will be initialized according to the link
+   order of the objects under drivers/gpu and the DRM driver is registered.
+   
+   This matches the device registered in (1) and the DRM driver probes.
+
+4) The DRM driver .probe kicks out any conflicting DRM drivers and pdev
+   before registering the DRM device.
+
+   There are no conflicting drivers or platform device at this point.
+
+5) Latter at some point the drivers/firmware/sysfb.c init function is
+   executed, and this registers a platform device for the generic fb.
+
+   This device matches the efifb driver registered in (2) and the fbdev
+   driver probes.
+   
+   Since that happens *after* the DRM driver already matched, probed
+   and registered the DRM device, that is a bug and what the reverted
+   patch worked around.
+
+So we need to prevent (5) if (1) and (3) already happened. Having a flag
+set in the fbdev core somewhere when remove_conflicting_framebuffers()
+is called could be a solution indeed.
+
+That is, the fbdev core needs to know that a DRM driver already probed
+and make register_framebuffer() fail if info->flag & FBINFO_MISC_FIRMWARE
+
+I can attempt to write a patch for that.
 
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+Best regards,
+
+Javier Martinez Canillas
+Linux Engineering
+Red Hat
+
