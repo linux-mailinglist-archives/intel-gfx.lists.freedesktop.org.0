@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 877554F3CE1
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 Apr 2022 19:34:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 458C24F3CE2
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 Apr 2022 19:34:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 71C3A10EBE2;
-	Tue,  5 Apr 2022 17:34:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 621C810ED94;
+	Tue,  5 Apr 2022 17:34:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE47E10EBE2
- for <intel-gfx@lists.freedesktop.org>; Tue,  5 Apr 2022 17:34:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0848510ED94
+ for <intel-gfx@lists.freedesktop.org>; Tue,  5 Apr 2022 17:34:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649180059; x=1680716059;
+ t=1649180063; x=1680716063;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=0DTqY08mTvoUGg3zVDyOtY5JoQeR4GlO2RZZ1cXg1E4=;
- b=Pob8thSnn+sQqXYEo2xIWBdETyvvMQnYVvAAoqveS0vjyv06vwWnGwr3
- LhWITbmDea+J0wh+sU2Qz5pRevy3ZUAKnvpM6ZGXXRpUst8h7sytDf5sT
- scO/FAnX9Reb77eJRnRNPOVo+5zSP0QKXTrSGAGB/TVMes84W7vgdylUa
- 8X7egzpbw/KZONpxD14v9Jio0Pp0cIJnIfDyczoUPyH3UlVr2Xsu/Jrki
- e5f8yeqb7M1wJkoRKqlRQlsHqIp9jAXXZLwRGqid1UCWmRNgIlrCSYEmp
- NlNgTz+BlCjaYpH9pThXgkW/9PNL7VzuucTfAsXhvZOdc7tu1Zm4MQ3o+ w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10308"; a="260994128"
-X-IronPort-AV: E=Sophos;i="5.90,236,1643702400"; d="scan'208";a="260994128"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ bh=CpNbzM9zo4GJbBlPA1ZU1Yvc+NT2eQxa48t+BOvlllE=;
+ b=LIEOphc4SeUH83GrMULOwj/1xZ76uaiDhV1iieKJcWFUY5FE3dNwCtWG
+ SzTcQWDkL3rkEaRz9/mZHgsy95nhO/pJJ8K6B/8o0jhRVh3Qa9uqWAOLO
+ uF+61i5wJ4YwvW1MuKnp52RCyDjmBgEH1oVJ6yXHaWJLYs9YqJVP3/qHv
+ q8yaK4d+lSdmK+Ivyj82g9Xe9h1mymRjHR9Wrn3ZVVBL+9Wh1kZhe0KuD
+ +nXaIyXRzLmLHQDq6W3N8l6SgDselRp3Tub3120VLmHg0RNud1b9uPDHc
+ e0ZShGJZMWxPPUsi6a3dGHUlfzDwuj+woOYqYjNDlHgRdDub5hwXDCZU2 A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10308"; a="260994147"
+X-IronPort-AV: E=Sophos;i="5.90,236,1643702400"; d="scan'208";a="260994147"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2022 10:34:19 -0700
+ 05 Apr 2022 10:34:22 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,236,1643702400"; d="scan'208";a="697021844"
+X-IronPort-AV: E=Sophos;i="5.90,236,1643702400"; d="scan'208";a="570006784"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.51])
- by fmsmga001.fm.intel.com with SMTP; 05 Apr 2022 10:34:17 -0700
+ by orsmga008.jf.intel.com with SMTP; 05 Apr 2022 10:34:20 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 05 Apr 2022 20:34:16 +0300
+ Tue, 05 Apr 2022 20:34:19 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue,  5 Apr 2022 20:33:50 +0300
-Message-Id: <20220405173410.11436-3-ville.syrjala@linux.intel.com>
+Date: Tue,  5 Apr 2022 20:33:51 +0300
+Message-Id: <20220405173410.11436-4-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220405173410.11436-1-ville.syrjala@linux.intel.com>
 References: <20220405173410.11436-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 02/22] drm/i915/bios: Make copies of VBT data
- blocks
+Subject: [Intel-gfx] [PATCH v2 03/22] drm/i915/bios: Use the copy of the LFP
+ data table always
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,511 +64,99 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Make a copy of each VB data block with a guaranteed minimum
-size. The extra (if any) will just be left zeroed.
-
-This means we don't have to worry about going out of bounds
-when accessing any of the structure members. Otherwise that
-could easliy happen if we simply get the version check wrong,
-or if the VBT is broken/malicious.
-
-v2: Don't do arithmetic between bdb header and copy
-    of the LFP data block (Jani)
-v3: Make all the copies up front
+Currently get_lvds_fp_timing() still returns a pointer to the original
+data block rather than our copy. Let's convert the data pointer offsets
+to be relative to the data block rather than the whole BDB. With that
+we can make get_lvds_fp_timing() return a pointer to the copy.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bios.c | 230 ++++++++++++++++------
- drivers/gpu/drm/i915/i915_drv.h           |   1 +
- 2 files changed, 174 insertions(+), 57 deletions(-)
+ drivers/gpu/drm/i915/display/intel_bios.c | 41 +++++++++++++++++++----
+ 1 file changed, 34 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index 5518f4cfa1b1..2e9f639d092e 100644
+index 2e9f639d092e..000544280c35 100644
 --- a/drivers/gpu/drm/i915/display/intel_bios.c
 +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -88,7 +88,7 @@ static u32 get_blocksize(const void *block_data)
- }
+@@ -191,6 +191,29 @@ static const struct {
+ 	  .min_size = sizeof(struct bdb_generic_dtd), },
+ };
  
- static const void *
--find_section(const void *_bdb, enum bdb_block_id section_id)
-+find_raw_section(const void *_bdb, enum bdb_block_id section_id)
- {
- 	const struct bdb_header *bdb = _bdb;
- 	const u8 *base = _bdb;
-@@ -118,6 +118,124 @@ find_section(const void *_bdb, enum bdb_block_id section_id)
- 	return NULL;
- }
- 
-+/*
-+ * Offset from the start of BDB to the start of the
-+ * block data (just past the block header).
-+ */
-+static u32 block_offset(const void *bdb, enum bdb_block_id section_id)
++/* make the data table offsets relative to the data block */
++static bool fixup_lfp_data_ptrs(const void *bdb, void *ptrs_block)
 +{
-+	const void *block;
-+
-+	block = find_raw_section(bdb, section_id);
-+	if (!block)
-+		return 0;
-+
-+	return block - bdb;
-+}
-+
-+struct bdb_block_entry {
-+	struct list_head node;
-+	enum bdb_block_id section_id;
-+	u8 data[];
-+};
-+
-+static const void *
-+find_section(struct drm_i915_private *i915,
-+	     enum bdb_block_id section_id)
-+{
-+	struct bdb_block_entry *entry;
-+
-+	list_for_each_entry(entry, &i915->vbt.bdb_blocks, node) {
-+		if (entry->section_id == section_id)
-+			return entry->data + 3;
-+	}
-+
-+	return NULL;
-+}
-+
-+static const struct {
-+	enum bdb_block_id section_id;
-+	size_t min_size;
-+} bdb_blocks[] = {
-+	{ .section_id = BDB_GENERAL_FEATURES,
-+	  .min_size = sizeof(struct bdb_general_features), },
-+	{ .section_id = BDB_GENERAL_DEFINITIONS,
-+	  .min_size = sizeof(struct bdb_general_definitions), },
-+	{ .section_id = BDB_PSR,
-+	  .min_size = sizeof(struct bdb_psr), },
-+	{ .section_id = BDB_DRIVER_FEATURES,
-+	  .min_size = sizeof(struct bdb_driver_features), },
-+	{ .section_id = BDB_SDVO_LVDS_OPTIONS,
-+	  .min_size = sizeof(struct bdb_sdvo_lvds_options), },
-+	{ .section_id = BDB_SDVO_PANEL_DTDS,
-+	  .min_size = sizeof(struct bdb_sdvo_panel_dtds), },
-+	{ .section_id = BDB_EDP,
-+	  .min_size = sizeof(struct bdb_edp), },
-+	{ .section_id = BDB_LVDS_OPTIONS,
-+	  .min_size = sizeof(struct bdb_lvds_options), },
-+	{ .section_id = BDB_LVDS_LFP_DATA_PTRS,
-+	  .min_size = sizeof(struct bdb_lvds_lfp_data_ptrs), },
-+	{ .section_id = BDB_LVDS_LFP_DATA,
-+	  .min_size = sizeof(struct bdb_lvds_lfp_data), },
-+	{ .section_id = BDB_LVDS_BACKLIGHT,
-+	  .min_size = sizeof(struct bdb_lfp_backlight_data), },
-+	{ .section_id = BDB_LFP_POWER,
-+	  .min_size = sizeof(struct bdb_lfp_power), },
-+	{ .section_id = BDB_MIPI_CONFIG,
-+	  .min_size = sizeof(struct bdb_mipi_config), },
-+	{ .section_id = BDB_MIPI_SEQUENCE,
-+	  .min_size = sizeof(struct bdb_mipi_sequence) },
-+	{ .section_id = BDB_COMPRESSION_PARAMETERS,
-+	  .min_size = sizeof(struct bdb_compression_parameters), },
-+	{ .section_id = BDB_GENERIC_DTD,
-+	  .min_size = sizeof(struct bdb_generic_dtd), },
-+};
-+
-+static void
-+init_bdb_block(struct drm_i915_private *i915,
-+	       const void *bdb, enum bdb_block_id section_id,
-+	       size_t min_size)
-+{
-+	struct bdb_block_entry *entry;
-+	const void *block;
-+	size_t block_size;
-+
-+	block = find_raw_section(bdb, section_id);
-+	if (!block)
-+		return;
-+
-+	block_size = get_blocksize(block);
-+
-+	entry = kzalloc(struct_size(entry, data, max(min_size, block_size) + 3),
-+			GFP_KERNEL);
-+	if (!entry)
-+		return;
-+
-+	entry->section_id = section_id;
-+	memcpy(entry->data, block - 3, block_size + 3);
-+
-+	drm_dbg_kms(&i915->drm, "Found BDB block %d (size %zu, min size %zu)\n",
-+		    section_id, block_size, min_size);
-+
-+	list_add_tail(&entry->node, &i915->vbt.bdb_blocks);
-+}
-+
-+static void init_bdb_blocks(struct drm_i915_private *i915,
-+			    const void *bdb)
-+{
++	struct bdb_lvds_lfp_data_ptrs *ptrs = ptrs_block;
++	u32 offset;
 +	int i;
 +
-+	for (i = 0; i < ARRAY_SIZE(bdb_blocks); i++) {
-+		enum bdb_block_id section_id = bdb_blocks[i].section_id;
-+		size_t min_size = bdb_blocks[i].min_size;
++	offset = block_offset(bdb, BDB_LVDS_LFP_DATA);
 +
-+		drm_WARN(&i915->drm, min_size == 0,
-+			 "Block %d min_size is zero\n", section_id);
++	for (i = 0; i < 16; i++) {
++		if (ptrs->ptr[i].fp_timing.offset < offset ||
++		    ptrs->ptr[i].dvo_timing.offset < offset ||
++		    ptrs->ptr[i].panel_pnp_id.offset < offset)
++			return false;
 +
-+		init_bdb_block(i915, bdb, section_id, min_size);
++		ptrs->ptr[i].fp_timing.offset -= offset;
++		ptrs->ptr[i].dvo_timing.offset -= offset;
++		ptrs->ptr[i].panel_pnp_id.offset -= offset;
 +	}
++
++	return true;
 +}
 +
  static void
- fill_detail_timing_data(struct drm_display_mode *panel_fixed_mode,
- 			const struct lvds_dvo_timing *dvo_timing)
-@@ -199,7 +317,7 @@ get_lvds_fp_timing(const struct bdb_header *bdb,
+ init_bdb_block(struct drm_i915_private *i915,
+ 	       const void *bdb, enum bdb_block_id section_id,
+@@ -217,6 +240,13 @@ init_bdb_block(struct drm_i915_private *i915,
+ 	drm_dbg_kms(&i915->drm, "Found BDB block %d (size %zu, min size %zu)\n",
+ 		    section_id, block_size, min_size);
+ 
++	if (section_id == BDB_LVDS_LFP_DATA_PTRS &&
++	    !fixup_lfp_data_ptrs(bdb, entry->data + 3)) {
++		drm_err(&i915->drm, "VBT has malformed LFP data table pointers\n");
++		kfree(entry);
++		return;
++	}
++
+ 	list_add_tail(&entry->node, &i915->vbt.bdb_blocks);
+ }
+ 
+@@ -312,22 +342,19 @@ get_lvds_dvo_timing(const struct bdb_lvds_lfp_data *lvds_lfp_data,
+  * this function may return NULL if the corresponding entry is invalid
+  */
+ static const struct lvds_fp_timing *
+-get_lvds_fp_timing(const struct bdb_header *bdb,
+-		   const struct bdb_lvds_lfp_data *data,
++get_lvds_fp_timing(const struct bdb_lvds_lfp_data *data,
  		   const struct bdb_lvds_lfp_data_ptrs *ptrs,
  		   int index)
  {
--	size_t data_ofs = (const u8 *)data - (const u8 *)bdb;
-+	size_t data_ofs = block_offset(bdb, BDB_LVDS_LFP_DATA);
+-	size_t data_ofs = block_offset(bdb, BDB_LVDS_LFP_DATA);
  	u16 data_size = ((const u16 *)data)[-1]; /* stored in header */
  	size_t ofs;
  
-@@ -214,15 +332,14 @@ get_lvds_fp_timing(const struct bdb_header *bdb,
+ 	if (index >= ARRAY_SIZE(ptrs->ptr))
+ 		return NULL;
+ 	ofs = ptrs->ptr[index].fp_timing.offset;
+-	if (ofs < data_ofs ||
+-	    ofs + sizeof(struct lvds_fp_timing) > data_ofs + data_size)
++	if (ofs + sizeof(struct lvds_fp_timing) > data_size)
+ 		return NULL;
+-	return (const struct lvds_fp_timing *)((const u8 *)bdb + ofs);
++	return (const struct lvds_fp_timing *)((const u8 *)data + ofs);
+ }
  
  /* Parse general panel options */
- static void
--parse_panel_options(struct drm_i915_private *i915,
--		    const struct bdb_header *bdb)
-+parse_panel_options(struct drm_i915_private *i915)
- {
- 	const struct bdb_lvds_options *lvds_options;
- 	int panel_type;
- 	int drrs_mode;
- 	int ret;
+@@ -426,7 +453,7 @@ parse_lfp_panel_dtd(struct drm_i915_private *i915,
+ 		    "Found panel mode in BIOS VBT legacy lfp table: " DRM_MODE_FMT "\n",
+ 		    DRM_MODE_ARG(panel_fixed_mode));
  
--	lvds_options = find_section(bdb, BDB_LVDS_OPTIONS);
-+	lvds_options = find_section(i915, BDB_LVDS_OPTIONS);
- 	if (!lvds_options)
- 		return;
- 
-@@ -285,11 +402,11 @@ parse_lfp_panel_dtd(struct drm_i915_private *i915,
- 	struct drm_display_mode *panel_fixed_mode;
- 	int panel_type = i915->vbt.panel_type;
- 
--	lvds_lfp_data = find_section(bdb, BDB_LVDS_LFP_DATA);
-+	lvds_lfp_data = find_section(i915, BDB_LVDS_LFP_DATA);
- 	if (!lvds_lfp_data)
- 		return;
- 
--	lvds_lfp_data_ptrs = find_section(bdb, BDB_LVDS_LFP_DATA_PTRS);
-+	lvds_lfp_data_ptrs = find_section(i915, BDB_LVDS_LFP_DATA_PTRS);
- 	if (!lvds_lfp_data_ptrs)
- 		return;
- 
-@@ -325,15 +442,14 @@ parse_lfp_panel_dtd(struct drm_i915_private *i915,
- }
- 
- static void
--parse_generic_dtd(struct drm_i915_private *i915,
--		  const struct bdb_header *bdb)
-+parse_generic_dtd(struct drm_i915_private *i915)
- {
- 	const struct bdb_generic_dtd *generic_dtd;
- 	const struct generic_dtd_entry *dtd;
- 	struct drm_display_mode *panel_fixed_mode;
- 	int num_dtd;
- 
--	generic_dtd = find_section(bdb, BDB_GENERIC_DTD);
-+	generic_dtd = find_section(i915, BDB_GENERIC_DTD);
- 	if (!generic_dtd)
- 		return;
- 
-@@ -416,21 +532,20 @@ parse_panel_dtd(struct drm_i915_private *i915,
- 	 * back to trying the old LFP block if that fails.
- 	 */
- 	if (i915->vbt.version >= 229)
--		parse_generic_dtd(i915, bdb);
-+		parse_generic_dtd(i915);
- 	if (!i915->vbt.lfp_lvds_vbt_mode)
- 		parse_lfp_panel_dtd(i915, bdb);
- }
- 
- static void
--parse_lfp_backlight(struct drm_i915_private *i915,
--		    const struct bdb_header *bdb)
-+parse_lfp_backlight(struct drm_i915_private *i915)
- {
- 	const struct bdb_lfp_backlight_data *backlight_data;
- 	const struct lfp_backlight_data_entry *entry;
- 	int panel_type = i915->vbt.panel_type;
- 	u16 level;
- 
--	backlight_data = find_section(bdb, BDB_LVDS_BACKLIGHT);
-+	backlight_data = find_section(i915, BDB_LVDS_BACKLIGHT);
- 	if (!backlight_data)
- 		return;
- 
-@@ -514,8 +629,7 @@ parse_lfp_backlight(struct drm_i915_private *i915,
- 
- /* Try to find sdvo panel data */
- static void
--parse_sdvo_panel_data(struct drm_i915_private *i915,
--		      const struct bdb_header *bdb)
-+parse_sdvo_panel_data(struct drm_i915_private *i915)
- {
- 	const struct bdb_sdvo_panel_dtds *dtds;
- 	struct drm_display_mode *panel_fixed_mode;
-@@ -531,14 +645,14 @@ parse_sdvo_panel_data(struct drm_i915_private *i915,
- 	if (index == -1) {
- 		const struct bdb_sdvo_lvds_options *sdvo_lvds_options;
- 
--		sdvo_lvds_options = find_section(bdb, BDB_SDVO_LVDS_OPTIONS);
-+		sdvo_lvds_options = find_section(i915, BDB_SDVO_LVDS_OPTIONS);
- 		if (!sdvo_lvds_options)
- 			return;
- 
- 		index = sdvo_lvds_options->panel_type;
- 	}
- 
--	dtds = find_section(bdb, BDB_SDVO_PANEL_DTDS);
-+	dtds = find_section(i915, BDB_SDVO_PANEL_DTDS);
- 	if (!dtds)
- 		return;
- 
-@@ -570,12 +684,11 @@ static int intel_bios_ssc_frequency(struct drm_i915_private *i915,
- }
- 
- static void
--parse_general_features(struct drm_i915_private *i915,
--		       const struct bdb_header *bdb)
-+parse_general_features(struct drm_i915_private *i915)
- {
- 	const struct bdb_general_features *general;
- 
--	general = find_section(bdb, BDB_GENERAL_FEATURES);
-+	general = find_section(i915, BDB_GENERAL_FEATURES);
- 	if (!general)
- 		return;
- 
-@@ -695,12 +808,11 @@ parse_sdvo_device_mapping(struct drm_i915_private *i915)
- }
- 
- static void
--parse_driver_features(struct drm_i915_private *i915,
--		      const struct bdb_header *bdb)
-+parse_driver_features(struct drm_i915_private *i915)
- {
- 	const struct bdb_driver_features *driver;
- 
--	driver = find_section(bdb, BDB_DRIVER_FEATURES);
-+	driver = find_section(i915, BDB_DRIVER_FEATURES);
- 	if (!driver)
- 		return;
- 
-@@ -747,8 +859,7 @@ parse_driver_features(struct drm_i915_private *i915,
- }
- 
- static void
--parse_power_conservation_features(struct drm_i915_private *i915,
--				  const struct bdb_header *bdb)
-+parse_power_conservation_features(struct drm_i915_private *i915)
- {
- 	const struct bdb_lfp_power *power;
- 	u8 panel_type = i915->vbt.panel_type;
-@@ -756,7 +867,7 @@ parse_power_conservation_features(struct drm_i915_private *i915,
- 	if (i915->vbt.version < 228)
- 		return;
- 
--	power = find_section(bdb, BDB_LFP_POWER);
-+	power = find_section(i915, BDB_LFP_POWER);
- 	if (!power)
- 		return;
- 
-@@ -776,14 +887,14 @@ parse_power_conservation_features(struct drm_i915_private *i915,
- }
- 
- static void
--parse_edp(struct drm_i915_private *i915, const struct bdb_header *bdb)
-+parse_edp(struct drm_i915_private *i915)
- {
- 	const struct bdb_edp *edp;
- 	const struct edp_power_seq *edp_pps;
- 	const struct edp_fast_link_params *edp_link_params;
- 	int panel_type = i915->vbt.panel_type;
- 
--	edp = find_section(bdb, BDB_EDP);
-+	edp = find_section(i915, BDB_EDP);
- 	if (!edp)
- 		return;
- 
-@@ -894,13 +1005,13 @@ parse_edp(struct drm_i915_private *i915, const struct bdb_header *bdb)
- }
- 
- static void
--parse_psr(struct drm_i915_private *i915, const struct bdb_header *bdb)
-+parse_psr(struct drm_i915_private *i915)
- {
- 	const struct bdb_psr *psr;
- 	const struct psr_table *psr_table;
- 	int panel_type = i915->vbt.panel_type;
- 
--	psr = find_section(bdb, BDB_PSR);
-+	psr = find_section(i915, BDB_PSR);
- 	if (!psr) {
- 		drm_dbg_kms(&i915->drm, "No PSR BDB found.\n");
- 		return;
-@@ -1034,8 +1145,7 @@ static void parse_dsi_backlight_ports(struct drm_i915_private *i915,
- }
- 
- static void
--parse_mipi_config(struct drm_i915_private *i915,
--		  const struct bdb_header *bdb)
-+parse_mipi_config(struct drm_i915_private *i915)
- {
- 	const struct bdb_mipi_config *start;
- 	const struct mipi_config *config;
-@@ -1058,7 +1168,7 @@ parse_mipi_config(struct drm_i915_private *i915,
- 	/* Parse #52 for panel index used from panel_type already
- 	 * parsed
- 	 */
--	start = find_section(bdb, BDB_MIPI_CONFIG);
-+	start = find_section(i915, BDB_MIPI_CONFIG);
- 	if (!start) {
- 		drm_dbg_kms(&i915->drm, "No MIPI config BDB found");
- 		return;
-@@ -1354,8 +1464,7 @@ static void fixup_mipi_sequences(struct drm_i915_private *i915)
- }
- 
- static void
--parse_mipi_sequence(struct drm_i915_private *i915,
--		    const struct bdb_header *bdb)
-+parse_mipi_sequence(struct drm_i915_private *i915)
- {
- 	int panel_type = i915->vbt.panel_type;
- 	const struct bdb_mipi_sequence *sequence;
-@@ -1368,7 +1477,7 @@ parse_mipi_sequence(struct drm_i915_private *i915,
- 	if (i915->vbt.dsi.panel_id != MIPI_DSI_GENERIC_PANEL_ID)
- 		return;
- 
--	sequence = find_section(bdb, BDB_MIPI_SEQUENCE);
-+	sequence = find_section(i915, BDB_MIPI_SEQUENCE);
- 	if (!sequence) {
- 		drm_dbg_kms(&i915->drm,
- 			    "No MIPI Sequence found, parsing complete\n");
-@@ -1439,8 +1548,7 @@ parse_mipi_sequence(struct drm_i915_private *i915,
- }
- 
- static void
--parse_compression_parameters(struct drm_i915_private *i915,
--			     const struct bdb_header *bdb)
-+parse_compression_parameters(struct drm_i915_private *i915)
- {
- 	const struct bdb_compression_parameters *params;
- 	struct intel_bios_encoder_data *devdata;
-@@ -1451,7 +1559,7 @@ parse_compression_parameters(struct drm_i915_private *i915,
- 	if (i915->vbt.version < 198)
- 		return;
- 
--	params = find_section(bdb, BDB_COMPRESSION_PARAMETERS);
-+	params = find_section(i915, BDB_COMPRESSION_PARAMETERS);
- 	if (params) {
- 		/* Sanity checks */
- 		if (params->entry_size != sizeof(params->data[0])) {
-@@ -2086,8 +2194,7 @@ static void parse_ddi_ports(struct drm_i915_private *i915)
- }
- 
- static void
--parse_general_definitions(struct drm_i915_private *i915,
--			  const struct bdb_header *bdb)
-+parse_general_definitions(struct drm_i915_private *i915)
- {
- 	const struct bdb_general_definitions *defs;
- 	struct intel_bios_encoder_data *devdata;
-@@ -2097,7 +2204,7 @@ parse_general_definitions(struct drm_i915_private *i915,
- 	u16 block_size;
- 	int bus_pin;
- 
--	defs = find_section(bdb, BDB_GENERAL_DEFINITIONS);
-+	defs = find_section(i915, BDB_GENERAL_DEFINITIONS);
- 	if (!defs) {
- 		drm_dbg_kms(&i915->drm,
- 			    "No general definition block is found, no devices defined.\n");
-@@ -2466,6 +2573,7 @@ void intel_bios_init(struct drm_i915_private *i915)
- 	const struct bdb_header *bdb;
- 
- 	INIT_LIST_HEAD(&i915->vbt.display_devices);
-+	INIT_LIST_HEAD(&i915->vbt.bdb_blocks);
- 
- 	if (!HAS_DISPLAY(i915)) {
- 		drm_dbg_kms(&i915->drm,
-@@ -2499,22 +2607,24 @@ void intel_bios_init(struct drm_i915_private *i915)
- 		    "VBT signature \"%.*s\", BDB version %d\n",
- 		    (int)sizeof(vbt->signature), vbt->signature, i915->vbt.version);
- 
-+	init_bdb_blocks(i915, bdb);
-+
- 	/* Grab useful general definitions */
--	parse_general_features(i915, bdb);
--	parse_general_definitions(i915, bdb);
--	parse_panel_options(i915, bdb);
-+	parse_general_features(i915);
-+	parse_general_definitions(i915);
-+	parse_panel_options(i915);
- 	parse_panel_dtd(i915, bdb);
--	parse_lfp_backlight(i915, bdb);
--	parse_sdvo_panel_data(i915, bdb);
--	parse_driver_features(i915, bdb);
--	parse_power_conservation_features(i915, bdb);
--	parse_edp(i915, bdb);
--	parse_psr(i915, bdb);
--	parse_mipi_config(i915, bdb);
--	parse_mipi_sequence(i915, bdb);
-+	parse_lfp_backlight(i915);
-+	parse_sdvo_panel_data(i915);
-+	parse_driver_features(i915);
-+	parse_power_conservation_features(i915);
-+	parse_edp(i915);
-+	parse_psr(i915);
-+	parse_mipi_config(i915);
-+	parse_mipi_sequence(i915);
- 
- 	/* Depends on child device list */
--	parse_compression_parameters(i915, bdb);
-+	parse_compression_parameters(i915);
- 
- out:
- 	if (!vbt) {
-@@ -2536,14 +2646,20 @@ void intel_bios_init(struct drm_i915_private *i915)
-  */
- void intel_bios_driver_remove(struct drm_i915_private *i915)
- {
--	struct intel_bios_encoder_data *devdata, *n;
-+	struct intel_bios_encoder_data *devdata, *nd;
-+	struct bdb_block_entry *entry, *ne;
- 
--	list_for_each_entry_safe(devdata, n, &i915->vbt.display_devices, node) {
-+	list_for_each_entry_safe(devdata, nd, &i915->vbt.display_devices, node) {
- 		list_del(&devdata->node);
- 		kfree(devdata->dsc);
- 		kfree(devdata);
- 	}
- 
-+	list_for_each_entry_safe(entry, ne, &i915->vbt.bdb_blocks, node) {
-+		list_del(&entry->node);
-+		kfree(entry);
-+	}
-+
- 	kfree(i915->vbt.sdvo_lvds_vbt_mode);
- 	i915->vbt.sdvo_lvds_vbt_mode = NULL;
- 	kfree(i915->vbt.lfp_lvds_vbt_mode);
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 06e7c2802c5e..9274417cd87a 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -380,6 +380,7 @@ struct intel_vbt_data {
- 	int crt_ddc_pin;
- 
- 	struct list_head display_devices;
-+	struct list_head bdb_blocks;
- 
- 	struct intel_bios_encoder_data *ports[I915_MAX_PORTS]; /* Non-NULL if port present. */
- 	struct sdvo_device_mapping sdvo_mappings[2];
+-	fp_timing = get_lvds_fp_timing(bdb, lvds_lfp_data,
++	fp_timing = get_lvds_fp_timing(lvds_lfp_data,
+ 				       lvds_lfp_data_ptrs,
+ 				       panel_type);
+ 	if (fp_timing) {
 -- 
 2.35.1
 
