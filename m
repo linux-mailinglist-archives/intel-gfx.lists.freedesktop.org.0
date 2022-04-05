@@ -1,52 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 335A54F3CF3
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 Apr 2022 19:35:23 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EA144F3CEA
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 Apr 2022 19:34:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 33F6110ED94;
-	Tue,  5 Apr 2022 17:35:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6026910EDD1;
+	Tue,  5 Apr 2022 17:34:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F12010ED94
- for <intel-gfx@lists.freedesktop.org>; Tue,  5 Apr 2022 17:35:20 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED4BA10EDA5
+ for <intel-gfx@lists.freedesktop.org>; Tue,  5 Apr 2022 17:34:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649180120; x=1680716120;
+ t=1649180093; x=1680716093;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=n6TN6tMNWajlQNZcp85jXFBHF4EWcgmfVi+Bf07yJco=;
- b=dzF3Pip3MJrOV6ipnJdzuzY+FjMeyUyMF8O3VgIORJFa1BYre0zq9S/j
- zPpLOG1FjqbYwaEX/s3ODA6W5UYJQ8QCoSuKFZ+t09TLr6AVDV0hoY7Cp
- RiJ6GeKCTfkwG0mEMAQoRZ8ltkrCwl07QYWrgkgXd8U+BBeNXF1VJ7oOH
- DzX0sWVSJKSrTF0KG7LfeImXr1KQI78eH4PFx2BHifeSKAkTgPe1VMtwH
- 63yRSoj8QQuC1HuzywUog8FVhU/3IZBNzk+zAGpRphz1by1BU6SVUu2cz
- /zjFExH6NIvB/XHBjLhwwmZoYy16H4Okf2YzdVc8kDrnMPnBmBtZAI+Jw g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10308"; a="242959672"
-X-IronPort-AV: E=Sophos;i="5.90,236,1643702400"; d="scan'208";a="242959672"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2022 10:34:49 -0700
+ bh=xYB677Iuj9M+5k9ANW32IYEkmgWlkG67ENfk+eJuTfI=;
+ b=SESMfXasBM3gDDwktSjKGyBnzqKNm226motw7ZU4MKXQSvsrC7CoI6YF
+ eQgkNfZ/p2AQ3lZosMtZhzfLC5LymNuQkAg1ggOWq/crm5Skk933Mid43
+ +1nTv95clyhl6VqCGFsQ4Y1+Ad1qgKMmT+pLpY7iwOe4gbIaCOi/UFEBy
+ fLW2hfPJFj/wlq3IC6tdNMJo2SkN4ZdJOq9a3lAAutXYh5/1oBMq5iUOH
+ G3Hs7YBAiZPdEQEg98QozmfJE57qiIYBqXmEq+uRuPSkBo9kxyWRoSeRC
+ Q9YdgRpF/6WhaNCwGTIKraxG8ABXpkmT+UTPDFjAY08znAfVoa/sFo6WO g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10308"; a="259648417"
+X-IronPort-AV: E=Sophos;i="5.90,236,1643702400"; d="scan'208";a="259648417"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Apr 2022 10:34:52 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,236,1643702400"; d="scan'208";a="697021963"
+X-IronPort-AV: E=Sophos;i="5.90,236,1643702400"; d="scan'208";a="570007086"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.51])
- by fmsmga001.fm.intel.com with SMTP; 05 Apr 2022 10:34:47 -0700
+ by orsmga008.jf.intel.com with SMTP; 05 Apr 2022 10:34:50 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 05 Apr 2022 20:34:46 +0300
+ Tue, 05 Apr 2022 20:34:49 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue,  5 Apr 2022 20:34:00 +0300
-Message-Id: <20220405173410.11436-13-ville.syrjala@linux.intel.com>
+Date: Tue,  5 Apr 2022 20:34:01 +0300
+Message-Id: <20220405173410.11436-14-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220405173410.11436-1-ville.syrjala@linux.intel.com>
 References: <20220405173410.11436-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 12/22] drm/i915/bios: Split VBT parsing to
- global vs. panel specific parts
+Subject: [Intel-gfx] [PATCH v2 13/22] drm/i915/pps: Split PPS init+sanitize
+ in two
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,144 +64,106 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Parsing the panel specific data from VBT is currently happening
-too early. Split the whole thing into global vs. panel specific
-parts so that we can start doing the panel specific parsing at
-a later time.
+Split the PPS init to something we do at the start of the eDP
+probe and a second part we do at the end.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bios.c    | 50 +++++++++++++-------
- drivers/gpu/drm/i915/display/intel_bios.h    |  1 +
- drivers/gpu/drm/i915/display/intel_display.c |  1 +
- 3 files changed, 35 insertions(+), 17 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c  |  2 ++
+ drivers/gpu/drm/i915/display/intel_pps.c | 30 ++++++++++++++++++++----
+ drivers/gpu/drm/i915/display/intel_pps.h |  1 +
+ 3 files changed, 28 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index 1a7f1aa79827..da2b1932e10d 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.c
-+++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -723,6 +723,9 @@ parse_generic_dtd(struct drm_i915_private *i915)
- 	struct drm_display_mode *panel_fixed_mode;
- 	int num_dtd;
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 972c9ed46829..7249b988592d 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -5222,6 +5222,8 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
  
-+	if (i915->vbt.lfp_lvds_vbt_mode)
-+		return;
-+
- 	generic_dtd = find_section(i915, BDB_GENERIC_DTD);
- 	if (!generic_dtd)
- 		return;
-@@ -891,6 +894,9 @@ parse_sdvo_panel_data(struct drm_i915_private *i915)
- 	struct drm_display_mode *panel_fixed_mode;
- 	int index;
+ 	intel_edp_add_properties(intel_dp);
  
-+	if (i915->vbt.sdvo_lvds_vbt_mode)
-+		return;
++	intel_pps_init_late(intel_dp);
 +
- 	index = i915->params.vbt_sdvo_panel_type;
- 	if (index == -2) {
- 		drm_dbg_kms(&i915->drm,
-@@ -1419,6 +1425,9 @@ parse_mipi_config(struct drm_i915_private *i915)
- 	int panel_type = i915->vbt.panel_type;
- 	enum port port;
+ 	return true;
  
-+	if (i915->vbt.dsi.config)
-+		return;
-+
- 	/* parse MIPI blocks only if LFP type is MIPI */
- 	if (!intel_bios_is_dsi_present(i915, &port))
- 		return;
-@@ -1739,6 +1748,9 @@ parse_mipi_sequence(struct drm_i915_private *i915)
- 	u8 *data;
- 	int index = 0;
- 
-+	if (i915->vbt.dsi.data)
-+		return;
-+
- 	/* Only our generic panel driver uses the sequence block. */
- 	if (i915->vbt.dsi.panel_id != MIPI_DSI_GENERIC_PANEL_ID)
- 		return;
-@@ -2878,6 +2890,27 @@ void intel_bios_init(struct drm_i915_private *i915)
- 	/* Grab useful general definitions */
- 	parse_general_features(i915);
- 	parse_general_definitions(i915);
-+	parse_driver_features(i915);
-+
-+	/* Depends on child device list */
-+	parse_compression_parameters(i915);
-+
-+out:
-+	if (!vbt) {
-+		drm_info(&i915->drm,
-+			 "Failed to find VBIOS tables (VBT)\n");
-+		init_vbt_missing_defaults(i915);
-+	}
-+
-+	/* Further processing on pre-parsed or generated child device data */
-+	parse_sdvo_device_mapping(i915);
-+	parse_ddi_ports(i915);
-+
-+	kfree(oprom_vbt);
-+}
-+
-+void intel_bios_init_panel(struct drm_i915_private *i915)
-+{
- 	parse_panel_options(i915);
- 	/*
- 	 * Older VBTs provided DTD information for internal displays through
-@@ -2892,29 +2925,12 @@ void intel_bios_init(struct drm_i915_private *i915)
- 	parse_lfp_data(i915);
- 	parse_lfp_backlight(i915);
- 	parse_sdvo_panel_data(i915);
--	parse_driver_features(i915);
- 	parse_panel_driver_features(i915);
- 	parse_power_conservation_features(i915);
- 	parse_edp(i915);
- 	parse_psr(i915);
- 	parse_mipi_config(i915);
- 	parse_mipi_sequence(i915);
--
--	/* Depends on child device list */
--	parse_compression_parameters(i915);
--
--out:
--	if (!vbt) {
--		drm_info(&i915->drm,
--			 "Failed to find VBIOS tables (VBT)\n");
--		init_vbt_missing_defaults(i915);
--	}
--
--	/* Further processing on pre-parsed or generated child device data */
--	parse_sdvo_device_mapping(i915);
--	parse_ddi_ports(i915);
--
--	kfree(oprom_vbt);
+ out_vdd_off:
+diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
+index 64bd4ca0edd4..6ab8d971901b 100644
+--- a/drivers/gpu/drm/i915/display/intel_pps.c
++++ b/drivers/gpu/drm/i915/display/intel_pps.c
+@@ -1050,7 +1050,7 @@ void vlv_pps_init(struct intel_encoder *encoder,
+ 	pps_init_registers(intel_dp, true);
  }
  
- /**
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.h b/drivers/gpu/drm/i915/display/intel_bios.h
-index 4709c4d29805..c744d75fa435 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.h
-+++ b/drivers/gpu/drm/i915/display/intel_bios.h
-@@ -230,6 +230,7 @@ struct mipi_pps_data {
- } __packed;
+-static void intel_pps_vdd_sanitize(struct intel_dp *intel_dp)
++static void pps_vdd_init(struct intel_dp *intel_dp)
+ {
+ 	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
+ 	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
+@@ -1071,8 +1071,6 @@ static void intel_pps_vdd_sanitize(struct intel_dp *intel_dp)
+ 	drm_WARN_ON(&dev_priv->drm, intel_dp->pps.vdd_wakeref);
+ 	intel_dp->pps.vdd_wakeref = intel_display_power_get(dev_priv,
+ 							    intel_aux_power_domain(dig_port));
+-
+-	edp_panel_vdd_schedule_off(intel_dp);
+ }
  
- void intel_bios_init(struct drm_i915_private *dev_priv);
-+void intel_bios_init_panel(struct drm_i915_private *dev_priv);
- void intel_bios_driver_remove(struct drm_i915_private *dev_priv);
- bool intel_bios_is_valid_vbt(const void *buf, size_t size);
- bool intel_bios_is_tv_present(struct drm_i915_private *dev_priv);
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index eee185ed41c3..4ece4e7d0296 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -9650,6 +9650,7 @@ int intel_modeset_init_noirq(struct drm_i915_private *i915)
+ bool intel_pps_have_panel_power_or_vdd(struct intel_dp *intel_dp)
+@@ -1366,18 +1364,40 @@ void intel_pps_encoder_reset(struct intel_dp *intel_dp)
+ 
+ 		pps_init_delays(intel_dp);
+ 		pps_init_registers(intel_dp, false);
++		pps_vdd_init(intel_dp);
+ 
+-		intel_pps_vdd_sanitize(intel_dp);
++		if (edp_have_panel_vdd(intel_dp))
++			edp_panel_vdd_schedule_off(intel_dp);
  	}
+ }
  
- 	intel_bios_init(i915);
-+	intel_bios_init_panel(i915);
+ void intel_pps_init(struct intel_dp *intel_dp)
+ {
++	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
++	intel_wakeref_t wakeref;
++
+ 	INIT_DELAYED_WORK(&intel_dp->pps.panel_vdd_work, edp_panel_vdd_work);
  
- 	ret = intel_vga_register(i915);
- 	if (ret)
+ 	pps_init_timestamps(intel_dp);
+ 
+-	intel_pps_encoder_reset(intel_dp);
++	with_intel_pps_lock(intel_dp, wakeref) {
++		if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915))
++			vlv_initial_power_sequencer_setup(intel_dp);
++
++		pps_init_delays(intel_dp);
++		pps_init_registers(intel_dp, false);
++		pps_vdd_init(intel_dp);
++	}
++}
++
++void intel_pps_init_late(struct intel_dp *intel_dp)
++{
++	intel_wakeref_t wakeref;
++
++	with_intel_pps_lock(intel_dp, wakeref) {
++		if (edp_have_panel_vdd(intel_dp))
++			edp_panel_vdd_schedule_off(intel_dp);
++	}
+ }
+ 
+ void intel_pps_unlock_regs_wa(struct drm_i915_private *dev_priv)
+diff --git a/drivers/gpu/drm/i915/display/intel_pps.h b/drivers/gpu/drm/i915/display/intel_pps.h
+index e64144659d31..a3a56f903f26 100644
+--- a/drivers/gpu/drm/i915/display/intel_pps.h
++++ b/drivers/gpu/drm/i915/display/intel_pps.h
+@@ -41,6 +41,7 @@ bool intel_pps_have_panel_power_or_vdd(struct intel_dp *intel_dp);
+ void intel_pps_wait_power_cycle(struct intel_dp *intel_dp);
+ 
+ void intel_pps_init(struct intel_dp *intel_dp);
++void intel_pps_init_late(struct intel_dp *intel_dp);
+ void intel_pps_encoder_reset(struct intel_dp *intel_dp);
+ void intel_pps_reset_all(struct drm_i915_private *i915);
+ 
 -- 
 2.35.1
 
