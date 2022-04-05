@@ -1,53 +1,60 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F9B44F29AD
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 Apr 2022 12:10:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45F964F29C2
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 Apr 2022 12:34:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A57E10E204;
-	Tue,  5 Apr 2022 10:10:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C4E510ED5B;
+	Tue,  5 Apr 2022 10:34:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E5C910E204;
- Tue,  5 Apr 2022 10:10:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649153400; x=1680689400;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=MKregwmhkDywPYL1YI6nf+Vp1vpSGZWH3H9RxjLg2sQ=;
- b=XP0tQQdSXptnaEmRoJSgAwplFQEnaPlsCLrQkbnuuizZzHVnsbvS4K2q
- KPWs6qce5+Vxg3bRHEi3c2U1FB1i5VDLkbJPDfsoBhc0QpzLsFgIuYj20
- NUAXYCzbQs8FNL5Uddgaj6rgMsw/IWtqAndOrfr5OIFIgiri0rTwq8jcS
- 2itqtMFVQFIKb2qdB9n9wcKz62x0FHR2/U1S4UB+gQbrBzkTM2hAFZagw
- xbPuMEtRhFIWVScUbjT29rVoarsTEiUv/C4MyWEI94P3LI77tq92ZEmQl
- QT1FjvX0Ziomna+ZweVMFDfK4uLanF4Bxh/47xKa8g7wegQUuOA5REqa5 g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10307"; a="242855267"
-X-IronPort-AV: E=Sophos;i="5.90,236,1643702400"; d="scan'208";a="242855267"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2022 03:09:59 -0700
-X-IronPort-AV: E=Sophos;i="5.90,236,1643702400"; d="scan'208";a="587882125"
-Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.203.144.108])
- by orsmga001-auth.jf.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Apr 2022 03:09:57 -0700
-Date: Tue, 5 Apr 2022 15:40:41 +0530
-From: Ramalingam C <ramalingam.c@intel.com>
-To: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-Message-ID: <20220405101040.GA17740@intel.com>
-References: <20220328190736.19697-1-ramalingam.c@intel.com>
- <20220328190736.19697-4-ramalingam.c@intel.com>
- <YkMIXjJoMobhv21A@bvivekan-mobl.gar.corp.intel.com>
+Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com
+ [IPv6:2607:f8b0:4864:20::236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3887110ED5B
+ for <intel-gfx@lists.freedesktop.org>; Tue,  5 Apr 2022 10:34:44 +0000 (UTC)
+Received: by mail-oi1-x236.google.com with SMTP id q129so12944083oif.4
+ for <intel-gfx@lists.freedesktop.org>; Tue, 05 Apr 2022 03:34:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=tzmhcp5RxadQONeu9KvciYKiNgXbRJejI1iC090AVWg=;
+ b=Ckyr/H4Efk9eg4/2J/KBC2fSKKkO3KzksdjLcY3RBSzT9NMCmfFcmXQP/tFtKO/470
+ cq+ZnczUI9w3TuhLKpo/lVk0VJYzTyel84GgUrfYKCT9mv2hijbapBsI0e1FG7FrRJmb
+ fLucT+sdtvHXDNR/H3K7C3fno1IoUuh9gjqUQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=tzmhcp5RxadQONeu9KvciYKiNgXbRJejI1iC090AVWg=;
+ b=vag+alTInQEO9956vybkBwSrmwYlcLinf4qOZRDot7m3IKdwIqecRdCNdfmjTuQ5G+
+ JIqlvviy4PlxFBwntLOAiHCYechgJ6kwbhBnEk20CQ3h3SV3OiPt0ix8ZwseQ184BRUl
+ oW0s6Lc8a3t3EbDcB1N5FSQaxv07UnZ9mI/8+aYppd/l4uX4dmJazSX6TKjGktZrhh3S
+ S3JepxTzn/zbnkgfYQiFWcEyj7kGHETtnv/U9PYvj+U2sHqRPTUBiUpVbRXWr/RDjaae
+ B/LL1u9sLTSNNSCH7DqPPtFyNbsXhM4ZrZ0WfYE7PrjPLWm5TrBma5g+dLKivhKfdXRR
+ ZUCg==
+X-Gm-Message-State: AOAM531EREo0id5+CNVWoUkpPyQZelvZFnxgLu0WCPJljCsp5dOy2OLC
+ I5F41/i/HEPCzlqCfdihT1ilE/eckl/Gkncr8fyDqA==
+X-Google-Smtp-Source: ABdhPJzqoYVSx47i8TUU2SwXKC01iWiGjmQ1+pUIxIWzSlGlgOjCn7FBVo4L4bnb1FUmBmYZzaS59mRu1JbpVJ6Lf+k=
+X-Received: by 2002:a05:6808:1596:b0:2f7:5d89:eec7 with SMTP id
+ t22-20020a056808159600b002f75d89eec7mr1125899oiw.228.1649154883395; Tue, 05
+ Apr 2022 03:34:43 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <YkMIXjJoMobhv21A@bvivekan-mobl.gar.corp.intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v7 3/9] drm/i915/gt: Optimize the migration
- and clear loop
+References: <20220208210824.2238981-1-daniel.vetter@ffwll.ch>
+ <20220208210824.2238981-19-daniel.vetter@ffwll.ch>
+ <4ae20b63-f452-fdb4-ced6-d4968a8d69f0@redhat.com>
+ <Ykv/k/WoVemoCJJA@phenom.ffwll.local> <YkwAhSt9HlbxcuZo@phenom.ffwll.local>
+ <408ffe9b-f09f-dc7e-7f5e-a93b311a06fa@redhat.com>
+ <CAKMK7uHf6H8mhSm6eDHUruWK5Xc2cSPkJUX6v-jpeQfjS19dKw@mail.gmail.com>
+ <e124af06-4f24-277a-543a-82b383f48cea@redhat.com>
+In-Reply-To: <e124af06-4f24-277a-543a-82b383f48cea@redhat.com>
+From: Daniel Vetter <daniel@ffwll.ch>
+Date: Tue, 5 Apr 2022 12:34:31 +0200
+Message-ID: <CAKMK7uH4GgDQJZguT-k0QmgEAHYHuDEbBtjYje51_Rtqzud0yw@mail.gmail.com>
+To: Javier Martinez Canillas <javierm@redhat.com>,
+ Greg KH <gregkh@linuxfoundation.org>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] [PATCH v2 18/19] Revert "fbdev: Prevent probing
+ generic drivers if a FB is already registered"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,138 +67,135 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- Hellstrom Thomas <thomas.hellstrom@intel.com>,
- Matthew Auld <matthew.auld@intel.com>,
- dri-devel <dri-devel@lists.freedesktop.org>
+Cc: linux-fbdev@vger.kernel.org,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ LKML <linux-kernel@vger.kernel.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Peter Jones <pjones@redhat.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Ilya Trukhanov <lahvuun@gmail.com>, Daniel Vetter <daniel.vetter@intel.com>,
+ Zack Rusin <zackr@vmware.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2022-03-29 at 18:53:42 +0530, Balasubramani Vivekanandan wrote:
-> On 29.03.2022 00:37, Ramalingam C wrote:
-> > Move the static calculations out of the loops for copy and clear.
-> > 
-> > Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
-> > Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/gt/intel_migrate.c | 44 ++++++++++++-------------
-> >  1 file changed, 21 insertions(+), 23 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_migrate.c b/drivers/gpu/drm/i915/gt/intel_migrate.c
-> > index 17dd372a47d1..ec9a9e7cb388 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_migrate.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_migrate.c
-> > @@ -526,6 +526,7 @@ intel_context_migrate_copy(struct intel_context *ce,
-> >  			   struct i915_request **out)
-> >  {
-> >  	struct sgt_dma it_src = sg_sgt(src), it_dst = sg_sgt(dst);
-> > +	u32 src_offset, dst_offset;
-> >  	struct i915_request *rq;
-> >  	int err;
-> >  
-> > @@ -534,8 +535,20 @@ intel_context_migrate_copy(struct intel_context *ce,
-> >  
-> >  	GEM_BUG_ON(ce->ring->size < SZ_64K);
-> >  
-> > +	src_offset = 0;
-> > +	dst_offset = CHUNK_SZ;
-> > +	if (HAS_64K_PAGES(ce->engine->i915)) {
-> > +		GEM_BUG_ON(!src_is_lmem && !dst_is_lmem);
-> > +
-> > +		src_offset = 0;
-> > +		dst_offset = 0;
-> > +		if (src_is_lmem)
-> > +			src_offset = CHUNK_SZ;
-> > +		if (dst_is_lmem)
-> > +			dst_offset = 2 * CHUNK_SZ;
-> > +	}
-> > +
-> >  	do {
-> > -		u32 src_offset, dst_offset;
-> >  		int len;
-> >  
-> >  		rq = i915_request_create(ce);
-> > @@ -563,19 +576,6 @@ intel_context_migrate_copy(struct intel_context *ce,
-> >  		if (err)
-> >  			goto out_rq;
-> >  
-> > -		src_offset = 0;
-> > -		dst_offset = CHUNK_SZ;
-> > -		if (HAS_64K_PAGES(ce->engine->i915)) {
-> > -			GEM_BUG_ON(!src_is_lmem && !dst_is_lmem);
-> > -
-> > -			src_offset = 0;
-> > -			dst_offset = 0;
-> > -			if (src_is_lmem)
-> > -				src_offset = CHUNK_SZ;
-> > -			if (dst_is_lmem)
-> > -				dst_offset = 2 * CHUNK_SZ;
-> > -		}
-> > -
-> >  		len = emit_pte(rq, &it_src, src_cache_level, src_is_lmem,
-> >  			       src_offset, CHUNK_SZ);
-> >  		if (len <= 0) {
-> > @@ -585,12 +585,10 @@ intel_context_migrate_copy(struct intel_context *ce,
-> >  
-> >  		err = emit_pte(rq, &it_dst, dst_cache_level, dst_is_lmem,
-> >  			       dst_offset, len);
-> > -		if (err < 0)
-> > -			goto out_rq;
-> > -		if (err < len) {
-> > +		if (err < len)
-> >  			err = -EINVAL;
-> > +		if (err < 0)
-> >  			goto out_rq;
-> > -		}
-> With this change, for the case 0 < err < len, now the code does not
-> reach `goto out_rq`.
+On Tue, 5 Apr 2022 at 11:52, Javier Martinez Canillas
+<javierm@redhat.com> wrote:
+>
+> On 4/5/22 11:24, Daniel Vetter wrote:
+> > On Tue, 5 Apr 2022 at 11:19, Javier Martinez Canillas
+>
+> [snip]
+>
+> >>
+> >> This is how I think that work, please let me know if you see something
+> >> wrong in my logic:
+> >>
+> >> 1) A PCI device of OF device is registered for the GPU, this attempt to
+> >>    match a registered driver but no driver was registered that match yet.
+> >>
+> >> 2) The efifb driver is built-in, will be initialized according to the link
+> >>    order of the objects under drivers/video and the fbdev driver is registered.
+> >>
+> >>    There is no platform device or PCI/OF device registered that matches.
+> >>
+> >> 3) The DRM driver is built-in, will be initialized according to the link
+> >>    order of the objects under drivers/gpu and the DRM driver is registered.
+> >>
+> >>    This matches the device registered in (1) and the DRM driver probes.
+> >>
+> >> 4) The DRM driver .probe kicks out any conflicting DRM drivers and pdev
+> >>    before registering the DRM device.
+> >>
+> >>    There are no conflicting drivers or platform device at this point.
+> >>
+> >> 5) Latter at some point the drivers/firmware/sysfb.c init function is
+> >>    executed, and this registers a platform device for the generic fb.
+> >>
+> >>    This device matches the efifb driver registered in (2) and the fbdev
+> >>    driver probes.
+> >>
+> >>    Since that happens *after* the DRM driver already matched, probed
+> >>    and registered the DRM device, that is a bug and what the reverted
+> >>    patch worked around.
+> >>
+> >> So we need to prevent (5) if (1) and (3) already happened. Having a flag
+> >> set in the fbdev core somewhere when remove_conflicting_framebuffers()
+> >> is called could be a solution indeed.
+> >>
+> >> That is, the fbdev core needs to know that a DRM driver already probed
+> >> and make register_framebuffer() fail if info->flag & FBINFO_MISC_FIRMWARE
+> >>
+> >> I can attempt to write a patch for that.
+> >
+> > Ah yeah that could be an issue. I think the right fix is to replace
+> > the platform dev unregister with a sysfb_unregister() function in
+> > sysfb.c, which is synced with a common lock with the sysfb_init
+> > function and a small boolean. I think I can type that up quickly for
+> > v3.
+>
+> It's more complicated than that since sysfb is just *one* of the several
+> places where platform devices can be registered for video devices.
+>
+> For instance, the vga16fb driver registers its own platform device in
+> its module_init() function so that can also happen after the conflicting
+> framebuffers (and associated devices) were removed by a DRM driver probe.
+>
+> I tried to minimize the issue for that particular driver with commit:
+>
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=0499f419b76f
+>
+> But the point stands, it all boils down to the fact that you have two
+> different subsystems registering video drivers and they don't know all
+> about each other to take a proper decision.
+>
+> Right now the drm_aperture_remove_conflicting_framebuffers() call signals
+> in one direction from DRM to fbdev but there isn't a communication in the
+> other direction, from fbdev to DRM.
+>
+> I believe the correct fix would be for the fbdev core to keep a list of
+> the apertures struct that are passed to remove_conflicting_framebuffers(),
+> that way it will know what apertures are not available anymore and prevent
+> to register any fbdev framebuffer that conflicts with one already present.
 
-With this change, flow will land into out_rq for all err < len.
-But just now i am noticing we are overwriding all error code with
--EINVAL. I will fix that.
+Hm that still feels like reinventing a driver model, badly.
 
-Ram.
-> Is it the expected behavior? If yes, can you please add some details
-> regarding this change in the commit description.
-> 
-> Regards,
-> Bala
-> >  
-> >  		err = rq->engine->emit_flush(rq, EMIT_INVALIDATE);
-> >  		if (err)
-> > @@ -691,6 +689,7 @@ intel_context_migrate_clear(struct intel_context *ce,
-> >  {
-> >  	struct sgt_dma it = sg_sgt(sg);
-> >  	struct i915_request *rq;
-> > +	u32 offset;
-> >  	int err;
-> >  
-> >  	GEM_BUG_ON(ce->vm != ce->engine->gt->migrate.context->vm);
-> > @@ -698,8 +697,11 @@ intel_context_migrate_clear(struct intel_context *ce,
-> >  
-> >  	GEM_BUG_ON(ce->ring->size < SZ_64K);
-> >  
-> > +	offset = 0;
-> > +	if (HAS_64K_PAGES(ce->engine->i915) && is_lmem)
-> > +		offset = CHUNK_SZ;
-> > +
-> >  	do {
-> > -		u32 offset;
-> >  		int len;
-> >  
-> >  		rq = i915_request_create(ce);
-> > @@ -727,10 +729,6 @@ intel_context_migrate_clear(struct intel_context *ce,
-> >  		if (err)
-> >  			goto out_rq;
-> >  
-> > -		offset = 0;
-> > -		if (HAS_64K_PAGES(ce->engine->i915) && is_lmem)
-> > -			offset = CHUNK_SZ;
-> > -
-> >  		len = emit_pte(rq, &it, cache_level, is_lmem, offset, CHUNK_SZ);
-> >  		if (len <= 0) {
-> >  			err = len;
-> > -- 
-> > 2.20.1
-> > 
+I think there's two cleaner solutions:
+- move all the firmware driver platform_dev into sysfb.c, and then
+just bind the special cases against that (e.g. offb, vga16fb and all
+these). Then we'd have one sysfb_try_unregister(struct device *dev)
+interface that fbmem.c uses.
+- let fbmem.c call into each of these firmware device providers, which
+means some loops most likely (like we can't call into vga16fb), so
+probably need to move that into fbmem.c and it all gets a bit messy.
+
+> Let me know if you think that makes sense and I can attempt to write a fix.
+
+I still think unregistering the platform_dev properly makes the most
+sense, and feels like the most proper linux device model solution
+instead of hacks on top - if the firmware fb is unuseable because a
+native driver has taken over, we should nuke that. And also the
+firmware fb driver would then just bind to that platform_dev if it
+exists, and only if it exists. Also I think it should be the
+responsibility of whichever piece of code that registers these
+platform devices to ensure that platform_dev actually still exists.
+That's why I think pushing all that code into sysfb.c is probably the
+cleanest solution.
+
+fbdev predates all that stuff by a lot, hence the hand-rolling.
+
+But maybe Greg has some more thoughts here too?
+-Daniel
+
+>
+> --
+> Best regards,
+>
+> Javier Martinez Canillas
+> Linux Engineering
+> Red Hat
+>
+
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
