@@ -1,55 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EF144F56DB
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Apr 2022 09:37:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B84F14F56E0
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Apr 2022 09:47:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4F30010F517;
-	Wed,  6 Apr 2022 07:37:55 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD92E10F516;
- Wed,  6 Apr 2022 07:37:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A45F10F2C7;
+	Wed,  6 Apr 2022 07:47:35 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 64DA610F2C7
+ for <intel-gfx@lists.freedesktop.org>; Wed,  6 Apr 2022 07:47:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649230673; x=1680766673;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=TQzg629lZ5Al3lFGJDcjOJYM3c+Mn4qzy6CwJ7hMZmQ=;
- b=Go5PTMDK0buzs/9vbXScUwuxjOrdpiB3cvH2BLrMM4zHfSVy4uLDyA8R
- RDg7C9s4Y9I6B+0Jrgv8ihyEO/HWso+pvoUE+Wtm3hQWZh1Qf9MHhIAyM
- jNLHJddzNMmOw8HWZn330B7fiCGa/uaUt74FboTLE3B4mrTiJ8ySqeBe2
- kRmWuNS5Em3kQPtsdXJhJNImrA6B19XDkY0XFEWhf4Kvy/indsAM66Xk+
- 4LlDGXfIIPlpMyvcmVkQic2evMES7dSa7GB/iJT300hbRmeBPJyVrNeku
- KRm0lo0LxEZ438UmlqRQltOLRtwbZ6aU6N2P9KJeN4bKkthfI0ktIJtHu Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10308"; a="241562031"
-X-IronPort-AV: E=Sophos;i="5.90,239,1643702400"; d="scan'208";a="241562031"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2022 00:37:53 -0700
-X-IronPort-AV: E=Sophos;i="5.90,239,1643702400"; d="scan'208";a="523817539"
-Received: from aghafar1-mobl2.ger.corp.intel.com (HELO [10.213.220.12])
- ([10.213.220.12])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2022 00:37:50 -0700
-Message-ID: <18487536-ccb2-ce68-1586-a68870f56214@linux.intel.com>
-Date: Wed, 6 Apr 2022 08:37:46 +0100
+ t=1649231253; x=1680767253;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=L5NtqGIWkgVuB1EvrzI7TeMO98Fnwepdmp/GFB34yZ0=;
+ b=RmcXFRsU19aeCs/GiVKklmoT8WgQHu1am+jmHwVaSWcZcTIiOihBeVt0
+ rNKfIde9zIyz7Akkn3aQw/NkrKFLv73oBs1vWOCrViQyZ0OSJNeREn7EO
+ 0ssHOw2sq56zKM5iwk1B1f41tuf2l6vGoPwfYI2WYJbrZWEk4QIoYkHge
+ XNj4WLnCVyLCErvrCFbIaxz4X7TtivC8+zCs50Ikla9E49yraMuKgbCEv
+ j0yoN57blXPNA0dE9VB7OeRynHLqWPBF47bOGeFDvFsCocQ+FJ5jfX8NI
+ vG4aapVABrxzj34mgiXG0fklbxsffWdVMIuj2yiqjmGPYgme548gtfJE6 A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10308"; a="248500317"
+X-IronPort-AV: E=Sophos;i="5.90,239,1643702400"; d="scan'208";a="248500317"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Apr 2022 00:47:32 -0700
+X-IronPort-AV: E=Sophos;i="5.90,239,1643702400"; d="scan'208";a="524363716"
+Received: from unknown (HELO intel.com) ([10.237.72.65])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Apr 2022 00:47:31 -0700
+Date: Wed, 6 Apr 2022 10:48:13 +0300
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: "Govindapillai, Vinod" <vinod.govindapillai@intel.com>
+Message-ID: <20220406074813.GA14848@intel.com>
+References: <20220405104114.20780-1-stanislav.lisovskiy@intel.com>
+ <9436bf0c9b30a5d69a4d3a5cb23304b2f2ed1c5c.camel@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Content-Language: en-US
-To: Daniel Vetter <daniel@ffwll.ch>
-References: <20220405155345.3292769-1-tvrtko.ursulin@linux.intel.com>
- <YkxowQIS5SZer86X@phenom.ffwll.local>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <YkxowQIS5SZer86X@phenom.ffwll.local>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fixup kerneldoc in struct
- i915_gem_context
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <9436bf0c9b30a5d69a4d3a5cb23304b2f2ed1c5c.camel@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix skl_pcode_try_request function
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,31 +57,100 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 05/04/2022 17:05, Daniel Vetter wrote:
-> On Tue, Apr 05, 2022 at 04:53:45PM +0100, Tvrtko Ursulin wrote:
->> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>
->> Mixup in rebasing and patchwork re-runs made me push the wrong version of
->> the patch. Or I even forgot to send out the fixed version. Fix it up.
->>
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->> Fixes: 748716041dfa ("drm/i915: Track all user contexts per client")
->> Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+On Wed, Apr 06, 2022 at 12:51:29AM +0300, Govindapillai, Vinod wrote:
+> Hi Stan
 > 
-> You picked the wrong sha1. Sure you're on the right tree? :-)
+> Nice Find! Couple of clarifications, please check inline...
+> 
+> On Tue, 2022-04-05 at 13:41 +0300, Stanislav Lisovskiy wrote:
+> > Currently skl_pcode_try_request function doesn't
+> > properly handle return value it gets from
+> > snb_pcode_rw, but treats status != 0 as success,
+> > returning true, which basically doesn't allow
+> > to use retry/timeout mechanisms if PCode happens
+> > to be busy and returns EGAIN or some other status
+> > code not equal to 0.
+> >
+> > We saw this on real hw and also tried simulating this
+> > by always returning -EAGAIN from snb_pcode_rw for 6 times, which
+> > currently will just result in false success, while it should
+> > have tried until timeout is reached:
+> >
+> > [   22.357729] i915 0000:00:02.0: [drm:intel_cdclk_dump_config [i915]] Changing CDCLK to
+> > 307200 kHz, VCO 614400 kHz, ref 38400 kHz, bypass 19200 kHz, voltage level 0
+> > [   22.357831] i915 0000:00:02.0: [drm:__snb_pcode_rw [i915]] Returning EAGAIN retry 1
+> > [   22.357892] i915 0000:00:02.0: [drm:skl_pcode_request [i915]] Success, exiting
+> > [   22.357936] i915 0000:00:02.0: [drm] ERROR Failed to inform PCU about cdclk change (err -11,
+> > freq 307200)
+> >
+> > We see en error because higher level api, still notices that status was wrong,
+> > however we still did try only once.
+> >
+> > We fix it by requiring _both_ the status to be 0 and
+> > request/reply match for success(true) and function
+> > should return failure(false) if either status turns
+> > out to be EAGAIN, EBUSY or whatever or reply/request
+> > masks do not match.
+> >
+> > So now we see this in the logs:
+> >
+> > [   22.318667] i915 0000:00:02.0: [drm:intel_cdclk_dump_config [i915]] Changing CDCLK to
+> > 307200 kHz, VCO 614400 kHz, ref 38400 kHz, bypass 19200 kHz, voltage level 0
+> > [   22.318782] i915 0000:00:02.0: [drm:__snb_pcode_rw [i915]] Returning EAGAIN retry 1
+> > [   22.318849] i915 0000:00:02.0: [drm:__snb_pcode_rw [i915]] Returning EAGAIN retry 2
+> > [   22.319006] i915 0000:00:02.0: [drm:__snb_pcode_rw [i915]] Returning EAGAIN retry 3
+> > [   22.319091] i915 0000:00:02.0: [drm:__snb_pcode_rw [i915]] Returning EAGAIN retry 4
+> > [   22.319158] i915 0000:00:02.0: [drm:__snb_pcode_rw [i915]] Returning EAGAIN retry 5
+> > [   22.319224] i915 0000:00:02.0: [drm:__snb_pcode_rw [i915]] Returning EAGAIN retry 6
+> >
+> > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> 
+> > ---
+> >  drivers/gpu/drm/i915/intel_pcode.c | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/intel_pcode.c b/drivers/gpu/drm/i915/intel_pcode.c
+> > index 391a37492ce5..fb6c43e8a02f 100644
+> > --- a/drivers/gpu/drm/i915/intel_pcode.c
+> > +++ b/drivers/gpu/drm/i915/intel_pcode.c
+> > @@ -136,7 +136,7 @@ static bool skl_pcode_try_request(struct drm_i915_private *i915, u32 mbox,
+> >  {
+> >       *status = __snb_pcode_rw(i915, mbox, &request, NULL, 500, 0, true);
+> >
+> > -     return *status || ((request & reply_mask) == reply);
+> > +     return (*status == 0) && ((request & reply_mask) == reply);
+> 
+> Here I wonder whether you need to check what sort of __snb_pcode_rw return values need the retry!
+> Isn't only ETIMEDOUT need the retry? Other return error codes can be probably be ignored from retry?
 
-Yeah, my sha1 was of a fixed version of the patch which I never sent out..
+Hi Vinod! Thanks for comments.
 
-> Fixes: 49bd54b390c2 ("drm/i915: Track all user contexts per client")
-> Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+Well theoretically yes, but in practice I think we would prefer to retry in almost all of the cases.
+There are also multiple error codes when you need to retry, such as "EAGAIN", "EBUSY" and probably
+some others. Thats is probably why original code also doesn't make a difference.
 
-Thanks, pushed.
+> 
+> And should the, "return ret ? ret : status;" in "skl_pcode_request" be change to "return ret ?
+> status : ret;" to reflect the correct error code to calling functions after this change?
 
-Regards,
+I think the logic here is such that ret value is somewhat more important than the status, so 
+if ret is something not zero - we always prefer returning ret, for the enduser to know what
+was the ret ERROR code.
+If ret is 0, then we can "afford" to let the enduser know, what was actually the status.
 
-Tvrtko
+To me it actually sounds a bit wrong, I think we should get status pointer, like "&status"
+and modify it, so that calling site _always_ knows both status and ret, mixing those two
+is a dangerous strategy which exactly caused some coder confusion and probably the bug, that
+this patch is fixing.
+
+Stan
+
+> 
+> 
+> >  }
+> >
+> >  /**
