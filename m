@@ -2,54 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71F9A4F6896
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Apr 2022 20:09:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ACCE14F689E
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Apr 2022 20:14:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C9A5010E1E2;
-	Wed,  6 Apr 2022 18:09:11 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5BB7710E1E2
- for <intel-gfx@lists.freedesktop.org>; Wed,  6 Apr 2022 18:09:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649268550; x=1680804550;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=FtAcXzhrE2Clew7xH2wu5qTIT+0h7PcBvooEWNI1xbI=;
- b=T8IQjUXylJZRXQqTMcZproEBhfeM1m+j89jvlHvDJPTwfZgawruTfpA+
- XSn2yyzW2I5wx3bLVsnasogRszhkl+7OS1gD0zorco4TMB5T1sF3yfv3O
- Xc8KkQtKkfxT9cLFUnHN3buzRiLq/Zt0gPPvinbZnar7XSFs4fBmyccqM
- 4NkRJsRB46LppL0nKnxF2jJcFCIRtB607of3qASRbjfEEcJnJcFDTH5tg
- yn6GR3lXrp+/CDus86PW4zeqGEVuZ7XnoGA+fncT7wuQGWT95UXKkymgZ
- OHBCVIi61aGiKjLo8GGD5ufPqQ9+zfwxVRj0w5dqmBZzNmqY07osUSjv3 Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10309"; a="324288758"
-X-IronPort-AV: E=Sophos;i="5.90,240,1643702400"; d="scan'208";a="324288758"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2022 11:09:09 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,240,1643702400"; d="scan'208";a="697475130"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.51])
- by fmsmga001.fm.intel.com with SMTP; 06 Apr 2022 11:09:06 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 06 Apr 2022 21:09:06 +0300
-Date: Wed, 6 Apr 2022 21:09:06 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-Message-ID: <Yk3XQhkYplbMxkkM@intel.com>
-References: <20220404134918.729038-1-vinod.govindapillai@intel.com>
- <Yk2MAo+cfr3npN2O@intel.com> <20220406134526.GA22124@intel.com>
- <Yk2dQ7VIKWFHfFDl@intel.com> <20220406171446.GA22549@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id D57BA10E1A4;
+	Wed,  6 Apr 2022 18:14:57 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com
+ [IPv6:2a00:1450:4864:20::32c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5211010E1A4;
+ Wed,  6 Apr 2022 18:14:56 +0000 (UTC)
+Received: by mail-wm1-x32c.google.com with SMTP id
+ k124-20020a1ca182000000b0038c9cf6e2a6so2209971wme.0; 
+ Wed, 06 Apr 2022 11:14:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=cmplrhXRmjn31lJeikHdlTYGJCKx+VQQyvGg1N8nN2s=;
+ b=T9iK5EutDPG8RWMLc73KZOSrzKrsOx+SMEHM5d1SeUhyr9AJXMxbgn+l+ozN+dioQO
+ XgrK3NZJVqRvPGa+12iepLtstbl70+RN3x+mpnK1GvyXAgg3+0hEr7eWbgUVZf3OAx1C
+ KsxVmZacAz1ZEkszH2opyik7FJf8UjGmveXSPhfLF77PT6cTGz/i/YOJgGTg+jeNOIPu
+ 242l/NazqF8L67FkuMPYQwmpoIFfVO8Htvy7zdA9tCKm2TAMS71aOAeQQzduMsv7/kJI
+ EEiOboJtjmSQrTmkpd663d74JZ3pFFSaa8swogjlvhgM8gDArQiUWsLq8QzoFClCL2aS
+ IHXA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=cmplrhXRmjn31lJeikHdlTYGJCKx+VQQyvGg1N8nN2s=;
+ b=QQMrKYI0hVBOXKrTtIv0IoGX/MBKgwy+j5FIL4EKGoQhlCkzKzBZMBgNrQA9C77929
+ 9iVanJjx9/XUkOJA01JvNgtQtzEvSTLfPetAQeeWspDJQZ7jISFNfhEuAcqMZT35X6hc
+ MVHxdxXIVhMMJDehRpdtBQKNoXGb5FoZdVatRZ8mqQEaMalCBMiMrjAfYY7Q6H43a+27
+ 4s5Bgsbqo7LPtqmUr2v/5m472AKTDQ1pNi5USBgeE2NDs+H4e05aRZ/ZJiuIt9/aObbl
+ og/rMHyLNCXlYAMvk6tCgMVdNbSrPpy5loeCq/iEQE871WUutQW5mlJeSxVSNuwryUie
+ vpAg==
+X-Gm-Message-State: AOAM5304W9js3wbkphjbW5jldpneCFf+DusmMTMqBvYPQPz2SLfwrnZ5
+ s3iFPG7/zDaav/axLWIj45+8/cURygaTj+wBkW8=
+X-Google-Smtp-Source: ABdhPJw1M979wvgrfArE8b/Ja8AQFhvtKpAYBpSrTLdb6meMuOZKqWKv9IYVK1Tot2AEcxT5uCr9V+rgf+rMl7giBeM=
+X-Received: by 2002:a05:600c:6020:b0:38e:7105:4ff6 with SMTP id
+ az32-20020a05600c602000b0038e71054ff6mr8582658wmb.119.1649268894669; Wed, 06
+ Apr 2022 11:14:54 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220406171446.GA22549@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: program wm blocks to at least
- blocks required per line
+References: <20220401142205.3123159-1-tvrtko.ursulin@linux.intel.com>
+ <20220401142205.3123159-9-tvrtko.ursulin@linux.intel.com>
+ <5a6d725f-02a3-bbdf-4585-5e0b491f2721@linux.intel.com>
+ <b0e7449b-c4f9-e2fb-2866-08997f0195bf@linux.intel.com>
+ <YksQhinav7N4/Qjk@phenom.ffwll.local>
+ <70c2b24a-60b6-6222-ff73-d33abf073e4b@linux.intel.com>
+In-Reply-To: <70c2b24a-60b6-6222-ff73-d33abf073e4b@linux.intel.com>
+From: Rob Clark <robdclark@gmail.com>
+Date: Wed, 6 Apr 2022 11:15:49 -0700
+Message-ID: <CAF6AEGsu+oYm714-qoty3PnK1Ynt2+KcyF4mOcaJtXHi+gSOsA@mail.gmail.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [CI 8/8] drm/i915: Expose client engine utilisation
+ via fdinfo
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,103 +71,317 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Intel Graphics Development <Intel-gfx@lists.freedesktop.org>,
+ Dave Airlie <airlied@gmail.com>, dri-devel <dri-devel@lists.freedesktop.org>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Apr 06, 2022 at 08:14:58PM +0300, Lisovskiy, Stanislav wrote:
-> On Wed, Apr 06, 2022 at 05:01:39PM +0300, Ville Syrjälä wrote:
-> > On Wed, Apr 06, 2022 at 04:45:26PM +0300, Lisovskiy, Stanislav wrote:
-> > > On Wed, Apr 06, 2022 at 03:48:02PM +0300, Ville Syrjälä wrote:
-> > > > On Mon, Apr 04, 2022 at 04:49:18PM +0300, Vinod Govindapillai wrote:
-> > > > > In configurations with single DRAM channel, for usecases like
-> > > > > 4K 60 Hz, FIFO underruns are observed quite frequently. Looks
-> > > > > like the wm0 watermark values need to bumped up because the wm0
-> > > > > memory latency calculations are probably not taking the DRAM
-> > > > > channel's impact into account.
-> > > > > 
-> > > > > As per the Bspec 49325, if the ddb allocation can hold at least
-> > > > > one plane_blocks_per_line we should have selected method2.
-> > > > > Assuming that modern HW versions have enough dbuf to hold
-> > > > > at least one line, set the wm blocks to equivalent to blocks
-> > > > > per line.
-> > > > > 
-> > > > > cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > > > > cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> > > > > 
-> > > > > Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
-> > > > > ---
-> > > > >  drivers/gpu/drm/i915/intel_pm.c | 19 ++++++++++++++++++-
-> > > > >  1 file changed, 18 insertions(+), 1 deletion(-)
-> > > > > 
-> > > > > diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-> > > > > index 8824f269e5f5..ae28a8c63ca4 100644
-> > > > > --- a/drivers/gpu/drm/i915/intel_pm.c
-> > > > > +++ b/drivers/gpu/drm/i915/intel_pm.c
-> > > > > @@ -5474,7 +5474,24 @@ static void skl_compute_plane_wm(const struct intel_crtc_state *crtc_state,
-> > > > >  		}
-> > > > >  	}
-> > > > >  
-> > > > > -	blocks = fixed16_to_u32_round_up(selected_result) + 1;
-> > > > > +	/*
-> > > > > +	 * Lets have blocks at minimum equivalent to plane_blocks_per_line
-> > > > > +	 * as there will be at minimum one line for lines configuration.
-> > > > > +	 *
-> > > > > +	 * As per the Bspec 49325, if the ddb allocation can hold at least
-> > > > > +	 * one plane_blocks_per_line, we should have selected method2 in
-> > > > > +	 * the above logic. Assuming that modern versions have enough dbuf
-> > > > > +	 * and method2 guarantees blocks equivalent to at least 1 line,
-> > > > > +	 * select the blocks as plane_blocks_per_line.
-> > > > > +	 *
-> > > > > +	 * TODO: Revisit the logic when we have better understanding on DRAM
-> > > > > +	 * channels' impact on the level 0 memory latency and the relevant
-> > > > > +	 * wm calculations.
-> > > > > +	 */
-> > > > > +	blocks = skl_wm_has_lines(dev_priv, level) ?
-> > > > > +			max_t(u32, fixed16_to_u32_round_up(selected_result) + 1,
-> > > > > +				  fixed16_to_u32_round_up(wp->plane_blocks_per_line)) :
-> > > > > +			fixed16_to_u32_round_up(selected_result) + 1;
-> > > > 
-> > > > That's looks rather convoluted.
-> > > > 
-> > > >   blocks = fixed16_to_u32_round_up(selected_result) + 1;
-> > > > + /* blah */
-> > > > + if (has_lines)
-> > > > +	blocks = max(blocks, fixed16_to_u32_round_up(wp->plane_blocks_per_line));
-> > > 
-> > > We probably need to do similar refactoring in the whole function ;-)
-> > > 
-> > > > 
-> > > > Also since Art said nothing like this should actually be needed
-> > > > I think the comment should make it a bit more clear that this
-> > > > is just a hack to work around the underruns with some single
-> > > > memory channel configurations.
-> > > 
-> > > It is actually not quite a hack, because we are missing that condition
-> > > implementation from BSpec 49325, which instructs us to select method2
-> > > when ddb blocks allocation is known and that ratio is >= 1.
-> > 
-> > The ddb allocation is not yet known, so we're implementing the
-> > algorithm 100% correctly.
-> > 
-> > And this patch does not implement that misisng part anyway.
-> 
-> Yes, as I understood method2 would just give amount of blocks to be
-> at least as dbuf blocks per line.
-> 
-> Wonder whether should we actually fully implement this BSpec clause 
-> and add it to the point where ddb allocation is known or are there 
-> any obstacles to do that, besides having to reshuffle this function a bit?
+On Tue, Apr 5, 2022 at 1:09 AM Tvrtko Ursulin
+<tvrtko.ursulin@linux.intel.com> wrote:
+>
+>
+> On 04/04/2022 16:36, Daniel Vetter wrote:
+> > On Mon, Apr 04, 2022 at 10:23:53AM +0100, Tvrtko Ursulin wrote:
+> >>
+> >> + Dave and Daniel
+> >>
+> >> Guys, are you okay with merging this via drm-intel-gt-next? It is one =
+new
+> >> file at Documentation/gpu/drm-usage-stats.rst only which is outside i9=
+15. It
+> >> has acks from Christian and Rob.
+> >
+> > Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+>
+> Thanks, pushed now.
+>
+> Rob - you can proceed with your driver at your leisure. I will re-send
+> the rebased gputop to igt-dev shortly and copy you.
 
-We need to calculate the wm to figure out how much ddb to allocate,
-and then we'd need the ddb allocation to figure out how to calculate
-the wm. Very much chicken vs. egg right there. We'd have to do some
-kind of hideous loop where we'd calculate everything twice. I don't
-really want to do that since I'd actually like to move the wm
-calculation to happen already much earlier during .check_plane()
-as that could reduce the amount of redundant wm calculations we
-are currently doing.
+Thx, I was planning to respin, but trying to figure out where the
+drm-usage-stats.rst patch ended up (since I can't add to a file that
+isn't there
 
--- 
-Ville Syrjälä
-Intel
+BR,
+-R
+
+> Regards,
+>
+> Tvrtko
+>
+> >>
+> >> Daniel, series is also fully reviewed and IGT reviewed and ready. Rob =
+also
+> >> demonstrated the approach works for msm when using the vendor agnossti=
+c
+> >> gputop tool I sketched out (see
+> >> 20220225202614.225197-3-robdclark@gmail.com).
+> >>
+> >> My plan is to merge the i915 support with the common spec and intel_gp=
+u_top
+> >> on the IGT side. Then follow-up with vendor agnostic gputop and later =
+yet
+> >> potentially re-visit the AMD side by re-sending the patch which tweaks=
+ the
+> >> fdinfo format there and adds support for relative engine utilisation a=
+s
+> >> provided by amdgpu.
+> >>
+> >> Regards,
+> >>
+> >> Tvrtko
+> >>
+> >> On 04/04/2022 10:12, Tvrtko Ursulin wrote:
+> >>>
+> >>> On 01/04/2022 15:22, Tvrtko Ursulin wrote:
+> >>>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> >>>>
+> >>>> Similar to AMD commit
+> >>>> 874442541133 ("drm/amdgpu: Add show_fdinfo() interface"), using the
+> >>>> infrastructure added in previous patches, we add basic client info
+> >>>> and GPU engine utilisation for i915.
+> >>>>
+> >>>> Example of the output:
+> >>>>
+> >>>>     pos:    0
+> >>>>     flags:  0100002
+> >>>>     mnt_id: 21
+> >>>>     drm-driver: i915
+> >>>>     drm-pdev:   0000:00:02.0
+> >>>>     drm-client-id:      7
+> >>>>     drm-engine-render:  9288864723 ns
+> >>>>     drm-engine-copy:    2035071108 ns
+> >>>>     drm-engine-video:   0 ns
+> >>>>     drm-engine-video-enhance:   0 ns
+> >>>>
+> >>>> v2:
+> >>>>    * Update for removal of name and pid.
+> >>>>
+> >>>> v3:
+> >>>>    * Use drm_driver.name.
+> >>>>
+> >>>> v4:
+> >>>>    * Added drm-engine-capacity- tag.
+> >>>>    * Fix typo. (Umesh)
+> >>>>
+> >>>> v5:
+> >>>>    * Don't output engine data before Gen8.
+> >>>>
+> >>>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> >>>> Cc: David M Nieto <David.Nieto@amd.com>
+> >>>> Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
+> >>>> Cc: Daniel Vetter <daniel@ffwll.ch>
+> >>>> Cc: Chris Healy <cphealy@gmail.com>
+> >>>> Acked-by: Christian K=C3=B6nig <christian.koenig@amd.com>
+> >>>> Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+> >>>
+> >>> Forgot to apply an earlier:
+> >>>
+> >>> Acked-by: Rob Clark <robdclark@gmail.com>
+> >>>
+> >>> Regards,
+> >>>
+> >>> Tvrtko
+> >>>
+> >>>> ---
+> >>>>    Documentation/gpu/drm-usage-stats.rst  |  6 ++
+> >>>>    Documentation/gpu/i915.rst             | 28 +++++++++
+> >>>>    drivers/gpu/drm/i915/i915_driver.c     |  3 +
+> >>>>    drivers/gpu/drm/i915/i915_drm_client.c | 84 +++++++++++++++++++++=
++++++
+> >>>>    drivers/gpu/drm/i915/i915_drm_client.h |  4 ++
+> >>>>    5 files changed, 125 insertions(+)
+> >>>>
+> >>>> diff --git a/Documentation/gpu/drm-usage-stats.rst
+> >>>> b/Documentation/gpu/drm-usage-stats.rst
+> >>>> index b8cc28f4da6f..6c9f166a8d6f 100644
+> >>>> --- a/Documentation/gpu/drm-usage-stats.rst
+> >>>> +++ b/Documentation/gpu/drm-usage-stats.rst
+> >>>> @@ -104,3 +104,9 @@ object belong to this client, in the respective
+> >>>> memory region.
+> >>>>    Default unit shall be bytes with optional unit specifiers of 'KiB=
+'
+> >>>> or 'MiB'
+> >>>>    indicating kibi- or mebi-bytes.
+> >>>> +
+> >>>> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> >>>> +Driver specific implementations
+> >>>> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> >>>> +
+> >>>> +:ref:`i915-usage-stats`
+> >>>> diff --git a/Documentation/gpu/i915.rst b/Documentation/gpu/i915.rst
+> >>>> index 0f08693d05cd..54060cd6c419 100644
+> >>>> --- a/Documentation/gpu/i915.rst
+> >>>> +++ b/Documentation/gpu/i915.rst
+> >>>> @@ -697,3 +697,31 @@ The style guide for ``i915_reg.h``.
+> >>>>    .. kernel-doc:: drivers/gpu/drm/i915/i915_reg.h
+> >>>>       :doc: The i915 register macro definition style guide
+> >>>> +
+> >>>> +.. _i915-usage-stats:
+> >>>> +
+> >>>> +i915 DRM client usage stats implementation
+> >>>> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> >>>> +
+> >>>> +The drm/i915 driver implements the DRM client usage stats
+> >>>> specification as
+> >>>> +documented in :ref:`drm-client-usage-stats`.
+> >>>> +
+> >>>> +Example of the output showing the implemented key value pairs and
+> >>>> entirety of
+> >>>> +the currently possible format options:
+> >>>> +
+> >>>> +::
+> >>>> +
+> >>>> +      pos:    0
+> >>>> +      flags:  0100002
+> >>>> +      mnt_id: 21
+> >>>> +      drm-driver: i915
+> >>>> +      drm-pdev:   0000:00:02.0
+> >>>> +      drm-client-id:      7
+> >>>> +      drm-engine-render:  9288864723 ns
+> >>>> +      drm-engine-copy:    2035071108 ns
+> >>>> +      drm-engine-video:   0 ns
+> >>>> +      drm-engine-capacity-video:   2
+> >>>> +      drm-engine-video-enhance:   0 ns
+> >>>> +
+> >>>> +Possible `drm-engine-` key names are: `render`, `copy`, `video` and
+> >>>> +`video-enhance`.
+> >>>> diff --git a/drivers/gpu/drm/i915/i915_driver.c
+> >>>> b/drivers/gpu/drm/i915/i915_driver.c
+> >>>> index b2df273e6d7b..3ffb617d75c9 100644
+> >>>> --- a/drivers/gpu/drm/i915/i915_driver.c
+> >>>> +++ b/drivers/gpu/drm/i915/i915_driver.c
+> >>>> @@ -1745,6 +1745,9 @@ static const struct file_operations
+> >>>> i915_driver_fops =3D {
+> >>>>        .read =3D drm_read,
+> >>>>        .compat_ioctl =3D i915_ioc32_compat_ioctl,
+> >>>>        .llseek =3D noop_llseek,
+> >>>> +#ifdef CONFIG_PROC_FS
+> >>>> +    .show_fdinfo =3D i915_drm_client_fdinfo,
+> >>>> +#endif
+> >>>>    };
+> >>>>    static int
+> >>>> diff --git a/drivers/gpu/drm/i915/i915_drm_client.c
+> >>>> b/drivers/gpu/drm/i915/i915_drm_client.c
+> >>>> index 91a8559bebf7..e539f6b23060 100644
+> >>>> --- a/drivers/gpu/drm/i915/i915_drm_client.c
+> >>>> +++ b/drivers/gpu/drm/i915/i915_drm_client.c
+> >>>> @@ -7,7 +7,13 @@
+> >>>>    #include <linux/slab.h>
+> >>>>    #include <linux/types.h>
+> >>>> +#include <uapi/drm/i915_drm.h>
+> >>>> +
+> >>>> +#include <drm/drm_print.h>
+> >>>> +
+> >>>> +#include "gem/i915_gem_context.h"
+> >>>>    #include "i915_drm_client.h"
+> >>>> +#include "i915_file_private.h"
+> >>>>    #include "i915_gem.h"
+> >>>>    #include "i915_utils.h"
+> >>>> @@ -68,3 +74,81 @@ void i915_drm_clients_fini(struct
+> >>>> i915_drm_clients *clients)
+> >>>>        GEM_BUG_ON(!xa_empty(&clients->xarray));
+> >>>>        xa_destroy(&clients->xarray);
+> >>>>    }
+> >>>> +
+> >>>> +#ifdef CONFIG_PROC_FS
+> >>>> +static const char * const uabi_class_names[] =3D {
+> >>>> +    [I915_ENGINE_CLASS_RENDER] =3D "render",
+> >>>> +    [I915_ENGINE_CLASS_COPY] =3D "copy",
+> >>>> +    [I915_ENGINE_CLASS_VIDEO] =3D "video",
+> >>>> +    [I915_ENGINE_CLASS_VIDEO_ENHANCE] =3D "video-enhance",
+> >>>> +};
+> >>>> +
+> >>>> +static u64 busy_add(struct i915_gem_context *ctx, unsigned int clas=
+s)
+> >>>> +{
+> >>>> +    struct i915_gem_engines_iter it;
+> >>>> +    struct intel_context *ce;
+> >>>> +    u64 total =3D 0;
+> >>>> +
+> >>>> +    for_each_gem_engine(ce, rcu_dereference(ctx->engines), it) {
+> >>>> +        if (ce->engine->uabi_class !=3D class)
+> >>>> +            continue;
+> >>>> +
+> >>>> +        total +=3D intel_context_get_total_runtime_ns(ce);
+> >>>> +    }
+> >>>> +
+> >>>> +    return total;
+> >>>> +}
+> >>>> +
+> >>>> +static void
+> >>>> +show_client_class(struct seq_file *m,
+> >>>> +          struct i915_drm_client *client,
+> >>>> +          unsigned int class)
+> >>>> +{
+> >>>> +    const struct list_head *list =3D &client->ctx_list;
+> >>>> +    u64 total =3D atomic64_read(&client->past_runtime[class]);
+> >>>> +    const unsigned int capacity =3D
+> >>>> +        client->clients->i915->engine_uabi_class_count[class];
+> >>>> +    struct i915_gem_context *ctx;
+> >>>> +
+> >>>> +    rcu_read_lock();
+> >>>> +    list_for_each_entry_rcu(ctx, list, client_link)
+> >>>> +        total +=3D busy_add(ctx, class);
+> >>>> +    rcu_read_unlock();
+> >>>> +
+> >>>> +    seq_printf(m, "drm-engine-%s:\t%llu ns\n",
+> >>>> +           uabi_class_names[class], total);
+> >>>> +
+> >>>> +    if (capacity > 1)
+> >>>> +        seq_printf(m, "drm-engine-capacity-%s:\t%u\n",
+> >>>> +               uabi_class_names[class],
+> >>>> +               capacity);
+> >>>> +}
+> >>>> +
+> >>>> +void i915_drm_client_fdinfo(struct seq_file *m, struct file *f)
+> >>>> +{
+> >>>> +    struct drm_file *file =3D f->private_data;
+> >>>> +    struct drm_i915_file_private *file_priv =3D file->driver_priv;
+> >>>> +    struct drm_i915_private *i915 =3D file_priv->dev_priv;
+> >>>> +    struct i915_drm_client *client =3D file_priv->client;
+> >>>> +    struct pci_dev *pdev =3D to_pci_dev(i915->drm.dev);
+> >>>> +    unsigned int i;
+> >>>> +
+> >>>> +    /*
+> >>>> +     *
+> >>>> ******************************************************************
+> >>>> +     * For text output format description please see
+> >>>> drm-usage-stats.rst!
+> >>>> +     *
+> >>>> ******************************************************************
+> >>>> +     */
+> >>>> +
+> >>>> +    seq_printf(m, "drm-driver:\t%s\n", i915->drm.driver->name);
+> >>>> +    seq_printf(m, "drm-pdev:\t%04x:%02x:%02x.%d\n",
+> >>>> +           pci_domain_nr(pdev->bus), pdev->bus->number,
+> >>>> +           PCI_SLOT(pdev->devfn), PCI_FUNC(pdev->devfn));
+> >>>> +    seq_printf(m, "drm-client-id:\t%u\n", client->id);
+> >>>> +
+> >>>> +    if (GRAPHICS_VER(i915) < 8)
+> >>>> +        return;
+> >>>> +
+> >>>> +    for (i =3D 0; i < ARRAY_SIZE(uabi_class_names); i++)
+> >>>> +        show_client_class(m, client, i);
+> >>>> +}
+> >>>> +#endif
+> >>>> diff --git a/drivers/gpu/drm/i915/i915_drm_client.h
+> >>>> b/drivers/gpu/drm/i915/i915_drm_client.h
+> >>>> index 191368386ace..5f5b02b01ba0 100644
+> >>>> --- a/drivers/gpu/drm/i915/i915_drm_client.h
+> >>>> +++ b/drivers/gpu/drm/i915/i915_drm_client.h
+> >>>> @@ -59,6 +59,10 @@ static inline void i915_drm_client_put(struct
+> >>>> i915_drm_client *client)
+> >>>>    struct i915_drm_client *i915_drm_client_add(struct
+> >>>> i915_drm_clients *clients);
+> >>>> +#ifdef CONFIG_PROC_FS
+> >>>> +void i915_drm_client_fdinfo(struct seq_file *m, struct file *f);
+> >>>> +#endif
+> >>>> +
+> >>>>    void i915_drm_clients_fini(struct i915_drm_clients *clients);
+> >>>>    #endif /* !__I915_DRM_CLIENT_H__ */
+> >
