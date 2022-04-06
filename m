@@ -2,51 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9D384F6998
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Apr 2022 21:09:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D6144F69B1
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Apr 2022 21:18:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1156710E1E2;
-	Wed,  6 Apr 2022 19:09:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D923610E009;
+	Wed,  6 Apr 2022 19:18:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1729610E1E2
- for <intel-gfx@lists.freedesktop.org>; Wed,  6 Apr 2022 19:09:35 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C5AB510E009
+ for <intel-gfx@lists.freedesktop.org>; Wed,  6 Apr 2022 19:18:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649272176; x=1680808176;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=sdgM/x9cMw2LANJnkzL+lb5UXQwFYZLvKKGj8lVG430=;
- b=EPbT2OqBI0unf/p/eJuD7rJP9+LKP40ajXwjjRsgFru5jFSNEr0wDvz9
- hbLoZq+zQIP0+5I7BAFi8ln++tj4cS2FO4N3FAkGieNZh77rVH12RZMeX
- dXR+ewN+IO+hSMGsyrfsY55jYLpRM8GnRUBC9mUvrJjUS7XM2zEu+F9kl
- zh6OVHv+rfdF/g2mjpZG0i8KW0I7YrqMRQuDozUWpXSmUxalFC3xJzSMa
- O78V05Y2TpemJOs/VCshzGZFWItsqQ9OfiD89bKSuXBaHVXahh1kOqht4
- 0TZFuPOXCHnVhKCXhTjyLTg15YjWY3P8P8L+8rY69WcyVYHQk80KfA/BI g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10309"; a="321828293"
-X-IronPort-AV: E=Sophos;i="5.90,240,1643702400"; d="scan'208";a="321828293"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2022 12:09:34 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,240,1643702400"; d="scan'208";a="557074692"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.51])
- by fmsmga007.fm.intel.com with SMTP; 06 Apr 2022 12:09:32 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 06 Apr 2022 22:09:32 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
+ t=1649272733; x=1680808733;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=jREUL/PRNW3gf0KqP2UeIbI6EFFce93DGx1UvHceR+0=;
+ b=OqTEQrOzUchw4qlHHMSpP9wlwDK98rghPnr+Bg4skk1mNMVz76kA2+yM
+ nGs4Ut7pTL4KvBzXCnl5afKShS/507DG6ZGW0xHoee6873SZq5DU8/uPZ
+ ePh5gTAWdkPW3I6HVXHEqWX1dh0fcytjkQ/6mQpwZ1HJ4YbAbXs/ToZvw
+ me6eLyhQio6bN3EFkbDBbQTtPyjhHWrXJZT2Wc10oJeAPGyJAsOZxMcBy
+ E76VTRwKpT82BXRIK5J8utgH1jzPfAr6VAGy9h3F78PJ8dDBgp8/quGAv
+ TP3+TqGbEseKQ08AGuJeMGI6gF+Xl/dm53OoYflWjnKHyLM7Z+cbGtOWA Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10309"; a="286109002"
+X-IronPort-AV: E=Sophos;i="5.90,240,1643702400"; d="scan'208";a="286109002"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Apr 2022 12:18:53 -0700
+X-IronPort-AV: E=Sophos;i="5.90,240,1643702400"; d="scan'208";a="722646085"
+Received: from orsosgc001.jf.intel.com (HELO unerlige-ril-10.165.21.154.com)
+ ([10.165.21.154])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Apr 2022 12:18:53 -0700
+From: Ashutosh Dixit <ashutosh.dixit@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  6 Apr 2022 22:09:32 +0300
-Message-Id: <20220406190932.29841-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220405173410.11436-19-ville.syrjala@linux.intel.com>
-References: <20220405173410.11436-19-ville.syrjala@linux.intel.com>
+Date: Wed,  6 Apr 2022 12:18:48 -0700
+Message-Id: <20220406191848.20895-1-ashutosh.dixit@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4 18/22] drm/i915/bios: Determine panel type
- via PNPID match
+Subject: [Intel-gfx] [PATCH] drm/i915/rps: Centralize computation of freq
+ caps
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,278 +58,326 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Freq caps (i.e. RP0, RP1 and RPn frequencies) are read from HW. However the
+formats (bit positions, widths, registers and units) of these vary for
+different generations with even more variations arriving in the future. In
+order not to have to do identical computation for these caps in multiple
+places, here we centralize the computation of these caps. This makes the
+code cleaner and also more extensible for the future.
 
-Apparently when the VBT panel_type==0xff we should trawl through
-the PNPID table and check for a match against the EDID. If a
-match is found the index gives us the panel_type.
+v2: Clarify that caps are in "hw units" in comments (Lucas De Marchi)
+v3: Minor checkpatch fix
+v4: s/intel_rps_get_freq_caps/gen6_rps_get_freq_caps/ (Badal Nilawar)
+v5: Changes comments to kernel doc (Anshuman Gupta)
 
-Tried to match the Windows behaviour here with first looking
-for an exact match, and if one isn't found we fall back to
-looking for a match w/o the mfg year/week.
-
-v2: Rebase due to vlv_dsi changes
-
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/5545
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: Anshuman Gupta <anshuman.gupta@intel.com>
+Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Reviewed-by: Badal Nilawar <badal.nilawar@intel.com>
 ---
- drivers/gpu/drm/i915/display/icl_dsi.c    |  2 +-
- drivers/gpu/drm/i915/display/intel_bios.c | 82 ++++++++++++++++++++---
- drivers/gpu/drm/i915/display/intel_bios.h |  4 +-
- drivers/gpu/drm/i915/display/intel_dp.c   |  2 +-
- drivers/gpu/drm/i915/display/intel_lvds.c |  2 +-
- drivers/gpu/drm/i915/display/intel_sdvo.c |  2 +-
- drivers/gpu/drm/i915/display/vlv_dsi.c    |  2 +-
- 7 files changed, 82 insertions(+), 14 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c |  24 +---
+ drivers/gpu/drm/i915/gt/intel_rps.c           | 108 +++++++++++-------
+ drivers/gpu/drm/i915/gt/intel_rps.h           |   2 +-
+ drivers/gpu/drm/i915/gt/intel_rps_types.h     |  15 +++
+ drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c   |  14 +--
+ 5 files changed, 91 insertions(+), 72 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-index 688176d4a54a..49715485a3a6 100644
---- a/drivers/gpu/drm/i915/display/icl_dsi.c
-+++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-@@ -2048,7 +2048,7 @@ void icl_dsi_init(struct drm_i915_private *dev_priv)
- 	/* attach connector to encoder */
- 	intel_connector_attach_encoder(intel_connector, encoder);
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
+index 003a53c49c86..0c6b9eb724ae 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
+@@ -342,17 +342,16 @@ void intel_gt_pm_frequency_dump(struct intel_gt *gt, struct drm_printer *p)
+ 	} else if (GRAPHICS_VER(i915) >= 6) {
+ 		u32 rp_state_limits;
+ 		u32 gt_perf_status;
+-		u32 rp_state_cap;
++		struct intel_rps_freq_caps caps;
+ 		u32 rpmodectl, rpinclimit, rpdeclimit;
+ 		u32 rpstat, cagf, reqf;
+ 		u32 rpcurupei, rpcurup, rpprevup;
+ 		u32 rpcurdownei, rpcurdown, rpprevdown;
+ 		u32 rpupei, rpupt, rpdownei, rpdownt;
+ 		u32 pm_ier, pm_imr, pm_isr, pm_iir, pm_mask;
+-		int max_freq;
  
--	intel_bios_init_panel(dev_priv);
-+	intel_bios_init_panel(dev_priv, NULL);
+ 		rp_state_limits = intel_uncore_read(uncore, GEN6_RP_STATE_LIMITS);
+-		rp_state_cap = intel_rps_read_state_cap(rps);
++		gen6_rps_get_freq_caps(rps, &caps);
+ 		if (IS_GEN9_LP(i915))
+ 			gt_perf_status = intel_uncore_read(uncore, BXT_GT_PERF_STATUS);
+ 		else
+@@ -474,25 +473,12 @@ void intel_gt_pm_frequency_dump(struct intel_gt *gt, struct drm_printer *p)
+ 		drm_printf(p, "RP DOWN THRESHOLD: %d (%lldns)\n",
+ 			   rpdownt, intel_gt_pm_interval_to_ns(gt, rpdownt));
  
- 	mutex_lock(&dev->mode_config.mutex);
- 	intel_panel_add_vbt_lfp_fixed_mode(intel_connector);
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index 0e76c554581a..4c0680356134 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.c
-+++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -582,6 +582,14 @@ get_lvds_fp_timing(const struct bdb_lvds_lfp_data *data,
- 	return (const void *)data + ptrs->ptr[index].fp_timing.offset;
+-		max_freq = (IS_GEN9_LP(i915) ? rp_state_cap >> 0 :
+-			    rp_state_cap >> 16) & 0xff;
+-		max_freq *= (IS_GEN9_BC(i915) ||
+-			     GRAPHICS_VER(i915) >= 11 ? GEN9_FREQ_SCALER : 1);
+ 		drm_printf(p, "Lowest (RPN) frequency: %dMHz\n",
+-			   intel_gpu_freq(rps, max_freq));
+-
+-		max_freq = (rp_state_cap & 0xff00) >> 8;
+-		max_freq *= (IS_GEN9_BC(i915) ||
+-			     GRAPHICS_VER(i915) >= 11 ? GEN9_FREQ_SCALER : 1);
++			   intel_gpu_freq(rps, caps.min_freq));
+ 		drm_printf(p, "Nominal (RP1) frequency: %dMHz\n",
+-			   intel_gpu_freq(rps, max_freq));
+-
+-		max_freq = (IS_GEN9_LP(i915) ? rp_state_cap >> 16 :
+-			    rp_state_cap >> 0) & 0xff;
+-		max_freq *= (IS_GEN9_BC(i915) ||
+-			     GRAPHICS_VER(i915) >= 11 ? GEN9_FREQ_SCALER : 1);
++			   intel_gpu_freq(rps, caps.rp1_freq));
+ 		drm_printf(p, "Max non-overclocked (RP0) frequency: %dMHz\n",
+-			   intel_gpu_freq(rps, max_freq));
++			   intel_gpu_freq(rps, caps.rp0_freq));
+ 		drm_printf(p, "Max overclocked frequency: %dMHz\n",
+ 			   intel_gpu_freq(rps, rps->max_freq));
+ 
+diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
+index 6c9fdf7906c5..3476a11f294c 100644
+--- a/drivers/gpu/drm/i915/gt/intel_rps.c
++++ b/drivers/gpu/drm/i915/gt/intel_rps.c
+@@ -1070,24 +1070,67 @@ int intel_rps_set(struct intel_rps *rps, u8 val)
+ 	return 0;
  }
  
-+static const struct lvds_pnp_id *
-+get_lvds_pnp_id(const struct bdb_lvds_lfp_data *data,
-+		const struct bdb_lvds_lfp_data_ptrs *ptrs,
-+		int index)
-+{
-+	return (const void *)data + ptrs->ptr[index].panel_pnp_id.offset;
-+}
-+
- static const struct bdb_lvds_lfp_data_tail *
- get_lfp_data_tail(const struct bdb_lvds_lfp_data *data,
- 		  const struct bdb_lvds_lfp_data_ptrs *ptrs)
-@@ -592,6 +600,52 @@ get_lfp_data_tail(const struct bdb_lvds_lfp_data *data,
- 		return NULL;
- }
- 
-+static int pnp_id_panel_type(struct drm_i915_private *i915,
-+			     const struct edid *edid)
-+{
-+	const struct bdb_lvds_lfp_data *data;
-+	const struct bdb_lvds_lfp_data_ptrs *ptrs;
-+	const struct lvds_pnp_id *edid_id;
-+	struct lvds_pnp_id edid_id_nodate;
-+	int i, best = -1;
-+
-+	if (!edid)
-+		return -1;
-+
-+	edid_id = (const void *)&edid->mfg_id[0];
-+
-+	edid_id_nodate = *edid_id;
-+	edid_id_nodate.mfg_week = 0;
-+	edid_id_nodate.mfg_year = 0;
-+
-+	ptrs = find_section(i915, BDB_LVDS_LFP_DATA_PTRS);
-+	if (!ptrs)
-+		return -1;
-+
-+	data = find_section(i915, BDB_LVDS_LFP_DATA);
-+	if (!data)
-+		return -1;
-+
-+	for (i = 0; i < 16; i++) {
-+		const struct lvds_pnp_id *vbt_id =
-+			get_lvds_pnp_id(data, ptrs, i);
-+
-+		/* full match? */
-+		if (!memcmp(vbt_id, edid_id, sizeof(*vbt_id)))
-+			return i;
-+
-+		/*
-+		 * Accept a match w/o date if no full match is found,
-+		 * and the VBT entry does not specify a date.
-+		 */
-+		if (best < 0 &&
-+		    !memcmp(vbt_id, &edid_id_nodate, sizeof(*vbt_id)))
-+			best = i;
-+	}
-+
-+	return best;
-+}
-+
- static int vbt_panel_type(struct drm_i915_private *i915)
+-static void gen6_rps_init(struct intel_rps *rps)
++static u32 intel_rps_read_state_cap(struct intel_rps *rps)
  {
- 	const struct bdb_lvds_options *lvds_options;
-@@ -600,7 +654,8 @@ static int vbt_panel_type(struct drm_i915_private *i915)
- 	if (!lvds_options)
- 		return -1;
+ 	struct drm_i915_private *i915 = rps_to_i915(rps);
+-	u32 rp_state_cap = intel_rps_read_state_cap(rps);
++	struct intel_uncore *uncore = rps_to_uncore(rps);
  
--	if (lvds_options->panel_type > 0xf) {
-+	if (lvds_options->panel_type > 0xf &&
-+	    lvds_options->panel_type != 0xff) {
- 		drm_dbg_kms(&i915->drm, "Invalid VBT panel type 0x%x\n",
- 			    lvds_options->panel_type);
- 		return -1;
-@@ -612,10 +667,12 @@ static int vbt_panel_type(struct drm_i915_private *i915)
- enum panel_type {
- 	PANEL_TYPE_OPREGION,
- 	PANEL_TYPE_VBT,
-+	PANEL_TYPE_PNPID,
- 	PANEL_TYPE_FALLBACK,
+-	/* All of these values are in units of 50MHz */
++	if (IS_XEHPSDV(i915))
++		return intel_uncore_read(uncore, XEHPSDV_RP_STATE_CAP);
++	else if (IS_GEN9_LP(i915))
++		return intel_uncore_read(uncore, BXT_RP_STATE_CAP);
++	else
++		return intel_uncore_read(uncore, GEN6_RP_STATE_CAP);
++}
++
++/**
++ * gen6_rps_get_freq_caps - Get freq caps exposed by HW
++ * @rps: the intel_rps structure
++ * @caps: returned freq caps
++ *
++ * Returned "caps" frequencies should be converted to MHz using
++ * intel_gpu_freq()
++ */
++void gen6_rps_get_freq_caps(struct intel_rps *rps, struct intel_rps_freq_caps *caps)
++{
++	struct drm_i915_private *i915 = rps_to_i915(rps);
++	u32 rp_state_cap;
++
++	rp_state_cap = intel_rps_read_state_cap(rps);
+ 
+ 	/* static values from HW: RP0 > RP1 > RPn (min_freq) */
+ 	if (IS_GEN9_LP(i915)) {
+-		rps->rp0_freq = (rp_state_cap >> 16) & 0xff;
+-		rps->rp1_freq = (rp_state_cap >>  8) & 0xff;
+-		rps->min_freq = (rp_state_cap >>  0) & 0xff;
++		caps->rp0_freq = (rp_state_cap >> 16) & 0xff;
++		caps->rp1_freq = (rp_state_cap >>  8) & 0xff;
++		caps->min_freq = (rp_state_cap >>  0) & 0xff;
+ 	} else {
+-		rps->rp0_freq = (rp_state_cap >>  0) & 0xff;
+-		rps->rp1_freq = (rp_state_cap >>  8) & 0xff;
+-		rps->min_freq = (rp_state_cap >> 16) & 0xff;
++		caps->rp0_freq = (rp_state_cap >>  0) & 0xff;
++		caps->rp1_freq = (rp_state_cap >>  8) & 0xff;
++		caps->min_freq = (rp_state_cap >> 16) & 0xff;
+ 	}
+ 
++	if (IS_GEN9_BC(i915) || GRAPHICS_VER(i915) >= 11) {
++		/*
++		 * In this case rp_state_cap register reports frequencies in
++		 * units of 50 MHz. Convert these to the actual "hw unit", i.e.
++		 * units of 16.67 MHz
++		 */
++		caps->rp0_freq *= GEN9_FREQ_SCALER;
++		caps->rp1_freq *= GEN9_FREQ_SCALER;
++		caps->min_freq *= GEN9_FREQ_SCALER;
++	}
++}
++
++static void gen6_rps_init(struct intel_rps *rps)
++{
++	struct drm_i915_private *i915 = rps_to_i915(rps);
++	struct intel_rps_freq_caps caps;
++
++	gen6_rps_get_freq_caps(rps, &caps);
++	rps->rp0_freq = caps.rp0_freq;
++	rps->rp1_freq = caps.rp1_freq;
++	rps->min_freq = caps.min_freq;
++
+ 	/* hw_max = RP0 until we check for overclocking */
+ 	rps->max_freq = rps->rp0_freq;
+ 
+@@ -1095,26 +1138,18 @@ static void gen6_rps_init(struct intel_rps *rps)
+ 	if (IS_HASWELL(i915) || IS_BROADWELL(i915) ||
+ 	    IS_GEN9_BC(i915) || GRAPHICS_VER(i915) >= 11) {
+ 		u32 ddcc_status = 0;
++		u32 mult = 1;
+ 
++		if (IS_GEN9_BC(i915) || GRAPHICS_VER(i915) >= 11)
++			mult = GEN9_FREQ_SCALER;
+ 		if (snb_pcode_read(i915, HSW_PCODE_DYNAMIC_DUTY_CYCLE_CONTROL,
+ 				   &ddcc_status, NULL) == 0)
+ 			rps->efficient_freq =
+-				clamp_t(u8,
+-					(ddcc_status >> 8) & 0xff,
++				clamp_t(u32,
++					((ddcc_status >> 8) & 0xff) * mult,
+ 					rps->min_freq,
+ 					rps->max_freq);
+ 	}
+-
+-	if (IS_GEN9_BC(i915) || GRAPHICS_VER(i915) >= 11) {
+-		/* Store the frequency values in 16.66 MHZ units, which is
+-		 * the natural hardware unit for SKL
+-		 */
+-		rps->rp0_freq *= GEN9_FREQ_SCALER;
+-		rps->rp1_freq *= GEN9_FREQ_SCALER;
+-		rps->min_freq *= GEN9_FREQ_SCALER;
+-		rps->max_freq *= GEN9_FREQ_SCALER;
+-		rps->efficient_freq *= GEN9_FREQ_SCALER;
+-	}
+ }
+ 
+ static bool rps_reset(struct intel_rps *rps)
+@@ -2219,19 +2254,6 @@ int intel_rps_set_min_frequency(struct intel_rps *rps, u32 val)
+ 		return set_min_freq(rps, val);
+ }
+ 
+-u32 intel_rps_read_state_cap(struct intel_rps *rps)
+-{
+-	struct drm_i915_private *i915 = rps_to_i915(rps);
+-	struct intel_uncore *uncore = rps_to_uncore(rps);
+-
+-	if (IS_XEHPSDV(i915))
+-		return intel_uncore_read(uncore, XEHPSDV_RP_STATE_CAP);
+-	else if (IS_GEN9_LP(i915))
+-		return intel_uncore_read(uncore, BXT_RP_STATE_CAP);
+-	else
+-		return intel_uncore_read(uncore, GEN6_RP_STATE_CAP);
+-}
+-
+ static void intel_rps_set_manual(struct intel_rps *rps, bool enable)
+ {
+ 	struct intel_uncore *uncore = rps_to_uncore(rps);
+@@ -2244,18 +2266,18 @@ static void intel_rps_set_manual(struct intel_rps *rps, bool enable)
+ void intel_rps_raise_unslice(struct intel_rps *rps)
+ {
+ 	struct intel_uncore *uncore = rps_to_uncore(rps);
+-	u32 rp0_unslice_req;
+ 
+ 	mutex_lock(&rps->lock);
+ 
+ 	if (rps_uses_slpc(rps)) {
+ 		/* RP limits have not been initialized yet for SLPC path */
+-		rp0_unslice_req = ((intel_rps_read_state_cap(rps) >> 0)
+-				   & 0xff) * GEN9_FREQ_SCALER;
++		struct intel_rps_freq_caps caps;
++
++		gen6_rps_get_freq_caps(rps, &caps);
+ 
+ 		intel_rps_set_manual(rps, true);
+ 		intel_uncore_write(uncore, GEN6_RPNSWREQ,
+-				   ((rp0_unslice_req <<
++				   ((caps.rp0_freq <<
+ 				   GEN9_SW_REQ_UNSLICE_RATIO_SHIFT) |
+ 				   GEN9_IGNORE_SLICE_RATIO));
+ 		intel_rps_set_manual(rps, false);
+@@ -2269,18 +2291,18 @@ void intel_rps_raise_unslice(struct intel_rps *rps)
+ void intel_rps_lower_unslice(struct intel_rps *rps)
+ {
+ 	struct intel_uncore *uncore = rps_to_uncore(rps);
+-	u32 rpn_unslice_req;
+ 
+ 	mutex_lock(&rps->lock);
+ 
+ 	if (rps_uses_slpc(rps)) {
+ 		/* RP limits have not been initialized yet for SLPC path */
+-		rpn_unslice_req = ((intel_rps_read_state_cap(rps) >> 16)
+-				   & 0xff) * GEN9_FREQ_SCALER;
++		struct intel_rps_freq_caps caps;
++
++		gen6_rps_get_freq_caps(rps, &caps);
+ 
+ 		intel_rps_set_manual(rps, true);
+ 		intel_uncore_write(uncore, GEN6_RPNSWREQ,
+-				   ((rpn_unslice_req <<
++				   ((caps.min_freq <<
+ 				   GEN9_SW_REQ_UNSLICE_RATIO_SHIFT) |
+ 				   GEN9_IGNORE_SLICE_RATIO));
+ 		intel_rps_set_manual(rps, false);
+diff --git a/drivers/gpu/drm/i915/gt/intel_rps.h b/drivers/gpu/drm/i915/gt/intel_rps.h
+index ba1ed9f7ecda..1e8d56491308 100644
+--- a/drivers/gpu/drm/i915/gt/intel_rps.h
++++ b/drivers/gpu/drm/i915/gt/intel_rps.h
+@@ -45,7 +45,7 @@ u32 intel_rps_get_rp1_frequency(struct intel_rps *rps);
+ u32 intel_rps_get_rpn_frequency(struct intel_rps *rps);
+ u32 intel_rps_read_punit_req(struct intel_rps *rps);
+ u32 intel_rps_read_punit_req_frequency(struct intel_rps *rps);
+-u32 intel_rps_read_state_cap(struct intel_rps *rps);
++void gen6_rps_get_freq_caps(struct intel_rps *rps, struct intel_rps_freq_caps *caps);
+ void intel_rps_raise_unslice(struct intel_rps *rps);
+ void intel_rps_lower_unslice(struct intel_rps *rps);
+ 
+diff --git a/drivers/gpu/drm/i915/gt/intel_rps_types.h b/drivers/gpu/drm/i915/gt/intel_rps_types.h
+index 3941d8551f52..9173ec75f2b8 100644
+--- a/drivers/gpu/drm/i915/gt/intel_rps_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_rps_types.h
+@@ -37,6 +37,21 @@ enum {
+ 	INTEL_RPS_TIMER,
  };
  
--static int get_panel_type(struct drm_i915_private *i915)
-+static int get_panel_type(struct drm_i915_private *i915,
-+			  const struct edid *edid)
++/**
++ * struct intel_rps_freq_caps - rps freq capabilities
++ * @rp0_freq: non-overclocked max frequency
++ * @rp1_freq: "less than" RP0 power/freqency
++ * @min_freq: aka RPn, minimum frequency
++ *
++ * Freq caps exposed by HW, values are in "hw units" and intel_gpu_freq()
++ * should be used to convert to MHz
++ */
++struct intel_rps_freq_caps {
++	u8 rp0_freq;
++	u8 rp1_freq;
++	u8 min_freq;
++};
++
+ struct intel_rps {
+ 	struct mutex lock; /* protects enabling and the worker */
+ 
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
+index 9f032c65a488..9e02355e44f1 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
+@@ -582,16 +582,12 @@ static int slpc_use_fused_rp0(struct intel_guc_slpc *slpc)
+ static void slpc_get_rp_values(struct intel_guc_slpc *slpc)
  {
- 	struct {
- 		const char *name;
-@@ -623,15 +680,18 @@ static int get_panel_type(struct drm_i915_private *i915)
- 	} panel_types[] = {
- 		[PANEL_TYPE_OPREGION] = { .name = "OpRegion", .panel_type = -1, },
- 		[PANEL_TYPE_VBT] = { .name = "VBT", .panel_type = -1, },
-+		[PANEL_TYPE_PNPID] = { .name = "PNPID", .panel_type = -1, },
- 		[PANEL_TYPE_FALLBACK] = { .name = "fallback", .panel_type = 0, },
- 	};
- 	int i;
+ 	struct intel_rps *rps = &slpc_to_gt(slpc)->rps;
+-	u32 rp_state_cap;
++	struct intel_rps_freq_caps caps;
  
- 	panel_types[PANEL_TYPE_OPREGION].panel_type = intel_opregion_get_panel_type(i915);
- 	panel_types[PANEL_TYPE_VBT].panel_type = vbt_panel_type(i915);
-+	panel_types[PANEL_TYPE_PNPID].panel_type = pnp_id_panel_type(i915, edid);
+-	rp_state_cap = intel_rps_read_state_cap(rps);
+-
+-	slpc->rp0_freq = REG_FIELD_GET(RP0_CAP_MASK, rp_state_cap) *
+-					GT_FREQUENCY_MULTIPLIER;
+-	slpc->rp1_freq = REG_FIELD_GET(RP1_CAP_MASK, rp_state_cap) *
+-					GT_FREQUENCY_MULTIPLIER;
+-	slpc->min_freq = REG_FIELD_GET(RPN_CAP_MASK, rp_state_cap) *
+-					GT_FREQUENCY_MULTIPLIER;
++	gen6_rps_get_freq_caps(rps, &caps);
++	slpc->rp0_freq = intel_gpu_freq(rps, caps.rp0_freq);
++	slpc->rp1_freq = intel_gpu_freq(rps, caps.rp1_freq);
++	slpc->min_freq = intel_gpu_freq(rps, caps.min_freq);
  
- 	for (i = 0; i < ARRAY_SIZE(panel_types); i++) {
--		drm_WARN_ON(&i915->drm, panel_types[i].panel_type > 0xf);
-+		drm_WARN_ON(&i915->drm, panel_types[i].panel_type > 0xf &&
-+			    panel_types[i].panel_type != 0xff);
- 
- 		if (panel_types[i].panel_type >= 0)
- 			drm_dbg_kms(&i915->drm, "Panel type (%s): %d\n",
-@@ -640,7 +700,11 @@ static int get_panel_type(struct drm_i915_private *i915)
- 
- 	if (panel_types[PANEL_TYPE_OPREGION].panel_type >= 0)
- 		i = PANEL_TYPE_OPREGION;
--	else if (panel_types[PANEL_TYPE_VBT].panel_type >= 0)
-+	else if (panel_types[PANEL_TYPE_VBT].panel_type == 0xff &&
-+		 panel_types[PANEL_TYPE_PNPID].panel_type >= 0)
-+		i = PANEL_TYPE_PNPID;
-+	else if (panel_types[PANEL_TYPE_VBT].panel_type != 0xff &&
-+		 panel_types[PANEL_TYPE_VBT].panel_type >= 0)
- 		i = PANEL_TYPE_VBT;
- 	else
- 		i = PANEL_TYPE_FALLBACK;
-@@ -653,7 +717,8 @@ static int get_panel_type(struct drm_i915_private *i915)
- 
- /* Parse general panel options */
- static void
--parse_panel_options(struct drm_i915_private *i915)
-+parse_panel_options(struct drm_i915_private *i915,
-+		    const struct edid *edid)
- {
- 	const struct bdb_lvds_options *lvds_options;
- 	int panel_type;
-@@ -665,7 +730,7 @@ parse_panel_options(struct drm_i915_private *i915)
- 
- 	i915->vbt.lvds_dither = lvds_options->pixel_dither;
- 
--	panel_type = get_panel_type(i915);
-+	panel_type = get_panel_type(i915, edid);
- 
- 	i915->vbt.panel_type = panel_type;
- 
-@@ -2953,9 +3018,10 @@ void intel_bios_init(struct drm_i915_private *i915)
- 	kfree(oprom_vbt);
- }
- 
--void intel_bios_init_panel(struct drm_i915_private *i915)
-+void intel_bios_init_panel(struct drm_i915_private *i915,
-+			   const struct edid *edid)
- {
--	parse_panel_options(i915);
-+	parse_panel_options(i915, edid);
- 	/*
- 	 * Older VBTs provided DTD information for internal displays through
- 	 * the "LFP panel tables" block (42).  As of VBT revision 229 the
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.h b/drivers/gpu/drm/i915/display/intel_bios.h
-index c744d75fa435..be6d57bd0f5a 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.h
-+++ b/drivers/gpu/drm/i915/display/intel_bios.h
-@@ -33,6 +33,7 @@
- #include <linux/types.h>
- 
- struct drm_i915_private;
-+struct edid;
- struct intel_bios_encoder_data;
- struct intel_crtc_state;
- struct intel_encoder;
-@@ -230,7 +231,8 @@ struct mipi_pps_data {
- } __packed;
- 
- void intel_bios_init(struct drm_i915_private *dev_priv);
--void intel_bios_init_panel(struct drm_i915_private *dev_priv);
-+void intel_bios_init_panel(struct drm_i915_private *dev_priv,
-+			   const struct edid *edid);
- void intel_bios_driver_remove(struct drm_i915_private *dev_priv);
- bool intel_bios_is_valid_vbt(const void *buf, size_t size);
- bool intel_bios_is_tv_present(struct drm_i915_private *dev_priv);
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index a1b5d7f5388b..41ac55a700e9 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -5179,7 +5179,7 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
- 	}
- 	intel_connector->edid = edid;
- 
--	intel_bios_init_panel(dev_priv);
-+	intel_bios_init_panel(dev_priv, IS_ERR(edid) ? NULL : edid);
- 
- 	intel_panel_add_edid_fixed_modes(intel_connector,
- 					 dev_priv->vbt.drrs_type != DRRS_TYPE_NONE);
-diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c b/drivers/gpu/drm/i915/display/intel_lvds.c
-index 554badf041f2..660bb95f2bf7 100644
---- a/drivers/gpu/drm/i915/display/intel_lvds.c
-+++ b/drivers/gpu/drm/i915/display/intel_lvds.c
-@@ -967,7 +967,7 @@ void intel_lvds_init(struct drm_i915_private *dev_priv)
- 	}
- 	intel_connector->edid = edid;
- 
--	intel_bios_init_panel(dev_priv);
-+	intel_bios_init_panel(dev_priv, IS_ERR(edid) ? NULL : edid);
- 
- 	/* Try EDID first */
- 	intel_panel_add_edid_fixed_modes(intel_connector,
-diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
-index 661a1057a073..25195bc1edca 100644
---- a/drivers/gpu/drm/i915/display/intel_sdvo.c
-+++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
-@@ -2900,7 +2900,7 @@ intel_sdvo_lvds_init(struct intel_sdvo *intel_sdvo, int device)
- 	if (!intel_sdvo_create_enhance_property(intel_sdvo, intel_sdvo_connector))
- 		goto err;
- 
--	intel_bios_init_panel(i915);
-+	intel_bios_init_panel(i915, NULL);
- 
- 	/*
- 	 * Fetch modes from VBT. For SDVO prefer the VBT mode since some
-diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
-index 08fb554ff7ad..1af6e927af9b 100644
---- a/drivers/gpu/drm/i915/display/vlv_dsi.c
-+++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
-@@ -1929,7 +1929,7 @@ void vlv_dsi_init(struct drm_i915_private *dev_priv)
- 	else
- 		intel_dsi->ports = BIT(port);
- 
--	intel_bios_init_panel(dev_priv);
-+	intel_bios_init_panel(dev_priv, NULL);
- 
- 	intel_dsi->dcs_backlight_ports = dev_priv->vbt.dsi.bl_ports;
- 	intel_dsi->dcs_cabc_ports = dev_priv->vbt.dsi.cabc_ports;
+ 	if (!slpc->boost_freq)
+ 		slpc->boost_freq = slpc->rp0_freq;
 -- 
-2.35.1
+2.34.1
 
