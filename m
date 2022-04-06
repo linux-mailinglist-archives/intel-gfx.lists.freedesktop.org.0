@@ -1,53 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7C814F5E5F
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Apr 2022 14:48:09 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB8F84F5EFF
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Apr 2022 15:24:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0FEBC10EC50;
-	Wed,  6 Apr 2022 12:48:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D01A10E074;
+	Wed,  6 Apr 2022 13:24:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8218110ED18
- for <intel-gfx@lists.freedesktop.org>; Wed,  6 Apr 2022 12:48:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649249286; x=1680785286;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=J3GaxOLIPPMvdikGQd9G/VeY6mi8ZX5UR8rklzykslE=;
- b=TlkJQ2daebfHjvETZxSSjp34JZ5U6+SXnMRW+HOn33Ox0PqgQTgauzba
- LVIucDbAMXTWG0HL5Pszm50h5XxKFrwrAOnUm9WQ9wuiMLliH+zo9tcQv
- 4izlSEoynz7CpiIFI6z+phqdBiddEpmwKM6vm5IhAmI9g8fCtmK27fXcA
- mGMOeTIS2o0zvPjChtJ3o1srodf2JNdkzZjvT+y3tO6+QbvygN6qkSE/e
- q0GwS67X6UlW+hDyThmdya49MKu+HMQ+diRRmWV6xWTyKclqhAldd6123
- kSrHknu6xt3LJniUb0w79370vb+ErfZQhustaZ+G8glnEFQBSR8nvo4QP w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10308"; a="321729760"
-X-IronPort-AV: E=Sophos;i="5.90,239,1643702400"; d="scan'208";a="321729760"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2022 05:48:06 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,239,1643702400"; d="scan'208";a="697358419"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.51])
- by fmsmga001.fm.intel.com with SMTP; 06 Apr 2022 05:48:03 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 06 Apr 2022 15:48:02 +0300
-Date: Wed, 6 Apr 2022 15:48:02 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Vinod Govindapillai <vinod.govindapillai@intel.com>
-Message-ID: <Yk2MAo+cfr3npN2O@intel.com>
-References: <20220404134918.729038-1-vinod.govindapillai@intel.com>
+Received: from mail-qt1-x831.google.com (mail-qt1-x831.google.com
+ [IPv6:2607:f8b0:4864:20::831])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3DF7310E074;
+ Wed,  6 Apr 2022 13:24:45 +0000 (UTC)
+Received: by mail-qt1-x831.google.com with SMTP id t19so4215903qtc.4;
+ Wed, 06 Apr 2022 06:24:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=d4iXvLjsK1mh946NkvFEHMXhSKuL2z+YcK+w/SirEdw=;
+ b=MZquX42wF4ahLGQ/s5yIUSm3lMwGPG1pKMoCQSJWWLwuep13kV3W6976KU0dg9w1dz
+ FgFCs7WKkX7uwq6HnmZNNlx3tpvJ/fstli4epY+WZB3i4x5cUT/eVdMUEqP1J+LeoCf5
+ XIcI9MDKr6Q9vTcOS3rSHIW9UYZj3jnQwlQmn8FroRkcHe9aMa94N8EnTHW9cq9bQjWs
+ QsDaw/Kvmq6A30RmFWoAF3x3Z2LWsc9TXCfEohIEBS3WR8kSAtXscf2OqoO7vV9WtzGJ
+ GKz9Q3CqjYevFZTmop1hybYywjfW7E0yzxRmM6Qw/xqOmsWyKdsHndIqzCNi5tANifUD
+ 6BeQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=d4iXvLjsK1mh946NkvFEHMXhSKuL2z+YcK+w/SirEdw=;
+ b=YJC3t5gxcJhxGq7lfcJviC0uK9HGVaKgWVo00PIt+dpsG1KHXszYpTkQe+uHi6IU6f
+ cKHLwyDm2eqGNR2C+OIsVBtAmVvFTE3gnflX+IJkSjXB1+LQOLOmifoGZxnPKiXqPcDr
+ i5YaAySJkcQWTynVEw23r5RceMuJfi311R127eNLSyYCQIX78YiYrgePq/oWf1Pk1tXZ
+ meodgnrspb+NT0XLUjxhkV+pjSP3b2qncgBALlFqeaGAYxWi2hQB2y7uBhizORs+LZ+f
+ q5RVBGZwcOQaRSfo5we70gmchOJ8Rh/29j6EKoUQjmoezW9wOs9MrXuNiYf926CKVXV+
+ g6eQ==
+X-Gm-Message-State: AOAM531J79rqljUbr9gPVVjluOOc633401xnnBfS9bOh88L5X500vTg1
+ uLX6jRWO1y/P+c2pbnjuNiW+N9hn6Lux0ERtfMg=
+X-Google-Smtp-Source: ABdhPJy8uGbKLe9SJJNslWXlhJ/XZxgSFEk0UJFdh0ns0lIQ1sh5OzcAoko/RmOJrVFDBfe7mA9CvKsLpsuPps5Glcg=
+X-Received: by 2002:a05:620a:f0d:b0:67e:1961:b061 with SMTP id
+ v13-20020a05620a0f0d00b0067e1961b061mr5665760qkl.82.1649251484122; Wed, 06
+ Apr 2022 06:24:44 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220404134918.729038-1-vinod.govindapillai@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: program wm blocks to at least
- blocks required per line
+References: <20220406075132.3263-1-christian.koenig@amd.com>
+ <20220406075132.3263-15-christian.koenig@amd.com>
+In-Reply-To: <20220406075132.3263-15-christian.koenig@amd.com>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Wed, 6 Apr 2022 14:24:17 +0100
+Message-ID: <CAM0jSHP2QV=4+Li1Fhfa84-6D-RCXrKp68RpBkudGy6h93ibaQ@mail.gmail.com>
+To: DMA-resv@freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 14/16] drm/i915: drop bo->moving dependency
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,78 +65,236 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ ML dri-devel <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Apr 04, 2022 at 04:49:18PM +0300, Vinod Govindapillai wrote:
-> In configurations with single DRAM channel, for usecases like
-> 4K 60 Hz, FIFO underruns are observed quite frequently. Looks
-> like the wm0 watermark values need to bumped up because the wm0
-> memory latency calculations are probably not taking the DRAM
-> channel's impact into account.
-> 
-> As per the Bspec 49325, if the ddb allocation can hold at least
-> one plane_blocks_per_line we should have selected method2.
-> Assuming that modern HW versions have enough dbuf to hold
-> at least one line, set the wm blocks to equivalent to blocks
-> per line.
-> 
-> cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> 
-> Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
+On Wed, 6 Apr 2022 at 08:52, Christian K=C3=B6nig
+<ckoenig.leichtzumerken@gmail.com> wrote:
+>
+> That should now be handled by the common dma_resv framework.
+>
+> Signed-off-by: Christian K=C3=B6nig <christian.koenig@amd.com>
+> Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+> Cc: intel-gfx@lists.freedesktop.org
 > ---
->  drivers/gpu/drm/i915/intel_pm.c | 19 ++++++++++++++++++-
->  1 file changed, 18 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-> index 8824f269e5f5..ae28a8c63ca4 100644
-> --- a/drivers/gpu/drm/i915/intel_pm.c
-> +++ b/drivers/gpu/drm/i915/intel_pm.c
-> @@ -5474,7 +5474,24 @@ static void skl_compute_plane_wm(const struct intel_crtc_state *crtc_state,
->  		}
->  	}
->  
-> -	blocks = fixed16_to_u32_round_up(selected_result) + 1;
-> +	/*
-> +	 * Lets have blocks at minimum equivalent to plane_blocks_per_line
-> +	 * as there will be at minimum one line for lines configuration.
-> +	 *
-> +	 * As per the Bspec 49325, if the ddb allocation can hold at least
-> +	 * one plane_blocks_per_line, we should have selected method2 in
-> +	 * the above logic. Assuming that modern versions have enough dbuf
-> +	 * and method2 guarantees blocks equivalent to at least 1 line,
-> +	 * select the blocks as plane_blocks_per_line.
-> +	 *
-> +	 * TODO: Revisit the logic when we have better understanding on DRAM
-> +	 * channels' impact on the level 0 memory latency and the relevant
-> +	 * wm calculations.
-> +	 */
-> +	blocks = skl_wm_has_lines(dev_priv, level) ?
-> +			max_t(u32, fixed16_to_u32_round_up(selected_result) + 1,
-> +				  fixed16_to_u32_round_up(wp->plane_blocks_per_line)) :
-> +			fixed16_to_u32_round_up(selected_result) + 1;
+>  drivers/gpu/drm/i915/gem/i915_gem_object.c    | 41 ++++---------------
+>  drivers/gpu/drm/i915/gem/i915_gem_object.h    |  8 +---
+>  drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c  | 15 +------
+>  .../drm/i915/gem/selftests/i915_gem_migrate.c |  3 +-
+>  .../drm/i915/gem/selftests/i915_gem_mman.c    |  3 +-
+>  drivers/gpu/drm/i915/i915_vma.c               |  9 +++-
+>  6 files changed, 21 insertions(+), 58 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm=
+/i915/gem/i915_gem_object.c
+> index 372bc220faeb..ffde7bc0a95d 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+> @@ -741,30 +741,19 @@ static const struct drm_gem_object_funcs i915_gem_o=
+bject_funcs =3D {
+>  /**
+>   * i915_gem_object_get_moving_fence - Get the object's moving fence if a=
+ny
+>   * @obj: The object whose moving fence to get.
+> + * @fence: The resulting fence
+>   *
+>   * A non-signaled moving fence means that there is an async operation
+>   * pending on the object that needs to be waited on before setting up
+>   * any GPU- or CPU PTEs to the object's pages.
+>   *
+> - * Return: A refcounted pointer to the object's moving fence if any,
+> - * NULL otherwise.
+> + * Return: Negative error code or 0 for success.
+>   */
+> -struct dma_fence *
+> -i915_gem_object_get_moving_fence(struct drm_i915_gem_object *obj)
+> +int i915_gem_object_get_moving_fence(struct drm_i915_gem_object *obj,
+> +                                    struct dma_fence **fence)
+>  {
+> -       return dma_fence_get(i915_gem_to_ttm(obj)->moving);
+> -}
+> -
+> -void i915_gem_object_set_moving_fence(struct drm_i915_gem_object *obj,
+> -                                     struct dma_fence *fence)
+> -{
+> -       struct dma_fence **moving =3D &i915_gem_to_ttm(obj)->moving;
+> -
+> -       if (*moving =3D=3D fence)
+> -               return;
+> -
+> -       dma_fence_put(*moving);
+> -       *moving =3D dma_fence_get(fence);
+> +       return dma_resv_get_singleton(obj->base.resv, DMA_RESV_USAGE_KERN=
+EL,
+> +                                     fence);
+>  }
+>
+>  /**
+> @@ -782,23 +771,9 @@ void i915_gem_object_set_moving_fence(struct drm_i91=
+5_gem_object *obj,
+>  int i915_gem_object_wait_moving_fence(struct drm_i915_gem_object *obj,
+>                                       bool intr)
+>  {
+> -       struct dma_fence *fence =3D i915_gem_to_ttm(obj)->moving;
+> -       int ret;
+> -
+>         assert_object_held(obj);
+> -       if (!fence)
+> -               return 0;
+> -
+> -       ret =3D dma_fence_wait(fence, intr);
+> -       if (ret)
+> -               return ret;
+> -
+> -       if (fence->error)
+> -               return fence->error;
+> -
+> -       i915_gem_to_ttm(obj)->moving =3D NULL;
+> -       dma_fence_put(fence);
+> -       return 0;
+> +       return dma_resv_wait_timeout(obj->base. resv, DMA_RESV_USAGE_KERN=
+EL,
+> +                                    intr, MAX_SCHEDULE_TIMEOUT);
+>  }
+>
+>  #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm=
+/i915/gem/i915_gem_object.h
+> index 02c37fe4a535..e11d82a9f7c3 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+> @@ -520,12 +520,8 @@ i915_gem_object_finish_access(struct drm_i915_gem_ob=
+ject *obj)
+>         i915_gem_object_unpin_pages(obj);
+>  }
+>
+> -struct dma_fence *
+> -i915_gem_object_get_moving_fence(struct drm_i915_gem_object *obj);
+> -
+> -void i915_gem_object_set_moving_fence(struct drm_i915_gem_object *obj,
+> -                                     struct dma_fence *fence);
+> -
+> +int i915_gem_object_get_moving_fence(struct drm_i915_gem_object *obj,
+> +                                    struct dma_fence **fence);
+>  int i915_gem_object_wait_moving_fence(struct drm_i915_gem_object *obj,
+>                                       bool intr);
+>
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c b/drivers/gpu/d=
+rm/i915/gem/i915_gem_ttm_move.c
+> index 438b8a95b3d1..a10716f4e717 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
+> @@ -467,19 +467,6 @@ __i915_ttm_move(struct ttm_buffer_object *bo,
+>         return fence;
+>  }
+>
+> -static int
+> -prev_deps(struct ttm_buffer_object *bo, struct ttm_operation_ctx *ctx,
+> -         struct i915_deps *deps)
+> -{
+> -       int ret;
+> -
+> -       ret =3D i915_deps_add_dependency(deps, bo->moving, ctx);
+> -       if (!ret)
+> -               ret =3D i915_deps_add_resv(deps, bo->base.resv, ctx);
+> -
+> -       return ret;
+> -}
+> -
+>  /**
+>   * i915_ttm_move - The TTM move callback used by i915.
+>   * @bo: The buffer object.
+> @@ -534,7 +521,7 @@ int i915_ttm_move(struct ttm_buffer_object *bo, bool =
+evict,
+>                 struct i915_deps deps;
+>
+>                 i915_deps_init(&deps, GFP_KERNEL | __GFP_NORETRY | __GFP_=
+NOWARN);
+> -               ret =3D prev_deps(bo, ctx, &deps);
+> +               ret =3D i915_deps_add_resv(&deps, bo->base.resv, ctx);
+>                 if (ret) {
+>                         i915_refct_sgt_put(dst_rsgt);
+>                         return ret;
+> diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_migrate.c b/driv=
+ers/gpu/drm/i915/gem/selftests/i915_gem_migrate.c
+> index 4997ed18b6e4..0ad443a90c8b 100644
+> --- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_migrate.c
+> +++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_migrate.c
+> @@ -219,8 +219,7 @@ static int __igt_lmem_pages_migrate(struct intel_gt *=
+gt,
+>                         err =3D dma_resv_reserve_fences(obj->base.resv, 1=
+);
+>                         if (!err)
+>                                 dma_resv_add_fence(obj->base.resv, &rq->f=
+ence,
+> -                                                  DMA_RESV_USAGE_WRITE);
+> -                       i915_gem_object_set_moving_fence(obj, &rq->fence)=
+;
+> +                                                  DMA_RESV_USAGE_KERNEL)=
+;
+>                         i915_request_put(rq);
+>                 }
+>                 if (err)
+> diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c b/drivers=
+/gpu/drm/i915/gem/selftests/i915_gem_mman.c
+> index 3a6e3f6d239f..dfc34cc2ef8c 100644
+> --- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
+> +++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
+> @@ -1221,8 +1221,7 @@ static int __igt_mmap_migrate(struct intel_memory_r=
+egion **placements,
+>         i915_gem_object_unpin_pages(obj);
+>         if (rq) {
+>                 dma_resv_add_fence(obj->base.resv, &rq->fence,
+> -                                  DMA_RESV_USAGE_WRITE);
+> -               i915_gem_object_set_moving_fence(obj, &rq->fence);
+> +                                  DMA_RESV_USAGE_KERNEL);
+>                 i915_request_put(rq);
+>         }
+>         i915_gem_object_unlock(obj);
+> diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_=
+vma.c
+> index 524477d8939e..d077f7b9eaad 100644
+> --- a/drivers/gpu/drm/i915/i915_vma.c
+> +++ b/drivers/gpu/drm/i915/i915_vma.c
+> @@ -1357,10 +1357,17 @@ int i915_vma_pin_ww(struct i915_vma *vma, struct =
+i915_gem_ww_ctx *ww,
+>         if (err)
+>                 return err;
+>
+> +       if (vma->obj) {
+> +               err =3D i915_gem_object_get_moving_fence(vma->obj, &movin=
+g);
+> +               if (err)
 
-That's looks rather convoluted.
+goto err_put_pages;
 
-  blocks = fixed16_to_u32_round_up(selected_result) + 1;
-+ /* blah */
-+ if (has_lines)
-+	blocks = max(blocks, fixed16_to_u32_round_up(wp->plane_blocks_per_line));
+> +                       return err;
+> +       } else {
+> +               moving =3D NULL;
 
-Also since Art said nothing like this should actually be needed
-I think the comment should make it a bit more clear that this
-is just a hack to work around the underruns with some single
-memory channel configurations.
+It looks like moving is already initialised with NULL further up.
 
+> +       }
+> +
+>         if (flags & PIN_GLOBAL)
+>                 wakeref =3D intel_runtime_pm_get(&vma->vm->i915->runtime_=
+pm);
+>
+> -       moving =3D vma->obj ? i915_gem_object_get_moving_fence(vma->obj) =
+: NULL;
 
->  	lines = div_round_up_fixed16(selected_result,
->  				     wp->plane_blocks_per_line);
->  
-> -- 
+Just fyi, this patch will conflict slightly with the following in gt-next:
+
+e4b3ee71ec2a drm/i915: stop checking for NULL vma->obj
+833124a0d169 drm/i915: limit the async bind to bind_async_flags
+
+>         if (flags & vma->vm->bind_async_flags || moving) {
+>                 /* lock VM */
+>                 err =3D i915_vm_lock_objects(vma->vm, ww);
+> --
 > 2.25.1
-
--- 
-Ville Syrjälä
-Intel
+>
