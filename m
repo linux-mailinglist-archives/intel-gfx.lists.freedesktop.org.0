@@ -1,34 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A52674F52A9
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Apr 2022 05:01:10 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D90EA4F52C5
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Apr 2022 05:05:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA9F310EC61;
-	Wed,  6 Apr 2022 03:01:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 742E810ED04;
+	Wed,  6 Apr 2022 03:05:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6CC7310EC60;
- Wed,  6 Apr 2022 03:01:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id BE20710ED03;
+ Wed,  6 Apr 2022 03:05:53 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 69CF7AA01E;
- Wed,  6 Apr 2022 03:01:07 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id B9901A363D;
+ Wed,  6 Apr 2022 03:05:53 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Stephen Rothwell" <sfr@canb.auug.org.au>
-Date: Wed, 06 Apr 2022 03:01:07 -0000
-Message-ID: <164921406742.5452.4785388720595477379@emeril.freedesktop.org>
+Date: Wed, 06 Apr 2022 03:05:53 -0000
+Message-ID: <164921435373.5450.10726406799525959794@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20220406105049.5f5e01c1@canb.auug.org.au>
 In-Reply-To: <20220406105049.5f5e01c1@canb.auug.org.au>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_linux-next=3A_build_failure_after_merge_of_the_drm-misc_tre?=
- =?utf-8?q?e?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIGxp?=
+ =?utf-8?q?nux-next=3A_build_failure_after_merge_of_the_drm-misc_tree?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,20 +53,7 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-e9f5f04870a7 linux-next: build failure after merge of the drm-misc tree
--:18: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#18: 
-  49956b505c53 ("drm/panel: Add panel driver for NewVision NV3052C based LCDs")
-
--:18: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 49956b505c53 ("drm/panel: Add panel driver for NewVision NV3052C based LCDs")'
-#18: 
-  49956b505c53 ("drm/panel: Add panel driver for NewVision NV3052C based LCDs")
-
--:22: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 2cbfa2128662 ("spi: make remove callback a void function")'
-#22: 
-  2cbfa2128662 ("spi: make remove callback a void function")
-
-total: 2 errors, 1 warnings, 0 checks, 16 lines checked
+$ make htmldocs 2>&1 > /dev/null | grep i915
+./drivers/gpu/drm/i915/gem/i915_gem_context_types.h:417: warning: Function parameter or member 'client_link' not described in 'i915_gem_context'
 
 
