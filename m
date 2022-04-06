@@ -1,51 +1,67 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E88C34FBE35
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Apr 2022 16:02:15 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C60F4FC196
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Apr 2022 17:53:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ABA4010F74A;
-	Mon, 11 Apr 2022 14:02:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A2D8510E9A0;
+	Mon, 11 Apr 2022 15:53:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 353B010F748;
- Mon, 11 Apr 2022 14:02:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649685732; x=1681221732;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=8I4SSzmngspo0Z8Lz1kRe+dzgDyTF6F0PtgW/6Fxe+c=;
- b=Fi8G7ujLv4O8PqASFzrdpAJYFPV7e33ei49PxE10vbTn2Xq/PH7LRIuZ
- XXm8R66OMM6EO95deakvR6pGsSROwMOeyvHa4uAqk6SKqcwSp8oxxnH3P
- WuVUzLU3SGohuvadZb/nuzs3d9dB6khJXzqC4981EfETEWtwbNkfxI7UT
- +arhJtl7poq7VOKfSlw8bS+UO87LEpqZd5jeZPfGBZpIdCoy1f7C+N1iF
- dlnyhvt6mnoCRz/e2xrBrphSQQLCyI0qaQVGI1xBY75SWHluQMVzBzu/j
- 4v6gwi2Zr4PWAEI1Y6wb7yZ3Hnuc/A/NEeOvKxOHG5WHVcaV8ybLho0rV Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10313"; a="261560293"
-X-IronPort-AV: E=Sophos;i="5.90,252,1643702400"; d="scan'208";a="261560293"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Apr 2022 07:01:42 -0700
-X-IronPort-AV: E=Sophos;i="5.90,252,1643702400"; d="scan'208";a="660059218"
-Received: from lwit-desk1.ger.corp.intel.com (HELO localhost) ([10.249.143.43])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Apr 2022 07:01:40 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: dri-devel@lists.freedesktop.org
-Date: Mon, 11 Apr 2022 17:00:35 +0300
-Message-Id: <dc7b0850293d837439fb3914c8a9d81e39018b4b.1649685475.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <cover.1649685475.git.jani.nikula@intel.com>
-References: <cover.1649685475.git.jani.nikula@intel.com>
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com
+ [IPv6:2a00:1450:4864:20::52b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 41DF210F3A3;
+ Wed,  6 Apr 2022 07:51:57 +0000 (UTC)
+Received: by mail-ed1-x52b.google.com with SMTP id f18so1601659edc.5;
+ Wed, 06 Apr 2022 00:51:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references:reply-to
+ :mime-version:content-transfer-encoding;
+ bh=8IUNqlEB/tRirjBlmf3DCVptBJ3+kBQH40nEBk4GLOk=;
+ b=X9P3tJvW3HKJc3sug915qTd9C3H2V7j4nI4YQgvhFeHZUcz+j20z4Z+m3I8VXMudRl
+ TVIG3ymi3nJVgk1R3SJJt7WreydonZZBkAU1M7E0GXcqYSs9nt1i5gUmZwfhUlzsOPMz
+ ij+QL3XcYVBS6wW86e5N1MI10NiedCQ9B8H0xe9WVIvnP98VKf8VpynVgBkci7JFmMAB
+ CPfjmO+uvZ2RTPzgznniXBbwcT4uuRZKWSBmLf0oIAQfBZ60GZ+vnJ4vJ5FZW/32O5g+
+ efcefDbbF50Pve2z3lrIA2XdwWEnlwgH6IlfeNuQf8KQFZDvXJqRFwZePykQn6cOvKWY
+ V0NA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:reply-to:mime-version:content-transfer-encoding;
+ bh=8IUNqlEB/tRirjBlmf3DCVptBJ3+kBQH40nEBk4GLOk=;
+ b=1s7yOpwvd6Q3eHsWHlwy/wM4wjVHIWskhvsswLSN0KGSawHmkJxb/Ob3b/Az+48GCy
+ 7iK6pGxJ4xfQehc8IoTLdP4x16m6FIUuZNsytEOP1AIdUbzG6NaslnI6f0sGcx5ktEUW
+ 7B44Bk4ma3p9wzvNRgFxwICgzmgVLvKT6yfOtdnJmt0EMiYGcUyjJBsTVzuWLkc/y8zy
+ b8utkTxvQWtJfxP3OGBHKlX5S4XW6ZF0CICgfPoAh1ugcQgksNNUJ1Sdr9VpBiT+OGfh
+ oVAKJpCHGP3j4Lwc1iBK4vcTm3avQcUFPZK6RyI0aF0L8Q7KfFjmNV4IdQ4aUYNNxf5R
+ CNAw==
+X-Gm-Message-State: AOAM530TkWzgsQI6896M0fET+fk5o7cm1b87znjjmQOM/BXnp9eaDdeH
+ 5eazsHpA6gczv0uWWXlCVeteHGpPsUAAMw==
+X-Google-Smtp-Source: ABdhPJy0+JErg9p2oMRm1PXnpJQjuqlnvkXBrUzjX02vEcwu1iH2UJrnnplvZ/NlEZ9THbQKc8XraQ==
+X-Received: by 2002:a05:6402:1941:b0:413:2b5f:9074 with SMTP id
+ f1-20020a056402194100b004132b5f9074mr7297644edz.414.1649231515756; 
+ Wed, 06 Apr 2022 00:51:55 -0700 (PDT)
+Received: from able.fritz.box (p57b0b9e1.dip0.t-ipconnect.de. [87.176.185.225])
+ by smtp.gmail.com with ESMTPSA id
+ bs7-20020a056402304700b004197e5d2350sm7376386edb.54.2022.04.06.00.51.54
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 06 Apr 2022 00:51:54 -0700 (PDT)
+From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
+X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
+ <christian.koenig@amd.com>
+To: daniel.vetter@ffwll.ch,
+	dri-devel@lists.freedesktop.org
+Date: Wed,  6 Apr 2022 09:51:30 +0200
+Message-Id: <20220406075132.3263-15-christian.koenig@amd.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220406075132.3263-1-christian.koenig@amd.com>
+References: <20220406075132.3263-1-christian.koenig@amd.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [CI v3 12/12] drm/edid: add EDID block count and size
- helpers
+X-Mailman-Approved-At: Mon, 11 Apr 2022 15:52:43 +0000
+Subject: [Intel-gfx] [PATCH 14/16] drm/i915: drop bo->moving dependency
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,204 +74,196 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
+Reply-To: DMA-resv@freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add some helpers to figure out the EDID extension block count, block
-count, size, pointers to blocks.
+That should now be handled by the common dma_resv framework.
 
-Unfortunately, we'll need to cast away the const in a few places where
-we actually need to access the data.
-
-v3: fix (!edid_extension_block_count(edid) == 0) (kernel test robot)
-
-v2: fix s/j/i/ introduced in a rebase
-
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: Christian König <christian.koenig@amd.com>
+Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: intel-gfx@lists.freedesktop.org
 ---
- drivers/gpu/drm/drm_edid.c | 80 +++++++++++++++++++++++++++-----------
- 1 file changed, 57 insertions(+), 23 deletions(-)
+ drivers/gpu/drm/i915/gem/i915_gem_object.c    | 41 ++++---------------
+ drivers/gpu/drm/i915/gem/i915_gem_object.h    |  8 +---
+ drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c  | 15 +------
+ .../drm/i915/gem/selftests/i915_gem_migrate.c |  3 +-
+ .../drm/i915/gem/selftests/i915_gem_mman.c    |  3 +-
+ drivers/gpu/drm/i915/i915_vma.c               |  9 +++-
+ 6 files changed, 21 insertions(+), 58 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
-index 0933a5c44998..e2739f06d72b 100644
---- a/drivers/gpu/drm/drm_edid.c
-+++ b/drivers/gpu/drm/drm_edid.c
-@@ -1568,6 +1568,38 @@ static const struct drm_display_mode edid_4k_modes[] = {
- 
- /*** DDC fetch and block validation ***/
- 
-+static int edid_extension_block_count(const struct edid *edid)
-+{
-+	return edid->extensions;
-+}
-+
-+static int edid_block_count(const struct edid *edid)
-+{
-+	return edid_extension_block_count(edid) + 1;
-+}
-+
-+static int edid_size_by_blocks(int num_blocks)
-+{
-+	return num_blocks * EDID_LENGTH;
-+}
-+
-+static int edid_size(const struct edid *edid)
-+{
-+	return edid_size_by_blocks(edid_block_count(edid));
-+}
-+
-+static const void *edid_block_data(const struct edid *edid, int index)
-+{
-+	BUILD_BUG_ON(sizeof(*edid) != EDID_LENGTH);
-+
-+	return edid + index;
-+}
-+
-+static const void *edid_extension_block_data(const struct edid *edid, int index)
-+{
-+	return edid_block_data(edid, index + 1);
-+}
-+
- static const u8 edid_header[] = {
- 	0x00, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0x00
- };
-@@ -1654,8 +1686,8 @@ bool drm_edid_are_equal(const struct edid *edid1, const struct edid *edid2)
- 		return false;
- 
- 	if (edid1) {
--		edid1_len = EDID_LENGTH * (1 + edid1->extensions);
--		edid2_len = EDID_LENGTH * (1 + edid2->extensions);
-+		edid1_len = edid_size(edid1);
-+		edid2_len = edid_size(edid2);
- 
- 		if (edid1_len != edid2_len)
- 			return false;
-@@ -1865,14 +1897,16 @@ EXPORT_SYMBOL(drm_edid_block_valid);
- bool drm_edid_is_valid(struct edid *edid)
- {
- 	int i;
--	u8 *raw = (u8 *)edid;
- 
- 	if (!edid)
- 		return false;
- 
--	for (i = 0; i <= edid->extensions; i++)
--		if (!drm_edid_block_valid(raw + i * EDID_LENGTH, i, true, NULL))
-+	for (i = 0; i < edid_block_count(edid); i++) {
-+		void *block = (void *)edid_block_data(edid, i);
-+
-+		if (!drm_edid_block_valid(block, i, true, NULL))
- 			return false;
-+	}
- 
- 	return true;
- }
-@@ -1885,13 +1919,13 @@ static struct edid *edid_filter_invalid_blocks(const struct edid *edid,
- 	int valid_extensions = edid->extensions - invalid_blocks;
- 	int i;
- 
--	new = kmalloc_array(valid_extensions + 1, EDID_LENGTH, GFP_KERNEL);
-+	new = kmalloc(edid_size_by_blocks(valid_extensions + 1), GFP_KERNEL);
- 	if (!new)
- 		goto out;
- 
- 	dest_block = new;
--	for (i = 0; i <= edid->extensions; i++) {
--		const void *block = edid + i;
-+	for (i = 0; i < edid_block_count(edid); i++) {
-+		const void *block = edid_block_data(edid, i);
- 
- 		if (edid_block_valid(block, i == 0))
- 			memcpy(dest_block++, block, EDID_LENGTH);
-@@ -2101,7 +2135,7 @@ struct edid *drm_do_get_edid(struct drm_connector *connector,
- 			     void *context)
- {
- 	enum edid_block_status status;
--	int j, invalid_blocks = 0;
-+	int i, invalid_blocks = 0;
- 	struct edid *edid, *new;
- 
- 	edid = drm_get_override_edid(connector);
-@@ -2133,20 +2167,20 @@ struct edid *drm_do_get_edid(struct drm_connector *connector,
- 		goto fail;
- 	}
- 
--	if (edid->extensions == 0)
-+	if (!edid_extension_block_count(edid))
- 		goto ok;
- 
--	new = krealloc(edid, (edid->extensions + 1) * EDID_LENGTH, GFP_KERNEL);
-+	new = krealloc(edid, edid_size(edid), GFP_KERNEL);
- 	if (!new)
- 		goto fail;
- 	edid = new;
- 
--	for (j = 1; j <= edid->extensions; j++) {
--		void *block = edid + j;
-+	for (i = 1; i < edid_block_count(edid); i++) {
-+		void *block = (void *)edid_block_data(edid, i);
- 
--		status = edid_block_read(block, j, read_block, context);
-+		status = edid_block_read(block, i, read_block, context);
- 
--		edid_block_status_print(status, block, j);
-+		edid_block_status_print(status, block, i);
- 
- 		if (!edid_block_status_valid(status, edid_block_tag(block))) {
- 			if (status == EDID_BLOCK_READ_FAIL)
-@@ -2156,7 +2190,7 @@ struct edid *drm_do_get_edid(struct drm_connector *connector,
- 	}
- 
- 	if (invalid_blocks) {
--		connector_bad_edid(connector, edid, edid->extensions + 1);
-+		connector_bad_edid(connector, edid, edid_block_count(edid));
- 
- 		edid = edid_filter_invalid_blocks(edid, invalid_blocks);
- 	}
-@@ -2321,7 +2355,7 @@ EXPORT_SYMBOL(drm_get_edid_switcheroo);
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+index 372bc220faeb..ffde7bc0a95d 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+@@ -741,30 +741,19 @@ static const struct drm_gem_object_funcs i915_gem_object_funcs = {
+ /**
+  * i915_gem_object_get_moving_fence - Get the object's moving fence if any
+  * @obj: The object whose moving fence to get.
++ * @fence: The resulting fence
+  *
+  * A non-signaled moving fence means that there is an async operation
+  * pending on the object that needs to be waited on before setting up
+  * any GPU- or CPU PTEs to the object's pages.
+  *
+- * Return: A refcounted pointer to the object's moving fence if any,
+- * NULL otherwise.
++ * Return: Negative error code or 0 for success.
   */
- struct edid *drm_edid_duplicate(const struct edid *edid)
+-struct dma_fence *
+-i915_gem_object_get_moving_fence(struct drm_i915_gem_object *obj)
++int i915_gem_object_get_moving_fence(struct drm_i915_gem_object *obj,
++				     struct dma_fence **fence)
  {
--	return kmemdup(edid, (edid->extensions + 1) * EDID_LENGTH, GFP_KERNEL);
-+	return kmemdup(edid, edid_size(edid), GFP_KERNEL);
+-	return dma_fence_get(i915_gem_to_ttm(obj)->moving);
+-}
+-
+-void i915_gem_object_set_moving_fence(struct drm_i915_gem_object *obj,
+-				      struct dma_fence *fence)
+-{
+-	struct dma_fence **moving = &i915_gem_to_ttm(obj)->moving;
+-
+-	if (*moving == fence)
+-		return;
+-
+-	dma_fence_put(*moving);
+-	*moving = dma_fence_get(fence);
++	return dma_resv_get_singleton(obj->base.resv, DMA_RESV_USAGE_KERNEL,
++				      fence);
  }
- EXPORT_SYMBOL(drm_edid_duplicate);
  
-@@ -2505,8 +2539,8 @@ drm_for_each_detailed_block(const struct edid *edid, detailed_cb *cb, void *clos
- 	for (i = 0; i < EDID_DETAILED_TIMINGS; i++)
- 		cb(&(edid->detailed_timings[i]), closure);
+ /**
+@@ -782,23 +771,9 @@ void i915_gem_object_set_moving_fence(struct drm_i915_gem_object *obj,
+ int i915_gem_object_wait_moving_fence(struct drm_i915_gem_object *obj,
+ 				      bool intr)
+ {
+-	struct dma_fence *fence = i915_gem_to_ttm(obj)->moving;
+-	int ret;
+-
+ 	assert_object_held(obj);
+-	if (!fence)
+-		return 0;
+-
+-	ret = dma_fence_wait(fence, intr);
+-	if (ret)
+-		return ret;
+-
+-	if (fence->error)
+-		return fence->error;
+-
+-	i915_gem_to_ttm(obj)->moving = NULL;
+-	dma_fence_put(fence);
+-	return 0;
++	return dma_resv_wait_timeout(obj->base. resv, DMA_RESV_USAGE_KERNEL,
++				     intr, MAX_SCHEDULE_TIMEOUT);
+ }
  
--	for (i = 1; i <= edid->extensions; i++) {
--		const u8 *ext = (const u8 *)edid + (i * EDID_LENGTH);
-+	for (i = 0; i < edid_extension_block_count(edid); i++) {
-+		const u8 *ext = edid_extension_block_data(edid, i);
+ #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+index 02c37fe4a535..e11d82a9f7c3 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+@@ -520,12 +520,8 @@ i915_gem_object_finish_access(struct drm_i915_gem_object *obj)
+ 	i915_gem_object_unpin_pages(obj);
+ }
  
- 		switch (*ext) {
- 		case CEA_EXT:
-@@ -3476,17 +3510,17 @@ const u8 *drm_find_edid_extension(const struct edid *edid,
- 	int i;
+-struct dma_fence *
+-i915_gem_object_get_moving_fence(struct drm_i915_gem_object *obj);
+-
+-void i915_gem_object_set_moving_fence(struct drm_i915_gem_object *obj,
+-				      struct dma_fence *fence);
+-
++int i915_gem_object_get_moving_fence(struct drm_i915_gem_object *obj,
++				     struct dma_fence **fence);
+ int i915_gem_object_wait_moving_fence(struct drm_i915_gem_object *obj,
+ 				      bool intr);
  
- 	/* No EDID or EDID extensions */
--	if (edid == NULL || edid->extensions == 0)
-+	if (!edid || !edid_extension_block_count(edid))
- 		return NULL;
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
+index 438b8a95b3d1..a10716f4e717 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
+@@ -467,19 +467,6 @@ __i915_ttm_move(struct ttm_buffer_object *bo,
+ 	return fence;
+ }
  
- 	/* Find CEA extension */
--	for (i = *ext_index; i < edid->extensions; i++) {
--		edid_ext = (const u8 *)edid + EDID_LENGTH * (i + 1);
-+	for (i = *ext_index; i < edid_extension_block_count(edid); i++) {
-+		edid_ext = edid_extension_block_data(edid, i);
- 		if (edid_block_tag(edid_ext) == ext_id)
- 			break;
+-static int
+-prev_deps(struct ttm_buffer_object *bo, struct ttm_operation_ctx *ctx,
+-	  struct i915_deps *deps)
+-{
+-	int ret;
+-
+-	ret = i915_deps_add_dependency(deps, bo->moving, ctx);
+-	if (!ret)
+-		ret = i915_deps_add_resv(deps, bo->base.resv, ctx);
+-
+-	return ret;
+-}
+-
+ /**
+  * i915_ttm_move - The TTM move callback used by i915.
+  * @bo: The buffer object.
+@@ -534,7 +521,7 @@ int i915_ttm_move(struct ttm_buffer_object *bo, bool evict,
+ 		struct i915_deps deps;
+ 
+ 		i915_deps_init(&deps, GFP_KERNEL | __GFP_NORETRY | __GFP_NOWARN);
+-		ret = prev_deps(bo, ctx, &deps);
++		ret = i915_deps_add_resv(&deps, bo->base.resv, ctx);
+ 		if (ret) {
+ 			i915_refct_sgt_put(dst_rsgt);
+ 			return ret;
+diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_migrate.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_migrate.c
+index 4997ed18b6e4..0ad443a90c8b 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_migrate.c
++++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_migrate.c
+@@ -219,8 +219,7 @@ static int __igt_lmem_pages_migrate(struct intel_gt *gt,
+ 			err = dma_resv_reserve_fences(obj->base.resv, 1);
+ 			if (!err)
+ 				dma_resv_add_fence(obj->base.resv, &rq->fence,
+-						   DMA_RESV_USAGE_WRITE);
+-			i915_gem_object_set_moving_fence(obj, &rq->fence);
++						   DMA_RESV_USAGE_KERNEL);
+ 			i915_request_put(rq);
+ 		}
+ 		if (err)
+diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
+index 3a6e3f6d239f..dfc34cc2ef8c 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
++++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
+@@ -1221,8 +1221,7 @@ static int __igt_mmap_migrate(struct intel_memory_region **placements,
+ 	i915_gem_object_unpin_pages(obj);
+ 	if (rq) {
+ 		dma_resv_add_fence(obj->base.resv, &rq->fence,
+-				   DMA_RESV_USAGE_WRITE);
+-		i915_gem_object_set_moving_fence(obj, &rq->fence);
++				   DMA_RESV_USAGE_KERNEL);
+ 		i915_request_put(rq);
  	}
+ 	i915_gem_object_unlock(obj);
+diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
+index 524477d8939e..d077f7b9eaad 100644
+--- a/drivers/gpu/drm/i915/i915_vma.c
++++ b/drivers/gpu/drm/i915/i915_vma.c
+@@ -1357,10 +1357,17 @@ int i915_vma_pin_ww(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
+ 	if (err)
+ 		return err;
  
--	if (i >= edid->extensions)
-+	if (i >= edid_extension_block_count(edid))
- 		return NULL;
++	if (vma->obj) {
++		err = i915_gem_object_get_moving_fence(vma->obj, &moving);
++		if (err)
++			return err;
++	} else {
++		moving = NULL;
++	}
++
+ 	if (flags & PIN_GLOBAL)
+ 		wakeref = intel_runtime_pm_get(&vma->vm->i915->runtime_pm);
  
- 	*ext_index = i + 1;
+-	moving = vma->obj ? i915_gem_object_get_moving_fence(vma->obj) : NULL;
+ 	if (flags & vma->vm->bind_async_flags || moving) {
+ 		/* lock VM */
+ 		err = i915_vm_lock_objects(vma->vm, ww);
 -- 
-2.30.2
+2.25.1
 
