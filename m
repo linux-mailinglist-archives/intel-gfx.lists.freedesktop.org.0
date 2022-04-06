@@ -2,51 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07A954F5A59
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Apr 2022 11:57:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 598784F5A73
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Apr 2022 12:09:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 61E0C10EC27;
-	Wed,  6 Apr 2022 09:57:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B92D10E05E;
+	Wed,  6 Apr 2022 10:09:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D01D610EC17
- for <intel-gfx@lists.freedesktop.org>; Wed,  6 Apr 2022 09:57:41 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E82A310E05E
+ for <intel-gfx@lists.freedesktop.org>; Wed,  6 Apr 2022 10:09:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649239061; x=1680775061;
+ t=1649239790; x=1680775790;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=eRnYoASKMfkYYL+mXCVmNqmLCeTwW4+VxAUFRZrWKrc=;
- b=Tk01t2BJECLi+UhnXpVX0gP9Tc/4a+gAaPkweUlqaqYtQC0R8UowFH09
- aGbKXvtWtkSvxOjotbdQlVeINCBp7nhq+BTzoe8mEapBeYeDXmkxCJAMd
- kAQKD4M0AFVtTphtxUZtY7cJRgNMdq9ZjsrWce1AGo8GGFza4amqoISZB
- 4VT8dKvu7T8k6SOOjPMCd3IezDTgogg3TCSujN3mxLHxM4lv8OaD0JsFe
- GAS+e/fqwmplrQVpBhlV8Z6UcG+p8b8EZ1goDz+9Sq4BQ2mCCUfW1/Ymw
- zRlEf3RPfXconzjARV8OVgVhKY9x322BYQIMTAU40XOOvR0Nu+EricTUw Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10308"; a="260698754"
-X-IronPort-AV: E=Sophos;i="5.90,239,1643702400"; d="scan'208";a="260698754"
+ bh=Xv93wawDW8sdpUvsznXH1UHDbO/VA6BDF8kHVgZWC8s=;
+ b=COnxx9Q6KUspXPE5/DANfxe3W7fFLNj6xvajbRTEInCI23qyzlFCf113
+ wJtZHnKQVePv84hVN/Ikhue84N1jvq6brZkQ4KB4A/+4f1Fcvjp69FBl+
+ QuUCGfbQjZIP1EI9jYI+POACB95nRx0MxOGeUnTYJtT1jBvrOMmKsjDh8
+ UG8qCsV3kau3YyCH2wB/Hj5N1DDy1SzG4g394SOIBnkffFRNkuwWqYwhh
+ iNDB5vJ8BnhC5Os5DE43bxx27Wr9yFIFXzwInNvP880bP40YvdtOscxui
+ yv1Plu2bI9qig9Bi1RkhsexTZRUrxxIAOSiqe9xRLV9ki1Ktxo5x+eCYG w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10308"; a="261181071"
+X-IronPort-AV: E=Sophos;i="5.90,239,1643702400"; d="scan'208";a="261181071"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2022 02:57:41 -0700
-X-IronPort-AV: E=Sophos;i="5.90,239,1643702400"; d="scan'208";a="524401583"
-Received: from unknown (HELO intel.com) ([10.237.72.65])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Apr 2022 03:09:50 -0700
+X-IronPort-AV: E=Sophos;i="5.90,239,1643702400"; d="scan'208";a="524406402"
+Received: from srr4-3-linux-105-anshuma1.iind.intel.com (HELO intel.com)
+ ([10.223.74.179])
  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2022 02:57:40 -0700
-Date: Wed, 6 Apr 2022 12:58:21 +0300
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: "Govindapillai, Vinod" <vinod.govindapillai@intel.com>
-Message-ID: <20220406095821.GA20432@intel.com>
-References: <20220405104114.20780-1-stanislav.lisovskiy@intel.com>
- <9436bf0c9b30a5d69a4d3a5cb23304b2f2ed1c5c.camel@intel.com>
- <20220406074813.GA14848@intel.com>
- <8fdb6de96d0515784d946cc2639e9f2de583abb8.camel@intel.com>
+ 06 Apr 2022 03:09:48 -0700
+Date: Wed, 6 Apr 2022 15:39:45 +0530
+From: Anshuman Gupta <anshuman.gupta@intel.com>
+To: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Message-ID: <20220406100944.GE22062@intel.com>
+References: <20220323195435.38524-1-ashutosh.dixit@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <8fdb6de96d0515784d946cc2639e9f2de583abb8.camel@intel.com>
+In-Reply-To: <20220323195435.38524-1-ashutosh.dixit@intel.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix skl_pcode_try_request function
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/rps: Centralize computation of
+ freq caps
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,134 +58,321 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "De Marchi, Lucas" <lucas.demarchi@intel.com>, "Vivi,
+ Rodrigo" <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Apr 06, 2022 at 12:19:19PM +0300, Govindapillai, Vinod wrote:
-> Hi,
+On 2022-03-24 at 01:24:35 +0530, Ashutosh Dixit wrote:
+> Freq caps (i.e. RP0, RP1 and RPn frequencies) are read from HW. However the
+> formats (bit positions, widths, registers and units) of these vary for
+> different generations with even more variations arriving in the future. In
+> order not to have to do identical computation for these caps in multiple
+> places, here we centralize the computation of these caps. This makes the
+> code cleaner and also more extensible for the future.
 > 
-> On Wed, 2022-04-06 at 10:48 +0300, Lisovskiy, Stanislav wrote:
-> > On Wed, Apr 06, 2022 at 12:51:29AM +0300, Govindapillai, Vinod wrote:
-> > > Hi Stan
-> > >
-> > > Nice Find! Couple of clarifications, please check inline...
-> > >
-> > > On Tue, 2022-04-05 at 13:41 +0300, Stanislav Lisovskiy wrote:
-> > > > Currently skl_pcode_try_request function doesn't
-> > > > properly handle return value it gets from
-> > > > snb_pcode_rw, but treats status != 0 as success,
-> > > > returning true, which basically doesn't allow
-> > > > to use retry/timeout mechanisms if PCode happens
-> > > > to be busy and returns EGAIN or some other status
-> > > > code not equal to 0.
-> > > >
-> > > > We saw this on real hw and also tried simulating this
-> > > > by always returning -EAGAIN from snb_pcode_rw for 6 times, which
-> > > > currently will just result in false success, while it should
-> > > > have tried until timeout is reached:
-> > > >
-> > > > [   22.357729] i915 0000:00:02.0: [drm:intel_cdclk_dump_config [i915]] Changing CDCLK to
-> > > > 307200 kHz, VCO 614400 kHz, ref 38400 kHz, bypass 19200 kHz, voltage level 0
-> > > > [   22.357831] i915 0000:00:02.0: [drm:__snb_pcode_rw [i915]] Returning EAGAIN retry 1
-> > > > [   22.357892] i915 0000:00:02.0: [drm:skl_pcode_request [i915]] Success, exiting
-> > > > [   22.357936] i915 0000:00:02.0: [drm] ERROR Failed to inform PCU about cdclk change (err
-> > > > -11,
-> > > > freq 307200)
-> > > >
-> > > > We see en error because higher level api, still notices that status was wrong,
-> > > > however we still did try only once.
-> > > >
-> > > > We fix it by requiring _both_ the status to be 0 and
-> > > > request/reply match for success(true) and function
-> > > > should return failure(false) if either status turns
-> > > > out to be EAGAIN, EBUSY or whatever or reply/request
-> > > > masks do not match.
-> > > >
-> > > > So now we see this in the logs:
-> > > >
-> > > > [   22.318667] i915 0000:00:02.0: [drm:intel_cdclk_dump_config [i915]] Changing CDCLK to
-> > > > 307200 kHz, VCO 614400 kHz, ref 38400 kHz, bypass 19200 kHz, voltage level 0
-> > > > [   22.318782] i915 0000:00:02.0: [drm:__snb_pcode_rw [i915]] Returning EAGAIN retry 1
-> > > > [   22.318849] i915 0000:00:02.0: [drm:__snb_pcode_rw [i915]] Returning EAGAIN retry 2
-> > > > [   22.319006] i915 0000:00:02.0: [drm:__snb_pcode_rw [i915]] Returning EAGAIN retry 3
-> > > > [   22.319091] i915 0000:00:02.0: [drm:__snb_pcode_rw [i915]] Returning EAGAIN retry 4
-> > > > [   22.319158] i915 0000:00:02.0: [drm:__snb_pcode_rw [i915]] Returning EAGAIN retry 5
-> > > > [   22.319224] i915 0000:00:02.0: [drm:__snb_pcode_rw [i915]] Returning EAGAIN retry 6
-> > > >
-> > > > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> > > > ---
-> > > >  drivers/gpu/drm/i915/intel_pcode.c | 2 +-
-> > > >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > > >
-> > > > diff --git a/drivers/gpu/drm/i915/intel_pcode.c b/drivers/gpu/drm/i915/intel_pcode.c
-> > > > index 391a37492ce5..fb6c43e8a02f 100644
-> > > > --- a/drivers/gpu/drm/i915/intel_pcode.c
-> > > > +++ b/drivers/gpu/drm/i915/intel_pcode.c
-> > > > @@ -136,7 +136,7 @@ static bool skl_pcode_try_request(struct drm_i915_private *i915, u32 mbox,
-> > > >  {
-> > > >       *status = __snb_pcode_rw(i915, mbox, &request, NULL, 500, 0, true);
-> > > >
-> > > > -     return *status || ((request & reply_mask) == reply);
-> > > > +     return (*status == 0) && ((request & reply_mask) == reply);
-> > >
-> > > Here I wonder whether you need to check what sort of __snb_pcode_rw return values need the
-> > > retry!
-> > > Isn't only ETIMEDOUT need the retry? Other return error codes can be probably be ignored from
-> > > retry?
-> >
-> > Hi Vinod! Thanks for comments.
-> >
-> > Well theoretically yes, but in practice I think we would prefer to retry in almost all of the
-> > cases.
-> > There are also multiple error codes when you need to retry, such as "EAGAIN", "EBUSY" and probably
-> > some others. Thats is probably why original code also doesn't make a difference.
+> v2: Clarify that caps are in "hw units" in comments (Lucas De Marchi)
+> v3: Minor checkpatch fix
+> v4: s/intel_rps_get_freq_caps/gen6_rps_get_freq_caps/ (Badal Nilawar)
 > 
-> Ack
+> Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c |  24 +----
+>  drivers/gpu/drm/i915/gt/intel_rps.c           | 101 ++++++++++--------
+>  drivers/gpu/drm/i915/gt/intel_rps.h           |   2 +-
+>  drivers/gpu/drm/i915/gt/intel_rps_types.h     |  10 ++
+>  drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c   |  14 +--
+>  5 files changed, 79 insertions(+), 72 deletions(-)
 > 
-> >
-> > > And should the, "return ret ? ret : status;" in "skl_pcode_request" be change to "return ret ?
-> > > status : ret;" to reflect the correct error code to calling functions after this change?
-> >
-> > I think the logic here is such that ret value is somewhat more important than the status, so
-> > if ret is something not zero - we always prefer returning ret, for the enduser to know what
-> > was the ret ERROR code.
-> > If ret is 0, then we can "afford" to let the enduser know, what was actually the status.
-> >
-> > To me it actually sounds a bit wrong, I think we should get status pointer, like "&status"
-> > and modify it, so that calling site _always_ knows both status and ret, mixing those two
-> > is a dangerous strategy which exactly caused some coder confusion and probably the bug, that
-> > this patch is fixing.
-> >
-> > Stan
-> 
-> Agreed, the original code was indeed bit complicated!
-> 
-> But what I meant was, after your patch, "ret" will be either "0" or "ETIMEDOUT".
-> If ret = 0, then "status" would had been 0 too based on your change in this patch.
-> If ret != 0, then "status" might have values other than ETIMEDOUT.
-> 
-> So,
-> "return ret ? status : ret;" might be better instead of the original "return ret ? ret : status;"
-> especially after your patch.
-> 
-> Anyway, not sure if the calling functions care about the return value much other than just logging.
-> It was indeed a quite good fix!
-
-Yes, your proposal actually makes more sense than current code anyway, however I'm still thinking
-if we should may be propagate &status to call site always, need to think a bit.
-Would be nice to get Ville's perspective on this.
-
-> 
-> Reviewd-By: Vinod Govindapillai <vinod.govindapillai@intel.com>
-
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
+> index 31dbb2b96738..280a27cb9bdf 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
+> @@ -342,17 +342,16 @@ void intel_gt_pm_frequency_dump(struct intel_gt *gt, struct drm_printer *p)
+>  	} else if (GRAPHICS_VER(i915) >= 6) {
+>  		u32 rp_state_limits;
+>  		u32 gt_perf_status;
+> -		u32 rp_state_cap;
+> +		struct intel_rps_freq_caps caps;
+>  		u32 rpmodectl, rpinclimit, rpdeclimit;
+>  		u32 rpstat, cagf, reqf;
+>  		u32 rpcurupei, rpcurup, rpprevup;
+>  		u32 rpcurdownei, rpcurdown, rpprevdown;
+>  		u32 rpupei, rpupt, rpdownei, rpdownt;
+>  		u32 pm_ier, pm_imr, pm_isr, pm_iir, pm_mask;
+> -		int max_freq;
+>  
+>  		rp_state_limits = intel_uncore_read(uncore, GEN6_RP_STATE_LIMITS);
+> -		rp_state_cap = intel_rps_read_state_cap(rps);
+> +		gen6_rps_get_freq_caps(rps, &caps);
+>  		if (IS_GEN9_LP(i915))
+>  			gt_perf_status = intel_uncore_read(uncore, BXT_GT_PERF_STATUS);
+>  		else
+> @@ -474,25 +473,12 @@ void intel_gt_pm_frequency_dump(struct intel_gt *gt, struct drm_printer *p)
+>  		drm_printf(p, "RP DOWN THRESHOLD: %d (%lldns)\n",
+>  			   rpdownt, intel_gt_pm_interval_to_ns(gt, rpdownt));
+>  
+> -		max_freq = (IS_GEN9_LP(i915) ? rp_state_cap >> 0 :
+> -			    rp_state_cap >> 16) & 0xff;
+> -		max_freq *= (IS_GEN9_BC(i915) ||
+> -			     GRAPHICS_VER(i915) >= 11 ? GEN9_FREQ_SCALER : 1);
+>  		drm_printf(p, "Lowest (RPN) frequency: %dMHz\n",
+> -			   intel_gpu_freq(rps, max_freq));
+> -
+> -		max_freq = (rp_state_cap & 0xff00) >> 8;
+> -		max_freq *= (IS_GEN9_BC(i915) ||
+> -			     GRAPHICS_VER(i915) >= 11 ? GEN9_FREQ_SCALER : 1);
+> +			   intel_gpu_freq(rps, caps.min_freq));
+>  		drm_printf(p, "Nominal (RP1) frequency: %dMHz\n",
+> -			   intel_gpu_freq(rps, max_freq));
+> -
+> -		max_freq = (IS_GEN9_LP(i915) ? rp_state_cap >> 16 :
+> -			    rp_state_cap >> 0) & 0xff;
+> -		max_freq *= (IS_GEN9_BC(i915) ||
+> -			     GRAPHICS_VER(i915) >= 11 ? GEN9_FREQ_SCALER : 1);
+> +			   intel_gpu_freq(rps, caps.rp1_freq));
+>  		drm_printf(p, "Max non-overclocked (RP0) frequency: %dMHz\n",
+> -			   intel_gpu_freq(rps, max_freq));
+> +			   intel_gpu_freq(rps, caps.rp0_freq));
+>  		drm_printf(p, "Max overclocked frequency: %dMHz\n",
+>  			   intel_gpu_freq(rps, rps->max_freq));
+>  
+> diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
+> index 6c9fdf7906c5..f21f6e454998 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_rps.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_rps.c
+> @@ -1070,23 +1070,59 @@ int intel_rps_set(struct intel_rps *rps, u8 val)
+>  	return 0;
+>  }
+>  
+> -static void gen6_rps_init(struct intel_rps *rps)
+> +static u32 intel_rps_read_state_cap(struct intel_rps *rps)
+>  {
+>  	struct drm_i915_private *i915 = rps_to_i915(rps);
+> -	u32 rp_state_cap = intel_rps_read_state_cap(rps);
+> +	struct intel_uncore *uncore = rps_to_uncore(rps);
+>  
+> -	/* All of these values are in units of 50MHz */
+> +	if (IS_XEHPSDV(i915))
+> +		return intel_uncore_read(uncore, XEHPSDV_RP_STATE_CAP);
+> +	else if (IS_GEN9_LP(i915))
+> +		return intel_uncore_read(uncore, BXT_RP_STATE_CAP);
+> +	else
+> +		return intel_uncore_read(uncore, GEN6_RP_STATE_CAP);
+> +}
+> +
+> +/* "Caps" frequencies should be converted to MHz using intel_gpu_freq() */
+IMHO, if this exported function deserves a comment, it should Kernel Doc comment.
+for an example see Doc comment of intel_runtime_pm_get_raw().
 Thanks,
-
-Stan
-
+Anshuman Gupta.
+> +void gen6_rps_get_freq_caps(struct intel_rps *rps, struct intel_rps_freq_caps *caps)
+> +{
+> +	struct drm_i915_private *i915 = rps_to_i915(rps);
+> +	u32 rp_state_cap;
+> +
+> +	rp_state_cap = intel_rps_read_state_cap(rps);
+>  
+>  	/* static values from HW: RP0 > RP1 > RPn (min_freq) */
+>  	if (IS_GEN9_LP(i915)) {
+> -		rps->rp0_freq = (rp_state_cap >> 16) & 0xff;
+> -		rps->rp1_freq = (rp_state_cap >>  8) & 0xff;
+> -		rps->min_freq = (rp_state_cap >>  0) & 0xff;
+> +		caps->rp0_freq = (rp_state_cap >> 16) & 0xff;
+> +		caps->rp1_freq = (rp_state_cap >>  8) & 0xff;
+> +		caps->min_freq = (rp_state_cap >>  0) & 0xff;
+>  	} else {
+> -		rps->rp0_freq = (rp_state_cap >>  0) & 0xff;
+> -		rps->rp1_freq = (rp_state_cap >>  8) & 0xff;
+> -		rps->min_freq = (rp_state_cap >> 16) & 0xff;
+> +		caps->rp0_freq = (rp_state_cap >>  0) & 0xff;
+> +		caps->rp1_freq = (rp_state_cap >>  8) & 0xff;
+> +		caps->min_freq = (rp_state_cap >> 16) & 0xff;
+> +	}
+> +
+> +	if (IS_GEN9_BC(i915) || GRAPHICS_VER(i915) >= 11) {
+> +		/*
+> +		 * In this case rp_state_cap register reports frequencies in
+> +		 * units of 50 MHz. Convert these to the actual "hw unit", i.e.
+> +		 * units of 16.67 MHz
+> +		 */
+> +		caps->rp0_freq *= GEN9_FREQ_SCALER;
+> +		caps->rp1_freq *= GEN9_FREQ_SCALER;
+> +		caps->min_freq *= GEN9_FREQ_SCALER;
+>  	}
+> +}
+> +
+> +static void gen6_rps_init(struct intel_rps *rps)
+> +{
+> +	struct drm_i915_private *i915 = rps_to_i915(rps);
+> +	struct intel_rps_freq_caps caps;
+> +
+> +	gen6_rps_get_freq_caps(rps, &caps);
+> +	rps->rp0_freq = caps.rp0_freq;
+> +	rps->rp1_freq = caps.rp1_freq;
+> +	rps->min_freq = caps.min_freq;
+>  
+>  	/* hw_max = RP0 until we check for overclocking */
+>  	rps->max_freq = rps->rp0_freq;
+> @@ -1095,26 +1131,18 @@ static void gen6_rps_init(struct intel_rps *rps)
+>  	if (IS_HASWELL(i915) || IS_BROADWELL(i915) ||
+>  	    IS_GEN9_BC(i915) || GRAPHICS_VER(i915) >= 11) {
+>  		u32 ddcc_status = 0;
+> +		u32 mult = 1;
+>  
+> +		if (IS_GEN9_BC(i915) || GRAPHICS_VER(i915) >= 11)
+> +			mult = GEN9_FREQ_SCALER;
+>  		if (snb_pcode_read(i915, HSW_PCODE_DYNAMIC_DUTY_CYCLE_CONTROL,
+>  				   &ddcc_status, NULL) == 0)
+>  			rps->efficient_freq =
+> -				clamp_t(u8,
+> -					(ddcc_status >> 8) & 0xff,
+> +				clamp_t(u32,
+> +					((ddcc_status >> 8) & 0xff) * mult,
+>  					rps->min_freq,
+>  					rps->max_freq);
+>  	}
+> -
+> -	if (IS_GEN9_BC(i915) || GRAPHICS_VER(i915) >= 11) {
+> -		/* Store the frequency values in 16.66 MHZ units, which is
+> -		 * the natural hardware unit for SKL
+> -		 */
+> -		rps->rp0_freq *= GEN9_FREQ_SCALER;
+> -		rps->rp1_freq *= GEN9_FREQ_SCALER;
+> -		rps->min_freq *= GEN9_FREQ_SCALER;
+> -		rps->max_freq *= GEN9_FREQ_SCALER;
+> -		rps->efficient_freq *= GEN9_FREQ_SCALER;
+> -	}
+>  }
+>  
+>  static bool rps_reset(struct intel_rps *rps)
+> @@ -2219,19 +2247,6 @@ int intel_rps_set_min_frequency(struct intel_rps *rps, u32 val)
+>  		return set_min_freq(rps, val);
+>  }
+>  
+> -u32 intel_rps_read_state_cap(struct intel_rps *rps)
+> -{
+> -	struct drm_i915_private *i915 = rps_to_i915(rps);
+> -	struct intel_uncore *uncore = rps_to_uncore(rps);
+> -
+> -	if (IS_XEHPSDV(i915))
+> -		return intel_uncore_read(uncore, XEHPSDV_RP_STATE_CAP);
+> -	else if (IS_GEN9_LP(i915))
+> -		return intel_uncore_read(uncore, BXT_RP_STATE_CAP);
+> -	else
+> -		return intel_uncore_read(uncore, GEN6_RP_STATE_CAP);
+> -}
+> -
+>  static void intel_rps_set_manual(struct intel_rps *rps, bool enable)
+>  {
+>  	struct intel_uncore *uncore = rps_to_uncore(rps);
+> @@ -2244,18 +2259,18 @@ static void intel_rps_set_manual(struct intel_rps *rps, bool enable)
+>  void intel_rps_raise_unslice(struct intel_rps *rps)
+>  {
+>  	struct intel_uncore *uncore = rps_to_uncore(rps);
+> -	u32 rp0_unslice_req;
+>  
+>  	mutex_lock(&rps->lock);
+>  
+>  	if (rps_uses_slpc(rps)) {
+>  		/* RP limits have not been initialized yet for SLPC path */
+> -		rp0_unslice_req = ((intel_rps_read_state_cap(rps) >> 0)
+> -				   & 0xff) * GEN9_FREQ_SCALER;
+> +		struct intel_rps_freq_caps caps;
+> +
+> +		gen6_rps_get_freq_caps(rps, &caps);
+>  
+>  		intel_rps_set_manual(rps, true);
+>  		intel_uncore_write(uncore, GEN6_RPNSWREQ,
+> -				   ((rp0_unslice_req <<
+> +				   ((caps.rp0_freq <<
+>  				   GEN9_SW_REQ_UNSLICE_RATIO_SHIFT) |
+>  				   GEN9_IGNORE_SLICE_RATIO));
+>  		intel_rps_set_manual(rps, false);
+> @@ -2269,18 +2284,18 @@ void intel_rps_raise_unslice(struct intel_rps *rps)
+>  void intel_rps_lower_unslice(struct intel_rps *rps)
+>  {
+>  	struct intel_uncore *uncore = rps_to_uncore(rps);
+> -	u32 rpn_unslice_req;
+>  
+>  	mutex_lock(&rps->lock);
+>  
+>  	if (rps_uses_slpc(rps)) {
+>  		/* RP limits have not been initialized yet for SLPC path */
+> -		rpn_unslice_req = ((intel_rps_read_state_cap(rps) >> 16)
+> -				   & 0xff) * GEN9_FREQ_SCALER;
+> +		struct intel_rps_freq_caps caps;
+> +
+> +		gen6_rps_get_freq_caps(rps, &caps);
+>  
+>  		intel_rps_set_manual(rps, true);
+>  		intel_uncore_write(uncore, GEN6_RPNSWREQ,
+> -				   ((rpn_unslice_req <<
+> +				   ((caps.min_freq <<
+>  				   GEN9_SW_REQ_UNSLICE_RATIO_SHIFT) |
+>  				   GEN9_IGNORE_SLICE_RATIO));
+>  		intel_rps_set_manual(rps, false);
+> diff --git a/drivers/gpu/drm/i915/gt/intel_rps.h b/drivers/gpu/drm/i915/gt/intel_rps.h
+> index ba1ed9f7ecda..1e8d56491308 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_rps.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_rps.h
+> @@ -45,7 +45,7 @@ u32 intel_rps_get_rp1_frequency(struct intel_rps *rps);
+>  u32 intel_rps_get_rpn_frequency(struct intel_rps *rps);
+>  u32 intel_rps_read_punit_req(struct intel_rps *rps);
+>  u32 intel_rps_read_punit_req_frequency(struct intel_rps *rps);
+> -u32 intel_rps_read_state_cap(struct intel_rps *rps);
+> +void gen6_rps_get_freq_caps(struct intel_rps *rps, struct intel_rps_freq_caps *caps);
+>  void intel_rps_raise_unslice(struct intel_rps *rps);
+>  void intel_rps_lower_unslice(struct intel_rps *rps);
+>  
+> diff --git a/drivers/gpu/drm/i915/gt/intel_rps_types.h b/drivers/gpu/drm/i915/gt/intel_rps_types.h
+> index 3941d8551f52..4f7a351e0997 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_rps_types.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_rps_types.h
+> @@ -37,6 +37,16 @@ enum {
+>  	INTEL_RPS_TIMER,
+>  };
+>  
+> +/*
+> + * Freq caps exposed by HW, values are in "hw units" and intel_gpu_freq()
+> + * should be used to convert to MHz
+> + */
+> +struct intel_rps_freq_caps {
+> +	u8 rp0_freq;		/* non-overclocked max frequency */
+> +	u8 rp1_freq;		/* "less than" RP0 power/freqency */
+> +	u8 min_freq;		/* aka RPn, minimum frequency */
+> +};
+> +
+>  struct intel_rps {
+>  	struct mutex lock; /* protects enabling and the worker */
+>  
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
+> index 9f032c65a488..9e02355e44f1 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
+> @@ -582,16 +582,12 @@ static int slpc_use_fused_rp0(struct intel_guc_slpc *slpc)
+>  static void slpc_get_rp_values(struct intel_guc_slpc *slpc)
+>  {
+>  	struct intel_rps *rps = &slpc_to_gt(slpc)->rps;
+> -	u32 rp_state_cap;
+> +	struct intel_rps_freq_caps caps;
+>  
+> -	rp_state_cap = intel_rps_read_state_cap(rps);
+> -
+> -	slpc->rp0_freq = REG_FIELD_GET(RP0_CAP_MASK, rp_state_cap) *
+> -					GT_FREQUENCY_MULTIPLIER;
+> -	slpc->rp1_freq = REG_FIELD_GET(RP1_CAP_MASK, rp_state_cap) *
+> -					GT_FREQUENCY_MULTIPLIER;
+> -	slpc->min_freq = REG_FIELD_GET(RPN_CAP_MASK, rp_state_cap) *
+> -					GT_FREQUENCY_MULTIPLIER;
+> +	gen6_rps_get_freq_caps(rps, &caps);
+> +	slpc->rp0_freq = intel_gpu_freq(rps, caps.rp0_freq);
+> +	slpc->rp1_freq = intel_gpu_freq(rps, caps.rp1_freq);
+> +	slpc->min_freq = intel_gpu_freq(rps, caps.min_freq);
+>  
+>  	if (!slpc->boost_freq)
+>  		slpc->boost_freq = slpc->rp0_freq;
+> -- 
+> 2.34.1
 > 
-> >
-> > >
-> > > >  }
-> > > >
-> > > >  /**
