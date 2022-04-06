@@ -2,51 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAE094F67C7
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Apr 2022 19:41:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D16F14F67CA
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Apr 2022 19:43:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD1BA10E1A4;
-	Wed,  6 Apr 2022 17:41:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C83610E02B;
+	Wed,  6 Apr 2022 17:43:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0873410E152
- for <intel-gfx@lists.freedesktop.org>; Wed,  6 Apr 2022 17:41:06 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 38E8910E02B
+ for <intel-gfx@lists.freedesktop.org>; Wed,  6 Apr 2022 17:43:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649266866; x=1680802866;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=1duMWVn6U/5LIkt+kfdkYiUDIYDyi751Zn9muIdAwLc=;
- b=msQdWERR40oA/Y6qah5uhzEkBfusitCART5C7HZNjDvqC40vtHwDL910
- DJYc6MxMYr8K35j7oFgxHJChIsazSrUNnJmX3AsEA2Z6E/nBSMKITPFPe
- /JrxZENzzlFoyNK3PTmJ56G6WIQmnWH1kMd10kFaY+6f38xyEwtp0D5Hy
- l0fQGi344JNfS1ni3QmpqUNOBkr97T4zazXF5aA0BhNvVPwBRWgyNelaS
- cfB5O6Alve77S30ZoYoGV77K95u05ueBQqOLvkKFTFq+z9HavKiVCBOlX
- y3KFi3bkGEv2Qfw+G25EIYrxqQdjDVI7DFa6k56d7LrMfzvKEr8uftvJU Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10309"; a="241704556"
-X-IronPort-AV: E=Sophos;i="5.90,240,1643702400"; d="scan'208";a="241704556"
+ t=1649267006; x=1680803006;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=EyeuCt3i1ivmC+B3n+NHaPwTCNzWnyVACVwQwfwxdR4=;
+ b=bBcpwZvuNEjdHHPWcIbTpvR5L9vjDLKPRzGf+/UPVRDpr3yO4E+g3w9O
+ PVgABc+oTbiCypuZkw/Y0fKR8Bh7oOQkva8zicdLmT62+xl5H/RmeLVcw
+ QM+Wx4sqOJlduS7hMhSsOOxi8SERvh1bPRtTcFvG0OKUhaXls7tInu5sf
+ A/9wNFZrwj5dVRIJdnmeB3StCHELvo/DX4NEWrt+IFkZBi/D19/PZTFbB
+ yJEdKACeOPg7sv+s7qhF8RN+DYM5nBKZt6TgWmO0nRu9MMJwbWRWGMIXf
+ 8ucRAqOe82UGBoRiGz9L9tfj8Qfa+eUk+Jr0rxRYXtfra4pT9xDvHLiDq w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10309"; a="324283272"
+X-IronPort-AV: E=Sophos;i="5.90,240,1643702400"; d="scan'208";a="324283272"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2022 10:41:06 -0700
-X-IronPort-AV: E=Sophos;i="5.90,240,1643702400"; d="scan'208";a="570672360"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.252.41.213])
- ([10.252.41.213])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Apr 2022 10:43:25 -0700
+X-IronPort-AV: E=Sophos;i="5.90,240,1643702400"; d="scan'208";a="570672874"
+Received: from jproschw-mobl1.ger.corp.intel.com (HELO
+ vgovind2-mobl3.intel.com) ([10.252.43.1])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2022 10:41:05 -0700
-Message-ID: <7684092d-7d86-98d5-b90b-bd7b9db37f74@linux.intel.com>
-Date: Wed, 6 Apr 2022 19:41:03 +0200
+ 06 Apr 2022 10:43:23 -0700
+From: Vinod Govindapillai <vinod.govindapillai@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed,  6 Apr 2022 20:43:11 +0300
+Message-Id: <20220406174311.82104-1-vinod.govindapillai@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Content-Language: en-US
-To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20220406173023.1039107-1-matthew.auld@intel.com>
-From: "Das, Nirmoy" <nirmoy.das@linux.intel.com>
-In-Reply-To: <20220406173023.1039107-1-matthew.auld@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftests: handle more rounding
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v3] drm/i915: program wm blocks to at least
+ blocks required per line
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,45 +60,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
+In configurations with single DRAM channel, for usecases like
+4K 60 Hz, FIFO underruns are observed quite frequently. Looks
+like the wm0 watermark values need to bumped up because the wm0
+memory latency calculations are probably not taking the DRAM
+channel's impact into account.
 
-On 4/6/2022 7:30 PM, Matthew Auld wrote:
-> Ensure we account for potential rounding up of lmem objects.
->
-> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/5485
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> Cc: Nirmoy Das <nirmoy.das@linux.intel.com>
-> ---
->   drivers/gpu/drm/i915/gt/selftest_migrate.c | 6 ++++--
->   1 file changed, 4 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/selftest_migrate.c b/drivers/gpu/drm/i915/gt/selftest_migrate.c
-> index c9c4f391c5cc..cca3b0db83c9 100644
-> --- a/drivers/gpu/drm/i915/gt/selftest_migrate.c
-> +++ b/drivers/gpu/drm/i915/gt/selftest_migrate.c
-> @@ -621,13 +621,15 @@ static int perf_copy_blt(void *arg)
->   
->   	for (i = 0; i < ARRAY_SIZE(sizes); i++) {
->   		struct drm_i915_gem_object *src, *dst;
-> +		size_t sz;
->   		int err;
->   
->   		src = create_init_lmem_internal(gt, sizes[i], true);
->   		if (IS_ERR(src))
->   			return PTR_ERR(src);
->   
-> -		dst = create_init_lmem_internal(gt, sizes[i], false);
-> +		sz = src->base.size;
-> +		dst = create_init_lmem_internal(gt, sz, false);
->   		if (IS_ERR(dst)) {
->   			err = PTR_ERR(dst);
->   			goto err_src;
-> @@ -640,7 +642,7 @@ static int perf_copy_blt(void *arg)
->   				      dst->mm.pages->sgl,
->   				      I915_CACHE_NONE,
->   				      i915_gem_object_is_lmem(dst),
-> -				      sizes[i]);
-> +				      sz);
->   
->   		i915_gem_object_unlock(dst);
->   		i915_gem_object_put(dst);
+As per the Bspec 49325, if the ddb allocation can hold at least
+one plane_blocks_per_line we should have selected method2.
+Assuming that modern HW versions have enough dbuf to hold
+at least one line, set the wm blocks to equivalent to blocks
+per line.
+
+V2: styling and comments changes (Ville)
+V3: Updated the reviewed-by tag
+
+cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+
+Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
+Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+---
+ drivers/gpu/drm/i915/intel_pm.c | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
+
+diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
+index 8824f269e5f5..d284ec8aff21 100644
+--- a/drivers/gpu/drm/i915/intel_pm.c
++++ b/drivers/gpu/drm/i915/intel_pm.c
+@@ -5475,6 +5475,25 @@ static void skl_compute_plane_wm(const struct intel_crtc_state *crtc_state,
+ 	}
+ 
+ 	blocks = fixed16_to_u32_round_up(selected_result) + 1;
++	/*
++	 * Lets have blocks at minimum equivalent to plane_blocks_per_line
++	 * as there will be at minimum one line for lines configuration. This
++	 * is a work around for FIFO underruns observed with resolutions like
++	 * 4k 60 Hz in single channel DRAM configurations.
++	 *
++	 * As per the Bspec 49325, if the ddb allocation can hold at least
++	 * one plane_blocks_per_line, we should have selected method2 in
++	 * the above logic. Assuming that modern versions have enough dbuf
++	 * and method2 guarantees blocks equivalent to at least 1 line,
++	 * select the blocks as plane_blocks_per_line.
++	 *
++	 * TODO: Revisit the logic when we have better understanding on DRAM
++	 * channels' impact on the level 0 memory latency and the relevant
++	 * wm calculations.
++	 */
++	if (skl_wm_has_lines(dev_priv, level))
++		blocks = max_t(u32, blocks,
++			       fixed16_to_u32_round_up(wp->plane_blocks_per_line));
+ 	lines = div_round_up_fixed16(selected_result,
+ 				     wp->plane_blocks_per_line);
+ 
+-- 
+2.25.1
+
