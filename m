@@ -2,32 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E616E4F52D3
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Apr 2022 05:30:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E4E84F5301
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Apr 2022 06:02:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A0C610EF23;
-	Wed,  6 Apr 2022 03:30:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 89A8E10F103;
+	Wed,  6 Apr 2022 04:02:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id DCD2110EF22;
- Wed,  6 Apr 2022 03:30:42 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D77AEA77A5;
- Wed,  6 Apr 2022 03:30:42 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0007834567567885882=="
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 463AE10F103
+ for <intel-gfx@lists.freedesktop.org>; Wed,  6 Apr 2022 04:02:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1649217768; x=1680753768;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=lLMHWUcJhD57l/VLKrisxaA23D0K5kXd1yf1vb542V8=;
+ b=HfVVPrv0qSlmoQJnc+89mDdJkdPV7ibnR7sOI40uTFUrS4a0a9287yLC
+ EAvBzk2IZGFha0joKA08fDb0Om6K3DuHL4OaLuhZ3mKDvNtxI2BNlkIQK
+ rBq9Kh6LwV0lsm5cHH+Yh2xpAeL2TuUtxq82HxBS39QRlbj99uW7apiJT
+ 22Iu8DsFsLaCDV+/qrYaHAo2PGsn8LbXOm6na4H9cyULb960zvUJgINaX
+ nibXynTpErZUvJYRXn2ebmTazcU4A28Iy4POpLCC06EyT9/hxZ6BdYY3U
+ 6KWa75FdVmP72xH7sQy+RxAlmmRqUNRjnx0F7m0jlKDR57EFaevkBhlze A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10308"; a="324114744"
+X-IronPort-AV: E=Sophos;i="5.90,239,1643702400"; d="scan'208";a="324114744"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Apr 2022 21:02:44 -0700
+X-IronPort-AV: E=Sophos;i="5.90,238,1643702400"; d="scan'208";a="549365548"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Apr 2022 21:02:43 -0700
+Date: Tue, 5 Apr 2022 21:02:42 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Message-ID: <Yk0Q4n8fLUzuAP0F@mdroper-desk1.amr.corp.intel.com>
+References: <20220405001149.2675226-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Stephen Rothwell" <sfr@canb.auug.org.au>
-Date: Wed, 06 Apr 2022 03:30:42 -0000
-Message-ID: <164921584287.5449.10573820457702817313@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220406105049.5f5e01c1@canb.auug.org.au>
-In-Reply-To: <20220406105049.5f5e01c1@canb.auug.org.au>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgbGlu?=
- =?utf-8?q?ux-next=3A_build_failure_after_merge_of_the_drm-misc_tree?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220405001149.2675226-1-lucas.demarchi@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/uncore: Warn on previous unclaimed
+ accesses
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,254 +57,109 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0007834567567885882==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, Apr 04, 2022 at 05:11:49PM -0700, Lucas De Marchi wrote:
+> Since gen6 we use FPGA_DBG register to detect unclaimed MMIO registers.
+> This register is in the display engine IP and can only ever detect
+> unclaimed accesses to registers in this area. However sometimes there
+> are reports of this triggering for registers in other areas, which
+> should not be possible.
+> 
+> Right now we always warn after the read/write of registers going through
+> unclaimed_reg_debug(). However places using __raw_uncore_* may be
+> triggering the unclaimed access and those being later accounted to a
+> different register. Let's warn both before and after the read/write
+> with a slightly different message, so it's clear if the register
+> reported in the warning is actually the culprit.
 
-== Series Details ==
+You should probably probably give an explicit mention of commit
+dda960335e020 ("drm/i915: Just clear the mmiodebug before a register
+access") in the commit message since we're reversing direction here.
 
-Series: linux-next: build failure after merge of the drm-misc tree
-URL   : https://patchwork.freedesktop.org/series/102234/
-State : success
+> 
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> ---
+>  drivers/gpu/drm/i915/intel_uncore.c | 29 +++++++++++++++++++++--------
+>  1 file changed, 21 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/intel_uncore.c
+> index 8b9caaaacc21..df59ec88459e 100644
+> --- a/drivers/gpu/drm/i915/intel_uncore.c
+> +++ b/drivers/gpu/drm/i915/intel_uncore.c
+> @@ -1502,11 +1502,10 @@ ilk_dummy_write(struct intel_uncore *uncore)
+>  static void
+>  __unclaimed_reg_debug(struct intel_uncore *uncore,
+>  		      const i915_reg_t reg,
+> -		      const bool read,
+> -		      const bool before)
+> +		      const bool read)
+>  {
+>  	if (drm_WARN(&uncore->i915->drm,
+> -		     check_for_unclaimed_mmio(uncore) && !before,
+> +		     check_for_unclaimed_mmio(uncore),
+>  		     "Unclaimed %s register 0x%x\n",
 
-== Summary ==
+Might be simpler to just keep it all in one function and do something
+like a
 
-CI Bug Log - changes from CI_DRM_11459 -> Patchwork_22795
-====================================================
+        before ? "MMIO operation *before* a " : ""
 
-Summary
--------
+in the message?  Up to you.  Either way,
 
-  **SUCCESS**
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
-  No regressions found.
+>  		     read ? "read from" : "write to",
+>  		     i915_mmio_reg_offset(reg)))
+> @@ -1514,6 +1513,20 @@ __unclaimed_reg_debug(struct intel_uncore *uncore,
+>  		uncore->i915->params.mmio_debug--;
+>  }
+>  
+> +static void
+> +__unclaimed_previous_reg_debug(struct intel_uncore *uncore,
+> +			       const i915_reg_t reg,
+> +			       const bool read)
+> +{
+> +	if (drm_WARN(&uncore->i915->drm,
+> +		     check_for_unclaimed_mmio(uncore),
+> +		     "Unclaimed access detected before %s register 0x%x\n",
+> +		     read ? "read from" : "write to",
+> +		     i915_mmio_reg_offset(reg)))
+> +		/* Only report the first N failures */
+> +		uncore->i915->params.mmio_debug--;
+> +}
+> +
+>  static inline void
+>  unclaimed_reg_debug(struct intel_uncore *uncore,
+>  		    const i915_reg_t reg,
+> @@ -1526,13 +1539,13 @@ unclaimed_reg_debug(struct intel_uncore *uncore,
+>  	/* interrupts are disabled and re-enabled around uncore->lock usage */
+>  	lockdep_assert_held(&uncore->lock);
+>  
+> -	if (before)
+> +	if (before) {
+>  		spin_lock(&uncore->debug->lock);
+> -
+> -	__unclaimed_reg_debug(uncore, reg, read, before);
+> -
+> -	if (!before)
+> +		__unclaimed_previous_reg_debug(uncore, reg, read);
+> +	} else {
+> +		__unclaimed_reg_debug(uncore, reg, read);
+>  		spin_unlock(&uncore->debug->lock);
+> +	}
+>  }
+>  
+>  #define __vgpu_read(x) \
+> -- 
+> 2.35.1
+> 
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22795/index.html
-
-Participating hosts (35 -> 34)
-------------------------------
-
-  Additional (2): fi-hsw-4770 fi-pnv-d510 
-  Missing    (3): fi-kbl-soraka fi-bsw-cyan fi-bdw-samus 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_22795 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][1] ([fdo#109271]) +9 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22795/fi-hsw-4770/igt@gem_huc_copy@huc-copy.html
-
-  * igt@i915_pm_backlight@basic-brightness:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][2] ([fdo#109271] / [i915#3012])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22795/fi-hsw-4770/igt@i915_pm_backlight@basic-brightness.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-hsw-4770:        NOTRUN -> [INCOMPLETE][3] ([i915#4785])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22795/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-
-  * igt@kms_busy@basic@flip:
-    - fi-tgl-u2:          [PASS][4] -> [DMESG-WARN][5] ([i915#402])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11459/fi-tgl-u2/igt@kms_busy@basic@flip.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22795/fi-tgl-u2/igt@kms_busy@basic@flip.html
-
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][6] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22795/fi-hsw-4770/igt@kms_chamelium@common-hpd-after-suspend.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c:
-    - fi-pnv-d510:        NOTRUN -> [SKIP][7] ([fdo#109271] / [i915#5341])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22795/fi-pnv-d510/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][8] ([fdo#109271] / [i915#533])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22795/fi-hsw-4770/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
-
-  * igt@kms_psr@primary_mmap_gtt:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][9] ([fdo#109271] / [i915#1072]) +3 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22795/fi-hsw-4770/igt@kms_psr@primary_mmap_gtt.html
-
-  * igt@prime_vgem@basic-userptr:
-    - fi-pnv-d510:        NOTRUN -> [SKIP][10] ([fdo#109271]) +57 similar issues
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22795/fi-pnv-d510/igt@prime_vgem@basic-userptr.html
-
-  * igt@runner@aborted:
-    - fi-hsw-4770:        NOTRUN -> [FAIL][11] ([fdo#109271] / [i915#2722] / [i915#4312])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22795/fi-hsw-4770/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-plain-flip@a-edp1:
-    - fi-tgl-u2:          [DMESG-WARN][12] ([i915#402]) -> [PASS][13] +2 similar issues
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11459/fi-tgl-u2/igt@kms_flip@basic-plain-flip@a-edp1.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22795/fi-tgl-u2/igt@kms_flip@basic-plain-flip@a-edp1.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#2722]: https://gitlab.freedesktop.org/drm/intel/issues/2722
-  [i915#3012]: https://gitlab.freedesktop.org/drm/intel/issues/3012
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
-  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
-  [i915#5341]: https://gitlab.freedesktop.org/drm/intel/issues/5341
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_11459 -> Patchwork_22795
-
-  CI-20190529: 20190529
-  CI_DRM_11459: b9b1e96b1d762651d6a2e60b26ddf058e9789942 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6411: 987678ecf2d6930981af93f719e4575c91886959 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_22795: e9f5f04870a7d1089d116372c0fefbe16877fc95 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-e9f5f04870a7 linux-next: build failure after merge of the drm-misc tree
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22795/index.html
-
---===============0007834567567885882==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>linux-next: build failure after merge of the drm-misc tree</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/102234/">https://patchwork.freedesktop.org/series/102234/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22795/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22795/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11459 -&gt; Patchwork_22795</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22795/index.html</p>
-<h2>Participating hosts (35 -&gt; 34)</h2>
-<p>Additional (2): fi-hsw-4770 fi-pnv-d510 <br />
-  Missing    (3): fi-kbl-soraka fi-bsw-cyan fi-bdw-samus </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_22795 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22795/fi-hsw-4770/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +9 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_backlight@basic-brightness:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22795/fi-hsw-4770/igt@i915_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3012">i915#3012</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22795/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_busy@basic@flip:</p>
-<ul>
-<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11459/fi-tgl-u2/igt@kms_busy@basic@flip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22795/fi-tgl-u2/igt@kms_busy@basic@flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22795/fi-hsw-4770/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c:</p>
-<ul>
-<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22795/fi-pnv-d510/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5341">i915#5341</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22795/fi-hsw-4770/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@primary_mmap_gtt:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22795/fi-hsw-4770/igt@kms_psr@primary_mmap_gtt.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-userptr:</p>
-<ul>
-<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22795/fi-pnv-d510/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +57 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22795/fi-hsw-4770/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2722">i915#2722</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-plain-flip@a-edp1:<ul>
-<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11459/fi-tgl-u2/igt@kms_flip@basic-plain-flip@a-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22795/fi-tgl-u2/igt@kms_flip@basic-plain-flip@a-edp1.html">PASS</a> +2 similar issues</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11459 -&gt; Patchwork_22795</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11459: b9b1e96b1d762651d6a2e60b26ddf058e9789942 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6411: 987678ecf2d6930981af93f719e4575c91886959 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_22795: e9f5f04870a7d1089d116372c0fefbe16877fc95 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>e9f5f04870a7 linux-next: build failure after merge of the drm-misc tree</p>
-
-</body>
-</html>
-
---===============0007834567567885882==--
+-- 
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
