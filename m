@@ -2,49 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D16F14F67CA
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Apr 2022 19:43:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DB2534F67CE
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Apr 2022 19:46:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C83610E02B;
-	Wed,  6 Apr 2022 17:43:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7BF7210E1E2;
+	Wed,  6 Apr 2022 17:46:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 38E8910E02B
- for <intel-gfx@lists.freedesktop.org>; Wed,  6 Apr 2022 17:43:26 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7741710E152
+ for <intel-gfx@lists.freedesktop.org>; Wed,  6 Apr 2022 17:46:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649267006; x=1680803006;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=EyeuCt3i1ivmC+B3n+NHaPwTCNzWnyVACVwQwfwxdR4=;
- b=bBcpwZvuNEjdHHPWcIbTpvR5L9vjDLKPRzGf+/UPVRDpr3yO4E+g3w9O
- PVgABc+oTbiCypuZkw/Y0fKR8Bh7oOQkva8zicdLmT62+xl5H/RmeLVcw
- QM+Wx4sqOJlduS7hMhSsOOxi8SERvh1bPRtTcFvG0OKUhaXls7tInu5sf
- A/9wNFZrwj5dVRIJdnmeB3StCHELvo/DX4NEWrt+IFkZBi/D19/PZTFbB
- yJEdKACeOPg7sv+s7qhF8RN+DYM5nBKZt6TgWmO0nRu9MMJwbWRWGMIXf
- 8ucRAqOe82UGBoRiGz9L9tfj8Qfa+eUk+Jr0rxRYXtfra4pT9xDvHLiDq w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10309"; a="324283272"
-X-IronPort-AV: E=Sophos;i="5.90,240,1643702400"; d="scan'208";a="324283272"
+ t=1649267188; x=1680803188;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=LnZyu+L3h5xQD/4m/f5AJ+xeWknYeKSu5G8zVUeLLSQ=;
+ b=mb8EZYbKfp31obFos5b3CGF9jMCZR1prxQV3iNYIJHWTshOYQ2rRirFQ
+ atfAesSazVD4LBctbG7XQExrmbEmWBmo4n75Nw3pRk09z1UeU8jhdxOe0
+ 3JQqlIPyokSI65S1VGODcFoFnQdcFKz9MUOOm+4vP46fn+1RsyEwa1LTh
+ /AFI6L2Nb8U6slnZD8E+/XJXPhXBP1agFsd/c7bef/xDYnVOEgmYcU1uj
+ W/H6di8QrA9Z2K3oaffXpdurqDNkO7chu5hjD3labBNm5KBBr+7Y3+i3B
+ iJgbntSQJeflAb+EF7SGQZcILrkeCfg9WgWBanpZMqY5bKbRNsGvk1oLx Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10309"; a="248640544"
+X-IronPort-AV: E=Sophos;i="5.90,240,1643702400"; d="scan'208";a="248640544"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2022 10:43:25 -0700
-X-IronPort-AV: E=Sophos;i="5.90,240,1643702400"; d="scan'208";a="570672874"
-Received: from jproschw-mobl1.ger.corp.intel.com (HELO
- vgovind2-mobl3.intel.com) ([10.252.43.1])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Apr 2022 10:46:27 -0700
+X-IronPort-AV: E=Sophos;i="5.90,240,1643702400"; d="scan'208";a="570673997"
+Received: from aclausch-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
+ ([10.209.8.158])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2022 10:43:23 -0700
-From: Vinod Govindapillai <vinod.govindapillai@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed,  6 Apr 2022 20:43:11 +0300
-Message-Id: <20220406174311.82104-1-vinod.govindapillai@intel.com>
-X-Mailer: git-send-email 2.25.1
+ 06 Apr 2022 10:46:27 -0700
+Date: Wed, 6 Apr 2022 10:46:27 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
+Message-ID: <20220406174627.ilsnfzjcojfxribe@ldmartin-desk2>
+X-Patchwork-Hint: comment
+References: <20220405171429.3149199-1-anusha.srivatsa@intel.com>
+ <20220405180242.naisj5g2edrhrfsi@ldmartin-desk2>
+ <be86669330e24a448de8265fcc6eff81@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3] drm/i915: program wm blocks to at least
- blocks required per line
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+In-Reply-To: <be86669330e24a448de8265fcc6eff81@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/dmc: Add MMIO range restrictions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,63 +59,146 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In configurations with single DRAM channel, for usecases like
-4K 60 Hz, FIFO underruns are observed quite frequently. Looks
-like the wm0 watermark values need to bumped up because the wm0
-memory latency calculations are probably not taking the DRAM
-channel's impact into account.
+On Wed, Apr 06, 2022 at 10:16:55AM -0700, Anusha Srivatsa wrote:
+>
+>
+>> -----Original Message-----
+>> From: De Marchi, Lucas <lucas.demarchi@intel.com>
+>> Sent: Tuesday, April 5, 2022 11:03 AM
+>> To: Srivatsa, Anusha <anusha.srivatsa@intel.com>
+>> Cc: intel-gfx@lists.freedesktop.org
+>> Subject: Re: [Intel-gfx] [PATCH] drm/i915/dmc: Add MMIO range restrictions
+>>
+>> On Tue, Apr 05, 2022 at 10:14:29AM -0700, Anusha Srivatsa wrote:
+>> >Bspec has added some steps that check for DMC MMIO range before
+>> >programming them.
+>> >
+>> >v2: Fix for CI failure for v1
+>> >
+>> >Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>> >Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+>> >---
+>> > drivers/gpu/drm/i915/display/intel_dmc.c | 42
+>> ++++++++++++++++++++++++
+>> > 1 file changed, 42 insertions(+)
+>> >
+>> >diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c
+>> >b/drivers/gpu/drm/i915/display/intel_dmc.c
+>> >index 257cf662f9f4..05d8e90854ec 100644
+>> >--- a/drivers/gpu/drm/i915/display/intel_dmc.c
+>> >+++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+>> >@@ -103,6 +103,18 @@ MODULE_FIRMWARE(BXT_DMC_PATH);
+>> > #define DMC_V1_MAX_MMIO_COUNT		8
+>> > #define DMC_V3_MAX_MMIO_COUNT		20
+>> > #define DMC_V1_MMIO_START_RANGE		0x80000
+>> >+#define TGL_MAIN_MMIO_START		0x8F000
+>> >+#define TGL_MAIN_MMIO_END		0x8FFFF
+>> >+#define TGL_PIPEA_MMIO_START		0x92000
+>> >+#define TGL_PIPEA_MMIO_END		0x93FFF
+>> >+#define TGL_PIPEB_MMIO_START		0x96000
+>> >+#define TGL_PIPEB_MMIO_END		0x97FFF
+>> >+#define TGL_PIPEC_MMIO_START		0x9A000
+>> >+#define TGL_PIPEC_MMIO_END		0x9BFFF
+>> >+#define TGL_PIPED_MMIO_START		0x9E000
+>> >+#define TGL_PIPED_MMIO_END		0x9FFFF
+>> >+#define ADLP_PIPE_MMIO_START		0x5F000
+>> >+#define ADLP_PIPE_MMIO_END		0x5FFFF
+>> >
+>> > struct intel_css_header {
+>> > 	/* 0x09 for DMC */
+>> >@@ -374,6 +386,30 @@ static void dmc_set_fw_offset(struct intel_dmc
+>> *dmc,
+>> > 	}
+>> > }
+>> >
+>> >+static bool dmc_mmio_addr_sanity_check(struct intel_dmc *dmc, const
+>> >+u32 *mmioaddr,
+>> >+u32 mmio_count)
+>> >+{
+>> >+	struct drm_i915_private *i915 = container_of(dmc, typeof(*i915),
+>> dmc);
+>> >+	int i;
+>> >+
+>> >+	if (IS_DG2(i915) || IS_ALDERLAKE_P(i915)) {
+>> >+		for (i = 0; i < mmio_count; i++) {
+>> >+			if (!((mmioaddr[i] >= TGL_MAIN_MMIO_START &&
+>> mmioaddr[i] <= TGL_MAIN_MMIO_END) ||
+>> >+			      (mmioaddr[i] >= ADLP_PIPE_MMIO_START &&
+>> mmioaddr[i] <= ADLP_PIPE_MMIO_END)))
+>> >+				return false;
+>> >+		}
+>> >+	} else if (IS_TIGERLAKE(i915) || IS_DG1(i915) ||
+>> IS_ALDERLAKE_S(i915))
+>> >+		for (i = 0; i < mmio_count; i++) {
+>> >+			if (!((mmioaddr[i] >= TGL_MAIN_MMIO_START &&
+>> mmioaddr[i] <= TGL_MAIN_MMIO_END) ||
+>> >+			      (mmioaddr[i] >= TGL_PIPEA_MMIO_START &&
+>> mmioaddr[i] <= TGL_PIPEA_MMIO_END) ||
+>> >+			      (mmioaddr[i] >= TGL_PIPEB_MMIO_START &&
+>> mmioaddr[i] <= TGL_PIPEB_MMIO_END) ||
+>> >+			      (mmioaddr[i] >= TGL_PIPEC_MMIO_START &&
+>> mmioaddr[i] <= TGL_PIPEC_MMIO_END) ||
+>> >+			      (mmioaddr[i] >= TGL_PIPED_MMIO_START &&
+>> mmioaddr[i] <= TGL_PIPEC_MMIO_END)))
+>> >+				return false;
+>>
+>> wonder if we should check for each pipe DMC range independently rather
+>> than just checking all the ranges.
+> Can convert this to a switch case in that scenario. "If it is PIPE A then it must be within this range". But it will be 2 switches one for DG2 and ADLP and one for TGL and the rest which have individual ranges for every pipe.
 
-As per the Bspec 49325, if the ddb allocation can hold at least
-one plane_blocks_per_line we should have selected method2.
-Assuming that modern HW versions have enough dbuf to hold
-at least one line, set the wm blocks to equivalent to blocks
-per line.
+I was thinking more about like this:
 
-V2: styling and comments changes (Ville)
-V3: Updated the reviewed-by tag
+#define _TGL_PIPEA_MMIO	0x92000
+#define _TGL_PIPEB_MMIO	0x96000
+#define TGL_PIPE_MMIO(pipe)	_MMIO_PIPE(pipe, _TGL_PIPEA_MMIO, _TGL_PIPEB_MMIO)
+#define TGL_PIPE_MMIO_SIZE	0x1000
 
-cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+This of course means that each blob is supposed to update only addresses
+on their own ranges. Is this true? Do we care?
 
-Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
-Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
----
- drivers/gpu/drm/i915/intel_pm.c | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+>
+>> >+	}
+>> >+	return true;
+>> >+}
+>> >+
+>> > static u32 parse_dmc_fw_header(struct intel_dmc *dmc,
+>> > 			       const struct intel_dmc_header_base
+>> *dmc_header,
+>> > 			       size_t rem_size, u8 dmc_id)
+>> >@@ -443,6 +479,12 @@ static u32 parse_dmc_fw_header(struct intel_dmc
+>> *dmc,
+>> > 		return 0;
+>> > 	}
+>> >
+>> >+	if (dmc_header->header_ver == 3) {
+>>
+>> this also needs to be done for ver 2
+>For v2 though there has been no update about the start range. As in this mmio range is different from the RAM_MMIO_START range.
 
-diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-index 8824f269e5f5..d284ec8aff21 100644
---- a/drivers/gpu/drm/i915/intel_pm.c
-+++ b/drivers/gpu/drm/i915/intel_pm.c
-@@ -5475,6 +5475,25 @@ static void skl_compute_plane_wm(const struct intel_crtc_state *crtc_state,
- 	}
- 
- 	blocks = fixed16_to_u32_round_up(selected_result) + 1;
-+	/*
-+	 * Lets have blocks at minimum equivalent to plane_blocks_per_line
-+	 * as there will be at minimum one line for lines configuration. This
-+	 * is a work around for FIFO underruns observed with resolutions like
-+	 * 4k 60 Hz in single channel DRAM configurations.
-+	 *
-+	 * As per the Bspec 49325, if the ddb allocation can hold at least
-+	 * one plane_blocks_per_line, we should have selected method2 in
-+	 * the above logic. Assuming that modern versions have enough dbuf
-+	 * and method2 guarantees blocks equivalent to at least 1 line,
-+	 * select the blocks as plane_blocks_per_line.
-+	 *
-+	 * TODO: Revisit the logic when we have better understanding on DRAM
-+	 * channels' impact on the level 0 memory latency and the relevant
-+	 * wm calculations.
-+	 */
-+	if (skl_wm_has_lines(dev_priv, level))
-+		blocks = max_t(u32, blocks,
-+			       fixed16_to_u32_round_up(wp->plane_blocks_per_line));
- 	lines = div_round_up_fixed16(selected_result,
- 				     wp->plane_blocks_per_line);
- 
--- 
-2.25.1
+it is the same situation as v3. We read it from firmware. Why do you
+simply trust the value in v2 but you don't trust it in v3? You removed
+the check in 3d5928a168a9 ("drm/i915/xelpd: Pipe A DMC plugging")
 
+         for (i = 0; i < mmio_count; i++) {
+-               if (mmioaddr[i] < DMC_MMIO_START_RANGE ||
+-                   mmioaddr[i] > DMC_MMIO_END_RANGE) {
+-                       drm_err(&i915->drm, "DMC firmware has wrong mmio address 0x%x\n",
+-                               mmioaddr[i]);
+-                       return 0;
+-               }
+                 dmc_info->mmioaddr[i] = _MMIO(mmioaddr[i]);
+                 dmc_info->mmiodata[i] = mmiodata[i];
+         }
+
+I remember mentioning this during review, but let it pass.
+
+Lucas De Marchi
+
+>
+>Anusha
+>
+>> Lucas De Marchi
