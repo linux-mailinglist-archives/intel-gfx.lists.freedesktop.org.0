@@ -1,53 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C9164F84A7
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Apr 2022 18:12:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F8A04F84A9
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Apr 2022 18:13:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8838410E1C1;
-	Thu,  7 Apr 2022 16:12:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C305610E1C1;
+	Thu,  7 Apr 2022 16:13:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 15AA510E1C1
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 Apr 2022 16:12:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649347930; x=1680883930;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=XIUJGvc2rLi0c5+OXWpX5/scEvpF7+OG6Ki3JQLQyQQ=;
- b=EjyWELtBajm3kiGI3nXMFapsx++rp8PFNpXFXNNS14HXEWGfGpKE+IEC
- ZqILT/pT9p2o6J4WhbWx+XWdLHCYDwFxaa/B8lxeHQeFOaYURjfVBc0st
- DqG6ougwQStiFiAV8jNxyhTHBHl/GyHMgmKGTDw/AjCYvDjkiIpDGvv5/
- 0knraaYH2O8RYpk4KHQV4LR1jaaiVJj1j6bRmlJ+c4wQXGkIEPux0+I2a
- yUWeQWJ43ics1TOaUJn6XMkHjWV98qn3d/yGaO/aJ4IZh/cyeyPwSEaB1
- NyXl3IlEdStK+fADEEaifLvcLLOVDtG+4UeohsSrg8OQkiOlTIkAR8o9h A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10310"; a="260205006"
-X-IronPort-AV: E=Sophos;i="5.90,242,1643702400"; d="scan'208";a="260205006"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2022 09:12:09 -0700
-X-IronPort-AV: E=Sophos;i="5.90,242,1643702400"; d="scan'208";a="550128723"
-Received: from kgibala-mobl.ger.corp.intel.com (HELO localhost)
- ([10.249.142.48])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2022 09:12:07 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220405173410.11436-6-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220405173410.11436-1-ville.syrjala@linux.intel.com>
- <20220405173410.11436-6-ville.syrjala@linux.intel.com>
-Date: Thu, 07 Apr 2022 19:12:04 +0300
-Message-ID: <87y20g50vf.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6A5CA10E1C1;
+ Thu,  7 Apr 2022 16:13:32 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 6409CAADD8;
+ Thu,  7 Apr 2022 16:13:32 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v2 05/22] drm/i915/bios: Trust the LFP data
- pointers
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Alexander Usyskin" <alexander.usyskin@intel.com>
+Date: Thu, 07 Apr 2022 16:13:32 -0000
+Message-ID: <164934801240.14670.7072487982931203991@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220407125839.1479249-1-alexander.usyskin@intel.com>
+In-Reply-To: <20220407125839.1479249-1-alexander.usyskin@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_GSC_support_for_XeHP_SDV_and_DG2_platforms?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,141 +40,84 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 05 Apr 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> Now that we've sufficiently validated the LFP data pointers we
-> can trust them.
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+== Series Details ==
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+Series: GSC support for XeHP SDV and DG2 platforms
+URL   : https://patchwork.freedesktop.org/series/102339/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+57df08911dad drm/i915/gsc: add gsc as a mei auxiliary device
+-:65: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#65: 
+new file mode 100644
+
+-:459: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'dev_priv' - possible side-effects?
+#459: FILE: drivers/gpu/drm/i915/i915_drv.h:1316:
++#define HAS_HECI_GSC(dev_priv) (HAS_HECI_PXP(dev_priv) || HAS_HECI_GSCFI(dev_priv))
+
+total: 0 errors, 1 warnings, 1 checks, 418 lines checked
+cbe282748891 mei: add support for graphics system controller (gsc) devices
+-:57: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#57: 
+new file mode 100644
+
+-:255: WARNING:MODULE_LICENSE: Prefer "GPL" over "GPL v2" - see commit bf7fbeeae6db ("module: Cure the MODULE_LICENSE "GPL" vs. "GPL v2" bogosity")
+#255: FILE: drivers/misc/mei/gsc-me.c:194:
++MODULE_LICENSE("GPL v2");
+
+total: 0 errors, 2 warnings, 0 checks, 297 lines checked
+73727156241a mei: gsc: setup char driver alive in spite of firmware handshake failure
+cf7d610b88d2 mei: gsc: add runtime pm handlers
+3b921daf3d69 mei: gsc: retrieve the firmware version
+7bf14c184625 HAX: drm/i915: force INTEL_MEI_GSC on for CI
+79367081c714 drm/i915/gsc: skip irq initialization if using polling
+e4627be07856 drm/i915/gsc: add slow_fw flag to the mei auxiliary device
+c3a1f69fab81 drm/i915/gsc: add slow_fw flag to the gsc device definition
+c8d254e0de12 drm/i915/gsc: add GSC XeHP SDV platform definition
+7102bca609de mei: gsc: use polling instead of interrupts
+ce5e1f8ea33d mei: gsc: wait for reset thread on stop
+613f4221d396 mei: extend timeouts on slow devices.
+c7ef5e1c508b drm/i915/dg2: add gsc with special gsc bar offsets
+a289d7722c57 mei: bus: export common mkhi definitions into a separate header
+-:78: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#78: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 101 lines checked
+f767b7e3953f mei: mkhi: add memory ready command
+-:46: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
+#46: FILE: drivers/misc/mei/mkhi.h:54:
++	uint32_t flags;
+
+total: 0 errors, 0 warnings, 1 checks, 29 lines checked
+ed778c11fb2f mei: gsc: setup gsc extended operational memory
+-:51: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'cldev->bus->pxp_mode != MEI_DEV_PXP_INIT'
+#51: FILE: drivers/misc/mei/bus-fixup.c:257:
++	if (!cldev->bus->fw_f_fw_ver_supported &&
++	    (cldev->bus->pxp_mode != MEI_DEV_PXP_INIT))
+
+total: 0 errors, 0 warnings, 1 checks, 224 lines checked
+0c7708f978ad mei: gsc: add transition to PXP mode in resume flow
+d7761f03a774 mei: debugfs: add pxp mode to devstate in debugfs
+-:19: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#19: FILE: drivers/misc/mei/debugfs.c:91:
++#define MEI_PXP_MODE(state) case MEI_DEV_PXP_##state: return #state
+
+total: 1 errors, 0 warnings, 0 checks, 29 lines checked
+9f233cb0bb63 drm/i915/gsc: allocate extended operational memory in LMEM
+-:109: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#109: FILE: drivers/gpu/drm/i915/gt/intel_gsc.c:152:
++static void gsc_destroy_one(struct drm_i915_private *i915,
++				  struct intel_gsc *gsc, unsigned int intf_id)
+
+total: 0 errors, 0 warnings, 1 checks, 181 lines checked
 
 
-> ---
->  drivers/gpu/drm/i915/display/intel_bios.c | 60 ++++++-----------------
->  1 file changed, 16 insertions(+), 44 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/=
-i915/display/intel_bios.c
-> index cd82ea4de8e1..925f521f1f84 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bios.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-> @@ -397,44 +397,19 @@ fill_detail_timing_data(struct drm_display_mode *pa=
-nel_fixed_mode,
->  }
->=20=20
->  static const struct lvds_dvo_timing *
-> -get_lvds_dvo_timing(const struct bdb_lvds_lfp_data *lvds_lfp_data,
-> -		    const struct bdb_lvds_lfp_data_ptrs *lvds_lfp_data_ptrs,
-> +get_lvds_dvo_timing(const struct bdb_lvds_lfp_data *data,
-> +		    const struct bdb_lvds_lfp_data_ptrs *ptrs,
->  		    int index)
->  {
-> -	/*
-> -	 * the size of fp_timing varies on the different platform.
-> -	 * So calculate the DVO timing relative offset in LVDS data
-> -	 * entry to get the DVO timing entry
-> -	 */
-> -
-> -	int lfp_data_size =3D
-> -		lvds_lfp_data_ptrs->ptr[1].dvo_timing.offset -
-> -		lvds_lfp_data_ptrs->ptr[0].dvo_timing.offset;
-> -	int dvo_timing_offset =3D
-> -		lvds_lfp_data_ptrs->ptr[0].dvo_timing.offset -
-> -		lvds_lfp_data_ptrs->ptr[0].fp_timing.offset;
-> -	char *entry =3D (char *)lvds_lfp_data->data + lfp_data_size * index;
-> -
-> -	return (struct lvds_dvo_timing *)(entry + dvo_timing_offset);
-> +	return (const void *)data + ptrs->ptr[index].dvo_timing.offset;
->  }
->=20=20
-> -/* get lvds_fp_timing entry
-> - * this function may return NULL if the corresponding entry is invalid
-> - */
->  static const struct lvds_fp_timing *
->  get_lvds_fp_timing(const struct bdb_lvds_lfp_data *data,
->  		   const struct bdb_lvds_lfp_data_ptrs *ptrs,
->  		   int index)
->  {
-> -	u16 data_size =3D ((const u16 *)data)[-1]; /* stored in header */
-> -	size_t ofs;
-> -
-> -	if (index >=3D ARRAY_SIZE(ptrs->ptr))
-> -		return NULL;
-> -	ofs =3D ptrs->ptr[index].fp_timing.offset;
-> -	if (ofs + sizeof(struct lvds_fp_timing) > data_size)
-> -		return NULL;
-> -	return (const struct lvds_fp_timing *)((const u8 *)data + ofs);
-> +	return (const void *)data + ptrs->ptr[index].fp_timing.offset;
->  }
->=20=20
->  /* Parse general panel options */
-> @@ -499,8 +474,7 @@ parse_panel_options(struct drm_i915_private *i915)
->=20=20
->  /* Try to find integrated panel timing data */
->  static void
-> -parse_lfp_panel_dtd(struct drm_i915_private *i915,
-> -		    const struct bdb_header *bdb)
-> +parse_lfp_panel_dtd(struct drm_i915_private *i915)
->  {
->  	const struct bdb_lvds_lfp_data *lvds_lfp_data;
->  	const struct bdb_lvds_lfp_data_ptrs *lvds_lfp_data_ptrs;
-> @@ -536,15 +510,14 @@ parse_lfp_panel_dtd(struct drm_i915_private *i915,
->  	fp_timing =3D get_lvds_fp_timing(lvds_lfp_data,
->  				       lvds_lfp_data_ptrs,
->  				       panel_type);
-> -	if (fp_timing) {
-> -		/* check the resolution, just to be sure */
-> -		if (fp_timing->x_res =3D=3D panel_fixed_mode->hdisplay &&
-> -		    fp_timing->y_res =3D=3D panel_fixed_mode->vdisplay) {
-> -			i915->vbt.bios_lvds_val =3D fp_timing->lvds_reg_val;
-> -			drm_dbg_kms(&i915->drm,
-> -				    "VBT initial LVDS value %x\n",
-> -				    i915->vbt.bios_lvds_val);
-> -		}
-> +
-> +	/* check the resolution, just to be sure */
-> +	if (fp_timing->x_res =3D=3D panel_fixed_mode->hdisplay &&
-> +	    fp_timing->y_res =3D=3D panel_fixed_mode->vdisplay) {
-> +		i915->vbt.bios_lvds_val =3D fp_timing->lvds_reg_val;
-> +		drm_dbg_kms(&i915->drm,
-> +			    "VBT initial LVDS value %x\n",
-> +			    i915->vbt.bios_lvds_val);
->  	}
->  }
->=20=20
-> @@ -627,8 +600,7 @@ parse_generic_dtd(struct drm_i915_private *i915)
->  }
->=20=20
->  static void
-> -parse_panel_dtd(struct drm_i915_private *i915,
-> -		const struct bdb_header *bdb)
-> +parse_panel_dtd(struct drm_i915_private *i915)
->  {
->  	/*
->  	 * Older VBTs provided provided DTD information for internal displays
-> @@ -641,7 +613,7 @@ parse_panel_dtd(struct drm_i915_private *i915,
->  	if (i915->vbt.version >=3D 229)
->  		parse_generic_dtd(i915);
->  	if (!i915->vbt.lfp_lvds_vbt_mode)
-> -		parse_lfp_panel_dtd(i915, bdb);
-> +		parse_lfp_panel_dtd(i915);
->  }
->=20=20
->  static void
-> @@ -2720,7 +2692,7 @@ void intel_bios_init(struct drm_i915_private *i915)
->  	parse_general_features(i915);
->  	parse_general_definitions(i915);
->  	parse_panel_options(i915);
-> -	parse_panel_dtd(i915, bdb);
-> +	parse_panel_dtd(i915);
->  	parse_lfp_backlight(i915);
->  	parse_sdvo_panel_data(i915);
->  	parse_driver_features(i915);
-
---=20
-Jani Nikula, Intel Open Source Graphics Center
