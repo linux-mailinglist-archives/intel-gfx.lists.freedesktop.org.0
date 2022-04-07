@@ -1,72 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F33274F7B6F
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Apr 2022 11:19:38 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B12F44F7B7D
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Apr 2022 11:23:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F5BD10E0F5;
-	Thu,  7 Apr 2022 09:19:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 27BE310E47C;
+	Thu,  7 Apr 2022 09:23:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-x644.google.com (mail-ej1-x644.google.com
- [IPv6:2a00:1450:4864:20::644])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 400D010E162
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 Apr 2022 09:19:36 +0000 (UTC)
-Received: by mail-ej1-x644.google.com with SMTP id l7so4111229ejn.2
- for <intel-gfx@lists.freedesktop.org>; Thu, 07 Apr 2022 02:19:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:mail-followup-to:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to; bh=tl9nBOnLqqP1/acS+yYHjDz2pgRvrY9cqBHbFKj8Fnc=;
- b=CBDEbkCCAkqWcu7rwSRxHuzvDQzAI6q2gOWepIQXIDBbJj5cPNZbu6U8yOAL3lfJYR
- xhKFp5hUopFdDtyiwJfVkQdRMsq1huLcJV7GkTRXOLg8M8+oumKCgOrVEZHJFOeZaqug
- QaS7Fun7MTS/4JRgL7uvADTsO+5Y9rvnLTgKw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:cc:subject:message-id
- :mail-followup-to:references:mime-version:content-disposition
- :content-transfer-encoding:in-reply-to;
- bh=tl9nBOnLqqP1/acS+yYHjDz2pgRvrY9cqBHbFKj8Fnc=;
- b=1mJpdEd7sjemlZlByBORNWzkD4p4zBF0e71fJ4bkR1vm/ejNfSRN/LTxk/IGhjPhtc
- zGnNpg0rYmBSOFEuYc6zNRTaIyRIRao8U5OYodnzxSgPfkr6uuqWw5vkaVWr6MYTLHgh
- RVnTqssiis1eCXH5BebqB/XAlCILs/W0AcEC/EFvBLa+67PvEkAl83gDXkyiOCg8EAnx
- RqSNhvNBCk3n9KwQIeo9TJdYOcsQYoBSqamR/cKrymkPwG89Lxg/lm3sHfeBUdCN11q6
- rAlrzrrILTg1Go2xA+fPQ6pRwMcWfOtLeTSn++tAZ/nWaECwbO8u8ScS0vwJVCjapFkz
- SqzQ==
-X-Gm-Message-State: AOAM532zQkXJ/7oes1cW3Xd9X/14AvAJKvHgNmErR04PFWjYrpGED+dv
- xGKUEyNuKQiML9mqAFNpXcGlnA==
-X-Google-Smtp-Source: ABdhPJzUgJqDlmh4A5Ht8QOIfc1rzltJqxuNxKdfx/yt4VDI386e+Hs+rpvAXO7SRwNbW/OkTGfw7g==
-X-Received: by 2002:a17:907:6e16:b0:6e4:de0d:d93 with SMTP id
- sd22-20020a1709076e1600b006e4de0d0d93mr12253676ejc.29.1649323174807; 
- Thu, 07 Apr 2022 02:19:34 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id
- r19-20020a17090638d300b006d6e4fc047bsm7585498ejd.11.2022.04.07.02.19.34
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 07 Apr 2022 02:19:34 -0700 (PDT)
-Date: Thu, 7 Apr 2022 11:19:32 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>
-Message-ID: <Yk6spNv/zSCB2ewe@phenom.ffwll.local>
-Mail-Followup-To: Christian =?iso-8859-1?Q?K=F6nig?=
- <ckoenig.leichtzumerken@gmail.com>, 
- dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org,
- linaro-mm-sig@lists.linaro.org, intel-gfx@lists.freedesktop.org,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Peter Zijlstra <peterz@infradead.org>,
- Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
- Waiman Long <longman@redhat.com>, Boqun Feng <boqun.feng@gmail.com>,
- linux-kernel@vger.kernel.org
-References: <20220407085946.744568-1-christian.koenig@amd.com>
- <20220407085946.744568-16-christian.koenig@amd.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C854C10E250;
+ Thu,  7 Apr 2022 09:23:26 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C41ECAA0EA;
+ Thu,  7 Apr 2022 09:23:26 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1717315336892255702=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220407085946.744568-16-christian.koenig@amd.com>
-X-Operating-System: Linux phenom 5.10.0-8-amd64 
-Subject: Re: [Intel-gfx] [PATCH 15/15] seqlock: drop seqcount_ww_mutex_t
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
+Date: Thu, 07 Apr 2022 09:23:26 -0000
+Message-ID: <164932340676.14670.10840435382668991086@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220407084235.9526-1-stanislav.lisovskiy@intel.com>
+In-Reply-To: <20220407084235.9526-1-stanislav.lisovskiy@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Fix_FIFO_underruns_caused_by_missing_cumulative_bpp_W/?=
+ =?utf-8?q?A?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,93 +41,315 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Boqun Feng <boqun.feng@gmail.com>, Peter Zijlstra <peterz@infradead.org>,
- daniel.vetter@ffwll.ch, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linaro-mm-sig@lists.linaro.org, Ingo Molnar <mingo@redhat.com>,
- Waiman Long <longman@redhat.com>, Will Deacon <will@kernel.org>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- linux-media@vger.kernel.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Apr 07, 2022 at 10:59:46AM +0200, Christian König wrote:
-> Daniel pointed out that this series removes the last user of
-> seqcount_ww_mutex_t, so let's drop this.
-> 
-> Signed-off-by: Christian König <christian.koenig@amd.com>
-> Cc: Peter Zijlstra <peterz@infradead.org>
-> Cc: Ingo Molnar <mingo@redhat.com>
-> Cc: Will Deacon <will@kernel.org>
-> Cc: Waiman Long <longman@redhat.com>
-> Cc: Boqun Feng <boqun.feng@gmail.com>
-> Cc: linux-kernel@vger.kernel.org
+--===============1717315336892255702==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Yeah I don't think we'll ever need this again, ww_mutex aren't common and
-the ww_mutex+seqlock thing wasn't the brighest idea.
+== Series Details ==
 
-Peter/Ingo, assuming you agree, can you ack this for merging through
-drm-misc, or want to pick this up later on when the last user disappeared
-in Linus' tree?
+Series: drm/i915: Fix FIFO underruns caused by missing cumulative bpp W/A
+URL   : https://patchwork.freedesktop.org/series/102322/
+State : failure
 
-Cheers, Daniel
+== Summary ==
 
-> ---
->  include/linux/seqlock.h | 8 ++------
->  1 file changed, 2 insertions(+), 6 deletions(-)
-> 
-> diff --git a/include/linux/seqlock.h b/include/linux/seqlock.h
-> index 37ded6b8fee6..3926e9027947 100644
-> --- a/include/linux/seqlock.h
-> +++ b/include/linux/seqlock.h
-> @@ -17,7 +17,6 @@
->  #include <linux/kcsan-checks.h>
->  #include <linux/lockdep.h>
->  #include <linux/mutex.h>
-> -#include <linux/ww_mutex.h>
->  #include <linux/preempt.h>
->  #include <linux/spinlock.h>
->  
-> @@ -164,7 +163,7 @@ static inline void seqcount_lockdep_reader_access(const seqcount_t *s)
->   * static initializer or init function. This enables lockdep to validate
->   * that the write side critical section is properly serialized.
->   *
-> - * LOCKNAME:	raw_spinlock, spinlock, rwlock, mutex, or ww_mutex.
-> + * LOCKNAME:	raw_spinlock, spinlock, rwlock or mutex
->   */
->  
->  /*
-> @@ -184,7 +183,6 @@ static inline void seqcount_lockdep_reader_access(const seqcount_t *s)
->  #define seqcount_spinlock_init(s, lock)		seqcount_LOCKNAME_init(s, lock, spinlock)
->  #define seqcount_rwlock_init(s, lock)		seqcount_LOCKNAME_init(s, lock, rwlock)
->  #define seqcount_mutex_init(s, lock)		seqcount_LOCKNAME_init(s, lock, mutex)
-> -#define seqcount_ww_mutex_init(s, lock)		seqcount_LOCKNAME_init(s, lock, ww_mutex)
->  
->  /*
->   * SEQCOUNT_LOCKNAME()	- Instantiate seqcount_LOCKNAME_t and helpers
-> @@ -277,7 +275,6 @@ SEQCOUNT_LOCKNAME(raw_spinlock, raw_spinlock_t,  false,    s->lock,        raw_s
->  SEQCOUNT_LOCKNAME(spinlock,     spinlock_t,      __SEQ_RT, s->lock,        spin,     spin_lock(s->lock))
->  SEQCOUNT_LOCKNAME(rwlock,       rwlock_t,        __SEQ_RT, s->lock,        read,     read_lock(s->lock))
->  SEQCOUNT_LOCKNAME(mutex,        struct mutex,    true,     s->lock,        mutex,    mutex_lock(s->lock))
-> -SEQCOUNT_LOCKNAME(ww_mutex,     struct ww_mutex, true,     &s->lock->base, ww_mutex, ww_mutex_lock(s->lock, NULL))
->  
->  /*
->   * SEQCNT_LOCKNAME_ZERO - static initializer for seqcount_LOCKNAME_t
-> @@ -304,8 +301,7 @@ SEQCOUNT_LOCKNAME(ww_mutex,     struct ww_mutex, true,     &s->lock->base, ww_mu
->  	__seqprop_case((s),	raw_spinlock,	prop),			\
->  	__seqprop_case((s),	spinlock,	prop),			\
->  	__seqprop_case((s),	rwlock,		prop),			\
-> -	__seqprop_case((s),	mutex,		prop),			\
-> -	__seqprop_case((s),	ww_mutex,	prop))
-> +	__seqprop_case((s),	mutex,		prop))
->  
->  #define seqprop_ptr(s)			__seqprop(s, ptr)
->  #define seqprop_sequence(s)		__seqprop(s, sequence)
-> -- 
-> 2.25.1
-> 
+CI Bug Log - changes from CI_DRM_11469 -> Patchwork_22807
+====================================================
 
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_22807 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_22807, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22807/index.html
+
+Participating hosts (50 -> 45)
+------------------------------
+
+  Missing    (5): shard-tglu fi-bsw-cyan fi-ctg-p8600 fi-pnv-d510 fi-bdw-samus 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_22807:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live@coherency:
+    - fi-bdw-5557u:       NOTRUN -> [INCOMPLETE][1]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22807/fi-bdw-5557u/igt@i915_selftest@live@coherency.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_22807 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@semaphore:
+    - fi-hsw-4770:        NOTRUN -> [SKIP][2] ([fdo#109271] / [fdo#109315]) +17 similar issues
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22807/fi-hsw-4770/igt@amdgpu/amd_basic@semaphore.html
+
+  * igt@amdgpu/amd_cs_nop@fork-compute0:
+    - fi-blb-e6850:       NOTRUN -> [SKIP][3] ([fdo#109271]) +17 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22807/fi-blb-e6850/igt@amdgpu/amd_cs_nop@fork-compute0.html
+
+  * igt@kms_chamelium@vga-edid-read:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][4] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22807/fi-bdw-5557u/igt@kms_chamelium@vga-edid-read.html
+
+  * igt@kms_setmode@basic-clone-single-crtc:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][5] ([fdo#109271]) +14 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22807/fi-bdw-5557u/igt@kms_setmode@basic-clone-single-crtc.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s3@smem:
+    - fi-bdw-5557u:       [INCOMPLETE][6] ([i915#146]) -> [PASS][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11469/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22807/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-hsw-4770:        [INCOMPLETE][8] ([i915#4785]) -> [PASS][9]
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11469/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22807/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+
+  * igt@i915_selftest@live@requests:
+    - fi-blb-e6850:       [DMESG-FAIL][10] ([i915#4528]) -> [PASS][11]
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11469/fi-blb-e6850/igt@i915_selftest@live@requests.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22807/fi-blb-e6850/igt@i915_selftest@live@requests.html
+
+  
+#### Warnings ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - fi-tgl-1115g4:      [DMESG-WARN][12] ([i915#1982]) -> [DMESG-WARN][13] ([i915#5577])
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11469/fi-tgl-1115g4/igt@core_hotunplug@unbind-rebind.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22807/fi-tgl-1115g4/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@runner@aborted:
+    - fi-glk-j4005:       [FAIL][14] ([i915#4312] / [i915#5257] / [k.org#202321]) -> [FAIL][15] ([i915#4312] / [i915#5257])
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11469/fi-glk-j4005/igt@runner@aborted.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22807/fi-glk-j4005/igt@runner@aborted.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4528]: https://gitlab.freedesktop.org/drm/intel/issues/4528
+  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
+  [i915#4897]: https://gitlab.freedesktop.org/drm/intel/issues/4897
+  [i915#5257]: https://gitlab.freedesktop.org/drm/intel/issues/5257
+  [i915#5577]: https://gitlab.freedesktop.org/drm/intel/issues/5577
+  [k.org#202321]: https://bugzilla.kernel.org/show_bug.cgi?id=202321
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_11469 -> Patchwork_22807
+
+  CI-20190529: 20190529
+  CI_DRM_11469: d95bb535e8e80c0484bb6f13d1875efcdb084862 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6415: c3b690bd5f7fb1fb7ed786ab0f3b815930a6a55f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_22807: b2b7dace2671214005e79582b62db58c64273533 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Kernel 32bit build ==
+
+Warning: Kernel 32bit buildtest failed:
+https://intel-gfx-ci.01.org/Patchwork_22807/build_32bit.log
+
+  CALL    scripts/checksyscalls.sh
+  CALL    scripts/atomic/check-atomics.sh
+  CHK     include/generated/compile.h
+Kernel: arch/x86/boot/bzImage is ready  (#1)
+  MODPOST modules-only.symvers
+ERROR: modpost: "__udivdi3" [drivers/gpu/drm/i915/i915.ko] undefined!
+scripts/Makefile.modpost:134: recipe for target 'modules-only.symvers' failed
+make[1]: *** [modules-only.symvers] Error 1
+make[1]: *** Deleting file 'modules-only.symvers'
+Makefile:1749: recipe for target 'modules' failed
+make: *** [modules] Error 2
+
+
+== Linux commits ==
+
+b2b7dace2671 drm/i915: Fix FIFO underruns caused by missing cumulative bpp W/A
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22807/index.html
+
+--===============1717315336892255702==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Fix FIFO underruns caused by missing cumulative bpp W/A</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/102322/">https://patchwork.freedesktop.org/series/102322/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22807/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22807/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11469 -&gt; Patchwork_22807</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_22807 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_22807, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22807/index.html</p>
+<h2>Participating hosts (50 -&gt; 45)</h2>
+<p>Missing    (5): shard-tglu fi-bsw-cyan fi-ctg-p8600 fi-pnv-d510 fi-bdw-samus </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_22807:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@i915_selftest@live@coherency:<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22807/fi-bdw-5557u/igt@i915_selftest@live@coherency.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_22807 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@semaphore:</p>
+<ul>
+<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22807/fi-hsw-4770/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@amdgpu/amd_cs_nop@fork-compute0:</p>
+<ul>
+<li>fi-blb-e6850:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22807/fi-blb-e6850/igt@amdgpu/amd_cs_nop@fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@vga-edid-read:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22807/fi-bdw-5557u/igt@kms_chamelium@vga-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_setmode@basic-clone-single-crtc:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22807/fi-bdw-5557u/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +14 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s3@smem:</p>
+<ul>
+<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11469/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/146">i915#146</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22807/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11469/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22807/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@requests:</p>
+<ul>
+<li>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11469/fi-blb-e6850/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22807/fi-blb-e6850/igt@i915_selftest@live@requests.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11469/fi-tgl-1115g4/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22807/fi-tgl-1115g4/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5577">i915#5577</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-glk-j4005:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11469/fi-glk-j4005/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5257">i915#5257</a> / <a href="https://bugzilla.kernel.org/show_bug.cgi?id=202321">k.org#202321</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22807/fi-glk-j4005/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5257">i915#5257</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11469 -&gt; Patchwork_22807</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11469: d95bb535e8e80c0484bb6f13d1875efcdb084862 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6415: c3b690bd5f7fb1fb7ed786ab0f3b815930a6a55f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_22807: b2b7dace2671214005e79582b62db58c64273533 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Kernel 32bit build ==</p>
+<p>Warning: Kernel 32bit buildtest failed:<br />
+https://intel-gfx-ci.01.org/Patchwork_22807/build_32bit.log</p>
+<p>CALL    scripts/checksyscalls.sh<br />
+  CALL    scripts/atomic/check-atomics.sh<br />
+  CHK     include/generated/compile.h<br />
+Kernel: arch/x86/boot/bzImage is ready  (#1)<br />
+  MODPOST modules-only.symvers<br />
+ERROR: modpost: "__udivdi3" [drivers/gpu/drm/i915/i915.ko] undefined!<br />
+scripts/Makefile.modpost:134: recipe for target 'modules-only.symvers' failed<br />
+make<a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22807/fi-bdw-5557u/igt@i915_selftest@live@coherency.html">1</a>: <strong><em> [modules-only.symvers] Error 1<br />
+make<a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22807/fi-bdw-5557u/igt@i915_selftest@live@coherency.html">1</a>: </em></strong> Deleting file 'modules-only.symvers'<br />
+Makefile:1749: recipe for target 'modules' failed<br />
+make: *** [modules] Error 2</p>
+<p>== Linux commits ==</p>
+<p>b2b7dace2671 drm/i915: Fix FIFO underruns caused by missing cumulative bpp W/A</p>
+
+</body>
+</html>
+
+--===============1717315336892255702==--
