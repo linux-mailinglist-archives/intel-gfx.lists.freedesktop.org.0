@@ -2,56 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C73424F86C6
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Apr 2022 20:00:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C0BA4F86CA
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Apr 2022 20:01:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0115810EC16;
-	Thu,  7 Apr 2022 17:59:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E52410EC16;
+	Thu,  7 Apr 2022 18:01:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com
- [IPv6:2a00:1450:4864:20::52e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F378A10EC16;
- Thu,  7 Apr 2022 17:59:57 +0000 (UTC)
-Received: by mail-ed1-x52e.google.com with SMTP id x20so7307913edi.12;
- Thu, 07 Apr 2022 10:59:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=4WI8dxwe4b3rh4wbz1s8dWC+0Q4/tNtWQhYTCvMgaWg=;
- b=M7SIK2MkUwKLwzi/3DHrnEDIb57hI1xKLKxsRdf25MYXG4n7aAziUoWxRnF4tzq0TR
- j3o1lrSp/51pm+eJ/Q1+imaaoxR6XD4MU73TNodpCb2W4WO1flERSYsqHhpk7Fsht18g
- mWKWc5F2oWqgt8nhsUg6bhH34H512m0lRMqrPf/26GhmfcROYrcdfWyigh2R3dRtiZWV
- 5rKOKC7JnC6DJvzncd/gBwNU/YK516l+DmSBlW9Ng0iI/X8DG/2cnCPPIvkIqvbCuqIE
- 1zF3Tiw0tSLEuWgt7vYO8yOEphOwrLZ4f6vhG6hs1O5hdpQEqmZKIuPf1pUGbX8NWU7K
- 1JWw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=4WI8dxwe4b3rh4wbz1s8dWC+0Q4/tNtWQhYTCvMgaWg=;
- b=CiQdKNyfqbCQsKTDKGexsgUNflJuI0e3oEZ1IgOBe+vXYFACuyjfFHp6AxjqK5IOfK
- VMmzNj+RLs0gMCIqiUvgsnE25paJKSHTtjQ3KgmJz/SFIbR5ckIIO6PQCXWaB7+GEvLH
- Gf2JcGYOVolOfhpMxdD9d6iLhRcVZGacxw9KkOF6WwaAbrQLpH7sRZDq6MOfOMtLgpD+
- 8fievDeaZ7xJeXCbVcMMiQhYID6PKAO9ruHQky1p7N6yWj6VPbHog1bFNGVV4jEP+mjY
- aCX4aDFeFdgad15mI9ZcH2t8grTb2QPel7xcAKGORcWwmNMtdO3zJCogTXjYPfoRk5sr
- VGUQ==
-X-Gm-Message-State: AOAM5309uWdSGtTf3vvqiRxybAWNACSesBwa9FEoD2G1vHXJgj+T6fLc
- GhPdRrYEN5qmkLsnpkOqHrIqZxJVckWEUCJt4TY=
-X-Google-Smtp-Source: ABdhPJwqPgTfmh2eKYARtTkzYXTyBP35fIzqxtF9gOR8XTTzQjGs9AMiYyhlMM2NMNspNeLAuAfPCn7pm5MYaxQ89AU=
-X-Received: by 2002:a50:d098:0:b0:41c:bd64:b0de with SMTP id
- v24-20020a50d098000000b0041cbd64b0demr15287267edd.366.1649354396277; Thu, 07
- Apr 2022 10:59:56 -0700 (PDT)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A284D10EC16
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 Apr 2022 18:01:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1649354474; x=1680890474;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=B8stvgGw2XNejffSg5MKDSqBaQeh47veQL92YHrFJLE=;
+ b=Y4OApubTX+bFSyUAgnIz1MYUYduRWHQ66TVKyuTJftu/vJlXQpKqokmZ
+ tyhx3gyVLKbR8CQyLfMXkOTvoIAPwntcH7XOWVd8ucZk09nifJdp38iYt
+ IPJU8cAq3XCrl/d0f3W1yubyD1UBMqpb1iLllpr7rzaRCuYnwrDl27yw0
+ 5K6m+YnAhHQyaGTcG9X6pGSX+EZlxLjMpscdS4Iq2AJ3hizKiYpx3YBZQ
+ iwmrLZpWFrT4/myRnU4KSq6GH5pqUyQUdnWLgO11vTz9y67XkLkBkWeH9
+ //eMzSxpNw1gsc7Z5AbxfykA+Xmxwt+a13dZGbKbEvHjlJEMwSp0ZP4Ch Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10310"; a="261091576"
+X-IronPort-AV: E=Sophos;i="5.90,242,1643702400"; d="scan'208";a="261091576"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2022 11:01:14 -0700
+X-IronPort-AV: E=Sophos;i="5.90,242,1643702400"; d="scan'208";a="550173494"
+Received: from kgibala-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.249.142.48])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2022 11:01:12 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20220405173410.11436-21-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220405173410.11436-1-ville.syrjala@linux.intel.com>
+ <20220405173410.11436-21-ville.syrjala@linux.intel.com>
+Date: Thu, 07 Apr 2022 21:01:10 +0300
+Message-ID: <87wng03h95.fsf@intel.com>
 MIME-Version: 1.0
-References: <20220404133846.131401-1-imre.deak@intel.com>
- <20220404133846.131401-2-imre.deak@intel.com>
-In-Reply-To: <20220404133846.131401-2-imre.deak@intel.com>
-From: =?UTF-8?Q?Juha=2DPekka_Heikkil=C3=A4?= <juhapekka.heikkila@gmail.com>
-Date: Thu, 7 Apr 2022 20:59:45 +0300
-Message-ID: <CAJ=qYWSU-6v-cJ9a_=4-cYU1n9kDDMj4AXG3sFhXXUrfuFvLXw@mail.gmail.com>
-To: Imre Deak <imre.deak@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PATCH 1/4] drm/fourcc: Introduce format modifiers
- for DG2 render and media compression
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH v2 20/22] drm/i915: Respect VBT seamless
+ DRRS min refresh rate
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,70 +60,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Seems my first mail didn't come through so here's second time for this patch:
-
-Reviewed-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-
-On Mon, Apr 4, 2022 at 4:39 PM Imre Deak <imre.deak@intel.com> wrote:
+On Tue, 05 Apr 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> From: Matt Roper <matthew.d.roper@intel.com>
+> Make sure our choice of downclock mode respects the VBT
+> seameless DRRS min refresh rate limit.
 >
-> The render/media engines on DG2 unify render compression and media
-> compression into a single format for the first time, using the Tile 4
-> layout for main surfaces. The compression algorithm is different from
-> any previous platform and the display engine must still be configured to
-> decompress either a render or media compressed surface; as such, we
-> need new RC and MC framebuffer modifiers to represent buffers in this
-> format.
->
-> v2: Clarify modifier layout description.
->
-> Cc: dri-devel@lists.freedesktop.org
-> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
-> Acked-by: Nanley Chery <nanley.g.chery@intel.com>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 > ---
->  include/uapi/drm/drm_fourcc.h | 22 ++++++++++++++++++++++
->  1 file changed, 22 insertions(+)
+>  drivers/gpu/drm/i915/display/intel_panel.c | 10 +++++++---
+>  1 file changed, 7 insertions(+), 3 deletions(-)
 >
-> diff --git a/include/uapi/drm/drm_fourcc.h b/include/uapi/drm/drm_fourcc.h
-> index b73fe6797fc37..4a5117715db3c 100644
-> --- a/include/uapi/drm/drm_fourcc.h
-> +++ b/include/uapi/drm/drm_fourcc.h
-> @@ -583,6 +583,28 @@ extern "C" {
->   */
->  #define I915_FORMAT_MOD_4_TILED         fourcc_mod_code(INTEL, 9)
->
-> +/*
-> + * Intel color control surfaces (CCS) for DG2 render compression.
-> + *
-> + * The main surface is Tile 4 and at plane index 0. The CCS data is stored
-> + * outside of the GEM object in a reserved memory area dedicated for the
-> + * storage of the CCS data for all RC/RC_CC/MC compressible GEM objects. The
-> + * main surface pitch is required to be a multiple of four Tile 4 widths.
-> + */
-> +#define I915_FORMAT_MOD_4_TILED_DG2_RC_CCS fourcc_mod_code(INTEL, 10)
+> diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm=
+/i915/display/intel_panel.c
+> index 03398feb6676..35d8676438a3 100644
+> --- a/drivers/gpu/drm/i915/display/intel_panel.c
+> +++ b/drivers/gpu/drm/i915/display/intel_panel.c
+> @@ -75,13 +75,17 @@ const struct drm_display_mode *
+>  intel_panel_downclock_mode(struct intel_connector *connector,
+>  			   const struct drm_display_mode *adjusted_mode)
+>  {
+> +	struct drm_i915_private *i915 =3D to_i915(connector->base.dev);
+>  	const struct drm_display_mode *fixed_mode, *best_mode =3D NULL;
+> -	int vrefresh =3D drm_mode_vrefresh(adjusted_mode);
+> +	int min_vrefresh =3D i915->vbt.seamless_drrs_min_refresh_rate;
+
+Just remembered the rabbit hole goes deeper with dual eDP and supporting
+multiple copies of all the panel type specific stuff... ;)
+
+> +	int max_vrefresh =3D drm_mode_vrefresh(adjusted_mode);
+>=20=20
+>  	/* pick the fixed_mode with the lowest refresh rate */
+>  	list_for_each_entry(fixed_mode, &connector->panel.fixed_modes, head) {
+> -		if (drm_mode_vrefresh(fixed_mode) < vrefresh) {
+> -			vrefresh =3D drm_mode_vrefresh(fixed_mode);
+> +		int vrefesh =3D drm_mode_vrefresh(fixed_mode);
+
+*vrefresh
+
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+
+
 > +
-> +/*
-> + * Intel color control surfaces (CCS) for DG2 media compression.
-> + *
-> + * The main surface is Tile 4 and at plane index 0. For semi-planar formats
-> + * like NV12, the Y and UV planes are Tile 4 and are located at plane indices
-> + * 0 and 1, respectively. The CCS for all planes are stored outside of the
-> + * GEM object in a reserved memory area dedicated for the storage of the
-> + * CCS data for all RC/RC_CC/MC compressible GEM objects. The main surface
-> + * pitch is required to be a multiple of four Tile 4 widths.
-> + */
-> +#define I915_FORMAT_MOD_4_TILED_DG2_MC_CCS fourcc_mod_code(INTEL, 11)
-> +
->  /*
->   * Tiled, NV12MT, grouped in 64 (pixels) x 32 (lines) -sized macroblocks
->   *
-> --
-> 2.30.2
->
+> +		if (vrefesh >=3D min_vrefresh && vrefesh < max_vrefresh) {
+> +			max_vrefresh =3D vrefesh;
+>  			best_mode =3D fixed_mode;
+>  		}
+>  	}
+
+--=20
+Jani Nikula, Intel Open Source Graphics Center
