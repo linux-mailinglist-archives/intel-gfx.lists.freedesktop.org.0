@@ -1,46 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6033A4F8729
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Apr 2022 20:38:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9008F4F8727
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Apr 2022 20:38:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D58AB10EC6E;
-	Thu,  7 Apr 2022 18:38:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E406810E812;
+	Thu,  7 Apr 2022 18:38:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B35710E812;
- Thu,  7 Apr 2022 18:38:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 53F0B10E812
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 Apr 2022 18:38:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649356710; x=1680892710;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=IFXsa0ncfIGlPRZp0w++EyxOtvbfOd7DNuJP15auUIc=;
- b=ilAgzBO+mF8fGlV4VPRG1ymQx+luSadw4DWaJGHujfa+HTcy1kxgRVuL
- EnvI7AYRPplpH74b6ycZJ9Iz/8NTgV6YjmWViLGI3CHmnfvfsHeJo+lg9
- 5lThiEosmIzEGsgysj2WudPtl6JA2aWbhxZdeIIvGKn7XOKphcZGsdwNN
- 4RakSkJf5+70XfbAo7Pm1I+7JNGpE9Wc4p8YGnHJn2/sZ7XDbAXRUxMdJ
- JWoy5VpEbg1GAnoJTAMgB0Ku9iP+cSB66p4Sjx7h6pO9uii3Xu7L1rXOQ
- Fd/UgWIrZ1cWuuCEQjIslO7Crk0hzUr/tYY0USvJbYq9oDHq6HXtIk7sP g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10310"; a="261406122"
-X-IronPort-AV: E=Sophos;i="5.90,242,1643702400"; d="scan'208";a="261406122"
+ t=1649356711; x=1680892711;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=Hfrj2DGuDU82xFcm9LAvLDp47DCvz42aETltyY9CU3c=;
+ b=FZ7VMEF8x9TYnngeI1v5Sepqlgg4T87z0squ6GpdvBFdXrnYkZmti7j5
+ jJDpaw62nv4aBA7E7Ht6UENUVNCkhaZ5TuhRJFw/1l4oO4OmU2Pioky6u
+ GPAeW5dO+aGFmbFamE8Gy961OdrzPIHW7MvpAqsRlBx2aV3KQg/OxHu6o
+ 2ZQf2V9NUob2gKiUX1f2aS/U/V5YtiRulpk0tVRgCS7kj4WQWFHQaS78G
+ 4XM6Nbl/+W6TiILI5mdh/QGKR9n9FPce79wlBUa7r1xQVtNVR8xNcQw6Q
+ P/fB54DtCnEd2IQD8bI+rvqKLDSxqu+vVnM7nsyOtErS6KbDNl40Nw0VS g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10310"; a="261406128"
+X-IronPort-AV: E=Sophos;i="5.90,242,1643702400"; d="scan'208";a="261406128"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2022 11:38:30 -0700
-X-IronPort-AV: E=Sophos;i="5.90,242,1643702400"; d="scan'208";a="525047402"
+ 07 Apr 2022 11:38:31 -0700
+X-IronPort-AV: E=Sophos;i="5.90,242,1643702400"; d="scan'208";a="525047407"
 Received: from ideak-desk.fi.intel.com ([10.237.72.175])
  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2022 11:38:28 -0700
+ 07 Apr 2022 11:38:30 -0700
 From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu,  7 Apr 2022 21:38:25 +0300
-Message-Id: <20220407183826.724106-1-imre.deak@intel.com>
+Date: Thu,  7 Apr 2022 21:38:26 +0300
+Message-Id: <20220407183826.724106-2-imre.deak@intel.com>
 X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20220407183826.724106-1-imre.deak@intel.com>
+References: <20220407183826.724106-1-imre.deak@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 1/2] drm/dp: Export drm_dp_dpcd_access()
+Subject: [Intel-gfx] [PATCH 2/2] drm/i915/dp: Add workaround for spurious
+ AUX timeouts/hotplugs on LTTPR links
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,71 +56,91 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The next patch needs a way to read a DPCD register without the preceding
-wake-up read in drm_dp_dpcd_read(). Export drm_dp_dpcd_access() to allow
-this.
+Some ADLP DP link configuration at least with multiple LTTPRs expects
+the first DPCD access during the LTTPR/DPCD detection after hotplug to
+be a read from the LTTPR range starting with
+DP_LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV. The side effect of
+this read is to put each LTTPR into the LTTPR transparent or LTTPR
+non-transparent mode.
 
-Cc: dri-devel@lists.freedesktop.org
+The lack of the above read may leave some of the LTTPRs in non-LTTPR
+mode, while other LTTPRs in LTTPR transparent or LTTPR non-transparent
+mode (for instance LTTPRs after system suspend/resume that kept their
+mode from before suspend). Due to the different AUX timeouts the
+different modes imply, the DPCD access from a non-LTTPR range will
+timeout and lead to an LTTPR generated hotplug towards the source (which
+the LTTPR firmware uses to account for buggy TypeC adapters with a long
+wake-up delay).
+
+To avoid the above AUX timeout and subsequent hotplug interrupt, make
+sure that the first DPCD access during detection is a read from an
+LTTPR register.
+
+VLK: SYSCROS-72939
+
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 ---
- drivers/gpu/drm/dp/drm_dp.c    | 19 +++++++++++++++++--
- include/drm/dp/drm_dp_helper.h |  2 ++
- 2 files changed, 19 insertions(+), 2 deletions(-)
+ .../drm/i915/display/intel_dp_link_training.c | 29 ++++++++++++-------
+ 1 file changed, 18 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/dp/drm_dp.c b/drivers/gpu/drm/dp/drm_dp.c
-index 580016a1b9eb7..8b181314edcbe 100644
---- a/drivers/gpu/drm/dp/drm_dp.c
-+++ b/drivers/gpu/drm/dp/drm_dp.c
-@@ -470,8 +470,22 @@ drm_dp_dump_access(const struct drm_dp_aux *aux,
-  * Both native and I2C-over-AUX transactions are supported.
-  */
- 
--static int drm_dp_dpcd_access(struct drm_dp_aux *aux, u8 request,
--			      unsigned int offset, void *buffer, size_t size)
-+/**
-+ * drm_dp_dpcd_access() - read or write a series of bytes from/to the DPCD
-+ * @aux: DisplayPort AUX channel (SST)
-+ * @request: DP_AUX_NATIVE_READ or DP_AUX_NATIVE_WRITE
-+ * @offset: address of the (first) register to read or write
-+ * @buffer: buffer with the register values to write or the register values read
-+ * @size: number of bytes in @buffer
-+ *
-+ * Returns the number of bytes transferred on success, or a negative error
-+ * code on failure. This is a low-level function only for SST sinks and cases
-+ * where calling drm_dp_dpcd_read()/write() is not possible (for instance due
-+ * to the wake-up register read in drm_dp_dpcd_read()). For all other cases
-+ * the latter functions should be used.
-+ */
-+int drm_dp_dpcd_access(struct drm_dp_aux *aux, u8 request,
-+		       unsigned int offset, void *buffer, size_t size)
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+index 26f9e2b748e40..b933b7a7bc70e 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+@@ -82,19 +82,8 @@ static bool intel_dp_read_lttpr_common_caps(struct intel_dp *intel_dp,
+ 					    const u8 dpcd[DP_RECEIVER_CAP_SIZE])
  {
- 	struct drm_dp_aux_msg msg;
- 	unsigned int retry, native_reply;
-@@ -526,6 +540,7 @@ static int drm_dp_dpcd_access(struct drm_dp_aux *aux, u8 request,
- 	mutex_unlock(&aux->hw_mutex);
- 	return ret;
- }
-+EXPORT_SYMBOL(drm_dp_dpcd_access);
+ 	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
+-	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+ 	int ret;
  
- /**
-  * drm_dp_dpcd_read() - read a series of bytes from the DPCD
-diff --git a/include/drm/dp/drm_dp_helper.h b/include/drm/dp/drm_dp_helper.h
-index 1eccd97419436..7cf6e83434a8c 100644
---- a/include/drm/dp/drm_dp_helper.h
-+++ b/include/drm/dp/drm_dp_helper.h
-@@ -2053,6 +2053,8 @@ struct drm_dp_aux {
- 	bool is_remote;
- };
+-	if (intel_dp_is_edp(intel_dp))
+-		return false;
+-
+-	/*
+-	 * Detecting LTTPRs must be avoided on platforms with an AUX timeout
+-	 * period < 3.2ms. (see DP Standard v2.0, 2.11.2, 3.6.6.1).
+-	 */
+-	if (DISPLAY_VER(i915) < 10 || IS_GEMINILAKE(i915))
+-		return false;
+-
+ 	ret = drm_dp_read_lttpr_common_caps(&intel_dp->aux, dpcd,
+ 					    intel_dp->lttpr_common_caps);
+ 	if (ret < 0)
+@@ -197,12 +186,30 @@ static int intel_dp_init_lttpr(struct intel_dp *intel_dp, const u8 dpcd[DP_RECEI
+  */
+ int intel_dp_init_lttpr_and_dprx_caps(struct intel_dp *intel_dp)
+ {
++	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
++	/*
++	 * Detecting LTTPRs must be avoided on platforms with an AUX timeout
++	 * period < 3.2ms. (see DP Standard v2.0, 2.11.2, 3.6.6.1).
++	 */
++	bool init_lttpr = !intel_dp_is_edp(intel_dp) &&
++			  (DISPLAY_VER(i915) >= 10 && !IS_GEMINILAKE(i915));
+ 	u8 dpcd[DP_RECEIVER_CAP_SIZE];
+ 	int lttpr_count;
  
-+int drm_dp_dpcd_access(struct drm_dp_aux *aux, u8 request,
-+		       unsigned int offset, void *buffer, size_t size);
- ssize_t drm_dp_dpcd_read(struct drm_dp_aux *aux, unsigned int offset,
- 			 void *buffer, size_t size);
- ssize_t drm_dp_dpcd_write(struct drm_dp_aux *aux, unsigned int offset,
++	if (init_lttpr) {
++		u8 tmp;
++
++		if (drm_dp_dpcd_access(&intel_dp->aux, DP_AUX_NATIVE_READ,
++				       DP_LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV, &tmp, 1) != 1)
++			return -EIO;
++	}
++
+ 	if (drm_dp_read_dpcd_caps(&intel_dp->aux, dpcd))
+ 		return -EIO;
+ 
++	if (!init_lttpr)
++		return 0;
++
+ 	lttpr_count = intel_dp_init_lttpr(intel_dp, dpcd);
+ 
+ 	/*
 -- 
 2.30.2
 
