@@ -2,51 +2,127 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D50374F7E24
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Apr 2022 13:38:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BE37B4F7E60
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Apr 2022 13:49:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC17D10E729;
-	Thu,  7 Apr 2022 11:38:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D53A910E9C3;
+	Thu,  7 Apr 2022 11:48:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2BA1310E6EF
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 Apr 2022 11:38:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649331537; x=1680867537;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=PvSUbDbGJUwxGXtkYDMKT590Fql/QqWULmnyUfxisCk=;
- b=gihvRzLQgCTBGYr3jfYG1/jerbAu4xXTMBK2V6HeuLClUcpivGC8R1bi
- wg3guuzTlM7ZMcDuA3CDml774qne+PmJOP1KP/9yzYzMpWgwezUa5a9Yo
- WSBiHu1njAVzuYkiqff95JsZbSvGGw46DsboLAb8pjSqO0e2j5Qn8lHPl
- cZ4aJk0mpVOWs5WHQ8a/VuyrSVdpcgK6qWTrGQKb4k3v8ssyYl94orFPX
- bR1mMU583cMBfA5ggLtAULra+9IbqLWsxGjatkkxydUiJWTQFfQ0JiLkz
- 2pITr31bE6mxt2hkP1T/vIrX3jL/jl9BuDz0bTINx2Rf6V+WnTxCoQHvj g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10309"; a="321991572"
-X-IronPort-AV: E=Sophos;i="5.90,241,1643702400"; d="scan'208";a="321991572"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2022 04:38:56 -0700
-X-IronPort-AV: E=Sophos;i="5.90,241,1643702400"; d="scan'208";a="659032651"
-Received: from unknown (HELO intel.com) ([10.237.72.65])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2022 04:38:55 -0700
-Date: Thu, 7 Apr 2022 14:39:37 +0300
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20220407113937.GA20712@intel.com>
-References: <20220407084235.9526-1-stanislav.lisovskiy@intel.com>
- <Yk7GvHfxpwTuq1Wm@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2059.outbound.protection.outlook.com [40.107.236.59])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D5B210E752;
+ Thu,  7 Apr 2022 11:48:56 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=XvVJPasZYX1rHDdNFWzgyoj3QJQVWVdFsh2QRfctPSPQZjMModgaxuPtuV3DAC7vf39efEG/b2Y0zpsvJERKuIj19GTUFRORRS0IGJWIcRrI3ZFLoCKMno9WNbMYlEXweWSwGuKvBk1ckiVGEotisOmxvj8fzw/lkmJ2fN67/Tiojq9utc/yzBRJuq6h5hOweQ5eiQEZXF9wZ7jifrQKbCKn87U0zHGix550ljrrjG2bkasQv41ydTEfFsryxn9JiwvKZjDnZUuVCkI/fRYGAmzgSb5hZWLNwP6AQlb9fAycFnK2ANvCNJMisS6baEitj944CTjQEEg+1EmlzCKUGA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=2tBYqNTQ3rhkv+kRsfDpV6bH79EabTtZ3xzN5ausHYc=;
+ b=Wn3nx79+gTPfgzENz7jT7IkwFqtZ8XxJJTFvHsLJVjUS6mFWio4mj1xKAMYpngH4ir1jdFPgnM/ReUVnALAr1TTUYY5ohbzLJ532URWbjP/vlfRwJu29cZTC2ZdEh9PiD00mC013PmjfZud4aGI4kawnh9fkLqDR/Tu33IgkcbVAD5oMk/1E0toMJxNE+ghGS5TjmdkHY7Mj1HNLFjvC0x+wNv8o1laLl4+qC0eG6IUkmrOGFRv3OAEBSWqOKUIe+F/xHHMWFkxEF9IryeXfIB+iVHjsEDUerkdgGOgqBUaAtkHtCKoCcXaR39XVlOsVdzC/skJwA/KaHMkti5XfFA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=2tBYqNTQ3rhkv+kRsfDpV6bH79EabTtZ3xzN5ausHYc=;
+ b=Va2ylq1tUkGiel8eo+73te8ZDr8QoreN/aAolT9poFESQqkUqQjqk7yMabmZ7sqMgo/ddsDed2YrowEDpV6ATb7AE7ZeFVPi0JWxfijAevRxKy9Bq8SmOWzV2DDusli/e4j3Eka3RrTdnSAXBCe4Kfkh0JugiwQZ5V21Ve0jIAo=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from BN8PR12MB3587.namprd12.prod.outlook.com (2603:10b6:408:43::13)
+ by BYAPR12MB3541.namprd12.prod.outlook.com (2603:10b6:a03:13c::22)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5144.22; Thu, 7 Apr
+ 2022 11:48:52 +0000
+Received: from BN8PR12MB3587.namprd12.prod.outlook.com
+ ([fe80::a5fb:7137:5e64:cf8]) by BN8PR12MB3587.namprd12.prod.outlook.com
+ ([fe80::a5fb:7137:5e64:cf8%5]) with mapi id 15.20.5144.022; Thu, 7 Apr 2022
+ 11:48:51 +0000
+Message-ID: <aa19b3ad-62d7-3ff2-4b28-5d34fc6120de@amd.com>
+Date: Thu, 7 Apr 2022 13:48:45 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Content-Language: en-US
+To: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org,
+ linaro-mm-sig@lists.linaro.org, intel-gfx@lists.freedesktop.org,
+ Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>,
+ Will Deacon <will@kernel.org>, Waiman Long <longman@redhat.com>,
+ Boqun Feng <boqun.feng@gmail.com>, linux-kernel@vger.kernel.org
+References: <20220407085946.744568-1-christian.koenig@amd.com>
+ <20220407085946.744568-16-christian.koenig@amd.com>
+ <Yk6spNv/zSCB2ewe@phenom.ffwll.local>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+In-Reply-To: <Yk6spNv/zSCB2ewe@phenom.ffwll.local>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <Yk7GvHfxpwTuq1Wm@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix FIFO underruns caused by
- missing cumulative bpp W/A
+X-ClientProxiedBy: FR0P281CA0039.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:48::22) To BN8PR12MB3587.namprd12.prod.outlook.com
+ (2603:10b6:408:43::13)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 1f9bdef4-d6f0-4d37-1a87-08da188c955d
+X-MS-TrafficTypeDiagnostic: BYAPR12MB3541:EE_
+X-Microsoft-Antispam-PRVS: <BYAPR12MB35413292ABA7FA1673E78D4F83E69@BYAPR12MB3541.namprd12.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 4MvrNIVQvQ3KDCXkwPvx1HY4YOui4VhBS0+vqj4shK0JaJ6l8WPCa6tdd51zP0TfdogmhFoNzFOAssI/hWr6pSszX1G6T0SieSQioxXExQzfbLgIf/2e3vetJ44vb9iKvqxaO303ygfberQD6wNS7nJ2zqU2sXTbnIMb9JyXH414BHZaTiBm/EtuG3/Bj4kRnNRekBQuhMtlFtokZVggwCb5LmitWHYiF8Pczgp2KEDZnSamP4Uj8qTx5sqtQsejYnCgMMjlVR2Eswy12NCOC40r2DDgKdt611StC6gqcJ3EibuRn3x8sW0XAhwIqwZDE00uZ6dbKQ41vhkYLIGDFYge+xmR0e9mGGsghzUnJkR/NTsTp8r2kNQnlGO6xBwGcmFHMueO9ajZ3V8FkXsZC2ZzIoE8Kujm337TyBqeXcxiBIlLAEmdYkgzOtWcZO/100sLCIvfCDXHkrBEoo5iFP++jm7wHoRS7uertintRUOw5OQfrXpM8yNjvftT109FDwb4/heA43XXgNI5yiVzwQ/nZZm2q7XJM4ATdCdQWBYA9HyfeQyU489Sfq/ko2GinUx0v5MeKH0ouDHg9envkKTsWY1FzlonYEhAaHCSdVBkV1AzAMnXdtpzmnU19Mjb7N0khSHBHQ/sbWzzuepP0KZpAauIaWPnKu34998MELrSZnROYo0kxgPcp+NHhqu6ZfLbHeaoiiraRwiRp4FQcugt0/Al6XYySLgugdmKbRkbsvYLRYhxQ3PRGVdJ6P/S
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN8PR12MB3587.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230001)(4636009)(366004)(31696002)(2906002)(508600001)(86362001)(6486002)(83380400001)(6512007)(38100700002)(8676002)(66946007)(2616005)(921005)(36756003)(66476007)(66556008)(26005)(66574015)(7416002)(5660300002)(110136005)(6666004)(186003)(6506007)(8936002)(316002)(31686004)(45980500001)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Y0xLcGZJRVNjYjJEZFlsZzV3dkQyVW0wcit6MlNGTzdORXNiak96eFl4Q0t2?=
+ =?utf-8?B?YVRMWkNER3hsaFU0UFBjU01HUERITmNHaXMyam9adUZpNHpJeC8wNVB1MEtx?=
+ =?utf-8?B?bGg4NEFXa09FbEZ0UVZmcTlGUldTbDZhK1hLRjIwNHgrTmZacE1VZEJEdHFx?=
+ =?utf-8?B?MFJBODJBWldMdGNHU1E0TlorbFNKZEEzcUlzSks3N29PNWd2TjdRYmZFTHB0?=
+ =?utf-8?B?dm9XMDJ1S0RHam9FU0tka09WWlJuNjd1TDRSTktzL0M5QkV0b3BIdFhwQXZX?=
+ =?utf-8?B?Zkh1d2hrVXNtamlQdTNPL3JZZGl6dHh6aURVZ245NkVlYTJ2c0pXMHBBdFNh?=
+ =?utf-8?B?ZzRUWG9mWkh5Y3RMSUVBTk1valgxSkFiVk9EdUgvWU1lQ3pFVjNOdlJma2JH?=
+ =?utf-8?B?WU5IVEFnWGl6NGFJakpZcnNEU2xMUVJDL2p0SS9QMU56RDF5d0ZtUW5PcDdD?=
+ =?utf-8?B?K1JYWEhaVFJ1NzNJVE9YRCtTVW5yN0d6cGRHaVdjc2szVlBWZFJIYXEwd20x?=
+ =?utf-8?B?ZCtCMmU0ci9TUCtId2ZPSkJwT1dkYityWE5MbTVZQmRLd2dWbldiTmdrYXdj?=
+ =?utf-8?B?WnlHbkM2dFlFTFJ2dXhhNGtqdmE2L0pNenZ6Um92SGN5M1ExMzI2bmM2V25x?=
+ =?utf-8?B?cE1MemU5NGdzclF4U0FkbkJrU2h1ekcrYXJYVndnTzJMdkRUNVovK0J6WHVr?=
+ =?utf-8?B?amZXMUV4RlZDaGdkd2VoaGV0Y2FubEV5WTVOUEl4dFp1WXVJOWg3dDBIUENq?=
+ =?utf-8?B?d3paWTQzVTRkY3FBejBoSmFoelhjRit5NGdXRHZzSnhtNndyMVFPbUdzTUJK?=
+ =?utf-8?B?Zzl5RTZpZWZWdlJzVDQxbGI2OTJIcWFHTkdNZDRrRnRvS2Q5bGNUZzZsYytS?=
+ =?utf-8?B?RnVIeGlaNW1teG5GQjloYzZPTEtKQlkzWE5xSm5hM2ZrVUU0M0thRVVrUExk?=
+ =?utf-8?B?TTJVRXF5dlV3T0Z3bDBSSWVWVnowOS84WWdvQ09oMjRRNGZpRlRZZE83RVpl?=
+ =?utf-8?B?UFhVQWF4MXhBc0pjRFNpRWJmYUNWNjd4R0I3S1NzNEVzd05Pd2JhamVuTGs5?=
+ =?utf-8?B?TjJvUXlvcmV2MXA1YUdzN3gyNkxBODRkeFlPeHc1dnFINzZqZDhTQmwzN0ZD?=
+ =?utf-8?B?UUUyb3c5c0YwMXhvbldxOWxZalUrUHovTThsVFp5NitMbmtmcTBIVG9GMUZQ?=
+ =?utf-8?B?Y2FvbWhXelVYbkZNK3RKZE80UFNuL1B1cnpQdnRIN29vZTVhWC9TdmZZSjBL?=
+ =?utf-8?B?K3grT3Rabk4wWjdMNzIwYjd0UTVFWEZKcHFFdDBucnc5U2pCWHJjc0dLaFpD?=
+ =?utf-8?B?bzRuRlNHcllmZjZ0RjFqbWRGRDZYcHhYZS9aY01Nc1kzVWVhL2ZqbGtHSEtY?=
+ =?utf-8?B?YkhJenRseUtldmljZWQxRjU3NlFyeVQ0b29tQXZvUWoxcElxN1FNU1EydnB3?=
+ =?utf-8?B?TDdLbzlleGN3ZU9aM2dNeEJRbzRwTUlidXVGRlVTcUkvVUhQSzJkbXdackFi?=
+ =?utf-8?B?RjVyWU9kdUc3RkE2NmxmUXcvRXhrdTVhcklSdTVicCtSMFk5RTZNV29md1R0?=
+ =?utf-8?B?WE9EOWpZd0Z6Yk9xNUI1d0lYcTExSUY0aWtIK3JvVFVWT3VVTnFnVHB1UXVF?=
+ =?utf-8?B?aFVZYzFHU09LN1NqTmJHMkk4alJHZkhRUXhtUitkNi8wbzQ1ZDdBODdlOGJu?=
+ =?utf-8?B?aGs0MGdrUWo1RytLVzg1MmtpRTlmNXdPcXd3cW1vamFsalczU0lsdnZCMXlP?=
+ =?utf-8?B?U285Um9pdENlRG1TZlhEYWdFMTY4VUtRbEI3TVZwZmdwYzBaSlZuTURnbERG?=
+ =?utf-8?B?bjl4L0tHdmFNU1dRN1EzcDFWbTdOMWtEZEhOeTlTNmhrTFZoN3FqeWRMOFBv?=
+ =?utf-8?B?UERGeDdQVVFJNXJvajB4NjVtSHdwdkZOZU1vYWJ5YVZhZ08yNW9mdnhqYzVY?=
+ =?utf-8?B?ekMvbDE1Z1NGdERzNXgrSzlQZXp2UXFLQk0zVWthU3ZpU21DbHlmaE1pbENQ?=
+ =?utf-8?B?ZG9HQ3VKQ3Q3Q2NvdVh4SHBiTTQ1TmZLTndDWEhVMzJ3U1dFZDZEM1Ryb3lG?=
+ =?utf-8?B?c21mNGhKbzI4UHJSY2RtOTVxU1h4cVMxYk9TZTlBeTdYZXk4TmtyNDEzZncy?=
+ =?utf-8?B?TUlYOCtqcVNuZ1VMQWlnMU9uZklKaXhLeFh1RDlTUTFLV1BRVllydDlnOUtp?=
+ =?utf-8?B?Y0Njcmd4NDROOEpWR1dHY0ZjekVpOWxlSktqVFJlU2phVnRqK1Z2bDg2dHFv?=
+ =?utf-8?B?VW4xYjE4KzZyOUFUMVY0cmJDYVJVd1p5aHdkOXFMZStVUzhEZS80d0pxbXoz?=
+ =?utf-8?B?OVR4MHY2ZnFMUDNKWXU0aTN4MzZ2Tk1uKzNoVmQ1SFZzcTFRUDE0dz09?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1f9bdef4-d6f0-4d37-1a87-08da188c955d
+X-MS-Exchange-CrossTenant-AuthSource: BN8PR12MB3587.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Apr 2022 11:48:51.1741 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Y3yM5GyDL22UCQl1gRQ5E1AgyxdOfxFLigyPhacgH6rgZQp/e3FfKP9M6r9GBAgi
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB3541
+Subject: Re: [Intel-gfx] [PATCH 15/15] seqlock: drop seqcount_ww_mutex_t
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,183 +135,92 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Apr 07, 2022 at 02:10:52PM +0300, Ville Syrjälä wrote:
-> On Thu, Apr 07, 2022 at 11:42:35AM +0300, Stanislav Lisovskiy wrote:
-> > We had some FIFO underruns appearing on platforms like ADL,
-> > which could be fixed though by increasing CDCLK, however we were
-> > lacking explanation for that - we were not calculating CDCLK,
-> > also based on cumulative bpp W/A formula, mentioned in BSpec 64631.
-> 
-> We already have that in intel_bw_crtc_min_cdclk().
+Am 07.04.22 um 11:19 schrieb Daniel Vetter:
+> On Thu, Apr 07, 2022 at 10:59:46AM +0200, Christian KÃ¶nig wrote:
+>> Daniel pointed out that this series removes the last user of
+>> seqcount_ww_mutex_t, so let's drop this.
+>>
+>> Signed-off-by: Christian KÃ¶nig <christian.koenig@amd.com>
+>> Cc: Peter Zijlstra <peterz@infradead.org>
+>> Cc: Ingo Molnar <mingo@redhat.com>
+>> Cc: Will Deacon <will@kernel.org>
+>> Cc: Waiman Long <longman@redhat.com>
+>> Cc: Boqun Feng <boqun.feng@gmail.com>
+>> Cc: linux-kernel@vger.kernel.org
+> Yeah I don't think we'll ever need this again, ww_mutex aren't common and
+> the ww_mutex+seqlock thing wasn't the brighest idea.
+>
+> Peter/Ingo, assuming you agree, can you ack this for merging through
+> drm-misc, or want to pick this up later on when the last user disappeared
+> in Linus' tree?
 
+Mpf, I didn't noticed that removing ww_mutex.h from seqlock.h is causing 
+a problem for futex.h.
 
-One more remark, is that actually indeed the data rate should be fine
-for that, but looks like for some reason those calculations we have
-currently are not pessimistic enough.
-Could be because mine are lacking scaling factor - but in kms_plane_multiple
-we don't use scaling. Wondering if its those multiplane formats,
-because as I see you don't add those gens >= 11.
-Or something else - there must be something different, because 
-it manages to raise CDCLK now exactly at "right" moments to avoid
-FIFO underrun.
+Just send out a patch to fix this because the build servers are pointing 
+out now that drm-misc-next is broken.
 
-Stan
+Please review ASAP,
+Christian.
 
-> 
-> > 
-> > With that patch no FIFO underruns appear anymore.
-> > 
-> > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_bw.c | 71 ++++++++++++++++++++++---
-> >  drivers/gpu/drm/i915/display/intel_bw.h |  2 +
-> >  2 files changed, 67 insertions(+), 6 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-> > index 37bd7b17f3d0..3a2aeeffee7c 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_bw.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_bw.c
-> > @@ -743,20 +743,51 @@ static void skl_plane_calc_dbuf_bw(struct intel_bw_state *bw_state,
-> >  	}
-> >  }
-> >  
-> > -static void skl_crtc_calc_dbuf_bw(struct intel_bw_state *bw_state,
-> > +static int intel_plane_bw_bpp(const struct drm_format_info *info)
-> > +{
-> > +	/*
-> > +	 * For the purposes of memory bandwidth calculations,
-> > +	 * planar formats are treated as if both planes had the
-> > +	 * same bpp (with no reduction for vertical
-> > +	 * subsampling). I.e we take as usual the worst case
-> > +	 * scenario.
-> > +	 */
-> > +	if (drm_format_info_is_yuv_semiplanar(info))
-> > +		return 2 * max(info->cpp[0], info->cpp[1]);
-> > +
-> > +	return info->cpp[0];
-> > +}
-> > +
-> > +static void skl_crtc_calc_dbuf_bw(struct intel_atomic_state *state,
-> > +				  struct intel_bw_state *bw_state,
-> >  				  const struct intel_crtc_state *crtc_state)
-> >  {
-> >  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> >  	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-> >  	struct intel_dbuf_bw *crtc_bw = &bw_state->dbuf_bw[crtc->pipe];
-> > -	enum plane_id plane_id;
-> > +	struct intel_plane *plane;
-> >  
-> >  	memset(crtc_bw, 0, sizeof(*crtc_bw));
-> >  
-> >  	if (!crtc_state->hw.active)
-> >  		return;
-> >  
-> > -	for_each_plane_id_on_crtc(crtc, plane_id) {
-> > +	for_each_intel_plane_on_crtc(&i915->drm, crtc, plane) {
-> > +		const struct drm_framebuffer *fb;
-> > +		enum plane_id plane_id = plane->id;
-> > +		unsigned int plane_bpp = 0;
-> > +		struct intel_plane_state *plane_state =
-> > +			intel_atomic_get_new_plane_state(state, plane);
-> > +
-> > +		if (plane_state) {
-> > +			fb = plane_state->hw.fb;
-> > +
-> > +			if (plane_state->uapi.visible && fb)
-> > +				plane_bpp = intel_plane_bw_bpp(fb->format);
-> > +		}
-> > +
-> > +		crtc_bw->pipe_cumulative_bpp += plane_bpp;
-> > +
-> >  		/*
-> >  		 * We assume cursors are small enough
-> >  		 * to not cause bandwidth problems.
-> > @@ -773,6 +804,10 @@ static void skl_crtc_calc_dbuf_bw(struct intel_bw_state *bw_state,
-> >  					       &crtc_state->wm.skl.plane_ddb_y[plane_id],
-> >  					       crtc_state->data_rate[plane_id]);
-> >  	}
-> > +
-> > +	crtc_bw->bpp_cdclk = DIV_ROUND_UP_ULL(mul_u32_u32(crtc_state->pixel_rate,
-> > +					      crtc_bw->pipe_cumulative_bpp * 512),
-> > +					      10) / 1000;
-> >  }
-> >  
-> >  /* "Maximum Data Buffer Bandwidth" */
-> > @@ -782,11 +817,13 @@ intel_bw_dbuf_min_cdclk(struct drm_i915_private *i915,
-> >  {
-> >  	unsigned int total_max_bw = 0;
-> >  	enum dbuf_slice slice;
-> > +	enum pipe pipe;
-> > +	unsigned int bpp_cdclk = 0;
-> > +	unsigned int dbuf_bw_cdclk;
-> >  
-> >  	for_each_dbuf_slice(i915, slice) {
-> >  		int num_active_planes = 0;
-> >  		unsigned int max_bw = 0;
-> > -		enum pipe pipe;
-> >  
-> >  		/*
-> >  		 * The arbiter can only really guarantee an
-> > @@ -803,7 +840,29 @@ intel_bw_dbuf_min_cdclk(struct drm_i915_private *i915,
-> >  		total_max_bw = max(total_max_bw, max_bw);
-> >  	}
-> >  
-> > -	return DIV_ROUND_UP(total_max_bw, 64);
-> > +	for_each_pipe(i915, pipe) {
-> > +		const struct intel_dbuf_bw *crtc_bw = &bw_state->dbuf_bw[pipe];
-> > +		/*
-> > +		 * From BSpec 64631:
-> > +		 * Pipe cumulative bytes should be less or equal to
-> > +		 * CDCLK / (pixel_rate * scaling_factors * 51.2) thus
-> > +		 * CDCLK = pipe_cumulative_bpp * pixel_rate * scaling_factors * 51.2.
-> > +		 * Considering that intel_plane_pixel_rate already returns adjusted pixel rate,
-> > +		 * no scaling factors needed here.
-> > +		 */
-> > +		bpp_cdclk = max_t(unsigned int, crtc_bw->bpp_cdclk,
-> > +						bpp_cdclk);
-> > +	}
-> > +
-> > +	dbuf_bw_cdclk = DIV_ROUND_UP(total_max_bw, 64);
-> > +
-> > +	/*
-> > +	 * So now we have two CDCLK estimations:
-> > +	 * one is based on required DBuf BW and another is
-> > +	 * based on pipe cumulative bpp W/A(BSpec 64631)
-> > +	 * Traditionally take the more demanding into use(worst case)
-> > +	 */
-> > +	return max_t(unsigned int, dbuf_bw_cdclk, bpp_cdclk);
-> >  }
-> >  
-> >  int intel_bw_min_cdclk(struct drm_i915_private *i915,
-> > @@ -842,7 +901,7 @@ int intel_bw_calc_min_cdclk(struct intel_atomic_state *state,
-> >  
-> >  		old_bw_state = intel_atomic_get_old_bw_state(state);
-> >  
-> > -		skl_crtc_calc_dbuf_bw(new_bw_state, crtc_state);
-> > +		skl_crtc_calc_dbuf_bw(state, new_bw_state, crtc_state);
-> >  
-> >  		new_bw_state->min_cdclk[crtc->pipe] =
-> >  			intel_bw_crtc_min_cdclk(crtc_state);
-> > diff --git a/drivers/gpu/drm/i915/display/intel_bw.h b/drivers/gpu/drm/i915/display/intel_bw.h
-> > index cb7ee3a24a58..9e3a6ad03b19 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_bw.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_bw.h
-> > @@ -19,6 +19,8 @@ struct intel_crtc_state;
-> >  struct intel_dbuf_bw {
-> >  	unsigned int max_bw[I915_MAX_DBUF_SLICES];
-> >  	u8 active_planes[I915_MAX_DBUF_SLICES];
-> > +	unsigned int pipe_cumulative_bpp;
-> > +	unsigned int bpp_cdclk;
-> >  };
-> >  
-> >  struct intel_bw_state {
-> > -- 
-> > 2.24.1.485.gad05a3d8e5
-> 
-> -- 
-> Ville Syrjälä
-> Intel
+>
+> Cheers, Daniel
+>
+>> ---
+>>   include/linux/seqlock.h | 8 ++------
+>>   1 file changed, 2 insertions(+), 6 deletions(-)
+>>
+>> diff --git a/include/linux/seqlock.h b/include/linux/seqlock.h
+>> index 37ded6b8fee6..3926e9027947 100644
+>> --- a/include/linux/seqlock.h
+>> +++ b/include/linux/seqlock.h
+>> @@ -17,7 +17,6 @@
+>>   #include <linux/kcsan-checks.h>
+>>   #include <linux/lockdep.h>
+>>   #include <linux/mutex.h>
+>> -#include <linux/ww_mutex.h>
+>>   #include <linux/preempt.h>
+>>   #include <linux/spinlock.h>
+>>   
+>> @@ -164,7 +163,7 @@ static inline void seqcount_lockdep_reader_access(const seqcount_t *s)
+>>    * static initializer or init function. This enables lockdep to validate
+>>    * that the write side critical section is properly serialized.
+>>    *
+>> - * LOCKNAME:	raw_spinlock, spinlock, rwlock, mutex, or ww_mutex.
+>> + * LOCKNAME:	raw_spinlock, spinlock, rwlock or mutex
+>>    */
+>>   
+>>   /*
+>> @@ -184,7 +183,6 @@ static inline void seqcount_lockdep_reader_access(const seqcount_t *s)
+>>   #define seqcount_spinlock_init(s, lock)		seqcount_LOCKNAME_init(s, lock, spinlock)
+>>   #define seqcount_rwlock_init(s, lock)		seqcount_LOCKNAME_init(s, lock, rwlock)
+>>   #define seqcount_mutex_init(s, lock)		seqcount_LOCKNAME_init(s, lock, mutex)
+>> -#define seqcount_ww_mutex_init(s, lock)		seqcount_LOCKNAME_init(s, lock, ww_mutex)
+>>   
+>>   /*
+>>    * SEQCOUNT_LOCKNAME()	- Instantiate seqcount_LOCKNAME_t and helpers
+>> @@ -277,7 +275,6 @@ SEQCOUNT_LOCKNAME(raw_spinlock, raw_spinlock_t,  false,    s->lock,        raw_s
+>>   SEQCOUNT_LOCKNAME(spinlock,     spinlock_t,      __SEQ_RT, s->lock,        spin,     spin_lock(s->lock))
+>>   SEQCOUNT_LOCKNAME(rwlock,       rwlock_t,        __SEQ_RT, s->lock,        read,     read_lock(s->lock))
+>>   SEQCOUNT_LOCKNAME(mutex,        struct mutex,    true,     s->lock,        mutex,    mutex_lock(s->lock))
+>> -SEQCOUNT_LOCKNAME(ww_mutex,     struct ww_mutex, true,     &s->lock->base, ww_mutex, ww_mutex_lock(s->lock, NULL))
+>>   
+>>   /*
+>>    * SEQCNT_LOCKNAME_ZERO - static initializer for seqcount_LOCKNAME_t
+>> @@ -304,8 +301,7 @@ SEQCOUNT_LOCKNAME(ww_mutex,     struct ww_mutex, true,     &s->lock->base, ww_mu
+>>   	__seqprop_case((s),	raw_spinlock,	prop),			\
+>>   	__seqprop_case((s),	spinlock,	prop),			\
+>>   	__seqprop_case((s),	rwlock,		prop),			\
+>> -	__seqprop_case((s),	mutex,		prop),			\
+>> -	__seqprop_case((s),	ww_mutex,	prop))
+>> +	__seqprop_case((s),	mutex,		prop))
+>>   
+>>   #define seqprop_ptr(s)			__seqprop(s, ptr)
+>>   #define seqprop_sequence(s)		__seqprop(s, sequence)
+>> -- 
+>> 2.25.1
+>>
+
