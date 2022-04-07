@@ -2,56 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81C914F7F01
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Apr 2022 14:30:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 48BEB4F7F03
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Apr 2022 14:30:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD6DF10E9C3;
-	Thu,  7 Apr 2022 12:30:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7950510E147;
+	Thu,  7 Apr 2022 12:30:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 58A8610E147;
- Thu,  7 Apr 2022 12:30:11 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 033ED10E9D7
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 Apr 2022 12:30:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649334611; x=1680870611;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=5PRRqyrHW2RhVVCT4NKhvyr3ISGHI6foy9KEIBGeyY8=;
- b=V+e8UFP+nCLo2BlN0HftxKok66+TYdx4Qd1W/po26h24aZmf12PnNC3P
- YgRN5TUKi8t4ktvF99Kz/HFrHb7wA9J/qTFVW9X3pNH2yzJGB4PhXLoo4
- aPG0YXUeXeyXL5fIejvuWt8cd83vIVzq8iknV7NpW1IKUxPL8+GINR0PP
- EI9RNwgykqDGa10GdZQFZqqpXhQ8BmOCOkPDyRphYXu9aRibjG+zv1sup
- XptJ6tlt3mKRbngQbjaGeyXku+Qs/a0Lkjr2LL6p/yqU/FOzAI2mAvGk+
- r9M8fB6qkgE3EIHO4skvDtFqxItQa+jEIpNre7N2DjiyNyin9+Gjqn51D Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10309"; a="248837032"
-X-IronPort-AV: E=Sophos;i="5.90,242,1643702400"; d="scan'208";a="248837032"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2022 05:30:10 -0700
-X-IronPort-AV: E=Sophos;i="5.90,242,1643702400"; d="scan'208";a="550030943"
-Received: from twsparks-mobl1.amr.corp.intel.com (HELO [10.212.41.19])
- ([10.212.41.19])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2022 05:30:08 -0700
-Message-ID: <daeee428-9815-fd07-4722-c18a40a9393a@linux.intel.com>
-Date: Thu, 7 Apr 2022 13:30:04 +0100
+ t=1649334655; x=1680870655;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=hZZOTlithS0rfDXaqqTyKMQllQvT2Q5va1id2ZkUWns=;
+ b=Y4lBWsU3yukbZEfGU1jU6XCEGxNKVCV6qjKoGwtq38iw0GV7ppoBrbUu
+ PlEwHAVuFpunSMFwfykkGgw4WJs63FIbzFTQKH9fiRc8Slvkcbi6RFBwu
+ yokdHdYOxLICBT7nJAcZCbJlpgNnViTa9f6SiFux54DzRW41taiAXb6nL
+ T9toeXmgAFqmQkW1TITGi3j9TXl7+mOn4VCly4GcgrF9nFK3sPzLFBhbr
+ CDCweUF8NqfeNq+Ac38qeJ/zDCN64Jsfo42G5TjIc6mDkDH4SOataqCEJ
+ E4hYGPtm4cqyI/FEo4cpBWHmbCFNr1Rhd3o1TJ4dvoswFK+mUM9B3UYJS A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10309"; a="261302709"
+X-IronPort-AV: E=Sophos;i="5.90,242,1643702400"; d="scan'208";a="261302709"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2022 05:30:54 -0700
+X-IronPort-AV: E=Sophos;i="5.90,242,1643702400"; d="scan'208";a="524905810"
+Received: from unknown (HELO intel.com) ([10.237.72.65])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2022 05:30:53 -0700
+Date: Thu, 7 Apr 2022 15:31:35 +0300
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: "Govindapillai, Vinod" <vinod.govindapillai@intel.com>
+Message-ID: <20220407123135.GA31188@intel.com>
+References: <20220404134918.729038-1-vinod.govindapillai@intel.com>
+ <Yk2MAo+cfr3npN2O@intel.com> <20220406134526.GA22124@intel.com>
+ <Yk2dQ7VIKWFHfFDl@intel.com> <20220406171446.GA22549@intel.com>
+ <Yk3XQhkYplbMxkkM@intel.com> <20220407064350.GA24386@intel.com>
+ <5b133d1f8fb9d6c96270e8c00f0ae978d28da9a8.camel@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Content-Language: en-US
-To: Matt Roper <matthew.d.roper@intel.com>
-References: <20220330232858.3204283-1-matthew.d.roper@intel.com>
- <20220330232858.3204283-16-matthew.d.roper@intel.com>
- <2cb72460-e86b-e212-766a-7dc79739d078@linux.intel.com>
- <YktmKlpR4oqy2P82@mdroper-desk1.amr.corp.intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <YktmKlpR4oqy2P82@mdroper-desk1.amr.corp.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 15/15] drm/i915/xehp: Eliminate
- shared/implicit steering
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <5b133d1f8fb9d6c96270e8c00f0ae978d28da9a8.camel@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: program wm blocks to at least
+ blocks required per line
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,286 +62,167 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 04/04/2022 22:42, Matt Roper wrote:
-> On Fri, Apr 01, 2022 at 09:34:04AM +0100, Tvrtko Ursulin wrote:
->>
->> On 31/03/2022 00:28, Matt Roper wrote:
->>> Historically we've selected and programmed a single MCR group/instance
->>> ID at driver startup that will steer register accesses for GSLICE/DSS
->>> ranges to a non-terminated instance.  Any reads of these register ranges
->>> that don't need a specific unicast access won't bother explicitly
->>> resteering because the control register should already be set to a
->>> suitable value to receive a non-terminated response.  Any accesses to
->>> other types of MCR ranges (MSLICE, LNCF, etc.) that are also satisfied
->>> by the default steering target will also skip explicit re-steering at
->>> runtime.
->>>
->>> This approach has worked well for many years and many platforms, but our
->>> hardware teams have recently advised us that they're not 100%
->>> comfortable with our strategy going forward.  They now suggest
->>> explicitly steering reads of any multicast register at the time the
->>> register access happens rather than relying on previously-programmed
->>> steering values.  In debug settings there could be external agents that
->>> have adjusted the default steering without the driver's knowledge (e.g.,
->>> we could do this manually with IGT's intel_reg today, although the
->>> hardware teams also have other tools they use for debug and analysis).
->>> In theory it would also be possible for bad firmware and/or incorrect
->>> handling of power management events to clobber/wipe the steering
->>> value we had previously initialized because they assume we'll be
->>> re-programming it anyway.
->>>
->>> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
->>> ---
->>>    drivers/gpu/drm/i915/gt/intel_gt_mcr.c      | 40 +++++++++
->>>    drivers/gpu/drm/i915/gt/intel_gt_types.h    |  1 +
->>>    drivers/gpu/drm/i915/gt/intel_workarounds.c | 98 ++++-----------------
->>>    3 files changed, 56 insertions(+), 83 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_mcr.c b/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
->>> index a9a9fa6881f2..787752367337 100644
->>> --- a/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
->>> +++ b/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
->>> @@ -35,6 +35,7 @@
->>>     */
->>>    static const char * const intel_steering_types[] = {
->>> +	"GSLICE/DSS",
->>>    	"L3BANK",
->>>    	"MSLICE",
->>>    	"LNCF",
->>> @@ -45,6 +46,35 @@ static const struct intel_mmio_range icl_l3bank_steering_table[] = {
->>>    	{},
->>>    };
->>> +static const struct intel_mmio_range xehpsdv_dss_steering_table[] = {
->>> +	{ 0x005200, 0x0052FF },
->>> +	{ 0x005400, 0x007FFF },
->>> +	{ 0x008140, 0x00815F },
->>> +	{ 0x008D00, 0x008DFF },
->>> +	{ 0x0094D0, 0x00955F },
->>> +	{ 0x009680, 0x0096FF },
->>> +	{ 0x00DC00, 0x00DCFF },
->>> +	{ 0x00DE80, 0x00E8FF },
->>> +	{ 0x017000, 0x017FFF },
->>> +	{ 0x024A00, 0x024A7F },
->>> +	{},
->>> +};
->>> +
->>> +static const struct intel_mmio_range dg2_dss_steering_table[] = {
->>> +	{ 0x005200, 0x0052FF },
->>> +	{ 0x005400, 0x007FFF },
->>> +	{ 0x008140, 0x00815F },
->>> +	{ 0x008D00, 0x008DFF },
->>> +	{ 0x0094D0, 0x00955F },
->>> +	{ 0x009680, 0x0096FF },
->>> +	{ 0x00D800, 0x00D87F },
->>> +	{ 0x00DC00, 0x00DCFF },
->>> +	{ 0x00DE80, 0x00E8FF },
->>> +	{ 0x017000, 0x017FFF },
->>> +	{ 0x024A00, 0x024A7F },
->>> +	{},
->>> +};
->>> +
->>>    static const struct intel_mmio_range xehpsdv_mslice_steering_table[] = {
->>>    	{ 0x004000, 0x004AFF },
->>>    	{ 0x00C800, 0x00CFFF },
->>> @@ -87,9 +117,11 @@ void intel_gt_mcr_init(struct intel_gt *gt)
->>>    			 GEN12_MEML3_EN_MASK);
->>>    	if (IS_DG2(i915)) {
->>> +		gt->steering_table[DSS] = dg2_dss_steering_table;
->>>    		gt->steering_table[MSLICE] = xehpsdv_mslice_steering_table;
->>>    		gt->steering_table[LNCF] = dg2_lncf_steering_table;
->>>    	} else if (IS_XEHPSDV(i915)) {
->>> +		gt->steering_table[DSS] = xehpsdv_dss_steering_table;
->>>    		gt->steering_table[MSLICE] = xehpsdv_mslice_steering_table;
->>>    		gt->steering_table[LNCF] = xehpsdv_lncf_steering_table;
->>>    	} else if (GRAPHICS_VER(i915) >= 11 &&
->>> @@ -317,7 +349,15 @@ static void get_valid_steering(struct intel_gt *gt,
->>>    			       enum intel_steering_type type,
->>>    			       u8 *group, u8 *instance)
->>>    {
->>> +	u32 dssmask = intel_sseu_get_subslices(&gt->info.sseu, 0);
->>> +
->>>    	switch (type) {
->>> +	case DSS:
->>> +		drm_WARN_ON(&gt->i915->drm, dssmask == 0);
->>> +
->>> +		*group = __ffs(dssmask) / GEN_DSS_PER_GSLICE;
->>> +		*instance = __ffs(dssmask) % GEN_DSS_PER_GSLICE;
->>> +		break;
->>>    	case L3BANK:
->>>    		GEM_DEBUG_WARN_ON(!gt->info.l3bank_mask); /* should be impossible! */
->>> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_types.h b/drivers/gpu/drm/i915/gt/intel_gt_types.h
->>> index 937b2e1a305e..b77bbaac7622 100644
->>> --- a/drivers/gpu/drm/i915/gt/intel_gt_types.h
->>> +++ b/drivers/gpu/drm/i915/gt/intel_gt_types.h
->>> @@ -54,6 +54,7 @@ struct intel_mmio_range {
->>>     * are listed here.
->>>     */
->>>    enum intel_steering_type {
->>> +	DSS,
->>>    	L3BANK,
->>>    	MSLICE,
->>>    	LNCF,
->>> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
->>> index 818ba71f4909..2486c6aa9d9d 100644
->>> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
->>> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
->>> @@ -1160,87 +1160,6 @@ icl_wa_init_mcr(struct intel_gt *gt, struct i915_wa_list *wal)
->>>    	__add_mcr_wa(gt, wal, slice, subslice);
->>>    }
->>> -static void
->>> -xehp_init_mcr(struct intel_gt *gt, struct i915_wa_list *wal)
->>> -{
->>> -	const struct sseu_dev_info *sseu = &gt->info.sseu;
->>> -	unsigned long slice, subslice = 0, slice_mask = 0;
->>> -	u64 dss_mask = 0;
->>> -	u32 lncf_mask = 0;
->>> -	int i;
->>> -
->>> -	/*
->>> -	 * On Xe_HP the steering increases in complexity. There are now several
->>> -	 * more units that require steering and we're not guaranteed to be able
->>> -	 * to find a common setting for all of them. These are:
->>> -	 * - GSLICE (fusable)
->>> -	 * - DSS (sub-unit within gslice; fusable)
->>> -	 * - L3 Bank (fusable)
->>> -	 * - MSLICE (fusable)
->>> -	 * - LNCF (sub-unit within mslice; always present if mslice is present)
->>> -	 *
->>> -	 * We'll do our default/implicit steering based on GSLICE (in the
->>> -	 * sliceid field) and DSS (in the subsliceid field).  If we can
->>> -	 * find overlap between the valid MSLICE and/or LNCF values with
->>> -	 * a suitable GSLICE, then we can just re-use the default value and
->>> -	 * skip and explicit steering at runtime.
->>> -	 *
->>> -	 * We only need to look for overlap between GSLICE/MSLICE/LNCF to find
->>> -	 * a valid sliceid value.  DSS steering is the only type of steering
->>> -	 * that utilizes the 'subsliceid' bits.
->>> -	 *
->>> -	 * Also note that, even though the steering domain is called "GSlice"
->>> -	 * and it is encoded in the register using the gslice format, the spec
->>> -	 * says that the combined (geometry | compute) fuse should be used to
->>> -	 * select the steering.
->>> -	 */
->>> -
->>> -	/* Find the potential gslice candidates */
->>> -	dss_mask = intel_sseu_get_subslices(sseu, 0);
->>> -	slice_mask = intel_slicemask_from_dssmask(dss_mask, GEN_DSS_PER_GSLICE);
->>> -
->>> -	/*
->>> -	 * Find the potential LNCF candidates.  Either LNCF within a valid
->>> -	 * mslice is fine.
->>> -	 */
->>> -	for_each_set_bit(i, &gt->info.mslice_mask, GEN12_MAX_MSLICES)
->>> -		lncf_mask |= (0x3 << (i * 2));
->>> -
->>> -	/*
->>> -	 * Are there any sliceid values that work for both GSLICE and LNCF
->>> -	 * steering?
->>> -	 */
->>> -	if (slice_mask & lncf_mask) {
->>> -		slice_mask &= lncf_mask;
->>> -		gt->steering_table[LNCF] = NULL;
->>> -	}
->>> -
->>> -	/* How about sliceid values that also work for MSLICE steering? */
->>> -	if (slice_mask & gt->info.mslice_mask) {
->>> -		slice_mask &= gt->info.mslice_mask;
->>> -		gt->steering_table[MSLICE] = NULL;
->>> -	}
->>> -
->>> -	slice = __ffs(slice_mask);
->>> -	subslice = __ffs(dss_mask >> (slice * GEN_DSS_PER_GSLICE));
->>> -	WARN_ON(subslice > GEN_DSS_PER_GSLICE);
->>> -	WARN_ON(dss_mask >> (slice * GEN_DSS_PER_GSLICE) == 0);
->>> -
->>> -	__add_mcr_wa(gt, wal, slice, subslice);
->>> -
->>> -	/*
->>> -	 * SQIDI ranges are special because they use different steering
->>> -	 * registers than everything else we work with.  On XeHP SDV and
->>> -	 * DG2-G10, any value in the steering registers will work fine since
->>> -	 * all instances are present, but DG2-G11 only has SQIDI instances at
->>> -	 * ID's 2 and 3, so we need to steer to one of those.  For simplicity
->>> -	 * we'll just steer to a hardcoded "2" since that value will work
->>> -	 * everywhere.
->>> -	 */
->>> -	__set_mcr_steering(wal, MCFG_MCR_SELECTOR, 0, 2);
->>> -	__set_mcr_steering(wal, SF_MCR_SELECTOR, 0, 2);
->>> -}
->>> -
->>>    static void
->>>    icl_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wal)
->>>    {
->>> @@ -1388,8 +1307,9 @@ static void
->>>    xehpsdv_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wal)
->>>    {
->>>    	struct drm_i915_private *i915 = gt->i915;
->>> +	struct drm_printer p = drm_debug_printer("MCR Steering:");
->>> -	xehp_init_mcr(gt, wal);
->>> +	intel_gt_mcr_report_steering(&p, gt, false);
->>>    	/* Wa_1409757795:xehpsdv */
->>>    	wa_mcr_write_or(wal, SCCGCTL94DC, CG3DDISURB);
->>> @@ -1441,10 +1361,22 @@ xehpsdv_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wal)
->>>    static void
->>>    dg2_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wal)
->>>    {
->>> +	struct drm_printer p = drm_debug_printer("MCR Steering:");
->>>    	struct intel_engine_cs *engine;
->>>    	int id;
->>> -	xehp_init_mcr(gt, wal);
->>> +	intel_gt_mcr_report_steering(&p, gt, false);
->>
->> Are these platforms immune to system hangs caused by incorrect/missing
->> default MCR configuration such was fixed with c7d561cfcf86 ("drm/i915:
->> Enable WaProgramMgsrForCorrectSliceSpecificMmioReads for Gen9") ? That was
->> triggerable from userspace to be clear.
+On Thu, Apr 07, 2022 at 03:09:48PM +0300, Govindapillai, Vinod wrote:
+> On Thu, 2022-04-07 at 09:43 +0300, Lisovskiy, Stanislav wrote:
+> > On Wed, Apr 06, 2022 at 09:09:06PM +0300, Ville Syrjälä wrote:
+> > > On Wed, Apr 06, 2022 at 08:14:58PM +0300, Lisovskiy, Stanislav wrote:
+> > > > On Wed, Apr 06, 2022 at 05:01:39PM +0300, Ville Syrjälä wrote:
+> > > > > On Wed, Apr 06, 2022 at 04:45:26PM +0300, Lisovskiy, Stanislav wrote:
+> > > > > > On Wed, Apr 06, 2022 at 03:48:02PM +0300, Ville Syrjälä wrote:
+> > > > > > > On Mon, Apr 04, 2022 at 04:49:18PM +0300, Vinod Govindapillai wrote:
+> > > > > > > > In configurations with single DRAM channel, for usecases like
+> > > > > > > > 4K 60 Hz, FIFO underruns are observed quite frequently. Looks
+> > > > > > > > like the wm0 watermark values need to bumped up because the wm0
+> > > > > > > > memory latency calculations are probably not taking the DRAM
+> > > > > > > > channel's impact into account.
+> > > > > > > >
+> > > > > > > > As per the Bspec 49325, if the ddb allocation can hold at least
+> > > > > > > > one plane_blocks_per_line we should have selected method2.
+> > > > > > > > Assuming that modern HW versions have enough dbuf to hold
+> > > > > > > > at least one line, set the wm blocks to equivalent to blocks
+> > > > > > > > per line.
+> > > > > > > >
+> > > > > > > > cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > > > > > > > cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> > > > > > > >
+> > > > > > > > Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
+> > > > > > > > ---
+> > > > > > > >  drivers/gpu/drm/i915/intel_pm.c | 19 ++++++++++++++++++-
+> > > > > > > >  1 file changed, 18 insertions(+), 1 deletion(-)
+> > > > > > > >
+> > > > > > > > diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
+> > > > > > > > index 8824f269e5f5..ae28a8c63ca4 100644
+> > > > > > > > --- a/drivers/gpu/drm/i915/intel_pm.c
+> > > > > > > > +++ b/drivers/gpu/drm/i915/intel_pm.c
+> > > > > > > > @@ -5474,7 +5474,24 @@ static void skl_compute_plane_wm(const struct intel_crtc_state
+> > > > > > > > *crtc_state,
+> > > > > > > >           }
+> > > > > > > >   }
+> > > > > > > >
+> > > > > > > > - blocks = fixed16_to_u32_round_up(selected_result) + 1;
+> > > > > > > > + /*
+> > > > > > > > +  * Lets have blocks at minimum equivalent to plane_blocks_per_line
+> > > > > > > > +  * as there will be at minimum one line for lines configuration.
+> > > > > > > > +  *
+> > > > > > > > +  * As per the Bspec 49325, if the ddb allocation can hold at least
+> > > > > > > > +  * one plane_blocks_per_line, we should have selected method2 in
+> > > > > > > > +  * the above logic. Assuming that modern versions have enough dbuf
+> > > > > > > > +  * and method2 guarantees blocks equivalent to at least 1 line,
+> > > > > > > > +  * select the blocks as plane_blocks_per_line.
+> > > > > > > > +  *
+> > > > > > > > +  * TODO: Revisit the logic when we have better understanding on DRAM
+> > > > > > > > +  * channels' impact on the level 0 memory latency and the relevant
+> > > > > > > > +  * wm calculations.
+> > > > > > > > +  */
+> > > > > > > > + blocks = skl_wm_has_lines(dev_priv, level) ?
+> > > > > > > > +                 max_t(u32, fixed16_to_u32_round_up(selected_result) + 1,
+> > > > > > > > +                           fixed16_to_u32_round_up(wp->plane_blocks_per_line)) :
+> > > > > > > > +                 fixed16_to_u32_round_up(selected_result) + 1;
+> > > > > > >
+> > > > > > > That's looks rather convoluted.
+> > > > > > >
+> > > > > > >   blocks = fixed16_to_u32_round_up(selected_result) + 1;
+> > > > > > > + /* blah */
+> > > > > > > + if (has_lines)
+> > > > > > > +   blocks = max(blocks, fixed16_to_u32_round_up(wp->plane_blocks_per_line));
+> > > > > >
+> > > > > > We probably need to do similar refactoring in the whole function ;-)
+> > > > > >
+> > > > > > > Also since Art said nothing like this should actually be needed
+> > > > > > > I think the comment should make it a bit more clear that this
+> > > > > > > is just a hack to work around the underruns with some single
+> > > > > > > memory channel configurations.
+> > > > > >
+> > > > > > It is actually not quite a hack, because we are missing that condition
+> > > > > > implementation from BSpec 49325, which instructs us to select method2
+> > > > > > when ddb blocks allocation is known and that ratio is >= 1.
+> > > > >
+> > > > > The ddb allocation is not yet known, so we're implementing the
+> > > > > algorithm 100% correctly.
+> > > > >
+> > > > > And this patch does not implement that misisng part anyway.
+> > > >
+> > > > Yes, as I understood method2 would just give amount of blocks to be
+> > > > at least as dbuf blocks per line.
+> > > >
+> > > > Wonder whether should we actually fully implement this BSpec clause
+> > > > and add it to the point where ddb allocation is known or are there
+> > > > any obstacles to do that, besides having to reshuffle this function a bit?
+> > >
+> > > We need to calculate the wm to figure out how much ddb to allocate,
+> > > and then we'd need the ddb allocation to figure out how to calculate
+> > > the wm. Very much chicken vs. egg right there. We'd have to do some
+> > > kind of hideous loop where we'd calculate everything twice. I don't
+> > > really want to do that since I'd actually like to move the wm
+> > > calculation to happen already much earlier during .check_plane()
+> > > as that could reduce the amount of redundant wm calculations we
+> > > are currently doing.
+> >
+> > I might be missing some details right now, but why do we need a ddb
+> > allocation to count wms?
+> >
+> > I thought its like we usually calculate wm levels + min_ddb_allocation,
+> > then based on that we do allocate min_ddb + extra for each plane.
+> > This is correct that by this moment when we calculate wms we have only
+> > min_ddb available, so if this level would be even enabled, we would
+> > at least need min_ddb blocks.
+> >
+> > I think we could just use that min_ddb value here for that purpose,
+> > because the condition anyway checks if
+> > (plane buffer allocation / plane blocks per line) >=1 so, even if
+> > if this wm level would be enabled plane buffer allocation would
+> > be at least min_ddb _or higher_ - however that won't affect this
+> > condition because even if it happens to be "plane buffer allocation
+> > + some extra" the ratio would still be valid.
+> > So if it executes for min_ddb / plane blocks per line, we can
+> > probably safely state, further it will be also true.
 > 
-> They're supposed to be.  The mmio design guarantees specific termination
-> behavior for any disabled (fused off, powerwed down) register endpoint:
-> reads return a 0 dummy value and writes are dropped.  I can't find the
-> hardware description of WaProgramMgsrForCorrectSliceSpecificMmioReads
-> now, but it sounds like the termination points were either not part of
-> the design yet on old platforms like that, or were just not implemented
-> properly by hardware.
+> min_ddb = 110% of the blocks calculated from the 2 methods (blocks + 10%)
+> It depends on what method we choose. So I dont think we can use it for any assumptions.
 
-It would be good to get in touch with someone from Media UMD to gain 
-understanding of the failure mode on Gen9 which was fixed by the quoted 
-commit and get their statement on whether Xe_HP is immune.
+Min_ddb is what matters for us because it is an actual ddb allocation we use,
+but not the wm level.
+As I understand (plane buffer allocation / plane blocks per line) >=1 validity depends
+only if min_ddb can get lower after we do full allocation in skl_allocate_plane_ddb,
+which can't be smaller than min_ddb.
 
-With that clarified I think the high level approach is good. To be clear 
-I am not considering the debugging angle as valid, but I am counting on 
-the justification that legitimate parts of hardware will start fiddling 
-with a shared steering register in the near future.
+The allocation algorithm works in such way that it tries to allocate at least min_ddb
+, if it can't - wm level would be disabled.
+However if it succeeds it might try to add some extra blocks to the allocation
+(see skl_allocate_plane_ddb). 
+So yes, even though we don't know the exact allocation in skl_compute_plane_wm - 
+we can for sure assume it won't be less than min_ddb anyway, which means
+that if min_ddb / plane_blocks_per_line >= 1 is true, it will be true also in further,
+if that wm level would be at all enabled.
 
-Regards,
+Stan
 
-Tvrtko
 
 > 
+> But in any case, I think this patch do not cause any harm in most of the usecases expected out of
+> skl+ platforms which have enough dbuf!
 > 
-> Matt
+> Per plane ddb allocation happens based on the highest wm level min_ddb which can fit into the
+> allocation. If one level is not fit, then that level + above package C state transitions are
+> disabled.
+> Now if you look at the logic to select which method to use - if the latency >= linetime, we select
+> the large buffer method which guantees that there is atleast plane_blocks_per_line. So I think we
+> can safely assume that latency for wake wm level will be mostly higher, which implies using the
+> "large buffer" method.
 > 
->>
->> Regards,
->>
->> Tvrtko
->>
->>> +
->>> +	/*
->>> +	 * SQIDI ranges are special because they use different steering
->>> +	 * registers than everything else we work with.  On DG2-G10, any value
->>> +	 * in the steering registers will work fine since all instances are
->>> +	 * present, but DG2-G11 only has SQIDI instances at ID's 2 and 3, so we
->>> +	 * need to steer to one of those.  For simplicity we'll just steer to a
->>> +	 * hardcoded "2" since that value will work everywhere.
->>> +	 */
->>> +	__set_mcr_steering(wal, MCFG_MCR_SELECTOR, 0, 2);
->>> +	__set_mcr_steering(wal, SF_MCR_SELECTOR, 0, 2);
->>>    	/* Wa_14011060649:dg2 */
->>>    	wa_14011060649(gt, wal);
+> So this change mostly limits to wm0. And hence should not impact ddb allocation, but the memory
+> fetch bursts might happen slightly more frequently when the processor is in C0?
 > 
+> BR
+> vinod
+> 
+> >
+> > Stan
+> >
+> > > --
+> > > Ville Syrjälä
+> > > Intel
