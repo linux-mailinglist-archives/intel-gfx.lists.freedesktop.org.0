@@ -1,42 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A84774F7E03
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Apr 2022 13:24:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D50374F7E24
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Apr 2022 13:38:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A20010E6F2;
-	Thu,  7 Apr 2022 11:24:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC17D10E729;
+	Thu,  7 Apr 2022 11:38:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3258210E6F2
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 Apr 2022 11:24:00 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2BA1310E6EF
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 Apr 2022 11:38:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649330640; x=1680866640;
+ t=1649331537; x=1680867537;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=aUTSIPTACQW6C+rfoU1dYWl77v331Zp2GMTdiNBBxkU=;
- b=DoMCFFRvgAoKX892WNCpHgylvE4G0G2kSOyG5rBWxjdkevqDtLz2V9wS
- gKcIr9Axm+4yICT120LXVhSI/BO+Reu3q4k2LGV5kFpQTZAF8w3HJIaia
- DNkm5OfbGVlsY9Ngkd83Gwvttdd1MM02retolJsG4lSqRVm6yu1Gvm0YY
- kYvk75Qt8RgK+c0BEaBgbtC17uxODwPICc8ANyPrv82Mg3lt52Zu8DQwu
- 55WkeB9QBDpmHWwwOmYDkqEqj4+LgVr7PlvisH42UoSBKqjnII5Ek5TBe
- 4288CjKnYiunVb+DZBE8+Z78Ic3gsoI78ZUBsNi6179NcaPdGgKYlJuD4 g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10309"; a="261475166"
-X-IronPort-AV: E=Sophos;i="5.90,241,1643702400"; d="scan'208";a="261475166"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2022 04:23:37 -0700
-X-IronPort-AV: E=Sophos;i="5.90,241,1643702400"; d="scan'208";a="550006953"
+ bh=PvSUbDbGJUwxGXtkYDMKT590Fql/QqWULmnyUfxisCk=;
+ b=gihvRzLQgCTBGYr3jfYG1/jerbAu4xXTMBK2V6HeuLClUcpivGC8R1bi
+ wg3guuzTlM7ZMcDuA3CDml774qne+PmJOP1KP/9yzYzMpWgwezUa5a9Yo
+ WSBiHu1njAVzuYkiqff95JsZbSvGGw46DsboLAb8pjSqO0e2j5Qn8lHPl
+ cZ4aJk0mpVOWs5WHQ8a/VuyrSVdpcgK6qWTrGQKb4k3v8ssyYl94orFPX
+ bR1mMU583cMBfA5ggLtAULra+9IbqLWsxGjatkkxydUiJWTQFfQ0JiLkz
+ 2pITr31bE6mxt2hkP1T/vIrX3jL/jl9BuDz0bTINx2Rf6V+WnTxCoQHvj g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10309"; a="321991572"
+X-IronPort-AV: E=Sophos;i="5.90,241,1643702400"; d="scan'208";a="321991572"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2022 04:38:56 -0700
+X-IronPort-AV: E=Sophos;i="5.90,241,1643702400"; d="scan'208";a="659032651"
 Received: from unknown (HELO intel.com) ([10.237.72.65])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2022 04:23:36 -0700
-Date: Thu, 7 Apr 2022 14:24:17 +0300
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2022 04:38:55 -0700
+Date: Thu, 7 Apr 2022 14:39:37 +0300
 From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
 To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20220407112417.GA20534@intel.com>
+Message-ID: <20220407113937.GA20712@intel.com>
 References: <20220407084235.9526-1-stanislav.lisovskiy@intel.com>
  <Yk7GvHfxpwTuq1Wm@intel.com>
 MIME-Version: 1.0
@@ -72,31 +72,16 @@ On Thu, Apr 07, 2022 at 02:10:52PM +0300, Ville Syrjälä wrote:
 > 
 > We already have that in intel_bw_crtc_min_cdclk().
 
-It actually is not quite what BSpec is talking about it adds
-data_rate per plane, instead of bpp, I think it confuses 
-those 2 from BSpec:
 
-"
-Plane required bandwidth MB/s = pixel rate MHz * source pixel format in bytes 
-* plane down scale amount * pipe down scale amount
-Display required memory bandwidth MB/s += Plane required bandwidth
-Pipe cumulative bytes per pixel += plane source pixel format in bytes
-"
-
-then we have to different formulas used to estimate whats the CDCLK
-should be, one is "DBUF maximum data buffer bandwidth MB/s = CDCLK frequency MHz * 64 Bytes"
-
-another is pipe CDCLK = cumulative bytes per pixel * (pixel rate MHz * 
-plane down scale amount * pipe down scale amount)) * 51.2)
-
-So as I checked for some tests in kms_plane_multiple the estimation
-from the latter was sometimes higher than the one we currently have and
-it happened exactly when we did have FIFO underruns, otherwise CDCLK
-stayed pretty much the same, which also shows that there is something
-obvisously wrong with current calculations.
-
-That patch fixes it and we don't have underruns at after it is applied.
-
+One more remark, is that actually indeed the data rate should be fine
+for that, but looks like for some reason those calculations we have
+currently are not pessimistic enough.
+Could be because mine are lacking scaling factor - but in kms_plane_multiple
+we don't use scaling. Wondering if its those multiplane formats,
+because as I see you don't add those gens >= 11.
+Or something else - there must be something different, because 
+it manages to raise CDCLK now exactly at "right" moments to avoid
+FIFO underrun.
 
 Stan
 
