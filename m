@@ -2,52 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 785A14F85E1
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Apr 2022 19:23:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C9E1C4F8605
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Apr 2022 19:26:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F96A10EBE5;
-	Thu,  7 Apr 2022 17:23:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E888110EAAB;
+	Thu,  7 Apr 2022 17:26:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 116ED10EBE5
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 Apr 2022 17:23:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649352189; x=1680888189;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=hf2zdNy7sDm+vh1W4se/v3mK6kQ+RRp1XyfTq9NLe0E=;
- b=KKPzwvZdkfOBNfUtskaUbc9U4u0gkMy4c+vygnf/56Pp0ewRX68xhsOe
- njiGnjpNjJmXvsBOFgx9nTyKEcNp53MMN7u2G7MA4/zPvbPoDhc/8jaHe
- +BhSRE7W4KYeGH8EM/OdorZQoBC7i4l7xYzIw5FU0IihCa2f9t60eA138
- 5gVEVyhvoYLovPGYGWHWjZs2PoSFgb7IXNCzCS6U6XV7fCXGULfpgcwLh
- 1SMFDFXOnaHBOpwQ4c42M3cVXWvG6cB9GsOsJThZGrkdFQFt1rz0Zi2SP
- m/ETuBCS3PL//X7c7UQcP/6BdapoDOMAk1mtPaFSchB4lyJhnAFhEKTaS Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10310"; a="261382858"
-X-IronPort-AV: E=Sophos;i="5.90,242,1643702400"; d="scan'208";a="261382858"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2022 10:23:07 -0700
-X-IronPort-AV: E=Sophos;i="5.90,242,1643702400"; d="scan'208";a="571147548"
-Received: from kgibala-mobl.ger.corp.intel.com (HELO localhost)
- ([10.249.142.48])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2022 10:23:06 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220405173410.11436-13-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220405173410.11436-1-ville.syrjala@linux.intel.com>
- <20220405173410.11436-13-ville.syrjala@linux.intel.com>
-Date: Thu, 07 Apr 2022 20:23:03 +0300
-Message-ID: <87czhs4xl4.fsf@intel.com>
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D8EF910EAAB;
+ Thu,  7 Apr 2022 17:26:26 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 2D9CA6175A;
+ Thu,  7 Apr 2022 17:26:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1054CC385A0;
+ Thu,  7 Apr 2022 17:26:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+ s=korg; t=1649352385;
+ bh=JVHmD/j+982q82Hd9yNr4YBGxFQIXSXjMoQdgw6ykAI=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=l9pKfCYRQ+hXKX0R2HxMhUsSKKuI4QZXs86eW0eMMQGCIS9+3rq/mXAWUD6FwusV2
+ 2bsJdDPgSeFo4pFUHfHoUd1NLNk9Lo2j/d5YIybKX/KtH9m834Y3BF2R5pNkepMMBw
+ pWg83S6NQWDDpCQk/5EDwqP19AsVl1W796UgTq8k=
+Date: Thu, 7 Apr 2022 19:26:22 +0200
+From: Greg KH <gregkh@linuxfoundation.org>
+To: Daniel Vetter <daniel@ffwll.ch>
+Message-ID: <Yk8evqGtjw1H1Q29@kroah.com>
+References: <YkwAhSt9HlbxcuZo@phenom.ffwll.local>
+ <408ffe9b-f09f-dc7e-7f5e-a93b311a06fa@redhat.com>
+ <CAKMK7uHf6H8mhSm6eDHUruWK5Xc2cSPkJUX6v-jpeQfjS19dKw@mail.gmail.com>
+ <e124af06-4f24-277a-543a-82b383f48cea@redhat.com>
+ <CAKMK7uH4GgDQJZguT-k0QmgEAHYHuDEbBtjYje51_Rtqzud0yw@mail.gmail.com>
+ <CAMuHMdWr0L0r+MVU-=+_yeHKwK8BjF7_EJQxiJT5jMqS9FJUeQ@mail.gmail.com>
+ <YkxFHUdm/YeiVY+D@kroah.com> <Ykxqi82sOEd2Zg1K@phenom.ffwll.local>
+ <YkxyBt8Zee8qrEbT@kroah.com>
+ <CAKMK7uEWMDZoB_OLLu7desVVPXEAgDiCEjVDJ3FrSeSTBoYtGQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v2 12/22] drm/i915/bios: Split VBT parsing
- to global vs. panel specific parts
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAKMK7uEWMDZoB_OLLu7desVVPXEAgDiCEjVDJ3FrSeSTBoYtGQ@mail.gmail.com>
+Subject: Re: [Intel-gfx] [PATCH v2 18/19] Revert "fbdev: Prevent probing
+ generic drivers if a FB is already registered"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,169 +57,155 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Linux Fbdev development list <linux-fbdev@vger.kernel.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ LKML <linux-kernel@vger.kernel.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Javier Martinez Canillas <javierm@redhat.com>, Peter Jones <pjones@redhat.com>,
+ Geert Uytterhoeven <geert@linux-m68k.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Ilya Trukhanov <lahvuun@gmail.com>,
+ Daniel Vetter <daniel.vetter@intel.com>, Zack Rusin <zackr@vmware.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 05 Apr 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> Parsing the panel specific data from VBT is currently happening
-> too early. Split the whole thing into global vs. panel specific
-> parts so that we can start doing the panel specific parsing at
-> a later time.
+On Tue, Apr 05, 2022 at 07:29:22PM +0200, Daniel Vetter wrote:
+> On Tue, 5 Apr 2022 at 18:45, Greg KH <gregkh@linuxfoundation.org> wrote:
+> >
+> > On Tue, Apr 05, 2022 at 06:12:59PM +0200, Daniel Vetter wrote:
+> > > On Tue, Apr 05, 2022 at 03:33:17PM +0200, Greg KH wrote:
+> > > > On Tue, Apr 05, 2022 at 03:24:40PM +0200, Geert Uytterhoeven wrote:
+> > > > > Hi Daniel,
+> > > > >
+> > > > > On Tue, Apr 5, 2022 at 1:48 PM Daniel Vetter <daniel@ffwll.ch> wrote:
+> > > > > > On Tue, 5 Apr 2022 at 11:52, Javier Martinez Canillas
+> > > > > > <javierm@redhat.com> wrote:
+> > > > > > > On 4/5/22 11:24, Daniel Vetter wrote:
+> > > > > > > > On Tue, 5 Apr 2022 at 11:19, Javier Martinez Canillas
+> > > > > > > >> This is how I think that work, please let me know if you see something
+> > > > > > > >> wrong in my logic:
+> > > > > > > >>
+> > > > > > > >> 1) A PCI device of OF device is registered for the GPU, this attempt to
+> > > > > > > >>    match a registered driver but no driver was registered that match yet.
+> > > > > > > >>
+> > > > > > > >> 2) The efifb driver is built-in, will be initialized according to the link
+> > > > > > > >>    order of the objects under drivers/video and the fbdev driver is registered.
+> > > > > > > >>
+> > > > > > > >>    There is no platform device or PCI/OF device registered that matches.
+> > > > > > > >>
+> > > > > > > >> 3) The DRM driver is built-in, will be initialized according to the link
+> > > > > > > >>    order of the objects under drivers/gpu and the DRM driver is registered.
+> > > > > > > >>
+> > > > > > > >>    This matches the device registered in (1) and the DRM driver probes.
+> > > > > > > >>
+> > > > > > > >> 4) The DRM driver .probe kicks out any conflicting DRM drivers and pdev
+> > > > > > > >>    before registering the DRM device.
+> > > > > > > >>
+> > > > > > > >>    There are no conflicting drivers or platform device at this point.
+> > > > > > > >>
+> > > > > > > >> 5) Latter at some point the drivers/firmware/sysfb.c init function is
+> > > > > > > >>    executed, and this registers a platform device for the generic fb.
+> > > > > > > >>
+> > > > > > > >>    This device matches the efifb driver registered in (2) and the fbdev
+> > > > > > > >>    driver probes.
+> > > > > > > >>
+> > > > > > > >>    Since that happens *after* the DRM driver already matched, probed
+> > > > > > > >>    and registered the DRM device, that is a bug and what the reverted
+> > > > > > > >>    patch worked around.
+> > > > > > > >>
+> > > > > > > >> So we need to prevent (5) if (1) and (3) already happened. Having a flag
+> > > > > > > >> set in the fbdev core somewhere when remove_conflicting_framebuffers()
+> > > > > > > >> is called could be a solution indeed.
+> > > > > > > >>
+> > > > > > > >> That is, the fbdev core needs to know that a DRM driver already probed
+> > > > > > > >> and make register_framebuffer() fail if info->flag & FBINFO_MISC_FIRMWARE
+> > > > > > > >>
+> > > > > > > >> I can attempt to write a patch for that.
+> > > > > > > >
+> > > > > > > > Ah yeah that could be an issue. I think the right fix is to replace
+> > > > > > > > the platform dev unregister with a sysfb_unregister() function in
+> > > > > > > > sysfb.c, which is synced with a common lock with the sysfb_init
+> > > > > > > > function and a small boolean. I think I can type that up quickly for
+> > > > > > > > v3.
+> > > > > > >
+> > > > > > > It's more complicated than that since sysfb is just *one* of the several
+> > > > > > > places where platform devices can be registered for video devices.
+> > > > > > >
+> > > > > > > For instance, the vga16fb driver registers its own platform device in
+> > > > > > > its module_init() function so that can also happen after the conflicting
+> > > > > > > framebuffers (and associated devices) were removed by a DRM driver probe.
+> > > > > > >
+> > > > > > > I tried to minimize the issue for that particular driver with commit:
+> > > > > > >
+> > > > > > > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=0499f419b76f
+> > > > > > >
+> > > > > > > But the point stands, it all boils down to the fact that you have two
+> > > > > > > different subsystems registering video drivers and they don't know all
+> > > > > > > about each other to take a proper decision.
+> > > > > > >
+> > > > > > > Right now the drm_aperture_remove_conflicting_framebuffers() call signals
+> > > > > > > in one direction from DRM to fbdev but there isn't a communication in the
+> > > > > > > other direction, from fbdev to DRM.
+> > > > > > >
+> > > > > > > I believe the correct fix would be for the fbdev core to keep a list of
+> > > > > > > the apertures struct that are passed to remove_conflicting_framebuffers(),
+> > > > > > > that way it will know what apertures are not available anymore and prevent
+> > > > > > > to register any fbdev framebuffer that conflicts with one already present.
+> > > > > >
+> > > > > > Hm that still feels like reinventing a driver model, badly.
+> > > > > >
+> > > > > > I think there's two cleaner solutions:
+> > > > > > - move all the firmware driver platform_dev into sysfb.c, and then
+> > > > > > just bind the special cases against that (e.g. offb, vga16fb and all
+> > > > > > these). Then we'd have one sysfb_try_unregister(struct device *dev)
+> > > > > > interface that fbmem.c uses.
+> > > > > > - let fbmem.c call into each of these firmware device providers, which
+> > > > > > means some loops most likely (like we can't call into vga16fb), so
+> > > > > > probably need to move that into fbmem.c and it all gets a bit messy.
+> > > > > >
+> > > > > > > Let me know if you think that makes sense and I can attempt to write a fix.
+> > > > > >
+> > > > > > I still think unregistering the platform_dev properly makes the most
+> > > > >
+> > > > > That doesn't sound very driver-model-aware to me. The device is what
+> > > > > the driver binds to; it does not cease to exist.
+> > > >
+> > > > I agree, that sounds odd.
+> > > >
+> > > > The device should always stick around (as the bus creates it), it's up
+> > > > to the driver to bind to the device as needed.
+> > >
+> > > The device actually disappears when the real driver takes over.
+> > >
+> > > The firmware fb is a special thing which only really exists as long as the
+> > > firmware is in charge of the display hardware. As soon as a real driver
+> > > takes over, it stops being a thing.
+> > >
+> > > And since a driver without a device is a bit a funny thing, we have been
+> > > pushing towards a model where the firmware code sets up a platform_device
+> > > for this fw interface, and the fw driver (efifb, simplefb and others like
+> > > that) bind against it. And then we started to throw out that
+> > > platform_device (which unbinds the fw driver and prevents it from ever
+> > > rebinding), except in the wrong layer so there's a few races.
+> > >
+> > > Should we throw out all that code and replace it with something else? What
+> > > would that be like?
+> >
+> > Ah, no, sorry, I didn't know that at all.
+> >
+> > That sounds semi-sane, just fix the races by moving the layer elsewhere?
+> 
+> Yeah essentially move it all into drivers/firmware/sysfb.c, for all
+> drivers, both the registering and the nuking, and warp that into a
+> local mutex. Currently parts is in there, parts is in fbmem.c, parts
+> in some of the drivers like vga16fb, and some drivers (iirc only offb)
+> still don't even have any platform_dev underneath their driver. So
+> ideally the drivers would all just have their platform_driver probe
+> functions, and that's it. It does mean though that some of that stuff
+> needs to be moved to sysfb.c or into the relevant fw code that sets
+> stuff up.
+> 
+> It'll take some, so really just a direction check before we move
+> further. You should get cc'ed on the patches (like with the sysfb
+> stuff) anyway. Sounds roughly right?
 
-Might want to mention panel_type here somewhere, that's basically the
-split, right?
-
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_bios.c    | 50 +++++++++++++-------
->  drivers/gpu/drm/i915/display/intel_bios.h    |  1 +
->  drivers/gpu/drm/i915/display/intel_display.c |  1 +
->  3 files changed, 35 insertions(+), 17 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/=
-i915/display/intel_bios.c
-> index 1a7f1aa79827..da2b1932e10d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bios.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-> @@ -723,6 +723,9 @@ parse_generic_dtd(struct drm_i915_private *i915)
->  	struct drm_display_mode *panel_fixed_mode;
->  	int num_dtd;
->=20=20
-> +	if (i915->vbt.lfp_lvds_vbt_mode)
-> +		return;
-> +
->  	generic_dtd =3D find_section(i915, BDB_GENERIC_DTD);
->  	if (!generic_dtd)
->  		return;
-> @@ -891,6 +894,9 @@ parse_sdvo_panel_data(struct drm_i915_private *i915)
->  	struct drm_display_mode *panel_fixed_mode;
->  	int index;
->=20=20
-> +	if (i915->vbt.sdvo_lvds_vbt_mode)
-> +		return;
-> +
->  	index =3D i915->params.vbt_sdvo_panel_type;
->  	if (index =3D=3D -2) {
->  		drm_dbg_kms(&i915->drm,
-> @@ -1419,6 +1425,9 @@ parse_mipi_config(struct drm_i915_private *i915)
->  	int panel_type =3D i915->vbt.panel_type;
->  	enum port port;
->=20=20
-> +	if (i915->vbt.dsi.config)
-> +		return;
-> +
->  	/* parse MIPI blocks only if LFP type is MIPI */
->  	if (!intel_bios_is_dsi_present(i915, &port))
->  		return;
-> @@ -1739,6 +1748,9 @@ parse_mipi_sequence(struct drm_i915_private *i915)
->  	u8 *data;
->  	int index =3D 0;
->=20=20
-> +	if (i915->vbt.dsi.data)
-> +		return;
-> +
-
-All of the above checks to (presumably) allow calling
-intel_bios_init_panel() multiple times feel a bit out of place here. At
-the very least need a mention in the commit message.
-
-Regardless,
-
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-
-
->  	/* Only our generic panel driver uses the sequence block. */
->  	if (i915->vbt.dsi.panel_id !=3D MIPI_DSI_GENERIC_PANEL_ID)
->  		return;
-> @@ -2878,6 +2890,27 @@ void intel_bios_init(struct drm_i915_private *i915)
->  	/* Grab useful general definitions */
->  	parse_general_features(i915);
->  	parse_general_definitions(i915);
-> +	parse_driver_features(i915);
-> +
-> +	/* Depends on child device list */
-> +	parse_compression_parameters(i915);
-> +
-> +out:
-> +	if (!vbt) {
-> +		drm_info(&i915->drm,
-> +			 "Failed to find VBIOS tables (VBT)\n");
-> +		init_vbt_missing_defaults(i915);
-> +	}
-> +
-> +	/* Further processing on pre-parsed or generated child device data */
-> +	parse_sdvo_device_mapping(i915);
-> +	parse_ddi_ports(i915);
-> +
-> +	kfree(oprom_vbt);
-> +}
-> +
-> +void intel_bios_init_panel(struct drm_i915_private *i915)
-> +{
->  	parse_panel_options(i915);
->  	/*
->  	 * Older VBTs provided DTD information for internal displays through
-> @@ -2892,29 +2925,12 @@ void intel_bios_init(struct drm_i915_private *i91=
-5)
->  	parse_lfp_data(i915);
->  	parse_lfp_backlight(i915);
->  	parse_sdvo_panel_data(i915);
-> -	parse_driver_features(i915);
->  	parse_panel_driver_features(i915);
->  	parse_power_conservation_features(i915);
->  	parse_edp(i915);
->  	parse_psr(i915);
->  	parse_mipi_config(i915);
->  	parse_mipi_sequence(i915);
-> -
-> -	/* Depends on child device list */
-> -	parse_compression_parameters(i915);
-> -
-> -out:
-> -	if (!vbt) {
-> -		drm_info(&i915->drm,
-> -			 "Failed to find VBIOS tables (VBT)\n");
-> -		init_vbt_missing_defaults(i915);
-> -	}
-> -
-> -	/* Further processing on pre-parsed or generated child device data */
-> -	parse_sdvo_device_mapping(i915);
-> -	parse_ddi_ports(i915);
-> -
-> -	kfree(oprom_vbt);
->  }
->=20=20
->  /**
-> diff --git a/drivers/gpu/drm/i915/display/intel_bios.h b/drivers/gpu/drm/=
-i915/display/intel_bios.h
-> index 4709c4d29805..c744d75fa435 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bios.h
-> +++ b/drivers/gpu/drm/i915/display/intel_bios.h
-> @@ -230,6 +230,7 @@ struct mipi_pps_data {
->  } __packed;
->=20=20
->  void intel_bios_init(struct drm_i915_private *dev_priv);
-> +void intel_bios_init_panel(struct drm_i915_private *dev_priv);
->  void intel_bios_driver_remove(struct drm_i915_private *dev_priv);
->  bool intel_bios_is_valid_vbt(const void *buf, size_t size);
->  bool intel_bios_is_tv_present(struct drm_i915_private *dev_priv);
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
-rm/i915/display/intel_display.c
-> index eee185ed41c3..4ece4e7d0296 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -9650,6 +9650,7 @@ int intel_modeset_init_noirq(struct drm_i915_privat=
-e *i915)
->  	}
->=20=20
->  	intel_bios_init(i915);
-> +	intel_bios_init_panel(i915);
->=20=20
->  	ret =3D intel_vga_register(i915);
->  	if (ret)
-
---=20
-Jani Nikula, Intel Open Source Graphics Center
+That's fine with me, thanks.
