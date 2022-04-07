@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 212524F7F54
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Apr 2022 14:41:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 28B0D4F7F63
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Apr 2022 14:44:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7571610EA1D;
-	Thu,  7 Apr 2022 12:41:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 612E510E143;
+	Thu,  7 Apr 2022 12:44:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F56910EA49
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 Apr 2022 12:41:27 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C20F10E143;
+ Thu,  7 Apr 2022 12:44:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649335287; x=1680871287;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=C60K/RjIxzD9qUe3rRXkzoWYu1Lju48shK/LC42uP3E=;
- b=cIFpWKfxVPvp7tFe8Htt5OzG/BNFlXclCDSJ0ufd0ztqu8HYBYaPrzNB
- NdtzynZ7nUH3Hv2fg5i/sh+ESaXR5Z1Pd2yLs41XMl9to3sstEV35reBV
- Y4O7K9WdKDnN7h/ZbKoRbNt7lRPtIM/eLBwoSXtdB/KTB9eKQ0o6RCOf5
- 4Yp02X7voXYSEErjc1L0vnX1LJV6CwDXqQ845B9+OStytqceLI79Q/xkx
- Hsx4iF8SF9HsCUzN6qPbaTTee5I9Bq3vjPcSqhEPGGsfxkim+U0GyrX31
- GGCBIAxk7fmfAuIWqw4ZPFpml1xacHc1ulfYrUNk0vSmu0jJNXQOakAP8 A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10309"; a="322003034"
-X-IronPort-AV: E=Sophos;i="5.90,242,1643702400"; d="scan'208";a="322003034"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2022 05:41:26 -0700
-X-IronPort-AV: E=Sophos;i="5.90,242,1643702400"; d="scan'208";a="722946373"
-Received: from kgibala-mobl.ger.corp.intel.com (HELO localhost)
- ([10.249.142.48])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2022 05:41:24 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Patchwork <patchwork@emeril.freedesktop.org>
-In-Reply-To: <164933427092.14672.4816692844290844231@emeril.freedesktop.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+ t=1649335476; x=1680871476;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=N46ExJswRpvvd5NOFLfzp8dYRuQKIC8K28XUEea7Up8=;
+ b=guTx69k5rYKEiLsKZmid4BPwR/9JNBhq6vSJtXl1lBldG8SQYax1Toxu
+ zHng/xrAQfO8wN7krDY2EOn4U+HCZBdBSo19yFzWKbmb+lBdsN5XlzB/n
+ LN7kolOcjLcDRNN8PoE7uuDW388WgDzWC2b/Xkffb7Pf2tgts2dz2JIdK
+ nW+ZoyfAjEMtPMXp8bkrRFw5ybe1O2bllzr9mTVRlNcUqPlccu4kXpuHq
+ nW395pWnzwHVTr/WwCdXDbVO8+vEbCwTNd385KIvbybsUob1OxFORthtI
+ THTXllo1yCWBUAjg+zfn5nuZO2bxph+EKVxDWF/mvVhk2TiIxcHfH4D30 A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10309"; a="261489886"
+X-IronPort-AV: E=Sophos;i="5.90,242,1643702400"; d="scan'208";a="261489886"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2022 05:44:35 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,242,1643702400"; d="scan'208";a="588790631"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.51])
+ by orsmga001.jf.intel.com with SMTP; 07 Apr 2022 05:44:33 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 07 Apr 2022 15:44:32 +0300
+Date: Thu, 7 Apr 2022 15:44:32 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <Yk7csG+mdZ9LwA4+@intel.com>
 References: <cover.1649322799.git.jani.nikula@intel.com>
- <164933427092.14672.4816692844290844231@emeril.freedesktop.org>
-Date: Thu, 07 Apr 2022 15:41:22 +0300
-Message-ID: <877d815aml.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
- =?utf-8?q?rm/edid=3A_low_level_EDID_block_read_refactoring_etc=2E?=
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <cover.1649322799.git.jani.nikula@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 00/12] drm/edid: low level EDID block read
+ refactoring etc.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,45 +60,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 07 Apr 2022, Patchwork <patchwork@emeril.freedesktop.org> wrote:
-> =3D=3D Series Details =3D=3D
->
-> Series: drm/edid: low level EDID block read refactoring etc.
-> URL   : https://patchwork.freedesktop.org/series/102329/
-> State : failure
->
-> =3D=3D Summary =3D=3D
->
-> CALL    scripts/checksyscalls.sh
->   CALL    scripts/atomic/check-atomics.sh
->   DESCEND objtool
->   CHK     include/generated/compile.h
->   CC      drivers/gpu/drm/drm_edid.o
-> drivers/gpu/drm/drm_edid.c: In function =E2=80=98drm_do_get_edid=E2=80=99:
-> drivers/gpu/drm/drm_edid.c:2183:42: error: =E2=80=98j=E2=80=99 undeclared=
- (first use in this function)
->    edid_block_status_print(status, block, j);
+On Thu, Apr 07, 2022 at 12:14:26PM +0300, Jani Nikula wrote:
+> Ever so slowly moving towards cleaner EDID reading.
+> 
+> Jani Nikula (12):
+>   drm/edid: convert edid_is_zero() to edid_block_is_zero() for blocks
+>   drm/edid: have edid_block_check() detect blocks that are all zero
+>   drm/edid: refactor EDID block status printing
+>   drm/edid: add a helper to log dump an EDID block
+>   drm/edid: pass struct edid to connector_bad_edid()
+>   drm/edid: add typedef for block read function
+>   drm/edid: abstract an EDID block read helper
+>   drm/edid: use EDID block read helper in drm_do_get_edid()
+>   drm/edid: convert extension block read to EDID block read helper
+>   drm/edid: drop extra local var
+>   drm/edid: add single point of return to drm_do_get_edid()
+>   drm/edid: add EDID block count and size helpers
 
-Argh, last minute rebase fail.
+Some of the stuff was a bit hard to follow, but I suppose that's mostly
+an indication of the messy state of the current code. Didn't spot
+anything obviously wrong at least.
 
->                                           ^
-> drivers/gpu/drm/drm_edid.c:2183:42: note: each undeclared identifier is r=
-eported only once for each function it appears in
-> scripts/Makefile.build:288: recipe for target 'drivers/gpu/drm/drm_edid.o=
-' failed
-> make[3]: *** [drivers/gpu/drm/drm_edid.o] Error 1
-> scripts/Makefile.build:550: recipe for target 'drivers/gpu/drm' failed
-> make[2]: *** [drivers/gpu/drm] Error 2
-> scripts/Makefile.build:550: recipe for target 'drivers/gpu' failed
-> make[1]: *** [drivers/gpu] Error 2
-> Makefile:1834: recipe for target 'drivers' failed
-> make: *** [drivers] Error 2
->
->
+Series is
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
---=20
-Jani Nikula, Intel Open Source Graphics Center
+> 
+>  drivers/gpu/drm/drm_edid.c | 350 ++++++++++++++++++++++++-------------
+>  1 file changed, 225 insertions(+), 125 deletions(-)
+> 
+> -- 
+> 2.30.2
+
+-- 
+Ville Syrjälä
+Intel
