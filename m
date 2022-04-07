@@ -1,49 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 520EB4F8821
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Apr 2022 21:32:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02D954F8853
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Apr 2022 22:30:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 680A310E812;
-	Thu,  7 Apr 2022 19:32:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 01B1E10E080;
+	Thu,  7 Apr 2022 20:30:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF3AF10E812;
- Thu,  7 Apr 2022 19:32:16 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 206DC10E080
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 Apr 2022 20:30:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649359936; x=1680895936;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=I+5K1JdrruXJVMHbrqjXWaWvSlpHKmRZgbR2hOoO0fs=;
- b=UxsEqkuyYj1sniJf3+G/iTi9B2+RGuXL42hIp0zakepzLugJnacCUQZY
- 7WV2UB7JjSWbWPpLsmJAnX89mtW3jxxLFfIYEuS/J6K0cMDC3gTQAsXJq
- PpQZK/0SJi9B9Bj5H18A5hxpBhLXaVdUNwIRQWNfGW9H4p6Yo+cAZeBcW
- zudnUGQMydOsgugSGHkP/tXwmf2zXck0m6fb+hc8qxfKM81oDW2FClDXA
- aecBIIUuBbBHqRyit0QH0diYMtyJ695zTBqhVimFzjhGsYYSAEGrgdjDb
- rcIUxhkueeNgbOnKfXMjLgXYuveXugAcfWlhFnLkW13Or1U7vHmbkoR84 A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10310"; a="322113984"
-X-IronPort-AV: E=Sophos;i="5.90,242,1643702400"; d="scan'208";a="322113984"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2022 12:32:16 -0700
-X-IronPort-AV: E=Sophos;i="5.90,242,1643702400"; d="scan'208";a="550207984"
-Received: from kgibala-mobl.ger.corp.intel.com (HELO localhost)
- ([10.249.142.48])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2022 12:32:14 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220407183826.724106-1-imre.deak@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220407183826.724106-1-imre.deak@intel.com>
-Date: Thu, 07 Apr 2022 22:32:11 +0300
-Message-ID: <87lewg3d1g.fsf@intel.com>
+ t=1649363446; x=1680899446;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=wytMG2wq8h9VO/MoRodd53OuFxwL58vRwVUxyOeJiSU=;
+ b=NKK+Htulge8012ilCeKz3QdoqXSWH/PUAPhu1A/sR7IrwPE4fyJFhsrt
+ gpxGnavPYiiqhmha/BcgrMPqpmD4YqLMEKqIvUghHTBWBf9MVwRyKJo8c
+ IEclMv8RkAohsvQ0DQDohSx6daBN/jPYZHNKZplCVcniea1OUomL0Ed5g
+ /zMhyUZGlmQKHdAuPyHuqiyWvnu7JhU7HaEOU+LIWtvp37nPxFE5XGJiq
+ C4j+LKXCvpEu7yig1MUYIUeX7eWmSFROG//aq1nMpuZYkiNJkEOTTcf9/
+ oI4QpLmLoVQskvxbwUWGzCR5CbytNgb5r8lNqkaZb75CWtqYR1BM/Csmw w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10310"; a="248963498"
+X-IronPort-AV: E=Sophos;i="5.90,242,1643702400"; d="scan'208";a="248963498"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2022 13:30:45 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,242,1643702400"; d="scan'208";a="525080359"
+Received: from relo-linux-5.jf.intel.com ([10.165.21.134])
+ by orsmga006.jf.intel.com with ESMTP; 07 Apr 2022 13:30:45 -0700
+From: John.C.Harrison@Intel.com
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  7 Apr 2022 13:30:45 -0700
+Message-Id: <20220407203045.1017316-1-John.C.Harrison@Intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/dp: Export drm_dp_dpcd_access()
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [CI] PR for new GuC v70.1.1
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,88 +53,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 07 Apr 2022, Imre Deak <imre.deak@intel.com> wrote:
-> The next patch needs a way to read a DPCD register without the preceding
-> wake-up read in drm_dp_dpcd_read(). Export drm_dp_dpcd_access() to allow
-> this.
+The following changes since commit 681281e49fb6778831370e5d94e6e1d97f0752d6:
 
-I think I'd rather you added a special "probe" function for this
-specific purpose. I think drm_dp_dpcd_access() is a too generic low
-level function to export, and runs the risk of complicating any
-potential future refactoring of the DP AUX code.
+  amdgpu: update PSP 13.0.8 firmware (2022-03-18 07:35:54 -0400)
 
-Something like this:
+are available in the Git repository at:
 
-ssize_t drm_dp_dpcd_probe(struct drm_dp_aux *aux, unsigned int offset);
+  git://anongit.freedesktop.org/drm/drm-firmware guc_v70.1.1_dg2
 
-And you could reuse that for the wakeup in drm_dp_dpcd_read() too.
+for you to fetch changes up to 0a2cdf9b1b74322bf90154d316434e2b0ec15357:
 
+  i915: Add GuC v70.1.1 for DG2 (2022-04-07 13:15:01 -0700)
 
-BR,
-Jani.
+----------------------------------------------------------------
+John Harrison (2):
+      i915: Add GuC v70.1.1 for all platforms
+      i915: Add GuC v70.1.1 for DG2
 
->
-> Cc: dri-devel@lists.freedesktop.org
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
-> ---
->  drivers/gpu/drm/dp/drm_dp.c    | 19 +++++++++++++++++--
->  include/drm/dp/drm_dp_helper.h |  2 ++
->  2 files changed, 19 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/dp/drm_dp.c b/drivers/gpu/drm/dp/drm_dp.c
-> index 580016a1b9eb7..8b181314edcbe 100644
-> --- a/drivers/gpu/drm/dp/drm_dp.c
-> +++ b/drivers/gpu/drm/dp/drm_dp.c
-> @@ -470,8 +470,22 @@ drm_dp_dump_access(const struct drm_dp_aux *aux,
->   * Both native and I2C-over-AUX transactions are supported.
->   */
->  
-> -static int drm_dp_dpcd_access(struct drm_dp_aux *aux, u8 request,
-> -			      unsigned int offset, void *buffer, size_t size)
-> +/**
-> + * drm_dp_dpcd_access() - read or write a series of bytes from/to the DPCD
-> + * @aux: DisplayPort AUX channel (SST)
-> + * @request: DP_AUX_NATIVE_READ or DP_AUX_NATIVE_WRITE
-> + * @offset: address of the (first) register to read or write
-> + * @buffer: buffer with the register values to write or the register values read
-> + * @size: number of bytes in @buffer
-> + *
-> + * Returns the number of bytes transferred on success, or a negative error
-> + * code on failure. This is a low-level function only for SST sinks and cases
-> + * where calling drm_dp_dpcd_read()/write() is not possible (for instance due
-> + * to the wake-up register read in drm_dp_dpcd_read()). For all other cases
-> + * the latter functions should be used.
-> + */
-> +int drm_dp_dpcd_access(struct drm_dp_aux *aux, u8 request,
-> +		       unsigned int offset, void *buffer, size_t size)
->  {
->  	struct drm_dp_aux_msg msg;
->  	unsigned int retry, native_reply;
-> @@ -526,6 +540,7 @@ static int drm_dp_dpcd_access(struct drm_dp_aux *aux, u8 request,
->  	mutex_unlock(&aux->hw_mutex);
->  	return ret;
->  }
-> +EXPORT_SYMBOL(drm_dp_dpcd_access);
->  
->  /**
->   * drm_dp_dpcd_read() - read a series of bytes from the DPCD
-> diff --git a/include/drm/dp/drm_dp_helper.h b/include/drm/dp/drm_dp_helper.h
-> index 1eccd97419436..7cf6e83434a8c 100644
-> --- a/include/drm/dp/drm_dp_helper.h
-> +++ b/include/drm/dp/drm_dp_helper.h
-> @@ -2053,6 +2053,8 @@ struct drm_dp_aux {
->  	bool is_remote;
->  };
->  
-> +int drm_dp_dpcd_access(struct drm_dp_aux *aux, u8 request,
-> +		       unsigned int offset, void *buffer, size_t size);
->  ssize_t drm_dp_dpcd_read(struct drm_dp_aux *aux, unsigned int offset,
->  			 void *buffer, size_t size);
->  ssize_t drm_dp_dpcd_write(struct drm_dp_aux *aux, unsigned int offset,
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
+ WHENCE                   |  33 +++++++++++++++++++++++++++++++++
+ i915/adlp_guc_70.1.1.bin | Bin 0 -> 289472 bytes
+ i915/bxt_guc_70.1.1.bin  | Bin 0 -> 206464 bytes
+ i915/cml_guc_70.1.1.bin  | Bin 0 -> 206976 bytes
+ i915/dg1_guc_70.1.1.bin  | Bin 0 -> 265152 bytes
+ i915/dg2_guc_70.1.1.bin  | Bin 0 -> 365568 bytes
+ i915/ehl_guc_70.1.1.bin  | Bin 0 -> 274496 bytes
+ i915/glk_guc_70.1.1.bin  | Bin 0 -> 206784 bytes
+ i915/icl_guc_70.1.1.bin  | Bin 0 -> 274496 bytes
+ i915/kbl_guc_70.1.1.bin  | Bin 0 -> 206976 bytes
+ i915/skl_guc_70.1.1.bin  | Bin 0 -> 206208 bytes
+ i915/tgl_guc_70.1.1.bin  | Bin 0 -> 277440 bytes
+ 12 files changed, 33 insertions(+)
+ create mode 100644 i915/adlp_guc_70.1.1.bin
+ create mode 100644 i915/bxt_guc_70.1.1.bin
+ create mode 100644 i915/cml_guc_70.1.1.bin
+ create mode 100644 i915/dg1_guc_70.1.1.bin
+ create mode 100644 i915/dg2_guc_70.1.1.bin
+ create mode 100644 i915/ehl_guc_70.1.1.bin
+ create mode 100644 i915/glk_guc_70.1.1.bin
+ create mode 100644 i915/icl_guc_70.1.1.bin
+ create mode 100644 i915/kbl_guc_70.1.1.bin
+ create mode 100644 i915/skl_guc_70.1.1.bin
+ create mode 100644 i915/tgl_guc_70.1.1.bin
