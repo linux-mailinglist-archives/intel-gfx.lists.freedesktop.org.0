@@ -2,66 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D84D64F7C42
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Apr 2022 11:59:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 296534F7C79
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Apr 2022 12:10:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4DBF410E1DE;
-	Thu,  7 Apr 2022 09:59:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D0CA10E0B7;
+	Thu,  7 Apr 2022 10:10:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E406F10E25A
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 Apr 2022 09:59:10 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D214410E0B7
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 Apr 2022 10:10:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649325550; x=1680861550;
- h=from:to:subject:date:message-id:references:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=Tp11hoYODrZX3tlF67v5tIpOmYtGHgZAXPdVZS5rfbA=;
- b=cZ3/LS837qAqpxgruflIYfQjdakSUDccObF82MEtnxbk4st5fAGHaOcn
- 2F22qD06mrFKu8xITTg3ONeFGcBBZ7RPRPH5KWAR5W27yAmEqfoUYRm6H
- itHgrG4ecwA7a4SCo0vmA9Pm4GL8VhQ6F+e+Iz6lQTZOWFj4MLPDUzrn/
- ddSDkXTMQ0243YDr7KByFEYjfA5XKUCyvIlPL/y/XrTH75jNhrPDPtXOi
- bUUhJsd0ML6gaF3Seyd+E3jgYgB2A5rN2FiAGFM1PB7sWTf2rLgoq4POl
- dwTne/tG9NOp+WQ92afKypYZzeryOCsfwLgq0AId4KKqflyQxNYis/K1n Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10309"; a="286259692"
-X-IronPort-AV: E=Sophos;i="5.90,241,1643702400"; d="scan'208";a="286259692"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2022 02:59:10 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,241,1643702400"; d="scan'208";a="524857263"
-Received: from fmsmsx606.amr.corp.intel.com ([10.18.126.86])
- by orsmga006.jf.intel.com with ESMTP; 07 Apr 2022 02:59:10 -0700
-Received: from fmsmsx604.amr.corp.intel.com (10.18.126.84) by
- fmsmsx606.amr.corp.intel.com (10.18.126.86) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Thu, 7 Apr 2022 02:59:09 -0700
-Received: from fmsmsx604.amr.corp.intel.com ([10.18.126.84]) by
- fmsmsx604.amr.corp.intel.com ([10.18.126.84]) with mapi id 15.01.2308.027;
- Thu, 7 Apr 2022 02:59:09 -0700
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: =?utf-8?B?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJtL2k5MTU6IEZpeCBGSUZP?=
- =?utf-8?Q?_underruns_caused_by_missing_cumulative_bpp_W/A?=
-Thread-Index: AQHYSmElhz2JhtOmTUarD6DsomvNvKzkNz1F
-Date: Thu, 7 Apr 2022 09:59:09 +0000
-Message-ID: <a11c4289efd94d86bd0c1d84e7f60491@intel.com>
-References: <20220407084235.9526-1-stanislav.lisovskiy@intel.com>,
- <164932340676.14670.10840435382668991086@emeril.freedesktop.org>
-In-Reply-To: <164932340676.14670.10840435382668991086@emeril.freedesktop.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [163.33.253.164]
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ t=1649326214; x=1680862214;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=7Suh0t9CgwwCN8vbF7Dfs3FVTHZl0Cet853RwYPvpkw=;
+ b=TLfrlCXz4QMy/k581gptiHUuNn6yfsscqu9tPW/sr2P9PWjvjbwWmyfB
+ 0XiOzdX0YXQfVK5jS3O1Cl0G0DQFR+PYaHb/48GmYki6GhnLK9Uy7sBje
+ uIm6+CMGOiN3LxypMwwIZYMEId4F3dSxP4DZjNnJe3yFtRVJ+3SVhWlp0
+ WBiqxP9B2i00vDoDIKVSCmcGFO5R2urQ1RXHnprP7e2eXph4cJAdfS1dB
+ j+hLhhtorEQFj8bKreQrYolGMvl60O46tPNUfQe/g82yCZ//nKo+7Fy1R
+ zlSn5tr5oTuHdugqOQrZCEj6Y71be0OCY077njGP+r/FVlGqz6wYK8mtA w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10309"; a="258875135"
+X-IronPort-AV: E=Sophos;i="5.90,241,1643702400"; d="scan'208";a="258875135"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2022 03:10:14 -0700
+X-IronPort-AV: E=Sophos;i="5.90,241,1643702400"; d="scan'208";a="570987796"
+Received: from kgibala-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.249.142.48])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2022 03:10:12 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20220405173410.11436-2-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220405173410.11436-1-ville.syrjala@linux.intel.com>
+ <20220405173410.11436-2-ville.syrjala@linux.intel.com>
+Date: Thu, 07 Apr 2022 13:10:08 +0300
+Message-ID: <87mtgx5hmn.fsf@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Fix_FIFO_underruns_caused_by_missing_cumulative_bpp_W/?=
- =?utf-8?q?A?=
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH v2 01/22] drm/i915/bios: Use the cached BDB
+ version
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,122 +63,237 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Z3RAaTkxNV9zZWxmdGVzdEBsaXZlQGNvaGVyZW5jeSBmYWlsdXJlIG9uIGJkdywgc3VyZSBkb2Vz
-bid0IGhhdmUgYW55dGhpbmcgd2l0aCB0aGlzIHBhdGNoIDpEDQoNClJlc3RhcnRlZCB0ZXN0IHJ1
-biBpbiBob3Blcy4uDQoNCkJlc3QgUmVnYXJkcywNCg0KTGlzb3Zza2l5IFN0YW5pc2xhdg0KDQpP
-cmdhbml6YXRpb246IEludGVsIEZpbmxhbmQgT3kgLSBCSUMgMDM1NzYwNi00IC0gV2VzdGVuZGlu
-a2F0dSA3LCAwMjE2MCBFc3Bvbw0KDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fDQpGcm9tOiBQYXRjaHdvcmsgPHBhdGNod29ya0BlbWVyaWwuZnJlZWRlc2t0b3Aub3Jn
-Pg0KU2VudDogVGh1cnNkYXksIEFwcmlsIDcsIDIwMjIgMTI6MjM6MjYgUE0NClRvOiBMaXNvdnNr
-aXksIFN0YW5pc2xhdg0KQ2M6IGludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcNClN1Ympl
-Y3Q6IOKclyBGaS5DSS5CQVQ6IGZhaWx1cmUgZm9yIGRybS9pOTE1OiBGaXggRklGTyB1bmRlcnJ1
-bnMgY2F1c2VkIGJ5IG1pc3NpbmcgY3VtdWxhdGl2ZSBicHAgVy9BDQoNClBhdGNoIERldGFpbHMN
-ClNlcmllczogZHJtL2k5MTU6IEZpeCBGSUZPIHVuZGVycnVucyBjYXVzZWQgYnkgbWlzc2luZyBj
-dW11bGF0aXZlIGJwcCBXL0ENClVSTDogICAgaHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0b3Au
-b3JnL3Nlcmllcy8xMDIzMjIvDQpTdGF0ZTogIGZhaWx1cmUNCkRldGFpbHM6ICAgICAgICBodHRw
-czovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18yMjgwNy9pbmRl
-eC5odG1sDQpDSSBCdWcgTG9nIC0gY2hhbmdlcyBmcm9tIENJX0RSTV8xMTQ2OSAtPiBQYXRjaHdv
-cmtfMjI4MDcNClN1bW1hcnkNCg0KRkFJTFVSRQ0KDQpTZXJpb3VzIHVua25vd24gY2hhbmdlcyBj
-b21pbmcgd2l0aCBQYXRjaHdvcmtfMjI4MDcgYWJzb2x1dGVseSBuZWVkIHRvIGJlDQp2ZXJpZmll
-ZCBtYW51YWxseS4NCg0KSWYgeW91IHRoaW5rIHRoZSByZXBvcnRlZCBjaGFuZ2VzIGhhdmUgbm90
-aGluZyB0byBkbyB3aXRoIHRoZSBjaGFuZ2VzDQppbnRyb2R1Y2VkIGluIFBhdGNod29ya18yMjgw
-NywgcGxlYXNlIG5vdGlmeSB5b3VyIGJ1ZyB0ZWFtIHRvIGFsbG93IHRoZW0NCnRvIGRvY3VtZW50
-IHRoaXMgbmV3IGZhaWx1cmUgbW9kZSwgd2hpY2ggd2lsbCByZWR1Y2UgZmFsc2UgcG9zaXRpdmVz
-IGluIENJLg0KDQpFeHRlcm5hbCBVUkw6IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVl
-L2RybS10aXAvUGF0Y2h3b3JrXzIyODA3L2luZGV4Lmh0bWwNCg0KUGFydGljaXBhdGluZyBob3N0
-cyAoNTAgLT4gNDUpDQoNCk1pc3NpbmcgKDUpOiBzaGFyZC10Z2x1IGZpLWJzdy1jeWFuIGZpLWN0
-Zy1wODYwMCBmaS1wbnYtZDUxMCBmaS1iZHctc2FtdXMNCg0KUG9zc2libGUgbmV3IGlzc3Vlcw0K
-DQpIZXJlIGFyZSB0aGUgdW5rbm93biBjaGFuZ2VzIHRoYXQgbWF5IGhhdmUgYmVlbiBpbnRyb2R1
-Y2VkIGluIFBhdGNod29ya18yMjgwNzoNCg0KSUdUIGNoYW5nZXMNClBvc3NpYmxlIHJlZ3Jlc3Np
-b25zDQoNCiAgKiAgIGlndEBpOTE1X3NlbGZ0ZXN0QGxpdmVAY29oZXJlbmN5Og0KICAgICAqICAg
-ZmktYmR3LTU1NTd1OiBOT1RSVU4gLT4gSU5DT01QTEVURTxodHRwczovL2ludGVsLWdmeC1jaS4w
-MS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18yMjgwNy9maS1iZHctNTU1N3UvaWd0QGk5MTVf
-c2VsZnRlc3RAbGl2ZUBjb2hlcmVuY3kuaHRtbD4NCg0KS25vd24gaXNzdWVzDQoNCkhlcmUgYXJl
-IHRoZSBjaGFuZ2VzIGZvdW5kIGluIFBhdGNod29ya18yMjgwNyB0aGF0IGNvbWUgZnJvbSBrbm93
-biBpc3N1ZXM6DQoNCklHVCBjaGFuZ2VzDQpJc3N1ZXMgaGl0DQoNCiAgKiAgIGlndEBhbWRncHUv
-YW1kX2Jhc2ljQHNlbWFwaG9yZToNCg0KICAgICAqICAgZmktaHN3LTQ3NzA6IE5PVFJVTiAtPiBT
-S0lQPGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzIy
-ODA3L2ZpLWhzdy00NzcwL2lndEBhbWRncHUvYW1kX2Jhc2ljQHNlbWFwaG9yZS5odG1sPiAoZmRv
-IzEwOTI3MTxodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xMDky
-NzE+IC8gZmRvIzEwOTMxNTxodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNn
-aT9pZD0xMDkzMTU+KSArMTcgc2ltaWxhciBpc3N1ZXMNCiAgKiAgIGlndEBhbWRncHUvYW1kX2Nz
-X25vcEBmb3JrLWNvbXB1dGUwOg0KDQogICAgICogICBmaS1ibGItZTY4NTA6IE5PVFJVTiAtPiBT
-S0lQPGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzIy
-ODA3L2ZpLWJsYi1lNjg1MC9pZ3RAYW1kZ3B1L2FtZF9jc19ub3BAZm9yay1jb21wdXRlMC5odG1s
-PiAoZmRvIzEwOTI3MTxodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9p
-ZD0xMDkyNzE+KSArMTcgc2ltaWxhciBpc3N1ZXMNCiAgKiAgIGlndEBrbXNfY2hhbWVsaXVtQHZn
-YS1lZGlkLXJlYWQ6DQoNCiAgICAgKiAgIGZpLWJkdy01NTU3dTogTk9UUlVOIC0+IFNLSVA8aHR0
-cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMjI4MDcvZmkt
-YmR3LTU1NTd1L2lndEBrbXNfY2hhbWVsaXVtQHZnYS1lZGlkLXJlYWQuaHRtbD4gKGZkbyMxMDky
-NzE8aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTA5MjcxPiAv
-IGZkbyMxMTE4Mjc8aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9
-MTExODI3PikgKzggc2ltaWxhciBpc3N1ZXMNCiAgKiAgIGlndEBrbXNfc2V0bW9kZUBiYXNpYy1j
-bG9uZS1zaW5nbGUtY3J0YzoNCg0KICAgICAqICAgZmktYmR3LTU1NTd1OiBOT1RSVU4gLT4gU0tJ
-UDxodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18yMjgw
-Ny9maS1iZHctNTU1N3UvaWd0QGttc19zZXRtb2RlQGJhc2ljLWNsb25lLXNpbmdsZS1jcnRjLmh0
-bWw+IChmZG8jMTA5MjcxPGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dp
-P2lkPTEwOTI3MT4pICsxNCBzaW1pbGFyIGlzc3Vlcw0KDQpQb3NzaWJsZSBmaXhlcw0KDQogICog
-ICBpZ3RAZ2VtX2V4ZWNfc3VzcGVuZEBiYXNpYy1zM0BzbWVtOg0KDQogICAgICogICBmaS1iZHct
-NTU1N3U6IElOQ09NUExFVEU8aHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRp
-cC9DSV9EUk1fMTE0NjkvZmktYmR3LTU1NTd1L2lndEBnZW1fZXhlY19zdXNwZW5kQGJhc2ljLXMz
-QHNtZW0uaHRtbD4gKGk5MTUjMTQ2PGh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9wLm9yZy9kcm0v
-aW50ZWwvaXNzdWVzLzE0Nj4pIC0+IFBBU1M8aHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3Ry
-ZWUvZHJtLXRpcC9QYXRjaHdvcmtfMjI4MDcvZmktYmR3LTU1NTd1L2lndEBnZW1fZXhlY19zdXNw
-ZW5kQGJhc2ljLXMzQHNtZW0uaHRtbD4NCiAgKiAgIGlndEBpOTE1X3NlbGZ0ZXN0QGxpdmVAaGFu
-Z2NoZWNrOg0KDQogICAgICogICBmaS1oc3ctNDc3MDogSU5DT01QTEVURTxodHRwczovL2ludGVs
-LWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL0NJX0RSTV8xMTQ2OS9maS1oc3ctNDc3MC9pZ3RA
-aTkxNV9zZWxmdGVzdEBsaXZlQGhhbmdjaGVjay5odG1sPiAoaTkxNSM0Nzg1PGh0dHBzOi8vZ2l0
-bGFiLmZyZWVkZXNrdG9wLm9yZy9kcm0vaW50ZWwvaXNzdWVzLzQ3ODU+KSAtPiBQQVNTPGh0dHBz
-Oi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzIyODA3L2ZpLWhz
-dy00NzcwL2lndEBpOTE1X3NlbGZ0ZXN0QGxpdmVAaGFuZ2NoZWNrLmh0bWw+DQogICogICBpZ3RA
-aTkxNV9zZWxmdGVzdEBsaXZlQHJlcXVlc3RzOg0KDQogICAgICogICBmaS1ibGItZTY4NTA6IERN
-RVNHLUZBSUw8aHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1f
-MTE0NjkvZmktYmxiLWU2ODUwL2lndEBpOTE1X3NlbGZ0ZXN0QGxpdmVAcmVxdWVzdHMuaHRtbD4g
-KGk5MTUjNDUyODxodHRwczovL2dpdGxhYi5mcmVlZGVza3RvcC5vcmcvZHJtL2ludGVsL2lzc3Vl
-cy80NTI4PikgLT4gUEFTUzxodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlw
-L1BhdGNod29ya18yMjgwNy9maS1ibGItZTY4NTAvaWd0QGk5MTVfc2VsZnRlc3RAbGl2ZUByZXF1
-ZXN0cy5odG1sPg0KDQpXYXJuaW5ncw0KDQogICogICBpZ3RAY29yZV9ob3R1bnBsdWdAdW5iaW5k
-LXJlYmluZDoNCg0KICAgICAqICAgZmktdGdsLTExMTVnNDogRE1FU0ctV0FSTjxodHRwczovL2lu
-dGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL0NJX0RSTV8xMTQ2OS9maS10Z2wtMTExNWc0
-L2lndEBjb3JlX2hvdHVucGx1Z0B1bmJpbmQtcmViaW5kLmh0bWw+IChpOTE1IzE5ODI8aHR0cHM6
-Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2RybS9pbnRlbC9pc3N1ZXMvMTk4Mj4pIC0+IERNRVNH
-LVdBUk48aHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtf
-MjI4MDcvZmktdGdsLTExMTVnNC9pZ3RAY29yZV9ob3R1bnBsdWdAdW5iaW5kLXJlYmluZC5odG1s
-PiAoaTkxNSM1NTc3PGh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9wLm9yZy9kcm0vaW50ZWwvaXNz
-dWVzLzU1Nzc+KQ0KICAqICAgaWd0QHJ1bm5lckBhYm9ydGVkOg0KDQogICAgICogICBmaS1nbGst
-ajQwMDU6IEZBSUw8aHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9E
-Uk1fMTE0NjkvZmktZ2xrLWo0MDA1L2lndEBydW5uZXJAYWJvcnRlZC5odG1sPiAoaTkxNSM0MzEy
-PGh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9wLm9yZy9kcm0vaW50ZWwvaXNzdWVzLzQzMTI+IC8g
-aTkxNSM1MjU3PGh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9wLm9yZy9kcm0vaW50ZWwvaXNzdWVz
-LzUyNTc+IC8gay5vcmcjMjAyMzIxPGh0dHBzOi8vYnVnemlsbGEua2VybmVsLm9yZy9zaG93X2J1
-Zy5jZ2k/aWQ9MjAyMzIxPikgLT4gRkFJTDxodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJl
-ZS9kcm0tdGlwL1BhdGNod29ya18yMjgwNy9maS1nbGstajQwMDUvaWd0QHJ1bm5lckBhYm9ydGVk
-Lmh0bWw+IChpOTE1IzQzMTI8aHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2RybS9pbnRl
-bC9pc3N1ZXMvNDMxMj4gLyBpOTE1IzUyNTc8aHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3Jn
-L2RybS9pbnRlbC9pc3N1ZXMvNTI1Nz4pDQoNCntuYW1lfTogVGhpcyBlbGVtZW50IGlzIHN1cHBy
-ZXNzZWQuIFRoaXMgbWVhbnMgaXQgaXMgaWdub3JlZCB3aGVuIGNvbXB1dGluZw0KdGhlIHN0YXR1
-cyBvZiB0aGUgZGlmZmVyZW5jZSAoU1VDQ0VTUywgV0FSTklORywgb3IgRkFJTFVSRSkuDQoNCkJ1
-aWxkIGNoYW5nZXMNCg0KICAqICAgTGludXg6IENJX0RSTV8xMTQ2OSAtPiBQYXRjaHdvcmtfMjI4
-MDcNCg0KQ0ktMjAxOTA1Mjk6IDIwMTkwNTI5DQpDSV9EUk1fMTE0Njk6IGQ5NWJiNTM1ZThlODBj
-MDQ4NGJiNmYxM2QxODc1ZWZjZGIwODQ4NjIgQCBnaXQ6Ly9hbm9uZ2l0LmZyZWVkZXNrdG9wLm9y
-Zy9nZngtY2kvbGludXgNCklHVF82NDE1OiBjM2I2OTBiZDVmN2ZiMWZiN2VkNzg2YWIwZjNiODE1
-OTMwYTZhNTVmIEAgaHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2RybS9pZ3QtZ3B1LXRv
-b2xzLmdpdA0KUGF0Y2h3b3JrXzIyODA3OiBiMmI3ZGFjZTI2NzEyMTQwMDVlNzk1ODJiNjJkYjU4
-YzY0MjczNTMzIEAgZ2l0Oi8vYW5vbmdpdC5mcmVlZGVza3RvcC5vcmcvZ2Z4LWNpL2xpbnV4DQoN
-Cj09IEtlcm5lbCAzMmJpdCBidWlsZCA9PQ0KDQpXYXJuaW5nOiBLZXJuZWwgMzJiaXQgYnVpbGR0
-ZXN0IGZhaWxlZDoNCmh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy9QYXRjaHdvcmtfMjI4MDcv
-YnVpbGRfMzJiaXQubG9nDQoNCkNBTEwgc2NyaXB0cy9jaGVja3N5c2NhbGxzLnNoDQpDQUxMIHNj
-cmlwdHMvYXRvbWljL2NoZWNrLWF0b21pY3Muc2gNCkNISyBpbmNsdWRlL2dlbmVyYXRlZC9jb21w
-aWxlLmgNCktlcm5lbDogYXJjaC94ODYvYm9vdC9iekltYWdlIGlzIHJlYWR5ICgjMSkNCk1PRFBP
-U1QgbW9kdWxlcy1vbmx5LnN5bXZlcnMNCkVSUk9SOiBtb2Rwb3N0OiAiX191ZGl2ZGkzIiBbZHJp
-dmVycy9ncHUvZHJtL2k5MTUvaTkxNS5rb10gdW5kZWZpbmVkIQ0Kc2NyaXB0cy9NYWtlZmlsZS5t
-b2Rwb3N0OjEzNDogcmVjaXBlIGZvciB0YXJnZXQgJ21vZHVsZXMtb25seS5zeW12ZXJzJyBmYWls
-ZWQNCm1ha2UxPGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3
-b3JrXzIyODA3L2ZpLWJkdy01NTU3dS9pZ3RAaTkxNV9zZWxmdGVzdEBsaXZlQGNvaGVyZW5jeS5o
-dG1sPjogW21vZHVsZXMtb25seS5zeW12ZXJzXSBFcnJvciAxDQptYWtlMTxodHRwczovL2ludGVs
-LWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18yMjgwNy9maS1iZHctNTU1N3Uv
-aWd0QGk5MTVfc2VsZnRlc3RAbGl2ZUBjb2hlcmVuY3kuaHRtbD46IERlbGV0aW5nIGZpbGUgJ21v
-ZHVsZXMtb25seS5zeW12ZXJzJw0KTWFrZWZpbGU6MTc0OTogcmVjaXBlIGZvciB0YXJnZXQgJ21v
-ZHVsZXMnIGZhaWxlZA0KbWFrZTogKioqIFttb2R1bGVzXSBFcnJvciAyDQoNCj09IExpbnV4IGNv
-bW1pdHMgPT0NCg0KYjJiN2RhY2UyNjcxIGRybS9pOTE1OiBGaXggRklGTyB1bmRlcnJ1bnMgY2F1
-c2VkIGJ5IG1pc3NpbmcgY3VtdWxhdGl2ZSBicHAgVy9BDQoNCg==
+On Tue, 05 Apr 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> We have the BDB version cached, use it. We're going to have to
+> start doing some of the BDB block parsing later, at which point
+> we may no longer have the VBT around anymore (we free it at the
+> end of intel_bios_init() when it didn't come via OpRegion).
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+
+> ---
+>  drivers/gpu/drm/i915/display/intel_bios.c | 54 +++++++++++------------
+>  1 file changed, 27 insertions(+), 27 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/=
+i915/display/intel_bios.c
+> index 556169ce0544..5518f4cfa1b1 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bios.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
+> @@ -415,7 +415,7 @@ parse_panel_dtd(struct drm_i915_private *i915,
+>  	 * try the new generic DTD block first on VBT >=3D 229, but still fall
+>  	 * back to trying the old LFP block if that fails.
+>  	 */
+> -	if (bdb->version >=3D 229)
+> +	if (i915->vbt.version >=3D 229)
+>  		parse_generic_dtd(i915, bdb);
+>  	if (!i915->vbt.lfp_lvds_vbt_mode)
+>  		parse_lfp_panel_dtd(i915, bdb);
+> @@ -452,12 +452,12 @@ parse_lfp_backlight(struct drm_i915_private *i915,
+>  	}
+>=20=20
+>  	i915->vbt.backlight.type =3D INTEL_BACKLIGHT_DISPLAY_DDI;
+> -	if (bdb->version >=3D 191) {
+> +	if (i915->vbt.version >=3D 191) {
+>  		size_t exp_size;
+>=20=20
+> -		if (bdb->version >=3D 236)
+> +		if (i915->vbt.version >=3D 236)
+>  			exp_size =3D sizeof(struct bdb_lfp_backlight_data);
+> -		else if (bdb->version >=3D 234)
+> +		else if (i915->vbt.version >=3D 234)
+>  			exp_size =3D EXP_BDB_LFP_BL_DATA_SIZE_REV_234;
+>  		else
+>  			exp_size =3D EXP_BDB_LFP_BL_DATA_SIZE_REV_191;
+> @@ -474,14 +474,14 @@ parse_lfp_backlight(struct drm_i915_private *i915,
+>  	i915->vbt.backlight.pwm_freq_hz =3D entry->pwm_freq_hz;
+>  	i915->vbt.backlight.active_low_pwm =3D entry->active_low_pwm;
+>=20=20
+> -	if (bdb->version >=3D 234) {
+> +	if (i915->vbt.version >=3D 234) {
+>  		u16 min_level;
+>  		bool scale;
+>=20=20
+>  		level =3D backlight_data->brightness_level[panel_type].level;
+>  		min_level =3D backlight_data->brightness_min_level[panel_type].level;
+>=20=20
+> -		if (bdb->version >=3D 236)
+> +		if (i915->vbt.version >=3D 236)
+>  			scale =3D backlight_data->brightness_precision_bits[panel_type] =3D=
+=3D 16;
+>  		else
+>  			scale =3D level > 255;
+> @@ -581,7 +581,7 @@ parse_general_features(struct drm_i915_private *i915,
+>=20=20
+>  	i915->vbt.int_tv_support =3D general->int_tv_support;
+>  	/* int_crt_support can't be trusted on earlier platforms */
+> -	if (bdb->version >=3D 155 &&
+> +	if (i915->vbt.version >=3D 155 &&
+>  	    (HAS_DDI(i915) || IS_VALLEYVIEW(i915)))
+>  		i915->vbt.int_crt_support =3D general->int_crt_support;
+>  	i915->vbt.lvds_use_ssc =3D general->enable_ssc;
+> @@ -589,7 +589,7 @@ parse_general_features(struct drm_i915_private *i915,
+>  		intel_bios_ssc_frequency(i915, general->ssc_freq);
+>  	i915->vbt.display_clock_mode =3D general->display_clock_mode;
+>  	i915->vbt.fdi_rx_polarity_inverted =3D general->fdi_rx_polarity_inverte=
+d;
+> -	if (bdb->version >=3D 181) {
+> +	if (i915->vbt.version >=3D 181) {
+>  		i915->vbt.orientation =3D general->rotate_180 ?
+>  			DRM_MODE_PANEL_ORIENTATION_BOTTOM_UP :
+>  			DRM_MODE_PANEL_ORIENTATION_NORMAL;
+> @@ -597,7 +597,7 @@ parse_general_features(struct drm_i915_private *i915,
+>  		i915->vbt.orientation =3D DRM_MODE_PANEL_ORIENTATION_UNKNOWN;
+>  	}
+>=20=20
+> -	if (bdb->version >=3D 249 && general->afc_startup_config) {
+> +	if (i915->vbt.version >=3D 249 && general->afc_startup_config) {
+>  		i915->vbt.override_afc_startup =3D true;
+>  		i915->vbt.override_afc_startup_val =3D general->afc_startup_config =3D=
+=3D 0x1 ? 0x0 : 0x7;
+>  	}
+> @@ -724,13 +724,13 @@ parse_driver_features(struct drm_i915_private *i915,
+>  		 * in the wild with the bits correctly populated. Version
+>  		 * 108 (on i85x) does not have the bits correctly populated.
+>  		 */
+> -		if (bdb->version >=3D 134 &&
+> +		if (i915->vbt.version >=3D 134 &&
+>  		    driver->lvds_config !=3D BDB_DRIVER_FEATURE_INT_LVDS &&
+>  		    driver->lvds_config !=3D BDB_DRIVER_FEATURE_INT_SDVO_LVDS)
+>  			i915->vbt.int_lvds_support =3D 0;
+>  	}
+>=20=20
+> -	if (bdb->version < 228) {
+> +	if (i915->vbt.version < 228) {
+>  		drm_dbg_kms(&i915->drm, "DRRS State Enabled:%d\n",
+>  			    driver->drrs_enabled);
+>  		/*
+> @@ -753,7 +753,7 @@ parse_power_conservation_features(struct drm_i915_pri=
+vate *i915,
+>  	const struct bdb_lfp_power *power;
+>  	u8 panel_type =3D i915->vbt.panel_type;
+>=20=20
+> -	if (bdb->version < 228)
+> +	if (i915->vbt.version < 228)
+>  		return;
+>=20=20
+>  	power =3D find_section(bdb, BDB_LFP_POWER);
+> @@ -771,7 +771,7 @@ parse_power_conservation_features(struct drm_i915_pri=
+vate *i915,
+>  	if (!(power->drrs & BIT(panel_type)))
+>  		i915->vbt.drrs_type =3D DRRS_TYPE_NONE;
+>=20=20
+> -	if (bdb->version >=3D 232)
+> +	if (i915->vbt.version >=3D 232)
+>  		i915->vbt.edp.hobl =3D power->hobl & BIT(panel_type);
+>  }
+>=20=20
+> @@ -876,7 +876,7 @@ parse_edp(struct drm_i915_private *i915, const struct=
+ bdb_header *bdb)
+>  		break;
+>  	}
+>=20=20
+> -	if (bdb->version >=3D 173) {
+> +	if (i915->vbt.version >=3D 173) {
+>  		u8 vswing;
+>=20=20
+>  		/* Don't read from VBT if module parameter has valid value*/
+> @@ -919,7 +919,7 @@ parse_psr(struct drm_i915_private *i915, const struct=
+ bdb_header *bdb)
+>  	 * New psr options 0=3D500us, 1=3D100us, 2=3D2500us, 3=3D0us
+>  	 * Old decimal value is wake up time in multiples of 100 us.
+>  	 */
+> -	if (bdb->version >=3D 205 &&
+> +	if (i915->vbt.version >=3D 205 &&
+>  	    (DISPLAY_VER(i915) >=3D 9 && !IS_BROXTON(i915))) {
+>  		switch (psr_table->tp1_wakeup_time) {
+>  		case 0:
+> @@ -965,7 +965,7 @@ parse_psr(struct drm_i915_private *i915, const struct=
+ bdb_header *bdb)
+>  		i915->vbt.psr.tp2_tp3_wakeup_time_us =3D psr_table->tp2_tp3_wakeup_tim=
+e * 100;
+>  	}
+>=20=20
+> -	if (bdb->version >=3D 226) {
+> +	if (i915->vbt.version >=3D 226) {
+>  		u32 wakeup_time =3D psr->psr2_tp2_tp3_wakeup_time;
+>=20=20
+>  		wakeup_time =3D (wakeup_time >> (2 * panel_type)) & 0x3;
+> @@ -1085,7 +1085,7 @@ parse_mipi_config(struct drm_i915_private *i915,
+>  		return;
+>  	}
+>=20=20
+> -	parse_dsi_backlight_ports(i915, bdb->version, port);
+> +	parse_dsi_backlight_ports(i915, i915->vbt.version, port);
+>=20=20
+>  	/* FIXME is the 90 vs. 270 correct? */
+>  	switch (config->rotation) {
+> @@ -1448,7 +1448,7 @@ parse_compression_parameters(struct drm_i915_privat=
+e *i915,
+>  	u16 block_size;
+>  	int index;
+>=20=20
+> -	if (bdb->version < 198)
+> +	if (i915->vbt.version < 198)
+>  		return;
+>=20=20
+>  	params =3D find_section(bdb, BDB_COMPRESSION_PARAMETERS);
+> @@ -2117,31 +2117,31 @@ parse_general_definitions(struct drm_i915_private=
+ *i915,
+>  	if (intel_gmbus_is_valid_pin(i915, bus_pin))
+>  		i915->vbt.crt_ddc_pin =3D bus_pin;
+>=20=20
+> -	if (bdb->version < 106) {
+> +	if (i915->vbt.version < 106) {
+>  		expected_size =3D 22;
+> -	} else if (bdb->version < 111) {
+> +	} else if (i915->vbt.version < 111) {
+>  		expected_size =3D 27;
+> -	} else if (bdb->version < 195) {
+> +	} else if (i915->vbt.version < 195) {
+>  		expected_size =3D LEGACY_CHILD_DEVICE_CONFIG_SIZE;
+> -	} else if (bdb->version =3D=3D 195) {
+> +	} else if (i915->vbt.version =3D=3D 195) {
+>  		expected_size =3D 37;
+> -	} else if (bdb->version <=3D 215) {
+> +	} else if (i915->vbt.version <=3D 215) {
+>  		expected_size =3D 38;
+> -	} else if (bdb->version <=3D 237) {
+> +	} else if (i915->vbt.version <=3D 237) {
+>  		expected_size =3D 39;
+>  	} else {
+>  		expected_size =3D sizeof(*child);
+>  		BUILD_BUG_ON(sizeof(*child) < 39);
+>  		drm_dbg(&i915->drm,
+>  			"Expected child device config size for VBT version %u not known; assu=
+ming %u\n",
+> -			bdb->version, expected_size);
+> +			i915->vbt.version, expected_size);
+>  	}
+>=20=20
+>  	/* Flag an error for unexpected size, but continue anyway. */
+>  	if (defs->child_dev_size !=3D expected_size)
+>  		drm_err(&i915->drm,
+>  			"Unexpected child device config size %u (expected %u for VBT version =
+%u)\n",
+> -			defs->child_dev_size, expected_size, bdb->version);
+> +			defs->child_dev_size, expected_size, i915->vbt.version);
+>=20=20
+>  	/* The legacy sized child device config is the minimum we need. */
+>  	if (defs->child_dev_size < LEGACY_CHILD_DEVICE_CONFIG_SIZE) {
+> @@ -2497,7 +2497,7 @@ void intel_bios_init(struct drm_i915_private *i915)
+>=20=20
+>  	drm_dbg_kms(&i915->drm,
+>  		    "VBT signature \"%.*s\", BDB version %d\n",
+> -		    (int)sizeof(vbt->signature), vbt->signature, bdb->version);
+> +		    (int)sizeof(vbt->signature), vbt->signature, i915->vbt.version);
+>=20=20
+>  	/* Grab useful general definitions */
+>  	parse_general_features(i915, bdb);
+
+--=20
+Jani Nikula, Intel Open Source Graphics Center
