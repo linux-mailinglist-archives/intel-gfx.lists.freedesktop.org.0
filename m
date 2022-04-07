@@ -1,53 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 876E64F86B6
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Apr 2022 19:56:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C73424F86C6
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Apr 2022 20:00:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D59EF10EC14;
-	Thu,  7 Apr 2022 17:56:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0115810EC16;
+	Thu,  7 Apr 2022 17:59:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ACDDC10EC14
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 Apr 2022 17:56:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649354215; x=1680890215;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=mdUjz1gbz0ihigpnivkRwB6QBTdJqzgcNvnd+dqYk2k=;
- b=BanLoU858GD5S5Cpztc3a92EPeNHXukNn4L2QVQiUY8SeuVIkf+Tzxb2
- ilVmSh2gWQyrRR6WXFQaw1Lq+yVJSFIJC4JRtHckgi06gXWGc2FR2h175
- 3cFKa9N+UFBDDArBx4YRIm2AN2XED19rCN7NvqReXH/pJGZiZqrtakyKP
- 9qppnLAdnLav7BEPB1jDJJgJ9Xo3FXhVtTFsKIIZ379V2bDR/baZ481fs
- dGpHbvz/+DG41NMRqXXX6FUIu3cusX9q2ZdEaEDqYvaObFgWW/Qb6xfUi
- PLfe4DGVrCd264ULc77Qhz/j8zc7wJhgz41JFpLY6egSCMUgEt4MPOJUw A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10310"; a="324558854"
-X-IronPort-AV: E=Sophos;i="5.90,242,1643702400"; d="scan'208";a="324558854"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2022 10:56:55 -0700
-X-IronPort-AV: E=Sophos;i="5.90,242,1643702400"; d="scan'208";a="571160601"
-Received: from kgibala-mobl.ger.corp.intel.com (HELO localhost)
- ([10.249.142.48])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2022 10:56:53 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220405173410.11436-20-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220405173410.11436-1-ville.syrjala@linux.intel.com>
- <20220405173410.11436-20-ville.syrjala@linux.intel.com>
-Date: Thu, 07 Apr 2022 20:56:50 +0300
-Message-ID: <87zgkw3hgd.fsf@intel.com>
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com
+ [IPv6:2a00:1450:4864:20::52e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F378A10EC16;
+ Thu,  7 Apr 2022 17:59:57 +0000 (UTC)
+Received: by mail-ed1-x52e.google.com with SMTP id x20so7307913edi.12;
+ Thu, 07 Apr 2022 10:59:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=4WI8dxwe4b3rh4wbz1s8dWC+0Q4/tNtWQhYTCvMgaWg=;
+ b=M7SIK2MkUwKLwzi/3DHrnEDIb57hI1xKLKxsRdf25MYXG4n7aAziUoWxRnF4tzq0TR
+ j3o1lrSp/51pm+eJ/Q1+imaaoxR6XD4MU73TNodpCb2W4WO1flERSYsqHhpk7Fsht18g
+ mWKWc5F2oWqgt8nhsUg6bhH34H512m0lRMqrPf/26GhmfcROYrcdfWyigh2R3dRtiZWV
+ 5rKOKC7JnC6DJvzncd/gBwNU/YK516l+DmSBlW9Ng0iI/X8DG/2cnCPPIvkIqvbCuqIE
+ 1zF3Tiw0tSLEuWgt7vYO8yOEphOwrLZ4f6vhG6hs1O5hdpQEqmZKIuPf1pUGbX8NWU7K
+ 1JWw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=4WI8dxwe4b3rh4wbz1s8dWC+0Q4/tNtWQhYTCvMgaWg=;
+ b=CiQdKNyfqbCQsKTDKGexsgUNflJuI0e3oEZ1IgOBe+vXYFACuyjfFHp6AxjqK5IOfK
+ VMmzNj+RLs0gMCIqiUvgsnE25paJKSHTtjQ3KgmJz/SFIbR5ckIIO6PQCXWaB7+GEvLH
+ Gf2JcGYOVolOfhpMxdD9d6iLhRcVZGacxw9KkOF6WwaAbrQLpH7sRZDq6MOfOMtLgpD+
+ 8fievDeaZ7xJeXCbVcMMiQhYID6PKAO9ruHQky1p7N6yWj6VPbHog1bFNGVV4jEP+mjY
+ aCX4aDFeFdgad15mI9ZcH2t8grTb2QPel7xcAKGORcWwmNMtdO3zJCogTXjYPfoRk5sr
+ VGUQ==
+X-Gm-Message-State: AOAM5309uWdSGtTf3vvqiRxybAWNACSesBwa9FEoD2G1vHXJgj+T6fLc
+ GhPdRrYEN5qmkLsnpkOqHrIqZxJVckWEUCJt4TY=
+X-Google-Smtp-Source: ABdhPJwqPgTfmh2eKYARtTkzYXTyBP35fIzqxtF9gOR8XTTzQjGs9AMiYyhlMM2NMNspNeLAuAfPCn7pm5MYaxQ89AU=
+X-Received: by 2002:a50:d098:0:b0:41c:bd64:b0de with SMTP id
+ v24-20020a50d098000000b0041cbd64b0demr15287267edd.366.1649354396277; Thu, 07
+ Apr 2022 10:59:56 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v2 19/22] drm/i915/bios: Parse the seamless
- DRRS min refresh rate
+References: <20220404133846.131401-1-imre.deak@intel.com>
+ <20220404133846.131401-2-imre.deak@intel.com>
+In-Reply-To: <20220404133846.131401-2-imre.deak@intel.com>
+From: =?UTF-8?Q?Juha=2DPekka_Heikkil=C3=A4?= <juhapekka.heikkila@gmail.com>
+Date: Thu, 7 Apr 2022 20:59:45 +0300
+Message-ID: <CAJ=qYWSU-6v-cJ9a_=4-cYU1n9kDDMj4AXG3sFhXXUrfuFvLXw@mail.gmail.com>
+To: Imre Deak <imre.deak@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] [PATCH 1/4] drm/fourcc: Introduce format modifiers
+ for DG2 render and media compression
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,66 +64,70 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 05 Apr 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> Extract the seamless DRRS min refresh rate from the VBT.
->
-> v2: Do a version check
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+Seems my first mail didn't come through so here's second time for this patch:
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+Reviewed-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
 
+On Mon, Apr 4, 2022 at 4:39 PM Imre Deak <imre.deak@intel.com> wrote:
+>
+> From: Matt Roper <matthew.d.roper@intel.com>
+>
+> The render/media engines on DG2 unify render compression and media
+> compression into a single format for the first time, using the Tile 4
+> layout for main surfaces. The compression algorithm is different from
+> any previous platform and the display engine must still be configured to
+> decompress either a render or media compressed surface; as such, we
+> need new RC and MC framebuffer modifiers to represent buffers in this
+> format.
+>
+> v2: Clarify modifier layout description.
+>
+> Cc: dri-devel@lists.freedesktop.org
+> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> Acked-by: Nanley Chery <nanley.g.chery@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_bios.c | 9 ++++++++-
->  drivers/gpu/drm/i915/i915_drv.h           | 1 +
->  2 files changed, 9 insertions(+), 1 deletion(-)
+>  include/uapi/drm/drm_fourcc.h | 22 ++++++++++++++++++++++
+>  1 file changed, 22 insertions(+)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/=
-i915/display/intel_bios.c
-> index cfdfe91d4ccf..d561551d6324 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bios.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-> @@ -802,6 +802,7 @@ parse_lfp_data(struct drm_i915_private *i915)
->  	const struct bdb_lvds_lfp_data *data;
->  	const struct bdb_lvds_lfp_data_tail *tail;
->  	const struct bdb_lvds_lfp_data_ptrs *ptrs;
-> +	int panel_type =3D i915->vbt.panel_type;
->=20=20
->  	ptrs =3D find_section(i915, BDB_LVDS_LFP_DATA_PTRS);
->  	if (!ptrs)
-> @@ -818,7 +819,13 @@ parse_lfp_data(struct drm_i915_private *i915)
->  	if (!tail)
->  		return;
->=20=20
-> -	(void)tail;
-> +	if (i915->vbt.version >=3D 188) {
-> +		i915->vbt.seamless_drrs_min_refresh_rate =3D
-> +			tail->seamless_drrs_min_refresh_rate[panel_type];
-> +		drm_dbg_kms(&i915->drm,
-> +			    "Seamless DRRS min refresh rate: %d Hz\n",
-> +			    i915->vbt.seamless_drrs_min_refresh_rate);
-> +	}
->  }
->=20=20
->  static void
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_=
-drv.h
-> index 9274417cd87a..7b6858651420 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -327,6 +327,7 @@ struct intel_vbt_data {
->  	bool override_afc_startup;
->  	u8 override_afc_startup_val;
->=20=20
-> +	u8 seamless_drrs_min_refresh_rate;
->  	enum drrs_type drrs_type;
->=20=20
->  	struct {
-
---=20
-Jani Nikula, Intel Open Source Graphics Center
+> diff --git a/include/uapi/drm/drm_fourcc.h b/include/uapi/drm/drm_fourcc.h
+> index b73fe6797fc37..4a5117715db3c 100644
+> --- a/include/uapi/drm/drm_fourcc.h
+> +++ b/include/uapi/drm/drm_fourcc.h
+> @@ -583,6 +583,28 @@ extern "C" {
+>   */
+>  #define I915_FORMAT_MOD_4_TILED         fourcc_mod_code(INTEL, 9)
+>
+> +/*
+> + * Intel color control surfaces (CCS) for DG2 render compression.
+> + *
+> + * The main surface is Tile 4 and at plane index 0. The CCS data is stored
+> + * outside of the GEM object in a reserved memory area dedicated for the
+> + * storage of the CCS data for all RC/RC_CC/MC compressible GEM objects. The
+> + * main surface pitch is required to be a multiple of four Tile 4 widths.
+> + */
+> +#define I915_FORMAT_MOD_4_TILED_DG2_RC_CCS fourcc_mod_code(INTEL, 10)
+> +
+> +/*
+> + * Intel color control surfaces (CCS) for DG2 media compression.
+> + *
+> + * The main surface is Tile 4 and at plane index 0. For semi-planar formats
+> + * like NV12, the Y and UV planes are Tile 4 and are located at plane indices
+> + * 0 and 1, respectively. The CCS for all planes are stored outside of the
+> + * GEM object in a reserved memory area dedicated for the storage of the
+> + * CCS data for all RC/RC_CC/MC compressible GEM objects. The main surface
+> + * pitch is required to be a multiple of four Tile 4 widths.
+> + */
+> +#define I915_FORMAT_MOD_4_TILED_DG2_MC_CCS fourcc_mod_code(INTEL, 11)
+> +
+>  /*
+>   * Tiled, NV12MT, grouped in 64 (pixels) x 32 (lines) -sized macroblocks
+>   *
+> --
+> 2.30.2
+>
