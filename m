@@ -1,61 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E06124F8A6B
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 Apr 2022 01:11:25 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91AB34F8A6E
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 Apr 2022 01:15:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D05B110E4CD;
-	Thu,  7 Apr 2022 23:11:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E813910E7F7;
+	Thu,  7 Apr 2022 23:15:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com
- [IPv6:2a00:1450:4864:20::431])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 670B910E4CD;
- Thu,  7 Apr 2022 23:11:20 +0000 (UTC)
-Received: by mail-wr1-x431.google.com with SMTP id h4so10214894wrc.13;
- Thu, 07 Apr 2022 16:11:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=bTp55H8vZY1sc6j+bPgJAa00W7rekbj5UTGWAlyj85U=;
- b=Nc1JhHHkh5PUx7ciRb0eYlTUj5hwOXB5G9peZH3L49irbbxzeF+PXqVkQDkPl5OFL/
- FJyrd75key/eVx6UWf6CHK9rC/zT/PBsNWsIAr9kh3P1Mm65p8F4S2o8usGrprs7fC+R
- y7aNcCGmw4SUJpMv12Z/YIdN2qDKyqU4uKR0M/vzLn3uubOpUBOAZG0Q9Xq3L7AGy/Al
- owCBsQWgcV4s3dhYRSnwN9V8L+MTahbQ7ovPvimhvpqJiwhAB3twojp2jtJlm7XZc7aP
- L1W0Qv6fv/G8tLQJaY5NNjE0DMgOXNZxDfnZfnJyRRdT98V+gGFYiPa/6ihBSBPsW6hX
- y2lQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=bTp55H8vZY1sc6j+bPgJAa00W7rekbj5UTGWAlyj85U=;
- b=SWstASQB3vPTzT7Yw8mzxBj+3tBjcNQxFKvmaxijapMH0vdERUxSrONiKUBhEl5tmK
- jRJjw8NbK54/m9otPZT71mc52Fx/QV5hpmP0hD4VCPvk3sJQB2/YYRHWXte7l+oZYc1H
- cNlwAo4eYkJuamcfhH+p7hasRU4A9F2nK/n5xrn0Xelous6yljUJR+8bzdZi/8kp5l1Y
- wZjFzr8RUbFF1HpaLqtAns/lzIcJ9kqZuERmwsLP5s/r2qbpvCy2xhttnUhkEjQWiQtD
- IcDgGaIk6SH1qmRNYbsimDpkuC1OjKUVO/7woJ7ospStNdpZZU0JORHMzf3LiBlAQ8W3
- upyg==
-X-Gm-Message-State: AOAM5338K8K/24fysnRJiNI0fM4kxX+0zTfSDdA50uFX1Y0YcjE+vKTv
- kHoqccXclQYZ8BHm08rZEX0IQXheILJNl5kqJ4Y=
-X-Google-Smtp-Source: ABdhPJw2Xw+4/aYo+x3EvuA+onRTg5SajMI9ZjWnE3OuwoWbdO/6O8BuCQJiy/VADZq6VnGwMhIrWsUUXF3reyQz4j4=
-X-Received: by 2002:a5d:6c66:0:b0:204:1175:691c with SMTP id
- r6-20020a5d6c66000000b002041175691cmr12674358wrz.328.1649373078777; Thu, 07
- Apr 2022 16:11:18 -0700 (PDT)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D47CB10E044
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 Apr 2022 23:15:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1649373306; x=1680909306;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=DZc0ANyRn4uJSfV09HMsSv5OREKbcNe3Q7DkUZVpAJM=;
+ b=KuRZjbW+oEr+d+MWuEcZI+MzYt24kivqQrl2XOHHo71ussittBvuT5yx
+ ZIHP4lzUCERs32DnOxzhMshgyztZgX6V9/iDNgJuBeST65//zG+L9y41x
+ EQPxdEZ5ymvAR6OY7LtaicQ6saZ/24VnwYcmIOo9VQzb6XS5Z5KGPktiw
+ wMwxFLJQU8DoAw1ZYC1olcimRVjfjhnFtChcC2OrYH5Oyu2TpntBMKFqr
+ Vk15cRO/JiqmI90HcceVqTDrlRpPFgTsjygoRGnjIJJkuSc6qd7l712WK
+ RvIPRQ7bcT1P/Ole0PvEZvG67BfT34EEvypxmrj8B9UHzgW3LpADGUQbD A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10310"; a="322151413"
+X-IronPort-AV: E=Sophos;i="5.90,242,1643702400"; d="scan'208";a="322151413"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2022 16:15:06 -0700
+X-IronPort-AV: E=Sophos;i="5.90,242,1643702400"; d="scan'208";a="621424301"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2022 16:15:05 -0700
+Date: Thu, 7 Apr 2022 16:15:04 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Message-ID: <Yk9weCegqg55I7sx@mdroper-desk1.amr.corp.intel.com>
+References: <20220407161839.1073443-1-matthew.d.roper@intel.com>
+ <164937021485.14673.14207952868519687238@emeril.freedesktop.org>
 MIME-Version: 1.0
-References: <20220331152021.2671937-1-daniel.vetter@ffwll.ch>
- <823b3f2c-b624-f7a3-8bdc-4c069571c810@quicinc.com>
- <CAF6AEGvLY-+v0ZCvtoZDsW-0z5a8UH8suN9cp22m_ec=Ggb9Mw@mail.gmail.com>
- <ec74f2f6-488f-bc34-3d9a-3e1cec68aedc@quicinc.com>
-In-Reply-To: <ec74f2f6-488f-bc34-3d9a-3e1cec68aedc@quicinc.com>
-From: Rob Clark <robdclark@gmail.com>
-Date: Thu, 7 Apr 2022 16:12:13 -0700
-Message-ID: <CAF6AEGsoXYRB_sTMAp92ph_DetGfSaHwv+2xMS-CT3rgixN4fg@mail.gmail.com>
-To: Abhinav Kumar <quic_abhinavk@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH] drm/atomic-helpers: remove
- legacy_cursor_update hacks
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <164937021485.14673.14207952868519687238@emeril.freedesktop.org>
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Sunset_igpu_legacy_mmap_support_based_on_GRAPHICS=5FVE?=
+ =?utf-8?q?R=5FFULL?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,282 +60,206 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rob Clark <robdclark@chromium.org>, Daniel Vetter <daniel.vetter@ffwll.ch>,
- =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel@daenzer.net>,
- DRI Development <dri-devel@lists.freedesktop.org>, "Kazlauskas,
- Nicholas" <nicholas.kazlauskas@amd.com>, Maxime Ripard <maxime@cerno.tech>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Jessica Zhang <quic_jesszhan@quicinc.com>,
- Mikita Lipski <mikita.lipski@amd.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Cc: "Vudum, Lakshminarayana" <lakshminarayana.vudum@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Apr 7, 2022 at 3:59 PM Abhinav Kumar <quic_abhinavk@quicinc.com> wr=
-ote:
->
-> Hi Rob and Daniel
->
-> On 4/7/2022 3:51 PM, Rob Clark wrote:
-> > On Wed, Apr 6, 2022 at 6:27 PM Jessica Zhang <quic_jesszhan@quicinc.com=
-> wrote:
-> >>
-> >>
-> >>
-> >> On 3/31/2022 8:20 AM, Daniel Vetter wrote:
-> >>> The stuff never really worked, and leads to lots of fun because it
-> >>> out-of-order frees atomic states. Which upsets KASAN, among other
-> >>> things.
-> >>>
-> >>> For async updates we now have a more solid solution with the
-> >>> ->atomic_async_check and ->atomic_async_commit hooks. Support for tha=
-t
-> >>> for msm and vc4 landed. nouveau and i915 have their own commit
-> >>> routines, doing something similar.
-> >>>
-> >>> For everyone else it's probably better to remove the use-after-free
-> >>> bug, and encourage folks to use the async support instead. The
-> >>> affected drivers which register a legacy cursor plane and don't eithe=
-r
-> >>> use the new async stuff or their own commit routine are: amdgpu,
-> >>> atmel, mediatek, qxl, rockchip, sti, sun4i, tegra, virtio, and vmwgfx=
-.
-> >>>
-> >>> Inspired by an amdgpu bug report.
-> >>>
-> >>> v2: Drop RFC, I think with amdgpu converted over to use
-> >>> atomic_async_check/commit done in
-> >>>
-> >>> commit 674e78acae0dfb4beb56132e41cbae5b60f7d662
-> >>> Author: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
-> >>> Date:   Wed Dec 5 14:59:07 2018 -0500
-> >>>
-> >>>       drm/amd/display: Add fast path for cursor plane updates
-> >>>
-> >>> we don't have any driver anymore where we have userspace expecting
-> >>> solid legacy cursor support _and_ they are using the atomic helpers i=
-n
-> >>> their fully glory. So we can retire this.
-> >>>
-> >>> v3: Paper over msm and i915 regression. The complete_all is the only
-> >>> thing missing afaict.
-> >>>
-> >>> v4: Fixup i915 fixup ...
-> >>>
-> >>> References: https://bugzilla.kernel.org/show_bug.cgi?id=3D199425
-> >>> References: https://lore.kernel.org/all/20220221134155.125447-9-maxim=
-e@cerno.tech/
-> >>> References: https://bugzilla.kernel.org/show_bug.cgi?id=3D199425
-> >>> Cc: Maxime Ripard <maxime@cerno.tech>
-> >>> Tested-by: Maxime Ripard <maxime@cerno.tech>
-> >>> Cc: mikita.lipski@amd.com
-> >>> Cc: Michel D=C3=A4nzer <michel@daenzer.net>
-> >>> Cc: harry.wentland@amd.com
-> >>> Cc: Rob Clark <robdclark@gmail.com>
-> >>
-> >> Hey Rob,
-> >>
-> >> I saw your tested-by and reviewed-by tags on Patchwork. Just curious,
-> >> what device did you test on?
-> >
-> > I was testing on strongbad.. v5.18-rc1 + patches (notably, revert
-> > 80253168dbfd ("drm: of: Lookup if child node has panel or bridge")
-> >
-> > I think the display setup shouldn't be significantly different than
-> > limozeen (ie. it's an eDP panel).  But I didn't do much start/stop
-> > ui.. I was mostly looking to make sure cursor movements weren't
-> > causing fps drops ;-)
-> >
-> > BR,
-> > -R
->
-> start ui/ stop ui is a basic operation for us to use IGT on msm-next.
-> So we cannot let that break.
->
-> I think we need to check whats causing this splat.
->
-> Can we hold back this change till then?
+On Thu, Apr 07, 2022 at 10:23:34PM +0000, Patchwork wrote:
+> == Series Details ==
+> 
+> Series: drm/i915: Sunset igpu legacy mmap support based on GRAPHICS_VER_FULL
+> URL   : https://patchwork.freedesktop.org/series/102352/
+> State : failure
+> 
+> == Summary ==
+> 
+> CI Bug Log - changes from CI_DRM_11472 -> Patchwork_22819
+> ====================================================
+> 
+> Summary
+> -------
+> 
+>   **FAILURE**
+> 
+>   Serious unknown changes coming with Patchwork_22819 absolutely need to be
+>   verified manually.
+>   
+>   If you think the reported changes have nothing to do with the changes
+>   introduced in Patchwork_22819, please notify your bug team to allow them
+>   to document this new failure mode, which will reduce false positives in CI.
+> 
+>   External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22819/index.html
+> 
+> Participating hosts (49 -> 35)
+> ------------------------------
+> 
+>   Additional (1): fi-bwr-2160 
+>   Missing    (15): fi-bdw-samus shard-tglu bat-adls-5 bat-dg1-6 bat-dg1-5 bat-dg2-8 shard-rkl bat-dg2-9 fi-bsw-cyan bat-adlp-6 bat-rpls-1 fi-blb-e6850 shard-dg1 bat-jsl-2 bat-jsl-1 
+> 
+> Possible new issues
+> -------------------
+> 
+>   Here are the unknown changes that may have been introduced in Patchwork_22819:
+> 
+> ### CI changes ###
+> 
+> #### Possible regressions ####
+> 
+>   * boot:
+>     - fi-bwr-2160:        NOTRUN -> [FAIL][1]
+>    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22819/fi-bwr-2160/boot.html
+> 
 
-Can you reproduce on v5.18-rc1 (plus 80253168dbfd)?  I'm running a
-loop of stop ui / start ui and hasn't triggered a splat yet.
+It looks like something failed during the initial driver probe (not sure
+what; there don't seem to be any obvious warnings/errors) and then
+driver cleanup started triggering more warnings and an eventual panic
+since not everything being cleaned up had been fully setup at that
+point.
 
- Otherwise maybe you can addr2line to figure out where it crashed?
+Not related to this patch (which shouldn't have any functional impact on
+any currently-existing platform).
 
-BR,
--R
 
-> Thanks
->
-> Abhinav
-> >
-> >> I'm hitting several instances of this error when doing a start/stop ui
-> >> on Lazor Chromebook with this patch:
-> >>
-> >> [ 3092.608322] CPU: 2 PID: 18579 Comm: DrmThread Tainted: G        W
-> >>        5.17.0-rc2-lockdep-00089-g7f17ab7bf567 #155
-> >> e5912cd286513b064a82a38938b3fdef86b079aa
-> >> [ 3092.622880] Hardware name: Google Lazor Limozeen without Touchscree=
-n
-> >> (rev4) (DT)
-> >> [ 3092.630492] pstate: 80400009 (Nzcv daif +PAN -UAO -TCO -DIT -SSBS
-> >> BTYPE=3D--)
-> >> [ 3092.637664] pc : dpu_crtc_atomic_flush+0x9c/0x144
-> >> [ 3092.642523] lr : dpu_crtc_atomic_flush+0x60/0x144
-> >> [ 3092.647379] sp : ffffffc00c1e3760
-> >> [ 3092.650805] x29: ffffffc00c1e3760 x28: ffffff80985dd800 x27:
-> >> 0000000000000425
-> >> [ 3092.658164] x26: ffffff80985dc500 x25: ffffff80985ddc00 x24:
-> >> ffffffdf8ae3b6f0
-> >> [ 3092.665522] x23: 0000000000000000 x22: 0000000000000000 x21:
-> >> ffffff809b82da00
-> >> [ 3092.672890] x20: ffffff80840e1000 x19: ffffff80840e2000 x18:
-> >> 0000000000001000
-> >> [ 3092.680255] x17: 0000000000000400 x16: 0000000000000100 x15:
-> >> 000000000000003b
-> >> [ 3092.687622] x14: 0000000000000000 x13: 0000000000000002 x12:
-> >> 0000000000000003
-> >> [ 3092.694979] x11: ffffff8084009000 x10: 0000000000000040 x9 :
-> >> 0000000000000040
-> >> [ 3092.702340] x8 : 0000000000000300 x7 : 000000000000000c x6 :
-> >> 0000000000000004
-> >> [ 3092.709698] x5 : 0000000000000320 x4 : 0000000000000018 x3 :
-> >> 0000000000000000
-> >> [ 3092.717056] x2 : 0000000000000000 x1 : 7bfb38b2a3a89800 x0 :
-> >> ffffff809a1eb300
-> >> [ 3092.724424] Call trace:
-> >> [ 3092.726958]  dpu_crtc_atomic_flush+0x9c/0x144
-> >> [ 3092.731463]  drm_atomic_helper_commit_planes+0x1bc/0x1c4
-> >> [ 3092.736944]  msm_atomic_commit_tail+0x23c/0x3e0
-> >> [ 3092.741627]  commit_tail+0x7c/0xfc
-> >> [ 3092.745145]  drm_atomic_helper_commit+0x158/0x15c
-> >> [ 3092.749998]  drm_atomic_commit+0x60/0x74
-> >> [ 3092.754055]  drm_atomic_helper_update_plane+0x100/0x110
-> >> [ 3092.759449]  __setplane_atomic+0x11c/0x120
-> >> [ 3092.763685]  drm_mode_cursor_universal+0x188/0x22c
-> >> [ 3092.768633]  drm_mode_cursor_common+0x120/0x1f8
-> >> [ 3092.773310]  drm_mode_cursor_ioctl+0x68/0x8c
-> >> [ 3092.777721]  drm_ioctl_kernel+0xe8/0x168
-> >> [ 3092.781770]  drm_ioctl+0x320/0x370
-> >> [ 3092.785289]  drm_compat_ioctl+0x40/0xdc
-> >> [ 3092.789257]  __arm64_compat_sys_ioctl+0xe0/0x150
-> >> [ 3092.794030]  invoke_syscall+0x80/0x114
-> >> [ 3092.797905]  el0_svc_common.constprop.3+0xc4/0xf8
-> >> [ 3092.802765]  do_el0_svc_compat+0x2c/0x54
-> >> [ 3092.806811]  el0_svc_compat+0x4c/0xe4
-> >> [ 3092.810598]  el0t_32_sync_handler+0xc4/0xf4
-> >> [ 3092.814914]  el0t_32_sync+0x174/0x178
-> >> [ 3092.818701] irq event stamp: 55940
-> >> [ 3092.822217] hardirqs last  enabled at (55939): [<ffffffdf8ad617a4>]
-> >> exit_to_kernel_mode+0x10c/0x11c
-> >> [ 3092.831523] hardirqs last disabled at (55940): [<ffffffdf8ad62728>]
-> >> el1_dbg+0x28/0x70
-> >> [ 3092.839577] softirqs last  enabled at (55938): [<ffffffdf8a2103a8>]
-> >> __do_softirq+0x1e8/0x480
-> >> [ 3092.848256] softirqs last disabled at (55923): [<ffffffdf8a28d668>]
-> >> __irq_exit_rcu+0xdc/0x140
-> >> [ 3092.857022] ---[ end trace 0000000000000000 ]---
-> >>
-> >>
-> >>
-> >>
-> >> Thanks,
-> >>
-> >> Jessica Zhang
-> >>
-> >>> Cc: "Kazlauskas, Nicholas" <nicholas.kazlauskas@amd.com>
-> >>> Cc: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-> >>> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> >>> ---
-> >>>    drivers/gpu/drm/drm_atomic_helper.c          | 13 -------------
-> >>>    drivers/gpu/drm/i915/display/intel_display.c | 14 ++++++++++++++
-> >>>    drivers/gpu/drm/msm/msm_atomic.c             |  2 ++
-> >>>    3 files changed, 16 insertions(+), 13 deletions(-)
-> >>>
-> >>> diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/dr=
-m_atomic_helper.c
-> >>> index 9603193d2fa1..a2899af82b4a 100644
-> >>> --- a/drivers/gpu/drm/drm_atomic_helper.c
-> >>> +++ b/drivers/gpu/drm/drm_atomic_helper.c
-> >>> @@ -1498,13 +1498,6 @@ drm_atomic_helper_wait_for_vblanks(struct drm_=
-device *dev,
-> >>>        int i, ret;
-> >>>        unsigned int crtc_mask =3D 0;
-> >>>
-> >>> -      /*
-> >>> -       * Legacy cursor ioctls are completely unsynced, and userspace
-> >>> -       * relies on that (by doing tons of cursor updates).
-> >>> -       */
-> >>> -     if (old_state->legacy_cursor_update)
-> >>> -             return;
-> >>> -
-> >>>        for_each_oldnew_crtc_in_state(old_state, crtc, old_crtc_state,=
- new_crtc_state, i) {
-> >>>                if (!new_crtc_state->active)
-> >>>                        continue;
-> >>> @@ -2135,12 +2128,6 @@ int drm_atomic_helper_setup_commit(struct drm_=
-atomic_state *state,
-> >>>                        continue;
-> >>>                }
-> >>>
-> >>> -             /* Legacy cursor updates are fully unsynced. */
-> >>> -             if (state->legacy_cursor_update) {
-> >>> -                     complete_all(&commit->flip_done);
-> >>> -                     continue;
-> >>> -             }
-> >>> -
-> >>>                if (!new_crtc_state->event) {
-> >>>                        commit->event =3D kzalloc(sizeof(*commit->even=
-t),
-> >>>                                                GFP_KERNEL);
-> >>> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/g=
-pu/drm/i915/display/intel_display.c
-> >>> index d2abe0e430bf..6ca5a6e7703b 100644
-> >>> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> >>> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> >>> @@ -8799,6 +8799,20 @@ static int intel_atomic_commit(struct drm_devi=
-ce *dev,
-> >>>                intel_runtime_pm_put(&dev_priv->runtime_pm, state->wak=
-eref);
-> >>>                return ret;
-> >>>        }
-> >>> +
-> >>> +     /*
-> >>> +      * FIXME: Cut over to (async) commit helpers instead of hand-ro=
-lling
-> >>> +      * everything.
-> >>> +      */
-> >>> +     if (state->base.legacy_cursor_update) {
-> >>> +             struct intel_crtc_state *new_crtc_state;
-> >>> +             struct intel_crtc *crtc;
-> >>> +             int i;
-> >>> +
-> >>> +             for_each_new_intel_crtc_in_state(state, crtc, new_crtc_=
-state, i)
-> >>> +                     complete_all(&new_crtc_state->uapi.commit->flip=
-_done);
-> >>> +     }
-> >>> +
-> >>>        intel_shared_dpll_swap_state(state);
-> >>>        intel_atomic_track_fbs(state);
-> >>>
-> >>> diff --git a/drivers/gpu/drm/msm/msm_atomic.c b/drivers/gpu/drm/msm/m=
-sm_atomic.c
-> >>> index 1686fbb611fd..b3cfabebe5d6 100644
-> >>> --- a/drivers/gpu/drm/msm/msm_atomic.c
-> >>> +++ b/drivers/gpu/drm/msm/msm_atomic.c
-> >>> @@ -222,6 +222,8 @@ void msm_atomic_commit_tail(struct drm_atomic_sta=
-te *state)
-> >>>                /* async updates are limited to single-crtc updates: *=
-/
-> >>>                WARN_ON(crtc_mask !=3D drm_crtc_mask(async_crtc));
-> >>>
-> >>> +             complete_all(&async_crtc->state->commit->flip_done);
-> >>> +
-> >>>                /*
-> >>>                 * Start timer if we don't already have an update pend=
-ing
-> >>>                 * on this crtc:
-> >>> --
-> >>> 2.34.1
-> >>>
+Matt
+
+>   
+> 
+> ### IGT changes ###
+> 
+> #### Possible regressions ####
+> 
+>   * igt@gem_lmem_swapping@basic:
+>     - fi-cfl-8109u:       NOTRUN -> [FAIL][2]
+>    [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22819/fi-cfl-8109u/igt@gem_lmem_swapping@basic.html
+> 
+>   
+> #### Warnings ####
+> 
+>   * igt@runner@aborted:
+>     - fi-kbl-x1275:       [FAIL][3] ([i915#4312]) -> [FAIL][4]
+>    [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11472/fi-kbl-x1275/igt@runner@aborted.html
+>    [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22819/fi-kbl-x1275/igt@runner@aborted.html
+>     - fi-kbl-guc:         [FAIL][5] ([i915#4312] / [i915#5257]) -> [FAIL][6]
+>    [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11472/fi-kbl-guc/igt@runner@aborted.html
+>    [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22819/fi-kbl-guc/igt@runner@aborted.html
+>     - fi-kbl-7567u:       [FAIL][7] ([i915#4312]) -> [FAIL][8]
+>    [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11472/fi-kbl-7567u/igt@runner@aborted.html
+>    [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22819/fi-kbl-7567u/igt@runner@aborted.html
+> 
+>   
+> #### Suppressed ####
+> 
+>   The following results come from untrusted machines, tests, or statuses.
+>   They do not affect the overall result.
+> 
+>   * igt@runner@aborted:
+>     - {fi-jsl-1}:         [FAIL][9] ([i915#4312]) -> [FAIL][10]
+>    [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11472/fi-jsl-1/igt@runner@aborted.html
+>    [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22819/fi-jsl-1/igt@runner@aborted.html
+> 
+>   
+> Known issues
+> ------------
+> 
+>   Here are the changes found in Patchwork_22819 that come from known issues:
+> 
+> ### IGT changes ###
+> 
+> #### Issues hit ####
+> 
+>   * igt@core_auth@basic-auth:
+>     - fi-kbl-8809g:       NOTRUN -> [SKIP][11] ([fdo#109271]) +1 similar issue
+>    [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22819/fi-kbl-8809g/igt@core_auth@basic-auth.html
+> 
+>   * igt@fbdev@eof:
+>     - fi-kbl-8809g:       NOTRUN -> [INCOMPLETE][12] ([i915#5557])
+>    [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22819/fi-kbl-8809g/igt@fbdev@eof.html
+> 
+>   * igt@gem_close_race@basic-process:
+>     - fi-ivb-3770:        NOTRUN -> [SKIP][13] ([fdo#109271]) +146 similar issues
+>    [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22819/fi-ivb-3770/igt@gem_close_race@basic-process.html
+> 
+>   * igt@kms_flip@basic-flip-vs-dpms:
+>     - fi-kbl-soraka:      NOTRUN -> [SKIP][14] ([fdo#109271]) +146 similar issues
+>    [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22819/fi-kbl-soraka/igt@kms_flip@basic-flip-vs-dpms.html
+> 
+>   * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b:
+>     - fi-cfl-8109u:       NOTRUN -> [SKIP][15] ([fdo#109271]) +145 similar issues
+>    [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22819/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html
+> 
+>   * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c:
+>     - fi-cfl-8109u:       NOTRUN -> [SKIP][16] ([fdo#109271] / [i915#5341])
+>    [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22819/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
+>     - fi-kbl-soraka:      NOTRUN -> [SKIP][17] ([fdo#109271] / [i915#5341])
+>    [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22819/fi-kbl-soraka/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
+>     - fi-ivb-3770:        NOTRUN -> [SKIP][18] ([fdo#109271] / [i915#5341])
+>    [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22819/fi-ivb-3770/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
+> 
+>   
+> #### Warnings ####
+> 
+>   * igt@runner@aborted:
+>     - fi-cfl-8700k:       [FAIL][19] ([i915#4312] / [i915#5257]) -> [FAIL][20] ([i915#4312])
+>    [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11472/fi-cfl-8700k/igt@runner@aborted.html
+>    [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22819/fi-cfl-8700k/igt@runner@aborted.html
+>     - fi-cfl-8109u:       [FAIL][21] -> [FAIL][22] ([i915#4312])
+>    [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11472/fi-cfl-8109u/igt@runner@aborted.html
+>    [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22819/fi-cfl-8109u/igt@runner@aborted.html
+>     - fi-kbl-8809g:       [FAIL][23] -> [FAIL][24] ([i915#2722])
+>    [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11472/fi-kbl-8809g/igt@runner@aborted.html
+>    [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22819/fi-kbl-8809g/igt@runner@aborted.html
+>     - fi-kbl-soraka:      [FAIL][25] -> [FAIL][26] ([i915#4312])
+>    [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11472/fi-kbl-soraka/igt@runner@aborted.html
+>    [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22819/fi-kbl-soraka/igt@runner@aborted.html
+>     - fi-hsw-4770:        [FAIL][27] ([i915#4312]) -> [FAIL][28] ([i915#5594])
+>    [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11472/fi-hsw-4770/igt@runner@aborted.html
+>    [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22819/fi-hsw-4770/igt@runner@aborted.html
+>     - fi-ivb-3770:        [FAIL][29] -> [FAIL][30] ([i915#4312])
+>    [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11472/fi-ivb-3770/igt@runner@aborted.html
+>    [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22819/fi-ivb-3770/igt@runner@aborted.html
+>     - fi-tgl-1115g4:      [FAIL][31] ([i915#4312] / [i915#5257]) -> [FAIL][32] ([i915#3690])
+>    [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11472/fi-tgl-1115g4/igt@runner@aborted.html
+>    [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22819/fi-tgl-1115g4/igt@runner@aborted.html
+>     - fi-bsw-n3050:       [FAIL][33] ([i915#4312]) -> [FAIL][34] ([i915#3690] / [i915#4312])
+>    [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11472/fi-bsw-n3050/igt@runner@aborted.html
+>    [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22819/fi-bsw-n3050/igt@runner@aborted.html
+> 
+>   
+>   {name}: This element is suppressed. This means it is ignored when computing
+>           the status of the difference (SUCCESS, WARNING, or FAILURE).
+> 
+>   [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+>   [i915#2722]: https://gitlab.freedesktop.org/drm/intel/issues/2722
+>   [i915#3690]: https://gitlab.freedesktop.org/drm/intel/issues/3690
+>   [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+>   [i915#5257]: https://gitlab.freedesktop.org/drm/intel/issues/5257
+>   [i915#5341]: https://gitlab.freedesktop.org/drm/intel/issues/5341
+>   [i915#5557]: https://gitlab.freedesktop.org/drm/intel/issues/5557
+>   [i915#5594]: https://gitlab.freedesktop.org/drm/intel/issues/5594
+> 
+> 
+> Build changes
+> -------------
+> 
+>   * Linux: CI_DRM_11472 -> Patchwork_22819
+> 
+>   CI-20190529: 20190529
+>   CI_DRM_11472: 85882df13168c5f46b41401b96975de857e3ccac @ git://anongit.freedesktop.org/gfx-ci/linux
+>   IGT_6415: c3b690bd5f7fb1fb7ed786ab0f3b815930a6a55f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+>   Patchwork_22819: 6508c18df33f9cf03c32b4b6928203a29ab0f3bd @ git://anongit.freedesktop.org/gfx-ci/linux
+> 
+> 
+> == Linux commits ==
+> 
+> 6508c18df33f drm/i915: Sunset igpu legacy mmap support based on GRAPHICS_VER_FULL
+> 
+> == Logs ==
+> 
+> For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22819/index.html
+
+-- 
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
