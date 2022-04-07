@@ -1,61 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4ABC34F7BA7
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Apr 2022 11:31:04 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62E084F7BB9
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Apr 2022 11:33:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7C31E10E765;
-	Thu,  7 Apr 2022 09:31:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 05A7510E7B7;
+	Thu,  7 Apr 2022 09:33:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com
  [IPv6:2a00:1450:4864:20::642])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E37310E73A
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 Apr 2022 09:31:00 +0000 (UTC)
-Received: by mail-ej1-x642.google.com with SMTP id bq8so9547824ejb.10
- for <intel-gfx@lists.freedesktop.org>; Thu, 07 Apr 2022 02:31:00 -0700 (PDT)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8962510E88D
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 Apr 2022 09:33:07 +0000 (UTC)
+Received: by mail-ej1-x642.google.com with SMTP id l7so4178178ejn.2
+ for <intel-gfx@lists.freedesktop.org>; Thu, 07 Apr 2022 02:33:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=date:from:to:cc:subject:message-id:references:mime-version
  :content-disposition:content-transfer-encoding:in-reply-to;
- bh=b3VpGUJf+CTx2/fndTRhuQmUKqyZM9vGfKCaSs487Gs=;
- b=B4PTkbn+xydV9LFHMGaq3gCiro1/UHgjLudhQmxEpg0LveHgcl3YhsoxbOxcWbNO7k
- ojqRvgGVF3gXECxt4f/lLuv5boUiZOHKVjflLYQCSXyQo4vLSFGMypNGrc0Ranbc3IEI
- 7cXU17RUzb/ndTCSROojPybM0cBYw8YgGEM04=
+ bh=uwBPhONiZYyBxQsXICOALv8GNol1nNujDUXbtPyvO4Y=;
+ b=FeS8VG7rcT0vgPcYmdmbVTEt+oNxS2xxSiVfjx4/xv04CIRIADhIDjbnvMJprbXO9B
+ OfH/Ftved/1Em/25nb6pX8KiHG8LJ+ivR3cKtwFGqMo18QpBCRyDy5+63IhUmi6qeQJI
+ ffvePjaZf4NIHdNy/97Cnfen8EPriNtVv36dI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
  :mime-version:content-disposition:content-transfer-encoding
  :in-reply-to;
- bh=b3VpGUJf+CTx2/fndTRhuQmUKqyZM9vGfKCaSs487Gs=;
- b=H71zuUx3Fw0V6hzG1SllUCf2bGU7S8fjwHMsAEdYr5EtNglTDEcE4KTFKexS6WAyKG
- STRx2PGNkIhRy3K9wcK+yr5d3dFsnBmGQ1efFKBlnT24abd/KXUEPKZzLNSc7Y6foQJ9
- qKRGg7QyHDowkaVhThdk/36SdbNhF5HoTfEKM1wRs/WtViXt28MWSmt/KjlOFjyyVKJd
- O/vDMUrF5QiSft9AqMe7OWOUYzJPNbUhUjYUdbqTzz43vD7xECtlpNpn9Z91g7dtQ8/i
- 43/UL2x0oTYzee7KhnkfQfFlQOssPSO8zYNp1rpbO7UQuQ8zcDR834+cSI0av7Z0nYXt
- HGVw==
-X-Gm-Message-State: AOAM533xeFNHfQnrGdC2cenTwwFtkhyUDkbeEw6LjEPc8ItqsihWPqxF
- /igRURzJ3eazyFTQ7pMmSNdctg==
-X-Google-Smtp-Source: ABdhPJwrIHmEVAbVffY/C4/loTK5aiYcszmtOJOEfdwOIl8RO+2UVjH2SF306iiOtRRVGFjVht70Zg==
-X-Received: by 2002:a17:906:c091:b0:6db:62b6:f4cc with SMTP id
- f17-20020a170906c09100b006db62b6f4ccmr12456829ejz.607.1649323858688; 
- Thu, 07 Apr 2022 02:30:58 -0700 (PDT)
+ bh=uwBPhONiZYyBxQsXICOALv8GNol1nNujDUXbtPyvO4Y=;
+ b=dlmGMpX8VrAi9PtVJlsNl0FC9H3qO0iKYwXU4A7CycEidIGQhu97bhPSfkDjenchPf
+ Qu0GKX7UGQwiCqoZ2qDMYoyo6VrRclsePuD5pqIZUh9VPqoyPdleplPkJtJSQyzLtfMu
+ LhU6vNkNnKrIPl1Q5y2XOzVVcqr0Rmu+RF4WavAto7Y3nakygWvdW8ygfHOGQetV0/PQ
+ pe0x5WicFrhdJ8GC7qbHc3Xafau2nWK6wbjL4ruQ9WXc48UPE8ln3hVZsCBVDpyyvbdz
+ agK89L9JUYEdOsI8AuhAICaqg4b9n2waUIX6dSGMUpFyCDXrkBdB/KmJXyubMUnu03+W
+ NJ3g==
+X-Gm-Message-State: AOAM5304PXmu27J2naQFoFhGJuT0q9kZmCzRrM5JjXS9+FJDJO1TZVrB
+ cVAIgBvWDqsu5PERToDtLBiGgQ==
+X-Google-Smtp-Source: ABdhPJx4fjbte3+KgCO73L6xmFQquuh3FBYpwNRWAdQy6nnw7R/livNMfAUsxUir2KhzN+L0gK2/Yw==
+X-Received: by 2002:a17:907:2d89:b0:6df:b7d1:a365 with SMTP id
+ gt9-20020a1709072d8900b006dfb7d1a365mr13308741ejc.386.1649323985990; 
+ Thu, 07 Apr 2022 02:33:05 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
  by smtp.gmail.com with ESMTPSA id
- l17-20020a056402231100b0041d0718a3e3sm580150eda.23.2022.04.07.02.30.57
+ q16-20020a170906145000b006bdaf981589sm7414086ejc.81.2022.04.07.02.33.05
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 07 Apr 2022 02:30:58 -0700 (PDT)
-Date: Thu, 7 Apr 2022 11:30:56 +0200
+ Thu, 07 Apr 2022 02:33:05 -0700 (PDT)
+Date: Thu, 7 Apr 2022 11:33:03 +0200
 From: Daniel Vetter <daniel@ffwll.ch>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <Yk6vUJYcSP3AnUX4@phenom.ffwll.local>
+To: Jessica Zhang <quic_jesszhan@quicinc.com>
+Message-ID: <Yk6vz54a+PLypjnm@phenom.ffwll.local>
 References: <20220331152021.2671937-1-daniel.vetter@ffwll.ch>
- <d5657091-0b57-9492-1e81-df34053306f5@suse.de>
+ <823b3f2c-b624-f7a3-8bdc-4c069571c810@quicinc.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <d5657091-0b57-9492-1e81-df34053306f5@suse.de>
+In-Reply-To: <823b3f2c-b624-f7a3-8bdc-4c069571c810@quicinc.com>
 X-Operating-System: Linux phenom 5.10.0-8-amd64 
 Subject: Re: [Intel-gfx] [PATCH] drm/atomic-helpers: remove
  legacy_cursor_update hacks
@@ -74,7 +74,6 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
  Michel =?iso-8859-1?Q?D=E4nzer?= <michel@daenzer.net>,
  DRI Development <dri-devel@lists.freedesktop.org>,
- KuoHsiang Chou <kuohsiang_chou@aspeedtech.com>,
  Maxime Ripard <maxime@cerno.tech>,
  Dmitry Osipenko <dmitry.osipenko@collabora.com>,
  Daniel Vetter <daniel.vetter@intel.com>, mikita.lipski@amd.com,
@@ -83,10 +82,10 @@ Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Apr 07, 2022 at 09:49:49AM +0200, Thomas Zimmermann wrote:
-> Hi Daniel
+On Wed, Apr 06, 2022 at 06:27:00PM -0700, Jessica Zhang wrote:
 > 
-> Am 31.03.22 um 17:20 schrieb Daniel Vetter:
+> 
+> On 3/31/2022 8:20 AM, Daniel Vetter wrote:
 > > The stuff never really worked, and leads to lots of fun because it
 > > out-of-order frees atomic states. Which upsets KASAN, among other
 > > things.
@@ -101,26 +100,6 @@ On Thu, Apr 07, 2022 at 09:49:49AM +0200, Thomas Zimmermann wrote:
 > > affected drivers which register a legacy cursor plane and don't either
 > > use the new async stuff or their own commit routine are: amdgpu,
 > > atmel, mediatek, qxl, rockchip, sti, sun4i, tegra, virtio, and vmwgfx.
-> 
-> A while ago, I received a patch for a bug in ast. Cursor movement interfered
-> with modesetting. [1] I didn't really knew what to make of it. Could this be
-> related to the problem you're describing here?
-
-Maybe.
-
-> I guess the correct fix would be to implement async operations for cursor
-> planes? ast doesn't do this yet.
-
-Yeah the async ops are the new attempt (since a few years) to make this
-work and suck less.
--Daniel
-
-> 
-> Best regards
-> Thomas
-> 
-> [1] https://lore.kernel.org/dri-devel/20210917072226.17357-1-kuohsiang_chou@aspeedtech.com/
-> 
 > > 
 > > Inspired by an amdgpu bug report.
 > > 
@@ -151,6 +130,92 @@ work and suck less.
 > > Cc: Michel Dänzer <michel@daenzer.net>
 > > Cc: harry.wentland@amd.com
 > > Cc: Rob Clark <robdclark@gmail.com>
+> 
+> Hey Rob,
+> 
+> I saw your tested-by and reviewed-by tags on Patchwork. Just curious, what
+> device did you test on?
+> 
+> I'm hitting several instances of this error when doing a start/stop ui on
+> Lazor Chromebook with this patch:
+> 
+
+I'm not familiar with arm splats, what goes boom here?
+
+I looked a bit at the code, and I have no idea how I manged to make things
+explode in there with my patch ...
+-Daniel
+
+> [ 3092.608322] CPU: 2 PID: 18579 Comm: DrmThread Tainted: G        W
+> 5.17.0-rc2-lockdep-00089-g7f17ab7bf567 #155
+> e5912cd286513b064a82a38938b3fdef86b079aa
+> [ 3092.622880] Hardware name: Google Lazor Limozeen without Touchscreen
+> (rev4) (DT)
+> [ 3092.630492] pstate: 80400009 (Nzcv daif +PAN -UAO -TCO -DIT -SSBS
+> BTYPE=--)
+> [ 3092.637664] pc : dpu_crtc_atomic_flush+0x9c/0x144
+> [ 3092.642523] lr : dpu_crtc_atomic_flush+0x60/0x144
+> [ 3092.647379] sp : ffffffc00c1e3760
+> [ 3092.650805] x29: ffffffc00c1e3760 x28: ffffff80985dd800 x27:
+> 0000000000000425
+> [ 3092.658164] x26: ffffff80985dc500 x25: ffffff80985ddc00 x24:
+> ffffffdf8ae3b6f0
+> [ 3092.665522] x23: 0000000000000000 x22: 0000000000000000 x21:
+> ffffff809b82da00
+> [ 3092.672890] x20: ffffff80840e1000 x19: ffffff80840e2000 x18:
+> 0000000000001000
+> [ 3092.680255] x17: 0000000000000400 x16: 0000000000000100 x15:
+> 000000000000003b
+> [ 3092.687622] x14: 0000000000000000 x13: 0000000000000002 x12:
+> 0000000000000003
+> [ 3092.694979] x11: ffffff8084009000 x10: 0000000000000040 x9 :
+> 0000000000000040
+> [ 3092.702340] x8 : 0000000000000300 x7 : 000000000000000c x6 :
+> 0000000000000004
+> [ 3092.709698] x5 : 0000000000000320 x4 : 0000000000000018 x3 :
+> 0000000000000000
+> [ 3092.717056] x2 : 0000000000000000 x1 : 7bfb38b2a3a89800 x0 :
+> ffffff809a1eb300
+> [ 3092.724424] Call trace:
+> [ 3092.726958]  dpu_crtc_atomic_flush+0x9c/0x144
+> [ 3092.731463]  drm_atomic_helper_commit_planes+0x1bc/0x1c4
+> [ 3092.736944]  msm_atomic_commit_tail+0x23c/0x3e0
+> [ 3092.741627]  commit_tail+0x7c/0xfc
+> [ 3092.745145]  drm_atomic_helper_commit+0x158/0x15c
+> [ 3092.749998]  drm_atomic_commit+0x60/0x74
+> [ 3092.754055]  drm_atomic_helper_update_plane+0x100/0x110
+> [ 3092.759449]  __setplane_atomic+0x11c/0x120
+> [ 3092.763685]  drm_mode_cursor_universal+0x188/0x22c
+> [ 3092.768633]  drm_mode_cursor_common+0x120/0x1f8
+> [ 3092.773310]  drm_mode_cursor_ioctl+0x68/0x8c
+> [ 3092.777721]  drm_ioctl_kernel+0xe8/0x168
+> [ 3092.781770]  drm_ioctl+0x320/0x370
+> [ 3092.785289]  drm_compat_ioctl+0x40/0xdc
+> [ 3092.789257]  __arm64_compat_sys_ioctl+0xe0/0x150
+> [ 3092.794030]  invoke_syscall+0x80/0x114
+> [ 3092.797905]  el0_svc_common.constprop.3+0xc4/0xf8
+> [ 3092.802765]  do_el0_svc_compat+0x2c/0x54
+> [ 3092.806811]  el0_svc_compat+0x4c/0xe4
+> [ 3092.810598]  el0t_32_sync_handler+0xc4/0xf4
+> [ 3092.814914]  el0t_32_sync+0x174/0x178
+> [ 3092.818701] irq event stamp: 55940
+> [ 3092.822217] hardirqs last  enabled at (55939): [<ffffffdf8ad617a4>]
+> exit_to_kernel_mode+0x10c/0x11c
+> [ 3092.831523] hardirqs last disabled at (55940): [<ffffffdf8ad62728>]
+> el1_dbg+0x28/0x70
+> [ 3092.839577] softirqs last  enabled at (55938): [<ffffffdf8a2103a8>]
+> __do_softirq+0x1e8/0x480
+> [ 3092.848256] softirqs last disabled at (55923): [<ffffffdf8a28d668>]
+> __irq_exit_rcu+0xdc/0x140
+> [ 3092.857022] ---[ end trace 0000000000000000 ]---
+> 
+> 
+> 
+> 
+> Thanks,
+> 
+> Jessica Zhang
+> 
 > > Cc: "Kazlauskas, Nicholas" <nicholas.kazlauskas@amd.com>
 > > Cc: Dmitry Osipenko <dmitry.osipenko@collabora.com>
 > > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
@@ -225,17 +290,9 @@ work and suck less.
 > >   		/*
 > >   		 * Start timer if we don't already have an update pending
 > >   		 * on this crtc:
-> 
-> -- 
-> Thomas Zimmermann
-> Graphics Driver Developer
-> SUSE Software Solutions Germany GmbH
-> Maxfeldstr. 5, 90409 Nürnberg, Germany
-> (HRB 36809, AG Nürnberg)
-> Geschäftsführer: Ivo Totev
-
-
-
+> > -- 
+> > 2.34.1
+> > 
 
 -- 
 Daniel Vetter
