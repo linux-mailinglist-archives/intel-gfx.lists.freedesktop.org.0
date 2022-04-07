@@ -1,88 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E30CF4F804D
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Apr 2022 15:17:00 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4145E4F80D9
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Apr 2022 15:40:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A3AAD10EABB;
-	Thu,  7 Apr 2022 13:16:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2621710E43A;
+	Thu,  7 Apr 2022 13:40:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6BAB210EA95
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 Apr 2022 13:16:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1649337412;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=vbRblRxq/SE2km/rkmjkdSJvts57gYuZ3JZvtprFnTs=;
- b=EgH0WdLqZCJ6UQnvEwLUSU7YKr4zUWq2cnKNit5ghhI5tVeTWJvrZIzWjwX1MVJ0EStlz/
- BgAgdsxlepfTCPGBwG1gY63mMXE0Co4cepTBDWo7uOoN7lgzcRqrYRNhmnlFi/C9GifhKE
- SA1Giz8n75iRCVa80UdowboMy8FTIHk=
-Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
- [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-582-6UoIoojbP_G5YrJQf4_f5g-1; Thu, 07 Apr 2022 09:16:51 -0400
-X-MC-Unique: 6UoIoojbP_G5YrJQf4_f5g-1
-Received: by mail-wm1-f70.google.com with SMTP id
- 189-20020a1c02c6000000b0038e6c4c6472so4573371wmc.1
- for <intel-gfx@lists.freedesktop.org>; Thu, 07 Apr 2022 06:16:51 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:to:references:from:in-reply-to
- :content-transfer-encoding;
- bh=vbRblRxq/SE2km/rkmjkdSJvts57gYuZ3JZvtprFnTs=;
- b=JVl+8hN4aL04YklXCNtNVF+VIegYEqGuab5ux1NyppF4+E+iTXAQo73AsM+5InwPe8
- v+BDlpOEYyEVO3PCh9WlRZ7OvI1vCKxYWobM3UJD0RspQaLXngIe/qIri1bfSBWkuk0w
- duLDM/bSs+cHJxco+WCC9CTjoxyuUOotmJhJ+k5b1RdXAhre8vglxyxhJ6plT8VJGr/D
- Ppr3t2FusFXUp6DIlj43/xEywL7bc6SO1EgX1Uq8EsG9lfEdrvGE0XcsZQiLCMqQCRmo
- ZqgXZ5R9lr1o5YiHAiTbdLT8ERPkMRG6RtkSZiy31e3SeteDglwBFN2xit8cDifRPi35
- H+dQ==
-X-Gm-Message-State: AOAM5331Y1oA4DZvJeLkzFsr6UeNTB++aChFnozFGyjUUeD9PDptjEvn
- n5lU5CHMZarJjrCaGCt7H52Xvi2joSOCOxFPKUD+++LiAK5cVObopj3q1ZL4xQH+cOzJVTvFvzz
- aOZINwi0oY77iQJs7htWeAlHrmL8p
-X-Received: by 2002:a05:600c:590:b0:38c:804e:4197 with SMTP id
- o16-20020a05600c059000b0038c804e4197mr12313544wmd.22.1649337410262; 
- Thu, 07 Apr 2022 06:16:50 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzqkG5lfR25b85G/v8443+CqBWY7ukzbb2XsMCNk9TeIagKJa+MIeW8P/wBh5/pVz1uMvC5wQ==
-X-Received: by 2002:a05:600c:590:b0:38c:804e:4197 with SMTP id
- o16-20020a05600c059000b0038c804e4197mr12313529wmd.22.1649337410062; 
- Thu, 07 Apr 2022 06:16:50 -0700 (PDT)
-Received: from [192.168.1.102] ([92.176.231.205])
- by smtp.gmail.com with ESMTPSA id
- v5-20020adfe4c5000000b001edc1e5053esm16607003wrm.82.2022.04.07.06.16.49
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 07 Apr 2022 06:16:49 -0700 (PDT)
-Message-ID: <aa949d43-5c88-377c-9f93-1886f934bbca@redhat.com>
-Date: Thu, 7 Apr 2022 15:16:48 +0200
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6783110E3CB;
+ Thu,  7 Apr 2022 13:40:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1649338850; x=1680874850;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=Ed54NXbJJI7Rw4e9sYio4n1il0ylHLWLAnh/F3tjv5k=;
+ b=XC/JSpQRnlozXeC3iX0ddttIT13KzRcnyPSEJNOslMAhJcF9IzSb6zrN
+ k3AeKNd5uNIsxtglpnduQQz572Pl9/FUokErebVJCfV22W6FNTxzCQJsk
+ c36I7qeuXdJWOFluZNpY0X1aI2TnZghGEufststlZi8LtCD59vewYES94
+ Nkl1mhtTBacVMkYlDR0/wgLB+chZIgn4pJJ4t8oCGI6+FJWVH93Wt+pea
+ C2ltIfvq2+i7AfjqFlykGhQe7kMJDvgFvVxycC2qDVljJ34TLWvKCJ9tn
+ p1OgA4yLKSucPbeyY2FHW25b5TQAKbPFXYPMlBqjRMoGvrtza2H2lJLKk A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10309"; a="258919953"
+X-IronPort-AV: E=Sophos;i="5.90,242,1643702400"; 
+ d="asc'?scan'208";a="258919953"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2022 06:40:49 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,242,1643702400"; 
+ d="asc'?scan'208";a="571055512"
+Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.159.108])
+ by orsmga008.jf.intel.com with ESMTP; 07 Apr 2022 06:40:46 -0700
+Date: Thu, 7 Apr 2022 21:20:54 +0800
+From: Zhenyu Wang <zhenyuw@linux.intel.com>
+To: Zhi Wang <zhi.wang.linux@gmail.com>
+Message-ID: <20220407132054.GJ1089@zhen-hp.sh.intel.com>
+References: <20220407071945.72148-1-zhi.a.wang@intel.com>
+ <20220407071945.72148-2-zhi.a.wang@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
- daniel.vetter@ffwll.ch, dri-devel@lists.freedesktop.org,
- linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
- intel-gfx@lists.freedesktop.org
-References: <20220407085946.744568-1-christian.koenig@amd.com>
- <20220407085946.744568-3-christian.koenig@amd.com>
- <29677a4e-42dc-d35e-f487-f8b344678bee@redhat.com>
- <79648b84-e7d0-4c38-d8f1-cc569238ee7e@amd.com>
-From: Javier Martinez Canillas <javierm@redhat.com>
-In-Reply-To: <79648b84-e7d0-4c38-d8f1-cc569238ee7e@amd.com>
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=javierm@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 02/15] dma-buf: specify usage while adding
- fences to dma_resv obj v7
+Content-Type: multipart/signed; micalg=pgp-sha1;
+ protocol="application/pgp-signature"; boundary="twz1s1Hj1O0rHoT0"
+Content-Disposition: inline
+In-Reply-To: <20220407071945.72148-2-zhi.a.wang@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v9 1/3] i915/gvt: Separate the MMIO tracking
+ table from GVT-g
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,56 +60,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
+Cc: Zhi Wang <zhi.a.wang@gmail.com>, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Jason Gunthorpe <jgg@nvidia.com>, Vivi Rodrigo <rodrigo.vivi@intel.com>,
+ intel-gvt-dev@lists.freedesktop.org, Christoph Hellwig <hch@lst.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 4/7/22 15:13, Christian König wrote:
-> Am 07.04.22 um 15:08 schrieb Javier Martinez Canillas:
->> Hello Christian,
->>
->> On 4/7/22 10:59, Christian König wrote:
->>> Instead of distingting between shared and exclusive fences specify
->>> the fence usage while adding fences.
->>>
->>> Rework all drivers to use this interface instead and deprecate the old one.
->>>
->> This patch broke compilation for the vc4 DRM driver.
-> 
-> My apologies for that. I've tried really hard to catch all cases, but 
-> looks like I missed some.
-> 
 
-No worries, I know that's not easy to get all callers when doing these
-subsystem wide changes.
+--twz1s1Hj1O0rHoT0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
->> I've this patch locally
->> which seems to work but I don't know enough about the fence API to know if
->> is correct.
->>
->> If you think is the proper fix then I can post it as a patch.
-> 
-> Yes, that patch looks absolutely correct to me.
+On 2022.04.07 03:19:43 -0400, Zhi Wang wrote:
+> From: Zhi Wang <zhi.a.wang@gmail.com>
+>=20
+> To support the new mdev interfaces and the re-factor patches from
+> Christoph, which moves the GVT-g code into a dedicated module, the GVT-g
+> MMIO tracking table needs to be separated from GVT-g.
 >
 
-Thanks for looking at it.
- 
-> Feel free to add an Reviewed-by: Christian König 
-> <christian.koenig@amd.com> and CC me so that I can push it to 
-> drm-misc-next ASAP.
-> 
+Looks fine to me. Thanks!
 
-I can also do it after posting (just to get a proper Link: tag with dim)
+Reviewed-by: Zhenyu Wang <zhenyuw@linux.intel.com>
 
-Already have another set that wanted to push but found this issue after
-doing a build test before pushing.
+--twz1s1Hj1O0rHoT0
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> Thanks,
-> Christian.
-> 
--- 
-Best regards,
+-----BEGIN PGP SIGNATURE-----
 
-Javier Martinez Canillas
-Linux Engineering
-Red Hat
+iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCYk7lLAAKCRCxBBozTXgY
+J6juAJ4/fE3Ex93O/3BhoMK0jebj1njtVwCfXDscbKT5PuPP5NWW0hwjYVTpv44=
+=VtR0
+-----END PGP SIGNATURE-----
 
+--twz1s1Hj1O0rHoT0--
