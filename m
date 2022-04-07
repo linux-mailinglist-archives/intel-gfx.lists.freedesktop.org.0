@@ -2,92 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64E294F7578
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Apr 2022 07:47:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A53394F7576
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Apr 2022 07:47:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2359510E9AD;
-	Thu,  7 Apr 2022 05:47:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B4EC710E9A7;
+	Thu,  7 Apr 2022 05:47:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2068.outbound.protection.outlook.com [40.107.92.68])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9CD8310E9A5;
- Thu,  7 Apr 2022 05:47:14 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=O0lRk8jgqWhTIfgdQ3GLi7xu23eXLEQPiXafPE8KpYrueSZv8nG7GbC+XHZSCDuQjcGVrAuUDfkEspehD3O3p6LhGKMLg1vrtn9RlNAqGOaNyf/M/+n6EwuDDorG2fOMK0wXw9NcJ91OLSTdRTKdWv5r+TcETdrttUqMCiaQ2xxmiKhyQb5M38+jnOeaRyVHHHx6iHpvH9F0UhMYJPrV6IC1XpRDBZUqzRaiEBOJMRpDO4YbEfWWj+lnnboEAtiQRt22r3sneEubJPxKGfKZgtvZS5X084AzIxPs7y2pxNhECKuqsB5QUg2I6mhFTnrdY5XkbhyX+T1ov73l+ElDCA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=OjW2s6uAx6ckIYNSe8QgaDDcw/1toV/bW/9hl4/k8F4=;
- b=mBFQtLa5bBtKHZcuJeA6g1wJkenhgN4//mIyLy344GSDbpUftQ7WTyqxB9iMDA8E5aFxl3mdMG1a7PG2QgliDyqeyC2SLRrHiAQ99YFRRuCi74EaZjTUwxZ3Q48gCqL+5hErT2dXSRNgJIdGpMajXQGVIuG9zsmmHd8nsb3MmbxlKjYC+r9MSzcXqnwbmJqhEh8J+EGDhNEdR8s+QqQS0EUhsOO15X02AQEz06xX1hXybcBUNR12XWiM2NTwnP1/pV9Xwdoow16EEJpJvWOu/zZYmRj6Ad8BGW7PhpU9bx1sZWWQavcaJY4aithDeHgRdzSxZWcfjeQvL2yOebXJGA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=OjW2s6uAx6ckIYNSe8QgaDDcw/1toV/bW/9hl4/k8F4=;
- b=4auPaZQo+sLN8MewlXtAIgdn4gVTU4QlDlXDLyyzIBzIZzxMaAcjDoXbufSUbL+BbXZru3wqTc+JBZqRsIfjl6Nhne4DHkQx2sJBe+HONesW69Ak1w8XSgn0g1B2RFavsIE8MK492cH2+yLwJy+k20CT8vvw0+27qvbTCrAv5Og=
-Received: from BN9PR03CA0879.namprd03.prod.outlook.com (2603:10b6:408:13c::14)
- by CH0PR12MB5188.namprd12.prod.outlook.com (2603:10b6:610:bb::13)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5123.31; Thu, 7 Apr
- 2022 05:47:12 +0000
-Received: from BN8NAM11FT009.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:13c:cafe::ad) by BN9PR03CA0879.outlook.office365.com
- (2603:10b6:408:13c::14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5144.22 via Frontend
- Transport; Thu, 7 Apr 2022 05:47:11 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT009.mail.protection.outlook.com (10.13.176.65) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5144.20 via Frontend Transport; Thu, 7 Apr 2022 05:47:11 +0000
-Received: from rtg-amd.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Thu, 7 Apr
- 2022 00:47:08 -0500
-From: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
-To: <intel-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- <amd-gfx@lists.freedesktop.org>
-Date: Thu, 7 Apr 2022 11:16:51 +0530
-Message-ID: <20220407054651.3924-1-Arunpravin.PaneerSelvam@amd.com>
-X-Mailer: git-send-email 2.25.1
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EBED110E9A7
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 Apr 2022 05:47:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1649310434; x=1680846434;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=fJEVR9Ic5+WD4r1Y/BxmjU8MI74IPeKRkAF63bwGC9U=;
+ b=R75GViWips9Z95teuRHH520CgMqDfsGsY9LZ3zvlOX/J95SMzH+S1iM7
+ svR+wutAl+IRbJaA3rxVnv8H1Hzp/azUBH2yGQPvrXgvbpk4PSpMvCvfI
+ v/cKyA4OjY0fsOnH9j7Hi4ENAerKmoPU81LGJqRGhQVT1J6gBfhn17Oeu
+ u/tLBgTgUqZ0GgsPN5wfiUH0hSoZ+I/uAgCMOsc1GEEWi8QKQq871AxOI
+ qsSTbpEJqje2Q8Sst6EK5YAXr/bIoCktWEAsqYeDXUbXK0hozK3KJ8BGh
+ jGDeFeynh1OqNUgWoyoiC22PsM/oiZ1UEMhvdriATK07z44AmUBpeLRx7 A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10309"; a="248758711"
+X-IronPort-AV: E=Sophos;i="5.90,241,1643702400"; d="scan'208";a="248758711"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Apr 2022 22:47:14 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,241,1643702400"; d="scan'208";a="570899251"
+Received: from fmsmsx605.amr.corp.intel.com ([10.18.126.85])
+ by orsmga008.jf.intel.com with ESMTP; 06 Apr 2022 22:47:14 -0700
+Received: from fmsmsx605.amr.corp.intel.com (10.18.126.85) by
+ fmsmsx605.amr.corp.intel.com (10.18.126.85) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27; Wed, 6 Apr 2022 22:47:13 -0700
+Received: from fmsmsx605.amr.corp.intel.com ([10.18.126.85]) by
+ fmsmsx605.amr.corp.intel.com ([10.18.126.85]) with mapi id 15.01.2308.027;
+ Wed, 6 Apr 2022 22:47:13 -0700
+From: "Gupta, Anshuman" <anshuman.gupta@intel.com>
+To: "Deak, Imre" <imre.deak@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [PATCH 4/4] drm/i915/dg2: Add support for DG2 clear color
+ compression
+Thread-Index: AQHYSClXzKx0lAnPV0aVXrAFHUGOX6zj8lPQ
+Date: Thu, 7 Apr 2022 05:47:13 +0000
+Message-ID: <ddee94f605e54ac39b815360e6d8fc2f@intel.com>
+References: <20220404133846.131401-1-imre.deak@intel.com>
+ <20220404133846.131401-5-imre.deak@intel.com>
+In-Reply-To: <20220404133846.131401-5-imre.deak@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 11.6.401.20
+dlp-reaction: no-action
+x-originating-ip: [10.223.10.1]
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 1cd5c52b-c959-4f46-ee7f-08da185a0f97
-X-MS-TrafficTypeDiagnostic: CH0PR12MB5188:EE_
-X-Microsoft-Antispam-PRVS: <CH0PR12MB5188A354CE7E5C45D76E2BD6E4E69@CH0PR12MB5188.namprd12.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: MpyS1eCarm786noZGRlxwAZIWKTDifF9HGZgb+03svjGqNeld5dyyunC8tisH23TS29MP9qMHHKJNpGJW2FOfE1M0+vjlI2UZFFeTYFFRbKmwILxSVkEGGLT9VC1UM1wklyG1Z5DauQ+c5y1B2C6Eqkz63+37msi2xprKu64vUrZBS+N6EfbVQKhjgtejucVHpXwvlR6cK5usgu0R6QJG6PVRkbwesvq1OtoyeVR9i9QXjxwTBgbESfAJAK9kbal0M/ZtgpskXnbYmjn2WaCSYSF5w6UXfUEZkM3o9GtEtnQY30hIlQFxJW6SJLWpZk4Vg2KxSfKGfllzc8lzIWHHMiiWfzQkIpELDB7SWShWxTE6skn+jNs0WwAF2XA3ELU19a6vGRWyjHQWzUhJMWWPGLt0HCC3TgxmyAvxhYtQP75AzcwFlfoPu+d4abop/B9kIb8jQJK0VNfys98yQ7IPykB8sshKf21YC8hRYgAyqkBQ0HYJLZ2tr8KVIgfsL+Y38WUPS911NXJWCZFgZxgiQ3bfH8bNaCTglZb19gZow70CSHFHqqQ9tHbiLvKquXNwV5YOZ/SiRoHPfZeJ5rRQ43NOU1sW0HwMp0JTL8oS53WPyo9h2rJblVrYjOzqCBvAKPs3TEw/tv9Ps0X9CtmBcRhdmHI9bJ66HVnNFf2J+9YUMrvQ8t8btZ7wMRYIT1uahJV09T/CelW87YxGnC71A==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(36840700001)(46966006)(40470700004)(82310400005)(2616005)(36860700001)(7696005)(356005)(2906002)(5660300002)(36756003)(47076005)(1076003)(8936002)(30864003)(40460700003)(8676002)(70586007)(70206006)(83380400001)(4326008)(26005)(6666004)(81166007)(186003)(426003)(54906003)(86362001)(336012)(110136005)(16526019)(316002)(508600001)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Apr 2022 05:47:11.3460 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1cd5c52b-c959-4f46-ee7f-08da185a0f97
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT009.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR12MB5188
-Subject: [Intel-gfx] [PATCH v12] drm/amdgpu: add drm buddy support to amdgpu
+Subject: Re: [Intel-gfx] [PATCH 4/4] drm/i915/dg2: Add support for DG2 clear
+ color compression
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,822 +76,191 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com,
- Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
- christian.koenig@amd.com, matthew.auld@intel.com
+Cc: "Heikkila, Juha-pekka" <juha-pekka.heikkila@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-- Switch to drm buddy allocator
-- Add resource cursor support for drm buddy
-
-v2(Matthew Auld):
-  - replace spinlock with mutex as we call kmem_cache_zalloc
-    (..., GFP_KERNEL) in drm_buddy_alloc() function
-
-  - lock drm_buddy_block_trim() function as it calls
-    mark_free/mark_split are all globally visible
-
-v3(Matthew Auld):
-  - remove trim method error handling as we address the failure case
-    at drm_buddy_block_trim() function
-
-v4:
-  - fix warnings reported by kernel test robot <lkp@intel.com>
-
-v5:
-  - fix merge conflict issue
-
-v6:
-  - fix warnings reported by kernel test robot <lkp@intel.com>
-
-v7:
-  - remove DRM_BUDDY_RANGE_ALLOCATION flag usage
-
-v8:
-  - keep DRM_BUDDY_RANGE_ALLOCATION flag usage
-  - resolve conflicts created by drm/amdgpu: remove VRAM accounting v2
-
-v9(Christian):
-  - merged the below patch
-     - drm/amdgpu: move vram inline functions into a header
-  - rename label name as fallback
-  - move struct amdgpu_vram_mgr to amdgpu_vram_mgr.h
-  - remove unnecessary flags from struct amdgpu_vram_reservation
-  - rewrite block NULL check condition
-  - change else style as per coding standard
-  - rewrite the node max size
-  - add a helper function to fetch the first entry from the list
-
-v10(Christian):
-   - rename amdgpu_get_node() function name as amdgpu_vram_mgr_first_block
-
-v11:
-   - if size is not aligned with min_page_size, enable is_contiguous flag,
-     therefore, the size round up to the power of two and trimmed to the
-     original size.
-v12:
-   - rename the function names having prefix as amdgpu_vram_mgr_*()
-   - modify the round_up() logic conforming to contiguous flag enablement
-     or if size is not aligned to min_block_size
-   - modify the trim logic
-   - rename node as block wherever applicable
-
-Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
----
- drivers/gpu/drm/Kconfig                       |   1 +
- .../gpu/drm/amd/amdgpu/amdgpu_res_cursor.h    |  97 ++++-
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h       |  10 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c  | 359 ++++++++++--------
- 4 files changed, 291 insertions(+), 176 deletions(-)
-
-diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
-index f1422bee3dcc..5133c3f028ab 100644
---- a/drivers/gpu/drm/Kconfig
-+++ b/drivers/gpu/drm/Kconfig
-@@ -280,6 +280,7 @@ config DRM_AMDGPU
- 	select HWMON
- 	select BACKLIGHT_CLASS_DEVICE
- 	select INTERVAL_TREE
-+	select DRM_BUDDY
- 	help
- 	  Choose this option if you have a recent AMD Radeon graphics card.
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h
-index acfa207cf970..6546552e596c 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h
-@@ -30,12 +30,15 @@
- #include <drm/ttm/ttm_resource.h>
- #include <drm/ttm/ttm_range_manager.h>
- 
-+#include "amdgpu_vram_mgr.h"
-+
- /* state back for walking over vram_mgr and gtt_mgr allocations */
- struct amdgpu_res_cursor {
- 	uint64_t		start;
- 	uint64_t		size;
- 	uint64_t		remaining;
--	struct drm_mm_node	*node;
-+	void			*node;
-+	uint32_t		mem_type;
- };
- 
- /**
-@@ -52,27 +55,63 @@ static inline void amdgpu_res_first(struct ttm_resource *res,
- 				    uint64_t start, uint64_t size,
- 				    struct amdgpu_res_cursor *cur)
- {
-+	struct drm_buddy_block *block;
-+	struct list_head *head, *next;
- 	struct drm_mm_node *node;
- 
--	if (!res || res->mem_type == TTM_PL_SYSTEM) {
--		cur->start = start;
--		cur->size = size;
--		cur->remaining = size;
--		cur->node = NULL;
--		WARN_ON(res && start + size > res->num_pages << PAGE_SHIFT);
--		return;
--	}
-+	if (!res)
-+		goto fallback;
- 
- 	BUG_ON(start + size > res->num_pages << PAGE_SHIFT);
- 
--	node = to_ttm_range_mgr_node(res)->mm_nodes;
--	while (start >= node->size << PAGE_SHIFT)
--		start -= node++->size << PAGE_SHIFT;
-+	cur->mem_type = res->mem_type;
-+
-+	switch (cur->mem_type) {
-+	case TTM_PL_VRAM:
-+		head = &to_amdgpu_vram_mgr_resource(res)->blocks;
-+
-+		block = list_first_entry_or_null(head,
-+						 struct drm_buddy_block,
-+						 link);
-+		if (!block)
-+			goto fallback;
-+
-+		while (start >= amdgpu_vram_mgr_block_size(block)) {
-+			start -= amdgpu_vram_mgr_block_size(block);
-+
-+			next = block->link.next;
-+			if (next != head)
-+				block = list_entry(next, struct drm_buddy_block, link);
-+		}
-+
-+		cur->start = amdgpu_vram_mgr_block_start(block) + start;
-+		cur->size = min(amdgpu_vram_mgr_block_size(block) - start, size);
-+		cur->remaining = size;
-+		cur->node = block;
-+		break;
-+	case TTM_PL_TT:
-+		node = to_ttm_range_mgr_node(res)->mm_nodes;
-+		while (start >= node->size << PAGE_SHIFT)
-+			start -= node++->size << PAGE_SHIFT;
-+
-+		cur->start = (node->start << PAGE_SHIFT) + start;
-+		cur->size = min((node->size << PAGE_SHIFT) - start, size);
-+		cur->remaining = size;
-+		cur->node = node;
-+		break;
-+	default:
-+		goto fallback;
-+	}
- 
--	cur->start = (node->start << PAGE_SHIFT) + start;
--	cur->size = min((node->size << PAGE_SHIFT) - start, size);
-+	return;
-+
-+fallback:
-+	cur->start = start;
-+	cur->size = size;
- 	cur->remaining = size;
--	cur->node = node;
-+	cur->node = NULL;
-+	WARN_ON(res && start + size > res->num_pages << PAGE_SHIFT);
-+	return;
- }
- 
- /**
-@@ -85,7 +124,9 @@ static inline void amdgpu_res_first(struct ttm_resource *res,
-  */
- static inline void amdgpu_res_next(struct amdgpu_res_cursor *cur, uint64_t size)
- {
--	struct drm_mm_node *node = cur->node;
-+	struct drm_buddy_block *block;
-+	struct drm_mm_node *node;
-+	struct list_head *next;
- 
- 	BUG_ON(size > cur->remaining);
- 
-@@ -99,9 +140,27 @@ static inline void amdgpu_res_next(struct amdgpu_res_cursor *cur, uint64_t size)
- 		return;
- 	}
- 
--	cur->node = ++node;
--	cur->start = node->start << PAGE_SHIFT;
--	cur->size = min(node->size << PAGE_SHIFT, cur->remaining);
-+	switch (cur->mem_type) {
-+	case TTM_PL_VRAM:
-+		block = cur->node;
-+
-+		next = block->link.next;
-+		block = list_entry(next, struct drm_buddy_block, link);
-+
-+		cur->node = block;
-+		cur->start = amdgpu_vram_mgr_block_start(block);
-+		cur->size = min(amdgpu_vram_mgr_block_size(block), cur->remaining);
-+		break;
-+	case TTM_PL_TT:
-+		node = cur->node;
-+
-+		cur->node = ++node;
-+		cur->start = node->start << PAGE_SHIFT;
-+		cur->size = min(node->size << PAGE_SHIFT, cur->remaining);
-+		break;
-+	default:
-+		return;
-+	}
- }
- 
- #endif
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
-index 9120ae80ef52..6a70818039dd 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
-@@ -26,6 +26,7 @@
- 
- #include <linux/dma-direction.h>
- #include <drm/gpu_scheduler.h>
-+#include "amdgpu_vram_mgr.h"
- #include "amdgpu.h"
- 
- #define AMDGPU_PL_GDS		(TTM_PL_PRIV + 0)
-@@ -38,15 +39,6 @@
- 
- #define AMDGPU_POISON	0xd0bed0be
- 
--struct amdgpu_vram_mgr {
--	struct ttm_resource_manager manager;
--	struct drm_mm mm;
--	spinlock_t lock;
--	struct list_head reservations_pending;
--	struct list_head reserved_pages;
--	atomic64_t vis_usage;
--};
--
- struct amdgpu_gtt_mgr {
- 	struct ttm_resource_manager manager;
- 	struct drm_mm mm;
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
-index 0a7611648573..49e4092f447f 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
-@@ -32,8 +32,10 @@
- #include "atom.h"
- 
- struct amdgpu_vram_reservation {
--	struct list_head node;
--	struct drm_mm_node mm_node;
-+	u64 start;
-+	u64 size;
-+	struct list_head allocated;
-+	struct list_head blocks;
- };
- 
- static inline struct amdgpu_vram_mgr *
-@@ -186,18 +188,18 @@ const struct attribute_group amdgpu_vram_mgr_attr_group = {
- };
- 
- /**
-- * amdgpu_vram_mgr_vis_size - Calculate visible node size
-+ * amdgpu_vram_mgr_vis_size - Calculate visible block size
-  *
-  * @adev: amdgpu_device pointer
-- * @node: MM node structure
-+ * @block: DRM BUDDY block structure
-  *
-- * Calculate how many bytes of the MM node are inside visible VRAM
-+ * Calculate how many bytes of the DRM BUDDY block are inside visible VRAM
-  */
- static u64 amdgpu_vram_mgr_vis_size(struct amdgpu_device *adev,
--				    struct drm_mm_node *node)
-+				    struct drm_buddy_block *block)
- {
--	uint64_t start = node->start << PAGE_SHIFT;
--	uint64_t end = (node->size + node->start) << PAGE_SHIFT;
-+	u64 start = amdgpu_vram_mgr_block_start(block);
-+	u64 end = start + amdgpu_vram_mgr_block_size(block);
- 
- 	if (start >= adev->gmc.visible_vram_size)
- 		return 0;
-@@ -218,9 +220,9 @@ u64 amdgpu_vram_mgr_bo_visible_size(struct amdgpu_bo *bo)
- {
- 	struct amdgpu_device *adev = amdgpu_ttm_adev(bo->tbo.bdev);
- 	struct ttm_resource *res = bo->tbo.resource;
--	unsigned pages = res->num_pages;
--	struct drm_mm_node *mm;
--	u64 usage;
-+	struct amdgpu_vram_mgr_resource *vres = to_amdgpu_vram_mgr_resource(res);
-+	struct drm_buddy_block *block;
-+	u64 usage = 0;
- 
- 	if (amdgpu_gmc_vram_full_visible(&adev->gmc))
- 		return amdgpu_bo_size(bo);
-@@ -228,9 +230,8 @@ u64 amdgpu_vram_mgr_bo_visible_size(struct amdgpu_bo *bo)
- 	if (res->start >= adev->gmc.visible_vram_size >> PAGE_SHIFT)
- 		return 0;
- 
--	mm = &container_of(res, struct ttm_range_mgr_node, base)->mm_nodes[0];
--	for (usage = 0; pages; pages -= mm->size, mm++)
--		usage += amdgpu_vram_mgr_vis_size(adev, mm);
-+	list_for_each_entry(block, &vres->blocks, link)
-+		usage += amdgpu_vram_mgr_vis_size(adev, block);
- 
- 	return usage;
- }
-@@ -240,23 +241,30 @@ static void amdgpu_vram_mgr_do_reserve(struct ttm_resource_manager *man)
- {
- 	struct amdgpu_vram_mgr *mgr = to_vram_mgr(man);
- 	struct amdgpu_device *adev = to_amdgpu_device(mgr);
--	struct drm_mm *mm = &mgr->mm;
-+	struct drm_buddy *mm = &mgr->mm;
- 	struct amdgpu_vram_reservation *rsv, *temp;
-+	struct drm_buddy_block *block;
- 	uint64_t vis_usage;
- 
--	list_for_each_entry_safe(rsv, temp, &mgr->reservations_pending, node) {
--		if (drm_mm_reserve_node(mm, &rsv->mm_node))
-+	list_for_each_entry_safe(rsv, temp, &mgr->reservations_pending, blocks) {
-+		if (drm_buddy_alloc_blocks(mm, rsv->start, rsv->start + rsv->size,
-+					   rsv->size, mm->chunk_size, &rsv->allocated,
-+					   DRM_BUDDY_RANGE_ALLOCATION))
-+			continue;
-+
-+		block = amdgpu_vram_mgr_first_block(&rsv->allocated);
-+		if (!block)
- 			continue;
- 
- 		dev_dbg(adev->dev, "Reservation 0x%llx - %lld, Succeeded\n",
--			rsv->mm_node.start, rsv->mm_node.size);
-+			rsv->start, rsv->size);
- 
--		vis_usage = amdgpu_vram_mgr_vis_size(adev, &rsv->mm_node);
-+		vis_usage = amdgpu_vram_mgr_vis_size(adev, block);
- 		atomic64_add(vis_usage, &mgr->vis_usage);
- 		spin_lock(&man->bdev->lru_lock);
--		man->usage += rsv->mm_node.size << PAGE_SHIFT;
-+		man->usage += rsv->size;
- 		spin_unlock(&man->bdev->lru_lock);
--		list_move(&rsv->node, &mgr->reserved_pages);
-+		list_move(&rsv->blocks, &mgr->reserved_pages);
- 	}
- }
- 
-@@ -278,14 +286,16 @@ int amdgpu_vram_mgr_reserve_range(struct amdgpu_vram_mgr *mgr,
- 	if (!rsv)
- 		return -ENOMEM;
- 
--	INIT_LIST_HEAD(&rsv->node);
--	rsv->mm_node.start = start >> PAGE_SHIFT;
--	rsv->mm_node.size = size >> PAGE_SHIFT;
-+	INIT_LIST_HEAD(&rsv->allocated);
-+	INIT_LIST_HEAD(&rsv->blocks);
- 
--	spin_lock(&mgr->lock);
--	list_add_tail(&rsv->node, &mgr->reservations_pending);
-+	rsv->start = start;
-+	rsv->size = size;
-+
-+	mutex_lock(&mgr->lock);
-+	list_add_tail(&rsv->blocks, &mgr->reservations_pending);
- 	amdgpu_vram_mgr_do_reserve(&mgr->manager);
--	spin_unlock(&mgr->lock);
-+	mutex_unlock(&mgr->lock);
- 
- 	return 0;
- }
-@@ -307,19 +317,19 @@ int amdgpu_vram_mgr_query_page_status(struct amdgpu_vram_mgr *mgr,
- 	struct amdgpu_vram_reservation *rsv;
- 	int ret;
- 
--	spin_lock(&mgr->lock);
-+	mutex_lock(&mgr->lock);
- 
--	list_for_each_entry(rsv, &mgr->reservations_pending, node) {
--		if ((rsv->mm_node.start <= start) &&
--		    (start < (rsv->mm_node.start + rsv->mm_node.size))) {
-+	list_for_each_entry(rsv, &mgr->reservations_pending, blocks) {
-+		if (rsv->start <= start &&
-+		    (start < (rsv->start + rsv->size))) {
- 			ret = -EBUSY;
- 			goto out;
- 		}
- 	}
- 
--	list_for_each_entry(rsv, &mgr->reserved_pages, node) {
--		if ((rsv->mm_node.start <= start) &&
--		    (start < (rsv->mm_node.start + rsv->mm_node.size))) {
-+	list_for_each_entry(rsv, &mgr->reserved_pages, blocks) {
-+		if (rsv->start <= start &&
-+		    (start < (rsv->start + rsv->size))) {
- 			ret = 0;
- 			goto out;
- 		}
-@@ -327,32 +337,10 @@ int amdgpu_vram_mgr_query_page_status(struct amdgpu_vram_mgr *mgr,
- 
- 	ret = -ENOENT;
- out:
--	spin_unlock(&mgr->lock);
-+	mutex_unlock(&mgr->lock);
- 	return ret;
- }
- 
--/**
-- * amdgpu_vram_mgr_virt_start - update virtual start address
-- *
-- * @mem: ttm_resource to update
-- * @node: just allocated node
-- *
-- * Calculate a virtual BO start address to easily check if everything is CPU
-- * accessible.
-- */
--static void amdgpu_vram_mgr_virt_start(struct ttm_resource *mem,
--				       struct drm_mm_node *node)
--{
--	unsigned long start;
--
--	start = node->start + node->size;
--	if (start > mem->num_pages)
--		start -= mem->num_pages;
--	else
--		start = 0;
--	mem->start = max(mem->start, start);
--}
--
- /**
-  * amdgpu_vram_mgr_new - allocate new ranges
-  *
-@@ -368,46 +356,44 @@ static int amdgpu_vram_mgr_new(struct ttm_resource_manager *man,
- 			       const struct ttm_place *place,
- 			       struct ttm_resource **res)
- {
--	unsigned long lpfn, num_nodes, pages_per_node, pages_left, pages;
-+	u64 vis_usage = 0, max_bytes, cur_size, min_block_size;
- 	struct amdgpu_vram_mgr *mgr = to_vram_mgr(man);
- 	struct amdgpu_device *adev = to_amdgpu_device(mgr);
--	uint64_t vis_usage = 0, mem_bytes, max_bytes;
--	struct ttm_range_mgr_node *node;
--	struct drm_mm *mm = &mgr->mm;
--	enum drm_mm_insert_mode mode;
--	unsigned i;
-+	struct amdgpu_vram_mgr_resource *vres;
-+	u64 size, remaining_size, lpfn, fpfn;
-+	struct drm_buddy *mm = &mgr->mm;
-+	struct drm_buddy_block *block;
-+	unsigned long pages_per_block;
- 	int r;
- 
--	lpfn = place->lpfn;
-+	lpfn = place->lpfn << PAGE_SHIFT;
- 	if (!lpfn)
--		lpfn = man->size >> PAGE_SHIFT;
-+		lpfn = man->size;
-+
-+	fpfn = place->fpfn << PAGE_SHIFT;
- 
- 	max_bytes = adev->gmc.mc_vram_size;
- 	if (tbo->type != ttm_bo_type_kernel)
- 		max_bytes -= AMDGPU_VM_RESERVED_VRAM;
- 
--	mem_bytes = tbo->base.size;
- 	if (place->flags & TTM_PL_FLAG_CONTIGUOUS) {
--		pages_per_node = ~0ul;
--		num_nodes = 1;
-+		pages_per_block = ~0ul;
- 	} else {
- #ifdef CONFIG_TRANSPARENT_HUGEPAGE
--		pages_per_node = HPAGE_PMD_NR;
-+		pages_per_block = HPAGE_PMD_NR;
- #else
- 		/* default to 2MB */
--		pages_per_node = 2UL << (20UL - PAGE_SHIFT);
-+		pages_per_block = 2UL << (20UL - PAGE_SHIFT);
- #endif
--		pages_per_node = max_t(uint32_t, pages_per_node,
--				       tbo->page_alignment);
--		num_nodes = DIV_ROUND_UP_ULL(PFN_UP(mem_bytes), pages_per_node);
-+		pages_per_block = max_t(uint32_t, pages_per_block,
-+					tbo->page_alignment);
- 	}
- 
--	node = kvmalloc(struct_size(node, mm_nodes, num_nodes),
--			GFP_KERNEL | __GFP_ZERO);
--	if (!node)
-+	vres = kzalloc(sizeof(*vres), GFP_KERNEL);
-+	if (!vres)
- 		return -ENOMEM;
- 
--	ttm_resource_init(tbo, place, &node->base);
-+	ttm_resource_init(tbo, place, &vres->base);
- 
- 	/* bail out quickly if there's likely not enough VRAM for this BO */
- 	if (ttm_resource_manager_usage(man) > max_bytes) {
-@@ -415,66 +401,130 @@ static int amdgpu_vram_mgr_new(struct ttm_resource_manager *man,
- 		goto error_fini;
- 	}
- 
--	mode = DRM_MM_INSERT_BEST;
-+	INIT_LIST_HEAD(&vres->blocks);
-+
- 	if (place->flags & TTM_PL_FLAG_TOPDOWN)
--		mode = DRM_MM_INSERT_HIGH;
--
--	pages_left = node->base.num_pages;
--
--	/* Limit maximum size to 2GB due to SG table limitations */
--	pages = min(pages_left, 2UL << (30 - PAGE_SHIFT));
--
--	i = 0;
--	spin_lock(&mgr->lock);
--	while (pages_left) {
--		uint32_t alignment = tbo->page_alignment;
--
--		if (pages >= pages_per_node)
--			alignment = pages_per_node;
--
--		r = drm_mm_insert_node_in_range(mm, &node->mm_nodes[i], pages,
--						alignment, 0, place->fpfn,
--						lpfn, mode);
--		if (unlikely(r)) {
--			if (pages > pages_per_node) {
--				if (is_power_of_2(pages))
--					pages = pages / 2;
--				else
--					pages = rounddown_pow_of_two(pages);
--				continue;
-+		vres->flags |= DRM_BUDDY_TOPDOWN_ALLOCATION;
-+
-+	if (fpfn || lpfn != man->size)
-+		/* Allocate blocks in desired range */
-+		vres->flags |= DRM_BUDDY_RANGE_ALLOCATION;
-+
-+	remaining_size = vres->base.num_pages << PAGE_SHIFT;
-+
-+	mutex_lock(&mgr->lock);
-+	while (remaining_size) {
-+		if (tbo->page_alignment)
-+			min_block_size = tbo->page_alignment << PAGE_SHIFT;
-+		else
-+			min_block_size = mgr->default_page_size;
-+
-+		BUG_ON(min_block_size < mm->chunk_size);
-+
-+		/* Limit maximum size to 2GiB due to SG table limitations */
-+		size = min(remaining_size, 2ULL << 30);
-+
-+		if (size >= pages_per_block << PAGE_SHIFT)
-+			min_block_size = pages_per_block << PAGE_SHIFT;
-+
-+		cur_size = size;
-+
-+		if (fpfn + size != place->lpfn << PAGE_SHIFT) {
-+			/*
-+			 * Except for actual range allocation, modify the size and
-+			 * min_block_size conforming to continuous flag enablement
-+			 */
-+			if (place->flags & TTM_PL_FLAG_CONTIGUOUS) {
-+				size = roundup_pow_of_two(size);
-+				min_block_size = size;
-+			/*
-+			 * Modify the size value if size is not
-+			 * aligned with min_block_size
-+			 */
-+			} else if (!IS_ALIGNED(size, min_block_size)) {
-+				size = round_up(size, min_block_size);
- 			}
--			goto error_free;
- 		}
- 
--		vis_usage += amdgpu_vram_mgr_vis_size(adev, &node->mm_nodes[i]);
--		amdgpu_vram_mgr_virt_start(&node->base, &node->mm_nodes[i]);
--		pages_left -= pages;
--		++i;
-+		r = drm_buddy_alloc_blocks(mm, fpfn,
-+					   lpfn,
-+					   size,
-+					   min_block_size,
-+					   &vres->blocks,
-+					   vres->flags);
-+		if (unlikely(r))
-+			goto error_free_blocks;
-+
-+		if (size > remaining_size)
-+			remaining_size = 0;
-+		else
-+			remaining_size -= size;
-+	}
-+	mutex_unlock(&mgr->lock);
-+
-+	if (cur_size != size) {
-+		struct drm_buddy_block *block;
-+		struct list_head *trim_list;
-+		u64 original_size;
-+		LIST_HEAD(temp);
-+
-+		trim_list = &vres->blocks;
-+		original_size = vres->base.num_pages << PAGE_SHIFT;
-+
-+		/*
-+		 * If size value is rounded up to min_block_size, trim the last
-+		 * block to the required size
-+		 */
-+		if (!list_is_singular(&vres->blocks)) {
-+			block = list_last_entry(&vres->blocks, typeof(*block), link);
-+			list_move_tail(&block->link, &temp);
-+			trim_list = &temp;
-+			/*
-+			 * Compute the original_size value by subtracting the
-+			 * last block size with (aligned size - original size)
-+			 */
-+			original_size = amdgpu_vram_mgr_block_size(block) - (size - cur_size);
-+		}
- 
--		if (pages > pages_left)
--			pages = pages_left;
-+		mutex_lock(&mgr->lock);
-+		drm_buddy_block_trim(mm,
-+				     original_size,
-+				     trim_list);
-+		mutex_unlock(&mgr->lock);
-+
-+		if (!list_empty(&temp))
-+			list_splice_tail(trim_list, &vres->blocks);
-+	}
-+
-+	list_for_each_entry(block, &vres->blocks, link)
-+		vis_usage += amdgpu_vram_mgr_vis_size(adev, block);
-+
-+	block = amdgpu_vram_mgr_first_block(&vres->blocks);
-+	if (!block) {
-+		r = -EINVAL;
-+		goto error_fini;
- 	}
--	spin_unlock(&mgr->lock);
- 
--	if (i == 1)
--		node->base.placement |= TTM_PL_FLAG_CONTIGUOUS;
-+	vres->base.start = amdgpu_vram_mgr_block_start(block) >> PAGE_SHIFT;
-+
-+	if (amdgpu_is_vram_mgr_blocks_contiguous(&vres->blocks))
-+		vres->base.placement |= TTM_PL_FLAG_CONTIGUOUS;
- 
- 	if (adev->gmc.xgmi.connected_to_cpu)
--		node->base.bus.caching = ttm_cached;
-+		vres->base.bus.caching = ttm_cached;
- 	else
--		node->base.bus.caching = ttm_write_combined;
-+		vres->base.bus.caching = ttm_write_combined;
- 
- 	atomic64_add(vis_usage, &mgr->vis_usage);
--	*res = &node->base;
-+	*res = &vres->base;
- 	return 0;
- 
--error_free:
--	while (i--)
--		drm_mm_remove_node(&node->mm_nodes[i]);
--	spin_unlock(&mgr->lock);
-+error_free_blocks:
-+	drm_buddy_free_list(mm, &vres->blocks);
-+	mutex_unlock(&mgr->lock);
- error_fini:
--	ttm_resource_fini(man, &node->base);
--	kvfree(node);
-+	ttm_resource_fini(man, &vres->base);
-+	kfree(vres);
- 
- 	return r;
- }
-@@ -490,27 +540,26 @@ static int amdgpu_vram_mgr_new(struct ttm_resource_manager *man,
- static void amdgpu_vram_mgr_del(struct ttm_resource_manager *man,
- 				struct ttm_resource *res)
- {
--	struct ttm_range_mgr_node *node = to_ttm_range_mgr_node(res);
-+	struct amdgpu_vram_mgr_resource *vres = to_amdgpu_vram_mgr_resource(res);
- 	struct amdgpu_vram_mgr *mgr = to_vram_mgr(man);
- 	struct amdgpu_device *adev = to_amdgpu_device(mgr);
-+	struct drm_buddy *mm = &mgr->mm;
-+	struct drm_buddy_block *block;
- 	uint64_t vis_usage = 0;
--	unsigned i, pages;
- 
--	spin_lock(&mgr->lock);
--	for (i = 0, pages = res->num_pages; pages;
--	     pages -= node->mm_nodes[i].size, ++i) {
--		struct drm_mm_node *mm = &node->mm_nodes[i];
-+	mutex_lock(&mgr->lock);
-+	list_for_each_entry(block, &vres->blocks, link)
-+		vis_usage += amdgpu_vram_mgr_vis_size(adev, block);
- 
--		drm_mm_remove_node(mm);
--		vis_usage += amdgpu_vram_mgr_vis_size(adev, mm);
--	}
- 	amdgpu_vram_mgr_do_reserve(man);
--	spin_unlock(&mgr->lock);
-+
-+	drm_buddy_free_list(mm, &vres->blocks);
-+	mutex_unlock(&mgr->lock);
- 
- 	atomic64_sub(vis_usage, &mgr->vis_usage);
- 
- 	ttm_resource_fini(man, res);
--	kvfree(node);
-+	kfree(vres);
- }
- 
- /**
-@@ -542,7 +591,7 @@ int amdgpu_vram_mgr_alloc_sgt(struct amdgpu_device *adev,
- 	if (!*sgt)
- 		return -ENOMEM;
- 
--	/* Determine the number of DRM_MM nodes to export */
-+	/* Determine the number of DRM_BUDDY blocks to export */
- 	amdgpu_res_first(res, offset, length, &cursor);
- 	while (cursor.remaining) {
- 		num_entries++;
-@@ -558,10 +607,10 @@ int amdgpu_vram_mgr_alloc_sgt(struct amdgpu_device *adev,
- 		sg->length = 0;
- 
- 	/*
--	 * Walk down DRM_MM nodes to populate scatterlist nodes
--	 * @note: Use iterator api to get first the DRM_MM node
-+	 * Walk down DRM_BUDDY blocks to populate scatterlist nodes
-+	 * @note: Use iterator api to get first the DRM_BUDDY block
- 	 * and the number of bytes from it. Access the following
--	 * DRM_MM node(s) if more buffer needs to exported
-+	 * DRM_BUDDY block(s) if more buffer needs to exported
- 	 */
- 	amdgpu_res_first(res, offset, length, &cursor);
- 	for_each_sgtable_sg((*sgt), sg, i) {
-@@ -648,13 +697,22 @@ static void amdgpu_vram_mgr_debug(struct ttm_resource_manager *man,
- 				  struct drm_printer *printer)
- {
- 	struct amdgpu_vram_mgr *mgr = to_vram_mgr(man);
-+	struct drm_buddy *mm = &mgr->mm;
-+	struct drm_buddy_block *block;
- 
- 	drm_printf(printer, "  vis usage:%llu\n",
- 		   amdgpu_vram_mgr_vis_usage(mgr));
- 
--	spin_lock(&mgr->lock);
--	drm_mm_print(&mgr->mm, printer);
--	spin_unlock(&mgr->lock);
-+	mutex_lock(&mgr->lock);
-+	drm_printf(printer, "default_page_size: %lluKiB\n",
-+		   mgr->default_page_size >> 10);
-+
-+	drm_buddy_print(mm, printer);
-+
-+	drm_printf(printer, "reserved:\n");
-+	list_for_each_entry(block, &mgr->reserved_pages, link)
-+		drm_buddy_block_print(mm, block, printer);
-+	mutex_unlock(&mgr->lock);
- }
- 
- static const struct ttm_resource_manager_func amdgpu_vram_mgr_func = {
-@@ -674,16 +732,21 @@ int amdgpu_vram_mgr_init(struct amdgpu_device *adev)
- {
- 	struct amdgpu_vram_mgr *mgr = &adev->mman.vram_mgr;
- 	struct ttm_resource_manager *man = &mgr->manager;
-+	int err;
- 
- 	ttm_resource_manager_init(man, &adev->mman.bdev,
- 				  adev->gmc.real_vram_size);
- 
- 	man->func = &amdgpu_vram_mgr_func;
- 
--	drm_mm_init(&mgr->mm, 0, man->size >> PAGE_SHIFT);
--	spin_lock_init(&mgr->lock);
-+	err = drm_buddy_init(&mgr->mm, man->size, PAGE_SIZE);
-+	if (err)
-+		return err;
-+
-+	mutex_init(&mgr->lock);
- 	INIT_LIST_HEAD(&mgr->reservations_pending);
- 	INIT_LIST_HEAD(&mgr->reserved_pages);
-+	mgr->default_page_size = PAGE_SIZE;
- 
- 	ttm_set_driver_manager(&adev->mman.bdev, TTM_PL_VRAM, &mgr->manager);
- 	ttm_resource_manager_set_used(man, true);
-@@ -711,16 +774,16 @@ void amdgpu_vram_mgr_fini(struct amdgpu_device *adev)
- 	if (ret)
- 		return;
- 
--	spin_lock(&mgr->lock);
--	list_for_each_entry_safe(rsv, temp, &mgr->reservations_pending, node)
-+	mutex_lock(&mgr->lock);
-+	list_for_each_entry_safe(rsv, temp, &mgr->reservations_pending, blocks)
- 		kfree(rsv);
- 
--	list_for_each_entry_safe(rsv, temp, &mgr->reserved_pages, node) {
--		drm_mm_remove_node(&rsv->mm_node);
-+	list_for_each_entry_safe(rsv, temp, &mgr->reserved_pages, blocks) {
-+		drm_buddy_free_list(&mgr->mm, &rsv->blocks);
- 		kfree(rsv);
- 	}
--	drm_mm_takedown(&mgr->mm);
--	spin_unlock(&mgr->lock);
-+	drm_buddy_fini(&mgr->mm);
-+	mutex_unlock(&mgr->lock);
- 
- 	ttm_resource_manager_cleanup(man);
- 	ttm_set_driver_manager(&adev->mman.bdev, TTM_PL_VRAM, NULL);
-
-base-commit: bc38e5d45dd513fa384bbedab3c0749f2e46771b
--- 
-2.25.1
-
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogRGVhaywgSW1yZSA8aW1y
+ZS5kZWFrQGludGVsLmNvbT4NCj4gU2VudDogTW9uZGF5LCBBcHJpbCA0LCAyMDIyIDc6MDkgUE0N
+Cj4gVG86IGludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcNCj4gQ2M6IEd1cHRhLCBBbnNo
+dW1hbiA8YW5zaHVtYW4uZ3VwdGFAaW50ZWwuY29tPjsgS2Fob2xhLCBNaWthDQo+IDxtaWthLmth
+aG9sYUBpbnRlbC5jb20+OyBIZWlra2lsYSwgSnVoYS1wZWtrYSA8anVoYS0NCj4gcGVra2EuaGVp
+a2tpbGFAaW50ZWwuY29tPjsgQywgUmFtYWxpbmdhbSA8cmFtYWxpbmdhbS5jQGludGVsLmNvbT4N
+Cj4gU3ViamVjdDogW1BBVENIIDQvNF0gZHJtL2k5MTUvZGcyOiBBZGQgc3VwcG9ydCBmb3IgREcy
+IGNsZWFyIGNvbG9yDQo+IGNvbXByZXNzaW9uDQo+IA0KPiBGcm9tOiBBbnNodW1hbiBHdXB0YSA8
+YW5zaHVtYW4uZ3VwdGFAaW50ZWwuY29tPg0KPiANCj4gREcyIG9ud2FyZHMgZGlzY3JldGUgZ2Z4
+IGhhcyBzdXBwb3J0IGZvciBuZXcgZmxhdCBDQ1MgbWFwcGluZywgd2hpY2ggYnJpbmdzIGluDQo+
+IGRpc3BsYXkgZmVhdHVyZSBpbiB0byBhdm9pZCBBdXggd2FsayBmb3IgY29tcHJlc3NlZCBzdXJm
+YWNlLiBUaGlzIHN1cHBvcnQgYnVpbGQNCj4gb24gdG9wIG9mIEZsYXQgQ0NTIHN1cHBvcnQgYWRk
+ZWQgaW4gWEVIUFNEVi4NCj4gRkxBVCBDQ1Mgc3VyZmFjZSBiYXNlIGFkZHJlc3Mgc2hvdWxkIGJl
+IDY0ayBhbGlnbmVkLCBDb21wcmVzc2VkIGRpc3BsYXlhYmxlDQo+IHN1cmZhY2VzIG11c3QgdXNl
+IHRpbGU0IGZvcm1hdC4NCg0KSU1ITyBjb21taXQgbG9nIHNob3VsZCBhbHNvIGRlc2NyaWJlIGEg
+Yml0IG9mIGRlc2NyaXB0aW9uIGZvciBERzIgQ2xlYXIgY29sb3IuDQpPcmlnaW5hbCBwYXRjaCB3
+YXMgbWVhbnQgdG8gYWRkIEZMQVRfQ0NTIHN1cHBvcnQsIGNvbW1pdCBsb2cgbm90IGZ1bGx5IGFs
+aWducw0Kd2l0aCBjb21taXQgaGVhZGVyLg0KTWF5IGJlIGl0IHdvdWxkIGJlIGdvb2QgaWYgcGF0
+Y2ggYXV0aG9yc2hpcCBjaGFuZ2VzIHRvIHRoZSBERzIgb3JpZ2luYWwgY2xlYXIgY29sb3IgYXV0
+aG9yDQpmb3IgYW55IHJlcXVpcmVkIGZvbGxvdy11cCBsYXRlciA/IA0KPiANCj4gSEFTOiAxNDA3
+ODgwNzg2DQo+IEIuU3BlYyA6IDc2NTUNCj4gQi5TcGVjIDogNTM5MDINCj4gDQo+IHYyOiBNZXJn
+ZSBhbGwgYml0cyByZXF1aXJlZCBmb3IgdGhlIHN1cHBvcnQgb2YgZnVuY3Rpb25hbGl0eSBpbnRv
+IHRoaXMNCj4gICAgIHBhdGNoIGZyb20gdGhlIHBhdGNoIGFkZGluZyB0aGUgY29ycmVzcG9uZGlu
+ZyBtb2RpZmllci4NCj4gDQo+IENjOiBNaWthIEthaG9sYSA8bWlrYS5rYWhvbGFAaW50ZWwuY29t
+Pg0KPiBTaWduZWQtb2ZmLWJ5OiBBbnNodW1hbiBHdXB0YSA8YW5zaHVtYW4uZ3VwdGFAaW50ZWwu
+Y29tPg0KPiBTaWduZWQtb2ZmLWJ5OiBKdWhhLVBla2thIEhlaWtraWzDpCA8anVoYS1wZWtrYS5o
+ZWlra2lsYUBpbnRlbC5jb20+DQo+IFNpZ25lZC1vZmYtYnk6IFJhbWFsaW5nYW0gQyA8cmFtYWxp
+bmdhbS5jQGludGVsLmNvbT4NCj4gU2lnbmVkLW9mZi1ieTogSW1yZSBEZWFrIDxpbXJlLmRlYWtA
+aW50ZWwuY29tPg0KPiAtLS0NCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
+ZGlzcGxheS5jICB8ICA0ICstDQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
+X2ZiLmMgICAgICAgfCA0MCArKysrKysrKysrKysrKy0tLS0tDQo+ICAuLi4vZHJtL2k5MTUvZGlz
+cGxheS9za2xfdW5pdmVyc2FsX3BsYW5lLmMgICAgfCAyNSArKysrKysrKy0tLS0NCj4gIDMgZmls
+ZXMgY2hhbmdlZCwgNTIgaW5zZXJ0aW9ucygrKSwgMTcgZGVsZXRpb25zKC0pDQo+IA0KPiBkaWZm
+IC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMNCj4g
+Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYw0KPiBpbmRleCBl
+ZWUxODVlZDQxYzNlLi5jYTk5N2EwYTA1MTc0IDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0v
+aTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYw0KPiBAQCAtODQ3Nyw3ICs4NDc3LDkgQEAgc3Rh
+dGljIHZvaWQNCj4gaW50ZWxfYXRvbWljX3ByZXBhcmVfcGxhbmVfY2xlYXJfY29sb3JzKHN0cnVj
+dCBpbnRlbF9hdG9taWNfc3RhdGUgKnMNCj4gDQo+ICAJCS8qDQo+ICAJCSAqIFRoZSBsYXlvdXQg
+b2YgdGhlIGZhc3QgY2xlYXIgY29sb3IgdmFsdWUgZXhwZWN0ZWQgYnkgSFcNCj4gLQkJICogKHRo
+ZSBEUk0gQUJJIHJlcXVpcmluZyB0aGlzIHZhbHVlIHRvIGJlIGxvY2F0ZWQgaW4gZmIgYXQgb2Zm
+c2V0DQo+IDAgb2YgcGxhbmUjMik6DQo+ICsJCSAqICh0aGUgRFJNIEFCSSByZXF1aXJpbmcgdGhp
+cyB2YWx1ZSB0byBiZSBsb2NhdGVkIGluIGZiIGF0DQo+ICsJCSAqIG9mZnNldCAwIG9mIGNjIHBs
+YW5lLCBwbGFuZSAjMiBwcmV2aW91cyBnZW5lcmF0aW9ucyBvcg0KPiArCQkgKiBwbGFuZSAjMSBm
+b3IgZmxhdCBjY3MpOg0KPiAgCQkgKiAtIDQgeCA0IGJ5dGVzIHBlci1jaGFubmVsIHZhbHVlDQo+
+ICAJCSAqICAgKGluIHN1cmZhY2UgdHlwZSBzcGVjaWZpYyBmbG9hdC9pbnQgZm9ybWF0IHByb3Zp
+ZGVkIGJ5IHRoZSBmYg0KPiB1c2VyKQ0KPiAgCQkgKiAtIDggYnl0ZXMgbmF0aXZlIGNvbG9yIHZh
+bHVlIHVzZWQgYnkgdGhlIGRpc3BsYXkgZGlmZiAtLWdpdA0KPiBhL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2Rpc3BsYXkvaW50ZWxfZmIuYw0KPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
+aW50ZWxfZmIuYw0KPiBpbmRleCA0NDcwMDNhOTExNjBlLi45ZjVhNmI3OWU5NWI1IDEwMDY0NA0K
+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2ZiLmMNCj4gKysrIGIv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9mYi5jDQo+IEBAIC0xMDcsNiArMTA3
+LDIxIEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgZHJtX2Zvcm1hdF9pbmZvDQo+IGdlbjEyX2Njc19j
+Y19mb3JtYXRzW10gPSB7DQo+ICAJICAuaHN1YiA9IDEsIC52c3ViID0gMSwgLmhhc19hbHBoYSA9
+IHRydWUgfSwgIH07DQo+IA0KPiArc3RhdGljIGNvbnN0IHN0cnVjdCBkcm1fZm9ybWF0X2luZm8g
+Z2VuMTJfZmxhdF9jY3NfY2NfZm9ybWF0c1tdID0gew0KPiArCXsgLmZvcm1hdCA9IERSTV9GT1JN
+QVRfWFJHQjg4ODgsIC5kZXB0aCA9IDI0LCAubnVtX3BsYW5lcyA9IDIsDQo+ICsJICAuY2hhcl9w
+ZXJfYmxvY2sgPSB7IDQsIDAgfSwgLmJsb2NrX3cgPSB7IDEsIDIgfSwgLmJsb2NrX2ggPSB7IDEs
+IDEgfSwNCj4gKwkgIC5oc3ViID0gMSwgLnZzdWIgPSAxLCB9LA0KPiArCXsgLmZvcm1hdCA9IERS
+TV9GT1JNQVRfWEJHUjg4ODgsIC5kZXB0aCA9IDI0LCAubnVtX3BsYW5lcyA9IDIsDQo+ICsJICAu
+Y2hhcl9wZXJfYmxvY2sgPSB7IDQsIDAgfSwgLmJsb2NrX3cgPSB7IDEsIDIgfSwgLmJsb2NrX2gg
+PSB7IDEsIDEgfSwNCj4gKwkgIC5oc3ViID0gMSwgLnZzdWIgPSAxLCB9LA0KPiArCXsgLmZvcm1h
+dCA9IERSTV9GT1JNQVRfQVJHQjg4ODgsIC5kZXB0aCA9IDMyLCAubnVtX3BsYW5lcyA9IDIsDQo+
+ICsJICAuY2hhcl9wZXJfYmxvY2sgPSB7IDQsIDAgfSwgLmJsb2NrX3cgPSB7IDEsIDIgfSwgLmJs
+b2NrX2ggPSB7IDEsIDEgfSwNCj4gKwkgIC5oc3ViID0gMSwgLnZzdWIgPSAxLCAuaGFzX2FscGhh
+ID0gdHJ1ZSB9LA0KPiArCXsgLmZvcm1hdCA9IERSTV9GT1JNQVRfQUJHUjg4ODgsIC5kZXB0aCA9
+IDMyLCAubnVtX3BsYW5lcyA9IDIsDQo+ICsJICAuY2hhcl9wZXJfYmxvY2sgPSB7IDQsIDAgfSwg
+LmJsb2NrX3cgPSB7IDEsIDIgfSwgLmJsb2NrX2ggPSB7IDEsIDEgfSwNCj4gKwkgIC5oc3ViID0g
+MSwgLnZzdWIgPSAxLCAuaGFzX2FscGhhID0gdHJ1ZSB9LCB9Ow0KPiArDQo+ICBzdHJ1Y3QgaW50
+ZWxfbW9kaWZpZXJfZGVzYyB7DQo+ICAJdTY0IG1vZGlmaWVyOw0KPiAgCXN0cnVjdCB7DQo+IEBA
+IC0xNDQsNiArMTU5LDE0IEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgaW50ZWxfbW9kaWZpZXJfZGVz
+Yw0KPiBpbnRlbF9tb2RpZmllcnNbXSA9IHsNCj4gIAkJLm1vZGlmaWVyID0gSTkxNV9GT1JNQVRf
+TU9EXzRfVElMRURfREcyX01DX0NDUywNCj4gIAkJLmRpc3BsYXlfdmVyID0geyAxMywgMTMgfSwN
+Cj4gIAkJLnBsYW5lX2NhcHMgPSBJTlRFTF9QTEFORV9DQVBfVElMSU5HXzQgfA0KPiBJTlRFTF9Q
+TEFORV9DQVBfQ0NTX01DLA0KPiArCX0sIHsNCj4gKwkJLm1vZGlmaWVyID0gSTkxNV9GT1JNQVRf
+TU9EXzRfVElMRURfREcyX1JDX0NDU19DQywNCj4gKwkJLmRpc3BsYXlfdmVyID0geyAxMywgMTMg
+fSwNCj4gKwkJLnBsYW5lX2NhcHMgPSBJTlRFTF9QTEFORV9DQVBfVElMSU5HXzQgfA0KPiBJTlRF
+TF9QTEFORV9DQVBfQ0NTX1JDX0NDLA0KPiArDQo+ICsJCS5jY3MuY2NfcGxhbmVzID0gQklUKDEp
+LA0KPiArDQo+ICsJCUZPUk1BVF9PVkVSUklERShnZW4xMl9mbGF0X2Njc19jY19mb3JtYXRzKSwN
+Cj4gIAl9LCB7DQo+ICAJCS5tb2RpZmllciA9IEk5MTVfRk9STUFUX01PRF80X1RJTEVEX0RHMl9S
+Q19DQ1MsDQo+ICAJCS5kaXNwbGF5X3ZlciA9IHsgMTMsIDEzIH0sDQo+IEBAIC0zOTMsMTcgKzQx
+NiwxMyBAQCBib29sIGludGVsX2ZiX3BsYW5lX3N1cHBvcnRzX21vZGlmaWVyKHN0cnVjdA0KPiBp
+bnRlbF9wbGFuZSAqcGxhbmUsIHU2NCBtb2RpZmllcikgIHN0YXRpYyBib29sIGZvcm1hdF9pc195
+dXZfc2VtaXBsYW5hcihjb25zdA0KPiBzdHJ1Y3QgaW50ZWxfbW9kaWZpZXJfZGVzYyAqbWQsDQo+
+ICAJCQkJICAgICBjb25zdCBzdHJ1Y3QgZHJtX2Zvcm1hdF9pbmZvICppbmZvKSAgew0KPiAtCWlu
+dCB5dXZfcGxhbmVzOw0KPiAtDQo+ICAJaWYgKCFpbmZvLT5pc195dXYpDQo+ICAJCXJldHVybiBm
+YWxzZTsNCj4gDQo+IC0JaWYgKHBsYW5lX2NhcHNfY29udGFpbl9hbnkobWQtPnBsYW5lX2NhcHMs
+DQo+IElOVEVMX1BMQU5FX0NBUF9DQ1NfTUFTSykpDQo+IC0JCXl1dl9wbGFuZXMgPSA0Ow0KPiAr
+CWlmIChod2VpZ2h0OChtZC0+Y2NzLnBsYW5hcl9hdXhfcGxhbmVzKSA9PSAyKQ0KPiArCQlyZXR1
+cm4gaW5mby0+bnVtX3BsYW5lcyA9PSA0Ow0KPiAgCWVsc2UNCj4gLQkJeXV2X3BsYW5lcyA9IDI7
+DQo+IC0NCj4gLQlyZXR1cm4gaW5mby0+bnVtX3BsYW5lcyA9PSB5dXZfcGxhbmVzOw0KPiArCQly
+ZXR1cm4gaW5mby0+bnVtX3BsYW5lcyA9PSAyOw0KPiAgfQ0KPiANCj4gIC8qKg0KPiBAQCAtNTI4
+LDEyICs1NDcsMTMgQEAgc3RhdGljIHVuc2lnbmVkIGludCBnZW4xMl9jY3NfYXV4X3N0cmlkZShz
+dHJ1Y3QNCj4gaW50ZWxfZnJhbWVidWZmZXIgKmZiLCBpbnQgY2NzX3ANCj4gDQo+ICBpbnQgc2ts
+X21haW5fdG9fYXV4X3BsYW5lKGNvbnN0IHN0cnVjdCBkcm1fZnJhbWVidWZmZXIgKmZiLCBpbnQg
+bWFpbl9wbGFuZSkgIHsNCj4gKwljb25zdCBzdHJ1Y3QgaW50ZWxfbW9kaWZpZXJfZGVzYyAqbWQg
+PSBsb29rdXBfbW9kaWZpZXIoZmItPm1vZGlmaWVyKTsNCj4gIAlzdHJ1Y3QgZHJtX2k5MTVfcHJp
+dmF0ZSAqaTkxNSA9IHRvX2k5MTUoZmItPmRldik7DQo+IA0KPiAtCWlmIChpbnRlbF9mYl9pc19j
+Y3NfbW9kaWZpZXIoZmItPm1vZGlmaWVyKSkNCj4gKwlpZiAobWQtPmNjcy5wYWNrZWRfYXV4X3Bs
+YW5lcyB8IG1kLT5jY3MucGxhbmFyX2F1eF9wbGFuZXMpDQo+ICAJCXJldHVybiBtYWluX3RvX2Nj
+c19wbGFuZShmYiwgbWFpbl9wbGFuZSk7DQo+ICAJZWxzZSBpZiAoRElTUExBWV9WRVIoaTkxNSkg
+PCAxMSAmJg0KPiAtCQkgaW50ZWxfZm9ybWF0X2luZm9faXNfeXV2X3NlbWlwbGFuYXIoZmItPmZv
+cm1hdCwgZmItDQo+ID5tb2RpZmllcikpDQo+ICsJCSBmb3JtYXRfaXNfeXV2X3NlbWlwbGFuYXIo
+bWQsIGZiLT5mb3JtYXQpKQ0KPiAgCQlyZXR1cm4gMTsNCj4gIAllbHNlDQo+ICAJCXJldHVybiAw
+Ow0KPiBAQCAtNTU5LDYgKzU3OSw3IEBAIGludGVsX3RpbGVfd2lkdGhfYnl0ZXMoY29uc3Qgc3Ry
+dWN0IGRybV9mcmFtZWJ1ZmZlcg0KPiAqZmIsIGludCBjb2xvcl9wbGFuZSkNCj4gIAkJZWxzZQ0K
+PiAgCQkJcmV0dXJuIDUxMjsNCj4gIAljYXNlIEk5MTVfRk9STUFUX01PRF80X1RJTEVEX0RHMl9S
+Q19DQ1M6DQo+ICsJY2FzZSBJOTE1X0ZPUk1BVF9NT0RfNF9USUxFRF9ERzJfUkNfQ0NTX0NDOg0K
+PiAgCWNhc2UgSTkxNV9GT1JNQVRfTU9EXzRfVElMRURfREcyX01DX0NDUzoNCj4gIAljYXNlIEk5
+MTVfRk9STUFUX01PRF80X1RJTEVEOg0KPiAgCQkvKg0KPiBAQCAtNzYzLDYgKzc4NCw3IEBAIHVu
+c2lnbmVkIGludCBpbnRlbF9zdXJmX2FsaWdubWVudChjb25zdCBzdHJ1Y3QNCj4gZHJtX2ZyYW1l
+YnVmZmVyICpmYiwNCj4gIAljYXNlIEk5MTVfRk9STUFUX01PRF9ZZl9USUxFRDoNCj4gIAkJcmV0
+dXJuIDEgKiAxMDI0ICogMTAyNDsNCj4gIAljYXNlIEk5MTVfRk9STUFUX01PRF80X1RJTEVEX0RH
+Ml9SQ19DQ1M6DQo+ICsJY2FzZSBJOTE1X0ZPUk1BVF9NT0RfNF9USUxFRF9ERzJfUkNfQ0NTX0ND
+Og0KPiAgCWNhc2UgSTkxNV9GT1JNQVRfTU9EXzRfVElMRURfREcyX01DX0NDUzoNCj4gIAkJcmV0
+dXJuIDE2ICogMTAyNDsNCj4gIAlkZWZhdWx0Og0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZGlzcGxheS9za2xfdW5pdmVyc2FsX3BsYW5lLmMNCj4gYi9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9kaXNwbGF5L3NrbF91bml2ZXJzYWxfcGxhbmUuYw0KPiBpbmRleCBiOTM5YzUwM2Jj
+NmZmLi5jYWEwMzMyNGE3MzNhIDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
+aXNwbGF5L3NrbF91bml2ZXJzYWxfcGxhbmUuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkx
+NS9kaXNwbGF5L3NrbF91bml2ZXJzYWxfcGxhbmUuYw0KPiBAQCAtNzgxLDYgKzc4MSw4IEBAIHN0
+YXRpYyB1MzIgc2tsX3BsYW5lX2N0bF90aWxpbmcodTY0IGZiX21vZGlmaWVyKQ0KPiAgCQlyZXR1
+cm4gUExBTkVfQ1RMX1RJTEVEXzQgfA0KPiAgCQkJUExBTkVfQ1RMX01FRElBX0RFQ09NUFJFU1NJ
+T05fRU5BQkxFIHwNCj4gIAkJCVBMQU5FX0NUTF9DTEVBUl9DT0xPUl9ESVNBQkxFOw0KPiArCWNh
+c2UgSTkxNV9GT1JNQVRfTU9EXzRfVElMRURfREcyX1JDX0NDU19DQzoNCj4gKwkJcmV0dXJuIFBM
+QU5FX0NUTF9USUxFRF80IHwNCj4gUExBTkVfQ1RMX1JFTkRFUl9ERUNPTVBSRVNTSU9OX0VOQUJM
+RTsNCj4gIAljYXNlIEk5MTVfRk9STUFUX01PRF9ZX1RJTEVEX0NDUzoNCj4gIAljYXNlIEk5MTVf
+Rk9STUFUX01PRF9ZX1RJTEVEX0dFTjEyX1JDX0NDU19DQzoNCj4gIAkJcmV0dXJuIFBMQU5FX0NU
+TF9USUxFRF9ZIHwNCj4gUExBTkVfQ1RMX1JFTkRFUl9ERUNPTVBSRVNTSU9OX0VOQUJMRTsNCj4g
+QEAgLTEyMjgsOCArMTIzMCwxMCBAQCBpY2xfcGxhbmVfdXBkYXRlX25vYXJtKHN0cnVjdCBpbnRl
+bF9wbGFuZSAqcGxhbmUsDQo+ICAJCQkJICB1cHBlcl8zMl9iaXRzKHBsYW5lX3N0YXRlLT5jY3Zh
+bCkpOw0KPiAgCX0NCj4gDQo+IC0JaW50ZWxfZGVfd3JpdGVfZncoZGV2X3ByaXYsIFBMQU5FX0FV
+WF9ESVNUKHBpcGUsIHBsYW5lX2lkKSwNCj4gLQkJCSAgc2tsX3BsYW5lX2F1eF9kaXN0KHBsYW5l
+X3N0YXRlLCBjb2xvcl9wbGFuZSkpOw0KPiArCS8qIEZMQVQgQ0NTIGRvZXNuJ3QgbmVlZCB0byBw
+cm9ncmFtIEFVWF9ESVNUICovDQo+ICsJaWYgKCFIQVNfRkxBVF9DQ1MoZGV2X3ByaXYpKQ0KPiAr
+CQlpbnRlbF9kZV93cml0ZV9mdyhkZXZfcHJpdiwgUExBTkVfQVVYX0RJU1QocGlwZSwgcGxhbmVf
+aWQpLA0KPiArCQkJCSAgc2tsX3BsYW5lX2F1eF9kaXN0KHBsYW5lX3N0YXRlLCBjb2xvcl9wbGFu
+ZSkpOw0KPiANCj4gIAlpZiAoaWNsX2lzX2hkcl9wbGFuZShkZXZfcHJpdiwgcGxhbmVfaWQpKQ0K
+PiAgCQlpbnRlbF9kZV93cml0ZV9mdyhkZXZfcHJpdiwgUExBTkVfQ1VTX0NUTChwaXBlLCBwbGFu
+ZV9pZCksDQo+IEBAIC0xNjI5LDkgKzE2MzMsMTAgQEAgc3RhdGljIGludCBza2xfY2hlY2tfbWFp
+bl9zdXJmYWNlKHN0cnVjdA0KPiBpbnRlbF9wbGFuZV9zdGF0ZSAqcGxhbmVfc3RhdGUpDQo+IA0K
+PiAgCS8qDQo+ICAJICogQ0NTIEFVWCBzdXJmYWNlIGRvZXNuJ3QgaGF2ZSBpdHMgb3duIHgveSBv
+ZmZzZXRzLCB3ZSBtdXN0IG1ha2Ugc3VyZQ0KPiAtCSAqIHRoZXkgbWF0Y2ggd2l0aCB0aGUgbWFp
+biBzdXJmYWNlIHgveSBvZmZzZXRzLg0KPiArCSAqIHRoZXkgbWF0Y2ggd2l0aCB0aGUgbWFpbiBz
+dXJmYWNlIHgveSBvZmZzZXRzLiBPbiBERzINCj4gKwkgKiB0aGVyZSdzIG5vIGF1eCBwbGFuZSBv
+biBmYiBzbyBza2lwIHRoaXMgY2hlY2tpbmcuDQo+ICAJICovDQo+IC0JaWYgKGludGVsX2ZiX2lz
+X2Njc19tb2RpZmllcihmYi0+bW9kaWZpZXIpKSB7DQo+ICsJaWYgKGludGVsX2ZiX2lzX2Njc19t
+b2RpZmllcihmYi0+bW9kaWZpZXIpICYmIGF1eF9wbGFuZSkgew0KPiAgCQl3aGlsZSAoIXNrbF9j
+aGVja19tYWluX2Njc19jb29yZGluYXRlcyhwbGFuZV9zdGF0ZSwgeCwgeSwNCj4gIAkJCQkJCSAg
+ICAgICBvZmZzZXQsIGF1eF9wbGFuZSkpIHsNCj4gIAkJCWlmIChvZmZzZXQgPT0gMCkNCj4gQEAg
+LTE2NzUsNiArMTY4MCw4IEBAIHN0YXRpYyBpbnQgc2tsX2NoZWNrX252MTJfYXV4X3N1cmZhY2Uo
+c3RydWN0DQo+IGludGVsX3BsYW5lX3N0YXRlICpwbGFuZV9zdGF0ZSkNCj4gIAljb25zdCBzdHJ1
+Y3QgZHJtX2ZyYW1lYnVmZmVyICpmYiA9IHBsYW5lX3N0YXRlLT5ody5mYjsNCj4gIAl1bnNpZ25l
+ZCBpbnQgcm90YXRpb24gPSBwbGFuZV9zdGF0ZS0+aHcucm90YXRpb247DQo+ICAJaW50IHV2X3Bs
+YW5lID0gMTsNCj4gKwlpbnQgY2NzX3BsYW5lID0gaW50ZWxfZmJfaXNfY2NzX21vZGlmaWVyKGZi
+LT5tb2RpZmllcikgPw0KPiArCQkJc2tsX21haW5fdG9fYXV4X3BsYW5lKGZiLCB1dl9wbGFuZSkg
+OiAwOw0KPiAgCWludCBtYXhfd2lkdGggPSBpbnRlbF9wbGFuZV9tYXhfd2lkdGgocGxhbmUsIGZi
+LCB1dl9wbGFuZSwgcm90YXRpb24pOw0KPiAgCWludCBtYXhfaGVpZ2h0ID0gaW50ZWxfcGxhbmVf
+bWF4X2hlaWdodChwbGFuZSwgZmIsIHV2X3BsYW5lLCByb3RhdGlvbik7DQo+ICAJaW50IHggPSBw
+bGFuZV9zdGF0ZS0+dWFwaS5zcmMueDEgPj4gMTc7IEBAIC0xNjk1LDggKzE3MDIsNyBAQCBzdGF0
+aWMNCj4gaW50IHNrbF9jaGVja19udjEyX2F1eF9zdXJmYWNlKHN0cnVjdCBpbnRlbF9wbGFuZV9z
+dGF0ZSAqcGxhbmVfc3RhdGUpDQo+ICAJb2Zmc2V0ID0gaW50ZWxfcGxhbmVfY29tcHV0ZV9hbGln
+bmVkX29mZnNldCgmeCwgJnksDQo+ICAJCQkJCQkgICAgcGxhbmVfc3RhdGUsIHV2X3BsYW5lKTsN
+Cj4gDQo+IC0JaWYgKGludGVsX2ZiX2lzX2Njc19tb2RpZmllcihmYi0+bW9kaWZpZXIpKSB7DQo+
+IC0JCWludCBjY3NfcGxhbmUgPSBtYWluX3RvX2Njc19wbGFuZShmYiwgdXZfcGxhbmUpOw0KPiAr
+CWlmIChjY3NfcGxhbmUpIHsNCj4gIAkJdTMyIGF1eF9vZmZzZXQgPSBwbGFuZV9zdGF0ZS0NCj4g
+PnZpZXcuY29sb3JfcGxhbmVbY2NzX3BsYW5lXS5vZmZzZXQ7DQo+ICAJCXUzMiBhbGlnbm1lbnQg
+PSBpbnRlbF9zdXJmX2FsaWdubWVudChmYiwgdXZfcGxhbmUpOw0KPiANCj4gQEAgLTI0MzgsMTAg
+KzI0NDQsMTUgQEAgc2tsX2dldF9pbml0aWFsX3BsYW5lX2NvbmZpZyhzdHJ1Y3QgaW50ZWxfY3J0
+YyAqY3J0YywNCj4gIAkJYnJlYWs7DQo+ICAJY2FzZSBQTEFORV9DVExfVElMRURfWUY6IC8qIGFr
+YSBQTEFORV9DVExfVElMRURfNCBvbiBYRV9MUEQrICovDQo+ICAJCWlmIChIQVNfNFRJTEUoZGV2
+X3ByaXYpKSB7DQo+IC0JCQlpZiAodmFsICYNCj4gUExBTkVfQ1RMX1JFTkRFUl9ERUNPTVBSRVNT
+SU9OX0VOQUJMRSkNCj4gKwkJCXUzMiByY19tYXNrID0NCj4gUExBTkVfQ1RMX1JFTkRFUl9ERUNP
+TVBSRVNTSU9OX0VOQUJMRSB8DQo+ICsJCQkJICAgICAgUExBTkVfQ1RMX0NMRUFSX0NPTE9SX0RJ
+U0FCTEU7DQo+ICsNCj4gKwkJCWlmICgodmFsICYgcmNfbWFzaykgPT0gcmNfbWFzaykNCj4gIAkJ
+CQlmYi0+bW9kaWZpZXIgPQ0KPiBJOTE1X0ZPUk1BVF9NT0RfNF9USUxFRF9ERzJfUkNfQ0NTOw0K
+PiAgCQkJZWxzZSBpZiAodmFsICYNCj4gUExBTkVfQ1RMX01FRElBX0RFQ09NUFJFU1NJT05fRU5B
+QkxFKQ0KPiAgCQkJCWZiLT5tb2RpZmllciA9DQo+IEk5MTVfRk9STUFUX01PRF80X1RJTEVEX0RH
+Ml9NQ19DQ1M7DQo+ICsJCQllbHNlIGlmICh2YWwgJg0KPiBQTEFORV9DVExfUkVOREVSX0RFQ09N
+UFJFU1NJT05fRU5BQkxFKQ0KPiArCQkJCWZiLT5tb2RpZmllciA9DQo+IEk5MTVfRk9STUFUX01P
+RF80X1RJTEVEX0RHMl9SQ19DQ1NfQ0M7DQo+ICAJCQllbHNlDQo+ICAJCQkJZmItPm1vZGlmaWVy
+ID0gSTkxNV9GT1JNQVRfTU9EXzRfVElMRUQ7DQo+ICAJCX0gZWxzZSB7DQo+IC0tDQo+IDIuMzAu
+Mg0KDQo=
