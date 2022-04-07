@@ -2,52 +2,152 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CEBC4F7CA4
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Apr 2022 12:23:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 994E34F7CA9
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Apr 2022 12:24:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA55210E0B7;
-	Thu,  7 Apr 2022 10:23:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2B8D10E9B5;
+	Thu,  7 Apr 2022 10:24:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EEB6A10E0B7
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 Apr 2022 10:23:45 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 59D4610E9A7;
+ Thu,  7 Apr 2022 10:24:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649327026; x=1680863026;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=DvddDO3Y43QQMZIufWJ3+DAf26+WyzZwxG7JEpwGlhk=;
- b=CEnmq1xVjMCQFbl5J09Uzsibl724aQz7/rjufJn6fQwrBofBxin+IVyb
- 9CzMe1aIs9tgnVnodrcHZ49/8bO2szpqhMmp6S03B0zcUodklrE503GNP
- r9zUU/X8eMM/GKqMxn9wbI5d6aacT2Ta03q2LpDC3lI6CqEAYKfZ2mMkK
- IxhnTidjBEmq4vn781f0DPsC/8uR8Ha+5paCMhBmjTvHTUlm5IGDjXYF7
- qX7hKs/3EGppsyMa+T6LZN+/1ASU1bJWvqFtiUF7+qTp+jSe5eYsw7HSR
- FNTmTCdO6ohE2ug8F7xoZd/v5BZ2hLENTd2ND0SDf60NRFagDrNqyX+lv w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10309"; a="260979443"
-X-IronPort-AV: E=Sophos;i="5.90,241,1643702400"; d="scan'208";a="260979443"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2022 03:23:45 -0700
-X-IronPort-AV: E=Sophos;i="5.90,241,1643702400"; d="scan'208";a="722904578"
-Received: from kgibala-mobl.ger.corp.intel.com (HELO localhost)
- ([10.249.142.48])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2022 03:23:43 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220406133817.30652-1-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220405173410.11436-3-ville.syrjala@linux.intel.com>
- <20220406133817.30652-1-ville.syrjala@linux.intel.com>
-Date: Thu, 07 Apr 2022 13:23:38 +0300
-Message-ID: <87k0c15h05.fsf@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+ t=1649327063; x=1680863063;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-id:content-transfer-encoding: mime-version;
+ bh=oM0GNQX9i3BRLqiKlFFwCHVWdM9dT89rE8xOAKh7r30=;
+ b=hhSol9tQ28nvlSXJtShVelR7ZCcbtwSobJHM4REaxlJknxm4CxTmdRz1
+ aGBvp3od1js92CygMywoprk1BI498PPGkJIaojB12Vvo/fN2tC42fP7y7
+ 8j1VznORZnJleHgw+V3cKtvZFGo/jDjMo5TKLxjjT7Ns+qU8062BsveQI
+ c02N6ZbFWFDgzT92rmAp/17oi52Gh4BC5qPDJikGuM2UFCjgpclqy2tQJ
+ p7S3tcLXk2j4MjYLHlGkW1WKzoDEaDAKyy6U1DuCE85PQFtztrHUqZrHS
+ 1TnqHxsusMXnfy9HrtIlir4Rs1az2jTrgLrvb3+RMA/LY8FzNwJJWAKmA Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10309"; a="261463318"
+X-IronPort-AV: E=Sophos;i="5.90,241,1643702400"; d="scan'208";a="261463318"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2022 03:24:14 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,241,1643702400"; d="scan'208";a="652764862"
+Received: from orsmsx605.amr.corp.intel.com ([10.22.229.18])
+ by fmsmga002.fm.intel.com with ESMTP; 07 Apr 2022 03:24:13 -0700
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX605.amr.corp.intel.com (10.22.229.18) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27; Thu, 7 Apr 2022 03:24:12 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27; Thu, 7 Apr 2022 03:24:12 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27 via Frontend Transport; Thu, 7 Apr 2022 03:24:12 -0700
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.168)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2308.27; Thu, 7 Apr 2022 03:24:12 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=cNKcI45734UymGLB22rGm4JEa6Yuw2S9fepyRZH4IMb19zlpjXYhJvUkq4ZYJjlTCs67MkRVdhdijN7Xgv3b1GOwVcRXherYXZ8sspwIOSPHNnUuEl94NdUpjyeHu659XXAzw4CeRTH/pQkAS2RQFtQsA65ZJJkEbL6+/LzoN+g8IARIG7HvMPAEpCxRVs3/f+VmlcH6XXReL7HxYnrt9JF/QzO3/zJadobrNZZh0ErDv/OipoAs4l49AxYuLFI8C6VsFZTrjM4EoRd5IKK95hB3W/x6eDR5unohFoi4wDJD0m5WlRV7OiLmcHMlWqfsUMugmB6BCZF1d5zH19FMyA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=oM0GNQX9i3BRLqiKlFFwCHVWdM9dT89rE8xOAKh7r30=;
+ b=IX4X+peVKYtIRtiTwxvt6IXm2q/0V+ZZ5JMjgMjQnAShlDkw4Rm+r1LkhBKO296dsXMnLjDqG03FVZYRborICyko19Ov3B5lJ0YVb9AJRE3trwixq0uqW37/qpElx55KS7ClAkMY6dGAQwOivRHFJCdxj8XPkS32tNOh2NX98RNtnneibS7Gglr0VAU5hKU7/+KF9K9fckcoWSdd1GJi8Yubpk5lsHklmtgxupJ5A2Sr+Rp7UvUr5vff7U+khRa2XaFHKhyUmREvF9BszFqHBnqpAWoU0Kgc/K10/Z+MS+VzocVXGudvGzD6iFA2tg9aO3y27ZU2EvXFI24pqHU/6w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DM4PR11MB5549.namprd11.prod.outlook.com (2603:10b6:5:388::7) by
+ SN6PR11MB3181.namprd11.prod.outlook.com (2603:10b6:805:c3::29) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5123.31; Thu, 7 Apr 2022 10:24:10 +0000
+Received: from DM4PR11MB5549.namprd11.prod.outlook.com
+ ([fe80::e5b8:93eb:e06b:f1ab]) by DM4PR11MB5549.namprd11.prod.outlook.com
+ ([fe80::e5b8:93eb:e06b:f1ab%5]) with mapi id 15.20.5144.022; Thu, 7 Apr 2022
+ 10:24:10 +0000
+From: "Wang, Zhi A" <zhi.a.wang@intel.com>
+To: Christoph Hellwig <hch@lst.de>, Zhi Wang <zhi.wang.linux@gmail.com>
+Thread-Topic: [PATCH v9 1/3] i915/gvt: Separate the MMIO tracking table from
+ GVT-g
+Thread-Index: AQHYSk/vDxh6otQMi0KsvRqKHUKM56zkGD+AgAAmXYA=
+Date: Thu, 7 Apr 2022 10:24:10 +0000
+Message-ID: <25f11f25-ef51-df22-fa16-620f9f2b7f53@intel.com>
+References: <20220407071945.72148-1-zhi.a.wang@intel.com>
+ <20220407071945.72148-2-zhi.a.wang@intel.com> <20220407080651.GA16455@lst.de>
+In-Reply-To: <20220407080651.GA16455@lst.de>
+Accept-Language: en-FI, en-US
+Content-Language: aa
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 148b3e96-7122-4104-143d-08da1880c162
+x-ms-traffictypediagnostic: SN6PR11MB3181:EE_
+x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+x-microsoft-antispam-prvs: <SN6PR11MB3181E75D697BD0A3E16D2401CAE69@SN6PR11MB3181.namprd11.prod.outlook.com>
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: P32f07oaXG3NYfAVZDqsterVz5VOZXtjVaWFwk/L0gEUxbHkVZWcMpigyZHs1xPh4LykhXMfmqrNiR7vEPWRW+x82gZxtOJ78674RcuJsKRdKQxQiZ0lZuSaxwgpGVBVXaYw8M5rURUD1Aeo6JaD+fzHtNu7pt9XTr6T1eG/8zc7WrrKx/b1YOPZdPsRL248U730emvYOy+DTNG3ZNWiqZC9hJEvv9jmt4zKJ2uR4G8mJLCxgssF+8KlM3IH+WvJ2FZjTVQiUX8EDoEqgQTsC3l6e6zpRzRgdAN0HpTCn0F/ATw8uYWXnb7KYY+dNEmQRTgdMIf3JLPuat0vj8DLrwC/oX8OI23hVypZCXdJ7Hi2kSMqSUqQeK3Se269tX1lwKim9bhECp4pwdBYusiZ+9dLHRarXz2T6n1IauePvo86dlud6Se/JlbZvwEmDzm9luIYdFP5zdWgVigKP74bP7viSHesKOoR5pxQssrvM4GRhTwfk2lMI83HpBFgwnjfHfz0Q+po+h+zhGddnaf+BcuPTRW1On3e5l19Amf9uzLSfK5hIUMpXTXENn2xK2RFUSVMYyinFEVpHE4K5fvO4zEZt462SkIWaJuKV+eiC7gYFlAcTjsbuhZpaKIdCsXlwGY5Q0tx1cLE7BkCevGv5O0xJrDpsLIBcPurL7WQ4Q6vECc9L7RRxtDd6uKKvDtEQJjNmVFnE756kKFKL7jr3ziQ2qMbkO6qsBasKyrVzoFqO8R0Uy8rRyrmbYkAPCH8HBoSZueWWXWHcIWu3SAtMg==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5549.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230001)(366004)(31696002)(86362001)(82960400001)(38100700002)(122000001)(38070700005)(316002)(64756008)(8676002)(76116006)(91956017)(4326008)(66556008)(66476007)(66446008)(66946007)(110136005)(54906003)(8936002)(4744005)(6486002)(53546011)(186003)(26005)(2616005)(6512007)(6506007)(71200400001)(508600001)(7416002)(5660300002)(36756003)(31686004)(2906002)(45980500001)(43740500002);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?Windows-1252?Q?iZnFaNas9T1XFWGRxIwhPnPmn29On1jA74umwgltSIoGIdtQULgdUDVm?=
+ =?Windows-1252?Q?VzZQrnjAkyHukEHmqv29r6AjgMWUTyTj2env/vhy1kAGwOgjd9uKG8sR?=
+ =?Windows-1252?Q?mtzJukZ7zLLZ0FaFS1DjHHSDC2xlfRH3nfA+ElRvuGvaAzYYFqErwxHf?=
+ =?Windows-1252?Q?dapoP/VzQO8splJyDJYPacdtf9yhDDSnucU+Cgjhoslt20QJRsLdaEgo?=
+ =?Windows-1252?Q?7s7Gmo7JymtDDTu4jbf69ycklpu+fTyMzEjaHsY2FLgpOgXf2Fm3FOh/?=
+ =?Windows-1252?Q?ycEfFAmiGcfAPTPRUr0mL1kIjW9t1qX+luTCSQLbKbg6sl2lRlctF4E/?=
+ =?Windows-1252?Q?WV6MrBJWHcW6Q7aFqxh1nNmPJco1XNoWU7DN4Ia6ov4pxoqgDBygw0Mi?=
+ =?Windows-1252?Q?K2X7XUZ4dBioMejJhJ4+lmkZ5DGb+KZ0KA3p/XuHp27yDYCeKRIxb8ZQ?=
+ =?Windows-1252?Q?WyTmFLqr3yBoDs/UcO/rcHdjEjSzHZcoTeGgVTTldwyvTVVPit0XYyhF?=
+ =?Windows-1252?Q?GmjGY8+NX1P1cmsZ5epE+B1cNCcPUBxSkljhFykeFKvMPDKEm3gnrVFd?=
+ =?Windows-1252?Q?DZKC7xKUc1yx++KWz/qIprf7tXBOn16WCJV9MWwknEiGcXyrFYUcnB/1?=
+ =?Windows-1252?Q?5xaDlidbQl1RPahkbY4CRjagyvZFhXbRsXA8SI59GAM9rLgXKKKF12pA?=
+ =?Windows-1252?Q?NsFhik0DD8NJec0DUoCdj/KTpqQi5YzE+W7opi/hVKHU5FTv01rD+JQZ?=
+ =?Windows-1252?Q?XnrR6kuSr9MUWn3Wm6cHeqeR1F3AxVW/r+oTWxmrQJV1idtDKWmif4hR?=
+ =?Windows-1252?Q?DmrOJ8DJiNC4VTRFwbpW4CsJRUGM9Pz/NRHaZw7GPhIXIFU0Sh1Z0Hfy?=
+ =?Windows-1252?Q?tqmYbeeXy3BNC2eDdwbBGGnhKUPxHsJAMGX3eV4Ni3NE0kloB4euwuAx?=
+ =?Windows-1252?Q?I1Whxxo0OabLQ+If3np1BfZk7KgDjzuL/YBfm2e08j8nR08MSjEPwy35?=
+ =?Windows-1252?Q?lBcX6VvC5ab2NQtJn0lPcHdHi5heRD7Vr9Xs71V+baNMymMP2MFeGJBk?=
+ =?Windows-1252?Q?SEoKLzerrV2y3P3agolcE4QSvUeR8nNIOwOknWp2N11VkPOPzBN3/fDC?=
+ =?Windows-1252?Q?Dl8ovY+wj4GC05Bb3ggSRrufvvuas3GOt9ZaUFMqI6/IlRfhAd+9sYnr?=
+ =?Windows-1252?Q?/gq+Tvp2KL1H75Zr0kesouVUEQZ8BqPkFn5golXbdG5SF84aLUE77q5K?=
+ =?Windows-1252?Q?Kv5SVv/LSLsr736LjVUwW8RN32Xhi7ccIxIuD7D4aCPqb2L1nG6adZcy?=
+ =?Windows-1252?Q?2puidUGubo05nNyXGlxWXbQFFRLX7iWcgiz2TzCTVeKXj/+nNzjGWCe4?=
+ =?Windows-1252?Q?PLz95nu1WWJMtyhtVZGzRJP8ZQ+VRGh9U4rAFZ8+KkED91/RqNiz0hxE?=
+ =?Windows-1252?Q?Px3QcYPJrLLh2h0/K2F6pgbyLlIIRCQBrWcaFEUwsgQ/sCXuJTqaCZO1?=
+ =?Windows-1252?Q?SQAuSGhmyAzmCBex7mm+bFBKvWvUKjOcNQknzjqWtU4TzuMqfglEC4YD?=
+ =?Windows-1252?Q?Wfp2dOrZLDJFBiYbhxoE3//vlxHwQ8LdLbGNJJ1wfOaeqP+iQDXYxGDE?=
+ =?Windows-1252?Q?7ZMQCETSvsKL46Kny11m3j4siJba5Qf4NLp1kUZIUjKLLT1nnJ1WYNHU?=
+ =?Windows-1252?Q?c6NR/3Pql51tr7d4hKqmIBHEMFgJB0m4ATMDLmJZNkRPCoKCxbKFM83w?=
+ =?Windows-1252?Q?i2RZp+cHGXouA77uBml73oXhakypdLSmvgNdmspjN+hbMihzlv/qwzZL?=
+ =?Windows-1252?Q?CaX3QWfQrIHpAStACTJ5SPODYQeVhPAz2K/Hxe2Wu6w02x8IVVqv4/gx?=
+ =?Windows-1252?Q?5jD/0ucpUT5veg=3D=3D?=
+Content-Type: text/plain; charset="Windows-1252"
+Content-ID: <C3D2184B7FE24E47ACE5B3CC2A6D2E03@namprd11.prod.outlook.com>
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v3 02/22] drm/i915/bios: Make copies of VBT
- data blocks
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5549.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 148b3e96-7122-4104-143d-08da1880c162
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Apr 2022 10:24:10.5344 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: kOMjikDP8/rxEC8+XU/0Mmnc4IvGV7Td/ordb6EWUs4qDWBFXSA027AxP2wPhG+QNgsO6GxK4O+DutxA2wb7EQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR11MB3181
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH v9 1/3] i915/gvt: Separate the MMIO tracking
+ table from GVT-g
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,550 +160,27 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Zhi Wang <zhi.a.wang@gmail.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ Jason Gunthorpe <jgg@nvidia.com>, "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 06 Apr 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> Make a copy of each VB data block with a guaranteed minimum
-> size. The extra (if any) will just be left zeroed.
->
-> This means we don't have to worry about going out of bounds
-> when accessing any of the structure members. Otherwise that
-> could easliy happen if we simply get the version check wrong,
-> or if the VBT is broken/malicious.
->
-> v2: Don't do arithmetic between bdb header and copy
->     of the LFP data block (Jani)
-> v3: Make all the copies up front
-> v4: Only WARN about min_size=3D=3D0 if we found the block
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_bios.c | 230 ++++++++++++++++------
->  drivers/gpu/drm/i915/i915_drv.h           |   1 +
->  2 files changed, 174 insertions(+), 57 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/=
-i915/display/intel_bios.c
-> index 5518f4cfa1b1..068978734e3b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bios.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-> @@ -88,7 +88,7 @@ static u32 get_blocksize(const void *block_data)
->  }
->=20=20
->  static const void *
-> -find_section(const void *_bdb, enum bdb_block_id section_id)
-> +find_raw_section(const void *_bdb, enum bdb_block_id section_id)
->  {
->  	const struct bdb_header *bdb =3D _bdb;
->  	const u8 *base =3D _bdb;
-> @@ -118,6 +118,124 @@ find_section(const void *_bdb, enum bdb_block_id se=
-ction_id)
->  	return NULL;
->  }
->=20=20
-> +/*
-> + * Offset from the start of BDB to the start of the
-> + * block data (just past the block header).
-> + */
-> +static u32 block_offset(const void *bdb, enum bdb_block_id section_id)
-> +{
-> +	const void *block;
-> +
-> +	block =3D find_raw_section(bdb, section_id);
-> +	if (!block)
-> +		return 0;
-> +
-> +	return block - bdb;
-> +}
-> +
-> +struct bdb_block_entry {
-> +	struct list_head node;
-> +	enum bdb_block_id section_id;
-> +	u8 data[];
-> +};
-> +
-> +static const void *
-> +find_section(struct drm_i915_private *i915,
-> +	     enum bdb_block_id section_id)
-> +{
-> +	struct bdb_block_entry *entry;
-> +
-> +	list_for_each_entry(entry, &i915->vbt.bdb_blocks, node) {
-> +		if (entry->section_id =3D=3D section_id)
-> +			return entry->data + 3;
-> +	}
-> +
+Thanks so much!
 
-Failing to find the section_id in the list above, perhaps this should
-check if the section_id is present in bdb_blocks[] and complain
-loudly. If we fail to add a section there, this will never find
-it. I.e. we should never call find_section() on a section_id that isn't
-present in bdb_blocks[].
+Jani and Joonas, it would be better to have one rb from i915 maintainers as=
+ this patches also modify i915 code.
 
-I also dislike the +/- 3 here and there.
+Thanks,
+Zhi.
 
-But both of these can be cleaned up later.
+On 4/7/22 8:06 AM, Christoph Hellwig wrote:
+> The whole series looks good and works fine on by Kaby Lake Thinkpad:
+>=20
+> Reviewed-by: Christoph Hellwig <hch@lst.de>
+> Tested-by: Christoph Hellwig <hch@lst.de>
+>=20
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-
-
-> +	return NULL;
-> +}
-> +
-> +static const struct {
-> +	enum bdb_block_id section_id;
-> +	size_t min_size;
-> +} bdb_blocks[] =3D {
-> +	{ .section_id =3D BDB_GENERAL_FEATURES,
-> +	  .min_size =3D sizeof(struct bdb_general_features), },
-> +	{ .section_id =3D BDB_GENERAL_DEFINITIONS,
-> +	  .min_size =3D sizeof(struct bdb_general_definitions), },
-> +	{ .section_id =3D BDB_PSR,
-> +	  .min_size =3D sizeof(struct bdb_psr), },
-> +	{ .section_id =3D BDB_DRIVER_FEATURES,
-> +	  .min_size =3D sizeof(struct bdb_driver_features), },
-> +	{ .section_id =3D BDB_SDVO_LVDS_OPTIONS,
-> +	  .min_size =3D sizeof(struct bdb_sdvo_lvds_options), },
-> +	{ .section_id =3D BDB_SDVO_PANEL_DTDS,
-> +	  .min_size =3D sizeof(struct bdb_sdvo_panel_dtds), },
-> +	{ .section_id =3D BDB_EDP,
-> +	  .min_size =3D sizeof(struct bdb_edp), },
-> +	{ .section_id =3D BDB_LVDS_OPTIONS,
-> +	  .min_size =3D sizeof(struct bdb_lvds_options), },
-> +	{ .section_id =3D BDB_LVDS_LFP_DATA_PTRS,
-> +	  .min_size =3D sizeof(struct bdb_lvds_lfp_data_ptrs), },
-> +	{ .section_id =3D BDB_LVDS_LFP_DATA,
-> +	  .min_size =3D sizeof(struct bdb_lvds_lfp_data), },
-> +	{ .section_id =3D BDB_LVDS_BACKLIGHT,
-> +	  .min_size =3D sizeof(struct bdb_lfp_backlight_data), },
-> +	{ .section_id =3D BDB_LFP_POWER,
-> +	  .min_size =3D sizeof(struct bdb_lfp_power), },
-> +	{ .section_id =3D BDB_MIPI_CONFIG,
-> +	  .min_size =3D sizeof(struct bdb_mipi_config), },
-> +	{ .section_id =3D BDB_MIPI_SEQUENCE,
-> +	  .min_size =3D sizeof(struct bdb_mipi_sequence) },
-> +	{ .section_id =3D BDB_COMPRESSION_PARAMETERS,
-> +	  .min_size =3D sizeof(struct bdb_compression_parameters), },
-> +	{ .section_id =3D BDB_GENERIC_DTD,
-> +	  .min_size =3D sizeof(struct bdb_generic_dtd), },
-> +};
-> +
-> +static void
-> +init_bdb_block(struct drm_i915_private *i915,
-> +	       const void *bdb, enum bdb_block_id section_id,
-> +	       size_t min_size)
-> +{
-> +	struct bdb_block_entry *entry;
-> +	const void *block;
-> +	size_t block_size;
-> +
-> +	block =3D find_raw_section(bdb, section_id);
-> +	if (!block)
-> +		return;
-> +
-> +	drm_WARN(&i915->drm, min_size =3D=3D 0,
-> +		 "Block %d min_size is zero\n", section_id);
-> +
-> +	block_size =3D get_blocksize(block);
-> +
-> +	entry =3D kzalloc(struct_size(entry, data, max(min_size, block_size) + =
-3),
-> +			GFP_KERNEL);
-> +	if (!entry)
-> +		return;
-> +
-> +	entry->section_id =3D section_id;
-> +	memcpy(entry->data, block - 3, block_size + 3);
-> +
-> +	drm_dbg_kms(&i915->drm, "Found BDB block %d (size %zu, min size %zu)\n",
-> +		    section_id, block_size, min_size);
-> +
-> +	list_add_tail(&entry->node, &i915->vbt.bdb_blocks);
-> +}
-> +
-> +static void init_bdb_blocks(struct drm_i915_private *i915,
-> +			    const void *bdb)
-> +{
-> +	int i;
-> +
-> +	for (i =3D 0; i < ARRAY_SIZE(bdb_blocks); i++) {
-> +		enum bdb_block_id section_id =3D bdb_blocks[i].section_id;
-> +		size_t min_size =3D bdb_blocks[i].min_size;
-> +
-> +		init_bdb_block(i915, bdb, section_id, min_size);
-> +	}
-> +}
-> +
->  static void
->  fill_detail_timing_data(struct drm_display_mode *panel_fixed_mode,
->  			const struct lvds_dvo_timing *dvo_timing)
-> @@ -199,7 +317,7 @@ get_lvds_fp_timing(const struct bdb_header *bdb,
->  		   const struct bdb_lvds_lfp_data_ptrs *ptrs,
->  		   int index)
->  {
-> -	size_t data_ofs =3D (const u8 *)data - (const u8 *)bdb;
-> +	size_t data_ofs =3D block_offset(bdb, BDB_LVDS_LFP_DATA);
->  	u16 data_size =3D ((const u16 *)data)[-1]; /* stored in header */
->  	size_t ofs;
->=20=20
-> @@ -214,15 +332,14 @@ get_lvds_fp_timing(const struct bdb_header *bdb,
->=20=20
->  /* Parse general panel options */
->  static void
-> -parse_panel_options(struct drm_i915_private *i915,
-> -		    const struct bdb_header *bdb)
-> +parse_panel_options(struct drm_i915_private *i915)
->  {
->  	const struct bdb_lvds_options *lvds_options;
->  	int panel_type;
->  	int drrs_mode;
->  	int ret;
->=20=20
-> -	lvds_options =3D find_section(bdb, BDB_LVDS_OPTIONS);
-> +	lvds_options =3D find_section(i915, BDB_LVDS_OPTIONS);
->  	if (!lvds_options)
->  		return;
->=20=20
-> @@ -285,11 +402,11 @@ parse_lfp_panel_dtd(struct drm_i915_private *i915,
->  	struct drm_display_mode *panel_fixed_mode;
->  	int panel_type =3D i915->vbt.panel_type;
->=20=20
-> -	lvds_lfp_data =3D find_section(bdb, BDB_LVDS_LFP_DATA);
-> +	lvds_lfp_data =3D find_section(i915, BDB_LVDS_LFP_DATA);
->  	if (!lvds_lfp_data)
->  		return;
->=20=20
-> -	lvds_lfp_data_ptrs =3D find_section(bdb, BDB_LVDS_LFP_DATA_PTRS);
-> +	lvds_lfp_data_ptrs =3D find_section(i915, BDB_LVDS_LFP_DATA_PTRS);
->  	if (!lvds_lfp_data_ptrs)
->  		return;
->=20=20
-> @@ -325,15 +442,14 @@ parse_lfp_panel_dtd(struct drm_i915_private *i915,
->  }
->=20=20
->  static void
-> -parse_generic_dtd(struct drm_i915_private *i915,
-> -		  const struct bdb_header *bdb)
-> +parse_generic_dtd(struct drm_i915_private *i915)
->  {
->  	const struct bdb_generic_dtd *generic_dtd;
->  	const struct generic_dtd_entry *dtd;
->  	struct drm_display_mode *panel_fixed_mode;
->  	int num_dtd;
->=20=20
-> -	generic_dtd =3D find_section(bdb, BDB_GENERIC_DTD);
-> +	generic_dtd =3D find_section(i915, BDB_GENERIC_DTD);
->  	if (!generic_dtd)
->  		return;
->=20=20
-> @@ -416,21 +532,20 @@ parse_panel_dtd(struct drm_i915_private *i915,
->  	 * back to trying the old LFP block if that fails.
->  	 */
->  	if (i915->vbt.version >=3D 229)
-> -		parse_generic_dtd(i915, bdb);
-> +		parse_generic_dtd(i915);
->  	if (!i915->vbt.lfp_lvds_vbt_mode)
->  		parse_lfp_panel_dtd(i915, bdb);
->  }
->=20=20
->  static void
-> -parse_lfp_backlight(struct drm_i915_private *i915,
-> -		    const struct bdb_header *bdb)
-> +parse_lfp_backlight(struct drm_i915_private *i915)
->  {
->  	const struct bdb_lfp_backlight_data *backlight_data;
->  	const struct lfp_backlight_data_entry *entry;
->  	int panel_type =3D i915->vbt.panel_type;
->  	u16 level;
->=20=20
-> -	backlight_data =3D find_section(bdb, BDB_LVDS_BACKLIGHT);
-> +	backlight_data =3D find_section(i915, BDB_LVDS_BACKLIGHT);
->  	if (!backlight_data)
->  		return;
->=20=20
-> @@ -514,8 +629,7 @@ parse_lfp_backlight(struct drm_i915_private *i915,
->=20=20
->  /* Try to find sdvo panel data */
->  static void
-> -parse_sdvo_panel_data(struct drm_i915_private *i915,
-> -		      const struct bdb_header *bdb)
-> +parse_sdvo_panel_data(struct drm_i915_private *i915)
->  {
->  	const struct bdb_sdvo_panel_dtds *dtds;
->  	struct drm_display_mode *panel_fixed_mode;
-> @@ -531,14 +645,14 @@ parse_sdvo_panel_data(struct drm_i915_private *i915,
->  	if (index =3D=3D -1) {
->  		const struct bdb_sdvo_lvds_options *sdvo_lvds_options;
->=20=20
-> -		sdvo_lvds_options =3D find_section(bdb, BDB_SDVO_LVDS_OPTIONS);
-> +		sdvo_lvds_options =3D find_section(i915, BDB_SDVO_LVDS_OPTIONS);
->  		if (!sdvo_lvds_options)
->  			return;
->=20=20
->  		index =3D sdvo_lvds_options->panel_type;
->  	}
->=20=20
-> -	dtds =3D find_section(bdb, BDB_SDVO_PANEL_DTDS);
-> +	dtds =3D find_section(i915, BDB_SDVO_PANEL_DTDS);
->  	if (!dtds)
->  		return;
->=20=20
-> @@ -570,12 +684,11 @@ static int intel_bios_ssc_frequency(struct drm_i915=
-_private *i915,
->  }
->=20=20
->  static void
-> -parse_general_features(struct drm_i915_private *i915,
-> -		       const struct bdb_header *bdb)
-> +parse_general_features(struct drm_i915_private *i915)
->  {
->  	const struct bdb_general_features *general;
->=20=20
-> -	general =3D find_section(bdb, BDB_GENERAL_FEATURES);
-> +	general =3D find_section(i915, BDB_GENERAL_FEATURES);
->  	if (!general)
->  		return;
->=20=20
-> @@ -695,12 +808,11 @@ parse_sdvo_device_mapping(struct drm_i915_private *=
-i915)
->  }
->=20=20
->  static void
-> -parse_driver_features(struct drm_i915_private *i915,
-> -		      const struct bdb_header *bdb)
-> +parse_driver_features(struct drm_i915_private *i915)
->  {
->  	const struct bdb_driver_features *driver;
->=20=20
-> -	driver =3D find_section(bdb, BDB_DRIVER_FEATURES);
-> +	driver =3D find_section(i915, BDB_DRIVER_FEATURES);
->  	if (!driver)
->  		return;
->=20=20
-> @@ -747,8 +859,7 @@ parse_driver_features(struct drm_i915_private *i915,
->  }
->=20=20
->  static void
-> -parse_power_conservation_features(struct drm_i915_private *i915,
-> -				  const struct bdb_header *bdb)
-> +parse_power_conservation_features(struct drm_i915_private *i915)
->  {
->  	const struct bdb_lfp_power *power;
->  	u8 panel_type =3D i915->vbt.panel_type;
-> @@ -756,7 +867,7 @@ parse_power_conservation_features(struct drm_i915_pri=
-vate *i915,
->  	if (i915->vbt.version < 228)
->  		return;
->=20=20
-> -	power =3D find_section(bdb, BDB_LFP_POWER);
-> +	power =3D find_section(i915, BDB_LFP_POWER);
->  	if (!power)
->  		return;
->=20=20
-> @@ -776,14 +887,14 @@ parse_power_conservation_features(struct drm_i915_p=
-rivate *i915,
->  }
->=20=20
->  static void
-> -parse_edp(struct drm_i915_private *i915, const struct bdb_header *bdb)
-> +parse_edp(struct drm_i915_private *i915)
->  {
->  	const struct bdb_edp *edp;
->  	const struct edp_power_seq *edp_pps;
->  	const struct edp_fast_link_params *edp_link_params;
->  	int panel_type =3D i915->vbt.panel_type;
->=20=20
-> -	edp =3D find_section(bdb, BDB_EDP);
-> +	edp =3D find_section(i915, BDB_EDP);
->  	if (!edp)
->  		return;
->=20=20
-> @@ -894,13 +1005,13 @@ parse_edp(struct drm_i915_private *i915, const str=
-uct bdb_header *bdb)
->  }
->=20=20
->  static void
-> -parse_psr(struct drm_i915_private *i915, const struct bdb_header *bdb)
-> +parse_psr(struct drm_i915_private *i915)
->  {
->  	const struct bdb_psr *psr;
->  	const struct psr_table *psr_table;
->  	int panel_type =3D i915->vbt.panel_type;
->=20=20
-> -	psr =3D find_section(bdb, BDB_PSR);
-> +	psr =3D find_section(i915, BDB_PSR);
->  	if (!psr) {
->  		drm_dbg_kms(&i915->drm, "No PSR BDB found.\n");
->  		return;
-> @@ -1034,8 +1145,7 @@ static void parse_dsi_backlight_ports(struct drm_i9=
-15_private *i915,
->  }
->=20=20
->  static void
-> -parse_mipi_config(struct drm_i915_private *i915,
-> -		  const struct bdb_header *bdb)
-> +parse_mipi_config(struct drm_i915_private *i915)
->  {
->  	const struct bdb_mipi_config *start;
->  	const struct mipi_config *config;
-> @@ -1058,7 +1168,7 @@ parse_mipi_config(struct drm_i915_private *i915,
->  	/* Parse #52 for panel index used from panel_type already
->  	 * parsed
->  	 */
-> -	start =3D find_section(bdb, BDB_MIPI_CONFIG);
-> +	start =3D find_section(i915, BDB_MIPI_CONFIG);
->  	if (!start) {
->  		drm_dbg_kms(&i915->drm, "No MIPI config BDB found");
->  		return;
-> @@ -1354,8 +1464,7 @@ static void fixup_mipi_sequences(struct drm_i915_pr=
-ivate *i915)
->  }
->=20=20
->  static void
-> -parse_mipi_sequence(struct drm_i915_private *i915,
-> -		    const struct bdb_header *bdb)
-> +parse_mipi_sequence(struct drm_i915_private *i915)
->  {
->  	int panel_type =3D i915->vbt.panel_type;
->  	const struct bdb_mipi_sequence *sequence;
-> @@ -1368,7 +1477,7 @@ parse_mipi_sequence(struct drm_i915_private *i915,
->  	if (i915->vbt.dsi.panel_id !=3D MIPI_DSI_GENERIC_PANEL_ID)
->  		return;
->=20=20
-> -	sequence =3D find_section(bdb, BDB_MIPI_SEQUENCE);
-> +	sequence =3D find_section(i915, BDB_MIPI_SEQUENCE);
->  	if (!sequence) {
->  		drm_dbg_kms(&i915->drm,
->  			    "No MIPI Sequence found, parsing complete\n");
-> @@ -1439,8 +1548,7 @@ parse_mipi_sequence(struct drm_i915_private *i915,
->  }
->=20=20
->  static void
-> -parse_compression_parameters(struct drm_i915_private *i915,
-> -			     const struct bdb_header *bdb)
-> +parse_compression_parameters(struct drm_i915_private *i915)
->  {
->  	const struct bdb_compression_parameters *params;
->  	struct intel_bios_encoder_data *devdata;
-> @@ -1451,7 +1559,7 @@ parse_compression_parameters(struct drm_i915_privat=
-e *i915,
->  	if (i915->vbt.version < 198)
->  		return;
->=20=20
-> -	params =3D find_section(bdb, BDB_COMPRESSION_PARAMETERS);
-> +	params =3D find_section(i915, BDB_COMPRESSION_PARAMETERS);
->  	if (params) {
->  		/* Sanity checks */
->  		if (params->entry_size !=3D sizeof(params->data[0])) {
-> @@ -2086,8 +2194,7 @@ static void parse_ddi_ports(struct drm_i915_private=
- *i915)
->  }
->=20=20
->  static void
-> -parse_general_definitions(struct drm_i915_private *i915,
-> -			  const struct bdb_header *bdb)
-> +parse_general_definitions(struct drm_i915_private *i915)
->  {
->  	const struct bdb_general_definitions *defs;
->  	struct intel_bios_encoder_data *devdata;
-> @@ -2097,7 +2204,7 @@ parse_general_definitions(struct drm_i915_private *=
-i915,
->  	u16 block_size;
->  	int bus_pin;
->=20=20
-> -	defs =3D find_section(bdb, BDB_GENERAL_DEFINITIONS);
-> +	defs =3D find_section(i915, BDB_GENERAL_DEFINITIONS);
->  	if (!defs) {
->  		drm_dbg_kms(&i915->drm,
->  			    "No general definition block is found, no devices defined.\n");
-> @@ -2466,6 +2573,7 @@ void intel_bios_init(struct drm_i915_private *i915)
->  	const struct bdb_header *bdb;
->=20=20
->  	INIT_LIST_HEAD(&i915->vbt.display_devices);
-> +	INIT_LIST_HEAD(&i915->vbt.bdb_blocks);
->=20=20
->  	if (!HAS_DISPLAY(i915)) {
->  		drm_dbg_kms(&i915->drm,
-> @@ -2499,22 +2607,24 @@ void intel_bios_init(struct drm_i915_private *i91=
-5)
->  		    "VBT signature \"%.*s\", BDB version %d\n",
->  		    (int)sizeof(vbt->signature), vbt->signature, i915->vbt.version);
->=20=20
-> +	init_bdb_blocks(i915, bdb);
-> +
->  	/* Grab useful general definitions */
-> -	parse_general_features(i915, bdb);
-> -	parse_general_definitions(i915, bdb);
-> -	parse_panel_options(i915, bdb);
-> +	parse_general_features(i915);
-> +	parse_general_definitions(i915);
-> +	parse_panel_options(i915);
->  	parse_panel_dtd(i915, bdb);
-> -	parse_lfp_backlight(i915, bdb);
-> -	parse_sdvo_panel_data(i915, bdb);
-> -	parse_driver_features(i915, bdb);
-> -	parse_power_conservation_features(i915, bdb);
-> -	parse_edp(i915, bdb);
-> -	parse_psr(i915, bdb);
-> -	parse_mipi_config(i915, bdb);
-> -	parse_mipi_sequence(i915, bdb);
-> +	parse_lfp_backlight(i915);
-> +	parse_sdvo_panel_data(i915);
-> +	parse_driver_features(i915);
-> +	parse_power_conservation_features(i915);
-> +	parse_edp(i915);
-> +	parse_psr(i915);
-> +	parse_mipi_config(i915);
-> +	parse_mipi_sequence(i915);
->=20=20
->  	/* Depends on child device list */
-> -	parse_compression_parameters(i915, bdb);
-> +	parse_compression_parameters(i915);
->=20=20
->  out:
->  	if (!vbt) {
-> @@ -2536,14 +2646,20 @@ void intel_bios_init(struct drm_i915_private *i91=
-5)
->   */
->  void intel_bios_driver_remove(struct drm_i915_private *i915)
->  {
-> -	struct intel_bios_encoder_data *devdata, *n;
-> +	struct intel_bios_encoder_data *devdata, *nd;
-> +	struct bdb_block_entry *entry, *ne;
->=20=20
-> -	list_for_each_entry_safe(devdata, n, &i915->vbt.display_devices, node) {
-> +	list_for_each_entry_safe(devdata, nd, &i915->vbt.display_devices, node)=
- {
->  		list_del(&devdata->node);
->  		kfree(devdata->dsc);
->  		kfree(devdata);
->  	}
->=20=20
-> +	list_for_each_entry_safe(entry, ne, &i915->vbt.bdb_blocks, node) {
-> +		list_del(&entry->node);
-> +		kfree(entry);
-> +	}
-> +
->  	kfree(i915->vbt.sdvo_lvds_vbt_mode);
->  	i915->vbt.sdvo_lvds_vbt_mode =3D NULL;
->  	kfree(i915->vbt.lfp_lvds_vbt_mode);
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_=
-drv.h
-> index 06e7c2802c5e..9274417cd87a 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -380,6 +380,7 @@ struct intel_vbt_data {
->  	int crt_ddc_pin;
->=20=20
->  	struct list_head display_devices;
-> +	struct list_head bdb_blocks;
->=20=20
->  	struct intel_bios_encoder_data *ports[I915_MAX_PORTS]; /* Non-NULL if p=
-ort present. */
->  	struct sdvo_device_mapping sdvo_mappings[2];
-
---=20
-Jani Nikula, Intel Open Source Graphics Center
