@@ -2,53 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DBEF4F712F
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Apr 2022 03:27:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 23FD74F71C3
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Apr 2022 03:54:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 93C4E10E67C;
-	Thu,  7 Apr 2022 01:27:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A67D10E67C;
+	Thu,  7 Apr 2022 01:54:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com
- [199.106.114.39])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 04A4810E67C;
- Thu,  7 Apr 2022 01:27:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
- t=1649294856; x=1680830856;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=hPczqjMYDIiRBl9B39XfDTTP+R9917QCbB2OJeIrhTs=;
- b=J7KgVT5098hVM0DUkF0NLa2iztQHwV3dKpAyMDnSeP6Wa8xMPm4TTdoe
- arm2KKgehG/GN22dZ4p8VJ+azaklcVksxiIEjrDTy1T0fhvgK8s+3w20C
- 7oB2h3e4bybS3R1cVcHByRTqzXZJL+B+SM/iIEUIFxXfNtsa/uEdrAtss w=;
-Received: from unknown (HELO ironmsg03-sd.qualcomm.com) ([10.53.140.143])
- by alexa-out-sd-02.qualcomm.com with ESMTP; 06 Apr 2022 18:27:35 -0700
-X-QCInternal: smtphost
-Received: from nasanex01b.na.qualcomm.com ([10.46.141.250])
- by ironmsg03-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2022 18:27:34 -0700
-Received: from [10.71.108.57] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Wed, 6 Apr 2022
- 18:27:34 -0700
-Message-ID: <823b3f2c-b624-f7a3-8bdc-4c069571c810@quicinc.com>
-Date: Wed, 6 Apr 2022 18:27:00 -0700
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2A21810E695;
+ Thu,  7 Apr 2022 01:54:28 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 2654CA01BB;
+ Thu,  7 Apr 2022 01:54:28 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0634838239236252490=="
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Content-Language: en-US
-To: Rob Clark <robdclark@gmail.com>
-References: <20220331152021.2671937-1-daniel.vetter@ffwll.ch>
-From: Jessica Zhang <quic_jesszhan@quicinc.com>
-In-Reply-To: <20220331152021.2671937-1-daniel.vetter@ffwll.ch>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-Subject: Re: [Intel-gfx] [PATCH] drm/atomic-helpers: remove
- legacy_cursor_update hacks
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Date: Thu, 07 Apr 2022 01:54:28 -0000
+Message-ID: <164929646812.14672.13531815985867242345@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220406193037.1060769-1-matthew.auld@intel.com>
+In-Reply-To: <20220406193037.1060769-1-matthew.auld@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915/selftests=3A_fixup_min=5Fa?=
+ =?utf-8?q?lignment_usage?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,221 +41,310 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel@daenzer.net>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Maxime Ripard <maxime@cerno.tech>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Daniel Vetter <daniel.vetter@intel.com>, mikita.lipski@amd.com,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>, "Kazlauskas, 
- Nicholas" <nicholas.kazlauskas@amd.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============0634838239236252490==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: series starting with [1/2] drm/i915/selftests: fixup min_alignment usage
+URL   : https://patchwork.freedesktop.org/series/102295/
+State : failure
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_11467 -> Patchwork_22803
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_22803 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_22803, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22803/index.html
+
+Participating hosts (52 -> 47)
+------------------------------
+
+  Additional (1): bat-adlm-1 
+  Missing    (6): shard-tglu fi-bsw-cyan fi-ctg-p8600 shard-rkl shard-dg1 fi-bdw-samus 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_22803:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@runner@aborted:
+    - fi-hsw-4770:        NOTRUN -> [FAIL][1]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22803/fi-hsw-4770/igt@runner@aborted.html
+
+  
+#### Warnings ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - fi-kbl-7567u:       [DMESG-WARN][2] ([i915#5437]) -> [DMESG-WARN][3]
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11467/fi-kbl-7567u/igt@core_hotunplug@unbind-rebind.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22803/fi-kbl-7567u/igt@core_hotunplug@unbind-rebind.html
+    - fi-tgl-1115g4:      [DMESG-WARN][4] ([i915#1982]) -> [DMESG-WARN][5]
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11467/fi-tgl-1115g4/igt@core_hotunplug@unbind-rebind.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22803/fi-tgl-1115g4/igt@core_hotunplug@unbind-rebind.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_22803 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-hsw-4770:        [PASS][6] -> [INCOMPLETE][7] ([i915#4785])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11467/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22803/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+    - fi-bdw-5557u:       NOTRUN -> [INCOMPLETE][8] ([i915#3921])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22803/fi-bdw-5557u/igt@i915_selftest@live@hangcheck.html
+    - fi-snb-2600:        [PASS][9] -> [INCOMPLETE][10] ([i915#3921])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11467/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22803/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_chamelium@vga-edid-read:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][11] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22803/fi-bdw-5557u/igt@kms_chamelium@vga-edid-read.html
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@a-vga1:
+    - fi-pnv-d510:        [PASS][12] -> [FAIL][13] ([i915#2122])
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11467/fi-pnv-d510/igt@kms_flip@basic-flip-vs-wf_vblank@a-vga1.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22803/fi-pnv-d510/igt@kms_flip@basic-flip-vs-wf_vblank@a-vga1.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-cfl-8109u:       [PASS][14] -> [DMESG-FAIL][15] ([i915#295])
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11467/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22803/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c:
+    - fi-cfl-8109u:       [PASS][16] -> [DMESG-WARN][17] ([i915#295] / [i915#5341])
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11467/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22803/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
+
+  * igt@kms_pipe_crc_basic@read-crc-pipe-b:
+    - fi-cfl-8109u:       [PASS][18] -> [DMESG-WARN][19] ([i915#295]) +9 similar issues
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11467/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22803/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
+
+  * igt@kms_setmode@basic-clone-single-crtc:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][20] ([fdo#109271]) +14 similar issues
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22803/fi-bdw-5557u/igt@kms_setmode@basic-clone-single-crtc.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_busy@basic@flip:
+    - fi-tgl-u2:          [DMESG-WARN][21] ([i915#402]) -> [PASS][22]
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11467/fi-tgl-u2/igt@kms_busy@basic@flip.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22803/fi-tgl-u2/igt@kms_busy@basic@flip.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#2122]: https://gitlab.freedesktop.org/drm/intel/issues/2122
+  [i915#295]: https://gitlab.freedesktop.org/drm/intel/issues/295
+  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
+  [i915#3576]: https://gitlab.freedesktop.org/drm/intel/issues/3576
+  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4391]: https://gitlab.freedesktop.org/drm/intel/issues/4391
+  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
+  [i915#5341]: https://gitlab.freedesktop.org/drm/intel/issues/5341
+  [i915#5437]: https://gitlab.freedesktop.org/drm/intel/issues/5437
 
 
-On 3/31/2022 8:20 AM, Daniel Vetter wrote:
-> The stuff never really worked, and leads to lots of fun because it
-> out-of-order frees atomic states. Which upsets KASAN, among other
-> things.
-> 
-> For async updates we now have a more solid solution with the
-> ->atomic_async_check and ->atomic_async_commit hooks. Support for that
-> for msm and vc4 landed. nouveau and i915 have their own commit
-> routines, doing something similar.
-> 
-> For everyone else it's probably better to remove the use-after-free
-> bug, and encourage folks to use the async support instead. The
-> affected drivers which register a legacy cursor plane and don't either
-> use the new async stuff or their own commit routine are: amdgpu,
-> atmel, mediatek, qxl, rockchip, sti, sun4i, tegra, virtio, and vmwgfx.
-> 
-> Inspired by an amdgpu bug report.
-> 
-> v2: Drop RFC, I think with amdgpu converted over to use
-> atomic_async_check/commit done in
-> 
-> commit 674e78acae0dfb4beb56132e41cbae5b60f7d662
-> Author: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
-> Date:   Wed Dec 5 14:59:07 2018 -0500
-> 
->      drm/amd/display: Add fast path for cursor plane updates
-> 
-> we don't have any driver anymore where we have userspace expecting
-> solid legacy cursor support _and_ they are using the atomic helpers in
-> their fully glory. So we can retire this.
-> 
-> v3: Paper over msm and i915 regression. The complete_all is the only
-> thing missing afaict.
-> 
-> v4: Fixup i915 fixup ...
-> 
-> References: https://bugzilla.kernel.org/show_bug.cgi?id=199425
-> References: https://lore.kernel.org/all/20220221134155.125447-9-maxime@cerno.tech/
-> References: https://bugzilla.kernel.org/show_bug.cgi?id=199425
-> Cc: Maxime Ripard <maxime@cerno.tech>
-> Tested-by: Maxime Ripard <maxime@cerno.tech>
-> Cc: mikita.lipski@amd.com
-> Cc: Michel Dänzer <michel@daenzer.net>
-> Cc: harry.wentland@amd.com
-> Cc: Rob Clark <robdclark@gmail.com>
+Build changes
+-------------
 
-Hey Rob,
+  * Linux: CI_DRM_11467 -> Patchwork_22803
 
-I saw your tested-by and reviewed-by tags on Patchwork. Just curious, 
-what device did you test on?
-
-I'm hitting several instances of this error when doing a start/stop ui 
-on Lazor Chromebook with this patch:
-
-[ 3092.608322] CPU: 2 PID: 18579 Comm: DrmThread Tainted: G        W 
-      5.17.0-rc2-lockdep-00089-g7f17ab7bf567 #155 
-e5912cd286513b064a82a38938b3fdef86b079aa
-[ 3092.622880] Hardware name: Google Lazor Limozeen without Touchscreen 
-(rev4) (DT)
-[ 3092.630492] pstate: 80400009 (Nzcv daif +PAN -UAO -TCO -DIT -SSBS 
-BTYPE=--)
-[ 3092.637664] pc : dpu_crtc_atomic_flush+0x9c/0x144
-[ 3092.642523] lr : dpu_crtc_atomic_flush+0x60/0x144
-[ 3092.647379] sp : ffffffc00c1e3760
-[ 3092.650805] x29: ffffffc00c1e3760 x28: ffffff80985dd800 x27: 
-0000000000000425
-[ 3092.658164] x26: ffffff80985dc500 x25: ffffff80985ddc00 x24: 
-ffffffdf8ae3b6f0
-[ 3092.665522] x23: 0000000000000000 x22: 0000000000000000 x21: 
-ffffff809b82da00
-[ 3092.672890] x20: ffffff80840e1000 x19: ffffff80840e2000 x18: 
-0000000000001000
-[ 3092.680255] x17: 0000000000000400 x16: 0000000000000100 x15: 
-000000000000003b
-[ 3092.687622] x14: 0000000000000000 x13: 0000000000000002 x12: 
-0000000000000003
-[ 3092.694979] x11: ffffff8084009000 x10: 0000000000000040 x9 : 
-0000000000000040
-[ 3092.702340] x8 : 0000000000000300 x7 : 000000000000000c x6 : 
-0000000000000004
-[ 3092.709698] x5 : 0000000000000320 x4 : 0000000000000018 x3 : 
-0000000000000000
-[ 3092.717056] x2 : 0000000000000000 x1 : 7bfb38b2a3a89800 x0 : 
-ffffff809a1eb300
-[ 3092.724424] Call trace:
-[ 3092.726958]  dpu_crtc_atomic_flush+0x9c/0x144
-[ 3092.731463]  drm_atomic_helper_commit_planes+0x1bc/0x1c4
-[ 3092.736944]  msm_atomic_commit_tail+0x23c/0x3e0
-[ 3092.741627]  commit_tail+0x7c/0xfc
-[ 3092.745145]  drm_atomic_helper_commit+0x158/0x15c
-[ 3092.749998]  drm_atomic_commit+0x60/0x74
-[ 3092.754055]  drm_atomic_helper_update_plane+0x100/0x110
-[ 3092.759449]  __setplane_atomic+0x11c/0x120
-[ 3092.763685]  drm_mode_cursor_universal+0x188/0x22c
-[ 3092.768633]  drm_mode_cursor_common+0x120/0x1f8
-[ 3092.773310]  drm_mode_cursor_ioctl+0x68/0x8c
-[ 3092.777721]  drm_ioctl_kernel+0xe8/0x168
-[ 3092.781770]  drm_ioctl+0x320/0x370
-[ 3092.785289]  drm_compat_ioctl+0x40/0xdc
-[ 3092.789257]  __arm64_compat_sys_ioctl+0xe0/0x150
-[ 3092.794030]  invoke_syscall+0x80/0x114
-[ 3092.797905]  el0_svc_common.constprop.3+0xc4/0xf8
-[ 3092.802765]  do_el0_svc_compat+0x2c/0x54
-[ 3092.806811]  el0_svc_compat+0x4c/0xe4
-[ 3092.810598]  el0t_32_sync_handler+0xc4/0xf4
-[ 3092.814914]  el0t_32_sync+0x174/0x178
-[ 3092.818701] irq event stamp: 55940
-[ 3092.822217] hardirqs last  enabled at (55939): [<ffffffdf8ad617a4>] 
-exit_to_kernel_mode+0x10c/0x11c
-[ 3092.831523] hardirqs last disabled at (55940): [<ffffffdf8ad62728>] 
-el1_dbg+0x28/0x70
-[ 3092.839577] softirqs last  enabled at (55938): [<ffffffdf8a2103a8>] 
-__do_softirq+0x1e8/0x480
-[ 3092.848256] softirqs last disabled at (55923): [<ffffffdf8a28d668>] 
-__irq_exit_rcu+0xdc/0x140
-[ 3092.857022] ---[ end trace 0000000000000000 ]---
+  CI-20190529: 20190529
+  CI_DRM_11467: 9620d9a4dee7a4c418de2683f3a7f544042c1a4a @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6414: b4d8d30a4ec8dae5c1c403f41348c073a9591d9f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_22803: 49f3f956425d6b130ad2c310c21cc0183e0bc8be @ git://anongit.freedesktop.org/gfx-ci/linux
 
 
+== Linux commits ==
+
+49f3f956425d drm/i915/selftests: tweak the misaligned_case
+8fe2c434b4a3 drm/i915/selftests: fixup min_alignment usage
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22803/index.html
+
+--===============0634838239236252490==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
 
-Thanks,
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
 
-Jessica Zhang
 
-> Cc: "Kazlauskas, Nicholas" <nicholas.kazlauskas@amd.com>
-> Cc: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> ---
->   drivers/gpu/drm/drm_atomic_helper.c          | 13 -------------
->   drivers/gpu/drm/i915/display/intel_display.c | 14 ++++++++++++++
->   drivers/gpu/drm/msm/msm_atomic.c             |  2 ++
->   3 files changed, 16 insertions(+), 13 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_atomic_helper.c
-> index 9603193d2fa1..a2899af82b4a 100644
-> --- a/drivers/gpu/drm/drm_atomic_helper.c
-> +++ b/drivers/gpu/drm/drm_atomic_helper.c
-> @@ -1498,13 +1498,6 @@ drm_atomic_helper_wait_for_vblanks(struct drm_device *dev,
->   	int i, ret;
->   	unsigned int crtc_mask = 0;
->   
-> -	 /*
-> -	  * Legacy cursor ioctls are completely unsynced, and userspace
-> -	  * relies on that (by doing tons of cursor updates).
-> -	  */
-> -	if (old_state->legacy_cursor_update)
-> -		return;
-> -
->   	for_each_oldnew_crtc_in_state(old_state, crtc, old_crtc_state, new_crtc_state, i) {
->   		if (!new_crtc_state->active)
->   			continue;
-> @@ -2135,12 +2128,6 @@ int drm_atomic_helper_setup_commit(struct drm_atomic_state *state,
->   			continue;
->   		}
->   
-> -		/* Legacy cursor updates are fully unsynced. */
-> -		if (state->legacy_cursor_update) {
-> -			complete_all(&commit->flip_done);
-> -			continue;
-> -		}
-> -
->   		if (!new_crtc_state->event) {
->   			commit->event = kzalloc(sizeof(*commit->event),
->   						GFP_KERNEL);
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index d2abe0e430bf..6ca5a6e7703b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -8799,6 +8799,20 @@ static int intel_atomic_commit(struct drm_device *dev,
->   		intel_runtime_pm_put(&dev_priv->runtime_pm, state->wakeref);
->   		return ret;
->   	}
-> +
-> +	/*
-> +	 * FIXME: Cut over to (async) commit helpers instead of hand-rolling
-> +	 * everything.
-> +	 */
-> +	if (state->base.legacy_cursor_update) {
-> +		struct intel_crtc_state *new_crtc_state;
-> +		struct intel_crtc *crtc;
-> +		int i;
-> +
-> +		for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i)
-> +			complete_all(&new_crtc_state->uapi.commit->flip_done);
-> +	}
-> +
->   	intel_shared_dpll_swap_state(state);
->   	intel_atomic_track_fbs(state);
->   
-> diff --git a/drivers/gpu/drm/msm/msm_atomic.c b/drivers/gpu/drm/msm/msm_atomic.c
-> index 1686fbb611fd..b3cfabebe5d6 100644
-> --- a/drivers/gpu/drm/msm/msm_atomic.c
-> +++ b/drivers/gpu/drm/msm/msm_atomic.c
-> @@ -222,6 +222,8 @@ void msm_atomic_commit_tail(struct drm_atomic_state *state)
->   		/* async updates are limited to single-crtc updates: */
->   		WARN_ON(crtc_mask != drm_crtc_mask(async_crtc));
->   
-> +		complete_all(&async_crtc->state->commit->flip_done);
-> +
->   		/*
->   		 * Start timer if we don't already have an update pending
->   		 * on this crtc:
-> -- 
-> 2.34.1
-> 
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/i915/selftests: fixup min_alignment usage</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/102295/">https://patchwork.freedesktop.org/series/102295/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22803/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22803/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11467 -&gt; Patchwork_22803</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_22803 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_22803, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22803/index.html</p>
+<h2>Participating hosts (52 -&gt; 47)</h2>
+<p>Additional (1): bat-adlm-1 <br />
+  Missing    (6): shard-tglu fi-bsw-cyan fi-ctg-p8600 shard-rkl shard-dg1 fi-bdw-samus </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_22803:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@runner@aborted:<ul>
+<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22803/fi-hsw-4770/igt@runner@aborted.html">FAIL</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>
+<p>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11467/fi-kbl-7567u/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5437">i915#5437</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22803/fi-kbl-7567u/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a></p>
+</li>
+<li>
+<p>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11467/fi-tgl-1115g4/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22803/fi-tgl-1115g4/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_22803 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>
+<p>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11467/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22803/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>)</p>
+</li>
+<li>
+<p>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22803/fi-bdw-5557u/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>)</p>
+</li>
+<li>
+<p>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11467/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22803/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@vga-edid-read:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22803/fi-bdw-5557u/igt@kms_chamelium@vga-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-wf_vblank@a-vga1:</p>
+<ul>
+<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11467/fi-pnv-d510/igt@kms_flip@basic-flip-vs-wf_vblank@a-vga1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22803/fi-pnv-d510/igt@kms_flip@basic-flip-vs-wf_vblank@a-vga1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2122">i915#2122</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11467/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22803/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11467/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22803/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5341">i915#5341</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@read-crc-pipe-b:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11467/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22803/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a>) +9 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_setmode@basic-clone-single-crtc:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22803/fi-bdw-5557u/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +14 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_busy@basic@flip:<ul>
+<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11467/fi-tgl-u2/igt@kms_busy@basic@flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22803/fi-tgl-u2/igt@kms_busy@basic@flip.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11467 -&gt; Patchwork_22803</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11467: 9620d9a4dee7a4c418de2683f3a7f544042c1a4a @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6414: b4d8d30a4ec8dae5c1c403f41348c073a9591d9f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_22803: 49f3f956425d6b130ad2c310c21cc0183e0bc8be @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>49f3f956425d drm/i915/selftests: tweak the misaligned_case<br />
+8fe2c434b4a3 drm/i915/selftests: fixup min_alignment usage</p>
+
+</body>
+</html>
+
+--===============0634838239236252490==--
