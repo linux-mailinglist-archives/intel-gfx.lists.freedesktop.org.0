@@ -1,53 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A4F14F7D0E
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Apr 2022 12:36:14 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CAC7B4F7D55
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Apr 2022 12:56:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 93BFC10E9A7;
-	Thu,  7 Apr 2022 10:36:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE89010E9C3;
+	Thu,  7 Apr 2022 10:56:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 45A0610E0B7
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 Apr 2022 10:36:10 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2BC4D10E9A7;
+ Thu,  7 Apr 2022 10:56:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649327770; x=1680863770;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=76WaKwmefDpzEtwoXGMMoah5hHzBDeoepbhPSZbrAgs=;
- b=LLoUvX/Rsa0zGCTEvIEF0QJ9rOTyTbK48B4Tt8O8dq00+ghbbBZGXpW+
- Aoa21cdQctqmNherc5xKcWuF0gaMS79PxK5hDCoHtn7lkDx/u49qE1NYt
- j25hItqyONnA1Io6dBOPsCfJkjV4Vqy45JYEOQUyiIG0npbAL4CUq1qwt
- DRr0jBR5qJJO8U4+LmBtTquC02uqRfkyxVmPSMdghTqiOjyyvv2C1aUzA
- 9rqKRiWXVfuTPItdX4dJi21xo+HGVXGDYtWv7V8MGlFYwvv3KWbsaM7KI
- tVYYfLFu4CX8Yw/rlBcTA9MEHCCrhjPA6O1rwKwlHJJKA3lwGeIjQPXvA g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10309"; a="241881405"
-X-IronPort-AV: E=Sophos;i="5.90,241,1643702400"; d="scan'208";a="241881405"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2022 03:36:07 -0700
-X-IronPort-AV: E=Sophos;i="5.90,241,1643702400"; d="scan'208";a="570998062"
-Received: from kgibala-mobl.ger.corp.intel.com (HELO localhost)
- ([10.249.142.48])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2022 03:36:05 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220405173410.11436-4-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220405173410.11436-1-ville.syrjala@linux.intel.com>
- <20220405173410.11436-4-ville.syrjala@linux.intel.com>
-Date: Thu, 07 Apr 2022 13:36:01 +0300
-Message-ID: <87h7755gfi.fsf@intel.com>
+ t=1649328985; x=1680864985;
+ h=message-id:date:mime-version:from:to:cc:subject:
+ content-transfer-encoding;
+ bh=Ht2T6rVrGztyvBUWIGSshl9b6ltd8WD+Wj6Vs2aI5vM=;
+ b=OUOWZmZXkBMBTmvda3no4NmAurNK2kEIATKEBs6skDBNWUkSNIrTsVFU
+ un88bDSakh4ruHjwSHI17tFDxMSiHlsk4e+pJnhS8fq+dvEvRmj99nPTV
+ 2tYFS1+Til4BrPQdMM3Jc8euYXWwl4c9jFxPMSVu0s1ZEYA5V2Y4zS4Vg
+ rQAyLKUHEljBOONTuG4zJTVE+yWs5wJdLPPcZLisUhb3rxdPreME8w7/n
+ cStzkvI0Ew4dOyrpikDDRBgcgc14LyJ71DpEv8gtvWnLKZZDnmhk5hPxv
+ NPasFNBc9NPsVKXbqW2u58kl1KDDYowgP2rz7Bqc/ufI7Uy0eVui0yIio g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10309"; a="321982819"
+X-IronPort-AV: E=Sophos;i="5.90,241,1643702400"; d="scan'208";a="321982819"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2022 03:56:24 -0700
+X-IronPort-AV: E=Sophos;i="5.90,241,1643702400"; d="scan'208";a="549997455"
+Received: from dzinchen-mobl1.ccr.corp.intel.com (HELO [10.252.52.87])
+ ([10.252.52.87])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2022 03:56:21 -0700
+Message-ID: <58fa2262-3eb6-876d-7157-ab7a135696b7@linux.intel.com>
+Date: Thu, 7 Apr 2022 12:56:19 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v2 03/22] drm/i915/bios: Use the copy of the
- LFP data table always
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Firefox/91.0 Thunderbird/91.7.0
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PULL] drm-misc-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,111 +57,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 05 Apr 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> Currently get_lvds_fp_timing() still returns a pointer to the original
-> data block rather than our copy. Let's convert the data pointer offsets
-> to be relative to the data block rather than the whole BDB. With that
-> we can make get_lvds_fp_timing() return a pointer to the copy.
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+drm-misc-fixes-2022-04-07:
+drm-misc-fixes for v5.18-rc2:
+- Fix a crash when booting with nouveau on tegra.
+- Don't require input port for MIPI-DSI, and make width/height mandatory.
+- Fix unregistering of framebuffers without device.
+-
+The following changes since commit 3123109284176b1532874591f7c81f3837bbdc17:
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+  Linux 5.18-rc1 (2022-04-03 14:08:21 -0700)
 
-> ---
->  drivers/gpu/drm/i915/display/intel_bios.c | 41 +++++++++++++++++++----
->  1 file changed, 34 insertions(+), 7 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/=
-i915/display/intel_bios.c
-> index 2e9f639d092e..000544280c35 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bios.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-> @@ -191,6 +191,29 @@ static const struct {
->  	  .min_size =3D sizeof(struct bdb_generic_dtd), },
->  };
->=20=20
-> +/* make the data table offsets relative to the data block */
-> +static bool fixup_lfp_data_ptrs(const void *bdb, void *ptrs_block)
-> +{
-> +	struct bdb_lvds_lfp_data_ptrs *ptrs =3D ptrs_block;
-> +	u32 offset;
-> +	int i;
-> +
-> +	offset =3D block_offset(bdb, BDB_LVDS_LFP_DATA);
-> +
-> +	for (i =3D 0; i < 16; i++) {
-> +		if (ptrs->ptr[i].fp_timing.offset < offset ||
-> +		    ptrs->ptr[i].dvo_timing.offset < offset ||
-> +		    ptrs->ptr[i].panel_pnp_id.offset < offset)
-> +			return false;
-> +
-> +		ptrs->ptr[i].fp_timing.offset -=3D offset;
-> +		ptrs->ptr[i].dvo_timing.offset -=3D offset;
-> +		ptrs->ptr[i].panel_pnp_id.offset -=3D offset;
-> +	}
-> +
-> +	return true;
-> +}
-> +
->  static void
->  init_bdb_block(struct drm_i915_private *i915,
->  	       const void *bdb, enum bdb_block_id section_id,
-> @@ -217,6 +240,13 @@ init_bdb_block(struct drm_i915_private *i915,
->  	drm_dbg_kms(&i915->drm, "Found BDB block %d (size %zu, min size %zu)\n",
->  		    section_id, block_size, min_size);
->=20=20
-> +	if (section_id =3D=3D BDB_LVDS_LFP_DATA_PTRS &&
-> +	    !fixup_lfp_data_ptrs(bdb, entry->data + 3)) {
-> +		drm_err(&i915->drm, "VBT has malformed LFP data table pointers\n");
-> +		kfree(entry);
-> +		return;
-> +	}
-> +
->  	list_add_tail(&entry->node, &i915->vbt.bdb_blocks);
->  }
->=20=20
-> @@ -312,22 +342,19 @@ get_lvds_dvo_timing(const struct bdb_lvds_lfp_data =
-*lvds_lfp_data,
->   * this function may return NULL if the corresponding entry is invalid
->   */
->  static const struct lvds_fp_timing *
-> -get_lvds_fp_timing(const struct bdb_header *bdb,
-> -		   const struct bdb_lvds_lfp_data *data,
-> +get_lvds_fp_timing(const struct bdb_lvds_lfp_data *data,
->  		   const struct bdb_lvds_lfp_data_ptrs *ptrs,
->  		   int index)
->  {
-> -	size_t data_ofs =3D block_offset(bdb, BDB_LVDS_LFP_DATA);
->  	u16 data_size =3D ((const u16 *)data)[-1]; /* stored in header */
->  	size_t ofs;
->=20=20
->  	if (index >=3D ARRAY_SIZE(ptrs->ptr))
->  		return NULL;
->  	ofs =3D ptrs->ptr[index].fp_timing.offset;
-> -	if (ofs < data_ofs ||
-> -	    ofs + sizeof(struct lvds_fp_timing) > data_ofs + data_size)
-> +	if (ofs + sizeof(struct lvds_fp_timing) > data_size)
->  		return NULL;
-> -	return (const struct lvds_fp_timing *)((const u8 *)bdb + ofs);
-> +	return (const struct lvds_fp_timing *)((const u8 *)data + ofs);
->  }
->=20=20
->  /* Parse general panel options */
-> @@ -426,7 +453,7 @@ parse_lfp_panel_dtd(struct drm_i915_private *i915,
->  		    "Found panel mode in BIOS VBT legacy lfp table: " DRM_MODE_FMT "\n=
-",
->  		    DRM_MODE_ARG(panel_fixed_mode));
->=20=20
-> -	fp_timing =3D get_lvds_fp_timing(bdb, lvds_lfp_data,
-> +	fp_timing =3D get_lvds_fp_timing(lvds_lfp_data,
->  				       lvds_lfp_data_ptrs,
->  				       panel_type);
->  	if (fp_timing) {
+are available in the Git repository at:
 
---=20
-Jani Nikula, Intel Open Source Graphics Center
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2022-04-07
+
+for you to fetch changes up to 1ecc0c09f19f8e10a2c52676f8ca47c28c9f73c7:
+
+  dt-bindings: display: panel: mipi-dbi-spi: Make width-mm/height-mm mandatory (2022-04-07 03:28:10 +0200)
+
+----------------------------------------------------------------
+drm-misc-fixes for v5.18-rc2:
+- Fix a crash when booting with nouveau on tegra.
+- Don't require input port for MIPI-DSI, and make width/height mandatory.
+- Fix unregistering of framebuffers without device.
+-
+
+----------------------------------------------------------------
+Christian König (5):
+      dma-buf: Add dma_fence_array_for_each (v2)
+      dma-buf: add dma_fence_unwrap v2
+      dma-buf/sync-file: fix warning about fence containers
+      dma-buf/sync-file: fix logic error in new fence merge code
+      dma-buf: handle empty dma_fence_arrays gracefully
+
+Karol Herbst (1):
+      drm/nouveau/pmu: Add missing callbacks for Tegra devices
+
+Marek Vasut (1):
+      dt-bindings: display: panel: mipi-dbi-spi: Make width-mm/height-mm mandatory
+
+Maxime Ripard (3):
+      dt-bindings: display: bridge: Drop requirement on input port for DSI devices
+      Merge drm/drm-fixes into drm-misc-fixes
+      Merge drm-misc/drm-misc-next-fixes into drm-misc-fixes
+
+Paul Kocialkowski (1):
+      drm: of: Properly try all possible cases for bridge/panel detection
+
+Thomas Zimmermann (1):
+      fbdev: Fix unregistering of framebuffers without device
+
+ .../bindings/display/bridge/chipone,icn6211.yaml   |   1 -
+ .../bindings/display/bridge/toshiba,tc358762.yaml  |   1 -
+ .../bindings/display/panel/panel-mipi-dbi-spi.yaml |   2 +
+ Documentation/driver-api/dma-buf.rst               |   6 +
+ drivers/dma-buf/Makefile                           |   1 +
+ drivers/dma-buf/dma-fence-array.c                  |  32 +++
+ drivers/dma-buf/selftests.h                        |   1 +
+ drivers/dma-buf/st-dma-fence-unwrap.c              | 261 +++++++++++++++++++++
+ drivers/dma-buf/sync_file.c                        | 141 +++++------
+ drivers/gpu/drm/drm_of.c                           |  99 ++++----
+ drivers/gpu/drm/nouveau/nvkm/subdev/pmu/gm20b.c    |   1 +
+ drivers/gpu/drm/nouveau/nvkm/subdev/pmu/gp102.c    |   2 +-
+ drivers/gpu/drm/nouveau/nvkm/subdev/pmu/gp10b.c    |   1 +
+ drivers/gpu/drm/nouveau/nvkm/subdev/pmu/priv.h     |   1 +
+ drivers/gpu/drm/panel/panel-ilitek-ili9341.c       |   4 +-
+ drivers/video/fbdev/core/fbmem.c                   |   9 +-
+ include/linux/dma-fence-array.h                    |  19 ++
+ include/linux/dma-fence-chain.h                    |   2 +
+ include/linux/dma-fence-unwrap.h                   |  95 ++++++++
+ 19 files changed, 557 insertions(+), 122 deletions(-)
+ create mode 100644 drivers/dma-buf/st-dma-fence-unwrap.c
+ create mode 100644 include/linux/dma-fence-unwrap.h
