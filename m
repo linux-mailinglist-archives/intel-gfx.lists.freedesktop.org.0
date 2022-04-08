@@ -2,42 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CBE14F8BE0
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 Apr 2022 03:44:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D1E5C4F8D33
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 Apr 2022 07:01:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2620B10E0EB;
-	Fri,  8 Apr 2022 01:44:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7025D10F612;
+	Fri,  8 Apr 2022 05:01:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 46BDE10E0D1;
- Fri,  8 Apr 2022 01:44:28 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A7CCE10F611;
+ Fri,  8 Apr 2022 05:01:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649382268; x=1680918268;
+ t=1649394067; x=1680930067;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=ChtkOh/ISpvqUuW9xdvHdmhTKpHeeirOwyFuISQwhDA=;
- b=IKEwzNTi3fp6YCF1pDyxb3i83d7/Zxa6s0ILZMj9X4eLdqW2YaLkaGP7
- DyxPmISjcqx1z7Ed92zpIDST9tb4V6HyEhe+aa0n8XFCclXizs08awkqU
- HKZA70G1/TTYegGty2FebBILyGt4qyQGURkLAUiqhHwIzsg33gzksKJXk
- GAu4hIBu9uELMmEVfel2/wjN7hY43133k+9SloTwwjGI/rTYKEOVSe/QY
- qV2kqb1KO/zv8R5UTdlvsLbHYP6RZkSrgqq/zSmjib0vzMd6MKldLCqNs
- AY8O0J9/L7pvUdK+2ExTtUp7uy5ht5M5ncQDm9wWA8G5qxeU0rMj2dKov g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10310"; a="249014795"
-X-IronPort-AV: E=Sophos;i="5.90,243,1643702400"; d="scan'208";a="249014795"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2022 18:44:27 -0700
-X-IronPort-AV: E=Sophos;i="5.90,243,1643702400"; d="scan'208";a="571306392"
+ bh=KV+wOdANaLqcyIoVaKJhEwe3kWPlSyKxVDvjkaC0ff4=;
+ b=IMUAqNq/03IwRjS6fU3it1vD6fKLxi28Z/L/Vh3GNFxBsP7mxsAlwgQN
+ zAYweQhipXHeWFvcU16YlbqMOUhZyEEgLnQ21wBQg4+ApKvffU4aHWcf9
+ 1T/oV9qagZX9LNThTJFi1gTR+jK23OXUcz8rfrN1PN4R4NS6a+iec3h82
+ jR7z+4sohjF/lwVKbjCdlOS5hVJxJYfxI56Veb26a+fsSY+6EZNzoHK5k
+ +VmwSUmgOxKLj1D5PcN25Qo51Ujntn++OkCGpwdmLSgOwqjGrH2CqqpGj
+ m/x/xcKC5YbfulH+Hvq/viKdA0g4AYCV77co064CDGzBFF5VtwlVsXQLK Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10310"; a="242106116"
+X-IronPort-AV: E=Sophos;i="5.90,244,1643702400"; d="scan'208";a="242106116"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2022 22:00:46 -0700
+X-IronPort-AV: E=Sophos;i="5.90,244,1643702400"; d="scan'208";a="589093644"
 Received: from aalkukhu-mobl1.amr.corp.intel.com (HELO ldmartin-desk2)
  ([10.212.172.187])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2022 18:44:27 -0700
-Date: Thu, 7 Apr 2022 18:44:27 -0700
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2022 22:00:45 -0700
+Date: Thu, 7 Apr 2022 22:00:44 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: Matthew Auld <matthew.auld@intel.com>
-Message-ID: <20220408014427.7qincl464uyxj3sx@ldmartin-desk2>
+Message-ID: <20220408050044.7wd54sjbzzkzpqzr@ldmartin-desk2>
 References: <20220407164532.1242578-1-matthew.auld@intel.com>
  <20220407164532.1242578-2-matthew.auld@intel.com>
 MIME-Version: 1.0
@@ -80,12 +80,29 @@ On Thu, Apr 07, 2022 at 05:45:32PM +0100, Matthew Auld wrote:
 >Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 >Cc: Christian König <christian.koenig@amd.com>
 >Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+>---
+> drivers/gpu/drm/i915/gem/i915_gem_object.c | 9 +++++++--
+> 1 file changed, 7 insertions(+), 2 deletions(-)
+>
+>diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+>index 2998d895a6b3..1c88d4121658 100644
+>--- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
+>+++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+>@@ -772,9 +772,14 @@ int i915_gem_object_get_moving_fence(struct drm_i915_gem_object *obj,
+> int i915_gem_object_wait_moving_fence(struct drm_i915_gem_object *obj,
+> 				      bool intr)
+> {
+>+	long ret;
+>+
+> 	assert_object_held(obj);
+>-	return dma_resv_wait_timeout(obj->base. resv, DMA_RESV_USAGE_KERNEL,
+>-				     intr, MAX_SCHEDULE_TIMEOUT);
+>+
+>+	ret = dma_resv_wait_timeout(obj->base. resv, DMA_RESV_USAGE_KERNEL,
+>+				    intr, MAX_SCHEDULE_TIMEOUT);
+>+
+>+	return ret < 0 ? ret : 0;
 
-This indeed brings CI back to life.
+shouldn't == 0 also be an error since it would be a timeout?
 
-
-Acked-by: Lucas De Marchi <lucas.demarchi@intel.com>
-
-
-thanks
 Lucas De Marchi
