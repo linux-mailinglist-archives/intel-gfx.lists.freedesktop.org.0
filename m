@@ -1,55 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 719874F97B4
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 Apr 2022 16:09:48 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEF234F97C1
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 Apr 2022 16:13:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A397710E88B;
-	Fri,  8 Apr 2022 14:09:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE5BF10F204;
+	Fri,  8 Apr 2022 14:13:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D8C310E88B
- for <intel-gfx@lists.freedesktop.org>; Fri,  8 Apr 2022 14:09:45 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 335D910F201
+ for <intel-gfx@lists.freedesktop.org>; Fri,  8 Apr 2022 14:13:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649426985; x=1680962985;
+ t=1649427209; x=1680963209;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=mPNvSW5MgSrmiPeHRXX9UkKfnk+8rNNmMuj/bhcA5Ac=;
- b=PQh7YxYsrjCWaSJGUnXPkNRAu6HH9OEtqgQpgvldsWphQK9UePeBzP8D
- iocGNKcIJUAGOs4wJNngelDeK+BTI/NxftRuBkFY9eFHbihecCVhON0BW
- hyJDf/+ft1Sc8jUpUz9pEVO5lzMlV49Ww4qyNonXOHaymtI+/V+IyBAhn
- gWolA07AJPkLyjEOn2clcqbBUH/9Ympm5g7Ap1pyjWjSZjHuSC5rGiAY3
- jFN2GRnkrw2Wle24z8zOYilrayOcEEtsaZYtM4clBYOdaGalEzQdIcahj
- nQTrNHy6pjnYmXRiQMX3k7euQD0IiF8hqG/YP+K+XjwiGWsyOUceWAYvq A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10310"; a="259198620"
-X-IronPort-AV: E=Sophos;i="5.90,245,1643702400"; d="scan'208";a="259198620"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2022 07:09:45 -0700
+ bh=ay6YrZWze4zy4lt0YXIr7u0HDuH3taAX8NHnfGTc00s=;
+ b=aBehyQoHhMQ0szGmObJsvV7KyaQOzrB8kMIFnoC+bC/t/42B4kWY7Otf
+ 0Fs/eCbiqFiPz4VlhHlz11s2uiuR1yo3wTNZLSE/tCHwrxGF+/3r+ObCs
+ oXKfi7c363UDNuOsag6QWwC91FWE9nKR/8NwsS44sRo5lT6HaLTi9mDUv
+ YkLmY8kcw4o2mzsZJu0P3ygGCGmeLbbNnGhPBtC6iCKGXC8U0oqwQuosY
+ RuuiBoncyeXxg9r/pUAg5CdMsjbQ1xO31PYHd04v0FYDVAJDU7pVFlnXz
+ yeObhAvi5Vb8bMp9MuzFY50kJZXrawpO44aDS+zqPBxUUKcgj5QE2IbiM g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10310"; a="260438353"
+X-IronPort-AV: E=Sophos;i="5.90,245,1643702400"; d="scan'208";a="260438353"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2022 07:13:28 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,245,1643702400"; d="scan'208";a="571499267"
+X-IronPort-AV: E=Sophos;i="5.90,245,1643702400"; d="scan'208";a="550513981"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.51])
- by orsmga008.jf.intel.com with SMTP; 08 Apr 2022 07:09:42 -0700
+ by orsmga007.jf.intel.com with SMTP; 08 Apr 2022 07:13:26 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 08 Apr 2022 17:09:41 +0300
-Date: Fri, 8 Apr 2022 17:09:41 +0300
+ Fri, 08 Apr 2022 17:13:25 +0300
+Date: Fri, 8 Apr 2022 17:13:25 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <YlBCJRD8bMOWL/KI@intel.com>
+Message-ID: <YlBDBUiQf5+snxh1@intel.com>
 References: <20220405173410.11436-1-ville.syrjala@linux.intel.com>
- <20220405173410.11436-13-ville.syrjala@linux.intel.com>
- <87czhs4xl4.fsf@intel.com>
+ <20220405173410.11436-18-ville.syrjala@linux.intel.com>
+ <875ynk4wdv.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <87czhs4xl4.fsf@intel.com>
+In-Reply-To: <875ynk4wdv.fsf@intel.com>
 X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v2 12/22] drm/i915/bios: Split VBT parsing
- to global vs. panel specific parts
+Subject: Re: [Intel-gfx] [PATCH v2 17/22] drm/i915/bios: Refactor panel_type
+ code
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,175 +66,112 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Apr 07, 2022 at 08:23:03PM +0300, Jani Nikula wrote:
+On Thu, Apr 07, 2022 at 08:49:00PM +0300, Jani Nikula wrote:
 > On Tue, 05 Apr 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > >
-> > Parsing the panel specific data from VBT is currently happening
-> > too early. Split the whole thing into global vs. panel specific
-> > parts so that we can start doing the panel specific parsing at
-> > a later time.
-> 
-> Might want to mention panel_type here somewhere, that's basically the
-> split, right?
-
-Yep. I'll try to clarify the commit msg a bit.
-
-> 
+> > Make the panel type code a bit more abstract along the
+> > lines of the source of the panel type. For the moment
+> > we have three classes: OpRegion, VBT, fallback.
+> > Well introduce another one shortly.
+> >
+> > We can now also print out all the different panel types,
+> > and indicate which one we ultimately selected. Could help
+> > with debugging.
 > >
 > > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > > ---
-> >  drivers/gpu/drm/i915/display/intel_bios.c    | 50 +++++++++++++-------
-> >  drivers/gpu/drm/i915/display/intel_bios.h    |  1 +
-> >  drivers/gpu/drm/i915/display/intel_display.c |  1 +
-> >  3 files changed, 35 insertions(+), 17 deletions(-)
+> >  drivers/gpu/drm/i915/display/intel_bios.c | 47 ++++++++++++++++-------
+> >  1 file changed, 34 insertions(+), 13 deletions(-)
 > >
 > > diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-> > index 1a7f1aa79827..da2b1932e10d 100644
+> > index 26839263abf0..feef5aa97398 100644
 > > --- a/drivers/gpu/drm/i915/display/intel_bios.c
 > > +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-> > @@ -723,6 +723,9 @@ parse_generic_dtd(struct drm_i915_private *i915)
-> >  	struct drm_display_mode *panel_fixed_mode;
-> >  	int num_dtd;
+> > @@ -606,25 +606,46 @@ static int vbt_panel_type(struct drm_i915_private *i915)
+> >  	return lvds_options->panel_type;
+> >  }
 > >  
-> > +	if (i915->vbt.lfp_lvds_vbt_mode)
-> > +		return;
+> > +enum panel_type {
+> > +	PANEL_TYPE_OPREGION,
+> > +	PANEL_TYPE_VBT,
+> > +	PANEL_TYPE_FALLBACK,
+> > +};
 > > +
-> >  	generic_dtd = find_section(i915, BDB_GENERIC_DTD);
-> >  	if (!generic_dtd)
-> >  		return;
-> > @@ -891,6 +894,9 @@ parse_sdvo_panel_data(struct drm_i915_private *i915)
-> >  	struct drm_display_mode *panel_fixed_mode;
-> >  	int index;
+> >  static int get_panel_type(struct drm_i915_private *i915)
+> >  {
+> > -	int ret;
+> > +	struct {
+> > +		const char *name;
+> > +		int panel_type;
+> > +	} panel_types[] = {
+> > +		[PANEL_TYPE_OPREGION] = { .name = "OpRegion", .panel_type = -1, },
+> > +		[PANEL_TYPE_VBT] = { .name = "VBT", .panel_type = -1, },
+> > +		[PANEL_TYPE_FALLBACK] = { .name = "fallback", .panel_type = 0, },
+> > +	};
+> > +	int i;
 > >  
-> > +	if (i915->vbt.sdvo_lvds_vbt_mode)
-> > +		return;
-> > +
-> >  	index = i915->params.vbt_sdvo_panel_type;
-> >  	if (index == -2) {
-> >  		drm_dbg_kms(&i915->drm,
-> > @@ -1419,6 +1425,9 @@ parse_mipi_config(struct drm_i915_private *i915)
-> >  	int panel_type = i915->vbt.panel_type;
-> >  	enum port port;
-> >  
-> > +	if (i915->vbt.dsi.config)
-> > +		return;
-> > +
-> >  	/* parse MIPI blocks only if LFP type is MIPI */
-> >  	if (!intel_bios_is_dsi_present(i915, &port))
-> >  		return;
-> > @@ -1739,6 +1748,9 @@ parse_mipi_sequence(struct drm_i915_private *i915)
-> >  	u8 *data;
-> >  	int index = 0;
-> >  
-> > +	if (i915->vbt.dsi.data)
-> > +		return;
-> > +
+> > -	ret = intel_opregion_get_panel_type(i915);
+> > -	if (ret >= 0) {
+> > -		drm_WARN_ON(&i915->drm, ret > 0xf);
+> > -		drm_dbg_kms(&i915->drm, "Panel type: %d (OpRegion)\n", ret);
+> > -		return ret;
+> > -	}
+> > +	panel_types[PANEL_TYPE_OPREGION].panel_type = intel_opregion_get_panel_type(i915);
+> > +	panel_types[PANEL_TYPE_VBT].panel_type = vbt_panel_type(i915);
 > 
-> All of the above checks to (presumably) allow calling
-> intel_bios_init_panel() multiple times feel a bit out of place here. At
-> the very least need a mention in the commit message.
+> I'd probably add a function pointer in the array, to be able to call
+> these nicely in the loop. Needs a static wrapper function for
+> intel_opregion_get_panel_type() in the follow-up to eat the edid
+> parameter, but I think it's worth it.
 
-I can split that out for clarity. I didn't have these originally but
-given the current reliance on the i915->vbt singleton I got a bit
-scared what would happen on some weird machines with multiple panels.
-IIRC some kind of native LVDS + SDVO LVDS machines may have existed
-at some point.
-
-Plenty of refactoring left here to split the parsed data to proper
-per-panel things...
+Sure.
 
 > 
-> Regardless,
+> > +
+> > +	for (i = 0; i < ARRAY_SIZE(panel_types); i++) {
+> > +		drm_WARN_ON(&i915->drm, panel_types[i].panel_type > 0xf);
+> 
+> I know that's loud, but it's kind of annoying that the out of bounds
+> value still goes through here.
+> 
+> >  
+> > -	ret = vbt_panel_type(i915);
+> > -	if (ret >= 0) {
+> > -		drm_WARN_ON(&i915->drm, ret > 0xf);
+> > -		drm_dbg_kms(&i915->drm, "Panel type: %d (VBT)\n", ret);
+> > -		return ret;
+> > +		if (panel_types[i].panel_type >= 0)
+> > +			drm_dbg_kms(&i915->drm, "Panel type (%s): %d\n",
+> > +				    panel_types[i].name, panel_types[i].panel_type);
+> >  	}
+> >  
+> > -	return 0; /* fallback */
+> > +	if (panel_types[PANEL_TYPE_OPREGION].panel_type >= 0)
+> > +		i = PANEL_TYPE_OPREGION;
+> > +	else if (panel_types[PANEL_TYPE_VBT].panel_type >= 0)
+> > +		i = PANEL_TYPE_VBT;
+> > +	else
+> > +		i = PANEL_TYPE_FALLBACK;
+> 
+> At this stage, we could set this in the loop too, but dunno how
+> complicated that gets with the pnpid match rules.
+
+I don't think the PNPID stuff really lends itself well to a loop
+since it needs to consider both the VBT and PNPID pane types at
+the same time.
+
 > 
 > Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 > 
-> 
-> >  	/* Only our generic panel driver uses the sequence block. */
-> >  	if (i915->vbt.dsi.panel_id != MIPI_DSI_GENERIC_PANEL_ID)
-> >  		return;
-> > @@ -2878,6 +2890,27 @@ void intel_bios_init(struct drm_i915_private *i915)
-> >  	/* Grab useful general definitions */
-> >  	parse_general_features(i915);
-> >  	parse_general_definitions(i915);
-> > +	parse_driver_features(i915);
 > > +
-> > +	/* Depends on child device list */
-> > +	parse_compression_parameters(i915);
+> > +	drm_dbg_kms(&i915->drm, "Selected panel type (%s): %d\n",
+> > +		    panel_types[i].name, panel_types[i].panel_type);
 > > +
-> > +out:
-> > +	if (!vbt) {
-> > +		drm_info(&i915->drm,
-> > +			 "Failed to find VBIOS tables (VBT)\n");
-> > +		init_vbt_missing_defaults(i915);
-> > +	}
-> > +
-> > +	/* Further processing on pre-parsed or generated child device data */
-> > +	parse_sdvo_device_mapping(i915);
-> > +	parse_ddi_ports(i915);
-> > +
-> > +	kfree(oprom_vbt);
-> > +}
-> > +
-> > +void intel_bios_init_panel(struct drm_i915_private *i915)
-> > +{
-> >  	parse_panel_options(i915);
-> >  	/*
-> >  	 * Older VBTs provided DTD information for internal displays through
-> > @@ -2892,29 +2925,12 @@ void intel_bios_init(struct drm_i915_private *i915)
-> >  	parse_lfp_data(i915);
-> >  	parse_lfp_backlight(i915);
-> >  	parse_sdvo_panel_data(i915);
-> > -	parse_driver_features(i915);
-> >  	parse_panel_driver_features(i915);
-> >  	parse_power_conservation_features(i915);
-> >  	parse_edp(i915);
-> >  	parse_psr(i915);
-> >  	parse_mipi_config(i915);
-> >  	parse_mipi_sequence(i915);
-> > -
-> > -	/* Depends on child device list */
-> > -	parse_compression_parameters(i915);
-> > -
-> > -out:
-> > -	if (!vbt) {
-> > -		drm_info(&i915->drm,
-> > -			 "Failed to find VBIOS tables (VBT)\n");
-> > -		init_vbt_missing_defaults(i915);
-> > -	}
-> > -
-> > -	/* Further processing on pre-parsed or generated child device data */
-> > -	parse_sdvo_device_mapping(i915);
-> > -	parse_ddi_ports(i915);
-> > -
-> > -	kfree(oprom_vbt);
+> > +	return panel_types[i].panel_type;
 > >  }
 > >  
-> >  /**
-> > diff --git a/drivers/gpu/drm/i915/display/intel_bios.h b/drivers/gpu/drm/i915/display/intel_bios.h
-> > index 4709c4d29805..c744d75fa435 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_bios.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_bios.h
-> > @@ -230,6 +230,7 @@ struct mipi_pps_data {
-> >  } __packed;
-> >  
-> >  void intel_bios_init(struct drm_i915_private *dev_priv);
-> > +void intel_bios_init_panel(struct drm_i915_private *dev_priv);
-> >  void intel_bios_driver_remove(struct drm_i915_private *dev_priv);
-> >  bool intel_bios_is_valid_vbt(const void *buf, size_t size);
-> >  bool intel_bios_is_tv_present(struct drm_i915_private *dev_priv);
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> > index eee185ed41c3..4ece4e7d0296 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > @@ -9650,6 +9650,7 @@ int intel_modeset_init_noirq(struct drm_i915_private *i915)
-> >  	}
-> >  
-> >  	intel_bios_init(i915);
-> > +	intel_bios_init_panel(i915);
-> >  
-> >  	ret = intel_vga_register(i915);
-> >  	if (ret)
+> >  /* Parse general panel options */
 > 
 > -- 
 > Jani Nikula, Intel Open Source Graphics Center
