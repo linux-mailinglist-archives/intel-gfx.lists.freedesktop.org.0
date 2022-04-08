@@ -1,51 +1,126 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CD494F98DA
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 Apr 2022 17:00:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D67C4F98E3
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 Apr 2022 17:02:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BED6D10E4E7;
-	Fri,  8 Apr 2022 15:00:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 56E1B10E533;
+	Fri,  8 Apr 2022 15:02:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 25ABC10E1C9
- for <intel-gfx@lists.freedesktop.org>; Fri,  8 Apr 2022 15:00:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649430009; x=1680966009;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=8jLhRGOrAN+Drl1ETFhOTXw2gWhFtsjNx94q4uwJF40=;
- b=JqDWXWKc1gH3TUHjOCz9MSmDKfKf7W/U12mPCTKJXXWGXFyzkkWe9DLt
- e09+bWskfdJrvBt/4ue+WATApmuuuVUtHoMBf9tEATwauvTnyMv2JNXUv
- eLHKCpmWdju7y6Tr6XvhIjQplMZMsdB1XX2IiMyuefLR1WudStUzNOUaJ
- q3XHQGBROAuPRLGYK9psLmjkJyicdE2IerR7yWr81u4z6GFnLoDkK+S+6
- CUgQPxqZiYbUdCd2k/qLwyhEK3pORZ2ImhMjWoD+kTOK+cVFIFFsfMOcH
- 8YS8maLIgH3QMt7B7DbCI1mU87bpO1zZ6nawHJ4izRza5BQPzbg0/tgJ6 w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10310"; a="261786641"
-X-IronPort-AV: E=Sophos;i="5.90,245,1643702400"; d="scan'208";a="261786641"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2022 08:00:08 -0700
-X-IronPort-AV: E=Sophos;i="5.90,245,1643702400"; d="scan'208";a="852097243"
-Received: from yyheo-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
- ([10.212.5.16])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2022 08:00:08 -0700
-Date: Fri, 8 Apr 2022 08:00:01 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <20220408150001.ebxayzm3u7omenag@ldmartin-desk2>
-References: <20220405001149.2675226-1-lucas.demarchi@intel.com>
- <71468da0-d379-6a78-a322-8244c8d5a668@linux.intel.com>
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam08on2070.outbound.protection.outlook.com [40.107.102.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DF3A10E1C9;
+ Fri,  8 Apr 2022 15:02:15 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=P8Xtnx/Flv2ylHqjqD+4e7F7w4PviZJiN+0BeZ52BuGe8V4Z56//HAwbtKTIVTRJV7Lw0Ife0V3spMF8Ez32KBxu44DwelYmrObq8NstT1hWfh6IJzuP7ziKmDTWBErMGy4ZDCMvGFu1pfyYykzan/VrVDabO7LqyroLXL1ygHvAr7WooLK5Ob5Odr6wQ1aU8LwU6cPv/8N7mK+Mp8sNk5xumV0T3OlUBlIA4Ko/CB91xM3PSdUesCB5joM+k4Es0U3rHwdffh98y3vHeWwOLvvmA/TeOLwpbAt6Ow8FP6iWJ5TcbUXdd5/iUIBoAbaz24qsfgCL1Sd7RRlGXWLdHw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Alr3H4bDzjhXJa1CJELJElUeHOf8iZ77KeU8A5dRMDo=;
+ b=KHiwM8ihcnwoZ/pWkFDCcQhu83Ahe928sWVY6I3dmZrEFqy7gZVQqx4hdDejvBHFh644Ra0dLBs9ZvQguzQgNdExn60t3cOis+d6OW9UtU9BW3FppKrBCqH+nuWdJ8FQOETX/glnFWueDkc0lvBHT/kAk+8F/vdBodEfYgp6Zd5tjPapA4wKYIEPP4mrJSAW/NrfIaI0jAsb/8r6neDgrPsUuyqPX3ien6NpEWJfes2iR568BYyed5epp9oiFRT1WAmS6zetBozXJE4VzxH3dCs41Y3K+ZHocKoiDc5CZiZd3BPD6arGBkdUPmNqoOl9DxRvyteSYdJecOhmFAM8+g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Alr3H4bDzjhXJa1CJELJElUeHOf8iZ77KeU8A5dRMDo=;
+ b=jf0LYNu9fJaHFvRZtrfz/S8BgCW2SGR0PKBC8Sgjz7PUa6XfJsqVWB/H4rHhgww45zxO4zTYmlyk4ZNsLlJ5oDSHA7WjdOLWk4kvOIyB3xl+aZcdlYnpWKOOGvwI1mWGG2bMUdUcLNT5OECQTG2uqU/Ia8b+dmi68W4JOeFSUws=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from CO6PR12MB5427.namprd12.prod.outlook.com (2603:10b6:5:358::13)
+ by BYAPR12MB2744.namprd12.prod.outlook.com (2603:10b6:a03:69::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5144.22; Fri, 8 Apr
+ 2022 15:02:13 +0000
+Received: from CO6PR12MB5427.namprd12.prod.outlook.com
+ ([fe80::61e4:a6bf:9444:31f9]) by CO6PR12MB5427.namprd12.prod.outlook.com
+ ([fe80::61e4:a6bf:9444:31f9%6]) with mapi id 15.20.5144.026; Fri, 8 Apr 2022
+ 15:02:13 +0000
+Message-ID: <375fd7ff-a68e-d5c0-ff0d-bd6b50e90b93@amd.com>
+Date: Fri, 8 Apr 2022 11:02:08 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.0
+Content-Language: en-US
+To: Bhanuprakash Modem <bhanuprakash.modem@intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, jani.nikula@linux.intel.com,
+ ville.syrjala@linux.intel.com, swati2.sharma@intel.com
+References: <20220408065350.1485328-1-bhanuprakash.modem@intel.com>
+ <20220408065350.1485328-2-bhanuprakash.modem@intel.com>
+From: Harry Wentland <harry.wentland@amd.com>
+In-Reply-To: <20220408065350.1485328-2-bhanuprakash.modem@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: YT1PR01CA0045.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b01:2e::14) To CO6PR12MB5427.namprd12.prod.outlook.com
+ (2603:10b6:5:358::13)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <71468da0-d379-6a78-a322-8244c8d5a668@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/uncore: Warn on previous unclaimed
- accesses
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 4560155f-751f-489a-aa25-08da1970c2f8
+X-MS-TrafficTypeDiagnostic: BYAPR12MB2744:EE_
+X-Microsoft-Antispam-PRVS: <BYAPR12MB2744137A2AE878E77951416F8CE99@BYAPR12MB2744.namprd12.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: GX7Qp/jv8NYY7zCKffkRqn0hppIub2btXjc2weCb3dbTdiB3YuluVdRCa3OjjBOdm4XlfpP6mXFo0IWENIgtkB7AeYFG0iN45hVfFCO5XsC2ye8gFjHPTY9b7rHSglcJg1rrZKMVF2eKsqbEqIX9C0NU2cndW2mLB2LWJ8sP7UuKkmdZv1GMguZYsBFgkQFwpm2zMNJoJwYO5ZZmPvX2u5r3XSe3X/PpBgWri1ws7FRgb/W8Z342aNVgXsh5UViELUsLIxsbB0jvMKl0B3od18oA3fG+OWOGjN67lWXkyJ8m0iBuhT4di/m+y+6aQ5WGaRDcdyLE4xSpfHlG4rnCtHVwjqrP7ZTXuojuB9/eZn1F+4UEF2C3B6XLVmtdWFmnEOMfxRU9k4EvzdtT9ICkQQNzLDO+qHDYR/jcLa7gLSNTlHHJEuD/KjAUMycIDvW0fpukh633ahJAykDuFuPGwtsA4NiujSvF6fDaICm9+p3Bj2s2J4Aa/jHDnHUUDAP1e7xWYAMikDmJP/NiO4OtIwWSjcXD5pPOKM0cvuBb52zBjiJokV9CxyrWOXR4uYqBgXjxjNEvBGyWZVJ8kE+kLXKrA4lkRhPlvoQQ1Vy6pAbqzVXVx5tb1iWjC3h5deWXIsuVB56FAxSXWgQf4jXXll3jnIua96ZaEctua6eHdacRQaAPtT4QiItSolXGhWcw2jI+9lQ5KVCMgufXByQCwZxGS566Tg4TX7SA9mvs8Eg=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CO6PR12MB5427.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230001)(4636009)(366004)(508600001)(2906002)(6486002)(6506007)(31696002)(8676002)(6512007)(66476007)(5660300002)(44832011)(186003)(26005)(8936002)(6666004)(53546011)(36756003)(86362001)(2616005)(66556008)(66946007)(31686004)(316002)(38100700002)(43740500002)(45980500001);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NHpnUzdtYml3NG5xV3dreHNQVThQeXN3Q0dRMTd4UHNDZVkza3ZRNUw0Zk1Y?=
+ =?utf-8?B?ZXBSalpEV05mRk5Cck5pWVhIMmRyT1VUWlhoZ0dlM1hQRmdQT0NEYVprTjBo?=
+ =?utf-8?B?SnlMRW5VZTdMV2pHMEREcTY3ZGVoaEt4bXh2ZGZOUUkxemxUL2JYQjdkNnRw?=
+ =?utf-8?B?a05tbzFIMGk1cHc3Yk1iQ0M5TC9LeGd3RUsxL2hvQ3d6MFdLeVNMWjQ2dEVO?=
+ =?utf-8?B?VmR3S2czenozRFNrV0VwUnhSZkV5YjVaQVpEY3hEUnhpUUpvRTV1RmszbU1o?=
+ =?utf-8?B?dlhLMXlPRUtzanIyWEhqaTV4WDlzN2RiN2QxRzE5c2R2TEZHdTdQRzJPMjVB?=
+ =?utf-8?B?bjRrR3N2Vzd2S042NjF1TFlPNzBEQXZhQUJrdXN5MlZ4a2hscm53OXhqbnRM?=
+ =?utf-8?B?RzNlOFlrMFFaOG1qcVRUL2hkQTliYUQwVlRwd2sycXNuZG4wcWtpNXdoUUhF?=
+ =?utf-8?B?Q0JRR3pRWS9nQmRETGxFd2luM3Rpb2Y4bmtWRmswcTExbmQrY0V5eTJpekpj?=
+ =?utf-8?B?NkhZSkd3NE5aN2tyY2NRcXNmcnJHSmlUTVlnRjMrQVVnNExWcHNkanBrMXlL?=
+ =?utf-8?B?Y0ZwRWk0eVFaYUlXcnhMWUNSLzFiOHRLN1VaeU1xTnZDV05HanI0NUEweGlL?=
+ =?utf-8?B?aU9nS25oWjlOaHc0NXdNdllPbkxncXBMRDhZS0prbUhoQ0dnQWUyaW8xT0cw?=
+ =?utf-8?B?cWt5NE5ncURXdnpsSklQenVlWUoxbVRIVzJBMzluVU5KclloQ0pqRzFsQjlH?=
+ =?utf-8?B?anlaUmlVTktQOFRpK1RqQlhNYmtMSlRBR2YxK2VaWEo4ZVZHd0tDNXFmbjhJ?=
+ =?utf-8?B?VzQ3dzhVaHJDeGR5dHh0OHQrQnZyOCtJWkp0ZXVZZXNHcDF6djJrc002VTdY?=
+ =?utf-8?B?OGpqK1ZRQU0veURNRENZMnFzTWk1WXE2STZBTjZnOXhGWjRhTDNJRjZQK2FG?=
+ =?utf-8?B?TG9BakJKWExNdkNGRGdDcFFTR0V1QXFhWjhSMUFoU2xRQ3ovaHNlWUoxZkV0?=
+ =?utf-8?B?Q3dDUjA5cE5MUDdwV1hKNzlVcm5lYkN3a2J4ZGZydWRXbUxETkdwNE8waVBX?=
+ =?utf-8?B?U2VJSWg0WUV1U29YMlJEMXhROFVTMDcyNlVGL292UUc2SU41TmNvSk9jYnBi?=
+ =?utf-8?B?aGtBZjB4NWc2OWx5UUc1S3Zyd3VsQm1aMTRaM0YxNzZ1c0ZrMkFKNUhNZUp6?=
+ =?utf-8?B?YndweGdyRGo3NGVWeXV5bURLdkVGeEFiSjdFSVlIRDdpeVJVb1p0aVYzNnZy?=
+ =?utf-8?B?TWFBMU5JTWM4K0Z1TkJwblMrdlRaZ3Rqand3SkhEY0Ntb0NjNytmUXAxUFBj?=
+ =?utf-8?B?K0w2dzVhbUhsMlYvZkNYM1JyUXhLeldDYmE5bk0yMU4vT3JybnhQOWo4aEcw?=
+ =?utf-8?B?d3ltaFVyS0lyK2VySDI5aGRlQ0Y4OHUyRFVjamFiRFE1SkxHTDFuTHFjOWRj?=
+ =?utf-8?B?TmRDSmVHdDFqMTlzVUJkUW1NdWIyR2grVFNSb09SckNOUTdnR2FBUmFKMXFD?=
+ =?utf-8?B?TCtrTG1oRzhnV3dMamJFbDBNL1lFb0VmdmJFMnVCQnJEdGUwMHIyNDl2c3lG?=
+ =?utf-8?B?bS8reDZkQ0FtVW91enJZZ0RZVWRLQVVONXlDNHhhUVA2YWN6WjRlOHNKbkpC?=
+ =?utf-8?B?R3NacExsSzJGV3hsR2szR3NBc2U1NzNqNkd5aURVT055Szh5amIwVEFrUnRC?=
+ =?utf-8?B?eEw2YlhuRFZOcFdEcTR6SFNJWG9IZ0M0VXlKOHNWd3FsVHN6d1Z6aC9Zdk5u?=
+ =?utf-8?B?ZEE1Ui9SbWRDTjRLdmUrVERCTmZvZmR1Yi9iWXRzNXl0U0ppN1VoQmdpKzlx?=
+ =?utf-8?B?c1VGTHFwY01ZUUxvU1NzWSt6amhuYm9DempLd3RPaU1Ed09ZTnU3NGljVjZt?=
+ =?utf-8?B?eUxocGNxRnZUNGk0THNtSmwydndaQXc0SE1aMFN3bUxQSUZnTmpVL2ZtQk9w?=
+ =?utf-8?B?M0VmRkZlOEcvS1dLU292SVlGbm5GbXZ3Yjh1MHE4RzVoUkg3RTNiWWJTWWFq?=
+ =?utf-8?B?c24wQ0krVm44NXd2MUR3UzdxTHFaWFFsNGxkZDB6NTl6NmtqYjVnUXBLaTBs?=
+ =?utf-8?B?TVVkRGdScnFOOEtwc0cxUEJ5TzZZNDZSY2tXWGxFT3puS09KU2dET1VQZTAv?=
+ =?utf-8?B?M0VYc1RzeDRDM0UxM01Hc0YwQXNaWlBoVTBidWF1bVpnN3E1YTBQT29HSGFV?=
+ =?utf-8?B?QlBqcE1tV0lnRGRGZGNnRlI3bUoreGxpUC9VSkxtOTB3cFhoU2owMHdsa0ZW?=
+ =?utf-8?B?YXVKdER5cFBsQS96U01LZUR1aGJZVmc4eWZiWkZHRjh1TE53M0w3RVVWd25a?=
+ =?utf-8?B?SENyS0xtWmtqb2JCZ3l0cXlZcUNuTG1qWGFoTHpEWm1RWmxpQVREQT09?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4560155f-751f-489a-aa25-08da1970c2f8
+X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5427.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Apr 2022 15:02:13.1328 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 7Qatc6hHPAaAH3wTY28OhZz4xict5ystoEhjEwMoYuQznnzOj+2fHH531k/Bfjw0JaKMym996UeQQxLBU0wpQQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB2744
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm/debug: Expose connector's max
+ supported bpc via debugfs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,139 +133,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Apr 08, 2022 at 01:44:44PM +0100, Tvrtko Ursulin wrote:
->
->On 05/04/2022 01:11, Lucas De Marchi wrote:
->>Since gen6 we use FPGA_DBG register to detect unclaimed MMIO registers.
->>This register is in the display engine IP and can only ever detect
->>unclaimed accesses to registers in this area. However sometimes there
->>are reports of this triggering for registers in other areas, which
->>should not be possible.
->>
->>Right now we always warn after the read/write of registers going through
->>unclaimed_reg_debug(). However places using __raw_uncore_* may be
->>triggering the unclaimed access and those being later accounted to a
->>different register. Let's warn both before and after the read/write
->>with a slightly different message, so it's clear if the register
->>reported in the warning is actually the culprit.
->>
->>Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
->
->I see this triggering a lot on drm-tip today (TGL), is that expected?
->
->[    3.994907] i915 0000:00:02.0: [drm:intel_uncore_init_mmio [i915]] unclaimed mmio detected on uncore init, clearing
->[    4.392525] i915 0000:00:02.0: Unclaimed access detected before read from register 0x44408
->[    5.669929] i915 0000:00:02.0: Unclaimed access detected before write to register 0x50380
->[    6.652808] i915 0000:00:02.0: Unclaimed access detected before write to register 0x50380
->[   13.015978] i915 0000:00:02.0: Unclaimed access detected before write to register 0x50380
->[   16.876802] i915 0000:00:02.0: Unclaimed access detected before write to register 0x44404
->[   45.174395] i915 0000:00:02.0: Unclaimed access detected before write to register 0x44404
->
->It continues at runtime as well:
->
->[10265.010902] i915 0000:00:02.0: Unclaimed access detected before write to register 0x190030
->[10329.093078] i915 0000:00:02.0: Unclaimed access detected before write to register 0x190030
->[10354.060331] i915 0000:00:02.0: Unclaimed access detected before write to register 0x190030
->[10385.486480] i915 0000:00:02.0: Unclaimed access detected before write to register 0x190030
->[10408.910533] i915 0000:00:02.0: Unclaimed access detected before write to register 0x190030
->[10433.398443] i915 0000:00:02.0: Unclaimed access detected before write to register 0x1900ec
->[10444.110593] i915 0000:00:02.0: Unclaimed access detected before write to register 0x190030
->[10468.302627] i915 0000:00:02.0: Unclaimed access detected before write to register 0x190030
->[10493.398727] i915 0000:00:02.0: Unclaimed access detected before write to register 0x1900ec
->[10515.366845] i915 0000:00:02.0: Unclaimed access detected before read from register 0x44408
->[10518.674046] i915 0000:00:02.0: Unclaimed access detected before read from register 0xc7204
->[10529.934735] i915 0000:00:02.0: Unclaimed access detected before write to register 0x190030
->[10553.398808] i915 0000:00:02.0: Unclaimed access detected before write to register 0x1900ec
->[10599.684455] i915 0000:00:02.0: Unclaimed access detected before read from register 0xc4008
->[10602.898167] i915 0000:00:02.0: Unclaimed access detected before read from register 0xc7204
->[10613.398909] i915 0000:00:02.0: Unclaimed access detected before write to register 0x1900ec
->[10686.006783] i915 0000:00:02.0: Unclaimed access detected before write to register 0x190030
->[10711.906813] i915 0000:00:02.0: Unclaimed access detected before write to register 0x190030
->[10745.860538] i915 0000:00:02.0: Unclaimed access detected before write to register 0x190030
->[10771.812277] i915 0000:00:02.0: Unclaimed access detected before write to register 0x190030
->[10805.903058] i915 0000:00:02.0: Unclaimed access detected before write to register 0x190030
->[10831.927073] i915 0000:00:02.0: Unclaimed access detected before write to register 0x190030
->[10853.398958] i915 0000:00:02.0: Unclaimed access detected before write to register 0x1900ec
->[10866.007084] i915 0000:00:02.0: Unclaimed access detected before write to register 0x190030
->[10879.378435] i915 0000:00:02.0: Unclaimed access detected before read from register 0xc7204
->[10891.727120] i915 0000:00:02.0: Unclaimed access detected before write to register 0x190030
->[10913.395161] i915 0000:00:02.0: Unclaimed access detected before write to register 0x1900ec
->[10939.026480] i915 0000:00:02.0: Unclaimed access detected before read from register 0xc7204
->[10964.626494] i915 0000:00:02.0: Unclaimed access detected before read from register 0xc7204
->
->It don't think this machine had a problem with this before, or perhaps it was going undetected?
 
-it was going undetected. However I have a patch to downgrade the first
-message to debug, because we are clear not ready to enable the stricter
-check. I will send it in a bit.
 
-Lucas De Marchi
+On 2022-04-08 02:53, Bhanuprakash Modem wrote:
+> It's useful to know the connector's max supported bpc for IGT
+> testing. Expose it via a debugfs file on the connector "output_bpc".
+> 
+> Example: cat /sys/kernel/debug/dri/0/DP-1/output_bpc
+> 
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Cc: Harry Wentland <harry.wentland@amd.com>
+> Signed-off-by: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
+> ---
+>  drivers/gpu/drm/drm_debugfs.c | 21 +++++++++++++++++++++
+>  1 file changed, 21 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/drm_debugfs.c b/drivers/gpu/drm/drm_debugfs.c
+> index 7f1b82dbaebb..33e5345c6f3e 100644
+> --- a/drivers/gpu/drm/drm_debugfs.c
+> +++ b/drivers/gpu/drm/drm_debugfs.c
+> @@ -395,6 +395,23 @@ static int vrr_range_show(struct seq_file *m, void *data)
+>  }
+>  DEFINE_SHOW_ATTRIBUTE(vrr_range);
+>  
+> +/*
+> + * Returns Connector's max supported bpc through debugfs file.
+> + * Example usage: cat /sys/kernel/debug/dri/0/DP-1/max_bpc
 
->
->Regards,
->
->Tvrtko
->
->>---
->>  drivers/gpu/drm/i915/intel_uncore.c | 29 +++++++++++++++++++++--------
->>  1 file changed, 21 insertions(+), 8 deletions(-)
->>
->>diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/intel_uncore.c
->>index 8b9caaaacc21..df59ec88459e 100644
->>--- a/drivers/gpu/drm/i915/intel_uncore.c
->>+++ b/drivers/gpu/drm/i915/intel_uncore.c
->>@@ -1502,11 +1502,10 @@ ilk_dummy_write(struct intel_uncore *uncore)
->>  static void
->>  __unclaimed_reg_debug(struct intel_uncore *uncore,
->>  		      const i915_reg_t reg,
->>-		      const bool read,
->>-		      const bool before)
->>+		      const bool read)
->>  {
->>  	if (drm_WARN(&uncore->i915->drm,
->>-		     check_for_unclaimed_mmio(uncore) && !before,
->>+		     check_for_unclaimed_mmio(uncore),
->>  		     "Unclaimed %s register 0x%x\n",
->>  		     read ? "read from" : "write to",
->>  		     i915_mmio_reg_offset(reg)))
->>@@ -1514,6 +1513,20 @@ __unclaimed_reg_debug(struct intel_uncore *uncore,
->>  		uncore->i915->params.mmio_debug--;
->>  }
->>+static void
->>+__unclaimed_previous_reg_debug(struct intel_uncore *uncore,
->>+			       const i915_reg_t reg,
->>+			       const bool read)
->>+{
->>+	if (drm_WARN(&uncore->i915->drm,
->>+		     check_for_unclaimed_mmio(uncore),
->>+		     "Unclaimed access detected before %s register 0x%x\n",
->>+		     read ? "read from" : "write to",
->>+		     i915_mmio_reg_offset(reg)))
->>+		/* Only report the first N failures */
->>+		uncore->i915->params.mmio_debug--;
->>+}
->>+
->>  static inline void
->>  unclaimed_reg_debug(struct intel_uncore *uncore,
->>  		    const i915_reg_t reg,
->>@@ -1526,13 +1539,13 @@ unclaimed_reg_debug(struct intel_uncore *uncore,
->>  	/* interrupts are disabled and re-enabled around uncore->lock usage */
->>  	lockdep_assert_held(&uncore->lock);
->>-	if (before)
->>+	if (before) {
->>  		spin_lock(&uncore->debug->lock);
->>-
->>-	__unclaimed_reg_debug(uncore, reg, read, before);
->>-
->>-	if (!before)
->>+		__unclaimed_previous_reg_debug(uncore, reg, read);
->>+	} else {
->>+		__unclaimed_reg_debug(uncore, reg, read);
->>  		spin_unlock(&uncore->debug->lock);
->>+	}
->>  }
->>  #define __vgpu_read(x) \
+/s/max_bpc/output_bpc
+
+Btw, in amdgpu we have both max_bpc and output_bpc.
+
+Harry
+
+> + */
+> +static int output_bpc_show(struct seq_file *m, void *data)
+> +{
+> +	struct drm_connector *connector = m->private;
+> +
+> +	if (connector->status != connector_status_connected)
+> +		return -ENODEV;
+> +
+> +	seq_printf(m, "Maximum: %u\n", connector->display_info.bpc);
+> +
+> +	return 0;
+> +}
+> +DEFINE_SHOW_ATTRIBUTE(output_bpc);
+> +
+>  static const struct file_operations drm_edid_fops = {
+>  	.owner = THIS_MODULE,
+>  	.open = edid_open,
+> @@ -437,6 +454,10 @@ void drm_debugfs_connector_add(struct drm_connector *connector)
+>  	debugfs_create_file("vrr_range", S_IRUGO, root, connector,
+>  			    &vrr_range_fops);
+>  
+> +	/* max bpc */
+> +	debugfs_create_file("output_bpc", 0444, root, connector,
+> +			    &output_bpc_fops);
+> +
+>  	if (connector->funcs->debugfs_init)
+>  		connector->funcs->debugfs_init(connector, root);
+>  }
+
