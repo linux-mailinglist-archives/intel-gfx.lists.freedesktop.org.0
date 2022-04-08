@@ -1,57 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D91A4F9640
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 Apr 2022 14:57:37 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D97EC4F9697
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 Apr 2022 15:21:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6EEDB10F165;
-	Fri,  8 Apr 2022 12:57:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1BB1D10F1A8;
+	Fri,  8 Apr 2022 13:21:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F00E010F15C;
- Fri,  8 Apr 2022 12:57:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649422648; x=1680958648;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=vgrTzyoKMqjmE/kdV28EOKl5RCHZO9YrE934eNG595Q=;
- b=nAiUnlyaarWvsgXxdoZTGeKK35nGQ8Fx8f6kQe5tpVath98+NTZ0PMAD
- hqLf/nEC6ELNGzrJ0ruWSl9vTc8n2AOiqqwn2BG+z4JRcBkemxQjyZz/8
- nPmNgft868uXlF58jJXHmhePzOfs6rDNI6y221Bg9ZNGp6yTfQSW4/kZ9
- SrQt1atXsQHa51+G+9O+hNmzZ+Egh17wonI/I9tNPwkgOK7gBwvtGZHgJ
- D6bx8GN+G0EghNkDmpBspAzhcxi6WLOSwr0DdBV6pSusw1cF6IiGVkI3p
- cvpvuIJQfc9SxH3do56J9erpwqi+G3wT4y5y89Oq1NkwMMsyW7bKR20i0 A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10310"; a="286574989"
-X-IronPort-AV: E=Sophos;i="5.90,245,1643702400"; d="scan'208";a="286574989"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2022 05:57:27 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,245,1643702400"; d="scan'208";a="795038516"
-Received: from lkp-server02.sh.intel.com (HELO 7e80bc2a00a0) ([10.239.97.151])
- by fmsmga006.fm.intel.com with ESMTP; 08 Apr 2022 05:57:25 -0700
-Received: from kbuild by 7e80bc2a00a0 with local (Exim 4.95)
- (envelope-from <lkp@intel.com>) id 1ncoB2-0000Gt-CX;
- Fri, 08 Apr 2022 12:57:24 +0000
-Date: Fri, 8 Apr 2022 20:56:46 +0800
-From: kernel test robot <lkp@intel.com>
-To: Bhanuprakash Modem <bhanuprakash.modem@intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, jani.nikula@linux.intel.com,
- ville.syrjala@linux.intel.com, harry.wentland@amd.com,
- swati2.sharma@intel.com
-Message-ID: <202204082024.SJWgNUte-lkp@intel.com>
-References: <20220408065350.1485328-4-bhanuprakash.modem@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A23D010F190;
+ Fri,  8 Apr 2022 13:21:55 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9D363A0078;
+ Fri,  8 Apr 2022 13:21:55 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7792824217842214312=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220408065350.1485328-4-bhanuprakash.modem@intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 3/3] drm/amd/display: Move connector debugfs
- to drm
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Date: Fri, 08 Apr 2022 13:21:55 -0000
+Message-ID: <164942411564.22675.11464249570947565117@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220408084205.1353427-1-matthew.auld@intel.com>
+In-Reply-To: <20220408084205.1353427-1-matthew.auld@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_fix_i915=5Fgem=5Fobject=5Fwait=5Fmoving=5Ffence?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,79 +40,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, kbuild-all@lists.01.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Bhanuprakash,
+--===============7792824217842214312==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Thank you for the patch! Yet something to improve:
+== Series Details ==
 
-[auto build test ERROR on drm-intel/for-linux-next]
-[also build test ERROR on drm-tip/drm-tip next-20220408]
-[cannot apply to drm/drm-next v5.18-rc1]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+Series: drm/i915: fix i915_gem_object_wait_moving_fence
+URL   : https://patchwork.freedesktop.org/series/102396/
+State : failure
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Bhanuprakash-Modem/Expose-max-and-current-bpc-via-debugfs/20220408-145638
-base:   git://anongit.freedesktop.org/drm-intel for-linux-next
-config: s390-randconfig-r022-20220408 (https://download.01.org/0day-ci/archive/20220408/202204082024.SJWgNUte-lkp@intel.com/config)
-compiler: s390-linux-gcc (GCC) 11.2.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/25c70426c3d3454fc0c82bc71b101bf7b8bdf11f
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Bhanuprakash-Modem/Expose-max-and-current-bpc-via-debugfs/20220408-145638
-        git checkout 25c70426c3d3454fc0c82bc71b101bf7b8bdf11f
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=s390 SHELL=/bin/bash drivers/gpu/drm/
+== Summary ==
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>):
-
-   In file included from drivers/gpu/drm/amd/amdgpu/../display/dmub/dmub_srv.h:67,
-                    from drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:35:
-   drivers/gpu/drm/amd/amdgpu/../display/dmub/inc/dmub_cmd.h: In function 'dmub_rb_flush_pending':
-   drivers/gpu/drm/amd/amdgpu/../display/dmub/inc/dmub_cmd.h:2961:26: warning: variable 'temp' set but not used [-Wunused-but-set-variable]
-    2961 |                 uint64_t temp;
-         |                          ^~~~
-   drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c: In function 'amdgpu_dm_crtc_late_register':
->> drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:6614:9: error: implicit declaration of function 'crtc_debugfs_init'; did you mean 'amdgpu_debugfs_init'? [-Werror=implicit-function-declaration]
-    6614 |         crtc_debugfs_init(crtc);
-         |         ^~~~~~~~~~~~~~~~~
-         |         amdgpu_debugfs_init
-   In file included from drivers/gpu/drm/amd/amdgpu/../display/dc/inc/core_types.h:32,
-                    from drivers/gpu/drm/amd/amdgpu/../display/dc/inc/link_enc_cfg.h:33,
-                    from drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:32:
-   At top level:
-   drivers/gpu/drm/amd/amdgpu/../display/include/ddc_service_types.h:128:22: warning: 'SYNAPTICS_DEVICE_ID' defined but not used [-Wunused-const-variable=]
-     128 | static const uint8_t SYNAPTICS_DEVICE_ID[] = "SYNA";
-         |                      ^~~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/amd/amdgpu/../display/include/ddc_service_types.h:125:22: warning: 'DP_SINK_DEVICE_STR_ID_2' defined but not used [-Wunused-const-variable=]
-     125 | static const uint8_t DP_SINK_DEVICE_STR_ID_2[] = {7, 1, 8, 7, 5, 0};
-         |                      ^~~~~~~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/amd/amdgpu/../display/include/ddc_service_types.h:124:22: warning: 'DP_SINK_DEVICE_STR_ID_1' defined but not used [-Wunused-const-variable=]
-     124 | static const uint8_t DP_SINK_DEVICE_STR_ID_1[] = {7, 1, 8, 7, 3, 0};
-         |                      ^~~~~~~~~~~~~~~~~~~~~~~
-   cc1: some warnings being treated as errors
+Applying: drm/i915: fix i915_gem_object_wait_moving_fence
+Using index info to reconstruct a base tree...
+M	drivers/gpu/drm/i915/gem/i915_gem_object.c
+Falling back to patching base and 3-way merge...
+No changes -- Patch already applied.
 
 
-vim +6614 drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c
 
-e7b07ceef2a650 Harry Wentland 2017-08-10  6611  
-e69231c4451ae0 Wayne Lin      2021-03-08  6612  static int amdgpu_dm_crtc_late_register(struct drm_crtc *crtc)
-86bc221918925a Wayne Lin      2021-03-02  6613  {
-86bc221918925a Wayne Lin      2021-03-02 @6614  	crtc_debugfs_init(crtc);
-86bc221918925a Wayne Lin      2021-03-02  6615  
-86bc221918925a Wayne Lin      2021-03-02  6616  	return 0;
-86bc221918925a Wayne Lin      2021-03-02  6617  }
-86bc221918925a Wayne Lin      2021-03-02  6618  
+--===============7792824217842214312==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: fix i915_gem_object_wait_moving_fence</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/102396/">https://patchwork.freedesktop.org/series/102396/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+</table>
+
+
+    <p>Applying: drm/i915: fix i915_gem_object_wait_moving_fence<br />
+Using index info to reconstruct a base tree...<br />
+M   drivers/gpu/drm/i915/gem/i915_gem_object.c<br />
+Falling back to patching base and 3-way merge...<br />
+No changes -- Patch already applied.</p>
+
+</body>
+</html>
+
+--===============7792824217842214312==--
