@@ -1,55 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D26714F98A2
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 Apr 2022 16:52:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CD494F98DA
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 Apr 2022 17:00:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1869E10E4BA;
-	Fri,  8 Apr 2022 14:52:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BED6D10E4E7;
+	Fri,  8 Apr 2022 15:00:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E91910E4BA
- for <intel-gfx@lists.freedesktop.org>; Fri,  8 Apr 2022 14:52:17 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 25ABC10E1C9
+ for <intel-gfx@lists.freedesktop.org>; Fri,  8 Apr 2022 15:00:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649429537; x=1680965537;
+ t=1649430009; x=1680966009;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=WSL1boiRMi/WgDc4tKMjL7Q31Kb/n4Qxkx1OmRii9Uk=;
- b=OYxe3CVefgeTWbzP0q0yivG1JogON6wqOY1DRFJ99ReaAN+oGcR2xXJ2
- EMi5OXQxqUH9Sen2aQ1RY81Gqk3wrAVfZuXpYQB8yVuqVYZ0Si6L4h3+G
- PWHRA2JyLh2JfYKEbPAsROHcwmHXozh7uw4lPcy6FJPgCgM6Ebx9KEJHB
- HtuGIi4+gvrnrM7LwrEewi7DBA3nS+rvvIlFLqThab/QoNysYzKcfkMOE
- TJa6PP517DEPQaPQRY8CIvfUGM7QsQpm9Urx5ZO0ZyvLj/CNRjw5mEnsO
- vBCL6gbl2sNqvYoOuN2Tu5U84KhQdebfw2D3tJfit5SHyPUG/UtmWdDIW Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10310"; a="249138691"
-X-IronPort-AV: E=Sophos;i="5.90,245,1643702400"; d="scan'208";a="249138691"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2022 07:52:16 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,245,1643702400"; d="scan'208";a="589240780"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.51])
- by orsmga001.jf.intel.com with SMTP; 08 Apr 2022 07:52:14 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 08 Apr 2022 17:52:14 +0300
-Date: Fri, 8 Apr 2022 17:52:14 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <YlBMHsaaJStyYDOV@intel.com>
-References: <20220405173410.11436-1-ville.syrjala@linux.intel.com>
- <20220405173410.11436-23-ville.syrjala@linux.intel.com>
- <87r1683gyw.fsf@intel.com>
+ mime-version:in-reply-to;
+ bh=8jLhRGOrAN+Drl1ETFhOTXw2gWhFtsjNx94q4uwJF40=;
+ b=JqDWXWKc1gH3TUHjOCz9MSmDKfKf7W/U12mPCTKJXXWGXFyzkkWe9DLt
+ e09+bWskfdJrvBt/4ue+WATApmuuuVUtHoMBf9tEATwauvTnyMv2JNXUv
+ eLHKCpmWdju7y6Tr6XvhIjQplMZMsdB1XX2IiMyuefLR1WudStUzNOUaJ
+ q3XHQGBROAuPRLGYK9psLmjkJyicdE2IerR7yWr81u4z6GFnLoDkK+S+6
+ CUgQPxqZiYbUdCd2k/qLwyhEK3pORZ2ImhMjWoD+kTOK+cVFIFFsfMOcH
+ 8YS8maLIgH3QMt7B7DbCI1mU87bpO1zZ6nawHJ4izRza5BQPzbg0/tgJ6 w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10310"; a="261786641"
+X-IronPort-AV: E=Sophos;i="5.90,245,1643702400"; d="scan'208";a="261786641"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2022 08:00:08 -0700
+X-IronPort-AV: E=Sophos;i="5.90,245,1643702400"; d="scan'208";a="852097243"
+Received: from yyheo-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
+ ([10.212.5.16])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2022 08:00:08 -0700
+Date: Fri, 8 Apr 2022 08:00:01 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Message-ID: <20220408150001.ebxayzm3u7omenag@ldmartin-desk2>
+References: <20220405001149.2675226-1-lucas.demarchi@intel.com>
+ <71468da0-d379-6a78-a322-8244c8d5a668@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii; format=flowed
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <87r1683gyw.fsf@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v2 22/22] drm/i915/bios: Dump PNPID and
- panel name
+In-Reply-To: <71468da0-d379-6a78-a322-8244c8d5a668@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/uncore: Warn on previous unclaimed
+ accesses
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,96 +62,135 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Apr 07, 2022 at 09:07:19PM +0300, Jani Nikula wrote:
-> On Tue, 05 Apr 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> >
-> > Dump the panel PNPID and name from the VBT.
-> >
-> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_bios.c | 24 +++++++++++++++++++++++
-> >  1 file changed, 24 insertions(+)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-> > index d561551d6324..953526a7dc5d 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_bios.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-> > @@ -25,6 +25,7 @@
-> >   *
-> >   */
-> >  
-> > +#include <drm/drm_edid.h>
-> >  #include <drm/dp/drm_dp_helper.h>
-> >  
-> >  #include "display/intel_display.h"
-> > @@ -597,6 +598,19 @@ get_lfp_data_tail(const struct bdb_lvds_lfp_data *data,
-> >  		return NULL;
-> >  }
-> >  
-> > +static void dump_pnp_id(struct drm_i915_private *i915,
-> > +			const struct lvds_pnp_id *pnp_id,
-> > +			const char *name)
-> > +{
-> > +	u16 mfg_name = be16_to_cpu((__force __be16)pnp_id->mfg_name);
-> 
-> Might just add the __be16 in the struct member?
+On Fri, Apr 08, 2022 at 01:44:44PM +0100, Tvrtko Ursulin wrote:
+>
+>On 05/04/2022 01:11, Lucas De Marchi wrote:
+>>Since gen6 we use FPGA_DBG register to detect unclaimed MMIO registers.
+>>This register is in the display engine IP and can only ever detect
+>>unclaimed accesses to registers in this area. However sometimes there
+>>are reports of this triggering for registers in other areas, which
+>>should not be possible.
+>>
+>>Right now we always warn after the read/write of registers going through
+>>unclaimed_reg_debug(). However places using __raw_uncore_* may be
+>>triggering the unclaimed access and those being later accounted to a
+>>different register. Let's warn both before and after the read/write
+>>with a slightly different message, so it's clear if the register
+>>reported in the warning is actually the culprit.
+>>
+>>Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>
+>I see this triggering a lot on drm-tip today (TGL), is that expected?
+>
+>[    3.994907] i915 0000:00:02.0: [drm:intel_uncore_init_mmio [i915]] unclaimed mmio detected on uncore init, clearing
+>[    4.392525] i915 0000:00:02.0: Unclaimed access detected before read from register 0x44408
+>[    5.669929] i915 0000:00:02.0: Unclaimed access detected before write to register 0x50380
+>[    6.652808] i915 0000:00:02.0: Unclaimed access detected before write to register 0x50380
+>[   13.015978] i915 0000:00:02.0: Unclaimed access detected before write to register 0x50380
+>[   16.876802] i915 0000:00:02.0: Unclaimed access detected before write to register 0x44404
+>[   45.174395] i915 0000:00:02.0: Unclaimed access detected before write to register 0x44404
+>
+>It continues at runtime as well:
+>
+>[10265.010902] i915 0000:00:02.0: Unclaimed access detected before write to register 0x190030
+>[10329.093078] i915 0000:00:02.0: Unclaimed access detected before write to register 0x190030
+>[10354.060331] i915 0000:00:02.0: Unclaimed access detected before write to register 0x190030
+>[10385.486480] i915 0000:00:02.0: Unclaimed access detected before write to register 0x190030
+>[10408.910533] i915 0000:00:02.0: Unclaimed access detected before write to register 0x190030
+>[10433.398443] i915 0000:00:02.0: Unclaimed access detected before write to register 0x1900ec
+>[10444.110593] i915 0000:00:02.0: Unclaimed access detected before write to register 0x190030
+>[10468.302627] i915 0000:00:02.0: Unclaimed access detected before write to register 0x190030
+>[10493.398727] i915 0000:00:02.0: Unclaimed access detected before write to register 0x1900ec
+>[10515.366845] i915 0000:00:02.0: Unclaimed access detected before read from register 0x44408
+>[10518.674046] i915 0000:00:02.0: Unclaimed access detected before read from register 0xc7204
+>[10529.934735] i915 0000:00:02.0: Unclaimed access detected before write to register 0x190030
+>[10553.398808] i915 0000:00:02.0: Unclaimed access detected before write to register 0x1900ec
+>[10599.684455] i915 0000:00:02.0: Unclaimed access detected before read from register 0xc4008
+>[10602.898167] i915 0000:00:02.0: Unclaimed access detected before read from register 0xc7204
+>[10613.398909] i915 0000:00:02.0: Unclaimed access detected before write to register 0x1900ec
+>[10686.006783] i915 0000:00:02.0: Unclaimed access detected before write to register 0x190030
+>[10711.906813] i915 0000:00:02.0: Unclaimed access detected before write to register 0x190030
+>[10745.860538] i915 0000:00:02.0: Unclaimed access detected before write to register 0x190030
+>[10771.812277] i915 0000:00:02.0: Unclaimed access detected before write to register 0x190030
+>[10805.903058] i915 0000:00:02.0: Unclaimed access detected before write to register 0x190030
+>[10831.927073] i915 0000:00:02.0: Unclaimed access detected before write to register 0x190030
+>[10853.398958] i915 0000:00:02.0: Unclaimed access detected before write to register 0x1900ec
+>[10866.007084] i915 0000:00:02.0: Unclaimed access detected before write to register 0x190030
+>[10879.378435] i915 0000:00:02.0: Unclaimed access detected before read from register 0xc7204
+>[10891.727120] i915 0000:00:02.0: Unclaimed access detected before write to register 0x190030
+>[10913.395161] i915 0000:00:02.0: Unclaimed access detected before write to register 0x1900ec
+>[10939.026480] i915 0000:00:02.0: Unclaimed access detected before read from register 0xc7204
+>[10964.626494] i915 0000:00:02.0: Unclaimed access detected before read from register 0xc7204
+>
+>It don't think this machine had a problem with this before, or perhaps it was going undetected?
 
-Do we want that there since we copy the header to igt as well?
+it was going undetected. However I have a patch to downgrade the first
+message to debug, because we are clear not ready to enable the stricter
+check. I will send it in a bit.
 
-> 
-> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-> 
-> > +	char vend[4];
-> > +
-> > +	drm_dbg_kms(&i915->drm, "%s PNPID mfg: %s (0x%x), prod: %u, serial: %u, week: %d, year: %d\n",
-> > +		    name, drm_edid_decode_mfg_id(mfg_name, vend),
-> > +		    pnp_id->mfg_name, pnp_id->product_code, pnp_id->serial,
-> > +		    pnp_id->mfg_week, pnp_id->mfg_year + 1990);
-> > +}
-> > +
-> >  static int pnp_id_panel_type(struct drm_i915_private *i915,
-> >  			     const struct edid *edid)
-> >  {
-> > @@ -615,6 +629,8 @@ static int pnp_id_panel_type(struct drm_i915_private *i915,
-> >  	edid_id_nodate.mfg_week = 0;
-> >  	edid_id_nodate.mfg_year = 0;
-> >  
-> > +	dump_pnp_id(i915, edid_id, "EDID");
-> > +
-> >  	ptrs = find_section(i915, BDB_LVDS_LFP_DATA_PTRS);
-> >  	if (!ptrs)
-> >  		return -1;
-> > @@ -802,6 +818,7 @@ parse_lfp_data(struct drm_i915_private *i915)
-> >  	const struct bdb_lvds_lfp_data *data;
-> >  	const struct bdb_lvds_lfp_data_tail *tail;
-> >  	const struct bdb_lvds_lfp_data_ptrs *ptrs;
-> > +	const struct lvds_pnp_id *pnp_id;
-> >  	int panel_type = i915->vbt.panel_type;
-> >  
-> >  	ptrs = find_section(i915, BDB_LVDS_LFP_DATA_PTRS);
-> > @@ -815,10 +832,17 @@ parse_lfp_data(struct drm_i915_private *i915)
-> >  	if (!i915->vbt.lfp_lvds_vbt_mode)
-> >  		parse_lfp_panel_dtd(i915, data, ptrs);
-> >  
-> > +	pnp_id = get_lvds_pnp_id(data, ptrs, panel_type);
-> > +	dump_pnp_id(i915, pnp_id, "Panel");
-> > +
-> >  	tail = get_lfp_data_tail(data, ptrs);
-> >  	if (!tail)
-> >  		return;
-> >  
-> > +	drm_dbg_kms(&i915->drm, "Panel name: %.*s\n",
-> > +		    (int)sizeof(tail->panel_name[0].name),
-> > +		    tail->panel_name[panel_type].name);
-> > +
-> >  	if (i915->vbt.version >= 188) {
-> >  		i915->vbt.seamless_drrs_min_refresh_rate =
-> >  			tail->seamless_drrs_min_refresh_rate[panel_type];
-> 
-> -- 
-> Jani Nikula, Intel Open Source Graphics Center
+Lucas De Marchi
 
--- 
-Ville Syrjälä
-Intel
+>
+>Regards,
+>
+>Tvrtko
+>
+>>---
+>>  drivers/gpu/drm/i915/intel_uncore.c | 29 +++++++++++++++++++++--------
+>>  1 file changed, 21 insertions(+), 8 deletions(-)
+>>
+>>diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/intel_uncore.c
+>>index 8b9caaaacc21..df59ec88459e 100644
+>>--- a/drivers/gpu/drm/i915/intel_uncore.c
+>>+++ b/drivers/gpu/drm/i915/intel_uncore.c
+>>@@ -1502,11 +1502,10 @@ ilk_dummy_write(struct intel_uncore *uncore)
+>>  static void
+>>  __unclaimed_reg_debug(struct intel_uncore *uncore,
+>>  		      const i915_reg_t reg,
+>>-		      const bool read,
+>>-		      const bool before)
+>>+		      const bool read)
+>>  {
+>>  	if (drm_WARN(&uncore->i915->drm,
+>>-		     check_for_unclaimed_mmio(uncore) && !before,
+>>+		     check_for_unclaimed_mmio(uncore),
+>>  		     "Unclaimed %s register 0x%x\n",
+>>  		     read ? "read from" : "write to",
+>>  		     i915_mmio_reg_offset(reg)))
+>>@@ -1514,6 +1513,20 @@ __unclaimed_reg_debug(struct intel_uncore *uncore,
+>>  		uncore->i915->params.mmio_debug--;
+>>  }
+>>+static void
+>>+__unclaimed_previous_reg_debug(struct intel_uncore *uncore,
+>>+			       const i915_reg_t reg,
+>>+			       const bool read)
+>>+{
+>>+	if (drm_WARN(&uncore->i915->drm,
+>>+		     check_for_unclaimed_mmio(uncore),
+>>+		     "Unclaimed access detected before %s register 0x%x\n",
+>>+		     read ? "read from" : "write to",
+>>+		     i915_mmio_reg_offset(reg)))
+>>+		/* Only report the first N failures */
+>>+		uncore->i915->params.mmio_debug--;
+>>+}
+>>+
+>>  static inline void
+>>  unclaimed_reg_debug(struct intel_uncore *uncore,
+>>  		    const i915_reg_t reg,
+>>@@ -1526,13 +1539,13 @@ unclaimed_reg_debug(struct intel_uncore *uncore,
+>>  	/* interrupts are disabled and re-enabled around uncore->lock usage */
+>>  	lockdep_assert_held(&uncore->lock);
+>>-	if (before)
+>>+	if (before) {
+>>  		spin_lock(&uncore->debug->lock);
+>>-
+>>-	__unclaimed_reg_debug(uncore, reg, read, before);
+>>-
+>>-	if (!before)
+>>+		__unclaimed_previous_reg_debug(uncore, reg, read);
+>>+	} else {
+>>+		__unclaimed_reg_debug(uncore, reg, read);
+>>  		spin_unlock(&uncore->debug->lock);
+>>+	}
+>>  }
+>>  #define __vgpu_read(x) \
