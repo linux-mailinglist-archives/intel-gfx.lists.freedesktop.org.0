@@ -1,56 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 843734F92AB
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 Apr 2022 12:15:31 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36E144F92BC
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 Apr 2022 12:17:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E8DAD10E148;
-	Fri,  8 Apr 2022 10:15:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 725B710F158;
+	Fri,  8 Apr 2022 10:17:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A77E910E148;
- Fri,  8 Apr 2022 10:15:28 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DBF7210F0E9;
+ Fri,  8 Apr 2022 10:17:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649412928; x=1680948928;
+ t=1649413059; x=1680949059;
  h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=AE6RC8EG+Hd7geescp2zPSNunjGGgYbaGkWQI8nsPIA=;
- b=Aw3rWLIwsT3vaFxtbW3El2Cc3EAonqRV56CAgpzQpJXdYzVPxXDCs31o
- KJjTzLaQvlGTSElPvvpKP1GSKuH5MC4Hpy0behdfMndP2njttEoTOOgxV
- TPyk9v/YVR+lfMQnYbztBcwga02i+qtanP02zuD1SB+x3uy80ewUiVzeN
- 6SW273+scMwHUM1z7/sRXVWGwMIVZ1eSdEvkucLNGuBDho3Igb5bC1h1F
- ljd38tdNBVBTJYQ9RNkYa2mHVK9QcpMfS2verG6/zdMNaEHgpGc3FTJwf
- XFD7dj8TMPzT7T7/XL7cCuYGBC1xynHxtENpZtg4afAdd9pEWQvwwZiLD g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10310"; a="322248467"
-X-IronPort-AV: E=Sophos;i="5.90,244,1643702400"; d="scan'208";a="322248467"
+ message-id:mime-version;
+ bh=ZN2WT+aHWp12igTiJOcFcOuGrpSymXLSvwLhWlCo5CA=;
+ b=hweWbJsXxeDr4dh7Y4YhIo1EoKw0p3xxsGvepaf0rl+LLIFT+DmKogzT
+ AdJhHPM/6qGB4KDFLgmfXGdm93ffZrqAun30a5aRzmOzTBmY4UDjLv201
+ QUIc4O93+gVR4dGv8yIqHnn4kJAPFVv+unmcEBO0yiBLbHqewhHsmd1Eh
+ 2DCoUK5v8F/DY4HSTsWlCKXt4pcDjZQp+8h967vVxq6o/DpjkS8AZYzBn
+ 4pL+qrkTRm34d6RSqHQY4RdJ+DNawz2UeOC8Ags4+MeKizsWW0EunhKGf
+ dlHxnxZwQrJFImeVeZJ95fJXnmfdxGiy2nfplJa9PdcnUvrFXA86hyYx2 w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10310"; a="261554094"
+X-IronPort-AV: E=Sophos;i="5.90,244,1643702400"; d="scan'208";a="261554094"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2022 03:15:28 -0700
-X-IronPort-AV: E=Sophos;i="5.90,244,1643702400"; d="scan'208";a="571438969"
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2022 03:17:38 -0700
+X-IronPort-AV: E=Sophos;i="5.90,244,1643702400"; d="scan'208";a="571439569"
 Received: from dmunisam-mobl.ger.corp.intel.com (HELO localhost)
  ([10.249.141.69])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2022 03:15:24 -0700
+ 08 Apr 2022 03:17:31 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Christian =?utf-8?Q?K=C3=B6nig?= <christian.koenig@amd.com>, Christian
- =?utf-8?Q?K=C3=B6nig?=
- <ckoenig.leichtzumerken@gmail.com>, daniel.vetter@ffwll.ch,
- dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org,
- linaro-mm-sig@lists.linaro.org, intel-gfx@lists.freedesktop.org
-In-Reply-To: <f6f56ad0-4a5b-69b7-500d-79663f690f13@amd.com>
+To: cgel.zte@gmail.com, alexander.deucher@amd.com, christian.koenig@amd.com,
+ Xinhui.Pan@amd.com, airlied@linux.ie
+In-Reply-To: <20220408095531.2495168-1-lv.ruyi@zte.com.cn>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220407085946.744568-1-christian.koenig@amd.com>
- <20220407085946.744568-13-christian.koenig@amd.com>
- <87y20ghrmy.fsf@intel.com> <f6f56ad0-4a5b-69b7-500d-79663f690f13@amd.com>
-Date: Fri, 08 Apr 2022 13:15:21 +0300
-Message-ID: <87v8vjj2yu.fsf@intel.com>
+References: <20220408095531.2495168-1-lv.ruyi@zte.com.cn>
+Date: Fri, 08 Apr 2022 13:17:27 +0300
+Message-ID: <87sfqnj2vc.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 12/15] drm/i915: drop bo->moving dependency
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH] drivers: Fix spelling mistake "writting" ->
+ "writing"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,263 +58,164 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: linux-rtc@vger.kernel.org, linux-scsi@vger.kernel.org,
+ netdev@vger.kernel.org, lv.ruyi@zte.com.cn, linux-wireless@vger.kernel.org,
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ platform-driver-x86@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ rodrigo.vivi@intel.com, Zeal Robot <zealci@zte.com.cn>,
+ intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 08 Apr 2022, Christian K=C3=B6nig <christian.koenig@amd.com> wrote:
-> Am 08.04.22 um 11:05 schrieb Jani Nikula:
->> On Thu, 07 Apr 2022, "Christian K=C3=B6nig" <ckoenig.leichtzumerken@gmai=
-l.com> wrote:
->>> That should now be handled by the common dma_resv framework.
->>>
->>> Signed-off-by: Christian K=C3=B6nig <christian.koenig@amd.com>
->>> Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
->>> Cc: intel-gfx@lists.freedesktop.org
->> So, where are the i915 maintainer acks for merging this (and the other
->> patches in the series touching i915) via drm-misc-next?
->>
->> Daniel's Reviewed-by is not an ack to merge outside drm-intel-next.
+On Fri, 08 Apr 2022, cgel.zte@gmail.com wrote:
+> From: Lv Ruyi <lv.ruyi@zte.com.cn>
 >
-> I had the impression that it would be sufficient.
+> There are some spelling mistakes in the comments. Fix it.
 
-Please don't assume. Please always ask for explicit acks from the
-maintainers before merging, and record the acks in the commit
-message. This has been standard policy for as long as I remember.
-
-Contrast with us merging non-trivial dma-buf changes via drm-intel-next
-with a Reviewed-by from someone who isn't a dma-buf maintainer, and not
-even bothering to Cc the maintainers.
-
->> We don't merge i915 stuff without passing CI results. Apparently this
->> one failed enough machines that the CI had to be stopped entirely.
->
-> That was unfortunately partially expected and pointed out by Matthew and=
-=20
-> Daniel before the push.
->
-> i915 for some reason extended the usage of the bo->moving fence despite=20
-> the fact we had patches on the mailing list to entirely remove this featu=
-re.
->
-> I couldn't get any sane CI results for weeks because of this and at some=
-=20
-> point we just had to go ahead and fix the clash in drm-tip.
-
-Did you talk to the maintainers about it?
-
+Please prefer splitting by driver. This isn't even split by subsystem. I
+presume there are very few maintainers willing to pick this up as it is.
 
 BR,
 Jani.
 
 >
-> Sorry for any inconvenience cause by that. I hoped that we fixed all=20
-> cases, but looks like we still missed some.
+> Reported-by: Zeal Robot <zealci@zte.com.cn>
+> Signed-off-by: Lv Ruyi <lv.ruyi@zte.com.cn>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c              | 2 +-
+>  drivers/gpu/drm/i915/i915_request.c                 | 2 +-
+>  drivers/net/ethernet/sfc/mcdi_pcol.h                | 4 ++--
+>  drivers/net/ethernet/toshiba/tc35815.c              | 2 +-
+>  drivers/net/wireless/realtek/rtlwifi/rtl8192cu/hw.c | 4 ++--
+>  drivers/platform/x86/hp_accel.c                     | 2 +-
+>  drivers/rtc/rtc-sa1100.c                            | 2 +-
+>  drivers/scsi/pmcraid.c                              | 4 ++--
+>  8 files changed, 11 insertions(+), 11 deletions(-)
 >
-> Regards,
-> Christian.
->
->>
->>
->> BR,
->> Jani.
->>
->>
->>> ---
->>>   drivers/gpu/drm/i915/gem/i915_gem_object.c    | 41 ++++---------------
->>>   drivers/gpu/drm/i915/gem/i915_gem_object.h    |  8 +---
->>>   drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c  | 15 +------
->>>   .../drm/i915/gem/selftests/i915_gem_migrate.c |  3 +-
->>>   .../drm/i915/gem/selftests/i915_gem_mman.c    |  3 +-
->>>   drivers/gpu/drm/i915/i915_vma.c               |  9 +++-
->>>   6 files changed, 21 insertions(+), 58 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/d=
-rm/i915/gem/i915_gem_object.c
->>> index 372bc220faeb..ffde7bc0a95d 100644
->>> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
->>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
->>> @@ -741,30 +741,19 @@ static const struct drm_gem_object_funcs i915_gem=
-_object_funcs =3D {
->>>   /**
->>>    * i915_gem_object_get_moving_fence - Get the object's moving fence i=
-f any
->>>    * @obj: The object whose moving fence to get.
->>> + * @fence: The resulting fence
->>>    *
->>>    * A non-signaled moving fence means that there is an async operation
->>>    * pending on the object that needs to be waited on before setting up
->>>    * any GPU- or CPU PTEs to the object's pages.
->>>    *
->>> - * Return: A refcounted pointer to the object's moving fence if any,
->>> - * NULL otherwise.
->>> + * Return: Negative error code or 0 for success.
->>>    */
->>> -struct dma_fence *
->>> -i915_gem_object_get_moving_fence(struct drm_i915_gem_object *obj)
->>> +int i915_gem_object_get_moving_fence(struct drm_i915_gem_object *obj,
->>> +				     struct dma_fence **fence)
->>>   {
->>> -	return dma_fence_get(i915_gem_to_ttm(obj)->moving);
->>> -}
->>> -
->>> -void i915_gem_object_set_moving_fence(struct drm_i915_gem_object *obj,
->>> -				      struct dma_fence *fence)
->>> -{
->>> -	struct dma_fence **moving =3D &i915_gem_to_ttm(obj)->moving;
->>> -
->>> -	if (*moving =3D=3D fence)
->>> -		return;
->>> -
->>> -	dma_fence_put(*moving);
->>> -	*moving =3D dma_fence_get(fence);
->>> +	return dma_resv_get_singleton(obj->base.resv, DMA_RESV_USAGE_KERNEL,
->>> +				      fence);
->>>   }
->>>=20=20=20
->>>   /**
->>> @@ -782,23 +771,9 @@ void i915_gem_object_set_moving_fence(struct drm_i=
-915_gem_object *obj,
->>>   int i915_gem_object_wait_moving_fence(struct drm_i915_gem_object *obj,
->>>   				      bool intr)
->>>   {
->>> -	struct dma_fence *fence =3D i915_gem_to_ttm(obj)->moving;
->>> -	int ret;
->>> -
->>>   	assert_object_held(obj);
->>> -	if (!fence)
->>> -		return 0;
->>> -
->>> -	ret =3D dma_fence_wait(fence, intr);
->>> -	if (ret)
->>> -		return ret;
->>> -
->>> -	if (fence->error)
->>> -		return fence->error;
->>> -
->>> -	i915_gem_to_ttm(obj)->moving =3D NULL;
->>> -	dma_fence_put(fence);
->>> -	return 0;
->>> +	return dma_resv_wait_timeout(obj->base. resv, DMA_RESV_USAGE_KERNEL,
->>> +				     intr, MAX_SCHEDULE_TIMEOUT);
->>>   }
->>>=20=20=20
->>>   #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
->>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/d=
-rm/i915/gem/i915_gem_object.h
->>> index 02c37fe4a535..e11d82a9f7c3 100644
->>> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
->>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
->>> @@ -520,12 +520,8 @@ i915_gem_object_finish_access(struct drm_i915_gem_=
-object *obj)
->>>   	i915_gem_object_unpin_pages(obj);
->>>   }
->>>=20=20=20
->>> -struct dma_fence *
->>> -i915_gem_object_get_moving_fence(struct drm_i915_gem_object *obj);
->>> -
->>> -void i915_gem_object_set_moving_fence(struct drm_i915_gem_object *obj,
->>> -				      struct dma_fence *fence);
->>> -
->>> +int i915_gem_object_get_moving_fence(struct drm_i915_gem_object *obj,
->>> +				     struct dma_fence **fence);
->>>   int i915_gem_object_wait_moving_fence(struct drm_i915_gem_object *obj,
->>>   				      bool intr);
->>>=20=20=20
->>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c b/drivers/gpu=
-/drm/i915/gem/i915_gem_ttm_move.c
->>> index 438b8a95b3d1..a10716f4e717 100644
->>> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
->>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
->>> @@ -467,19 +467,6 @@ __i915_ttm_move(struct ttm_buffer_object *bo,
->>>   	return fence;
->>>   }
->>>=20=20=20
->>> -static int
->>> -prev_deps(struct ttm_buffer_object *bo, struct ttm_operation_ctx *ctx,
->>> -	  struct i915_deps *deps)
->>> -{
->>> -	int ret;
->>> -
->>> -	ret =3D i915_deps_add_dependency(deps, bo->moving, ctx);
->>> -	if (!ret)
->>> -		ret =3D i915_deps_add_resv(deps, bo->base.resv, ctx);
->>> -
->>> -	return ret;
->>> -}
->>> -
->>>   /**
->>>    * i915_ttm_move - The TTM move callback used by i915.
->>>    * @bo: The buffer object.
->>> @@ -534,7 +521,7 @@ int i915_ttm_move(struct ttm_buffer_object *bo, boo=
-l evict,
->>>   		struct i915_deps deps;
->>>=20=20=20
->>>   		i915_deps_init(&deps, GFP_KERNEL | __GFP_NORETRY | __GFP_NOWARN);
->>> -		ret =3D prev_deps(bo, ctx, &deps);
->>> +		ret =3D i915_deps_add_resv(&deps, bo->base.resv, ctx);
->>>   		if (ret) {
->>>   			i915_refct_sgt_put(dst_rsgt);
->>>   			return ret;
->>> diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_migrate.c b/dr=
-ivers/gpu/drm/i915/gem/selftests/i915_gem_migrate.c
->>> index 4997ed18b6e4..0ad443a90c8b 100644
->>> --- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_migrate.c
->>> +++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_migrate.c
->>> @@ -219,8 +219,7 @@ static int __igt_lmem_pages_migrate(struct intel_gt=
- *gt,
->>>   			err =3D dma_resv_reserve_fences(obj->base.resv, 1);
->>>   			if (!err)
->>>   				dma_resv_add_fence(obj->base.resv, &rq->fence,
->>> -						   DMA_RESV_USAGE_WRITE);
->>> -			i915_gem_object_set_moving_fence(obj, &rq->fence);
->>> +						   DMA_RESV_USAGE_KERNEL);
->>>   			i915_request_put(rq);
->>>   		}
->>>   		if (err)
->>> diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c b/drive=
-rs/gpu/drm/i915/gem/selftests/i915_gem_mman.c
->>> index 3a6e3f6d239f..dfc34cc2ef8c 100644
->>> --- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
->>> +++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
->>> @@ -1221,8 +1221,7 @@ static int __igt_mmap_migrate(struct intel_memory=
-_region **placements,
->>>   	i915_gem_object_unpin_pages(obj);
->>>   	if (rq) {
->>>   		dma_resv_add_fence(obj->base.resv, &rq->fence,
->>> -				   DMA_RESV_USAGE_WRITE);
->>> -		i915_gem_object_set_moving_fence(obj, &rq->fence);
->>> +				   DMA_RESV_USAGE_KERNEL);
->>>   		i915_request_put(rq);
->>>   	}
->>>   	i915_gem_object_unlock(obj);
->>> diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i91=
-5_vma.c
->>> index 524477d8939e..d077f7b9eaad 100644
->>> --- a/drivers/gpu/drm/i915/i915_vma.c
->>> +++ b/drivers/gpu/drm/i915/i915_vma.c
->>> @@ -1357,10 +1357,17 @@ int i915_vma_pin_ww(struct i915_vma *vma, struc=
-t i915_gem_ww_ctx *ww,
->>>   	if (err)
->>>   		return err;
->>>=20=20=20
->>> +	if (vma->obj) {
->>> +		err =3D i915_gem_object_get_moving_fence(vma->obj, &moving);
->>> +		if (err)
->>> +			return err;
->>> +	} else {
->>> +		moving =3D NULL;
->>> +	}
->>> +
->>>   	if (flags & PIN_GLOBAL)
->>>   		wakeref =3D intel_runtime_pm_get(&vma->vm->i915->runtime_pm);
->>>=20=20=20
->>> -	moving =3D vma->obj ? i915_gem_object_get_moving_fence(vma->obj) : NU=
-LL;
->>>   	if (flags & vma->vm->bind_async_flags || moving) {
->>>   		/* lock VM */
->>>   		err =3D i915_vm_lock_objects(vma->vm, ww);
->
+> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+> index 9426e252d8aa..ce361fce7155 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+> @@ -7304,7 +7304,7 @@ static void gfx_v10_0_setup_grbm_cam_remapping(struct amdgpu_device *adev)
+>  		return;
+>  
+>  	/* initialize cam_index to 0
+> -	 * index will auto-inc after each data writting */
+> +	 * index will auto-inc after each data writing */
+>  	WREG32_SOC15(GC, 0, mmGRBM_CAM_INDEX, 0);
+>  
+>  	switch (adev->ip_versions[GC_HWIP][0]) {
+> diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+> index 582770360ad1..cf79a25cd98a 100644
+> --- a/drivers/gpu/drm/i915/i915_request.c
+> +++ b/drivers/gpu/drm/i915/i915_request.c
+> @@ -451,7 +451,7 @@ static bool __request_in_flight(const struct i915_request *signal)
+>  	 * to avoid tearing.]
+>  	 *
+>  	 * Note that the read of *execlists->active may race with the promotion
+> -	 * of execlists->pending[] to execlists->inflight[], overwritting
+> +	 * of execlists->pending[] to execlists->inflight[], overwriting
+>  	 * the value at *execlists->active. This is fine. The promotion implies
+>  	 * that we received an ACK from the HW, and so the context is not
+>  	 * stuck -- if we do not see ourselves in *active, the inflight status
+> diff --git a/drivers/net/ethernet/sfc/mcdi_pcol.h b/drivers/net/ethernet/sfc/mcdi_pcol.h
+> index d3fcbf930dba..ff617b1b38d3 100644
+> --- a/drivers/net/ethernet/sfc/mcdi_pcol.h
+> +++ b/drivers/net/ethernet/sfc/mcdi_pcol.h
+> @@ -73,8 +73,8 @@
+>   *               \------------------------------ Resync (always set)
+>   *
+>   * The client writes it's request into MC shared memory, and rings the
+> - * doorbell. Each request is completed by either by the MC writting
+> - * back into shared memory, or by writting out an event.
+> + * doorbell. Each request is completed by either by the MC writing
+> + * back into shared memory, or by writing out an event.
+>   *
+>   * All MCDI commands support completion by shared memory response. Each
+>   * request may also contain additional data (accounted for by HEADER.LEN),
+> diff --git a/drivers/net/ethernet/toshiba/tc35815.c b/drivers/net/ethernet/toshiba/tc35815.c
+> index ce38f7515225..1b4c207afb66 100644
+> --- a/drivers/net/ethernet/toshiba/tc35815.c
+> +++ b/drivers/net/ethernet/toshiba/tc35815.c
+> @@ -157,7 +157,7 @@ struct tc35815_regs {
+>  #define PROM_Read	       0x00004000 /*10:Read operation		     */
+>  #define PROM_Write	       0x00002000 /*01:Write operation		     */
+>  #define PROM_Erase	       0x00006000 /*11:Erase operation		     */
+> -					  /*00:Enable or Disable Writting,   */
+> +					  /*00:Enable or Disable Writing,    */
+>  					  /*	  as specified in PROM_Addr. */
+>  #define PROM_Addr_Ena	       0x00000030 /*11xxxx:PROM Write enable	     */
+>  					  /*00xxxx:	      disable	     */
+> diff --git a/drivers/net/wireless/realtek/rtlwifi/rtl8192cu/hw.c b/drivers/net/wireless/realtek/rtlwifi/rtl8192cu/hw.c
+> index eaba66113328..fbb4941d0da8 100644
+> --- a/drivers/net/wireless/realtek/rtlwifi/rtl8192cu/hw.c
+> +++ b/drivers/net/wireless/realtek/rtlwifi/rtl8192cu/hw.c
+> @@ -520,7 +520,7 @@ static void _rtl92cu_init_queue_reserved_page(struct ieee80211_hw *hw,
+>  		 * 2 out-ep. Remainder pages have assigned to High queue */
+>  		if (outepnum > 1 && txqremaininpage)
+>  			numhq += txqremaininpage;
+> -		/* NOTE: This step done before writting REG_RQPN. */
+> +		/* NOTE: This step done before writing REG_RQPN. */
+>  		if (ischipn) {
+>  			if (queue_sel & TX_SELE_NQ)
+>  				numnq = txqpageunit;
+> @@ -539,7 +539,7 @@ static void _rtl92cu_init_queue_reserved_page(struct ieee80211_hw *hw,
+>  			numlq = ischipn ? WMM_CHIP_B_PAGE_NUM_LPQ :
+>  				WMM_CHIP_A_PAGE_NUM_LPQ;
+>  		}
+> -		/* NOTE: This step done before writting REG_RQPN. */
+> +		/* NOTE: This step done before writing REG_RQPN. */
+>  		if (ischipn) {
+>  			if (queue_sel & TX_SELE_NQ)
+>  				numnq = WMM_CHIP_B_PAGE_NUM_NPQ;
+> diff --git a/drivers/platform/x86/hp_accel.c b/drivers/platform/x86/hp_accel.c
+> index e9f852f7c27f..b59b852a666f 100644
+> --- a/drivers/platform/x86/hp_accel.c
+> +++ b/drivers/platform/x86/hp_accel.c
+> @@ -122,7 +122,7 @@ static int lis3lv02d_acpi_read(struct lis3lv02d *lis3, int reg, u8 *ret)
+>  static int lis3lv02d_acpi_write(struct lis3lv02d *lis3, int reg, u8 val)
+>  {
+>  	struct acpi_device *dev = lis3->bus_priv;
+> -	unsigned long long ret; /* Not used when writting */
+> +	unsigned long long ret; /* Not used when writing */
+>  	union acpi_object in_obj[2];
+>  	struct acpi_object_list args = { 2, in_obj };
+>  
+> diff --git a/drivers/rtc/rtc-sa1100.c b/drivers/rtc/rtc-sa1100.c
+> index 1250887e4382..a52a333de8e8 100644
+> --- a/drivers/rtc/rtc-sa1100.c
+> +++ b/drivers/rtc/rtc-sa1100.c
+> @@ -231,7 +231,7 @@ int sa1100_rtc_init(struct platform_device *pdev, struct sa1100_rtc *info)
+>  	 * initialization is unknown and could in principle happen during
+>  	 * normal processing.
+>  	 *
+> -	 * Notice that clearing bit 1 and 0 is accomplished by writting ONES to
+> +	 * Notice that clearing bit 1 and 0 is accomplished by writing ONES to
+>  	 * the corresponding bits in RTSR. */
+>  	writel_relaxed(RTSR_AL | RTSR_HZ, info->rtsr);
+>  
+> diff --git a/drivers/scsi/pmcraid.c b/drivers/scsi/pmcraid.c
+> index fd674ed1febe..d7f4680f6106 100644
+> --- a/drivers/scsi/pmcraid.c
+> +++ b/drivers/scsi/pmcraid.c
+> @@ -857,7 +857,7 @@ static void _pmcraid_fire_command(struct pmcraid_cmd *cmd)
+>  	unsigned long lock_flags;
+>  
+>  	/* Add this command block to pending cmd pool. We do this prior to
+> -	 * writting IOARCB to ioarrin because IOA might complete the command
+> +	 * writing IOARCB to ioarrin because IOA might complete the command
+>  	 * by the time we are about to add it to the list. Response handler
+>  	 * (isr/tasklet) looks for cmd block in the pending pending list.
+>  	 */
+> @@ -2450,7 +2450,7 @@ static void pmcraid_request_sense(struct pmcraid_cmd *cmd)
+>  
+>  	/* request sense might be called as part of error response processing
+>  	 * which runs in tasklets context. It is possible that mid-layer might
+> -	 * schedule queuecommand during this time, hence, writting to IOARRIN
+> +	 * schedule queuecommand during this time, hence, writing to IOARRIN
+>  	 * must be protect by host_lock
+>  	 */
+>  	pmcraid_send_cmd(cmd, pmcraid_erp_done,
 
---=20
+-- 
 Jani Nikula, Intel Open Source Graphics Center
