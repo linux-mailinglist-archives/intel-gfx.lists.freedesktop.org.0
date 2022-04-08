@@ -2,160 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4D184F97AA
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 Apr 2022 16:08:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 719874F97B4
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 Apr 2022 16:09:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE7CA10F284;
-	Fri,  8 Apr 2022 14:08:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A397710E88B;
+	Fri,  8 Apr 2022 14:09:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 481FC10F27F;
- Fri,  8 Apr 2022 14:08:04 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D8C310E88B
+ for <intel-gfx@lists.freedesktop.org>; Fri,  8 Apr 2022 14:09:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649426884; x=1680962884;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-id:content-transfer-encoding: mime-version;
- bh=N04CrbonghHbn4TEAC8OxOt2//PU0GVTUSrjO906ko4=;
- b=RY9aHh8DvWAPWRRBptMyH+zPrVmObaWr/ms9pIn+iwJx2w3AVuozBOsA
- gLf/0RvpYEDF6I3IkHjhTXkqnROZ5jo+gaxxRiNi1GT7RaYCbCoaj/16n
- 6UhCKRBPskPJg4PlVdNUv9RKqqABsJ5iuTtNx0W+Q23mVe4Ko0MA37s/I
- 83UgO1zQ/3WvrLPkAn4pb0yBpLQqWXgppSpHWl6OE24aZwMLqTZOFAXqq
- ccv1iocUAVU70ljmafQPj7qNokRnUX+fubw47R42El8Xz9SyrSpvKmWNP
- djNytdAhRDXtptr3h0qgFfmOpUnHVDOhOfBW0E/wnafagPUEDopRzj2ie g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10310"; a="261591778"
-X-IronPort-AV: E=Sophos;i="5.90,245,1643702400"; d="scan'208";a="261591778"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2022 07:08:03 -0700
+ t=1649426985; x=1680962985;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=mPNvSW5MgSrmiPeHRXX9UkKfnk+8rNNmMuj/bhcA5Ac=;
+ b=PQh7YxYsrjCWaSJGUnXPkNRAu6HH9OEtqgQpgvldsWphQK9UePeBzP8D
+ iocGNKcIJUAGOs4wJNngelDeK+BTI/NxftRuBkFY9eFHbihecCVhON0BW
+ hyJDf/+ft1Sc8jUpUz9pEVO5lzMlV49Ww4qyNonXOHaymtI+/V+IyBAhn
+ gWolA07AJPkLyjEOn2clcqbBUH/9Ympm5g7Ap1pyjWjSZjHuSC5rGiAY3
+ jFN2GRnkrw2Wle24z8zOYilrayOcEEtsaZYtM4clBYOdaGalEzQdIcahj
+ nQTrNHy6pjnYmXRiQMX3k7euQD0IiF8hqG/YP+K+XjwiGWsyOUceWAYvq A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10310"; a="259198620"
+X-IronPort-AV: E=Sophos;i="5.90,245,1643702400"; d="scan'208";a="259198620"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2022 07:09:45 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,245,1643702400"; d="scan'208";a="557787569"
-Received: from orsmsx606.amr.corp.intel.com ([10.22.229.19])
- by fmsmga007.fm.intel.com with ESMTP; 08 Apr 2022 07:08:02 -0700
-Received: from orsmsx608.amr.corp.intel.com (10.22.229.21) by
- ORSMSX606.amr.corp.intel.com (10.22.229.19) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Fri, 8 Apr 2022 07:08:02 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx608.amr.corp.intel.com (10.22.229.21) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27 via Frontend Transport; Fri, 8 Apr 2022 07:08:02 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.175)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2308.27; Fri, 8 Apr 2022 07:08:01 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=VeEBN+vbMJQDAGSsInROsud+CsVwJmWmZ8I2ccv2BVcHEa3lsbbs6Rm5Q9KkDbSwOVDh4zU0PdecnuCTqFR6F2CYQ1MUKj26u0oX4aJRkCqptIkVhnU3k3TnMQdzXlB3jCZ2wHfh8Hn3euYGnbdQcj8jjMX094PN0ibEhbomMpWOKF5wfxNvu/4uN38hLYCwOMEbv9if4za7IrOXSFNp+XrGgdyJK+u230bnxoPhblJ37zg4x4hfIFScoKTqOV9Id+xU8vWvpiUzKlbcE2CvcVjkgS/ypkeFMkFSXVquqBRKgyT/7jVDPVoBF82Crdy+OH6MfIhVvnYXurMfTsbFbw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=N04CrbonghHbn4TEAC8OxOt2//PU0GVTUSrjO906ko4=;
- b=ed0NLsxH/XelQvcMs9L4sBL3hWasLujA664pJccPjGRGV4r0sKWW1RB6Vq/64EatT3saysmdmtIMSz2sy245ZFTb+JvDzPttJjdTi8+KJH9Xm8YaEoVu7rTL+7RYHI1zzwg+lNNtshE2fypK8fEiMjYBer9WD7zNkCkBQMCLrFmw89xwqTNHOrhb4OHzg3SiCjHX/h84wPlD0YsTp2VgYohS77/n7JksM356Yjjq+Uqk23txaieUHAwEdLhqel7qQXyWq2+es9TXKbgdSDv9TF9qgNkNjw8BE/MOg6mu203gBMqgsVLVKSe/uvlWOX72ivgmpFS/b6OB+7cafV7SqA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM4PR11MB5549.namprd11.prod.outlook.com (2603:10b6:5:388::7) by
- BN6PR11MB1476.namprd11.prod.outlook.com (2603:10b6:405:b::12) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5144.26; Fri, 8 Apr 2022 14:07:59 +0000
-Received: from DM4PR11MB5549.namprd11.prod.outlook.com
- ([fe80::e5b8:93eb:e06b:f1ab]) by DM4PR11MB5549.namprd11.prod.outlook.com
- ([fe80::e5b8:93eb:e06b:f1ab%5]) with mapi id 15.20.5144.022; Fri, 8 Apr 2022
- 14:07:59 +0000
-From: "Wang, Zhi A" <zhi.a.wang@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>, Zhi Wang
- <zhi.wang.linux@gmail.com>, "dri-devel@lists.freedesktop.org"
- <dri-devel@lists.freedesktop.org>, "linux-kernel@vger.kernel.org"
- <linux-kernel@vger.kernel.org>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>, "intel-gvt-dev@lists.freedesktop.org"
- <intel-gvt-dev@lists.freedesktop.org>
-Thread-Topic: [PATCH v9 1/3] i915/gvt: Separate the MMIO tracking table from
- GVT-g
-Thread-Index: AQHYSk/vDxh6otQMi0KsvRqKHUKM56zkjLIAgAGCyIA=
-Date: Fri, 8 Apr 2022 14:07:59 +0000
-Message-ID: <986b8ff0-d0de-437c-8a56-c54aafb6159a@intel.com>
-References: <20220407071945.72148-1-zhi.a.wang@intel.com>
- <20220407071945.72148-2-zhi.a.wang@intel.com> <874k35541h.fsf@intel.com>
-In-Reply-To: <874k35541h.fsf@intel.com>
-Accept-Language: en-FI, en-US
-Content-Language: aa
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 6da904a9-9425-470c-f721-08da1969303b
-x-ms-traffictypediagnostic: BN6PR11MB1476:EE_
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-microsoft-antispam-prvs: <BN6PR11MB1476B9CDD26C60D734466FA6CAE99@BN6PR11MB1476.namprd11.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: BgUahAS02BRsAY1d0/+4uYxgT8D0t+rqMXqsbPPimMVdMTsiJ6SalqQxhoe9BCU4JCFL0YqN0RcbATqfxlu0Uioog05NkGUjKEosy9ym1u/aGcYXWU9W4yrVxTfwiwVNfPYVe5+TRjabo2U7cJ4lVC1STWRduNyEAh0Wn3iLQ4b9o094XDm5jOjiZmwdY/Ira239gx44smfPuTC00EDH1sRazfpQGf3+HKKgAnaP2B6xXUmN5QFNYwrRawgDgqXwfNY+FDsFqOfSJppR8EJ5JvRK4hvbIB61zorJkR5nQ5vNlGJ+dMbrb5NRiJu1XD3Rx+KF2bzMel+FrUkV5bcshV8FpeVk9tenQN1Jv40PynBc4VtR5AwwhmSfVvP8vJUufbK+8ZtSmS173JPP+oY5TkPkU+T4arwkWkZbgiMlWLxoTNf5bnMK0wjSn5pOxn3JcwzQjAYTGEgqSCNKmmSVoIn+in7YFR/r+clzpO9hDOwQvvstvd/O2+WQaajHTSuWjcGp3XcZLG4JV5PhTr5juNYj1SP9FUzYJGQQfo4VjTt/huDAXYeecNLymv2guA19l0R9KuZ55DIMaJVuUlJt6aFMWzEVceCVPi2AkF676XMCmOa0tirrMke2V2WFxd57FTx18DtxNchQRVouVAY8o//NPJEZAPKFL3COf9U2FqhK2A5vxAChlgMxWsV4c/nbEurWVAG+R9Q426uTqEQbCDH1GaqP+yqS2fVtECVQv0f9yH44ji9Rt/uaQkx8TwXnHadBo4/SQB95a0KQ8TdbFQ==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5549.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230001)(366004)(64756008)(91956017)(4326008)(66946007)(66446008)(66556008)(8676002)(2616005)(76116006)(6512007)(66476007)(31686004)(82960400001)(36756003)(53546011)(6506007)(316002)(110136005)(54906003)(26005)(186003)(7416002)(122000001)(6486002)(71200400001)(8936002)(83380400001)(38100700002)(31696002)(86362001)(5660300002)(508600001)(2906002)(38070700005)(43740500002)(45980500001);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?a3IvbERqVVB2NkpkWGN1b2xyL3VVVkNjVnpqUHJJcEtLdDZ1TTkrcEtRdlJL?=
- =?utf-8?B?VlNxbU9Ebk8rSElid3A1YVN5a1dVaWRwcjQzUkxQa2JvZWtpbEIzMW1EQ0pG?=
- =?utf-8?B?WWZicE1yQzJPcmFxTWdab2dlWlp6ZTY2blNva3hFazZTNE1mTjczSXBSUkJP?=
- =?utf-8?B?a1hWS0JoNVZMMXRJSkdhT3Y3UlkwWllCY0FBOGUxNmt3L2UwcHZna3BMNzVU?=
- =?utf-8?B?VEhUTTREM1Z0TysxcGg4MjNVOEhGL3lRUWF2YXI3Wi96aVdVc2hQekdXdVNM?=
- =?utf-8?B?eFFDQlp1UmJacmFTTmsydGVqeFNwOXArMTVpY0JVYjNqTUFnR2IvRnR4WnBj?=
- =?utf-8?B?a1hsOUE5bytoYkVXYTJQUVBpOWRQREhzSDlla1Rxd3pzSXd6WEtYY0ZaK1RK?=
- =?utf-8?B?ZVJibEF5eDcyVzNrOVlVSzR4QXZNRGFXc21saG9lMVBibTNlZGFIODFBb1RV?=
- =?utf-8?B?eHNtcW5SZmZtRFc4UHRKWDI5Y25RNDZJNkhlWjF6dm1LYllTbHZlTW1PUzht?=
- =?utf-8?B?bHhGQzBJV09rOWJrdHRWU1hOVGQwYTA2NkRsQkNBVm5Qb0t6a0krZjFwNm9w?=
- =?utf-8?B?ai9ENkJpa1JyUFkwbFg0Y3Uvb0VuanZ2NndUc2hEK28vM205UzJDZUNiY3k3?=
- =?utf-8?B?WkRGNWRFcDU5SHZMZGplTVZoNVJtREJ0UTFXZlFxVDhNZng2RUZUbnJsMm1U?=
- =?utf-8?B?ajdRY3V3NTRLZTdsK3h4ZGtmYmlpUDRGTWl2VjBuVzBVb3NDWTRYRWlhUnRo?=
- =?utf-8?B?QTFoSWdXdzRtQ0tGR2hlaVQzTktxc3ZHWTMyb2lmMzhWUHNxdFdNM3pIZ3Fa?=
- =?utf-8?B?czZzVm5zQXdvdzJRMDJEeHpQYmJjQXU3bGtSbjNERG5MSkV5TzRXV0xYOUxI?=
- =?utf-8?B?Y3F6VXNFQk52WnFTbTdQcEk4akFyQ2dtS1hxYkd4Um9LL3dTS3A4SWpORitY?=
- =?utf-8?B?WllHRm9lR01jQVREb0kwQnYwNUNnZlpOUWk0aDVQWkIyTllkSlo3ZGtaSkdl?=
- =?utf-8?B?QjMxUWxpU0Q0d3E1NzF4THI5ZEZXV21DbEFMeTAzcHZyZFYzdzQwcjc4RUlO?=
- =?utf-8?B?YjlRMjMzcGlqYmtYak9NTlAvbnJCdVA4V1p6U2tEbFhOTmpGTW9CY2VWOGdh?=
- =?utf-8?B?Y2VjSXA2YTZLbXUxcUN4ckxBelVQVTlDTGdHU045UzlWOWFXZzhsVjVHUlBJ?=
- =?utf-8?B?WVpRRlc2N1FiTDZCV0dVZHQ3MTE3THYrVUZVY3NvYTEwZENWK2xMMUZxY0ph?=
- =?utf-8?B?OThwQldLS0Rwd3U2VHUwV0t3TnZqWHowMDUra1I2azFQOUJQTTR3Qm5Bbnpz?=
- =?utf-8?B?cTlqWVdEUnRHTXRaRXpWa3dXdG5rdURneUh4dzhRMDN2OFk0ejNsbkNsVW1v?=
- =?utf-8?B?QWRBOFpYUmVjQ1NDNzVNUDZKS2Fmdm5JaUN5cWEwbUw1R0Y4Q3VUVC9ZUG84?=
- =?utf-8?B?MlprcHJid0VvTHhORFFkVGgwb2lsZy9uUnNvZkZ5Uk9Ca1NkVUZwM09CSE1T?=
- =?utf-8?B?RUJGQk5oUDMva0RhL2ZSUGRZWXl5eTd4UUF2VEFlK2JDVkF6QUtNcGFhV1ZE?=
- =?utf-8?B?TGVYVDhMdk5DeHI0QzhTSnYxTmhYSVFXQmxDeXl2Z1NMcVZYUlVWb21VdTV1?=
- =?utf-8?B?bUxLOUY1OHIyb0dBMncrRTlUMCtMb0dVRnVNWnVMZ2NxK2lTNG9BQVF0MU9t?=
- =?utf-8?B?cVdSRW5GVUV0cklFRjZKTHNTdThVYVNPaXlibVZPZUIvaDlNb0ZoQnprd0lz?=
- =?utf-8?B?citCQVk2dUtPcmYwdjV2V2RiWm1Oa1JaNnpseEp4YWUwTENpUk12aVdIRXh6?=
- =?utf-8?B?cVlSa3Z3OEhpSURXUitESU9QS24yMXhCUjYzWXE0UnY2STQvVDA5RHpxWnJ1?=
- =?utf-8?B?N1lPZ3lva2czd3dhSTBDbmIyWGpqMlBHeXc1SStDaEFjVGV2cmtqelpXY01J?=
- =?utf-8?B?TDB5MXBEUURyOGFHangwOUVLcHJEOGpPdFdkTFBNUDI1K3FCdzNLTktOZFNk?=
- =?utf-8?B?RWhOYUI2TGw1cDBBRnBtREc3b3dLWUlabm9PRGVvZ2J0Ujltby91S09vUlFu?=
- =?utf-8?B?OXQwT04xL3FJbC85MGpxNG9qRnd6dlZ4djBHclFETkI3SHlLdWowWENWc0da?=
- =?utf-8?B?WE1ZRXczUG5QY09ZelhnS1c0a2VrcCtmanM3NHh6N200eGkrSitTMWpsQVEx?=
- =?utf-8?B?ZDlWdExESGlObU5ickR1bUppY3hpSDBCNVlONTJhYUNFQ2tUUHpnSjNneVk0?=
- =?utf-8?B?TXc4MUlmMXZ1cnVNK3RSb3dOVTBXcjBDVHVBTTA1emxOam5TV3lBREEwb0ZE?=
- =?utf-8?B?K2NsTVY2d00rNmkzME0vVmRDM2c5RE9Gckh4OHI5YTRQYm1aTHViZz09?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <278712CB053F3B428BB5AB2D98705F55@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+X-IronPort-AV: E=Sophos;i="5.90,245,1643702400"; d="scan'208";a="571499267"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.51])
+ by orsmga008.jf.intel.com with SMTP; 08 Apr 2022 07:09:42 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 08 Apr 2022 17:09:41 +0300
+Date: Fri, 8 Apr 2022 17:09:41 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <YlBCJRD8bMOWL/KI@intel.com>
+References: <20220405173410.11436-1-ville.syrjala@linux.intel.com>
+ <20220405173410.11436-13-ville.syrjala@linux.intel.com>
+ <87czhs4xl4.fsf@intel.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5549.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6da904a9-9425-470c-f721-08da1969303b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Apr 2022 14:07:59.7218 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: z/lPTDM6IqJQePvhdZPWPin6lSObsNdE6B7ELQLQq39WklrNQ20LVcX9FPaaKLAbsmpEkCJHQJVoUM79dh8Qiw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR11MB1476
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v9 1/3] i915/gvt: Separate the MMIO tracking
- table from GVT-g
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <87czhs4xl4.fsf@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH v2 12/22] drm/i915/bios: Split VBT parsing
+ to global vs. panel specific parts
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -168,65 +62,183 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Zhi Wang <zhi.a.wang@gmail.com>, Jason
- Gunthorpe <jgg@nvidia.com>, "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
- Christoph Hellwig <hch@lst.de>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SGkgSmFuaToNCg0KVGhhbmtzIHNvIG11Y2ggZm9yIHRoZSBoZWxwLiBDYW4geW91IGdlbmVyYXRl
-IGEgbmV3IHRhZyBvbiBkcm0taW50ZWwtbmV4dD8gSSBub3RpY2VkIHRoYXQgdGhlcmUgd2FzIG9u
-ZSBwYXRjaCBtb3ZpbmcgdGhlIERNQyByZWxhdGVkIHJlZ2lzdGVycyBpbnRvIGRpc3BsYXkvaW50
-ZWxfZG1jX3JlZ3MuaCwgd2hpY2ggaXMgbm90IGluY2x1ZGVkIGluIHRoZSBsYXRlc3QgdGFnIG9u
-IGRybS1pbnRlbC1uZXh0Lg0KDQpHdWVzcyBpdCB3b3VsZCBiZSBiZXR0ZXIgdGhhdCBJIGNhbiBj
-aGFuZ2UgdGhpcyBwYXRjaCBhY2NvcmRpbmcgdG8gaXQgd2hlbiBjaGVja2luZyBpbi4gVGhpcyB3
-b3VsZCBwcmV2ZW50IGEgY29uZmxpY3QgaW4gZnV0dXJlLg0KDQpUaGFua3MsDQpaaGkuDQoNCk9u
-IDQvNy8yMiAzOjAzIFBNLCBKYW5pIE5pa3VsYSB3cm90ZToNCj4gT24gVGh1LCAwNyBBcHIgMjAy
-MiwgWmhpIFdhbmcgPHpoaS53YW5nLmxpbnV4QGdtYWlsLmNvbT4gd3JvdGU6DQo+PiBkaWZmIC0t
-Z2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZ3Z0LmggYi9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9pbnRlbF9ndnQuaA0KPj4gaW5kZXggZDdkM2ZiNjE4NmZkLi43NjY1ZDdjZjBiZGQgMTAw
-NjQ0DQo+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9ndnQuaA0KPj4gKysrIGIv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZ3Z0LmgNCj4+IEBAIC0yNiw3ICsyNiwxNyBAQA0K
-Pj4gIA0KPj4gIHN0cnVjdCBkcm1faTkxNV9wcml2YXRlOw0KPj4gIA0KPj4gKyNpbmNsdWRlIDxs
-aW51eC9rZXJuZWwuaD4NCj4gDQo+IFlvdSBvbmx5IG5lZWQgPGxpbnV4L3R5cGVzLmg+LiBQbGVh
-c2UgYWRkIGl0IGJlZm9yZSB0aGUgZm9yd2FyZA0KPiBkZWNsYXJhdGlvbiBhYm92ZS4NCj4gDQo+
-PiArDQo+PiAgI2lmZGVmIENPTkZJR19EUk1fSTkxNV9HVlQNCj4+ICsNCj4+ICtzdHJ1Y3QgaW50
-ZWxfZ3Z0X21taW9fdGFibGVfaXRlciB7DQo+PiArCXN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpp
-OTE1Ow0KPj4gKwl2b2lkICpkYXRhOw0KPj4gKwlpbnQgKCpoYW5kbGVfbW1pb19jYikoc3RydWN0
-IGludGVsX2d2dF9tbWlvX3RhYmxlX2l0ZXIgKml0ZXIsDQo+PiArCQkJICAgICAgdTMyIG9mZnNl
-dCwgdTMyIHNpemUpOw0KPj4gK307DQo+PiArDQo+PiAgaW50IGludGVsX2d2dF9pbml0KHN0cnVj
-dCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdik7DQo+PiAgdm9pZCBpbnRlbF9ndnRfZHJpdmVy
-X3JlbW92ZShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpOw0KPj4gIGludCBpbnRl
-bF9ndnRfaW5pdF9kZXZpY2Uoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2KTsNCj4+
-IEBAIC0zNCw2ICs0NCw3IEBAIHZvaWQgaW50ZWxfZ3Z0X2NsZWFuX2RldmljZShzdHJ1Y3QgZHJt
-X2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpOw0KPj4gIGludCBpbnRlbF9ndnRfaW5pdF9ob3N0KHZv
-aWQpOw0KPj4gIHZvaWQgaW50ZWxfZ3Z0X3Nhbml0aXplX29wdGlvbnMoc3RydWN0IGRybV9pOTE1
-X3ByaXZhdGUgKmRldl9wcml2KTsNCj4+ICB2b2lkIGludGVsX2d2dF9yZXN1bWUoc3RydWN0IGRy
-bV9pOTE1X3ByaXZhdGUgKmRldl9wcml2KTsNCj4+ICtpbnQgaW50ZWxfZ3Z0X2l0ZXJhdGVfbW1p
-b190YWJsZShzdHJ1Y3QgaW50ZWxfZ3Z0X21taW9fdGFibGVfaXRlciAqaXRlcik7DQo+PiAgI2Vs
-c2UNCj4+ICBzdGF0aWMgaW5saW5lIGludCBpbnRlbF9ndnRfaW5pdChzdHJ1Y3QgZHJtX2k5MTVf
-cHJpdmF0ZSAqZGV2X3ByaXYpDQo+PiAgew0KPj4gQEAgLTUxLDYgKzYyLDE2IEBAIHN0YXRpYyBp
-bmxpbmUgdm9pZCBpbnRlbF9ndnRfc2FuaXRpemVfb3B0aW9ucyhzdHJ1Y3QgZHJtX2k5MTVfcHJp
-dmF0ZSAqZGV2X3ByaXYpDQo+PiAgc3RhdGljIGlubGluZSB2b2lkIGludGVsX2d2dF9yZXN1bWUo
-c3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2KQ0KPj4gIHsNCj4+ICB9DQo+PiArDQo+
-PiArdW5zaWduZWQgbG9uZyBpbnRlbF9ndnRfZ2V0X2RldmljZV90eXBlKHN0cnVjdCBkcm1faTkx
-NV9wcml2YXRlICppOTE1KQ0KPj4gK3sNCj4+ICsJcmV0dXJuIDA7DQo+PiArfQ0KPiANCj4gVGhl
-IENPTkZJR19EUk1fSTkxNV9HVlQ9eSBjb3VudGVycGFydCBmb3IgdGhpcyBpcyBpbiBtbWlvLmgu
-IFNob3VsZCBiZQ0KPiBib3RoIGluIHRoZSBzYW1lIGhlYWRlci4NCj4gDQo+PiArDQo+PiAraW50
-IGludGVsX2d2dF9pdGVyYXRlX21taW9fdGFibGUoc3RydWN0IGludGVsX2d2dF9tbWlvX3RhYmxl
-X2l0ZXIgKml0ZXIpDQo+PiArew0KPj4gKwlyZXR1cm4gMDsNCj4+ICt9DQo+PiAgI2VuZGlmDQo+
-PiAgDQo+PiAgI2VuZGlmIC8qIF9JTlRFTF9HVlRfSF8gKi8NCj4+IGRpZmYgLS1naXQgYS9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9ndnRfbW1pb190YWJsZS5jIGIvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvaW50ZWxfZ3Z0X21taW9fdGFibGUuYw0KPj4gbmV3IGZpbGUgbW9kZSAxMDA2NDQNCj4+
-IGluZGV4IDAwMDAwMDAwMDAwMC4uZDI5NDkxYTZkMjA5DQo+PiAtLS0gL2Rldi9udWxsDQo+PiAr
-KysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9ndnRfbW1pb190YWJsZS5jDQo+PiBAQCAt
-MCwwICsxLDEyOTAgQEANCj4+ICsvLyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogTUlUDQo+PiAr
-LyoNCj4+ICsgKiBDb3B5cmlnaHQgwqkgMjAyMCBJbnRlbCBDb3Jwb3JhdGlvbg0KPj4gKyAqLw0K
-Pj4gKw0KPj4gKyNpbmNsdWRlICJpOTE1X2Rydi5oIg0KPj4gKyNpbmNsdWRlICJpOTE1X3JlZy5o
-Ig0KPj4gKyNpbmNsdWRlICJkaXNwbGF5L3Zsdl9kc2lfcGxsX3JlZ3MuaCINCj4+ICsjaW5jbHVk
-ZSAiZ3QvaW50ZWxfZ3RfcmVncy5oIg0KPj4gKyNpbmNsdWRlICJpbnRlbF9tY2hiYXJfcmVncy5o
-Ig0KPj4gKyNpbmNsdWRlICJpOTE1X3B2aW5mby5oIg0KPj4gKyNpbmNsdWRlICJpbnRlbF9ndnQu
-aCINCj4+ICsjaW5jbHVkZSAiZ3Z0L2d2dC5oIg0KPiANCj4gR2VuZXJhbGx5IHdlIGhhdmUgdGhl
-IGluY2x1ZGUgbGlzdHMgc29ydGVkLg0KPiANCj4gT3RoZXIgdGhhbiB0aGUgbml0cGlja3MgYWJv
-dmUsIHRoZSBzZXJpZXMgaXMNCj4gDQo+IEFja2VkLWJ5OiBKYW5pIE5pa3VsYSA8amFuaS5uaWt1
-bGFAaW50ZWwuY29tPg0KPiANCj4gDQo+IEJSLA0KPiBKYW5pLg0KPiANCj4gDQoNCg==
+On Thu, Apr 07, 2022 at 08:23:03PM +0300, Jani Nikula wrote:
+> On Tue, 05 Apr 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> >
+> > Parsing the panel specific data from VBT is currently happening
+> > too early. Split the whole thing into global vs. panel specific
+> > parts so that we can start doing the panel specific parsing at
+> > a later time.
+> 
+> Might want to mention panel_type here somewhere, that's basically the
+> split, right?
+
+Yep. I'll try to clarify the commit msg a bit.
+
+> 
+> >
+> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_bios.c    | 50 +++++++++++++-------
+> >  drivers/gpu/drm/i915/display/intel_bios.h    |  1 +
+> >  drivers/gpu/drm/i915/display/intel_display.c |  1 +
+> >  3 files changed, 35 insertions(+), 17 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+> > index 1a7f1aa79827..da2b1932e10d 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_bios.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_bios.c
+> > @@ -723,6 +723,9 @@ parse_generic_dtd(struct drm_i915_private *i915)
+> >  	struct drm_display_mode *panel_fixed_mode;
+> >  	int num_dtd;
+> >  
+> > +	if (i915->vbt.lfp_lvds_vbt_mode)
+> > +		return;
+> > +
+> >  	generic_dtd = find_section(i915, BDB_GENERIC_DTD);
+> >  	if (!generic_dtd)
+> >  		return;
+> > @@ -891,6 +894,9 @@ parse_sdvo_panel_data(struct drm_i915_private *i915)
+> >  	struct drm_display_mode *panel_fixed_mode;
+> >  	int index;
+> >  
+> > +	if (i915->vbt.sdvo_lvds_vbt_mode)
+> > +		return;
+> > +
+> >  	index = i915->params.vbt_sdvo_panel_type;
+> >  	if (index == -2) {
+> >  		drm_dbg_kms(&i915->drm,
+> > @@ -1419,6 +1425,9 @@ parse_mipi_config(struct drm_i915_private *i915)
+> >  	int panel_type = i915->vbt.panel_type;
+> >  	enum port port;
+> >  
+> > +	if (i915->vbt.dsi.config)
+> > +		return;
+> > +
+> >  	/* parse MIPI blocks only if LFP type is MIPI */
+> >  	if (!intel_bios_is_dsi_present(i915, &port))
+> >  		return;
+> > @@ -1739,6 +1748,9 @@ parse_mipi_sequence(struct drm_i915_private *i915)
+> >  	u8 *data;
+> >  	int index = 0;
+> >  
+> > +	if (i915->vbt.dsi.data)
+> > +		return;
+> > +
+> 
+> All of the above checks to (presumably) allow calling
+> intel_bios_init_panel() multiple times feel a bit out of place here. At
+> the very least need a mention in the commit message.
+
+I can split that out for clarity. I didn't have these originally but
+given the current reliance on the i915->vbt singleton I got a bit
+scared what would happen on some weird machines with multiple panels.
+IIRC some kind of native LVDS + SDVO LVDS machines may have existed
+at some point.
+
+Plenty of refactoring left here to split the parsed data to proper
+per-panel things...
+
+> 
+> Regardless,
+> 
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+> 
+> 
+> >  	/* Only our generic panel driver uses the sequence block. */
+> >  	if (i915->vbt.dsi.panel_id != MIPI_DSI_GENERIC_PANEL_ID)
+> >  		return;
+> > @@ -2878,6 +2890,27 @@ void intel_bios_init(struct drm_i915_private *i915)
+> >  	/* Grab useful general definitions */
+> >  	parse_general_features(i915);
+> >  	parse_general_definitions(i915);
+> > +	parse_driver_features(i915);
+> > +
+> > +	/* Depends on child device list */
+> > +	parse_compression_parameters(i915);
+> > +
+> > +out:
+> > +	if (!vbt) {
+> > +		drm_info(&i915->drm,
+> > +			 "Failed to find VBIOS tables (VBT)\n");
+> > +		init_vbt_missing_defaults(i915);
+> > +	}
+> > +
+> > +	/* Further processing on pre-parsed or generated child device data */
+> > +	parse_sdvo_device_mapping(i915);
+> > +	parse_ddi_ports(i915);
+> > +
+> > +	kfree(oprom_vbt);
+> > +}
+> > +
+> > +void intel_bios_init_panel(struct drm_i915_private *i915)
+> > +{
+> >  	parse_panel_options(i915);
+> >  	/*
+> >  	 * Older VBTs provided DTD information for internal displays through
+> > @@ -2892,29 +2925,12 @@ void intel_bios_init(struct drm_i915_private *i915)
+> >  	parse_lfp_data(i915);
+> >  	parse_lfp_backlight(i915);
+> >  	parse_sdvo_panel_data(i915);
+> > -	parse_driver_features(i915);
+> >  	parse_panel_driver_features(i915);
+> >  	parse_power_conservation_features(i915);
+> >  	parse_edp(i915);
+> >  	parse_psr(i915);
+> >  	parse_mipi_config(i915);
+> >  	parse_mipi_sequence(i915);
+> > -
+> > -	/* Depends on child device list */
+> > -	parse_compression_parameters(i915);
+> > -
+> > -out:
+> > -	if (!vbt) {
+> > -		drm_info(&i915->drm,
+> > -			 "Failed to find VBIOS tables (VBT)\n");
+> > -		init_vbt_missing_defaults(i915);
+> > -	}
+> > -
+> > -	/* Further processing on pre-parsed or generated child device data */
+> > -	parse_sdvo_device_mapping(i915);
+> > -	parse_ddi_ports(i915);
+> > -
+> > -	kfree(oprom_vbt);
+> >  }
+> >  
+> >  /**
+> > diff --git a/drivers/gpu/drm/i915/display/intel_bios.h b/drivers/gpu/drm/i915/display/intel_bios.h
+> > index 4709c4d29805..c744d75fa435 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_bios.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_bios.h
+> > @@ -230,6 +230,7 @@ struct mipi_pps_data {
+> >  } __packed;
+> >  
+> >  void intel_bios_init(struct drm_i915_private *dev_priv);
+> > +void intel_bios_init_panel(struct drm_i915_private *dev_priv);
+> >  void intel_bios_driver_remove(struct drm_i915_private *dev_priv);
+> >  bool intel_bios_is_valid_vbt(const void *buf, size_t size);
+> >  bool intel_bios_is_tv_present(struct drm_i915_private *dev_priv);
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> > index eee185ed41c3..4ece4e7d0296 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -9650,6 +9650,7 @@ int intel_modeset_init_noirq(struct drm_i915_private *i915)
+> >  	}
+> >  
+> >  	intel_bios_init(i915);
+> > +	intel_bios_init_panel(i915);
+> >  
+> >  	ret = intel_vga_register(i915);
+> >  	if (ret)
+> 
+> -- 
+> Jani Nikula, Intel Open Source Graphics Center
+
+-- 
+Ville Syrjälä
+Intel
