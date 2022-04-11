@@ -1,50 +1,112 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EBB44FC236
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Apr 2022 18:24:45 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A2EF4FC23E
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Apr 2022 18:26:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DCCE510E3F7;
-	Mon, 11 Apr 2022 16:24:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D0E910E406;
+	Mon, 11 Apr 2022 16:26:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5874F10E3D8;
- Mon, 11 Apr 2022 16:24:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649694274; x=1681230274;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=ecvUgxfOnAlqhK1AsXGez9gKqR8nGNKedj7CSUT5wPA=;
- b=X0CZYNUZ8VyI8TPi4gffDnJLtk+7tQvWRBNanMB73MDR0L+UOg48Mqa+
- fK2oRzuKro/awXP7VKeTn3WZ38R8S4RF7QcxRn+xyLefWp/xyexk0/Yqo
- kDckLMmzDgvv7mekNNQDTgyWlQ1k4jJZr40Nmli6lR3WwxLrg99JNiJBo
- vdXKpFVhXHgav1Vo5CEUsSz/I8fue2AjSvEG9xVo3i3/nmwf5NqhdvUH2
- z/K9SdlM2DbuthDJd9eGnVy0udYSPLpyHD/JDLZa9EnbIh2aBHYz7pE1z
- F/axZkK8s9S3BlXlgqkpUmin9NHZGhTYaXIoXEz9Coo6+ZEpda/7I13Sn w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10314"; a="261901408"
-X-IronPort-AV: E=Sophos;i="5.90,252,1643702400"; d="scan'208";a="261901408"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Apr 2022 09:24:34 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,252,1643702400"; d="scan'208";a="801776692"
-Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
- ([10.237.72.65])
- by fmsmga006.fm.intel.com with ESMTP; 11 Apr 2022 09:24:32 -0700
-From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 11 Apr 2022 19:25:18 +0300
-Message-Id: <20220411162518.9352-3-stanislav.lisovskiy@intel.com>
-X-Mailer: git-send-email 2.24.1.485.gad05a3d8e5
-In-Reply-To: <20220411162518.9352-1-stanislav.lisovskiy@intel.com>
-References: <20220411162518.9352-1-stanislav.lisovskiy@intel.com>
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2077.outbound.protection.outlook.com [40.107.236.77])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 253E110E3EB;
+ Mon, 11 Apr 2022 16:26:35 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=KuWA7cVnrE75YwaCwEbSNlTSUfsIzm++kL0UnMZKnYQq69Z/OoyzR3oYK7YQst1gE4DeMd+li4d8J5bzMAl0DSnGJTEVRUXcl0/iM5Ob+juxkJ1iStshOXeVo5FuRVE40Oghv+tng1a7uWX6Ah6XZ5znNeZc+U9DzcVngiGyoyLMf+lN6qdU0x76IEuaHieyyWdASq2KEg9tr6AT4yx+Leg5up6vcaXzAJRtlZGtAhk8u0zERMHruaxjEMFNn4lQiPVm3xAs5GEI8fablPByW0hFw5iOTMKEzWk7mzOOwRi0Ruapd4WT+k7pOu5eqUXW8Ov75Z2Gy2U5qwrYX86Gow==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=p9lMdZAEWtGWcaUpaq+QIyKpxqEa0tXWVZR8GI1VbhM=;
+ b=b+9uU8JgtTZpZaA1gcfEhBH5FaNtsWC2uVh2MAyxTDv5EVtLaCPy2x8FAlKD7/aVnMU0V/IxGDRCp6n5Ri77a/ax3sIRo/GJkbo2ZBM2vaEppV3zqkuO7aZyHGXz8vaDOdRfwfovY78cMx5SDE9y2qFbAQi26LL4GviUxfZzb2M3Fd6QofMVQMc7ZjArwG8Ax7oPiKqajjzn+4JM1wxYB9ZYl2iG+5xgZjbCbKA9jobNFqoZaHTRY0o7sKmiIl3dIOOGt3M0GHvL91kRva5Vi6GdQs4FHTp/kdjbjQ33+Tqou9d7uqAwXS/gFXm6n4YGwFIsknSj6GtHigDcpWNKUg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=p9lMdZAEWtGWcaUpaq+QIyKpxqEa0tXWVZR8GI1VbhM=;
+ b=NzoDNT9GXwVQp8ppnti3nAsjBR3u8fAgzEeLPrXHjEvVji3Xap3xCWMdMW44mIeTqyiOGakO+PtvbJsaZORq+Em/SoiO0NF0I2wt44fBD5klZVCdTALvB836TUPWW48BnfDalCDFxXtAQ9AOm4hyTofEcErBKYoIr5Dg6n5rB2266b6lTY2K0zN9uwWVZPeK8xFPL1sIyJHFMfwD6mzWqEG8KztV6zqttCH/zvCx/++8VZ9YFeqXj9nHVtrM5BKT9CZvK/0PoVp6DDXw9ICLOF7s1wxPsxnrOt6rBY9NiJqfwD3FcqSA+D+8IF5BGSOaWyUE/5q7ffM9mH/mhQOd9A==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from MN2PR12MB4192.namprd12.prod.outlook.com (2603:10b6:208:1d5::15)
+ by CH2PR12MB4908.namprd12.prod.outlook.com (2603:10b6:610:6b::15)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5144.29; Mon, 11 Apr
+ 2022 16:26:33 +0000
+Received: from MN2PR12MB4192.namprd12.prod.outlook.com
+ ([fe80::cdfb:f88e:410b:9374]) by MN2PR12MB4192.namprd12.prod.outlook.com
+ ([fe80::cdfb:f88e:410b:9374%6]) with mapi id 15.20.5144.029; Mon, 11 Apr 2022
+ 16:26:33 +0000
+Date: Mon, 11 Apr 2022 13:26:32 -0300
+From: Jason Gunthorpe <jgg@nvidia.com>
+To: Christoph Hellwig <hch@lst.de>
+Message-ID: <20220411162632.GP2120790@nvidia.com>
+References: <20220411141403.86980-1-hch@lst.de>
+ <20220411141403.86980-15-hch@lst.de>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220411141403.86980-15-hch@lst.de>
+X-ClientProxiedBy: BLAPR03CA0137.namprd03.prod.outlook.com
+ (2603:10b6:208:32e::22) To MN2PR12MB4192.namprd12.prod.outlook.com
+ (2603:10b6:208:1d5::15)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915: Add DSC support to MST path
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: d808e852-e09e-4a47-032d-08da1bd80acf
+X-MS-TrafficTypeDiagnostic: CH2PR12MB4908:EE_
+X-Microsoft-Antispam-PRVS: <CH2PR12MB49080BD1B942DBD812134CEBC2EA9@CH2PR12MB4908.namprd12.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: AidimZTxgearZCDRfo5h8koL9BES0xOK9aHAR8AMytqWT+vj2ilR9fFGRKqCU+0qaAxjYLFes1N0YWbamHSn5lYK7yhsM/3o6Yb9oqHyXsOmKZ2xB7DWmZwbO3KoHWeVb2mcme9gBpYjqexmc/c0PAp5xugcRAr3ctbsARnLEwOURdSa17ciummexVkjftmdTQQ4bUCZOkP6RLSAQwdlw3cMnULj93hPV4/BRgCrimuwUC9ZoeGM6sDezE30Odb1CmMSL2tomhhMqLUG1uR2FGTxKRuqCA8yq2NW0oGcoxcKlCpHPgvPRq8wHJu9FYhpnY954lJbczOJy41LFxm2VQE8b2QdryR/H62sOLOVgxs5sQyGhxaOEqRkrSMrpcEbn7WBzDparvAGn1GXHDhlrxhwB9Obd7roE5L10c969dtkTXQNr0NK/ZAhYgNtl2r7YHDwXbdHyxllmkkVYC9m0GLLnGY91u2zlRUhh/wAWrRhOE3pgmVmvbNXzkgOVJ0wK27P3HA0j0OQzhKMCVsAiF83cEdh+UkzM+DZlH3nb3Ijmsn2ED5W2d5jGP31ZT2h0c1ijzhxevfXSbQGHX3CICqphVVbA7lbuTT+kqeSQ03xbREHRR2U9IT67WMimx4EO8xfkPWzFC4Ga1bhyyR7Og==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN2PR12MB4192.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230001)(4636009)(366004)(508600001)(316002)(6916009)(54906003)(6506007)(6486002)(83380400001)(33656002)(36756003)(86362001)(38100700002)(2616005)(6512007)(1076003)(2906002)(5660300002)(7416002)(4744005)(26005)(186003)(66476007)(66556008)(66946007)(8676002)(8936002)(4326008);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Z4r2AH92XI++qMVD4Th0P/LEsrfWKBzp54FSsfqng6IctUO5p+1+LBeLgg0V?=
+ =?us-ascii?Q?i773bGWM4es9ADuDIW1epl2DIdpEdhRJpGwKTsZuJlRFcoLML1oUeu0Z6OAs?=
+ =?us-ascii?Q?hG3+VrSTx5ag43b0/WQ81AttzA5Par6MyPCglK4aGrbyHImxRY0DuHTUCbKS?=
+ =?us-ascii?Q?+NvdHm26wQc6pDrm5XDzzmkzRZz6ciyybYbX7BYxfWkgqo54GYSLThJlRSIP?=
+ =?us-ascii?Q?vAx2hAhLACH/XkA2ASP5mzzyoVpr+Ho9IR1SOcB679gHj7G901xRJTG8FtJs?=
+ =?us-ascii?Q?2TcP2VMI1hDhhh7GJpXja+VxLa2yTTzdiUeQ5VRafhvhMQ8ydQGcV13TsJpe?=
+ =?us-ascii?Q?kqOBrc0iA1pXE9hSvX3tuQGjVBZZ8Q64WdYW18nrwYPKyBZka2J2eeX+KHuW?=
+ =?us-ascii?Q?Hnlbekyn4SopWCyKILO3e6oiyrVgDyXcbEDB/BzV9kJ0fzYEZ0dqORx0EHTo?=
+ =?us-ascii?Q?VEzVboVby27VilyqnrwBKLZl1N9qIdpcAI0JDiR0xT/Yt8x48flQPuDR9cWL?=
+ =?us-ascii?Q?aJsXbyJ6U0BA2+2yrOmbb3G9ZdMCZp3Kjv1NQbOgkfvx1e3KbaaiZ75NxT6g?=
+ =?us-ascii?Q?2bhO+TFRPc9U2Kcc/oWtC/KnV8gV5xYklf438IBSPfOTWvlh6d0D+t3zq8Yn?=
+ =?us-ascii?Q?t7iIHMe+P5WB0bA6i71oSks0evLlP5gJV1YKohogOqyeSiJRMFW5JPtdPbbK?=
+ =?us-ascii?Q?VaBNRPTUwxT04LUtn/Pk8mlK70dRg3ElB6db30wEXocdnYbCaAYzDMedn5l8?=
+ =?us-ascii?Q?J74+k8XdYuAQDXSBM9tNKqROw/x0GyBJoL2ssMMu3AI+e7GKQJpudEsf6Clw?=
+ =?us-ascii?Q?o3E2djG3UNaiihASQivOrIX7QZPP+o1fTtDPwX6rByIL+v2ig+9UoPZwSQzt?=
+ =?us-ascii?Q?sxNZv3MNv6Jo4TX667e+9zSdJoP72OoEyAfkijw8NHozLXikbijcOeTH9A65?=
+ =?us-ascii?Q?PbCvWfvbzPljtP101op35DBfcmH7RWJXu3491Y1Ngc20kGsITMi1sWg3UMUW?=
+ =?us-ascii?Q?28JTvcOS8cVNAszztUNaO2dzStnT6GvEDMlOuOPGr7WHRQ+zKeizrAdjyfku?=
+ =?us-ascii?Q?gg/3I+NKAy8GWvxqWuwbfljU5BNHqSz9fpeG/9DHSPOVfDYZW85u5xXAemZE?=
+ =?us-ascii?Q?uNsJ2vewXohQV9nyypPyXHPOAHT6s/IEZwTHb4n3xFnNQYhbilh0z2ZONE5J?=
+ =?us-ascii?Q?nxvGzIZhbUaCftvuwUzefWlCYGLXAg5qXftgW8rtqU7/pXDZZk2Oy3dR3ZjA?=
+ =?us-ascii?Q?HRgQAmdBQbn0odJa3YfMQQemIFCn2Ei8itHPw62KHQKchQVO0NYAFRSh9cHN?=
+ =?us-ascii?Q?mBeNoRzBnD8018+cGCqlf6TXfIMZBx8SzvLrO/7Dg4wBOqaI/4ruGL+es2nK?=
+ =?us-ascii?Q?djIuKSADqrjL/r0uZ9P0TE0dvwBnL7SDrqSrrOomcO6mxKYKnz/MUpjTzs0X?=
+ =?us-ascii?Q?yCaELrgjuHR571jH0f8yZgD1wRQLhBs13scegQW/Z7PMm1L1ENoT+H3yJiVt?=
+ =?us-ascii?Q?6NHCr+JvQSPSthsv+BK+kgl2UvaGK57R25MGVRxVW8wGRip2bnzF7YzcM4/C?=
+ =?us-ascii?Q?0vMFn14P5knUv26Ou7qrzSchpTG8ZaIPDPrCfrbUBufZTQ6VaNXFi8heY+qy?=
+ =?us-ascii?Q?P/wm++qSaZPC7SsfqA0qPJtnBL7iNK/oz9sHGLpFINRhKCsqObbarED0mg4M?=
+ =?us-ascii?Q?8o7RklberLv15GRLU3AvtY40vjgV7CfV3kyfxqZNCDLetAicW+Zg5IbKq9y3?=
+ =?us-ascii?Q?Dr+JqGo55w=3D=3D?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d808e852-e09e-4a47-032d-08da1bd80acf
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB4192.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Apr 2022 16:26:33.6148 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: dtCUoqeXHuol6SAwMAuJwMSc4r4t7Rz7x1qXVmMrSiMY/vTe7fNgF1JILJ5+3CDh
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4908
+Subject: Re: [Intel-gfx] [PATCH 14/34] drm/i915/gvt: devirtualize ->{get,
+ put}_vfio_device
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,402 +119,26 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, dri-devel@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ intel-gvt-dev@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Whenever we are not able to get enough timeslots
-for required PBN, let's try to allocate those
-using DSC, just same way as we do for SST.
+On Mon, Apr 11, 2022 at 04:13:43PM +0200, Christoph Hellwig wrote:
+> Just open code the calls to the VFIO APIs.
+> 
+> Signed-off-by: Christoph Hellwig <hch@lst.de>
+> ---
+>  drivers/gpu/drm/i915/gvt/dmabuf.c    | 12 ++++++-----
+>  drivers/gpu/drm/i915/gvt/hypercall.h |  2 --
+>  drivers/gpu/drm/i915/gvt/kvmgt.c     | 22 --------------------
+>  drivers/gpu/drm/i915/gvt/mpt.h       | 30 ----------------------------
+>  4 files changed, 7 insertions(+), 59 deletions(-)
 
-v2: Removed intel_dp_mst_dsc_compute_config and refactored
-    intel_dp_dsc_compute_config to support timeslots as a
-    parameter(Ville Syrjälä)
+Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
 
-Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c     |  75 +++++-----
- drivers/gpu/drm/i915/display/intel_dp.h     |  17 +++
- drivers/gpu/drm/i915/display/intel_dp_mst.c | 143 ++++++++++++++++++++
- 3 files changed, 191 insertions(+), 44 deletions(-)
+Had to look ahead in the series to see that the
+vfio_device_get_from_dev() was removed too :)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 972c9ed46829..f5477f1bf622 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -114,7 +114,6 @@ bool intel_dp_is_edp(struct intel_dp *intel_dp)
- }
- 
- static void intel_dp_unset_edid(struct intel_dp *intel_dp);
--static int intel_dp_dsc_compute_bpp(struct intel_dp *intel_dp, u8 dsc_max_bpc);
- 
- /* Is link rate UHBR and thus 128b/132b? */
- bool intel_dp_is_uhbr(const struct intel_crtc_state *crtc_state)
-@@ -640,11 +639,12 @@ small_joiner_ram_size_bits(struct drm_i915_private *i915)
- 		return 6144 * 8;
- }
- 
--static u16 intel_dp_dsc_get_output_bpp(struct drm_i915_private *i915,
--				       u32 link_clock, u32 lane_count,
--				       u32 mode_clock, u32 mode_hdisplay,
--				       bool bigjoiner,
--				       u32 pipe_bpp)
-+u16 intel_dp_dsc_get_output_bpp(struct drm_i915_private *i915,
-+				u32 link_clock, u32 lane_count,
-+				u32 mode_clock, u32 mode_hdisplay,
-+				bool bigjoiner,
-+				u32 pipe_bpp,
-+				u32 timeslots)
- {
- 	u32 bits_per_pixel, max_bpp_small_joiner_ram;
- 	int i;
-@@ -656,7 +656,7 @@ static u16 intel_dp_dsc_get_output_bpp(struct drm_i915_private *i915,
- 	 * for MST -> TimeSlotsPerMTP has to be calculated
- 	 */
- 	bits_per_pixel = (link_clock * lane_count * 8) /
--			 intel_dp_mode_to_fec_clock(mode_clock);
-+			 (intel_dp_mode_to_fec_clock(mode_clock) * timeslots);
- 	drm_dbg_kms(&i915->drm, "Max link bpp: %u\n", bits_per_pixel);
- 
- 	/* Small Joiner Check: output bpp <= joiner RAM (bits) / Horiz. width */
-@@ -710,9 +710,9 @@ static u16 intel_dp_dsc_get_output_bpp(struct drm_i915_private *i915,
- 	return bits_per_pixel << 4;
- }
- 
--static u8 intel_dp_dsc_get_slice_count(struct intel_dp *intel_dp,
--				       int mode_clock, int mode_hdisplay,
--				       bool bigjoiner)
-+u8 intel_dp_dsc_get_slice_count(struct intel_dp *intel_dp,
-+				int mode_clock, int mode_hdisplay,
-+				bool bigjoiner)
- {
- 	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
- 	u8 min_slice_count, i;
-@@ -919,8 +919,8 @@ intel_dp_mode_valid_downstream(struct intel_connector *connector,
- 	return MODE_OK;
- }
- 
--static bool intel_dp_need_bigjoiner(struct intel_dp *intel_dp,
--				    int hdisplay, int clock)
-+bool intel_dp_need_bigjoiner(struct intel_dp *intel_dp,
-+			     int hdisplay, int clock)
- {
- 	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
- 
-@@ -1007,7 +1007,7 @@ intel_dp_mode_valid(struct drm_connector *_connector,
- 							    target_clock,
- 							    mode->hdisplay,
- 							    bigjoiner,
--							    pipe_bpp) >> 4;
-+							    pipe_bpp, 1) >> 4;
- 			dsc_slice_count =
- 				intel_dp_dsc_get_slice_count(intel_dp,
- 							     target_clock,
-@@ -1311,7 +1311,7 @@ intel_dp_compute_link_config_wide(struct intel_dp *intel_dp,
- 	return -EINVAL;
- }
- 
--static int intel_dp_dsc_compute_bpp(struct intel_dp *intel_dp, u8 max_req_bpc)
-+int intel_dp_dsc_compute_bpp(struct intel_dp *intel_dp, u8 max_req_bpc)
- {
- 	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
- 	int i, num_bpc;
-@@ -1401,10 +1401,11 @@ static int intel_dp_dsc_compute_params(struct intel_encoder *encoder,
- 	return drm_dsc_compute_rc_parameters(vdsc_cfg);
- }
- 
--static int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
--				       struct intel_crtc_state *pipe_config,
--				       struct drm_connector_state *conn_state,
--				       struct link_config_limits *limits)
-+int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
-+				struct intel_crtc_state *pipe_config,
-+				struct drm_connector_state *conn_state,
-+				struct link_config_limits *limits,
-+				int timeslots)
- {
- 	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
- 	struct drm_i915_private *dev_priv = to_i915(dig_port->base.base.dev);
-@@ -1455,7 +1456,8 @@ static int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
- 						    adjusted_mode->crtc_clock,
- 						    adjusted_mode->crtc_hdisplay,
- 						    pipe_config->bigjoiner_pipes,
--						    pipe_bpp);
-+						    pipe_bpp,
-+						    timeslots);
- 		dsc_dp_slice_count =
- 			intel_dp_dsc_get_slice_count(intel_dp,
- 						     adjusted_mode->crtc_clock,
-@@ -1467,41 +1469,26 @@ static int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
- 			return -EINVAL;
- 		}
- 		pipe_config->dsc.compressed_bpp = min_t(u16,
--							       dsc_max_output_bpp >> 4,
--							       pipe_config->pipe_bpp);
-+							dsc_max_output_bpp >> 4,
-+							pipe_config->pipe_bpp);
- 		pipe_config->dsc.slice_count = dsc_dp_slice_count;
-+		drm_dbg_kms(&dev_priv->drm, "DSC: compressed bpp %d slice count %d\n",
-+			    pipe_config->dsc.compressed_bpp,
-+			    pipe_config->dsc.slice_count);
- 	}
--
--	/* As of today we support DSC for only RGB */
--	if (intel_dp->force_dsc_bpp) {
--		if (intel_dp->force_dsc_bpp >= 8 &&
--		    intel_dp->force_dsc_bpp < pipe_bpp) {
--			drm_dbg_kms(&dev_priv->drm,
--				    "DSC BPP forced to %d",
--				    intel_dp->force_dsc_bpp);
--			pipe_config->dsc.compressed_bpp =
--						intel_dp->force_dsc_bpp;
--		} else {
--			drm_dbg_kms(&dev_priv->drm,
--				    "Invalid DSC BPP %d",
--				    intel_dp->force_dsc_bpp);
--		}
--	}
--
- 	/*
- 	 * VDSC engine operates at 1 Pixel per clock, so if peak pixel rate
- 	 * is greater than the maximum Cdclock and if slice count is even
- 	 * then we need to use 2 VDSC instances.
- 	 */
--	if (adjusted_mode->crtc_clock > dev_priv->max_cdclk_freq ||
--	    pipe_config->bigjoiner_pipes) {
--		if (pipe_config->dsc.slice_count < 2) {
-+	if (adjusted_mode->crtc_clock > dev_priv->max_cdclk_freq) {
-+		if (pipe_config->dsc.slice_count > 1) {
-+			pipe_config->dsc.dsc_split = true;
-+		} else {
- 			drm_dbg_kms(&dev_priv->drm,
- 				    "Cannot split stream to use 2 VDSC instances\n");
- 			return -EINVAL;
- 		}
--
--		pipe_config->dsc.dsc_split = true;
- 	}
- 
- 	ret = intel_dp_dsc_compute_params(&dig_port->base, pipe_config);
-@@ -1590,7 +1577,7 @@ intel_dp_compute_link_config(struct intel_encoder *encoder,
- 			    str_yes_no(ret), str_yes_no(joiner_needs_dsc),
- 			    str_yes_no(intel_dp->force_dsc_en));
- 		ret = intel_dp_dsc_compute_config(intel_dp, pipe_config,
--						  conn_state, &limits);
-+						  conn_state, &limits, 1);
- 		if (ret < 0)
- 			return ret;
- 	}
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
-index d457e17bdc57..4c0ad3158ee7 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.h
-+++ b/drivers/gpu/drm/i915/display/intel_dp.h
-@@ -55,6 +55,11 @@ void intel_dp_encoder_flush_work(struct drm_encoder *encoder);
- int intel_dp_compute_config(struct intel_encoder *encoder,
- 			    struct intel_crtc_state *pipe_config,
- 			    struct drm_connector_state *conn_state);
-+int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
-+				struct intel_crtc_state *pipe_config,
-+				struct drm_connector_state *conn_state,
-+				struct link_config_limits *limits,
-+				int timeslots);
- bool intel_dp_is_edp(struct intel_dp *intel_dp);
- bool intel_dp_is_uhbr(const struct intel_crtc_state *crtc_state);
- bool intel_dp_is_port_edp(struct drm_i915_private *dev_priv, enum port port);
-@@ -94,6 +99,18 @@ void intel_read_dp_sdp(struct intel_encoder *encoder,
- 		       struct intel_crtc_state *crtc_state,
- 		       unsigned int type);
- bool intel_digital_port_connected(struct intel_encoder *encoder);
-+int intel_dp_dsc_compute_bpp(struct intel_dp *intel_dp, u8 dsc_max_bpc);
-+u16 intel_dp_dsc_get_output_bpp(struct drm_i915_private *i915,
-+				u32 link_clock, u32 lane_count,
-+				u32 mode_clock, u32 mode_hdisplay,
-+				bool bigjoiner,
-+				u32 pipe_bpp,
-+				u32 timeslots);
-+u8 intel_dp_dsc_get_slice_count(struct intel_dp *intel_dp,
-+				int mode_clock, int mode_hdisplay,
-+				bool bigjoiner);
-+bool intel_dp_need_bigjoiner(struct intel_dp *intel_dp,
-+			     int hdisplay, int clock);
- 
- static inline unsigned int intel_dp_unused_lane_mask(int lane_count)
- {
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index 061b277e5ce7..550fcd380487 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -99,6 +99,82 @@ static int intel_dp_mst_compute_link_config(struct intel_encoder *encoder,
- 	return 0;
- }
- 
-+static int intel_dp_dsc_mst_compute_link_config(struct intel_encoder *encoder,
-+						struct intel_crtc_state *crtc_state,
-+						struct drm_connector_state *conn_state,
-+						struct link_config_limits *limits)
-+{
-+	struct drm_atomic_state *state = crtc_state->uapi.state;
-+	struct intel_dp_mst_encoder *intel_mst = enc_to_mst(encoder);
-+	struct intel_dp *intel_dp = &intel_mst->primary->dp;
-+	struct intel_connector *connector =
-+		to_intel_connector(conn_state->connector);
-+	struct drm_i915_private *i915 = to_i915(connector->base.dev);
-+	const struct drm_display_mode *adjusted_mode =
-+		&crtc_state->hw.adjusted_mode;
-+	bool constant_n = drm_dp_has_quirk(&intel_dp->desc,
-+					   DP_DPCD_QUIRK_CONSTANT_N);
-+	int bpp, slots = -EINVAL;
-+	int i, num_bpc;
-+	u8 dsc_bpc[3] = {0};
-+	int min_bpp, max_bpp;
-+	u8 dsc_max_bpc;
-+
-+	crtc_state->lane_count = limits->max_lane_count;
-+	crtc_state->port_clock = limits->max_rate;
-+
-+	/* Max DSC Input BPC for ICL is 10 and for TGL+ is 12 */
-+	if (DISPLAY_VER(i915) >= 12)
-+		dsc_max_bpc = min_t(u8, 12, conn_state->max_requested_bpc);
-+	else
-+		dsc_max_bpc = min_t(u8, 10, conn_state->max_requested_bpc);
-+
-+	max_bpp = min_t(u8, dsc_max_bpc * 3, limits->max_bpp);
-+	min_bpp = limits->min_bpp;
-+
-+	num_bpc = drm_dp_dsc_sink_supported_input_bpcs(intel_dp->dsc_dpcd,
-+						       dsc_bpc);
-+	for (i = 0; i < num_bpc; i++) {
-+		if (max_bpp >= dsc_bpc[i] * 3)
-+			if (min_bpp > dsc_bpc[i] * 3)
-+				min_bpp = dsc_bpc[i] * 3;
-+	}
-+	drm_dbg_kms(&i915->drm, "DSC Sink supported min bpp %d max bpp %d\n",
-+		    min_bpp, max_bpp);
-+	for (bpp = max_bpp; bpp >= min_bpp; bpp -= 2 * 3) {
-+		crtc_state->pbn = drm_dp_calc_pbn_mode(adjusted_mode->crtc_clock,
-+						       bpp << 4,
-+						       true);
-+
-+		slots = drm_dp_atomic_find_vcpi_slots(state, &intel_dp->mst_mgr,
-+						      connector->port,
-+						      crtc_state->pbn, 0);
-+
-+		drm_dbg_kms(&i915->drm, "Trying bpp %d got %d pbn %d slots\n",
-+			    bpp, crtc_state->pbn, slots);
-+
-+		if (slots == -EDEADLK)
-+			return slots;
-+		if (slots >= 0)
-+			break;
-+	}
-+
-+	if (slots < 0) {
-+		drm_dbg_kms(&i915->drm, "failed finding vcpi slots:%d\n",
-+			    slots);
-+		return slots;
-+	}
-+
-+	intel_link_compute_m_n(crtc_state->pipe_bpp,
-+			       crtc_state->lane_count,
-+			       adjusted_mode->crtc_clock,
-+			       crtc_state->port_clock,
-+			       &crtc_state->dp_m_n,
-+			       constant_n, crtc_state->fec_enable);
-+	crtc_state->dp_m_n.tu = slots;
-+
-+	return 0;
-+}
- static int intel_dp_mst_update_slots(struct intel_encoder *encoder,
- 				     struct intel_crtc_state *crtc_state,
- 				     struct drm_connector_state *conn_state)
-@@ -175,6 +251,27 @@ static int intel_dp_mst_compute_config(struct intel_encoder *encoder,
- 
- 	ret = intel_dp_mst_compute_link_config(encoder, pipe_config,
- 					       conn_state, &limits);
-+
-+	if (ret == -EDEADLK)
-+		return ret;
-+
-+	/* enable compression if the mode doesn't fit available BW */
-+	drm_dbg_kms(&dev_priv->drm, "Force DSC en = %d\n", intel_dp->force_dsc_en);
-+	if (ret || intel_dp->force_dsc_en) {
-+		/*
-+		 * Try to get at least some timeslots and then see, if
-+		 * we can fit there with DSC.
-+		 */
-+		ret = intel_dp_dsc_mst_compute_link_config(encoder, pipe_config,
-+							   conn_state, &limits);
-+		if (ret < 0)
-+			return ret;
-+
-+		ret = intel_dp_dsc_compute_config(intel_dp, pipe_config,
-+						  conn_state, &limits,
-+						  pipe_config->dp_m_n.tu);
-+	}
-+
- 	if (ret)
- 		return ret;
- 
-@@ -713,6 +810,10 @@ intel_dp_mst_mode_valid_ctx(struct drm_connector *connector,
- 	int max_dotclk = to_i915(connector->dev)->max_dotclk_freq;
- 	int max_rate, mode_rate, max_lanes, max_link_clock;
- 	int ret;
-+	bool dsc = false, bigjoiner = false;
-+	u16 dsc_max_output_bpp = 0;
-+	u8 dsc_slice_count = 0;
-+	int target_clock = mode->clock;
- 
- 	if (drm_connector_is_unregistered(connector)) {
- 		*status = MODE_ERROR;
-@@ -750,6 +851,48 @@ intel_dp_mst_mode_valid_ctx(struct drm_connector *connector,
- 		return 0;
- 	}
- 
-+	if (intel_dp_need_bigjoiner(intel_dp, mode->hdisplay, target_clock)) {
-+		bigjoiner = true;
-+		max_dotclk *= 2;
-+	}
-+
-+	if (DISPLAY_VER(dev_priv) >= 10 &&
-+	    drm_dp_sink_supports_dsc(intel_dp->dsc_dpcd)) {
-+		/*
-+		 * TBD pass the connector BPC,
-+		 * for now U8_MAX so that max BPC on that platform would be picked
-+		 */
-+		int pipe_bpp = intel_dp_dsc_compute_bpp(intel_dp, U8_MAX);
-+
-+		if (drm_dp_sink_supports_fec(intel_dp->fec_capable)) {
-+			dsc_max_output_bpp =
-+				intel_dp_dsc_get_output_bpp(dev_priv,
-+							    max_link_clock,
-+							    max_lanes,
-+							    target_clock,
-+							    mode->hdisplay,
-+							    bigjoiner,
-+							    pipe_bpp, 1) >> 4;
-+			dsc_slice_count =
-+				intel_dp_dsc_get_slice_count(intel_dp,
-+							     target_clock,
-+							     mode->hdisplay,
-+							     bigjoiner);
-+		}
-+
-+		dsc = dsc_max_output_bpp && dsc_slice_count;
-+	}
-+
-+	/*
-+	 * Big joiner configuration needs DSC for TGL which is not true for
-+	 * XE_LPD where uncompressed joiner is supported.
-+	 */
-+	if (DISPLAY_VER(dev_priv) < 13 && bigjoiner && !dsc)
-+		return MODE_CLOCK_HIGH;
-+
-+	if (mode_rate > max_rate && !dsc)
-+		return MODE_CLOCK_HIGH;
-+
- 	*status = intel_mode_valid_max_plane_size(dev_priv, mode, false);
- 	return 0;
- }
--- 
-2.24.1.485.gad05a3d8e5
-
+Jason
