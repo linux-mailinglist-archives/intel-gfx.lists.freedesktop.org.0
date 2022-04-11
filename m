@@ -2,93 +2,72 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C3F34FC461
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Apr 2022 20:51:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B9D7C4FC4FD
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Apr 2022 21:20:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C63C910E053;
-	Mon, 11 Apr 2022 18:51:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA70F10E032;
+	Mon, 11 Apr 2022 19:20:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2044.outbound.protection.outlook.com [40.107.236.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E8AAA10E053;
- Mon, 11 Apr 2022 18:51:04 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FFTdoW8F5j/P9T2NkzZTBgX+OS7JgtRO2O8elxLYs2QoSBeN9DxxGfQbRM+YJQ29YF6pYNo05J3sFxQf6+f5zW3qgZ04LZnv8BI8vqofk7S/hizJhrSaYk4whnQ7cgvwd4COWTktbZhCA2xD5X/PpNECULyfff141l3Zp9kkKkqZdybkDrXrCZektf+zPuE5KhZqTMEQcobBebRPr1YGXA6zhPTIU6B/dnioXXIHmuvKlp5Cn2LOAanxs/fm+BY/aqwfLU045kcchUlYh7cDLFbMZHdnRkzWIYTz30czMYWRc3fr+cQzgrKS+7lFIAF4LpkUyOsiq6KVzP++je9M2w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=MNR41bqIRskitPGO6HlBXHwKS0pJXtfRdm3+52Ad1WE=;
- b=WB4JzpCbmp/E6TGsXjc+QOEk3pqRme1pXmobuww38jC62TQCRgn/+aLIMZUXot3rNEVcGZmGlE7AyBvhVjAFOE0NaNXg2DL5XweI+ME/FqPXXsaLgC/UTTgpDonEYLeuptCxGUiT09FFNqN9XmwSoY7Aj+iOVMYBYJV6VRfMrkfxZMFh3SzmxLKivu9X7nzAWjp2DMz6Qgmq5rERI/YKPrMouXsZrpho/j6VXqMAEbbiJroB1/SxXgDm22Pjkh1NWjXIT7GbN+/yw61E2dzJIqPZD+6zYc7qNlltGk8V5Khh+sTD+LFvghhEKRa6nVQE0QAYe9OFxHoLqYbXOOegKw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MNR41bqIRskitPGO6HlBXHwKS0pJXtfRdm3+52Ad1WE=;
- b=ArxTDsEJlultm0kZjVXA/G1qgXQWG33cQ58ZuI4K3LmSBMEuDjpYjRgtcekLAZb39YgFEB/pv43o9sp56czSBkLbBio02tSHpPESKy1OCBW5v6tMRxsgo8INLpA8dIzZFKlNZqmn072LxgiKJ3eQcDw6QcZvfNZixZFnonuLT+A=
-Received: from BN0PR10CA0002.namprd10.prod.outlook.com (2603:10b6:408:143::16)
- by PH7PR12MB5619.namprd12.prod.outlook.com (2603:10b6:510:136::7)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5144.29; Mon, 11 Apr
- 2022 18:51:02 +0000
-Received: from BN8NAM11FT054.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:143:cafe::60) by BN0PR10CA0002.outlook.office365.com
- (2603:10b6:408:143::16) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5144.29 via Frontend
- Transport; Mon, 11 Apr 2022 18:51:02 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT054.mail.protection.outlook.com (10.13.177.102) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5144.20 via Frontend Transport; Mon, 11 Apr 2022 18:51:02 +0000
-Received: from rtg-amd.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Mon, 11 Apr
- 2022 13:50:59 -0500
-From: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
-To: <igt-dev@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
- <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>
-Date: Tue, 12 Apr 2022 00:20:42 +0530
-Message-ID: <20220411185042.24338-1-Arunpravin.PaneerSelvam@amd.com>
-X-Mailer: git-send-email 2.25.1
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7218E10E032
+ for <intel-gfx@lists.freedesktop.org>; Mon, 11 Apr 2022 19:20:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1649704856; x=1681240856;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=QwL/sODhnFZp2Fx//V0xXEa5iCsHZqFzju8LvoTEZgA=;
+ b=BapJIakVa14gzHMyd11u/cOPOwUM4mKnxXgGvOQjlH5224q9+SJ1bcK0
+ VX+rlyUjHM+OUxCvfoDpfnlMGDBBe3Lj3kblfJPEnsOVf8SIbUmTGAe10
+ 2eqvBcxXDo9n7kGdj1v6F1FIdsLiJjnddBYakBnsbVlq/W/jWxqn/c2jA
+ EET4+PFiwKp9rBFmS09vBOAFMs5O3lQCHLLCOU6tbHlppHwwBCPJ/iRVT
+ B2Nivq/rOqW60BxtLAgnqAE8+HPEpgibQtZP48KCIzVH6gt6jgpIT+w1I
+ 3Yd4E7i+dLDlpU2dGcH0vHxB5+FAaGWrrg5+1tly5pUL8OQ47+zW5umkT g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10314"; a="259793183"
+X-IronPort-AV: E=Sophos;i="5.90,252,1643702400"; d="scan'208";a="259793183"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Apr 2022 12:20:55 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,252,1643702400"; d="scan'208";a="526110548"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orsmga006.jf.intel.com with ESMTP; 11 Apr 2022 12:20:55 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27; Mon, 11 Apr 2022 12:20:55 -0700
+Received: from pgsmsx602.gar.corp.intel.com (10.108.199.137) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27; Mon, 11 Apr 2022 12:20:53 -0700
+Received: from pgsmsx602.gar.corp.intel.com ([10.108.199.137]) by
+ pgsmsx602.gar.corp.intel.com ([10.108.199.137]) with mapi id 15.01.2308.027;
+ Tue, 12 Apr 2022 03:20:52 +0800
+From: "Vudum, Lakshminarayana" <lakshminarayana.vudum@intel.com>
+To: "De Marchi, Lucas" <lucas.demarchi@intel.com>, "Roper, Matthew D"
+ <matthew.d.roper@intel.com>
+Thread-Topic: [PATCH] drm/i915/dg2: Do not explode on phy calibration error
+Thread-Index: AQHYTdBnytylzFOioUC6zZfinKj/QqzrB1eQ
+Date: Mon, 11 Apr 2022 19:20:51 +0000
+Message-ID: <0fd1eac9dc104f61aaca8150c8f11cb6@intel.com>
+References: <20220410061537.4187383-1-lucas.demarchi@intel.com>
+ <YlRKizF+0co0sKwt@mdroper-desk1.amr.corp.intel.com>
+ <20220411181726.vdnqbo2p4iblxouh@ldmartin-desk2>
+In-Reply-To: <20220411181726.vdnqbo2p4iblxouh@ldmartin-desk2>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.6.401.20
+x-originating-ip: [10.22.254.132]
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 7317f60e-3d6e-4d0a-b428-08da1bec39c2
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5619:EE_
-X-Microsoft-Antispam-PRVS: <PH7PR12MB56190B0BA81B7FDC46E5609FE4EA9@PH7PR12MB5619.namprd12.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: qpxcJAV6gsPaycz4ACwdsT2B5zV9H2wbmfBcaLm0zKlK7S2T4TjAbFgBM9Mu2hCD6e8J+JqHuKP6J9TTle23mp8uLdR8aJEr76hSxU/YaSZt0QJdhnNlsyEaV0vZFlp5aYyFDrhMLOw0SpYLZViQhJzaL+F+dETq12RqOZ1Hr9sdyFI0RT5T303Gah++DdyjUYA44cMvMcqagCfv+AbObki6Q/ypE3dm0/b4jiN6ASbKKONxGUeHiv/fu6AI8HpwhKje3VK3HjRkJfyxTjO2FB3dMutaoTHpk2bCY76//gAB8x9I4l3zfUNbgA8zkTYaIUQ2E/9usETDGx0ulMgBZIhAIahx6ufqLv37WIAj2yXJeL0ntwY3WR/SUNwaMzQvg/MUAr09aRXwiYqTNFSpo+UXVXIMZqucvUi9+TOqZvhMetl8j7FU6QojPom4hs9uXlztfrAzoSI0qu1G6haGL7rQDzVG1mFn9sh5E6vQBTQy8LgeA1y0Kvmr+dDbDOoJUUZwsTxztgr0GSAk/CeNewAhT0I1j5A6UF8ECw9wtFFkeEils2GaZi+NkCjpN6WYXO/XoMdDiMVIb/sjqwcdp2Bj0aoXdWbm30q3p5QV/rx/f+iI5LCXHDvaZr9chk2+YOXcvCI8L//0waNwZRXgXmXFxecPLhu2njqo2qQJYy9rR7I3U/guG3zJ4T6lE0TtdUXspQ+mkmpuCw+IfhHNOg==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(40470700004)(46966006)(36840700001)(8676002)(5660300002)(70586007)(82310400005)(110136005)(7696005)(36756003)(8936002)(40460700003)(2906002)(81166007)(356005)(316002)(336012)(70206006)(2616005)(4326008)(54906003)(1076003)(36860700001)(6666004)(83380400001)(26005)(47076005)(86362001)(186003)(16526019)(508600001)(426003)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Apr 2022 18:51:02.1014 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7317f60e-3d6e-4d0a-b428-08da1bec39c2
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT054.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB5619
-Subject: [Intel-gfx] [igt-dev] [PATCH i-g-t v2] tests/drm_buddy: Add drm
- buddy test cases
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/dg2: Do not explode on phy
+ calibration error
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,57 +80,108 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com,
- Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
- matthew.auld@intel.com, christian.koenig@amd.com
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add a set of drm buddy test cases to validate the
-drm/drm_buddy.c memory allocator.
+ICL issue is related to
+https://gitlab.freedesktop.org/drm/intel/-/issues/4767
+igt@kms_fbcon_fbt@fbc(-suspend)? - fail - Failed assertion: feature->wait_u=
+ntil_update(drm)
 
-v2: sorted in alphabetical order
+Thanks,
+Lakshmi.
 
-Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
----
- tests/drm_buddy.c | 14 ++++++++++++++
- tests/meson.build |  1 +
- 2 files changed, 15 insertions(+)
- create mode 100644 tests/drm_buddy.c
+-----Original Message-----
+From: De Marchi, Lucas <lucas.demarchi@intel.com>=20
+Sent: Monday, April 11, 2022 11:17 AM
+To: Roper, Matthew D <matthew.d.roper@intel.com>
+Cc: intel-gfx@lists.freedesktop.org; Ville Syrj=E4l=E4 <ville.syrjala@linux=
+.intel.com>; Jani Nikula <jani.nikula@linux.intel.com>; Vudum, Lakshminaray=
+ana <lakshminarayana.vudum@intel.com>
+Subject: Re: [PATCH] drm/i915/dg2: Do not explode on phy calibration error
 
-diff --git a/tests/drm_buddy.c b/tests/drm_buddy.c
-new file mode 100644
-index 00000000..06876e0c
---- /dev/null
-+++ b/tests/drm_buddy.c
-@@ -0,0 +1,14 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2019 Intel Corporation
-+ */
-+
-+#include "igt.h"
-+#include "igt_kmod.h"
-+
-+IGT_TEST_DESCRIPTION("Basic sanity check of DRM's buddy allocator (struct drm_buddy)");
-+
-+igt_main
-+{
-+	igt_kselftests("test-drm_buddy", NULL, NULL, NULL);
-+}
-diff --git a/tests/meson.build b/tests/meson.build
-index b0eab3d6..7261e9aa 100644
---- a/tests/meson.build
-+++ b/tests/meson.build
-@@ -8,6 +8,7 @@ test_progs = [
- 	'debugfs_test',
- 	'dmabuf',
- 	'device_reset',
-+	'drm_buddy',
- 	'drm_import_export',
- 	'drm_mm',
- 	'drm_read',
--- 
-2.25.1
+On Mon, Apr 11, 2022 at 08:34:35AM -0700, Matt Roper wrote:
+>On Sat, Apr 09, 2022 at 11:15:36PM -0700, Lucas De Marchi wrote:
+>> When the PHY fails on calibration we were previously skipping the ddi=20
+>> initialization. However the driver is not really prepared for that,=20
+>> ultimately leading to a NULL pointer dereference:
+>>
+>> [   75.748348] i915 0000:03:00.0: [drm:intel_modeset_init_nogem [i915]] =
+SNPS PHY A failed to calibrate; output will not be used.
+>> ...
+>> [   75.750336] i915 0000:03:00.0: [drm:intel_modeset_setup_hw_state [i91=
+5]] [CRTC:80:pipe A] hw state readout: enabled
+>> ...
+>>
+>> ( no DDI A/PHY A )
+>> [   75.753080] i915 0000:03:00.0: [drm:intel_modeset_setup_hw_state [i91=
+5]] [ENCODER:235:DDI B/PHY B] hw state readout: disabled, pipe A
+>> [   75.753164] i915 0000:03:00.0: [drm:intel_modeset_setup_hw_state [i91=
+5]] [ENCODER:245:DDI C/PHY C] hw state readout: disabled, pipe A
+>> ...
+>> [   75.754425] i915 0000:03:00.0: [drm] *ERROR* crtc 80: Can't calculate=
+ constants, dotclock =3D 0!
+>> [   75.765558] i915 0000:03:00.0: drm_WARN_ON_ONCE(drm_drv_uses_atomic_m=
+odeset(dev))
+>> [   75.765569] WARNING: CPU: 5 PID: 1759 at drivers/gpu/drm/drm_vblank.c=
+:728 drm_crtc_vblank_helper_get_vblank_timestamp_internal+0x347/0x360
+>> ...
+>> [   75.781230] BUG: kernel NULL pointer dereference, address: 0000000000=
+00007c
+>> [   75.788198] #PF: supervisor read access in kernel mode
+>> [   75.793347] #PF: error_code(0x0000) - not-present page
+>> [   75.798480] PGD 0 P4D 0
+>> [   75.801019] Oops: 0000 [#1] PREEMPT SMP NOPTI
+>> [   75.805377] CPU: 5 PID: 1759 Comm: modprobe Tainted: G        W      =
+   5.18.0-rc1-demarchi+ #199
+>> [   75.827613] RIP: 0010:icl_aux_power_well_disable+0x3b/0x200 [i915]
+>> [   75.833890] Code: 83 ec 30 65 48 8b 04 25 28 00 00 00 48 89 44 24 28 =
+48 8b 06 0f b6 70 1c f6 40 20 04 8d 56 fa 0f 45 f2 e8 88 bd ff ff 48 89 ef =
+<8b> 70 7c e8 ed 67 ff ff 48 89 ef 89 c6 e8 73 67 ff ff 84 c0 75 0a
+>> [   75.852629] RSP: 0018:ffffc90003a7fb30 EFLAGS: 00010246
+>> [   75.857852] RAX: 0000000000000000 RBX: ffff8881145e8f10 RCX: 00000000=
+00000000
+>> [   75.864978] RDX: ffff888115220840 RSI: 0000000000000000 RDI: ffff8881=
+15220000
+>> [   75.872106] RBP: ffff888115220000 R08: ffff88888effffe8 R09: 00000000=
+fffdffff
+>> [   75.879234] R10: ffff88888e200000 R11: ffff88888ed00000 R12: ffff8881=
+145e8f10
+>> [   75.886363] R13: 0000000000000001 R14: ffff888115223240 R15: 00000000=
+00000000
+>> [   75.893490] FS:  00007ff6e753a740(0000) GS:ffff88888f680000(0000) knl=
+GS:0000000000000000
+>> [   75.901573] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+>> [   75.907313] CR2: 000000000000007c CR3: 00000001216a6001 CR4: 00000000=
+00770ee0
+>> [   75.914446] PKRU: 55555554
+>> [   75.917153] Call Trace:
+>> [   75.919603]  <TASK>
+>> [   75.921709]  intel_power_domains_sanitize_state+0x88/0xb0 [i915]
+>> [   75.927814]  intel_modeset_init_nogem+0x317/0xef0 [i915]
+>> [   75.933205]  i915_driver_probe+0x5f6/0xdf0 [i915]
+>> [   75.937976]  i915_pci_probe+0x51/0x1d0 [i915]
+>>
+>> We skip the initialization of PHY A, but later we try to find out=20
+>> what is the phy for that power well and dereference dig_port, which is N=
+ULL.
+>>
+>> Failing the PHY calibration could be left as a warning or error, like=20
+>> it was before commit b4eb76d82a0e ("drm/i915/dg2: Skip output init on=20
+>> PHY calibration failure"). However that often fails for outputs not=20
+>> being used, which would make the warning/error appear on systems that=20
+>> have no visible issues. Anyway, there is still a need to fix those=20
+>> failures, but that is left for later.
+>>
+>> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>
+>Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
+The only CI failure is on ICL, that doesn't have snps phy. +Lakshmi
+
+
+Applied to drm-intel-next. Thanks.
+
+
+Lucas De Marchi
