@@ -2,53 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 955E74FB7CE
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Apr 2022 11:38:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 606944FB802
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Apr 2022 11:47:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 550EC10EA9A;
-	Mon, 11 Apr 2022 09:38:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 72FF610F87E;
+	Mon, 11 Apr 2022 09:47:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC96B10E251;
- Mon, 11 Apr 2022 09:38:20 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC7B910F86A;
+ Mon, 11 Apr 2022 09:47:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649669900; x=1681205900;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=kKbbke492EzRbRfZlhH+2jPB+ZJRnLG0d0q9Sk2IEw4=;
- b=jST+4cH4S0hN93jlm6lbbszTMc20GlIYvnX+82ZCfncccWz780g7JAXy
- hj7WyZLFkSQdmnkqMDUSK2O2oJUX1F62w5DFrXtaM0OLsj/ZXTeBK9Wwc
- MLLWOl/JHVdHiYuZiM+hhN7WsU6pLc0q90l60L2uL3imXeqLLinaLipYC
- Uxw0mQ1Kg/EtPF/ejR/9eAjG+Ns6OJQ+5YxMme/MqhPBSWHm4uMb0jrZ5
- bxPzQUEe67TshoJ2JeT/WHMIUt0+Jo+HYoHSyapNMH72Rsk2gioPcFzXX
- oxZtp3ruDhKvemv3Yh3IeQDu+DA3qJpcxl6FsU5ie63Lh4adSLvaGWCwe A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10313"; a="243960824"
-X-IronPort-AV: E=Sophos;i="5.90,251,1643702400"; d="scan'208";a="243960824"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Apr 2022 02:38:20 -0700
-X-IronPort-AV: E=Sophos;i="5.90,251,1643702400"; d="scan'208";a="644021016"
-Received: from dxharrix-mobl.ger.corp.intel.com (HELO [10.252.1.119])
- ([10.252.1.119])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Apr 2022 02:38:18 -0700
-Message-ID: <5b8cc915-3549-06a6-f994-3304bca536ef@intel.com>
-Date: Mon, 11 Apr 2022 10:38:16 +0100
+ t=1649670459; x=1681206459;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=NoTsu4CrHlYPCqds/VG2oU5VNnI9Rc+UbeXIi2i91MA=;
+ b=nLI8GmrvlgctzRSTRQoVkjaTSjMWX1RilL3j0wzTrjlsbDTXJpTSgoD0
+ NFMCasuDjyxaiaBuLSjj0ubuOAqxHPIc1tmKJw182r60KCp2gELNI5Dtz
+ B4wh3a4nQxwK3G7zPxLx298P9Kl4uMdrCIKRmrh28Hkr5DTpgFKiv9H2c
+ gw9BtUzZHNq2G5gGKpDVJKa0P7pVLXSsdjzfpjsNo3ydkI0jjOHmuLApf
+ wBxm+lU88hsqayJJ/M2nRyjCCTvqJDIrF7ikA3GcBKZ5hI0e7qabX21y7
+ DsJjv3/7BuQPge/bdF7HotOMWRUL+UdpdB+YAI7qrC3l6XSICRyzjLr89 g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10313"; a="287085116"
+X-IronPort-AV: E=Sophos;i="5.90,251,1643702400"; d="scan'208";a="287085116"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Apr 2022 02:47:39 -0700
+X-IronPort-AV: E=Sophos;i="5.90,251,1643702400"; d="scan'208";a="525914086"
+Received: from lwit-desk1.ger.corp.intel.com (HELO localhost) ([10.249.143.43])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Apr 2022 02:47:37 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: dri-devel@lists.freedesktop.org
+Date: Mon, 11 Apr 2022 12:47:21 +0300
+Message-Id: <cover.1649670305.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Content-Language: en-GB
-To: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
- igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-References: <20220411072801.15097-1-Arunpravin.PaneerSelvam@amd.com>
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20220411072801.15097-1-Arunpravin.PaneerSelvam@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] tests/drm_buddy: Add drm buddy test cases
+Subject: [Intel-gfx] [CI v2 00/12] drm/edid: low level EDID block read
+ refactoring etc.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,58 +56,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com, christian.koenig@amd.com
+Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 11/04/2022 08:28, Arunpravin Paneer Selvam wrote:
-> Add a set of drm buddy test cases to validate the
-> drm/drm_buddy.c memory allocator.
-> 
-> Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
-> ---
->   tests/drm_buddy.c | 14 ++++++++++++++
->   tests/meson.build |  1 +
->   2 files changed, 15 insertions(+)
->   create mode 100644 tests/drm_buddy.c
-> 
-> diff --git a/tests/drm_buddy.c b/tests/drm_buddy.c
-> new file mode 100644
-> index 00000000..06876e0c
-> --- /dev/null
-> +++ b/tests/drm_buddy.c
-> @@ -0,0 +1,14 @@
-> +// SPDX-License-Identifier: MIT
-> +/*
-> + * Copyright © 2019 Intel Corporation
-> + */
-> +
-> +#include "igt.h"
-> +#include "igt_kmod.h"
-> +
-> +IGT_TEST_DESCRIPTION("Basic sanity check of DRM's buddy allocator (struct drm_buddy)");
-> +
-> +igt_main
-> +{
-> +	igt_kselftests("test-drm_buddy", NULL, NULL, NULL);
-> +}
-> diff --git a/tests/meson.build b/tests/meson.build
-> index b0eab3d6..4ed8e610 100644
-> --- a/tests/meson.build
-> +++ b/tests/meson.build
-> @@ -10,6 +10,7 @@ test_progs = [
->   	'device_reset',
->   	'drm_import_export',
->   	'drm_mm',
-> +	'drm_buddy',
+Submitting [1] again for CI. Just a slight change in patch 3 to address
+review.
 
-Nit: Should be kept sorted. No need to resend though.
-
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+BR,
+Jani.
 
 
->   	'drm_read',
->   	'fbdev',
->   	'feature_discovery',
-> 
-> base-commit: 016a7169e66b710a6720ed8ff94815a7e8076541
+[1] https://patchwork.freedesktop.org/series/102329/
+
+Jani Nikula (12):
+  drm/edid: convert edid_is_zero() to edid_block_is_zero() for blocks
+  drm/edid: have edid_block_check() detect blocks that are all zero
+  drm/edid: refactor EDID block status printing
+  drm/edid: add a helper to log dump an EDID block
+  drm/edid: pass struct edid to connector_bad_edid()
+  drm/edid: add typedef for block read function
+  drm/edid: abstract an EDID block read helper
+  drm/edid: use EDID block read helper in drm_do_get_edid()
+  drm/edid: convert extension block read to EDID block read helper
+  drm/edid: drop extra local var
+  drm/edid: add single point of return to drm_do_get_edid()
+  drm/edid: add EDID block count and size helpers
+
+ drivers/gpu/drm/drm_edid.c | 350 ++++++++++++++++++++++++-------------
+ 1 file changed, 225 insertions(+), 125 deletions(-)
+
+-- 
+2.30.2
+
