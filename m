@@ -2,47 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C73794FBDDF
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Apr 2022 15:54:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C76F34FBDF3
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Apr 2022 15:58:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F29E710F5E4;
-	Mon, 11 Apr 2022 13:54:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE53410F68A;
+	Mon, 11 Apr 2022 13:58:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E59710F5E5;
- Mon, 11 Apr 2022 13:54:50 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 684D210F68A;
+ Mon, 11 Apr 2022 13:58:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649685290; x=1681221290;
+ t=1649685496; x=1681221496;
  h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=PAI8D1RVwPWVexSY/tdFEHEQ1kXMR7+TbquMisb3kw0=;
- b=F57zTD/vyMkESp4aEFml3+pzQlgQgHuRMun5+5iWBiHiAkpWQ6s0BGbm
- EjHPt+Z79O/cD1j8jScgVByuccz4a8njelg9d6sI6y0ZA8E/N/h95LYDW
- L6GuXng5dbljWeoabkMIzbUBNBGqI7Da7xKIvEM25up7VWHOIEC6BBNlh
- 920gIAd3XPKk3IJxzFNrgr3DDFmYv8I/GDgtn5Zh1Sd+Kh3rEqoYvyszi
- IB1m3Rj31OiUwo8ugmMX3rpdwA6U3etzl4R3OsvWHV3dBycOGP7GCOiEz
- i79Zut8ft0n7XWjbyX5W7+TOjEh8DjYNQzmV8AEy4CNPxK0Zt7fNfHnUh w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10313"; a="244004114"
-X-IronPort-AV: E=Sophos;i="5.90,252,1643702400"; d="scan'208";a="244004114"
+ message-id:mime-version:content-transfer-encoding;
+ bh=qaHjffKM665lC2tRpBV6IvYgZv2vzVPvhpmfiLKyIuw=;
+ b=lWilmz6bMiCzRpMh0qxWQ4mFTtq/Q/5I1eJRL1MSVVYcbXuqpxDfaQ4j
+ ocCh4BVezOnPmXLgLOUC0ywZf8cC81x9MYPjhwYxsk7xjSx/nKzMRs76r
+ znt786f9Vauo6xfQ9TaZWHwFscu5388ZNBL5V8jLcC6HdkkjHENZJKOxA
+ KxkZqozPM0d1vY0XJ6njJwb3RqjJQab8r7dO2nPkgRkxucpyAEtOCGVVr
+ j77294p7sUGtiQ2zcgmn020DZ5bIcqJ4N+m/5gAvfi0PyQGKOioCT5mP6
+ +eWqa33fBls2RxnNkVGTB/ZEaibJ+QehFt6k8Nie6ROee8v4WfMo3nm1t Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10313"; a="249402363"
+X-IronPort-AV: E=Sophos;i="5.90,252,1643702400"; d="scan'208";a="249402363"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Apr 2022 06:54:49 -0700
-X-IronPort-AV: E=Sophos;i="5.90,252,1643702400"; d="scan'208";a="572171502"
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Apr 2022 06:57:30 -0700
+X-IronPort-AV: E=Sophos;i="5.90,252,1643702400"; d="scan'208";a="572172907"
 Received: from lwit-desk1.ger.corp.intel.com (HELO localhost) ([10.249.143.43])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Apr 2022 06:54:47 -0700
+ 11 Apr 2022 06:57:28 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: kernel test robot <lkp@intel.com>, dri-devel@lists.freedesktop.org
-In-Reply-To: <202204112019.U9iIZWqP-lkp@intel.com>
+In-Reply-To: <202204112055.cUmakJdJ-lkp@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <44265d5a3f64e9d7ad9984fee766f68d0b8bd473.1649670305.git.jani.nikula@intel.com>
- <202204112019.U9iIZWqP-lkp@intel.com>
-Date: Mon, 11 Apr 2022 16:54:45 +0300
-Message-ID: <878rsbiv2y.fsf@intel.com>
+ <202204112055.cUmakJdJ-lkp@intel.com>
+Date: Mon, 11 Apr 2022 16:57:26 +0300
+Message-ID: <875ynfiuyh.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 Subject: Re: [Intel-gfx] [CI v2 12/12] drm/edid: add EDID block count and
  size helpers
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -57,8 +58,7 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, llvm@lists.linux.dev,
- kbuild-all@lists.01.org
+Cc: intel-gfx@lists.freedesktop.org, kbuild-all@lists.01.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
@@ -74,143 +74,60 @@ On Mon, 11 Apr 2022, kernel test robot <lkp@intel.com> wrote:
 > And when submitting patch, we suggest to use '--base' as documented in
 > https://git-scm.com/docs/git-format-patch]
 >
-> url:    https://github.com/intel-lab-lkp/linux/commits/Jani-Nikula/drm-edid-low-level-EDID-block-read-refactoring-etc/20220411-175027
+> url:    https://github.com/intel-lab-lkp/linux/commits/Jani-Nikula/drm-ed=
+id-low-level-EDID-block-read-refactoring-etc/20220411-175027
 > base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
-> config: i386-randconfig-a001-20220411 (https://download.01.org/0day-ci/archive/20220411/202204112019.U9iIZWqP-lkp@intel.com/config)
-> compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project c6e83f560f06cdfe8aa47b248d8bdc58f947274b)
-> reproduce (this is a W=1 build):
->         wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+> config: arc-allyesconfig (https://download.01.org/0day-ci/archive/2022041=
+1/202204112055.cUmakJdJ-lkp@intel.com/config)
+> compiler: arceb-elf-gcc (GCC) 11.2.0
+> reproduce (this is a W=3D1 build):
+>         wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbi=
+n/make.cross -O ~/bin/make.cross
 >         chmod +x ~/bin/make.cross
->         # https://github.com/intel-lab-lkp/linux/commit/ba74d3cc8cc1b6ba4c34a039e797994ddbc77567
+>         # https://github.com/intel-lab-lkp/linux/commit/ba74d3cc8cc1b6ba4=
+c34a039e797994ddbc77567
 >         git remote add linux-review https://github.com/intel-lab-lkp/linux
->         git fetch --no-tags linux-review Jani-Nikula/drm-edid-low-level-EDID-block-read-refactoring-etc/20220411-175027
+>         git fetch --no-tags linux-review Jani-Nikula/drm-edid-low-level-E=
+DID-block-read-refactoring-etc/20220411-175027
 >         git checkout ba74d3cc8cc1b6ba4c34a039e797994ddbc77567
 >         # save the config file to linux build tree
 >         mkdir build_dir
->         COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 SHELL=/bin/bash drivers/gpu/drm/
+>         COMPILER_INSTALL_PATH=3D$HOME/0day COMPILER=3Dgcc-11.2.0 make.cro=
+ss O=3Dbuild_dir ARCH=3Darc SHELL=3D/bin/bash drivers/gpu/drm/
 >
 > If you fix the issue, kindly add following tag as appropriate
 > Reported-by: kernel test robot <lkp@intel.com>
 >
 > All warnings (new ones prefixed by >>):
 >
->>> drivers/gpu/drm/drm_edid.c:2170:6: warning: logical not is only applied to the left hand side of this comparison [-Wlogical-not-parentheses]
->            if (!edid_extension_block_count(edid) == 0)
->                ^                                 ~~
->    drivers/gpu/drm/drm_edid.c:2170:6: note: add parentheses after the '!' to evaluate the comparison first
->            if (!edid_extension_block_count(edid) == 0)
->                ^
->                 (                                    )
->    drivers/gpu/drm/drm_edid.c:2170:6: note: add parentheses around left hand side expression to silence this warning
->            if (!edid_extension_block_count(edid) == 0)
->                ^
->                (                                )
->    1 warning generated.
+>    drivers/gpu/drm/drm_edid.c: In function 'drm_do_get_edid':
+>>> drivers/gpu/drm/drm_edid.c:1664:21: warning: array subscript [128, 3264=
+0] is outside array bounds of 'struct edid[1]' [-Warray-bounds]
+>     1664 |         return block[0];
+>          |                ~~~~~^~~
+>    drivers/gpu/drm/drm_edid.c:2173:15: note: referencing an object of siz=
+e 128 allocated by 'krealloc'
+>     2173 |         new =3D krealloc(edid, edid_size(edid), GFP_KERNEL);
+>          |               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Whoops, thanks for the report!
+I presume this is caused by the other blunder.
 
 BR,
 Jani.
 
 >
 >
-> vim +2170 drivers/gpu/drm/drm_edid.c
+> vim +1664 drivers/gpu/drm/drm_edid.c
 >
->   2112	
->   2113	/**
->   2114	 * drm_do_get_edid - get EDID data using a custom EDID block read function
->   2115	 * @connector: connector we're probing
->   2116	 * @get_edid_block: EDID block read function
->   2117	 * @data: private data passed to the block read function
->   2118	 *
->   2119	 * When the I2C adapter connected to the DDC bus is hidden behind a device that
->   2120	 * exposes a different interface to read EDID blocks this function can be used
->   2121	 * to get EDID data using a custom block read function.
->   2122	 *
->   2123	 * As in the general case the DDC bus is accessible by the kernel at the I2C
->   2124	 * level, drivers must make all reasonable efforts to expose it as an I2C
->   2125	 * adapter and use drm_get_edid() instead of abusing this function.
->   2126	 *
->   2127	 * The EDID may be overridden using debugfs override_edid or firmware EDID
->   2128	 * (drm_load_edid_firmware() and drm.edid_firmware parameter), in this priority
->   2129	 * order. Having either of them bypasses actual EDID reads.
->   2130	 *
->   2131	 * Return: Pointer to valid EDID or NULL if we couldn't find any.
->   2132	 */
->   2133	struct edid *drm_do_get_edid(struct drm_connector *connector,
->   2134				     read_block_fn read_block,
->   2135				     void *context)
->   2136	{
->   2137		enum edid_block_status status;
->   2138		int i, invalid_blocks = 0;
->   2139		struct edid *edid, *new;
->   2140	
->   2141		edid = drm_get_override_edid(connector);
->   2142		if (edid)
->   2143			goto ok;
->   2144	
->   2145		edid = kmalloc(EDID_LENGTH, GFP_KERNEL);
->   2146		if (!edid)
->   2147			return NULL;
->   2148	
->   2149		status = edid_block_read(edid, 0, read_block, context);
->   2150	
->   2151		edid_block_status_print(status, edid, 0);
->   2152	
->   2153		if (status == EDID_BLOCK_READ_FAIL)
->   2154			goto fail;
->   2155	
->   2156		/* FIXME: Clarify what a corrupt EDID actually means. */
->   2157		if (status == EDID_BLOCK_OK || status == EDID_BLOCK_VERSION)
->   2158			connector->edid_corrupt = false;
->   2159		else
->   2160			connector->edid_corrupt = true;
->   2161	
->   2162		if (!edid_block_status_valid(status, edid_block_tag(edid))) {
->   2163			if (status == EDID_BLOCK_ZERO)
->   2164				connector->null_edid_counter++;
->   2165	
->   2166			connector_bad_edid(connector, edid, 1);
->   2167			goto fail;
->   2168		}
->   2169	
->> 2170		if (!edid_extension_block_count(edid) == 0)
->   2171			goto ok;
->   2172	
->   2173		new = krealloc(edid, edid_size(edid), GFP_KERNEL);
->   2174		if (!new)
->   2175			goto fail;
->   2176		edid = new;
->   2177	
->   2178		for (i = 1; i < edid_block_count(edid); i++) {
->   2179			void *block = (void *)edid_block_data(edid, i);
->   2180	
->   2181			status = edid_block_read(block, i, read_block, context);
->   2182	
->   2183			edid_block_status_print(status, block, i);
->   2184	
->   2185			if (!edid_block_status_valid(status, edid_block_tag(block))) {
->   2186				if (status == EDID_BLOCK_READ_FAIL)
->   2187					goto fail;
->   2188				invalid_blocks++;
->   2189			}
->   2190		}
->   2191	
->   2192		if (invalid_blocks) {
->   2193			connector_bad_edid(connector, edid, edid_block_count(edid));
->   2194	
->   2195			edid = edid_filter_invalid_blocks(edid, invalid_blocks);
->   2196		}
->   2197	
->   2198	ok:
->   2199		return edid;
->   2200	
->   2201	fail:
->   2202		kfree(edid);
->   2203		return NULL;
->   2204	}
->   2205	EXPORT_SYMBOL_GPL(drm_do_get_edid);
->   2206	
+> c465bbc87ce372 Stefan Br=C3=BCns 2014-11-30  1659=20=20
+> 4ba0f53ce685b0 Jani Nikula  2022-03-31  1660  static int edid_block_tag(c=
+onst void *_block)
+> 4ba0f53ce685b0 Jani Nikula  2022-03-31  1661  {
+> 4ba0f53ce685b0 Jani Nikula  2022-03-31  1662  	const u8 *block =3D _block;
+> 4ba0f53ce685b0 Jani Nikula  2022-03-31  1663=20=20
+> 4ba0f53ce685b0 Jani Nikula  2022-03-31 @1664  	return block[0];
+> 4ba0f53ce685b0 Jani Nikula  2022-03-31  1665  }
+> 4ba0f53ce685b0 Jani Nikula  2022-03-31  1666=20=20
 
--- 
+--=20
 Jani Nikula, Intel Open Source Graphics Center
