@@ -1,46 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98ED14FBEBD
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Apr 2022 16:15:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEF8E4FBF31
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Apr 2022 16:34:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B603A10EBB3;
-	Mon, 11 Apr 2022 14:15:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3496C10E02C;
+	Mon, 11 Apr 2022 14:34:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [IPv6:2607:7c80:54:e::133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF95B10EBB3;
- Mon, 11 Apr 2022 14:15:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
- MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender
- :Reply-To:Content-Type:Content-ID:Content-Description;
- bh=83Xr824ZWe/+bYO/7xwxaSh67VlT2bCnejrGqyZ3RhE=; b=ExXjO1y8vLhYwwH/gqilmFGP4+
- whNFaISAjiRPLOaIWuw6lVbEIpc1yvh+i9t0L6cwy7IvEQSyXrsQ11DAJ+jTjLVbMBLVRxkoUzJQz
- dmalJUKxCerzORyj7j9AYYTs61jTztvoXjjhGKAvUhw72XekSZ/0aRqjIAryTS7WVdq+csmQsJfeP
- 6eKsiqGxaaW+xYS8NLLYrdsZEW2KSXWco/ZP9BFBqyTmMYWNuFy4GcWobQCNoXIhRBjuUdOcDrVu/
- yJXLWb64YBf5BYVe39meMgy8koTN3R259u+j0Y4vY5dqkFZrHe2essxL1C1XjLHZvrDsPMpse4+yN
- bytyCfqA==;
-Received: from [2001:4bb8:18e:76f5:3747:ef85:d03d:53e4] (helo=localhost)
- by bombadil.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
- id 1ndupZ-009L21-7Z; Mon, 11 Apr 2022 14:15:49 +0000
-From: Christoph Hellwig <hch@lst.de>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Zhenyu Wang <zhenyuw@linux.intel.com>, Zhi Wang <zhi.a.wang@intel.com>
-Date: Mon, 11 Apr 2022 16:14:03 +0200
-Message-Id: <20220411141403.86980-35-hch@lst.de>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0CE7210E02C
+ for <intel-gfx@lists.freedesktop.org>; Mon, 11 Apr 2022 14:34:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1649687651; x=1681223651;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Wdow4xABwqogFBUvgaenM0AFki1eTSWwY12jTxHxGKU=;
+ b=nQMRvzfTDPKu3fMpzNh+mj8si9fGhxgFs3JItk2why/ynvxggnvCIuyP
+ vVoR1rFu0SD+vz3bjG0anfybXnIy7xXXAQFCfWXWQsD8uDXVuL5hVYixL
+ y2/M+R3QhDwQuO3+JadVPK7h01LdsDt9Vke72ctSK0e/bYeUh4/pciCBX
+ TqsB4Jjo/naa2wUF2yi1aCrir7JjuL8Snm768jWou1DEMGf510GYn3k0A
+ swLuMNUItF29GJ8vL8XU1JsNaZfdQuPfXqUqasLeLGfk9yY6/zVF91yvi
+ EhjsvxID6sef9Z1hJJfivb0/9UcG1LELxE6mNxcB3TjnOSsmOsCatqDng A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10314"; a="348568490"
+X-IronPort-AV: E=Sophos;i="5.90,252,1643702400"; d="scan'208";a="348568490"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Apr 2022 07:34:10 -0700
+X-IronPort-AV: E=Sophos;i="5.90,252,1643702400"; d="scan'208";a="525999805"
+Received: from ideak-desk.fi.intel.com ([10.237.72.175])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Apr 2022 07:34:07 -0700
+From: Imre Deak <imre.deak@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 11 Apr 2022 17:34:01 +0300
+Message-Id: <20220411143405.1073845-1-imre.deak@intel.com>
 X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220411141403.86980-1-hch@lst.de>
-References: <20220411141403.86980-1-hch@lst.de>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
- bombadil.infradead.org. See http://www.infradead.org/rpr.html
-Subject: [Intel-gfx] [PATCH 34/34] vfio/mdev: Remove mdev drvdata
+Subject: [Intel-gfx] [PATCH v2 0/4] drm/i915/dg2: Add support for
+ render/media decompression
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,52 +55,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Jason Gunthorpe <jgg@nvidia.com>,
- linux-kernel@vger.kernel.org
+Cc: Jani Nikula <jani.nikula@intel.com>,
+ =?UTF-8?q?Juha-Pekka=20Heikkil=C3=A4?= <juha-pekka.heikkila@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Jason Gunthorpe <jgg@nvidia.com>
+This is v2 of [1] amending the authorship and commit log in patch 4 and
+adding the r-bs, acks. Resending for CI as well for retesting on drm-tip
+where the dependency patchset [2] is now also part of the drm-intel-next
+branch.
 
-This is no longer used, remove it.
+[1] https://patchwork.freedesktop.org/series/102147/
+[2] https://patchwork.freedesktop.org/series/100419/
 
-All usages were moved over to either use container_of() from a vfio_device
-or to use dev_drvdata() directly on the mdev.
+Cc: Anshuman Gupta <anshuman.gupta@intel.com>
+Cc: Ramalingam C <ramalingam.c@intel.com>
+Cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: Mika Kahola <mika.kahola@intel.com>
+Cc: Juha-Pekka Heikkilä <juha-pekka.heikkila@intel.com>
+Cc: Nanley Chery <nanley.g.chery@intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
 
-Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
-Signed-off-by: Christoph Hellwig <hch@lst.de>
----
- include/linux/mdev.h | 9 ---------
- 1 file changed, 9 deletions(-)
+Juha-Pekka Heikkilä (1):
+  drm/i915/dg2: Add support for DG2 clear color compression
 
-diff --git a/include/linux/mdev.h b/include/linux/mdev.h
-index 1f6f57a3c3168..bb539794f54a8 100644
---- a/include/linux/mdev.h
-+++ b/include/linux/mdev.h
-@@ -15,7 +15,6 @@ struct mdev_type;
- struct mdev_device {
- 	struct device dev;
- 	guid_t uuid;
--	void *driver_data;
- 	struct list_head next;
- 	struct mdev_type *type;
- 	bool active;
-@@ -66,14 +65,6 @@ struct mdev_driver {
- 	struct device_driver driver;
- };
- 
--static inline void *mdev_get_drvdata(struct mdev_device *mdev)
--{
--	return mdev->driver_data;
--}
--static inline void mdev_set_drvdata(struct mdev_device *mdev, void *data)
--{
--	mdev->driver_data = data;
--}
- static inline const guid_t *mdev_uuid(struct mdev_device *mdev)
- {
- 	return &mdev->uuid;
+Matt Roper (2):
+  drm/fourcc: Introduce format modifiers for DG2 render and media
+    compression
+  drm/i915/dg2: Add support for DG2 render and media compression
+
+Mika Kahola (1):
+  drm/fourcc: Introduce format modifier for DG2 clear color
+
+ drivers/gpu/drm/i915/display/intel_display.c  |  4 +-
+ drivers/gpu/drm/i915/display/intel_fb.c       | 53 +++++++++++++++----
+ .../drm/i915/display/skl_universal_plane.c    | 49 +++++++++++++----
+ include/uapi/drm/drm_fourcc.h                 | 36 +++++++++++++
+ 4 files changed, 122 insertions(+), 20 deletions(-)
+
 -- 
 2.30.2
 
