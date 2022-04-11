@@ -1,49 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3D734FC7C8
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 Apr 2022 00:43:38 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE9D24FC806
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 Apr 2022 01:18:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C7EE10E3F8;
-	Mon, 11 Apr 2022 22:43:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0FBAD10FA38;
+	Mon, 11 Apr 2022 23:18:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 16D1B10E0FC;
- Mon, 11 Apr 2022 22:43:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649717006; x=1681253006;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=6WwvN7y4ArFU4yNiuCpSi6x5yHhjL93Oi6aMccisVRc=;
- b=c/+vkzymkPsOg4iJM9BNUx7fJ75tQgkX7dOT4Ne818mVoARH85YitR3j
- /s9wmcAE8rdjzhsqLBK7552MZF2VeKBX2wDt3047UN81rUYimiMMVI92Y
- EEZeX4eC8Iks2J7+qBruYthk/Bgl9hdawXEr7g2OvJ+0WgV9MzZKsCbKw
- Z33jSwDc8L8fSPs5923aQhmvRkdhZLHlt1sT3YkTLqs5Jd/fjqKSsvWkD
- 1J4ZfCiWW9/Pp0YdzK8rvmWngOHF+lvAuvTVQs9pGtG81eAiI/jamiczG
- KRQ3jJoRUPPZcHsekBl2Zx2qf/G/Vp0F9kkaQoOnWVHlLxiirqRqmkRLa w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10314"; a="249513174"
-X-IronPort-AV: E=Sophos;i="5.90,252,1643702400"; d="scan'208";a="249513174"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Apr 2022 15:43:25 -0700
-X-IronPort-AV: E=Sophos;i="5.90,252,1643702400"; d="scan'208";a="551432097"
-Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Apr 2022 15:43:25 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 11 Apr 2022 15:43:19 -0700
-Message-Id: <20220411224319.467166-5-matthew.d.roper@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220411224319.467166-1-matthew.d.roper@intel.com>
-References: <20220411224319.467166-1-matthew.d.roper@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6E8F010FA36;
+ Mon, 11 Apr 2022 23:17:59 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 6C558AA01E;
+ Mon, 11 Apr 2022 23:17:59 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8195786834516396046=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 4/4] drm/i915/uapi: Add
- DRM_I915_QUERY_GEOMETRY_SUBSLICES
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
+Date: Mon, 11 Apr 2022 23:17:59 -0000
+Message-ID: <164971907940.2974.11724698221978573768@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220411162518.9352-1-stanislav.lisovskiy@intel.com>
+In-Reply-To: <20220411162518.9352-1-stanislav.lisovskiy@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgQWRk?=
+ =?utf-8?q?_DP_MST_DSC_support_to_i915_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,256 +40,284 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Matt Atwood <matthew.s.atwood@intel.com>
+--===============8195786834516396046==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Newer platforms have DSS that aren't necessarily available for both
-geometry and compute, two queries will need to exist. This introduces
-the first, when passing a valid engine class and engine instance in the
-flags returns a topology describing geometry.
+== Series Details ==
 
-Based on past discussion, we currently only support this new query item
-on Xe_HP and beyond; earlier platforms do not need to worry about
-geometry and compute pipelines having access to different topology and
-should continue to use the existing topology query.
+Series: Add DP MST DSC support to i915 (rev4)
+URL   : https://patchwork.freedesktop.org/series/101492/
+State : success
 
-v2: fix white space errors
-v3: change flags from hosting 2 8 bit numbers to holding a
-i915_engine_class_instance struct
-v4: add error if non rcs engine passed.
-v5 (by MattR):
- - Improve kerneldoc and cross references to related structs/enums.
-   (Daniel)
- - Clarify that geometry query is only supported on render engines
-   (Francisco)
- - Clarify that the new query is only supported on Xe_HP+.
- - Fix checkpatch warnings.
+== Summary ==
 
-Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Francisco Jerez <currojerez@riseup.net>
-UMD (mesa): https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/14143
-Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/i915/i915_query.c | 71 ++++++++++++++++++++++---------
- include/uapi/drm/i915_drm.h       | 27 ++++++++++--
- 2 files changed, 75 insertions(+), 23 deletions(-)
+CI Bug Log - changes from CI_DRM_11484 -> Patchwork_101492v4
+====================================================
 
-diff --git a/drivers/gpu/drm/i915/i915_query.c b/drivers/gpu/drm/i915/i915_query.c
-index b5ca00cb6cf6..7584cec53d5d 100644
---- a/drivers/gpu/drm/i915/i915_query.c
-+++ b/drivers/gpu/drm/i915/i915_query.c
-@@ -9,6 +9,7 @@
- #include "i915_drv.h"
- #include "i915_perf.h"
- #include "i915_query.h"
-+#include "gt/intel_engine_user.h"
- #include <uapi/drm/i915_drm.h>
- 
- static int copy_query_item(void *query_hdr, size_t query_sz,
-@@ -28,36 +29,30 @@ static int copy_query_item(void *query_hdr, size_t query_sz,
- 	return 0;
- }
- 
--static int query_topology_info(struct drm_i915_private *dev_priv,
--			       struct drm_i915_query_item *query_item)
-+static int fill_topology_info(const struct sseu_dev_info *sseu,
-+			      struct drm_i915_query_item *query_item,
-+			      const u8 *subslice_mask)
- {
--	const struct sseu_dev_info *sseu = &to_gt(dev_priv)->info.sseu;
- 	struct drm_i915_query_topology_info topo;
- 	u32 slice_length, subslice_length, eu_length, total_length;
- 	int ret;
- 
--	if (query_item->flags != 0)
--		return -EINVAL;
-+	BUILD_BUG_ON(sizeof(u8) != sizeof(sseu->slice_mask));
- 
- 	if (sseu->max_slices == 0)
- 		return -ENODEV;
- 
--	BUILD_BUG_ON(sizeof(u8) != sizeof(sseu->slice_mask));
--
- 	slice_length = sizeof(sseu->slice_mask);
- 	subslice_length = sseu->max_slices * sseu->ss_stride;
- 	eu_length = sseu->max_slices * sseu->max_subslices * sseu->eu_stride;
- 	total_length = sizeof(topo) + slice_length + subslice_length +
- 		       eu_length;
- 
--	ret = copy_query_item(&topo, sizeof(topo), total_length,
--			      query_item);
-+	ret = copy_query_item(&topo, sizeof(topo), total_length, query_item);
-+
- 	if (ret != 0)
- 		return ret;
- 
--	if (topo.flags != 0)
--		return -EINVAL;
--
- 	memset(&topo, 0, sizeof(topo));
- 	topo.max_slices = sseu->max_slices;
- 	topo.max_subslices = sseu->max_subslices;
-@@ -69,27 +64,64 @@ static int query_topology_info(struct drm_i915_private *dev_priv,
- 	topo.eu_stride = sseu->eu_stride;
- 
- 	if (copy_to_user(u64_to_user_ptr(query_item->data_ptr),
--			   &topo, sizeof(topo)))
-+			 &topo, sizeof(topo)))
- 		return -EFAULT;
- 
- 	if (copy_to_user(u64_to_user_ptr(query_item->data_ptr + sizeof(topo)),
--			   &sseu->slice_mask, slice_length))
-+			 &sseu->slice_mask, slice_length))
- 		return -EFAULT;
- 
- 	if (copy_to_user(u64_to_user_ptr(query_item->data_ptr +
--					   sizeof(topo) + slice_length),
--			   sseu->subslice_mask, subslice_length))
-+					 sizeof(topo) + slice_length),
-+			 subslice_mask, subslice_length))
- 		return -EFAULT;
- 
- 	if (copy_to_user(u64_to_user_ptr(query_item->data_ptr +
--					   sizeof(topo) +
--					   slice_length + subslice_length),
--			   sseu->eu_mask, eu_length))
-+					 sizeof(topo) +
-+					 slice_length + subslice_length),
-+			 sseu->eu_mask, eu_length))
- 		return -EFAULT;
- 
- 	return total_length;
- }
- 
-+static int query_topology_info(struct drm_i915_private *dev_priv,
-+			       struct drm_i915_query_item *query_item)
-+{
-+	const struct sseu_dev_info *sseu = &to_gt(dev_priv)->info.sseu;
-+
-+	if (query_item->flags != 0)
-+		return -EINVAL;
-+
-+	return fill_topology_info(sseu, query_item, sseu->subslice_mask);
-+}
-+
-+static int query_geometry_subslices(struct drm_i915_private *i915,
-+				    struct drm_i915_query_item *query_item)
-+{
-+	const struct sseu_dev_info *sseu;
-+	struct intel_engine_cs *engine;
-+	struct i915_engine_class_instance classinstance;
-+
-+	if (GRAPHICS_VER_FULL(i915) < IP_VER(12, 50))
-+		return -ENODEV;
-+
-+	classinstance = *((struct i915_engine_class_instance *)&query_item->flags);
-+
-+	engine = intel_engine_lookup_user(i915, (u8)classinstance.engine_class,
-+					  (u8)classinstance.engine_instance);
-+
-+	if (!engine)
-+		return -EINVAL;
-+
-+	if (engine->class != RENDER_CLASS)
-+		return -EINVAL;
-+
-+	sseu = &engine->gt->info.sseu;
-+
-+	return fill_topology_info(sseu, query_item, sseu->geometry_subslice_mask);
-+}
-+
- static int
- query_engine_info(struct drm_i915_private *i915,
- 		  struct drm_i915_query_item *query_item)
-@@ -508,6 +540,7 @@ static int (* const i915_query_funcs[])(struct drm_i915_private *dev_priv,
- 	query_perf_config,
- 	query_memregion_info,
- 	query_hwconfig_blob,
-+	query_geometry_subslices,
- };
- 
- int i915_query_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
-diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-index 097a7935a510..35ca528803fd 100644
---- a/include/uapi/drm/i915_drm.h
-+++ b/include/uapi/drm/i915_drm.h
-@@ -172,7 +172,9 @@ enum drm_i915_gem_engine_class {
- 	I915_ENGINE_CLASS_INVALID	= -1
- };
- 
--/*
-+/**
-+ * struct i915_engine_class_instance - Engine class/instance identifier
-+ *
-  * There may be more than one engine fulfilling any role within the system.
-  * Each engine of a class is given a unique instance number and therefore
-  * any engine can be specified by its class:instance tuplet. APIs that allow
-@@ -180,10 +182,21 @@ enum drm_i915_gem_engine_class {
-  * for this identification.
-  */
- struct i915_engine_class_instance {
--	__u16 engine_class; /* see enum drm_i915_gem_engine_class */
--	__u16 engine_instance;
-+	/**
-+	 * @engine_class:
-+	 *
-+	 * Engine class from enum drm_i915_gem_engine_class
-+	 */
-+	__u16 engine_class;
- #define I915_ENGINE_CLASS_INVALID_NONE -1
- #define I915_ENGINE_CLASS_INVALID_VIRTUAL -2
-+
-+	/**
-+	 * @engine_instance:
-+	 *
-+	 * Engine instance.
-+	 */
-+	__u16 engine_instance;
- };
- 
- /**
-@@ -2735,6 +2748,7 @@ struct drm_i915_query_item {
- 	 *  - %DRM_I915_QUERY_PERF_CONFIG (see struct drm_i915_query_perf_config)
- 	 *  - %DRM_I915_QUERY_MEMORY_REGIONS (see struct drm_i915_query_memory_regions)
- 	 *  - %DRM_I915_QUERY_HWCONFIG_BLOB (see `GuC HWCONFIG blob uAPI`)
-+	 *  - %DRM_I915_QUERY_GEOMETRY_SUBSLICES (see struct drm_i915_query_topology_info)
- 	 */
- 	__u64 query_id;
- #define DRM_I915_QUERY_TOPOLOGY_INFO		1
-@@ -2742,6 +2756,7 @@ struct drm_i915_query_item {
- #define DRM_I915_QUERY_PERF_CONFIG		3
- #define DRM_I915_QUERY_MEMORY_REGIONS		4
- #define DRM_I915_QUERY_HWCONFIG_BLOB		5
-+#define DRM_I915_QUERY_GEOMETRY_SUBSLICES	6
- /* Must be kept compact -- no holes and well documented */
- 
- 	/**
-@@ -2765,6 +2780,9 @@ struct drm_i915_query_item {
- 	 *	- %DRM_I915_QUERY_PERF_CONFIG_LIST
- 	 *      - %DRM_I915_QUERY_PERF_CONFIG_DATA_FOR_UUID
- 	 *      - %DRM_I915_QUERY_PERF_CONFIG_FOR_UUID
-+	 *
-+	 * When &query_id == %DRM_I915_QUERY_GEOMETRY_SUBSLICES must contain
-+	 * a struct i915_engine_class_instance that references a render engine.
- 	 */
- 	__u32 flags;
- #define DRM_I915_QUERY_PERF_CONFIG_LIST          1
-@@ -3051,7 +3069,8 @@ struct drm_i915_query_engine_info {
- /**
-  * struct drm_i915_query_perf_config
-  *
-- * Data written by the kernel with query %DRM_I915_QUERY_PERF_CONFIG.
-+ * Data written by the kernel with query %DRM_I915_QUERY_PERF_CONFIG and
-+ * %DRM_I915_QUERY_GEOMETRY_SUBSLICES.
-  */
- struct drm_i915_query_perf_config {
- 	union {
--- 
-2.34.1
+Summary
+-------
 
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v4/index.html
+
+Participating hosts (49 -> 37)
+------------------------------
+
+  Additional (2): fi-kbl-soraka fi-hsw-4770 
+  Missing    (14): shard-tglu bat-dg1-6 bat-dg2-8 shard-rkl bat-dg2-9 fi-bsw-cyan bat-adlp-6 bat-adlp-4 bat-rpls-1 bat-rpls-2 shard-dg1 bat-jsl-2 bat-jsl-1 fi-snb-2600 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_101492v4 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - fi-blb-e6850:       [PASS][1] -> [FAIL][2] ([i915#3194])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11484/fi-blb-e6850/igt@core_hotunplug@unbind-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v4/fi-blb-e6850/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@gem_exec_fence@basic-busy@bcs0:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][3] ([fdo#109271]) +9 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v4/fi-kbl-soraka/igt@gem_exec_fence@basic-busy@bcs0.html
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][4] ([fdo#109271] / [i915#2190])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v4/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
+
+  * igt@gem_lmem_swapping@parallel-random-engines:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][5] ([fdo#109271] / [i915#4613]) +3 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v4/fi-kbl-soraka/igt@gem_lmem_swapping@parallel-random-engines.html
+
+  * igt@gem_softpin@allocator-basic-reserve:
+    - fi-hsw-4770:        NOTRUN -> [SKIP][6] ([fdo#109271]) +9 similar issues
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v4/fi-hsw-4770/igt@gem_softpin@allocator-basic-reserve.html
+
+  * igt@i915_pm_backlight@basic-brightness:
+    - fi-hsw-4770:        NOTRUN -> [SKIP][7] ([fdo#109271] / [i915#3012])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v4/fi-hsw-4770/igt@i915_pm_backlight@basic-brightness.html
+
+  * igt@i915_selftest@live@gt_pm:
+    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][8] ([i915#1886])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v4/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-hsw-4770:        NOTRUN -> [SKIP][9] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v4/fi-hsw-4770/igt@kms_chamelium@dp-crc-fast.html
+
+  * igt@kms_chamelium@dp-edid-read:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][10] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v4/fi-kbl-soraka/igt@kms_chamelium@dp-edid-read.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
+    - fi-hsw-4770:        NOTRUN -> [SKIP][11] ([fdo#109271] / [i915#533])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v4/fi-hsw-4770/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][12] ([fdo#109271] / [i915#533])
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v4/fi-kbl-soraka/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
+
+  * igt@kms_psr@primary_mmap_gtt:
+    - fi-hsw-4770:        NOTRUN -> [SKIP][13] ([fdo#109271] / [i915#1072]) +3 similar issues
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v4/fi-hsw-4770/igt@kms_psr@primary_mmap_gtt.html
+
+  * igt@runner@aborted:
+    - fi-bdw-5557u:       NOTRUN -> [FAIL][14] ([i915#4312])
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v4/fi-bdw-5557u/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_force_connector_basic@prune-stale-modes:
+    - fi-cfl-8109u:       [DMESG-WARN][15] ([i915#62]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11484/fi-cfl-8109u/igt@kms_force_connector_basic@prune-stale-modes.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v4/fi-cfl-8109u/igt@kms_force_connector_basic@prune-stale-modes.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#3012]: https://gitlab.freedesktop.org/drm/intel/issues/3012
+  [i915#3194]: https://gitlab.freedesktop.org/drm/intel/issues/3194
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_11484 -> Patchwork_101492v4
+
+  CI-20190529: 20190529
+  CI_DRM_11484: 8034f05811fe63be8ced11c140e59a8cea07a3d6 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6419: 33a5adf20dc435cc2c6dd584caa3674c89032762 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_101492v4: 101492v4 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+df6f962a7370 drm/i915: Add DSC support to MST path
+19c941d13feb drm: Add missing DP DSC extended capability definitions.
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v4/index.html
+
+--===============8195786834516396046==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Add DP MST DSC support to i915 (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/101492/">https://patchwork.freedesktop.org/series/101492/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v4/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v4/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11484 -&gt; Patchwork_101492v4</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v4/index.html</p>
+<h2>Participating hosts (49 -&gt; 37)</h2>
+<p>Additional (2): fi-kbl-soraka fi-hsw-4770 <br />
+  Missing    (14): shard-tglu bat-dg1-6 bat-dg2-8 shard-rkl bat-dg2-9 fi-bsw-cyan bat-adlp-6 bat-adlp-4 bat-rpls-1 bat-rpls-2 shard-dg1 bat-jsl-2 bat-jsl-1 fi-snb-2600 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_101492v4 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11484/fi-blb-e6850/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v4/fi-blb-e6850/igt@core_hotunplug@unbind-rebind.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3194">i915#3194</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fence@basic-busy@bcs0:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v4/fi-kbl-soraka/igt@gem_exec_fence@basic-busy@bcs0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +9 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v4/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v4/fi-kbl-soraka/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_softpin@allocator-basic-reserve:</p>
+<ul>
+<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v4/fi-hsw-4770/igt@gem_softpin@allocator-basic-reserve.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +9 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_backlight@basic-brightness:</p>
+<ul>
+<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v4/fi-hsw-4770/igt@i915_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3012">i915#3012</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_pm:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v4/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v4/fi-hsw-4770/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-edid-read:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v4/fi-kbl-soraka/igt@kms_chamelium@dp-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
+<ul>
+<li>
+<p>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v4/fi-hsw-4770/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</p>
+</li>
+<li>
+<p>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v4/fi-kbl-soraka/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@primary_mmap_gtt:</p>
+<ul>
+<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v4/fi-hsw-4770/igt@kms_psr@primary_mmap_gtt.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v4/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_force_connector_basic@prune-stale-modes:<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11484/fi-cfl-8109u/igt@kms_force_connector_basic@prune-stale-modes.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v4/fi-cfl-8109u/igt@kms_force_connector_basic@prune-stale-modes.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11484 -&gt; Patchwork_101492v4</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11484: 8034f05811fe63be8ced11c140e59a8cea07a3d6 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6419: 33a5adf20dc435cc2c6dd584caa3674c89032762 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_101492v4: 101492v4 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>df6f962a7370 drm/i915: Add DSC support to MST path<br />
+19c941d13feb drm: Add missing DP DSC extended capability definitions.</p>
+
+</body>
+</html>
+
+--===============8195786834516396046==--
