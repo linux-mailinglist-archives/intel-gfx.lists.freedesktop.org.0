@@ -2,49 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09B914FBBDD
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Apr 2022 14:15:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DC12A4FBBFA
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Apr 2022 14:25:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9EAF710E05E;
-	Mon, 11 Apr 2022 12:15:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A2AB10E218;
+	Mon, 11 Apr 2022 12:25:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB7AF10E05E;
- Mon, 11 Apr 2022 12:15:00 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 204D310E218;
+ Mon, 11 Apr 2022 12:25:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649679300; x=1681215300;
+ t=1649679901; x=1681215901;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=tdrqEUjkjtyZJixAdSQaVyuOJBEwrEFX1i2jBgmQrg0=;
- b=JECeyWIHRK6g3x+3qTpo3Brjt1NG+tBaYGVQKH5CnHuMbG3pq0Wsh7Or
- 0ftE1aE7tx3Jo8KjvxQ4kPKVZxrwYqyq/MnnprKzfD3HwDlQngMcTS8t/
- l8dNx1kIVnnc14kbT+8ZdAxP2Yc03bO6qRianD1wyat/w/C/GH4h7uhSc
- GvMiZXZt7H1nzDz21EfuonVYqCv37flIDv3pG67jZdm3oRjyaKwg19RYe
- zYg3BuJjoR7h0Zv9xSRV6pOcRGvDLvjD8n4NjKRytOk4rREqpJr5KaEsW
- N/x26dvUT0e6s9JhE4X3cnD/9PyF9+0UzfvwVTQOn96U0r65RMzB52GjC Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10313"; a="260947057"
-X-IronPort-AV: E=Sophos;i="5.90,251,1643702400"; d="scan'208";a="260947057"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Apr 2022 05:15:00 -0700
+ mime-version:in-reply-to;
+ bh=GpeF4bUkjxGtq5KcRWPaTMiqhnxNUoYNZzMVEdNfiEY=;
+ b=V9mY9hz6imX8LTUQ9MnN43a7yA9teeirE22rj6bjhXJEvnOrPSTMRdql
+ KOaU2BZIiumtxfsdHOSeCdd6om5TRYwR5uVupe+9oxGfxhvBwrDwSLuIf
+ e2jCoNAZLZSobpuqwTVgcIOZ1fX+9VU1820hvtKQdy30h3+GdPNzR2e2D
+ 9JdFMsDDvAiCaUjVcIKKnueAAJlas8see4DwhW24L85hTRYdxFqX8cWns
+ ah/8i0CdBTxxoVdR89UoDrNSfJBvIdYk2NcdmNfvkfev/roXSyTLw8fUH
+ 77pgWPsEjz6sYVyoIj1c1mzpQOQzGdQtiRyafHuAIRvcg0HVtg/Leb42h Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10313"; a="261539092"
+X-IronPort-AV: E=Sophos;i="5.90,251,1643702400"; d="scan'208";a="261539092"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Apr 2022 05:25:00 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,251,1643702400"; d="scan'208";a="525954234"
+X-IronPort-AV: E=Sophos;i="5.90,251,1643702400"; d="scan'208";a="610964880"
 Received: from lkp-server02.sh.intel.com (HELO d3fc50ef50de) ([10.239.97.151])
- by orsmga006.jf.intel.com with ESMTP; 11 Apr 2022 05:14:58 -0700
+ by fmsmga008.fm.intel.com with ESMTP; 11 Apr 2022 05:24:59 -0700
 Received: from kbuild by d3fc50ef50de with local (Exim 4.95)
- (envelope-from <lkp@intel.com>) id 1ndswc-0001pn-4G;
- Mon, 11 Apr 2022 12:14:58 +0000
-Date: Mon, 11 Apr 2022 20:14:06 +0800
+ (envelope-from <lkp@intel.com>) id 1ndt6I-0001qA-BM;
+ Mon, 11 Apr 2022 12:24:58 +0000
+Date: Mon, 11 Apr 2022 20:24:24 +0800
 From: kernel test robot <lkp@intel.com>
 To: Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org
-Message-ID: <202204112055.cUmakJdJ-lkp@intel.com>
+Message-ID: <202204112019.U9iIZWqP-lkp@intel.com>
 References: <44265d5a3f64e9d7ad9984fee766f68d0b8bd473.1649670305.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
 In-Reply-To: <44265d5a3f64e9d7ad9984fee766f68d0b8bd473.1649670305.git.jani.nikula@intel.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Subject: Re: [Intel-gfx] [CI v2 12/12] drm/edid: add EDID block count and
@@ -62,7 +61,7 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org,
- kbuild-all@lists.01.org
+ llvm@lists.linux.dev, kbuild-all@lists.01.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
@@ -79,8 +78,8 @@ https://git-scm.com/docs/git-format-patch]
 
 url:    https://github.com/intel-lab-lkp/linux/commits/Jani-Nikula/drm-edid-low-level-EDID-block-read-refactoring-etc/20220411-175027
 base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
-config: arc-allyesconfig (https://download.01.org/0day-ci/archive/20220411/202204112055.cUmakJdJ-lkp@intel.com/config)
-compiler: arceb-elf-gcc (GCC) 11.2.0
+config: i386-randconfig-a001-20220411 (https://download.01.org/0day-ci/archive/20220411/202204112019.U9iIZWqP-lkp@intel.com/config)
+compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project c6e83f560f06cdfe8aa47b248d8bdc58f947274b)
 reproduce (this is a W=1 build):
         wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
         chmod +x ~/bin/make.cross
@@ -90,32 +89,124 @@ reproduce (this is a W=1 build):
         git checkout ba74d3cc8cc1b6ba4c34a039e797994ddbc77567
         # save the config file to linux build tree
         mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=arc SHELL=/bin/bash drivers/gpu/drm/
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 SHELL=/bin/bash drivers/gpu/drm/
 
 If you fix the issue, kindly add following tag as appropriate
 Reported-by: kernel test robot <lkp@intel.com>
 
 All warnings (new ones prefixed by >>):
 
-   drivers/gpu/drm/drm_edid.c: In function 'drm_do_get_edid':
->> drivers/gpu/drm/drm_edid.c:1664:21: warning: array subscript [128, 32640] is outside array bounds of 'struct edid[1]' [-Warray-bounds]
-    1664 |         return block[0];
-         |                ~~~~~^~~
-   drivers/gpu/drm/drm_edid.c:2173:15: note: referencing an object of size 128 allocated by 'krealloc'
-    2173 |         new = krealloc(edid, edid_size(edid), GFP_KERNEL);
-         |               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>> drivers/gpu/drm/drm_edid.c:2170:6: warning: logical not is only applied to the left hand side of this comparison [-Wlogical-not-parentheses]
+           if (!edid_extension_block_count(edid) == 0)
+               ^                                 ~~
+   drivers/gpu/drm/drm_edid.c:2170:6: note: add parentheses after the '!' to evaluate the comparison first
+           if (!edid_extension_block_count(edid) == 0)
+               ^
+                (                                    )
+   drivers/gpu/drm/drm_edid.c:2170:6: note: add parentheses around left hand side expression to silence this warning
+           if (!edid_extension_block_count(edid) == 0)
+               ^
+               (                                )
+   1 warning generated.
 
 
-vim +1664 drivers/gpu/drm/drm_edid.c
+vim +2170 drivers/gpu/drm/drm_edid.c
 
-c465bbc87ce372 Stefan Brüns 2014-11-30  1659  
-4ba0f53ce685b0 Jani Nikula  2022-03-31  1660  static int edid_block_tag(const void *_block)
-4ba0f53ce685b0 Jani Nikula  2022-03-31  1661  {
-4ba0f53ce685b0 Jani Nikula  2022-03-31  1662  	const u8 *block = _block;
-4ba0f53ce685b0 Jani Nikula  2022-03-31  1663  
-4ba0f53ce685b0 Jani Nikula  2022-03-31 @1664  	return block[0];
-4ba0f53ce685b0 Jani Nikula  2022-03-31  1665  }
-4ba0f53ce685b0 Jani Nikula  2022-03-31  1666  
+  2112	
+  2113	/**
+  2114	 * drm_do_get_edid - get EDID data using a custom EDID block read function
+  2115	 * @connector: connector we're probing
+  2116	 * @get_edid_block: EDID block read function
+  2117	 * @data: private data passed to the block read function
+  2118	 *
+  2119	 * When the I2C adapter connected to the DDC bus is hidden behind a device that
+  2120	 * exposes a different interface to read EDID blocks this function can be used
+  2121	 * to get EDID data using a custom block read function.
+  2122	 *
+  2123	 * As in the general case the DDC bus is accessible by the kernel at the I2C
+  2124	 * level, drivers must make all reasonable efforts to expose it as an I2C
+  2125	 * adapter and use drm_get_edid() instead of abusing this function.
+  2126	 *
+  2127	 * The EDID may be overridden using debugfs override_edid or firmware EDID
+  2128	 * (drm_load_edid_firmware() and drm.edid_firmware parameter), in this priority
+  2129	 * order. Having either of them bypasses actual EDID reads.
+  2130	 *
+  2131	 * Return: Pointer to valid EDID or NULL if we couldn't find any.
+  2132	 */
+  2133	struct edid *drm_do_get_edid(struct drm_connector *connector,
+  2134				     read_block_fn read_block,
+  2135				     void *context)
+  2136	{
+  2137		enum edid_block_status status;
+  2138		int i, invalid_blocks = 0;
+  2139		struct edid *edid, *new;
+  2140	
+  2141		edid = drm_get_override_edid(connector);
+  2142		if (edid)
+  2143			goto ok;
+  2144	
+  2145		edid = kmalloc(EDID_LENGTH, GFP_KERNEL);
+  2146		if (!edid)
+  2147			return NULL;
+  2148	
+  2149		status = edid_block_read(edid, 0, read_block, context);
+  2150	
+  2151		edid_block_status_print(status, edid, 0);
+  2152	
+  2153		if (status == EDID_BLOCK_READ_FAIL)
+  2154			goto fail;
+  2155	
+  2156		/* FIXME: Clarify what a corrupt EDID actually means. */
+  2157		if (status == EDID_BLOCK_OK || status == EDID_BLOCK_VERSION)
+  2158			connector->edid_corrupt = false;
+  2159		else
+  2160			connector->edid_corrupt = true;
+  2161	
+  2162		if (!edid_block_status_valid(status, edid_block_tag(edid))) {
+  2163			if (status == EDID_BLOCK_ZERO)
+  2164				connector->null_edid_counter++;
+  2165	
+  2166			connector_bad_edid(connector, edid, 1);
+  2167			goto fail;
+  2168		}
+  2169	
+> 2170		if (!edid_extension_block_count(edid) == 0)
+  2171			goto ok;
+  2172	
+  2173		new = krealloc(edid, edid_size(edid), GFP_KERNEL);
+  2174		if (!new)
+  2175			goto fail;
+  2176		edid = new;
+  2177	
+  2178		for (i = 1; i < edid_block_count(edid); i++) {
+  2179			void *block = (void *)edid_block_data(edid, i);
+  2180	
+  2181			status = edid_block_read(block, i, read_block, context);
+  2182	
+  2183			edid_block_status_print(status, block, i);
+  2184	
+  2185			if (!edid_block_status_valid(status, edid_block_tag(block))) {
+  2186				if (status == EDID_BLOCK_READ_FAIL)
+  2187					goto fail;
+  2188				invalid_blocks++;
+  2189			}
+  2190		}
+  2191	
+  2192		if (invalid_blocks) {
+  2193			connector_bad_edid(connector, edid, edid_block_count(edid));
+  2194	
+  2195			edid = edid_filter_invalid_blocks(edid, invalid_blocks);
+  2196		}
+  2197	
+  2198	ok:
+  2199		return edid;
+  2200	
+  2201	fail:
+  2202		kfree(edid);
+  2203		return NULL;
+  2204	}
+  2205	EXPORT_SYMBOL_GPL(drm_do_get_edid);
+  2206	
 
 -- 
 0-DAY CI Kernel Test Service
