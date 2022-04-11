@@ -2,92 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E68E24FB511
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Apr 2022 09:39:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CF78F4FB5A5
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Apr 2022 10:10:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D183B10EF5E;
-	Mon, 11 Apr 2022 07:39:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D7ACC10F0D4;
+	Mon, 11 Apr 2022 08:10:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2059.outbound.protection.outlook.com [40.107.223.59])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F4D010EF5E;
- Mon, 11 Apr 2022 07:39:00 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OmLvxZrN6CE/9k6iN+F4tTq3hug3qaoTW6XS7Lh9kiSSlWbmeayT+edSbZsydwLcafThkJU0Xi3jq7rQKqkcV/uRmkC7yElE7hSy1ZUlaw5k0lNwcavVM5nfLgm4yOYpUwCaLXfOkaQtO2NRz2XFfzzwXt/XAM72ZcPo7sKvDdDQgJ5i1wzWUrfhVRC+hV3FIaL5jWLw/JI3+0V78V0cTI0QTPmdvkIDQ3IXTxL2F498gvgi6hDIhFITosXR04Ru0cHUU7z9V3/hkFKZ7/upai5Hj8gccpv9CsTKKCYZ1pqyJO2mSMCtHgSZc777U6ls4Df7ZKgFk3Z+6F0+nb5CRQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5Ww6cDEbA2/QZ+Mj00BdP57RQ8B1hpiC78gGMVIcRhw=;
- b=HWSWYKhuwB1ma6/v3x29B2ftFaAEbcGxRK16jLkAKho0jQwRrkiwKyfZzhWsHSwDGv0FgERHKh73SpZZ3AIF+734HWfl+0UfDA1qRhKC6XrwOJMcyC4D2dWZPHuu9S6t1EUcuPupeeII2n1n1jVi+ITbTzFO/t3zVE9wAi2f48+gGodLApt5xF2g1PThBMBnnywd+/k8iwTM+fqoT2l566bTBDzQ4r3OdjOrW3PctjEWD52ZV04be+FoqXU22otua6I8/4Yq46BfJ+XG0X2J1UDfV4Ef3ahFFk1XsFBdxKexUd0G87f60SJXLPdD8DYgHRym2Va69HDrBrijN0mVnQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5Ww6cDEbA2/QZ+Mj00BdP57RQ8B1hpiC78gGMVIcRhw=;
- b=upPbENfSNuK+PZh/4YuS/VgKlWvOa26XlndeuZ0pcRuxDyd/tZ4g+SGmj425cm8hLcHtV/quvrfvkchVXDyqbj/6ab+QjkTnySAPcBkegSeStxcnfWC6KiiZMEyMTyp6VjB3ksi3w9teWL78cPpPg/gqE4kZIRH6cv3JYXcs9VA=
-Received: from DS7PR03CA0026.namprd03.prod.outlook.com (2603:10b6:5:3b8::31)
- by DM5PR12MB1289.namprd12.prod.outlook.com (2603:10b6:3:79::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5144.29; Mon, 11 Apr
- 2022 07:38:58 +0000
-Received: from DM6NAM11FT033.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:3b8:cafe::ed) by DS7PR03CA0026.outlook.office365.com
- (2603:10b6:5:3b8::31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5144.29 via Frontend
- Transport; Mon, 11 Apr 2022 07:38:58 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT033.mail.protection.outlook.com (10.13.172.221) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5144.20 via Frontend Transport; Mon, 11 Apr 2022 07:38:58 +0000
-Received: from rtg-amd.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Mon, 11 Apr
- 2022 02:38:53 -0500
-From: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
-To: <intel-gfx@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>,
- <dri-devel@lists.freedesktop.org>
-Date: Mon, 11 Apr 2022 13:08:34 +0530
-Message-ID: <20220411073834.15210-1-Arunpravin.PaneerSelvam@amd.com>
-X-Mailer: git-send-email 2.25.1
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C25D110F097
+ for <intel-gfx@lists.freedesktop.org>; Mon, 11 Apr 2022 08:10:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1649664654; x=1681200654;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=k8E4U6zr6ETso+nJiXQW780VrhLnRM7rTqhp2Y1sJ8M=;
+ b=ZIoQna37lGftIx+BFUOiiff+PEoittaXjokZc0boSM0mPpXS9LpuVruI
+ Y3E0jyTUyktYnbDtD8IvAtzABFoQwXfD/zmy4SN2614P/kGV9xNCerfu8
+ 7Xo1L4ql5BTkG/cccyU7qjUXCuZ2mNrE9hX4WEOkRNn7U4ieZwJmS0Jgh
+ jYvffquKCRMIjFqwMsqV8+Cwx0ZVi389O0agPUkaKI8jgeD4y02VzLw51
+ 3Uu9vYs9/txgensh0p4b2XcyA5qKLCttu/TkFKalHVBhxxub9hCC0oaq5
+ +W+h5FeNkpzXd4EEbPZalYBbQaQ9mpJ1QQu8vjtHdI6QDy/vMTehRF3M0 g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10313"; a="259658697"
+X-IronPort-AV: E=Sophos;i="5.90,251,1643702400"; d="scan'208";a="259658697"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Apr 2022 01:10:54 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,251,1643702400"; d="scan'208";a="589793105"
+Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
+ ([10.237.72.65])
+ by orsmga001.jf.intel.com with ESMTP; 11 Apr 2022 01:10:52 -0700
+From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 11 Apr 2022 11:11:42 +0300
+Message-Id: <20220411081142.17979-1-stanislav.lisovskiy@intel.com>
+X-Mailer: git-send-email 2.24.1.485.gad05a3d8e5
+In-Reply-To: <20220408125200.9069-1-stanislav.lisovskiy@intel.com>
+References: <20220408125200.9069-1-stanislav.lisovskiy@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 4194203e-cc99-40d6-23e4-08da1b8e56f1
-X-MS-TrafficTypeDiagnostic: DM5PR12MB1289:EE_
-X-Microsoft-Antispam-PRVS: <DM5PR12MB128938ACF1390028359471BEE4EA9@DM5PR12MB1289.namprd12.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: RpSQ6jvbT3CbLoO/26qDGLzDtIgBdEelqvzhWf0Fn3y0V7Z8GXg5vqxkuzZfSjgqPlYt0oa3zqjloJaMQWqn1XTMkXPdzgcpNsj8UObZnSU49D3zTUQ7q1NGdBcKnUdLrs1ed5xQ+PbdTcr+lSXbjyej8b5jMAbWFQYABreayVnix9faHGlCo7Zsk9k43Mxopk63Fsk0OVvkwCNNOZ6DyGaojqaMIRQmAHF5judl/+aoOTNMmJhitMjnNln2IJ4/kBiZVsYrl16w1MGJ8Y+h0NqzjOb1D2cjg3fjDjx3DK5QK6eLMJZQypwJFTclYPYB9bgHcRJMMZ94LeolgM/zn4CgytWRhAtU7TpCXL4qSD5oUSR455+cT34aako/oOq6iN95dWIjG9brKk89bY3YGo9QJxi4+Icq2nsVwvslCgGs18E0nMVxe6VI9qcoGsm/bU0XIBbdmrbmhkaOvcMqBB5QuYVhWHrG0Jydj5cc8bAfv9xQ/e7wEQOy562PCWjX5tvC1kPWEHbg7xK3ZQCkUm/TOrY+rXF6ne6LvCou5RYiSBnBIYoPpTpVNq0YSVBn+Etl/zzgoL4WAMQK/rpFGddSaH7dK4zWB//qKTJLEEM6SN2cXj2Uw+zXeAcCErnyFDsJUvzc/fKMzuzUzT/gnGjq3/nPbNsHnJ2MIfCatMI3n3m20GAARrGOLehqWnMzARJjMrPuqJRZbUF7nW7phw==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(46966006)(36840700001)(40470700004)(70586007)(70206006)(8936002)(5660300002)(47076005)(36860700001)(2616005)(1076003)(82310400005)(426003)(7696005)(186003)(16526019)(26005)(6666004)(336012)(508600001)(36756003)(2906002)(40460700003)(86362001)(110136005)(54906003)(83380400001)(8676002)(356005)(4326008)(81166007)(316002)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Apr 2022 07:38:58.3358 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4194203e-cc99-40d6-23e4-08da1b8e56f1
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT033.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1289
-Subject: [Intel-gfx] [PATCH v3] drm: add a check to verify the size alignment
+Subject: [Intel-gfx] [PATCH 2/2] drm/i915: Swap ret and status returned from
+ skl_pcode_request
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,51 +57,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com,
- Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
- matthew.auld@intel.com, christian.koenig@amd.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add a simple check to reject any size not aligned to the
-min_page_size.
+If ret isn't zero, it is almost for sure ETIMEDOUT, because
+we use it in wait_for macro which does continuous retries
+until timeout is reached. If we still ran out of time and
+retries, we most likely would be interested in getting status,
+to understand what was the actual error propagated from PCode,
+rather than to find out that we had a time out, which is anyway
+quite obvious, if the function fails.
 
-when size is not aligned to min_page_size, driver module
-should handle in their own way either to round_up() the
-size value to min_page_size or just to enable WARN_ON().
+v2: Make it status ? status : ret(thanks Vinod for the hint)
 
-If we dont handle the alignment properly, we may hit the
-following bug, Unigine Heaven has allocation requests for
-example required pages are 257 and alignment request is 256.
-To allocate the left over 1 page, continues the iteration to
-find the order value which is 0 and when it compares with
-min_order = 8, triggers the BUG_ON(order < min_order).
-
-v2: add more commit description
-v3: remove WARN_ON()
-
-Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
-Suggested-by: Matthew Auld <matthew.auld@intel.com>
+Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 ---
- drivers/gpu/drm/drm_buddy.c | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/gpu/drm/i915/intel_pcode.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/drm_buddy.c b/drivers/gpu/drm/drm_buddy.c
-index 72f52f293249..11bb59399471 100644
---- a/drivers/gpu/drm/drm_buddy.c
-+++ b/drivers/gpu/drm/drm_buddy.c
-@@ -665,6 +665,9 @@ int drm_buddy_alloc_blocks(struct drm_buddy *mm,
- 	if (start + size == end)
- 		return __drm_buddy_alloc_range(mm, start, size, blocks);
+diff --git a/drivers/gpu/drm/i915/intel_pcode.c b/drivers/gpu/drm/i915/intel_pcode.c
+index fb6c43e8a02f..ac727546868e 100644
+--- a/drivers/gpu/drm/i915/intel_pcode.c
++++ b/drivers/gpu/drm/i915/intel_pcode.c
+@@ -202,7 +202,7 @@ int skl_pcode_request(struct drm_i915_private *i915, u32 mbox, u32 request,
  
-+	if (!IS_ALIGNED(size, min_page_size))
-+		return -EINVAL;
-+
- 	pages = size >> ilog2(mm->chunk_size);
- 	order = fls(pages) - 1;
- 	min_order = ilog2(min_page_size) - ilog2(mm->chunk_size);
-
-base-commit: 4dcdb745569d8eef8db09e24e8ff2e5dffc0664c
+ out:
+ 	mutex_unlock(&i915->sb_lock);
+-	return ret ? ret : status;
++	return status ? status : ret;
+ #undef COND
+ }
+ 
 -- 
-2.25.1
+2.24.1.485.gad05a3d8e5
 
