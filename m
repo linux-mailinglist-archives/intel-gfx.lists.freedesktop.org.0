@@ -2,52 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 186DD4FB8B9
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Apr 2022 11:57:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D9CC4FB8CB
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Apr 2022 11:59:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C138B10F36E;
-	Mon, 11 Apr 2022 09:56:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D58C89415;
+	Mon, 11 Apr 2022 09:59:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D2F610E3C2;
- Mon, 11 Apr 2022 09:56:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649671014; x=1681207014;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=NNPrqqvwfE4T6SxQFXSeKUi94YKnxShNax7eJP3mXHc=;
- b=coE7Gf4nwp9W/bWd0hOv6jFj8eE5recKgYCfR2PsSrHN0HOt4IQO4niW
- BSt6RrRPvQRWEziBQsgiEIfpblHAZm+yLw4Y7EPpJPZ3wzjs5a3Qggd1s
- 0WFzcxkGRitGrhA/ryZwCl/oPf5tch6xCUiyEdM4PeEBb0Kn0k+fm5hXz
- ck6kSngGcsxFeBTt45iP3tButu5LsTJLeGOpGY9lw35bKoc6smFFAA0af
- u0gjHY2db9NDRsA0H9DonVfzTjRWMz11peu01qKUXjeT4qArQx0nkOOuw
- mSULlI0JoB9Ault+uyFLTh41v6xWL0q5guWJTr/6/s4wngxwkRjE+QJh/ A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10313"; a="242666840"
-X-IronPort-AV: E=Sophos;i="5.90,251,1643702400"; d="scan'208";a="242666840"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Apr 2022 02:56:54 -0700
-X-IronPort-AV: E=Sophos;i="5.90,251,1643702400"; d="scan'208";a="659986098"
-Received: from melhebea-mobl1.amr.corp.intel.com (HELO [10.249.254.167])
- ([10.249.254.167])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Apr 2022 02:56:52 -0700
-Message-ID: <11835204-fd38-ef91-8e55-2b3e15aaaacd@linux.intel.com>
-Date: Mon, 11 Apr 2022 11:56:49 +0200
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 49CBB89415;
+ Mon, 11 Apr 2022 09:59:57 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 48C72A0118;
+ Mon, 11 Apr 2022 09:59:57 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1130201567400524390=="
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Content-Language: en-US
-To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20220411085603.58156-1-matthew.auld@intel.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20220411085603.58156-1-matthew.auld@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] drm/ttm: stop passing NULL fence in
- ttm_bo_move_sync_cleanup
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
+Date: Mon, 11 Apr 2022 09:59:57 -0000
+Message-ID: <164967119726.2972.13909427674335339599@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220408125200.9069-1-stanislav.lisovskiy@intel.com>
+In-Reply-To: <20220408125200.9069-1-stanislav.lisovskiy@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgRml4?=
+ =?utf-8?q?_issues_in_skl=5Fpcode=5Frequest_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,135 +40,279 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi, Matthew
+--===============1130201567400524390==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 4/11/22 10:56, Matthew Auld wrote:
-> If we hit the sync case, like when skipping clearing for kernel internal
-> objects, or when falling back to cpu clearing, like in i915, we end up
-> trying to add a NULL fence, but with some recent changes in this area
-> this now just results in NULL deref in dma_resv_add_fence:
->
-> <1>[    5.466383] BUG: kernel NULL pointer dereference, address: 0000000000000008
-> <1>[    5.466384] #PF: supervisor read access in kernel mode
-> <1>[    5.466385] #PF: error_code(0x0000) - not-present page
-> <6>[    5.466386] PGD 0 P4D 0
-> <4>[    5.466387] Oops: 0000 [#1] PREEMPT SMP NOPTI
-> <4>[    5.466389] CPU: 5 PID: 267 Comm: modprobe Not tainted 5.18.0-rc2-CI-CI_DRM_11481+ #1
-> <4>[    5.466391] RIP: 0010:dma_resv_add_fence+0x63/0x260
-> <4>[    5.466395] Code: 38 85 c0 0f 84 df 01 00 00 0f 88 e8 01 00 00 83 c0 01 0f 88 df 01 00 00 8b 05 35 89 10 01 49 8d 5e 68 85 c0 0f 85 45 01 00 00 <48> 8b 45 08 48 3d c0 a5 0a 82 0f 84 5c 01 00 00 48 3d 60 a5 0a 82
-> <4>[    5.466396] RSP: 0018:ffffc90000e974f8 EFLAGS: 00010202
-> <4>[    5.466397] RAX: 0000000000000001 RBX: ffff888123e88b28 RCX: 00000000ffffffff
-> <4>[    5.466398] RDX: 0000000000000001 RSI: ffffffff822e4f50 RDI: ffffffff8233f087
-> <4>[    5.466399] RBP: 0000000000000000 R08: ffff8881313dbc80 R09: 0000000000000001
-> <4>[    5.466399] R10: 0000000000000001 R11: 00000000da354294 R12: 0000000000000000
-> <4>[    5.466400] R13: ffff88810927dc58 R14: ffff888123e88ac0 R15: ffff88810a88d600
-> <4>[    5.466401] FS:  00007f5fa1193540(0000) GS:ffff88845d880000(0000) knlGS:0000000000000000
-> <4>[    5.466402] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> <4>[    5.466402] CR2: 0000000000000008 CR3: 0000000106dd6003 CR4: 00000000003706e0
-> <4>[    5.466403] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
-> <4>[    5.466404] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
-> <4>[    5.466404] Call Trace:
-> <4>[    5.466405]  <TASK>
-> <4>[    5.466406]  ttm_bo_move_accel_cleanup+0x62/0x270 [ttm]
-> <4>[    5.466411]  ? i915_rsgt_from_buddy_resource+0x185/0x1e0 [i915]
-> <4>[    5.466529]  i915_ttm_move+0xfd/0x430 [i915]
-> <4>[    5.466833]  ? dma_resv_reserve_fences+0x4e/0x320
-> <4>[    5.466836]  ? ttm_bo_add_move_fence.constprop.20+0xf7/0x140 [ttm]
-> <4>[    5.466841]  ttm_bo_handle_move_mem+0xa1/0x140 [ttm]
-> <4>[    5.466845]  ttm_bo_validate+0xee/0x160 [ttm]
-> <4>[    5.466849]  __i915_ttm_get_pages+0x4f/0x210 [i915]
-> <4>[    5.466976]  i915_ttm_get_pages+0xad/0x140 [i915]
-> <4>[    5.467094]  ____i915_gem_object_get_pages+0x32/0xf0 [i915]
-> <4>[    5.467210]  __i915_gem_object_get_pages+0x89/0xa0 [i915]
-> <4>[    5.467323]  i915_vma_get_pages+0x114/0x1d0 [i915]
-> <4>[    5.467446]  i915_vma_pin_ww+0xd3/0xa90 [i915]
-> <4>[    5.467570]  i915_vma_pin.constprop.10+0x119/0x1b0 [i915]
-> <4>[    5.467700]  ? __mutex_unlock_slowpath+0x3e/0x2b0
-> <4>[    5.467704]  intel_alloc_initial_plane_obj.isra.6+0x1a9/0x390 [i915]
-> <4>[    5.467833]  intel_crtc_initial_plane_config+0x83/0x340 [i915]
->
-> In the ttm_bo_move_sync_cleanup() case it seems we only really care
-> about calling ttm_bo_wait_free_node(), so let's instead just call that
-> directly.
->
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> Cc: Christian König <christian.koenig@amd.com>
-> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> Cc: Nirmoy Das <nirmoy.das@linux.intel.com>
-> ---
->   drivers/gpu/drm/ttm/ttm_bo_util.c | 15 +++++++++++++++
->   include/drm/ttm/ttm_bo_driver.h   | 11 +++--------
->   2 files changed, 18 insertions(+), 8 deletions(-)
->
-> diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c b/drivers/gpu/drm/ttm/ttm_bo_util.c
-> index bc5190340b9c..1cbfb00c1d65 100644
-> --- a/drivers/gpu/drm/ttm/ttm_bo_util.c
-> +++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
-> @@ -572,6 +572,21 @@ int ttm_bo_move_accel_cleanup(struct ttm_buffer_object *bo,
->   }
->   EXPORT_SYMBOL(ttm_bo_move_accel_cleanup);
->   
-> +void ttm_bo_move_sync_cleanup(struct ttm_buffer_object *bo,
-> +			      struct ttm_resource *new_mem)
-> +{
-> +	struct ttm_device *bdev = bo->bdev;
-> +	struct ttm_resource_manager *man = ttm_manager_type(bdev, new_mem->mem_type);
-> +	int ret;
-> +
-> +	ret = ttm_bo_wait_free_node(bo, man->use_tt);
-> +	if (WARN_ON(ret))
-> +		return;
-> +
-> +	ttm_bo_assign_mem(bo, new_mem);
-> +}
-> +EXPORT_SYMBOL(ttm_bo_move_sync_cleanup);
+== Series Details ==
 
-I don't think this will help in the case where we call 
-ttm_bo_move_accel_cleanup() with a NULL fence....
+Series: Fix issues in skl_pcode_request (rev2)
+URL   : https://patchwork.freedesktop.org/series/102410/
+State : success
 
-Perhaps we need to fix it there.
+== Summary ==
 
-/Thomas
+CI Bug Log - changes from CI_DRM_11481 -> Patchwork_22838
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22838/index.html
+
+Participating hosts (48 -> 44)
+------------------------------
+
+  Additional (2): bat-hsw-1 fi-tgl-u2 
+  Missing    (6): shard-tglu fi-bsw-cyan fi-icl-u2 shard-rkl shard-dg1 fi-bdw-samus 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_22838:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@gem_lmem_swapping@parallel-random-engines:
+    - {bat-hsw-1}:        NOTRUN -> [FAIL][1]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22838/bat-hsw-1/igt@gem_lmem_swapping@parallel-random-engines.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_22838 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@semaphore:
+    - fi-hsw-4770:        NOTRUN -> [SKIP][2] ([fdo#109271] / [fdo#109315]) +17 similar issues
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22838/fi-hsw-4770/igt@amdgpu/amd_basic@semaphore.html
+
+  * igt@gem_exec_suspend@basic-s3@smem:
+    - fi-bdw-5557u:       [PASS][3] -> [INCOMPLETE][4] ([i915#146])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11481/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22838/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-tgl-u2:          NOTRUN -> [SKIP][5] ([i915#2190])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22838/fi-tgl-u2/igt@gem_huc_copy@huc-copy.html
+
+  * igt@kms_busy@basic@flip:
+    - fi-tgl-u2:          NOTRUN -> [DMESG-WARN][6] ([i915#402])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22838/fi-tgl-u2/igt@kms_busy@basic@flip.html
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-tgl-u2:          NOTRUN -> [SKIP][7] ([fdo#109284] / [fdo#111827]) +8 similar issues
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22838/fi-tgl-u2/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+    - fi-tgl-u2:          NOTRUN -> [SKIP][8] ([i915#4103]) +1 similar issue
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22838/fi-tgl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+
+  * igt@kms_force_connector_basic@force-load-detect:
+    - fi-tgl-u2:          NOTRUN -> [SKIP][9] ([fdo#109285])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22838/fi-tgl-u2/igt@kms_force_connector_basic@force-load-detect.html
+
+  * igt@kms_setmode@basic-clone-single-crtc:
+    - fi-tgl-u2:          NOTRUN -> [SKIP][10] ([i915#3555])
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22838/fi-tgl-u2/igt@kms_setmode@basic-clone-single-crtc.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-hsw-4770:        [INCOMPLETE][11] ([i915#4785]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11481/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22838/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109284]: https://bugs.freedesktop.org/show_bug.cgi?id=109284
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#3012]: https://gitlab.freedesktop.org/drm/intel/issues/3012
+  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
+  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
+  [i915#3576]: https://gitlab.freedesktop.org/drm/intel/issues/3576
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4391]: https://gitlab.freedesktop.org/drm/intel/issues/4391
+  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
+  [i915#4897]: https://gitlab.freedesktop.org/drm/intel/issues/4897
+  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
 
 
+Build changes
+-------------
 
-> +
->   /**
->    * ttm_bo_pipeline_gutting - purge the contents of a bo
->    * @bo: The buffer object
-> diff --git a/include/drm/ttm/ttm_bo_driver.h b/include/drm/ttm/ttm_bo_driver.h
-> index 059a595e14e5..897b88f0bd59 100644
-> --- a/include/drm/ttm/ttm_bo_driver.h
-> +++ b/include/drm/ttm/ttm_bo_driver.h
-> @@ -245,7 +245,7 @@ int ttm_bo_move_accel_cleanup(struct ttm_buffer_object *bo,
->   			      struct ttm_resource *new_mem);
->   
->   /**
-> - * ttm_bo_move_accel_cleanup.
-> + * ttm_bo_move_sync_cleanup.
->    *
->    * @bo: A pointer to a struct ttm_buffer_object.
->    * @new_mem: struct ttm_resource indicating where to move.
-> @@ -253,13 +253,8 @@ int ttm_bo_move_accel_cleanup(struct ttm_buffer_object *bo,
->    * Special case of ttm_bo_move_accel_cleanup where the bo is guaranteed
->    * by the caller to be idle. Typically used after memcpy buffer moves.
->    */
-> -static inline void ttm_bo_move_sync_cleanup(struct ttm_buffer_object *bo,
-> -					    struct ttm_resource *new_mem)
-> -{
-> -	int ret = ttm_bo_move_accel_cleanup(bo, NULL, true, false, new_mem);
-> -
-> -	WARN_ON(ret);
-> -}
-> +void ttm_bo_move_sync_cleanup(struct ttm_buffer_object *bo,
-> +			      struct ttm_resource *new_mem);
->   
->   /**
->    * ttm_bo_pipeline_gutting.
+  * Linux: CI_DRM_11481 -> Patchwork_22838
+
+  CI-20190529: 20190529
+  CI_DRM_11481: 9bf68eb47288411da23ce5c9967f27dba43bda1d @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6415: c3b690bd5f7fb1fb7ed786ab0f3b815930a6a55f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_22838: 135b427bdf319d1cf8bbf6a5db802967a7a2d744 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+135b427bdf31 drm/i915: Swap ret and status returned from skl_pcode_request
+bd8790414748 drm/i915: Fix skl_pcode_try_request function
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22838/index.html
+
+--===============1130201567400524390==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Fix issues in skl_pcode_request (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/102410/">https://patchwork.freedesktop.org/series/102410/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22838/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22838/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11481 -&gt; Patchwork_22838</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22838/index.html</p>
+<h2>Participating hosts (48 -&gt; 44)</h2>
+<p>Additional (2): bat-hsw-1 fi-tgl-u2 <br />
+  Missing    (6): shard-tglu fi-bsw-cyan fi-icl-u2 shard-rkl shard-dg1 fi-bdw-samus </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_22838:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@gem_lmem_swapping@parallel-random-engines:<ul>
+<li>{bat-hsw-1}:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22838/bat-hsw-1/igt@gem_lmem_swapping@parallel-random-engines.html">FAIL</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_22838 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@semaphore:</p>
+<ul>
+<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22838/fi-hsw-4770/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_suspend@basic-s3@smem:</p>
+<ul>
+<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11481/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22838/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/146">i915#146</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22838/fi-tgl-u2/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_busy@basic@flip:</p>
+<ul>
+<li>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22838/fi-tgl-u2/igt@kms_busy@basic@flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
+<ul>
+<li>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22838/fi-tgl-u2/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109284">fdo#109284</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
+<ul>
+<li>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22838/fi-tgl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-load-detect:</p>
+<ul>
+<li>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22838/fi-tgl-u2/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_setmode@basic-clone-single-crtc:</p>
+<ul>
+<li>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22838/fi-tgl-u2/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@hangcheck:<ul>
+<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11481/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22838/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11481 -&gt; Patchwork_22838</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11481: 9bf68eb47288411da23ce5c9967f27dba43bda1d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6415: c3b690bd5f7fb1fb7ed786ab0f3b815930a6a55f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_22838: 135b427bdf319d1cf8bbf6a5db802967a7a2d744 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>135b427bdf31 drm/i915: Swap ret and status returned from skl_pcode_request<br />
+bd8790414748 drm/i915: Fix skl_pcode_try_request function</p>
+
+</body>
+</html>
+
+--===============1130201567400524390==--
