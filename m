@@ -2,69 +2,71 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C08F24FC195
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Apr 2022 17:53:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F21764FC18D
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Apr 2022 17:53:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1858F10E8FC;
-	Mon, 11 Apr 2022 15:53:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8CC4310E328;
+	Mon, 11 Apr 2022 15:53:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com
- [IPv6:2a00:1450:4864:20::52a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 43ED810E4D4;
- Mon, 11 Apr 2022 12:42:27 +0000 (UTC)
-Received: by mail-ed1-x52a.google.com with SMTP id c64so6059742edf.11;
- Mon, 11 Apr 2022 05:42:27 -0700 (PDT)
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com
+ [IPv6:2a00:1450:4864:20::535])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F351A10F2D8;
+ Mon, 11 Apr 2022 13:44:23 +0000 (UTC)
+Received: by mail-ed1-x535.google.com with SMTP id t25so5806945edt.9;
+ Mon, 11 Apr 2022 06:44:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=message-id:date:mime-version:user-agent:subject:content-language:to
  :cc:references:from:in-reply-to:content-transfer-encoding;
- bh=R6BFNRU2q1XNxEfGm88CIyqAqlzFNs0kRryqmEb8+MA=;
- b=mbahqTcKWODAb57udTkBykSONqmHLxj1kOIm6IAKEqMWMnv0EUekwdqNL9geZAqrG7
- 30Y2AXxVyXQJ+ThE00kInGYavMpFd4si684CkHdbKXWgUHSw6u+w3AR4xey+YD/e7wpO
- i2e0d43QynDfEh62TKYLCtPb2naWlHGoPzau5W8hXOhU3i8wMxc391GKONlGZGoRU7iz
- LadTQgUZWq+o8oxzA7KJ0RWJKkujKipFrKiG/MBMCtH9aZNL5+e84nmU8pAjW3Vyfv8F
- 8UNx7dYKYEXcbJY93q8qmt/xv44eRZxSL/SoHNHbWBD2hKUF7zuPHzYaz4RGNWH9PLdC
- Pl2g==
+ bh=BxgGwAJ6X1Q3q5NOietwfETATh7CWvy4+LzvQ2HiqHE=;
+ b=kuo2xFBolliACj0bCZ4kC+VrdC/QNBrU+DHROt2YFalkRFuwscJa5fA1nAC5DF9pI9
+ cPVsuJYh4DNN9MkBQxNb0GhJlWxD28QgrRNCC4WnF8g3ePovwPVUHI5P8IhoglkCJZTL
+ WBiB3squW7s5W6xgYjnn/aW00w8xUPL188vGjhVN+ZsusVkMPjK3wfzGg/GTyuL+4iER
+ pz/r3n9y+bj2gSXik+qXJmB2tujcHy00GOYhLieGWV488C6ZjKdtAztAYy+kE5nmzAcA
+ k9lNFHQQGPdIIRNom/R9qCwIMJHXVcoYUPuK2IeyuyKe/GvUo5nuUizQvrM+KDvyh2OL
+ 5CUg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
  :content-language:to:cc:references:from:in-reply-to
  :content-transfer-encoding;
- bh=R6BFNRU2q1XNxEfGm88CIyqAqlzFNs0kRryqmEb8+MA=;
- b=LBBaHArXZa23gvsWt0SqIfETkll0w56DB4XSNFwuhQoF0Q27tNzaNXwIW+JuDUHJ7J
- MMizq0NvGY4Anl645+9CLRX49FVAD9P1D5RK3xaUbxMokF713icksw5ErKp2lqOmfjbI
- cwzoO4sFznzBLIaAVZCkvg6efWWaBBgBrH9QiUq+qbxg1r56Huw6fv6VJhllQZDmQH67
- VPlhyEApBIzuxvlSmS6sWHWThpf1xldsbnxdUJG93+48ql8fruVFYqHWVDFyVD7RbtCr
- 6BeBc3reIVtxknXrUXAPqUAPi4diGeKH7Wuhx6r0OcTjbuHxxMhckQlUvztLC9bV//6V
- dRJw==
-X-Gm-Message-State: AOAM530+H5uXIzGSwekqHkw7zvh9mt00IR8CSWETu/ZdAAImHa/yQ+bM
- HadlamE9S9nr+6Xs/e8FwAWVU2P95Mk=
-X-Google-Smtp-Source: ABdhPJzTBJjuCbQaiLn1At+PIXEVw9RxrGMXa4nMxqgo6zGZW1f7D2ORIm1m2yOHVm1mHkE1Pt/5fw==
-X-Received: by 2002:a05:6402:51d2:b0:41c:e157:84f1 with SMTP id
- r18-20020a05640251d200b0041ce15784f1mr33530772edd.135.1649680945724; 
- Mon, 11 Apr 2022 05:42:25 -0700 (PDT)
+ bh=BxgGwAJ6X1Q3q5NOietwfETATh7CWvy4+LzvQ2HiqHE=;
+ b=kZCByRazWkgQ4PLMxFgBNGi8oFAxK2odQjzRwrA7VhRA+OFkVo4ODVmNjYA0Z/x3MQ
+ lFfhxvsjYtfA7iKX8zFB9vSrnVjdqsY9f+0qFlx+FJbwsGOaj5OOaZXNlWibXPu6kLeS
+ ynH/e+941Cje1eCCWPHS2C0S+W/lzd76EWcKwLXJB9yn8872yCat0yFF5aZs0ruHQKCX
+ oED3gWx3NOpi07mgUtwXZFsH0vZ0DqzvltDCSCq2GvqZwGzH8215wIT9KmcBMRK5mbWe
+ NbGpffEj1HkxNYgQ4X62U7KSMpgfH8Jx/nb9YUg9emPqgYAz0LJkKothhMdWT8uE0UxA
+ pRpQ==
+X-Gm-Message-State: AOAM531WPqD5H5qm3tH2NPUnjA96uCmGm7UwIYJoDEfcDGg1bD82RGX7
+ YmFTIdvWWNJVeKMaD4qkwbs=
+X-Google-Smtp-Source: ABdhPJyk2DT5yBhnxxnX071nyADn/zdXh7wjGgod9/Eg2KDmRLsuyRnifRhEW7lbUkpgWYzESzanuA==
+X-Received: by 2002:a05:6402:e96:b0:41d:1a0f:e70a with SMTP id
+ h22-20020a0564020e9600b0041d1a0fe70amr18178741eda.411.1649684662527; 
+ Mon, 11 Apr 2022 06:44:22 -0700 (PDT)
 Received: from ?IPV6:2a02:908:1252:fb60:b3e9:56a3:6bb9:f974?
  ([2a02:908:1252:fb60:b3e9:56a3:6bb9:f974])
  by smtp.gmail.com with ESMTPSA id
- l11-20020a509dcb000000b0041cbaf0ce2asm13111184edk.6.2022.04.11.05.42.24
+ v10-20020a170906380a00b006a68610908asm11971120ejc.24.2022.04.11.06.44.21
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 11 Apr 2022 05:42:24 -0700 (PDT)
-Message-ID: <ca280f24-8efe-e972-4a03-700e002cc6f7@gmail.com>
-Date: Mon, 11 Apr 2022 14:42:23 +0200
+ Mon, 11 Apr 2022 06:44:22 -0700 (PDT)
+Message-ID: <3796cd46-15f6-8991-0a29-7b7f1c7eeae1@gmail.com>
+Date: Mon, 11 Apr 2022 15:44:21 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
 Content-Language: en-US
-To: Matthew Auld <matthew.auld@intel.com>,
- Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
- intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
+To: Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>,
+ Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 References: <20220411073834.15210-1-Arunpravin.PaneerSelvam@amd.com>
  <9ecac65c-84d9-9965-4fd3-f86ea572bb9d@intel.com>
+ <ca280f24-8efe-e972-4a03-700e002cc6f7@gmail.com>
+ <5f2a190a-f8ef-9b5f-d6b2-efa30f367612@intel.com>
+ <8e58d05a-61f0-1e6b-cab5-fcadb661c7e5@amd.com>
 From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-In-Reply-To: <9ecac65c-84d9-9965-4fd3-f86ea572bb9d@intel.com>
+In-Reply-To: <8e58d05a-61f0-1e6b-cab5-fcadb661c7e5@amd.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 11 Apr 2022 15:52:44 +0000
 Subject: Re: [Intel-gfx] [PATCH v3] drm: add a check to verify the size
  alignment
@@ -85,36 +87,53 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-Am 11.04.22 um 11:47 schrieb Matthew Auld:
-> On 11/04/2022 08:38, Arunpravin Paneer Selvam wrote:
->> Add a simple check to reject any size not aligned to the
->> min_page_size.
->>
->> when size is not aligned to min_page_size, driver module
->> should handle in their own way either to round_up() the
->> size value to min_page_size or just to enable WARN_ON().
->>
->> If we dont handle the alignment properly, we may hit the
->> following bug, Unigine Heaven has allocation requests for
->> example required pages are 257 and alignment request is 256.
->> To allocate the left over 1 page, continues the iteration to
->> find the order value which is 0 and when it compares with
->> min_order = 8, triggers the BUG_ON(order < min_order).
->>
->> v2: add more commit description
->> v3: remove WARN_ON()
->>
->> Signed-off-by: Arunpravin Paneer Selvam 
->> <Arunpravin.PaneerSelvam@amd.com>
->> Suggested-by: Matthew Auld <matthew.auld@intel.com>
-> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+
+Am 11.04.22 um 15:49 schrieb Arunpravin Paneer Selvam:
 >
+> On 11/04/22 7:02 pm, Matthew Auld wrote:
+>> On 11/04/2022 13:42, Christian König wrote:
+>>> Am 11.04.22 um 11:47 schrieb Matthew Auld:
+>>>> On 11/04/2022 08:38, Arunpravin Paneer Selvam wrote:
+>>>>> Add a simple check to reject any size not aligned to the
+>>>>> min_page_size.
+>>>>>
+>>>>> when size is not aligned to min_page_size, driver module
+>>>>> should handle in their own way either to round_up() the
+>>>>> size value to min_page_size or just to enable WARN_ON().
+>>>>>
+>>>>> If we dont handle the alignment properly, we may hit the
+>>>>> following bug, Unigine Heaven has allocation requests for
+>>>>> example required pages are 257 and alignment request is 256.
+>>>>> To allocate the left over 1 page, continues the iteration to
+>>>>> find the order value which is 0 and when it compares with
+>>>>> min_order = 8, triggers the BUG_ON(order < min_order).
+>>>>>
+>>>>> v2: add more commit description
+>>>>> v3: remove WARN_ON()
+>>>>>
+>>>>> Signed-off-by: Arunpravin Paneer Selvam
+>>>>> <Arunpravin.PaneerSelvam@amd.com>
+>>>>> Suggested-by: Matthew Auld <matthew.auld@intel.com>
+>>>> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+>>>>
+>>> Question here is who will be pushing that to drm-misc-next? Should I
+>>> take care of that?
+>> Yes, please do.
+>>
+>>> I think it's time that Arun should request push permission for
+>>> drm-misc-next.
+> How to get push permission for drm-misc-next, should I send request mail
+> to maintainers, may be next time I will push myself.
 
-Question here is who will be pushing that to drm-misc-next? Should I 
-take care of that?
+See here 
+https://drm.pages.freedesktop.org/maintainer-tools/commit-access.html
 
-I think it's time that Arun should request push permission for 
-drm-misc-next.
-
-Thanks,
+Regards,
 Christian.
+
+>
+> Thanks,
+> Arun
+>>> Thanks,
+>>> Christian.
+
