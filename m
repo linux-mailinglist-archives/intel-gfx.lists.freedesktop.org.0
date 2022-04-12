@@ -1,50 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8995E4FE2F1
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 Apr 2022 15:41:47 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C60334FE482
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 Apr 2022 17:19:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4661F10E9E5;
-	Tue, 12 Apr 2022 13:41:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA02210E441;
+	Tue, 12 Apr 2022 15:19:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F70A10E9D8;
- Tue, 12 Apr 2022 13:41:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649770899; x=1681306899;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=oD6m9SeRfl7eHmHKzLOAmxJnQwG1UbpU/JTq/9MxsDM=;
- b=i4xtZH32l3RVr6e8QgrmWwbkUh3Gp/i+R0ejDjioQxH9mdOzH34LXr7E
- ZpIChuyoChjAmj13hex+1v9u3U4gDCSwSfjj2p+DcdMhYhvG7B/0eQh8C
- zoa3eS34P31gULq9xfQMYdKO/FKUaGE2P3DoFI6WouDzdo7spjnXYmzV2
- OeyNL1fBfQpYDUGHHH1LHaTxLDCUgL7VbUFOq9G0Vv5O4QvJ04NEuYfWg
- cI9i+AP7wJTfPiHLCU8qmPZEVbCb6qslCz15EVgd/fpxQ6ID9ZNfipv1L
- 71r0KjCIlzx2bfV+1G2YoOB/rWkUAVMN2Si5MJfDpEjtvdAprcy2aQC69 A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10314"; a="242963730"
-X-IronPort-AV: E=Sophos;i="5.90,254,1643702400"; d="scan'208";a="242963730"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2022 06:41:38 -0700
-X-IronPort-AV: E=Sophos;i="5.90,254,1643702400"; d="scan'208";a="526480890"
-Received: from aguzmanb-mobl.amr.corp.intel.com (HELO intel.com)
- ([10.255.33.149])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2022 06:41:36 -0700
-Date: Tue, 12 Apr 2022 09:41:35 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Sean Paul <sean@poorly.run>
-Message-ID: <YlWBjy5lxtuGZ4vm@intel.com>
-References: <20220411204741.1074308-1-sean@poorly.run>
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk
+ [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA91510E13D;
+ Tue, 12 Apr 2022 15:18:59 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+ (Authenticated sender: bbeckett) with ESMTPSA id 47A681F42745
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1649776738;
+ bh=ayH/qUqAIggJuidYNh88owWpSYsHT94baRNQI36GdTM=;
+ h=From:To:Cc:Subject:Date:From;
+ b=CAl+1eGjrT3InhNVi06dVaOTI2zVK8Uwpk1Z+S3ByZwqjB0/oIQn9DhZvSFuMF9CY
+ SwhBnvhs0P7e1fYtughsxbBfX/uDaF4yAzTgLmrImzWMXbisC2HBXBuCPHSez/NhYY
+ CPPDNV4gcP+ItNPcB+6kTYcJUUSb61HLYFd7GIZRUnYusFtz6q2E6+cyG4pMP0v5lA
+ dY0uOSpsbpaWtiOM38YWbYDxNCM7ykBcooZdhCZRt2TgUtKIMZd5ee6QjBaAC0L/Ar
+ 2W9gubmQuQGPFB1Ajtet16QsHnhQrN8yLz0Xw83CX8IV8Bhvy6LditW6zd6ItgHEAY
+ OUWoWgpS0IvSQ==
+From: Robert Beckett <bob.beckett@collabora.com>
+To: dri-devel@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Date: Tue, 12 Apr 2022 15:18:33 +0000
+Message-Id: <20220412151838.1298956-1-bob.beckett@collabora.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220411204741.1074308-1-sean@poorly.run>
-Subject: Re: [Intel-gfx] [PATCH v5 00/10] drm/hdcp: Pull HDCP
- auth/exchange/check into helpers
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2 0/5] drm/i915: ttm for stolen region
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,92 +46,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, markyacoub@chromium.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- swboyd@chromium.org, Sean Paul <seanpaul@chromium.org>,
- abhinavk@codeaurora.org, bjorn.andersson@linaro.org,
- freedreno@lists.freedesktop.org
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Apr 11, 2022 at 08:47:29PM +0000, Sean Paul wrote:
-> From: Sean Paul <seanpaul@chromium.org>
-> 
-> Rebased set from November. Fixed a nit from Stephen in the msm patch and
-> moved hdcp registers into the trogdor dtsi file to avoid differences
-> with sc7180-based windows devices. The set is 4 patches lighter since
-> some of the changes were accepted into msm.
-> 
-> I'm still waiting for Intel review of the first 7 patches. Rodrigo/Jani,
-> would you please provide your input so we can move forward with this
-> set?
+This series refactors i915's stolen memory region to use ttm.
 
-I'm a bit concerned with patches 4 and 7. It is hard to map the removals
-and additions and there are some changes that looks like changing behaviors,
-but end up not being clear in the big patch. Also with big patch it is prune
-to the rebasing and backport conflicts.
+v2:	handle disabled stolen similar to legacy version.
+	relying on ttm to fail allocs works fine, but is dmesg noisy and causes testing
+	dmesg warning regressions.
 
-Would be possible to split some work in moving individual functions from i915
-to drm little by little with smaller patches?
+Robert Beckett (5):
+  drm/i915: instantiate ttm ranger manager for stolen memory
+  drm/i915: sanitize mem_flags for stolen buffers
+  drm/i915: ttm move/clear logic fix
+  drm/i915: ttm backend dont provide mmap_offset for kernel buffers
+  drm/i915: stolen memory use ttm backend
 
-But thank you for this great work. It is also good to align our drm drivers.
+ drivers/gpu/drm/i915/display/intel_fbc.c      |  78 ++--
+ .../gpu/drm/i915/gem/i915_gem_object_types.h  |   2 -
+ drivers/gpu/drm/i915/gem/i915_gem_stolen.c    | 407 ++++++------------
+ drivers/gpu/drm/i915/gem/i915_gem_stolen.h    |  21 +-
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.c       |  32 +-
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.h       |   7 +
+ drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c  |  33 +-
+ drivers/gpu/drm/i915/gt/intel_rc6.c           |   4 +-
+ drivers/gpu/drm/i915/gt/selftest_reset.c      |  16 +-
+ drivers/gpu/drm/i915/i915_debugfs.c           |   7 +-
+ drivers/gpu/drm/i915/i915_drv.h               |   5 -
+ drivers/gpu/drm/i915/intel_region_ttm.c       |  67 ++-
+ drivers/gpu/drm/i915/intel_region_ttm.h       |   8 +-
+ drivers/gpu/drm/i915/selftests/mock_region.c  |   3 +-
+ 14 files changed, 319 insertions(+), 371 deletions(-)
 
-Thanks,
-Rodrigo.
+-- 
+2.25.1
 
-> 
-> Thanks,
-> 
-> Sean
-> 
-> Link: https://patchwork.freedesktop.org/series/94623/ #v1
-> Link: https://patchwork.freedesktop.org/series/94713/ #v2
-> Link: https://patchwork.freedesktop.org/series/94712/ #v3
-> Link: https://patchwork.freedesktop.org/series/94712/ #v4
-> 
-> Sean Paul (10):
->   drm/hdcp: Add drm_hdcp_atomic_check()
->   drm/hdcp: Avoid changing crtc state in hdcp atomic check
->   drm/hdcp: Update property value on content type and user changes
->   drm/hdcp: Expand HDCP helper library for enable/disable/check
->   drm/i915/hdcp: Consolidate HDCP setup/state cache
->   drm/i915/hdcp: Retain hdcp_capable return codes
->   drm/i915/hdcp: Use HDCP helpers for i915
->   dt-bindings: msm/dp: Add bindings for HDCP registers
->   arm64: dts: qcom: sc7180: Add support for HDCP in dp-controller
->   drm/msm: Implement HDCP 1.x using the new drm HDCP helpers
-> 
->  .../bindings/display/msm/dp-controller.yaml   |    7 +-
->  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi  |    8 +
->  arch/arm64/boot/dts/qcom/sc7180.dtsi          |    6 +-
->  drivers/gpu/drm/drm_hdcp.c                    | 1197 ++++++++++++++++-
->  drivers/gpu/drm/i915/display/intel_atomic.c   |    7 +-
->  drivers/gpu/drm/i915/display/intel_ddi.c      |   29 +-
->  .../drm/i915/display/intel_display_debugfs.c  |   11 +-
->  .../drm/i915/display/intel_display_types.h    |   58 +-
->  drivers/gpu/drm/i915/display/intel_dp_hdcp.c  |  345 ++---
->  drivers/gpu/drm/i915/display/intel_dp_mst.c   |   17 +-
->  drivers/gpu/drm/i915/display/intel_hdcp.c     | 1011 +++-----------
->  drivers/gpu/drm/i915/display/intel_hdcp.h     |   36 +-
->  drivers/gpu/drm/i915/display/intel_hdmi.c     |  256 ++--
->  drivers/gpu/drm/msm/Makefile                  |    1 +
->  drivers/gpu/drm/msm/dp/dp_debug.c             |   46 +-
->  drivers/gpu/drm/msm/dp/dp_debug.h             |    6 +-
->  drivers/gpu/drm/msm/dp/dp_display.c           |   46 +-
->  drivers/gpu/drm/msm/dp/dp_display.h           |    5 +
->  drivers/gpu/drm/msm/dp/dp_drm.c               |   68 +-
->  drivers/gpu/drm/msm/dp/dp_drm.h               |    5 +
->  drivers/gpu/drm/msm/dp/dp_hdcp.c              |  453 +++++++
->  drivers/gpu/drm/msm/dp/dp_hdcp.h              |   27 +
->  drivers/gpu/drm/msm/dp/dp_parser.c            |   20 +-
->  drivers/gpu/drm/msm/dp/dp_parser.h            |    4 +
->  drivers/gpu/drm/msm/dp/dp_reg.h               |   32 +-
->  drivers/gpu/drm/msm/msm_atomic.c              |   15 +
->  include/drm/drm_hdcp.h                        |  194 +++
->  27 files changed, 2582 insertions(+), 1328 deletions(-)
->  create mode 100644 drivers/gpu/drm/msm/dp/dp_hdcp.c
->  create mode 100644 drivers/gpu/drm/msm/dp/dp_hdcp.h
-> 
-> -- 
-> Sean Paul, Software Engineer, Google / Chromium OS
-> 
