@@ -1,34 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D26214FE094
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 Apr 2022 14:43:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9158E4FE21C
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 Apr 2022 15:15:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD46510E9AD;
-	Tue, 12 Apr 2022 12:43:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A7EF10E908;
+	Tue, 12 Apr 2022 13:15:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9E42E10E9AD;
- Tue, 12 Apr 2022 12:43:02 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 9A52AAADE7;
- Tue, 12 Apr 2022 12:43:02 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7004727748854654423=="
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E50E10E88D;
+ Tue, 12 Apr 2022 13:15:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1649769325; x=1681305325;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=kVE+v0zM0X7mHD1WQ88/DzMrbOAe9GNlmFWRLq+bWkw=;
+ b=FLcwfEmXUelSZY/YUzXslTzuu7MPE5eJljL/HdtwJxw7VumGYdW6uXRN
+ 1XFq8r1CoyaKj4FwVXPYT06UYSjlWCLhBBVseObS6jswTDpegvF6WM01X
+ 3gOBmA3DQxhuFixmVxErZmc1CaGtOqumGjNdVN+FkSw/HsTOELnbKctuP
+ CbwBeArGS2BdUNHckN0uwpFZl1COgoNsy7nz6s6YQJZ8R9Sb4HDWLQsVb
+ acIwR/HKDXPZ9G55shfH+E95C8wBuI4dbnEJSFFu9XJrEaUN4PFd9Uvce
+ 122ap9DHAeJNHvFh+VyzRONUqrq6/qftWuhMr27/kPKHnDPOSPEmzmD+x A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10314"; a="261219263"
+X-IronPort-AV: E=Sophos;i="5.90,253,1643702400"; d="scan'208";a="261219263"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Apr 2022 06:15:24 -0700
+X-IronPort-AV: E=Sophos;i="5.90,253,1643702400"; d="scan'208";a="572760605"
+Received: from aguzmanb-mobl.amr.corp.intel.com (HELO intel.com)
+ ([10.255.33.149])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Apr 2022 06:15:20 -0700
+Date: Tue, 12 Apr 2022 09:15:18 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Sean Paul <sean@poorly.run>
+Message-ID: <YlV7ZhnsOPKoOpes@intel.com>
+References: <20220411204741.1074308-1-sean@poorly.run>
+ <20220411204741.1074308-2-sean@poorly.run>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
-Date: Tue, 12 Apr 2022 12:43:02 -0000
-Message-ID: <164976738259.18365.15120723168560455881@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220412052542.681419-1-jouni.hogander@intel.com>
-In-Reply-To: <20220412052542.681419-1-jouni.hogander@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Check_EDID_before_dpcd_for_possible_HDR_aux_bl_support?=
- =?utf-8?q?_=28rev2=29?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220411204741.1074308-2-sean@poorly.run>
+Subject: Re: [Intel-gfx] [PATCH v5 01/10] drm/hdcp: Add
+ drm_hdcp_atomic_check()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,284 +58,266 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Maxime Ripard <mripard@kernel.org>, jani.nikula@intel.com,
+ markyacoub@chromium.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, swboyd@chromium.org,
+ David Airlie <airlied@linux.ie>, Sean Paul <seanpaul@chromium.org>,
+ abhinavk@codeaurora.org, Thomas Zimmermann <tzimmermann@suse.de>,
+ bjorn.andersson@linaro.org, freedreno@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============7004727748854654423==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: drm/i915: Check EDID before dpcd for possible HDR aux bl support (rev2)
-URL   : https://patchwork.freedesktop.org/series/102571/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_11488 -> Patchwork_102571v2
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_102571v2 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_102571v2, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102571v2/index.html
-
-Participating hosts (46 -> 37)
-------------------------------
-
-  Additional (2): fi-icl-u2 fi-pnv-d510 
-  Missing    (11): fi-bdw-samus bat-dg1-6 bat-dg2-8 bat-dg2-9 fi-bsw-cyan bat-adlp-6 bat-adlp-4 bat-rpls-1 bat-rpls-2 bat-jsl-2 bat-jsl-1 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_102571v2:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@gem_exec_create@basic:
-    - fi-snb-2600:        NOTRUN -> [INCOMPLETE][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102571v2/fi-snb-2600/igt@gem_exec_create@basic.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_102571v2 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-icl-u2:          NOTRUN -> [SKIP][2] ([i915#2190])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102571v2/fi-icl-u2/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@parallel-random-engines:
-    - fi-icl-u2:          NOTRUN -> [SKIP][3] ([i915#4613]) +3 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102571v2/fi-icl-u2/igt@gem_lmem_swapping@parallel-random-engines.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-icl-u2:          NOTRUN -> [SKIP][4] ([fdo#111827]) +8 similar issues
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102571v2/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - fi-icl-u2:          NOTRUN -> [SKIP][5] ([fdo#109278]) +2 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102571v2/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - fi-icl-u2:          NOTRUN -> [SKIP][6] ([fdo#109285])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102571v2/fi-icl-u2/igt@kms_force_connector_basic@force-load-detect.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c:
-    - fi-pnv-d510:        NOTRUN -> [SKIP][7] ([fdo#109271] / [i915#5341])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102571v2/fi-pnv-d510/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
-
-  * igt@kms_setmode@basic-clone-single-crtc:
-    - fi-icl-u2:          NOTRUN -> [SKIP][8] ([i915#3555])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102571v2/fi-icl-u2/igt@kms_setmode@basic-clone-single-crtc.html
-
-  * igt@prime_vgem@basic-userptr:
-    - fi-pnv-d510:        NOTRUN -> [SKIP][9] ([fdo#109271]) +39 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102571v2/fi-pnv-d510/igt@prime_vgem@basic-userptr.html
-    - fi-icl-u2:          NOTRUN -> [SKIP][10] ([i915#3301])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102571v2/fi-icl-u2/igt@prime_vgem@basic-userptr.html
-
-  * igt@runner@aborted:
-    - fi-bdw-5557u:       NOTRUN -> [FAIL][11] ([i915#4312])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102571v2/fi-bdw-5557u/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s3@smem:
-    - fi-bdw-5557u:       [INCOMPLETE][12] ([i915#146]) -> [PASS][13]
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11488/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102571v2/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109278]: https://bugs.freedesktop.org/show_bug.cgi?id=109278
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#5341]: https://gitlab.freedesktop.org/drm/intel/issues/5341
+On Mon, Apr 11, 2022 at 08:47:30PM +0000, Sean Paul wrote:
+> From: Sean Paul <seanpaul@chromium.org>
+> 
+> This patch moves the hdcp atomic check from i915 to drm_hdcp so other
+> drivers can use it. No functional changes, just cleaned up some of the
+> code when moving it over.
 
 
-Build changes
--------------
-
-  * Linux: CI_DRM_11488 -> Patchwork_102571v2
-
-  CI-20190529: 20190529
-  CI_DRM_11488: 72ba03880bae2830ad7651a0156c415271712618 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6420: a3885810ccc0ce9e6552a20c910a0a322eca466c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_102571v2: 102571v2 @ git://anongit.freedesktop.org/gfx-ci/linux
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
 
-== Linux commits ==
-
-27ef3a20ae5d drm/i915: Check EDID before dpcd for possible HDR aux bl support
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102571v2/index.html
-
---===============7004727748854654423==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Check EDID before dpcd for possible HDR aux bl support (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/102571/">https://patchwork.freedesktop.org/series/102571/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102571v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102571v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11488 -&gt; Patchwork_102571v2</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_102571v2 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_102571v2, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102571v2/index.html</p>
-<h2>Participating hosts (46 -&gt; 37)</h2>
-<p>Additional (2): fi-icl-u2 fi-pnv-d510 <br />
-  Missing    (11): fi-bdw-samus bat-dg1-6 bat-dg2-8 bat-dg2-9 fi-bsw-cyan bat-adlp-6 bat-adlp-4 bat-rpls-1 bat-rpls-2 bat-jsl-2 bat-jsl-1 </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_102571v2:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@gem_exec_create@basic:<ul>
-<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102571v2/fi-snb-2600/igt@gem_exec_create@basic.html">INCOMPLETE</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_102571v2 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102571v2/fi-icl-u2/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102571v2/fi-icl-u2/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-hpd-fast:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102571v2/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102571v2/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109278">fdo#109278</a>) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102571v2/fi-icl-u2/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c:</p>
-<ul>
-<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102571v2/fi-pnv-d510/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5341">i915#5341</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic-clone-single-crtc:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102571v2/fi-icl-u2/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-userptr:</p>
-<ul>
-<li>
-<p>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102571v2/fi-pnv-d510/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +39 similar issues</p>
-</li>
-<li>
-<p>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102571v2/fi-icl-u2/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102571v2/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@gem_exec_suspend@basic-s3@smem:<ul>
-<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11488/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/146">i915#146</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102571v2/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11488 -&gt; Patchwork_102571v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11488: 72ba03880bae2830ad7651a0156c415271712618 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6420: a3885810ccc0ce9e6552a20c910a0a322eca466c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_102571v2: 102571v2 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>27ef3a20ae5d drm/i915: Check EDID before dpcd for possible HDR aux bl support</p>
-
-</body>
-</html>
-
---===============7004727748854654423==--
+> 
+> Acked-by: Jani Nikula <jani.nikula@intel.com>
+> Acked-by: Jani Nikula <jani.nikula@intel.com>
+> Reviewed-by: Abhinav Kumar <abhinavk@codeaurora.org>
+> Signed-off-by: Sean Paul <seanpaul@chromium.org>
+> Link: https://patchwork.freedesktop.org/patch/msgid/20210913175747.47456-2-sean@poorly.run #v1
+> Link: https://patchwork.freedesktop.org/patch/msgid/20210915203834.1439-2-sean@poorly.run #v2
+> Link: https://patchwork.freedesktop.org/patch/msgid/20211001151145.55916-2-sean@poorly.run #v3
+> Link: https://patchwork.freedesktop.org/patch/msgid/20211105030434.2828845-2-sean@poorly.run #v4
+> 
+> Changes in v2:
+> -None
+> Changes in v3:
+> -None
+> Changes in v4:
+> -None
+> Changes in v5:
+> -None
+> ---
+>  drivers/gpu/drm/drm_hdcp.c                  | 71 ++++++++++++++++++++-
+>  drivers/gpu/drm/i915/display/intel_atomic.c |  4 +-
+>  drivers/gpu/drm/i915/display/intel_hdcp.c   | 47 --------------
+>  drivers/gpu/drm/i915/display/intel_hdcp.h   |  3 -
+>  include/drm/drm_hdcp.h                      |  3 +
+>  5 files changed, 75 insertions(+), 53 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_hdcp.c b/drivers/gpu/drm/drm_hdcp.c
+> index ca9b8f697202..522326b03e66 100644
+> --- a/drivers/gpu/drm/drm_hdcp.c
+> +++ b/drivers/gpu/drm/drm_hdcp.c
+> @@ -13,13 +13,14 @@
+>  #include <linux/slab.h>
+>  #include <linux/firmware.h>
+>  
+> +#include <drm/drm_atomic.h>
+> +#include <drm/drm_connector.h>
+>  #include <drm/drm_hdcp.h>
+>  #include <drm/drm_sysfs.h>
+>  #include <drm/drm_print.h>
+>  #include <drm/drm_device.h>
+>  #include <drm/drm_property.h>
+>  #include <drm/drm_mode_object.h>
+> -#include <drm/drm_connector.h>
+>  
+>  #include "drm_internal.h"
+>  
+> @@ -421,3 +422,71 @@ void drm_hdcp_update_content_protection(struct drm_connector *connector,
+>  				 dev->mode_config.content_protection_property);
+>  }
+>  EXPORT_SYMBOL(drm_hdcp_update_content_protection);
+> +
+> +/**
+> + * drm_hdcp_atomic_check - Helper for drivers to call during connector->atomic_check
+> + *
+> + * @state: pointer to the atomic state being checked
+> + * @connector: drm_connector on which content protection state needs an update
+> + *
+> + * This function can be used by display drivers to perform an atomic check on the
+> + * hdcp state elements. If hdcp state has changed, this function will set
+> + * mode_changed on the crtc driving the connector so it can update its hardware
+> + * to match the hdcp state.
+> + */
+> +void drm_hdcp_atomic_check(struct drm_connector *connector,
+> +			   struct drm_atomic_state *state)
+> +{
+> +	struct drm_connector_state *new_conn_state, *old_conn_state;
+> +	struct drm_crtc_state *new_crtc_state;
+> +	u64 old_hdcp, new_hdcp;
+> +
+> +	old_conn_state = drm_atomic_get_old_connector_state(state, connector);
+> +	old_hdcp = old_conn_state->content_protection;
+> +
+> +	new_conn_state = drm_atomic_get_new_connector_state(state, connector);
+> +	new_hdcp = new_conn_state->content_protection;
+> +
+> +	if (!new_conn_state->crtc) {
+> +		/*
+> +		 * If the connector is being disabled with CP enabled, mark it
+> +		 * desired so it's re-enabled when the connector is brought back
+> +		 */
+> +		if (old_hdcp == DRM_MODE_CONTENT_PROTECTION_ENABLED)
+> +			new_conn_state->content_protection =
+> +				DRM_MODE_CONTENT_PROTECTION_DESIRED;
+> +		return;
+> +	}
+> +
+> +	new_crtc_state = drm_atomic_get_new_crtc_state(state,
+> +						       new_conn_state->crtc);
+> +	/*
+> +	* Fix the HDCP uapi content protection state in case of modeset.
+> +	* FIXME: As per HDCP content protection property uapi doc, an uevent()
+> +	* need to be sent if there is transition from ENABLED->DESIRED.
+> +	*/
+> +	if (drm_atomic_crtc_needs_modeset(new_crtc_state) &&
+> +	    (old_hdcp == DRM_MODE_CONTENT_PROTECTION_ENABLED &&
+> +	     new_hdcp != DRM_MODE_CONTENT_PROTECTION_UNDESIRED))
+> +		new_conn_state->content_protection =
+> +			DRM_MODE_CONTENT_PROTECTION_DESIRED;
+> +
+> +	/*
+> +	 * Nothing to do if content type is unchanged and one of:
+> +	 *  - state didn't change
+> +	 *  - HDCP was activated since the last commit
+> +	 *  - attempting to set to desired while already enabled
+> +	 */
+> +	if (old_hdcp == new_hdcp ||
+> +	    (old_hdcp == DRM_MODE_CONTENT_PROTECTION_DESIRED &&
+> +	     new_hdcp == DRM_MODE_CONTENT_PROTECTION_ENABLED) ||
+> +	    (old_hdcp == DRM_MODE_CONTENT_PROTECTION_ENABLED &&
+> +	     new_hdcp == DRM_MODE_CONTENT_PROTECTION_DESIRED)) {
+> +		if (old_conn_state->hdcp_content_type ==
+> +				new_conn_state->hdcp_content_type)
+> +			return;
+> +	}
+> +
+> +	new_crtc_state->mode_changed = true;
+> +}
+> +EXPORT_SYMBOL(drm_hdcp_atomic_check);
+> diff --git a/drivers/gpu/drm/i915/display/intel_atomic.c b/drivers/gpu/drm/i915/display/intel_atomic.c
+> index 40da7910f845..b301a4d1017e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_atomic.c
+> +++ b/drivers/gpu/drm/i915/display/intel_atomic.c
+> @@ -32,6 +32,7 @@
+>  #include <drm/drm_atomic.h>
+>  #include <drm/drm_atomic_helper.h>
+>  #include <drm/drm_fourcc.h>
+> +#include <drm/drm_hdcp.h>
+>  #include <drm/drm_plane_helper.h>
+>  
+>  #include "i915_drv.h"
+> @@ -40,7 +41,6 @@
+>  #include "intel_cdclk.h"
+>  #include "intel_display_types.h"
+>  #include "intel_global_state.h"
+> -#include "intel_hdcp.h"
+>  #include "intel_psr.h"
+>  #include "skl_universal_plane.h"
+>  
+> @@ -124,7 +124,7 @@ int intel_digital_connector_atomic_check(struct drm_connector *conn,
+>  		to_intel_digital_connector_state(old_state);
+>  	struct drm_crtc_state *crtc_state;
+>  
+> -	intel_hdcp_atomic_check(conn, old_state, new_state);
+> +	drm_hdcp_atomic_check(conn, state);
+>  
+>  	if (!new_state->crtc)
+>  		return 0;
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> index 4de4c174a987..861c550b5bd6 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> @@ -2501,53 +2501,6 @@ void intel_hdcp_cleanup(struct intel_connector *connector)
+>  	mutex_unlock(&hdcp->mutex);
+>  }
+>  
+> -void intel_hdcp_atomic_check(struct drm_connector *connector,
+> -			     struct drm_connector_state *old_state,
+> -			     struct drm_connector_state *new_state)
+> -{
+> -	u64 old_cp = old_state->content_protection;
+> -	u64 new_cp = new_state->content_protection;
+> -	struct drm_crtc_state *crtc_state;
+> -
+> -	if (!new_state->crtc) {
+> -		/*
+> -		 * If the connector is being disabled with CP enabled, mark it
+> -		 * desired so it's re-enabled when the connector is brought back
+> -		 */
+> -		if (old_cp == DRM_MODE_CONTENT_PROTECTION_ENABLED)
+> -			new_state->content_protection =
+> -				DRM_MODE_CONTENT_PROTECTION_DESIRED;
+> -		return;
+> -	}
+> -
+> -	crtc_state = drm_atomic_get_new_crtc_state(new_state->state,
+> -						   new_state->crtc);
+> -	/*
+> -	 * Fix the HDCP uapi content protection state in case of modeset.
+> -	 * FIXME: As per HDCP content protection property uapi doc, an uevent()
+> -	 * need to be sent if there is transition from ENABLED->DESIRED.
+> -	 */
+> -	if (drm_atomic_crtc_needs_modeset(crtc_state) &&
+> -	    (old_cp == DRM_MODE_CONTENT_PROTECTION_ENABLED &&
+> -	    new_cp != DRM_MODE_CONTENT_PROTECTION_UNDESIRED))
+> -		new_state->content_protection =
+> -			DRM_MODE_CONTENT_PROTECTION_DESIRED;
+> -
+> -	/*
+> -	 * Nothing to do if the state didn't change, or HDCP was activated since
+> -	 * the last commit. And also no change in hdcp content type.
+> -	 */
+> -	if (old_cp == new_cp ||
+> -	    (old_cp == DRM_MODE_CONTENT_PROTECTION_DESIRED &&
+> -	     new_cp == DRM_MODE_CONTENT_PROTECTION_ENABLED)) {
+> -		if (old_state->hdcp_content_type ==
+> -				new_state->hdcp_content_type)
+> -			return;
+> -	}
+> -
+> -	crtc_state->mode_changed = true;
+> -}
+> -
+>  /* Handles the CP_IRQ raised from the DP HDCP sink */
+>  void intel_hdcp_handle_cp_irq(struct intel_connector *connector)
+>  {
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.h b/drivers/gpu/drm/i915/display/intel_hdcp.h
+> index 8f53b0c7fe5c..7c5fd84a7b65 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdcp.h
+> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.h
+> @@ -22,9 +22,6 @@ struct intel_digital_port;
+>  enum port;
+>  enum transcoder;
+>  
+> -void intel_hdcp_atomic_check(struct drm_connector *connector,
+> -			     struct drm_connector_state *old_state,
+> -			     struct drm_connector_state *new_state);
+>  int intel_hdcp_init(struct intel_connector *connector,
+>  		    struct intel_digital_port *dig_port,
+>  		    const struct intel_hdcp_shim *hdcp_shim);
+> diff --git a/include/drm/drm_hdcp.h b/include/drm/drm_hdcp.h
+> index 0b1111e3228e..d49977a042e1 100644
+> --- a/include/drm/drm_hdcp.h
+> +++ b/include/drm/drm_hdcp.h
+> @@ -291,6 +291,7 @@ struct hdcp_srm_header {
+>  	u8 srm_gen_no;
+>  } __packed;
+>  
+> +struct drm_atomic_state;
+>  struct drm_device;
+>  struct drm_connector;
+>  
+> @@ -300,6 +301,8 @@ int drm_connector_attach_content_protection_property(
+>  		struct drm_connector *connector, bool hdcp_content_type);
+>  void drm_hdcp_update_content_protection(struct drm_connector *connector,
+>  					u64 val);
+> +void drm_hdcp_atomic_check(struct drm_connector *connector,
+> +			   struct drm_atomic_state *state);
+>  
+>  /* Content Type classification for HDCP2.2 vs others */
+>  #define DRM_MODE_HDCP_CONTENT_TYPE0		0
+> -- 
+> Sean Paul, Software Engineer, Google / Chromium OS
+> 
