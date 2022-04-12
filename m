@@ -2,50 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 646BA4FE9B2
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 Apr 2022 22:54:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AF3024FEA2D
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Apr 2022 00:49:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B1C5210E752;
-	Tue, 12 Apr 2022 20:54:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D226B10EBF0;
+	Tue, 12 Apr 2022 22:49:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C3A3B10E752
- for <intel-gfx@lists.freedesktop.org>; Tue, 12 Apr 2022 20:54:02 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3223D10EBEA;
+ Tue, 12 Apr 2022 22:49:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649796842; x=1681332842;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=IUw12+f7FS2Nno3qNXmHbcaAKfxEtEbXCA19tQsm4vw=;
- b=mQawR6Hu1tz20EodsF1aJHK303nyGqB60gEbmTo7zBnUVWluQE1p48oN
- 7AoDBQ58FOJTLpLrmWiLr/yBg4TTfx4vOuENIQ4VIbbq+XPyqkNWJbrcb
- VWv5D/dtVonwITOGIASSZ1nkQIuoRT1ygdAuHaDkRghFbC8A+vB0PR57x
- 5qsATx5pbECNr2fCOHGODyQCTjX2SZFB2rMNGRRMcYAznOIi7vOI0l9dl
- EOjdphZ02dTkOVHvTjgC7BOeyu6K+XZ+lTncpxQjoPi9C+q3COBnhPx9d
- XyVf/WhBG+WvaIk+2zEXELzgQVDb8efPN5NRGQTOWHtR0DFKS4JdBz4q0 g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10315"; a="244387764"
-X-IronPort-AV: E=Sophos;i="5.90,254,1643702400"; d="scan'208";a="244387764"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2022 13:54:02 -0700
-X-IronPort-AV: E=Sophos;i="5.90,254,1643702400"; d="scan'208";a="551904104"
-Received: from klo15-mobl1.amr.corp.intel.com (HELO
- josouza-mobl2.amr.corp.intel.com) ([10.134.75.59])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2022 13:54:01 -0700
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 12 Apr 2022 13:55:27 -0700
-Message-Id: <20220412205527.174685-2-jose.souza@intel.com>
+ t=1649803745; x=1681339745;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=UCI2H2jxl6MVQFwZAehhn+6D3oaQeEPR6qJo8CbjwV8=;
+ b=MeCHGpk+RDsd7pdJc0Ou8iQKGaaqJmFPn8c93zW8LBl/hFtBXyRtLzcO
+ E+ZZKUfnkKpU4bIt+SURBi012U/VNEJ1RLTvyFllYGWMi1iOLUVFmoyJv
+ SbiHp86DjMgYKqvXCMURpXnqytCM0fFM+ovPMFT4uTEntFPd7e2PkB2OY
+ mpcvBHaD4rNTTJlXSKaZI0hC19JG+0xRcN+C2yunarw+Jt6a1+k55yrnK
+ KpGkaRsUwLAkL5CqCiOotxKTUhTq13/IMosoAQLLXlz7DifL50hasbFtl
+ 2a61mhjO/0SNqaZH4LtbBpoYT577/nGI6r4o19vnmECHlAJmcxl/PJY8j g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10315"; a="261371245"
+X-IronPort-AV: E=Sophos;i="5.90,254,1643702400"; d="scan'208";a="261371245"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Apr 2022 15:49:04 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,254,1643702400"; d="scan'208";a="854555366"
+Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.27.27])
+ by fmsmga005.fm.intel.com with ESMTP; 12 Apr 2022 15:49:04 -0700
+From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Tue, 12 Apr 2022 15:48:52 -0700
+Message-Id: <20220412224852.21501-1-vinay.belgaumkar@intel.com>
 X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220412205527.174685-1-jose.souza@intel.com>
-References: <20220412205527.174685-1-jose.souza@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915/display/psr: Clear more PSR state
- during disable
+Subject: [Intel-gfx] [PATCH] drm/i915/guc/slpc: Use i915_probe_error instead
+ of drm_err
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,44 +58,126 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-After commit 805f04d42a6b ("drm/i915/display/psr: Use continuos full
-frame to handle frontbuffer invalidations") was merged we started to
-get some drm_WARN_ON(&dev_priv->drm, !(tmp & PSR2_MAN_TRK_CTL_ENABLE))
-in tests that are executed in pipe B.
+This will ensure we don't have false positives when we run
+error injection tests.
 
-This is probably due psr2_sel_fetch_cff_enabled being left set during
-PSR disable in the pipe A, so the PSR2_MAN_TRK_CTL write in
-intel_psr2_program_trans_man_trk_ctl() is skipped in pipe B and then
-we get the warning when actually enabling PSR after planes programing.
-We don't get such warnings when running tests in pipe A because
-PSR2_MAN_TRK_CTL is only cleared when enabling PSR2 with hardware
-tracking.
-
-Was not able to reproduce this issue but cleaning the PSR state
-disable will not harm anything at all.
-
-Fixes: 805f04d42a6b ("drm/i915/display/psr: Use continuos full frame to handle frontbuffer invalidations")
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/5634
-Cc: Jouni Högander <jouni.hogander@intel.com>
-Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c | 42 ++++++++++-----------
+ 1 file changed, 21 insertions(+), 21 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 8ec7c161284be..06db407e2749f 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1353,6 +1353,9 @@ static void intel_psr_disable_locked(struct intel_dp *intel_dp)
- 		drm_dp_dpcd_writeb(&intel_dp->aux, DP_RECEIVER_ALPM_CONFIG, 0);
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
+index b170238aa15c..639de3c10545 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
+@@ -152,8 +152,8 @@ static int slpc_query_task_state(struct intel_guc_slpc *slpc)
  
- 	intel_dp->psr.enabled = false;
-+	intel_dp->psr.psr2_enabled = false;
-+	intel_dp->psr.psr2_sel_fetch_enabled = false;
-+	intel_dp->psr.psr2_sel_fetch_cff_enabled = false;
+ 	ret = guc_action_slpc_query(guc, offset);
+ 	if (unlikely(ret))
+-		drm_err(&i915->drm, "Failed to query task state (%pe)\n",
+-			ERR_PTR(ret));
++		i915_probe_error(i915, "Failed to query task state (%pe)\n",
++				 ERR_PTR(ret));
+ 
+ 	drm_clflush_virt_range(slpc->vaddr, SLPC_PAGE_SIZE_BYTES);
+ 
+@@ -170,8 +170,8 @@ static int slpc_set_param(struct intel_guc_slpc *slpc, u8 id, u32 value)
+ 
+ 	ret = guc_action_slpc_set_param(guc, id, value);
+ 	if (ret)
+-		drm_err(&i915->drm, "Failed to set param %d to %u (%pe)\n",
+-			id, value, ERR_PTR(ret));
++		i915_probe_error(i915, "Failed to set param %d to %u (%pe)\n",
++				 id, value, ERR_PTR(ret));
+ 
+ 	return ret;
  }
+@@ -211,8 +211,8 @@ static int slpc_force_min_freq(struct intel_guc_slpc *slpc, u32 freq)
+ 				     SLPC_PARAM_GLOBAL_MIN_GT_UNSLICE_FREQ_MHZ,
+ 				     freq);
+ 		if (ret)
+-			drm_err(&i915->drm, "Unable to force min freq to %u: %d",
+-				freq, ret);
++			i915_probe_error(i915, "Unable to force min freq to %u: %d",
++					 freq, ret);
+ 	}
  
- /**
+ 	return ret;
+@@ -247,9 +247,9 @@ int intel_guc_slpc_init(struct intel_guc_slpc *slpc)
+ 
+ 	err = intel_guc_allocate_and_map_vma(guc, size, &slpc->vma, (void **)&slpc->vaddr);
+ 	if (unlikely(err)) {
+-		drm_err(&i915->drm,
+-			"Failed to allocate SLPC struct (err=%pe)\n",
+-			ERR_PTR(err));
++		i915_probe_error(i915,
++				 "Failed to allocate SLPC struct (err=%pe)\n",
++				 ERR_PTR(err));
+ 		return err;
+ 	}
+ 
+@@ -316,15 +316,15 @@ static int slpc_reset(struct intel_guc_slpc *slpc)
+ 	ret = guc_action_slpc_reset(guc, offset);
+ 
+ 	if (unlikely(ret < 0)) {
+-		drm_err(&i915->drm, "SLPC reset action failed (%pe)\n",
+-			ERR_PTR(ret));
++		i915_probe_error(i915, "SLPC reset action failed (%pe)\n",
++				 ERR_PTR(ret));
+ 		return ret;
+ 	}
+ 
+ 	if (!ret) {
+ 		if (wait_for(slpc_is_running(slpc), SLPC_RESET_TIMEOUT_MS)) {
+-			drm_err(&i915->drm, "SLPC not enabled! State = %s\n",
+-				slpc_get_state_string(slpc));
++			i915_probe_error(i915, "SLPC not enabled! State = %s\n",
++					 slpc_get_state_string(slpc));
+ 			return -EIO;
+ 		}
+ 	}
+@@ -616,8 +616,8 @@ int intel_guc_slpc_enable(struct intel_guc_slpc *slpc)
+ 
+ 	ret = slpc_reset(slpc);
+ 	if (unlikely(ret < 0)) {
+-		drm_err(&i915->drm, "SLPC Reset event returned (%pe)\n",
+-			ERR_PTR(ret));
++		i915_probe_error(i915, "SLPC Reset event returned (%pe)\n",
++				 ERR_PTR(ret));
+ 		return ret;
+ 	}
+ 
+@@ -632,24 +632,24 @@ int intel_guc_slpc_enable(struct intel_guc_slpc *slpc)
+ 	/* Ignore efficient freq and set min to platform min */
+ 	ret = slpc_ignore_eff_freq(slpc, true);
+ 	if (unlikely(ret)) {
+-		drm_err(&i915->drm, "Failed to set SLPC min to RPn (%pe)\n",
+-			ERR_PTR(ret));
++		i915_probe_error(i915, "Failed to set SLPC min to RPn (%pe)\n",
++				 ERR_PTR(ret));
+ 		return ret;
+ 	}
+ 
+ 	/* Set SLPC max limit to RP0 */
+ 	ret = slpc_use_fused_rp0(slpc);
+ 	if (unlikely(ret)) {
+-		drm_err(&i915->drm, "Failed to set SLPC max to RP0 (%pe)\n",
+-			ERR_PTR(ret));
++		i915_probe_error(i915, "Failed to set SLPC max to RP0 (%pe)\n",
++				 ERR_PTR(ret));
+ 		return ret;
+ 	}
+ 
+ 	/* Revert SLPC min/max to softlimits if necessary */
+ 	ret = slpc_set_softlimits(slpc);
+ 	if (unlikely(ret)) {
+-		drm_err(&i915->drm, "Failed to set SLPC softlimits (%pe)\n",
+-			ERR_PTR(ret));
++		i915_probe_error(i915, "Failed to set SLPC softlimits (%pe)\n",
++				 ERR_PTR(ret));
+ 		return ret;
+ 	}
+ 
 -- 
 2.35.1
 
