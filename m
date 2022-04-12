@@ -1,48 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF3024FEA2D
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Apr 2022 00:49:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53D404FEA36
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Apr 2022 01:00:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D226B10EBF0;
-	Tue, 12 Apr 2022 22:49:06 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3223D10EBEA;
- Tue, 12 Apr 2022 22:49:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C83BF10ECA8;
+	Tue, 12 Apr 2022 22:59:57 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F36BE10EC9A;
+ Tue, 12 Apr 2022 22:59:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649803745; x=1681339745;
+ t=1649804396; x=1681340396;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=UCI2H2jxl6MVQFwZAehhn+6D3oaQeEPR6qJo8CbjwV8=;
- b=MeCHGpk+RDsd7pdJc0Ou8iQKGaaqJmFPn8c93zW8LBl/hFtBXyRtLzcO
- E+ZZKUfnkKpU4bIt+SURBi012U/VNEJ1RLTvyFllYGWMi1iOLUVFmoyJv
- SbiHp86DjMgYKqvXCMURpXnqytCM0fFM+ovPMFT4uTEntFPd7e2PkB2OY
- mpcvBHaD4rNTTJlXSKaZI0hC19JG+0xRcN+C2yunarw+Jt6a1+k55yrnK
- KpGkaRsUwLAkL5CqCiOotxKTUhTq13/IMosoAQLLXlz7DifL50hasbFtl
- 2a61mhjO/0SNqaZH4LtbBpoYT577/nGI6r4o19vnmECHlAJmcxl/PJY8j g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10315"; a="261371245"
-X-IronPort-AV: E=Sophos;i="5.90,254,1643702400"; d="scan'208";a="261371245"
+ bh=6WuEfR8eoEzXapEEuRubWApF2DtkcsOoVeFUkphXl3Q=;
+ b=ayWAlWO0rloyjLI4QKddhElOiXsJqUXFuLfYLLmI3J6qSs7pb3np4K0s
+ w+uDxal7PlaP8noD+IRuD7LI3EDTPe+QVXkfIX+BKEL4M+RP/Doj3D2cF
+ uOCMuC53jyBULqQzr8tEO04xc3k6iPup/2/A5q3CYTvp5Oa238Umdlx1T
+ SNJ5CNUOvtZIseG0eWpqPHQiPlSDPlbqYcphgTiqbJGrcTLgy0wD4SQHq
+ rj3Vm8C/FMg3V1nOn9kSwe5waF2oTONtQJiMJcu9xtKQDhLiuTHxcN98W
+ CyE491nCTt/3YC2LgB0GxzLnLeF8KfMf8b4j54zCiBeGhskFtrzClQ6AY A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10315"; a="287547850"
+X-IronPort-AV: E=Sophos;i="5.90,254,1643702400"; d="scan'208";a="287547850"
 Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2022 15:49:04 -0700
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Apr 2022 15:59:55 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,254,1643702400"; d="scan'208";a="854555366"
-Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.27.27])
- by fmsmga005.fm.intel.com with ESMTP; 12 Apr 2022 15:49:04 -0700
-From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Tue, 12 Apr 2022 15:48:52 -0700
-Message-Id: <20220412224852.21501-1-vinay.belgaumkar@intel.com>
-X-Mailer: git-send-email 2.35.1
+X-IronPort-AV: E=Sophos;i="5.90,254,1643702400"; d="scan'208";a="854557806"
+Received: from relo-linux-5.jf.intel.com ([10.165.21.134])
+ by fmsmga005.fm.intel.com with ESMTP; 12 Apr 2022 15:59:55 -0700
+From: John.C.Harrison@Intel.com
+To: Intel-GFX@Lists.FreeDesktop.Org
+Date: Tue, 12 Apr 2022 15:59:54 -0700
+Message-Id: <20220412225955.1802543-1-John.C.Harrison@Intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
+Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
+ Swindon SN3 1RJ
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/guc/slpc: Use i915_probe_error instead
- of drm_err
+Subject: [Intel-gfx] [PATCH 0/1] Update to GuC v70
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,129 +55,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: DRI-Devel@Lists.FreeDesktop.Org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This will ensure we don't have false positives when we run
-error injection tests.
+From: John Harrison <John.C.Harrison@Intel.com>
 
-Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
----
- drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c | 42 ++++++++++-----------
- 1 file changed, 21 insertions(+), 21 deletions(-)
+Update to the latest GuC firmware release.
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
-index b170238aa15c..639de3c10545 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
-@@ -152,8 +152,8 @@ static int slpc_query_task_state(struct intel_guc_slpc *slpc)
- 
- 	ret = guc_action_slpc_query(guc, offset);
- 	if (unlikely(ret))
--		drm_err(&i915->drm, "Failed to query task state (%pe)\n",
--			ERR_PTR(ret));
-+		i915_probe_error(i915, "Failed to query task state (%pe)\n",
-+				 ERR_PTR(ret));
- 
- 	drm_clflush_virt_range(slpc->vaddr, SLPC_PAGE_SIZE_BYTES);
- 
-@@ -170,8 +170,8 @@ static int slpc_set_param(struct intel_guc_slpc *slpc, u8 id, u32 value)
- 
- 	ret = guc_action_slpc_set_param(guc, id, value);
- 	if (ret)
--		drm_err(&i915->drm, "Failed to set param %d to %u (%pe)\n",
--			id, value, ERR_PTR(ret));
-+		i915_probe_error(i915, "Failed to set param %d to %u (%pe)\n",
-+				 id, value, ERR_PTR(ret));
- 
- 	return ret;
- }
-@@ -211,8 +211,8 @@ static int slpc_force_min_freq(struct intel_guc_slpc *slpc, u32 freq)
- 				     SLPC_PARAM_GLOBAL_MIN_GT_UNSLICE_FREQ_MHZ,
- 				     freq);
- 		if (ret)
--			drm_err(&i915->drm, "Unable to force min freq to %u: %d",
--				freq, ret);
-+			i915_probe_error(i915, "Unable to force min freq to %u: %d",
-+					 freq, ret);
- 	}
- 
- 	return ret;
-@@ -247,9 +247,9 @@ int intel_guc_slpc_init(struct intel_guc_slpc *slpc)
- 
- 	err = intel_guc_allocate_and_map_vma(guc, size, &slpc->vma, (void **)&slpc->vaddr);
- 	if (unlikely(err)) {
--		drm_err(&i915->drm,
--			"Failed to allocate SLPC struct (err=%pe)\n",
--			ERR_PTR(err));
-+		i915_probe_error(i915,
-+				 "Failed to allocate SLPC struct (err=%pe)\n",
-+				 ERR_PTR(err));
- 		return err;
- 	}
- 
-@@ -316,15 +316,15 @@ static int slpc_reset(struct intel_guc_slpc *slpc)
- 	ret = guc_action_slpc_reset(guc, offset);
- 
- 	if (unlikely(ret < 0)) {
--		drm_err(&i915->drm, "SLPC reset action failed (%pe)\n",
--			ERR_PTR(ret));
-+		i915_probe_error(i915, "SLPC reset action failed (%pe)\n",
-+				 ERR_PTR(ret));
- 		return ret;
- 	}
- 
- 	if (!ret) {
- 		if (wait_for(slpc_is_running(slpc), SLPC_RESET_TIMEOUT_MS)) {
--			drm_err(&i915->drm, "SLPC not enabled! State = %s\n",
--				slpc_get_state_string(slpc));
-+			i915_probe_error(i915, "SLPC not enabled! State = %s\n",
-+					 slpc_get_state_string(slpc));
- 			return -EIO;
- 		}
- 	}
-@@ -616,8 +616,8 @@ int intel_guc_slpc_enable(struct intel_guc_slpc *slpc)
- 
- 	ret = slpc_reset(slpc);
- 	if (unlikely(ret < 0)) {
--		drm_err(&i915->drm, "SLPC Reset event returned (%pe)\n",
--			ERR_PTR(ret));
-+		i915_probe_error(i915, "SLPC Reset event returned (%pe)\n",
-+				 ERR_PTR(ret));
- 		return ret;
- 	}
- 
-@@ -632,24 +632,24 @@ int intel_guc_slpc_enable(struct intel_guc_slpc *slpc)
- 	/* Ignore efficient freq and set min to platform min */
- 	ret = slpc_ignore_eff_freq(slpc, true);
- 	if (unlikely(ret)) {
--		drm_err(&i915->drm, "Failed to set SLPC min to RPn (%pe)\n",
--			ERR_PTR(ret));
-+		i915_probe_error(i915, "Failed to set SLPC min to RPn (%pe)\n",
-+				 ERR_PTR(ret));
- 		return ret;
- 	}
- 
- 	/* Set SLPC max limit to RP0 */
- 	ret = slpc_use_fused_rp0(slpc);
- 	if (unlikely(ret)) {
--		drm_err(&i915->drm, "Failed to set SLPC max to RP0 (%pe)\n",
--			ERR_PTR(ret));
-+		i915_probe_error(i915, "Failed to set SLPC max to RP0 (%pe)\n",
-+				 ERR_PTR(ret));
- 		return ret;
- 	}
- 
- 	/* Revert SLPC min/max to softlimits if necessary */
- 	ret = slpc_set_softlimits(slpc);
- 	if (unlikely(ret)) {
--		drm_err(&i915->drm, "Failed to set SLPC softlimits (%pe)\n",
--			ERR_PTR(ret));
-+		i915_probe_error(i915, "Failed to set SLPC softlimits (%pe)\n",
-+				 ERR_PTR(ret));
- 		return ret;
- 	}
- 
+Note that this includes some significant backwards breaking API
+changes. One is about context registration - the descriptor pool is
+gone, all parameters are passed via the CTB instead. The second is
+about scheduling policy updates - they are now done via a single KLV
+based H2G instead of multiple direct H2Gs.
+
+Note further than this patch set is bsaed on drm-tip so that it can be
+tested by CI. The drm-tip tree includes a topic branch with DG2
+support. Therefore this patch set includes the update of the DG2
+firmware version as well. However, that means that it will conflict
+when merged to gt-next. So when the patch is merged, the DG2 part will
+need to be dropped and a replacement patch merged to the topic branch.
+
+Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+
+
+John Harrison (1):
+  drm/i915/guc: Update to GuC version 70.1.1
+
+ .../gpu/drm/i915/gt/uc/abi/guc_actions_abi.h  |   4 +-
+ drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h |  15 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc.h        |   5 -
+ drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h   |  67 ++--
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 375 +++++++++++-------
+ drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c      |  32 +-
+ 6 files changed, 294 insertions(+), 204 deletions(-)
+
 -- 
-2.35.1
+2.25.1
 
