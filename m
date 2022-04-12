@@ -1,55 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 631504FD2DF
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 Apr 2022 10:19:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90F9A4FD2FA
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 Apr 2022 10:27:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CBFA510E4B6;
-	Tue, 12 Apr 2022 08:19:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 317B910FC84;
+	Tue, 12 Apr 2022 08:27:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7136010E4B6
- for <intel-gfx@lists.freedesktop.org>; Tue, 12 Apr 2022 08:19:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649751545; x=1681287545;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=vgt6PVaOIiSYPVGo9wcT+11aoppS8L9DUPUCTR+HegE=;
- b=gkMCbtxfcwXCgbhryr/RhuPXhcuTNUZZ5KA1X2XFJ6mlaNSb0BX6iNp/
- BE1SzKEJHLObxwOuh4nrn5txd3mX/984V7MBcRRS+9O898wrjmujbqwbv
- IxL6+sX6tF4XPmQAaI+1AMuCyhtO+f+Ln6vlXkoJHz2xZT9iTPTIzkFl5
- XHuz9sHgfoolFAZ25M9gYrhoaeRaEWKeflolzP4EVZu5Zn/YTflwXFokw
- sKMcve0b70vS08ZQRrRmxP62FJWeXveJozZIS672GdRVHG2gSS6k+/+cw
- +aMrVtuDV3nvtxl7r+z+5Dct0sFoajPZvryHmzBOBwMp3KSINd4YL1BDP g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10314"; a="348752541"
-X-IronPort-AV: E=Sophos;i="5.90,253,1643702400"; d="scan'208";a="348752541"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2022 01:19:05 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,253,1643702400"; d="scan'208";a="655007128"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.51])
- by fmsmga002.fm.intel.com with SMTP; 12 Apr 2022 01:19:02 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 12 Apr 2022 11:19:02 +0300
-Date: Tue, 12 Apr 2022 11:19:02 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <YlU19h444HJvzq6H@intel.com>
-References: <20220405173410.11436-9-ville.syrjala@linux.intel.com>
- <20220406133923.30709-1-ville.syrjala@linux.intel.com>
- <87o81c4yyu.fsf@intel.com>
+Received: from mail-qt1-x82a.google.com (mail-qt1-x82a.google.com
+ [IPv6:2607:f8b0:4864:20::82a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3880410FC4C;
+ Tue, 12 Apr 2022 08:27:06 +0000 (UTC)
+Received: by mail-qt1-x82a.google.com with SMTP id j21so18678399qta.0;
+ Tue, 12 Apr 2022 01:27:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=F8+i4af9cBBYWvVmZD7Ksp7utdqAU6kVM9+1uef96t4=;
+ b=qtMJBCdOK+RBZxJ+5vEIx9FlCkFnbtCamAlCbHbZLRltDQWlvRlRfukv+m/Z+QnKqF
+ 08mgdjO8E9Q3EOTSpMAtmFVsQeeDRWUrOpdaiyeG4etST13NmtchrSmDrK9ifR0tfGzF
+ DP7feoVBk80/nRkmF2t36SCIuJm0NgbwsSXQb//C0t7zO8b/47wZq7om2p/hd1YaL/kd
+ 12aMfSTOzFfrMXXps7vqcScZEAKvU5fYzpStk7ElvntBgVT6PglZxOd3d2bFBPXkXUeL
+ DD6H4LAVeM5633ygAmEdvE2j69La/WP4W3C+wkHE/52RJg6wOKpeejmsiVI3wyVgpMh5
+ yZuA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=F8+i4af9cBBYWvVmZD7Ksp7utdqAU6kVM9+1uef96t4=;
+ b=JnZuG4IiNdtuIjRPsImxk9dSygGWRlB20cq3fO5yg3Qo6rw6c5hlNufYbR13R0pOzj
+ QAcllvALr3QImtN/sGk/JlnDdvmZhlpJmPA7k30NIzJIE0zBvxC7QGAV+7y8VwDUDAAd
+ cFH1ZKJijY7pRb+2QkCwKfeDLeyYZ81idegyd4hp0uDLZc4wikZaf2IoybMZmHBpu7TK
+ iWbUBnbwcqajyIxq0a8pPHAc15r6iTQdS/IUuXr8yFO5Hfo7S91ZZkX0rk0oSwS0LtAL
+ 3OI/qYqFuOuhYCEAPglBeI69n3n7izulIy4Xh3bE6XqWiLRwv1WPfY2jpWEmRnMRoVYD
+ GSEg==
+X-Gm-Message-State: AOAM531sMMaHomWHiZWID55fUWxcnF55aJTWGlzRsAQHWudIdI8RFyFF
+ +Bn5SWQ1sNuz0Bi0xnAB/IHp26ZeubjGKL7pGjo=
+X-Google-Smtp-Source: ABdhPJxg7fkD2HuVd25C3Jmjju8BWlVnRUU/9iqrYxVZipHIPjT1M6EJwqvqli5FnIdluDD6NMUZ2n9RhL2L51bS3sg=
+X-Received: by 2002:ac8:588c:0:b0:2e1:ee12:3473 with SMTP id
+ t12-20020ac8588c000000b002e1ee123473mr2392222qta.455.1649752025393; Tue, 12
+ Apr 2022 01:27:05 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <87o81c4yyu.fsf@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v3 08/22] drm/i915/bios: Generate LFP data
- table pointers if the VBT lacks them
+References: <20220411185042.24338-1-Arunpravin.PaneerSelvam@amd.com>
+In-Reply-To: <20220411185042.24338-1-Arunpravin.PaneerSelvam@amd.com>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Tue, 12 Apr 2022 09:26:39 +0100
+Message-ID: <CAM0jSHOemXQz+qFWOY3ztGeJE4xstvYhXKdW6Kr2PVKppHKKqQ@mail.gmail.com>
+To: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t v2] tests/drm_buddy: Add drm
+ buddy test cases
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,108 +65,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ ML dri-devel <dri-devel@lists.freedesktop.org>, igt-dev@lists.freedesktop.org,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>, alexander.deucher@amd.com,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Apr 07, 2022 at 07:53:13PM +0300, Jani Nikula wrote:
-> On Wed, 06 Apr 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> >
-> > Modern VBTs no longer contain the LFP data table pointers
-> > block (41). We are expecting to have one in order to be able
-> > to parse the LFP data block (42), so let's make one up.
-> >
-> > Since the fp_timing table has variable size we must somehow
-> > determine its size. Rather than just hardcode it we look for
-> > the terminator bytes (0xffff) to figure out where each table
-> > entry starts. dvo_timing, panel_pnp_id, and panel_name are
-> > expected to have fixed size.
-> >
-> > This has been observed on various machines, eg. TGL with BDB
-> > version 240, CML with BDB version 231, etc. The most recent
-> > VBT I've observed that still had block 41 had BDB version
-> > 228. So presumably the cutoff (if an exact cutoff even exists)
-> > is somewhere around BDB version 229-231.
-> >
-> > v2: kfree the thing we allocated, not the thing+3 bytes
-> > v3: Do the debugprint only if we found the LFP data block
-> >
-> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_bios.c | 136 +++++++++++++++++++++-
-> >  1 file changed, 135 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-> > index 8b118c54314d..d32091dad1b0 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_bios.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-> > @@ -310,16 +310,146 @@ static bool fixup_lfp_data_ptrs(const void *bdb, void *ptrs_block)
-> >  	return validate_lfp_data_ptrs(bdb, ptrs);
-> >  }
-> >  
-> > +static const void *find_fp_timing_terminator(const u8 *data, int size)
-> > +{
-> > +	int i;
-> > +
-> > +	if (!data)
-> > +		return NULL;
-> > +
-> > +	for (i = 0; i < size - 1; i++) {
-> > +		if (data[i] == 0xff && data[i+1] == 0xff)
-> > +			return &data[i];
-> > +	}
-> > +
-> > +	return NULL;
-> > +}
-> > +
-> > +static int make_lfp_data_ptr(struct lvds_lfp_data_ptr_table *table,
-> > +			     int table_size, int total_size)
-> > +{
-> > +	if (total_size < table_size)
-> > +		return total_size;
-> > +
-> > +	table->table_size = table_size;
-> > +	table->offset = total_size - table_size;
-> > +
-> > +	return total_size - table_size;
-> > +}
-> > +
-> > +static void next_lfp_data_ptr(struct lvds_lfp_data_ptr_table *next,
-> > +			      const struct lvds_lfp_data_ptr_table *prev,
-> > +			      int size)
-> > +{
-> > +	next->table_size = prev->table_size;
-> > +	next->offset = prev->offset + size;
-> > +}
-> > +
-> > +static void *generate_lfp_data_ptrs(struct drm_i915_private *i915,
-> > +				    const void *bdb)
-> > +{
-> > +	int i, size, table_size, block_size, offset;
-> > +	const void *t0, *t1, *block;
-> > +	struct bdb_lvds_lfp_data_ptrs *ptrs;
-> > +	void *ptrs_block;
-> > +
-> > +	block = find_raw_section(bdb, BDB_LVDS_LFP_DATA);
-> > +	if (!block)
-> > +		return NULL;
-> > +
-> > +	drm_dbg_kms(&i915->drm, "Generating LFP data table pointers\n");
-> > +
-> > +	block_size = get_blocksize(block);
-> > +
-> > +	size = block_size;
-> > +	t0 = find_fp_timing_terminator(block, size);
-> > +
-> > +	size -= t0 - block - 2;
-> > +	t1 = find_fp_timing_terminator(t0 + 2, size);
-> 
-> Need to NULL check t0 before using it.
+On Mon, 11 Apr 2022 at 19:51, Arunpravin Paneer Selvam
+<Arunpravin.PaneerSelvam@amd.com> wrote:
+>
+> Add a set of drm buddy test cases to validate the
+> drm/drm_buddy.c memory allocator.
+>
+> v2: sorted in alphabetical order
+>
+> Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 
-I had the null check in find_fp_timing_terminator() but the +2
-here does mean that it doesn't actually work. I'll move the check here.
+Tests look to be passing in CI sharded runs. Pushed. Thanks.
 
--- 
-Ville Syrjälä
-Intel
+> ---
+>  tests/drm_buddy.c | 14 ++++++++++++++
+>  tests/meson.build |  1 +
+>  2 files changed, 15 insertions(+)
+>  create mode 100644 tests/drm_buddy.c
+>
+> diff --git a/tests/drm_buddy.c b/tests/drm_buddy.c
+> new file mode 100644
+> index 00000000..06876e0c
+> --- /dev/null
+> +++ b/tests/drm_buddy.c
+> @@ -0,0 +1,14 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright =C2=A9 2019 Intel Corporation
+> + */
+> +
+> +#include "igt.h"
+> +#include "igt_kmod.h"
+> +
+> +IGT_TEST_DESCRIPTION("Basic sanity check of DRM's buddy allocator (struc=
+t drm_buddy)");
+> +
+> +igt_main
+> +{
+> +       igt_kselftests("test-drm_buddy", NULL, NULL, NULL);
+> +}
+> diff --git a/tests/meson.build b/tests/meson.build
+> index b0eab3d6..7261e9aa 100644
+> --- a/tests/meson.build
+> +++ b/tests/meson.build
+> @@ -8,6 +8,7 @@ test_progs =3D [
+>         'debugfs_test',
+>         'dmabuf',
+>         'device_reset',
+> +       'drm_buddy',
+>         'drm_import_export',
+>         'drm_mm',
+>         'drm_read',
+> --
+> 2.25.1
+>
