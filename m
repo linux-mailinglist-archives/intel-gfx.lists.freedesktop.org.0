@@ -2,50 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13E694FF6BF
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Apr 2022 14:26:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 169FB4FF6D8
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Apr 2022 14:31:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3EC4F10E786;
-	Wed, 13 Apr 2022 12:26:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B7CF210E9E3;
+	Wed, 13 Apr 2022 12:31:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8458A10E77A;
- Wed, 13 Apr 2022 12:25:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649852758; x=1681388758;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=KZ8JvskQu4ZBJlSQrKKGzxwSsCTwof68W/2CjL2htrg=;
- b=MDtEfAGwQ/f/qKHGe7bPG5sRrKtA+s+96f+D8r+Vze9PGH7jSBM5zxQw
- HtDdNWRJS7f5Kin1wlH8zb3ureGb6Ib0zCEWLPq+zIqo9oH1xO6YCBqU9
- 8LVPOuQ6ynTj6Jmef8bUTCmpvIf1trZCdGsPwCoB+AzVU5o568jLT3pWz
- lq1iLAV4xQQ++Vlcpdkcw++y00rtsOPJqehBfgMgddkEAEIz9Ctrp0cGK
- EMbYWA6osLZ+zlVTUibfVS5Uu7jlYkul/Hdna7ZoMmcnk8NRyrXz7toy5
- r2CpzeDP1dU2D4iltBk35UDrYTEGGWEXcwVnXh/28ZLWJmu2UoLUj9HZD w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10315"; a="262829889"
-X-IronPort-AV: E=Sophos;i="5.90,256,1643702400"; d="scan'208";a="262829889"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2022 05:25:58 -0700
-X-IronPort-AV: E=Sophos;i="5.90,256,1643702400"; d="scan'208";a="724879585"
-Received: from psoltysi-mobl.ger.corp.intel.com (HELO localhost)
- ([10.249.149.160])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2022 05:25:55 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gvt-dev@lists.freedesktop.org
-Date: Wed, 13 Apr 2022 15:25:39 +0300
-Message-Id: <8bc0895376c077156a671e24ac6a5c75b7db4c9c.1649852517.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <cover.1649852517.git.jani.nikula@intel.com>
-References: <cover.1649852517.git.jani.nikula@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 295BB10E9E5;
+ Wed, 13 Apr 2022 12:31:28 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 27358AADD3;
+ Wed, 13 Apr 2022 12:31:28 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915/gvt: better align the Makefile
- with i915 Makefile
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jason Gunthorpe" <jgg@nvidia.com>
+Date: Wed, 13 Apr 2022 12:31:28 -0000
+Message-ID: <164985308813.28395.13882336491399945867@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <0-v1-a8faf768d202+125dd-vfio_mdev_no_group_jgg@nvidia.com>
+In-Reply-To: <0-v1-a8faf768d202+125dd-vfio_mdev_no_group_jgg@nvidia.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Make_the_rest_of_the_VFIO_driver_interface_use_vfio=5Fdevic?=
+ =?utf-8?q?e?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,78 +41,113 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org,
- Zhi Wang <zhi.wang.linux@gmail.com>, Jason Gunthorpe <jgg@nvidia.com>,
- Christoph Hellwig <hch@lst.de>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Drop extra ccflags, drop extra intermediate variables, list object files
-one per line alphabetically.
+== Series Details ==
 
-Cc: Zhi Wang <zhi.wang.linux@gmail.com>
-Cc: Christoph Hellwig <hch@lst.de>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/Makefile     |  6 +++---
- drivers/gpu/drm/i915/gvt/Makefile | 30 +++++++++++++++++++++++-------
- 2 files changed, 26 insertions(+), 10 deletions(-)
+Series: Make the rest of the VFIO driver interface use vfio_device
+URL   : https://patchwork.freedesktop.org/series/102606/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-index 75546b5f6994..b36864fae741 100644
---- a/drivers/gpu/drm/i915/Makefile
-+++ b/drivers/gpu/drm/i915/Makefile
-@@ -321,10 +321,10 @@ i915-$(CONFIG_DRM_I915_SELFTEST) += \
- # virtual gpu code
- i915-y += i915_vgpu.o
- 
--ifeq ($(CONFIG_DRM_I915_GVT),y)
--i915-y += intel_gvt.o intel_gvt_mmio_table.o
-+i915-$(CONFIG_DRM_I915_GVT) += \
-+	intel_gvt.o \
-+	intel_gvt_mmio_table.o
- include $(src)/gvt/Makefile
--endif
- 
- obj-$(CONFIG_DRM_I915) += i915.o
- obj-$(CONFIG_DRM_I915_GVT_KVMGT) += gvt/kvmgt.o
-diff --git a/drivers/gpu/drm/i915/gvt/Makefile b/drivers/gpu/drm/i915/gvt/Makefile
-index ea8324abc784..584661047945 100644
---- a/drivers/gpu/drm/i915/gvt/Makefile
-+++ b/drivers/gpu/drm/i915/gvt/Makefile
-@@ -1,9 +1,25 @@
- # SPDX-License-Identifier: GPL-2.0
--GVT_DIR := gvt
--GVT_SOURCE := gvt.o aperture_gm.o handlers.o vgpu.o trace_points.o firmware.o \
--	interrupt.o gtt.o cfg_space.o opregion.o mmio.o display.o edid.o \
--	execlist.o scheduler.o sched_policy.o mmio_context.o cmd_parser.o debugfs.o \
--	fb_decoder.o dmabuf.o page_track.o
- 
--ccflags-y				+= -I $(srctree)/$(src) -I $(srctree)/$(src)/$(GVT_DIR)/
--i915-y					+= $(addprefix $(GVT_DIR)/, $(GVT_SOURCE))
-+i915-$(CONFIG_DRM_I915_GVT) += \
-+	gvt/aperture_gm.o \
-+	gvt/cfg_space.o \
-+	gvt/cmd_parser.o \
-+	gvt/debugfs.o \
-+	gvt/display.o \
-+	gvt/dmabuf.o \
-+	gvt/edid.o \
-+	gvt/execlist.o \
-+	gvt/fb_decoder.o \
-+	gvt/firmware.o \
-+	gvt/gtt.o \
-+	gvt/gvt.o \
-+	gvt/handlers.o \
-+	gvt/interrupt.o \
-+	gvt/mmio.o \
-+	gvt/mmio_context.o \
-+	gvt/opregion.o \
-+	gvt/page_track.o \
-+	gvt/sched_policy.o \
-+	gvt/scheduler.o \
-+	gvt/trace_points.o \
-+	gvt/vgpu.o
--- 
-2.30.2
+== Summary ==
+
+Error: dim checkpatch failed
+1a0dcd52cf62 vfio: Make vfio_(un)register_notifier accept a vfio_device
+-:33: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#33: FILE: drivers/gpu/drm/i915/gvt/kvmgt.c:919:
++	ret = vfio_register_notifier(vfio_dev, VFIO_IOMMU_NOTIFY, &events,
+ 				&vdev->iommu_notifier);
+
+-:42: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#42: FILE: drivers/gpu/drm/i915/gvt/kvmgt.c:928:
++	ret = vfio_register_notifier(vfio_dev, VFIO_GROUP_NOTIFY, &events,
+ 				&vdev->group_notifier);
+
+-:51: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#51: FILE: drivers/gpu/drm/i915/gvt/kvmgt.c:966:
++	vfio_unregister_notifier(vfio_dev, VFIO_GROUP_NOTIFY,
+ 					&vdev->group_notifier);
+
+-:56: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#56: FILE: drivers/gpu/drm/i915/gvt/kvmgt.c:970:
++	vfio_unregister_notifier(vfio_dev, VFIO_IOMMU_NOTIFY,
+ 					&vdev->iommu_notifier);
+
+-:74: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#74: FILE: drivers/gpu/drm/i915/gvt/kvmgt.c:1005:
++	ret = vfio_unregister_notifier(vfio_dev, VFIO_IOMMU_NOTIFY,
+ 					&vdev->iommu_notifier);
+
+-:80: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#80: FILE: drivers/gpu/drm/i915/gvt/kvmgt.c:1010:
++	ret = vfio_unregister_notifier(vfio_dev, VFIO_GROUP_NOTIFY,
+ 					&vdev->group_notifier);
+
+-:268: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
+#268: FILE: include/linux/vfio.h:181:
++extern int vfio_register_notifier(struct vfio_device *dev,
+
+-:273: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
+#273: FILE: include/linux/vfio.h:185:
++extern int vfio_unregister_notifier(struct vfio_device *dev,
+
+-:276: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Jason Gunthorpe <jgg@ziepe.ca>' != 'Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>'
+
+total: 0 errors, 1 warnings, 8 checks, 217 lines checked
+6895636f3f14 vfio/ccw: Remove mdev from struct channel_program
+-:206: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
+#206: FILE: drivers/s390/cio/vfio_ccw_cp.h:44:
++extern int cp_init(struct channel_program *cp, union orb *orb);
+
+-:223: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Jason Gunthorpe <jgg@ziepe.ca>' != 'Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>'
+
+total: 0 errors, 1 warnings, 1 checks, 183 lines checked
+a49bf1b00724 vfio/mdev: Pass in a struct vfio_device * to vfio_pin/unpin_pages()
+-:209: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
+#209: FILE: include/linux/vfio.h:153:
++extern int vfio_pin_pages(struct vfio_device *vdev, unsigned long *user_pfn,
+
+-:212: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
+#212: FILE: include/linux/vfio.h:155:
++extern int vfio_unpin_pages(struct vfio_device *vdev, unsigned long *user_pfn,
+
+-:215: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Jason Gunthorpe <jgg@ziepe.ca>' != 'Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>'
+
+total: 0 errors, 1 warnings, 2 checks, 169 lines checked
+3c71cd007be5 drm/i915/gvt: Change from vfio_group_(un)pin_pages to vfio_(un)pin_pages
+-:52: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Jason Gunthorpe <jgg@ziepe.ca>' != 'Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 32 lines checked
+868856efe678 vfio: Pass in a struct vfio_device * to vfio_dma_rw()
+-:24: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#24: FILE: drivers/gpu/drm/i915/gvt/kvmgt.c:2187:
++	return vfio_dma_rw(
+
+-:93: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
+#93: FILE: include/linux/vfio.h:164:
++extern int vfio_dma_rw(struct vfio_device *vdev, dma_addr_t user_iova,
+
+-:96: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Jason Gunthorpe <jgg@ziepe.ca>' != 'Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>'
+
+total: 0 errors, 1 warnings, 2 checks, 67 lines checked
+197e48b986e6 drm/i915/gvt: Add missing module_put() in error unwind
+-:34: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Jason Gunthorpe <jgg@ziepe.ca>' != 'Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 17 lines checked
+f2ddbd56fbfa drm/i915/gvt: Delete kvmgt_vdev::vfio_group
+-:70: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Jason Gunthorpe <jgg@ziepe.ca>' != 'Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 52 lines checked
+adaa03d8ab38 vfio: Remove dead code
+-:224: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Jason Gunthorpe <jgg@ziepe.ca>' != 'Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 195 lines checked
+77d787fcf640 vfio: Remove calls to vfio_group_add_container_user()
+-:199: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Jason Gunthorpe <jgg@ziepe.ca>' != 'Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 156 lines checked
+
 
