@@ -2,30 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B94E64FEEC2
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Apr 2022 07:52:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 711C84FEECC
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Apr 2022 07:55:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8BD68112208;
-	Wed, 13 Apr 2022 05:52:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 63724112235;
+	Wed, 13 Apr 2022 05:55:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from verein.lst.de (verein.lst.de [213.95.11.211])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A615C112206;
- Wed, 13 Apr 2022 05:52:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 50979112235;
+ Wed, 13 Apr 2022 05:55:31 +0000 (UTC)
 Received: by verein.lst.de (Postfix, from userid 2407)
- id 755E568B05; Wed, 13 Apr 2022 07:52:29 +0200 (CEST)
-Date: Wed, 13 Apr 2022 07:52:29 +0200
+ id EEBEC68BFE; Wed, 13 Apr 2022 07:55:25 +0200 (CEST)
+Date: Wed, 13 Apr 2022 07:55:24 +0200
 From: Christoph Hellwig <hch@lst.de>
 To: Jason Gunthorpe <jgg@nvidia.com>
-Message-ID: <20220413055229.GA32092@lst.de>
+Message-ID: <20220413055524.GB32092@lst.de>
 References: <0-v1-a8faf768d202+125dd-vfio_mdev_no_group_jgg@nvidia.com>
+ <1-v1-a8faf768d202+125dd-vfio_mdev_no_group_jgg@nvidia.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <0-v1-a8faf768d202+125dd-vfio_mdev_no_group_jgg@nvidia.com>
+In-Reply-To: <1-v1-a8faf768d202+125dd-vfio_mdev_no_group_jgg@nvidia.com>
 User-Agent: Mutt/1.5.17 (2007-11-01)
-Subject: Re: [Intel-gfx] [PATCH 0/9] Make the rest of the VFIO driver
- interface use vfio_device
+Subject: Re: [Intel-gfx] [PATCH 1/9] vfio: Make vfio_(un)register_notifier
+ accept a vfio_device
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,16 +58,13 @@ Cc: kvm@vger.kernel.org, linux-doc@vger.kernel.org,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Apr 12, 2022 at 12:53:27PM -0300, Jason Gunthorpe wrote:
-> There is a conflict with Christoph's gvt rework here:
-> 
->  https://lore.kernel.org/all/20220411141403.86980-1-hch@lst.de/
-> 
-> I've organized this so it is independent of Christoph's series, by adding
-> the temporary mdev_legacy_get_vfio_device(), however it is easy for me to
-> rebase. We can decide what to do as we see what becomes mergable. My
-> preference would be to see Christoph's series merged into the drm&vfio
-> trees and we do both series this cycle.
+On Tue, Apr 12, 2022 at 12:53:28PM -0300, Jason Gunthorpe wrote:
+> All callers have a struct vfio_device trivially available, pass it in
+> directly and avoid calling the expensive vfio_group_get_from_dev().
 
-The hacks for the unconverted gvt are a real mess, so I hope we can
-finish the gvt conversion first.
+Instead of bothering the drivers with the notifiers at all, the two
+notifier_blocks should move into struct vfio_device, and the
+vfio_ops should just grow two new dma_unmap and set_kvm methods.
+
+This will isolate the drives from the whole notifiers mess and it's
+boilerplate code.
