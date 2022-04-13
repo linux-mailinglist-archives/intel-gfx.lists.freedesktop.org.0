@@ -1,51 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D6764FFB8F
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Apr 2022 18:42:38 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 172F94FFC2F
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Apr 2022 19:12:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D62F510E4C0;
-	Wed, 13 Apr 2022 16:42:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7DAA510E148;
+	Wed, 13 Apr 2022 17:12:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 38AAC10E4BA
- for <intel-gfx@lists.freedesktop.org>; Wed, 13 Apr 2022 16:42:33 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C5D7F10E138;
+ Wed, 13 Apr 2022 17:12:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649868153; x=1681404153;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Qw8MvuN+d8uLFntxn8MNkHQ9gKvIBWz41k/L5x/2o14=;
- b=nYl97hBlfbMnO1QQCJNGLLAjn8wo3qTANQQ4/COkHzOZN2+QNv55c9Aw
- 45WdzcKbgYy8BQQabOEptBwvvelEh4yonLd9o+IIUEMyESGtpEaSoBq6/
- f+dWJDhv/8h+lyHiWJ7FY9x6BHzTrAbauLpjNZSGUYDuIiA9sMigg3gqS
- 77zzJCwh5vcHvJ76Im6QS9ygZM1NB3cYBTqLkjrqaWsKH21hBSaLFzwi4
- 787A5yoLSvC/gCHYv9Q1iqFnXkUUdVpfXk6FayFQYCuP05JCy4hcESv8C
- bN1UPAEPCm8GsU0OgX0o4jbTNpBRJQTsSoV0uj5SuZc9efKQpeG/y3JW6 A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10316"; a="323159765"
-X-IronPort-AV: E=Sophos;i="5.90,257,1643702400"; d="scan'208";a="323159765"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2022 09:42:32 -0700
-X-IronPort-AV: E=Sophos;i="5.90,257,1643702400"; d="scan'208";a="645237472"
-Received: from josouza-mobl2.fso.intel.com (HELO josouza-mobl2.intel.com)
- ([10.230.19.149])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2022 09:42:31 -0700
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 13 Apr 2022 09:43:51 -0700
-Message-Id: <20220413164351.48986-2-jose.souza@intel.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220413164351.48986-1-jose.souza@intel.com>
-References: <20220413164351.48986-1-jose.souza@intel.com>
+ t=1649869959; x=1681405959;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=3GHeqODc1hevgvCDKZ/t/z2DG0jedAb4Veh9wJu2RrY=;
+ b=K0R2ZeMwXEey0oYAUGJmqRObDkgjFrMi3HAXZUkbrTVDJy7Jvbbo/QOK
+ YI0FRwEH0KI54b+JPONWAoOu84qUvt5HcbjcPyLk8nhTT0T072/RGatRd
+ xmwcPcgrkEk4mjH1dROptcpCJcG81bv0OEOAYR0N+SEV37FKyPENtFYNC
+ dsOnqIBG7VT4GUXjmrfwIKi8rl0JD5dWCO18ozzmNpx+HkVdkEDgxngSm
+ bK++A80gP7J+TISzBJ7cHhg6gTqaKyj9MOfHQC+GRhvIMrRsl6x/rbOL5
+ QzDQ8x01C9QUU/bvcn5Q+/SjTr0HBzaVAZbt8ZdGoDO/W/doDydpJi+ql A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10316"; a="262902765"
+X-IronPort-AV: E=Sophos;i="5.90,257,1643702400"; d="scan'208";a="262902765"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Apr 2022 10:12:25 -0700
+X-IronPort-AV: E=Sophos;i="5.90,257,1643702400"; d="scan'208";a="573361082"
+Received: from jardanow-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.249.150.86])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Apr 2022 10:12:22 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: =?utf-8?Q?Fran=C3=A7ois?= Valenduc <francoisvalenduc@gmail.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+In-Reply-To: <0da21aec-d299-1834-99f3-9a598e4649f7@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <0da21aec-d299-1834-99f3-9a598e4649f7@gmail.com>
+Date: Wed, 13 Apr 2022 20:12:20 +0300
+Message-ID: <87v8vcgb63.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 2/2] drm/i915/display/psr: Do not check for
- PSR2_MAN_TRK_CTL_ENABLE on alderlake-P
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] commit 15512021eb3975a8c2366e3883337e252bb0eee5
+ causes white spots in console screens
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,46 +62,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Alderlake-P don't have PSR2_MAN_TRK_CTL_ENABLE bit, instead it have
-ADLP_PSR2_MAN_TRK_CTL_SF_PARTIAL_FRAME_UPDATE in the same bit but this
-bit is clearead after each vblank so we can't count on having it
-set after planes are programmed.
+On Wed, 13 Apr 2022, Fran=C3=A7ois Valenduc <francoisvalenduc@gmail.com> wr=
+ote:
+> Commit 15512021eb3975a8c2366e3883337e252bb0eee5=20
+> (15512021eb3975a8c2366e3883337e252bb0eee5) causes a lof of white spots=20
+> to appears on the right upper corner of all console screens (see=20
+> https://drive.google.com/file/d/13GabEvOIKSAj5yox6ybAZEDu3Ixncw5Q/view).=
+=20
+> git-bisect shows that this is the offending commit and if I revert it,=20
+> the problem goes away. The problem still occurs with kernel 5.18-rc2 and=
+=20
+> to all stable trees where it was applied.
+> Can somebody explains what happens ?
+>
+> The video card is the following: VGA compatible controller: Intel=20
+> Corporation WhiskeyLake-U GT2 [UHD Graphics 620] (rev 02) (prog-if 00=20
+> [VGA controller])
+>
+> Please tell me if you need more info.
 
-Cc: Jouni Högander <jouni.hogander@intel.com>
-Fixes: 73262db68c27 ("drm/i915/display: Match PSR2 selective fetch sequences with specification")
-Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
----
- drivers/gpu/drm/i915/display/intel_psr.c | 11 +++++++----
- 1 file changed, 7 insertions(+), 4 deletions(-)
+That's commit 15512021eb39 ("drm/i915: Workaround broken BIOS DBUF
+configuration on TGL/RKL"), adding Cc's.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 8ec7c161284be..84aeee63a3e80 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -565,16 +565,19 @@ static void hsw_activate_psr2(struct intel_dp *intel_dp)
- 		val |= EDP_PSR2_SU_SDP_SCANLINE;
- 
- 	if (intel_dp->psr.psr2_sel_fetch_enabled) {
--		u32 tmp;
--
- 		/* Wa_1408330847 */
- 		if (IS_TGL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0))
- 			intel_de_rmw(dev_priv, CHICKEN_PAR1_1,
- 				     DIS_RAM_BYPASS_PSR2_MAN_TRACK,
- 				     DIS_RAM_BYPASS_PSR2_MAN_TRACK);
- 
--		tmp = intel_de_read(dev_priv, PSR2_MAN_TRK_CTL(intel_dp->psr.transcoder));
--		drm_WARN_ON(&dev_priv->drm, !(tmp & PSR2_MAN_TRK_CTL_ENABLE));
-+		if (!IS_ALDERLAKE_P(dev_priv)) {
-+			u32 tmp;
-+
-+			tmp = intel_de_read(dev_priv,
-+					    PSR2_MAN_TRK_CTL(intel_dp->psr.transcoder));
-+			drm_WARN_ON(&dev_priv->drm, !(tmp & PSR2_MAN_TRK_CTL_ENABLE));
-+		}
- 	} else if (HAS_PSR2_SEL_FETCH(dev_priv)) {
- 		intel_de_write(dev_priv,
- 			       PSR2_MAN_TRK_CTL(intel_dp->psr.transcoder), 0);
--- 
-2.35.1
+Please file a report at fdo gitlab [1] and attach dmesg etc. there.
 
+Thanks,
+Jani.
+
+
+[1] https://gitlab.freedesktop.org/drm/intel/wikis/How-to-file-i915-bugs
+
+
+--=20
+Jani Nikula, Intel Open Source Graphics Center
