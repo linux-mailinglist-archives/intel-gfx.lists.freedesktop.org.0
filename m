@@ -2,31 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C3E64FEED2
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Apr 2022 07:57:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B6F34FEEDC
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Apr 2022 07:58:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9129C112254;
-	Wed, 13 Apr 2022 05:57:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11C5E10FF94;
+	Wed, 13 Apr 2022 05:58:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from verein.lst.de (verein.lst.de [213.95.11.211])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ECC0F112253;
- Wed, 13 Apr 2022 05:57:21 +0000 (UTC)
-Received: by verein.lst.de (Postfix, from userid 2407)
- id 3F38868B05; Wed, 13 Apr 2022 07:57:18 +0200 (CEST)
-Date: Wed, 13 Apr 2022 07:57:17 +0200
-From: Christoph Hellwig <hch@lst.de>
-To: Jason Gunthorpe <jgg@nvidia.com>
-Message-ID: <20220413055717.GC32092@lst.de>
-References: <0-v1-a8faf768d202+125dd-vfio_mdev_no_group_jgg@nvidia.com>
- <3-v1-a8faf768d202+125dd-vfio_mdev_no_group_jgg@nvidia.com>
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CFA2610F624;
+ Wed, 13 Apr 2022 05:58:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1649829520; x=1681365520;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=OnS94qWStTxRDGZV5Q3wGKzF0japkoQuNAZuOhR4EzQ=;
+ b=ZDKO+s0A5albkc2Ze2qOBGYuhHkmRhXN67LHaXXi0a0IN1F3CYFiFc6E
+ Dh2XO8Zbv4f9tXNh90rUEnbx4X6OAYgQ5DTc4avQKFvdHTC+5HSdlStY2
+ dYyMnWCBLvIns7UWGtj51+VhNp/2qcUyS9KBst2hYjSZRVaBjw3ot1dlV
+ ozcNdtXg6wYGLQPmm0078L+tNEmoZ5epjYf9f77J/3i/D5RdfjYasYb5P
+ clVUjC4au3p2iQUXwU4kO7teNvYs6k2vnJRBvvi3D78i+zqzTplnmGL6s
+ tggT4JxjqL6H1jVLm/gG4XUd4+Tzm4fqFT/rkZJS887l8lUB30uAS9QF0 g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10315"; a="244468925"
+X-IronPort-AV: E=Sophos;i="5.90,255,1643702400"; d="scan'208";a="244468925"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Apr 2022 22:58:39 -0700
+X-IronPort-AV: E=Sophos;i="5.90,255,1643702400"; d="scan'208";a="573125478"
+Received: from ebruchet-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.45.44])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Apr 2022 22:58:36 -0700
+Date: Wed, 13 Apr 2022 08:58:33 +0300
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <YlZma8iA20iakK62@jlahtine-mobl.ger.corp.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <3-v1-a8faf768d202+125dd-vfio_mdev_no_group_jgg@nvidia.com>
-User-Agent: Mutt/1.5.17 (2007-11-01)
-Subject: Re: [Intel-gfx] [PATCH 3/9] vfio/mdev: Pass in a struct vfio_device
- * to vfio_pin/unpin_pages()
+Subject: [Intel-gfx] [PULL] drm-intel-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,35 +53,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kvm@vger.kernel.org, linux-doc@vger.kernel.org,
- David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
- Kirti Wankhede <kwankhede@nvidia.com>, Vineeth Vijayan <vneethv@linux.ibm.com>,
- Alexander Gordeev <agordeev@linux.ibm.com>, Christoph Hellwig <hch@lst.de>,
- linux-s390@vger.kernel.org, "Liu, Yi L" <yi.l.liu@intel.com>,
- Matthew Rosato <mjrosato@linux.ibm.com>, Jonathan Corbet <corbet@lwn.net>,
- Halil Pasic <pasic@linux.ibm.com>,
- Christian Borntraeger <borntraeger@linux.ibm.com>,
- intel-gfx@lists.freedesktop.org, Jason Herne <jjherne@linux.ibm.com>,
- Eric Farman <farman@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>,
- Heiko Carstens <hca@linux.ibm.com>,
- Harald Freudenberger <freude@linux.ibm.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gvt-dev@lists.freedesktop.org,
- Tony Krowiak <akrowiak@linux.ibm.com>, Cornelia Huck <cohuck@redhat.com>,
- Peter Oberparleiter <oberpar@linux.ibm.com>,
- Sven Schnelle <svens@linux.ibm.com>
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> -	extern int vfio_pin_pages(struct device *dev, unsigned long *user_pfn,
-> +	extern int vfio_pin_pages(struct vfio_device *vdev, unsigned long *user_pfn,
->  				  int npage, int prot, unsigned long *phys_pfn);
->  
-> -	extern int vfio_unpin_pages(struct device *dev, unsigned long *user_pfn,
-> +	extern int vfio_unpin_pages(struct vfio_device *vdev, unsigned long *user_pfn,
+Hi Dave & Daniel,
 
-Please drop the externs when you touch this (also for the actual
-header).
+Just one fix towards v5.18-rc3.
 
-Otherwise looks good:
+Fix to align code with drm-tip to make sure full graphics IP version
+is used for legacy mmap disable check.
 
-Reviewed-by: Christoph Hellwig <hch@lst.de>
+Regards, Joonas
+
+***
+
+drm-intel-fixes-2022-04-13:
+
+- Correct legacy mmap disabling to use GRAPHICS_VER_FULL
+
+The following changes since commit ce522ba9ef7e2d9fb22a39eb3371c0c64e2a433e:
+
+  Linux 5.18-rc2 (2022-04-10 14:21:36 -1000)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-fixes-2022-04-13
+
+for you to fetch changes up to 1acb34e7dd7720a1fff00cbd4d000ec3219dc9d6:
+
+  drm/i915: Sunset igpu legacy mmap support based on GRAPHICS_VER_FULL (2022-04-11 09:11:21 +0300)
+
+----------------------------------------------------------------
+- Correct legacy mmap disabling to use GRAPHICS_VER_FULL
+
+----------------------------------------------------------------
+Matt Roper (1):
+      drm/i915: Sunset igpu legacy mmap support based on GRAPHICS_VER_FULL
+
+ drivers/gpu/drm/i915/gem/i915_gem_mman.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
