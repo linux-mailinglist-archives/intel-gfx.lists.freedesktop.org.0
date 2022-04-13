@@ -1,48 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B28A4FFD88
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Apr 2022 20:11:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CDCF4FFD90
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Apr 2022 20:11:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E9AD10E18A;
-	Wed, 13 Apr 2022 18:11:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2DA9510E205;
+	Wed, 13 Apr 2022 18:11:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 45F6410E18A
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E36110E19F
  for <intel-gfx@lists.freedesktop.org>; Wed, 13 Apr 2022 18:11:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649873476; x=1681409476;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=VOktdRyNZf/GbKfAiza/UHPBlu7+TvzOt7qqf/VK5gA=;
- b=A3pZ7W03HyOlzlsNVmTISkKxBzm8HJu2XDiXP/akO79zNrc3n0gMVZMC
- h22vEcRtfeBLBkH7lWgO8Jlctf6M93+YjHgspXiJJ7BYkg5vhF9Wo13K4
- PYIZ8YM3awnI54ZMdOxk/tjCgdIY33u95XHJFlDBk+mB0wLm+PjQoPNEq
- uQEVBGrpEXSj8doaFjQXmY7+jaDnUvNOnWsKJF7F3TJFu/cPcFwt9+rIQ
- QMNZ90Ci4lvx2gJ/G+/iGgojNHDjPmWD8/Qr1wLMbO5/FUAQIoPfGc9No
- M9+lC3g5LnMIccCyxqj+kWmvgxTFaQhXenzqHWLxWLoHAPIZLc2OfU6bq A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10316"; a="323181896"
-X-IronPort-AV: E=Sophos;i="5.90,257,1643702400"; d="scan'208";a="323181896"
+ t=1649873478; x=1681409478;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=4IsB1ZlCcum/pDXrZE8Fx+3ff3Y4XsMhSZ/am1lGC3g=;
+ b=ZrfhJQaR7oMQW2oUIdG/QW5yFv/YA+0hnic6KcQyl2+kJwaAIC+jdLTT
+ XSlj/p3mKOWiA4GSpEJkgYr41gGHMZnVjpxeuFP1lx7/UkEllmC7ncrX6
+ oOE08kuMNtI1rShHIyWIOsG0nQfLxU1xqDjPITlz58oaojgYsbDKPxBDQ
+ TzC5/YSwsiDUDghqpm8WFiyxKH9Rjl6BDbQyS7jWuBHlqE17tSmcwIeh6
+ 5wK4mEwej/tj6EXT7uUHEubJ/3g8jfa0Z1OS2Duf3xSZfqi4hKTKLoURq
+ Lg3QGJbY9UCoeXuUxzHZe2BdpSX7vsIKwA0jli8H1ZWAHrzziwwjzBWWm w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10316"; a="323181897"
+X-IronPort-AV: E=Sophos;i="5.90,257,1643702400"; d="scan'208";a="323181897"
 Received: from fmsmga006.fm.intel.com ([10.253.24.20])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Apr 2022 11:11:15 -0700
-X-IronPort-AV: E=Sophos;i="5.90,257,1643702400"; d="scan'208";a="802788699"
+X-IronPort-AV: E=Sophos;i="5.90,257,1643702400"; d="scan'208";a="802788702"
 Received: from orsosgc001.jf.intel.com (HELO unerlige-ril-10.165.21.154.com)
  ([10.165.21.154])
  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Apr 2022 11:11:15 -0700
 From: Ashutosh Dixit <ashutosh.dixit@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 13 Apr 2022 11:11:01 -0700
-Message-Id: <cover.1649871650.git.ashutosh.dixit@intel.com>
+Date: Wed, 13 Apr 2022 11:11:02 -0700
+Message-Id: <8401d5f5a87035ce1dda28a663771cb867fdf928.1649871650.git.ashutosh.dixit@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <cover.1649871650.git.ashutosh.dixit@intel.com>
+References: <cover.1649871650.git.ashutosh.dixit@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 0/8] drm/i915: Media freq factor and per-gt
- enhancements/fixes
+Subject: [Intel-gfx] [PATCH 1/8] drm/i915: Introduce has_media_ratio_mode
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,66 +56,68 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andi Shyti <andi.shyti@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Some recent Intel dGfx platforms allow media IP to work at a different
-frequency from the base GT. This patch series exposes sysfs controls for
-this functionality in the new per-gt sysfs. Some enhancements and fixes to
-previous per-gt functionality are also included to complete the new
-functionality:
-* Patches 1 and 2 implement basic sysfs controls for media freq
-* Patch 3 extends previous pcode functions for multiple gt's and patch 4 adds
-  a couple of pcode helpers
-* Patch 5 uses the new pcode functions to retrieve media RP0/RPn frequencies
-* Patch 6 fixes memory leaks in the previous per-gt sysfs implementation and
-  some code refactoring
-* Patch 7 creates a gt/gtN/.defaults directory to expose default RPS
-  parameter values in the per-gt sysfs
-* Patch 8 adds the default value for media_freq_factor to gt/gtN/.defaults
-
-IGT tests for this new functionality have also been posted at:
-
-  https://patchwork.freedesktop.org/series/102664/
-
-Test-with: deb07be64c3930945a0e7bd17989fda4ed2e5ece.1649870633.git.ashutosh.dixit@intel.com
+Media ratio mode (the ability for media IP to work at a different frequency
+from the GT) is available for a subset of dGfx platforms supporting
+GuC/SLPC. Introduce 'has_media_ratio_mode' flag in intel_device_info to
+identify these platforms and set it for XEHPSDV and DG2/ATS-M.
 
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Andi Shyti <andi.shyti@intel.com>
+Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+---
+ drivers/gpu/drm/i915/i915_drv.h          | 2 ++
+ drivers/gpu/drm/i915/i915_pci.c          | 2 ++
+ drivers/gpu/drm/i915/intel_device_info.h | 1 +
+ 3 files changed, 5 insertions(+)
 
-Ashutosh Dixit (8):
-  drm/i915: Introduce has_media_ratio_mode
-  drm/i915/gt: Add media freq factor to per-gt sysfs
-  drm/i915/pcode: Extend pcode functions for multiple gt's
-  drm/i915/pcode: Add a couple of pcode helpers
-  drm/i915/gt: Add media RP0/RPn to per-gt sysfs
-  drm/i915/gt: Fix memory leaks in per-gt sysfs
-  drm/i915/gt: Expose per-gt RPS defaults in sysfs
-  drm/i915/gt: Expose default value for media_freq_factor in per-gt
-    sysfs
-
- drivers/gpu/drm/i915/gt/intel_gt.c            |   1 +
- drivers/gpu/drm/i915/gt/intel_gt_regs.h       |   1 +
- drivers/gpu/drm/i915/gt/intel_gt_sysfs.c      |  41 ++-
- drivers/gpu/drm/i915/gt/intel_gt_sysfs.h      |  12 +-
- drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c   | 246 ++++++++++++++++++
- drivers/gpu/drm/i915/gt/intel_gt_types.h      |  14 +
- drivers/gpu/drm/i915/gt/intel_rps.c           |   3 +
- .../drm/i915/gt/uc/abi/guc_actions_slpc_abi.h |   6 +
- drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c   |  39 ++-
- drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h   |   1 +
- .../gpu/drm/i915/gt/uc/intel_guc_slpc_types.h |   3 +
- drivers/gpu/drm/i915/i915_drv.h               |   2 +
- drivers/gpu/drm/i915/i915_pci.c               |   2 +
- drivers/gpu/drm/i915/i915_reg.h               |  18 ++
- drivers/gpu/drm/i915/i915_sysfs.c             |   2 +
- drivers/gpu/drm/i915/intel_device_info.h      |   1 +
- drivers/gpu/drm/i915/intel_pcode.c            | 136 ++++++----
- drivers/gpu/drm/i915/intel_pcode.h            |  39 ++-
- 18 files changed, 483 insertions(+), 84 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 9274417cd87a..1573769b516f 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -1222,6 +1222,8 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+ #define CCS_MASK(gt) \
+ 	ENGINE_INSTANCES_MASK(gt, CCS0, I915_MAX_CCS)
+ 
++#define HAS_MEDIA_RATIO_MODE(dev_priv) (INTEL_INFO(dev_priv)->has_media_ratio_mode)
++
+ /*
+  * The Gen7 cmdparser copies the scanned buffer to the ggtt for execution
+  * All later gens can run the final buffer from the ppgtt
+diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+index 736e04078f56..ddc72bb07259 100644
+--- a/drivers/gpu/drm/i915/i915_pci.c
++++ b/drivers/gpu/drm/i915/i915_pci.c
+@@ -1032,6 +1032,7 @@ static const struct intel_device_info xehpsdv_info = {
+ 	.display = { },
+ 	.has_64k_pages = 1,
+ 	.needs_compact_pt = 1,
++	.has_media_ratio_mode = 1,
+ 	.platform_engine_mask =
+ 		BIT(RCS0) | BIT(BCS0) |
+ 		BIT(VECS0) | BIT(VECS1) | BIT(VECS2) | BIT(VECS3) |
+@@ -1051,6 +1052,7 @@ static const struct intel_device_info xehpsdv_info = {
+ 	.has_64k_pages = 1, \
+ 	.has_guc_deprivilege = 1, \
+ 	.needs_compact_pt = 1, \
++	.has_media_ratio_mode = 1, \
+ 	.platform_engine_mask = \
+ 		BIT(RCS0) | BIT(BCS0) | \
+ 		BIT(VECS0) | BIT(VECS1) | \
+diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
+index f9b955810593..bf4f2b27fd47 100644
+--- a/drivers/gpu/drm/i915/intel_device_info.h
++++ b/drivers/gpu/drm/i915/intel_device_info.h
+@@ -146,6 +146,7 @@ enum intel_ppgtt_type {
+ 	func(has_llc); \
+ 	func(has_logical_ring_contexts); \
+ 	func(has_logical_ring_elsq); \
++	func(has_media_ratio_mode); \
+ 	func(has_mslices); \
+ 	func(has_pooled_eu); \
+ 	func(has_pxp); \
 -- 
 2.34.1
 
