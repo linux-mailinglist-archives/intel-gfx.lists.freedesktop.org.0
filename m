@@ -2,47 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F22F4FF1B0
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Apr 2022 10:21:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AE704FF1BB
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Apr 2022 10:23:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E547C10FBE6;
-	Wed, 13 Apr 2022 08:21:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED94810FBBA;
+	Wed, 13 Apr 2022 08:23:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F46A10FBE6;
- Wed, 13 Apr 2022 08:21:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649838107; x=1681374107;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=U69oTtnsuoF+2HIaIybh2b28ZIsOKec9noRM9rQWa2U=;
- b=Hd2lMZOjkAbBENGZPd2hgBBoBXl0uBoOnvnelxoJJOsTZ5s1J9sJK+Dd
- Cjh+WS53+HmbpVpFVG3gEEdxrWDW4A32KIq02G/nVqfkaTgie07wu5vzl
- aPGGyE5mLkd50/l988npTTa2tVJM4evlCZATzDD5Z5e5GKX/BmIWESDRh
- jD5LQay6onsbb9xx2J1zUIW+Z5EhUgj7zsqi5ogbL+J/XjGDCFNy7p3px
- sxdtaFSrBXQoVzvGPSght0NrTnumnHmXjtz40/UsD/QIIexNQPliELuId
- j3Ml2g40lWtgmXqQwJmqPskfftdnvYXpFp6H+MnEFDh5qp7WXaQq0QW5n A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10315"; a="325512932"
-X-IronPort-AV: E=Sophos;i="5.90,256,1643702400"; d="scan'208";a="325512932"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2022 01:21:46 -0700
-X-IronPort-AV: E=Sophos;i="5.90,256,1643702400"; d="scan'208";a="573170394"
-Received: from jomolloy-mobl.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
- ([10.252.23.209])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2022 01:21:45 -0700
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 13 Apr 2022 09:21:33 +0100
-Message-Id: <20220413082133.272445-1-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.34.1
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com
+ [IPv6:2a00:1450:4864:20::635])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C3F4810FBBA
+ for <intel-gfx@lists.freedesktop.org>; Wed, 13 Apr 2022 08:23:34 +0000 (UTC)
+Received: by mail-ej1-x635.google.com with SMTP id g18so2343296ejc.10
+ for <intel-gfx@lists.freedesktop.org>; Wed, 13 Apr 2022 01:23:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:mail-followup-to:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=pDdCO2Z9sHAkcidfpKBTGhIx4GsRFl2YRA+5zMVZ7Po=;
+ b=EQSfe/OGM1bDLSi6whKMEjNq4/6t5obsX6B3zW3tIoZLjKAB8+dPT5hT7TZitAkSiT
+ fTwT0mW7viCTIF4OAb5wBT0PlPjORofhAKFSzh9V9G3tcQa7lEhUL13MOzBriYY+fqmc
+ IVVRwfNl3wO2clI7usFeV426Mk2ctlMr3lIpc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id
+ :mail-followup-to:references:mime-version:content-disposition
+ :in-reply-to;
+ bh=pDdCO2Z9sHAkcidfpKBTGhIx4GsRFl2YRA+5zMVZ7Po=;
+ b=Jza5EC9pcoO1uhYAtTbaRFP6y7Xyu16OBPp9+KOIVIhbiDc8h4NPANHk33/m8K66nj
+ GpDGmFdBH/ZENoXL2uM8Ty00bK4+GnuvFUbXxkBLfUzTPi+l+Bg0lwYjcPyiKKLkRn7y
+ q2CP8Wjf0Q576YD4Mr2xcYm00N4dIMmI5Kss/BOqBSKVD9shuQrhlJrpaH/wXqdznt7B
+ t72G2yUkvyRKdLGJ8oCA3pjYKm1u9OfskiQok3BK7LQuq1IVfBV5jho0//fSWzz1apM9
+ sB+/+ihQIspAWlCrKU0fvUjhPfoT3b/xob+lGMrAfdgMh1q46Voc20jfhLUO9gOThKcL
+ 7BCw==
+X-Gm-Message-State: AOAM531+z+15p1iuzM3++2nactO3SUVo6kBFnv0PPoKSgVVIdPfjONeI
+ oGodME802tnNO6FImKVlrIISIQ==
+X-Google-Smtp-Source: ABdhPJy6vkhPnQjZPHpvyKo4dmGeTKsNWOhUCSOfAThna7ZkD4GSLlcdAsCMZnlM5vvm+zfGBdc8Tw==
+X-Received: by 2002:a17:907:94cd:b0:6e0:b001:aeb6 with SMTP id
+ dn13-20020a17090794cd00b006e0b001aeb6mr37652242ejc.283.1649838213381; 
+ Wed, 13 Apr 2022 01:23:33 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id
+ k11-20020a50c8cb000000b0041d97e9fd46sm879363edh.83.2022.04.13.01.23.32
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 13 Apr 2022 01:23:32 -0700 (PDT)
+Date: Wed, 13 Apr 2022 10:23:31 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Stephen Rothwell <sfr@canb.auug.org.au>
+Message-ID: <YlaIgxknwmPbsg1h@phenom.ffwll.local>
+Mail-Followup-To: Stephen Rothwell <sfr@canb.auug.org.au>,
+ Dave Airlie <airlied@linux.ie>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ DRI <dri-devel@lists.freedesktop.org>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>
+References: <20220406155030.0dacf051@canb.auug.org.au>
+ <20220413100448.6f5f4de7@canb.auug.org.au>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/ttm: fixup ttm_bo_add_move_fence
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220413100448.6f5f4de7@canb.auug.org.au>
+X-Operating-System: Linux phenom 5.10.0-8-amd64 
+Subject: Re: [Intel-gfx] linux-next: build warning after merge of the
+ drm-misc tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,37 +77,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- dri-devel@lists.freedesktop.org
+Cc: Dave Airlie <airlied@linux.ie>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ DRI <dri-devel@lists.freedesktop.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-It looks like we still need to call dma_fence_put() on the man->move,
-otherwise we just end up leaking it, leading to fireworks later.
+On Wed, Apr 13, 2022 at 10:04:48AM +1000, Stephen Rothwell wrote:
+> Hi all,
+> 
+> On Wed, 6 Apr 2022 15:50:30 +1000 Stephen Rothwell <sfr@canb.auug.org.au> wrote:
+> >
+> > After merging the drm-misc tree, today's linux-next build (htmldocs)
+> > produced this warning:
+> > 
+> > include/drm/ttm/ttm_resource.h:226: warning: Function parameter or member 'pos' not described in 'ttm_lru_bulk_move'
+> > 
+> > Introduced by commit
+> > 
+> >   b0e2c9ea5afc ("drm/ttm: allow bulk moves for all domains")
+> 
+> This warning is now produced by the drm tree.
 
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/5689
-Fixes: 8bb31587820a ("drm/ttm: remove bo->moving")
-Cc: Christian König <christian.koenig@amd.com>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
----
- drivers/gpu/drm/ttm/ttm_bo.c | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
-index 015a94f766de..b15b77e10383 100644
---- a/drivers/gpu/drm/ttm/ttm_bo.c
-+++ b/drivers/gpu/drm/ttm/ttm_bo.c
-@@ -744,6 +744,8 @@ static int ttm_bo_add_move_fence(struct ttm_buffer_object *bo,
- 		dma_fence_put(fence);
- 		return ret;
- 	}
-+
-+	dma_fence_put(fence);
- 	return 0;
- }
- 
+Christian, do you have a patch to fix this?
+-Daniel
 -- 
-2.34.1
-
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
