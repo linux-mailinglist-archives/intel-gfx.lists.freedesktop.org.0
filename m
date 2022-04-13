@@ -1,49 +1,83 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3E6D500068
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Apr 2022 22:56:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0ECDB5000A6
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Apr 2022 23:08:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 01AB210EEE9;
-	Wed, 13 Apr 2022 20:56:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6AB7A89852;
+	Wed, 13 Apr 2022 21:08:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1485710EEE9
- for <intel-gfx@lists.freedesktop.org>; Wed, 13 Apr 2022 20:56:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649883411; x=1681419411;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=Lil/I3eQJh6i9VKGOotfadwG2VNfnGcwEP3UdM0RC0g=;
- b=FCnzBwMisF5NIq1Tan/sfMOS2A+EFwb0BPn0/CgBlo8qpIwMHWljblhZ
- SEHHi2HlrBhR3ZXVb9eByk/n72OZUu7VsF0MPql0UK6becs9ZfZQptJpB
- tMRcaIjyreKdy9jJCwNBtyKE9cEZ6iQTXtXsl7a3pKHv5PXj8utPKtKG2
- pi/ShwO61rzrnrJsW/GHtoEAyD/idHbOEkuOZrCZkuOWF2/6twBJp0OQ8
- 5wMS40blMjQ0bRTdm/HiKtb57ELRAYzSuOnUZV+DcCh2q1s4V7HQQHXsT
- O59VhUT32dzbjp3A8VM+2B/9zIMgrG5VADanln2lg85H5oDLt7FssPklU Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10316"; a="323214906"
-X-IronPort-AV: E=Sophos;i="5.90,257,1643702400"; d="scan'208";a="323214906"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2022 13:56:50 -0700
-X-IronPort-AV: E=Sophos;i="5.90,257,1643702400"; d="scan'208";a="573444061"
-Received: from mingram-mobl1.amr.corp.intel.com (HELO intel.com)
- ([10.255.35.135])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2022 13:56:49 -0700
-Date: Wed, 13 Apr 2022 16:56:47 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Anusha Srivatsa <anusha.srivatsa@intel.com>
-Message-ID: <Ylc5D8v0XmqX3mvO@intel.com>
-References: <20220413005707.3627314-1-anusha.srivatsa@intel.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A64AE897EE
+ for <intel-gfx@lists.freedesktop.org>; Wed, 13 Apr 2022 21:08:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1649884102;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=eZVOf5puUkexY1KynS709uymjwoQEkyNXAQS55C0ENA=;
+ b=O3wfcCpGV9T5zWktN5oP3ZgmpfEDSGWIIgz9pSgsv4RtaYgitWckOcU0T0gpKjwCrpS/Nq
+ eXp4VSFjNGhPWdS+n/n2rtagZCWmDgAJCGrWFORXT5Qz7urPhoHPmqpffmQcqGpEjSTbe4
+ 4n5Y4ZWaP+/fdYrJu4ruCuMDIUOOu5E=
+Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com
+ [209.85.219.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-210-vcx7PVKgPdSkZ_vT-Vm1nQ-1; Wed, 13 Apr 2022 17:08:20 -0400
+X-MC-Unique: vcx7PVKgPdSkZ_vT-Vm1nQ-1
+Received: by mail-qv1-f72.google.com with SMTP id
+ jx11-20020a0562142b0b00b0044444479dcbso2771129qvb.9
+ for <intel-gfx@lists.freedesktop.org>; Wed, 13 Apr 2022 14:08:20 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+ :references:organization:user-agent:mime-version
+ :content-transfer-encoding;
+ bh=eZVOf5puUkexY1KynS709uymjwoQEkyNXAQS55C0ENA=;
+ b=nLMmU8h4nDHp6Nj5EHuA2nVtQTAjA+ft1U6kCXBznxxcJ36TtXZ0ebnd2xVMeJD3Nf
+ 0ODWEeX54ke1r3131n04gB6x99fk0UZqMTypNHepqJBXD84GMF4bcNTkW+E3tOQuEOUL
+ G3+h0RZH29imDAsKt1G/xHFlSqhzuuk5jGkYL0eyNkqrbqiNkB4NmIH8zLnDAZUmvjek
+ Szg32EuNSbgXvp3mQNcmOsTI56wMs3uBN9x/RubPVxJ0u0duQsPze/iyFBnzmMTSCUFE
+ 0g9pX7cQ3lPhn6rjzUQFweB+n/Y6St2hakgYH8lELWsoWg1wRKr/+0yQNlXRBoRyIrJz
+ XXHg==
+X-Gm-Message-State: AOAM531dQm0EwNOQy7xy9lcPZ2w6vAyOCNUxzI99oaH1J9jmw+ezlLZC
+ GxJy4UhKcwJvTITr4/0ZGE/RPHxu6HT8JOzhPwo4zCQNffxveycNesbvLEvrRbrvGJctu+czSgo
+ mGc5bF0ZgdwEeb8qYFWYyIyTfsjUY
+X-Received: by 2002:a05:620a:2889:b0:699:bbc5:9b4b with SMTP id
+ j9-20020a05620a288900b00699bbc59b4bmr8389693qkp.712.1649884099926; 
+ Wed, 13 Apr 2022 14:08:19 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxC46NJ+URqWQg3IdrYDRqNuE39Dv8S/K7gT7to0Tipa8Yi+P4S9kIyAx/eANASMSrKKXt50Q==
+X-Received: by 2002:a05:620a:2889:b0:699:bbc5:9b4b with SMTP id
+ j9-20020a05620a288900b00699bbc59b4bmr8389676qkp.712.1649884099695; 
+ Wed, 13 Apr 2022 14:08:19 -0700 (PDT)
+Received: from [192.168.8.138] (pool-71-126-244-162.bstnma.fios.verizon.net.
+ [71.126.244.162]) by smtp.gmail.com with ESMTPSA id
+ b20-20020a05622a021400b002f08f5658a2sm19888qtx.68.2022.04.13.14.08.18
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 13 Apr 2022 14:08:19 -0700 (PDT)
+Message-ID: <7f7d46f3a5021ff4616a6c66a70c99d9120f879e.camel@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+To: "Hogander, Jouni" <jouni.hogander@intel.com>, 
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Date: Wed, 13 Apr 2022 17:08:18 -0400
+In-Reply-To: <2f768d2c5d51c31d507d2d10fbb9c19a39eb2111.camel@intel.com>
+References: <20220412052542.681419-1-jouni.hogander@intel.com>
+ <5294707cfceb018778f7ff1164f88581acb08015.camel@redhat.com>
+ <2f768d2c5d51c31d507d2d10fbb9c19a39eb2111.camel@intel.com>
+Organization: Red Hat Inc.
+User-Agent: Evolution 3.42.4 (3.42.4-2.fc35)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220413005707.3627314-1-anusha.srivatsa@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dmc: Load DMC on DG2
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=lyude@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Check EDID before dpcd for
+ possible HDR aux bl support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,76 +90,113 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "Nikula, Jani" <jani.nikula@intel.com>,
+ "filippo.falezza@outlook.it" <filippo.falezza@outlook.it>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Apr 12, 2022 at 05:57:07PM -0700, Anusha Srivatsa wrote:
-> Add Support for DC states on Dg2.
+On Wed, 2022-04-13 at 08:31 +0000, Hogander, Jouni wrote:
+> Hello Lyude,
 > 
-> Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display_power.c |  2 +-
->  drivers/gpu/drm/i915/display/intel_dmc.c           | 10 +++++++++-
->  2 files changed, 10 insertions(+), 2 deletions(-)
+> See my respose below.
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-> index 6a5695008f7c..5a0cab82a156 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-> @@ -4770,7 +4770,7 @@ static u32 get_allowed_dc_mask(const struct drm_i915_private *dev_priv,
->  	if (!HAS_DISPLAY(dev_priv))
->  		return 0;
->  
-> -	if (IS_DG1(dev_priv))
-> +	if (IS_DG1(dev_priv) || IS_DG2(dev_priv))
->  		max_dc = 3;
+> On Tue, 2022-04-12 at 13:50 -0400, Lyude Paul wrote:
+> > On Tue, 2022-04-12 at 08:25 +0300, Jouni Högander wrote:
+> > > We have now seen panel (XMG Core 15 e21 laptop) avertizing support
+> > > for Intel proprietary eDP backlight control via DPCD registers, but
+> > > actually working only with legacy pwm control.
+> > > 
+> > > This patch adds panel EDID check for possible HDR static metadata
+> > > and
+> > > does detection from DPCD registers only if this data block exists.
+> > > 
+> > > Fixes: 4a8d79901d5b ("drm/i915/dp: Enable Intel's HDR backlight
+> > > interface
+> > > (only SDR for now)")
+> > > Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/5284
+> > > Cc: Lyude Paul <lyude@redhat.com>
+> > > Cc: Mika Kahola <mika.kahola@intel.com>
+> > > Cc: Jani Nikula <jani.nikula@intel.com>
+> > > Tested-by: Filippo Falezza <filippo.falezza@outlook.it>
+> > > Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+> > > ---
+> > >  .../gpu/drm/i915/display/intel_dp_aux_backlight.c   | 13
+> > > +++++++++++++
+> > >  1 file changed, 13 insertions(+)
+> > > 
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> > > b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> > > index 97cf3cac0105..f69e185b58c1 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> > > @@ -108,6 +108,19 @@ intel_dp_aux_supports_hdr_backlight(struct
+> > > intel_connector *connector)
+> > >         int ret;
+> > >         u8 tcon_cap[4];
+> > >  
+> > > +       /*
+> > > +        * If we don't have HDR static metadata there is no way to
+> > > +        * runtime detect used range for nits based control. For
+> > > now
+> > > +        * do not use Intel proprietary eDP backlight control if we
+> > > +        * don't have this data in panel EDID. In case we find
+> > > panel
+> > > +        * which supports only nits based control, but doesn't
+> > > provide
+> > > +        * HDR static metadata we need to start maintaining table
+> > > of
+> > > +        * ranges for such panels.
+> > > +        */
+> > > +       if (!(connector-
+> > > > base.hdr_sink_metadata.hdmi_type1.metadata_type &
+> > > +             BIT(HDMI_STATIC_METADATA_TYPE1)))
+> > > +               return false;
+> > 
+> > The block used for this is actually for HDMI?? How bizarre…
+> > 
+> > Anyway yeah - patch looks good to me, but I think we should print a
+> > debugging
+> > message of some sort when we determine that there's no HDR backlight
+> > because
+> > of the EDID - along with printing instructions for how the user can
+> > override
+> > it if we've made the wrong choice along with reporting a bug. Also -
+> > we should
+> > have the
+> 
+> hmm, currently there is no override possibility
+> in intel_dp_aux_supports_hdr_backlight. Do you think I should add one?
 
-Oh, this max_dc and the enable_dc param is so ugly...
-it should deserve at least a enum, but with the dc9 being totally independent
-on the decision I couldn't see a clean and quick way... so let's continue
-with this for now
+Yes, probably - I think just making it so that i915.enable_dpcd_backlight=3
+enables the HDR backlight regardless of the results of the EDID check would
+probably be a good idea.
 
-
->  	else if (DISPLAY_VER(dev_priv) >= 12)
->  		max_dc = 4;
-> diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-> index 257cf662f9f4..2f01aca4d981 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dmc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-> @@ -52,6 +52,10 @@
->  
->  #define DISPLAY_VER12_DMC_MAX_FW_SIZE	ICL_DMC_MAX_FW_SIZE
->  
-> +#define DG2_DMC_PATH			DMC_PATH(dg2, 2, 06)
-> +#define DG2_DMC_VERSION_REQUIRED	DMC_VERSION(2, 06)
-> +MODULE_FIRMWARE(DG2_DMC_PATH);
+> 
+> I sent version 2. Didn't add your rb there as I wasn't sure if I
+> understood your comment correctly. Please check new version.
+> 
+> > Cc: stable@vger.kernel.org
+> 
+> tag from dim added here using `dim fixes $commit`.
+> 
+> With that fixed:
+> 
+> Reviewed-by: Lyude Paul <lyude@redhat.com>
+> 
 > +
->  #define ADLP_DMC_PATH			DMC_PATH(adlp, 2, 16)
->  #define ADLP_DMC_VERSION_REQUIRED	DMC_VERSION(2, 16)
->  MODULE_FIRMWARE(ADLP_DMC_PATH);
-> @@ -688,7 +692,11 @@ void intel_dmc_ucode_init(struct drm_i915_private *dev_priv)
->  	 */
->  	intel_dmc_runtime_pm_get(dev_priv);
->  
-> -	if (IS_ALDERLAKE_P(dev_priv)) {
-> +	if (IS_DG2(dev_priv)) {
-> +		dmc->fw_path = DG2_DMC_PATH;
-> +		dmc->required_version = DG2_DMC_VERSION_REQUIRED;
-> +		dmc->max_fw_size = DISPLAY_VER13_DMC_MAX_FW_SIZE;
-> +	} else if (IS_ALDERLAKE_P(dev_priv)) {
->  		dmc->fw_path = ADLP_DMC_PATH;
->  		dmc->required_version = ADLP_DMC_VERSION_REQUIRED;
->  		dmc->max_fw_size = DISPLAY_VER13_DMC_MAX_FW_SIZE;
-
-probably worth to rename the dev_priv to i915 on these functions you are touching in here...
-
-anyway:
-
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-
-
-
-> -- 
-> 2.25.1
+>         intel_dp_wait_source_oui(intel_dp);
+>  
+>         ret = drm_dp_dpcd_read(aux, INTEL_EDP_HDR_TCON_CAP0,
+> tcon_cap,
+> sizeof(tcon_cap));
 > 
+> BR,
+> 
+> Jouni Högander
+> 
+
+-- 
+Cheers,
+ Lyude Paul (she/her)
+ Software Engineer at Red Hat
+
