@@ -2,55 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC1734FF45B
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Apr 2022 12:02:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EA674FF493
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Apr 2022 12:18:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D28910FCC7;
-	Wed, 13 Apr 2022 10:02:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D803C10E28E;
+	Wed, 13 Apr 2022 10:18:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 30CE810FCC7;
- Wed, 13 Apr 2022 10:02:15 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C0AA410E1B9;
+ Wed, 13 Apr 2022 10:18:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649844135; x=1681380135;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=5+14AAUAftgvOxibycMkjF+4+WI8JBErSzFkggUwUAI=;
- b=eULT1E1KPUxc/lhG2U5hg5kvkQCQunE1KgHeSWJUFspi4RTvDTcnRqzE
- B4S31oThqLbcDeM1e1LMaFlJPiMb/WQzlNRsLMsTadISt5rI33IMSwaCZ
- YOkMHGCg1HMl9rYpPQBeiybnl9kgDbHx9NohfTc3LiXY7+bUfwtDVnnXO
- 3Dt9eCmiMJIAYdSzCeMXMcCQCRrH3Lc7LGjOnBfN2iGdH5DtGehXcOdxO
- gg95o6YhJQ1tX8vl35MghsdqaxVr0O+znLyjTnasNSTX7cBwuLk1jZE8U
- LDqyFEBEBMHbPf/4dQCOKixKHBdzjqt+PQaxtZ3DsxOc5dqd3q/dK2MBi A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10315"; a="325532906"
-X-IronPort-AV: E=Sophos;i="5.90,256,1643702400"; d="scan'208";a="325532906"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2022 03:02:14 -0700
-X-IronPort-AV: E=Sophos;i="5.90,256,1643702400"; d="scan'208";a="552138895"
-Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.203.144.108])
- by orsmga007-auth.jf.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Apr 2022 03:02:12 -0700
-Date: Wed, 13 Apr 2022 15:33:01 +0530
-From: Ramalingam C <ramalingam.c@intel.com>
-To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Message-ID: <20220413100300.GA25695@intel.com>
-References: <20220401123751.27771-1-ramalingam.c@intel.com>
- <20220401123751.27771-8-ramalingam.c@intel.com>
- <20220401142853.GF12046@intel.com>
- <7517726e-c828-ace8-9968-e542e23d97f1@amd.com>
- <20220402030237.GA29661@intel.com>
- <164983850800.14850.12943794917384272373@jlahtine-mobl.ger.corp.intel.com>
+ t=1649845111; x=1681381111;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=2Lzx5jk0JTXePgAYgCvddmJ1pcUn+U5GQV3wzqruP10=;
+ b=bqeb1+WJcG2KcSCLPmdaeeCYQi+HALiT+x2grNDPjn+RsQDbPXIHDPBt
+ d5EKck7v8aYOz2lgh/+WAIPD4jB1YkATj3XPvRW33tHLn0UKvjLvlVEsV
+ bTaxPu8uIgakAVanweZmEVu2FAi1xJlHWfrcajDNJiZNvBQu7WlMiWux+
+ bLZliYKTcGEbbqmi4DnZLZJ7YDHqfKttQmSAcqYpAvl9d/9pLctrhd7WY
+ NcPVPl9m+HS1CvoQveLpGy8G/HC7C8oevIpfeIMJptQHmRi4d89Oq2JeL
+ jY3ej2ASv96DpIh8lEeIFde6KL6VTboD1g5ssTnXc+U1iu6Yqj5qOWK0Z g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10315"; a="261477764"
+X-IronPort-AV: E=Sophos;i="5.90,256,1643702400"; d="scan'208";a="261477764"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Apr 2022 03:18:31 -0700
+X-IronPort-AV: E=Sophos;i="5.90,256,1643702400"; d="scan'208";a="573207523"
+Received: from psoltysi-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.249.149.160])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Apr 2022 03:18:27 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: "Wang, Zhi A" <zhi.a.wang@intel.com>, Zhi Wang
+ <zhi.wang.linux@gmail.com>, "dri-devel@lists.freedesktop.org"
+ <dri-devel@lists.freedesktop.org>, "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>, "intel-gvt-dev@lists.freedesktop.org"
+ <intel-gvt-dev@lists.freedesktop.org>
+In-Reply-To: <60f369bf-c631-99e9-4bde-f5d200aa388a@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220407071945.72148-1-zhi.a.wang@intel.com>
+ <20220407071945.72148-2-zhi.a.wang@intel.com> <874k35541h.fsf@intel.com>
+ <986b8ff0-d0de-437c-8a56-c54aafb6159a@intel.com>
+ <87h76xgwis.fsf@intel.com>
+ <60f369bf-c631-99e9-4bde-f5d200aa388a@intel.com>
+Date: Wed, 13 Apr 2022 13:18:25 +0300
+Message-ID: <87czhlguby.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <164983850800.14850.12943794917384272373@jlahtine-mobl.ger.corp.intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v7 7/9] drm/ttm: Add a parameter to add
- extra pages into ttm_tt
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH v9 1/3] i915/gvt: Separate the MMIO tracking
+ table from GVT-g
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,193 +67,179 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>, rodrigo.vivi@intel.com,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>
+Cc: Zhi Wang <zhi.a.wang@gmail.com>, Jason Gunthorpe <jgg@nvidia.com>, "Vivi,
+ Rodrigo" <rodrigo.vivi@intel.com>, Christoph Hellwig <hch@lst.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2022-04-13 at 11:28:28 +0300, Joonas Lahtinen wrote:
-> (+ Tvrtko and Jani)
-> 
-> Quoting Ramalingam C (2022-04-02 06:02:38)
-> > On 2022-04-01 at 16:31:19 +0200, Christian König wrote:
-> > > I would be nicer to push this through drm-misc-next, but the intel branch
-> > > works for me as well.
-> > Hi Christian
-> > 
-> > I have pushed this patch into drm-misc-next.
-> 
-> I've now backmerged drm-next containing this commit to drm-intel-gt-next
-> in order to unblock merging the rest of the series.
-> 
-> > Regards,
-> > Ram.
-> > > 
-> > > Regards,
-> > > Christian.
-> > > 
-> > > Am 01.04.22 um 16:28 schrieb Ramalingam C:
-> > > > Christian, Joonas and vivi
-> > > > 
-> > > > Once the premerge results are greeen, if this patch can be merged into
-> > > > drm-intel-gt-next along with other patches could you please ack the
-> > > > request to merge into drm-intel-gt-next?
-> 
-> For future reference, when in doubt who are the right ones to handle,
-> add all the maintainers and wait for them to reply before proceeding.
-> 
-> Then we can avoid some unnecessary churn where there are more
-> straightforward options like here: merge via drm-intel-gt-next as
-> nobody else needs the new functions yet.
-Sure Joonas! thank you for backmerging!
+On Wed, 13 Apr 2022, "Wang, Zhi A" <zhi.a.wang@intel.com> wrote:
+> Hi Jani:
+>
+> Previously when I sent a pull request, it will be top of a tag in drm-int=
+el-next. The following patches move the DMC related registers, which is use=
+d by GVT-g into intel_dmc_regs.h and it is not included in the latest tag.=
+=20
+>
+> commit 9c67d9e84c7d4a3a2371a54ee2dddc4699002000
+> Author: Jani Nikula <jani.nikula@intel.com>
+> Date:   Wed Mar 30 14:34:17 2022 +0300
+>
+>     drm/i915/dmc: split out dmc registers to a separate file
+>=20=20=20=20=20
+>     Clean up the massive i915_reg.h a bit with this isolated set of
+>     registers.
+>=20=20=20=20=20
+>     v2: Remove stale comment (Lucas)
+>=20=20=20=20=20
+>     Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>     Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>     Link: https://patchwork.freedesktop.org/patch/msgid/20220330113417.22=
+0964-3-jani.nikula@intel.com
+>
+> If I still sent the pull request based on the latest tag, after the pull =
+got merged, the compiling of the GVT-g module will be broken, as a new head=
+er needs to be included.
+>
+> Can I sent my pull request not based on a tag in drm-intel-next, just the=
+ latest drm-intel-next?
 
-Ram
-> 
-> Regards, Joonas
-> 
-> > > > Thanks
-> > > > Ram
-> > > > 
-> > > > On 2022-04-01 at 18:07:49 +0530, Ramalingam C wrote:
-> > > > > Add a parameter called "extra_pages" for ttm_tt_init, to indicate that
-> > > > > driver needs extra pages in ttm_tt.
-> > > > > 
-> > > > > v2:
-> > > > >    Used imperative wording [Thomas and Christian]
-> > > > > 
-> > > > > Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
-> > > > > cc: Christian Koenig <christian.koenig@amd.com>
-> > > > > cc: Hellstrom Thomas <thomas.hellstrom@intel.com>
-> > > > > Reviewed-by: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
-> > > > > Reviewed-by: Christian Konig <christian.koenig@amd.com>
-> > > > > Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
-> > > > > ---
-> > > > >   drivers/gpu/drm/drm_gem_vram_helper.c      |  2 +-
-> > > > >   drivers/gpu/drm/i915/gem/i915_gem_ttm.c    |  2 +-
-> > > > >   drivers/gpu/drm/qxl/qxl_ttm.c              |  2 +-
-> > > > >   drivers/gpu/drm/ttm/ttm_agp_backend.c      |  2 +-
-> > > > >   drivers/gpu/drm/ttm/ttm_tt.c               | 12 +++++++-----
-> > > > >   drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c |  2 +-
-> > > > >   include/drm/ttm/ttm_tt.h                   |  4 +++-
-> > > > >   7 files changed, 15 insertions(+), 11 deletions(-)
-> > > > > 
-> > > > > diff --git a/drivers/gpu/drm/drm_gem_vram_helper.c b/drivers/gpu/drm/drm_gem_vram_helper.c
-> > > > > index dc7f938bfff2..123045b58fec 100644
-> > > > > --- a/drivers/gpu/drm/drm_gem_vram_helper.c
-> > > > > +++ b/drivers/gpu/drm/drm_gem_vram_helper.c
-> > > > > @@ -867,7 +867,7 @@ static struct ttm_tt *bo_driver_ttm_tt_create(struct ttm_buffer_object *bo,
-> > > > >           if (!tt)
-> > > > >                   return NULL;
-> > > > > - ret = ttm_tt_init(tt, bo, page_flags, ttm_cached);
-> > > > > + ret = ttm_tt_init(tt, bo, page_flags, ttm_cached, 0);
-> > > > >           if (ret < 0)
-> > > > >                   goto err_ttm_tt_init;
-> > > > > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> > > > > index c40aca99442f..a878910a563c 100644
-> > > > > --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> > > > > +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> > > > > @@ -293,7 +293,7 @@ static struct ttm_tt *i915_ttm_tt_create(struct ttm_buffer_object *bo,
-> > > > >                   i915_tt->is_shmem = true;
-> > > > >           }
-> > > > > - ret = ttm_tt_init(&i915_tt->ttm, bo, page_flags, caching);
-> > > > > + ret = ttm_tt_init(&i915_tt->ttm, bo, page_flags, caching, 0);
-> > > > >           if (ret)
-> > > > >                   goto err_free;
-> > > > > diff --git a/drivers/gpu/drm/qxl/qxl_ttm.c b/drivers/gpu/drm/qxl/qxl_ttm.c
-> > > > > index 95df5750f47f..9ba871bd19b1 100644
-> > > > > --- a/drivers/gpu/drm/qxl/qxl_ttm.c
-> > > > > +++ b/drivers/gpu/drm/qxl/qxl_ttm.c
-> > > > > @@ -113,7 +113,7 @@ static struct ttm_tt *qxl_ttm_tt_create(struct ttm_buffer_object *bo,
-> > > > >           ttm = kzalloc(sizeof(struct ttm_tt), GFP_KERNEL);
-> > > > >           if (ttm == NULL)
-> > > > >                   return NULL;
-> > > > > - if (ttm_tt_init(ttm, bo, page_flags, ttm_cached)) {
-> > > > > + if (ttm_tt_init(ttm, bo, page_flags, ttm_cached, 0)) {
-> > > > >                   kfree(ttm);
-> > > > >                   return NULL;
-> > > > >           }
-> > > > > diff --git a/drivers/gpu/drm/ttm/ttm_agp_backend.c b/drivers/gpu/drm/ttm/ttm_agp_backend.c
-> > > > > index 6ddc16f0fe2b..d27691f2e451 100644
-> > > > > --- a/drivers/gpu/drm/ttm/ttm_agp_backend.c
-> > > > > +++ b/drivers/gpu/drm/ttm/ttm_agp_backend.c
-> > > > > @@ -134,7 +134,7 @@ struct ttm_tt *ttm_agp_tt_create(struct ttm_buffer_object *bo,
-> > > > >           agp_be->mem = NULL;
-> > > > >           agp_be->bridge = bridge;
-> > > > > - if (ttm_tt_init(&agp_be->ttm, bo, page_flags, ttm_write_combined)) {
-> > > > > + if (ttm_tt_init(&agp_be->ttm, bo, page_flags, ttm_write_combined, 0)) {
-> > > > >                   kfree(agp_be);
-> > > > >                   return NULL;
-> > > > >           }
-> > > > > diff --git a/drivers/gpu/drm/ttm/ttm_tt.c b/drivers/gpu/drm/ttm/ttm_tt.c
-> > > > > index d234aab800a0..1a66d9fc589a 100644
-> > > > > --- a/drivers/gpu/drm/ttm/ttm_tt.c
-> > > > > +++ b/drivers/gpu/drm/ttm/ttm_tt.c
-> > > > > @@ -134,9 +134,10 @@ void ttm_tt_destroy(struct ttm_device *bdev, struct ttm_tt *ttm)
-> > > > >   static void ttm_tt_init_fields(struct ttm_tt *ttm,
-> > > > >                                  struct ttm_buffer_object *bo,
-> > > > >                                  uint32_t page_flags,
-> > > > > -                        enum ttm_caching caching)
-> > > > > +                        enum ttm_caching caching,
-> > > > > +                        unsigned long extra_pages)
-> > > > >   {
-> > > > > - ttm->num_pages = PAGE_ALIGN(bo->base.size) >> PAGE_SHIFT;
-> > > > > + ttm->num_pages = (PAGE_ALIGN(bo->base.size) >> PAGE_SHIFT) + extra_pages;
-> > > > >           ttm->caching = ttm_cached;
-> > > > >           ttm->page_flags = page_flags;
-> > > > >           ttm->dma_address = NULL;
-> > > > > @@ -146,9 +147,10 @@ static void ttm_tt_init_fields(struct ttm_tt *ttm,
-> > > > >   }
-> > > > >   int ttm_tt_init(struct ttm_tt *ttm, struct ttm_buffer_object *bo,
-> > > > > -         uint32_t page_flags, enum ttm_caching caching)
-> > > > > +         uint32_t page_flags, enum ttm_caching caching,
-> > > > > +         unsigned long extra_pages)
-> > > > >   {
-> > > > > - ttm_tt_init_fields(ttm, bo, page_flags, caching);
-> > > > > + ttm_tt_init_fields(ttm, bo, page_flags, caching, extra_pages);
-> > > > >           if (ttm_tt_alloc_page_directory(ttm)) {
-> > > > >                   pr_err("Failed allocating page table\n");
-> > > > > @@ -180,7 +182,7 @@ int ttm_sg_tt_init(struct ttm_tt *ttm, struct ttm_buffer_object *bo,
-> > > > >   {
-> > > > >           int ret;
-> > > > > - ttm_tt_init_fields(ttm, bo, page_flags, caching);
-> > > > > + ttm_tt_init_fields(ttm, bo, page_flags, caching, 0);
-> > > > >           if (page_flags & TTM_TT_FLAG_EXTERNAL)
-> > > > >                   ret = ttm_sg_tt_alloc_page_directory(ttm);
-> > > > > diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c b/drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c
-> > > > > index b84ecc6d6611..4e3938e62c08 100644
-> > > > > --- a/drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c
-> > > > > +++ b/drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c
-> > > > > @@ -517,7 +517,7 @@ static struct ttm_tt *vmw_ttm_tt_create(struct ttm_buffer_object *bo,
-> > > > >                                        ttm_cached);
-> > > > >           else
-> > > > >                   ret = ttm_tt_init(&vmw_be->dma_ttm, bo, page_flags,
-> > > > > -                           ttm_cached);
-> > > > > +                           ttm_cached, 0);
-> > > > >           if (unlikely(ret != 0))
-> > > > >                   goto out_no_init;
-> > > > > diff --git a/include/drm/ttm/ttm_tt.h b/include/drm/ttm/ttm_tt.h
-> > > > > index f20832139815..17a0310e8aaa 100644
-> > > > > --- a/include/drm/ttm/ttm_tt.h
-> > > > > +++ b/include/drm/ttm/ttm_tt.h
-> > > > > @@ -140,6 +140,7 @@ int ttm_tt_create(struct ttm_buffer_object *bo, bool zero_alloc);
-> > > > >    * @bo: The buffer object we create the ttm for.
-> > > > >    * @page_flags: Page flags as identified by TTM_TT_FLAG_XX flags.
-> > > > >    * @caching: the desired caching state of the pages
-> > > > > + * @extra_pages: Extra pages needed for the driver.
-> > > > >    *
-> > > > >    * Create a struct ttm_tt to back data with system memory pages.
-> > > > >    * No pages are actually allocated.
-> > > > > @@ -147,7 +148,8 @@ int ttm_tt_create(struct ttm_buffer_object *bo, bool zero_alloc);
-> > > > >    * NULL: Out of memory.
-> > > > >    */
-> > > > >   int ttm_tt_init(struct ttm_tt *ttm, struct ttm_buffer_object *bo,
-> > > > > -         uint32_t page_flags, enum ttm_caching caching);
-> > > > > +         uint32_t page_flags, enum ttm_caching caching,
-> > > > > +         unsigned long extra_pages);
-> > > > >   int ttm_sg_tt_init(struct ttm_tt *ttm_dma, struct ttm_buffer_object *bo,
-> > > > >                      uint32_t page_flags, enum ttm_caching caching);
-> > > > > -- 
-> > > > > 2.20.1
-> > > > > 
-> > > 
+Yes.
+
+I think you can also backmerge drm-intel-next to your branch whenever
+there's a dependency you need, or otherwise want to sync up. (Please do
+*not* backmerge drm-intel-gt-next or drm-next directly.)
+
+
+BR,
+Jani.
+
+>
+> Thanks,
+> Zhi.
+>
+> On 4/13/22 9:31 AM, Jani Nikula wrote:
+>> On Fri, 08 Apr 2022, "Wang, Zhi A" <zhi.a.wang@intel.com> wrote:
+>>> Hi Jani:
+>>>
+>>> Thanks so much for the help. Can you generate a new tag on
+>>> drm-intel-next? I noticed that there was one patch moving the DMC
+>>> related registers into display/intel_dmc_regs.h, which is not included
+>>> in the latest tag on drm-intel-next.
+>>=20
+>> Sorry, I'm not sure what you're asking exactly. We do tags when we
+>> create pull requests for drm-next, but I don't see the connection to
+>> gvt.
+>>=20
+>> BR,
+>> Jani.
+>>=20
+>>>
+>>> Guess it would be better that I can change this patch according to it
+>>> when checking in. This would prevent a conflict in future.
+>>>
+>>> Thanks,
+>>> Zhi.
+>>>
+>>> On 4/7/22 3:03 PM, Jani Nikula wrote:
+>>>> On Thu, 07 Apr 2022, Zhi Wang <zhi.wang.linux@gmail.com> wrote:
+>>>>> diff --git a/drivers/gpu/drm/i915/intel_gvt.h b/drivers/gpu/drm/i915/=
+intel_gvt.h
+>>>>> index d7d3fb6186fd..7665d7cf0bdd 100644
+>>>>> --- a/drivers/gpu/drm/i915/intel_gvt.h
+>>>>> +++ b/drivers/gpu/drm/i915/intel_gvt.h
+>>>>> @@ -26,7 +26,17 @@
+>>>>>=20=20
+>>>>>  struct drm_i915_private;
+>>>>>=20=20
+>>>>> +#include <linux/kernel.h>
+>>>>
+>>>> You only need <linux/types.h>. Please add it before the forward
+>>>> declaration above.
+>>>>
+>>>>> +
+>>>>>  #ifdef CONFIG_DRM_I915_GVT
+>>>>> +
+>>>>> +struct intel_gvt_mmio_table_iter {
+>>>>> +	struct drm_i915_private *i915;
+>>>>> +	void *data;
+>>>>> +	int (*handle_mmio_cb)(struct intel_gvt_mmio_table_iter *iter,
+>>>>> +			      u32 offset, u32 size);
+>>>>> +};
+>>>>> +
+>>>>>  int intel_gvt_init(struct drm_i915_private *dev_priv);
+>>>>>  void intel_gvt_driver_remove(struct drm_i915_private *dev_priv);
+>>>>>  int intel_gvt_init_device(struct drm_i915_private *dev_priv);
+>>>>> @@ -34,6 +44,7 @@ void intel_gvt_clean_device(struct drm_i915_private=
+ *dev_priv);
+>>>>>  int intel_gvt_init_host(void);
+>>>>>  void intel_gvt_sanitize_options(struct drm_i915_private *dev_priv);
+>>>>>  void intel_gvt_resume(struct drm_i915_private *dev_priv);
+>>>>> +int intel_gvt_iterate_mmio_table(struct intel_gvt_mmio_table_iter *i=
+ter);
+>>>>>  #else
+>>>>>  static inline int intel_gvt_init(struct drm_i915_private *dev_priv)
+>>>>>  {
+>>>>> @@ -51,6 +62,16 @@ static inline void intel_gvt_sanitize_options(stru=
+ct drm_i915_private *dev_priv)
+>>>>>  static inline void intel_gvt_resume(struct drm_i915_private *dev_pri=
+v)
+>>>>>  {
+>>>>>  }
+>>>>> +
+>>>>> +unsigned long intel_gvt_get_device_type(struct drm_i915_private *i91=
+5)
+>>>>> +{
+>>>>> +	return 0;
+>>>>> +}
+>>>>
+>>>> The CONFIG_DRM_I915_GVT=3Dy counterpart for this is in mmio.h. Should =
+be
+>>>> both in the same header.
+>>>>
+>>>>> +
+>>>>> +int intel_gvt_iterate_mmio_table(struct intel_gvt_mmio_table_iter *i=
+ter)
+>>>>> +{
+>>>>> +	return 0;
+>>>>> +}
+>>>>>  #endif
+>>>>>=20=20
+>>>>>  #endif /* _INTEL_GVT_H_ */
+>>>>> diff --git a/drivers/gpu/drm/i915/intel_gvt_mmio_table.c b/drivers/gp=
+u/drm/i915/intel_gvt_mmio_table.c
+>>>>> new file mode 100644
+>>>>> index 000000000000..d29491a6d209
+>>>>> --- /dev/null
+>>>>> +++ b/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
+>>>>> @@ -0,0 +1,1290 @@
+>>>>> +// SPDX-License-Identifier: MIT
+>>>>> +/*
+>>>>> + * Copyright =C2=A9 2020 Intel Corporation
+>>>>> + */
+>>>>> +
+>>>>> +#include "i915_drv.h"
+>>>>> +#include "i915_reg.h"
+>>>>> +#include "display/vlv_dsi_pll_regs.h"
+>>>>> +#include "gt/intel_gt_regs.h"
+>>>>> +#include "intel_mchbar_regs.h"
+>>>>> +#include "i915_pvinfo.h"
+>>>>> +#include "intel_gvt.h"
+>>>>> +#include "gvt/gvt.h"
+>>>>
+>>>> Generally we have the include lists sorted.
+>>>>
+>>>> Other than the nitpicks above, the series is
+>>>>
+>>>> Acked-by: Jani Nikula <jani.nikula@intel.com>
+>>>>
+>>>>
+>>>> BR,
+>>>> Jani.
+>>>>
+>>>>
+>>>
+>>=20
+>
+
+--=20
+Jani Nikula, Intel Open Source Graphics Center
