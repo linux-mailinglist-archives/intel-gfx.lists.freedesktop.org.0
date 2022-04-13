@@ -1,45 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0EC34FEBCE
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Apr 2022 02:10:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0C944FEBFF
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Apr 2022 03:00:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E2B3810E809;
-	Wed, 13 Apr 2022 00:10:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D58D10E06D;
+	Wed, 13 Apr 2022 01:00:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from gandalf.ozlabs.org (mail.ozlabs.org
- [IPv6:2404:9400:2221:ea00::3])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA74210E809;
- Wed, 13 Apr 2022 00:10:16 +0000 (UTC)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4KdNJl28pNz4xLS;
- Wed, 13 Apr 2022 10:10:15 +1000 (AEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
- s=201702; t=1649808615;
- bh=EVFOUzA5JLcwY6/XtoHPpmTyw16RQs66BduNRGsxnto=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=hZmPURVpaqAizSN2J/qnu61+GG3pjrcIdSEY9iXhe0YiKNwG2UIq7x0Gyjp4s2/Av
- fO4a+VCShDMTG/PxIZXt0bsKvGYiEO988nv3ahbvj+nZzvpnRj//uwK3mYskAmLkHb
- rON07DYWhnU8zBBUHIi6ty803Ffv4RrkOQ28ThDw9v8Rus1aHch4xfjZ+5pw2s+noc
- PvoiN8CS86paQ7uYWJ/0LziOFcmXG42Dk/3nKODbLFokOWiE15NSrS1o7mxz8fWOfs
- szO8IC1AYAOLkquES6QRJ0tcB12p6sQV+8g26Y5fgTyPBEwVHyxJDQwlPAnPi582iY
- w/23HrAwhWcRg==
-Date: Wed, 13 Apr 2022 10:10:14 +1000
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Alex Deucher <alexdeucher@gmail.com>, Dave Airlie <airlied@linux.ie>
-Message-ID: <20220413101014.6b6c4db2@canb.auug.org.au>
-In-Reply-To: <20220406103405.299c06b9@canb.auug.org.au>
-References: <20220406103405.299c06b9@canb.auug.org.au>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2BCA310E050
+ for <intel-gfx@lists.freedesktop.org>; Wed, 13 Apr 2022 01:00:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1649811636; x=1681347636;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=9I5ZslJejqVjHqr7oZu6+47C6UzZDcMkiObJ/RlF1nA=;
+ b=ZT/WEZPzBttTP1pi8OxWu3y009hQDeEUwgQL8pE7AuLqy74ku+u9i/ag
+ saCR1Ihfg48oi25CJgSYKSBa6d9d6mJEaPc2RdH3guFigGoddahggBA+t
+ oqIFdCWDW4dKf6ZRuwAYHZUT6AsOiPlaPMSPFGxIXVMO+tkGOk3s+LBRo
+ MK3vT0yhA0vv9ESifzJ7sbA3tlBzCQMpxkGwj8Q9Un7RU+EcbzYImvZeT
+ zDSVBQFgV3xb6p1RABzyuP/sDoGtqtfp6sohMsADazq9Q+VizyPC5r8+c
+ V8f+xZFbXXW7yb23/cxLD7Hhyp91eZJUKctSuyamsd2n1EFK+AY5/Fiqs g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10315"; a="261390211"
+X-IronPort-AV: E=Sophos;i="5.90,255,1643702400"; d="scan'208";a="261390211"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Apr 2022 18:00:30 -0700
+X-IronPort-AV: E=Sophos;i="5.90,255,1643702400"; d="scan'208";a="526279399"
+Received: from anushasr-mobl6.jf.intel.com ([10.165.21.155])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Apr 2022 18:00:30 -0700
+From: Anusha Srivatsa <anusha.srivatsa@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 12 Apr 2022 17:57:07 -0700
+Message-Id: <20220413005707.3627314-1-anusha.srivatsa@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/W0BVo/W6EWR0DXAkkUO0Fz0";
- protocol="application/pgp-signature"; micalg=pgp-sha256
-Subject: Re: [Intel-gfx] linux-next: manual merge of the amdgpu tree with
- the drm-misc tree
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/dmc: Load DMC on DG2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,109 +53,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- DRI <dri-devel@lists.freedesktop.org>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Sig_/W0BVo/W6EWR0DXAkkUO0Fz0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+Add Support for DC states on Dg2.
 
-Hi all,
+Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display_power.c |  2 +-
+ drivers/gpu/drm/i915/display/intel_dmc.c           | 10 +++++++++-
+ 2 files changed, 10 insertions(+), 2 deletions(-)
 
-On Wed, 6 Apr 2022 10:34:05 +1000 Stephen Rothwell <sfr@canb.auug.org.au> w=
-rote:
->
-> Today's linux-next merge of the amdgpu tree got a conflict in:
->=20
->   drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
->=20
-> between commit:
->=20
->   fee2ede15542 ("drm/ttm: rework bulk move handling v5")
->=20
-> from the drm-misc tree and commit:
->=20
->   184a69ca4d41 ("drm/amdgpu: separate VM PT handling into amdgpu_vm_pt.c")
->=20
-> from the amdgpu tree.
->=20
-> I fixed it up (I used this file from the latter and added the following
-> patch) and can carry the fix as necessary. This is now fixed as far as
-> linux-next is concerned, but any non trivial conflicts should be mentioned
-> to your upstream maintainer when your tree is submitted for merging.
-> You may also want to consider cooperating with the maintainer of the
-> conflicting tree to minimise any particularly complex conflicts.
->=20
-> From: Stephen Rothwell <sfr@canb.auug.org.au>
-> Date: Wed, 6 Apr 2022 10:28:53 +1000
-> Subject: [PATCH] fix up for "drm/ttm: rework bulk move handling v5"
->=20
-> Signed-off-by: Stephen Rothwell <sfr@canb.auug.org.au>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c | 9 +++++++--
->  1 file changed, 7 insertions(+), 2 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c b/drivers/gpu/drm/=
-amd/amdgpu/amdgpu_vm_pt.c
-> index 958d7ed97882..a29933fa001f 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c
-> @@ -630,7 +630,14 @@ static void amdgpu_vm_pt_free(struct amdgpu_vm_bo_ba=
-se *entry)
-> =20
->  	if (!entry->bo)
->  		return;
-> +
->  	shadow =3D amdgpu_bo_shadowed(entry->bo);
-> +	if (shadow) {
-> +		ttm_bo_set_bulk_move(&shadow->tbo, NULL);
-> +		amdgpu_bo_unref(&shadow);
-> +	}
-> +
-> +	ttm_bo_set_bulk_move(&entry->bo->tbo, NULL);
->  	entry->bo->vm_bo =3D NULL;
->  	list_del(&entry->vm_status);
->  	amdgpu_bo_unref(&shadow);
-> @@ -653,8 +660,6 @@ static void amdgpu_vm_pt_free_dfs(struct amdgpu_devic=
-e *adev,
->  	struct amdgpu_vm_pt_cursor cursor;
->  	struct amdgpu_vm_bo_base *entry;
-> =20
-> -	vm->bulk_moveable =3D false;
-> -
->  	for_each_amdgpu_vm_pt_dfs_safe(adev, vm, start, cursor, entry)
->  		amdgpu_vm_pt_free(entry);
-> =20
-> --=20
-> 2.35.1
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+index 6a5695008f7c..5a0cab82a156 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+@@ -4770,7 +4770,7 @@ static u32 get_allowed_dc_mask(const struct drm_i915_private *dev_priv,
+ 	if (!HAS_DISPLAY(dev_priv))
+ 		return 0;
+ 
+-	if (IS_DG1(dev_priv))
++	if (IS_DG1(dev_priv) || IS_DG2(dev_priv))
+ 		max_dc = 3;
+ 	else if (DISPLAY_VER(dev_priv) >= 12)
+ 		max_dc = 4;
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
+index 257cf662f9f4..2f01aca4d981 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc.c
++++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+@@ -52,6 +52,10 @@
+ 
+ #define DISPLAY_VER12_DMC_MAX_FW_SIZE	ICL_DMC_MAX_FW_SIZE
+ 
++#define DG2_DMC_PATH			DMC_PATH(dg2, 2, 06)
++#define DG2_DMC_VERSION_REQUIRED	DMC_VERSION(2, 06)
++MODULE_FIRMWARE(DG2_DMC_PATH);
++
+ #define ADLP_DMC_PATH			DMC_PATH(adlp, 2, 16)
+ #define ADLP_DMC_VERSION_REQUIRED	DMC_VERSION(2, 16)
+ MODULE_FIRMWARE(ADLP_DMC_PATH);
+@@ -688,7 +692,11 @@ void intel_dmc_ucode_init(struct drm_i915_private *dev_priv)
+ 	 */
+ 	intel_dmc_runtime_pm_get(dev_priv);
+ 
+-	if (IS_ALDERLAKE_P(dev_priv)) {
++	if (IS_DG2(dev_priv)) {
++		dmc->fw_path = DG2_DMC_PATH;
++		dmc->required_version = DG2_DMC_VERSION_REQUIRED;
++		dmc->max_fw_size = DISPLAY_VER13_DMC_MAX_FW_SIZE;
++	} else if (IS_ALDERLAKE_P(dev_priv)) {
+ 		dmc->fw_path = ADLP_DMC_PATH;
+ 		dmc->required_version = ADLP_DMC_VERSION_REQUIRED;
+ 		dmc->max_fw_size = DISPLAY_VER13_DMC_MAX_FW_SIZE;
+-- 
+2.25.1
 
-This is now a conflict between the drm tree and the amdgpu tree.
-
---=20
-Cheers,
-Stephen Rothwell
-
---Sig_/W0BVo/W6EWR0DXAkkUO0Fz0
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmJWFOYACgkQAVBC80lX
-0GzHYQf/XJ/uqXCJmI1AIMq26uOLqPK6VhkK1DAd6t9xFJZM9ypVmQjTt/N42TwZ
-xKbjN0FTHuSJiPbe4/0K+5691bAFKDkxdnNGecK9qa1WiWpLtC6b+rTd6HMA2K/r
-APSeLxmpxjPEHFDyeEyxzLh+1IOt+tvHOetc+wSs1nXyQfPHjFpyoOvmEj94bW6h
-Pc/oxxdtIvIZOeKjP5dD0/d3B8vGLl0ph5zr4OXc2ojo7cgcZ6Ijm3zvRnN9xtsB
-hi0I6e2V+9lu20NMU4ryXp4iTr1aMYS4JuUvFDECuj1wuJ37N6vmccC4rt7IvbQI
-bvxsI7ECfG3h6bdwUdgYk5147a4dgw==
-=5tNt
------END PGP SIGNATURE-----
-
---Sig_/W0BVo/W6EWR0DXAkkUO0Fz0--
