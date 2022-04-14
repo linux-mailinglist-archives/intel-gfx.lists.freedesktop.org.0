@@ -2,50 +2,116 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE3CA500F68
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 Apr 2022 15:29:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D2FE3500FA2
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 Apr 2022 15:34:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3BE1D10FC55;
-	Thu, 14 Apr 2022 13:29:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D5D010FC76;
+	Thu, 14 Apr 2022 13:34:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 503BE10FBCC
- for <intel-gfx@lists.freedesktop.org>; Thu, 14 Apr 2022 13:29:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649942940; x=1681478940;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=HzEorRfEbtRPZEF9eu1eCKlSteVHZUnN2lGZw+nBx1M=;
- b=ntPWAS1XN57CPy9bFGorsTR5rg+RzDeShvttDjv5vlZXvQnSH7si6zIw
- N40WsaplSOPBkoew2FZFUYY9pehJvWgpEyWC0Lrg5WvUcOh0mkULXqGou
- xLn7V9UGxbrOTEyPELzv6UJhT9tQmwtVFi0HiMf8mdT44RNfcCPTGdetb
- eoYB0xPSygppNZ5Z4IFP1pJ/82WS9kgU/FFcxZgWRvaG8aJbSOhvEdse+
- KknYsXYvU62j4nJgH62QwAbTj0kpZrwtrxMWKWSJq/8xuPGEabu3lP8u0
- WjC//qxBw8RaEEWn5yQhuvZtN2RVsCIwv/h5R584/YG0VGvtk9mxes6EV Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10316"; a="262681073"
-X-IronPort-AV: E=Sophos;i="5.90,259,1643702400"; d="scan'208";a="262681073"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2022 06:28:59 -0700
-X-IronPort-AV: E=Sophos;i="5.90,259,1643702400"; d="scan'208";a="573796499"
-Received: from nplaweck-mobl.ger.corp.intel.com (HELO localhost)
- ([10.249.149.236])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2022 06:28:57 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ashutosh Dixit <ashutosh.dixit@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <8f667da9aa39452524abef1333226b645438d2cc.1649871650.git.ashutosh.dixit@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1649871650.git.ashutosh.dixit@intel.com>
- <8f667da9aa39452524abef1333226b645438d2cc.1649871650.git.ashutosh.dixit@intel.com>
-Date: Thu, 14 Apr 2022 16:28:57 +0300
-Message-ID: <87lew7eque.fsf@intel.com>
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2041.outbound.protection.outlook.com [40.107.243.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8682610FBF6;
+ Thu, 14 Apr 2022 13:34:34 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=OSaaH3qxyd+7gRVTw5dmRXRmDMYB8f+z0rfH7wux5OK6D7/qZ9Hw02BBWoNtt//f/M8qP/7X9mmmXhPjCDYASKWJNGNRzLL64HBL8igurOn99MvHmHMSnqWpruJjGKq4tRQFV6qiiKDfP1DFhK7Z98FBCt70gOHw9GHs4Y/EV3dHt4Y93w2nRP+nJGf/RyU8lWWGX8p0JPna9/eA0mqrh+OVQs5UOiz70ehxeiZg3sBHRImnXTnrNbMUSWbXi6nqP9wT9FoT8oOvhKi//1bMTj51ANPhHsttGkTIAC8v0J6vnlWxbQWxw8p/rT/3Lh3yHUZBeI6LscKIbnAiu/VgoA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=PXvfCH4+2Sz5ak1ezXi8XHJnmKDqbrzmEj/9hXGUqKo=;
+ b=n4NGh5ZDxNcMiD2aXDMmzN+rSLIzoum0hmc1PeE2pNtdiPaUUlBaLx7yfqsi5kRd6t0lnsBDeDObTU1DnZSSMXOrMSPMQhYG87xxhH/s0FgPfS24t9bUIpHnLeuNeQwQPy+AnjYM0TnHzFXUHyt05PgpzILJ+Gb19wNKaZLTktk8SdGf4zbGhVF/+AnMLtykcLTvr5Dxitt6ZSG5H6f7C9K7xM27QtYUSnlImd2Jin45iLHY3MgPlV3sxo488n5Db7elw/4u5ObRb5RGf3vQqHb8qGsMAzNcQcVigwTSbNdYsiE5IGh17RuB8EQu9HA6fpY/JqN3Ga/2CjdqTvN9Fw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=PXvfCH4+2Sz5ak1ezXi8XHJnmKDqbrzmEj/9hXGUqKo=;
+ b=FQbzE/GIuM1L8C76GS43UnLqugH9oUGZ00BuVLYX2+aJ2i07dlHGyZ3L1NRXojyn4QcwxWALvRBlMTzYxkqUbyU2+MbxJspF6DgnlbYN7KjhrChy0OswbuXVId2OouEJV52HxiNhBhXISEyX98xc6pdt4eRetaYhqwZ0jixXu/9RXh5v4j50oNmuo7KA4waQFEkntjp2hcA+38WLcMYALtB1vvcUVkRgyszAPtbXZJWhieRl7NwPpR0LwvuyJTnCUabhxX39bwnWACF/y3LV6uxacvqBW3XNpv2+jwom+g80TnyXTcY9us3KHgdFSqVpZRWxxgtw0cbWZ4Qno43/+g==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from MN2PR12MB4192.namprd12.prod.outlook.com (2603:10b6:208:1d5::15)
+ by MWHPR12MB1342.namprd12.prod.outlook.com (2603:10b6:300:e::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5144.29; Thu, 14 Apr
+ 2022 13:34:30 +0000
+Received: from MN2PR12MB4192.namprd12.prod.outlook.com
+ ([fe80::ec2d:9167:1b47:2db2]) by MN2PR12MB4192.namprd12.prod.outlook.com
+ ([fe80::ec2d:9167:1b47:2db2%5]) with mapi id 15.20.5164.020; Thu, 14 Apr 2022
+ 13:34:29 +0000
+Date: Thu, 14 Apr 2022 10:34:27 -0300
+From: Jason Gunthorpe <jgg@nvidia.com>
+To: "Wang, Zhi A" <zhi.a.wang@intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <20220414133427.GB2120790@nvidia.com>
+References: <20220411141403.86980-1-hch@lst.de>
+ <82c13d8e-1cb4-2873-86e9-16fd38e15b27@intel.com>
+ <20220413154642.GA28095@lst.de> <871qy1geko.fsf@intel.com>
+ <5af7726e-920e-603a-bad3-8adb09d2ba89@intel.com>
+ <20220413232053.GA2120790@nvidia.com>
+ <1c3aaab9-3bd4-95d4-9f9f-4be9e10e6516@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1c3aaab9-3bd4-95d4-9f9f-4be9e10e6516@intel.com>
+X-ClientProxiedBy: BL1PR13CA0028.namprd13.prod.outlook.com
+ (2603:10b6:208:256::33) To MN2PR12MB4192.namprd12.prod.outlook.com
+ (2603:10b6:208:1d5::15)
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 3/8] drm/i915/pcode: Extend pcode functions
- for multiple gt's
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 41d4e8e7-4fcd-4eb6-67a9-08da1e1b8099
+X-MS-TrafficTypeDiagnostic: MWHPR12MB1342:EE_
+X-Microsoft-Antispam-PRVS: <MWHPR12MB134208645FA91C049B3E47F1C2EF9@MWHPR12MB1342.namprd12.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: OgvaAgseRPnEIieXwAz/8wqFbUryM8cYKbIji6eXeIIDYuWhfzkxeZY5zyucgKP9PS3FpMWLBd3/7YbVVPUaI33sclPMRPIHu8EhOIiGzJ3qBrUjnR6a3KNdmLiIU4W5e6GjfI5ZvqGv2n8W8ayqyYV45IyGeMniKUvOIdplJzltKsC3YTsh5oYa/211c/IyuFka0Hy1l4KdDFLSZqPiNpE+p9nHFrf96CE5H610S9cJ0ems/XUzhoJXrsmKyV0UIUhSX2nBzsCRMpIHuQ+IWJ173TTQp5w5CX0jAfG3LRsqtvNFqy+BP+SqR6gH7GPfoU8r2gFLTKxRqHJS4AZS2utW3zvId94MBhl7y5df2vcUCawjhdCpu0ojOSG4JOvArnkOWDK31Yzw26kyWfObvtAhrnX3TWpwRz3nOWEK25tFofotO+O3Bu4vlmhHrcKvkaXHzfiEuC2IEF+FMPsqXPNMYbBETwsWSfE3DgAI7rs6Yq2jUhr88IHPIaCzjvWkhxZCmhf09k0kFwsWJS3AB2svyi0wfv/RvRxUm1wiJsISMcPkI3N+tkV+ea4pfggkwR2HmUhf5qG4UkAqBmkMrkxqa0tzhrctK0qPlF28QgDEwoNTmQv6WumcL1jdDVrOGLimeAu3NwpnJJPFEeQuaWQCcCA8m+mRb2FGdkfw2A5ddij+6HMIzUBJz8x5z7p1HRhyhb3x42vjATDPXuGWpY4BaE2TcvNWfGsZVtNCCOs=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN2PR12MB4192.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230001)(4636009)(366004)(33656002)(66476007)(66946007)(86362001)(110136005)(36756003)(8936002)(8676002)(1076003)(4326008)(2616005)(508600001)(5660300002)(6486002)(7416002)(66556008)(966005)(316002)(2906002)(54906003)(53546011)(6506007)(6512007)(38100700002)(26005)(83380400001)(186003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?XNKSw/maWdOGIjgQGk/cjbsRh9XzYfBm0mQR/l3uCtLVjwElZHuEMAXJmEqO?=
+ =?us-ascii?Q?kS2+kw+wpG9DJKYn2gGuVKajwlVkZ3lE7SK6TaAeyIWOb8cHFRql7adDVd++?=
+ =?us-ascii?Q?K7N6uJh1sdT1NMtvdZaBsptHTg1SFKywTtTdrjfWbV5eHv6nS1DrZ0/ANUMx?=
+ =?us-ascii?Q?0L6yudAf3n4My0fBeQahwbpm5eA8tYoBOF8ncTHCD8zLGW13Rb8hMUb51xVR?=
+ =?us-ascii?Q?uLpRXpWxlfZmV+A13LYUHB952IqWoY2oQEpUxPv2lbI21K7VzSmCV/5SIKCy?=
+ =?us-ascii?Q?7+KcztS5BAOsP7xe9S1Nun/o5HPyg6er8rEcKI1fsC44jwY42o/tUaIcMvaF?=
+ =?us-ascii?Q?kGO32lGcEPBUzKu2+qgyK3QNLhqWyFwNlvea26ATK1RsyQB1whR39Ae83j5q?=
+ =?us-ascii?Q?9wHdPo5hhUCM2W2pD5PEVOhLWCciQWDPeG8WnT1y2DIIR8hOIgeywHxSMDDx?=
+ =?us-ascii?Q?yOdRKTTBjEdtp6Sd44hevniS7dvWwL5jOZnw8JFfpnp6Q119Y7+VQN8XplPn?=
+ =?us-ascii?Q?t8qKj6MQCngIN71HWxbyeubhMSyqJUgrmfh1UhSvzXcdkQV1TdrtbDCHvta2?=
+ =?us-ascii?Q?2oOWayMLVN/TEMsK2PlTj4VGgUTGdsZHKQ1Gmn25731Rp1srp9vKxUm0YjtS?=
+ =?us-ascii?Q?peQnGarPFyzV42dI5DZvlqie07tYQ4KKSNa4vpDglW9pqy3gRcQt4rBrOHgD?=
+ =?us-ascii?Q?D6okGtu1W5Dx8iGCxo577nsnEfIMTX9K1QbCcqIxEckBmYFqZLFEJP5RTneC?=
+ =?us-ascii?Q?Sup6hjiTR5ET98jpJC814ZHl/NyaJR+UebFazGIADDh8mhfF5y9LAQ2Z5uZC?=
+ =?us-ascii?Q?RNpp6EIhDNHzY2Tx01cA9vEA011n0LyKTlXg2F+37mlShmWx+oyfjkxIrl1B?=
+ =?us-ascii?Q?utQFAMP5/DJ1eK395fcbTA07i+DM7KP5+GDcqvq0NY3oTYa5rTmkHtVNwf3v?=
+ =?us-ascii?Q?xxdq3ERWcM7e8qVtXGTtPxzJ00EFOP1/H7O3fKll0mmY8tGOniWH/wPHuUvS?=
+ =?us-ascii?Q?oX/vjxZ2Urvb8mftGDqX+0jQP0uBXoZE/5nVfLsHgvHNksRbllYBD2aPJse3?=
+ =?us-ascii?Q?27+55MPH+P3Ff5bUKqZVHR6FZZxs6PfZqQ/oADaCHbPwxsuErcL+v9l56IIy?=
+ =?us-ascii?Q?rymFuWuiSAm8K52YilXl9VRwUZgC/WhRaGJVeh1x6sRRKruWU2Mmxm5ailvb?=
+ =?us-ascii?Q?iAhE1U7yrHpaBzwbX+dvy7aQG61j8njrZllm3TLLe4F8ijydpESauf/V6TgH?=
+ =?us-ascii?Q?KDauxsIG0v0F14Qc+1couNYLvnZsqhYmdjn2un2tX7v/bAvtUCKqB7ND2x3r?=
+ =?us-ascii?Q?QPGLLhZAWcOJaXjlOmL948U3v01ICBWYdRfZuK3gxhW1VKgp7Le1RtJv7c05?=
+ =?us-ascii?Q?3xbL1OwlYLaLuPwMS1LUnkEbf0n6QhBdkh9ZQgzyc4AT5KYWkyscTcCK6H5c?=
+ =?us-ascii?Q?8Lag+gXBHr5YHfh+GTf+2y4S4O0Uq3O7MXPa5CGxpKMIeXRHLdQmsfFVyPCs?=
+ =?us-ascii?Q?vY5sH6vRN/rqIgJCgY+NbRVbLzORUI5Z5Dj8v2LE7tCUCFUhr1/NNYHmPBWV?=
+ =?us-ascii?Q?hdH12pindT70w4W9ep2HIqacrsIZu9UTqCJnoug67FizY2qUg+MJHrMd0eRg?=
+ =?us-ascii?Q?3I+ceRghOz1lg4Qo/lWn+/EDOq1/XbbWjmt3hvEaPp6U349kMZa0oSgBOrIe?=
+ =?us-ascii?Q?yE6pLiZW+aQnsE+ROlyU7QiFhbOD67hi1cSYgjVzRRG2QaTVu98vUDe9gxKE?=
+ =?us-ascii?Q?9cR3CWl9ZQ=3D=3D?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 41d4e8e7-4fcd-4eb6-67a9-08da1e1b8099
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB4192.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Apr 2022 13:34:29.8864 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 8fzD3RDhVYrmYHJHY/HGjFzVCS0tL+TY8bybsZqtlSvT9y3yihxcu1xdUTV6TGLm
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR12MB1342
+Subject: Re: [Intel-gfx] refactor the i915 GVT support and move to the
+ modern mdev API v3
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,279 +124,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "Vivi,
+ Rodrigo" <rodrigo.vivi@intel.com>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
+ Christoph Hellwig <hch@lst.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 13 Apr 2022, Ashutosh Dixit <ashutosh.dixit@intel.com> wrote:
-> Each gt contains an independent instance of pcode. Extend pcode functions
-> to interface with pcode on different gt's. Previous (GT0) pcode read/write
-> interfaces are preserved.
+On Thu, Apr 14, 2022 at 12:20:42PM +0000, Wang, Zhi A wrote:
+> On 4/13/22 11:20 PM, Jason Gunthorpe wrote:
+> > On Wed, Apr 13, 2022 at 11:13:06PM +0000, Wang, Zhi A wrote:
+> >> Hi folks:
+> >>
+> >> Thanks so much for the efforts. I prepared a branch which contains all our patches.The aim of the branch is for the VFIO maintainers to pull the whole bunch easily after the drm-intel-next got merged through drm (as one of the MMIO patches depends on a patch in drm-intel-next).
+> >>
+> >> I dropped patch 4 and patch 5 as they have been covered by Jani's patches. Some conflicts was solved.
+> >> QA is going to test it today. 
+> >>
+> >> You can find it here:
+> >>
+> >> git clone https://github.com/intel/gvt-linux -b for-christoph
+> > 
+> > There are alot of extra commits on there - is it possible to base this
+> > straight on rc1 not on some kind of existing DRM tree?
+> > 
+> > Why did you choose drm/i915/fbc: Call intel_fbc_activate() directly
+> > from frontbuffer flush  as a base?
+> > 
+> > Jason
+> > 
+> 
+> Hi Jason:
+> 
+> I updated the branch. You can check if those are what you are expecting. :)
 
-The big problem here is that this hard couples display code to gt code,
-while we're trying hard to go the opposite direction. It doesn't matter
-that the existing interfaces are preserved as wrappers when it relies on
-an intel_gt being available (via i915->gt0).
+This is better, except for the first commit:
 
-Note how 'git grep intel_gt -- drivers/gpu/drm/i915/display/' matches
-only 1 line.
+ [DON'T PULL] drm/i915/dmc: split out dmc registers to a separate file
+ THIS PATCH WILL GO THROUGH DRM-INTEL-NEXT TO UPSTREAM
 
+ Clean up the massive i915_reg.h a bit with this isolated set of
+ registers.
 
-BR,
-Jani.
+ v2: Remove stale comment (Lucas)
 
->
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Mike Ruhl <michael.j.ruhl@intel.com>
-> Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
-> ---
->  drivers/gpu/drm/i915/intel_pcode.c | 108 ++++++++++++++++-------------
->  drivers/gpu/drm/i915/intel_pcode.h |  27 ++++++--
->  2 files changed, 82 insertions(+), 53 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/intel_pcode.c b/drivers/gpu/drm/i915/intel_pcode.c
-> index ac727546868e..0cff212cc81b 100644
-> --- a/drivers/gpu/drm/i915/intel_pcode.c
-> +++ b/drivers/gpu/drm/i915/intel_pcode.c
-> @@ -6,6 +6,7 @@
->  #include "i915_drv.h"
->  #include "i915_reg.h"
->  #include "intel_pcode.h"
-> +#include "gt/intel_gt.h"
->  
->  static int gen6_check_mailbox_status(u32 mbox)
->  {
-> @@ -52,14 +53,14 @@ static int gen7_check_mailbox_status(u32 mbox)
->  	}
->  }
->  
-> -static int __snb_pcode_rw(struct drm_i915_private *i915, u32 mbox,
-> -			  u32 *val, u32 *val1,
-> -			  int fast_timeout_us, int slow_timeout_ms,
-> -			  bool is_read)
-> +static int __gt_pcode_rw(struct intel_gt *gt, u32 mbox,
-> +			 u32 *val, u32 *val1,
-> +			 int fast_timeout_us, int slow_timeout_ms,
-> +			 bool is_read)
->  {
-> -	struct intel_uncore *uncore = &i915->uncore;
-> +	struct intel_uncore *uncore = gt->uncore;
->  
-> -	lockdep_assert_held(&i915->sb_lock);
-> +	lockdep_assert_held(&gt->i915->sb_lock);
->  
->  	/*
->  	 * GEN6_PCODE_* are outside of the forcewake domain, we can use
-> @@ -88,60 +89,60 @@ static int __snb_pcode_rw(struct drm_i915_private *i915, u32 mbox,
->  	if (is_read && val1)
->  		*val1 = intel_uncore_read_fw(uncore, GEN6_PCODE_DATA1);
->  
-> -	if (GRAPHICS_VER(i915) > 6)
-> +	if (GRAPHICS_VER(gt->i915) > 6)
->  		return gen7_check_mailbox_status(mbox);
->  	else
->  		return gen6_check_mailbox_status(mbox);
->  }
->  
-> -int snb_pcode_read(struct drm_i915_private *i915, u32 mbox, u32 *val, u32 *val1)
-> +int intel_gt_pcode_read(struct intel_gt *gt, u32 mbox, u32 *val, u32 *val1)
->  {
->  	int err;
->  
-> -	mutex_lock(&i915->sb_lock);
-> -	err = __snb_pcode_rw(i915, mbox, val, val1, 500, 20, true);
-> -	mutex_unlock(&i915->sb_lock);
-> +	mutex_lock(&gt->i915->sb_lock);
-> +	err = __gt_pcode_rw(gt, mbox, val, val1, 500, 20, true);
-> +	mutex_unlock(&gt->i915->sb_lock);
->  
->  	if (err) {
-> -		drm_dbg(&i915->drm,
-> -			"warning: pcode (read from mbox %x) mailbox access failed for %ps: %d\n",
-> -			mbox, __builtin_return_address(0), err);
-> +		drm_dbg(&gt->i915->drm,
-> +			"gt %d: warning: pcode (read from mbox %x) mailbox access failed for %ps: %d\n",
-> +			gt->info.id, mbox, __builtin_return_address(0), err);
->  	}
->  
->  	return err;
->  }
->  
-> -int snb_pcode_write_timeout(struct drm_i915_private *i915, u32 mbox, u32 val,
-> -			    int fast_timeout_us, int slow_timeout_ms)
-> +int intel_gt_pcode_write_timeout(struct intel_gt *gt, u32 mbox, u32 val,
-> +				 int fast_timeout_us, int slow_timeout_ms)
->  {
->  	int err;
->  
-> -	mutex_lock(&i915->sb_lock);
-> -	err = __snb_pcode_rw(i915, mbox, &val, NULL,
-> -			     fast_timeout_us, slow_timeout_ms, false);
-> -	mutex_unlock(&i915->sb_lock);
-> +	mutex_lock(&gt->i915->sb_lock);
-> +	err = __gt_pcode_rw(gt, mbox, &val, NULL,
-> +			    fast_timeout_us, slow_timeout_ms, false);
-> +	mutex_unlock(&gt->i915->sb_lock);
->  
->  	if (err) {
-> -		drm_dbg(&i915->drm,
-> -			"warning: pcode (write of 0x%08x to mbox %x) mailbox access failed for %ps: %d\n",
-> -			val, mbox, __builtin_return_address(0), err);
-> +		drm_dbg(&gt->i915->drm,
-> +			"gt %d: warning: pcode (write of 0x%08x to mbox %x) mailbox access failed for %ps: %d\n",
-> +			gt->info.id, val, mbox, __builtin_return_address(0), err);
->  	}
->  
->  	return err;
->  }
->  
-> -static bool skl_pcode_try_request(struct drm_i915_private *i915, u32 mbox,
-> -				  u32 request, u32 reply_mask, u32 reply,
-> -				  u32 *status)
-> +static bool __gt_pcode_try_request(struct intel_gt *gt, u32 mbox,
-> +				   u32 request, u32 reply_mask, u32 reply,
-> +				   u32 *status)
->  {
-> -	*status = __snb_pcode_rw(i915, mbox, &request, NULL, 500, 0, true);
-> +	*status = __gt_pcode_rw(gt, mbox, &request, NULL, 500, 0, true);
->  
->  	return (*status == 0) && ((request & reply_mask) == reply);
->  }
->  
->  /**
-> - * skl_pcode_request - send PCODE request until acknowledgment
-> - * @i915: device private
-> + * intel_gt_pcode_request - send PCODE request until acknowledgment
-> + * @gt: gt
->   * @mbox: PCODE mailbox ID the request is targeted for
->   * @request: request ID
->   * @reply_mask: mask used to check for request acknowledgment
-> @@ -158,16 +159,16 @@ static bool skl_pcode_try_request(struct drm_i915_private *i915, u32 mbox,
->   * Returns 0 on success, %-ETIMEDOUT in case of a timeout, <0 in case of some
->   * other error as reported by PCODE.
->   */
-> -int skl_pcode_request(struct drm_i915_private *i915, u32 mbox, u32 request,
-> -		      u32 reply_mask, u32 reply, int timeout_base_ms)
-> +int intel_gt_pcode_request(struct intel_gt *gt, u32 mbox, u32 request,
-> +			   u32 reply_mask, u32 reply, int timeout_base_ms)
->  {
->  	u32 status;
->  	int ret;
->  
-> -	mutex_lock(&i915->sb_lock);
-> +	mutex_lock(&gt->i915->sb_lock);
->  
->  #define COND \
-> -	skl_pcode_try_request(i915, mbox, request, reply_mask, reply, &status)
-> +	__gt_pcode_try_request(gt, mbox, request, reply_mask, reply, &status)
->  
->  	/*
->  	 * Prime the PCODE by doing a request first. Normally it guarantees
-> @@ -193,35 +194,48 @@ int skl_pcode_request(struct drm_i915_private *i915, u32 mbox, u32 request,
->  	 * requests, and for any quirks of the PCODE firmware that delays
->  	 * the request completion.
->  	 */
-> -	drm_dbg_kms(&i915->drm,
-> +	drm_dbg_kms(&gt->i915->drm,
->  		    "PCODE timeout, retrying with preemption disabled\n");
-> -	drm_WARN_ON_ONCE(&i915->drm, timeout_base_ms > 3);
-> +	drm_WARN_ON_ONCE(&gt->i915->drm, timeout_base_ms > 3);
->  	preempt_disable();
->  	ret = wait_for_atomic(COND, 50);
->  	preempt_enable();
->  
->  out:
-> -	mutex_unlock(&i915->sb_lock);
-> +	mutex_unlock(&gt->i915->sb_lock);
->  	return status ? status : ret;
->  #undef COND
->  }
->  
-> +static int __gt_pcode_init(struct intel_gt *gt)
-> +{
-> +	int ret = intel_gt_pcode_request(gt, DG1_PCODE_STATUS,
-> +					 DG1_UNCORE_GET_INIT_STATUS,
-> +					 DG1_UNCORE_INIT_STATUS_COMPLETE,
-> +					 DG1_UNCORE_INIT_STATUS_COMPLETE, 180000);
-> +
-> +	drm_dbg(&gt->i915->drm, "gt %d: PCODE init status %d\n", gt->info.id, ret);
-> +
-> +	if (ret)
-> +		drm_err(&gt->i915->drm, "gt %d: Pcode did not report uncore initialization completion!\n",
-> +			gt->info.id);
-> +
-> +	return ret;
-> +}
-> +
->  int intel_pcode_init(struct drm_i915_private *i915)
->  {
-> -	int ret = 0;
-> +	struct intel_gt *gt;
-> +	int i, ret = 0;
->  
->  	if (!IS_DGFX(i915))
->  		return ret;
->  
-> -	ret = skl_pcode_request(i915, DG1_PCODE_STATUS,
-> -				DG1_UNCORE_GET_INIT_STATUS,
-> -				DG1_UNCORE_INIT_STATUS_COMPLETE,
-> -				DG1_UNCORE_INIT_STATUS_COMPLETE, 180000);
-> -
-> -	drm_dbg(&i915->drm, "PCODE init status %d\n", ret);
-> -
-> -	if (ret)
-> -		drm_err(&i915->drm, "Pcode did not report uncore initialization completion!\n");
-> +	for_each_gt(gt, i915, i) {
-> +		ret = __gt_pcode_init(gt);
-> +		if (ret)
-> +			return ret;
-> +	}
->  
-> -	return ret;
-> +	return 0;
->  }
-> diff --git a/drivers/gpu/drm/i915/intel_pcode.h b/drivers/gpu/drm/i915/intel_pcode.h
-> index 0962a17fac48..96c954ec91f9 100644
-> --- a/drivers/gpu/drm/i915/intel_pcode.h
-> +++ b/drivers/gpu/drm/i915/intel_pcode.h
-> @@ -8,16 +8,31 @@
->  
->  #include <linux/types.h>
->  
-> +struct intel_gt;
->  struct drm_i915_private;
->  
-> -int snb_pcode_read(struct drm_i915_private *i915, u32 mbox, u32 *val, u32 *val1);
-> -int snb_pcode_write_timeout(struct drm_i915_private *i915, u32 mbox, u32 val,
-> -			    int fast_timeout_us, int slow_timeout_ms);
-> -#define snb_pcode_write(i915, mbox, val)			\
-> +int intel_gt_pcode_read(struct intel_gt *gt, u32 mbox, u32 *val, u32 *val1);
-> +
-> +int intel_gt_pcode_write_timeout(struct intel_gt *gt, u32 mbox, u32 val,
-> +				 int fast_timeout_us, int slow_timeout_ms);
-> +
-> +#define intel_gt_pcode_write(gt, mbox, val) \
-> +	intel_gt_pcode_write_timeout(gt, mbox, val, 500, 0)
-> +
-> +int intel_gt_pcode_request(struct intel_gt *gt, u32 mbox, u32 request,
-> +			   u32 reply_mask, u32 reply, int timeout_base_ms);
-> +
-> +#define snb_pcode_read(i915, mbox, val, val1) \
-> +	intel_gt_pcode_read(&(i915)->gt0, mbox, val, val1)
-> +
-> +#define snb_pcode_write_timeout(i915, mbox, val, fast_timeout_us, slow_timeout_ms) \
-> +	intel_gt_pcode_write_timeout(&(i915)->gt0, mbox, val, fast_timeout_us, slow_timeout_ms)
-> +
-> +#define snb_pcode_write(i915, mbox, val) \
->  	snb_pcode_write_timeout(i915, mbox, val, 500, 0)
->  
-> -int skl_pcode_request(struct drm_i915_private *i915, u32 mbox, u32 request,
-> -		      u32 reply_mask, u32 reply, int timeout_base_ms);
-> +#define skl_pcode_request(i915, mbox, request, reply_mask, reply, timeout_base_ms) \
-> +	intel_gt_pcode_request(&(i915)->gt0, mbox, request, reply_mask, reply, timeout_base_ms)
->  
->  int intel_pcode_init(struct drm_i915_private *i915);
+Clean the commit message and send that as a proper PR to
+drm-intel-next, then everything else is OK.
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+Jason
