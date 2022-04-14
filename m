@@ -1,49 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58FFC501BF1
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 Apr 2022 21:29:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0345501BF2
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 Apr 2022 21:29:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7683210E2B4;
-	Thu, 14 Apr 2022 19:29:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 067BC10E284;
+	Thu, 14 Apr 2022 19:29:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 84AD910E230
- for <intel-gfx@lists.freedesktop.org>; Thu, 14 Apr 2022 19:29:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AF90C10E284
+ for <intel-gfx@lists.freedesktop.org>; Thu, 14 Apr 2022 19:29:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649964568; x=1681500568;
+ t=1649964569; x=1681500569;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=f1RtptW/eB+VXD/uy/33txufQYgO9SsgPC8EVo1NPIE=;
- b=VjeIUqILU7zIdUVx5ZhnuLGM4GBeHUpgRnn+QfHv2Gpt501nrOFX1Gx+
- BPEO4R4Zfyuk+LZBsEdIDYBI8JEYdm3VFhlinhuDHwWS1R89/coK5Xyx5
- 19uMTPixDoKA4h2J1tE4qamyBFaSdm/JbE6PHYsYckDBE/edxShJUVGft
- +sjupswAT1Uu+GI4B9ulGDEfpgk/XtWTN817HHUpyJT6ipgWL/bFyqh36
- U9DHifarwh7uk5Y0V7Nc56e/UEVx2YN6GRQNdaLtk4iZd3NDevo3nhdn7
- WtidvBvRyWjXRIeGzXioa7xZas277UDrpCUet4sYLXIjbWtGUa79zsvD6 A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10317"; a="263191996"
-X-IronPort-AV: E=Sophos;i="5.90,260,1643702400"; d="scan'208";a="263191996"
+ bh=ZF2/PHtfK1GxT/2LolrD2CSpVMLbSqinmkSNWWZJGck=;
+ b=IJCbAamCld7yJHnPqOEAZremEepwXeuFyISW0m8UqGoTvRor4y/nfRuH
+ aTIEVqQAtwr9xFEEuEplyot16rjDiJlz72t2aD1+KXAHz3IqnpXoo5W5q
+ soqpIh7vsprKEAhrNrmHm/a15xGNITWZlfh9Msh98Pc1TeNQpKloQs6Wc
+ Raqbu/NJ/3Aska7Oe2ewBc4QYnl/mDqhX1HypxEUMflZ1WFvfEo9Vr1TA
+ C29fU2i7S1mo7Z7+s7bVbkxU0CxLzQMSYg0+sOrlEfZYRvc40LfcBbj5R
+ 2zJV48J+VpTGeG5gCmpWVm0/cS4UEE4Dj6+RuMsMSptMEW8QmapR/+kpx g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10317"; a="263191998"
+X-IronPort-AV: E=Sophos;i="5.90,260,1643702400"; d="scan'208";a="263191998"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2022 12:29:28 -0700
-X-IronPort-AV: E=Sophos;i="5.90,260,1643702400"; d="scan'208";a="573960182"
+ 14 Apr 2022 12:29:29 -0700
+X-IronPort-AV: E=Sophos;i="5.90,260,1643702400"; d="scan'208";a="573960186"
 Received: from nirmoyda-desk.igk.intel.com ([10.102.13.19])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2022 12:29:27 -0700
+ 14 Apr 2022 12:29:28 -0700
 From: Nirmoy Das <nirmoy.das@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 14 Apr 2022 20:31:46 +0200
-Message-Id: <20220414183148.15884-2-nirmoy.das@intel.com>
+Date: Thu, 14 Apr 2022 20:31:47 +0200
+Message-Id: <20220414183148.15884-3-nirmoy.das@intel.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220414183148.15884-1-nirmoy.das@intel.com>
 References: <20220414183148.15884-1-nirmoy.das@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 1/2] ALSA: core: Add snd_card_free_on_error()
- helper
+Subject: [Intel-gfx] [PATCH v2] ALSA: hda: handle UAF at probe error
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,98 +58,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Takashi Iwai <tiwai@suse.de>
+Call snd_card_free_on_error() on probe error instead of
+calling snd_card_free() which should handle devres call orders.
 
-This is a small helper function to handle the error path more easily
-when an error happens during the probe for the device with the
-device-managed card.  Since devres releases in the reverser order of
-the creations, usually snd_card_free() gets called at the last in the
-probe error path unless it already reached snd_card_register() calls.
-Due to this nature, when a driver expects the resource releases in
-card->private_free, this might be called too lately.
-
-As a workaround, one should call the probe like:
-
- static int __some_probe(...) { // do real probe.... }
-
- static int some_probe(...)
- {
-	return snd_card_free_on_error(dev, __some_probe(dev, ...));
- }
-
-so that the snd_card_free() is called explicitly at the beginning of
-the error path from the probe.
-
-This function will be used in the upcoming fixes to address the
-regressions by devres usages.
-
+Issues: https://gitlab.freedesktop.org/drm/intel/-/issues/5701
 Fixes: e8ad415b7a55 ("ALSA: core: Add managed card creation")
-Cc: <stable@vger.kernel.org>
-Link: https://lore.kernel.org/r/20220412093141.8008-2-tiwai@suse.de
-Signed-off-by: Takashi Iwai <tiwai@suse.de>
+Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
 ---
- include/sound/core.h |  1 +
- sound/core/init.c    | 28 ++++++++++++++++++++++++++++
- 2 files changed, 29 insertions(+)
+ sound/pci/hda/hda_intel.c | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
-diff --git a/include/sound/core.h b/include/sound/core.h
-index b7e9b58d3c78..6d4cc49584c6 100644
---- a/include/sound/core.h
-+++ b/include/sound/core.h
-@@ -284,6 +284,7 @@ int snd_card_disconnect(struct snd_card *card);
- void snd_card_disconnect_sync(struct snd_card *card);
- int snd_card_free(struct snd_card *card);
- int snd_card_free_when_closed(struct snd_card *card);
-+int snd_card_free_on_error(struct device *dev, int ret);
- void snd_card_set_id(struct snd_card *card, const char *id);
- int snd_card_register(struct snd_card *card);
- int snd_card_info_init(void);
-diff --git a/sound/core/init.c b/sound/core/init.c
-index 31ba7024e3ad..726a8353201f 100644
---- a/sound/core/init.c
-+++ b/sound/core/init.c
-@@ -209,6 +209,12 @@ static void __snd_card_release(struct device *dev, void *data)
-  * snd_card_register(), the very first devres action to call snd_card_free()
-  * is added automatically.  In that way, the resource disconnection is assured
-  * at first, then released in the expected order.
-+ *
-+ * If an error happens at the probe before snd_card_register() is called and
-+ * there have been other devres resources, you'd need to free the card manually
-+ * via snd_card_free() call in the error; otherwise it may lead to UAF due to
-+ * devres call orders.  You can use snd_card_free_on_error() helper for
-+ * handling it more easily.
-  */
- int snd_devm_card_new(struct device *parent, int idx, const char *xid,
- 		      struct module *module, size_t extra_size,
-@@ -235,6 +241,28 @@ int snd_devm_card_new(struct device *parent, int idx, const char *xid,
+diff --git a/sound/pci/hda/hda_intel.c b/sound/pci/hda/hda_intel.c
+index 82a45f2b31c4..eb4228c9e37f 100644
+--- a/sound/pci/hda/hda_intel.c
++++ b/sound/pci/hda/hda_intel.c
+@@ -1730,7 +1730,9 @@ static void azx_check_snoop_available(struct azx *chip)
+ static void azx_probe_work(struct work_struct *work)
+ {
+ 	struct hda_intel *hda = container_of(work, struct hda_intel, probe_work.work);
+-	azx_probe_continue(&hda->chip);
++	struct azx *chip = &hda->chip;
++
++	snd_card_free_on_error(&chip->pci->dev, azx_probe_continue(chip));
  }
- EXPORT_SYMBOL_GPL(snd_devm_card_new);
  
-+/**
-+ * snd_card_free_on_error - a small helper for handling devm probe errors
-+ * @dev: the managed device object
-+ * @ret: the return code from the probe callback
-+ *
-+ * This function handles the explicit snd_card_free() call at the error from
-+ * the probe callback.  It's just a small helper for simplifying the error
-+ * handling with the managed devices.
-+ */
-+int snd_card_free_on_error(struct device *dev, int ret)
-+{
-+	struct snd_card *card;
-+
-+	if (!ret)
-+		return 0;
-+	card = devres_find(dev, __snd_card_release, NULL, NULL);
-+	if (card)
-+		snd_card_free(card);
-+	return ret;
-+}
-+EXPORT_SYMBOL_GPL(snd_card_free_on_error);
-+
- static int snd_card_init(struct snd_card *card, struct device *parent,
- 			 int idx, const char *xid, struct module *module,
- 			 size_t extra_size)
+ static int default_bdl_pos_adj(struct azx *chip)
+@@ -2028,7 +2030,7 @@ static void azx_firmware_cb(const struct firmware *fw, void *context)
+ 		dev_err(card->dev, "Cannot load firmware, continue without patching\n");
+ 	if (!chip->disabled) {
+ 		/* continue probing */
+-		azx_probe_continue(chip);
++		snd_card_free_on_error(&chip->pci->dev, azx_probe_continue(chip));
+ 	}
+ }
+ #endif
+@@ -2338,7 +2340,6 @@ static int azx_probe_continue(struct azx *chip)
+ out_free:
+ 	if (err < 0) {
+ 		pci_set_drvdata(pci, NULL);
+-		snd_card_free(chip->card);
+ 		return err;
+ 	}
+ 
 -- 
 2.35.1
 
