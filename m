@@ -2,32 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 652C25011E8
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 Apr 2022 17:03:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BD38C501233
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 Apr 2022 17:07:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 78C0E10FCB9;
-	Thu, 14 Apr 2022 15:03:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7889410FEF7;
+	Thu, 14 Apr 2022 15:07:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id B3B8110FC5E;
- Thu, 14 Apr 2022 15:03:24 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B26F0AADDE;
- Thu, 14 Apr 2022 15:03:24 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B77210FEAB;
+ Thu, 14 Apr 2022 15:07:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1649948838; x=1681484838;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=tq6g9TUYU6cilRnhCVU8XsklaIbrEZocMrSoAwf2ldk=;
+ b=B3KCnMy5QYhnOriVR1zpkUDMRanfvWFugv0zGtBfGYgPd6Z3uxYESK/e
+ UMRycdXPXRiYaZ9mSKSQK6eHon/Twawu3QXkKnvbpYy7F+VTWv7CsvEyt
+ NnDlSi30g+m/l/walm+FDIi/wgsOvuC0eKGy1bCd32KIhb2WU9p9mGmOW
+ +sktXo9DmvtlOAOH8+1WWfHbsrxwl7etOIqOsQ2aGMiR9NuqSYx3Ob6Q2
+ GlqqiBi493i4d5Jtsya8+i5f9j0oZJqhML/mMvM5f8NNPXlVjCWWK1fRZ
+ AgAtByIveZdmmfWiSDGlZp147OWOs/X9gCWpAS0EB5W89hUinTQq2vUHY w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10317"; a="260545820"
+X-IronPort-AV: E=Sophos;i="5.90,260,1643702400"; d="scan'208";a="260545820"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Apr 2022 08:07:06 -0700
+X-IronPort-AV: E=Sophos;i="5.90,260,1643702400"; d="scan'208";a="552718728"
+Received: from nplaweck-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.249.149.236])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Apr 2022 08:07:03 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: dri-devel@lists.freedesktop.org
+Date: Thu, 14 Apr 2022 18:06:43 +0300
+Message-Id: <cover.1649948562.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tejas Upadhyay" <tejaskumarx.surendrakumar.upadhyay@intel.com>
-Date: Thu, 14 Apr 2022 15:03:24 -0000
-Message-ID: <164994860472.1348.2570026396123803084@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220414140626.2810550-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
-In-Reply-To: <20220414140626.2810550-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?drm/i915/rpl-p=3A_Add_PCI_IDs?=
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 00/19] drm/edid: CEA data block iterators,
+ and more
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,21 +57,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Get back to the CEA data block iterator stuff now that a bunch of prep
+work has landed.
 
-Series: drm/i915/rpl-p: Add PCI IDs
-URL   : https://patchwork.freedesktop.org/series/102701/
-State : warning
+My git repo at [1], branch edid-hfeeodb-2022-04-14, contains where this
+is all headed after this.
 
-== Summary ==
+[1] https://cgit.freedesktop.org/~jani/drm/log/?h=edid-hfeeodb-2022-04-14
 
-Error: dim sparse failed
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
+Jani Nikula (18):
+  drm/edid: reset display info in drm_add_edid_modes() for NULL edid
+  drm/edid: clean up CTA data block tag definitions
+  drm/edid: add iterator for EDID base and extension blocks
+  drm/edid: add iterator for CTA data blocks
+  drm/edid: clean up cea_db_is_*() functions
+  drm/edid: convert add_cea_modes() to use cea db iter
+  drm/edid: convert drm_edid_to_speaker_allocation() to use cea db iter
+  drm/edid: convert drm_edid_to_sad() to use cea db iter
+  drm/edid: convert drm_detect_hdmi_monitor() to use cea db iter
+  drm/edid: convert drm_detect_monitor_audio() to use cea db iter
+  drm/edid: convert drm_parse_cea_ext() to use cea db iter
+  drm/edid: convert drm_edid_to_eld() to use cea db iter
+  drm/edid: sunset the old unused cea data block iterators
+  drm/edid: restore some type safety to cea_db_*() functions
+  drm/edid: detect basic audio in all CEA extensions
+  drm/edid: detect color formats and CTA revision in all CTA extensions
+  drm/edid: skip CTA extension scan in drm_edid_to_eld() just for CTA
+    rev
+  drm/edid: sunset drm_find_cea_extension()
 
+Lee Shawn C (1):
+  drm/edid: check for HF-SCDB block
+
+ drivers/gpu/drm/drm_edid.c | 760 +++++++++++++++++++++----------------
+ 1 file changed, 438 insertions(+), 322 deletions(-)
+
+-- 
+2.30.2
 
