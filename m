@@ -2,57 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30DDC500FD6
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 Apr 2022 16:05:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BF1C500FE1
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 Apr 2022 16:19:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E009610FDF0;
-	Thu, 14 Apr 2022 14:05:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1CB2D10ECC9;
+	Thu, 14 Apr 2022 14:19:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 14E9D10FDEE;
- Thu, 14 Apr 2022 14:05:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C7DAC10ECC9
+ for <intel-gfx@lists.freedesktop.org>; Thu, 14 Apr 2022 14:18:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649945107; x=1681481107;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=89/dz+Osr1QwvheHjAyZOBd+b+PSggqKY7BVPhCMc/4=;
- b=eA+DqHzkbwEGDr9oMrdcLg8Ne9+uyzt+Okkto6dN10JwAIRzBvcqNSxM
- Pr2mmsB9a+07W/W8PGVcyVvvWq7A2WXHi0WAyYx7MWNU0xJyxkbDyzoX6
- jHrVSjTVSChgzitQAZ6EWvBo1c4QpfSucrkLOGcCb4IcPii3WdAha8bK0
- 2/ItcRCIUrgU/u/GBeALrT+1lBeE2KFuusKZlXfHTwFugsPRRftRChpJ9
- yrUcLRb3G4QJM6gGCERZBw1zpyUlkCsZsWrmq3kCZXnekQLhcSthmZi6o
- S1Xxt83wx3x+JRE09/yYSSAZayoouJA5oM/LvsfQpknTUz+mb8b+1yhen w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10316"; a="242868470"
-X-IronPort-AV: E=Sophos;i="5.90,259,1643702400"; d="scan'208";a="242868470"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ t=1649945939; x=1681481939;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=rFxQumPywDUi6sZ1MzazXbsnwmxOnlORCk61qat2kBc=;
+ b=UdBF0O1F82ElWQkh50VznkXl9IgbkPfjMEAmYXththeiWMw8m+FJ0IMn
+ 8jxhY1Ou2psVPAzvBSZfG5RhdezHRlGFO4IuSQZv7UMbiEJxVBty7peFd
+ w+HsRt+8c0izErrZe+W8iMybH58xgFgeeyEVNPwAvWVAyPM27RyhyLGNJ
+ ePGUJ8Axfk4/HVxpMB6J4ilX3O+DwHh71EXm6P6KB3o7gBGPOnzSSg7S5
+ zHxb4YVx4zgxfl4O0Pj5hXblzId0++f5RfIksB4sSKs/RqCL9tegEUPkm
+ UKB9RbVTUmwqxJdJ0D5DJ0GjJng7zlk6QJMtdeaYWhHvcgsemzJP65cd2 Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10317"; a="242871469"
+X-IronPort-AV: E=Sophos;i="5.90,259,1643702400"; d="scan'208";a="242871469"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2022 07:05:06 -0700
-X-IronPort-AV: E=Sophos;i="5.90,259,1643702400"; d="scan'208";a="645634913"
-Received: from aviljane-mobl.ger.corp.intel.com (HELO [10.249.254.86])
- ([10.249.254.86])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2022 07:05:03 -0700
-Message-ID: <07e5b1dc442e0b318ee0314f90a433216ed38dcb.camel@linux.intel.com>
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Robert Beckett <bob.beckett@collabora.com>, 
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, Jani
- Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>,  Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, David Airlie
- <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>
-Date: Thu, 14 Apr 2022 16:05:00 +0200
-In-Reply-To: <20220412151838.1298956-5-bob.beckett@collabora.com>
-References: <20220412151838.1298956-1-bob.beckett@collabora.com>
- <20220412151838.1298956-5-bob.beckett@collabora.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4 (3.40.4-3.fc34) 
+ 14 Apr 2022 07:18:59 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,259,1643702400"; d="scan'208";a="526932175"
+Received: from tejas-system-product-name.iind.intel.com ([10.145.162.130])
+ by orsmga002.jf.intel.com with ESMTP; 14 Apr 2022 07:18:57 -0700
+From: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 14 Apr 2022 19:36:26 +0530
+Message-Id: <20220414140626.2810550-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v2 4/5] drm/i915: ttm backend dont provide
- mmap_offset for kernel buffers
+Subject: [Intel-gfx] [PATCH] drm/i915/rpl-p: Add PCI IDs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,115 +53,130 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matthew Auld <matthew.auld@intel.com>, linux-kernel@vger.kernel.org
+Cc: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 2022-04-12 at 15:18 +0000, Robert Beckett wrote:
-> stolen/kernel buffers should not be mmapable by userland.
-> do not provide callbacks to facilitate this for these buffers.
-> 
-> Signed-off-by: Robert Beckett <bob.beckett@collabora.com>
-> ---
->  drivers/gpu/drm/i915/gem/i915_gem_ttm.c | 32 +++++++++++++++++++++--
-> --
->  1 file changed, 27 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> index a878910a563c..b20f81836c54 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> @@ -1092,8 +1092,8 @@ static void i915_ttm_unmap_virtual(struct
-> drm_i915_gem_object *obj)
->         ttm_bo_unmap_virtual(i915_gem_to_ttm(obj));
->  }
->  
-> -static const struct drm_i915_gem_object_ops i915_gem_ttm_obj_ops = {
-> -       .name = "i915_gem_object_ttm",
-> +static const struct drm_i915_gem_object_ops
-> i915_gem_ttm_user_obj_ops = {
-> +       .name = "i915_gem_object_ttm_user",
->         .flags = I915_GEM_OBJECT_IS_SHRINKABLE |
->                  I915_GEM_OBJECT_SELF_MANAGED_SHRINK_LIST,
->  
-> @@ -1111,6 +1111,21 @@ static const struct drm_i915_gem_object_ops
-> i915_gem_ttm_obj_ops = {
->         .mmap_ops = &vm_ops_ttm,
->  };
->  
-> +static const struct drm_i915_gem_object_ops
-> i915_gem_ttm_kern_obj_ops = {
-> +       .name = "i915_gem_object_ttm_kern",
-> +       .flags = I915_GEM_OBJECT_IS_SHRINKABLE |
-> +                I915_GEM_OBJECT_SELF_MANAGED_SHRINK_LIST,
-> +
-> +       .get_pages = i915_ttm_get_pages,
-> +       .put_pages = i915_ttm_put_pages,
-> +       .truncate = i915_ttm_truncate,
-> +       .shrink = i915_ttm_shrink,
-> +
-> +       .adjust_lru = i915_ttm_adjust_lru,
-> +       .delayed_free = i915_ttm_delayed_free,
-> +       .migrate = i915_ttm_migrate,
-> +};
+From: Matt Atwood <matthew.s.atwood@intel.com>
 
-Do we really need two different ops here?
+Adding initial PCI ids for RPL-P.
+RPL-P behaves identically to ADL-P from i915's point of view.
 
-Since if we don't have mmap ops, basically that tells GEM it should do
-the mmapping rather than TTM. 
+Bspec: 55376
+Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
+Signed-off-by: Madhumitha Tolakanahalli Pradeep <madhumitha.tolakanahalli.pradeep@intel.com>
+Signed-off-by: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
+---
+ arch/x86/kernel/early-quirks.c           | 1 +
+ drivers/gpu/drm/i915/i915_drv.h          | 4 +++-
+ drivers/gpu/drm/i915/i915_pci.c          | 1 +
+ drivers/gpu/drm/i915/intel_device_info.c | 9 +++++----
+ drivers/gpu/drm/i915/intel_device_info.h | 4 ++--
+ include/drm/i915_pciids.h                | 9 +++++++++
+ 6 files changed, 21 insertions(+), 7 deletions(-)
 
-That might of course come in handy for the shmem backend, but I don't
-fully follow why we need this for stolen.
-
-Also for the framebuffer handed over from BIOS to fbdev, Does that need
-mmapping and if so, how do we handle that?
-
-
-/Thomas
-
-
-
-
-> +
->  void i915_ttm_bo_destroy(struct ttm_buffer_object *bo)
->  {
->         struct drm_i915_gem_object *obj = i915_ttm_to_gem(bo);
-> @@ -1165,10 +1180,19 @@ int __i915_gem_ttm_object_init(struct
-> intel_memory_region *mem,
->                 .no_wait_gpu = false,
->         };
->         enum ttm_bo_type bo_type;
-> +       const struct drm_i915_gem_object_ops *ops;
->         int ret;
->  
->         drm_gem_private_object_init(&i915->drm, &obj->base, size);
-> -       i915_gem_object_init(obj, &i915_gem_ttm_obj_ops, &lock_class,
-> flags);
-> +
-> +       if (flags & I915_BO_ALLOC_USER &&
-> intel_region_to_ttm_type(mem) != I915_PL_STOLEN) {
-> +               bo_type = ttm_bo_type_device;
-> +               ops = &i915_gem_ttm_user_obj_ops;
-> +       } else {
-> +               bo_type = ttm_bo_type_kernel;
-> +               ops = &i915_gem_ttm_kern_obj_ops;
-> +       }
-> +       i915_gem_object_init(obj, ops, &lock_class, flags);
->  
->         obj->bo_offset = offset;
->  
-> @@ -1178,8 +1202,6 @@ int __i915_gem_ttm_object_init(struct
-> intel_memory_region *mem,
->  
->         INIT_RADIX_TREE(&obj->ttm.get_io_page.radix, GFP_KERNEL |
-> __GFP_NOWARN);
->         mutex_init(&obj->ttm.get_io_page.lock);
-> -       bo_type = (obj->flags & I915_BO_ALLOC_USER) ?
-> ttm_bo_type_device :
-> -               ttm_bo_type_kernel;
->  
->         obj->base.vma_node.driver_private = i915_gem_to_ttm(obj);
->  
-
+diff --git a/arch/x86/kernel/early-quirks.c b/arch/x86/kernel/early-quirks.c
+index 805596736e20..a6c1867fc7aa 100644
+--- a/arch/x86/kernel/early-quirks.c
++++ b/arch/x86/kernel/early-quirks.c
+@@ -558,6 +558,7 @@ static const struct pci_device_id intel_early_ids[] __initconst = {
+ 	INTEL_ADLP_IDS(&gen11_early_ops),
+ 	INTEL_ADLN_IDS(&gen11_early_ops),
+ 	INTEL_RPLS_IDS(&gen11_early_ops),
++	INTEL_RPLP_IDS(&gen11_early_ops),
+ };
+ 
+ struct resource intel_graphics_stolen_res __ro_after_init = DEFINE_RES_MEM(0, 0);
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 9274417cd87a..edc1f45f4161 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -1066,9 +1066,11 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+ #define IS_DG2_G12(dev_priv) \
+ 	IS_SUBPLATFORM(dev_priv, INTEL_DG2, INTEL_SUBPLATFORM_G12)
+ #define IS_ADLS_RPLS(dev_priv) \
+-	IS_SUBPLATFORM(dev_priv, INTEL_ALDERLAKE_S, INTEL_SUBPLATFORM_RPL_S)
++	IS_SUBPLATFORM(dev_priv, INTEL_ALDERLAKE_S, INTEL_SUBPLATFORM_RPL)
+ #define IS_ADLP_N(dev_priv) \
+ 	IS_SUBPLATFORM(dev_priv, INTEL_ALDERLAKE_P, INTEL_SUBPLATFORM_N)
++#define IS_ADLP_RPLP(dev_priv) \
++	IS_SUBPLATFORM(dev_priv, INTEL_ALDERLAKE_P, INTEL_SUBPLATFORM_RPL)
+ #define IS_HSW_EARLY_SDV(dev_priv) (IS_HASWELL(dev_priv) && \
+ 				    (INTEL_DEVID(dev_priv) & 0xFF00) == 0x0C00)
+ #define IS_BDW_ULT(dev_priv) \
+diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+index 736e04078f56..e606a3288d9b 100644
+--- a/drivers/gpu/drm/i915/i915_pci.c
++++ b/drivers/gpu/drm/i915/i915_pci.c
+@@ -1151,6 +1151,7 @@ static const struct pci_device_id pciidlist[] = {
+ 	INTEL_RPLS_IDS(&adl_s_info),
+ 	INTEL_DG2_IDS(&dg2_info),
+ 	INTEL_ATS_M_IDS(&ats_m_info),
++	INTEL_RPLP_IDS(&adl_p_info),
+ 	{0, 0, 0}
+ };
+ MODULE_DEVICE_TABLE(pci, pciidlist);
+diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
+index 5258687648e6..63e05cd15a90 100644
+--- a/drivers/gpu/drm/i915/intel_device_info.c
++++ b/drivers/gpu/drm/i915/intel_device_info.c
+@@ -181,8 +181,9 @@ static const u16 subplatform_n_ids[] = {
+ 	INTEL_ADLN_IDS(0),
+ };
+ 
+-static const u16 subplatform_rpls_ids[] = {
++static const u16 subplatform_rpl_ids[] = {
+ 	INTEL_RPLS_IDS(0),
++	INTEL_RPLP_IDS(0),
+ };
+ 
+ static const u16 subplatform_g10_ids[] = {
+@@ -241,9 +242,9 @@ void intel_device_info_subplatform_init(struct drm_i915_private *i915)
+ 	} else if (find_devid(devid, subplatform_n_ids,
+ 				ARRAY_SIZE(subplatform_n_ids))) {
+ 		mask = BIT(INTEL_SUBPLATFORM_N);
+-	} else if (find_devid(devid, subplatform_rpls_ids,
+-			      ARRAY_SIZE(subplatform_rpls_ids))) {
+-		mask = BIT(INTEL_SUBPLATFORM_RPL_S);
++	} else if (find_devid(devid, subplatform_rpl_ids,
++			      ARRAY_SIZE(subplatform_rpl_ids))) {
++		mask = BIT(INTEL_SUBPLATFORM_RPL);
+ 	} else if (find_devid(devid, subplatform_g10_ids,
+ 			      ARRAY_SIZE(subplatform_g10_ids))) {
+ 		mask = BIT(INTEL_SUBPLATFORM_G10);
+diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
+index f9b955810593..7704a9d2589c 100644
+--- a/drivers/gpu/drm/i915/intel_device_info.h
++++ b/drivers/gpu/drm/i915/intel_device_info.h
+@@ -114,8 +114,8 @@ enum intel_platform {
+ #define INTEL_SUBPLATFORM_G11	1
+ #define INTEL_SUBPLATFORM_G12	2
+ 
+-/* ADL-S */
+-#define INTEL_SUBPLATFORM_RPL_S	0
++/* ADL */
++#define INTEL_SUBPLATFORM_RPL	0
+ 
+ /* ADL-P */
+ #define INTEL_SUBPLATFORM_N    0
+diff --git a/include/drm/i915_pciids.h b/include/drm/i915_pciids.h
+index a2b81a5b324a..74ffa293d6e8 100644
+--- a/include/drm/i915_pciids.h
++++ b/include/drm/i915_pciids.h
+@@ -720,4 +720,13 @@
+ 	INTEL_ATS_M150_IDS(info), \
+ 	INTEL_ATS_M75_IDS(info)
+ 
++/*RPL-P */
++#define INTEL_RPLP_IDS(info) \
++	INTEL_VGA_DEVICE(0xA720, info), \
++	INTEL_VGA_DEVICE(0xA721, info), \
++	INTEL_VGA_DEVICE(0xA7A0, info), \
++	INTEL_VGA_DEVICE(0xA7A1, info), \
++	INTEL_VGA_DEVICE(0xA7A8, info), \
++	INTEL_VGA_DEVICE(0xA7A9, info)
++
+ #endif /* _I915_PCIIDS_H */
+-- 
+2.34.1
 
