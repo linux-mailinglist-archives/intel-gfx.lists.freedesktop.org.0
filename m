@@ -1,49 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05E0A5012A7
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 Apr 2022 17:09:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CADA5012AA
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 Apr 2022 17:09:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C21810FD6E;
-	Thu, 14 Apr 2022 15:09:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B0A6310FD77;
+	Thu, 14 Apr 2022 15:09:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E71BE10FD68
- for <intel-gfx@lists.freedesktop.org>; Thu, 14 Apr 2022 15:09:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AAF7410FD68
+ for <intel-gfx@lists.freedesktop.org>; Thu, 14 Apr 2022 15:09:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1649948991; x=1681484991;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=KHmwLJ9bfWm7ubnVmHzJu2uzuSSdZ+UlIl3GD9y4+6E=;
- b=ApxWaJSGCiWZ0OuxnFhR2AhdWJl7ZNnjGFLMQbVrX3G1WawwJxVWzjaV
- jsv49HKf+vbmDwftWntQ/Zz3XhRD1fruAhHZzPtowa2HLy08YC8RdMld4
- hWTnIyjfe1bSOFlyTpyOIR2xnaBzl8B/f3lMZbi5sQW3Jq5Q9AsKAbHhU
- sElGJ6/zyjAIbRKSZi+LisZOooJkUektIM7He0PndHmg7qu8plkb7Wsdy
- emgD4mmafwHnZujdsc4nhwkQE7/pO4M+Qs9hdR/4iAd4TApDqkwZXe/z1
- UZ2XWIRGN83FZDqgz+hrPFsJZnrxuTdlQzhstsNO6UI4vKld297irOQX7 Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10317"; a="250247555"
-X-IronPort-AV: E=Sophos;i="5.90,260,1643702400"; d="scan'208";a="250247555"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=qz4BET55BpbDnOsppq7gX+mCTP4VwS9T9oAHfQSAAfY=;
+ b=BZBqu7bxTAr8i6KUm33AfWALp3vMwSMh7Opi3zcjmuJOezFJask16Ybi
+ RaLCziXxCd/cs5xheNBSJKdjSjOCZmfwOulrMve72hNs6QTSLVt/msdFV
+ Q/7XsROsTo52MusdpaubGy+PSFvpOIgn2J/+M0XNR8mJAowJWNMQ1F0hl
+ 8WGykqVly2rJcuQOxSxhMHw+A5htFx9Qa93a/eFStPn9qT7N/0XRWVCYm
+ AU9D3EnxXLCl4emXiswTDxY7rs8veLZD/zUjUyUUba/SJp2CzboemwXYn
+ Bu7FEPAUNJ6QLHc6U/aVHJygKzOINFVGGyiE2A5mX+LYtVwyxsVldLGBt g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10317"; a="250247563"
+X-IronPort-AV: E=Sophos;i="5.90,260,1643702400"; d="scan'208";a="250247563"
 Received: from fmsmga006.fm.intel.com ([10.253.24.20])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2022 08:09:50 -0700
-X-IronPort-AV: E=Sophos;i="5.90,260,1643702400"; d="scan'208";a="803162445"
+ 14 Apr 2022 08:09:51 -0700
+X-IronPort-AV: E=Sophos;i="5.90,260,1643702400"; d="scan'208";a="803162459"
 Received: from hchuang-mobl3.amr.corp.intel.com (HELO
  josouza-mobl2.amr.corp.intel.com) ([10.212.30.222])
  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2022 08:09:48 -0700
+ 14 Apr 2022 08:09:50 -0700
 From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 14 Apr 2022 08:11:17 -0700
-Message-Id: <20220414151118.21980-1-jose.souza@intel.com>
+Date: Thu, 14 Apr 2022 08:11:18 -0700
+Message-Id: <20220414151118.21980-2-jose.souza@intel.com>
 X-Mailer: git-send-email 2.35.2
+In-Reply-To: <20220414151118.21980-1-jose.souza@intel.com>
+References: <20220414151118.21980-1-jose.souza@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 1/2] drm/i915/display/psr: Unset
- enable_psr2_sel_fetch if other checks in intel_psr2_config_valid() fails
+Subject: [Intel-gfx] [PATCH v3 2/2] drm/i915/display/psr: Clear more PSR
+ state during disable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,93 +61,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If any of the PSR2 checks after intel_psr2_sel_fetch_config_valid()
-fails, enable_psr2_sel_fetch will be kept enabled causing problems
-in the functions that only checks for it and not for has_psr2.
+After commit 805f04d42a6b ("drm/i915/display/psr: Use continuos full
+frame to handle frontbuffer invalidations") was merged we started to
+get some drm_WARN_ON(&dev_priv->drm, !(tmp & PSR2_MAN_TRK_CTL_ENABLE))
+in tests that are executed in pipe B.
 
-So here moving the check that do not depend on enable_psr2_sel_fetch
-and for the remaning ones jumping to a section that unset
-enable_psr2_sel_fetch in case of failure to support PSR2.
+This is probably due psr2_sel_fetch_cff_enabled being left set during
+PSR disable in the pipe A, so the PSR2_MAN_TRK_CTL write in
+intel_psr2_program_trans_man_trk_ctl() is skipped in pipe B and then
+we get the warning when actually enabling PSR after planes programing.
+We don't get such warnings when running tests in pipe A because
+PSR2_MAN_TRK_CTL is only cleared when enabling PSR2 with hardware
+tracking.
 
-Fixes: 6e43e276b8c9 ("drm/i915: Initial implementation of PSR2 selective fetch")
+Was not able to reproduce this issue but cleaning the PSR state
+disable will not harm anything at all.
+
+Fixes: 805f04d42a6b ("drm/i915/display/psr: Use continuos full frame to handle frontbuffer invalidations")
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/5634
 Cc: Jouni Högander <jouni.hogander@intel.com>
-Reviewed-by: Jouni Högander <jouni.hogander@intel.com>
 Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 38 +++++++++++++-----------
- 1 file changed, 21 insertions(+), 17 deletions(-)
+ drivers/gpu/drm/i915/display/intel_psr.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 5a55010a9b2f7..8ec7c161284be 100644
+index 8ec7c161284be..06db407e2749f 100644
 --- a/drivers/gpu/drm/i915/display/intel_psr.c
 +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -891,6 +891,20 @@ static bool intel_psr2_config_valid(struct intel_dp *intel_dp,
- 		return false;
- 	}
+@@ -1353,6 +1353,9 @@ static void intel_psr_disable_locked(struct intel_dp *intel_dp)
+ 		drm_dp_dpcd_writeb(&intel_dp->aux, DP_RECEIVER_ALPM_CONFIG, 0);
  
-+	/* Wa_16011303918:adl-p */
-+	if (crtc_state->vrr.enable &&
-+	    IS_ADLP_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0)) {
-+		drm_dbg_kms(&dev_priv->drm,
-+			    "PSR2 not enabled, not compatible with HW stepping + VRR\n");
-+		return false;
-+	}
-+
-+	if (!_compute_psr2_sdp_prior_scanline_indication(intel_dp, crtc_state)) {
-+		drm_dbg_kms(&dev_priv->drm,
-+			    "PSR2 not enabled, PSR2 SDP indication do not fit in hblank\n");
-+		return false;
-+	}
-+
- 	if (HAS_PSR2_SEL_FETCH(dev_priv)) {
- 		if (!intel_psr2_sel_fetch_config_valid(intel_dp, crtc_state) &&
- 		    !HAS_PSR_HW_TRACKING(dev_priv)) {
-@@ -904,12 +918,12 @@ static bool intel_psr2_config_valid(struct intel_dp *intel_dp,
- 	if (!crtc_state->enable_psr2_sel_fetch &&
- 	    IS_TGL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_C0)) {
- 		drm_dbg_kms(&dev_priv->drm, "PSR2 HW tracking is not supported this Display stepping\n");
--		return false;
-+		goto unsupported;
- 	}
- 
- 	if (!psr2_granularity_check(intel_dp, crtc_state)) {
- 		drm_dbg_kms(&dev_priv->drm, "PSR2 not enabled, SU granularity not compatible\n");
--		return false;
-+		goto unsupported;
- 	}
- 
- 	if (!crtc_state->enable_psr2_sel_fetch &&
-@@ -918,25 +932,15 @@ static bool intel_psr2_config_valid(struct intel_dp *intel_dp,
- 			    "PSR2 not enabled, resolution %dx%d > max supported %dx%d\n",
- 			    crtc_hdisplay, crtc_vdisplay,
- 			    psr_max_h, psr_max_v);
--		return false;
--	}
--
--	if (!_compute_psr2_sdp_prior_scanline_indication(intel_dp, crtc_state)) {
--		drm_dbg_kms(&dev_priv->drm,
--			    "PSR2 not enabled, PSR2 SDP indication do not fit in hblank\n");
--		return false;
--	}
--
--	/* Wa_16011303918:adl-p */
--	if (crtc_state->vrr.enable &&
--	    IS_ADLP_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0)) {
--		drm_dbg_kms(&dev_priv->drm,
--			    "PSR2 not enabled, not compatible with HW stepping + VRR\n");
--		return false;
-+		goto unsupported;
- 	}
- 
- 	tgl_dc3co_exitline_compute_config(intel_dp, crtc_state);
- 	return true;
-+
-+unsupported:
-+	crtc_state->enable_psr2_sel_fetch = false;
-+	return false;
+ 	intel_dp->psr.enabled = false;
++	intel_dp->psr.psr2_enabled = false;
++	intel_dp->psr.psr2_sel_fetch_enabled = false;
++	intel_dp->psr.psr2_sel_fetch_cff_enabled = false;
  }
  
- void intel_psr_compute_config(struct intel_dp *intel_dp,
+ /**
 -- 
 2.35.2
 
