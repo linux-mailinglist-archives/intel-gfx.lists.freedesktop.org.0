@@ -2,59 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A3B9500F2C
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 Apr 2022 15:23:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EE3CA500F68
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 Apr 2022 15:29:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8868D10FC1C;
-	Thu, 14 Apr 2022 13:23:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3BE1D10FC55;
+	Thu, 14 Apr 2022 13:29:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B6FB10FBDA;
- Thu, 14 Apr 2022 13:23:34 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 503BE10FBCC
+ for <intel-gfx@lists.freedesktop.org>; Thu, 14 Apr 2022 13:29:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649942614; x=1681478614;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=NO3sfIaXbtW/daMNfOs46Z/HBgbjixeiUp7yO1HtmUY=;
- b=KFGglyIPytLZGwL1JCmMBRRLXXlryP27prpz/Nl9rq8Boa30+jCz6/dk
- ceQvASQI7hhgZw9NUBRCtPMK6cnwHKFHdGknraQN02d/Y6ve4xNTD0O07
- O5l6lRmMueggYq3JWrPZYUOZ5BhTBcp2nN43RC2jbIm7g1pfqRu4+Bcjd
- igRS1GmeagiVHkzEnB+qsXc8RpR0F8+p+ofFS/t4C13pwRQUDCc2fNp3z
- ubuwZMI0sXnKt+R2V9MXlkWNbG/HFgZU8iWrOBi+YTDLp2jSA/ZszGEyX
- FCjur/iRBUCRgkm3z8Rev168ByERh8WUnQlQ+o313/+LH10vqbhlHsoGO w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10316"; a="349362642"
-X-IronPort-AV: E=Sophos;i="5.90,259,1643702400"; d="scan'208";a="349362642"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2022 06:23:33 -0700
-X-IronPort-AV: E=Sophos;i="5.90,259,1643702400"; d="scan'208";a="508404605"
-Received: from aviljane-mobl.ger.corp.intel.com (HELO [10.249.254.86])
- ([10.249.254.86])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2022 06:23:30 -0700
-Message-ID: <28042cc2-be62-eeb7-35a7-f2e33c43bad5@linux.intel.com>
-Date: Thu, 14 Apr 2022 15:23:26 +0200
+ t=1649942940; x=1681478940;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=HzEorRfEbtRPZEF9eu1eCKlSteVHZUnN2lGZw+nBx1M=;
+ b=ntPWAS1XN57CPy9bFGorsTR5rg+RzDeShvttDjv5vlZXvQnSH7si6zIw
+ N40WsaplSOPBkoew2FZFUYY9pehJvWgpEyWC0Lrg5WvUcOh0mkULXqGou
+ xLn7V9UGxbrOTEyPELzv6UJhT9tQmwtVFi0HiMf8mdT44RNfcCPTGdetb
+ eoYB0xPSygppNZ5Z4IFP1pJ/82WS9kgU/FFcxZgWRvaG8aJbSOhvEdse+
+ KknYsXYvU62j4nJgH62QwAbTj0kpZrwtrxMWKWSJq/8xuPGEabu3lP8u0
+ WjC//qxBw8RaEEWn5yQhuvZtN2RVsCIwv/h5R584/YG0VGvtk9mxes6EV Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10316"; a="262681073"
+X-IronPort-AV: E=Sophos;i="5.90,259,1643702400"; d="scan'208";a="262681073"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Apr 2022 06:28:59 -0700
+X-IronPort-AV: E=Sophos;i="5.90,259,1643702400"; d="scan'208";a="573796499"
+Received: from nplaweck-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.249.149.236])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Apr 2022 06:28:57 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ashutosh Dixit <ashutosh.dixit@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <8f667da9aa39452524abef1333226b645438d2cc.1649871650.git.ashutosh.dixit@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1649871650.git.ashutosh.dixit@intel.com>
+ <8f667da9aa39452524abef1333226b645438d2cc.1649871650.git.ashutosh.dixit@intel.com>
+Date: Thu, 14 Apr 2022 16:28:57 +0300
+Message-ID: <87lew7eque.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Content-Language: en-US
-To: Robert Beckett <bob.beckett@collabora.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>
-References: <20220412193817.2098308-1-bob.beckett@collabora.com>
- <20220412193817.2098308-2-bob.beckett@collabora.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20220412193817.2098308-2-bob.beckett@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v3 1/5] drm/i915: instantiate ttm ranger
- manager for stolen memory
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH 3/8] drm/i915/pcode: Extend pcode functions
+ for multiple gt's
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,120 +58,279 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matthew Auld <matthew.auld@intel.com>, linux-kernel@vger.kernel.org
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Wed, 13 Apr 2022, Ashutosh Dixit <ashutosh.dixit@intel.com> wrote:
+> Each gt contains an independent instance of pcode. Extend pcode functions
+> to interface with pcode on different gt's. Previous (GT0) pcode read/write
+> interfaces are preserved.
 
-On 4/12/22 21:38, Robert Beckett wrote:
-> prepare for ttm based stolen region by using ttm range manager
-> as the resource manager for stolen region.
+The big problem here is that this hard couples display code to gt code,
+while we're trying hard to go the opposite direction. It doesn't matter
+that the existing interfaces are preserved as wrappers when it relies on
+an intel_gt being available (via i915->gt0).
+
+Note how 'git grep intel_gt -- drivers/gpu/drm/i915/display/' matches
+only 1 line.
+
+
+BR,
+Jani.
+
 >
-> Signed-off-by: Robert Beckett <bob.beckett@collabora.com>
-
-LGTM.
-
-Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-
-
-
-
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: Mike Ruhl <michael.j.ruhl@intel.com>
+> Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 > ---
->   drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c |  6 ++--
->   drivers/gpu/drm/i915/intel_region_ttm.c      | 31 +++++++++++++++-----
->   2 files changed, 27 insertions(+), 10 deletions(-)
+>  drivers/gpu/drm/i915/intel_pcode.c | 108 ++++++++++++++++-------------
+>  drivers/gpu/drm/i915/intel_pcode.h |  27 ++++++--
+>  2 files changed, 82 insertions(+), 53 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
-> index a10716f4e717..358f8a1a30ce 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
-> @@ -58,11 +58,13 @@ i915_ttm_region(struct ttm_device *bdev, int ttm_mem_type)
->   	struct drm_i915_private *i915 = container_of(bdev, typeof(*i915), bdev);
->   
->   	/* There's some room for optimization here... */
-> -	GEM_BUG_ON(ttm_mem_type != I915_PL_SYSTEM &&
-> -		   ttm_mem_type < I915_PL_LMEM0);
-> +	GEM_BUG_ON(ttm_mem_type == I915_PL_GGTT);
+> diff --git a/drivers/gpu/drm/i915/intel_pcode.c b/drivers/gpu/drm/i915/intel_pcode.c
+> index ac727546868e..0cff212cc81b 100644
+> --- a/drivers/gpu/drm/i915/intel_pcode.c
+> +++ b/drivers/gpu/drm/i915/intel_pcode.c
+> @@ -6,6 +6,7 @@
+>  #include "i915_drv.h"
+>  #include "i915_reg.h"
+>  #include "intel_pcode.h"
+> +#include "gt/intel_gt.h"
+>  
+>  static int gen6_check_mailbox_status(u32 mbox)
+>  {
+> @@ -52,14 +53,14 @@ static int gen7_check_mailbox_status(u32 mbox)
+>  	}
+>  }
+>  
+> -static int __snb_pcode_rw(struct drm_i915_private *i915, u32 mbox,
+> -			  u32 *val, u32 *val1,
+> -			  int fast_timeout_us, int slow_timeout_ms,
+> -			  bool is_read)
+> +static int __gt_pcode_rw(struct intel_gt *gt, u32 mbox,
+> +			 u32 *val, u32 *val1,
+> +			 int fast_timeout_us, int slow_timeout_ms,
+> +			 bool is_read)
+>  {
+> -	struct intel_uncore *uncore = &i915->uncore;
+> +	struct intel_uncore *uncore = gt->uncore;
+>  
+> -	lockdep_assert_held(&i915->sb_lock);
+> +	lockdep_assert_held(&gt->i915->sb_lock);
+>  
+>  	/*
+>  	 * GEN6_PCODE_* are outside of the forcewake domain, we can use
+> @@ -88,60 +89,60 @@ static int __snb_pcode_rw(struct drm_i915_private *i915, u32 mbox,
+>  	if (is_read && val1)
+>  		*val1 = intel_uncore_read_fw(uncore, GEN6_PCODE_DATA1);
+>  
+> -	if (GRAPHICS_VER(i915) > 6)
+> +	if (GRAPHICS_VER(gt->i915) > 6)
+>  		return gen7_check_mailbox_status(mbox);
+>  	else
+>  		return gen6_check_mailbox_status(mbox);
+>  }
+>  
+> -int snb_pcode_read(struct drm_i915_private *i915, u32 mbox, u32 *val, u32 *val1)
+> +int intel_gt_pcode_read(struct intel_gt *gt, u32 mbox, u32 *val, u32 *val1)
+>  {
+>  	int err;
+>  
+> -	mutex_lock(&i915->sb_lock);
+> -	err = __snb_pcode_rw(i915, mbox, val, val1, 500, 20, true);
+> -	mutex_unlock(&i915->sb_lock);
+> +	mutex_lock(&gt->i915->sb_lock);
+> +	err = __gt_pcode_rw(gt, mbox, val, val1, 500, 20, true);
+> +	mutex_unlock(&gt->i915->sb_lock);
+>  
+>  	if (err) {
+> -		drm_dbg(&i915->drm,
+> -			"warning: pcode (read from mbox %x) mailbox access failed for %ps: %d\n",
+> -			mbox, __builtin_return_address(0), err);
+> +		drm_dbg(&gt->i915->drm,
+> +			"gt %d: warning: pcode (read from mbox %x) mailbox access failed for %ps: %d\n",
+> +			gt->info.id, mbox, __builtin_return_address(0), err);
+>  	}
+>  
+>  	return err;
+>  }
+>  
+> -int snb_pcode_write_timeout(struct drm_i915_private *i915, u32 mbox, u32 val,
+> -			    int fast_timeout_us, int slow_timeout_ms)
+> +int intel_gt_pcode_write_timeout(struct intel_gt *gt, u32 mbox, u32 val,
+> +				 int fast_timeout_us, int slow_timeout_ms)
+>  {
+>  	int err;
+>  
+> -	mutex_lock(&i915->sb_lock);
+> -	err = __snb_pcode_rw(i915, mbox, &val, NULL,
+> -			     fast_timeout_us, slow_timeout_ms, false);
+> -	mutex_unlock(&i915->sb_lock);
+> +	mutex_lock(&gt->i915->sb_lock);
+> +	err = __gt_pcode_rw(gt, mbox, &val, NULL,
+> +			    fast_timeout_us, slow_timeout_ms, false);
+> +	mutex_unlock(&gt->i915->sb_lock);
+>  
+>  	if (err) {
+> -		drm_dbg(&i915->drm,
+> -			"warning: pcode (write of 0x%08x to mbox %x) mailbox access failed for %ps: %d\n",
+> -			val, mbox, __builtin_return_address(0), err);
+> +		drm_dbg(&gt->i915->drm,
+> +			"gt %d: warning: pcode (write of 0x%08x to mbox %x) mailbox access failed for %ps: %d\n",
+> +			gt->info.id, val, mbox, __builtin_return_address(0), err);
+>  	}
+>  
+>  	return err;
+>  }
+>  
+> -static bool skl_pcode_try_request(struct drm_i915_private *i915, u32 mbox,
+> -				  u32 request, u32 reply_mask, u32 reply,
+> -				  u32 *status)
+> +static bool __gt_pcode_try_request(struct intel_gt *gt, u32 mbox,
+> +				   u32 request, u32 reply_mask, u32 reply,
+> +				   u32 *status)
+>  {
+> -	*status = __snb_pcode_rw(i915, mbox, &request, NULL, 500, 0, true);
+> +	*status = __gt_pcode_rw(gt, mbox, &request, NULL, 500, 0, true);
+>  
+>  	return (*status == 0) && ((request & reply_mask) == reply);
+>  }
+>  
+>  /**
+> - * skl_pcode_request - send PCODE request until acknowledgment
+> - * @i915: device private
+> + * intel_gt_pcode_request - send PCODE request until acknowledgment
+> + * @gt: gt
+>   * @mbox: PCODE mailbox ID the request is targeted for
+>   * @request: request ID
+>   * @reply_mask: mask used to check for request acknowledgment
+> @@ -158,16 +159,16 @@ static bool skl_pcode_try_request(struct drm_i915_private *i915, u32 mbox,
+>   * Returns 0 on success, %-ETIMEDOUT in case of a timeout, <0 in case of some
+>   * other error as reported by PCODE.
+>   */
+> -int skl_pcode_request(struct drm_i915_private *i915, u32 mbox, u32 request,
+> -		      u32 reply_mask, u32 reply, int timeout_base_ms)
+> +int intel_gt_pcode_request(struct intel_gt *gt, u32 mbox, u32 request,
+> +			   u32 reply_mask, u32 reply, int timeout_base_ms)
+>  {
+>  	u32 status;
+>  	int ret;
+>  
+> -	mutex_lock(&i915->sb_lock);
+> +	mutex_lock(&gt->i915->sb_lock);
+>  
+>  #define COND \
+> -	skl_pcode_try_request(i915, mbox, request, reply_mask, reply, &status)
+> +	__gt_pcode_try_request(gt, mbox, request, reply_mask, reply, &status)
+>  
+>  	/*
+>  	 * Prime the PCODE by doing a request first. Normally it guarantees
+> @@ -193,35 +194,48 @@ int skl_pcode_request(struct drm_i915_private *i915, u32 mbox, u32 request,
+>  	 * requests, and for any quirks of the PCODE firmware that delays
+>  	 * the request completion.
+>  	 */
+> -	drm_dbg_kms(&i915->drm,
+> +	drm_dbg_kms(&gt->i915->drm,
+>  		    "PCODE timeout, retrying with preemption disabled\n");
+> -	drm_WARN_ON_ONCE(&i915->drm, timeout_base_ms > 3);
+> +	drm_WARN_ON_ONCE(&gt->i915->drm, timeout_base_ms > 3);
+>  	preempt_disable();
+>  	ret = wait_for_atomic(COND, 50);
+>  	preempt_enable();
+>  
+>  out:
+> -	mutex_unlock(&i915->sb_lock);
+> +	mutex_unlock(&gt->i915->sb_lock);
+>  	return status ? status : ret;
+>  #undef COND
+>  }
+>  
+> +static int __gt_pcode_init(struct intel_gt *gt)
+> +{
+> +	int ret = intel_gt_pcode_request(gt, DG1_PCODE_STATUS,
+> +					 DG1_UNCORE_GET_INIT_STATUS,
+> +					 DG1_UNCORE_INIT_STATUS_COMPLETE,
+> +					 DG1_UNCORE_INIT_STATUS_COMPLETE, 180000);
 > +
->   	if (ttm_mem_type == I915_PL_SYSTEM)
->   		return intel_memory_region_lookup(i915, INTEL_MEMORY_SYSTEM,
->   						  0);
-> +	if (ttm_mem_type == I915_PL_STOLEN)
-> +		return i915->mm.stolen_region;
->   
->   	return intel_memory_region_lookup(i915, INTEL_MEMORY_LOCAL,
->   					  ttm_mem_type - I915_PL_LMEM0);
-> diff --git a/drivers/gpu/drm/i915/intel_region_ttm.c b/drivers/gpu/drm/i915/intel_region_ttm.c
-> index 62ff77445b01..7d49ea72e33f 100644
-> --- a/drivers/gpu/drm/i915/intel_region_ttm.c
-> +++ b/drivers/gpu/drm/i915/intel_region_ttm.c
-> @@ -49,7 +49,7 @@ void intel_region_ttm_device_fini(struct drm_i915_private *dev_priv)
->   
->   /*
->    * Map the i915 memory regions to TTM memory types. We use the
-> - * driver-private types for now, reserving TTM_PL_VRAM for stolen
-> + * driver-private types for now, reserving I915_PL_STOLEN for stolen
->    * memory and TTM_PL_TT for GGTT use if decided to implement this.
->    */
->   int intel_region_to_ttm_type(const struct intel_memory_region *mem)
-> @@ -58,11 +58,17 @@ int intel_region_to_ttm_type(const struct intel_memory_region *mem)
->   
->   	GEM_BUG_ON(mem->type != INTEL_MEMORY_LOCAL &&
->   		   mem->type != INTEL_MEMORY_MOCK &&
-> -		   mem->type != INTEL_MEMORY_SYSTEM);
-> +		   mem->type != INTEL_MEMORY_SYSTEM &&
-> +		   mem->type != INTEL_MEMORY_STOLEN_SYSTEM &&
-> +		   mem->type != INTEL_MEMORY_STOLEN_LOCAL);
->   
->   	if (mem->type == INTEL_MEMORY_SYSTEM)
->   		return TTM_PL_SYSTEM;
->   
-> +	if (mem->type == INTEL_MEMORY_STOLEN_SYSTEM ||
-> +	    mem->type == INTEL_MEMORY_STOLEN_LOCAL)
-> +		return I915_PL_STOLEN;
+> +	drm_dbg(&gt->i915->drm, "gt %d: PCODE init status %d\n", gt->info.id, ret);
 > +
->   	type = mem->instance + TTM_PL_PRIV;
->   	GEM_BUG_ON(type >= TTM_NUM_MEM_TYPES);
->   
-> @@ -86,10 +92,16 @@ int intel_region_ttm_init(struct intel_memory_region *mem)
->   	int mem_type = intel_region_to_ttm_type(mem);
->   	int ret;
->   
-> -	ret = i915_ttm_buddy_man_init(bdev, mem_type, false,
-> -				      resource_size(&mem->region),
-> -				      mem->io_size,
-> -				      mem->min_page_size, PAGE_SIZE);
-> +	if (mem_type == I915_PL_STOLEN) {
-> +		ret = ttm_range_man_init(bdev, mem_type, false,
-> +					 resource_size(&mem->region) >> PAGE_SHIFT);
-> +		mem->is_range_manager = true;
-> +	} else {
-> +		ret = i915_ttm_buddy_man_init(bdev, mem_type, false,
-> +					      resource_size(&mem->region),
-> +					      mem->io_size,
-> +					      mem->min_page_size, PAGE_SIZE);
+> +	if (ret)
+> +		drm_err(&gt->i915->drm, "gt %d: Pcode did not report uncore initialization completion!\n",
+> +			gt->info.id);
+> +
+> +	return ret;
+> +}
+> +
+>  int intel_pcode_init(struct drm_i915_private *i915)
+>  {
+> -	int ret = 0;
+> +	struct intel_gt *gt;
+> +	int i, ret = 0;
+>  
+>  	if (!IS_DGFX(i915))
+>  		return ret;
+>  
+> -	ret = skl_pcode_request(i915, DG1_PCODE_STATUS,
+> -				DG1_UNCORE_GET_INIT_STATUS,
+> -				DG1_UNCORE_INIT_STATUS_COMPLETE,
+> -				DG1_UNCORE_INIT_STATUS_COMPLETE, 180000);
+> -
+> -	drm_dbg(&i915->drm, "PCODE init status %d\n", ret);
+> -
+> -	if (ret)
+> -		drm_err(&i915->drm, "Pcode did not report uncore initialization completion!\n");
+> +	for_each_gt(gt, i915, i) {
+> +		ret = __gt_pcode_init(gt);
+> +		if (ret)
+> +			return ret;
 > +	}
->   	if (ret)
->   		return ret;
->   
-> @@ -109,6 +121,7 @@ int intel_region_ttm_init(struct intel_memory_region *mem)
->   int intel_region_ttm_fini(struct intel_memory_region *mem)
->   {
->   	struct ttm_resource_manager *man = mem->region_private;
-> +	int mem_type = intel_region_to_ttm_type(mem);
->   	int ret = -EBUSY;
->   	int count;
->   
-> @@ -139,8 +152,10 @@ int intel_region_ttm_fini(struct intel_memory_region *mem)
->   	if (ret || !man)
->   		return ret;
->   
-> -	ret = i915_ttm_buddy_man_fini(&mem->i915->bdev,
-> -				      intel_region_to_ttm_type(mem));
-> +	if (mem_type == I915_PL_STOLEN)
-> +		ret = ttm_range_man_fini(&mem->i915->bdev, mem_type);
-> +	else
-> +		ret = i915_ttm_buddy_man_fini(&mem->i915->bdev, mem_type);
->   	GEM_WARN_ON(ret);
->   	mem->region_private = NULL;
->   
+>  
+> -	return ret;
+> +	return 0;
+>  }
+> diff --git a/drivers/gpu/drm/i915/intel_pcode.h b/drivers/gpu/drm/i915/intel_pcode.h
+> index 0962a17fac48..96c954ec91f9 100644
+> --- a/drivers/gpu/drm/i915/intel_pcode.h
+> +++ b/drivers/gpu/drm/i915/intel_pcode.h
+> @@ -8,16 +8,31 @@
+>  
+>  #include <linux/types.h>
+>  
+> +struct intel_gt;
+>  struct drm_i915_private;
+>  
+> -int snb_pcode_read(struct drm_i915_private *i915, u32 mbox, u32 *val, u32 *val1);
+> -int snb_pcode_write_timeout(struct drm_i915_private *i915, u32 mbox, u32 val,
+> -			    int fast_timeout_us, int slow_timeout_ms);
+> -#define snb_pcode_write(i915, mbox, val)			\
+> +int intel_gt_pcode_read(struct intel_gt *gt, u32 mbox, u32 *val, u32 *val1);
+> +
+> +int intel_gt_pcode_write_timeout(struct intel_gt *gt, u32 mbox, u32 val,
+> +				 int fast_timeout_us, int slow_timeout_ms);
+> +
+> +#define intel_gt_pcode_write(gt, mbox, val) \
+> +	intel_gt_pcode_write_timeout(gt, mbox, val, 500, 0)
+> +
+> +int intel_gt_pcode_request(struct intel_gt *gt, u32 mbox, u32 request,
+> +			   u32 reply_mask, u32 reply, int timeout_base_ms);
+> +
+> +#define snb_pcode_read(i915, mbox, val, val1) \
+> +	intel_gt_pcode_read(&(i915)->gt0, mbox, val, val1)
+> +
+> +#define snb_pcode_write_timeout(i915, mbox, val, fast_timeout_us, slow_timeout_ms) \
+> +	intel_gt_pcode_write_timeout(&(i915)->gt0, mbox, val, fast_timeout_us, slow_timeout_ms)
+> +
+> +#define snb_pcode_write(i915, mbox, val) \
+>  	snb_pcode_write_timeout(i915, mbox, val, 500, 0)
+>  
+> -int skl_pcode_request(struct drm_i915_private *i915, u32 mbox, u32 request,
+> -		      u32 reply_mask, u32 reply, int timeout_base_ms);
+> +#define skl_pcode_request(i915, mbox, request, reply_mask, reply, timeout_base_ms) \
+> +	intel_gt_pcode_request(&(i915)->gt0, mbox, request, reply_mask, reply, timeout_base_ms)
+>  
+>  int intel_pcode_init(struct drm_i915_private *i915);
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
