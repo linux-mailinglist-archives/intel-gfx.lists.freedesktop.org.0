@@ -2,49 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CCC9501D26
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 Apr 2022 23:07:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 85CA6501D22
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 Apr 2022 23:07:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8AB6A10E409;
-	Thu, 14 Apr 2022 21:07:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6B95910E7B6;
+	Thu, 14 Apr 2022 21:07:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C1FF810E3D7
- for <intel-gfx@lists.freedesktop.org>; Thu, 14 Apr 2022 21:07:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 13A8010E7B6
+ for <intel-gfx@lists.freedesktop.org>; Thu, 14 Apr 2022 21:07:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649970441; x=1681506441;
+ t=1649970443; x=1681506443;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Fk3a54r4OlLIbfpg08R5rwE+2NijgySz/qvMoXMw1qs=;
- b=L3yjUnSPZ3nlr3mIj9XvxfCVr+W98yl3kYrM44jHe6aeq2mAhiLFfFM+
- woVCES4DkVqkkKs1LxJgW+CaAw7FzIeIH1ZMo4Xwa+RYQqj2jUlTWGEJ4
- vHDj+8Ts1J1S+dteGGDI7yMdd9jT8emQjIgZrxVR0UwwYc8LV269zxo3i
- kAI3/LdHiE1wByLc48SvjR+tavlsuScWhuaLs/y5WPOzu41Kh0xtCJAck
- NeQvyPqkiVas/W6aetGnEu0q47AcOeyxpD5lLlQuAT1u/bAJtF6NzVavs
- i04ak3RXUIunsDsz1i6NbGfISlTUGq/d8qYZBo6+SZJnJUfgy37w/i6sZ w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10317"; a="288089786"
-X-IronPort-AV: E=Sophos;i="5.90,260,1643702400"; d="scan'208";a="288089786"
+ bh=tYxdZwIxVT1funwZvVG2kHFRB6OI3Dg6+4J77W+2QFU=;
+ b=N3AWXnhhk1nA60eoeXodumh87I5b7bLwruBYe9SWhMywbNgIlszVrMYz
+ UoNlysryC7jaRmSiqJ0G01W3+xgQU6fOTaer4lSggt8PzWfMKvPkt6LBk
+ JDIwMe+rhMzAfH0fHPsghVNapsOou7k00C+OkZ2kEBeZqr5Atx2CEZfOM
+ H8dJdMaNe2lqO4sX+aQZ9nEHZn3qPLufM0d1JElar57zo/z8Hil+yJeNL
+ hrcG9ZbtTjBGa0dLSaZaIvPtB/XnMNSI2yAkYTrRcqeDIvGt7TQLXtIZr
+ +KWkCUkxT+9c71/6svweIlS5IrlB75ZFLkChQDDPi3QtBgX0/epZQ8pjI w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10317"; a="288089790"
+X-IronPort-AV: E=Sophos;i="5.90,260,1643702400"; d="scan'208";a="288089790"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2022 14:07:21 -0700
-X-IronPort-AV: E=Sophos;i="5.90,260,1643702400"; d="scan'208";a="527550425"
+ 14 Apr 2022 14:07:22 -0700
+X-IronPort-AV: E=Sophos;i="5.90,260,1643702400"; d="scan'208";a="527550433"
 Received: from ideak-desk.fi.intel.com ([10.237.72.175])
  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2022 14:07:20 -0700
+ 14 Apr 2022 14:07:21 -0700
 From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 15 Apr 2022 00:06:54 +0300
-Message-Id: <20220414210657.1785773-15-imre.deak@intel.com>
+Date: Fri, 15 Apr 2022 00:06:55 +0300
+Message-Id: <20220414210657.1785773-16-imre.deak@intel.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20220414210657.1785773-1-imre.deak@intel.com>
 References: <20220414210657.1785773-1-imre.deak@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [CI 15/18] drm/i915: Remove the aliasing of power
- domain enum values
+Subject: [Intel-gfx] [CI 16/18] drm/i915: Remove the ICL specific TBT power
+ domains
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,216 +60,94 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Aliasing the intel_display_power_domain enum values was required because
-of the u64 power domain mask size limit. This makes the dmesg/debugfs
-printouts of the domain names somewhat unclear, for instance domain
-names for port D are shown on D12+ platforms where the corresponding
-port is called TC1. Make this clearer by removing the aliasing which is
-possible after a previous patch converting the mask to a bitmap.
+The spec calls the ICL TBT AUX power well instances TBT1-4 (similarly to
+all later platforms), align the power domain names with the spec.
 
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 Reviewed-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- .../drm/i915/display/intel_display_power.c    | 84 +++++++++++++------
- .../drm/i915/display/intel_display_power.h    | 26 ++----
- 2 files changed, 67 insertions(+), 43 deletions(-)
+ .../gpu/drm/i915/display/intel_display_power.c   | 10 +---------
+ .../gpu/drm/i915/display/intel_display_power.h   |  4 ----
+ .../drm/i915/display/intel_display_power_map.c   | 16 ++++++++--------
+ 3 files changed, 9 insertions(+), 21 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index b417ca4e5c58f..f1f4d877a9751 100644
+index f1f4d877a9751..8b7b7a87df03e 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_power.c
 +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -80,12 +80,22 @@ intel_display_power_domain_str(enum intel_display_power_domain domain)
- 		return "PORT_DDI_LANES_E";
- 	case POWER_DOMAIN_PORT_DDI_LANES_F:
- 		return "PORT_DDI_LANES_F";
--	case POWER_DOMAIN_PORT_DDI_LANES_G:
--		return "PORT_DDI_LANES_G";
--	case POWER_DOMAIN_PORT_DDI_LANES_H:
--		return "PORT_DDI_LANES_H";
--	case POWER_DOMAIN_PORT_DDI_LANES_I:
--		return "PORT_DDI_LANES_I";
-+	case POWER_DOMAIN_PORT_DDI_LANES_TC1:
-+		return "PORT_DDI_LANES_TC1";
-+	case POWER_DOMAIN_PORT_DDI_LANES_TC2:
-+		return "PORT_DDI_LANES_TC2";
-+	case POWER_DOMAIN_PORT_DDI_LANES_TC3:
-+		return "PORT_DDI_LANES_TC3";
-+	case POWER_DOMAIN_PORT_DDI_LANES_TC4:
-+		return "PORT_DDI_LANES_TC4";
-+	case POWER_DOMAIN_PORT_DDI_LANES_TC5:
-+		return "PORT_DDI_LANES_TC5";
-+	case POWER_DOMAIN_PORT_DDI_LANES_TC6:
-+		return "PORT_DDI_LANES_TC6";
-+	case POWER_DOMAIN_PORT_DDI_LANES_D_XELPD:
-+		return "PORT_DDI_LANES_D_XELPD";
-+	case POWER_DOMAIN_PORT_DDI_LANES_E_XELPD:
-+		return "PORT_DDI_LANES_E_XELPD";
- 	case POWER_DOMAIN_PORT_DDI_IO_A:
- 		return "PORT_DDI_IO_A";
- 	case POWER_DOMAIN_PORT_DDI_IO_B:
-@@ -98,12 +108,22 @@ intel_display_power_domain_str(enum intel_display_power_domain domain)
- 		return "PORT_DDI_IO_E";
- 	case POWER_DOMAIN_PORT_DDI_IO_F:
- 		return "PORT_DDI_IO_F";
--	case POWER_DOMAIN_PORT_DDI_IO_G:
--		return "PORT_DDI_IO_G";
--	case POWER_DOMAIN_PORT_DDI_IO_H:
--		return "PORT_DDI_IO_H";
--	case POWER_DOMAIN_PORT_DDI_IO_I:
--		return "PORT_DDI_IO_I";
-+	case POWER_DOMAIN_PORT_DDI_IO_TC1:
-+		return "PORT_DDI_IO_TC1";
-+	case POWER_DOMAIN_PORT_DDI_IO_TC2:
-+		return "PORT_DDI_IO_TC2";
-+	case POWER_DOMAIN_PORT_DDI_IO_TC3:
-+		return "PORT_DDI_IO_TC3";
-+	case POWER_DOMAIN_PORT_DDI_IO_TC4:
-+		return "PORT_DDI_IO_TC4";
-+	case POWER_DOMAIN_PORT_DDI_IO_TC5:
-+		return "PORT_DDI_IO_TC5";
-+	case POWER_DOMAIN_PORT_DDI_IO_TC6:
-+		return "PORT_DDI_IO_TC6";
-+	case POWER_DOMAIN_PORT_DDI_IO_D_XELPD:
-+		return "PORT_DDI_IO_D_XELPD";
-+	case POWER_DOMAIN_PORT_DDI_IO_E_XELPD:
-+		return "PORT_DDI_IO_E_XELPD";
- 	case POWER_DOMAIN_PORT_DSI:
- 		return "PORT_DSI";
- 	case POWER_DOMAIN_PORT_CRT:
-@@ -128,12 +148,22 @@ intel_display_power_domain_str(enum intel_display_power_domain domain)
- 		return "AUX_E";
- 	case POWER_DOMAIN_AUX_F:
- 		return "AUX_F";
--	case POWER_DOMAIN_AUX_G:
--		return "AUX_G";
--	case POWER_DOMAIN_AUX_H:
--		return "AUX_H";
--	case POWER_DOMAIN_AUX_I:
--		return "AUX_I";
-+	case POWER_DOMAIN_AUX_USBC1:
-+		return "AUX_USBC1";
-+	case POWER_DOMAIN_AUX_USBC2:
-+		return "AUX_USBC2";
-+	case POWER_DOMAIN_AUX_USBC3:
-+		return "AUX_USBC3";
-+	case POWER_DOMAIN_AUX_USBC4:
-+		return "AUX_USBC4";
-+	case POWER_DOMAIN_AUX_USBC5:
-+		return "AUX_USBC5";
-+	case POWER_DOMAIN_AUX_USBC6:
-+		return "AUX_USBC6";
-+	case POWER_DOMAIN_AUX_D_XELPD:
-+		return "AUX_D_XELPD";
-+	case POWER_DOMAIN_AUX_E_XELPD:
-+		return "AUX_E_XELPD";
+@@ -166,14 +166,6 @@ intel_display_power_domain_str(enum intel_display_power_domain domain)
+ 		return "AUX_E_XELPD";
  	case POWER_DOMAIN_AUX_IO_A:
  		return "AUX_IO_A";
- 	case POWER_DOMAIN_AUX_TBT_C:
-@@ -144,12 +174,18 @@ intel_display_power_domain_str(enum intel_display_power_domain domain)
- 		return "AUX_TBT_E";
- 	case POWER_DOMAIN_AUX_TBT_F:
- 		return "AUX_TBT_F";
--	case POWER_DOMAIN_AUX_TBT_G:
--		return "AUX_TBT_G";
--	case POWER_DOMAIN_AUX_TBT_H:
--		return "AUX_TBT_H";
--	case POWER_DOMAIN_AUX_TBT_I:
--		return "AUX_TBT_I";
-+	case POWER_DOMAIN_AUX_TBT1:
-+		return "AUX_TBT1";
-+	case POWER_DOMAIN_AUX_TBT2:
-+		return "AUX_TBT2";
-+	case POWER_DOMAIN_AUX_TBT3:
-+		return "AUX_TBT3";
-+	case POWER_DOMAIN_AUX_TBT4:
-+		return "AUX_TBT4";
-+	case POWER_DOMAIN_AUX_TBT5:
-+		return "AUX_TBT5";
-+	case POWER_DOMAIN_AUX_TBT6:
-+		return "AUX_TBT6";
- 	case POWER_DOMAIN_GMBUS:
- 		return "GMBUS";
- 	case POWER_DOMAIN_INIT:
+-	case POWER_DOMAIN_AUX_TBT_C:
+-		return "AUX_TBT_C";
+-	case POWER_DOMAIN_AUX_TBT_D:
+-		return "AUX_TBT_D";
+-	case POWER_DOMAIN_AUX_TBT_E:
+-		return "AUX_TBT_E";
+-	case POWER_DOMAIN_AUX_TBT_F:
+-		return "AUX_TBT_F";
+ 	case POWER_DOMAIN_AUX_TBT1:
+ 		return "AUX_TBT1";
+ 	case POWER_DOMAIN_AUX_TBT2:
+@@ -2341,7 +2333,7 @@ d11_port_domains[] = {
+ 		.ddi_lanes = POWER_DOMAIN_PORT_DDI_LANES_C,
+ 		.ddi_io = POWER_DOMAIN_PORT_DDI_IO_C,
+ 		.aux_legacy_usbc = POWER_DOMAIN_AUX_C,
+-		.aux_tbt = POWER_DOMAIN_AUX_TBT_C,
++		.aux_tbt = POWER_DOMAIN_AUX_TBT1,
+ 	},
+ };
+ 
 diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
-index 2ea30a4cfaa89..b58c5bada6d85 100644
+index b58c5bada6d85..e04b2ff7b4b99 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_power.h
 +++ b/drivers/gpu/drm/i915/display/intel_display_power.h
-@@ -48,18 +48,15 @@ enum intel_display_power_domain {
- 	POWER_DOMAIN_PORT_DDI_LANES_D,
- 	POWER_DOMAIN_PORT_DDI_LANES_E,
- 	POWER_DOMAIN_PORT_DDI_LANES_F,
--	POWER_DOMAIN_PORT_DDI_LANES_G,
--	POWER_DOMAIN_PORT_DDI_LANES_H,
--	POWER_DOMAIN_PORT_DDI_LANES_I,
- 
--	POWER_DOMAIN_PORT_DDI_LANES_TC1 = POWER_DOMAIN_PORT_DDI_LANES_D, /* tgl+ */
-+	POWER_DOMAIN_PORT_DDI_LANES_TC1,
- 	POWER_DOMAIN_PORT_DDI_LANES_TC2,
- 	POWER_DOMAIN_PORT_DDI_LANES_TC3,
- 	POWER_DOMAIN_PORT_DDI_LANES_TC4,
- 	POWER_DOMAIN_PORT_DDI_LANES_TC5,
- 	POWER_DOMAIN_PORT_DDI_LANES_TC6,
- 
--	POWER_DOMAIN_PORT_DDI_LANES_D_XELPD = POWER_DOMAIN_PORT_DDI_LANES_TC5, /* XELPD */
-+	POWER_DOMAIN_PORT_DDI_LANES_D_XELPD,
- 	POWER_DOMAIN_PORT_DDI_LANES_E_XELPD,
- 
- 	POWER_DOMAIN_PORT_DDI_IO_A,
-@@ -68,18 +65,15 @@ enum intel_display_power_domain {
- 	POWER_DOMAIN_PORT_DDI_IO_D,
- 	POWER_DOMAIN_PORT_DDI_IO_E,
- 	POWER_DOMAIN_PORT_DDI_IO_F,
--	POWER_DOMAIN_PORT_DDI_IO_G,
--	POWER_DOMAIN_PORT_DDI_IO_H,
--	POWER_DOMAIN_PORT_DDI_IO_I,
- 
--	POWER_DOMAIN_PORT_DDI_IO_TC1 = POWER_DOMAIN_PORT_DDI_IO_D, /* tgl+ */
-+	POWER_DOMAIN_PORT_DDI_IO_TC1,
- 	POWER_DOMAIN_PORT_DDI_IO_TC2,
- 	POWER_DOMAIN_PORT_DDI_IO_TC3,
- 	POWER_DOMAIN_PORT_DDI_IO_TC4,
- 	POWER_DOMAIN_PORT_DDI_IO_TC5,
- 	POWER_DOMAIN_PORT_DDI_IO_TC6,
- 
--	POWER_DOMAIN_PORT_DDI_IO_D_XELPD = POWER_DOMAIN_PORT_DDI_IO_TC5, /* XELPD */
-+	POWER_DOMAIN_PORT_DDI_IO_D_XELPD,
- 	POWER_DOMAIN_PORT_DDI_IO_E_XELPD,
- 
- 	POWER_DOMAIN_PORT_DSI,
-@@ -94,18 +88,15 @@ enum intel_display_power_domain {
- 	POWER_DOMAIN_AUX_D,
- 	POWER_DOMAIN_AUX_E,
- 	POWER_DOMAIN_AUX_F,
--	POWER_DOMAIN_AUX_G,
--	POWER_DOMAIN_AUX_H,
--	POWER_DOMAIN_AUX_I,
- 
--	POWER_DOMAIN_AUX_USBC1 = POWER_DOMAIN_AUX_D, /* tgl+ */
-+	POWER_DOMAIN_AUX_USBC1,
- 	POWER_DOMAIN_AUX_USBC2,
- 	POWER_DOMAIN_AUX_USBC3,
- 	POWER_DOMAIN_AUX_USBC4,
- 	POWER_DOMAIN_AUX_USBC5,
- 	POWER_DOMAIN_AUX_USBC6,
- 
--	POWER_DOMAIN_AUX_D_XELPD = POWER_DOMAIN_AUX_USBC5, /* XELPD */
-+	POWER_DOMAIN_AUX_D_XELPD,
+@@ -100,10 +100,6 @@ enum intel_display_power_domain {
  	POWER_DOMAIN_AUX_E_XELPD,
  
  	POWER_DOMAIN_AUX_IO_A,
-@@ -113,11 +104,8 @@ enum intel_display_power_domain {
- 	POWER_DOMAIN_AUX_TBT_D,
- 	POWER_DOMAIN_AUX_TBT_E,
- 	POWER_DOMAIN_AUX_TBT_F,
--	POWER_DOMAIN_AUX_TBT_G,
--	POWER_DOMAIN_AUX_TBT_H,
--	POWER_DOMAIN_AUX_TBT_I,
+-	POWER_DOMAIN_AUX_TBT_C,
+-	POWER_DOMAIN_AUX_TBT_D,
+-	POWER_DOMAIN_AUX_TBT_E,
+-	POWER_DOMAIN_AUX_TBT_F,
  
--	POWER_DOMAIN_AUX_TBT1 = POWER_DOMAIN_AUX_TBT_D, /* tgl+ */
-+	POWER_DOMAIN_AUX_TBT1,
+ 	POWER_DOMAIN_AUX_TBT1,
  	POWER_DOMAIN_AUX_TBT2,
- 	POWER_DOMAIN_AUX_TBT3,
- 	POWER_DOMAIN_AUX_TBT4,
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power_map.c b/drivers/gpu/drm/i915/display/intel_display_power_map.c
+index 86d937f8bfe13..d9cf3d3bc02e7 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power_map.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power_map.c
+@@ -622,10 +622,10 @@ I915_DECL_PW_DOMAINS(icl_pwdoms_pw_4,
+ 	POWER_DOMAIN_AUX_D, \
+ 	POWER_DOMAIN_AUX_E, \
+ 	POWER_DOMAIN_AUX_F, \
+-	POWER_DOMAIN_AUX_TBT_C, \
+-	POWER_DOMAIN_AUX_TBT_D, \
+-	POWER_DOMAIN_AUX_TBT_E, \
+-	POWER_DOMAIN_AUX_TBT_F
++	POWER_DOMAIN_AUX_TBT1, \
++	POWER_DOMAIN_AUX_TBT2, \
++	POWER_DOMAIN_AUX_TBT3, \
++	POWER_DOMAIN_AUX_TBT4
+ 
+ I915_DECL_PW_DOMAINS(icl_pwdoms_pw_3,
+ 	ICL_PW_3_POWER_DOMAINS,
+@@ -668,10 +668,10 @@ I915_DECL_PW_DOMAINS(icl_pwdoms_aux_c,		POWER_DOMAIN_AUX_C);
+ I915_DECL_PW_DOMAINS(icl_pwdoms_aux_d,		POWER_DOMAIN_AUX_D);
+ I915_DECL_PW_DOMAINS(icl_pwdoms_aux_e,		POWER_DOMAIN_AUX_E);
+ I915_DECL_PW_DOMAINS(icl_pwdoms_aux_f,		POWER_DOMAIN_AUX_F);
+-I915_DECL_PW_DOMAINS(icl_pwdoms_aux_tbt1,	POWER_DOMAIN_AUX_TBT_C);
+-I915_DECL_PW_DOMAINS(icl_pwdoms_aux_tbt2,	POWER_DOMAIN_AUX_TBT_D);
+-I915_DECL_PW_DOMAINS(icl_pwdoms_aux_tbt3,	POWER_DOMAIN_AUX_TBT_E);
+-I915_DECL_PW_DOMAINS(icl_pwdoms_aux_tbt4,	POWER_DOMAIN_AUX_TBT_F);
++I915_DECL_PW_DOMAINS(icl_pwdoms_aux_tbt1,	POWER_DOMAIN_AUX_TBT1);
++I915_DECL_PW_DOMAINS(icl_pwdoms_aux_tbt2,	POWER_DOMAIN_AUX_TBT2);
++I915_DECL_PW_DOMAINS(icl_pwdoms_aux_tbt3,	POWER_DOMAIN_AUX_TBT3);
++I915_DECL_PW_DOMAINS(icl_pwdoms_aux_tbt4,	POWER_DOMAIN_AUX_TBT4);
+ 
+ static const struct i915_power_well_desc icl_power_wells_pw_1[] = {
+ 	{
 -- 
 2.30.2
 
