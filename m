@@ -2,49 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 128725012B4
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 Apr 2022 17:10:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 05E0A5012A7
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 Apr 2022 17:09:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5AD5310FD75;
-	Thu, 14 Apr 2022 15:10:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C21810FD6E;
+	Thu, 14 Apr 2022 15:09:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 58CD410FD75
- for <intel-gfx@lists.freedesktop.org>; Thu, 14 Apr 2022 15:10:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E71BE10FD68
+ for <intel-gfx@lists.freedesktop.org>; Thu, 14 Apr 2022 15:09:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649949013; x=1681485013;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=Fsl2h5K3snX5ve6WteNFrI7hVMRx1JAWLM4Uy2NqzIM=;
- b=IEKHi3XBzfWs6iGGTVqwx46DMO3+ZYH8JzRJEefRh6nyI0pqyrCnUibi
- BrrRGf5/R4dFEIWKlHDgqxz6p9gQnTMkANM2N4dxhDwPhDGcPeNvPLzZx
- mTih9bu/R01FDm429UqbaSg30fP/reOZDkMZcSQH+ckFGhXFefxdI4qdu
- v4A3p4NUh0Emp0ysqttvgIF6Bpc6lLPsqep+BHsnCd5r3KK3Y3ypjHFVV
- et/YeH0SRaIffixmaXsNPa16MMNM+B5RAoHRn5+ivnmvEDFUI8Kkp2e5r
- +36f29cZ8onovYtZuJDBMelDF8aBchM/dx3t5VYTE327NOmAsC+WPzXkO w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10317"; a="250247689"
-X-IronPort-AV: E=Sophos;i="5.90,260,1643702400"; d="scan'208";a="250247689"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ t=1649948991; x=1681484991;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=KHmwLJ9bfWm7ubnVmHzJu2uzuSSdZ+UlIl3GD9y4+6E=;
+ b=ApxWaJSGCiWZ0OuxnFhR2AhdWJl7ZNnjGFLMQbVrX3G1WawwJxVWzjaV
+ jsv49HKf+vbmDwftWntQ/Zz3XhRD1fruAhHZzPtowa2HLy08YC8RdMld4
+ hWTnIyjfe1bSOFlyTpyOIR2xnaBzl8B/f3lMZbi5sQW3Jq5Q9AsKAbHhU
+ sElGJ6/zyjAIbRKSZi+LisZOooJkUektIM7He0PndHmg7qu8plkb7Wsdy
+ emgD4mmafwHnZujdsc4nhwkQE7/pO4M+Qs9hdR/4iAd4TApDqkwZXe/z1
+ UZ2XWIRGN83FZDqgz+hrPFsJZnrxuTdlQzhstsNO6UI4vKld297irOQX7 Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10317"; a="250247555"
+X-IronPort-AV: E=Sophos;i="5.90,260,1643702400"; d="scan'208";a="250247555"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2022 08:10:12 -0700
-X-IronPort-AV: E=Sophos;i="5.90,260,1643702400"; d="scan'208";a="725394907"
-Received: from mdnavare-mobl1.jf.intel.com ([10.165.21.211])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2022 08:10:12 -0700
-Date: Thu, 14 Apr 2022 08:10:18 -0700
-From: "Navare, Manasi" <manasi.d.navare@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20220414151018.GA204099@mdnavare-mobl1.jf.intel.com>
-References: <20220413152852.7336-1-ville.syrjala@linux.intel.com>
- <20220413152852.7336-2-ville.syrjala@linux.intel.com>
+ 14 Apr 2022 08:09:50 -0700
+X-IronPort-AV: E=Sophos;i="5.90,260,1643702400"; d="scan'208";a="803162445"
+Received: from hchuang-mobl3.amr.corp.intel.com (HELO
+ josouza-mobl2.amr.corp.intel.com) ([10.212.30.222])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Apr 2022 08:09:48 -0700
+From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 14 Apr 2022 08:11:17 -0700
+Message-Id: <20220414151118.21980-1-jose.souza@intel.com>
+X-Mailer: git-send-email 2.35.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220413152852.7336-2-ville.syrjala@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/fbc: s/false/0/
+Subject: [Intel-gfx] [PATCH v3 1/2] drm/i915/display/psr: Unset
+ enable_psr2_sel_fetch if other checks in intel_psr2_config_valid() fails
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,73 +56,96 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Apr 13, 2022 at 06:28:52PM +0300, Ville Syrjala wrote:
-> From: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
-> 
-> intel_fbc_check_plane() is supposed to an int, not a boolean.
-> So replace the bogus 'return false's with the correct 'return 0's.
-> These were accidental copy-paste mistakes when the code got moved
-> into intel_fbc_check_plane() from somewhere else tht did return
-> a boolean.
-> 
-> No functional issue here since false==0.
-> 
-> Signed-off-by: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
+If any of the PSR2 checks after intel_psr2_sel_fetch_config_valid()
+fails, enable_psr2_sel_fetch will be kept enabled causing problems
+in the functions that only checks for it and not for has_psr2.
 
-Good catch
+So here moving the check that do not depend on enable_psr2_sel_fetch
+and for the remaning ones jumping to a section that unset
+enable_psr2_sel_fetch in case of failure to support PSR2.
 
-Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
+Fixes: 6e43e276b8c9 ("drm/i915: Initial implementation of PSR2 selective fetch")
+Cc: Jouni H√∂gander <jouni.hogander@intel.com>
+Reviewed-by: Jouni H√∂gander <jouni.hogander@intel.com>
+Signed-off-by: Jos√© Roberto de Souza <jose.souza@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_psr.c | 38 +++++++++++++-----------
+ 1 file changed, 21 insertions(+), 17 deletions(-)
 
-Manasi
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index 5a55010a9b2f7..8ec7c161284be 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -891,6 +891,20 @@ static bool intel_psr2_config_valid(struct intel_dp *intel_dp,
+ 		return false;
+ 	}
+ 
++	/* Wa_16011303918:adl-p */
++	if (crtc_state->vrr.enable &&
++	    IS_ADLP_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0)) {
++		drm_dbg_kms(&dev_priv->drm,
++			    "PSR2 not enabled, not compatible with HW stepping + VRR\n");
++		return false;
++	}
++
++	if (!_compute_psr2_sdp_prior_scanline_indication(intel_dp, crtc_state)) {
++		drm_dbg_kms(&dev_priv->drm,
++			    "PSR2 not enabled, PSR2 SDP indication do not fit in hblank\n");
++		return false;
++	}
++
+ 	if (HAS_PSR2_SEL_FETCH(dev_priv)) {
+ 		if (!intel_psr2_sel_fetch_config_valid(intel_dp, crtc_state) &&
+ 		    !HAS_PSR_HW_TRACKING(dev_priv)) {
+@@ -904,12 +918,12 @@ static bool intel_psr2_config_valid(struct intel_dp *intel_dp,
+ 	if (!crtc_state->enable_psr2_sel_fetch &&
+ 	    IS_TGL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_C0)) {
+ 		drm_dbg_kms(&dev_priv->drm, "PSR2 HW tracking is not supported this Display stepping\n");
+-		return false;
++		goto unsupported;
+ 	}
+ 
+ 	if (!psr2_granularity_check(intel_dp, crtc_state)) {
+ 		drm_dbg_kms(&dev_priv->drm, "PSR2 not enabled, SU granularity not compatible\n");
+-		return false;
++		goto unsupported;
+ 	}
+ 
+ 	if (!crtc_state->enable_psr2_sel_fetch &&
+@@ -918,25 +932,15 @@ static bool intel_psr2_config_valid(struct intel_dp *intel_dp,
+ 			    "PSR2 not enabled, resolution %dx%d > max supported %dx%d\n",
+ 			    crtc_hdisplay, crtc_vdisplay,
+ 			    psr_max_h, psr_max_v);
+-		return false;
+-	}
+-
+-	if (!_compute_psr2_sdp_prior_scanline_indication(intel_dp, crtc_state)) {
+-		drm_dbg_kms(&dev_priv->drm,
+-			    "PSR2 not enabled, PSR2 SDP indication do not fit in hblank\n");
+-		return false;
+-	}
+-
+-	/* Wa_16011303918:adl-p */
+-	if (crtc_state->vrr.enable &&
+-	    IS_ADLP_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0)) {
+-		drm_dbg_kms(&dev_priv->drm,
+-			    "PSR2 not enabled, not compatible with HW stepping + VRR\n");
+-		return false;
++		goto unsupported;
+ 	}
+ 
+ 	tgl_dc3co_exitline_compute_config(intel_dp, crtc_state);
+ 	return true;
++
++unsupported:
++	crtc_state->enable_psr2_sel_fetch = false;
++	return false;
+ }
+ 
+ void intel_psr_compute_config(struct intel_dp *intel_dp,
+-- 
+2.35.2
 
-> ---
->  drivers/gpu/drm/i915/display/intel_fbc.c | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-> index ff303c7d3a57..966970d1cf0a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-> @@ -1086,7 +1086,7 @@ static int intel_fbc_check_plane(struct intel_atomic_state *state,
->  	 */
->  	if (DISPLAY_VER(i915) >= 12 && crtc_state->has_psr2) {
->  		plane_state->no_fbc_reason = "PSR2 enabled";
-> -		return false;
-> +		return 0;
->  	}
->  
->  	if (!pixel_format_is_valid(plane_state)) {
-> @@ -1112,7 +1112,7 @@ static int intel_fbc_check_plane(struct intel_atomic_state *state,
->  	if (plane_state->hw.pixel_blend_mode != DRM_MODE_BLEND_PIXEL_NONE &&
->  	    fb->format->has_alpha) {
->  		plane_state->no_fbc_reason = "per-pixel alpha not supported";
-> -		return false;
-> +		return 0;
->  	}
->  
->  	if (!intel_fbc_hw_tracking_covers_screen(plane_state)) {
-> @@ -1128,7 +1128,7 @@ static int intel_fbc_check_plane(struct intel_atomic_state *state,
->  	if (DISPLAY_VER(i915) >= 9 &&
->  	    plane_state->view.color_plane[0].y & 3) {
->  		plane_state->no_fbc_reason = "plane start Y offset misaligned";
-> -		return false;
-> +		return 0;
->  	}
->  
->  	/* Wa_22010751166: icl, ehl, tgl, dg1, rkl */
-> @@ -1136,7 +1136,7 @@ static int intel_fbc_check_plane(struct intel_atomic_state *state,
->  	    (plane_state->view.color_plane[0].y +
->  	     (drm_rect_height(&plane_state->uapi.src) >> 16)) & 3) {
->  		plane_state->no_fbc_reason = "plane end Y offset misaligned";
-> -		return false;
-> +		return 0;
->  	}
->  
->  	/* WaFbcExceedCdClockThreshold:hsw,bdw */
-> -- 
-> 2.35.1
-> 
