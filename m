@@ -2,32 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18F6950170D
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 Apr 2022 17:57:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 087C750171F
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 Apr 2022 17:58:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1657110E076;
-	Thu, 14 Apr 2022 15:57:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 705C110E0AE;
+	Thu, 14 Apr 2022 15:58:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 11F5710E076;
- Thu, 14 Apr 2022 15:57:27 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0DE97A00A0;
- Thu, 14 Apr 2022 15:57:27 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0275588107722354215=="
+Received: from mail-qv1-xf30.google.com (mail-qv1-xf30.google.com
+ [IPv6:2607:f8b0:4864:20::f30])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E6CB810E0AE
+ for <intel-gfx@lists.freedesktop.org>; Thu, 14 Apr 2022 15:58:04 +0000 (UTC)
+Received: by mail-qv1-xf30.google.com with SMTP id a5so4314245qvx.1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 14 Apr 2022 08:58:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=poorly.run; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=jYwgH4frj8u/RprdkrG/desyOpG3NIjZIXaCYIQS8XI=;
+ b=PA4m7mRTz7b0MQc7W+GVK9J0LzinQWTocmgmomJvpjMIS2GTKfLEMkwI3v+V8knYzv
+ rYL8t7qBSO082t1RK9ZYMjMelibizTGlE3VWh5AIw2Diz2kr/IlmVE2NXZvyvkBC+JdU
+ AJ2vBxalADJhYocSjWENFZvmk4sH1NRywhklVKwQsyMENexOLv3jTgacH1aaix+dvKLK
+ AgEBV/F299rmW2m97AW0wFMsMfnHr1OV1O2ov+8A6Sj/ByOZPvYV+qlIpXLPIh3kOw+a
+ pRlwBxoGoErvKBxJ3GxPKNjRPLPx+I9LHxYT+wkhonA1Qgs0oZ+kjJaKpdGPOeNq5wyj
+ zN5Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=jYwgH4frj8u/RprdkrG/desyOpG3NIjZIXaCYIQS8XI=;
+ b=w9PXzsaSzKLM5ESrt52f67MAKaN8AxpljHaMWIhp43mO+3DtjbyBZSaaj/3QHdo6VS
+ z29sV4xS6Im3BhUosKA0B34IJMoPKAf6vNPewPLrct/kkmyyncPRKTBAyKRGyYy+vOhZ
+ 9Ei7LTam9sU6WZQYWaifmT8CAMc3Gn3ckC0ctFSWkKKLYccQCjNgRhB96bOtam5FamLo
+ kXJjBIRfZ97dxopGR3mqqhLVKDULjm+pOdrObuUdEJEKwa4q0npe8csXR2NipUQw/Ght
+ i9faYkMhqqE8b8YGzaQhWNmhiOibbwX5ATEXp22mVBdIjedo2HzGYrBjsBo9RIIhF2gn
+ sH9A==
+X-Gm-Message-State: AOAM53199BqEmk9hD9maM6n95pggg9A2BJ9hEP5SRUr5o+6KRX/jYtGf
+ IIO23RLqDW0Y432uAl3+H4FzKQ==
+X-Google-Smtp-Source: ABdhPJwQVl/K6Ld8em/h2hT1Y57K/Iu2hvryrkjOl0tnWQPnfBbGQ8u+w0NWapHwd0ICK6mwvXFVhA==
+X-Received: by 2002:a05:6214:1c83:b0:443:6749:51f8 with SMTP id
+ ib3-20020a0562141c8300b00443674951f8mr3853528qvb.74.1649951883653; 
+ Thu, 14 Apr 2022 08:58:03 -0700 (PDT)
+Received: from localhost (115.25.199.35.bc.googleusercontent.com.
+ [35.199.25.115]) by smtp.gmail.com with ESMTPSA id
+ 21-20020ac85715000000b002e1ce9605ffsm1418380qtw.65.2022.04.14.08.58.03
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 14 Apr 2022 08:58:03 -0700 (PDT)
+Date: Thu, 14 Apr 2022 15:58:02 +0000
+From: Sean Paul <sean@poorly.run>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Message-ID: <YlhEipy/e3U2hePl@art_vandelay>
+References: <20220411204741.1074308-1-sean@poorly.run>
+ <20220411204741.1074308-4-sean@poorly.run>
+ <YlV9505orLrKlJfF@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Thu, 14 Apr 2022 15:57:27 -0000
-Message-ID: <164995184702.1346.9846749350576318400@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <cover.1649948562.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1649948562.git.jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/edid=3A_CEA_data_block_iterators=2C_and_more?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YlV9505orLrKlJfF@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v5 03/10] drm/hdcp: Update property value on
+ content type and user changes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,279 +72,115 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Maxime Ripard <mripard@kernel.org>, jani.nikula@intel.com,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ bjorn.andersson@linaro.org, David Airlie <airlied@linux.ie>,
+ Sean Paul <seanpaul@chromium.org>, abhinavk@codeaurora.org,
+ Thomas Zimmermann <tzimmermann@suse.de>, markyacoub@chromium.org,
+ swboyd@chromium.org, freedreno@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0275588107722354215==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, Apr 12, 2022 at 09:25:59AM -0400, Rodrigo Vivi wrote:
+> On Mon, Apr 11, 2022 at 08:47:32PM +0000, Sean Paul wrote:
+> > From: Sean Paul <seanpaul@chromium.org>
+> > 
+> > This patch updates the connector's property value in 2 cases which were
+> > previously missed:
+> > 
+> > 1- Content type changes. The value should revert back to DESIRED from
+> >    ENABLED in case the driver must re-authenticate the link due to the
+> >    new content type.
+> > 
+> > 2- Userspace sets value to DESIRED while ENABLED. In this case, the
+> >    value should be reset immediately to ENABLED since the link is
+> >    actively being encrypted.
+> > 
+> > To accommodate these changes, I've split up the conditionals to make
+> > things a bit more clear (as much as one can with this mess of state).
+> > 
+> > Acked-by: Jani Nikula <jani.nikula@intel.com>
+> > Reviewed-by: Abhinav Kumar <abhinavk@codeaurora.org>
+> > Signed-off-by: Sean Paul <seanpaul@chromium.org>
+> > Link: https://patchwork.freedesktop.org/patch/msgid/20210913175747.47456-4-sean@poorly.run #v1
+> > Link: https://patchwork.freedesktop.org/patch/msgid/20210915203834.1439-4-sean@poorly.run #v2
+> > Link: https://patchwork.freedesktop.org/patch/msgid/20211001151145.55916-4-sean@poorly.run #v3
+> > Link: https://patchwork.freedesktop.org/patch/msgid/20211105030434.2828845-4-sean@poorly.run #v4
+> > 
+> > Changes in v2:
+> > -None
+> > Changes in v3:
+> > -Fixed indentation issue identified by 0-day
+> > Changes in v4:
+> > -None
+> > Changes in v5:
+> > -None
+> > ---
+> >  drivers/gpu/drm/drm_hdcp.c | 26 +++++++++++++++++---------
+> >  1 file changed, 17 insertions(+), 9 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/drm_hdcp.c b/drivers/gpu/drm/drm_hdcp.c
+> > index dd8fa91c51d6..8c851d40cd45 100644
+> > --- a/drivers/gpu/drm/drm_hdcp.c
+> > +++ b/drivers/gpu/drm/drm_hdcp.c
+> > @@ -487,21 +487,29 @@ bool drm_hdcp_atomic_check(struct drm_connector *connector,
+> >  		return true;
+> >  
+> >  	/*
+> > -	 * Nothing to do if content type is unchanged and one of:
+> > -	 *  - state didn't change
+> > +	 * Content type changes require an HDCP disable/enable cycle.
+> > +	 */
+> > +	if (new_conn_state->hdcp_content_type != old_conn_state->hdcp_content_type) {
+> 
+> shouldn't we add some && ( old_hdcp == DRM_MODE_CONTENT_PROTECTION_ENABLED)) {
+> here?
 
-== Series Details ==
+Thanks for your reviews Rodrigo.
 
-Series: drm/edid: CEA data block iterators, and more
-URL   : https://patchwork.freedesktop.org/series/102703/
-State : failure
+I don't think so since the content type is changing the current state of old
+content protection is immaterial (ie: if we need to enable HDCP 2.x, the state
+of HDCP 1.x doesn't really matter), we need to re-evaluate whether the current
+level of HDCP is sufficient.
 
-== Summary ==
+Hopefully that makes sense, but I could be missing something :-)
 
-CI Bug Log - changes from CI_DRM_11500 -> Patchwork_102703v1
-====================================================
+Sean
 
-Summary
--------
+> 
+> > +		new_conn_state->content_protection =
+> > +			DRM_MODE_CONTENT_PROTECTION_DESIRED;
+> > +		return true;
+> > +	}
+> > +
+> > +	/*
+> > +	 * Ignore meaningless state changes:
+> >  	 *  - HDCP was activated since the last commit
+> > -	 *  - attempting to set to desired while already enabled
+> > +	 *  - Attempting to set to desired while already enabled
+> >  	 */
+> > -	if (old_hdcp == new_hdcp ||
+> > -	    (old_hdcp == DRM_MODE_CONTENT_PROTECTION_DESIRED &&
+> > +	if ((old_hdcp == DRM_MODE_CONTENT_PROTECTION_DESIRED &&
+> >  	     new_hdcp == DRM_MODE_CONTENT_PROTECTION_ENABLED) ||
+> >  	    (old_hdcp == DRM_MODE_CONTENT_PROTECTION_ENABLED &&
+> >  	     new_hdcp == DRM_MODE_CONTENT_PROTECTION_DESIRED)) {
+> > -		if (old_conn_state->hdcp_content_type ==
+> > -				new_conn_state->hdcp_content_type)
+> > -			return false;
+> > +		new_conn_state->content_protection =
+> > +			DRM_MODE_CONTENT_PROTECTION_ENABLED;
+> > +		return false;
+> >  	}
+> >  
+> > -	return true;
+> > +	/* Finally, if state changes, we need action */
+> > +	return old_hdcp != new_hdcp;
+> >  }
+> >  EXPORT_SYMBOL(drm_hdcp_atomic_check);
+> > -- 
+> > Sean Paul, Software Engineer, Google / Chromium OS
+> > 
 
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_102703v1 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_102703v1, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102703v1/index.html
-
-Participating hosts (48 -> 47)
-------------------------------
-
-  Additional (1): fi-pnv-d510 
-  Missing    (2): fi-bsw-cyan fi-bdw-samus 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_102703v1:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live@gem_contexts:
-    - fi-bdw-5557u:       [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11500/fi-bdw-5557u/igt@i915_selftest@live@gem_contexts.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102703v1/fi-bdw-5557u/igt@i915_selftest@live@gem_contexts.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_102703v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-snb-2600:        [PASS][3] -> [INCOMPLETE][4] ([i915#3921])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11500/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102703v1/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c:
-    - fi-pnv-d510:        NOTRUN -> [SKIP][5] ([fdo#109271] / [i915#5341])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102703v1/fi-pnv-d510/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
-
-  * igt@prime_vgem@basic-userptr:
-    - fi-pnv-d510:        NOTRUN -> [SKIP][6] ([fdo#109271]) +39 similar issues
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102703v1/fi-pnv-d510/igt@prime_vgem@basic-userptr.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_busy@busy@all:
-    - {bat-dg2-8}:        [INCOMPLETE][7] -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11500/bat-dg2-8/igt@gem_busy@busy@all.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102703v1/bat-dg2-8/igt@gem_busy@busy@all.html
-
-  * igt@i915_selftest@live@gtt:
-    - fi-bdw-5557u:       [DMESG-FAIL][9] ([i915#3674]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11500/fi-bdw-5557u/igt@i915_selftest@live@gtt.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102703v1/fi-bdw-5557u/igt@i915_selftest@live@gtt.html
-
-  * igt@kms_busy@basic@flip:
-    - fi-tgl-u2:          [DMESG-WARN][11] ([i915#402]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11500/fi-tgl-u2/igt@kms_busy@basic@flip.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102703v1/fi-tgl-u2/igt@kms_busy@basic@flip.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#3576]: https://gitlab.freedesktop.org/drm/intel/issues/3576
-  [i915#3674]: https://gitlab.freedesktop.org/drm/intel/issues/3674
-  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#5341]: https://gitlab.freedesktop.org/drm/intel/issues/5341
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_11500 -> Patchwork_102703v1
-
-  CI-20190529: 20190529
-  CI_DRM_11500: 91c829bc09be35f3e9a6674274969c72f60b5e22 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6420: a3885810ccc0ce9e6552a20c910a0a322eca466c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_102703v1: 91c829bc09be35f3e9a6674274969c72f60b5e22 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-0991b767d773 drm/edid: sunset drm_find_cea_extension()
-b358da72e973 drm/edid: skip CTA extension scan in drm_edid_to_eld() just for CTA rev
-bff250b6d20e drm/edid: detect color formats and CTA revision in all CTA extensions
-46dde44e497f drm/edid: detect basic audio in all CEA extensions
-842e7e440967 drm/edid: restore some type safety to cea_db_*() functions
-bc5301125bfa drm/edid: sunset the old unused cea data block iterators
-67122fff9aa9 drm/edid: convert drm_edid_to_eld() to use cea db iter
-1281f7cb28aa drm/edid: convert drm_parse_cea_ext() to use cea db iter
-bc3d741b147d drm/edid: convert drm_detect_monitor_audio() to use cea db iter
-06ccfc613c86 drm/edid: convert drm_detect_hdmi_monitor() to use cea db iter
-fdfa91093144 drm/edid: convert drm_edid_to_sad() to use cea db iter
-e088c4b7dd1c drm/edid: convert drm_edid_to_speaker_allocation() to use cea db iter
-9650d478a736 drm/edid: convert add_cea_modes() to use cea db iter
-5ca05c008863 drm/edid: clean up cea_db_is_*() functions
-f5d94e3c55e8 drm/edid: add iterator for CTA data blocks
-4629eb0f90f1 drm/edid: add iterator for EDID base and extension blocks
-77b5301ab23d drm/edid: clean up CTA data block tag definitions
-4de335d12534 drm/edid: check for HF-SCDB block
-53d26c484def drm/edid: reset display info in drm_add_edid_modes() for NULL edid
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102703v1/index.html
-
---===============0275588107722354215==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/edid: CEA data block iterators, and more</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/102703/">https://patchwork.freedesktop.org/series/102703/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102703v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102703v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11500 -&gt; Patchwork_102703v1</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_102703v1 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_102703v1, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102703v1/index.html</p>
-<h2>Participating hosts (48 -&gt; 47)</h2>
-<p>Additional (1): fi-pnv-d510 <br />
-  Missing    (2): fi-bsw-cyan fi-bdw-samus </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_102703v1:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@i915_selftest@live@gem_contexts:<ul>
-<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11500/fi-bdw-5557u/igt@i915_selftest@live@gem_contexts.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102703v1/fi-bdw-5557u/igt@i915_selftest@live@gem_contexts.html">INCOMPLETE</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_102703v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11500/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102703v1/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c:</p>
-<ul>
-<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102703v1/fi-pnv-d510/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5341">i915#5341</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-userptr:</p>
-<ul>
-<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102703v1/fi-pnv-d510/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +39 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_busy@busy@all:</p>
-<ul>
-<li>{bat-dg2-8}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11500/bat-dg2-8/igt@gem_busy@busy@all.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102703v1/bat-dg2-8/igt@gem_busy@busy@all.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gtt:</p>
-<ul>
-<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11500/fi-bdw-5557u/igt@i915_selftest@live@gtt.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3674">i915#3674</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102703v1/fi-bdw-5557u/igt@i915_selftest@live@gtt.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_busy@basic@flip:</p>
-<ul>
-<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11500/fi-tgl-u2/igt@kms_busy@basic@flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102703v1/fi-tgl-u2/igt@kms_busy@basic@flip.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11500 -&gt; Patchwork_102703v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11500: 91c829bc09be35f3e9a6674274969c72f60b5e22 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6420: a3885810ccc0ce9e6552a20c910a0a322eca466c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_102703v1: 91c829bc09be35f3e9a6674274969c72f60b5e22 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>0991b767d773 drm/edid: sunset drm_find_cea_extension()<br />
-b358da72e973 drm/edid: skip CTA extension scan in drm_edid_to_eld() just for CTA rev<br />
-bff250b6d20e drm/edid: detect color formats and CTA revision in all CTA extensions<br />
-46dde44e497f drm/edid: detect basic audio in all CEA extensions<br />
-842e7e440967 drm/edid: restore some type safety to cea_db_<em>() functions<br />
-bc5301125bfa drm/edid: sunset the old unused cea data block iterators<br />
-67122fff9aa9 drm/edid: convert drm_edid_to_eld() to use cea db iter<br />
-1281f7cb28aa drm/edid: convert drm_parse_cea_ext() to use cea db iter<br />
-bc3d741b147d drm/edid: convert drm_detect_monitor_audio() to use cea db iter<br />
-06ccfc613c86 drm/edid: convert drm_detect_hdmi_monitor() to use cea db iter<br />
-fdfa91093144 drm/edid: convert drm_edid_to_sad() to use cea db iter<br />
-e088c4b7dd1c drm/edid: convert drm_edid_to_speaker_allocation() to use cea db iter<br />
-9650d478a736 drm/edid: convert add_cea_modes() to use cea db iter<br />
-5ca05c008863 drm/edid: clean up cea_db_is_</em>() functions<br />
-f5d94e3c55e8 drm/edid: add iterator for CTA data blocks<br />
-4629eb0f90f1 drm/edid: add iterator for EDID base and extension blocks<br />
-77b5301ab23d drm/edid: clean up CTA data block tag definitions<br />
-4de335d12534 drm/edid: check for HF-SCDB block<br />
-53d26c484def drm/edid: reset display info in drm_add_edid_modes() for NULL edid</p>
-
-</body>
-</html>
-
---===============0275588107722354215==--
+-- 
+Sean Paul, Software Engineer, Google / Chromium OS
