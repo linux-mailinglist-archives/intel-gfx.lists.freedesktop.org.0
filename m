@@ -2,48 +2,80 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63879501CB4
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 Apr 2022 22:38:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B4A9501CE4
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 Apr 2022 22:44:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B100110E33B;
-	Thu, 14 Apr 2022 20:38:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 52BD010E213;
+	Thu, 14 Apr 2022 20:44:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 95C3210E325
- for <intel-gfx@lists.freedesktop.org>; Thu, 14 Apr 2022 20:38:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649968711; x=1681504711;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=ByCuD3UVslIIcdZP5tcde8Dy+PVD6Mbbe+DIhpgL1/I=;
- b=arRQhKFl/itdmf4AoKub+omo+ncTxIIZBjlwd683ZPGoWGxMoQVCwXat
- B6O9G4V5Dy1ZFdXcSbzr7w7ySnoT5F2ewAUAWv+QyNvCEcWFtTY6S6lOG
- QI4IgYYLtwu4kEmetxyxQmhEpvzG9316UTe0XZcyTHsaAF7Xep4Tjdcm5
- MprzXbZ2xAEVhsYhwIRDYWunrOsHYRR7dXKR2Ci0u5kD6u9rRtY8ZXALC
- NIOHEBY6jtnsssFZrwblTCUfZWFy+GmKBHyQ7igWsosJfCjl3LI5I8O8L
- iySCDnfowpxA/G/JJmpvH5pzmtS3pBjVTp+L7X1ZxfcNRk2Hg28SyxgUK g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10317"; a="260623235"
-X-IronPort-AV: E=Sophos;i="5.90,260,1643702400"; d="scan'208";a="260623235"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2022 13:38:31 -0700
-X-IronPort-AV: E=Sophos;i="5.90,260,1643702400"; d="scan'208";a="661508342"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2022 13:38:30 -0700
-Date: Thu, 14 Apr 2022 13:38:29 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
-Message-ID: <YliGRVBTxMjJeUCw@mdroper-desk1.amr.corp.intel.com>
-References: <20220414140626.2810550-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C35110E337
+ for <intel-gfx@lists.freedesktop.org>; Thu, 14 Apr 2022 20:44:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1649969061;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=JmaAlHIjXef9NYKFArMf2KanmEfiFR7sku0+K1UQU60=;
+ b=IsSert9F117pUqgv2BFu2XbbzAlCH7EMK+DjdhgnNiPbfHXOGgTFbYKLFiLjlQSKIcAqFv
+ 1DZAokG1Yopyjr3YiJpffm5BjIRvqwNQk7SZMKQ282pIMuk6SFvuc2kLJEIrDaZ10l8pp8
+ vKfrGGbDUHppyFfVyvJxhm74iOPsk/Q=
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com
+ [209.85.222.197]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-621-_KkRoyiSOc2zEylRqATz9Q-1; Thu, 14 Apr 2022 16:44:20 -0400
+X-MC-Unique: _KkRoyiSOc2zEylRqATz9Q-1
+Received: by mail-qk1-f197.google.com with SMTP id
+ br18-20020a05620a461200b0069bfc9fdb0dso4086524qkb.21
+ for <intel-gfx@lists.freedesktop.org>; Thu, 14 Apr 2022 13:44:20 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+ :references:organization:user-agent:mime-version
+ :content-transfer-encoding;
+ bh=JmaAlHIjXef9NYKFArMf2KanmEfiFR7sku0+K1UQU60=;
+ b=kOujA8mzVAOrkFIMzsa30+xK1M0wS+0RyfU1n7Ttw/g8+j7Dl4Vbgwuuv1C65+M9Z0
+ 4UQE19Cyoy7Da2Ue42/WmQ8QzDvKoipEMNGkIMCUQ/2oR+4E16u7wRntmx7rBZuHsKAs
+ g4rglkKYyKc5/Lp35/1bQ/qUiJAd5WTGNKdIfxePcKM32u4uITG00U4181FR4Xic+nsf
+ uNVGWsncHosvGrkl6IpUlpcb+lCvB080FHO+GwhJa6M71Bg5BlPTmn++ELhoSmWtnKF6
+ bvtLyRvX3j1EKGUplScRDh0FzsVYVztdjeFp+TrLRmEIr/LhCX8GQ8h0ze7RwcGjqitw
+ /Lfw==
+X-Gm-Message-State: AOAM5333bs0Iial7IGARBXBh/xwHaVCu1fUAIg0uqboso615CXBmW5Mc
+ lvWYklQ1C+6N7iE/3N+kxoC0K/pZcIbWWC5JJSmOonOm/uBfHP1QwtGygpIjeHsIAeu0VYOb8IV
+ YVfgXjGxTVRFfL7VY71r+vnYYegaj
+X-Received: by 2002:a05:620a:248f:b0:69c:2e80:2194 with SMTP id
+ i15-20020a05620a248f00b0069c2e802194mr3268040qkn.548.1649969060117; 
+ Thu, 14 Apr 2022 13:44:20 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJyQcJDfigohvjOM0rvDKHhHPaYBHGLfiTsCTHJVvIUQb2SQ4FwWN3GNCwMtOk9NUuahtr2caQ==
+X-Received: by 2002:a05:620a:248f:b0:69c:2e80:2194 with SMTP id
+ i15-20020a05620a248f00b0069c2e802194mr3268035qkn.548.1649969059919; 
+ Thu, 14 Apr 2022 13:44:19 -0700 (PDT)
+Received: from [192.168.8.138] (pool-71-126-244-162.bstnma.fios.verizon.net.
+ [71.126.244.162]) by smtp.gmail.com with ESMTPSA id
+ x20-20020a05622a001400b002f04bcd1e55sm1866390qtw.70.2022.04.14.13.44.19
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 14 Apr 2022 13:44:19 -0700 (PDT)
+Message-ID: <ac1c0383b20eeec0f86e439d4889a55fcbf8cd4e.camel@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+To: Jouni =?ISO-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>, 
+ intel-gfx@lists.freedesktop.org
+Date: Thu, 14 Apr 2022 16:44:13 -0400
+In-Reply-To: <20220413082826.120634-1-jouni.hogander@intel.com>
+References: <20220413082826.120634-1-jouni.hogander@intel.com>
+Organization: Red Hat Inc.
+User-Agent: Evolution 3.42.4 (3.42.4-2.fc35)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220414140626.2810550-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/rpl-p: Add PCI IDs
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=lyude@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Check EDID for HDR static
+ metadata when choosing blc
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,146 +88,114 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@intel.com>,
+ Filippo Falezza <filippo.falezza@outlook.it>, stable@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Apr 14, 2022 at 07:36:26PM +0530, Tejas Upadhyay wrote:
-> From: Matt Atwood <matthew.s.atwood@intel.com>
+Reviewed-by: Lyude Paul <lyude@redhat.com>
+
+On Wed, 2022-04-13 at 11:28 +0300, Jouni Högander wrote:
+> We have now seen panel (XMG Core 15 e21 laptop) advertizing support
+> for Intel proprietary eDP backlight control via DPCD registers, but
+> actually working only with legacy pwm control.
 > 
-> Adding initial PCI ids for RPL-P.
-> RPL-P behaves identically to ADL-P from i915's point of view.
+> This patch adds panel EDID check for possible HDR static metadata and
+> Intel proprietary eDP backlight control is used only if that exists.
+> Missing HDR static metadata is ignored if user specifically asks for
+> Intel proprietary eDP backlight control via enable_dpcd_backlight
+> parameter.
 > 
-> Bspec: 55376
-> Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
-> Signed-off-by: Madhumitha Tolakanahalli Pradeep <madhumitha.tolakanahalli.pradeep@intel.com>
-> Signed-off-by: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
+> v2 :
+> - Ignore missing HDR static metadata if Intel proprietary eDP
+>   backlight control is forced via i915.enable_dpcd_backlight
+> - Printout info message if panel is missing HDR static metadata and
+>   support for Intel proprietary eDP backlight control is detected
+> 
+> Fixes: 4a8d79901d5b ("drm/i915/dp: Enable Intel's HDR backlight interface
+> (only SDR for now)")
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/5284
+> Cc: Lyude Paul <lyude@redhat.com>
+> Cc: Mika Kahola <mika.kahola@intel.com>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Cc: Filippo Falezza <filippo.falezza@outlook.it>
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 > ---
->  arch/x86/kernel/early-quirks.c           | 1 +
->  drivers/gpu/drm/i915/i915_drv.h          | 4 +++-
->  drivers/gpu/drm/i915/i915_pci.c          | 1 +
->  drivers/gpu/drm/i915/intel_device_info.c | 9 +++++----
->  drivers/gpu/drm/i915/intel_device_info.h | 4 ++--
->  include/drm/i915_pciids.h                | 9 +++++++++
->  6 files changed, 21 insertions(+), 7 deletions(-)
+>  .../drm/i915/display/intel_dp_aux_backlight.c | 34 ++++++++++++++-----
+>  1 file changed, 26 insertions(+), 8 deletions(-)
 > 
-> diff --git a/arch/x86/kernel/early-quirks.c b/arch/x86/kernel/early-quirks.c
-> index 805596736e20..a6c1867fc7aa 100644
-> --- a/arch/x86/kernel/early-quirks.c
-> +++ b/arch/x86/kernel/early-quirks.c
-> @@ -558,6 +558,7 @@ static const struct pci_device_id intel_early_ids[] __initconst = {
->  	INTEL_ADLP_IDS(&gen11_early_ops),
->  	INTEL_ADLN_IDS(&gen11_early_ops),
->  	INTEL_RPLS_IDS(&gen11_early_ops),
-> +	INTEL_RPLP_IDS(&gen11_early_ops),
->  };
->  
->  struct resource intel_graphics_stolen_res __ro_after_init = DEFINE_RES_MEM(0, 0);
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> index 9274417cd87a..edc1f45f4161 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -1066,9 +1066,11 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
->  #define IS_DG2_G12(dev_priv) \
->  	IS_SUBPLATFORM(dev_priv, INTEL_DG2, INTEL_SUBPLATFORM_G12)
->  #define IS_ADLS_RPLS(dev_priv) \
-> -	IS_SUBPLATFORM(dev_priv, INTEL_ALDERLAKE_S, INTEL_SUBPLATFORM_RPL_S)
-> +	IS_SUBPLATFORM(dev_priv, INTEL_ALDERLAKE_S, INTEL_SUBPLATFORM_RPL)
->  #define IS_ADLP_N(dev_priv) \
->  	IS_SUBPLATFORM(dev_priv, INTEL_ALDERLAKE_P, INTEL_SUBPLATFORM_N)
-> +#define IS_ADLP_RPLP(dev_priv) \
-> +	IS_SUBPLATFORM(dev_priv, INTEL_ALDERLAKE_P, INTEL_SUBPLATFORM_RPL)
->  #define IS_HSW_EARLY_SDV(dev_priv) (IS_HASWELL(dev_priv) && \
->  				    (INTEL_DEVID(dev_priv) & 0xFF00) == 0x0C00)
->  #define IS_BDW_ULT(dev_priv) \
-> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-> index 736e04078f56..e606a3288d9b 100644
-> --- a/drivers/gpu/drm/i915/i915_pci.c
-> +++ b/drivers/gpu/drm/i915/i915_pci.c
-> @@ -1151,6 +1151,7 @@ static const struct pci_device_id pciidlist[] = {
->  	INTEL_RPLS_IDS(&adl_s_info),
->  	INTEL_DG2_IDS(&dg2_info),
->  	INTEL_ATS_M_IDS(&ats_m_info),
-> +	INTEL_RPLP_IDS(&adl_p_info),
->  	{0, 0, 0}
->  };
->  MODULE_DEVICE_TABLE(pci, pciidlist);
-> diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
-> index 5258687648e6..63e05cd15a90 100644
-> --- a/drivers/gpu/drm/i915/intel_device_info.c
-> +++ b/drivers/gpu/drm/i915/intel_device_info.c
-> @@ -181,8 +181,9 @@ static const u16 subplatform_n_ids[] = {
->  	INTEL_ADLN_IDS(0),
->  };
->  
-> -static const u16 subplatform_rpls_ids[] = {
-> +static const u16 subplatform_rpl_ids[] = {
->  	INTEL_RPLS_IDS(0),
-> +	INTEL_RPLP_IDS(0),
->  };
->  
->  static const u16 subplatform_g10_ids[] = {
-> @@ -241,9 +242,9 @@ void intel_device_info_subplatform_init(struct drm_i915_private *i915)
->  	} else if (find_devid(devid, subplatform_n_ids,
->  				ARRAY_SIZE(subplatform_n_ids))) {
->  		mask = BIT(INTEL_SUBPLATFORM_N);
-> -	} else if (find_devid(devid, subplatform_rpls_ids,
-> -			      ARRAY_SIZE(subplatform_rpls_ids))) {
-> -		mask = BIT(INTEL_SUBPLATFORM_RPL_S);
-> +	} else if (find_devid(devid, subplatform_rpl_ids,
-> +			      ARRAY_SIZE(subplatform_rpl_ids))) {
-> +		mask = BIT(INTEL_SUBPLATFORM_RPL);
->  	} else if (find_devid(devid, subplatform_g10_ids,
->  			      ARRAY_SIZE(subplatform_g10_ids))) {
->  		mask = BIT(INTEL_SUBPLATFORM_G10);
-> diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
-> index f9b955810593..7704a9d2589c 100644
-> --- a/drivers/gpu/drm/i915/intel_device_info.h
-> +++ b/drivers/gpu/drm/i915/intel_device_info.h
-> @@ -114,8 +114,8 @@ enum intel_platform {
->  #define INTEL_SUBPLATFORM_G11	1
->  #define INTEL_SUBPLATFORM_G12	2
->  
-> -/* ADL-S */
-> -#define INTEL_SUBPLATFORM_RPL_S	0
-> +/* ADL */
-> +#define INTEL_SUBPLATFORM_RPL	0
->  
->  /* ADL-P */
->  #define INTEL_SUBPLATFORM_N    0
-
-You've got a clash here.  If platform == ADL_P and subplatform == 0,
-what does that translate to?  Right now subplatform 0 is used to
-identify both ADL-N and RPL-P. 
-
-
-Matt
-
-> diff --git a/include/drm/i915_pciids.h b/include/drm/i915_pciids.h
-> index a2b81a5b324a..74ffa293d6e8 100644
-> --- a/include/drm/i915_pciids.h
-> +++ b/include/drm/i915_pciids.h
-> @@ -720,4 +720,13 @@
->  	INTEL_ATS_M150_IDS(info), \
->  	INTEL_ATS_M75_IDS(info)
->  
-> +/*RPL-P */
-> +#define INTEL_RPLP_IDS(info) \
-> +	INTEL_VGA_DEVICE(0xA720, info), \
-> +	INTEL_VGA_DEVICE(0xA721, info), \
-> +	INTEL_VGA_DEVICE(0xA7A0, info), \
-> +	INTEL_VGA_DEVICE(0xA7A1, info), \
-> +	INTEL_VGA_DEVICE(0xA7A8, info), \
-> +	INTEL_VGA_DEVICE(0xA7A9, info)
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> index 97cf3cac0105..fb6cf30ee628 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> @@ -97,6 +97,14 @@
+>  
+>  #define INTEL_EDP_BRIGHTNESS_OPTIMIZATION_1                           
+> 0x359
+>  
+> +enum intel_dp_aux_backlight_modparam {
+> +       INTEL_DP_AUX_BACKLIGHT_AUTO = -1,
+> +       INTEL_DP_AUX_BACKLIGHT_OFF = 0,
+> +       INTEL_DP_AUX_BACKLIGHT_ON = 1,
+> +       INTEL_DP_AUX_BACKLIGHT_FORCE_VESA = 2,
+> +       INTEL_DP_AUX_BACKLIGHT_FORCE_INTEL = 3,
+> +};
 > +
->  #endif /* _I915_PCIIDS_H */
-> -- 
-> 2.34.1
-> 
+>  /* Intel EDP backlight callbacks */
+>  static bool
+>  intel_dp_aux_supports_hdr_backlight(struct intel_connector *connector)
+> @@ -126,6 +134,24 @@ intel_dp_aux_supports_hdr_backlight(struct
+> intel_connector *connector)
+>                 return false;
+>         }
+>  
+> +       /*
+> +        * If we don't have HDR static metadata there is no way to
+> +        * runtime detect used range for nits based control. For now
+> +        * do not use Intel proprietary eDP backlight control if we
+> +        * don't have this data in panel EDID. In case we find panel
+> +        * which supports only nits based control, but doesn't provide
+> +        * HDR static metadata we need to start maintaining table of
+> +        * ranges for such panels.
+> +        */
+> +       if (i915->params.enable_dpcd_backlight !=
+> INTEL_DP_AUX_BACKLIGHT_FORCE_INTEL &&
+> +           !(connector->base.hdr_sink_metadata.hdmi_type1.metadata_type &
+> +             BIT(HDMI_STATIC_METADATA_TYPE1))) {
+> +               drm_info(&i915->drm,
+> +                        "Panel is missing HDR static metadata. Possible
+> support for Intel HDR backlight interface is not used. If your backlight
+> controls don't work try booting with i915.enable_dpcd_backlight=%d. needs
+> this, please file a _new_ bug report on drm/i915, see " FDO_BUG_URL " for
+> details.\n",
+> +                        INTEL_DP_AUX_BACKLIGHT_FORCE_INTEL);
+> +               return false;
+> +       }
+> +
+>         panel->backlight.edp.intel.sdr_uses_aux =
+>                 tcon_cap[2] & INTEL_EDP_SDR_TCON_BRIGHTNESS_AUX_CAP;
+>  
+> @@ -413,14 +439,6 @@ static const struct intel_panel_bl_funcs
+> intel_dp_vesa_bl_funcs = {
+>         .get = intel_dp_aux_vesa_get_backlight,
+>  };
+>  
+> -enum intel_dp_aux_backlight_modparam {
+> -       INTEL_DP_AUX_BACKLIGHT_AUTO = -1,
+> -       INTEL_DP_AUX_BACKLIGHT_OFF = 0,
+> -       INTEL_DP_AUX_BACKLIGHT_ON = 1,
+> -       INTEL_DP_AUX_BACKLIGHT_FORCE_VESA = 2,
+> -       INTEL_DP_AUX_BACKLIGHT_FORCE_INTEL = 3,
+> -};
+> -
+>  int intel_dp_aux_init_backlight_funcs(struct intel_connector *connector)
+>  {
+>         struct drm_device *dev = connector->base.dev;
 
 -- 
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
+Cheers,
+ Lyude Paul (she/her)
+ Software Engineer at Red Hat
+
