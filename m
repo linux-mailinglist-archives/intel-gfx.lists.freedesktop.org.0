@@ -1,44 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C99D500F9D
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 Apr 2022 15:33:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31728500E90
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 Apr 2022 15:16:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8921910FC5A;
-	Thu, 14 Apr 2022 13:33:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A2A8210FC53;
+	Thu, 14 Apr 2022 13:16:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E9A3910FC5A
- for <intel-gfx@lists.freedesktop.org>; Thu, 14 Apr 2022 13:33:13 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F38010FC53
+ for <intel-gfx@lists.freedesktop.org>; Thu, 14 Apr 2022 13:16:48 +0000 (UTC)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id AA08DB82968;
- Thu, 14 Apr 2022 13:33:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D8A1C385A5;
- Thu, 14 Apr 2022 13:33:08 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 0D54F61374;
+ Thu, 14 Apr 2022 13:16:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19F64C385A9;
+ Thu, 14 Apr 2022 13:16:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1649943189;
- bh=YSvU42w2avZnraRlhXJUDZS22loQMohsW4beo4KfuAY=;
+ s=korg; t=1649942205;
+ bh=Ls02lJpoLoCiEXcMRba+271+rrDtFo/19bU458A4Jvs=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=JrctAviyF8ey3OG2ZAXPBAY3rcXWP7RN34+O9jhqw/ZPTZ8ZT4tb+PPKlx0pqvWv3
- gAsOo0r6trNO8TEZ4kD0xp36R5HYcNMomGnBb5iFUi2kZjpFN52KsQY8AQaj29Zbqg
- fwseC7JITd659cnkSMZMdcfHgzm4dyFU/e7rF3Dk=
+ b=BzlxK2nDzGntmZCoZRRal3xT0SrXkQ5ro0ZNlGfXM5Z8n0XCZaQjmQ9HGW8SJZ8ds
+ BW62Ip53Lpva317EPu40Nkc7Qyuo8ScwZSOOedMYd4p8n9YG+vJmGL9rsVUSR/9x0q
+ GKAtwA0d4AwU4G+poDrwkBPSFcNpMqlJskBWpyNE=
 From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 To: linux-kernel@vger.kernel.org
-Date: Thu, 14 Apr 2022 15:07:31 +0200
-Message-Id: <20220414110857.000850970@linuxfoundation.org>
+Date: Thu, 14 Apr 2022 15:09:14 +0200
+Message-Id: <20220414110840.349407260@linuxfoundation.org>
 X-Mailer: git-send-email 2.35.2
-In-Reply-To: <20220414110855.141582785@linuxfoundation.org>
-References: <20220414110855.141582785@linuxfoundation.org>
+In-Reply-To: <20220414110838.883074566@linuxfoundation.org>
+References: <20220414110838.883074566@linuxfoundation.org>
 User-Agent: quilt/0.66
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 5.4 066/475] drm/edid: check basic audio support
- on CEA extension block
+Subject: [Intel-gfx] [PATCH 4.19 051/338] drm/edid: check basic audio
+ support on CEA extension block
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,7 +84,7 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 
 --- a/drivers/gpu/drm/drm_edid.c
 +++ b/drivers/gpu/drm/drm_edid.c
-@@ -4380,7 +4380,8 @@ bool drm_detect_monitor_audio(struct edi
+@@ -4323,7 +4323,8 @@ bool drm_detect_monitor_audio(struct edi
  	if (!edid_ext)
  		goto end;
  
