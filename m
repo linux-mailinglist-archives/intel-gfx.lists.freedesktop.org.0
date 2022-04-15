@@ -2,50 +2,113 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 611FC502850
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 Apr 2022 12:31:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A9688502962
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 Apr 2022 14:07:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9EB1E10F31B;
-	Fri, 15 Apr 2022 10:31:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 262EA10E5A8;
+	Fri, 15 Apr 2022 12:07:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 651E010F31B
- for <intel-gfx@lists.freedesktop.org>; Fri, 15 Apr 2022 10:31:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1650018684; x=1681554684;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=FiQdORAjyRzyo/jWAOwlsfnr56XXdTyBCWEFk3ddUn4=;
- b=DRVKWnJNCmT1wB6vf0iSvyYsriEUoOHFRvtXOn7tAzZYQT4VO2QN2Fbq
- fyAhPNTXzqprQJ+5BhSm652N+Bc/w9G4h5U9R2V5aRzKS2BEw75ga21t+
- O8qy7z3OtxHjUcGOkQ8JlfR9+G8fEhGbXlTobhzk0liVaVLg4VkX5etYC
- bWNRteMsuJoZSZ+OLe4ZjL1jwIVRKnKkF8cKj8VkM2PAospcn2XxNmeyi
- ACjULSquHk8cagCyoSVn92sTgZ6rs0lxJM4oKLM88IW052lji0XzXj9Sm
- GBNBT8nlpBIPANBw7u5wIv3UU8eVBjeZDbjIl8OdGax8RgxfJH0AmlL84 g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10317"; a="250432893"
-X-IronPort-AV: E=Sophos;i="5.90,262,1643702400"; d="scan'208";a="250432893"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2022 03:31:23 -0700
-X-IronPort-AV: E=Sophos;i="5.90,262,1643702400"; d="scan'208";a="574301835"
-Received: from pgooneti-mobl3.amr.corp.intel.com (HELO intel.com)
- ([10.255.34.169])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2022 03:31:21 -0700
-Date: Fri, 15 Apr 2022 06:31:19 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Ashutosh Dixit <ashutosh.dixit@intel.com>
-Message-ID: <YllJd9kJxzW33TfM@intel.com>
-References: <cover.1649871650.git.ashutosh.dixit@intel.com>
- <5b1cfcd6fc47dcc3d6aa9ed2f4412e7b6bf1159c.1649871650.git.ashutosh.dixit@intel.com>
-MIME-Version: 1.0
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2063.outbound.protection.outlook.com [40.107.244.63])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 20D8F10E5A8;
+ Fri, 15 Apr 2022 12:07:31 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=FNds5GGHooO48lwWVTWIVybyc8F/WCR7/iO04yNmkjRH2chdzm/rq4OILcL8uJZ5PNtzZqdV7PIwvnSYOdYmWfVYQ/lg049kwKimlL2G7nv+lgHpTXNjLtJuPtQ21L4O039mC2l4XoVN8lknNyXg9MUc7VZ0w1cHEuYK9AjYy0w9M1MaYjtuupQ9wypoa5u58EZiZrgndjPKe6rm9Dk76qudOg7IVrDuGl9l5QmTrHwmCVq2OknorY4tAEZWeX6/kdH7GZqsuJW8n12cc3S0DPwfiETBNhgCwo5DvlJIGXOwbFRrlw6pxstKeR886UIZc61SjOLlLDziEGDH0RQ5Ng==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Zy0gxiC+qm0NUBlq33tjhdy1MSNvnPo7hBNf5CVVvRw=;
+ b=cwOgyhABO2+ZwJQ+2QqPRdzbUsZ6De6SaPTlDu0YhO4CPEHw6XX0TA6zz4PcNQXqGVzQFYQqkzp3QFCeYXV/oluRlLJreiayg8hsT7jTM6peuM+KfHqBDMbaSlNc7230tqNGhf4+qkWI8LFuE5KkQT2asowzB3uQ4ZPZy7cFgdUe4yxIaLk2UO5pRDLZmSWSestKlqJi+fYSTfLs2Xl5GJykXpAv9w9FBGBmR+/j0f/CLpGhOIHcJYDbfgZVcdvbR4E10eLKw/uPmhA424kF/MAmwOxSlFK/P8MSCzPnMIEKELf2/1p32RtZtzbZiz+dJPtWScgG1P1sV9hT5/0Gmg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Zy0gxiC+qm0NUBlq33tjhdy1MSNvnPo7hBNf5CVVvRw=;
+ b=BCWNPbdO0B1OTkuVKj1wWIWUPCW1jUoyMIRtkniPm0zkt8BHDMZcM/N9SAtl8MqsZJDhJXhN7qEk/CnrsU5IRmQ0qCAZgQIoqU+YwS4/Ho+lBPfsH52qivEBtCaj+f0Z+ziCVWkxIxcT922XRkjluR2nuWqvcV9czYrf3mEFGYAltKF5xbiLRytUL+G3lfK/3y46/yrMtyZOOhh4dFRaIzmJOTiYtcrB+mnNj3raIG7b1fDUoDCkQ/DWnM9Yc7AXPPDRZDIoMIBt8a+380wxEnm+3f+gDHAx/W/CPwGkxFlDGeN8VLGGF8UEZpAM36UdRMS/ONbmYFqUtuocdTUrPw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from MN2PR12MB4192.namprd12.prod.outlook.com (2603:10b6:208:1d5::15)
+ by CY4PR1201MB0261.namprd12.prod.outlook.com (2603:10b6:910:1c::21)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5144.29; Fri, 15 Apr
+ 2022 12:07:29 +0000
+Received: from MN2PR12MB4192.namprd12.prod.outlook.com
+ ([fe80::ec2d:9167:1b47:2db2]) by MN2PR12MB4192.namprd12.prod.outlook.com
+ ([fe80::ec2d:9167:1b47:2db2%5]) with mapi id 15.20.5164.020; Fri, 15 Apr 2022
+ 12:07:29 +0000
+Date: Fri, 15 Apr 2022 09:07:28 -0300
+From: Jason Gunthorpe <jgg@nvidia.com>
+To: "Tian, Kevin" <kevin.tian@intel.com>
+Message-ID: <20220415120728.GG2120790@nvidia.com>
+References: <9-v1-a8faf768d202+125dd-vfio_mdev_no_group_jgg@nvidia.com>
+ <d6e2778a-01e4-6468-2c2b-3b718d924e65@linux.ibm.com>
+ <20220414142210.GE2120790@nvidia.com>
+ <BN9PR11MB527672B82DCFAD2C9B28E8CC8CEE9@BN9PR11MB5276.namprd11.prod.outlook.com>
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <5b1cfcd6fc47dcc3d6aa9ed2f4412e7b6bf1159c.1649871650.git.ashutosh.dixit@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 4/8] drm/i915/pcode: Add a couple of pcode
- helpers
+In-Reply-To: <BN9PR11MB527672B82DCFAD2C9B28E8CC8CEE9@BN9PR11MB5276.namprd11.prod.outlook.com>
+X-ClientProxiedBy: BL1PR13CA0267.namprd13.prod.outlook.com
+ (2603:10b6:208:2ba::32) To MN2PR12MB4192.namprd12.prod.outlook.com
+ (2603:10b6:208:1d5::15)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: c28701ca-0c8f-4491-33f9-08da1ed8836c
+X-MS-TrafficTypeDiagnostic: CY4PR1201MB0261:EE_
+X-Microsoft-Antispam-PRVS: <CY4PR1201MB026113F221088D4ECC54CBB0C2EE9@CY4PR1201MB0261.namprd12.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: j8sNb3nRn2ZLNua0gdG+/P6UkHcWfQhL+aXF4pBAZBvqN3GjIHnT1EtSIPyExtYmS+tgmXbCdPAuzzKjC+V3Iwdd1Zc9sOgKMZKWuCgjpdEBZJwVy+GBrmgb+OiJQ+64RurQ8mtGGxfKoUETtlM5/Olm+t3NjiuOnyNzvwIMw28VlEQskiPZ8kztmvyh5qlcfS7aCkQ/TCtOIK0PLKZG7TfHcknTcJwj4wa5xGf51yKaVfGzsH20YBJHM3DEZZlYB8VBu6hQQPus9SvFIVx8voRmvYt1relg3n0ewaXPJXs0TzxNJtG9oPq0KKgRI1dZuByByQooWscASs6VjtF3Xfkq5eTxBl01L1ttE9nqNWIxXgMRiRadiR4i70kfpI60hFSGaxB6N3gGQQqu6ieWsGCQA5ugyRHPa5cSPUSCSmwqw34KH2ADzsA+yZVlZ6lOpRgiIYwummDZzuDcvK3gHa6JtM86rn034ZSzAuAs19WsmKevN5m8S3DNK1y4eek7gvPQPQZ/LDLTxvasuj7bXyjdpdoacJhZHd7oFHYf3d9TefgkWAh7WZV80yNj0ZXNs625+R9SW7x8u2O7ETNPTKsd5hOdSRp6+o1tas6RaZrSNKqtx4UJmG8PyBNx7y2jHB65P6LcfMbDoogPSI7Djg==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN2PR12MB4192.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230001)(4636009)(366004)(26005)(36756003)(38100700002)(6512007)(316002)(6506007)(1076003)(6486002)(54906003)(83380400001)(186003)(6916009)(2616005)(5660300002)(508600001)(8936002)(7416002)(2906002)(7406005)(4744005)(66946007)(33656002)(86362001)(4326008)(8676002)(66556008)(66476007);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?oR79/YtZUftUkx5c6dkP/sYRzm/bWucq9XunZNQmC7nu0lVFp+08H/dEfv4V?=
+ =?us-ascii?Q?XLCFZ/D0SkS6JQ0Snmr1QATLaG1ON1joSjZ9u3IkN5gz1ZlbqB6VbwrUssod?=
+ =?us-ascii?Q?FeCTHel2177gXre3Cr9lX1N48tVdM5Wmm3PQFf/wGeGZ5uzmoA+j9zVsUpY5?=
+ =?us-ascii?Q?adpMCIqfGrmQNI1FHgyHKUf+xKlxmF77q4THCVYsD702P9ldvjcIaJNus47y?=
+ =?us-ascii?Q?GNKuGzxosJh+coSFilNkEwRYDRh1PILM9ERJDcnkhiEC+H1oUS27ztc/bj2T?=
+ =?us-ascii?Q?v2jx4hRKLyd6wjF9rRHHRor7Yr5UI3LCr3SeY1iPm9cZNiVaeuKSAYL+bZ5A?=
+ =?us-ascii?Q?2jbtZqFqkdcjdLRPiYakpJHaaNvIP9zW9nFkVs7YZ5TQT9QiwIfL43+JMFuT?=
+ =?us-ascii?Q?k5yAg5KlwyYLAkCWQjRYmikFny2pu+3NeEUZEZOk5OMtQfd/womZ4yg6nZCD?=
+ =?us-ascii?Q?fPSr2MA6QD4EZAtgWJsFbdOVGHIhWJtZoggoofgaE2x0HWcEYqX3AW+UTMlF?=
+ =?us-ascii?Q?chW42nLUAlMq4w54O/y1Ap4bOR9mFInHgn0YGNelulhUloiJCLc62cd6LBGY?=
+ =?us-ascii?Q?QfhBhMDHKDr11ej6Iss5sI43gswh/slXjaPNEVuqp6CAwXO6c8o6e0MIhFQP?=
+ =?us-ascii?Q?kSA5HYu5bbeyBSWNugbUKW+/vk1+kSQTPaqqvcqOhE42WxHr/1V2pb9fRlJK?=
+ =?us-ascii?Q?ks0czMF2LeMgKoIjSuasi2+ucUduBzDuwqqNuwb+ZwNNJLi3GZtPr7nqyo7p?=
+ =?us-ascii?Q?2TcgjPtjeCCi8ExvvyoUHWubXhdL4A4n7YmSj7uCh3WdBrKWllg+SgTKKV7A?=
+ =?us-ascii?Q?ltDAq/TthwCKIUKblwljxTt+bEYj3NBX5kJ5QYxcvrAUti3TmssEVm4XFgFv?=
+ =?us-ascii?Q?Hm/Tl25YTvOz8HJsRv0mstkL1JA8cFBrJ/5D/JzzTT2lDJpdqWUsprGr7qHU?=
+ =?us-ascii?Q?wz1SVA6h6pSXd4+k3Q9LKi3vV3hty9E/GGO/dWs4ZmYY2lQG9/BfWWlQxPsh?=
+ =?us-ascii?Q?X18GRzd2vdwdwdHAwNr/KbNhX8lEhbAclDzPnxVdIFokY3g87PhENRUj+rDc?=
+ =?us-ascii?Q?sw9QKNgAU9FkuDT/hM3W7Pr0a6BYHSZdokQ0KF6tmHlmt18rRyCxXQ4YuBkj?=
+ =?us-ascii?Q?EA0Uc7rIIth8FuZRfO/Q8o5BWO2ZgCwuA9Xa1ZVmzFnK9Ja/FtiVB0qwTRIX?=
+ =?us-ascii?Q?YJHvfWh8Jf1TKBy8mOXob6HTMKS+OoRmlLAZfJNvBtkO3LdjF0wtL+rXV7yR?=
+ =?us-ascii?Q?irzs2seqGwvxQ2gx+wSZqf6o+ai4GL+NnkyUZ7s+QYmXaAfZyPP9P+f7shDl?=
+ =?us-ascii?Q?JBFn/dw1ogAKJLcs1CmnK/CAuWE+B1SLwzGpD9Ujbx1XDHUmaDMhuDCqNAsE?=
+ =?us-ascii?Q?X5ELeN+SR0aSFTH5QBsaQ8+6l+/loEhIB8rGEQqagkLu/2J+PVxvDLX+gTFc?=
+ =?us-ascii?Q?Evt0lL0DTmUB+43kTrHyyPKvOpedjZ+evneVc9jFnmWDZHgqW5COyDshZUzz?=
+ =?us-ascii?Q?EDMEa0mEamBX41ifzxaPXCOHyuM+NrnxTP1yqX0V2KanGkMaufMxDWbkwGsD?=
+ =?us-ascii?Q?ciNcTneFCq0VfAbqgCwFXoSn2KsADMEMAWUu7DNEdX21oBmsYHrsa+7ALFga?=
+ =?us-ascii?Q?3Jh0OYp5WVrg2/SIGDQjiiW7jO8wTjLlXe1pVlfwrXWDzwgws34ixZ9wetvW?=
+ =?us-ascii?Q?9TRU75QsOjsMg3079iK8F6dvML/DMIrEzWp1/ws9pvv0KiQP36cLRKTN4WNn?=
+ =?us-ascii?Q?t1nAXtCUHQ=3D=3D?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c28701ca-0c8f-4491-33f9-08da1ed8836c
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB4192.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Apr 2022 12:07:29.5209 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Nq0uEIKtugRD33dBnx0ZYAmxnv/3tmdudf1hOWYpc3N8CGxrGGhoRjIxaqv3Jtmb
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR1201MB0261
+Subject: Re: [Intel-gfx] [PATCH 9/9] vfio: Remove calls to
+ vfio_group_add_container_user()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,112 +121,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Matthew Rosato <mjrosato@linux.ibm.com>,
+ "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+ David Airlie <airlied@linux.ie>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ Kirti Wankhede <kwankhede@nvidia.com>, Vineeth Vijayan <vneethv@linux.ibm.com>,
+ Alexander Gordeev <agordeev@linux.ibm.com>, Christoph Hellwig <hch@lst.de>,
+ "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>, "Liu,
+ Yi L" <yi.l.liu@intel.com>, "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+ Jonathan Corbet <corbet@lwn.net>, Halil Pasic <pasic@linux.ibm.com>,
+ Christian Borntraeger <borntraeger@linux.ibm.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ Jason Herne <jjherne@linux.ibm.com>, Eric Farman <farman@linux.ibm.com>,
+ Vasily Gorbik <gor@linux.ibm.com>, Heiko Carstens <hca@linux.ibm.com>,
+ Harald Freudenberger <freude@linux.ibm.com>, "Vivi,
+ Rodrigo" <rodrigo.vivi@intel.com>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
+ Tony Krowiak <akrowiak@linux.ibm.com>, Cornelia Huck <cohuck@redhat.com>,
+ Peter Oberparleiter <oberpar@linux.ibm.com>,
+ Sven Schnelle <svens@linux.ibm.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Apr 13, 2022 at 11:11:05AM -0700, Ashutosh Dixit wrote:
-> Add a couple of helpers to help formatting pcode commands and improve code
-> readability.
-> 
-> Cc: Mike Ruhl <michael.j.ruhl@intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Original-author: Dale B Stimson <dale.b.stimson@intel.com>
+On Fri, Apr 15, 2022 at 02:32:08AM +0000, Tian, Kevin wrote:
 
-The right thing to do here is to git commit --amend --author="Dale B Stimson <dale.b.stimson@intel.com>"
-probably also good to reset the date with --date...
+> While it's a welcomed fix is it actually related to this series? The point
+> of this patch is that those functions are called when container_users
+> is non-zero. This is true even without this fix given container_users
+> is decremented after calling device->ops->close_device().
 
-> Signed-off-by: Dale B Stimson <dale.b.stimson@intel.com>
-> Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+It isn't, it is decremented before which causes it to be 0 when the
+assertions are called.
 
-and keep your signed-off-by here as well...
-
-and also feel free add my rv-b after the author is fixed
-
-Thanks,
-Rodrigo.
-
-> ---
->  drivers/gpu/drm/i915/i915_reg.h    |  3 +++
->  drivers/gpu/drm/i915/intel_pcode.c | 32 ++++++++++++++++++++++++++++++
->  drivers/gpu/drm/i915/intel_pcode.h | 12 +++++++++++
->  3 files changed, 47 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index fef71b242706..0d5a4ecd374a 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -6684,6 +6684,9 @@
->  
->  #define GEN6_PCODE_MAILBOX			_MMIO(0x138124)
->  #define   GEN6_PCODE_READY			(1 << 31)
-> +#define   GEN6_PCODE_MB_PARAM2			REG_GENMASK(23, 16)
-> +#define   GEN6_PCODE_MB_PARAM1			REG_GENMASK(15, 8)
-> +#define   GEN6_PCODE_MB_COMMAND			REG_GENMASK(7, 0)
->  #define   GEN6_PCODE_ERROR_MASK			0xFF
->  #define     GEN6_PCODE_SUCCESS			0x0
->  #define     GEN6_PCODE_ILLEGAL_CMD		0x1
-> diff --git a/drivers/gpu/drm/i915/intel_pcode.c b/drivers/gpu/drm/i915/intel_pcode.c
-> index 0cff212cc81b..87b9f5035741 100644
-> --- a/drivers/gpu/drm/i915/intel_pcode.c
-> +++ b/drivers/gpu/drm/i915/intel_pcode.c
-> @@ -239,3 +239,35 @@ int intel_pcode_init(struct drm_i915_private *i915)
->  
->  	return 0;
->  }
-> +
-> +int __intel_gt_pcode_read(struct intel_gt *gt, u32 mbcmd, u32 p1, u32 p2, u32 *val)
-> +{
-> +	intel_wakeref_t wakeref;
-> +	u32 mbox;
-> +	int err;
-> +
-> +	mbox = REG_FIELD_PREP(GEN6_PCODE_MB_COMMAND, mbcmd)
-> +		| REG_FIELD_PREP(GEN6_PCODE_MB_PARAM1, p1)
-> +		| REG_FIELD_PREP(GEN6_PCODE_MB_PARAM2, p2);
-> +
-> +	with_intel_runtime_pm(gt->uncore->rpm, wakeref)
-> +		err = intel_gt_pcode_read(gt, mbox, val, NULL);
-> +
-> +	return err;
-> +}
-> +
-> +int __intel_gt_pcode_write(struct intel_gt *gt, u32 mbcmd, u32 p1, u32 p2, u32 val)
-> +{
-> +	intel_wakeref_t wakeref;
-> +	u32 mbox;
-> +	int err;
-> +
-> +	mbox = REG_FIELD_PREP(GEN6_PCODE_MB_COMMAND, mbcmd)
-> +		| REG_FIELD_PREP(GEN6_PCODE_MB_PARAM1, p1)
-> +		| REG_FIELD_PREP(GEN6_PCODE_MB_PARAM2, p2);
-> +
-> +	with_intel_runtime_pm(gt->uncore->rpm, wakeref)
-> +		err = intel_gt_pcode_write(gt, mbox, val);
-> +
-> +	return err;
-> +}
-> diff --git a/drivers/gpu/drm/i915/intel_pcode.h b/drivers/gpu/drm/i915/intel_pcode.h
-> index 96c954ec91f9..65175d82e033 100644
-> --- a/drivers/gpu/drm/i915/intel_pcode.h
-> +++ b/drivers/gpu/drm/i915/intel_pcode.h
-> @@ -36,4 +36,16 @@ int intel_gt_pcode_request(struct intel_gt *gt, u32 mbox, u32 request,
->  
->  int intel_pcode_init(struct drm_i915_private *i915);
->  
-> +/*
-> + * Helpers for dGfx PCODE mailbox command formatting
-> + */
-> +int __intel_gt_pcode_read(struct intel_gt *gt, u32 mbcmd, u32 p1, u32 p2, u32 *val);
-> +int __intel_gt_pcode_write(struct intel_gt *gt, u32 mbcmd, u32 p1, u32 p2, u32 val);
-> +
-> +#define __snb_pcode_read(i915, mbcmd, p1, p2, val) \
-> +	__intel_gt_pcode_read(&(i915)->gt0, mbcmd, p1, p2, val)
-> +
-> +#define __snb_pcode_write(i915, mbcmd, p1, p2, val) \
-> +	__intel_gt_pcode_write(&(i915)->gt0, mbcmd, p1, p2, val)
-> +
->  #endif /* _INTEL_PCODE_H */
-> -- 
-> 2.34.1
-> 
+Jason
