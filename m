@@ -2,49 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48FEC502847
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 Apr 2022 12:26:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 611FC502850
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 Apr 2022 12:31:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 69C4310EF51;
-	Fri, 15 Apr 2022 10:26:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9EB1E10F31B;
+	Fri, 15 Apr 2022 10:31:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C538B10EF51
- for <intel-gfx@lists.freedesktop.org>; Fri, 15 Apr 2022 10:26:19 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 651E010F31B
+ for <intel-gfx@lists.freedesktop.org>; Fri, 15 Apr 2022 10:31:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1650018379; x=1681554379;
+ t=1650018684; x=1681554684;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=R1sL2gcqC3lM75W3zh1skPKP4GtWfCLDgpxcoGDwNC0=;
- b=QKzDDGxN7mBxEquhMmoZ+ero4XyuYVB5ife3bGJGVErOIMX7AJnBDteh
- uMSzIv0bqUhAHu2LJSxwSn9KwNbsYspLpG+kprVp6j5V1RvXr+D8q1zuE
- PysEo7np+/jeAl8vWx7j4YAnvKXshXlD7XEwCdk1zEGJ+K8lFAwbjGFke
- OQMNLMpRQcA0UbmuucKisyt2KO2gwyo3chaW+W9FhnYrMliJjHQ7KW0wT
- +oXUnj4Xg6TRoRghzEtKpY73s5Dn6iSfkRv0WGyITmcyl29ACpcl/AoM+
- rbgrXeKb3TghTHIaRuqTxWlDuSPfyuRgJewUaYcd7bKVtewKU3fTn753Y A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10317"; a="260729916"
-X-IronPort-AV: E=Sophos;i="5.90,262,1643702400"; d="scan'208";a="260729916"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2022 03:26:19 -0700
-X-IronPort-AV: E=Sophos;i="5.90,262,1643702400"; d="scan'208";a="508904052"
+ bh=FiQdORAjyRzyo/jWAOwlsfnr56XXdTyBCWEFk3ddUn4=;
+ b=DRVKWnJNCmT1wB6vf0iSvyYsriEUoOHFRvtXOn7tAzZYQT4VO2QN2Fbq
+ fyAhPNTXzqprQJ+5BhSm652N+Bc/w9G4h5U9R2V5aRzKS2BEw75ga21t+
+ O8qy7z3OtxHjUcGOkQ8JlfR9+G8fEhGbXlTobhzk0liVaVLg4VkX5etYC
+ bWNRteMsuJoZSZ+OLe4ZjL1jwIVRKnKkF8cKj8VkM2PAospcn2XxNmeyi
+ ACjULSquHk8cagCyoSVn92sTgZ6rs0lxJM4oKLM88IW052lji0XzXj9Sm
+ GBNBT8nlpBIPANBw7u5wIv3UU8eVBjeZDbjIl8OdGax8RgxfJH0AmlL84 g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10317"; a="250432893"
+X-IronPort-AV: E=Sophos;i="5.90,262,1643702400"; d="scan'208";a="250432893"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2022 03:31:23 -0700
+X-IronPort-AV: E=Sophos;i="5.90,262,1643702400"; d="scan'208";a="574301835"
 Received: from pgooneti-mobl3.amr.corp.intel.com (HELO intel.com)
  ([10.255.34.169])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2022 03:26:18 -0700
-Date: Fri, 15 Apr 2022 06:26:16 -0400
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2022 03:31:21 -0700
+Date: Fri, 15 Apr 2022 06:31:19 -0400
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 To: Ashutosh Dixit <ashutosh.dixit@intel.com>
-Message-ID: <YllISPDPl17JgusP@intel.com>
+Message-ID: <YllJd9kJxzW33TfM@intel.com>
 References: <cover.1649871650.git.ashutosh.dixit@intel.com>
- <8401d5f5a87035ce1dda28a663771cb867fdf928.1649871650.git.ashutosh.dixit@intel.com>
+ <5b1cfcd6fc47dcc3d6aa9ed2f4412e7b6bf1159c.1649871650.git.ashutosh.dixit@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <8401d5f5a87035ce1dda28a663771cb867fdf928.1649871650.git.ashutosh.dixit@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 1/8] drm/i915: Introduce has_media_ratio_mode
+In-Reply-To: <5b1cfcd6fc47dcc3d6aa9ed2f4412e7b6bf1159c.1649871650.git.ashutosh.dixit@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 4/8] drm/i915/pcode: Add a couple of pcode
+ helpers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,68 +62,108 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Apr 13, 2022 at 11:11:02AM -0700, Ashutosh Dixit wrote:
-> Media ratio mode (the ability for media IP to work at a different frequency
-> from the GT) is available for a subset of dGfx platforms supporting
-> GuC/SLPC. Introduce 'has_media_ratio_mode' flag in intel_device_info to
-> identify these platforms and set it for XEHPSDV and DG2/ATS-M.
+On Wed, Apr 13, 2022 at 11:11:05AM -0700, Ashutosh Dixit wrote:
+> Add a couple of helpers to help formatting pcode commands and improve code
+> readability.
 > 
+> Cc: Mike Ruhl <michael.j.ruhl@intel.com>
 > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Original-author: Dale B Stimson <dale.b.stimson@intel.com>
+
+The right thing to do here is to git commit --amend --author="Dale B Stimson <dale.b.stimson@intel.com>"
+probably also good to reset the date with --date...
+
+> Signed-off-by: Dale B Stimson <dale.b.stimson@intel.com>
 > Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+and keep your signed-off-by here as well...
+
+and also feel free add my rv-b after the author is fixed
+
+Thanks,
+Rodrigo.
 
 > ---
->  drivers/gpu/drm/i915/i915_drv.h          | 2 ++
->  drivers/gpu/drm/i915/i915_pci.c          | 2 ++
->  drivers/gpu/drm/i915/intel_device_info.h | 1 +
->  3 files changed, 5 insertions(+)
+>  drivers/gpu/drm/i915/i915_reg.h    |  3 +++
+>  drivers/gpu/drm/i915/intel_pcode.c | 32 ++++++++++++++++++++++++++++++
+>  drivers/gpu/drm/i915/intel_pcode.h | 12 +++++++++++
+>  3 files changed, 47 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> index 9274417cd87a..1573769b516f 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -1222,6 +1222,8 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
->  #define CCS_MASK(gt) \
->  	ENGINE_INSTANCES_MASK(gt, CCS0, I915_MAX_CCS)
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index fef71b242706..0d5a4ecd374a 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -6684,6 +6684,9 @@
 >  
-> +#define HAS_MEDIA_RATIO_MODE(dev_priv) (INTEL_INFO(dev_priv)->has_media_ratio_mode)
+>  #define GEN6_PCODE_MAILBOX			_MMIO(0x138124)
+>  #define   GEN6_PCODE_READY			(1 << 31)
+> +#define   GEN6_PCODE_MB_PARAM2			REG_GENMASK(23, 16)
+> +#define   GEN6_PCODE_MB_PARAM1			REG_GENMASK(15, 8)
+> +#define   GEN6_PCODE_MB_COMMAND			REG_GENMASK(7, 0)
+>  #define   GEN6_PCODE_ERROR_MASK			0xFF
+>  #define     GEN6_PCODE_SUCCESS			0x0
+>  #define     GEN6_PCODE_ILLEGAL_CMD		0x1
+> diff --git a/drivers/gpu/drm/i915/intel_pcode.c b/drivers/gpu/drm/i915/intel_pcode.c
+> index 0cff212cc81b..87b9f5035741 100644
+> --- a/drivers/gpu/drm/i915/intel_pcode.c
+> +++ b/drivers/gpu/drm/i915/intel_pcode.c
+> @@ -239,3 +239,35 @@ int intel_pcode_init(struct drm_i915_private *i915)
+>  
+>  	return 0;
+>  }
 > +
->  /*
->   * The Gen7 cmdparser copies the scanned buffer to the ggtt for execution
->   * All later gens can run the final buffer from the ppgtt
-> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-> index 736e04078f56..ddc72bb07259 100644
-> --- a/drivers/gpu/drm/i915/i915_pci.c
-> +++ b/drivers/gpu/drm/i915/i915_pci.c
-> @@ -1032,6 +1032,7 @@ static const struct intel_device_info xehpsdv_info = {
->  	.display = { },
->  	.has_64k_pages = 1,
->  	.needs_compact_pt = 1,
-> +	.has_media_ratio_mode = 1,
->  	.platform_engine_mask =
->  		BIT(RCS0) | BIT(BCS0) |
->  		BIT(VECS0) | BIT(VECS1) | BIT(VECS2) | BIT(VECS3) |
-> @@ -1051,6 +1052,7 @@ static const struct intel_device_info xehpsdv_info = {
->  	.has_64k_pages = 1, \
->  	.has_guc_deprivilege = 1, \
->  	.needs_compact_pt = 1, \
-> +	.has_media_ratio_mode = 1, \
->  	.platform_engine_mask = \
->  		BIT(RCS0) | BIT(BCS0) | \
->  		BIT(VECS0) | BIT(VECS1) | \
-> diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
-> index f9b955810593..bf4f2b27fd47 100644
-> --- a/drivers/gpu/drm/i915/intel_device_info.h
-> +++ b/drivers/gpu/drm/i915/intel_device_info.h
-> @@ -146,6 +146,7 @@ enum intel_ppgtt_type {
->  	func(has_llc); \
->  	func(has_logical_ring_contexts); \
->  	func(has_logical_ring_elsq); \
-> +	func(has_media_ratio_mode); \
->  	func(has_mslices); \
->  	func(has_pooled_eu); \
->  	func(has_pxp); \
+> +int __intel_gt_pcode_read(struct intel_gt *gt, u32 mbcmd, u32 p1, u32 p2, u32 *val)
+> +{
+> +	intel_wakeref_t wakeref;
+> +	u32 mbox;
+> +	int err;
+> +
+> +	mbox = REG_FIELD_PREP(GEN6_PCODE_MB_COMMAND, mbcmd)
+> +		| REG_FIELD_PREP(GEN6_PCODE_MB_PARAM1, p1)
+> +		| REG_FIELD_PREP(GEN6_PCODE_MB_PARAM2, p2);
+> +
+> +	with_intel_runtime_pm(gt->uncore->rpm, wakeref)
+> +		err = intel_gt_pcode_read(gt, mbox, val, NULL);
+> +
+> +	return err;
+> +}
+> +
+> +int __intel_gt_pcode_write(struct intel_gt *gt, u32 mbcmd, u32 p1, u32 p2, u32 val)
+> +{
+> +	intel_wakeref_t wakeref;
+> +	u32 mbox;
+> +	int err;
+> +
+> +	mbox = REG_FIELD_PREP(GEN6_PCODE_MB_COMMAND, mbcmd)
+> +		| REG_FIELD_PREP(GEN6_PCODE_MB_PARAM1, p1)
+> +		| REG_FIELD_PREP(GEN6_PCODE_MB_PARAM2, p2);
+> +
+> +	with_intel_runtime_pm(gt->uncore->rpm, wakeref)
+> +		err = intel_gt_pcode_write(gt, mbox, val);
+> +
+> +	return err;
+> +}
+> diff --git a/drivers/gpu/drm/i915/intel_pcode.h b/drivers/gpu/drm/i915/intel_pcode.h
+> index 96c954ec91f9..65175d82e033 100644
+> --- a/drivers/gpu/drm/i915/intel_pcode.h
+> +++ b/drivers/gpu/drm/i915/intel_pcode.h
+> @@ -36,4 +36,16 @@ int intel_gt_pcode_request(struct intel_gt *gt, u32 mbox, u32 request,
+>  
+>  int intel_pcode_init(struct drm_i915_private *i915);
+>  
+> +/*
+> + * Helpers for dGfx PCODE mailbox command formatting
+> + */
+> +int __intel_gt_pcode_read(struct intel_gt *gt, u32 mbcmd, u32 p1, u32 p2, u32 *val);
+> +int __intel_gt_pcode_write(struct intel_gt *gt, u32 mbcmd, u32 p1, u32 p2, u32 val);
+> +
+> +#define __snb_pcode_read(i915, mbcmd, p1, p2, val) \
+> +	__intel_gt_pcode_read(&(i915)->gt0, mbcmd, p1, p2, val)
+> +
+> +#define __snb_pcode_write(i915, mbcmd, p1, p2, val) \
+> +	__intel_gt_pcode_write(&(i915)->gt0, mbcmd, p1, p2, val)
+> +
+>  #endif /* _INTEL_PCODE_H */
 > -- 
 > 2.34.1
 > 
