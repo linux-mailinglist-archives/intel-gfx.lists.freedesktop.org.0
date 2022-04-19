@@ -1,49 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BABE5060A1
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Apr 2022 02:07:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C246E5060A3
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Apr 2022 02:08:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E630E10E128;
-	Tue, 19 Apr 2022 00:07:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0464610E1CC;
+	Tue, 19 Apr 2022 00:08:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A827C10E128
- for <intel-gfx@lists.freedesktop.org>; Tue, 19 Apr 2022 00:07:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EDC5E10E1B3
+ for <intel-gfx@lists.freedesktop.org>; Tue, 19 Apr 2022 00:07:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1650326874; x=1681862874;
+ t=1650326876; x=1681862876;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=bRNvgPRUG9EbRbpG/NwKhlCFSpaibg9aZ/ekn8nAB1g=;
- b=EScQ5NploETDZDzCIEleplLtZPFq59dHlzz1zs80HfZmy/Arq+aP5vmG
- iFDDdFjTk2ctBqQ9z5UDpEjZl5Ss2qUBnFhH0r08DZ/45grT65ssncEnP
- 8WQOItCNEEPzj4i2keqn+Tb1sambce643k8Y2QomSEfoN0wL94SjL9wpk
- POmDxkimHhIxv515bVFsVlTfazDC623tMPXllhz+kzxmgs6IcMgZDT7v4
- iYpq0qCk38y8fDcTRY5Pfj5byQXfCSZ98PgDK958TcZfUiJYap2JlHoPq
- nWnbA6OF0k2FeniHkevmK73QUc93X0kex0xGYIN+2R/i5CJYwfOI6QXti w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10321"; a="326537810"
-X-IronPort-AV: E=Sophos;i="5.90,271,1643702400"; d="scan'208";a="326537810"
+ bh=8np0b/SxgSK9TJuE/SXjN6EkGw+sqCuZfW2lUNuYhw8=;
+ b=eA8Ez0ovKjvzswlIEXaYr2v2vdJpJC9jCDGWNAkHTrMo6VzLQDwwdlnq
+ XFgKi6tRGw6uHlwTdXnR42K22TXoV6deiMzmphWxL4hBdM7CWjMUPsLJm
+ gK03BmY46KsPhVwejkcSeM2cqR22t2RLgDbaw3iF3cXXSML/lfaYrUcFD
+ ySjrTeY51/odLua16yAjRjjeG8/PM5cBs6gerygyxfCVkgdGeNf3CQ4/7
+ 3RBlPdwbXOUM1gfENgLkS9OZXATrKHvWirhDM3C/uZAsFuQGF7tovQCbl
+ hJZpS8lRVzmUJeEhVAV+9lekIGzqTzAF240jfDU1yAOvuG+exwr26oqA0 g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10321"; a="326537815"
+X-IronPort-AV: E=Sophos;i="5.90,271,1643702400"; d="scan'208";a="326537815"
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Apr 2022 17:07:54 -0700
-X-IronPort-AV: E=Sophos;i="5.90,271,1643702400"; d="scan'208";a="665586375"
+ 18 Apr 2022 17:07:56 -0700
+X-IronPort-AV: E=Sophos;i="5.90,271,1643702400"; d="scan'208";a="665586388"
 Received: from valcore-skull-1.fm.intel.com ([10.1.27.19])
  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Apr 2022 17:07:54 -0700
+ 18 Apr 2022 17:07:55 -0700
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 18 Apr 2022 17:07:32 -0700
-Message-Id: <20220419000737.420867-3-daniele.ceraolospurio@intel.com>
+Date: Mon, 18 Apr 2022 17:07:33 -0700
+Message-Id: <20220419000737.420867-4-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220419000737.420867-1-daniele.ceraolospurio@intel.com>
 References: <20220419000737.420867-1-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 2/7] mei: add support for graphics system
- controller (gsc) devices
+Subject: [Intel-gfx] [PATCH v2 3/7] mei: gsc: setup char driver alive in
+ spite of firmware handshake failure
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,358 +60,49 @@ Cc: alexander.usyskin@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tomas Winkler <tomas.winkler@intel.com>
+From: Alexander Usyskin <alexander.usyskin@intel.com>
 
-GSC is a graphics system controller, based on CSE, it provides
-a chassis controller for graphics discrete cards, as well as it
-supports media protection on selected devices.
-
-mei_gsc binds to a auxiliary devices exposed by Intel discrete
-driver i915.
-
-v2: fix error check in mei_gsc_probe
+Setup char device in spite of firmware handshake failure.
+In order to provide host access to the firmware status registers and other
+information required for the manufacturing process.
 
 Signed-off-by: Alexander Usyskin <alexander.usyskin@intel.com>
 Signed-off-by: Tomas Winkler <tomas.winkler@intel.com>
 Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 ---
- drivers/misc/mei/Kconfig  |  14 +++
- drivers/misc/mei/Makefile |   3 +
- drivers/misc/mei/gsc-me.c | 194 ++++++++++++++++++++++++++++++++++++++
- drivers/misc/mei/hw-me.c  |  27 +++++-
- drivers/misc/mei/hw-me.h  |   2 +
- 5 files changed, 238 insertions(+), 2 deletions(-)
- create mode 100644 drivers/misc/mei/gsc-me.c
+ drivers/misc/mei/gsc-me.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/misc/mei/Kconfig b/drivers/misc/mei/Kconfig
-index 0e0bcd0da8522..d21486d69df27 100644
---- a/drivers/misc/mei/Kconfig
-+++ b/drivers/misc/mei/Kconfig
-@@ -46,6 +46,20 @@ config INTEL_MEI_TXE
- 	  Supported SoCs:
- 	  Intel Bay Trail
- 
-+config INTEL_MEI_GSC
-+	tristate "Intel MEI GSC embedded device"
-+	depends on INTEL_MEI
-+	depends on INTEL_MEI_ME
-+	depends on X86 && PCI
-+	depends on DRM_I915
-+	help
-+	  Intel auxiliary driver for GSC devices embedded in Intel graphics devices.
-+
-+	  An MEI device here called GSC can be embedded in an
-+	  Intel graphics devices, to support a range of chassis
-+	  tasks such as graphics card firmware update and security
-+	  tasks.
-+
- source "drivers/misc/mei/hdcp/Kconfig"
- source "drivers/misc/mei/pxp/Kconfig"
- 
-diff --git a/drivers/misc/mei/Makefile b/drivers/misc/mei/Makefile
-index d8e5165917f20..fb740d7549008 100644
---- a/drivers/misc/mei/Makefile
-+++ b/drivers/misc/mei/Makefile
-@@ -18,6 +18,9 @@ obj-$(CONFIG_INTEL_MEI_ME) += mei-me.o
- mei-me-objs := pci-me.o
- mei-me-objs += hw-me.o
- 
-+obj-$(CONFIG_INTEL_MEI_GSC) += mei-gsc.o
-+mei-gsc-objs := gsc-me.o
-+
- obj-$(CONFIG_INTEL_MEI_TXE) += mei-txe.o
- mei-txe-objs := pci-txe.o
- mei-txe-objs += hw-txe.o
 diff --git a/drivers/misc/mei/gsc-me.c b/drivers/misc/mei/gsc-me.c
-new file mode 100644
-index 0000000000000..166c1591ba9b5
---- /dev/null
+index 166c1591ba9b5..5072c21a2ae1e 100644
+--- a/drivers/misc/mei/gsc-me.c
 +++ b/drivers/misc/mei/gsc-me.c
-@@ -0,0 +1,194 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright(c) 2019-2022, Intel Corporation. All rights reserved.
-+ *
-+ * Intel Management Engine Interface (Intel MEI) Linux driver
-+ */
-+
-+#include <linux/module.h>
-+#include <linux/mei_aux.h>
-+#include <linux/device.h>
-+#include <linux/irqreturn.h>
-+#include <linux/jiffies.h>
-+#include <linux/ktime.h>
-+#include <linux/delay.h>
-+#include <linux/pm_runtime.h>
-+
-+#include "mei_dev.h"
-+#include "hw-me.h"
-+#include "hw-me-regs.h"
-+
-+#include "mei-trace.h"
-+
-+#define MEI_GSC_RPM_TIMEOUT 500
-+
-+static int mei_gsc_read_hfs(const struct mei_device *dev, int where, u32 *val)
-+{
-+	struct mei_me_hw *hw = to_me_hw(dev);
-+
-+	*val = ioread32(hw->mem_addr + where + 0xC00);
-+
-+	return 0;
-+}
-+
-+static int mei_gsc_probe(struct auxiliary_device *aux_dev,
-+			 const struct auxiliary_device_id *aux_dev_id)
-+{
-+	struct mei_aux_device *adev = auxiliary_dev_to_mei_aux_dev(aux_dev);
-+	struct mei_device *dev;
-+	struct mei_me_hw *hw;
-+	struct device *device;
-+	const struct mei_cfg *cfg;
-+	int ret;
-+
-+	cfg = mei_me_get_cfg(aux_dev_id->driver_data);
-+	if (!cfg)
-+		return -ENODEV;
-+
-+	device = &aux_dev->dev;
-+
-+	dev = mei_me_dev_init(device, cfg);
-+	if (!dev) {
-+		ret = -ENOMEM;
-+		goto err;
-+	}
-+
-+	hw = to_me_hw(dev);
-+	hw->mem_addr = devm_ioremap_resource(device, &adev->bar);
-+	if (IS_ERR(hw->mem_addr)) {
-+		dev_err(device, "mmio not mapped\n");
-+		ret = PTR_ERR(hw->mem_addr);
-+		goto err;
-+	}
-+
-+	hw->irq = adev->irq;
-+	hw->read_fws = mei_gsc_read_hfs;
-+
-+	dev_set_drvdata(device, dev);
-+
-+	ret = devm_request_threaded_irq(device, hw->irq,
-+					mei_me_irq_quick_handler,
-+					mei_me_irq_thread_handler,
-+					IRQF_ONESHOT, KBUILD_MODNAME, dev);
-+	if (ret) {
-+		dev_err(device, "irq register failed %d\n", ret);
-+		goto err;
-+	}
-+
-+	pm_runtime_get_noresume(device);
-+	pm_runtime_set_active(device);
-+	pm_runtime_enable(device);
-+
-+	if (mei_start(dev)) {
-+		dev_err(device, "init hw failure.\n");
-+		ret = -ENODEV;
-+		goto irq_err;
-+	}
-+
-+	pm_runtime_set_autosuspend_delay(device, MEI_GSC_RPM_TIMEOUT);
-+	pm_runtime_use_autosuspend(device);
-+
-+	ret = mei_register(dev, device);
-+	if (ret)
-+		goto register_err;
-+
-+	pm_runtime_put_noidle(device);
-+	return 0;
-+
-+register_err:
-+	mei_stop(dev);
-+irq_err:
-+	devm_free_irq(device, hw->irq, dev);
-+
-+err:
-+	dev_err(device, "probe failed: %d\n", ret);
-+	dev_set_drvdata(device, NULL);
-+	return ret;
-+}
-+
-+static void mei_gsc_remove(struct auxiliary_device *aux_dev)
-+{
-+	struct mei_device *dev;
-+	struct mei_me_hw *hw;
-+
-+	dev = dev_get_drvdata(&aux_dev->dev);
-+	if (!dev)
-+		return;
-+
-+	hw = to_me_hw(dev);
-+
-+	mei_stop(dev);
-+
-+	mei_deregister(dev);
-+
-+	pm_runtime_disable(&aux_dev->dev);
-+
-+	mei_disable_interrupts(dev);
-+	devm_free_irq(&aux_dev->dev, hw->irq, dev);
-+}
-+
-+static int __maybe_unused mei_gsc_pm_suspend(struct device *device)
-+{
-+	struct mei_device *dev = dev_get_drvdata(device);
-+
-+	if (!dev)
-+		return -ENODEV;
-+
-+	mei_stop(dev);
-+
-+	mei_disable_interrupts(dev);
-+
-+	return 0;
-+}
-+
-+static int __maybe_unused mei_gsc_pm_resume(struct device *device)
-+{
-+	struct mei_device *dev = dev_get_drvdata(device);
-+	int err;
-+
-+	if (!dev)
-+		return -ENODEV;
-+
-+	err = mei_restart(dev);
-+	if (err)
-+		return err;
-+
-+	/* Start timer if stopped in suspend */
-+	schedule_delayed_work(&dev->timer_work, HZ);
-+
-+	return 0;
-+}
-+
-+static SIMPLE_DEV_PM_OPS(mei_gsc_pm_ops, mei_gsc_pm_suspend, mei_gsc_pm_resume);
-+
-+static const struct auxiliary_device_id mei_gsc_id_table[] = {
-+	{
-+		.name = "i915.mei-gsc",
-+		.driver_data = MEI_ME_GSC_CFG,
-+
-+	},
-+	{
-+		.name = "i915.mei-gscfi",
-+		.driver_data = MEI_ME_GSCFI_CFG,
-+	},
-+	{
-+		/* sentinel */
-+	}
-+};
-+MODULE_DEVICE_TABLE(auxiliary, mei_gsc_id_table);
-+
-+static struct auxiliary_driver mei_gsc_driver = {
-+	.probe	= mei_gsc_probe,
-+	.remove = mei_gsc_remove,
-+	.driver = {
-+		/* auxiliary_driver_register() sets .name to be the modname */
-+		.pm = &mei_gsc_pm_ops,
-+	},
-+	.id_table = mei_gsc_id_table
-+};
-+module_auxiliary_driver(mei_gsc_driver);
-+
-+MODULE_AUTHOR("Intel Corporation");
-+MODULE_ALIAS("auxiliary:i915.mei-gsc");
-+MODULE_ALIAS("auxiliary:i915.mei-gscfi");
-+MODULE_LICENSE("GPL v2");
-diff --git a/drivers/misc/mei/hw-me.c b/drivers/misc/mei/hw-me.c
-index 719fee9af1564..03945d3b34da3 100644
---- a/drivers/misc/mei/hw-me.c
-+++ b/drivers/misc/mei/hw-me.c
-@@ -1226,6 +1226,7 @@ irqreturn_t mei_me_irq_quick_handler(int irq, void *dev_id)
- 	me_intr_disable(dev, hcsr);
- 	return IRQ_WAKE_THREAD;
- }
-+EXPORT_SYMBOL_GPL(mei_me_irq_quick_handler);
+@@ -79,11 +79,12 @@ static int mei_gsc_probe(struct auxiliary_device *aux_dev,
+ 	pm_runtime_set_active(device);
+ 	pm_runtime_enable(device);
  
- /**
-  * mei_me_irq_thread_handler - function called after ISR to handle the interrupt
-@@ -1326,6 +1327,7 @@ irqreturn_t mei_me_irq_thread_handler(int irq, void *dev_id)
- 	mutex_unlock(&dev->device_lock);
- 	return IRQ_HANDLED;
- }
-+EXPORT_SYMBOL_GPL(mei_me_irq_thread_handler);
+-	if (mei_start(dev)) {
+-		dev_err(device, "init hw failure.\n");
+-		ret = -ENODEV;
+-		goto irq_err;
+-	}
++	/* Continue to char device setup in spite of firmware handshake failure.
++	 * In order to provide access to the firmware status registers to the user
++	 * space via sysfs.
++	 */
++	if (mei_start(dev))
++		dev_warn(device, "init hw failure.\n");
  
- static const struct mei_hw_ops mei_me_hw_ops = {
+ 	pm_runtime_set_autosuspend_delay(device, MEI_GSC_RPM_TIMEOUT);
+ 	pm_runtime_use_autosuspend(device);
+@@ -97,7 +98,6 @@ static int mei_gsc_probe(struct auxiliary_device *aux_dev,
  
-@@ -1440,6 +1442,12 @@ static bool mei_me_fw_type_sps_ign(const struct pci_dev *pdev)
- #define MEI_CFG_KIND_ITOUCH                     \
- 	.kind = "itouch"
+ register_err:
+ 	mei_stop(dev);
+-irq_err:
+ 	devm_free_irq(device, hw->irq, dev);
  
-+#define MEI_CFG_TYPE_GSC                        \
-+	.kind = "gsc"
-+
-+#define MEI_CFG_TYPE_GSCFI                      \
-+	.kind = "gscfi"
-+
- #define MEI_CFG_FW_SPS_IGN                      \
- 	.quirk_probe = mei_me_fw_type_sps_ign
- 
-@@ -1572,6 +1580,18 @@ static const struct mei_cfg mei_me_pch15_sps_cfg = {
- 	MEI_CFG_FW_SPS_IGN,
- };
- 
-+/* Graphics System Controller */
-+static const struct mei_cfg mei_me_gsc_cfg = {
-+	MEI_CFG_TYPE_GSC,
-+	MEI_CFG_PCH8_HFS,
-+};
-+
-+/* Graphics System Controller Firmware Interface */
-+static const struct mei_cfg mei_me_gscfi_cfg = {
-+	MEI_CFG_TYPE_GSCFI,
-+	MEI_CFG_PCH8_HFS,
-+};
-+
- /*
-  * mei_cfg_list - A list of platform platform specific configurations.
-  * Note: has to be synchronized with  enum mei_cfg_idx.
-@@ -1592,6 +1612,8 @@ static const struct mei_cfg *const mei_cfg_list[] = {
- 	[MEI_ME_PCH12_SPS_ITOUCH_CFG] = &mei_me_pch12_itouch_sps_cfg,
- 	[MEI_ME_PCH15_CFG] = &mei_me_pch15_cfg,
- 	[MEI_ME_PCH15_SPS_CFG] = &mei_me_pch15_sps_cfg,
-+	[MEI_ME_GSC_CFG] = &mei_me_gsc_cfg,
-+	[MEI_ME_GSCFI_CFG] = &mei_me_gscfi_cfg,
- };
- 
- const struct mei_cfg *mei_me_get_cfg(kernel_ulong_t idx)
-@@ -1602,7 +1624,8 @@ const struct mei_cfg *mei_me_get_cfg(kernel_ulong_t idx)
- 		return NULL;
- 
- 	return mei_cfg_list[idx];
--};
-+}
-+EXPORT_SYMBOL_GPL(mei_me_get_cfg);
- 
- /**
-  * mei_me_dev_init - allocates and initializes the mei device structure
-@@ -1637,4 +1660,4 @@ struct mei_device *mei_me_dev_init(struct device *parent,
- 
- 	return dev;
- }
--
-+EXPORT_SYMBOL_GPL(mei_me_dev_init);
-diff --git a/drivers/misc/mei/hw-me.h b/drivers/misc/mei/hw-me.h
-index 00a7132ac7a2e..a071c645e9054 100644
---- a/drivers/misc/mei/hw-me.h
-+++ b/drivers/misc/mei/hw-me.h
-@@ -112,6 +112,8 @@ enum mei_cfg_idx {
- 	MEI_ME_PCH12_SPS_ITOUCH_CFG,
- 	MEI_ME_PCH15_CFG,
- 	MEI_ME_PCH15_SPS_CFG,
-+	MEI_ME_GSC_CFG,
-+	MEI_ME_GSCFI_CFG,
- 	MEI_ME_NUM_CFG,
- };
- 
+ err:
 -- 
 2.25.1
 
