@@ -2,51 +2,73 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EB8B507BE5
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Apr 2022 23:26:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E4C94507D45
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Apr 2022 01:44:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 27E6D10E2C5;
-	Tue, 19 Apr 2022 21:26:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A81D10E392;
+	Tue, 19 Apr 2022 23:44:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E63310E2C5
- for <intel-gfx@lists.freedesktop.org>; Tue, 19 Apr 2022 21:26:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1650403602; x=1681939602;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=xp7jAPzJ3EjF12Z6mCtlnX8cN/9CbcNzwCuRA3mOpb0=;
- b=l6tzi1r0Awhz1O3/MdM93UozVrDplyD4wPPpl1f6o2bkO8za3gNCiUfc
- djYkrhfHSB4Jf1cBzzDPVZwuayEFgL1KwvXb80OMGF1A5t0RI9tPsTLXu
- NSCU/KRu/DLqmCnQJ5LTYvXHCqyc8PawGMY36S/o4rvmY0v9p/ZKqShWL
- UExwjfyWK8nX1qEgk3+XH9VIShTUwt4opeQBufF8ZYZYYR5m7VYPOwBx5
- 7q9xjqhfw5gkq2R9OxCz0K3yTGABT2dhrKvBOVs3YIuOtRDr8p93C3apM
- uDiU6rnjCacGFcksxdrv2E/14tneGZTrr/wXX96ShA88JLJ8wJbFTbD5c g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10322"; a="243808702"
-X-IronPort-AV: E=Sophos;i="5.90,273,1643702400"; d="scan'208";a="243808702"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Apr 2022 14:26:42 -0700
-X-IronPort-AV: E=Sophos;i="5.90,273,1643702400"; d="scan'208";a="554902152"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Apr 2022 14:26:41 -0700
-Date: Tue, 19 Apr 2022 14:26:40 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
-Message-ID: <Yl8pELkiy2YcrMdS@mdroper-desk1.amr.corp.intel.com>
-References: <20220419182753.364237-1-jose.souza@intel.com>
- <20220419182753.364237-2-jose.souza@intel.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D92C710E387
+ for <intel-gfx@lists.freedesktop.org>; Tue, 19 Apr 2022 23:44:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1650411880;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=oYGafAneoUZHzEpI/8/bT8Grd+Q/phBRFprX8SG/5bY=;
+ b=U7gt94AMFzkZIX6MzoKaogo8Bde+147JXHxPhwIblWkp+FN9sFtlWb2d2Hbgaul84Bf6ig
+ aGl4X0+wEqV+/AYvv6dvaT3kpnIRygHV7KfgsfC7ASDOUIxy6bYXO5bjIrYXSzfIETKEqK
+ cTiYzfL4tgyF9GsLGW8K1uhBdGS7Qiw=
+Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
+ [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-207-QQXGMANQOP2dZUKheG3mSg-1; Tue, 19 Apr 2022 19:44:39 -0400
+X-MC-Unique: QQXGMANQOP2dZUKheG3mSg-1
+Received: by mail-wm1-f71.google.com with SMTP id
+ az27-20020a05600c601b00b0038ff021c8a4so2069925wmb.1
+ for <intel-gfx@lists.freedesktop.org>; Tue, 19 Apr 2022 16:44:39 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=oYGafAneoUZHzEpI/8/bT8Grd+Q/phBRFprX8SG/5bY=;
+ b=dhmnlr0CLN2pz9743W316W6VDBIVN8BKUSYs3AIKo5l9H01LcM4yPdArYaJazcEugz
+ NZCLh0HTbWuihZN7uWzaR+8+YgLqwjm4X6irmx5XRhVSxeAzMkYQqeE+z7YDvit2Xm5f
+ gmZIbEXmQT4bKQ9M4HmM7a28V8TxLrZ7dMbAIc5qCv2tGh2Kq4CeHYRNuk1FeoGK4UHd
+ 0zXCsv092COxUppmP+3K0jM6Z5tT9+yXGDk+lCYJ8X1wWOAM1qixnW6ElHQ3QEMHWxoN
+ vBDWNXyNxc8prnileC+UlP/gX1aQRYa0qbFJPxHQhNit6hqlxH9qmQVb2saxHiI8kObY
+ PSTQ==
+X-Gm-Message-State: AOAM530iOfrWextLJsiZeLkBj7LU5tbvpzX+15g3NnHovM+lT68n+BuP
+ qfMCkfEsc1SGKaYkX8HjF1s/pyqZdpgukYS8K+NnBopU9GzKrJQSU8kC4kn3r1TamLfrcQS8AsT
+ mxZ+O7noQlurSk0WOteg1i7wRsOav
+X-Received: by 2002:adf:e301:0:b0:205:db69:6dba with SMTP id
+ b1-20020adfe301000000b00205db696dbamr13903200wrj.605.1650411878519; 
+ Tue, 19 Apr 2022 16:44:38 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJyd21waJxZOqKa793oN0FwdeBAnzWxA1Koh+HqrwD58qJEbPViWBCVhaKh7RSE4dFJnB0AKtQ==
+X-Received: by 2002:adf:e301:0:b0:205:db69:6dba with SMTP id
+ b1-20020adfe301000000b00205db696dbamr13903193wrj.605.1650411878317; 
+ Tue, 19 Apr 2022 16:44:38 -0700 (PDT)
+Received: from kherbst.pingu.com (ip1f10bb48.dynamic.kabel-deutschland.de.
+ [31.16.187.72]) by smtp.gmail.com with ESMTPSA id
+ z3-20020a1cf403000000b0037d1f4a2201sm16560045wma.21.2022.04.19.16.44.37
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 19 Apr 2022 16:44:37 -0700 (PDT)
+From: Karol Herbst <kherbst@redhat.com>
+To: linux-kernel@vger.kernel.org
+Date: Wed, 20 Apr 2022 01:44:36 +0200
+Message-Id: <20220419234436.2638649-1-kherbst@redhat.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=kherbst@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220419182753.364237-2-jose.souza@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v2 2/2] drm/i915/dg2: Add workaround
- 18019627453
+Content-Type: text/plain; charset="US-ASCII"; x-default=true
+Subject: [Intel-gfx] [PATCH] drm/i915: Fix race in __i915_vma_remove_closed
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,55 +81,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Karol Herbst <kherbst@redhat.com>, Chris Wilson <chris@chris-wilson.co.uk>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Apr 19, 2022 at 11:27:53AM -0700, José Roberto de Souza wrote:
-> A new DG2 workaround added to fix some corner cases hangs.
-> 
-> v2:
-> - implementing the second and preferred option for this workaround
-> 
-> BSpec: 54077
-> BSpec: 68173
-> BSpec: 71488
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+i915_vma_reopen checked if the vma is closed before without taking the
+lock. So multiple threads could attempt removing the vma.
 
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Instead the lock needs to be taken before actually checking.
 
-> ---
->  drivers/gpu/drm/i915/gt/intel_workarounds.c | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> index 29c8cd0a81b6f..a05c4b99b3fbc 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> @@ -2194,11 +2194,15 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
->  		 */
->  		wa_write_or(wal, GEN7_FF_THREAD_MODE,
->  			    GEN12_FF_TESSELATION_DOP_GATE_DISABLE);
-> +	}
->  
-> +	if (IS_ALDERLAKE_P(i915) || IS_DG2(i915) || IS_ALDERLAKE_S(i915) ||
-> +	    IS_DG1(i915) || IS_ROCKETLAKE(i915) || IS_TIGERLAKE(i915)) {
->  		/*
->  		 * Wa_1606700617:tgl,dg1,adl-p
->  		 * Wa_22010271021:tgl,rkl,dg1,adl-s,adl-p
->  		 * Wa_14010826681:tgl,dg1,rkl,adl-p
-> +		 * Wa_18019627453:dg2
->  		 */
->  		wa_masked_en(wal,
->  			     GEN9_CS_DEBUG_MODE1,
-> -- 
-> 2.35.3
-> 
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/5732
+Signed-off-by: Karol Herbst <kherbst@redhat.com>
+---
+ drivers/gpu/drm/i915/i915_vma.c | 12 ++++++++----
+ 1 file changed, 8 insertions(+), 4 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
+index 162e8d83691b..bb3b6e4bee8b 100644
+--- a/drivers/gpu/drm/i915/i915_vma.c
++++ b/drivers/gpu/drm/i915/i915_vma.c
+@@ -1615,17 +1615,17 @@ void i915_vma_close(struct i915_vma *vma)
+ 
+ static void __i915_vma_remove_closed(struct i915_vma *vma)
+ {
+-	struct intel_gt *gt = vma->vm->gt;
+-
+-	spin_lock_irq(&gt->closed_lock);
+ 	list_del_init(&vma->closed_link);
+-	spin_unlock_irq(&gt->closed_lock);
+ }
+ 
+ void i915_vma_reopen(struct i915_vma *vma)
+ {
++	struct intel_gt *gt = vma->vm->gt;
++
++	spin_lock_irq(&gt->closed_lock);
+ 	if (i915_vma_is_closed(vma))
+ 		__i915_vma_remove_closed(vma);
++	spin_unlock_irq(&gt->closed_lock);
+ }
+ 
+ static void force_unbind(struct i915_vma *vma)
+@@ -1651,7 +1651,11 @@ static void release_references(struct i915_vma *vma, bool vm_ddestroy)
+ 
+ 	spin_unlock(&obj->vma.lock);
+ 
++	struct intel_gt *gt = vma->vm->gt;
++
++	spin_lock_irq(&gt->closed_lock);
+ 	__i915_vma_remove_closed(vma);
++	spin_unlock_irq(&gt->closed_lock);
+ 
+ 	if (vm_ddestroy)
+ 		i915_vm_resv_put(vma->vm);
 -- 
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
+2.35.1
+
