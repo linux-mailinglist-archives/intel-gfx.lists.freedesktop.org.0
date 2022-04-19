@@ -1,50 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 440455064E8
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Apr 2022 08:56:45 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C91B506543
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Apr 2022 09:01:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E23F10EDB4;
-	Tue, 19 Apr 2022 06:56:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 531FF10EEB2;
+	Tue, 19 Apr 2022 07:01:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A95D510EDB4
- for <intel-gfx@lists.freedesktop.org>; Tue, 19 Apr 2022 06:56:40 +0000 (UTC)
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE5C810EEB2
+ for <intel-gfx@lists.freedesktop.org>; Tue, 19 Apr 2022 07:01:35 +0000 (UTC)
 Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
- by smtp-out2.suse.de (Postfix) with ESMTP id 58FAC1F383;
- Tue, 19 Apr 2022 06:56:39 +0000 (UTC)
+ by smtp-out1.suse.de (Postfix) with ESMTP id 5F3882112B;
+ Tue, 19 Apr 2022 07:01:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1650351399; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ t=1650351694; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:content-type:content-type:
  in-reply-to:in-reply-to:references:references;
- bh=a+A8MWLQ2UX1UgFOdddAhdAjlzvvzqOUMYMntwHYcDw=;
- b=tACuNbNQaVN6l37GrRDXnNMM5pHAfmCwSgThEqNybo8ZkAA26W1tUGx2k5BfbBO2Chm1Dj
- 488xucK5SlcyPmXpdx1NUxuygnToF+f7RmqZ+PQu8sCta+99srI7ryNrSl4zfj0EAGLrU8
- qdZpVTLuRnn9Uixmh6MRwcX7zFfZxIg=
+ bh=IVrxI7k1ifm5AVHxBNA4vg7g3DvfNn+i52sKD4CT/7c=;
+ b=yvqQEPUaxXn5KdShiAjhnM9VU/RVcB/rY2uDynwP1oUg1mPBMsi+qb+Y/U/DnL0G++hH4h
+ SWcElFyY1kqEGX5ieutAjOstFiFZn6PgiHb0zfelESoMdZ29Orr/EZZ+OUwwKchvissEes
+ YiSK/qrA8zCzFDyA+4azrki0XDGFEfU=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1650351399;
+ s=susede2_ed25519; t=1650351694;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:content-type:content-type:
  in-reply-to:in-reply-to:references:references;
- bh=a+A8MWLQ2UX1UgFOdddAhdAjlzvvzqOUMYMntwHYcDw=;
- b=k+rlk7iCLll2si+kDHTFQKAmQOb59hMIpnUfhjTevIXBTfiR7VXaHCT8cuBOhA6ZfHAZP0
- dMY1RyLsWU/pz5Cg==
+ bh=IVrxI7k1ifm5AVHxBNA4vg7g3DvfNn+i52sKD4CT/7c=;
+ b=Mni+J2F2Ixk0cEGqa+xf3AfdNYY8/xNsoe5B0CSeEkAMSomAUjmlpZii2y5qMgsOB2KHt1
+ 7OB4EvB15pToP4Bw==
 Received: from alsa1.suse.de (alsa1.suse.de [10.160.4.42])
- by relay2.suse.de (Postfix) with ESMTP id 51009A3C1F;
- Tue, 19 Apr 2022 06:56:39 +0000 (UTC)
-Date: Tue, 19 Apr 2022 08:56:39 +0200
-Message-ID: <s5h5yn536jc.wl-tiwai@suse.de>
+ by relay2.suse.de (Postfix) with ESMTP id 4BD4CA3BAD;
+ Tue, 19 Apr 2022 07:01:34 +0000 (UTC)
+Date: Tue, 19 Apr 2022 09:01:34 +0200
+Message-ID: <s5h35i936b5.wl-tiwai@suse.de>
 From: Takashi Iwai <tiwai@suse.de>
 To: Lucas De Marchi <lucas.demarchi@intel.com>
-In-Reply-To: <s5hee1t37b2.wl-tiwai@suse.de>
+In-Reply-To: <20220416064418.2364582-1-lucas.demarchi@intel.com>
 References: <20220416064418.2364582-1-lucas.demarchi@intel.com>
- <alpine.DEB.2.22.394.2204171309420.1532214@eliteleevi.tm.intel.com>
- <20220418045032.74gipx7fo6ajnoib@ldmartin-desk2>
- <s5hilr539ex.wl-tiwai@suse.de>
- <20220419062606.73bsepujqcmlnjl3@ldmartin-desk2>
- <s5hee1t37b2.wl-tiwai@suse.de>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI/1.14.6 (Maruoka)
  FLIM/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL/10.8 Emacs/25.3
  (x86_64-suse-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -68,59 +63,22 @@ Cc: intel-gfx@lists.freedesktop.org, alsa-devel@alsa-project.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 19 Apr 2022 08:40:01 +0200,
-Takashi Iwai wrote:
+On Sat, 16 Apr 2022 08:44:18 +0200,
+Lucas De Marchi wrote:
 > 
-> On Tue, 19 Apr 2022 08:26:06 +0200,
-> Lucas De Marchi wrote:
-> > 
-> > On Tue, Apr 19, 2022 at 07:54:30AM +0200, Takashi Iwai wrote:
-> > >On Mon, 18 Apr 2022 06:50:32 +0200,
-> > >Lucas De Marchi wrote:
-> > >>
-> > >> On Sun, Apr 17, 2022 at 01:13:49PM +0300, Kai Vehmanen wrote:
-> > >> >Hi,
-> > >> >
-> > >> >On Fri, 15 Apr 2022, Lucas De Marchi wrote:
-> > >> >
-> > >> >> pci_get_class() will already unref the pci device passed as argument.
-> > >> >> So if it's unconditionally unref'ed, even if the loop is not stopped,
-> > >> >
-> > >> >thanks Lucas. And yes indeed, overlooked that pci_get_class()
-> > >> >will decrement the from device is specified.
-> > >> >
-> > >> >> --- a/sound/hda/hdac_i915.c
-> > >> >> +++ b/sound/hda/hdac_i915.c
-> > >> >> @@ -127,11 +127,10 @@ static int i915_gfx_present(struct pci_dev *hdac_pci)
-> > >> >>  		display_dev = pci_get_class(class, display_dev);
-> > >> >>
-> > >> >>  		if (display_dev && display_dev->vendor == PCI_VENDOR_ID_INTEL &&
-> > >> >> -		    connectivity_check(display_dev, hdac_pci))
-> > >> >> +		    connectivity_check(display_dev, hdac_pci)) {
-> > >> >> +			pci_dev_put(display_dev);
-> > >> >>  			match = true;
-> > >> >> -
-> > >> >> -		pci_dev_put(display_dev);
-> > >> >> -
-> > >> >> +		}
-> > >> >
-> > >> >Reviewed-by: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-> > >>
-> > >> I applied this to our topic/core-for-CI branch to unblock CI on
-> > >> DG2. Ultimately the target for this is the sound tree though.
-> > >
-> > >The patch looks good, feel free to submit it.
-> > 
-> > not sure if I was clear. This patch is already targeting the sound tree:
-> > it should apply cleanly.
+> pci_get_class() will already unref the pci device passed as argument.
+> So if it's unconditionally unref'ed, even if the loop is not stopped,
+> there will be one too many unref for each device not matched.
 > 
-> The original patch hasn't reached to me (we've had the mail server
-> problem in the last weekend, and that might be the reason).
-> 
-> Could you resubmit?
+> Cc: Kai Vehmanen <kai.vehmanen@linux.intel.com>
+> Cc: Takashi Iwai <tiwai@suse.de>
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/5701
+> Fixes: 0dc2696a4623 ("ALSA: hda/i915 - skip acomp init if no matching display")
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-Never mind, I could find it in lore.
-  https://lore.kernel.org/all/20220416064418.2364582-1-lucas.demarchi@intel.com/
+Thanks, applied now.
+But the Fixes commit id was wrong.  I corrected to the right upstream
+one, c9db8a30d9f0.
 
 
 Takashi
