@@ -1,48 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03D37508963
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Apr 2022 15:30:31 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5597E5089ED
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Apr 2022 15:59:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F7C510E5EC;
-	Wed, 20 Apr 2022 13:30:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE7AF10F17D;
+	Wed, 20 Apr 2022 13:59:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 415AE10F0D1;
- Wed, 20 Apr 2022 13:30:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1650461428; x=1681997428;
- h=date:from:to:cc:subject:message-id:mime-version:
- content-transfer-encoding;
- bh=olons+DftCZ6hGJpcWR970X/XiIs0zJ1Kyb+yns50DY=;
- b=AxedIXR13+MUViHJPGjpr5X9fKDxIkc3zRDNUPdx/ZqGuI0TjgDFYCFi
- h1PyGqXHv4FLfwQo2giUeCqreg3Kkyv3bWDr1paGLbUA2URnixgXDz/9K
- wuZL2Q5W2eWzg0I+12Eb7Q6R6RrvLCpEEV2lE3HkTX1jtE6lU6XZ+ybe4
- Ewd95Oa73YFecIlSJFEPVQN5glxsMMyVXWMAkn9RzB7WncOJgqdpbBWEk
- Rj9gUbVDIm6tkKTEOZIPUCzMBEP7EAq1Sj/TikV3/5sXIj1fcOKrStPJC
- Yk1MjCn8lEw+tenhYkInritxLkA0tVJJjsPhg5FGwFjVzH/oGAAY/+dqX g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10322"; a="251331368"
-X-IronPort-AV: E=Sophos;i="5.90,275,1643702400"; d="scan'208";a="251331368"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Apr 2022 06:30:04 -0700
-X-IronPort-AV: E=Sophos;i="5.90,275,1643702400"; d="scan'208";a="555193673"
-Received: from mciobota-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.56.75])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Apr 2022 06:30:00 -0700
-Date: Wed, 20 Apr 2022 16:29:58 +0300
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <YmAKuHwon7hGyIoC@jlahtine-mobl.ger.corp.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D2D8B10F17D;
+ Wed, 20 Apr 2022 13:59:39 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id D22D1A0096;
+ Wed, 20 Apr 2022 13:59:39 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PULL] drm-intel-fixes
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Souza, Jose" <jose.souza@intel.com>
+Date: Wed, 20 Apr 2022 13:59:39 -0000
+Message-ID: <165046317983.24580.3444825525236325945@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220419182753.364237-1-jose.souza@intel.com>
+In-Reply-To: <20220419182753.364237-1-jose.souza@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?series_starting_with_=5Bv2=2C1/2=5D_drm/i915/display=3A_Add_wor?=
+ =?utf-8?q?karound_22014263786_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,51 +41,21 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave & Daniel,
+== Series Details ==
 
-Here go drm-intel-fixes for v5.18-rc4.
+Series: series starting with [v2,1/2] drm/i915/display: Add workaround 22014263786 (rev3)
+URL   : https://patchwork.freedesktop.org/series/102835/
+State : warning
 
-Two display fixes: Disable VRR if user disables it from panel settings
-and avoid claiming PSR2 is enabled when it is not supported by config.
+== Summary ==
 
-Regards, Joonas
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
-***
 
-drm-intel-fixes-2022-04-20:
-
-- Unset enable_psr2_sel_fetch if PSR2 detection fails
-- Fix to detect when VRR is turned off from panel settings
-
-The following changes since commit b2d229d4ddb17db541098b83524d901257e93845:
-
-  Linux 5.18-rc3 (2022-04-17 13:57:31 -0700)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-fixes-2022-04-20
-
-for you to fetch changes up to bb02330408a7bde33b5f46aa14fd5d7bfe6093b7:
-
-  drm/i915/display/psr: Unset enable_psr2_sel_fetch if other checks in intel_psr2_config_valid() fails (2022-04-20 07:51:14 +0300)
-
-----------------------------------------------------------------
-- Unset enable_psr2_sel_fetch if PSR2 detection fails
-- Fix to detect when VRR is turned off from panel settings
-
-----------------------------------------------------------------
-José Roberto de Souza (1):
-      drm/i915/display/psr: Unset enable_psr2_sel_fetch if other checks in intel_psr2_config_valid() fails
-
-Manasi Navare (1):
-      drm/i915/display/vrr: Reset VRR capable property on a long hpd
-
- drivers/gpu/drm/i915/display/intel_dp.c  | 17 +++++++++-----
- drivers/gpu/drm/i915/display/intel_psr.c | 38 ++++++++++++++++++--------------
- 2 files changed, 32 insertions(+), 23 deletions(-)
