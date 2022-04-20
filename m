@@ -2,49 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAFA1508119
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Apr 2022 08:25:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E57D50811D
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Apr 2022 08:25:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 20F7B10F197;
-	Wed, 20 Apr 2022 06:25:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 45B2F10F190;
+	Wed, 20 Apr 2022 06:25:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 43F2F10F18D
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3DB2210F190
  for <intel-gfx@lists.freedesktop.org>; Wed, 20 Apr 2022 06:25:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1650435917; x=1681971917;
+ t=1650435918; x=1681971918;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=9naEU7v6/6JpsFV76sSinyPx6hrSdM5zKeSRcHJmLl4=;
- b=Tv+k8L6UUDlFSrV56HlL23v8eVOSj4uBrb9nd1w51SQdMjRPKcalDI7V
- VzPOjbBmRdbAYsgPuSiVChojUR+Xl9M7SZ3wZncMq71VRauAWzA2w4hX7
- rWP4QXzDSfOxl1Ll6Rriad1cLEkgf4q6/8IFPJsBO+IvsYu59JbPApd2l
- Vm3omicz0reVn5MZ+j9Z63XRfgbpdZGIXa5C5z8P2hVdy7RcjYIlPgx8Z
- Fb5J9bxtRSYpXSAeYchTrEnJtV8Crv+yMevFxKlMScDSyfIKjbX6r0SLH
- ujgSlXItDTH05JhigtLkoGxcHpZWPDOoadgpQHvaPjt5ZcKvhw5H9jAxj g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10322"; a="289055124"
-X-IronPort-AV: E=Sophos;i="5.90,274,1643702400"; d="scan'208";a="289055124"
+ bh=a6WESD2vcG8xRgZcmWrZmNZcu4tGuOHKHFcqxe+K5qc=;
+ b=bjvjv0FE72p6FurgCzyjzE3gRVOkcJzkElHLOMzWeS1HmXExtBVCCLYL
+ wL9V7BNRn3oDbNthJUg16Zz6Qy6Bt1uUuWp7WA3WslX5dYvnqfFiLPblJ
+ kAkvEHFxCKYpIs+YZIxsHXn2sCt/0022QNuqCSc1C3Q+/sbQGpPgjzz01
+ OSlCWBoB0LSnxztRbZaYDSkbioMX/Fb9g3BYWqxS9RuQ6aNFIt8Y8jvli
+ MIu75pyMw69iyKaVveId4VY33W6tj2sO2aeFByOLLdVjeqtWhII1YZXlJ
+ BQfCi5HSXUY5A/4hTIO9Ama53n75ATUtKmQmHKpjD7EcCHECQpdktBR0v A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10322"; a="289055125"
+X-IronPort-AV: E=Sophos;i="5.90,274,1643702400"; d="scan'208";a="289055125"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  19 Apr 2022 23:25:15 -0700
-X-IronPort-AV: E=Sophos;i="5.90,274,1643702400"; d="scan'208";a="529618334"
+X-IronPort-AV: E=Sophos;i="5.90,274,1643702400"; d="scan'208";a="529618335"
 Received: from orsosgc001.jf.intel.com (HELO unerlige-ril-10.165.21.154.com)
  ([10.165.21.154])
  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  19 Apr 2022 23:25:14 -0700
 From: Ashutosh Dixit <ashutosh.dixit@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 19 Apr 2022 23:25:02 -0700
-Message-Id: <e17dd7ffecafe0f597d24bb53d3170ad9284dba9.1650435571.git.ashutosh.dixit@intel.com>
+Date: Tue, 19 Apr 2022 23:25:03 -0700
+Message-Id: <2e9c13234fe510235688e774d70326870eb7e219.1650435571.git.ashutosh.dixit@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <cover.1650435571.git.ashutosh.dixit@intel.com>
 References: <cover.1650435571.git.ashutosh.dixit@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/9] drm/i915/gt: Add media freq factor to
- per-gt sysfs
+Subject: [Intel-gfx] [PATCH 3/9] drm/i915/pcode: Extend pcode functions for
+ multiple gt's
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,279 +60,261 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Expose new sysfs to program and retrieve media freq factor. Factor values
-of 0 (dynamic), 0.5 and 1.0 are supported via a u8.8 fixed point
-representation (corresponding to integer values of 0, 128 and 256
-respectively).
-
-Media freq factor is converted to media_ratio_mode for GuC. It is
-programmed into GuC using H2G SLPC interface. It is retrieved from GuC
-through a register read. A cached media_ratio_mode is maintained to
-preserve set values across GuC resets.
-
-This patch adds the following sysfs files to gt/gtN sysfs:
-* media_freq_factor
-* media_freq_factor.scale
+Each gt contains an independent instance of pcode. Extend pcode functions
+to interface with pcode on different gt's. Previous (GT0) pcode read/write
+interfaces are preserved.
 
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Signed-off-by: Dale B Stimson <dale.b.stimson@intel.com>
+Cc: Mike Ruhl <michael.j.ruhl@intel.com>
 Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_gt_regs.h       |   1 +
- drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c   | 130 ++++++++++++++++++
- .../drm/i915/gt/uc/abi/guc_actions_slpc_abi.h |   6 +
- drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c   |  20 +++
- drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h   |   1 +
- .../gpu/drm/i915/gt/uc/intel_guc_slpc_types.h |   3 +
- 6 files changed, 161 insertions(+)
+ drivers/gpu/drm/i915/intel_pcode.c | 108 ++++++++++++++++-------------
+ drivers/gpu/drm/i915/intel_pcode.h |  27 ++++++--
+ 2 files changed, 82 insertions(+), 53 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-index 12d892851684..b06ba95f8cd2 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-@@ -732,6 +732,7 @@
- #define   GEN6_AGGRESSIVE_TURBO			(0 << 15)
- #define   GEN9_SW_REQ_UNSLICE_RATIO_SHIFT	23
- #define   GEN9_IGNORE_SLICE_RATIO		(0 << 0)
-+#define   GEN12_MEDIA_FREQ_RATIO		REG_BIT(13)
+diff --git a/drivers/gpu/drm/i915/intel_pcode.c b/drivers/gpu/drm/i915/intel_pcode.c
+index ac727546868e..0cff212cc81b 100644
+--- a/drivers/gpu/drm/i915/intel_pcode.c
++++ b/drivers/gpu/drm/i915/intel_pcode.c
+@@ -6,6 +6,7 @@
+ #include "i915_drv.h"
+ #include "i915_reg.h"
+ #include "intel_pcode.h"
++#include "gt/intel_gt.h"
  
- #define GEN6_RC_VIDEO_FREQ			_MMIO(0xa00c)
- #define   GEN6_RC_CTL_RC6pp_ENABLE		(1 << 16)
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
-index 26cbfa6477d1..2b1cd6a01724 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
-@@ -557,6 +557,128 @@ static const struct attribute *freq_attrs[] = {
- 	NULL
- };
- 
-+/*
-+ * Scaling for multipliers (aka frequency factors).
-+ * The format of the value in the register is u8.8.
-+ *
-+ * The presentation to userspace is inspired by the perf event framework.
-+ * See:
-+ *   Documentation/ABI/testing/sysfs-bus-event_source-devices-events
-+ * for description of:
-+ *   /sys/bus/event_source/devices/<pmu>/events/<event>.scale
-+ *
-+ * Summary: Expose two sysfs files for each multiplier.
-+ *
-+ * 1. File <attr> contains a raw hardware value.
-+ * 2. File <attr>.scale contains the multiplicative scale factor to be
-+ *    used by userspace to compute the actual value.
-+ *
-+ * So userspace knows that to get the frequency_factor it multiplies the
-+ * provided value by the specified scale factor and vice-versa.
-+ *
-+ * That way there is no precision loss in the kernel interface and API
-+ * is future proof should one day the hardware register change to u16.u16,
-+ * on some platform. (Or any other fixed point representation.)
-+ *
-+ * Example:
-+ * File <attr> contains the value 2.5, represented as u8.8 0x0280, which
-+ * is comprised of:
-+ * - an integer part of 2
-+ * - a fractional part of 0x80 (representing 0x80 / 2^8 == 0x80 / 256).
-+ * File <attr>.scale contains a string representation of floating point
-+ * value 0.00390625 (which is (1 / 256)).
-+ * Userspace computes the actual value:
-+ *   0x0280 * 0.00390625 -> 2.5
-+ * or converts an actual value to the value to be written into <attr>:
-+ *   2.5 / 0.00390625 -> 0x0280
-+ */
-+
-+#define U8_8_VAL_MASK           0xffff
-+#define U8_8_SCALE_TO_VALUE     "0.00390625"
-+
-+static ssize_t freq_factor_scale_show(struct device *dev,
-+				      struct device_attribute *attr,
-+				      char *buff)
-+{
-+	return sysfs_emit(buff, "%s\n", U8_8_SCALE_TO_VALUE);
-+}
-+
-+static u32 media_ratio_mode_to_factor(u32 mode)
-+{
-+	/* 0 -> 0, 1 -> 256, 2 -> 128 */
-+	return !mode ? mode : 256 / mode;
-+}
-+
-+static ssize_t media_freq_factor_show(struct device *dev,
-+				      struct device_attribute *attr,
-+				      char *buff)
-+{
-+	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(dev, attr->attr.name);
-+	struct intel_guc_slpc *slpc = &gt->uc.guc.slpc;
-+	intel_wakeref_t wakeref;
-+	u32 mode;
-+
-+	/*
-+	 * Retrieve media_ratio_mode from GEN6_RPNSWREQ bit 13 set by
-+	 * GuC. GEN6_RPNSWREQ:13 value 0 represents 1:2 and 1 represents 1:1
-+	 */
-+	if (IS_XEHPSDV(gt->i915) &&
-+	    slpc->media_ratio_mode == SLPC_MEDIA_RATIO_MODE_DYNAMIC_CONTROL) {
-+		/*
-+		 * For XEHPSDV dynamic mode GEN6_RPNSWREQ:13 does not contain
-+		 * the media_ratio_mode, just return the cached media ratio
-+		 */
-+		mode = slpc->media_ratio_mode;
-+	} else {
-+		with_intel_runtime_pm(gt->uncore->rpm, wakeref)
-+			mode = intel_uncore_read(gt->uncore, GEN6_RPNSWREQ);
-+		mode = REG_FIELD_GET(GEN12_MEDIA_FREQ_RATIO, mode) ?
-+			SLPC_MEDIA_RATIO_MODE_FIXED_ONE_TO_ONE :
-+			SLPC_MEDIA_RATIO_MODE_FIXED_ONE_TO_TWO;
-+	}
-+
-+	return sysfs_emit(buff, "%u\n", media_ratio_mode_to_factor(mode));
-+}
-+
-+static ssize_t media_freq_factor_store(struct device *dev,
-+				       struct device_attribute *attr,
-+				       const char *buff, size_t count)
-+{
-+	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(dev, attr->attr.name);
-+	struct intel_guc_slpc *slpc = &gt->uc.guc.slpc;
-+	u32 factor, mode;
-+	int err;
-+
-+	err = kstrtou32(buff, 0, &factor);
-+	if (err)
-+		return err;
-+
-+	for (mode = SLPC_MEDIA_RATIO_MODE_DYNAMIC_CONTROL;
-+	     mode <= SLPC_MEDIA_RATIO_MODE_FIXED_ONE_TO_TWO; mode++)
-+		if (factor == media_ratio_mode_to_factor(mode))
-+			break;
-+
-+	if (mode > SLPC_MEDIA_RATIO_MODE_FIXED_ONE_TO_TWO)
-+		return -EINVAL;
-+
-+	err = intel_guc_slpc_set_media_ratio_mode(slpc, mode);
-+	if (!err) {
-+		slpc->media_ratio_mode = mode;
-+		DRM_DEBUG("Set slpc->media_ratio_mode to %d", mode);
-+	}
-+	return err ?: count;
-+}
-+
-+static DEVICE_ATTR_RW(media_freq_factor);
-+static struct device_attribute dev_attr_media_freq_factor_scale =
-+	__ATTR(media_freq_factor.scale, 0444, freq_factor_scale_show, NULL);
-+
-+static const struct attribute *media_perf_power_attrs[] = {
-+	&dev_attr_media_freq_factor.attr,
-+	&dev_attr_media_freq_factor_scale.attr,
-+	NULL
-+};
-+
- static int intel_sysfs_rps_init(struct intel_gt *gt, struct kobject *kobj,
- 				const struct attribute * const *attrs)
+ static int gen6_check_mailbox_status(u32 mbox)
  {
-@@ -598,4 +720,12 @@ void intel_gt_sysfs_pm_init(struct intel_gt *gt, struct kobject *kobj)
- 		drm_warn(&gt->i915->drm,
- 			 "failed to create gt%u throttle sysfs files (%pe)",
- 			 gt->info.id, ERR_PTR(ret));
-+
-+	if (HAS_MEDIA_RATIO_MODE(gt->i915) && intel_uc_uses_guc_slpc(&gt->uc)) {
-+		ret = sysfs_create_files(kobj, media_perf_power_attrs);
-+		if (ret)
-+			drm_warn(&gt->i915->drm,
-+				 "failed to create add gt%u media_perf_power_attrs sysfs (%pe)\n",
-+				 gt->info.id, ERR_PTR(ret));
-+	}
- }
-diff --git a/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_slpc_abi.h b/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_slpc_abi.h
-index 62cb4254a77a..4c840a2639dc 100644
---- a/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_slpc_abi.h
-+++ b/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_slpc_abi.h
-@@ -122,6 +122,12 @@ enum slpc_param_id {
- 	SLPC_MAX_PARAM = 32,
- };
- 
-+enum slpc_media_ratio_mode {
-+	SLPC_MEDIA_RATIO_MODE_DYNAMIC_CONTROL = 0,
-+	SLPC_MEDIA_RATIO_MODE_FIXED_ONE_TO_ONE = 1,
-+	SLPC_MEDIA_RATIO_MODE_FIXED_ONE_TO_TWO = 2,
-+};
-+
- enum slpc_event_id {
- 	SLPC_EVENT_RESET = 0,
- 	SLPC_EVENT_SHUTDOWN = 1,
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
-index 1db833da42df..2df31af70d63 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
-@@ -260,6 +260,7 @@ int intel_guc_slpc_init(struct intel_guc_slpc *slpc)
- 	slpc->boost_freq = 0;
- 	atomic_set(&slpc->num_waiters, 0);
- 	slpc->num_boosts = 0;
-+	slpc->media_ratio_mode = SLPC_MEDIA_RATIO_MODE_DYNAMIC_CONTROL;
- 
- 	mutex_init(&slpc->lock);
- 	INIT_WORK(&slpc->boost_work, slpc_boost_work);
-@@ -506,6 +507,22 @@ int intel_guc_slpc_get_min_freq(struct intel_guc_slpc *slpc, u32 *val)
- 	return ret;
+@@ -52,14 +53,14 @@ static int gen7_check_mailbox_status(u32 mbox)
+ 	}
  }
  
-+int intel_guc_slpc_set_media_ratio_mode(struct intel_guc_slpc *slpc, u32 val)
+-static int __snb_pcode_rw(struct drm_i915_private *i915, u32 mbox,
+-			  u32 *val, u32 *val1,
+-			  int fast_timeout_us, int slow_timeout_ms,
+-			  bool is_read)
++static int __gt_pcode_rw(struct intel_gt *gt, u32 mbox,
++			 u32 *val, u32 *val1,
++			 int fast_timeout_us, int slow_timeout_ms,
++			 bool is_read)
+ {
+-	struct intel_uncore *uncore = &i915->uncore;
++	struct intel_uncore *uncore = gt->uncore;
+ 
+-	lockdep_assert_held(&i915->sb_lock);
++	lockdep_assert_held(&gt->i915->sb_lock);
+ 
+ 	/*
+ 	 * GEN6_PCODE_* are outside of the forcewake domain, we can use
+@@ -88,60 +89,60 @@ static int __snb_pcode_rw(struct drm_i915_private *i915, u32 mbox,
+ 	if (is_read && val1)
+ 		*val1 = intel_uncore_read_fw(uncore, GEN6_PCODE_DATA1);
+ 
+-	if (GRAPHICS_VER(i915) > 6)
++	if (GRAPHICS_VER(gt->i915) > 6)
+ 		return gen7_check_mailbox_status(mbox);
+ 	else
+ 		return gen6_check_mailbox_status(mbox);
+ }
+ 
+-int snb_pcode_read(struct drm_i915_private *i915, u32 mbox, u32 *val, u32 *val1)
++int intel_gt_pcode_read(struct intel_gt *gt, u32 mbox, u32 *val, u32 *val1)
+ {
+ 	int err;
+ 
+-	mutex_lock(&i915->sb_lock);
+-	err = __snb_pcode_rw(i915, mbox, val, val1, 500, 20, true);
+-	mutex_unlock(&i915->sb_lock);
++	mutex_lock(&gt->i915->sb_lock);
++	err = __gt_pcode_rw(gt, mbox, val, val1, 500, 20, true);
++	mutex_unlock(&gt->i915->sb_lock);
+ 
+ 	if (err) {
+-		drm_dbg(&i915->drm,
+-			"warning: pcode (read from mbox %x) mailbox access failed for %ps: %d\n",
+-			mbox, __builtin_return_address(0), err);
++		drm_dbg(&gt->i915->drm,
++			"gt %d: warning: pcode (read from mbox %x) mailbox access failed for %ps: %d\n",
++			gt->info.id, mbox, __builtin_return_address(0), err);
+ 	}
+ 
+ 	return err;
+ }
+ 
+-int snb_pcode_write_timeout(struct drm_i915_private *i915, u32 mbox, u32 val,
+-			    int fast_timeout_us, int slow_timeout_ms)
++int intel_gt_pcode_write_timeout(struct intel_gt *gt, u32 mbox, u32 val,
++				 int fast_timeout_us, int slow_timeout_ms)
+ {
+ 	int err;
+ 
+-	mutex_lock(&i915->sb_lock);
+-	err = __snb_pcode_rw(i915, mbox, &val, NULL,
+-			     fast_timeout_us, slow_timeout_ms, false);
+-	mutex_unlock(&i915->sb_lock);
++	mutex_lock(&gt->i915->sb_lock);
++	err = __gt_pcode_rw(gt, mbox, &val, NULL,
++			    fast_timeout_us, slow_timeout_ms, false);
++	mutex_unlock(&gt->i915->sb_lock);
+ 
+ 	if (err) {
+-		drm_dbg(&i915->drm,
+-			"warning: pcode (write of 0x%08x to mbox %x) mailbox access failed for %ps: %d\n",
+-			val, mbox, __builtin_return_address(0), err);
++		drm_dbg(&gt->i915->drm,
++			"gt %d: warning: pcode (write of 0x%08x to mbox %x) mailbox access failed for %ps: %d\n",
++			gt->info.id, val, mbox, __builtin_return_address(0), err);
+ 	}
+ 
+ 	return err;
+ }
+ 
+-static bool skl_pcode_try_request(struct drm_i915_private *i915, u32 mbox,
+-				  u32 request, u32 reply_mask, u32 reply,
+-				  u32 *status)
++static bool __gt_pcode_try_request(struct intel_gt *gt, u32 mbox,
++				   u32 request, u32 reply_mask, u32 reply,
++				   u32 *status)
+ {
+-	*status = __snb_pcode_rw(i915, mbox, &request, NULL, 500, 0, true);
++	*status = __gt_pcode_rw(gt, mbox, &request, NULL, 500, 0, true);
+ 
+ 	return (*status == 0) && ((request & reply_mask) == reply);
+ }
+ 
+ /**
+- * skl_pcode_request - send PCODE request until acknowledgment
+- * @i915: device private
++ * intel_gt_pcode_request - send PCODE request until acknowledgment
++ * @gt: gt
+  * @mbox: PCODE mailbox ID the request is targeted for
+  * @request: request ID
+  * @reply_mask: mask used to check for request acknowledgment
+@@ -158,16 +159,16 @@ static bool skl_pcode_try_request(struct drm_i915_private *i915, u32 mbox,
+  * Returns 0 on success, %-ETIMEDOUT in case of a timeout, <0 in case of some
+  * other error as reported by PCODE.
+  */
+-int skl_pcode_request(struct drm_i915_private *i915, u32 mbox, u32 request,
+-		      u32 reply_mask, u32 reply, int timeout_base_ms)
++int intel_gt_pcode_request(struct intel_gt *gt, u32 mbox, u32 request,
++			   u32 reply_mask, u32 reply, int timeout_base_ms)
+ {
+ 	u32 status;
+ 	int ret;
+ 
+-	mutex_lock(&i915->sb_lock);
++	mutex_lock(&gt->i915->sb_lock);
+ 
+ #define COND \
+-	skl_pcode_try_request(i915, mbox, request, reply_mask, reply, &status)
++	__gt_pcode_try_request(gt, mbox, request, reply_mask, reply, &status)
+ 
+ 	/*
+ 	 * Prime the PCODE by doing a request first. Normally it guarantees
+@@ -193,35 +194,48 @@ int skl_pcode_request(struct drm_i915_private *i915, u32 mbox, u32 request,
+ 	 * requests, and for any quirks of the PCODE firmware that delays
+ 	 * the request completion.
+ 	 */
+-	drm_dbg_kms(&i915->drm,
++	drm_dbg_kms(&gt->i915->drm,
+ 		    "PCODE timeout, retrying with preemption disabled\n");
+-	drm_WARN_ON_ONCE(&i915->drm, timeout_base_ms > 3);
++	drm_WARN_ON_ONCE(&gt->i915->drm, timeout_base_ms > 3);
+ 	preempt_disable();
+ 	ret = wait_for_atomic(COND, 50);
+ 	preempt_enable();
+ 
+ out:
+-	mutex_unlock(&i915->sb_lock);
++	mutex_unlock(&gt->i915->sb_lock);
+ 	return status ? status : ret;
+ #undef COND
+ }
+ 
++static int __gt_pcode_init(struct intel_gt *gt)
 +{
-+	struct drm_i915_private *i915 = slpc_to_i915(slpc);
-+	intel_wakeref_t wakeref;
-+	int ret = 0;
++	int ret = intel_gt_pcode_request(gt, DG1_PCODE_STATUS,
++					 DG1_UNCORE_GET_INIT_STATUS,
++					 DG1_UNCORE_INIT_STATUS_COMPLETE,
++					 DG1_UNCORE_INIT_STATUS_COMPLETE, 180000);
 +
-+	if (!HAS_MEDIA_RATIO_MODE(i915))
-+		return -ENODEV;
++	drm_dbg(&gt->i915->drm, "gt %d: PCODE init status %d\n", gt->info.id, ret);
 +
-+	with_intel_runtime_pm(&i915->runtime_pm, wakeref)
-+		ret = slpc_set_param(slpc,
-+				     SLPC_PARAM_MEDIA_FF_RATIO_MODE,
-+				     val);
++	if (ret)
++		drm_err(&gt->i915->drm, "gt %d: Pcode did not report uncore initialization completion!\n",
++			gt->info.id);
++
 +	return ret;
 +}
 +
- void intel_guc_pm_intrmsk_enable(struct intel_gt *gt)
+ int intel_pcode_init(struct drm_i915_private *i915)
  {
- 	u32 pm_intrmsk_mbz = 0;
-@@ -654,6 +671,9 @@ int intel_guc_slpc_enable(struct intel_guc_slpc *slpc)
+-	int ret = 0;
++	struct intel_gt *gt;
++	int i, ret = 0;
+ 
+ 	if (!IS_DGFX(i915))
  		return ret;
- 	}
  
-+	/* Set cached media freq ratio mode */
-+	intel_guc_slpc_set_media_ratio_mode(slpc, slpc->media_ratio_mode);
-+
- 	return 0;
+-	ret = skl_pcode_request(i915, DG1_PCODE_STATUS,
+-				DG1_UNCORE_GET_INIT_STATUS,
+-				DG1_UNCORE_INIT_STATUS_COMPLETE,
+-				DG1_UNCORE_INIT_STATUS_COMPLETE, 180000);
+-
+-	drm_dbg(&i915->drm, "PCODE init status %d\n", ret);
+-
+-	if (ret)
+-		drm_err(&i915->drm, "Pcode did not report uncore initialization completion!\n");
++	for_each_gt(gt, i915, i) {
++		ret = __gt_pcode_init(gt);
++		if (ret)
++			return ret;
++	}
+ 
+-	return ret;
++	return 0;
  }
+diff --git a/drivers/gpu/drm/i915/intel_pcode.h b/drivers/gpu/drm/i915/intel_pcode.h
+index 0962a17fac48..96c954ec91f9 100644
+--- a/drivers/gpu/drm/i915/intel_pcode.h
++++ b/drivers/gpu/drm/i915/intel_pcode.h
+@@ -8,16 +8,31 @@
  
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h
-index 0caa8fee3c04..82a98f78f96c 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h
-@@ -38,6 +38,7 @@ int intel_guc_slpc_set_boost_freq(struct intel_guc_slpc *slpc, u32 val);
- int intel_guc_slpc_get_max_freq(struct intel_guc_slpc *slpc, u32 *val);
- int intel_guc_slpc_get_min_freq(struct intel_guc_slpc *slpc, u32 *val);
- int intel_guc_slpc_print_info(struct intel_guc_slpc *slpc, struct drm_printer *p);
-+int intel_guc_slpc_set_media_ratio_mode(struct intel_guc_slpc *slpc, u32 val);
- void intel_guc_pm_intrmsk_enable(struct intel_gt *gt);
- void intel_guc_slpc_boost(struct intel_guc_slpc *slpc);
- void intel_guc_slpc_dec_waiters(struct intel_guc_slpc *slpc);
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc_types.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc_types.h
-index bf5b9a563c09..73d208123528 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc_types.h
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc_types.h
-@@ -29,6 +29,9 @@ struct intel_guc_slpc {
- 	u32 min_freq_softlimit;
- 	u32 max_freq_softlimit;
+ #include <linux/types.h>
  
-+	/* cached media ratio mode */
-+	u32 media_ratio_mode;
++struct intel_gt;
+ struct drm_i915_private;
+ 
+-int snb_pcode_read(struct drm_i915_private *i915, u32 mbox, u32 *val, u32 *val1);
+-int snb_pcode_write_timeout(struct drm_i915_private *i915, u32 mbox, u32 val,
+-			    int fast_timeout_us, int slow_timeout_ms);
+-#define snb_pcode_write(i915, mbox, val)			\
++int intel_gt_pcode_read(struct intel_gt *gt, u32 mbox, u32 *val, u32 *val1);
 +
- 	/* Protects set/reset of boost freq
- 	 * and value of num_waiters
- 	 */
++int intel_gt_pcode_write_timeout(struct intel_gt *gt, u32 mbox, u32 val,
++				 int fast_timeout_us, int slow_timeout_ms);
++
++#define intel_gt_pcode_write(gt, mbox, val) \
++	intel_gt_pcode_write_timeout(gt, mbox, val, 500, 0)
++
++int intel_gt_pcode_request(struct intel_gt *gt, u32 mbox, u32 request,
++			   u32 reply_mask, u32 reply, int timeout_base_ms);
++
++#define snb_pcode_read(i915, mbox, val, val1) \
++	intel_gt_pcode_read(&(i915)->gt0, mbox, val, val1)
++
++#define snb_pcode_write_timeout(i915, mbox, val, fast_timeout_us, slow_timeout_ms) \
++	intel_gt_pcode_write_timeout(&(i915)->gt0, mbox, val, fast_timeout_us, slow_timeout_ms)
++
++#define snb_pcode_write(i915, mbox, val) \
+ 	snb_pcode_write_timeout(i915, mbox, val, 500, 0)
+ 
+-int skl_pcode_request(struct drm_i915_private *i915, u32 mbox, u32 request,
+-		      u32 reply_mask, u32 reply, int timeout_base_ms);
++#define skl_pcode_request(i915, mbox, request, reply_mask, reply, timeout_base_ms) \
++	intel_gt_pcode_request(&(i915)->gt0, mbox, request, reply_mask, reply, timeout_base_ms)
+ 
+ int intel_pcode_init(struct drm_i915_private *i915);
+ 
 -- 
 2.34.1
 
