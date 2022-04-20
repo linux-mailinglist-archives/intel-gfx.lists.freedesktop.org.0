@@ -2,148 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9B3C50831D
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Apr 2022 10:04:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 473E75084B4
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Apr 2022 11:17:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F39DD10F1D6;
-	Wed, 20 Apr 2022 08:04:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5BC3D10E192;
+	Wed, 20 Apr 2022 09:17:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A51F110F185;
- Wed, 20 Apr 2022 08:04:51 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 43ECA10E192;
+ Wed, 20 Apr 2022 09:17:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1650441891; x=1681977891;
- h=from:to:cc:subject:date:message-id:content-id:
- content-transfer-encoding:mime-version;
- bh=n5LPidHKa1NxUxueA5vPWYgIyA7bubcrF0L6zyj8imk=;
- b=HaWxGHo8/q/IA0h7Yht6CUhEWmY+hEvNRO+x/hP+eKLDYnSsVcFkDEvm
- 14MNksx1sVUl0WFTMZRvWJpQCHRmqKt1psOBEcw7XAefHHtn1wHvBwpsB
- BQ+lLwBexuhJ/AY79bEQtk2LxJr4LFoB4bC6dcTLT7NYcDAxEGXbnpNDY
- DC5mZdhHMoP/8IjQj7Hm1T5fasPRqkzb9rO3bCFSrKitA2l5OjsrdaBe+
- TfY3wNZB58iiPQRxnWGq+FIKpwHlR/S9Pi32KZ4De1Xq/I/rejedPycMQ
- EphTwQtseg6RteFyRjyPIo5bjCuCS+2LlfrcDf00W5pK/h4YzjGU+Mpi6 Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10322"; a="251276588"
-X-IronPort-AV: E=Sophos;i="5.90,275,1643702400"; d="scan'208";a="251276588"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Apr 2022 01:04:34 -0700
+ t=1650446242; x=1681982242;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=ALSkC4Dl0w89PKZV5w9BwHLZswIiZF/b1MyNqhvzPBM=;
+ b=RA9rcjXbHCfk8sPjAp10XAiOHKh+DYTsY4PnSDcnJ5CPUUtU5sZFdrTG
+ 5Xnk08dFr5QB7pHz0PONe/qJDT8EeWSoi1yj54bvlVC6e7LZdwK3eHg66
+ WIld7XXQoeAbqwGDsWRv0V3mBYcsAwQrP8J2N7RIERfCgZEfJskhG4lq+
+ 3Mvwj2CE/u6fZIfREEtWzMdOYWuccmB/Cp8yihaZi9B7Mt1CEkLV5KrzK
+ HUL1w7oiz9J/9nDzlngSgrm8DfUIhtwi2eo2IK+tl/Csxrtmq/YhjlvnP
+ 8Dmp+psBvM68IJGdRMup5I+jYtIWq4sQKqN0TsPLzlclI9R3d/giVnKGP Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10322"; a="243914625"
+X-IronPort-AV: E=Sophos;i="5.90,275,1643702400"; d="scan'208";a="243914625"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Apr 2022 02:17:21 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,275,1643702400"; d="scan'208";a="562017067"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.229.17])
- by fmsmga007.fm.intel.com with ESMTP; 20 Apr 2022 01:04:34 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX604.amr.corp.intel.com (10.22.229.17) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Wed, 20 Apr 2022 01:04:34 -0700
-Received: from orsmsx605.amr.corp.intel.com (10.22.229.18) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Wed, 20 Apr 2022 01:04:33 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx605.amr.corp.intel.com (10.22.229.18) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27 via Frontend Transport; Wed, 20 Apr 2022 01:04:33 -0700
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com (104.47.57.48) by
- edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2308.27; Wed, 20 Apr 2022 01:04:33 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=YNGID/Ruvti24UaNe0MFuN2cOY3RXVVOn/v7eDmYA2R0iQ//naskcTM1UbBad/lnQNpXP6XeBVMLsFWZ7nOwF04BC0oASmowyodAE383HInedtrIpdBaqoSUaBd3WQXFN5+uG3LiJQpNnMYesOH7Ngd/M7BTg/ARnPBTJXI1vcDFTvLIsi9etvL22lexfW4YHOgW/6QJXRTTgG6Z5grTbDZf/GbchTKpMUZBKExwupAY8u2pOeySoTxezi1C9/jzZUF6TuB/KRD/g+7nWpdjzJwBjDfzW67OgJpX/6DuKSlfgexpZg/r81Wq09bu7C4Rvbz9EX1scqfhSHpU0ayuog==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1qMoesf7103ChjsTAFBf4xTOh5M9yURwsKtGa5MJa/M=;
- b=gGVW/3bi8B2bVplp1KZZp7fNTP0cYlKaWIvJYHLh1kJnG0NwngXmXzlLgR0YGeLnZ2l/YHihx9+vDzvoTu6mfcfAsCuRq0bOp1WDuKQ4DA3Sl0WMLn8ZRzEgw2VFy+Iow+F8bSiq2Ltfth4xF2Iq1BW+HCjdIVV+WHmHbRzmGfzjbKbIc3+MRuyJWucB6ZmVdh5q2TxbEZTAuIv6kP/QeYq2Nj6NnpTskTC/tjDQSvOfACIO3efZP+gCNGVPfansaBqpzw6ZqQTgiiVjb+PTm9l2xCJQ4/usW0ogli8ygtmRcdEuEOjo7D4xDLvCYTIsMksFqeMswLLWOrxcWZAS2g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM4PR11MB5549.namprd11.prod.outlook.com (2603:10b6:5:388::7) by
- MN2PR11MB4272.namprd11.prod.outlook.com (2603:10b6:208:196::31) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5186.14; Wed, 20 Apr
- 2022 08:04:31 +0000
-Received: from DM4PR11MB5549.namprd11.prod.outlook.com
- ([fe80::e5b8:93eb:e06b:f1ab]) by DM4PR11MB5549.namprd11.prod.outlook.com
- ([fe80::e5b8:93eb:e06b:f1ab%6]) with mapi id 15.20.5164.025; Wed, 20 Apr 2022
- 08:04:31 +0000
-From: "Wang, Zhi A" <zhi.a.wang@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
-Thread-Topic: [PULL] gvt-next
-Thread-Index: AQHYVI1DfNiTLpeqnEGvHyikgylmNg==
-Date: Wed, 20 Apr 2022 08:04:31 +0000
-Message-ID: <18c3c1b1-6f78-6140-4ec8-e18bc7916352@intel.com>
-Accept-Language: en-FI, en-US
-Content-Language: aa
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: c7705de7-07ba-46cb-9435-08da22a4668f
-x-ms-traffictypediagnostic: MN2PR11MB4272:EE_
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-microsoft-antispam-prvs: <MN2PR11MB427208E25223D6E1C8DC7161CAF59@MN2PR11MB4272.namprd11.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: YXPEncPc0XSXSgtVVpgSJNz85t0JdmHAcUqfe1U7TUR1q0znZ7AuEhYZWH0Tmd0k6QskLhZ/yWoFF52XN6ae4XPSF7Uqw06LlyEaGVz44qwD8+RtfUSR+9GLV5D+kGwgbWj5gq8QrtBgLY9YdoAUx3KBzOep3Q2CKEYJHZCq3zHn9K1RDpB5NTjS0/bI1VuRweHpo386+1E1LsZdv5+zMq2Vxdn54M0UfEK7sh3N8P4REiI/uZJJkgr3qMWZy6+dc8Z/Id5o/vzXoqqNwcsehqBeFPU4Q20gW8jall0YyJf4Ld9DCDRB8RKFG5HYxp6q/JPCFydKcWMseOPJWG+78hx7G+wMhLEyHtuYTiVkSqv+XEi7K7xL1I798cSJJiYI4QSQ0xyGl5BXEsV7Zlm2UvQ4AUP1TbjGsA3t6XQR/Lfzcno6jQ6RKpcxkc67oJp5N14vQKPSmj42+LZQ5wp2dA21XNxjLyxtAc1t0cxMV9wxbTN3RcHePvQRDnRqQQ+3AT488S8t55jj4aB3s4zS5oLXo6xxGdHP6eZ8my+IGJPRWerk8gChGtC9WdJyS/2Cp7q0xPOE9/GdgQX815EO/pRGdflSIsTCgv7RoFvuyOvmou2SojHR5VnRhjCKDM1epNG6WQ74AUKvT/KA3cBQ2lZMJcLMM+0OBXEfGciXBpaNGFdR1hMfsIflgJLMD6R66zPw6cdJaKkD66m6Y9N1Gm2i2D79LilIgoGtS92OW3/HSYam3MZkk3yfHl3Dd/NYPUqQfELKQ0d76LxnKFtS0ILYWfh5k9eyKy/HZ48B78MW+AF3rVTsg+MegwJR8wx/M0CMeIvAKsVqn6S4Ql1fG8oMtVijF5YOZcB2VLCeGpw=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5549.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230001)(366004)(64756008)(26005)(31686004)(76116006)(66476007)(66446008)(71200400001)(36756003)(66556008)(83380400001)(91956017)(2616005)(8676002)(6512007)(66946007)(2906002)(6506007)(5660300002)(4326008)(186003)(508600001)(8936002)(38070700005)(38100700002)(966005)(6486002)(82960400001)(316002)(110136005)(31696002)(54906003)(122000001)(6636002)(86362001)(43740500002)(45980500001);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?Windows-1252?Q?wrpK5MbQW+JYkSPAQLByOz4MAfaTIsjU792qp8UxifbUvNQsvMUMxwAm?=
- =?Windows-1252?Q?q9uxhug9VYfyle19dIIzu7CN0R90eTH2freX8EK+EbIxWlCEif7PHJjQ?=
- =?Windows-1252?Q?0ClrN937IDJ0Z0rY9VLm3qATcRNtWpabc4TZyhRG7mltoxZ06GCYufhO?=
- =?Windows-1252?Q?dFz/+Z8WgupyUSzDrEgJcfhcmnXqLbcoO3PPKAnM/AMV0SpHygL9BEXa?=
- =?Windows-1252?Q?Tr4JrLlOd1Cezk6XS8sDXWBvuscOkP+meiLjK0ohUkauO0mgQrVT+IQ4?=
- =?Windows-1252?Q?D1HhfKT/LXNC1E0dKYwOqS8I+twdZ0xZZ9+kvF4vo9u4tSVvImf+Juti?=
- =?Windows-1252?Q?g7aPZyiLpc5s+WbnOCbAlTSLvbbaquyoYRmE3z3JIxiBbV1Olf3BMnEp?=
- =?Windows-1252?Q?IftCpD4Th4D3MlPun9W1FZQqAloK/6VLLfE6q9NIEtJ3RQER5PLH4ZkJ?=
- =?Windows-1252?Q?ffmrXzJAYSSzq4W+wThgjiOoa1eyGLCTZOctMj66HxQ0Jz6xHjvURYwN?=
- =?Windows-1252?Q?kTpOrW1bhF5BmzOEWlwXeFZBgrPDQ3QVMRt+mzrjfTRJwHzrKkcFoAUM?=
- =?Windows-1252?Q?JvUIjaelZatP2Isg3qQEDL2JDe0YwBm7k8yvNbWgt1Sc489xM6p7Fx0D?=
- =?Windows-1252?Q?mmg/WWotrz17srOgkAwZu7PjItXnVhu6glPm3e2Xww1jxjC8VqNv9T8T?=
- =?Windows-1252?Q?StmlLA2DlM77KFjJX/riog+aydD8Kgf/lUIq/A08Gsr9ncr0HQ71YWRE?=
- =?Windows-1252?Q?D12QWlKFIK9L2QRUsrnTt8rmaMelYFCWE5VPIIaArVLNsWR5veXD3ZMg?=
- =?Windows-1252?Q?uITjfk+B69J4RZY62VPBTvF0JbwILNZz3NaGLdVY7ibJWO9DcYXAgveQ?=
- =?Windows-1252?Q?yaLl9DDcKpe1zMzrr/NkJ2PxodJ0awU/ZNBO+Wecce/ivMO4WmW8HuKG?=
- =?Windows-1252?Q?Psewqqq2fiDMdh33GmXNxfVWDgGfFejID6N8PP9w5RoGylY8jiP4J0s7?=
- =?Windows-1252?Q?/piBaFfnkbd7nJdoH5rLg7d1e4+aFGUiGISNyOtEIPLcohul8wzlLWsX?=
- =?Windows-1252?Q?/rgqvGFqEnut6d3EIrlRHjMnUpN91qyVVMkGh6uat2pdCCPO3SfHu6G4?=
- =?Windows-1252?Q?RdZbq0ST2i28LU+VencYKODt5JbLpfnhg/DH7rbfAIUqzNf050/H1JiZ?=
- =?Windows-1252?Q?SsZf/aMIZm0Ygdkn44HF5yyK8YVDcrb71U8+AoP5FHx5oV7uJhid0vK+?=
- =?Windows-1252?Q?du5nu5aRHJYNHqPbnT8qaK0J9uCC6GkjuuTMn6hk6j0BDrJiGm7v2Ckz?=
- =?Windows-1252?Q?nNtnhspgx380NoHdh4FiJDnQdyAYQlRNxiD3rI+Qh5E4ydM4CRIoCySw?=
- =?Windows-1252?Q?Kzok0p/WZ4l9IDD7xl0OxuT8ANQwMbWtoRgjT7TR+Bemd8j0xXjKTK1W?=
- =?Windows-1252?Q?vpoCzfm9BitbHRe36dmKI16HPXlXkp8eDRCYm278iCNZ/lJWUjiD+S98?=
- =?Windows-1252?Q?7AIrZHq/vwfwWRiCm8DWjSn3kuZC6s+827ykiKFv1RfTlsrlHPOPXMye?=
- =?Windows-1252?Q?JtOHWeulv8SYUVzOVcKQwu50VOrzxt2v2ksAnkqWz6lX0kskQ2aT/2pw?=
- =?Windows-1252?Q?ff69iSR6laHWbBTQSsdOLTc1DbVt/c6r6alWbpqyM3w4g1ASwVQJfy1V?=
- =?Windows-1252?Q?rR+teglPy4MJbqewRTckiiWRfNP4Y2ycVIFZ+Zv/q0quVmUIepO/RNVD?=
- =?Windows-1252?Q?32ES3Ot5kOV6TIePz3M0CbJxYUYbx0re+2w+B1MCUvHBG7dKIcKLY22H?=
- =?Windows-1252?Q?gCHImtn6AkOMnqhdb7tJfpswaYE23wcaB/js4GQoevlaCETl1FfldMFY?=
- =?Windows-1252?Q?nfHFWumpJFfMDA=3D=3D?=
-Content-Type: text/plain; charset="Windows-1252"
-Content-ID: <32286F568FB8794F929C7E800B43BADE@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: quoted-printable
+X-IronPort-AV: E=Sophos;i="5.90,275,1643702400"; d="scan'208";a="863372211"
+Received: from lkp-server01.sh.intel.com (HELO 3abc53900bec) ([10.239.97.150])
+ by fmsmga005.fm.intel.com with ESMTP; 20 Apr 2022 02:17:20 -0700
+Received: from kbuild by 3abc53900bec with local (Exim 4.95)
+ (envelope-from <lkp@intel.com>) id 1nh6SY-0006oI-FV;
+ Wed, 20 Apr 2022 09:17:14 +0000
+Date: Wed, 20 Apr 2022 17:16:21 +0800
+From: kernel test robot <lkp@intel.com>
+To: Karol Herbst <kherbst@redhat.com>, linux-kernel@vger.kernel.org
+Message-ID: <202204201724.hgR7L8YU-lkp@intel.com>
+References: <20220419234436.2638649-1-kherbst@redhat.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5549.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c7705de7-07ba-46cb-9435-08da22a4668f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Apr 2022 08:04:31.6231 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: fe5fKq5xZsnjXhTkd6mZvcFP8jxoDG2CW9PHJENK+lEWv6d4BrzuX2anKWT+DxfXnFzWnge0EUqRh1iK/JDNlA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB4272
-X-OriginatorOrg: intel.com
-Subject: [Intel-gfx] [PULL] gvt-next
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220419234436.2638649-1-kherbst@redhat.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix race in
+ __i915_vma_remove_closed
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -156,148 +60,80 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-gvt-dev@lists.freedesktop.org"
- <intel-gvt-dev@lists.freedesktop.org>, Christoph Hellwig <hch@lst.de>,
- Jason Gunthorpe <jgg@nvidia.com>
+Cc: kbuild-all@lists.01.org, Karol Herbst <kherbst@redhat.com>,
+ intel-gfx@lists.freedesktop.org, llvm@lists.linux.dev,
+ dri-devel@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi folks:
+Hi Karol,
 
-Here is the PR of gvt-next.
+I love your patch! Perhaps something to improve:
 
-Mostly it includes the patch bundle of GVT-g re-factor patches for adapting=
- the GVT-g with the
-new MDEV interfaces:
+[auto build test WARNING on drm-tip/drm-tip]
+[also build test WARNING on linus/master v5.18-rc3 next-20220419]
+[cannot apply to drm-intel/for-linux-next linux/master]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-- Separating the MMIO table from GVT-g. (Zhi)
-- GVT-g re-factor. (Christoph)
-- GVT-g mdev API cleanup. (Jason)
-- GVT-g trace/makefile cleanup. (Jani)
+url:    https://github.com/intel-lab-lkp/linux/commits/Karol-Herbst/drm-i915-Fix-race-in-__i915_vma_remove_closed/20220420-074525
+base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
+config: i386-randconfig-a013 (https://download.01.org/0day-ci/archive/20220420/202204201724.hgR7L8YU-lkp@intel.com/config)
+compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project bac6cd5bf85669e3376610cfc4c4f9ca015e7b9b)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/50a17180127b7d2527ee9a8f5c9e8207e158afb6
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Karol-Herbst/drm-i915-Fix-race-in-__i915_vma_remove_closed/20220420-074525
+        git checkout 50a17180127b7d2527ee9a8f5c9e8207e158afb6
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 SHELL=/bin/bash drivers/gpu/drm/i915/
 
-Thanks so much for making this happen.
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
 
-This PR has been tested as following and no problem shows up:
+All warnings (new ones prefixed by >>):
 
-$dim update-branches
-$dim apply-pull drm-intel-next < this_email.eml
+>> drivers/gpu/drm/i915/i915_vma.c:1654:19: warning: mixing declarations and code is incompatible with standards before C99 [-Wdeclaration-after-statement]
+           struct intel_gt *gt = vma->vm->gt;
+                            ^
+   1 warning generated.
 
-The following changes since commit b39d2c6202426b560641e5800c5523851b5db586=
-:
 
-  drm/i915/fbc: Call intel_fbc_activate() directly from frontbuffer flush (=
-2022-04-13 17:20:49 +0300)
+vim +1654 drivers/gpu/drm/i915/i915_vma.c
 
-are available in the Git repository at:
+  1640	
+  1641	static void release_references(struct i915_vma *vma, bool vm_ddestroy)
+  1642	{
+  1643		struct drm_i915_gem_object *obj = vma->obj;
+  1644	
+  1645		GEM_BUG_ON(i915_vma_is_active(vma));
+  1646	
+  1647		spin_lock(&obj->vma.lock);
+  1648		list_del(&vma->obj_link);
+  1649		if (!RB_EMPTY_NODE(&vma->obj_node))
+  1650			rb_erase(&vma->obj_node, &obj->vma.tree);
+  1651	
+  1652		spin_unlock(&obj->vma.lock);
+  1653	
+> 1654		struct intel_gt *gt = vma->vm->gt;
+  1655	
+  1656		spin_lock_irq(&gt->closed_lock);
+  1657		__i915_vma_remove_closed(vma);
+  1658		spin_unlock_irq(&gt->closed_lock);
+  1659	
+  1660		if (vm_ddestroy)
+  1661			i915_vm_resv_put(vma->vm);
+  1662	
+  1663		i915_active_fini(&vma->active);
+  1664		GEM_WARN_ON(vma->resource);
+  1665		i915_vma_free(vma);
+  1666	}
+  1667	
 
-  https://github.com/intel/gvt-linux tags/gvt-next-2022-04-20
-
-for you to fetch changes up to 888471711a80b22c53547f3a625f20f487714f28:
-
-  vfio/mdev: Remove mdev drvdata (2022-04-20 03:20:16 -0400)
-
-----------------------------------------------------------------
-gvt-next-2022-04-20
-
-- Separating the MMIO table from GVT-g. (Zhi)
-- GVT-g re-factor. (Christoph)
-- GVT-g mdev API cleanup. (Jason)
-- GVT-g trace/makefile cleanup. (Jani)
-
-----------------------------------------------------------------
-Christoph Hellwig (27):
-      drm/i915/gvt: remove module refcounting in intel_gvt_{,un}register_hy=
-pervisor
-      drm/i915/gvt: remove enum hypervisor_type
-      drm/i915/gvt: rename intel_vgpu_ops to intel_vgpu_mdev_ops
-      drm/i915/gvt: move the gvt code into kvmgt.ko
-      drm/i915/gvt: remove intel_gvt_ops
-      drm/i915/gvt: remove the map_gfn_to_mfn and set_trap_area ops
-      drm/i915/gvt: remove the unused from_virt_to_mfn op
-      drm/i915/gvt: merge struct kvmgt_vdev into struct intel_vgpu
-      drm/i915/gvt: merge struct kvmgt_guest_info into strut intel_vgpu
-      drm/i915/gvt: remove vgpu->handle
-      drm/i915/gvt: devirtualize ->{read,write}_gpa
-      drm/i915/gvt: devirtualize ->{get,put}_vfio_device
-      drm/i915/gvt: devirtualize ->set_edid and ->set_opregion
-      drm/i915/gvt: devirtualize ->detach_vgpu
-      drm/i915/gvt: devirtualize ->inject_msi
-      drm/i915/gvt: devirtualize ->is_valid_gfn
-      drm/i915/gvt: devirtualize ->gfn_to_mfn
-      drm/i915/gvt: devirtualize ->{enable,disable}_page_track
-      drm/i915/gvt: devirtualize ->dma_{,un}map_guest_page
-      drm/i915/gvt: devirtualize dma_pin_guest_page
-      drm/i915/gvt: remove struct intel_gvt_mpt
-      drm/i915/gvt: remove the extra vfio_device refcounting for dmabufs
-      drm/i915/gvt: streamline intel_vgpu_create
-      drm/i915/gvt: pass a struct intel_vgpu to the vfio read/write helpers
-      drm/i915/gvt: remove kvmgt_guest_{init,exit}
-      drm/i915/gvt: convert to use vfio_register_emulated_iommu_dev
-      drm/i915/gvt: merge gvt.c into kvmgvt.c
-
-Jani Nikula (2):
-      drm/i915/gvt: fix trace TRACE_INCLUDE_PATH
-      drm/i915/gvt: better align the Makefile with i915 Makefile
-
-Jason Gunthorpe (5):
-      vfio/mdev: Remove vfio_mdev.c
-      vfio/mdev: Remove mdev_parent_ops dev_attr_groups
-      vfio/mdev: Remove mdev_parent_ops
-      vfio/mdev: Use the driver core to create the 'remove' file
-      vfio/mdev: Remove mdev drvdata
-
-Zhi Wang (3):
-      i915/gvt: Separate the MMIO tracking table from GVT-g
-      i915/gvt: Save the initial HW state snapshot in i915
-      i915/gvt: Use the initial HW state snapshot saved in i915
-
- Documentation/driver-api/vfio-mediated-device.rst |   27 +-
- drivers/gpu/drm/i915/Kconfig                      |   36 +-
- drivers/gpu/drm/i915/Makefile                     |    8 +-
- drivers/gpu/drm/i915/gvt/Makefile                 |   30 +-
- drivers/gpu/drm/i915/gvt/cfg_space.c              |   89 +-
- drivers/gpu/drm/i915/gvt/cmd_parser.c             |    4 +-
- drivers/gpu/drm/i915/gvt/dmabuf.c                 |   36 +-
- drivers/gpu/drm/i915/gvt/execlist.c               |   12 +-
- drivers/gpu/drm/i915/gvt/firmware.c               |   25 +-
- drivers/gpu/drm/i915/gvt/gtt.c                    |   55 +-
- drivers/gpu/drm/i915/gvt/gvt.c                    |  340 ------
- drivers/gpu/drm/i915/gvt/gvt.h                    |  128 +-
- drivers/gpu/drm/i915/gvt/handlers.c               | 1033 +++-------------
- drivers/gpu/drm/i915/gvt/hypercall.h              |   82 --
- drivers/gpu/drm/i915/gvt/interrupt.c              |   40 +-
- drivers/gpu/drm/i915/gvt/kvmgt.c                  | 1097 +++++++++--------
- drivers/gpu/drm/i915/gvt/mmio.c                   |    4 +-
- drivers/gpu/drm/i915/gvt/mmio.h                   |    1 -
- drivers/gpu/drm/i915/gvt/mpt.h                    |  400 -------
- drivers/gpu/drm/i915/gvt/opregion.c               |  148 +--
- drivers/gpu/drm/i915/gvt/page_track.c             |    8 +-
- drivers/gpu/drm/i915/gvt/reg.h                    |    9 +-
- drivers/gpu/drm/i915/gvt/scheduler.c              |   37 +-
- drivers/gpu/drm/i915/gvt/trace.h                  |    2 +-
- drivers/gpu/drm/i915/gvt/vgpu.c                   |   22 +-
- drivers/gpu/drm/i915/i915_driver.c                |    7 -
- drivers/gpu/drm/i915/i915_drv.h                   |    3 +
- drivers/gpu/drm/i915/intel_gvt.c                  |  248 +++-
- drivers/gpu/drm/i915/intel_gvt.h                  |   32 +-
- drivers/gpu/drm/i915/intel_gvt_mmio_table.c       | 1292 +++++++++++++++++=
-++++
- drivers/s390/cio/vfio_ccw_ops.c                   |    7 +-
- drivers/s390/crypto/vfio_ap_ops.c                 |    9 +-
- drivers/vfio/mdev/Makefile                        |    2 +-
- drivers/vfio/mdev/mdev_core.c                     |   52 +-
- drivers/vfio/mdev/mdev_driver.c                   |   10 -
- drivers/vfio/mdev/mdev_private.h                  |    6 +-
- drivers/vfio/mdev/mdev_sysfs.c                    |   37 +-
- drivers/vfio/mdev/vfio_mdev.c                     |  152 ---
- include/linux/mdev.h                              |   82 +-
- samples/vfio-mdev/mbochs.c                        |    9 +-
- samples/vfio-mdev/mdpy.c                          |    9 +-
- samples/vfio-mdev/mtty.c                          |   39 +-
- 42 files changed, 2531 insertions(+), 3138 deletions(-)
- delete mode 100644 drivers/gpu/drm/i915/gvt/gvt.c
- delete mode 100644 drivers/gpu/drm/i915/gvt/hypercall.h
- delete mode 100644 drivers/gpu/drm/i915/gvt/mpt.h
- create mode 100644 drivers/gpu/drm/i915/intel_gvt_mmio_table.c
- delete mode 100644 drivers/vfio/mdev/vfio_mdev.c
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
