@@ -2,53 +2,153 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E18BC50A1CC
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Apr 2022 16:12:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BE9050A1D2
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Apr 2022 16:13:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA99F10E4CA;
-	Thu, 21 Apr 2022 14:11:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA57710E30D;
+	Thu, 21 Apr 2022 14:13:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BCBF910E906
- for <intel-gfx@lists.freedesktop.org>; Thu, 21 Apr 2022 14:11:56 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B29BD10E30D;
+ Thu, 21 Apr 2022 14:13:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1650550316; x=1682086316;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=5E5+aDcFxKYA7w+3UjF0X/Q7TnfWDpEEAfzyGHA4sLg=;
- b=DABpU/4VQnQgKG65efg8Ju8D2jhiClytvXWoZlXy2l4rOqL/8cztWsBS
- OU1358VFR+pd5wdmqznWV5T+VcOkbR57AtC3zeL9f255E+GirK9HSqrNj
- ZnVgU1EmdQYlrf+OsKw3abk0PaP19/gsdbWBaNQqQJZga8Z/hvAdjBJ2x
- l0T8BayawPKcRYO9SHp8fkwqXtKdlZ5Vi7Gwh5FzdA7ks2CenZWa0Fr22
- oZqU5vo9yZd0Bxn4FrUwNbWonc0bfrGIWRMvlTS199CzLusF35/0QDayL
- tO8mSTIffkM6nXwgXLCUMO3FeQPnZpTnEgTQUUP0krG+uZ+qN7DKBt4N9 g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10324"; a="246256604"
-X-IronPort-AV: E=Sophos;i="5.90,278,1643702400"; d="scan'208";a="246256604"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2022 07:11:56 -0700
+ t=1650550406; x=1682086406;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-id:content-transfer-encoding: mime-version;
+ bh=QJbP8ss8Q1o9mO7q3AsI9Of1WELCeQBzgtEZzTca21E=;
+ b=ESABuNK21tBwa3JQwdsK1BaT1UHN/JQ4Kabub6f0vLL8qcBzRQAddzUX
+ Jjl9INJDKJrrtiOpf/34yC4ruFxCpDGcupz7ZMYErN5bhQ+Wa/D5KvCzf
+ 1P5hMSRwf6yW0grI7KoM1G0ZeEogt9WlmprwjmVlsaouTRIYXWT17fXj2
+ OnOhEkU72OA8f/FSLszFAnjsysiu4WB626arKEyJtcevdOC2M3ZAe80wU
+ gch4BnujSZZJ/YgkwCHsl05NxyeC060uzwT6fImL6CDZS8F8hdN5mAVE0
+ FJt7jAnBpVxpRHyXrONSyCsZSFsKA7asVGkqyZuE7e42BT43lJLnSes15 Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10324"; a="327263737"
+X-IronPort-AV: E=Sophos;i="5.90,278,1643702400"; d="scan'208";a="327263737"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Apr 2022 07:13:25 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,278,1643702400"; d="scan'208";a="530311940"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.51])
- by orsmga006.jf.intel.com with SMTP; 21 Apr 2022 07:11:53 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 21 Apr 2022 17:11:52 +0300
-Date: Thu, 21 Apr 2022 17:11:52 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Lyude Paul <lyude@redhat.com>
-Message-ID: <YmFmKEW5EfGPoKyv@intel.com>
-References: <20220413082826.120634-1-jouni.hogander@intel.com>
- <ac1c0383b20eeec0f86e439d4889a55fcbf8cd4e.camel@redhat.com>
+X-IronPort-AV: E=Sophos;i="5.90,278,1643702400"; d="scan'208";a="866223505"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmsmga005.fm.intel.com with ESMTP; 21 Apr 2022 07:13:25 -0700
+Received: from fmsmsx609.amr.corp.intel.com (10.18.126.89) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27; Thu, 21 Apr 2022 07:13:25 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx609.amr.corp.intel.com (10.18.126.89) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27 via Frontend Transport; Thu, 21 Apr 2022 07:13:25 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.176)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2308.27; Thu, 21 Apr 2022 07:13:24 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=bmeohtTYns4KN0cWZH2pScg0RZGWobJWy2De44Rpo6LIqLujUE+/HIlTtkYfPawiOTorBjJacG8ljRXf09UV/EaAjrRXRoGWSAMg0qcXm4Kun2COG9aSxoZZxxOcSGdLGtoAyIehB87APNHS9FSrSvDmxtdZ7flnsXjQ/6vJSo6/dIjblK5iESeDBImXnDH5U2am+isvOIO2UcM8HvzvqgQAMn0Ip9Iq/mokD8HajFobgfWEgPvCXn/I5ayUvRJLU6laVb49rX7UKgupKWrZ9NBKn24a4N8GnHU/tOCNFvMrodR3i5QGDf31OFI2latn898a2suala/9r+C3QOXLRw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=QJbP8ss8Q1o9mO7q3AsI9Of1WELCeQBzgtEZzTca21E=;
+ b=g453nXl4zkcmvezgE8en4ghS0/mwdBU8XdD+AD3fg83HllXiKB2hfhvK2J8dubt73IsDGzgXV3g5xRk83GV9BbkKwwNg/PhfAym3Y+xhkIh7E+9bBo+YcvTjWgieqDQWn2c66TrnYWNk2gGWJcOsg97Uij7ei1c2bRsNzO9dde4XGSUNTHlUEPhoHDIys9aEMN9uIaxNMeMxYmqHD5lr0+pYCECQENMotECMa+vQ04y0CJYPSJp2ecUv7+0Nj7ZGrjzgwlES5gSqE2xLSuhQs064uXFrslXjAYxZst30djw+iGdZb91xvH2/1eawe7fIqaCXXTU32f0lm2sErBg3dQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DM4PR11MB5549.namprd11.prod.outlook.com (2603:10b6:5:388::7) by
+ DM6PR11MB4705.namprd11.prod.outlook.com (2603:10b6:5:2a9::23) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5186.14; Thu, 21 Apr 2022 14:13:18 +0000
+Received: from DM4PR11MB5549.namprd11.prod.outlook.com
+ ([fe80::e5b8:93eb:e06b:f1ab]) by DM4PR11MB5549.namprd11.prod.outlook.com
+ ([fe80::e5b8:93eb:e06b:f1ab%7]) with mapi id 15.20.5186.015; Thu, 21 Apr 2022
+ 14:13:18 +0000
+From: "Wang, Zhi A" <zhi.a.wang@intel.com>
+To: Jason Gunthorpe <jgg@nvidia.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>
+Thread-Topic: [PULL v2] gvt-next
+Thread-Index: AQHYVNSMOPXpKvGgN0OvGCZ3HfiQDqz5AfeAgAAP2ICAAAGGAIAAJZkAgACWCICAAA3+AIAADw0AgABtrYCAABCNgA==
+Date: Thu, 21 Apr 2022 14:13:18 +0000
+Message-ID: <9cf8c65d-11cd-feab-1def-db1176153c8d@intel.com>
+References: <5a8b9f48-2c32-8177-1c18-e3bd7bfde558@intel.com>
+ <20220420164351.GC2120790@nvidia.com>
+ <20220420114033.7f8b57c7.alex.williamson@redhat.com>
+ <20220420174600.GD2120790@nvidia.com> <20220420200034.GE2120790@nvidia.com>
+ <55cb46db-754e-e339-178c-0a2cfaf65810@intel.com>
+ <20220421054738.GA20772@lst.de>
+ <165052329083.6597.933445971686511585@jlahtine-mobl.ger.corp.intel.com>
+ <20220421131403.GF2120790@nvidia.com>
+In-Reply-To: <20220421131403.GF2120790@nvidia.com>
+Accept-Language: en-FI, en-US
+Content-Language: aa
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: bbfdf7c2-2bdf-4180-2c3e-08da23a11559
+x-ms-traffictypediagnostic: DM6PR11MB4705:EE_
+x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+x-microsoft-antispam-prvs: <DM6PR11MB4705D84FC412F0CE75D3AF31CAF49@DM6PR11MB4705.namprd11.prod.outlook.com>
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 53vElOueQqsEih5AAnQR993/PCHPoxtYmEHzZ/Ux3in4h4eB4kOF7NgBsLT+cX/IQqd/vTtcoBTYb9gOPLxEe3hUzNG5+34ety/L5hoFtyd1IkPDajd+4gr6xNIMEkIKddVtS1UhIo4UDJETKfHRbQTAEqC5/iNo0JTh5uhTvgB6LrOnnQmE4c6YllVdpLt4qiEzolBnaFdOKjEcOS/ps2l9R1tKFtl+WButuoAqA0Ah29iNgIzIuGK4Jc5TFjlNAd2d7OWP5rWa4skkWajl7igl77AirmCsAqPBdDhHsQRtiGy0gAXQGfoBj6G640YNQHTxHiKkhgpibxKok3zM5+Gl88Q4zSjknxv05ifrCytZWRChzvP8yShD8iQalU4xChgKEcw5md7eOwpetE06HWOFTWmsoxk92EFqheab8ueQIOx80zi8lPj0VcHy1XPtNb50Wzg34YkItAk0uuiIriMfrrAynJRI1JYF0WeHf10WkMc90RLNdYmMNaYi/ac2eFMRqxtTFvGxO+LUt0xf4DOGl/CiY948MxlO+1SKK/2uaJP/BZ8UkMRvygS0JC6Imyl9ciMfRQ0kAoTZAymgy6fwPvJuUF/Hdmk8vyyYBOmV/cTiXQcmpuY32xpjxZSm2IGQ/ByMTkOx6sGLeN84vpoqC8bR2WHzNCv9bXp5ioljQkQ5aXRk9qOnRc3lpim/OQRUhpa9Y9Ok1eJ357SOpzjjuSlP6zhWHqgXRH7BviucAa9NDgBsiug2eDHv3RWeVh9GejtKm+UsLNx9UtPRRw==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5549.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230001)(366004)(2616005)(2906002)(8936002)(508600001)(4326008)(5660300002)(7416002)(8676002)(26005)(6486002)(76116006)(31696002)(66946007)(66556008)(53546011)(66476007)(66446008)(64756008)(6512007)(6506007)(86362001)(91956017)(71200400001)(110136005)(82960400001)(54906003)(38100700002)(38070700005)(122000001)(316002)(36756003)(31686004)(83380400001)(186003)(43740500002)(45980500001);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?Windows-1252?Q?PiwQ6AHFs/tJ9oRttLwP1Gu7Iy0u9bVvBAk+OJ732ISciknTMLGd3Q8S?=
+ =?Windows-1252?Q?EEDRSYTWIVZFN3Q8fkVBMqecqpFQsBb3+5pb9NGvPAc5SGuxCIwUaz3u?=
+ =?Windows-1252?Q?mWsZyXpMVc7vZ6lIGP3JqDGLOjySE+MYVhzCo7PJG7BXJoRE434rfPqU?=
+ =?Windows-1252?Q?jmVh1UIVsRsDJI3XmEVmOa/jA3rDR3jG8sG/RHc3yzNSMmWR+fQqNh4/?=
+ =?Windows-1252?Q?KORpc1P0OwHUV+z6SRFHfhNogJkXU45/1ygJweEFOTjPSfBmqJEd5Po3?=
+ =?Windows-1252?Q?/KhbW75Xu6h0tgj6wTShQ/Ro7Ce8MM6S9Cw/CTmuafs/iIUXjB5dNdVR?=
+ =?Windows-1252?Q?9D9MOrEbhGxXoAjgbaK6PFRBPe9hSKrkGnonwe5BP3uST//7YYJgZPRo?=
+ =?Windows-1252?Q?1Np444Z4wQFTQXv05WwXx0RnA2AM5n27+ZpuZcsMchAtA/DIXJG0z9V1?=
+ =?Windows-1252?Q?wwE6ZKjyKgtwt/HdcN+TLaZePoNoLdwG04WXBe5zeE7jM+aO6un7fXPW?=
+ =?Windows-1252?Q?1nwo+XaZ4oIcNylzeB2vuQ97CmSORy6HGa1QGuXkdgWEg41PEGTajToy?=
+ =?Windows-1252?Q?EndeEyhftLsp9r2lwqU1hW82G+46s+X5ePAF8kW6c2jn9ESQqVb8knwq?=
+ =?Windows-1252?Q?CHe7Xu263NJAwDdeNPE8d2Kyr/crgzaiWfNUmDKP9XMjlnOKcRmv6hQ6?=
+ =?Windows-1252?Q?VUmolcYXa1Y2ImG4HM0DZz/lokYzxdm91hyn1HYSdiFzkh0mJwpBwTLX?=
+ =?Windows-1252?Q?I8Ksh47ihQpgyPnzIFDGnIEFw5QokLo7j8nyl8/c85615MYuNgf1vxUT?=
+ =?Windows-1252?Q?oBbtlvscdep7aRbvP+F3Q3Q469Bb0C18SdI9cA9Jyn83t6aGP/aJg9zk?=
+ =?Windows-1252?Q?sHTlwSKaKbV5GWnmibjMz5CWsESC29gmqb7Npv9ItlFH4TmncLKv95KT?=
+ =?Windows-1252?Q?KO2pSKolWnBR098k+Rzx+VRfbyBwAvWgg9kvovSC1naUVyIGNbQvu0DA?=
+ =?Windows-1252?Q?U7nStIbqgkRShoRTQEZ4aZ0f1bKFEzntB/Zt77EDGwbmhXMRHCjULlTP?=
+ =?Windows-1252?Q?yPOZ62kNc9R7NaOie9Z4AQ9RJzRkmKlHnwgynEjm/Fv7gNawI9gxTBSU?=
+ =?Windows-1252?Q?SYud/2kywC5ic3D7YUmhI5IS5PPCmNaZakE1ESHusfIXvDz7FJwAPFDv?=
+ =?Windows-1252?Q?HZo2EwgNm3zNlgozdnJo8RcayfRIQn1uY/FmOdcsLUO0sXvxVSQmnXLG?=
+ =?Windows-1252?Q?jwKIm/O6QfMSlhxmvBhuO1+ZeIWqeIPYEyKId8Ytwi0g/r+1xc9p7Vgx?=
+ =?Windows-1252?Q?v5DKPm9Nm25fclC/GzEhAwYimKa4p2eGSWikgYQxqCH3adfBEHJXgj3u?=
+ =?Windows-1252?Q?gjtCKfaRAbIx1qtrPfemO5+vyPdrsBaKO4a+3vtMVqQ5VaAIDf05EP+D?=
+ =?Windows-1252?Q?MKJBSA2pZIHlHVBgvj26YwSA84AWzWBW90F8RtCesdqcJmaEvGcNuAUH?=
+ =?Windows-1252?Q?Tdedq6b3eTgNVi84x00+4yBnY9MfpQMLAekId9xTxmPTf9fV65SuDEHT?=
+ =?Windows-1252?Q?RWFX+FZ4vtkmbtaf8+BcLmoWkug44A9EDdyu/cjlw4mVk309Rhxj1j4F?=
+ =?Windows-1252?Q?lGjPQBdC4R+rmbhjDosBPe9wa/2x4n572f+7VNgdYDqT8XvdXgwyN59k?=
+ =?Windows-1252?Q?h9m0L5SxDK2t4a1KYVO9LduPmG7W27fqgSyQKIh97r7zCvBLNQ7YyOhj?=
+ =?Windows-1252?Q?pFLFnoDZ+SwGnciLuJ44hid75r8mwFfNojcTwOmveGzNUpm4hg7CKB94?=
+ =?Windows-1252?Q?bwYX8JN5IhF8ePxL1SJQmEuvv+2jJfWtPmtaFRx2yqnnjCfb9ciBfmsh?=
+ =?Windows-1252?Q?Tp+OVs90wyyuAg=3D=3D?=
+Content-Type: text/plain; charset="Windows-1252"
+Content-ID: <821F7C6144B5EA49861A35B3C826C7DA@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ac1c0383b20eeec0f86e439d4889a55fcbf8cd4e.camel@redhat.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Check EDID for HDR static
- metadata when choosing blc
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5549.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: bbfdf7c2-2bdf-4180-2c3e-08da23a11559
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Apr 2022 14:13:18.0750 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 4VfLk9hdEX9seJJOkGXgAizCI+2mUqN0qNUvjYd6f74k2SITEvuJ0ZGvPmmLV6Ck4M54nWn6w4lwS28oT1PMeA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4705
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PULL v2] gvt-next
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,121 +161,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
- Filippo Falezza <filippo.falezza@outlook.it>, stable@vger.kernel.org
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "Vivi,
+ Rodrigo" <rodrigo.vivi@intel.com>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
+ Christoph Hellwig <hch@lst.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Apr 14, 2022 at 04:44:13PM -0400, Lyude Paul wrote:
-> Reviewed-by: Lyude Paul <lyude@redhat.com>
+On 4/21/22 1:14 PM, Jason Gunthorpe wrote:
+> On Thu, Apr 21, 2022 at 09:41:30AM +0300, Joonas Lahtinen wrote:
+>> + Tvrtko
+>>
+>> Quoting Christoph Hellwig (2022-04-21 08:47:38)
+>>> On Thu, Apr 21, 2022 at 04:57:34AM +0000, Wang, Zhi A wrote:
+>>>> Is it possible that I can send two different pull based on the same br=
+anch?
+>>>> I was thinking I can remove this line in the original patch and then a=
+dd a
+>>>> small patch to add this line back on the top. Then make two different =
+tags
+>>>> before and after that small patch, send one pull with tag that include=
+s that
+>>>> small patch to i915 and the other pull with tag that doesn't includes =
+it to
+>>>> VFIO?
+>>>
+>>> Yes, you can do that as long as the small fixup commit is the very last
+>>> one.
+>=20
+> Keep in mind when doing this that best practice is for every commit to
+> compile.
+>=20
+> So if you add a commit with a new #include to this topic branch that
+> commit will not compile.
+>=20
+> Best practice is to fix the compilation breakage in a merge commit,
+> either created by you or created by your upstream.
+>=20
+I see. Let me update it.=20
+> Jason
+>=20
 
-Thanks for the patch and review. Pushed to drm-intel-next.
-
-> 
-> On Wed, 2022-04-13 at 11:28 +0300, Jouni Högander wrote:
-> > We have now seen panel (XMG Core 15 e21 laptop) advertizing support
-> > for Intel proprietary eDP backlight control via DPCD registers, but
-> > actually working only with legacy pwm control.
-> > 
-> > This patch adds panel EDID check for possible HDR static metadata and
-> > Intel proprietary eDP backlight control is used only if that exists.
-> > Missing HDR static metadata is ignored if user specifically asks for
-> > Intel proprietary eDP backlight control via enable_dpcd_backlight
-> > parameter.
-> > 
-> > v2 :
-> > - Ignore missing HDR static metadata if Intel proprietary eDP
-> >   backlight control is forced via i915.enable_dpcd_backlight
-> > - Printout info message if panel is missing HDR static metadata and
-> >   support for Intel proprietary eDP backlight control is detected
-> > 
-> > Fixes: 4a8d79901d5b ("drm/i915/dp: Enable Intel's HDR backlight interface
-> > (only SDR for now)")
-> > Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/5284
-> > Cc: Lyude Paul <lyude@redhat.com>
-> > Cc: Mika Kahola <mika.kahola@intel.com>
-> > Cc: Jani Nikula <jani.nikula@intel.com>
-> > Cc: Filippo Falezza <filippo.falezza@outlook.it>
-> > Cc: stable@vger.kernel.org
-> > Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
-> > ---
-> >  .../drm/i915/display/intel_dp_aux_backlight.c | 34 ++++++++++++++-----
-> >  1 file changed, 26 insertions(+), 8 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> > b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> > index 97cf3cac0105..fb6cf30ee628 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> > @@ -97,6 +97,14 @@
-> >  
-> >  #define INTEL_EDP_BRIGHTNESS_OPTIMIZATION_1                           
-> > 0x359
-> >  
-> > +enum intel_dp_aux_backlight_modparam {
-> > +       INTEL_DP_AUX_BACKLIGHT_AUTO = -1,
-> > +       INTEL_DP_AUX_BACKLIGHT_OFF = 0,
-> > +       INTEL_DP_AUX_BACKLIGHT_ON = 1,
-> > +       INTEL_DP_AUX_BACKLIGHT_FORCE_VESA = 2,
-> > +       INTEL_DP_AUX_BACKLIGHT_FORCE_INTEL = 3,
-> > +};
-> > +
-> >  /* Intel EDP backlight callbacks */
-> >  static bool
-> >  intel_dp_aux_supports_hdr_backlight(struct intel_connector *connector)
-> > @@ -126,6 +134,24 @@ intel_dp_aux_supports_hdr_backlight(struct
-> > intel_connector *connector)
-> >                 return false;
-> >         }
-> >  
-> > +       /*
-> > +        * If we don't have HDR static metadata there is no way to
-> > +        * runtime detect used range for nits based control. For now
-> > +        * do not use Intel proprietary eDP backlight control if we
-> > +        * don't have this data in panel EDID. In case we find panel
-> > +        * which supports only nits based control, but doesn't provide
-> > +        * HDR static metadata we need to start maintaining table of
-> > +        * ranges for such panels.
-> > +        */
-> > +       if (i915->params.enable_dpcd_backlight !=
-> > INTEL_DP_AUX_BACKLIGHT_FORCE_INTEL &&
-> > +           !(connector->base.hdr_sink_metadata.hdmi_type1.metadata_type &
-> > +             BIT(HDMI_STATIC_METADATA_TYPE1))) {
-> > +               drm_info(&i915->drm,
-> > +                        "Panel is missing HDR static metadata. Possible
-> > support for Intel HDR backlight interface is not used. If your backlight
-> > controls don't work try booting with i915.enable_dpcd_backlight=%d. needs
-> > this, please file a _new_ bug report on drm/i915, see " FDO_BUG_URL " for
-> > details.\n",
-> > +                        INTEL_DP_AUX_BACKLIGHT_FORCE_INTEL);
-> > +               return false;
-> > +       }
-> > +
-> >         panel->backlight.edp.intel.sdr_uses_aux =
-> >                 tcon_cap[2] & INTEL_EDP_SDR_TCON_BRIGHTNESS_AUX_CAP;
-> >  
-> > @@ -413,14 +439,6 @@ static const struct intel_panel_bl_funcs
-> > intel_dp_vesa_bl_funcs = {
-> >         .get = intel_dp_aux_vesa_get_backlight,
-> >  };
-> >  
-> > -enum intel_dp_aux_backlight_modparam {
-> > -       INTEL_DP_AUX_BACKLIGHT_AUTO = -1,
-> > -       INTEL_DP_AUX_BACKLIGHT_OFF = 0,
-> > -       INTEL_DP_AUX_BACKLIGHT_ON = 1,
-> > -       INTEL_DP_AUX_BACKLIGHT_FORCE_VESA = 2,
-> > -       INTEL_DP_AUX_BACKLIGHT_FORCE_INTEL = 3,
-> > -};
-> > -
-> >  int intel_dp_aux_init_backlight_funcs(struct intel_connector *connector)
-> >  {
-> >         struct drm_device *dev = connector->base.dev;
-> 
-> -- 
-> Cheers,
->  Lyude Paul (she/her)
->  Software Engineer at Red Hat
-
--- 
-Ville Syrjälä
-Intel
