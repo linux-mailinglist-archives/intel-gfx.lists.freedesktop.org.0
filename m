@@ -2,62 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2764450E10F
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 Apr 2022 15:03:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B8E2450E10C
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 Apr 2022 15:03:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D9EEC10E4BE;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 122ED10E35F;
 	Mon, 25 Apr 2022 13:03:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com
- [IPv6:2a00:1450:4864:20::629])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AAA0F10E2C3;
- Wed, 20 Apr 2022 18:56:41 +0000 (UTC)
-Received: by mail-ej1-x629.google.com with SMTP id bv19so5403811ejb.6;
- Wed, 20 Apr 2022 11:56:41 -0700 (PDT)
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com
+ [IPv6:2a00:1450:4864:20::631])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE04810F6CA;
+ Thu, 21 Apr 2022 10:17:39 +0000 (UTC)
+Received: by mail-ej1-x631.google.com with SMTP id r13so9025022ejd.5;
+ Thu, 21 Apr 2022 03:17:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=message-id:date:mime-version:user-agent:subject:content-language:to
  :cc:references:from:in-reply-to:content-transfer-encoding;
- bh=rc0pPwaP6/47w0P3YZ39eMLVgRn/8HQa1EN8gwRIGPs=;
- b=cmErzdTGtahwYRQP00Qx8ZhwKKlMefoOYkcL5s+3xGq3JNVsS/YzcT3ZAxRoU+OnB4
- Fvu4mS+ZQeWtA88hbuNOPIUv9KPSuSzmrdD6Jlfnd6b+tSHT2NlftqPlRufBHvi9tMc2
- loSjNnChoqebzllejBYgyAhkRSGLI3PCNbTbGPCjMCKVg4LE2dQPoCVGHM3jECncMctU
- IYggO6Zr8mhmCjUIPHb9H3vbiDHEPEjT/WXKJNUvplY7zVVI7teffHrjweDk2osj+f3P
- XkkBMv24FTjxyGvP7mVVyU9y9/awljahl+gICqSG3mdp1b8uKhkc7YI095oI7p3pldf0
- Evpw==
+ bh=o9Uwrnr+J/6PoPyTPGmYSGkDODoDuGBLtRMs0gUpXJk=;
+ b=Tw1xmngZVfgCT7TLBstw8nQFpll9Eq0dUwiVJsGbsS/YNeQ/L4ksc7k4vKU2gYhMG4
+ WIP/P3GVtSM8yQUBvFu0wzQ78CvU/jVksuhYepDhTmaFzetdJPma6K/6biJfMh2ou1mV
+ Y8YlaBN2lk5t/HxXOih3jiSyY0LmmKxksUQfDKQigduQaJfdeFZYGTZtfX6lrtc+7PgK
+ nU0GqecKph+MxFN0nxH2edRAv/7RwdPu1D7V/yjTDsOtz0gs4xjJISOSJZgsCOOt6zRZ
+ DFqR9U/lLaDZcgzIAgXpFM0KtrraQjTO95+6FFitzuEIK1qjfmZ2ZOUfzFuf61KKx9nZ
+ ynZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
  :content-language:to:cc:references:from:in-reply-to
  :content-transfer-encoding;
- bh=rc0pPwaP6/47w0P3YZ39eMLVgRn/8HQa1EN8gwRIGPs=;
- b=4xNxWwoK5mSw0Fdf2mmPc61XiXgPJm5smdtmn4Lup8BYfOFDw1BGbDv6mWqY8rVynj
- nCa5iA+JOBztjz5wn9vthZSZ6lF/Ado62A7SdfxBUpCvxGa284qi+xkzmejN238UmaLo
- aa5fkt5AW090Qf2cteLMOi9VEAgL3Gauh3RPaChS3aukBl2AJHNLgg9kXklxp+VfcjRo
- C6KT7ejWkspprlLWwCzz18/31JfVxXUENJN3uohyRU6HWYKqhGGm9VIKdbBbjZF2AtaZ
- E2p3yxp0TVRJYpQ9zdpdHIYnGrEXzxTdvxm4HT7KXnKxiVScNU6zyT5WwfHJhMhxzhcA
- zQNA==
-X-Gm-Message-State: AOAM533Edvx+R2/Z4vLSEZQ/hI+spLzVE/iDyB6yKUaQVHK2hyQBpJkI
- tm3dZZshywAh0AW+VdxM3YA=
-X-Google-Smtp-Source: ABdhPJymoss9KS5UEweBNeuSGQfdIi8XFSwbjs/XNcQRdCopeJCWXgyfUb9ZXOzrmQgQ0Um++2aN9Q==
-X-Received: by 2002:a17:906:31c2:b0:6e8:6e8b:cbe4 with SMTP id
- f2-20020a17090631c200b006e86e8bcbe4mr20179080ejf.293.1650481000148; 
- Wed, 20 Apr 2022 11:56:40 -0700 (PDT)
-Received: from ?IPV6:2a02:908:1252:fb60:425d:2971:45fa:ac5d?
- ([2a02:908:1252:fb60:425d:2971:45fa:ac5d])
+ bh=o9Uwrnr+J/6PoPyTPGmYSGkDODoDuGBLtRMs0gUpXJk=;
+ b=efKx249VQV55+/+WQ9VnY2JMeSyYxNrJHKw7WO4OslmOXLGTApWc2R8kOZgJ9pCDcg
+ /Xylgdf1ovZwl59HuCygG9LyfN5DuBZa+MWJr1sMTw4ryuaBT5a5hi7Q6bDR8FMTbAHb
+ Km/f6jSA29w9V2DFlVzZAk6eYaOhPxy2eWy0Ysj6/vG6Gnhz+E7/U8MCS8mbB/WCcxA4
+ whuGL4Lbtup9RyXLNGxq3/+NHtIEM3AgOcT2XEycMNq+HXiaScV2Jq88pUafy/SHWxPv
+ bCnC2Fu7Gvpm1bFrkwbwmUbsTyVUc4pnMDNh9VmOBHWrrPOhInDZ1CEVTcAlcjI7orZy
+ +eog==
+X-Gm-Message-State: AOAM532lHx67pueZgvZSr0drq2e5cAYNmdlgy+xETK0VDLnhd2BuBiGg
+ nXml6idq8/QZ+BDpZDpIuALJeBDW5YQ=
+X-Google-Smtp-Source: ABdhPJwfX3c1ZjiNGKR8X3C8C8qD7akq9C+VUDTYnVQCMx9rkiXUpNWEIgmkZxnq8ehfCKoNipcwXg==
+X-Received: by 2002:a17:907:7da3:b0:6f0:d63:69bd with SMTP id
+ oz35-20020a1709077da300b006f00d6369bdmr5677073ejc.289.1650536258169; 
+ Thu, 21 Apr 2022 03:17:38 -0700 (PDT)
+Received: from ?IPV6:2a02:908:1252:fb60:74ec:39fd:9a7c:7ff3?
+ ([2a02:908:1252:fb60:74ec:39fd:9a7c:7ff3])
  by smtp.gmail.com with ESMTPSA id
- r3-20020aa7d583000000b00420a8b66566sm10414324edq.97.2022.04.20.11.56.39
+ a1-20020a1709063e8100b006ce06ed8aa7sm7745262ejj.142.2022.04.21.03.17.36
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 20 Apr 2022 11:56:39 -0700 (PDT)
-Message-ID: <ac12f900-fb47-37d6-9a1c-ac44bc711069@gmail.com>
-Date: Wed, 20 Apr 2022 20:56:38 +0200
+ Thu, 21 Apr 2022 03:17:37 -0700 (PDT)
+Message-ID: <6cd3571c-099b-df43-a7e0-243aba11726b@gmail.com>
+Date: Thu, 21 Apr 2022 12:17:36 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
 Content-Language: en-US
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Zack Rusin <zackr@vmware.com>,
+To: Zack Rusin <zackr@vmware.com>,
  "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "christian.koenig@amd.com" <christian.koenig@amd.com>,
  "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
  "daniel.vetter@ffwll.ch" <daniel.vetter@ffwll.ch>,
  "linaro-mm-sig@lists.linaro.org" <linaro-mm-sig@lists.linaro.org>,
@@ -70,8 +70,10 @@ References: <20220407085946.744568-1-christian.koenig@amd.com>
  <54d00af9-9384-5794-490c-7d4cafe086b6@gmail.com>
  <e1c60e2a1478c406f515d51608a751fdc9feff3a.camel@vmware.com>
  <baa19a2d-6ad9-63ea-20f4-284a794f8998@amd.com>
+ <ac12f900-fb47-37d6-9a1c-ac44bc711069@gmail.com>
+ <5d699ffa903b5e54e8660367c3b46f07c86f4c55.camel@vmware.com>
 From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-In-Reply-To: <baa19a2d-6ad9-63ea-20f4-284a794f8998@amd.com>
+In-Reply-To: <5d699ffa903b5e54e8660367c3b46f07c86f4c55.camel@vmware.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 25 Apr 2022 13:03:42 +0000
@@ -93,98 +95,39 @@ Cc: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Am 20.04.22 um 20:49 schrieb Christian König:
-> Am 20.04.22 um 20:41 schrieb Zack Rusin:
->> On Wed, 2022-04-20 at 19:40 +0200, Christian König wrote:
->>> Am 20.04.22 um 19:38 schrieb Zack Rusin:
->>>> On Wed, 2022-04-20 at 09:37 +0200, Christian König wrote:
->>>>> ⚠ External Email
->>>>>
->>>>> Hi Zack,
->>>>>
->>>>> Am 20.04.22 um 05:56 schrieb Zack Rusin:
->>>>>> On Thu, 2022-04-07 at 10:59 +0200, Christian König wrote:
->>>>>>> Rework the internals of the dma_resv object to allow adding
->>>>>>> more
->>>>>>> than
->>>>>>> one
->>>>>>> write fence and remember for each fence what purpose it had.
->>>>>>>
->>>>>>> This allows removing the workaround from amdgpu which used a
->>>>>>> container
->>>>>>> for
->>>>>>> this instead.
->>>>>>>
->>>>>>> Signed-off-by: Christian König <christian.koenig@amd.com>
->>>>>>> Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
->>>>>>> Cc: amd-gfx@lists.freedesktop.org
->>>>>> afaict this change broke vmwgfx which now kernel oops right
->>>>>> after
->>>>>> boot.
->>>>>> I haven't had the time to look into it yet, so I'm not sure
->>>>>> what's
->>>>>> the
->>>>>> problem. I'll look at this tomorrow, but just in case you have
->>>>>> some
->>>>>> clues, the backtrace follows:
->>>>> that's a known issue and should already be fixed with:
->>>>>
->>>>> commit d72dcbe9fce505228dae43bef9da8f2b707d1b3d
->>>>> Author: Christian König <christian.koenig@amd.com>
->>>>> Date:   Mon Apr 11 15:21:59 2022 +0200
->>>> Unfortunately that doesn't seem to be it. The backtrace is from the
->>>> current (as of the time of sending of this email) drm-misc-next,
->>>> which
->>>> has this change, so it's something else.
->>> Ok, that's strange. In this case I need to investigate further.
->>>
->>> Maybe VMWGFX is adding more than one fence and we actually need to
->>> reserve multiple slots.
->> This might be helper code issue with CONFIG_DEBUG_MUTEXES set. On 
->> that config
->> dma_resv_reset_max_fences does:
->>     fences->max_fences = fences->num_fences;
->> For some objects num_fences is 0 and so after max_fences and 
->> num_fences are both 0.
->> And then BUG_ON(num_fences >= max_fences) is triggered.
->
-> Yeah, but that's expected behavior.
->
-> What's not expected is that max_fences is still 0 (or equal to old 
-> num_fences) when VMWGFX tries to add a new fence. The function 
-> ttm_eu_reserve_buffers() should have reserved at least one fence slot.
->
-> So the underlying problem is that either ttm_eu_reserve_buffers() was 
-> never called or VMWGFX tried to add more than one fence.
+Am 20.04.22 um 21:28 schrieb Zack Rusin:
+> [SNIP]
+>> To figure out what it is could you try the following code fragment:
+>>
+>> diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_validation.c
+>> b/drivers/gpu/drm/vmwgfx/vmwgfx_validation.c
+>> index f46891012be3..a36f89d3f36d 100644
+>> --- a/drivers/gpu/drm/vmwgfx/vmwgfx_validation.c
+>> +++ b/drivers/gpu/drm/vmwgfx/vmwgfx_validation.c
+>> @@ -288,7 +288,7 @@ int vmw_validation_add_bo(struct
+>> vmw_validation_context *ctx,
+>>                   val_buf->bo = ttm_bo_get_unless_zero(&vbo->base);
+>>                   if (!val_buf->bo)
+>>                           return -ESRCH;
+>> -               val_buf->num_shared = 0;
+>> +               val_buf->num_shared = 16;
+>>                   list_add_tail(&val_buf->head, &ctx->bo_list);
+>>                   bo_node->as_mob = as_mob;
+>>                   bo_node->cpu_blit = cpu_blit;
+> Fails the same BUG_ON with num_fences and max_fences == 0.
 
+Thanks for testing this.
 
-To figure out what it is could you try the following code fragment:
+So the buffer object is not reserved through 
+vmw_validation_bo_reserve(), but comes from somewhere else. 
+Unfortunately I absolutely can't find where that's coming from.
 
-diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_validation.c 
-b/drivers/gpu/drm/vmwgfx/vmwgfx_validation.c
-index f46891012be3..a36f89d3f36d 100644
---- a/drivers/gpu/drm/vmwgfx/vmwgfx_validation.c
-+++ b/drivers/gpu/drm/vmwgfx/vmwgfx_validation.c
-@@ -288,7 +288,7 @@ int vmw_validation_add_bo(struct 
-vmw_validation_context *ctx,
-                 val_buf->bo = ttm_bo_get_unless_zero(&vbo->base);
-                 if (!val_buf->bo)
-                         return -ESRCH;
--               val_buf->num_shared = 0;
-+               val_buf->num_shared = 16;
-                 list_add_tail(&val_buf->head, &ctx->bo_list);
-                 bo_node->as_mob = as_mob;
-                 bo_node->cpu_blit = cpu_blit;
+Do you have some documentation howto setup vmwgfx? E.g. sample VM which 
+I can download somewhere etc..
 
 Thanks,
 Christian.
 
 >
-> Regards,
-> Christian.
->
->>
->> z
->>
->
+> z
 
