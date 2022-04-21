@@ -1,50 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 448BA50A710
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Apr 2022 19:26:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF21C50A717
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Apr 2022 19:28:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A48810E754;
-	Thu, 21 Apr 2022 17:26:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1DD9310E48C;
+	Thu, 21 Apr 2022 17:28:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB7C410E754
- for <intel-gfx@lists.freedesktop.org>; Thu, 21 Apr 2022 17:26:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1650562009; x=1682098009;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=5qJNBqGWAXf0ST1RTO0dwiuh6SfQ+SXAfkinUjolwK8=;
- b=YM9QUhsU6V/fH9SjUU23Q58f1glsisyGd/5akiUp5xB4efJ+YrAUg+YF
- 8Ffi5Nr0LiS1LIhxPem5YW3F4iM6VbWbtIFJBYOBR1CddF4N/ayWpXRle
- s0JfUwYR8X2vjego663H3ry65dxr3rHVTrJdkOihFjyS+rmPU5F2uT0T4
- bk4kHjDri4H/3wRFkeeEKEu99D9p+EYSvrvk2y1uUz/jOihywemcectlQ
- ml/UAT3nuITTC98rhUuhEA35bj5j3eMTlD8pkfsDZTyaKSreUpPIoz1FE
- bvwcEJ744Muy8T+VUMCP0gS8XhEUT6H488SJFD0trCs85LYbx4hSs3LSp w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10324"; a="263893686"
-X-IronPort-AV: E=Sophos;i="5.90,279,1643702400"; d="scan'208";a="263893686"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2022 10:26:48 -0700
-X-IronPort-AV: E=Sophos;i="5.90,279,1643702400"; d="scan'208";a="577363170"
-Received: from jmadhugu-mobl1.gar.corp.intel.com (HELO
- smullati-desk.gar.corp.intel.com) ([10.213.110.42])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2022 10:26:46 -0700
-From: Mullati Siva <siva.mullati@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	siva.mullati@intel.com
-Date: Thu, 21 Apr 2022 22:56:35 +0530
-Message-Id: <20220421172635.76236-2-siva.mullati@intel.com>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20220421172635.76236-1-siva.mullati@intel.com>
-References: <20220421172635.76236-1-siva.mullati@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1348F10E48C;
+ Thu, 21 Apr 2022 17:28:32 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1072DA00E8;
+ Thu, 21 Apr 2022 17:28:32 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3871833080465850334=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 1/1] drm/i915/guc: Convert ct buffer to iosys_map
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Date: Thu, 21 Apr 2022 17:28:32 -0000
+Message-ID: <165056211204.10761.13629718420654020915@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220325123205.22140-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20220325123205.22140-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Start_reordering_modeset_clock_calculations_=28rev5=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,501 +40,407 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: lucas.demarchi@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Siva Mullati <siva.mullati@intel.com>
+--===============3871833080465850334==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Convert CT commands and descriptors to use iosys_map rather
-than plain pointer and save it in the intel_guc_ct_buffer struct.
-This will help with ct_write and ct_read for cmd send and receive
-after the initialization by abstracting the IO vs system memory.
+== Series Details ==
 
-Signed-off-by: Siva Mullati <siva.mullati@intel.com>
----
- drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c | 197 +++++++++++++---------
- drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h |   9 +-
- 2 files changed, 124 insertions(+), 82 deletions(-)
+Series: drm/i915: Start reordering modeset clock calculations (rev5)
+URL   : https://patchwork.freedesktop.org/series/101789/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-index f01325cd1b62..5bd03d3112f7 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-@@ -44,6 +44,11 @@ static inline struct drm_device *ct_to_drm(struct intel_guc_ct *ct)
- #define CT_PROBE_ERROR(_ct, _fmt, ...) \
- 	i915_probe_error(ct_to_i915(ct), "CT: " _fmt, ##__VA_ARGS__)
- 
-+#define ct_desc_read(desc_map_, field_) \
-+	iosys_map_rd_field(desc_map_, 0, struct guc_ct_buffer_desc, field_)
-+#define ct_desc_write(desc_map_, field_, val_) \
-+	iosys_map_wr_field(desc_map_, 0, struct guc_ct_buffer_desc, field_, val_)
-+
- /**
-  * DOC: CTB Blob
-  *
-@@ -76,6 +81,11 @@ static inline struct drm_device *ct_to_drm(struct intel_guc_ct *ct)
- #define CTB_G2H_BUFFER_SIZE	(4 * CTB_H2G_BUFFER_SIZE)
- #define G2H_ROOM_BUFFER_SIZE	(CTB_G2H_BUFFER_SIZE / 4)
- 
-+#define CTB_SEND_DESC_OFFSET	0u
-+#define CTB_RECV_DESC_OFFSET	(CTB_DESC_SIZE)
-+#define CTB_SEND_CMDS_OFFSET	(2 * CTB_DESC_SIZE)
-+#define CTB_RECV_CMDS_OFFSET	(2 * CTB_DESC_SIZE + CTB_H2G_BUFFER_SIZE)
-+
- struct ct_request {
- 	struct list_head link;
- 	u32 fence;
-@@ -113,9 +123,9 @@ void intel_guc_ct_init_early(struct intel_guc_ct *ct)
- 	init_waitqueue_head(&ct->wq);
- }
- 
--static void guc_ct_buffer_desc_init(struct guc_ct_buffer_desc *desc)
-+static void guc_ct_buffer_desc_init(struct iosys_map *desc)
- {
--	memset(desc, 0, sizeof(*desc));
-+	iosys_map_memset(desc, 0, 0, sizeof(struct guc_ct_buffer_desc));
- }
- 
- static void guc_ct_buffer_reset(struct intel_guc_ct_buffer *ctb)
-@@ -128,17 +138,18 @@ static void guc_ct_buffer_reset(struct intel_guc_ct_buffer *ctb)
- 	space = CIRC_SPACE(ctb->tail, ctb->head, ctb->size) - ctb->resv_space;
- 	atomic_set(&ctb->space, space);
- 
--	guc_ct_buffer_desc_init(ctb->desc);
-+	guc_ct_buffer_desc_init(&ctb->desc_map);
- }
- 
- static void guc_ct_buffer_init(struct intel_guc_ct_buffer *ctb,
--			       struct guc_ct_buffer_desc *desc,
--			       u32 *cmds, u32 size_in_bytes, u32 resv_space)
-+			       struct iosys_map *desc,
-+			       struct iosys_map *cmds,
-+			       u32 size_in_bytes, u32 resv_space)
- {
- 	GEM_BUG_ON(size_in_bytes % 4);
- 
--	ctb->desc = desc;
--	ctb->cmds = cmds;
-+	ctb->desc_map = *desc;
-+	ctb->cmds_map = *cmds;
- 	ctb->size = size_in_bytes / 4;
- 	ctb->resv_space = resv_space / 4;
- 
-@@ -218,12 +229,13 @@ static int ct_register_buffer(struct intel_guc_ct *ct, bool send,
- int intel_guc_ct_init(struct intel_guc_ct *ct)
- {
- 	struct intel_guc *guc = ct_to_guc(ct);
--	struct guc_ct_buffer_desc *desc;
-+	struct iosys_map blob_map;
-+	struct iosys_map desc_map;
-+	struct iosys_map cmds_map;
- 	u32 blob_size;
- 	u32 cmds_size;
- 	u32 resv_space;
- 	void *blob;
--	u32 *cmds;
- 	int err;
- 
- 	err = i915_inject_probe_error(guc_to_gt(guc)->i915, -ENXIO);
-@@ -242,27 +254,35 @@ int intel_guc_ct_init(struct intel_guc_ct *ct)
- 
- 	CT_DEBUG(ct, "base=%#x size=%u\n", intel_guc_ggtt_offset(guc, ct->vma), blob_size);
- 
--	/* store pointers to desc and cmds for send ctb */
--	desc = blob;
--	cmds = blob + 2 * CTB_DESC_SIZE;
-+	if (i915_gem_object_is_lmem(ct->vma->obj))
-+		iosys_map_set_vaddr_iomem(&blob_map,
-+					  (void __iomem *)blob);
-+	else
-+		iosys_map_set_vaddr(&blob_map, blob);
-+
-+	/* store sysmap to desc_map and cmds_map for send ctb */
-+	desc_map = IOSYS_MAP_INIT_OFFSET(&blob_map, CTB_SEND_DESC_OFFSET);
-+	cmds_map = IOSYS_MAP_INIT_OFFSET(&blob_map, CTB_SEND_CMDS_OFFSET);
- 	cmds_size = CTB_H2G_BUFFER_SIZE;
- 	resv_space = 0;
--	CT_DEBUG(ct, "%s desc %#tx cmds %#tx size %u/%u\n", "send",
--		 ptrdiff(desc, blob), ptrdiff(cmds, blob), cmds_size,
--		 resv_space);
-+	CT_DEBUG(ct, "%s desc %#x cmds %#x size %u/%u\n", "send",
-+		 CTB_SEND_DESC_OFFSET, (u32)CTB_SEND_CMDS_OFFSET,
-+		 cmds_size, resv_space);
- 
--	guc_ct_buffer_init(&ct->ctbs.send, desc, cmds, cmds_size, resv_space);
-+	guc_ct_buffer_init(&ct->ctbs.send,
-+			   &desc_map, &cmds_map, cmds_size, resv_space);
- 
--	/* store pointers to desc and cmds for recv ctb */
--	desc = blob + CTB_DESC_SIZE;
--	cmds = blob + 2 * CTB_DESC_SIZE + CTB_H2G_BUFFER_SIZE;
-+	/* store sysmap to desc_map and cmds_map for recv ctb */
-+	desc_map = IOSYS_MAP_INIT_OFFSET(&blob_map, CTB_RECV_DESC_OFFSET);
-+	cmds_map = IOSYS_MAP_INIT_OFFSET(&blob_map, CTB_RECV_CMDS_OFFSET);
- 	cmds_size = CTB_G2H_BUFFER_SIZE;
- 	resv_space = G2H_ROOM_BUFFER_SIZE;
--	CT_DEBUG(ct, "%s desc %#tx cmds %#tx size %u/%u\n", "recv",
--		 ptrdiff(desc, blob), ptrdiff(cmds, blob), cmds_size,
--		 resv_space);
-+	CT_DEBUG(ct, "%s desc %#x cmds %#x size %u/%u\n", "recv",
-+		 (u32)CTB_RECV_DESC_OFFSET, (u32)CTB_RECV_CMDS_OFFSET,
-+		 cmds_size, resv_space);
- 
--	guc_ct_buffer_init(&ct->ctbs.recv, desc, cmds, cmds_size, resv_space);
-+	guc_ct_buffer_init(&ct->ctbs.recv,
-+			   &desc_map, &cmds_map, cmds_size, resv_space);
- 
- 	return 0;
- }
-@@ -291,8 +311,8 @@ void intel_guc_ct_fini(struct intel_guc_ct *ct)
- int intel_guc_ct_enable(struct intel_guc_ct *ct)
- {
- 	struct intel_guc *guc = ct_to_guc(ct);
-+	struct iosys_map blob_map;
- 	u32 base, desc, cmds, size;
--	void *blob;
- 	int err;
- 
- 	GEM_BUG_ON(ct->enabled);
-@@ -302,9 +322,14 @@ int intel_guc_ct_enable(struct intel_guc_ct *ct)
- 	GEM_BUG_ON(!i915_gem_object_has_pinned_pages(ct->vma->obj));
- 	base = intel_guc_ggtt_offset(guc, ct->vma);
- 
-+	if (i915_gem_object_is_lmem(ct->vma->obj))
-+		iosys_map_set_vaddr_iomem(&blob_map, (void __iomem *)
-+					  __px_vaddr(ct->vma->obj));
-+	else
-+		iosys_map_set_vaddr(&blob_map, __px_vaddr(ct->vma->obj));
-+
- 	/* blob should start with send descriptor */
--	blob = __px_vaddr(ct->vma->obj);
--	GEM_BUG_ON(blob != ct->ctbs.send.desc);
-+	GEM_BUG_ON(!iosys_map_is_equal(&blob_map, &ct->ctbs.send.desc_map));
- 
- 	/* (re)initialize descriptors */
- 	guc_ct_buffer_reset(&ct->ctbs.send);
-@@ -314,15 +339,15 @@ int intel_guc_ct_enable(struct intel_guc_ct *ct)
- 	 * Register both CT buffers starting with RECV buffer.
- 	 * Descriptors are in first half of the blob.
- 	 */
--	desc = base + ptrdiff(ct->ctbs.recv.desc, blob);
--	cmds = base + ptrdiff(ct->ctbs.recv.cmds, blob);
-+	desc = base + CTB_RECV_DESC_OFFSET;
-+	cmds = base + CTB_RECV_CMDS_OFFSET;
- 	size = ct->ctbs.recv.size * 4;
- 	err = ct_register_buffer(ct, false, desc, cmds, size);
- 	if (unlikely(err))
- 		goto err_out;
- 
--	desc = base + ptrdiff(ct->ctbs.send.desc, blob);
--	cmds = base + ptrdiff(ct->ctbs.send.cmds, blob);
-+	desc = base + CTB_SEND_DESC_OFFSET;
-+	cmds = base + CTB_SEND_CMDS_OFFSET;
- 	size = ct->ctbs.send.size * 4;
- 	err = ct_register_buffer(ct, true, desc, cmds, size);
- 	if (unlikely(err))
-@@ -371,31 +396,32 @@ static int ct_write(struct intel_guc_ct *ct,
- 		    u32 fence, u32 flags)
- {
- 	struct intel_guc_ct_buffer *ctb = &ct->ctbs.send;
--	struct guc_ct_buffer_desc *desc = ctb->desc;
- 	u32 tail = ctb->tail;
- 	u32 size = ctb->size;
- 	u32 header;
- 	u32 hxg;
- 	u32 type;
--	u32 *cmds = ctb->cmds;
-+	u32 status = ct_desc_read(&ctb->desc_map, status);
- 	unsigned int i;
- 
--	if (unlikely(desc->status))
-+	if (unlikely(status))
- 		goto corrupted;
- 
- 	GEM_BUG_ON(tail > size);
- 
- #ifdef CONFIG_DRM_I915_DEBUG_GUC
--	if (unlikely(tail != READ_ONCE(desc->tail))) {
-+	if (unlikely(tail != ct_desc_read(&ctb->desc_map, tail))) {
- 		CT_ERROR(ct, "Tail was modified %u != %u\n",
--			 desc->tail, tail);
--		desc->status |= GUC_CTB_STATUS_MISMATCH;
-+			 ct_desc_read(&ctb->desc_map, tail), tail);
-+		status |= GUC_CTB_STATUS_MISMATCH;
-+		ct_desc_write(&ctb->desc_map, status, status);
- 		goto corrupted;
- 	}
--	if (unlikely(READ_ONCE(desc->head) >= size)) {
-+	if (unlikely(ct_desc_read(&ctb->desc_map, head) >= size)) {
- 		CT_ERROR(ct, "Invalid head offset %u >= %u)\n",
--			 desc->head, size);
--		desc->status |= GUC_CTB_STATUS_OVERFLOW;
-+			 ct_desc_read(&ctb->desc_map, head), size);
-+		status |= GUC_CTB_STATUS_OVERFLOW;
-+		ct_desc_write(&ctb->desc_map, status, status);
- 		goto corrupted;
- 	}
- #endif
-@@ -418,14 +444,15 @@ static int ct_write(struct intel_guc_ct *ct,
- 	CT_DEBUG(ct, "writing (tail %u) %*ph %*ph %*ph\n",
- 		 tail, 4, &header, 4, &hxg, 4 * (len - 1), &action[1]);
- 
--	cmds[tail] = header;
-+	iosys_map_wr(&ctb->cmds_map, sizeof(u32) * tail, u32, header);
- 	tail = (tail + 1) % size;
- 
--	cmds[tail] = hxg;
-+	iosys_map_wr(&ctb->cmds_map, sizeof(u32) * tail, u32, hxg);
- 	tail = (tail + 1) % size;
- 
- 	for (i = 1; i < len; i++) {
--		cmds[tail] = action[i];
-+		iosys_map_wr(&ctb->cmds_map,
-+			     sizeof(u32) * tail, u32, action[i]);
- 		tail = (tail + 1) % size;
- 	}
- 	GEM_BUG_ON(tail > size);
-@@ -442,13 +469,14 @@ static int ct_write(struct intel_guc_ct *ct,
- 	atomic_sub(len + GUC_CTB_HDR_LEN, &ctb->space);
- 
- 	/* now update descriptor */
--	WRITE_ONCE(desc->tail, tail);
-+	ct_desc_write(&ctb->desc_map, tail, tail);
- 
- 	return 0;
- 
- corrupted:
- 	CT_ERROR(ct, "Corrupted descriptor head=%u tail=%u status=%#x\n",
--		 desc->head, desc->tail, desc->status);
-+		 ct_desc_read(&ctb->desc_map, head), ct_desc_read(&ctb->desc_map, tail),
-+		 ct_desc_read(&ctb->desc_map, status));
- 	ctb->broken = true;
- 	return -EPIPE;
- }
-@@ -499,20 +527,22 @@ static inline bool ct_deadlocked(struct intel_guc_ct *ct)
- 	bool ret = ktime_ms_delta(ktime_get(), ct->stall_time) > timeout;
- 
- 	if (unlikely(ret)) {
--		struct guc_ct_buffer_desc *send = ct->ctbs.send.desc;
--		struct guc_ct_buffer_desc *recv = ct->ctbs.send.desc;
--
- 		CT_ERROR(ct, "Communication stalled for %lld ms, desc status=%#x,%#x\n",
- 			 ktime_ms_delta(ktime_get(), ct->stall_time),
--			 send->status, recv->status);
-+			 ct_desc_read(&ct->ctbs.send.desc_map, status),
-+			 ct_desc_read(&ct->ctbs.recv.desc_map, status));
- 		CT_ERROR(ct, "H2G Space: %u (Bytes)\n",
- 			 atomic_read(&ct->ctbs.send.space) * 4);
--		CT_ERROR(ct, "Head: %u (Dwords)\n", ct->ctbs.send.desc->head);
--		CT_ERROR(ct, "Tail: %u (Dwords)\n", ct->ctbs.send.desc->tail);
-+		CT_ERROR(ct, "Head: %u (Dwords)\n",
-+			 ct_desc_read(&ct->ctbs.send.desc_map, head));
-+		CT_ERROR(ct, "Tail: %u (Dwords)\n",
-+			 ct_desc_read(&ct->ctbs.send.desc_map, tail));
- 		CT_ERROR(ct, "G2H Space: %u (Bytes)\n",
- 			 atomic_read(&ct->ctbs.recv.space) * 4);
--		CT_ERROR(ct, "Head: %u\n (Dwords)", ct->ctbs.recv.desc->head);
--		CT_ERROR(ct, "Tail: %u\n (Dwords)", ct->ctbs.recv.desc->tail);
-+		CT_ERROR(ct, "Head: %u\n (Dwords)",
-+			 ct_desc_read(&ct->ctbs.recv.desc_map, head));
-+		CT_ERROR(ct, "Tail: %u\n (Dwords)",
-+			 ct_desc_read(&ct->ctbs.recv.desc_map, tail));
- 
- 		ct->ctbs.send.broken = true;
- 	}
-@@ -549,18 +579,19 @@ static inline void g2h_release_space(struct intel_guc_ct *ct, u32 g2h_len_dw)
- static inline bool h2g_has_room(struct intel_guc_ct *ct, u32 len_dw)
- {
- 	struct intel_guc_ct_buffer *ctb = &ct->ctbs.send;
--	struct guc_ct_buffer_desc *desc = ctb->desc;
- 	u32 head;
- 	u32 space;
-+	u32 status = ct_desc_read(&ctb->desc_map, status);
- 
- 	if (atomic_read(&ctb->space) >= len_dw)
- 		return true;
- 
--	head = READ_ONCE(desc->head);
-+	head = ct_desc_read(&ctb->desc_map, head);
- 	if (unlikely(head > ctb->size)) {
- 		CT_ERROR(ct, "Invalid head offset %u >= %u)\n",
- 			 head, ctb->size);
--		desc->status |= GUC_CTB_STATUS_OVERFLOW;
-+		status |= GUC_CTB_STATUS_OVERFLOW;
-+		ct_desc_write(&ctb->desc_map, status, status);
- 		ctb->broken = true;
- 		return false;
- 	}
-@@ -803,11 +834,10 @@ static void ct_free_msg(struct ct_incoming_msg *msg)
- static int ct_read(struct intel_guc_ct *ct, struct ct_incoming_msg **msg)
- {
- 	struct intel_guc_ct_buffer *ctb = &ct->ctbs.recv;
--	struct guc_ct_buffer_desc *desc = ctb->desc;
- 	u32 head = ctb->head;
--	u32 tail = READ_ONCE(desc->tail);
-+	u32 tail = ct_desc_read(&ctb->desc_map, tail);
- 	u32 size = ctb->size;
--	u32 *cmds = ctb->cmds;
-+	u32 status = ct_desc_read(&ctb->desc_map, status);
- 	s32 available;
- 	unsigned int len;
- 	unsigned int i;
-@@ -816,23 +846,25 @@ static int ct_read(struct intel_guc_ct *ct, struct ct_incoming_msg **msg)
- 	if (unlikely(ctb->broken))
- 		return -EPIPE;
- 
--	if (unlikely(desc->status))
-+	if (unlikely(status))
- 		goto corrupted;
- 
- 	GEM_BUG_ON(head > size);
- 
- #ifdef CONFIG_DRM_I915_DEBUG_GUC
--	if (unlikely(head != READ_ONCE(desc->head))) {
-+	if (unlikely(head != ct_desc_read(&ctb->desc_map, head))) {
- 		CT_ERROR(ct, "Head was modified %u != %u\n",
--			 desc->head, head);
--		desc->status |= GUC_CTB_STATUS_MISMATCH;
-+			 ct_desc_read(&ctb->desc_map, head), head);
-+		status |= GUC_CTB_STATUS_MISMATCH;
-+		ct_desc_write(&ctb->desc_map, status, status);
- 		goto corrupted;
- 	}
- #endif
- 	if (unlikely(tail >= size)) {
- 		CT_ERROR(ct, "Invalid tail offset %u >= %u)\n",
- 			 tail, size);
--		desc->status |= GUC_CTB_STATUS_OVERFLOW;
-+		status |= GUC_CTB_STATUS_OVERFLOW;
-+		ct_desc_write(&ctb->desc_map, status, status);
- 		goto corrupted;
- 	}
- 
-@@ -849,7 +881,7 @@ static int ct_read(struct intel_guc_ct *ct, struct ct_incoming_msg **msg)
- 	CT_DEBUG(ct, "available %d (%u:%u:%u)\n", available, head, tail, size);
- 	GEM_BUG_ON(available < 0);
- 
--	header = cmds[head];
-+	header = iosys_map_rd(&ctb->cmds_map, sizeof(u32) * head, u32);
- 	head = (head + 1) % size;
- 
- 	/* message len with header */
-@@ -857,11 +889,15 @@ static int ct_read(struct intel_guc_ct *ct, struct ct_incoming_msg **msg)
- 	if (unlikely(len > (u32)available)) {
- 		CT_ERROR(ct, "Incomplete message %*ph %*ph %*ph\n",
- 			 4, &header,
-+			 4 * (head + available - 1 > size ? size - head :
-+			      available - 1), ((__px_vaddr(ct->vma->obj) +
-+			      CTB_RECV_CMDS_OFFSET) + (4 * head)),
- 			 4 * (head + available - 1 > size ?
--			      size - head : available - 1), &cmds[head],
--			 4 * (head + available - 1 > size ?
--			      available - 1 - size + head : 0), &cmds[0]);
--		desc->status |= GUC_CTB_STATUS_UNDERFLOW;
-+			      available - 1 - size + head : 0),
-+			      (__px_vaddr(ct->vma->obj) + CTB_RECV_CMDS_OFFSET));
-+		status = ct_desc_read(&ctb->desc_map, status) |
-+			GUC_CTB_STATUS_UNDERFLOW;
-+		ct_desc_write(&ctb->desc_map, status, status);
- 		goto corrupted;
- 	}
- 
-@@ -869,17 +905,20 @@ static int ct_read(struct intel_guc_ct *ct, struct ct_incoming_msg **msg)
- 	if (!*msg) {
- 		CT_ERROR(ct, "No memory for message %*ph %*ph %*ph\n",
- 			 4, &header,
-+			 4 * (head + available - 1 > size ? size - head :
-+			      available - 1), ((__px_vaddr(ct->vma->obj) +
-+			      CTB_RECV_CMDS_OFFSET) + (4 * head)),
- 			 4 * (head + available - 1 > size ?
--			      size - head : available - 1), &cmds[head],
--			 4 * (head + available - 1 > size ?
--			      available - 1 - size + head : 0), &cmds[0]);
-+			      available - 1 - size + head : 0),
-+			      (__px_vaddr(ct->vma->obj) + CTB_RECV_CMDS_OFFSET));
- 		return available;
- 	}
- 
- 	(*msg)->msg[0] = header;
- 
- 	for (i = 1; i < len; i++) {
--		(*msg)->msg[i] = cmds[head];
-+		(*msg)->msg[i] = iosys_map_rd(&ctb->cmds_map,
-+					      sizeof(u32) * head, u32);
- 		head = (head + 1) % size;
- 	}
- 	CT_DEBUG(ct, "received %*ph\n", 4 * len, (*msg)->msg);
-@@ -888,13 +927,15 @@ static int ct_read(struct intel_guc_ct *ct, struct ct_incoming_msg **msg)
- 	ctb->head = head;
- 
- 	/* now update descriptor */
--	WRITE_ONCE(desc->head, head);
-+	ct_desc_write(&ctb->desc_map, head, head);
- 
- 	return available - len;
- 
- corrupted:
- 	CT_ERROR(ct, "Corrupted descriptor head=%u tail=%u status=%#x\n",
--		 desc->head, desc->tail, desc->status);
-+		 ct_desc_read(&ctb->desc_map, head),
-+		 ct_desc_read(&ctb->desc_map, tail),
-+		 ct_desc_read(&ctb->desc_map, status));
- 	ctb->broken = true;
- 	return -EPIPE;
- }
-@@ -1211,13 +1252,13 @@ void intel_guc_ct_print_info(struct intel_guc_ct *ct,
- 	drm_printf(p, "H2G Space: %u\n",
- 		   atomic_read(&ct->ctbs.send.space) * 4);
- 	drm_printf(p, "Head: %u\n",
--		   ct->ctbs.send.desc->head);
-+		   ct_desc_read(&ct->ctbs.send.desc_map, head));
- 	drm_printf(p, "Tail: %u\n",
--		   ct->ctbs.send.desc->tail);
-+		   ct_desc_read(&ct->ctbs.send.desc_map, tail));
- 	drm_printf(p, "G2H Space: %u\n",
- 		   atomic_read(&ct->ctbs.recv.space) * 4);
- 	drm_printf(p, "Head: %u\n",
--		   ct->ctbs.recv.desc->head);
-+		   ct_desc_read(&ct->ctbs.recv.desc_map, head));
- 	drm_printf(p, "Tail: %u\n",
--		   ct->ctbs.recv.desc->tail);
-+		   ct_desc_read(&ct->ctbs.recv.desc_map, tail));
- }
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
-index f709a19c7e21..867fe13fb47d 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
-@@ -7,6 +7,7 @@
- #define _INTEL_GUC_CT_H_
- 
- #include <linux/interrupt.h>
-+#include <linux/iosys-map.h>
- #include <linux/spinlock.h>
- #include <linux/workqueue.h>
- #include <linux/ktime.h>
-@@ -32,8 +33,8 @@ struct drm_printer;
-  * holds the commands.
-  *
-  * @lock: protects access to the commands buffer and buffer descriptor
-- * @desc: pointer to the buffer descriptor
-- * @cmds: pointer to the commands buffer
-+ * @desc: iosys map to the buffer descriptor
-+ * @cmds: iosys map to the commands buffer
-  * @size: size of the commands buffer in dwords
-  * @resv_space: reserved space in buffer in dwords
-  * @head: local shadow copy of head in dwords
-@@ -43,8 +44,8 @@ struct drm_printer;
-  */
- struct intel_guc_ct_buffer {
- 	spinlock_t lock;
--	struct guc_ct_buffer_desc *desc;
--	u32 *cmds;
-+	struct iosys_map desc_map;
-+	struct iosys_map cmds_map;
- 	u32 size;
- 	u32 resv_space;
- 	u32 tail;
--- 
-2.33.0
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_11536 -> Patchwork_101789v5
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101789v5/index.html
+
+Participating hosts (45 -> 45)
+------------------------------
+
+  Additional (2): fi-cml-u2 bat-dg2-8 
+  Missing    (2): fi-hsw-4770 fi-bsw-cyan 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_101789v5 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_fence@basic-busy@bcs0:
+    - fi-cml-u2:          NOTRUN -> [SKIP][1] ([i915#1208]) +1 similar issue
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101789v5/fi-cml-u2/igt@gem_exec_fence@basic-busy@bcs0.html
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-cml-u2:          NOTRUN -> [SKIP][2] ([i915#2190])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101789v5/fi-cml-u2/igt@gem_huc_copy@huc-copy.html
+
+  * igt@gem_lmem_swapping@parallel-random-engines:
+    - fi-cml-u2:          NOTRUN -> [SKIP][3] ([i915#4613]) +3 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101789v5/fi-cml-u2/igt@gem_lmem_swapping@parallel-random-engines.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-bdw-5557u:       NOTRUN -> [INCOMPLETE][4] ([i915#3921])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101789v5/fi-bdw-5557u/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][5] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101789v5/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
+
+  * igt@kms_chamelium@dp-hpd-fast:
+    - fi-cml-u2:          NOTRUN -> [SKIP][6] ([fdo#109284] / [fdo#111827]) +8 similar issues
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101789v5/fi-cml-u2/igt@kms_chamelium@dp-hpd-fast.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+    - fi-cml-u2:          NOTRUN -> [SKIP][7] ([fdo#109278]) +1 similar issue
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101789v5/fi-cml-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+
+  * igt@kms_flip@basic-flip-vs-modeset@a-edp1:
+    - bat-adlp-4:         [PASS][8] -> [DMESG-WARN][9] ([i915#3576])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11536/bat-adlp-4/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101789v5/bat-adlp-4/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html
+
+  * igt@kms_force_connector_basic@force-load-detect:
+    - fi-cml-u2:          NOTRUN -> [SKIP][10] ([fdo#109285])
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101789v5/fi-cml-u2/igt@kms_force_connector_basic@force-load-detect.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
+    - fi-cml-u2:          NOTRUN -> [SKIP][11] ([fdo#109278] / [i915#533])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101789v5/fi-cml-u2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
+
+  * igt@kms_setmode@basic-clone-single-crtc:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][12] ([fdo#109271]) +14 similar issues
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101789v5/fi-bdw-5557u/igt@kms_setmode@basic-clone-single-crtc.html
+    - fi-cml-u2:          NOTRUN -> [SKIP][13] ([i915#3555])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101789v5/fi-cml-u2/igt@kms_setmode@basic-clone-single-crtc.html
+
+  * igt@prime_vgem@basic-userptr:
+    - fi-cml-u2:          NOTRUN -> [SKIP][14] ([i915#3301])
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101789v5/fi-cml-u2/igt@prime_vgem@basic-userptr.html
+
+  * igt@runner@aborted:
+    - bat-adlp-4:         NOTRUN -> [FAIL][15] ([i915#4312])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101789v5/bat-adlp-4/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - bat-adlp-4:         [DMESG-WARN][16] ([i915#3576]) -> [PASS][17] +2 similar issues
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11536/bat-adlp-4/igt@i915_pm_rpm@module-reload.html
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101789v5/bat-adlp-4/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@gem:
+    - fi-blb-e6850:       [DMESG-FAIL][18] -> [PASS][19]
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11536/fi-blb-e6850/igt@i915_selftest@live@gem.html
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101789v5/fi-blb-e6850/igt@i915_selftest@live@gem.html
+
+  * igt@i915_selftest@live@gt_lrc:
+    - fi-bsw-n3050:       [DMESG-FAIL][20] -> [PASS][21]
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11536/fi-bsw-n3050/igt@i915_selftest@live@gt_lrc.html
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101789v5/fi-bsw-n3050/igt@i915_selftest@live@gt_lrc.html
+
+  * igt@kms_busy@basic@modeset:
+    - {bat-adlp-6}:       [DMESG-WARN][22] ([i915#3576]) -> [PASS][23]
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11536/bat-adlp-6/igt@kms_busy@basic@modeset.html
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101789v5/bat-adlp-6/igt@kms_busy@basic@modeset.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - bat-dg1-5:          [DMESG-FAIL][24] ([i915#4494] / [i915#4957]) -> [INCOMPLETE][25] ([i915#5757])
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11536/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101789v5/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109278]: https://bugs.freedesktop.org/show_bug.cgi?id=109278
+  [fdo#109284]: https://bugs.freedesktop.org/show_bug.cgi?id=109284
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#109308]: https://bugs.freedesktop.org/show_bug.cgi?id=109308
+  [fdo#111825]: https://bugs.freedesktop.org/show_bug.cgi?id=111825
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#1155]: https://gitlab.freedesktop.org/drm/intel/issues/1155
+  [i915#1208]: https://gitlab.freedesktop.org/drm/intel/issues/1208
+  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
+  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
+  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
+  [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
+  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
+  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
+  [i915#3576]: https://gitlab.freedesktop.org/drm/intel/issues/3576
+  [i915#3595]: https://gitlab.freedesktop.org/drm/intel/issues/3595
+  [i915#3637]: https://gitlab.freedesktop.org/drm/intel/issues/3637
+  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
+  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
+  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
+  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
+  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
+  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+  [i915#4212]: https://gitlab.freedesktop.org/drm/intel/issues/4212
+  [i915#4213]: https://gitlab.freedesktop.org/drm/intel/issues/4213
+  [i915#4215]: https://gitlab.freedesktop.org/drm/intel/issues/4215
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4391]: https://gitlab.freedesktop.org/drm/intel/issues/4391
+  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#4873]: https://gitlab.freedesktop.org/drm/intel/issues/4873
+  [i915#4897]: https://gitlab.freedesktop.org/drm/intel/issues/4897
+  [i915#4957]: https://gitlab.freedesktop.org/drm/intel/issues/4957
+  [i915#5190]: https://gitlab.freedesktop.org/drm/intel/issues/5190
+  [i915#5270]: https://gitlab.freedesktop.org/drm/intel/issues/5270
+  [i915#5274]: https://gitlab.freedesktop.org/drm/intel/issues/5274
+  [i915#5275]: https://gitlab.freedesktop.org/drm/intel/issues/5275
+  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
+  [i915#5341]: https://gitlab.freedesktop.org/drm/intel/issues/5341
+  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
+  [i915#5356]: https://gitlab.freedesktop.org/drm/intel/issues/5356
+  [i915#5757]: https://gitlab.freedesktop.org/drm/intel/issues/5757
+  [i915#5763]: https://gitlab.freedesktop.org/drm/intel/issues/5763
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_11536 -> Patchwork_101789v5
+
+  CI-20190529: 20190529
+  CI_DRM_11536: c4d0bd916d243bad13ce7d4c3a7a00a50e13b73d @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6444: df584c804e3a44431b0e5ae21c190b6e9acb35ab @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_101789v5: c4d0bd916d243bad13ce7d4c3a7a00a50e13b73d @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+0f670a39fa21 drm/i915: Reassign DPLLs only for crtcs going throug .compute_config()
+a886e4ec3c73 drm/i915: Clean up DPLL related debugs
+1eb7712774b4 drm/i915: Do .crtc_compute_clock() earlier
+1857e0fd77d8 drm/i915: Split shared dpll .get_dplls() into compute and get phases
+b84885d61b59 drm/i915: Add crtc .crtc_get_shared_dpll()
+b218554272e7 drm/i915: Split out dg2_crtc_compute_clock()
+e63de3d4a8d5 drm/i915: Clear the dpll_hw_state when disabling a pipe
+d09c0685dd19 drm/i915: Move the dpll_hw_state clearing to intel_dpll_crtc_compute_clock()
+4037d50836e8 drm/i915: Move stuff into intel_dpll_crtc_compute_clock()
+1c5adb67ff46 drm/i915: Adjust .crtc_compute_clock() calling convention
+1f49c2d7f8bb drm/i915: Remove pointless dpll_funcs checks
+262e89722be2 drm/i915: Pass dev_priv to intel_shared_dpll_init()
+a5bfbf68789c drm/i915: Make .get_dplls() return int
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101789v5/index.html
+
+--===============3871833080465850334==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Start reordering modeset clock calculations (rev5)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/101789/">https://patchwork.freedesktop.org/series/101789/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101789v5/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101789v5/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11536 -&gt; Patchwork_101789v5</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101789v5/index.html</p>
+<h2>Participating hosts (45 -&gt; 45)</h2>
+<p>Additional (2): fi-cml-u2 bat-dg2-8 <br />
+  Missing    (2): fi-hsw-4770 fi-bsw-cyan </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_101789v5 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_exec_fence@basic-busy@bcs0:</p>
+<ul>
+<li>fi-cml-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101789v5/fi-cml-u2/igt@gem_exec_fence@basic-busy@bcs0.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1208">i915#1208</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-cml-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101789v5/fi-cml-u2/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
+<ul>
+<li>fi-cml-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101789v5/fi-cml-u2/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101789v5/fi-bdw-5557u/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101789v5/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-hpd-fast:</p>
+<ul>
+<li>fi-cml-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101789v5/fi-cml-u2/igt@kms_chamelium@dp-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109284">fdo#109284</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
+<ul>
+<li>fi-cml-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101789v5/fi-cml-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109278">fdo#109278</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-modeset@a-edp1:</p>
+<ul>
+<li>bat-adlp-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11536/bat-adlp-4/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101789v5/bat-adlp-4/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-load-detect:</p>
+<ul>
+<li>fi-cml-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101789v5/fi-cml-u2/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
+<ul>
+<li>fi-cml-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101789v5/fi-cml-u2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109278">fdo#109278</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_setmode@basic-clone-single-crtc:</p>
+<ul>
+<li>
+<p>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101789v5/fi-bdw-5557u/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +14 similar issues</p>
+</li>
+<li>
+<p>fi-cml-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101789v5/fi-cml-u2/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-userptr:</p>
+<ul>
+<li>fi-cml-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101789v5/fi-cml-u2/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>bat-adlp-4:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101789v5/bat-adlp-4/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>bat-adlp-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11536/bat-adlp-4/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101789v5/bat-adlp-4/igt@i915_pm_rpm@module-reload.html">PASS</a> +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gem:</p>
+<ul>
+<li>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11536/fi-blb-e6850/igt@i915_selftest@live@gem.html">DMESG-FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101789v5/fi-blb-e6850/igt@i915_selftest@live@gem.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_lrc:</p>
+<ul>
+<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11536/fi-bsw-n3050/igt@i915_selftest@live@gt_lrc.html">DMESG-FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101789v5/fi-bsw-n3050/igt@i915_selftest@live@gt_lrc.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_busy@basic@modeset:</p>
+<ul>
+<li>{bat-adlp-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11536/bat-adlp-6/igt@kms_busy@basic@modeset.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101789v5/bat-adlp-6/igt@kms_busy@basic@modeset.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@i915_selftest@live@hangcheck:<ul>
+<li>bat-dg1-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11536/bat-dg1-5/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101789v5/bat-dg1-5/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5757">i915#5757</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11536 -&gt; Patchwork_101789v5</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11536: c4d0bd916d243bad13ce7d4c3a7a00a50e13b73d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6444: df584c804e3a44431b0e5ae21c190b6e9acb35ab @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_101789v5: c4d0bd916d243bad13ce7d4c3a7a00a50e13b73d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>0f670a39fa21 drm/i915: Reassign DPLLs only for crtcs going throug .compute_config()<br />
+a886e4ec3c73 drm/i915: Clean up DPLL related debugs<br />
+1eb7712774b4 drm/i915: Do .crtc_compute_clock() earlier<br />
+1857e0fd77d8 drm/i915: Split shared dpll .get_dplls() into compute and get phases<br />
+b84885d61b59 drm/i915: Add crtc .crtc_get_shared_dpll()<br />
+b218554272e7 drm/i915: Split out dg2_crtc_compute_clock()<br />
+e63de3d4a8d5 drm/i915: Clear the dpll_hw_state when disabling a pipe<br />
+d09c0685dd19 drm/i915: Move the dpll_hw_state clearing to intel_dpll_crtc_compute_clock()<br />
+4037d50836e8 drm/i915: Move stuff into intel_dpll_crtc_compute_clock()<br />
+1c5adb67ff46 drm/i915: Adjust .crtc_compute_clock() calling convention<br />
+1f49c2d7f8bb drm/i915: Remove pointless dpll_funcs checks<br />
+262e89722be2 drm/i915: Pass dev_priv to intel_shared_dpll_init()<br />
+a5bfbf68789c drm/i915: Make .get_dplls() return int</p>
+
+</body>
+</html>
+
+--===============3871833080465850334==--
