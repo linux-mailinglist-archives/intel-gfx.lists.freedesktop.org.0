@@ -1,52 +1,154 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BBDE5094F1
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Apr 2022 04:08:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58C51509620
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Apr 2022 06:57:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 19DD288843;
-	Thu, 21 Apr 2022 02:08:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD09110E433;
+	Thu, 21 Apr 2022 04:57:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C645110F302;
- Thu, 21 Apr 2022 02:08:15 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A1BC810E561;
+ Thu, 21 Apr 2022 04:57:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1650506898; x=1682042898;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=7MPBn+nh0ahZzy/Cgl9SaKa1Anw8WqfBErnxPOmtjSA=;
- b=Eh7/jXGZEMggclc96wBij7432t6NSGOh6mg+l2Rzn4yNVpz6vvwUAO5c
- e/Ljpt4p/IR0i/oNpC3iuL6BqdnBqnOtaEFLDlXGMuQOYp1vV1Ui/XijL
- mbZsQOTgVBmndZTYbif0rncLzu5qvs5FS/5m9SMehIBA5RYdccUz0I8vN
- W2O+TVX2Wky4VpHBuKBAZae5GKvv9n7CxjsKjlvk7rdPOMF1ofkLyhewS
- qY+qFP3/FWm8Wzg9FBuavNs7fqNqpTaCVwW6FA9C1qX71wTp1t/pGvUvY
- fX6Fovzo1lWV0cFwnqOkJotzWEc0JciegH11hR8a7qgKtREOoI8I16nsB A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10323"; a="244790472"
-X-IronPort-AV: E=Sophos;i="5.90,277,1643702400"; d="scan'208";a="244790472"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Apr 2022 19:08:15 -0700
-X-IronPort-AV: E=Sophos;i="5.90,277,1643702400"; d="scan'208";a="647922452"
-Received: from nvishwa1-desk.sc.intel.com (HELO nvishwa1-DESK) ([172.25.29.76])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Apr 2022 19:08:15 -0700
-Date: Wed, 20 Apr 2022 19:08:14 -0700
-From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-To: Alex Deucher <alexdeucher@gmail.com>
-Message-ID: <20220421020814.GU2273@nvishwa1-DESK>
-References: <20220307203146.648-1-niranjana.vishwanathapura@intel.com>
- <20220307203146.648-2-niranjana.vishwanathapura@intel.com>
- <CADnq5_Pi4ktKrNfUf-dgO3UMZuMLQpPbfXQBNOk97b==+i-Srw@mail.gmail.com>
+ t=1650517058; x=1682053058;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-id:content-transfer-encoding: mime-version;
+ bh=asLpy1909Csh/bJThAP1Xg16xCPVd0gRlVuRY/66Z3A=;
+ b=XzJnnEvb8EKyJYovhJ5hEfrzDtVJWfYBQn1M/yVCj3UE1DA4fBog3Mvm
+ b9Ihq3U5Tqc/zdV9eeGG/Cv2oRypheoMYGiXvEukWUToSS3Iap5BsDQhM
+ hUzfi4o3NVxem0FUWMazJd0FwSOzvRbKSbxXMt60n/Rgp0r8nfQXWX4Hz
+ 5CwAsqgdZohMnRGIpUo87eBk4NkmUGDSlmw3ppgSWVX3oP2TNEiOQEPyU
+ G/qc3dJ2od+bd5zHUIGQDZb38azLQPzAr2awRfXUz2BmzbZc2AU4aSe/q
+ ky0LFT0jB1Q75KXQ7Z/F/htLgkooZWJ1fY8syFCd+SmG0tC+eO4cx5V8+ Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10323"; a="251551242"
+X-IronPort-AV: E=Sophos;i="5.90,277,1643702400"; d="scan'208";a="251551242"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Apr 2022 21:57:37 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,277,1643702400"; d="scan'208";a="702936111"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.229.17])
+ by fmsmga001.fm.intel.com with ESMTP; 20 Apr 2022 21:57:36 -0700
+Received: from orsmsx608.amr.corp.intel.com (10.22.229.21) by
+ ORSMSX604.amr.corp.intel.com (10.22.229.17) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27; Wed, 20 Apr 2022 21:57:36 -0700
+Received: from orsmsx607.amr.corp.intel.com (10.22.229.20) by
+ ORSMSX608.amr.corp.intel.com (10.22.229.21) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27; Wed, 20 Apr 2022 21:57:35 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx607.amr.corp.intel.com (10.22.229.20) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27 via Frontend Transport; Wed, 20 Apr 2022 21:57:35 -0700
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.48) by
+ edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2308.27; Wed, 20 Apr 2022 21:57:35 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=f+UgDAjwyIcVMN6Nn/GoKLbvSpJBv+nSSoHtwfMIeRAoBBxIwPS7K/89GYT5tB1KWIzc6tGrOSaluhiUoLSRkVH0olcyJHJRwdkq1RthWOs+a5fsM7guFTNCAxM7TVe7PjYJBYMb5xREIEVjvjH6GHDViw4OjL6D050shAcDRlCb2lYrtIztC27m+ZzMSK7RHCXmM6JYXB5bafFLVcT1xcekYpyfCQgXOXSeOLWRSLV5ja8+zVdeeXQjasRgYf0O2RnR1yJqRDE0LW3aF6zfGYooWZ9xqIJLbDN7D2G2sZs9L2WUu/e/jQibK7kxFLZYMgXWur8PDAKM+9bYmKQ9wA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Yx1Hi7PH0ofDlpmr8FB0pEaf4EeE/n5awG76gL7v1Xw=;
+ b=NZWgOOSjE6N9tlPJIrdMQwcL/NoMg+Cu7mVNTEU2XXcuwKlHw+oacVp4oZORwVWSqzIMHDGBYyWV9srHe34kGE0j6tL8wKiaPNd2igxd4t+wb9BlWeVrqFMyHb6dSmxXx2MVcsf24yXEfKVlV+EtF3tnX+NymG0uGBlyiffnVHOblM4QfWwpsWwbY0Rw4uDxU7ytNR9CZbyhEFQS93mlKC8M426mq0b1YeWkEadJPDKboURmZ+MmZaTIRHboj2zwfWJtns3vzVigkitEsaXauE9iDsP6z2tV596yhiI1uqheLWMUgMyfBgfIjIfGme64z0inK68QS9JofwPzpnjEGQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DM4PR11MB5549.namprd11.prod.outlook.com (2603:10b6:5:388::7) by
+ BYAPR11MB3398.namprd11.prod.outlook.com (2603:10b6:a03:19::19) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5186.14; Thu, 21 Apr 2022 04:57:34 +0000
+Received: from DM4PR11MB5549.namprd11.prod.outlook.com
+ ([fe80::e5b8:93eb:e06b:f1ab]) by DM4PR11MB5549.namprd11.prod.outlook.com
+ ([fe80::e5b8:93eb:e06b:f1ab%7]) with mapi id 15.20.5186.014; Thu, 21 Apr 2022
+ 04:57:34 +0000
+From: "Wang, Zhi A" <zhi.a.wang@intel.com>
+To: Jason Gunthorpe <jgg@nvidia.com>, Alex Williamson
+ <alex.williamson@redhat.com>
+Thread-Topic: [PULL v2] gvt-next
+Thread-Index: AQHYVNSMOPXpKvGgN0OvGCZ3HfiQDqz5AfeAgAAP2ICAAAGGAIAAJZkAgACWCIA=
+Date: Thu, 21 Apr 2022 04:57:34 +0000
+Message-ID: <55cb46db-754e-e339-178c-0a2cfaf65810@intel.com>
+References: <5a8b9f48-2c32-8177-1c18-e3bd7bfde558@intel.com>
+ <20220420164351.GC2120790@nvidia.com>
+ <20220420114033.7f8b57c7.alex.williamson@redhat.com>
+ <20220420174600.GD2120790@nvidia.com> <20220420200034.GE2120790@nvidia.com>
+In-Reply-To: <20220420200034.GE2120790@nvidia.com>
+Accept-Language: en-FI, en-US
+Content-Language: aa
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 68bb0dca-a6a9-42e9-c868-08da235372d2
+x-ms-traffictypediagnostic: BYAPR11MB3398:EE_
+x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+x-microsoft-antispam-prvs: <BYAPR11MB33980F0E5E6FDBF84A7D6755CAF49@BYAPR11MB3398.namprd11.prod.outlook.com>
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: /YB11DIzFlFU0EK/1xooPYU/Z64r0HyN5g66jXZHIfOBTl2GwNBnb/n83MMnSadu0S08KrSPThi/M5GX1AeaWO81TgNV/0wnbHbQyGFoFApIWfLIcZhuEeKLr5x3V6WwIAFaS5aQ9I/CLm4TOHnS2Bex6BfgBpVhkijbdnhxyVojL9LxINCcEIFfl1JteSEN0haHpF8xD0D76xpKLU0oDxdqevnNtdcMiCqWzab6UIDa3jh3TXLXl3+aZilaHI7wZMyn509TJhrE8yFXhj1Qkw/RGgOMF2tyAM4jUTfX349AJXG8UWs0EhiJVDJOI9l/PxYwag3TnKbed5wdnxPsi03NkDBp/XrAQ3Iuw5MRIwP4XsRde5srsuOXPNGaKNsN/Y533JaB332UvkbdXuJHFISGqvlDXwEDOgKOvXTr/JS8socCZGtYpoU9QgyyBAM2hkqAHK/STzLJr9Ea5c1N2DKtpc4cktzbPIx2DDXqa9KVt+AG8w12Pgn1xiLT7g+btpQiH8O+5XC/FjTMB+dFYUuOZD9/hUGzY6T6+1U/GLviD87ZPTUP1Zgr1muJOt+Up7UOZ5yUjY4ZS6mqTkhWMkiApMgu5fwlt8upq1cGLGucmyHcqqwUZwF8TW0W6rQwGZKA9MCr2S/LH+cvscvn6xTcdVIil5ytbdq6tR1+/+Hknre6PI1ZFCknWqilnfAdM1ae5/Dakx4XNEXCpcU5b6y/8iWkq7vymhtoDfvOeXSQKBL0Vp2qsW1PyFCAr5sqE6UyLTYcJ64ojvzeuLFomAFzgLUTPu9AFIyqcR+nqpluJyM2pRwLTkQEVkjlGQx4DPXZ5rIZWPKCkks/l5HHM9JPCq8kgGjCYvZw8Z6frVs=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5549.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230001)(366004)(86362001)(26005)(91956017)(8676002)(64756008)(54906003)(110136005)(4326008)(76116006)(66446008)(31686004)(5660300002)(7416002)(2906002)(316002)(53546011)(66556008)(66476007)(6512007)(66946007)(36756003)(6506007)(508600001)(966005)(6486002)(82960400001)(31696002)(83380400001)(122000001)(186003)(2616005)(8936002)(71200400001)(38070700005)(38100700002)(45980500001)(43740500002);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?Windows-1252?Q?B17fq3ig7uol1wIi88ENc2Klzcg7M8b3KROGvA46+IfpGYjnMR5lnFaK?=
+ =?Windows-1252?Q?PG4UnoJk1zGLIm4EYZOYQPgTsGe4ovWRhXRM/wu2dzPIEUvRJRYZkKJw?=
+ =?Windows-1252?Q?UPsVKgqWPYa8x+LvHfz4PsBs/3XjjaUSDGwaG4G0rzYKVhC1ei+RvQB6?=
+ =?Windows-1252?Q?Ud0vG4dF2pKpWLRe9U+Cmm7anqqO1CiRKh9PvhgDlOhdpGkzGjYsN8et?=
+ =?Windows-1252?Q?sReHs9rb0hzJGQ7GssJzBHvsN7z0eG1HChwzBxL5T9iMJX4M5oduqcG2?=
+ =?Windows-1252?Q?xnaVXJbyAi9taQ6AcV/zV73VE++GxcXg2HgoVf+d22MkZRqmO4Ndbewp?=
+ =?Windows-1252?Q?xhzjnMu8OMxu9OgvMKAqgN1pSuW3ayhTqXZQFZ8q084xDyKu2iPBzuBW?=
+ =?Windows-1252?Q?U42nZSNJDuQbtb/tt4zKutaFnM/hksYPLY5mEtwEh7/xf7/DQxrDJqey?=
+ =?Windows-1252?Q?vMXnvC20kUqVMrZTePtE4yyQ/bpggOiCpvGKzMI8XNuOe1BaJE8vrcOK?=
+ =?Windows-1252?Q?7uGOHdrkVtDsqWNFXEdtCO33Egfvwe+Y0FOVZy83h3vVd1IWlcYOvcxk?=
+ =?Windows-1252?Q?1HDxFez+BAiPtlhMG3twlUODagiaVTo9SEJj+Iex3X9ele1cubmWg5Fi?=
+ =?Windows-1252?Q?vAV8fRsZH3bh6M8enrNwsBd/ws9j6rJXuMPJ6vD8GXpsoFUDvgnK8oBt?=
+ =?Windows-1252?Q?QuVQphxesvxM3FRqJ+S+9FDKn8zt5D7yqbOgsMw0Aam/+iHpslxyU7Pf?=
+ =?Windows-1252?Q?tHtqs3E/rgIjjhowEykFc34MUhBaZNiMuBGJTlw5zL7jhd/4A1f7gfQi?=
+ =?Windows-1252?Q?rl5M+if5MU5JkMs+8W/j9n6AFy2S720M8yE4XLAC9n0Gyuv6K1hGax66?=
+ =?Windows-1252?Q?z0+EhKqpUaoCzzJIaLiYG5rRVkvWiXnOv0KNkSmQ+isdrg7Du8m897mB?=
+ =?Windows-1252?Q?qtnePbq07rUPZ24cMyYKDqmKpKEeDM/+fnl0IiaMS4h9GLeWqv06WtHc?=
+ =?Windows-1252?Q?sGpB3DdwKGszR17jJIt7nsde8qaJozmBsi9j9Fc2Wse238+XBMjs2Weq?=
+ =?Windows-1252?Q?dF4ybW8tLtWddufuCgjmq+h9jWq9IocMXj3HmfLqgCBQQq7VV3kVkG3z?=
+ =?Windows-1252?Q?WdcH3bnZ9GJcm5PRB/6yFVPu86NRA9CUzNFf3Qw2JLGnBeKqU0vBQ4Wa?=
+ =?Windows-1252?Q?GBSDX0Qb9mHIM2VWqpPAMk078HC6xduZiLBdTRSCxaE0zM6rrUFEygpr?=
+ =?Windows-1252?Q?Qc9n1fbbh5IbC7ZkdeUExfGejt2uT8AGn8vFd/LhKBNiTXsWSMbj88gV?=
+ =?Windows-1252?Q?L1Jm/TFwjtLE8hQZMx1ZWpiYamSrwg3uDL0ljXjB/SdYxoKu3Zx8uhIX?=
+ =?Windows-1252?Q?CiG3xOoYf3TIxHA9qwin2xJgE+gUS9hURYkx0S72c0S7JsLti3vhhOPe?=
+ =?Windows-1252?Q?n83gp5Trkyxfrek6k4c0cvVeA7fgw3bx56cvc9ey0WzpoMPEj4cD77zl?=
+ =?Windows-1252?Q?5jfllZzRotPlfyGCeI9Tztpy9h8P6XH/OnjQa9EONvc8FPZxqy4EVIA6?=
+ =?Windows-1252?Q?0u7MV6ejGPo7rsDC0GF7MHiOwGm85NNxUpPN48gDFiN3XLF87Lw9mNcH?=
+ =?Windows-1252?Q?VFPqBCEgaifKEvhHyGOArvzOaMmvNCtXNXeDP8f8NcT2xtLESQt21m+X?=
+ =?Windows-1252?Q?IMefdkb4/a2CMkydrU1pbGXVajdpZNmCq91u/iMOV28+2PQ2oJzueBKN?=
+ =?Windows-1252?Q?aSFj3HTFOnhMlWP74OyzkGhiLOaB7yz5LFhxMWfAEGELg4XtUfY/1PCF?=
+ =?Windows-1252?Q?eB6IxY35WO8fS/W60UQPAv+RZfVONnC5P3Vy40f+cQp//vjhVB+qJLau?=
+ =?Windows-1252?Q?3os94sLVFYNf/Q=3D=3D?=
+Content-Type: text/plain; charset="Windows-1252"
+Content-ID: <102C5A74ED774B4D869495C2D540C81F@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <CADnq5_Pi4ktKrNfUf-dgO3UMZuMLQpPbfXQBNOk97b==+i-Srw@mail.gmail.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [RFC v2 1/2] drm/doc/rfc: VM_BIND feature design
- document
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5549.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 68bb0dca-a6a9-42e9-c868-08da235372d2
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Apr 2022 04:57:34.1552 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: gnj7YSzhSA6eEljOERZNUrOuRyrSBSUWCZFBrcYrD1mnI9BPkWe8dQt3yztZagRLicxBKNLh0kWi6IXF178MiQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR11MB3398
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PULL v2] gvt-next
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,265 +161,102 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@intel.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Thomas Hellstrom <thomas.hellstrom@intel.com>, chris.p.wilson@intel.com,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "Vivi,
+ Rodrigo" <rodrigo.vivi@intel.com>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
+ Christoph Hellwig <hch@lst.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Mar 09, 2022 at 10:58:09AM -0500, Alex Deucher wrote:
->On Mon, Mar 7, 2022 at 3:30 PM Niranjana Vishwanathapura
-><niranjana.vishwanathapura@intel.com> wrote:
+On 4/20/22 8:00 PM, Jason Gunthorpe wrote:
+> On Wed, Apr 20, 2022 at 02:46:00PM -0300, Jason Gunthorpe wrote:
+>> On Wed, Apr 20, 2022 at 11:40:33AM -0600, Alex Williamson wrote:
+>>> On Wed, 20 Apr 2022 13:43:51 -0300
+>>> Jason Gunthorpe <jgg@nvidia.com> wrote:
+>>>
+>>>> On Wed, Apr 20, 2022 at 04:34:47PM +0000, Wang, Zhi A wrote:
+>>>>> Hi folks:
+>>>>>
+>>>>> Here is the PR of gvt-next. Thanks so much for the patience.
+>>>>>
+>>>>> Mostly it includes the patch bundle of GVT-g re-factor patches for ad=
+apting the GVT-g with the
+>>>>> new MDEV interfaces:
+>>>>>
+>>>>> - Separating the MMIO table from GVT-g. (Zhi)
+>>>>> - GVT-g re-factor. (Christoph)
+>>>>> - GVT-g mdev API cleanup. (Jason)
+>>>>> - GVT-g trace/makefile cleanup. (Jani)
+>>>>>
+>>>>> Thanks so much for making this happen.
+>>>>>
+>>>>> This PR has been tested as following and no problem shows up:
+>>>>>
+>>>>> $dim update-branches
+>>>>> $dim apply-pull drm-intel-next < this_email.eml
+>>>>>
+>>>>> The following changes since commit 3123109284176b1532874591f7c81f3837=
+bbdc17:
+>>>>>
+>>>>>   Linux 5.18-rc1 (2022-04-03 14:08:21 -0700)
+>>>>>
+>>>>> are available in the Git repository at:
+>>>>>
+>>>>>   https://github.com/intel/gvt-linux tags/gvt-next-2022-04-20-for-chr=
+istoph
+>>>>>
+>>>>> for you to fetch changes up to ae7875879b7c838bffb42ed6db4658e5c50403=
+2e:
+>>>>>
+>>>>>   vfio/mdev: Remove mdev drvdata (2022-04-20 03:15:58 -0400) =20
+>>>>
+>>>> This looks well constructed now! thanks
+>>>>
+>>>> Alex you can pull this for VFIO after Jani&co grab it
+>>>>
+>>>> I'll respin my vfio_group series on top of this branch
+>>>
+>>> Sure, so just to confirm tags/gvt-next-2022-04-20-for-christoph is
+>>> pruned down to exactly the commits we're looking for now?  Thanks,
 >>
->> VM_BIND design document with description of intended use cases.
+>> Yes, the above is correct and the tag points to commit
+>> ae7875879b7c838bffb42ed6db4658e5c504032e
 >>
->> Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
->> ---
->>  Documentation/gpu/rfc/i915_vm_bind.rst | 210 +++++++++++++++++++++++++
->>  Documentation/gpu/rfc/index.rst        |   4 +
->>  2 files changed, 214 insertions(+)
->>  create mode 100644 Documentation/gpu/rfc/i915_vm_bind.rst
->>
->> diff --git a/Documentation/gpu/rfc/i915_vm_bind.rst b/Documentation/gpu/rfc/i915_vm_bind.rst
->> new file mode 100644
->> index 000000000000..cdc6bb25b942
->> --- /dev/null
->> +++ b/Documentation/gpu/rfc/i915_vm_bind.rst
->> @@ -0,0 +1,210 @@
->> +==========================================
->> +I915 VM_BIND feature design and use cases
->> +==========================================
->> +
->> +VM_BIND feature
->> +================
->> +DRM_I915_GEM_VM_BIND/UNBIND ioctls allows UMD to bind/unbind GEM buffer
->> +objects (BOs) or sections of a BOs at specified GPU virtual addresses on
->> +a specified address space (VM).
->> +
->> +These mappings (also referred to as persistent mappings) will be persistent
->> +across multiple GPU submissions (execbuff) issued by the UMD, without user
->> +having to provide a list of all required mappings during each submission
->> +(as required by older execbuff mode).
->> +
->> +VM_BIND ioctl deferes binding the mappings until next execbuff submission
->> +where it will be required, or immediately if I915_GEM_VM_BIND_IMMEDIATE
->> +flag is set (useful if mapping is required for an active context).
->> +
->> +VM_BIND feature is advertised to user via I915_PARAM_HAS_VM_BIND.
->> +User has to opt-in for VM_BIND mode of binding for an address space (VM)
->> +during VM creation time via I915_VM_CREATE_FLAGS_USE_VM_BIND extension.
->> +A VM in VM_BIND mode will not support older execbuff mode of binding.
->> +
->> +UMDs can still send BOs of these persistent mappings in execlist of execbuff
->> +for specifying BO dependencies (implicit fencing) and to use BO as a batch,
->> +but those BOs should be mapped ahead via vm_bind ioctl.
->> +
->> +VM_BIND features include,
->> +- Multiple Virtual Address (VA) mappings can map to the same physical pages
->> +  of an object (aliasing).
->> +- VA mapping can map to a partial section of the BO (partial binding).
->> +- Support capture of persistent mappings in the dump upon GPU error.
->> +- TLB is flushed upon unbind completion. Batching of TLB flushes in some
->> +  usecases will be helpful.
->> +- Asynchronous vm_bind and vm_unbind support.
->> +- VM_BIND uses user/memory fence mechanism for signaling bind completion
->> +  and for signaling batch completion in long running contexts (explained
->> +  below).
->> +
->> +VM_PRIVATE objects
->> +------------------
->> +By default, BOs can be mapped on multiple VMs and can also be dma-buf
->> +exported. Hence these BOs are referred to as Shared BOs.
->> +During each execbuff submission, the request fence must be added to the
->> +dma-resv fence list of all shared BOs mapped on the VM.
->> +
->> +VM_BIND feature introduces an optimization where user can create BO which
->> +is private to a specified VM via I915_GEM_CREATE_EXT_VM_PRIVATE flag during
->> +BO creation. Unlike Shared BOs, these VM private BOs can only be mapped on
->> +the VM they are private to and can't be dma-buf exported.
->> +All private BOs of a VM share the dma-resv object. Hence during each execbuff
->> +submission, they need only one dma-resv fence list updated. Thus the fast
->> +path (where required mappings are already bound) submission latency is O(1)
->> +w.r.t the number of VM private BOs.
->> +
->> +VM_BIND locking hirarchy
->> +-------------------------
->> +VM_BIND locking order is as below.
->> +
->> +1) A vm_bind mutex will protect vm_bind lists. This lock is taken in vm_bind/
->> +   vm_unbind ioctl calls, in the execbuff path and while releasing the mapping.
->> +
->> +   In future, when GPU page faults are supported, we can potentially use a
->> +   rwsem instead, so that multiple pagefault handlers can take the read side
->> +   lock to lookup the mapping and hence can run in parallel.
->> +
->> +2) The BO's dma-resv lock will protect i915_vma state and needs to be held
->> +   while binding a vma and while updating dma-resv fence list of a BO.
->> +   The private BOs of a VM will all share a dma-resv object.
->> +
->> +   This lock is held in vm_bind call for immediate binding, during vm_unbind
->> +   call for unbinding and during execbuff path for binding the mapping and
->> +   updating the dma-resv fence list of the BO.
->> +
->> +3) Spinlock/s to protect some of the VM's lists.
->> +
->> +We will also need support for bluk LRU movement of persistent mapping to
->> +avoid additional latencies in execbuff path.
->> +
->> +GPU page faults
->> +----------------
->> +Both older execbuff mode and the newer VM_BIND mode of binding will require
->> +using dma-fence to ensure residency.
->> +In future when GPU page faults are supported, no dma-fence usage is required
->> +as residency is purely managed by installing and removing/invalidating ptes.
->> +
->> +
->> +User/Memory Fence
->> +==================
->> +The idea is to take a user specified virtual address and install an interrupt
->> +handler to wake up the current task when the memory location passes the user
->> +supplied filter.
->> +
->> +User/Memory fence is a <address, value> pair. To signal the user fence,
->> +specified value will be written at the specified virtual address and
->> +wakeup the waiting process. User can wait on an user fence with the
->> +gem_wait_user_fence ioctl.
->> +
->> +It also allows the user to emit their own MI_FLUSH/PIPE_CONTROL notify
->> +interrupt within their batches after updating the value to have sub-batch
->> +precision on the wakeup. Each batch can signal an user fence to indicate
->> +the completion of next level batch. The completion of very first level batch
->> +needs to be signaled by the command streamer. The user must provide the
->> +user/memory fence for this via the DRM_I915_GEM_EXECBUFFER_EXT_USER_FENCE
->> +extension of execbuff ioctl, so that KMD can setup the command streamer to
->> +signal it.
->> +
->> +User/Memory fence can also be supplied to the kernel driver to signal/wake up
->> +the user process after completion of an asynchronous operation.
->> +
->> +When VM_BIND ioctl was provided with a user/memory fence via the
->> +I915_VM_BIND_EXT_USER_FENCE extension, it will be signaled upon the completion
->> +of binding of that mapping. All async binds/unbinds are serialized, hence
->> +signaling of user/memory fence also indicate the completion of all previous
->> +binds/unbinds.
->> +
->> +This feature will be derived from the below original work:
->> +https://patchwork.freedesktop.org/patch/349417/
->> +
->> +
->> +VM_BIND use cases
->> +==================
->> +
->> +Long running Compute contexts
->> +------------------------------
->> +Usage of dma-fence expects that they complete in reasonable amount of time.
->> +Compute on the other hand can be long running. Hence it is appropriate for
->> +compute to use user/memory fence and dma-fence usage will be limited to
->> +in-kernel consumption only. This requires an execbuff uapi extension to pass
->> +in user fence. Compute must opt-in for this mechanism with
->> +I915_CONTEXT_CREATE_FLAGS_LONG_RUNNING flag during context creation.
->> +
->> +The dma-fence based user interfaces like gem_wait ioctl, execbuff out fence
->> +and implicit dependency setting is not allowed on long running contexts.
->> +
->> +Where GPU page faults are not available, kernel driver upon buffer invalidation
->> +will initiate a suspend (preemption) of long running context with a dma-fence
->> +attached to it. And upon completion of that suspend fence, finish the
->> +invalidation, revalidate the BO and then resume the compute context. This is
->> +done by having a per-context fence (called suspend fence) proxying as
->> +i915_request fence. This suspend fence is enabled when there is a wait on it,
->> +which triggers the context preemption.
->> +
->> +This is much easier to support with VM_BIND compared to the current heavier
->> +execbuff path resource attachment.
->> +
->> +Low Latency Submission
->> +-----------------------
->> +Allows compute UMD to directly submit GPU jobs instead of through execbuff
->> +ioctl. VM_BIND allows map/unmap of BOs required for directly submitted jobs.
->> +
->> +Debugger
->> +---------
->> +With debug event interface user space process (debugger) is able to keep track
->> +of and act upon resources created by another process (debuggee) and attached
->> +to GPU via vm_bind interface.
->> +
->> +Mesa/Valkun
->
->s/Valkun/Vulkan/
+>> It is the bare minimum series
+>=20
+> Actually this topic branch doesn't compile:
+>=20
+> ../drivers/gpu/drm/i915/intel_gvt_mmio_table.c:7:10: fatal error: 'displa=
+y/intel_dmc_regs.h' file not found
+> #include "display/intel_dmc_regs.h"
+>          ^~~~~~~~~~~~~~~~~~~~~~~~~~
+> 1 error generated.
+>=20
+> :( :(
+>=20
+> This is the merge conflict that was mentioned. This topic branch needs
+> to delete the above intel_dmc_regs.h include file
+>=20
+> When drm-intel-next merges this PR then need to add it back as part of
+> the merge resolution - so explain this in the PR text above and
+> include a diff that does it when you send it again. (or do the merge
+> yourself as I showed before, it depends on what drm-intel-next wants)
+>=20
+Hi Jason:
 
-Thanks Alex,
-Will fix.
+Is it possible that I can send two different pull based on the same branch?
+I was thinking I can remove this line in the original patch and then add a
+small patch to add this line back on the top. Then make two different tags
+before and after that small patch, send one pull with tag that includes tha=
+t
+small patch to i915 and the other pull with tag that doesn't includes it to
+VFIO?
 
-Niranjana
+Thanks,
+Zhi.
 
->
->Alex
->
->> +------------
->> +VM_BIND can potentially reduce the CPU-overhead in Mesa thus improving
->> +performance. For Vulkan it should be straightforward to use VM_BIND.
->> +For Iris implicit buffer tracking must be implemented before we can harness
->> +VM_BIND benefits. With increasing GPU hardware performance reducing CPU
->> +overhead becomes more important.
->> +
->> +Page level hints settings
->> +--------------------------
->> +VM_BIND allows any hints setting per mapping instead of per BO.
->> +Possible hints include read-only, placement and atomicity.
->> +Sub-BO level placement hint will be even more relevant with
->> +upcoming GPU on-demand page fault support.
->> +
->> +Page level Cache/CLOS settings
->> +-------------------------------
->> +VM_BIND allows cache/CLOS settings per mapping instead of per BO.
->> +
->> +Shared Virtual Memory (SVM) support
->> +------------------------------------
->> +VM_BIND interface can be used to map system memory directly (without gem BO
->> +abstraction) using the HMM interface.
->> +
->> +
->> +Broder i915 cleanups
->> +=====================
->> +Supporting this whole new vm_bind mode of binding which comes with its own
->> +usecases to support and the locking requirements requires proper integration
->> +with the existing i915 driver. This calls for some broader i915 driver
->> +cleanups/simplifications for maintainability of the driver going forward.
->> +Here are few things identified and are being looked into.
->> +
->> +- Make pagetable allocations evictable and manage them similar to VM_BIND
->> +  mapped objects. Page table pages are similar to persistent mappings of a
->> +  VM (difference here are that the page table pages will not
->> +  have an i915_vma structure and after swapping pages back in, parent page
->> +  link needs to be updated).
->> +- Remove vma lookup cache (eb->gem_context->handles_vma). VM_BIND feature
->> +  do not use it and complexity it brings in is probably more than the
->> +  performance advantage we get in legacy execbuff case.
->> +- Remove vma->open_count counting
->> +- Remove i915_vma active reference tracking. Instead use underlying BO's
->> +  dma-resv fence list to determine if a i915_vma is active or not.
->> +
->> +These can be worked upon after intitial vm_bind support is added.
->> +
->> +
->> +UAPI
->> +=====
->> +Uapi definiton can be found here:
->> +.. kernel-doc:: Documentation/gpu/rfc/i915_vm_bind.h
->> diff --git a/Documentation/gpu/rfc/index.rst b/Documentation/gpu/rfc/index.rst
->> index 91e93a705230..7d10c36b268d 100644
->> --- a/Documentation/gpu/rfc/index.rst
->> +++ b/Documentation/gpu/rfc/index.rst
->> @@ -23,3 +23,7 @@ host such documentation:
->>  .. toctree::
->>
->>      i915_scheduler.rst
->> +
->> +.. toctree::
->> +
->> +    i915_vm_bind.rst
->> --
->> 2.21.0.rc0.32.g243a4c7e27
->>
+> Jason
+>=20
+
