@@ -2,54 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 884155097B4
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Apr 2022 08:36:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E74825097C9
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Apr 2022 08:40:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 45F1510F513;
-	Thu, 21 Apr 2022 06:36:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1019310F337;
+	Thu, 21 Apr 2022 06:40:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 28D9910F513
- for <intel-gfx@lists.freedesktop.org>; Thu, 21 Apr 2022 06:36:48 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 930DC10F337;
+ Thu, 21 Apr 2022 06:40:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1650523008; x=1682059008;
+ t=1650523236; x=1682059236;
  h=mime-version:content-transfer-encoding:in-reply-to:
  references:cc:subject:to:from:message-id:date;
- bh=QqGZCObvXCmZ3v40YqU3hOg6LuvsMds1r5ALZLmDF14=;
- b=nkxf3EtM3Zb0Awx9hSXXcsQrW/TtVxmvD+12a4WwGee8OjGDgYFiJ6/P
- cXPFk0OjP60FWuiIkvAjAa8EGiFff6Jgheox2IecwQUadesOeeewSnBNP
- iPRcp5sD5ZC9aOVFw7GAmvycENr+Z0+du0ZXBv/llDjxmMsBB3J4uxSlD
- PDE6MKVG4LnITJTRQ6w7A5fIGMNJMnB9skAj+1CNDMwcW20l7oAg8V8sI
- AAsXojwcXoDv5qHp7MJSNt4ERY4v1qNr428nVkgWUTXm8j63yaqC+CAzm
- 2KDGBYHOguB6Wv+GG/9zOOyjo1b0K7LoNNnsxd8rsudsbwPi2EOAhZXZA g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10323"; a="350703575"
-X-IronPort-AV: E=Sophos;i="5.90,278,1643702400"; d="scan'208";a="350703575"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Apr 2022 23:36:47 -0700
-X-IronPort-AV: E=Sophos;i="5.90,278,1643702400"; d="scan'208";a="577049853"
+ bh=71JJ0eHi2arpf9/f536F1pmq5dhuMhUNGfpsM7vmudQ=;
+ b=klU8dIX5s+VaBkI8S2cVPJv5c3zMLq8QR6ER20DrZwe8oqkquTt03KcB
+ yrM7gO7y//lkNrVsmspfHTzZ3qcmH7Z3VMFJIpHFmYFf29O8TrrJnD+P0
+ CCjc4edURrL+u5EhT/2Mxen7uFraeZiU/gEX5Higyh7JdmCp9DgjHFZ3n
+ oVlSmUZOZnnvzR7nRzMe/3INtGYUYq2QTjpg2M2B7QaSg6gyUqbsMMULc
+ eNa2noZcCK6Ykwxfu3qQBiBhgtDxTZzvKaaQebW/FSlYMpAHxy5xLv2ta
+ hobLM1h1j6KFUf8HEnh5GVOMuTgp/I1tMsuShysaEHJbu2FNd7rAsyGvw A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10323"; a="263722226"
+X-IronPort-AV: E=Sophos;i="5.90,278,1643702400"; d="scan'208";a="263722226"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Apr 2022 23:40:36 -0700
+X-IronPort-AV: E=Sophos;i="5.90,278,1643702400"; d="scan'208";a="555608128"
 Received: from hyeongju-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.252.54.203])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Apr 2022 23:36:44 -0700
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Apr 2022 23:40:31 -0700
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <YmAznXmONRMW4kEY@intel.com>
-References: <20220418150936.5499-1-hdegoede@redhat.com>
- <YmASniwe39jj1miR@intel.com>
- <60452154-8aab-b15d-1dff-29d3fa732f22@redhat.com>
- <YmAznXmONRMW4kEY@intel.com>
-To: Ville Syrjälä <ville.syrjala@linux.intel.com>, Hans de Goede <hdegoede@redhat.com>
+In-Reply-To: <20220413144548.GR2120790@nvidia.com>
+References: <20220411141403.86980-1-hch@lst.de>
+ <20220411141403.86980-6-hch@lst.de> <20220411152508.GH2120790@nvidia.com>
+ <87zgkrha7c.fsf@intel.com> <20220411165121.GA26801@lst.de>
+ <877d7tgo33.fsf@intel.com> <e8cdc103-f683-0b73-70a7-807f6fee0280@intel.com>
+ <20220413134307.GC368031@nvidia.com>
+ <86ee8fcc-e021-bb9f-fda6-a8e85cb1d9b4@intel.com>
+ <20220413144548.GR2120790@nvidia.com>
+To: "Wang, Zhi A" <zhi.a.wang@intel.com>, Jason Gunthorpe <jgg@nvidia.com>
 From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Message-ID: <165052300160.6597.7823926213593163566@jlahtine-mobl.ger.corp.intel.com>
+Message-ID: <165052322868.6597.3051928698772494571@jlahtine-mobl.ger.corp.intel.com>
 User-Agent: alot/0.8.1
-Date: Thu, 21 Apr 2022 09:36:41 +0300
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix DISP_POS_Y and DISP_HEIGHT
- defines
+Date: Thu, 21 Apr 2022 09:40:28 +0300
+Subject: Re: [Intel-gfx] [PATCH 05/34] drm/i915/gvt: cleanup the Makefile
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,84 +64,88 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "Vivi,
+ Rodrigo" <rodrigo.vivi@intel.com>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
+ Christoph Hellwig <hch@lst.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Ville Syrj=C3=A4l=C3=A4 (2022-04-20 19:23:57)
-> On Wed, Apr 20, 2022 at 05:32:43PM +0200, Hans de Goede wrote:
-> > Hi Ville,
-> >=20
-> > On 4/20/22 16:03, Ville Syrj=C3=A4l=C3=A4 wrote:
-> > > On Mon, Apr 18, 2022 at 05:09:36PM +0200, Hans de Goede wrote:
-> > >> Commit 428cb15d5b00 ("drm/i915: Clean up pre-skl primary plane regis=
-ters")
-> > >> introduced DISP_POS_Y and DISP_HEIGHT defines but accidentally set t=
-hese
-> > >> their masks to REG_GENMASK(31, 0) instead of REG_GENMASK(31, 16).
-> > >>
-> > >> This breaks the primary display pane on at least pineview machines, =
-fix
-> > >> the mask to fix the primary display pane only showing black.
-> > >>
-> > >> Tested on an Acer One AO532h with an Intel N450 SoC.
-> > >>
-> > >> Fixes: 428cb15d5b00 ("drm/i915: Clean up pre-skl primary plane regis=
-ters")
-> > >> Cc: Jos=C3=A9 Roberto de Souza <jose.souza@intel.com>
-> > >> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> > >> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
-> > >> ---
-> > >> Note this fixes a regression in 5.18-rc# and I'm not entirely sure w=
-hat
-> > >> the procedure is here. Once I get a Reviewed-by or Acked-by and I pu=
-sh
-> > >> this to drm-intel-next (where it also is necessary), should I then a=
-lso
-> > >> push it to drm-intel-fixes or will the current drm-intel-fixes
-> > >> maintainer pick it up?
-> > >> ---
-> > >>  drivers/gpu/drm/i915/i915_reg.h | 4 ++--
-> > >>  1 file changed, 2 insertions(+), 2 deletions(-)
-> > >>
-> > >> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/=
-i915_reg.h
-> > >> index 51f46fe45c72..5f1f38684d65 100644
-> > >> --- a/drivers/gpu/drm/i915/i915_reg.h
-> > >> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> > >> @@ -4352,12 +4352,12 @@
-> > >>  #define _DSPAADDR                         0x70184
-> > >>  #define _DSPASTRIDE                               0x70188
-> > >>  #define _DSPAPOS                          0x7018C /* reserved */
-> > >> -#define   DISP_POS_Y_MASK         REG_GENMASK(31, 0)
-> > >> +#define   DISP_POS_Y_MASK         REG_GENMASK(31, 16)
++ Tvrtko
+
+Quoting Jason Gunthorpe (2022-04-13 17:45:48)
+> On Wed, Apr 13, 2022 at 02:26:23PM +0000, Wang, Zhi A wrote:
+> > On 4/13/22 1:43 PM, Jason Gunthorpe wrote:
+> > > On Wed, Apr 13, 2022 at 01:39:35PM +0000, Wang, Zhi A wrote:
 > > >=20
-> > > Doh. I guess I only tested it on plane A where the plane gets its size
-> > > from PIPESRC instead. And looks like the failure mode is such that
-> > > the likes of kms_plane/pixel-formats still gets consistent looking CR=
-Cs
-> > > even with the misconfigured plane size :/
+> > >> It seems Jani's makefile clean patch has already included this one, =
+I can
+> > >> just simply drop this one so that Christoph won't need to re-send ev=
+erything.
+> > >>
+> > >> For the branch to move on, I am merging the patches and will re-gene=
+rate the
+> > >> gvt-staging branch, which combines the newest drm-tip vfio-upstream =
+and other
+> > >> gvt branches.
+> > >>
+> > >> If you are in a rush of re-basing the patches of non-GVT-g stuff, yo=
+u can use
+> > >> gvt-staging branch until my pull request landed in drm-intel-next.
+> > >>
+> > >> Also our QA will test gvt-staging-branch before the pull request. I =
+suppose
+> > >> it will take one or two days.
 > > >=20
-> > > Thanks for the fix. Pushed to drm-intel-next.
+> > > When you are wrangling the branches it would be great if Christoph's
+> > > series and it's minimal dependencies could be on a single branch that
+> > > could reasonably be pulled to the VFIO tree too, thanks
+> > >=20
+> > > Jason
+> > >=20
 > >=20
-> > Thank you pushing this out, will you (or someone else from Intel)
-> > also take care of getting this on its way to 5.18-rc# ?
+> > Hi Jason:
+> >=20
+> > I am thinking about the process of merging process. Here are the depend=
+ence:
+> >=20
+> > 1) My patches depend on one patch in drm-intel/drm-intel-next. So it ha=
+s to
+> > go through drm.
+> > My patches of GVT-g will go through drm-intel-next -> drm -> upstream. =
+
+> >=20
+> > 2) Christoph's patches depends on my patches, but part of them are for =
+VFIO.
+> >=20
+> > a. If they are fully going through VFIO repo, they might have to wait my
+> > patches to get landed first.
+> >=20
+> > b. If only the GVT-g parts goes through GVT repo, and rest of them goes
+> > through VFIO, the rest part still needs to wait.
+> >=20
+> > What would be a better process?
 >=20
-> It has a fixes tag so it should get cherry-picked for fixes.
-
-Yeah, it sould get picked up for next week's drm-intel-fixes PR.
-
-For both drm-intel-next and drm-intel-gt-next, committers only push to
-the -next branches and the rest is handled by tooling and maintainers as
-long as the Fixes: tags are correct.
-
-If a Fixes: tag has been missed when committing, only then you need to
-manually let maintainers know to pick the patch up.
-
-Regards, Joonas
-
+> You should organize everything onto one simple branch based on a rc to
+> make this all work.
 >=20
-> --=20
-> Ville Syrj=C3=A4l=C3=A4
-> Intel
+> Make your #1 patch as a single patch PR based on rc to drm-intel so it
+> gets to the right tree
+>=20
+> Make your MMIO series as PR on the branch above that first PR and merge to
+> the gvt tree
+>=20
+> Make Christoph's series as a PR on the branch above the second PR's
+> MMIO series and merge to the gvt tree
+>=20
+> Merge the gvt toward DRM in the normal way - ie the main merge path for
+> this should be through DRM.
+>=20
+> Then ask Alex to merge the 3rd PR as well.
+>=20
+> I don't see any intel-next stuff in linux-next yet so hopefully it is
+> early enough to get #1 OK.
+>=20
+> Jason
