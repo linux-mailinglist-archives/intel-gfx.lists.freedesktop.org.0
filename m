@@ -2,32 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 304905096DE
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Apr 2022 07:35:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 98E275096F7
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Apr 2022 07:47:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 42D9C10F3D4;
-	Thu, 21 Apr 2022 05:35:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B67910F304;
+	Thu, 21 Apr 2022 05:47:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 293ED10F3D4;
- Thu, 21 Apr 2022 05:35:21 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 2D365AADD5;
- Thu, 21 Apr 2022 05:35:21 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from verein.lst.de (verein.lst.de [213.95.11.211])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B23E10E49F;
+ Thu, 21 Apr 2022 05:47:42 +0000 (UTC)
+Received: by verein.lst.de (Postfix, from userid 2407)
+ id 9154768B05; Thu, 21 Apr 2022 07:47:38 +0200 (CEST)
+Date: Thu, 21 Apr 2022 07:47:38 +0200
+From: Christoph Hellwig <hch@lst.de>
+To: "Wang, Zhi A" <zhi.a.wang@intel.com>
+Message-ID: <20220421054738.GA20772@lst.de>
+References: <5a8b9f48-2c32-8177-1c18-e3bd7bfde558@intel.com>
+ <20220420164351.GC2120790@nvidia.com>
+ <20220420114033.7f8b57c7.alex.williamson@redhat.com>
+ <20220420174600.GD2120790@nvidia.com> <20220420200034.GE2120790@nvidia.com>
+ <55cb46db-754e-e339-178c-0a2cfaf65810@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Suraj Kandpal" <suraj.kandpal@intel.com>
-Date: Thu, 21 Apr 2022 05:35:21 -0000
-Message-ID: <165051932118.10764.13300023209483750145@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220421050756.2036609-1-suraj.kandpal@intel.com>
-In-Reply-To: <20220421050756.2036609-1-suraj.kandpal@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?i915_writeback_private_framework_=28rev5=29?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <55cb46db-754e-e339-178c-0a2cfaf65810@intel.com>
+User-Agent: Mutt/1.5.17 (2007-11-01)
+Subject: Re: [Intel-gfx] [PULL v2] gvt-next
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,21 +41,22 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ Jason Gunthorpe <jgg@nvidia.com>, "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
+ Christoph Hellwig <hch@lst.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, Apr 21, 2022 at 04:57:34AM +0000, Wang, Zhi A wrote:
+> Is it possible that I can send two different pull based on the same branch?
+> I was thinking I can remove this line in the original patch and then add a
+> small patch to add this line back on the top. Then make two different tags
+> before and after that small patch, send one pull with tag that includes that
+> small patch to i915 and the other pull with tag that doesn't includes it to
+> VFIO?
 
-Series: i915 writeback private framework (rev5)
-URL   : https://patchwork.freedesktop.org/series/101425/
-State : warning
-
-== Summary ==
-
-Error: dim sparse failed
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
-
-
+Yes, you can do that as long as the small fixup commit is the very last
+one.
