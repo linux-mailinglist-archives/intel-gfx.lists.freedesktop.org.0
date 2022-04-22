@@ -2,83 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8E2450E10C
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 Apr 2022 15:03:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A96350E115
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 Apr 2022 15:04:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 122ED10E35F;
-	Mon, 25 Apr 2022 13:03:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C483710E4D5;
+	Mon, 25 Apr 2022 13:04:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com
- [IPv6:2a00:1450:4864:20::631])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE04810F6CA;
- Thu, 21 Apr 2022 10:17:39 +0000 (UTC)
-Received: by mail-ej1-x631.google.com with SMTP id r13so9025022ejd.5;
- Thu, 21 Apr 2022 03:17:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=message-id:date:mime-version:user-agent:subject:content-language:to
- :cc:references:from:in-reply-to:content-transfer-encoding;
- bh=o9Uwrnr+J/6PoPyTPGmYSGkDODoDuGBLtRMs0gUpXJk=;
- b=Tw1xmngZVfgCT7TLBstw8nQFpll9Eq0dUwiVJsGbsS/YNeQ/L4ksc7k4vKU2gYhMG4
- WIP/P3GVtSM8yQUBvFu0wzQ78CvU/jVksuhYepDhTmaFzetdJPma6K/6biJfMh2ou1mV
- Y8YlaBN2lk5t/HxXOih3jiSyY0LmmKxksUQfDKQigduQaJfdeFZYGTZtfX6lrtc+7PgK
- nU0GqecKph+MxFN0nxH2edRAv/7RwdPu1D7V/yjTDsOtz0gs4xjJISOSJZgsCOOt6zRZ
- DFqR9U/lLaDZcgzIAgXpFM0KtrraQjTO95+6FFitzuEIK1qjfmZ2ZOUfzFuf61KKx9nZ
- ynZQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:to:cc:references:from:in-reply-to
- :content-transfer-encoding;
- bh=o9Uwrnr+J/6PoPyTPGmYSGkDODoDuGBLtRMs0gUpXJk=;
- b=efKx249VQV55+/+WQ9VnY2JMeSyYxNrJHKw7WO4OslmOXLGTApWc2R8kOZgJ9pCDcg
- /Xylgdf1ovZwl59HuCygG9LyfN5DuBZa+MWJr1sMTw4ryuaBT5a5hi7Q6bDR8FMTbAHb
- Km/f6jSA29w9V2DFlVzZAk6eYaOhPxy2eWy0Ysj6/vG6Gnhz+E7/U8MCS8mbB/WCcxA4
- whuGL4Lbtup9RyXLNGxq3/+NHtIEM3AgOcT2XEycMNq+HXiaScV2Jq88pUafy/SHWxPv
- bCnC2Fu7Gvpm1bFrkwbwmUbsTyVUc4pnMDNh9VmOBHWrrPOhInDZ1CEVTcAlcjI7orZy
- +eog==
-X-Gm-Message-State: AOAM532lHx67pueZgvZSr0drq2e5cAYNmdlgy+xETK0VDLnhd2BuBiGg
- nXml6idq8/QZ+BDpZDpIuALJeBDW5YQ=
-X-Google-Smtp-Source: ABdhPJwfX3c1ZjiNGKR8X3C8C8qD7akq9C+VUDTYnVQCMx9rkiXUpNWEIgmkZxnq8ehfCKoNipcwXg==
-X-Received: by 2002:a17:907:7da3:b0:6f0:d63:69bd with SMTP id
- oz35-20020a1709077da300b006f00d6369bdmr5677073ejc.289.1650536258169; 
- Thu, 21 Apr 2022 03:17:38 -0700 (PDT)
-Received: from ?IPV6:2a02:908:1252:fb60:74ec:39fd:9a7c:7ff3?
- ([2a02:908:1252:fb60:74ec:39fd:9a7c:7ff3])
- by smtp.gmail.com with ESMTPSA id
- a1-20020a1709063e8100b006ce06ed8aa7sm7745262ejj.142.2022.04.21.03.17.36
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 21 Apr 2022 03:17:37 -0700 (PDT)
-Message-ID: <6cd3571c-099b-df43-a7e0-243aba11726b@gmail.com>
-Date: Thu, 21 Apr 2022 12:17:36 +0200
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 08E3C10E30B;
+ Fri, 22 Apr 2022 20:44:10 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id A2727B8325C;
+ Fri, 22 Apr 2022 20:44:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DAD2DC385A0;
+ Fri, 22 Apr 2022 20:44:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1650660247;
+ bh=HnbkQVOtfa7+/56LQ5INga98V0wHs2i7oJ/vI85Yrbo=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=ncbmxN3DmsIJneYRy5/ENYjoC5IpODUGNtoqIcYvp/kNhyNvjtlhNgLsf6F+yjb1g
+ jVstrDggPk3uYKOKKFux0FNjQg3bs96RfiXaseCMLwErKmAc8oBTYrAdPRplYUgsCr
+ QYNI4YeEOzSnE32G+XYQ8zz4EfY8tkrhGUEPj68EpOas+hjCUvS65aUIip7ajutCsd
+ +gdiDnVGG5UwdRzvLF6aiIWhUeiNmoIpEkflQamA1hjzkDrTzh8s4lIvT10OyyMXKF
+ AaV6d/p07sO4C8+ML8hhojkVpFX7fBRXEmpsgecLOiAB2R/yWEnqoAlV1bTEkyIF0K
+ ZJXv69B6gizkw==
+Date: Fri, 22 Apr 2022 13:44:05 -0700
+From: Jakub Kicinski <kuba@kernel.org>
+To: Kalle Valo <kvalo@kernel.org>
+Message-ID: <20220422134405.7a519a0f@kernel.org>
+In-Reply-To: <87sfq8qqus.fsf@tynnyri.adurom.net>
+References: <20220414123033.654198-1-jani.nikula@intel.com>
+ <YlgfXxjefuxiXjtC@kroah.com> <87a6cneoco.fsf@intel.com>
+ <87sfq8qqus.fsf@tynnyri.adurom.net>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Content-Language: en-US
-To: Zack Rusin <zackr@vmware.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "christian.koenig@amd.com" <christian.koenig@amd.com>,
- "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
- "daniel.vetter@ffwll.ch" <daniel.vetter@ffwll.ch>,
- "linaro-mm-sig@lists.linaro.org" <linaro-mm-sig@lists.linaro.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-References: <20220407085946.744568-1-christian.koenig@amd.com>
- <20220407085946.744568-4-christian.koenig@amd.com>
- <60ab53ce1ce1333f5e6a15fc83c3c05cd9bd1084.camel@vmware.com>
- <4c2e9414-3926-c9d7-8482-0d6d9191c2ac@amd.com>
- <fe8916b53b0f0101e6616d23eb6896399b092d58.camel@vmware.com>
- <54d00af9-9384-5794-490c-7d4cafe086b6@gmail.com>
- <e1c60e2a1478c406f515d51608a751fdc9feff3a.camel@vmware.com>
- <baa19a2d-6ad9-63ea-20f4-284a794f8998@amd.com>
- <ac12f900-fb47-37d6-9a1c-ac44bc711069@gmail.com>
- <5d699ffa903b5e54e8660367c3b46f07c86f4c55.camel@vmware.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-In-Reply-To: <5d699ffa903b5e54e8660367c3b46f07c86f4c55.camel@vmware.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Mon, 25 Apr 2022 13:03:42 +0000
-Subject: Re: [Intel-gfx] [PATCH 03/15] dma-buf & drm/amdgpu: remove dma_resv
- workaround
+Subject: Re: [Intel-gfx] [PATCH 0/1] add support for enum module parameters
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,43 +54,26 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Cc: linux-wireless@vger.kernel.org, Jani Nikula <jani.nikula@intel.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ netdev@vger.kernel.org, Andrew Morton <akpm@linux-foundation.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Am 20.04.22 um 21:28 schrieb Zack Rusin:
-> [SNIP]
->> To figure out what it is could you try the following code fragment:
->>
->> diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_validation.c
->> b/drivers/gpu/drm/vmwgfx/vmwgfx_validation.c
->> index f46891012be3..a36f89d3f36d 100644
->> --- a/drivers/gpu/drm/vmwgfx/vmwgfx_validation.c
->> +++ b/drivers/gpu/drm/vmwgfx/vmwgfx_validation.c
->> @@ -288,7 +288,7 @@ int vmw_validation_add_bo(struct
->> vmw_validation_context *ctx,
->>                   val_buf->bo = ttm_bo_get_unless_zero(&vbo->base);
->>                   if (!val_buf->bo)
->>                           return -ESRCH;
->> -               val_buf->num_shared = 0;
->> +               val_buf->num_shared = 16;
->>                   list_add_tail(&val_buf->head, &ctx->bo_list);
->>                   bo_node->as_mob = as_mob;
->>                   bo_node->cpu_blit = cpu_blit;
-> Fails the same BUG_ON with num_fences and max_fences == 0.
+On Wed, 20 Apr 2022 08:13:47 +0300 Kalle Valo wrote:
+> Wireless drivers would also desperately need to pass device specific
+> parameters at (or before) probe time. And not only debug parameters but
+> also configuration parameters, for example firmware memory allocations
+> schemes (optimise for features vs number of clients etc) and whatnot.
+> 
+> Any ideas how to implement that? Is there any prior work for anything
+> like this? This is pretty hard limiting usability of upstream wireless
+> drivers and I really want to find a proper solution.
 
-Thanks for testing this.
-
-So the buffer object is not reserved through 
-vmw_validation_bo_reserve(), but comes from somewhere else. 
-Unfortunately I absolutely can't find where that's coming from.
-
-Do you have some documentation howto setup vmwgfx? E.g. sample VM which 
-I can download somewhere etc..
-
-Thanks,
-Christian.
-
->
-> z
-
+In netdev we have devlink which is used for all sort of device
+configuration. devlink-resource sounds like what you need,
+but it'd have to be extended to support configuration which requires
+reload/re-probe. Currently only devlink-params support that but params
+were a mistake so don't use that.
