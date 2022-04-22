@@ -1,34 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAD6E50ACDC
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 Apr 2022 02:38:52 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A3D450AD06
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 Apr 2022 03:02:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9912810F00A;
-	Fri, 22 Apr 2022 00:38:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4BFC510E03F;
+	Fri, 22 Apr 2022 01:02:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8011910EECD;
- Fri, 22 Apr 2022 00:38:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 52ED510E03F;
+ Fri, 22 Apr 2022 01:02:48 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 71712A008A;
- Fri, 22 Apr 2022 00:38:48 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by emeril.freedesktop.org (Postfix) with ESMTP id 51548A00A0;
+ Fri, 22 Apr 2022 01:02:48 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3817354303591644330=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
-Date: Fri, 22 Apr 2022 00:38:48 -0000
-Message-ID: <165058792841.14005.8012342903487470356@emeril.freedesktop.org>
+Date: Fri, 22 Apr 2022 01:02:48 -0000
+Message-ID: <165058936830.14004.17729629903969601816@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20220421192205.32649-1-jose.souza@intel.com>
 In-Reply-To: <20220421192205.32649-1-jose.souza@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?series_starting_with_=5B1/3=5D_drm=3A_Add_infrastructure_to_all?=
- =?utf-8?q?ow_seamless_mode_switches?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/3=5D_drm=3A_Add_infrastructure_to_allow_?=
+ =?utf-8?q?seamless_mode_switches?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,863 +46,430 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============3817354303591644330==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
 Series: series starting with [1/3] drm: Add infrastructure to allow seamless mode switches
 URL   : https://patchwork.freedesktop.org/series/102958/
-State : warning
+State : failure
 
 == Summary ==
 
-Error: dim sparse failed
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1444:25: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1444:25:    struct dma_fence *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1444:25:    struct dma_fence [noderef] __rcu *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1445:17: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1445:17:    struct dma_fence *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1445:17:    struct dma_fence [noderef] __rcu *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1504:17: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1504:17:    struct dma_fence *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1504:17:    struct dma_fence [noderef] __rcu *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:353:16: error: incompatible types in comparison expression (different type sizes):
-+drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:353:16:    unsigned long *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:353:16:    unsigned long long *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:295:25: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:295:25:    struct dma_fence *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:295:25:    struct dma_fence [noderef] __rcu *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:296:17: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:296:17:    struct dma_fence *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:296:17:    struct dma_fence [noderef] __rcu *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:345:17: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:345:17:    struct dma_fence *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:345:17:    struct dma_fence [noderef] __rcu *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:596:23: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:596:23:    struct dma_fence *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:596:23:    struct dma_fence [noderef] __rcu *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:598:25: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:598:25:    struct dma_fence *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:598:25:    struct dma_fence [noderef] __rcu *
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:315:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:319:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/../pm/swsmu/amdgpu_smu.c:1048:9: error: incompatible types in conditional expression (different base types):
-+drivers/gpu/drm/amd/amdgpu/../pm/swsmu/amdgpu_smu.c:1048:9:    int
-+drivers/gpu/drm/amd/amdgpu/../pm/swsmu/amdgpu_smu.c:1048:9:    void
-+drivers/gpu/drm/amd/amdgpu/../pm/swsmu/amdgpu_smu.c:675:17: error: incompatible types in conditional expression (different base types):
-+drivers/gpu/drm/amd/amdgpu/../pm/swsmu/amdgpu_smu.c:675:17:    int
-+drivers/gpu/drm/amd/amdgpu/../pm/swsmu/amdgpu_smu.c:675:17:    void
-+drivers/gpu/drm/amd/amdgpu/../pm/swsmu/amdgpu_smu.c:923:9: error: incompatible types in conditional expression (different base types):
-+drivers/gpu/drm/amd/amdgpu/../pm/swsmu/amdgpu_smu.c:923:9:    int
-+drivers/gpu/drm/amd/amdgpu/../pm/swsmu/amdgpu_smu.c:923:9:    void
-+drivers/gpu/drm/amd/amdgpu/../pm/swsmu/amdgpu_smu.c:955:9: error: incompatible types in conditional expression (different base types):
-+drivers/gpu/drm/amd/amdgpu/../pm/swsmu/amdgpu_smu.c:955:9:    int
-+drivers/gpu/drm/amd/amdgpu/../pm/swsmu/amdgpu_smu.c:955:9:    void
-+drivers/gpu/drm/ast/ast_drv.c:42:5: warning: symbol 'ast_modeset' was not declared. Should it be static?
-+drivers/gpu/drm/ast/ast_mode.c:678:16:    expected unsigned char [noderef] [usertype] __iomem *dstxor
-+drivers/gpu/drm/ast/ast_mode.c:678:16:    got unsigned char [usertype] *
-+drivers/gpu/drm/ast/ast_mode.c:678:16: warning: incorrect type in assignment (different address spaces)
-+drivers/gpu/drm/ast/ast_mode.c:678:19: warning: cast removes address space '__iomem' of expression
-+drivers/gpu/drm/drm_drv.c:426:6: warning: context imbalance in 'drm_dev_enter' - different lock contexts for basic block
-+drivers/gpu/drm/drm_drv.c:70:1: warning: symbol '__srcu_struct_drm_unplug_srcu' was not declared. Should it be static?
-+drivers/gpu/drm/gma500/framebuffer.c:268:9:    expected void *
-+drivers/gpu/drm/gma500/framebuffer.c:268:9:    expected void const *
-+drivers/gpu/drm/gma500/framebuffer.c:268:9:    expected void const *
-+drivers/gpu/drm/gma500/framebuffer.c:268:9:    got unsigned char [noderef] [usertype] __iomem *
-+drivers/gpu/drm/gma500/framebuffer.c:268:9:    got unsigned char [noderef] [usertype] __iomem *
-+drivers/gpu/drm/gma500/framebuffer.c:268:9:    got unsigned char [noderef] [usertype] __iomem *
-+drivers/gpu/drm/gma500/framebuffer.c:268:9: warning: incorrect type in argument 1 (different address spaces)
-+drivers/gpu/drm/gma500/framebuffer.c:268:9: warning: incorrect type in argument 1 (different address spaces)
-+drivers/gpu/drm/gma500/framebuffer.c:268:9: warning: incorrect type in argument 1 (different address spaces)
-+drivers/gpu/drm/gma500/gma_display.c:402:25:    expected void *tmp_dst
-+drivers/gpu/drm/gma500/gma_display.c:402:25:    got unsigned char [noderef] [usertype] __iomem *
-+drivers/gpu/drm/gma500/gma_display.c:402:25: warning: incorrect type in assignment (different address spaces)
-+drivers/gpu/drm/gma500/intel_bios.c:547:42:    expected void const *const p
-+drivers/gpu/drm/gma500/intel_bios.c:547:42:    got unsigned char [noderef] [usertype] __iomem *
-+drivers/gpu/drm/gma500/intel_bios.c:547:42: warning: incorrect type in argument 1 (different address spaces)
-+drivers/gpu/drm/gma500/intel_bios.c:548:40: warning: cast removes address space '__iomem' of expression
-+drivers/gpu/drm/gma500/intel_bios.c:558:24: warning: cast removes address space '__iomem' of expression
-+drivers/gpu/drm/gma500/mmu.c:306:26: warning: context imbalance in 'psb_mmu_pt_alloc_map_lock' - wrong count at exit
-+drivers/gpu/drm/gma500/mmu.c:346:26: warning: context imbalance in 'psb_mmu_pt_map_lock' - wrong count at exit
-+drivers/gpu/drm/gma500/mmu.c:379:28: warning: context imbalance in 'psb_mmu_pt_unmap_unlock' - unexpected unlock
-+drivers/gpu/drm/gma500/oaktrail_crtc.c:661:30: warning: symbol 'mrst_clock_funcs' was not declared. Should it be static?
-+drivers/gpu/drm/gma500/opregion.c:298:25:    expected void volatile [noderef] __iomem *addr
-+drivers/gpu/drm/gma500/opregion.c:298:25:    got struct opregion_header *header
-+drivers/gpu/drm/gma500/opregion.c:298:25: warning: incorrect type in argument 1 (different address spaces)
-+drivers/gpu/drm/gma500/opregion.c:328:20:    expected void const *const p
-+drivers/gpu/drm/gma500/opregion.c:328:20:    got void [noderef] __iomem *[assigned] base
-+drivers/gpu/drm/gma500/opregion.c:328:20: warning: incorrect type in argument 1 (different address spaces)
-+drivers/gpu/drm/gma500/opregion.c:334:26:    expected struct opregion_header *header
-+drivers/gpu/drm/gma500/opregion.c:334:26:    got void [noderef] __iomem *[assigned] base
-+drivers/gpu/drm/gma500/opregion.c:334:26: warning: incorrect type in assignment (different address spaces)
-+drivers/gpu/drm/gma500/opregion.c:335:23:    expected void *vbt
-+drivers/gpu/drm/gma500/opregion.c:335:23:    got void [noderef] __iomem *
-+drivers/gpu/drm/gma500/opregion.c:335:23: warning: incorrect type in assignment (different address spaces)
-+drivers/gpu/drm/gma500/opregion.c:342:32:    expected struct opregion_acpi *acpi
-+drivers/gpu/drm/gma500/opregion.c:342:32:    got void [noderef] __iomem *
-+drivers/gpu/drm/gma500/opregion.c:342:32: warning: incorrect type in assignment (different address spaces)
-+drivers/gpu/drm/gma500/opregion.c:347:32:    expected struct opregion_asle *asle
-+drivers/gpu/drm/gma500/opregion.c:347:32:    got void [noderef] __iomem *
-+drivers/gpu/drm/gma500/opregion.c:347:32: warning: incorrect type in assignment (different address spaces)
-+drivers/gpu/drm/gma500/psb_intel_display.c:434:30: warning: symbol 'psb_clock_funcs' was not declared. Should it be static?
-+drivers/gpu/drm/i2c/tda998x_drv.c:1712:50:    expected restricted __be32 const [usertype] *p
-+drivers/gpu/drm/i2c/tda998x_drv.c:1712:50:    got unsigned int const [usertype] *
-+drivers/gpu/drm/i2c/tda998x_drv.c:1712:50: warning: incorrect type in argument 1 (different base types)
-+drivers/gpu/drm/i2c/tda998x_drv.c:1713:52:    expected restricted __be32 const [usertype] *p
-+drivers/gpu/drm/i2c/tda998x_drv.c:1713:52:    got unsigned int const [usertype] *
-+drivers/gpu/drm/i2c/tda998x_drv.c:1713:52: warning: incorrect type in argument 1 (different base types)
-+drivers/gpu/drm/mgag200/mgag200_drv.c:22:5: warning: symbol 'mgag200_modeset' was not declared. Should it be static?
-+drivers/gpu/drm/nouveau/dispnv50/disp.c:135:34: warning: cast removes address space '__iomem' of expression
-+drivers/gpu/drm/nouveau/dispnv50/disp.c:198:34: warning: cast removes address space '__iomem' of expression
-+drivers/gpu/drm/nouveau/dispnv50/disp.c:204:27:    expected unsigned int [usertype] *cur
-+drivers/gpu/drm/nouveau/dispnv50/disp.c:204:27:    got void [noderef] __iomem *ptr
-+drivers/gpu/drm/nouveau/dispnv50/disp.c:204:27: warning: incorrect type in assignment (different address spaces)
-+drivers/gpu/drm/nouveau/dispnv50/disp.c:217:19:    expected unsigned int [usertype] *bgn
-+drivers/gpu/drm/nouveau/dispnv50/disp.c:217:19:    got void [noderef] __iomem *ptr
-+drivers/gpu/drm/nouveau/dispnv50/disp.c:217:19: warning: incorrect type in assignment (different address spaces)
-+drivers/gpu/drm/nouveau/dispnv50/disp.c:258:19:    expected unsigned int [usertype] *ptr
-+drivers/gpu/drm/nouveau/dispnv50/disp.c:258:19:    got void [noderef] __iomem *ptr
-+drivers/gpu/drm/nouveau/dispnv50/disp.c:258:19: warning: incorrect type in assignment (different address spaces)
-+drivers/gpu/drm/nouveau/dispnv50/disp.c:262:25:    expected unsigned int [usertype] *bgn
-+drivers/gpu/drm/nouveau/dispnv50/disp.c:262:25:    got void [noderef] __iomem *ptr
-+drivers/gpu/drm/nouveau/dispnv50/disp.c:262:25: warning: incorrect type in assignment (different address spaces)
-+drivers/gpu/drm/nouveau/dispnv50/disp.c:2693:1: warning: symbol 'nv50_display_create' was not declared. Should it be static?
-+drivers/gpu/drm/nouveau/dispnv50/wimmc37b.c:40:9: warning: dubious: !x & y
-+drivers/gpu/drm/nouveau/dispnv50/wndwc37e.c:282:9: warning: dubious: !x & y
-+drivers/gpu/drm/qxl/qxl_kms.c:168:19:    expected struct qxl_rom *rom
-+drivers/gpu/drm/qxl/qxl_kms.c:168:19:    got void [noderef] __iomem *
-+drivers/gpu/drm/qxl/qxl_kms.c:168:19: warning: incorrect type in assignment (different address spaces)
-+drivers/gpu/drm/qxl/qxl_kms.c:186:26:    expected struct qxl_ram_header *ram_header
-+drivers/gpu/drm/qxl/qxl_kms.c:186:26:    got void [noderef] __iomem *
-+drivers/gpu/drm/qxl/qxl_kms.c:186:26: warning: incorrect type in assignment (different address spaces)
-+drivers/gpu/drm/qxl/qxl_kms.c:275:21:    expected void volatile [noderef] __iomem *addr
-+drivers/gpu/drm/qxl/qxl_kms.c:275:21:    got struct qxl_ram_header *ram_header
-+drivers/gpu/drm/qxl/qxl_kms.c:275:21: warning: incorrect type in argument 1 (different address spaces)
-+drivers/gpu/drm/qxl/qxl_kms.c:279:21:    expected void volatile [noderef] __iomem *addr
-+drivers/gpu/drm/qxl/qxl_kms.c:279:21:    got struct qxl_rom *rom
-+drivers/gpu/drm/qxl/qxl_kms.c:279:21: warning: incorrect type in argument 1 (different address spaces)
-+drivers/gpu/drm/qxl/qxl_kms.c:323:21:    expected void volatile [noderef] __iomem *addr
-+drivers/gpu/drm/qxl/qxl_kms.c:323:21:    got struct qxl_ram_header *ram_header
-+drivers/gpu/drm/qxl/qxl_kms.c:323:21: warning: incorrect type in argument 1 (different address spaces)
-+drivers/gpu/drm/qxl/qxl_kms.c:324:21:    expected void volatile [noderef] __iomem *addr
-+drivers/gpu/drm/qxl/qxl_kms.c:324:21:    got struct qxl_rom *rom
-+drivers/gpu/drm/qxl/qxl_kms.c:324:21: warning: incorrect type in argument 1 (different address spaces)
-+drivers/gpu/drm/qxl/qxl_kms.c:36:5: warning: symbol 'qxl_log_level' was not declared. Should it be static?
-+drivers/gpu/drm/qxl/qxl_object.c:178:29: warning: cast removes address space '__iomem' of expression
-+drivers/gpu/drm/qxl/qxl_object.c:223:40:    expected void *
-+drivers/gpu/drm/qxl/qxl_object.c:223:40:    got void [noderef] __iomem *
-+drivers/gpu/drm/qxl/qxl_object.c:223:40: warning: incorrect type in return expression (different address spaces)
-+drivers/gpu/drm/qxl/qxl_object.c:273:33:    expected void [noderef] __iomem *vaddr
-+drivers/gpu/drm/qxl/qxl_object.c:273:33:    got void *pmap
-+drivers/gpu/drm/qxl/qxl_object.c:273:33: warning: incorrect type in argument 1 (different address spaces)
-+drivers/gpu/drm/radeon/atombios_crtc.c:313:23:    expected unsigned short [addressable] [usertype] usH_Size
-+drivers/gpu/drm/radeon/atombios_crtc.c:313:23:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:313:23: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:314:32:    expected unsigned short [addressable] [usertype] usH_Blanking_Time
-+drivers/gpu/drm/radeon/atombios_crtc.c:314:32:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:314:32: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:316:23:    expected unsigned short [addressable] [usertype] usV_Size
-+drivers/gpu/drm/radeon/atombios_crtc.c:316:23:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:316:23: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:317:32:    expected unsigned short [addressable] [usertype] usV_Blanking_Time
-+drivers/gpu/drm/radeon/atombios_crtc.c:317:32:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:317:32: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:319:29:    expected unsigned short [addressable] [usertype] usH_SyncOffset
-+drivers/gpu/drm/radeon/atombios_crtc.c:319:29:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:319:29: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:321:28:    expected unsigned short [addressable] [usertype] usH_SyncWidth
-+drivers/gpu/drm/radeon/atombios_crtc.c:321:28:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:321:28: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:323:29:    expected unsigned short [addressable] [usertype] usV_SyncOffset
-+drivers/gpu/drm/radeon/atombios_crtc.c:323:29:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:323:29: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:325:28:    expected unsigned short [addressable] [usertype] usV_SyncWidth
-+drivers/gpu/drm/radeon/atombios_crtc.c:325:28:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:325:28: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:343:39:    expected unsigned short [addressable] [assigned] [usertype] usAccess
-+drivers/gpu/drm/radeon/atombios_crtc.c:343:39:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:343:39: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:360:24:    expected unsigned short [addressable] [usertype] usH_Total
-+drivers/gpu/drm/radeon/atombios_crtc.c:360:24:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:360:24: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:361:23:    expected unsigned short [addressable] [usertype] usH_Disp
-+drivers/gpu/drm/radeon/atombios_crtc.c:361:23:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:361:23: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:362:28:    expected unsigned short [addressable] [usertype] usH_SyncStart
-+drivers/gpu/drm/radeon/atombios_crtc.c:362:28:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:362:28: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:363:28:    expected unsigned short [addressable] [usertype] usH_SyncWidth
-+drivers/gpu/drm/radeon/atombios_crtc.c:363:28:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:363:28: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:365:24:    expected unsigned short [addressable] [usertype] usV_Total
-+drivers/gpu/drm/radeon/atombios_crtc.c:365:24:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:365:24: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:366:23:    expected unsigned short [addressable] [usertype] usV_Disp
-+drivers/gpu/drm/radeon/atombios_crtc.c:366:23:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:366:23: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:367:28:    expected unsigned short [addressable] [usertype] usV_SyncStart
-+drivers/gpu/drm/radeon/atombios_crtc.c:367:28:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:367:28: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:368:28:    expected unsigned short [addressable] [usertype] usV_SyncWidth
-+drivers/gpu/drm/radeon/atombios_crtc.c:368:28:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:368:28: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:389:39:    expected unsigned short [addressable] [assigned] [usertype] usAccess
-+drivers/gpu/drm/radeon/atombios_crtc.c:389:39:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:389:39: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:481:52:    expected unsigned short [addressable] [usertype] usSpreadSpectrumAmountFrac
-+drivers/gpu/drm/radeon/atombios_crtc.c:481:52:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:481:52: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:496:48:    expected unsigned short [addressable] [assigned] [usertype] usSpreadSpectrumAmount
-+drivers/gpu/drm/radeon/atombios_crtc.c:496:48:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:496:48: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:497:46:    expected unsigned short [addressable] [assigned] [usertype] usSpreadSpectrumStep
-+drivers/gpu/drm/radeon/atombios_crtc.c:497:46:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:497:46: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:500:52:    expected unsigned short [addressable] [assigned] [usertype] usSpreadSpectrumPercentage
-+drivers/gpu/drm/radeon/atombios_crtc.c:500:52:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:500:52: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:515:48:    expected unsigned short [addressable] [assigned] [usertype] usSpreadSpectrumAmount
-+drivers/gpu/drm/radeon/atombios_crtc.c:515:48:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:515:48: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:516:46:    expected unsigned short [addressable] [assigned] [usertype] usSpreadSpectrumStep
-+drivers/gpu/drm/radeon/atombios_crtc.c:516:46:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:516:46: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:519:52:    expected unsigned short [addressable] [assigned] [usertype] usSpreadSpectrumPercentage
-+drivers/gpu/drm/radeon/atombios_crtc.c:519:52:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:519:52: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:532:59:    expected unsigned short [addressable] [assigned] [usertype] usSpreadSpectrumPercentage
-+drivers/gpu/drm/radeon/atombios_crtc.c:532:59:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:532:59: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:543:57:    expected unsigned short [addressable] [assigned] [usertype] usSpreadSpectrumPercentage
-+drivers/gpu/drm/radeon/atombios_crtc.c:543:57:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:543:57: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:55:36:    expected unsigned short [addressable] [assigned] [usertype] usOverscanTop
-+drivers/gpu/drm/radeon/atombios_crtc.c:55:36:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:55:36: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:56:39:    expected unsigned short [addressable] [assigned] [usertype] usOverscanBottom
-+drivers/gpu/drm/radeon/atombios_crtc.c:56:39:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:56:39: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:57:37:    expected unsigned short [addressable] [assigned] [usertype] usOverscanLeft
-+drivers/gpu/drm/radeon/atombios_crtc.c:57:37:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:57:37: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:58:38:    expected unsigned short [addressable] [assigned] [usertype] usOverscanRight
-+drivers/gpu/drm/radeon/atombios_crtc.c:58:38:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:58:38: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:65:45:    expected unsigned short [addressable] [assigned] [usertype] usOverscanLeft
-+drivers/gpu/drm/radeon/atombios_crtc.c:65:45:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:65:45: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:66:46:    expected unsigned short [addressable] [assigned] [usertype] usOverscanRight
-+drivers/gpu/drm/radeon/atombios_crtc.c:66:46:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:66:46: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:68:44:    expected unsigned short [addressable] [assigned] [usertype] usOverscanTop
-+drivers/gpu/drm/radeon/atombios_crtc.c:68:44:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:68:44: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:694:54:    expected unsigned short [addressable] [usertype] usPixelClock
-+drivers/gpu/drm/radeon/atombios_crtc.c:694:54:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:694:54: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:69:47:    expected unsigned short [addressable] [assigned] [usertype] usOverscanBottom
-+drivers/gpu/drm/radeon/atombios_crtc.c:69:47:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:69:47: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:703:50: warning: cast to restricted __le16
-+drivers/gpu/drm/radeon/atombios_crtc.c:706:61:    expected unsigned short [addressable] [assigned] [usertype] usPixelClock
-+drivers/gpu/drm/radeon/atombios_crtc.c:706:61:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:706:61: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:717:69:    expected unsigned short [addressable] [assigned] [usertype] usPixelClock
-+drivers/gpu/drm/radeon/atombios_crtc.c:717:69:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:717:69: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:736:50: warning: cast to restricted __le32
-+drivers/gpu/drm/radeon/atombios_crtc.c:74:38:    expected unsigned short [addressable] [assigned] [usertype] usOverscanRight
-+drivers/gpu/drm/radeon/atombios_crtc.c:74:38:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:74:38: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:75:37:    expected unsigned short [addressable] [assigned] [usertype] usOverscanLeft
-+drivers/gpu/drm/radeon/atombios_crtc.c:75:37:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:75:37: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:76:39:    expected unsigned short [addressable] [assigned] [usertype] usOverscanBottom
-+drivers/gpu/drm/radeon/atombios_crtc.c:76:39:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:76:39: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:77:36:    expected unsigned short [addressable] [assigned] [usertype] usOverscanTop
-+drivers/gpu/drm/radeon/atombios_crtc.c:77:36:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:77:36: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:795:46:    expected unsigned short [addressable] [assigned] [usertype] usPixelClock
-+drivers/gpu/drm/radeon/atombios_crtc.c:795:46:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:795:46: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:802:50:    expected unsigned int [addressable] [assigned] [usertype] ulDispEngClkFreq
-+drivers/gpu/drm/radeon/atombios_crtc.c:802:50:    got restricted __le32 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:802:50: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:854:46:    expected unsigned short [addressable] [usertype] usPixelClock
-+drivers/gpu/drm/radeon/atombios_crtc.c:854:46:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:854:46: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:855:42:    expected unsigned short [addressable] [usertype] usRefDiv
-+drivers/gpu/drm/radeon/atombios_crtc.c:855:42:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:855:42: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:856:41:    expected unsigned short [addressable] [usertype] usFbDiv
-+drivers/gpu/drm/radeon/atombios_crtc.c:856:41:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:856:41: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:864:46:    expected unsigned short [addressable] [assigned] [usertype] usPixelClock
-+drivers/gpu/drm/radeon/atombios_crtc.c:864:46:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:864:46: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:865:42:    expected unsigned short [addressable] [assigned] [usertype] usRefDiv
-+drivers/gpu/drm/radeon/atombios_crtc.c:865:42:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:865:42: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:866:41:    expected unsigned short [addressable] [assigned] [usertype] usFbDiv
-+drivers/gpu/drm/radeon/atombios_crtc.c:866:41:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:866:41: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:874:46:    expected unsigned short [addressable] [assigned] [usertype] usPixelClock
-+drivers/gpu/drm/radeon/atombios_crtc.c:874:46:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:874:46: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:875:42:    expected unsigned short [addressable] [assigned] [usertype] usRefDiv
-+drivers/gpu/drm/radeon/atombios_crtc.c:875:42:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:875:42: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:876:41:    expected unsigned short [addressable] [assigned] [usertype] usFbDiv
-+drivers/gpu/drm/radeon/atombios_crtc.c:876:41:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:876:41: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:891:46:    expected unsigned short [addressable] [assigned] [usertype] usPixelClock
-+drivers/gpu/drm/radeon/atombios_crtc.c:891:46:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:891:46: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:893:41:    expected unsigned short [addressable] [assigned] [usertype] usFbDiv
-+drivers/gpu/drm/radeon/atombios_crtc.c:893:41:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:893:41: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:894:48:    expected unsigned int [addressable] [assigned] [usertype] ulFbDivDecFrac
-+drivers/gpu/drm/radeon/atombios_crtc.c:894:48:    got restricted __le32 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:894:48: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:920:50:    expected unsigned int [addressable] [assigned] [usertype] ulDispEngClkFreq
-+drivers/gpu/drm/radeon/atombios_crtc.c:920:50:    got restricted __le32 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:920:50: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:922:41:    expected unsigned short [addressable] [assigned] [usertype] usFbDiv
-+drivers/gpu/drm/radeon/atombios_crtc.c:922:41:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:922:41: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_crtc.c:923:48:    expected unsigned int [addressable] [assigned] [usertype] ulFbDivDecFrac
-+drivers/gpu/drm/radeon/atombios_crtc.c:923:48:    got restricted __le32 [usertype]
-+drivers/gpu/drm/radeon/atombios_crtc.c:923:48: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_dp.c:107:30:    expected unsigned short [addressable] [usertype] lpAuxRequest
-+drivers/gpu/drm/radeon/atombios_dp.c:107:30:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_dp.c:107:30: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/radeon/atombios_dp.c:108:27:    expected unsigned short [addressable] [usertype] lpDataOut
-+drivers/gpu/drm/radeon/atombios_dp.c:108:27:    got restricted __le16 [usertype]
-+drivers/gpu/drm/radeon/atombios_dp.c:108:27: warning: incorrect typ
+CI Bug Log - changes from CI_DRM_11538 -> Patchwork_102958v1
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_102958v1 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_102958v1, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102958v1/index.html
+
+Participating hosts (45 -> 43)
+------------------------------
+
+  Additional (1): bat-jsl-2 
+  Missing    (3): bat-dg2-8 bat-adlm-1 fi-hsw-4770 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_102958v1:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-n3050:       [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11538/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102958v1/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_102958v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][3] ([i915#2190])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102958v1/fi-rkl-11600/igt@gem_huc_copy@huc-copy.html
+
+  * igt@gem_lmem_swapping@basic:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][4] ([i915#4613]) +3 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102958v1/fi-rkl-11600/igt@gem_lmem_swapping@basic.html
+
+  * igt@gem_tiled_pread_basic:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][5] ([i915#3282])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102958v1/fi-rkl-11600/igt@gem_tiled_pread_basic.html
+
+  * igt@i915_pm_backlight@basic-brightness:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][6] ([i915#3012])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102958v1/fi-rkl-11600/igt@i915_pm_backlight@basic-brightness.html
+
+  * igt@i915_pm_rps@basic-api:
+    - fi-glk-j4005:       [PASS][7] -> [DMESG-WARN][8] ([i915#118])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11538/fi-glk-j4005/igt@i915_pm_rps@basic-api.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102958v1/fi-glk-j4005/igt@i915_pm_rps@basic-api.html
+
+  * igt@i915_selftest@live@mman:
+    - fi-bdw-5557u:       NOTRUN -> [INCOMPLETE][9] ([i915#5704])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102958v1/fi-bdw-5557u/igt@i915_selftest@live@mman.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][10] ([fdo#111827]) +8 similar issues
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102958v1/fi-rkl-11600/igt@kms_chamelium@dp-crc-fast.html
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][11] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102958v1/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][12] ([i915#4070] / [i915#4103]) +1 similar issue
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102958v1/fi-rkl-11600/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+
+  * igt@kms_flip@basic-plain-flip@a-edp1:
+    - bat-adlp-4:         [PASS][13] -> [DMESG-WARN][14] ([i915#3576]) +1 similar issue
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11538/bat-adlp-4/igt@kms_flip@basic-plain-flip@a-edp1.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102958v1/bat-adlp-4/igt@kms_flip@basic-plain-flip@a-edp1.html
+
+  * igt@kms_force_connector_basic@force-load-detect:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][15] ([fdo#109285] / [i915#4098])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102958v1/fi-rkl-11600/igt@kms_force_connector_basic@force-load-detect.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][16] ([i915#4070] / [i915#533])
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102958v1/fi-rkl-11600/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
+
+  * igt@kms_psr@primary_mmap_gtt:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][17] ([i915#1072]) +3 similar issues
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102958v1/fi-rkl-11600/igt@kms_psr@primary_mmap_gtt.html
+
+  * igt@kms_setmode@basic-clone-single-crtc:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][18] ([fdo#109271]) +14 similar issues
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102958v1/fi-bdw-5557u/igt@kms_setmode@basic-clone-single-crtc.html
+    - fi-rkl-11600:       NOTRUN -> [SKIP][19] ([i915#3555] / [i915#4098])
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102958v1/fi-rkl-11600/igt@kms_setmode@basic-clone-single-crtc.html
+
+  * igt@prime_vgem@basic-userptr:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][20] ([i915#3301] / [i915#3708])
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102958v1/fi-rkl-11600/igt@prime_vgem@basic-userptr.html
+
+  * igt@prime_vgem@basic-write:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][21] ([i915#3291] / [i915#3708]) +2 similar issues
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102958v1/fi-rkl-11600/igt@prime_vgem@basic-write.html
+
+  * igt@runner@aborted:
+    - fi-bsw-n3050:       NOTRUN -> [FAIL][22] ([fdo#109271] / [i915#3428] / [i915#4312])
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102958v1/fi-bsw-n3050/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s3@smem:
+    - fi-rkl-11600:       [INCOMPLETE][23] ([i915#5127]) -> [PASS][24]
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11538/fi-rkl-11600/igt@gem_exec_suspend@basic-s3@smem.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102958v1/fi-rkl-11600/igt@gem_exec_suspend@basic-s3@smem.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-hsw-g3258:       [INCOMPLETE][25] ([i915#3303] / [i915#4785]) -> [PASS][26]
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11538/fi-hsw-g3258/igt@i915_selftest@live@hangcheck.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102958v1/fi-hsw-g3258/igt@i915_selftest@live@hangcheck.html
+
+  * igt@i915_suspend@system-suspend-without-i915:
+    - fi-skl-6700k2:      [INCOMPLETE][27] ([i915#4939]) -> [PASS][28]
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11538/fi-skl-6700k2/igt@i915_suspend@system-suspend-without-i915.html
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102958v1/fi-skl-6700k2/igt@i915_suspend@system-suspend-without-i915.html
+
+  * igt@kms_flip@basic-flip-vs-modeset@a-edp1:
+    - {bat-adlp-6}:       [DMESG-WARN][29] ([i915#3576]) -> [PASS][30] +2 similar issues
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11538/bat-adlp-6/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102958v1/bat-adlp-6/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-cml-u2:          [DMESG-WARN][31] ([i915#4269]) -> [PASS][32]
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11538/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102958v1/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#118]: https://gitlab.freedesktop.org/drm/intel/issues/118
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#3012]: https://gitlab.freedesktop.org/drm/intel/issues/3012
+  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
+  [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
+  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
+  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
+  [i915#3428]: https://gitlab.freedesktop.org/drm/intel/issues/3428
+  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
+  [i915#3576]: https://gitlab.freedesktop.org/drm/intel/issues/3576
+  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
+  [i915#4070]: https://gitlab.freedesktop.org/drm/intel/issues/4070
+  [i915#4098]: https://gitlab.freedesktop.org/drm/intel/issues/4098
+  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+  [i915#4269]: https://gitlab.freedesktop.org/drm/intel/issues/4269
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
+  [i915#4897]: https://gitlab.freedesktop.org/drm/intel/issues/4897
+  [i915#4939]: https://gitlab.freedesktop.org/drm/intel/issues/4939
+  [i915#5127]: https://gitlab.freedesktop.org/drm/intel/issues/5127
+  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
+  [i915#5704]: https://gitlab.freedesktop.org/drm/intel/issues/5704
 
 
+Build changes
+-------------
+
+  * Linux: CI_DRM_11538 -> Patchwork_102958v1
+
+  CI-20190529: 20190529
+  CI_DRM_11538: bb5c1e0f726f731591f79f96e19a0defc248eabd @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6444: df584c804e3a44431b0e5ae21c190b6e9acb35ab @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_102958v1: bb5c1e0f726f731591f79f96e19a0defc248eabd @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+b4d66668a056 drm/i915/display: Implement seamless mode switch
+c88811101bde drm/i915/display: Replace crtc_state's has_drrs by drrs_downclock_mode
+74883f8f2676 drm: Add infrastructure to allow seamless mode switches
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102958v1/index.html
+
+--===============3817354303591644330==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/3] drm: Add infrastructure to allow seamless mode switches</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/102958/">https://patchwork.freedesktop.org/series/102958/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102958v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102958v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11538 -&gt; Patchwork_102958v1</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_102958v1 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_102958v1, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102958v1/index.html</p>
+<h2>Participating hosts (45 -&gt; 43)</h2>
+<p>Additional (1): bat-jsl-2 <br />
+  Missing    (3): bat-dg2-8 bat-adlm-1 fi-hsw-4770 </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_102958v1:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@i915_selftest@live@execlists:<ul>
+<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11538/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102958v1/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_102958v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102958v1/fi-rkl-11600/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@basic:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102958v1/fi-rkl-11600/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_tiled_pread_basic:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102958v1/fi-rkl-11600/igt@gem_tiled_pread_basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3282">i915#3282</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_backlight@basic-brightness:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102958v1/fi-rkl-11600/igt@i915_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3012">i915#3012</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rps@basic-api:</p>
+<ul>
+<li>fi-glk-j4005:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11538/fi-glk-j4005/igt@i915_pm_rps@basic-api.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102958v1/fi-glk-j4005/igt@i915_pm_rps@basic-api.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/118">i915#118</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@mman:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102958v1/fi-bdw-5557u/igt@i915_selftest@live@mman.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5704">i915#5704</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>
+<p>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102958v1/fi-rkl-11600/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</p>
+</li>
+<li>
+<p>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102958v1/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102958v1/fi-rkl-11600/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4070">i915#4070</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-plain-flip@a-edp1:</p>
+<ul>
+<li>bat-adlp-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11538/bat-adlp-4/igt@kms_flip@basic-plain-flip@a-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102958v1/bat-adlp-4/igt@kms_flip@basic-plain-flip@a-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-load-detect:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102958v1/fi-rkl-11600/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4098">i915#4098</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102958v1/fi-rkl-11600/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4070">i915#4070</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@primary_mmap_gtt:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102958v1/fi-rkl-11600/igt@kms_psr@primary_mmap_gtt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_setmode@basic-clone-single-crtc:</p>
+<ul>
+<li>
+<p>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102958v1/fi-bdw-5557u/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +14 similar issues</p>
+</li>
+<li>
+<p>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102958v1/fi-rkl-11600/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4098">i915#4098</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-userptr:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102958v1/fi-rkl-11600/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-write:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102958v1/fi-rkl-11600/igt@prime_vgem@basic-write.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3291">i915#3291</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102958v1/fi-bsw-n3050/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3428">i915#3428</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s3@smem:</p>
+<ul>
+<li>fi-rkl-11600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11538/fi-rkl-11600/igt@gem_exec_suspend@basic-s3@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5127">i915#5127</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102958v1/fi-rkl-11600/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-hsw-g3258:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11538/fi-hsw-g3258/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102958v1/fi-hsw-g3258/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_suspend@system-suspend-without-i915:</p>
+<ul>
+<li>fi-skl-6700k2:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11538/fi-skl-6700k2/igt@i915_suspend@system-suspend-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4939">i915#4939</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102958v1/fi-skl-6700k2/igt@i915_suspend@system-suspend-without-i915.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-modeset@a-edp1:</p>
+<ul>
+<li>{bat-adlp-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11538/bat-adlp-6/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102958v1/bat-adlp-6/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html">PASS</a> +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11538/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4269">i915#4269</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102958v1/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11538 -&gt; Patchwork_102958v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11538: bb5c1e0f726f731591f79f96e19a0defc248eabd @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6444: df584c804e3a44431b0e5ae21c190b6e9acb35ab @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_102958v1: bb5c1e0f726f731591f79f96e19a0defc248eabd @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>b4d66668a056 drm/i915/display: Implement seamless mode switch<br />
+c88811101bde drm/i915/display: Replace crtc_state's has_drrs by drrs_downclock_mode<br />
+74883f8f2676 drm: Add infrastructure to allow seamless mode switches</p>
+
+</body>
+</html>
+
+--===============3817354303591644330==--
