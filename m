@@ -2,71 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6061750B324
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 Apr 2022 10:44:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C29650B43D
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 Apr 2022 11:39:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB84A10E379;
-	Fri, 22 Apr 2022 08:44:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8601510E6F4;
+	Fri, 22 Apr 2022 09:38:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from out3-smtp.messagingengine.com (out3-smtp.messagingengine.com
- [66.111.4.27])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C959610E3F7;
- Fri, 22 Apr 2022 08:44:10 +0000 (UTC)
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
- by mailout.nyi.internal (Postfix) with ESMTP id 1B6C35C0212;
- Fri, 22 Apr 2022 04:44:07 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
- by compute2.internal (MEProxy); Fri, 22 Apr 2022 04:44:07 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
- :cc:content-type:date:date:from:from:in-reply-to:message-id
- :mime-version:reply-to:sender:subject:subject:to:to; s=fm3; t=
- 1650617047; x=1650703447; bh=d+/lNnUQtWysf+WjLm8XY0mPLaMx1FTIczV
- n/S9alAc=; b=Ve3JyXJWNuwRLdsWVWXTT6p6luDTIpqpxW+tCbjjgA4BUJ+yHNA
- wJfN7c5PekX8bQNQF7qlX+9N7AamHC+81T+FNPoNH3Xhbh5l3hGEfdry+LHzul8B
- qkQe+8q8bMLT7nsM6phFfmUTV7de1eZAr8v7+CMdxj+aekW9tuRYbr4c38eprloC
- YnUwNo69MTYLji+FAbPuEwgeqUq7+vjGhljM+ck6z3gFJk5oydES52NVEU/khgA3
- 6M5NmsCvQZf+TLmUSY/HQbXbTxRKlJ81DSEgDCWEOTiTfhh5rKWuZJ6lz/oUz4bY
- 6OhEnuEXn8NHDwy5QeVp/T+TWgUojwmXYyQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-type:date:date:from:from
- :in-reply-to:message-id:mime-version:reply-to:sender:subject
- :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
- :x-sasl-enc; s=fm1; t=1650617047; x=1650703447; bh=d+/lNnUQtWysf
- +WjLm8XY0mPLaMx1FTIczVn/S9alAc=; b=RlWXmOQr4jsI7/ocTaH70JArqxsL2
- of7Oj9ufMqXFpYWjQ+JKRpOD4GRTlq9xbVzK+kJdai01H8fgwnGbfu/YhfFZMP3B
- MwIGn6dHIEZlpMdIWuno/H0M/MZZIiCOIkyMWBmeXsKbQp2Tvmx54a/GETT4xWs2
- y6UtDoWMN4MRql29icumzRnjMHRQAIR/jjjvRB1YpCtiVNc/A9I4RqDcywTrcFlk
- nqsc4xU9PRmC31MajCFtkhy+wWyjvc+p0AdAbyKvoyyI9pD10DS/o1Z0atp8+q64
- HcW5O5vcHG4nTpseXV0g1pBDNv+sT2Xf0lqxx/NPuAVqCJjvMYNwnthrQ==
-X-ME-Sender: <xms:1mpiYplUS1Md9jJrbHuXTTMFkSaC2Z2xQoa8_IMKqeTjq4BIL4wx6A>
- <xme:1mpiYk2XFhhnw_qmFc4rr_4gKZLCwdJGG7-cZWRNVv9kRFWBX50etGIMpWxZt2Xof
- Bcvwa6lb6vpMqreWFs>
-X-ME-Received: <xmr:1mpiYvrx6cVTzSJeSadUoH1y3Ab-by8WApwh5VS6kICJPHyMyZdz620cA5NYqMPamcsAuEZIMSJSCWxZDBIMZGbiKEooeO0vmQd8AKo>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrtdeggddtiecutefuodetggdotefrodftvf
- curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
- uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
- fjughrpeffhffvvefukfggtggusehgtderredttddunecuhfhrohhmpeforgigihhmvgcu
- tfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrthhtvg
- hrnhepkeehjeeguefhtefhgfehkeehudefudfhjefgheffkedufeegudfghfekfefhvedv
- necuffhomhgrihhnpehfrhgvvgguvghskhhtohhprdhorhhgnecuvehluhhsthgvrhfuih
- iivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordht
- vggthh
-X-ME-Proxy: <xmx:1mpiYpkPXpeNqUrNPswGqaIR8jhZ6oDuPeWG5gOV3gWfVcw2MOFVVQ>
- <xmx:1mpiYn3eX0CdBxUyjN6qdTGx0JUajaSfPmQ2a7wBXGTKFAyDcERtQw>
- <xmx:1mpiYoul2IzQeo2JFruFN-it9MSyKyhhAL7u71SsX-Yn7Am4lXFhug>
- <xmx:12piYgsKH1mSkLT6wy5ZWeLkOa6mYhdHC6k3gGOhEvAeKQSM6L8mVQ>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 22 Apr 2022 04:44:05 -0400 (EDT)
-Date: Fri, 22 Apr 2022 10:44:03 +0200
-From: Maxime Ripard <maxime@cerno.tech>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20220422084403.2xrhf3jusdej5yo4@houat>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1914710E6F4
+ for <intel-gfx@lists.freedesktop.org>; Fri, 22 Apr 2022 09:38:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1650620338; x=1682156338;
+ h=date:from:to:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=SCbcJRmXz7MOc/AYRxJrz5w4jJbADDyvaimpxCZ0WU0=;
+ b=fT8Z2HJcBoCggKjq1FCMVS3aXQw4P1BPzwd/T+LFFcRFPbSwzS2GhS67
+ vNqcwEA5MIPIc4dbwv2PKA8ulZ9yG7Nnf4HSqjLjXRshI9gwO4S51N/H/
+ NrdbhOGk8Br5put4cquCkw9GQ0hRHg0pvFmFz6K7OZ6Yc8nVlvUS1dcFr
+ enNTwcMtXvr5/mL/UkFMwvMmHs/ffFUdDGagX1wwEbHa43I5AkdXuhg+S
+ pi5wRz1mE4XewuiFELOgAr02vmIltpW0GSiWGVG1LY/um7TKVewSUw+wv
+ iMO4Au5ZC5xpsycri0iNt1Q+IpdtFdytgjdLaWgc0iDRSUSLjBBngkSdK w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10324"; a="262229869"
+X-IronPort-AV: E=Sophos;i="5.90,281,1643702400"; d="scan'208";a="262229869"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Apr 2022 02:38:57 -0700
+X-IronPort-AV: E=Sophos;i="5.90,281,1643702400"; d="scan'208";a="556277513"
+Received: from ideak-desk.fi.intel.com ([10.237.72.175])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Apr 2022 02:38:56 -0700
+Date: Fri, 22 Apr 2022 12:38:52 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+ Lakshminarayana Vudum <lakshminarayana.vudum@intel.com>
+Message-ID: <YmJ3rF3NbBhiJAXY@ideak-desk.fi.intel.com>
+References: <20220421162221.2261895-1-imre.deak@intel.com>
+ <165057530917.10762.17641440982789293557@emeril.freedesktop.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="v3com74cqrjvwtmg"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Subject: [Intel-gfx] [PULL] drm-misc-fixes
+In-Reply-To: <165057530917.10762.17641440982789293557@emeril.freedesktop.org>
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Fix_SEL=5FFETCH=5FPLANE=5F*=28PIPE=5FB+=29_register_ad?=
+ =?utf-8?q?dresses?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,116 +60,196 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
+Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi Lakshmi,
 
---v3com74cqrjvwtmg
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Thu, Apr 21, 2022 at 09:08:29PM +0000, Patchwork wrote:
+> == Series Details ==
+> 
+> Series: drm/i915: Fix SEL_FETCH_PLANE_*(PIPE_B+) register addresses
+> URL   : https://patchwork.freedesktop.org/series/102941/
+> State : failure
+> 
+> == Summary ==
+> 
+> CI Bug Log - changes from CI_DRM_11537 -> Patchwork_102941v1
+> ====================================================
+> 
+> Summary
+> -------
+> 
+>   **FAILURE**
+> 
+>   Serious unknown changes coming with Patchwork_102941v1 absolutely need to be
+>   verified manually.
+>   
+>   If you think the reported changes have nothing to do with the changes
+>   introduced in Patchwork_102941v1, please notify your bug team to allow them
+>   to document this new failure mode, which will reduce false positives in CI.
+> 
+>   External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102941v1/index.html
+> 
+> Participating hosts (45 -> 45)
+> ------------------------------
+> 
+>   Additional (2): fi-bdw-gvtdvm fi-bdw-5557u 
+>   Missing    (2): fi-bsw-cyan fi-icl-u2 
+> 
+> Possible new issues
+> -------------------
+> 
+>   Here are the unknown changes that may have been introduced in Patchwork_102941v1:
+> 
+> ### IGT changes ###
+> 
+> #### Possible regressions ####
+> 
+>   * igt@i915_selftest@live@gem:
+>     - fi-tgl-1115g4:      [PASS][1] -> [DMESG-WARN][2] +15 similar issues
+>    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11537/fi-tgl-1115g4/igt@i915_selftest@live@gem.html
+>    [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102941v1/fi-tgl-1115g4/igt@i915_selftest@live@gem.html
 
-Hi Daniel, Dave,
+This is
+"i915 0000:00:02.0: [drm] *ERROR* power well AUX_TBT4 state mismatch (refcount 1/enabled 0)"
 
-Here's this week drm-misc-fixes PR.
+tracked at
+https://gitlab.freedesktop.org/drm/intel/-/issues/2867
 
-The two reverts for devm_drm_of_get_bridge are likely to bring more
-reverts in the future.
+The issue is unrelated to the change, since fi-tgl-111g4 doesn't have an eDP panel.
 
-Indeed, it introduced some code to fetch the panel automatically on
-device tree child nodes as well, but that broke any driver with a child
-node that wasn't a panel.
+For 2867 I will follow up with a patch to change the error to a debug
+message, since TBT power wells are expected to stay disabled on a
+disconnected port.
 
-The reversion seems to be the best course of action right now, but it
-was later pointed out that a number of drivers had been converted to
-rely on the new behaviour, so those are likely to be broken now.
-
-I'm not sure if it would be acceptable to merge them at this point, or
-delay the merge drm-misc-fixes until those drivers are fixed?
-
-Maxime
-
-drm-misc-fixes-2022-04-22:
-Two fixes for the raspberrypi panel initialisation, one fix for a logic
-inversion in radeon, a build and pm refcounting fix for vc4, two reverts
-for drm_of_get_bridge that caused a number of regression and a locking
-regression for amdgpu.
-The following changes since commit 1ecc0c09f19f8e10a2c52676f8ca47c28c9f73c7:
-
-  dt-bindings: display: panel: mipi-dbi-spi: Make width-mm/height-mm mandat=
-ory (2022-04-07 03:28:10 +0200)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2022-04-22
-
-for you to fetch changes up to 94f4c4965e5513ba624488f4b601d6b385635aec:
-
-  drm/amdgpu: partial revert "remove ctx->lock" v2 (2022-04-21 11:26:20 +02=
-00)
-
-----------------------------------------------------------------
-Two fixes for the raspberrypi panel initialisation, one fix for a logic
-inversion in radeon, a build and pm refcounting fix for vc4, two reverts
-for drm_of_get_bridge that caused a number of regression and a locking
-regression for amdgpu.
-
-----------------------------------------------------------------
-Bjorn Andersson (2):
-      Revert "drm: of: Properly try all possible cases for bridge/panel det=
-ection"
-      Revert "drm: of: Lookup if child node has panel or bridge"
-
-Christian K=F6nig (2):
-      drm/radeon: fix logic inversion in radeon_sync_resv
-      drm/amdgpu: partial revert "remove ctx->lock" v2
-
-Dave Stevenson (2):
-      drm/panel/raspberrypi-touchscreen: Avoid NULL deref if not initialised
-      drm/panel/raspberrypi-touchscreen: Initialise the bridge in prepare
-
-Karol Herbst (1):
-      dma-buf-map: remove renamed header file
-
-Miaoqian Lin (1):
-      drm/vc4: Use pm_runtime_resume_and_get to fix pm_runtime_get_sync() u=
-sage
-
-Zack Rusin (1):
-      drm/vmwgfx: Fix gem refcounting and memory evictions
-
-Zheng Bin (1):
-      drm/vc4: Fix build error when CONFIG_DRM_VC4=3Dy && CONFIG_RASPBERRYP=
-I_FIRMWARE=3Dm
-
- drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c             |  21 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c            |   2 +
- drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.h            |   1 +
- drivers/gpu/drm/drm_of.c                           |  86 +++----
- .../gpu/drm/panel/panel-raspberrypi-touchscreen.c  |  13 +-
- drivers/gpu/drm/radeon/radeon_sync.c               |   2 +-
- drivers/gpu/drm/vc4/Kconfig                        |   3 +
- drivers/gpu/drm/vc4/vc4_dsi.c                      |   2 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_bo.c                 |  43 ++--
- drivers/gpu/drm/vmwgfx/vmwgfx_drv.c                |   8 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_surface.c            |   7 +-
- include/linux/dma-buf-map.h                        | 266 -----------------=
-----
- 12 files changed, 95 insertions(+), 359 deletions(-)
- delete mode 100644 include/linux/dma-buf-map.h
-
---v3com74cqrjvwtmg
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYmJq0wAKCRDj7w1vZxhR
-xSZWAQDXTlsC/kHvkvegm/3AyO9esqBUEsFeBpF9AUGNeg+SSwD/cZAx0AkzONzZ
-TRVV14DmHavP8k52UYwpP4uQ/e+/5Qg=
-=1tKk
------END PGP SIGNATURE-----
-
---v3com74cqrjvwtmg--
+> Known issues
+> ------------
+> 
+>   Here are the changes found in Patchwork_102941v1 that come from known issues:
+> 
+> ### IGT changes ###
+> 
+> #### Issues hit ####
+> 
+>   * igt@fbdev@write:
+>     - fi-bdw-gvtdvm:      NOTRUN -> [SKIP][3] ([fdo#109271]) +5 similar issues
+>    [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102941v1/fi-bdw-gvtdvm/igt@fbdev@write.html
+> 
+>   * igt@gem_exec_suspend@basic-s0@smem:
+>     - fi-bdw-gvtdvm:      NOTRUN -> [INCOMPLETE][4] ([i915#4831])
+>    [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102941v1/fi-bdw-gvtdvm/igt@gem_exec_suspend@basic-s0@smem.html
+> 
+>   * igt@i915_selftest@live@execlists:
+>     - fi-bsw-n3050:       [PASS][5] -> [INCOMPLETE][6] ([i915#2940])
+>    [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11537/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
+>    [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102941v1/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
+> 
+>   * igt@i915_selftest@live@gt_engines:
+>     - bat-dg1-6:          [PASS][7] -> [INCOMPLETE][8] ([i915#4418])
+>    [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11537/bat-dg1-6/igt@i915_selftest@live@gt_engines.html
+>    [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102941v1/bat-dg1-6/igt@i915_selftest@live@gt_engines.html
+> 
+>   * igt@i915_selftest@live@hangcheck:
+>     - fi-hsw-g3258:       [PASS][9] -> [INCOMPLETE][10] ([i915#4785])
+>    [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11537/fi-hsw-g3258/igt@i915_selftest@live@hangcheck.html
+>    [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102941v1/fi-hsw-g3258/igt@i915_selftest@live@hangcheck.html
+> 
+>   * igt@i915_selftest@live@slpc:
+>     - bat-dg1-5:          [PASS][11] -> [INCOMPLETE][12] ([i915#5198])
+>    [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11537/bat-dg1-5/igt@i915_selftest@live@slpc.html
+>    [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102941v1/bat-dg1-5/igt@i915_selftest@live@slpc.html
+> 
+>   * igt@kms_flip@basic-flip-vs-modeset@b-edp1:
+>     - bat-adlp-4:         [PASS][13] -> [DMESG-WARN][14] ([i915#3576]) +1 similar issue
+>    [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11537/bat-adlp-4/igt@kms_flip@basic-flip-vs-modeset@b-edp1.html
+>    [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102941v1/bat-adlp-4/igt@kms_flip@basic-flip-vs-modeset@b-edp1.html
+> 
+>   * igt@runner@aborted:
+>     - fi-bdw-5557u:       NOTRUN -> [FAIL][15] ([i915#4312])
+>    [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102941v1/fi-bdw-5557u/igt@runner@aborted.html
+>     - fi-hsw-g3258:       NOTRUN -> [FAIL][16] ([fdo#109271] / [i915#4312])
+>    [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102941v1/fi-hsw-g3258/igt@runner@aborted.html
+>     - bat-dg1-6:          NOTRUN -> [FAIL][17] ([i915#4312] / [i915#5257])
+>    [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102941v1/bat-dg1-6/igt@runner@aborted.html
+>     - fi-bsw-n3050:       NOTRUN -> [FAIL][18] ([fdo#109271] / [i915#3428] / [i915#4312])
+>    [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102941v1/fi-bsw-n3050/igt@runner@aborted.html
+> 
+>   
+> #### Possible fixes ####
+> 
+>   * igt@i915_selftest@live@gt_heartbeat:
+>     - {fi-tgl-dsi}:       [DMESG-FAIL][19] ([i915#5334]) -> [PASS][20]
+>    [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11537/fi-tgl-dsi/igt@i915_selftest@live@gt_heartbeat.html
+>    [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102941v1/fi-tgl-dsi/igt@i915_selftest@live@gt_heartbeat.html
+> 
+>   * igt@i915_selftest@live@hangcheck:
+>     - fi-snb-2600:        [INCOMPLETE][21] ([i915#3921]) -> [PASS][22]
+>    [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11537/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+>    [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102941v1/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+> 
+>   * igt@kms_flip@basic-flip-vs-modeset@a-edp1:
+>     - {bat-adlp-6}:       [DMESG-WARN][23] ([i915#3576]) -> [PASS][24]
+>    [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11537/bat-adlp-6/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html
+>    [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102941v1/bat-adlp-6/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html
+> 
+>   * igt@kms_flip@basic-plain-flip@a-edp1:
+>     - bat-adlp-4:         [DMESG-WARN][25] ([i915#3576]) -> [PASS][26]
+>    [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11537/bat-adlp-4/igt@kms_flip@basic-plain-flip@a-edp1.html
+>    [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102941v1/bat-adlp-4/igt@kms_flip@basic-plain-flip@a-edp1.html
+> 
+>   
+>   {name}: This element is suppressed. This means it is ignored when computing
+>           the status of the difference (SUCCESS, WARNING, or FAILURE).
+> 
+>   [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+>   [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+>   [fdo#109308]: https://bugs.freedesktop.org/show_bug.cgi?id=109308
+>   [fdo#111825]: https://bugs.freedesktop.org/show_bug.cgi?id=111825
+>   [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+>   [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+>   [i915#1155]: https://gitlab.freedesktop.org/drm/intel/issues/1155
+>   [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
+>   [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
+>   [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
+>   [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
+>   [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
+>   [i915#3428]: https://gitlab.freedesktop.org/drm/intel/issues/3428
+>   [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
+>   [i915#3576]: https://gitlab.freedesktop.org/drm/intel/issues/3576
+>   [i915#3637]: https://gitlab.freedesktop.org/drm/intel/issues/3637
+>   [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
+>   [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
+>   [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+>   [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+>   [i915#4391]: https://gitlab.freedesktop.org/drm/intel/issues/4391
+>   [i915#4418]: https://gitlab.freedesktop.org/drm/intel/issues/4418
+>   [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
+>   [i915#4831]: https://gitlab.freedesktop.org/drm/intel/issues/4831
+>   [i915#4897]: https://gitlab.freedesktop.org/drm/intel/issues/4897
+>   [i915#5198]: https://gitlab.freedesktop.org/drm/intel/issues/5198
+>   [i915#5257]: https://gitlab.freedesktop.org/drm/intel/issues/5257
+>   [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
+>   [i915#5341]: https://gitlab.freedesktop.org/drm/intel/issues/5341
+>   [i915#5647]: https://gitlab.freedesktop.org/drm/intel/issues/5647
+> 
+> 
+> Build changes
+> -------------
+> 
+>   * Linux: CI_DRM_11537 -> Patchwork_102941v1
+> 
+>   CI-20190529: 20190529
+>   CI_DRM_11537: d3f1b43f64dc51bfbb59fab5c6b950159c77207e @ git://anongit.freedesktop.org/gfx-ci/linux
+>   IGT_6444: df584c804e3a44431b0e5ae21c190b6e9acb35ab @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+>   Patchwork_102941v1: d3f1b43f64dc51bfbb59fab5c6b950159c77207e @ git://anongit.freedesktop.org/gfx-ci/linux
+> 
+> 
+> ### Linux commits
+> 
+> 51331d6ade57 drm/i915: Fix SEL_FETCH_PLANE_*(PIPE_B+) register addresses
+> 
+> == Logs ==
+> 
+> For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102941v1/index.html
