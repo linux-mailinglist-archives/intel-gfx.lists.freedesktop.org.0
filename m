@@ -1,51 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A019A50B219
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 Apr 2022 09:58:25 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2321450B31E
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 Apr 2022 10:42:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F150A11220A;
-	Fri, 22 Apr 2022 07:58:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 06E8510FE3B;
+	Fri, 22 Apr 2022 08:42:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EAB51112201;
- Fri, 22 Apr 2022 07:58:04 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6FC4410F5E2;
+ Fri, 22 Apr 2022 08:42:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1650614285; x=1682150285;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=fp4T4UYCxghpLMysqML2JwzbCGdMPLGoU75Q0I5jeRo=;
- b=BiKv58Cc3GIu9QuQEJnt7dpjnfLnTisWuzIKkEVti+vI5k0RiaX+RHE5
- rtgy5uWEcERoXmyjZA2IVQ3AaK92EifeNZKUXl4xABO5pnGlx/xKnLxi7
- 0LBWzy1v3sI1m2W3r8FSJtwP7LATdK9EXH1FliRZZjhwbaj7gK898xWZy
- huLveoBzjw6DcjitoV3oxyqjwkkpyJH8sIuTWvkBFbwefQ1f0vfcJP5rZ
- OKl74kUq8ZNHK3Bm+rYboMjyaEY71CguxHl+8GjUSFK3vl1k58hmaQ3UV
- y82LpCcG49WfCJsADB42pvHYglaCC6fjgRM6cZdMzaAvvKNa5DfO9Nzuw w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10324"; a="325062226"
-X-IronPort-AV: E=Sophos;i="5.90,281,1643702400"; d="scan'208";a="325062226"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Apr 2022 00:58:04 -0700
-X-IronPort-AV: E=Sophos;i="5.90,281,1643702400"; d="scan'208";a="703447976"
-Received: from bhanu-nuclab.iind.intel.com ([10.145.162.173])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Apr 2022 00:58:02 -0700
-From: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
-To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- ville.syrjala@linux.intel.com, manasi.d.navare@intel.com
-Date: Fri, 22 Apr 2022 13:25:36 +0530
-Message-Id: <20220422075536.2792833-3-bhanuprakash.modem@intel.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220422075536.2792833-1-bhanuprakash.modem@intel.com>
-References: <20220422075536.2792833-1-bhanuprakash.modem@intel.com>
+ t=1650616959; x=1682152959;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=oJo6686rlTVl4NF8qTq+75xulViOxa7VsmZhuLw8LAY=;
+ b=YxWDF3bicTVKgUNG8dZXpa661uH2CXyofWzRjFm9PiHFbw05EddnnNWQ
+ Xl8iHbpb5y7NqcJFJ7Tr8JYC7iK3jmANspcQDZNGq2QZjSuu54BBr6kgm
+ I+rglGTncLk310CMQzfopTDVGYrk2cT38UOgquvBFZ5ssGh2sRuXv4u6/
+ +iW+RAcwkAwTlW3fWb5RyUZ9ZeAqTYDLncA91ER+SutAqMjOUSXPKsmfH
+ CQ4uvYl38owA3nE1S1rQSedOtbFQ8My4asua9XiqSs4QFWDNvF83dH4KT
+ Jic7sbGyNAa2iAPb8D/YjFGfwFzLpcs0ChXwNhEqEJgj++a8RCRyXfVBS A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10324"; a="289739711"
+X-IronPort-AV: E=Sophos;i="5.90,281,1643702400"; d="scan'208";a="289739711"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Apr 2022 01:42:39 -0700
+X-IronPort-AV: E=Sophos;i="5.90,281,1643702400"; d="scan'208";a="658925459"
+Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.203.144.108])
+ by fmsmga002-auth.fm.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Apr 2022 01:42:37 -0700
+Date: Fri, 22 Apr 2022 14:13:12 +0530
+From: Ramalingam C <ramalingam.c@intel.com>
+To: "Hellstrom, Thomas" <thomas.hellstrom@intel.com>
+Message-ID: <20220422084312.GB2564@intel.com>
+References: <20220421113813.30796-1-ramalingam.c@intel.com>
+ <20220421113813.30796-4-ramalingam.c@intel.com>
+ <249408791057852ef445c0a8795f3486ef45b151.camel@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [RFC 2/2] drm/i915/vrr: Attach and set drm crtc
- vrr_enabled property
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <249408791057852ef445c0a8795f3486ef45b151.camel@intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915/gt: Extend doc on Flat-CCS obj
+ eviction
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,60 +59,110 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Auld,
+ Matthew" <matthew.auld@intel.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This function attaches & sets the vrr_enabled property for crtc
-based on the platform support and the request from userspace.
+On 2022-04-21 at 19:07:29 +0530, Hellstrom, Thomas wrote:
+> On Thu, 2022-04-21 at 17:08 +0530, Ramalingam C wrote:
+> > Capture the eviction details for Flat-CCS capable lmem only objects
+> > and
+> > lmem objects with smem residency. This also captures the impact of
+> > eviction on  object's memory residency and Flat-CCS compression
+> > state.
+> >
+> > Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/gt/intel_migrate.c | 36 ++++++++++++++++++-----
+> > --
+> >  1 file changed, 27 insertions(+), 9 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_migrate.c
+> > b/drivers/gpu/drm/i915/gt/intel_migrate.c
+> > index 463a6a14b5f9..9d0d18950e76 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_migrate.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_migrate.c
+> > @@ -485,16 +485,34 @@ static bool wa_1209644611_applies(int ver, u32
+> > size)
+> >   * And CCS data can be copied in and out of CCS region through
+> >   * XY_CTRL_SURF_COPY_BLT. CPU can't access the CCS data directly.
+> >   *
+> > - * When we exhaust the lmem, if the object's placements support
+> > smem, then we can
+> > - * directly decompress the compressed lmem object into smem and
+> > start using it
+> > - * from smem itself.
+> > + * when we exhaust the lmem, we need to handle two types of flat-ccs
+> > capable
+> > + * objects for its eviction.
+> > + *   1) lmem only objects
+> > + *   2) lmem objects with smem residency option
+> >   *
+> > - * But when we need to swapout the compressed lmem object into a
+> > smem region
+> > - * though objects' placement doesn't support smem, then we copy the
+> > lmem content
+> > - * as it is into smem region along with ccs data (using
+> > XY_CTRL_SURF_COPY_BLT).
+> > - * When the object is referred, lmem content will be swaped in along
+> > with
+> > - * restoration of the CCS data (using XY_CTRL_SURF_COPY_BLT) at
+> > corresponding
+> > - * location.
+> > + * 1) lmem only objects:
+> > + *
+> > + * lmem backing memory can be temporarily evicted to smem, along
+> > with the
+> > + * auxiliary CCS state, where it can be potentially swapped-out at a
+> > later point,
+> > + * if required. If userspace later touches the evicted pages, then
+> > we always move
+> > + * the backing memory back to lmem, which includes restoring the
+> > saved CCS state,
+> > + * and potentially performing any required swap-in.
+> > + *
+> > + * In this scenario, objects' backing memory class and Flat-CCS
+> > state doesn't
+> > + * change.
+> > + *
+> > + * 2) lmem objects with smem residency option
+> > + *
+> > + * Lmem object with smem region in it's placement list, will be
+> > migrated into
+> > + * smem  by decompressing the content. I915 doesn't handle this kind
+> > of
+> > + * migration for Flat-CCS compressed objects yet.
+> > + *
+> > + * In this scenario, objects' backing memory class and Flat-CCS
+> > state changed,
+> > + * and userspace is not aware of it.
+> > + *
+> > + * In summary, when a userspace wants to be sure about the objects
+> > memory
+> > + * residency and flat-ccs compression state, then placement list
+> > can't have
+> > + * the lmem and smem together. Instead, object has to be lmem
+> > resident only.
+> 
+> For 2) I was under the impression that with flat CCS, these objects
+> need to be always uncompressed, since the kernel doesn't have the
+> needed information to decompress / compress. Or has this been changed
+> recently?
+Sorry. I have overlooked the lack of inputs required for decompression
+at kernel. So yes we can't support the compression on the lmem objects
+with {lmem, smem} as placement preferences. I will update the
+documentation accordingly.
 
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Cc: Manasi Navare <manasi.d.navare@intel.com>
-Signed-off-by: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
----
- drivers/gpu/drm/i915/display/intel_crtc.c | 3 +++
- drivers/gpu/drm/i915/display/intel_vrr.c  | 7 ++++++-
- 2 files changed, 9 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-index 4442aa355f86..36deaca9af66 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-@@ -366,6 +366,9 @@ int intel_crtc_init(struct drm_i915_private *dev_priv, enum pipe pipe)
- 						BIT(DRM_SCALING_FILTER_DEFAULT) |
- 						BIT(DRM_SCALING_FILTER_NEAREST_NEIGHBOR));
- 
-+	if (HAS_VRR(dev_priv))
-+		drm_mode_crtc_attach_vrr_enabled_property(&crtc->base);
-+
- 	intel_color_init(crtc);
- 
- 	intel_crtc_drrs_init(crtc);
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index 396f2f994fa0..6cb8410bd4a0 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.c
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -160,8 +160,11 @@ void intel_vrr_enable(struct intel_encoder *encoder,
- 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
- 	u32 trans_vrr_ctl;
- 
--	if (!crtc_state->vrr.enable)
-+	if (!crtc_state->vrr.enable) {
-+		drm_mode_crtc_set_vrr_enabled_property(crtc_state->uapi.crtc, false);
- 		return;
-+	}
-+	drm_mode_crtc_set_vrr_enabled_property(crtc_state->uapi.crtc, true);
- 
- 	if (DISPLAY_VER(dev_priv) >= 13)
- 		trans_vrr_ctl = VRR_CTL_VRR_ENABLE |
-@@ -211,6 +214,8 @@ void intel_vrr_disable(const struct intel_crtc_state *old_crtc_state)
- 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
- 	enum transcoder cpu_transcoder = old_crtc_state->cpu_transcoder;
- 
-+	drm_mode_crtc_set_vrr_enabled_property(old_crtc_state->uapi.crtc, false);
-+
- 	if (!old_crtc_state->vrr.enable)
- 		return;
- 
--- 
-2.35.1
-
+Ram.
+> 
+> /Thomas
+> 
+> 
+> 
+> 
+> >   */
+> >
+> >  static inline u32 *i915_flush_dw(u32 *cmd, u32 flags)
+> 
