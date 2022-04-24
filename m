@@ -1,51 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B68950D587
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 Apr 2022 00:05:56 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADEFE50D5C1
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 Apr 2022 00:31:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED93D10E21B;
-	Sun, 24 Apr 2022 22:05:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5683F10EA64;
+	Sun, 24 Apr 2022 22:31:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C5E8810E21B
- for <intel-gfx@lists.freedesktop.org>; Sun, 24 Apr 2022 22:05:52 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA76010EA64
+ for <intel-gfx@lists.freedesktop.org>; Sun, 24 Apr 2022 22:31:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1650837952; x=1682373952;
+ t=1650839463; x=1682375463;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=RWFJO9VzeB71EGkwOwFUvP7aewxa8y33s9w3L+5mbco=;
- b=gEmmxHE4XhpTNsGQc62W5OTqjNlVQ8IKQZiwM5cNvYFB5szEZsxlppGM
- 9jJin66+HM8OQN2SX45kbdR2ZEdM4JXQI4P9+ETktFCXQvfuxC37UwGpK
- LfBdUYTMWeSdekjrR2RI6PzpzJAkWMS1EtkWVTV68jMXH+ec9CidgeFxv
- GAlWdOpyHtkHZyU4CPmB8iIeX3Wnyc1acZUH0bgXfbtAvW8AUGS8tXasX
- EkVzwkjZ6ZPlQDPH8DOrFlUNtQKerDP6UfufaRb1XYGNwhQqV4HU2yFx8
- g+rTbvCI3qjj8WnuwoJznjEniwPHfSehcdCbImay1Lrg8reRgFgR1XVAn w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10327"; a="328021894"
-X-IronPort-AV: E=Sophos;i="5.90,287,1643702400"; d="scan'208";a="328021894"
+ bh=YLvvYmF3/fjhm8mhC8zNZIHZCK7vVmZigFTILlm71o0=;
+ b=Ok4TR93jfmzgntk/vtWl5YmGwL5mjl/t8dE4aEnPqNoGrNUwpGJ8Zhir
+ NxI8D2b9+OIAGTwhBXZX+JVuSL4H59Y+smAs5K+zqSZkVvdtpdepDfM+y
+ q5ZqyIWBDNI8cVZdiQF+00SMgnqclc5LXegMCLaVHwav1IP8HC5nuqhGO
+ FcF8cKK6aDuodnTLKOuEgztlf+m+H1xTbxzw2RPfv9tKi8TEUJ2TZ8Bdy
+ bzdiQLZcBOU/RKLyX29wBrjbuMB/FmC0vkbjb3Rr2l7+D5+/5pT1FJgYp
+ r9YgiOgBuOuHlAVnERG0h6q2WU4MOZbTig4UCaKDp/htM+6VzSEe2W5aq A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10327"; a="264603985"
+X-IronPort-AV: E=Sophos;i="5.90,287,1643702400"; d="scan'208";a="264603985"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Apr 2022 15:05:52 -0700
-X-IronPort-AV: E=Sophos;i="5.90,287,1643702400"; d="scan'208";a="578947271"
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Apr 2022 15:31:03 -0700
+X-IronPort-AV: E=Sophos;i="5.90,287,1643702400"; d="scan'208";a="578954117"
 Received: from fmihut-mobl1.ger.corp.intel.com (HELO intel.com)
  ([10.252.47.38])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Apr 2022 15:05:50 -0700
-Date: Mon, 25 Apr 2022 00:05:47 +0200
+ 24 Apr 2022 15:31:01 -0700
+Date: Mon, 25 Apr 2022 00:30:59 +0200
 From: Andi Shyti <andi.shyti@linux.intel.com>
 To: Ashutosh Dixit <ashutosh.dixit@intel.com>
-Message-ID: <YmXJu9A1Vjg+SBYk@intel.intel>
+Message-ID: <YmXPo2vpPS6rXGV6@intel.intel>
 References: <cover.1650435571.git.ashutosh.dixit@intel.com>
- <d12bb581d568ddab386d2cbf1769d78353510674.1650435571.git.ashutosh.dixit@intel.com>
+ <9ed5af1177ad08c7c2d9c5d9b32ab0154dbd950f.1650435571.git.ashutosh.dixit@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <d12bb581d568ddab386d2cbf1769d78353510674.1650435571.git.ashutosh.dixit@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 6/9] drm/i915/gt: Add media RP0/RPn to
- per-gt sysfs
+In-Reply-To: <9ed5af1177ad08c7c2d9c5d9b32ab0154dbd950f.1650435571.git.ashutosh.dixit@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 7/9] drm/i915/gt: Fix memory leaks in per-gt
+ sysfs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,57 +66,14 @@ Hi Ashutosh,
 
 [...]
 
-> +static ssize_t media_RP0_freq_mhz_show(struct device *dev,
-> +				       struct device_attribute *attr,
-> +				       char *buff)
-> +{
-> +	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(dev, attr->attr.name);
-> +	u32 val;
-> +	int err;
-> +
-> +	err = __intel_gt_pcode_read(gt, XEHPSDV_PCODE_FREQUENCY_CONFIG,
-> +				    PCODE_MBOX_FC_SC_READ_FUSED_P0,
-> +				    PCODE_MBOX_DOMAIN_MEDIAFF, &val);
-> +
-> +	if (err)
-> +		return err;
-> +
-> +	/* data_out - Fused P0 for domain ID in units of 50 MHz */
+> -static struct kobj_type kobj_gt_type = {
+> -	.release = kobj_gt_release,
+> +static struct kobj_type kobj_gtn_type = {
 
-this comment doesn't say much, can we make it a bit clearer? The
-same for the one below.
+what does it mean GTN? Or is it GTn? Please use just GT, gtn is
+confusing.
 
-The rest looks good:
-
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
-
-> +	val *= GT_FREQUENCY_MULTIPLIER;
-> +
-> +	return sysfs_emit(buff, "%u\n", val);
-> +}
-> +
-> +static ssize_t media_RPn_freq_mhz_show(struct device *dev,
-> +				       struct device_attribute *attr,
-> +				       char *buff)
-> +{
-> +	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(dev, attr->attr.name);
-> +	u32 val;
-> +	int err;
-> +
-> +	err = __intel_gt_pcode_read(gt, XEHPSDV_PCODE_FREQUENCY_CONFIG,
-> +				    PCODE_MBOX_FC_SC_READ_FUSED_PN,
-> +				    PCODE_MBOX_DOMAIN_MEDIAFF, &val);
-> +
-> +	if (err)
-> +		return err;
-> +
-> +	/* data_out - Fused P0 for domain ID in units of 50 MHz */
-> +	val *= GT_FREQUENCY_MULTIPLIER;
-> +
-> +	return sysfs_emit(buff, "%u\n", val);
-> +}
-
-[...]
+Same for all the rest of the gtn's you have used below.
 
 Thanks,
 Andi
