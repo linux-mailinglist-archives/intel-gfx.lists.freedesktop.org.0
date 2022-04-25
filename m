@@ -1,50 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4917E50E92A
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 Apr 2022 21:08:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8699350EB2A
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 Apr 2022 23:13:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 404F710E18A;
-	Mon, 25 Apr 2022 19:08:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 810B110E2E2;
+	Mon, 25 Apr 2022 21:13:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9543C10E18A
- for <intel-gfx@lists.freedesktop.org>; Mon, 25 Apr 2022 19:08:50 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 22F7310E2A6;
+ Mon, 25 Apr 2022 21:13:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1650913730; x=1682449730;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=vw9wjxr9Afw39rB+2/xr9eLAHIk9qhItQy7sgNx/Ihs=;
- b=nXTILvRL7Q+6Xp0Kg57a8T9WtCZm15jShs2xwN8lvrTmftZ/MRAMjSdg
- PbUe3vYIqftfzYiRP0f3nohQR8ZQ9gaN/cYI2wIiEEwIgV3qFb1CRjOIB
- GdYrlpqOeHL9cnmneTi2iy4oLyiX+w7XvAgNtLTZiPUFQnMiaZBls2Og5
- U1U2tgzcIcKuvu8gTdXDDfFCIIacvWzL97wYge0dHnI8Wr0M+JJTvmcuy
- 8vJQSKd7ItKyBVWCPbH0qDUfvWxPz1xwIP3/Meh8EJrGey9hM6hitbW6l
- TF90BrhNuTCdi9xXCeUpUMM0T5cbSLzZToBdFjxgOddfFivGGlycL/bab w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10328"; a="247268002"
-X-IronPort-AV: E=Sophos;i="5.90,289,1643702400"; d="scan'208";a="247268002"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Apr 2022 12:08:49 -0700
-X-IronPort-AV: E=Sophos;i="5.90,289,1643702400"; d="scan'208";a="512770335"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Apr 2022 12:08:48 -0700
-Date: Mon, 25 Apr 2022 12:08:46 -0700
+ t=1650921188; x=1682457188;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=5ltW3da3wpjYb2XhaEkHIUNybZK6hKNLGzjN48J5yd4=;
+ b=LFNaK3VR+t+4/21GgKFiS46XqALgImF43b7RS5eSuuNUK4q4sgsarWsh
+ qazAI1yJMb8qPEiJzNdTlbNp0UiBlm3UYobNzu6aJQOl6L1OaY1sau6lg
+ qlrYj0QUFC2rtFFRDRp0pb/5ScsJQfKDCF4G6x1X1x/jqQZPqgmc1n3hL
+ NcAMIgtkRA82ES5+xNJF667w3taOBM9W9GkJOOX2SuPmXclzhATUI/ILt
+ q98o6+6ZrJLtBLLXqEakcSBRg94zmyE9IMYIXiOrkkgRRxENmQjNOmhoM
+ IsPb4zpVNAbhhMeEcAwasqT+MNjfXXYbzNzd6466ACC9rfPlL2zfpi4R5 g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10328"; a="265531322"
+X-IronPort-AV: E=Sophos;i="5.90,289,1643702400"; d="scan'208";a="265531322"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Apr 2022 14:12:58 -0700
+X-IronPort-AV: E=Sophos;i="5.90,289,1643702400"; d="scan'208";a="729916082"
+Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Apr 2022 14:12:58 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <Ymbxvoay8QqjdVP+@mdroper-desk1.amr.corp.intel.com>
-References: <20220425154754.990815-1-jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 25 Apr 2022 14:12:48 -0700
+Message-Id: <20220425211251.77154-1-matthew.d.roper@intel.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220425154754.990815-1-jani.nikula@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: remove superfluous string helper
- include
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2 0/3] i915: Upstream initial DG2 PCI IDs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,45 +53,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Apr 25, 2022 at 06:47:54PM +0300, Jani Nikula wrote:
-> Remove the duplicate and incorrect (uses "" instead of <>)
-> linux/string_helpers.h include.
-> 
-> Fixes: cc1338f259a2 ("drm/i915/xehp: Update topology dumps for Xe_HP")
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+We've had all of our DG2 and ATS-M PCI IDs in the topic/core-for-CI
+branch for a while, but we've now got the critical uapi changes in place
+to unblock upstreaming the initial subset (which correspond to
+"motherboard down" designs) through the drm-intel tree.  The remaining
+IDs (which correspond to add-in card designs) will remain in the
+topic/core-for-CI branch until some additional prerequisite
+functionality lands.
 
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Since the topic/core-for-CI branch is a rebasing branch, we'll just
+rebase the relevant IDs out of it when the time comes, but I'm sending
+them as a formal revert here so that the CI system doesn't get confused
+when testing the series.
 
-> ---
->  drivers/gpu/drm/i915/gt/intel_sseu.c | 2 --
->  1 file changed, 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_sseu.c b/drivers/gpu/drm/i915/gt/intel_sseu.c
-> index 9881a6790574..fdd25691beda 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_sseu.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_sseu.c
-> @@ -10,8 +10,6 @@
->  #include "intel_gt_regs.h"
->  #include "intel_sseu.h"
->  
-> -#include "linux/string_helpers.h"
-> -
->  void intel_sseu_set_info(struct sseu_dev_info *sseu, u8 max_slices,
->  			 u8 max_subslices, u8 max_eus_per_subslice)
->  {
-> -- 
-> 2.30.2
-> 
+Note that a handful of new DG2-G12 IDs have also shown up recently, so
+those additional IDs are also included here.
+
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+
+Matt Roper (3):
+  topic/core-for-CI:  Revert DG2 and ATS-M device IDs
+  drm/i915: Add first set of DG2 PCI IDs
+  topic/core-for-CI: Add remaining DG2 and ATS-M device IDs
+
+ include/drm/i915_pciids.h | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
 -- 
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
+2.35.1
+
