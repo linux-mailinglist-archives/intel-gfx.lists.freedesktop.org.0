@@ -1,51 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26C5A50D9C2
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 Apr 2022 08:48:47 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9F8550D9E2
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 Apr 2022 09:07:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4364B10FF6B;
-	Mon, 25 Apr 2022 06:48:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 10A0D11222B;
+	Mon, 25 Apr 2022 07:07:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 987F510FF6B;
- Mon, 25 Apr 2022 06:48:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1650869320; x=1682405320;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=JyYi2/M8SAEwYhIYIJnEazvXfR+ni1R3cjWWjdBz8xE=;
- b=PGGTVhnBbmK4V6+uZ9vyx/JXEv/7OmkQNNFpwDGXDFGOPCkD6KJy9EuB
- Zx5PJg4lqDbzPOB0SQKVOJ70/uaDHGSIYc0iEAclRZ/3mUcygGjtTNUiP
- 7N07qEEBXzlgS8t+VSyMdWAKO1MCiWJ6fg65UIsbMPq6hgWLkFJ6cMv6P
- jMcwSnhnEeeFuBSGmf/QLE4AHSmQQPFAYKoRfiZh/abCYHn9SdgrtBBAf
- bquDkR/zo8AD59vHbSnavD1XRzly+/UKh+kSWRTO9Aht+8O/wxca7tHya
- qz/W0J/SMzQBx051aHKPZ4h9FZ90naKLWegHkn8LvuCTxKAPdv/9lwd2h g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10327"; a="265325807"
-X-IronPort-AV: E=Sophos;i="5.90,287,1643702400"; d="scan'208";a="265325807"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Apr 2022 23:48:40 -0700
-X-IronPort-AV: E=Sophos;i="5.90,287,1643702400"; d="scan'208";a="616385910"
-Received: from bhanu-nuclab.iind.intel.com ([10.145.162.173])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Apr 2022 23:48:38 -0700
-From: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
-To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- ville.syrjala@linux.intel.com, manasi.d.navare@intel.com
-Date: Mon, 25 Apr 2022 12:16:12 +0530
-Message-Id: <20220425064612.2993587-3-bhanuprakash.modem@intel.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220425064612.2993587-1-bhanuprakash.modem@intel.com>
-References: <20220425064612.2993587-1-bhanuprakash.modem@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A5BE211222B;
+ Mon, 25 Apr 2022 07:07:33 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id A9051A3C0D;
+ Mon, 25 Apr 2022 07:07:33 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [RFC v2 2/2] drm/i915/vrr: Attach and set drm crtc
- vrr_enabled property
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Bhanuprakash Modem" <bhanuprakash.modem@intel.com>
+Date: Mon, 25 Apr 2022 07:07:33 -0000
+Message-ID: <165087045368.32284.16657484933558148231@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220425064612.2993587-1-bhanuprakash.modem@intel.com>
+In-Reply-To: <20220425064612.2993587-1-bhanuprakash.modem@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Attach_and_Set_vrr=5Fenabled_property_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,62 +40,27 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This function attaches & sets the vrr_enabled property for crtc
-based on the platform support and the request from userspace.
+== Series Details ==
 
-V2: Check for platform support before updating the prop.
+Series: Attach and Set vrr_enabled property (rev2)
+URL   : https://patchwork.freedesktop.org/series/102978/
+State : warning
 
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Cc: Manasi Navare <manasi.d.navare@intel.com>
-Signed-off-by: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
----
- drivers/gpu/drm/i915/display/intel_crtc.c | 3 +++
- drivers/gpu/drm/i915/display/intel_vrr.c  | 8 ++++++++
- 2 files changed, 11 insertions(+)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-index 4442aa355f86..36deaca9af66 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-@@ -366,6 +366,9 @@ int intel_crtc_init(struct drm_i915_private *dev_priv, enum pipe pipe)
- 						BIT(DRM_SCALING_FILTER_DEFAULT) |
- 						BIT(DRM_SCALING_FILTER_NEAREST_NEIGHBOR));
- 
-+	if (HAS_VRR(dev_priv))
-+		drm_mode_crtc_attach_vrr_enabled_property(&crtc->base);
-+
- 	intel_color_init(crtc);
- 
- 	intel_crtc_drrs_init(crtc);
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index 396f2f994fa0..7263b35550de 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.c
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -160,6 +160,10 @@ void intel_vrr_enable(struct intel_encoder *encoder,
- 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
- 	u32 trans_vrr_ctl;
- 
-+	if (HAS_VRR(dev_priv))
-+		drm_mode_crtc_set_vrr_enabled_property(crtc_state->uapi.crtc,
-+						       crtc_state->vrr.enable);
-+
- 	if (!crtc_state->vrr.enable)
- 		return;
- 
-@@ -211,6 +215,10 @@ void intel_vrr_disable(const struct intel_crtc_state *old_crtc_state)
- 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
- 	enum transcoder cpu_transcoder = old_crtc_state->cpu_transcoder;
- 
-+	if (HAS_VRR(dev_priv))
-+		drm_mode_crtc_set_vrr_enabled_property(old_crtc_state->uapi.crtc,
-+						       false);
-+
- 	if (!old_crtc_state->vrr.enable)
- 		return;
- 
--- 
-2.35.1
+Error: dim checkpatch failed
+74f8ea70155d drm/vrr: Attach vrr_enabled property to the drm crtc
+-:90: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#90: FILE: drivers/gpu/drm/drm_mode_config.c:327:
++	prop = drm_property_create_bool(dev, DRM_MODE_PROP_ATOMIC,
+ 			"VRR_ENABLED");
+
+total: 0 errors, 0 warnings, 1 checks, 63 lines checked
+ecc537c1ea75 drm/i915/vrr: Attach and set drm crtc vrr_enabled property
+
 
