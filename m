@@ -1,151 +1,82 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA5DF50F51D
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 Apr 2022 10:42:32 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E65DF50F54E
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 Apr 2022 10:53:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 98FE910E751;
-	Tue, 26 Apr 2022 08:42:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3771010E73B;
+	Tue, 26 Apr 2022 08:53:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 339D910E554;
- Tue, 26 Apr 2022 08:42:28 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9734B10E73B
+ for <intel-gfx@lists.freedesktop.org>; Tue, 26 Apr 2022 08:53:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1650962548; x=1682498548;
+ t=1650963206; x=1682499206;
  h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-id:content-transfer-encoding: mime-version;
- bh=+234ri5IcoC2JUxZp3So6/rPgIDgiroRJP8/LkPcUx4=;
- b=GYcZ5tb0BOY7SXzYVNErlP6FWvQfwAG0JTL5b3oMWGfGLBq9vtO345BJ
- ov/IX48h0u8SsjUPYIl1o6gVHkQjZVwPE6BUp3ayiBtGDHymvUWUcnciF
- kpzo008swtAaFfScgBG4stzSBqlDm4msTXnqI7t6Rvz8i5hZJvpblh1dq
- EDwXzRiTbzgnuNMa4/Pq6sjwpsk4CDUMAEkt9zqN+OZmgN8wdREpQUwK+
- ntPzQ6Eo5nfdmwhpH5TfPyIwxbD0EsBMs8HwVFqicB8ZonpjldwLTeAaJ
- ihsCUez7MBvWDrzajDOGpHVfE1qGCAp1mVbuvetFqdV3RMGcUJ33nnxgk Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10328"; a="351944935"
-X-IronPort-AV: E=Sophos;i="5.90,290,1643702400"; d="scan'208";a="351944935"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Apr 2022 01:42:27 -0700
+ in-reply-to:mime-version;
+ bh=59rDE4v2iNEMVZ3+WKQeQohB/UvBBmpN5y7QcIw+TZs=;
+ b=WSbSBX4gjJCH0EPg9D4eR7PBDFyNwf1dMZZfH2SjFA6x+0RDHYHEU3ya
+ QhuwqayleZRwCDpE1r/EJsmHkV8NKCgvCehMhlqzvjljoqSPEFtWA+/1n
+ fUqcd8YIikesCURDeYuRa0La6uBffMwUSxPiU7i4e7IhUyQolMHBONfgm
+ eH91JWdyImTwDYzQsUiU5bTVVCAtO3zl9pj+1lCk39/IADj7lmOOgJmbt
+ qPV3hyelq/tQv9mx0hOIzYU2Ym7k2yDAX9R9v120OKXq0fLdNf9CNX2Xd
+ 6mko5euwbIA4OTOL1GjS8ZN5nPZ6efhwweMTD3+Ezjo1RUtVdGncK0ABu Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10328"; a="290647098"
+X-IronPort-AV: E=Sophos;i="5.90,290,1643702400"; 
+ d="jpg'145?scan'145,208,217,145";a="290647098"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Apr 2022 01:49:46 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,290,1643702400"; d="scan'208";a="538431996"
-Received: from orsmsx605.amr.corp.intel.com ([10.22.229.18])
- by orsmga002.jf.intel.com with ESMTP; 26 Apr 2022 01:42:27 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX605.amr.corp.intel.com (10.22.229.18) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="5.90,290,1643702400"; 
+ d="jpg'145?scan'145,208,217,145";a="874163277"
+Received: from fmsmsx604.amr.corp.intel.com ([10.18.126.84])
+ by fmsmga005.fm.intel.com with ESMTP; 26 Apr 2022 01:49:46 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx604.amr.corp.intel.com (10.18.126.84) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Tue, 26 Apr 2022 01:42:26 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.1.2308.27; Tue, 26 Apr 2022 01:49:45 -0700
+Received: from fmsmsx604.amr.corp.intel.com (10.18.126.84) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27 via Frontend Transport; Tue, 26 Apr 2022 01:42:26 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.177)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2308.27; Tue, 26 Apr 2022 01:42:26 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=H+tBW/mv/KWITs6OcA3yW7+OW3l95DHr/f2wdRlgQqRHWWW3FERT7TPdMyrCfN1pqBkzq9JSHCWwK6l3/tZgFnkQLDdeTFFCJy/gWw10cL9R2PknSxlLxeWoK8/mYb9vIfLT/TI//14yDEe07cxa4Q3ajWSEPuzcNHcFj8NdvnCGkZbni0/LjINRvVF/guG2+mDBclZVhuOMvCWFHjc8ZDOGReaPN83Tc9ozrvWScLDCC5r1T3OdFrq0Hibeyc22HyUPCAfXYZ6mpvD8CQT7r4fGOpy7u+4MXv1MlQ9CuC/n2JgXRkdK5bT/NsE0Go80UptqIjY51J1u36ej/IKzZg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pC2yEebsrTan+GdGygJOjiZb9PVYmMY1y2DL351sO24=;
- b=eV+pKMOTd66+6Z9onKVG3496aNZCUmAuCws5DAAsXxLt7vQ0hjUfKdaRou8wJRljJ9sImVDKhDYUSzCklEp2eA1aj1ChJ9IUlrgHt96p7vLzxCJPNLFRyu3+assqbOYqaIORo5S1QY2zhET37yIo9rvnioK9iZfhkLoPow5g7XJnCxrDIASkO4QczAjSy07YTyhrIGgQVmUZPCO1OVQNN5/zC0dr5CdfVBOSGC/GDH8P3wtr+EInid+hQZUzlNuYICeY95CuLroEmf5mLxnbXy3v/SryJQ6fHzyyTy19tzCv85H4F36QE1rPcoVoJTmzPy4EGUNVIEhKJ5pIcVrxmA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM4PR11MB5549.namprd11.prod.outlook.com (2603:10b6:5:388::7) by
- CH2PR11MB4198.namprd11.prod.outlook.com (2603:10b6:610:3b::31) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5186.14; Tue, 26 Apr 2022 08:42:25 +0000
-Received: from DM4PR11MB5549.namprd11.prod.outlook.com
- ([fe80::e5b8:93eb:e06b:f1ab]) by DM4PR11MB5549.namprd11.prod.outlook.com
- ([fe80::e5b8:93eb:e06b:f1ab%7]) with mapi id 15.20.5186.021; Tue, 26 Apr 2022
- 08:42:25 +0000
-From: "Wang, Zhi A" <zhi.a.wang@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
- Alex Williamson <alex.williamson@redhat.com>, Jason Gunthorpe
- <jgg@nvidia.com>, Christoph Hellwig <hch@lst.de>, Tvrtko Ursulin
- <tvrtko.ursulin@linux.intel.com>
-Thread-Topic: [PULL] gvt-next
-Thread-Index: AQHYWUN8Agog0QB2HUW+VGhdlmLDqK0B3zkAgAABWQA=
-Date: Tue, 26 Apr 2022 08:42:25 +0000
-Message-ID: <a0800c9b-71da-1cad-1dd4-78c0910ac266@intel.com>
-References: <c5cf6773-e7a2-8ba8-4cde-0bb14007bc6b@intel.com>
- <87zgk8tf3l.fsf@intel.com>
-In-Reply-To: <87zgk8tf3l.fsf@intel.com>
-Accept-Language: en-FI, en-US
-Content-Language: aa
-X-MS-Has-Attach: 
+ 15.1.2308.27; Tue, 26 Apr 2022 01:49:45 -0700
+Received: from fmsmsx604.amr.corp.intel.com ([10.18.126.84]) by
+ fmsmsx604.amr.corp.intel.com ([10.18.126.84]) with mapi id 15.01.2308.027;
+ Tue, 26 Apr 2022 01:49:45 -0700
+From: "Latvala, Petri" <petri.latvala@intel.com>
+To: "Vudum, Lakshminarayana" <lakshminarayana.vudum@intel.com>, "Zhang,
+ Dingchen (David)" <Dingchen.Zhang@amd.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+Thread-Topic: False-positive of CI issue w/ AMDGPU patch set
+Thread-Index: AQHYWOD5GSmgX3OMYkO52XyW8YHuEq0BFZ0wgADNabA=
+Date: Tue, 26 Apr 2022 08:49:45 +0000
+Message-ID: <30f6dd89636041458c36ced18d894b2f@intel.com>
+References: <BN9PR12MB51451DD500285CEAF5ECEF988DF89@BN9PR12MB5145.namprd12.prod.outlook.com>
+ <c96cdcbd2aa849eeb2d8d7fd1a8fb33d@intel.com>
+In-Reply-To: <c96cdcbd2aa849eeb2d8d7fd1a8fb33d@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: yes
 X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: b956e9ed-dde0-4556-4612-08da2760b032
-x-ms-traffictypediagnostic: CH2PR11MB4198:EE_
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-microsoft-antispam-prvs: <CH2PR11MB419876FC261A4C85C7E6818ACAFB9@CH2PR11MB4198.namprd11.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: uYRnphEY6IhtExEvzvps0XN0ocQvMH0b/PA0v7+fJhsNfLOFiK8pbLyw9cc3vRvhJyCyoeDk0ApaU2QBhRmEn/i5JIsBPrLOFWv69OQCtTAc8XYuTLUw/P6nRgYkIdD+jVcCKX/YnFdVGUfmFD8a8qMD3cgnHhSS5CXcPtpDnRD8dJP9FnrIbJz4wOpBpungL0PiXrS8bW47slDNyrm3oLPumoevlUQITzGRFaU7ikT9uYhrZOtaSMONxnpi6ITWwlyxN0RnuMCaFS9yRduX1qHFslA+Ot4OeoVTXJjuu1smBMYZozpMUevjIO+DQWPTFiUXyAKaIQPyxl4BUDJ+WIKgdRZ3v+18ZCQZFcUUlN0W4PHxk9ot1X4OOzQo22SUsDnKqF/WVYj94BaJSVCyiZHDzyxLSFv/zsX/Fa5iujGgsU9D3xfu9tG6IkaMrbWPGkPTsNKJMTNTQ5fMxKAMYvGiRLo22ty6Fe0jN9YEdlUGUnZCU+N4xAsfbqsZcvEgCpFT7rFD6N/9hityn4pxw0uZXuJ48Jmlwly6IbVEQAjG/UIAulPwpFCfhMRJZY4Y6Djps/NvSq9dCeSuSeNWPXEFTVbTxBLPAh4GQ0PHwZJk+2Bkv5DBlj1M9IEbyGuJDXWJstV8J8MK6Mwp447HasnDNX8U+GcHmSXBwA/lB8Z5SJNtLS7o34nzLDM6qezlN2N+7uJc/xmY/PGviQdIl7m9wWnmqZezX9ul9cIs/bw1mhJ9wVUiRdrxz9pVZC/dOXRgye23Mc6nY8QaYBNQuRDn4VwfKGl3hR9IdiTFCSyNJcC6rE+8NO92X7YaEhNjYO6O5nK9FrrPzHB+UTjrFJhOuohlu001RrPn7Xhv6EQ=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5549.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230001)(366004)(66946007)(2906002)(53546011)(64756008)(122000001)(82960400001)(38070700005)(7416002)(38100700002)(71200400001)(6486002)(966005)(110136005)(54906003)(8936002)(8676002)(4326008)(66446008)(66476007)(76116006)(66556008)(91956017)(316002)(2616005)(31686004)(36756003)(186003)(31696002)(86362001)(6506007)(26005)(6512007)(508600001)(5660300002)(45980500001)(43740500002);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?Windows-1252?Q?BYL+vthVE0jDR5tDtKtoTV9wmaPjpbmDu6qh/P7N5YWcqU109IYAkZAw?=
- =?Windows-1252?Q?fU3KFMWukIGUVsEJ2g44tidcbrkpiPLtYGY1o+PCmI3wTuFsSoatvcUw?=
- =?Windows-1252?Q?ml6TiXynXOcWYeLBi0fHlcVU61galevvE1cWUiZ94F5AOYW6oK1We376?=
- =?Windows-1252?Q?ZIA6aqcGLvCeW0EVge86c1nyNfFF80oPZ65jqQ5DyG+RMGBjd07nOXOS?=
- =?Windows-1252?Q?GSmHfjBk25nug1sq702Gl33BWikS9PorWGBK/RlDO/B1ecII8iplup7o?=
- =?Windows-1252?Q?WJgVRV+NM3SXLSGoT7+y5ZYvksqPtHgCoiVpvwd0i3rWCIMWO0lAN3i1?=
- =?Windows-1252?Q?8VxJ4Vy3zaj0Se5dDEqsib78pH2fuW8gAoJkiGJL6afwWezUrn4yKrGX?=
- =?Windows-1252?Q?3LSxqHkEeFIESXqkXmlZtW5rnCFbgi6pUT6e//XPxMcOosvWgiM6iP/9?=
- =?Windows-1252?Q?2FJqlUpK0jqG9mDIdvwFZpVG4/7peCYbesBqhNKQQ+z4hIY1OQjoZcPG?=
- =?Windows-1252?Q?sUSa9tYvsJYIRd4kkgc4lRiW0VYJ6n8kNPJ56TViTqM2/LzN6BYLbU5c?=
- =?Windows-1252?Q?M2wi3ApSQS+rvPdhIT+6K7038mWGcmIxZPfwjVMGbwxlToYzYM9gtN+X?=
- =?Windows-1252?Q?gw9V1vs87d1WgXCam4kj39xfUkzttuSeu9CqN+BPYIey4jWlD55OIppJ?=
- =?Windows-1252?Q?YyQSL3z7rM6IwFZtf9Kr5QFNYgedzNpetz2/9xwaAvQrTdeJSiyzDxOX?=
- =?Windows-1252?Q?6KFp7+UcJqtWmO8Z4T5ifOYQ+F+UDKEU2nbSIMREtYF3Qtacnyjw8NYy?=
- =?Windows-1252?Q?vh+Mur97LWdafDSdO6sUqWMEnkIJ/7ov+LkDq/49ccpVDNutDWVeJqlG?=
- =?Windows-1252?Q?XViGMDr/DWRp48pej5R21vbBU+/XpgKj+FiZ8mikLsUPMGBvwFPVRvnX?=
- =?Windows-1252?Q?6n7mH4ZWQBwKDPGdX2BTBb1sZaB5azQTdwXuxNJsUk7tW6CAE+MWitBF?=
- =?Windows-1252?Q?KDXLPyVNncVsAoYchgP7jk/6M0NY5Z79Nmq/IbvhJhn0Us05xwwAbKpJ?=
- =?Windows-1252?Q?EJ5TFoO0qxpYrxp6Ta7hZh58vG2aF8yuxcMWiHWb7vWJ/rsPpMqbNDge?=
- =?Windows-1252?Q?hYeS8S7bvrIMbsYqzwA5RvWtdOFnE5qgSwImZqf4gR5NUFFAjkAxwjyB?=
- =?Windows-1252?Q?Rw1XRyBW11V7X9skJIbvWh9X+nI3c5CQ3dL54pI5T+CZY5/4q7KqZn/S?=
- =?Windows-1252?Q?5sfShjtiqXmZMIOby5acnzkPAai92sVY7EMQ1xJxEU9r6/m1A13VL+Av?=
- =?Windows-1252?Q?Mgum1+vv0zuYIXfFPNl7AeFt+mpiSljzdLqHbXBBu1CZoc7eaIq64GuO?=
- =?Windows-1252?Q?7P2MJL/oq9oErvzW5g8Wki0rg4bSYZDe3nHt2G4VpRf6XqbG8ep4SaRU?=
- =?Windows-1252?Q?nPgJiT/tnNZrM0IVePTav5F/C49At9jROf/7anpMOM0ORokcJPFtcKZn?=
- =?Windows-1252?Q?ANPwcN7lf91yL+Y3r8STaa5gj8F7w1uaN6Pb33LFQkUBA9MvLLZzc05D?=
- =?Windows-1252?Q?au6J90E3UWOWWk9sCtZueBfrRTZeIYTCNJyXpcOOl12BugIwhObwS3UB?=
- =?Windows-1252?Q?y+l5gxyNmwA5YlQ4wiILiKBsyiuPf3F2hfiVaGSKfZ/I7s634miTBP/N?=
- =?Windows-1252?Q?qlgXFSzmvZjTk4c8VAjv9J2ZTNvb8ktx/pz7xKNXazBJTLmLC2SAjlVJ?=
- =?Windows-1252?Q?//u3NvtnhT/G5smcIvpVhmjSuBBZbiojCrjwn36n6LmI6BIE5tu4gXpc?=
- =?Windows-1252?Q?IIZcryRehQT1GF6DVWms2cK7qtsmNrKk8NsrMRupCtB7vpAVVcdUchBI?=
- =?Windows-1252?Q?CTbQVVoRwDsL4w=3D=3D?=
-Content-Type: text/plain; charset="Windows-1252"
-Content-ID: <5AE5225C5562AC42AF37944332AD0A12@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: quoted-printable
+dlp-version: 11.6.401.20
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+msip_labels: MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Enabled=True;
+ MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_SetDate=2022-04-25T20:16:22.408Z;
+ MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Name=AMD
+ Official Use
+ Only; MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_ContentBits=0;
+ MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Method=Standard; 
+x-originating-ip: [163.33.253.164]
+Content-Type: multipart/related;
+ boundary="_004_30f6dd89636041458c36ced18d894b2fintelcom_";
+ type="multipart/alternative"
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5549.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b956e9ed-dde0-4556-4612-08da2760b032
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Apr 2022 08:42:25.2306 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: /Gf73tMSa1scO731ymb7IKwxFa/HJdvTShf8Yxv3Bn54PxKoNcumRMSMWTZkzX1z4EvT2FE8N5EF+bppORx0MA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR11MB4198
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PULL] gvt-next
+Subject: Re: [Intel-gfx] False-positive of CI issue w/ AMDGPU patch set
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -158,60 +89,316 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Cc: "Pillai, Aurabindo" <Aurabindo.Pillai@amd.com>, "Siqueira,
+ Rodrigo" <Rodrigo.Siqueira@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 4/26/22 8:37 AM, Jani Nikula wrote:
-> On Tue, 26 Apr 2022, "Wang, Zhi A" <zhi.a.wang@intel.com> wrote:
->> Hi folks:
->>
->> Here is the pull of gvt-next which fixs the compilation error when i915 =
-debug
->> is open after the GVT-g refactor patches.
->>
->> Thanks so much for the efforts.
->=20
-> Pulled, thanks.
->=20
-> BR,
-> Jani.
->=20
-Thanks, looks good now. :)
+--_004_30f6dd89636041458c36ced18d894b2fintelcom_
+Content-Type: multipart/alternative;
+	boundary="_000_30f6dd89636041458c36ced18d894b2fintelcom_"
 
-thanks,
-Zhi.
->>
->> Thanks,
->> Zhi.
->>
->> The following changes since commit 2917f53113be3b7a0f374e02cebe6d6b74936=
-6b5:
->>
->>   vfio/mdev: Remove mdev drvdata (2022-04-21 07:36:56 -0400)
->>
->> are available in the Git repository at:
->>
->>   https://github.com/intel/gvt-linux tags/gvt-next-2022-04-26
->>
->> for you to fetch changes up to 2da299cee780ea797b3f72558687868072cf5eb5:
->>
->>   drm/i915/gvt: Add missing export of symbols. (2022-04-25 18:03:04 -040=
-0)
->>
->> ----------------------------------------------------------------
->> gvt-next-2022-04-26
->>
->> - Add two missing exports of symbols when i915 debug is enabled.
->>
->> ----------------------------------------------------------------
->> Zhi Wang (1):
->>       drm/i915/gvt: Add missing export of symbols.
->>
->>  drivers/gpu/drm/i915/intel_gvt.c | 2 ++
->>  1 file changed, 2 insertions(+)
->=20
+--_000_30f6dd89636041458c36ced18d894b2fintelcom_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
+No action can be taken, and the pipeline issue can be ignored.
+
+https://patchwork.freedesktop.org/series/102992/ is looking for review / ac=
+ks for this issue btw...
+
+Petri
+
+
+From: Vudum, Lakshminarayana <lakshminarayana.vudum@intel.com>
+Sent: Tuesday, 26 April 2022 0.25
+To: Zhang, Dingchen (David) <Dingchen.Zhang@amd.com>; intel-gfx@lists.freed=
+esktop.org; Latvala, Petri <petri.latvala@intel.com>
+Cc: Siqueira, Rodrigo <Rodrigo.Siqueira@amd.com>; Pillai, Aurabindo <Aurabi=
+ndo.Pillai@amd.com>
+Subject: RE: False-positive of CI issue w/ AMDGPU patch set
+
+I am not sure if I can take any action here. @Latvala, Petri<mailto:petri.l=
+atvala@intel.com> Any inputs?
+
+Lakshmi.
+
+From: Zhang, Dingchen (David) <Dingchen.Zhang@amd.com<mailto:Dingchen.Zhang=
+@amd.com>>
+Sent: Monday, April 25, 2022 1:16 PM
+To: Vudum, Lakshminarayana <lakshminarayana.vudum@intel.com<mailto:lakshmin=
+arayana.vudum@intel.com>>
+Cc: Siqueira, Rodrigo <Rodrigo.Siqueira@amd.com<mailto:Rodrigo.Siqueira@amd=
+.com>>; Pillai, Aurabindo <Aurabindo.Pillai@amd.com<mailto:Aurabindo.Pillai=
+@amd.com>>
+Subject: False-positive of CI issue w/ AMDGPU patch set
+
+
+[AMD Official Use Only]
+
+Hi Lakshminarayana,
+
+Could you help clear the CI pipeline issue of below patch w/ the ARMHF fail=
+ure, which is a false-positive that is uncorrelated to the amdgpu patch set=
+?
+https://gitlab.freedesktop.org/gfx-ci/igt-ci-tags/-/pipelines/569071
+[Image removed by sender.]<https://gitlab.freedesktop.org/gfx-ci/igt-ci-tag=
+s/-/pipelines/569071>
+
+Pipeline * gfx-ci / igt-ci-tags<https://gitlab.freedesktop.org/gfx-ci/igt-c=
+i-tags/-/pipelines/569071>
+CI tags for IGT GPU tools. WARNING: This repo's master branch will not be u=
+pdated. Use https://gitlab.freedesktop.org/drm/igt-gpu-tools for this purpo=
+se.
+gitlab.freedesktop.org
+
+
+https://patchwork.freedesktop.org/series/102886/
+
+Thanks
+David
+
+--_000_30f6dd89636041458c36ced18d894b2fintelcom_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style><![endif]--><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Segoe UI";
+	panose-1:2 11 5 2 4 2 4 2 2 3;}
+@font-face
+	{font-family:"Segoe UI Light";
+	panose-1:2 11 5 2 4 2 4 2 2 3;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+span.EmailStyle22
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-GB" link=3D"blue" vlink=3D"purple" style=3D"word-wrap:brea=
+k-word">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US">No action=
+ can be taken, and the pipeline issue can be ignored.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US"><o:p>&nbs=
+p;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US"><a href=
+=3D"https://patchwork.freedesktop.org/series/102992/">https://patchwork.fre=
+edesktop.org/series/102992/</a> is looking for review / acks for this issue=
+ btw&#8230;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US"><o:p>&nbs=
+p;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US">Petri<o:p=
+></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US"><o:p>&nbs=
+p;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US"><o:p>&nbs=
+p;</o:p></span></p>
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm =
+0cm 0cm">
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US">From:</span></b><span lang=
+=3D"EN-US"> Vudum, Lakshminarayana &lt;lakshminarayana.vudum@intel.com&gt;
+<br>
+<b>Sent:</b> Tuesday, 26 April 2022 0.25<br>
+<b>To:</b> Zhang, Dingchen (David) &lt;Dingchen.Zhang@amd.com&gt;; intel-gf=
+x@lists.freedesktop.org; Latvala, Petri &lt;petri.latvala@intel.com&gt;<br>
+<b>Cc:</b> Siqueira, Rodrigo &lt;Rodrigo.Siqueira@amd.com&gt;; Pillai, Aura=
+bindo &lt;Aurabindo.Pillai@amd.com&gt;<br>
+<b>Subject:</b> RE: False-positive of CI issue w/ AMDGPU patch set<o:p></o:=
+p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I am not sure if I can take any=
+ action here.
+<a id=3D"OWAAM57EF498B3D784C4BA5D0D08AE4B9E703" href=3D"mailto:petri.latval=
+a@intel.com">
+<span style=3D"font-family:&quot;Calibri&quot;,sans-serif;text-decoration:n=
+one">@Latvala, Petri</span></a> Any inputs?<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Lakshmi.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm =
+0cm 0cm">
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US">From:</span></b><span lang=
+=3D"EN-US"> Zhang, Dingchen (David) &lt;<a href=3D"mailto:Dingchen.Zhang@am=
+d.com">Dingchen.Zhang@amd.com</a>&gt;
+<br>
+<b>Sent:</b> Monday, April 25, 2022 1:16 PM<br>
+<b>To:</b> Vudum, Lakshminarayana &lt;<a href=3D"mailto:lakshminarayana.vud=
+um@intel.com">lakshminarayana.vudum@intel.com</a>&gt;<br>
+<b>Cc:</b> Siqueira, Rodrigo &lt;<a href=3D"mailto:Rodrigo.Siqueira@amd.com=
+">Rodrigo.Siqueira@amd.com</a>&gt;; Pillai, Aurabindo &lt;<a href=3D"mailto=
+:Aurabindo.Pillai@amd.com">Aurabindo.Pillai@amd.com</a>&gt;<br>
+<b>Subject:</b> False-positive of CI issue w/ AMDGPU patch set<o:p></o:p></=
+span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p style=3D"margin:5.0pt"><span lang=3D"EN-US" style=3D"font-size:10.0pt;fo=
+nt-family:&quot;Arial&quot;,sans-serif;color:blue">[AMD Official Use Only]<=
+o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<div>
+<div>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:12.0pt;color=
+:black">Hi&nbsp;Lakshminarayana,<o:p></o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:12.0pt;color=
+:black"><o:p>&nbsp;</o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:12.0pt;color=
+:black">Could you help clear the CI pipeline issue of below patch w/ the AR=
+MHF failure, which is a false-positive that is uncorrelated to the amdgpu p=
+atch set?<o:p></o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:12.0pt;color=
+:black"><a href=3D"https://gitlab.freedesktop.org/gfx-ci/igt-ci-tags/-/pipe=
+lines/569071">https://gitlab.freedesktop.org/gfx-ci/igt-ci-tags/-/pipelines=
+/569071</a><o:p></o:p></span></p>
+</div>
+<div>
+<div style=3D"margin-top:12.0pt;margin-bottom:12.0pt;min-width: 424px" id=
+=3D"LPBorder_GTaHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2dmeC1jaS9pZ3QtY2kt=
+dGFncy8tL3BpcGVsaW5lcy81NjkwNzE.">
+<table class=3D"MsoNormalTable" border=3D"1" cellpadding=3D"0" width=3D"100=
+%" style=3D"width:100.0%;border:solid #C8C8C8 1.0pt">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"border:none;padding:9.0pt 27.0pt 9.0pt 9.0pt">
+<div style=3D"margin-right:9.0pt;overflow:hidden" id=3D"LPImageContainer535=
+359">
+<p class=3D"MsoNormal"><a href=3D"https://gitlab.freedesktop.org/gfx-ci/igt=
+-ci-tags/-/pipelines/569071" target=3D"_blank"><span style=3D"border:solid =
+windowtext 1.0pt;padding:0cm;text-decoration:none"><img border=3D"0" width=
+=3D"160" height=3D"160" style=3D"width:1.6666in;height:1.6666in" id=3D"LPTh=
+umbnailImageId535359" src=3D"cid:image001.jpg@01D85963.B5BE94B0" alt=3D"Ima=
+ge removed by sender."></span></a><o:p></o:p></p>
+</div>
+</td>
+<td width=3D"100%" valign=3D"top" style=3D"width:100.0%;border:none;padding=
+:9.0pt 27.0pt 9.0pt 9.0pt">
+<div style=3D"margin-right:6.0pt;margin-bottom:9.0pt" id=3D"LPTitle535359">
+<p class=3D"MsoNormal"><span style=3D"font-size:16.0pt;font-family:&quot;Se=
+goe UI Light&quot;,sans-serif"><a href=3D"https://gitlab.freedesktop.org/gf=
+x-ci/igt-ci-tags/-/pipelines/569071" target=3D"_blank"><span style=3D"text-=
+decoration:none">Pipeline &middot; gfx-ci / igt-ci-tags</span></a><o:p></o:=
+p></span></p>
+</div>
+<div style=3D"margin-right:6.0pt;margin-bottom:9.0pt;max-height: 100px;over=
+flow:hidden" id=3D"LPDescription535359">
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Se=
+goe UI&quot;,sans-serif;color:#666666">CI tags for IGT GPU tools. WARNING: =
+This repo's master branch will not be updated. Use
+<a href=3D"https://gitlab.freedesktop.org/drm/igt-gpu-tools">https://gitlab=
+.freedesktop.org/drm/igt-gpu-tools</a> for this purpose.<o:p></o:p></span><=
+/p>
+</div>
+<div id=3D"LPMetadata535359">
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Se=
+goe UI&quot;,sans-serif;color:#A6A6A6">gitlab.freedesktop.org<o:p></o:p></s=
+pan></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<div>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:12.0pt;color=
+:black"><a href=3D"https://patchwork.freedesktop.org/series/102886/">https:=
+//patchwork.freedesktop.org/series/102886/</a><o:p></o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:12.0pt;color=
+:black"><o:p>&nbsp;</o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:12.0pt;color=
+:black">Thanks<o:p></o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:12.0pt;color=
+:black">David&nbsp;<o:p></o:p></span></p>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+--_000_30f6dd89636041458c36ced18d894b2fintelcom_--
+
+--_004_30f6dd89636041458c36ced18d894b2fintelcom_
+Content-Type: image/jpeg; name="image001.jpg"
+Content-Description: image001.jpg
+Content-Disposition: inline; filename="image001.jpg"; size=823;
+	creation-date="Tue, 26 Apr 2022 08:49:43 GMT";
+	modification-date="Tue, 26 Apr 2022 08:49:43 GMT"
+Content-ID: <image001.jpg@01D85963.B5BE94B0>
+Content-Transfer-Encoding: base64
+
+/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0a
+HBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIy
+MjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCABkAGQDASIA
+AhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQA
+AAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3
+ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWm
+p6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEA
+AwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSEx
+BhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElK
+U1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3
+uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD3+iii
+gAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKA
+CiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAK
+KKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAoo
+ooAKKKKACiiigAooooAKKKKACiiigD//2Q==
+
+--_004_30f6dd89636041458c36ced18d894b2fintelcom_--
