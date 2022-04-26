@@ -1,52 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56FED510915
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 Apr 2022 21:33:00 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86E62510918
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 Apr 2022 21:33:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A84AB10E5C1;
-	Tue, 26 Apr 2022 19:32:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A94E410E588;
+	Tue, 26 Apr 2022 19:33:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 049F410E5B3
- for <intel-gfx@lists.freedesktop.org>; Tue, 26 Apr 2022 19:32:55 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E75F10E5E3
+ for <intel-gfx@lists.freedesktop.org>; Tue, 26 Apr 2022 19:32:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1651001576; x=1682537576;
+ t=1651001579; x=1682537579;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=ulokI/EsLWOYpW74O5yVOTUdMMYWSJ8H82nXiVn8Wpw=;
- b=ddabVUCNbDUg6BQuXc5NrC7lAW/Z35h+dcwa5CuVBTveVoyjDQEM7Z8/
- rBlZK0m075OKmmF09/ire6AjSTlo9apF1ylGQlqDQyaAkd7MQAKkxMfqj
- Yk1a3bq2loy1cR+ppeOEfz4bqOEofJrP2EccrhzSHcEniE9ug20X57D2J
- 3HPnVBrrZQrx00UglpngstdsEx5lb/1lbaq6uyJJnp4j8owvDqEREkcML
- SgXbxPDrUStXk/QA+xSKw00MaDwZEC76hNBscsXZeEnoAch97uRW75p8/
- LTeQQvid+SWjrZSklyqUudfEIbkS6UBy+w0wOqv/4Iz4z+Dx6DFYeWw3V g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10329"; a="265506305"
-X-IronPort-AV: E=Sophos;i="5.90,291,1643702400"; d="scan'208";a="265506305"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Apr 2022 12:32:55 -0700
+ bh=zntlw98G0MY61r9+4DckX4wWi9jLoFJ2FkarVM5F01A=;
+ b=Vda1SbRCZWsPUq4+oXas9g2beOo9uGMrMBZMwbrp0BL7mTsNAoAfzSVc
+ KrjATlmmXYanKHM6cuuH/UKcrA0T8fq/2i/A7uGChVXPmEQcXfbrg55np
+ Mfz/fnFElvxATrEIAjZhDfcSacg6gMlonyaHTDG+8GejzR9SmI1UsNZ3C
+ 5hDqaQV7rGzMqNiBC57zqyPzdxNrljiy7JmkxCP13ayONgrns+LRMSYb0
+ acxORVjiWOhXEO/6yecKIN4geO8p04SaDyLsrtR0yv4ZCWMvtO9fQONCX
+ Wp3i9cHc247vWoVv/EtHO3IkPOPe6Tiq4fz+nwcM7D5Ad5wpsFE1V/l3A g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10329"; a="245622291"
+X-IronPort-AV: E=Sophos;i="5.90,291,1643702400"; d="scan'208";a="245622291"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Apr 2022 12:32:58 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,291,1643702400"; d="scan'208";a="558493845"
+X-IronPort-AV: E=Sophos;i="5.90,291,1643702400"; d="scan'208";a="532828190"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.51])
- by orsmga007.jf.intel.com with SMTP; 26 Apr 2022 12:32:53 -0700
+ by orsmga006.jf.intel.com with SMTP; 26 Apr 2022 12:32:56 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 26 Apr 2022 22:32:52 +0300
+ Tue, 26 Apr 2022 22:32:55 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 26 Apr 2022 22:32:14 +0300
-Message-Id: <20220426193222.3422-11-ville.syrjala@linux.intel.com>
+Date: Tue, 26 Apr 2022 22:32:15 +0300
+Message-Id: <20220426193222.3422-12-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220426193222.3422-1-ville.syrjala@linux.intel.com>
 References: <20220426193222.3422-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 10/18] drm/i915/pps: Reinit PPS delays after
- VBT has been fully parsed
+Subject: [Intel-gfx] [PATCH v3 11/18] drm/i915/bios: Do panel specific VBT
+ parsing later
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,39 +64,108 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-During the eDP probe we may not yet know the panel_type used
-to index the VBT panel tables. So the initial eDP probe will have
-to be done without that, and thus we won't yet have the PPS delays
-from the VBT. Once the VBT has been fully parse we should reinit
-the PPS delays to make sure it's fully accounted for.
+Move the panel specific VBT parsing to happen during the
+output probing stage. Needs to be done because the VBT
+parsing will need to look at the EDID to determine
+the correct panel_type on some machines.
 
-TODO: I wonder if we should do the eDP probe with some super safe
-PPS delayes (eg. max of all VBT PPS delays) just to make sure we
-don't violate the timings. Though typically the VBIOS/GOP do leave
-VDD enabled after boot in which case we don't actually have to care
-about the delays at all.
+v2: Do intel_bios_init_panel() a bit earlier for vlv_dsi
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_pps.c | 5 +++++
- 1 file changed, 5 insertions(+)
+ drivers/gpu/drm/i915/display/icl_dsi.c       | 2 ++
+ drivers/gpu/drm/i915/display/intel_display.c | 1 -
+ drivers/gpu/drm/i915/display/intel_dp.c      | 2 ++
+ drivers/gpu/drm/i915/display/intel_lvds.c    | 2 ++
+ drivers/gpu/drm/i915/display/intel_sdvo.c    | 3 +++
+ drivers/gpu/drm/i915/display/vlv_dsi.c       | 2 ++
+ 6 files changed, 11 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
-index 0ae2be5c5318..15cbdc465a86 100644
---- a/drivers/gpu/drm/i915/display/intel_pps.c
-+++ b/drivers/gpu/drm/i915/display/intel_pps.c
-@@ -1396,6 +1396,11 @@ void intel_pps_init_late(struct intel_dp *intel_dp)
- 	intel_wakeref_t wakeref;
+diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
+index 19bf717fd4cb..baef44cd137f 100644
+--- a/drivers/gpu/drm/i915/display/icl_dsi.c
++++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+@@ -2049,6 +2049,8 @@ void icl_dsi_init(struct drm_i915_private *dev_priv)
+ 	/* attach connector to encoder */
+ 	intel_connector_attach_encoder(intel_connector, encoder);
  
- 	with_intel_pps_lock(intel_dp, wakeref) {
-+		/* Reinit delays after per-panel info has been parsed from VBT */
-+		memset(&intel_dp->pps.pps_delays, 0, sizeof(intel_dp->pps.pps_delays));
-+		pps_init_delays(intel_dp);
-+		pps_init_registers(intel_dp, false);
++	intel_bios_init_panel(dev_priv);
 +
- 		if (edp_have_panel_vdd(intel_dp))
- 			edp_panel_vdd_schedule_off(intel_dp);
+ 	mutex_lock(&dev->mode_config.mutex);
+ 	intel_panel_add_vbt_lfp_fixed_mode(intel_connector);
+ 	mutex_unlock(&dev->mode_config.mutex);
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index e33a70b980dc..0decf3d24237 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -9579,7 +9579,6 @@ int intel_modeset_init_noirq(struct drm_i915_private *i915)
  	}
+ 
+ 	intel_bios_init(i915);
+-	intel_bios_init_panel(i915);
+ 
+ 	ret = intel_vga_register(i915);
+ 	if (ret)
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index a83dbbfc914c..5d8f6f233684 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -5185,6 +5185,8 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
+ 	}
+ 	intel_connector->edid = edid;
+ 
++	intel_bios_init_panel(dev_priv);
++
+ 	intel_panel_add_edid_fixed_modes(intel_connector,
+ 					 dev_priv->vbt.drrs_type != DRRS_TYPE_NONE);
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c b/drivers/gpu/drm/i915/display/intel_lvds.c
+index e8478161f8b9..554badf041f2 100644
+--- a/drivers/gpu/drm/i915/display/intel_lvds.c
++++ b/drivers/gpu/drm/i915/display/intel_lvds.c
+@@ -967,6 +967,8 @@ void intel_lvds_init(struct drm_i915_private *dev_priv)
+ 	}
+ 	intel_connector->edid = edid;
+ 
++	intel_bios_init_panel(dev_priv);
++
+ 	/* Try EDID first */
+ 	intel_panel_add_edid_fixed_modes(intel_connector,
+ 					 dev_priv->vbt.drrs_type != DRRS_TYPE_NONE);
+diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
+index d81855d57cdc..84ac0f2162a4 100644
+--- a/drivers/gpu/drm/i915/display/intel_sdvo.c
++++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
+@@ -2869,6 +2869,7 @@ static bool
+ intel_sdvo_lvds_init(struct intel_sdvo *intel_sdvo, int device)
+ {
+ 	struct drm_encoder *encoder = &intel_sdvo->base.base;
++	struct drm_i915_private *i915 = to_i915(encoder->dev);
+ 	struct drm_connector *connector;
+ 	struct intel_connector *intel_connector;
+ 	struct intel_sdvo_connector *intel_sdvo_connector;
+@@ -2900,6 +2901,8 @@ intel_sdvo_lvds_init(struct intel_sdvo *intel_sdvo, int device)
+ 	if (!intel_sdvo_create_enhance_property(intel_sdvo, intel_sdvo_connector))
+ 		goto err;
+ 
++	intel_bios_init_panel(i915);
++
+ 	/*
+ 	 * Fetch modes from VBT. For SDVO prefer the VBT mode since some
+ 	 * SDVO->LVDS transcoders can't cope with the EDID mode.
+diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
+index 1954f07f0d3e..08fb554ff7ad 100644
+--- a/drivers/gpu/drm/i915/display/vlv_dsi.c
++++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
+@@ -1929,6 +1929,8 @@ void vlv_dsi_init(struct drm_i915_private *dev_priv)
+ 	else
+ 		intel_dsi->ports = BIT(port);
+ 
++	intel_bios_init_panel(dev_priv);
++
+ 	intel_dsi->dcs_backlight_ports = dev_priv->vbt.dsi.bl_ports;
+ 	intel_dsi->dcs_cabc_ports = dev_priv->vbt.dsi.cabc_ports;
+ 
 -- 
 2.35.1
 
