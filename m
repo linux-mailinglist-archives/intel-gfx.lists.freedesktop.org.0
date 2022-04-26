@@ -2,43 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEBF15108D8
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 Apr 2022 21:19:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D7D50510904
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 Apr 2022 21:32:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5ADA110E4D3;
-	Tue, 26 Apr 2022 19:19:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB69310E4D3;
+	Tue, 26 Apr 2022 19:32:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A6CA710E3C4;
- Tue, 26 Apr 2022 19:19:38 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
- (Authenticated sender: bbeckett) with ESMTPSA id 107061F41A32
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1651000777;
- bh=MAjmFdqWA+Hrdq60ZeCd3OrHWgUw+ka1jffl+aLkF04=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=U4W2g9y7THG9R7VpouQpRZ1L82hltGgjoux1qoqVpBWDvEKw5qIoSP2j+H1YBzZhO
- ajW6m+pKYyUK5uiuxPYKz0kDo37QsSYOOJWi3EFXYrWLChEvM0nf/qSL+UtYcDmuOJ
- wlPd5Ug6Rz8EAjED5i4Q/JYdJshiM4/jxmJXIxKQlM7jfIq8pnSPOIs4b8aTAr9gZG
- Uzd5vqUAw1Q3dxHbDVHnsOiVRxrXva/iLl63V3hAlfXaZfixLYs22KPDys3kYej46X
- ZvX5cUqrh08vjhCXLT2q0VOVVNGlEBPtpzmD9bVGp6jY3b3Bt6ynrakUp6liIoZ8lj
- omDh51dXTmefA==
-Message-ID: <780fa818-292c-a313-6006-0af0730c2743@collabora.com>
-Date: Tue, 26 Apr 2022 20:19:33 +0100
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7AC2B10E4D3
+ for <intel-gfx@lists.freedesktop.org>; Tue, 26 Apr 2022 19:32:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1651001547; x=1682537547;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=XWai8sKJsrJIzrwBAreKA0nXDKQXpn0rxlWopY2ovu4=;
+ b=lM69cgLiIRrqSPbJlyRgkAuZe/KjotLzdKwhy72IqWSfCrW+M2lR1TLz
+ zhUuDHcjVvV3fsldPxTcX/uQaOALszc+Lu1/bm80e/TTMr6fhbTYVU0H4
+ /DERaHDwtoPprRhtZWNuL3qQAyEt6Czy6VGmvYp1M9452thMW80ac+DjG
+ 2lTvtD+0uxkJADUDh0EgzXkRJEstwRifSHVIvgSxrY8Kz4yukqBYA9r7S
+ i0PIWLSnt89eRQr/mGKXif8WMAky6NiypmlZrzhiTARoa/SAL3ABTpRMi
+ okxrTFV7uxRPtKLJLM5onSJFRNoFQ9Uc6s2P5vDywazPb4JkI8sovc3yZ g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10329"; a="245622097"
+X-IronPort-AV: E=Sophos;i="5.90,291,1643702400"; d="scan'208";a="245622097"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Apr 2022 12:32:25 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,291,1643702400"; d="scan'208";a="558493639"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.51])
+ by orsmga007.jf.intel.com with SMTP; 26 Apr 2022 12:32:23 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 26 Apr 2022 22:32:22 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 26 Apr 2022 22:32:04 +0300
+Message-Id: <20220426193222.3422-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Content-Language: en-US
-To: "Wang, Zhi A" <zhi.a.wang@intel.com>, Jason Gunthorpe <jgg@nvidia.com>
-References: <c5cf6773-e7a2-8ba8-4cde-0bb14007bc6b@intel.com>
- <20220426155318.GQ2125828@nvidia.com>
- <e245c195-fdb0-32c4-dcfb-8ff49bc3a63c@intel.com>
-From: Robert Beckett <bob.beckett@collabora.com>
-In-Reply-To: <e245c195-fdb0-32c4-dcfb-8ff49bc3a63c@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PULL] gvt-next
+Subject: [Intel-gfx] [PATCH v3 00/18] drm/i915/bios: Rework BDB block
+ handling and PNPID->panel_type matching
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,99 +57,82 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "Vivi,
- Rodrigo" <rodrigo.vivi@intel.com>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- Christoph Hellwig <hch@lst.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
+Several changes to our BDB block handling:
 
-On 26/04/2022 17:58, Wang, Zhi A wrote:
-> On 4/26/22 3:53 PM, Jason Gunthorpe wrote:
->> On Tue, Apr 26, 2022 at 07:58:59AM +0000, Wang, Zhi A wrote:
->>> Hi folks:
->>>
->>> Here is the pull of gvt-next which fixs the compilation error when i915 debug
->>> is open after the GVT-g refactor patches.
->>>
->>> Thanks so much for the efforts.
->>>
->>> Thanks,
->>> Zhi.
->>>
->>> The following changes since commit 2917f53113be3b7a0f374e02cebe6d6b749366b5:
->>>
->>>    vfio/mdev: Remove mdev drvdata (2022-04-21 07:36:56 -0400)
->>>
->>> are available in the Git repository at:
->>>
->>>    https://github.com/intel/gvt-linux tags/gvt-next-2022-04-26
->>>
->>> for you to fetch changes up to 2da299cee780ea797b3f72558687868072cf5eb5:
->>>
->>>    drm/i915/gvt: Add missing export of symbols. (2022-04-25 18:03:04 -0400)
->>>
->>> gvt-next-2022-04-26
->>>
->>> - Add two missing exports of symbols when i915 debug is enabled.
->>>
->>> Zhi Wang (1):
->>>        drm/i915/gvt: Add missing export of symbols.
->>>
->>>   drivers/gpu/drm/i915/intel_gvt.c | 2 ++
->>>   1 file changed, 2 insertions(+)
->>
->> This still has another compile problem:
->>
->> ERROR: modpost: "intel_runtime_pm_put" [vmlinux] is a static EXPORT_SYMBOL_GPL
->>
->> Because:
->>
->> #if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
->> void intel_runtime_pm_put(struct intel_runtime_pm *rpm, intel_wakeref_t wref);
->> #else
->> static inline void
->> intel_runtime_pm_put(struct intel_runtime_pm *rpm, intel_wakeref_t wref)
->> {
->>          intel_runtime_pm_put_unchecked(rpm);
->> }
->> #endif
->>
->> Looks like it happens if CONFIG_DRM_I915_DEBUG_RUNTIME_PM=n
->>
->> I think you probably want to #ifdef the export in the same way:
->>
->> --- a/drivers/gpu/drm/i915/intel_gvt.c
->> +++ b/drivers/gpu/drm/i915/intel_gvt.c
->> @@ -309,7 +309,9 @@ EXPORT_SYMBOL_NS_GPL(__intel_context_do_pin, I915_GVT);
->>   EXPORT_SYMBOL_NS_GPL(__intel_context_do_unpin, I915_GVT);
->>   EXPORT_SYMBOL_NS_GPL(intel_ring_begin, I915_GVT);
->>   EXPORT_SYMBOL_NS_GPL(intel_runtime_pm_get, I915_GVT);
->> +#if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
->>   EXPORT_SYMBOL_NS_GPL(intel_runtime_pm_put, I915_GVT);
->> +#endif
-> Sigh. That's tricky. Let me prepare another one.
+1)
+The current way of trusting the version checks to avoid out of
+bounds accesses to the BDB blocks is fragile. We might just get
+the version check wrong, or the VBT may be corrupted/malicious.
+So instead of doing blind accesses into the original data let's
+make a copy of each block with a gauranteed minimum size.
 
-Also the following compile error:
+2)
+The LFP data table pointer stuff is a horrible mess currently.
+Let's make that sensible by verifying the pointers ahead of
+time, which allows us to trust them 100% when we acually
+parse the actual data block.
 
-drivers/gpu/drm/i915/gvt/handlers.c:75:6: error: no previous prototype 
-for ‘intel_gvt_match_device’ [-Werror=missing-prototypes]
+3)
+There's more stuff at the tail end of the LFP data block we
+need to parse. The variable size of the fp_timing table makes
+that a bit awkward, but with the pointer validation in place
+it's not too horrible.
 
-    75 | bool intel_gvt_match_device(struct intel_gvt *gvt,
+4)
+Modern VBTs (seen it on TGL/ADL-P/CML so far) no longer include
+the LFP data table pointers block (41) in the VBT. In order to
+keep the rest of the code working as is we must therefore
+generate the pointers block from scratch.
 
-       |      ^~~~~~~~~~~~~~~~~~~~~~
+New stuff in v2:
+- Make all the BDB block copies up front
+- Split the VBT parsing into two parts and add the EDID
+  PNPID->panel_type matching because many modern machines need it
+v3:
+- Some stuff already merged
+- Split out a few things
+- Address a bunch of review comments
 
+Ville Syrjälä (18):
+  drm/i915/bios: Reorder panel DTD parsing
+  drm/i915/bios: Generate LFP data table pointers if the VBT lacks them
+  drm/i915/bios: Get access to the tail end of the LFP data block
+  drm/i915/bios: Document the mess around the LFP data tables
+  drm/i915/bios: Assume panel_type==0 if the VBT has bogus data
+  drm/i915/bios: Split parse_driver_features() into two parts
+  drm/i915/bios: Split VBT parsing to global vs. panel specific parts
+  drm/i915/bios: Don't parse some panel specific data multiple times
+  drm/i915/pps: Split PPS init+sanitize in two
+  drm/i915/pps: Reinit PPS delays after VBT has been fully parsed
+  drm/i915/bios: Do panel specific VBT parsing later
+  drm/i915/bios: Extract get_panel_type()
+  drm/i915/bios: Refactor panel_type code
+  drm/i915/bios: Determine panel type via PNPID match
+  drm/i915/bios: Parse the seamless DRRS min refresh rate
+  drm/i915: Respect VBT seamless DRRS min refresh rate
+  drm/edid: Extract drm_edid_decode_mfg_id()
+  drm/i915/bios: Dump PNPID and panel name
 
-it was removed from a header. The implementation should now be made static
+ drivers/gpu/drm/i915/display/icl_dsi.c        |   2 +
+ drivers/gpu/drm/i915/display/intel_bios.c     | 490 +++++++++++++++---
+ drivers/gpu/drm/i915/display/intel_bios.h     |   3 +
+ drivers/gpu/drm/i915/display/intel_dp.c       |   4 +
+ drivers/gpu/drm/i915/display/intel_lvds.c     |   2 +
+ drivers/gpu/drm/i915/display/intel_panel.c    |  10 +-
+ drivers/gpu/drm/i915/display/intel_pps.c      |  35 +-
+ drivers/gpu/drm/i915/display/intel_pps.h      |   1 +
+ drivers/gpu/drm/i915/display/intel_sdvo.c     |   3 +
+ drivers/gpu/drm/i915/display/intel_vbt_defs.h |  24 +-
+ drivers/gpu/drm/i915/display/vlv_dsi.c        |   2 +
+ drivers/gpu/drm/i915/i915_drv.h               |   1 +
+ include/drm/drm_edid.h                        |  21 +-
+ 13 files changed, 526 insertions(+), 72 deletions(-)
 
->>   EXPORT_SYMBOL_NS_GPL(intel_runtime_pm_put_unchecked, I915_GVT);
->>   EXPORT_SYMBOL_NS_GPL(intel_uncore_forcewake_for_reg, I915_GVT);
->>   EXPORT_SYMBOL_NS_GPL(intel_uncore_forcewake_get, I915_GVT);
->>
->> Jason
->>
-> 
+-- 
+2.35.1
+
