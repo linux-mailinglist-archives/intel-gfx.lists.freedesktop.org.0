@@ -1,85 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 891AC510730
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 Apr 2022 20:36:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7EAE510735
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 Apr 2022 20:37:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 00C4610E2C6;
-	Tue, 26 Apr 2022 18:36:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0665B10E1D2;
+	Tue, 26 Apr 2022 18:37:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3DC9910E255
- for <intel-gfx@lists.freedesktop.org>; Tue, 26 Apr 2022 18:36:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1650998208;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=U7x3WHti8mB7zSssr6dU5T2fFBWQH7ax9JH4iLf8LkU=;
- b=d9odd6x1wzf73HOPYL+LjGvCy5TRQTwMNFXtI7TiJWkb2z+0740XtXKsww5enbon1NOxeF
- BeG1IYDTzNhyXmzTw+t6NMKFraaMmw1xYNzzvnOVQgpTc3twvCLZqelVa6nWwYVLUI0dgS
- Jw9Uy9J+ihQ3S93rr9oF7tHVSIqJsL4=
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com
- [209.85.222.198]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-323-t9BOiskkPVCZsp7kzMDphQ-1; Tue, 26 Apr 2022 14:36:47 -0400
-X-MC-Unique: t9BOiskkPVCZsp7kzMDphQ-1
-Received: by mail-qk1-f198.google.com with SMTP id
- u7-20020ae9d807000000b00680a8111ef6so12254536qkf.17
- for <intel-gfx@lists.freedesktop.org>; Tue, 26 Apr 2022 11:36:47 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:subject:from:to:cc:date:organization
- :user-agent:mime-version:content-transfer-encoding;
- bh=U7x3WHti8mB7zSssr6dU5T2fFBWQH7ax9JH4iLf8LkU=;
- b=TGISOCnomhJ9bbIokYaEFAS//VLZPaXWTH1q09JkzB3RIld+2EI+ZJv6ZDnbkjgg8T
- kmSx0R2+B7PKsXc/0erL77yweQ2qGpbQcpMV8vGUYJtclP9KPI3y4avKtmsNqZofldJu
- W0FVaKyJeNce2rNpCRxgAwGyMwETHB7nFSc175FNw396kN/7iHnmH7sE76oaHfWUn8sO
- Pa88PGe9JEJcKqcvQFwOoST0+2Ti+EezSEBKOOVICwiHtilaCuGMwVlhQPG7S14dhF66
- Y2WzlRe0Ljwd5dkNDUUt6hdKZZy5wECtPb/LWWhIT7ToxnvaDMFH3UAb6XX4ydPFGFwi
- EITA==
-X-Gm-Message-State: AOAM53141a84fQYgczVfm4tL0ZZ8IKZIqr5FaPPtzHspaU+6UmYm7Hw7
- W6fEgCSUnuYxFeva8mwb9at7gLvt+GK86guKyj7XSB6DkKSzc7YIQLzNZnhZWO98Bc2qC6ZiAdR
- 52+mIFWEgptDHSwnjk3yvkupUb2Hc
-X-Received: by 2002:a05:620a:f98:b0:648:a980:5161 with SMTP id
- b24-20020a05620a0f9800b00648a9805161mr13975229qkn.545.1650998206525; 
- Tue, 26 Apr 2022 11:36:46 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJxFlkV78mcoPFbdNEywIl8YhmnRu/TNzHWCRjxstF0LNzVzvVzweFee+/7HtJv0KoRQlwNbkA==
-X-Received: by 2002:a05:620a:f98:b0:648:a980:5161 with SMTP id
- b24-20020a05620a0f9800b00648a9805161mr13975211qkn.545.1650998206290; 
- Tue, 26 Apr 2022 11:36:46 -0700 (PDT)
-Received: from [192.168.8.138] (static-71-184-137-158.bstnma.ftas.verizon.net.
- [71.184.137.158]) by smtp.gmail.com with ESMTPSA id
- f39-20020a05622a1a2700b002f367d7a7a5sm4252542qtb.23.2022.04.26.11.36.44
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 26 Apr 2022 11:36:45 -0700 (PDT)
-Message-ID: <2be5f25b4212817ebc5e0435467848675063b45f.camel@redhat.com>
-From: Lyude Paul <lyude@redhat.com>
-To: "events@lists.x.org" <events@lists.x.org>, 
- "xorg-devel@lists.freedesktop.org"
- <xorg-devel@lists.freedesktop.org>, wayland-devel@lists.freedesktop.org, 
- wayland-devel@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, mesa-dev@lists.freedesktop.org, 
- mesa-dev@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, 
- amd-gfx@lists.freedesktop.org, etnaviv@lists.freedesktop.org, 
- etnaviv@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
- freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org, 
- nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- intel-gfx@lists.freedesktop.org, libre-soc-dev@lists.libre-soc.org
-Date: Tue, 26 Apr 2022 14:36:44 -0400
-Organization: Red Hat Inc.
-User-Agent: Evolution 3.42.4 (3.42.4-2.fc35)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C27810E1D2
+ for <intel-gfx@lists.freedesktop.org>; Tue, 26 Apr 2022 18:37:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1650998240; x=1682534240;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=xjSVOog5lNgMLZcnJshK/+iuCplpOKFj09JfpLFlReo=;
+ b=UZ6Ox3MnA8lXHIvSoFcT2XJjF4CIq5xJf1s+LOidreHmFv5dGTnMF7xw
+ qqwlNovvhhXjQ9gIc93Y42jFapE+gXl3MUABGcEzcLStxUpaGRHciANpP
+ hr7kzL3+Bq5Oz8MdOpQYLsM0T3Iinsl6wtRHKja4mLghqCKkK9iDIPhfA
+ +l7j1vBPCeyDiFXKfv5QtbXHqiHaoedowuAPMRKXa30CZE4dA/pwPYgm3
+ vc6leP6TVws8o/D4h6t++Tg9keG+NK4A/1HGXQmyXfSJh+Twd8aAyZ5Um
+ 3D/pQ7CEtmpt/+WHzrpzVCtFNV6qu2Xc6wcJmQWNTogkZxPQUqKSbLRyA g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10329"; a="265209599"
+X-IronPort-AV: E=Sophos;i="5.90,291,1643702400"; d="scan'208";a="265209599"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Apr 2022 11:37:20 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,291,1643702400"; d="scan'208";a="538982033"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.51])
+ by orsmga002.jf.intel.com with SMTP; 26 Apr 2022 11:37:18 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 26 Apr 2022 21:37:17 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 26 Apr 2022 21:37:13 +0300
+Message-Id: <20220426183717.27099-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=lyude@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-Subject: [Intel-gfx] Requests For Proposals for hosting XDC 2023 are now open
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2 0/4] drm/i915: Start reordering modeset clock
+ calculations
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,38 +57,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: board@foundation.x.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hello everyone!
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-The X.org board is soliciting proposals to host XDC in 2023. Since
-XDC 2022 is being held in North America this year, XDC 2023 is expected
-to be in Europe. However, the board is open to other locations,
-especially if there's an interesting co-location with another
-conference.
+Start reordering when we do the clock/dpll calculations
+during the atomic check. The eventual goals are:
+- back feed the actually calculated clock into the crtc state
+  so that stuff that depends on it (eg. watermarks) will be
+  calculated based on the actual hardware state we're going to use
+  rather than the semi-fictional state we started with
+- fix the fastset/fastboot stuff to actually require exact
+  clock matches. Avoids the current mess where the user asks
+  to slightly change the refresh rate (eg. to match video frame
+  rate) but the kernel decides to ignore it and do a fastset instead.
 
-If you're considering hosting XDC, we've assembled a wiki page with
-what's generally expected and needed:
+v2: Repost of the remainder, earlier patches already merged
 
-https://www.x.org/wiki/Events/RFP/
+Ville Syrjälä (4):
+  drm/i915: Split shared dpll .get_dplls() into compute and get phases
+  drm/i915: Do .crtc_compute_clock() earlier
+  drm/i915: Clean up DPLL related debugs
+  drm/i915: Reassign DPLLs only for crtcs going throug .compute_config()
 
-When submitting your proposal, please make sure to include at least the
-key information about the potential location in question, possible
-dates along with estimated costs. Proposals can be submitted to board
-at foundation.x.org until the deadline of *September 1st, 2022*. 
+ drivers/gpu/drm/i915/display/intel_display.c  |  26 +-
+ drivers/gpu/drm/i915/display/intel_dpll.c     |  98 +++---
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 333 ++++++++++++------
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.h |   3 +
+ 4 files changed, 275 insertions(+), 185 deletions(-)
 
-Additionally, an quirk early heads-up to the board if you're
-considering hosting would be appreciated, in case we need to adjust the
-schedule a bit. Also, earlier is better since there generally will be a
-bit of Q&A with organizers.
-
-And if you just have some questions about what organizing XDC entails,
-please feel free to chat with previous organizers, or someone from the
-board.
-
-Best regards,
-	Lyude Paul
-On behalf of X.org
+-- 
+2.35.1
 
