@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C39C51090D
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 Apr 2022 21:32:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CE52351090E
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 Apr 2022 21:32:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8964110E56A;
-	Tue, 26 Apr 2022 19:32:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1765F10E56B;
+	Tue, 26 Apr 2022 19:32:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E3C910E585
- for <intel-gfx@lists.freedesktop.org>; Tue, 26 Apr 2022 19:32:38 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1951410E56B
+ for <intel-gfx@lists.freedesktop.org>; Tue, 26 Apr 2022 19:32:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1651001558; x=1682537558;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=ouPL5Cktrh2EIQ6uU5NZgsieqFlVDTkC5R83+Zdzv80=;
- b=Sm5nTk6NAfLUJCNnndA0FJpX5VURRi3Bon4CICbDZy9Rq25q711zgH4Z
- 95yJiJ2lLTZiYdBjhFuHI9a2Ma2d8ua51kcL5fgETaiDXzK9lZRDzq1sS
- uUVHaMdxO/I7mNQBN3Ff5I/B4uVJ3Y2SluC1LpoO2lnwNgj2/nBtuWSb4
- cxh7lwhwvkOxJev8O/93fKyH2uBmsi5MQaASfbxNAarL8k+EmbcAGAoNi
- NZJyoK76ItgW0S20fKv+P6V6/yojTM6xdoXJLZCmG+YitkVMVmNW6GkmH
- 5v5+difq7USmbqFbbrigjeeMkhxLPL8e6wiK5TEMi1TIBPm51wrRzZy2H Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10329"; a="265506195"
-X-IronPort-AV: E=Sophos;i="5.90,291,1643702400"; d="scan'208";a="265506195"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Apr 2022 12:32:37 -0700
+ t=1651001561; x=1682537561;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=5/Qgdbf+ob7UY871k7Pk0GWg5ZebD7N8BP0VaeFwFOs=;
+ b=chKZBiprVW0ij39Q313uRpLUNuI3hxMZRFXH78MylBWcBfNIYlXdOjji
+ Qj/FLoglDDvoHDqOIEsRvnnSfVPEF/ymxUIZAKff0VYcMGqv+m7oEDYVB
+ zqFVG+50zC9MMw3WNc0yjS8HfQi5iDvi/48WLNMG9J789HYXPTx1qmDvZ
+ ng7PTptKidOl+7HAkGToGXfO62nGDxcnaC9WVuD7Dn1cLmVadKVMrxhEu
+ Ik2N8m0Gz8v5GZTQJUXIHY9l3lkj9/C2JH11Q6db/HO4fzFBArC1mwWeJ
+ 0Vl45JyQsV52vsDC+RSPnkewjnknUSD5JIGtvadUhaRYdyNgmGLAKL5Qc A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10329"; a="246264366"
+X-IronPort-AV: E=Sophos;i="5.90,291,1643702400"; d="scan'208";a="246264366"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Apr 2022 12:32:40 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,291,1643702400"; d="scan'208";a="650358203"
+X-IronPort-AV: E=Sophos;i="5.90,291,1643702400"; d="scan'208";a="617152737"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.51])
- by FMSMGA003.fm.intel.com with SMTP; 26 Apr 2022 12:32:35 -0700
+ by fmsmga008.fm.intel.com with SMTP; 26 Apr 2022 12:32:38 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 26 Apr 2022 22:32:34 +0300
+ Tue, 26 Apr 2022 22:32:37 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 26 Apr 2022 22:32:08 +0300
-Message-Id: <20220426193222.3422-5-ville.syrjala@linux.intel.com>
+Date: Tue, 26 Apr 2022 22:32:09 +0300
+Message-Id: <20220426193222.3422-6-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220426193222.3422-1-ville.syrjala@linux.intel.com>
 References: <20220426193222.3422-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 04/18] drm/i915/bios: Document the mess
- around the LFP data tables
+Subject: [Intel-gfx] [PATCH v3 05/18] drm/i915/bios: Assume panel_type==0 if
+ the VBT has bogus data
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,48 +59,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Jani Nikula <jani.nikula@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Document the fact that struct lvds_lfp_data_entry can't be used
-directly and instead must be accessed via the data table pointers.
+Just assume panel_type==0 always if the VBT gives us bogus data.
+We actually already do this everywhere else except in
+parse_panel_options() since we just leave i915->vbt.panel_type
+zeroed. This also seems to be what Windows does.
 
-Also remove the bogus comment implying that there might be a
-variable number of panel entries in the table. There are always
-exactly 16.
-
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_vbt_defs.h | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_bios.c | 11 ++++++-----
+ 1 file changed, 6 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-index 64551d206aeb..294e74c3289d 100644
---- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-+++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-@@ -735,7 +735,7 @@ struct lvds_lfp_data_ptr {
- } __packed;
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+index ecfce9adfbbb..53a7a16df231 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.c
++++ b/drivers/gpu/drm/i915/display/intel_bios.c
+@@ -619,13 +619,14 @@ parse_panel_options(struct drm_i915_private *i915)
+ 	} else {
+ 		if (lvds_options->panel_type > 0xf) {
+ 			drm_dbg_kms(&i915->drm,
+-				    "Invalid VBT panel type 0x%x\n",
++				    "Invalid VBT panel type 0x%x, assuming 0\n",
+ 				    lvds_options->panel_type);
+-			return;
++			panel_type = 0;
++		} else {
++			panel_type = lvds_options->panel_type;
++			drm_dbg_kms(&i915->drm, "Panel type: %d (VBT)\n",
++				    panel_type);
+ 		}
+-		panel_type = lvds_options->panel_type;
+-		drm_dbg_kms(&i915->drm, "Panel type: %d (VBT)\n",
+-			    panel_type);
+ 	}
  
- struct bdb_lvds_lfp_data_ptrs {
--	u8 lvds_entries; /* followed by one or more lvds_data_ptr structs */
-+	u8 lvds_entries;
- 	struct lvds_lfp_data_ptr ptr[16];
- 	struct lvds_lfp_data_ptr_table panel_name; /* 156-163? */
- } __packed;
-@@ -769,6 +769,11 @@ struct lvds_pnp_id {
- 	u8 mfg_year;
- } __packed;
- 
-+/*
-+ * For reference only. fp_timing has variable size so
-+ * the data must be accessed using the data table pointers.
-+ * Do not use this directly!
-+ */
- struct lvds_lfp_data_entry {
- 	struct lvds_fp_timing fp_timing;
- 	struct lvds_dvo_timing dvo_timing;
+ 	i915->vbt.panel_type = panel_type;
 -- 
 2.35.1
 
