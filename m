@@ -1,50 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7D50510904
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 Apr 2022 21:32:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89E6B510905
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 Apr 2022 21:32:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB69310E4D3;
-	Tue, 26 Apr 2022 19:32:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 23D5C10E532;
+	Tue, 26 Apr 2022 19:32:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7AC2B10E4D3
- for <intel-gfx@lists.freedesktop.org>; Tue, 26 Apr 2022 19:32:27 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1154D10E4F0
+ for <intel-gfx@lists.freedesktop.org>; Tue, 26 Apr 2022 19:32:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1651001547; x=1682537547;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=XWai8sKJsrJIzrwBAreKA0nXDKQXpn0rxlWopY2ovu4=;
- b=lM69cgLiIRrqSPbJlyRgkAuZe/KjotLzdKwhy72IqWSfCrW+M2lR1TLz
- zhUuDHcjVvV3fsldPxTcX/uQaOALszc+Lu1/bm80e/TTMr6fhbTYVU0H4
- /DERaHDwtoPprRhtZWNuL3qQAyEt6Czy6VGmvYp1M9452thMW80ac+DjG
- 2lTvtD+0uxkJADUDh0EgzXkRJEstwRifSHVIvgSxrY8Kz4yukqBYA9r7S
- i0PIWLSnt89eRQr/mGKXif8WMAky6NiypmlZrzhiTARoa/SAL3ABTpRMi
- okxrTFV7uxRPtKLJLM5onSJFRNoFQ9Uc6s2P5vDywazPb4JkI8sovc3yZ g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10329"; a="245622097"
-X-IronPort-AV: E=Sophos;i="5.90,291,1643702400"; d="scan'208";a="245622097"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Apr 2022 12:32:25 -0700
+ t=1651001550; x=1682537550;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=yUu2acfHlJUIkyzTu1Gj4Ca8MpfF5ToWhPhZImttFAA=;
+ b=YnZGSCk3cU61kD3rkCl6aj9lvOwJVLFXFslmAXvXnLxq1fJ+Nzskz7nH
+ rGPrZ7TgFQItQQPXvIYHynbu/V6YBz2J8q+yJDXjbviuCtyfsui4S+idT
+ ybM0a0Ls7fZSvypnFUNACknMqJUAHQbSXF9jIFHha6/pHJb6Lw5BMe3TK
+ XURnJQSxqqCx/jXabxhNrGGfn2GdWrl499lEFQVx5qBC+cnLkReKXivDn
+ 7uNn+PDjVR/XLzRyCsbOmfuynUauGVnBN413JUuBrje0X436c7aYEvfJU
+ u+FzTUciZr8n41ObjvlS4rDqxyOge+6rvyHQT5MkRh1ERBuF9H8kBK0sZ w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10329"; a="290846440"
+X-IronPort-AV: E=Sophos;i="5.90,291,1643702400"; d="scan'208";a="290846440"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Apr 2022 12:32:29 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,291,1643702400"; d="scan'208";a="558493639"
+X-IronPort-AV: E=Sophos;i="5.90,291,1643702400"; d="scan'208";a="532827946"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.51])
- by orsmga007.jf.intel.com with SMTP; 26 Apr 2022 12:32:23 -0700
+ by orsmga006.jf.intel.com with SMTP; 26 Apr 2022 12:32:26 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 26 Apr 2022 22:32:22 +0300
+ Tue, 26 Apr 2022 22:32:25 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 26 Apr 2022 22:32:04 +0300
-Message-Id: <20220426193222.3422-1-ville.syrjala@linux.intel.com>
+Date: Tue, 26 Apr 2022 22:32:05 +0300
+Message-Id: <20220426193222.3422-2-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220426193222.3422-1-ville.syrjala@linux.intel.com>
+References: <20220426193222.3422-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 00/18] drm/i915/bios: Rework BDB block
- handling and PNPID->panel_type matching
+Subject: [Intel-gfx] [PATCH v3 01/18] drm/i915/bios: Reorder panel DTD
+ parsing
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,82 +59,136 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Jani Nikula <jani.nikula@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Several changes to our BDB block handling:
+Reorder things so that we can parse the entier LFP data block
+in one go. For now we just stick to parsing the DTD from it.
 
-1)
-The current way of trusting the version checks to avoid out of
-bounds accesses to the BDB blocks is fragile. We might just get
-the version check wrong, or the VBT may be corrupted/malicious.
-So instead of doing blind accesses into the original data let's
-make a copy of each block with a gauranteed minimum size.
+Also fix the misleading comment about block 42 being deprecated.
+Only the DTD part is deprecated, the rest is still very much needed.
 
-2)
-The LFP data table pointer stuff is a horrible mess currently.
-Let's make that sensible by verifying the pointers ahead of
-time, which allows us to trust them 100% when we acually
-parse the actual data block.
+v2: Move the version check+comment into parse_generic_dtd() (Jani)
 
-3)
-There's more stuff at the tail end of the LFP data block we
-need to parse. The variable size of the fp_timing table makes
-that a bit awkward, but with the pointer validation in place
-it's not too horrible.
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_bios.c | 64 ++++++++++++-----------
+ 1 file changed, 34 insertions(+), 30 deletions(-)
 
-4)
-Modern VBTs (seen it on TGL/ADL-P/CML so far) no longer include
-the LFP data table pointers block (41) in the VBT. In order to
-keep the rest of the code working as is we must therefore
-generate the pointers block from scratch.
-
-New stuff in v2:
-- Make all the BDB block copies up front
-- Split the VBT parsing into two parts and add the EDID
-  PNPID->panel_type matching because many modern machines need it
-v3:
-- Some stuff already merged
-- Split out a few things
-- Address a bunch of review comments
-
-Ville Syrjälä (18):
-  drm/i915/bios: Reorder panel DTD parsing
-  drm/i915/bios: Generate LFP data table pointers if the VBT lacks them
-  drm/i915/bios: Get access to the tail end of the LFP data block
-  drm/i915/bios: Document the mess around the LFP data tables
-  drm/i915/bios: Assume panel_type==0 if the VBT has bogus data
-  drm/i915/bios: Split parse_driver_features() into two parts
-  drm/i915/bios: Split VBT parsing to global vs. panel specific parts
-  drm/i915/bios: Don't parse some panel specific data multiple times
-  drm/i915/pps: Split PPS init+sanitize in two
-  drm/i915/pps: Reinit PPS delays after VBT has been fully parsed
-  drm/i915/bios: Do panel specific VBT parsing later
-  drm/i915/bios: Extract get_panel_type()
-  drm/i915/bios: Refactor panel_type code
-  drm/i915/bios: Determine panel type via PNPID match
-  drm/i915/bios: Parse the seamless DRRS min refresh rate
-  drm/i915: Respect VBT seamless DRRS min refresh rate
-  drm/edid: Extract drm_edid_decode_mfg_id()
-  drm/i915/bios: Dump PNPID and panel name
-
- drivers/gpu/drm/i915/display/icl_dsi.c        |   2 +
- drivers/gpu/drm/i915/display/intel_bios.c     | 490 +++++++++++++++---
- drivers/gpu/drm/i915/display/intel_bios.h     |   3 +
- drivers/gpu/drm/i915/display/intel_dp.c       |   4 +
- drivers/gpu/drm/i915/display/intel_lvds.c     |   2 +
- drivers/gpu/drm/i915/display/intel_panel.c    |  10 +-
- drivers/gpu/drm/i915/display/intel_pps.c      |  35 +-
- drivers/gpu/drm/i915/display/intel_pps.h      |   1 +
- drivers/gpu/drm/i915/display/intel_sdvo.c     |   3 +
- drivers/gpu/drm/i915/display/intel_vbt_defs.h |  24 +-
- drivers/gpu/drm/i915/display/vlv_dsi.c        |   2 +
- drivers/gpu/drm/i915/i915_drv.h               |   1 +
- include/drm/drm_edid.h                        |  21 +-
- 13 files changed, 526 insertions(+), 72 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+index 81949c36ab96..8a1086721525 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.c
++++ b/drivers/gpu/drm/i915/display/intel_bios.c
+@@ -489,25 +489,16 @@ parse_panel_options(struct drm_i915_private *i915)
+ 	}
+ }
+ 
+-/* Try to find integrated panel timing data */
+ static void
+-parse_lfp_panel_dtd(struct drm_i915_private *i915)
++parse_lfp_panel_dtd(struct drm_i915_private *i915,
++		    const struct bdb_lvds_lfp_data *lvds_lfp_data,
++		    const struct bdb_lvds_lfp_data_ptrs *lvds_lfp_data_ptrs)
+ {
+-	const struct bdb_lvds_lfp_data *lvds_lfp_data;
+-	const struct bdb_lvds_lfp_data_ptrs *lvds_lfp_data_ptrs;
+ 	const struct lvds_dvo_timing *panel_dvo_timing;
+ 	const struct lvds_fp_timing *fp_timing;
+ 	struct drm_display_mode *panel_fixed_mode;
+ 	int panel_type = i915->vbt.panel_type;
+ 
+-	lvds_lfp_data = find_section(i915, BDB_LVDS_LFP_DATA);
+-	if (!lvds_lfp_data)
+-		return;
+-
+-	lvds_lfp_data_ptrs = find_section(i915, BDB_LVDS_LFP_DATA_PTRS);
+-	if (!lvds_lfp_data_ptrs)
+-		return;
+-
+ 	panel_dvo_timing = get_lvds_dvo_timing(lvds_lfp_data,
+ 					       lvds_lfp_data_ptrs,
+ 					       panel_type);
+@@ -538,6 +529,24 @@ parse_lfp_panel_dtd(struct drm_i915_private *i915)
+ 	}
+ }
+ 
++static void
++parse_lfp_data(struct drm_i915_private *i915)
++{
++	const struct bdb_lvds_lfp_data *data;
++	const struct bdb_lvds_lfp_data_ptrs *ptrs;
++
++	ptrs = find_section(i915, BDB_LVDS_LFP_DATA_PTRS);
++	if (!ptrs)
++		return;
++
++	data = find_section(i915, BDB_LVDS_LFP_DATA);
++	if (!data)
++		return;
++
++	if (!i915->vbt.lfp_lvds_vbt_mode)
++		parse_lfp_panel_dtd(i915, data, ptrs);
++}
++
+ static void
+ parse_generic_dtd(struct drm_i915_private *i915)
+ {
+@@ -546,6 +555,17 @@ parse_generic_dtd(struct drm_i915_private *i915)
+ 	struct drm_display_mode *panel_fixed_mode;
+ 	int num_dtd;
+ 
++	/*
++	 * Older VBTs provided DTD information for internal displays through
++	 * the "LFP panel tables" block (42).  As of VBT revision 229 the
++	 * DTD information should be provided via a newer "generic DTD"
++	 * block (58).  Just to be safe, we'll try the new generic DTD block
++	 * first on VBT >= 229, but still fall back to trying the old LFP
++	 * block if that fails.
++	 */
++	if (i915->vbt.version < 229)
++		return;
++
+ 	generic_dtd = find_section(i915, BDB_GENERIC_DTD);
+ 	if (!generic_dtd)
+ 		return;
+@@ -616,23 +636,6 @@ parse_generic_dtd(struct drm_i915_private *i915)
+ 	i915->vbt.lfp_lvds_vbt_mode = panel_fixed_mode;
+ }
+ 
+-static void
+-parse_panel_dtd(struct drm_i915_private *i915)
+-{
+-	/*
+-	 * Older VBTs provided provided DTD information for internal displays
+-	 * through the "LFP panel DTD" block (42).  As of VBT revision 229,
+-	 * that block is now deprecated and DTD information should be provided
+-	 * via a newer "generic DTD" block (58).  Just to be safe, we'll
+-	 * try the new generic DTD block first on VBT >= 229, but still fall
+-	 * back to trying the old LFP block if that fails.
+-	 */
+-	if (i915->vbt.version >= 229)
+-		parse_generic_dtd(i915);
+-	if (!i915->vbt.lfp_lvds_vbt_mode)
+-		parse_lfp_panel_dtd(i915);
+-}
+-
+ static void
+ parse_lfp_backlight(struct drm_i915_private *i915)
+ {
+@@ -2709,7 +2712,8 @@ void intel_bios_init(struct drm_i915_private *i915)
+ 	parse_general_features(i915);
+ 	parse_general_definitions(i915);
+ 	parse_panel_options(i915);
+-	parse_panel_dtd(i915);
++	parse_generic_dtd(i915);
++	parse_lfp_data(i915);
+ 	parse_lfp_backlight(i915);
+ 	parse_sdvo_panel_data(i915);
+ 	parse_driver_features(i915);
 -- 
 2.35.1
 
