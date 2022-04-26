@@ -2,44 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E32650ED99
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 Apr 2022 02:28:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1416B50ED9A
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 Apr 2022 02:29:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C9AA10E1FC;
-	Tue, 26 Apr 2022 00:28:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D82710EA7A;
+	Tue, 26 Apr 2022 00:29:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C006410E1FC
- for <intel-gfx@lists.freedesktop.org>; Tue, 26 Apr 2022 00:28:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2A94F10EBBF
+ for <intel-gfx@lists.freedesktop.org>; Tue, 26 Apr 2022 00:29:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1650932932; x=1682468932;
+ t=1650932944; x=1682468944;
  h=date:message-id:from:to:cc:subject:in-reply-to:
  references:mime-version;
- bh=kgXzdbLVshFyHcIYyEHzhOGpUBsW9/1yr/uUIHPVmrg=;
- b=hY/IZo4rc1qhi3hnHneJXD63WalHb/rA4wuSnZlBl+I7aYD4K1g7qVcg
- z8U+fMYmtC/NIaGTGMvy2y0/FKzRNdS5hR+onBmaPbvVXXuJlSoVxkXmI
- WAypxMwupk1ec99hYaNqxmVsl/nK+Y9K/Phr6oyYyzmFXOumC3gKlPix1
- pKA6pjLNFIB49uBqXZ95ApDPQgBQEJ/eeJU6n/cF2Nf2oX93qSjlmpa23
- Z72Tx2ddADHrsAGQ5JkZANSIkzhA4f19nnCh5CIl0SPp7V1sjs19XAFcj
- zev/zsqkQE23iZ/EgZGfGBl4F8AzCcauw7SWTzLFy44PgzklR9HiT+PcX w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10328"; a="265206695"
-X-IronPort-AV: E=Sophos;i="5.90,289,1643702400"; d="scan'208";a="265206695"
+ bh=a/SKu6pOeCSv4l35zCzabgzCodKhNFZDuGG936nDniA=;
+ b=lMJCPQWwOJb4SglnmNwj9PoOckMa9xLpag/8FiKU0nmixxn3E3bQ/dYx
+ GquOJL/O/fAKwK8cdgfnhiAJAFz4xVRg8LcV+1nlKVuHJAeDnSFsuqZQV
+ 50AH6/C204jzOqr+qpu3Yd00Ef0FRtbC9sWHG98Hs+bV3qkVpZUv+lj0/
+ aqfVXFy9xnWupgtNtHt3qjJ6C2xAEHpzIoonVWNOQLps2HVjpZYD7RttK
+ CCRW/JD1EPSRdbsS3UknDuoYpD6aVtMd7ALqkewz2tfnXnvZNs/pkCEEl
+ b6KE2LiD01Gzku70KQz810rY6HUTyL0bVr9pxAUDiUJok3wRghKZAgv/K A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10328"; a="265206728"
+X-IronPort-AV: E=Sophos;i="5.90,289,1643702400"; d="scan'208";a="265206728"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Apr 2022 17:28:52 -0700
-X-IronPort-AV: E=Sophos;i="5.90,289,1643702400"; d="scan'208";a="512882768"
+ 25 Apr 2022 17:29:03 -0700
+X-IronPort-AV: E=Sophos;i="5.90,289,1643702400"; d="scan'208";a="512882904"
 Received: from adixit-mobl1.amr.corp.intel.com (HELO adixit-arch.intel.com)
  ([10.212.195.217])
  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Apr 2022 17:28:51 -0700
-Date: Mon, 25 Apr 2022 17:28:50 -0700
-Message-ID: <8735i07kn1.wl-ashutosh.dixit@intel.com>
+ 25 Apr 2022 17:29:03 -0700
+Date: Mon, 25 Apr 2022 17:29:03 -0700
+Message-ID: <871qxk7kmo.wl-ashutosh.dixit@intel.com>
 From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-To: Andi Shyti <andi.shyti@linux.intel.com>
-In-Reply-To: <YmWaRo/dqmQ7oGIr@intel.intel>
-References: <cover.1650435571.git.ashutosh.dixit@intel.com>	<e17dd7ffecafe0f597d24bb53d3170ad9284dba9.1650435571.git.ashutosh.dixit@intel.com>	<YmWaRo/dqmQ7oGIr@intel.intel>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+In-Reply-To: <YmHFH9KAmpYDi09h@intel.com>
+References: <cover.1649871650.git.ashutosh.dixit@intel.com>	<cover.1650430271.git.ashutosh.dixit@intel.com>	<e17dd7ffecafe0f597d24bb53d3170ad9284dba9.1650430271.git.ashutosh.dixit@intel.com>	<YmHFH9KAmpYDi09h@intel.com>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
  Emacs/27.2 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -63,39 +63,34 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sun, 24 Apr 2022 11:43:18 -0700, Andi Shyti wrote:
+On Thu, 21 Apr 2022 13:57:03 -0700, Rodrigo Vivi wrote:
 >
-> Hi Ashutosh,
+> On Tue, Apr 19, 2022 at 10:21:26PM -0700, Ashutosh Dixit wrote:
+>
+> > +#define U8_8_VAL_MASK           0xffff
+> > +#define U8_8_SCALE_TO_VALUE     "0.00390625"
+>
+> I really like this style because it gets future proof...
+> Well, honestly I don't believe that for Media multipliers we will be ever
+> move away from the GuC API. Nevertheless we have other cases in the pipeline
+> like balancing the gt and basedie that benefits of this abstraction and
+> it is good to have a standard api and in sync.
+>
+> For this reason I'm in favor of this one here and code looks correct to me,
+> so:
+>
+> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-Hi Andi
+Thanks.
 
-> [...]
->
-> >  static int intel_sysfs_rps_init(struct intel_gt *gt, struct kobject *kobj,
-> >				const struct attribute * const *attrs)
-> >  {
-> > @@ -598,4 +720,12 @@ void intel_gt_sysfs_pm_init(struct intel_gt *gt, struct kobject *kobj)
-> >		drm_warn(&gt->i915->drm,
-> >			 "failed to create gt%u throttle sysfs files (%pe)",
-> >			 gt->info.id, ERR_PTR(ret));
-> > +
-> > +	if (HAS_MEDIA_RATIO_MODE(gt->i915) && intel_uc_uses_guc_slpc(&gt->uc)) {
->
-> you could use in this case the ".is_visible()" function as you are
-> not inheriting it from the upper drm class.
+> Should we split this series with only this 2 first patches so we don't
+> get blocked on the intel_pcode refactor?
 
-".is_visible()" is only available in an "attribute_group" but here we are
-not creating an "attribute_group", just creating files in a previously
-existing sysfs directory (i.e. using using sysfs_create_files() (as done
-for RPS attributes) rather than sysfs_create_group() (as done for
-RC6)). There seems to be no reason to create an "attribute_group" (such as
-what was needed for RC6) so unless you suggest otherwise I'm leaving this
-as is.
+I have posted a series with with just the first 2 patches here:
 
->
-> Anyway,
->
-> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+https://patchwork.freedesktop.org/series/103110/
+
+We can look at merging this after it goes through CI.
 
 Thanks.
 --
