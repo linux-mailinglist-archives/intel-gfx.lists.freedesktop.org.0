@@ -1,52 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE3CC5111D9
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Apr 2022 09:01:16 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96B8C5112D8
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Apr 2022 09:50:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5891210E188;
-	Wed, 27 Apr 2022 07:01:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D4D110E389;
+	Wed, 27 Apr 2022 07:50:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E631C10E188;
- Wed, 27 Apr 2022 07:01:12 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F9E310E3EE
+ for <intel-gfx@lists.freedesktop.org>; Wed, 27 Apr 2022 07:50:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1651042872; x=1682578872;
+ t=1651045834; x=1682581834;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=omiJHwzC3KloAX7xRGFaS6/bb6e+H8AZl68vUambHVw=;
- b=ZXVXNfuDs7FQVDmZU9KhTfKify7v8a4+ktluA6pxkbYIjNKRjBEm7ba7
- 9/0miGah9JiW/4MSol6f/nwwI64oJoMGdxHKrnMCoYz1FeL3zQDY0xLBc
- qwDZYKRQkYYigCvPlGCd4cqMMLvMt6zCdchut2LUyZKjRpfFYmZeKLFC8
- GxdRe+33g+rzunrgeTLHvSvhHdruz8cTsHeIvrWxZufvZQP605FkEXVRq
- zeTMLoyP9thRSlXqkXS0vPVjKukyWF3jyvNuRvXhUwYRO5M7qJqIbCFv0
- DV9W96MPhb0jBZsj3r8HlaBrYCVo8qKocZyX9bNH8jXQ6NemPZ7ZRiNvN Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10329"; a="265999668"
-X-IronPort-AV: E=Sophos;i="5.90,292,1643702400"; d="scan'208";a="265999668"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2022 00:01:12 -0700
-X-IronPort-AV: E=Sophos;i="5.90,292,1643702400"; d="scan'208";a="875878555"
-Received: from gforcumx-mobl1.amr.corp.intel.com (HELO ldmartin-desk2)
- ([10.209.84.57])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2022 00:01:12 -0700
-Date: Wed, 27 Apr 2022 00:01:11 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <20220427070111.2dh5zgw7eswsdxvh@ldmartin-desk2>
-X-Patchwork-Hint: comment
-References: <20220425211251.77154-1-matthew.d.roper@intel.com>
- <20220425211251.77154-3-matthew.d.roper@intel.com>
+ bh=027ChD7/Ah8j2KpdxfIqvBNWErEu69UY0jd8gI1R0fo=;
+ b=MhgoE1HzS4osPvoQw5c1/DJ7a9O1i0MtsJ0e7twWz90TvBMUBEvJ7ed1
+ /7tkT1mHu0QZyQFNAAZPJa4pFMswqG2zDk7KYu9c62AjlxdzsVqABh/ir
+ WLAAb2POv2fLxQFJGrJ0/fSc6mW+uiCdTOmObXPSAprWiYm0Dbo/SLMbo
+ UI6L9gHRXMVFdW6pHr7ETfrhV1kC8OyE3RYLr7fBoSWPIwunvGNF7afUm
+ 2GlKZSqVHf0W53WTu2Dxs/fpdRVjPHQxWlj2dEXg3eJ3/R8jbkhg+r/7r
+ S+Qhe06YYvDbrpmt0tw0xru1+0QLwswJXRVFVfWmoKE7vxPTDp3iH6Knp w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10329"; a="245773780"
+X-IronPort-AV: E=Sophos;i="5.90,292,1643702400"; d="scan'208";a="245773780"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Apr 2022 00:50:34 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,292,1643702400"; d="scan'208";a="680163331"
+Received: from lkp-server01.sh.intel.com (HELO 5056e131ad90) ([10.239.97.150])
+ by orsmga004.jf.intel.com with ESMTP; 27 Apr 2022 00:50:32 -0700
+Received: from kbuild by 5056e131ad90 with local (Exim 4.95)
+ (envelope-from <lkp@intel.com>) id 1njcRT-0004TW-HG;
+ Wed, 27 Apr 2022 07:50:31 +0000
+Date: Wed, 27 Apr 2022 15:49:54 +0800
+From: kernel test robot <lkp@intel.com>
+To: Anusha Srivatsa <anusha.srivatsa@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Message-ID: <202204271502.BuTprbqW-lkp@intel.com>
+References: <20220427003509.267683-1-anusha.srivatsa@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220425211251.77154-3-matthew.d.roper@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v2 2/3] drm/i915: Add first set of DG2 PCI
- IDs
+In-Reply-To: <20220427003509.267683-1-anusha.srivatsa@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/dmc: Add MMIO range restrictions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,132 +59,161 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
- Dave Airlie <airlied@gmail.com>, dri-devel@lists.freedesktop.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>, kbuild-all@lists.01.org,
+ stable@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Apr 25, 2022 at 02:12:50PM -0700, Matt Roper wrote:
->The IDs added here are the subset reserved for 'motherboard down'
->designs of DG2.  We have all the necessary support upstream to enable
->these now (although they'll continue to require force_probe until the
->usual requirements are met).
->
->The remaining DG2 IDs for add-in cards will come in a future patch once
->some additional required functionality has fully landed.
->
->Bspec: 44477
->Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->Cc: Daniel Vetter <daniel@ffwll.ch>
->Cc: Dave Airlie <airlied@gmail.com>
->Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
->Cc: Jani Nikula <jani.nikula@intel.com>
->Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
->Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Hi Anusha,
+
+Thank you for the patch! Yet something to improve:
+
+[auto build test ERROR on drm-intel/for-linux-next]
+[also build test ERROR on drm-tip/drm-tip next-20220426]
+[cannot apply to v5.18-rc4]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Anusha-Srivatsa/drm-i915-dmc-Add-MMIO-range-restrictions/20220427-084021
+base:   git://anongit.freedesktop.org/drm-intel for-linux-next
+config: x86_64-defconfig (https://download.01.org/0day-ci/archive/20220427/202204271502.BuTprbqW-lkp@intel.com/config)
+compiler: gcc-11 (Debian 11.2.0-20) 11.2.0
+reproduce (this is a W=1 build):
+        # https://github.com/intel-lab-lkp/linux/commit/f79241ea04e8815b3c1b0ab6b9d6136efc8646d3
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Anusha-Srivatsa/drm-i915-dmc-Add-MMIO-range-restrictions/20220427-084021
+        git checkout f79241ea04e8815b3c1b0ab6b9d6136efc8646d3
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        make W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash
+
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+All errors (new ones prefixed by >>):
+
+   drivers/gpu/drm/i915/display/intel_dmc.c: In function 'parse_dmc_fw_header':
+>> drivers/gpu/drm/i915/display/intel_dmc.c:476:9: error: this 'if' clause does not guard... [-Werror=misleading-indentation]
+     476 |         if (!dmc_mmio_addr_sanity_check(dmc, mmioaddr, mmio_count, dmc_header->header_ver, dmc_id))
+         |         ^~
+   drivers/gpu/drm/i915/display/intel_dmc.c:478:17: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the 'if'
+     478 |                 return 0;
+         |                 ^~~~~~
+   cc1: all warnings being treated as errors
 
 
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+vim +/if +476 drivers/gpu/drm/i915/display/intel_dmc.c
 
-Lucas De Marchi
+   406	
+   407	static u32 parse_dmc_fw_header(struct intel_dmc *dmc,
+   408				       const struct intel_dmc_header_base *dmc_header,
+   409				       size_t rem_size, u8 dmc_id)
+   410	{
+   411		struct drm_i915_private *i915 = container_of(dmc, typeof(*i915), dmc);
+   412		struct dmc_fw_info *dmc_info = &dmc->dmc_info[dmc_id];
+   413		unsigned int header_len_bytes, dmc_header_size, payload_size, i;
+   414		const u32 *mmioaddr, *mmiodata;
+   415		u32 mmio_count, mmio_count_max, start_mmioaddr;
+   416		u8 *payload;
+   417	
+   418		BUILD_BUG_ON(ARRAY_SIZE(dmc_info->mmioaddr) < DMC_V3_MAX_MMIO_COUNT ||
+   419			     ARRAY_SIZE(dmc_info->mmioaddr) < DMC_V1_MAX_MMIO_COUNT);
+   420	
+   421		/*
+   422		 * Check if we can access common fields, we will checkc again below
+   423		 * after we have read the version
+   424		 */
+   425		if (rem_size < sizeof(struct intel_dmc_header_base))
+   426			goto error_truncated;
+   427	
+   428		/* Cope with small differences between v1 and v3 */
+   429		if (dmc_header->header_ver == 3) {
+   430			const struct intel_dmc_header_v3 *v3 =
+   431				(const struct intel_dmc_header_v3 *)dmc_header;
+   432	
+   433			if (rem_size < sizeof(struct intel_dmc_header_v3))
+   434				goto error_truncated;
+   435	
+   436			mmioaddr = v3->mmioaddr;
+   437			mmiodata = v3->mmiodata;
+   438			mmio_count = v3->mmio_count;
+   439			mmio_count_max = DMC_V3_MAX_MMIO_COUNT;
+   440			/* header_len is in dwords */
+   441			header_len_bytes = dmc_header->header_len * 4;
+   442			start_mmioaddr = v3->start_mmioaddr;
+   443			dmc_header_size = sizeof(*v3);
+   444		} else if (dmc_header->header_ver == 1) {
+   445			const struct intel_dmc_header_v1 *v1 =
+   446				(const struct intel_dmc_header_v1 *)dmc_header;
+   447	
+   448			if (rem_size < sizeof(struct intel_dmc_header_v1))
+   449				goto error_truncated;
+   450	
+   451			mmioaddr = v1->mmioaddr;
+   452			mmiodata = v1->mmiodata;
+   453			mmio_count = v1->mmio_count;
+   454			mmio_count_max = DMC_V1_MAX_MMIO_COUNT;
+   455			header_len_bytes = dmc_header->header_len;
+   456			start_mmioaddr = DMC_V1_MMIO_START_RANGE;
+   457			dmc_header_size = sizeof(*v1);
+   458		} else {
+   459			drm_err(&i915->drm, "Unknown DMC fw header version: %u\n",
+   460				dmc_header->header_ver);
+   461			return 0;
+   462		}
+   463	
+   464		if (header_len_bytes != dmc_header_size) {
+   465			drm_err(&i915->drm, "DMC firmware has wrong dmc header length "
+   466				"(%u bytes)\n", header_len_bytes);
+   467			return 0;
+   468		}
+   469	
+   470		/* Cache the dmc header info. */
+   471		if (mmio_count > mmio_count_max) {
+   472			drm_err(&i915->drm, "DMC firmware has wrong mmio count %u\n", mmio_count);
+   473			return 0;
+   474		}
+   475	
+ > 476		if (!dmc_mmio_addr_sanity_check(dmc, mmioaddr, mmio_count, dmc_header->header_ver, dmc_id))
+   477			drm_err(&i915->drm, "DMC firmware has Wrong MMIO Addresses\n");
+   478			return 0;
+   479	
+   480		for (i = 0; i < mmio_count; i++) {
+   481			dmc_info->mmioaddr[i] = _MMIO(mmioaddr[i]);
+   482			dmc_info->mmiodata[i] = mmiodata[i];
+   483		}
+   484		dmc_info->mmio_count = mmio_count;
+   485		dmc_info->start_mmioaddr = start_mmioaddr;
+   486	
+   487		rem_size -= header_len_bytes;
+   488	
+   489		/* fw_size is in dwords, so multiplied by 4 to convert into bytes. */
+   490		payload_size = dmc_header->fw_size * 4;
+   491		if (rem_size < payload_size)
+   492			goto error_truncated;
+   493	
+   494		if (payload_size > dmc->max_fw_size) {
+   495			drm_err(&i915->drm, "DMC FW too big (%u bytes)\n", payload_size);
+   496			return 0;
+   497		}
+   498		dmc_info->dmc_fw_size = dmc_header->fw_size;
+   499	
+   500		dmc_info->payload = kmalloc(payload_size, GFP_KERNEL);
+   501		if (!dmc_info->payload)
+   502			return 0;
+   503	
+   504		payload = (u8 *)(dmc_header) + header_len_bytes;
+   505		memcpy(dmc_info->payload, payload, payload_size);
+   506	
+   507		return header_len_bytes + payload_size;
+   508	
+   509	error_truncated:
+   510		drm_err(&i915->drm, "Truncated DMC firmware, refusing.\n");
+   511		return 0;
+   512	}
+   513	
 
->---
-> drivers/gpu/drm/i915/i915_pci.c          |  2 +-
-> drivers/gpu/drm/i915/intel_device_info.c | 21 +++++++++++++++++++++
-> include/drm/i915_pciids.h                | 22 ++++++++++++++++++++++
-> 3 files changed, 44 insertions(+), 1 deletion(-)
->
->diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
->index a3a1b4cb2942..1d44f57c2eb0 100644
->--- a/drivers/gpu/drm/i915/i915_pci.c
->+++ b/drivers/gpu/drm/i915/i915_pci.c
->@@ -1058,7 +1058,6 @@ static const struct intel_device_info xehpsdv_info = {
-> 		BIT(VECS0) | BIT(VECS1) | \
-> 		BIT(VCS0) | BIT(VCS2)
->
->-__maybe_unused
-> static const struct intel_device_info dg2_info = {
-> 	DG2_FEATURES,
-> 	XE_LPD_FEATURES,
->@@ -1154,6 +1153,7 @@ static const struct pci_device_id pciidlist[] = {
-> 	INTEL_DG1_IDS(&dg1_info),
-> 	INTEL_RPLS_IDS(&adl_s_info),
-> 	INTEL_RPLP_IDS(&adl_p_info),
->+	INTEL_DG2_IDS(&dg2_info),
-> 	{0, 0, 0}
-> };
-> MODULE_DEVICE_TABLE(pci, pciidlist);
->diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
->index 74c3ffb66b8d..cefa9ed784ff 100644
->--- a/drivers/gpu/drm/i915/intel_device_info.c
->+++ b/drivers/gpu/drm/i915/intel_device_info.c
->@@ -186,6 +186,18 @@ static const u16 subplatform_rpl_ids[] = {
-> 	INTEL_RPLP_IDS(0),
-> };
->
->+static const u16 subplatform_g10_ids[] = {
->+	INTEL_DG2_G10_IDS(0),
->+};
->+
->+static const u16 subplatform_g11_ids[] = {
->+	INTEL_DG2_G11_IDS(0),
->+};
->+
->+static const u16 subplatform_g12_ids[] = {
->+	INTEL_DG2_G12_IDS(0),
->+};
->+
-> static bool find_devid(u16 id, const u16 *p, unsigned int num)
-> {
-> 	for (; num; num--, p++) {
->@@ -231,6 +243,15 @@ void intel_device_info_subplatform_init(struct drm_i915_private *i915)
-> 	} else if (find_devid(devid, subplatform_rpl_ids,
-> 			      ARRAY_SIZE(subplatform_rpl_ids))) {
-> 		mask = BIT(INTEL_SUBPLATFORM_RPL);
->+	} else if (find_devid(devid, subplatform_g10_ids,
->+			      ARRAY_SIZE(subplatform_g10_ids))) {
->+		mask = BIT(INTEL_SUBPLATFORM_G10);
->+	} else if (find_devid(devid, subplatform_g11_ids,
->+			      ARRAY_SIZE(subplatform_g11_ids))) {
->+		mask = BIT(INTEL_SUBPLATFORM_G11);
->+	} else if (find_devid(devid, subplatform_g12_ids,
->+			      ARRAY_SIZE(subplatform_g12_ids))) {
->+		mask = BIT(INTEL_SUBPLATFORM_G12);
-> 	}
->
-> 	GEM_BUG_ON(mask & ~INTEL_SUBPLATFORM_MASK);
->diff --git a/include/drm/i915_pciids.h b/include/drm/i915_pciids.h
->index a7b5eea7ffaa..283dadfbb4db 100644
->--- a/include/drm/i915_pciids.h
->+++ b/include/drm/i915_pciids.h
->@@ -692,4 +692,26 @@
-> 	INTEL_VGA_DEVICE(0xA7A8, info), \
-> 	INTEL_VGA_DEVICE(0xA7A9, info)
->
->+/* DG2 */
->+#define INTEL_DG2_G10_IDS(info) \
->+	INTEL_VGA_DEVICE(0x5690, info), \
->+	INTEL_VGA_DEVICE(0x5691, info), \
->+	INTEL_VGA_DEVICE(0x5692, info)
->+
->+#define INTEL_DG2_G11_IDS(info) \
->+	INTEL_VGA_DEVICE(0x5693, info), \
->+	INTEL_VGA_DEVICE(0x5694, info), \
->+	INTEL_VGA_DEVICE(0x5695, info), \
->+	INTEL_VGA_DEVICE(0x56B0, info)
->+
->+#define INTEL_DG2_G12_IDS(info) \
->+	INTEL_VGA_DEVICE(0x5696, info), \
->+	INTEL_VGA_DEVICE(0x5697, info), \
->+	INTEL_VGA_DEVICE(0x56B2, info)
->+
->+#define INTEL_DG2_IDS(info) \
->+	INTEL_DG2_G10_IDS(info), \
->+	INTEL_DG2_G11_IDS(info), \
->+	INTEL_DG2_G12_IDS(info)
->+
-> #endif /* _I915_PCIIDS_H */
->-- 
->2.35.1
->
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
