@@ -2,55 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97955511C7D
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Apr 2022 19:09:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EC2B7511C87
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Apr 2022 19:16:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A6F8710E264;
-	Wed, 27 Apr 2022 17:09:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3DC1E10E4AD;
+	Wed, 27 Apr 2022 17:16:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2BAD610E087;
- Wed, 27 Apr 2022 17:09:48 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3434810E4AD
+ for <intel-gfx@lists.freedesktop.org>; Wed, 27 Apr 2022 17:16:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1651079388; x=1682615388;
+ t=1651079767; x=1682615767;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=H2F/blZMGChoUPoGwThBsMAnVLZXou0E1i9kkdnR178=;
- b=BTO5+InwK/m9SGtzW3QSF7pcsDm1/kdrOauihkqk2lrfzwlp06n3go0j
- IltPem7GSIwiNgt4gS5KhD3Psn67QXZY+sn0SubmViALS7N8+w08yrfpW
- 8Ntvh5XASef0Gjz6wtzRRnDviQu2ebdGR9echDTo1Ir2Qy4CzUsxfPJPD
- apqE7t90GtjKubtgMnmPwqp54tMuCqj32r2X21Sw9nErV3yxRJijzbv7/
- id91zvL2WE3h/go6eaT7G1MbqY57Joa2um85BQxn/K2EfnJ0fn33lkk3f
- j1qQFqNAOrCnVVkIR7zAPCWyPcA0hvq31Fr0c9uXtgcIwi6lFBuTJRpgK w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10330"; a="246565727"
-X-IronPort-AV: E=Sophos;i="5.90,293,1643702400"; d="scan'208";a="246565727"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2022 10:09:30 -0700
-X-IronPort-AV: E=Sophos;i="5.90,293,1643702400"; d="scan'208";a="680902654"
-Received: from konishi-mobl.gar.corp.intel.com (HELO [10.252.6.183])
- ([10.252.6.183])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2022 10:09:28 -0700
-Message-ID: <baf3af1f-7699-9de6-8605-95e5c1b93737@intel.com>
-Date: Wed, 27 Apr 2022 18:09:26 +0100
+ bh=2ApIysIOl04y8ASXnynGSSog8g9CQUMCE+VYy0JqOPY=;
+ b=daxmvioQy4TxhItVfRzky8ecMH427Gx/NL4y4jD59HmSgU/ts2xVpBvo
+ 2KWZXYdKxRFdexY4Fl/zdY6Mwc0iNKxooBYEvxrBhlv/SP6d6PW+Rcaq3
+ 687HdYmqIGra6EWsssulstewq1aKT7l3KH1ReL/On2ZBX8ob1DcxqOtgQ
+ LXsQHPQMcPalva9FKPLN0n+qfmIfSxOfyeLIPUsxGheVGzNsQ0T6XNIDg
+ tFdDvlLwcIbL1x+U/n+9swGk3Jo+7/y29DKGPNuWoUMVGFlPfFnXcqBWR
+ BVOAhc5Pha8aBA0k+PWeESNmnT+e3VVGus+C0ZauV7yLrcQJ2QtCw2Sob w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10330"; a="245926966"
+X-IronPort-AV: E=Sophos;i="5.90,293,1643702400"; d="scan'208";a="245926966"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Apr 2022 10:16:06 -0700
+X-IronPort-AV: E=Sophos;i="5.90,293,1643702400"; d="scan'208";a="580717173"
+Received: from jmwalsh-mobl.amr.corp.intel.com (HELO [10.213.205.227])
+ ([10.213.205.227])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Apr 2022 10:16:05 -0700
+Message-ID: <a8c0f755-cebe-a5c8-d1e2-1b78527201a6@linux.intel.com>
+Date: Wed, 27 Apr 2022 18:16:03 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Content-Language: en-GB
-To: Ramalingam C <ramalingam.c@intel.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>
-References: <20220425162430.28844-1-ramalingam.c@intel.com>
- <20220425162430.28844-5-ramalingam.c@intel.com>
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20220425162430.28844-5-ramalingam.c@intel.com>
+Content-Language: en-US
+To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+References: <20220413225732.34943-1-ashutosh.dixit@intel.com>
+ <b614c2c61a954de06fbe2c3a7c70d3a91804407e.1649982207.git.ashutosh.dixit@intel.com>
+ <22e84175-eef3-5ef3-14f0-8a19bbdab70e@linux.intel.com>
+ <87levq5y6d.wl-ashutosh.dixit@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <87levq5y6d.wl-ashutosh.dixit@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v2 4/4] uapi/drm/i915: Document memory
- residency and Flat-CCS capability of obj
+Subject: Re: [Intel-gfx] [PATCH v3] drm/i915: Don't show engine information
+ in fdinfo with GuC submission
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,64 +64,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>,
- Hellstrom Thomas <thomas.hellstrom@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 25/04/2022 17:24, Ramalingam C wrote:
-> Capture the impact of memory region preference list of an object, on
-> their memory residency and Flat-CCS capability of the objects.
+
+On 27/04/2022 16:43, Dixit, Ashutosh wrote:
+> On Wed, 27 Apr 2022 02:15:35 -0700, Tvrtko Ursulin wrote:
+>>
+>> On 15/04/2022 01:25, Ashutosh Dixit wrote:
+>>> At present i915 does not fetch busyness information from GuC, resulting in
+>>> incorrect busyness values in fdinfo. Because engine information is coupled
+>>> with busyness in fdinfo, skip showing client engine information in fdinfo
+>>> with GuC submission till fetching busyness is supported in the i915 GuC
+>>> submission backend.
+>>>
+>>> v2 (Daniele):
+>>>     Make commit title and description more precise
+>>>     Add FIXME with brief description at code change
+>>>     s/intel_guc_submission_is_used/intel_uc_uses_guc_submission/
+>>>
+>>> v3 (Daniele):
+>>>     Drop FIXME in comment
+>>>
+>>> Bug: https://gitlab.freedesktop.org/drm/intel/-/issues/5564
+>>> Fixes: 055634e4b62f ("drm/i915: Expose client engine utilisation via fdinfo")
+>>> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com
+>>> Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+>>> Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+>>> Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+>>> ---
+>>>    drivers/gpu/drm/i915/i915_drm_client.c | 6 +++++-
+>>>    1 file changed, 5 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/i915_drm_client.c b/drivers/gpu/drm/i915/i915_drm_client.c
+>>> index e539f6b23060..475a6f824cad 100644
+>>> --- a/drivers/gpu/drm/i915/i915_drm_client.c
+>>> +++ b/drivers/gpu/drm/i915/i915_drm_client.c
+>>> @@ -145,7 +145,11 @@ void i915_drm_client_fdinfo(struct seq_file *m, struct file *f)
+>>> 		   PCI_SLOT(pdev->devfn), PCI_FUNC(pdev->devfn));
+>>> 	seq_printf(m, "drm-client-id:\t%u\n", client->id);
+>>>    -	if (GRAPHICS_VER(i915) < 8)
+>>> +	/*
+>>> +	 * Temporarily skip showing client engine information with GuC submission till
+>>> +	 * fetching engine busyness is implemented in the GuC submission backend
+>>> +	 */
+>>> +	if (GRAPHICS_VER(i915) < 8 || intel_uc_uses_guc_submission(&i915->gt0.uc))
+>>> 		return;
+>>> 		for (i = 0; i < ARRAY_SIZE(uabi_class_names); i++)
+>>
+>> Thanks for fixing this while I was away. It was a simple miss, nothing
+>> sinister. In terms of mention of "garbage" numbers being reported - were
+>> they actually garbage or simply always zero?
 > 
-> v2:
->    Fix the Flat-CCS capability of an obj with {lmem, smem} preference
->    list [Thomas]
+> Ah, you are referring to what I wrote in the bug. Actually I didn't check
+> the values myself but was told we were displaying "garbage" values (or at
+> least I interpreted it that way, and garbage meaning not just zero). But
+> looking now at IGT outputs from that time appears the values were just zero
+> :/
 > 
-> Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
-> cc: Matthew Auld <matthew.auld@intel.com>
-> cc: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
-> ---
->   include/uapi/drm/i915_drm.h | 18 ++++++++++++++++++
->   1 file changed, 18 insertions(+)
+> https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11503/re-adlp-pub1/igt@drm_fdinfo@all-busy-idle-check-all.html
 > 
-> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-> index 35ca528803fd..ad191ed6547c 100644
-> --- a/include/uapi/drm/i915_drm.h
-> +++ b/include/uapi/drm/i915_drm.h
-> @@ -3393,6 +3393,24 @@ struct drm_i915_gem_create_ext {
->    * At which point we get the object handle in &drm_i915_gem_create_ext.handle,
->    * along with the final object size in &drm_i915_gem_create_ext.size, which
->    * should account for any rounding up, if required.
-> + *
-> + * Objects with multiple memory regions in the preference list will be backed
-> + * by one of the memory regions mentioned in the preference list. Though I915
-> + * tries to honour the order of the memory regions in the preference list,
-> + * based on the memory pressure of the regions, objects' backing region
-> + * will be selected.
-> + *
-> + * Userspace has no means of knowing the backing region for such objects.
+> I think we could even have left zero values as is except that we'd have to
+> fix the IGT failure.
+> 
+> Sorry for the confusion.
 
-"Note that userspace has no means of knowing the current backing region 
-for objects where @num_regions is larger than one. The kernel will only 
-ensure that the priority order of the @regions array is honoured, either 
-when initially placing the object, or when moving memory around due to 
-memory pressure."
+Np. One could even say that there is little difference between skip and 
+fail, given both need manual handling in cibuglog to be marked as known 
+until GuC support gets added. At least if I still remember how it works 
+and that unexplained skips still count as fails.
 
-> + *
-> + * On Flat-CCS capable HW, compression is supported for the objects residing
-> + * in I915_MEMORY_CLASS_DEVICE. When such objects (compressed) has other
-> + * memory class in preference list and migrated (by I915, due to memory
-> + * constrain) to the non I915_MEMORY_CLASS_DEVICE region, then I915 needs to
-> + * decompress the content. But I915 dont have the required information to
+Regards,
 
-"doesn't", also prefer @regions etc instead of "preference list"
-
-Anyway,
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
-
-> + * decompress the userspace compressed objects.
-> + *
-> + * So I915 supports Flat-CCS, only on the objects which can reside only on
-> + * I915_MEMORY_CLASS_DEVICE regions. >    */
->   struct drm_i915_gem_create_ext_memory_regions {
->   	/** @base: Extension link. See struct i915_user_extension. */
+Tvrtko
