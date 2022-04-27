@@ -2,44 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C09BE51240D
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Apr 2022 22:47:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A6B0351241F
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Apr 2022 22:50:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B44410E108;
-	Wed, 27 Apr 2022 20:47:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE9E210E501;
+	Wed, 27 Apr 2022 20:50:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 584F810E108
- for <intel-gfx@lists.freedesktop.org>; Wed, 27 Apr 2022 20:47:01 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AFEEB10E501
+ for <intel-gfx@lists.freedesktop.org>; Wed, 27 Apr 2022 20:50:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1651092421; x=1682628421;
+ t=1651092619; x=1682628619;
  h=date:message-id:from:to:cc:subject:in-reply-to:
  references:mime-version;
- bh=MXcSVisLk4PNUN2QE/Z82vQRsLPz265f07t4uR73584=;
- b=Yizxy1ijL3vtbbHzJTz9EHxmFn3oZpDQkZDsiQN313TgwjFCS6KZhVWQ
- 7G8FiwiD5QDySAvc+wrE8pxcYWrpUJAh5Y5au8wRyBCOzWS7+cnQVv9qW
- NqhoJGgyVstiv4NB1P5B5MtMUMuMrMdWI/TqurZDy8QD2CdsyCOynSEwm
- N53RWGwQAqskpoB/RqPINXFQVw83Haelw1B1QYNGY4B40zXaT2le/dSIo
- bZU9KFUuOhYbiYr9TQx8SPDKs60X5gP2kHGmVPkwZ2UMsqGQi1uuN56oo
- Fh2QbHtxlbN+pGaEDENCofJf7YmBGmr5tKLbDcG9m9zyUu6CCoc+e+/rS w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10330"; a="263651657"
-X-IronPort-AV: E=Sophos;i="5.90,294,1643702400"; d="scan'208";a="263651657"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2022 13:47:00 -0700
-X-IronPort-AV: E=Sophos;i="5.90,294,1643702400"; d="scan'208";a="580809509"
+ bh=NZrbxGh3ldcVEXIaLgVJNol6vNIh/8wJ2xQWYOSbDpo=;
+ b=GGI7p7FiRWJWvyLT+xXaTsYJVpkSrqjbE4rZlcNdXQqWGXSoQN+vrLeI
+ m0dFzg8sGtLDsMBzDyHh5kDUxjwYB8ccvRDXCu9ncg1Mm+65Hlwh9IdNX
+ nxBb1uxUKNAO1TKjla5dT4VSb9iRfdXwPqZ6Kl1zFXYkTgEstteJ+OXZW
+ hXbCikiyinyKljsDwGwd+WgKtBP7JQu51qu2OjhUZjrKeeYmIMQM8rU3q
+ ropGtlVWjDM5FOyBgweZhzefkswTU5Xfz/K+dtkfEJUXpFgEY8LvEcuWO
+ KqusYHQaeCOhxC/OSUM8KFSKDervA5Q9hmZJ67E5liN1Bsyin98E37evi g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10330"; a="245985187"
+X-IronPort-AV: E=Sophos;i="5.90,294,1643702400"; d="scan'208";a="245985187"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Apr 2022 13:50:18 -0700
+X-IronPort-AV: E=Sophos;i="5.90,294,1643702400"; d="scan'208";a="681084182"
 Received: from adixit-mobl1.amr.corp.intel.com (HELO adixit-arch.intel.com)
  ([10.212.232.118])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2022 13:47:00 -0700
-Date: Wed, 27 Apr 2022 13:46:59 -0700
-Message-ID: <87ee1i5k58.wl-ashutosh.dixit@intel.com>
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Apr 2022 13:50:18 -0700
+Date: Wed, 27 Apr 2022 13:50:18 -0700
+Message-ID: <87czh25jzp.wl-ashutosh.dixit@intel.com>
 From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
 To: Andi Shyti <andi.shyti@linux.intel.com>
-In-Reply-To: <YmXQ5+u7pL/Je6p5@intel.intel>
-References: <cover.1649871650.git.ashutosh.dixit@intel.com>	<cover.1650430271.git.ashutosh.dixit@intel.com>	<9ed5af1177ad08c7c2d9c5d9b32ab0154dbd950f.1650430271.git.ashutosh.dixit@intel.com>	<1339a2be-5fd0-cf65-d361-06c60d938ce5@intel.com>	<87levzag3a.wl-ashutosh.dixit@intel.com>	<d16ba36a-cc23-6bdd-803a-f2bb35dac75d@intel.com>	<YmXQ5+u7pL/Je6p5@intel.intel>
+In-Reply-To: <Ymksv99YhO9yz/Dw@intel.intel>
+References: <cover.1650435571.git.ashutosh.dixit@intel.com>
+ <9ed5af1177ad08c7c2d9c5d9b32ab0154dbd950f.1650435571.git.ashutosh.dixit@intel.com>
+ <YmXPo2vpPS6rXGV6@intel.intel>
+ <87o80n61ft.wl-ashutosh.dixit@intel.com>
+ <Ymksv99YhO9yz/Dw@intel.intel>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
  Emacs/27.2 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -59,151 +63,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Andrzej Hajda <andrzej.hajda@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sun, 24 Apr 2022 15:36:23 -0700, Andi Shyti wrote:
+On Wed, 27 Apr 2022 04:45:03 -0700, Andi Shyti wrote:
 >
-> Hi Andrzej and Ashutosh,
->
-> > > > > b/drivers/gpu/drm/i915/gt/intel_gt_types.h
-> > > > > index 937b2e1a305e..4c72b4f983a6 100644
-> > > > > --- a/drivers/gpu/drm/i915/gt/intel_gt_types.h
-> > > > > +++ b/drivers/gpu/drm/i915/gt/intel_gt_types.h
-> > > > > @@ -222,6 +222,9 @@ struct intel_gt {
-> > > > >	} mocs;
-> > > > >		struct intel_pxp pxp;
-> > > > > +
-> > > > > +	/* gt/gtN sysfs */
-> > > > > +	struct kobject sysfs_gtn;
-> > > > If you put kobject as a part of intel_gt what assures you that lifetime of
-> > > > kobject is shorter than intel_gt? Ie its refcounter is 0 on removal of
-> > > > intel_gt?
-> > > Because we are explicitly doing a kobject_put() in
-> > > intel_gt_sysfs_unregister(). Which is exactly what we are *not* doing in
-> > > the previous code.
+> Hi Ashutosh,
+
+Hi Andi,
+
+> > > > -static struct kobj_type kobj_gt_type = {
+> > > > -	.release = kobj_gt_release,
+> > > > +static struct kobj_type kobj_gtn_type = {
 > > >
-> > > Let me explain a bit about the previous code (but feel free to skip since
-> > > the patch should speak for itself):
-> > > * Previously we kzalloc a 'struct kobj_gt'
-> > > * But we don't save a pointer to the 'struct kobj_gt' so we don't have the
-> > >    pointer to the kobject to be able to do a kobject_put() on it later
-> > > * Therefore we need to store the pointer in 'struct intel_gt'
-> > > * But if we have to put the pointer in 'struct intel_gt' we might as well
-> > >    put the kobject as part of 'struct intel_gt' and that also removes the
-> > >    need to have a 'struct kobj_gt' (kobj_to_gt() can just use container_of()
-> > >    to get gt from kobj).
-> > > * So I think this patch simpler/cleaner than the original code if you take
-> > >    the requirement for kobject_put() into account.
+> > > what does it mean GTN? Or is it GTn? Please use just GT, gtn is
+> > > confusing.
+> > >
+> > > Same for all the rest of the gtn's you have used below.
+> >
+> > I didn't like gtn either. But a sysfs_gt kobject is already part of 'struct
+> > drm_i915_private' so I thought I'll put sysfs_gtn (for gt/gtN) in 'struct
+> > intel_gt'. Otherwise browsing the code etc. gets confusing.
 >
-> This is my oversight. This was something I completely forgot to
-> fix but it was my intention to do and actually I had some fixes
-> ongoing. But because this patch took too long to get in I
-> completely forgot about it (Sujaritha was actually the first who
-> pointed this out).
->
-> Thanks, Ashutosh for taking this.
->
-> > I fully agree that previous code is incorrect but I am not convinced current
-> > code is correct.
-> > If some objects are kref-counted it means usually they can have multiple
-> > concurrent users and kobject_put does not work as traditional
-> > destructor/cleanup/unregister.
-> > So in this particular case after calling kobject_init_and_add sysfs core can
-> > get multiple references on the object. Later, during driver unregistration
-> > kobject_put is called, but if the object is still in use by sysfs core, the
-> > object will not be destroyed/released. If the driver unregistration
-> > continues memory will be freed, leaving sysfs-core (or other users) with
-> > dangling pointers. Unless there is some additional synchronization mechanism
-> > I am not aware of.
->
-> Thanks Andrzej for summarizing this and what you said is actually
-> what happens. I had a similar solution developed and I had wrong
-> pointer reference happening.
+> we can even use 'gt_n' if the 'n' is really necessary.
 
-Hi Andrzej/Andi,
-
-I did do some research into kobject's and such before writing this patch
-and based on that I believe the patch is correct. Presenting some evidence
-below.
-
-The patch is verified by:
-
-a. Putting a printk in the release() method when it exists (it does for
-   sysfs_gtn kobject)
-b. Enabling dynamic prints for lib/kobject.c
-
-For example, with the following:
-
-# echo 'file kobject.c +p' > /sys/kernel/debug/dynamic_debug/control
-# echo -n "0000:03:00.0" > /sys/bus/pci/drivers/i915/unbind
-
-We see this in dmesg (see kobject_cleanup() called from kobject_put()):
-
-[ 1034.930007] kobject: '.defaults' (ffff88817130a640): kobject_cleanup, parent ffff8882262b5778
-[ 1034.930020] kobject: '.defaults' (ffff88817130a640): auto cleanup kobject_del
-[ 1034.930336] kobject: '.defaults' (ffff88817130a640): calling ktype release
-[ 1034.930340] kobject: (ffff88817130a640): dynamic_kobj_release
-[ 1034.930354] kobject: '.defaults': free name
-[ 1034.930366] kobject: 'gt0' (ffff8882262b5778): kobject_cleanup, parent ffff88817130a240
-[ 1034.930371] kobject: 'gt0' (ffff8882262b5778): auto cleanup kobject_del
-[ 1034.931930] kobject: 'gt0' (ffff8882262b5778): calling ktype release
-[ 1034.931936] kobject: 'gt0': free name
-[ 1034.958004] kobject: 'i915_0000_03_00.0' (ffff88810e1f8800): fill_kobj_path: path = '/devices/i915_0000_03_00.0'
-[ 1034.958155] kobject: 'i915_0000_03_00.0' (ffff88810e1f8800): kobject_cleanup, parent 0000000000000000
-[ 1034.958162] kobject: 'i915_0000_03_00.0' (ffff88810e1f8800): calling ktype release
-[ 1034.958188] kobject: 'i915_0000_03_00.0': free name
-[ 1034.958729] kobject: 'gt' (ffff88817130a240): kobject_cleanup, parent ffff8881160c5000
-[ 1034.958736] kobject: 'gt' (ffff88817130a240): auto cleanup kobject_del
-[ 1034.958762] kobject: 'gt' (ffff88817130a240): calling ktype release
-[ 1034.958767] kobject: (ffff88817130a240): dynamic_kobj_release
-[ 1034.958778] kobject: 'gt': free name
-
-We have the following directory structure (one of the patches is creating
-/sys/class/drm/card0/gt/gt0/.defaults):
-
-      /sys/class/drm/card0/gt
-                           |-gt0
-                              |-.defaults
-
-And we see from dmesg .defaults, gt0 and gt kobjects being cleaned up in
-that order.
-
-Looking at lib/kobject.c there are several interesting things:
-
-* Three subsystems are involved: kobject, sysfs and kernfs.
-
-* A child kobject takes a reference on the parent, so we must do a
-  kobject_put() on the child before doing kobject_put() on the parent
-  (creating a child kobject creates a corresponding sub-directory in sysfs).
-
-* Adding files to a sysfs directory does not take a reference on the
-  kobject, only on the parent kernfs_node.
-
-* Since we do call sysfs_create_group() (for RC6) ordinarily we will need
-  to call sysfs_remove_group() but this does not seem to be needed because
-  we are not creating a directory for the group (by providing a name for
-  the group). So sysfs_create_group() is equivalent to sysfs_create_files().
-  So it seems we don't need sysfs_remove_group().
-
-* Similarly it appears files created by sysfs_create_files() do not need to
-  be removed by sysfs_remove_files() because __kobject_del() and
-  sysfs_remove_dir() called from kobject_cleanup() do that for us (the
-  comment in kobject_cleanup() says "remove from sysfs if the caller did
-  not do it").
-
-Based on the above it is clear that no one except a child kobject takes a
-reference on the parent kobject and as long as we kobject_put() them in the
-correct order (as we seem to be doing based on dmesg trace above) we should
-be ok.
-
-Also what is followed in this patch is a fairly standard coding
-pattern. Further, in case of any errors we generally see failure to unload
-the module etc. and none of these things are being observed, module reload
-works fine.
-
-I hope these points are helpful in completing review of the patch.
+I decided to just go with sysfs_gt in v2 as you had suggested. The total
+number of instances of sysfs_gt are very few so it didn't seem too bad to
+have the same member name in the two struct's.
 
 Thanks.
 --
