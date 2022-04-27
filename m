@@ -2,66 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B50F1511889
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Apr 2022 15:53:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F16A51188D
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Apr 2022 15:55:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7046D10F49C;
-	Wed, 27 Apr 2022 13:53:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5AAC210F4AB;
+	Wed, 27 Apr 2022 13:55:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com
- [IPv6:2a00:1450:4864:20::62f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C50E610F497
- for <intel-gfx@lists.freedesktop.org>; Wed, 27 Apr 2022 13:53:13 +0000 (UTC)
-Received: by mail-ej1-x62f.google.com with SMTP id g6so3589947ejw.1
- for <intel-gfx@lists.freedesktop.org>; Wed, 27 Apr 2022 06:53:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=7qretZLTRfoUdF5A/qxbxIisRki+6vNphj3qcIE3Q2M=;
- b=BxkpiQwear26UH+DyBNZJYzN8xUS1Zrt/DrLtHVe/AZEa+A2/U437LHOpNedFZT+2v
- OrakueBtUU/1J0mXCOz5XCArmNuXEbQbApTzKicnioZlInXlFP9725+OtZXGRftgae1y
- B5ViMhVQlLdhHrLq5PQiAxdCUtgcQ/sUx/S9I=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=7qretZLTRfoUdF5A/qxbxIisRki+6vNphj3qcIE3Q2M=;
- b=LZFk8eglJtZMqQVYAxplvD9hDEC2SR47qvxKn1mxvIYBQoFZC+MHHhiCJFO8hl8eZt
- /xgozLIs4wKiDB8BqMZw+e2lgIlj1faQRWj3hG1YAFDFL+BcCxF26FEI0NFTA63BPzQJ
- b605qOa7r05AmM4DICBvbjV/HowjaDlHGwueEjU0Srf1M2mho0uPpzXuO7zxJYVnCP39
- nzvvbdSahYvvrUHIPqCFgSM7pNTu7govwLKrqKgCbj4KbyjBPpbpStKTUkJDpBNuMiHw
- XC5bSUfwUtcow58ypH6GhBta6lI2i1AOS3adFzvi0g9ujYfP/ZKmWQ74GZVeJONrmCWH
- 2gqg==
-X-Gm-Message-State: AOAM5337aoqHRO6qwLKYy9MKxcihLyLehErsLdqLVjGlcOJo7AkJhU5M
- YX6ISonhI2dhou+OywQLvyt3vw==
-X-Google-Smtp-Source: ABdhPJxbUQymZFMLBlYJ4xA9saGXl1VZeR+qLo7+u5AZ52RntKk7PbLers/XGcCX9si9JlIJyVTTeg==
-X-Received: by 2002:a17:906:9749:b0:6ef:bc52:1f94 with SMTP id
- o9-20020a170906974900b006efbc521f94mr26615454ejy.666.1651067591715; 
- Wed, 27 Apr 2022 06:53:11 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id
- q17-20020a1709064cd100b006e78206fe2bsm6938946ejt.111.2022.04.27.06.53.10
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 27 Apr 2022 06:53:11 -0700 (PDT)
-Date: Wed, 27 Apr 2022 15:53:09 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Message-ID: <YmlKxW8X3hvfLMkg@phenom.ffwll.local>
-References: <20220307203146.648-1-niranjana.vishwanathapura@intel.com>
- <20220307203146.648-2-niranjana.vishwanathapura@intel.com>
- <CAKMK7uE=2=SEEsXnq0fnJD35E52X_C3RjV=w9WNfe-i7UWf0ZQ@mail.gmail.com>
- <CAKMK7uHfbHPNOmJCHNmj47-hnzBPshxOMLFx-oY7V0PdDcGHrw@mail.gmail.com>
- <20220420225000.GT2273@nvishwa1-DESK>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0B8C310F4AF;
+ Wed, 27 Apr 2022 13:55:20 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id F3FFAAADD8;
+ Wed, 27 Apr 2022 13:55:19 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7960711113546828997=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220420225000.GT2273@nvishwa1-DESK>
-X-Operating-System: Linux phenom 5.10.0-8-amd64 
-Subject: Re: [Intel-gfx] [RFC v2 1/2] drm/doc/rfc: VM_BIND feature design
- document
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Date: Wed, 27 Apr 2022 13:55:19 -0000
+Message-ID: <165106771996.24233.7117583862768998753@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220426193222.3422-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20220426193222.3422-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/bios=3A_Rework_BDB_block_handling_and_PNPID-=3Epanel=5Fty?=
+ =?utf-8?q?pe_matching_=28rev8=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,557 +41,489 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, chris.p.wilson@intel.com,
- Dave Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
- Daniel Stone <daniel@fooishbar.org>, Ben Skeggs <bskeggs@redhat.com>,
- daniel.vetter@intel.com, thomas.hellstrom@intel.com,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Apr 20, 2022 at 03:50:00PM -0700, Niranjana Vishwanathapura wrote:
-> On Thu, Mar 31, 2022 at 01:37:08PM +0200, Daniel Vetter wrote:
-> > One thing I've forgotten, since it's only hinted at here: If/when we
-> > switch tlb flushing from the current dumb&synchronous implementation
-> > we now have in i915 in upstream to one with batching using dma_fence,
-> > then I think that should be something which is done with a small
-> > helper library of shared code too. The batching is somewhat tricky,
-> > and you need to make sure you put the fence into the right
-> > dma_resv_usage slot, and the trick with replace the vm fence with a
-> > tlb flush fence is also a good reason to share the code so we only
-> > have it one.
-> > 
-> > Christian's recent work also has some prep work for this already with
-> > the fence replacing trick.
-> 
-> Sure, but this optimization is not required for initial vm_bind support
-> to land right? We can look at it soon after that. Is that ok?
-> I have made a reference to this TLB flush batching work in the rst file.
+--===============7960711113546828997==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Yeah for now we can just rely on the tlb flush we do on vma unbinding,
-which also means there's no need for any separate tlb flushing in vm_bind
-related code. This was just a thought I dropped on here to make sure we
-ahve a complete picture.
--Daniel
+== Series Details ==
+
+Series: drm/i915/bios: Rework BDB block handling and PNPID->panel_type matching (rev8)
+URL   : https://patchwork.freedesktop.org/series/102213/
+State : failure
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_11550 -> Patchwork_102213v8
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_102213v8 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_102213v8, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/index.html
+
+Participating hosts (43 -> 43)
+------------------------------
+
+  Additional (3): bat-dg2-8 bat-dg1-6 bat-adlp-4 
+  Missing    (3): fi-bsw-cyan fi-cfl-8700k fi-ivb-3770 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_102213v8:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@runner@aborted:
+    - fi-bxt-dsi:         NOTRUN -> [FAIL][1]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/fi-bxt-dsi/igt@runner@aborted.html
+
+  
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@i915_pm_rpm@module-reload:
+    - {bat-rpls-2}:       [DMESG-WARN][2] ([i915#4391]) -> [WARN][3]
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11550/bat-rpls-2/igt@i915_pm_rpm@module-reload.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/bat-rpls-2/igt@i915_pm_rpm@module-reload.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_102213v8 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_suspend@basic-s0@smem:
+    - bat-dg1-6:          NOTRUN -> [INCOMPLETE][4] ([i915#5827])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/bat-dg1-6/igt@gem_exec_suspend@basic-s0@smem.html
+
+  * igt@gem_lmem_swapping@basic:
+    - bat-adlp-4:         NOTRUN -> [SKIP][5] ([i915#4613]) +3 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/bat-adlp-4/igt@gem_lmem_swapping@basic.html
+
+  * igt@gem_tiled_pread_basic:
+    - bat-adlp-4:         NOTRUN -> [SKIP][6] ([i915#3282])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/bat-adlp-4/igt@gem_tiled_pread_basic.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - bat-adlp-4:         NOTRUN -> [SKIP][7] ([fdo#111827]) +8 similar issues
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/bat-adlp-4/igt@kms_chamelium@dp-crc-fast.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
+    - bat-adlp-4:         NOTRUN -> [SKIP][8] ([i915#4103]) +1 similar issue
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/bat-adlp-4/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+
+  * igt@kms_flip@basic-flip-vs-modeset@a-edp1:
+    - bat-adlp-4:         NOTRUN -> [DMESG-WARN][9] ([i915#3576])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/bat-adlp-4/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html
+
+  * igt@kms_force_connector_basic@prune-stale-modes:
+    - bat-adlp-4:         NOTRUN -> [SKIP][10] ([i915#4093]) +3 similar issues
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/bat-adlp-4/igt@kms_force_connector_basic@prune-stale-modes.html
+
+  * igt@kms_setmode@basic-clone-single-crtc:
+    - bat-adlp-4:         NOTRUN -> [SKIP][11] ([i915#3555])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/bat-adlp-4/igt@kms_setmode@basic-clone-single-crtc.html
+
+  * igt@prime_vgem@basic-fence-read:
+    - bat-adlp-4:         NOTRUN -> [SKIP][12] ([i915#3291] / [i915#3708]) +2 similar issues
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/bat-adlp-4/igt@prime_vgem@basic-fence-read.html
+
+  * igt@prime_vgem@basic-userptr:
+    - bat-adlp-4:         NOTRUN -> [SKIP][13] ([i915#3301] / [i915#3708])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/bat-adlp-4/igt@prime_vgem@basic-userptr.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_module_load@reload:
+    - {bat-rpls-2}:       [DMESG-WARN][14] ([i915#5537]) -> [PASS][15]
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11550/bat-rpls-2/igt@i915_module_load@reload.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/bat-rpls-2/igt@i915_module_load@reload.html
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-cfl-guc:         [DMESG-FAIL][16] ([i915#5334]) -> [PASS][17]
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11550/fi-cfl-guc/igt@i915_selftest@live@gt_heartbeat.html
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/fi-cfl-guc/igt@i915_selftest@live@gt_heartbeat.html
+
+  * igt@i915_selftest@live@reset:
+    - {bat-rpls-1}:       [DMESG-FAIL][18] ([i915#4983]) -> [PASS][19]
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11550/bat-rpls-1/igt@i915_selftest@live@reset.html
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/bat-rpls-1/igt@i915_selftest@live@reset.html
+
+  
+#### Warnings ####
+
+  * igt@gem_exec_suspend@basic-s3@smem:
+    - fi-rkl-11600:       [INCOMPLETE][20] ([i915#5127]) -> [INCOMPLETE][21] ([i915#5127] / [i915#5857])
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11550/fi-rkl-11600/igt@gem_exec_suspend@basic-s3@smem.html
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/fi-rkl-11600/igt@gem_exec_suspend@basic-s3@smem.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c:
+    - fi-kbl-7567u:       [SKIP][22] ([fdo#109271] / [i915#5341]) -> [SKIP][23] ([fdo#109271])
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11550/fi-kbl-7567u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/fi-kbl-7567u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
+    - fi-pnv-d510:        [SKIP][24] ([fdo#109271] / [i915#5341]) -> [SKIP][25] ([fdo#109271])
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11550/fi-pnv-d510/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/fi-pnv-d510/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
+    - fi-snb-2520m:       [SKIP][26] ([fdo#109271] / [i915#5341]) -> [SKIP][27] ([fdo#109271])
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11550/fi-snb-2520m/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/fi-snb-2520m/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
+    - fi-bsw-kefka:       [SKIP][28] ([fdo#109271] / [i915#5341]) -> [SKIP][29] ([fdo#109271])
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11550/fi-bsw-kefka/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/fi-bsw-kefka/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
+    - fi-kbl-8809g:       [SKIP][30] ([fdo#109271] / [i915#5341]) -> [SKIP][31] ([fdo#109271])
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11550/fi-kbl-8809g/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/fi-kbl-8809g/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
+    - fi-bsw-nick:        [SKIP][32] ([fdo#109271] / [i915#5341]) -> [SKIP][33] ([fdo#109271])
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11550/fi-bsw-nick/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/fi-bsw-nick/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
+    - fi-bwr-2160:        [SKIP][34] ([fdo#109271] / [i915#5341]) -> [SKIP][35] ([fdo#109271])
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11550/fi-bwr-2160/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/fi-bwr-2160/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
+    - fi-snb-2600:        [SKIP][36] ([fdo#109271] / [i915#5341]) -> [SKIP][37] ([fdo#109271])
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11550/fi-snb-2600/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
+   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/fi-snb-2600/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
+    - fi-elk-e7500:       [SKIP][38] ([fdo#109271] / [i915#5341]) -> [SKIP][39] ([fdo#109271])
+   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11550/fi-elk-e7500/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
+   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/fi-elk-e7500/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
+    - fi-blb-e6850:       [SKIP][40] ([fdo#109271] / [i915#5341]) -> [SKIP][41] ([fdo#109271])
+   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11550/fi-blb-e6850/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
+   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/fi-blb-e6850/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
+    - fi-ilk-650:         [SKIP][42] ([fdo#109271] / [i915#5341]) -> [SKIP][43] ([fdo#109271])
+   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11550/fi-ilk-650/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
+   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/fi-ilk-650/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#1155]: https://gitlab.freedesktop.org/drm/intel/issues/1155
+  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
+  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
+  [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
+  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
+  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
+  [i915#3576]: https://gitlab.freedesktop.org/drm/intel/issues/3576
+  [i915#3595]: https://gitlab.freedesktop.org/drm/intel/issues/3595
+  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
+  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
+  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
+  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
+  [i915#4093]: https://gitlab.freedesktop.org/drm/intel/issues/4093
+  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+  [i915#4212]: https://gitlab.freedesktop.org/drm/intel/issues/4212
+  [i915#4213]: https://gitlab.freedesktop.org/drm/intel/issues/4213
+  [i915#4215]: https://gitlab.freedesktop.org/drm/intel/issues/4215
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4391]: https://gitlab.freedesktop.org/drm/intel/issues/4391
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#4873]: https://gitlab.freedesktop.org/drm/intel/issues/4873
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#5127]: https://gitlab.freedesktop.org/drm/intel/issues/5127
+  [i915#5190]: https://gitlab.freedesktop.org/drm/intel/issues/5190
+  [i915#5270]: https://gitlab.freedesktop.org/drm/intel/issues/5270
+  [i915#5274]: https://gitlab.freedesktop.org/drm/intel/issues/5274
+  [i915#5275]: https://gitlab.freedesktop.org/drm/intel/issues/5275
+  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
+  [i915#5341]: https://gitlab.freedesktop.org/drm/intel/issues/5341
+  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
+  [i915#5356]: https://gitlab.freedesktop.org/drm/intel/issues/5356
+  [i915#5537]: https://gitlab.freedesktop.org/drm/intel/issues/5537
+  [i915#5763]: https://gitlab.freedesktop.org/drm/intel/issues/5763
+  [i915#5827]: https://gitlab.freedesktop.org/drm/intel/issues/5827
+  [i915#5829]: https://gitlab.freedesktop.org/drm/intel/issues/5829
+  [i915#5857]: https://gitlab.freedesktop.org/drm/intel/issues/5857
 
 
-> 
-> Niranjana
-> 
-> > -Daniel
-> > 
-> > On Thu, 31 Mar 2022 at 10:28, Daniel Vetter <daniel@ffwll.ch> wrote:
-> > > Adding a pile of people who've expressed interest in vm_bind for their
-> > > drivers.
-> > > 
-> > > Also note to the intel folks: This is largely written with me having my
-> > > subsystem co-maintainer hat on, i.e. what I think is the right thing to do
-> > > here for the subsystem at large. There is substantial rework involved
-> > > here, but it's not any different from i915 adopting ttm or i915 adpoting
-> > > drm/sched, and I do think this stuff needs to happen in one form or
-> > > another.
-> > > 
-> > > On Mon, Mar 07, 2022 at 12:31:45PM -0800, Niranjana Vishwanathapura wrote:
-> > > > VM_BIND design document with description of intended use cases.
-> > > >
-> > > > Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-> > > > ---
-> > > >  Documentation/gpu/rfc/i915_vm_bind.rst | 210 +++++++++++++++++++++++++
-> > > >  Documentation/gpu/rfc/index.rst        |   4 +
-> > > >  2 files changed, 214 insertions(+)
-> > > >  create mode 100644 Documentation/gpu/rfc/i915_vm_bind.rst
-> > > >
-> > > > diff --git a/Documentation/gpu/rfc/i915_vm_bind.rst b/Documentation/gpu/rfc/i915_vm_bind.rst
-> > > > new file mode 100644
-> > > > index 000000000000..cdc6bb25b942
-> > > > --- /dev/null
-> > > > +++ b/Documentation/gpu/rfc/i915_vm_bind.rst
-> > > > @@ -0,0 +1,210 @@
-> > > > +==========================================
-> > > > +I915 VM_BIND feature design and use cases
-> > > > +==========================================
-> > > > +
-> > > > +VM_BIND feature
-> > > > +================
-> > > > +DRM_I915_GEM_VM_BIND/UNBIND ioctls allows UMD to bind/unbind GEM buffer
-> > > > +objects (BOs) or sections of a BOs at specified GPU virtual addresses on
-> > > > +a specified address space (VM).
-> > > > +
-> > > > +These mappings (also referred to as persistent mappings) will be persistent
-> > > > +across multiple GPU submissions (execbuff) issued by the UMD, without user
-> > > > +having to provide a list of all required mappings during each submission
-> > > > +(as required by older execbuff mode).
-> > > > +
-> > > > +VM_BIND ioctl deferes binding the mappings until next execbuff submission
-> > > > +where it will be required, or immediately if I915_GEM_VM_BIND_IMMEDIATE
-> > > > +flag is set (useful if mapping is required for an active context).
-> > > 
-> > > So this is a screw-up I've done, and for upstream I think we need to fix
-> > > it: Implicit sync is bad, and it's also still a bad idea for vm_bind, and
-> > > I was wrong suggesting we should do this a few years back when we kicked
-> > > this off internally :-(
-> > > 
-> > > What I think we need is just always VM_BIND_IMMEDIATE mode, and then a few
-> > > things on top:
-> > > - in and out fences, like with execbuf, to allow userspace to sync with
-> > >   execbuf as needed
-> > > - for compute-mode context this means userspace memory fences
-> > > - for legacy context this means a timeline syncobj in drm_syncobj
-> > > 
-> > > No sync_file or anything else like this at all. This means a bunch of
-> > > work, but also it'll have benefits because it means we should be able to
-> > > use exactly the same code paths and logic for both compute and for legacy
-> > > context, because drm_syncobj support future fence semantics.
-> > > 
-> > > Also on the implementation side we still need to install dma_fence to the
-> > > various dma_resv, and for this we need the new dma_resv_usage series from
-> > > Christian König first. vm_bind fences can then use the USAGE_BOOKKEEPING
-> > > flag to make sure they never result in an oversync issue with execbuf. I
-> > > don't think trying to land vm_bind without that prep work in
-> > > dma_resv_usage makes sense.
-> > > 
-> > > Also as soon as dma_resv_usage has landed there's a few cleanups we should
-> > > do in i915:
-> > > - ttm bo moving code should probably simplify a bit (and maybe more of the
-> > >   code should be pushed as helpers into ttm)
-> > > - clflush code should be moved over to using USAGE_KERNEL and the various
-> > >   hacks and special cases should be ditched. See df94fd05e69e ("drm/i915:
-> > >   expand on the kernel-doc for cache_dirty") for a bit more context
-> > > 
-> > > This is still not yet enough, since if a vm_bind races with an eviction we
-> > > might stall on the new buffers being readied first before the context can
-> > > continue. This needs some care to make sure that vma which aren't fully
-> > > bound yet are on a separate list, and vma which are marked for unbinding
-> > > are removed from the main working set list as soon as possible.
-> > > 
-> > > All of these things are relevant for the uapi semantics, which means
-> > > - they need to be documented in the uapi kerneldoc, ideally with example
-> > >   flows
-> > > - umd need to ack this
-> > > 
-> > > The other thing here is the async/nonblocking path. I think we still need
-> > > that one, but again it should not sync with anything going on in execbuf,
-> > > but simply execute the ioctl code in a kernel thread. The idea here is
-> > > that this works like a special gpu engine, so that compute and vk can
-> > > schedule bindings interleaved with rendering. This should be enough to get
-> > > a performant vk sparse binding/textures implementation.
-> > > 
-> > > But I'm not entirely sure on this one, so this definitely needs acks from
-> > > umds.
-> > > 
-> > > > +VM_BIND feature is advertised to user via I915_PARAM_HAS_VM_BIND.
-> > > > +User has to opt-in for VM_BIND mode of binding for an address space (VM)
-> > > > +during VM creation time via I915_VM_CREATE_FLAGS_USE_VM_BIND extension.
-> > > > +A VM in VM_BIND mode will not support older execbuff mode of binding.
-> > > > +
-> > > > +UMDs can still send BOs of these persistent mappings in execlist of execbuff
-> > > > +for specifying BO dependencies (implicit fencing) and to use BO as a batch,
-> > > > +but those BOs should be mapped ahead via vm_bind ioctl.
-> > > 
-> > > should or must?
-> > > 
-> > > Also I'm not really sure that's a great interface. The batchbuffer really
-> > > only needs to be an address, so maybe all we need is an extension to
-> > > supply an u64 batchbuffer address instead of trying to retrofit this into
-> > > an unfitting current uapi.
-> > > 
-> > > And for implicit sync there's two things:
-> > > - for vk I think the right uapi is the dma-buf fence import/export ioctls
-> > >   from Jason Ekstrand. I think we should land that first instead of
-> > >   hacking funny concepts together
-> > > - for gl the dma-buf import/export might not be fast enough, since gl
-> > >   needs to do a _lot_ of implicit sync. There we might need to use the
-> > >   execbuffer buffer list, but then we should have extremely clear uapi
-> > >   rules which disallow _everything_ except setting the explicit sync uapi
-> > > 
-> > > Again all this stuff needs to be documented in detail in the kerneldoc
-> > > uapi spec.
-> > > 
-> > > > +VM_BIND features include,
-> > > > +- Multiple Virtual Address (VA) mappings can map to the same physical pages
-> > > > +  of an object (aliasing).
-> > > > +- VA mapping can map to a partial section of the BO (partial binding).
-> > > > +- Support capture of persistent mappings in the dump upon GPU error.
-> > > > +- TLB is flushed upon unbind completion. Batching of TLB flushes in some
-> > > > +  usecases will be helpful.
-> > > > +- Asynchronous vm_bind and vm_unbind support.
-> > > > +- VM_BIND uses user/memory fence mechanism for signaling bind completion
-> > > > +  and for signaling batch completion in long running contexts (explained
-> > > > +  below).
-> > > 
-> > > This should all be in the kerneldoc.
-> > > 
-> > > > +VM_PRIVATE objects
-> > > > +------------------
-> > > > +By default, BOs can be mapped on multiple VMs and can also be dma-buf
-> > > > +exported. Hence these BOs are referred to as Shared BOs.
-> > > > +During each execbuff submission, the request fence must be added to the
-> > > > +dma-resv fence list of all shared BOs mapped on the VM.
-> > > > +
-> > > > +VM_BIND feature introduces an optimization where user can create BO which
-> > > > +is private to a specified VM via I915_GEM_CREATE_EXT_VM_PRIVATE flag during
-> > > > +BO creation. Unlike Shared BOs, these VM private BOs can only be mapped on
-> > > > +the VM they are private to and can't be dma-buf exported.
-> > > > +All private BOs of a VM share the dma-resv object. Hence during each execbuff
-> > > > +submission, they need only one dma-resv fence list updated. Thus the fast
-> > > > +path (where required mappings are already bound) submission latency is O(1)
-> > > > +w.r.t the number of VM private BOs.
-> > > 
-> > > Two things:
-> > > 
-> > > - I think the above is required to for initial vm_bind for vk, it kinda
-> > >   doesn't make much sense without that, and will allow us to match amdgpu
-> > >   and radeonsi
-> > > 
-> > > - Christian König just landed ttm bulk lru helpers, and I think we need to
-> > >   use those. This means vm_bind will only work with the ttm backend, but
-> > >   that's what we have for the big dgpu where vm_bind helps more in terms
-> > >   of performance, and the igfx conversion to ttm is already going on.
-> > > 
-> > > Furthermore the i915 shrinker lru has stopped being an lru, so I think
-> > > that should also be moved over to the ttm lru in some fashion to make sure
-> > > we once again have a reasonable and consistent memory aging and reclaim
-> > > architecture. The current code is just too much of a complete mess.
-> > > 
-> > > And since this is all fairly integral to how the code arch works I don't
-> > > think merging a different version which isn't based on ttm bulk lru
-> > > helpers makes sense.
-> > > 
-> > > Also I do think the page table lru handling needs to be included here,
-> > > because that's another complete hand-rolled separate world for not much
-> > > good reasons. I guess that can happen in parallel with the initial vm_bind
-> > > bring-up, but it needs to be completed by the time we add the features
-> > > beyond the initial support needed for vk.
-> > > 
-> > > > +VM_BIND locking hirarchy
-> > > > +-------------------------
-> > > > +VM_BIND locking order is as below.
-> > > > +
-> > > > +1) A vm_bind mutex will protect vm_bind lists. This lock is taken in vm_bind/
-> > > > +   vm_unbind ioctl calls, in the execbuff path and while releasing the mapping.
-> > > > +
-> > > > +   In future, when GPU page faults are supported, we can potentially use a
-> > > > +   rwsem instead, so that multiple pagefault handlers can take the read side
-> > > > +   lock to lookup the mapping and hence can run in parallel.
-> > > > +
-> > > > +2) The BO's dma-resv lock will protect i915_vma state and needs to be held
-> > > > +   while binding a vma and while updating dma-resv fence list of a BO.
-> > > > +   The private BOs of a VM will all share a dma-resv object.
-> > > > +
-> > > > +   This lock is held in vm_bind call for immediate binding, during vm_unbind
-> > > > +   call for unbinding and during execbuff path for binding the mapping and
-> > > > +   updating the dma-resv fence list of the BO.
-> > > > +
-> > > > +3) Spinlock/s to protect some of the VM's lists.
-> > > > +
-> > > > +We will also need support for bluk LRU movement of persistent mapping to
-> > > > +avoid additional latencies in execbuff path.
-> > > 
-> > > This needs more detail and explanation of how each level is required. Also
-> > > the shared dma_resv for VM_PRIVATE objects is kinda important to explain.
-> > > 
-> > > Like "some of the VM's lists" explains pretty much nothing.
-> > > 
-> > > > +
-> > > > +GPU page faults
-> > > > +----------------
-> > > > +Both older execbuff mode and the newer VM_BIND mode of binding will require
-> > > > +using dma-fence to ensure residency.
-> > > > +In future when GPU page faults are supported, no dma-fence usage is required
-> > > > +as residency is purely managed by installing and removing/invalidating ptes.
-> > > 
-> > > This is a bit confusing. I think one part of this should be moved into the
-> > > section with future vm_bind use-cases (we're not going to support page
-> > > faults with legacy softpin or even worse, relocations). The locking
-> > > discussion should be part of the much longer list of uses cases that
-> > > motivate the locking design.
-> > > 
-> > > > +
-> > > > +
-> > > > +User/Memory Fence
-> > > > +==================
-> > > > +The idea is to take a user specified virtual address and install an interrupt
-> > > > +handler to wake up the current task when the memory location passes the user
-> > > > +supplied filter.
-> > > > +
-> > > > +User/Memory fence is a <address, value> pair. To signal the user fence,
-> > > > +specified value will be written at the specified virtual address and
-> > > > +wakeup the waiting process. User can wait on an user fence with the
-> > > > +gem_wait_user_fence ioctl.
-> > > > +
-> > > > +It also allows the user to emit their own MI_FLUSH/PIPE_CONTROL notify
-> > > > +interrupt within their batches after updating the value to have sub-batch
-> > > > +precision on the wakeup. Each batch can signal an user fence to indicate
-> > > > +the completion of next level batch. The completion of very first level batch
-> > > > +needs to be signaled by the command streamer. The user must provide the
-> > > > +user/memory fence for this via the DRM_I915_GEM_EXECBUFFER_EXT_USER_FENCE
-> > > > +extension of execbuff ioctl, so that KMD can setup the command streamer to
-> > > > +signal it.
-> > > > +
-> > > > +User/Memory fence can also be supplied to the kernel driver to signal/wake up
-> > > > +the user process after completion of an asynchronous operation.
-> > > > +
-> > > > +When VM_BIND ioctl was provided with a user/memory fence via the
-> > > > +I915_VM_BIND_EXT_USER_FENCE extension, it will be signaled upon the completion
-> > > > +of binding of that mapping. All async binds/unbinds are serialized, hence
-> > > > +signaling of user/memory fence also indicate the completion of all previous
-> > > > +binds/unbinds.
-> > > > +
-> > > > +This feature will be derived from the below original work:
-> > > > +https://patchwork.freedesktop.org/patch/349417/
-> > > 
-> > > This is 1:1 tied to long running compute mode contexts (which in the uapi
-> > > doc must reference the endless amounts of bikeshed summary we have in the
-> > > docs about indefinite fences).
-> > > 
-> > > I'd put this into a new section about compute and userspace memory fences
-> > > support, with this and the next chapter ...
-> > > > +
-> > > > +
-> > > > +VM_BIND use cases
-> > > > +==================
-> > > 
-> > > ... and then make this section here focus entirely on additional vm_bind
-> > > use-cases that we'll be adding later on. Which doesn't need to go into any
-> > > details, it's just justification for why we want to build the world on top
-> > > of vm_bind.
-> > > 
-> > > > +
-> > > > +Long running Compute contexts
-> > > > +------------------------------
-> > > > +Usage of dma-fence expects that they complete in reasonable amount of time.
-> > > > +Compute on the other hand can be long running. Hence it is appropriate for
-> > > > +compute to use user/memory fence and dma-fence usage will be limited to
-> > > > +in-kernel consumption only. This requires an execbuff uapi extension to pass
-> > > > +in user fence. Compute must opt-in for this mechanism with
-> > > > +I915_CONTEXT_CREATE_FLAGS_LONG_RUNNING flag during context creation.
-> > > > +
-> > > > +The dma-fence based user interfaces like gem_wait ioctl, execbuff out fence
-> > > > +and implicit dependency setting is not allowed on long running contexts.
-> > > > +
-> > > > +Where GPU page faults are not available, kernel driver upon buffer invalidation
-> > > > +will initiate a suspend (preemption) of long running context with a dma-fence
-> > > > +attached to it. And upon completion of that suspend fence, finish the
-> > > > +invalidation, revalidate the BO and then resume the compute context. This is
-> > > > +done by having a per-context fence (called suspend fence) proxying as
-> > > > +i915_request fence. This suspend fence is enabled when there is a wait on it,
-> > > > +which triggers the context preemption.
-> > > > +
-> > > > +This is much easier to support with VM_BIND compared to the current heavier
-> > > > +execbuff path resource attachment.
-> > > 
-> > > There's a bunch of tricky code around compute mode context support, like
-> > > the preempt ctx fence (or suspend fence or whatever you want to call it),
-> > > and the resume work. And I think that code should be shared across
-> > > drivers.
-> > > 
-> > > I think the right place to put this is into drm/sched, somewhere attached
-> > > to the drm_sched_entity structure. I expect i915 folks to collaborate with
-> > > amd and ideally also get amdkfd to adopt the same thing if possible. At
-> > > least Christian has mentioned in the past that he's a bit unhappy about
-> > > how this works.
-> > > 
-> > > Also drm/sched has dependency tracking, which will be needed to pipeline
-> > > context resume operations. That needs to be used instead of i915-gem
-> > > inventing yet another dependency tracking data structure (it already has 3
-> > > and that's roughly 3 too many).
-> > > 
-> > > This means compute mode support and userspace memory fences are blocked on
-> > > the drm/sched conversion, but *eh* add it to the list of reasons for why
-> > > drm/sched needs to happen.
-> > > 
-> > > Also since we only have support for compute mode ctx in our internal tree
-> > > with the guc scheduler backend anyway, and the first conversion target is
-> > > the guc backend, I don't think this actually holds up a lot of the code.
-> > > 
-> > > > +Low Latency Submission
-> > > > +-----------------------
-> > > > +Allows compute UMD to directly submit GPU jobs instead of through execbuff
-> > > > +ioctl. VM_BIND allows map/unmap of BOs required for directly submitted jobs.
-> > > 
-> > > This is really just a special case of compute mode contexts, I think I'd
-> > > include that in there, but explain better what it requires (i.e. vm_bind
-> > > not being synchronized against execbuf).
-> > > 
-> > > > +
-> > > > +Debugger
-> > > > +---------
-> > > > +With debug event interface user space process (debugger) is able to keep track
-> > > > +of and act upon resources created by another process (debuggee) and attached
-> > > > +to GPU via vm_bind interface.
-> > > > +
-> > > > +Mesa/Valkun
-> > > > +------------
-> > > > +VM_BIND can potentially reduce the CPU-overhead in Mesa thus improving
-> > > > +performance. For Vulkan it should be straightforward to use VM_BIND.
-> > > > +For Iris implicit buffer tracking must be implemented before we can harness
-> > > > +VM_BIND benefits. With increasing GPU hardware performance reducing CPU
-> > > > +overhead becomes more important.
-> > > 
-> > > Just to clarify, I don't think we can land vm_bind into upstream if it
-> > > doesn't work 100% for vk. There's a bit much "can" instead of "will in
-> > > this section".
-> > > 
-> > > > +
-> > > > +Page level hints settings
-> > > > +--------------------------
-> > > > +VM_BIND allows any hints setting per mapping instead of per BO.
-> > > > +Possible hints include read-only, placement and atomicity.
-> > > > +Sub-BO level placement hint will be even more relevant with
-> > > > +upcoming GPU on-demand page fault support.
-> > > > +
-> > > > +Page level Cache/CLOS settings
-> > > > +-------------------------------
-> > > > +VM_BIND allows cache/CLOS settings per mapping instead of per BO.
-> > > > +
-> > > > +Shared Virtual Memory (SVM) support
-> > > > +------------------------------------
-> > > > +VM_BIND interface can be used to map system memory directly (without gem BO
-> > > > +abstraction) using the HMM interface.
-> > > 
-> > > Userptr is absent here (and it's not the same as svm, at least on
-> > > discrete), and this is needed for the initial version since otherwise vk
-> > > can't use it because we're not at feature parity.
-> > > 
-> > > Irc discussions by Maarten and Dave came up with the idea that maybe
-> > > userptr for vm_bind should work _without_ any gem bo as backing storage,
-> > > since that guarantees that people don't come up with funny ideas like
-> > > trying to share such bo across process or mmap it and other nonsense which
-> > > just doesn't work.
-> > > 
-> > > > +
-> > > > +
-> > > > +Broder i915 cleanups
-> > > > +=====================
-> > > > +Supporting this whole new vm_bind mode of binding which comes with its own
-> > > > +usecases to support and the locking requirements requires proper integration
-> > > > +with the existing i915 driver. This calls for some broader i915 driver
-> > > > +cleanups/simplifications for maintainability of the driver going forward.
-> > > > +Here are few things identified and are being looked into.
-> > > > +
-> > > > +- Make pagetable allocations evictable and manage them similar to VM_BIND
-> > > > +  mapped objects. Page table pages are similar to persistent mappings of a
-> > > > +  VM (difference here are that the page table pages will not
-> > > > +  have an i915_vma structure and after swapping pages back in, parent page
-> > > > +  link needs to be updated).
-> > > 
-> > > See above, but I think this should be included as part of the initial
-> > > vm_bind push.
-> > > 
-> > > > +- Remove vma lookup cache (eb->gem_context->handles_vma). VM_BIND feature
-> > > > +  do not use it and complexity it brings in is probably more than the
-> > > > +  performance advantage we get in legacy execbuff case.
-> > > > +- Remove vma->open_count counting
-> > > > +- Remove i915_vma active reference tracking. Instead use underlying BO's
-> > > > +  dma-resv fence list to determine if a i915_vma is active or not.
-> > > 
-> > > So this is a complete mess, and really should not exist. I think it needs
-> > > to be removed before we try to make i915_vma even more complex by adding
-> > > vm_bind.
-> > > 
-> > > The other thing I've been pondering here is that vm_bind is really
-> > > completely different from legacy vm structures for a lot of reasons:
-> > > - no relocation or softpin handling, which means vm_bind has no reason to
-> > >   ever look at the i915_vma structure in execbuf code. Unfortunately
-> > >   execbuf has been rewritten to be vma instead of obj centric, so it's a
-> > >   100% mismatch
-> > > 
-> > > - vm_bind never has to manage any vm lru. Legacy execbuf has to maintain
-> > >   that because the kernel manages the virtual address space fully. Again
-> > >   ideally that entire vma_move_to_active code and everything related to it
-> > >   would simply not exist.
-> > > 
-> > > - similar on the eviction side, the rules are quite different: For vm_bind
-> > >   we never tear down the vma, instead it's just moved to the list of
-> > >   evicted vma. Legacy vm have no need for all these additional lists, so
-> > >   another huge confusion.
-> > > 
-> > > - if the refcount is done correctly for vm_bind we wouldn't need the
-> > >   tricky code in the bo close paths. Unfortunately legacy vm with
-> > >   relocations and softpin require that vma are only a weak reference, so
-> > >   that cannot be removed.
-> > > 
-> > > - there's also a ton of special cases for ggtt handling, like the
-> > >   different views (for display, partial views for mmap), but also the
-> > >   gen2/3 alignment and padding requirements which vm_bind never needs.
-> > > 
-> > > I think the right thing here is to massively split the implementation
-> > > behind some solid vm/vma abstraction, with a base clase for vm and vma
-> > > which _only_ has the pieces which both vm_bind and the legacy vm stuff
-> > > needs. But it's a bit tricky to get there. I think a workable path would
-> > > be:
-> > > - Add a new base class to both i915_address_space and i915_vma, which
-> > >   starts out empty.
-> > > 
-> > > - As vm_bind code lands, move things that vm_bind code needs into these
-> > >   base classes
-> > > 
-> > > - The goal should be that these base classes are a stand-alone library
-> > >   that other drivers could reuse. Like we've done with the buddy
-> > >   allocator, which first moved from i915-gem to i915-ttm, and which amd
-> > >   now moved to drm/ttm for reuse by amdgpu. Ideally other drivers
-> > >   interested in adding something like vm_bind should be involved from the
-> > >   start (or maybe the entire thing reused in amdgpu, they're looking at
-> > >   vk sparse binding support too or at least have perf issues I think).
-> > > 
-> > > - Locking must be the same across all implemntations, otherwise it's
-> > >   really not an abstract. i915 screwed this up terribly by having
-> > >   different locking rules for ppgtt and ggtt, which is just nonsense.
-> > > 
-> > > - The legacy specific code needs to be extracted as much as possible and
-> > >   shoved into separate files. In execbuf this means we need to get back to
-> > >   object centric flow, and the slowpaths need to become a lot simpler
-> > >   again (Maarten has cleaned up some of this, but there's still a silly
-> > >   amount of hacks in there with funny layering).
-> > > 
-> > > - I think if stuff like the vma eviction details (list movement and
-> > >   locking and refcounting of the underlying object)
-> > > 
-> > > > +
-> > > > +These can be worked upon after intitial vm_bind support is added.
-> > > 
-> > > I don't think that works, given how badly i915-gem team screwed up in
-> > > other places. And those places had to be fixed by adopting shared code
-> > > like ttm. Plus there's already a huge unfulffiled promise pending with the
-> > > drm/sched conversion, i915-gem team is clearly deeply in the red here :-/
-> > > 
-> > > Cheers, Daniel
-> > > 
-> > > > +
-> > > > +
-> > > > +UAPI
-> > > > +=====
-> > > > +Uapi definiton can be found here:
-> > > > +.. kernel-doc:: Documentation/gpu/rfc/i915_vm_bind.h
-> > > > diff --git a/Documentation/gpu/rfc/index.rst b/Documentation/gpu/rfc/index.rst
-> > > > index 91e93a705230..7d10c36b268d 100644
-> > > > --- a/Documentation/gpu/rfc/index.rst
-> > > > +++ b/Documentation/gpu/rfc/index.rst
-> > > > @@ -23,3 +23,7 @@ host such documentation:
-> > > >  .. toctree::
-> > > >
-> > > >      i915_scheduler.rst
-> > > > +
-> > > > +.. toctree::
-> > > > +
-> > > > +    i915_vm_bind.rst
-> > > > --
-> > > > 2.21.0.rc0.32.g243a4c7e27
-> > > >
-> > > 
-> > > --
-> > > Daniel Vetter
-> > > Software Engineer, Intel Corporation
-> > > http://blog.ffwll.ch
-> > 
-> > 
-> > 
-> > -- 
-> > Daniel Vetter
-> > Software Engineer, Intel Corporation
-> > http://blog.ffwll.ch
+Build changes
+-------------
 
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+  * Linux: CI_DRM_11550 -> Patchwork_102213v8
+
+  CI-20190529: 20190529
+  CI_DRM_11550: 56b089ae03ef8ea8ab7f474eaa70367898891ef0 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6451: f055bd83bd831a938d639718c2359516224f15f9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_102213v8: 56b089ae03ef8ea8ab7f474eaa70367898891ef0 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+db1f620e3d3a drm/i915/bios: Dump PNPID and panel name
+316cbbf46a1b drm/edid: Extract drm_edid_decode_mfg_id()
+d218e1905b61 drm/i915: Respect VBT seamless DRRS min refresh rate
+577eb1c787ee drm/i915/bios: Parse the seamless DRRS min refresh rate
+729d60b58de6 drm/i915/bios: Determine panel type via PNPID match
+49dbfde1acb5 drm/i915/bios: Refactor panel_type code
+073c18be87dc drm/i915/bios: Extract get_panel_type()
+deace6319819 drm/i915/bios: Do panel specific VBT parsing later
+8efa5342cea2 drm/i915/pps: Reinit PPS delays after VBT has been fully parsed
+6f5109103599 drm/i915/pps: Split PPS init+sanitize in two
+ab2e93e5621c drm/i915/bios: Don't parse some panel specific data multiple times
+d6ce5dff2ad4 drm/i915/bios: Split VBT parsing to global vs. panel specific parts
+84ed5e419c32 drm/i915/bios: Split parse_driver_features() into two parts
+68acdf86c643 drm/i915/bios: Assume panel_type==0 if the VBT has bogus data
+bdfb8e9d68eb drm/i915/bios: Document the mess around the LFP data tables
+e2a1df9951f4 drm/i915/bios: Get access to the tail end of the LFP data block
+7503e5eaefc0 drm/i915/bios: Generate LFP data table pointers if the VBT lacks them
+d4e92196f868 drm/i915/bios: Reorder panel DTD parsing
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/index.html
+
+--===============7960711113546828997==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/bios: Rework BDB block handling and PNPID-&gt;panel_type matching (rev8)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/102213/">https://patchwork.freedesktop.org/series/102213/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11550 -&gt; Patchwork_102213v8</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_102213v8 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_102213v8, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/index.html</p>
+<h2>Participating hosts (43 -&gt; 43)</h2>
+<p>Additional (3): bat-dg2-8 bat-dg1-6 bat-adlp-4 <br />
+  Missing    (3): fi-bsw-cyan fi-cfl-8700k fi-ivb-3770 </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_102213v8:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@runner@aborted:<ul>
+<li>fi-bxt-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/fi-bxt-dsi/igt@runner@aborted.html">FAIL</a></li>
+</ul>
+</li>
+</ul>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@i915_pm_rpm@module-reload:<ul>
+<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11550/bat-rpls-2/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4391">i915#4391</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/bat-rpls-2/igt@i915_pm_rpm@module-reload.html">WARN</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_102213v8 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s0@smem:</p>
+<ul>
+<li>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/bat-dg1-6/igt@gem_exec_suspend@basic-s0@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5827">i915#5827</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@basic:</p>
+<ul>
+<li>bat-adlp-4:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/bat-adlp-4/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_tiled_pread_basic:</p>
+<ul>
+<li>bat-adlp-4:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/bat-adlp-4/igt@gem_tiled_pread_basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3282">i915#3282</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>bat-adlp-4:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/bat-adlp-4/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
+<ul>
+<li>bat-adlp-4:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/bat-adlp-4/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-modeset@a-edp1:</p>
+<ul>
+<li>bat-adlp-4:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/bat-adlp-4/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@prune-stale-modes:</p>
+<ul>
+<li>bat-adlp-4:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/bat-adlp-4/igt@kms_force_connector_basic@prune-stale-modes.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4093">i915#4093</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_setmode@basic-clone-single-crtc:</p>
+<ul>
+<li>bat-adlp-4:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/bat-adlp-4/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-fence-read:</p>
+<ul>
+<li>bat-adlp-4:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/bat-adlp-4/igt@prime_vgem@basic-fence-read.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3291">i915#3291</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-userptr:</p>
+<ul>
+<li>bat-adlp-4:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/bat-adlp-4/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_module_load@reload:</p>
+<ul>
+<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11550/bat-rpls-2/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5537">i915#5537</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/bat-rpls-2/igt@i915_module_load@reload.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>fi-cfl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11550/fi-cfl-guc/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/fi-cfl-guc/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@reset:</p>
+<ul>
+<li>{bat-rpls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11550/bat-rpls-1/igt@i915_selftest@live@reset.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/bat-rpls-1/igt@i915_selftest@live@reset.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s3@smem:</p>
+<ul>
+<li>fi-rkl-11600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11550/fi-rkl-11600/igt@gem_exec_suspend@basic-s3@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5127">i915#5127</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/fi-rkl-11600/igt@gem_exec_suspend@basic-s3@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5127">i915#5127</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5857">i915#5857</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c:</p>
+<ul>
+<li>
+<p>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11550/fi-kbl-7567u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5341">i915#5341</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/fi-kbl-7567u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</p>
+</li>
+<li>
+<p>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11550/fi-pnv-d510/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5341">i915#5341</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/fi-pnv-d510/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</p>
+</li>
+<li>
+<p>fi-snb-2520m:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11550/fi-snb-2520m/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5341">i915#5341</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/fi-snb-2520m/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</p>
+</li>
+<li>
+<p>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11550/fi-bsw-kefka/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5341">i915#5341</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/fi-bsw-kefka/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</p>
+</li>
+<li>
+<p>fi-kbl-8809g:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11550/fi-kbl-8809g/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5341">i915#5341</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/fi-kbl-8809g/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</p>
+</li>
+<li>
+<p>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11550/fi-bsw-nick/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5341">i915#5341</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/fi-bsw-nick/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</p>
+</li>
+<li>
+<p>fi-bwr-2160:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11550/fi-bwr-2160/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5341">i915#5341</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/fi-bwr-2160/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</p>
+</li>
+<li>
+<p>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11550/fi-snb-2600/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5341">i915#5341</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/fi-snb-2600/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</p>
+</li>
+<li>
+<p>fi-elk-e7500:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11550/fi-elk-e7500/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5341">i915#5341</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/fi-elk-e7500/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</p>
+</li>
+<li>
+<p>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11550/fi-blb-e6850/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5341">i915#5341</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/fi-blb-e6850/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</p>
+</li>
+<li>
+<p>fi-ilk-650:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11550/fi-ilk-650/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5341">i915#5341</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102213v8/fi-ilk-650/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11550 -&gt; Patchwork_102213v8</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11550: 56b089ae03ef8ea8ab7f474eaa70367898891ef0 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6451: f055bd83bd831a938d639718c2359516224f15f9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_102213v8: 56b089ae03ef8ea8ab7f474eaa70367898891ef0 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>db1f620e3d3a drm/i915/bios: Dump PNPID and panel name<br />
+316cbbf46a1b drm/edid: Extract drm_edid_decode_mfg_id()<br />
+d218e1905b61 drm/i915: Respect VBT seamless DRRS min refresh rate<br />
+577eb1c787ee drm/i915/bios: Parse the seamless DRRS min refresh rate<br />
+729d60b58de6 drm/i915/bios: Determine panel type via PNPID match<br />
+49dbfde1acb5 drm/i915/bios: Refactor panel_type code<br />
+073c18be87dc drm/i915/bios: Extract get_panel_type()<br />
+deace6319819 drm/i915/bios: Do panel specific VBT parsing later<br />
+8efa5342cea2 drm/i915/pps: Reinit PPS delays after VBT has been fully parsed<br />
+6f5109103599 drm/i915/pps: Split PPS init+sanitize in two<br />
+ab2e93e5621c drm/i915/bios: Don't parse some panel specific data multiple times<br />
+d6ce5dff2ad4 drm/i915/bios: Split VBT parsing to global vs. panel specific parts<br />
+84ed5e419c32 drm/i915/bios: Split parse_driver_features() into two parts<br />
+68acdf86c643 drm/i915/bios: Assume panel_type==0 if the VBT has bogus data<br />
+bdfb8e9d68eb drm/i915/bios: Document the mess around the LFP data tables<br />
+e2a1df9951f4 drm/i915/bios: Get access to the tail end of the LFP data block<br />
+7503e5eaefc0 drm/i915/bios: Generate LFP data table pointers if the VBT lacks them<br />
+d4e92196f868 drm/i915/bios: Reorder panel DTD parsing</p>
+
+</body>
+</html>
+
+--===============7960711113546828997==--
