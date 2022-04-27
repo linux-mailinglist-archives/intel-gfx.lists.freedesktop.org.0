@@ -1,46 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42395510D44
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Apr 2022 02:38:49 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id ACAF3510D3C
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Apr 2022 02:35:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 66D7C10E0A1;
-	Wed, 27 Apr 2022 00:38:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F2BBF10EC45;
+	Wed, 27 Apr 2022 00:35:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 18AD710E0A1
- for <intel-gfx@lists.freedesktop.org>; Wed, 27 Apr 2022 00:38:46 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0711810EC15
+ for <intel-gfx@lists.freedesktop.org>; Wed, 27 Apr 2022 00:35:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1651019926; x=1682555926;
- h=from:to:cc:subject:date:message-id:mime-version:
+ t=1651019731; x=1682555731;
+ h=from:to:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=RmBT1xO53/+kazaWqeW8z7eHMIMTa+q8o02e8VJw9eM=;
- b=C8KkIR5DQKcMkM2OBQA2yvltUmZGz+JxtquLRzKFf0ELDEHt67N/5/3O
- oCa+vRwbs3vabUfXUwp1J3avSM/U2Q1qrXjL1CGhUftJNvx5ERW6/oleG
- rpgIOPZjeNMgmTqt5rPxgGJV/gOQrJdoUXHFkzsD+tdBq4GBmoArd1JBC
- 6xnCXwWeHTKsguJowZlD9ZvSjx+wnAuGm+Pjj/kp9pAe32r/s06akkhwO
- 6izQJVgA8kAtkNrapSl9ozqFFvRMLgn4lKc7klqv99DZ+2WANucbXL2fA
- /Y6i9/oSwi4eezoEnwTd8iPVqi166UkAmXpT8SoOLQzDUXnU4CfHiURlY w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10329"; a="290917501"
-X-IronPort-AV: E=Sophos;i="5.90,292,1643702400"; d="scan'208";a="290917501"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Apr 2022 17:38:45 -0700
-X-IronPort-AV: E=Sophos;i="5.90,292,1643702400"; d="scan'208";a="679515307"
-Received: from anushasr-mobl6.jf.intel.com ([10.165.21.155])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Apr 2022 17:38:45 -0700
-From: Anusha Srivatsa <anusha.srivatsa@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 26 Apr 2022 17:35:09 -0700
-Message-Id: <20220427003509.267683-1-anusha.srivatsa@intel.com>
-X-Mailer: git-send-email 2.25.1
+ bh=PqzGOcKtjv1DplY86Pvxhknb+8z03R4lDFgwCQcwzgg=;
+ b=BmCQVV5x/3j1pngGq2fzXQioouCenR+PlJ9wGtqwn/wZp460MpSgFFHz
+ 5kHL2NkeJJfCCWARV4x4x09HMqrNMP5TwE84GOV1KAoA7X8Eo2ClN2ywd
+ usZEAK3Bdj5yVDHmEADZgNyVMFf0poWB7U+0y9IM4RgLz/gYEzGDBThRr
+ cx/pMcBp3SVmAGs2UNxiB5VdX3v1moh1asLzbB9fWCdjPaI6WvCYBBdHb
+ vZ/iS9mvfJ+s+yVQdTWHyPCRXMkgcU6QvuW/Diu0KLjB+SXv2FMtpU5HP
+ EMdNWL58QoZgRT8rwWS/SBiJ2QTwUWUVv53i75iMpCSfuS7+VxvyDSJKN g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10329"; a="253146542"
+X-IronPort-AV: E=Sophos;i="5.90,292,1643702400"; d="scan'208";a="253146542"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Apr 2022 17:35:30 -0700
+X-IronPort-AV: E=Sophos;i="5.90,292,1643702400"; d="scan'208";a="580256012"
+Received: from unerlige-desk.jf.intel.com ([10.165.21.210])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Apr 2022 17:35:30 -0700
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Date: Tue, 26 Apr 2022 17:35:15 -0700
+Message-Id: <20220427003515.3944267-1-umesh.nerlige.ramappa@intel.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/dmc: Add MMIO range restrictions
+Subject: [Intel-gfx] [PATCH] drm/i915/pmu: Use existing uncore helper to
+ read gpm_timestamp
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,149 +55,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>, stable@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Bspec has added some steps that check forDMC MMIO range before
-programming them
+Use intel_uncore_read64_2x32 to read upper and lower fields of the GPM
+timestamp.
 
-v2: Fix for CI
-v3: move register defines to .h (Anusha)
-- Check MMIO restrictions per pipe
-- Add MMIO restricton for v1 dmc header as well (Lucas)
+v2: Fix compile error
 
-BSpec: 49193
-
-Cc: <stable@vger.kernel.org>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dmc.c      | 48 ++++++++++++++++---
- drivers/gpu/drm/i915/display/intel_dmc_regs.h | 31 ++++++++++++
- 2 files changed, 72 insertions(+), 7 deletions(-)
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c   | 17 ++---------------
+ 1 file changed, 2 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index 257cf662f9f4..ac7896835bfa 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -97,13 +97,6 @@ MODULE_FIRMWARE(SKL_DMC_PATH);
- #define BXT_DMC_MAX_FW_SIZE		0x3000
- MODULE_FIRMWARE(BXT_DMC_PATH);
- 
--#define DMC_DEFAULT_FW_OFFSET		0xFFFFFFFF
--#define PACKAGE_MAX_FW_INFO_ENTRIES	20
--#define PACKAGE_V2_MAX_FW_INFO_ENTRIES	32
--#define DMC_V1_MAX_MMIO_COUNT		8
--#define DMC_V3_MAX_MMIO_COUNT		20
--#define DMC_V1_MMIO_START_RANGE		0x80000
--
- struct intel_css_header {
- 	/* 0x09 for DMC */
- 	u32 module_type;
-@@ -374,6 +367,43 @@ static void dmc_set_fw_offset(struct intel_dmc *dmc,
- 	}
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+index 61a6f2424e24..33e695adfd6a 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+@@ -1200,20 +1200,6 @@ static u32 gpm_timestamp_shift(struct intel_gt *gt)
+ 	return 3 - shift;
  }
  
-+static bool dmc_mmio_addr_sanity_check(struct intel_dmc *dmc, const u32 *mmioaddr,
-+				       u32 mmio_count, int header_ver, u8 dmc_id)
-+{
-+	struct drm_i915_private *i915 = container_of(dmc, typeof(*i915), dmc);
-+	int i;
-+
-+	if (header_ver == 1) {
-+		for (i = 0; i < mmio_count; i++) {
-+			if (mmioaddr[i] < DMC_MMIO_START_RANGE || mmioaddr[i] > DMC_MMIO_END_RANGE)
-+				return false;
-+		}
-+	}
-+
-+	/* Main DMC MMIO check */
-+	if (dmc_id == DMC_FW_MAIN) {
-+		for (i = 0; i < mmio_count; i++) {
-+			if (mmioaddr[i] < TGL_DMC_MMIO_START(dmc_id) || mmioaddr[i] > TGL_DMC_MMIO_END(dmc_id))
-+				return false;
-+		}
-+	}
-+
-+	/* Pipe DMC MMIO check */
-+	if (IS_DG2(i915) || IS_ALDERLAKE_P(i915)) {
-+		for (i = 0; i < mmio_count; i++) {
-+			if (mmioaddr[i] < ADLP_PIPE_MMIO_START && mmioaddr[i] > ADLP_PIPE_MMIO_END)
-+				return false;
-+		}
-+	} else if (IS_TIGERLAKE(i915) || IS_DG1(i915) || IS_ALDERLAKE_S(i915)) {
-+		for (i = 0; i < mmio_count; i++) {
-+			if (mmioaddr[i] < TGL_DMC_MMIO_START(dmc_id) || mmioaddr[i] > TGL_DMC_MMIO_END(dmc_id))
-+				return false;
-+		}
-+	}
-+
-+	return true;
-+}
-+
- static u32 parse_dmc_fw_header(struct intel_dmc *dmc,
- 			       const struct intel_dmc_header_base *dmc_header,
- 			       size_t rem_size, u8 dmc_id)
-@@ -443,6 +473,10 @@ static u32 parse_dmc_fw_header(struct intel_dmc *dmc,
- 		return 0;
- 	}
+-static u64 gpm_timestamp(struct intel_gt *gt)
+-{
+-	u32 lo, hi, old_hi, loop = 0;
+-
+-	hi = intel_uncore_read(gt->uncore, MISC_STATUS1);
+-	do {
+-		lo = intel_uncore_read(gt->uncore, MISC_STATUS0);
+-		old_hi = hi;
+-		hi = intel_uncore_read(gt->uncore, MISC_STATUS1);
+-	} while (old_hi != hi && loop++ < 2);
+-
+-	return ((u64)hi << 32) | lo;
+-}
+-
+ static void guc_update_pm_timestamp(struct intel_guc *guc, ktime_t *now)
+ {
+ 	struct intel_gt *gt = guc_to_gt(guc);
+@@ -1223,7 +1209,8 @@ static void guc_update_pm_timestamp(struct intel_guc *guc, ktime_t *now)
+ 	lockdep_assert_held(&guc->timestamp.lock);
  
-+	if (!dmc_mmio_addr_sanity_check(dmc, mmioaddr, mmio_count, dmc_header->header_ver, dmc_id))
-+		drm_err(&i915->drm, "DMC firmware has Wrong MMIO Addresses\n");
-+		return 0;
-+
- 	for (i = 0; i < mmio_count; i++) {
- 		dmc_info->mmioaddr[i] = _MMIO(mmioaddr[i]);
- 		dmc_info->mmiodata[i] = mmiodata[i];
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc_regs.h b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-index d65e698832eb..235d1b721334 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-@@ -11,12 +11,43 @@
- #define DMC_PROGRAM(addr, i)	_MMIO((addr) + (i) * 4)
- #define DMC_SSP_BASE_ADDR_GEN9	0x00002FC0
- #define DMC_HTP_ADDR_SKL	0x00500034
-+#define DMC_DEFAULT_FW_OFFSET	0xFFFFFFFF
- #define DMC_SSP_BASE		_MMIO(0x8F074)
- #define DMC_HTP_SKL		_MMIO(0x8F004)
- #define DMC_LAST_WRITE		_MMIO(0x8F034)
- #define DMC_LAST_WRITE_VALUE	0xc003b400
- #define DMC_MMIO_START_RANGE	0x80000
- #define DMC_MMIO_END_RANGE	0x8FFFF
-+#define PACKAGE_MAX_FW_INFO_ENTRIES	20
-+#define PACKAGE_V2_MAX_FW_INFO_ENTRIES	32
-+#define DMC_V1_MAX_MMIO_COUNT		8
-+#define DMC_V3_MAX_MMIO_COUNT		20
-+#define DMC_V1_MMIO_START_RANGE		0x80000
-+#define _TGL_MAIN_MMIO_START		0x8F000
-+#define _TGL_MAIN_MMIO_END		0x8FFFF
-+#define _TGL_PIPEA_MMIO_START		0x92000
-+#define _TGL_PIPEA_MMIO_END		0x93FFF
-+#define _TGL_PIPEB_MMIO_START		0x96000
-+#define _TGL_PIPEB_MMIO_END		0x97FFF
-+#define _TGL_PIPEC_MMIO_START		0x9A000
-+#define _TGL_PIPEC_MMIO_END		0x9BFFF
-+#define _TGL_PIPED_MMIO_START		0x9E000
-+#define _TGL_PIPED_MMIO_END		0x9FFFF
-+#define ADLP_PIPE_MMIO_START		0x5F000
-+#define ADLP_PIPE_MMIO_END		0x5FFFF
-+
-+#define TGL_DMC_MMIO_START(pipe)	_PICK(pipe, _TGL_MAIN_MMIO_START,\
-+					      _TGL_PIPEA_MMIO_START,\
-+					      _TGL_PIPEB_MMIO_START,\
-+					      _TGL_PIPEC_MMIO_START,\
-+					      _TGL_PIPEB_MMIO_START)
-+
-+#define TGL_DMC_MMIO_END(pipe)		_PICK(pipe, _TGL_MAIN_MMIO_END,\
-+					      _TGL_PIPEA_MMIO_END,\
-+					      _TGL_PIPEB_MMIO_END,\
-+					      _TGL_PIPEC_MMIO_END,\
-+					      _TGL_PIPEB_MMIO_END)
-+
- #define SKL_DMC_DC3_DC5_COUNT	_MMIO(0x80030)
- #define SKL_DMC_DC5_DC6_COUNT	_MMIO(0x8002C)
- #define BXT_DMC_DC3_DC5_COUNT	_MMIO(0x80038)
+ 	gt_stamp_hi = upper_32_bits(guc->timestamp.gt_stamp);
+-	gpm_ts = gpm_timestamp(gt) >> guc->timestamp.shift;
++	gpm_ts = intel_uncore_read64_2x32(gt->uncore, MISC_STATUS0,
++					  MISC_STATUS1) >> guc->timestamp.shift;
+ 	gt_stamp_lo = lower_32_bits(gpm_ts);
+ 	*now = ktime_get();
+ 
 -- 
-2.25.1
+2.35.1
 
