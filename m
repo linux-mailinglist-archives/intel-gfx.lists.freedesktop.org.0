@@ -1,56 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6E1E5122B2
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Apr 2022 21:27:52 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 641CC512343
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Apr 2022 22:03:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E6B4210E29C;
-	Wed, 27 Apr 2022 19:27:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A979F10E259;
+	Wed, 27 Apr 2022 20:03:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E6EE910E29C;
- Wed, 27 Apr 2022 19:27:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1651087668; x=1682623668;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=I8aMud4Vby6i3Qcdkhb0tzxo8SgYYzTiICYQctpKef0=;
- b=WA6zPfrCjQiXyFEz50ONX7ThS2teGS9YZnbkFswWtWDtcILqd5fvy6cm
- FdXUWcsEr0YCasj/X1A9ItWRcS5ZbC+UUl3FPj1ys/tg5SOp8f0FdYAEC
- 1ZXBSXRwWJKQvMrjsUHP7KEhBsnykR9/bgxYwKG314hPSyenNmcgeIhey
- E7NHgLAdOWx0z5Yy5sJ73Kmy3CTRxeF1Jiw7ZSxxu8vIaq3qt0noKW99r
- T9030C6VegqlcU+lHf43I2MGs5Xg0x6eZ6nznPgSuTHVZF02GHTuPPrqL
- 7bTT0lvX/S6YJkvCqCgIUCenbUBKBwHlTgV7DcjDvH5KeIviDmWJUUwaD w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10330"; a="328988118"
-X-IronPort-AV: E=Sophos;i="5.90,294,1643702400"; d="scan'208";a="328988118"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2022 12:27:48 -0700
-X-IronPort-AV: E=Sophos;i="5.90,294,1643702400"; d="scan'208";a="680965819"
-Received: from konishi-mobl.gar.corp.intel.com (HELO [10.252.6.183])
- ([10.252.6.183])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2022 12:27:38 -0700
-Message-ID: <db3b0347-6dd0-2639-7d73-05ee8a9e41d7@intel.com>
-Date: Wed, 27 Apr 2022 20:27:37 +0100
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F3CA10E1AE
+ for <intel-gfx@lists.freedesktop.org>; Wed, 27 Apr 2022 20:03:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1651089808;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=rEkeuIdB35PHG3bUObFOQepcEtD/UETXCeHTXiNw/W4=;
+ b=fnFLXxu6+3pvjpUYbE4MPzxDQ4fniY6Oq4z2bPerZFfnmbGBHZ5MxZUFFFCfiRTvRb5P2h
+ 0S28lS0FOU8gE6T2klZwoEUeCcZ1Acs3Pquk9heijwPl4S1Leyj4U1RZb5c2/1+hk7L2M8
+ nuko1VLJ67hXCJ9zPpl7c3WKzEUWpRo=
+Received: from mimecast-mx02.redhat.com (mx3-rdu2.redhat.com
+ [66.187.233.73]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-115-ue9yikiaOze3pcESmgHcQA-1; Wed, 27 Apr 2022 16:03:24 -0400
+X-MC-Unique: ue9yikiaOze3pcESmgHcQA-1
+Received: from smtp.corp.redhat.com (int-mx05.intmail.prod.int.rdu2.redhat.com
+ [10.11.54.5])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 0E67B3C10AA2;
+ Wed, 27 Apr 2022 20:03:23 +0000 (UTC)
+Received: from localhost.localdomain (unknown [10.40.192.41])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 080E87C55;
+ Wed, 27 Apr 2022 20:03:15 +0000 (UTC)
+From: Maxim Levitsky <mlevitsk@redhat.com>
+To: kvm@vger.kernel.org
+Date: Wed, 27 Apr 2022 23:02:55 +0300
+Message-Id: <20220427200314.276673-1-mlevitsk@redhat.com>
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Content-Language: en-GB
-To: Ramalingam C <ramalingam.c@intel.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>
-References: <20220425162430.28844-1-ramalingam.c@intel.com>
- <20220425162430.28844-2-ramalingam.c@intel.com>
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20220425162430.28844-2-ramalingam.c@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v2 1/4] drm/i915/gt: GEM_BUG_ON unexpected
- NULL at scatterlist walking
+Content-Transfer-Encoding: quoted-printable
+X-Scanned-By: MIMEDefang 2.79 on 10.11.54.5
+Subject: [Intel-gfx] [RFC PATCH v3 00/19] RFC: nested AVIC
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,39 +57,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Hellstrom Thomas <thomas.hellstrom@intel.com>
+Cc: Wanpeng Li <wanpengli@tencent.com>, David Airlie <airlied@linux.ie>,
+ Dave Hansen <dave.hansen@linux.intel.com>, dri-devel@lists.freedesktop.org,
+ "H. Peter Anvin" <hpa@zytor.com>, Brijesh Singh <brijesh.singh@amd.com>,
+ Joerg Roedel <joro@8bytes.org>, x86@kernel.org,
+ Maxim Levitsky <mlevitsk@redhat.com>, Ingo Molnar <mingo@redhat.com>,
+ Tom Lendacky <thomas.lendacky@amd.com>, intel-gfx@lists.freedesktop.org,
+ Borislav Petkov <bp@alien8.de>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Gleixner <tglx@linutronix.de>, intel-gvt-dev@lists.freedesktop.org,
+ Jim Mattson <jmattson@google.com>, Sean Christopherson <seanjc@google.com>,
+ linux-kernel@vger.kernel.org, Paolo Bonzini <pbonzini@redhat.com>,
+ Vitaly Kuznetsov <vkuznets@redhat.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 25/04/2022 17:24, Ramalingam C wrote:
-> While locating the start of ccs scatterlist in smem scatterlist, that has
-> to be the size of lmem obj size + corresponding ccs data size. Report bug
-> if scatterlist terminate before that length.
-> 
-> Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
-> ---
->   drivers/gpu/drm/i915/gt/intel_migrate.c | 6 ++++++
->   1 file changed, 6 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_migrate.c b/drivers/gpu/drm/i915/gt/intel_migrate.c
-> index 9d552f30b627..29d761da02c4 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_migrate.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_migrate.c
-> @@ -687,6 +687,12 @@ static void get_ccs_sg_sgt(struct sgt_dma *it, u32 bytes_to_cpy)
->   		bytes_to_cpy -= len;
->   
->   		it->sg = __sg_next(it->sg);
-> +
-> +		/*
-> +		 * scatterlist supposed to be the size of
-> +		 * bytes_to_cpy + GET_CCS_BYTES(bytes_to_copy).
-> +		 */
-> +		GEM_BUG_ON(!it->sg);
+This is V3 of my nested AVIC patches.=0D
+=0D
+I fixed few more bugs, and I also split the cod insto smaller patches.=0D
+=0D
+Review is welcome!=0D
+=0D
+Best regards,=0D
+	Maxim Levitsky=0D
+=0D
+Maxim Levitsky (19):=0D
+  KVM: x86: document AVIC/APICv inhibit reasons=0D
+  KVM: x86: inhibit APICv/AVIC when the guest and/or host changes apic=0D
+    id/base from the defaults.=0D
+  KVM: x86: SVM: remove avic's broken code that updated APIC ID=0D
+  KVM: x86: mmu: allow to enable write tracking externally=0D
+  x86: KVMGT: use kvm_page_track_write_tracking_enable=0D
+  KVM: x86: mmu: add gfn_in_memslot helper=0D
+  KVM: x86: mmu: tweak fast path for emulation of access to nested NPT=0D
+    pages=0D
+  KVM: x86: SVM: move avic state to separate struct=0D
+  KVM: x86: nSVM: add nested AVIC tracepoints=0D
+  KVM: x86: nSVM: implement AVIC's physid/logid table access helpers=0D
+  KVM: x86: nSVM: implement shadowing of AVIC's physical id table=0D
+  KVM: x86: nSVM: make nested AVIC physid write tracking be aware of the=0D
+    host scheduling=0D
+  KVM: x86: nSVM: wire nested AVIC to nested guest entry/exit=0D
+  KVM: x86: rename .set_apic_access_page_addr to reload_apic_access_page=0D
+  KVM: x86: nSVM: add code to reload AVIC physid table when it is=0D
+    invalidated=0D
+  KVM: x86: nSVM: implement support for nested AVIC vmexits=0D
+  KVM: x86: nSVM: implement nested AVIC doorbell emulation=0D
+  KVM: x86: SVM/nSVM: add optional non strict AVIC doorbell mode=0D
+  KVM: x86: nSVM: expose the nested AVIC to the guest=0D
+=0D
+ arch/x86/include/asm/kvm-x86-ops.h    |   2 +-=0D
+ arch/x86/include/asm/kvm_host.h       |  23 +-=0D
+ arch/x86/include/asm/kvm_page_track.h |   1 +=0D
+ arch/x86/kvm/Kconfig                  |   3 -=0D
+ arch/x86/kvm/lapic.c                  |  25 +-=0D
+ arch/x86/kvm/lapic.h                  |   8 +=0D
+ arch/x86/kvm/mmu.h                    |   8 +-=0D
+ arch/x86/kvm/mmu/mmu.c                |  21 +-=0D
+ arch/x86/kvm/mmu/page_track.c         |  10 +-=0D
+ arch/x86/kvm/svm/avic.c               | 985 +++++++++++++++++++++++---=0D
+ arch/x86/kvm/svm/nested.c             | 141 +++-=0D
+ arch/x86/kvm/svm/svm.c                |  39 +-=0D
+ arch/x86/kvm/svm/svm.h                | 166 ++++-=0D
+ arch/x86/kvm/trace.h                  | 157 +++-=0D
+ arch/x86/kvm/vmx/vmx.c                |   8 +-=0D
+ arch/x86/kvm/x86.c                    |  19 +-=0D
+ drivers/gpu/drm/i915/Kconfig          |   1 -=0D
+ drivers/gpu/drm/i915/gvt/kvmgt.c      |   5 +=0D
+ include/linux/kvm_host.h              |  10 +-=0D
+ 19 files changed, 1507 insertions(+), 125 deletions(-)=0D
+=0D
+-- =0D
+2.26.3=0D
+=0D
 
-It will crash and burn anyway, with the below NULL deref. Not sure if 
-BUG_ON() is really much better, but I guess with the additional comment,
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
-
->   		it->dma = sg_dma_address(it->sg);
->   		it->max = it->dma + sg_dma_len(it->sg);
->   	} while (bytes_to_cpy);
