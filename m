@@ -1,53 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F255511663
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Apr 2022 13:45:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7658551167A
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Apr 2022 13:55:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4EC2810F1C8;
-	Wed, 27 Apr 2022 11:45:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 39B9E10E346;
+	Wed, 27 Apr 2022 11:55:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B2B6D10F1C8
- for <intel-gfx@lists.freedesktop.org>; Wed, 27 Apr 2022 11:45:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1651059908; x=1682595908;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=ZpxN64aIG4GD58jnpNob/ikSHkIRgi6NC/VDfn5kQ3I=;
- b=aZFfpDTpnkfnFpfirb2Qx1a8VUI4VDolaQdf0ErJ2WGEzlkYp6LXU+Gi
- R30XI54hIVtCzaryJDjmdkSzF04bUkAC4wBeXICSue9gTnCVZlmxWfnOa
- SUR84lZ/aNQH+SVZngn31QhwS8mDY2HcUSw26ZhTqbT9RSrI91nwUy87j
- RDBB44KwWysE2h5GeGaHDA4gQ5WG36LdLhWNvj01bTQXL5/d+T51k4/+v
- VQOfhrC72FwQpRW4GHmNISse7iztU6RoHfrEIVweKjN+zPtUelXadotkB
- YsG3XK954Uv77ewpdVMNlz/zqU1BiBV+NrvtfCAJO3iCh4+Nyniy+hwA0 A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10329"; a="253282250"
-X-IronPort-AV: E=Sophos;i="5.90,292,1643702400"; d="scan'208";a="253282250"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2022 04:45:08 -0700
-X-IronPort-AV: E=Sophos;i="5.90,292,1643702400"; d="scan'208";a="580547752"
-Received: from brutrata-mobl.ger.corp.intel.com (HELO intel.com)
- ([10.252.33.100])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2022 04:45:06 -0700
-Date: Wed, 27 Apr 2022 13:45:03 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-Message-ID: <Ymksv99YhO9yz/Dw@intel.intel>
-References: <cover.1650435571.git.ashutosh.dixit@intel.com>
- <9ed5af1177ad08c7c2d9c5d9b32ab0154dbd950f.1650435571.git.ashutosh.dixit@intel.com>
- <YmXPo2vpPS6rXGV6@intel.intel>
- <87o80n61ft.wl-ashutosh.dixit@intel.com>
+Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com
+ [IPv6:2607:f8b0:4864:20::62f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8584C10E243
+ for <intel-gfx@lists.freedesktop.org>; Wed, 27 Apr 2022 11:55:31 +0000 (UTC)
+Received: by mail-pl1-x62f.google.com with SMTP id d15so1348981plh.2
+ for <intel-gfx@lists.freedesktop.org>; Wed, 27 Apr 2022 04:55:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=fireburn-co-uk.20210112.gappssmtp.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=XBfYKgyvKuh7NYO35F2lopTiElAeAwWqKXu995VG6ks=;
+ b=c3STxWdlX83L33uy28WQFadwyaHWa2fehuwmqjshJCoCeeOZyvT5CxFuKdFsW3VEGg
+ ffuxqmn2cPlBjBWAuStUHEmYHbnyWy3yBrkkHpX67KybBXKv2ffyUR5fwLulyeCyRTdP
+ Z4BZE3Y/yOTTB3CwYNoTvPgwjlb3w5u0Pvux12HWho3PD86ZupboSBhYlx9ak7fqMDzX
+ cXYAOHcuOJr3Pp9HQnwg8diDivRS8xh0WPiBebi4wWXH9denxqhBgGdD7PL+bSWBAYPv
+ CCxZ7oZ1fDU0+568hOPwKDkG+CmnoMSqHQgM/hpz7fe/tMywyx/TGB2yUsn6/z3B+XHS
+ oCTA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=XBfYKgyvKuh7NYO35F2lopTiElAeAwWqKXu995VG6ks=;
+ b=Sh45jkp/oC8wfNORt26qrHSmq8Se1wfFcxB2YxN6vFDHPXhDX4Oju5BBTnIzacD2c9
+ CBo2uZU7Sn33xd/iPFMmEb5XNLkNPnw9TMi1ggKR5Vm1TNZHrqpj8CoGlvhT/8RgLABS
+ t9EfbZwa+lVuUWZID4ncCVP+XXYPr02qoYv/QpQHD4z7VAndValwjgXWykCz1IubuWP2
+ hX4Qoq5tdY/l9P8TTb5Dmy9fAA7JQIw+cptiW4NzUZim6z/mRWb2y6KlTETpzx22SwCA
+ Ou8OVYdaoxUeAdPEl734XPHRa/UBeKgYlO4/eU3R9rl54mIpXja8yR6IUo3vE1WHvBet
+ 7Ulg==
+X-Gm-Message-State: AOAM533SQZ+FIERSCTZSGXQQxg7gAAVPq1i30uOo6jCabdjqqH1wBX8s
+ FBARuuS9zeXolk+HNYlBZ7NiF8LdbV0ulqGTatT3tg==
+X-Google-Smtp-Source: ABdhPJw8CrMPYh7Hj0TvqgDAmyTAHMro5hMBI1YiAfxE4sJ8Dfmdih8Crhpjae+e9JnAwGMKx1ooBj8qvIz43d397Uc=
+X-Received: by 2002:a17:903:31d1:b0:159:804:e852 with SMTP id
+ v17-20020a17090331d100b001590804e852mr27999972ple.19.1651060531108; Wed, 27
+ Apr 2022 04:55:31 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87o80n61ft.wl-ashutosh.dixit@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 7/9] drm/i915/gt: Fix memory leaks in per-gt
- sysfs
+References: <20220407054651.3924-1-Arunpravin.PaneerSelvam@amd.com>
+ <CAHbf0-H5uE4RtZwY0L8Wz0VG6QnU1+E3yhg3fDFVc3n__=nrNQ@mail.gmail.com>
+ <c0facbf4-0e14-fde5-4334-499135a36f0c@amd.com>
+In-Reply-To: <c0facbf4-0e14-fde5-4334-499135a36f0c@amd.com>
+From: Mike Lothian <mike@fireburn.co.uk>
+Date: Wed, 27 Apr 2022 12:55:19 +0100
+Message-ID: <CAHbf0-FMqAA3vWx_uRDYG_vr=FX+tFoLAL6BZLDe5upv7KJqrg@mail.gmail.com>
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH v12] drm/amdgpu: add drm buddy support to
+ amdgpu
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,25 +68,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org,
+ Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
+ intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ matthew.auld@intel.com, alexander.deucher@amd.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Ashutosh,
+On Tue, 26 Apr 2022 at 17:36, Christian K=C3=B6nig <christian.koenig@amd.co=
+m> wrote:
+>
+> Hi Mike,
+>
+> sounds like somehow stitching together the SG table for PRIME doesn't
+> work any more with this patch.
+>
+> Can you try with P2P DMA disabled?
 
-> > > -static struct kobj_type kobj_gt_type = {
-> > > -	.release = kobj_gt_release,
-> > > +static struct kobj_type kobj_gtn_type = {
-> >
-> > what does it mean GTN? Or is it GTn? Please use just GT, gtn is
-> > confusing.
-> >
-> > Same for all the rest of the gtn's you have used below.
-> 
-> I didn't like gtn either. But a sysfs_gt kobject is already part of 'struct
-> drm_i915_private' so I thought I'll put sysfs_gtn (for gt/gtN) in 'struct
-> intel_gt'. Otherwise browsing the code etc. gets confusing.
+-CONFIG_PCI_P2PDMA=3Dy
++# CONFIG_PCI_P2PDMA is not set
 
-we can even use 'gt_n' if the 'n' is really necessary.
+If that's what you're meaning, then there's no difference, I'll upload
+my dmesg to the gitlab issue
 
-Andi
+>
+> Apart from that can you take a look Arun?
+>
+> Thanks,
+> Christian.
