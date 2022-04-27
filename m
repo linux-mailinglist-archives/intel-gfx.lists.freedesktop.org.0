@@ -1,55 +1,60 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9B03511432
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Apr 2022 11:15:41 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 452395114BD
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Apr 2022 12:14:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 183DF10E095;
-	Wed, 27 Apr 2022 09:15:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D74310EB25;
+	Wed, 27 Apr 2022 10:14:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C3AB10E095
- for <intel-gfx@lists.freedesktop.org>; Wed, 27 Apr 2022 09:15:39 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1CF3A10EB25;
+ Wed, 27 Apr 2022 10:14:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1651050939; x=1682586939;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=jZ6uAFWDqeUNdA4al3xrmpmT7zLHnepGYu+nOr9NJeM=;
- b=nxPgMNmEM9b87qtd6/I2HAm1TvEcuhtmtyYPF7syOyc/OImSx8Q/QdKO
- tXihrWXOJyJJZi5eeUgKPmTLsY0qhLwcMHy79IKia9dRUcbGcBVgCLkiV
- uyVDlB1h0LJod6XP3rZfVboBrPB9PNx0f0pog2CiNGjsNS9Oiq2EgkLpy
- 7RhyVDdfkv+zkkUtrgZiZecLY0prNiKPEIBq99zaW5ShpZyikaRlS/x9e
- 86OKaL3w0Dp+fjvgUpa6Zhm/AgyYiBfiWIIu457ddhIdWmH7zo7ygWfhS
- efcrAM/jn37XTG/RfjEO1aZO17Q3TSSnXdk4V7Ym5izWCG6ctkAaYtsUw g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10329"; a="326360966"
-X-IronPort-AV: E=Sophos;i="5.90,292,1643702400"; d="scan'208";a="326360966"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2022 02:15:38 -0700
-X-IronPort-AV: E=Sophos;i="5.90,292,1643702400"; d="scan'208";a="580488252"
-Received: from jmwalsh-mobl.amr.corp.intel.com (HELO [10.213.205.227])
- ([10.213.205.227])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2022 02:15:37 -0700
-Message-ID: <22e84175-eef3-5ef3-14f0-8a19bbdab70e@linux.intel.com>
-Date: Wed, 27 Apr 2022 10:15:35 +0100
+ t=1651054448; x=1682590448;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=4o0UHgvGu8OD3M/sb8BWbyJCu2+OXfzKJRyCZAr6T9Q=;
+ b=blpeQIrjnQV9LdJdy2hLiNjQHVL1LApl5RYh0wEOWNlUk2JewS79Fnpx
+ ZF6f7AYZDzBfcLNe9cim+SUZ5+QCuNgl8AqIzI6hb29DQBdb9CCHCc4Uz
+ Bp63HbOLKxidKgrOSwbs2WlPsC5INNDuCwUrkAGkhDhWeH5zp4Tph2CLa
+ NVhJs0/G6OWfOLiZ3GyTmRzyWj6LvJr2h87Q7WCe9M2QREaFuGg7oswcV
+ 82dbmw5hrY7vcoAdwYQVWlRU5yFZECTs0eJ+QpCJC6cwPMMGcxTZsb7oh
+ 53T5Ltpbc/GHQNhgzjueOa6g80+Y4pel/gY9unt+nO8Ww1K2CrE4wYbht g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10329"; a="266044010"
+X-IronPort-AV: E=Sophos;i="5.90,292,1643702400"; d="scan'208";a="266044010"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Apr 2022 03:14:07 -0700
+X-IronPort-AV: E=Sophos;i="5.90,292,1643702400"; d="scan'208";a="596214496"
+Received: from apiotrox-mobl.ger.corp.intel.com (HELO [10.249.254.91])
+ ([10.249.254.91])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Apr 2022 03:14:02 -0700
+Message-ID: <8c4494b2b4c0d1017219d1d75f98fcbba4c6f72d.camel@linux.intel.com>
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Robert Beckett <bob.beckett@collabora.com>, 
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, Jani
+ Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>,  Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, David Airlie
+ <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>
+Date: Wed, 27 Apr 2022 12:14:00 +0200
+In-Reply-To: <cc56e644-f20f-27ae-7a21-e40c173dfe1e@collabora.com>
+References: <20220412151838.1298956-1-bob.beckett@collabora.com>
+ <20220412151838.1298956-5-bob.beckett@collabora.com>
+ <07e5b1dc442e0b318ee0314f90a433216ed38dcb.camel@linux.intel.com>
+ <cc56e644-f20f-27ae-7a21-e40c173dfe1e@collabora.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.4 (3.40.4-3.fc34) 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Content-Language: en-US
-To: Ashutosh Dixit <ashutosh.dixit@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20220413225732.34943-1-ashutosh.dixit@intel.com>
- <b614c2c61a954de06fbe2c3a7c70d3a91804407e.1649982207.git.ashutosh.dixit@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <b614c2c61a954de06fbe2c3a7c70d3a91804407e.1649982207.git.ashutosh.dixit@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v3] drm/i915: Don't show engine information
- in fdinfo with GuC submission
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v2 4/5] drm/i915: ttm backend dont provide
+ mmap_offset for kernel buffers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,57 +67,160 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Matthew Auld <matthew.auld@intel.com>, linux-kernel@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Sorry for late reply,
 
-On 15/04/2022 01:25, Ashutosh Dixit wrote:
-> At present i915 does not fetch busyness information from GuC, resulting in
-> incorrect busyness values in fdinfo. Because engine information is coupled
-> with busyness in fdinfo, skip showing client engine information in fdinfo
-> with GuC submission till fetching busyness is supported in the i915 GuC
-> submission backend.
+On Thu, 2022-04-14 at 17:13 +0100, Robert Beckett wrote:
 > 
-> v2 (Daniele):
->    Make commit title and description more precise
->    Add FIXME with brief description at code change
->    s/intel_guc_submission_is_used/intel_uc_uses_guc_submission/
 > 
-> v3 (Daniele):
->    Drop FIXME in comment
+> On 14/04/2022 15:05, Thomas Hellström wrote:
+> > On Tue, 2022-04-12 at 15:18 +0000, Robert Beckett wrote:
+> > > stolen/kernel buffers should not be mmapable by userland.
+> > > do not provide callbacks to facilitate this for these buffers.
+> > > 
+> > > Signed-off-by: Robert Beckett <bob.beckett@collabora.com>
+> > > ---
+> > >   drivers/gpu/drm/i915/gem/i915_gem_ttm.c | 32
+> > > +++++++++++++++++++++--
+> > > --
+> > >   1 file changed, 27 insertions(+), 5 deletions(-)
+> > > 
+> > > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> > > b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> > > index a878910a563c..b20f81836c54 100644
+> > > --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> > > +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> > > @@ -1092,8 +1092,8 @@ static void i915_ttm_unmap_virtual(struct
+> > > drm_i915_gem_object *obj)
+> > >          ttm_bo_unmap_virtual(i915_gem_to_ttm(obj));
+> > >   }
+> > >   
+> > > -static const struct drm_i915_gem_object_ops i915_gem_ttm_obj_ops
+> > > = {
+> > > -       .name = "i915_gem_object_ttm",
+> > > +static const struct drm_i915_gem_object_ops
+> > > i915_gem_ttm_user_obj_ops = {
+> > > +       .name = "i915_gem_object_ttm_user",
+> > >          .flags = I915_GEM_OBJECT_IS_SHRINKABLE |
+> > >                   I915_GEM_OBJECT_SELF_MANAGED_SHRINK_LIST,
+> > >   
+> > > @@ -1111,6 +1111,21 @@ static const struct
+> > > drm_i915_gem_object_ops
+> > > i915_gem_ttm_obj_ops = {
+> > >          .mmap_ops = &vm_ops_ttm,
+> > >   };
+> > >   
+> > > +static const struct drm_i915_gem_object_ops
+> > > i915_gem_ttm_kern_obj_ops = {
+> > > +       .name = "i915_gem_object_ttm_kern",
+> > > +       .flags = I915_GEM_OBJECT_IS_SHRINKABLE |
+> > > +                I915_GEM_OBJECT_SELF_MANAGED_SHRINK_LIST,
+> > > +
+> > > +       .get_pages = i915_ttm_get_pages,
+> > > +       .put_pages = i915_ttm_put_pages,
+> > > +       .truncate = i915_ttm_truncate,
+> > > +       .shrink = i915_ttm_shrink,
+> > > +
+> > > +       .adjust_lru = i915_ttm_adjust_lru,
+> > > +       .delayed_free = i915_ttm_delayed_free,
+> > > +       .migrate = i915_ttm_migrate,
+> > > +};
+> > 
+> > Do we really need two different ops here?
+> > 
+> > Since if we don't have mmap ops, basically that tells GEM it should
+> > do
+> > the mmapping rather than TTM.
+> > 
+> > That might of course come in handy for the shmem backend, but I
+> > don't
+> > fully follow why we need this for stolen.
 > 
-> Bug: https://gitlab.freedesktop.org/drm/intel/-/issues/5564
-> Fixes: 055634e4b62f ("drm/i915: Expose client engine utilisation via fdinfo")
-> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com
-> Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-> Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
-> Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> ---
->   drivers/gpu/drm/i915/i915_drm_client.c | 6 +++++-
->   1 file changed, 5 insertions(+), 1 deletion(-)
+> the main rationale for doing this was to avoid 
+> drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c:can_mmap()
+> presuming 
+> that is can use I915_MMAP_TYPE_FIXED
 > 
-> diff --git a/drivers/gpu/drm/i915/i915_drm_client.c b/drivers/gpu/drm/i915/i915_drm_client.c
-> index e539f6b23060..475a6f824cad 100644
-> --- a/drivers/gpu/drm/i915/i915_drm_client.c
-> +++ b/drivers/gpu/drm/i915/i915_drm_client.c
-> @@ -145,7 +145,11 @@ void i915_drm_client_fdinfo(struct seq_file *m, struct file *f)
->   		   PCI_SLOT(pdev->devfn), PCI_FUNC(pdev->devfn));
->   	seq_printf(m, "drm-client-id:\t%u\n", client->id);
->   
-> -	if (GRAPHICS_VER(i915) < 8)
-> +	/*
-> +	 * Temporarily skip showing client engine information with GuC submission till
-> +	 * fetching engine busyness is implemented in the GuC submission backend
-> +	 */
-> +	if (GRAPHICS_VER(i915) < 8 || intel_uc_uses_guc_submission(&i915->gt0.uc))
->   		return;
->   
->   	for (i = 0; i < ARRAY_SIZE(uabi_class_names); i++)
+> As the original backend also did not have mmap_offset handlers for 
+> stolen, this seemed like a reasonable design.
+> 
+> If desired, we could add a special case for the testing logic, but
+> those 
+> special cases have tendency to multiply.
+> 
+> > 
+> > Also for the framebuffer handed over from BIOS to fbdev, Does that
+> > need
+> > mmapping and if so, how do we handle that?
+> > 
+> 
+> I'm not sure of the usecase there. Do you know of any igt test that 
+> tests this? I can investigate further if you do not.
 
-Thanks for fixing this while I was away. It was a simple miss, nothing 
-sinister. In terms of mention of "garbage" numbers being reported - were 
-they actually garbage or simply always zero?
+It would be if we the fbdev driver at startup inherits some image that
+bios has preloaded into stolen, and then a client tries to write into
+it. Not sure that this is a real use case though, or whether, in that
+case, that takes a separate path for user-space mappings.
 
-Regards,
+/Thomas
 
-Tvrtko
+
+
+> 
+> > 
+> > /Thomas
+> > 
+> > 
+> > 
+> > 
+> > > +
+> > >   void i915_ttm_bo_destroy(struct ttm_buffer_object *bo)
+> > >   {
+> > >          struct drm_i915_gem_object *obj = i915_ttm_to_gem(bo);
+> > > @@ -1165,10 +1180,19 @@ int __i915_gem_ttm_object_init(struct
+> > > intel_memory_region *mem,
+> > >                  .no_wait_gpu = false,
+> > >          };
+> > >          enum ttm_bo_type bo_type;
+> > > +       const struct drm_i915_gem_object_ops *ops;
+> > >          int ret;
+> > >   
+> > >          drm_gem_private_object_init(&i915->drm, &obj->base,
+> > > size);
+> > > -       i915_gem_object_init(obj, &i915_gem_ttm_obj_ops,
+> > > &lock_class,
+> > > flags);
+> > > +
+> > > +       if (flags & I915_BO_ALLOC_USER &&
+> > > intel_region_to_ttm_type(mem) != I915_PL_STOLEN) {
+> > > +               bo_type = ttm_bo_type_device;
+> > > +               ops = &i915_gem_ttm_user_obj_ops;
+> > > +       } else {
+> > > +               bo_type = ttm_bo_type_kernel;
+> > > +               ops = &i915_gem_ttm_kern_obj_ops;
+> > > +       }
+> > > +       i915_gem_object_init(obj, ops, &lock_class, flags);
+> > >   
+> > >          obj->bo_offset = offset;
+> > >   
+> > > @@ -1178,8 +1202,6 @@ int __i915_gem_ttm_object_init(struct
+> > > intel_memory_region *mem,
+> > >   
+> > >          INIT_RADIX_TREE(&obj->ttm.get_io_page.radix, GFP_KERNEL
+> > > |
+> > > __GFP_NOWARN);
+> > >          mutex_init(&obj->ttm.get_io_page.lock);
+> > > -       bo_type = (obj->flags & I915_BO_ALLOC_USER) ?
+> > > ttm_bo_type_device :
+> > > -               ttm_bo_type_kernel;
+> > >   
+> > >          obj->base.vma_node.driver_private =
+> > > i915_gem_to_ttm(obj);
+> > >   
+> > 
+> > 
+
+
