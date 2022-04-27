@@ -1,49 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7578A5116E6
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Apr 2022 14:42:20 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A16E511847
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Apr 2022 15:25:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F44610F408;
-	Wed, 27 Apr 2022 12:42:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B620B10E0F7;
+	Wed, 27 Apr 2022 13:25:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9878610F408
- for <intel-gfx@lists.freedesktop.org>; Wed, 27 Apr 2022 12:42:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1651063333; x=1682599333;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=7BAMJHEu/uZpWQqW4zjmnovM1Ybd5i/f2rUSryqnHoU=;
- b=lJeWsA4wtFqTNJzncMt2rqJDX2+MoYcU0Fi6otCrKhNUfwObj/D8AP1C
- t1Xau55j3VGvQtJBhRHe8beklBNEvuIQbgOs2V31SEvb+gmiFqRLf0cao
- Etsk7eSQv4VhkHuJ6vcxFM2SlJ8dnt78kdiPLvG91gk4xQgKSI1DM25pQ
- oZ7+MqAla/TlE6meBzptt/2e2ySnqZYN/51flpXoUflfgqM318MX1zpf8
- q0CuogArkA+v2pB8Zy9utC9U8Id9fYrzHY7c+efpNN8S+HWtBq6Zd3msi
- 6PpSg8nJCFMrZBAEJ0UEoTl6a8VCKqbwdrSe0VnQN9EVt/jrSx2HPu4z/ w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10329"; a="246476170"
-X-IronPort-AV: E=Sophos;i="5.90,293,1643702400"; d="scan'208";a="246476170"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2022 05:42:13 -0700
-X-IronPort-AV: E=Sophos;i="5.90,293,1643702400"; d="scan'208";a="580573257"
-Received: from brutrata-mobl.ger.corp.intel.com (HELO intel.com)
- ([10.252.33.100])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2022 05:42:11 -0700
-Date: Wed, 27 Apr 2022 14:42:08 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Anusha Srivatsa <anusha.srivatsa@intel.com>
-Message-ID: <Ymk6ICgcRio8zE4g@intel.intel>
-References: <20220427003509.267683-1-anusha.srivatsa@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E67CE10E0F7;
+ Wed, 27 Apr 2022 13:25:48 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id E11AFAAA91;
+ Wed, 27 Apr 2022 13:25:48 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220427003509.267683-1-anusha.srivatsa@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dmc: Add MMIO range restrictions
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Date: Wed, 27 Apr 2022 13:25:48 -0000
+Message-ID: <165106594889.24236.17050743247275154068@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220426193222.3422-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20220426193222.3422-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/bios=3A_Rework_BDB_block_handling_and_PNPID-=3Epan?=
+ =?utf-8?q?el=5Ftype_matching_=28rev8=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,16 +41,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
- stable@vger.kernel.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-[...]
+== Series Details ==
 
-> +	if (!dmc_mmio_addr_sanity_check(dmc, mmioaddr, mmio_count, dmc_header->header_ver, dmc_id))
-> +		drm_err(&i915->drm, "DMC firmware has Wrong MMIO Addresses\n");
-> +		return 0;
-> +
+Series: drm/i915/bios: Rework BDB block handling and PNPID->panel_type matching (rev8)
+URL   : https://patchwork.freedesktop.org/series/102213/
+State : warning
 
-mh? :)
+== Summary ==
+
+Error: dim checkpatch failed
+e059b3ad1acf drm/i915/bios: Reorder panel DTD parsing
+0daf03385bab drm/i915/bios: Generate LFP data table pointers if the VBT lacks them
+-:45: CHECK:SPACING: spaces preferred around that '+' (ctx:VxV)
+#45: FILE: drivers/gpu/drm/i915/display/intel_bios.c:319:
++		if (data[i] == 0xff && data[i+1] == 0xff)
+ 		                             ^
+
+-:133: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
+#133: FILE: drivers/gpu/drm/i915/display/intel_bios.c:407:
++		next_lfp_data_ptr(&ptrs->ptr[i].fp_timing, &ptrs->ptr[i-1].fp_timing, size);
+ 		                                                       ^
+
+-:134: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
+#134: FILE: drivers/gpu/drm/i915/display/intel_bios.c:408:
++		next_lfp_data_ptr(&ptrs->ptr[i].dvo_timing, &ptrs->ptr[i-1].dvo_timing, size);
+ 		                                                        ^
+
+-:135: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
+#135: FILE: drivers/gpu/drm/i915/display/intel_bios.c:409:
++		next_lfp_data_ptr(&ptrs->ptr[i].panel_pnp_id, &ptrs->ptr[i-1].panel_pnp_id, size);
+ 		                                                          ^
+
+total: 0 errors, 0 warnings, 4 checks, 161 lines checked
+1474ba848018 drm/i915/bios: Get access to the tail end of the LFP data block
+1a1e2dbf1e29 drm/i915/bios: Document the mess around the LFP data tables
+69293b53dad4 drm/i915/bios: Assume panel_type==0 if the VBT has bogus data
+22d9a51d0e9b drm/i915/bios: Split parse_driver_features() into two parts
+04dc76c9e730 drm/i915/bios: Split VBT parsing to global vs. panel specific parts
+acc3e7825cf2 drm/i915/bios: Don't parse some panel specific data multiple times
+95cff1eb5e1d drm/i915/pps: Split PPS init+sanitize in two
+f2d496895332 drm/i915/pps: Reinit PPS delays after VBT has been fully parsed
+b01feedc5f58 drm/i915/bios: Do panel specific VBT parsing later
+3e5e12e89c0a drm/i915/bios: Extract get_panel_type()
+20e816239ebc drm/i915/bios: Refactor panel_type code
+f89016f8d594 drm/i915/bios: Determine panel type via PNPID match
+45ca4d81977d drm/i915/bios: Parse the seamless DRRS min refresh rate
+2a04c7ddbb0a drm/i915: Respect VBT seamless DRRS min refresh rate
+fcdc28cfed8d drm/edid: Extract drm_edid_decode_mfg_id()
+4f6667441d9a drm/i915/bios: Dump PNPID and panel name
+
+
