@@ -2,47 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACAF3510D3C
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Apr 2022 02:35:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 89814510D51
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Apr 2022 02:39:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F2BBF10EC45;
-	Wed, 27 Apr 2022 00:35:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E7E9D10E1C8;
+	Wed, 27 Apr 2022 00:39:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0711810EC15
- for <intel-gfx@lists.freedesktop.org>; Wed, 27 Apr 2022 00:35:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1651019731; x=1682555731;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=PqzGOcKtjv1DplY86Pvxhknb+8z03R4lDFgwCQcwzgg=;
- b=BmCQVV5x/3j1pngGq2fzXQioouCenR+PlJ9wGtqwn/wZp460MpSgFFHz
- 5kHL2NkeJJfCCWARV4x4x09HMqrNMP5TwE84GOV1KAoA7X8Eo2ClN2ywd
- usZEAK3Bdj5yVDHmEADZgNyVMFf0poWB7U+0y9IM4RgLz/gYEzGDBThRr
- cx/pMcBp3SVmAGs2UNxiB5VdX3v1moh1asLzbB9fWCdjPaI6WvCYBBdHb
- vZ/iS9mvfJ+s+yVQdTWHyPCRXMkgcU6QvuW/Diu0KLjB+SXv2FMtpU5HP
- EMdNWL58QoZgRT8rwWS/SBiJ2QTwUWUVv53i75iMpCSfuS7+VxvyDSJKN g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10329"; a="253146542"
-X-IronPort-AV: E=Sophos;i="5.90,292,1643702400"; d="scan'208";a="253146542"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Apr 2022 17:35:30 -0700
-X-IronPort-AV: E=Sophos;i="5.90,292,1643702400"; d="scan'208";a="580256012"
-Received: from unerlige-desk.jf.intel.com ([10.165.21.210])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Apr 2022 17:35:30 -0700
-From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-To: intel-gfx@lists.freedesktop.org,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Date: Tue, 26 Apr 2022 17:35:15 -0700
-Message-Id: <20220427003515.3944267-1-umesh.nerlige.ramappa@intel.com>
-X-Mailer: git-send-email 2.35.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2876810E1C8;
+ Wed, 27 Apr 2022 00:39:40 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 25740A7DFB;
+ Wed, 27 Apr 2022 00:39:40 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/pmu: Use existing uncore helper to
- read gpm_timestamp
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
+Date: Wed, 27 Apr 2022 00:39:40 -0000
+Message-ID: <165101998014.24234.4381315389029396201@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220427002617.1767295-1-daniele.ceraolospurio@intel.com>
+In-Reply-To: <20220427002617.1767295-1-daniele.ceraolospurio@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Prepare_for_GSC-loaded_HuC?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,54 +40,29 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Use intel_uncore_read64_2x32 to read upper and lower fields of the GPM
-timestamp.
+== Series Details ==
 
-v2: Fix compile error
+Series: drm/i915: Prepare for GSC-loaded HuC
+URL   : https://patchwork.freedesktop.org/series/103186/
+State : warning
 
-Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
----
- .../gpu/drm/i915/gt/uc/intel_guc_submission.c   | 17 ++---------------
- 1 file changed, 2 insertions(+), 15 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-index 61a6f2424e24..33e695adfd6a 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-@@ -1200,20 +1200,6 @@ static u32 gpm_timestamp_shift(struct intel_gt *gt)
- 	return 3 - shift;
- }
- 
--static u64 gpm_timestamp(struct intel_gt *gt)
--{
--	u32 lo, hi, old_hi, loop = 0;
--
--	hi = intel_uncore_read(gt->uncore, MISC_STATUS1);
--	do {
--		lo = intel_uncore_read(gt->uncore, MISC_STATUS0);
--		old_hi = hi;
--		hi = intel_uncore_read(gt->uncore, MISC_STATUS1);
--	} while (old_hi != hi && loop++ < 2);
--
--	return ((u64)hi << 32) | lo;
--}
--
- static void guc_update_pm_timestamp(struct intel_guc *guc, ktime_t *now)
- {
- 	struct intel_gt *gt = guc_to_gt(guc);
-@@ -1223,7 +1209,8 @@ static void guc_update_pm_timestamp(struct intel_guc *guc, ktime_t *now)
- 	lockdep_assert_held(&guc->timestamp.lock);
- 
- 	gt_stamp_hi = upper_32_bits(guc->timestamp.gt_stamp);
--	gpm_ts = gpm_timestamp(gt) >> guc->timestamp.shift;
-+	gpm_ts = intel_uncore_read64_2x32(gt->uncore, MISC_STATUS0,
-+					  MISC_STATUS1) >> guc->timestamp.shift;
- 	gt_stamp_lo = lower_32_bits(gpm_ts);
- 	*now = ktime_get();
- 
--- 
-2.35.1
+Error: dim checkpatch failed
+8916eb4e3081 drm/i915/huc: check HW directly for HuC auth status
+0cbbd92e569f drm/i915/huc: Add fetch support for gsc-loaded HuC binary
+f17e836d85dc drm/i915/huc: Prepare for GSC-loaded HuC
+-:22: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
+#22: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_reg.h:99:
++#define   GSC_LOADS_HUC			(1<<30)
+                        			  ^
+
+total: 0 errors, 0 warnings, 1 checks, 177 lines checked
+120b114272a8 drm/i915/huc: Don't fail the probe if HuC init fails
+
 
