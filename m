@@ -2,143 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8C06510F11
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Apr 2022 04:58:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F09E9510F26
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Apr 2022 05:05:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5AE9410F3A3;
-	Wed, 27 Apr 2022 02:58:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 39B3810EFEB;
+	Wed, 27 Apr 2022 03:05:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED55410F3A3
- for <intel-gfx@lists.freedesktop.org>; Wed, 27 Apr 2022 02:58:12 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1088C10EBBC
+ for <intel-gfx@lists.freedesktop.org>; Wed, 27 Apr 2022 03:05:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1651028292; x=1682564292;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=uoW8CXbrLS4e4ViI98DCAjhmMXxSlh3oq7jOOm39Arg=;
- b=BjNXnPq+ag0lkv4HjCuEmn5QMtnpfFm+fixG7ZWNRormMiE4T5UH7NG+
- KXaTWc01pet1wnrPwSZoVnnR0tCO5giykrv5DhpghT7KNOiJCaBRId9sl
- VXCcDvypvXXI/KOYVMBbPsxXhzEPArozWzckYGMYUVmEbKD8vLM1bihkT
- qA56wiE3XxcQ7qZW5EPqHoc1J6kQybC4ahFtvwqypEnDFk1piU/4i9K9F
- E1IDw8xDWVbs5LcHYm27ryH6+sRRn2paH+qBxKRqkqbbmvoFx5aPf6McX
- 8DEO+8bWOSbxRQAdsH5DyrpdaW8WrJeT9jjXQ9UmiVItw0tACvhnX0qZZ g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10329"; a="352232231"
-X-IronPort-AV: E=Sophos;i="5.90,292,1643702400"; d="scan'208";a="352232231"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Apr 2022 19:58:12 -0700
+ t=1651028724; x=1682564724;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=6ygFPApwT0kMv1moV0FW3+ndWZkvOw7hNjDyagly/rc=;
+ b=C8S+z9hJaHef6n1uBCurRXMGUtwDMOo2tsxIJXwSM11rIVT/x2eUrYo8
+ 7E9dstsudg8BupAWJm2U8dRVwSlThF7iFL6wX7c83/S3bybTxUKblhHUB
+ c19IN6xBMd63T49VmrSqIpkLBHfM9gLPC4alsr2k0ovlOSeGQYqfDD8vC
+ l5l02Wg7TQIwvob8/PPuQyBrJgIzNhsBDVIndx2tP0d14FmadqOB9VP3P
+ 31sFcvNHsySBLwFp98llSQoJFuRzz3hbA9BS1UQJ4+Dx1CloCuqNitjWE
+ DrrgFy8AFXtYe5RxyA6gBWcyC0CfYROB2kK3BuKQmdikkgWjXT4gL8Ed+ Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10329"; a="247724659"
+X-IronPort-AV: E=Sophos;i="5.90,292,1643702400"; d="scan'208";a="247724659"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Apr 2022 20:05:22 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,292,1643702400"; d="scan'208";a="617306442"
-Received: from fmsmsx605.amr.corp.intel.com ([10.18.126.85])
- by fmsmga008.fm.intel.com with ESMTP; 26 Apr 2022 19:58:12 -0700
-Received: from fmsmsx609.amr.corp.intel.com (10.18.126.89) by
- fmsmsx605.amr.corp.intel.com (10.18.126.85) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Tue, 26 Apr 2022 19:58:12 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx609.amr.corp.intel.com (10.18.126.89) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27 via Frontend Transport; Tue, 26 Apr 2022 19:58:12 -0700
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.47) by
- edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2308.27; Tue, 26 Apr 2022 19:58:11 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lRN30x72FjXnvG5kyP1ek7mJ+azN8yDnQuGsS8C/IG7aiZYSHR+Q2QrVPTZ+tI/8PtIZAaDuWQlNAwSuOhNO9brLvDcdwFwcv6RLb1zvFfDhxA+29VGhkv73+ZuZ7KpyB0xdt1w4DjEKsKkfpUhLZv1ws1O8rxz7VyJ/iGSHyUkKtMc5N8Hsd/V5qATyu6V+AATw1zOPZfIp/hzPeYQZQFsnakAFJUIauFh+jUpahS2UtcFT8QdYSJKKILNh3ZGIrm3xIG/MRt9CjAVOYqSqKEjTOlGXk8TeXEaY9zKXjJDL/zr0P0V9UKrhwUWynO4hlAplxt4m/nTdpkiTXkCaYA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=uoW8CXbrLS4e4ViI98DCAjhmMXxSlh3oq7jOOm39Arg=;
- b=PM+Hueq9u5RtN18SewjzTst6w8oeVW/jQsLVL7wUq6TCr1kOOaq7mxE8H3R8nrsSNPksF519vr2QVQ9+HhPZety42y2bvKje2wmDlx43zjBZmE3POiUYczQkWnUlkWtB+zAfgY/FBtWZVpiiLorqJEZUP/nXdMzRjSWvMuyTfA1IEHPdw6w/gHXxMWLv+EJ/dnPsj3ZnD6+FP8oP/n12APmf7mgnV6vhBoIchXrHrcYML7dEnnZzSLGZXb9tJjv2nU7t1Z7q4DhfsU58mmkcDlxBBqcmcq6PtthW8w8N3MeJJE7SAXZ3ZNQHtUX4Lw604nykTQ/60DsHjAJe5E4XXQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM6PR11MB3177.namprd11.prod.outlook.com (2603:10b6:5:c::28) by
- DM5PR11MB0010.namprd11.prod.outlook.com (2603:10b6:4:6c::17) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5186.15; Wed, 27 Apr 2022 02:58:10 +0000
-Received: from DM6PR11MB3177.namprd11.prod.outlook.com
- ([fe80::dc18:9af3:5549:4d3d]) by DM6PR11MB3177.namprd11.prod.outlook.com
- ([fe80::dc18:9af3:5549:4d3d%7]) with mapi id 15.20.5186.021; Wed, 27 Apr 2022
- 02:58:10 +0000
-From: "Murthy, Arun R" <arun.r.murthy@intel.com>
-To: =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Thread-Topic: [PATCH] drm/i915: Support Async Flip on Linear buffers
-Thread-Index: AQHYWWXWrvMGjms3kEmwnEgqBlBTi60CgGEAgACO2+A=
-Date: Wed, 27 Apr 2022 02:58:09 +0000
-Message-ID: <DM6PR11MB317721EBFA40865B0898F40ABAFA9@DM6PR11MB3177.namprd11.prod.outlook.com>
+X-IronPort-AV: E=Sophos;i="5.90,292,1643702400"; d="scan'208";a="679730426"
+Received: from lkp-server01.sh.intel.com (HELO 5056e131ad90) ([10.239.97.150])
+ by orsmga004.jf.intel.com with ESMTP; 26 Apr 2022 20:05:20 -0700
+Received: from kbuild by 5056e131ad90 with local (Exim 4.95)
+ (envelope-from <lkp@intel.com>) id 1njXzU-0004FW-6A;
+ Wed, 27 Apr 2022 03:05:20 +0000
+Date: Wed, 27 Apr 2022 11:04:38 +0800
+From: kernel test robot <lkp@intel.com>
+To: Arun R Murthy <arun.r.murthy@intel.com>,
+	intel-gfx@lists.freedesktop.org
+Message-ID: <202204271058.ofYrNPzV-lkp@intel.com>
 References: <20220426120407.1334318-1-arun.r.murthy@intel.com>
- <Ymg2uBjovjgVAyC5@intel.com>
-In-Reply-To: <Ymg2uBjovjgVAyC5@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.6.401.20
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 6d14b7dd-96d5-4fc9-5dde-08da27f9c317
-x-ms-traffictypediagnostic: DM5PR11MB0010:EE_
-x-microsoft-antispam-prvs: <DM5PR11MB0010D99BF56E0122AEC12330BAFA9@DM5PR11MB0010.namprd11.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: K1cQQNvFqGg8IArd0bS5cJ6WpoYIG3TuxZBgFuSSc5es/u9cOeMy25WIC40dE+T9YGSFgjfOoqtLubXWAlboJUqL9u0Eq59LNh6UFDfCTnIO9ZrQ6+JszExBYwatoLbDlJIRQmZXzQou83yV8uBq0a15MTL2YysEEJ4Txtpc5EF9Cdism5H9nVcTbyb7wTe4+AY5bV8SFgp6mhkbOUM/VZ7xqhX11ScBZcs5KHae2f2aoIAHsw4m3ZmJ5ScOmq1Aj08kODOLVtaObPSrWlzimc8otDShATDMkOE+qIlFNLIVsuqB7MJTgumthlSE2W2W3lRpPNr1r6Bl7kWuBt9nqnUG71Sv8shsq8DfUpyZHBvgMjh3upTYcvNxaLhMdi1NDzcgGLHAOnhyhL98pn2gkHfvfi+7Y7yw19kFIK1DfX/twC5Nxk4JeOlMw8vWdxvU2+ttmP3Lmf3qViUYf0o0+fcsvU2ITZew+ruNE8z93ys2MWQSztSOx+kddvrE4FYb/vX80DcdjHbxiLftJRM+qbf++XTG4QQg1KgUnTaAg7hbM06ekCvRGSQBhBx0WLbbUoe/0ot9rOZ25jbbMP6vfDrekGFhe0CuBu9uy2b/07LjuCWOsTjmZKCAn9WGj06Z3FpfiwTCRyJDLn1kKjtR5Rtp8cVpazjEdb623s62wcWgXX8ipfA2sOqTo5xu7NYSt75BTOhuWF3fOyRWmVrGPA==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR11MB3177.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230001)(366004)(508600001)(8936002)(5660300002)(33656002)(6506007)(2906002)(26005)(54906003)(186003)(86362001)(55236004)(7696005)(4744005)(52536014)(122000001)(38070700005)(66476007)(66556008)(6916009)(66446008)(76116006)(8676002)(9686003)(66946007)(38100700002)(4326008)(64756008)(82960400001)(316002)(55016003)(71200400001);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?Zqdh6lgP1yNYWfV20fJUv+cKmIYQ2BHCs056mBhMd0fZCmAaR4cRYydL62?=
- =?iso-8859-1?Q?cLI3BG4gairoxo5S1NlJAyLhmg4z25xcvdUDxxnkNBzYTJLIwFlX06m2q/?=
- =?iso-8859-1?Q?p+VcX+qrISnz3yIsq5eCG8KnoEbEcbuGbqlwZrm0muJbUmLh+ip0MggJkB?=
- =?iso-8859-1?Q?9eIcyzOaoOg5h3SUYYczdu5l7bV/ftzZ8vqlqlCOVATH+MQcPMZkNMN4sJ?=
- =?iso-8859-1?Q?V04Wz7nX8ebiltNr665+nzOrbtEJ5IecLI9UF/sGnS7W1Q5cK+4ieCZ1/M?=
- =?iso-8859-1?Q?26Da1wSIZ+gajT84K0UR40ypioFcOowGqKuIE3AacyMsYaIrriTPxEN+Ry?=
- =?iso-8859-1?Q?IW8fRgNzMAyz6t8t3dTV+ze/jFT5Ed2l46OLRZk/uOIAV0dimEybq9yPhy?=
- =?iso-8859-1?Q?pvfMuXzl97uT8+FTqtgn+lwihz9i8AKvxw4zFPvXH+vGoiIqNpBSQSR0GP?=
- =?iso-8859-1?Q?3NfoqD9iw36dnltcG91c0B974fJKwp49VZer00ugYbXJr1peC49hJLca/s?=
- =?iso-8859-1?Q?A0dJuBHwmE7Mr5NjCCyoMw4xvxjOwG1JI6GZA5dF29SlHB1vyh8DZFpwp1?=
- =?iso-8859-1?Q?mI4roCWQ1up5csqGQn9EwFNLWVSa9XJHnqIPm4GMxYj0hUmYfeemYKiF81?=
- =?iso-8859-1?Q?rs0TSxMEpfFz3hpvejQyBd+Ypy01iUVcPsQThHlW35VU3LzYQm9aLOKHi1?=
- =?iso-8859-1?Q?umHm484Sg2N7DMQu91AdhhRH5kgGtMeBuPQtlcmMo+M3e5LOvftaJfntw7?=
- =?iso-8859-1?Q?60YquM36Rhojg2Ru8eBnh4Io/XntcDh/k3ryby6+EJ7iGqUIUcAhH39D3C?=
- =?iso-8859-1?Q?uSTIulhVKNsLVhdHdWw5xhglDSWH2HKWBWt0QWgGur2oJ8Mmk6IoB+GUzv?=
- =?iso-8859-1?Q?VG7PmOa80DK8KTg2TzK6hBQokesLWYgm1HfJdDKlp+dAmSj+sDpgD35Vzb?=
- =?iso-8859-1?Q?lltn/iMopd863//iC96U04bLBQwFhOYgDTMC30aBQlZc8AupLDxXqADrcc?=
- =?iso-8859-1?Q?nDrKdbH4h5lPBLCOVlQddCHFrXn1wQBFYGmbZzC4Dp3MKddvGiW7zDkthV?=
- =?iso-8859-1?Q?iIkd6H7y3WbQeCNFkN/w9kJLiARlxqJG5m1LS4HesXLevY4I7XfAutpOtI?=
- =?iso-8859-1?Q?bQ/61pUGX8+8yyFE/7AP+ZQooxQ96Tku3ZbgHmoA6LFAT7YIfHM8rTkCKy?=
- =?iso-8859-1?Q?t6/WVYSSfPsCTOziPzkHZ+jr72P1v6xyVLvVI0r0lW/QjHoZZzykOyd8vt?=
- =?iso-8859-1?Q?6FRoDB9+ExRSCdRXenI0/j/zb7eKGbVmKE5NlCwzZPkp7WvBhYKBSkdTZA?=
- =?iso-8859-1?Q?1/r0VRC8HIVvmMFVSG8nu/2Id9F/F6H+MidmC6KBc5pppSPvVEZuUHE/Bi?=
- =?iso-8859-1?Q?QIGmPKRyKURLX7UcMQJ1siJDaMBcN9jeMSzXlNieWVQhPi3c0v8hQUUXBW?=
- =?iso-8859-1?Q?nWbxqFbAg+YEKb+gJ0xMlN+F8nJYRUpG/FNfIsLvv33FiLPbP+dKSoFkkI?=
- =?iso-8859-1?Q?Vsp4KRwxBGxT1Te+Qo2J2pLoxGDRMBRmvNzfphn9ttxhYoGBV+M4Q5VMFx?=
- =?iso-8859-1?Q?aTGjs88+SkiLhCwblk4ADHnQ68pe+CqreYOYn935XpCJHE1iUMSB9o9u/U?=
- =?iso-8859-1?Q?Sx9oJdCZq+8i2vnsWGPmCBUJKW6ASxkISuCyLewrLXTvJhilgSAZ5mfXPQ?=
- =?iso-8859-1?Q?TlaEbWQ3WcsyxOmT08VcZYuieu9b/wHL1YF/nVnr4WBjzSEmFCtA3p2Rdv?=
- =?iso-8859-1?Q?9sg/WIiyokSvBkwX0oS4PFS6/hj8CEbE/78mylixMHb/Te7sikygN6UEo+?=
- =?iso-8859-1?Q?3fKHxSn2Wg=3D=3D?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB3177.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6d14b7dd-96d5-4fc9-5dde-08da27f9c317
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Apr 2022 02:58:09.9149 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: CvnJZkvBQI3YTHRuHRTdL7w3ulK8+tiCGN2txlAZNjRzTB7eI5G0r6hO1hG1+m9aQg4f1CnWPv161IV5h1lYwQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR11MB0010
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220426120407.1334318-1-arun.r.murthy@intel.com>
 Subject: Re: [Intel-gfx] [PATCH] drm/i915: Support Async Flip on Linear
  buffers
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -153,22 +61,227 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: llvm@lists.linux.dev, kbuild-all@lists.01.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> On Tue, Apr 26, 2022 at 05:34:07PM +0530, Arun R Murthy wrote:
-> > Starting from Gen12 Async Flip is supported on linear buffers.
->=20
-> It's supported earlier than that. But IIRC there was some kind of GTT
-> alignment vs. async flip vs. FBC restriction that we weren't handling.
->=20
-Should I enable it for earlier Gen also, or is it fine to keep it with star=
-ting Gen 12.
-The only restriction that I see in Bspec is that during async flip changes
-to stride, pixel format, compression, FBC etc is not allowed and I see
-this is already taken care of. Am I missing anything?
+Hi Arun,
 
-Thanks and Regards,
-Arun R Murthy
---------------------
+Thank you for the patch! Perhaps something to improve:
+
+[auto build test WARNING on drm-intel/for-linux-next]
+[also build test WARNING on drm-tip/drm-tip v5.18-rc4 next-20220426]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Arun-R-Murthy/drm-i915-Support-Async-Flip-on-Linear-buffers/20220426-200801
+base:   git://anongit.freedesktop.org/drm-intel for-linux-next
+config: x86_64-randconfig-a005 (https://download.01.org/0day-ci/archive/20220427/202204271058.ofYrNPzV-lkp@intel.com/config)
+compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project 1cddcfdc3c683b393df1a5c9063252eb60e52818)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/a31035350521698f7d7656a54a3b7e163257bf70
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Arun-R-Murthy/drm-i915-Support-Async-Flip-on-Linear-buffers/20220426-200801
+        git checkout a31035350521698f7d7656a54a3b7e163257bf70
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash drivers/gpu/drm/i915/
+
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/gpu/drm/i915/display/intel_display.c:7532:3: warning: unannotated fall-through between switch labels [-Wimplicit-fallthrough]
+                   case I915_FORMAT_MOD_X_TILED:
+                   ^
+   drivers/gpu/drm/i915/display/intel_display.c:7532:3: note: insert 'break;' to avoid fall-through
+                   case I915_FORMAT_MOD_X_TILED:
+                   ^
+                   break; 
+   1 warning generated.
+
+
+vim +7532 drivers/gpu/drm/i915/display/intel_display.c
+
+b0b2bed2a1305c Ville Syrjälä         2022-02-14  7458  
+b0b2bed2a1305c Ville Syrjälä         2022-02-14  7459  static int intel_async_flip_check_hw(struct intel_atomic_state *state, struct intel_crtc *crtc)
+30ff93af9e19db Karthik B S           2020-09-21  7460  {
+30ff93af9e19db Karthik B S           2020-09-21  7461  	struct drm_i915_private *i915 = to_i915(state->base.dev);
+30ff93af9e19db Karthik B S           2020-09-21  7462  	const struct intel_crtc_state *old_crtc_state, *new_crtc_state;
+30ff93af9e19db Karthik B S           2020-09-21  7463  	const struct intel_plane_state *new_plane_state, *old_plane_state;
+30ff93af9e19db Karthik B S           2020-09-21  7464  	struct intel_plane *plane;
+30ff93af9e19db Karthik B S           2020-09-21  7465  	int i;
+30ff93af9e19db Karthik B S           2020-09-21  7466  
+0826edb6a5e5b3 José Roberto de Souza 2021-10-29  7467  	old_crtc_state = intel_atomic_get_old_crtc_state(state, crtc);
+0826edb6a5e5b3 José Roberto de Souza 2021-10-29  7468  	new_crtc_state = intel_atomic_get_new_crtc_state(state, crtc);
+0826edb6a5e5b3 José Roberto de Souza 2021-10-29  7469  
+b0b2bed2a1305c Ville Syrjälä         2022-02-14  7470  	if (!new_crtc_state->uapi.async_flip)
+b0b2bed2a1305c Ville Syrjälä         2022-02-14  7471  		return 0;
+b0b2bed2a1305c Ville Syrjälä         2022-02-14  7472  
+6b4e414ce8dab7 Ville Syrjälä         2022-02-14  7473  	if (!new_crtc_state->hw.active) {
+6b4e414ce8dab7 Ville Syrjälä         2022-02-14  7474  		drm_dbg_kms(&i915->drm,
+6b4e414ce8dab7 Ville Syrjälä         2022-02-14  7475  			    "[CRTC:%d:%s] not active\n",
+6b4e414ce8dab7 Ville Syrjälä         2022-02-14  7476  			    crtc->base.base.id, crtc->base.name);
+30ff93af9e19db Karthik B S           2020-09-21  7477  		return -EINVAL;
+30ff93af9e19db Karthik B S           2020-09-21  7478  	}
+30ff93af9e19db Karthik B S           2020-09-21  7479  
+6b4e414ce8dab7 Ville Syrjälä         2022-02-14  7480  	if (intel_crtc_needs_modeset(new_crtc_state)) {
+6b4e414ce8dab7 Ville Syrjälä         2022-02-14  7481  		drm_dbg_kms(&i915->drm,
+6b4e414ce8dab7 Ville Syrjälä         2022-02-14  7482  			    "[CRTC:%d:%s] modeset required\n",
+6b4e414ce8dab7 Ville Syrjälä         2022-02-14  7483  			    crtc->base.base.id, crtc->base.name);
+30ff93af9e19db Karthik B S           2020-09-21  7484  		return -EINVAL;
+30ff93af9e19db Karthik B S           2020-09-21  7485  	}
+6b4e414ce8dab7 Ville Syrjälä         2022-02-14  7486  
+30ff93af9e19db Karthik B S           2020-09-21  7487  	if (old_crtc_state->active_planes != new_crtc_state->active_planes) {
+30ff93af9e19db Karthik B S           2020-09-21  7488  		drm_dbg_kms(&i915->drm,
+6b4e414ce8dab7 Ville Syrjälä         2022-02-14  7489  			    "[CRTC:%d:%s] Active planes cannot be in async flip\n",
+6b4e414ce8dab7 Ville Syrjälä         2022-02-14  7490  			    crtc->base.base.id, crtc->base.name);
+30ff93af9e19db Karthik B S           2020-09-21  7491  		return -EINVAL;
+30ff93af9e19db Karthik B S           2020-09-21  7492  	}
+30ff93af9e19db Karthik B S           2020-09-21  7493  
+30ff93af9e19db Karthik B S           2020-09-21  7494  	for_each_oldnew_intel_plane_in_state(state, plane, old_plane_state,
+30ff93af9e19db Karthik B S           2020-09-21  7495  					     new_plane_state, i) {
+0826edb6a5e5b3 José Roberto de Souza 2021-10-29  7496  		if (plane->pipe != crtc->pipe)
+0826edb6a5e5b3 José Roberto de Souza 2021-10-29  7497  			continue;
+0826edb6a5e5b3 José Roberto de Souza 2021-10-29  7498  
+30ff93af9e19db Karthik B S           2020-09-21  7499  		/*
+2e08437160d1e8 Ville Syrjälä         2022-02-14  7500  		 * Only async flip capable planes should be in the state
+2e08437160d1e8 Ville Syrjälä         2022-02-14  7501  		 * if we're really about to ask the hardware to perform
+2e08437160d1e8 Ville Syrjälä         2022-02-14  7502  		 * an async flip. We should never get this far otherwise.
+30ff93af9e19db Karthik B S           2020-09-21  7503  		 */
+2e08437160d1e8 Ville Syrjälä         2022-02-14  7504  		if (drm_WARN_ON(&i915->drm,
+2e08437160d1e8 Ville Syrjälä         2022-02-14  7505  				new_crtc_state->do_async_flip && !plane->async_flip))
+30ff93af9e19db Karthik B S           2020-09-21  7506  			return -EINVAL;
+30ff93af9e19db Karthik B S           2020-09-21  7507  
+2e08437160d1e8 Ville Syrjälä         2022-02-14  7508  		/*
+2e08437160d1e8 Ville Syrjälä         2022-02-14  7509  		 * Only check async flip capable planes other planes
+2e08437160d1e8 Ville Syrjälä         2022-02-14  7510  		 * may be involved in the initial commit due to
+2e08437160d1e8 Ville Syrjälä         2022-02-14  7511  		 * the wm0/ddb optimization.
+2e08437160d1e8 Ville Syrjälä         2022-02-14  7512  		 *
+2e08437160d1e8 Ville Syrjälä         2022-02-14  7513  		 * TODO maybe should track which planes actually
+2e08437160d1e8 Ville Syrjälä         2022-02-14  7514  		 * were requested to do the async flip...
+2e08437160d1e8 Ville Syrjälä         2022-02-14  7515  		 */
+2e08437160d1e8 Ville Syrjälä         2022-02-14  7516  		if (!plane->async_flip)
+2e08437160d1e8 Ville Syrjälä         2022-02-14  7517  			continue;
+2e08437160d1e8 Ville Syrjälä         2022-02-14  7518  
+30ff93af9e19db Karthik B S           2020-09-21  7519  		/*
+30ff93af9e19db Karthik B S           2020-09-21  7520  		 * FIXME: This check is kept generic for all platforms.
+244dba4cb59637 Lucas De Marchi       2021-07-28  7521  		 * Need to verify this for all gen9 platforms to enable
+30ff93af9e19db Karthik B S           2020-09-21  7522  		 * this selectively if required.
+30ff93af9e19db Karthik B S           2020-09-21  7523  		 */
+30ff93af9e19db Karthik B S           2020-09-21  7524  		switch (new_plane_state->hw.fb->modifier) {
+a3103535052169 Arun R Murthy         2022-04-26  7525  		case DRM_FORMAT_MOD_LINEAR:
+a3103535052169 Arun R Murthy         2022-04-26  7526  			if (DISPLAY_VER(i915) < 12) {
+a3103535052169 Arun R Murthy         2022-04-26  7527  				drm_dbg_kms(&i915->drm,
+a3103535052169 Arun R Murthy         2022-04-26  7528  					"[PLANE:%d:%s] Modifier does not support async flips\n",
+a3103535052169 Arun R Murthy         2022-04-26  7529  					plane->base.base.id, plane->base.name);
+a3103535052169 Arun R Murthy         2022-04-26  7530  				return -EINVAL;
+a3103535052169 Arun R Murthy         2022-04-26  7531  			}
+30ff93af9e19db Karthik B S           2020-09-21 @7532  		case I915_FORMAT_MOD_X_TILED:
+30ff93af9e19db Karthik B S           2020-09-21  7533  		case I915_FORMAT_MOD_Y_TILED:
+30ff93af9e19db Karthik B S           2020-09-21  7534  		case I915_FORMAT_MOD_Yf_TILED:
+072ce4164f973b Stanislav Lisovskiy   2022-01-18  7535  		case I915_FORMAT_MOD_4_TILED:
+30ff93af9e19db Karthik B S           2020-09-21  7536  			break;
+30ff93af9e19db Karthik B S           2020-09-21  7537  		default:
+30ff93af9e19db Karthik B S           2020-09-21  7538  			drm_dbg_kms(&i915->drm,
+6b4e414ce8dab7 Ville Syrjälä         2022-02-14  7539  				    "[PLANE:%d:%s] Modifier does not support async flips\n",
+6b4e414ce8dab7 Ville Syrjälä         2022-02-14  7540  				    plane->base.base.id, plane->base.name);
+30ff93af9e19db Karthik B S           2020-09-21  7541  			return -EINVAL;
+30ff93af9e19db Karthik B S           2020-09-21  7542  		}
+30ff93af9e19db Karthik B S           2020-09-21  7543  
+aaec72ee90bccc Ville Syrjälä         2021-10-18  7544  		if (new_plane_state->hw.fb->format->num_planes > 1) {
+aaec72ee90bccc Ville Syrjälä         2021-10-18  7545  			drm_dbg_kms(&i915->drm,
+6b4e414ce8dab7 Ville Syrjälä         2022-02-14  7546  				    "[PLANE:%d:%s] Planar formats do not support async flips\n",
+6b4e414ce8dab7 Ville Syrjälä         2022-02-14  7547  				    plane->base.base.id, plane->base.name);
+aaec72ee90bccc Ville Syrjälä         2021-10-18  7548  			return -EINVAL;
+aaec72ee90bccc Ville Syrjälä         2021-10-18  7549  		}
+aaec72ee90bccc Ville Syrjälä         2021-10-18  7550  
+be6c1dd5ac074d Imre Deak             2021-10-27  7551  		if (old_plane_state->view.color_plane[0].mapping_stride !=
+be6c1dd5ac074d Imre Deak             2021-10-27  7552  		    new_plane_state->view.color_plane[0].mapping_stride) {
+6b4e414ce8dab7 Ville Syrjälä         2022-02-14  7553  			drm_dbg_kms(&i915->drm,
+6b4e414ce8dab7 Ville Syrjälä         2022-02-14  7554  				    "[PLANE:%d:%s] Stride cannot be changed in async flip\n",
+6b4e414ce8dab7 Ville Syrjälä         2022-02-14  7555  				    plane->base.base.id, plane->base.name);
+30ff93af9e19db Karthik B S           2020-09-21  7556  			return -EINVAL;
+30ff93af9e19db Karthik B S           2020-09-21  7557  		}
+30ff93af9e19db Karthik B S           2020-09-21  7558  
+30ff93af9e19db Karthik B S           2020-09-21  7559  		if (old_plane_state->hw.fb->modifier !=
+30ff93af9e19db Karthik B S           2020-09-21  7560  		    new_plane_state->hw.fb->modifier) {
+30ff93af9e19db Karthik B S           2020-09-21  7561  			drm_dbg_kms(&i915->drm,
+6b4e414ce8dab7 Ville Syrjälä         2022-02-14  7562  				    "[PLANE:%d:%s] Modifier cannot be changed in async flip\n",
+6b4e414ce8dab7 Ville Syrjälä         2022-02-14  7563  				    plane->base.base.id, plane->base.name);
+30ff93af9e19db Karthik B S           2020-09-21  7564  			return -EINVAL;
+30ff93af9e19db Karthik B S           2020-09-21  7565  		}
+30ff93af9e19db Karthik B S           2020-09-21  7566  
+30ff93af9e19db Karthik B S           2020-09-21  7567  		if (old_plane_state->hw.fb->format !=
+30ff93af9e19db Karthik B S           2020-09-21  7568  		    new_plane_state->hw.fb->format) {
+30ff93af9e19db Karthik B S           2020-09-21  7569  			drm_dbg_kms(&i915->drm,
+6b4e414ce8dab7 Ville Syrjälä         2022-02-14  7570  				    "[PLANE:%d:%s] Pixel format cannot be changed in async flip\n",
+6b4e414ce8dab7 Ville Syrjälä         2022-02-14  7571  				    plane->base.base.id, plane->base.name);
+30ff93af9e19db Karthik B S           2020-09-21  7572  			return -EINVAL;
+30ff93af9e19db Karthik B S           2020-09-21  7573  		}
+30ff93af9e19db Karthik B S           2020-09-21  7574  
+30ff93af9e19db Karthik B S           2020-09-21  7575  		if (old_plane_state->hw.rotation !=
+30ff93af9e19db Karthik B S           2020-09-21  7576  		    new_plane_state->hw.rotation) {
+6b4e414ce8dab7 Ville Syrjälä         2022-02-14  7577  			drm_dbg_kms(&i915->drm,
+6b4e414ce8dab7 Ville Syrjälä         2022-02-14  7578  				    "[PLANE:%d:%s] Rotation cannot be changed in async flip\n",
+6b4e414ce8dab7 Ville Syrjälä         2022-02-14  7579  				    plane->base.base.id, plane->base.name);
+30ff93af9e19db Karthik B S           2020-09-21  7580  			return -EINVAL;
+30ff93af9e19db Karthik B S           2020-09-21  7581  		}
+30ff93af9e19db Karthik B S           2020-09-21  7582  
+30ff93af9e19db Karthik B S           2020-09-21  7583  		if (!drm_rect_equals(&old_plane_state->uapi.src, &new_plane_state->uapi.src) ||
+30ff93af9e19db Karthik B S           2020-09-21  7584  		    !drm_rect_equals(&old_plane_state->uapi.dst, &new_plane_state->uapi.dst)) {
+30ff93af9e19db Karthik B S           2020-09-21  7585  			drm_dbg_kms(&i915->drm,
+6b4e414ce8dab7 Ville Syrjälä         2022-02-14  7586  				    "[PLANE:%d:%s] Size/co-ordinates cannot be changed in async flip\n",
+6b4e414ce8dab7 Ville Syrjälä         2022-02-14  7587  				    plane->base.base.id, plane->base.name);
+30ff93af9e19db Karthik B S           2020-09-21  7588  			return -EINVAL;
+30ff93af9e19db Karthik B S           2020-09-21  7589  		}
+30ff93af9e19db Karthik B S           2020-09-21  7590  
+30ff93af9e19db Karthik B S           2020-09-21  7591  		if (old_plane_state->hw.alpha != new_plane_state->hw.alpha) {
+6b4e414ce8dab7 Ville Syrjälä         2022-02-14  7592  			drm_dbg_kms(&i915->drm,
+6b4e414ce8dab7 Ville Syrjälä         2022-02-14  7593  				    "[PLANES:%d:%s] Alpha value cannot be changed in async flip\n",
+6b4e414ce8dab7 Ville Syrjälä         2022-02-14  7594  				    plane->base.base.id, plane->base.name);
+30ff93af9e19db Karthik B S           2020-09-21  7595  			return -EINVAL;
+30ff93af9e19db Karthik B S           2020-09-21  7596  		}
+30ff93af9e19db Karthik B S           2020-09-21  7597  
+30ff93af9e19db Karthik B S           2020-09-21  7598  		if (old_plane_state->hw.pixel_blend_mode !=
+30ff93af9e19db Karthik B S           2020-09-21  7599  		    new_plane_state->hw.pixel_blend_mode) {
+30ff93af9e19db Karthik B S           2020-09-21  7600  			drm_dbg_kms(&i915->drm,
+6b4e414ce8dab7 Ville Syrjälä         2022-02-14  7601  				    "[PLANE:%d:%s] Pixel blend mode cannot be changed in async flip\n",
+6b4e414ce8dab7 Ville Syrjälä         2022-02-14  7602  				    plane->base.base.id, plane->base.name);
+30ff93af9e19db Karthik B S           2020-09-21  7603  			return -EINVAL;
+30ff93af9e19db Karthik B S           2020-09-21  7604  		}
+30ff93af9e19db Karthik B S           2020-09-21  7605  
+30ff93af9e19db Karthik B S           2020-09-21  7606  		if (old_plane_state->hw.color_encoding != new_plane_state->hw.color_encoding) {
+30ff93af9e19db Karthik B S           2020-09-21  7607  			drm_dbg_kms(&i915->drm,
+6b4e414ce8dab7 Ville Syrjälä         2022-02-14  7608  				    "[PLANE:%d:%s] Color encoding cannot be changed in async flip\n",
+6b4e414ce8dab7 Ville Syrjälä         2022-02-14  7609  				    plane->base.base.id, plane->base.name);
+30ff93af9e19db Karthik B S           2020-09-21  7610  			return -EINVAL;
+30ff93af9e19db Karthik B S           2020-09-21  7611  		}
+30ff93af9e19db Karthik B S           2020-09-21  7612  
+30ff93af9e19db Karthik B S           2020-09-21  7613  		if (old_plane_state->hw.color_range != new_plane_state->hw.color_range) {
+6b4e414ce8dab7 Ville Syrjälä         2022-02-14  7614  			drm_dbg_kms(&i915->drm,
+6b4e414ce8dab7 Ville Syrjälä         2022-02-14  7615  				    "[PLANE:%d:%s] Color range cannot be changed in async flip\n",
+6b4e414ce8dab7 Ville Syrjälä         2022-02-14  7616  				    plane->base.base.id, plane->base.name);
+30ff93af9e19db Karthik B S           2020-09-21  7617  			return -EINVAL;
+30ff93af9e19db Karthik B S           2020-09-21  7618  		}
+ef6ba31dd38405 Anshuman Gupta        2021-09-24  7619  
+ef6ba31dd38405 Anshuman Gupta        2021-09-24  7620  		/* plane decryption is allow to change only in synchronous flips */
+6b4e414ce8dab7 Ville Syrjälä         2022-02-14  7621  		if (old_plane_state->decrypt != new_plane_state->decrypt) {
+6b4e414ce8dab7 Ville Syrjälä         2022-02-14  7622  			drm_dbg_kms(&i915->drm,
+6b4e414ce8dab7 Ville Syrjälä         2022-02-14  7623  				    "[PLANE:%d:%s] Decryption cannot be changed in async flip\n",
+6b4e414ce8dab7 Ville Syrjälä         2022-02-14  7624  				    plane->base.base.id, plane->base.name);
+ef6ba31dd38405 Anshuman Gupta        2021-09-24  7625  			return -EINVAL;
+30ff93af9e19db Karthik B S           2020-09-21  7626  		}
+6b4e414ce8dab7 Ville Syrjälä         2022-02-14  7627  	}
+30ff93af9e19db Karthik B S           2020-09-21  7628  
+30ff93af9e19db Karthik B S           2020-09-21  7629  	return 0;
+30ff93af9e19db Karthik B S           2020-09-21  7630  }
+30ff93af9e19db Karthik B S           2020-09-21  7631  
+
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
