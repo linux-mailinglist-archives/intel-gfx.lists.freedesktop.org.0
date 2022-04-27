@@ -2,54 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3748511682
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Apr 2022 13:58:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F38205116DE
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Apr 2022 14:40:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B566410E346;
-	Wed, 27 Apr 2022 11:58:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F2E410F3F2;
+	Wed, 27 Apr 2022 12:39:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE21510E02A
- for <intel-gfx@lists.freedesktop.org>; Wed, 27 Apr 2022 11:58:49 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4556210F3EC;
+ Wed, 27 Apr 2022 12:39:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1651060729; x=1682596729;
+ t=1651063195; x=1682599195;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=fdj7S+bKtIboo5XqxHp2xZTZfstAHT2U8JqKnmio9S0=;
- b=bKuDlE+JK0Kv0b69xTOID2mdysiSWKUcYDr/2XE/K1YE9H/DccxXshWr
- kyRxEHHVqPuxBqir4ZgFVPP0aQKUf9Nx2v0cqLFNq5F6U/6wNBTq9Wze1
- sf4yxORu6/iKuE7XV0CvKix6Fot5RikS//T5yq9hXGl5mamiW34Tv6TXg
- BEVC2INGbp0Sw+vJr8jR5XFb3VdOZhWi2lru4WloMkGW5YFjktL2jm9Ax
- nHiZWqGWxCPI6tD0JFjtcf3vzov70ceWjWV6L03SYx5NKfKDrl+5GVwlx
- 2iYrFUTVnGsmZxOvdw96VPCcEE7oS9oOhyAJR+1+tkdiYlWqHRBcZFSO0 g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10329"; a="247835009"
-X-IronPort-AV: E=Sophos;i="5.90,292,1643702400"; d="scan'208";a="247835009"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2022 04:58:49 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,292,1643702400"; d="scan'208";a="596243255"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.51])
- by orsmga001.jf.intel.com with SMTP; 27 Apr 2022 04:58:47 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 27 Apr 2022 14:58:46 +0300
-Date: Wed, 27 Apr 2022 14:58:46 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Murthy, Arun R" <arun.r.murthy@intel.com>
-Message-ID: <Ymkv9sCuA9SwUIvj@intel.com>
-References: <20220426120407.1334318-1-arun.r.murthy@intel.com>
- <Ymg2uBjovjgVAyC5@intel.com>
- <DM6PR11MB317721EBFA40865B0898F40ABAFA9@DM6PR11MB3177.namprd11.prod.outlook.com>
+ mime-version:in-reply-to;
+ bh=qP33DCimD8AvzY0Sp5gX8CdfK1C4zLx3dtp704GKhJA=;
+ b=JGe6LO+ZR1HTI+zYyot1t6iTJLX6qRzTQNEZxd790yr1IrZKwdyl8QeP
+ SCCgMH3RmAdDH9sLCYp6AUYeFoMjE+n0BcJMXWCKURtqR+Fctk/i/y2Uo
+ WsvGc9wO0TC/3DRfsCDHeszPzVVMcbT7iy3ItMMrRMq/ZB3Jc8Hi+Zua3
+ 8x+Khn7c3UYM1gL0Rsmf1vUdv45OQ9iz2eihT/b7flwdeW6KDwXmduB/H
+ ExmomDxHoZUjbKgoIUJ3tEckR8n76dCZ9RudVU7DVJpSz+I89IF+rmSQR
+ wtl3amq8God30B6q6b6NRRUt1+lZ7ZVtSj2isBTlzEoW+USxoQp2C9/lM Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10329"; a="253294171"
+X-IronPort-AV: E=Sophos;i="5.90,293,1643702400"; d="scan'208";a="253294171"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Apr 2022 05:39:45 -0700
+X-IronPort-AV: E=Sophos;i="5.90,293,1643702400"; d="scan'208";a="580572330"
+Received: from iqirene-mobl.amr.corp.intel.com (HELO intel.com)
+ ([10.255.37.224])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Apr 2022 05:39:44 -0700
+Date: Wed, 27 Apr 2022 08:39:36 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Message-ID: <Ymk5iP3rhcO89Gkb@intel.com>
+References: <20220427002617.1767295-1-daniele.ceraolospurio@intel.com>
+ <20220427002617.1767295-2-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <DM6PR11MB317721EBFA40865B0898F40ABAFA9@DM6PR11MB3177.namprd11.prod.outlook.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Support Async Flip on Linear
- buffers
+In-Reply-To: <20220427002617.1767295-2-daniele.ceraolospurio@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915/huc: check HW directly for HuC
+ auth status
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,28 +58,108 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Apr 27, 2022 at 02:58:09AM +0000, Murthy, Arun R wrote:
-> > On Tue, Apr 26, 2022 at 05:34:07PM +0530, Arun R Murthy wrote:
-> > > Starting from Gen12 Async Flip is supported on linear buffers.
-> > 
-> > It's supported earlier than that. But IIRC there was some kind of GTT
-> > alignment vs. async flip vs. FBC restriction that we weren't handling.
-> > 
-> Should I enable it for earlier Gen also, or is it fine to keep it with starting Gen 12.
-> The only restriction that I see in Bspec is that during async flip changes
-> to stride, pixel format, compression, FBC etc is not allowed and I see
-> this is already taken care of. Am I missing anything?
+On Tue, Apr 26, 2022 at 05:26:14PM -0700, Daniele Ceraolo Spurio wrote:
+> The huc_is_authenticated function return is based on our SW tracking of
+> the HuC auth status. However, around suspend/resume and reset this can
+> go out of sync with the actual HW state, which is why we use
+> huc_check_state() to look at the actual HW state. Instead of having this
+> duality, just make huc_is_authenticated() return the HW state and use it
+> everywhere we need to know if HuC is running.
+> 
+> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/uc/intel_huc.c | 23 ++++++++++++++---------
+>  drivers/gpu/drm/i915/gt/uc/intel_huc.h |  5 -----
+>  2 files changed, 14 insertions(+), 14 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc.c b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
+> index 556829de9c172..773020e69589a 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_huc.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
+> @@ -80,6 +80,18 @@ void intel_huc_fini(struct intel_huc *huc)
+>  	intel_uc_fw_fini(&huc->fw);
+>  }
+>  
+> +static bool huc_is_authenticated(struct intel_huc *huc)
+> +{
+> +	struct intel_gt *gt = huc_to_gt(huc);
+> +	intel_wakeref_t wakeref;
+> +	u32 status = 0;
+> +
+> +	with_intel_runtime_pm(gt->uncore->rpm, wakeref)
+> +		status = intel_uncore_read(gt->uncore, huc->status.reg);
+> +
+> +	return (status & huc->status.mask) == huc->status.value;
+> +}
+> +
+>  /**
+>   * intel_huc_auth() - Authenticate HuC uCode
+>   * @huc: intel_huc structure
+> @@ -96,7 +108,7 @@ int intel_huc_auth(struct intel_huc *huc)
+>  	struct intel_guc *guc = &gt->uc.guc;
+>  	int ret;
+>  
+> -	GEM_BUG_ON(intel_huc_is_authenticated(huc));
+> +	GEM_BUG_ON(huc_is_authenticated(huc));
+>  
+>  	if (!intel_uc_fw_is_loaded(&huc->fw))
+>  		return -ENOEXEC;
+> @@ -150,10 +162,6 @@ int intel_huc_auth(struct intel_huc *huc)
+>   */
+>  int intel_huc_check_status(struct intel_huc *huc)
+>  {
+> -	struct intel_gt *gt = huc_to_gt(huc);
+> -	intel_wakeref_t wakeref;
+> -	u32 status = 0;
+> -
+>  	switch (__intel_uc_fw_status(&huc->fw)) {
+>  	case INTEL_UC_FIRMWARE_NOT_SUPPORTED:
+>  		return -ENODEV;
+> @@ -167,10 +175,7 @@ int intel_huc_check_status(struct intel_huc *huc)
+>  		break;
+>  	}
+>  
+> -	with_intel_runtime_pm(gt->uncore->rpm, wakeref)
+> -		status = intel_uncore_read(gt->uncore, huc->status.reg);
+> -
+> -	return (status & huc->status.mask) == huc->status.value;
 
-There is that GTT alignment restriction that should be mentioned
-somewhere. Can't quite remember where it was, maybe in PLANE_SURF.
+oh, these variable names look so generic, while it looks like the only usage
+for them is for mask = loaded and value = loaded...
 
-But I guess the bigger question is what is the actual use case for
-this?
+But anyway it is better this indirection with some generic name than duplicating
+the definition depending on platform in here...
 
--- 
-Ville Syrjälä
-Intel
+so:
+
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+
+
+
+> +	return huc_is_authenticated(huc);
+>  }
+>  
+>  /**
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc.h b/drivers/gpu/drm/i915/gt/uc/intel_huc.h
+> index 73ec670800f2b..77d813840d76c 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_huc.h
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_huc.h
+> @@ -50,11 +50,6 @@ static inline bool intel_huc_is_used(struct intel_huc *huc)
+>  	return intel_uc_fw_is_available(&huc->fw);
+>  }
+>  
+> -static inline bool intel_huc_is_authenticated(struct intel_huc *huc)
+> -{
+> -	return intel_uc_fw_is_running(&huc->fw);
+> -}
+> -
+>  void intel_huc_load_status(struct intel_huc *huc, struct drm_printer *p);
+>  
+>  #endif
+> -- 
+> 2.25.1
+> 
