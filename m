@@ -1,159 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 640515118C2
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Apr 2022 16:29:43 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D416511B94
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Apr 2022 17:02:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 84D4510E9B4;
-	Wed, 27 Apr 2022 14:29:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 31E6210F11E;
+	Wed, 27 Apr 2022 15:02:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 98F2310E9B4;
- Wed, 27 Apr 2022 14:29:40 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8623410EA04;
+ Wed, 27 Apr 2022 15:02:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1651069780; x=1682605780;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=8bLy3I5AFwiT150Gx1aue4P6XL1EKRUcsUkJo0rZ9YU=;
- b=EvlhnJ3iH4TVBNMDi43NBKWKpqUUXdwv90eQxC+uBfLKwQ5weLj/7xBW
- ++ZzrQ/NCBPrc7id89J+UZ6LPfuQfPz5h+75cUZhFfftJoEn9OIFAqoUH
- nO+LQBDnPZdlQIwzfn6Xq23qmt5ftxPMV1RuT2ilP7Al4uVNsd9fmTyjy
- eRm1HjCaZ9kPcG5mK/wyAatixefqmhVhFH1SCyo19Y9OkuTIzPCd+7W9r
- zQVphEloAgXcioUK/dqiDEvpD26f42S+Nbz9VAZU9H9jGY0Xcfk2EQWDP
- IwZvlwvFEZJDbYIj74mtWkj8wk6dPHRo91c0NtGxlDS5g/pWEnOV3p+XN w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10330"; a="246506726"
-X-IronPort-AV: E=Sophos;i="5.90,293,1643702400"; d="scan'208";a="246506726"
+ t=1651071756; x=1682607756;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=jpsqDB1/fEhJY+GLqV3r8EzaXQZ6QVpMwYpYsbuNhc8=;
+ b=UyJ1/OKOXZkPllnBCq7GyjSFJcDQyuspM/2QpbmdN3y5KmTaxatCyTGZ
+ TenLRSX728xhm6og1zvFk9fy/fBbZYrCASaacSYZKGDxhqJupQ5tmnGrx
+ DAcE6nrjvLU7gRgYEehRkJZ32oIjwx/Xj8x4DpAV4t9XC3jv90iNj8TJB
+ lXZfBRy+kgNHbbZ1tntgwcV41exWjpcc9h8c+E3drrONKKhrcO1wPbuY7
+ XqMN0xMnV8IATpE3AuZmzLjd2jabUyjBCV5QQdVO5jvNaLayqTccN+6Ap
+ dpGA0tbBm9ZhG87oHHjuLoZgVMRSDe+Cm9uYKlImHNRc89WMtMWBqvrD2 A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10330"; a="328897426"
+X-IronPort-AV: E=Sophos;i="5.90,293,1643702400"; d="scan'208";a="328897426"
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2022 07:29:35 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,293,1643702400"; d="scan'208";a="680773749"
-Received: from fmsmsx604.amr.corp.intel.com ([10.18.126.84])
- by orsmga004.jf.intel.com with ESMTP; 27 Apr 2022 07:29:35 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx604.amr.corp.intel.com (10.18.126.84) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Wed, 27 Apr 2022 07:29:34 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Wed, 27 Apr 2022 07:29:34 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27 via Frontend Transport; Wed, 27 Apr 2022 07:29:34 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.105)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2308.27; Wed, 27 Apr 2022 07:29:34 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Sf6bZxu39wKEjTW7TPEri+oa+3zMKqAQy2x9SCJvNYMpRZwxwZxeHkl11f03kdYE9ZH6fiYU38dBxLGLVBGmfFhST7nIJ1wqvpJ3Obl69vyPbupigg5yg06PTW6prVy7/Ea/B/mBkJydULA32sk3jNh3q2bge8Hgy7dsFIuxhr90/K2sCOGwRFaLQUUydYRxg3jw1eV3G6HM6a2gvo881yz6V06XyAQ13oYggstsGckA/jv9PvxiGFBsMKWwbamqefmY0mRozXtv1OA77Pp8WM7k7PgzOAlXJl2tD0+ADzaCuBUtiATYbUpiiU2IOrt1CIm6nyUKJdunyRJyXK2RWw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZkgcM7YO/b2mFL71d4zbHZN2Pc+SEgwLVXilbZqGJv0=;
- b=Ze6s+ywa4jR5XNkg5vZqHJT9GFR9j6VnUPY3gBGC3ZYnVViDDQMM/nS3DVEBl9Me1W7QMvPUBuCQHZsYaHiWtG6wQO6pzQmZvzNRckN+e2QUsYZd0G/5C3GNcMscszV73l9EHPSCO4ACUDHaGPzc8skBvKjvFMYg6w8Z+vKrTkr9Z1r3zB3o1EAEIihW9nw/y+VegPosgkcnDA8Nf0rs61I+NwyWhRKb7iM4FZQ1052RqlPR63Y4eUmL1SGK5qH29odh/m1xDi8XNal4tQSbflu+lhdPABgkKszUnfTp8+ZLQxC9oYQJ19fBqNTFE+ygh+DHBWtW2sqK4uG4YNBSvg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB5231.namprd11.prod.outlook.com (2603:10b6:5:38a::19)
- by CH2PR11MB4245.namprd11.prod.outlook.com (2603:10b6:610:44::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5186.14; Wed, 27 Apr
- 2022 14:29:32 +0000
-Received: from DM4PR11MB5231.namprd11.prod.outlook.com
- ([fe80::5027:4735:1a5b:a083]) by DM4PR11MB5231.namprd11.prod.outlook.com
- ([fe80::5027:4735:1a5b:a083%4]) with mapi id 15.20.5206.013; Wed, 27 Apr 2022
- 14:29:32 +0000
-Message-ID: <9934f4de-9f25-2422-092c-e8e2fe1d796e@intel.com>
-Date: Wed, 27 Apr 2022 19:59:22 +0530
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Apr 2022 08:02:30 -0700
+X-IronPort-AV: E=Sophos;i="5.90,293,1643702400"; d="scan'208";a="680809007"
+Received: from konishi-mobl.gar.corp.intel.com (HELO [10.252.6.183])
+ ([10.252.6.183])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Apr 2022 08:02:27 -0700
+Message-ID: <2b7b8193-a6ab-70a8-2102-3e7ac51548cb@intel.com>
+Date: Wed, 27 Apr 2022 16:02:25 +0100
+MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Content-Language: en-US
-To: "Vivekanandan, Balasubramani" <balasubramani.vivekanandan@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
-References: <20220406091809.746969-1-balasubramani.vivekanandan@intel.com>
-From: Siva Mullati <siva.mullati@intel.com>
-In-Reply-To: <20220406091809.746969-1-balasubramani.vivekanandan@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PN0PR01CA0042.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:49::13) To DM4PR11MB5231.namprd11.prod.outlook.com
- (2603:10b6:5:38a::19)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 2ff6ed47-d594-4c91-2c54-08da285a5867
-X-MS-TrafficTypeDiagnostic: CH2PR11MB4245:EE_
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-X-Microsoft-Antispam-PRVS: <CH2PR11MB42455E955C522B868D4E93A988FA9@CH2PR11MB4245.namprd11.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: g5Lr7nuuP9zCAgViM2spUkVmOLZtH/sQcBB6TTA1YtP/YtAlWTuKYjpdCyPMxv7qardsVMeN0H2lFJhvyoDZhpBxzY6I/rSHoInbVmHGZQdFwiHanDHCeY2d/loHl5N2BmoHC/fYMe517IPnkusjruuVX6RTcUp6rCkhWxxDhAPzi5UN+mIdwH+XmQbNNHpO0ighfCaJbXs7n971SPgpmJ3m0PaoKDBhzan+3we39CnpkGldWHfvDP3lqGK3G5zzJhEhLt7UJSbkJFopJECA5hETIqtB0g9yod03325a3fL4YdtESQ1CF3O6fN+Il29dC4D7O3yt3bGrXOdRhYR3vspUarQjK6PFRiXO/5dOAHW6rlQ0WTxFR5Dhm9uYj6p2YCIMuur0eG5m6sOxWlfkPQs56EgDkyd1rnF7su4UM1QkyUPCoL5yypO0BUG5TDQqUnlizYZu72H4nOmqZoi3wdzb0ac/w/loMJQLaGH8VyKzBbti1Q8AQkK+fD27shXJyLn/BL8Q+wkkBsGeMuIrcCQHMgK2RO9sPejNUgV3HvGv11l1AS0cnJTMC295Tt+iyexbF2zVgV45EOMngi8966JOS5AK1Gul96YHtVRMz3oAD8QWNSY1IbU3bX2yNVQThTr90HYkErsPYBpFQXg4uofYX2DP5vJZmbXwjdt1JUZYyLy0oJ6dV52n8F2vsYVQ+XJxRrrZJUVwvJSMzV1ZfVVL61xH+qez/MR5/DNGlfwqpHpAitA3X2KjvDOIOGwEuzB2887mIAWbOQUBBC7/+SIgzfCNWO6mnl/zX7Cpx1M=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5231.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230001)(366004)(6512007)(8936002)(31696002)(5660300002)(44832011)(66476007)(66556008)(6666004)(4326008)(66946007)(86362001)(6486002)(316002)(2906002)(8676002)(82960400001)(508600001)(36756003)(450100002)(2616005)(107886003)(53546011)(31686004)(83380400001)(38100700002)(110136005)(186003)(54906003)(6506007)(43740500002)(45980500001);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VGNrb1k2RHFha2EyTHJCcVAxcUJGdDI0KzdhODRJcG9EY0dRZk0zY3F0MExJ?=
- =?utf-8?B?Z0RPWXp6ZnlwSytYZlJUUUNBNVp3U1pUWGJpUCt2NHJOeGtVbldrK1pyWVFY?=
- =?utf-8?B?U2E2YTNvcUY1OEVuc2NVYUgyQzU5aHozK3VUbkRzM3pMVDlpTUhwV254MFVY?=
- =?utf-8?B?eVlQRzBMcko2cGJCeTFjTWhyczkyM0NCRmVKQ045Qy84dGVjYTNGYXhsTmh6?=
- =?utf-8?B?QUFYU0ZkUTk1ampodTRCZHhSUUNpV2oyOG1pWGJvbGpONWJOQzdiWFRBY1A0?=
- =?utf-8?B?cUJaZ1RiR2Q0cmJLUG83ZDhNemdjeGFIWVF4S3FUTWxHNVkzOHlXQlVBdDVC?=
- =?utf-8?B?YllZSGYxVnhSVGhHcmJpYkI1dG90VUFXUCtMakJQL2YySmx0ZENtVzIzb0xH?=
- =?utf-8?B?cEJtdnNmQ2UrbzVGZEQ3S2ZsVXp1ckhibitJQVhhdHVrcVRpUGV4SjRHWm9F?=
- =?utf-8?B?VnJDekkrVmlsSThaZzlJN1dPMjFuaWxkR2tleFJuRm83eHg0TkVOenJtQTAy?=
- =?utf-8?B?Z3V5YVJlUUFlck1adDFZNTNFc1lIenk4K1ZlR1hBM1dTN3FjZE1PWVhWZnUv?=
- =?utf-8?B?QitpdjQ4NTRoSFQ0ZldqKy9MOVl3TCs1NW5IM3NYMllDRGgycEJmTmtaM0lx?=
- =?utf-8?B?cHRSQStHSEgvYTljelZnZGs3WDRRUk9taWxLQzZ6c0Z6ckJ3cnA4UDJlMXp0?=
- =?utf-8?B?RldiTjF0L0NkL2lLY0d3VzhLV1dMRnl1SVRRdEg1bzI4K1Q5NFR2OEtzdy9R?=
- =?utf-8?B?Z0ZJeU5IOGY1akxGU0FNRE1MY28xbDU0Y3VpVUIwamxNaEFqZUR2T1RrNlIx?=
- =?utf-8?B?RUlmeXlqMlc2SEhjOU9FdlVLL1MrYTJKOU56TndzTXVNUnNBQnMvMmtRVUNE?=
- =?utf-8?B?ZktDRFc0c1VpOUN4ZEROTER1VVZxbThxNGFqQm9pR1RscmJCbHVhdjlkbDFx?=
- =?utf-8?B?VHZ0TDh3dHRrMkZrazNwdS9hUjI5azhwZ0xVdjJSSFd3SGZ5VlJQK1Q1QW1M?=
- =?utf-8?B?RW1qak1yQ2xNVkc2eW1aeW5JT3pldEdUYmZ1MEx2ejlRN1pjOVp0bHFsNVVJ?=
- =?utf-8?B?TUw0THFSMFZLUFRNd3FSbit6bHZETWtEU05naTY5WDNTTmZTMGlmbStvcyta?=
- =?utf-8?B?dEptUjdCdDdPb2g4RUx1blFRdkpsa0sxVXYrNk1hcitIK0lobW1QWkVIdThT?=
- =?utf-8?B?ajh2aFZoaXQ4aEVoZ1lWL01kQmhFL285aTd0TFBJSjRtL0tQdDNOTHlaZEFG?=
- =?utf-8?B?YlZiK0ttSStyRFQ4Nndmb2pVVmo1RjhOcHNlRjlrNzUyRytLVGRCQzVpTld4?=
- =?utf-8?B?WnZ1V2FrZVBnRzFOTjRQaUlrT1MxTGdhOXdnZWZCRlJqbUZJdUM4T21iZW4z?=
- =?utf-8?B?VFRKSjAyclRhdExuUXNKOHpnaWVWNm5CdDJCSyt4YnVnUEtBOFZpYXRNdGFQ?=
- =?utf-8?B?bm5ObXFiSDVKem9sSUV1eG9ab3VaWlNYNC9XdWNpNS9tTDR5bW1xTk1FQm85?=
- =?utf-8?B?NXRPOUdQU3JaTjdtdUJmQnJuNGpxSUptT0w1WmduWVFhUE13NVU4aDdEQWh6?=
- =?utf-8?B?YllpeXJsU3lWTGRwbHI3TGRLSjVaTnNDWGlpeVQ3VmllRkVCbzNqOXJMM2ZD?=
- =?utf-8?B?VFJzL0hlbkZhQjUvUUFnRHR6MmxkVThUMC9OZmJQb01mbGxpeDlqSnpaSnhj?=
- =?utf-8?B?VzVGaWkxcW5zbElCQ05qNVA3Rm9nVk5WWWhWT0xJdUJ3TEJpUHNCcldMVmIr?=
- =?utf-8?B?SFdoU1FUMlVXVi9wRHd6ZnkyT3Z0VW5Ibm1CTGNlempIb05seVBzdm9wZDlk?=
- =?utf-8?B?aXZvZ2QyTi9QYzUzS0QvTU94SlFuL3cvZ3M4cXI2VjBsaFBKaUlKNnVBQVM0?=
- =?utf-8?B?UUFPelNuYnh3b2htV0tYSkMycDZ0UTNxU2czVTNBbHYwYzVEZGJGQmxjM0Rq?=
- =?utf-8?B?eC9uZ29iZU9vTWsvT0x5czlaVDQxRmo5ZWQ2UUlDN1U5U2s4K21aTkhHVkZT?=
- =?utf-8?B?M21EcFQ4R1VCM3VFeVhXRGV5ejFjczYyV1NNVmduSm1ieWtpYnl2NmlPMzVw?=
- =?utf-8?B?Q3krblh5UjFORUZ1eUgxSVpUdzdXNVF6ZjNqRUY0MlRySy9ZSGM5c1ZQaGRX?=
- =?utf-8?B?S2VieCtuaWRCd082SmpwT0hWK2NEYXpXZzNTRlhnSFJqYnE0S01qYzNwRkRJ?=
- =?utf-8?B?M2xMT3JSQkpQZHlPbUNxWDVNbWI1T2VBOFdJaTZ5TUhUWS9LckZqZUI1OGZw?=
- =?utf-8?B?TGRaRVZIT2hqYVBZWmFyK2ltV2dQR3JCWFEyQmE1ZWZDOXY1c3VzOFNSYStz?=
- =?utf-8?B?VGczTW9XeG5Qbjk2VUd2YXNxVHZzR2VmL1A3dHN2Y01MYjFlV0R4bFc4bTF5?=
- =?utf-8?Q?mr7q87Re0mYhX+GxYR2WaoSPbLv88YYjc/LycxS9UbFoP?=
-X-MS-Exchange-AntiSpam-MessageData-1: i1Xih4U147AfBTuzuTGHIF3HRW71dBS5Y7I=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2ff6ed47-d594-4c91-2c54-08da285a5867
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5231.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Apr 2022 14:29:32.5751 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: QEOoWwD0VuFqPn82BkU9127AyTaAmqWgyLOx+tPc4Apd+w9Ap4YH/Ap7BHt79EYFANR2f3gdGb3PiWsEA0BWGQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR11MB4245
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/uc: use io memcpy functions for
- device memory copy
+Content-Language: en-GB
+To: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20220420171328.57253-1-matthew.auld@intel.com>
+ <5553382d-2674-76f0-ab6e-408b99111a62@intel.com>
+ <a667ccc4-fd5e-7e15-cffc-d5a65a834825@intel.com>
+ <dbc758bd-1fc6-45cf-9fcd-366a35e26808@gmail.com>
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <dbc758bd-1fc6-45cf-9fcd-366a35e26808@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v2] drm/doc: add rfc section for small BAR
+ uapi
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -166,65 +65,427 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "De Marchi, Lucas" <lucas.demarchi@intel.com>
+Cc: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>, dri-devel@lists.freedesktop.org,
+ Kenneth Graunke <kenneth@whitecape.org>, mesa-dev@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-LGTM
+On 27/04/2022 07:55, Christian König wrote:
+> Well usually we increment the drm minor version when adding some new 
+> flags on amdgpu.
+> 
+> Additional to that just one comment from our experience with that: You 
+> don't just need one flag, but two. The first one is a hint which says 
+> "CPU access needed" and the second is a promise which says "CPU access 
+> never needed".
+> 
+> The background is that on a whole bunch of buffers you can 100% certain 
+> say that you will never ever need CPU access.
+> 
+> Then at least we have a whole bunch of buffers where we might need CPU 
+> access, but can't tell for sure.
+> 
+> And last we have stuff like transfer buffers you can be 100% sure that 
+> you need CPU access.
+> 
+> Separating it like this helped a lot with performance on small BAR systems.
 
-Acked-by: Siva Mullati <siva.mullati@intel.com>
+Thanks for the comments. For the "CPU access never needed" flag, what 
+extra stuff does that do on the kernel side vs not specifying any 
+flag/hint? I assume it still prioritizes using the non-CPU visible 
+portion first? What else does it do?
 
-On 06/04/22 14:48, Vivekanandan, Balasubramani wrote:
-> When copying RSA use io memcpy functions if the destination address
-> contains a GPU local memory address. Considering even the source
-> address can be on local memory, a bounce buffer is used to copy from io
-> to io.
-> The intention of this patch is to make i915 portable outside x86 mainly
-> on ARM64.
->
-> Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-> ---
->  drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c | 23 +++++++++++++++++++++--
->  1 file changed, 21 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-> index bb864655c495..06d30670e15c 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-> @@ -589,7 +589,7 @@ static int uc_fw_rsa_data_create(struct intel_uc_fw *uc_fw)
->  	struct intel_gt *gt = __uc_fw_to_gt(uc_fw);
->  	struct i915_vma *vma;
->  	size_t copied;
-> -	void *vaddr;
-> +	void *vaddr, *bounce;
->  	int err;
->  
->  	err = i915_inject_probe_error(gt->i915, -ENXIO);
-> @@ -621,7 +621,26 @@ static int uc_fw_rsa_data_create(struct intel_uc_fw *uc_fw)
->  		goto unpin_out;
->  	}
->  
-> -	copied = intel_uc_fw_copy_rsa(uc_fw, vaddr, vma->size);
-> +	if (i915_gem_object_is_lmem(vma->obj)) {
-> +		/* When vma is allocated from the GPU local memmory, it means
-> +		 * the destination address contains an io memory and we need to
-> +		 * use memcpy function for io memory for copying, to ensure
-> +		 * i915 portability outside x86. It is most likely the RSA will
-> +		 * also be on local memory and so the source of copy will also
-> +		 * be an io address. Since we cannot directly copy from io to
-> +		 * io, we use a bounce buffer to copy.
-> +		 */
-> +		copied = 0;
-> +		bounce = kmalloc(vma->size, GFP_KERNEL);
-> +		if (likely(bounce)) {
-> +			copied = intel_uc_fw_copy_rsa(uc_fw, bounce, vma->size);
-> +			memcpy_toio((void __iomem *)vaddr, bounce, copied);
-> +			kfree(bounce);
-> +		}
-> +	} else {
-> +		copied = intel_uc_fw_copy_rsa(uc_fw, vaddr, vma->size);
-> +	}
-> +
->  	i915_gem_object_unpin_map(vma->obj);
->  
->  	if (copied < uc_fw->rsa_size) {
+> 
+> Regards,
+> Christian.
+> 
+> Am 27.04.22 um 08:48 schrieb Lionel Landwerlin:
+>> One question though, how do we detect that this flag 
+>> (I915_GEM_CREATE_EXT_FLAG_NEEDS_CPU_ACCESS) is accepted on a given 
+>> kernel?
+>> I assume older kernels are going to reject object creation if we use 
+>> this flag?
+>>
+>> I didn't plan to use __drm_i915_query_vma_info, but isn't it 
+>> inconsistent to select the placement on the GEM object and then query 
+>> whether it's mappable by address?
+>> You made a comment stating this is racy, wouldn't querying on the GEM 
+>> object prevent this?
+>>
+>> Thanks,
+>>
+>> -Lionel
+>>
+>> On 27/04/2022 09:35, Lionel Landwerlin wrote:
+>>> Hi Matt,
+>>>
+>>>
+>>> The proposal looks good to me.
+>>>
+>>> Looking forward to try it on drm-tip.
+>>>
+>>>
+>>> -Lionel
+>>>
+>>> On 20/04/2022 20:13, Matthew Auld wrote:
+>>>> Add an entry for the new uapi needed for small BAR on DG2+.
+>>>>
+>>>> v2:
+>>>>    - Some spelling fixes and other small tweaks. (Akeem & Thomas)
+>>>>    - Rework error capture interactions, including no longer needing
+>>>>      NEEDS_CPU_ACCESS for objects marked for capture. (Thomas)
+>>>>    - Add probed_cpu_visible_size. (Lionel)
+>>>>
+>>>> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+>>>> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+>>>> Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+>>>> Cc: Jon Bloomfield <jon.bloomfield@intel.com>
+>>>> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+>>>> Cc: Jordan Justen <jordan.l.justen@intel.com>
+>>>> Cc: Kenneth Graunke <kenneth@whitecape.org>
+>>>> Cc: Akeem G Abodunrin <akeem.g.abodunrin@intel.com>
+>>>> Cc: mesa-dev@lists.freedesktop.org
+>>>> ---
+>>>>   Documentation/gpu/rfc/i915_small_bar.h   | 190 
+>>>> +++++++++++++++++++++++
+>>>>   Documentation/gpu/rfc/i915_small_bar.rst |  58 +++++++
+>>>>   Documentation/gpu/rfc/index.rst          |   4 +
+>>>>   3 files changed, 252 insertions(+)
+>>>>   create mode 100644 Documentation/gpu/rfc/i915_small_bar.h
+>>>>   create mode 100644 Documentation/gpu/rfc/i915_small_bar.rst
+>>>>
+>>>> diff --git a/Documentation/gpu/rfc/i915_small_bar.h 
+>>>> b/Documentation/gpu/rfc/i915_small_bar.h
+>>>> new file mode 100644
+>>>> index 000000000000..7bfd0cf44d35
+>>>> --- /dev/null
+>>>> +++ b/Documentation/gpu/rfc/i915_small_bar.h
+>>>> @@ -0,0 +1,190 @@
+>>>> +/**
+>>>> + * struct __drm_i915_memory_region_info - Describes one region as 
+>>>> known to the
+>>>> + * driver.
+>>>> + *
+>>>> + * Note this is using both struct drm_i915_query_item and struct 
+>>>> drm_i915_query.
+>>>> + * For this new query we are adding the new query id 
+>>>> DRM_I915_QUERY_MEMORY_REGIONS
+>>>> + * at &drm_i915_query_item.query_id.
+>>>> + */
+>>>> +struct __drm_i915_memory_region_info {
+>>>> +    /** @region: The class:instance pair encoding */
+>>>> +    struct drm_i915_gem_memory_class_instance region;
+>>>> +
+>>>> +    /** @rsvd0: MBZ */
+>>>> +    __u32 rsvd0;
+>>>> +
+>>>> +    /** @probed_size: Memory probed by the driver (-1 = unknown) */
+>>>> +    __u64 probed_size;
+>>>> +
+>>>> +    /** @unallocated_size: Estimate of memory remaining (-1 = 
+>>>> unknown) */
+>>>> +    __u64 unallocated_size;
+>>>> +
+>>>> +    union {
+>>>> +        /** @rsvd1: MBZ */
+>>>> +        __u64 rsvd1[8];
+>>>> +        struct {
+>>>> +            /**
+>>>> +             * @probed_cpu_visible_size: Memory probed by the driver
+>>>> +             * that is CPU accessible. (-1 = unknown).
+>>>> +             *
+>>>> +             * This will be always be <= @probed_size, and the
+>>>> +             * remainder(if there is any) will not be CPU
+>>>> +             * accessible.
+>>>> +             */
+>>>> +            __u64 probed_cpu_visible_size;
+>>>> +        };
+>>>> +    };
+>>>> +};
+>>>> +
+>>>> +/**
+>>>> + * struct __drm_i915_gem_create_ext - Existing gem_create 
+>>>> behaviour, with added
+>>>> + * extension support using struct i915_user_extension.
+>>>> + *
+>>>> + * Note that new buffer flags should be added here, at least for 
+>>>> the stuff that
+>>>> + * is immutable. Previously we would have two ioctls, one to create 
+>>>> the object
+>>>> + * with gem_create, and another to apply various parameters, 
+>>>> however this
+>>>> + * creates some ambiguity for the params which are considered 
+>>>> immutable. Also in
+>>>> + * general we're phasing out the various SET/GET ioctls.
+>>>> + */
+>>>> +struct __drm_i915_gem_create_ext {
+>>>> +    /**
+>>>> +     * @size: Requested size for the object.
+>>>> +     *
+>>>> +     * The (page-aligned) allocated size for the object will be 
+>>>> returned.
+>>>> +     *
+>>>> +     * Note that for some devices we have might have further minimum
+>>>> +     * page-size restrictions(larger than 4K), like for device 
+>>>> local-memory.
+>>>> +     * However in general the final size here should always reflect 
+>>>> any
+>>>> +     * rounding up, if for example using the 
+>>>> I915_GEM_CREATE_EXT_MEMORY_REGIONS
+>>>> +     * extension to place the object in device local-memory.
+>>>> +     */
+>>>> +    __u64 size;
+>>>> +    /**
+>>>> +     * @handle: Returned handle for the object.
+>>>> +     *
+>>>> +     * Object handles are nonzero.
+>>>> +     */
+>>>> +    __u32 handle;
+>>>> +    /**
+>>>> +     * @flags: Optional flags.
+>>>> +     *
+>>>> +     * Supported values:
+>>>> +     *
+>>>> +     * I915_GEM_CREATE_EXT_FLAG_NEEDS_CPU_ACCESS - Signal to the 
+>>>> kernel that
+>>>> +     * the object will need to be accessed via the CPU.
+>>>> +     *
+>>>> +     * Only valid when placing objects in I915_MEMORY_CLASS_DEVICE, 
+>>>> and
+>>>> +     * only strictly required on platforms where only some of the 
+>>>> device
+>>>> +     * memory is directly visible or mappable through the CPU, like 
+>>>> on DG2+.
+>>>> +     *
+>>>> +     * One of the placements MUST also be I915_MEMORY_CLASS_SYSTEM, to
+>>>> +     * ensure we can always spill the allocation to system memory, 
+>>>> if we
+>>>> +     * can't place the object in the mappable part of
+>>>> +     * I915_MEMORY_CLASS_DEVICE.
+>>>> +     *
+>>>> +     * Note that since the kernel only supports flat-CCS on objects 
+>>>> that can
+>>>> +     * *only* be placed in I915_MEMORY_CLASS_DEVICE, we therefore 
+>>>> don't
+>>>> +     * support I915_GEM_CREATE_EXT_FLAG_NEEDS_CPU_ACCESS together with
+>>>> +     * flat-CCS.
+>>>> +     *
+>>>> +     * Without this hint, the kernel will assume that non-mappable
+>>>> +     * I915_MEMORY_CLASS_DEVICE is preferred for this object. Note 
+>>>> that the
+>>>> +     * kernel can still migrate the object to the mappable part, as 
+>>>> a last
+>>>> +     * resort, if userspace ever CPU faults this object, but this 
+>>>> might be
+>>>> +     * expensive, and so ideally should be avoided.
+>>>> +     */
+>>>> +#define I915_GEM_CREATE_EXT_FLAG_NEEDS_CPU_ACCESS (1 << 0)
+>>>> +    __u32 flags;
+>>>> +    /**
+>>>> +     * @extensions: The chain of extensions to apply to this object.
+>>>> +     *
+>>>> +     * This will be useful in the future when we need to support 
+>>>> several
+>>>> +     * different extensions, and we need to apply more than one when
+>>>> +     * creating the object. See struct i915_user_extension.
+>>>> +     *
+>>>> +     * If we don't supply any extensions then we get the same old 
+>>>> gem_create
+>>>> +     * behaviour.
+>>>> +     *
+>>>> +     * For I915_GEM_CREATE_EXT_MEMORY_REGIONS usage see
+>>>> +     * struct drm_i915_gem_create_ext_memory_regions.
+>>>> +     *
+>>>> +     * For I915_GEM_CREATE_EXT_PROTECTED_CONTENT usage see
+>>>> +     * struct drm_i915_gem_create_ext_protected_content.
+>>>> +     */
+>>>> +#define I915_GEM_CREATE_EXT_MEMORY_REGIONS 0
+>>>> +#define I915_GEM_CREATE_EXT_PROTECTED_CONTENT 1
+>>>> +    __u64 extensions;
+>>>> +};
+>>>> +
+>>>> +#define DRM_I915_QUERY_VMA_INFO    5
+>>>> +
+>>>> +/**
+>>>> + * struct __drm_i915_query_vma_info
+>>>> + *
+>>>> + * Given a vm and GTT address, lookup the corresponding vma, 
+>>>> returning its set
+>>>> + * of attributes.
+>>>> + *
+>>>> + * .. code-block:: C
+>>>> + *
+>>>> + *    struct drm_i915_query_vma_info info = {};
+>>>> + *    struct drm_i915_query_item item = {
+>>>> + *        .data_ptr = (uintptr_t)&info,
+>>>> + *        .query_id = DRM_I915_QUERY_VMA_INFO,
+>>>> + *    };
+>>>> + *    struct drm_i915_query query = {
+>>>> + *        .num_items = 1,
+>>>> + *        .items_ptr = (uintptr_t)&item,
+>>>> + *    };
+>>>> + *    int err;
+>>>> + *
+>>>> + *    // Unlike some other types of queries, there is no need to 
+>>>> first query
+>>>> + *    // the size of the data_ptr blob here, since we already know 
+>>>> ahead of
+>>>> + *    // time how big this needs to be.
+>>>> + *    item.length = sizeof(info);
+>>>> + *
+>>>> + *    // Next we fill in the vm_id and ppGTT address of the vma we 
+>>>> wish
+>>>> + *    // to query, before then firing off the query.
+>>>> + *    info.vm_id = vm_id;
+>>>> + *    info.offset = gtt_address;
+>>>> + *    err = ioctl(fd, DRM_IOCTL_I915_QUERY, &query);
+>>>> + *    if (err || item.length < 0) ...
+>>>> + *
+>>>> + *    // If all went well we can now inspect the returned attributes.
+>>>> + *    if (info.attributes & DRM_I915_QUERY_VMA_INFO_CPU_VISIBLE) ...
+>>>> + */
+>>>> +struct __drm_i915_query_vma_info {
+>>>> +    /**
+>>>> +     * @vm_id: The given vm id that contains the vma. The id is the 
+>>>> value
+>>>> +     * returned by the DRM_I915_GEM_VM_CREATE. See struct
+>>>> +     * drm_i915_gem_vm_control.vm_id.
+>>>> +     */
+>>>> +    __u32 vm_id;
+>>>> +    /** @pad: MBZ. */
+>>>> +    __u32 pad;
+>>>> +    /**
+>>>> +     * @offset: The corresponding ppGTT address of the vma which 
+>>>> the kernel
+>>>> +     * will use to perform the lookup.
+>>>> +     */
+>>>> +    __u64 offset;
+>>>> +    /**
+>>>> +     * @attributes: The returned attributes for the given vma.
+>>>> +     *
+>>>> +     * Possible values:
+>>>> +     *
+>>>> +     * DRM_I915_QUERY_VMA_INFO_CPU_VISIBLE - Set if the pages 
+>>>> backing the
+>>>> +     * vma are currently CPU accessible. If this is not set then 
+>>>> the vma is
+>>>> +     * currently backed by I915_MEMORY_CLASS_DEVICE memory, which 
+>>>> the CPU
+>>>> +     * cannot directly access(this is only possible on discrete 
+>>>> devices with
+>>>> +     * a small BAR). Attempting to MMAP and fault such an object will
+>>>> +     * require the kernel first synchronising any GPU work tied to the
+>>>> +     * object, before then migrating the pages, either to the CPU 
+>>>> accessible
+>>>> +     * part of I915_MEMORY_CLASS_DEVICE, or 
+>>>> I915_MEMORY_CLASS_SYSTEM, if the
+>>>> +     * placements permit it. See 
+>>>> I915_GEM_CREATE_EXT_FLAG_NEEDS_CPU_ACCESS.
+>>>> +     *
+>>>> +     * Note that this is inherently racy.
+>>>> +     */
+>>>> +#define DRM_I915_QUERY_VMA_INFO_CPU_VISIBLE (1<<0)
+>>>> +    __u64 attributes;
+>>>> +    /** @rsvd: MBZ */
+>>>> +    __u32 rsvd[4];
+>>>> +};
+>>>> diff --git a/Documentation/gpu/rfc/i915_small_bar.rst 
+>>>> b/Documentation/gpu/rfc/i915_small_bar.rst
+>>>> new file mode 100644
+>>>> index 000000000000..be3d9bcdd86d
+>>>> --- /dev/null
+>>>> +++ b/Documentation/gpu/rfc/i915_small_bar.rst
+>>>> @@ -0,0 +1,58 @@
+>>>> +==========================
+>>>> +I915 Small BAR RFC Section
+>>>> +==========================
+>>>> +Starting from DG2 we will have resizable BAR support for device 
+>>>> local-memory(i.e
+>>>> +I915_MEMORY_CLASS_DEVICE), but in some cases the final BAR size 
+>>>> might still be
+>>>> +smaller than the total probed_size. In such cases, only some subset of
+>>>> +I915_MEMORY_CLASS_DEVICE will be CPU accessible(for example the 
+>>>> first 256M),
+>>>> +while the remainder is only accessible via the GPU.
+>>>> +
+>>>> +I915_GEM_CREATE_EXT_FLAG_NEEDS_CPU_ACCESS flag
+>>>> +----------------------------------------------
+>>>> +New gem_create_ext flag to tell the kernel that a BO will require 
+>>>> CPU access.
+>>>> +This becomes important when placing an object in 
+>>>> I915_MEMORY_CLASS_DEVICE, where
+>>>> +underneath the device has a small BAR, meaning only some portion of 
+>>>> it is CPU
+>>>> +accessible. Without this flag the kernel will assume that CPU 
+>>>> access is not
+>>>> +required, and prioritize using the non-CPU visible portion of
+>>>> +I915_MEMORY_CLASS_DEVICE.
+>>>> +
+>>>> +.. kernel-doc:: Documentation/gpu/rfc/i915_small_bar.h
+>>>> +   :functions: __drm_i915_gem_create_ext
+>>>> +
+>>>> +probed_cpu_visible_size attribute
+>>>> +---------------------------------
+>>>> +New struct__drm_i915_memory_region attribute which returns the 
+>>>> total size of the
+>>>> +CPU accessible portion, for the particular region. This should only be
+>>>> +applicable for I915_MEMORY_CLASS_DEVICE.
+>>>> +
+>>>> +Vulkan will need this as part of creating a separate VkMemoryHeap 
+>>>> with the
+>>>> +VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT set, to represent the CPU 
+>>>> visible portion,
+>>>> +where the total size of the heap needs to be known.
+>>>> +
+>>>> +.. kernel-doc:: Documentation/gpu/rfc/i915_small_bar.h
+>>>> +   :functions: __drm_i915_memory_region_info
+>>>> +
+>>>> +DRM_I915_QUERY_VMA_INFO query
+>>>> +-----------------------------
+>>>> +Query the attributes of some vma. Given a vm and GTT offset, find the
+>>>> +respective vma, and return its set of attributes. For now we only 
+>>>> support
+>>>> +DRM_I915_QUERY_VMA_INFO_CPU_VISIBLE, which is set if the object/vma is
+>>>> +currently placed in memory that is accessible by the CPU. This 
+>>>> should always be
+>>>> +set on devices where the CPU probed_cpu_visible_size of 
+>>>> I915_MEMORY_CLASS_DEVICE
+>>>> +matches the probed_size. If this is not set then CPU faulting the 
+>>>> object will
+>>>> +likely first require migrating the pages.
+>>>> +
+>>>> +.. kernel-doc:: Documentation/gpu/rfc/i915_small_bar.h
+>>>> +   :functions: __drm_i915_query_vma_info
+>>>> +
+>>>> +Error Capture restrictions
+>>>> +--------------------------
+>>>> +With error capture we have two new restrictions:
+>>>> +
+>>>> +    1) Error capture is best effort on small BAR systems; if the 
+>>>> pages are not
+>>>> +    CPU accessible, at the time of capture, then the kernel is free 
+>>>> to skip
+>>>> +    trying to capture them.
+>>>> +
+>>>> +    2) On discrete we now reject error capture on recoverable 
+>>>> contexts. In the
+>>>> +    future the kernel may want to blit during error capture, when 
+>>>> for example
+>>>> +    something is not currently CPU accessible.
+>>>> diff --git a/Documentation/gpu/rfc/index.rst 
+>>>> b/Documentation/gpu/rfc/index.rst
+>>>> index 91e93a705230..5a3bd3924ba6 100644
+>>>> --- a/Documentation/gpu/rfc/index.rst
+>>>> +++ b/Documentation/gpu/rfc/index.rst
+>>>> @@ -23,3 +23,7 @@ host such documentation:
+>>>>   .. toctree::
+>>>>         i915_scheduler.rst
+>>>> +
+>>>> +.. toctree::
+>>>> +
+>>>> +    i915_small_bar.rst
+>>>
+>>>
+>>
+> 
