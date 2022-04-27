@@ -2,50 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3586E5116E5
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Apr 2022 14:42:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7578A5116E6
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Apr 2022 14:42:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7008210F406;
-	Wed, 27 Apr 2022 12:42:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F44610F408;
+	Wed, 27 Apr 2022 12:42:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 610D010F405;
- Wed, 27 Apr 2022 12:42:11 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9878610F408
+ for <intel-gfx@lists.freedesktop.org>; Wed, 27 Apr 2022 12:42:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1651063331; x=1682599331;
+ t=1651063333; x=1682599333;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=p5ZMZYZFq5UMrseA9t9TquK1bnFMyt/M5EpZ1XH+Gq8=;
- b=GQmZfsPxlpUoYru3xW66K7umWslO+YrIRihc8dd+cwn9w0hntu6R+xnf
- zPn38lk0LirqLLA6LclY5+d817uMB1gWtrR+WoObU6HmZDpQgn3Mk+XkC
- kzLVL2VWLqgTddH++Ppq77tomk19/lUvoq6NPaZB4T2xzfqqBRBFxqjWC
- eeaiIu68uvs7ZjlkPoBNV4C7aht3dwZdHjcmjuFjHBzRa7xBNEQvM39fJ
- q1fle0QflbaMWPxmUmwolR93p+oTQTtd6UuJX0UQVb5Fxod15WxeUycVs
- jcSynJwG2ghGEYFFR4tRP6LGd+pV2+hoLCQWFjhYr/6iQkOvDUI65QifD A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10329"; a="328857967"
-X-IronPort-AV: E=Sophos;i="5.90,293,1643702400"; d="scan'208";a="328857967"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2022 05:42:10 -0700
-X-IronPort-AV: E=Sophos;i="5.90,293,1643702400"; d="scan'208";a="808013185"
-Received: from iqirene-mobl.amr.corp.intel.com (HELO intel.com)
- ([10.255.37.224])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2022 05:42:10 -0700
-Date: Wed, 27 Apr 2022 08:42:02 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Message-ID: <Ymk6GmkbyDuqsiCl@intel.com>
-References: <20220427002617.1767295-1-daniele.ceraolospurio@intel.com>
- <20220427002617.1767295-5-daniele.ceraolospurio@intel.com>
+ bh=7BAMJHEu/uZpWQqW4zjmnovM1Ybd5i/f2rUSryqnHoU=;
+ b=lJeWsA4wtFqTNJzncMt2rqJDX2+MoYcU0Fi6otCrKhNUfwObj/D8AP1C
+ t1Xau55j3VGvQtJBhRHe8beklBNEvuIQbgOs2V31SEvb+gmiFqRLf0cao
+ Etsk7eSQv4VhkHuJ6vcxFM2SlJ8dnt78kdiPLvG91gk4xQgKSI1DM25pQ
+ oZ7+MqAla/TlE6meBzptt/2e2ySnqZYN/51flpXoUflfgqM318MX1zpf8
+ q0CuogArkA+v2pB8Zy9utC9U8Id9fYrzHY7c+efpNN8S+HWtBq6Zd3msi
+ 6PpSg8nJCFMrZBAEJ0UEoTl6a8VCKqbwdrSe0VnQN9EVt/jrSx2HPu4z/ w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10329"; a="246476170"
+X-IronPort-AV: E=Sophos;i="5.90,293,1643702400"; d="scan'208";a="246476170"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Apr 2022 05:42:13 -0700
+X-IronPort-AV: E=Sophos;i="5.90,293,1643702400"; d="scan'208";a="580573257"
+Received: from brutrata-mobl.ger.corp.intel.com (HELO intel.com)
+ ([10.252.33.100])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Apr 2022 05:42:11 -0700
+Date: Wed, 27 Apr 2022 14:42:08 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Anusha Srivatsa <anusha.srivatsa@intel.com>
+Message-ID: <Ymk6ICgcRio8zE4g@intel.intel>
+References: <20220427003509.267683-1-anusha.srivatsa@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220427002617.1767295-5-daniele.ceraolospurio@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 4/4] drm/i915/huc: Don't fail the probe if
- HuC init fails
+In-Reply-To: <20220427003509.267683-1-anusha.srivatsa@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/dmc: Add MMIO range restrictions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,66 +56,16 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
+ stable@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Apr 26, 2022 at 05:26:17PM -0700, Daniele Ceraolo Spurio wrote:
-> The previous patch introduced new failure cases in the HuC init flow
-> that can be hit by simply changing the config, so we want to avoid
-> failing the probe in those scenarios. HuC load failure is already
-> considered a non-fatal error and we have a way to report to userspace
-> if the HuC is not available via a dedicated getparam, so no changes
-> in expectation there.
-> The error message in the HuC init code has also been lowered to info to
-> avoid throwing error message for an expected behavior.
-> 
-> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+[...]
 
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> +	if (!dmc_mmio_addr_sanity_check(dmc, mmioaddr, mmio_count, dmc_header->header_ver, dmc_id))
+> +		drm_err(&i915->drm, "DMC firmware has Wrong MMIO Addresses\n");
+> +		return 0;
+> +
 
-> ---
->  drivers/gpu/drm/i915/gt/uc/intel_huc.c |  2 +-
->  drivers/gpu/drm/i915/gt/uc/intel_uc.c  | 11 ++---------
->  2 files changed, 3 insertions(+), 10 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc.c b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
-> index 76a7df7f136fc..3d2e7a6d7c1b7 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_huc.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
-> @@ -113,7 +113,7 @@ int intel_huc_init(struct intel_huc *huc)
->  	return 0;
->  
->  out:
-> -	i915_probe_error(i915, "failed with %d\n", err);
-> +	drm_info(&i915->drm, "HuC init failed with %d\n", err);
->  	return err;
->  }
->  
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-> index 0dce94f896a8c..ecf149c5fdb02 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-> @@ -323,17 +323,10 @@ static int __uc_init(struct intel_uc *uc)
->  	if (ret)
->  		return ret;
->  
-> -	if (intel_uc_uses_huc(uc)) {
-> -		ret = intel_huc_init(huc);
-> -		if (ret)
-> -			goto out_guc;
-> -	}
-> +	if (intel_uc_uses_huc(uc))
-> +		intel_huc_init(huc);
->  
->  	return 0;
-> -
-> -out_guc:
-> -	intel_guc_fini(guc);
-> -	return ret;
->  }
->  
->  static void __uc_fini(struct intel_uc *uc)
-> -- 
-> 2.25.1
-> 
+mh? :)
