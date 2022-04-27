@@ -1,62 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79D7A51248A
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Apr 2022 23:29:00 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BDC9512493
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Apr 2022 23:33:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD83710E30B;
-	Wed, 27 Apr 2022 21:28:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B0D210ECB9;
+	Wed, 27 Apr 2022 21:33:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com
- [IPv6:2a00:1450:4864:20::131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D230610E675;
- Wed, 27 Apr 2022 21:28:54 +0000 (UTC)
-Received: by mail-lf1-x131.google.com with SMTP id k12so5336785lfr.9;
- Wed, 27 Apr 2022 14:28:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:in-reply-to:references;
- bh=ECFsRTMZ3fi8GBJSz2+uU2kp3dNDSFoXxw9E4mxEGjM=;
- b=d597xMl4KSbhDxP4BCdygBXPa7QMbUVTu8HjeGHlT62tXpWTnThlzAwdyjH/WtsP+h
- NYB+I4OUyB9DjYwAFlWOcSmEnD6If0JlJUCsgyWBPnapHlFhiunKHgJJpbFdkS0twBRj
- 3X5Vrvu7zDoTasEh0s7cAMiM7127jaHzQn16mEtIdbOb5GnkCzOzjHbG3gOqrKS6iuID
- uCrGX8SCbFvIYf4UsrxCqpKX7Y+oDN1m62LYUgzfU4xMKfUwa08Ph2bVQLa/wSWu78j5
- KyRCQS+MANz0m8c+z8f65IPmorbcwxTN9HRWkY5g57uVawh8H1+bPMNtjHmk9eadBq3R
- 3jyQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references;
- bh=ECFsRTMZ3fi8GBJSz2+uU2kp3dNDSFoXxw9E4mxEGjM=;
- b=tn3apEWzf/Z/Vkb9pMcAbBLLqF9pe2rqjE8grTSr8z9RPeqqc2t8HXqutw5P4pdVC4
- TU9yufu+OP71jLolrjrak6Rj3lh0nj8nMa43z6kb4E0G3zXXbM5uswvMqhQvg8u8q2lv
- SLwNBDB6KILX0p0fbPL/fY5VPih4pAYltoIPaokJJ2BYXDCHLm3rSZXYWUlaIgUGPAaU
- 8GhKg/AJ6mJ4kdLdWpDOBYihmWIL+hkQJhuFXXt2CXnv3MnktOIA8yJa5UvzslRWYL87
- ++YBp7K8j1z94DvtvadPAU4BaWMWfUd3G96TneL/pZQij+/+QdtZ56zfkjykagdg8xtG
- CsHw==
-X-Gm-Message-State: AOAM532D/5EJ3f8hg9A/bBIG/xTWXHRRKXVEj6dMn/yFQWqqeZXddYdW
- rkD0uPauZvFD28byI3E90kMX8ewFZpg=
-X-Google-Smtp-Source: ABdhPJwxdwVmnMjN0fbmXPjuuPOcaX3pxHt3yRUaOjQ77SOXCpmO/Nk5kRjZDkbEjb/qKV1ozH5r/Q==
-X-Received: by 2002:a19:ae0a:0:b0:472:d3e:8312 with SMTP id
- f10-20020a19ae0a000000b004720d3e8312mr10628115lfc.176.1651094932868; 
- Wed, 27 Apr 2022 14:28:52 -0700 (PDT)
-Received: from zhiwang1-mobl.lan (88-115-161-74.elisa-laajakaista.fi.
- [88.115.161.74]) by smtp.gmail.com with ESMTPSA id
- m8-20020a2e9348000000b0024b47e7dda5sm1879248ljh.65.2022.04.27.14.28.52
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 27 Apr 2022 14:28:52 -0700 (PDT)
-From: Zhi Wang <zhi.wang.linux@gmail.com>
-X-Google-Original-From: Zhi Wang <zhi.a.wang@intel.com>
-To: intel-gvt-dev@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Date: Wed, 27 Apr 2022 17:28:49 -0400
-Message-Id: <20220427212849.18109-2-zhi.a.wang@intel.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220427212849.18109-1-zhi.a.wang@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D921E10ECB9;
+ Wed, 27 Apr 2022 21:33:48 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id D6F9DA66C8;
+ Wed, 27 Apr 2022 21:33:48 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Zhi Wang" <zhi.wang.linux@gmail.com>
+Date: Wed, 27 Apr 2022 21:33:48 -0000
+Message-ID: <165109522884.24236.18342727313267903908@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
 References: <20220427212849.18109-1-zhi.a.wang@intel.com>
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915/gvt: Fix the compiling error when
- CONFIG_DRM_I915_DEBUG_RUNTIME_PM=n
+In-Reply-To: <20220427212849.18109-1-zhi.a.wang@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBz?=
+ =?utf-8?q?eries_starting_with_=5B1/2=5D_drm/i915/gvt=3A_Make_intel=5Fgvt?=
+ =?utf-8?q?=5Fmatch=5Fdevice=28=29_static?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,34 +41,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jason Gunthorpe <jgg@nvidia.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-A compiling error was reported when CONFIG_DRM_I915_DEBUG_RUNTIME_PM=n.
-Fix the problem by using the pre-defined macro.
+== Series Details ==
 
-Cc: Jason Gunthorpe <jgg@nvidia.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Signed-off-by: Zhi Wang <zhi.a.wang@intel.com>
----
- drivers/gpu/drm/i915/intel_gvt.c | 2 ++
- 1 file changed, 2 insertions(+)
+Series: series starting with [1/2] drm/i915/gvt: Make intel_gvt_match_device() static
+URL   : https://patchwork.freedesktop.org/series/103237/
+State : failure
 
-diff --git a/drivers/gpu/drm/i915/intel_gvt.c b/drivers/gpu/drm/i915/intel_gvt.c
-index 24bc693439e8..e98b6d69a91a 100644
---- a/drivers/gpu/drm/i915/intel_gvt.c
-+++ b/drivers/gpu/drm/i915/intel_gvt.c
-@@ -309,7 +309,9 @@ EXPORT_SYMBOL_NS_GPL(__intel_context_do_pin, I915_GVT);
- EXPORT_SYMBOL_NS_GPL(__intel_context_do_unpin, I915_GVT);
- EXPORT_SYMBOL_NS_GPL(intel_ring_begin, I915_GVT);
- EXPORT_SYMBOL_NS_GPL(intel_runtime_pm_get, I915_GVT);
-+#if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
- EXPORT_SYMBOL_NS_GPL(intel_runtime_pm_put, I915_GVT);
-+#endif
- EXPORT_SYMBOL_NS_GPL(intel_runtime_pm_put_unchecked, I915_GVT);
- EXPORT_SYMBOL_NS_GPL(intel_uncore_forcewake_for_reg, I915_GVT);
- EXPORT_SYMBOL_NS_GPL(intel_uncore_forcewake_get, I915_GVT);
--- 
-2.17.1
+== Summary ==
+
+Error: patch https://patchwork.freedesktop.org/api/1.0/series/103237/revisions/1/mbox/ not applied
+Applying: drm/i915/gvt: Make intel_gvt_match_device() static
+Applying: drm/i915/gvt: Fix the compiling error when CONFIG_DRM_I915_DEBUG_RUNTIME_PM=n
+Using index info to reconstruct a base tree...
+M	drivers/gpu/drm/i915/intel_gvt.c
+Falling back to patching base and 3-way merge...
+Auto-merging drivers/gpu/drm/i915/intel_gvt.c
+CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/intel_gvt.c
+error: Failed to merge in the changes.
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Patch failed at 0002 drm/i915/gvt: Fix the compiling error when CONFIG_DRM_I915_DEBUG_RUNTIME_PM=n
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
+
 
