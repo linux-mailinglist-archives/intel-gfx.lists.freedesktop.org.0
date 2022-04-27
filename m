@@ -2,52 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5560F512395
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Apr 2022 22:06:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B4505123AF
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Apr 2022 22:11:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8AD3A10E5D9;
-	Wed, 27 Apr 2022 20:06:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3CA8410E5FA;
+	Wed, 27 Apr 2022 20:11:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC4B610E5EA
- for <intel-gfx@lists.freedesktop.org>; Wed, 27 Apr 2022 20:06:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1651089965;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=lggN3RfeBWkcrXGP2XX4hq9ENBmADwLyyEqxgrx+HuM=;
- b=fh5KHX9OX8FiSoZEIbgpYiQaAVUTzt8sL9O+pJWne2Be4mLPfJBFW4UhYBWCI2Uzm5Bvkh
- Ju24r48Sr/q/WMxG4WGDCdPQETcAx1s0li65642T6WGSgYktVML0gg2IxuM8Q5RB52aXac
- GWUntS1Dd/29o9/rYzasniZyHF266j0=
-Received: from mimecast-mx02.redhat.com (mx3-rdu2.redhat.com
- [66.187.233.73]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-104-Gz4Bkn4gMvCnTjdaHLk12w-1; Wed, 27 Apr 2022 16:05:59 -0400
-X-MC-Unique: Gz4Bkn4gMvCnTjdaHLk12w-1
-Received: from smtp.corp.redhat.com (int-mx05.intmail.prod.int.rdu2.redhat.com
- [10.11.54.5])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 389A43834C16;
- Wed, 27 Apr 2022 20:05:58 +0000 (UTC)
-Received: from localhost.localdomain (unknown [10.40.192.41])
- by smtp.corp.redhat.com (Postfix) with ESMTP id C3AE49E74;
- Wed, 27 Apr 2022 20:05:51 +0000 (UTC)
-From: Maxim Levitsky <mlevitsk@redhat.com>
-To: kvm@vger.kernel.org
-Date: Wed, 27 Apr 2022 23:03:14 +0300
-Message-Id: <20220427200314.276673-20-mlevitsk@redhat.com>
-In-Reply-To: <20220427200314.276673-1-mlevitsk@redhat.com>
-References: <20220427200314.276673-1-mlevitsk@redhat.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6269310E5EA;
+ Wed, 27 Apr 2022 20:11:09 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5F38BA00FD;
+ Wed, 27 Apr 2022 20:11:09 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Scanned-By: MIMEDefang 2.79 on 10.11.54.5
-Subject: [Intel-gfx] [RFC PATCH v3 19/19] KVM: x86: nSVM: expose the nested
- AVIC to the guest
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maxim Levitsky" <mlevitsk@redhat.com>
+Date: Wed, 27 Apr 2022 20:11:09 -0000
+Message-ID: <165109026936.24233.6156654958521999871@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220427200314.276673-1-mlevitsk@redhat.com>
+In-Reply-To: <20220427200314.276673-1-mlevitsk@redhat.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBS?=
+ =?utf-8?q?FC=3A_nested_AVIC_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,52 +40,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Wanpeng Li <wanpengli@tencent.com>, David Airlie <airlied@linux.ie>,
- Dave Hansen <dave.hansen@linux.intel.com>, dri-devel@lists.freedesktop.org,
- "H. Peter Anvin" <hpa@zytor.com>, Brijesh Singh <brijesh.singh@amd.com>,
- Joerg Roedel <joro@8bytes.org>, x86@kernel.org,
- Maxim Levitsky <mlevitsk@redhat.com>, Ingo Molnar <mingo@redhat.com>,
- Tom Lendacky <thomas.lendacky@amd.com>, intel-gfx@lists.freedesktop.org,
- Borislav Petkov <bp@alien8.de>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Gleixner <tglx@linutronix.de>, intel-gvt-dev@lists.freedesktop.org,
- Jim Mattson <jmattson@google.com>, Sean Christopherson <seanjc@google.com>,
- linux-kernel@vger.kernel.org, Paolo Bonzini <pbonzini@redhat.com>,
- Vitaly Kuznetsov <vkuznets@redhat.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This patch enables and exposes to the nested guest
-the support for the nested AVIC.
+== Series Details ==
 
-Signed-off-by: Maxim Levitsky <mlevitsk@redhat.com>
----
- arch/x86/kvm/svm/svm.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+Series: RFC: nested AVIC (rev2)
+URL   : https://patchwork.freedesktop.org/series/100904/
+State : failure
 
-diff --git a/arch/x86/kvm/svm/svm.c b/arch/x86/kvm/svm/svm.c
-index 099329711ad13..431281ccc40ef 100644
---- a/arch/x86/kvm/svm/svm.c
-+++ b/arch/x86/kvm/svm/svm.c
-@@ -4087,6 +4087,9 @@ static void svm_vcpu_after_set_cpuid(struct kvm_vcpu *vcpu)
- 		if (guest_cpuid_has(vcpu, X86_FEATURE_X2APIC))
- 			kvm_set_apicv_inhibit(kvm, APICV_INHIBIT_REASON_X2APIC);
- 	}
-+
-+	svm->avic_enabled = enable_apicv && guest_cpuid_has(vcpu, X86_FEATURE_AVIC);
-+
- 	init_vmcb_after_set_cpuid(vcpu);
- }
- 
-@@ -4827,6 +4830,9 @@ static __init void svm_set_cpu_caps(void)
- 		if (vgif)
- 			kvm_cpu_cap_set(X86_FEATURE_VGIF);
- 
-+		if (enable_apicv)
-+			kvm_cpu_cap_set(X86_FEATURE_AVIC);
-+
- 		/* Nested VM can receive #VMEXIT instead of triggering #GP */
- 		kvm_cpu_cap_set(X86_FEATURE_SVME_ADDR_CHK);
- 	}
--- 
-2.26.3
+== Summary ==
+
+Error: patch https://patchwork.freedesktop.org/api/1.0/series/100904/revisions/2/mbox/ not applied
+Applying: KVM: x86: document AVIC/APICv inhibit reasons
+Applying: KVM: x86: inhibit APICv/AVIC when the guest and/or host changes apic id/base from the defaults.
+Applying: KVM: x86: SVM: remove avic's broken code that updated APIC ID
+Applying: KVM: x86: mmu: allow to enable write tracking externally
+Applying: x86: KVMGT: use kvm_page_track_write_tracking_enable
+Applying: KVM: x86: mmu: add gfn_in_memslot helper
+Applying: KVM: x86: mmu: tweak fast path for emulation of access to nested NPT pages
+error: sha1 information is lacking or useless (arch/x86/kvm/mmu/mmu.c).
+error: could not build fake ancestor
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Patch failed at 0007 KVM: x86: mmu: tweak fast path for emulation of access to nested NPT pages
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
+
 
