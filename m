@@ -1,46 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29C39513BF9
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Apr 2022 21:07:29 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CAEFE513C5D
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Apr 2022 22:12:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B13310EA5F;
-	Thu, 28 Apr 2022 19:07:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 436A910E164;
+	Thu, 28 Apr 2022 20:12:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2134A10EA5F
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 Apr 2022 19:07:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1651172846; x=1682708846;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=ZZspD1TKFfsbOOpsJ0BcXFfzGc2zMpvBW+AdlFdThCk=;
- b=by5hIJjycRZrgo0YaeXgQuE8SvhWZswAjaCDetBh08h2tybDNOsP2eS8
- G8jRWNFpLQrS3sOnKfPADsmTeLgvsJTkETFqG0Jvhz6VTLa41BX+ufyEH
- t1j6L8iGwljt/nq4ld2qI9I1XXgcqQKzuXB5feIqVq7K1LQdG1lV87j3g
- YX2mN4VxQyaXzLpsMPd9YVNrNoOilgjbB/kgu5LaBsQ5UxczicVdyoTCG
- x6Wd0Yah7/ky6vvKDufUPy7z2xlY8pb3bM42oXL8X/fSKrDjyZQeEk0AT
- mQUlfw4FV7D0rn/ZG5MLBq23ZzFJ3bIxeG/jEBiATBfIRrhS8FCMHplvS g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10331"; a="246949712"
-X-IronPort-AV: E=Sophos;i="5.91,296,1647327600"; d="scan'208";a="246949712"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2022 12:07:25 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,296,1647327600"; d="scan'208";a="581565132"
-Received: from relo-linux-5.jf.intel.com ([10.165.21.134])
- by orsmga008.jf.intel.com with ESMTP; 28 Apr 2022 12:07:25 -0700
-From: John.C.Harrison@Intel.com
-To: linux-firmware@kernel.org
-Date: Thu, 28 Apr 2022 12:07:25 -0700
-Message-Id: <20220428190725.3704842-1-John.C.Harrison@Intel.com>
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk
+ [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C140B10E12A;
+ Thu, 28 Apr 2022 20:12:00 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+ (Authenticated sender: bbeckett) with ESMTPSA id AADB31F45C28
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1651176719;
+ bh=+fnOEWCaRdDJEg8XwUGw26M9UGU3iC0Oy+DN9l++u1o=;
+ h=From:To:Cc:Subject:Date:From;
+ b=Iap3PY1ANIprlDDvu59O0DHJJCd9z2v5iLHssBdwyMUtvyx2gZ7NSTvIQWcanu50s
+ 7dEQySAA7a6xQSh5njzcj1JowEQKjE9L4+WmKJI5JvZnAsYYHYW0oGzvRXYFibWOPi
+ gMBpj2NPooSza6OCQpWEfNUtrev6wq6A+rmGuSf05htQ6EtIQJbgefGnz1dXnELcXt
+ 21kTFIJeQyJ1dvy29UHIgc5G6olosSjOO7gQ2LpmZJhISEm8xHfTDR+8+qy3ivru3x
+ gavIUDyZDdeRgQdqgL1A/LgryUC5icmgn8c50Epbkl+7J9/m37yz7yZSUouDOo6iWg
+ 0NiXVJXwEJ8rA==
+From: Robert Beckett <bob.beckett@collabora.com>
+To: dri-devel@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Date: Thu, 28 Apr 2022 20:11:19 +0000
+Message-Id: <20220428201125.412896-1-bob.beckett@collabora.com>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] PR for new GuC v70.1.2 for DG2
+Subject: [Intel-gfx] [PATCH v5 0/6] drm/i915: ttm for stolen region
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,28 +47,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jwboyer@kernel.org, intel-gfx@lists.freedesktop.org, kyle@kernel.org,
- ben@decadent.org.uk
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The following changes since commit ac21ab5d1de0de34201c90d32eee436f873d1e5b:
+This series refactors i915's stolen memory region to use ttm.
 
-  Mellanox: Add lc_ini_bundle for xx.2010.1006 (2022-04-25 07:36:16 -0400)
+v2:	handle disabled stolen similar to legacy version.
+	relying on ttm to fail allocs works fine, but is dmesg noisy and causes testing
+	dmesg warning regressions.
 
-are available in the Git repository at:
+v3:	rebase to latest drm-tip.
+	fix v2 code refactor which could leave a buffer pinned.
+	locally passes fftl again now.
 
-  git://anongit.freedesktop.org/drm/drm-firmware guc_v70.1.2_dg2
+v4:	- Allow memory regions creators to do allocation. Allows stolen region to track
+	  it's own reservations.
+	- Pre-reserve first page of stolen mem (add back WaSkipStolenMemoryFirstPage:bdw+)
+	- Improve commit descritpion for "drm/i915: sanitize mem_flags for stolen buffers"
+	- replace i915_gem_object_pin_pages_unlocked() call with manual locking and pinning.
+	  this avoids ww ctx class reuse during context creation -> ring vma obj alloc.
 
-for you to fetch changes up to 89ae5eb20f65752db6a3e38b9a69144f19540567:
+v5:	- detect both types of stolen as stolen buffers in
+	  "drm/i915: sanitize mem_flags for stolen buffers"
+	- in stolen_object_init limit page size to mem region minimum.
+	  The range allocator expects the page_size to define the
+	  alignment
 
-  i915: Add GuC v70.1.2 for DG2 (2022-04-26 13:27:47 -0700)
+Robert Beckett (6):
+  drm/i915: instantiate ttm ranger manager for stolen memory
+  drm/i915: sanitize mem_flags for stolen buffers
+  drm/i915: ttm move/clear logic fix
+  drm/i915: ttm backend dont provide mmap_offset for kernel buffers
+  drm/i915: allow memory region creators to alloc and free the region
+  drm/i915: stolen memory use ttm backend
 
-----------------------------------------------------------------
-John Harrison (1):
-      i915: Add GuC v70.1.2 for DG2
+ drivers/gpu/drm/i915/display/intel_fbc.c      |  78 +--
+ .../gpu/drm/i915/gem/i915_gem_object_types.h  |   2 -
+ drivers/gpu/drm/i915/gem/i915_gem_stolen.c    | 453 ++++++++----------
+ drivers/gpu/drm/i915/gem/i915_gem_stolen.h    |  21 +-
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.c       |  35 +-
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.h       |   7 +
+ drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c  |  34 +-
+ drivers/gpu/drm/i915/gt/intel_rc6.c           |   4 +-
+ drivers/gpu/drm/i915/gt/selftest_reset.c      |  16 +-
+ drivers/gpu/drm/i915/i915_debugfs.c           |   7 +-
+ drivers/gpu/drm/i915/i915_drv.h               |   5 -
+ drivers/gpu/drm/i915/intel_memory_region.c    |  16 +-
+ drivers/gpu/drm/i915/intel_memory_region.h    |   2 +
+ drivers/gpu/drm/i915/intel_region_ttm.c       |  67 ++-
+ drivers/gpu/drm/i915/intel_region_ttm.h       |   8 +-
+ drivers/gpu/drm/i915/selftests/mock_region.c  |   3 +-
+ 16 files changed, 400 insertions(+), 358 deletions(-)
 
- WHENCE                  |   3 +++
- i915/dg2_guc_70.1.2.bin | Bin 0 -> 365568 bytes
- 2 files changed, 3 insertions(+)
- create mode 100644 i915/dg2_guc_70.1.2.bin
+-- 
+2.25.1
+
