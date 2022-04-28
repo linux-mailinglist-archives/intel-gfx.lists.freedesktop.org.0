@@ -2,40 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF67E513C9A
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Apr 2022 22:23:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E472D513CBA
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Apr 2022 22:41:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 87E7B10E0EA;
-	Thu, 28 Apr 2022 20:23:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A50D010EC14;
+	Thu, 28 Apr 2022 20:41:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-41103.protonmail.ch (mail-41103.protonmail.ch
- [185.70.41.103])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 93A2F10E7D4
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 Apr 2022 20:23:19 +0000 (UTC)
-Date: Thu, 28 Apr 2022 20:23:03 +0000
-Authentication-Results: mail-41103.protonmail.ch;
- dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com
- header.b="OYUB7S5t"
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
- s=protonmail2; t=1651177393;
- bh=FnBMiILise7VqIu2ZA0wExxutvCD7tDC2R8vRdpUkds=;
- h=Date:To:From:Reply-To:Subject:Message-ID:Feedback-ID:From:To:Cc:
- Date:Subject:Reply-To:Feedback-ID:Message-ID;
- b=OYUB7S5toSu0yZrefDy+cRyg9g83pUh4BfoYBLlATE9BNcQzexHDprpvsXjdQO2dC
- O/PApbuxaXOmcKLOFnuQgsMVFym6VTHM7UY7ehZBZ7Inonk2/i7oOiDeegOW4CCoM9
- CgWAT1l5of4kSuMpkUmzaY0I1GDQGkcOcMXVG40J0Sdx2f+5yeKDoEO5Rln53IGyfM
- Jve7L7l5oYHjNHu+MBd6QWMDqOmdyMtB3HLRKMAOViqVrP/PV2GdsN6+/t6g7Hjp3W
- 5VYDTJAS7R0mVoWGlQfRd2almqMu4ESmpjwc04glq5O57DihxRphmACTMraCOEi6HZ
- 5rdigzHQu7Xqw==
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-From: "doxed.fox" <doxed.fox@protonmail.com>
-Message-ID: <kxqHqDiJjzDETTfM-00uHFizfEg0DrbGbEgSJA4lEt-gif3NszMpN9L77APXt0NIsHjjmL4gH4d7soeTjqztud0KlEWSlOu7l-qhxl3GikI=@protonmail.com>
-Feedback-ID: 25144042:user:proton
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E814610EC0E;
+ Thu, 28 Apr 2022 20:41:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1651178461; x=1682714461;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=NSXjMn8UsrEUxteyznqMGubS6NCu0PHbWWsOLPi1Euw=;
+ b=ctijM+Z0SguK5c788xA8kE6l4XZbusb0ZHFs3TcoKvAg5pXZbqhvRCqM
+ WQICfLWiaWvD3dkXhNXReyxgh4LsW215qbpnbiBj22ABHOBB+37ylrPbc
+ 3PoZrUSzXSpsIzpbZEFcKlpvBIrqvA4FPUNl2THyemWRPj9AhAu0Hmx4w
+ +bclACvs0Na6fqxwzByN2BAORouEwv65r9w8+ZkyfpNYjR36n/lFvM5C8
+ U6WjqNheM4/yZf1lt9ogP1mXwOz0utoHZgpYKR+XjTEN5cSZHCZPPMGA/
+ UNEpCP1/b5ZZD1seXBr8kyZAMvKd+L5cMIqZPfLbjxvhOz9wlOSOvomjT A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10331"; a="326910167"
+X-IronPort-AV: E=Sophos;i="5.91,296,1647327600"; d="scan'208";a="326910167"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2022 13:41:00 -0700
+X-IronPort-AV: E=Sophos;i="5.91,296,1647327600"; d="scan'208";a="534086836"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.202])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2022 13:41:00 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-gvt-dev@lists.freedesktop.org
+Date: Thu, 28 Apr 2022 13:40:10 -0700
+Message-Id: <20220428204011.3365653-1-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.36.0
 MIME-Version: 1.0
-Content-Type: multipart/alternative;
- boundary="b1_nhBw4FFjghesXEgYQcjR9CVqKSDg6d5mynAElw5nWA"
-Subject: [Intel-gfx] i915 SR-IOV support for Intel Xe graphics
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915/gvt: Fix missing static
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,92 +55,48 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: "doxed.fox" <doxed.fox@protonmail.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>, Christoph Hellwig <hch@lst.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is a multi-part message in MIME format.
+Fix broken build:
 
---b1_nhBw4FFjghesXEgYQcjR9CVqKSDg6d5mynAElw5nWA
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: base64
+	$ make W=1 drivers/gpu/drm/i915/gvt/handlers.o
+	  ...
+	  CC [M]  drivers/gpu/drm/i915/gvt/handlers.o
+	drivers/gpu/drm/i915/gvt/handlers.c:75:6: error: no previous prototype for ‘intel_gvt_match_device’ [-Werror=missing-prototypes]
+	   75 | bool intel_gvt_match_device(struct intel_gvt *gvt,
+	      |      ^~~~~~~~~~~~~~~~~~~~~~
+	cc1: all warnings being treated as errors
 
-SGVsbG8gZXN0ZWVtZWQgZGV2ZWxvcGVycywKCkkgYW0gTWFuamFybyBydW5uaW5nIGEgaTctMTE2
-NUc3IDExdGggR2VuIENQVSBvbiB0aGUgbGF0ZSAyMDIwIGVkaXRpb24gb2YgdGhlIERlbGwgWFBT
-LiBJdCdzIGdvb2QsIHRoZSBiZXN0IGRldmVsb3BtZW50IGxhcHRvcCBJJ3ZlIGV2ZXIgaGFkIGFj
-dHVhbGx5LCBidXQgaXQgaGFzIG5vIGRlZGljYXRlZCBncmFwaGljcyBhbmQgYXMgYSBoZWF2eSB2
-aXJ0dWFsIG1hY2hpbmUgdXNlciBJIHdhcyBkaXNhcHBvaW50ZWQgdG8gZGlzY292ZXIgSW50ZWwg
-aGFkIGRlcHJlY2F0ZWQgc3VwcG9ydCBHVlQtZywgbGVhdmluZyBtZSBhdCB0aGUgbWVyY3kgb2Yg
-VmlyZ2lsIDNEIGlmIEkgd2FudCBPcGVuR0wgaW4gbXkgdmlydHVhbCBtYWNoaW5lcy4KCkJ1dCB0
-aGVyZSB3YXMgYSBzaWx2ZXIgbGluaW5nIHRvIHRoaXMgY2xvdWQ6IEFwcGFyZW50bHkgR1ZULWcg
-d2FzIGRlcHJlY2F0ZWQgYmVjYXVzZSAxMXRoIGFuZCAxMiBnZW5lcmF0aW9uIEludGVsIENQVXMg
-aW5zdGVhZCBzdXBwb3J0IFNpbmdsZS1yb290IGlucHV0L291dHB1dCB2aXJ0dWFsaXphdGlvbiAo
-U1ItSU9WKSBmb3IgR1BVIHZpcnR1YWxpemF0aW9uIGluc3RlYWQuIFllcyEgRmluYWxseSBTUi1J
-T1YgaW4gY29uc3VtZXItZ3JhZGUgaGFyZHdhcmUhIEFuZCBteSBDUFUgYXBwZWFycyB0byBiZSBz
-dXBwb3J0ZWQgYXMgd2VsbCEKCi4uLmluIFdpbmRvd3MuIEFwcGFyZW50bHkgZXZlbiB0aG91Z2gg
-dGhlIGhhcmR3YXJlIGlzIGNvbXBhdGlibGUgdGhlIFNSLUlPViBBUEkgaXMgbm90IGRvY3VtZW50
-ZWQgaW4gdGhlIExpbnV4IGk5MTUgZHJpdmVyLiBNeSBkcmVhbXMgb2Ygc2lsa3ktc21vb3RoIHZp
-cnR1YWwgbWFjaGluZXMgaGF2ZSBiZWVuIHB1dCBvbiBob2xkIG9uY2UgYWdhaW4uCgpXaGljaCBi
-cmluZ3MgbWUgdG8gdGhlIHBvaW50IG9mIHRoaXMgZW1haWwuIEkgYW0gaW5xdWlyaW5nLCBpbiB0
-aGUgbW9zdCBzaW5jZXJlIGFuZCBodW1ibGUgd2F5LCBhcyB0byB0aGUgc3RhdHVzIG9mIFNSLUlP
-ViBzdXBwb3J0IGluIHRoZSBpOTE1IGRyaXZlci4gSSBhbSBjdXJpb3VzIGlmIHRoZXJlIGFyZSBh
-bnkgc2lnbmlmaWNhbnQgaHVyZGxlcyB0aGF0IGhhdmUgdG8gYmUgb3ZlcmNvbWUsIGlmIHN1cHBv
-cnQgaXMgcGxhbm5lZCBpbiB0aGUgZnV0dXJlLCBhbmQgaWYgSSBjYW4gc29tZWhvdyB0aHJvdyBt
-b25leSBhdCB0aGUgcHJvYmxlbSAoYSBidWcgLyBmZWF0dXJlIGJvdW50eT8pIHRvIGltcGxlbWVu
-dCB0aGlzIGZlYXR1cmUuCgpQUzogSSB0cmllZCB0byBzZWFyY2ggdGhlIGFyY2hpdmVzIGZvciBy
-ZWZlcmVuY2VzIHRvIGk5MTUgU1ItSU9WIHN1cHBvcnQgYmVmb3JlIHNlbmRpbmcgdGhpcyBlbWFp
-bCBidXQgY2FtZSB1cCBkcnksIHNvIEkgYXBvbG9naXplIGlmIHRoaXMgcXVlc3Rpb24gaGFzIGJl
-ZW4gYXNrZWQgYmVmb3JlLg==
+Commit e0f74ed4634d ("i915/gvt: Separate the MMIO tracking table from
+GVT-g") removed the prototype from the header due to the function being
+used only in this single compilation unit, but forgot to make it static.
 
---b1_nhBw4FFjghesXEgYQcjR9CVqKSDg6d5mynAElw5nWA
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: base64
+Fixes: e0f74ed4634d ("i915/gvt: Separate the MMIO tracking table from GVT-g")
+Cc: Zhi Wang <zhi.a.wang@intel.com>
+Cc: Christoph Hellwig <hch@lst.de>
+Cc: Zhenyu Wang <zhenyuw@linux.intel.com>
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/gpu/drm/i915/gvt/handlers.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-PGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IGFyaWFsOyBmb250LXNpemU6IDE0cHg7IGNvbG9yOiBy
-Z2IoMzQsIDM0LCAzNCk7Ij5IZWxsbyBlc3RlZW1lZCBkZXZlbG9wZXJzLDwvZGl2PjxkaXYgc3R5
-bGU9ImZvbnQtZmFtaWx5OiBhcmlhbDsgZm9udC1zaXplOiAxNHB4OyBjb2xvcjogcmdiKDM0LCAz
-NCwgMzQpOyI+PGJyPjwvZGl2PjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBhcmlhbDsgZm9udC1z
-aXplOiAxNHB4OyBjb2xvcjogcmdiKDM0LCAzNCwgMzQpOyI+SSBhbSBNYW5qYXJvIHJ1bm5pbmcg
-YSZuYnNwOzxzcGFuPmk3LTExNjVHNyAxMXRoIEdlbiBDUFUgb24gdGhlIGxhdGUgMjAyMCBlZGl0
-aW9uIG9mIHRoZSBEZWxsIFhQUy4gSXQncyBnb29kLCB0aGUgYmVzdCBkZXZlbG9wbWVudCBsYXB0
-b3AgSSd2ZSBldmVyIGhhZCBhY3R1YWxseSwgYnV0IGl0IGhhcyBubyBkZWRpY2F0ZWQgZ3JhcGhp
-Y3MgYW5kIGFzIGEgaGVhdnkgdmlydHVhbCBtYWNoaW5lIHVzZXIgSSB3YXMgZGlzYXBwb2ludGVk
-IHRvIGRpc2NvdmVyIEludGVsIGhhZCBkZXByZWNhdGVkIHN1cHBvcnQgR1ZULWcsIGxlYXZpbmcg
-bWUgYXQgdGhlIG1lcmN5IG9mIFZpcmdpbCAzRCBpZiBJIHdhbnQgT3BlbkdMIGluIG15IHZpcnR1
-YWwgbWFjaGluZXMuPC9zcGFuPjwvZGl2PjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBhcmlhbDsg
-Zm9udC1zaXplOiAxNHB4OyBjb2xvcjogcmdiKDM0LCAzNCwgMzQpOyI+PHNwYW4+PGJyPjwvc3Bh
-bj48L2Rpdj48ZGl2IHN0eWxlPSJmb250LWZhbWlseTogYXJpYWw7IGZvbnQtc2l6ZTogMTRweDsg
-Y29sb3I6IHJnYigzNCwgMzQsIDM0KTsiPjxzcGFuPkJ1dCB0aGVyZSB3YXMgYSBzaWx2ZXIgbGlu
-aW5nIHRvIHRoaXMgY2xvdWQ6IEFwcGFyZW50bHkgR1ZULWcgd2FzIGRlcHJlY2F0ZWQgYmVjYXVz
-ZSAxMXRoIGFuZCAxMiBnZW5lcmF0aW9uIEludGVsIENQVXMgaW5zdGVhZCBzdXBwb3J0IDxzcGFu
-PlNpbmdsZS1yb290IGlucHV0L291dHB1dCB2aXJ0dWFsaXphdGlvbiAoU1ItSU9WKSBmb3IgR1BV
-IHZpcnR1YWxpemF0aW9uIGluc3RlYWQuIFllcyEgRmluYWxseSBTUi1JT1YgaW4gY29uc3VtZXIt
-Z3JhZGUgaGFyZHdhcmUhIEFuZCBteSBDUFUgYXBwZWFycyB0byBiZSBzdXBwb3J0ZWQgYXMgd2Vs
-bCE8L3NwYW4+PC9zcGFuPjwvZGl2PjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBhcmlhbDsgZm9u
-dC1zaXplOiAxNHB4OyBjb2xvcjogcmdiKDM0LCAzNCwgMzQpOyI+PHNwYW4+PHNwYW4+PGJyPjwv
-c3Bhbj48L3NwYW4+PC9kaXY+PGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IGFyaWFsOyBmb250LXNp
-emU6IDE0cHg7IGNvbG9yOiByZ2IoMzQsIDM0LCAzNCk7Ij48c3Bhbj48c3Bhbj4uLi5pbiBXaW5k
-b3dzLiBBcHBhcmVudGx5IGV2ZW4gdGhvdWdoIHRoZSBoYXJkd2FyZSBpcyBjb21wYXRpYmxlIHRo
-ZSBTUi1JT1YgQVBJIGlzIG5vdCBkb2N1bWVudGVkIGluIHRoZSBMaW51eCBpOTE1IGRyaXZlci4g
-TXkgZHJlYW1zIG9mIHNpbGt5LXNtb290aCB2aXJ0dWFsIG1hY2hpbmVzIGhhdmUgYmVlbiBwdXQg
-b24gaG9sZCBvbmNlIGFnYWluLjwvc3Bhbj48L3NwYW4+PC9kaXY+PGRpdiBzdHlsZT0iZm9udC1m
-YW1pbHk6IGFyaWFsOyBmb250LXNpemU6IDE0cHg7IGNvbG9yOiByZ2IoMzQsIDM0LCAzNCk7Ij48
-c3Bhbj48c3Bhbj48YnI+PC9zcGFuPjwvc3Bhbj48L2Rpdj48ZGl2IHN0eWxlPSJmb250LWZhbWls
-eTogYXJpYWw7IGZvbnQtc2l6ZTogMTRweDsgY29sb3I6IHJnYigzNCwgMzQsIDM0KTsiPldoaWNo
-IGJyaW5ncyBtZSB0byB0aGUgcG9pbnQgb2YgdGhpcyBlbWFpbC4gSSBhbSBpbnF1aXJpbmcsIGlu
-IHRoZSBtb3N0IHNpbmNlcmUgYW5kIGh1bWJsZSB3YXksIGFzIHRvIHRoZSBzdGF0dXMgb2YgU1It
-SU9WIHN1cHBvcnQgaW4gdGhlIGk5MTUgZHJpdmVyLiBJIGFtIGN1cmlvdXMgaWYgdGhlcmUgYXJl
-IGFueSBzaWduaWZpY2FudCBodXJkbGVzIHRoYXQgaGF2ZSB0byBiZSBvdmVyY29tZSwgaWYgc3Vw
-cG9ydCBpcyBwbGFubmVkIGluIHRoZSBmdXR1cmUsIGFuZCBpZiBJIGNhbiBzb21laG93IHRocm93
-IG1vbmV5IGF0IHRoZSBwcm9ibGVtIChhIGJ1ZyAvIGZlYXR1cmUgYm91bnR5PykgdG8gaW1wbGVt
-ZW50IHRoaXMgZmVhdHVyZS48L2Rpdj48ZGl2IHN0eWxlPSJmb250LWZhbWlseTogYXJpYWw7IGZv
-bnQtc2l6ZTogMTRweDsgY29sb3I6IHJnYigzNCwgMzQsIDM0KTsiPjxicj48L2Rpdj48ZGl2IHN0
-eWxlPSJmb250LWZhbWlseTogYXJpYWw7IGZvbnQtc2l6ZTogMTRweDsgY29sb3I6IHJnYigzNCwg
-MzQsIDM0KTsiPlBTOiBJIHRyaWVkIHRvIHNlYXJjaCB0aGUgYXJjaGl2ZXMgZm9yIHJlZmVyZW5j
-ZXMgdG8gaTkxNSBTUi1JT1Ygc3VwcG9ydCBiZWZvcmUgc2VuZGluZyB0aGlzIGVtYWlsIGJ1dCBj
-YW1lIHVwIGRyeSwgc28gSSBhcG9sb2dpemUgaWYgdGhpcyBxdWVzdGlvbiBoYXMgYmVlbiBhc2tl
-ZCBiZWZvcmUuPC9kaXY+
-
-
---b1_nhBw4FFjghesXEgYQcjR9CVqKSDg6d5mynAElw5nWA--
+diff --git a/drivers/gpu/drm/i915/gvt/handlers.c b/drivers/gpu/drm/i915/gvt/handlers.c
+index cf00398c2870..e4358aa01048 100644
+--- a/drivers/gpu/drm/i915/gvt/handlers.c
++++ b/drivers/gpu/drm/i915/gvt/handlers.c
+@@ -72,8 +72,8 @@ unsigned long intel_gvt_get_device_type(struct intel_gvt *gvt)
+ 	return 0;
+ }
+ 
+-bool intel_gvt_match_device(struct intel_gvt *gvt,
+-		unsigned long device)
++static bool intel_gvt_match_device(struct intel_gvt *gvt,
++				   unsigned long device)
+ {
+ 	return intel_gvt_get_device_type(gvt) & device;
+ }
+-- 
+2.36.0
 
