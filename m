@@ -1,33 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D82E513CD0
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Apr 2022 22:47:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15DEF513CD8
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Apr 2022 22:48:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 363A910EA8A;
-	Thu, 28 Apr 2022 20:46:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 240AF10E0EA;
+	Thu, 28 Apr 2022 20:48:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 61E8510E943;
- Thu, 28 Apr 2022 20:46:57 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 6036BA7E03;
- Thu, 28 Apr 2022 20:46:57 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D8F910E1A0;
+ Thu, 28 Apr 2022 20:48:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1651178933; x=1682714933;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=/xnVSCOaoFaAP010wbE+n1srDSi5yVPiInCF+4eentw=;
+ b=lJltDjbCwIriIqC9ztEGKRVcleKoQmnDEkk3donU+BtErlHIqbNvrJck
+ tlVcQaP0Knov28Btda4V5aspFdA13ltr5MYkLcIiZlr+Zrs1Hv3Me1fPL
+ vLwziaJrYgN+BAxwfJpoWSw2huw07i5nvFEWa8AtbaU9QFkGydUIyMMhg
+ O4eJVtgMj+sfySDt7X265RJsgOC0kZS3jn+NJSzg01WF80nkZUy67M309
+ 87020teCdRzNDqayFpAApVFMEBGMDJoJhAoE6Hf+FYTDcxFLUPHI/VL2l
+ XrrDJMOTHNARY+GJOAhxdi3lDxI/o/9b4eaWhzVssntLF08/QPYn7/Jbr Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10331"; a="291581932"
+X-IronPort-AV: E=Sophos;i="5.91,296,1647327600"; d="scan'208";a="291581932"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2022 13:48:35 -0700
+X-IronPort-AV: E=Sophos;i="5.91,296,1647327600"; d="scan'208";a="581626657"
+Received: from jlcarlis-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
+ ([10.212.181.112])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2022 13:48:34 -0700
+Date: Thu, 28 Apr 2022 13:48:34 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: "Wang, Zhi A" <zhi.a.wang@intel.com>
+Message-ID: <20220428204834.pvbkksospxjr3bbe@ldmartin-desk2>
+X-Patchwork-Hint: comment
+References: <20220428204011.3365653-1-lucas.demarchi@intel.com>
+ <a07d23e6-548c-2b4c-fb2d-d534f425e776@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Robert Beckett" <bob.beckett@collabora.com>
-Date: Thu, 28 Apr 2022 20:46:57 -0000
-Message-ID: <165117881736.29091.11604173032196873705@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220428201125.412896-1-bob.beckett@collabora.com>
-In-Reply-To: <20220428201125.412896-1-bob.beckett@collabora.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?drm/i915=3A_ttm_for_stolen_region_=28rev5=29?=
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <a07d23e6-548c-2b4c-fb2d-d534f425e776@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/gvt: Fix missing static
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,21 +59,48 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-gvt-dev@lists.freedesktop.org"
+ <intel-gvt-dev@lists.freedesktop.org>, Christoph Hellwig <hch@lst.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, Apr 28, 2022 at 01:42:53PM -0700, Wang, Zhi A wrote:
+>On 4/28/22 8:40 PM, De Marchi, Lucas wrote:
+>> Fix broken build:
+>>
+>>       $ make W=1 drivers/gpu/drm/i915/gvt/handlers.o
+>>         ...
+>>         CC [M]  drivers/gpu/drm/i915/gvt/handlers.o
+>>       drivers/gpu/drm/i915/gvt/handlers.c:75:6: error: no previous prototype for ‘intel_gvt_match_device’ [-Werror=missing-prototypes]
+>>          75 | bool intel_gvt_match_device(struct intel_gvt *gvt,
+>>             |      ^~~~~~~~~~~~~~~~~~~~~~
+>>       cc1: all warnings being treated as errors
+>>
+>> Commit e0f74ed4634d ("i915/gvt: Separate the MMIO tracking table from
+>> GVT-g") removed the prototype from the header due to the function being
+>> used only in this single compilation unit, but forgot to make it static.
+>>
+>> Fixes: e0f74ed4634d ("i915/gvt: Separate the MMIO tracking table from GVT-g")
+>> Cc: Zhi Wang <zhi.a.wang@intel.com>
+>> Cc: Christoph Hellwig <hch@lst.de>
+>> Cc: Zhenyu Wang <zhenyuw@linux.intel.com>
+>> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/gvt/handlers.c | 4 ++--
+>>  1 file changed, 2 insertions(+), 2 deletions(-)
+>>
+>Hi Lucas:
+>
+>Thanks so much for the patch. There is a patch to fix
+>undergoing already. I will take your second patch.
 
-Series: drm/i915: ttm for stolen region (rev5)
-URL   : https://patchwork.freedesktop.org/series/102540/
-State : warning
 
-== Summary ==
+oh 20220427212849.18109-1-zhi.a.wang@intel.com, I missed that.
 
-Error: dim sparse failed
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
+Do you mind adding the Fixes tag in that one to avoid it going to a
+kernel release without that?
 
 
+thanks
+Lucas De Marchi
