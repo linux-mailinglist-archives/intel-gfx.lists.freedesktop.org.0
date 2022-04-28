@@ -2,47 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D38A1513D12
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Apr 2022 23:10:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 53F86513D14
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Apr 2022 23:10:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4AE2410E1A0;
-	Thu, 28 Apr 2022 21:10:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B098410E478;
+	Thu, 28 Apr 2022 21:10:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5AB3A10E1A0
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 Apr 2022 21:10:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D638410E272
+ for <intel-gfx@lists.freedesktop.org>; Thu, 28 Apr 2022 21:10:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1651180219; x=1682716219;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=gZrb0RP6sdwQeRZ0lwRTZHXNBp2qTsZNtmcw08wSXYY=;
- b=aPFp6gInj3g5+CjP/zIBKa/7LH2GiXeDje07rGOnjJ3gnlHA7wNk7toY
- ux6DMWPzwhDCBEF53YpIdSPtKmN/BP5c5nSyktAbE9apF1DDVFNFlNoDn
- MVnn6Nvq6cjKrmNsdOyuDwkg2QIrohcWF6aER8AZs+KtZTNdMDnMqXJNl
- UeN1uXUQGJwonmvo6u/Erg8SgUlidSEdW2xOQz4pfeQ1BE4vTfLfkMctK
- uQL5gwVdxji2M13lNYsI47lwVQ61cFURnvATgR9amtxaFgGIGB1BFYjsT
- dnw98F8tSzGR1g/pjSttlY57LupKdtr+sfKaT7uAU1a2vTje9LB9niYmP Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10331"; a="266581184"
-X-IronPort-AV: E=Sophos;i="5.91,296,1647327600"; d="scan'208";a="266581184"
+ t=1651180220; x=1682716220;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=lfJ4/R92bgIN+wrn4zUzbPD4HIJbE6l8ZWidB6IYoeY=;
+ b=Gtpccxuf76eyXgNC2kHNeI9XllOqAfQpWz01ucG3gFZieWdEs0YrUM17
+ wV6E/3au0b2DV0kdMvy+2gubOp2WRxx4ePMPT/bQCuZtp50vsyM5fK9vk
+ RJ0EpKGmlbMOcfF7XAlvLvrT7aibBuN0FcKioBeh/U4FsfX5QhGOFEwb9
+ UhD1/n3V6MG3FvC1HrVKIhyOpEAbbG63vi+WcYWVwLSgtCIA1r0vdn4oP
+ qwY14WYIiAuEEDKs1Fz4kGSjfRS4MUw57neMnkL2QkbeEJnL6eiQiQ+KZ
+ hsagFRNiR841L4BLJS6I0cTCVpmUbEBNxmeZR9robR25AKiwVBG4hqvQv g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10331"; a="266581196"
+X-IronPort-AV: E=Sophos;i="5.91,296,1647327600"; d="scan'208";a="266581196"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2022 14:10:18 -0700
-X-IronPort-AV: E=Sophos;i="5.91,296,1647327600"; d="scan'208";a="581644212"
+ 28 Apr 2022 14:10:20 -0700
+X-IronPort-AV: E=Sophos;i="5.91,296,1647327600"; d="scan'208";a="581644236"
 Received: from unknown (HELO josouza-mobl2.fso.intel.com) ([10.230.18.139])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2022 14:10:17 -0700
+ 28 Apr 2022 14:10:18 -0700
 From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 28 Apr 2022 14:10:56 -0700
-Message-Id: <20220428211058.399630-1-jose.souza@intel.com>
+Date: Thu, 28 Apr 2022 14:10:57 -0700
+Message-Id: <20220428211058.399630-2-jose.souza@intel.com>
 X-Mailer: git-send-email 2.36.0
+In-Reply-To: <20220428211058.399630-1-jose.souza@intel.com>
+References: <20220428211058.399630-1-jose.souza@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 1/3] drm/i915/display: Do not schedule DRRS work
- thread when it is not active
+Subject: [Intel-gfx] [PATCH 2/3] drm/i915/display: Allow DRRS to be enabled
+ during driver load
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,34 +60,89 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Frontbuffer updates were scheduling the execution of DRRS work thread
-even if DRRS is not active.
-There was no issues with it because intel_drrs_downclock_work() checks
-if DRRS is active but there is no reason to keep scheduling this work
-thread and wasting CPU time.
+When driver takes over display from firmware it does some checks and
+if possible it tries to avoid a modeset to improve user boot
+experience.
 
+But even if DRRS is supported it was being left disabled as
+intel_crtc_copy_fastset() was overwritten new state with the old one
+(hardware readout).
+
+So here checking if platform has only one set of m_n registers that
+can change on the fly between high and low clock, if yes we can keep
+DRRS enabled.
+
+Cc: Vidya Srinivas <vidya.srinivas@intel.com>
 Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_drrs.c | 5 +++++
- 1 file changed, 5 insertions(+)
+ drivers/gpu/drm/i915/display/intel_display.c |  7 ++++--
+ drivers/gpu/drm/i915/display/intel_drrs.c    | 24 ++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_drrs.h    |  2 ++
+ 3 files changed, 31 insertions(+), 2 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 0decf3d242372..17d0cad9e1686 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -7086,8 +7086,11 @@ static void intel_crtc_copy_fastset(const struct intel_crtc_state *old_crtc_stat
+ 	 */
+ 	new_crtc_state->fdi_m_n = old_crtc_state->fdi_m_n;
+ 	new_crtc_state->dp_m_n = old_crtc_state->dp_m_n;
+-	new_crtc_state->dp_m2_n2 = old_crtc_state->dp_m2_n2;
+-	new_crtc_state->has_drrs = old_crtc_state->has_drrs;
++
++	if (!intel_drrs_crtc_copy_fastset(old_crtc_state, new_crtc_state)) {
++		new_crtc_state->dp_m2_n2 = old_crtc_state->dp_m2_n2;
++		new_crtc_state->has_drrs = old_crtc_state->has_drrs;
++	}
+ }
+ 
+ static int intel_crtc_add_planes_to_state(struct intel_atomic_state *state,
 diff --git a/drivers/gpu/drm/i915/display/intel_drrs.c b/drivers/gpu/drm/i915/display/intel_drrs.c
-index 166caf293f7bc..04bc296761be0 100644
+index 04bc296761be0..c6509c29e942b 100644
 --- a/drivers/gpu/drm/i915/display/intel_drrs.c
 +++ b/drivers/gpu/drm/i915/display/intel_drrs.c
-@@ -236,6 +236,11 @@ static void intel_drrs_frontbuffer_update(struct drm_i915_private *dev_priv,
- 		else
- 			crtc->drrs.busy_frontbuffer_bits &= ~frontbuffer_bits;
- 
-+		if (!intel_drrs_is_active(crtc)) {
-+			mutex_unlock(&crtc->drrs.mutex);
-+			continue;
-+		}
+@@ -305,3 +305,27 @@ void intel_crtc_drrs_init(struct intel_crtc *crtc)
+ 	mutex_init(&crtc->drrs.mutex);
+ 	crtc->drrs.cpu_transcoder = INVALID_TRANSCODER;
+ }
 +
- 		/* flush/invalidate means busy screen hence upclock */
- 		intel_drrs_set_state(crtc, DRRS_REFRESH_RATE_HIGH);
++/**
++ * intel_drrs_crtc_copy_fastset - Handles crtc state copy during fastsets when
++ * new state has DRRS.
++ * @old_crtc_state: old crtc state
++ * @new_crtc_state: new crtc state
++ *
++ * Handle crtc state copy during fastsets trying to keep DRRS enabled.
++ * That can be done in platforms that supports change the dp_m_n register on
++ * the fly between high and low clocks.
++ *
++ * Returns true if crtc copy was already handled otherwise returns false.
++ */
++bool intel_drrs_crtc_copy_fastset(const struct intel_crtc_state *old_crtc_state,
++				  struct intel_crtc_state *new_crtc_state)
++{
++	struct drm_i915_private *i915 = to_i915(old_crtc_state->uapi.crtc->dev);
++
++	/* m2_n2 register needs to already be set */
++	if (intel_cpu_transcoder_has_m2_n2(i915, new_crtc_state->cpu_transcoder))
++		return false;
++
++	return true;
++}
+diff --git a/drivers/gpu/drm/i915/display/intel_drrs.h b/drivers/gpu/drm/i915/display/intel_drrs.h
+index 3ad1be1ad9c13..749ac717db063 100644
+--- a/drivers/gpu/drm/i915/display/intel_drrs.h
++++ b/drivers/gpu/drm/i915/display/intel_drrs.h
+@@ -24,5 +24,7 @@ void intel_drrs_invalidate(struct drm_i915_private *dev_priv,
+ void intel_drrs_flush(struct drm_i915_private *dev_priv,
+ 		      unsigned int frontbuffer_bits);
+ void intel_crtc_drrs_init(struct intel_crtc *crtc);
++bool intel_drrs_crtc_copy_fastset(const struct intel_crtc_state *old_crtc_state,
++				  struct intel_crtc_state *new_crtc_state);
  
+ #endif /* __INTEL_DRRS_H__ */
 -- 
 2.36.0
 
