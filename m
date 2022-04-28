@@ -1,34 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8522512F6A
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Apr 2022 11:26:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70EE8512F95
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Apr 2022 11:44:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 19CC610F89E;
-	Thu, 28 Apr 2022 09:26:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F20B10F833;
+	Thu, 28 Apr 2022 09:44:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 76D7C10F895;
- Thu, 28 Apr 2022 09:26:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8470010F82D;
+ Thu, 28 Apr 2022 09:44:16 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 6A349A7E03;
- Thu, 28 Apr 2022 09:26:19 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 82909A0003;
+ Thu, 28 Apr 2022 09:44:16 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Gustavo A. R. Silva" <gustavoars@kernel.org>
-Date: Thu, 28 Apr 2022 09:26:19 -0000
-Message-ID: <165113797943.29090.15678575013815891668@emeril.freedesktop.org>
+To: "Wan Jiabing" <wanjiabing@vivo.com>
+Date: Thu, 28 Apr 2022 09:44:16 -0000
+Message-ID: <165113905653.29090.7042190986193470369@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20220427225301.GA24406@embeddedor>
-In-Reply-To: <20220427225301.GA24406@embeddedor>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_Fix_-Wstringop-overflow_warning_in_call_to_inte?=
- =?utf-8?b?bF9yZWFkX3dtX2xhdGVuY3koKQ==?=
+References: <20220427115457.836729-1-wanjiabing@vivo.com>
+In-Reply-To: <20220427115457.836729-1-wanjiabing@vivo.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBp?=
+ =?utf-8?q?915/gvt=3A_Fix_NULL_pointer_dereference_in_init=5Fmmio=5Fblock?=
+ =?utf-8?q?=5Fhandlers?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,18 +48,24 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915: Fix -Wstringop-overflow warning in call to intel_read_wm_latency()
-URL   : https://patchwork.freedesktop.org/series/103260/
-State : warning
+Series: i915/gvt: Fix NULL pointer dereference in init_mmio_block_handlers
+URL   : https://patchwork.freedesktop.org/series/103261/
+State : failure
 
 == Summary ==
 
-Error: dim checkpatch failed
-bb6f50272286 drm/i915: Fix -Wstringop-overflow warning in call to intel_read_wm_latency()
--:17: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#17: 
- 2861 | static void intel_read_wm_latency(struct drm_i915_private *dev_priv,
-
-total: 0 errors, 1 warnings, 0 checks, 8 lines checked
+Error: patch https://patchwork.freedesktop.org/api/1.0/series/103261/revisions/1/mbox/ not applied
+Applying: i915/gvt: Fix NULL pointer dereference in init_mmio_block_handlers
+Using index info to reconstruct a base tree...
+M	drivers/gpu/drm/i915/gvt/handlers.c
+Falling back to patching base and 3-way merge...
+Auto-merging drivers/gpu/drm/i915/gvt/handlers.c
+CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/gvt/handlers.c
+error: Failed to merge in the changes.
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Patch failed at 0001 i915/gvt: Fix NULL pointer dereference in init_mmio_block_handlers
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
 
