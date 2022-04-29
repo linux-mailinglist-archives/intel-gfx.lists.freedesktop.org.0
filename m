@@ -2,49 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C58B9513F9C
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 Apr 2022 02:40:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D6A06513F9D
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 Apr 2022 02:40:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 05EA910F3FD;
-	Fri, 29 Apr 2022 00:40:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 008E110F4A9;
+	Fri, 29 Apr 2022 00:40:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 02AB610F36A
- for <intel-gfx@lists.freedesktop.org>; Fri, 29 Apr 2022 00:39:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8374A10F427
+ for <intel-gfx@lists.freedesktop.org>; Fri, 29 Apr 2022 00:39:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1651192795; x=1682728795;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=7cfcQlrqzohT93w7fqYsvADD9PGrKfXDWbWgN9g6VYs=;
- b=LOJYvSRuHu9TWfqoRnJGxo8btDq8eKsby9s6QXmWMSK7kGE7h7W/im5H
- DcGRRgv88aiLB3Yb21ft3nFbCSd1tp38HrtZ7KZVTyH+50Yhniz88nsbx
- Hk7Gw2J3MXB1My0ITvXioQ8a689cmKDJB/4lLF4Rl4VvGLYDv1EL9ohmW
- bz1NdBY/F/kN2NSISMGzFaIKq/gzyiCer3XI3zf3wtE4YHfDbsV6Vc+ir
- cDoDDqbYGmYDWKF+6sJq/zYidxEqE5rQxNX9sRbflwTMRqjlpOL9TuZxO
- tL/64nrmhjG5iJszdcmrzQisk2UGf1331R88snQWG/m8VmjZi9nvNu8M9 A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10331"; a="329419333"
-X-IronPort-AV: E=Sophos;i="5.91,296,1647327600"; d="scan'208";a="329419333"
+ bh=drvsLLaQSkgVpzSrJqJAZPIiCek43ZK9XdupLTi+jCs=;
+ b=VDc2YCES9pEsVMgo/M8ZGveUaYShdtq9nfUND4wl1UhJbso2te2r7/P1
+ zjZMfIJTOj5Y2uKyk08cHQ7q6dXo7QE/LyXUCfGdnyb0NgfpSOs/LeW3e
+ g0dNTzIqY4LyR0HyVbK0iQ0E3PkNcAHekZ/3HEd6q91uM0JtR0fSYDU6c
+ tFIMmhHdP5G4qJ6M5JRC4iq+O9mQ84+Y8eJ3WCITYnzIbLpjOHlPrIwfD
+ LhFgMcPcTF0CsJvqs5NSNIxGewZTlWyp39IaaKCByGrBvMJr0OubRPiij
+ yoqwIXMDkuNRlEf5O7dj39+Yd9ld+iG3z2lIwuGH3W0xvm76b6tBz9leR A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10331"; a="329419334"
+X-IronPort-AV: E=Sophos;i="5.91,296,1647327600"; d="scan'208";a="329419334"
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  28 Apr 2022 17:39:52 -0700
-X-IronPort-AV: E=Sophos;i="5.91,296,1647327600"; d="scan'208";a="662069860"
+X-IronPort-AV: E=Sophos;i="5.91,296,1647327600"; d="scan'208";a="662069863"
 Received: from orsosgc001.jf.intel.com (HELO unerlige-ril-10.165.21.154.com)
  ([10.165.21.154])
  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  28 Apr 2022 17:39:52 -0700
 From: Ashutosh Dixit <ashutosh.dixit@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 28 Apr 2022 17:39:37 -0700
-Message-Id: <05d98604a81d231d39bd5f4634faae9e6489131f.1651192357.git.ashutosh.dixit@intel.com>
+Date: Thu, 28 Apr 2022 17:39:38 -0700
+Message-Id: <95d394daa7c4ef71ceb691da10dff5c4e9ec5ecd.1651192357.git.ashutosh.dixit@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <cover.1651192357.git.ashutosh.dixit@intel.com>
 References: <cover.1651192357.git.ashutosh.dixit@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 3/9] drm/i915/pcode: Extend pcode functions for
- multiple gt's
+Subject: [Intel-gfx] [PATCH 4/9] drm/i915/gt: Convert callers to use per-gt
+ pcode functions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,311 +57,156 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Andi Shyti <andi.shyti@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Each gt contains an independent instance of pcode. Extend pcode functions
-to interface with pcode on different gt's. To avoid creating dependency of
-display functionality on intel_gt, new pcode function interfaces are
-exposed in terms of uncore rather than intel_gt. Previous struct
-drm_i915_private based pcode interfaces are preserved.
+Convert appropriate callers to use per-gt pcode functions. Callers using
+pcode functions at "global scope", including *all* display functions are
+not converted, they continue to use the legacy pcode interface.
 
-v2: Expose pcode functions in terms of uncore rather than gt (Jani/Rodrigo)
+v2: Convert to new uncore interface for pcode functions
 
+Cc: Andi Shyti <andi.shyti@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Cc: Andi Shyti <andi.shyti@linux.intel.com>
 Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_gt.c | 17 +++++++
- drivers/gpu/drm/i915/gt/intel_gt.h |  2 +
- drivers/gpu/drm/i915/i915_driver.c |  4 +-
- drivers/gpu/drm/i915/intel_pcode.c | 76 +++++++++++++++---------------
- drivers/gpu/drm/i915/intel_pcode.h | 29 +++++++++---
- 5 files changed, 80 insertions(+), 48 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c | 6 +++---
+ drivers/gpu/drm/i915/gt/intel_llc.c           | 9 ++++-----
+ drivers/gpu/drm/i915/gt/intel_rc6.c           | 4 ++--
+ drivers/gpu/drm/i915/gt/intel_rps.c           | 6 +++---
+ drivers/gpu/drm/i915/gt/selftest_llc.c        | 4 ++--
+ drivers/gpu/drm/i915/gt/selftest_rps.c        | 4 ++--
+ 6 files changed, 16 insertions(+), 17 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-index 92394f13b42f..07cfe66dd0e8 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-@@ -28,6 +28,7 @@
- #include "intel_rps.h"
- #include "intel_gt_sysfs.h"
- #include "intel_uncore.h"
-+#include "intel_pcode.h"
- #include "shmem_utils.h"
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
+index 0c6b9eb724ae..025158732b8d 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
+@@ -138,7 +138,7 @@ static int gen6_drpc(struct seq_file *m)
+ 	}
  
- static void __intel_gt_init_early(struct intel_gt *gt)
-@@ -1240,3 +1241,19 @@ void intel_gt_invalidate_tlbs(struct intel_gt *gt)
- 	intel_uncore_forcewake_put_delayed(uncore, FORCEWAKE_ALL);
- 	mutex_unlock(&gt->tlb_invalidate_lock);
- }
-+
-+int intel_gt_pcode_init(struct drm_i915_private *i915)
-+{
-+	struct intel_gt *gt;
-+	int id, ret;
-+
-+	for_each_gt(gt, i915, id) {
-+		ret = intel_pcode_init(gt->uncore);
-+		if (ret) {
-+			drm_err(&gt->i915->drm, "gt %d: intel_pcode_init failed %d\n", id, ret);
-+			return ret;
-+		}
-+	}
-+
-+	return 0;
-+}
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt.h b/drivers/gpu/drm/i915/gt/intel_gt.h
-index 44c6cb63ccbc..241d833fdb1e 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt.h
-@@ -125,6 +125,8 @@ void intel_gt_watchdog_work(struct work_struct *work);
+ 	if (GRAPHICS_VER(i915) <= 7)
+-		snb_pcode_read(i915, GEN6_PCODE_READ_RC6VIDS, &rc6vids, NULL);
++		intel_pcode_read(gt->uncore, GEN6_PCODE_READ_RC6VIDS, &rc6vids, NULL);
  
- void intel_gt_invalidate_tlbs(struct intel_gt *gt);
+ 	seq_printf(m, "RC1e Enabled: %s\n",
+ 		   str_yes_no(rcctl1 & GEN6_RC_CTL_RC1e_ENABLE));
+@@ -545,8 +545,8 @@ static int llc_show(struct seq_file *m, void *data)
+ 	wakeref = intel_runtime_pm_get(gt->uncore->rpm);
+ 	for (gpu_freq = min_gpu_freq; gpu_freq <= max_gpu_freq; gpu_freq++) {
+ 		ia_freq = gpu_freq;
+-		snb_pcode_read(i915, GEN6_PCODE_READ_MIN_FREQ_TABLE,
+-			       &ia_freq, NULL);
++		intel_pcode_read(gt->uncore, GEN6_PCODE_READ_MIN_FREQ_TABLE,
++				 &ia_freq, NULL);
+ 		seq_printf(m, "%d\t\t%d\t\t\t\t%d\n",
+ 			   intel_gpu_freq(rps,
+ 					  (gpu_freq *
+diff --git a/drivers/gpu/drm/i915/gt/intel_llc.c b/drivers/gpu/drm/i915/gt/intel_llc.c
+index 40e2e28ee6c7..3c70a937b86a 100644
+--- a/drivers/gpu/drm/i915/gt/intel_llc.c
++++ b/drivers/gpu/drm/i915/gt/intel_llc.c
+@@ -124,7 +124,6 @@ static void calc_ia_freq(struct intel_llc *llc,
  
-+int intel_gt_pcode_init(struct drm_i915_private *i915);
-+
- struct resource intel_pci_resource(struct pci_dev *pdev, int bar);
+ static void gen6_update_ring_freq(struct intel_llc *llc)
+ {
+-	struct drm_i915_private *i915 = llc_to_gt(llc)->i915;
+ 	struct ia_constants consts;
+ 	unsigned int gpu_freq;
  
- #endif /* __INTEL_GT_H__ */
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index 90b0ce5051af..518d6e357017 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -629,7 +629,7 @@ static int i915_driver_hw_probe(struct drm_i915_private *dev_priv)
+@@ -142,10 +141,10 @@ static void gen6_update_ring_freq(struct intel_llc *llc)
+ 		unsigned int ia_freq, ring_freq;
  
- 	intel_opregion_setup(dev_priv);
- 
--	ret = intel_pcode_init(dev_priv);
-+	ret = intel_gt_pcode_init(dev_priv);
- 	if (ret)
- 		goto err_msi;
- 
-@@ -1251,7 +1251,7 @@ static int i915_drm_resume(struct drm_device *dev)
- 
- 	disable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
- 
--	ret = intel_pcode_init(dev_priv);
-+	ret = intel_gt_pcode_init(dev_priv);
- 	if (ret)
- 		return ret;
- 
-diff --git a/drivers/gpu/drm/i915/intel_pcode.c b/drivers/gpu/drm/i915/intel_pcode.c
-index ac727546868e..66020b2e461f 100644
---- a/drivers/gpu/drm/i915/intel_pcode.c
-+++ b/drivers/gpu/drm/i915/intel_pcode.c
-@@ -52,14 +52,12 @@ static int gen7_check_mailbox_status(u32 mbox)
+ 		calc_ia_freq(llc, gpu_freq, &consts, &ia_freq, &ring_freq);
+-		snb_pcode_write(i915, GEN6_PCODE_WRITE_MIN_FREQ_TABLE,
+-				ia_freq << GEN6_PCODE_FREQ_IA_RATIO_SHIFT |
+-				ring_freq << GEN6_PCODE_FREQ_RING_RATIO_SHIFT |
+-				gpu_freq);
++		intel_pcode_write(llc_to_gt(llc)->uncore, GEN6_PCODE_WRITE_MIN_FREQ_TABLE,
++				  ia_freq << GEN6_PCODE_FREQ_IA_RATIO_SHIFT |
++				  ring_freq << GEN6_PCODE_FREQ_RING_RATIO_SHIFT |
++				  gpu_freq);
  	}
  }
  
--static int __snb_pcode_rw(struct drm_i915_private *i915, u32 mbox,
-+static int intel_pcode_rw(struct intel_uncore *uncore, u32 mbox,
- 			  u32 *val, u32 *val1,
- 			  int fast_timeout_us, int slow_timeout_ms,
- 			  bool is_read)
- {
--	struct intel_uncore *uncore = &i915->uncore;
--
--	lockdep_assert_held(&i915->sb_lock);
-+	lockdep_assert_held(&uncore->i915->sb_lock);
+diff --git a/drivers/gpu/drm/i915/gt/intel_rc6.c b/drivers/gpu/drm/i915/gt/intel_rc6.c
+index b4770690e794..c284baafa895 100644
+--- a/drivers/gpu/drm/i915/gt/intel_rc6.c
++++ b/drivers/gpu/drm/i915/gt/intel_rc6.c
+@@ -272,7 +272,7 @@ static void gen6_rc6_enable(struct intel_rc6 *rc6)
+ 	    GEN6_RC_CTL_HW_ENABLE;
  
- 	/*
- 	 * GEN6_PCODE_* are outside of the forcewake domain, we can use
-@@ -88,22 +86,22 @@ static int __snb_pcode_rw(struct drm_i915_private *i915, u32 mbox,
- 	if (is_read && val1)
- 		*val1 = intel_uncore_read_fw(uncore, GEN6_PCODE_DATA1);
+ 	rc6vids = 0;
+-	ret = snb_pcode_read(i915, GEN6_PCODE_READ_RC6VIDS, &rc6vids, NULL);
++	ret = intel_pcode_read(rc6_to_gt(rc6)->uncore, GEN6_PCODE_READ_RC6VIDS, &rc6vids, NULL);
+ 	if (GRAPHICS_VER(i915) == 6 && ret) {
+ 		drm_dbg(&i915->drm, "Couldn't check for BIOS workaround\n");
+ 	} else if (GRAPHICS_VER(i915) == 6 &&
+@@ -282,7 +282,7 @@ static void gen6_rc6_enable(struct intel_rc6 *rc6)
+ 			GEN6_DECODE_RC6_VID(rc6vids & 0xff), 450);
+ 		rc6vids &= 0xffff00;
+ 		rc6vids |= GEN6_ENCODE_RC6_VID(450);
+-		ret = snb_pcode_write(i915, GEN6_PCODE_WRITE_RC6VIDS, rc6vids);
++		ret = intel_pcode_write(rc6_to_gt(rc6)->uncore, GEN6_PCODE_WRITE_RC6VIDS, rc6vids);
+ 		if (ret)
+ 			drm_err(&i915->drm,
+ 				"Couldn't fix incorrect rc6 voltage\n");
+diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
+index 3476a11f294c..08aa6bf3abe2 100644
+--- a/drivers/gpu/drm/i915/gt/intel_rps.c
++++ b/drivers/gpu/drm/i915/gt/intel_rps.c
+@@ -1142,8 +1142,8 @@ static void gen6_rps_init(struct intel_rps *rps)
  
--	if (GRAPHICS_VER(i915) > 6)
-+	if (GRAPHICS_VER(uncore->i915) > 6)
- 		return gen7_check_mailbox_status(mbox);
- 	else
- 		return gen6_check_mailbox_status(mbox);
- }
+ 		if (IS_GEN9_BC(i915) || GRAPHICS_VER(i915) >= 11)
+ 			mult = GEN9_FREQ_SCALER;
+-		if (snb_pcode_read(i915, HSW_PCODE_DYNAMIC_DUTY_CYCLE_CONTROL,
+-				   &ddcc_status, NULL) == 0)
++		if (intel_pcode_read(rps_to_gt(rps)->uncore, HSW_PCODE_DYNAMIC_DUTY_CYCLE_CONTROL,
++				     &ddcc_status, NULL) == 0)
+ 			rps->efficient_freq =
+ 				clamp_t(u32,
+ 					((ddcc_status >> 8) & 0xff) * mult,
+@@ -1982,7 +1982,7 @@ void intel_rps_init(struct intel_rps *rps)
+ 	if (GRAPHICS_VER(i915) == 6 || IS_IVYBRIDGE(i915) || IS_HASWELL(i915)) {
+ 		u32 params = 0;
  
--int snb_pcode_read(struct drm_i915_private *i915, u32 mbox, u32 *val, u32 *val1)
-+int intel_pcode_read(struct intel_uncore *uncore, u32 mbox, u32 *val, u32 *val1)
- {
- 	int err;
+-		snb_pcode_read(i915, GEN6_READ_OC_PARAMS, &params, NULL);
++		intel_pcode_read(rps_to_gt(rps)->uncore, GEN6_READ_OC_PARAMS, &params, NULL);
+ 		if (params & BIT(31)) { /* OC supported */
+ 			drm_dbg(&i915->drm,
+ 				"Overclocking supported, max: %dMHz, overclock: %dMHz\n",
+diff --git a/drivers/gpu/drm/i915/gt/selftest_llc.c b/drivers/gpu/drm/i915/gt/selftest_llc.c
+index 2cd184ab32b1..f6833b13170e 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_llc.c
++++ b/drivers/gpu/drm/i915/gt/selftest_llc.c
+@@ -31,8 +31,8 @@ static int gen6_verify_ring_freq(struct intel_llc *llc)
+ 		calc_ia_freq(llc, gpu_freq, &consts, &ia_freq, &ring_freq);
  
--	mutex_lock(&i915->sb_lock);
--	err = __snb_pcode_rw(i915, mbox, val, val1, 500, 20, true);
--	mutex_unlock(&i915->sb_lock);
-+	mutex_lock(&uncore->i915->sb_lock);
-+	err = intel_pcode_rw(uncore, mbox, val, val1, 500, 20, true);
-+	mutex_unlock(&uncore->i915->sb_lock);
+ 		val = gpu_freq;
+-		if (snb_pcode_read(i915, GEN6_PCODE_READ_MIN_FREQ_TABLE,
+-				   &val, NULL)) {
++		if (intel_pcode_read(llc_to_gt(llc)->uncore, GEN6_PCODE_READ_MIN_FREQ_TABLE,
++				     &val, NULL)) {
+ 			pr_err("Failed to read freq table[%d], range [%d, %d]\n",
+ 			       gpu_freq, consts.min_gpu_freq, consts.max_gpu_freq);
+ 			err = -ENXIO;
+diff --git a/drivers/gpu/drm/i915/gt/selftest_rps.c b/drivers/gpu/drm/i915/gt/selftest_rps.c
+index 6a69ac0184ad..ca231b34c77e 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_rps.c
++++ b/drivers/gpu/drm/i915/gt/selftest_rps.c
+@@ -521,8 +521,8 @@ static void show_pcu_config(struct intel_rps *rps)
+ 	for (gpu_freq = min_gpu_freq; gpu_freq <= max_gpu_freq; gpu_freq++) {
+ 		int ia_freq = gpu_freq;
  
- 	if (err) {
--		drm_dbg(&i915->drm,
-+		drm_dbg(&uncore->i915->drm,
- 			"warning: pcode (read from mbox %x) mailbox access failed for %ps: %d\n",
- 			mbox, __builtin_return_address(0), err);
- 	}
-@@ -111,18 +109,18 @@ int snb_pcode_read(struct drm_i915_private *i915, u32 mbox, u32 *val, u32 *val1)
- 	return err;
- }
+-		snb_pcode_read(i915, GEN6_PCODE_READ_MIN_FREQ_TABLE,
+-			       &ia_freq, NULL);
++		intel_pcode_read(rps_to_gt(rps)->uncore, GEN6_PCODE_READ_MIN_FREQ_TABLE,
++				 &ia_freq, NULL);
  
--int snb_pcode_write_timeout(struct drm_i915_private *i915, u32 mbox, u32 val,
--			    int fast_timeout_us, int slow_timeout_ms)
-+int intel_pcode_write_timeout(struct intel_uncore *uncore, u32 mbox, u32 val,
-+			      int fast_timeout_us, int slow_timeout_ms)
- {
- 	int err;
- 
--	mutex_lock(&i915->sb_lock);
--	err = __snb_pcode_rw(i915, mbox, &val, NULL,
-+	mutex_lock(&uncore->i915->sb_lock);
-+	err = intel_pcode_rw(uncore, mbox, &val, NULL,
- 			     fast_timeout_us, slow_timeout_ms, false);
--	mutex_unlock(&i915->sb_lock);
-+	mutex_unlock(&uncore->i915->sb_lock);
- 
- 	if (err) {
--		drm_dbg(&i915->drm,
-+		drm_dbg(&uncore->i915->drm,
- 			"warning: pcode (write of 0x%08x to mbox %x) mailbox access failed for %ps: %d\n",
- 			val, mbox, __builtin_return_address(0), err);
- 	}
-@@ -130,18 +128,18 @@ int snb_pcode_write_timeout(struct drm_i915_private *i915, u32 mbox, u32 val,
- 	return err;
- }
- 
--static bool skl_pcode_try_request(struct drm_i915_private *i915, u32 mbox,
--				  u32 request, u32 reply_mask, u32 reply,
--				  u32 *status)
-+static bool intel_pcode_try_request(struct intel_uncore *uncore, u32 mbox,
-+				    u32 request, u32 reply_mask, u32 reply,
-+				    u32 *status)
- {
--	*status = __snb_pcode_rw(i915, mbox, &request, NULL, 500, 0, true);
-+	*status = intel_pcode_rw(uncore, mbox, &request, NULL, 500, 0, true);
- 
- 	return (*status == 0) && ((request & reply_mask) == reply);
- }
- 
- /**
-- * skl_pcode_request - send PCODE request until acknowledgment
-- * @i915: device private
-+ * intel_pcode_request - send PCODE request until acknowledgment
-+ * @uncore: uncore
-  * @mbox: PCODE mailbox ID the request is targeted for
-  * @request: request ID
-  * @reply_mask: mask used to check for request acknowledgment
-@@ -158,16 +156,16 @@ static bool skl_pcode_try_request(struct drm_i915_private *i915, u32 mbox,
-  * Returns 0 on success, %-ETIMEDOUT in case of a timeout, <0 in case of some
-  * other error as reported by PCODE.
-  */
--int skl_pcode_request(struct drm_i915_private *i915, u32 mbox, u32 request,
--		      u32 reply_mask, u32 reply, int timeout_base_ms)
-+int intel_pcode_request(struct intel_uncore *uncore, u32 mbox, u32 request,
-+			u32 reply_mask, u32 reply, int timeout_base_ms)
- {
- 	u32 status;
- 	int ret;
- 
--	mutex_lock(&i915->sb_lock);
-+	mutex_lock(&uncore->i915->sb_lock);
- 
- #define COND \
--	skl_pcode_try_request(i915, mbox, request, reply_mask, reply, &status)
-+	intel_pcode_try_request(uncore, mbox, request, reply_mask, reply, &status)
- 
- 	/*
- 	 * Prime the PCODE by doing a request first. Normally it guarantees
-@@ -193,35 +191,35 @@ int skl_pcode_request(struct drm_i915_private *i915, u32 mbox, u32 request,
- 	 * requests, and for any quirks of the PCODE firmware that delays
- 	 * the request completion.
- 	 */
--	drm_dbg_kms(&i915->drm,
-+	drm_dbg_kms(&uncore->i915->drm,
- 		    "PCODE timeout, retrying with preemption disabled\n");
--	drm_WARN_ON_ONCE(&i915->drm, timeout_base_ms > 3);
-+	drm_WARN_ON_ONCE(&uncore->i915->drm, timeout_base_ms > 3);
- 	preempt_disable();
- 	ret = wait_for_atomic(COND, 50);
- 	preempt_enable();
- 
- out:
--	mutex_unlock(&i915->sb_lock);
-+	mutex_unlock(&uncore->i915->sb_lock);
- 	return status ? status : ret;
- #undef COND
- }
- 
--int intel_pcode_init(struct drm_i915_private *i915)
-+int intel_pcode_init(struct intel_uncore *uncore)
- {
--	int ret = 0;
-+	int ret;
- 
--	if (!IS_DGFX(i915))
--		return ret;
-+	if (!IS_DGFX(uncore->i915))
-+		return 0;
- 
--	ret = skl_pcode_request(i915, DG1_PCODE_STATUS,
--				DG1_UNCORE_GET_INIT_STATUS,
--				DG1_UNCORE_INIT_STATUS_COMPLETE,
--				DG1_UNCORE_INIT_STATUS_COMPLETE, 180000);
-+	ret = intel_pcode_request(uncore, DG1_PCODE_STATUS,
-+				  DG1_UNCORE_GET_INIT_STATUS,
-+				  DG1_UNCORE_INIT_STATUS_COMPLETE,
-+				  DG1_UNCORE_INIT_STATUS_COMPLETE, 180000);
- 
--	drm_dbg(&i915->drm, "PCODE init status %d\n", ret);
-+	drm_dbg(&uncore->i915->drm, "PCODE init status %d\n", ret);
- 
- 	if (ret)
--		drm_err(&i915->drm, "Pcode did not report uncore initialization completion!\n");
-+		drm_err(&uncore->i915->drm, "Pcode did not report uncore initialization completion!\n");
- 
- 	return ret;
- }
-diff --git a/drivers/gpu/drm/i915/intel_pcode.h b/drivers/gpu/drm/i915/intel_pcode.h
-index 0962a17fac48..a03d4ef688aa 100644
---- a/drivers/gpu/drm/i915/intel_pcode.h
-+++ b/drivers/gpu/drm/i915/intel_pcode.h
-@@ -8,17 +8,32 @@
- 
- #include <linux/types.h>
- 
-+struct intel_uncore;
- struct drm_i915_private;
- 
--int snb_pcode_read(struct drm_i915_private *i915, u32 mbox, u32 *val, u32 *val1);
--int snb_pcode_write_timeout(struct drm_i915_private *i915, u32 mbox, u32 val,
--			    int fast_timeout_us, int slow_timeout_ms);
--#define snb_pcode_write(i915, mbox, val)			\
-+int intel_pcode_read(struct intel_uncore *uncore, u32 mbox, u32 *val, u32 *val1);
-+
-+int intel_pcode_write_timeout(struct intel_uncore *uncore, u32 mbox, u32 val,
-+			      int fast_timeout_us, int slow_timeout_ms);
-+
-+#define intel_pcode_write(uncore, mbox, val) \
-+	intel_pcode_write_timeout(uncore, mbox, val, 500, 0)
-+
-+int intel_pcode_request(struct intel_uncore *uncore, u32 mbox, u32 request,
-+			u32 reply_mask, u32 reply, int timeout_base_ms);
-+
-+#define snb_pcode_read(i915, mbox, val, val1) \
-+	intel_pcode_read(&(i915)->uncore, mbox, val, val1)
-+
-+#define snb_pcode_write_timeout(i915, mbox, val, fast_timeout_us, slow_timeout_ms) \
-+	intel_pcode_write_timeout(&(i915)->uncore, mbox, val, fast_timeout_us, slow_timeout_ms)
-+
-+#define snb_pcode_write(i915, mbox, val) \
- 	snb_pcode_write_timeout(i915, mbox, val, 500, 0)
- 
--int skl_pcode_request(struct drm_i915_private *i915, u32 mbox, u32 request,
--		      u32 reply_mask, u32 reply, int timeout_base_ms);
-+#define skl_pcode_request(i915, mbox, request, reply_mask, reply, timeout_base_ms) \
-+	intel_pcode_request(&(i915)->uncore, mbox, request, reply_mask, reply, timeout_base_ms)
- 
--int intel_pcode_init(struct drm_i915_private *i915);
-+int intel_pcode_init(struct intel_uncore *uncore);
- 
- #endif /* _INTEL_PCODE_H */
+ 		pr_info("%5d  %5d  %5d\n",
+ 			gpu_freq * 50,
 -- 
 2.34.1
 
