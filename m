@@ -2,56 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 131EB514920
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 Apr 2022 14:21:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E8C2E514987
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 Apr 2022 14:37:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F2A9110E705;
-	Fri, 29 Apr 2022 12:21:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 18FAA10E81D;
+	Fri, 29 Apr 2022 12:37:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qv1-xf30.google.com (mail-qv1-xf30.google.com
- [IPv6:2607:f8b0:4864:20::f30])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC9CC10E3F6;
- Fri, 29 Apr 2022 12:21:30 +0000 (UTC)
-Received: by mail-qv1-xf30.google.com with SMTP id kj18so5189711qvb.6;
- Fri, 29 Apr 2022 05:21:30 -0700 (PDT)
+Received: from mail-qt1-x829.google.com (mail-qt1-x829.google.com
+ [IPv6:2607:f8b0:4864:20::829])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 921D110E81D;
+ Fri, 29 Apr 2022 12:37:04 +0000 (UTC)
+Received: by mail-qt1-x829.google.com with SMTP id o18so5551014qtk.7;
+ Fri, 29 Apr 2022 05:37:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=Yna8wfxABGYcAzA/m8WI3a3vsuDJiblFDn19JsbFVRw=;
- b=mtBUQ22TZn8EatYDxTYLdotsO7yJQYU4occVzmST8szXuuUBtaDiUfdLmtdVJgzQKN
- 4O/+9oJLN1wjn7P1fz5QRDkRyv482CavphlzEDp/uHAM8efgaN/wepFB7bx6zxkvvK1S
- VpzrdArd7/AkVbG6uBRAYQ6pOy3tmwPcPQgVaEROhw2CcHTb+FF6aqwVSOBFi6Iw8KmG
- 62eGFYC/PmNzdmAr+0kENSVG4fK5BNGPMlHTQJQBYfX6ZT5FvbpPm3VLbpdBN6o2/XRL
- nZ3IRHqsl2dBfm1Xrs26iuZ8LW93tlGlXiOMJOUs7ADgVNfp2uhG2ejsIOrkcsnCYL3f
- 8bJw==
+ :cc; bh=zti6YLLkUsZkekq1rWuAp83UXdMyT1qHJ6+UnS1DJPg=;
+ b=lQ5OKC2xytA1QhtjTZavhchSjmIzO2pqa1CF4lvvCmRh1qXWvBhvtSjHGzqkMCXaH7
+ bKUmwiSJTx1GQKxV6RSosw2eysbFEGd2ck5dMpla8vo/faRPvWjvZ/sG1pRhBIir3OEL
+ wiACct1c13yo5j3nfSFHwNYLwkkQ4wYZGZ0zsyUtm0zwhAdv9ubl11P0c3fSRlwDLaip
+ Pbyxjs3J4U6cm1MlfIlC1s2T/IDmK71ZtSNxHkVNtXF0Tl8ztsqRwVywxzInR7afZkEC
+ u10IOtwvHyxIXQ8gqtUcMHlpvH6nvbCLXJ+rUKyDKjVeZ9urZPtsKL5J4oNQBkr1i8T+
+ FyRQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=Yna8wfxABGYcAzA/m8WI3a3vsuDJiblFDn19JsbFVRw=;
- b=YvkVZvG6sLYOoM1QCIfaP9mT+AJ9YaUWJnJgLZHxZz53x1fJ+KziN9s2dgCJhcCTVn
- 2XrJ2DLyho6XiYzarwAJOY6+bRSNn/icP4CW/uXRa8EE8H0UZ4GWP626r3CjLEbwPSfL
- tljozeGv/jWMCTGZIPv90D/9JczKu3pyAB1f02reGWKoXXQoKYJPhWit0It/0U3O7+9N
- aRiDjln237kupyE9CsFb0ENwrOgJ4IZBdrkpIIhCRFGq8RYhUlN2sdOzHs70oD9DUU+f
- p2IQ2uPvfNY/IO5Uy+wpXgk3YS9O3dvdrEk2NLnRI/oPp0N3cRkUOum82+8m2fGTPWJ5
- QWdQ==
-X-Gm-Message-State: AOAM533ukF2cvI9WRqIm+Ab6ggpbEvWhzo6dsWLzXe3oXQyb10+5L+Mq
- 3YXwW/tCgudKf4hejn6Fvc+XyxEMXhfZ5VSQ9+A=
-X-Google-Smtp-Source: ABdhPJzw+2DEPrXqQevHuO9GHfmBTFnh+ki0GlhRcwAbobZhNKA9A0XYMVVgk810ZaNXFo/JjXG8qtMLgV71ZYYU3cw=
-X-Received: by 2002:a05:6214:2344:b0:429:4d92:cec2 with SMTP id
- hu4-20020a056214234400b004294d92cec2mr26759380qvb.0.1651234889713; Fri, 29
- Apr 2022 05:21:29 -0700 (PDT)
+ bh=zti6YLLkUsZkekq1rWuAp83UXdMyT1qHJ6+UnS1DJPg=;
+ b=DK6uw51Ucq7CXW7Q4aeHMaG3knB5lrzggCF2R2i0JVaMH7D8nCKAFlSP8PLBStal1u
+ CrYf8NOgHqaSFqKaiw0HRNo92YSzeDfCae9ex1KnPCbCG25zd+zcigM+cIx16LXEuG06
+ Ojxn4abagbp2UddK40PgVpE2HfgOnVlkA0GhfZbt75Hd04WqYqvdwEc9kOSkxuJIOYSx
+ zIIDLqKmOpI/uAA3niHm1F7rH5iiTqevFtqg0Rp9WwzlnOhSQcv5AGDPbknjdYcQSKdV
+ QFbaTPd+fYoLiAJTf864VpkzEEMWUEdUYp3D2yQPDInCd2Ib3eFVOEhZfU3S4kpdxAhj
+ 6veQ==
+X-Gm-Message-State: AOAM533al5TBSsVwye/oXn0YXopz/hy0i6PsdqVuEDzO4kYEtlV0umV7
+ 9FUIHp2leArEWhjkBoFpHjbl2Wiz88SWQwfYiMC8xKB6yaU=
+X-Google-Smtp-Source: ABdhPJwd8ju3TQ8iNiOOGqLH6RHFXqU6m45Ht6CdW+ypD6ZeMjtYMqLPMplfx3OgiFHokIB4z6LJsdXkEVviI4VuPBs=
+X-Received: by 2002:ac8:7dc2:0:b0:2f3:729b:75e3 with SMTP id
+ c2-20020ac87dc2000000b002f3729b75e3mr15294828qte.197.1651235823742; Fri, 29
+ Apr 2022 05:37:03 -0700 (PDT)
 MIME-Version: 1.0
 References: <20220425152317.4275-1-ramalingam.c@intel.com>
- <20220425152317.4275-2-ramalingam.c@intel.com>
-In-Reply-To: <20220425152317.4275-2-ramalingam.c@intel.com>
+ <20220425152317.4275-3-ramalingam.c@intel.com>
+In-Reply-To: <20220425152317.4275-3-ramalingam.c@intel.com>
 From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Fri, 29 Apr 2022 13:21:03 +0100
-Message-ID: <CAM0jSHNff+p6ER=hLfNSK3Zo6DNr6jNcPStmOFMDtrz8HdZWEQ@mail.gmail.com>
+Date: Fri, 29 Apr 2022 13:36:37 +0100
+Message-ID: <CAM0jSHOETX4dVC9uDy=pxPxKnQrbXB97V0jLh0td98i8yWpaPw@mail.gmail.com>
 To: Ramalingam C <ramalingam.c@intel.com>
 Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/xehpsdv/dg1/tgl: Fix issue
- with LRI relative addressing
+Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915/selftests: Skip poisoning
+ SET_PREDICATE_RESULT on dg2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,27 +65,26 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- Hellstrom Thomas <thomas.hellstrom@intel.com>,
- dri-devel <dri-devel@lists.freedesktop.org>
+ Hellstrom Thomas <thomas.hellstrom@intel.com>, CQ Tang <cq.tang@intel.com>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Chris Wilson <chris.p.wilson@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On Mon, 25 Apr 2022 at 16:22, Ramalingam C <ramalingam.c@intel.com> wrote:
 >
-> From: Akeem G Abodunrin <akeem.g.abodunrin@intel.com>
+> From: Chris Wilson <chris.p.wilson@intel.com>
 >
-> When bit 19 of MI_LOAD_REGISTER_IMM instruction opcode is set on tgl+
-> devices, HW does not care about certain register address offsets, but
-> instead check the following for valid address ranges on specific engines:
->         RCS && CCS: BITS(0 - 10)
->         BCS: BITS(0 - 11)
->         VECS && VCS: BITS(0 - 13)
-> Also, tgl+ now support relative addressing for BCS engine - So, this
-> patch fixes issue with live_gt_lrc selftest that is failing where there is
-> mismatch between LRC register layout generated during init and HW
-> default register offsets.
+> When predication is enabled all commands baring a few (such as MI_BB_END)
+> are nop'ed. If we accidentally enable predication while poisoning the
+> context, not only is the rest of the poisoning skipped (thus disabling
+> the test), but the closing instructions of the poison request are
+> nop'ed. Not only do we then not signal the waiting context, but we even
+> prevent re-enabling arbitration and the GPU will not perform a context
+> switch at the end of the request.
 >
-> Signed-off-by: Akeem G Abodunrin <akeem.g.abodunrin@intel.com>
-> cc: Prathap Kumar Valsan <prathap.kumar.valsan@intel.com>
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> Suggested-by: CQ Tang <cq.tang@intel.com>
+> Signed-off-by: Chris Wilson <chris.p.wilson@intel.com>
 > Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
 Reviewed-by: Matthew Auld <matthew.auld@intel.com>
