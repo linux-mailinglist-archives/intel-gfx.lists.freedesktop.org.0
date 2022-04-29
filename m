@@ -1,50 +1,78 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54E4B5154F1
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 Apr 2022 21:56:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B388D51558F
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 Apr 2022 22:28:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB8E410F0D8;
-	Fri, 29 Apr 2022 19:56:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DCFE110FA6E;
+	Fri, 29 Apr 2022 20:28:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E5D810EF52
- for <intel-gfx@lists.freedesktop.org>; Fri, 29 Apr 2022 19:56:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1651262198; x=1682798198;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Rez7nicUtC3W7Iah4MMs4pxuPbJSfXi1FAt8IXCtNVQ=;
- b=DAnkbDo4133xWIjkktXrBx6Q2e/WASOCIu4ULrh8yuHmUsXhU5FI3mvB
- vGsaAYiJeDUQvwsDUQ3spIDhZHxQ7vXIDECy158b7t/TAElpj+3fXZBIO
- JHawl1avDoDdB1E/6MtzUvpHEoPchAeiBkBlfPBeS3FthJca6ONhDE+ln
- JFXLDS3w4IkyEjOKXir3MbsqfuImkM17DhL0+/TJBIKe8beX+1drrlk/L
- 8/eszuUrhOEK3cHqgWb6Zln6WVXTvSF1ETwMUjV8YTOrhbZf8tLAGMiqq
- fmzvdlU6PksxoAVVreN7zEfkQLo6Kk46JyyqpdpCEc8SQNGaN6RWUd3q5 g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10332"; a="246674402"
-X-IronPort-AV: E=Sophos;i="5.91,186,1647327600"; d="scan'208";a="246674402"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2022 12:56:37 -0700
-X-IronPort-AV: E=Sophos;i="5.91,186,1647327600"; d="scan'208";a="685282474"
-Received: from orsosgc001.jf.intel.com (HELO unerlige-ril-10.165.21.154.com)
- ([10.165.21.154])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2022 12:56:37 -0700
-From: Ashutosh Dixit <ashutosh.dixit@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 29 Apr 2022 12:56:29 -0700
-Message-Id: <780dd0b3fc786ad8272b231a62bc2487ef832e58.1651261886.git.ashutosh.dixit@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <cover.1651261886.git.ashutosh.dixit@intel.com>
-References: <cover.1651261886.git.ashutosh.dixit@intel.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6DAD110FA6E
+ for <intel-gfx@lists.freedesktop.org>; Fri, 29 Apr 2022 20:28:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1651264105;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=n8HsfkpqhssnZoIsPQ1O3oVRAyXbkapxW4GnxH0gSv4=;
+ b=OXyk+ZlA2xofIDLIpoh4YJ+rLWv81XKCIyy/IB39BgGEe31RKH4WNLCYpEDcIa1ShrAN2n
+ Df/3G8VM/wCkyyVQ1ZiPCi2WCGcyyQGgVCm4XzcCAkmyd+sygyQJLNjtrtFnsUkDESUdmC
+ f8FSupPV971Lb1Wl1zABlpBDfU5IZDE=
+Received: from mail-il1-f197.google.com (mail-il1-f197.google.com
+ [209.85.166.197]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-212-FT7fs6G4MHK_kwXqdFBdtA-1; Fri, 29 Apr 2022 16:28:24 -0400
+X-MC-Unique: FT7fs6G4MHK_kwXqdFBdtA-1
+Received: by mail-il1-f197.google.com with SMTP id
+ l13-20020a056e021c0d00b002cc38cb4554so4184338ilh.10
+ for <intel-gfx@lists.freedesktop.org>; Fri, 29 Apr 2022 13:28:23 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=n8HsfkpqhssnZoIsPQ1O3oVRAyXbkapxW4GnxH0gSv4=;
+ b=shocI1hDjGAIa9qpJ2panmaFaG4J9eGBQ7k29puBDLO6GrJQVijlccA/x7nPlHCjXy
+ pzQehmyPTctpAnwIXH3USxzWFqMYWFHZXtqDbBNF5B6GZme7zhx4LzxHaRQkwc74CVan
+ NAI6vKZT8eK8i4tC+QbBt4fC3mW/vm2kXDOn5k3V4+wP20DQNddt5aOP7PGIT2z4+IQG
+ NMjSQ5YOKy5wQ6yVT7HZF95Q2SYBXlAzpZG7Mdmp5hTqk03XiHZYoPUNr1HUWjVuOwpW
+ a8spDdk/x3DUAE/LX2JfhSQxzmPr2fsrlIpXzbTXdVBXcEew8SUJy8uOS3fpbMSOOTF3
+ Sf9Q==
+X-Gm-Message-State: AOAM531jK+mJfNl1ltKaM8MF9AOTyHojrcj05V3rziDC09bCE4lsw2Bu
+ 9QRgGCnXII2HcWqV8dVOLaRiXK2bU+P7GGRGkmRwlRQXlFkzTo/mqYQ16A6dVbjceutX4nbTWBc
+ I01Fvy94iFToLTpMCP1fS1LA2cfiZ
+X-Received: by 2002:a6b:ca44:0:b0:657:b54a:5c53 with SMTP id
+ a65-20020a6bca44000000b00657b54a5c53mr445925iog.108.1651264103327; 
+ Fri, 29 Apr 2022 13:28:23 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwXw055Zf6CAZcffMOqFXVe3D8deItwuTS9dyUJRlHujGyFKq6cxPYeLOoiZHbK09XyaEEw5w==
+X-Received: by 2002:a6b:ca44:0:b0:657:b54a:5c53 with SMTP id
+ a65-20020a6bca44000000b00657b54a5c53mr445889iog.108.1651264103032; 
+ Fri, 29 Apr 2022 13:28:23 -0700 (PDT)
+Received: from redhat.com ([38.15.36.239]) by smtp.gmail.com with ESMTPSA id
+ j7-20020a02cb07000000b0032b3a7817b2sm836302jap.118.2022.04.29.13.28.21
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 29 Apr 2022 13:28:22 -0700 (PDT)
+Date: Fri, 29 Apr 2022 14:28:20 -0600
+From: Alex Williamson <alex.williamson@redhat.com>
+To: Jason Gunthorpe <jgg@nvidia.com>
+Message-ID: <20220429142820.6afe7bbe.alex.williamson@redhat.com>
+In-Reply-To: <7-v2-6011bde8e0a1+5f-vfio_mdev_no_group_jgg@nvidia.com>
+References: <0-v2-6011bde8e0a1+5f-vfio_mdev_no_group_jgg@nvidia.com>
+ <7-v2-6011bde8e0a1+5f-vfio_mdev_no_group_jgg@nvidia.com>
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.33; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 8/8] drm/i915/gt: Expose default value for
- media_freq_factor in per-gt sysfs
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=alex.williamson@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v2 7/7] vfio: Remove calls to
+ vfio_group_add_container_user()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,83 +85,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: kvm@vger.kernel.org, linux-doc@vger.kernel.org,
+ David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
+ Kirti Wankhede <kwankhede@nvidia.com>, Vineeth Vijayan <vneethv@linux.ibm.com>,
+ Alexander Gordeev <agordeev@linux.ibm.com>, Christoph Hellwig <hch@lst.de>,
+ linux-s390@vger.kernel.org, "Liu, Yi L" <yi.l.liu@intel.com>,
+ Matthew Rosato <mjrosato@linux.ibm.com>, Jonathan Corbet <corbet@lwn.net>,
+ Halil Pasic <pasic@linux.ibm.com>,
+ Christian Borntraeger <borntraeger@linux.ibm.com>,
+ intel-gfx@lists.freedesktop.org, Tony Krowiak <akrowiak@linux.ibm.com>,
+ Eric Farman <farman@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>,
+ Heiko Carstens <hca@linux.ibm.com>,
+ Harald Freudenberger <freude@linux.ibm.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gvt-dev@lists.freedesktop.org,
+ Jason Herne <jjherne@linux.ibm.com>, Cornelia Huck <cohuck@redhat.com>,
+ Peter Oberparleiter <oberpar@linux.ibm.com>,
+ Sven Schnelle <svens@linux.ibm.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add the following sysfs file to gt/gtN/.defaults:
-* media_freq_factor
+On Thu, 21 Apr 2022 13:28:38 -0300
+Jason Gunthorpe <jgg@nvidia.com> wrote:
 
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c | 18 ++++++++++++++++++
- drivers/gpu/drm/i915/gt/intel_gt_types.h    |  1 +
- drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c |  2 ++
- 3 files changed, 21 insertions(+)
+> When the open_device() op is called the container_users is incremented and
+> held incremented until close_device(). Thus, so long as drivers call
+> functions within their open_device()/close_device() region they do not
+> need to worry about the container_users.
+> 
+> These functions can all only be called between open_device() and
+> close_device():
+> 
+>   vfio_pin_pages()
+>   vfio_unpin_pages()
+>   vfio_dma_rw()
+>   vfio_register_notifier()
+>   vfio_unregister_notifier()
+> 
+> Eliminate the calls to vfio_group_add_container_user() and add
+> vfio_assert_device_open() to detect driver mis-use.
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
-index 5a191973322e..3a6e22d31d46 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
-@@ -759,6 +759,18 @@ default_boost_freq_mhz_show(struct kobject *kobj, struct kobj_attribute *attr, c
- static struct kobj_attribute default_boost_freq_mhz =
- __ATTR(rps_boost_freq_mhz, 0444, default_boost_freq_mhz_show, NULL);
- 
-+static ssize_t
-+default_media_freq_factor_show(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
-+{
-+	struct intel_gt *gt = kobj_to_gt(kobj->parent);
-+
-+	return sysfs_emit(buf, "%d\n",
-+			  media_ratio_mode_to_factor(gt->rps_defaults.media_ratio_mode));
-+}
-+
-+static struct kobj_attribute default_media_freq_factor =
-+__ATTR(media_freq_factor, 0444, default_media_freq_factor_show, NULL);
-+
- static const struct attribute * const rps_defaults_attrs[] = {
- 	&default_min_freq_mhz.attr,
- 	&default_max_freq_mhz.attr,
-@@ -819,6 +831,12 @@ void intel_gt_sysfs_pm_init(struct intel_gt *gt, struct kobject *kobj)
- 			drm_warn(&gt->i915->drm,
- 				 "failed to create add gt%u media_perf_power_attrs sysfs (%pe)\n",
- 				 gt->info.id, ERR_PTR(ret));
-+
-+		ret = sysfs_create_file(gt->sysfs_defaults, &default_media_freq_factor.attr);
-+		if (ret)
-+			drm_warn(&gt->i915->drm,
-+				 "failed to add gt%u default_media_freq_factor sysfs (%pe)\n",
-+				 gt->info.id, ERR_PTR(ret));
- 	}
- 
- 	ret = add_rps_defaults(gt);
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_types.h b/drivers/gpu/drm/i915/gt/intel_gt_types.h
-index 8b696669b846..07d368ca78ca 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_types.h
-@@ -66,6 +66,7 @@ struct intel_rps_defaults {
- 	u32 min_freq;
- 	u32 max_freq;
- 	u32 boost_freq;
-+	u32 media_ratio_mode;
- };
- 
- enum intel_submission_method {
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
-index cefd864c84eb..047c80838fcd 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
-@@ -260,7 +260,9 @@ int intel_guc_slpc_init(struct intel_guc_slpc *slpc)
- 	slpc->boost_freq = 0;
- 	atomic_set(&slpc->num_waiters, 0);
- 	slpc->num_boosts = 0;
-+
- 	slpc->media_ratio_mode = SLPC_MEDIA_RATIO_MODE_DYNAMIC_CONTROL;
-+	slpc_to_gt(slpc)->rps_defaults.media_ratio_mode = slpc->media_ratio_mode;
- 
- 	mutex_init(&slpc->lock);
- 	INIT_WORK(&slpc->boost_work, slpc_boost_work);
--- 
-2.34.1
+A comment here explaining that decrementing open_count is pushed until
+after close_device to support this feature would help to explain the
+somewhat subtle change in vfio_group_get_device_fd().
+
+Otherwise the series looks ok with fixes noted by previous reviews.
+Thanks,
+
+Alex
 
