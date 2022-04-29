@@ -1,50 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6892514635
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 Apr 2022 12:04:34 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C120051464D
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 Apr 2022 12:10:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C227F10FB90;
-	Fri, 29 Apr 2022 10:04:28 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1AFF610FB8E;
- Fri, 29 Apr 2022 10:04:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1651226667; x=1682762667;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=6uQnL7RaSGfYSBRn+wrXOvgwFMZrMoy+tH/kTu9B1Ds=;
- b=f72aXkxxAc5JLTlUhQwra7eEdLanLcZD0LYA5jwv6KR8EJ4enNi4hHS9
- u0/K0CXCLEwOf7f+9DYHBB+qKsb6vHWYg4rkqJD97ZfzLKIfUywtDdSzN
- If/pUHlY8KCXBeCpYh25pfzch9VnB+LDrWQrdntAYBLR9RiYH/z0aZ65A
- tYqnywMLNsHa/cAy7N2y/umMj54XQBmE3tHZzgRPDZjDWK63MJFglZTzK
- LyvYFBwebdYbyckwHoT1+qQlT4msKxdv74SefYwtzA4HcxH6gIhsDL3NU
- 6UCzX0YVYT8GE5JjYN/dsXHVa52mD3R70p5jP63zsOl0XcwNUk0Q9dH6p g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10331"; a="246512552"
-X-IronPort-AV: E=Sophos;i="5.91,298,1647327600"; d="scan'208";a="246512552"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2022 03:04:26 -0700
-X-IronPort-AV: E=Sophos;i="5.91,298,1647327600"; d="scan'208";a="684516814"
-Received: from pfowens-mobl2.ger.corp.intel.com (HELO tursulin-mobl2.home)
- ([10.213.234.194])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2022 03:04:25 -0700
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: Intel-gfx@lists.freedesktop.org
-Date: Fri, 29 Apr 2022 11:04:14 +0100
-Message-Id: <20220429100414.647857-2-tvrtko.ursulin@linux.intel.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220429100414.647857-1-tvrtko.ursulin@linux.intel.com>
-References: <20220429100414.647857-1-tvrtko.ursulin@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id B79C710FBD6;
+	Fri, 29 Apr 2022 10:10:14 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 767AF10FBD3;
+ Fri, 29 Apr 2022 10:10:13 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id CB3D2B83402;
+ Fri, 29 Apr 2022 10:10:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10EDBC385AD;
+ Fri, 29 Apr 2022 10:10:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+ s=korg; t=1651227010;
+ bh=/fZkfLjWpmIzhdcxrKUWxcmqUV1u1Y3FbmbQ8JbUy1Q=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=OcZ3H86tp/Jk8BaNgocIT5hnynF3bb/7AyyykOP2bQIno2P9PAhMqBT8aY6HX1Xnp
+ 7E3bNt9X93xBxz7L8xUKzAFo+K/H4BP4R1ksbf9Ybo947jWW2YnkbghthPWkp6BEq8
+ jieo7akxYIqUd6M2CjQoDFGgu1RCwZb88gR/WPB4=
+Date: Fri, 29 Apr 2022 12:10:07 +0200
+From: Greg KH <gregkh@linuxfoundation.org>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>
+Message-ID: <Ymu5f8EjdC1Mawzt@kroah.com>
+References: <cover.1651212016.git.mchehab@kernel.org>
+ <a078eb2e46d00ec59c8a91ea0afa5190730c9e58.1651212016.git.mchehab@kernel.org>
+ <YmuZovuDaCYDDG4c@phenom.ffwll.local>
+ <20220429090757.1acb943a@sal.lan> <YmuiKcHgl+nABvo/@kroah.com>
+ <20220429101503.4048db5b@sal.lan>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915: Only setup private tmpfs mount
- when needed and fix logging
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220429101503.4048db5b@sal.lan>
+Subject: Re: [Intel-gfx] [PATCH 1/2] module: add a function to add module
+ references
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,140 +53,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Eero Tamminen <eero.t.tamminen@intel.com>,
- Matthew Auld <matthew.auld@intel.com>, dri-devel@lists.freedesktop.org
+Cc: Kai Vehmanen <kai.vehmanen@intel.com>, intel-gfx@lists.freedesktop.org,
+ Lucas De Marchi <lucas.demarchi@intel.com>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
+ Luis Chamberlain <mcgrof@kernel.org>, mauro.chehab@intel.com,
+ Dan Williams <dan.j.williams@intel.com>, linux-modules@vger.kernel.org,
+ Pierre-Louis Bossart <pierre-louis.bossart@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+On Fri, Apr 29, 2022 at 10:15:03AM +0100, Mauro Carvalho Chehab wrote:
+> HI Greg,
+> 
+> Em Fri, 29 Apr 2022 10:30:33 +0200
+> Greg KH <gregkh@linuxfoundation.org> escreveu:
+> 
+> > On Fri, Apr 29, 2022 at 09:07:57AM +0100, Mauro Carvalho Chehab wrote:
+> > > Hi Daniel,
+> > > 
+> > > Em Fri, 29 Apr 2022 09:54:10 +0200
+> > > Daniel Vetter <daniel@ffwll.ch> escreveu:
+> > >   
+> > > > On Fri, Apr 29, 2022 at 07:31:15AM +0100, Mauro Carvalho Chehab wrote:  
+> > > > > Sometimes, device drivers are bound using indirect references,
+> > > > > which is not visible when looking at /proc/modules or lsmod.
+> > > > > 
+> > > > > Add a function to allow setting up module references for such
+> > > > > cases.
+> > > > > 
+> > > > > Reviewed-by: Dan Williams <dan.j.williams@intel.com>
+> > > > > Signed-off-by: Mauro Carvalho Chehab <mchehab@kernel.org>    
+> > > > 
+> > > > This sounds like duct tape at the wrong level. We should have a
+> > > > device_link connecting these devices, and maybe device_link internally
+> > > > needs to make sure the respective driver modules stay around for long
+> > > > enough too. But open-coding this all over the place into every driver that
+> > > > has some kind of cross-driver dependency sounds terrible.
+> > > > 
+> > > > Or maybe the bug is that the snd driver keeps accessing the hw/component
+> > > > side when that is just plain gone. Iirc there's still fundamental issues
+> > > > there on the sound side of things, which have been attempted to paper over
+> > > > by timeouts and stuff like that in the past instead of enforcing a hard
+> > > > link between the snd and i915 side.  
+> > > 
+> > > I agree with you that the device link between snd-hda and the DRM driver
+> > > should properly handle unbinding on both directions. This is something
+> > > that require further discussions with ALSA and DRM people, and we should
+> > > keep working on it.
+> > > 
+> > > Yet, the binding between those drivers do exist, but, despite other
+> > > similar inter-driver bindings being properly reported by lsmod, this one
+> > > is invisible for userspace.
+> > > 
+> > > What this series does is to make such binding visible. As simple as that.  
+> > 
+> > It also increases the reference count, and creates a user/kernel api
+> > with the symlinks, right?  Will the reference count increase prevent the
+> > modules from now being unloadable?
+> >
+> > This feels like a very "weak" link between modules that should not be
+> > needed if reference counting is implemented properly (so that things are
+> > cleaned up in the correct order.)
+> 
+> The refcount increment exists even without this patch, as
+> hda_component_master_bind() at sound/hda/hdac_component.c uses 
+> try_module_get() when it creates the device link.
 
-If i915 does not want to use huge pages there is a) no point in setting up
-the private mount and b) should former fail, it is misleading to log THP
-support is disabled in the caller, which does not even know if callee
-tried to enable it.
+Ok, then why shouldn't try_module_get() be creating this link instead of
+having to manually do it this way again?  You don't want to have to go
+around and add this call to all users of that function, right?
 
-Fix both by restructuring the flow in i915_gemfs_init and at the same time
-note the failure to set it up in all cases.
+thanks,
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Eero Tamminen <eero.t.tamminen@intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_shmem.c | 11 +-----
- drivers/gpu/drm/i915/gem/i915_gemfs.c     | 45 ++++++++++-------------
- drivers/gpu/drm/i915/gem/i915_gemfs.h     |  3 +-
- 3 files changed, 23 insertions(+), 36 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-index c2a3e388fcb4..955844f19193 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-@@ -671,17 +671,10 @@ i915_gem_object_create_shmem_from_data(struct drm_i915_private *dev_priv,
- 
- static int init_shmem(struct intel_memory_region *mem)
- {
--	int err;
--
--	err = i915_gemfs_init(mem->i915);
--	if (err) {
--		DRM_NOTE("Unable to create a private tmpfs mount, hugepage support will be disabled(%d).\n",
--			 err);
--	}
--
-+	i915_gemfs_init(mem->i915);
- 	intel_memory_region_set_name(mem, "system");
- 
--	return 0; /* Don't error, we can simply fallback to the kernel mnt */
-+	return 0; /* We have fallback to the kernel mnt if gemfs init failed. */
- }
- 
- static int release_shmem(struct intel_memory_region *mem)
-diff --git a/drivers/gpu/drm/i915/gem/i915_gemfs.c b/drivers/gpu/drm/i915/gem/i915_gemfs.c
-index c5a6bbc842fc..46b9a17d6abc 100644
---- a/drivers/gpu/drm/i915/gem/i915_gemfs.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gemfs.c
-@@ -11,16 +11,11 @@
- #include "i915_gemfs.h"
- #include "i915_utils.h"
- 
--int i915_gemfs_init(struct drm_i915_private *i915)
-+void i915_gemfs_init(struct drm_i915_private *i915)
- {
- 	char huge_opt[] = "huge=within_size"; /* r/w */
- 	struct file_system_type *type;
- 	struct vfsmount *gemfs;
--	char *opts;
--
--	type = get_fs_type("tmpfs");
--	if (!type)
--		return -ENODEV;
- 
- 	/*
- 	 * By creating our own shmemfs mountpoint, we can pass in
-@@ -34,29 +29,29 @@ int i915_gemfs_init(struct drm_i915_private *i915)
- 	 * regressions such a slow reads issue on Broadwell and Skylake.
- 	 */
- 
--	opts = NULL;
--	if (GRAPHICS_VER(i915) >= 11 || i915_vtd_active(i915)) {
--		if (IS_ENABLED(CONFIG_TRANSPARENT_HUGEPAGE)) {
--			opts = huge_opt;
--			drm_info(&i915->drm,
--				 "Transparent Hugepage mode '%s'\n",
--				 opts);
--		} else {
--			drm_notice(&i915->drm,
--				   "Transparent Hugepage support is recommended for optimal performance%s\n",
--				   GRAPHICS_VER(i915) >= 11 ?
--				   " on this platform!" :
--				   " when IOMMU is enabled!");
--		}
--	}
-+	if (GRAPHICS_VER(i915) < 11 && !i915_vtd_active(i915))
-+		return;
-+
-+	if (!IS_ENABLED(CONFIG_TRANSPARENT_HUGEPAGE))
-+		goto err;
- 
--	gemfs = vfs_kern_mount(type, SB_KERNMOUNT, type->name, opts);
-+	type = get_fs_type("tmpfs");
-+	if (!type)
-+		goto err;
-+
-+	gemfs = vfs_kern_mount(type, SB_KERNMOUNT, type->name, huge_opt);
- 	if (IS_ERR(gemfs))
--		return PTR_ERR(gemfs);
-+		goto err;
- 
- 	i915->mm.gemfs = gemfs;
--
--	return 0;
-+	drm_info(&i915->drm, "Using Transparent Hugepages\n");
-+	return;
-+
-+err:
-+	drm_notice(&i915->drm,
-+		   "Transparent Hugepage support is recommended for optimal performance%s\n",
-+		   GRAPHICS_VER(i915) >= 11 ? " on this platform!" :
-+					      " when IOMMU is enabled!");
- }
- 
- void i915_gemfs_fini(struct drm_i915_private *i915)
-diff --git a/drivers/gpu/drm/i915/gem/i915_gemfs.h b/drivers/gpu/drm/i915/gem/i915_gemfs.h
-index 2a1e59af3e4a..5d835e44c4f6 100644
---- a/drivers/gpu/drm/i915/gem/i915_gemfs.h
-+++ b/drivers/gpu/drm/i915/gem/i915_gemfs.h
-@@ -9,8 +9,7 @@
- 
- struct drm_i915_private;
- 
--int i915_gemfs_init(struct drm_i915_private *i915);
--
-+void i915_gemfs_init(struct drm_i915_private *i915);
- void i915_gemfs_fini(struct drm_i915_private *i915);
- 
- #endif
--- 
-2.32.0
-
+greg k-h
