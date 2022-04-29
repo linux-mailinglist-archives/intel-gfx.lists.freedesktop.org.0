@@ -2,33 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E0D15155C7
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 Apr 2022 22:37:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 15D965155C8
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 Apr 2022 22:38:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B8C510E7B8;
-	Fri, 29 Apr 2022 20:37:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C957210E77F;
+	Fri, 29 Apr 2022 20:37:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 032CE10E77F;
- Fri, 29 Apr 2022 20:37:55 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A60A710E77F;
+ Fri, 29 Apr 2022 20:37:57 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 019C8A7DFB;
- Fri, 29 Apr 2022 20:37:54 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id A8B5BA7DFB;
+ Fri, 29 Apr 2022 20:37:57 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Ashutosh Dixit" <ashutosh.dixit@intel.com>
-Date: Fri, 29 Apr 2022 20:37:54 -0000
-Message-ID: <165126467497.1649.5153958441082143736@emeril.freedesktop.org>
+Date: Fri, 29 Apr 2022 20:37:57 -0000
+Message-ID: <165126467768.1653.7524390807649748915@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <cover.1651261886.git.ashutosh.dixit@intel.com>
 In-Reply-To: <cover.1651261886.git.ashutosh.dixit@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_Media_freq_factor_and_per-gt_enhancements/fixes?=
- =?utf-8?q?_=28rev4=29?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/i915=3A_Media_freq_factor_and_per-gt_enhancements/fixes_=28?=
+ =?utf-8?q?rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,23 +54,8 @@ State : warning
 
 == Summary ==
 
-Error: dim checkpatch failed
-720f593ecbb4 drm/i915: Introduce has_media_ratio_mode
-3c55d72952c7 drm/i915/gt: Add media freq factor to per-gt sysfs
-7d95ec03bc5c drm/i915/pcode: Extend pcode functions for multiple gt's
-d4d085d5329c drm/i915/pcode: Add a couple of pcode helpers
-87ee92d4c079 drm/i915/gt: Add media RP0/RPn to per-gt sysfs
--:83: CHECK:CAMELCASE: Avoid CamelCase: <media_RPn_freq_mhz>
-#83: FILE: drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c:719:
-+static DEVICE_ATTR_RO(media_RPn_freq_mhz);
-
--:89: CHECK:CAMELCASE: Avoid CamelCase: <dev_attr_media_RPn_freq_mhz>
-#89: FILE: drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c:725:
-+	&dev_attr_media_RPn_freq_mhz.attr,
-
-total: 0 errors, 0 warnings, 2 checks, 80 lines checked
-8ab6df0311f7 drm/i915/gt: Fix memory leaks in per-gt sysfs
-e7bbfef93b31 drm/i915/gt: Expose per-gt RPS defaults in sysfs
-ffca9fefe5d0 drm/i915/gt: Expose default value for media_freq_factor in per-gt sysfs
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
