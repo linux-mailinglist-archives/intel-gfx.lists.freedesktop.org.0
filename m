@@ -2,52 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D4D451501C
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 Apr 2022 18:00:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 866B95150F6
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 Apr 2022 18:36:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B72610E68A;
-	Fri, 29 Apr 2022 16:00:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B502510E512;
+	Fri, 29 Apr 2022 16:36:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C326110E68A
- for <intel-gfx@lists.freedesktop.org>; Fri, 29 Apr 2022 16:00:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1651248044; x=1682784044;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=FSRuPvM38YYLMGyAqahRup5DZLgz3sKcHdsmS0CF79A=;
- b=FypwF/jHzi+EQJum129zJeHMjox95nGNRh/qQuFyQroRMQH+X9EovpqA
- UrBzhgCPfw23F2OKOmcbkQhJJZ+w4qaz7uMNsnQmysU424vviUxJqZ1cv
- viq69AknXC0LOGAFAw44n1qo9tbpGWySt/IDm1Cc6HDdxvvu/RM8aJ2no
- hT/GgFDiGa4nwfeNTR28pyCPLuWu8arDLPQhy9JtrrZkmikW9wI5dAK7x
- uhDPgjqSiInTtRAhB8n+qq5Ji9+25Rs7vLDpTFjScLEXfdjveM3fPT9mf
- rmWRNtfpXLbHAEKY09FtvvMC/hTOpjMDWnTaNu7gpLuVy2NNt04PWSH5C Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10332"; a="264270821"
-X-IronPort-AV: E=Sophos;i="5.91,185,1647327600"; d="scan'208";a="264270821"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2022 09:00:43 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,185,1647327600"; d="scan'208";a="566195202"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.51])
- by fmsmga007.fm.intel.com with SMTP; 29 Apr 2022 09:00:41 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 29 Apr 2022 19:00:40 +0300
-Date: Fri, 29 Apr 2022 19:00:40 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
-Message-ID: <YmwLqETt7MXafIRg@intel.com>
-References: <20220428211058.399630-1-jose.souza@intel.com>
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk
+ [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1AE4010F8D2
+ for <intel-gfx@lists.freedesktop.org>; Fri, 29 Apr 2022 02:38:09 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+ (Authenticated sender: alarumbe) with ESMTPSA id AA1B31F42442
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1651199887;
+ bh=Qeej3HM/ahc/WMGGfhMJSe64cx2xxuV/Bazi9v80ed4=;
+ h=From:To:Cc:Subject:Date:From;
+ b=G5T/mPebfqyFzA1JeqfzG/8Xa1bdca4zDPsSdmstc6VotvbPSWWG3zkXaJ6C9tRNe
+ uIfbanzWbidIAE6Ar+568j5c/ITkFpJY+yKXEujZrVzGN+0MfvlJxE2bywYEHiwsbv
+ NtxoBaY1qoHo0XLzVFOIRvvB20lAreoftrWeH2PqGyFEBZQsMCOLFc1TqJI2lcK6KY
+ TKIUmR80JHkYxikk5OSeOQnjgEHG1uUeMWjVnLkA0YqDPxo7VVkJ1+0kigyvB9V4/T
+ zF+6FOISfHFIFrzLVMzWLIZeCIUfYb/XBqLCTO5/vsml2AEStpnQcrrgQfDc3QWRir
+ dlZcorRUvi+0g==
+From: Adrian Larumbe <adrian.larumbe@collabora.com>
+To: daniel@ffwll.ch,
+	intel-gfx@lists.freedesktop.org
+Date: Fri, 29 Apr 2022 03:37:56 +0100
+Message-Id: <20220429023756.948415-1-adrian.larumbe@collabora.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220428211058.399630-1-jose.souza@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/display: Do not schedule DRRS
- work thread when it is not active
+X-Mailman-Approved-At: Fri, 29 Apr 2022 16:36:46 +0000
+Subject: [Intel-gfx] [PATCH] drm/i915: Change semantics of context isolation
+ reporting to UM
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,45 +48,133 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: adrian.larumbe@collabora.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Apr 28, 2022 at 02:10:56PM -0700, José Roberto de Souza wrote:
-> Frontbuffer updates were scheduling the execution of DRRS work thread
-> even if DRRS is not active.
-> There was no issues with it because intel_drrs_downclock_work() checks
-> if DRRS is active but there is no reason to keep scheduling this work
-> thread and wasting CPU time.
-> 
-> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_drrs.c | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_drrs.c b/drivers/gpu/drm/i915/display/intel_drrs.c
-> index 166caf293f7bc..04bc296761be0 100644
-> --- a/drivers/gpu/drm/i915/display/intel_drrs.c
-> +++ b/drivers/gpu/drm/i915/display/intel_drrs.c
-> @@ -236,6 +236,11 @@ static void intel_drrs_frontbuffer_update(struct drm_i915_private *dev_priv,
->  		else
->  			crtc->drrs.busy_frontbuffer_bits &= ~frontbuffer_bits;
->  
-> +		if (!intel_drrs_is_active(crtc)) {
-> +			mutex_unlock(&crtc->drrs.mutex);
-> +			continue;
-> +		}
+I915_PARAM_HAS_CONTEXT_ISOLATION was already being used as a boolean by
+both Iris and Vulkan , and stood for the guarantee that, when creating a
+new context, all state set by it will not leak to any other context.
 
-Should be impossible due to crtc->drrs.frontbuffer_bits==0.
+However the actual return value was a bitmask where every bit stood for an
+initialised engine, and IGT test gem_ctx_isolation makes use of this mask
+for deciding on the actual context engine isolation status.
 
-> +
->  		/* flush/invalidate means busy screen hence upclock */
->  		intel_drrs_set_state(crtc, DRRS_REFRESH_RATE_HIGH);
->  
-> -- 
-> 2.36.0
+However, we do not provide UAPI for IGT tests, so the value returned by the
+PARAM ioctl has to reflect Mesa usage as a boolean.
 
+This change only made sense after compute engine support was added to the
+driver in commit 944823c9463916dd53f3 ("drm/i915/xehp: Define compute class
+and engine") because no context isolation can be assumed on any device with
+both RCS annd CCS engines.
+
+Signed-off-by: Adrian Larumbe <adrian.larumbe@collabora.com>
+---
+ drivers/gpu/drm/i915/gt/intel_engine_user.c | 13 ++++++++++++-
+ drivers/gpu/drm/i915/gt/intel_engine_user.h |  1 +
+ drivers/gpu/drm/i915/i915_drm_client.h      |  2 +-
+ drivers/gpu/drm/i915/i915_getparam.c        |  2 +-
+ include/uapi/drm/i915_drm.h                 | 14 +++-----------
+ 5 files changed, 18 insertions(+), 14 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_user.c b/drivers/gpu/drm/i915/gt/intel_engine_user.c
+index 0f6cd96b459f..2d6bd36d6150 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_user.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_user.c
+@@ -47,7 +47,7 @@ static const u8 uabi_classes[] = {
+ 	[COPY_ENGINE_CLASS] = I915_ENGINE_CLASS_COPY,
+ 	[VIDEO_DECODE_CLASS] = I915_ENGINE_CLASS_VIDEO,
+ 	[VIDEO_ENHANCEMENT_CLASS] = I915_ENGINE_CLASS_VIDEO_ENHANCE,
+-	/* TODO: Add COMPUTE_CLASS mapping once ABI is available */
++	[COMPUTE_CLASS] = I915_ENGINE_CLASS_COMPUTE,
+ };
+ 
+ static int engine_cmp(void *priv, const struct list_head *A,
+@@ -306,3 +306,14 @@ unsigned int intel_engines_has_context_isolation(struct drm_i915_private *i915)
+ 
+ 	return which;
+ }
++
++bool intel_cross_engine_isolated(struct drm_i915_private *i915)
++{
++	unsigned int which = intel_engines_has_context_isolation(i915);
++
++	if ((which & BIT(I915_ENGINE_CLASS_RENDER)) &&
++	    (which & BIT(I915_ENGINE_CLASS_COMPUTE)))
++		return false;
++
++	return !!which;
++}
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_user.h b/drivers/gpu/drm/i915/gt/intel_engine_user.h
+index 3dc7e8ab9fbc..ff21349db4d4 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_user.h
++++ b/drivers/gpu/drm/i915/gt/intel_engine_user.h
+@@ -15,6 +15,7 @@ struct intel_engine_cs *
+ intel_engine_lookup_user(struct drm_i915_private *i915, u8 class, u8 instance);
+ 
+ unsigned int intel_engines_has_context_isolation(struct drm_i915_private *i915);
++bool intel_cross_engine_isolated(struct drm_i915_private *i915);
+ 
+ void intel_engine_add_user(struct intel_engine_cs *engine);
+ void intel_engines_driver_register(struct drm_i915_private *i915);
+diff --git a/drivers/gpu/drm/i915/i915_drm_client.h b/drivers/gpu/drm/i915/i915_drm_client.h
+index 5f5b02b01ba0..f796c5e8e060 100644
+--- a/drivers/gpu/drm/i915/i915_drm_client.h
++++ b/drivers/gpu/drm/i915/i915_drm_client.h
+@@ -13,7 +13,7 @@
+ 
+ #include "gt/intel_engine_types.h"
+ 
+-#define I915_LAST_UABI_ENGINE_CLASS I915_ENGINE_CLASS_VIDEO_ENHANCE
++#define I915_LAST_UABI_ENGINE_CLASS I915_ENGINE_CLASS_COMPUTE
+ 
+ struct drm_i915_private;
+ 
+diff --git a/drivers/gpu/drm/i915/i915_getparam.c b/drivers/gpu/drm/i915/i915_getparam.c
+index c12a0adefda5..3d5120d2d78a 100644
+--- a/drivers/gpu/drm/i915/i915_getparam.c
++++ b/drivers/gpu/drm/i915/i915_getparam.c
+@@ -145,7 +145,7 @@ int i915_getparam_ioctl(struct drm_device *dev, void *data,
+ 		value = 1;
+ 		break;
+ 	case I915_PARAM_HAS_CONTEXT_ISOLATION:
+-		value = intel_engines_has_context_isolation(i915);
++		value = intel_cross_engine_isolated(i915);
+ 		break;
+ 	case I915_PARAM_SLICE_MASK:
+ 		value = sseu->slice_mask;
+diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+index 35ca528803fd..84c0af77cc1f 100644
+--- a/include/uapi/drm/i915_drm.h
++++ b/include/uapi/drm/i915_drm.h
+@@ -166,6 +166,7 @@ enum drm_i915_gem_engine_class {
+ 	I915_ENGINE_CLASS_COPY		= 1,
+ 	I915_ENGINE_CLASS_VIDEO		= 2,
+ 	I915_ENGINE_CLASS_VIDEO_ENHANCE	= 3,
++	I915_ENGINE_CLASS_COMPUTE	= 4,
+ 
+ 	/* should be kept compact */
+ 
+@@ -635,17 +636,8 @@ typedef struct drm_i915_irq_wait {
+ #define I915_PARAM_HAS_EXEC_FENCE_ARRAY  49
+ 
+ /*
+- * Query whether every context (both per-file default and user created) is
+- * isolated (insofar as HW supports). If this parameter is not true, then
+- * freshly created contexts may inherit values from an existing context,
+- * rather than default HW values. If true, it also ensures (insofar as HW
+- * supports) that all state set by this context will not leak to any other
+- * context.
+- *
+- * As not every engine across every gen support contexts, the returned
+- * value reports the support of context isolation for individual engines by
+- * returning a bitmask of each engine class set to true if that class supports
+- * isolation.
++ * Query whether the device can make cross-engine isolation guarantees for
++ * all the engines whose default state has been initialised.
+  */
+ #define I915_PARAM_HAS_CONTEXT_ISOLATION 50
+ 
 -- 
-Ville Syrjälä
-Intel
+2.35.1
+
