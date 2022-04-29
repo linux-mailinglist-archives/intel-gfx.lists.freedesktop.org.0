@@ -1,34 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2AA0514A55
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 Apr 2022 15:19:16 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CAA6A514B42
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 Apr 2022 15:52:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 09E6310ED07;
-	Fri, 29 Apr 2022 13:19:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6403210ED1B;
+	Fri, 29 Apr 2022 13:52:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7F8D210ED07;
- Fri, 29 Apr 2022 13:19:14 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 7F8C8A00FD;
- Fri, 29 Apr 2022 13:19:14 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mail-qt1-x832.google.com (mail-qt1-x832.google.com
+ [IPv6:2607:f8b0:4864:20::832])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1F46E10EC9B;
+ Fri, 29 Apr 2022 13:52:10 +0000 (UTC)
+Received: by mail-qt1-x832.google.com with SMTP id y3so5782789qtn.8;
+ Fri, 29 Apr 2022 06:52:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=Qqmh4QicnWPaJCJC7c88rxJhni8pNLr/gnKY6HjMk8A=;
+ b=i5fIr3cePj+cTj9SbN9xwnGYEAJ2an2z+oBClMzCZFrn/n5tewtHlZKxWwn0AFPzQ6
+ GA66hZU7t6t7hIwdV9XLtTsIDsRfcXAv5oEZ1qYB3sH9rKnjkVRgt4+E0qv+cljZQyU7
+ awvO27agZ8rjQxHfD/Q9/pShKQN1OfwnD8udJSzq/BoFNy7O94e5z4GAXd+usRu6Alkc
+ Aw3laLxXLc7c22HbtSean9BqI6Gbyco7PEzsDYnw+nCdqeHfWtzPfVL9TRMov5DW1MQ/
+ p0ha0jVFbxe8jCqffvt53Z2eOaSqmtVGGJ//lY/0bWVB0MfNhDA+L7BEXuWDnbNz8K+A
+ h+Uw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=Qqmh4QicnWPaJCJC7c88rxJhni8pNLr/gnKY6HjMk8A=;
+ b=DQr1eyFliEm7525d6mzj5grU4Jz77OqSjRWJkNvctYbLaNVdzGU132O1EYzN43QgiR
+ VhkWt+G6M6sbJ7yZIa7VS8be0D5mwKIrfMptbFH4Gl0+HgTno0QmMKp0dcKaRtl4rro8
+ qItwH56luBTGROVVld+Zd2hq6+n3eLq90E62MlYghwyM3/dUCKG/jBT+kThcHNyoBZDI
+ aNfTZcvyChazhuo6CdZmAFEkkhgBcCJ9xmiduG0RHPr9jDue/scfvIHYwYQ/K3gZgPE0
+ abKyMh5gc6wF91xIRMZGJUCEL+8QcuEx1LGYo/gJ2L5eSwTUpTXBwHvoQRWcsk+2q8KA
+ OHWg==
+X-Gm-Message-State: AOAM530Cfv+KQoNzKmRDsxQqokqQZhLEflN4ooKFS17VPeYhk0BOxKMS
+ sys4cAH7XBCr+W5iGxxouQzGl6XbguoiB6JnEUUeOYliD1U=
+X-Google-Smtp-Source: ABdhPJwa5yJIzbTjva35jH/1X3nJ7ehTFRtH4t2+aU/TjOrvcRzlyOcoXELjq3LAfBBBj2jOoQZZ5Y/AgTlVHE3m0Ds=
+X-Received: by 2002:a05:622a:6115:b0:2f1:d8fa:84aa with SMTP id
+ hg21-20020a05622a611500b002f1d8fa84aamr27670309qtb.689.1651240329189; Fri, 29
+ Apr 2022 06:52:09 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
-Date: Fri, 29 Apr 2022 13:19:14 -0000
-Message-ID: <165123835451.1653.16482347581302438704@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220429100414.647857-1-tvrtko.ursulin@linux.intel.com>
-In-Reply-To: <20220429100414.647857-1-tvrtko.ursulin@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?series_starting_with_=5B1/2=5D_drm/i915=3A_Enable_THP_on_Icelak?=
- =?utf-8?q?e_and_beyond?=
+References: <20220425152317.4275-1-ramalingam.c@intel.com>
+ <20220425152317.4275-4-ramalingam.c@intel.com>
+In-Reply-To: <20220425152317.4275-4-ramalingam.c@intel.com>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Fri, 29 Apr 2022 14:51:42 +0100
+Message-ID: <CAM0jSHOvfE5i-ET2OmC926p59jLL0=vg_vxanFFG41H-aVhADQ@mail.gmail.com>
+To: Ramalingam C <ramalingam.c@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915/gt: Clear SET_PREDICATE_RESULT
+ prior to executing the ring
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,21 +64,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ Hellstrom Thomas <thomas.hellstrom@intel.com>,
+ Chris Wilson <chris.p.wilson@intel.com>,
+ dri-devel <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: series starting with [1/2] drm/i915: Enable THP on Icelake and beyond
-URL   : https://patchwork.freedesktop.org/series/103330/
-State : warning
-
-== Summary ==
-
-Error: dim sparse failed
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
-
-
+On Mon, 25 Apr 2022 at 16:22, Ramalingam C <ramalingam.c@intel.com> wrote:
+>
+> From: Chris Wilson <chris.p.wilson@intel.com>
+>
+> Userspace may leave predication enabled upon return from the batch
+> buffer, which has the consequent of preventing all operation from the
+> ring from being executed, including all the synchronisation, coherency
+> control, arbitration and user signaling. This is more than just a local
+> gpu hang in one client, as the user has the ability to prevent the
+> kernel from applying critical workarounds and can cause a full GT reset.
+>
+> We could simply execute MI_SET_PREDICATE upon return from the user
+> batch, but this has the repercussion of modifying the user's context
+> state. Instead, we opt to execute a fixup batch which by mixing
+> predicated operations can determine the state of the
+> SET_PREDICATE_RESULT register and restore it prior to the next userspace
+> batch. This allows us to protect the kernel's ring without changing the
+> uABI.
+>
+> Suggested-by: Zbigniew Kempczynski <zbigniew.kempczynski@intel.com>
+> Signed-off-by: Chris Wilson <chris.p.wilson@intel.com>
+> Cc: Zbigniew Kempczynski <zbigniew.kempczynski@intel.com>
+> Cc: Thomas Hellstrom <thomas.hellstrom@intel.com>
+> Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
