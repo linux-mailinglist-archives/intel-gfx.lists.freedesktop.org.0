@@ -2,47 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECD6B51425C
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 Apr 2022 08:31:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E2C885142BC
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 Apr 2022 08:56:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 174F410FB93;
-	Fri, 29 Apr 2022 06:31:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 809ED10FC19;
+	Fri, 29 Apr 2022 06:56:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8073E10FB92;
- Fri, 29 Apr 2022 06:31:28 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id B1CBF61D94;
- Fri, 29 Apr 2022 06:31:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21056C385AF;
- Fri, 29 Apr 2022 06:31:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1651213887;
- bh=gGK7/gBcj48QlxuUQ6aLxtWNQgyWkYr7fybLKh0KD5c=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=MbmY5wfpkIXYzVOY7GrWXGECIEPh4shZM0RuPaXg/0Pj3b62Ok4OxUHJfO1disdc6
- v/aNccc7zhdMTWUjzv5GKqeWAEITIiynZ6Aq6cIGLE+EBCAx5+L476WZThSPpLXa6t
- 93I/1eyw5mATjnSM7HXiPsJTeYs7BRTIDy+YKdEK0lfz70yTYjYuZudGITkfd12rPj
- 4lgICGJ6SnFQQabh9SmD4Y5XX1+q+ES4gWn9BshAcmn1NlMVOiDEhdEBaY1ksWxClF
- c+WWMHte6ENzDZX0deLkyoqvooI1c0bqPgRHYQWbVS/NqRZTJerGzZEl3CfpyzrvSW
- g26ODSGzqn1EA==
-Received: from mchehab by mail.kernel.org with local (Exim 4.94.2)
- (envelope-from <mchehab@kernel.org>)
- id 1nkK9z-001Qml-NN; Fri, 29 Apr 2022 07:31:23 +0100
-From: Mauro Carvalho Chehab <mchehab@kernel.org>
-To: Luis Chamberlain <mcgrof@kernel.org>
-Date: Fri, 29 Apr 2022 07:31:16 +0100
-Message-Id: <5c3a968858a05c27e299eadf2a925d4aa91ac17a.1651212016.git.mchehab@kernel.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <cover.1651212016.git.mchehab@kernel.org>
-References: <cover.1651212016.git.mchehab@kernel.org>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 719D310FC19;
+ Fri, 29 Apr 2022 06:56:35 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 70366A0003;
+ Fri, 29 Apr 2022 06:56:35 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/2] ALSA: hda - identify when audio is provided
- by a video driver
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mauro Carvalho Chehab" <mchehab@kernel.org>
+Date: Fri, 29 Apr 2022 06:56:35 -0000
+Message-ID: <165121539543.1651.5027094544072132977@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <cover.1651212016.git.mchehab@kernel.org>
+In-Reply-To: <cover.1651212016.git.mchehab@kernel.org>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Let_userspace_know_when_snd-hda-intel_needs_i915?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,58 +40,28 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alsa-devel@alsa-project.org, Kai Vehmanen <kai.vehmanen@intel.com>,
- linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- Lucas De Marchi <lucas.demarchi@intel.com>, Takashi Iwai <tiwai@suse.com>,
- dri-devel@lists.freedesktop.org, Jaroslav Kysela <perex@perex.cz>,
- David Airlie <airlied@linux.ie>, mauro.chehab@intel.com,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Pierre-Louis Bossart <pierre-louis.bossart@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On some devices, the hda driver needs to hook into a video driver,
-in order to be able to properly access the audio hardware and/or
-the power management function.
+== Series Details ==
 
-That's the case of several snd_hda_intel devices that depends on
-i915 driver.
+Series: Let userspace know when snd-hda-intel needs i915
+URL   : https://patchwork.freedesktop.org/series/103315/
+State : warning
 
-Currently, this dependency is hidden from /proc/modules and
-from lsmod, making harder to identify the need to unbind the
-audio driver before being able to unbind the i915 driver.
+== Summary ==
 
-Add a reference for it at the module dependency, in order to
-allow userspace to identify it, and print a message on such
-cases.
-
-Signed-off-by: Mauro Carvalho Chehab <mchehab@kernel.org>
----
-
-See [PATCH 0/2] at: https://lore.kernel.org/all/cover.1651212016.git.mchehab@kernel.org/
-
- sound/hda/hdac_component.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
-
-diff --git a/sound/hda/hdac_component.c b/sound/hda/hdac_component.c
-index bb37e7e0bd79..103c6be8be1e 100644
---- a/sound/hda/hdac_component.c
-+++ b/sound/hda/hdac_component.c
-@@ -211,6 +211,14 @@ static int hdac_component_master_bind(struct device *dev)
- 	}
- 
- 	complete_all(&acomp->master_bind_complete);
-+
-+	if (acomp->ops->owner && acomp->ops->owner->name) {
-+		dev_info(dev, "audio component provided by %s driver\n",
-+			 acomp->ops->owner->name);
-+		module_add_named_dependency(acomp->ops->owner->name,
-+					    dev->driver->owner);
+Error: dim checkpatch failed
+4f9130351583 module: add a function to add module references
+-:53: WARNING:BRACES: braces {} are not necessary for single statement blocks
+#53: FILE: kernel/module.c:838:
++	if (!name || !this || !this->name) {
++		return -EINVAL;
 +	}
-+
- 	return 0;
- 
-  module_put:
--- 
-2.35.1
+
+total: 0 errors, 1 warnings, 0 checks, 56 lines checked
+488163eb8175 ALSA: hda - identify when audio is provided by a video driver
+
 
