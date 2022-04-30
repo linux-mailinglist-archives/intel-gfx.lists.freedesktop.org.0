@@ -1,53 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32BBD515FE3
-	for <lists+intel-gfx@lfdr.de>; Sat, 30 Apr 2022 20:43:38 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 372EA516037
+	for <lists+intel-gfx@lfdr.de>; Sat, 30 Apr 2022 22:05:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D04410E06E;
-	Sat, 30 Apr 2022 18:43:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8956010EADB;
+	Sat, 30 Apr 2022 20:05:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D47410E06E;
- Sat, 30 Apr 2022 18:43:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1651344215; x=1682880215;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=oWYIihokUaJM/i9/QmGaXX3gl+K8rlFxtNay5clvk0I=;
- b=VUtEWa0ssPUBeV3Jrub/2PePGnUp5LPRzfQj7JOg0Tfa77WlEZk//+vV
- gljgn/LouD+0aiyo7qLns4bSD8PGLDniXrUM8xnImoFK/UKQoyqhyOO/m
- 1BPLI1yXIN3rQ97yeqob0OlRE4rxXHuTZgyU84PVHvVIFcLinDrb6nwmm
- u3tPyQumjBxKwWVR6aSD9d/dslwQh3DkKmTXMLF0+D0xiYheIZ7BAmm0q
- K+27FS0s+geHuOzyuLRhAPbs3r5Wb40aTSDWVBuZNiwpHpTVE+2DBxhwG
- Ql/9SLoejbPUHqYv7urofd6026TpK7JYfPS2PTS61Rl5TmKpxxFKNTNex A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10333"; a="246826918"
-X-IronPort-AV: E=Sophos;i="5.91,188,1647327600"; d="scan'208";a="246826918"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2022 11:43:34 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,188,1647327600"; d="scan'208";a="732688331"
-Received: from lkp-server01.sh.intel.com (HELO 5056e131ad90) ([10.239.97.150])
- by orsmga005.jf.intel.com with ESMTP; 30 Apr 2022 11:43:30 -0700
-Received: from kbuild by 5056e131ad90 with local (Exim 4.95)
- (envelope-from <lkp@intel.com>) id 1nks41-0007VT-Fq;
- Sat, 30 Apr 2022 18:43:29 +0000
-Date: Sun, 1 May 2022 02:42:58 +0800
-From: kernel test robot <lkp@intel.com>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>,
- Luis Chamberlain <mcgrof@kernel.org>
-Message-ID: <202205010257.ZFhZYEG9-lkp@intel.com>
-References: <6b5f1e2cec0137d5aab089a7e7497972ff5addb1.1651326000.git.mchehab@kernel.org>
+Received: from dfw.source.kernel.org (dfw.source.kernel.org
+ [IPv6:2604:1380:4641:c500::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B6A8410EAC9;
+ Sat, 30 Apr 2022 20:05:03 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 09C7C60FAD;
+ Sat, 30 Apr 2022 20:05:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 508D4C385A7;
+ Sat, 30 Apr 2022 20:05:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1651349102;
+ bh=qQ90+vzIfAbuP6uHng6MH3iDdoxyuq9y8LCR9IxIB7o=;
+ h=From:To:Cc:Subject:Date:From;
+ b=oriawJX7mtL42TvPN4GPv6rgWqPRYbv0P0DCAGQPD8ae1FLEM8nDTAzpN14/H7KW8
+ QGO8HYOlQCAyusmUQxTlX7AU4uE+KX1ejlriQOa0rzN4yzw7PNTQ+m43xh4ZhWINEK
+ umFfsCvsAW9unoPkPirwbA0MrYCae9t8oHywbEBCVl57MTUkR3/qP+8Wzit3EbdMrB
+ Utv4IKODv4i5UoK0rqOFvbtSzUdB4Lg6CHD7ts0KS2IwfajQwn7/6dxCewnKzvHpUO
+ WCOPJqQY+OyWsG+AziiZVxLzCyGmJT4WZJhQFlOMXKxrUPpOdoLISRJsbZDukeTSbV
+ AsdI7I4+hFoBw==
+Received: from mchehab by mail.kernel.org with local (Exim 4.94.2)
+ (envelope-from <mchehab@kernel.org>)
+ id 1nktKr-001uvr-Ma; Sat, 30 Apr 2022 21:04:57 +0100
+From: Mauro Carvalho Chehab <mchehab@kernel.org>
+To: Luis Chamberlain <mcgrof@kernel.org>
+Date: Sat, 30 Apr 2022 21:04:53 +0100
+Message-Id: <cover.1651348913.git.mchehab@kernel.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <6b5f1e2cec0137d5aab089a7e7497972ff5addb1.1651326000.git.mchehab@kernel.org>
-Subject: Re: [Intel-gfx] [PATCH v3 2/2] ALSA: hda - identify when audio is
- provided by a video driver
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v5 0/2] Let userspace know when snd-hda-intel
+ needs i915
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,107 +54,99 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alsa-devel@alsa-project.org, kbuild-all@lists.01.org,
- mauro.chehab@linux.intel.com, David Airlie <airlied@linux.ie>,
- Greg KH <greg@kroah.com>, intel-gfx@lists.freedesktop.org,
- llvm@lists.linux.dev, Lucas De Marchi <lucas.demarchi@intel.com>,
+Cc: mauro.chehab@linux.intel.com, alsa-devel@alsa-project.org,
+ Kai Vehmanen <kai.vehmanen@intel.com>, Greg KH <gregkh@linuxfoundation.org>,
+ intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
  Takashi Iwai <tiwai@suse.com>, dri-devel@lists.freedesktop.org,
- Jaroslav Kysela <perex@perex.cz>, Kai Vehmanen <kai.vehmanen@intel.com>,
- linux-modules@vger.kernel.org,
- Pierre-Louis Bossart <pierre-louis.bossart@intel.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, linux-kernel@vger.kernel.org,
- linux-media@vger.kernel.org
+ Jaroslav Kysela <perex@perex.cz>, David Airlie <airlied@linux.ie>,
+ linux-modules@vger.kernel.org, Mauro Carvalho Chehab <mchehab@kernel.org>,
+ linux-kernel@vger.kernel.org,
+ Pierre-Louis Bossart <pierre-louis.bossart@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Mauro,
+Currently, kernel/module annotates module dependencies when
+request_symbol is used, but it doesn't cover more complex inter-driver
+dependencies that are subsystem and/or driver-specific.
 
-I love your patch! Yet something to improve:
+In the case of hdmi sound, depending on the CPU/GPU, sometimes the
+snd_hda_driver can talk directly with the hardware, but sometimes, it
+uses the i915 driver. When the snd_hda_driver uses i915, it should
+first be unbind/rmmod, as otherwise trying to unbind/rmmod the i915
+driver cause driver issues, as as reported by CI tools with different
+GPU models:
+	https://intel-gfx-ci.01.org/tree/drm-tip/IGT_6415/fi-tgl-1115g4/igt@core_hotunplug@unbind-rebind.html
+	https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11495/bat-adlm-1/igt@i915_module_load@reload.html
 
-[auto build test ERROR on mcgrof/modules-next]
-[also build test ERROR on linus/master v5.18-rc4 next-20220429]
-[cannot apply to tiwai-sound/for-next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+In the past, just a few CPUs were doing such bindings, but this issue now
+applies to all "modern" Intel CPUs  that have onboard graphics, as well as
+to the  newer discrete GPUs.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Mauro-Carvalho-Chehab/Let-userspace-know-when-snd-hda-intel-needs-i915/20220430-214332
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/mcgrof/linux.git modules-next
-config: riscv-buildonly-randconfig-r003-20220428 (https://download.01.org/0day-ci/archive/20220501/202205010257.ZFhZYEG9-lkp@intel.com/config)
-compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project 400775649969b9baf3bc2a510266e7912bb16ae9)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # install riscv cross compiling tool for clang build
-        # apt-get install binutils-riscv64-linux-gnu
-        # https://github.com/intel-lab-lkp/linux/commit/32f6557b5cc77c3cc2fcf6e68f11d989e31c954d
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Mauro-Carvalho-Chehab/Let-userspace-know-when-snd-hda-intel-needs-i915/20220430-214332
-        git checkout 32f6557b5cc77c3cc2fcf6e68f11d989e31c954d
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=riscv SHELL=/bin/bash sound/hda/
+With the discrete GPU case, the HDA controller is physically separate and
+requires i915 to power on the hardware for all hardware  access. In this
+case, the issue is hit basicly 100% of the time.
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
+With on-board graphics, i915 driver is needed only when the display
+codec is accessed. If i915 is unbind during runtime suspend, while
+snd-hda-intel is still bound, nothing bad happens, but unbinding i915
+on other situations may also cause issues.
 
-All errors (new ones prefixed by >>):
+So, add support at kernel/modules to allow snd-hda drivers to properly
+annotate when a dependency on a DRM driver dependencies exists,
+and add a call to such new function at the snd-hda driver when it
+successfully binds into the DRM driver.
 
->> sound/hda/hdac_component.c:202:7: error: call to undeclared function '__try_module_get'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-           if (!__try_module_get(acomp->ops->owner, dev->driver->owner)) {
-                ^
-   sound/hda/hdac_component.c:202:7: note: did you mean 'try_module_get'?
-   include/linux/module.h:759:20: note: 'try_module_get' declared here
-   static inline bool try_module_get(struct module *module)
-                      ^
-   1 error generated.
+This would allow userspace tools to check and properly remove the
+audio driver before trying to remove or unbind the GPU driver.
 
+It should be noticed that this series conveys the hidden module
+dependencies. Other changes are needed in order to allow
+removing or unbinding the i915 driver while keeping the snd-hda-intel
+driver loaded/bound. With that regards, there are some discussions on
+how to improve this at alsa-devel a while  back:
 
-vim +/__try_module_get +202 sound/hda/hdac_component.c
+https://mailman.alsa-project.org/pipermail/alsa-devel/2021-September/190099.html
 
-   183	
-   184	static int hdac_component_master_bind(struct device *dev)
-   185	{
-   186		struct drm_audio_component *acomp = hdac_get_acomp(dev);
-   187		int ret;
-   188	
-   189		if (WARN_ON(!acomp))
-   190			return -EINVAL;
-   191	
-   192		ret = component_bind_all(dev, acomp);
-   193		if (ret < 0)
-   194			return ret;
-   195	
-   196		if (WARN_ON(!(acomp->dev && acomp->ops))) {
-   197			ret = -EINVAL;
-   198			goto out_unbind;
-   199		}
-   200	
-   201		/* pin the module to avoid dynamic unbinding, but only if given */
- > 202		if (!__try_module_get(acomp->ops->owner, dev->driver->owner)) {
-   203			ret = -ENODEV;
-   204			goto out_unbind;
-   205		}
-   206	
-   207		if (acomp->audio_ops && acomp->audio_ops->master_bind) {
-   208			ret = acomp->audio_ops->master_bind(dev, acomp);
-   209			if (ret < 0)
-   210				goto module_put;
-   211		}
-   212	
-   213		complete_all(&acomp->master_bind_complete);
-   214		return 0;
-   215	
-   216	 module_put:
-   217		module_put(acomp->ops->owner);
-   218	out_unbind:
-   219		component_unbind_all(dev, acomp);
-   220		complete_all(&acomp->master_bind_complete);
-   221	
-   222		return ret;
-   223	}
-   224	
+So, future improvements on both in i915 and the audio drivers could be made.
+E.g. with  discrete GPUs, it's the only codec of the card, so it seems feasible
+to detach the ALSA card if i915 is bound (using infra made for VGA
+switcheroo), but,  until these improvements are done and land in
+upstream, audio drivers needs to be unbound if i915 driver goes unbind.
+
+Yet, even if such fixes got merged, this series is still needed, as it makes
+such dependencies more explicit and easier to debug.
+
+PS.: This series was generated against next-20220428.
+
+---
+
+v5:
+- while v4 works fine, it ends calling try_module_format() recursively, which
+  is not what it it was supposed to do. So, change the logic to avoid such
+  recursion, by adding a static __try_module_format() and renaming the
+  new version that takes two arguments as try_module_format_owner().
+
+v4:
+ - fix a compilation warning reported by Intel's Kernel robot when
+   !CONFIG_MODULE_UNLOAD or !CONFIG_MODULE.
+
+v3: minor fixes:
+ - fixed a checkpatch warning;
+ - use a single line for the new function prototype.
+
+v2:
+ - the dependencies are now handled directly at try_module_get().
+
+Mauro Carvalho Chehab (2):
+  module: update dependencies at try_module_get()
+  ALSA: hda - identify when audio is provided by a video driver
+
+ include/linux/module.h     |  8 +++--
+ kernel/module/main.c       | 65 ++++++++++++++++++++++++++++++--------
+ sound/hda/hdac_component.c |  2 +-
+ 3 files changed, 57 insertions(+), 18 deletions(-)
 
 -- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+2.35.1
+
+
