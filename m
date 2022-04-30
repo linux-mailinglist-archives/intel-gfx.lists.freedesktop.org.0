@@ -2,47 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2A63515DC0
-	for <lists+intel-gfx@lfdr.de>; Sat, 30 Apr 2022 15:42:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 99172515DF5
+	for <lists+intel-gfx@lfdr.de>; Sat, 30 Apr 2022 16:03:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C419310E57F;
-	Sat, 30 Apr 2022 13:41:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A77C10E7A3;
+	Sat, 30 Apr 2022 14:03:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9BC8710E4F6;
- Sat, 30 Apr 2022 13:41:55 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id A497E60EBC;
- Sat, 30 Apr 2022 13:41:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B8E6C385A7;
- Sat, 30 Apr 2022 13:41:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1651326114;
- bh=tqVXu6g9oh/W80TNZwCI08nLQ3wJ9C50shdsYteF9Wk=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=cb3YOJLytublE7wGW2KxxKiBXvgND1jxCpgihm/fRJWShxCwNNy8GbV5pg0ZWUz1F
- usDbmllk91NQ1SDqP+Wg+5aaj7u0qE4gneSvSFmgNoLl5bFdHv+GUAWfit0rS2BzJB
- cTs9YnMu4x9ZowvhBvm3fZW58SWTG1P+bW7T4pEfkVTGpCLVwg8fdtvOykn4uYO8ej
- PHnQFjFdRZ+FyellvBvwi+DrArmU5sQbIJc1weosrPL7HFDuV+SJ7qJbY6qLDZJxyl
- gYWYpTSlcFbWKxXYdQjfSWXGLRIZHI1qOtfPll3BC1vzREj89ROC9AsbnHbB6hy1f6
- y4Vlu/Tc2bP9A==
-Received: from mchehab by mail.kernel.org with local (Exim 4.94.2)
- (envelope-from <mchehab@kernel.org>)
- id 1nknM6-001nsj-Ji; Sat, 30 Apr 2022 14:41:50 +0100
-From: Mauro Carvalho Chehab <mchehab@kernel.org>
-To: Luis Chamberlain <mcgrof@kernel.org>
-Date: Sat, 30 Apr 2022 14:41:48 +0100
-Message-Id: <6b5f1e2cec0137d5aab089a7e7497972ff5addb1.1651326000.git.mchehab@kernel.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <cover.1651326000.git.mchehab@kernel.org>
-References: <cover.1651326000.git.mchehab@kernel.org>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 897F810E262;
+ Sat, 30 Apr 2022 14:03:33 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 847D9A008A;
+ Sat, 30 Apr 2022 14:03:33 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 2/2] ALSA: hda - identify when audio is
- provided by a video driver
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mauro Carvalho Chehab" <mchehab@kernel.org>
+Date: Sat, 30 Apr 2022 14:03:33 -0000
+Message-ID: <165132741350.13023.6943586920083013195@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <cover.1651326000.git.mchehab@kernel.org>
+In-Reply-To: <cover.1651326000.git.mchehab@kernel.org>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Let_userspace_know_when_snd-hda-intel_needs_i915_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,49 +40,26 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alsa-devel@alsa-project.org, mauro.chehab@linux.intel.com,
- David Airlie <airlied@linux.ie>, Greg KH <gregkh@linuxfoundation.org>,
- intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
- Takashi Iwai <tiwai@suse.com>, dri-devel@lists.freedesktop.org,
- Jaroslav Kysela <perex@perex.cz>, Kai Vehmanen <kai.vehmanen@intel.com>,
- linux-modules@vger.kernel.org, Mauro Carvalho Chehab <mchehab@kernel.org>,
- linux-kernel@vger.kernel.org,
- Pierre-Louis Bossart <pierre-louis.bossart@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On some devices, the hda driver needs to hook into a video driver,
-in order to be able to properly access the audio hardware and/or
-the power management function.
+== Series Details ==
 
-That's the case of several snd_hda_intel devices that depends on
-i915 driver.
+Series: Let userspace know when snd-hda-intel needs i915 (rev3)
+URL   : https://patchwork.freedesktop.org/series/103315/
+State : warning
 
-Ensure that a proper reference between the snd-hda driver needing
-such binding is shown at /proc/modules, in order to allow userspace
-to know about such binding.
+== Summary ==
 
-Signed-off-by: Mauro Carvalho Chehab <mchehab@kernel.org>
----
+Error: dim checkpatch failed
+91b18bc0af7a module: update dependencies at try_module_get()
+-:24: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
+#24: FILE: include/linux/module.h:615:
++extern bool __try_module_get(struct module *module, struct module *this);
 
-See [PATCH v3 0/2] at: https://lore.kernel.org/all/cover.1651326000.git.mchehab@kernel.org/
+total: 0 errors, 0 warnings, 1 checks, 63 lines checked
+0dc826692eef ALSA: hda - identify when audio is provided by a video driver
 
- sound/hda/hdac_component.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/sound/hda/hdac_component.c b/sound/hda/hdac_component.c
-index bb37e7e0bd79..30e130457272 100644
---- a/sound/hda/hdac_component.c
-+++ b/sound/hda/hdac_component.c
-@@ -199,7 +199,7 @@ static int hdac_component_master_bind(struct device *dev)
- 	}
- 
- 	/* pin the module to avoid dynamic unbinding, but only if given */
--	if (!try_module_get(acomp->ops->owner)) {
-+	if (!__try_module_get(acomp->ops->owner, dev->driver->owner)) {
- 		ret = -ENODEV;
- 		goto out_unbind;
- 	}
--- 
-2.35.1
 
