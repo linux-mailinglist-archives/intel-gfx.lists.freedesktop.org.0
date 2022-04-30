@@ -1,76 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B85D6515A9C
-	for <lists+intel-gfx@lfdr.de>; Sat, 30 Apr 2022 07:28:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D10EC515C47
+	for <lists+intel-gfx@lfdr.de>; Sat, 30 Apr 2022 12:31:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CAF6510EA2A;
-	Sat, 30 Apr 2022 05:28:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0CF3910E027;
+	Sat, 30 Apr 2022 10:31:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF9DA10EA2A
- for <intel-gfx@lists.freedesktop.org>; Sat, 30 Apr 2022 05:28:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1651296529; x=1682832529;
- h=from:to:subject:date:message-id:references:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=xH/fsm+xQYQPHeJBhLL66Ad6Vq2b7OEF399v8AC3Ld0=;
- b=Vkx64dkNMUpYbDgIYrmRqYBJNjdYwNdj3b6JgfFTALxhly9nOOiGFScU
- oJYs9LZrOTBLfxS3voHJI4RAQSMXYsqkalA1DxZqNQBn0LBONdhAedyX9
- n/feVa31PqI6A8KitzyBcZncJJZUj7BBErNdTqkAL1DXLdsGXvGRy+vo7
- 0yMwPWs2BvjLtcvSDTrVTdLZIAcGICotE7v4la4FO6nllK3N3cadTCdk5
- DxckJE6v8f3hrPbkujoy+p7BHkNwOCaib6scI26BtxkBgT5kImT++gvtk
- aDe88TwWvVDwRBH974z0MD3dX/CaMg0dQxBJ3gx9LHpgkxqrybiSO8Nh7 w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10332"; a="247393419"
-X-IronPort-AV: E=Sophos;i="5.91,187,1647327600"; d="scan'208";a="247393419"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2022 22:28:49 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,187,1647327600"; d="scan'208";a="582608060"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orsmga008.jf.intel.com with ESMTP; 29 Apr 2022 22:28:48 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Fri, 29 Apr 2022 22:28:48 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Fri, 29 Apr 2022 22:28:48 -0700
-Received: from fmsmsx610.amr.corp.intel.com ([10.18.126.90]) by
- fmsmsx610.amr.corp.intel.com ([10.18.126.90]) with mapi id 15.01.2308.027;
- Fri, 29 Apr 2022 22:28:48 -0700
-From: "Vudum, Lakshminarayana" <lakshminarayana.vudum@intel.com>
-To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: =?utf-8?B?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJtL2k5MTU6IE1lZGlhIGZy?=
- =?utf-8?Q?eq_factor_and_per-gt_enhancements/fixes_(rev4)?=
-Thread-Index: AQHYXCt9/0Qixzs6QU64tsBa/aJdNK0H2NGQ
-Date: Sat, 30 Apr 2022 05:28:48 +0000
-Message-ID: <6f7746ad942c4f728a8d70d0b6b8ca33@intel.com>
-References: <cover.1651261886.git.ashutosh.dixit@intel.com>
- <165127551506.1649.16715165508481422839@emeril.freedesktop.org>
- <87y1zn4cxt.wl-ashutosh.dixit@intel.com>
-In-Reply-To: <87y1zn4cxt.wl-ashutosh.dixit@intel.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.6.401.20
-x-originating-ip: [10.22.254.132]
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B05AD10E00B;
+ Sat, 30 Apr 2022 10:31:11 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 2CC0BB81F1D;
+ Sat, 30 Apr 2022 10:31:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98D37C385AF;
+ Sat, 30 Apr 2022 10:31:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1651314668;
+ bh=6mrXqkGtPpcgemTiiATDVZ7XE8ok/9wW2Vk/4+SypUc=;
+ h=From:To:Cc:Subject:Date:From;
+ b=p9m2Rbz/wxewOHRcZURI01kopZP08YV0c/d/09+uMir1kdo2NQlLMHJLQToHFbJVw
+ wQBe6xXi3E3fWWxujyrx05cGG1K4BFWIIn3br0xrw/iwy1ozkP8jKjiUd8SZdn6HEm
+ CGE/IVxSjWOGhzAJ28YK4YP8AP7Yb3XLEDS94Vk3cJcZYiXfoEPFqIm+RXrecqVhS1
+ r3IBmmVN8oawA4C6KaFPKZSFCFZCK7OQ9Dkvp5IaVNQwZ4qTILjd6ErKbDiOxtUoB5
+ t8RIicrGR9E0TTkNq+q1y3Iik0kkx+sBCVQvd0aLSRl69Hf0KFAWuP4DrX17wcI36S
+ yRN/hoQXLypeQ==
+Received: from mchehab by mail.kernel.org with local (Exim 4.94.2)
+ (envelope-from <mchehab@kernel.org>)
+ id 1nkkNQ-001lBL-FK; Sat, 30 Apr 2022 11:31:00 +0100
+From: Mauro Carvalho Chehab <mchehab@kernel.org>
+To: Luis Chamberlain <mcgrof@kernel.org>
+Date: Sat, 30 Apr 2022 11:30:57 +0100
+Message-Id: <cover.1651314499.git.mchehab@kernel.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Media_freq_factor_and_per-gt_enhancements/fixes_=28rev?=
- =?utf-8?q?4=29?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2 0/2] Let userspace know when snd-hda-intel
+ needs i915
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,32 +53,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: mauro.chehab@linux.intel.com, alsa-devel@alsa-project.org,
+ Kai Vehmanen <kai.vehmanen@intel.com>, Greg KH <gregkh@linuxfoundation.org>,
+ intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
+ Takashi Iwai <tiwai@suse.com>, dri-devel@lists.freedesktop.org,
+ Jaroslav Kysela <perex@perex.cz>, David Airlie <airlied@linux.ie>,
+ linux-modules@vger.kernel.org, Mauro Carvalho Chehab <mchehab@kernel.org>,
+ linux-kernel@vger.kernel.org,
+ Pierre-Louis Bossart <pierre-louis.bossart@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UmUtcmVwb3J0ZWQgYW5kIGZldyBjb21tZW50cyBiZWxvdy4NCg0KLS0tLS1PcmlnaW5hbCBNZXNz
-YWdlLS0tLS0NCkZyb206IERpeGl0LCBBc2h1dG9zaCA8YXNodXRvc2guZGl4aXRAaW50ZWwuY29t
-PiANClNlbnQ6IEZyaWRheSwgQXByaWwgMjksIDIwMjIgNTo0NSBQTQ0KVG86IGludGVsLWdmeEBs
-aXN0cy5mcmVlZGVza3RvcC5vcmc7IFZ1ZHVtLCBMYWtzaG1pbmFyYXlhbmEgPGxha3NobWluYXJh
-eWFuYS52dWR1bUBpbnRlbC5jb20+DQpTdWJqZWN0OiBSZTog4pyXIEZpLkNJLklHVDogZmFpbHVy
-ZSBmb3IgZHJtL2k5MTU6IE1lZGlhIGZyZXEgZmFjdG9yIGFuZCBwZXItZ3QgZW5oYW5jZW1lbnRz
-L2ZpeGVzIChyZXY0KQ0KDQpPbiBGcmksIDI5IEFwciAyMDIyIDE2OjM4OjM1IC0wNzAwLCBQYXRj
-aHdvcmsgd3JvdGU6DQo+DQo+IFBvc3NpYmxlIHJlZ3Jlc3Npb25zDQo+DQo+ICogaWd0QGdlbV9l
-aW9AaW4tZmxpZ2h0LXN1c3BlbmQ6DQo+DQo+ICAqIHNoYXJkLXNrbDogUEFTUyAtPiBJTkNPTVBM
-RVRFDQoNClRoaXMgZmFpbHVyZSBpbiB1bnJlbGF0ZWQuDQoNCg0KPg0KPiAqIHtpZ3RAaTkxNV9w
-bV9kaXNhZ19mcmVxQG1lZGlhLWZyZXFAZ3QwfSAoTkVXKToNCj4NCj4gICogc2hhcmQtaWNsYjog
-Tk9UUlVOIC0+IFNLSVANCj4NCj4gICogc2hhcmQtdGdsYjogTk9UUlVOIC0+IFNLSVANCg0KVGhl
-c2UgZmFpbHVyZXMgYXJlIGV4cGVjdGVkLCB0aGUgdGVzdCB3aWxsIHNraXAgb24gcGxhdGZvcm1z
-IHdoaWNoIGRvIG5vdCBzdXBwb3J0IHRoaXMgZmVhdHVyZS4NCg0KTGFrc2htaTogVGhlc2UgdGVz
-dHMgYXJlIG5vdCBpbiB5ZXQgaW4gQ0kgYnVnIGxvZy4gDQoNCj4NCj4gKiBpZ3RAa21zX2RyYXdf
-Y3JjQGRyYXctbWV0aG9kLXhyZ2IyMTAxMDEwLW1tYXAtZ3R0LXh0aWxlZDoNCj4NCj4gICogc2hh
-cmQta2JsOiBQQVNTIC0+IEZBSUwNCg0KVGhpcyBmYWlsdXJlIGluIHVucmVsYXRlZC4NCkxha3No
-bWk6IEZpbGVkIGh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9wLm9yZy9kcm0vaW50ZWwvLS9pc3N1
-ZXMvNTg3MA0KaWd0QGttc19kcmF3X2NyY0BkcmF3LW1ldGhvZC14cmdiMjEwMTAxMC1tbWFwLWd0
-dC14dGlsZWQgLSBmYWlsIC0gRmFpbGVkIGFzc2VydGlvbjogcmMgPT0gMA0KDQo+IE5ldyB0ZXN0
-cw0KPg0KPiBOZXcgdGVzdHMgaGF2ZSBiZWVuIGludHJvZHVjZWQgYmV0d2VlbiBDSV9EUk1fMTE1
-ODNfZnVsbCBhbmQgUGF0Y2h3b3JrXzEwMjY2NXY0X2Z1bGw6DQo+DQo+IE5ldyBJR1QgdGVzdHMg
-KDEpDQo+DQo+ICogaWd0QGk5MTVfcG1fZGlzYWdfZnJlcUBtZWRpYS1mcmVxQGd0MDoNCj4NCj4g
-ICogU3RhdHVzZXMgOiA3IHNraXAocykNCj4gICogRXhlYyB0aW1lOiBbMC4wXSBzDQoNClRoZXNl
-IHNraXBzIGFyZSB0aGUgc2FtZSBhcyBhYm92ZSBhbmQgZXhwZWN0ZWQuDQoNClRoYW5rcy4NCi0t
-DQpBc2h1dG9zaA0K
+Currently, kernel/module annotates module dependencies when
+request_symbol is used, but it doesn't cover more complex inter-driver
+dependencies that are subsystem and/or driver-specific.
+
+In the case of hdmi sound, depending on the CPU/GPU, sometimes the
+snd_hda_driver can talk directly with the hardware, but sometimes, it
+uses the i915 driver. When the snd_hda_driver uses i915, it should
+first be unbind/rmmod, as otherwise trying to unbind/rmmod the i915
+driver cause driver issues, as as reported by CI tools with different
+GPU models:
+
+	https://intel-gfx-ci.01.org/tree/drm-tip/IGT_6415/fi-tgl-1115g4/igt@core_hotunplug@unbind-rebind.html
+	https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11495/bat-adlm-1/igt@i915_module_load@reload.html
+
+In the past, just a few CPUs were doing such bindings, but this issue now
+applies to all "modern" Intel CPUs  that have onboard graphics, as well as
+to the  newer discrete GPUs.
+
+With the discrete GPU case, the HDA controller is physically separate and
+requires i915 to power on the hardware for all hardware  access. In this
+case, the issue is hit basicly 100% of the time.
+
+With on-board graphics, i915 driver is needed only when the display
+codec is accessed. If i915 is unbind during runtime suspend, while
+snd-hda-intel is still bound, nothing bad happens, but unbinding i915
+on other situations may also cause issues.
+
+So, add support at kernel/modules to allow snd-hda drivers to properly
+annotate when a dependency on a DRM driver dependencies exists,
+and add a call to such new function at the snd-hda driver when it
+successfully binds into the DRM driver.
+
+This would allow userspace tools to check and properly remove the
+audio driver before trying to remove or unbind the GPU driver.
+
+It should be noticed that this series conveys the hidden module
+dependencies. Other changes are needed in order to allow
+removing or unbinding the i915 driver while keeping the snd-hda-intel
+driver loaded/bound. With that regards, there are some discussions on
+how to improve this at alsa-devel a while  back:
+
+https://mailman.alsa-project.org/pipermail/alsa-devel/2021-September/190099.html
+
+So, future improvements on both in i915 and the audio drivers could be made.
+E.g. with  discrete GPUs, it's the only codec of the card, so it seems feasible
+to detach the ALSA card if i915 is bound (using infra made for VGA
+switcheroo), but,  until these improvements are done and land in
+upstream, audio drivers needs to be unbound if i915 driver goes unbind.
+
+Yet, even if such fixes got merged, this series is still needed, as it makes
+such dependencies more explicit and easier to debug.
+
+PS.: This series was generated against next-20220428.
+
+---
+
+v2: the dependencies are now handled directly at try_module_get().
+
+
+Mauro Carvalho Chehab (2):
+  module: update dependencies at try_module_get()
+  ALSA: hda - identify when audio is provided by a video driver
+
+ include/linux/module.h     |  4 +++-
+ kernel/module/main.c       | 35 +++++++++++++++++++++++++++++++++--
+ sound/hda/hdac_component.c |  2 +-
+ 3 files changed, 37 insertions(+), 4 deletions(-)
+
+-- 
+2.35.1
+
+
