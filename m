@@ -1,48 +1,161 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACCA05179DD
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 May 2022 00:18:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C35795179E9
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 May 2022 00:23:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 07FFE10F5A7;
-	Mon,  2 May 2022 22:18:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E4CAE10EA1F;
+	Mon,  2 May 2022 22:23:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF1E510F5A7
- for <intel-gfx@lists.freedesktop.org>; Mon,  2 May 2022 22:18:09 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1908910EA1F;
+ Mon,  2 May 2022 22:23:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1651529889; x=1683065889;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=moSWMiilnIDdeOPIZFSZ/VCGZycaviE51VdHFGK0Mf4=;
- b=kSNeANKAQpyBCAbNQlQL3YTvZDzyz0r10I8GYU2Bnh4IWKKNzw3OcZYQ
- 86t2YOxttNvOsA21yXLZq3DRMSLwRlVgmyor7MhU3uCrHr3+9fPFS6SiR
- UNU8wfmPAgrXaxrqDPxEp9/eVvjWag7rma5V98RQuOTyBWP3QLi76UKQi
- 2gX1rrmseX3SHmEG8J2DODlVLsmO1xwX27+2WDJgOt7ucjDm/fz7RFKsx
- MZmz20Rl3OA5bcCFcf7syMKdOGVlDnIWgL83MneyIyazxon5aClah3h7s
- vFSNL3P+xWIRuizo6k+SfQ2GJCdG+DO3RlOBkGJTP6afRuRrFR1KPcDzw Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10335"; a="249324765"
-X-IronPort-AV: E=Sophos;i="5.91,193,1647327600"; d="scan'208";a="249324765"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 May 2022 15:18:09 -0700
-X-IronPort-AV: E=Sophos;i="5.91,193,1647327600"; d="scan'208";a="546670468"
-Received: from unerlige-desk.jf.intel.com ([10.165.21.210])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 May 2022 15:18:09 -0700
-From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	daniele.ceraolospurio@intel.com
-Date: Mon,  2 May 2022 15:18:05 -0700
-Message-Id: <20220502221805.4000039-1-umesh.nerlige.ramappa@intel.com>
-X-Mailer: git-send-email 2.35.1
+ t=1651530236; x=1683066236;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-id:content-transfer-encoding: mime-version;
+ bh=G5XKsnaYfiwca8jMLxCaSIcoWjuHHby+5Mc7NqQ2kxE=;
+ b=WWAZha90ORa2G3VJ4QLBilL4yMf68A52spShgGLrfaEWIuJ5pAeIC948
+ zI6p8LMLAm7bVZ/LI5tIN9L7OcU3iwfcn6RgAfVrGWNLKCzlzRWBgTuZ8
+ b4/Uvi/OqW/lHOUXy4estDydhk0jTGlcQ2gFFuBlVi4QWFXniz1yevbmr
+ mL16XMw1QjOxXVro0ZxvAnDWHzfNISDgp483DkYuJ9rHgKDK77CCqfwEG
+ UK5KGQCuQLVWrhN+77BfJAKWsNGjWQik8V+2onxjssWwu24/gm6l8V9v3
+ vxxl9jR+qsVHKdhThYMvLe8c6Kq0vWBl4foVaJALK2F2S48qIOygP0jM9 w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10335"; a="266931845"
+X-IronPort-AV: E=Sophos;i="5.91,193,1647327600"; d="scan'208";a="266931845"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 May 2022 15:23:55 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.91,193,1647327600"; d="scan'208";a="536074985"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by orsmga006.jf.intel.com with ESMTP; 02 May 2022 15:23:55 -0700
+Received: from orsmsx608.amr.corp.intel.com (10.22.229.21) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27; Mon, 2 May 2022 15:23:55 -0700
+Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
+ ORSMSX608.amr.corp.intel.com (10.22.229.21) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27; Mon, 2 May 2022 15:23:54 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27 via Frontend Transport; Mon, 2 May 2022 15:23:54 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.169)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2308.27; Mon, 2 May 2022 15:23:54 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=GNWbEvEZYFc544MbBH9KeBEzIs28kmT64vbr0a0uyYYXByaSZOhPSSfbEfO2jn72lTNVDKABWVdna9mHSeZzHNFVzy3Vds12vI7ipB+tDOvAH6ThMrhMluzHvMWsG5Vx4Di6kXjlKnLIdD3XLLEaFabdlZszqRhYNn6MGPdS8NV31erLufI/JK1wm0/t6keTYCeI1bklJH8CT9IFX0O6DOshrmZNijd/hHiLyOTbSVh48DK7jL8PBWO5EOWTqE4OaVcaAiQKd5ItF6swlJvWckkd3cC1wjIQ0DRw56xEz53R4d2VzbRBF2I+Hm82Hzi1Y2biqGL2gWYxJXv+tHuZLA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=G5XKsnaYfiwca8jMLxCaSIcoWjuHHby+5Mc7NqQ2kxE=;
+ b=TZpiToMCChlZvfiQOk7YYA5g9OPLES4PeJrAbu4dnMRfznyVOFhIQNy46HOq/aYImLC2QpsHctypdmqcsdaJJlnxga0ie8LQLr8E4hi2kvW/DqpeAjkZ38HAfSlzsZtwXpPVIS4velaXCjNiH0Y6Xm3MPqx+aNWnYirrhnavOf6y8r0Za3ICOXgVPOccVc+pY2BC7FLoECXGKvivU/GRY44y6NG3egmheThMZTRsoYuKornSaUVFMpgzh+f2SGHtVRtB8DiNyktMupvNwp3WYCudXvdsf8NVOJ4349tuKizPZH6d6ElpQAW9aSSNkH1DLNXhi9Tnd93Yu34+LzGBBA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DM8PR11MB5573.namprd11.prod.outlook.com (2603:10b6:8:3b::7) by
+ BYAPR11MB3143.namprd11.prod.outlook.com (2603:10b6:a03:92::32) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5206.24; Mon, 2 May 2022 22:23:52 +0000
+Received: from DM8PR11MB5573.namprd11.prod.outlook.com
+ ([fe80::bc45:8f18:bea9:46d8]) by DM8PR11MB5573.namprd11.prod.outlook.com
+ ([fe80::bc45:8f18:bea9:46d8%5]) with mapi id 15.20.5206.014; Mon, 2 May 2022
+ 22:23:52 +0000
+From: "Summers, Stuart" <stuart.summers@intel.com>
+To: "Roper, Matthew D" <matthew.d.roper@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH 09/11] drm/i915/pvc: Reset support for new
+ copy engines
+Thread-Index: AQHYXkKRMRQMmpaC6UCvFxw68mC1ta0MJP0A
+Date: Mon, 2 May 2022 22:23:52 +0000
+Message-ID: <b82181408961aa51432f24419d982eea7725501c.camel@intel.com>
+References: <20220502163417.2635462-1-matthew.d.roper@intel.com>
+ <20220502163417.2635462-10-matthew.d.roper@intel.com>
+In-Reply-To: <20220502163417.2635462-10-matthew.d.roper@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Evolution 3.36.5-0ubuntu1 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 80c66612-5e67-465e-b047-08da2c8a7045
+x-ms-traffictypediagnostic: BYAPR11MB3143:EE_
+x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+x-microsoft-antispam-prvs: <BYAPR11MB31438A70731540998DD2E03196C19@BYAPR11MB3143.namprd11.prod.outlook.com>
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: VJDjKtLV+IKF0iUykUO4sZp3jirdKtxOAHkQ0SLRB4owfmouaZLoWXUZxtnrSVnyT+2OSz0mCaAvTXf8giWO+sMzKCF0uNfvEcZE5MSd2nyXwwWSlLkr9aheEoy9LiHCwj1RKRwUpLwABLvbFZtPGsRtCVm5kCqyN5nk/AaktdanFTSACX9NW3wnNgOmXdeMJv/0WKUO/ip/fAQ3kYqe9kWAODSOD7107CE9EOHq9mHpPlEUX+kCuOTD1xHOMgH/4s379RVRTxvcCeVL6An/JZ2QkATVB5y/+C9njteiJiPL3PxGj0F3qPQ956/ptxVeLfjHWO5j4QQItL8l3SFzrIBfue3Wt/GDLhq4265eMOI3OR/iOoUsRp1J4URsNOGhJyTFhE2xycXzhfHMxiiG0UcSMeiGhYXrIPbiR/wyUNAIfxS+JsAQX9vr8u+lE2rC2dX4Eq0rEBfhx8hCIltzQkX3jIjVawoC7m9rrBWMH8TOqvU0sVd1Boscwgb7FX5UpHERVeB1CBLxP4Hfe1253nsyaBII4yV/ldrmF5Jt1G5/tN3WmW55QDPdTXO9NwGGskSbHrU7DsG7J/OYvWKOI+Uwz8lpOBcfomG6ZcUsNojfnpwMEIsZdPEHm+UmaCEKODUEmzkLbBT3mfxCxCDudyqWoi/BNR6HV0jMEbvq9E0UiigD+NPRqUFZtxIzb9KKMUIPzSvH8HF9XxSmHeQCbg==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM8PR11MB5573.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230001)(366004)(86362001)(36756003)(110136005)(83380400001)(2616005)(71200400001)(26005)(6512007)(316002)(6506007)(38100700002)(66556008)(66476007)(66446008)(64756008)(8936002)(66946007)(76116006)(508600001)(450100002)(91956017)(38070700005)(5660300002)(2906002)(8676002)(4326008)(6486002)(82960400001)(122000001)(186003);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?UENtN3pxbHJiQ1RVUjFlLzNDQ1h2Z1Zjc2NBRGd1YVFsTTNOYzhZU2VuUVFa?=
+ =?utf-8?B?QzRUdFZnTDdHY0MyRXNmemRRMTRtNzdHMjNoWWRvRHh3cUJPVGIxQlhFTVFM?=
+ =?utf-8?B?ZjEwTlg4UkxJT1JJQWpoNkR4NUY3UTBJZ1pTeDJTT2Q0clRMWEJYdTNKaDFE?=
+ =?utf-8?B?elV2NVN1cUNMTjJMYWM2ZzkwSGtGd1g2ZERFNlQrMWdIcDZiOVQwWnFXc0V6?=
+ =?utf-8?B?ZW9Fa25NRDdYa1BTdmgzOC9kL3VJWFB0NHE3NXE3bk9PZE9UV3VnbVQzTUtJ?=
+ =?utf-8?B?R3NaR1RLRm1EdnM0ell4QWo5eDBXMGdnY21vbVF6QTM1OU1MS0V1UUgzTlFC?=
+ =?utf-8?B?a09rWGdEdmd1bXdGbU1IcHl6NzlmMHJ4aUx0MkJoYys1OTFGbkJ0RFNqZzJk?=
+ =?utf-8?B?MmdSVmZaT200dnZhSzJ6S3ZJV2pnNVQ2SEZUellJNGp3VDZmNmFhbzVnZEVt?=
+ =?utf-8?B?RTNmVG4wczZyWmFjdGZCTjQrako3eG96bFh2aU5WK2ZSQ25DT2tzbHczRC92?=
+ =?utf-8?B?U2g4dFpSdHg0RGNCL0psd0RQTm9kbGRvOG9wdnVLSEw3OG9ObTQwRGNaZm5n?=
+ =?utf-8?B?anNiUW5wekVrY1NxZFM5YUNPY2hHK1g4UFZvODgyVWYyVHBxUEZrR0p6RUZ4?=
+ =?utf-8?B?VDZzNW5qbVZNS3BjWHV5V3RYQ2JLaFN3NGMzckdzY3dTaS83UEJoUm1yMCtH?=
+ =?utf-8?B?TklrOXlWMEI4QVp4ZHJDQzVreHo4SWNKeldTR0ZhamkwT05TdmJLYWd6MnBn?=
+ =?utf-8?B?cHZ4TDd6T29tQ0IrSEFJN0djTERVcEVGa01uYS9IWVNpSVFiZEI0TmdpdTFJ?=
+ =?utf-8?B?YXRDZ3FoWmQ2b3Y1OEwvakVEK1NXeER5bVZuR2psdTV2ZXdnc1ZEWFUvK2Fy?=
+ =?utf-8?B?T0J5cE1qNmJKUzd2RmJ4ejYxVnRxYnZFNUZKWWZYVHhNT21EcGpWL2kzcWUr?=
+ =?utf-8?B?b09zckdrUzNtY1lZb2dCYjlBa0pmMDJLUmFhUU5FZ1F0YTBGKytjUGxSREVk?=
+ =?utf-8?B?bW1XVzlJV1dyQ0ttY1VveUxTM2pyVGVNdzdJMUtIM0VyODZGMFZUK2pPREt4?=
+ =?utf-8?B?amhnRFAxU2RuY1NJWTduK1F0NWNvVVQwV3hrK3NLYU1LWkpBa1JML3dYVWFh?=
+ =?utf-8?B?aVFmeWNSbmFiMHJsdXdSL2F4bStGZTBTeGVMUWZLSDRxUEdlYnJQYkZyd2hR?=
+ =?utf-8?B?d3RDQXVucmlmS0tCWU1IMUZYYk1zSEViRVFuRXdzLzREcktGejJKWkt3OFV6?=
+ =?utf-8?B?RS94cmZwQW5HQWhDK0N1OVgxNGROWDYwUVkwdldRZ3hxNGlkUkxtcDRRV3Zj?=
+ =?utf-8?B?NHh2OHk2KzdEM1FGZ3lIblpVek5pK1dsSmxWVlM4N2orRitNVFg1ejF0dDlH?=
+ =?utf-8?B?bEtneGRwNVJtNGdDNUM2K1gwdTJCVnRnQ2VBUXl5RTZST0NqaDRxSzdPKzJQ?=
+ =?utf-8?B?cXczZldCa0VVWWZKczRGOFpzRlZ2ejVzbHMySWhHdFJhRWtEcjVkOUM5c3ZL?=
+ =?utf-8?B?NlM0NkJubkNiSDRZcy83THF3SE53Q0ZSM0dydHNLUVVxNzdIOGs0MVV0U2dv?=
+ =?utf-8?B?S2dMV3l3bGhlZmR3WDhWS1AvaFhRZ1lHeHZEa1UraXF6dVVTa25rSEM2ZGNN?=
+ =?utf-8?B?VXlNa1B2Q1lKcFg1dDNBWUR1RW9MbUtRd215MXlOamkyVGoxU09SdWRaMzIz?=
+ =?utf-8?B?cHlVTWNTRHplYzYvK0gxaTV2WjRrOVlWWXlSNW9JSWpDOGxFMjRLcDhMbFBr?=
+ =?utf-8?B?aHpwdGVwaHFLVHk0UVU2YytMWVBqemIxbVlWczdlcTdtQ3NSUUhUM1NDbk9C?=
+ =?utf-8?B?dDZ4VU1HbldCRklNbnhlOC8vZC9OODJwaTdIcGMwcXRPTFZZdFRQOHFnRHhR?=
+ =?utf-8?B?dHNJVC9ZRWRGVmQyK3cvdWZndHVkZTNoQzl4RjhPVS9WekNZR3VpZXl5cHhn?=
+ =?utf-8?B?WFFRMVh5bnlVY0VJaVNJR2RJMVYxNCt0Sjg0cDR1TGVXOHo3OXh1bWFBSkZz?=
+ =?utf-8?B?OGhUS3VSUmU5RHZhVit2eUZzSDk1SnBrUW9jM201SS9wSnlGUHE4SnYwd2Yz?=
+ =?utf-8?B?ZG5QM1UrLzRJYm5QUk5tcG43N2dtMDZHUFpCRFdVVEU2K1cxZ2Vpa2pzT2Iv?=
+ =?utf-8?B?WGtIOTZPUHZEeHB3MlVpZmFnNUtHbStRRFMxTzdIdE1WRXVlUUZnZkt3L2w5?=
+ =?utf-8?B?MVlBdHJpRFZUcVJwWkkrak03YU1sU2grNm9NcWNTQ1hUOFhjdm11cmFiR1Rh?=
+ =?utf-8?B?NTZ0SXMwSUVybXdDSS9VYlUrNVd6ZkhaSGEzeHpHMWQ1RlFhc2lTZmh3MHc4?=
+ =?utf-8?B?K3pFWlZMTElFRjFJRzJERHBTZUo2bnRxZ2VtVjVmL3F6enFOZUwwZDV2UFRz?=
+ =?utf-8?Q?zaQ1sl0JAg6SsDxw=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <152B9335255DDB45BE7DA206B5682E30@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/reset: Add Wa_22011802037 for gen11
- and execlist backend
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM8PR11MB5573.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 80c66612-5e67-465e-b047-08da2c8a7045
+X-MS-Exchange-CrossTenant-originalarrivaltime: 02 May 2022 22:23:52.6914 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: uM6TaDuo97lb0HeDx6mgAERS2GdagyDIYp+IJtID+71MtOiH+e3bM/AG1eXM98nBHOTCqlgYn89aNfFHh7mIxSYvOqcoguU5k9TgEGrDoKE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR11MB3143
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH 09/11] drm/i915/pvc: Reset support for new
+ copy engines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,292 +168,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Current implementation of Wa_22011802037 is limited to the GuC backend
-and gen12. Add support for execlist backend and gen11 as well.
-
-Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_engine.h        |  2 +
- drivers/gpu/drm/i915/gt/intel_engine_cs.c     | 81 ++++++++++++++++++-
- .../drm/i915/gt/intel_execlists_submission.c  |  7 ++
- .../gpu/drm/i915/gt/intel_ring_submission.c   |  7 ++
- drivers/gpu/drm/i915/gt/uc/intel_guc.c        |  4 +-
- .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 81 ++-----------------
- 6 files changed, 103 insertions(+), 79 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h b/drivers/gpu/drm/i915/gt/intel_engine.h
-index 1431f1e9dbee..04e435bce79b 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine.h
-+++ b/drivers/gpu/drm/i915/gt/intel_engine.h
-@@ -201,6 +201,8 @@ int intel_ring_submission_setup(struct intel_engine_cs *engine);
- int intel_engine_stop_cs(struct intel_engine_cs *engine);
- void intel_engine_cancel_stop_cs(struct intel_engine_cs *engine);
- 
-+void intel_engine_wait_for_pending_mi_fw(struct intel_engine_cs *engine);
-+
- void intel_engine_set_hwsp_writemask(struct intel_engine_cs *engine, u32 mask);
- 
- u64 intel_engine_get_active_head(const struct intel_engine_cs *engine);
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-index 14c6ddbbfde8..0bda665a407c 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-@@ -1282,10 +1282,10 @@ static int __intel_engine_stop_cs(struct intel_engine_cs *engine,
- 	intel_uncore_write_fw(uncore, mode, _MASKED_BIT_ENABLE(STOP_RING));
- 
- 	/*
--	 * Wa_22011802037 : gen12, Prior to doing a reset, ensure CS is
-+	 * Wa_22011802037 : gen11, gen12, Prior to doing a reset, ensure CS is
- 	 * stopped, set ring stop bit and prefetch disable bit to halt CS
- 	 */
--	if (GRAPHICS_VER(engine->i915) == 12)
-+	if (GRAPHICS_VER(engine->i915) == 11 || GRAPHICS_VER(engine->i915) == 12)
- 		intel_uncore_write_fw(uncore, RING_MODE_GEN7(engine->mmio_base),
- 				      _MASKED_BIT_ENABLE(GEN12_GFX_PREFETCH_DISABLE));
- 
-@@ -1308,6 +1308,14 @@ int intel_engine_stop_cs(struct intel_engine_cs *engine)
- 		return -ENODEV;
- 
- 	ENGINE_TRACE(engine, "\n");
-+	/*
-+	 * TODO: Occasionally trying to stop the cs times out, but does not
-+	 * adversely affect functionality. The timeout is set as a config
-+	 * parameter that defaults to 100ms. Assuming that this timeout is
-+	 * sufficient for any pending MI_FORCEWAKEs to complete. Once root
-+	 * caused, the caller must check and handler the return from this
-+	 * function.
-+	 */
- 	if (__intel_engine_stop_cs(engine, 1000, stop_timeout(engine))) {
- 		ENGINE_TRACE(engine,
- 			     "timed out on STOP_RING -> IDLE; HEAD:%04x, TAIL:%04x\n",
-@@ -1334,6 +1342,75 @@ void intel_engine_cancel_stop_cs(struct intel_engine_cs *engine)
- 	ENGINE_WRITE_FW(engine, RING_MI_MODE, _MASKED_BIT_DISABLE(STOP_RING));
- }
- 
-+static u32 __cs_pending_mi_force_wakes(struct intel_engine_cs *engine)
-+{
-+	static const i915_reg_t _reg[I915_NUM_ENGINES] = {
-+		[RCS0] = MSG_IDLE_CS,
-+		[BCS0] = MSG_IDLE_BCS,
-+		[VCS0] = MSG_IDLE_VCS0,
-+		[VCS1] = MSG_IDLE_VCS1,
-+		[VCS2] = MSG_IDLE_VCS2,
-+		[VCS3] = MSG_IDLE_VCS3,
-+		[VCS4] = MSG_IDLE_VCS4,
-+		[VCS5] = MSG_IDLE_VCS5,
-+		[VCS6] = MSG_IDLE_VCS6,
-+		[VCS7] = MSG_IDLE_VCS7,
-+		[VECS0] = MSG_IDLE_VECS0,
-+		[VECS1] = MSG_IDLE_VECS1,
-+		[VECS2] = MSG_IDLE_VECS2,
-+		[VECS3] = MSG_IDLE_VECS3,
-+		[CCS0] = MSG_IDLE_CS,
-+		[CCS1] = MSG_IDLE_CS,
-+		[CCS2] = MSG_IDLE_CS,
-+		[CCS3] = MSG_IDLE_CS,
-+	};
-+	u32 val;
-+
-+	if (!_reg[engine->id].reg)
-+		return 0;
-+
-+	val = intel_uncore_read(engine->uncore, _reg[engine->id]);
-+
-+	/* bits[29:25] & bits[13:9] >> shift */
-+	return (val & (val >> 16) & MSG_IDLE_FW_MASK) >> MSG_IDLE_FW_SHIFT;
-+}
-+
-+static void __gpm_wait_for_fw_complete(struct intel_gt *gt, u32 fw_mask)
-+{
-+	int ret;
-+
-+	/* Ensure GPM receives fw up/down after CS is stopped */
-+	udelay(1);
-+
-+	/* Wait for forcewake request to complete in GPM */
-+	ret =  __intel_wait_for_register_fw(gt->uncore,
-+					    GEN9_PWRGT_DOMAIN_STATUS,
-+					    fw_mask, fw_mask, 5000, 0, NULL);
-+
-+	/* Ensure CS receives fw ack from GPM */
-+	udelay(1);
-+
-+	if (ret)
-+		GT_TRACE(gt, "Failed to complete pending forcewake %d\n", ret);
-+}
-+
-+/*
-+ * Wa_22011802037:gen12: In addition to stopping the cs, we need to wait for any
-+ * pending MI_FORCE_WAKEUP requests that the CS has initiated to complete. The
-+ * pending status is indicated by bits[13:9] (masked by bits[ 29:25]) in the
-+ * MSG_IDLE register. There's one MSG_IDLE register per reset domain. Since we
-+ * are concerned only with the gt reset here, we use a logical OR of pending
-+ * forcewakeups from all reset domains and then wait for them to complete by
-+ * querying PWRGT_DOMAIN_STATUS.
-+ */
-+void intel_engine_wait_for_pending_mi_fw(struct intel_engine_cs *engine)
-+{
-+	u32 fw_pending = __cs_pending_mi_force_wakes(engine);
-+
-+	if (fw_pending)
-+		__gpm_wait_for_fw_complete(engine->gt, fw_pending);
-+}
-+
- static u32
- read_subslice_reg(const struct intel_engine_cs *engine,
- 		  int slice, int subslice, i915_reg_t reg)
-diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-index 86f7a9ac1c39..e139dc1e44eb 100644
---- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-+++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-@@ -2958,6 +2958,13 @@ static void execlists_reset_prepare(struct intel_engine_cs *engine)
- 	ring_set_paused(engine, 1);
- 	intel_engine_stop_cs(engine);
- 
-+	/*
-+	 * Wa_22011802037:gen11/gen12: In addition to stopping the cs, we need
-+	 * to wait for any pending mi force wakeups
-+	 */
-+	if (GRAPHICS_VER(engine->i915) == 11 || GRAPHICS_VER(engine->i915) == 12)
-+		intel_engine_wait_for_pending_mi_fw(engine);
-+
- 	engine->execlists.reset_ccid = active_ccid(engine);
- }
- 
-diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-index 5423bfd301ad..75884e0a552e 100644
---- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-@@ -323,6 +323,13 @@ static void reset_prepare(struct intel_engine_cs *engine)
- 	ENGINE_TRACE(engine, "\n");
- 	intel_engine_stop_cs(engine);
- 
-+	/*
-+	 * Wa_22011802037:gen11/gen12: In addition to stopping the cs, we need
-+	 * to wait for any pending mi force wakeups
-+	 */
-+	if (GRAPHICS_VER(engine->i915) == 11 || GRAPHICS_VER(engine->i915) == 12)
-+		intel_engine_wait_for_pending_mi_fw(engine);
-+
- 	if (!stop_ring(engine)) {
- 		/* G45 ring initialization often fails to reset head to zero */
- 		ENGINE_TRACE(engine,
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-index 2c4ad4a65089..f69a9464585e 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-@@ -310,8 +310,8 @@ static u32 guc_ctl_wa_flags(struct intel_guc *guc)
- 	if (IS_DG2(gt->i915))
- 		flags |= GUC_WA_DUAL_QUEUE;
- 
--	/* Wa_22011802037: graphics version 12 */
--	if (GRAPHICS_VER(gt->i915) == 12)
-+	/* Wa_22011802037: graphics version 11/12 */
-+	if (GRAPHICS_VER(gt->i915) == 11 || GRAPHICS_VER(gt->i915) == 12)
- 		flags |= GUC_WA_PRE_PARSER;
- 
- 	/* Wa_16011777198:dg2 */
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-index 75291e9846c5..a3fe832eff0d 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-@@ -1527,87 +1527,18 @@ static void guc_reset_state(struct intel_context *ce, u32 head, bool scrub)
- 	lrc_update_regs(ce, engine, head);
- }
- 
--static u32 __cs_pending_mi_force_wakes(struct intel_engine_cs *engine)
--{
--	static const i915_reg_t _reg[I915_NUM_ENGINES] = {
--		[RCS0] = MSG_IDLE_CS,
--		[BCS0] = MSG_IDLE_BCS,
--		[VCS0] = MSG_IDLE_VCS0,
--		[VCS1] = MSG_IDLE_VCS1,
--		[VCS2] = MSG_IDLE_VCS2,
--		[VCS3] = MSG_IDLE_VCS3,
--		[VCS4] = MSG_IDLE_VCS4,
--		[VCS5] = MSG_IDLE_VCS5,
--		[VCS6] = MSG_IDLE_VCS6,
--		[VCS7] = MSG_IDLE_VCS7,
--		[VECS0] = MSG_IDLE_VECS0,
--		[VECS1] = MSG_IDLE_VECS1,
--		[VECS2] = MSG_IDLE_VECS2,
--		[VECS3] = MSG_IDLE_VECS3,
--		[CCS0] = MSG_IDLE_CS,
--		[CCS1] = MSG_IDLE_CS,
--		[CCS2] = MSG_IDLE_CS,
--		[CCS3] = MSG_IDLE_CS,
--	};
--	u32 val;
--
--	if (!_reg[engine->id].reg)
--		return 0;
--
--	val = intel_uncore_read(engine->uncore, _reg[engine->id]);
--
--	/* bits[29:25] & bits[13:9] >> shift */
--	return (val & (val >> 16) & MSG_IDLE_FW_MASK) >> MSG_IDLE_FW_SHIFT;
--}
--
--static void __gpm_wait_for_fw_complete(struct intel_gt *gt, u32 fw_mask)
--{
--	int ret;
--
--	/* Ensure GPM receives fw up/down after CS is stopped */
--	udelay(1);
--
--	/* Wait for forcewake request to complete in GPM */
--	ret =  __intel_wait_for_register_fw(gt->uncore,
--					    GEN9_PWRGT_DOMAIN_STATUS,
--					    fw_mask, fw_mask, 5000, 0, NULL);
--
--	/* Ensure CS receives fw ack from GPM */
--	udelay(1);
--
--	if (ret)
--		GT_TRACE(gt, "Failed to complete pending forcewake %d\n", ret);
--}
--
--/*
-- * Wa_22011802037:gen12: In addition to stopping the cs, we need to wait for any
-- * pending MI_FORCE_WAKEUP requests that the CS has initiated to complete. The
-- * pending status is indicated by bits[13:9] (masked by bits[ 29:25]) in the
-- * MSG_IDLE register. There's one MSG_IDLE register per reset domain. Since we
-- * are concerned only with the gt reset here, we use a logical OR of pending
-- * forcewakeups from all reset domains and then wait for them to complete by
-- * querying PWRGT_DOMAIN_STATUS.
-- */
- static void guc_engine_reset_prepare(struct intel_engine_cs *engine)
- {
--	u32 fw_pending;
--
--	if (GRAPHICS_VER(engine->i915) != 12)
-+	if (GRAPHICS_VER(engine->i915) != 11 && GRAPHICS_VER(engine->i915) != 12)
- 		return;
- 
--	/*
--	 * Wa_22011802037
--	 * TODO: Occasionally trying to stop the cs times out, but does not
--	 * adversely affect functionality. The timeout is set as a config
--	 * parameter that defaults to 100ms. Assuming that this timeout is
--	 * sufficient for any pending MI_FORCEWAKEs to complete, ignore the
--	 * timeout returned here until it is root caused.
--	 */
- 	intel_engine_stop_cs(engine);
- 
--	fw_pending = __cs_pending_mi_force_wakes(engine);
--	if (fw_pending)
--		__gpm_wait_for_fw_complete(engine->gt, fw_pending);
-+	/*
-+	 * Wa_22011802037:gen11/gen12: In addition to stopping the cs, we need
-+	 * to wait for any pending mi force wakeups
-+	 */
-+	intel_engine_wait_for_pending_mi_fw(engine);
- }
- 
- static void guc_reset_nop(struct intel_engine_cs *engine)
--- 
-2.35.1
-
+T24gTW9uLCAyMDIyLTA1LTAyIGF0IDA5OjM0IC0wNzAwLCBNYXR0IFJvcGVyIHdyb3RlOg0KPiBU
+aGlzIHBhdGNoIGFkZHMgdGhlIHJlc2V0IHN1cHBvcnQgZm9yIG5ldyBjb3B5IGVuZ2luZXMNCj4g
+aW4gUFZDLg0KPiANCj4gQnNwZWM6IDUyNTQ5DQo+IE9yaWdpbmFsLWF1dGhvcjogQ1EgVGFuZw0K
+PiBTaWduZWQtb2ZmLWJ5OiBNYXR0IFJvcGVyIDxtYXR0aGV3LmQucm9wZXJAaW50ZWwuY29tPg0K
+DQpSZXZpZXdlZC1ieTogU3R1YXJ0IFN1bW1lcnMgPHN0dWFydC5zdW1tZXJzQGludGVsLmNvbT4N
+Cg0KPiAtLS0NCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2VuZ2luZV9jcy5jIHwg
+IDggKysrKysNCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2d0X3JlZ3MuaCAgIHwg
+NDQgKysrKysrKysrKysrKy0tLS0tLQ0KPiAtLS0tDQo+ICAyIGZpbGVzIGNoYW5nZWQsIDM0IGlu
+c2VydGlvbnMoKyksIDE4IGRlbGV0aW9ucygtKQ0KPiANCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMv
+Z3B1L2RybS9pOTE1L2d0L2ludGVsX2VuZ2luZV9jcy5jDQo+IGIvZHJpdmVycy9ncHUvZHJtL2k5
+MTUvZ3QvaW50ZWxfZW5naW5lX2NzLmMNCj4gaW5kZXggNDUzMmMzZWE5YWNlLi5jNmU5M2RiMTM0
+YjEgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2VuZ2luZV9j
+cy5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2VuZ2luZV9jcy5jDQo+
+IEBAIC0zOTAsNiArMzkwLDE0IEBAIHN0YXRpYyB1MzIgZ2V0X3Jlc2V0X2RvbWFpbih1OCB2ZXIs
+IGVudW0NCj4gaW50ZWxfZW5naW5lX2lkIGlkKQ0KPiAgCQlzdGF0aWMgY29uc3QgdTMyIGVuZ2lu
+ZV9yZXNldF9kb21haW5zW10gPSB7DQo+ICAJCQlbUkNTMF0gID0gR0VOMTFfR1JET01fUkVOREVS
+LA0KPiAgCQkJW0JDUzBdICA9IEdFTjExX0dSRE9NX0JMVCwNCj4gKwkJCVtCQ1MxXSAgPSBYRUhQ
+Q19HUkRPTV9CTFQxLA0KPiArCQkJW0JDUzJdICA9IFhFSFBDX0dSRE9NX0JMVDIsDQo+ICsJCQlb
+QkNTM10gID0gWEVIUENfR1JET01fQkxUMywNCj4gKwkJCVtCQ1M0XSAgPSBYRUhQQ19HUkRPTV9C
+TFQ0LA0KPiArCQkJW0JDUzVdICA9IFhFSFBDX0dSRE9NX0JMVDUsDQo+ICsJCQlbQkNTNl0gID0g
+WEVIUENfR1JET01fQkxUNiwNCj4gKwkJCVtCQ1M3XSAgPSBYRUhQQ19HUkRPTV9CTFQ3LA0KPiAr
+CQkJW0JDUzhdICA9IFhFSFBDX0dSRE9NX0JMVDgsDQo+ICAJCQlbVkNTMF0gID0gR0VOMTFfR1JE
+T01fTUVESUEsDQo+ICAJCQlbVkNTMV0gID0gR0VOMTFfR1JET01fTUVESUEyLA0KPiAgCQkJW1ZD
+UzJdICA9IEdFTjExX0dSRE9NX01FRElBMywNCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2d0L2ludGVsX2d0X3JlZ3MuaA0KPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2lu
+dGVsX2d0X3JlZ3MuaA0KPiBpbmRleCBmZTA5Mjg4YTMxNDUuLjk4ZWRlOWM5M2YwMCAxMDA2NDQN
+Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfZ3RfcmVncy5oDQo+ICsrKyBi
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2d0X3JlZ3MuaA0KPiBAQCAtNTk3LDI0ICs1
+OTcsMzIgQEANCj4gIC8qIEdFTjExIGNoYW5nZWQgYWxsIGJpdCBkZWZzIGV4Y2VwdCBmb3IgRlVM
+TCAmIFJFTkRFUiAqLw0KPiAgI2RlZmluZSAgIEdFTjExX0dSRE9NX0ZVTEwJCQlHRU42X0dSRE9N
+X0ZVTEwNCj4gICNkZWZpbmUgICBHRU4xMV9HUkRPTV9SRU5ERVIJCQlHRU42X0dSRE9NX1JFTkRF
+Ug0KPiAtI2RlZmluZSAgIEdFTjExX0dSRE9NX0JMVAkJCSgxIDw8IDIpDQo+IC0jZGVmaW5lICAg
+R0VOMTFfR1JET01fR1VDCQkJKDEgPDwgMykNCj4gLSNkZWZpbmUgICBHRU4xMV9HUkRPTV9NRURJ
+QQkJCSgxIDw8IDUpDQo+IC0jZGVmaW5lICAgR0VOMTFfR1JET01fTUVESUEyCQkJKDEgPDwgNikN
+Cj4gLSNkZWZpbmUgICBHRU4xMV9HUkRPTV9NRURJQTMJCQkoMSA8PCA3KQ0KPiAtI2RlZmluZSAg
+IEdFTjExX0dSRE9NX01FRElBNAkJCSgxIDw8IDgpDQo+IC0jZGVmaW5lICAgR0VOMTFfR1JET01f
+TUVESUE1CQkJKDEgPDwgOSkNCj4gLSNkZWZpbmUgICBHRU4xMV9HUkRPTV9NRURJQTYJCQkoMSA8
+PCAxMCkNCj4gLSNkZWZpbmUgICBHRU4xMV9HUkRPTV9NRURJQTcJCQkoMSA8PCAxMSkNCj4gLSNk
+ZWZpbmUgICBHRU4xMV9HUkRPTV9NRURJQTgJCQkoMSA8PCAxMikNCj4gLSNkZWZpbmUgICBHRU4x
+MV9HUkRPTV9WRUNTCQkJKDEgPDwgMTMpDQo+IC0jZGVmaW5lICAgR0VOMTFfR1JET01fVkVDUzIJ
+CQkoMSA8PCAxNCkNCj4gLSNkZWZpbmUgICBHRU4xMV9HUkRPTV9WRUNTMwkJCSgxIDw8IDE1KQ0K
+PiAtI2RlZmluZSAgIEdFTjExX0dSRE9NX1ZFQ1M0CQkJKDEgPDwgMTYpDQo+IC0jZGVmaW5lICAg
+R0VOMTFfR1JET01fU0ZDMAkJCSgxIDw8IDE3KQ0KPiAtI2RlZmluZSAgIEdFTjExX0dSRE9NX1NG
+QzEJCQkoMSA8PCAxOCkNCj4gLSNkZWZpbmUgICBHRU4xMV9HUkRPTV9TRkMyCQkJKDEgPDwgMTkp
+DQo+IC0jZGVmaW5lICAgR0VOMTFfR1JET01fU0ZDMwkJCSgxIDw8IDIwKQ0KPiArI2RlZmluZSAg
+IFhFSFBDX0dSRE9NX0JMVDgJCQlSRUdfQklUKDMxKQ0KPiArI2RlZmluZSAgIFhFSFBDX0dSRE9N
+X0JMVDcJCQlSRUdfQklUKDMwKQ0KPiArI2RlZmluZSAgIFhFSFBDX0dSRE9NX0JMVDYJCQlSRUdf
+QklUKDI5KQ0KPiArI2RlZmluZSAgIFhFSFBDX0dSRE9NX0JMVDUJCQlSRUdfQklUKDI4KQ0KPiAr
+I2RlZmluZSAgIFhFSFBDX0dSRE9NX0JMVDQJCQlSRUdfQklUKDI3KQ0KPiArI2RlZmluZSAgIFhF
+SFBDX0dSRE9NX0JMVDMJCQlSRUdfQklUKDI2KQ0KPiArI2RlZmluZSAgIFhFSFBDX0dSRE9NX0JM
+VDIJCQlSRUdfQklUKDI1KQ0KPiArI2RlZmluZSAgIFhFSFBDX0dSRE9NX0JMVDEJCQlSRUdfQklU
+KDI0KQ0KPiArI2RlZmluZSAgIEdFTjExX0dSRE9NX1NGQzMJCQlSRUdfQklUKDIwKQ0KPiArI2Rl
+ZmluZSAgIEdFTjExX0dSRE9NX1NGQzIJCQlSRUdfQklUKDE5KQ0KPiArI2RlZmluZSAgIEdFTjEx
+X0dSRE9NX1NGQzEJCQlSRUdfQklUKDE4KQ0KPiArI2RlZmluZSAgIEdFTjExX0dSRE9NX1NGQzAJ
+CQlSRUdfQklUKDE3KQ0KPiArI2RlZmluZSAgIEdFTjExX0dSRE9NX1ZFQ1M0CQkJUkVHX0JJVCgx
+NikNCj4gKyNkZWZpbmUgICBHRU4xMV9HUkRPTV9WRUNTMwkJCVJFR19CSVQoMTUpDQo+ICsjZGVm
+aW5lICAgR0VOMTFfR1JET01fVkVDUzIJCQlSRUdfQklUKDE0KQ0KPiArI2RlZmluZSAgIEdFTjEx
+X0dSRE9NX1ZFQ1MJCQlSRUdfQklUKDEzKQ0KPiArI2RlZmluZSAgIEdFTjExX0dSRE9NX01FRElB
+OAkJCVJFR19CSVQoMTIpDQo+ICsjZGVmaW5lICAgR0VOMTFfR1JET01fTUVESUE3CQkJUkVHX0JJ
+VCgxMSkNCj4gKyNkZWZpbmUgICBHRU4xMV9HUkRPTV9NRURJQTYJCQlSRUdfQklUKDEwKQ0KPiAr
+I2RlZmluZSAgIEdFTjExX0dSRE9NX01FRElBNQkJCVJFR19CSVQoOSkNCj4gKyNkZWZpbmUgICBH
+RU4xMV9HUkRPTV9NRURJQTQJCQlSRUdfQklUKDgpDQo+ICsjZGVmaW5lICAgR0VOMTFfR1JET01f
+TUVESUEzCQkJUkVHX0JJVCg3KQ0KPiArI2RlZmluZSAgIEdFTjExX0dSRE9NX01FRElBMgkJCVJF
+R19CSVQoNikNCj4gKyNkZWZpbmUgICBHRU4xMV9HUkRPTV9NRURJQQkJCVJFR19CSVQoNSkNCj4g
+KyNkZWZpbmUgICBHRU4xMV9HUkRPTV9HVUMJCQlSRUdfQklUKDMpDQo+ICsjZGVmaW5lICAgR0VO
+MTFfR1JET01fQkxUCQkJUkVHX0JJVCgyKQ0KPiAgI2RlZmluZSAgIEdFTjExX1ZDU19TRkNfUkVT
+RVRfQklUKGluc3RhbmNlKQkoR0VOMTFfR1JET01fU0ZDMCA8PA0KPiAoKGluc3RhbmNlKSA+PiAx
+KSkNCj4gICNkZWZpbmUgICBHRU4xMV9WRUNTX1NGQ19SRVNFVF9CSVQoaW5zdGFuY2UpCShHRU4x
+MV9HUkRPTV9TRkMwIDw8DQo+IChpbnN0YW5jZSkpDQo+ICANCg==
