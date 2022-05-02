@@ -1,65 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C19A517449
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 May 2022 18:31:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 066CB51744D
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 May 2022 18:34:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE7AB10F011;
-	Mon,  2 May 2022 16:31:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 83EE110E8C6;
+	Mon,  2 May 2022 16:34:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com
- [IPv6:2607:f8b0:4864:20::102a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B37F10F011
- for <intel-gfx@lists.freedesktop.org>; Mon,  2 May 2022 16:31:48 +0000 (UTC)
-Received: by mail-pj1-x102a.google.com with SMTP id
- w5-20020a17090aaf8500b001d74c754128so16560398pjq.0
- for <intel-gfx@lists.freedesktop.org>; Mon, 02 May 2022 09:31:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=fireburn-co-uk.20210112.gappssmtp.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=5DXG6OzenA4JxtNcAqNdKZ6Lnghc0/nVTmrMktg2yAk=;
- b=LlUW4MSGAJS1SLkyE1EdQEV65iwM7GxuDb2kIuMt4hooqHVfbTsRCpiX597FOdcwh1
- fNGA86LPOwPSszNc0Fc/qJ1ojsIUDlpdUMvNa3PRDJ4XorjGpGnJgplS4mlpAOhguYT0
- wH82H0baFaNP+FBMuq3GAxoRKqaaBvwIGMuFE/0AcPEJ0WLd8iz6wCnGQvHxPmAV6xKn
- QhLnEB4rsrtfTw6/BCcAWaUdSchoaODdFOv1Kr/MNGn3vw9wAUYn1gvzJmOc2Gmi9WGK
- RhHX3CKOOluMCZVXY3uAA1A4/c3tO+7uq3h8RLtUWAuC8scNjhg+8nH7OQ4or2Yv+ax4
- lRjg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=5DXG6OzenA4JxtNcAqNdKZ6Lnghc0/nVTmrMktg2yAk=;
- b=X+HEyRjFb80Wpuyd2uEFis5l7CwErqgRC3W35WF/87vX6TJm+035u5PCTcv4LtOwS2
- YRIoC0TnUykOlQVwK97mF8RamcdL3u+TyrNywtB7ooLkbGQurGNej94lN7+AnwRVhtXL
- KyGo2eFsF4/i1gsEBby43FMp/qrYkqlZ2v+xmpZwOGcV5AicnhGCJPRUpu2IEiUQUUh+
- /+D4zE3KGSt0Dmuh88H8IoqUTJPETuwcsU/fv77Kj7nFXijis/L3+hEck1wO/5aquOfK
- z8iQc8WnGVEUT/MOUc9X/mzmP6bZxt2pt8plojiBv4Ng++TreDXyR4fi8WQrLi/m2gX6
- O0Kw==
-X-Gm-Message-State: AOAM532HNST/zbr8Qw4DLwkkDQqlDbi022tG4/ZL6hbIQF1cTVv1InrC
- 2XWGvbACJc4rnyusc5Lfmp2w8hHomLmvPDCLpCo7Bw==
-X-Google-Smtp-Source: ABdhPJzP7IBFrgDen677xLa2KBjavhGqOeefQGiz2x7MgXuduTru3h3L+KFwL6GQGbduyB4IEEU4ukYbo6JWa851fUA=
-X-Received: by 2002:a17:902:c7d3:b0:15e:b2f1:15f4 with SMTP id
- r19-20020a170902c7d300b0015eb2f115f4mr1154642pla.39.1651509107921; Mon, 02
- May 2022 09:31:47 -0700 (PDT)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 414A610E8C6;
+ Mon,  2 May 2022 16:34:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1651509261; x=1683045261;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=zuekNP4ZMtBZXkwlyAT3R9hLnIUVAmwJpjtwlKdQUZU=;
+ b=kZQ1lTX+0McgSnsOHrqKYHvyKryqQibz1Opfl4E8yCaD90Ma54NtoMEn
+ h7sqJrglSJknSEH0NQ4104+5TYka0mMGl9EM0DqFTT0ic3VKEuViBmXxf
+ heQvXWjZsRE3yMmiX+NP2dYrBHFiI5yAgyGbMhCFepA2TKrx9avXWk1bN
+ a4E+3QydIsPbEmn/sMSyIUrKTYRubishuBnDRtG0g9odRQwwsuYpnTY8J
+ ReUYDOA06J3amXfXDVinMxmqak9PS/YBUjz8mun1FhZFt+oxfx/SYN6Ou
+ x7WL1qUbbQEWP6gLAfPRMa18IDzlomuM0BqocB6QkhheO0JzYA7M/ARY9 Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10335"; a="266104994"
+X-IronPort-AV: E=Sophos;i="5.91,192,1647327600"; d="scan'208";a="266104994"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 May 2022 09:34:20 -0700
+X-IronPort-AV: E=Sophos;i="5.91,192,1647327600"; d="scan'208";a="583781807"
+Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 May 2022 09:34:20 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon,  2 May 2022 09:34:06 -0700
+Message-Id: <20220502163417.2635462-1-matthew.d.roper@intel.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-References: <20220407054651.3924-1-Arunpravin.PaneerSelvam@amd.com>
- <CAHbf0-H5uE4RtZwY0L8Wz0VG6QnU1+E3yhg3fDFVc3n__=nrNQ@mail.gmail.com>
- <c0facbf4-0e14-fde5-4334-499135a36f0c@amd.com>
- <CAHbf0-FMqAA3vWx_uRDYG_vr=FX+tFoLAL6BZLDe5upv7KJqrg@mail.gmail.com>
- <CAHbf0-En606VT_HYDyeo6TtsfSZmR_+wsZaVgS4XiedLO9ndiA@mail.gmail.com>
- <8b99ca20-f711-ec32-0cd2-16fc52846ce0@amd.com>
-In-Reply-To: <8b99ca20-f711-ec32-0cd2-16fc52846ce0@amd.com>
-From: Mike Lothian <mike@fireburn.co.uk>
-Date: Mon, 2 May 2022 17:31:36 +0100
-Message-ID: <CAHbf0-EzPP5gAyZQmxeAo3Ep0g-rO4XbDgEB_SdsR84xY+at9A@mail.gmail.com>
-To: Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v12] drm/amdgpu: add drm buddy support to
- amdgpu
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 00/11] i915: Introduce Ponte Vecchio
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,59 +53,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, alexander.deucher@amd.com,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- matthew.auld@intel.com
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 2 May 2022 at 16:54, Arunpravin Paneer Selvam
-<arunpravin.paneerselvam@amd.com> wrote:
->
->
->
-> On 5/2/2022 8:41 PM, Mike Lothian wrote:
-> > On Wed, 27 Apr 2022 at 12:55, Mike Lothian <mike@fireburn.co.uk> wrote:
-> >> On Tue, 26 Apr 2022 at 17:36, Christian K=C3=B6nig <christian.koenig@a=
-md.com> wrote:
-> >>> Hi Mike,
-> >>>
-> >>> sounds like somehow stitching together the SG table for PRIME doesn't
-> >>> work any more with this patch.
-> >>>
-> >>> Can you try with P2P DMA disabled?
-> >> -CONFIG_PCI_P2PDMA=3Dy
-> >> +# CONFIG_PCI_P2PDMA is not set
-> >>
-> >> If that's what you're meaning, then there's no difference, I'll upload
-> >> my dmesg to the gitlab issue
-> >>
-> >>> Apart from that can you take a look Arun?
-> >>>
-> >>> Thanks,
-> >>> Christian.
-> > Hi
-> >
-> > Have you had any success in replicating this?
-> Hi Mike,
-> I couldn't replicate on my Raven APU machine. I see you have 2 cards
-> initialized, one is Renoir
-> and the other is Navy Flounder. Could you give some more details, are
-> you running Gravity Mark
-> on Renoir and what is your system RAM configuration?
-> >
-> > Cheers
-> >
-> > Mike
->
-Hi
+Ponte Vecchio (PVC) is a new GPU based on the Xe_HPC architecture.  As a
+compute-focused platform, PVC has compute engines and enhanced copy
+engines, but no render engine (there is no geometry pipeline) and no
+display.
 
-It's a PRIME laptop, it failed on the RENOIR too, it caused a lockup,
-but systemd managed to capture it, I'll attach it to the issue
+This is just a handful of early enablement patches, including some
+initial support for the new copy engines (although we're not yet adding
+those to the platform's engine list or exposing them to userspace just
+yet).
 
-I've got 64GB RAM, the 6800M has 12GB VRAM
 
-Cheers
+Ayaz A Siddiqui (1):
+  drm/i915/pvc: Define MOCS table for PVC
 
-Mike
+John Harrison (1):
+  drm/i915/pvc: Reduce stack usage in reset selftest with extra blitter
+    engine
+
+Lucas De Marchi (2):
+  drm/i915/pvc: skip all copy engines from aux table invalidate
+  drm/i915/pvc: read fuses for link copy engines
+
+Matt Roper (5):
+  drm/i915/pvc: Add forcewake support
+  drm/i915/pvc: Read correct RP_STATE_CAP register
+  drm/i915/pvc: Engines definitions for new copy engines
+  drm/i915/pvc: Interrupt support for new copy engines
+  drm/i915/pvc: Reset support for new copy engines
+
+Stuart Summers (2):
+  drm/i915/pvc: add initial Ponte Vecchio definitions
+  drm/i915/pvc: Remove additional 3D flags from PIPE_CONTROL
+
+ drivers/gpu/drm/i915/gt/gen8_engine_cs.c      |  20 ++-
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  92 +++++++++++
+ drivers/gpu/drm/i915/gt/intel_engine_types.h  |  10 +-
+ drivers/gpu/drm/i915/gt/intel_gpu_commands.h  |  12 +-
+ drivers/gpu/drm/i915/gt/intel_gt_irq.c        |  16 ++
+ drivers/gpu/drm/i915/gt/intel_gt_regs.h       |  56 ++++---
+ drivers/gpu/drm/i915/gt/intel_gt_types.h      |   1 +
+ drivers/gpu/drm/i915/gt/intel_mocs.c          |  24 ++-
+ drivers/gpu/drm/i915/gt/intel_rps.c           |   4 +-
+ drivers/gpu/drm/i915/gt/intel_workarounds.c   |  13 +-
+ drivers/gpu/drm/i915/gt/selftest_hangcheck.c  |   9 +-
+ drivers/gpu/drm/i915/gvt/cmd_parser.c         |   2 +-
+ drivers/gpu/drm/i915/i915_drv.h               |   6 +
+ drivers/gpu/drm/i915/i915_pci.c               |  23 +++
+ drivers/gpu/drm/i915/i915_reg.h               |   9 ++
+ drivers/gpu/drm/i915/intel_device_info.c      |   1 +
+ drivers/gpu/drm/i915/intel_device_info.h      |   5 +-
+ drivers/gpu/drm/i915/intel_uncore.c           | 150 +++++++++++++++++-
+ drivers/gpu/drm/i915/selftests/intel_uncore.c |   2 +
+ 19 files changed, 417 insertions(+), 38 deletions(-)
+
+-- 
+2.35.1
+
