@@ -1,42 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B9FA5170F2
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 May 2022 15:51:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67C3A517152
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 May 2022 16:14:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1BA5B10EF2F;
-	Mon,  2 May 2022 13:51:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F0BEC10E894;
+	Mon,  2 May 2022 14:14:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-relay-canonical-1.canonical.com
- (smtp-relay-canonical-1.canonical.com [185.125.188.121])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E08310EF2F
- for <intel-gfx@lists.freedesktop.org>; Mon,  2 May 2022 13:51:34 +0000 (UTC)
-Received: from [192.168.50.139] (mobile-user-c1d2eb-82.dhcp.inet.fi
- [193.210.235.82])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-relay-canonical-1.canonical.com (Postfix) with ESMTPSA id 4E1C04162F; 
- Mon,  2 May 2022 13:51:32 +0000 (UTC)
-Message-ID: <0057d5a0-9c71-5d53-d102-ce49f2ab5c15@ubuntu.com>
-Date: Mon, 2 May 2022 16:51:16 +0300
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E29B10E894;
+ Mon,  2 May 2022 14:14:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1651500879; x=1683036879;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=IW+Mnok42lROVoAYAnarmztOZNy49bHnFCCaqVYee78=;
+ b=deJEPi1s5Zr3kCWFW0llH+5XBbyxFCEWEEIkHtB2qtplSa3BiVpicqD4
+ pty+PDjx9sikDaEfIAz5zHYIcdsl2KWuAsJZ/DfhqCVsPqNucO4yCtb2g
+ jE12ryWaEhNuWSQB7YOKVZySE4YW5424/20WuTGKyV5zWBZtwpHj3jj13
+ ne/6izbW691fEyqmXH9F43r5dIBhGBMqKfdJhyhKR25CRYRWO6GZR6cJ8
+ UtkKBxIKMHtz8oCbaMwEJ5FqMQncgMTaCOSqbnXD93dIL7BTRT3SbF0cO
+ dXImXshvuCE7Z0w+9Mis+od16orNfinKjUHpKnYo3vQ0oCpLuJPEGdste A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10335"; a="264811605"
+X-IronPort-AV: E=Sophos;i="5.91,192,1647327600"; d="scan'208";a="264811605"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 May 2022 07:14:08 -0700
+X-IronPort-AV: E=Sophos;i="5.91,192,1647327600"; d="scan'208";a="546375388"
+Received: from ramaling-i9x.iind.intel.com ([10.203.144.108])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 May 2022 07:14:05 -0700
+From: Ramalingam C <ramalingam.c@intel.com>
+To: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>
+Date: Mon,  2 May 2022 19:45:08 +0530
+Message-Id: <20220502141508.2327-1-ramalingam.c@intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Content-Language: en-US
-From: Timo Aaltonen <tjaalton@ubuntu.com>
-To: "Tolakanahalli Pradeep, Madhumitha"
- <madhumitha.tolakanahalli.pradeep@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- anusha.srivatsa@intel.com
-References: <2ebce4dd176208e368ba13d0c2f3d4591bf230e9.camel@intel.com>
- <e90b14fc-ad86-6687-956c-5d413e1032f9@ubuntu.com>
-In-Reply-To: <e90b14fc-ad86-6687-956c-5d413e1032f9@ubuntu.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [CI] PR for DG2 DMC v2.06
+Subject: [Intel-gfx] [PATCH v3] uapi/drm/i915: Document memory residency and
+ Flat-CCS capability of obj
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,42 +55,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Kenneth Graunke <kenneth@whitecape.org>, Matthew Auld <matthew.auld@intel.com>,
+ mesa-dev@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Timo Aaltonen kirjoitti 13.4.2022 klo 13.48:
-> Tolakanahalli Pradeep, Madhumitha kirjoitti 23.3.2022 klo 20.23:
->> The following changes since commit
->> 681281e49fb6778831370e5d94e6e1d97f0752d6:
->>
->>    amdgpu: update PSP 13.0.8 firmware (2022-03-18 07:35:54 -0400)
->>
->> are available in the Git repository at:
->>
->>    git://anongit.freedesktop.org/drm/drm-firmware dg2_dmc_v2.06
->>
->> for you to fetch changes up to
->> ecc28070ea5edd4733b78550326c1d56858181af:
->>
->>    i915: Add DMC v2.06 for DG2 (2022-03-23 11:15:12 -0700)
->>
->> ----------------------------------------------------------------
->> Madhumitha Tolakanahalli Pradeep (1):
->>        i915: Add DMC v2.06 for DG2
->>
->>   WHENCE                   |   3 +++
->>   i915/dg2_dmc_ver2_06.bin | Bin 0 -> 22416 bytes
->>   2 files changed, 3 insertions(+)
->>   create mode 100644 i915/dg2_dmc_ver2_06.bin
->>
-> 
-> Hi, when will this be sent upstream?
-> 
-> 
+Capture the impact of memory region preference list of the objects, on
+their memory residency and Flat-CCS capability.
 
-Ping? GuC got applied there, what's blocking DMC for DG2?
+v2:
+  Fix the Flat-CCS capability of an obj with {lmem, smem} preference
+  list [Thomas]
+v3:
+  Reworded the doc [Matt]
 
+Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
+cc: Matthew Auld <matthew.auld@intel.com>
+cc: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
+cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+cc: Jon Bloomfield <jon.bloomfield@intel.com>
+cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+cc: Kenneth Graunke <kenneth@whitecape.org>
+cc: mesa-dev@lists.freedesktop.org
+cc: Jordan Justen <jordan.l.justen@intel.com>
+cc: Tony Ye <tony.ye@intel.com>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+---
+ include/uapi/drm/i915_drm.h | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
 
-
+diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+index a2def7b27009..b7e1c2fe08dc 100644
+--- a/include/uapi/drm/i915_drm.h
++++ b/include/uapi/drm/i915_drm.h
+@@ -3443,6 +3443,22 @@ struct drm_i915_gem_create_ext {
+  * At which point we get the object handle in &drm_i915_gem_create_ext.handle,
+  * along with the final object size in &drm_i915_gem_create_ext.size, which
+  * should account for any rounding up, if required.
++ *
++ * Note that userspace has no means of knowing the current backing region
++ * for objects where @num_regions is larger than one. The kernel will only
++ * ensure that the priority order of the @regions array is honoured, either
++ * when initially placing the object, or when moving memory around due to
++ * memory pressure
++ *
++ * On Flat-CCS capable HW, compression is supported for the objects residing
++ * in I915_MEMORY_CLASS_DEVICE. When such objects (compressed) has other
++ * memory class in @regions and migrated (by I915, due to memory
++ * constrain) to the non I915_MEMORY_CLASS_DEVICE region, then I915 needs to
++ * decompress the content. But I915 dosen't have the required information to
++ * decompress the userspace compressed objects.
++ *
++ * So I915 supports Flat-CCS, only on the objects which can reside only on
++ * I915_MEMORY_CLASS_DEVICE regions.
+  */
+ struct drm_i915_gem_create_ext_memory_regions {
+ 	/** @base: Extension link. See struct i915_user_extension. */
 -- 
-t
+2.20.1
+
