@@ -1,53 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B939C516F94
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 May 2022 14:30:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8191516FAB
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 May 2022 14:40:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 19C1110E453;
-	Mon,  2 May 2022 12:30:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E8D2710E6B1;
+	Mon,  2 May 2022 12:40:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ams.source.kernel.org (ams.source.kernel.org
- [IPv6:2604:1380:4601:e00::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A38610E453
- for <intel-gfx@lists.freedesktop.org>; Mon,  2 May 2022 12:30:00 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 84A03B816E4
- for <intel-gfx@lists.freedesktop.org>; Mon,  2 May 2022 12:29:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5418FC385B2
- for <intel-gfx@lists.freedesktop.org>; Mon,  2 May 2022 12:29:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1651494597;
- bh=EsmYFwfMHQTy4IqFW58UOfCfW2WnrOBdYhWKBTzZmtU=;
- h=References:In-Reply-To:From:Date:Subject:To:List-Id:Cc:From;
- b=On2UsJZR+gy0xzq5Jb4QI4zel8DoTuC5QiPjXW6qWUULBOIxZ6HiaBCuhMOsTaoHu
- Vnr3FgXt74Ixw7MTdpC3sMri2PI15feudNeFgRxoMCFvTfC4pqGpVqJ+ojtOHDtj+C
- R4FTDma1fi2EZzJGxoKNLpj8li6QgfeOIRBOWsrarisNT6MmaljM87Lt6PGoO914Cl
- 8df9rGJztPZo7i/ymrxJClGuFcJC9SuCeE/EJQCsnyd99OSTQqs2lIfRVA1djVujaz
- rAS7nrH/Ed5TtyMFNG2T7f3HrPcfLQ6DFfoQ4LsK8jA5SyqrmQ2DSK85Ot0ailDnsg
- JTyVQP7ATAaUw==
-Received: by mail-io1-f44.google.com with SMTP id g21so15768271iom.13
- for <intel-gfx@lists.freedesktop.org>; Mon, 02 May 2022 05:29:57 -0700 (PDT)
-X-Gm-Message-State: AOAM5307PoKQ1He97DEanxlbUX5xU48NjD5TQW2RdVbZbQOey+2tdoO4
- 5qHnt9PJFsQBn63d5MEbfjlVb8a7k7/BEbT743o=
-X-Google-Smtp-Source: ABdhPJx6dzE13U4u5EW3uGCoZVC0g17eY5T/fJIFCIT7PZ/SPrTHyd2Z+Ax9mMBVrnptesovqdvfm+YXKMfIfjnKZmM=
-X-Received: by 2002:a5e:821a:0:b0:657:c59f:898c with SMTP id
- l26-20020a5e821a000000b00657c59f898cmr4056306iom.209.1651494596445; Mon, 02
- May 2022 05:29:56 -0700 (PDT)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F34F310E6B1;
+ Mon,  2 May 2022 12:40:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1651495203; x=1683031203;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=X1ivxEkQnI4EoiZmcAQSklX5iLRSFagKyHj82/dEO2w=;
+ b=mPKog/bLzAmq22ghdPowj5PdHZRbcnDYA340iBcVPI3rBfiZmDoQB7T9
+ 0CiVu2J0RbraaV7l66JKhTQpAdlOYZ7CaDLIvybghQWSl5grpeY81ZJ84
+ Coy6LdCRVDgTmE5zXLrrH1PFniZTpIBiR+0Odkjhvkw0XqnI+ihCs9QH/
+ 20XkT7+bJnJk809pNbmyjUcIXdeEUpwajQAsU+ZPmeAs/NB3u8COOrZo5
+ ZxtPO2a+vn0gAtXEb4TvHbEvl6P71OleVI1zKpuyEwInl/3Vo89RQZ9tE
+ T5+YFNw+uB4SwwHtTB7WQ7nbOTli6+pS5mMBIzPFijdto+WsFbCHV2cyE Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10334"; a="327740602"
+X-IronPort-AV: E=Sophos;i="5.91,192,1647327600"; d="scan'208";a="327740602"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 May 2022 05:40:02 -0700
+X-IronPort-AV: E=Sophos;i="5.91,192,1647327600"; d="scan'208";a="583676390"
+Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.203.144.108])
+ by orsmga008-auth.jf.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 May 2022 05:40:00 -0700
+Date: Mon, 2 May 2022 18:11:02 +0530
+From: Ramalingam C <ramalingam.c@intel.com>
+To: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Hellstrom Thomas <thomas.hellstrom@intel.com>
+Message-ID: <20220502124101.GF31513@intel.com>
+References: <20220502111003.32397-1-ramalingam.c@intel.com>
+ <20220502111003.32397-2-ramalingam.c@intel.com>
 MIME-Version: 1.0
-References: <20220428190725.3704842-1-John.C.Harrison@Intel.com>
-In-Reply-To: <20220428190725.3704842-1-John.C.Harrison@Intel.com>
-From: Josh Boyer <jwboyer@kernel.org>
-Date: Mon, 2 May 2022 08:29:45 -0400
-X-Gmail-Original-Message-ID: <CA+5PVA50kgprAj-n+HsB4sEa=MEujkvm_dA2sEQ-a0NEE6-3Tw@mail.gmail.com>
-Message-ID: <CA+5PVA50kgprAj-n+HsB4sEa=MEujkvm_dA2sEQ-a0NEE6-3Tw@mail.gmail.com>
-To: John Harrison <John.C.Harrison@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] PR for new GuC v70.1.2 for DG2
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20220502111003.32397-2-ramalingam.c@intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v4 1/4] drm/i915/gt: Explicitly clear
+ BB_OFFSET for new contexts
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,36 +60,114 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Kyle McMartin <kyle@kernel.org>, Ben Hutchings <ben@decadent.org.uk>,
- Linux Firmware <linux-firmware@kernel.org>
+Cc: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>,
+ Hellstrom Thomas <thomas.hellstrom@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Apr 28, 2022 at 3:07 PM <John.C.Harrison@intel.com> wrote:
->
-> The following changes since commit ac21ab5d1de0de34201c90d32eee436f873d1e5b:
->
->   Mellanox: Add lc_ini_bundle for xx.2010.1006 (2022-04-25 07:36:16 -0400)
->
-> are available in the Git repository at:
->
->   git://anongit.freedesktop.org/drm/drm-firmware guc_v70.1.2_dg2
->
-> for you to fetch changes up to 89ae5eb20f65752db6a3e38b9a69144f19540567:
->
->   i915: Add GuC v70.1.2 for DG2 (2022-04-26 13:27:47 -0700)
+On 2022-05-02 at 16:40:00 +0530, Ramalingam C wrote:
+> From: Chris Wilson <chris@chris-wilson.co.uk>
+> 
+> Even though the initial protocontext we load onto HW has the register
+> cleared, by the time we save it into the default image, BB_OFFSET has
+> had the enable bit set. Reclear BB_OFFSET for each new context.
+> 
+> Testcase: igt/i915_selftests/gt_lrc
+> 
+> v2:
+>   Extend it for gen8.
+> v3:
+>   BB_OFFSET is recorded per engine from Gen9 onwards
+> 
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+> Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
+> Reviewed-by: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
+Thomas,
 
-Pulled and pushed out.
+Could you please reconfirm your R-b for v3? This R-b was given for v1.
 
-josh
-
->
-> ----------------------------------------------------------------
-> John Harrison (1):
->       i915: Add GuC v70.1.2 for DG2
->
->  WHENCE                  |   3 +++
->  i915/dg2_guc_70.1.2.bin | Bin 0 -> 365568 bytes
->  2 files changed, 3 insertions(+)
->  create mode 100644 i915/dg2_guc_70.1.2.bin
+Ram
+> ---
+>  drivers/gpu/drm/i915/gt/intel_engine_regs.h |  1 +
+>  drivers/gpu/drm/i915/gt/intel_lrc.c         | 20 ++++++++++++++++++++
+>  drivers/gpu/drm/i915/gt/selftest_lrc.c      |  5 +++++
+>  3 files changed, 26 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_regs.h b/drivers/gpu/drm/i915/gt/intel_engine_regs.h
+> index 75a0c55c5aa5..8c65f3a7acfb 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine_regs.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine_regs.h
+> @@ -109,6 +109,7 @@
+>  #define RING_SBBSTATE(base)			_MMIO((base) + 0x118) /* hsw+ */
+>  #define RING_SBBADDR_UDW(base)			_MMIO((base) + 0x11c) /* gen8+ */
+>  #define RING_BBADDR(base)			_MMIO((base) + 0x140)
+> +#define RING_BB_OFFSET(base)			_MMIO((base) + 0x158)
+>  #define RING_BBADDR_UDW(base)			_MMIO((base) + 0x168) /* gen8+ */
+>  #define CCID(base)				_MMIO((base) + 0x180)
+>  #define   CCID_EN				BIT(0)
+> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> index eec73c66406c..ee8ab7470a62 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> @@ -662,6 +662,21 @@ static int lrc_ring_mi_mode(const struct intel_engine_cs *engine)
+>  		return -1;
+>  }
+>  
+> +static int lrc_ring_bb_offset(const struct intel_engine_cs *engine)
+> +{
+> +	if (GRAPHICS_VER_FULL(engine->i915) >= IP_VER(12, 50))
+> +		return 0x80;
+> +	else if (GRAPHICS_VER(engine->i915) >= 12)
+> +		return 0x70;
+> +	else if (GRAPHICS_VER(engine->i915) >= 9)
+> +		return 0x64;
+> +	else if (GRAPHICS_VER(engine->i915) >= 8 &&
+> +		 engine->class == RENDER_CLASS)
+> +		return 0xc4;
+> +	else
+> +		return -1;
+> +}
+> +
+>  static int lrc_ring_gpr0(const struct intel_engine_cs *engine)
+>  {
+>  	if (GRAPHICS_VER_FULL(engine->i915) >= IP_VER(12, 50))
+> @@ -768,6 +783,7 @@ static void init_common_regs(u32 * const regs,
+>  			     bool inhibit)
+>  {
+>  	u32 ctl;
+> +	int loc;
+>  
+>  	ctl = _MASKED_BIT_ENABLE(CTX_CTRL_INHIBIT_SYN_CTX_SWITCH);
+>  	ctl |= _MASKED_BIT_DISABLE(CTX_CTRL_ENGINE_CTX_RESTORE_INHIBIT);
+> @@ -779,6 +795,10 @@ static void init_common_regs(u32 * const regs,
+>  	regs[CTX_CONTEXT_CONTROL] = ctl;
+>  
+>  	regs[CTX_TIMESTAMP] = ce->stats.runtime.last;
+> +
+> +	loc = lrc_ring_bb_offset(engine);
+> +	if (loc != -1)
+> +		regs[loc + 1] = 0;
+>  }
+>  
+>  static void init_wa_bb_regs(u32 * const regs,
+> diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+> index 8b2c11dbe354..c4bd4e1ac5ef 100644
+> --- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
+> +++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+> @@ -357,6 +357,11 @@ static int live_lrc_fixed(void *arg)
+>  				lrc_ring_cmd_buf_cctl(engine),
+>  				"RING_CMD_BUF_CCTL"
+>  			},
+> +			{
+> +				i915_mmio_reg_offset(RING_BB_OFFSET(engine->mmio_base)),
+> +				lrc_ring_bb_offset(engine),
+> +				"RING_BB_OFFSET"
+> +			},
+>  			{ },
+>  		}, *t;
+>  		u32 *hw;
+> -- 
+> 2.20.1
+> 
