@@ -2,42 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F7EC5180E8
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 May 2022 11:24:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C8CBA5180E9
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 May 2022 11:24:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 487B510F80E;
-	Tue,  3 May 2022 09:24:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A75810F812;
+	Tue,  3 May 2022 09:24:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0555510F801
- for <intel-gfx@lists.freedesktop.org>; Tue,  3 May 2022 09:24:27 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 19A9410F812
+ for <intel-gfx@lists.freedesktop.org>; Tue,  3 May 2022 09:24:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1651569868; x=1683105868;
+ t=1651569873; x=1683105873;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=lvUw1Hh2vQ6dsMjuG+wQ2IAdw7a+lYY1OgOVzIHZ51g=;
- b=NQ1afjPeJNbOw134bEjVOlZdkwgOwWxGxYuPeNT+999VIlRw6AzxxYxH
- OagrnI6swIQy9iDsRTaD9nqfzx0Ix6Ti4fUeymWc4+7RFOdLwNbaXuddy
- wHPzV0rQl7YbOsEuwR+/fFFFCUOx38Is5xd6donaWdkxP06TP/2G6R1wP
- XPMQqJxM+Q8mrJslTxFoGpcdMzC/bwIFAe0JGWeyQWXpZegThhWkrkaaQ
- 73uOODIva1qtS53r7jURWk3z2QgYCwUK9jfye4Yvt+S0IfBhf7RLyPbdu
- 6Oe3xBkbpr6pr1O+Dz3NR3XrBYKmbvJGwYViJfkwVwqDlCl9KbdyuQvNE Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10335"; a="249415504"
-X-IronPort-AV: E=Sophos;i="5.91,194,1647327600"; d="scan'208";a="249415504"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 May 2022 02:24:27 -0700
-X-IronPort-AV: E=Sophos;i="5.91,194,1647327600"; d="scan'208";a="733842835"
+ bh=jrTTGgUOtX+gGjLNCCeISafMu5mfA6LKSGnnCFTP5Pg=;
+ b=RjQlLOVDwaz/usmE2d0pBJVvCxt1flpC5r0kckXegjR4S05Is1ZTrUUx
+ krjdHuzbRLMHWnkZDih5SrMDZElkaBztkmj7W9rIhZo8j3pICu1PP7AFZ
+ +N1Yx2FV85MpdxogzNxEEWk8OzT0f++35bnRtKIsDb/HQUfx0ynzqOeuG
+ f9NEqrpkAr05ZJRpbvub1K/CIq52/NrEZjWBUj5JunhJp3d3JVBS3LIT+
+ /pAPkgxqI1zWFEBdnyI1k5ap33tyHgDR+K9S1jvQ2NTVftGuf/HAgo7sL
+ uErGqFnF8WzNDOoY0BurkNB2qCEtje8/PMTv1lEZ65zsO9ZGqGb7Tjh1E g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10335"; a="247343661"
+X-IronPort-AV: E=Sophos;i="5.91,194,1647327600"; d="scan'208";a="247343661"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 May 2022 02:24:32 -0700
+X-IronPort-AV: E=Sophos;i="5.91,194,1647327600"; d="scan'208";a="536271101"
 Received: from jasinski-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.249.133.126])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 May 2022 02:24:25 -0700
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 May 2022 02:24:30 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue,  3 May 2022 12:23:48 +0300
-Message-Id: <f8230e1893400e9a9c5829041a8ab36349182a54.1651569697.git.jani.nikula@intel.com>
+Date: Tue,  3 May 2022 12:23:49 +0300
+Message-Id: <c66cc3adeb375f5e60d1a8f91b41580d8ab67442.1651569697.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <cover.1651569697.git.jani.nikula@intel.com>
 References: <cover.1651569697.git.jani.nikula@intel.com>
@@ -45,8 +45,8 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 03/20] drm/edid: rename HDMI Forum VSDB to
- SCDS
+Subject: [Intel-gfx] [PATCH v2 04/20] drm/edid: clean up CTA data block tag
+ definitions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,127 +63,219 @@ Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The HDMI spec talks about SCDS, Sink Capability Data Structure, exposed
-via HF-VSDB or HF-SCDB. Rename VSDB to SCDS.
+Add prefixed names, group, sort, add references.
 
-Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+v2:
+- Updated references to CTA-861-H
+- s/CEA/CTA/ in data block macros
+
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/drm_edid.c | 41 +++++++++++++++++++-------------------
- 1 file changed, 21 insertions(+), 20 deletions(-)
+ drivers/gpu/drm/drm_edid.c | 65 ++++++++++++++++++++------------------
+ 1 file changed, 35 insertions(+), 30 deletions(-)
 
 diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
-index fe527a0c50bc..18d05cbb2124 100644
+index 18d05cbb2124..67eaa01f1d7c 100644
 --- a/drivers/gpu/drm/drm_edid.c
 +++ b/drivers/gpu/drm/drm_edid.c
-@@ -5132,17 +5132,18 @@ static void drm_parse_ycbcr420_deep_color_info(struct drm_connector *connector,
- 	hdmi->y420_dc_modes = dc_mask;
+@@ -3462,16 +3462,21 @@ add_detailed_modes(struct drm_connector *connector, const struct edid *edid,
+ 	return closure.modes;
  }
  
--static void drm_parse_hdmi_forum_vsdb(struct drm_connector *connector,
--				 const u8 *hf_vsdb)
-+/* Sink Capability Data Structure */
-+static void drm_parse_hdmi_forum_scds(struct drm_connector *connector,
-+				      const u8 *hf_scds)
+-#define AUDIO_BLOCK	0x01
+-#define VIDEO_BLOCK     0x02
+-#define VENDOR_BLOCK    0x03
+-#define SPEAKER_BLOCK	0x04
+-#define HDR_STATIC_METADATA_BLOCK	0x6
+-#define USE_EXTENDED_TAG 0x07
+-#define EXT_VIDEO_CAPABILITY_BLOCK 0x00
+-#define EXT_VIDEO_DATA_BLOCK_420	0x0E
+-#define EXT_VIDEO_CAP_BLOCK_Y420CMDB 0x0F
+-#define EXT_VIDEO_HF_SCDB_DATA_BLOCK	0x79
++/* CTA-861-H Table 60 - CTA Tag Codes */
++#define CTA_DB_AUDIO			1
++#define CTA_DB_VIDEO			2
++#define CTA_DB_VENDOR			3
++#define CTA_DB_SPEAKER			4
++#define CTA_DB_EXTENDED_TAG		7
++
++/* CTA-861-H Table 62 - CTA Extended Tag Codes */
++#define CTA_EXT_DB_VIDEO_CAP		0
++#define CTA_EXT_DB_VENDOR		1
++#define CTA_EXT_DB_HDR_STATIC_METADATA	6
++#define CTA_EXT_DB_420_VIDEO_DATA	14
++#define CTA_EXT_DB_420_VIDEO_CAP_MAP	15
++#define CTA_EXT_DB_HF_SCDB		0x79
++
+ #define EDID_BASIC_AUDIO	(1 << 6)
+ #define EDID_CEA_YCRCB444	(1 << 5)
+ #define EDID_CEA_YCRCB422	(1 << 4)
+@@ -4358,7 +4363,7 @@ cea_db_offsets(const u8 *cea, int *start, int *end)
+ 
+ static bool cea_db_is_hdmi_vsdb(const u8 *db)
  {
- 	struct drm_display_info *display = &connector->display_info;
- 	struct drm_hdmi_info *hdmi = &display->hdmi;
+-	if (cea_db_tag(db) != VENDOR_BLOCK)
++	if (cea_db_tag(db) != CTA_DB_VENDOR)
+ 		return false;
  
- 	display->has_hdmi_infoframe = true;
+ 	if (cea_db_payload_len(db) < 5)
+@@ -4369,7 +4374,7 @@ static bool cea_db_is_hdmi_vsdb(const u8 *db)
  
--	if (hf_vsdb[6] & 0x80) {
-+	if (hf_scds[6] & 0x80) {
- 		hdmi->scdc.supported = true;
--		if (hf_vsdb[6] & 0x40)
-+		if (hf_scds[6] & 0x40)
- 			hdmi->scdc.read_request = true;
- 	}
+ static bool cea_db_is_hdmi_forum_vsdb(const u8 *db)
+ {
+-	if (cea_db_tag(db) != VENDOR_BLOCK)
++	if (cea_db_tag(db) != CTA_DB_VENDOR)
+ 		return false;
  
-@@ -5155,9 +5156,9 @@ static void drm_parse_hdmi_forum_vsdb(struct drm_connector *connector,
- 	 * Lets check it out.
- 	 */
+ 	if (cea_db_payload_len(db) < 7)
+@@ -4380,7 +4385,7 @@ static bool cea_db_is_hdmi_forum_vsdb(const u8 *db)
  
--	if (hf_vsdb[5]) {
-+	if (hf_scds[5]) {
- 		/* max clock is 5000 KHz times block value */
--		u32 max_tmds_clock = hf_vsdb[5] * 5000;
-+		u32 max_tmds_clock = hf_scds[5] * 5000;
- 		struct drm_scdc *scdc = &hdmi->scdc;
+ static bool cea_db_is_microsoft_vsdb(const u8 *db)
+ {
+-	if (cea_db_tag(db) != VENDOR_BLOCK)
++	if (cea_db_tag(db) != CTA_DB_VENDOR)
+ 		return false;
  
- 		if (max_tmds_clock > 340000) {
-@@ -5170,42 +5171,42 @@ static void drm_parse_hdmi_forum_vsdb(struct drm_connector *connector,
- 			scdc->scrambling.supported = true;
+ 	if (cea_db_payload_len(db) != 21)
+@@ -4391,13 +4396,13 @@ static bool cea_db_is_microsoft_vsdb(const u8 *db)
  
- 			/* Few sinks support scrambling for clocks < 340M */
--			if ((hf_vsdb[6] & 0x8))
-+			if ((hf_scds[6] & 0x8))
- 				scdc->scrambling.low_rates = true;
- 		}
- 	}
+ static bool cea_db_is_vcdb(const u8 *db)
+ {
+-	if (cea_db_tag(db) != USE_EXTENDED_TAG)
++	if (cea_db_tag(db) != CTA_DB_EXTENDED_TAG)
+ 		return false;
  
--	if (hf_vsdb[7]) {
-+	if (hf_scds[7]) {
- 		u8 max_frl_rate;
- 		u8 dsc_max_frl_rate;
- 		u8 dsc_max_slices;
- 		struct drm_hdmi_dsc_cap *hdmi_dsc = &hdmi->dsc_cap;
+ 	if (cea_db_payload_len(db) != 2)
+ 		return false;
  
- 		DRM_DEBUG_KMS("hdmi_21 sink detected. parsing edid\n");
--		max_frl_rate = (hf_vsdb[7] & DRM_EDID_MAX_FRL_RATE_MASK) >> 4;
-+		max_frl_rate = (hf_scds[7] & DRM_EDID_MAX_FRL_RATE_MASK) >> 4;
- 		drm_get_max_frl_rate(max_frl_rate, &hdmi->max_lanes,
- 				     &hdmi->max_frl_rate_per_lane);
--		hdmi_dsc->v_1p2 = hf_vsdb[11] & DRM_EDID_DSC_1P2;
-+		hdmi_dsc->v_1p2 = hf_scds[11] & DRM_EDID_DSC_1P2;
+-	if (cea_db_extended_tag(db) != EXT_VIDEO_CAPABILITY_BLOCK)
++	if (cea_db_extended_tag(db) != CTA_EXT_DB_VIDEO_CAP)
+ 		return false;
  
- 		if (hdmi_dsc->v_1p2) {
--			hdmi_dsc->native_420 = hf_vsdb[11] & DRM_EDID_DSC_NATIVE_420;
--			hdmi_dsc->all_bpp = hf_vsdb[11] & DRM_EDID_DSC_ALL_BPP;
-+			hdmi_dsc->native_420 = hf_scds[11] & DRM_EDID_DSC_NATIVE_420;
-+			hdmi_dsc->all_bpp = hf_scds[11] & DRM_EDID_DSC_ALL_BPP;
+ 	return true;
+@@ -4405,13 +4410,13 @@ static bool cea_db_is_vcdb(const u8 *db)
  
--			if (hf_vsdb[11] & DRM_EDID_DSC_16BPC)
-+			if (hf_scds[11] & DRM_EDID_DSC_16BPC)
- 				hdmi_dsc->bpc_supported = 16;
--			else if (hf_vsdb[11] & DRM_EDID_DSC_12BPC)
-+			else if (hf_scds[11] & DRM_EDID_DSC_12BPC)
- 				hdmi_dsc->bpc_supported = 12;
--			else if (hf_vsdb[11] & DRM_EDID_DSC_10BPC)
-+			else if (hf_scds[11] & DRM_EDID_DSC_10BPC)
- 				hdmi_dsc->bpc_supported = 10;
- 			else
- 				hdmi_dsc->bpc_supported = 0;
+ static bool cea_db_is_hdmi_forum_scdb(const u8 *db)
+ {
+-	if (cea_db_tag(db) != USE_EXTENDED_TAG)
++	if (cea_db_tag(db) != CTA_DB_EXTENDED_TAG)
+ 		return false;
  
--			dsc_max_frl_rate = (hf_vsdb[12] & DRM_EDID_DSC_MAX_FRL_RATE_MASK) >> 4;
-+			dsc_max_frl_rate = (hf_scds[12] & DRM_EDID_DSC_MAX_FRL_RATE_MASK) >> 4;
- 			drm_get_max_frl_rate(dsc_max_frl_rate, &hdmi_dsc->max_lanes,
- 					     &hdmi_dsc->max_frl_rate_per_lane);
--			hdmi_dsc->total_chunk_kbytes = hf_vsdb[13] & DRM_EDID_DSC_TOTAL_CHUNK_KBYTES;
-+			hdmi_dsc->total_chunk_kbytes = hf_scds[13] & DRM_EDID_DSC_TOTAL_CHUNK_KBYTES;
+ 	if (cea_db_payload_len(db) < 7)
+ 		return false;
  
--			dsc_max_slices = hf_vsdb[12] & DRM_EDID_DSC_MAX_SLICES;
-+			dsc_max_slices = hf_scds[12] & DRM_EDID_DSC_MAX_SLICES;
- 			switch (dsc_max_slices) {
- 			case 1:
- 				hdmi_dsc->max_slices = 1;
-@@ -5243,7 +5244,7 @@ static void drm_parse_hdmi_forum_vsdb(struct drm_connector *connector,
- 		}
- 	}
+-	if (cea_db_extended_tag(db) != EXT_VIDEO_HF_SCDB_DATA_BLOCK)
++	if (cea_db_extended_tag(db) != CTA_EXT_DB_HF_SCDB)
+ 		return false;
  
--	drm_parse_ycbcr420_deep_color_info(connector, hf_vsdb);
-+	drm_parse_ycbcr420_deep_color_info(connector, hf_scds);
- }
+ 	return true;
+@@ -4419,13 +4424,13 @@ static bool cea_db_is_hdmi_forum_scdb(const u8 *db)
  
- static void drm_parse_hdmi_deep_color_info(struct drm_connector *connector,
-@@ -5380,7 +5381,7 @@ static void drm_parse_cea_ext(struct drm_connector *connector,
- 			drm_parse_hdmi_vsdb_video(connector, db);
- 		if (cea_db_is_hdmi_forum_vsdb(db) ||
- 		    cea_db_is_hdmi_forum_scdb(db))
--			drm_parse_hdmi_forum_vsdb(connector, db);
-+			drm_parse_hdmi_forum_scds(connector, db);
- 		if (cea_db_is_microsoft_vsdb(db))
- 			drm_parse_microsoft_vsdb(connector, db);
- 		if (cea_db_is_y420cmdb(db))
+ static bool cea_db_is_y420cmdb(const u8 *db)
+ {
+-	if (cea_db_tag(db) != USE_EXTENDED_TAG)
++	if (cea_db_tag(db) != CTA_DB_EXTENDED_TAG)
+ 		return false;
+ 
+ 	if (!cea_db_payload_len(db))
+ 		return false;
+ 
+-	if (cea_db_extended_tag(db) != EXT_VIDEO_CAP_BLOCK_Y420CMDB)
++	if (cea_db_extended_tag(db) != CTA_EXT_DB_420_VIDEO_CAP_MAP)
+ 		return false;
+ 
+ 	return true;
+@@ -4433,13 +4438,13 @@ static bool cea_db_is_y420cmdb(const u8 *db)
+ 
+ static bool cea_db_is_y420vdb(const u8 *db)
+ {
+-	if (cea_db_tag(db) != USE_EXTENDED_TAG)
++	if (cea_db_tag(db) != CTA_DB_EXTENDED_TAG)
+ 		return false;
+ 
+ 	if (!cea_db_payload_len(db))
+ 		return false;
+ 
+-	if (cea_db_extended_tag(db) != EXT_VIDEO_DATA_BLOCK_420)
++	if (cea_db_extended_tag(db) != CTA_EXT_DB_420_VIDEO_DATA)
+ 		return false;
+ 
+ 	return true;
+@@ -4506,7 +4511,7 @@ add_cea_modes(struct drm_connector *connector, const struct edid *edid)
+ 			db = &cea[i];
+ 			dbl = cea_db_payload_len(db);
+ 
+-			if (cea_db_tag(db) == VIDEO_BLOCK) {
++			if (cea_db_tag(db) == CTA_DB_VIDEO) {
+ 				video = db + 1;
+ 				video_len = dbl;
+ 				modes += do_cea_modes(connector, video, dbl);
+@@ -4580,10 +4585,10 @@ static void fixup_detailed_cea_mode_clock(struct drm_display_mode *mode)
+ 
+ static bool cea_db_is_hdmi_hdr_metadata_block(const u8 *db)
+ {
+-	if (cea_db_tag(db) != USE_EXTENDED_TAG)
++	if (cea_db_tag(db) != CTA_DB_EXTENDED_TAG)
+ 		return false;
+ 
+-	if (db[1] != HDR_STATIC_METADATA_BLOCK)
++	if (db[1] != CTA_EXT_DB_HDR_STATIC_METADATA)
+ 		return false;
+ 
+ 	if (cea_db_payload_len(db) < 3)
+@@ -4777,7 +4782,7 @@ static void drm_edid_to_eld(struct drm_connector *connector,
+ 			dbl = cea_db_payload_len(db);
+ 
+ 			switch (cea_db_tag(db)) {
+-			case AUDIO_BLOCK:
++			case CTA_DB_AUDIO:
+ 				/* Audio Data Block, contains SADs */
+ 				sad_count = min(dbl / 3, 15 - total_sad_count);
+ 				if (sad_count >= 1)
+@@ -4785,12 +4790,12 @@ static void drm_edid_to_eld(struct drm_connector *connector,
+ 					       &db[1], sad_count * 3);
+ 				total_sad_count += sad_count;
+ 				break;
+-			case SPEAKER_BLOCK:
++			case CTA_DB_SPEAKER:
+ 				/* Speaker Allocation Data Block */
+ 				if (dbl >= 1)
+ 					eld[DRM_ELD_SPEAKER] = db[1];
+ 				break;
+-			case VENDOR_BLOCK:
++			case CTA_DB_VENDOR:
+ 				/* HDMI Vendor-Specific Data Block */
+ 				if (cea_db_is_hdmi_vsdb(db))
+ 					drm_parse_hdmi_vsdb_audio(connector, db);
+@@ -4851,7 +4856,7 @@ int drm_edid_to_sad(const struct edid *edid, struct cea_sad **sads)
+ 	for_each_cea_db(cea, i, start, end) {
+ 		const u8 *db = &cea[i];
+ 
+-		if (cea_db_tag(db) == AUDIO_BLOCK) {
++		if (cea_db_tag(db) == CTA_DB_AUDIO) {
+ 			int j;
+ 
+ 			dbl = cea_db_payload_len(db);
+@@ -4913,7 +4918,7 @@ int drm_edid_to_speaker_allocation(const struct edid *edid, u8 **sadb)
+ 	for_each_cea_db(cea, i, start, end) {
+ 		const u8 *db = &cea[i];
+ 
+-		if (cea_db_tag(db) == SPEAKER_BLOCK) {
++		if (cea_db_tag(db) == CTA_DB_SPEAKER) {
+ 			dbl = cea_db_payload_len(db);
+ 
+ 			/* Speaker Allocation Data Block */
+@@ -5044,7 +5049,7 @@ bool drm_detect_monitor_audio(const struct edid *edid)
+ 		goto end;
+ 
+ 	for_each_cea_db(edid_ext, i, start_offset, end_offset) {
+-		if (cea_db_tag(&edid_ext[i]) == AUDIO_BLOCK) {
++		if (cea_db_tag(&edid_ext[i]) == CTA_DB_AUDIO) {
+ 			has_audio = true;
+ 			for (j = 1; j < cea_db_payload_len(&edid_ext[i]) + 1; j += 3)
+ 				DRM_DEBUG_KMS("CEA audio format %d\n",
 -- 
 2.30.2
 
