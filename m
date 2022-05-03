@@ -1,49 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25468517F9F
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 May 2022 10:21:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE9AA517FA2
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 May 2022 10:22:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 62ED110ED9E;
-	Tue,  3 May 2022 08:21:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F79110ED87;
+	Tue,  3 May 2022 08:22:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 68B3510EB76
- for <intel-gfx@lists.freedesktop.org>; Tue,  3 May 2022 08:21:41 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 155CE10EB9A;
+ Tue,  3 May 2022 08:22:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1651566101; x=1683102101;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=orqxxntTDlRXUlk5lFLs6j+zhS4oiXtqpXE/7qAKXoY=;
- b=dPRRqmmJ9XYYcQJheaFiLf+d65+CNVSM3ATpG0tOT5ap/HdaInDGKAEA
- LajS21HAMeuyXbcCIUudEQAKK4lxIyjlb66eIRxJ4EIdwrRMpZjPXK3iK
- 86ZPdTCmR1+lA5keldQNsHl5AVgo6svStZ+T2JxoGeda5ssb7BSgD9Rg4
- NZWAjP7H9FVuPrbYNn+shWVlB7vRZ8Fb2i/sdc2/fVJk+TWgRKIh/sJsn
- Zo/6xHAHueTFHcftDVBFGui85YsFEjJOR/ku6iW7IQtqr6PblpOfyfxzy
- uv5xGFC83GT6wf/RziaWzQ4Z+lLeC3UhYcHpSBm1yi3hLSpWF6p/WZnV2 g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10335"; a="267018684"
-X-IronPort-AV: E=Sophos;i="5.91,194,1647327600"; d="scan'208";a="267018684"
+ t=1651566148; x=1683102148;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=p6kQ/qhhfSnDw3TIyp8r8wmca+K/zgQpWmeHN3WbOTI=;
+ b=OkaM47vUEugw1FxD60BajX1qTnNPDGFHqdaMfklMa3D/a3QTib9uKkt4
+ 1xguZyepxfijL4OBE1spyUFvcRerBEIuUX6sEYHKLQzFNrrQboJ6stYe6
+ RaUmS6Cr+a3cT+sofsPijrNpRr8nn1mLbCHhy3VyS9gfQAaIdohn1xBQn
+ zWCW1OZxlM6nIkz969ZVLb0mRXt5qFtCfDcMmO6+hotfgHCvm8JTPvkw6
+ DyneFvHLT1bQOgiEEXpkQK7PhOxIske9oftjrypOFwlDsVyo6WFoiO/JY
+ 2PLlKPkPTMiJm3cjCRsT/4SWyV/q1LML1c9Uju7RZMOek7M5xnvMakIgW A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10335"; a="247334650"
+X-IronPort-AV: E=Sophos;i="5.91,194,1647327600"; d="scan'208";a="247334650"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 May 2022 01:21:40 -0700
-X-IronPort-AV: E=Sophos;i="5.91,194,1647327600"; d="scan'208";a="584111364"
-Received: from jasinski-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.249.133.126])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 May 2022 01:22:27 -0700
+X-IronPort-AV: E=Sophos;i="5.91,194,1647327600"; d="scan'208";a="584111585"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.249.33.141])
+ ([10.249.33.141])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 May 2022 01:21:39 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue,  3 May 2022 11:21:34 +0300
-Message-Id: <20220503082134.4128355-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.30.2
+ 03 May 2022 01:22:26 -0700
+Message-ID: <c822e897-c091-b47c-2cbb-904f520876a0@linux.intel.com>
+Date: Tue, 3 May 2022 10:22:24 +0200
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: warn about missing ->get_buf_trans
- initialization
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Content-Language: en-US
+To: Lucas De Marchi <lucas.demarchi@intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+References: <20220503061556.513175-1-lucas.demarchi@intel.com>
+From: "Das, Nirmoy" <nirmoy.das@linux.intel.com>
+In-Reply-To: <20220503061556.513175-1-lucas.demarchi@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gem: Make drop_pages() return bool
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,34 +60,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Make sure each DDI platform has sane ->get_buf_trans initialized.
 
-Suggested-by: Matt Roper <matthew.d.roper@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+On 5/3/2022 8:15 AM, Lucas De Marchi wrote:
+> Commit e4e806253003 ("drm/i915: Change shrink ordering to use locking
+> around unbinding.") changed the return type to int without changing the
+> return values or their meaning to "0 is success". Move it back to
+> boolean.
+>
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-index 94e64661b4fd..85f58dd3df72 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-@@ -1673,7 +1673,9 @@ void intel_ddi_buf_trans_init(struct intel_encoder *encoder)
- 		encoder->get_buf_trans = skl_get_buf_trans;
- 	} else if (IS_BROADWELL(i915)) {
- 		encoder->get_buf_trans = bdw_get_buf_trans;
--	} else {
-+	} else if (IS_HASWELL(i915)) {
- 		encoder->get_buf_trans = hsw_get_buf_trans;
-+	} else {
-+		MISSING_CASE(INTEL_INFO(i915)->platform);
- 	}
- }
--- 
-2.30.2
 
+Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
+
+> ---
+>   drivers/gpu/drm/i915/gem/i915_gem_shrinker.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c b/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
+> index 6a6ff98a8746..1030053571a2 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
+> @@ -36,7 +36,7 @@ static bool can_release_pages(struct drm_i915_gem_object *obj)
+>   	return swap_available() || obj->mm.madv == I915_MADV_DONTNEED;
+>   }
+>   
+> -static int drop_pages(struct drm_i915_gem_object *obj,
+> +static bool drop_pages(struct drm_i915_gem_object *obj,
+>   		       unsigned long shrink, bool trylock_vm)
+>   {
+>   	unsigned long flags;
