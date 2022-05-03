@@ -1,53 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F6EA517F9C
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 May 2022 10:21:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25468517F9F
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 May 2022 10:21:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 27BB110EB33;
-	Tue,  3 May 2022 08:21:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 62ED110ED9E;
+	Tue,  3 May 2022 08:21:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7081310EB27;
- Tue,  3 May 2022 08:21:08 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 68B3510EB76
+ for <intel-gfx@lists.freedesktop.org>; Tue,  3 May 2022 08:21:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1651566068; x=1683102068;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=C5UZo01+EFUpepA0QIX3pEWf1JDEKVl/U2r75fsezKA=;
- b=ToGRy9XQwSKjUeRv/nqOJbkFEHZixHNfa9CW8o7jFu6b9eEOGz3iT8C4
- P9+cqeOe57Q7gdmYtZvnE9PhSayAyaBAu68UHtjXESBv7/JdH/SnepHTs
- F8eEk6KXZ4ysd6BVWzQnQy4t/dBHN5dfYnLvsHU+OY+PGn++9iNffzRLg
- lVP1Cg2ehp5Mvda9FmpuZAWzRgcs1IfnzeSTWuvypjqJnx5Hu0tt64sBM
- 0QPJiI6bqaEpxWgyO9H3x+HcCZDfRcb86v2cpiizfj6j3xIbhpltzQNJx
- HEXipO1ViMoaB6Sbveehs2so1ULSJOzyoWeFYVbGd1ztEETOa+Uz9Zx6h w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10335"; a="330416222"
-X-IronPort-AV: E=Sophos;i="5.91,194,1647327600"; d="scan'208";a="330416222"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 May 2022 01:21:07 -0700
-X-IronPort-AV: E=Sophos;i="5.91,194,1647327600"; d="scan'208";a="562126682"
-Received: from doshaugh-mobl.ger.corp.intel.com (HELO [10.213.236.211])
- ([10.213.236.211])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 May 2022 01:21:05 -0700
-Message-ID: <0524db05-4d9e-4522-4d80-10ffe4c4207c@linux.intel.com>
-Date: Tue, 3 May 2022 09:21:04 +0100
+ t=1651566101; x=1683102101;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=orqxxntTDlRXUlk5lFLs6j+zhS4oiXtqpXE/7qAKXoY=;
+ b=dPRRqmmJ9XYYcQJheaFiLf+d65+CNVSM3ATpG0tOT5ap/HdaInDGKAEA
+ LajS21HAMeuyXbcCIUudEQAKK4lxIyjlb66eIRxJ4EIdwrRMpZjPXK3iK
+ 86ZPdTCmR1+lA5keldQNsHl5AVgo6svStZ+T2JxoGeda5ssb7BSgD9Rg4
+ NZWAjP7H9FVuPrbYNn+shWVlB7vRZ8Fb2i/sdc2/fVJk+TWgRKIh/sJsn
+ Zo/6xHAHueTFHcftDVBFGui85YsFEjJOR/ku6iW7IQtqr6PblpOfyfxzy
+ uv5xGFC83GT6wf/RziaWzQ4Z+lLeC3UhYcHpSBm1yi3hLSpWF6p/WZnV2 g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10335"; a="267018684"
+X-IronPort-AV: E=Sophos;i="5.91,194,1647327600"; d="scan'208";a="267018684"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 May 2022 01:21:40 -0700
+X-IronPort-AV: E=Sophos;i="5.91,194,1647327600"; d="scan'208";a="584111364"
+Received: from jasinski-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.249.133.126])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 May 2022 01:21:39 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  3 May 2022 11:21:34 +0300
+Message-Id: <20220503082134.4128355-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Content-Language: en-US
-To: Matt Roper <matthew.d.roper@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20220502163417.2635462-1-matthew.d.roper@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20220502163417.2635462-1-matthew.d.roper@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 00/11] i915: Introduce Ponte Vecchio
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915: warn about missing ->get_buf_trans
+ initialization
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,71 +56,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Make sure each DDI platform has sane ->get_buf_trans initialized.
 
-On 02/05/2022 17:34, Matt Roper wrote:
-> Ponte Vecchio (PVC) is a new GPU based on the Xe_HPC architecture.  As a
-> compute-focused platform, PVC has compute engines and enhanced copy
-> engines, but no render engine (there is no geometry pipeline) and no
-> display.
-> 
-> This is just a handful of early enablement patches, including some
-> initial support for the new copy engines (although we're not yet adding
-> those to the platform's engine list or exposing them to userspace just
-> yet).
+Suggested-by: Matt Roper <matthew.d.roper@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-IMO lets hold off merging this until next week if that sounds 
-acceptable? This week I need to do a final pull for final bits of DG2 
-and I would like to keep it as small as possible.
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
+index 94e64661b4fd..85f58dd3df72 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
+@@ -1673,7 +1673,9 @@ void intel_ddi_buf_trans_init(struct intel_encoder *encoder)
+ 		encoder->get_buf_trans = skl_get_buf_trans;
+ 	} else if (IS_BROADWELL(i915)) {
+ 		encoder->get_buf_trans = bdw_get_buf_trans;
+-	} else {
++	} else if (IS_HASWELL(i915)) {
+ 		encoder->get_buf_trans = hsw_get_buf_trans;
++	} else {
++		MISSING_CASE(INTEL_INFO(i915)->platform);
+ 	}
+ }
+-- 
+2.30.2
 
-Regards,
-
-Tvrtko
-
-> 
-> Ayaz A Siddiqui (1):
->    drm/i915/pvc: Define MOCS table for PVC
-> 
-> John Harrison (1):
->    drm/i915/pvc: Reduce stack usage in reset selftest with extra blitter
->      engine
-> 
-> Lucas De Marchi (2):
->    drm/i915/pvc: skip all copy engines from aux table invalidate
->    drm/i915/pvc: read fuses for link copy engines
-> 
-> Matt Roper (5):
->    drm/i915/pvc: Add forcewake support
->    drm/i915/pvc: Read correct RP_STATE_CAP register
->    drm/i915/pvc: Engines definitions for new copy engines
->    drm/i915/pvc: Interrupt support for new copy engines
->    drm/i915/pvc: Reset support for new copy engines
-> 
-> Stuart Summers (2):
->    drm/i915/pvc: add initial Ponte Vecchio definitions
->    drm/i915/pvc: Remove additional 3D flags from PIPE_CONTROL
-> 
->   drivers/gpu/drm/i915/gt/gen8_engine_cs.c      |  20 ++-
->   drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  92 +++++++++++
->   drivers/gpu/drm/i915/gt/intel_engine_types.h  |  10 +-
->   drivers/gpu/drm/i915/gt/intel_gpu_commands.h  |  12 +-
->   drivers/gpu/drm/i915/gt/intel_gt_irq.c        |  16 ++
->   drivers/gpu/drm/i915/gt/intel_gt_regs.h       |  56 ++++---
->   drivers/gpu/drm/i915/gt/intel_gt_types.h      |   1 +
->   drivers/gpu/drm/i915/gt/intel_mocs.c          |  24 ++-
->   drivers/gpu/drm/i915/gt/intel_rps.c           |   4 +-
->   drivers/gpu/drm/i915/gt/intel_workarounds.c   |  13 +-
->   drivers/gpu/drm/i915/gt/selftest_hangcheck.c  |   9 +-
->   drivers/gpu/drm/i915/gvt/cmd_parser.c         |   2 +-
->   drivers/gpu/drm/i915/i915_drv.h               |   6 +
->   drivers/gpu/drm/i915/i915_pci.c               |  23 +++
->   drivers/gpu/drm/i915/i915_reg.h               |   9 ++
->   drivers/gpu/drm/i915/intel_device_info.c      |   1 +
->   drivers/gpu/drm/i915/intel_device_info.h      |   5 +-
->   drivers/gpu/drm/i915/intel_uncore.c           | 150 +++++++++++++++++-
->   drivers/gpu/drm/i915/selftests/intel_uncore.c |   2 +
->   19 files changed, 417 insertions(+), 38 deletions(-)
-> 
