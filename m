@@ -2,32 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF289519269
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 May 2022 01:45:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A3121519283
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 May 2022 02:01:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA7F610FD89;
-	Tue,  3 May 2022 23:45:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C06D6112008;
+	Wed,  4 May 2022 00:01:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 332DD10FD89;
- Tue,  3 May 2022 23:45:04 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 25DE6A7DFB;
- Tue,  3 May 2022 23:45:04 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 14699112008
+ for <intel-gfx@lists.freedesktop.org>; Wed,  4 May 2022 00:01:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1651622474; x=1683158474;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=s3bvzzVbF776Ek4PEcH3UBqBvtXDBpQpiNpyaXDZp3o=;
+ b=WUyc422s/+n4dIh7MgQ1/etPmvBzj+kfI72nYMuuNVGsRHcxPoiQDkyc
+ M7lf+EqH1Vs149IPirXbrT2oKgvR7o2NaVmCV465TlNzTQQFImKgdwUQA
+ N6RLzszP7E9d6q7t9qKoyfeOR+JplZ5HVVOnsmCiK4eGrru3EGSG/CHqv
+ Y7anwz4eERsbCWVQPlmd3kaTEhshIEg97GQXiL8Qk0BDrVNI4JNXb/Zpl
+ p30dREiyFP6XI+cX5tR2AZmBFenu2w9bZHnm7uyrAW7cP0ZDx0GRV1lyd
+ cop/+0F25oMQef7wkcqRpNdFHh9OlyOZ7hBd9/GDcacfs21uAuF8gHRxd A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10336"; a="292812363"
+X-IronPort-AV: E=Sophos;i="5.91,196,1647327600"; d="scan'208";a="292812363"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 May 2022 17:01:13 -0700
+X-IronPort-AV: E=Sophos;i="5.91,196,1647327600"; d="scan'208";a="599292143"
+Received: from anushasr-mobl6.jf.intel.com ([10.165.21.155])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 May 2022 17:01:13 -0700
+From: Anusha Srivatsa <anusha.srivatsa@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  3 May 2022 16:57:28 -0700
+Message-Id: <20220503235729.617954-1-anusha.srivatsa@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Anusha Srivatsa" <anusha.srivatsa@intel.com>
-Date: Tue, 03 May 2022 23:45:04 -0000
-Message-ID: <165162150412.30556.3952424784370495826@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220503233640.617433-1-anusha.srivatsa@intel.com>
-In-Reply-To: <20220503233640.617433-1-anusha.srivatsa@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
- =?utf-8?q?rm/i915/dmc=3A_Add_MMIO_range_restrictions_=28rev5=29?=
+Subject: [Intel-gfx] [PATCH 0/1] DG2 DMC Support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,48 +53,30 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+While DG2 supports DC5 and DC9, some of the tests in
+fast-feedback blew up DG2 when the tests forced transition
+from dc5->dc9 on suspend and dc9->dc5 on resume. Some local
+experiments performed with Rodrigo on a RIL system  showed promising
+results when dc5 was completely diabled and i915 took only dc9 paths.
 
-Series: drm/i915/dmc: Add MMIO range restrictions (rev5)
-URL   : https://patchwork.freedesktop.org/series/102168/
-State : failure
+Sending this so we can check the CI results to confirm the
+findings from local testing which will hopefully help narrow
+down the root cause of MMIO BAR lost issue
 
-== Summary ==
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Imre Deak <imre.deak@intel.com>
 
-Error: make failed
-  CALL    scripts/checksyscalls.sh
-  CALL    scripts/atomic/check-atomics.sh
-  DESCEND objtool
-  CHK     include/generated/compile.h
-  CC [M]  drivers/gpu/drm/i915/display/intel_dmc.o
-In file included from drivers/gpu/drm/i915/display/intel_dmc.c:27:
-drivers/gpu/drm/i915/display/intel_dmc.c: In function ‘dmc_mmio_addr_sanity_check’:
-drivers/gpu/drm/i915/display/intel_dmc.c:399:20: error: ‘dev_priv’ undeclared (first use in this function); did you mean ‘dev_crit’?
-      IS_ROCKETLAKE(dev_priv)) {
-                    ^~~~~~~~
-./drivers/gpu/drm/i915/i915_drv.h:1059:45: note: in definition of macro ‘IS_ROCKETLAKE’
- #define IS_ROCKETLAKE(dev_priv) IS_PLATFORM(dev_priv, INTEL_ROCKETLAKE)
-                                             ^~~~~~~~
-drivers/gpu/drm/i915/display/intel_dmc.c:399:20: note: each undeclared identifier is reported only once for each function it appears in
-      IS_ROCKETLAKE(dev_priv)) {
-                    ^~~~~~~~
-./drivers/gpu/drm/i915/i915_drv.h:1059:45: note: in definition of macro ‘IS_ROCKETLAKE’
- #define IS_ROCKETLAKE(dev_priv) IS_PLATFORM(dev_priv, INTEL_ROCKETLAKE)
-                                             ^~~~~~~~
-scripts/Makefile.build:288: recipe for target 'drivers/gpu/drm/i915/display/intel_dmc.o' failed
-make[4]: *** [drivers/gpu/drm/i915/display/intel_dmc.o] Error 1
-scripts/Makefile.build:550: recipe for target 'drivers/gpu/drm/i915' failed
-make[3]: *** [drivers/gpu/drm/i915] Error 2
-scripts/Makefile.build:550: recipe for target 'drivers/gpu/drm' failed
-make[2]: *** [drivers/gpu/drm] Error 2
-scripts/Makefile.build:550: recipe for target 'drivers/gpu' failed
-make[1]: *** [drivers/gpu] Error 2
-Makefile:1834: recipe for target 'drivers' failed
-make: *** [drivers] Error 2
+Anusha Srivatsa (1):
+  drm/i915/dmc: Load DMC on DG2
 
+ drivers/gpu/drm/i915/display/intel_display_power.c |  4 +++-
+ drivers/gpu/drm/i915/display/intel_dmc.c           | 10 +++++++++-
+ 2 files changed, 12 insertions(+), 2 deletions(-)
+
+-- 
+2.25.1
 
