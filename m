@@ -2,50 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3395F518C45
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 May 2022 20:24:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B9B1D518CF9
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 May 2022 21:13:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 51AF210E4D0;
-	Tue,  3 May 2022 18:24:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D8FC810E7C2;
+	Tue,  3 May 2022 19:13:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B2D7710EB86
- for <intel-gfx@lists.freedesktop.org>; Tue,  3 May 2022 18:24:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1651602243; x=1683138243;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=qVQ7slkHjSO/TBLnFxcsBGoCv9ean0WTCmMQAMaFiMs=;
- b=WcGjeNIpp5gsVksmNLrJn4UYkdbbLzbbu8VDnmMr//TD9Kjh2Rx888L4
- 1ssKojWQddTR4iU1AER50sA+yHS5+5d9avX5dY1RZyeyB9yTPivO8YStr
- K+EvM0g0ZjI+WWugvMjt0SG8NP8IUVP5LxoYkeIFzQmPaX7v29GEIXAZe
- YTaH1lC2X+eTptTc6gbc2nqKyPsNvXK7mWWE/P0VFB6vEDj/o3hewJJkt
- XaGY1h+usgX/mP8CXRkijtNVsgl2CJJdAMRQlXhYqDF9aczGRRlaBaM09
- hMsLJEu1/XWTqEyAM8yMersAYz4VfVV0WiyAqTZWWhnUE4oT9YgSGwxri Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10336"; a="267146197"
-X-IronPort-AV: E=Sophos;i="5.91,195,1647327600"; d="scan'208";a="267146197"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 May 2022 11:24:03 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,195,1647327600"; d="scan'208";a="567754527"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.51])
- by fmsmga007.fm.intel.com with SMTP; 03 May 2022 11:24:01 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 03 May 2022 21:24:00 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue,  3 May 2022 21:22:42 +0300
-Message-Id: <20220503182242.18797-27-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220503182242.18797-1-ville.syrjala@linux.intel.com>
-References: <20220503182242.18797-1-ville.syrjala@linux.intel.com>
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 30B7610E187;
+ Tue,  3 May 2022 19:13:42 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+ (Authenticated sender: bbeckett) with ESMTPSA id 7F46E1F445A0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1651605220;
+ bh=+gBdRtvLQdGVcoXaWTnmpgxw7h/r83P/zCjCku+IvYo=;
+ h=From:To:Cc:Subject:Date:From;
+ b=GGwEI3IbfciDKGZJND124UDmL5bV3M7qC+LhAk+StGU8OFzQfeeJ26FqyianGj+P1
+ zTtD5h9xLQJvojy2Q7/M5RtbbPE+omyqielXEDH+5cCDePeWLNjiYUbe+xB/V0hhFf
+ OmLQLE9ZsNt+raKQqZWaNKmD7DWYUAj9QmFj+YLlKl+Ylv1ye7Dnjtgn6NFJcGVthI
+ hafdi+ygvEIaJ9DMNB0oEnPQyxy9HU1YwYV1dSb5eZm7LOfjoWK4IXDmy1dBo5dezi
+ MLoBlgsaiSvAE4y50kbOhyNSNb7+IKpFFzbqefDBltNrrl2WuYbU9VJusUeiWXBHyP
+ Gv3zQtcAIK8TQ==
+From: Robert Beckett <bob.beckett@collabora.com>
+To: dri-devel@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Date: Tue,  3 May 2022 19:13:12 +0000
+Message-Id: <20220503191316.1145124-1-bob.beckett@collabora.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 26/26] drm/i915: Round TMDS clock to nearest
+Subject: [Intel-gfx] [PATCH 0/4] ttm for internal
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,47 +45,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+This series refactors i915's internal buffer backend to use ttm.
+It uses ttm's pool allocator to allocate volatile pages in place of the
+old code which rolled its own via alloc_pages.
+This is continuing progress to align all backends on using ttm.
 
-Use round-to-nearest behavour when calculating the TMDS clock.
-Matches what we co for most other clock related things.
+Robert Beckett (4):
+  drm/i915: add gen6 ppgtt dummy creation function
+  drm/i915: setup ggtt scratch page after memory regions
+  drm/i915: allow volatile buffers to use ttm pool allocator
+  drm/i915: internal buffers use ttm backend
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_ddi.c  | 3 ++-
- drivers/gpu/drm/i915/display/intel_hdmi.c | 2 +-
- 2 files changed, 3 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/gem/i915_gem_internal.c | 264 ++++++++-----------
+ drivers/gpu/drm/i915/gem/i915_gem_internal.h |   5 -
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.c      |  15 +-
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.h      |  12 +-
+ drivers/gpu/drm/i915/gt/gen6_ppgtt.c         |  43 ++-
+ drivers/gpu/drm/i915/gt/intel_gt_gmch.c      |  20 +-
+ drivers/gpu/drm/i915/gt/intel_gt_gmch.h      |   6 +
+ drivers/gpu/drm/i915/i915_driver.c           |  16 +-
+ 8 files changed, 201 insertions(+), 180 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 0cf2d4fba6a8..8b3e6ae85a08 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -330,7 +330,8 @@ int intel_crtc_dotclock(const struct intel_crtc_state *pipe_config)
- 		dotclock = intel_dotclock_calculate(pipe_config->port_clock,
- 						    &pipe_config->dp_m_n);
- 	else if (pipe_config->has_hdmi_sink && pipe_config->pipe_bpp > 24)
--		dotclock = pipe_config->port_clock * 24 / pipe_config->pipe_bpp;
-+		dotclock = DIV_ROUND_CLOSEST(pipe_config->port_clock * 24,
-+					     pipe_config->pipe_bpp);
- 	else
- 		dotclock = pipe_config->port_clock;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index 1ae09431f53a..0b04b3800cd4 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -1891,7 +1891,7 @@ int intel_hdmi_tmds_clock(int clock, int bpc, bool ycbcr420_output)
- 	 *  1.5x for 12bpc
- 	 *  1.25x for 10bpc
- 	 */
--	return clock * bpc / 8;
-+	return DIV_ROUND_CLOSEST(clock * bpc, 8);
- }
- 
- static bool intel_hdmi_source_bpc_possible(struct drm_i915_private *i915, int bpc)
 -- 
-2.35.1
+2.25.1
 
