@@ -1,55 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC7F4517F63
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 May 2022 10:06:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15338517F99
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 May 2022 10:19:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99E5610E607;
-	Tue,  3 May 2022 08:06:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A4F1510E94E;
+	Tue,  3 May 2022 08:19:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B8D6210E560;
- Tue,  3 May 2022 08:05:59 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5736F10E93B;
+ Tue,  3 May 2022 08:19:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1651565159; x=1683101159;
+ t=1651565981; x=1683101981;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=quCvxIx3xfCRGSUQyX8I/KSf0GKtBO7eteq13fyTLGA=;
- b=l/VTKSpMJ7u+oGD+HN7qRu3H1hxI8REy/tVN712mDrg6kBlsCmHf/pmW
- zOfd/yeVDa6TetRnHet66Gy64Fn/TV4C4zkTcSSJAdCD7hMIXhoELQp8X
- pTwJ5y5veWqMvS2aSDjG1lxp2OMiQtEVaNWoXNnINmXkTBIDBW58RtvrJ
- Y3eH3QEoDH7T5tOv2TPuynE0q477/EL95KoCw8QyebfyBJBsxCSWzfZXX
- hmqewcXDTsE2oxiRHLLVoaGMNzcDhbkeBpizhTCJpq04hWq6OWg/7LrBM
- Xqu8cuz555gMNTPoNvU6VZe7tIPVcTIU7PMONygtZFuC15qnRisUSqFuu g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10335"; a="292609610"
-X-IronPort-AV: E=Sophos;i="5.91,194,1647327600"; d="scan'208";a="292609610"
+ bh=1v3Gr74NdhaAotOPjqR08a7OGoKMmanW36HXJsP3rVI=;
+ b=EIfV29z9MiOySivMMpoXlqoJSxBcsmJr4Ra6Z4AZvniVjYwrVsNdm+eC
+ /jL2HCE8MeceUmPz01qBEgtczstSb6H1UJzWJzAVf13GkMrxYCBJ4Lhl0
+ 9ZXir2+5wO5qSjZa+d6OZ+Gm/4fVQBAQlFKGkRkR5R3nkCjyLh8uJ3D9s
+ Y+2/Nf10BRTmsHOlUMEk9oNAJAMhrtrXZyj0cNpEXppC9PTqfLEXH1lwp
+ 41hFi9iJi8Vg8yVCRg5DrDSvd2jLMdJYxp6y6TXU2lGx9wh/gI5Fie+3G
+ vz0HQ3CPyWRG1juG4SUgc+9TNv+/Ro7PK0i735PE+0bGNKcpnrjLASM+A w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10335"; a="247973239"
+X-IronPort-AV: E=Sophos;i="5.91,194,1647327600"; d="scan'208";a="247973239"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 May 2022 01:05:59 -0700
-X-IronPort-AV: E=Sophos;i="5.91,194,1647327600"; d="scan'208";a="562123480"
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 May 2022 01:19:40 -0700
+X-IronPort-AV: E=Sophos;i="5.91,194,1647327600"; d="scan'208";a="562126368"
 Received: from doshaugh-mobl.ger.corp.intel.com (HELO [10.213.236.211])
  ([10.213.236.211])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 May 2022 01:05:57 -0700
-Message-ID: <472e2679-abc5-8881-6f93-f64ec1feb365@linux.intel.com>
-Date: Tue, 3 May 2022 09:05:43 +0100
+ 03 May 2022 01:19:39 -0700
+Message-ID: <6ee8bdd0-15af-4967-5723-e86482f76072@linux.intel.com>
+Date: Tue, 3 May 2022 09:19:37 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
 Content-Language: en-US
 To: Matt Roper <matthew.d.roper@intel.com>, intel-gfx@lists.freedesktop.org
 References: <20220502163417.2635462-1-matthew.d.roper@intel.com>
- <20220502163417.2635462-8-matthew.d.roper@intel.com>
+ <20220502163417.2635462-12-matthew.d.roper@intel.com>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-In-Reply-To: <20220502163417.2635462-8-matthew.d.roper@intel.com>
+In-Reply-To: <20220502163417.2635462-12-matthew.d.roper@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 07/11] drm/i915/pvc: Engines definitions for
- new copy engines
+Subject: Re: [Intel-gfx] [PATCH 11/11] drm/i915/pvc: read fuses for link
+ copy engines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,186 +62,87 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
 On 02/05/2022 17:34, Matt Roper wrote:
-> This patch adds the basic definitions needed to support
-> new copy engines. Also updating the cmd_info to accommodate
-> new engines, as the engine id's of legacy engines have been
-> changed.
+> From: Lucas De Marchi <lucas.demarchi@intel.com>
 > 
-> Original-author: CQ Tang
+> The new Link Copy engines in PVC may be fused off according to the
+> mslice_mask. Each bit of the MEML3_EN_MASK we read from the
+> GEN10_MIRROR_FUSE3 register disables a pair of link copy engines.
+> 
+> Bspec: 44483
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 > ---
->   drivers/gpu/drm/i915/gt/intel_engine_cs.c    | 56 ++++++++++++++++++++
->   drivers/gpu/drm/i915/gt/intel_engine_types.h | 10 +++-
->   drivers/gpu/drm/i915/gt/intel_gt_regs.h      |  8 +++
->   drivers/gpu/drm/i915/gvt/cmd_parser.c        |  2 +-
->   drivers/gpu/drm/i915/i915_reg.h              |  8 +++
->   5 files changed, 82 insertions(+), 2 deletions(-)
+>   drivers/gpu/drm/i915/gt/intel_engine_cs.c | 28 +++++++++++++++++++++++
+>   1 file changed, 28 insertions(+)
 > 
 > diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> index 14c6ddbbfde8..4532c3ea9ace 100644
+> index c6e93db134b1..d10cdeff5072 100644
 > --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
 > +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> @@ -71,6 +71,62 @@ static const struct engine_info intel_engines[] = {
->   			{ .graphics_ver = 6, .base = BLT_RING_BASE }
->   		},
->   	},
-> +	[BCS1] = {
-> +		.class = COPY_ENGINE_CLASS,
-> +		.instance = 1,
-> +		.mmio_bases = {
-> +			{ .graphics_ver = 12, .base = XEHPC_BCS1_RING_BASE }
-> +		},
-> +	},
-> +	[BCS2] = {
-> +		.class = COPY_ENGINE_CLASS,
-> +		.instance = 2,
-> +		.mmio_bases = {
-> +			{ .graphics_ver = 12, .base = XEHPC_BCS2_RING_BASE }
-> +		},
-> +	},
-> +	[BCS3] = {
-> +		.class = COPY_ENGINE_CLASS,
-> +		.instance = 3,
-> +		.mmio_bases = {
-> +			{ .graphics_ver = 12, .base = XEHPC_BCS3_RING_BASE }
-> +		},
-> +	},
-> +	[BCS4] = {
-> +		.class = COPY_ENGINE_CLASS,
-> +		.instance = 4,
-> +		.mmio_bases = {
-> +			{ .graphics_ver = 12, .base = XEHPC_BCS4_RING_BASE }
-> +		},
-> +	},
-> +	[BCS5] = {
-> +		.class = COPY_ENGINE_CLASS,
-> +		.instance = 5,
-> +		.mmio_bases = {
-> +			{ .graphics_ver = 12, .base = XEHPC_BCS5_RING_BASE }
-> +		},
-> +	},
-> +	[BCS6] = {
-> +		.class = COPY_ENGINE_CLASS,
-> +		.instance = 6,
-> +		.mmio_bases = {
-> +			{ .graphics_ver = 12, .base = XEHPC_BCS6_RING_BASE }
-> +		},
-> +	},
-> +	[BCS7] = {
-> +		.class = COPY_ENGINE_CLASS,
-> +		.instance = 7,
-> +		.mmio_bases = {
-> +			{ .graphics_ver = 12, .base = XEHPC_BCS7_RING_BASE }
-> +		},
-> +	},
-> +	[BCS8] = {
-> +		.class = COPY_ENGINE_CLASS,
-> +		.instance = 8,
-> +		.mmio_bases = {
-> +			{ .graphics_ver = 12, .base = XEHPC_BCS8_RING_BASE }
-> +		},
-> +	},
->   	[VCS0] = {
->   		.class = VIDEO_DECODE_CLASS,
->   		.instance = 0,
-> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-> index 298f2cc7a879..356c15cdccf0 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-> @@ -35,7 +35,7 @@
->   #define OTHER_CLASS		4
->   #define COMPUTE_CLASS		5
->   #define MAX_ENGINE_CLASS	5
-> -#define MAX_ENGINE_INSTANCE	7
-> +#define MAX_ENGINE_INSTANCE	8
+> @@ -686,6 +686,33 @@ static void engine_mask_apply_compute_fuses(struct intel_gt *gt)
+>   	}
+>   }
 >   
->   #define I915_MAX_SLICES	3
->   #define I915_MAX_SUBSLICES 8
-> @@ -107,6 +107,14 @@ struct i915_ctx_workarounds {
->   enum intel_engine_id {
->   	RCS0 = 0,
->   	BCS0,
-> +	BCS1,
-> +	BCS2,
-> +	BCS3,
-> +	BCS4,
-> +	BCS5,
-> +	BCS6,
-> +	BCS7,
-> +	BCS8,
+> +static void engine_mask_apply_copy_fuses(struct intel_gt *gt)
+> +{
+> +	struct drm_i915_private *i915 = gt->i915;
+> +	struct intel_gt_info *info = &gt->info;
+> +	unsigned long meml3_mask;
+> +	u8 quad;
 
-_BCS(n) macro will not be required?
+Any hidden reason u8 is the right type here and not unsigned long like bitops expect? (Yes I did notice GEN12_MAX_MSLICES only goes to 4 but generally u8 sucks.)
 
->   	VCS0,
->   	VCS1,
->   	VCS2,
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-> index a0a49c16babd..aa2c0974b02c 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-> @@ -1476,6 +1476,14 @@
->   #define   GEN11_KCR				(19)
->   #define   GEN11_GTPM				(16)
->   #define   GEN11_BCS				(15)
-> +#define   XEHPC_BCS1				(14)
-> +#define   XEHPC_BCS2				(13)
-> +#define   XEHPC_BCS3				(12)
-> +#define   XEHPC_BCS4				(11)
-> +#define   XEHPC_BCS5				(10)
-> +#define   XEHPC_BCS6				(9)
-> +#define   XEHPC_BCS7				(8)
-> +#define   XEHPC_BCS8				(23)
->   #define   GEN12_CCS3				(7)
->   #define   GEN12_CCS2				(6)
->   #define   GEN12_CCS1				(5)
-> diff --git a/drivers/gpu/drm/i915/gvt/cmd_parser.c b/drivers/gpu/drm/i915/gvt/cmd_parser.c
-> index b9eb75a2b400..0ba2a3455d99 100644
-> --- a/drivers/gpu/drm/i915/gvt/cmd_parser.c
-> +++ b/drivers/gpu/drm/i915/gvt/cmd_parser.c
-> @@ -428,7 +428,7 @@ struct cmd_info {
->   #define R_VECS	BIT(VECS0)
->   #define R_ALL (R_RCS | R_VCS | R_BCS | R_VECS)
->   	/* rings that support this cmd: BLT/RCS/VCS/VECS */
-> -	u16 rings;
-> +	intel_engine_mask_t rings;
+> +
+> +	meml3_mask = intel_uncore_read(gt->uncore, GEN10_MIRROR_FUSE3);
+> +	meml3_mask = REG_FIELD_GET(GEN12_MEML3_EN_MASK, meml3_mask);
+> +
+> +	/*
+> +	 * Link Copy engines may be fused off according to meml3_mask. Each
+> +	 * bit is a quad that houses 2 Link Copy and two Sub Copy engines.
+> +	 */
+> +	for_each_clear_bit(quad, &meml3_mask, GEN12_MAX_MSLICES) {
+> +		intel_engine_mask_t mask = GENMASK(BCS1 + quad * 2 + 1,
+> +						   BCS1 + quad * 2);
 
-Looks like mask already overflows u16 even without the blitter engines. 
-(When CCS were added.) Meaning maybe there should be a separate patch to 
-fix it.
+So internally we will be sure BCS1 to BCS9 are link copy engines? I mean enum names hardcoded/fixed to function. Should we have a comment to that effect somewhere? In intel_engine_types.h maybe?
 
-But good question though is GVT supporting CCS and should it be part of 
-R_ALL? Or should this patch even be touching GVT since CCS enablement 
-did not? Adding Zhi to comment.
+> +
+> +		if (mask & info->engine_mask) {
+> +			drm_dbg(&i915->drm, "bcs%u fused off\n", quad * 2 + 1);
+> +			drm_dbg(&i915->drm, "bcs%u fused off\n", quad * 2 + 2);
+
+Bikeshed - I'd be tempted to decrease the amount of "quad * 2 + 1" by having a local variable.
+
+   unsigned int instance = quad * 2 + 1;
+   intel_engine_mask_t mask = GENMASK(_BCS(instance + 1), _BCS(instance));
+
+Etc.
 
 Regards,
 
 Tvrtko
 
+> +
+> +			info->engine_mask &= ~mask;
+> +		}
+> +	}
+> +}
+> +
+>   /*
+>    * Determine which engines are fused off in our particular hardware.
+>    * Note that we have a catch-22 situation where we need to be able to access
+> @@ -768,6 +795,7 @@ static intel_engine_mask_t init_engine_mask(struct intel_gt *gt)
+>   	GEM_BUG_ON(vebox_mask != VEBOX_MASK(gt));
 >   
->   	/* devices that support this cmd: SNB/IVB/HSW/... */
->   	u16 devices;
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index 4a3d7b96ef43..ab64ab4317b3 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -976,6 +976,14 @@
->   #define GEN12_COMPUTE2_RING_BASE	0x1e000
->   #define GEN12_COMPUTE3_RING_BASE	0x26000
->   #define BLT_RING_BASE		0x22000
-> +#define XEHPC_BCS1_RING_BASE	0x3e0000
-> +#define XEHPC_BCS2_RING_BASE	0x3e2000
-> +#define XEHPC_BCS3_RING_BASE	0x3e4000
-> +#define XEHPC_BCS4_RING_BASE	0x3e6000
-> +#define XEHPC_BCS5_RING_BASE	0x3e8000
-> +#define XEHPC_BCS6_RING_BASE	0x3ea000
-> +#define XEHPC_BCS7_RING_BASE	0x3ec000
-> +#define XEHPC_BCS8_RING_BASE	0x3ee000
->   #define DG1_GSC_HECI1_BASE	0x00258000
->   #define DG1_GSC_HECI2_BASE	0x00259000
->   #define DG2_GSC_HECI1_BASE	0x00373000
+>   	engine_mask_apply_compute_fuses(gt);
+> +	engine_mask_apply_copy_fuses(gt);
+>   
+>   	return info->engine_mask;
+>   }
