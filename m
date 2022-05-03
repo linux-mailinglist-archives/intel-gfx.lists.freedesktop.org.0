@@ -2,45 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 490AA519106
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 May 2022 00:08:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BAF805191F5
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 May 2022 00:58:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D9C310E745;
-	Tue,  3 May 2022 22:08:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3EFC110E424;
+	Tue,  3 May 2022 22:58:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 18C2E10E745
- for <intel-gfx@lists.freedesktop.org>; Tue,  3 May 2022 22:08:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1651615715; x=1683151715;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=5QnpVlAKM5UCcPArzqxYrsLIEkSfNxKXyl8xzZ5a8M8=;
- b=U2vpVp8PZe6tWCRIyE+KZZbTf1vn3u8AYR657FR7YSYFJ9vKJsPMaZ6o
- 7iGxZMqx2hOzC90q7OS/fU6icK4OSSxItMFDNrEeHM/zkI7TCmIU09l35
- iipuc5PZL1ByHhbGI0zzlLOgDtGhvlPPvH0CCZpEAa4PBqpIV37x/6EJ/
- MIXvMmN0QCr0EVXlPBIlkpBGgoUFRLg4HnKaSG6sJFSCVGzPfMbET2GxX
- 17W7wMlVFSnN3LV+pRF/ZyqqGkwGRzW9vKCMbQT5u3eSx1BfDvledWAfv
- MD7c1pRHaOkI92xSdUmyRTn1KP8FCAzgpQ10uOm/JR2+18+/N19Rc0P2P g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10336"; a="354038724"
-X-IronPort-AV: E=Sophos;i="5.91,196,1647327600"; d="scan'208";a="354038724"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 May 2022 15:08:34 -0700
-X-IronPort-AV: E=Sophos;i="5.91,196,1647327600"; d="scan'208";a="516743276"
-Received: from anushasr-mobl6.jf.intel.com ([10.165.21.155])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 May 2022 15:08:34 -0700
-From: Anusha Srivatsa <anusha.srivatsa@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue,  3 May 2022 15:04:57 -0700
-Message-Id: <20220503220457.616080-1-anusha.srivatsa@intel.com>
-X-Mailer: git-send-email 2.25.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1F39710E3DE;
+ Tue,  3 May 2022 22:58:44 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1B682A0003;
+ Tue,  3 May 2022 22:58:44 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/dmc: Add MMIO range restrictions
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Anusha Srivatsa" <anusha.srivatsa@intel.com>
+Date: Tue, 03 May 2022 22:58:44 -0000
+Message-ID: <165161872407.30557.8487200424279830566@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220503220457.616080-1-anusha.srivatsa@intel.com>
+In-Reply-To: <20220503220457.616080-1-anusha.srivatsa@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/dmc=3A_Add_MMIO_range_restrictions_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,119 +40,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>, stable@vger.kernel.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Bspec has added some steps that check forDMC MMIO range before
-programming them
+== Series Details ==
 
-v2: Fix for CI
-v3: move register defines to .h (Anusha)
-- Check MMIO restrictions per pipe
-- Add MMIO restricton for v1 dmc header as well (Lucas)
-v4: s/_PICK/_PICK_EVEN and use it only for Pipe DMC scenario.
-- clean up sanity check logic.(Lucas)
+Series: drm/i915/dmc: Add MMIO range restrictions (rev4)
+URL   : https://patchwork.freedesktop.org/series/102168/
+State : warning
 
-BSpec: 49193
+== Summary ==
 
-Cc: <stable@vger.kernel.org>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dmc.c      | 42 +++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_dmc_regs.h | 18 +++++++-
- 2 files changed, 59 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index 257cf662f9f4..7abe4418eeb0 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -374,6 +374,43 @@ static void dmc_set_fw_offset(struct intel_dmc *dmc,
- 	}
- }
- 
-+static bool dmc_mmio_addr_sanity_check(struct intel_dmc *dmc, const u32 *mmioaddr,
-+				       u32 mmio_count, int header_ver, u8 dmc_id)
-+{
-+	struct drm_i915_private *i915 = container_of(dmc, typeof(*i915), dmc);
-+	u32 start_range, end_range;
-+	int i;
-+
-+	if (dmc_id >= DMC_FW_MAX || dmc_id < DMC_FW_MAIN) {
-+		drm_warn(&i915->drm, "Unsupported firmware id %u\n", dmc_id);
-+		return false;
-+	}
-+
-+	if (header_ver == 1) {
-+		start_range = DMC_MMIO_START_RANGE;
-+		end_range = DMC_MMIO_END_RANGE;
-+	} else if (dmc_id == DMC_FW_MAIN) {
-+		start_range = TGL_MAIN_MMIO_START;
-+		end_range = TGL_MAIN_MMIO_END;
-+	} else if (IS_DG2(i915) || IS_ALDERLAKE_P(i915)) {
-+		start_range = ADLP_PIPE_MMIO_START;
-+		end_range = ADLP_PIPE_MMIO_END;
-+	} else if (IS_TIGERLAKE(i915) || IS_DG1(i915) || IS_ALDERLAKE_S(i915)) {
-+		start_range = TGL_PIPE_MMIO_START(dmc_id);
-+		end_range = TGL_PIPE_MMIO_END(dmc_id);
-+	} else {
-+		drm_warn(&i915->drm, "Unknown mmio range for sanity check");
-+		return false;
-+	}
-+
-+	for (i = 0; i < mmio_count; i++) {
-+		if (mmioaddr[i] < start_range || mmioaddr[i] > end_range)
-+			return false;
-+	}
-+
-+	return true;
-+}
-+
- static u32 parse_dmc_fw_header(struct intel_dmc *dmc,
- 			       const struct intel_dmc_header_base *dmc_header,
- 			       size_t rem_size, u8 dmc_id)
-@@ -443,6 +480,11 @@ static u32 parse_dmc_fw_header(struct intel_dmc *dmc,
- 		return 0;
- 	}
- 
+Error: dim checkpatch failed
+7948f39ab7c9 drm/i915/dmc: Add MMIO range restrictions
+-:74: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#74: FILE: drivers/gpu/drm/i915/display/intel_dmc.c:483:
 +	if (!dmc_mmio_addr_sanity_check(dmc, mmioaddr, mmio_count, dmc_header->header_ver, dmc_id)) {
-+		drm_err(&i915->drm, "DMC firmware has Wrong MMIO Addresses\n");
-+		return 0;
-+	}
-+
- 	for (i = 0; i < mmio_count; i++) {
- 		dmc_info->mmioaddr[i] = _MMIO(mmioaddr[i]);
- 		dmc_info->mmiodata[i] = mmiodata[i];
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc_regs.h b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-index d65e698832eb..67e14eb96a7a 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-@@ -16,7 +16,23 @@
- #define DMC_LAST_WRITE		_MMIO(0x8F034)
- #define DMC_LAST_WRITE_VALUE	0xc003b400
- #define DMC_MMIO_START_RANGE	0x80000
--#define DMC_MMIO_END_RANGE	0x8FFFF
-+#define DMC_MMIO_END_RANGE     0x8FFFF
-+#define DMC_V1_MMIO_START_RANGE		0x80000
-+#define TGL_MAIN_MMIO_START		0x8F000
-+#define TGL_MAIN_MMIO_END		0x8FFFF
-+#define _TGL_PIPEA_MMIO_START		0x92000
-+#define _TGL_PIPEA_MMIO_END		0x93FFF
-+#define _TGL_PIPEB_MMIO_START		0x96000
-+#define _TGL_PIPEB_MMIO_END		0x97FFF
-+#define ADLP_PIPE_MMIO_START		0x5F000
-+#define ADLP_PIPE_MMIO_END		0x5FFFF
-+
-+#define TGL_PIPE_MMIO_START(dmc_id)	_PICK_EVEN(((dmc_id) - 1), _TGL_PIPEA_MMIO_START,\
-+					      _TGL_PIPEB_MMIO_START)
-+
-+#define TGL_PIPE_MMIO_END(dmc_id)	_PICK_EVEN(((dmc_id) - 1), _TGL_PIPEA_MMIO_END,\
-+					      _TGL_PIPEB_MMIO_END)
-+
- #define SKL_DMC_DC3_DC5_COUNT	_MMIO(0x80030)
- #define SKL_DMC_DC5_DC6_COUNT	_MMIO(0x8002C)
- #define BXT_DMC_DC3_DC5_COUNT	_MMIO(0x80038)
--- 
-2.25.1
+
+total: 0 errors, 1 warnings, 0 checks, 78 lines checked
+
 
