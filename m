@@ -2,47 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B378E518541
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 May 2022 15:17:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BCF7518550
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 May 2022 15:22:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9DB1B10FFD8;
-	Tue,  3 May 2022 13:17:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08FEC10FFF9;
+	Tue,  3 May 2022 13:22:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3641210FFD6
- for <intel-gfx@lists.freedesktop.org>; Tue,  3 May 2022 13:17:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1651583839; x=1683119839;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=DcAVxXmYXK1fCLNOfjzLDeVPAbR+Bt4rkJ4BTsJB6C8=;
- b=kz2pSkA1SUN/fFnpAL+jfG+bYcwEvL/BfNFLvIiKbFNS63UhuC7Q62/k
- sR6crvCYvUT7RJgWBLqlLwpOtd4rdYr4wF094hLGTa5zqc7yRIQ+0cFb8
- nLWVdc3nmMfyzUH+sAJ+eR378/ofl7eWheOBXx07LrcPXugeXKXGMu+Bn
- ncDZdN68rV55XjFHo/hoaAxQDklBsBg4qSVvmP2rfAnlyecGdrNChk0VW
- 20Hi1yGYZIRlgYAuBpVJOMVM8BDhvmfZFPDSyCUzRMzl9vsEPa8IN83Gu
- ptfdKa+qkY7r3QG7F8SIFFaSusvegHfxxZMm9Odn2XXGdVwKnd97B24cI g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10335"; a="266315463"
-X-IronPort-AV: E=Sophos;i="5.91,195,1647327600"; d="scan'208";a="266315463"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 May 2022 06:17:18 -0700
-X-IronPort-AV: E=Sophos;i="5.91,195,1647327600"; d="scan'208";a="562202023"
-Received: from jasinski-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.249.133.126])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 May 2022 06:17:17 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue,  3 May 2022 16:17:12 +0300
-Message-Id: <20220503131712.187267-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.30.2
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A9C6110FFF8;
+ Tue,  3 May 2022 13:22:11 +0000 (UTC)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 0970D1F74B;
+ Tue,  3 May 2022 13:22:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
+ t=1651584130; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=OCiFhYZGfRbvpOrr1IR3lhjXORH3jBMETGpB22+cUf4=;
+ b=NkSvVU0jzbByPjBn7ogNMnnyej2TuY2z7mt0eVPium+9eD6GxprqRlfTrBS52DctN/QLAB
+ t6vFitDNeyXk8vdjBpDcdufkxY558EEEVPi+0w4syg5u6iECR8XV+UsVAWKMZVYwPgtEQD
+ Wu33a9malb3HwtZ2ImjJ0txaVGbFhYY=
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 5EDF013ABE;
+ Tue,  3 May 2022 13:22:09 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id x7ntFYEscWIASAAAMHmgww
+ (envelope-from <jgross@suse.com>); Tue, 03 May 2022 13:22:09 +0000
+From: Juergen Gross <jgross@suse.com>
+To: xen-devel@lists.xenproject.org, x86@kernel.org,
+ linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Date: Tue,  3 May 2022 15:22:05 +0200
+Message-Id: <20220503132207.17234-1-jgross@suse.com>
+X-Mailer: git-send-email 2.35.3
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/bios: add helper for reading SPI
+Subject: [Intel-gfx] [PATCH 0/2] x86/pat: fix querying available caching
+ modes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,72 +57,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+Cc: Juergen Gross <jgross@suse.com>, jbeulich@suse.com,
+ Peter Zijlstra <peterz@infradead.org>,
+ Dave Hansen <dave.hansen@linux.intel.com>, David Airlie <airlied@linux.ie>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Ingo Molnar <mingo@redhat.com>,
+ Borislav Petkov <bp@alien8.de>, Andy Lutomirski <luto@kernel.org>,
+ "H. Peter Anvin" <hpa@zytor.com>, Thomas Gleixner <tglx@linutronix.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add helper for reading SPI to not duplicate the write&read combo
-everywhere.
+Fix some issues with querying caching modes being available for memory
+mappings.
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_bios.c | 23 ++++++++++++-----------
- 1 file changed, 12 insertions(+), 11 deletions(-)
+This is a replacement for the patch of Jan sent recently:
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index 81949c36ab96..4aa9a19a0df0 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.c
-+++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -2536,6 +2536,13 @@ bool intel_bios_is_valid_vbt(const void *buf, size_t size)
- 	return vbt;
- }
- 
-+static u32 intel_spi_read(struct intel_uncore *uncore, u32 offset)
-+{
-+	intel_uncore_write(uncore, PRIMARY_SPI_ADDRESS, offset);
-+
-+	return intel_uncore_read(uncore, PRIMARY_SPI_TRIGGER);
-+}
-+
- static struct vbt_header *spi_oprom_get_vbt(struct drm_i915_private *i915)
- {
- 	u32 count, data, found, store = 0;
-@@ -2552,9 +2559,7 @@ static struct vbt_header *spi_oprom_get_vbt(struct drm_i915_private *i915)
- 	oprom_offset &= OROM_OFFSET_MASK;
- 
- 	for (count = 0; count < oprom_size; count += 4) {
--		intel_uncore_write(&i915->uncore, PRIMARY_SPI_ADDRESS, oprom_offset + count);
--		data = intel_uncore_read(&i915->uncore, PRIMARY_SPI_TRIGGER);
--
-+		data = intel_spi_read(&i915->uncore, oprom_offset + count);
- 		if (data == *((const u32 *)"$VBT")) {
- 			found = oprom_offset + count;
- 			break;
-@@ -2565,20 +2570,16 @@ static struct vbt_header *spi_oprom_get_vbt(struct drm_i915_private *i915)
- 		goto err_not_found;
- 
- 	/* Get VBT size and allocate space for the VBT */
--	intel_uncore_write(&i915->uncore, PRIMARY_SPI_ADDRESS, found +
--		   offsetof(struct vbt_header, vbt_size));
--	vbt_size = intel_uncore_read(&i915->uncore, PRIMARY_SPI_TRIGGER);
-+	vbt_size = intel_spi_read(&i915->uncore,
-+				  found + offsetof(struct vbt_header, vbt_size));
- 	vbt_size &= 0xffff;
- 
- 	vbt = kzalloc(round_up(vbt_size, 4), GFP_KERNEL);
- 	if (!vbt)
- 		goto err_not_found;
- 
--	for (count = 0; count < vbt_size; count += 4) {
--		intel_uncore_write(&i915->uncore, PRIMARY_SPI_ADDRESS, found + count);
--		data = intel_uncore_read(&i915->uncore, PRIMARY_SPI_TRIGGER);
--		*(vbt + store++) = data;
--	}
-+	for (count = 0; count < vbt_size; count += 4)
-+		*(vbt + store++) = intel_spi_read(&i915->uncore, found + count);
- 
- 	if (!intel_bios_is_valid_vbt(vbt, vbt_size))
- 		goto err_free_vbt;
+https://lists.xen.org/archives/html/xen-devel/2022-04/msg02392.html
+
+Juergen Gross (2):
+  x86/pat: fix x86_has_pat_wp()
+  x86/pat: add functions to query specific cache mode availability
+
+ arch/x86/include/asm/memtype.h           |  2 ++
+ arch/x86/include/asm/pci.h               |  2 +-
+ arch/x86/mm/init.c                       | 24 ++++++++++++++++++++++--
+ drivers/gpu/drm/i915/gem/i915_gem_mman.c |  8 ++++----
+ 4 files changed, 29 insertions(+), 7 deletions(-)
+
 -- 
-2.30.2
+2.35.3
 
