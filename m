@@ -1,57 +1,60 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0A42519B3D
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 May 2022 11:14:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A63B8519C1E
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 May 2022 11:44:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B80B10F3BA;
-	Wed,  4 May 2022 09:14:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 093E51120A2;
+	Wed,  4 May 2022 09:43:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A26D910ECC8;
- Wed,  4 May 2022 09:14:05 +0000 (UTC)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 41FF61F745;
- Wed,  4 May 2022 09:14:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
- t=1651655644; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=FAjoNuvoU/e5r+Dhtmbs6y94IojTmAMxzQSPTvQQq3k=;
- b=mPSdzOe7obE3sdzEwUP7M1b90pyMWlXIHT/sVL28hkQoM3dQFurkrTbvYjJYAZqagWD4YP
- MqHADrNM/spvAyefN+KPGYz52oXAfwVRD4G+Q67MUc8D6ETmf+JcsUuh7B4eiboE+Wptuf
- 2dNMZSatWeOVbRhy8Nwr2hNr9BfmgJM=
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 9CEC6132C4;
- Wed,  4 May 2022 09:14:03 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id Fr3vJNtDcmIqAgAAMHmgww
- (envelope-from <jgross@suse.com>); Wed, 04 May 2022 09:14:03 +0000
-Message-ID: <0dcb05d0-108f-6252-e768-f75b393a7f5c@suse.com>
-Date: Wed, 4 May 2022 11:14:03 +0200
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com
+ [IPv6:2a00:1450:4864:20::636])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6DEC3112085
+ for <intel-gfx@lists.freedesktop.org>; Wed,  4 May 2022 09:43:56 +0000 (UTC)
+Received: by mail-ej1-x636.google.com with SMTP id l18so1792986ejc.7
+ for <intel-gfx@lists.freedesktop.org>; Wed, 04 May 2022 02:43:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=gBeVPtDIH5IEZROpcgMlW3pMSAwMvaE1la8ipSYktWY=;
+ b=MshcPwT2wdo1XSXMMFYk6fGGLv0S/7DZm3+2HE96F51OUZt5pTaNzvwldV692cDkmk
+ rH/eHP9RA1YGuL66F9kiWjsJkYalNw0yvY7lJO2eSXSB9J//TztRyCMAY0MpUGeMxumu
+ bmX5z03z5FfDK7n4z+adz8bUeD2vpJXI7IMSc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=gBeVPtDIH5IEZROpcgMlW3pMSAwMvaE1la8ipSYktWY=;
+ b=i9xOuu0986rhbFwgpSVXzt9cbOUPdyZIt6lfAzpy6DW4Iyh4eZvixF19RK92pyxzba
+ WGtTEBszQU54PTsDTPqpzDJi+mPZ8YXdD/J9MJ0iINR1n/2k6CSZuXDpMqCslINflVCH
+ /VH56ycMuj/nrD8jzg60ehWrk51SxdLmeNzgGONeL2DU3FPCv2g3uVv23MKTfE3MuCrw
+ bXxEKiTOe8Ud27M9adeVkXy0vI4ECAe6B1vUYzt+W6KttLRr/hXoU33Cg2zShmDTCEmz
+ Hjfyfg6VOyTK6Irg0EYv3MtEqzZ86IusjkyoEvs/kS6TH8H6V+3K8Ivy+Bmike44HxyW
+ PnXQ==
+X-Gm-Message-State: AOAM530VJsQz1l6h+eItjD58yMBbX+hsuVyhUXgSNbm+Me403epMu9Vf
+ dGK0fVGWSDktIe5QXusUur8vLw==
+X-Google-Smtp-Source: ABdhPJzT1P+Y1g1ACCAdmZOHhfLDhn1jNjWGgIQCj+9418N+y7vFB/gKdkcCOgP4nEyGGWHYtRB93Q==
+X-Received: by 2002:a17:907:969f:b0:6f3:dede:f2d2 with SMTP id
+ hd31-20020a170907969f00b006f3dedef2d2mr19163382ejc.511.1651657434904; 
+ Wed, 04 May 2022 02:43:54 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id
+ jy28-20020a170907763c00b006f3ef214e53sm5437866ejc.185.2022.05.04.02.43.54
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 04 May 2022 02:43:54 -0700 (PDT)
+Date: Wed, 4 May 2022 11:43:52 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Suraj Kandpal <suraj.kandpal@intel.com>
+Message-ID: <YnJK2En3AeNVpbwG@phenom.ffwll.local>
+References: <20220502054219.2083162-1-suraj.kandpal@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Content-Language: en-US
-To: Jan Beulich <jbeulich@suse.com>
-References: <20220503132207.17234-1-jgross@suse.com>
- <20220503132207.17234-3-jgross@suse.com>
- <1d86d8ff-6878-5488-e8c4-cbe8a5e8f624@suse.com>
-From: Juergen Gross <jgross@suse.com>
-In-Reply-To: <1d86d8ff-6878-5488-e8c4-cbe8a5e8f624@suse.com>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="------------RlLwG6bGfey6DnwJOYNBjCk9"
-Subject: Re: [Intel-gfx] [PATCH 2/2] x86/pat: add functions to query
- specific cache mode availability
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220502054219.2083162-1-suraj.kandpal@intel.com>
+X-Operating-System: Linux phenom 5.10.0-8-amd64 
+Subject: Re: [Intel-gfx] [PATCH 0/3] i915 private writeback framework
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,200 +67,71 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Peter Zijlstra <peterz@infradead.org>, intel-gfx@lists.freedesktop.org,
- Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
- linux-kernel@vger.kernel.org, David Airlie <airlied@linux.ie>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Ingo Molnar <mingo@redhat.com>,
- Borislav Petkov <bp@alien8.de>, dri-devel@lists.freedesktop.org,
- Andy Lutomirski <luto@kernel.org>, "H. Peter Anvin" <hpa@zytor.com>,
- xen-devel@lists.xenproject.org, Thomas Gleixner <tglx@linutronix.de>
+Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------RlLwG6bGfey6DnwJOYNBjCk9
-Content-Type: multipart/mixed; boundary="------------7BrNe85h4V9tvwH7WRoa05e4";
- protected-headers="v1"
-From: Juergen Gross <jgross@suse.com>
-To: Jan Beulich <jbeulich@suse.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
- Borislav Petkov <bp@alien8.de>, Dave Hansen <dave.hansen@linux.intel.com>,
- "H. Peter Anvin" <hpa@zytor.com>, Andy Lutomirski <luto@kernel.org>,
- Peter Zijlstra <peterz@infradead.org>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
- xen-devel@lists.xenproject.org, x86@kernel.org,
- linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Message-ID: <0dcb05d0-108f-6252-e768-f75b393a7f5c@suse.com>
-Subject: Re: [PATCH 2/2] x86/pat: add functions to query specific cache mode
- availability
-References: <20220503132207.17234-1-jgross@suse.com>
- <20220503132207.17234-3-jgross@suse.com>
- <1d86d8ff-6878-5488-e8c4-cbe8a5e8f624@suse.com>
-In-Reply-To: <1d86d8ff-6878-5488-e8c4-cbe8a5e8f624@suse.com>
+On Mon, May 02, 2022 at 11:12:16AM +0530, Suraj Kandpal wrote:
+> A patch series was floated in the drm mailing list which aimed to change
+> the drm_connector and drm_encoder fields to pointer in the
+> drm_connector_writeback structure, this received a huge pushback from
+> the community but since i915 expects each connector present in the
+> drm_device list to be a intel_connector but drm_writeback framework.
+> [1] https://patchwork.kernel.org/project/dri-devel/patch/20220202081702.22119-1-suraj.kandpal@intel.com/
+> [2] https://patchwork.kernel.org/project/dri-devel/patch/20220202085429.22261-6-suraj.kandpal@intel.com/
+> This forces us to use a drm_connector which is not embedded in
+> intel_connector the current drm_writeback framework becomes very
+> unfeasible to us as it would mean a lot of checks at a lot of places
+> to take into account the above issue.Since no one had an issue with
+> encoder field being changed into a pointer it was decided to break the
+> connector and encoder pointer changes into two different series.The
+> encoder field changes is currently being worked upon by Abhinav Kumar
+> [3]https://patchwork.kernel.org/project/dri-devel/list/?series=633565
+> In the meantime for i915 to start using the writeback functionality we
+> came up with a interim solution to own writeback pipeline bypassing one
+> provided by drm which is what these patches do.
+> Note: these are temp patches till we figure out how we can either change
+> drm core writeback to work with our intel_connector structure or find a
+> different solution which allows us to work with the current
 
---------------7BrNe85h4V9tvwH7WRoa05e4
-Content-Type: multipart/mixed; boundary="------------Y00b4gzBImDUVmzy43dMoV6s"
+I'm assuming this is just fyi to keep development moving and not being
+planned for merging?
+-Daniel
 
---------------Y00b4gzBImDUVmzy43dMoV6s
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: base64
+> 
+> Suraj Kandpal (3):
+>   drm/i915: Creating writeback pipeline to bypass drm_writeback
+>     framework
+>   drm/i915: Define WD trancoder for i915
+>   drm/i915: Enabling WD Transcoder
+> 
+>  drivers/gpu/drm/i915/Makefile                 |   2 +
+>  drivers/gpu/drm/i915/display/intel_acpi.c     |   1 +
+>  drivers/gpu/drm/i915/display/intel_display.c  |  89 +-
+>  drivers/gpu/drm/i915/display/intel_display.h  |  15 +
+>  .../drm/i915/display/intel_display_types.h    |  18 +
+>  drivers/gpu/drm/i915/display/intel_dpll.c     |   3 +
+>  drivers/gpu/drm/i915/display/intel_opregion.c |   3 +
+>  .../gpu/drm/i915/display/intel_wb_connector.c | 296 ++++++
+>  .../gpu/drm/i915/display/intel_wb_connector.h |  99 ++
+>  drivers/gpu/drm/i915/display/intel_wd.c       | 978 ++++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_wd.h       |  82 ++
+>  drivers/gpu/drm/i915/i915_drv.h               |   5 +
+>  drivers/gpu/drm/i915/i915_irq.c               |   8 +-
+>  drivers/gpu/drm/i915/i915_pci.c               |   7 +-
+>  drivers/gpu/drm/i915/i915_reg.h               | 139 +++
+>  15 files changed, 1742 insertions(+), 3 deletions(-)
+>  create mode 100644 drivers/gpu/drm/i915/display/intel_wb_connector.c
+>  create mode 100644 drivers/gpu/drm/i915/display/intel_wb_connector.h
+>  create mode 100644 drivers/gpu/drm/i915/display/intel_wd.c
+>  create mode 100644 drivers/gpu/drm/i915/display/intel_wd.h
+> 
+> -- 
+> 2.35.1
+> 
 
-T24gMDQuMDUuMjIgMTA6MzEsIEphbiBCZXVsaWNoIHdyb3RlOg0KPiBPbiAwMy4wNS4yMDIy
-IDE1OjIyLCBKdWVyZ2VuIEdyb3NzIHdyb3RlOg0KPj4gU29tZSBkcml2ZXJzIGFyZSB1c2lu
-ZyBwYXRfZW5hYmxlZCgpIGluIG9yZGVyIHRvIHRlc3QgYXZhaWxhYmlsaXR5IG9mDQo+PiBz
-cGVjaWFsIGNhY2hpbmcgbW9kZXMgKFdDIGFuZCBVQy0pLiBUaGlzIHdpbGwgbGVhZCB0byBm
-YWxzZSBuZWdhdGl2ZXMNCj4+IGluIGNhc2UgdGhlIHN5c3RlbSB3YXMgYm9vdGVkIGUuZy4g
-d2l0aCB0aGUgIm5vcGF0IiB2YXJpYW50IGFuZCB0aGUNCj4+IEJJT1MgZGlkIHNldHVwIHRo
-ZSBQQVQgTVNSIHN1cHBvcnRpbmcgdGhlIHF1ZXJpZWQgbW9kZSwgb3IgaWYgdGhlDQo+PiBz
-eXN0ZW0gaXMgcnVubmluZyBhcyBhIFhlbiBQViBndWVzdC4NCj4gDQo+IFdoaWxlLCBhcyBw
-ZXIgbXkgZWFybGllciBwYXRjaCwgSSBhZ3JlZSB3aXRoIHRoZSBYZW4gUFYgY2FzZSwgSSdt
-IG5vdA0KPiBjb252aW5jZWQgIm5vcGF0IiBpcyBzdXBwb3NlZCB0byBob25vciBmaXJtd2Fy
-ZS1wcm92aWRlZCBzZXR0aW5ncy4gSW4NCj4gZmFjdCBpbiBteSBwYXRjaCBJIGRpZCBhcnJh
-bmdlIGZvciAibm9wYXQiIHRvIGFsc28gdGFrZSBlZmZlY3QgdW5kZXINCj4gWGVuIFBWLg0K
-DQpEZXBlbmRzIG9uIHdoYXQgdGhlIHdhbnRlZCBzZW1hbnRpY3MgZm9yICJub3BhdCIgYXJl
-Lg0KDQpSaWdodCBub3cgIm5vcGF0IiB3aWxsIHJlc3VsdCBpbiB0aGUgUEFUIE1TUiBsZWZ0
-IHVuY2hhbmdlZCBhbmQgdGhlDQpjYWNoZSBtb2RlIHRyYW5zbGF0aW9uIHRhYmxlcyBiZSBp
-bml0aWFsaXplZCBhY2NvcmRpbmdseS4NCg0KU28gZG9lcyAibm9wYXQiIG1lYW4gdGhhdCB0
-aGUgUEFUIE1TUiBzaG91bGRuJ3QgYmUgY2hhbmdlZCwgb3IgdGhhdA0KUEFHRV9CSVRfUEFU
-IHdpbGwgbmV2ZXIgYmUgc2V0Pw0KDQo+PiBBZGQgdGVzdCBmdW5jdGlvbnMgZm9yIHRob3Nl
-IGNhY2hpbmcgbW9kZXMgaW5zdGVhZCBhbmQgdXNlIHRoZW0gYXQgdGhlDQo+PiBhcHByb3By
-aWF0ZSBwbGFjZXMuDQo+Pg0KPj4gRm9yIHN5bW1ldHJ5IHJlYXNvbnMgZXhwb3J0IHRoZSBh
-bHJlYWR5IGV4aXN0aW5nIHg4Nl9oYXNfcGF0X3dwKCkgZm9yDQo+PiBtb2R1bGVzLCB0b28u
-DQo+Pg0KPj4gRml4ZXM6IGJkZDhiNmM5ODIzOSAoImRybS9pOTE1OiByZXBsYWNlIFg4Nl9G
-RUFUVVJFX1BBVCB3aXRoIHBhdF9lbmFibGVkKCkiKQ0KPj4gRml4ZXM6IGFlNzQ5YzdhYjQ3
-NSAoIlBDSTogQWRkIGFyY2hfY2FuX3BjaV9tbWFwX3djKCkgbWFjcm8iKQ0KPj4gU2lnbmVk
-LW9mZi1ieTogSnVlcmdlbiBHcm9zcyA8amdyb3NzQHN1c2UuY29tPg0KPiANCj4gSSB0aGlu
-ayB0aGlzIHdhbnRzIGEgUmVwb3J0ZWQtYnkgYXMgd2VsbC4NCg0KT2theS4NCg0KPiANCj4+
-IC0tLSBhL2FyY2gveDg2L2luY2x1ZGUvYXNtL3BjaS5oDQo+PiArKysgYi9hcmNoL3g4Ni9p
-bmNsdWRlL2FzbS9wY2kuaA0KPj4gQEAgLTk0LDcgKzk0LDcgQEAgaW50IHBjaWJpb3Nfc2V0
-X2lycV9yb3V0aW5nKHN0cnVjdCBwY2lfZGV2ICpkZXYsIGludCBwaW4sIGludCBpcnEpOw0K
-Pj4gICANCj4+ICAgDQo+PiAgICNkZWZpbmUgSEFWRV9QQ0lfTU1BUA0KPj4gLSNkZWZpbmUg
-YXJjaF9jYW5fcGNpX21tYXBfd2MoKQlwYXRfZW5hYmxlZCgpDQo+PiArI2RlZmluZSBhcmNo
-X2Nhbl9wY2lfbW1hcF93YygpCXg4Nl9oYXNfcGF0X3djKCkNCj4gDQo+IEJlc2lkZXMgdGhp
-cyBhbmQgLi4uDQo+IA0KPj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVf
-Z2VtX21tYW4uYw0KPj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2Vt
-X21tYW4uYw0KPj4gQEAgLTc2LDcgKzc2LDcgQEAgaTkxNV9nZW1fbW1hcF9pb2N0bChzdHJ1
-Y3QgZHJtX2RldmljZSAqZGV2LCB2b2lkICpkYXRhLA0KPj4gICAJaWYgKGFyZ3MtPmZsYWdz
-ICYgfihJOTE1X01NQVBfV0MpKQ0KPj4gICAJCXJldHVybiAtRUlOVkFMOw0KPj4gICANCj4+
-IC0JaWYgKGFyZ3MtPmZsYWdzICYgSTkxNV9NTUFQX1dDICYmICFwYXRfZW5hYmxlZCgpKQ0K
-Pj4gKwlpZiAoYXJncy0+ZmxhZ3MgJiBJOTE1X01NQVBfV0MgJiYgIXg4Nl9oYXNfcGF0X3dj
-KCkpDQo+PiAgIAkJcmV0dXJuIC1FTk9ERVY7DQo+PiAgIA0KPj4gICAJb2JqID0gaTkxNV9n
-ZW1fb2JqZWN0X2xvb2t1cChmaWxlLCBhcmdzLT5oYW5kbGUpOw0KPj4gQEAgLTc1Nyw3ICs3
-NTcsNyBAQCBpOTE1X2dlbV9kdW1iX21tYXBfb2Zmc2V0KHN0cnVjdCBkcm1fZmlsZSAqZmls
-ZSwNCj4+ICAgDQo+PiAgIAlpZiAoSEFTX0xNRU0odG9faTkxNShkZXYpKSkNCj4+ICAgCQlt
-bWFwX3R5cGUgPSBJOTE1X01NQVBfVFlQRV9GSVhFRDsNCj4+IC0JZWxzZSBpZiAocGF0X2Vu
-YWJsZWQoKSkNCj4+ICsJZWxzZSBpZiAoeDg2X2hhc19wYXRfd2MoKSkNCj4+ICAgCQltbWFw
-X3R5cGUgPSBJOTE1X01NQVBfVFlQRV9XQzsNCj4+ICAgCWVsc2UgaWYgKCFpOTE1X2dndHRf
-aGFzX2FwZXJ0dXJlKHRvX2d0KGk5MTUpLT5nZ3R0KSkNCj4+ICAgCQlyZXR1cm4gLUVOT0RF
-VjsNCj4+IEBAIC04MTMsNyArODEzLDcgQEAgaTkxNV9nZW1fbW1hcF9vZmZzZXRfaW9jdGwo
-c3RydWN0IGRybV9kZXZpY2UgKmRldiwgdm9pZCAqZGF0YSwNCj4+ICAgCQlicmVhazsNCj4+
-ICAgDQo+PiAgIAljYXNlIEk5MTVfTU1BUF9PRkZTRVRfV0M6DQo+PiAtCQlpZiAoIXBhdF9l
-bmFibGVkKCkpDQo+PiArCQlpZiAoIXg4Nl9oYXNfcGF0X3djKCkpDQo+PiAgIAkJCXJldHVy
-biAtRU5PREVWOw0KPj4gICAJCXR5cGUgPSBJOTE1X01NQVBfVFlQRV9XQzsNCj4+ICAgCQli
-cmVhazsNCj4+IEBAIC04MjMsNyArODIzLDcgQEAgaTkxNV9nZW1fbW1hcF9vZmZzZXRfaW9j
-dGwoc3RydWN0IGRybV9kZXZpY2UgKmRldiwgdm9pZCAqZGF0YSwNCj4+ICAgCQlicmVhazsN
-Cj4+ICAgDQo+PiAgIAljYXNlIEk5MTVfTU1BUF9PRkZTRVRfVUM6DQo+PiAtCQlpZiAoIXBh
-dF9lbmFibGVkKCkpDQo+PiArCQlpZiAoIXg4Nl9oYXNfcGF0X3VjX21pbnVzKCkpDQo+PiAg
-IAkJCXJldHVybiAtRU5PREVWOw0KPj4gICAJCXR5cGUgPSBJOTE1X01NQVBfVFlQRV9VQzsN
-Cj4+ICAgCQlicmVhazsNCj4gDQo+IC4uLiB0aGVzZSB1c2VzIHRoZXJlIGFyZSBzZXZlcmFs
-IG1vcmUuIFlvdSBzYXkgbm90aGluZyBvbiB3aHkgdGhvc2Ugd2FudA0KPiBsZWF2aW5nIHVu
-YWx0ZXJlZC4gV2hlbiBwcmVwYXJpbmcgbXkgZWFybGllciBwYXRjaCBJIGRpZCBpbnNwZWN0
-IHRoZW0NCj4gYW5kIGNhbWUgdG8gdGhlIGNvbmNsdXNpb24gdGhhdCB0aGVzZSBhbGwgd291
-bGQgYWxzbyBiZXR0ZXIgb2JzZXJ2ZSB0aGUNCj4gYWRqdXN0ZWQgYmVoYXZpb3IgKG9yIGVs
-c2UgSSBjb3VsZG4ndCBoYXZlIGxlZnQgcGF0X2VuYWJsZWQoKSBhcyB0aGUgb25seQ0KPiBw
-cmVkaWNhdGUpLiBJbiBmYWN0LCBhcyBzYWlkIGluIHRoZSBkZXNjcmlwdGlvbiBvZiBteSBl
-YXJsaWVyIHBhdGNoLCBpbg0KPiBteSBkZWJ1Z2dpbmcgSSBkaWQgZmluZCB0aGUgdXNlIGlu
-IGk5MTVfZ2VtX29iamVjdF9waW5fbWFwKCkgdG8gYmUgdGhlDQo+IHByb2JsZW1hdGljIG9u
-ZSwgd2hpY2ggeW91IGxlYXZlIGFsb25lLg0KDQpPaCwgSSBtaXNzZWQgdGhhdCBvbmUsIHNv
-cnJ5Lg0KDQpJIHdhbnRlZCB0byBiZSByYXRoZXIgZGVmZW5zaXZlIGluIG15IGNoYW5nZXMs
-IGJ1dCBJIGFncmVlIGF0IGxlYXN0IHRoZQ0KY2FzZSBpbiBhcmNoX3BoeXNfd2NfYWRkKCkg
-bWlnaHQgd2FudCB0byBiZSBjaGFuZ2VkLCB0b28uDQoNCmt2bV9pc19tbWlvX3BmbigpIHNo
-b3VsZCBub3QgcmVhbGx5IG1hdHRlciBhdCBsZWFzdCBmb3IgdGhlIFhlbiBjYXNlLg0KDQpX
-aXRoIHRoZSBvdGhlciB1c2UgY2FzZXMgaW4gbWVtdHlwZS5jIEknbSByYXRoZXIgb24gdGhl
-IGVkZ2UuDQoNCkluIGNhc2UgdGhlIHg4NiBtYWludGFpbmVycyB0aGluayB0aG9zZSBzaG91
-bGQgYmUgY2hhbmdlZCwgdG9vLCBJIGFncmVlDQp0aGF0IHlvdXIgYXBwcm9hY2ggbWlnaHQg
-YmUgdGhlIGJldHRlciBvbmUuDQoNCg0KSnVlcmdlbg0K
---------------Y00b4gzBImDUVmzy43dMoV6s
-Content-Type: application/pgp-keys; name="OpenPGP_0xB0DE9DD628BF132F.asc"
-Content-Disposition: attachment; filename="OpenPGP_0xB0DE9DD628BF132F.asc"
-Content-Description: OpenPGP public key
-Content-Transfer-Encoding: quoted-printable
-
------BEGIN PGP PUBLIC KEY BLOCK-----
-
-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
-jR/i1DG86lem3iBDXzXsZDn8R38=3D
-=3D2wuH
------END PGP PUBLIC KEY BLOCK-----
-
---------------Y00b4gzBImDUVmzy43dMoV6s--
-
---------------7BrNe85h4V9tvwH7WRoa05e4--
-
---------------RlLwG6bGfey6DnwJOYNBjCk9
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
-
------BEGIN PGP SIGNATURE-----
-
-wsB5BAABCAAjFiEEhRJncuj2BJSl0Jf3sN6d1ii/Ey8FAmJyQ9sFAwAAAAAACgkQsN6d1ii/Ey8i
-KAgAiuUxDCrW2LM+rNY4P8V/p08F19Eb8X7VjpQHuP5yfA4LSQs5rUcKj45XOxutARuR8yFeQld3
-eFoFiGNjPghf587jgGn5pW+uZ9u8+YvRDzmboUP/QH8dcY63VMyP3pBYCxdcgu3UUeAXVPHgcs66
-og32V5hSHko4rVj1pu2b7/RwjovXodIF/egi/ux8b4kk0U1kfeJYlplx9T9niQDBw/I/B5/kWPuE
-BDbIBSyhKGzF0SPom1rITiC9ugSgz6NX89xrLYaPyXHSeZL8hUqyAJ5Cd9iFJCrYgE7J6a1Luajy
-CYjd+Tc6gPVetmfKKEISEOoRODiMp2kNUxM2ziK9PQ==
-=v/JH
------END PGP SIGNATURE-----
-
---------------RlLwG6bGfey6DnwJOYNBjCk9--
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
