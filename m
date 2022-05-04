@@ -1,34 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A719519EDB
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 May 2022 14:05:05 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEA4E519EEC
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 May 2022 14:07:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF40910E140;
-	Wed,  4 May 2022 12:05:03 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4FEDF10E103;
- Wed,  4 May 2022 12:05:03 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 4DBDFA3C0D;
- Wed,  4 May 2022 12:05:03 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADA6010E504;
+	Wed,  4 May 2022 12:07:26 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 09D6A10E504;
+ Wed,  4 May 2022 12:07:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1651666045; x=1683202045;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=iaezcSeYVIajnw3eytjqvvlic5Jpbz2ugcO6Nhfv8X0=;
+ b=XpWddH4RPRtGWlSIVdIlNBZWGO32bP2TfjWCuebaBCzHDsuvUh3L6oIA
+ sMXHJINrxacL2Dl74cDWvcn2U/8Pqg/XPhlj8e5Cx5CBgQsz8GbWUc9qD
+ 3Vimkxzv6CeYvxdAibWJYoKUC20vcDpDcUH6SCryuixYJil2f0UDD9P9z
+ A4r09+ld6lyBOcugkK54dTOcFyfhWCjmOAOElD/tkzwa8dwV+vT1eS13A
+ BCc5Uj8+wRwySHcEsFYpDPAqGBe4xM+DxrTGR4Kylj42TOBkHQaoaZhzT
+ j4ZwEsOKJ9tP70gCKG5CzV1zT1DcKiJZaYGUMERmaoN3E5IMjde/cFvcs g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10336"; a="267343595"
+X-IronPort-AV: E=Sophos;i="5.91,198,1647327600"; d="scan'208";a="267343595"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 May 2022 05:07:24 -0700
+X-IronPort-AV: E=Sophos;i="5.91,198,1647327600"; d="scan'208";a="693884056"
+Received: from gidaly-mobl1.ger.corp.intel.com (HELO tursulin-mobl2.home)
+ ([10.213.236.183])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 May 2022 05:07:22 -0700
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: Intel-gfx@lists.freedesktop.org
+Date: Wed,  4 May 2022 13:07:14 +0100
+Message-Id: <20220504120715.911045-1-tvrtko.ursulin@linux.intel.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Andrzej Hajda" <andrzej.hajda@intel.com>
-Date: Wed, 04 May 2022 12:05:03 -0000
-Message-ID: <165166590328.678.2631860741708870072@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220504114808.1578304-1-andrzej.hajda@intel.com>
-In-Reply-To: <20220504114808.1578304-1-andrzej.hajda@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B1/2=5D_drm/i915/fbdev=3A_print_erro?=
- =?utf-8?q?r_in_case_drm=5Ffb=5Fhelper=5Finitial=5Fconfig_fails?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915: Don't use DRM_DEBUG_WARN_ON for
+ unexpected l3bank/mslice config
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,26 +55,75 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-Series: series starting with [1/2] drm/i915/fbdev: print error in case drm_fb_helper_initial_config fails
-URL   : https://patchwork.freedesktop.org/series/103533/
-State : warning
+DRM_DEBUG_WARN_ON should only be used when we are certain CI is guaranteed
+to exercise a certain code path, so in case of values coming from MMIO
+reads we cannot be sure CI will have all the possible SKUs and parts.
 
-== Summary ==
+Use drm_warn instead and move logging to init phase while at it.
 
-Error: dim checkpatch failed
-049b4153799b drm/i915/fbdev: print error in case drm_fb_helper_initial_config fails
-1f84c1806ac0 tty/vt: add some logging to vt error path
--:19: WARNING:LONG_LINE: line length of 119 exceeds 100 columns
-#19: FILE: drivers/tty/vt/vt.c:3630:
-+#define ERR(__err) ({ void *err = ERR_PTR(__err); pr_err("%s:%d: err=%pe\n", __func__, __LINE__, err); PTR_ERR(err); })
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_gt.c | 13 ++++++-------
+ 1 file changed, 6 insertions(+), 7 deletions(-)
 
-total: 0 errors, 1 warnings, 0 checks, 56 lines checked
-
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
+index 53307ca0eed0..c474e5c3ea5e 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+@@ -153,11 +153,14 @@ int intel_gt_init_mmio(struct intel_gt *gt)
+ 	 * An mslice is unavailable only if both the meml3 for the slice is
+ 	 * disabled *and* all of the DSS in the slice (quadrant) are disabled.
+ 	 */
+-	if (HAS_MSLICES(i915))
++	if (HAS_MSLICES(i915)) {
+ 		gt->info.mslice_mask =
+ 			slicemask(gt, GEN_DSS_PER_MSLICE) |
+ 			(intel_uncore_read(gt->uncore, GEN10_MIRROR_FUSE3) &
+ 			 GEN12_MEML3_EN_MASK);
++		if (!gt->info.mslice_mask) /* should be impossible! */
++			drm_warn(&i915->drm, "mslice mask all zero!\n");
++	}
+ 
+ 	if (IS_DG2(i915)) {
+ 		gt->steering_table[MSLICE] = xehpsdv_mslice_steering_table;
+@@ -171,6 +174,8 @@ int intel_gt_init_mmio(struct intel_gt *gt)
+ 		gt->info.l3bank_mask =
+ 			~intel_uncore_read(gt->uncore, GEN10_MIRROR_FUSE3) &
+ 			GEN10_L3BANK_MASK;
++		if (!gt->info.l3bank_mask) /* should be impossible! */
++			drm_warn(&i915->drm, "L3 bank mask is all zero!\n");
+ 	} else if (HAS_MSLICES(i915)) {
+ 		MISSING_CASE(INTEL_INFO(i915)->platform);
+ 	}
+@@ -882,20 +887,14 @@ static void intel_gt_get_valid_steering(struct intel_gt *gt,
+ {
+ 	switch (type) {
+ 	case L3BANK:
+-		GEM_DEBUG_WARN_ON(!gt->info.l3bank_mask); /* should be impossible! */
+-
+ 		*sliceid = 0;		/* unused */
+ 		*subsliceid = __ffs(gt->info.l3bank_mask);
+ 		break;
+ 	case MSLICE:
+-		GEM_DEBUG_WARN_ON(!gt->info.mslice_mask); /* should be impossible! */
+-
+ 		*sliceid = __ffs(gt->info.mslice_mask);
+ 		*subsliceid = 0;	/* unused */
+ 		break;
+ 	case LNCF:
+-		GEM_DEBUG_WARN_ON(!gt->info.mslice_mask); /* should be impossible! */
+-
+ 		/*
+ 		 * An LNCF is always present if its mslice is present, so we
+ 		 * can safely just steer to LNCF 0 in all cases.
+-- 
+2.32.0
 
