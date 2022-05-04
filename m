@@ -1,54 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96C5551B1AF
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 May 2022 00:14:46 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E2AC51B1DC
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 May 2022 00:30:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC23B10F4D2;
-	Wed,  4 May 2022 22:14:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 114AD10F785;
+	Wed,  4 May 2022 22:30:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 977B310F4C6
- for <intel-gfx@lists.freedesktop.org>; Wed,  4 May 2022 22:14:43 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 23C3610F785;
+ Wed,  4 May 2022 22:30:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1651702483; x=1683238483;
+ t=1651703436; x=1683239436;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=ADXl3jM26OEsIKiU34B3Ivn8VxVId1finYVFs7E/fQo=;
- b=ZOGQoT0UjTtllIz4IjMsoceobLdcHQhhYeEUl34VAbUK4HYMgslFQQcu
- Yu+0/YT1dzem2+ugJ6rlBVMeHEIhb1Zqze4uDIlZwn/NDNUO1q4wwD+pB
- 4dXmME+QNRCdqiBWSgjLnfLGBwMqJE7yNts9Zgye6vskBd9M0HtE3cFGx
- WVPpOog+oNFYk1oFuV+N+agfPBjfsVGBvVVAuX4oT/Wbj7u5IScAJkVMd
- h+iPHu4NI7kp3AUPVbruheoGuZoI09ZBbLuI+bij3PF/iwNu5Z2RHnuSY
- GJsmGOcGR9yNGHHdU6VayISVeRq3HXMkct+97ihzkVm+x3uWH0sDpe/xQ w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10337"; a="248450288"
-X-IronPort-AV: E=Sophos;i="5.91,199,1647327600"; d="scan'208";a="248450288"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2022 15:14:43 -0700
+ bh=7+M/13vry+5F8KVstpIcYBrNT70QG3hPY4nxnXQYfA8=;
+ b=UoYjJEfI0Uc2soMf/CziX1fnv14Uf5nSYcU+0pJhyoGZYMdZn0rlnpEC
+ 7qkzeNcgKUuZc0hLlA37vz84XXuqsmnzSvB/MEuAhOKOS/yI9gA2t0dzV
+ c9n/Q3VjwhAjAjUuOrXMhXwPpd0R8HFRUsBtOek6OKq43cG3+V8xioqvc
+ e1O7W2Vf3HvZ4yXa7lmY5D6iA2EKF1usQrvFyugj5LNeXEHAkSNLCySzV
+ MHfS3nl3Jz/wGYWT6xKNfuF2AdQnVfTG4p6Y4FYRHzxImRC3kHywo0ZOy
+ MzYDQytbUfYvHWZ8mlW50ijQ99BBy3ZSrivSBPmMsDcRGTmjc3z44IFcb A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10337"; a="265512241"
+X-IronPort-AV: E=Sophos;i="5.91,199,1647327600"; d="scan'208";a="265512241"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 May 2022 15:30:35 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,199,1647327600"; d="scan'208";a="537041072"
+X-IronPort-AV: E=Sophos;i="5.91,199,1647327600"; d="scan'208";a="599737184"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.51])
- by orsmga006.jf.intel.com with SMTP; 04 May 2022 15:14:40 -0700
+ by orsmga001.jf.intel.com with SMTP; 04 May 2022 15:30:33 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 05 May 2022 01:14:40 +0300
-Date: Thu, 5 May 2022 01:14:40 +0300
+ Thu, 05 May 2022 01:30:32 +0300
+Date: Thu, 5 May 2022 01:30:32 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <YnL60C4e63/fFqDB@intel.com>
+Message-ID: <YnL+iIClH+aXHalJ@intel.com>
 References: <cover.1651569697.git.jani.nikula@intel.com>
- <7400792525c13f58652f288b891d6057637ed4c8.1651569697.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <7400792525c13f58652f288b891d6057637ed4c8.1651569697.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1651569697.git.jani.nikula@intel.com>
 X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v2 13/20] drm/edid: convert
- drm_parse_cea_ext() to use cea db iter
+Subject: Re: [Intel-gfx] [PATCH v2 00/20] drm/edid: CEA data block iterators,
+ and more
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,80 +60,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, May 03, 2022 at 12:23:58PM +0300, Jani Nikula wrote:
-> Iterate through all CTA data blocks across all CTA Extensions and
-> DisplayID data blocks.
+On Tue, May 03, 2022 at 12:23:45PM +0300, Jani Nikula wrote:
+> I've kind of lost track of the version numbers on some of the iterator
+> patches, but this is the next version (or mostly a resend) of
+> [1]. There's an additional rename patch for SCDS.
 > 
-> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/drm_edid.c | 25 +++++++++++++------------
->  1 file changed, 13 insertions(+), 12 deletions(-)
+> BR,
+> Jani.
 > 
-> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
-> index 3433d9fa4799..98b2e6164468 100644
-> --- a/drivers/gpu/drm/drm_edid.c
-> +++ b/drivers/gpu/drm/drm_edid.c
-> @@ -5497,8 +5497,9 @@ static void drm_parse_cea_ext(struct drm_connector *connector,
->  			      const struct edid *edid)
->  {
->  	struct drm_display_info *info = &connector->display_info;
-> +	const struct cea_db *db;
-> +	struct cea_db_iter iter;
->  	const u8 *edid_ext;
-> -	int i, start, end;
->  
->  	edid_ext = drm_find_cea_extension(edid);
->  	if (!edid_ext)
-> @@ -5517,26 +5518,26 @@ static void drm_parse_cea_ext(struct drm_connector *connector,
->  			info->color_formats |= DRM_COLOR_FORMAT_YCBCR422;
->  	}
->  
-> -	if (cea_db_offsets(edid_ext, &start, &end))
-> -		return;
-> -
-> -	for_each_cea_db(edid_ext, i, start, end) {
-> -		const u8 *db = &edid_ext[i];
-> +	cea_db_iter_edid_begin(edid, &iter);
-> +	cea_db_iter_for_each(db, &iter) {
-> +		/* FIXME: convert parsers to use struct cea_db */
-> +		const u8 *data = (const u8 *)db;
->  
->  		if (cea_db_is_hdmi_vsdb(db))
-> -			drm_parse_hdmi_vsdb_video(connector, db);
-> +			drm_parse_hdmi_vsdb_video(connector, data);
->  		if (cea_db_is_hdmi_forum_vsdb(db) ||
->  		    cea_db_is_hdmi_forum_scdb(db))
+> 
+> [1] https://patchwork.freedesktop.org/series/102703/
+> 
+> 
+> Jani Nikula (19):
+>   drm/edid: reset display info in drm_add_edid_modes() for NULL edid
+>   drm/edid: rename HDMI Forum VSDB to SCDS
+>   drm/edid: clean up CTA data block tag definitions
+>   drm/edid: add iterator for EDID base and extension blocks
+>   drm/edid: add iterator for CTA data blocks
+>   drm/edid: clean up cea_db_is_*() functions
+>   drm/edid: convert add_cea_modes() to use cea db iter
+>   drm/edid: convert drm_edid_to_speaker_allocation() to use cea db iter
+>   drm/edid: convert drm_edid_to_sad() to use cea db iter
+>   drm/edid: convert drm_detect_hdmi_monitor() to use cea db iter
+>   drm/edid: convert drm_detect_monitor_audio() to use cea db iter
+>   drm/edid: convert drm_parse_cea_ext() to use cea db iter
+>   drm/edid: convert drm_edid_to_eld() to use cea db iter
+>   drm/edid: sunset the old unused cea data block iterators
+>   drm/edid: restore some type safety to cea_db_*() functions
+>   drm/edid: detect basic audio in all CEA extensions
+>   drm/edid: skip CTA extension scan in drm_edid_to_eld() just for CTA
+>     rev
+>   drm/edid: sunset drm_find_cea_extension()
+> 
+> Lee Shawn C (1):
+>   drm/edid: check for HF-SCDB block
 
-BTW looks like all of these could be 'else if'. Dunno if that actually
-affects the generated code though, or if the compiler is smart enough
-to see only one condition can by true.
-
+All of the above patches look OK to me.
 Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-> -			drm_parse_hdmi_forum_scds(connector, db);
-> +			drm_parse_hdmi_forum_scds(connector, data);
->  		if (cea_db_is_microsoft_vsdb(db))
-> -			drm_parse_microsoft_vsdb(connector, db);
-> +			drm_parse_microsoft_vsdb(connector, data);
->  		if (cea_db_is_y420cmdb(db))
-> -			drm_parse_y420cmdb_bitmap(connector, db);
-> +			drm_parse_y420cmdb_bitmap(connector, data);
->  		if (cea_db_is_vcdb(db))
-> -			drm_parse_vcdb(connector, db);
-> +			drm_parse_vcdb(connector, data);
->  		if (cea_db_is_hdmi_hdr_metadata_block(db))
-> -			drm_parse_hdr_metadata_block(connector, db);
-> +			drm_parse_hdr_metadata_block(connector, data);
->  	}
-> +	cea_db_iter_end(&iter);
->  }
->  
->  static
+>   drm/edid: detect color formats and CTA revision in all CTA extensions
+
+For this one I'm not entirely convinced the behavioural change
+for the no-CTA ext case is what we want. Replied to that one
+individually.
+
+> 
+>  drivers/gpu/drm/drm_edid.c | 799 +++++++++++++++++++++----------------
+>  1 file changed, 458 insertions(+), 341 deletions(-)
+> 
 > -- 
 > 2.30.2
 
