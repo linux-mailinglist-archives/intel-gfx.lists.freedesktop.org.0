@@ -1,70 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6ADB95192DE
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 May 2022 02:36:15 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D59005192EB
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 May 2022 02:41:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F3C3210ECFF;
-	Wed,  4 May 2022 00:36:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9887110EE14;
+	Wed,  4 May 2022 00:41:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E2C0410ECFB
- for <intel-gfx@lists.freedesktop.org>; Wed,  4 May 2022 00:36:11 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D036610EE14
+ for <intel-gfx@lists.freedesktop.org>; Wed,  4 May 2022 00:41:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1651624571; x=1683160571;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=TATU6Gb4GipKDgddeeNd1WSbENH3Dl3x8Gu0Eh3vUd0=;
- b=beSy91gChZbI6Jx9l1ratjmQ1nzxsCfL3xdjdkksq1V+z+MLEHm5YvkU
- uWS/Km/+/NXIMjanmT8/FmAvQ42V28xxkWXtXcJDjQZv9178I94EutNtD
- AGLuxA/HKlm7Ikbxdv5Okqg9s6vmK5zod0KemqhAh0M3SrkhN5MgPQWYJ
- OJOTCw4tOJIkmNQGrxrumxxDprHEuEqsDt22ee+rYbEJ/7phyyOXsXA7P
- QFN2crmQpKutXt07snfNo1ftEfWwA36PAjIeiLQITJCEmdOVuqFOjmBw/
- qbYXrorwK+sBiHtzGb6DxikTcM1jPnKplXKiK5SGIjOYa6dvyDHFhcBPu g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10336"; a="266472660"
-X-IronPort-AV: E=Sophos;i="5.91,196,1647327600"; d="scan'208";a="266472660"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 May 2022 17:36:11 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,196,1647327600"; d="scan'208";a="536597544"
-Received: from fmsmsx604.amr.corp.intel.com ([10.18.126.84])
- by orsmga006.jf.intel.com with ESMTP; 03 May 2022 17:36:11 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx604.amr.corp.intel.com (10.18.126.84) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Tue, 3 May 2022 17:36:10 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Tue, 3 May 2022 17:36:10 -0700
-Received: from fmsmsx611.amr.corp.intel.com ([10.18.126.91]) by
- fmsmsx611.amr.corp.intel.com ([10.18.126.91]) with mapi id 15.01.2308.027;
- Tue, 3 May 2022 17:36:10 -0700
-From: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
-To: "De Marchi, Lucas" <lucas.demarchi@intel.com>
-Thread-Topic: [PATCH] drm/i915/dmc: Add MMIO range restrictions
-Thread-Index: AQHYX0xUPuwnq8o+jk2fuKY1pj8BN60OU1CA//+Lm1A=
-Date: Wed, 4 May 2022 00:36:10 +0000
-Message-ID: <3dd28d33bbcc440791b8cdfa30fd4b4b@intel.com>
-References: <20220504001346.667825-1-anusha.srivatsa@intel.com>
- <20220504003123.7z4cpxdae43tnuor@ldmartin-desk2>
-In-Reply-To: <20220504003123.7z4cpxdae43tnuor@ldmartin-desk2>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-version: 11.6.401.20
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-x-originating-ip: [10.22.254.132]
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ t=1651624905; x=1683160905;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=3Mn4bdCrcewhgrHGKjiQZEh2Kdj+15OzbaQbUi55MLA=;
+ b=Y2NPk/sOWwnCpT41gRTX92+j8dzvd1xFVK0nO1DW5WahGY1LoIWUxXVb
+ xrdmnRfAnjohuPEMjSnN+wE1Kb5eho7Hh0srTyrJFUA88w2XveMOTXZ28
+ NdxBNQFck8QoslczJd67zGIkHw1PMaUFs3hgB7Vg2dyPt37BHbZdh/8xo
+ SSK4BycwAdqGkoPxSvCqiiZGVt4itoduBlb24WO01VI/yRg7QR5fuUgPh
+ oHP0wS/L8wIRB517PCAE23bMB45QWISfkq9aLRZ/jIwqMLEiPSkNl6LLd
+ gRrjM8NSB12k3o9y/8cqJ5++v68qhwb1Ir4yBtiFJGnGPkDhDiAq3T6UJ g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10336"; a="330616290"
+X-IronPort-AV: E=Sophos;i="5.91,196,1647327600"; d="scan'208";a="330616290"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 May 2022 17:41:45 -0700
+X-IronPort-AV: E=Sophos;i="5.91,196,1647327600"; d="scan'208";a="584459806"
+Received: from injoroge-mobl1.amr.corp.intel.com (HELO intel.com)
+ ([10.255.39.82])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 May 2022 17:41:44 -0700
+Date: Tue, 3 May 2022 20:41:43 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Anusha Srivatsa <anusha.srivatsa@intel.com>
+Message-ID: <YnHLx3099hsXbMjg@intel.com>
+References: <20220503235729.617954-1-anusha.srivatsa@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dmc: Add MMIO range restrictions
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220503235729.617954-1-anusha.srivatsa@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 0/1] DG2 DMC Support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,178 +56,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "stable@vger.kernel.org" <stable@vger.kernel.org>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Tue, May 03, 2022 at 04:57:28PM -0700, Anusha Srivatsa wrote:
+> While DG2 supports DC5 and DC9, some of the tests in
+> fast-feedback blew up DG2 when the tests forced transition
+> from dc5->dc9 on suspend and dc9->dc5 on resume. Some local
+> experiments performed with Rodrigo on a RIL system  showed promising
+> results when dc5 was completely diabled and i915 took only dc9 paths.
+> 
+> Sending this so we can check the CI results to confirm the
+> findings from local testing which will hopefully help narrow
+> down the root cause of MMIO BAR lost issue
+> 
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: Imre Deak <imre.deak@intel.com>
 
+Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-> -----Original Message-----
-> From: De Marchi, Lucas <lucas.demarchi@intel.com>
-> Sent: Tuesday, May 3, 2022 5:31 PM
-> To: Srivatsa, Anusha <anusha.srivatsa@intel.com>
-> Cc: intel-gfx@lists.freedesktop.org; stable@vger.kernel.org
-> Subject: Re: [PATCH] drm/i915/dmc: Add MMIO range restrictions
->=20
-> On Tue, May 03, 2022 at 05:13:46PM -0700, Anusha Srivatsa wrote:
-> >Bspec has added some steps that check forDMC MMIO range before
-> >programming them
-> >
-> >v2: Fix for CI
-> >v3: move register defines to .h (Anusha)
-> >- Check MMIO restrictions per pipe
-> >- Add MMIO restricton for v1 dmc header as well (Lucas)
-> >v4: s/_PICK/_PICK_EVEN and use it only for Pipe DMC scenario.
-> >- clean up sanity check logic.(Lucas)
-> >- Add MMIO range for RKL as well.(Anusha)
-> >
-> >BSpec: 49193
-> >
-> >Cc: <stable@vger.kernel.org>
-> >Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> >Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
-> >---
-> > drivers/gpu/drm/i915/display/intel_dmc.c      | 43 +++++++++++++++++++
-> > drivers/gpu/drm/i915/display/intel_dmc_regs.h | 18 +++++++-
-> > 2 files changed, 60 insertions(+), 1 deletion(-)
-> >
-> >diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c
-> >b/drivers/gpu/drm/i915/display/intel_dmc.c
-> >index 257cf662f9f4..e37ba75e68da 100644
-> >--- a/drivers/gpu/drm/i915/display/intel_dmc.c
-> >+++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-> >@@ -374,6 +374,44 @@ static void dmc_set_fw_offset(struct intel_dmc
-> *dmc,
-> > 	}
-> > }
-> >
-> >+static bool dmc_mmio_addr_sanity_check(struct intel_dmc *dmc, const
-> u32 *mmioaddr,
-> >+				       u32 mmio_count, int header_ver, u8
-> dmc_id) {
-> >+	struct drm_i915_private *i915 =3D container_of(dmc, typeof(*i915),
-> dmc);
-> >+	u32 start_range, end_range;
-> >+	int i;
-> >+
-> >+	if (dmc_id >=3D DMC_FW_MAX || dmc_id < DMC_FW_MAIN) {
->=20
-> dmc_id is unsigned and DMC_FW_MAIN is 0. dmc_id < DMC_FW_MAIN can't
-> ever possibly happen so you can remove it.
->=20
-> >+		drm_warn(&i915->drm, "Unsupported firmware id %u\n",
-> dmc_id);
-> >+		return false;
-> >+	}
-> >+
-> >+	if (header_ver =3D=3D 1) {
-> >+		start_range =3D DMC_MMIO_START_RANGE;
-> >+		end_range =3D DMC_MMIO_END_RANGE;
-> >+	} else if (dmc_id =3D=3D DMC_FW_MAIN) {
-> >+		start_range =3D TGL_MAIN_MMIO_START;
-> >+		end_range =3D TGL_MAIN_MMIO_END;
-> >+	} else if (IS_DG2(i915) || IS_ALDERLAKE_P(i915)) {
->=20
-> 	} else if (DISPLAY_VER(i915) >=3D 13) {
->=20
-> ?
->=20
-> >+		start_range =3D ADLP_PIPE_MMIO_START;
-> >+		end_range =3D ADLP_PIPE_MMIO_END;
-> >+	} else if (IS_TIGERLAKE(i915) || IS_DG1(i915) ||
-> IS_ALDERLAKE_S(i915) ||
-> >+		   IS_ROCKETLAKE(i915)) {
->=20
-> 	} else if (DISPLAY_VER(i915) >=3D 12) {
->=20
-> ?
->=20
-> maintaining the if/else ladder fine grained by platform is somewhat painf=
-ul.
+thanks for sending this.
+We definitely need this for now while we work to understand the dc5.
 
-Agreed.
-
-> >+		start_range =3D TGL_PIPE_MMIO_START(dmc_id);
-> >+		end_range =3D TGL_PIPE_MMIO_END(dmc_id);
-> >+	} else {
-> >+		drm_warn(&i915->drm, "Unknown mmio range for sanity
-> check");
-> >+		return false;
-> >+	}
-> >+
-> >+	for (i =3D 0; i < mmio_count; i++) {
-> >+		if (mmioaddr[i] < start_range || mmioaddr[i] > end_range)
-> >+			return false;
-> >+	}
-> >+
-> >+	return true;
-> >+}
-> >+
-> > static u32 parse_dmc_fw_header(struct intel_dmc *dmc,
-> > 			       const struct intel_dmc_header_base
-> *dmc_header,
-> > 			       size_t rem_size, u8 dmc_id)
-> >@@ -443,6 +481,11 @@ static u32 parse_dmc_fw_header(struct intel_dmc
-> *dmc,
-> > 		return 0;
-> > 	}
-> >
-> >+	if (!dmc_mmio_addr_sanity_check(dmc, mmioaddr, mmio_count,
-> dmc_header->header_ver, dmc_id)) {
-> >+		drm_err(&i915->drm, "DMC firmware has Wrong MMIO
-> Addresses\n");
-> >+		return 0;
-> >+	}
-> >+
-> > 	for (i =3D 0; i < mmio_count; i++) {
-> > 		dmc_info->mmioaddr[i] =3D _MMIO(mmioaddr[i]);
-> > 		dmc_info->mmiodata[i] =3D mmiodata[i]; diff --git
-> >a/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-> >b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-> >index d65e698832eb..67e14eb96a7a 100644
-> >--- a/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-> >+++ b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-> >@@ -16,7 +16,23 @@
-> > #define DMC_LAST_WRITE		_MMIO(0x8F034)
-> > #define DMC_LAST_WRITE_VALUE	0xc003b400
-> > #define DMC_MMIO_START_RANGE	0x80000
-> >-#define DMC_MMIO_END_RANGE	0x8FFFF
-> >+#define DMC_MMIO_END_RANGE     0x8FFFF
-> >+#define DMC_V1_MMIO_START_RANGE		0x80000
-> >+#define TGL_MAIN_MMIO_START		0x8F000
-> >+#define TGL_MAIN_MMIO_END		0x8FFFF
-> >+#define _TGL_PIPEA_MMIO_START		0x92000
-> >+#define _TGL_PIPEA_MMIO_END		0x93FFF
-> >+#define _TGL_PIPEB_MMIO_START		0x96000
-> >+#define _TGL_PIPEB_MMIO_END		0x97FFF
-> >+#define ADLP_PIPE_MMIO_START		0x5F000
-> >+#define ADLP_PIPE_MMIO_END		0x5FFFF
->=20
-> don't we have per-pipe range for ADLP_? Or is there only pipe A?
->=20
-We don't have per-pipe range. We have one big chunk of range for all pipe D=
-MC MMIOs.
-
-> with the above fixes, feel free to add my Reviewed-by: Lucas De Marchi
-> <lucas.demarchi@intel.com> in the next version.
-
-Thanks!
-=20
-> Lucas De Marchi
->=20
-> >+
-> >+#define TGL_PIPE_MMIO_START(dmc_id)	_PICK_EVEN(((dmc_id) - 1),
-> _TGL_PIPEA_MMIO_START,\
-> >+					      _TGL_PIPEB_MMIO_START)
-> >+
-> >+#define TGL_PIPE_MMIO_END(dmc_id)	_PICK_EVEN(((dmc_id) - 1),
-> _TGL_PIPEA_MMIO_END,\
-> >+					      _TGL_PIPEB_MMIO_END)
-> >+
-> > #define SKL_DMC_DC3_DC5_COUNT	_MMIO(0x80030)
-> > #define SKL_DMC_DC5_DC6_COUNT	_MMIO(0x8002C)
-> > #define BXT_DMC_DC3_DC5_COUNT	_MMIO(0x80038)
-> >--
-> >2.25.1
-> >
+> 
+> Anusha Srivatsa (1):
+>   drm/i915/dmc: Load DMC on DG2
+> 
+>  drivers/gpu/drm/i915/display/intel_display_power.c |  4 +++-
+>  drivers/gpu/drm/i915/display/intel_dmc.c           | 10 +++++++++-
+>  2 files changed, 12 insertions(+), 2 deletions(-)
+> 
+> -- 
+> 2.25.1
+> 
