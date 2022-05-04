@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 089F251A315
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 May 2022 17:04:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 32E7F51A317
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 May 2022 17:04:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 50B3810EC94;
-	Wed,  4 May 2022 15:04:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 84CF510E821;
+	Wed,  4 May 2022 15:04:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 85B3F10E821
- for <intel-gfx@lists.freedesktop.org>; Wed,  4 May 2022 15:04:52 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 219C410E821
+ for <intel-gfx@lists.freedesktop.org>; Wed,  4 May 2022 15:04:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1651676692; x=1683212692;
+ t=1651676694; x=1683212694;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Nj6r7o84JuN9ytNhnQpF75zAxhaLmrMPGFaV2AVNfvI=;
- b=M4FibfVhKp9QmfdwB5/xY1GbWdbvRsM8lyHS7LVZDlA+mPEb/DjFsfsR
- SCZ+Ulq7JYFsXsn9Q13q9g1Inx2jj62LpjoIWkpNHJTyLR5jBqH3c8ZqM
- 8DxaZt5UFwx7ejMV5Ap+6D2PR1H3+Yn7cqbES3jxkcXptBLhOT3Vm8vB1
- a26DI1RsN4Uy5+pI+MKZTqzLGuZtlQZtOOB1PE8CXsBn+R68GxWd/QSf8
- p1TJfjv6uvLhNBALjE4Vxlnj+ZTerNSZ7zwQ+hNkpwCBk8ZsdW3T+90KQ
- 9Aak1bKKQpR1HKBu6cFf1Sn1w0MBy7u8qv0UATFzTjPifpqm7eXw/stxq w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10337"; a="354227405"
-X-IronPort-AV: E=Sophos;i="5.91,198,1647327600"; d="scan'208";a="354227405"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2022 08:04:50 -0700
+ bh=aAk77LsEpevXc9W0AxA9bIlMbowZDIAie0qcyV565LI=;
+ b=EyzNpOcqZt1K5b4xmi2GW0NxmhET4diim5NLopUZa69p3U7qg+2z7jl1
+ M/OiEw9BwDPteShL9LqnNL9Twv2/OLwRqwOJDeplx/qVsr1Q0HhrxkY6d
+ RgXvrYtCBLCVBkubCSSksXRNRpitS+PJ1GlQ3/sbx8/ihB87esmqj2T3S
+ 2Ppf7VAHrhz2xQa+FhyKXUXz8iHMo2GYdgN1qoOsd3HR0gD9P79QbXoQP
+ RDz69uXyP8Ns/ovvo8ocV0Lh+M515eLRTcMrWVKyWdxRow9wSXzeCSFXa
+ Z/k9H03d0JdTU0OgO6GV7CUW08In3b8qIe3fYz/IGZAc12DKSlxafiFGI w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10337"; a="266634448"
+X-IronPort-AV: E=Sophos;i="5.91,198,1647327600"; d="scan'208";a="266634448"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 May 2022 08:04:53 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,198,1647327600"; d="scan'208";a="599567151"
+X-IronPort-AV: E=Sophos;i="5.91,198,1647327600"; d="scan'208";a="548854610"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.51])
- by orsmga001.jf.intel.com with SMTP; 04 May 2022 08:04:47 -0700
+ by orsmga002.jf.intel.com with SMTP; 04 May 2022 08:04:51 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 04 May 2022 18:04:46 +0300
+ Wed, 04 May 2022 18:04:50 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  4 May 2022 18:04:33 +0300
-Message-Id: <20220504150440.13748-3-ville.syrjala@linux.intel.com>
+Date: Wed,  4 May 2022 18:04:34 +0300
+Message-Id: <20220504150440.13748-4-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220504150440.13748-1-ville.syrjala@linux.intel.com>
 References: <20220504150440.13748-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 2/9] drm/i915/bios: Generate LFP data table
- pointers if the VBT lacks them
+Subject: [Intel-gfx] [PATCH v2 3/9] drm/i915/bios: Get access to the tail
+ end of the LFP data block
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,199 +65,143 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Modern VBTs no longer contain the LFP data table pointers
-block (41). We are expecting to have one in order to be able
-to parse the LFP data block (42), so let's make one up.
+We need to start parsing stuff from the tail end of the LFP data block.
+This is made awkward by the fact that the fp_timing table has variable
+size. So we must use a bit more finesse to get the tail end, and to
+make sure we allocate enough memory for it to make sure our struct
+representation fits.
 
-Since the fp_timing table has variable size we must somehow
-determine its size. Rather than just hardcode it we look for
-the terminator bytes (0xffff) to figure out where each table
-entry starts. dvo_timing, panel_pnp_id, and panel_name are
-expected to have fixed size.
-
-This has been observed on various machines, eg. TGL with BDB
-version 240, CML with BDB version 231, etc. The most recent
-VBT I've observed that still had block 41 had BDB version
-228. So presumably the cutoff (if an exact cutoff even exists)
-is somewhere around BDB version 229-231.
-
-v2: kfree the thing we allocated, not the thing+3 bytes
-v3: Do the debugprint only if we found the LFP data block
-v4: Fix t0 null check (Jani)
+v2: Rebase due to the preallocation of BDB blocks
+v3: Rebase due to min_size WARN relocation
+v4: Document BDB_LVDS_LFP_DATA vs. BDB_LVDS_LFP_DATA_PTRS order (Jani)
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bios.c | 134 +++++++++++++++++++++-
- 1 file changed, 133 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_bios.c     | 43 ++++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_vbt_defs.h | 17 ++++++++
+ 2 files changed, 59 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index 8a1086721525..7bc3d55b6bb0 100644
+index 7bc3d55b6bb0..ecfce9adfbbb 100644
 --- a/drivers/gpu/drm/i915/display/intel_bios.c
 +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -311,16 +311,144 @@ static bool fixup_lfp_data_ptrs(const void *bdb, void *ptrs_block)
- 	return validate_lfp_data_ptrs(bdb, ptrs);
+@@ -186,10 +186,14 @@ static const struct {
+ 	  .min_size = sizeof(struct bdb_edp), },
+ 	{ .section_id = BDB_LVDS_OPTIONS,
+ 	  .min_size = sizeof(struct bdb_lvds_options), },
++	/*
++	 * BDB_LVDS_LFP_DATA depends on BDB_LVDS_LFP_DATA_PTRS,
++	 * so keep the two ordered.
++	 */
+ 	{ .section_id = BDB_LVDS_LFP_DATA_PTRS,
+ 	  .min_size = sizeof(struct bdb_lvds_lfp_data_ptrs), },
+ 	{ .section_id = BDB_LVDS_LFP_DATA,
+-	  .min_size = sizeof(struct bdb_lvds_lfp_data), },
++	  .min_size = 0, /* special case */ },
+ 	{ .section_id = BDB_LVDS_BACKLIGHT,
+ 	  .min_size = sizeof(struct bdb_lfp_backlight_data), },
+ 	{ .section_id = BDB_LFP_POWER,
+@@ -204,6 +208,23 @@ static const struct {
+ 	  .min_size = sizeof(struct bdb_generic_dtd), },
+ };
+ 
++static size_t lfp_data_min_size(struct drm_i915_private *i915)
++{
++	const struct bdb_lvds_lfp_data_ptrs *ptrs;
++	size_t size;
++
++	ptrs = find_section(i915, BDB_LVDS_LFP_DATA_PTRS);
++	if (!ptrs)
++		return 0;
++
++	size = sizeof(struct bdb_lvds_lfp_data);
++	if (ptrs->panel_name.table_size)
++		size = max(size, ptrs->panel_name.offset +
++			   sizeof(struct bdb_lvds_lfp_data_tail));
++
++	return size;
++}
++
+ static bool validate_lfp_data_ptrs(const void *bdb,
+ 				   const struct bdb_lvds_lfp_data_ptrs *ptrs)
+ {
+@@ -491,6 +512,9 @@ static void init_bdb_blocks(struct drm_i915_private *i915,
+ 		enum bdb_block_id section_id = bdb_blocks[i].section_id;
+ 		size_t min_size = bdb_blocks[i].min_size;
+ 
++		if (section_id == BDB_LVDS_LFP_DATA)
++			min_size = lfp_data_min_size(i915);
++
+ 		init_bdb_block(i915, bdb, section_id, min_size);
+ 	}
+ }
+@@ -561,6 +585,16 @@ get_lvds_fp_timing(const struct bdb_lvds_lfp_data *data,
+ 	return (const void *)data + ptrs->ptr[index].fp_timing.offset;
  }
  
-+static const void *find_fp_timing_terminator(const u8 *data, int size)
++static const struct bdb_lvds_lfp_data_tail *
++get_lfp_data_tail(const struct bdb_lvds_lfp_data *data,
++		  const struct bdb_lvds_lfp_data_ptrs *ptrs)
 +{
-+	int i;
-+
-+	for (i = 0; i < size - 1; i++) {
-+		if (data[i] == 0xff && data[i+1] == 0xff)
-+			return &data[i];
-+	}
-+
-+	return NULL;
-+}
-+
-+static int make_lfp_data_ptr(struct lvds_lfp_data_ptr_table *table,
-+			     int table_size, int total_size)
-+{
-+	if (total_size < table_size)
-+		return total_size;
-+
-+	table->table_size = table_size;
-+	table->offset = total_size - table_size;
-+
-+	return total_size - table_size;
-+}
-+
-+static void next_lfp_data_ptr(struct lvds_lfp_data_ptr_table *next,
-+			      const struct lvds_lfp_data_ptr_table *prev,
-+			      int size)
-+{
-+	next->table_size = prev->table_size;
-+	next->offset = prev->offset + size;
-+}
-+
-+static void *generate_lfp_data_ptrs(struct drm_i915_private *i915,
-+				    const void *bdb)
-+{
-+	int i, size, table_size, block_size, offset;
-+	const void *t0, *t1, *block;
-+	struct bdb_lvds_lfp_data_ptrs *ptrs;
-+	void *ptrs_block;
-+
-+	block = find_raw_section(bdb, BDB_LVDS_LFP_DATA);
-+	if (!block)
-+		return NULL;
-+
-+	drm_dbg_kms(&i915->drm, "Generating LFP data table pointers\n");
-+
-+	block_size = get_blocksize(block);
-+
-+	size = block_size;
-+	t0 = find_fp_timing_terminator(block, size);
-+	if (!t0)
-+		return NULL;
-+
-+	size -= t0 - block - 2;
-+	t1 = find_fp_timing_terminator(t0 + 2, size);
-+	if (!t1)
-+		return NULL;
-+
-+	size = t1 - t0;
-+	if (size * 16 > block_size)
-+		return NULL;
-+
-+	ptrs_block = kzalloc(sizeof(*ptrs) + 3, GFP_KERNEL);
-+	if (!ptrs_block)
-+		return NULL;
-+
-+	*(u8 *)(ptrs_block + 0) = BDB_LVDS_LFP_DATA_PTRS;
-+	*(u16 *)(ptrs_block + 1) = sizeof(*ptrs);
-+	ptrs = ptrs_block + 3;
-+
-+	table_size = sizeof(struct lvds_pnp_id);
-+	size = make_lfp_data_ptr(&ptrs->ptr[0].panel_pnp_id, table_size, size);
-+
-+	table_size = sizeof(struct lvds_dvo_timing);
-+	size = make_lfp_data_ptr(&ptrs->ptr[0].dvo_timing, table_size, size);
-+
-+	table_size = t0 - block + 2;
-+	size = make_lfp_data_ptr(&ptrs->ptr[0].fp_timing, table_size, size);
-+
-+	if (ptrs->ptr[0].fp_timing.table_size)
-+		ptrs->lvds_entries++;
-+	if (ptrs->ptr[0].dvo_timing.table_size)
-+		ptrs->lvds_entries++;
-+	if (ptrs->ptr[0].panel_pnp_id.table_size)
-+		ptrs->lvds_entries++;
-+
-+	if (size != 0 || ptrs->lvds_entries != 3) {
-+		kfree(ptrs);
-+		return NULL;
-+	}
-+
-+	size = t1 - t0;
-+	for (i = 1; i < 16; i++) {
-+		next_lfp_data_ptr(&ptrs->ptr[i].fp_timing, &ptrs->ptr[i-1].fp_timing, size);
-+		next_lfp_data_ptr(&ptrs->ptr[i].dvo_timing, &ptrs->ptr[i-1].dvo_timing, size);
-+		next_lfp_data_ptr(&ptrs->ptr[i].panel_pnp_id, &ptrs->ptr[i-1].panel_pnp_id, size);
-+	}
-+
-+	size = t1 - t0;
-+	table_size = sizeof(struct lvds_lfp_panel_name);
-+
-+	if (16 * (size + table_size) <= block_size) {
-+		ptrs->panel_name.table_size = table_size;
-+		ptrs->panel_name.offset = size * 16;
-+	}
-+
-+	offset = block - bdb;
-+
-+	for (i = 0; i < 16; i++) {
-+		ptrs->ptr[i].fp_timing.offset += offset;
-+		ptrs->ptr[i].dvo_timing.offset += offset;
-+		ptrs->ptr[i].panel_pnp_id.offset += offset;
-+	}
-+
 +	if (ptrs->panel_name.table_size)
-+		ptrs->panel_name.offset += offset;
-+
-+	return ptrs_block;
++		return (const void *)data + ptrs->panel_name.offset;
++	else
++		return NULL;
 +}
 +
+ /* Parse general panel options */
  static void
- init_bdb_block(struct drm_i915_private *i915,
- 	       const void *bdb, enum bdb_block_id section_id,
- 	       size_t min_size)
+ parse_panel_options(struct drm_i915_private *i915)
+@@ -665,6 +699,7 @@ static void
+ parse_lfp_data(struct drm_i915_private *i915)
  {
- 	struct bdb_block_entry *entry;
-+	void *temp_block = NULL;
- 	const void *block;
- 	size_t block_size;
+ 	const struct bdb_lvds_lfp_data *data;
++	const struct bdb_lvds_lfp_data_tail *tail;
+ 	const struct bdb_lvds_lfp_data_ptrs *ptrs;
  
- 	block = find_raw_section(bdb, section_id);
+ 	ptrs = find_section(i915, BDB_LVDS_LFP_DATA_PTRS);
+@@ -677,6 +712,12 @@ parse_lfp_data(struct drm_i915_private *i915)
+ 
+ 	if (!i915->vbt.lfp_lvds_vbt_mode)
+ 		parse_lfp_panel_dtd(i915, data, ptrs);
 +
-+	/* Modern VBTs lack the LFP data table pointers block, make one up */
-+	if (!block && section_id == BDB_LVDS_LFP_DATA_PTRS) {
-+		temp_block = generate_lfp_data_ptrs(i915, bdb);
-+		if (temp_block)
-+			block = temp_block + 3;
-+	}
- 	if (!block)
- 		return;
- 
-@@ -331,12 +459,16 @@ init_bdb_block(struct drm_i915_private *i915,
- 
- 	entry = kzalloc(struct_size(entry, data, max(min_size, block_size) + 3),
- 			GFP_KERNEL);
--	if (!entry)
-+	if (!entry) {
-+		kfree(temp_block);
- 		return;
-+	}
- 
- 	entry->section_id = section_id;
- 	memcpy(entry->data, block - 3, block_size + 3);
- 
-+	kfree(temp_block);
++	tail = get_lfp_data_tail(data, ptrs);
++	if (!tail)
++		return;
 +
- 	drm_dbg_kms(&i915->drm, "Found BDB block %d (size %zu, min size %zu)\n",
- 		    section_id, block_size, min_size);
++	(void)tail;
+ }
  
+ static void
+diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
+index e4a11c3e3f3e..2554f4b9b4da 100644
+--- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
++++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
+@@ -783,6 +783,23 @@ struct lvds_lfp_panel_name {
+ 	u8 name[13];
+ } __packed;
+ 
++struct lvds_lfp_black_border {
++	u8 top; /* 227 */
++	u8 bottom; /* 227 */
++	u8 left; /* 238 */
++	u8 right; /* 238 */
++} __packed;
++
++struct bdb_lvds_lfp_data_tail {
++	struct lvds_lfp_panel_name panel_name[16]; /* 156-163? */
++	u16 scaling_enable; /* 187 */
++	u8 seamless_drrs_min_refresh_rate[16]; /* 188 */
++	u8 pixel_overlap_count[16]; /* 208 */
++	struct lvds_lfp_black_border black_border[16]; /* 227 */
++	u16 dual_lfp_port_sync_enable; /* 231 */
++	u16 gpu_dithering_for_banding_artifacts; /* 245 */
++} __packed;
++
+ /*
+  * Block 43 - LFP Backlight Control Data Block
+  */
 -- 
 2.35.1
 
