@@ -1,147 +1,77 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7243D51995D
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 May 2022 10:12:24 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DD17519A98
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 May 2022 10:50:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6FF5C10F50F;
-	Wed,  4 May 2022 08:12:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF01610FB54;
+	Wed,  4 May 2022 08:49:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A51010F528
- for <intel-gfx@lists.freedesktop.org>; Wed,  4 May 2022 08:12:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1651651940; x=1683187940;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=gMeA2wpIcHEbuyJ7vMQ5a+c4fYHmsINAImYAURwrqtk=;
- b=W/emzqdt4DFI2aTDmE2+PO6GVhJ9U3mumqeYUaVGCtiLrYvuX6Ct5NX5
- Q7hk+i4uXPC8H7Sf1wzhNtvG5SxD8VuaqwcYQnZSiw8CxI1TpNQA1RojT
- TQ2Hh+hkw0JA9/16ekaWMMKqzyvdbjBXVa1kV1y/YsAeewwrvJciR/BcX
- sTHvWP4WFSlwIF39vLHfwvnspdOkIzjGl67r5vr6w1y8oPcFQTY48G8Ds
- iMsvNRZwo1tsZR1kGKnj9fluF8G24X49ICkap7Ch9Jj4UMayW7fy9OnsS
- K7v4Vl+k5O8Q+2L9R8t9HR6PI+DeXJhCvd4Fe8acetBBK9eRpqEKUDmmg A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10336"; a="267294590"
-X-IronPort-AV: E=Sophos;i="5.91,197,1647327600"; d="scan'208";a="267294590"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2022 01:12:19 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,197,1647327600"; d="scan'208";a="584611923"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orsmga008.jf.intel.com with ESMTP; 04 May 2022 01:12:16 -0700
-Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Wed, 4 May 2022 01:12:16 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27 via Frontend Transport; Wed, 4 May 2022 01:12:16 -0700
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.40) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2308.27; Wed, 4 May 2022 01:12:16 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=DOnAEA6prpWyiXK++IvcynjeNPirUUq0M0YUfQu9hca3a/FZrxAx5/235uXzZovZronWWZct5gdIEVFvTZk17s4LV6oO1oDxzoOf/Yo0I54VxlEY+sd57KEF+dkXjlhMUStfaOiu8BQ2gaH31CcoobKOj4ybWZH6K3QeSXUuuJSz3+YYD+zA16C100UG1lj1Rsszgr/PyzsVN6HkU2fdyuFIUF+wQgF5hz0zxijyyf64bopDC3l5xS5PKJyghV2NA2s7gKL9H9ZlR/nJa6DrOCG+WVMSZgbTjyPGPhCalbfrwgmiXLH5aGtNSSX68TPyL39vqza7WftgvVPiAHufQg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=gMeA2wpIcHEbuyJ7vMQ5a+c4fYHmsINAImYAURwrqtk=;
- b=XoJ3SHb6AJALO+jOMoyYitUFNR1A/rIfc423jNfM6ncw5IycQSY8dDEB5VzxoFcDPnPism/5mEB4Sc5OHnqQ/5QvqLlyLUsUDnncaHZBBuyx9UxvJm/eJKDakmRsm6FbP0WxJ090zjOLIKuT4SnzdYBuu+uEA7V/z92Fu49JRYsBE5SpkdqFiTiVbMEqPNg/e69Yj6e6kWu42rF+LWpk7RmDlrRHfOQqOimeaVHte1K2I5YNHR+0GU60xh9t8UQL5M5Y29eROmndhpB0FbG26PTq/9DShWU04dD4hK54rwwJfl77EZvUaQbWl5K2Hz3/T63wrjGyCsuPX3EVndTrPw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM6PR11MB3177.namprd11.prod.outlook.com (2603:10b6:5:c::28) by
- CY4PR11MB1654.namprd11.prod.outlook.com (2603:10b6:910:e::18) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5206.13; Wed, 4 May 2022 08:12:14 +0000
-Received: from DM6PR11MB3177.namprd11.prod.outlook.com
- ([fe80::dc18:9af3:5549:4d3d]) by DM6PR11MB3177.namprd11.prod.outlook.com
- ([fe80::dc18:9af3:5549:4d3d%7]) with mapi id 15.20.5206.025; Wed, 4 May 2022
- 08:12:14 +0000
-From: "Murthy, Arun R" <arun.r.murthy@intel.com>
-To: "Nikula, Jani" <jani.nikula@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH] drm/i915: warn about missing ->get_buf_trans
- initialization
-Thread-Index: AQHYXsbaBHA1DtRj2USAM2/AqLzqk60OX3EQ
-Date: Wed, 4 May 2022 08:12:13 +0000
-Message-ID: <DM6PR11MB317752C55BD83E2B76CAD931BAC39@DM6PR11MB3177.namprd11.prod.outlook.com>
-References: <20220503082134.4128355-1-jani.nikula@intel.com>
-In-Reply-To: <20220503082134.4128355-1-jani.nikula@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.6.401.20
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 8f7ceb01-ccf6-4de8-ab12-08da2da5cbd4
-x-ms-traffictypediagnostic: CY4PR11MB1654:EE_
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-microsoft-antispam-prvs: <CY4PR11MB1654E955D430FD3F9ABCB294BAC39@CY4PR11MB1654.namprd11.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: uq0llVDBNoEdFxPBKTnoO4xtEGBs7ElbQjq64PrybyBxztzhMuaCXWdxvWSEW956Tj2btfeaVNlzRn1cdMJveHLjG/nfMvcReUcDOE9826cKu+xWnZQ/OxWs/X/tugofvwSaEOaDnpRFG6frupRxpTts/Hbcr/By8VbCED0/xGfw+l1XQj3oZbdaEwLsBsxsuKPBaoVEBpygnZNAHOP3Sw2zhrlIUUS+DX7t/KG/8Hw6GsSkrDY2FGm91W7waQlU6XrkR51SD0HEYwONzWTaBzgd7X1fRHHdBqgtnpLrWC+bg0kmIHJV3VC7GRv1OkIAVz/k6pr5XnKY9kDZhh47JGdgm7pfLLkg7ZhIYNFoPjPdXril1le8IM7h5dzbwBGQrnMbmQoD6w69avctfgYK4fHBEEGXgvG7aaJLO4tcG9iiCgGr8C3IgP/RocSEPfPJo3DT+id4x/W9qrIBCriR18W9ZVeOWZiFC49S1vwD92Vl8n9AD3DX7hvl6r66vlWVgURaXMEG2GAa1pdfmKX9lAbcxcemrCzTTvM1LXk4F/gBKFLXWT+WxpCrBnoiwDllnHc8voGcrUYYqj78ySiIM0UUBCQWgx4pyQHh+cdotEpskxhXkgjb9tvJcaESB1OUdSPzcWYbb8GvVDLTslwRc9N0USQDmR2aoy5NxNCt7p4qYTxP7s9vI00Jge0X3vhwZcA5/+IEoxzJRipU9wStDA==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR11MB3177.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230001)(366004)(38100700002)(38070700005)(4744005)(5660300002)(6506007)(9686003)(7696005)(53546011)(26005)(55236004)(2906002)(508600001)(8936002)(107886003)(83380400001)(186003)(71200400001)(122000001)(55016003)(33656002)(52536014)(86362001)(66946007)(76116006)(316002)(66476007)(66556008)(66446008)(8676002)(64756008)(4326008)(110136005)(82960400001);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?pLXR8qAmQxN8QXxjf3wnQ37tnHb0MUZrX348VldS4IvzjPy2T6GO16KsusBV?=
- =?us-ascii?Q?l/TVxKcGm9Kf6rV0OMCQKEehiv7iEFxsWEOn3fC7/0alP7n1tjLKsYUiLrps?=
- =?us-ascii?Q?8awW7jb/XAYaE8BL9+t8MKKEb7TjpD5rYLlwSg7Ak3Xk51RQmvFuAZ2dffEw?=
- =?us-ascii?Q?OtdXR1X6vYuD33MZduPBg7LGcG4pANYzWzqSpHVSe9U8OtKzoiisel0ZcZ2L?=
- =?us-ascii?Q?IMsmExiTwz6sQE+xGlYksTmxyRDjz1VS63rhupsS5Sb9Nb6RBXIwnA5kmp5i?=
- =?us-ascii?Q?3thlqoQ0JW+OCi3qqnVo3++40jDz1o2ufqashIem3fdKtVdBZwCV/9Ba8y8P?=
- =?us-ascii?Q?VXbjmV9NCycPjjz5TB8vyhRkS9JkP4NqONrdzQTltDsLeN/j3HKg4stKVsaB?=
- =?us-ascii?Q?W3wE0QaDg87UYmhx7BWCd0tU2ToJeZHCguBApUQFON63RCwH5POmofz0RIjR?=
- =?us-ascii?Q?/NBJWxBu9fS29IBpl2Oco1jHwrX3lRkg1+eU+lseIfMstBy7/bcOi0BT5uMb?=
- =?us-ascii?Q?ld+Xn0PeIBJFuaKk0WV6mskl8oHQi1UiLiRwgw8vOynSuFQLCS9A1gFuZ6BN?=
- =?us-ascii?Q?0PMo5OFbuLCAicpdIrT0uBFClA7QM+883g0BYkO2sxgQdMD0/3LW1lhHSUEX?=
- =?us-ascii?Q?0ZA7a/MyyiUNnlV38ntZBUqr2rZ3fd3MD/OaC8/b7GXRhXDfaeP51W2MLBRb?=
- =?us-ascii?Q?OAv1ZsUGAt41RFjsP7SEUZ13Sa1GSFn01cKFSqFhlMmEuqu+br5HPTMvPohZ?=
- =?us-ascii?Q?nyLGivGGpkuAzxJFu5m8YKD2J2/pN0xTX4/X/3OWoKF91hfGltzId6atdoHE?=
- =?us-ascii?Q?gAyDgtShK3XK2wIUNu6or7lmaI53a5PSRglhFmfiXn4TuPIskJtKrrkOds8D?=
- =?us-ascii?Q?Iq8Gcj1CqlbYFU1SxNupzq90Hf7HNWjSkW3rwrIVpRg1vjKBsTCPfTzMjgqy?=
- =?us-ascii?Q?4th+NXRpU2yGMQpZSJ3vvSMDTT/KtRfreJmOLzP5r8hMNnZEFE/E5BVAYPJf?=
- =?us-ascii?Q?JTO6iusUj92aO43JRAQhM/zGGSk7msc1gNipowAh/Xemnzy+ZbbVL5OSgYrB?=
- =?us-ascii?Q?PVFzUCSJ35lQtLGxjE3kQcOyrL0hNl6nqhngbMQxUuJYokH1AQ8fIzqB1mm/?=
- =?us-ascii?Q?frFJUz/ZBJzGc9wv3DUHMK3lLsjD3kEX9QfQj1aWYgdvPUUPYUh8qCiyrKs9?=
- =?us-ascii?Q?Ieicw9UReUyw8uCrUjSe0w/vDKcaeZKx3RyziHvktekDKQT9IF8sbBlngWKW?=
- =?us-ascii?Q?J6HGDBz03ho7dSsC4+Fe18yRIC7FnzICb2ZUi2xmlrZRhz9joNYnsVqSkwcV?=
- =?us-ascii?Q?RdaXeDXna52bbGNbTegeLX9KnAdrzdVU07rH0NGWrwVivf4gBCo62EwpfHgk?=
- =?us-ascii?Q?2+JrW80J3/mso7ffXGmAQZBNmfhjESVRuuLA7mql2lM/9VGj/9en9d4HdRH/?=
- =?us-ascii?Q?YVrugW107VMxNR4gEsmcBb5XS3si/gnveaH4oY2ziKJLExlaLVIP29FmxnGr?=
- =?us-ascii?Q?ait2kflce31vwifqhNNzQKAJNeBGmrWHf+65LfubJxZD7d7sivKxyQqchKeL?=
- =?us-ascii?Q?M6U5BO8n4/o6moIj8mOi2ZCuI8ZcBSKzBdCm0FMSrAnTHF3659yNvcpqiMeP?=
- =?us-ascii?Q?gPaTjtGasmQ6Zqbyq5ZRe9R4Dp4m5LIMawoi3pcNK05HdPtDucI5AvxT0oop?=
- =?us-ascii?Q?zQ9sjBogoe/Gh3kPKT6qFFGzbJsy6CKhKOcNme5uo/OV1b0qZmN1icqLUuP7?=
- =?us-ascii?Q?N98C5dyzMg=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com
+ [IPv6:2a00:1450:4864:20::534])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4250B10FB62
+ for <intel-gfx@lists.freedesktop.org>; Wed,  4 May 2022 08:49:46 +0000 (UTC)
+Received: by mail-ed1-x534.google.com with SMTP id d6so915106ede.8
+ for <intel-gfx@lists.freedesktop.org>; Wed, 04 May 2022 01:49:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:mail-followup-to:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=XXrjEm2wIrBddPNT8DRElEMfxh0MzkztaH2UgBD/RaY=;
+ b=efE5YHtoUUJxgkMLw6aJY/tO1Sbsm/gyrBiwHtax5k21PegImsGITrNG8wnJx1I8Wx
+ JEzYO6eWqZBNTPlO4jqHXUEvMinO76P3PsI58d1/hufLNbsyGLjvtAY+TUsFKAhb/MMo
+ kpWR+sw+6y61D5IGtM9/mNtird2IBxuTVBTn0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id
+ :mail-followup-to:references:mime-version:content-disposition
+ :in-reply-to;
+ bh=XXrjEm2wIrBddPNT8DRElEMfxh0MzkztaH2UgBD/RaY=;
+ b=Z8IwR7rAt4fL28y3JRs6NEdnPriONk3VexfjvQQA+N0N0Izlqud8fZlsQS5fGCnzrA
+ JI/Quk9rXAj/VzuCgwlQbfEoe1y12o+mL/aq0Wdek+wDRCRKp7kf6HSKxc31FoitJ8QK
+ AGp3CBEgZuI929XLinjmzdlQNhYun6/RLLI3qP3sXieaWO2VGpD9tkur2bLlL5NSSg4m
+ yjAsZJy38ryOuRY96FnK2I3eGgsZOs8wgWVOq/45MrH51DqlZj1TxR1k/CH6J1pOYUPC
+ ydQtGWiKwUriskJlqwUA7/zR9pECy5T0RWlxvittB/TiCQFVAhPsD6WZRtmyqwgUbrfq
+ Hqcg==
+X-Gm-Message-State: AOAM531GQvamikgcim5xAij1vEJ69kz4/K+TEfnuK3la5687uATGxo74
+ 5pQQiJF6c5AA+Qq4r0iJZ8/Iqg==
+X-Google-Smtp-Source: ABdhPJzDxtt75yICh75Xfe3J/PRTpYBjGupKxzPWB5UB481q/1zFzLaBZ6sskEhMuC4ZJGYQgKLdcw==
+X-Received: by 2002:a05:6402:1e8d:b0:426:9:6ec with SMTP id
+ f13-20020a0564021e8d00b00426000906ecmr22255316edf.55.1651654184780; 
+ Wed, 04 May 2022 01:49:44 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id
+ el10-20020a170907284a00b006f3ef214e32sm5433599ejc.152.2022.05.04.01.49.43
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 04 May 2022 01:49:44 -0700 (PDT)
+Date: Wed, 4 May 2022 10:49:42 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Greg KH <gregkh@linuxfoundation.org>
+Message-ID: <YnI+Ji+EwLLUhq9T@phenom.ffwll.local>
+Mail-Followup-To: Greg KH <gregkh@linuxfoundation.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Luis Chamberlain <mcgrof@kernel.org>, mauro.chehab@intel.com,
+ Kai Vehmanen <kai.vehmanen@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Pierre-Louis Bossart <pierre-louis.bossart@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-modules@vger.kernel.org,
+ David Airlie <airlied@linux.ie>,
+ Dan Williams <dan.j.williams@intel.com>
+References: <cover.1651212016.git.mchehab@kernel.org>
+ <a078eb2e46d00ec59c8a91ea0afa5190730c9e58.1651212016.git.mchehab@kernel.org>
+ <YmuZovuDaCYDDG4c@phenom.ffwll.local>
+ <20220429090757.1acb943a@sal.lan> <YmuiKcHgl+nABvo/@kroah.com>
+ <20220429101503.4048db5b@sal.lan> <Ymu5f8EjdC1Mawzt@kroah.com>
+ <20220429112351.0e044950@sal.lan> <Ymu/keaggU6Uajom@kroah.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB3177.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8f7ceb01-ccf6-4de8-ab12-08da2da5cbd4
-X-MS-Exchange-CrossTenant-originalarrivaltime: 04 May 2022 08:12:13.8287 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 9Y0fxJ8P41YcDPkHSBljrBDE5BEsOgqSOJaXNPiI7ftC1wpTcTH57Ns35z/NcpL0doyClLxq4HwYjvVg+x4kWA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR11MB1654
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: warn about missing
- ->get_buf_trans initialization
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Ymu/keaggU6Uajom@kroah.com>
+X-Operating-System: Linux phenom 5.10.0-8-amd64 
+Subject: Re: [Intel-gfx] [PATCH 1/2] module: add a function to add module
+ references
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -154,31 +84,126 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Nikula, Jani" <jani.nikula@intel.com>
+Cc: Kai Vehmanen <kai.vehmanen@intel.com>, intel-gfx@lists.freedesktop.org,
+ Lucas De Marchi <lucas.demarchi@intel.com>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
+ Luis Chamberlain <mcgrof@kernel.org>, mauro.chehab@intel.com,
+ Dan Williams <dan.j.williams@intel.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, linux-modules@vger.kernel.org,
+ Pierre-Louis Bossart <pierre-louis.bossart@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Fri, Apr 29, 2022 at 12:36:01PM +0200, Greg KH wrote:
+> On Fri, Apr 29, 2022 at 11:23:51AM +0100, Mauro Carvalho Chehab wrote:
+> > Em Fri, 29 Apr 2022 12:10:07 +0200
+> > Greg KH <gregkh@linuxfoundation.org> escreveu:
+> > 
+> > > On Fri, Apr 29, 2022 at 10:15:03AM +0100, Mauro Carvalho Chehab wrote:
+> > > > HI Greg,
+> > > > 
+> > > > Em Fri, 29 Apr 2022 10:30:33 +0200
+> > > > Greg KH <gregkh@linuxfoundation.org> escreveu:
+> > > >   
+> > > > > On Fri, Apr 29, 2022 at 09:07:57AM +0100, Mauro Carvalho Chehab wrote:  
+> > > > > > Hi Daniel,
+> > > > > > 
+> > > > > > Em Fri, 29 Apr 2022 09:54:10 +0200
+> > > > > > Daniel Vetter <daniel@ffwll.ch> escreveu:
+> > > > > >     
+> > > > > > > On Fri, Apr 29, 2022 at 07:31:15AM +0100, Mauro Carvalho Chehab wrote:    
+> > > > > > > > Sometimes, device drivers are bound using indirect references,
+> > > > > > > > which is not visible when looking at /proc/modules or lsmod.
+> > > > > > > > 
+> > > > > > > > Add a function to allow setting up module references for such
+> > > > > > > > cases.
+> > > > > > > > 
+> > > > > > > > Reviewed-by: Dan Williams <dan.j.williams@intel.com>
+> > > > > > > > Signed-off-by: Mauro Carvalho Chehab <mchehab@kernel.org>      
+> > > > > > > 
+> > > > > > > This sounds like duct tape at the wrong level. We should have a
+> > > > > > > device_link connecting these devices, and maybe device_link internally
+> > > > > > > needs to make sure the respective driver modules stay around for long
+> > > > > > > enough too. But open-coding this all over the place into every driver that
+> > > > > > > has some kind of cross-driver dependency sounds terrible.
+> > > > > > > 
+> > > > > > > Or maybe the bug is that the snd driver keeps accessing the hw/component
+> > > > > > > side when that is just plain gone. Iirc there's still fundamental issues
+> > > > > > > there on the sound side of things, which have been attempted to paper over
+> > > > > > > by timeouts and stuff like that in the past instead of enforcing a hard
+> > > > > > > link between the snd and i915 side.    
+> > > > > > 
+> > > > > > I agree with you that the device link between snd-hda and the DRM driver
+> > > > > > should properly handle unbinding on both directions. This is something
+> > > > > > that require further discussions with ALSA and DRM people, and we should
+> > > > > > keep working on it.
+> > > > > > 
+> > > > > > Yet, the binding between those drivers do exist, but, despite other
+> > > > > > similar inter-driver bindings being properly reported by lsmod, this one
+> > > > > > is invisible for userspace.
+> > > > > > 
+> > > > > > What this series does is to make such binding visible. As simple as that.    
+> > > > > 
+> > > > > It also increases the reference count, and creates a user/kernel api
+> > > > > with the symlinks, right?  Will the reference count increase prevent the
+> > > > > modules from now being unloadable?
+> > > > >
+> > > > > This feels like a very "weak" link between modules that should not be
+> > > > > needed if reference counting is implemented properly (so that things are
+> > > > > cleaned up in the correct order.)  
+> > > > 
+> > > > The refcount increment exists even without this patch, as
+> > > > hda_component_master_bind() at sound/hda/hdac_component.c uses 
+> > > > try_module_get() when it creates the device link.  
+> > > 
+> > > Ok, then why shouldn't try_module_get() be creating this link instead of
+> > > having to manually do it this way again?  You don't want to have to go
+> > > around and add this call to all users of that function, right?
+> > 
+> > Works for me, but this is not a too trivial change, as the new 
+> > try_module_get() function will require two parameters, instead of one:
+> > 
+> > 	- the module to be referenced;
+> > 	- the module which will reference it.
+> > 
+> > On trivial cases, one will be THIS_MODULE, but, in the specific case
+> > of snd_hda, the binding is done via an ancillary routine under 
+> > snd_hda_core, but the actual binding happens at snd_hda_intel.
+> 
+> For calls that want to increment a module reference on behalf of a
+> different code segment than is calling it, create a new function so we
+> can audit-the-heck out of those code paths as odds are, they are unsafe.
+> 
+> For the normal code path, just turn try_module_get() into a macro that
+> includes THIS_MODULE as part of it like we do for the driver register
+> functions (see usb_register_driver() in include/linux/usb.h as an
+> example of how to do that.)
+> 
+> > Ok, we could add a __try_module_get() (or whatever other name that
+> > would properly express what it does) with two parameters, and then
+> > define try_module_get() as:
+> > 
+> > 	#define try_module_get(mod) __try_module_get(mod, THIS_MODULE)
+> 
+> Yes, that's the way forward.
 
+This might result in some complaints because it can create module refcount
+loops. Well, seemingly module refcount loops, you can break them by first
+unloading the driver, and then unloading the module. Currently a lot of
+folks rely on just unload the module to tear down the drivers (and all in
+right order through device links and component and all that). So maybe we
+want to make this some kind of weak reference, i.e. it shows up in lsmod,
+but the magic teardown still works and the module isn't actually pinnned.
 
-> -----Original Message-----
-> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Ja=
-ni
-> Nikula
-> Sent: Tuesday, May 3, 2022 1:52 PM
-> To: intel-gfx@lists.freedesktop.org
-> Cc: Nikula, Jani <jani.nikula@intel.com>
-> Subject: [Intel-gfx] [PATCH] drm/i915: warn about missing ->get_buf_trans
-> initialization
->=20
-> Make sure each DDI platform has sane ->get_buf_trans initialized.
->=20
-> Suggested-by: Matt Roper <matthew.d.roper@intel.com>
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
+Either way I agree that something like this sounds like the right
+approach.
+-Daniel
+> 
+> thanks,
+> 
+> greg k-h
 
-Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
-
-Thanks and Regards,
-Arun R Murthy
---------------------
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
