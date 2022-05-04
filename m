@@ -2,49 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24DEA51AD8A
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 May 2022 21:07:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3272751ADC9
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 May 2022 21:28:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 840A910E9AF;
-	Wed,  4 May 2022 19:07:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F0D610EC96;
+	Wed,  4 May 2022 19:28:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 67E8210E91A
- for <intel-gfx@lists.freedesktop.org>; Wed,  4 May 2022 19:07:29 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5AC16890A6
+ for <intel-gfx@lists.freedesktop.org>; Wed,  4 May 2022 19:28:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1651691249; x=1683227249;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=vIynpL4BgbOpDpCqyJsQvV0lr6qCrRINV7asH+DtUzM=;
- b=eESRNnL2ee8ScH5sMN26p9F8U2dm49EXcLeOcnpDx45y0EDGQtz2vem3
- q+WpGaaJpt110XhOJBWVRJicXgNzz+OmSJ6pliF+4SNgGX5DHeqzTVLAV
- IzY34rIM0+E6/TxLq9zuxVe/XU90/KgHiT0/UMVcTu9YAJpKteymS1sKN
- rXUEI0zXzqsJBWNl/Xzaez2L12l1gvIypNUJap4C7wp53CIIAPxNkVG9K
- U9b03vy4br9jil4QbNOCX2B2scGIjHVcaIDd8ePFOpEPHSwWuaiSsEhkl
- ibB21W8qj4RC9X81WH0ZnMfQZ6aCMGKi0+e+7qazBvj6FZ4i61WgH9ent g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10337"; a="249854510"
-X-IronPort-AV: E=Sophos;i="5.91,199,1647327600"; d="scan'208";a="249854510"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2022 12:07:29 -0700
-X-IronPort-AV: E=Sophos;i="5.91,199,1647327600"; d="scan'208";a="517162878"
-Received: from unknown (HELO josouza-mobl2.fso.intel.com) ([10.230.18.139])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2022 12:07:28 -0700
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed,  4 May 2022 12:07:56 -0700
-Message-Id: <20220504190756.466270-12-jose.souza@intel.com>
-X-Mailer: git-send-email 2.36.0
-In-Reply-To: <20220504190756.466270-1-jose.souza@intel.com>
-References: <20220504190756.466270-1-jose.souza@intel.com>
+ t=1651692501; x=1683228501;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=sg0k20pUZdKAYzCYR9XFHyQ4SvW4wZPi253dFI/k3vQ=;
+ b=MPRIrUBidknUr4uLLj0O2q3xJGNCyX6YoXFWTp/ziwotmE4SwzQuNab6
+ 9ZuTPo1EVQXhemuvG6EB8rLSsy7PiXuMzqlenBB3k7+ZuYeBqUX60m/Km
+ 7PQ/Uy8wd0Ul+/eg1qXdxcDfQBu9T0Y96folehZ81KRN6nuCh3d6BimgI
+ AyBguyMzbw9udRCVuH4J5IWChPDjpEfjRAX7UBQ972owIiY/3j5kuSWit
+ X1AhvvMliqQxfOzSbiP1BDJw4ZPrfUqMqnIFra9GKbfZiNnpx3UQYlLap
+ 210raORReCNZYcjjbQr034hdtj5LZxjqYaSaXG05PzJjiAPiTyYJDsst3 Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10337"; a="268029477"
+X-IronPort-AV: E=Sophos;i="5.91,199,1647327600"; d="scan'208";a="268029477"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 May 2022 12:28:20 -0700
+X-IronPort-AV: E=Sophos;i="5.91,199,1647327600"; d="scan'208";a="584906469"
+Received: from adobrowo-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.249.156.70])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 May 2022 12:28:18 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: "Murthy, Arun R" <arun.r.murthy@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+In-Reply-To: <DM6PR11MB317752C55BD83E2B76CAD931BAC39@DM6PR11MB3177.namprd11.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220503082134.4128355-1-jani.nikula@intel.com>
+ <DM6PR11MB317752C55BD83E2B76CAD931BAC39@DM6PR11MB3177.namprd11.prod.outlook.com>
+Date: Wed, 04 May 2022 22:28:14 +0300
+Message-ID: <874k25m71t.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 12/12] drm/i915: Drop supports_tv from device
- info
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: warn about missing
+ ->get_buf_trans initialization
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,80 +61,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Only four platforms ever support this feature so we can elimitate
-this from device info and use platform checks instead.
+On Wed, 04 May 2022, "Murthy, Arun R" <arun.r.murthy@intel.com> wrote:
+>> -----Original Message-----
+>> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Jani
+>> Nikula
+>> Sent: Tuesday, May 3, 2022 1:52 PM
+>> To: intel-gfx@lists.freedesktop.org
+>> Cc: Nikula, Jani <jani.nikula@intel.com>
+>> Subject: [Intel-gfx] [PATCH] drm/i915: warn about missing ->get_buf_trans
+>> initialization
+>> 
+>> Make sure each DDI platform has sane ->get_buf_trans initialized.
+>> 
+>> Suggested-by: Matt Roper <matthew.d.roper@intel.com>
+>> Cc: Matt Roper <matthew.d.roper@intel.com>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>
+> Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
 
-Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
----
- drivers/gpu/drm/i915/i915_drv.h          | 3 ++-
- drivers/gpu/drm/i915/i915_pci.c          | 4 ----
- drivers/gpu/drm/i915/intel_device_info.h | 3 +--
- 3 files changed, 3 insertions(+), 7 deletions(-)
+Thanks for the review, pushed to drm-intel-next.
 
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index d866287c663a2..3c5980d174f81 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -1286,7 +1286,8 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
-  */
- #define HAS_128_BYTE_Y_TILING(dev_priv) (GRAPHICS_VER(dev_priv) != 2 && \
- 					 !(IS_I915G(dev_priv) || IS_I915GM(dev_priv)))
--#define SUPPORTS_TV(dev_priv)		(INTEL_INFO(dev_priv)->display.supports_tv)
-+#define SUPPORTS_TV(dev_priv)		(IS_I915GM(dev_priv) || IS_I945GM(dev_priv) || \
-+					 IS_I965GM(dev_priv) || IS_GM45(dev_priv))
- #define I915_HAS_HOTPLUG(dev_priv)	(INTEL_INFO(dev_priv)->display.has_hotplug)
- 
- #define HAS_FW_BLC(dev_priv)	(DISPLAY_VER(dev_priv) > 2)
-diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-index c6e99305e24d0..184a1eb6e2fce 100644
---- a/drivers/gpu/drm/i915/i915_pci.c
-+++ b/drivers/gpu/drm/i915/i915_pci.c
-@@ -259,7 +259,6 @@ static const struct intel_device_info i915gm_info = {
- 	.display.cursor_needs_physical = 1,
- 	.display.has_overlay = 1,
- 	.display.overlay_needs_physical = 1,
--	.display.supports_tv = 1,
- 	.display.fbc_mask = BIT(INTEL_FBC_A),
- 	.hws_needs_physical = 1,
- 	.unfenced_needs_alignment = 1,
-@@ -284,7 +283,6 @@ static const struct intel_device_info i945gm_info = {
- 	.display.cursor_needs_physical = 1,
- 	.display.has_overlay = 1,
- 	.display.overlay_needs_physical = 1,
--	.display.supports_tv = 1,
- 	.display.fbc_mask = BIT(INTEL_FBC_A),
- 	.hws_needs_physical = 1,
- 	.unfenced_needs_alignment = 1,
-@@ -346,7 +344,6 @@ static const struct intel_device_info i965gm_info = {
- 	.is_mobile = 1,
- 	.display.fbc_mask = BIT(INTEL_FBC_A),
- 	.display.has_overlay = 1,
--	.display.supports_tv = 1,
- 	.hws_needs_physical = 1,
- 	.has_snoop = false,
- };
-@@ -363,7 +360,6 @@ static const struct intel_device_info gm45_info = {
- 	PLATFORM(INTEL_GM45),
- 	.is_mobile = 1,
- 	.display.fbc_mask = BIT(INTEL_FBC_A),
--	.display.supports_tv = 1,
- 	.platform_engine_mask = BIT(RCS0) | BIT(VCS0),
- 	.gpu_reset_clobbers_display = false,
- };
-diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
-index bea9f92e2264c..a1d111fc83346 100644
---- a/drivers/gpu/drm/i915/intel_device_info.h
-+++ b/drivers/gpu/drm/i915/intel_device_info.h
-@@ -174,8 +174,7 @@ enum intel_ppgtt_type {
- 	func(has_hti); \
- 	func(has_modular_fia); \
- 	func(has_overlay); \
--	func(overlay_needs_physical); \
--	func(supports_tv);
-+	func(overlay_needs_physical);
- 
- struct ip_version {
- 	u8 ver;
+BR,
+Jani.
+
 -- 
-2.36.0
-
+Jani Nikula, Intel Open Source Graphics Center
