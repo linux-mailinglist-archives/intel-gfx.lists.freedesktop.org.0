@@ -2,52 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E2AC51B1DC
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 May 2022 00:30:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B38A151B245
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 May 2022 00:49:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 114AD10F785;
-	Wed,  4 May 2022 22:30:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 14D9710EFDC;
+	Wed,  4 May 2022 22:49:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 23C3610F785;
- Wed,  4 May 2022 22:30:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1651703436; x=1683239436;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=7+M/13vry+5F8KVstpIcYBrNT70QG3hPY4nxnXQYfA8=;
- b=UoYjJEfI0Uc2soMf/CziX1fnv14Uf5nSYcU+0pJhyoGZYMdZn0rlnpEC
- 7qkzeNcgKUuZc0hLlA37vz84XXuqsmnzSvB/MEuAhOKOS/yI9gA2t0dzV
- c9n/Q3VjwhAjAjUuOrXMhXwPpd0R8HFRUsBtOek6OKq43cG3+V8xioqvc
- e1O7W2Vf3HvZ4yXa7lmY5D6iA2EKF1usQrvFyugj5LNeXEHAkSNLCySzV
- MHfS3nl3Jz/wGYWT6xKNfuF2AdQnVfTG4p6Y4FYRHzxImRC3kHywo0ZOy
- MzYDQytbUfYvHWZ8mlW50ijQ99BBy3ZSrivSBPmMsDcRGTmjc3z44IFcb A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10337"; a="265512241"
-X-IronPort-AV: E=Sophos;i="5.91,199,1647327600"; d="scan'208";a="265512241"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2022 15:30:35 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,199,1647327600"; d="scan'208";a="599737184"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.51])
- by orsmga001.jf.intel.com with SMTP; 04 May 2022 15:30:33 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 05 May 2022 01:30:32 +0300
-Date: Thu, 5 May 2022 01:30:32 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <YnL+iIClH+aXHalJ@intel.com>
-References: <cover.1651569697.git.jani.nikula@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1D3A610EB33;
+ Wed,  4 May 2022 22:49:52 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1A6B1A363D;
+ Wed,  4 May 2022 22:49:52 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <cover.1651569697.git.jani.nikula@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v2 00/20] drm/edid: CEA data block iterators,
- and more
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
+Date: Wed, 04 May 2022 22:49:52 -0000
+Message-ID: <165170459210.682.6516222141117582420@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220504190756.466270-1-jose.souza@intel.com>
+In-Reply-To: <20220504190756.466270-1-jose.souza@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B01/12=5D_drm/i915=3A_Drop_IPC_from_?=
+ =?utf-8?q?display_13_and_newer?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,62 +41,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, May 03, 2022 at 12:23:45PM +0300, Jani Nikula wrote:
-> I've kind of lost track of the version numbers on some of the iterator
-> patches, but this is the next version (or mostly a resend) of
-> [1]. There's an additional rename patch for SCDS.
-> 
-> BR,
-> Jani.
-> 
-> 
-> [1] https://patchwork.freedesktop.org/series/102703/
-> 
-> 
-> Jani Nikula (19):
->   drm/edid: reset display info in drm_add_edid_modes() for NULL edid
->   drm/edid: rename HDMI Forum VSDB to SCDS
->   drm/edid: clean up CTA data block tag definitions
->   drm/edid: add iterator for EDID base and extension blocks
->   drm/edid: add iterator for CTA data blocks
->   drm/edid: clean up cea_db_is_*() functions
->   drm/edid: convert add_cea_modes() to use cea db iter
->   drm/edid: convert drm_edid_to_speaker_allocation() to use cea db iter
->   drm/edid: convert drm_edid_to_sad() to use cea db iter
->   drm/edid: convert drm_detect_hdmi_monitor() to use cea db iter
->   drm/edid: convert drm_detect_monitor_audio() to use cea db iter
->   drm/edid: convert drm_parse_cea_ext() to use cea db iter
->   drm/edid: convert drm_edid_to_eld() to use cea db iter
->   drm/edid: sunset the old unused cea data block iterators
->   drm/edid: restore some type safety to cea_db_*() functions
->   drm/edid: detect basic audio in all CEA extensions
->   drm/edid: skip CTA extension scan in drm_edid_to_eld() just for CTA
->     rev
->   drm/edid: sunset drm_find_cea_extension()
-> 
-> Lee Shawn C (1):
->   drm/edid: check for HF-SCDB block
+== Series Details ==
 
-All of the above patches look OK to me.
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Series: series starting with [01/12] drm/i915: Drop IPC from display 13 and newer
+URL   : https://patchwork.freedesktop.org/series/103562/
+State : warning
 
->   drm/edid: detect color formats and CTA revision in all CTA extensions
+== Summary ==
 
-For this one I'm not entirely convinced the behavioural change
-for the no-CTA ext case is what we want. Replied to that one
-individually.
+Error: dim checkpatch failed
+fe464ec005a5 drm/i915: Drop IPC from display 13 and newer
+-:29: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'dev_priv' - possible side-effects?
+#29: FILE: drivers/gpu/drm/i915/i915_drv.h:1347:
++#define HAS_IPC(dev_priv)		 (DISPLAY_VER(dev_priv) >= 9 && \
++					  DISPLAY_VER(dev_priv) <= 12)
 
-> 
->  drivers/gpu/drm/drm_edid.c | 799 +++++++++++++++++++++----------------
->  1 file changed, 458 insertions(+), 341 deletions(-)
-> 
-> -- 
-> 2.30.2
+total: 0 errors, 0 warnings, 1 checks, 37 lines checked
+bf709b66d5eb drm/i915/display: Disable DSB for DG2 and Alderlake-P
+d6397bf6d28a drm/i915: Drop has_gt_uc from device info
+41e40333f07a drm/i915: Drop has_rc6 from device info
+6648e12a8320 drm/i915: Drop has_rc6p from device info
+-:25: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'dev_priv' - possible side-effects?
+#25: FILE: drivers/gpu/drm/i915/i915_drv.h:1313:
++#define HAS_RC6p(dev_priv)		 (GRAPHICS_VER(dev_priv) >= 6 && \
++					  GRAPHICS_VER(dev_priv) <= 7 && \
++					  !IS_HASWELL(dev_priv))
 
--- 
-Ville Syrjälä
-Intel
+total: 0 errors, 0 warnings, 1 checks, 38 lines checked
+a491192e6234 drm/i915: Drop has_reset_engine from device info
+7a051e739286 drm/i915: Drop has_logical_ring_elsq from device info
+707c49a2bf72 drm/i915: Drop has_ddi from device info
+-:25: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'dev_priv' - possible side-effects?
+#25: FILE: drivers/gpu/drm/i915/i915_drv.h:1302:
++#define HAS_DDI(dev_priv)		 (DISPLAY_VER(dev_priv) >= 9 || \
++					  IS_HASWELL(dev_priv) || \
++					  IS_BROADWELL(dev_priv))
+
+total: 0 errors, 0 warnings, 1 checks, 38 lines checked
+0ada70a2b0be drm/i915: Drop has_dp_mst from device info
+0f2bb0d4f67d drm/i915: Drop has_psr from device info
+85050c08ff9a drm/i915: Drop has_psr_hw_tracking from device info
+-:26: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'dev_priv' - possible side-effects?
+#26: FILE: drivers/gpu/drm/i915/i915_drv.h:1307:
++#define HAS_PSR_HW_TRACKING(dev_priv)	 ((DISPLAY_VER(dev_priv) >= 9 && \
++					   DISPLAY_VER(dev_priv) <= 11) || \
++					  IS_TIGERLAKE(dev_priv) || \
++					  IS_DG1(dev_priv))
+
+total: 0 errors, 0 warnings, 1 checks, 54 lines checked
+37af30910ec8 drm/i915: Drop supports_tv from device info
+-:23: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'dev_priv' - possible side-effects?
+#23: FILE: drivers/gpu/drm/i915/i915_drv.h:1289:
++#define SUPPORTS_TV(dev_priv)		(IS_I915GM(dev_priv) || IS_I945GM(dev_priv) || \
++					 IS_I965GM(dev_priv) || IS_GM45(dev_priv))
+
+total: 0 errors, 0 warnings, 1 checks, 46 lines checked
+
+
