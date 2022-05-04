@@ -2,49 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98552519EED
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 May 2022 14:07:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A545519F05
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 May 2022 14:11:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 323F010E74C;
-	Wed,  4 May 2022 12:07:27 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
+	by gabe.freedesktop.org (Postfix) with ESMTP id 71A9410EED8;
+	Wed,  4 May 2022 12:11:46 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1870C10E504;
- Wed,  4 May 2022 12:07:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B337410EFC2;
+ Wed,  4 May 2022 12:11:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1651666046; x=1683202046;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=ls4UJiHxXQ/mgV/gf1ness9dRnHLG43SWX6OfTqbmbw=;
- b=Dc8vCg9w2fOnGO8VGsP89VZm1RvmpViSfVxgLXemJGVqJlwsc32mRuOk
- 9g33OPXSrSwCJfr6UUQBnQoptdlvI1TBc457xxoLo5m9vXoe+LtC8/dSD
- 4Ke+VlOUAaMpEnRbWcovY8SBs3AgNBTdE4fPsXALqIifDLy7EXoICvNkq
- yS4Aq1GV3nfCDokkjlvLfeNB3tBWkBpPePe1YFlRNeY4VtlzwyEGE8GhP
- qKN2QoRb9IbNFc77pqWXqcb7z5qdDkUvzPxItYRXyV42mm9TMV9QyPt9V
- 2afJm3eq9vnB7qcHvqVrX1wcarF8txIEU8qZ1tL/tOo2r1gZeO8AWWh/F w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10336"; a="267343600"
-X-IronPort-AV: E=Sophos;i="5.91,198,1647327600"; d="scan'208";a="267343600"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ t=1651666305; x=1683202305;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=C+h/rftgRKdb1i6UwOq/0z1PcO5ClpbUoFCjucqM6iM=;
+ b=b9vyzU702BQBjYGPYhR78vS9scTbj85n06nPWMXMP8FNFDEE7WiedUcp
+ PCI6qDMezGOzvqoY4eg/LZMsDNJoHDDgHR229jyHL/lwqYGWZdl8QUSoa
+ /TV4pXcz0ruMS55TY7cOz6I7m8lxeVNDzQ6aH2mygEPH9FODHPBro8mxu
+ tXRYWuXhZiVL69m07ZeH3esJ3PVk0nyTIYj66cNZLGOBku9BC8cM6AmEF
+ q7i5cS2f3BklGYr0tZTDNLqLckoLOgrAVbvUxen3QUpo8EbId7Qmq2PXf
+ ZkrhIoDvUWk3lmdnzAB81pns6sc1vJtGoX17leX4DJuaHKBGgsGX/QRtW A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10336"; a="267344641"
+X-IronPort-AV: E=Sophos;i="5.91,198,1647327600"; d="scan'208";a="267344641"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2022 05:07:25 -0700
-X-IronPort-AV: E=Sophos;i="5.91,198,1647327600"; d="scan'208";a="693884095"
-Received: from gidaly-mobl1.ger.corp.intel.com (HELO tursulin-mobl2.home)
+ 04 May 2022 05:11:45 -0700
+X-IronPort-AV: E=Sophos;i="5.91,198,1647327600"; d="scan'208";a="664444001"
+Received: from gidaly-mobl1.ger.corp.intel.com (HELO [10.213.236.183])
  ([10.213.236.183])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2022 05:07:24 -0700
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: Intel-gfx@lists.freedesktop.org
-Date: Wed,  4 May 2022 13:07:15 +0100
-Message-Id: <20220504120715.911045-2-tvrtko.ursulin@linux.intel.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220504120715.911045-1-tvrtko.ursulin@linux.intel.com>
-References: <20220504120715.911045-1-tvrtko.ursulin@linux.intel.com>
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 May 2022 05:11:43 -0700
+Message-ID: <ab578c17-faa6-222f-f37e-d5cd4f45dfd0@linux.intel.com>
+Date: Wed, 4 May 2022 13:11:41 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915: Don't use DRM_DEBUG_WARN_ON for
- ring unexpectedly not idle
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Content-Language: en-US
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Kefeng Wang <wangkefeng.wang@huawei.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>
+References: <20220502034328.78486-1-wangkefeng.wang@huawei.com>
+ <87h768s5f5.fsf@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <87h768s5f5.fsf@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: use IOMEM_ERR_PTR() directly
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,39 +65,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-DRM_DEBUG_WARN_ON should only be used when we are certain CI is guaranteed
-to exercise a certain code path, so in case of values coming from MMIO
-reads we cannot be sure CI will have all the possible SKUs and parts, or
-that it will catch all possible error conditions. Use drm_warn instead.
+On 02/05/2022 09:30, Jani Nikula wrote:
+> On Mon, 02 May 2022, Kefeng Wang <wangkefeng.wang@huawei.com> wrote:
+>> Use IOMEM_ERR_PTR() instead of self defined IO_ERR_PTR().
+>>
+>> Signed-off-by: Kefeng Wang <wangkefeng.wang@huawei.com>
+> 
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_ring_submission.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+Pushed to drm-intel-gt-next, thanks for the patch and review!
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-index 5423bfd301ad..f8f279a195c0 100644
---- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-@@ -117,7 +117,9 @@ static void flush_cs_tlb(struct intel_engine_cs *engine)
- 		return;
- 
- 	/* ring should be idle before issuing a sync flush*/
--	GEM_DEBUG_WARN_ON((ENGINE_READ(engine, RING_MI_MODE) & MODE_IDLE) == 0);
-+	if ((ENGINE_READ(engine, RING_MI_MODE) & MODE_IDLE) == 0)
-+		drm_warn(&engine->i915->drm, "%s not idle before sync flush!\n",
-+			 engine->name);
- 
- 	ENGINE_WRITE_FW(engine, RING_INSTPM,
- 			_MASKED_BIT_ENABLE(INSTPM_TLB_INVALIDATE |
--- 
-2.32.0
+Regards,
 
+Tvrtko
+
+> 
+>> ---
+>>   drivers/gpu/drm/i915/i915_vma.c | 4 ++--
+>>   drivers/gpu/drm/i915/i915_vma.h | 1 -
+>>   2 files changed, 2 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
+>> index 94fcdb7bd21d..639605c89b7b 100644
+>> --- a/drivers/gpu/drm/i915/i915_vma.c
+>> +++ b/drivers/gpu/drm/i915/i915_vma.c
+>> @@ -541,7 +541,7 @@ void __iomem *i915_vma_pin_iomap(struct i915_vma *vma)
+>>   	int err;
+>>   
+>>   	if (WARN_ON_ONCE(vma->obj->flags & I915_BO_ALLOC_GPU_ONLY))
+>> -		return IO_ERR_PTR(-EINVAL);
+>> +		return IOMEM_ERR_PTR(-EINVAL);
+>>   
+>>   	if (!i915_gem_object_is_lmem(vma->obj)) {
+>>   		if (GEM_WARN_ON(!i915_vma_is_map_and_fenceable(vma))) {
+>> @@ -594,7 +594,7 @@ void __iomem *i915_vma_pin_iomap(struct i915_vma *vma)
+>>   err_unpin:
+>>   	__i915_vma_unpin(vma);
+>>   err:
+>> -	return IO_ERR_PTR(err);
+>> +	return IOMEM_ERR_PTR(err);
+>>   }
+>>   
+>>   void i915_vma_flush_writes(struct i915_vma *vma)
+>> diff --git a/drivers/gpu/drm/i915/i915_vma.h b/drivers/gpu/drm/i915/i915_vma.h
+>> index 67ae7341c7e0..8e74972fdca3 100644
+>> --- a/drivers/gpu/drm/i915/i915_vma.h
+>> +++ b/drivers/gpu/drm/i915/i915_vma.h
+>> @@ -331,7 +331,6 @@ static inline bool i915_node_color_differs(const struct drm_mm_node *node,
+>>    * Returns a valid iomapped pointer or ERR_PTR.
+>>    */
+>>   void __iomem *i915_vma_pin_iomap(struct i915_vma *vma);
+>> -#define IO_ERR_PTR(x) ((void __iomem *)ERR_PTR(x))
+>>   
+>>   /**
+>>    * i915_vma_unpin_iomap - unpins the mapping returned from i915_vma_iomap
+> 
