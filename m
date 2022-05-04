@@ -2,55 +2,146 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90513519952
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 May 2022 10:10:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7243D51995D
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 May 2022 10:12:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B1B9110F50F;
-	Wed,  4 May 2022 08:10:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6FF5C10F50F;
+	Wed,  4 May 2022 08:12:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D13FF10F50F
- for <intel-gfx@lists.freedesktop.org>; Wed,  4 May 2022 08:10:45 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A51010F528
+ for <intel-gfx@lists.freedesktop.org>; Wed,  4 May 2022 08:12:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1651651845; x=1683187845;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=4niKRqLGc0y5DEtZLFJLlSWG5hTRbhAbeoyOtWQ3iDQ=;
- b=UxLlFRqc+ZB1ABlv17VQpLK7EJTllo6kH8j9iBVegtENkWXXwcO7rh2H
- ML/Z3J6F7e4x00joClNO6yMYsjNU6AF4rtJDBbc80JAsh1hs4XW7il+NH
- dscyI2nd1iaAZnSbPFLMnvqsOoxZ8bGmoa1UdDtuRkC65kvqg6z1bIJYL
- BtsaR/z26dzMKwaLMq/sEhgSyTxuz95Gsj9MAsx9rGUnTM3BkpKYE8J+c
- YOaOjtQ3uC18GXatKrPgp3nnUFEaabnHLr+q9lR7Z49NKIQuWK6+TYVfS
- ZZd1K28PzYXDsk0wTvJICgpr6vaMtDtj+Bf17bvY3McUjH7CeEBwfrInP w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10336"; a="267576904"
-X-IronPort-AV: E=Sophos;i="5.91,197,1647327600"; d="scan'208";a="267576904"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2022 01:10:45 -0700
-X-IronPort-AV: E=Sophos;i="5.91,197,1647327600"; d="scan'208";a="664374155"
-Received: from gidaly-mobl1.ger.corp.intel.com (HELO [10.213.236.183])
- ([10.213.236.183])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2022 01:10:43 -0700
-Message-ID: <3b559971-feff-f4be-df94-1fcb8c70266c@linux.intel.com>
-Date: Wed, 4 May 2022 09:10:42 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
+ t=1651651940; x=1683187940;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=gMeA2wpIcHEbuyJ7vMQ5a+c4fYHmsINAImYAURwrqtk=;
+ b=W/emzqdt4DFI2aTDmE2+PO6GVhJ9U3mumqeYUaVGCtiLrYvuX6Ct5NX5
+ Q7hk+i4uXPC8H7Sf1wzhNtvG5SxD8VuaqwcYQnZSiw8CxI1TpNQA1RojT
+ TQ2Hh+hkw0JA9/16ekaWMMKqzyvdbjBXVa1kV1y/YsAeewwrvJciR/BcX
+ sTHvWP4WFSlwIF39vLHfwvnspdOkIzjGl67r5vr6w1y8oPcFQTY48G8Ds
+ iMsvNRZwo1tsZR1kGKnj9fluF8G24X49ICkap7Ch9Jj4UMayW7fy9OnsS
+ K7v4Vl+k5O8Q+2L9R8t9HR6PI+DeXJhCvd4Fe8acetBBK9eRpqEKUDmmg A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10336"; a="267294590"
+X-IronPort-AV: E=Sophos;i="5.91,197,1647327600"; d="scan'208";a="267294590"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 May 2022 01:12:19 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.91,197,1647327600"; d="scan'208";a="584611923"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orsmga008.jf.intel.com with ESMTP; 04 May 2022 01:12:16 -0700
+Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27; Wed, 4 May 2022 01:12:16 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27 via Frontend Transport; Wed, 4 May 2022 01:12:16 -0700
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.40) by
+ edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2308.27; Wed, 4 May 2022 01:12:16 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=DOnAEA6prpWyiXK++IvcynjeNPirUUq0M0YUfQu9hca3a/FZrxAx5/235uXzZovZronWWZct5gdIEVFvTZk17s4LV6oO1oDxzoOf/Yo0I54VxlEY+sd57KEF+dkXjlhMUStfaOiu8BQ2gaH31CcoobKOj4ybWZH6K3QeSXUuuJSz3+YYD+zA16C100UG1lj1Rsszgr/PyzsVN6HkU2fdyuFIUF+wQgF5hz0zxijyyf64bopDC3l5xS5PKJyghV2NA2s7gKL9H9ZlR/nJa6DrOCG+WVMSZgbTjyPGPhCalbfrwgmiXLH5aGtNSSX68TPyL39vqza7WftgvVPiAHufQg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=gMeA2wpIcHEbuyJ7vMQ5a+c4fYHmsINAImYAURwrqtk=;
+ b=XoJ3SHb6AJALO+jOMoyYitUFNR1A/rIfc423jNfM6ncw5IycQSY8dDEB5VzxoFcDPnPism/5mEB4Sc5OHnqQ/5QvqLlyLUsUDnncaHZBBuyx9UxvJm/eJKDakmRsm6FbP0WxJ090zjOLIKuT4SnzdYBuu+uEA7V/z92Fu49JRYsBE5SpkdqFiTiVbMEqPNg/e69Yj6e6kWu42rF+LWpk7RmDlrRHfOQqOimeaVHte1K2I5YNHR+0GU60xh9t8UQL5M5Y29eROmndhpB0FbG26PTq/9DShWU04dD4hK54rwwJfl77EZvUaQbWl5K2Hz3/T63wrjGyCsuPX3EVndTrPw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DM6PR11MB3177.namprd11.prod.outlook.com (2603:10b6:5:c::28) by
+ CY4PR11MB1654.namprd11.prod.outlook.com (2603:10b6:910:e::18) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5206.13; Wed, 4 May 2022 08:12:14 +0000
+Received: from DM6PR11MB3177.namprd11.prod.outlook.com
+ ([fe80::dc18:9af3:5549:4d3d]) by DM6PR11MB3177.namprd11.prod.outlook.com
+ ([fe80::dc18:9af3:5549:4d3d%7]) with mapi id 15.20.5206.025; Wed, 4 May 2022
+ 08:12:14 +0000
+From: "Murthy, Arun R" <arun.r.murthy@intel.com>
+To: "Nikula, Jani" <jani.nikula@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH] drm/i915: warn about missing ->get_buf_trans
+ initialization
+Thread-Index: AQHYXsbaBHA1DtRj2USAM2/AqLzqk60OX3EQ
+Date: Wed, 4 May 2022 08:12:13 +0000
+Message-ID: <DM6PR11MB317752C55BD83E2B76CAD931BAC39@DM6PR11MB3177.namprd11.prod.outlook.com>
+References: <20220503082134.4128355-1-jani.nikula@intel.com>
+In-Reply-To: <20220503082134.4128355-1-jani.nikula@intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-References: <20220502221805.4000039-1-umesh.nerlige.ramappa@intel.com>
- <4482e31b-ff27-e318-0ae6-39d6d5ea8040@linux.intel.com>
- <20220503194952.GC28869@unerlige-ril-10.165.21.154>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20220503194952.GC28869@unerlige-ril-10.165.21.154>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/reset: Add Wa_22011802037 for
- gen11 and execlist backend
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.6.401.20
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 8f7ceb01-ccf6-4de8-ab12-08da2da5cbd4
+x-ms-traffictypediagnostic: CY4PR11MB1654:EE_
+x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+x-microsoft-antispam-prvs: <CY4PR11MB1654E955D430FD3F9ABCB294BAC39@CY4PR11MB1654.namprd11.prod.outlook.com>
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: uq0llVDBNoEdFxPBKTnoO4xtEGBs7ElbQjq64PrybyBxztzhMuaCXWdxvWSEW956Tj2btfeaVNlzRn1cdMJveHLjG/nfMvcReUcDOE9826cKu+xWnZQ/OxWs/X/tugofvwSaEOaDnpRFG6frupRxpTts/Hbcr/By8VbCED0/xGfw+l1XQj3oZbdaEwLsBsxsuKPBaoVEBpygnZNAHOP3Sw2zhrlIUUS+DX7t/KG/8Hw6GsSkrDY2FGm91W7waQlU6XrkR51SD0HEYwONzWTaBzgd7X1fRHHdBqgtnpLrWC+bg0kmIHJV3VC7GRv1OkIAVz/k6pr5XnKY9kDZhh47JGdgm7pfLLkg7ZhIYNFoPjPdXril1le8IM7h5dzbwBGQrnMbmQoD6w69avctfgYK4fHBEEGXgvG7aaJLO4tcG9iiCgGr8C3IgP/RocSEPfPJo3DT+id4x/W9qrIBCriR18W9ZVeOWZiFC49S1vwD92Vl8n9AD3DX7hvl6r66vlWVgURaXMEG2GAa1pdfmKX9lAbcxcemrCzTTvM1LXk4F/gBKFLXWT+WxpCrBnoiwDllnHc8voGcrUYYqj78ySiIM0UUBCQWgx4pyQHh+cdotEpskxhXkgjb9tvJcaESB1OUdSPzcWYbb8GvVDLTslwRc9N0USQDmR2aoy5NxNCt7p4qYTxP7s9vI00Jge0X3vhwZcA5/+IEoxzJRipU9wStDA==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM6PR11MB3177.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230001)(366004)(38100700002)(38070700005)(4744005)(5660300002)(6506007)(9686003)(7696005)(53546011)(26005)(55236004)(2906002)(508600001)(8936002)(107886003)(83380400001)(186003)(71200400001)(122000001)(55016003)(33656002)(52536014)(86362001)(66946007)(76116006)(316002)(66476007)(66556008)(66446008)(8676002)(64756008)(4326008)(110136005)(82960400001);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?pLXR8qAmQxN8QXxjf3wnQ37tnHb0MUZrX348VldS4IvzjPy2T6GO16KsusBV?=
+ =?us-ascii?Q?l/TVxKcGm9Kf6rV0OMCQKEehiv7iEFxsWEOn3fC7/0alP7n1tjLKsYUiLrps?=
+ =?us-ascii?Q?8awW7jb/XAYaE8BL9+t8MKKEb7TjpD5rYLlwSg7Ak3Xk51RQmvFuAZ2dffEw?=
+ =?us-ascii?Q?OtdXR1X6vYuD33MZduPBg7LGcG4pANYzWzqSpHVSe9U8OtKzoiisel0ZcZ2L?=
+ =?us-ascii?Q?IMsmExiTwz6sQE+xGlYksTmxyRDjz1VS63rhupsS5Sb9Nb6RBXIwnA5kmp5i?=
+ =?us-ascii?Q?3thlqoQ0JW+OCi3qqnVo3++40jDz1o2ufqashIem3fdKtVdBZwCV/9Ba8y8P?=
+ =?us-ascii?Q?VXbjmV9NCycPjjz5TB8vyhRkS9JkP4NqONrdzQTltDsLeN/j3HKg4stKVsaB?=
+ =?us-ascii?Q?W3wE0QaDg87UYmhx7BWCd0tU2ToJeZHCguBApUQFON63RCwH5POmofz0RIjR?=
+ =?us-ascii?Q?/NBJWxBu9fS29IBpl2Oco1jHwrX3lRkg1+eU+lseIfMstBy7/bcOi0BT5uMb?=
+ =?us-ascii?Q?ld+Xn0PeIBJFuaKk0WV6mskl8oHQi1UiLiRwgw8vOynSuFQLCS9A1gFuZ6BN?=
+ =?us-ascii?Q?0PMo5OFbuLCAicpdIrT0uBFClA7QM+883g0BYkO2sxgQdMD0/3LW1lhHSUEX?=
+ =?us-ascii?Q?0ZA7a/MyyiUNnlV38ntZBUqr2rZ3fd3MD/OaC8/b7GXRhXDfaeP51W2MLBRb?=
+ =?us-ascii?Q?OAv1ZsUGAt41RFjsP7SEUZ13Sa1GSFn01cKFSqFhlMmEuqu+br5HPTMvPohZ?=
+ =?us-ascii?Q?nyLGivGGpkuAzxJFu5m8YKD2J2/pN0xTX4/X/3OWoKF91hfGltzId6atdoHE?=
+ =?us-ascii?Q?gAyDgtShK3XK2wIUNu6or7lmaI53a5PSRglhFmfiXn4TuPIskJtKrrkOds8D?=
+ =?us-ascii?Q?Iq8Gcj1CqlbYFU1SxNupzq90Hf7HNWjSkW3rwrIVpRg1vjKBsTCPfTzMjgqy?=
+ =?us-ascii?Q?4th+NXRpU2yGMQpZSJ3vvSMDTT/KtRfreJmOLzP5r8hMNnZEFE/E5BVAYPJf?=
+ =?us-ascii?Q?JTO6iusUj92aO43JRAQhM/zGGSk7msc1gNipowAh/Xemnzy+ZbbVL5OSgYrB?=
+ =?us-ascii?Q?PVFzUCSJ35lQtLGxjE3kQcOyrL0hNl6nqhngbMQxUuJYokH1AQ8fIzqB1mm/?=
+ =?us-ascii?Q?frFJUz/ZBJzGc9wv3DUHMK3lLsjD3kEX9QfQj1aWYgdvPUUPYUh8qCiyrKs9?=
+ =?us-ascii?Q?Ieicw9UReUyw8uCrUjSe0w/vDKcaeZKx3RyziHvktekDKQT9IF8sbBlngWKW?=
+ =?us-ascii?Q?J6HGDBz03ho7dSsC4+Fe18yRIC7FnzICb2ZUi2xmlrZRhz9joNYnsVqSkwcV?=
+ =?us-ascii?Q?RdaXeDXna52bbGNbTegeLX9KnAdrzdVU07rH0NGWrwVivf4gBCo62EwpfHgk?=
+ =?us-ascii?Q?2+JrW80J3/mso7ffXGmAQZBNmfhjESVRuuLA7mql2lM/9VGj/9en9d4HdRH/?=
+ =?us-ascii?Q?YVrugW107VMxNR4gEsmcBb5XS3si/gnveaH4oY2ziKJLExlaLVIP29FmxnGr?=
+ =?us-ascii?Q?ait2kflce31vwifqhNNzQKAJNeBGmrWHf+65LfubJxZD7d7sivKxyQqchKeL?=
+ =?us-ascii?Q?M6U5BO8n4/o6moIj8mOi2ZCuI8ZcBSKzBdCm0FMSrAnTHF3659yNvcpqiMeP?=
+ =?us-ascii?Q?gPaTjtGasmQ6Zqbyq5ZRe9R4Dp4m5LIMawoi3pcNK05HdPtDucI5AvxT0oop?=
+ =?us-ascii?Q?zQ9sjBogoe/Gh3kPKT6qFFGzbJsy6CKhKOcNme5uo/OV1b0qZmN1icqLUuP7?=
+ =?us-ascii?Q?N98C5dyzMg=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB3177.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8f7ceb01-ccf6-4de8-ab12-08da2da5cbd4
+X-MS-Exchange-CrossTenant-originalarrivaltime: 04 May 2022 08:12:13.8287 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 9Y0fxJ8P41YcDPkHSBljrBDE5BEsOgqSOJaXNPiI7ftC1wpTcTH57Ns35z/NcpL0doyClLxq4HwYjvVg+x4kWA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR11MB1654
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: warn about missing
+ ->get_buf_trans initialization
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,413 +154,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "Nikula, Jani" <jani.nikula@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 03/05/2022 20:49, Umesh Nerlige Ramappa wrote:
-> On Tue, May 03, 2022 at 09:42:52AM +0100, Tvrtko Ursulin wrote:
->>
->> On 02/05/2022 23:18, Umesh Nerlige Ramappa wrote:
->>> Current implementation of Wa_22011802037 is limited to the GuC backend
->>> and gen12. Add support for execlist backend and gen11 as well.
->>
->> Is the implication f6aa0d713c88 ("drm/i915: Add Wa_22011802037 force 
->> cs halt") does not work on Tigerlake? Fixes: tag probably required in 
->> that case since I have sold that fix as a, well, fix.
-> 
-> After the fix was made, the WA has evolved and added some more steps for 
-> handling pending MI_FORCE_WAKEs. This patch is the additional set of 
-> steps needed for the WA. As you mentioned offline, I should correct the 
-> commit message to indicate that the WA does exist for execlists, but 
-> needs additional steps. Will add Fixes: tag.
 
-Ok, that would be good then since it does sound they need to be tied 
-together (as in cherry picked for fixes).
+> -----Original Message-----
+> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Ja=
+ni
+> Nikula
+> Sent: Tuesday, May 3, 2022 1:52 PM
+> To: intel-gfx@lists.freedesktop.org
+> Cc: Nikula, Jani <jani.nikula@intel.com>
+> Subject: [Intel-gfx] [PATCH] drm/i915: warn about missing ->get_buf_trans
+> initialization
+>=20
+> Make sure each DDI platform has sane ->get_buf_trans initialized.
+>=20
+> Suggested-by: Matt Roper <matthew.d.roper@intel.com>
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
 
-Will it be followed up with preempt-to-idle implementation to avoid the, 
-as I understand it, potential for activity on one CCS engine defeating 
-the WA on another by timing out the wait for idle?
+Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
 
->>> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
->>> ---
->>>  drivers/gpu/drm/i915/gt/intel_engine.h        |  2 +
->>>  drivers/gpu/drm/i915/gt/intel_engine_cs.c     | 81 ++++++++++++++++++-
->>>  .../drm/i915/gt/intel_execlists_submission.c  |  7 ++
->>>  .../gpu/drm/i915/gt/intel_ring_submission.c   |  7 ++
->>>  drivers/gpu/drm/i915/gt/uc/intel_guc.c        |  4 +-
->>>  .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 81 ++-----------------
->>>  6 files changed, 103 insertions(+), 79 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h 
->>> b/drivers/gpu/drm/i915/gt/intel_engine.h
->>> index 1431f1e9dbee..04e435bce79b 100644
->>> --- a/drivers/gpu/drm/i915/gt/intel_engine.h
->>> +++ b/drivers/gpu/drm/i915/gt/intel_engine.h
->>> @@ -201,6 +201,8 @@ int intel_ring_submission_setup(struct 
->>> intel_engine_cs *engine);
->>>  int intel_engine_stop_cs(struct intel_engine_cs *engine);
->>>  void intel_engine_cancel_stop_cs(struct intel_engine_cs *engine);
->>> +void intel_engine_wait_for_pending_mi_fw(struct intel_engine_cs 
->>> *engine);
->>> +
->>>  void intel_engine_set_hwsp_writemask(struct intel_engine_cs *engine, 
->>> u32 mask);
->>>  u64 intel_engine_get_active_head(const struct intel_engine_cs *engine);
->>> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c 
->>> b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
->>> index 14c6ddbbfde8..0bda665a407c 100644
->>> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
->>> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
->>> @@ -1282,10 +1282,10 @@ static int __intel_engine_stop_cs(struct 
->>> intel_engine_cs *engine,
->>>      intel_uncore_write_fw(uncore, mode, _MASKED_BIT_ENABLE(STOP_RING));
->>>      /*
->>> -     * Wa_22011802037 : gen12, Prior to doing a reset, ensure CS is
->>> +     * Wa_22011802037 : gen11, gen12, Prior to doing a reset, ensure 
->>> CS is
->>>       * stopped, set ring stop bit and prefetch disable bit to halt CS
->>>       */
->>> -    if (GRAPHICS_VER(engine->i915) == 12)
->>> +    if (GRAPHICS_VER(engine->i915) == 11 || 
->>> GRAPHICS_VER(engine->i915) == 12)
->>
->> IS_GRAPHICS_VER(11, 12)
->>
->>>          intel_uncore_write_fw(uncore, 
->>> RING_MODE_GEN7(engine->mmio_base),
->>>                        _MASKED_BIT_ENABLE(GEN12_GFX_PREFETCH_DISABLE));
->>> @@ -1308,6 +1308,14 @@ int intel_engine_stop_cs(struct 
->>> intel_engine_cs *engine)
->>>          return -ENODEV;
->>>      ENGINE_TRACE(engine, "\n");
->>> +    /*
->>> +     * TODO: Occasionally trying to stop the cs times out, but does not
->>
->> What is the TODO part? To figure out why is sometimes does not work?
->>
->>> +     * adversely affect functionality. The timeout is set as a config
->>> +     * parameter that defaults to 100ms. Assuming that this timeout is
->>> +     * sufficient for any pending MI_FORCEWAKEs to complete. Once root
->>> +     * caused, the caller must check and handler the return from this
->>
->> s/handler/handle/
->>
->> TODO is to convert the function to return an error?
-> 
-> TODO: Find out why occasionally stopping the CS times out. Seen 
-> especially with gem_eio tests.
-> 
-> I will update the comment to be clear.
-
-This timeout is in general or with this patch only?
-
->>
->>> +     * function.
->>> +     */
->>>      if (__intel_engine_stop_cs(engine, 1000, stop_timeout(engine))) {
->>>          ENGINE_TRACE(engine,
->>>                   "timed out on STOP_RING -> IDLE; HEAD:%04x, 
->>> TAIL:%04x\n",
->>> @@ -1334,6 +1342,75 @@ void intel_engine_cancel_stop_cs(struct 
->>> intel_engine_cs *engine)
->>>      ENGINE_WRITE_FW(engine, RING_MI_MODE, 
->>> _MASKED_BIT_DISABLE(STOP_RING));
->>>  }
->>> +static u32 __cs_pending_mi_force_wakes(struct intel_engine_cs *engine)
->>> +{
->>> +    static const i915_reg_t _reg[I915_NUM_ENGINES] = {
->>> +        [RCS0] = MSG_IDLE_CS,
->>> +        [BCS0] = MSG_IDLE_BCS,
->>> +        [VCS0] = MSG_IDLE_VCS0,
->>> +        [VCS1] = MSG_IDLE_VCS1,
->>> +        [VCS2] = MSG_IDLE_VCS2,
->>> +        [VCS3] = MSG_IDLE_VCS3,
->>> +        [VCS4] = MSG_IDLE_VCS4,
->>> +        [VCS5] = MSG_IDLE_VCS5,
->>> +        [VCS6] = MSG_IDLE_VCS6,
->>> +        [VCS7] = MSG_IDLE_VCS7,
->>> +        [VECS0] = MSG_IDLE_VECS0,
->>> +        [VECS1] = MSG_IDLE_VECS1,
->>> +        [VECS2] = MSG_IDLE_VECS2,
->>> +        [VECS3] = MSG_IDLE_VECS3,
->>> +        [CCS0] = MSG_IDLE_CS,
->>> +        [CCS1] = MSG_IDLE_CS,
->>> +        [CCS2] = MSG_IDLE_CS,
->>> +        [CCS3] = MSG_IDLE_CS,
->>> +    };
->>> +    u32 val;
->>> +
->>> +    if (!_reg[engine->id].reg)
->>> +        return 0;
->>> +
->>> +    val = intel_uncore_read(engine->uncore, _reg[engine->id]);
->>> +
->>> +    /* bits[29:25] & bits[13:9] >> shift */
->>> +    return (val & (val >> 16) & MSG_IDLE_FW_MASK) >> MSG_IDLE_FW_SHIFT;
->>> +}
->>> +
->>> +static void __gpm_wait_for_fw_complete(struct intel_gt *gt, u32 
->>> fw_mask)
->>> +{
->>> +    int ret;
->>> +
->>> +    /* Ensure GPM receives fw up/down after CS is stopped */
->>> +    udelay(1);
->>
->> What's with the udealys in here when __intel_wait_for_register_fw 
->> already does some waiting?
-> 
-> Once idle, the WA instructs us to wait 1us around checking this status. 
-> The assumption here is that __intel_wait_for_register_fw could just exit 
-> as soon as the condition is met by HW.
-
-Okay, that one sounds plausible. But what about the udelay before 
-__intel_wait_for_register_fw? What difference does it make between:
-
-1)
-
-udelay
-loop:
-   read
-   break if idle
-   udelay
-
-2)
-
-loop:
-   read
-   break if idle
-   udelay
-
-Is the read wihtout the udelay dangerous?
-
-Also, why is this doing a 5ms atomic wait? Why not fast-slow to be more 
-CPU friendly? Does the workaround suggest a typical wait time?
-
-Regards,
-
-Tvrtko
-
-> 
-> Thanks,
-> Umesh
-> 
->>
->>> +
->>> +    /* Wait for forcewake request to complete in GPM */
->>> +    ret =  __intel_wait_for_register_fw(gt->uncore,
->>> +                        GEN9_PWRGT_DOMAIN_STATUS,
->>> +                        fw_mask, fw_mask, 5000, 0, NULL);
->>> +
->>> +    /* Ensure CS receives fw ack from GPM */
->>> +    udelay(1);
->>> +
->>> +    if (ret)
->>> +        GT_TRACE(gt, "Failed to complete pending forcewake %d\n", ret);
->>> +}
->>> +
->>> +/*
->>> + * Wa_22011802037:gen12: In addition to stopping the cs, we need to 
->>> wait for any
->>> + * pending MI_FORCE_WAKEUP requests that the CS has initiated to 
->>> complete. The
->>> + * pending status is indicated by bits[13:9] (masked by bits[ 
->>> 29:25]) in the
->>
->> Extra space in square brackets.
->>
->>> + * MSG_IDLE register. There's one MSG_IDLE register per reset 
->>> domain. Since we
->>> + * are concerned only with the gt reset here, we use a logical OR of 
->>> pending
->>> + * forcewakeups from all reset domains and then wait for them to 
->>> complete by
->>> + * querying PWRGT_DOMAIN_STATUS.
->>> + */
->>> +void intel_engine_wait_for_pending_mi_fw(struct intel_engine_cs 
->>> *engine)
->>> +{
->>> +    u32 fw_pending = __cs_pending_mi_force_wakes(engine);
->>> +
->>> +    if (fw_pending)
->>> +        __gpm_wait_for_fw_complete(engine->gt, fw_pending);
->>> +}
->>> +
->>>  static u32
->>>  read_subslice_reg(const struct intel_engine_cs *engine,
->>>            int slice, int subslice, i915_reg_t reg)
->>> diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c 
->>> b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
->>> index 86f7a9ac1c39..e139dc1e44eb 100644
->>> --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
->>> +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
->>> @@ -2958,6 +2958,13 @@ static void execlists_reset_prepare(struct 
->>> intel_engine_cs *engine)
->>>      ring_set_paused(engine, 1);
->>>      intel_engine_stop_cs(engine);
->>> +    /*
->>> +     * Wa_22011802037:gen11/gen12: In addition to stopping the cs, 
->>> we need
->>> +     * to wait for any pending mi force wakeups
->>> +     */
->>> +    if (GRAPHICS_VER(engine->i915) == 11 || 
->>> GRAPHICS_VER(engine->i915) == 12)
->>> +        intel_engine_wait_for_pending_mi_fw(engine);
->>> +
->>>      engine->execlists.reset_ccid = active_ccid(engine);
->>>  }
->>> diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c 
->>> b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
->>> index 5423bfd301ad..75884e0a552e 100644
->>> --- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
->>> +++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
->>> @@ -323,6 +323,13 @@ static void reset_prepare(struct intel_engine_cs 
->>> *engine)
->>>      ENGINE_TRACE(engine, "\n");
->>>      intel_engine_stop_cs(engine);
->>> +    /*
->>> +     * Wa_22011802037:gen11/gen12: In addition to stopping the cs, 
->>> we need
->>> +     * to wait for any pending mi force wakeups
->>> +     */
->>> +    if (GRAPHICS_VER(engine->i915) == 11 || 
->>> GRAPHICS_VER(engine->i915) == 12)
->>
->> IS_GRAPHICS_VER
->>
->>> +        intel_engine_wait_for_pending_mi_fw(engine);
->>> +
->>>      if (!stop_ring(engine)) {
->>>          /* G45 ring initialization often fails to reset head to zero */
->>>          ENGINE_TRACE(engine,
->>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c 
->>> b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
->>> index 2c4ad4a65089..f69a9464585e 100644
->>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
->>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
->>> @@ -310,8 +310,8 @@ static u32 guc_ctl_wa_flags(struct intel_guc *guc)
->>>      if (IS_DG2(gt->i915))
->>>          flags |= GUC_WA_DUAL_QUEUE;
->>> -    /* Wa_22011802037: graphics version 12 */
->>> -    if (GRAPHICS_VER(gt->i915) == 12)
->>> +    /* Wa_22011802037: graphics version 11/12 */
->>> +    if (GRAPHICS_VER(gt->i915) == 11 || GRAPHICS_VER(gt->i915) == 12)
->>
->> Ditto.
->>
->>>          flags |= GUC_WA_PRE_PARSER;
->>>      /* Wa_16011777198:dg2 */
->>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c 
->>> b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>> index 75291e9846c5..a3fe832eff0d 100644
->>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>> @@ -1527,87 +1527,18 @@ static void guc_reset_state(struct 
->>> intel_context *ce, u32 head, bool scrub)
->>>      lrc_update_regs(ce, engine, head);
->>>  }
->>> -static u32 __cs_pending_mi_force_wakes(struct intel_engine_cs *engine)
->>> -{
->>> -    static const i915_reg_t _reg[I915_NUM_ENGINES] = {
->>> -        [RCS0] = MSG_IDLE_CS,
->>> -        [BCS0] = MSG_IDLE_BCS,
->>> -        [VCS0] = MSG_IDLE_VCS0,
->>> -        [VCS1] = MSG_IDLE_VCS1,
->>> -        [VCS2] = MSG_IDLE_VCS2,
->>> -        [VCS3] = MSG_IDLE_VCS3,
->>> -        [VCS4] = MSG_IDLE_VCS4,
->>> -        [VCS5] = MSG_IDLE_VCS5,
->>> -        [VCS6] = MSG_IDLE_VCS6,
->>> -        [VCS7] = MSG_IDLE_VCS7,
->>> -        [VECS0] = MSG_IDLE_VECS0,
->>> -        [VECS1] = MSG_IDLE_VECS1,
->>> -        [VECS2] = MSG_IDLE_VECS2,
->>> -        [VECS3] = MSG_IDLE_VECS3,
->>> -        [CCS0] = MSG_IDLE_CS,
->>> -        [CCS1] = MSG_IDLE_CS,
->>> -        [CCS2] = MSG_IDLE_CS,
->>> -        [CCS3] = MSG_IDLE_CS,
->>> -    };
->>> -    u32 val;
->>> -
->>> -    if (!_reg[engine->id].reg)
->>> -        return 0;
->>> -
->>> -    val = intel_uncore_read(engine->uncore, _reg[engine->id]);
->>> -
->>> -    /* bits[29:25] & bits[13:9] >> shift */
->>> -    return (val & (val >> 16) & MSG_IDLE_FW_MASK) >> MSG_IDLE_FW_SHIFT;
->>> -}
->>> -
->>> -static void __gpm_wait_for_fw_complete(struct intel_gt *gt, u32 
->>> fw_mask)
->>> -{
->>> -    int ret;
->>> -
->>> -    /* Ensure GPM receives fw up/down after CS is stopped */
->>> -    udelay(1);
->>> -
->>> -    /* Wait for forcewake request to complete in GPM */
->>> -    ret =  __intel_wait_for_register_fw(gt->uncore,
->>> -                        GEN9_PWRGT_DOMAIN_STATUS,
->>> -                        fw_mask, fw_mask, 5000, 0, NULL);
->>> -
->>> -    /* Ensure CS receives fw ack from GPM */
->>> -    udelay(1);
->>> -
->>> -    if (ret)
->>> -        GT_TRACE(gt, "Failed to complete pending forcewake %d\n", ret);
->>> -}
->>> -
->>> -/*
->>> - * Wa_22011802037:gen12: In addition to stopping the cs, we need to 
->>> wait for any
->>> - * pending MI_FORCE_WAKEUP requests that the CS has initiated to 
->>> complete. The
->>> - * pending status is indicated by bits[13:9] (masked by bits[ 
->>> 29:25]) in the
->>> - * MSG_IDLE register. There's one MSG_IDLE register per reset 
->>> domain. Since we
->>> - * are concerned only with the gt reset here, we use a logical OR of 
->>> pending
->>> - * forcewakeups from all reset domains and then wait for them to 
->>> complete by
->>> - * querying PWRGT_DOMAIN_STATUS.
->>> - */
->>>  static void guc_engine_reset_prepare(struct intel_engine_cs *engine)
->>>  {
->>> -    u32 fw_pending;
->>> -
->>> -    if (GRAPHICS_VER(engine->i915) != 12)
->>> +    if (GRAPHICS_VER(engine->i915) != 11 && 
->>> GRAPHICS_VER(engine->i915) != 12)
->>
->> !IS_GRAPHICS_VER
->>
->>>          return;
->>> -    /*
->>> -     * Wa_22011802037
->>> -     * TODO: Occasionally trying to stop the cs times out, but does not
->>> -     * adversely affect functionality. The timeout is set as a config
->>> -     * parameter that defaults to 100ms. Assuming that this timeout is
->>> -     * sufficient for any pending MI_FORCEWAKEs to complete, ignore the
->>> -     * timeout returned here until it is root caused.
->>> -     */
->>>      intel_engine_stop_cs(engine);
->>> -    fw_pending = __cs_pending_mi_force_wakes(engine);
->>> -    if (fw_pending)
->>> -        __gpm_wait_for_fw_complete(engine->gt, fw_pending);
->>> +    /*
->>> +     * Wa_22011802037:gen11/gen12: In addition to stopping the cs, 
->>> we need
->>> +     * to wait for any pending mi force wakeups
->>> +     */
->>> +    intel_engine_wait_for_pending_mi_fw(engine);
->>>  }
->>>  static void guc_reset_nop(struct intel_engine_cs *engine)
->>
->> Regards,
->>
->> Tvrtko
+Thanks and Regards,
+Arun R Murthy
+--------------------
