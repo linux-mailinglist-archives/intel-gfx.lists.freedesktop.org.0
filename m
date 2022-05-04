@@ -1,49 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F238A51AFB7
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 May 2022 22:48:48 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A946351AFC4
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 May 2022 22:51:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 251F710E9D5;
-	Wed,  4 May 2022 20:48:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 979AA10E9D5;
+	Wed,  4 May 2022 20:51:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B59F110E722;
- Wed,  4 May 2022 20:48:32 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C80310E9D5
+ for <intel-gfx@lists.freedesktop.org>; Wed,  4 May 2022 20:50:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1651697312; x=1683233312;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=zCQ2iCX/sVnu4HHGRJ0ht9P+lnCysKtqVz+IpbQvRRg=;
- b=T4WHAEUvIgOYo53jn2R1PyDacBbBjX7smwxkWp9k+7/31p3nHPRo/pzS
- ggZHtCWIFN/ZI0fIf9siiytoSWbOfJeSCYSopha3OOFW96ST1CHNm14G2
- SvIfAUktDiMG1OhQuroW+E6TII0hMqaQcT2WUtIwX8hQ4/TmDqM3lZG4Q
- fHmBZ1LK4HOxIPvrb501d+CAVO2N+aL3LrJnbLXJFF3R5HqcYbIrpYuHJ
- JJHCSrFLw0goSf4z+x5Exsmm8SCDrVN4UhesVF3vmnGlpS+ZpDCeAgebA
- qQIgI2tWeg7gNFpc8Nr6od+JG1i1+ZA1qzArdXZegJ4ZrV3e+CEr9dY+Y A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10337"; a="267489095"
-X-IronPort-AV: E=Sophos;i="5.91,199,1647327600"; d="scan'208";a="267489095"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2022 13:48:32 -0700
-X-IronPort-AV: E=Sophos;i="5.91,199,1647327600"; d="scan'208";a="811292784"
-Received: from valcore-skull-1.fm.intel.com ([10.1.27.19])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2022 13:48:32 -0700
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed,  4 May 2022 13:48:16 -0700
-Message-Id: <20220504204816.2082588-5-daniele.ceraolospurio@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220504204816.2082588-1-daniele.ceraolospurio@intel.com>
-References: <20220504204816.2082588-1-daniele.ceraolospurio@intel.com>
+ t=1651697459; x=1683233459;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=vk21T+ku/CrT13MPR3dUestok1QBEdvRw1GhgkqwMi4=;
+ b=fBAeqxSRISbEhBJrSNpCP+HspNRrojUXuRbVj7sV2+n1vieR45NMGgjr
+ GB/Yt/DlIos2tPZ9dDjte5cM6Pu8BNyBAvVpGrIeZlpo5tgYD6eghBofH
+ Ztyh0wnNAmpX877sTgxmulpFNlVan1RDhkcNqm1DF+xa1kxKLwqe1bl4s
+ Nx9/GxjekLwOh4b+49AZDfGVoxx+P+93Rf+y6Uzu1XwsWBlyxV8s0DRZI
+ DTiREew4/RzRvs6XSR9F8BMxQnG1a+h1kUWIu2nMZoB90zxATL0XIkEeT
+ Ukj2hzFb6yFhXymJYeTEZEhjMttaV5EzCJ1N0mCnnvIt1IH1vYV575w4x w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10337"; a="354333672"
+X-IronPort-AV: E=Sophos;i="5.91,199,1647327600"; d="scan'208";a="354333672"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 May 2022 13:50:58 -0700
+X-IronPort-AV: E=Sophos;i="5.91,199,1647327600"; d="scan'208";a="549029807"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 May 2022 13:50:58 -0700
+Date: Wed, 4 May 2022 13:50:57 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
+Message-ID: <YnLnMSGhgbXWcqcA@mdroper-desk1.amr.corp.intel.com>
+References: <20220504190756.466270-1-jose.souza@intel.com>
+ <20220504190756.466270-7-jose.souza@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 4/4] drm/i915/huc: Don't fail the probe if
- HuC init fails
+In-Reply-To: <20220504190756.466270-7-jose.souza@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 07/12] drm/i915: Drop has_logical_ring_elsq
+ from device info
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,63 +59,79 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The previous patch introduced new failure cases in the HuC init flow
-that can be hit by simply changing the config, so we want to avoid
-failing the probe in those scenarios. HuC load failure is already
-considered a non-fatal error and we have a way to report to userspace
-if the HuC is not available via a dedicated getparam, so no changes
-in expectation there.
-The error message in the HuC init code has also been lowered to info to
-avoid throwing error message for an expected behavior.
+On Wed, May 04, 2022 at 12:07:51PM -0700, José Roberto de Souza wrote:
+> No need to have this parameter in intel_device_info struct
+> as all platforms with graphics version 11 or newer has this feature.
+> 
+> Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
 
-Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
----
- drivers/gpu/drm/i915/gt/uc/intel_huc.c |  2 +-
- drivers/gpu/drm/i915/gt/uc/intel_uc.c  | 11 ++---------
- 2 files changed, 3 insertions(+), 10 deletions(-)
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc.c b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
-index c36e2bf9b0f29..3bb8838e325a4 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_huc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
-@@ -113,7 +113,7 @@ int intel_huc_init(struct intel_huc *huc)
- 	return 0;
- 
- out:
--	i915_probe_error(i915, "failed with %d\n", err);
-+	drm_info(&i915->drm, "HuC init failed with %d\n", err);
- 	return err;
- }
- 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-index 0dce94f896a8c..ecf149c5fdb02 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-@@ -323,17 +323,10 @@ static int __uc_init(struct intel_uc *uc)
- 	if (ret)
- 		return ret;
- 
--	if (intel_uc_uses_huc(uc)) {
--		ret = intel_huc_init(huc);
--		if (ret)
--			goto out_guc;
--	}
-+	if (intel_uc_uses_huc(uc))
-+		intel_huc_init(huc);
- 
- 	return 0;
--
--out_guc:
--	intel_guc_fini(guc);
--	return ret;
- }
- 
- static void __uc_fini(struct intel_uc *uc)
+> ---
+>  drivers/gpu/drm/i915/i915_drv.h          | 3 +--
+>  drivers/gpu/drm/i915/i915_pci.c          | 4 +---
+>  drivers/gpu/drm/i915/intel_device_info.h | 1 -
+>  3 files changed, 2 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> index 602e056edd314..f23e5c5cbf82b 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -1247,8 +1247,7 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+>  
+>  #define HAS_LOGICAL_RING_CONTEXTS(dev_priv) \
+>  		(INTEL_INFO(dev_priv)->has_logical_ring_contexts)
+> -#define HAS_LOGICAL_RING_ELSQ(dev_priv) \
+> -		(INTEL_INFO(dev_priv)->has_logical_ring_elsq)
+> +#define HAS_LOGICAL_RING_ELSQ(dev_priv) (GRAPHICS_VER(dev_priv) >= 11)
+>  
+>  #define HAS_EXECLISTS(dev_priv) HAS_LOGICAL_RING_CONTEXTS(dev_priv)
+>  
+> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+> index b47f8b1ab9c6c..25aa8f5957f1e 100644
+> --- a/drivers/gpu/drm/i915/i915_pci.c
+> +++ b/drivers/gpu/drm/i915/i915_pci.c
+> @@ -804,8 +804,7 @@ static const struct intel_device_info cml_gt2_info = {
+>  	.dbuf.size = 2048, \
+>  	.dbuf.slice_mask = BIT(DBUF_S1) | BIT(DBUF_S2), \
+>  	.display.has_dsc = 1, \
+> -	.has_coherent_ggtt = false, \
+> -	.has_logical_ring_elsq = 1
+> +	.has_coherent_ggtt = false
+>  
+>  static const struct intel_device_info icl_info = {
+>  	GEN11_FEATURES,
+> @@ -989,7 +988,6 @@ static const struct intel_device_info adl_p_info = {
+>  	.has_global_mocs = 1, \
+>  	.has_llc = 1, \
+>  	.has_logical_ring_contexts = 1, \
+> -	.has_logical_ring_elsq = 1, \
+>  	.has_mslices = 1, \
+>  	.has_rps = 1, \
+>  	.has_runtime_pm = 1, \
+> diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
+> index 62c9616ea6a9c..7cf16b0315b54 100644
+> --- a/drivers/gpu/drm/i915/intel_device_info.h
+> +++ b/drivers/gpu/drm/i915/intel_device_info.h
+> @@ -151,7 +151,6 @@ enum intel_ppgtt_type {
+>  	func(has_l3_dpf); \
+>  	func(has_llc); \
+>  	func(has_logical_ring_contexts); \
+> -	func(has_logical_ring_elsq); \
+>  	func(has_mslices); \
+>  	func(has_pooled_eu); \
+>  	func(has_pxp); \
+> -- 
+> 2.36.0
+> 
+
 -- 
-2.25.1
-
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
