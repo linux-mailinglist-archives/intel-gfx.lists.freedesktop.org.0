@@ -2,50 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3272751ADC9
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 May 2022 21:28:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 97F5651AEFD
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 May 2022 22:26:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F0D610EC96;
-	Wed,  4 May 2022 19:28:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5BE6610EAD1;
+	Wed,  4 May 2022 20:26:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5AC16890A6
- for <intel-gfx@lists.freedesktop.org>; Wed,  4 May 2022 19:28:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9546010EAD1
+ for <intel-gfx@lists.freedesktop.org>; Wed,  4 May 2022 20:26:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1651692501; x=1683228501;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=sg0k20pUZdKAYzCYR9XFHyQ4SvW4wZPi253dFI/k3vQ=;
- b=MPRIrUBidknUr4uLLj0O2q3xJGNCyX6YoXFWTp/ziwotmE4SwzQuNab6
- 9ZuTPo1EVQXhemuvG6EB8rLSsy7PiXuMzqlenBB3k7+ZuYeBqUX60m/Km
- 7PQ/Uy8wd0Ul+/eg1qXdxcDfQBu9T0Y96folehZ81KRN6nuCh3d6BimgI
- AyBguyMzbw9udRCVuH4J5IWChPDjpEfjRAX7UBQ972owIiY/3j5kuSWit
- X1AhvvMliqQxfOzSbiP1BDJw4ZPrfUqMqnIFra9GKbfZiNnpx3UQYlLap
- 210raORReCNZYcjjbQr034hdtj5LZxjqYaSaXG05PzJjiAPiTyYJDsst3 Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10337"; a="268029477"
-X-IronPort-AV: E=Sophos;i="5.91,199,1647327600"; d="scan'208";a="268029477"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ t=1651695960; x=1683231960;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=s3bvzzVbF776Ek4PEcH3UBqBvtXDBpQpiNpyaXDZp3o=;
+ b=D2HTpEm31X7O5skSdeKT3XjMFOkIHy/fz5Zzkc1KsWPtsF24cgLdvSq/
+ zp/59UwQayW+YlACC+5hp3GkRRO63MdIDqEmTKEWxl45eAhJ2fXAhv4mf
+ n1s7TpTXJKMKy+01sTVIJVN7BdiDTNsxvFKm3tdSReXKj3+zFQSdkW7iC
+ hbo4VJoQ8JEgYr71EjCRsV/BuaVmLqzADjr+cMOt1uKFkofn57ZGnctvD
+ 1uYxAFvTIBWDCKNILYSuewIaILH6zBpcalHSTO7FHoVqxB/zT4vUtl+SA
+ cLIf5VBVeSMRPjY1JZ1fDl1R3sf4unQxXw52EM4XFeiBJ1HVNG85zLjd3 g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10337"; a="268044279"
+X-IronPort-AV: E=Sophos;i="5.91,199,1647327600"; d="scan'208";a="268044279"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2022 12:28:20 -0700
-X-IronPort-AV: E=Sophos;i="5.91,199,1647327600"; d="scan'208";a="584906469"
-Received: from adobrowo-mobl.ger.corp.intel.com (HELO localhost)
- ([10.249.156.70])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2022 12:28:18 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: "Murthy, Arun R" <arun.r.murthy@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-In-Reply-To: <DM6PR11MB317752C55BD83E2B76CAD931BAC39@DM6PR11MB3177.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220503082134.4128355-1-jani.nikula@intel.com>
- <DM6PR11MB317752C55BD83E2B76CAD931BAC39@DM6PR11MB3177.namprd11.prod.outlook.com>
-Date: Wed, 04 May 2022 22:28:14 +0300
-Message-ID: <874k25m71t.fsf@intel.com>
+ 04 May 2022 13:26:00 -0700
+X-IronPort-AV: E=Sophos;i="5.91,199,1647327600"; d="scan'208";a="664635904"
+Received: from anushasr-mobl6.jf.intel.com ([10.165.21.155])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 May 2022 13:25:59 -0700
+From: Anusha Srivatsa <anusha.srivatsa@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed,  4 May 2022 13:22:11 -0700
+Message-Id: <20220504202213.740200-1-anusha.srivatsa@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: warn about missing
- ->get_buf_trans initialization
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 0/1] DG2 DMC Support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,32 +53,30 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 04 May 2022, "Murthy, Arun R" <arun.r.murthy@intel.com> wrote:
->> -----Original Message-----
->> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Jani
->> Nikula
->> Sent: Tuesday, May 3, 2022 1:52 PM
->> To: intel-gfx@lists.freedesktop.org
->> Cc: Nikula, Jani <jani.nikula@intel.com>
->> Subject: [Intel-gfx] [PATCH] drm/i915: warn about missing ->get_buf_trans
->> initialization
->> 
->> Make sure each DDI platform has sane ->get_buf_trans initialized.
->> 
->> Suggested-by: Matt Roper <matthew.d.roper@intel.com>
->> Cc: Matt Roper <matthew.d.roper@intel.com>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->
-> Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
+While DG2 supports DC5 and DC9, some of the tests in
+fast-feedback blew up DG2 when the tests forced transition
+from dc5->dc9 on suspend and dc9->dc5 on resume. Some local
+experiments performed with Rodrigo on a RIL system  showed promising
+results when dc5 was completely diabled and i915 took only dc9 paths.
 
-Thanks for the review, pushed to drm-intel-next.
+Sending this so we can check the CI results to confirm the
+findings from local testing which will hopefully help narrow
+down the root cause of MMIO BAR lost issue
 
-BR,
-Jani.
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Imre Deak <imre.deak@intel.com>
+
+Anusha Srivatsa (1):
+  drm/i915/dmc: Load DMC on DG2
+
+ drivers/gpu/drm/i915/display/intel_display_power.c |  4 +++-
+ drivers/gpu/drm/i915/display/intel_dmc.c           | 10 +++++++++-
+ 2 files changed, 12 insertions(+), 2 deletions(-)
 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.25.1
+
