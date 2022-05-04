@@ -2,40 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 422665197B3
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 May 2022 08:56:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 18DBF5197C4
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 May 2022 09:03:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF1D710EBE7;
-	Wed,  4 May 2022 06:56:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C98E10E090;
+	Wed,  4 May 2022 07:03:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from wp530.webpack.hosteurope.de (wp530.webpack.hosteurope.de
- [IPv6:2a01:488:42:1000:50ed:8234::])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A1A010EBCE
- for <intel-gfx@lists.freedesktop.org>; Wed,  4 May 2022 06:56:28 +0000 (UTC)
-Received: from [2a02:8108:963f:de38:1b3c:6996:5378:f253]; authenticated
- by wp530.webpack.hosteurope.de running ExIM with esmtpsa
- (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
- id 1nm8vt-0003UR-71; Wed, 04 May 2022 08:56:21 +0200
-Message-ID: <8e85ab99-1f54-755d-7377-51055d5fa4a4@leemhuis.info>
-Date: Wed, 4 May 2022 08:56:19 +0200
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 91E3310E090
+ for <intel-gfx@lists.freedesktop.org>; Wed,  4 May 2022 07:03:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1651647814; x=1683183814;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=KM3k4sj2QWQ4OuQ91n3//CGLul8jFx4+/tmDDLmXbh4=;
+ b=mm7RP/G1lIntAk0DUi1rIrB5ypj/R3nVcQOVConQBfqOzJKJvw4riZ0j
+ 0v5IHiX16Sl6tA54lZ6wrki7Nn2D9yksk2n61309m0ddr/1jdROeu1osC
+ BoZ0s7tphidVu9VgrHkS+G25lUunYZs7/giSuoCw/euWBTlxmWWlCAczj
+ zkCzVC3X+YuLHDm2iukXAeGQrR/BGeaPJndeX+s+PTaDbEVVqzqM0vqIo
+ rayUtf++oRWfpb9wBZAMMPfricrEMgvhX4JgTUAPx+koCDjcIm58zqc/+
+ iBwA2VNxvcQX4Jw02NJyI6+yIcvoAYev8aKiCKqN1SltgcHdnuo43TlYq Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10336"; a="354121730"
+X-IronPort-AV: E=Sophos;i="5.91,197,1647327600"; d="scan'208";a="354121730"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 May 2022 00:03:26 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.91,197,1647327600"; d="scan'208";a="536703099"
+Received: from sorvi2.fi.intel.com ([10.237.72.194])
+ by orsmga006.jf.intel.com with ESMTP; 04 May 2022 00:03:24 -0700
+From: Mika Kahola <mika.kahola@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed,  4 May 2022 10:00:53 +0300
+Message-Id: <20220504070053.2838020-1-mika.kahola@intel.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Content-Language: en-US
-To: Juergen Gross <jgross@suse.com>, Lucas De Marchi <lucas.demarchi@intel.com>
-References: <YnHK1Z3o99eMXsVK@mail-itl>
- <f4b00553-4e77-84bc-e25c-01383d7e92dd@leemhuis.info>
- <fa6967cf-a718-4be2-2591-b675e2095b4c@suse.com>
-From: Thorsten Leemhuis <regressions@leemhuis.info>
-In-Reply-To: <fa6967cf-a718-4be2-2591-b675e2095b4c@suse.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-bounce-key: webpack.hosteurope.de; regressions@leemhuis.info; 1651647388;
- a84683a1; 
-X-HE-SMSGID: 1nm8vt-0003UR-71
-Subject: Re: [Intel-gfx] Xorg SEGV in Xen PV dom0 after updating from
- 5.16.18 to 5.17.5
+Subject: [Intel-gfx] [PATCH] drm/i915/display: Implement Wa_14015648006
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,114 +54,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: regressions@lists.linux.dev, intel-gfx <intel-gfx@lists.freedesktop.org>,
- =?UTF-8?Q?Marek_Marczykowski-G=c3=b3recki?=
- <marmarek@invisiblethingslab.com>, LKML <linux-kernel@vger.kernel.org>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 04.05.22 08:48, Juergen Gross wrote:
-> On 04.05.22 07:46, Thorsten Leemhuis wrote:
->> Hi, this is your Linux kernel regression tracker. Sending this just to
->> CC the developers of the culprit mentioned below (bdd8b6c98239cad
->> ("drm/i915: replace X86_FEATURE_PAT with pat_enabled()")) and the
->> maintainers for the subsystem.
->>
->> While at it a quick note: I wonder if this is problem a similar to one
->> that recently turned up with amdgpu and is fixed by this problem:
->> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=78b12008f20
->>
-> 
-> No, this is different.
-> 
-> I have posted a patch yesterday which should fix the issue:
-> 
-> https://lore.kernel.org/lkml/20220503132207.17234-3-jgross@suse.com/T/#m75efc68c96d8f7160229b5f3147242221ce0c28c
+Add 4th pipe to extend TGL Wa_16013835468 to support DG2
+platform.
 
-Ahh, great, thx for letting us know.
+BSpec: 54077
 
-#regzbot monitor:
-https://lore.kernel.org/lkml/20220503132207.17234-1-jgross@suse.com/
+Cc: Jouni Högander <jouni.hogander@intel.com>
+Cc: José Roberto de Souza <jose.souza@intel.com>
+Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_psr.c | 7 +++++--
+ drivers/gpu/drm/i915/i915_reg.h          | 1 +
+ 2 files changed, 6 insertions(+), 2 deletions(-)
 
-Ciao, Thorsten
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index 06db407e2749..d3b47c612305 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -1080,6 +1080,8 @@ static u32 wa_16013835468_bit_get(struct intel_dp *intel_dp)
+ 		return LATENCY_REPORTING_REMOVED_PIPE_B;
+ 	case PIPE_C:
+ 		return LATENCY_REPORTING_REMOVED_PIPE_C;
++	case PIPE_D:
++		return LATENCY_REPORTING_REMOVED_PIPE_D;
+ 	default:
+ 		MISSING_CASE(intel_dp->psr.pipe);
+ 		return 0;
+@@ -1159,8 +1161,9 @@ static void intel_psr_enable_source(struct intel_dp *intel_dp,
+ 				     CLKGATE_DIS_MISC_DMASC_GATING_DIS);
+ 
+ 		/* Wa_16013835468:tgl[b0+], dg1 */
+-		if (IS_TGL_DISPLAY_STEP(dev_priv, STEP_B0, STEP_FOREVER) ||
+-		    IS_DG1(dev_priv)) {
++		/* Wa_14015648006: dg2 */
++		if (DISPLAY_VER(dev_priv) >= 12 &&
++		    !IS_TGL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0)) {
+ 			u16 vtotal, vblank;
+ 
+ 			vtotal = crtc_state->uapi.adjusted_mode.crtc_vtotal -
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 9ccb67eec1bd..b01402647300 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -5921,6 +5921,7 @@
+ #define  RESET_PCH_HANDSHAKE_ENABLE	(1 << 4)
+ 
+ #define GEN8_CHICKEN_DCPR_1			_MMIO(0x46430)
++#define   LATENCY_REPORTING_REMOVED_PIPE_D	REG_BIT(31)
+ #define   SKL_SELECT_ALTERNATE_DC_EXIT		REG_BIT(30)
+ #define   LATENCY_REPORTING_REMOVED_PIPE_C	REG_BIT(25)
+ #define   LATENCY_REPORTING_REMOVED_PIPE_B	REG_BIT(24)
+-- 
+2.27.0
 
->> Ciao, Thorsten
->>
->> On 04.05.22 02:37, Marek Marczykowski-Górecki wrote:
->>>
->>> After updating from 5.16.18 to 5.17.5 in Xen PV dom0, my Xorg started
->>> crashing when displaying any window mapped from a guest (domU) system.
->>> This is 100% reproducible.
->>> The system is Qubes OS, and it uses a trick that maps windows content
->>> from other guests using Xen grant tables, wrapped as "shared memory"
->>> from Xorg point of view (so, the memory that Xorg mmaps is not just from
->>> another process, but from another VM). That's the ShmPutImage you can
->>> see on the stack trace below.
->>>
->>> Stack trace of thread 12858:
->>> #0  0x00007f80029e17d5 raise (libc.so.6 + 0x3c7d5)
->>> #1  0x00007f80029ca895 abort (libc.so.6 + 0x25895)
->>> #2  0x00005b3469ace0e0 OsAbort (Xorg + 0x1c60e0)
->>> #3  0x00005b3469ad3959 AbortServer (Xorg + 0x1cb959)
->>> #4  0x00005b3469ad46aa FatalError (Xorg + 0x1cc6aa)
->>> #5  0x00005b3469acb450 OsSigHandler (Xorg + 0x1c3450)
->>> #6  0x00007f8002b85a90 __restore_rt (libpthread.so.0 + 0x14a90)
->>> #7  0x00007f8002b0a2a1 __memmove_avx_unaligned_erms (libc.so.6 +
->>> 0x1652a1)
->>> #8  0x00007f80015dfcc9 linear_to_xtiled_faster (iris_dri.so + 0xc91cc9)
->>> #9  0x00007f80015e3477 _isl_memcpy_linear_to_tiled (iris_dri.so +
->>> 0xc95477)
->>> #10 0x00007f8001468440 iris_texture_subdata (iris_dri.so + 0xb1a440)
->>> #11 0x00007f8000a76107 st_TexSubImage (iris_dri.so + 0x128107)
->>> #12 0x00007f8000be9a47 texture_sub_image (iris_dri.so + 0x29ba47)
->>> #13 0x00007f8000becd0c texsubimage_err (iris_dri.so + 0x29ed0c)
->>> #14 0x00007f8000bf2939 _mesa_TexSubImage2D (iris_dri.so + 0x2a4939)
->>> #15 0x00007f800213831f glamor_upload_boxes (libglamoregl.so + 0x1e31f)
->>> #16 0x00007f800213856f glamor_upload_region (libglamoregl.so + 0x1e56f)
->>> #17 0x00007f800212aea6 glamor_put_image (libglamoregl.so + 0x10ea6)
->>> #18 0x00005b3469a4d79c damagePutImage (Xorg + 0x14579c)
->>> #19 0x00005b3469a00a7e ProcShmPutImage (Xorg + 0xf8a7e)
->>> #20 0x00005b3469965a2b Dispatch (Xorg + 0x5da2b)
->>> #21 0x00005b3469969b04 dix_main (Xorg + 0x61b04)
->>> #22 0x00007f80029cc082 __libc_start_main (libc.so.6 + 0x27082)
->>> #23 0x00005b3469952e6e _start (Xorg + 0x4ae6e)
->>>
->>> Disassembly of the surrounding code:
->>>
->>>     0x00007596ae8c82fb <+123>:    ja     0x7596ae8c8338
->>> <__memmove_avx_unaligned_erms+184>
->>>     0x00007596ae8c82fd <+125>:    jb     0x7596ae8c8304
->>> <__memmove_avx_unaligned_erms+132>
->>>     0x00007596ae8c82ff <+127>:    movzbl (%rsi),%ecx
->>>     0x00007596ae8c8302 <+130>:    mov    %cl,(%rdi)
->>>     0x00007596ae8c8304 <+132>:    retq
->>>     0x00007596ae8c8305 <+133>:    vmovdqu (%rsi),%xmm0
->>>     0x00007596ae8c8309 <+137>:    vmovdqu -0x10(%rsi,%rdx,1),%xmm1
->>> => 0x00007596ae8c830f <+143>:    vmovdqu %xmm0,(%rdi)
->>>     0x00007596ae8c8313 <+147>:    vmovdqu %xmm1,-0x10(%rdi,%rdx,1)
->>>     0x00007596ae8c8319 <+153>:    retq
->>>
->>>
->>> I don't see any related kernel or Xen messages at this time. Xorg's SEGV
->>> handler prints also:
->>>
->>>      (EE) Segmentation fault at address 0x3c010
->>>
->>> Git bisect says it's bdd8b6c98239cad ("drm/i915: replace X86_FEATURE_PAT
->>> with pat_enabled()"), and indeed with this commit reverted on top of
->>> 5.17.5 everything works fine.
->>>
->>> I guess this part of dom0's boot dmesg may be relevant:
->>>
->>> [    0.000949] x86/PAT: MTRRs disabled, skipping PAT initialization too.
->>> [    0.000953] x86/PAT: Configuration [0-7]: WB  WT  UC- UC  WC  WP 
->>> UC  UC
->>>
->>> Originally reported at
->>> https://github.com/QubesOS/qubes-issues/issues/7479
->>>
->>>   #regzbot introduced bdd8b6c98239cad
->>> #regzbot monitor: https://github.com/QubesOS/qubes-issues/issues/7479
->>>
-> 
