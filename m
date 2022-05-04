@@ -1,41 +1,139 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABF8B519E87
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 May 2022 13:50:14 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1F4B519F10
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 May 2022 14:14:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D16910E4D8;
-	Wed,  4 May 2022 11:50:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9DEED10E5DA;
+	Wed,  4 May 2022 12:14:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C1EF510E4D8
- for <intel-gfx@lists.freedesktop.org>; Wed,  4 May 2022 11:50:11 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
- (Authenticated sender: alarumbe) with ESMTPSA id EA1731F40EA0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1651665008;
- bh=yzEcIQ6fzosARAFy2z3S848H7aBI4E8h6MXzSXLlPLA=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=BXN6a6C+KJWVSKV7gkbhs55N/x2ENyuXs2I9tBNmmK2cmlgvQDyMDX2xO1wzSU3h8
- zCm/EK60rjfbxzae0UQxdDjv44TIi1yMK1Xx2o/c6FOdwh/zCsj/ngf4EqMo7pD7sq
- VulgRxoZXWwYoNuITMKa4tZlbjqUXpwLFdrTRb7f6sUK8/3aV1CAa+Qy4VBe093IMw
- YtHeo6bteeDyk6A1d4XlRAXipSNs9cqIWZA8TmvCBD1/QAedf6eZzDgCggJxkgwmZT
- 3UAvKMmObC3GKAvNTPgHl9SHRmAJ4NvjvM0G6ORDfwPmBE4T5Ae9ZCQb+FHMvT8kN/
- H74VKH0zsbo/A==
-Date: Wed, 4 May 2022 12:50:05 +0100
-From: Adrian Larumbe <adrian.larumbe@collabora.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <20220504115005.y26ah4n6634l66iq@sobremesa>
-References: <20220429151112.1041959-1-adrian.larumbe@collabora.com>
- <5953cea7-530b-3603-356d-09a537de8d98@linux.intel.com>
+X-Greylist: delayed 369 seconds by postgrey-1.36 at gabe;
+ Wed, 04 May 2022 08:38:05 UTC
+Received: from de-smtp-delivery-102.mimecast.com
+ (de-smtp-delivery-102.mimecast.com [194.104.111.102])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2A2F710F7F7
+ for <intel-gfx@lists.freedesktop.org>; Wed,  4 May 2022 08:38:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com;
+ s=mimecast20200619; t=1651653483;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=uQfWNe1RxVIVhGw370YZzsDPbGmRCJ6APtQ7SkS5ucE=;
+ b=S2uw+aJQJegDR+922shLcMB0Z1wAjn26lU6W9muFcVcPuX0k7jsouvIfV7j8ciHeqKI0k1
+ g2PxkPJumXHiN7XHYVwgm2OSLZGpDEdvkUPLO6pYUT8tNo7YyUWubQX+umQ129aerSjSt7
+ w/F3y2FbIrIlFAw//T/24m5Sfs7tWHM=
+Received: from EUR03-AM5-obe.outbound.protection.outlook.com
+ (mail-am5eur03lp2053.outbound.protection.outlook.com [104.47.8.53]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ de-mta-40-s03ChdGRMva8mRVmUNHg1Q-1; Wed, 04 May 2022 10:31:51 +0200
+X-MC-Unique: s03ChdGRMva8mRVmUNHg1Q-1
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=J/TcqT3FmKHLvjBoB2dTAf6qSEpSlXxnWt72lZgDZiAkI9tYIVrN/TMZ97c4y/V8yI78LutDPzRWxcmg1UJrgz9KA0VRaTkZFLFW0RNv83UrNA/oW59EGQRvDoy16Mdyh1VlRZeeijbPKMW3LAfX2jXocIGzzFWIaF8yrVWhgNdEUkP1Hjm7xtuQyASavG+hMlPcSml8DTlPrUWgZBEdWPF4WhzKdnRK679jX3rpCDgOy3LDFefGuhONH43yATAH2+3s0WMz83mvZRpn3j9U6HPs2J+1OK2Vht86oeQTX3STNcvMm7lTncPA3eB7iROCONua4/pv6WEC0CUv2l2ALQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=uQfWNe1RxVIVhGw370YZzsDPbGmRCJ6APtQ7SkS5ucE=;
+ b=O/MdNjN/vdEiSXOOv5aLaCtKv24zDcfASUE87VxaXEgPQKkbLQvP3Vv8mzBcP+UPSkGYiMSfawR2oP9hdRouktrHCaJjbMoFw7NLD301yyAi6491YzglTUj7Vs9f3UUu8Vu07gMAm6AAIroem+1EURPb63bd+afJDuf4ah/XP0KhZCJD0cCxBfIE9R87T5Or7YUVtAJeZZxxbYnWTRHqNQK0o87njqmybuWh3Tb1fe3fbY1WdOd3ue6N8NLs/39mRmVoR2tMRB3cra0mdkwohQlau0ZBp4Vq1bo/RLlVJkMkGNk4Ut2SqS+x26oFZATs8JPye6R+ii69xpG+p78r4w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=suse.com; dmarc=pass action=none header.from=suse.com;
+ dkim=pass header.d=suse.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=suse.com;
+Received: from DU2PR04MB8616.eurprd04.prod.outlook.com (2603:10a6:10:2db::16)
+ by VI1PR04MB5437.eurprd04.prod.outlook.com (2603:10a6:803:d8::33)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5206.24; Wed, 4 May
+ 2022 08:31:49 +0000
+Received: from DU2PR04MB8616.eurprd04.prod.outlook.com
+ ([fe80::5cb0:5195:4203:7c2f]) by DU2PR04MB8616.eurprd04.prod.outlook.com
+ ([fe80::5cb0:5195:4203:7c2f%8]) with mapi id 15.20.5206.013; Wed, 4 May 2022
+ 08:31:49 +0000
+Message-ID: <1d86d8ff-6878-5488-e8c4-cbe8a5e8f624@suse.com>
+Date: Wed, 4 May 2022 10:31:47 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Content-Language: en-US
+To: Juergen Gross <jgross@suse.com>
+References: <20220503132207.17234-1-jgross@suse.com>
+ <20220503132207.17234-3-jgross@suse.com>
+From: Jan Beulich <jbeulich@suse.com>
+In-Reply-To: <20220503132207.17234-3-jgross@suse.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: AS9PR06CA0337.eurprd06.prod.outlook.com
+ (2603:10a6:20b:466::13) To DU2PR04MB8616.eurprd04.prod.outlook.com
+ (2603:10a6:10:2db::16)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <5953cea7-530b-3603-356d-09a537de8d98@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Change semantics of context
- isolation reporting to UM
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: d493a38e-8de6-4ab7-a9ef-08da2da8884e
+X-MS-TrafficTypeDiagnostic: VI1PR04MB5437:EE_
+X-LD-Processed: f7a17af6-1c5c-4a36-aa8b-f5be247aa4ba,ExtFwd
+X-Microsoft-Antispam-PRVS: <VI1PR04MB54374EEAEC74ECEF0551AF04B3C39@VI1PR04MB5437.eurprd04.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: q6/goCuOXLBGJE4xI9cnuLVbnU7uK3VKQx8/d04qTCC62JOqpYdNPb+52+pWQBOipselsPPIjc+xHk/FKvsuqCEzcymZ9m5mCZ5tjnE+nxjG/GFxTwIs5RmVecjJy74TzT0+a9ZsBXuiQMucoojzlKroFvM763LWfrZoQD1bkk3V55kifqIEt8F/Ez5UvYKkadFazg0TljMkRV4MMtID+fnOAwbqjhri9AiypnbvyvHHqW/5KXuhCMl0q7aXw1w8WwvVH3DJUkigdMX0STl9Yy6vGIHGMQhHCK85Zvd0zHGt4FbBqiHOr4Pw6oCazKAuxJ0mgUGmH9+O5dC5O6zl9mD1b8glBlAdxwwiBYhO9ysgeB3mVsWjmf7F1zM2RxN52dzMMR0Ssa5gbC2sJSCprrRsqC2aAOGgS5Lf645VU6Eyl9dSKQquHsf4yaZxszFcFx+Hc6gXDLRnqx7EnE/gznOJlXKei1zgEuVbCJX+pAIG8dPy3UWGbEsnBQUzeqNcimVajwyG7cNuot7MZdHRgTuc1/EM50CaM8KV/5+Mo5RkDd2sB0dNnaRTQd3nd68psAeOmZomeshxRW/hN917cqGuJMszTLSm02VV/QH9Z2Yaxd3w3KvoJvc5j9YZcHiyD7L58SilxC+xXdLStKwVnR/yozUtjoKmRoYPNbVtUQpF1UiV/1uGGIhPp9DGtllbtUwyZU6DojpKMnoYrGZ8mcal9mG9WCCWsauOWFsRWfKfptPL6gK5PevhmFT9yxVg
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DU2PR04MB8616.eurprd04.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230001)(366004)(5660300002)(7416002)(53546011)(6862004)(66556008)(66476007)(508600001)(4326008)(66946007)(8936002)(8676002)(31686004)(37006003)(54906003)(6506007)(316002)(38100700002)(2906002)(6486002)(6636002)(26005)(83380400001)(6512007)(2616005)(36756003)(86362001)(186003)(31696002)(45980500001)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?c1Z6S2RLYmZscWpIYTV3SzlMZ0RDVTl1R3VKTlA3cEUvQ2pYQkJuS3k3SzBm?=
+ =?utf-8?B?endydmJ2Zm5sRnNSbnhYL282dU5ZV200czdBVjJBcUJkY29vd1ZQSG5TMUE0?=
+ =?utf-8?B?T3M2OWx5ZXpEREtrTEtqSkFhc0pyK1NNcktVZ0JLbTBqalI2enYvQSszNkNm?=
+ =?utf-8?B?UzNwd00wM0xJQ0FQQXhhOFowZmljTXE4MjBaRTJ2WW1XV29NUTN4c3IwcWd6?=
+ =?utf-8?B?MXJYdEFtZTN3UExRTHFzRnl5TUtIcnYvUjd3czYvejVvTFhRay9xK3I3QkM3?=
+ =?utf-8?B?Q042WWlSc2toUUJNSmp0YTRpZ2NNVFdVc0tXQ0YyaFdSNkNLSHdpUzFDTVdC?=
+ =?utf-8?B?RDdGZjA5TG1hK2JBRWd2NFBXVWJjc1dxVStBRDkwcVlnQzE2YzZvSVZvTTY4?=
+ =?utf-8?B?QWFmYTdVbHM4UzBSenFiTjBQSnBJZFZyMW14WDdkMkdoUDFtS3JINFZWN3lP?=
+ =?utf-8?B?ODhVc2ltLzlwaHhQTDRDa01LTzNPYUNtK3NFZG9TWEtMcjRRK0hkV1h0Tkhr?=
+ =?utf-8?B?THN4NUYrM3EyYmt3RFRicExRRVRlQzNjR29zbC94VHRXZGFIaUlLZzBKb0lk?=
+ =?utf-8?B?ZGw2akpJRFB2YlZsajd6M0pjM3ZSdmJtWkt6RExGMi9adjh5SHNIU3NkbkNG?=
+ =?utf-8?B?c09SZ3g0ZGdwdEI0YlRHbG9hNnJhM1VveHpvVjFXT05YSFJWc1BhZkNCaUFV?=
+ =?utf-8?B?TUNtc3dTS2FBMkU0OEtHdnVGbHdIRTBVOWpoeVN6QjEvZlgwSzhJTnp6NEdk?=
+ =?utf-8?B?T3k0bVh0aW5TVzZ3OFVsZWt2VXIxejROQWo5cXpVVEQ4bU5tNHhPcDBOcmk5?=
+ =?utf-8?B?ZlJKamJoUlpmb0psSEZmTmY2ekdhYzV0NG5qMmJwY3R6M0pnWUIwM0tGVVJl?=
+ =?utf-8?B?RU5mYmROeXp1dnlXUVpCeGppWTcxQWpGYUdWd1dhczJQSllSNTR4ZlU1RmlN?=
+ =?utf-8?B?Rjh0ZklkZTJXT0hNUUFPWXVZWDRJR1lBb2x2YWlKZUNZRTF6dkt1emlCcmcy?=
+ =?utf-8?B?bmltenQyMXFTQ29rc09vZnRsdFRvWG11U1lWZDBoNU1RUVBBMC9BMmlhRWh0?=
+ =?utf-8?B?M0lQU2k5b0U2RmF4bEx1Z3pxVGd0WnQwTmJ3OXFFbEdML0V2akQ4dUs0cW05?=
+ =?utf-8?B?WWtGcXE0NGdCbjVtV3NUNHBEZG80ZlZUeFQ5dC9odXo2bmZ3K0ZobUhFeEN1?=
+ =?utf-8?B?Vjl0cnVyL0xNRFVudTFWbkNUY2c0REUydVF0SS8wTFN5cXAwVGlMazRBUyt3?=
+ =?utf-8?B?Z05lUDVxRU14dGZoZDJ3RG5sdmpLWUYremlWeFNNZ2IwRWtsRFlRREs0WmJD?=
+ =?utf-8?B?a3NMSkM4elIxSjMzdlBpb3lBU3VmazVDc3pLQTU2SkZCaGhUYXEzWjYrdUFr?=
+ =?utf-8?B?ei9yaUFpc0ErKzR3L0FGUERyVlNybzRrQ3RFNWpkVFdYSXhScjJxWURpZ3Jv?=
+ =?utf-8?B?U1lxWC80azJpU1E3KzQ0L1BSazVCWDgrWlpTM01rMDV5R3Eyd3JBQmlTazVm?=
+ =?utf-8?B?S3p6TzluYlhETTFRN1ZDU0JqcTc3L3NtYktNbW9jZmNFUDJPN3BtY1YxVkNW?=
+ =?utf-8?B?Tkh5aW1yM1JaWGp4cUVLanFvMERhd1NHL2NhSHhTWmlJMzIwUCs3clBWUlRa?=
+ =?utf-8?B?aEorUlNqbkZ1S3JCZ0xOc0haK0hPSitmRzhHTVpBQ3RlcE9wYU5UWnQ5Wkha?=
+ =?utf-8?B?K05WRys3VzhRQUxHU1RTaVFzWkRPSElzSmZLOGlrYXVuWWtVNXExL1BVVks1?=
+ =?utf-8?B?emZSdG1jUHlMeUFyeHBzUHlDcllHV3loMzJiS0tzOWZKbmRLVjZYNU5uUVkr?=
+ =?utf-8?B?V2hTQ0c3T1loVzRGbFlJa3Z4L2ZlMWRnQVhpc1VrYmNkMm15Z08vYjYrREFy?=
+ =?utf-8?B?cGU5U0lacTJlbElxSXM5K3JjSnQwdzk4Ri9HbGJDYTJlbmI3clI0Y3N4UVQr?=
+ =?utf-8?B?MS9waUJpRTQ3ZVBWcWhqcld0UDJ2bmtlOGYvK2lEcmhzUEtIM091RzZzWHd6?=
+ =?utf-8?B?a1BTNDZWemdNTU1jZnNDMzVncmgyU3l2MGRUN1YyM1Y1NGZNK2I1VkU5YkxI?=
+ =?utf-8?B?c29DRWdYZXUwYmpTWlA3V0pqL081bHJlbGZDSXVGUDFlajZZL2VJSjNtcWY0?=
+ =?utf-8?B?UHM3SDFPUHVCMlllcmdBMXFUMDlVTFc2dml6S2l4RmpZQVpzL3VoZE9lNHBO?=
+ =?utf-8?B?RFRGNHF0YmJhclZSWUlISmdXQno5QmNpSWVNNUpzcWNNM3c3bHY3QVVhUlJj?=
+ =?utf-8?B?WGhSeitqYTBiREJmWUFJaThMSkFIcVFBdzdqQ0lEWStEUmpKTVpVT0tobEIr?=
+ =?utf-8?B?b1JHd1JiMktNVEhVdkJtRW9ZQjA3RklUeGdqUmpkWEJDZlpXTUxRUT09?=
+X-OriginatorOrg: suse.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d493a38e-8de6-4ab7-a9ef-08da2da8884e
+X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8616.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 May 2022 08:31:49.2208 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: f7a17af6-1c5c-4a36-aa8b-f5be247aa4ba
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: AhtRaIIfvZAc7TwDIZ0GnLdy5KNKjJI1rFZ3z2ZgAfSMQzvSpvcQBWpZmqGIssObKPMWhzvHPKsiXLbV90Ay3g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB5437
+X-Mailman-Approved-At: Wed, 04 May 2022 12:14:46 +0000
+Subject: Re: [Intel-gfx] [PATCH 2/2] x86/pat: add functions to query
+ specific cache mode availability
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,198 +146,97 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Peter Zijlstra <peterz@infradead.org>, intel-gfx@lists.freedesktop.org,
+ Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
+ linux-kernel@vger.kernel.org, David Airlie <airlied@linux.ie>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Ingo Molnar <mingo@redhat.com>,
+ Borislav Petkov <bp@alien8.de>, dri-devel@lists.freedesktop.org,
+ Andy Lutomirski <luto@kernel.org>, "H. Peter Anvin" <hpa@zytor.com>,
+ xen-devel@lists.xenproject.org, Thomas Gleixner <tglx@linutronix.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi, Tvrtko
+On 03.05.2022 15:22, Juergen Gross wrote:
+> Some drivers are using pat_enabled() in order to test availability of
+> special caching modes (WC and UC-). This will lead to false negatives
+> in case the system was booted e.g. with the "nopat" variant and the
+> BIOS did setup the PAT MSR supporting the queried mode, or if the
+> system is running as a Xen PV guest.
 
-On 03.05.2022 15:44, Tvrtko Ursulin wrote:
+While, as per my earlier patch, I agree with the Xen PV case, I'm not
+convinced "nopat" is supposed to honor firmware-provided settings. In
+fact in my patch I did arrange for "nopat" to also take effect under
+Xen PV.
+
+> Add test functions for those caching modes instead and use them at the
+> appropriate places.
 > 
-> Hi,
+> For symmetry reasons export the already existing x86_has_pat_wp() for
+> modules, too.
 > 
-> On 29/04/2022 16:11, Adrian Larumbe wrote:
-> > I915_PARAM_HAS_CONTEXT_ISOLATION was already being used as a boolean by
-> > both Iris and Vulkan , and stood for the guarantee that, when creating a
-> > new context, all state set by it will not leak to any other context.
-> > 
-> > However the actual return value was a bitmask where every bit stood for an
-> > initialised engine, and IGT test gem_ctx_isolation makes use of this mask
-> > for deciding on the actual context engine isolation status.
-> > 
-> > However, we do not provide UAPI for IGT tests, so the value returned by the
-> > PARAM ioctl has to reflect Mesa usage as a boolean.
-> 
-> a)
-> I suggest splitting into two patches. One changes the semantics to boolean, second one changes it for RCS+CCS.
-> 
-> b)
-> What about test coverage - both for platforms with RCS+CSS (media and blitter stop being tested - all coverage is gone basically) and also for pre Gen8 platforms, are there failures expected there? (Test will try to run on some engines which do not support isolation now, no?)
+> Fixes: bdd8b6c98239 ("drm/i915: replace X86_FEATURE_PAT with pat_enabled()")
+> Fixes: ae749c7ab475 ("PCI: Add arch_can_pci_mmap_wc() macro")
+> Signed-off-by: Juergen Gross <jgross@suse.com>
 
-Do you mean IGT tests? I think gem_ctx_isolation.c has to be rewritten so that
-the engine isolation status of the different devices is somehow hard-coded
-into the test, perhaps something like the intel_device_info struct in the
-kernel.
+I think this wants a Reported-by as well.
 
-> This change only made sense after compute engine support was added to the
-> driver in commit 944823c9463916dd53f3 ("drm/i915/xehp: Define compute class
-> and engine") because no context isolation can be assumed on any device with
-> both RCS annd CCS engines.
+> --- a/arch/x86/include/asm/pci.h
+> +++ b/arch/x86/include/asm/pci.h
+> @@ -94,7 +94,7 @@ int pcibios_set_irq_routing(struct pci_dev *dev, int pin, int irq);
+>  
+>  
+>  #define HAVE_PCI_MMAP
+> -#define arch_can_pci_mmap_wc()	pat_enabled()
+> +#define arch_can_pci_mmap_wc()	x86_has_pat_wc()
 
->Isn't it an arbitrary decision when thinking about other engine classes (media, blitter) on those platforms? Commit message should be clear in that respect.
+Besides this and ...
 
-I think the change was required because the addition of a CCS engine broke
-pre-existing assumptions about engine context isolation, but only when
-coexisting with an RCS engine in the same device. I wouldn't know about other
-engines, but I'll ask around.
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+> @@ -76,7 +76,7 @@ i915_gem_mmap_ioctl(struct drm_device *dev, void *data,
+>  	if (args->flags & ~(I915_MMAP_WC))
+>  		return -EINVAL;
+>  
+> -	if (args->flags & I915_MMAP_WC && !pat_enabled())
+> +	if (args->flags & I915_MMAP_WC && !x86_has_pat_wc())
+>  		return -ENODEV;
+>  
+>  	obj = i915_gem_object_lookup(file, args->handle);
+> @@ -757,7 +757,7 @@ i915_gem_dumb_mmap_offset(struct drm_file *file,
+>  
+>  	if (HAS_LMEM(to_i915(dev)))
+>  		mmap_type = I915_MMAP_TYPE_FIXED;
+> -	else if (pat_enabled())
+> +	else if (x86_has_pat_wc())
+>  		mmap_type = I915_MMAP_TYPE_WC;
+>  	else if (!i915_ggtt_has_aperture(to_gt(i915)->ggtt))
+>  		return -ENODEV;
+> @@ -813,7 +813,7 @@ i915_gem_mmap_offset_ioctl(struct drm_device *dev, void *data,
+>  		break;
+>  
+>  	case I915_MMAP_OFFSET_WC:
+> -		if (!pat_enabled())
+> +		if (!x86_has_pat_wc())
+>  			return -ENODEV;
+>  		type = I915_MMAP_TYPE_WC;
+>  		break;
+> @@ -823,7 +823,7 @@ i915_gem_mmap_offset_ioctl(struct drm_device *dev, void *data,
+>  		break;
+>  
+>  	case I915_MMAP_OFFSET_UC:
+> -		if (!pat_enabled())
+> +		if (!x86_has_pat_uc_minus())
+>  			return -ENODEV;
+>  		type = I915_MMAP_TYPE_UC;
+>  		break;
 
-> Also, looking at iris:
-> 
->    if (iris_getparam_integer(fd, I915_PARAM_HAS_CONTEXT_ISOLATION) <= 0) {
->       debug_error("Kernel is too old for Iris. Consider upgrading to kernel v4.16.\n");
->       return NULL;
->    }
-> 
-> Won't this make Iris fail on RCS+CCS platforms - or I need to look at a newer branch/pull request? What is the plan there?
+... these uses there are several more. You say nothing on why those want
+leaving unaltered. When preparing my earlier patch I did inspect them
+and came to the conclusion that these all would also better observe the
+adjusted behavior (or else I couldn't have left pat_enabled() as the only
+predicate). In fact, as said in the description of my earlier patch, in
+my debugging I did find the use in i915_gem_object_pin_map() to be the
+problematic one, which you leave alone.
 
-Yes, I think I misread this code and didn't realise, when there isn't context
-isolation, this snippet will fail. However, given the semantics of it, which I
-glean from the error message between the brackets, I'd say context isolation not
-being present shouldn't cause it to fail. So I guess it could be rewritten as
+Jan
 
-    if (iris_getparam_integer(fd, I915_PARAM_HAS_CONTEXT_ISOLATION) < 0) {
-
-> Signed-off-by: Adrian Larumbe <adrian.larumbe@collabora.com>
-> ---
->   drivers/gpu/drm/i915/gt/intel_engine_user.c | 13 ++++++++++++-
->   drivers/gpu/drm/i915/gt/intel_engine_user.h |  1 +
->   drivers/gpu/drm/i915/i915_drm_client.h      |  2 +-
->   drivers/gpu/drm/i915/i915_getparam.c        |  2 +-
->   include/uapi/drm/i915_drm.h                 | 14 +++-----------
->   5 files changed, 18 insertions(+), 14 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_user.c b/drivers/gpu/drm/i915/gt/intel_engine_user.c
-> index 0f6cd96b459f..2d6bd36d6150 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_engine_user.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_engine_user.c
-> @@ -47,7 +47,7 @@ static const u8 uabi_classes[] = {
->   	[COPY_ENGINE_CLASS] = I915_ENGINE_CLASS_COPY,
->   	[VIDEO_DECODE_CLASS] = I915_ENGINE_CLASS_VIDEO,
->   	[VIDEO_ENHANCEMENT_CLASS] = I915_ENGINE_CLASS_VIDEO_ENHANCE,
-> -	/* TODO: Add COMPUTE_CLASS mapping once ABI is available */
-> +	[COMPUTE_CLASS] = I915_ENGINE_CLASS_COMPUTE,
-
-> > I think this landed so you will need to rebase.
-> 
-> >   };
-> >   static int engine_cmp(void *priv, const struct list_head *A,
-> > @@ -306,3 +306,14 @@ unsigned int intel_engines_has_context_isolation(struct drm_i915_private *i915)
-> >   	return which;
-> >   }
-> > +
-> > +bool intel_cross_engine_isolated(struct drm_i915_private *i915)
-> 
-> Naming feels lackluster (Intel what?). Do you expect other callers or could just implement the check in i915_getparam.c, inside the switch statement?
-
-No other callers, so I guess I should do like you suggested below, handle the logic straightaway from i915_getparam_ioctl.
-
-> +{
-> +	unsigned int which = intel_engines_has_context_isolation(i915);
-> +
-> +	if ((which & BIT(I915_ENGINE_CLASS_RENDER)) &&
-> +	    (which & BIT(I915_ENGINE_CLASS_COMPUTE)))
-> +		return false;
-> +
-> +	return !!which;
-
-> You could first just check if there are any RCS and CCS engines (for instance i915->engine_uabi_class_count[], or RCS/CCS_MASK()).
-> 
->   /* Comment here to explain the decision. */
->   if (RCS_MASK(&i915->gt) | CCS_MASK(&i915->gt))
-> 	value = 0;
->   else
->         value = !!intel_engines_has_context_isolation(i915);
-> 
-> ?
-> 
-> There also may be little point in even calling intel_engines_has_context_isolation, when the desired output is a boolean and could just make it feature or Gen based. Decision for later though, after some clarifications.
-
-> +}
-> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_user.h b/drivers/gpu/drm/i915/gt/intel_engine_user.h
-> index 3dc7e8ab9fbc..ff21349db4d4 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_engine_user.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_engine_user.h
-> @@ -15,6 +15,7 @@ struct intel_engine_cs *
->   intel_engine_lookup_user(struct drm_i915_private *i915, u8 class, u8 instance);
->   unsigned int intel_engines_has_context_isolation(struct drm_i915_private *i915);
-> +bool intel_cross_engine_isolated(struct drm_i915_private *i915);
->   void intel_engine_add_user(struct intel_engine_cs *engine);
->   void intel_engines_driver_register(struct drm_i915_private *i915);
-> diff --git a/drivers/gpu/drm/i915/i915_drm_client.h b/drivers/gpu/drm/i915/i915_drm_client.h
-> index 5f5b02b01ba0..f796c5e8e060 100644
-> --- a/drivers/gpu/drm/i915/i915_drm_client.h
-> +++ b/drivers/gpu/drm/i915/i915_drm_client.h
-> @@ -13,7 +13,7 @@
->   #include "gt/intel_engine_types.h"
-> -#define I915_LAST_UABI_ENGINE_CLASS I915_ENGINE_CLASS_VIDEO_ENHANCE
-> +#define I915_LAST_UABI_ENGINE_CLASS I915_ENGINE_CLASS_COMPUTE
->   struct drm_i915_private;
-> diff --git a/drivers/gpu/drm/i915/i915_getparam.c b/drivers/gpu/drm/i915/i915_getparam.c
-> index c12a0adefda5..3d5120d2d78a 100644
-> --- a/drivers/gpu/drm/i915/i915_getparam.c
-> +++ b/drivers/gpu/drm/i915/i915_getparam.c
-> @@ -145,7 +145,7 @@ int i915_getparam_ioctl(struct drm_device *dev, void *data,
->   		value = 1;
->   		break;
->   	case I915_PARAM_HAS_CONTEXT_ISOLATION:
-> -		value = intel_engines_has_context_isolation(i915);
-> +		value = intel_cross_engine_isolated(i915);
->   		break;
->   	case I915_PARAM_SLICE_MASK:
->   		value = sseu->slice_mask;
-> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-> index 35ca528803fd..84c0af77cc1f 100644
-> --- a/include/uapi/drm/i915_drm.h
-> +++ b/include/uapi/drm/i915_drm.h
-> @@ -166,6 +166,7 @@ enum drm_i915_gem_engine_class {
->   	I915_ENGINE_CLASS_COPY		= 1,
->   	I915_ENGINE_CLASS_VIDEO		= 2,
->   	I915_ENGINE_CLASS_VIDEO_ENHANCE	= 3,
-> +	I915_ENGINE_CLASS_COMPUTE	= 4,
->   	/* should be kept compact */
-> @@ -635,17 +636,8 @@ typedef struct drm_i915_irq_wait {
->   #define I915_PARAM_HAS_EXEC_FENCE_ARRAY  49
->   /*
-> - * Query whether every context (both per-file default and user created) is
-> - * isolated (insofar as HW supports). If this parameter is not true, then
-> - * freshly created contexts may inherit values from an existing context,
-> - * rather than default HW values. If true, it also ensures (insofar as HW
-> - * supports) that all state set by this context will not leak to any other
-> - * context.
-> - *
-> - * As not every engine across every gen support contexts, the returned
-> - * value reports the support of context isolation for individual engines by
-> - * returning a bitmask of each engine class set to true if that class supports
-> - * isolation.
-> + * Query whether the device can make cross-engine isolation guarantees for
-> + * all the engines whose default state has been initialised.
-
-> "Engine whose default state has been initialised" does not sound very helpful for userspace developers. Like what determines if that has happened or not, and the fact userspace is more about context state rather than engine state.
-> 
-> Existing text which talked about engines supporting contexts and not leaking state sounded better TBF. So overall I think you deleted too much of the text. Can't you just change the ending, from the point where it goes into individual engines and bitmap, replacing with the new explanation?
-
-I made a mistake here. I assumed mentioning this would be relevant because
-engine isolation is only checked for engines whose default state had been
-assigned in __engines_record_defaults, but like you said this is a KM detail
-userspace developers shouldn't concern themselves with, so I'll restore that
-part of the previous text.
-
-> Regards,
-> 
-> Tvrtko
-
->    */
->   #define I915_PARAM_HAS_CONTEXT_ISOLATION 50
-
-Kind Regards,
-Adrian Larumbe
