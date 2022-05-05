@@ -2,32 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E518F51BF35
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 May 2022 14:23:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E2B7D51BFB8
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 May 2022 14:46:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F221910E15B;
-	Thu,  5 May 2022 12:23:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E5F5910E2E9;
+	Thu,  5 May 2022 12:46:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id D92F210E0A7;
- Thu,  5 May 2022 12:23:28 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D8925A00FD;
- Thu,  5 May 2022 12:23:28 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com
+ [IPv6:2a00:1450:4864:20::635])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 55FCA10E2AE
+ for <intel-gfx@lists.freedesktop.org>; Thu,  5 May 2022 12:46:05 +0000 (UTC)
+Received: by mail-ej1-x635.google.com with SMTP id m20so8475415ejj.10
+ for <intel-gfx@lists.freedesktop.org>; Thu, 05 May 2022 05:46:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=3T4SzsAtNhNuo5rY56MV7HRELTHKhvquVI7Gt9UPCoQ=;
+ b=AHRBdmaDrmzzh0gfsvRGfrpNJDd6xe+7uvXakuHWw6NO8XLUpVwk6Y7Dvn8JcOpCK8
+ +2YP8rD9o+ceDtYzsLGvU52XC/uyZ9CzT0TJiK/IyFAgEqvuTQhqjNjdfv+iA7NNKdhH
+ 2rbB5Iq3vpcsURkFBj5sSTKu0xxOeZRTxdEpM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=3T4SzsAtNhNuo5rY56MV7HRELTHKhvquVI7Gt9UPCoQ=;
+ b=YS23MRPDrPV4uHbUZNfwZEIENMDJn79oIVVr2GgcDaeJ9bKiIIuz6WCVSjbMdSIgGD
+ YM2tuR9YUwg0E/jvIyfyt/0i15agcHkcnLiKRD+dtiidXyJSaZSdATY0De86lmLqz77V
+ utN0z0D0TR/DLDehG/u7sDo3e6ju014SIqFqZAkbRrP9Pf83eD3WsVfeYnAzzrGtepqG
+ 7stLtDQgc2lfJk9OugsUyUNnSV5qMlK0pNeKBIP/en0wLuWEHf66BTJ3hb+FzdOkLvH3
+ FUBrZZTh/BOSbzj7Z/9sIPIlrPsEzkWzki2TLxpDEwRayZhpUsHZZP7CuoMlJ6btF5rk
+ TWQA==
+X-Gm-Message-State: AOAM5304T9LRLb72W36hXVlTssQo5FQFZB5+3nTc2PbQ++zmUY25qII2
+ oiA0scZ4RV5YyxK0zopLLaUF7A==
+X-Google-Smtp-Source: ABdhPJyCXQf/76OE9sbpvWUSz3CBXOa/E2zFUs7VJ1SuA7HPeAvwE0peVrbLUTPawmxDZNK4o995KQ==
+X-Received: by 2002:a17:907:1c8a:b0:6e9:2a0d:d7b7 with SMTP id
+ nb10-20020a1709071c8a00b006e92a0dd7b7mr25569671ejc.572.1651754763690; 
+ Thu, 05 May 2022 05:46:03 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id
+ s30-20020a508d1e000000b0042617ba63b0sm793271eds.58.2022.05.05.05.46.02
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 05 May 2022 05:46:03 -0700 (PDT)
+Date: Thu, 5 May 2022 14:46:01 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Matt Roper <matthew.d.roper@intel.com>
+Message-ID: <YnPHCcMwEeU5vsTu@phenom.ffwll.local>
+References: <20220429151112.1041959-1-adrian.larumbe@collabora.com>
+ <CAKMK7uHMh_BneHXvXxUsFaE1h3FWAEFungKrPAJORzk5Y3LOSw@mail.gmail.com>
+ <YnKUzxHJ9oPQ6eLQ@mdroper-desk1.amr.corp.intel.com>
+ <YnKs/cWGz7kZHWBA@phenom.ffwll.local>
+ <YnLCCp6eehxVM09a@mdroper-desk1.amr.corp.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Thu, 05 May 2022 12:23:28 -0000
-Message-ID: <165175340885.7659.10408984298241651612@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <cover.1651569697.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1651569697.git.jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/edid=3A_CEA_data_block_iterators=2C_and_more_=28rev4=29?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YnLCCp6eehxVM09a@mdroper-desk1.amr.corp.intel.com>
+X-Operating-System: Linux phenom 5.10.0-8-amd64 
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Change semantics of context
+ isolation reporting to UM
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,56 +72,299 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org,
+ Adrian Larumbe <adrian.larumbe@collabora.com>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ "airlied@gmail.com" <airlied@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, May 04, 2022 at 11:12:26AM -0700, Matt Roper wrote:
+> On Wed, May 04, 2022 at 06:42:37PM +0200, Daniel Vetter wrote:
+> > On Wed, May 04, 2022 at 07:59:27AM -0700, Matt Roper wrote:
+> > > On Wed, May 04, 2022 at 02:24:07PM +0200, Daniel Vetter wrote:
+> > > > On Fri, 29 Apr 2022 at 17:11, Adrian Larumbe
+> > > > <adrian.larumbe@collabora.com> wrote:
+> > > > > I915_PARAM_HAS_CONTEXT_ISOLATION was already being used as a boolean by
+> > > > > both Iris and Vulkan , and stood for the guarantee that, when creating a
+> > > > > new context, all state set by it will not leak to any other context.
+> > > > >
+> > > > > However the actual return value was a bitmask where every bit stood for an
+> > > > > initialised engine, and IGT test gem_ctx_isolation makes use of this mask
+> > > > > for deciding on the actual context engine isolation status.
+> > > > >
+> > > > > However, we do not provide UAPI for IGT tests, so the value returned by the
+> > > > > PARAM ioctl has to reflect Mesa usage as a boolean.
+> > > > >
+> > > > > This change only made sense after compute engine support was added to the
+> > > > > driver in commit 944823c9463916dd53f3 ("drm/i915/xehp: Define compute class
+> > > > > and engine") because no context isolation can be assumed on any device with
+> > > > > both RCS annd CCS engines.
+> > > > >
+> > > > > Signed-off-by: Adrian Larumbe <adrian.larumbe@collabora.com>
+> > > > 
+> > > > Top level post and adding Matt Roper and dri-devel.
+> > > > 
+> > > > This was meant as a simple cleanup after CCS enabling in upstream, but
+> > > > that CCS enabling seems to have gone wrong.
+> > > > 
+> > > > What I thought we should be done for CCS enabling is the following:
+> > > > - actually have some igt-side hardcoded assumption about how much
+> > > > engines are isolated from each another, which is a hw property. I
+> > > > think some of that landed, but it's very incomplete
+> > > > 
+> > > > - convert all igt tests over to that. At least gem_ctx_isolation.c is
+> > > > not converted over, as Adrian pointed out.
+> > > 
+> > > I pointed that out last week in one of our offline syncs and that's what
+> > > got the ball rolling on that test again.  But you specifically told us
+> > > that the uapi cleanup for context isolation shouldn't block the CCS
+> > > patches from landing since that was still happening in parallel:
+> > > 
+> > >     "...I do see the uapi cleanup as part of this multi engine/CCS
+> > >     enabling, but it's not a blocker to land the patches..."
+> > > 
+> > > Did we misunderstand what you were trying to say in that email or was
+> > > there a change of direction here?
+> > 
+> > The cleanup (which Adrian is now working on, but there's confusion) is
+> > totally fine to do later. What looks really iffy is the test coverage, and
+> > at least from me looking around gem_ctx_isolation wasn't touched or
+> > updated for CCS engines, and that looks like it's not enough. Either those
+> > tests are bogus or not actually testing a lot, and then we should delete
+> > them. Or there's probably going to be some impact on how much exactly the
+> > engines/contexts are isolated against each another.
+> 
+> The test automatically picks up any new engines that show up and
+> includes them in execution.  The test is already running properly on DG2
+> CCS engines in CI right now.  E.g.,
+> 
+>     https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11599/re-dg2-12/igt@gem_ctx_isolation@dirty-create@ccs0.html
+> 
+> Is the concern just that we haven't added extra registers to the list to
+> check on the CCS engines?  For that matter, we're missing a bunch of
+> registers for RCS, BCS, VCS, and VECS for newer platforms too; the CCS
+> isn't really special there.
 
-Series: drm/edid: CEA data block iterators, and more (rev4)
-URL   : https://patchwork.freedesktop.org/series/102703/
-State : warning
+Hm I guess I'm just confused and this isn't actually the testcase that was
+discussed at length.
 
-== Summary ==
+I think I was mixing up gem_ctx_isolation with gem_ctx_persistence. The
+latter also neeed adjustments for CCS enabling, and that patch seems to
+have landed. Except it's not done with a shared helper, so now it's still
+as hard as ever to find these tests that validate cross-engine
+interactions.
 
-Error: dim checkpatch failed
-fe31b8863c44 drm/edid: reset display info in drm_add_edid_modes() for NULL edid
-39c77f38058d drm/edid: check for HF-SCDB block
-8a69009ae79e drm/edid: rename HDMI Forum VSDB to SCDS
--:103: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
-#103: FILE: drivers/gpu/drm/drm_edid.c:5207:
-+			hdmi_dsc->total_chunk_kbytes = hf_scds[13] & DRM_EDID_DSC_TOTAL_CHUNK_KBYTES;
+> My understanding is that most of what gem_ctx_isolation tests is that
+> context switches really do save/restore registers properly (i.e., the
+> hardware behavior is sane) and there's really nothing special about CCS
+> engines regarding general context switching behavior.  Where things get
+> unusual with CCS engines is the shared reset domain, and that's more the
+> realm of what tests like i915_hangman cover.  But even there, the
+> workarounds that are in place right now (which only allow parallelism
+> between engines if they belong to the same VM) means that in most cases
+> there actually isn't any userspace-visible impact of the shared resets.
+> 
+> Adding JohnH and Umesh since they're a lot more familiar with all of
+> this stuff than I.
+> 
+> I can send a revert if you think that's what we need, but from what I'm
+> hearing we don't really expect many areas where there's
+> userspace-visible behavior from CCS engines that would need non-standard
+> IGT handling, and the few places where there are have already been
+> updated.  But there are so many orphaned IGT tests out there, many of
+> which have bitrotted away over the years, that it's possible we might
+> still be missing something.
 
-total: 0 errors, 1 warnings, 0 checks, 103 lines checked
-49da01f0ed8d drm/edid: clean up CTA data block tag definitions
-f04e1aa0bd2c drm/edid: add iterator for EDID base and extension blocks
--:62: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#62: FILE: drivers/gpu/drm/drm_edid.c:1642:
-+#define drm_edid_iter_for_each(__block, __iter)			\
-+	while (((__block) = __drm_edid_iter_next(__iter)))
+Nah I think it's ok. I guess I was just hoping that someone would review
+the entire area a bit and help to structure things more, instead of
+piling a bunch of local additions into various tests without much
+coordination and calling it a day. It would have been a great opportunity
+to clarify what exactly we guarantee wrt context/engine/reset isolation.
 
-total: 1 errors, 0 warnings, 0 checks, 54 lines checked
-cbc4981236d3 drm/edid: add iterator for CTA data blocks
--:229: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#229: FILE: drivers/gpu/drm/drm_edid.c:4579:
-+#define cea_db_iter_for_each(__db, __iter) \
-+	while (((__db) = __cea_db_iter_next(__iter)))
+I'm not sure where that leaves the patch from Adrian, since tasking Adrian
+with reviewing the entirety of igt test coverage around ctx and engines is
+probably not what he signed up for and also doesn't make much sense, since
+he didn't handle any of the CCS enabling.
 
-total: 1 errors, 0 warnings, 0 checks, 220 lines checked
-c72627579501 drm/edid: clean up cea_db_is_*() functions
-903a8909d92a drm/edid: convert add_cea_modes() to use cea db iter
-461e615f4e9d drm/edid: convert drm_edid_to_speaker_allocation() to use cea db iter
-698df3348a3f drm/edid: convert drm_edid_to_sad() to use cea db iter
-b15f1602d640 drm/edid: convert drm_detect_hdmi_monitor() to use cea db iter
-c0126566d38d drm/edid: convert drm_detect_monitor_audio() to use cea db iter
-5a6cd0d012cd drm/edid: convert drm_parse_cea_ext() to use cea db iter
-92fad37e90ba drm/edid: convert drm_edid_to_eld() to use cea db iter
-68f011828dda drm/edid: sunset the old unused cea data block iterators
-db54ca9aa208 drm/edid: restore some type safety to cea_db_*() functions
-00538c86c458 drm/edid: detect basic audio in all CEA extensions
-4fc9a9dbcabd drm/edid: detect color formats and CTA revision in all CTA extensions
-e8a93157bd66 drm/edid: skip CTA extension scan in drm_edid_to_eld() just for CTA rev
-5e689ae0ae0e drm/edid: sunset drm_find_cea_extension()
+I guess we'll just leave the igt testcase dungeons as is and hope they
+don't end up eating us?
+
+Dunno, Daniel
 
 
+> 
+> 
+> Matt
+> 
+> > 
+> > That's the part that I think should be done before we call CCS support
+> > done and ready for merging. And if that's done properly it should also
+> > take care of the "igt uses HAS_CONTEXT_ISOLATION getparam" issue, since
+> > you need something more fancy anyway.
+> > -Daniel
+> > 
+> > 
+> > > 
+> > > 
+> > > Matt
+> > > 
+> > > > 
+> > > > - once igt stopped using this context isolation getparam (we do not,
+> > > > ever, create uapi just for testcases), fix up the uapi to what iris
+> > > > actually needs, which is _only_ a boolean which indicates whether the
+> > > > kernel's context setup code leaks register state from existing
+> > > > contexts to newly created ones. Which is the bug iris works around
+> > > > here, where using iris caused gpu hangs in libva. Iow, the kernel
+> > > > should always and unconditionally return true here. Check out iris
+> > > > history for details please, actual iris usage has nothing to do with
+> > > > any other cross-context or cross-engine isolation guarantee we're
+> > > > making, it's purely about whether our hw ctx code is buggy or not and
+> > > > leaks state between clients, because we accidentally used the
+> > > > currently running ctx as template instead of a fixed one created once
+> > > > at driver load.
+> > > > 
+> > > > Matt, since the CCS enabling on the igt validation side looks very
+> > > > incomplete I'm leaning very much towards "pls revert, try again".
+> > > > 
+> > > > Cheers, Daniel
+> > > > 
+> > > > > ---
+> > > > >  drivers/gpu/drm/i915/gt/intel_engine_user.c | 13 ++++++++++++-
+> > > > >  drivers/gpu/drm/i915/gt/intel_engine_user.h |  1 +
+> > > > >  drivers/gpu/drm/i915/i915_drm_client.h      |  2 +-
+> > > > >  drivers/gpu/drm/i915/i915_getparam.c        |  2 +-
+> > > > >  include/uapi/drm/i915_drm.h                 | 14 +++-----------
+> > > > >  5 files changed, 18 insertions(+), 14 deletions(-)
+> > > > >
+> > > > > diff --git a/drivers/gpu/drm/i915/gt/intel_engine_user.c b/drivers/gpu/drm/i915/gt/intel_engine_user.c
+> > > > > index 0f6cd96b459f..2d6bd36d6150 100644
+> > > > > --- a/drivers/gpu/drm/i915/gt/intel_engine_user.c
+> > > > > +++ b/drivers/gpu/drm/i915/gt/intel_engine_user.c
+> > > > > @@ -47,7 +47,7 @@ static const u8 uabi_classes[] = {
+> > > > >         [COPY_ENGINE_CLASS] = I915_ENGINE_CLASS_COPY,
+> > > > >         [VIDEO_DECODE_CLASS] = I915_ENGINE_CLASS_VIDEO,
+> > > > >         [VIDEO_ENHANCEMENT_CLASS] = I915_ENGINE_CLASS_VIDEO_ENHANCE,
+> > > > > -       /* TODO: Add COMPUTE_CLASS mapping once ABI is available */
+> > > > > +       [COMPUTE_CLASS] = I915_ENGINE_CLASS_COMPUTE,
+> > > > >  };
+> > > > >
+> > > > >  static int engine_cmp(void *priv, const struct list_head *A,
+> > > > > @@ -306,3 +306,14 @@ unsigned int intel_engines_has_context_isolation(struct drm_i915_private *i915)
+> > > > >
+> > > > >         return which;
+> > > > >  }
+> > > > > +
+> > > > > +bool intel_cross_engine_isolated(struct drm_i915_private *i915)
+> > > > > +{
+> > > > > +       unsigned int which = intel_engines_has_context_isolation(i915);
+> > > > > +
+> > > > > +       if ((which & BIT(I915_ENGINE_CLASS_RENDER)) &&
+> > > > > +           (which & BIT(I915_ENGINE_CLASS_COMPUTE)))
+> > > > > +               return false;
+> > > > > +
+> > > > > +       return !!which;
+> > > > > +}
+> > > > > diff --git a/drivers/gpu/drm/i915/gt/intel_engine_user.h b/drivers/gpu/drm/i915/gt/intel_engine_user.h
+> > > > > index 3dc7e8ab9fbc..ff21349db4d4 100644
+> > > > > --- a/drivers/gpu/drm/i915/gt/intel_engine_user.h
+> > > > > +++ b/drivers/gpu/drm/i915/gt/intel_engine_user.h
+> > > > > @@ -15,6 +15,7 @@ struct intel_engine_cs *
+> > > > >  intel_engine_lookup_user(struct drm_i915_private *i915, u8 class, u8 instance);
+> > > > >
+> > > > >  unsigned int intel_engines_has_context_isolation(struct drm_i915_private *i915);
+> > > > > +bool intel_cross_engine_isolated(struct drm_i915_private *i915);
+> > > > >
+> > > > >  void intel_engine_add_user(struct intel_engine_cs *engine);
+> > > > >  void intel_engines_driver_register(struct drm_i915_private *i915);
+> > > > > diff --git a/drivers/gpu/drm/i915/i915_drm_client.h b/drivers/gpu/drm/i915/i915_drm_client.h
+> > > > > index 5f5b02b01ba0..f796c5e8e060 100644
+> > > > > --- a/drivers/gpu/drm/i915/i915_drm_client.h
+> > > > > +++ b/drivers/gpu/drm/i915/i915_drm_client.h
+> > > > > @@ -13,7 +13,7 @@
+> > > > >
+> > > > >  #include "gt/intel_engine_types.h"
+> > > > >
+> > > > > -#define I915_LAST_UABI_ENGINE_CLASS I915_ENGINE_CLASS_VIDEO_ENHANCE
+> > > > > +#define I915_LAST_UABI_ENGINE_CLASS I915_ENGINE_CLASS_COMPUTE
+> > > > >
+> > > > >  struct drm_i915_private;
+> > > > >
+> > > > > diff --git a/drivers/gpu/drm/i915/i915_getparam.c b/drivers/gpu/drm/i915/i915_getparam.c
+> > > > > index c12a0adefda5..3d5120d2d78a 100644
+> > > > > --- a/drivers/gpu/drm/i915/i915_getparam.c
+> > > > > +++ b/drivers/gpu/drm/i915/i915_getparam.c
+> > > > > @@ -145,7 +145,7 @@ int i915_getparam_ioctl(struct drm_device *dev, void *data,
+> > > > >                 value = 1;
+> > > > >                 break;
+> > > > >         case I915_PARAM_HAS_CONTEXT_ISOLATION:
+> > > > > -               value = intel_engines_has_context_isolation(i915);
+> > > > > +               value = intel_cross_engine_isolated(i915);
+> > > > >                 break;
+> > > > >         case I915_PARAM_SLICE_MASK:
+> > > > >                 value = sseu->slice_mask;
+> > > > > diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+> > > > > index 35ca528803fd..84c0af77cc1f 100644
+> > > > > --- a/include/uapi/drm/i915_drm.h
+> > > > > +++ b/include/uapi/drm/i915_drm.h
+> > > > > @@ -166,6 +166,7 @@ enum drm_i915_gem_engine_class {
+> > > > >         I915_ENGINE_CLASS_COPY          = 1,
+> > > > >         I915_ENGINE_CLASS_VIDEO         = 2,
+> > > > >         I915_ENGINE_CLASS_VIDEO_ENHANCE = 3,
+> > > > > +       I915_ENGINE_CLASS_COMPUTE       = 4,
+> > > > >
+> > > > >         /* should be kept compact */
+> > > > >
+> > > > > @@ -635,17 +636,8 @@ typedef struct drm_i915_irq_wait {
+> > > > >  #define I915_PARAM_HAS_EXEC_FENCE_ARRAY  49
+> > > > >
+> > > > >  /*
+> > > > > - * Query whether every context (both per-file default and user created) is
+> > > > > - * isolated (insofar as HW supports). If this parameter is not true, then
+> > > > > - * freshly created contexts may inherit values from an existing context,
+> > > > > - * rather than default HW values. If true, it also ensures (insofar as HW
+> > > > > - * supports) that all state set by this context will not leak to any other
+> > > > > - * context.
+> > > > > - *
+> > > > > - * As not every engine across every gen support contexts, the returned
+> > > > > - * value reports the support of context isolation for individual engines by
+> > > > > - * returning a bitmask of each engine class set to true if that class supports
+> > > > > - * isolation.
+> > > > > + * Query whether the device can make cross-engine isolation guarantees for
+> > > > > + * all the engines whose default state has been initialised.
+> > > > >   */
+> > > > >  #define I915_PARAM_HAS_CONTEXT_ISOLATION 50
+> > > > >
+> > > > > --
+> > > > > 2.35.1
+> > > > >
+> > > > 
+> > > > 
+> > > > -- 
+> > > > Daniel Vetter
+> > > > Software Engineer, Intel Corporation
+> > > > http://blog.ffwll.ch
+> > > 
+> > > -- 
+> > > Matt Roper
+> > > Graphics Software Engineer
+> > > VTT-OSGC Platform Enablement
+> > > Intel Corporation
+> > > (916) 356-2795
+> > 
+> > -- 
+> > Daniel Vetter
+> > Software Engineer, Intel Corporation
+> > http://blog.ffwll.ch
+> 
+> -- 
+> Matt Roper
+> Graphics Software Engineer
+> VTT-OSGC Platform Enablement
+> Intel Corporation
+> (916) 356-2795
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
