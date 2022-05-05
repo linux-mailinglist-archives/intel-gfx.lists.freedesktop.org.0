@@ -2,33 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EBF251CAD9
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 May 2022 22:59:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8870851CADA
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 May 2022 22:59:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F5A110E1F4;
-	Thu,  5 May 2022 20:59:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A4E1410E27A;
+	Thu,  5 May 2022 20:59:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id DDEDE10E1F4;
- Thu,  5 May 2022 20:59:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 57C2410E27A;
+ Thu,  5 May 2022 20:59:37 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A7CABAADD1;
- Thu,  5 May 2022 20:59:34 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 411D7AADD1;
+ Thu,  5 May 2022 20:59:37 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
-Date: Thu, 05 May 2022 20:59:34 -0000
-Message-ID: <165178437465.7659.6034922746202427080@emeril.freedesktop.org>
+Date: Thu, 05 May 2022 20:59:37 -0000
+Message-ID: <165178437726.7658.5039735762709186618@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20220505193524.276400-1-jose.souza@intel.com>
 In-Reply-To: <20220505193524.276400-1-jose.souza@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5BCI=2C1/7=5D_drm/i915=3A_Drop_has=5F?=
- =?utf-8?q?gt=5Fuc_from_device_info?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?series_starting_with_=5BCI=2C1/7=5D_drm/i915=3A_Drop_has=5Fgt?=
+ =?utf-8?q?=5Fuc_from_device_info?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,20 +54,8 @@ State : warning
 
 == Summary ==
 
-Error: dim checkpatch failed
-56f051d52ffd drm/i915: Drop has_gt_uc from device info
-a717cf4a929c drm/i915: Drop has_rc6 from device info
-1a4866e2ef4f drm/i915: Drop has_reset_engine from device info
-11be45433d96 drm/i915: Drop has_logical_ring_elsq from device info
-2ecbebbec07c drm/i915: Drop has_ddi from device info
--:30: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'dev_priv' - possible side-effects?
-#30: FILE: drivers/gpu/drm/i915/i915_drv.h:1302:
-+#define HAS_DDI(dev_priv)		 (DISPLAY_VER(dev_priv) >= 9 || \
-+					  IS_BROADWELL(dev_priv) || \
-+					  IS_HASWELL(dev_priv))
-
-total: 0 errors, 0 warnings, 1 checks, 38 lines checked
-45ea626789c0 drm/i915: Drop has_dp_mst from device info
-845b08ad5861 drm/i915: Drop has_psr from device info
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
