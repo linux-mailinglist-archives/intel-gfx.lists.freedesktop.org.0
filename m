@@ -1,49 +1,113 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B25FB51C948
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 May 2022 21:34:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7116C51C969
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 May 2022 21:45:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9381810EF90;
-	Thu,  5 May 2022 19:34:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D7C9710E905;
+	Thu,  5 May 2022 19:45:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A7B1110EF7F
- for <intel-gfx@lists.freedesktop.org>; Thu,  5 May 2022 19:34:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1651779288; x=1683315288;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=lA+KJxXURNuI7tsKQeojrr7QtX91oVkcjhxbSVQH99s=;
- b=LCC4GB5Dy3E5Jtz8OHiBjTQg6PRFLHAc+zPvjN8yds9RMRzh/KiCZPpA
- JYjecplgt3lXM8DO+dBLoIRksRfNN10qycaM2YpLfYq/tNI6loO6obCTP
- noDn8fJX/pGTzx+AcgWOlgbrVJIACjmDVWZPX2dgDQ62Xvm1MWhVsh0hx
- TKikyf5ZhwbPBTDyQiUnGKoRXWz0kzbiu8uC45W1+I1z0Zq5KLGfMncrs
- PS2//HSiDT5y4yY0URGFo8GdwEf2LmIi89qv7l589Hir2FIRZuHB3/sVp
- 06YSLSa4hMDV+W08nWagi3f4a4Unlh5++KXZ1Tsb96bvZ2gviNs0dBfZn Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10338"; a="265823136"
-X-IronPort-AV: E=Sophos;i="5.91,203,1647327600"; d="scan'208";a="265823136"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2022 12:34:48 -0700
-X-IronPort-AV: E=Sophos;i="5.91,203,1647327600"; d="scan'208";a="665116701"
-Received: from josouza-mobl2.fso.intel.com ([10.230.18.139])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2022 12:34:47 -0700
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  5 May 2022 12:35:24 -0700
-Message-Id: <20220505193524.276400-7-jose.souza@intel.com>
-X-Mailer: git-send-email 2.36.0
-In-Reply-To: <20220505193524.276400-1-jose.souza@intel.com>
-References: <20220505193524.276400-1-jose.souza@intel.com>
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2058.outbound.protection.outlook.com [40.107.237.58])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3730410E4E3;
+ Thu,  5 May 2022 19:45:00 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=KnyWKpjBD3KWpv6bvEDjFKrxfMrfgyoOFhvLCBXAnPLt7FJ3QuGBdl0WY7yIx7H+swWL3m84QxnanEJGYSDbaJCHLQ8SeydSxsRftLDa7Mh1vs2h8QoiH9lBT7R0szZ+cNscf+InSnjkHxvHcwHzavq0APZT5fHuTGgATB4bSMNtEZJ622+QSHukyM5x4GlbnHhvPQJyvvao/ldHeWqiUPKRljFKHyCjUw+EIqHVRgzDmPBvzKSnP4zx8z4rMBx6dta8hUBxtEcm+6NmpkIJBMHbSWT/F51Ax8w3WWBWA4phClIcm7xNkD7E4rztt+Xjeymar54pTXwAysJNA/3yNw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=7CQ4mu+nuuzsue5+lyoAlF5XG4fLiZCggk13eS7Ce8k=;
+ b=nyDL/PKmAxaBHRpJ1R2Hy0DmjaUVIrPaA4xRVIPTR8YEaTdnf4Sf7Nsr4rGeZ2hem62P8EDAvIA2SPDdIjMgseprThH3Cn5AiQJimfJiOLQCLbyaeEcev6N8+LvZtvQD/QjyaNpzzHta2Wfpd7wmQmn9MHJhzaESEVhreGZ4oeSW3LWodY5VF/deBoQT/eeSqrVC082AKzeRroKcne3sqefxDjP+sKcYSlgWT6zACdvYSyKmx1NnD+RDcTbjMKB/ApwuSC/MI57oEKJaBzPrR60QDK35WHDH/4hQs1b2+Fxwtm9WGTb38BtcM2ik9oTk032XBScMZZAIj4yBRclwlw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=7CQ4mu+nuuzsue5+lyoAlF5XG4fLiZCggk13eS7Ce8k=;
+ b=k/hbLsy+CAugyNFtynF6TeyyRyFFDmAnVUgyVw06dGd2MROtLdWMQCop1+wBjY4QkjH09++6nIzS4GRk/kbsGrrGoDyqfOjI9rc9AHOtQ0cagdcIfD+qghANMT3PcxBLWDMLHPGD4/ZBMjY/VPoIOpec+f64ou+zEZzQ7rpZNG7ChvgWTcdhDxTegV1Nf5q0QMgy6btDjEYRTvg/jfgZqQ92Mwv2jsXtoLWwCL2yTilYmCQn94aUZBKdJv/G94f14drm6lqPAF7IsobGgKVSkSPsg3pxFIrVoTo7HvAS9bDBH+RyKGjqTXTm9ybJ6dU5m7B3iKPGdrxSrks3DiJy+w==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from MN2PR12MB4192.namprd12.prod.outlook.com (2603:10b6:208:1d5::15)
+ by BN9PR12MB5164.namprd12.prod.outlook.com (2603:10b6:408:11d::8)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5206.13; Thu, 5 May
+ 2022 19:44:58 +0000
+Received: from MN2PR12MB4192.namprd12.prod.outlook.com
+ ([fe80::ec2d:9167:1b47:2db2]) by MN2PR12MB4192.namprd12.prod.outlook.com
+ ([fe80::ec2d:9167:1b47:2db2%6]) with mapi id 15.20.5206.027; Thu, 5 May 2022
+ 19:44:58 +0000
+Date: Thu, 5 May 2022 16:44:57 -0300
+From: Jason Gunthorpe <jgg@nvidia.com>
+To: Alex Williamson <alex.williamson@redhat.com>
+Message-ID: <20220505194457.GY49344@nvidia.com>
+References: <0-v3-e131a9b6b467+14b6-vfio_mdev_no_group_jgg@nvidia.com>
+ <20220504174926.GA88353@nvidia.com>
+ <20220505125614.0f927782.alex.williamson@redhat.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220505125614.0f927782.alex.williamson@redhat.com>
+X-ClientProxiedBy: BL1P222CA0013.NAMP222.PROD.OUTLOOK.COM
+ (2603:10b6:208:2c7::18) To MN2PR12MB4192.namprd12.prod.outlook.com
+ (2603:10b6:208:1d5::15)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH CI 7/7] drm/i915: Drop has_psr from device info
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 28554fdc-836c-44f7-0a7f-08da2ecfbc71
+X-MS-TrafficTypeDiagnostic: BN9PR12MB5164:EE_
+X-Microsoft-Antispam-PRVS: <BN9PR12MB516483C5B8693DB9D99EEEDAC2C29@BN9PR12MB5164.namprd12.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: aWNQEwzlYyNmx8VJzcpvRp6aprc9ZW3h1OAQbswTZRYVzMxdPP1oGzN4BTBO35h3ho/ek4bCAifVdSOFSrl3A/Um1TvwJMjuOjeTDjrddUVNQsgbMfPY2tPssIbcq8sPMGdJRac31QagGKBtAM/nZ4U2wZJfagP0j2DifhdMKVeUgRIFibvi8CYRGqKiESbPio2BHzogyt6vrtSz1SnTEkiThA7QMJ44HMFBbJeRd0GvFIHFfMc43OwpxW/1m0OsEAaDH7bN7rP5OBy22tjddkHYKGApE9tjGbT8tz68AxI8ePld95ZprRLR+6u0TJ/qszUbkxcZoXV79HLjd1DH4HhN4o2crE5HQzlWY/QQVePv6fDfkkpw4XJGbnMTMpKWNsF6y5fTppMgfEThjyh4LbVEKL2uIOBNvQzfBTM9/mBfKLU7tt/ep04lYWrePqCkZX46dbv0FphWCYpzuZvaJSJapHmfrq9hbu5RM4iyhDpQcmeuKY4PM/L/+mn6BIbN32jbjJv/V9CkWjhbHEBemxtMo02tImtLoEgDgNqL/2ep78pXrNqY6X92M0uN4bFpkZUqyLRl8TZc5pjl5QAHgrrSSYfwIa0TqIk+byKG6tXJagEO7CTGI6kAIyOqZFNWXVZMirKyh0hIEG/4fjfDk06vmy3R/QXb+qOCBE/YzDfiPUVEshhbc2E5fHVmqJEyn+i0OgTn8W/b7PDT1EsSDJF6SGQ2FPHOlCO8SVx+mFJyaRjdIlRgolSddj1dJgFKOcbdqSWo5pcnkeryXXxT/g==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN2PR12MB4192.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230001)(4636009)(366004)(54906003)(86362001)(38100700002)(6916009)(2616005)(6512007)(33656002)(1076003)(26005)(4326008)(66946007)(66556008)(66476007)(8676002)(316002)(83380400001)(6506007)(5660300002)(186003)(508600001)(8936002)(2906002)(966005)(6486002)(36756003)(7416002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?kMQ/+2UGcWiclEcrukBpWupRFp6ueOHrjDMce8DLmjh7GnLd561t37kwUG26?=
+ =?us-ascii?Q?eWeRUKckE4mSJESr9lcwskyehJFjwjDPl51/57jJXJhPivUqu2eP1UjH4mIY?=
+ =?us-ascii?Q?LnJEfIyF6VOgh/kKf5OvSl5sq8FNe4Zhue9WG7sSC3HbJoh1AYmqw64cJFZC?=
+ =?us-ascii?Q?Pgl0i9u1f0SwVEdki6y8LO2K6YCyekY50UQoYa1cZOc4bBMqOcd47slSnGaG?=
+ =?us-ascii?Q?ps/JpTWMJ0pltfN0bUNm/gvYo/pUBB/FPaIQbMGJ74J1sTjEYEPKr7jgBNxf?=
+ =?us-ascii?Q?OynSmIVkDNo9I5P0RWiK590HnvPmfn5CmjSzcyBwxOAyAJEyIjFSHsCVAUlO?=
+ =?us-ascii?Q?4Fyth7qTrA98qQnD7W0LmnpkJFFJn52CepfEyUutYQFk5/roti81RY3VWbWf?=
+ =?us-ascii?Q?XdGpdgc8xCZ4CCl7BQpc/5BKS5dK9M6ZW7P+uR3WzLg5LOzg3WiMHpbfZ28Z?=
+ =?us-ascii?Q?z9Q/MbikB0CfbhaYE1AYdWzm7+Vvj3pD+gNLoyVdguh748ZH2oVD1Jr2jtPd?=
+ =?us-ascii?Q?wO0crqHHZu66bwE3/sF4f4Mz2vPdQbtAh73vgl9d7EpgoUI5DGJAB2YByAUX?=
+ =?us-ascii?Q?hmZVJ51tUjbkMeUQq/LQz3e1FKYhGKaCagvsGuOMYIeOB490iLo0zP1vEQ11?=
+ =?us-ascii?Q?6+9FeETQIE7FuIl8QQg9EYDsXXZX3vku1WsCgmnsehF2IvWi9Qukea5rPS+S?=
+ =?us-ascii?Q?bUeee0UAAB2OK4y/ZCg5ZJq0c+GBi81RAMCzbPlqZTsPoMvz1avBd8etI4e+?=
+ =?us-ascii?Q?Fs8IDGjnbHewJHpit20LKwM17W4A/kYUkrvilENcjIbYMiOhFRFfwnbQGUBH?=
+ =?us-ascii?Q?YWna8I5/AAjOl22t1ec3X+ElD4RchXcl7vDnOyURX8crzYhqWdsweYs1U3YS?=
+ =?us-ascii?Q?aGLC1sraMg2bPDHGyARBnf2UTohcbxp+16dQi2CLrKvwiQYp464fAakrUOP/?=
+ =?us-ascii?Q?nWPYLL4tHpHhlBQB6A6eT8OmN6uJqqYdh5thmCI+gxMj6DzjuxEBZ//37d8j?=
+ =?us-ascii?Q?u3oCwBcaP4p4PLQ2VWp3dnicy+x+mrHmthMQJ8pwHkb0aFL3CtYfXk1i7/65?=
+ =?us-ascii?Q?G4Ea31SFgIuB0HLI9dXsNQ91MTgRAU3UjuxUzE/yaXSI/vywmgW4zrXCoWfn?=
+ =?us-ascii?Q?2h68cwljNS0w1Exe4xe0ryn9z3md9Ip3jl1kSU0dp2yLlrDLzC2bY4k3357z?=
+ =?us-ascii?Q?MomCOrW6/67yvEismRYUr+5L6n1k/ryXNTCRiZtKULZo3Z0V3JcMpMxD03Sj?=
+ =?us-ascii?Q?KN57VsFD9tW93bBNyBVViPoxnOI0ajKmc78vNCMR7L6uCN1NdLeliue30VXm?=
+ =?us-ascii?Q?ulrXSAji+k5vtS6ZqaPr/GzRkzaj92Bgifvx44EibYT8sO1MshTQdzqOAzm4?=
+ =?us-ascii?Q?Q+AlsB2wHFRIdL/C4j8TgIrzRvDnBbrbZ5KDi32ueFblUMEF4CJgIaWv/SWT?=
+ =?us-ascii?Q?hjuwgMLHF+kQFe+DnnMMb9v8fqv32Z/WbJvAuvwYuQkA3/4UUbek1iPnLicy?=
+ =?us-ascii?Q?2nDZyO///MbRIrJfFqtqHirSn0SMgS1aI3pwV9cdym4T52bHDvZERXXBo+gD?=
+ =?us-ascii?Q?M/u4URDhO7urhsH4XyOG8JPjytiDNd/kHPxn9bqCR1FXuX4p3kNisCwaZtsb?=
+ =?us-ascii?Q?80WCRWHpINTEATJQ1dpPgMKifCIqU9ThVV3urtdjvcTZdwbGs2iyPUPfSYh+?=
+ =?us-ascii?Q?NpPrCGEwO/4qDB+2ShYEV+BpKih+9Z6eR+yM5IpzmgjJulecD/DjKui+QS5s?=
+ =?us-ascii?Q?RQflRD9vRQ=3D=3D?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 28554fdc-836c-44f7-0a7f-08da2ecfbc71
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB4192.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 May 2022 19:44:58.3166 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Ykf4zU114SRiAQy855O28Aq5B1KYAL+yQB9N6f0gOC/FNc6fIAQ31pIH6yx4A+S3
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR12MB5164
+Subject: Re: [Intel-gfx] [PATCH v3 0/7] Make the rest of the VFIO driver
+ interface use vfio_device
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,78 +120,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Tony Krowiak <akrowiak@linux.ibm.com>,
+ "Jason J. Herne" <jjherne@linux.ibm.com>, Eric Farman <farman@linux.ibm.com>,
+ "Liu, Yi L" <yi.l.liu@intel.com>, kvm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
+ Christoph Hellwig <hch@lst.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-No need to have this parameter in intel_device_info struct
-as all platforms with display version 9 or newer has this feature.
+On Thu, May 05, 2022 at 12:56:14PM -0600, Alex Williamson wrote:
 
-As a side effect of the of removal this flag, it will not be printed
-in dmesg during driver load anymore and developers will have to rely
-on to check the macro and compare with platform being used and IP
-versions of it.
+> I wasn't cc'd on that version.  It looks to me like we'd still prefer
+> to see acks from GVT-g maintainers, Zhenyu and Zhi.
 
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
----
- drivers/gpu/drm/i915/i915_drv.h          | 2 +-
- drivers/gpu/drm/i915/i915_pci.c          | 3 ---
- drivers/gpu/drm/i915/intel_device_info.h | 1 -
- 3 files changed, 1 insertion(+), 5 deletions(-)
+Somehow the entire To line got wiped out, still unclear why. Maybe
+get_maintainers had a bad time. I'm watching for this now
 
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index af840fbd6c33c..bd0a9b5fc53f4 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -1302,7 +1302,7 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
- 					  IS_HASWELL(dev_priv))
- #define HAS_DP_MST(dev_priv)		 (HAS_DDI(dev_priv))
- #define HAS_FPGA_DBG_UNCLAIMED(dev_priv) (INTEL_INFO(dev_priv)->display.has_fpga_dbg)
--#define HAS_PSR(dev_priv)		 (INTEL_INFO(dev_priv)->display.has_psr)
-+#define HAS_PSR(dev_priv)		 (DISPLAY_VER(dev_priv) >= 9)
- #define HAS_PSR_HW_TRACKING(dev_priv) \
- 	(INTEL_INFO(dev_priv)->display.has_psr_hw_tracking)
- #define HAS_PSR2_SEL_FETCH(dev_priv)	 (DISPLAY_VER(dev_priv) >= 12)
-diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-index 3c4ce836bb99a..799573a5e5a6f 100644
---- a/drivers/gpu/drm/i915/i915_pci.c
-+++ b/drivers/gpu/drm/i915/i915_pci.c
-@@ -635,7 +635,6 @@ static const struct intel_device_info chv_info = {
- 	.display.has_dmc = 1, \
- 	.display.has_hdcp = 1, \
- 	.display.has_ipc = 1, \
--	.display.has_psr = 1, \
- 	.display.has_psr_hw_tracking = 1, \
- 	.dbuf.size = 896 - 4, /* 4 blocks for bypass path allocation */ \
- 	.dbuf.slice_mask = BIT(DBUF_S1)
-@@ -684,7 +683,6 @@ static const struct intel_device_info skl_gt4_info = {
- 	.display.has_fpga_dbg = 1, \
- 	.display.fbc_mask = BIT(INTEL_FBC_A), \
- 	.display.has_hdcp = 1, \
--	.display.has_psr = 1, \
- 	.display.has_psr_hw_tracking = 1, \
- 	.has_runtime_pm = 1, \
- 	.display.has_dmc = 1, \
-@@ -936,7 +934,6 @@ static const struct intel_device_info adl_s_info = {
- 	.display.has_hdcp = 1,							\
- 	.display.has_hotplug = 1,						\
- 	.display.has_ipc = 1,							\
--	.display.has_psr = 1,							\
- 	.display.ver = 13,							\
- 	.display.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D),	\
- 	.pipe_offsets = {							\
-diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
-index 7fb90f6c43b78..a2e53b8683285 100644
---- a/drivers/gpu/drm/i915/intel_device_info.h
-+++ b/drivers/gpu/drm/i915/intel_device_info.h
-@@ -177,7 +177,6 @@ enum intel_ppgtt_type {
- 	func(has_ipc); \
- 	func(has_modular_fia); \
- 	func(has_overlay); \
--	func(has_psr); \
- 	func(has_psr_hw_tracking); \
- 	func(overlay_needs_physical); \
- 	func(supports_tv);
--- 
-2.36.0
+> Also, I was thinking of posting the below cleanup patch unless you'd
+> prefer to roll it in.
 
+If it is the style, I will roll it in
+
+> Regarding your other outstanding patches, I think all of these depend
+> on the IOMMU changes, please correct if there are any that can be
+> queued with only the GVT-g topic branch dependency:
+> 
+> Subject: [PATCH v3 0/8] Remove vfio_group from the struct file facing VFIO API
+> Date: Wed,  4 May 2022 16:14:38 -0300
+> https://lore.kernel.org/all/0-v3-f7729924a7ea+25e33-vfio_kvm_no_group_jgg@nvidia.com/
+
+This one applies cleanly without the iommu series, I just confirmed it.
+ 
+> Subject: [PATCH] vfio: Delete container_q
+> Date: Fri, 29 Apr 2022 15:46:17 -0300
+> https://lore.kernel.org/all/0-v1-a1e8791d795b+6b-vfio_container_q_jgg@nvidia.com/
+
+This one needs the iommu series
+
+> And I'm waiting for a respin based on comments for:
+> 
+> Subject: [PATCH v3 0/2] Remove vfio_device_get_from_dev()
+> Date: Wed,  4 May 2022 16:01:46 -0300
+> https://lore.kernel.org/all/0-v3-4adf6c1b8e7c+170-vfio_get_from_dev_jgg@nvidia.com/
+
+I will do this in a few hours hopefully
+
+> If there are others I should be tracking, please let me know.  Thanks,
+
+Nothing more for your tree, but FYI:
+
+The enforced coherent series is going through Joerg's tree
+https://lore.kernel.org/linux-iommu/0-v3-2cf356649677+a32-intel_no_snoop_jgg@nvidia.com/
+
+The bug fix for the iommu series is pending Joerg:
+https://lore.kernel.org/linux-iommu/0-v2-f62259511ac0+6-iommu_dma_block_jgg@nvidia.com/
+
+I've got one more series to post which just needs a last pass over
+now, maybe today, but that is looking grim again.
+
+It is alot of series, it is hard to keep all this organized, thanks.
+
+Jason
