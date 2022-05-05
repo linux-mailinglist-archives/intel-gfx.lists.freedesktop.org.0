@@ -1,58 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 471A251C28C
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 May 2022 16:27:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC3CC51C29F
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 May 2022 16:32:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F3DDC10E3C7;
-	Thu,  5 May 2022 14:27:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 889FD10E37F;
+	Thu,  5 May 2022 14:32:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 09B5A10E3C7
- for <intel-gfx@lists.freedesktop.org>; Thu,  5 May 2022 14:27:02 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4766910E37F;
+ Thu,  5 May 2022 14:32:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1651760823; x=1683296823;
+ t=1651761164; x=1683297164;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=4nWVE//FVrpr6PM9C2U+6wa2A7S+nWToOi0u2RqnJGU=;
- b=XxsAbWfnkj+uj3omK3ga6YKSI5paBkm90Mg+UU/05hheT0l7ZCxyF5xF
- NQyqlCWGX+ktdrI8U45+M1okLVyfCtv5eOeHqXQmG456SKSqzZx6DWwtj
- hNWE0ta1zyZDGy8/FpTTvLzKNcNcFxjT1A9YuwzYOn9o8JdfwDNiPnBsq
- pt7bPECuw8a2JuwCB5g/gx3ZMvsn8sDKtzGIfha7Bo8W5pDmxuwHqPOKS
- d2Q8lCMG096aTq43xYhI8O+TllqMIhMnYTgIrfnJNBKRp9Weq3PUkxCNo
- t056lGtVIIf2U5kGLI7LhH/J6UIRUlGmUDZTIihnXXEG7Huz9M0D1sXRa g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10338"; a="268272552"
-X-IronPort-AV: E=Sophos;i="5.91,201,1647327600"; d="scan'208";a="268272552"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2022 07:27:02 -0700
+ bh=1+9JQdzrsHYQrBsDqJEgyu551lUE2oP9pxLpL0lHNqY=;
+ b=WobFeK1pggH/wQgkw/8UqXqyzHJyuYAKGX09CSTQ7AlVKw2CEDIMj76L
+ P+ROmZ62l/3I8iKxerhyX+kkyaqQo5hbVjLn684BdvUqat1ADx2m/K7WC
+ 72xEEf0cKzzdD6VWnQSC3wY/qZfvIWd0O/CCqcqCkzNnQ5C+7MhYeMlq1
+ 6oUA4ANsRit55jOAgCC8DaIw6KJ+bi1e4nG8mIYhn0OaBDnoXv4+w9Krk
+ Sk6rhFpV8DYyFpvecE2N9zbgt5L9TUYmnx2e9AVhP+jfIebUZEZZHEjaf
+ aeUpEIB+VYRk6ymwSGU/Fh1T/EhGQGm21ZAcYJLQ7JHHYZUf+qBi+WTfZ Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10338"; a="267723574"
+X-IronPort-AV: E=Sophos;i="5.91,201,1647327600"; d="scan'208";a="267723574"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 May 2022 07:32:15 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,201,1647327600"; d="scan'208";a="621312264"
+X-IronPort-AV: E=Sophos;i="5.91,201,1647327600"; d="scan'208";a="664986100"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.51])
- by fmsmga008.fm.intel.com with SMTP; 05 May 2022 07:27:00 -0700
+ by fmsmga002.fm.intel.com with SMTP; 05 May 2022 07:32:13 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 05 May 2022 17:26:59 +0300
-Date: Thu, 5 May 2022 17:26:59 +0300
+ Thu, 05 May 2022 17:32:12 +0300
+Date: Thu, 5 May 2022 17:32:12 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Murthy, Arun R" <arun.r.murthy@intel.com>
-Message-ID: <YnPes/sz/l/MmnW0@intel.com>
-References: <20220426120407.1334318-1-arun.r.murthy@intel.com>
- <Ymg2uBjovjgVAyC5@intel.com>
- <DM6PR11MB317721EBFA40865B0898F40ABAFA9@DM6PR11MB3177.namprd11.prod.outlook.com>
- <Ymkv9sCuA9SwUIvj@intel.com>
- <DM6PR11MB3177FDCC1F636934C2650DFBBAFD9@DM6PR11MB3177.namprd11.prod.outlook.com>
- <DM6PR11MB3177F94FBFC7A99A1BD4A2EFBAC29@DM6PR11MB3177.namprd11.prod.outlook.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <YnPf7MGru3oM/+do@intel.com>
+References: <a137d2e272ad1eac5b286784008a4baf91bc2799.1651569697.git.jani.nikula@intel.com>
+ <20220505105242.1198521-1-jani.nikula@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <DM6PR11MB3177F94FBFC7A99A1BD4A2EFBAC29@DM6PR11MB3177.namprd11.prod.outlook.com>
+In-Reply-To: <20220505105242.1198521-1-jani.nikula@intel.com>
 X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Support Async Flip on Linear
- buffers
+Subject: Re: [Intel-gfx] [PATCH v3] drm/edid: detect color formats and CTA
+ revision in all CTA extensions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,28 +61,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, May 05, 2022 at 06:33:46AM +0000, Murthy, Arun R wrote:
-> > > There is that GTT alignment restriction that should be mentioned
-> > > somewhere. Can't quite remember where it was, maybe in PLANE_SURF.
-> > >
-> > I checked the BSpec, and don't find anything as such specific for Async flip.
-> > I also cross verified with the hardware team.
-> > 
-> > > But I guess the bigger question is what is the actual use case for this?
-> > This feature is a requirement for TGL.
+On Thu, May 05, 2022 at 01:52:42PM +0300, Jani Nikula wrote:
+> Convert drm_find_cea_extension() to EDID block iterator in color format
+> and CTA revision detection. Detect them in all CTA extensions.
 > 
-> Can I have your Reviewed-by for this patch?
+> Also parse CTA Data Blocks in DisplayID even if there's no CTA EDID
+> extension.
+> 
+> v2:
+> - Don't assume DRM_COLOR_FORMAT_RGB444 support if there's only DisplayID
+>   CTA Data Blocks (Ville)
+> 
+> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-You didn't find the GTT alignment restriction yet which to me syas you
-didn't really look hard enough.
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-And you haven't answered what the actual use case for this is.
-
-We also have no tests for this AFAICS.
+> ---
+>  drivers/gpu/drm/drm_edid.c | 21 +++++++++++++--------
+>  1 file changed, 13 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
+> index 3b18a6e501df..8d737322145c 100644
+> --- a/drivers/gpu/drm/drm_edid.c
+> +++ b/drivers/gpu/drm/drm_edid.c
+> @@ -5447,26 +5447,31 @@ static void drm_parse_cea_ext(struct drm_connector *connector,
+>  			      const struct edid *edid)
+>  {
+>  	struct drm_display_info *info = &connector->display_info;
+> +	struct drm_edid_iter edid_iter;
+>  	const struct cea_db *db;
+>  	struct cea_db_iter iter;
+>  	const u8 *edid_ext;
+>  
+> -	edid_ext = drm_find_cea_extension(edid);
+> -	if (!edid_ext)
+> -		return;
+> +	drm_edid_iter_begin(edid, &edid_iter);
+> +	drm_edid_iter_for_each(edid_ext, &edid_iter) {
+> +		if (edid_ext[0] != CEA_EXT)
+> +			continue;
+>  
+> -	info->cea_rev = edid_ext[1];
+> +		if (!info->cea_rev)
+> +			info->cea_rev = edid_ext[1];
+>  
+> -	/* The existence of a CEA block should imply RGB support */
+> -	info->color_formats = DRM_COLOR_FORMAT_RGB444;
+> +		if (info->cea_rev != edid_ext[1])
+> +			DRM_DEBUG_KMS("CEA extension version mismatch %u != %u\n",
+> +				      info->cea_rev, edid_ext[1]);
+>  
+> -	/* CTA DisplayID Data Block does not have byte #3 */
+> -	if (edid_ext[0] == CEA_EXT) {
+> +		/* The existence of a CTA extension should imply RGB support */
+> +		info->color_formats = DRM_COLOR_FORMAT_RGB444;
+>  		if (edid_ext[3] & EDID_CEA_YCRCB444)
+>  			info->color_formats |= DRM_COLOR_FORMAT_YCBCR444;
+>  		if (edid_ext[3] & EDID_CEA_YCRCB422)
+>  			info->color_formats |= DRM_COLOR_FORMAT_YCBCR422;
+>  	}
+> +	drm_edid_iter_end(&edid_iter);
+>  
+>  	cea_db_iter_edid_begin(edid, &iter);
+>  	cea_db_iter_for_each(db, &iter) {
+> -- 
+> 2.30.2
 
 -- 
 Ville Syrjälä
