@@ -1,55 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE8C851BEF6
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 May 2022 14:13:10 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E518F51BF35
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 May 2022 14:23:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E25E10FDA0;
-	Thu,  5 May 2022 12:13:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F221910E15B;
+	Thu,  5 May 2022 12:23:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7500E10FD93;
- Thu,  5 May 2022 12:13:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1651752785; x=1683288785;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=IcVNuSM0HtFS1IeizY68qLnpo68xvwjuLdweqiApt2M=;
- b=QzyUdcTtTSRhAbJRMujTENM/u+a5Q7suSf64ZYVbb3er3eNMGe+gZadJ
- ZtUhvSst2dWr1v7fAniZq7jl/d620W3X0DeY4Pgusj45MLMQAg26QzCt3
- yoywLUFH/wxFO/s6yr8ZjKCI2+g0s8xs9DVU9dqboY8E35ieANrCqLtDu
- xcrv9FOW4YaYX2SGWc5cDp35F1hxEPjq50oUs9HOmvBhgtZVSQuQ9THp9
- 5iuj5k0QO9q6wN3CEhmbvJah1ro0jkf6vKmlFmuerU45nfmAmV8gkSU9u
- A73ZAbM8aC+6UrBKUaDq+l0HUFxM6Gfhk1EJiQD4pTgiqvqxwNj2cfEjR Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10337"; a="265684929"
-X-IronPort-AV: E=Sophos;i="5.91,201,1647327600"; d="scan'208";a="265684929"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2022 05:13:04 -0700
-X-IronPort-AV: E=Sophos;i="5.91,201,1647327600"; d="scan'208";a="517482123"
-Received: from mrbroom-mobl.ger.corp.intel.com (HELO [10.213.206.41])
- ([10.213.206.41])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2022 05:13:03 -0700
-Message-ID: <de063b19-e5f6-342b-d816-c112c446a68f@linux.intel.com>
-Date: Thu, 5 May 2022 13:13:01 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D92F210E0A7;
+ Thu,  5 May 2022 12:23:28 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id D8925A00FD;
+ Thu,  5 May 2022 12:23:28 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Content-Language: en-US
-To: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-References: <20220505054010.21879-1-vinay.belgaumkar@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20220505054010.21879-1-vinay.belgaumkar@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/guc/slpc: Use non-blocking H2G for
- waitboost
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Thu, 05 May 2022 12:23:28 -0000
+Message-ID: <165175340885.7659.10408984298241651612@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <cover.1651569697.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1651569697.git.jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/edid=3A_CEA_data_block_iterators=2C_and_more_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,107 +40,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
-On 05/05/2022 06:40, Vinay Belgaumkar wrote:
-> SLPC min/max frequency updates require H2G calls. We are seeing
-> timeouts when GuC channel is backed up and it is unable to respond
-> in a timely fashion causing warnings and affecting CI.
+Series: drm/edid: CEA data block iterators, and more (rev4)
+URL   : https://patchwork.freedesktop.org/series/102703/
+State : warning
 
-Is it the "Unable to force min freq" error? Do you have a link to the 
-GitLab issue to add to commit message?
+== Summary ==
 
-> This is seen when waitboosting happens during a stress test.
-> this patch updates the waitboost path to use a non-blocking
-> H2G call instead, which returns as soon as the message is
-> successfully transmitted.
+Error: dim checkpatch failed
+fe31b8863c44 drm/edid: reset display info in drm_add_edid_modes() for NULL edid
+39c77f38058d drm/edid: check for HF-SCDB block
+8a69009ae79e drm/edid: rename HDMI Forum VSDB to SCDS
+-:103: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#103: FILE: drivers/gpu/drm/drm_edid.c:5207:
++			hdmi_dsc->total_chunk_kbytes = hf_scds[13] & DRM_EDID_DSC_TOTAL_CHUNK_KBYTES;
 
-AFAIU with this approach, when CT channel is congested, you instead 
-achieve silent dropping of the waitboost request, right?
+total: 0 errors, 1 warnings, 0 checks, 103 lines checked
+49da01f0ed8d drm/edid: clean up CTA data block tag definitions
+f04e1aa0bd2c drm/edid: add iterator for EDID base and extension blocks
+-:62: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#62: FILE: drivers/gpu/drm/drm_edid.c:1642:
++#define drm_edid_iter_for_each(__block, __iter)			\
++	while (((__block) = __drm_edid_iter_next(__iter)))
 
-It sounds like a potentially important feedback from the field to lose 
-so easily. How about you added drm_notice to the worker when it fails?
+total: 1 errors, 0 warnings, 0 checks, 54 lines checked
+cbc4981236d3 drm/edid: add iterator for CTA data blocks
+-:229: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#229: FILE: drivers/gpu/drm/drm_edid.c:4579:
++#define cea_db_iter_for_each(__db, __iter) \
++	while (((__db) = __cea_db_iter_next(__iter)))
 
-Or simply a "one line patch" to replace i915_probe_error (!?) with 
-drm_notice and keep the blocking behavior. (I have no idea what is the 
-typical time to drain the CT buffer, and so to decide whether waiting or 
-dropping makes more sense for effectiveness of waitboosting.)
+total: 1 errors, 0 warnings, 0 checks, 220 lines checked
+c72627579501 drm/edid: clean up cea_db_is_*() functions
+903a8909d92a drm/edid: convert add_cea_modes() to use cea db iter
+461e615f4e9d drm/edid: convert drm_edid_to_speaker_allocation() to use cea db iter
+698df3348a3f drm/edid: convert drm_edid_to_sad() to use cea db iter
+b15f1602d640 drm/edid: convert drm_detect_hdmi_monitor() to use cea db iter
+c0126566d38d drm/edid: convert drm_detect_monitor_audio() to use cea db iter
+5a6cd0d012cd drm/edid: convert drm_parse_cea_ext() to use cea db iter
+92fad37e90ba drm/edid: convert drm_edid_to_eld() to use cea db iter
+68f011828dda drm/edid: sunset the old unused cea data block iterators
+db54ca9aa208 drm/edid: restore some type safety to cea_db_*() functions
+00538c86c458 drm/edid: detect basic audio in all CEA extensions
+4fc9a9dbcabd drm/edid: detect color formats and CTA revision in all CTA extensions
+e8a93157bd66 drm/edid: skip CTA extension scan in drm_edid_to_eld() just for CTA rev
+5e689ae0ae0e drm/edid: sunset drm_find_cea_extension()
 
-Or since the congestion /should not/ happen in production, then the 
-argument is why complicate with more code, in which case going with one 
-line patch is an easy way forward?
 
-Regards,
-
-Tvrtko
-
-> Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-> ---
->   drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c | 38 ++++++++++++++++-----
->   1 file changed, 30 insertions(+), 8 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
-> index 1db833da42df..c852f73cf521 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
-> @@ -98,6 +98,30 @@ static u32 slpc_get_state(struct intel_guc_slpc *slpc)
->   	return data->header.global_state;
->   }
->   
-> +static int guc_action_slpc_set_param_nb(struct intel_guc *guc, u8 id, u32 value)
-> +{
-> +	u32 request[] = {
-> +		GUC_ACTION_HOST2GUC_PC_SLPC_REQUEST,
-> +		SLPC_EVENT(SLPC_EVENT_PARAMETER_SET, 2),
-> +		id,
-> +		value,
-> +	};
-> +	int ret;
-> +
-> +	ret = intel_guc_send_nb(guc, request, ARRAY_SIZE(request), 0);
-> +
-> +	return ret > 0 ? -EPROTO : ret;
-> +}
-> +
-> +static int slpc_set_param_nb(struct intel_guc_slpc *slpc, u8 id, u32 value)
-> +{
-> +	struct intel_guc *guc = slpc_to_guc(slpc);
-> +
-> +	GEM_BUG_ON(id >= SLPC_MAX_PARAM);
-> +
-> +	return guc_action_slpc_set_param_nb(guc, id, value);
-> +}
-> +
->   static int guc_action_slpc_set_param(struct intel_guc *guc, u8 id, u32 value)
->   {
->   	u32 request[] = {
-> @@ -208,12 +232,10 @@ static int slpc_force_min_freq(struct intel_guc_slpc *slpc, u32 freq)
->   	 */
->   
->   	with_intel_runtime_pm(&i915->runtime_pm, wakeref) {
-> -		ret = slpc_set_param(slpc,
-> -				     SLPC_PARAM_GLOBAL_MIN_GT_UNSLICE_FREQ_MHZ,
-> -				     freq);
-> -		if (ret)
-> -			i915_probe_error(i915, "Unable to force min freq to %u: %d",
-> -					 freq, ret);
-> +		/* Non-blocking request will avoid stalls */
-> +		ret = slpc_set_param_nb(slpc,
-> +					SLPC_PARAM_GLOBAL_MIN_GT_UNSLICE_FREQ_MHZ,
-> +					freq);
->   	}
->   
->   	return ret;
-> @@ -231,8 +253,8 @@ static void slpc_boost_work(struct work_struct *work)
->   	 */
->   	mutex_lock(&slpc->lock);
->   	if (atomic_read(&slpc->num_waiters)) {
-> -		slpc_force_min_freq(slpc, slpc->boost_freq);
-> -		slpc->num_boosts++;
-> +		if (!slpc_force_min_freq(slpc, slpc->boost_freq))
-> +			slpc->num_boosts++;
->   	}
->   	mutex_unlock(&slpc->lock);
->   }
