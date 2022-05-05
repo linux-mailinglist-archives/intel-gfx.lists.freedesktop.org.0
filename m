@@ -2,69 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0190651C46B
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 May 2022 17:59:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E324A51C4A6
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 May 2022 18:06:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4627610E382;
-	Thu,  5 May 2022 15:59:11 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E094E10E24F
- for <intel-gfx@lists.freedesktop.org>; Thu,  5 May 2022 15:59:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D3AB10E7BD;
+	Thu,  5 May 2022 16:06:31 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA7A310E7BA;
+ Thu,  5 May 2022 16:06:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1651766349; x=1683302349;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-id:content-transfer-encoding: mime-version;
- bh=GH+NEpI+TLuRy/7nTUlrlOu67DUuXcPp/FAwxcNrngY=;
- b=Kk08mMP94aS3V7J/OasicaRoqNWrHKNJWn+zXfqMhMrargm2bLf00bfA
- L8ssNNZAcKRbJT1A7Cd71qo+MHKGb+aNEhaxgbmntOgejudKUrPjzS0ov
- Upsi0q/FjlEmG+5BxY7wOOSNJY5it+8MIsywAUk5+z4ZKifiDCJ0rv3gt
- Vs7uN8AtMjWZL7xF8zDWHSRz03K8SLNBjXi1JKIU/TOIO6YlZuuXJFUTB
- mq7c9iwRsYjvuraaSIvM7e4vR0TFMtkMz5hIu15u18zQCUYoTsj6+v05n
- etQcYRrSjKOLJ1JrCIE1S1ofbc1bbJTRadMBG8+WX1bg7VyqqrwsWovP/ A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10338"; a="268309217"
-X-IronPort-AV: E=Sophos;i="5.91,201,1647327600"; d="scan'208";a="268309217"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2022 08:57:22 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,201,1647327600"; d="scan'208";a="537401145"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orsmga006.jf.intel.com with ESMTP; 05 May 2022 08:57:21 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Thu, 5 May 2022 08:57:21 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Thu, 5 May 2022 08:57:21 -0700
-Received: from fmsmsx612.amr.corp.intel.com ([10.18.126.92]) by
- fmsmsx612.amr.corp.intel.com ([10.18.126.92]) with mapi id 15.01.2308.027;
- Thu, 5 May 2022 08:57:20 -0700
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>
-Thread-Topic: [Intel-gfx] [PATCH 01/12] drm/i915: Drop IPC from display 13 and
- newer
-Thread-Index: AQHYX+orUiTiYm8IfEK4LRHkLeajuq0Psr0AgAE0oIA=
-Date: Thu, 5 May 2022 15:57:20 +0000
-Message-ID: <3df0b7296b8c41c0d4d2f139175a0f4a34190744.camel@intel.com>
-References: <20220504190756.466270-1-jose.souza@intel.com>
- <YnLxMP3Evf8KmA0K@intel.com>
-In-Reply-To: <YnLxMP3Evf8KmA0K@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.100]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <745B249A72D6A74A8C27C175EE97EF33@intel.com>
-Content-Transfer-Encoding: base64
+ t=1651766790; x=1683302790;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=X5FQClVCDL4nLxf6aqXkmO7l6uoGKMf9bv2PVQvppsU=;
+ b=NwY/t04mj9R42uKnmZH4OK/uRFfXDbmAvT/FOukESU4bAjDT+H/q3D24
+ 9qdRlHiQEoX4IBxyTQpO7ikHWnEsB/w+AW2akT62HWYuGWdWV/rLlJDdy
+ +dqEg5kojvgndx35nmwo2tMUY1Kk/Vg0xt0TqaznaEHxcK59th/HkPII9
+ 7TGudG4r0b1l54rfGHO0j8FmqLV5oKt+Bj6QPdjvBVMtandCDy72qxGy4
+ vWkyfG03b7AnaRPo0toigebI4Ybqfw8ioMchcGI3lSq/G8SawXRR7n/3M
+ au/8M2kq1PFYpv+xcgO4KgrQ06Ek4E5kAxmsnb/ZI8Sp6uWldbYCoxTCj g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10338"; a="268055257"
+X-IronPort-AV: E=Sophos;i="5.91,201,1647327600"; d="scan'208";a="268055257"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 May 2022 09:05:21 -0700
+X-IronPort-AV: E=Sophos;i="5.91,201,1647327600"; d="scan'208";a="654284462"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 May 2022 09:05:21 -0700
+Date: Thu, 5 May 2022 09:05:19 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Message-ID: <YnP1v0sxrUMl/lOH@mdroper-desk1.amr.corp.intel.com>
+References: <20220504120715.911045-1-tvrtko.ursulin@linux.intel.com>
+ <YnKuX0F0bDBF5ahP@mdroper-desk1.amr.corp.intel.com>
+ <12d849fb-3255-139a-7905-2d3dd679e3c8@linux.intel.com>
+ <YnLDMANc6xdnjOdy@mdroper-desk1.amr.corp.intel.com>
+ <a746320b-8431-a171-4c73-3ed64eedc726@linux.intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 01/12] drm/i915: Drop IPC from display 13
- and newer
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <a746320b-8431-a171-4c73-3ed64eedc726@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: Don't use DRM_DEBUG_WARN_ON
+ for unexpected l3bank/mslice config
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,66 +61,148 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: Jani Nikula <jani.nikula@intel.com>, Intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVGh1LCAyMDIyLTA1LTA1IGF0IDAwOjMzICswMzAwLCBWaWxsZSBTeXJqw6Rsw6Qgd3JvdGU6
-DQo+IE9uIFdlZCwgTWF5IDA0LCAyMDIyIGF0IDEyOjA3OjQ1UE0gLTA3MDAsIEpvc8OpIFJvYmVy
-dG8gZGUgU291emEgd3JvdGU6DQo+ID4gVGhpcyBmZWF0dXJlIGlzIHN1cHBvcnRlZCBmcm9tIGRp
-c3BsYXkgOSB0byBkaXNwbGF5IDEyIGFuZCB3YXMNCj4gPiBpbmNvcnJlY3RseSBiZWluZyBhcHBs
-aWVkIHRvIERHMiBhbmQgQWxkZXJsYWtlLVAuDQo+IA0KPiBUaGV5IGp1c3QgcmVuYW1lZCB0aGUg
-cmVnaXN0ZXIgdG8gQVJCX0hQX0NUTC4NCg0KTWlzc2VkIHRoYXQsIHdpbGwgZml4IGl0Lg0KDQpU
-aGFua3MNCg0KPiANCj4gPiANCj4gPiBXaGlsZSBhdCBpcyBhbHNvIHRha2luZyB0aGUgb3BvcnR1
-bml0eSB0byBkcm9wIGl0IGZyb20NCj4gPiBpbnRlbF9kZXZpY2VfaW5mbyBzdHJ1Y3QgYXMgYSBk
-aXNwbGF5IGNoZWNrIGlzIG1vcmUgc2ltcGxlDQo+ID4gYW5kIGxlc3MgcHJvbmUgdG8gYmUgbGVm
-dCBlbmFibGVkIGluIGZ1dHVyZSBwbGF0Zm9ybXMuDQo+ID4gDQo+ID4gQlNwZWM6IDUwMDM5DQo+
-ID4gU2lnbmVkLW9mZi1ieTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRl
-bC5jb20+DQo+ID4gLS0tDQo+ID4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmggICAg
-ICAgICAgfCAzICsrLQ0KPiA+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3BjaS5jICAgICAg
-ICAgIHwgMyAtLS0NCj4gPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZGV2aWNlX2luZm8u
-aCB8IDEgLQ0KPiA+ICAzIGZpbGVzIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygrKSwgNSBkZWxldGlv
-bnMoLSkNCj4gPiANCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9k
-cnYuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmgNCj4gPiBpbmRleCAyZGRkYzI3
-YTFiMGVkLi42OTViMzVjZDZiNWU0IDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2k5MTVfZHJ2LmgNCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5o
-DQo+ID4gQEAgLTEzNDQsNyArMTM0NCw4IEBAIElTX1NVQlBMQVRGT1JNKGNvbnN0IHN0cnVjdCBk
-cm1faTkxNV9wcml2YXRlICppOTE1LA0KPiA+ICAgKi8NCj4gPiAgI2RlZmluZSBORUVEU19DT01Q
-QUNUX1BUKGRldl9wcml2KSAoSU5URUxfSU5GTyhkZXZfcHJpdiktPm5lZWRzX2NvbXBhY3RfcHQp
-DQo+ID4gIA0KPiA+IC0jZGVmaW5lIEhBU19JUEMoZGV2X3ByaXYpCQkgKElOVEVMX0lORk8oZGV2
-X3ByaXYpLT5kaXNwbGF5Lmhhc19pcGMpDQo+ID4gKyNkZWZpbmUgSEFTX0lQQyhkZXZfcHJpdikJ
-CSAoRElTUExBWV9WRVIoZGV2X3ByaXYpID49IDkgJiYgXA0KPiA+ICsJCQkJCSAgRElTUExBWV9W
-RVIoZGV2X3ByaXYpIDw9IDEyKQ0KPiA+ICANCj4gPiAgI2RlZmluZSBIQVNfUkVHSU9OKGk5MTUs
-IGkpIChJTlRFTF9JTkZPKGk5MTUpLT5tZW1vcnlfcmVnaW9ucyAmIChpKSkNCj4gPiAgI2RlZmlu
-ZSBIQVNfTE1FTShpOTE1KSBIQVNfUkVHSU9OKGk5MTUsIFJFR0lPTl9MTUVNKQ0KPiA+IGRpZmYg
-LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3BjaS5jIGIvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvaTkxNV9wY2kuYw0KPiA+IGluZGV4IDQ5ODcwOGIzMzkyNGYuLmM0ZjljODA1Y2ZmZDEg
-MTAwNjQ0DQo+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9wY2kuYw0KPiA+ICsr
-KyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcGNpLmMNCj4gPiBAQCAtNjQ2LDcgKzY0Niw2
-IEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgaW50ZWxfZGV2aWNlX2luZm8gY2h2X2luZm8gPSB7DQo+
-ID4gIAkuZGlzcGxheS5oYXNfZG1jID0gMSwgXA0KPiA+ICAJLmhhc19ndF91YyA9IDEsIFwNCj4g
-PiAgCS5kaXNwbGF5Lmhhc19oZGNwID0gMSwgXA0KPiA+IC0JLmRpc3BsYXkuaGFzX2lwYyA9IDEs
-IFwNCj4gPiAgCS5kaXNwbGF5Lmhhc19wc3IgPSAxLCBcDQo+ID4gIAkuZGlzcGxheS5oYXNfcHNy
-X2h3X3RyYWNraW5nID0gMSwgXA0KPiA+ICAJLmRidWYuc2l6ZSA9IDg5NiAtIDQsIC8qIDQgYmxv
-Y2tzIGZvciBieXBhc3MgcGF0aCBhbGxvY2F0aW9uICovIFwNCj4gPiBAQCAtNzEyLDcgKzcxMSw2
-IEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgaW50ZWxfZGV2aWNlX2luZm8gc2tsX2d0NF9pbmZvID0g
-ew0KPiA+ICAJLmhhc19yZXNldF9lbmdpbmUgPSAxLCBcDQo+ID4gIAkuaGFzX3Nub29wID0gdHJ1
-ZSwgXA0KPiA+ICAJLmhhc19jb2hlcmVudF9nZ3R0ID0gZmFsc2UsIFwNCj4gPiAtCS5kaXNwbGF5
-Lmhhc19pcGMgPSAxLCBcDQo+ID4gIAlIU1dfUElQRV9PRkZTRVRTLCBcDQo+ID4gIAlJVkJfQ1VS
-U09SX09GRlNFVFMsIFwNCj4gPiAgCUlWQl9DT0xPUlMsIFwNCj4gPiBAQCAtOTU1LDcgKzk1Myw2
-IEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgaW50ZWxfZGV2aWNlX2luZm8gYWRsX3NfaW5mbyA9IHsN
-Cj4gPiAgCS5kaXNwbGF5Lmhhc19mcGdhX2RiZyA9IDEsCQkJCQkJXA0KPiA+ICAJLmRpc3BsYXku
-aGFzX2hkY3AgPSAxLAkJCQkJCQlcDQo+ID4gIAkuZGlzcGxheS5oYXNfaG90cGx1ZyA9IDEsCQkJ
-CQkJXA0KPiA+IC0JLmRpc3BsYXkuaGFzX2lwYyA9IDEsCQkJCQkJCVwNCj4gPiAgCS5kaXNwbGF5
-Lmhhc19wc3IgPSAxLAkJCQkJCQlcDQo+ID4gIAkuZGlzcGxheS52ZXIgPSAxMywJCQkJCQkJXA0K
-PiA+ICAJLmRpc3BsYXkucGlwZV9tYXNrID0gQklUKFBJUEVfQSkgfCBCSVQoUElQRV9CKSB8IEJJ
-VChQSVBFX0MpIHwgQklUKFBJUEVfRCksCVwNCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvaW50ZWxfZGV2aWNlX2luZm8uaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVs
-X2RldmljZV9pbmZvLmgNCj4gPiBpbmRleCBlN2QyY2Y3ZDY1Yzg1Li5jOTY2MGI0MjgyZDllIDEw
-MDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2RldmljZV9pbmZvLmgN
-Cj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kZXZpY2VfaW5mby5oDQo+ID4g
-QEAgLTE4MCw3ICsxODAsNiBAQCBlbnVtIGludGVsX3BwZ3R0X3R5cGUgew0KPiA+ICAJZnVuYyho
-YXNfaGRjcCk7IFwNCj4gPiAgCWZ1bmMoaGFzX2hvdHBsdWcpOyBcDQo+ID4gIAlmdW5jKGhhc19o
-dGkpOyBcDQo+ID4gLQlmdW5jKGhhc19pcGMpOyBcDQo+ID4gIAlmdW5jKGhhc19tb2R1bGFyX2Zp
-YSk7IFwNCj4gPiAgCWZ1bmMoaGFzX292ZXJsYXkpOyBcDQo+ID4gIAlmdW5jKGhhc19wc3IpOyBc
-DQo+ID4gLS0gDQo+ID4gMi4zNi4wDQo+IA0KDQo=
+On Thu, May 05, 2022 at 12:02:45PM +0100, Tvrtko Ursulin wrote:
+> 
+> On 04/05/2022 19:17, Matt Roper wrote:
+> > On Wed, May 04, 2022 at 06:59:32PM +0100, Tvrtko Ursulin wrote:
+> > > 
+> > > On 04/05/2022 17:48, Matt Roper wrote:
+> > > > On Wed, May 04, 2022 at 01:07:14PM +0100, Tvrtko Ursulin wrote:
+> > > > > From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> > > > > 
+> > > > > DRM_DEBUG_WARN_ON should only be used when we are certain CI is guaranteed
+> > > > > to exercise a certain code path, so in case of values coming from MMIO
+> > > > > reads we cannot be sure CI will have all the possible SKUs and parts.
+> > > > > 
+> > > > > Use drm_warn instead and move logging to init phase while at it.
+> > > > 
+> > > > Changing to drm_warn looks good, although moving the location changes
+> > > > the intent a bit; I think originally the idea was to warn if we were
+> > > > trying to do a steering lookup for a type that we never initialized
+> > > > (e.g., an LNCF lookup for a !HAS_MSLICES platform where we never even
+> > > > read the register in the first place).  But I don't think we've ever
+> > > > made a mistake that would cause us to trip the warning, so it probably
+> > > > isn't terribly important to keep it there.
+> > > 
+> > > Ah I see.. there we could put something like:
+> > > 
+> > > 	case MSLICE:
+> > > 		GEM_WARN_ON(!HAS_MSLICES(...));
+> > > 
+> > 
+> > Yeah, that would work for MSLICE and LNCF.  Although L3BANK is a bit
+> > stranger since we have multiple platforms that obtain the L3 bank mask
+> > in completely different ways (Xe_HP reads it from XEHP_FUSE4, whereas
+> > gen11/gen12 reads it from GEN10_MIRROR_FUSE3).  We want to make sure
+> > there that no matter which branch of init we take, we didn't forget to
+> > initialize l3bank_mask somehow.
+> 
+> The two init paths are not something present in drm-tip at this point,
+> right? At least I couldn't find it. In which case it could be handled later
+> by moving the drm_warn to tail of intel_gt_init_mmio, give or take.
+
+Oh, you're right.  The new fuse register actually shows up on a future
+platform rather than Xe_HP so the two init paths aren't present yet.
+
+> 
+> Anyway, I've sent v2 out with your r-b and GEM_WARN_ON for mslice/lncf. I
+> won't merge it though until you definitely are okay with it so please have a
+> look and confirm.
+
+Yeah, v2 looks fine.  Thanks.
+
+
+Matt
+
+> 
+> Regards,
+> 
+> Tvrtko
+> 
+> 
+> > 
+> > Matt
+> > 
+> > > ?
+> > > 
+> > > Regards,
+> > > 
+> > > Tvrtko
+> > > 
+> > > > 
+> > > > Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+> > > > 
+> > > > > 
+> > > > > Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> > > > > Cc: Matt Roper <matthew.d.roper@intel.com>
+> > > > > Cc: Jani Nikula <jani.nikula@intel.com>
+> > > > > ---
+> > > > >    drivers/gpu/drm/i915/gt/intel_gt.c | 13 ++++++-------
+> > > > >    1 file changed, 6 insertions(+), 7 deletions(-)
+> > > > > 
+> > > > > diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
+> > > > > index 53307ca0eed0..c474e5c3ea5e 100644
+> > > > > --- a/drivers/gpu/drm/i915/gt/intel_gt.c
+> > > > > +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+> > > > > @@ -153,11 +153,14 @@ int intel_gt_init_mmio(struct intel_gt *gt)
+> > > > >    	 * An mslice is unavailable only if both the meml3 for the slice is
+> > > > >    	 * disabled *and* all of the DSS in the slice (quadrant) are disabled.
+> > > > >    	 */
+> > > > > -	if (HAS_MSLICES(i915))
+> > > > > +	if (HAS_MSLICES(i915)) {
+> > > > >    		gt->info.mslice_mask =
+> > > > >    			slicemask(gt, GEN_DSS_PER_MSLICE) |
+> > > > >    			(intel_uncore_read(gt->uncore, GEN10_MIRROR_FUSE3) &
+> > > > >    			 GEN12_MEML3_EN_MASK);
+> > > > > +		if (!gt->info.mslice_mask) /* should be impossible! */
+> > > > > +			drm_warn(&i915->drm, "mslice mask all zero!\n");
+> > > > > +	}
+> > > > >    	if (IS_DG2(i915)) {
+> > > > >    		gt->steering_table[MSLICE] = xehpsdv_mslice_steering_table;
+> > > > > @@ -171,6 +174,8 @@ int intel_gt_init_mmio(struct intel_gt *gt)
+> > > > >    		gt->info.l3bank_mask =
+> > > > >    			~intel_uncore_read(gt->uncore, GEN10_MIRROR_FUSE3) &
+> > > > >    			GEN10_L3BANK_MASK;
+> > > > > +		if (!gt->info.l3bank_mask) /* should be impossible! */
+> > > > > +			drm_warn(&i915->drm, "L3 bank mask is all zero!\n");
+> > > > >    	} else if (HAS_MSLICES(i915)) {
+> > > > >    		MISSING_CASE(INTEL_INFO(i915)->platform);
+> > > > >    	}
+> > > > > @@ -882,20 +887,14 @@ static void intel_gt_get_valid_steering(struct intel_gt *gt,
+> > > > >    {
+> > > > >    	switch (type) {
+> > > > >    	case L3BANK:
+> > > > > -		GEM_DEBUG_WARN_ON(!gt->info.l3bank_mask); /* should be impossible! */
+> > > > > -
+> > > > >    		*sliceid = 0;		/* unused */
+> > > > >    		*subsliceid = __ffs(gt->info.l3bank_mask);
+> > > > >    		break;
+> > > > >    	case MSLICE:
+> > > > > -		GEM_DEBUG_WARN_ON(!gt->info.mslice_mask); /* should be impossible! */
+> > > > > -
+> > > > >    		*sliceid = __ffs(gt->info.mslice_mask);
+> > > > >    		*subsliceid = 0;	/* unused */
+> > > > >    		break;
+> > > > >    	case LNCF:
+> > > > > -		GEM_DEBUG_WARN_ON(!gt->info.mslice_mask); /* should be impossible! */
+> > > > > -
+> > > > >    		/*
+> > > > >    		 * An LNCF is always present if its mslice is present, so we
+> > > > >    		 * can safely just steer to LNCF 0 in all cases.
+> > > > > -- 
+> > > > > 2.32.0
+> > > > > 
+> > > > 
+> > 
+
+-- 
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
