@@ -2,53 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC3CC51C29F
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 May 2022 16:32:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EA25C51C2CF
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 May 2022 16:44:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 889FD10E37F;
-	Thu,  5 May 2022 14:32:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1FB9110E415;
+	Thu,  5 May 2022 14:44:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4766910E37F;
- Thu,  5 May 2022 14:32:44 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 49AD310E415
+ for <intel-gfx@lists.freedesktop.org>; Thu,  5 May 2022 14:44:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1651761164; x=1683297164;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=1+9JQdzrsHYQrBsDqJEgyu551lUE2oP9pxLpL0lHNqY=;
- b=WobFeK1pggH/wQgkw/8UqXqyzHJyuYAKGX09CSTQ7AlVKw2CEDIMj76L
- P+ROmZ62l/3I8iKxerhyX+kkyaqQo5hbVjLn684BdvUqat1ADx2m/K7WC
- 72xEEf0cKzzdD6VWnQSC3wY/qZfvIWd0O/CCqcqCkzNnQ5C+7MhYeMlq1
- 6oUA4ANsRit55jOAgCC8DaIw6KJ+bi1e4nG8mIYhn0OaBDnoXv4+w9Krk
- Sk6rhFpV8DYyFpvecE2N9zbgt5L9TUYmnx2e9AVhP+jfIebUZEZZHEjaf
- aeUpEIB+VYRk6ymwSGU/Fh1T/EhGQGm21ZAcYJLQ7JHHYZUf+qBi+WTfZ Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10338"; a="267723574"
-X-IronPort-AV: E=Sophos;i="5.91,201,1647327600"; d="scan'208";a="267723574"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2022 07:32:15 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,201,1647327600"; d="scan'208";a="664986100"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.51])
- by fmsmga002.fm.intel.com with SMTP; 05 May 2022 07:32:13 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 05 May 2022 17:32:12 +0300
-Date: Thu, 5 May 2022 17:32:12 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <YnPf7MGru3oM/+do@intel.com>
-References: <a137d2e272ad1eac5b286784008a4baf91bc2799.1651569697.git.jani.nikula@intel.com>
- <20220505105242.1198521-1-jani.nikula@intel.com>
+ t=1651761889; x=1683297889;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=XfQD0glDUOxUk0vPNmhUmgCYkMxUmbtRdn6jEtlOqWA=;
+ b=hAUjz9aR/sE6n9XWxVCb3hadmaDgpK81yoJfYfENV1GzvPjG+H4rwfym
+ ehAbaaKPXl+JJy+IwfqHsBxS5CeiPwRo1iRNirWyH+vLqb7bhceqRMyQi
+ NLSaEPpCW6fUKrGQpLGoSyri7b8u/gIV2c5/JWibV8ePV1Yn/ZwhvvCgP
+ qUx0BGlW/hXnv4A5EGNh5iltat60C4aLXV06cPRHi3gE4PE4q/qdvQtTY
+ crqPziJFyQTY4cyhCgbTfoEQVSpaDl85QP4FqJ6ItBrPVft9fhckRQzG3
+ w9BuVSwH/5JfST1AZL+lVoiysjoSs0kYxC8hCV6TokZjtky3stzTKDj8k g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10338"; a="266970887"
+X-IronPort-AV: E=Sophos;i="5.91,201,1647327600"; d="scan'208";a="266970887"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 May 2022 07:44:48 -0700
+X-IronPort-AV: E=Sophos;i="5.91,201,1647327600"; d="scan'208";a="734923202"
+Received: from lab-ah.igk.intel.com ([10.91.215.196])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 May 2022 07:44:47 -0700
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  5 May 2022 16:44:41 +0200
+Message-Id: <20220505144441.1798330-1-andrzej.hajda@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220505105242.1198521-1-jani.nikula@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v3] drm/edid: detect color formats and CTA
- revision in all CTA extensions
+Subject: [Intel-gfx] [PATCH] drm/i915/fbdev: unregister framebuffer after
+ disabling hpd
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,77 +56,75 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, May 05, 2022 at 01:52:42PM +0300, Jani Nikula wrote:
-> Convert drm_find_cea_extension() to EDID block iterator in color format
-> and CTA revision detection. Detect them in all CTA extensions.
-> 
-> Also parse CTA Data Blocks in DisplayID even if there's no CTA EDID
-> extension.
-> 
-> v2:
-> - Don't assume DRM_COLOR_FORMAT_RGB444 support if there's only DisplayID
->   CTA Data Blocks (Ville)
-> 
-> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Deferred framebuffer can be registered in hpd worker. So
+drm_fb_helper_unregister_fbi should be called after hpd is stopped.
+Otherwise we risk UAF after module removal.
 
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+The patch should fix following GPF:
 
-> ---
->  drivers/gpu/drm/drm_edid.c | 21 +++++++++++++--------
->  1 file changed, 13 insertions(+), 8 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
-> index 3b18a6e501df..8d737322145c 100644
-> --- a/drivers/gpu/drm/drm_edid.c
-> +++ b/drivers/gpu/drm/drm_edid.c
-> @@ -5447,26 +5447,31 @@ static void drm_parse_cea_ext(struct drm_connector *connector,
->  			      const struct edid *edid)
->  {
->  	struct drm_display_info *info = &connector->display_info;
-> +	struct drm_edid_iter edid_iter;
->  	const struct cea_db *db;
->  	struct cea_db_iter iter;
->  	const u8 *edid_ext;
->  
-> -	edid_ext = drm_find_cea_extension(edid);
-> -	if (!edid_ext)
-> -		return;
-> +	drm_edid_iter_begin(edid, &edid_iter);
-> +	drm_edid_iter_for_each(edid_ext, &edid_iter) {
-> +		if (edid_ext[0] != CEA_EXT)
-> +			continue;
->  
-> -	info->cea_rev = edid_ext[1];
-> +		if (!info->cea_rev)
-> +			info->cea_rev = edid_ext[1];
->  
-> -	/* The existence of a CEA block should imply RGB support */
-> -	info->color_formats = DRM_COLOR_FORMAT_RGB444;
-> +		if (info->cea_rev != edid_ext[1])
-> +			DRM_DEBUG_KMS("CEA extension version mismatch %u != %u\n",
-> +				      info->cea_rev, edid_ext[1]);
->  
-> -	/* CTA DisplayID Data Block does not have byte #3 */
-> -	if (edid_ext[0] == CEA_EXT) {
-> +		/* The existence of a CTA extension should imply RGB support */
-> +		info->color_formats = DRM_COLOR_FORMAT_RGB444;
->  		if (edid_ext[3] & EDID_CEA_YCRCB444)
->  			info->color_formats |= DRM_COLOR_FORMAT_YCBCR444;
->  		if (edid_ext[3] & EDID_CEA_YCRCB422)
->  			info->color_formats |= DRM_COLOR_FORMAT_YCBCR422;
->  	}
-> +	drm_edid_iter_end(&edid_iter);
->  
->  	cea_db_iter_edid_begin(edid, &iter);
->  	cea_db_iter_for_each(db, &iter) {
-> -- 
-> 2.30.2
+[272.634530] general protection fault, probably for non-canonical address 0x6b6b6b6b6b6b6b6b: 0000 [#1] PREEMPT SMP NOPTI
+[272.634536] CPU: 0 PID: 6030 Comm: i915_selftest Tainted: G     U            5.18.0-rc5-CI_DRM_11603-g12dccf4f5eef+ #1
+[272.634541] Hardware name: Intel Corporation Raptor Lake Client Platform/RPL-S ADP-S DDR5 UDIMM CRB, BIOS RPLSFWI1.R00.2397.A01.2109300731 09/30/2021
+[272.634545] RIP: 0010:fb_do_apertures_overlap.part.14+0x26/0x60
+[272.634550] Code: a0 4f 4c 00 8b 0e 85 c9 74 4e 41 57 41 56 49 c7 c6 48 e2 34 82 41 55 41 54 49 89 fc 55 48 89 f5 53 31 db 48 83 ec 10 48 63 c3 <41> 8b 14 24 48 c1 e0 04 4c 8d 6c 05 08 85 d2 0f 85 53 9a 49 00 83
+[272.634556] RSP: 0018:ffffc900015ab988 EFLAGS: 00010286
+[272.634559] RAX: 0000000000000000 RBX: 0000000000000000 RCX: 0000000000000002
+[272.634562] RDX: 0000000000000001 RSI: ffff888139c14040 RDI: 6b6b6b6b6b6b6b6b
+[272.634564] RBP: ffff888139c14040 R08: ffff88811a9eddf8 R09: 00000000fffffffe
+[272.634567] R10: ffffc900015aba18 R11: 00000000c283001c R12: 6b6b6b6b6b6b6b6b
+[272.634569] R13: ffffffff82877400 R14: ffffffff8234e248 R15: 6b6b6b6b6b6b6b6b
+[272.634572] FS:  00007f2ea1b8c500(0000) GS:ffff88888e800000(0000) knlGS:0000000000000000
+[272.634575] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[272.634578] CR2: 00007ffc8db09f50 CR3: 00000001406d4001 CR4: 0000000000770ef0
+[272.634580] PKRU: 55555554
+[272.634582] Call Trace:
+[272.634583]  <TASK>
+[272.634585]  do_remove_conflicting_framebuffers+0x59/0xa0
+[272.634589]  remove_conflicting_framebuffers+0x2d/0xc0
+[272.634592]  remove_conflicting_pci_framebuffers+0xc8/0x110
+[272.634595]  drm_aperture_remove_conflicting_pci_framebuffers+0x52/0x70
+[272.634604]  i915_driver_probe+0x63a/0xdd0 [i915]
 
+Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+---
+Hi all,
+
+This patch tries to solve frequent issue [1]. Currently observed only on bat-rpls-2
+machine on public Intel CI.
+
+[1]: https://gitlab.freedesktop.org/drm/intel/-/issues/5329
+
+Regards
+Andrzej
+---
+ drivers/gpu/drm/i915/display/intel_fbdev.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
+index 557c7f15ac22a9..c04c37ba5688ce 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbdev.c
++++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
+@@ -581,8 +581,6 @@ void intel_fbdev_unregister(struct drm_i915_private *dev_priv)
+ 	cancel_work_sync(&dev_priv->fbdev_suspend_work);
+ 	if (!current_is_async())
+ 		intel_fbdev_sync(ifbdev);
+-
+-	drm_fb_helper_unregister_fbi(&ifbdev->helper);
+ }
+ 
+ void intel_fbdev_fini(struct drm_i915_private *dev_priv)
+@@ -592,6 +590,8 @@ void intel_fbdev_fini(struct drm_i915_private *dev_priv)
+ 	if (!ifbdev)
+ 		return;
+ 
++	drm_fb_helper_unregister_fbi(&ifbdev->helper);
++
+ 	intel_fbdev_destroy(ifbdev);
+ }
+ 
 -- 
-Ville Syrjälä
-Intel
+2.25.1
+
