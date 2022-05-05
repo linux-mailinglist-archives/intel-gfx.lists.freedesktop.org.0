@@ -1,34 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8D4A51CBA7
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 May 2022 23:54:35 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B569F51CC12
+	for <lists+intel-gfx@lfdr.de>; Fri,  6 May 2022 00:32:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B1CA010E19C;
-	Thu,  5 May 2022 21:54:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 30DC910ED60;
+	Thu,  5 May 2022 22:32:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id EF31C10E19C;
- Thu,  5 May 2022 21:54:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5F17310ED60;
+ Thu,  5 May 2022 22:32:16 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id ED8F4A66C9;
- Thu,  5 May 2022 21:54:31 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7886848959078125353=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id 596A2AADD5;
+ Thu,  5 May 2022 22:32:16 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Date: Thu, 05 May 2022 21:54:31 -0000
-Message-ID: <165178767194.7658.11339754111509536366@emeril.freedesktop.org>
+To: "Matt Roper" <matthew.d.roper@intel.com>
+Date: Thu, 05 May 2022 22:32:16 -0000
+Message-ID: <165178993636.7659.6632726442161133275@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20220413192607.27533-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20220413192607.27533-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Eliminate_PIPECONF_RMWs_from_=2Ecolor=5Fcommit=28=29_?=
- =?utf-8?b?KHJldjIp?=
+References: <20220505213812.3979301-1-matthew.d.roper@intel.com>
+In-Reply-To: <20220505213812.3979301-1-matthew.d.roper@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_i915=3A_Introduce_Ponte_Vecchio_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,297 +45,197 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============7886848959078125353==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915: Eliminate PIPECONF RMWs from .color_commit() (rev2)
-URL   : https://patchwork.freedesktop.org/series/102666/
-State : failure
+Series: i915: Introduce Ponte Vecchio (rev2)
+URL   : https://patchwork.freedesktop.org/series/103443/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_11612 -> Patchwork_102666v2
-====================================================
+Error: dim checkpatch failed
+3ff8d05befaf drm/i915/uncore: Reorganize and document shadow and forcewake tables
+-:82: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'offset' - possible side-effects?
+#82: FILE: drivers/gpu/drm/i915/intel_uncore.c:1106:
++#define __fwtable_reg_read_fw_domains(uncore, offset) \
++({ \
++	enum forcewake_domains __fwd = 0; \
++	if (NEEDS_FORCE_WAKE((offset))) \
++		__fwd = find_fw_domain(uncore, offset); \
++	__fwd; \
++})
 
-Summary
--------
+-:90: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'uncore' - possible side-effects?
+#90: FILE: drivers/gpu/drm/i915/intel_uncore.c:1114:
++#define __fwtable_reg_write_fw_domains(uncore, offset) \
++({ \
++	enum forcewake_domains __fwd = 0; \
++	const u32 __offset = (offset); \
++	if (NEEDS_FORCE_WAKE((__offset)) && !is_shadowed(uncore, __offset)) \
++		__fwd = find_fw_domain(uncore, __offset); \
++	__fwd; \
++})
 
-  **FAILURE**
+-:147: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#147: FILE: drivers/gpu/drm/i915/intel_uncore.c:1170:
++
++
 
-  Serious unknown changes coming with Patchwork_102666v2 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_102666v2, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+total: 0 errors, 0 warnings, 3 checks, 172 lines checked
+519b8cb4c285 drm/i915/pvc: Add forcewake support
+-:80: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#80: FILE: drivers/gpu/drm/i915/intel_uncore.c:1576:
++	GEN_FW_RANGE(0x4000, 0x813f, FORCEWAKE_GT), /*
++		0x4000 - 0x4aff: gt
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102666v2/index.html
+-:86: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#86: FILE: drivers/gpu/drm/i915/intel_uncore.c:1582:
++		0x8000 - 0x813f: gt */
 
-Participating hosts (41 -> 40)
-------------------------------
+-:90: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#90: FILE: drivers/gpu/drm/i915/intel_uncore.c:1586:
++	GEN_FW_RANGE(0x8200, 0x94cf, FORCEWAKE_GT), /*
++		0x8200 - 0x82ff: gt
 
-  Additional (2): bat-rpls-1 bat-adlm-1 
-  Missing    (3): fi-bsw-cyan fi-bdw-5557u bat-dg1-5 
+-:97: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#97: FILE: drivers/gpu/drm/i915/intel_uncore.c:1593:
++		0x9480 - 0x94cf: reserved */
 
-Possible new issues
--------------------
+-:100: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#100: FILE: drivers/gpu/drm/i915/intel_uncore.c:1596:
++	GEN_FW_RANGE(0x9560, 0x967f, 0), /*
++		0x9560 - 0x95ff: always on
 
-  Here are the unknown changes that may have been introduced in Patchwork_102666v2:
+-:101: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#101: FILE: drivers/gpu/drm/i915/intel_uncore.c:1597:
++		0x9600 - 0x967f: reserved */
 
-### IGT changes ###
+-:103: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#103: FILE: drivers/gpu/drm/i915/intel_uncore.c:1599:
++	GEN_FW_RANGE(0x9680, 0x97ff, FORCEWAKE_RENDER), /*
++		0x9680 - 0x96ff: render
 
-#### Possible regressions ####
+-:104: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#104: FILE: drivers/gpu/drm/i915/intel_uncore.c:1600:
++		0x9700 - 0x97ff: reserved */
 
-  * igt@i915_selftest@live@gt_mocs:
-    - fi-rkl-guc:         [PASS][1] -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11612/fi-rkl-guc/igt@i915_selftest@live@gt_mocs.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102666v2/fi-rkl-guc/igt@i915_selftest@live@gt_mocs.html
+-:106: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#106: FILE: drivers/gpu/drm/i915/intel_uncore.c:1602:
++	GEN_FW_RANGE(0x9800, 0xcfff, FORCEWAKE_GT), /*
++		0x9800 - 0xb4ff: gt
 
-  * igt@i915_selftest@live@hangcheck:
-    - fi-adl-ddr5:        [PASS][3] -> [DMESG-WARN][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11612/fi-adl-ddr5/igt@i915_selftest@live@hangcheck.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102666v2/fi-adl-ddr5/igt@i915_selftest@live@hangcheck.html
+-:108: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#108: FILE: drivers/gpu/drm/i915/intel_uncore.c:1604:
++		0xc000 - 0xcfff: gt */
 
-  
-#### Suppressed ####
+-:113: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#113: FILE: drivers/gpu/drm/i915/intel_uncore.c:1609:
++	GEN_FW_RANGE(0xdd00, 0xde7f, FORCEWAKE_GT), /*
++		0xdd00 - 0xddff: gt
 
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
+-:114: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#114: FILE: drivers/gpu/drm/i915/intel_uncore.c:1610:
++		0xde00 - 0xde7f: reserved */
 
-  * igt@i915_selftest@live@requests:
-    - {bat-adlm-1}:       NOTRUN -> [INCOMPLETE][5]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102666v2/bat-adlm-1/igt@i915_selftest@live@requests.html
+-:116: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#116: FILE: drivers/gpu/drm/i915/intel_uncore.c:1612:
++	GEN_FW_RANGE(0xde80, 0xe8ff, FORCEWAKE_RENDER), /*
++		0xde80 - 0xdeff: render
 
-  
-Known issues
-------------
+-:119: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#119: FILE: drivers/gpu/drm/i915/intel_uncore.c:1615:
++		0xe800 - 0xe8ff: reserved */
 
-  Here are the changes found in Patchwork_102666v2 that come from known issues:
+-:121: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#121: FILE: drivers/gpu/drm/i915/intel_uncore.c:1617:
++	GEN_FW_RANGE(0xe900, 0x11fff, FORCEWAKE_GT), /*
++		 0xe900 -  0xe9ff: gt
 
-### IGT changes ###
+-:124: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#124: FILE: drivers/gpu/drm/i915/intel_uncore.c:1620:
++		0x10000 - 0x11fff: reserved */
 
-#### Issues hit ####
+-:126: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#126: FILE: drivers/gpu/drm/i915/intel_uncore.c:1622:
++	GEN_FW_RANGE(0x12000, 0x12fff, 0), /*
++		0x12000 - 0x127ff: always on
 
-  * igt@i915_selftest@live@hangcheck:
-    - fi-snb-2600:        [PASS][6] -> [INCOMPLETE][7] ([i915#3921])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11612/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102666v2/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+-:127: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#127: FILE: drivers/gpu/drm/i915/intel_uncore.c:1623:
++		0x12800 - 0x12fff: reserved */
 
-  * igt@i915_selftest@live@requests:
-    - fi-blb-e6850:       [PASS][8] -> [DMESG-FAIL][9] ([i915#4528])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11612/fi-blb-e6850/igt@i915_selftest@live@requests.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102666v2/fi-blb-e6850/igt@i915_selftest@live@requests.html
+-:129: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#129: FILE: drivers/gpu/drm/i915/intel_uncore.c:1625:
++	GEN_FW_RANGE(0x13000, 0x23fff, FORCEWAKE_GT), /*
++		0x13000 - 0x135ff: gt
 
-  * igt@kms_flip@basic-plain-flip@a-edp1:
-    - bat-adlp-4:         [PASS][10] -> [DMESG-WARN][11] ([i915#3576]) +2 similar issues
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11612/bat-adlp-4/igt@kms_flip@basic-plain-flip@a-edp1.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102666v2/bat-adlp-4/igt@kms_flip@basic-plain-flip@a-edp1.html
+-:135: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#135: FILE: drivers/gpu/drm/i915/intel_uncore.c:1631:
++		0x22000 - 0x23fff: gt */
 
-  * igt@runner@aborted:
-    - fi-blb-e6850:       NOTRUN -> [FAIL][12] ([fdo#109271] / [i915#2403] / [i915#4312])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102666v2/fi-blb-e6850/igt@runner@aborted.html
+-:137: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#137: FILE: drivers/gpu/drm/i915/intel_uncore.c:1633:
++	GEN_FW_RANGE(0x24000, 0x2417f, 0), /*
++		24000 - 0x2407f: always on
 
-  
-#### Possible fixes ####
+-:138: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#138: FILE: drivers/gpu/drm/i915/intel_uncore.c:1634:
++		24080 - 0x2417f: reserved */
 
-  * igt@i915_selftest@live@gt_pm:
-    - fi-tgl-1115g4:      [DMESG-FAIL][13] ([i915#3987]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11612/fi-tgl-1115g4/igt@i915_selftest@live@gt_pm.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102666v2/fi-tgl-1115g4/igt@i915_selftest@live@gt_pm.html
+-:140: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#140: FILE: drivers/gpu/drm/i915/intel_uncore.c:1636:
++	GEN_FW_RANGE(0x24180, 0x3ffff, FORCEWAKE_GT), /*
++		0x24180 - 0x241ff: gt
 
-  * igt@i915_selftest@live@hangcheck:
-    - {fi-jsl-1}:         [INCOMPLETE][15] ([i915#3921] / [i915#5153]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11612/fi-jsl-1/igt@i915_selftest@live@hangcheck.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102666v2/fi-jsl-1/igt@i915_selftest@live@hangcheck.html
+-:146: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#146: FILE: drivers/gpu/drm/i915/intel_uncore.c:1642:
++		0x30000 - 0x3ffff: gt */
 
-  * igt@kms_busy@basic@flip:
-    - {bat-adlp-6}:       [DMESG-WARN][17] ([i915#3576]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11612/bat-adlp-6/igt@kms_busy@basic@flip.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102666v2/bat-adlp-6/igt@kms_busy@basic@flip.html
+-:149: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#149: FILE: drivers/gpu/drm/i915/intel_uncore.c:1645:
++	GEN_FW_RANGE(0x1c0000, 0x1c3fff, FORCEWAKE_MEDIA_VDBOX0), /*
++		0x1c0000 - 0x1c2bff: VD0
 
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
+-:153: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#153: FILE: drivers/gpu/drm/i915/intel_uncore.c:1649:
++		0x1c3f00 - 0x1c3fff: VD0 */
 
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1155]: https://gitlab.freedesktop.org/drm/intel/issues/1155
-  [i915#2403]: https://gitlab.freedesktop.org/drm/intel/issues/2403
-  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#3576]: https://gitlab.freedesktop.org/drm/intel/issues/3576
-  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
-  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
-  [i915#3987]: https://gitlab.freedesktop.org/drm/intel/issues/3987
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4391]: https://gitlab.freedesktop.org/drm/intel/issues/4391
-  [i915#4528]: https://gitlab.freedesktop.org/drm/intel/issues/4528
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#5122]: https://gitlab.freedesktop.org/drm/intel/issues/5122
-  [i915#5153]: https://gitlab.freedesktop.org/drm/intel/issues/5153
-  [i915#5338]: https://gitlab.freedesktop.org/drm/intel/issues/5338
+-:155: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#155: FILE: drivers/gpu/drm/i915/intel_uncore.c:1651:
++	GEN_FW_RANGE(0x1c4000, 0x1cffff, FORCEWAKE_MEDIA_VDBOX1), /*
++		0x1c4000 - 0x1c6aff: VD1
 
+-:158: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#158: FILE: drivers/gpu/drm/i915/intel_uncore.c:1654:
++		0x1c8000 - 0x1cffff: reserved */
 
-Build changes
--------------
+-:160: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#160: FILE: drivers/gpu/drm/i915/intel_uncore.c:1656:
++	GEN_FW_RANGE(0x1d0000, 0x23ffff, FORCEWAKE_MEDIA_VDBOX2), /*
++		0x1d0000 - 0x1d2aff: VD2
 
-  * Linux: CI_DRM_11612 -> Patchwork_102666v2
+-:163: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#163: FILE: drivers/gpu/drm/i915/intel_uncore.c:1659:
++		0x1d4000 - 0x23ffff: reserved */
 
-  CI-20190529: 20190529
-  CI_DRM_11612: 9f6ebefdd3fadb37d1e284e7f0bf0cfcd2fef75b @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6467: 929abc51cdd48d673efa03e025b1f31b557972ed @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_102666v2: 9f6ebefdd3fadb37d1e284e7f0bf0cfcd2fef75b @ git://anongit.freedesktop.org/gfx-ci/linux
+total: 0 errors, 30 warnings, 0 checks, 174 lines checked
+61557cc984d0 drm/i915/pvc: Define MOCS table for PVC
+0532ac252bc5 drm/i915/pvc: Read correct RP_STATE_CAP register
+6dee00e8d754 drm/i915/pvc: Remove additional 3D flags from PIPE_CONTROL
+-:69: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#69: FILE: drivers/gpu/drm/i915/gt/intel_gpu_commands.h:292:
++#define PIPE_CONTROL_3D_ENGINE_FLAGS (\
+ 		PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH | \
+ 		PIPE_CONTROL_DEPTH_CACHE_FLUSH | \
+ 		PIPE_CONTROL_TILE_CACHE_FLUSH | \
 
-
-### Linux commits
-
-2d86b099b471 drm/i915: Eliminate PIPECONF RMWs from .color_commit()
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102666v2/index.html
-
---===============7886848959078125353==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Eliminate PIPECONF RMWs from .color_commit() (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/102666/">https://patchwork.freedesktop.org/series/102666/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102666v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102666v2/index.html</a></td></tr>
-
-</table>
+total: 1 errors, 0 warnings, 0 checks, 86 lines checked
+5f7383b1f126 drm/i915/pvc: Reduce stack usage in reset selftest with extra blitter engine
+9e83c2525e20 drm/i915/gvt: Use intel_engine_mask_t for ring mask
+5a91f56350be drm/i915/pvc: Engine definitions for new copy engines
+29090aee5850 drm/i915/pvc: Interrupt support for new copy engines
+9183527af3de drm/i915/pvc: Reset support for new copy engines
+9d968f976dd3 drm/i915/pvc: skip all copy engines from aux table invalidate
+c38332de24fb drm/i915/pvc: read fuses for link copy engines
 
 
-    <h1>CI Bug Log - changes from CI_DRM_11612 -&gt; Patchwork_102666v2</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_102666v2 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_102666v2, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102666v2/index.html</p>
-<h2>Participating hosts (41 -&gt; 40)</h2>
-<p>Additional (2): bat-rpls-1 bat-adlm-1 <br />
-  Missing    (3): fi-bsw-cyan fi-bdw-5557u bat-dg1-5 </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_102666v2:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_mocs:</p>
-<ul>
-<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11612/fi-rkl-guc/igt@i915_selftest@live@gt_mocs.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102666v2/fi-rkl-guc/igt@i915_selftest@live@gt_mocs.html">DMESG-WARN</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-adl-ddr5:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11612/fi-adl-ddr5/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102666v2/fi-adl-ddr5/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a></li>
-</ul>
-</li>
-</ul>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>igt@i915_selftest@live@requests:<ul>
-<li>{bat-adlm-1}:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102666v2/bat-adlm-1/igt@i915_selftest@live@requests.html">INCOMPLETE</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_102666v2 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11612/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102666v2/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11612/fi-blb-e6850/igt@i915_selftest@live@requests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102666v2/fi-blb-e6850/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-plain-flip@a-edp1:</p>
-<ul>
-<li>bat-adlp-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11612/bat-adlp-4/igt@kms_flip@basic-plain-flip@a-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102666v2/bat-adlp-4/igt@kms_flip@basic-plain-flip@a-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-blb-e6850:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102666v2/fi-blb-e6850/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2403">i915#2403</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_pm:</p>
-<ul>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11612/fi-tgl-1115g4/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3987">i915#3987</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102666v2/fi-tgl-1115g4/igt@i915_selftest@live@gt_pm.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>{fi-jsl-1}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11612/fi-jsl-1/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5153">i915#5153</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102666v2/fi-jsl-1/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_busy@basic@flip:</p>
-<ul>
-<li>{bat-adlp-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11612/bat-adlp-6/igt@kms_busy@basic@flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102666v2/bat-adlp-6/igt@kms_busy@basic@flip.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11612 -&gt; Patchwork_102666v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11612: 9f6ebefdd3fadb37d1e284e7f0bf0cfcd2fef75b @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6467: 929abc51cdd48d673efa03e025b1f31b557972ed @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_102666v2: 9f6ebefdd3fadb37d1e284e7f0bf0cfcd2fef75b @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>2d86b099b471 drm/i915: Eliminate PIPECONF RMWs from .color_commit()</p>
-
-</body>
-</html>
-
---===============7886848959078125353==--
