@@ -2,49 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DA3F51CB74
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 May 2022 23:39:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6598351CB5D
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 May 2022 23:38:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 36C1510FA9B;
-	Thu,  5 May 2022 21:38:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A6C810ECAD;
+	Thu,  5 May 2022 21:38:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7184E10ECAD;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A6A2E10EB13;
  Thu,  5 May 2022 21:38:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1651786702; x=1683322702;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=y7VRDT+9u7/ffAIo/19MXpNwmSWnQgmtiRhOblw05oo=;
- b=WkuQskBbr4qs0ZNaYFkdxS0nFOSq7zeBU1Qvy4JecxHDrOkfrg8kTqbR
- icqc4m0W79yxFNe9bnCwmJLUslcJuK0868LcwKEm1scngQpxvExvaD8bI
- yYcszaWmLexepiN1Q+Lpzhsgj23mV+i82pJRFTaAiZbfHMkRgQG/Lx0zV
- NmToRkPnGmHV25Y06X7wwkDlc8gWRAoPDu36JtiRislmv/R1NTgijb86f
- h0kA4U51uHQb7x4hJ2640vqxURI1fC7DYiDfhXV+1Vxxk+W2uFMbjTbNn
- eH1Ag/A0sTidtA6HpoSIt7bDPusnoOZoIufzlWVo54hs0qej+kl6mNGUS w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10338"; a="248166064"
-X-IronPort-AV: E=Sophos;i="5.91,203,1647327600"; d="scan'208";a="248166064"
+ bh=ti2VBr/GwcEHmzjs9wdbrnflq83yh3G/9HSx/FbErw8=;
+ b=PpXRZb37eVBxw4oZ8whPdQ+pG0SfUYWaWdxhbS9uoXHdBem2pIq0FyLo
+ CsTBn/UOxkGf72IXnlGCtP19w/W10sj0U/p9Ndi9eghnbj0QiX5YVGqbW
+ V+2sBEB6wG1Xy1kxaFM/VflgnjzFd+Cd/Eo28amqixsHf7SPC2Wa14cyk
+ HjEYgIek8n5Io4hgMNxYKROBXgJkVZet3/cODOMmrMGlRzctuEcNPYX9/
+ L2wID2tedBNytg9sfACLluW5qAO92/xd/+ugxlX1LhY7stXqZ6VM1QjaG
+ /g/9eErEUNrwfWqRt3Jr5vn4OWVu+b1z/cAv14uwLa82wv9gov/PeRfMA Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10338"; a="248166066"
+X-IronPort-AV: E=Sophos;i="5.91,203,1647327600"; d="scan'208";a="248166066"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  05 May 2022 14:38:21 -0700
-X-IronPort-AV: E=Sophos;i="5.91,203,1647327600"; d="scan'208";a="549553275"
+X-IronPort-AV: E=Sophos;i="5.91,203,1647327600"; d="scan'208";a="549553279"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  05 May 2022 14:38:21 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu,  5 May 2022 14:38:06 -0700
-Message-Id: <20220505213812.3979301-7-matthew.d.roper@intel.com>
+Date: Thu,  5 May 2022 14:38:07 -0700
+Message-Id: <20220505213812.3979301-8-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220505213812.3979301-1-matthew.d.roper@intel.com>
 References: <20220505213812.3979301-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 06/12] drm/i915/pvc: Reduce stack usage in
- reset selftest with extra blitter engine
+Subject: [Intel-gfx] [PATCH v2 07/12] drm/i915/gvt: Use intel_engine_mask_t
+ for ring mask
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,68 +60,32 @@ Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: John Harrison <John.C.Harrison@Intel.com>
-
-PVC adds extra blitter engines (in the following patch). The reset
-selftest has a local array on the stack which is sized by the number
-of engines. The increase pushes the size of this array to the point
-where it trips the 'stack too large' compile warning. This patch takes
-the allocation of the stack and makes it dynamic instead.
-
-v2 (MattR):
- - Minor cosmetic changes:  re-sort definition and allocate using
-   kmalloc_array().  (Tvrtko)
+When i915 adds additional PVC blitter instances (in an upcoming patch),
+the definition of VECS0 will change from bit(10) to bit(18), causing
+GVT's R_ALL mask to overflow the u16 storage that's currently used.
+Let's replace the u16 with an intel_engine_mask_t to ensure we avoid
+this.
 
 Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+Cc: Zhi Wang <zhi.a.wang@intel.com>
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-Reviewed-by: José Roberto de Souza <jose.souza@intel.com>
 ---
- drivers/gpu/drm/i915/gt/selftest_hangcheck.c | 9 +++++++--
- 1 file changed, 7 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/gvt/cmd_parser.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-index 83ff4c2e57c5..6493265d5f64 100644
---- a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-@@ -976,6 +976,7 @@ static int __igt_reset_engines(struct intel_gt *gt,
- {
- 	struct i915_gpu_error *global = &gt->i915->gpu_error;
- 	struct intel_engine_cs *engine, *other;
-+	struct active_engine *threads;
- 	enum intel_engine_id id, tmp;
- 	struct hang h;
- 	int err = 0;
-@@ -996,8 +997,11 @@ static int __igt_reset_engines(struct intel_gt *gt,
- 			h.ctx->sched.priority = 1024;
- 	}
+diff --git a/drivers/gpu/drm/i915/gvt/cmd_parser.c b/drivers/gpu/drm/i915/gvt/cmd_parser.c
+index b9eb75a2b400..0ba2a3455d99 100644
+--- a/drivers/gpu/drm/i915/gvt/cmd_parser.c
++++ b/drivers/gpu/drm/i915/gvt/cmd_parser.c
+@@ -428,7 +428,7 @@ struct cmd_info {
+ #define R_VECS	BIT(VECS0)
+ #define R_ALL (R_RCS | R_VCS | R_BCS | R_VECS)
+ 	/* rings that support this cmd: BLT/RCS/VCS/VECS */
+-	u16 rings;
++	intel_engine_mask_t rings;
  
-+	threads = kmalloc_array(I915_NUM_ENGINES, sizeof(*threads), GFP_KERNEL);
-+	if (!threads)
-+		return -ENOMEM;
-+
- 	for_each_engine(engine, gt, id) {
--		struct active_engine threads[I915_NUM_ENGINES] = {};
- 		unsigned long device = i915_reset_count(global);
- 		unsigned long count = 0, reported;
- 		bool using_guc = intel_engine_uses_guc(engine);
-@@ -1016,7 +1020,7 @@ static int __igt_reset_engines(struct intel_gt *gt,
- 			break;
- 		}
- 
--		memset(threads, 0, sizeof(threads));
-+		memset(threads, 0, sizeof(*threads) * I915_NUM_ENGINES);
- 		for_each_engine(other, gt, tmp) {
- 			struct task_struct *tsk;
- 
-@@ -1236,6 +1240,7 @@ static int __igt_reset_engines(struct intel_gt *gt,
- 			break;
- 		}
- 	}
-+	kfree(threads);
- 
- 	if (intel_gt_is_wedged(gt))
- 		err = -EIO;
+ 	/* devices that support this cmd: SNB/IVB/HSW/... */
+ 	u16 devices;
 -- 
 2.35.1
 
