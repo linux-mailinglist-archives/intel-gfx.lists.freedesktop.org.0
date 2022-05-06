@@ -1,49 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF72A51D748
-	for <lists+intel-gfx@lfdr.de>; Fri,  6 May 2022 14:04:27 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A99AF51D781
+	for <lists+intel-gfx@lfdr.de>; Fri,  6 May 2022 14:23:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 31A5A10EDCE;
-	Fri,  6 May 2022 12:04:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A218211207E;
+	Fri,  6 May 2022 12:23:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C2BA10EDC7
- for <intel-gfx@lists.freedesktop.org>; Fri,  6 May 2022 12:04:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1651838665; x=1683374665;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=7P12KGerziSIk2Bv0Kdb2dWVxq3hL3b5f7QVLXLvCnY=;
- b=KXBsppHDUR3ojCxG5QU6/QvhiUI7e5Xf8YrA5mSZ48AT8LTURFjGecGl
- JvefCX/ABfPZR51Qusz2nG/fAT3NGkdjxwbDLNJLdfRCSjp3ioP9z1R7t
- diVRkDBShIEe1pCkEWRRU4WTyqWyzm3M+IZpYl7D4l8R8meZDhy4siXe3
- 5+JT1/HBsdEcC/Q/52cbsnuMp9TsjxvWULrPd0qEQ4TtE8TgwqvekU7T9
- TKj7M4sqRhqBec+5tNiJal0/7RK6V7JaaPzyswTd7KU2lNf6dH/wGv1ZH
- WlcuRgBhoM5HWIFgB4RGWJ0pRiFkJBna1fbRuAGHYbqthy0BjO33rV1NI A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10338"; a="354882544"
-X-IronPort-AV: E=Sophos;i="5.91,203,1647327600"; d="scan'208";a="354882544"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2022 05:04:14 -0700
-X-IronPort-AV: E=Sophos;i="5.91,203,1647327600"; d="scan'208";a="537860715"
-Received: from psikora-mobl.ger.corp.intel.com (HELO localhost)
- ([10.249.157.88])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2022 05:04:12 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri,  6 May 2022 15:04:05 +0300
-Message-Id: <20220506120405.2582372-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.30.2
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id ED300112065;
+ Fri,  6 May 2022 12:23:13 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id EB65AA66C8;
+ Fri,  6 May 2022 12:23:13 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/pxp: fix sparse warning for not
- declared symbol
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Fri, 06 May 2022 12:23:13 -0000
+Message-ID: <165183979394.18817.2302557556229074814@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <cover.1651830938.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1651830938.git.jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/edid=3A_introduce_struct_drm=5Fedid_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,40 +40,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Fix:
+== Series Details ==
 
-drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c:61:6: warning: symbol
-'intel_pxp_debugfs_register' was not declared. Should it be static?
+Series: drm/edid: introduce struct drm_edid (rev2)
+URL   : https://patchwork.freedesktop.org/series/103665/
+State : warning
 
-Sort and remove the redundant pxp prefixes from the includes while at
-it.
+== Summary ==
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+Error: dim checkpatch failed
+49478b13e157 drm/edid: use else-if in CTA extension parsing
+253ce252ebb2 drm/edid: convert drm_for_each_detailed_block() to edid iter
+c8d7ad09c4aa drm/edid: add struct drm_edid container
+8e89b03ed6a0 drm/edid: start propagating drm_edid to lower levels
+-:32: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "!drm_edid"
+#32: FILE: drivers/gpu/drm/drm_edid.c:5823:
++	if (drm_edid == NULL) {
 
-diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c b/drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c
-index c9da1015eb42..e888b5124a07 100644
---- a/drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c
-+++ b/drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c
-@@ -9,9 +9,10 @@
- #include <drm/drm_print.h>
- 
- #include "gt/intel_gt_debugfs.h"
--#include "pxp/intel_pxp.h"
--#include "pxp/intel_pxp_irq.h"
- #include "i915_drv.h"
-+#include "intel_pxp.h"
-+#include "intel_pxp_debugfs.h"
-+#include "intel_pxp_irq.h"
- 
- static int pxp_info_show(struct seq_file *m, void *data)
- {
--- 
-2.30.2
+total: 0 errors, 0 warnings, 1 checks, 43 lines checked
+da470150559b drm/edid: keep propagating drm_edid to display info
+ab5bc257050a drm/edid: propagate drm_edid to drm_edid_to_eld()
+a741fdf94b61 drm/edid: convert drm_edid_connector_update() to drm_edid fully
+09ad0a7d5307 drm/edid: convert struct detailed_mode_closure to drm_edid
+7b6af4143dd1 drm/edid: convert drm_mode_detailed() to drm_edid
+eec9950bca92 drm/edid: convert drm_dmt_modes_for_range() to drm_edid
+838b672aecc4 drm/edid: convert drm_gtf_modes_for_range() to drm_edid
+3c5ab00b051b drm/edid: convert drm_cvt_modes_for_range() to drm_edid
+4dcf8a802425 drm/edid: convert drm_mode_std() and children to drm_edid
+ee06f362cf11 drm/edid: convert mode_in_range() and drm_monitor_supports_rb() to drm_edid
+508406f1b73b drm/edid: convert get_monitor_name() to drm_edid
+ccbe240b4563 drm/edid: convert drm_for_each_detailed_block() to drm_edid
+-:33: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around drm_edid->edid->detailed_timings[i]
+#33: FILE: drivers/gpu/drm/drm_edid.c:2594:
++		cb(&(drm_edid->edid->detailed_timings[i]), closure);
+
+total: 0 errors, 0 warnings, 1 checks, 129 lines checked
+64317639af4b drm/edid: add drm_edid helper for drm_edid_to_sad()
+990d6dd977b3 drm/edid: add drm_edid helper for drm_edid_to_speaker_allocation()
+8f27b7c1913d drm/edid: add drm_edid helper for drm_detect_hdmi_monitor()
+c231a095dbf1 drm/edid: add drm_edid helper for drm_detect_monitor_audio()
+6cdff6355337 drm/edid: convert cea_db_iter_edid_begin() to drm_edid
+eaa41b2334bb drm/edid: convert drm_edid_iter_begin() to drm_edid
+8b926179bfd0 drm/edid: add drm_edid helper for drm_update_tile_info()
+e09326603eec drm/displayid: convert to drm_edid
+e5bea8a49f5c drm/edid: convert version_greater() to drm_edid
+
 
