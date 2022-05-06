@@ -1,63 +1,77 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61CF551D88D
-	for <lists+intel-gfx@lfdr.de>; Fri,  6 May 2022 15:11:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A42D251D92B
+	for <lists+intel-gfx@lfdr.de>; Fri,  6 May 2022 15:29:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1083811217D;
-	Fri,  6 May 2022 13:11:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B1C2010E1F4;
+	Fri,  6 May 2022 13:29:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com
- [IPv6:2a00:1450:4864:20::436])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DEE46112179
- for <intel-gfx@lists.freedesktop.org>; Fri,  6 May 2022 13:11:14 +0000 (UTC)
-Received: by mail-wr1-x436.google.com with SMTP id k2so9975779wrd.5
- for <intel-gfx@lists.freedesktop.org>; Fri, 06 May 2022 06:11:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:subject:date:message-id:in-reply-to:references:mime-version
- :content-transfer-encoding;
- bh=PoWrmb14+umfaTXUFOYTh10BM2aQ55bYDFeH9VrAbb0=;
- b=LCFqhtBeWX5W4YlGSBaoOAztNAMqh56SdLBvla60mJecNWm9gS0mYMoLt8nSU980cy
- AE7th+fx0ISzNrW+eSbn95+Wg6+jh/eXVgdUhdHQ6b1diWIeyFYYOYmT8pVDopWHbdpu
- 1F60eaXEmigNBLJjNR90crIXy4BwqyxiqXVCuOdnOcFrEAxeJ94DxQydbWz9WFGG1isw
- p7TRnVnbCrYWbkMbfpdtJ9gKwX4tmNcHVY+kzLgEC3pkiMtGdohdVGaogGx/Jp2L4Qbd
- qW587j4V9GSjlJVRnZw4A+VYhxw5kRf73aDQUj5Po0BTokUkjxqKb0MuArmMgKpf+4J6
- yk4Q==
+X-Greylist: delayed 302 seconds by postgrey-1.36 at gabe;
+ Fri, 06 May 2022 13:29:04 UTC
+Received: from us-smtp-delivery-74.mimecast.com
+ (us-smtp-delivery-74.mimecast.com [170.10.129.74])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 95F9B10E1F4
+ for <intel-gfx@lists.freedesktop.org>; Fri,  6 May 2022 13:29:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1651843743;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=ntfBkmjNjhrxvA8xhvwrtXUPZhy6WpJ5yDdT5A+/C00=;
+ b=XqVvx7YxZ5KWHjIhtbqWKDZBIJBAFVrhNSM8FQ0EETDnPpOZLPPOyy/11ALgJoD8jFlFMp
+ Zsrx+n1Bho1CJlycKL0w7EUWX5/DaKedRgVJgR7SHntqWeRw6djFYQnklJMp/D9lRvciEL
+ u4oGH1dGN+e0mB7RlTnvDAJFVPiPINM=
+Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com
+ [209.85.221.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-298-YOfUYrRKOgyzwR8QWrZ2Ig-1; Fri, 06 May 2022 09:22:43 -0400
+X-MC-Unique: YOfUYrRKOgyzwR8QWrZ2Ig-1
+Received: by mail-wr1-f69.google.com with SMTP id
+ l7-20020adfbd87000000b0020ac0a4d23dso2598628wrh.17
+ for <intel-gfx@lists.freedesktop.org>; Fri, 06 May 2022 06:22:43 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=PoWrmb14+umfaTXUFOYTh10BM2aQ55bYDFeH9VrAbb0=;
- b=57ZapDHmT06HW+jeGVFiGwTHhTREZ20Cxf4IAAyNN6bQqwvSaodu5aMnv7qs4vcPDJ
- /uNfcRMlhoeYnwNtDT3PGTtw8KeRrn32UCHLBe+qBXJL1BF0EiTsuDZlxEn9BxqxLGhf
- f6q/n5cAUM010CBvPb9eJXCtIT5QCMTIybuAmhrBg7ymHHmHvsiHNmffnNgFxWy0l7Tf
- IdPedImniIM9DQJYjCJjGlqzhKEJXiByWl4/1QSnyhYRgOrOUsRqcRTSLYJ+mnnl2ffL
- Jr9UnFtHgSlg4RS/JTHvM1wlc7goj/Ot7aZihXDHnD9v/x7FuqvFtas77IvyGHkHdypd
- Wl8w==
-X-Gm-Message-State: AOAM533Fbc4PZ9zGTRSG0gXVDl/uG3G/zRM4VnMcJO79ZT7mPLBWNeKS
- QG1AuFasrAkCGyMyt1QPeXWMUoCsd+aXBA==
-X-Google-Smtp-Source: ABdhPJzoUbYX8nb3my+NZiKRn4ca+Sb3MjSRWyTLLs/1wPNutofFyDLSOVFb8lMPLlQ2NamGYp86oA==
-X-Received: by 2002:a5d:510a:0:b0:20c:4452:3161 with SMTP id
- s10-20020a5d510a000000b0020c44523161mr2704976wrt.31.1651842672984; 
- Fri, 06 May 2022 06:11:12 -0700 (PDT)
-Received: from jheikkil-mobl.home (77-105-100-22.lpok.fi. [77.105.100.22])
- by smtp.gmail.com with ESMTPSA id
- l1-20020a1ced01000000b003942a244f4fsm8769551wmh.40.2022.05.06.06.11.12
- for <intel-gfx@lists.freedesktop.org>
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=ntfBkmjNjhrxvA8xhvwrtXUPZhy6WpJ5yDdT5A+/C00=;
+ b=iPBrs33nUM19t1FDipF4UgZO/Zar4xnLOXmMm+cCWLwdcRStx64cT2dULYwPlg/Foo
+ lVpfjfql1u32PzDBdUne5lATmLYDGQ6O2XdoWXUEMdgnljeiSKyu6diP7TlJ39CTNW2y
+ GvN8zVzgXsExmhYyW6tWiKjE8ptFEo8Ugh/PMpzQTCHyrMWnOgRzVD0UzLKoBG0RPLTc
+ b7u0EPsSTqJd3mNsIoiR9bI8pM7o1IsgRYEw8+T0tY4PMYSx0RKCgK7aJsgJnhKps2GC
+ NbgKHcWYyrj9X5//DmrhrOiu6FINgZRAWaqsxPaRXYaBtZ1vGmeyQ8aIPcegtXeFx5gL
+ 64LA==
+X-Gm-Message-State: AOAM533pBRX6GvhCwkRnjOF7eHr25xKjshYELh9cMftMbqCBnST6ksZV
+ YezYp4nVByewGeLaPOBP+3UtDjt8fMUp6/HSFMRyaRexoWatFkuWAh6v2xR7M1aY7yQcLN0WnYV
+ 9oPhfnEt/pc9mvfQ613JpbT/J3OJC
+X-Received: by 2002:a05:600c:20e:b0:394:2985:6d0c with SMTP id
+ 14-20020a05600c020e00b0039429856d0cmr9784119wmi.106.1651843362186; 
+ Fri, 06 May 2022 06:22:42 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxoBGIqiXlxsybVbyUOYtj+ac6M3xoMutesjNKS5Waxldl///9zmVAj4E/EHzyx2X+CmF9+Qw==
+X-Received: by 2002:a05:600c:20e:b0:394:2985:6d0c with SMTP id
+ 14-20020a05600c020e00b0039429856d0cmr9784085wmi.106.1651843361915; 
+ Fri, 06 May 2022 06:22:41 -0700 (PDT)
+Received: from minerva.home (205.pool92-176-231.dynamic.orange.es.
+ [92.176.231.205]) by smtp.gmail.com with ESMTPSA id
+ l16-20020a7bcf10000000b003942a244f54sm10378255wmg.45.2022.05.06.06.22.40
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 06 May 2022 06:11:12 -0700 (PDT)
-From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri,  6 May 2022 16:11:09 +0300
-Message-Id: <20220506131109.20942-2-juhapekka.heikkila@gmail.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20220506131109.20942-1-juhapekka.heikkila@gmail.com>
-References: <20220506131109.20942-1-juhapekka.heikkila@gmail.com>
+ Fri, 06 May 2022 06:22:41 -0700 (PDT)
+From: Javier Martinez Canillas <javierm@redhat.com>
+To: linux-kernel@vger.kernel.org
+Date: Fri,  6 May 2022 15:22:25 +0200
+Message-Id: <20220506132225.588379-1-javierm@redhat.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=javierm@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915: Fix i915_vma_pin_iomap()
+Subject: [Intel-gfx] [PATCH] fbdev: efifb: Fix a use-after-free due early
+ fb_info cleanup
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,107 +84,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: linux-fbdev@vger.kernel.org, Thomas Zimmermann <tzimmermann@suse.de>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ Javier Martinez Canillas <javierm@redhat.com>, dri-devel@lists.freedesktop.org,
+ Peter Jones <pjones@redhat.com>, Andrzej Hajda <andrzej.hajda@intel.com>,
+ Helge Deller <deller@gmx.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: CQ Tang <cq.tang@intel.com>
+Commit d258d00fb9c7 ("fbdev: efifb: Cleanup fb_info in .fb_destroy rather
+than .remove") attempted to fix a use-after-free error due driver freeing
+the fb_info in the .remove handler instead of doing it in .fb_destroy.
 
-Display might allocate a smem object and call
-i915_vma_pin_iomap(), the existing code will fail.
+But ironically that change introduced yet another use-after-free since the
+fb_info was still used after the free.
 
-This fix was suggested by Chris P Wilson, that we pin
-the smem with i915_gem_object_pin_map_unlocked().
+This should fix for good by freeing the fb_info at the end of the handler.
 
-Signed-off-by: CQ Tang <cq.tang@intel.com>
-Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-Cc: Chris Wilson <chris.p.wilson@intel.com>
-Cc: Jari Tahvanainen <jari.tahvanainen@intel.com>
+Fixes: d258d00fb9c7 ("fbdev: efifb: Cleanup fb_info in .fb_destroy rather than .remove")
+Reported-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Reported-by: Andrzej Hajda <andrzej.hajda@intel.com>
+Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
 ---
- drivers/gpu/drm/i915/i915_vma.c | 34 ++++++++++++++++++++++-----------
- 1 file changed, 23 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-index 162e8d83691b..8ce016ef3dba 100644
---- a/drivers/gpu/drm/i915/i915_vma.c
-+++ b/drivers/gpu/drm/i915/i915_vma.c
-@@ -550,13 +550,6 @@ void __iomem *i915_vma_pin_iomap(struct i915_vma *vma)
- 	if (WARN_ON_ONCE(vma->obj->flags & I915_BO_ALLOC_GPU_ONLY))
- 		return IO_ERR_PTR(-EINVAL);
- 
--	if (!i915_gem_object_is_lmem(vma->obj)) {
--		if (GEM_WARN_ON(!i915_vma_is_map_and_fenceable(vma))) {
--			err = -ENODEV;
--			goto err;
--		}
--	}
--
- 	GEM_BUG_ON(!i915_vma_is_ggtt(vma));
- 	GEM_BUG_ON(!i915_vma_is_bound(vma, I915_VMA_GLOBAL_BIND));
- 	GEM_BUG_ON(i915_vma_verify_bind_complete(vma));
-@@ -572,17 +565,31 @@ void __iomem *i915_vma_pin_iomap(struct i915_vma *vma)
- 		if (i915_gem_object_is_lmem(vma->obj))
- 			ptr = i915_gem_object_lmem_io_map(vma->obj, 0,
- 							  vma->obj->base.size);
--		else
-+		else if (i915_vma_is_map_and_fenceable(vma))
- 			ptr = io_mapping_map_wc(&i915_vm_to_ggtt(vma->vm)->iomap,
- 						vma->node.start,
- 						vma->node.size);
-+		else {
-+			ptr = (void __iomem *)
-+				i915_gem_object_pin_map_unlocked(vma->obj,
-+								I915_MAP_WC);
-+			if (IS_ERR(ptr)) {
-+				err = PTR_ERR(ptr);
-+				goto err;
-+			}
-+			ptr = page_pack_bits(ptr, 1);
-+		}
-+
- 		if (ptr == NULL) {
- 			err = -ENOMEM;
- 			goto err;
- 		}
- 
- 		if (unlikely(cmpxchg(&vma->iomap, NULL, ptr))) {
--			io_mapping_unmap(ptr);
-+			if (page_unmask_bits(ptr))
-+				__i915_gem_object_release_map(vma->obj);
-+			else
-+				io_mapping_unmap(ptr);
- 			ptr = vma->iomap;
- 		}
+ drivers/video/fbdev/efifb.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/video/fbdev/efifb.c b/drivers/video/fbdev/efifb.c
+index cfa3dc0b4eee..b3d5f884c544 100644
+--- a/drivers/video/fbdev/efifb.c
++++ b/drivers/video/fbdev/efifb.c
+@@ -259,12 +259,12 @@ static void efifb_destroy(struct fb_info *info)
+ 			memunmap(info->screen_base);
  	}
-@@ -596,7 +603,7 @@ void __iomem *i915_vma_pin_iomap(struct i915_vma *vma)
- 	i915_vma_set_ggtt_write(vma);
  
- 	/* NB Access through the GTT requires the device to be awake. */
--	return ptr;
-+	return page_mask_bits(ptr);
- 
- err_unpin:
- 	__i915_vma_unpin(vma);
-@@ -614,6 +621,8 @@ void i915_vma_unpin_iomap(struct i915_vma *vma)
- {
- 	GEM_BUG_ON(vma->iomap == NULL);
- 
-+	/* XXX We keep the mapping until __i915_vma_unbind()/evict() */
+-	framebuffer_release(info);
+-
+ 	if (request_mem_succeeded)
+ 		release_mem_region(info->apertures->ranges[0].base,
+ 				   info->apertures->ranges[0].size);
+ 	fb_dealloc_cmap(&info->cmap);
 +
- 	i915_vma_flush_writes(vma);
- 
- 	i915_vma_unpin_fence(vma);
-@@ -1761,7 +1770,10 @@ static void __i915_vma_iounmap(struct i915_vma *vma)
- 	if (vma->iomap == NULL)
- 		return;
- 
--	io_mapping_unmap(vma->iomap);
-+	if (page_unmask_bits(vma->iomap))
-+		__i915_gem_object_release_map(vma->obj);
-+	else
-+		io_mapping_unmap(vma->iomap);
- 	vma->iomap = NULL;
++	framebuffer_release(info);
  }
  
+ static const struct fb_ops efifb_ops = {
 -- 
-2.25.1
+2.35.1
 
