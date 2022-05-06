@@ -2,53 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C0DF51DE9D
-	for <lists+intel-gfx@lfdr.de>; Fri,  6 May 2022 20:05:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 61C2551DEEF
+	for <lists+intel-gfx@lfdr.de>; Fri,  6 May 2022 20:14:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 64EB010F12A;
-	Fri,  6 May 2022 18:05:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D076210E10F;
+	Fri,  6 May 2022 18:14:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4275B10F0F9;
- Fri,  6 May 2022 18:05:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1651860337; x=1683396337;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=xI0jrG6IKrniOor1KHISDBmhbvcYUBhD5Fx58lNc2XE=;
- b=BFIxg5u3ZKtqfUEJtpaniTcHY7h5v9338fIqsPUHg3Myhxnas39NjPux
- NqmZkeTIWt7gqGqxopTJbrLHFzxUZ58tp4/EnB8Dj/m3Ee75HFUczzYc4
- sj2Vbwrd04hgpRx7xeTd80FJ5kmyjVygQM8pcnF4ouJ1/809Y4IJxncHa
- /s01nXW7SgT6KvlVkIA4pOdWbuqiUORjcxhMQ9xYLwX6kVCtMO9EOA/M0
- c0eG4aCVHsAb0jB8wCN7WdC/66yX9f2x6zY7R5KKOkgOY+VyK9O5QVmlc
- tfFRO7gXAZv/Wc/Ml80fCDdhh1rDGB3T2vvjeFka/s4v9Lwkbb9jfnJL3 Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10339"; a="331528327"
-X-IronPort-AV: E=Sophos;i="5.91,205,1647327600"; d="scan'208";a="331528327"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2022 11:05:36 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,205,1647327600"; d="scan'208";a="586124152"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.51])
- by orsmga008.jf.intel.com with SMTP; 06 May 2022 11:05:34 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 06 May 2022 21:05:33 +0300
-Date: Fri, 6 May 2022 21:05:33 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <YnVjbbMz4jvUL5B1@intel.com>
-References: <cover.1651830938.git.jani.nikula@intel.com>
- <b3a5a99b1ec07d9b3b2bb9ccfadbf89768213fc6.1651830939.git.jani.nikula@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id F1FC110E10F;
+ Fri,  6 May 2022 18:14:33 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id F0C13AADD1;
+ Fri,  6 May 2022 18:14:33 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3606930619880186358=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <b3a5a99b1ec07d9b3b2bb9ccfadbf89768213fc6.1651830939.git.jani.nikula@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 17/25] drm/edid: add drm_edid helper for
- drm_edid_to_sad()
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Anusha Srivatsa" <anusha.srivatsa@intel.com>
+Date: Fri, 06 May 2022 18:14:33 -0000
+Message-ID: <165186087395.18815.8057452137738707575@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220506171328.845107-1-anusha.srivatsa@intel.com>
+In-Reply-To: <20220506171328.845107-1-anusha.srivatsa@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/dmc=3A_Load_DMC_on_DG2_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,29 +40,136 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, May 06, 2022 at 01:10:24PM +0300, Jani Nikula wrote:
-> +int drm_edid_to_sad(const struct edid *edid, struct cea_sad **sads)
-> +{
-> +	struct drm_edid drm_edid = {
-> +		.edid = edid,
-> +		.size = edid_size(edid),
-> +	};
-> +
-> +	return _drm_edid_to_sad(&drm_edid, sads);
+--===============3606930619880186358==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-No need to check for NULL edid in these wrappers?
+== Series Details ==
 
-> +}
->  EXPORT_SYMBOL(drm_edid_to_sad);
->  
->  /**
-> -- 
-> 2.30.2
+Series: drm/i915/dmc: Load DMC on DG2 (rev4)
+URL   : https://patchwork.freedesktop.org/series/103625/
+State : success
 
--- 
-Ville Syrjälä
-Intel
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_11618 -> Patchwork_103625v4
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103625v4/index.html
+
+Participating hosts (35 -> 34)
+------------------------------
+
+  Missing    (1): fi-bsw-cyan 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_103625v4 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-snb-2600:        [PASS][1] -> [INCOMPLETE][2] ([i915#3921])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11618/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103625v4/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+
+  
+  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_11618 -> Patchwork_103625v4
+
+  CI-20190529: 20190529
+  CI_DRM_11618: 07c7d578e3b8a85c79e9a7f8dace075192d5fd91 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6468: cffa5fffe9acddf49565b4caeeb5e3355ff2ea44 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_103625v4: 07c7d578e3b8a85c79e9a7f8dace075192d5fd91 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+f59f3563ba3e drm/i915/dmc: Load DMC on DG2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103625v4/index.html
+
+--===============3606930619880186358==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/dmc: Load DMC on DG2 (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/103625/">https://patchwork.freedesktop.org/series/103625/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103625v4/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103625v4/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11618 -&gt; Patchwork_103625v4</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103625v4/index.html</p>
+<h2>Participating hosts (35 -&gt; 34)</h2>
+<p>Missing    (1): fi-bsw-cyan </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_103625v4 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_selftest@live@hangcheck:<ul>
+<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11618/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103625v4/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11618 -&gt; Patchwork_103625v4</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11618: 07c7d578e3b8a85c79e9a7f8dace075192d5fd91 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6468: cffa5fffe9acddf49565b4caeeb5e3355ff2ea44 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_103625v4: 07c7d578e3b8a85c79e9a7f8dace075192d5fd91 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>f59f3563ba3e drm/i915/dmc: Load DMC on DG2</p>
+
+</body>
+</html>
+
+--===============3606930619880186358==--
