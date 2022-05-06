@@ -1,51 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68FCE51DC79
-	for <lists+intel-gfx@lfdr.de>; Fri,  6 May 2022 17:44:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 230E751DC9C
+	for <lists+intel-gfx@lfdr.de>; Fri,  6 May 2022 17:55:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0EF9710E81C;
-	Fri,  6 May 2022 15:44:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 55AE110EA6D;
+	Fri,  6 May 2022 15:55:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E78DD10E81B;
- Fri,  6 May 2022 15:44:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1651851891; x=1683387891;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=nyZ5t8pD3rFxQXXz8gDpvzek8yDDoj/KX1ArnB2/pcM=;
- b=j0QDWj1uqgYKDMPFQDudQ4+fqP3w1GcWSbxWyATSAgDkpJDmivBZb/k6
- EHoJ83AdhIpRWIacYPKMn8YnpIO4GqknJCsxKSp+pamCHwuONvF2L9Pnp
- ndP8egJrqnvafGr8iFcWfJUe+8+h+NcrEEmTQSKgSmwRllOylp5ElznnK
- UFkqS6OUiY/xiMS6hVuI65MEbo6rTJwiPjtyf+vy/sICRc5kF2Op0sGo8
- qVOF0ZeoneuxPUWAWLRkdKHTnJhBX1jJj3W+u0zix3twyLYJ1/HXCElOA
- nLAsFIvoVbTIKWk8BzVrx0dGsqTV9mCSKegiFCih6Opy4H+N5cCPD9pAs A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10339"; a="267338318"
-X-IronPort-AV: E=Sophos;i="5.91,203,1647327600"; d="scan'208";a="267338318"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2022 08:44:51 -0700
-X-IronPort-AV: E=Sophos;i="5.91,203,1647327600"; d="scan'208";a="586039009"
-Received: from hbourgeo-mobl2.ger.corp.intel.com (HELO intel.com)
- ([10.249.35.81])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2022 08:44:48 -0700
-Date: Fri, 6 May 2022 17:44:44 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Javier Martinez Canillas <javierm@redhat.com>
-Message-ID: <YnVCbJJ5DmhkD5WA@intel.intel>
-References: <20220506132225.588379-1-javierm@redhat.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A047710EA6D;
+ Fri,  6 May 2022 15:55:08 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9E043A01BB;
+ Fri,  6 May 2022 15:55:08 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-15
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220506132225.588379-1-javierm@redhat.com>
-Subject: Re: [Intel-gfx] [PATCH] fbdev: efifb: Fix a use-after-free due
- early fb_info cleanup
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Bhanuprakash Modem" <bhanuprakash.modem@intel.com>
+Date: Fri, 06 May 2022 15:55:08 -0000
+Message-ID: <165185250861.18816.15647170076274044923@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220411095129.1652096-1-bhanuprakash.modem@intel.com>
+In-Reply-To: <20220411095129.1652096-1-bhanuprakash.modem@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Expose_max_and_current_bpc_via_debugfs_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,31 +40,27 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-fbdev@vger.kernel.org, Andrzej Hajda <andrzej.hajda@intel.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Peter Jones <pjones@redhat.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- Helge Deller <deller@gmx.de>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Javier,
+== Series Details ==
 
-On Fri, May 06, 2022 at 03:22:25PM +0200, Javier Martinez Canillas wrote:
-> Commit d258d00fb9c7 ("fbdev: efifb: Cleanup fb_info in .fb_destroy rather
-> than .remove") attempted to fix a use-after-free error due driver freeing
-> the fb_info in the .remove handler instead of doing it in .fb_destroy.
-> 
-> But ironically that change introduced yet another use-after-free since the
-> fb_info was still used after the free.
-> 
-> This should fix for good by freeing the fb_info at the end of the handler.
-> 
-> Fixes: d258d00fb9c7 ("fbdev: efifb: Cleanup fb_info in .fb_destroy rather than .remove")
-> Reported-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Reported-by: Andrzej Hajda <andrzej.hajda@intel.com>
-> Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
+Series: Expose max and current bpc via debugfs (rev4)
+URL   : https://patchwork.freedesktop.org/series/102502/
+State : warning
 
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+== Summary ==
 
-Andi
+Error: dim checkpatch failed
+e8b34c163d1c drm/debug: Expose connector's max supported bpc via debugfs
+-:21: WARNING:BAD_SIGN_OFF: 'Reviewed-by:' is the preferred signature form
+#21: 
+Reviewed-By: Arun R Murthy <arun.r.murthy@intel.com>
+
+total: 0 errors, 1 warnings, 0 checks, 33 lines checked
+73d767b83f8e drm/i915/display/debug: Expose crtc current bpc via debugfs
+f14f0c99554a drm/amd/display: Move connector debugfs to drm
+
+
