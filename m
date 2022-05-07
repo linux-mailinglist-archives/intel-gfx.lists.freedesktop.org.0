@@ -2,50 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2A2E51E778
-	for <lists+intel-gfx@lfdr.de>; Sat,  7 May 2022 15:29:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C6A851E77D
+	for <lists+intel-gfx@lfdr.de>; Sat,  7 May 2022 15:43:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E11E113358;
-	Sat,  7 May 2022 13:29:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 61A0F11221C;
+	Sat,  7 May 2022 13:43:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A360C113355
- for <intel-gfx@lists.freedesktop.org>; Sat,  7 May 2022 13:29:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1651930160; x=1683466160;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=P5EDW4svGoWdZrKFrKSAWx817CIGqs2mduz7PRDdJhg=;
- b=NdZ0U7vs6fHuPpMwfeoOC05EJ1e/pk4/ufQTt5UaHURe2RDTUawlSGo2
- H3wwugRYBLcvGdBfST1weG1opwkbMKx6bP/ln1tYYMmmx4sUufQJxRGp3
- zSRyAlI6ILMJES9SWzNQ5XmNo8IWSpdzrqfKhPxhkUGKqtiLc/ua3CHe4
- ABPZS7XfMSWFep2uIJBP99n+oMN0g2YR2QIGEkUV7EW92dkg2Nj3dpQYf
- fEEids5EtVpgQ3wFDIvqeH8v2el61D5aIxLK49V2sn+xYstkN4Dd4WYM5
- +xITb5zKWnCiy7Ub9UJCK8c+aOl/SX7A5JGsXPSrk3hSPhB4AcdnUfi0O w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10340"; a="268334315"
-X-IronPort-AV: E=Sophos;i="5.91,207,1647327600"; d="scan'208";a="268334315"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2022 06:29:20 -0700
-X-IronPort-AV: E=Sophos;i="5.91,207,1647327600"; d="scan'208";a="564293015"
-Received: from henrypet-mobl1.amr.corp.intel.com (HELO
- josouza-mobl2.intel.com) ([10.212.61.248])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2022 06:29:19 -0700
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Sat,  7 May 2022 06:28:50 -0700
-Message-Id: <20220507132850.10272-16-jose.souza@intel.com>
-X-Mailer: git-send-email 2.36.0
-In-Reply-To: <20220507132850.10272-1-jose.souza@intel.com>
-References: <20220507132850.10272-1-jose.souza@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2884C10F8B9;
+ Sat,  7 May 2022 13:43:29 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 27E8CAA0EA;
+ Sat,  7 May 2022 13:43:29 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 16/16] drm/i915: Drop display.has_fpga_db from
- device info
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
+Date: Sat, 07 May 2022 13:43:29 -0000
+Message-ID: <165193100913.22139.12993291513578934092@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220507132850.10272-1-jose.souza@intel.com>
+In-Reply-To: <20220507132850.10272-1-jose.souza@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B01/16=5D_drm/i915=3A_Drop_has=5Fllc?=
+ =?utf-8?q?_from_device_info?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,80 +41,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-No need to have this parameter in intel_device_info struct
-as this feature is supported by Broadwell, Haswell all platforms with
-display version 9 or newer.
+== Series Details ==
 
-As a side effect of the of removal this flag, it will not be printed
-in dmesg during driver load anymore and developers will have to rely
-on to check the macro and compare with platform being used and IP
-versions of it.
+Series: series starting with [01/16] drm/i915: Drop has_llc from device info
+URL   : https://patchwork.freedesktop.org/series/103718/
+State : warning
 
-Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
----
- drivers/gpu/drm/i915/i915_drv.h          | 4 +++-
- drivers/gpu/drm/i915/i915_pci.c          | 3 ---
- drivers/gpu/drm/i915/intel_device_info.h | 1 -
- 3 files changed, 3 insertions(+), 5 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 4b1025dbaab2a..4a1edf48d37b9 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -1306,7 +1306,9 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
- 					  IS_BROADWELL(dev_priv) || \
- 					  IS_HASWELL(dev_priv))
- #define HAS_DP_MST(dev_priv)		 (HAS_DDI(dev_priv))
--#define HAS_FPGA_DBG_UNCLAIMED(dev_priv) (INTEL_INFO(dev_priv)->display.has_fpga_dbg)
+Error: dim checkpatch failed
+749bad5dad9c drm/i915: Drop has_llc from device info
+-:48: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'dev_priv' - possible side-effects?
+#48: FILE: drivers/gpu/drm/i915/i915_drv.h:1239:
++#define HAS_LLC(dev_priv)	(!IS_DGFX(dev_priv) && (GRAPHICS_VER(dev_priv) >= 8 || \
++							IS_HASWELL(dev_priv) || \
++							IS_IVYBRIDGE(dev_priv) || \
++							IS_SANDYBRIDGE(dev_priv)))
+
+total: 0 errors, 0 warnings, 1 checks, 54 lines checked
+54a34a98dcc4 drm/i915: Drop has_ipc from device info
+59fd2eb5368e drm/i915/display: Disable DSB for DG2 and Alderlake-P
+d0c64ff37c59 drm/i915: Drop has_rc6p from device info
+-:33: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'dev_priv' - possible side-effects?
+#33: FILE: drivers/gpu/drm/i915/i915_drv.h:1318:
++#define HAS_RC6p(dev_priv)		 (IS_SANDYBRIDGE(dev_priv) || IS_IVYBRIDGE(dev_priv))
+
+total: 0 errors, 0 warnings, 1 checks, 36 lines checked
+1832f734ee5e drm/i915: Drop has_psr_hw_tracking from device info
+-:36: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'dev_priv' - possible side-effects?
+#36: FILE: drivers/gpu/drm/i915/display/intel_psr.c:87:
++#define HAS_PSR_HW_TRACKING(dev_priv) ((DISPLAY_VER(dev_priv) >= 9 && \
++					DISPLAY_VER(dev_priv) <= 11) || \
++					IS_TIGERLAKE(dev_priv) || \
++					IS_DG1(dev_priv))
+
+total: 0 errors, 0 warnings, 1 checks, 61 lines checked
+d3c243f6bed4 drm/i915: Drop supports_tv from device info
+-:28: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'dev_priv' - possible side-effects?
+#28: FILE: drivers/gpu/drm/i915/i915_drv.h:1293:
++#define SUPPORTS_TV(dev_priv)		(IS_I915GM(dev_priv) || IS_I945GM(dev_priv) || \
++					 IS_I965GM(dev_priv) || IS_GM45(dev_priv))
+
+total: 0 errors, 0 warnings, 1 checks, 46 lines checked
+d20d70fb49a1 drm/i915: Drop has_4tile from device info
+994026183810 drm/i915: Drop has_64bit_reloc from device info
+574a028dd3b1 drm/i915: Drop has_global_mocs from device info
+5c4257c463e4 drm/i915: Drop has_guc_deprivilege from device info
+c1f37fbf76be drm/i915: Drop has_pxp from device info
+d32fc5596825 drm/i915: Drop has_heci_gscfi from device info
+07cf212d426a drm/i915: Drop has_heci_gscfi from device info
+-:28: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'dev_priv' - possible side-effects?
+#28: FILE: drivers/gpu/drm/i915/i915_drv.h:1378:
++#define HAS_L3_DPF(dev_priv) (IS_HASWELL(dev_priv) || IS_IVYBRIDGE(dev_priv))
+
+total: 0 errors, 0 warnings, 1 checks, 51 lines checked
+5198bddb1f82 drm/i915: Drop has_runtime_pm from device info
+-:29: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'dev_priv' - possible side-effects?
+#29: FILE: drivers/gpu/drm/i915/i915_drv.h:1333:
++#define HAS_RUNTIME_PM(dev_priv) (GRAPHICS_VER(dev_priv) >= 8 || \
++				  IS_HASWELL(dev_priv) || \
++				  IS_VALLEYVIEW(dev_priv))
+
+total: 0 errors, 0 warnings, 1 checks, 54 lines checked
+ca6382ffb8b2 drm/i915: Drop has_logical_ring_contexts from device info
+850ead5e0d81 drm/i915: Drop display.has_fpga_db from device info
+-:29: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'dev_priv' - possible side-effects?
+#29: FILE: drivers/gpu/drm/i915/i915_drv.h:1309:
 +#define HAS_FPGA_DBG_UNCLAIMED(dev_priv) (DISPLAY_VER(dev_priv) >= 9 || \
 +					  IS_BROADWELL(dev_priv) || \
 +					  IS_HASWELL(dev_priv))
- #define HAS_PSR(dev_priv)		 (DISPLAY_VER(dev_priv) >= 9)
- #define HAS_PSR2_SEL_FETCH(dev_priv)	 (DISPLAY_VER(dev_priv) >= 12)
- #define HAS_TRANSCODER(dev_priv, trans)	 ((INTEL_INFO(dev_priv)->display.cpu_transcoder_mask & BIT(trans)) != 0)
-diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-index 5a42acb162a15..6a5b70b3ea2d7 100644
---- a/drivers/gpu/drm/i915/i915_pci.c
-+++ b/drivers/gpu/drm/i915/i915_pci.c
-@@ -523,7 +523,6 @@ static const struct intel_device_info vlv_info = {
- 	.platform_engine_mask = BIT(RCS0) | BIT(VCS0) | BIT(BCS0) | BIT(VECS0), \
- 	.display.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | \
- 		BIT(TRANSCODER_C) | BIT(TRANSCODER_EDP), \
--	.display.has_fpga_dbg = 1, \
- 	HSW_PIPE_OFFSETS
- 
- #define HSW_PLATFORM \
-@@ -657,7 +656,6 @@ static const struct intel_device_info skl_gt4_info = {
- 	.display.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | \
- 		BIT(TRANSCODER_C) | BIT(TRANSCODER_EDP) | \
- 		BIT(TRANSCODER_DSI_A) | BIT(TRANSCODER_DSI_C), \
--	.display.has_fpga_dbg = 1, \
- 	.display.fbc_mask = BIT(INTEL_FBC_A), \
- 	.display.has_hdcp = 1, \
- 	.display.has_dmc = 1, \
-@@ -894,7 +892,6 @@ static const struct intel_device_info adl_s_info = {
- 	.display.has_dmc = 1,							\
- 	.display.has_dsc = 1,							\
- 	.display.fbc_mask = BIT(INTEL_FBC_A),					\
--	.display.has_fpga_dbg = 1,						\
- 	.display.has_hdcp = 1,							\
- 	.display.has_hotplug = 1,						\
- 	.display.ver = 13,							\
-diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
-index 7581ef4a68f94..e61a334b611ac 100644
---- a/drivers/gpu/drm/i915/intel_device_info.h
-+++ b/drivers/gpu/drm/i915/intel_device_info.h
-@@ -157,7 +157,6 @@ enum intel_ppgtt_type {
- 	func(has_cdclk_crawl); \
- 	func(has_dmc); \
- 	func(has_dsc); \
--	func(has_fpga_dbg); \
- 	func(has_gmch); \
- 	func(has_hdcp); \
- 	func(has_hotplug); \
--- 
-2.36.0
+
+total: 0 errors, 0 warnings, 1 checks, 38 lines checked
+
 
