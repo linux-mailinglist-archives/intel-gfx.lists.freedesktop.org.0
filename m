@@ -2,81 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC05651E893
-	for <lists+intel-gfx@lfdr.de>; Sat,  7 May 2022 18:40:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 71E3951E912
+	for <lists+intel-gfx@lfdr.de>; Sat,  7 May 2022 20:06:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 45CA410EB00;
-	Sat,  7 May 2022 16:40:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B5A0510E6F2;
+	Sat,  7 May 2022 18:06:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5337F10E53E
- for <intel-gfx@lists.freedesktop.org>; Sat,  7 May 2022 16:40:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1651941621;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=inhGipBUDTXnB2qKEYfxvYqIWIZ4u692zATmOyojLEY=;
- b=P2xdkMOrnlXMmJ2ZZzyFgYr7WSjkqWUx+j3Qib3wqZUx9ChFlbVZMIW4CDgQrCFj1sA8tQ
- yUCByAcKeVcf4uhttGMjJlrLkisWHKlesBgltXvx9ThLIHt/H5OCV6KuGrL0E+2/Jyycpf
- zXkBdKbRBZYy1yGKl9bJuS3mkKeQUy0=
-Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
- [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-644-iiGXPijQMqGdgcN1HbkzaA-1; Sat, 07 May 2022 12:40:19 -0400
-X-MC-Unique: iiGXPijQMqGdgcN1HbkzaA-1
-Received: by mail-wm1-f71.google.com with SMTP id
- k35-20020a05600c1ca300b003946a9764baso3853395wms.1
- for <intel-gfx@lists.freedesktop.org>; Sat, 07 May 2022 09:40:19 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:to:cc:references:from:in-reply-to
- :content-transfer-encoding;
- bh=inhGipBUDTXnB2qKEYfxvYqIWIZ4u692zATmOyojLEY=;
- b=uhsH1gr1eZtW7j7H4wtB+XUY5+NGjCQaFU39T737CKH48xmKzhabr/P773BbwTZ4rJ
- tPa+24/n/gB6wNvqXkm8ah2l19Vm9sjmGpIiOW9XQ7VtBdfeN5ClHQIQAFrSgAM8fOal
- so+u1Si7Xjx7uUvg32Mdxv7ob+jcOKs5ljwHHyXMR3XpEu75wDw0WZdk/URPmVmw5cVQ
- YwxpsLKBqQuUyIoLFGYMl0pe1kzTvW2eY8vtWz/HCQkqDGHUNSO16PVIlz7qiZ/7phE4
- bNszfwYJgaa+ZFpZEbSV0FB3TrVnr9PAFfw7r2nHsjuIMlTYuy4ypSDMLPj1IQCpWuxN
- H+EQ==
-X-Gm-Message-State: AOAM531v6eu7t1cNmXK7aYX+yzD1U2VnHq44Oe5hXhRpH6ZTQ46WLdUe
- 2QYqcEdMKYbH75Nar+cEF6NRwzRBGoSP4pmQs2iZmyi9bSq35GwmsbZoVRGeQZspz9ORTDLGHI6
- V2KVl51tAqR/afkAZ8ccrgtTOHM6A
-X-Received: by 2002:a1c:f705:0:b0:37d:f2e5:d8ec with SMTP id
- v5-20020a1cf705000000b0037df2e5d8ecmr15431654wmh.21.1651941618626; 
- Sat, 07 May 2022 09:40:18 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJykhasS4dK4eppFGtBqCb2g0PaleaocuXsAQca/dvV5qInWX6ynRAZXrO0TJxqEd2vidA73gA==
-X-Received: by 2002:a1c:f705:0:b0:37d:f2e5:d8ec with SMTP id
- v5-20020a1cf705000000b0037df2e5d8ecmr15431630wmh.21.1651941618195; 
- Sat, 07 May 2022 09:40:18 -0700 (PDT)
-Received: from [192.168.1.129] (205.pool92-176-231.dynamic.orange.es.
- [92.176.231.205]) by smtp.gmail.com with ESMTPSA id
- e2-20020a5d5942000000b0020c5253d8e1sm7951521wri.45.2022.05.07.09.40.17
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sat, 07 May 2022 09:40:17 -0700 (PDT)
-Message-ID: <981d7ed4-8554-73ca-bfd1-2d89e4e91af3@redhat.com>
-Date: Sat, 7 May 2022 18:40:16 +0200
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5F67D10E6F2
+ for <intel-gfx@lists.freedesktop.org>; Sat,  7 May 2022 18:06:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1651946766; x=1683482766;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=gfummZkNA0oquaF09Uf4O+Z3aazmns9yxEzQ0blgZAk=;
+ b=TJcf9VWAoT0hp+2BSMu3KUXn85x+RN1o3OLBqWCYalu3IwkHyxIv5/Xe
+ JB7nDko9zdzy5NMthDnmdgf3WHLA62m5d5TLvkB4OjKcxnILDWbD9N9M6
+ /QqgRr2jcNwLWhoWIOaIgWV+i/QE8r85smyNATi6dpSWrRWukeCEtR+dk
+ fbh5HNxrCShhZS0JvNiC6M5rvL3z3SLXgt6CLi+Oe2NRY3lnK5/z3ZMlA
+ 6fZ4/zi9pZU5Fl0ABo8GD44G+VQ8x3p2G/9FHqFe6fhb63dSwp4WbXHhC
+ mxyzFtKfbhQ0IXOzb3tcwMkaLXtPAyL4joW8n2F9EujKDkCr/JqPGjKF+ g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10340"; a="268879401"
+X-IronPort-AV: E=Sophos;i="5.91,207,1647327600"; d="scan'208";a="268879401"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 May 2022 11:06:05 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.91,207,1647327600"; d="scan'208";a="518541225"
+Received: from lkp-server01.sh.intel.com (HELO 5056e131ad90) ([10.239.97.150])
+ by orsmga003.jf.intel.com with ESMTP; 07 May 2022 11:06:03 -0700
+Received: from kbuild by 5056e131ad90 with local (Exim 4.95)
+ (envelope-from <lkp@intel.com>) id 1nnOod-000EqF-2C;
+ Sat, 07 May 2022 18:06:03 +0000
+Date: Sun, 8 May 2022 02:05:35 +0800
+From: kernel test robot <lkp@intel.com>
+To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Message-ID: <202205080138.2kBqKQTb-lkp@intel.com>
+References: <20220507132850.10272-11-jose.souza@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-References: <20220506132225.588379-1-javierm@redhat.com>
- <20220507162053.auo2idd5twvnxatj@ldmartin-desk2>
-From: Javier Martinez Canillas <javierm@redhat.com>
-In-Reply-To: <20220507162053.auo2idd5twvnxatj@ldmartin-desk2>
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=javierm@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] fbdev: efifb: Fix a use-after-free due
- early fb_info cleanup
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220507132850.10272-11-jose.souza@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 11/16] drm/i915: Drop has_pxp from device
+ info
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,50 +61,111 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-fbdev@vger.kernel.org, Thomas Zimmermann <tzimmermann@suse.de>,
- Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Peter Jones <pjones@redhat.com>, Andrzej Hajda <andrzej.hajda@intel.com>,
- Helge Deller <deller@gmx.de>
+Cc: llvm@lists.linux.dev, kbuild-all@lists.01.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hello Lucas,
+Hi "José,
 
-On 5/7/22 18:20, Lucas De Marchi wrote:
-> On Fri, May 06, 2022 at 03:22:25PM +0200, Javier Martinez Canillas wrote:
->> Commit d258d00fb9c7 ("fbdev: efifb: Cleanup fb_info in .fb_destroy rather
->> than .remove") attempted to fix a use-after-free error due driver freeing
->> the fb_info in the .remove handler instead of doing it in .fb_destroy.
->>
->> But ironically that change introduced yet another use-after-free since the
->> fb_info was still used after the free.
->>
->> This should fix for good by freeing the fb_info at the end of the handler.
->>
->> Fixes: d258d00fb9c7 ("fbdev: efifb: Cleanup fb_info in .fb_destroy rather than .remove")
-> 
-> are these patches going through any CI before being applied? Maybe would
-> be a good idea to cc intel-gfx mailing list on these fixes to have Intel
-> CI to pick them up for some tests?
->
+Thank you for the patch! Yet something to improve:
 
-I Cc'ed intel-gfx for this particular patch. I should had done it for the
-previous patches too, but I wasn't aware that Cc'ing that list would make
-it run on your CI.
+[auto build test ERROR on drm-tip/drm-tip]
+[cannot apply to drm-intel/for-linux-next linus/master v5.18-rc5 next-20220506]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-I tested locally the offending patch on an EFI platform before applying it
-and I don't know why it didn't fail there. Sorry all for the inconvenience.
- 
-> pushed to drm-misc-fixes where the previous patch was applied.
-> 
+url:    https://github.com/intel-lab-lkp/linux/commits/Jos-Roberto-de-Souza/drm-i915-Drop-has_llc-from-device-info/20220507-213117
+base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
+config: i386-randconfig-a011 (https://download.01.org/0day-ci/archive/20220508/202205080138.2kBqKQTb-lkp@intel.com/config)
+compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project af4cf1c6b8ed0d8102fc5e69acdc2fcbbcdaa9a7)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/c1a7677ed60d6907adf2824e35480433cde736ce
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Jos-Roberto-de-Souza/drm-i915-Drop-has_llc-from-device-info/20220507-213117
+        git checkout c1a7677ed60d6907adf2824e35480433cde736ce
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 SHELL=/bin/bash drivers/gpu/drm/i915/
 
-Thanks.
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+All errors (new ones prefixed by >>):
+
+>> drivers/gpu/drm/i915/pxp/intel_pxp.c:115:3: error: expected ')'
+                   return;
+                   ^
+   drivers/gpu/drm/i915/pxp/intel_pxp.c:114:2: note: to match this '('
+           if (!HAS_PXP(gt->i915))
+           ^
+   include/linux/compiler.h:56:26: note: expanded from macro 'if'
+   #define if(cond, ...) if ( __trace_if_var( !!(cond , ## __VA_ARGS__) ) )
+                            ^
+   1 error generated.
+--
+>> drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c:73:3: error: expected ')'
+                   return;
+                   ^
+   drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c:72:2: note: to match this '('
+           if (!HAS_PXP((pxp_to_gt(pxp)->i915)))
+           ^
+   include/linux/compiler.h:56:26: note: expanded from macro 'if'
+   #define if(cond, ...) if ( __trace_if_var( !!(cond , ## __VA_ARGS__) ) )
+                            ^
+   drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c:61:6: warning: no previous prototype for function 'intel_pxp_debugfs_register' [-Wmissing-prototypes]
+   void intel_pxp_debugfs_register(struct intel_pxp *pxp, struct dentry *gt_root)
+        ^
+   drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c:61:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
+   void intel_pxp_debugfs_register(struct intel_pxp *pxp, struct dentry *gt_root)
+   ^
+   static 
+   1 warning and 1 error generated.
+
+
+vim +115 drivers/gpu/drm/i915/pxp/intel_pxp.c
+
+3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24  108  
+3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24  109  void intel_pxp_init(struct intel_pxp *pxp)
+3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24  110  {
+3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24  111  	struct intel_gt *gt = pxp_to_gt(pxp);
+3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24  112  	int ret;
+3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24  113  
+3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24  114  	if (!HAS_PXP(gt->i915))
+3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24 @115  		return;
+3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24  116  
+cbbd3764b2399a Huang, Sean Z          2021-09-24  117  	mutex_init(&pxp->tee_mutex);
+cbbd3764b2399a Huang, Sean Z          2021-09-24  118  
+2ae096872a2c61 Huang, Sean Z          2021-09-24  119  	/*
+2ae096872a2c61 Huang, Sean Z          2021-09-24  120  	 * we'll use the completion to check if there is a termination pending,
+2ae096872a2c61 Huang, Sean Z          2021-09-24  121  	 * so we start it as completed and we reinit it when a termination
+2ae096872a2c61 Huang, Sean Z          2021-09-24  122  	 * is triggered.
+2ae096872a2c61 Huang, Sean Z          2021-09-24  123  	 */
+2ae096872a2c61 Huang, Sean Z          2021-09-24  124  	init_completion(&pxp->termination);
+2ae096872a2c61 Huang, Sean Z          2021-09-24  125  	complete_all(&pxp->termination);
+2ae096872a2c61 Huang, Sean Z          2021-09-24  126  
+32271ecd6596e6 Daniele Ceraolo Spurio 2021-09-24  127  	mutex_init(&pxp->arb_mutex);
+2ae096872a2c61 Huang, Sean Z          2021-09-24  128  	INIT_WORK(&pxp->session_work, intel_pxp_session_work);
+2ae096872a2c61 Huang, Sean Z          2021-09-24  129  
+3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24  130  	ret = create_vcs_context(pxp);
+3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24  131  	if (ret)
+3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24  132  		return;
+3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24  133  
+0436ac1b008d48 Huang, Sean Z          2021-09-24  134  	ret = intel_pxp_tee_component_init(pxp);
+0436ac1b008d48 Huang, Sean Z          2021-09-24  135  	if (ret)
+0436ac1b008d48 Huang, Sean Z          2021-09-24  136  		goto out_context;
+0436ac1b008d48 Huang, Sean Z          2021-09-24  137  
+3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24  138  	drm_info(&gt->i915->drm, "Protected Xe Path (PXP) protected content support initialized\n");
+0436ac1b008d48 Huang, Sean Z          2021-09-24  139  
+0436ac1b008d48 Huang, Sean Z          2021-09-24  140  	return;
+0436ac1b008d48 Huang, Sean Z          2021-09-24  141  
+0436ac1b008d48 Huang, Sean Z          2021-09-24  142  out_context:
+0436ac1b008d48 Huang, Sean Z          2021-09-24  143  	destroy_vcs_context(pxp);
+3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24  144  }
+3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24  145  
 
 -- 
-Best regards,
-
-Javier Martinez Canillas
-Linux Engineering
-Red Hat
-
+0-DAY CI Kernel Test Service
+https://01.org/lkp
