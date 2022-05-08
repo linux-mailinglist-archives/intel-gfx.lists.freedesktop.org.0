@@ -1,54 +1,83 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9A2151E992
-	for <lists+intel-gfx@lfdr.de>; Sat,  7 May 2022 21:48:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53D3651EE4E
+	for <lists+intel-gfx@lfdr.de>; Sun,  8 May 2022 16:38:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 24E0110F3BB;
-	Sat,  7 May 2022 19:48:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D3D8810F57F;
+	Sun,  8 May 2022 14:38:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8CB9710F3BB
- for <intel-gfx@lists.freedesktop.org>; Sat,  7 May 2022 19:48:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1651952888; x=1683488888;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=kcyl7aofhnNJUYuE1U/xpD4d9j6wRCaMnjS6eMkgH9M=;
- b=g+690wRMNgIR2ncTkrRj8vKtWLXi419n3YknhaT19w1wXZc+MSamiAnA
- KN/0KiMfYElN9EYHVud1+fhYo1g1bcNs4LulzEPF7whLNQBfD21pRKiHo
- uTX4GQRTWdGVRMnXvzZOEmM7X7vqu3+uRUR7QvRHdYao3ROs/lSCulm/E
- KQ0msMN4J6iPiHhGVaGgv96Qjy0xWxir1fkMTxOCGrP6oGngQIU4d2Y9o
- nQz9AwnxDHg5NonAUI750Zg0DMPtJAfsplDtdrc4xcLEJxOJh9280+qS7
- oBBaelJMZTPO4GcYTxGw6iYKdjznGXqlv2ELCnziAfR8inxawf4gAsJos A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10340"; a="250763604"
-X-IronPort-AV: E=Sophos;i="5.91,207,1647327600"; d="scan'208";a="250763604"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2022 12:48:08 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,207,1647327600"; d="scan'208";a="550363197"
-Received: from lkp-server01.sh.intel.com (HELO 5056e131ad90) ([10.239.97.150])
- by orsmga002.jf.intel.com with ESMTP; 07 May 2022 12:48:06 -0700
-Received: from kbuild by 5056e131ad90 with local (Exim 4.95)
- (envelope-from <lkp@intel.com>) id 1nnQPO-000EuV-2R;
- Sat, 07 May 2022 19:48:06 +0000
-Date: Sun, 8 May 2022 03:47:12 +0800
-From: kernel test robot <lkp@intel.com>
-To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>,
- intel-gfx@lists.freedesktop.org
-Message-ID: <202205080306.RJOsIJwU-lkp@intel.com>
-References: <20220507132850.10272-11-jose.souza@intel.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BBFA310F57F
+ for <intel-gfx@lists.freedesktop.org>; Sun,  8 May 2022 14:38:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1652020719;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=2vd3NSd3JgaMgQX4g9MrIzVsxXUjPuBCRd7158kHL7Q=;
+ b=HO9uNalLUX2bgXeN2Qa1hAc0ZzH5lKlafGn9W6yKaLaD0YA1JrNvTH2Ei7sbIqwZQelZjH
+ XgftmOAKgU7MlUM50HvdRAYvJ+vlvIJTQSc4yx+e0U1DyQPXuMEFk5pWKA5LThIAE6th83
+ n99n1sPgyrSLxIqb1qnxTCEJBBx8Lq0=
+Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com
+ [209.85.208.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-655-Ut2yjsKMMIW87ou8xFU4VQ-1; Sun, 08 May 2022 10:38:35 -0400
+X-MC-Unique: Ut2yjsKMMIW87ou8xFU4VQ-1
+Received: by mail-ed1-f72.google.com with SMTP id
+ h7-20020a056402094700b00425a52983dfso6871239edz.8
+ for <intel-gfx@lists.freedesktop.org>; Sun, 08 May 2022 07:38:35 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:message-id:date:mime-version:user-agent:to
+ :content-language:cc:from:subject:content-transfer-encoding;
+ bh=2vd3NSd3JgaMgQX4g9MrIzVsxXUjPuBCRd7158kHL7Q=;
+ b=HNUNaEwqnghQFC07X8Vu3AjyOVnEakfqqAxhRqF3/QEZjcefCM9nCJWxkpcgq6XUE6
+ fIep3zaw8Pi5xhylLYQieFCUlD+Ggn1W+UOmjNLD6aLh00FvuLmcZvIJ6uC2nLbDvST5
+ NsFeCfIQjmaC/HuyfhzC0XMf80uz9JJabYPe3rF7Sg/xTu/ywy52/0qlIXLC6dX7HBbo
+ I2zCx9OHiTTqS+AumIjN5duF6N+ucjonz4QiSF0fQdLiE1lIZwyQ4Ck0X8uc1Q8zU67r
+ 5yiG2lgUi/Uui0ZtNFsHJlyD3LInR9WHKHJxAVyqtdkXKdJckAIYNWn9bLR/ocSh/QhP
+ bfpA==
+X-Gm-Message-State: AOAM533ixu9qhL57JIsqEtWlhM3MWP6wWSx4DkPp3WGT7dq1jqovM+zw
+ iQTY7WVyle2JEtnl4sXHUDZz2Rv3hdm/PTVpmnDqXAezWMQyYCUZXdA4OsexVnq8+pVWYLck6P0
+ CmkSqkKN3PiHNgwFZZ6koHSwPqp/E
+X-Received: by 2002:aa7:c445:0:b0:425:d509:2113 with SMTP id
+ n5-20020aa7c445000000b00425d5092113mr13241292edr.12.1652020714660; 
+ Sun, 08 May 2022 07:38:34 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJyaSYNnu6BpNlx9fQIPCYO5HIR7MVKKudYeohWpTDYjvtfo48y/ZyBxHCv9jDHFhXa9lWGQOA==
+X-Received: by 2002:aa7:c445:0:b0:425:d509:2113 with SMTP id
+ n5-20020aa7c445000000b00425d5092113mr13241273edr.12.1652020714411; 
+ Sun, 08 May 2022 07:38:34 -0700 (PDT)
+Received: from ?IPV6:2001:1c00:c1e:bf00:d69d:5353:dba5:ee81?
+ (2001-1c00-0c1e-bf00-d69d-5353-dba5-ee81.cable.dynamic.v6.ziggo.nl.
+ [2001:1c00:c1e:bf00:d69d:5353:dba5:ee81])
+ by smtp.gmail.com with ESMTPSA id
+ b31-20020a509f22000000b0042617ba6397sm4948483edf.33.2022.05.08.07.38.33
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Sun, 08 May 2022 07:38:33 -0700 (PDT)
+Message-ID: <1366349e-f96a-3f2c-3094-f5cd1a6fa31f@redhat.com>
+Date: Sun, 8 May 2022 16:38:32 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220507132850.10272-11-jose.souza@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 11/16] drm/i915: Drop has_pxp from device
- info
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.0
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+From: Hans de Goede <hdegoede@redhat.com>
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=hdegoede@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Subject: [Intel-gfx] [5.18 regression] drm/i915 BYT rendering broken due to
+ "Remove short-term pins from execbuf, v6"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,157 +90,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kbuild-all@lists.01.org
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ "regressions@lists.linux.dev" <regressions@lists.linux.dev>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi "José,
+Hi All,
 
-Thank you for the patch! Yet something to improve:
+When running a 5.18-rc4 (and -rc5) kernel on a Chuwi Hi 8, which is
+a Bay Trail based tablet with 2G RAM and a 1200x1920 DSI panel.
+I noticed that gnome-shell was misrendering. Many UI elements were
+missing (they were all black) and at the gdm login screen (which is
+a special gnome-shell session) the screen often was entirely black
+until I move the cursor around and then various things got
+highlighted after which they sometimes stuck around and sometimes
+they disappeared again after the highlight.
 
-[auto build test ERROR on drm-tip/drm-tip]
-[cannot apply to drm-intel/for-linux-next linus/master v5.18-rc5 next-20220506]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+Since this problem does not happen with various 5.17.y kernels I
+believe that this is a kernel regression in 5.18. I've bisected this
+and the bisect points to:
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Jos-Roberto-de-Souza/drm-i915-Drop-has_llc-from-device-info/20220507-213117
-base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
-config: i386-allyesconfig (https://download.01.org/0day-ci/archive/20220508/202205080306.RJOsIJwU-lkp@intel.com/config)
-compiler: gcc-11 (Debian 11.2.0-20) 11.2.0
-reproduce (this is a W=1 build):
-        # https://github.com/intel-lab-lkp/linux/commit/c1a7677ed60d6907adf2824e35480433cde736ce
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Jos-Roberto-de-Souza/drm-i915-Drop-has_llc-from-device-info/20220507-213117
-        git checkout c1a7677ed60d6907adf2824e35480433cde736ce
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        make W=1 O=build_dir ARCH=i386 SHELL=/bin/bash
+commit b5cfe6f7a6e1 ("drm/i915: Remove short-term pins from execbuf, v6.")
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
+from Maarten. This commit cleanly reverts on top of 5.18-rc5 and
+I can confirm that 5.18-rc5 with b5cfe6f7a6e1 reverted fixes things.
 
-All errors (new ones prefixed by >>):
+I would be more then happy to test any possible fixes for this.
 
-   drivers/gpu/drm/i915/pxp/intel_pxp.c: In function 'intel_pxp_init':
->> drivers/gpu/drm/i915/pxp/intel_pxp.c:114:32: error: expected ')' before 'return'
-     114 |         if (!HAS_PXP(gt->i915))
-         |            ~                   ^
-         |                                )
-     115 |                 return;
-         |                 ~~~~~~          
->> drivers/gpu/drm/i915/pxp/intel_pxp.c:144:1: error: expected expression before '}' token
-     144 | }
-         | ^
->> drivers/gpu/drm/i915/pxp/intel_pxp.c:112:13: error: unused variable 'ret' [-Werror=unused-variable]
-     112 |         int ret;
-         |             ^~~
-   At top level:
->> drivers/gpu/drm/i915/pxp/intel_pxp.c:74:12: error: 'create_vcs_context' defined but not used [-Werror=unused-function]
-      74 | static int create_vcs_context(struct intel_pxp *pxp)
-         |            ^~~~~~~~~~~~~~~~~~
-   cc1: all warnings being treated as errors
---
-   drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c:61:6: error: no previous prototype for 'intel_pxp_debugfs_register' [-Werror=missing-prototypes]
-      61 | void intel_pxp_debugfs_register(struct intel_pxp *pxp, struct dentry *gt_root)
-         |      ^~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c: In function 'intel_pxp_debugfs_register':
->> drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c:72:46: error: expected ')' before 'return'
-      72 |         if (!HAS_PXP((pxp_to_gt(pxp)->i915)))
-         |            ~                                 ^
-         |                                              )
-      73 |                 return;
-         |                 ~~~~~~                        
->> drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c:80:1: error: expected expression before '}' token
-      80 | }
-         | ^
->> drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c:67:24: error: unused variable 'root' [-Werror=unused-variable]
-      67 |         struct dentry *root;
-         |                        ^~~~
->> drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c:63:51: error: unused variable 'files' [-Werror=unused-variable]
-      63 |         static const struct intel_gt_debugfs_file files[] = {
-         |                                                   ^~~~~
-   At top level:
->> drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c:63:51: error: 'files' defined but not used [-Werror=unused-const-variable=]
-   cc1: all warnings being treated as errors
+Regards,
 
+Hans
 
-vim +114 drivers/gpu/drm/i915/pxp/intel_pxp.c
-
-e0111ce0f5cbd2 Daniele Ceraolo Spurio 2021-09-24   73  
-3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24  @74  static int create_vcs_context(struct intel_pxp *pxp)
-3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24   75  {
-3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24   76  	static struct lock_class_key pxp_lock;
-3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24   77  	struct intel_gt *gt = pxp_to_gt(pxp);
-3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24   78  	struct intel_engine_cs *engine;
-3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24   79  	struct intel_context *ce;
-3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24   80  	int i;
-3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24   81  
-3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24   82  	/*
-3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24   83  	 * Find the first VCS engine present. We're guaranteed there is one
-3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24   84  	 * if we're in this function due to the check in has_pxp
-3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24   85  	 */
-3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24   86  	for (i = 0, engine = NULL; !engine; i++)
-3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24   87  		engine = gt->engine_class[VIDEO_DECODE_CLASS][i];
-3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24   88  
-3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24   89  	GEM_BUG_ON(!engine || engine->class != VIDEO_DECODE_CLASS);
-3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24   90  
-3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24   91  	ce = intel_engine_create_pinned_context(engine, engine->gt->vm, SZ_4K,
-3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24   92  						I915_GEM_HWS_PXP_ADDR,
-3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24   93  						&pxp_lock, "pxp_context");
-3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24   94  	if (IS_ERR(ce)) {
-3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24   95  		drm_err(&gt->i915->drm, "failed to create VCS ctx for PXP\n");
-3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24   96  		return PTR_ERR(ce);
-3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24   97  	}
-3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24   98  
-3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24   99  	pxp->ce = ce;
-3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24  100  
-3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24  101  	return 0;
-3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24  102  }
-3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24  103  
-3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24  104  static void destroy_vcs_context(struct intel_pxp *pxp)
-3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24  105  {
-3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24  106  	intel_engine_destroy_pinned_context(fetch_and_zero(&pxp->ce));
-3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24  107  }
-3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24  108  
-3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24  109  void intel_pxp_init(struct intel_pxp *pxp)
-3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24  110  {
-3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24  111  	struct intel_gt *gt = pxp_to_gt(pxp);
-3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24 @112  	int ret;
-3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24  113  
-3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24 @114  	if (!HAS_PXP(gt->i915))
-3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24  115  		return;
-3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24  116  
-cbbd3764b2399a Huang, Sean Z          2021-09-24  117  	mutex_init(&pxp->tee_mutex);
-cbbd3764b2399a Huang, Sean Z          2021-09-24  118  
-2ae096872a2c61 Huang, Sean Z          2021-09-24  119  	/*
-2ae096872a2c61 Huang, Sean Z          2021-09-24  120  	 * we'll use the completion to check if there is a termination pending,
-2ae096872a2c61 Huang, Sean Z          2021-09-24  121  	 * so we start it as completed and we reinit it when a termination
-2ae096872a2c61 Huang, Sean Z          2021-09-24  122  	 * is triggered.
-2ae096872a2c61 Huang, Sean Z          2021-09-24  123  	 */
-2ae096872a2c61 Huang, Sean Z          2021-09-24  124  	init_completion(&pxp->termination);
-2ae096872a2c61 Huang, Sean Z          2021-09-24  125  	complete_all(&pxp->termination);
-2ae096872a2c61 Huang, Sean Z          2021-09-24  126  
-32271ecd6596e6 Daniele Ceraolo Spurio 2021-09-24  127  	mutex_init(&pxp->arb_mutex);
-2ae096872a2c61 Huang, Sean Z          2021-09-24  128  	INIT_WORK(&pxp->session_work, intel_pxp_session_work);
-2ae096872a2c61 Huang, Sean Z          2021-09-24  129  
-3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24  130  	ret = create_vcs_context(pxp);
-3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24  131  	if (ret)
-3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24  132  		return;
-3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24  133  
-0436ac1b008d48 Huang, Sean Z          2021-09-24  134  	ret = intel_pxp_tee_component_init(pxp);
-0436ac1b008d48 Huang, Sean Z          2021-09-24  135  	if (ret)
-0436ac1b008d48 Huang, Sean Z          2021-09-24  136  		goto out_context;
-0436ac1b008d48 Huang, Sean Z          2021-09-24  137  
-3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24  138  	drm_info(&gt->i915->drm, "Protected Xe Path (PXP) protected content support initialized\n");
-0436ac1b008d48 Huang, Sean Z          2021-09-24  139  
-0436ac1b008d48 Huang, Sean Z          2021-09-24  140  	return;
-0436ac1b008d48 Huang, Sean Z          2021-09-24  141  
-0436ac1b008d48 Huang, Sean Z          2021-09-24  142  out_context:
-0436ac1b008d48 Huang, Sean Z          2021-09-24  143  	destroy_vcs_context(pxp);
-3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24 @144  }
-3ad2dd9c4caa73 Daniele Ceraolo Spurio 2021-09-24  145  
-
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
