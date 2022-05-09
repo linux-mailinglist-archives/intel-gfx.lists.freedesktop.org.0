@@ -1,48 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C50EC5202FD
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 May 2022 18:56:35 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0CA0520393
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 May 2022 19:37:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 45A8E10EFA4;
-	Mon,  9 May 2022 16:56:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E3EC10F53D;
+	Mon,  9 May 2022 17:37:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 67BF610EFA4;
- Mon,  9 May 2022 16:56:31 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 62A69B8180F;
- Mon,  9 May 2022 16:56:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BFCA4C385B1;
- Mon,  9 May 2022 16:56:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1652115387;
- bh=NT/NSm+ixv4NTnm+bzYUbh8NWftsy0GkupiwFftUrCw=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=EtvoF8IpfrUKSdvwW8V1qeHxhWfkW598IrjNsAqteSHaADCcEdw4x8KXDr3TbpGco
- +yggH/xodb4xZyPEnEeIc8mWLqDjS4iXNJXSCuBQpOQ/fSanq8ns6RptBh90cQlffa
- ZydWP2ygHERY2FiBF7EYP2PUX0oJed77PI+PtGtAug8JPiOmVIAJvSdJSVF0l2WgT3
- wW5f+Mu+92KTr/DOaR7Nqi5mZ7fd/NZ7bLFFprVwVSRAaFOoxIjPeDgJTM5EOXSyV1
- crJcVua2rcdRuwnbPejGtAvrTv7VAS/uq+3pJDH8Q5DUtKss9HWmbgKe7fxadeJAws
- EJ34J+Ehy52jg==
-Date: Mon, 9 May 2022 18:56:20 +0200
-From: Mauro Carvalho Chehab <mchehab@kernel.org>
-To: Andi Shyti <andi.shyti@linux.intel.com>
-Message-ID: <20220509185620.05567716@coco.lan>
-In-Reply-To: <YnRDIfthGJXdY23h@intel.intel>
-References: <cover.1651348913.git.mchehab@kernel.org>
- <ad2a9fe66cf502e2e2e2325f1f04d0fae36aa82b.1651348913.git.mchehab@kernel.org>
- <YnRDIfthGJXdY23h@intel.intel>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-redhat-linux-gnu)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8DB2B10F53D;
+ Mon,  9 May 2022 17:37:48 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 86D71AADD3;
+ Mon,  9 May 2022 17:37:48 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v5 1/2] module: update dependencies at
- try_module_get()
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Bhanuprakash Modem" <bhanuprakash.modem@intel.com>
+Date: Mon, 09 May 2022 17:37:48 -0000
+Message-ID: <165211786852.22805.16426593249705777713@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220411095129.1652096-1-bhanuprakash.modem@intel.com>
+In-Reply-To: <20220411095129.1652096-1-bhanuprakash.modem@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Expose_max_and_current_bpc_via_debugfs_=28rev7=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,109 +40,27 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: mauro.chehab@linux.intel.com, linux-kernel@vger.kernel.org,
- David Airlie <airlied@linux.ie>, Greg KH <gregkh@linuxfoundation.org>,
- intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
- alsa-devel@alsa-project.org, dri-devel@lists.freedesktop.org,
- Takashi Iwai <tiwai@suse.com>, Kai Vehmanen <kai.vehmanen@intel.com>,
- Luis Chamberlain <mcgrof@kernel.org>, Dan Williams <dan.j.williams@intel.com>,
- Jaroslav Kysela <perex@perex.cz>, linux-modules@vger.kernel.org,
- Pierre-Louis Bossart <pierre-louis.bossart@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Em Thu, 5 May 2022 23:35:29 +0200
-Andi Shyti <andi.shyti@linux.intel.com> escreveu:
+== Series Details ==
 
-> Hi Mauro,
-> 
-> [...]
-> 
-> > +static int ref_module_dependency(struct module *mod, struct module *this)
-> > +{
-> > +	int ret;
-> > +
-> > +	if (!this || !this->name)
-> > +		return -EINVAL;
-> > +
-> > +	if (mod == this)
-> > +		return 0;
-> > +
-> > +	mutex_lock(&module_mutex);
-> > +
-> > +	ret = ref_module(this, mod);
-> > +
-> > +#ifdef CONFIG_MODULE_UNLOAD
-> > +	if (ret)
-> > +		goto ret;
-> > +
-> > +	ret = sysfs_create_link(mod->holders_dir,
-> > +				&this->mkobj.kobj, this->name);
-> > +#endif
-> > +
-> > +ret:
-> > +	mutex_unlock(&module_mutex);
-> > +	return ret;
-> > +}
-> > +
-> >  /* Clear the unload stuff of the module. */
-> >  static void module_unload_free(struct module *mod)
-> >  {
-> > @@ -841,24 +886,16 @@ void __module_get(struct module *module)
-> >  }
-> >  EXPORT_SYMBOL(__module_get);
-> >  
-> > -bool try_module_get(struct module *module)
-> > +bool try_module_get_owner(struct module *module, struct module *this)
-> >  {
-> > -	bool ret = true;
-> > +	int ret = __try_module_get(module);
-> >  
-> > -	if (module) {
-> > -		preempt_disable();
-> > -		/* Note: here, we can fail to get a reference */
-> > -		if (likely(module_is_live(module) &&
-> > -			   atomic_inc_not_zero(&module->refcnt) != 0))
-> > -			trace_module_get(module, _RET_IP_);
-> > -		else
-> > -			ret = false;
-> > +	if (ret)
-> > +		ref_module_dependency(module, this);  
-> 
-> do we care about the return value here?
+Series: Expose max and current bpc via debugfs (rev7)
+URL   : https://patchwork.freedesktop.org/series/102502/
+State : warning
 
-I don't think it should care about the return value, as a failure to
-create a sysfs node for the holder or to add it to the holders list
-is not fatal: modules can still continue working without that.
+== Summary ==
 
-Also, I opted to be conservative here: currently, not creating these
-doesn't cause try_module_get() to fail. I'm not sure what would be the
-impact if this starts to fail.
+Error: dim checkpatch failed
+dd718ee48d2d drm/debug: Expose connector's max supported bpc via debugfs
+-:21: WARNING:BAD_SIGN_OFF: 'Reviewed-by:' is the preferred signature form
+#21: 
+Reviewed-By: Arun R Murthy <arun.r.murthy@intel.com>
 
-So, right now, I'm opting to just ignore the return value. Perhaps
-in the future this could a warning (similarly to what sysfs create
-link does).
-
-Regards,
-Mauro
-
-> 
-> Andi
-> 
-> >  
-> > -		preempt_enable();
-> > -	}
-> >  	return ret;
-> >  }
-> > -EXPORT_SYMBOL(try_module_get);
-> > +EXPORT_SYMBOL(try_module_get_owner);
-> >  
-> >  void module_put(struct module *module)
-> >  {
-> > -- 
-> > 2.35.1  
+total: 0 errors, 1 warnings, 0 checks, 33 lines checked
+ad7163b06221 drm/i915/display/debug: Expose crtc current bpc via debugfs
+d959b5e6fce0 drm/amd/display: Move connector debugfs to drm
 
 
-
-Thanks,
-Mauro
