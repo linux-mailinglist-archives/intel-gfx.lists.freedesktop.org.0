@@ -1,54 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABE8B51FF06
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 May 2022 16:05:47 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D23FE51FF5E
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 May 2022 16:18:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E517010F1E8;
-	Mon,  9 May 2022 14:05:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1808510E7D5;
+	Mon,  9 May 2022 14:18:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 99EB610F0C9
- for <intel-gfx@lists.freedesktop.org>; Mon,  9 May 2022 14:05:42 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 081DA10E31C;
+ Mon,  9 May 2022 14:18:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1652105142; x=1683641142;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=lQoUlcCnvtJpS5ql3OIoaDZFQd0P9gg20aBLkIST9pI=;
- b=m2OAGqPVXp/urjCxQeNGYzW11EWZ/1Z5rTh1mmfcd3hfAbaO8AA/tTgR
- p9naoSfLv9Fw9Bzuoa1WfOs4JFlnI50VWIc/ZOb/YqlBRFlFUZGgXzOgL
- PtkrmZoalpkzDoAt1vR0WiwiPueFH/8E9fk6ldVFiQUyirFoTr4Y+VyqE
- j0gxXXoENyYdChnS/Bieiz5PQFkqiYZeqphRmL28DVEi5A/g9SaKgb2lM
- JZ41YaiUDAU4mIzkFDjIm0tAGgoVbJwH0wCT3S0xBL9MzJPxFZJC72bIC
- JHBHMS7BGvqx4xprFOgnuJozYGo2ZFPgMbgDNtYr1ajfeOyCLPliJ/lVM w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10342"; a="266648115"
-X-IronPort-AV: E=Sophos;i="5.91,211,1647327600"; d="scan'208";a="266648115"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 May 2022 07:05:42 -0700
-X-IronPort-AV: E=Sophos;i="5.91,211,1647327600"; d="scan'208";a="540998304"
-Received: from csawicki-mobl.ger.corp.intel.com (HELO localhost)
- ([10.249.129.3])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 May 2022 07:05:40 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, =?utf-8?Q?Jos=C3=A9?=
- Roberto de Souza <jose.souza@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <e0c5e815-53a8-9759-948c-c180a8ecffdd@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220505193524.276400-1-jose.souza@intel.com>
- <20220505193524.276400-5-jose.souza@intel.com>
- <e0c5e815-53a8-9759-948c-c180a8ecffdd@linux.intel.com>
-Date: Mon, 09 May 2022 17:05:37 +0300
-Message-ID: <87mtfqkdhq.fsf@intel.com>
+ t=1652105885; x=1683641885;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=K+cnIXcyfrZN3PMzfDIEl4nn7AXiggzbW4TPHDBAmdQ=;
+ b=ih93b76R6MPOjZaUmYn4gmOLPz4nySA6jfD1Hq4eRoEclU512axFafc0
+ lmSQeH7/kYAZ6AKcWqsz2qlfJvfoOF/spsg03FwQyMj9FjUbeD8Ya4fWq
+ qW4bejiCv5u1yQ1RMH5hrv483rTn6oUI5/5UuFPbXV8b4W8XD5R5YnMZ/
+ XpWuNUZ7h7AKhpLsRCBMS682UL52HatneZqgeJU8Inn0XyStOm90/ScVm
+ Gl5MSf7c+7auQAcoFE0TksHbGlB8jroPjvUhMXqYgIPR6z5tcjGN3U0S2
+ BbshZSpAT4IOhtlG7Q5jUDCC/rGMqnCCyps+40OrI+hKo+1PxNPV8+Jpz Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10342"; a="268993925"
+X-IronPort-AV: E=Sophos;i="5.91,211,1647327600"; d="scan'208";a="268993925"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 May 2022 07:18:04 -0700
+X-IronPort-AV: E=Sophos;i="5.91,211,1647327600"; d="scan'208";a="519253594"
+Received: from oanderso-mobl1.ger.corp.intel.com (HELO [10.213.217.157])
+ ([10.213.217.157])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 May 2022 07:18:03 -0700
+Message-ID: <0f5248e9-f433-d8e3-426d-05fc4f8320ed@linux.intel.com>
+Date: Mon, 9 May 2022 15:18:01 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH CI 5/7] drm/i915: Drop has_ddi from device
- info
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Content-Language: en-US
+To: Matt Roper <matthew.d.roper@intel.com>
+References: <20220427230747.906625-1-matthew.d.roper@intel.com>
+ <20220427230747.906625-6-matthew.d.roper@intel.com>
+ <7b7f2128-7dd8-ae5a-be61-e450dec1e917@linux.intel.com>
+ <YnWwmfJs90Faarme@mdroper-desk1.amr.corp.intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <YnWwmfJs90Faarme@mdroper-desk1.amr.corp.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH 5/5] drm/i915/sseu: Disassociate internal
+ subslice mask representation from uapi
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,122 +64,794 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 09 May 2022, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
-> On 05/05/2022 20:35, Jos=C3=A9 Roberto de Souza wrote:
->> No need to have this parameter in intel_device_info struct
->> as all platforms with display version 9 or newer, haswell or broadwell
->> supports it.
->>=20
->> As a side effect of the of removal this flag, it will not be printed
->> in dmesg during driver load anymore and developers will have to rely
->> on to check the macro and compare with platform being used and IP
->> versions of it.
->>=20
->> Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
->> Signed-off-by: Jos=C3=A9 Roberto de Souza <jose.souza@intel.com>
->> ---
->>   drivers/gpu/drm/i915/i915_drv.h          | 4 +++-
->>   drivers/gpu/drm/i915/i915_pci.c          | 3 ---
->>   drivers/gpu/drm/i915/intel_device_info.h | 1 -
->>   3 files changed, 3 insertions(+), 5 deletions(-)
->>=20
->> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915=
-_drv.h
->> index 5538564bc1d25..600d8cee272da 100644
->> --- a/drivers/gpu/drm/i915/i915_drv.h
->> +++ b/drivers/gpu/drm/i915/i915_drv.h
->> @@ -1298,7 +1298,9 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
->>   #define HAS_DP20(dev_priv)	(IS_DG2(dev_priv))
->>=20=20=20
->>   #define HAS_CDCLK_CRAWL(dev_priv)	 (INTEL_INFO(dev_priv)->display.has_=
-cdclk_crawl)
->> -#define HAS_DDI(dev_priv)		 (INTEL_INFO(dev_priv)->display.has_ddi)
->> +#define HAS_DDI(dev_priv)		 (DISPLAY_VER(dev_priv) >=3D 9 || \
->> +					  IS_BROADWELL(dev_priv) || \
->> +					  IS_HASWELL(dev_priv))
->
-> This one is a bit borderline, not sure it passes Jani's criteria of=20
-> simplicity, which I thought was a good one. And from the OCD angle it=20
-> kind of sucks to expand the conditionals to all call sites (when it's=20
-> even called from i915_irq.c, justifiably or not I don't know).
->
-> What is the high level motivation for this work?
 
-Yeah, just don't merge when there's open discussion. Get the acks.
+On 07/05/2022 00:34, Matt Roper wrote:
+> On Thu, Apr 28, 2022 at 01:18:42PM +0100, Tvrtko Ursulin wrote:
+>>
+>> Hi,
+>>
+>> On 28/04/2022 00:07, Matt Roper wrote:
+>>> Rather than storing subslice masks internally as u8[] (inside the sseu
+>>> structure) and u32 (everywhere else), let's move over to using an
+>>> intel_sseu_ss_mask_t typedef compatible with the operations in
+>>> linux/bitmap.h.  We're soon going to start adding code for a new
+>>> platform where subslice masks are spread across two 32-bit registers
+>>> (requiring 64 bits to represent), and we expect future platforms will
+>>> likely take this even farther, requiring bitmask storage larger than a
+>>> simple u64 can hold.
+>>
+>> I won't have time to look into this in a detailed way for a few days. Until then a couple questions comments only.
+>>
+>> First, out of curiousity, were you able to end up with less code after your series? With my bitmap conversion I think actually ended up with couple KB smaller text which was a good sign eliminating the internal layout complications was a good approach.
+> 
+> Yeah, looks like I did:
+> 
+>     $ size i915.ko.orig i915.ko
+>        text    data     bss     dec     hex filename
+>     3479050  132498    6760 3618308  373604 i915.ko.orig
+>     3476552  132466    6760 3615778  372c22 i915.ko
+> 
+>>
+>> For your series I am not convinced by sseu->has_common_ss_eumask. Why the duality, just to save a few u32 at runtime?
+> 
+> With this flag, eu_mask is an array of GEN_MAX_HSW_SLICES *
+> GEN_MAX_SS_PER_HSW_SLICE (i.e., 3*6 = 18).  If we store the replicated
+> EU masks, then we'll have 64 u16's on PVC (where we have a DSS mask
+> spread across two registers) and 96 u16's on a future platform that
+> spreads the mask across three fuse registers.  18 -> 96 (or possibly
+> even more farther in the future).  I think we've eliminated all of the
+> stack allocations of sseu structures now, so it probably isn't as
+> important as it used to be though; I can drop it if you think the size
+> savings aren't worth the extra complexity.
+> 
+>>
+>> I am also not convinced with leaving the eu_mask and subslice_mask
+>> being manually indexed with stride, calculcated by the driver. In my
+>> approach I simply went with multi-dimensional arrays which I think
+>> ends up with simpler code.
+> 
+> So something like
+> 
+>          enum {
+>                  u16 hsw[GEN_MAX_HSW_SLICES][GEN_MAX_SS_PER_HSW_SLICE];
+>                  u16 xehp[GEN_MAX_DSS];
+>          } eu_mask;
+> 
+> ?  Or should we just skip the enum and live with allocating three times
+> as much space as the largest Xe_HP platform needs?
 
-> Also, why is this in drm-intel-gt-next? :)
+s/enum/union/ right? This is an excellent idea - further simplifies the 
+code by expressing the reality of how data is organized and every 
+platform just touches it's own data in the most logical and 
+straightforward manner. If I am not missing some gotcha then yes please. 
+(Like I am not sure how generalisation to bitmap will work together with 
+union, from common callers, if there are such.)
 
-Without the smiley, actually.
+Regards,
 
-*ALL* refactoring like this *MUST* go through drm-intel-next.
+Tvrtko
 
-This is now a source for conflicts for at least 4-6 weeks until we can
-merge drm-intel-gt-next -> drm-next -> drm-intel-next.
-
-
-BR,
-Jani.
-
-
->
-> Regards,
->
-> Tvrtko
->
->
->>   #define HAS_FPGA_DBG_UNCLAIMED(dev_priv) (INTEL_INFO(dev_priv)->displa=
-y.has_fpga_dbg)
->>   #define HAS_PSR(dev_priv)		 (INTEL_INFO(dev_priv)->display.has_psr)
->>   #define HAS_PSR_HW_TRACKING(dev_priv) \
->> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915=
-_pci.c
->> index 2dc0284629d30..a0693d9ff9cee 100644
->> --- a/drivers/gpu/drm/i915/i915_pci.c
->> +++ b/drivers/gpu/drm/i915/i915_pci.c
->> @@ -535,7 +535,6 @@ static const struct intel_device_info vlv_info =3D {
->>   	.platform_engine_mask =3D BIT(RCS0) | BIT(VCS0) | BIT(BCS0) | BIT(VEC=
-S0), \
->>   	.display.cpu_transcoder_mask =3D BIT(TRANSCODER_A) | BIT(TRANSCODER_B=
-) | \
->>   		BIT(TRANSCODER_C) | BIT(TRANSCODER_EDP), \
->> -	.display.has_ddi =3D 1, \
->>   	.display.has_fpga_dbg =3D 1, \
->>   	.display.has_dp_mst =3D 1, \
->>   	.has_rc6p =3D 0 /* RC6p removed-by HSW */, \
->> @@ -683,7 +682,6 @@ static const struct intel_device_info skl_gt4_info =
-=3D {
->>   		BIT(TRANSCODER_C) | BIT(TRANSCODER_EDP) | \
->>   		BIT(TRANSCODER_DSI_A) | BIT(TRANSCODER_DSI_C), \
->>   	.has_64bit_reloc =3D 1, \
->> -	.display.has_ddi =3D 1, \
->>   	.display.has_fpga_dbg =3D 1, \
->>   	.display.fbc_mask =3D BIT(INTEL_FBC_A), \
->>   	.display.has_hdcp =3D 1, \
->> @@ -932,7 +930,6 @@ static const struct intel_device_info adl_s_info =3D=
- {
->>   	.dbuf.size =3D 4096,							\
->>   	.dbuf.slice_mask =3D BIT(DBUF_S1) | BIT(DBUF_S2) | BIT(DBUF_S3) |		\
->>   		BIT(DBUF_S4),							\
->> -	.display.has_ddi =3D 1,							\
->>   	.display.has_dmc =3D 1,							\
->>   	.display.has_dp_mst =3D 1,						\
->>   	.display.has_dsb =3D 1,							\
->> diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/=
-i915/intel_device_info.h
->> index bef65e3f02c55..bc71ce48763ad 100644
->> --- a/drivers/gpu/drm/i915/intel_device_info.h
->> +++ b/drivers/gpu/drm/i915/intel_device_info.h
->> @@ -167,7 +167,6 @@ enum intel_ppgtt_type {
->>   	func(cursor_needs_physical); \
->>   	func(has_cdclk_crawl); \
->>   	func(has_dmc); \
->> -	func(has_ddi); \
->>   	func(has_dp_mst); \
->>   	func(has_dsb); \
->>   	func(has_dsc); \
-
---=20
-Jani Nikula, Intel Open Source Graphics Center
+>> For all bitmap API call sites and *pb printk format sites, I suggest not hard-coding the widths from SSEU defines by querying the type itsef via wrappers. (See my BITMAP_BITS macro and helpers which wrap it for fields.)
+>>
+>> Ie instead:
+>>
+>> bitmap_shift_left(to_mask->b, to_mask->b, offset, I915_MAX_SS_FUSE_BITS);
+>>
+>> I suggest:
+>>
+>> bitmap_zero(slices.b, BITMAP_BITS(slices.b));
+>>
+>> Also, all accesses to the bitmap type from outside intel_sse*.c|h should use intel_sseu wrappers and not embed knowledge of the typedef (that it has an member named .b etc).
+>>
+>> And finally I would also use the opportunity to clean up the pointless u8 types for counts and such since I think they just result in worse code generation.
+>>
+>> You can of course counter with what you did not like in my attempt. :) I know I did not finish the wrappers and possibly made an overkill by converting the slice mask to bitmap.
+> 
+> These suggestions all make sense.  I'll work on incorporating them into
+> the next version. >
+> 
+> Matt
+> 
+>>
+>> Regards,
+>>
+>> Tvrtko
+>>> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+>>> ---
+>>>    drivers/gpu/drm/i915/gem/i915_gem_context.c  |   4 +-
+>>>    drivers/gpu/drm/i915/gt/intel_engine_cs.c    |   2 +-
+>>>    drivers/gpu/drm/i915/gt/intel_gt.c           |  14 +-
+>>>    drivers/gpu/drm/i915/gt/intel_sseu.c         | 197 +++++++++++--------
+>>>    drivers/gpu/drm/i915/gt/intel_sseu.h         |  48 ++---
+>>>    drivers/gpu/drm/i915/gt/intel_sseu_debugfs.c |  28 +--
+>>>    drivers/gpu/drm/i915/gt/intel_workarounds.c  |  28 ++-
+>>>    drivers/gpu/drm/i915/i915_getparam.c         |   2 +-
+>>>    drivers/gpu/drm/i915/i915_query.c            |   8 +-
+>>>    9 files changed, 183 insertions(+), 148 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+>>> index ab4c5ab28e4d..ea012ee3a8de 100644
+>>> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
+>>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+>>> @@ -1901,7 +1901,7 @@ i915_gem_user_to_context_sseu(struct intel_gt *gt,
+>>>    	if (user->slice_mask & ~device->slice_mask)
+>>>    		return -EINVAL;
+>>> -	if (user->subslice_mask & ~device->subslice_mask[0])
+>>> +	if (user->subslice_mask & ~device->subslice_mask.b[0])
+>>>    		return -EINVAL;
+>>>    	if (user->max_eus_per_subslice > device->max_eus_per_subslice)
+>>> @@ -1915,7 +1915,7 @@ i915_gem_user_to_context_sseu(struct intel_gt *gt,
+>>>    	/* Part specific restrictions. */
+>>>    	if (GRAPHICS_VER(i915) == 11) {
+>>>    		unsigned int hw_s = hweight8(device->slice_mask);
+>>> -		unsigned int hw_ss_per_s = hweight8(device->subslice_mask[0]);
+>>> +		unsigned int hw_ss_per_s = hweight8(device->subslice_mask.b[0]);
+>>>    		unsigned int req_s = hweight8(context->slice_mask);
+>>>    		unsigned int req_ss = hweight8(context->subslice_mask);
+>>> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+>>> index 14c6ddbbfde8..39c09963b3c7 100644
+>>> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+>>> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+>>> @@ -610,7 +610,7 @@ static void engine_mask_apply_compute_fuses(struct intel_gt *gt)
+>>>    	if (GRAPHICS_VER_FULL(i915) < IP_VER(12, 50))
+>>>    		return;
+>>> -	ccs_mask = intel_slicemask_from_dssmask(intel_sseu_get_compute_subslices(&info->sseu),
+>>> +	ccs_mask = intel_slicemask_from_dssmask(info->sseu.compute_subslice_mask,
+>>>    						ss_per_ccs);
+>>>    	/*
+>>>    	 * If all DSS in a quadrant are fused off, the corresponding CCS
+>>> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
+>>> index 92394f13b42f..cc03512d59ba 100644
+>>> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
+>>> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+>>> @@ -133,13 +133,6 @@ static const struct intel_mmio_range dg2_lncf_steering_table[] = {
+>>>    	{},
+>>>    };
+>>> -static u16 slicemask(struct intel_gt *gt, int count)
+>>> -{
+>>> -	u64 dss_mask = intel_sseu_get_subslices(&gt->info.sseu, 0);
+>>> -
+>>> -	return intel_slicemask_from_dssmask(dss_mask, count);
+>>> -}
+>>> -
+>>>    int intel_gt_init_mmio(struct intel_gt *gt)
+>>>    {
+>>>    	struct drm_i915_private *i915 = gt->i915;
+>>> @@ -153,11 +146,14 @@ int intel_gt_init_mmio(struct intel_gt *gt)
+>>>    	 * An mslice is unavailable only if both the meml3 for the slice is
+>>>    	 * disabled *and* all of the DSS in the slice (quadrant) are disabled.
+>>>    	 */
+>>> -	if (HAS_MSLICES(i915))
+>>> +	if (HAS_MSLICES(i915)) {
+>>>    		gt->info.mslice_mask =
+>>> -			slicemask(gt, GEN_DSS_PER_MSLICE) |
+>>> +			intel_slicemask_from_dssmask(gt->info.sseu.subslice_mask,
+>>> +						     GEN_DSS_PER_MSLICE);
+>>> +		gt->info.mslice_mask |=
+>>>    			(intel_uncore_read(gt->uncore, GEN10_MIRROR_FUSE3) &
+>>>    			 GEN12_MEML3_EN_MASK);
+>>> +	}
+>>>    	if (IS_DG2(i915)) {
+>>>    		gt->steering_table[MSLICE] = xehpsdv_mslice_steering_table;
+>>> diff --git a/drivers/gpu/drm/i915/gt/intel_sseu.c b/drivers/gpu/drm/i915/gt/intel_sseu.c
+>>> index f7ff6a9f67b0..466505d6bd18 100644
+>>> --- a/drivers/gpu/drm/i915/gt/intel_sseu.c
+>>> +++ b/drivers/gpu/drm/i915/gt/intel_sseu.c
+>>> @@ -28,56 +28,49 @@ void intel_sseu_set_info(struct sseu_dev_info *sseu, u8 max_slices,
+>>>    unsigned int
+>>>    intel_sseu_subslice_total(const struct sseu_dev_info *sseu)
+>>>    {
+>>> -	unsigned int i, total = 0;
+>>> -
+>>> -	for (i = 0; i < ARRAY_SIZE(sseu->subslice_mask); i++)
+>>> -		total += hweight8(sseu->subslice_mask[i]);
+>>> -
+>>> -	return total;
+>>> +	return bitmap_weight(sseu->subslice_mask.b, I915_MAX_SS_FUSE_BITS);
+>>>    }
+>>> -static u32
+>>> -sseu_get_subslices(const struct sseu_dev_info *sseu,
+>>> -		   const u8 *subslice_mask, u8 slice)
+>>> +static intel_sseu_ss_mask_t
+>>> +get_ss_mask_for_slice(const struct sseu_dev_info *sseu,
+>>> +		      intel_sseu_ss_mask_t all_ss,
+>>> +		      int slice)
+>>>    {
+>>> -	int i, offset = slice * sseu->ss_stride;
+>>> -	u32 mask = 0;
+>>> +	intel_sseu_ss_mask_t mask = {}, slice_ss = {};
+>>> +	int offset = slice * sseu->max_subslices;
+>>>    	GEM_BUG_ON(slice >= sseu->max_slices);
+>>> -	for (i = 0; i < sseu->ss_stride; i++)
+>>> -		mask |= (u32)subslice_mask[offset + i] << i * BITS_PER_BYTE;
+>>> +	if (sseu->max_slices == 1)
+>>> +		return all_ss;
+>>> -	return mask;
+>>> -}
+>>> +	bitmap_set(mask.b, offset, sseu->max_subslices);
+>>> +	bitmap_and(slice_ss.b, all_ss.b, mask.b, I915_MAX_SS_FUSE_BITS);
+>>> +	bitmap_shift_right(slice_ss.b, slice_ss.b, offset, I915_MAX_SS_FUSE_BITS);
+>>> -u32 intel_sseu_get_subslices(const struct sseu_dev_info *sseu, u8 slice)
+>>> -{
+>>> -	return sseu_get_subslices(sseu, sseu->subslice_mask, slice);
+>>> +	return slice_ss;
+>>>    }
+>>> -static u32 sseu_get_geometry_subslices(const struct sseu_dev_info *sseu)
+>>> +intel_sseu_ss_mask_t
+>>> +intel_sseu_get_subslices(const struct sseu_dev_info *sseu, u8 slice)
+>>>    {
+>>> -	return sseu_get_subslices(sseu, sseu->geometry_subslice_mask, 0);
+>>> +	return get_ss_mask_for_slice(sseu, sseu->subslice_mask, slice);
+>>>    }
+>>> -u32 intel_sseu_get_compute_subslices(const struct sseu_dev_info *sseu)
+>>> -{
+>>> -	return sseu_get_subslices(sseu, sseu->compute_subslice_mask, 0);
+>>> -}
+>>> -
+>>> -void intel_sseu_set_subslices(struct sseu_dev_info *sseu, int slice,
+>>> -			      u8 *subslice_mask, u32 ss_mask)
+>>> -{
+>>> -	int offset = slice * sseu->ss_stride;
+>>> -
+>>> -	memcpy(&subslice_mask[offset], &ss_mask, sseu->ss_stride);
+>>> -}
+>>> -
+>>> -unsigned int
+>>> -intel_sseu_subslices_per_slice(const struct sseu_dev_info *sseu, u8 slice)
+>>> +/*
+>>> + * Set the subslice mask associated with a specific slice.  Only needed on
+>>> + * pre-gen11 platforms that have multiple slices.
+>>> + */
+>>> +static void set_subslices(struct sseu_dev_info *sseu, int slice, u32 ss_mask)
+>>>    {
+>>> -	return hweight32(intel_sseu_get_subslices(sseu, slice));
+>>> +	intel_sseu_ss_mask_t mask = {}, newbits = {};
+>>> +	int offset = slice * sseu->max_subslices;
+>>> +
+>>> +	bitmap_set(mask.b, offset, sseu->max_subslices);
+>>> +	bitmap_from_arr32(newbits.b, &ss_mask, 32);
+>>> +	bitmap_shift_left(newbits.b, newbits.b, offset, I915_MAX_SS_FUSE_BITS);
+>>> +	bitmap_replace(sseu->subslice_mask.b, sseu->subslice_mask.b,
+>>> +		       newbits.b, mask.b, I915_MAX_SS_FUSE_BITS);
+>>>    }
+>>>    static int sseu_eu_idx(const struct sseu_dev_info *sseu, int slice,
+>>> @@ -115,7 +108,7 @@ static u16 compute_eu_total(const struct sseu_dev_info *sseu)
+>>>    	u16 i, total = 0;
+>>>    	if (sseu->has_common_ss_eumask)
+>>> -		return intel_sseu_subslices_per_slice(sseu, 0) *
+>>> +		return bitmap_weight(sseu->subslice_mask.b, I915_MAX_SS_FUSE_BITS) *
+>>>    			hweight16(sseu->eu_mask[0]);
+>>>    	for (i = 0; i < ARRAY_SIZE(sseu->eu_mask); i++)
+>>> @@ -155,11 +148,42 @@ int intel_sseu_copy_eumask_to_user(void __user *to,
+>>>    	return copy_to_user(to, eu_mask, len);
+>>>    }
+>>> -static void gen11_compute_sseu_info(struct sseu_dev_info *sseu,
+>>> -				    u32 g_ss_en, u32 c_ss_en, u16 eu_en)
+>>> +/**
+>>> + * intel_sseu_copy_ssmask_to_user - Copy subslice mask into a userspace buffer
+>>> + * @to: Pointer to userspace buffer to copy to
+>>> + * @sseu: SSEU structure containing subslice mask to copy
+>>> + *
+>>> + * Copies the subslice mask to a userspace buffer in the format expected by
+>>> + * the query ioctl's topology queries.
+>>> + *
+>>> + * Returns the result of the copy_to_user() operation.
+>>> + */
+>>> +int intel_sseu_copy_ssmask_to_user(void __user *to,
+>>> +				   const struct sseu_dev_info *sseu)
+>>>    {
+>>> -	u32 valid_ss_mask = GENMASK(sseu->max_subslices - 1, 0);
+>>> +	u8 ss_mask[GEN_SS_MASK_SIZE] = {};
+>>> +	int len = sseu->max_slices * sseu->ss_stride;
+>>> +	int s, ss, i;
+>>> +	for (s = 0; s < sseu->max_slices; s++) {
+>>> +		for (ss = 0; ss < sseu->max_subslices; ss++) {
+>>> +			i = s * sseu->ss_stride + ss;
+>>> +
+>>> +			if (!intel_sseu_has_subslice(sseu, s, ss))
+>>> +				continue;
+>>> +
+>>> +			ss_mask[i / BITS_PER_BYTE] |= BIT(i % BITS_PER_BYTE);
+>>> +		}
+>>> +	}
+>>> +
+>>> +	return copy_to_user(to, ss_mask, len);
+>>> +}
+>>> +
+>>> +static void gen11_compute_sseu_info(struct sseu_dev_info *sseu,
+>>> +				    intel_sseu_ss_mask_t g_ss_en,
+>>> +				    intel_sseu_ss_mask_t c_ss_en,
+>>> +				    u16 eu_en)
+>>> +{
+>>>    	/* g_ss_en/c_ss_en represent entire subslice mask across all slices */
+>>>    	GEM_BUG_ON(sseu->max_slices * sseu->max_subslices >
+>>>    		   sizeof(g_ss_en) * BITS_PER_BYTE);
+>>> @@ -174,12 +198,12 @@ static void gen11_compute_sseu_info(struct sseu_dev_info *sseu,
+>>>    	 * enabled subslice count for the purposes of selecting subslices to
+>>>    	 * use in a particular GEM context.
+>>>    	 */
+>>> -	intel_sseu_set_subslices(sseu, 0, sseu->compute_subslice_mask,
+>>> -				 c_ss_en & valid_ss_mask);
+>>> -	intel_sseu_set_subslices(sseu, 0, sseu->geometry_subslice_mask,
+>>> -				 g_ss_en & valid_ss_mask);
+>>> -	intel_sseu_set_subslices(sseu, 0, sseu->subslice_mask,
+>>> -				 (g_ss_en | c_ss_en) & valid_ss_mask);
+>>> +	bitmap_copy(sseu->compute_subslice_mask.b, c_ss_en.b, I915_MAX_SS_FUSE_BITS);
+>>> +	bitmap_copy(sseu->geometry_subslice_mask.b, g_ss_en.b, I915_MAX_SS_FUSE_BITS);
+>>> +	bitmap_or(sseu->subslice_mask.b,
+>>> +		  sseu->compute_subslice_mask.b,
+>>> +		  sseu->geometry_subslice_mask.b,
+>>> +		  I915_MAX_SS_FUSE_BITS);
+>>>    	sseu->has_common_ss_eumask = 1;
+>>>    	sseu->eu_mask[0] = eu_en;
+>>> @@ -191,7 +215,8 @@ static void xehp_sseu_info_init(struct intel_gt *gt)
+>>>    {
+>>>    	struct sseu_dev_info *sseu = &gt->info.sseu;
+>>>    	struct intel_uncore *uncore = gt->uncore;
+>>> -	u32 g_dss_en, c_dss_en = 0;
+>>> +	intel_sseu_ss_mask_t g_dss_en = {}, c_dss_en = {};
+>>> +	u32 val;
+>>>    	u16 eu_en = 0;
+>>>    	u8 eu_en_fuse;
+>>>    	int eu;
+>>> @@ -204,8 +229,11 @@ static void xehp_sseu_info_init(struct intel_gt *gt)
+>>>    	 */
+>>>    	intel_sseu_set_info(sseu, 1, 32, 16);
+>>> -	g_dss_en = intel_uncore_read(uncore, GEN12_GT_GEOMETRY_DSS_ENABLE);
+>>> -	c_dss_en = intel_uncore_read(uncore, GEN12_GT_COMPUTE_DSS_ENABLE);
+>>> +	val = intel_uncore_read(uncore, GEN12_GT_GEOMETRY_DSS_ENABLE);
+>>> +	bitmap_from_arr32(g_dss_en.b, &val, 32);
+>>> +
+>>> +	val = intel_uncore_read(uncore, GEN12_GT_COMPUTE_DSS_ENABLE);
+>>> +	bitmap_from_arr32(c_dss_en.b, &val, 32);
+>>>    	eu_en_fuse = intel_uncore_read(uncore, XEHP_EU_ENABLE) & XEHP_EU_ENA_MASK;
+>>> @@ -220,7 +248,8 @@ static void gen12_sseu_info_init(struct intel_gt *gt)
+>>>    {
+>>>    	struct sseu_dev_info *sseu = &gt->info.sseu;
+>>>    	struct intel_uncore *uncore = gt->uncore;
+>>> -	u32 g_dss_en;
+>>> +	intel_sseu_ss_mask_t g_dss_en = {}, empty_mask = {};
+>>> +	u32 val;
+>>>    	u16 eu_en = 0;
+>>>    	u8 eu_en_fuse;
+>>>    	u8 s_en;
+>>> @@ -243,7 +272,8 @@ static void gen12_sseu_info_init(struct intel_gt *gt)
+>>>    		drm_dbg(&gt->i915->drm, "Slice mask %#x is not the expected 0x1!\n",
+>>>    			s_en);
+>>> -	g_dss_en = intel_uncore_read(uncore, GEN12_GT_GEOMETRY_DSS_ENABLE);
+>>> +	val = intel_uncore_read(uncore, GEN12_GT_GEOMETRY_DSS_ENABLE);
+>>> +	bitmap_from_arr32(g_dss_en.b, &val, 32);
+>>>    	/* one bit per pair of EUs */
+>>>    	eu_en_fuse = ~(intel_uncore_read(uncore, GEN11_EU_DISABLE) &
+>>> @@ -253,7 +283,7 @@ static void gen12_sseu_info_init(struct intel_gt *gt)
+>>>    		if (eu_en_fuse & BIT(eu))
+>>>    			eu_en |= BIT(eu * 2) | BIT(eu * 2 + 1);
+>>> -	gen11_compute_sseu_info(sseu, g_dss_en, 0, eu_en);
+>>> +	gen11_compute_sseu_info(sseu, g_dss_en, empty_mask, eu_en);
+>>>    	/* TGL only supports slice-level power gating */
+>>>    	sseu->has_slice_pg = 1;
+>>> @@ -263,7 +293,8 @@ static void gen11_sseu_info_init(struct intel_gt *gt)
+>>>    {
+>>>    	struct sseu_dev_info *sseu = &gt->info.sseu;
+>>>    	struct intel_uncore *uncore = gt->uncore;
+>>> -	u32 ss_en;
+>>> +	intel_sseu_ss_mask_t ss_en = {}, empty_mask = {};
+>>> +	u32 val;
+>>>    	u8 eu_en;
+>>>    	u8 s_en;
+>>> @@ -282,12 +313,13 @@ static void gen11_sseu_info_init(struct intel_gt *gt)
+>>>    		drm_dbg(&gt->i915->drm, "Slice mask %#x is not the expected 0x1!\n",
+>>>    			s_en);
+>>> -	ss_en = ~intel_uncore_read(uncore, GEN11_GT_SUBSLICE_DISABLE);
+>>> +	val = ~intel_uncore_read(uncore, GEN11_GT_SUBSLICE_DISABLE);
+>>> +	bitmap_from_arr32(ss_en.b, &val, 32);
+>>>    	eu_en = ~(intel_uncore_read(uncore, GEN11_EU_DISABLE) &
+>>>    		  GEN11_EU_DIS_MASK);
+>>> -	gen11_compute_sseu_info(sseu, ss_en, 0, eu_en);
+>>> +	gen11_compute_sseu_info(sseu, ss_en, empty_mask, eu_en);
+>>>    	/* ICL has no power gating restrictions. */
+>>>    	sseu->has_slice_pg = 1;
+>>> @@ -328,7 +360,7 @@ static void cherryview_sseu_info_init(struct intel_gt *gt)
+>>>    		sseu_set_eus(sseu, 0, 1, ~disabled_mask);
+>>>    	}
+>>> -	intel_sseu_set_subslices(sseu, 0, sseu->subslice_mask, subslice_mask);
+>>> +	set_subslices(sseu, 0, subslice_mask);
+>>>    	sseu->eu_total = compute_eu_total(sseu);
+>>> @@ -384,8 +416,7 @@ static void gen9_sseu_info_init(struct intel_gt *gt)
+>>>    			/* skip disabled slice */
+>>>    			continue;
+>>> -		intel_sseu_set_subslices(sseu, s, sseu->subslice_mask,
+>>> -					 subslice_mask);
+>>> +		set_subslices(sseu, s, subslice_mask);
+>>>    		eu_disable = intel_uncore_read(uncore, GEN9_EU_DISABLE(s));
+>>>    		for (ss = 0; ss < sseu->max_subslices; ss++) {
+>>> @@ -442,8 +473,8 @@ static void gen9_sseu_info_init(struct intel_gt *gt)
+>>>    	sseu->has_eu_pg = sseu->eu_per_subslice > 2;
+>>>    	if (IS_GEN9_LP(i915)) {
+>>> -#define IS_SS_DISABLED(ss)	(!(sseu->subslice_mask[0] & BIT(ss)))
+>>> -		info->has_pooled_eu = hweight8(sseu->subslice_mask[0]) == 3;
+>>> +#define IS_SS_DISABLED(ss)	test_bit(ss, sseu->subslice_mask.b)
+>>> +		info->has_pooled_eu = hweight8(sseu->subslice_mask.b[0]) == 3;
+>>>    		sseu->min_eu_in_pool = 0;
+>>>    		if (info->has_pooled_eu) {
+>>> @@ -497,8 +528,7 @@ static void bdw_sseu_info_init(struct intel_gt *gt)
+>>>    			/* skip disabled slice */
+>>>    			continue;
+>>> -		intel_sseu_set_subslices(sseu, s, sseu->subslice_mask,
+>>> -					 subslice_mask);
+>>> +		set_subslices(sseu, s, subslice_mask);
+>>>    		for (ss = 0; ss < sseu->max_subslices; ss++) {
+>>>    			u8 eu_disabled_mask;
+>>> @@ -595,8 +625,7 @@ static void hsw_sseu_info_init(struct intel_gt *gt)
+>>>    			    sseu->eu_per_subslice);
+>>>    	for (s = 0; s < sseu->max_slices; s++) {
+>>> -		intel_sseu_set_subslices(sseu, s, sseu->subslice_mask,
+>>> -					 subslice_mask);
+>>> +		set_subslices(sseu, s, subslice_mask);
+>>>    		for (ss = 0; ss < sseu->max_subslices; ss++) {
+>>>    			sseu_set_eus(sseu, s, ss,
+>>> @@ -685,7 +714,7 @@ u32 intel_sseu_make_rpcs(struct intel_gt *gt,
+>>>    	 */
+>>>    	if (GRAPHICS_VER(i915) == 11 &&
+>>>    	    slices == 1 &&
+>>> -	    subslices > min_t(u8, 4, hweight8(sseu->subslice_mask[0]) / 2)) {
+>>> +	    subslices > min_t(u8, 4, hweight8(sseu->subslice_mask.b[0]) / 2)) {
+>>>    		GEM_BUG_ON(subslices & 1);
+>>>    		subslice_pg = false;
+>>> @@ -755,9 +784,11 @@ void intel_sseu_dump(const struct sseu_dev_info *sseu, struct drm_printer *p)
+>>>    		   hweight8(sseu->slice_mask), sseu->slice_mask);
+>>>    	drm_printf(p, "subslice total: %u\n", intel_sseu_subslice_total(sseu));
+>>>    	for (s = 0; s < sseu->max_slices; s++) {
+>>> -		drm_printf(p, "slice%d: %u subslices, mask=%08x\n",
+>>> -			   s, intel_sseu_subslices_per_slice(sseu, s),
+>>> -			   intel_sseu_get_subslices(sseu, s));
+>>> +		intel_sseu_ss_mask_t ssmask = intel_sseu_get_subslices(sseu, s);
+>>> +
+>>> +		drm_printf(p, "slice%d: %u subslices, mask=%*pb\n",
+>>> +			   s, bitmap_weight(ssmask.b, I915_MAX_SS_FUSE_BITS),
+>>> +			   I915_MAX_SS_FUSE_BITS, ssmask.b);
+>>>    	}
+>>>    	drm_printf(p, "EU total: %u\n", sseu->eu_total);
+>>>    	drm_printf(p, "EU per subslice: %u\n", sseu->eu_per_subslice);
+>>> @@ -775,9 +806,11 @@ static void sseu_print_hsw_topology(const struct sseu_dev_info *sseu,
+>>>    	int s, ss;
+>>>    	for (s = 0; s < sseu->max_slices; s++) {
+>>> -		drm_printf(p, "slice%d: %u subslice(s) (0x%08x):\n",
+>>> -			   s, intel_sseu_subslices_per_slice(sseu, s),
+>>> -			   intel_sseu_get_subslices(sseu, s));
+>>> +		intel_sseu_ss_mask_t ssmask = intel_sseu_get_subslices(sseu, s);
+>>> +
+>>> +		drm_printf(p, "slice%d: %u subslice(s) (0x%*pb):\n",
+>>> +			   s, bitmap_weight(ssmask.b, I915_MAX_SS_FUSE_BITS),
+>>> +			   I915_MAX_SS_FUSE_BITS, ssmask.b);
+>>>    		for (ss = 0; ss < sseu->max_subslices; ss++) {
+>>>    			u16 enabled_eus = sseu_get_eus(sseu, s, ss);
+>>> @@ -791,16 +824,14 @@ static void sseu_print_hsw_topology(const struct sseu_dev_info *sseu,
+>>>    static void sseu_print_xehp_topology(const struct sseu_dev_info *sseu,
+>>>    				     struct drm_printer *p)
+>>>    {
+>>> -	u32 g_dss_mask = sseu_get_geometry_subslices(sseu);
+>>> -	u32 c_dss_mask = intel_sseu_get_compute_subslices(sseu);
+>>>    	int dss;
+>>>    	for (dss = 0; dss < sseu->max_subslices; dss++) {
+>>>    		u16 enabled_eus = sseu_get_eus(sseu, 0, dss);
+>>>    		drm_printf(p, "DSS_%02d: G:%3s C:%3s, %2u EUs (0x%04hx)\n", dss,
+>>> -			   str_yes_no(g_dss_mask & BIT(dss)),
+>>> -			   str_yes_no(c_dss_mask & BIT(dss)),
+>>> +			   str_yes_no(test_bit(dss, sseu->geometry_subslice_mask.b)),
+>>> +			   str_yes_no(test_bit(dss, sseu->compute_subslice_mask.b)),
+>>>    			   hweight16(enabled_eus), enabled_eus);
+>>>    	}
+>>>    }
+>>> @@ -818,20 +849,24 @@ void intel_sseu_print_topology(struct drm_i915_private *i915,
+>>>    	}
+>>>    }
+>>> -u16 intel_slicemask_from_dssmask(u64 dss_mask, int dss_per_slice)
+>>> +u16 intel_slicemask_from_dssmask(intel_sseu_ss_mask_t dss_mask,
+>>> +				 int dss_per_slice)
+>>>    {
+>>> +	intel_sseu_ss_mask_t per_slice_mask = {};
+>>>    	u16 slice_mask = 0;
+>>>    	int i;
+>>> -	WARN_ON(sizeof(dss_mask) * 8 / dss_per_slice > 8 * sizeof(slice_mask));
+>>> +	WARN_ON(DIV_ROUND_UP(I915_MAX_SS_FUSE_BITS, dss_per_slice) >
+>>> +		8 * sizeof(slice_mask));
+>>> -	for (i = 0; dss_mask; i++) {
+>>> -		if (dss_mask & GENMASK(dss_per_slice - 1, 0))
+>>> +	bitmap_fill(per_slice_mask.b, dss_per_slice);
+>>> +	for (i = 0; !bitmap_empty(dss_mask.b, I915_MAX_SS_FUSE_BITS); i++) {
+>>> +		if (bitmap_intersects(dss_mask.b, per_slice_mask.b, dss_per_slice))
+>>>    			slice_mask |= BIT(i);
+>>> -		dss_mask >>= dss_per_slice;
+>>> +		bitmap_shift_right(dss_mask.b, dss_mask.b, dss_per_slice,
+>>> +				   I915_MAX_SS_FUSE_BITS);
+>>>    	}
+>>>    	return slice_mask;
+>>>    }
+>>> -
+>>> diff --git a/drivers/gpu/drm/i915/gt/intel_sseu.h b/drivers/gpu/drm/i915/gt/intel_sseu.h
+>>> index 106726a2244e..455f085093ae 100644
+>>> --- a/drivers/gpu/drm/i915/gt/intel_sseu.h
+>>> +++ b/drivers/gpu/drm/i915/gt/intel_sseu.h
+>>> @@ -52,11 +52,22 @@ struct drm_printer;
+>>>    #define GEN_MAX_GSLICES		(GEN_MAX_DSS / GEN_DSS_PER_GSLICE)
+>>>    #define GEN_MAX_CSLICES		(GEN_MAX_DSS / GEN_DSS_PER_CSLICE)
+>>> +/*
+>>> + * Maximum number of 32-bit registers used by hardware to express the
+>>> + * enabled/disabled subslices.
+>>> + */
+>>> +#define I915_MAX_SS_FUSE_REGS	1
+>>> +#define I915_MAX_SS_FUSE_BITS	(I915_MAX_SS_FUSE_REGS * 32)
+>>> +
+>>> +typedef struct {
+>>> +	unsigned long b[BITS_TO_LONGS(I915_MAX_SS_FUSE_BITS)];
+>>> +} intel_sseu_ss_mask_t;
+>>> +
+>>>    struct sseu_dev_info {
+>>>    	u8 slice_mask;
+>>> -	u8 subslice_mask[GEN_SS_MASK_SIZE];
+>>> -	u8 geometry_subslice_mask[GEN_SS_MASK_SIZE];
+>>> -	u8 compute_subslice_mask[GEN_SS_MASK_SIZE];
+>>> +	intel_sseu_ss_mask_t subslice_mask;
+>>> +	intel_sseu_ss_mask_t geometry_subslice_mask;
+>>> +	intel_sseu_ss_mask_t compute_subslice_mask;
+>>>    	/*
+>>>    	 * EU masks.  Use has_common_ss_eumask to determine how the field
+>>> @@ -107,7 +118,7 @@ intel_sseu_from_device_info(const struct sseu_dev_info *sseu)
+>>>    {
+>>>    	struct intel_sseu value = {
+>>>    		.slice_mask = sseu->slice_mask,
+>>> -		.subslice_mask = sseu->subslice_mask[0],
+>>> +		.subslice_mask = sseu->subslice_mask.b[0],
+>>>    		.min_eus_per_subslice = sseu->max_eus_per_subslice,
+>>>    		.max_eus_per_subslice = sseu->max_eus_per_subslice,
+>>>    	};
+>>> @@ -119,18 +130,8 @@ static inline bool
+>>>    intel_sseu_has_subslice(const struct sseu_dev_info *sseu, int slice,
+>>>    			int subslice)
+>>>    {
+>>> -	u8 mask;
+>>> -	int ss_idx = subslice / BITS_PER_BYTE;
+>>> -
+>>> -	if (slice >= sseu->max_slices ||
+>>> -	    subslice >= sseu->max_subslices)
+>>> -		return false;
+>>> -
+>>> -	GEM_BUG_ON(ss_idx >= sseu->ss_stride);
+>>> -
+>>> -	mask = sseu->subslice_mask[slice * sseu->ss_stride + ss_idx];
+>>> -
+>>> -	return mask & BIT(subslice % BITS_PER_BYTE);
+>>> +	return test_bit(slice * sseu->ss_stride + subslice,
+>>> +			sseu->subslice_mask.b);
+>>>    }
+>>>    void intel_sseu_set_info(struct sseu_dev_info *sseu, u8 max_slices,
+>>> @@ -139,15 +140,14 @@ void intel_sseu_set_info(struct sseu_dev_info *sseu, u8 max_slices,
+>>>    unsigned int
+>>>    intel_sseu_subslice_total(const struct sseu_dev_info *sseu);
+>>> -unsigned int
+>>> -intel_sseu_subslices_per_slice(const struct sseu_dev_info *sseu, u8 slice);
+>>> +intel_sseu_ss_mask_t
+>>> +intel_sseu_get_subslices(const struct sseu_dev_info *sseu, u8 slice);
+>>> -u32 intel_sseu_get_subslices(const struct sseu_dev_info *sseu, u8 slice);
+>>> -
+>>> -u32 intel_sseu_get_compute_subslices(const struct sseu_dev_info *sseu);
+>>> +intel_sseu_ss_mask_t
+>>> +intel_sseu_get_compute_subslices(const struct sseu_dev_info *sseu);
+>>>    void intel_sseu_set_subslices(struct sseu_dev_info *sseu, int slice,
+>>> -			      u8 *subslice_mask, u32 ss_mask);
+>>> +			      u32 ss_mask);
+>>>    void intel_sseu_info_init(struct intel_gt *gt);
+>>> @@ -159,9 +159,11 @@ void intel_sseu_print_topology(struct drm_i915_private *i915,
+>>>    			       const struct sseu_dev_info *sseu,
+>>>    			       struct drm_printer *p);
+>>> -u16 intel_slicemask_from_dssmask(u64 dss_mask, int dss_per_slice);
+>>> +u16 intel_slicemask_from_dssmask(intel_sseu_ss_mask_t dss_mask, int dss_per_slice);
+>>>    int intel_sseu_copy_eumask_to_user(void __user *to,
+>>>    				   const struct sseu_dev_info *sseu);
+>>> +int intel_sseu_copy_ssmask_to_user(void __user *to,
+>>> +				   const struct sseu_dev_info *sseu);
+>>>    #endif /* __INTEL_SSEU_H__ */
+>>> diff --git a/drivers/gpu/drm/i915/gt/intel_sseu_debugfs.c b/drivers/gpu/drm/i915/gt/intel_sseu_debugfs.c
+>>> index 2d5d011e01db..1f77bd52a3a6 100644
+>>> --- a/drivers/gpu/drm/i915/gt/intel_sseu_debugfs.c
+>>> +++ b/drivers/gpu/drm/i915/gt/intel_sseu_debugfs.c
+>>> @@ -4,6 +4,7 @@
+>>>     * Copyright © 2020 Intel Corporation
+>>>     */
+>>> +#include <linux/bitmap.h>
+>>>    #include <linux/string_helpers.h>
+>>>    #include "i915_drv.h"
+>>> @@ -12,11 +13,15 @@
+>>>    #include "intel_sseu_debugfs.h"
+>>>    static void sseu_copy_subslices(const struct sseu_dev_info *sseu,
+>>> -				int slice, u8 *to_mask)
+>>> +				int slice,
+>>> +				intel_sseu_ss_mask_t *to_mask)
+>>>    {
+>>> -	int offset = slice * sseu->ss_stride;
+>>> +	int offset = slice * sseu->max_subslices;
+>>> -	memcpy(&to_mask[offset], &sseu->subslice_mask[offset], sseu->ss_stride);
+>>> +	bitmap_fill(to_mask->b, sseu->max_subslices);
+>>> +	bitmap_shift_left(to_mask->b, to_mask->b, offset, I915_MAX_SS_FUSE_BITS);
+>>> +	bitmap_and(to_mask->b, to_mask->b, sseu->subslice_mask.b, I915_MAX_SS_FUSE_BITS);
+>>> +	bitmap_shift_right(to_mask->b, to_mask->b, offset, I915_MAX_SS_FUSE_BITS);
+>>>    }
+>>>    static void cherryview_sseu_device_status(struct intel_gt *gt,
+>>> @@ -41,7 +46,7 @@ static void cherryview_sseu_device_status(struct intel_gt *gt,
+>>>    			continue;
+>>>    		sseu->slice_mask = BIT(0);
+>>> -		sseu->subslice_mask[0] |= BIT(ss);
+>>> +		set_bit(0, sseu->subslice_mask.b);
+>>>    		eu_cnt = ((sig1[ss] & CHV_EU08_PG_ENABLE) ? 0 : 2) +
+>>>    			 ((sig1[ss] & CHV_EU19_PG_ENABLE) ? 0 : 2) +
+>>>    			 ((sig1[ss] & CHV_EU210_PG_ENABLE) ? 0 : 2) +
+>>> @@ -92,7 +97,7 @@ static void gen11_sseu_device_status(struct intel_gt *gt,
+>>>    			continue;
+>>>    		sseu->slice_mask |= BIT(s);
+>>> -		sseu_copy_subslices(&info->sseu, s, sseu->subslice_mask);
+>>> +		sseu_copy_subslices(&info->sseu, s, &sseu->subslice_mask);
+>>>    		for (ss = 0; ss < info->sseu.max_subslices; ss++) {
+>>>    			unsigned int eu_cnt;
+>>> @@ -148,20 +153,17 @@ static void gen9_sseu_device_status(struct intel_gt *gt,
+>>>    		if (IS_GEN9_BC(gt->i915))
+>>>    			sseu_copy_subslices(&info->sseu, s,
+>>> -					    sseu->subslice_mask);
+>>> +					    &sseu->subslice_mask);
+>>>    		for (ss = 0; ss < info->sseu.max_subslices; ss++) {
+>>>    			unsigned int eu_cnt;
+>>> -			u8 ss_idx = s * info->sseu.ss_stride +
+>>> -				    ss / BITS_PER_BYTE;
+>>>    			if (IS_GEN9_LP(gt->i915)) {
+>>>    				if (!(s_reg[s] & (GEN9_PGCTL_SS_ACK(ss))))
+>>>    					/* skip disabled subslice */
+>>>    					continue;
+>>> -				sseu->subslice_mask[ss_idx] |=
+>>> -					BIT(ss % BITS_PER_BYTE);
+>>> +				set_bit(ss, sseu->subslice_mask.b);
+>>>    			}
+>>>    			eu_cnt = eu_reg[2 * s + ss / 2] & eu_mask[ss % 2];
+>>> @@ -189,7 +191,7 @@ static void bdw_sseu_device_status(struct intel_gt *gt,
+>>>    		sseu->eu_per_subslice = info->sseu.eu_per_subslice;
+>>>    		for (s = 0; s < fls(sseu->slice_mask); s++)
+>>>    			sseu_copy_subslices(&info->sseu, s,
+>>> -					    sseu->subslice_mask);
+>>> +					    &sseu->subslice_mask);
+>>>    		sseu->eu_total = sseu->eu_per_subslice *
+>>>    				 intel_sseu_subslice_total(sseu);
+>>> @@ -217,8 +219,10 @@ static void i915_print_sseu_info(struct seq_file *m,
+>>>    	seq_printf(m, "  %s Subslice Total: %u\n", type,
+>>>    		   intel_sseu_subslice_total(sseu));
+>>>    	for (s = 0; s < fls(sseu->slice_mask); s++) {
+>>> +		intel_sseu_ss_mask_t ssmask = intel_sseu_get_subslices(sseu, s);
+>>> +
+>>>    		seq_printf(m, "  %s Slice%i subslices: %u\n", type,
+>>> -			   s, intel_sseu_subslices_per_slice(sseu, s));
+>>> +			   s, bitmap_weight(ssmask.b, I915_MAX_SS_FUSE_BITS));
+>>>    	}
+>>>    	seq_printf(m, "  %s EU Total: %u\n", type,
+>>>    		   sseu->eu_total);
+>>> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+>>> index a05c4b99b3fb..5db492072f99 100644
+>>> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+>>> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+>>> @@ -931,6 +931,7 @@ static void
+>>>    gen9_wa_init_mcr(struct drm_i915_private *i915, struct i915_wa_list *wal)
+>>>    {
+>>>    	const struct sseu_dev_info *sseu = &to_gt(i915)->info.sseu;
+>>> +	intel_sseu_ss_mask_t ssmask;
+>>>    	unsigned int slice, subslice;
+>>>    	u32 mcr, mcr_mask;
+>>> @@ -948,9 +949,9 @@ gen9_wa_init_mcr(struct drm_i915_private *i915, struct i915_wa_list *wal)
+>>>    	 * on s/ss combo, the read should be done with read_subslice_reg.
+>>>    	 */
+>>>    	slice = ffs(sseu->slice_mask) - 1;
+>>> -	GEM_BUG_ON(slice >= ARRAY_SIZE(sseu->subslice_mask));
+>>> -	subslice = ffs(intel_sseu_get_subslices(sseu, slice));
+>>> -	GEM_BUG_ON(!subslice);
+>>> +	ssmask = intel_sseu_get_subslices(sseu, slice);
+>>> +	subslice = find_first_bit(ssmask.b, I915_MAX_SS_FUSE_BITS);
+>>> +	GEM_BUG_ON(subslice == I915_MAX_SS_FUSE_BITS);
+>>>    	subslice--;
+>>>    	/*
+>>> @@ -1087,11 +1088,10 @@ static void
+>>>    icl_wa_init_mcr(struct intel_gt *gt, struct i915_wa_list *wal)
+>>>    {
+>>>    	const struct sseu_dev_info *sseu = &gt->info.sseu;
+>>> -	unsigned int slice, subslice;
+>>> +	unsigned int subslice;
+>>>    	GEM_BUG_ON(GRAPHICS_VER(gt->i915) < 11);
+>>>    	GEM_BUG_ON(hweight8(sseu->slice_mask) > 1);
+>>> -	slice = 0;
+>>>    	/*
+>>>    	 * Although a platform may have subslices, we need to always steer
+>>> @@ -1102,7 +1102,7 @@ icl_wa_init_mcr(struct intel_gt *gt, struct i915_wa_list *wal)
+>>>    	 * one of the higher subslices, we run the risk of reading back 0's or
+>>>    	 * random garbage.
+>>>    	 */
+>>> -	subslice = __ffs(intel_sseu_get_subslices(sseu, slice));
+>>> +	subslice = find_first_bit(sseu->subslice_mask.b, I915_MAX_SS_FUSE_BITS);
+>>>    	/*
+>>>    	 * If the subslice we picked above also steers us to a valid L3 bank,
+>>> @@ -1112,7 +1112,7 @@ icl_wa_init_mcr(struct intel_gt *gt, struct i915_wa_list *wal)
+>>>    	if (gt->info.l3bank_mask & BIT(subslice))
+>>>    		gt->steering_table[L3BANK] = NULL;
+>>> -	__add_mcr_wa(gt, wal, slice, subslice);
+>>> +	__add_mcr_wa(gt, wal, 0, subslice);
+>>>    }
+>>>    static void
+>>> @@ -1120,7 +1120,6 @@ xehp_init_mcr(struct intel_gt *gt, struct i915_wa_list *wal)
+>>>    {
+>>>    	const struct sseu_dev_info *sseu = &gt->info.sseu;
+>>>    	unsigned long slice, subslice = 0, slice_mask = 0;
+>>> -	u64 dss_mask = 0;
+>>>    	u32 lncf_mask = 0;
+>>>    	int i;
+>>> @@ -1151,8 +1150,8 @@ xehp_init_mcr(struct intel_gt *gt, struct i915_wa_list *wal)
+>>>    	 */
+>>>    	/* Find the potential gslice candidates */
+>>> -	dss_mask = intel_sseu_get_subslices(sseu, 0);
+>>> -	slice_mask = intel_slicemask_from_dssmask(dss_mask, GEN_DSS_PER_GSLICE);
+>>> +	slice_mask = intel_slicemask_from_dssmask(sseu->subslice_mask,
+>>> +						  GEN_DSS_PER_GSLICE);
+>>>    	/*
+>>>    	 * Find the potential LNCF candidates.  Either LNCF within a valid
+>>> @@ -1177,9 +1176,9 @@ xehp_init_mcr(struct intel_gt *gt, struct i915_wa_list *wal)
+>>>    	}
+>>>    	slice = __ffs(slice_mask);
+>>> -	subslice = __ffs(dss_mask >> (slice * GEN_DSS_PER_GSLICE));
+>>> +	subslice = find_next_bit(sseu->subslice_mask.b, I915_MAX_SS_FUSE_BITS,
+>>> +				 slice * GEN_DSS_PER_GSLICE);
+>>>    	WARN_ON(subslice > GEN_DSS_PER_GSLICE);
+>>> -	WARN_ON(dss_mask >> (slice * GEN_DSS_PER_GSLICE) == 0);
+>>>    	__add_mcr_wa(gt, wal, slice, subslice);
+>>> @@ -2012,9 +2011,8 @@ engine_fake_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
+>>>    static bool needs_wa_1308578152(struct intel_engine_cs *engine)
+>>>    {
+>>> -	u64 dss_mask = intel_sseu_get_subslices(&engine->gt->info.sseu, 0);
+>>> -
+>>> -	return (dss_mask & GENMASK(GEN_DSS_PER_GSLICE - 1, 0)) == 0;
+>>> +	return find_first_bit(engine->gt->info.sseu.subslice_mask.b,
+>>> +			      I915_MAX_SS_FUSE_BITS) >= GEN_DSS_PER_GSLICE;
+>>>    }
+>>>    static void
+>>> diff --git a/drivers/gpu/drm/i915/i915_getparam.c b/drivers/gpu/drm/i915/i915_getparam.c
+>>> index ac9767c56619..349d496d164a 100644
+>>> --- a/drivers/gpu/drm/i915/i915_getparam.c
+>>> +++ b/drivers/gpu/drm/i915/i915_getparam.c
+>>> @@ -162,7 +162,7 @@ int i915_getparam_ioctl(struct drm_device *dev, void *data,
+>>>    			return -EINVAL;
+>>>    		/* Only copy bits from the first slice */
+>>> -		memcpy(&value, sseu->subslice_mask,
+>>> +		memcpy(&value, sseu->subslice_mask.b,
+>>>    		       min(sseu->ss_stride, (u8)sizeof(value)));
+>>>    		if (!value)
+>>>    			return -ENODEV;
+>>> diff --git a/drivers/gpu/drm/i915/i915_query.c b/drivers/gpu/drm/i915/i915_query.c
+>>> index 16f43bf32a05..9afa6d1eaf95 100644
+>>> --- a/drivers/gpu/drm/i915/i915_query.c
+>>> +++ b/drivers/gpu/drm/i915/i915_query.c
+>>> @@ -31,7 +31,7 @@ static int copy_query_item(void *query_hdr, size_t query_sz,
+>>>    static int fill_topology_info(const struct sseu_dev_info *sseu,
+>>>    			      struct drm_i915_query_item *query_item,
+>>> -			      const u8 *subslice_mask)
+>>> +			      intel_sseu_ss_mask_t subslice_mask)
+>>>    {
+>>>    	struct drm_i915_query_topology_info topo;
+>>>    	u32 slice_length, subslice_length, eu_length, total_length;
+>>> @@ -71,9 +71,9 @@ static int fill_topology_info(const struct sseu_dev_info *sseu,
+>>>    			 &sseu->slice_mask, slice_length))
+>>>    		return -EFAULT;
+>>> -	if (copy_to_user(u64_to_user_ptr(query_item->data_ptr +
+>>> -					 sizeof(topo) + slice_length),
+>>> -			 subslice_mask, subslice_length))
+>>> +	if (intel_sseu_copy_ssmask_to_user(u64_to_user_ptr(query_item->data_ptr +
+>>> +							   sizeof(topo) + slice_length),
+>>> +					   sseu))
+>>>    		return -EFAULT;
+>>>    	if (intel_sseu_copy_eumask_to_user(u64_to_user_ptr(query_item->data_ptr +
+> 
