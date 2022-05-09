@@ -1,56 +1,67 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D7F451FE57
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 May 2022 15:32:23 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9090551FE5A
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 May 2022 15:33:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6646A10E526;
-	Mon,  9 May 2022 13:32:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0427910E7EF;
+	Mon,  9 May 2022 13:33:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 06F6110E526
- for <intel-gfx@lists.freedesktop.org>; Mon,  9 May 2022 13:32:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ADDAC10E7EF
+ for <intel-gfx@lists.freedesktop.org>; Mon,  9 May 2022 13:33:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1652103140; x=1683639140;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=Sr848/LXvFEfthB02CaE/fikaMm37nhZzUL9dthgrl8=;
- b=VN3MrKBTJ2rGFj46jb9SgUnfJqnCmO/tPeGkEoApx8ZFS0cPtjZfcbj4
- 1H7zAy5BU+JTMCBrOeoHQ0M8jD/vQK88liD1em0utgFVabicfLK/z4bSr
- r7cej0uxID4TG7mBZYsYFC0pYVkXbwT2NsSl9lfCCfbMfbphNVRHoGKdb
- dOJEoiWnPoPaJLfRkMqXbr2cAmSHQC35eILqi4jZUHm+5EE8OHyLmWpyU
- +ZOuElA0tTdoVU+jVJPKrsEOJMQEk/cZWipqYypMIlYypiK4QDr4bDewQ
- fDwkH4yBIdLuUBJbIpvln7LDa+uF1STTvSX74CHYvroA94o1KLRVwow/h Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10341"; a="248951506"
-X-IronPort-AV: E=Sophos;i="5.91,211,1647327600"; d="scan'208";a="248951506"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ t=1652103180; x=1683639180;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-id:content-transfer-encoding: mime-version;
+ bh=YkEuhqeqlmzNCnVotuY7poVF7+0tY4kd+I7KbybLzPE=;
+ b=TBm29b0zHJRVUTL9ylWrMYJ7yl0QAgTeysZicAH35z5k1ymfHp/jhwz0
+ EcNftpgONCZa7uApWlz5S2xZm8hm4Ea62UWhjpNaG54CtdYv7LON7gt6U
+ 9aplRlNX0CTaHTPLkqZtE2sqwtgAZhnMFZXBInOYBUbkH+WIyTUy04R0X
+ ha/w/vozZU/08yBGFZd3fJ2BBDg1rd5fzo6GZwUBBqbcw1YyeJgDLJ7Gr
+ ce3du+A/epQwi4Nu7WGsDpYqwl+wWbMACv9HIf+2BWzBZ5MPJ+PLl7Ed0
+ tmPdZAsDqT2AUH9qpW8cYkK/37bEhuI1qxHUx28guITy85QAojbJlusL6 w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10341"; a="248951668"
+X-IronPort-AV: E=Sophos;i="5.91,211,1647327600"; d="scan'208";a="248951668"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 May 2022 06:32:19 -0700
-X-IronPort-AV: E=Sophos;i="5.91,211,1647327600"; d="scan'208";a="519234778"
-Received: from oanderso-mobl1.ger.corp.intel.com (HELO [10.213.217.157])
- ([10.213.217.157])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 May 2022 06:32:18 -0700
-Message-ID: <e0c5e815-53a8-9759-948c-c180a8ecffdd@linux.intel.com>
-Date: Mon, 9 May 2022 14:32:16 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
+ 09 May 2022 06:32:36 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.91,211,1647327600"; d="scan'208";a="738167103"
+Received: from fmsmsx605.amr.corp.intel.com ([10.18.126.85])
+ by orsmga005.jf.intel.com with ESMTP; 09 May 2022 06:32:36 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx605.amr.corp.intel.com (10.18.126.85) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27; Mon, 9 May 2022 06:32:35 -0700
+Received: from fmsmsx612.amr.corp.intel.com ([10.18.126.92]) by
+ fmsmsx612.amr.corp.intel.com ([10.18.126.92]) with mapi id 15.01.2308.027;
+ Mon, 9 May 2022 06:32:35 -0700
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Hogander, Jouni" <jouni.hogander@intel.com>
+Thread-Topic: [PATCH v2 1/2] drm/i915/psr: Use full update In case of area
+ calculation fails
+Thread-Index: AQHYY3XMnvW1a1gKFk6c1uFb0Wui6q0XAOgA
+Date: Mon, 9 May 2022 13:32:35 +0000
+Message-ID: <ee93f276c4116da6384fcb225148881ef91a30ce.camel@intel.com>
+References: <20220509072404.1423018-1-jouni.hogander@intel.com>
+ <20220509072404.1423018-2-jouni.hogander@intel.com>
+In-Reply-To: <20220509072404.1423018-2-jouni.hogander@intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-To: =?UTF-8?Q?Jos=c3=a9_Roberto_de_Souza?= <jose.souza@intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20220505193524.276400-1-jose.souza@intel.com>
- <20220505193524.276400-5-jose.souza@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20220505193524.276400-5-jose.souza@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH CI 5/7] drm/i915: Drop has_ddi from device
- info
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.100]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <5FC1EB5E87A5C64DB596FC6D6D954C90@intel.com>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+Subject: Re: [Intel-gfx] [PATCH v2 1/2] drm/i915/psr: Use full update In
+ case of area calculation fails
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,95 +74,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: "markpearson@lenovo.com" <markpearson@lenovo.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 05/05/2022 20:35, José Roberto de Souza wrote:
-> No need to have this parameter in intel_device_info struct
-> as all platforms with display version 9 or newer, haswell or broadwell
-> supports it.
-> 
-> As a side effect of the of removal this flag, it will not be printed
-> in dmesg during driver load anymore and developers will have to rely
-> on to check the macro and compare with platform being used and IP
-> versions of it.
-> 
-> Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
-> Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
-> ---
->   drivers/gpu/drm/i915/i915_drv.h          | 4 +++-
->   drivers/gpu/drm/i915/i915_pci.c          | 3 ---
->   drivers/gpu/drm/i915/intel_device_info.h | 1 -
->   3 files changed, 3 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> index 5538564bc1d25..600d8cee272da 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -1298,7 +1298,9 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
->   #define HAS_DP20(dev_priv)	(IS_DG2(dev_priv))
->   
->   #define HAS_CDCLK_CRAWL(dev_priv)	 (INTEL_INFO(dev_priv)->display.has_cdclk_crawl)
-> -#define HAS_DDI(dev_priv)		 (INTEL_INFO(dev_priv)->display.has_ddi)
-> +#define HAS_DDI(dev_priv)		 (DISPLAY_VER(dev_priv) >= 9 || \
-> +					  IS_BROADWELL(dev_priv) || \
-> +					  IS_HASWELL(dev_priv))
-
-This one is a bit borderline, not sure it passes Jani's criteria of 
-simplicity, which I thought was a good one. And from the OCD angle it 
-kind of sucks to expand the conditionals to all call sites (when it's 
-even called from i915_irq.c, justifiably or not I don't know).
-
-What is the high level motivation for this work?
-
-Also, why is this in drm-intel-gt-next? :)
-
-Regards,
-
-Tvrtko
-
-
->   #define HAS_FPGA_DBG_UNCLAIMED(dev_priv) (INTEL_INFO(dev_priv)->display.has_fpga_dbg)
->   #define HAS_PSR(dev_priv)		 (INTEL_INFO(dev_priv)->display.has_psr)
->   #define HAS_PSR_HW_TRACKING(dev_priv) \
-> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-> index 2dc0284629d30..a0693d9ff9cee 100644
-> --- a/drivers/gpu/drm/i915/i915_pci.c
-> +++ b/drivers/gpu/drm/i915/i915_pci.c
-> @@ -535,7 +535,6 @@ static const struct intel_device_info vlv_info = {
->   	.platform_engine_mask = BIT(RCS0) | BIT(VCS0) | BIT(BCS0) | BIT(VECS0), \
->   	.display.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | \
->   		BIT(TRANSCODER_C) | BIT(TRANSCODER_EDP), \
-> -	.display.has_ddi = 1, \
->   	.display.has_fpga_dbg = 1, \
->   	.display.has_dp_mst = 1, \
->   	.has_rc6p = 0 /* RC6p removed-by HSW */, \
-> @@ -683,7 +682,6 @@ static const struct intel_device_info skl_gt4_info = {
->   		BIT(TRANSCODER_C) | BIT(TRANSCODER_EDP) | \
->   		BIT(TRANSCODER_DSI_A) | BIT(TRANSCODER_DSI_C), \
->   	.has_64bit_reloc = 1, \
-> -	.display.has_ddi = 1, \
->   	.display.has_fpga_dbg = 1, \
->   	.display.fbc_mask = BIT(INTEL_FBC_A), \
->   	.display.has_hdcp = 1, \
-> @@ -932,7 +930,6 @@ static const struct intel_device_info adl_s_info = {
->   	.dbuf.size = 4096,							\
->   	.dbuf.slice_mask = BIT(DBUF_S1) | BIT(DBUF_S2) | BIT(DBUF_S3) |		\
->   		BIT(DBUF_S4),							\
-> -	.display.has_ddi = 1,							\
->   	.display.has_dmc = 1,							\
->   	.display.has_dp_mst = 1,						\
->   	.display.has_dsb = 1,							\
-> diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
-> index bef65e3f02c55..bc71ce48763ad 100644
-> --- a/drivers/gpu/drm/i915/intel_device_info.h
-> +++ b/drivers/gpu/drm/i915/intel_device_info.h
-> @@ -167,7 +167,6 @@ enum intel_ppgtt_type {
->   	func(cursor_needs_physical); \
->   	func(has_cdclk_crawl); \
->   	func(has_dmc); \
-> -	func(has_ddi); \
->   	func(has_dp_mst); \
->   	func(has_dsb); \
->   	func(has_dsc); \
+T24gTW9uLCAyMDIyLTA1LTA5IGF0IDEwOjI0ICswMzAwLCBKb3VuaSBIw7ZnYW5kZXIgd3JvdGU6
+DQo+IEN1cnJlbnRseSB3ZSBoYXZlIHNvbWUgY29ybmVyIGNhc2VzIHdoZXJlIGFyZWEgY2FsY3Vs
+YXRpb24gZmFpbHMuICBGb3INCj4gdGhlc2Ugc2VsIGZldGNoIGFyZWEgY2FsY3VsYXRpb24gZW5k
+cyB1cCBoYXZpbmcgdXBkYXRlIGFyZWEgYXMgeTEgPSAwLA0KPiB5MiA9IDQuIEluc3RlYWQgb2Yg
+dGhlc2UgdmFsdWVzIHNhZmVyIG9wdGlvbiBpcyBmdWxsIHVwZGF0ZS4NCj4gDQo+IE9uZSBvZiBz
+dWNoIGZvciBleGFtcGxlIGlzIGJpZyBmYiB3aXRoIG9mZnNldC4gV2UgZG9uJ3QgaGF2ZSB1c2Fi
+bGUNCj4gb2Zmc2V0IGluIHBzcjJfc2VsX2ZldGNoX3VwZGF0ZS4gQ3VycmVudGx5IGl0J3Mgb3Bl
+biB3aGF0IGlzIHRoZQ0KPiBwcm9wZXIgd2F5IHRvIGZpeCB0aGlzIGNvcm5lciBjYXNlLiBVc2Ug
+ZnVsbCB1cGRhdGUgZm9yIG5vdy4NCj4gDQo+IHYyOiBDb21taXQgbWVzc2FnZSBtb2RpZmllZA0K
+PiANCj4gQ2M6IEpvc8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwuY29tPg0K
+PiBDYzogTWlrYSBLYWhvbGEgPG1pa2Eua2Fob2xhQGludGVsLmNvbT4NCj4gVGVzdGVkLWJ5OiBN
+YXJrIFBlYXJzb24gPG1hcmtwZWFyc29uQGxlbm92by5jb20+DQo+IFNpZ25lZC1vZmYtYnk6IEpv
+dW5pIEjDtmdhbmRlciA8am91bmkuaG9nYW5kZXJAaW50ZWwuY29tPg0KPiAtLS0NCj4gIGRyaXZl
+cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMgfCAzICsrKw0KPiAgMSBmaWxlIGNo
+YW5nZWQsIDMgaW5zZXJ0aW9ucygrKQ0KPiANCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
+L2ludGVsX3Bzci5jDQo+IGluZGV4IDA2ZGI0MDdlMjc0OS4uOGMwOTlkMjRkZTg2IDEwMDY0NA0K
+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jDQo+ICsrKyBi
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMNCj4gQEAgLTE3NzAsNiAr
+MTc3MCw5IEBAIGludCBpbnRlbF9wc3IyX3NlbF9mZXRjaF91cGRhdGUoc3RydWN0IGludGVsX2F0
+b21pY19zdGF0ZSAqc3RhdGUsDQo+ICAJCWNsaXBfYXJlYV91cGRhdGUoJnBpcGVfY2xpcCwgJmRh
+bWFnZWRfYXJlYSk7DQo+ICAJfQ0KPiAgDQo+ICsJaWYgKHBpcGVfY2xpcC55MSA9PSAtMSkNCj4g
+KwkJZnVsbF91cGRhdGUgPSB0cnVlOw0KDQpMZWZ0IHRoZSBkZWJ1Z19vbmNlIGFuZCB0aGUgVE9E
+TyBvdXQsIGZvciBhIHJlZ3VsYXIgcmVhZGVyIHRoaXMgbG9va3MgbGlrZSBhIG5vcm1hbCBjb2Rl
+IHBhdGguLi4gd2hhdCBpcyBub3QgdGhlIGNhc2UuDQoNCj4gKw0KPiAgCWlmIChmdWxsX3VwZGF0
+ZSkNCj4gIAkJZ290byBza2lwX3NlbF9mZXRjaF9zZXRfbG9vcDsNCj4gIA0KDQo=
