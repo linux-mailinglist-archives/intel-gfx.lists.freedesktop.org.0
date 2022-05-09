@@ -2,32 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 168BB51F493
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 May 2022 08:36:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B27AA51F496
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 May 2022 08:49:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7710F10E4C9;
-	Mon,  9 May 2022 06:36:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C7C7610FCD1;
+	Mon,  9 May 2022 06:49:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7BEBF10E6C8;
- Mon,  9 May 2022 06:36:25 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 7082EA66C9;
- Mon,  9 May 2022 06:36:25 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2A09910FCD1
+ for <intel-gfx@lists.freedesktop.org>; Mon,  9 May 2022 06:49:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1652078959; x=1683614959;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=hn2Wx6MKa6EC8zOx6xCdWhHtldJnA9h2lUd6X8dI1Dc=;
+ b=EB2v7HdjelNue4ol92c2ywArSKnKlfvkRRuJ31YhipbfA+dANFnxtA7k
+ NV3lgF/4x+JLaFFyJMtWj2t3Km1k5Vt5IzBRN/4wLR+pFJpxyKdUFxd/N
+ 3bU73Et4ozKzj9qBvjB0eBDXUbK6sHPVk12lJrt3N70nYEFyGOZEVU5e+
+ S62kBbV0W2Js2RBtrfcGUCYa/G5q9aEQ5FEJxJrefgRbyDHyC9nhIoVhW
+ Q2spubGnT5VdYWHYyrRX/h7j+2TjZ2k7LYJXNA/eWXhiMAB+FHIOv2k2p
+ fkdW51bZYE2Zt/jtE4GAQFGc+zcGIHqQwCLtRt3/jy7CGmYy+PxtfTdnU g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10341"; a="331988198"
+X-IronPort-AV: E=Sophos;i="5.91,210,1647327600"; d="scan'208";a="331988198"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 May 2022 23:49:18 -0700
+X-IronPort-AV: E=Sophos;i="5.91,210,1647327600"; d="scan'208";a="591192908"
+Received: from gdonthu-mobl1.gar.corp.intel.com (HELO
+ smullati-desk.gar.corp.intel.com) ([10.215.197.92])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 May 2022 23:49:16 -0700
+From: Mullati Siva <siva.mullati@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	siva.mullati@intel.com
+Date: Mon,  9 May 2022 12:19:05 +0530
+Message-Id: <20220509064906.6152-1-siva.mullati@intel.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Bhanuprakash Modem" <bhanuprakash.modem@intel.com>
-Date: Mon, 09 May 2022 06:36:25 -0000
-Message-ID: <165207818543.22805.362011192681302916@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220411095129.1652096-1-bhanuprakash.modem@intel.com>
-In-Reply-To: <20220411095129.1652096-1-bhanuprakash.modem@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Expose_max_and_current_bpc_via_debugfs_=28rev6=29?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 0/1] drm/i915/guc: Refactor CT access to use
+ iosys_map
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,27 +56,27 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: lucas.demarchi@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+From: Siva Mullati <siva.mullati@intel.com>
 
-Series: Expose max and current bpc via debugfs (rev6)
-URL   : https://patchwork.freedesktop.org/series/102502/
-State : warning
+ver2: remove newly added iosys map api from ver1
+ver3: address review comments
+ver4: remove accessing vaddr
+ 
+This is continuation to the below patch series to use iosys map
+APIs, to use CT commands and descriptors.
+https://patchwork.freedesktop.org/series/99711/
 
-== Summary ==
+Siva Mullati (1):
+  drm/i915/guc: Convert ct buffer to iosys_map
 
-Error: dim checkpatch failed
-1ca3c5bc0e7d drm/debug: Expose connector's max supported bpc via debugfs
--:21: WARNING:BAD_SIGN_OFF: 'Reviewed-by:' is the preferred signature form
-#21: 
-Reviewed-By: Arun R Murthy <arun.r.murthy@intel.com>
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c | 195 +++++++++++++---------
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h |   9 +-
+ 2 files changed, 122 insertions(+), 82 deletions(-)
 
-total: 0 errors, 1 warnings, 0 checks, 33 lines checked
-fff97a375a6b drm/i915/display/debug: Expose crtc current bpc via debugfs
-bd53859cc847 drm/amd/display: Move connector debugfs to drm
-
+-- 
+2.33.0
 
