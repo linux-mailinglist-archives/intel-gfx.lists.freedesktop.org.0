@@ -1,55 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A30A51FD87
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 May 2022 15:07:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D7F451FE57
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 May 2022 15:32:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9008A10F145;
-	Mon,  9 May 2022 13:07:16 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6FA0710F13A;
- Mon,  9 May 2022 13:07:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6646A10E526;
+	Mon,  9 May 2022 13:32:21 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 06F6110E526
+ for <intel-gfx@lists.freedesktop.org>; Mon,  9 May 2022 13:32:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1652101635; x=1683637635;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=SMcgmXeLpJY2VvFtqPwSzBDiBA6+jm6vjUVE/D5fCqE=;
- b=bBTMDWupuBoT3pxwE5xwp79TKBYbmD4ai8lWad9U4pOidUCw0kbJAfIL
- brBJ6wk5MVJahGePwuf3t1B04552QEUr2sbhLQeXIdrf69oUSd5x0VZo6
- xX8PQPFt1BXnlKKqR8WoiRgSWiYNLwKbBwcVDl6nCgLwYCpIHvUEBfkst
- ELR+5zMp+ZG/xMT8tUXTBNADbpIctrOIyYuRpOTnf1apgy2rc6/fHPvJX
- sPSpZec77U3zdGvUxROgTPlaC1mT6axBtYzBAj4Ta5h7SeDy8Xi9dj7vB
- 1Dt7tmVZzGQqLUAa0jFOqNcumOMDdoKhEohcoenAuXPseCrAuwrkLfOB0 Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10341"; a="294267953"
-X-IronPort-AV: E=Sophos;i="5.91,211,1647327600"; d="scan'208";a="294267953"
+ t=1652103140; x=1683639140;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=Sr848/LXvFEfthB02CaE/fikaMm37nhZzUL9dthgrl8=;
+ b=VN3MrKBTJ2rGFj46jb9SgUnfJqnCmO/tPeGkEoApx8ZFS0cPtjZfcbj4
+ 1H7zAy5BU+JTMCBrOeoHQ0M8jD/vQK88liD1em0utgFVabicfLK/z4bSr
+ r7cej0uxID4TG7mBZYsYFC0pYVkXbwT2NsSl9lfCCfbMfbphNVRHoGKdb
+ dOJEoiWnPoPaJLfRkMqXbr2cAmSHQC35eILqi4jZUHm+5EE8OHyLmWpyU
+ +ZOuElA0tTdoVU+jVJPKrsEOJMQEk/cZWipqYypMIlYypiK4QDr4bDewQ
+ fDwkH4yBIdLuUBJbIpvln7LDa+uF1STTvSX74CHYvroA94o1KLRVwow/h Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10341"; a="248951506"
+X-IronPort-AV: E=Sophos;i="5.91,211,1647327600"; d="scan'208";a="248951506"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 May 2022 06:07:14 -0700
-X-IronPort-AV: E=Sophos;i="5.91,211,1647327600"; d="scan'208";a="519222194"
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 May 2022 06:32:19 -0700
+X-IronPort-AV: E=Sophos;i="5.91,211,1647327600"; d="scan'208";a="519234778"
 Received: from oanderso-mobl1.ger.corp.intel.com (HELO [10.213.217.157])
  ([10.213.217.157])
  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 May 2022 06:07:13 -0700
-Message-ID: <2deb2d24-034c-e2e7-4b2c-7bf501529a8c@linux.intel.com>
-Date: Mon, 9 May 2022 14:07:11 +0100
+ 09 May 2022 06:32:18 -0700
+Message-ID: <e0c5e815-53a8-9759-948c-c180a8ecffdd@linux.intel.com>
+Date: Mon, 9 May 2022 14:32:16 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
 Content-Language: en-US
-To: Matthew Auld <matthew.auld@intel.com>, Intel-gfx@lists.freedesktop.org
-References: <20220429100414.647857-1-tvrtko.ursulin@linux.intel.com>
- <5aea48fb-8b80-4873-5e37-64bec9562e46@intel.com>
+To: =?UTF-8?Q?Jos=c3=a9_Roberto_de_Souza?= <jose.souza@intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20220505193524.276400-1-jose.souza@intel.com>
+ <20220505193524.276400-5-jose.souza@intel.com>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-In-Reply-To: <5aea48fb-8b80-4873-5e37-64bec9562e46@intel.com>
+In-Reply-To: <20220505193524.276400-5-jose.souza@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: Enable THP on Icelake and
- beyond
+Subject: Re: [Intel-gfx] [PATCH CI 5/7] drm/i915: Drop has_ddi from device
+ info
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,102 +63,95 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Eero Tamminen <eero.t.tamminen@intel.com>, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 09/05/2022 11:49, Matthew Auld wrote:
-> On 29/04/2022 11:04, Tvrtko Ursulin wrote:
->> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>
->> We have a statement from HW designers that the GPU read regression when
->> using 2M pages was fixed from Icelake onwards, which was also confirmed
->> by bencharking Eero did last year:
->>
->> """
->> When IOMMU is disabled, enabling THP causes following perf changes on
->> TGL-H (GT1):
->>
->>      10-15% SynMark Batch[0-3]
->>      5-10% MemBW GPU texture, SynMark ShMapVsm
->>      3-5% SynMark TerrainFly* + Geom* + Fill* + CSCloth + Batch4
->>      1-3% GpuTest Triangle, SynMark TexMem* + DeferredAA + Batch[5-7]
->>            + few others
->>      -7% MemBW GPU blend
->>
->> In the above 3D benchmark names, * means all the variants of tests with
->> the same prefix. For example "SynMark TexMem*", means both TexMem128 &
->> TexMem512 tests in the synthetic (Intel internal) SynMark test suite.
->>
->> In the (public, but proprietary) GfxBench & GLB(enchmark) test suites,
->> there are both onscreen and offscreen variants of each test. Unless
->> explicitly stated otherwise, numbers are for both variants.
->>
->> All tests are run with FullHD monitor. All tests are fullscreen except
->> for GLB and GpuTest ones, which are run in 1/2 screen window (GpuTest
->> triangle is run both in fullscreen and 1/2 screen window).
->> """
->>
->> Since the only regression is MemBW GPU blend, against many more gains,
->> it sounds it is time to enable THP on Gen11+.
->>
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->> References: https://gitlab.freedesktop.org/drm/intel/-/issues/430
->> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
->> Cc: Matthew Auld <matthew.auld@intel.com>
->> Cc: Eero Tamminen <eero.t.tamminen@intel.com>
+On 05/05/2022 20:35, José Roberto de Souza wrote:
+> No need to have this parameter in intel_device_info struct
+> as all platforms with display version 9 or newer, haswell or broadwell
+> supports it.
 > 
-> fwiw, for the series,
-> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+> As a side effect of the of removal this flag, it will not be printed
+> in dmesg during driver load anymore and developers will have to rely
+> on to check the macro and compare with platform being used and IP
+> versions of it.
+> 
+> Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+> Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+> ---
+>   drivers/gpu/drm/i915/i915_drv.h          | 4 +++-
+>   drivers/gpu/drm/i915/i915_pci.c          | 3 ---
+>   drivers/gpu/drm/i915/intel_device_info.h | 1 -
+>   3 files changed, 3 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> index 5538564bc1d25..600d8cee272da 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -1298,7 +1298,9 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+>   #define HAS_DP20(dev_priv)	(IS_DG2(dev_priv))
+>   
+>   #define HAS_CDCLK_CRAWL(dev_priv)	 (INTEL_INFO(dev_priv)->display.has_cdclk_crawl)
+> -#define HAS_DDI(dev_priv)		 (INTEL_INFO(dev_priv)->display.has_ddi)
+> +#define HAS_DDI(dev_priv)		 (DISPLAY_VER(dev_priv) >= 9 || \
+> +					  IS_BROADWELL(dev_priv) || \
+> +					  IS_HASWELL(dev_priv))
 
-Thanks! With a statement from hw arch, benchmark results from Eero and a 
-r-b from you, I think it is justified to push this so I have. Lets see 
-if someone notices an improvement.
+This one is a bit borderline, not sure it passes Jani's criteria of 
+simplicity, which I thought was a good one. And from the OCD angle it 
+kind of sucks to expand the conditionals to all call sites (when it's 
+even called from i915_irq.c, justifiably or not I don't know).
+
+What is the high level motivation for this work?
+
+Also, why is this in drm-intel-gt-next? :)
 
 Regards,
 
 Tvrtko
 
-> 
->> ---
->>   drivers/gpu/drm/i915/gem/i915_gemfs.c | 13 +++++++++----
->>   1 file changed, 9 insertions(+), 4 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gemfs.c 
->> b/drivers/gpu/drm/i915/gem/i915_gemfs.c
->> index ee87874e59dc..c5a6bbc842fc 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gemfs.c
->> +++ b/drivers/gpu/drm/i915/gem/i915_gemfs.c
->> @@ -28,12 +28,14 @@ int i915_gemfs_init(struct drm_i915_private *i915)
->>        *
->>        * One example, although it is probably better with a per-file
->>        * control, is selecting huge page allocations 
->> ("huge=within_size").
->> -     * However, we only do so to offset the overhead of iommu lookups
->> -     * due to bandwidth issues (slow reads) on Broadwell+.
->> +     * However, we only do so on platforms which benefit from it, or to
->> +     * offset the overhead of iommu lookups, where with latter it is 
->> a net
->> +     * win even on platforms which would otherwise see some performance
->> +     * regressions such a slow reads issue on Broadwell and Skylake.
->>        */
->>       opts = NULL;
->> -    if (i915_vtd_active(i915)) {
->> +    if (GRAPHICS_VER(i915) >= 11 || i915_vtd_active(i915)) {
->>           if (IS_ENABLED(CONFIG_TRANSPARENT_HUGEPAGE)) {
->>               opts = huge_opt;
->>               drm_info(&i915->drm,
->> @@ -41,7 +43,10 @@ int i915_gemfs_init(struct drm_i915_private *i915)
->>                    opts);
->>           } else {
->>               drm_notice(&i915->drm,
->> -                   "Transparent Hugepage support is recommended for 
->> optimal performance when IOMMU is enabled!\n");
->> +                   "Transparent Hugepage support is recommended for 
->> optimal performance%s\n",
->> +                   GRAPHICS_VER(i915) >= 11 ?
->> +                   " on this platform!" :
->> +                   " when IOMMU is enabled!");
->>           }
->>       }
+
+>   #define HAS_FPGA_DBG_UNCLAIMED(dev_priv) (INTEL_INFO(dev_priv)->display.has_fpga_dbg)
+>   #define HAS_PSR(dev_priv)		 (INTEL_INFO(dev_priv)->display.has_psr)
+>   #define HAS_PSR_HW_TRACKING(dev_priv) \
+> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+> index 2dc0284629d30..a0693d9ff9cee 100644
+> --- a/drivers/gpu/drm/i915/i915_pci.c
+> +++ b/drivers/gpu/drm/i915/i915_pci.c
+> @@ -535,7 +535,6 @@ static const struct intel_device_info vlv_info = {
+>   	.platform_engine_mask = BIT(RCS0) | BIT(VCS0) | BIT(BCS0) | BIT(VECS0), \
+>   	.display.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | \
+>   		BIT(TRANSCODER_C) | BIT(TRANSCODER_EDP), \
+> -	.display.has_ddi = 1, \
+>   	.display.has_fpga_dbg = 1, \
+>   	.display.has_dp_mst = 1, \
+>   	.has_rc6p = 0 /* RC6p removed-by HSW */, \
+> @@ -683,7 +682,6 @@ static const struct intel_device_info skl_gt4_info = {
+>   		BIT(TRANSCODER_C) | BIT(TRANSCODER_EDP) | \
+>   		BIT(TRANSCODER_DSI_A) | BIT(TRANSCODER_DSI_C), \
+>   	.has_64bit_reloc = 1, \
+> -	.display.has_ddi = 1, \
+>   	.display.has_fpga_dbg = 1, \
+>   	.display.fbc_mask = BIT(INTEL_FBC_A), \
+>   	.display.has_hdcp = 1, \
+> @@ -932,7 +930,6 @@ static const struct intel_device_info adl_s_info = {
+>   	.dbuf.size = 4096,							\
+>   	.dbuf.slice_mask = BIT(DBUF_S1) | BIT(DBUF_S2) | BIT(DBUF_S3) |		\
+>   		BIT(DBUF_S4),							\
+> -	.display.has_ddi = 1,							\
+>   	.display.has_dmc = 1,							\
+>   	.display.has_dp_mst = 1,						\
+>   	.display.has_dsb = 1,							\
+> diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
+> index bef65e3f02c55..bc71ce48763ad 100644
+> --- a/drivers/gpu/drm/i915/intel_device_info.h
+> +++ b/drivers/gpu/drm/i915/intel_device_info.h
+> @@ -167,7 +167,6 @@ enum intel_ppgtt_type {
+>   	func(cursor_needs_physical); \
+>   	func(has_cdclk_crawl); \
+>   	func(has_dmc); \
+> -	func(has_ddi); \
+>   	func(has_dp_mst); \
+>   	func(has_dsb); \
+>   	func(has_dsc); \
