@@ -1,50 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9621520140
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 May 2022 17:35:38 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CCDC520235
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 May 2022 18:23:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA80A10EAED;
-	Mon,  9 May 2022 15:35:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC79010E07C;
+	Mon,  9 May 2022 16:23:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2CE0F10EAED
- for <intel-gfx@lists.freedesktop.org>; Mon,  9 May 2022 15:35:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1652110535; x=1683646535;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=MUF4fWgmpB9XjafxDg8XLg9x+fRv5Q6AySZM8ZBN9Uw=;
- b=AGxuRs1uHOyYm4MgBQ7mGK8kyG7A5rOGnslzRG6eQ8qvHqsFwllJpInl
- +P6H38R/G5ZpR5ijrKBTA36aoyW8id01+PjzviNaDna6PQI0Smhx3mtD6
- lencjh40aPfBdpZCmqplft1ojK1s8O79FWMnNhm2fANqDha8rmtiRWVzg
- 8mBPL4wu3+XkGG2Hf2rQkO2kswX33lL1jYzui4rsYiqD6zDk4Gmf6AO48
- /fEySi4Tbl7iDz3B/Ue1/Uw6+jul2iuWT1XGEdsJuTc8fkdTnsjq9+Zn6
- c5MTYsdFYVUSlG7t7ijqgFbn/qnMzjbur2He8U/+DOyCCLkPPGBojra71 w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10342"; a="248986943"
-X-IronPort-AV: E=Sophos;i="5.91,211,1647327600"; d="scan'208";a="248986943"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 May 2022 08:35:34 -0700
-X-IronPort-AV: E=Sophos;i="5.91,211,1647327600"; d="scan'208";a="541225411"
-Received: from pallabim-mobl2.gar.corp.intel.com (HELO
- smullati-desk.gar.corp.intel.com) ([10.213.119.105])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 May 2022 08:35:32 -0700
-From: Mullati Siva <siva.mullati@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	siva.mullati@intel.com
-Date: Mon,  9 May 2022 21:05:16 +0530
-Message-Id: <20220509153516.85099-2-siva.mullati@intel.com>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20220509153516.85099-1-siva.mullati@intel.com>
-References: <20220509153516.85099-1-siva.mullati@intel.com>
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1912610E0A7;
+ Mon,  9 May 2022 16:23:44 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 6EA216137D;
+ Mon,  9 May 2022 16:23:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E049C385B6;
+ Mon,  9 May 2022 16:23:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1652113423;
+ bh=XjCnODs5eDe2B6X2CKoYdGCfUAZLm0o230Hy5WWYtoI=;
+ h=From:To:Cc:Subject:Date:From;
+ b=dDCQULQx6Ix7kDV0M/p/zOdD8C5+qlFZUsCYdG06NUh0Uy31yjFYb2UG7GWVu1V+R
+ wexdYfEEQl4hJym0y7yoVcFFkcW0SZC9EJF/u1IqwoxN97dFar7D+XA6TlvumAECd1
+ 1s9alS5L1GNT+/vr5mUiCL/I0X1Pk+pVaIKRafifXSmmDf9a6d4ZIpMUw4X4ITi1gR
+ 0kRsP6TIiWHPVXrv5GCD29mz90FmHHP/dcl82vLLjxIoJWo3Ut2350lvSxjevDyABQ
+ ONDIEdCUIYQtUZAzpx5mM8JMIgLC/i+aOmUTw/Z0JD9YrvCa1MvGzKJif8nb8bF8+4
+ oFBbvRfQFq6fw==
+Received: from mchehab by mail.kernel.org with local (Exim 4.94.2)
+ (envelope-from <mchehab@kernel.org>)
+ id 1no6Ae-006xVL-E7; Mon, 09 May 2022 18:23:40 +0200
+From: Mauro Carvalho Chehab <mchehab@kernel.org>
+To: Luis Chamberlain <mcgrof@kernel.org>
+Date: Mon,  9 May 2022 18:23:35 +0200
+Message-Id: <cover.1652113087.git.mchehab@kernel.org>
+X-Mailer: git-send-email 2.35.3
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 1/1] drm/i915/guc: Convert slpc to iosys_map
+Subject: [Intel-gfx] [PATCH v6 0/4] Let userspace know when snd-hda-intel
+ needs i915
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,256 +53,117 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: lucas.demarchi@intel.com
+Cc: mauro.chehab@linux.intel.com, Richard Weinberger <richard@nod.at>,
+ alsa-devel@alsa-project.org, Kai Vehmanen <kai.vehmanen@intel.com>,
+ Greg KH <gregkh@linuxfoundation.org>, intel-gfx@lists.freedesktop.org,
+ Lucas De Marchi <lucas.demarchi@intel.com>, Takashi Iwai <tiwai@suse.com>,
+ dri-devel@lists.freedesktop.org, Jaroslav Kysela <perex@perex.cz>,
+ Vignesh Raghavendra <vigneshr@ti.com>, David Airlie <airlied@linux.ie>,
+ Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+ linux-modules@vger.kernel.org, Miquel Raynal <miquel.raynal@bootlin.com>,
+ linux-mtd@lists.infradead.org, Mauro Carvalho Chehab <mchehab@kernel.org>,
+ linux-kernel@vger.kernel.org,
+ Pierre-Louis Bossart <pierre-louis.bossart@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Siva Mullati <siva.mullati@intel.com>
+Currently, kernel/module annotates module dependencies when
+request_symbol is used, but it doesn't cover more complex inter-driver
+dependencies that are subsystem and/or driver-specific.
 
-Convert slpc shared data to use iosys_map rather than
-plain pointer and save it in the intel_guc_slpc struct.
-This will help with in read and update slpc shared data
-after the slpc init by abstracting the IO vs system memory.
+That's because module_try_get() and symbol_get() doesn't try to
+setup the module owner.
 
-Signed-off-by: Siva Mullati <siva.mullati@intel.com>
+In the case of hdmi sound, depending on the CPU/GPU, sometimes the
+snd_hda_driver can talk directly with the hardware, but sometimes, it
+uses the i915 driver. When the snd_hda_driver uses i915, it should
+first be unbind/rmmod, as otherwise trying to unbind/rmmod the i915
+driver cause driver issues, as as reported by CI tools with different
+GPU models:
+	https://intel-gfx-ci.01.org/tree/drm-tip/IGT_6415/fi-tgl-1115g4/igt@core_hotunplug@unbind-rebind.html
+	https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11495/bat-adlm-1/igt@i915_module_load@reload.html
+
+In the past, just a few CPUs were doing such bindings, but this issue now
+applies to all "modern" Intel CPUs  that have onboard graphics, as well as
+to the  newer discrete GPUs.
+
+With the discrete GPU case, the HDA controller is physically separate and
+requires i915 to power on the hardware for all hardware  access. In this
+case, the issue is hit basicly 100% of the time.
+
+With on-board graphics, i915 driver is needed only when the display
+codec is accessed. If i915 is unbind during runtime suspend, while
+snd-hda-intel is still bound, nothing bad happens, but unbinding i915
+on other situations may also cause issues.
+
+So, add support at kernel/modules to properly set the holders when
+try_module_get() and symbol_get() are used.
+
+This allow allow audio drivers to properly annotate when a dependency 
+on a DRM driver dependencies exists, and add a call to such new 
+function at the snd-hda driver when it successfully binds into the DRM 
+driver.
+
+With that, userspace tools can now check and properly remove the
+audio driver before trying to remove or unbind the GPU driver.
+
+It should be noticed that this series conveys the hidden module
+dependencies. Other changes are needed in order to allow
+removing or unbinding the i915 driver while keeping the snd-hda-intel
+driver loaded/bound. With that regards, there are some discussions on
+how to improve this at alsa-devel a while  back:
+
+https://mailman.alsa-project.org/pipermail/alsa-devel/2021-September/190099.html
+
+So, future improvements on both in i915 and the audio drivers could be made.
+E.g. with  discrete GPUs, it's the only codec of the card, so it seems feasible
+to detach the ALSA card if i915 is bound (using infra made for VGA
+switcheroo), but,  until these improvements are done and land in
+upstream, audio drivers needs to be unbound if i915 driver goes unbind.
+
+Yet, even if such fixes got merged, this series is still needed, as it makes
+such dependencies more explicit and easier to debug.
+
+PS.: This series was generated against next-20220506.
+
 ---
- drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c   | 82 +++++++++++--------
- .../gpu/drm/i915/gt/uc/intel_guc_slpc_types.h |  5 +-
- 2 files changed, 50 insertions(+), 37 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
-index 1db833da42df..ee9fd8e7f1d4 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
-@@ -14,6 +14,13 @@
- #include "gt/intel_gt_regs.h"
- #include "gt/intel_rps.h"
- 
-+#define slpc_blob_read(slpc_, field_) \
-+		       iosys_map_rd_field(&(slpc_)->slpc_map, 0, \
-+		       struct slpc_shared_data, field_)
-+#define slpc_blob_write(slpc_, field_, val_) \
-+			iosys_map_wr_field(&(slpc_)->slpc_map, 0, \
-+			struct slpc_shared_data, field_, val_)
-+
- static inline struct intel_guc *slpc_to_guc(struct intel_guc_slpc *slpc)
- {
- 	return container_of(slpc, struct intel_guc, slpc);
-@@ -52,50 +59,51 @@ void intel_guc_slpc_init_early(struct intel_guc_slpc *slpc)
- 	slpc->selected = __guc_slpc_selected(guc);
- }
- 
--static void slpc_mem_set_param(struct slpc_shared_data *data,
-+static void slpc_mem_set_param(struct intel_guc_slpc *slpc,
- 			       u32 id, u32 value)
- {
-+	u32 bits = slpc_blob_read(slpc, override_params.bits[id >> 5]);
-+
- 	GEM_BUG_ON(id >= SLPC_MAX_OVERRIDE_PARAMETERS);
- 	/*
- 	 * When the flag bit is set, corresponding value will be read
- 	 * and applied by SLPC.
- 	 */
--	data->override_params.bits[id >> 5] |= (1 << (id % 32));
--	data->override_params.values[id] = value;
-+	bits |= (1 << (id % 32));
-+	slpc_blob_write(slpc, override_params.bits[id >> 5], bits);
-+	slpc_blob_write(slpc, override_params.values[id], value);
- }
- 
--static void slpc_mem_set_enabled(struct slpc_shared_data *data,
-+static void slpc_mem_set_enabled(struct intel_guc_slpc *slpc,
- 				 u8 enable_id, u8 disable_id)
- {
- 	/*
- 	 * Enabling a param involves setting the enable_id
- 	 * to 1 and disable_id to 0.
- 	 */
--	slpc_mem_set_param(data, enable_id, 1);
--	slpc_mem_set_param(data, disable_id, 0);
-+	slpc_mem_set_param(slpc, enable_id, 1);
-+	slpc_mem_set_param(slpc, disable_id, 0);
- }
- 
--static void slpc_mem_set_disabled(struct slpc_shared_data *data,
-+static void slpc_mem_set_disabled(struct intel_guc_slpc *slpc,
- 				  u8 enable_id, u8 disable_id)
- {
- 	/*
- 	 * Disabling a param involves setting the enable_id
- 	 * to 0 and disable_id to 1.
- 	 */
--	slpc_mem_set_param(data, disable_id, 1);
--	slpc_mem_set_param(data, enable_id, 0);
-+	slpc_mem_set_param(slpc, disable_id, 1);
-+	slpc_mem_set_param(slpc, enable_id, 0);
- }
- 
- static u32 slpc_get_state(struct intel_guc_slpc *slpc)
- {
--	struct slpc_shared_data *data;
--
- 	GEM_BUG_ON(!slpc->vma);
- 
--	drm_clflush_virt_range(slpc->vaddr, sizeof(u32));
--	data = slpc->vaddr;
-+	if (!slpc->slpc_map.is_iomem)
-+		drm_clflush_virt_range(slpc->slpc_map.vaddr, sizeof(u32));
- 
--	return data->header.global_state;
-+	return slpc_blob_read(slpc, header.global_state);
- }
- 
- static int guc_action_slpc_set_param(struct intel_guc *guc, u8 id, u32 value)
-@@ -156,7 +164,9 @@ static int slpc_query_task_state(struct intel_guc_slpc *slpc)
- 		i915_probe_error(i915, "Failed to query task state (%pe)\n",
- 				 ERR_PTR(ret));
- 
--	drm_clflush_virt_range(slpc->vaddr, SLPC_PAGE_SIZE_BYTES);
-+	if (!slpc->slpc_map.is_iomem)
-+		drm_clflush_virt_range(slpc->slpc_map.vaddr,
-+				       SLPC_PAGE_SIZE_BYTES);
- 
- 	return ret;
- }
-@@ -243,10 +253,11 @@ int intel_guc_slpc_init(struct intel_guc_slpc *slpc)
- 	struct drm_i915_private *i915 = slpc_to_i915(slpc);
- 	u32 size = PAGE_ALIGN(sizeof(struct slpc_shared_data));
- 	int err;
-+	void *vaddr;
- 
- 	GEM_BUG_ON(slpc->vma);
- 
--	err = intel_guc_allocate_and_map_vma(guc, size, &slpc->vma, (void **)&slpc->vaddr);
-+	err = intel_guc_allocate_and_map_vma(guc, size, &slpc->vma, (void **)&vaddr);
- 	if (unlikely(err)) {
- 		i915_probe_error(i915,
- 				 "Failed to allocate SLPC struct (err=%pe)\n",
-@@ -254,6 +265,12 @@ int intel_guc_slpc_init(struct intel_guc_slpc *slpc)
- 		return err;
- 	}
- 
-+	if (i915_gem_object_is_lmem(slpc->vma->obj))
-+		iosys_map_set_vaddr_iomem(&slpc->slpc_map,
-+					  (void __iomem *)vaddr);
-+	else
-+		iosys_map_set_vaddr(&slpc->slpc_map, vaddr);
-+
- 	slpc->max_freq_softlimit = 0;
- 	slpc->min_freq_softlimit = 0;
- 
-@@ -335,40 +352,37 @@ static int slpc_reset(struct intel_guc_slpc *slpc)
- 
- static u32 slpc_decode_min_freq(struct intel_guc_slpc *slpc)
- {
--	struct slpc_shared_data *data = slpc->vaddr;
--
- 	GEM_BUG_ON(!slpc->vma);
- 
- 	return	DIV_ROUND_CLOSEST(REG_FIELD_GET(SLPC_MIN_UNSLICE_FREQ_MASK,
--				  data->task_state_data.freq) *
-+				  slpc_blob_read(slpc, task_state_data.freq)) *
- 				  GT_FREQUENCY_MULTIPLIER, GEN9_FREQ_SCALER);
- }
- 
- static u32 slpc_decode_max_freq(struct intel_guc_slpc *slpc)
- {
--	struct slpc_shared_data *data = slpc->vaddr;
--
- 	GEM_BUG_ON(!slpc->vma);
- 
- 	return	DIV_ROUND_CLOSEST(REG_FIELD_GET(SLPC_MAX_UNSLICE_FREQ_MASK,
--				  data->task_state_data.freq) *
-+				  slpc_blob_read(slpc, task_state_data.freq)) *
- 				  GT_FREQUENCY_MULTIPLIER, GEN9_FREQ_SCALER);
- }
- 
--static void slpc_shared_data_reset(struct slpc_shared_data *data)
-+static void slpc_shared_data_reset(struct intel_guc_slpc *slpc)
- {
--	memset(data, 0, sizeof(struct slpc_shared_data));
--
--	data->header.size = sizeof(struct slpc_shared_data);
-+	iosys_map_memset(&slpc->slpc_map,
-+			 0, 0, sizeof(struct slpc_shared_data));
-+	slpc_blob_write(slpc,
-+			header.size, sizeof(struct slpc_shared_data));
- 
- 	/* Enable only GTPERF task, disable others */
--	slpc_mem_set_enabled(data, SLPC_PARAM_TASK_ENABLE_GTPERF,
-+	slpc_mem_set_enabled(slpc, SLPC_PARAM_TASK_ENABLE_GTPERF,
- 			     SLPC_PARAM_TASK_DISABLE_GTPERF);
- 
--	slpc_mem_set_disabled(data, SLPC_PARAM_TASK_ENABLE_BALANCER,
-+	slpc_mem_set_disabled(slpc, SLPC_PARAM_TASK_ENABLE_BALANCER,
- 			      SLPC_PARAM_TASK_DISABLE_BALANCER);
- 
--	slpc_mem_set_disabled(data, SLPC_PARAM_TASK_ENABLE_DCC,
-+	slpc_mem_set_disabled(slpc, SLPC_PARAM_TASK_ENABLE_DCC,
- 			      SLPC_PARAM_TASK_DISABLE_DCC);
- }
- 
-@@ -613,7 +627,7 @@ int intel_guc_slpc_enable(struct intel_guc_slpc *slpc)
- 
- 	GEM_BUG_ON(!slpc->vma);
- 
--	slpc_shared_data_reset(slpc->vaddr);
-+	slpc_shared_data_reset(slpc);
- 
- 	ret = slpc_reset(slpc);
- 	if (unlikely(ret < 0)) {
-@@ -701,8 +715,6 @@ void intel_guc_slpc_dec_waiters(struct intel_guc_slpc *slpc)
- int intel_guc_slpc_print_info(struct intel_guc_slpc *slpc, struct drm_printer *p)
- {
- 	struct drm_i915_private *i915 = slpc_to_i915(slpc);
--	struct slpc_shared_data *data = slpc->vaddr;
--	struct slpc_task_state_data *slpc_tasks;
- 	intel_wakeref_t wakeref;
- 	int ret = 0;
- 
-@@ -712,11 +724,10 @@ int intel_guc_slpc_print_info(struct intel_guc_slpc *slpc, struct drm_printer *p
- 		ret = slpc_query_task_state(slpc);
- 
- 		if (!ret) {
--			slpc_tasks = &data->task_state_data;
--
- 			drm_printf(p, "\tSLPC state: %s\n", slpc_get_state_string(slpc));
- 			drm_printf(p, "\tGTPERF task active: %s\n",
--				   str_yes_no(slpc_tasks->status & SLPC_GTPERF_TASK_ENABLED));
-+				   str_yes_no(slpc_blob_read(slpc, task_state_data.status) &
-+				   SLPC_GTPERF_TASK_ENABLED));
- 			drm_printf(p, "\tMax freq: %u MHz\n",
- 				   slpc_decode_max_freq(slpc));
- 			drm_printf(p, "\tMin freq: %u MHz\n",
-@@ -735,4 +746,5 @@ void intel_guc_slpc_fini(struct intel_guc_slpc *slpc)
- 		return;
- 
- 	i915_vma_unpin_and_release(&slpc->vma, I915_VMA_RELEASE_MAP);
-+	iosys_map_clear(&slpc->slpc_map);
- }
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc_types.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc_types.h
-index bf5b9a563c09..96f524f25b52 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc_types.h
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc_types.h
-@@ -7,15 +7,16 @@
- #define _INTEL_GUC_SLPC_TYPES_H_
- 
- #include <linux/atomic.h>
--#include <linux/workqueue.h>
-+#include <linux/iosys-map.h>
- #include <linux/mutex.h>
- #include <linux/types.h>
-+#include <linux/workqueue.h>
- 
- #define SLPC_RESET_TIMEOUT_MS 5
- 
- struct intel_guc_slpc {
- 	struct i915_vma *vma;
--	struct slpc_shared_data *vaddr;
-+	struct iosys_map slpc_map;
- 	bool supported;
- 	bool selected;
- 
+v6:
+- dropped an unused function prototype for __symbol_get_gpl();
+- addressed several issues that were noticed while testing the series on
+  an slow atom machine;
+- also add holders when symbol_get() is used.
+
+v5:
+- while v4 works fine, it ends calling try_module_format() recursively, which
+  is not what it it was supposed to do. So, change the logic to avoid such
+  recursion, by adding a static __try_module_format() and renaming the
+  new version that takes two arguments as try_module_format_owner().
+
+v4:
+ - fix a compilation warning reported by Intel's Kernel robot when
+   !CONFIG_MODULE_UNLOAD or !CONFIG_MODULE.
+
+v3: minor fixes:
+ - fixed a checkpatch warning;
+ - use a single line for the new function prototype.
+
+v2:
+ - the dependencies are now handled directly at try_module_get().
+Mauro Carvalho Chehab (4):
+  module: drop prototype for non-existing __symbol_get_gpl()
+  module: update dependencies at try_module_get()
+  module: set holders when symbol_get() is used
+  ALSA: hda - identify when audio is provided by a video driver
+
+ drivers/mtd/chips/gen_probe.c           |  4 +-
+ include/linux/module.h                  | 13 +++--
+ kernel/module/main.c                    | 76 ++++++++++++++++++++-----
+ samples/hw_breakpoint/data_breakpoint.c |  2 +-
+ sound/hda/hdac_component.c              |  2 +-
+ 5 files changed, 72 insertions(+), 25 deletions(-)
+
 -- 
-2.33.0
+2.35.3
+
 
