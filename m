@@ -1,51 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DA4C51FC28
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 May 2022 14:05:38 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 448E051FD0B
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 May 2022 14:39:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4419C10EF83;
-	Mon,  9 May 2022 12:05:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 82A8110E424;
+	Mon,  9 May 2022 12:39:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D6D910EF83;
- Mon,  9 May 2022 12:05:35 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9FB5B10E424
+ for <intel-gfx@lists.freedesktop.org>; Mon,  9 May 2022 12:39:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1652097935; x=1683633935;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Ta+Xw9BacgmGlgYy81SBKCqrU7A4H8gu8t0RaXxA+nw=;
- b=TsIGsbDNMYEAbMoR7cgWbU9o6qNOE8FqW7UfH1xl1/5nf6zxjww1Rf7T
- h2SDrr5ZpB8/FyxvtWzvHu622VX3r3THJ4brCQYsXY8RztX/k3JxYuOhs
- V/1oYlJdtd4z702QkM6LfsrPrcUeJt0cp2fHWGGjMkZpzdNM8aaW+W/Og
- +1Skdoj5U2TJ20MDca7T1d8Y70KUL8QVmbhY3tAko1k4piJ0iYDpsUNug
- 99wV97ObjJY1UwfKyQ2XIpAZixjCHnzZOt5gM6xT8D4m92Oh1Rs5b0Hef
- HZQiu+AVMxkaIUQow2Og13jC4QOo4AoxESh3En1LSksCc8fkRjQM293bj w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10341"; a="294253515"
-X-IronPort-AV: E=Sophos;i="5.91,211,1647327600"; d="scan'208";a="294253515"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 May 2022 05:05:34 -0700
-X-IronPort-AV: E=Sophos;i="5.91,211,1647327600"; d="scan'208";a="813448039"
-Received: from csawicki-mobl.ger.corp.intel.com (HELO localhost)
- ([10.249.129.3])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 May 2022 05:05:33 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: dri-devel@lists.freedesktop.org
-Date: Mon,  9 May 2022 15:03:24 +0300
-Message-Id: <f1835a86294b392d075570001ed9009a48352670.1652097712.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <cover.1652097712.git.jani.nikula@intel.com>
-References: <cover.1652097712.git.jani.nikula@intel.com>
+ t=1652099941; x=1683635941;
+ h=mime-version:content-transfer-encoding:in-reply-to:
+ references:to:from:subject:message-id:date;
+ bh=MzaW3YZnjy6yh2FmhqgEA++j/zyZxTbQ9Ij7w/jND0Y=;
+ b=caZ6l8/CubWJeD582yV/MN9CDmrQe68bcuwdjKZKht/7BAJzyAVnJXqv
+ 4kzDVXJzNmGxan9MNjJOPP6/CdQBhlS2RNoi9FMYR3YnJd5nlGL0qgdcF
+ 7SpOL0YJyRtqPgdRKwdP08REXv1sXjG35ZXWr07OHR737DjasS7Hzux/u
+ ZaeMzBqzgSdmba3kBITO3lUyXFxptKteX8c3Bh34TqwuX0r1/czdtLi0Q
+ 6lNTmSvMs75ESovQaNbiLMlA2P42SusiT3SCzveXd3mdI//9v5ATFl6lZ
+ x+pkLGIq2RHRVjQUvNdFXFZwd8teMERsAJQxTGyj/b1dOadqb8yiBFp6w Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10341"; a="267876449"
+X-IronPort-AV: E=Sophos;i="5.91,211,1647327600"; d="scan'208";a="267876449"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 May 2022 05:39:01 -0700
+X-IronPort-AV: E=Sophos;i="5.91,211,1647327600"; d="scan'208";a="592166243"
+Received: from hanwarx-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.34.137])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 May 2022 05:38:59 -0700
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20220507132850.10272-16-jose.souza@intel.com>
+References: <20220507132850.10272-1-jose.souza@intel.com>
+ <20220507132850.10272-16-jose.souza@intel.com>
+To: José Roberto de Souza <jose.souza@intel.com>, intel-gfx@lists.freedesktop.org
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 25/25] drm/edid: convert version_greater() to
- drm_edid
+Message-ID: <165209993727.58716.2402465688742600537@jlahtine-mobl.ger.corp.intel.com>
+User-Agent: alot/0.8.1
+Date: Mon, 09 May 2022 15:38:57 +0300
+Subject: Re: [Intel-gfx] [PATCH 16/16] drm/i915: Drop display.has_fpga_db
+ from device info
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,121 +60,109 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We'll need to propagate drm_edid everywhere. Also make version_greater()
-a function for type safety.
+Quoting Jos=C3=A9 Roberto de Souza (2022-05-07 16:28:50)
+> No need to have this parameter in intel_device_info struct
+> as this feature is supported by Broadwell, Haswell all platforms with
+> display version 9 or newer.
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/drm_edid.c | 29 +++++++++++++++++------------
- 1 file changed, 17 insertions(+), 12 deletions(-)
+This is opposite of the direction we want to move to.
 
-diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
-index a44818f44718..429078bcf372 100644
---- a/drivers/gpu/drm/drm_edid.c
-+++ b/drivers/gpu/drm/drm_edid.c
-@@ -45,10 +45,6 @@
- 
- #include "drm_crtc_internal.h"
- 
--#define version_greater(edid, maj, min) \
--	(((edid)->version > (maj)) || \
--	 ((edid)->version == (maj) && (edid)->revision > (min)))
--
- static int oui(u8 first, u8 second, u8 third)
- {
- 	return (first << 16) | (second << 8) | third;
-@@ -1576,6 +1572,15 @@ struct drm_edid {
- 	const struct edid *edid;
- };
- 
-+static bool version_greater(const struct drm_edid *drm_edid,
-+			    u8 version, u8 revision)
-+{
-+	const struct edid *edid = drm_edid->edid;
-+
-+	return edid->version > version ||
-+		(edid->version == version && edid->revision > revision);
-+}
-+
- static int edid_extension_block_count(const struct edid *edid)
- {
- 	return edid->extensions;
-@@ -3232,7 +3237,7 @@ do_inferred_modes(const struct detailed_timing *timing, void *c)
- 						  closure->drm_edid,
- 						  timing);
- 
--	if (!version_greater(closure->drm_edid->edid, 1, 1))
-+	if (!version_greater(closure->drm_edid, 1, 1))
- 		return; /* GTF not defined yet */
- 
- 	switch (range->flags) {
-@@ -3243,7 +3248,7 @@ do_inferred_modes(const struct detailed_timing *timing, void *c)
- 							  timing);
- 		break;
- 	case 0x04: /* cvt, only in 1.4+ */
--		if (!version_greater(closure->drm_edid->edid, 1, 3))
-+		if (!version_greater(closure->drm_edid, 1, 3))
- 			break;
- 
- 		closure->modes += drm_cvt_modes_for_range(closure->connector,
-@@ -3264,7 +3269,7 @@ static int add_inferred_modes(struct drm_connector *connector,
- 		.drm_edid = drm_edid,
- 	};
- 
--	if (version_greater(drm_edid->edid, 1, 0))
-+	if (version_greater(drm_edid, 1, 0))
- 		drm_for_each_detailed_block(drm_edid, do_inferred_modes, &closure);
- 
- 	return closure.modes;
-@@ -3341,7 +3346,7 @@ static int add_established_modes(struct drm_connector *connector,
- 		}
- 	}
- 
--	if (version_greater(edid, 1, 0))
-+	if (version_greater(drm_edid, 1, 0))
- 		drm_for_each_detailed_block(drm_edid, do_established_modes,
- 					    &closure);
- 
-@@ -3396,7 +3401,7 @@ static int add_standard_modes(struct drm_connector *connector,
- 		}
- 	}
- 
--	if (version_greater(drm_edid->edid, 1, 0))
-+	if (version_greater(drm_edid, 1, 0))
- 		drm_for_each_detailed_block(drm_edid, do_standard_modes,
- 					    &closure);
- 
-@@ -3476,7 +3481,7 @@ add_cvt_modes(struct drm_connector *connector, const struct drm_edid *drm_edid)
- 		.drm_edid = drm_edid,
- 	};
- 
--	if (version_greater(drm_edid->edid, 1, 2))
-+	if (version_greater(drm_edid, 1, 2))
- 		drm_for_each_detailed_block(drm_edid, do_cvt_mode, &closure);
- 
- 	/* XXX should also look for CVT codes in VTB blocks */
-@@ -3532,7 +3537,7 @@ static int add_detailed_modes(struct drm_connector *connector,
- 		.quirks = quirks,
- 	};
- 
--	if (closure.preferred && !version_greater(drm_edid->edid, 1, 3))
-+	if (closure.preferred && !version_greater(drm_edid, 1, 3))
- 		closure.preferred =
- 		    (drm_edid->edid->features & DRM_EDID_FEATURE_PREFERRED_TIMING);
- 
-@@ -5591,7 +5596,7 @@ static void drm_get_monitor_range(struct drm_connector *connector,
- {
- 	struct drm_display_info *info = &connector->display_info;
- 
--	if (!version_greater(drm_edid->edid, 1, 1))
-+	if (!version_greater(drm_edid, 1, 1))
- 		return;
- 
- 	drm_for_each_detailed_block(drm_edid, get_monitor_range,
--- 
-2.30.2
+We want to embrace the has_xyz flags, instead of the macro trickery.
 
+> As a side effect of the of removal this flag, it will not be printed
+> in dmesg during driver load anymore and developers will have to rely
+> on to check the macro and compare with platform being used and IP
+> versions of it.
+
+This is not a very good rationale. If the platform has something, but it
+becomes disabled in runtime, then we should add an another print after
+the runtime sanitization has been done.
+
+Regards, Joonas
+
+>=20
+> Signed-off-by: Jos=C3=A9 Roberto de Souza <jose.souza@intel.com>
+> ---
+>  drivers/gpu/drm/i915/i915_drv.h          | 4 +++-
+>  drivers/gpu/drm/i915/i915_pci.c          | 3 ---
+>  drivers/gpu/drm/i915/intel_device_info.h | 1 -
+>  3 files changed, 3 insertions(+), 5 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_=
+drv.h
+> index 4b1025dbaab2a..4a1edf48d37b9 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -1306,7 +1306,9 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+>                                           IS_BROADWELL(dev_priv) || \
+>                                           IS_HASWELL(dev_priv))
+>  #define HAS_DP_MST(dev_priv)            (HAS_DDI(dev_priv))
+> -#define HAS_FPGA_DBG_UNCLAIMED(dev_priv) (INTEL_INFO(dev_priv)->display.=
+has_fpga_dbg)
+> +#define HAS_FPGA_DBG_UNCLAIMED(dev_priv) (DISPLAY_VER(dev_priv) >=3D 9 |=
+| \
+> +                                         IS_BROADWELL(dev_priv) || \
+> +                                         IS_HASWELL(dev_priv))
+>  #define HAS_PSR(dev_priv)               (DISPLAY_VER(dev_priv) >=3D 9)
+>  #define HAS_PSR2_SEL_FETCH(dev_priv)    (DISPLAY_VER(dev_priv) >=3D 12)
+>  #define HAS_TRANSCODER(dev_priv, trans)         ((INTEL_INFO(dev_priv)->=
+display.cpu_transcoder_mask & BIT(trans)) !=3D 0)
+> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_=
+pci.c
+> index 5a42acb162a15..6a5b70b3ea2d7 100644
+> --- a/drivers/gpu/drm/i915/i915_pci.c
+> +++ b/drivers/gpu/drm/i915/i915_pci.c
+> @@ -523,7 +523,6 @@ static const struct intel_device_info vlv_info =3D {
+>         .platform_engine_mask =3D BIT(RCS0) | BIT(VCS0) | BIT(BCS0) | BIT=
+(VECS0), \
+>         .display.cpu_transcoder_mask =3D BIT(TRANSCODER_A) | BIT(TRANSCOD=
+ER_B) | \
+>                 BIT(TRANSCODER_C) | BIT(TRANSCODER_EDP), \
+> -       .display.has_fpga_dbg =3D 1, \
+>         HSW_PIPE_OFFSETS
+> =20
+>  #define HSW_PLATFORM \
+> @@ -657,7 +656,6 @@ static const struct intel_device_info skl_gt4_info =
+=3D {
+>         .display.cpu_transcoder_mask =3D BIT(TRANSCODER_A) | BIT(TRANSCOD=
+ER_B) | \
+>                 BIT(TRANSCODER_C) | BIT(TRANSCODER_EDP) | \
+>                 BIT(TRANSCODER_DSI_A) | BIT(TRANSCODER_DSI_C), \
+> -       .display.has_fpga_dbg =3D 1, \
+>         .display.fbc_mask =3D BIT(INTEL_FBC_A), \
+>         .display.has_hdcp =3D 1, \
+>         .display.has_dmc =3D 1, \
+> @@ -894,7 +892,6 @@ static const struct intel_device_info adl_s_info =3D {
+>         .display.has_dmc =3D 1,                                          =
+         \
+>         .display.has_dsc =3D 1,                                          =
+         \
+>         .display.fbc_mask =3D BIT(INTEL_FBC_A),                          =
+         \
+> -       .display.has_fpga_dbg =3D 1,                                     =
+         \
+>         .display.has_hdcp =3D 1,                                         =
+         \
+>         .display.has_hotplug =3D 1,                                      =
+         \
+>         .display.ver =3D 13,                                             =
+         \
+> diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i=
+915/intel_device_info.h
+> index 7581ef4a68f94..e61a334b611ac 100644
+> --- a/drivers/gpu/drm/i915/intel_device_info.h
+> +++ b/drivers/gpu/drm/i915/intel_device_info.h
+> @@ -157,7 +157,6 @@ enum intel_ppgtt_type {
+>         func(has_cdclk_crawl); \
+>         func(has_dmc); \
+>         func(has_dsc); \
+> -       func(has_fpga_dbg); \
+>         func(has_gmch); \
+>         func(has_hdcp); \
+>         func(has_hotplug); \
+> --=20
+> 2.36.0
+>=20
