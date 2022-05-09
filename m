@@ -1,50 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A70151F539
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 May 2022 09:24:18 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B827851F53A
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 May 2022 09:24:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 85E5510EF36;
-	Mon,  9 May 2022 07:24:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 20EF810EF23;
+	Mon,  9 May 2022 07:24:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A0C5710EF23
- for <intel-gfx@lists.freedesktop.org>; Mon,  9 May 2022 07:24:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CAFC110EF23
+ for <intel-gfx@lists.freedesktop.org>; Mon,  9 May 2022 07:24:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1652081055; x=1683617055;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=wUzYEkKrMLjy8Td2OtgPEMcIJwQNns7QxVrs3PzBiAk=;
- b=SnaSGGUTsX8gOXbYG9GoiGTOHBiaehWzb9q3MJu+Uvdn8PHuc9aOhx6M
- TaQ14RaXJcNhieMmfvJMjPNrm7s9eKcp0KdHh5CZU9iVl85sYnJ8vhj4G
- DKBEfdM9/G+Tl2ejosh2ByZTocEw9sURMfeCfQ0agOnbDGVqZhkwEIqS2
- ZTa6TB01QsBmZyeFGTZwRmujuKEHYrhiSXVTF6NIfPV4SRgYtBdizF805
- uABJeFRO/OSwZVx3n9djGTTtsJCodqUxQ7EKCH9P6DmgmO9KG+yRGHWpQ
- uxd2TkHhBqDoBfirxC85I4mv0v/6YbRAzAbxxPJGw/YvJcEcj4xTjxCbT Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10341"; a="249503518"
-X-IronPort-AV: E=Sophos;i="5.91,210,1647327600"; d="scan'208";a="249503518"
+ t=1652081058; x=1683617058;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=UnqKBSqv0RbsRamhm4DelwHBuEuv8GQru05lB2Man74=;
+ b=URYW/0hzZgVT+j46+3/Srt1GT9bE/cHK4e/3SzCFqoHYioUWgU96awf3
+ bIHzV0nm+DBmyTh5Ws2n54O5ad6DwXL+qiSiCp26mgQogiJraL2guYY4N
+ BYWxC+Hj4bp9ZS7XMsZ34QV/YA30Sj7UlCWyNp9BZozdDdU8MB/to6HKi
+ c8ybGP3Q9yPUjj16ZEYdhp4YCKkSvthvmhcQ0HJKEBYpuHChvShQrLefv
+ QJB2Z5Zr5nfoxVmgP7vXZR6Da5VhKjVgoZgkn/Ce1eCeP26rDnDePJcbl
+ L+CJgyRMfqfqVDt0EynXvSOBgjWYlTFmbd5z9OCdb/z2lmXWBq9xY1KUb A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10341"; a="249503527"
+X-IronPort-AV: E=Sophos;i="5.91,210,1647327600"; d="scan'208";a="249503527"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 May 2022 00:24:15 -0700
-X-IronPort-AV: E=Sophos;i="5.91,210,1647327600"; d="scan'208";a="710390631"
+ 09 May 2022 00:24:18 -0700
+X-IronPort-AV: E=Sophos;i="5.91,210,1647327600"; d="scan'208";a="710390641"
 Received: from jparmijo-mobl.amr.corp.intel.com (HELO
  jhogande-mobl1.ger.corp.intel.com) ([10.251.219.202])
  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 May 2022 00:24:13 -0700
+ 09 May 2022 00:24:16 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon,  9 May 2022 10:24:02 +0300
-Message-Id: <20220509072404.1423018-1-jouni.hogander@intel.com>
+Date: Mon,  9 May 2022 10:24:03 +0300
+Message-Id: <20220509072404.1423018-2-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220509072404.1423018-1-jouni.hogander@intel.com>
+References: <20220509072404.1423018-1-jouni.hogander@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 0/2] Fixes for selective fetch area
- calculation
+Subject: [Intel-gfx] [PATCH v2 1/2] drm/i915/psr: Use full update In case of
+ area calculation fails
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,31 +63,38 @@ Cc: Mark Pearson <markpearson@lenovo.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Currently selective fetch area calculation ends up as bogus area in
-at least following cases:
+Currently we have some corner cases where area calculation fails.  For
+these sel fetch area calculation ends up having update area as y1 = 0,
+y2 = 4. Instead of these values safer option is full update.
 
-1. Updated plane is partially or fully outside pipe area
-2. Big fb with only part of memory area used for plane
+One of such for example is big fb with offset. We don't have usable
+offset in psr2_sel_fetch_update. Currently it's open what is the
+proper way to fix this corner case. Use full update for now.
 
-These end up as y1 = 0, y2 = 4 or y2 being outside pipe area. This
-patch set addresses these by ensuring update area is within pipe area
-and falling back to full update.
-
-v2:
- - Update commit message of first patch
- - Set damaged_area x1 and x2 during initialization
+v2: Commit message modified
 
 Cc: José Roberto de Souza <jose.souza@intel.com>
 Cc: Mika Kahola <mika.kahola@intel.com>
-Cc: Mark Pearson <markpearson@lenovo.com>
+Tested-by: Mark Pearson <markpearson@lenovo.com>
+Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_psr.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-Jouni Högander (2):
-  drm/i915/psr: Use full update In case of area calculation fails
-  drm/i915: Ensure damage clip area is within pipe area
-
- drivers/gpu/drm/i915/display/intel_psr.c | 20 +++++++++++++++-----
- 1 file changed, 15 insertions(+), 5 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index 06db407e2749..8c099d24de86 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -1770,6 +1770,9 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
+ 		clip_area_update(&pipe_clip, &damaged_area);
+ 	}
+ 
++	if (pipe_clip.y1 == -1)
++		full_update = true;
++
+ 	if (full_update)
+ 		goto skip_sel_fetch_set_loop;
+ 
 -- 
 2.25.1
 
