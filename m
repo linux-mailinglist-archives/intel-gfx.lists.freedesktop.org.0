@@ -1,51 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAA7F52126E
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 May 2022 12:43:00 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E1EB52126F
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 May 2022 12:43:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A110310F3AE;
-	Tue, 10 May 2022 10:42:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 663C710F3B8;
+	Tue, 10 May 2022 10:43:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B742F10F3AE
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 May 2022 10:42:57 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B27410F10F
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 May 2022 10:43:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1652179377; x=1683715377;
+ t=1652179381; x=1683715381;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=qzHSWrr1rMiWv5W57ztryFjYIAZ1Q+X0vMpFhDbRXcU=;
- b=CvhYH4f3t5XCDRe5WAb78Bgu/wlcZ8PAULQgFcc58AHfBxzLmrlfmDuQ
- HogLTvrszEW3MMMDXeRDU4xmZtPAEfRsVSZOGmj/m862yHO01KI7fE2FL
- U4mzr/dRxIMzoFAJ2ZI9WAe+UOaMcCaxZUBRNAf8vyntUmvgF6NwkbFZ1
- OqMEzAxY4ugd3vTVdx5gqe1NURgRYC0df2iw/Wj7WowRDhnLZlYki37Yp
- OIO3NGz3xTJ/davzOXnJu8/7PrejwwfVWUh+O0KQuGGiBFrUZtBdCIl4C
- cfu9uo2kzdwICGxE7Ou4hltjbab7NzEulHtzkd2yQXKJ3s8ztSTAq6tYO g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10342"; a="355760264"
-X-IronPort-AV: E=Sophos;i="5.91,214,1647327600"; d="scan'208";a="355760264"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 May 2022 03:42:57 -0700
+ bh=9C21TVBtBzQDtq53kMx4CRLwDu6d79RNq5EonDO4UTo=;
+ b=E7fg+t8UFtLfzl4/ZW8g2vxTZ6mv0EXeIF/ruMKDJWuz5BRnt3FPmDyZ
+ /TGWa+vXyNXUTjMXIVCB1IMeL+HHpnRfWMGrqm4m/Hp/glRv76wdHF9r7
+ bEkLGLH9BD73kImwfA+uBc41sMzMHIdGpBkuow9faa/blmj2I/wMg2m7z
+ IUCk2t887w83s7vffloGiTWn6nLDssKINFkKv9E4exlyIsvFvz9lCuo09
+ uOG1M1qf3MWUtM43OJinlRXsq42ouokKE/WsKHwV0PHZT6zjbSHfADSlo
+ BJW6ppcE2ZJUyav1UDxqfGDe4eeSU0W1Tfn8RzjDIblS0mLZLn72fxwqF g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10342"; a="256870715"
+X-IronPort-AV: E=Sophos;i="5.91,214,1647327600"; d="scan'208";a="256870715"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 May 2022 03:43:00 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,214,1647327600"; d="scan'208";a="570617736"
+X-IronPort-AV: E=Sophos;i="5.91,214,1647327600"; d="scan'208";a="710968541"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.51])
- by fmsmga007.fm.intel.com with SMTP; 10 May 2022 03:42:55 -0700
+ by fmsmga001.fm.intel.com with SMTP; 10 May 2022 03:42:58 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 10 May 2022 13:42:54 +0300
+ Tue, 10 May 2022 13:42:57 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 10 May 2022 13:42:31 +0300
-Message-Id: <20220510104242.6099-5-ville.syrjala@linux.intel.com>
+Date: Tue, 10 May 2022 13:42:32 +0300
+Message-Id: <20220510104242.6099-6-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220510104242.6099-1-ville.syrjala@linux.intel.com>
 References: <20220510104242.6099-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 04/15] drm/i915/pps: Introduce pps_delays_valid()
+Subject: [Intel-gfx] [PATCH 05/15] drm/i915/pps: Don't apply quirks/etc. to
+ the VBT PPS delays if they haven't been initialized
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,40 +64,29 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Add a small helper that determines if the PPS delays have been
-initialized or not.
+Skip QUIRK_INCREASE_T12_DELAY and the t11_t12 adjustment of the
+VBT PPS delays if we've not yet initialized them. Will be important
+later when the PPS delay init can happen before VBT parsing.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_pps.c | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_pps.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
-index 5b72c892a6f2..d1ce7dafce10 100644
+index d1ce7dafce10..25f1962dbddf 100644
 --- a/drivers/gpu/drm/i915/display/intel_pps.c
 +++ b/drivers/gpu/drm/i915/display/intel_pps.c
-@@ -1159,6 +1159,12 @@ intel_pps_verify_state(struct intel_dp *intel_dp)
- 	}
- }
+@@ -1184,6 +1184,9 @@ static void pps_init_delays_vbt(struct intel_dp *intel_dp,
  
-+static bool pps_delays_valid(struct edp_power_seq *delays)
-+{
-+	return delays->t1_t3 || delays->t8 || delays->t9 ||
-+		delays->t10 || delays->t11_t12;
-+}
+ 	*vbt = dev_priv->vbt.edp.pps;
+ 
++	if (!pps_delays_valid(vbt))
++		return;
 +
- static void pps_init_delays_cur(struct intel_dp *intel_dp,
- 				struct edp_power_seq *cur)
- {
-@@ -1230,7 +1236,7 @@ static void pps_init_delays(struct intel_dp *intel_dp)
- 	lockdep_assert_held(&dev_priv->pps_mutex);
- 
- 	/* already initialized? */
--	if (final->t11_t12 != 0)
-+	if (pps_delays_valid(final))
- 		return;
- 
- 	pps_init_delays_cur(intel_dp, &cur);
+ 	/* On Toshiba Satellite P50-C-18C system the VBT T12 delay
+ 	 * of 500ms appears to be too short. Ocassionally the panel
+ 	 * just fails to power back on. Increasing the delay to 800ms
 -- 
 2.35.1
 
