@@ -1,49 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B49D520D4B
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 May 2022 07:48:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EAD86520D7B
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 May 2022 08:03:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12A1E10F10A;
-	Tue, 10 May 2022 05:48:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E1DF110E811;
+	Tue, 10 May 2022 06:03:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E36D10F10A
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 May 2022 05:48:17 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A37A510E56B
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 May 2022 06:03:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1652161697; x=1683697697;
+ t=1652162594; x=1683698594;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=cYcx5IM4c+zwMUqYWqKl8zJCPpmWktfb6ZFe1WaUis4=;
- b=aLHcw+lqE8uvl3YPA1yVCwsgkjiuUD1iZCy39PP7EByuZADtYjWGCIfs
- eqwqXWIeI9SNlDW4QL4BYiKjICC3Tg/SCjxljJsCszsT4u6uLvxr11Jgy
- HI17gIX896R214prNcyxGCh5GlPGogwMs2I2eFWNm+JKhLdvQpL5tV9h0
- 4OOIclz/STbVmEu/nMFDnMmM2vnMPmt8FoUXm2FY+79PvaCOJBB+Xn94b
- r9esTZ6uPTtf1otytPcExnJyzxyiHYOYiTQH8XM96Ew1QiUettTshx0Fb
- waUKJ99dsK967YEtIP3EBCD3jikKQbItSzeOZ7Us7E2TKnkFflBmrPTii Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10342"; a="269406991"
-X-IronPort-AV: E=Sophos;i="5.91,213,1647327600"; d="scan'208";a="269406991"
+ bh=EmK7taGO/OtC4+J/66dgOEeXIWeThEh8rfpdgDNiFVM=;
+ b=Gm92QjJAEVwOuyAAlkHjgxYAmvsSlbTR/QKSXA3zAXys7zvCN26LTk8b
+ H14Yiz2WaRAa5kAQHmLM/ph4YmgvuYjjeVEbEjQ4PsrZLmBhfD60QSLS2
+ 3lnmy6WKOqx9DLHGlAWP8E10eu4NtlomnaUXOYCmvIgS1wOl+NNs/N8s/
+ tbiQ9z7E5xOU52y8QUc3GWks6mn8wjOuUax5aW3g83DXrAVXkchpNcNPD
+ okK0b2eUrCA39lTqcTJEUqW+BNcUDcL5hBlROYNesTaM3BkA2Cngw+vl+
+ +Z8fqXKgQLxOCEzODe7l+YZd88BOYiusgc64+5f2pu1mjX7lgwExYF5c9 A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10342"; a="294500285"
+X-IronPort-AV: E=Sophos;i="5.91,213,1647327600"; d="scan'208";a="294500285"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 May 2022 22:48:02 -0700
-X-IronPort-AV: E=Sophos;i="5.91,213,1647327600"; d="scan'208";a="593306058"
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 May 2022 23:02:58 -0700
+X-IronPort-AV: E=Sophos;i="5.91,213,1647327600"; d="scan'208";a="593315457"
 Received: from nreina-mobl1.ger.corp.intel.com (HELO intel.com)
  ([10.251.219.57])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 May 2022 22:48:00 -0700
-Date: Tue, 10 May 2022 07:47:57 +0200
+ 09 May 2022 23:02:55 -0700
+Date: Tue, 10 May 2022 08:02:52 +0200
 From: Andi Shyti <andi.shyti@linux.intel.com>
 To: Ashutosh Dixit <ashutosh.dixit@intel.com>
-Message-ID: <Ynn8jWcli0jOoIWV@intel.intel>
-References: <20220427203833.44449-1-ashutosh.dixit@intel.com>
+Message-ID: <YnoADCJYTV2yAXYV@intel.intel>
+References: <cover.1651261886.git.ashutosh.dixit@intel.com>
+ <06685e6216a1afc79bdf76bd1cfafbc929d4e376.1651261886.git.ashutosh.dixit@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220427203833.44449-1-ashutosh.dixit@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Fix memory leaks in per-gt
+In-Reply-To: <06685e6216a1afc79bdf76bd1cfafbc929d4e376.1651261886.git.ashutosh.dixit@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 6/8] drm/i915/gt: Fix memory leaks in per-gt
  sysfs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -63,7 +64,7 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Hi Ashutosh,
 
-On Wed, Apr 27, 2022 at 01:38:33PM -0700, Ashutosh Dixit wrote:
+On Fri, Apr 29, 2022 at 12:56:27PM -0700, Ashutosh Dixit wrote:
 > All kmalloc'd kobjects need a kobject_put() to free memory. For example in
 > previous code, kobj_gt_release() never gets called. The requirement of
 > kobject_put() now results in a slightly different code organization.
@@ -75,18 +76,8 @@ On Wed, Apr 27, 2022 at 01:38:33PM -0700, Ashutosh Dixit wrote:
 > Fixes: b770bcfae9ad ("drm/i915/gt: create per-tile sysfs interface")
 > Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 
-I'm still not convinced this patch is 100% correct, but I think
-it's better thank what it was and it's not addressing Andrzej's
-comment.
-
-As of now, though, I'm not able to think of a better way of doing
-it and if Andrzej doesn't have a better solution I would just
-tag it:
+I tagget the wrong version (which is the same as this one):
 
 Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
 
-As soon as I will have some time I will test it to proof
-Andrzej's concern.
-
-Thanks for taking care of this,
 Andi
