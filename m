@@ -1,51 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAD86520D7B
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 May 2022 08:03:18 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6B9B520D90
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 May 2022 08:05:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E1DF110E811;
-	Tue, 10 May 2022 06:03:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0504F10E457;
+	Tue, 10 May 2022 06:05:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A37A510E56B
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 May 2022 06:03:14 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A9F6910E457;
+ Tue, 10 May 2022 06:05:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1652162594; x=1683698594;
+ t=1652162725; x=1683698725;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=EmK7taGO/OtC4+J/66dgOEeXIWeThEh8rfpdgDNiFVM=;
- b=Gm92QjJAEVwOuyAAlkHjgxYAmvsSlbTR/QKSXA3zAXys7zvCN26LTk8b
- H14Yiz2WaRAa5kAQHmLM/ph4YmgvuYjjeVEbEjQ4PsrZLmBhfD60QSLS2
- 3lnmy6WKOqx9DLHGlAWP8E10eu4NtlomnaUXOYCmvIgS1wOl+NNs/N8s/
- tbiQ9z7E5xOU52y8QUc3GWks6mn8wjOuUax5aW3g83DXrAVXkchpNcNPD
- okK0b2eUrCA39lTqcTJEUqW+BNcUDcL5hBlROYNesTaM3BkA2Cngw+vl+
- +Z8fqXKgQLxOCEzODe7l+YZd88BOYiusgc64+5f2pu1mjX7lgwExYF5c9 A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10342"; a="294500285"
-X-IronPort-AV: E=Sophos;i="5.91,213,1647327600"; d="scan'208";a="294500285"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 May 2022 23:02:58 -0700
-X-IronPort-AV: E=Sophos;i="5.91,213,1647327600"; d="scan'208";a="593315457"
-Received: from nreina-mobl1.ger.corp.intel.com (HELO intel.com)
- ([10.251.219.57])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 May 2022 23:02:55 -0700
-Date: Tue, 10 May 2022 08:02:52 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Ashutosh Dixit <ashutosh.dixit@intel.com>
-Message-ID: <YnoADCJYTV2yAXYV@intel.intel>
-References: <cover.1651261886.git.ashutosh.dixit@intel.com>
- <06685e6216a1afc79bdf76bd1cfafbc929d4e376.1651261886.git.ashutosh.dixit@intel.com>
+ bh=5pffL91vsUiBWY5qEHNDpxq7EjhrIyoovBxZ2X26yMY=;
+ b=ZJrlU0ZcjPy5FylMCMN0GiGi+hhEydR7pJ9k9AsXoTwfuXXCiegDeE4Y
+ 1/vJzXiravWgdd1DCYggvb++vxakUcicK3NdjJhmqXlxY0iZueyp947qD
+ uIYgRwd/oqTvVsBF9ncqbd5PDqz144bAX9UTzwg7UnqNBerF+/4j0HRzZ
+ 1ItNvFaWpC+lnTG9wW6EUzlQADu/GxzW+EMC4XmaE0Uk07qKmpesllgyI
+ pJhhWMyv4DiTiPCZqQmYvuNY/5MUclJTdIO6BwvX2aoVkKPELVPiWBkCx
+ EZ9ornaL8CvRM8NBw8cnEpM++KQ+udw/VIp+jlYo8kRKfYAjYmErf9ae5 w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10342"; a="268113657"
+X-IronPort-AV: E=Sophos;i="5.91,213,1647327600"; d="scan'208";a="268113657"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 May 2022 23:05:23 -0700
+X-IronPort-AV: E=Sophos;i="5.91,213,1647327600"; d="scan'208";a="541611050"
+Received: from syedpash-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
+ ([10.212.130.145])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 May 2022 23:05:22 -0700
+Date: Mon, 9 May 2022 23:05:21 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Message-ID: <20220510060521.yzpwverld25vn2wg@ldmartin-desk2>
+X-Patchwork-Hint: comment
+References: <20220505213812.3979301-1-matthew.d.roper@intel.com>
+ <20220505213812.3979301-8-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=us-ascii; format=flowed
 Content-Disposition: inline
-In-Reply-To: <06685e6216a1afc79bdf76bd1cfafbc929d4e376.1651261886.git.ashutosh.dixit@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 6/8] drm/i915/gt: Fix memory leaks in per-gt
- sysfs
+In-Reply-To: <20220505213812.3979301-8-matthew.d.roper@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v2 07/12] drm/i915/gvt: Use
+ intel_engine_mask_t for ring mask
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,26 +59,22 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Andrzej Hajda <andrzej.hajda@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Ashutosh,
+On Thu, May 05, 2022 at 02:38:07PM -0700, Matt Roper wrote:
+>When i915 adds additional PVC blitter instances (in an upcoming patch),
+>the definition of VECS0 will change from bit(10) to bit(18), causing
+>GVT's R_ALL mask to overflow the u16 storage that's currently used.
+>Let's replace the u16 with an intel_engine_mask_t to ensure we avoid
+>this.
+>
+>Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+>Cc: Zhi Wang <zhi.a.wang@intel.com>
+>Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 
-On Fri, Apr 29, 2022 at 12:56:27PM -0700, Ashutosh Dixit wrote:
-> All kmalloc'd kobjects need a kobject_put() to free memory. For example in
-> previous code, kobj_gt_release() never gets called. The requirement of
-> kobject_put() now results in a slightly different code organization.
-> 
-> v2: s/gtn/gt/ (Andi)
-> 
-> Cc: Andi Shyti <andi.shyti@intel.com>
-> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
-> Fixes: b770bcfae9ad ("drm/i915/gt: create per-tile sysfs interface")
-> Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 
-I tagget the wrong version (which is the same as this one):
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
-
-Andi
+Lucas De Marchi
