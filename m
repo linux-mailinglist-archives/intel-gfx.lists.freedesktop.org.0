@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9653F52126C
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 May 2022 12:42:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D7B3C52126D
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 May 2022 12:42:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B81B610F081;
-	Tue, 10 May 2022 10:42:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1305E10EB6B;
+	Tue, 10 May 2022 10:42:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C1F610F081
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 May 2022 10:42:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DADC610F3AE
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 May 2022 10:42:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1652179372; x=1683715372;
+ t=1652179374; x=1683715374;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=C9isfv/CieYwkwRHScwhmsCyD7GHCrNySX+O1f8ZGNo=;
- b=Lbx8ofQO6DSXy8xsFiSc4+BF6rN1fuCO0a4+mIr5QsBiyGodfjLpYB4n
- 1gUlhG/6DsTpMgb40YRz6r7Xm4RH9P9rgJGpJTneIJtEIatQKVZDQxsbe
- bOsik01srWCuB5akcP8nQUV0lDesFf0/4bWaSn6IENpzGSdm8kKLoNv2z
- JD4r4HutWamK3JE7Rf7se7cGtgIjlmFlSdkTfUSM7WQ9fjcwRg078lc7a
- uBh4X0Z/zWhijwWOWhMgFkKGw7jBika2WfRhBZl999CtRHggux5LoSxiZ
- r7p4O3Y55HMVWIRzKqAffoSlLZtlHECRVY6KX+KSGNf7sb46uOShrAQeJ g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10342"; a="256870690"
-X-IronPort-AV: E=Sophos;i="5.91,214,1647327600"; d="scan'208";a="256870690"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ bh=BGpABkb+a/Zoii/ipxRzfO1Ykm0y1fbROSEzfzGyhKg=;
+ b=RqMznKs5ymtnRZ7gTtZIjqe665aY1+l+vUJk2xgEOWUTe60/z+pc8xz4
+ 47WGvcJ3HMQPnTdTGDXYO2mITFbDRBDkrshfPIP3qm1JMH+3g9ppRHH0R
+ MaHmyF8UOEGJ+I49HfIq9tPoYW/ymwljKVOovPog3vkJ5/YPjBGA3BYus
+ rTzO07mt+aMHBqfJItFxaxpS1nYrtl+fpIUqq7uq2mPRvfpDMZuewltlg
+ bd1I3GwBk5j/SddxDgo9c0Em9eEDi4VKSeSD4xWeawPrez7tA52r8X+tG
+ UxtnU6v06RYNCvJw659a0XuEllpi6wtfuu92zVX7sn2aGtrverRpSQggi A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10342"; a="256870696"
+X-IronPort-AV: E=Sophos;i="5.91,214,1647327600"; d="scan'208";a="256870696"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 May 2022 03:42:51 -0700
+ 10 May 2022 03:42:54 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,214,1647327600"; d="scan'208";a="623413787"
+X-IronPort-AV: E=Sophos;i="5.91,214,1647327600"; d="scan'208";a="669826030"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.51])
- by fmsmga008.fm.intel.com with SMTP; 10 May 2022 03:42:49 -0700
+ by fmsmga002.fm.intel.com with SMTP; 10 May 2022 03:42:52 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 10 May 2022 13:42:48 +0300
+ Tue, 10 May 2022 13:42:51 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 10 May 2022 13:42:29 +0300
-Message-Id: <20220510104242.6099-3-ville.syrjala@linux.intel.com>
+Date: Tue, 10 May 2022 13:42:30 +0300
+Message-Id: <20220510104242.6099-4-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220510104242.6099-1-ville.syrjala@linux.intel.com>
 References: <20220510104242.6099-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 02/15] drm/i915: Extract
- intel_edp_fixup_vbt_bpp()
+Subject: [Intel-gfx] [PATCH 03/15] drm/i915/pps: Split pps_init_delays()
+ into distinct parts
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,134 +64,120 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-We have the same "override eDP VBT bpp with the current bpp" code
-duplciated in two places. Extract it to a helper function.
-
-TODO: Having this in .get_config() is pretty ugly. Should probably
-try to move it somewhere else (setup_hw_state()/etc.)...
+Split each of the hw/vbt/spec PPS delay initialization into
+separate functions to make the whole thing less cluttered.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/g4x_dp.c    | 22 ++-------------------
- drivers/gpu/drm/i915/display/intel_ddi.c | 22 ++-------------------
- drivers/gpu/drm/i915/display/intel_dp.c  | 25 ++++++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_dp.h  |  1 +
- 4 files changed, 30 insertions(+), 40 deletions(-)
+ drivers/gpu/drm/i915/display/intel_pps.c | 66 +++++++++++++++++-------
+ 1 file changed, 48 insertions(+), 18 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/g4x_dp.c b/drivers/gpu/drm/i915/display/g4x_dp.c
-index 5a957acebfd6..82ad8fe7440c 100644
---- a/drivers/gpu/drm/i915/display/g4x_dp.c
-+++ b/drivers/gpu/drm/i915/display/g4x_dp.c
-@@ -395,26 +395,8 @@ static void intel_dp_get_config(struct intel_encoder *encoder,
- 		intel_dotclock_calculate(pipe_config->port_clock,
- 					 &pipe_config->dp_m_n);
- 
--	if (intel_dp_is_edp(intel_dp) && dev_priv->vbt.edp.bpp &&
--	    pipe_config->pipe_bpp > dev_priv->vbt.edp.bpp) {
--		/*
--		 * This is a big fat ugly hack.
--		 *
--		 * Some machines in UEFI boot mode provide us a VBT that has 18
--		 * bpp and 1.62 GHz link bandwidth for eDP, which for reasons
--		 * unknown we fail to light up. Yet the same BIOS boots up with
--		 * 24 bpp and 2.7 GHz link. Use the same bpp as the BIOS uses as
--		 * max, not what it tells us to use.
--		 *
--		 * Note: This will still be broken if the eDP panel is not lit
--		 * up by the BIOS, and thus we can't get the mode at module
--		 * load.
--		 */
--		drm_dbg_kms(&dev_priv->drm,
--			    "pipe has %d bpp for eDP panel, overriding BIOS-provided max %d bpp\n",
--			    pipe_config->pipe_bpp, dev_priv->vbt.edp.bpp);
--		dev_priv->vbt.edp.bpp = pipe_config->pipe_bpp;
--	}
-+	if (intel_dp_is_edp(intel_dp))
-+		intel_edp_fixup_vbt_bpp(encoder, pipe_config->pipe_bpp);
+diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
+index 5a598dd06039..5b72c892a6f2 100644
+--- a/drivers/gpu/drm/i915/display/intel_pps.c
++++ b/drivers/gpu/drm/i915/display/intel_pps.c
+@@ -1159,53 +1159,83 @@ intel_pps_verify_state(struct intel_dp *intel_dp)
+ 	}
  }
  
- static void
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 9e6fa59eabba..333871cf3a2c 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -3433,26 +3433,8 @@ static void intel_ddi_get_config(struct intel_encoder *encoder,
- 	pipe_config->has_audio =
- 		intel_ddi_is_audio_enabled(dev_priv, cpu_transcoder);
+-static void pps_init_delays(struct intel_dp *intel_dp)
++static void pps_init_delays_cur(struct intel_dp *intel_dp,
++				struct edp_power_seq *cur)
+ {
+ 	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
+-	struct edp_power_seq cur, vbt, spec,
+-		*final = &intel_dp->pps.pps_delays;
  
--	if (encoder->type == INTEL_OUTPUT_EDP && dev_priv->vbt.edp.bpp &&
--	    pipe_config->pipe_bpp > dev_priv->vbt.edp.bpp) {
--		/*
--		 * This is a big fat ugly hack.
--		 *
--		 * Some machines in UEFI boot mode provide us a VBT that has 18
--		 * bpp and 1.62 GHz link bandwidth for eDP, which for reasons
--		 * unknown we fail to light up. Yet the same BIOS boots up with
--		 * 24 bpp and 2.7 GHz link. Use the same bpp as the BIOS uses as
--		 * max, not what it tells us to use.
--		 *
--		 * Note: This will still be broken if the eDP panel is not lit
--		 * up by the BIOS, and thus we can't get the mode at module
--		 * load.
--		 */
--		drm_dbg_kms(&dev_priv->drm,
--			    "pipe has %d bpp for eDP panel, overriding BIOS-provided max %d bpp\n",
--			    pipe_config->pipe_bpp, dev_priv->vbt.edp.bpp);
--		dev_priv->vbt.edp.bpp = pipe_config->pipe_bpp;
--	}
-+	if (encoder->type == INTEL_OUTPUT_EDP)
-+		intel_edp_fixup_vbt_bpp(encoder, pipe_config->pipe_bpp);
+ 	lockdep_assert_held(&dev_priv->pps_mutex);
  
- 	ddi_dotclock_get(pipe_config);
+-	/* already initialized? */
+-	if (final->t11_t12 != 0)
+-		return;
++	intel_pps_readout_hw_state(intel_dp, cur);
  
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 8637959b5de2..7db71bcd4c4a 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -2710,6 +2710,31 @@ static void intel_edp_mso_mode_fixup(struct intel_connector *connector,
- 		    DRM_MODE_ARG(mode));
- }
+-	intel_pps_readout_hw_state(intel_dp, &cur);
++	intel_pps_dump_state(intel_dp, "cur", cur);
++}
  
-+void intel_edp_fixup_vbt_bpp(struct intel_encoder *encoder, int pipe_bpp)
+-	intel_pps_dump_state(intel_dp, "cur", &cur);
++static void pps_init_delays_vbt(struct intel_dp *intel_dp,
++				struct edp_power_seq *vbt)
 +{
-+	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
++	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
 +
-+	if (dev_priv->vbt.edp.bpp && pipe_bpp > dev_priv->vbt.edp.bpp) {
-+		/*
-+		 * This is a big fat ugly hack.
-+		 *
-+		 * Some machines in UEFI boot mode provide us a VBT that has 18
-+		 * bpp and 1.62 GHz link bandwidth for eDP, which for reasons
-+		 * unknown we fail to light up. Yet the same BIOS boots up with
-+		 * 24 bpp and 2.7 GHz link. Use the same bpp as the BIOS uses as
-+		 * max, not what it tells us to use.
-+		 *
-+		 * Note: This will still be broken if the eDP panel is not lit
-+		 * up by the BIOS, and thus we can't get the mode at module
-+		 * load.
-+		 */
-+		drm_dbg_kms(&dev_priv->drm,
-+			    "pipe has %d bpp for eDP panel, overriding BIOS-provided max %d bpp\n",
-+			    pipe_bpp, dev_priv->vbt.edp.bpp);
-+		dev_priv->vbt.edp.bpp = pipe_bpp;
-+	}
++	*vbt = dev_priv->vbt.edp.pps;
+ 
+-	vbt = dev_priv->vbt.edp.pps;
+ 	/* On Toshiba Satellite P50-C-18C system the VBT T12 delay
+ 	 * of 500ms appears to be too short. Ocassionally the panel
+ 	 * just fails to power back on. Increasing the delay to 800ms
+ 	 * seems sufficient to avoid this problem.
+ 	 */
+ 	if (dev_priv->quirks & QUIRK_INCREASE_T12_DELAY) {
+-		vbt.t11_t12 = max_t(u16, vbt.t11_t12, 1300 * 10);
++		vbt->t11_t12 = max_t(u16, vbt->t11_t12, 1300 * 10);
+ 		drm_dbg_kms(&dev_priv->drm,
+ 			    "Increasing T12 panel delay as per the quirk to %d\n",
+-			    vbt.t11_t12);
++			    vbt->t11_t12);
+ 	}
++
+ 	/* T11_T12 delay is special and actually in units of 100ms, but zero
+ 	 * based in the hw (so we need to add 100 ms). But the sw vbt
+ 	 * table multiplies it with 1000 to make it in units of 100usec,
+ 	 * too. */
+-	vbt.t11_t12 += 100 * 10;
++	vbt->t11_t12 += 100 * 10;
++
++	intel_pps_dump_state(intel_dp, "vbt", vbt);
 +}
 +
- static void intel_edp_mso_init(struct intel_dp *intel_dp)
- {
- 	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
-index d457e17bdc57..e794d910df56 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.h
-+++ b/drivers/gpu/drm/i915/display/intel_dp.h
-@@ -63,6 +63,7 @@ enum irqreturn intel_dp_hpd_pulse(struct intel_digital_port *dig_port,
- void intel_edp_backlight_on(const struct intel_crtc_state *crtc_state,
- 			    const struct drm_connector_state *conn_state);
- void intel_edp_backlight_off(const struct drm_connector_state *conn_state);
-+void intel_edp_fixup_vbt_bpp(struct intel_encoder *encoder, int pipe_bpp);
- void intel_dp_mst_suspend(struct drm_i915_private *dev_priv);
- void intel_dp_mst_resume(struct drm_i915_private *dev_priv);
- int intel_dp_max_link_rate(struct intel_dp *intel_dp);
++static void pps_init_delays_spec(struct intel_dp *intel_dp,
++				 struct edp_power_seq *spec)
++{
++	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
++
++	lockdep_assert_held(&dev_priv->pps_mutex);
+ 
+ 	/* Upper limits from eDP 1.3 spec. Note that we use the clunky units of
+ 	 * our hw here, which are all in 100usec. */
+-	spec.t1_t3 = 210 * 10;
+-	spec.t8 = 50 * 10; /* no limit for t8, use t7 instead */
+-	spec.t9 = 50 * 10; /* no limit for t9, make it symmetric with t8 */
+-	spec.t10 = 500 * 10;
++	spec->t1_t3 = 210 * 10;
++	spec->t8 = 50 * 10; /* no limit for t8, use t7 instead */
++	spec->t9 = 50 * 10; /* no limit for t9, make it symmetric with t8 */
++	spec->t10 = 500 * 10;
+ 	/* This one is special and actually in units of 100ms, but zero
+ 	 * based in the hw (so we need to add 100 ms). But the sw vbt
+ 	 * table multiplies it with 1000 to make it in units of 100usec,
+ 	 * too. */
+-	spec.t11_t12 = (510 + 100) * 10;
++	spec->t11_t12 = (510 + 100) * 10;
+ 
+-	intel_pps_dump_state(intel_dp, "vbt", &vbt);
++	intel_pps_dump_state(intel_dp, "spec", spec);
++}
++
++static void pps_init_delays(struct intel_dp *intel_dp)
++{
++	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
++	struct edp_power_seq cur, vbt, spec,
++		*final = &intel_dp->pps.pps_delays;
++
++	lockdep_assert_held(&dev_priv->pps_mutex);
++
++	/* already initialized? */
++	if (final->t11_t12 != 0)
++		return;
++
++	pps_init_delays_cur(intel_dp, &cur);
++	pps_init_delays_vbt(intel_dp, &vbt);
++	pps_init_delays_spec(intel_dp, &spec);
+ 
+ 	/* Use the max of the register settings and vbt. If both are
+ 	 * unset, fall back to the spec limits. */
 -- 
 2.35.1
 
