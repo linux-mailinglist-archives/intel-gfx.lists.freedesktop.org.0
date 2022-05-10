@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2072521274
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 May 2022 12:43:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 79959521275
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 May 2022 12:43:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1CF6A10F6B4;
-	Tue, 10 May 2022 10:43:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 97ADA89CC9;
+	Tue, 10 May 2022 10:43:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 30DF210F7D8
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 May 2022 10:43:18 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E8C4910F741
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 May 2022 10:43:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1652179398; x=1683715398;
+ t=1652179400; x=1683715400;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=h+DZ9a/kkMy/xFXNDmiHCqY+1EyeL6YpdxEH9F0T/lU=;
- b=JT2PqhSPUBsLKCS/8qbywuJqXwLOvqDCArYkTcTTDSdlXyWRbHHWxWY9
- lpiiGDnbQRysifLLMP+I+7uHU/oPaNBXa2Hb67NiwxfhUxZb/gUG9N4Hg
- BebYP6cO6yJF/uBOoCFR0Ov9jQgcNbvSQP+AbBO4+qIUAHJQnk9Sq3rmA
- yBimRum7rRkEZeOj9SY+bQ/5ptqyqwhfxR5rhcUGMkKj8qy152Gt54x+o
- A2Xbj8Pavj8s61zT4wXvkdMQIKolGcFPlBazk7IOYDBZq2nVEm0F+VIOb
- +anYpLf0Jadq5/4P5LA1LH+dfmUvVgxRjjgMzxM54k4W5XFic1Mwz59IM w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10342"; a="269471605"
-X-IronPort-AV: E=Sophos;i="5.91,214,1647327600"; d="scan'208";a="269471605"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 May 2022 03:43:17 -0700
+ bh=EWrXKJZWvwWAIwj33HMW+//7HOmM4Wk2K1YPXQzj7IA=;
+ b=DGIPwvSCXq4Dp90jDYjSvuYthRzFU48LTPM0PMcIHD3tS6wTgOi5ymVx
+ Nr8MD/YEIgj5xzC7p/AqHpnEldrv0VDi42fNiyiPc4xJohydjgpLjZ+CN
+ 6vHlExWbAwjrdiFRDIZYldi+IiXkVfkOOIIgbbo1qm3EHx38gXkF2YHlt
+ +rYSLNTgCzK3u4Qd3RzGdpqoJzCW3sgYozuTAEhSBmuYem+Zw1/tB1D1+
+ 7i4YxuB3C8Lq+G4eb2yMf9JnAVG5pYUik0h0EbQw0Bx1pONO6aSzy9+q8
+ EE9F2yC4VXK1k9QKcSuuwloJlAQ8qpQJiXlXEfRQgkVbnNwlwJtt6O9ZS Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10342"; a="249236174"
+X-IronPort-AV: E=Sophos;i="5.91,214,1647327600"; d="scan'208";a="249236174"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 May 2022 03:43:20 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,214,1647327600"; d="scan'208";a="552774804"
+X-IronPort-AV: E=Sophos;i="5.91,214,1647327600"; d="scan'208";a="657597321"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.51])
- by orsmga002.jf.intel.com with SMTP; 10 May 2022 03:43:15 -0700
+ by FMSMGA003.fm.intel.com with SMTP; 10 May 2022 03:43:18 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 10 May 2022 13:43:12 +0300
+ Tue, 10 May 2022 13:43:17 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 10 May 2022 13:42:37 +0300
-Message-Id: <20220510104242.6099-11-ville.syrjala@linux.intel.com>
+Date: Tue, 10 May 2022 13:42:38 +0300
+Message-Id: <20220510104242.6099-12-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220510104242.6099-1-ville.syrjala@linux.intel.com>
 References: <20220510104242.6099-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 10/15] drm/i915/bios: Split
- parse_driver_features() into two parts
+Subject: [Intel-gfx] [PATCH 11/15] drm/i915/bios: Split VBT parsing to
+ global vs. panel specific parts
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,46 +65,91 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-We use the "driver features" block for two different kinds
-of data: global data, and per panel data. Split the function
-into two parts along that line so that we can start doing the
-parsing in two different locations.
+Parsing the panel specific data (anything that depends on panel_type)
+from VBT is currently happening too early. Split the whole thing
+into global vs. panel specific parts so that we can start doing
+the panel specific parsing at a later time.
+
+v2: Clarify that this is about panel_type (Jani)
+    Split out the leak checks (Jani)
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bios.c | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+ drivers/gpu/drm/i915/display/intel_bios.c    | 26 +++++++++++---------
+ drivers/gpu/drm/i915/display/intel_bios.h    |  1 +
+ drivers/gpu/drm/i915/display/intel_display.c |  1 +
+ 3 files changed, 17 insertions(+), 11 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index 0c5638f5b72b..2ac0e91a5587 100644
+index 2ac0e91a5587..b1e34b02fdc2 100644
 --- a/drivers/gpu/drm/i915/display/intel_bios.c
 +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -1181,6 +1181,16 @@ parse_driver_features(struct drm_i915_private *i915)
- 		    driver->lvds_config != BDB_DRIVER_FEATURE_INT_SDVO_LVDS)
- 			i915->vbt.int_lvds_support = 0;
- 	}
+@@ -2962,18 +2962,7 @@ void intel_bios_init(struct drm_i915_private *i915)
+ 	/* Grab useful general definitions */
+ 	parse_general_features(i915);
+ 	parse_general_definitions(i915);
+-	parse_panel_options(i915);
+-	parse_generic_dtd(i915);
+-	parse_lfp_data(i915);
+-	parse_lfp_backlight(i915);
+-	parse_sdvo_panel_data(i915);
+ 	parse_driver_features(i915);
+-	parse_panel_driver_features(i915);
+-	parse_power_conservation_features(i915);
+-	parse_edp(i915);
+-	parse_psr(i915);
+-	parse_mipi_config(i915);
+-	parse_mipi_sequence(i915);
+ 
+ 	/* Depends on child device list */
+ 	parse_compression_parameters(i915);
+@@ -2992,6 +2981,21 @@ void intel_bios_init(struct drm_i915_private *i915)
+ 	kfree(oprom_vbt);
+ }
+ 
++void intel_bios_init_panel(struct drm_i915_private *i915)
++{
++	parse_panel_options(i915);
++	parse_generic_dtd(i915);
++	parse_lfp_data(i915);
++	parse_lfp_backlight(i915);
++	parse_sdvo_panel_data(i915);
++	parse_panel_driver_features(i915);
++	parse_power_conservation_features(i915);
++	parse_edp(i915);
++	parse_psr(i915);
++	parse_mipi_config(i915);
++	parse_mipi_sequence(i915);
 +}
 +
-+static void
-+parse_panel_driver_features(struct drm_i915_private *i915)
-+{
-+	const struct bdb_driver_features *driver;
-+
-+	driver = find_section(i915, BDB_DRIVER_FEATURES);
-+	if (!driver)
-+		return;
+ /**
+  * intel_bios_driver_remove - Free any resources allocated by intel_bios_init()
+  * @i915: i915 device instance
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.h b/drivers/gpu/drm/i915/display/intel_bios.h
+index 4709c4d29805..c744d75fa435 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.h
++++ b/drivers/gpu/drm/i915/display/intel_bios.h
+@@ -230,6 +230,7 @@ struct mipi_pps_data {
+ } __packed;
  
- 	if (i915->vbt.version < 228) {
- 		drm_dbg_kms(&i915->drm, "DRRS State Enabled:%d\n",
-@@ -2958,6 +2968,7 @@ void intel_bios_init(struct drm_i915_private *i915)
- 	parse_lfp_backlight(i915);
- 	parse_sdvo_panel_data(i915);
- 	parse_driver_features(i915);
-+	parse_panel_driver_features(i915);
- 	parse_power_conservation_features(i915);
- 	parse_edp(i915);
- 	parse_psr(i915);
+ void intel_bios_init(struct drm_i915_private *dev_priv);
++void intel_bios_init_panel(struct drm_i915_private *dev_priv);
+ void intel_bios_driver_remove(struct drm_i915_private *dev_priv);
+ bool intel_bios_is_valid_vbt(const void *buf, size_t size);
+ bool intel_bios_is_tv_present(struct drm_i915_private *dev_priv);
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 806d50b302ab..e384db157f34 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -9580,6 +9580,7 @@ int intel_modeset_init_noirq(struct drm_i915_private *i915)
+ 	}
+ 
+ 	intel_bios_init(i915);
++	intel_bios_init_panel(i915);
+ 
+ 	ret = intel_vga_register(i915);
+ 	if (ret)
 -- 
 2.35.1
 
