@@ -1,49 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FB02521CB7
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 May 2022 16:44:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3445B522052
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 May 2022 17:56:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 97F7110E12D;
-	Tue, 10 May 2022 14:44:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1302310E159;
+	Tue, 10 May 2022 15:56:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 43E5410E12D
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 May 2022 14:44:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1652193843; x=1683729843;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=PVZpj/SLQ+d+HILcfk2UZRZvhZrXO3e7BrkYc0sRJ2k=;
- b=UXt3ejB8IkZe+PHD2YQfEV5h/LdaEgLADUTT+L/rohbFnxSe8btfnHRQ
- RL1J045K5STosLnvA404HODeXHKC/4QLnkZyDrMmcPPD0YbRItz7zn5t6
- a1O+nP9WtsPfzUbY/5sOntFJAOEkrfG9HYL7CbqICDDdEnDDSK5DoP9k5
- wYfK0gYcV17qKBtoSDIhBrlXhGAfHGO0UFxXeWEbuCant/TgggRQQN1hz
- GfoFvMt5SWSRY8nwon9xUvBqjrdO+DkxQkI13usTXaMkkL0vGKCVcmi2y
- kRQAoaxsVBHi0kB9jX65eRrYHPKxcFnivFj07UMUePAiueA4QqCKIPaJ+ g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10342"; a="251442069"
-X-IronPort-AV: E=Sophos;i="5.91,214,1647327600"; d="scan'208";a="251442069"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 May 2022 07:44:02 -0700
-X-IronPort-AV: E=Sophos;i="5.91,214,1647327600"; d="scan'208";a="565673056"
-Received: from lab-ah.igk.intel.com ([10.91.215.196])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 May 2022 07:44:01 -0700
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 10 May 2022 16:43:55 +0200
-Message-Id: <20220510144355.2503681-1-andrzej.hajda@intel.com>
-X-Mailer: git-send-email 2.25.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3206110E159;
+ Tue, 10 May 2022 15:56:50 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 28844A7DFB;
+ Tue, 10 May 2022 15:56:50 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/display: disable HPD workers before
- display driver unregister
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Date: Tue, 10 May 2022 15:56:50 -0000
+Message-ID: <165219821013.26422.2819419966696908235@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220510114957.406070-1-imre.deak@intel.com>
+In-Reply-To: <20220510114957.406070-1-imre.deak@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/i915=3A_Fix_=27mixing_different_enum_types=27_warnings_in_i?=
+ =?utf-8?q?ntel=5Fdisplay=5Fpower=2Ec?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,81 +41,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Handling HPD during driver removal is pointless, and can cause different
-use-after-free/concurrency issues:
-1. Setup of deffered fbdev after fbdev unregistration.
-2. Access to DP-AUX after DP-AUX removal.
+== Series Details ==
 
-Below stacktraces of both cases observed on CI:
+Series: drm/i915: Fix 'mixing different enum types' warnings in intel_display_power.c
+URL   : https://patchwork.freedesktop.org/series/103803/
+State : warning
 
-[272.634530] general protection fault, probably for non-canonical address 0x6b6b6b6b6b6b6b6b: 0000 [#1] PREEMPT SMP NOPTI
-[272.634536] CPU: 0 PID: 6030 Comm: i915_selftest Tainted: G     U            5.18.0-rc5-CI_DRM_11603-g12dccf4f5eef+ #1
-[272.634541] Hardware name: Intel Corporation Raptor Lake Client Platform/RPL-S ADP-S DDR5 UDIMM CRB, BIOS RPLSFWI1.R00.2397.A01.2109300731 09/30/2021
-[272.634545] RIP: 0010:fb_do_apertures_overlap.part.14+0x26/0x60
-...
-[272.634582] Call Trace:
-[272.634583]  <TASK>
-[272.634585]  do_remove_conflicting_framebuffers+0x59/0xa0
-[272.634589]  remove_conflicting_framebuffers+0x2d/0xc0
-[272.634592]  remove_conflicting_pci_framebuffers+0xc8/0x110
-[272.634595]  drm_aperture_remove_conflicting_pci_framebuffers+0x52/0x70
-[272.634604]  i915_driver_probe+0x63a/0xdd0 [i915]
+== Summary ==
 
-[283.405824] cpu_latency_qos_update_request called for unknown object
-[283.405866] WARNING: CPU: 2 PID: 240 at kernel/power/qos.c:296 cpu_latency_qos_update_request+0x2d/0x100
-[283.405912] CPU: 2 PID: 240 Comm: kworker/u64:9 Not tainted 5.18.0-rc6-Patchwork_103738v3-g1672d1c43e43+ #1
-[283.405915] Hardware name: Intel Corporation Raptor Lake Client Platform/RPL-S ADP-S DDR5 UDIMM CRB, BIOS RPLSFWI1.R00.2397.A01.2109300731 09/30/2021
-[283.405916] Workqueue: i915-dp i915_digport_work_func [i915]
-[283.406020] RIP: 0010:cpu_latency_qos_update_request+0x2d/0x100
-...
-[283.406040] Call Trace:
-[283.406041]  <TASK>
-[283.406044]  intel_dp_aux_xfer+0x60e/0x8e0 [i915]
-[283.406131]  ? finish_swait+0x80/0x80
-[283.406139]  intel_dp_aux_transfer+0xc5/0x2b0 [i915]
-[283.406218]  drm_dp_dpcd_access+0x79/0x130 [drm_display_helper]
-[283.406227]  drm_dp_dpcd_read+0xe2/0xf0 [drm_display_helper]
-[283.406233]  intel_dp_hpd_pulse+0x134/0x570 [i915]
-[283.406308]  ? __down_killable+0x70/0x140
-[283.406313]  i915_digport_work_func+0xba/0x150 [i915]
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
+-O:drivers/gpu/drm/i915/display/intel_display_power.c:2431:34:    int enum port
+-O:drivers/gpu/drm/i915/display/intel_display_power.c:2431:34:    unsigned int enum intel_display_power_domain
+-O:drivers/gpu/drm/i915/display/intel_display_power.c:2431:34: warning: mixing different enum types:
+-O:drivers/gpu/drm/i915/display/intel_display_power.c:2442:37:    int enum port
+-O:drivers/gpu/drm/i915/display/intel_display_power.c:2442:37:    unsigned int enum intel_display_power_domain
+-O:drivers/gpu/drm/i915/display/intel_display_power.c:2442:37: warning: mixing different enum types:
+-O:drivers/gpu/drm/i915/display/intel_display_power.c:2468:43:    unsigned int enum aux_ch
+-O:drivers/gpu/drm/i915/display/intel_display_power.c:2468:43:    unsigned int enum intel_display_power_domain
+-O:drivers/gpu/drm/i915/display/intel_display_power.c:2468:43: warning: mixing different enum types:
+-O:drivers/gpu/drm/i915/display/intel_display_power.c:2479:35:    unsigned int enum aux_ch
+-O:drivers/gpu/drm/i915/display/intel_display_power.c:2479:35:    unsigned int enum intel_display_power_domain
+-O:drivers/gpu/drm/i915/display/intel_display_power.c:2479:35: warning: mixing different enum types:
 
-Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
----
-Hi all,
-
-This is my 3rd attempt to solve some old CI bug[1].
-The first one caused issues in kms code [2],
-2nd one revealed that not only fbdev does not like HPD on removal [3].
-I hope this one will solve things definitely.
-
-Moreover this is quite rare bug, but due to specific configuration
-of one of CI machines it appears there very frequently.
-
-[1]: https://gitlab.freedesktop.org/drm/intel/-/issues/5329
-[2]: https://patchwork.freedesktop.org/series/103621/
-[3]: https://patchwork.freedesktop.org/series/103738/
-
-Regards
-Andrzej
----
- drivers/gpu/drm/i915/display/intel_display.c | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 806d50b302ab92..d21bbcce80b016 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -10584,6 +10584,7 @@ void intel_display_driver_unregister(struct drm_i915_private *i915)
- 	if (!HAS_DISPLAY(i915))
- 		return;
- 
-+	intel_hpd_cancel_work(i915);
- 	intel_fbdev_unregister(i915);
- 	intel_audio_deinit(i915);
- 
--- 
-2.25.1
 
