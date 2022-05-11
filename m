@@ -1,58 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76D51523524
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 May 2022 16:15:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 157A252354C
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 May 2022 16:22:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9CE2D10ED64;
-	Wed, 11 May 2022 14:15:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3BA4910FAF3;
+	Wed, 11 May 2022 14:22:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0774510ED64;
- Wed, 11 May 2022 14:14:59 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 83B0B10FAF4
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 May 2022 14:22:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1652278500; x=1683814500;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=m8RHUUusrXRQGgbKW7ouwno1bT7EojhOocWKVyW7Ilk=;
- b=HobvJ2YzbJp5BY6GBX1P9i8sWNs8Kk1yRlMKgxoGKFexT10GhHWRdtgN
- qxO7wCd3mpsMTrLBH1MdOy3VmFEplEB0OJCn9MAyP2yFn2t7+ncAAInE4
- tg6PAS+iX7S3anvilURFzXK40CgSw5fgUCpPmzICDpSNvh4depWsGHRa3
- eQZSPxmjo3rRbTFtMw8xHbN2GzVJuzE1hcOwaBoOx5/EtJBPlJ+/ZautC
- vR3egNIhkjFkmpMP257r3dOFZwcSSF5gLbSMcEap8WFMetq2i67Id0YsI
- RhdokhzCpBJov+OPK7kpb75xrDyPrRrchne+/mZ0reYBa4hcfDp1eWkT2 w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10343"; a="356133699"
-X-IronPort-AV: E=Sophos;i="5.91,217,1647327600"; d="scan'208";a="356133699"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2022 07:14:59 -0700
-X-IronPort-AV: E=Sophos;i="5.91,217,1647327600"; d="scan'208";a="814493539"
-Received: from mstribae-mobl1.ger.corp.intel.com (HELO [10.249.254.135])
- ([10.249.254.135])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2022 07:14:56 -0700
-Message-ID: <4b4e59cf422819cd9dd18c7c73b7869b99ea4c65.camel@linux.intel.com>
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Robert Beckett <bob.beckett@collabora.com>, 
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, Jani
- Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>,  Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, David Airlie
- <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>
-Date: Wed, 11 May 2022 16:14:54 +0200
-In-Reply-To: <20220503191316.1145124-5-bob.beckett@collabora.com>
-References: <20220503191316.1145124-1-bob.beckett@collabora.com>
- <20220503191316.1145124-5-bob.beckett@collabora.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4 (3.40.4-3.fc34) 
+ t=1652278951; x=1683814951;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=zdafCQbEtPBQMJbgVHcEcoHZqLuYTfWGPBo6LKpdLvs=;
+ b=hyra/xPbQI3mFn0HZ486d67GKEM88joBc+RHA4PELpMgHDv9NusrWr6t
+ yotQdQ2dIkoV4YY+qKCpFFgy7hIuTxJkAnjHEYPAEzC64Dq+W6jfD3Fjx
+ xIvHs9YQor1PkxTKr6Nfqpv5Y3MxWnTx6gQ3bjA7iR6xApC2QAnWvzJ3J
+ WtGlaliswrEYX4t1ZKjgziUcid+ESMr10+xqzMnr5xXYCcWVue8vEb6Ad
+ FO09NO+N8QZ23DKtXgo0NsgaokSJyTcP9YFt7zYkP9S9lxvwuc1mHOaex
+ Z5dlwDfB9DXIgEmADZEy0wJJZjpOU/RV05yFQsNTlCHjKvo/gk7DprfSl Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10343"; a="267299453"
+X-IronPort-AV: E=Sophos;i="5.91,217,1647327600"; d="scan'208";a="267299453"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 May 2022 07:22:30 -0700
+X-IronPort-AV: E=Sophos;i="5.91,217,1647327600"; d="scan'208";a="739238569"
+Received: from nirmoyda-desk.igk.intel.com ([10.102.13.19])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 May 2022 07:22:29 -0700
+From: Nirmoy Das <nirmoy.das@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 11 May 2022 16:22:22 +0200
+Message-Id: <20220511142222.2325-1-nirmoy.das@intel.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 4/4] drm/i915: internal buffers use ttm
- backend
+Subject: [Intel-gfx] [PATCH] drm/i915: Enable Tile4 tiling mode
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,529 +53,378 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matthew Auld <matthew.auld@intel.com>, linux-kernel@vger.kernel.org
+Cc: krishnaiah.bommu@intel.com, matthew.auld@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 2022-05-03 at 19:13 +0000, Robert Beckett wrote:
-> refactor internal buffer backend to allocate volatile pages via
-> ttm pool allocator
-> 
-> Signed-off-by: Robert Beckett <bob.beckett@collabora.com>
-> ---
->  drivers/gpu/drm/i915/gem/i915_gem_internal.c | 264 ++++++++---------
-> --
->  drivers/gpu/drm/i915/gem/i915_gem_internal.h |   5 -
->  drivers/gpu/drm/i915/gem/i915_gem_ttm.c      |  12 +-
->  drivers/gpu/drm/i915/gem/i915_gem_ttm.h      |  12 +-
->  4 files changed, 125 insertions(+), 168 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_internal.c
-> b/drivers/gpu/drm/i915/gem/i915_gem_internal.c
-> index c698f95af15f..815ec9466cc0 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_internal.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_internal.c
-> @@ -4,156 +4,119 @@
->   * Copyright © 2014-2016 Intel Corporation
->   */
->  
-> -#include <linux/scatterlist.h>
-> -#include <linux/slab.h>
-> -#include <linux/swiotlb.h>
-> -
-> +#include <drm/ttm/ttm_bo_driver.h>
-> +#include <drm/ttm/ttm_placement.h>
-> +#include "drm/ttm/ttm_bo_api.h"
-> +#include "gem/i915_gem_internal.h"
-> +#include "gem/i915_gem_region.h"
-> +#include "gem/i915_gem_ttm.h"
->  #include "i915_drv.h"
-> -#include "i915_gem.h"
-> -#include "i915_gem_internal.h"
-> -#include "i915_gem_object.h"
-> -#include "i915_scatterlist.h"
-> -#include "i915_utils.h"
-> -
-> -#define QUIET (__GFP_NORETRY | __GFP_NOWARN)
-> -#define MAYFAIL (__GFP_RETRY_MAYFAIL | __GFP_NOWARN)
-> -
-> -static void internal_free_pages(struct sg_table *st)
-> -{
-> -       struct scatterlist *sg;
-> -
-> -       for (sg = st->sgl; sg; sg = __sg_next(sg)) {
-> -               if (sg_page(sg))
-> -                       __free_pages(sg_page(sg), get_order(sg-
-> >length));
-> -       }
-> -
-> -       sg_free_table(st);
-> -       kfree(st);
-> -}
->  
-> -static int i915_gem_object_get_pages_internal(struct
-> drm_i915_gem_object *obj)
-> +static int i915_internal_get_pages(struct drm_i915_gem_object *obj)
->  {
-> -       struct drm_i915_private *i915 = to_i915(obj->base.dev);
-> -       struct sg_table *st;
-> -       struct scatterlist *sg;
-> -       unsigned int sg_page_sizes;
-> -       unsigned int npages;
-> -       int max_order;
-> -       gfp_t gfp;
-> -
-> -       max_order = MAX_ORDER;
-> -#ifdef CONFIG_SWIOTLB
-> -       if (is_swiotlb_active(obj->base.dev->dev)) {
-> -               unsigned int max_segment;
-> -
-> -               max_segment = swiotlb_max_segment();
-> -               if (max_segment) {
-> -                       max_segment = max_t(unsigned int,
-> max_segment,
-> -                                           PAGE_SIZE) >> PAGE_SHIFT;
-> -                       max_order = min(max_order,
-> ilog2(max_segment));
-> -               }
-> +       struct ttm_buffer_object *bo = i915_gem_to_ttm(obj);
-> +       struct ttm_operation_ctx ctx = {
-> +               .interruptible = true,
-> +               .no_wait_gpu = false,
-> +       };
-> +       struct ttm_place place = {
-> +               .fpfn = 0,
-> +               .lpfn = 0,
-> +               .mem_type = I915_PL_SYSTEM,
-> +               .flags = 0,
-> +       };
-> +       struct ttm_placement placement = {
-> +               .num_placement = 1,
-> +               .placement = &place,
-> +               .num_busy_placement = 0,
-> +               .busy_placement = NULL,
-> +       };
-> +       int ret;
-> +
-> +       ret = ttm_bo_validate(bo, &placement, &ctx);
-> +       if (ret) {
-> +               ret = i915_ttm_err_to_gem(ret);
-> +               return ret;
->         }
-> -#endif
->  
-> -       gfp = GFP_KERNEL | __GFP_HIGHMEM | __GFP_RECLAIMABLE;
-> -       if (IS_I965GM(i915) || IS_I965G(i915)) {
-> -               /* 965gm cannot relocate objects above 4GiB. */
-> -               gfp &= ~__GFP_HIGHMEM;
-> -               gfp |= __GFP_DMA32;
+From: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
 
+Enable Tile4 tiling mode on platform that supports
+Tile4 but no TileY like DG2.
 
-It looks like we're losing this restriction?
+Signed-off-by: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
+Co-developed-by: Nirmoy Das <nirmoy.das@intel.com>
+Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+---
+ .../i915/gem/selftests/i915_gem_client_blt.c  | 238 ++++++++++++++----
+ drivers/gpu/drm/i915/gt/intel_gpu_commands.h  |  22 ++
+ 2 files changed, 214 insertions(+), 46 deletions(-)
 
-There is a flag to ttm_device_init() to make TTM only do __GFP_DMA32
-allocations.
-
-> +       if (bo->ttm && !ttm_tt_is_populated(bo->ttm)) {
-> +               ret = ttm_tt_populate(bo->bdev, bo->ttm, &ctx);
-> +               if (ret)
-> +                       return ret;
->         }
->  
-> -create_st:
-> -       st = kmalloc(sizeof(*st), GFP_KERNEL);
-> -       if (!st)
-> -               return -ENOMEM;
-> +       if (!i915_gem_object_has_pages(obj)) {
-> +               struct i915_refct_sgt *rsgt =
-> +                       i915_ttm_resource_get_st(obj, bo->resource);
->  
-> -       npages = obj->base.size / PAGE_SIZE;
-> -       if (sg_alloc_table(st, npages, GFP_KERNEL)) {
-> -               kfree(st);
-> -               return -ENOMEM;
-> -       }
-> +               if (IS_ERR(rsgt))
-> +                       return PTR_ERR(rsgt);
->  
-> -       sg = st->sgl;
-> -       st->nents = 0;
-> -       sg_page_sizes = 0;
-> -
-> -       do {
-> -               int order = min(fls(npages) - 1, max_order);
-> -               struct page *page;
-> -
-> -               do {
-> -                       page = alloc_pages(gfp | (order ? QUIET :
-> MAYFAIL),
-> -                                          order);
-> -                       if (page)
-> -                               break;
-> -                       if (!order--)
-> -                               goto err;
-> -
-> -                       /* Limit subsequent allocations as well */
-> -                       max_order = order;
-> -               } while (1);
-> -
-> -               sg_set_page(sg, page, PAGE_SIZE << order, 0);
-> -               sg_page_sizes |= PAGE_SIZE << order;
-> -               st->nents++;
-> -
-> -               npages -= 1 << order;
-> -               if (!npages) {
-> -                       sg_mark_end(sg);
-> -                       break;
-> -               }
-> -
-> -               sg = __sg_next(sg);
-> -       } while (1);
-> -
-> -       if (i915_gem_gtt_prepare_pages(obj, st)) {
-> -               /* Failed to dma-map try again with single page sg
-> segments */
-> -               if (get_order(st->sgl->length)) {
-> -                       internal_free_pages(st);
-> -                       max_order = 0;
-> -                       goto create_st;
-> -               }
-> -               goto err;
-> +               GEM_BUG_ON(obj->mm.rsgt);
-> +               obj->mm.rsgt = rsgt;
-> +               __i915_gem_object_set_pages(obj, &rsgt->table,
-> +                                           i915_sg_dma_sizes(rsgt-
-> >table.sgl));
->         }
->  
-> -       __i915_gem_object_set_pages(obj, st, sg_page_sizes);
-> +       GEM_BUG_ON(bo->ttm && ((obj->base.size >> PAGE_SHIFT) < bo-
-> >ttm->num_pages));
-> +       i915_ttm_adjust_lru(obj);
->  
->         return 0;
-> +}
->  
-> -err:
-> -       sg_set_page(sg, NULL, 0, 0);
-> -       sg_mark_end(sg);
-> -       internal_free_pages(st);
-> +static const struct drm_i915_gem_object_ops
-> i915_gem_object_internal_ops = {
-> +       .name = "i915_gem_object_ttm",
-> +       .flags = I915_GEM_OBJECT_IS_SHRINKABLE,
->  
-> -       return -ENOMEM;
-> -}
-> +       .get_pages = i915_internal_get_pages,
-> +       .put_pages = i915_ttm_put_pages,
-> +       .adjust_lru = i915_ttm_adjust_lru,
-> +       .delayed_free = i915_ttm_delayed_free,
-> +};
->  
-> -static void i915_gem_object_put_pages_internal(struct
-> drm_i915_gem_object *obj,
-> -                                              struct sg_table
-> *pages)
-> +void i915_ttm_internal_bo_destroy(struct ttm_buffer_object *bo)
->  {
-> -       i915_gem_gtt_finish_pages(obj, pages);
-> -       internal_free_pages(pages);
-> +       struct drm_i915_gem_object *obj = i915_ttm_to_gem(bo);
->  
-> -       obj->mm.dirty = false;
-> +       mutex_destroy(&obj->ttm.get_io_page.lock);
->  
-> -       __start_cpu_write(obj);
-> -}
-> +       if (obj->ttm.created) {
-> +               /* This releases all gem object bindings to the
-> backend. */
-> +               __i915_gem_free_object(obj);
->  
-> -static const struct drm_i915_gem_object_ops
-> i915_gem_object_internal_ops = {
-> -       .name = "i915_gem_object_internal",
-> -       .flags = I915_GEM_OBJECT_IS_SHRINKABLE,
-> -       .get_pages = i915_gem_object_get_pages_internal,
-> -       .put_pages = i915_gem_object_put_pages_internal,
-> -};
-> +               call_rcu(&obj->rcu, __i915_gem_free_object_rcu);
-> +       } else {
-> +               __i915_gem_object_fini(obj);
-> +       }
-> +}
->  
-> +/**
-> + * i915_gem_object_create_internal: create an object with volatile
-> pages
-> + * @i915: the i915 device
-> + * @size: the size in bytes of backing storage to allocate for the
-> object
-> + *
-> + * Creates a new object that wraps some internal memory for private
-> use.
-> + * This object is not backed by swappable storage, and as such its
-> contents
-> + * are volatile and only valid whilst pinned. If the object is
-> reaped by the
-> + * shrinker, its pages and data will be discarded. Equally, it is
-> not a full
-> + * GEM object and so not valid for access from userspace. This makes
-> it useful
-> + * for hardware interfaces like ringbuffers (which are pinned from
-> the time
-> + * the request is written to the time the hardware stops accessing
-> it), but
-> + * not for contexts (which need to be preserved when not active for
-> later
-> + * reuse). Note that it is not cleared upon allocation.
-> + */
->  struct drm_i915_gem_object *
-> -__i915_gem_object_create_internal(struct drm_i915_private *i915,
-> -                                 const struct
-> drm_i915_gem_object_ops *ops,
-> -                                 phys_addr_t size)
-> +i915_gem_object_create_internal(struct drm_i915_private *i915,
-> +                               phys_addr_t size)
->  {
->         static struct lock_class_key lock_class;
->         struct drm_i915_gem_object *obj;
->         unsigned int cache_level;
-> +       struct ttm_operation_ctx ctx = {
-> +               .interruptible = true,
-> +               .no_wait_gpu = false,
-> +       };
-> +       int ret;
->  
->         GEM_BUG_ON(!size);
->         GEM_BUG_ON(!IS_ALIGNED(size, PAGE_SIZE));
-> @@ -166,45 +129,34 @@ __i915_gem_object_create_internal(struct
-> drm_i915_private *i915,
->                 return ERR_PTR(-ENOMEM);
->  
->         drm_gem_private_object_init(&i915->drm, &obj->base, size);
-> -       i915_gem_object_init(obj, ops, &lock_class, 0);
-> -       obj->mem_flags |= I915_BO_FLAG_STRUCT_PAGE;
-> +       i915_gem_object_init(obj, &i915_gem_object_internal_ops,
-> &lock_class,
-> +                            I915_BO_ALLOC_VOLATILE);
-> +
-> +       INIT_LIST_HEAD(&obj->mm.region_link);
-> +
-> +       INIT_RADIX_TREE(&obj->ttm.get_io_page.radix, GFP_KERNEL |
-> __GFP_NOWARN);
-> +       mutex_init(&obj->ttm.get_io_page.lock);
->  
-> -       /*
-> -        * Mark the object as volatile, such that the pages are
-> marked as
-> -        * dontneed whilst they are still pinned. As soon as they are
-> unpinned
-> -        * they are allowed to be reaped by the shrinker, and the
-> caller is
-> -        * expected to repopulate - the contents of this object are
-> only valid
-> -        * whilst active and pinned.
-> -        */
-> -       i915_gem_object_set_volatile(obj);
-> +       obj->base.vma_node.driver_private = i915_gem_to_ttm(obj);
->  
-> +       ret = ttm_bo_init_reserved(&i915->bdev, i915_gem_to_ttm(obj),
-> size,
-> +                                  ttm_bo_type_kernel,
-> i915_ttm_sys_placement(),
-> +                                  0, &ctx, NULL, NULL,
-> i915_ttm_internal_bo_destroy);
-> +       if (ret) {
-> +               ret = i915_ttm_err_to_gem(ret);
-> +               i915_gem_object_free(obj);
-> +               return ERR_PTR(ret);
-> +       }
-> +
-> +       obj->ttm.created = true;
->         obj->read_domains = I915_GEM_DOMAIN_CPU;
->         obj->write_domain = I915_GEM_DOMAIN_CPU;
-> -
-> +       obj->mem_flags &= ~I915_BO_FLAG_IOMEM;
-> +       obj->mem_flags |= I915_BO_FLAG_STRUCT_PAGE;
->         cache_level = HAS_LLC(i915) ? I915_CACHE_LLC :
-> I915_CACHE_NONE;
->         i915_gem_object_set_cache_coherency(obj, cache_level);
-> +       i915_gem_object_unlock(obj);
->  
->         return obj;
->  }
->  
-> -/**
-> - * i915_gem_object_create_internal: create an object with volatile
-> pages
-> - * @i915: the i915 device
-> - * @size: the size in bytes of backing storage to allocate for the
-> object
-> - *
-> - * Creates a new object that wraps some internal memory for private
-> use.
-> - * This object is not backed by swappable storage, and as such its
-> contents
-> - * are volatile and only valid whilst pinned. If the object is
-> reaped by the
-> - * shrinker, its pages and data will be discarded. Equally, it is
-> not a full
-> - * GEM object and so not valid for access from userspace. This makes
-> it useful
-> - * for hardware interfaces like ringbuffers (which are pinned from
-> the time
-> - * the request is written to the time the hardware stops accessing
-> it), but
-> - * not for contexts (which need to be preserved when not active for
-> later
-> - * reuse). Note that it is not cleared upon allocation.
-> - */
-> -struct drm_i915_gem_object *
-> -i915_gem_object_create_internal(struct drm_i915_private *i915,
-> -                               phys_addr_t size)
-> -{
-> -       return __i915_gem_object_create_internal(i915,
-> &i915_gem_object_internal_ops, size);
-
-While we don't have a TTM shmem backend ready yet for internal,
-
-Did you consider setting up just yet another region,
-INTEL_REGION_INTERNAL,
-.class = INTEL_MEMORY_SYSTEM and
-.instance = 1,
-
-And make it create a TTM system region on integrated, and use
-same region as INTEL_REGION_SMEM on dgfx.
-
-I think ttm should automatically map that to I915_PL_SYSTEM and the
-backwards mapping in i915_ttm_region() should never get called since
-the object is never moved.
-
-Then I figure it should suffice to just call
-__i915_gem_ttm_object_init() and we could drop a lot of code.
-
-/Thomas
-
-
-
-
-> -}
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_internal.h
-> b/drivers/gpu/drm/i915/gem/i915_gem_internal.h
-> index 6664e06112fc..524e1042b20f 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_internal.h
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_internal.h
-> @@ -15,9 +15,4 @@ struct drm_i915_private;
->  struct drm_i915_gem_object *
->  i915_gem_object_create_internal(struct drm_i915_private *i915,
->                                 phys_addr_t size);
-> -struct drm_i915_gem_object *
-> -__i915_gem_object_create_internal(struct drm_i915_private *i915,
-> -                                 const struct
-> drm_i915_gem_object_ops *ops,
-> -                                 phys_addr_t size);
-> -
->  #endif /* __I915_GEM_INTERNAL_H__ */
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> index fdb3a1c18cb6..92195ead8c11 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> @@ -83,7 +83,7 @@ struct ttm_placement *i915_ttm_sys_placement(void)
->         return &i915_sys_placement;
->  }
->  
-> -static int i915_ttm_err_to_gem(int err)
-> +int i915_ttm_err_to_gem(int err)
->  {
->         /* Fastpath */
->         if (likely(!err))
-> @@ -745,8 +745,8 @@ struct ttm_device_funcs *i915_ttm_driver(void)
->         return &i915_ttm_bo_driver;
->  }
->  
-> -static int __i915_ttm_get_pages(struct drm_i915_gem_object *obj,
-> -                               struct ttm_placement *placement)
-> +int __i915_ttm_get_pages(struct drm_i915_gem_object *obj,
-> +                        struct ttm_placement *placement)
->  {
->         struct ttm_buffer_object *bo = i915_gem_to_ttm(obj);
->         struct ttm_operation_ctx ctx = {
-> @@ -871,8 +871,8 @@ static int i915_ttm_migrate(struct
-> drm_i915_gem_object *obj,
->         return __i915_ttm_migrate(obj, mr, obj->flags);
->  }
->  
-> -static void i915_ttm_put_pages(struct drm_i915_gem_object *obj,
-> -                              struct sg_table *st)
-> +void i915_ttm_put_pages(struct drm_i915_gem_object *obj,
-> +                       struct sg_table *st)
->  {
->         /*
->          * We're currently not called from a shrinker, so put_pages()
-> @@ -995,7 +995,7 @@ void i915_ttm_adjust_lru(struct
-> drm_i915_gem_object *obj)
->   * it's not idle, and using the TTM destroyed list handling could
-> help us
->   * benefit from that.
->   */
-> -static void i915_ttm_delayed_free(struct drm_i915_gem_object *obj)
-> +void i915_ttm_delayed_free(struct drm_i915_gem_object *obj)
->  {
->         GEM_BUG_ON(!obj->ttm.created);
->  
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.h
-> b/drivers/gpu/drm/i915/gem/i915_gem_ttm.h
-> index 73e371aa3850..06701c46d8e2 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.h
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.h
-> @@ -26,6 +26,7 @@ i915_gem_to_ttm(struct drm_i915_gem_object *obj)
->   * i915 ttm gem object destructor. Internal use only.
->   */
->  void i915_ttm_bo_destroy(struct ttm_buffer_object *bo);
-> +void i915_ttm_internal_bo_destroy(struct ttm_buffer_object *bo);
->  
->  /**
->   * i915_ttm_to_gem - Convert a struct ttm_buffer_object to an
-> embedding
-> @@ -37,8 +38,10 @@ void i915_ttm_bo_destroy(struct ttm_buffer_object
-> *bo);
->  static inline struct drm_i915_gem_object *
->  i915_ttm_to_gem(struct ttm_buffer_object *bo)
->  {
-> -       if (bo->destroy != i915_ttm_bo_destroy)
-> +       if (bo->destroy != i915_ttm_bo_destroy &&
-> +           bo->destroy != i915_ttm_internal_bo_destroy) {
->                 return NULL;
-> +       }
->  
->         return container_of(bo, struct drm_i915_gem_object,
-> __do_not_access);
->  }
-> @@ -66,6 +69,7 @@ i915_ttm_resource_get_st(struct drm_i915_gem_object
-> *obj,
->                          struct ttm_resource *res);
->  
->  void i915_ttm_adjust_lru(struct drm_i915_gem_object *obj);
-> +void i915_ttm_delayed_free(struct drm_i915_gem_object *obj);
->  
->  int i915_ttm_purge(struct drm_i915_gem_object *obj);
->  
-> @@ -92,4 +96,10 @@ static inline bool i915_ttm_cpu_maps_iomem(struct
-> ttm_resource *mem)
->         /* Once / if we support GGTT, this is also false for cached
-> ttm_tts */
->         return mem->mem_type != I915_PL_SYSTEM;
->  }
-> +
-> +int __i915_ttm_get_pages(struct drm_i915_gem_object *obj,
-> +                        struct ttm_placement *placement);
-> +void i915_ttm_put_pages(struct drm_i915_gem_object *obj, struct
-> sg_table *st);
-> +int i915_ttm_err_to_gem(int err);
-> +
->  #endif
-
+diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_client_blt.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_client_blt.c
+index ddd0772fd828..71d7e4afa136 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_client_blt.c
++++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_client_blt.c
+@@ -6,6 +6,7 @@
+ #include "i915_selftest.h"
+ 
+ #include "gt/intel_context.h"
++#include "gt/intel_engine_regs.h"
+ #include "gt/intel_engine_user.h"
+ #include "gt/intel_gpu_commands.h"
+ #include "gt/intel_gt.h"
+@@ -18,10 +19,71 @@
+ #include "huge_gem_object.h"
+ #include "mock_context.h"
+ 
++#define OW_SIZE 16                      /* in bytes */
++#define F_SUBTILE_SIZE 64               /* in bytes */
++#define F_TILE_WIDTH 128                /* in bytes */
++#define F_TILE_HEIGHT 32                /* in pixels */
++#define F_SUBTILE_WIDTH  OW_SIZE        /* in bytes */
++#define F_SUBTILE_HEIGHT 4              /* in pixels */
++
++static int linear_x_y_to_ftiled_pos(int x, int y, u32 stride, int bpp)
++{
++	int tile_base;
++	int tile_x, tile_y;
++	int swizzle, subtile;
++	int pixel_size = bpp / 8;
++	int pos;
++
++	/*
++	 * Subtile remapping for F tile. Note that map[a]==b implies map[b]==a
++	 * so we can use the same table to tile and until.
++	 */
++	static const u8 f_subtile_map[] = {
++		 0,  1,  2,  3,  8,  9, 10, 11,
++		 4,  5,  6,  7, 12, 13, 14, 15,
++		16, 17, 18, 19, 24, 25, 26, 27,
++		20, 21, 22, 23, 28, 29, 30, 31,
++		32, 33, 34, 35, 40, 41, 42, 43,
++		36, 37, 38, 39, 44, 45, 46, 47,
++		48, 49, 50, 51, 56, 57, 58, 59,
++		52, 53, 54, 55, 60, 61, 62, 63
++	};
++
++	x *= pixel_size;
++	/*
++	 * Where does the 4k tile start (in bytes)?  This is the same for Y and
++	 * F so we can use the Y-tile algorithm to get to that point.
++	 */
++	tile_base =
++		y / F_TILE_HEIGHT * stride * F_TILE_HEIGHT +
++		x / F_TILE_WIDTH * 4096;
++
++	/* Find pixel within tile */
++	tile_x = x % F_TILE_WIDTH;
++	tile_y = y % F_TILE_HEIGHT;
++
++	/* And figure out the subtile within the 4k tile */
++	subtile = tile_y / F_SUBTILE_HEIGHT * 8 + tile_x / F_SUBTILE_WIDTH;
++
++	/* Swizzle the subtile number according to the bspec diagram */
++	swizzle = f_subtile_map[subtile];
++
++	/* Calculate new position */
++	pos = tile_base +
++		swizzle * F_SUBTILE_SIZE +
++		tile_y % F_SUBTILE_HEIGHT * OW_SIZE +
++		tile_x % F_SUBTILE_WIDTH;
++
++	GEM_BUG_ON(!IS_ALIGNED(pos, pixel_size));
++
++	return pos / pixel_size * 4;
++}
++
+ enum client_tiling {
+ 	CLIENT_TILING_LINEAR,
+ 	CLIENT_TILING_X,
+ 	CLIENT_TILING_Y,
++	CLIENT_TILING_4,
+ 	CLIENT_NUM_TILING_TYPES
+ };
+ 
+@@ -45,6 +107,19 @@ struct tiled_blits {
+ 	u32 height;
+ };
+ 
++static bool fast_blit_ok(struct blit_buffer *buf)
++{
++	int gen = GRAPHICS_VER(buf->vma->vm->i915);
++
++	if (gen < 9)
++		return false;
++
++	if (gen < 12)
++		return true;
++
++	return !IS_DG1(buf->vma->vm->i915) || buf->tiling != CLIENT_TILING_X;
++}
++
+ static int prepare_blit(const struct tiled_blits *t,
+ 			struct blit_buffer *dst,
+ 			struct blit_buffer *src,
+@@ -59,54 +134,109 @@ static int prepare_blit(const struct tiled_blits *t,
+ 	if (IS_ERR(cs))
+ 		return PTR_ERR(cs);
+ 
+-	*cs++ = MI_LOAD_REGISTER_IMM(1);
+-	*cs++ = i915_mmio_reg_offset(BCS_SWCTRL);
+-	cmd = (BCS_SRC_Y | BCS_DST_Y) << 16;
+-	if (src->tiling == CLIENT_TILING_Y)
+-		cmd |= BCS_SRC_Y;
+-	if (dst->tiling == CLIENT_TILING_Y)
+-		cmd |= BCS_DST_Y;
+-	*cs++ = cmd;
+-
+-	cmd = MI_FLUSH_DW;
+-	if (ver >= 8)
+-		cmd++;
+-	*cs++ = cmd;
+-	*cs++ = 0;
+-	*cs++ = 0;
+-	*cs++ = 0;
+-
+-	cmd = XY_SRC_COPY_BLT_CMD | BLT_WRITE_RGBA | (8 - 2);
+-	if (ver >= 8)
+-		cmd += 2;
+-
+-	src_pitch = t->width * 4;
+-	if (src->tiling) {
+-		cmd |= XY_SRC_COPY_BLT_SRC_TILED;
+-		src_pitch /= 4;
+-	}
++	/*
++	 * On GEN12+ X-tiled format support is removed from the fast blit
++	 * command, so use the XY_SRC blit command for it instead.
++	 */
++	if (fast_blit_ok(dst) && fast_blit_ok(src)) {
++		struct intel_gt *gt = t->ce->engine->gt;
++		u32 src_tiles = 0, dst_tiles = 0;
++		u32 src_4t = 0, dst_4t = 0;
++
++		/* Need to program BLIT_CCTL if it is not done previously
++		 * before using XY_FAST_COPY_BLT
++		 */
++		*cs++ = MI_LOAD_REGISTER_IMM(1);
++		*cs++ = i915_mmio_reg_offset(BLIT_CCTL(t->ce->engine->mmio_base));
++		*cs++ = (BLIT_CCTL_SRC_MOCS(gt->mocs.uc_index) |
++			 BLIT_CCTL_DST_MOCS(gt->mocs.uc_index));
++
++		src_pitch = t->width; /* in dwords */
++		if (src->tiling == CLIENT_TILING_4) {
++			src_tiles = XY_FAST_COPY_BLT_D0_SRC_TILE_MODE(YMAJOR);
++			src_4t = XY_FAST_COPY_BLT_D1_SRC_TILE4;
++		} else if (src->tiling == CLIENT_TILING_Y) {
++			src_tiles = XY_FAST_COPY_BLT_D0_SRC_TILE_MODE(YMAJOR);
++		} else if (src->tiling == CLIENT_TILING_X) {
++			src_tiles = XY_FAST_COPY_BLT_D0_SRC_TILE_MODE(TILE_X);
++		} else {
++			src_pitch *= 4; /* in bytes */
++		}
+ 
+-	dst_pitch = t->width * 4;
+-	if (dst->tiling) {
+-		cmd |= XY_SRC_COPY_BLT_DST_TILED;
+-		dst_pitch /= 4;
+-	}
++		dst_pitch = t->width; /* in dwords */
++		if (dst->tiling == CLIENT_TILING_4) {
++			dst_tiles = XY_FAST_COPY_BLT_D0_DST_TILE_MODE(YMAJOR);
++			dst_4t = XY_FAST_COPY_BLT_D1_DST_TILE4;
++		} else if (dst->tiling == CLIENT_TILING_Y) {
++			dst_tiles = XY_FAST_COPY_BLT_D0_DST_TILE_MODE(YMAJOR);
++		} else if (dst->tiling == CLIENT_TILING_X) {
++			dst_tiles = XY_FAST_COPY_BLT_D0_DST_TILE_MODE(TILE_X);
++		} else {
++			dst_pitch *= 4; /* in bytes */
++		}
+ 
+-	*cs++ = cmd;
+-	*cs++ = BLT_DEPTH_32 | BLT_ROP_SRC_COPY | dst_pitch;
+-	*cs++ = 0;
+-	*cs++ = t->height << 16 | t->width;
+-	*cs++ = lower_32_bits(dst->vma->node.start);
+-	if (use_64b_reloc)
++		*cs++ = GEN9_XY_FAST_COPY_BLT_CMD | (10 - 2) |
++			src_tiles | dst_tiles;
++		*cs++ = src_4t | dst_4t | BLT_DEPTH_32 | dst_pitch;
++		*cs++ = 0;
++		*cs++ = t->height << 16 | t->width;
++		*cs++ = lower_32_bits(dst->vma->node.start);
+ 		*cs++ = upper_32_bits(dst->vma->node.start);
+-	*cs++ = 0;
+-	*cs++ = src_pitch;
+-	*cs++ = lower_32_bits(src->vma->node.start);
+-	if (use_64b_reloc)
++		*cs++ = 0;
++		*cs++ = src_pitch;
++		*cs++ = lower_32_bits(src->vma->node.start);
+ 		*cs++ = upper_32_bits(src->vma->node.start);
++	} else {
++		if (ver >= 6) {
++			*cs++ = MI_LOAD_REGISTER_IMM(1);
++			*cs++ = i915_mmio_reg_offset(BCS_SWCTRL);
++			cmd = (BCS_SRC_Y | BCS_DST_Y) << 16;
++			if (src->tiling == CLIENT_TILING_Y)
++				cmd |= BCS_SRC_Y;
++			if (dst->tiling == CLIENT_TILING_Y)
++				cmd |= BCS_DST_Y;
++			*cs++ = cmd;
++
++			cmd = MI_FLUSH_DW;
++			if (ver >= 8)
++				cmd++;
++			*cs++ = cmd;
++			*cs++ = 0;
++			*cs++ = 0;
++			*cs++ = 0;
++		}
+ 
+-	*cs++ = MI_BATCH_BUFFER_END;
++		cmd = XY_SRC_COPY_BLT_CMD | BLT_WRITE_RGBA | (8 - 2);
++		if (ver >= 8)
++			cmd += 2;
++
++		src_pitch = t->width * 4;
++		if (src->tiling) {
++			cmd |= XY_SRC_COPY_BLT_SRC_TILED;
++			src_pitch /= 4;
++		}
++
++		dst_pitch = t->width * 4;
++		if (dst->tiling) {
++			cmd |= XY_SRC_COPY_BLT_DST_TILED;
++			dst_pitch /= 4;
++		}
++
++		*cs++ = cmd;
++		*cs++ = BLT_DEPTH_32 | BLT_ROP_SRC_COPY | dst_pitch;
++		*cs++ = 0;
++		*cs++ = t->height << 16 | t->width;
++		*cs++ = lower_32_bits(dst->vma->node.start);
++		if (use_64b_reloc)
++			*cs++ = upper_32_bits(dst->vma->node.start);
++		*cs++ = 0;
++		*cs++ = src_pitch;
++		*cs++ = lower_32_bits(src->vma->node.start);
++		if (use_64b_reloc)
++			*cs++ = upper_32_bits(dst->vma->node.start);
++	}
+ 
++	*cs++ = MI_BATCH_BUFFER_END;
+ 	i915_gem_object_flush_map(batch);
+ 	i915_gem_object_unpin_map(batch);
+ 
+@@ -181,7 +311,13 @@ static int tiled_blits_create_buffers(struct tiled_blits *t,
+ 
+ 		t->buffers[i].vma = vma;
+ 		t->buffers[i].tiling =
+-			i915_prandom_u32_max_state(CLIENT_TILING_Y + 1, prng);
++			i915_prandom_u32_max_state(CLIENT_NUM_TILING_TYPES, prng);
++
++		/* Platforms support either TileY or Tile4, not both */
++		if (HAS_4TILE(i915) && t->buffers[i].tiling == CLIENT_TILING_Y)
++			t->buffers[i].tiling = CLIENT_TILING_4;
++		else if (!HAS_4TILE(i915) && t->buffers[i].tiling == CLIENT_TILING_4)
++			t->buffers[i].tiling = CLIENT_TILING_Y;
+ 	}
+ 
+ 	return 0;
+@@ -206,7 +342,8 @@ static u64 swizzle_bit(unsigned int bit, u64 offset)
+ static u64 tiled_offset(const struct intel_gt *gt,
+ 			u64 v,
+ 			unsigned int stride,
+-			enum client_tiling tiling)
++			enum client_tiling tiling,
++			int x_pos, int y_pos)
+ {
+ 	unsigned int swizzle;
+ 	u64 x, y;
+@@ -216,7 +353,12 @@ static u64 tiled_offset(const struct intel_gt *gt,
+ 
+ 	y = div64_u64_rem(v, stride, &x);
+ 
+-	if (tiling == CLIENT_TILING_X) {
++	if (tiling == CLIENT_TILING_4) {
++		v = linear_x_y_to_ftiled_pos(x_pos, y_pos, stride, 32);
++
++		/* no swizzling for f-tiling */
++		swizzle = I915_BIT_6_SWIZZLE_NONE;
++	} else if (tiling == CLIENT_TILING_X) {
+ 		v = div64_u64_rem(y, 8, &y) * stride * 8;
+ 		v += y * 512;
+ 		v += div64_u64_rem(x, 512, &x) << 12;
+@@ -259,6 +401,7 @@ static const char *repr_tiling(enum client_tiling tiling)
+ 	case CLIENT_TILING_LINEAR: return "linear";
+ 	case CLIENT_TILING_X: return "X";
+ 	case CLIENT_TILING_Y: return "Y";
++	case CLIENT_TILING_4: return "F";
+ 	default: return "unknown";
+ 	}
+ }
+@@ -284,7 +427,7 @@ static int verify_buffer(const struct tiled_blits *t,
+ 	} else {
+ 		u64 v = tiled_offset(buf->vma->vm->gt,
+ 				     p * 4, t->width * 4,
+-				     buf->tiling);
++				     buf->tiling, x, y);
+ 
+ 		if (vaddr[v / sizeof(*vaddr)] != buf->start_val + p)
+ 			ret = -EINVAL;
+@@ -504,6 +647,9 @@ static int tiled_blits_bounce(struct tiled_blits *t, struct rnd_state *prng)
+ 	if (err)
+ 		return err;
+ 
++	/* Simulating GTT eviction of the same buffer / layout */
++	t->buffers[2].tiling = t->buffers[0].tiling;
++
+ 	/* Reposition so that we overlap the old addresses, and slightly off */
+ 	err = tiled_blit(t,
+ 			 &t->buffers[2], t->hole + t->align,
+diff --git a/drivers/gpu/drm/i915/gt/intel_gpu_commands.h b/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
+index 556bca3be804..e53db7c1bdc0 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
++++ b/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
+@@ -236,6 +236,28 @@
+ #define   XY_FAST_COLOR_BLT_DW		16
+ #define   XY_FAST_COLOR_BLT_MOCS_MASK	GENMASK(27, 21)
+ #define   XY_FAST_COLOR_BLT_MEM_TYPE_SHIFT 31
++
++#define   XY_FAST_COPY_BLT_D0_SRC_TILING_MASK     REG_GENMASK(21, 20)
++#define   XY_FAST_COPY_BLT_D0_DST_TILING_MASK     REG_GENMASK(14, 13)
++#define   XY_FAST_COPY_BLT_D0_SRC_TILE_MODE(mode)  \
++	REG_FIELD_PREP(XY_FAST_COPY_BLT_D0_SRC_TILING_MASK, mode)
++#define   XY_FAST_COPY_BLT_D0_DST_TILE_MODE(mode)  \
++	REG_FIELD_PREP(XY_FAST_COPY_BLT_D0_DST_TILING_MASK, mode)
++#define     LINEAR				0
++#define     TILE_X				0x1
++#define     XMAJOR				0x1
++#define     YMAJOR				0x2
++#define     TILE_64			0x3
++#define   XY_FAST_COPY_BLT_D1_SRC_TILE4	REG_BIT(31)
++#define   XY_FAST_COPY_BLT_D1_DST_TILE4	REG_BIT(30)
++#define BLIT_CCTL_SRC_MOCS_MASK  REG_GENMASK(6, 0)
++#define BLIT_CCTL_DST_MOCS_MASK  REG_GENMASK(14, 8)
++/* Note:  MOCS value = (index << 1) */
++#define BLIT_CCTL_SRC_MOCS(idx) \
++	REG_FIELD_PREP(BLIT_CCTL_SRC_MOCS_MASK, idx << 1)
++#define BLIT_CCTL_DST_MOCS(idx) \
++	REG_FIELD_PREP(BLIT_CCTL_DST_MOCS_MASK, idx << 1)
++
+ #define SRC_COPY_BLT_CMD		(2 << 29 | 0x43 << 22)
+ #define GEN9_XY_FAST_COPY_BLT_CMD	(2 << 29 | 0x42 << 22)
+ #define XY_SRC_COPY_BLT_CMD		(2 << 29 | 0x53 << 22)
+-- 
+2.35.1
 
