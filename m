@@ -2,32 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 687DA5230E0
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 May 2022 12:42:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EC94452311B
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 May 2022 13:06:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A3E1410ED10;
-	Wed, 11 May 2022 10:42:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1BEC710E2C9;
+	Wed, 11 May 2022 11:06:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 33DF410ED10;
- Wed, 11 May 2022 10:42:47 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 2881AAADD3;
- Wed, 11 May 2022 10:42:47 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6771823965933426280=="
+Received: from mail-qt1-x82a.google.com (mail-qt1-x82a.google.com
+ [IPv6:2607:f8b0:4864:20::82a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EDAEF10E2C9
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 May 2022 11:06:28 +0000 (UTC)
+Received: by mail-qt1-x82a.google.com with SMTP id k2so1695338qtp.1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 May 2022 04:06:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=2Ta6/EY5U9vftGsUZzUCWNMk+GO9FbVUfgNefYMithw=;
+ b=Vg1OqHiqlgb9O5RqKREuDRywwzOAjY1F+kMIkBOGEla+6RmKIXSEITnGCNek0wFI7I
+ W/UsDPTbb6xK9E9NUZ1x4OCfxFKHELdx0exCDvpkyFKQ7k4f46JaBcR0hCbAk8ENb0ob
+ tfxve3EBHZg+GKSEi9sg+HUunAXqKq4bbOUI7nN7hdGI+CRLS1iOX+YxB+M8Tp6MOKIi
+ cpKDpcJk1mxO8u2mZ2Vc9ARLPr5VyhXsw44X6HdddR6qPQ3sMlErm7d0/rEGphiLyrJX
+ G5Bp0G6zhAflH2CevGXnDB7NsmH78eYobzAiAnHfvenXCR/5F5osIGFJOrbWe0gCvrzq
+ GSnw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=2Ta6/EY5U9vftGsUZzUCWNMk+GO9FbVUfgNefYMithw=;
+ b=iAKJkZ63u7VbfDpMG/5mFGuMhG9FrSzHGV/cJAmwkQsJ/SoIluKlt6yan+H3jabImx
+ pxh4/2koyWCgYHXRu5XZFCuR+ZmnMCNFnJV+rHul7S57qH1iyfAWlxUYukwdzGd94PFm
+ 2SiDfqgfpYM7YuFlPzv7GzOl7mCfqefqfXV+OGQ5hLIvmbcO6VSgaeTODFrCz+AkTk28
+ ZrKWEp7+GopvMpin5x6b/OPMMVcvepwwGxszhLKRzltSua6LsbZISV4wvBKaeO2OSA3p
+ d8orOotbaHctfGGJtjQXxebnNEY6tCQLKEv8jVMhi+GjAJ4Hs/37FlC4Gcu+n1ecBrKV
+ mVBQ==
+X-Gm-Message-State: AOAM531i6jVidPIss7XiCBvnhj+1BNZ6b69WT2J8Dr8/VojngSCkVBMV
+ kB0rFAyQIx5CTia8VRDWE2YWUNb8FhZwa9g6/Br4mF+RbwM=
+X-Google-Smtp-Source: ABdhPJzNyRE4AyNDnIiBe/CHoarH1V1lYwkitq+Txha3aC1JBbU4r+V4Om3rJY0p6F7qDnidXVvy5cuBbvHjrRuF8vA=
+X-Received: by 2002:a05:622a:6115:b0:2f1:d8fa:84aa with SMTP id
+ hg21-20020a05622a611500b002f1d8fa84aamr23520324qtb.689.1652267187980; Wed, 11
+ May 2022 04:06:27 -0700 (PDT)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Wed, 11 May 2022 10:42:47 -0000
-Message-ID: <165226576715.2699.8260497659249869396@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <cover.1652097712.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1652097712.git.jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/edid=3A_introduce_struct_drm=5Fedid_=28rev6=29?=
+References: <20220506131109.20942-1-juhapekka.heikkila@gmail.com>
+ <20220506131109.20942-2-juhapekka.heikkila@gmail.com>
+In-Reply-To: <20220506131109.20942-2-juhapekka.heikkila@gmail.com>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Wed, 11 May 2022 12:06:01 +0100
+Message-ID: <CAM0jSHNiNbYAdM1VKo98TcnzFOf6ZfQif4h+ak_mHYGk=iP4_A@mail.gmail.com>
+To: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: Fix i915_vma_pin_iomap()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,268 +63,138 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============6771823965933426280==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, 6 May 2022 at 14:11, Juha-Pekka Heikkila
+<juhapekka.heikkila@gmail.com> wrote:
+>
+> From: CQ Tang <cq.tang@intel.com>
+>
+> Display might allocate a smem object and call
+> i915_vma_pin_iomap(), the existing code will fail.
+>
+> This fix was suggested by Chris P Wilson, that we pin
+> the smem with i915_gem_object_pin_map_unlocked().
+>
+> Signed-off-by: CQ Tang <cq.tang@intel.com>
+> Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+> Cc: Chris Wilson <chris.p.wilson@intel.com>
+> Cc: Jari Tahvanainen <jari.tahvanainen@intel.com>
+> ---
+>  drivers/gpu/drm/i915/i915_vma.c | 34 ++++++++++++++++++++++-----------
+>  1 file changed, 23 insertions(+), 11 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
+> index 162e8d83691b..8ce016ef3dba 100644
+> --- a/drivers/gpu/drm/i915/i915_vma.c
+> +++ b/drivers/gpu/drm/i915/i915_vma.c
+> @@ -550,13 +550,6 @@ void __iomem *i915_vma_pin_iomap(struct i915_vma *vma)
+>         if (WARN_ON_ONCE(vma->obj->flags & I915_BO_ALLOC_GPU_ONLY))
+>                 return IO_ERR_PTR(-EINVAL);
+>
+> -       if (!i915_gem_object_is_lmem(vma->obj)) {
+> -               if (GEM_WARN_ON(!i915_vma_is_map_and_fenceable(vma))) {
+> -                       err = -ENODEV;
+> -                       goto err;
+> -               }
+> -       }
+> -
+>         GEM_BUG_ON(!i915_vma_is_ggtt(vma));
+>         GEM_BUG_ON(!i915_vma_is_bound(vma, I915_VMA_GLOBAL_BIND));
+>         GEM_BUG_ON(i915_vma_verify_bind_complete(vma));
+> @@ -572,17 +565,31 @@ void __iomem *i915_vma_pin_iomap(struct i915_vma *vma)
+>                 if (i915_gem_object_is_lmem(vma->obj))
+>                         ptr = i915_gem_object_lmem_io_map(vma->obj, 0,
+>                                                           vma->obj->base.size);
+> -               else
+> +               else if (i915_vma_is_map_and_fenceable(vma))
+>                         ptr = io_mapping_map_wc(&i915_vm_to_ggtt(vma->vm)->iomap,
+>                                                 vma->node.start,
+>                                                 vma->node.size);
+> +               else {
+> +                       ptr = (void __iomem *)
+> +                               i915_gem_object_pin_map_unlocked(vma->obj,
+> +                                                               I915_MAP_WC);
 
-== Series Details ==
+Note that with this patch we could now also get rid of lmem_io_map()
+and just use this path instead. We just need to ensure we always have
+the object lock held when calling pin_iomap, and drop the _unlocked
+here, or maybe add an pin_iomap_unlocked if that is easier. If we are
+always holding the object lock, we can then also maybe drop the
+lockless tricks below...
 
-Series: drm/edid: introduce struct drm_edid (rev6)
-URL   : https://patchwork.freedesktop.org/series/103665/
-State : success
+> +                       if (IS_ERR(ptr)) {
+> +                               err = PTR_ERR(ptr);
+> +                               goto err;
+> +                       }
+> +                       ptr = page_pack_bits(ptr, 1);
 
-== Summary ==
+We should try to avoid pointer packing, but I guess here this is just
+re-using the mm.mapping stuff.
 
-CI Bug Log - changes from CI_DRM_11635 -> Patchwork_103665v6
-====================================================
+> +               }
+> +
+>                 if (ptr == NULL) {
+>                         err = -ENOMEM;
+>                         goto err;
+>                 }
+>
+>                 if (unlikely(cmpxchg(&vma->iomap, NULL, ptr))) {
+> -                       io_mapping_unmap(ptr);
+> +                       if (page_unmask_bits(ptr))
+> +                               __i915_gem_object_release_map(vma->obj);
+> +                       else
+> +                               io_mapping_unmap(ptr);
+>                         ptr = vma->iomap;
+>                 }
+>         }
+> @@ -596,7 +603,7 @@ void __iomem *i915_vma_pin_iomap(struct i915_vma *vma)
+>         i915_vma_set_ggtt_write(vma);
+>
+>         /* NB Access through the GTT requires the device to be awake. */
+> -       return ptr;
+> +       return page_mask_bits(ptr);
+>
+>  err_unpin:
+>         __i915_vma_unpin(vma);
+> @@ -614,6 +621,8 @@ void i915_vma_unpin_iomap(struct i915_vma *vma)
+>  {
+>         GEM_BUG_ON(vma->iomap == NULL);
+>
+> +       /* XXX We keep the mapping until __i915_vma_unbind()/evict() */
+> +
+>         i915_vma_flush_writes(vma);
+>
+>         i915_vma_unpin_fence(vma);
+> @@ -1761,7 +1770,10 @@ static void __i915_vma_iounmap(struct i915_vma *vma)
+>         if (vma->iomap == NULL)
+>                 return;
+>
+> -       io_mapping_unmap(vma->iomap);
+> +       if (page_unmask_bits(vma->iomap))
+> +               __i915_gem_object_release_map(vma->obj);
+> +       else
+> +               io_mapping_unmap(vma->iomap);
+>         vma->iomap = NULL;
 
-Summary
--------
+I don't suppose you want to type a patch that also moves the
+__i915_vma_iounmap() in vma_evict out from under the
+is_map_and_fenceable check, since we are currently leaking that lmem
+mapping, and now also that pin_map? I could have sworn that internal
+fixed that somewhere...
 
-  **SUCCESS**
+With that "leak" fixed,
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103665v6/index.html
-
-Participating hosts (42 -> 34)
-------------------------------
-
-  Missing    (8): fi-bdw-samus bat-dg2-8 bat-dg2-9 fi-bsw-cyan bat-adlp-6 fi-ctg-p8600 bat-rpls-2 bat-jsl-1 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_103665v6 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@gt_pm:
-    - fi-tgl-1115g4:      [PASS][1] -> [DMESG-FAIL][2] ([i915#3987])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11635/fi-tgl-1115g4/igt@i915_selftest@live@gt_pm.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103665v6/fi-tgl-1115g4/igt@i915_selftest@live@gt_pm.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-hsw-4770:        [PASS][3] -> [INCOMPLETE][4] ([i915#4785])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11635/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103665v6/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-    - fi-bdw-5557u:       NOTRUN -> [INCOMPLETE][5] ([i915#3921])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103665v6/fi-bdw-5557u/igt@i915_selftest@live@hangcheck.html
-
-  * igt@runner@aborted:
-    - fi-hsw-4770:        NOTRUN -> [FAIL][6] ([fdo#109271] / [i915#4312] / [i915#5594])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103665v6/fi-hsw-4770/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s0@smem:
-    - {fi-ehl-2}:         [DMESG-WARN][7] ([i915#5122]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11635/fi-ehl-2/igt@gem_exec_suspend@basic-s0@smem.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103665v6/fi-ehl-2/igt@gem_exec_suspend@basic-s0@smem.html
-
-  * igt@i915_selftest@live@coherency:
-    - fi-bdw-5557u:       [INCOMPLETE][9] ([i915#5674] / [i915#5685]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11635/fi-bdw-5557u/igt@i915_selftest@live@coherency.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103665v6/fi-bdw-5557u/igt@i915_selftest@live@coherency.html
-
-  * igt@i915_selftest@live@vma:
-    - fi-bdw-5557u:       [INCOMPLETE][11] ([i915#5681]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11635/fi-bdw-5557u/igt@i915_selftest@live@vma.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103665v6/fi-bdw-5557u/igt@i915_selftest@live@vma.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
-  [i915#3987]: https://gitlab.freedesktop.org/drm/intel/issues/3987
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
-  [i915#5122]: https://gitlab.freedesktop.org/drm/intel/issues/5122
-  [i915#5594]: https://gitlab.freedesktop.org/drm/intel/issues/5594
-  [i915#5674]: https://gitlab.freedesktop.org/drm/intel/issues/5674
-  [i915#5681]: https://gitlab.freedesktop.org/drm/intel/issues/5681
-  [i915#5685]: https://gitlab.freedesktop.org/drm/intel/issues/5685
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_11635 -> Patchwork_103665v6
-
-  CI-20190529: 20190529
-  CI_DRM_11635: aa0155fd1466e1ee5e649ec07562dd93623fad8d @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6471: 1d6816f1200520f936a799b7b0ef2e6f396abb16 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_103665v6: aa0155fd1466e1ee5e649ec07562dd93623fad8d @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-f1105153ae3c drm/edid: convert version_greater() to drm_edid
-0c24b4139e53 drm/displayid: convert to drm_edid
-00383ed4afc3 drm/edid: add drm_edid helper for drm_update_tile_info()
-b243c1f6c54a drm/edid: convert drm_edid_iter_begin() to drm_edid
-cc77b9fdd987 drm/edid: convert cea_db_iter_edid_begin() to drm_edid
-b8711174bdff drm/edid: add drm_edid helper for drm_detect_monitor_audio()
-faa071ea915c drm/edid: add drm_edid helper for drm_detect_hdmi_monitor()
-dfe030f6dd38 drm/edid: add drm_edid helper for drm_edid_to_speaker_allocation()
-4d0f59cc8334 drm/edid: add drm_edid helper for drm_edid_to_sad()
-de4a141847bc drm/edid: convert drm_for_each_detailed_block() to drm_edid
-f83f434e7fd5 drm/edid: convert get_monitor_name() to drm_edid
-586c81dd661f drm/edid: convert mode_in_range() and drm_monitor_supports_rb() to drm_edid
-89137d2a0e75 drm/edid: convert drm_mode_std() and children to drm_edid
-ab0d2f1c4e0a drm/edid: convert drm_cvt_modes_for_range() to drm_edid
-8d7bd2200671 drm/edid: convert drm_gtf_modes_for_range() to drm_edid
-27987cc7e23a drm/edid: convert drm_dmt_modes_for_range() to drm_edid
-6d13f5844e1d drm/edid: convert drm_mode_detailed() to drm_edid
-36409d914255 drm/edid: convert struct detailed_mode_closure to drm_edid
-dfa33ccc2771 drm/edid: convert drm_edid_connector_update() to drm_edid fully
-1b76e36f573a drm/edid: propagate drm_edid to drm_edid_to_eld()
-e197e8bc1805 drm/edid: keep propagating drm_edid to display info
-785f91c0e4bf drm/edid: start propagating drm_edid to lower levels
-b5b967c8ede7 drm/edid: add struct drm_edid container
-b843e54c621d drm/edid: convert drm_for_each_detailed_block() to edid iter
-3a1750347de1 drm/edid: use else-if in CTA extension parsing
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103665v6/index.html
-
---===============6771823965933426280==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+>  }
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/edid: introduce struct drm_edid (rev6)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/103665/">https://patchwork.freedesktop.org/series/103665/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103665v6/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103665v6/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11635 -&gt; Patchwork_103665v6</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103665v6/index.html</p>
-<h2>Participating hosts (42 -&gt; 34)</h2>
-<p>Missing    (8): fi-bdw-samus bat-dg2-8 bat-dg2-9 fi-bsw-cyan bat-adlp-6 fi-ctg-p8600 bat-rpls-2 bat-jsl-1 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_103665v6 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_pm:</p>
-<ul>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11635/fi-tgl-1115g4/igt@i915_selftest@live@gt_pm.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103665v6/fi-tgl-1115g4/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3987">i915#3987</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>
-<p>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11635/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103665v6/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>)</p>
-</li>
-<li>
-<p>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103665v6/fi-bdw-5557u/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103665v6/fi-hsw-4770/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5594">i915#5594</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0@smem:</p>
-<ul>
-<li>{fi-ehl-2}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11635/fi-ehl-2/igt@gem_exec_suspend@basic-s0@smem.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5122">i915#5122</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103665v6/fi-ehl-2/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@coherency:</p>
-<ul>
-<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11635/fi-bdw-5557u/igt@i915_selftest@live@coherency.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5674">i915#5674</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5685">i915#5685</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103665v6/fi-bdw-5557u/igt@i915_selftest@live@coherency.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@vma:</p>
-<ul>
-<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11635/fi-bdw-5557u/igt@i915_selftest@live@vma.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5681">i915#5681</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103665v6/fi-bdw-5557u/igt@i915_selftest@live@vma.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11635 -&gt; Patchwork_103665v6</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11635: aa0155fd1466e1ee5e649ec07562dd93623fad8d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6471: 1d6816f1200520f936a799b7b0ef2e6f396abb16 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_103665v6: aa0155fd1466e1ee5e649ec07562dd93623fad8d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>f1105153ae3c drm/edid: convert version_greater() to drm_edid<br />
-0c24b4139e53 drm/displayid: convert to drm_edid<br />
-00383ed4afc3 drm/edid: add drm_edid helper for drm_update_tile_info()<br />
-b243c1f6c54a drm/edid: convert drm_edid_iter_begin() to drm_edid<br />
-cc77b9fdd987 drm/edid: convert cea_db_iter_edid_begin() to drm_edid<br />
-b8711174bdff drm/edid: add drm_edid helper for drm_detect_monitor_audio()<br />
-faa071ea915c drm/edid: add drm_edid helper for drm_detect_hdmi_monitor()<br />
-dfe030f6dd38 drm/edid: add drm_edid helper for drm_edid_to_speaker_allocation()<br />
-4d0f59cc8334 drm/edid: add drm_edid helper for drm_edid_to_sad()<br />
-de4a141847bc drm/edid: convert drm_for_each_detailed_block() to drm_edid<br />
-f83f434e7fd5 drm/edid: convert get_monitor_name() to drm_edid<br />
-586c81dd661f drm/edid: convert mode_in_range() and drm_monitor_supports_rb() to drm_edid<br />
-89137d2a0e75 drm/edid: convert drm_mode_std() and children to drm_edid<br />
-ab0d2f1c4e0a drm/edid: convert drm_cvt_modes_for_range() to drm_edid<br />
-8d7bd2200671 drm/edid: convert drm_gtf_modes_for_range() to drm_edid<br />
-27987cc7e23a drm/edid: convert drm_dmt_modes_for_range() to drm_edid<br />
-6d13f5844e1d drm/edid: convert drm_mode_detailed() to drm_edid<br />
-36409d914255 drm/edid: convert struct detailed_mode_closure to drm_edid<br />
-dfa33ccc2771 drm/edid: convert drm_edid_connector_update() to drm_edid fully<br />
-1b76e36f573a drm/edid: propagate drm_edid to drm_edid_to_eld()<br />
-e197e8bc1805 drm/edid: keep propagating drm_edid to display info<br />
-785f91c0e4bf drm/edid: start propagating drm_edid to lower levels<br />
-b5b967c8ede7 drm/edid: add struct drm_edid container<br />
-b843e54c621d drm/edid: convert drm_for_each_detailed_block() to edid iter<br />
-3a1750347de1 drm/edid: use else-if in CTA extension parsing</p>
-
-</body>
-</html>
-
---===============6771823965933426280==--
+>
+> --
+> 2.25.1
+>
