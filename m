@@ -1,55 +1,62 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57B06522D1C
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 May 2022 09:23:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D66DE522D81
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 May 2022 09:39:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 81D7110EDC6;
-	Wed, 11 May 2022 07:23:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 87F8910F826;
+	Wed, 11 May 2022 07:39:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C322910EDC6;
- Wed, 11 May 2022 07:23:08 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D5AF10F7B6
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 May 2022 07:39:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1652253788; x=1683789788;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=hZsRwIYonbxTpcDjizgtBXa3i6BLOGIQXlZLLA+eOYE=;
- b=L5a8lM27QmHowOned2m+mOJ73bSgUhmzCpv92mh3f22/CIyTuQloUYMt
- iOXeSSU1Wp0Xi/vpKrFYNtvZmDBRFNVU7mjA+DcKzdRgflnm2jeKzC/Ts
- r+ZHa0cchq/HHtXhPfSuDphbuII8a+w8L7F4psJf+XLiv3hOBCwXGn4Oj
- 3IIycymhyf7YG79nlgGQ5N1W19d5rONOcuiF9koy/AnxLmum1QPjf4yc7
- Q5z7rfSFK/dRPR0uSu+6v+Ly92LRspiZdebU9eymDiVsRNTCBVRCuGp6l
- EJfP12GyI0F3JqaS50AFfxqTcYrxtPit0zOB0LIO/vXH58I2WPTmG1b9l g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10343"; a="269747363"
-X-IronPort-AV: E=Sophos;i="5.91,216,1647327600"; d="scan'208";a="269747363"
+ t=1652254761; x=1683790761;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=zMJJTypZnTBa2Kzlu2ujAHWIHHp1OusDzfzNc4nBS/8=;
+ b=Iidjp0DPT+OO9vXa5bJo+GvNzDt8rsyQZUdrOz/a0inMmOgD8EZrUoX0
+ YXWM1mYa8k7IOZdbt7k0zUcHIGOBT9+OVnJN13iYQjmbfM5hktJm2e0gt
+ WFCQ+McTcxknmsC/g2jbtLBWGB77nWUASW/ypVDwXA7vL0EDO5rxa1ANd
+ ec3i8ds1/2BtOYmKOC/NdG/DKfBcek4flazRtCWDlUM6dgXUspaO85ihg
+ MIVeN8p0lJmSPIaVKoe2LZOTn/zVuVnRlH4AgtI9LCy/rRnGXZbKe5EzE
+ +D70IfAEetBXaTbi6MLF4ozAMCWka0xCnuhq6DFKcL1OxmlaZmEVQvg3q g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10343"; a="332657559"
+X-IronPort-AV: E=Sophos;i="5.91,216,1647327600"; d="scan'208";a="332657559"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2022 00:23:08 -0700
-X-IronPort-AV: E=Sophos;i="5.91,216,1647327600"; d="scan'208";a="520402804"
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 May 2022 00:39:20 -0700
+X-IronPort-AV: E=Sophos;i="5.91,216,1647327600"; d="scan'208";a="520407922"
 Received: from mmlucey-mobl1.ger.corp.intel.com (HELO [10.213.195.130])
  ([10.213.195.130])
  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2022 00:23:06 -0700
-Message-ID: <2ecc20eb-a80c-8643-4cc8-8f9e18b5919d@linux.intel.com>
-Date: Wed, 11 May 2022 08:23:04 +0100
+ 11 May 2022 00:39:18 -0700
+Message-ID: <76397b0c-e4bc-1bd4-9620-7c677c01a004@linux.intel.com>
+Date: Wed, 11 May 2022 08:39:17 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
 Content-Language: en-US
-To: Andi Shyti <andi.shyti@linux.intel.com>,
- Intel GFX <intel-gfx@lists.freedesktop.org>,
- DRI Devel <dri-devel@lists.freedesktop.org>
-References: <20220510203359.92530-1-andi.shyti@linux.intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ "Souza, Jose" <jose.souza@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+References: <20220507132850.10272-1-jose.souza@intel.com>
+ <20220507132850.10272-16-jose.souza@intel.com>
+ <165209993727.58716.2402465688742600537@jlahtine-mobl.ger.corp.intel.com>
+ <085c5569598a5708f68ebea78e8683ffc1893f04.camel@intel.com>
+ <165216392440.6877.2731939801619952697@jlahtine-mobl.ger.corp.intel.com>
+ <87czglkf5z.fsf@intel.com>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-In-Reply-To: <20220510203359.92530-1-andi.shyti@linux.intel.com>
+In-Reply-To: <87czglkf5z.fsf@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gem: Flush TLBs for all the tiles
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH 16/16] drm/i915: Drop display.has_fpga_db
+ from device info
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,69 +69,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matthew Auld <matthew.auld@intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 10/05/2022 21:33, Andi Shyti wrote:
-> During object cleanup we invalidate the TLBs but we do it only
-> for gt0. Invalidate the caches for all the tiles.
+On 10/05/2022 08:41, Jani Nikula wrote:
+> On Tue, 10 May 2022, Joonas Lahtinen <joonas.lahtinen@linux.intel.com> wrote:
+>> Quoting Souza, Jose (2022-05-09 17:19:28)
+>>> On Mon, 2022-05-09 at 15:38 +0300, Joonas Lahtinen wrote:
+>>>> Quoting José Roberto de Souza (2022-05-07 16:28:50)
+>>>>> No need to have this parameter in intel_device_info struct
+>>>>> as this feature is supported by Broadwell, Haswell all platforms with
+>>>>> display version 9 or newer.
+>>>>
+>>>> This is opposite of the direction we want to move to.
+>>>>
+>>>> We want to embrace the has_xyz flags, instead of the macro trickery.
+>>>
+>>> This ever growing flag definition is causing problems when defining new platforms.
+>>
+>> The ever growing macros that change between kernel versions are much
+>> more painful than easily printable list per SKU.
+>>
+>> Just to make it clear, a strict NACK from me for merging any patches
+>> into this direction.
 > 
-> Reported-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
-> ---
->   drivers/gpu/drm/i915/gem/i915_gem_pages.c | 11 ++++++++---
->   1 file changed, 8 insertions(+), 3 deletions(-)
+> I was hoping to start a discussion to reach consensus on this with my
+> mail [1], adding all maintainers in Cc, but merging started before the
+> discussion really even started.
 > 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pages.c b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-> index 97c820eee115a..444b9f96ba77c 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-> @@ -217,10 +217,15 @@ __i915_gem_object_unset_pages(struct drm_i915_gem_object *obj)
->   
->   	if (test_and_clear_bit(I915_BO_WAS_BOUND_BIT, &obj->flags)) {
->   		struct drm_i915_private *i915 = to_i915(obj->base.dev);
-> -		intel_wakeref_t wakeref;
-> +		struct intel_gt *gt;
-> +		int i;
->   
-> -		with_intel_runtime_pm_if_active(&i915->runtime_pm, wakeref)
-> -			intel_gt_invalidate_tlbs(to_gt(i915));
-> +		for_each_gt(gt, i915, i) {
-> +			intel_wakeref_t w;
-> +
-> +			with_intel_runtime_pm_if_active(gt->uncore->rpm, w)
-> +				intel_gt_invalidate_tlbs(gt);
-> +		}
+> Obviously no further patches on this are to be merged, and the question
+> now is really what to do with the ones that were. Revert?
 
-LGTM.
+ From the process standpoint strictly yes, but in practice I think there 
+is no rush.
 
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+The ones which got merged I definitely do not like are:
 
-How about an improvement, either immediately or as followup, to define per tile bound flags and so be able to avoid trashing innocent tiles?
+Rc6 - because it creates an inconsistency where rc6p remains a device 
+info flag.
 
-Like:
+DDI - because it is not 100% trivial and used from i915_irq.c. But a) I 
+am not sure it is truly on an irq path, and b) it is display code so not 
+my call anyway. (Affects the DP MST one as well by inheritance.)
 
-i915_vma_bind:
+The others are at best lukewarm to me - primarily because I am not 
+convinced there is a benefit to it all. One day the need might come to 
+move them back if some platforms drops support or something, which would 
+be more churn. And it is handy to see a consolidated description of a 
+platform in dmesg when looking at bugs. So just not sure it's an 
+improvement.
 
-   set_bit(I915_BO_WAS_BOUND_BIT(vma->vm->gt->info.id), &vma->obj->flags);
-
-
-__i915_gem_object_unset_pages:
-
-   for_each_gt(gt, i915, i) {
-	if (!test_and_clear_bit(I915_BO_WAS_BOUND_BIT(i), &obj->flags))
-		continue;
-
-	...
-   }
+Give there is much more conversions proposed I guess it may make sense 
+to revert until overall consensus is achieved, since it may be odd to 
+have a handful if we decide to stop there.
 
 Regards,
 
 Tvrtko
-
->   	}
->   
->   	return pages;
