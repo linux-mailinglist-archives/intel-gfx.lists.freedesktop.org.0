@@ -2,55 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C67935252D9
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 May 2022 18:42:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 530265252DC
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 May 2022 18:43:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0AB6C10FFC0;
-	Thu, 12 May 2022 16:42:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 71916112A01;
+	Thu, 12 May 2022 16:43:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 592CC10FFC0;
- Thu, 12 May 2022 16:42:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CDE881129EA
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 May 2022 16:43:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1652373732; x=1683909732;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=jCAWUPcGy3QX9OvjDrXfGEMvdus6MKvGcYde3Vn+2zI=;
- b=RzZMLMDxNMAF/zX/MtwzGKJcJZcUmnqniBoA78m6K+VUpbqrs7pugn26
- QBST9YK/UncdWmxAcWtwHOEBn8++bAQzviLiMfYwNvFgRF4B422EmMC/z
- 2xW1BxvXaF2wgPiRIcllBmU4O3v4Wk+jITMb4qEo4MzIx2208bRigqW7h
- wpU/0TvFib6Y8Y335J3cIrHLxdajh7PN0DVJq+Gr7dFeo6fPDTjdxMpcU
- 1PXJgWWuajQVNLZnqHPHV41trMFBdBlfwpeNy1Nw3Fjy6fpAV8eC+0vi+
- 5RWsIm2Gu8ebvntF8k2fgIRMXWvDrywBMRyH1z+aOfdeeWD7v0moJq+gP w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10345"; a="295305555"
-X-IronPort-AV: E=Sophos;i="5.91,220,1647327600"; d="scan'208";a="295305555"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ t=1652373787; x=1683909787;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Ot8OezlXcGI9H3PmIQ8778FAn/3O/yABuInbN3Zq+t0=;
+ b=IAeec4UqkKYuj66xTJ9i6HNomxgbZN7wZOCl2BuiQdAyi2JjQKqYSPb3
+ PnP8DrA/X2BytX0QJRNqdtJfpy+KK5mmJQEdbyxK3bkOAVPc+sr+LuC7W
+ lYYD/w4XDpaFtAqVmKUyRTWfhQt8M19NGncfWx3B8WbtR7smAO8ybqvcs
+ AV5ViJepuCddMo3Wk/HgeQeDbuePzefZYY0w55eHzSCjs4ZakanOGIm9z
+ WwQC3LifZNsD59rhYiX9mJD3l+LVDjxSF5nzO84HeI44FJJ+JixRTjXme
+ qdR6srTfsPxJmHGsFA4EVVOe2fG1T76/sj7FVmjFdqHhFMLRqiOsp0k5m A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10345"; a="295306173"
+X-IronPort-AV: E=Sophos;i="5.91,220,1647327600"; d="scan'208";a="295306173"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2022 09:14:32 -0700
-X-IronPort-AV: E=Sophos;i="5.91,220,1647327600"; d="scan'208";a="739748041"
-Received: from ianmurph-mobl.ger.corp.intel.com (HELO [10.252.2.2])
- ([10.252.2.2])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2022 09:14:30 -0700
-Message-ID: <cd0010ce-0f90-678c-364e-cf39238a21bd@intel.com>
-Date: Thu, 12 May 2022 17:14:28 +0100
+ 12 May 2022 09:16:45 -0700
+X-IronPort-AV: E=Sophos;i="5.91,220,1647327600"; d="scan'208";a="594735498"
+Received: from ksadlows-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.249.130.178])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 May 2022 09:16:43 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 12 May 2022 19:16:38 +0300
+Message-Id: <20220512161638.272601-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Content-Language: en-GB
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20220511115219.46507-1-maarten.lankhorst@linux.intel.com>
- <3dbe7c30-dfef-0cde-b9cb-2ffdcb460113@intel.com>
- <66e2bfe6-6053-9728-63ee-e4aad5a0f631@linux.intel.com>
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <66e2bfe6-6053-9728-63ee-e4aad5a0f631@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Use i915_gem_object_ggtt_pin_ww
- for reloc_iomap
+Subject: [Intel-gfx] [PATCH] drm/i915/audio: fix audio code enable/disable
+ pipe logging
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,63 +57,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?Q?Mateusz_Jo=c5=84czyk?= <mat.jonczyk@o2.pl>,
- dri-devel@lists.freedesktop.org
+Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 11/05/2022 19:38, Maarten Lankhorst wrote:
-> Op 11-05-2022 om 20:23 schreef Matthew Auld:
->> On 11/05/2022 12:52, Maarten Lankhorst wrote:
->>> Instead of its own path, use the common path when it doesn't result
->>> in evicting any vma. This fixes the case where we don't wait for
->>> binding.
->>>
->>
->> https://gitlab.freedesktop.org/drm/intel/-/issues/5806
->>
->> If I'm reading that correctly waiting for the bind doesn't seem to help?
-> 
-> I suspect the actual pinning there might do some stuff that we are not doing.
-> 
-> It was working before the change, and manually calling pin caused the failure, so I reverted it back to what was working before. It was specifically the manual pin code that was failing.
-> 
-> I can change the commit message if it helps.
+Need to use pipe_name(pipe) instead of pipe directly.
 
-Hmm strange. With the commit message updated,
-Acked-by: Matthew Auld <matthew.auld@intel.com>
+Fixes: 1f31e35f2e88 ("drm/i915/audio: unify audio codec enable/disable debug logging")
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_audio.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-> 
-> ~Maarten
-> 
->>> Fixes: b5cfe6f7a6e1 ("drm/i915: Remove short-term pins from execbuf, v6.")
->>> Cc: Matthew Auld <matthew.auld@intel.com>
->>> Reported-by: Mateusz Jończyk <mat.jonczyk@o2.pl>
->>> Tested-by: Hans de Goede <hdegoede@redhat.com>
->>> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->>> ---
->>>    drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 6 ++----
->>>    1 file changed, 2 insertions(+), 4 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
->>> index 498b458fd784..919d01082909 100644
->>> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
->>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
->>> @@ -1262,14 +1262,12 @@ static void *reloc_iomap(struct i915_vma *batch,
->>>             * Only attempt to pin the batch buffer to ggtt if the current batch
->>>             * is not inside ggtt, or the batch buffer is not misplaced.
->>>             */
->>> -        if (!i915_is_ggtt(batch->vm)) {
->>> +        if (!i915_is_ggtt(batch->vm) ||
->>> +            !i915_vma_misplaced(batch, 0, 0, PIN_MAPPABLE)) {
->>>                vma = i915_gem_object_ggtt_pin_ww(obj, &eb->ww, NULL, 0, 0,
->>>                                  PIN_MAPPABLE |
->>>                                  PIN_NONBLOCK /* NOWARN */ |
->>>                                  PIN_NOEVICT);
->>> -        } else if (i915_vma_is_map_and_fenceable(batch)) {
->>> -            __i915_vma_pin(batch);
->>> -            vma = batch;
->>>            }
->>>              if (vma == ERR_PTR(-EDEADLK))
-> 
-> 
+diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
+index 1c87bf66b092..f0f0dfce27ce 100644
+--- a/drivers/gpu/drm/i915/display/intel_audio.c
++++ b/drivers/gpu/drm/i915/display/intel_audio.c
+@@ -827,7 +827,7 @@ void intel_audio_codec_enable(struct intel_encoder *encoder,
+ 	drm_dbg_kms(&dev_priv->drm, "[CONNECTOR:%d:%s][ENCODER:%d:%s] Enable audio codec on pipe %c, %u bytes ELD\n",
+ 		    connector->base.id, connector->name,
+ 		    encoder->base.base.id, encoder->base.name,
+-		    pipe, drm_eld_size(connector->eld));
++		    pipe_name(pipe), drm_eld_size(connector->eld));
+ 
+ 	/* FIXME precompute the ELD in .compute_config() */
+ 	if (!connector->eld[0])
+@@ -888,7 +888,7 @@ void intel_audio_codec_disable(struct intel_encoder *encoder,
+ 
+ 	drm_dbg_kms(&dev_priv->drm, "[CONNECTOR:%d:%s][ENCODER:%d:%s] Disable audio codec on pipe %c\n",
+ 		    connector->base.id, connector->name,
+-		    encoder->base.base.id, encoder->base.name, pipe);
++		    encoder->base.base.id, encoder->base.name, pipe_name(pipe));
+ 
+ 	if (dev_priv->audio.funcs)
+ 		dev_priv->audio.funcs->audio_codec_disable(encoder,
+-- 
+2.30.2
+
