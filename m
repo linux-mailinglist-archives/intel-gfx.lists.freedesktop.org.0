@@ -2,48 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52D155266C9
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 May 2022 18:12:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A8AE1526728
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 May 2022 18:35:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2EC3D10E2DD;
-	Fri, 13 May 2022 16:12:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CED6210E6E5;
+	Fri, 13 May 2022 16:35:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EAD8210E2DD
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 May 2022 16:12:23 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1BDE810E6E5
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 May 2022 16:35:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1652458343; x=1683994343;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=7eMgB9FuCQkZ+JUcNsnpc47EbT5DNzOaJ971/N84wZI=;
- b=TDgJ0jdcSAivEsoNKdyuDI0KIjpYsiB3uFUCUXdQIxF2ti8ve+e6CBEW
- Q1c7kIi71xkIP9ijJVQaho5sOeVw5Pp5RjP3ez7JlLGPY3nLuhS0mKfTW
- 7VYbPYr2CKdDZXHH7Za503etPNQn5zMm7a7hx9ti7foZJbg+MikjfUL/W
- s8APhdpQV4dqtKmduwNqAu4nyB0q7BIKBfTawEdxN8/+lqhEIdJDUaej5
- FDqTlBwFn6lkJ+zgwboEWM/HmPZpnB03ne8FvmGIR49usvemQjzbIBjOA
- ujL34H2bJphcjMcdK2aO70IF5AfgyZ0d3MQ49hGoXGUCSRk1mk5yuRG2z w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10346"; a="269175327"
-X-IronPort-AV: E=Sophos;i="5.91,223,1647327600"; d="scan'208";a="269175327"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 May 2022 09:06:48 -0700
-X-IronPort-AV: E=Sophos;i="5.91,223,1647327600"; d="scan'208";a="740208292"
-Received: from lab-ah.igk.intel.com ([10.91.215.196])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 May 2022 09:06:46 -0700
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 13 May 2022 18:06:41 +0200
-Message-Id: <20220513160641.3096487-1-andrzej.hajda@intel.com>
-X-Mailer: git-send-email 2.25.1
+ t=1652459706; x=1683995706;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-id:content-transfer-encoding: mime-version;
+ bh=vahVcPjbL25yXjroW3HuwhfkGqqC1wfp+c46GG/cLiU=;
+ b=N3e0TLHdJxPtHhNl7HnRiDCKFbgcUnlpk46bRpk3uk8gJgCVXJmYtuvD
+ Haeh8B18/EcivX+XYpLs9980P1KKd4kYIN4g9lwqE5C24q4oIVNdUmzAa
+ fCVZHbniHof1bmeWtNk/ceUBHsDN8O5z6VsK2X3cyhzyxWU8ErmiG2rc0
+ tM77A92Mv0KMjE+XDTTkyGvaQ6mrOEgy0Yxkxxqb6vvYf790GS1sSbUEm
+ akIffi4drrZbVpCqN+LQuPAcdQterTCJs3iaqTGCZXkwXZEphil0lcuCs
+ S7EUBIB4TJ04H/Zi04tXFlZunZyqPRtmLS4UASPcclFXvG1uOBqD1vBXX A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10346"; a="270015543"
+X-IronPort-AV: E=Sophos;i="5.91,223,1647327600"; d="scan'208";a="270015543"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 May 2022 09:35:05 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.91,223,1647327600"; d="scan'208";a="603902702"
+Received: from fmsmsx604.amr.corp.intel.com ([10.18.126.84])
+ by orsmga001.jf.intel.com with ESMTP; 13 May 2022 09:35:05 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx604.amr.corp.intel.com (10.18.126.84) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27; Fri, 13 May 2022 09:35:04 -0700
+Received: from fmsmsx612.amr.corp.intel.com ([10.18.126.92]) by
+ fmsmsx612.amr.corp.intel.com ([10.18.126.92]) with mapi id 15.01.2308.027;
+ Fri, 13 May 2022 09:35:04 -0700
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Hogander, Jouni" <jouni.hogander@intel.com>
+Thread-Topic: [PATCH v5 1/2] drm/i915/psr: Use full update In case of area
+ calculation fails
+Thread-Index: AQHYZtW8zs2ZPNrtJUG67i1lXTCFGq0ddnkA
+Date: Fri, 13 May 2022 16:35:04 +0000
+Message-ID: <3a77d341abec7a7db13c02fd17c40035a743b520.camel@intel.com>
+References: <20220513142811.779331-1-jouni.hogander@intel.com>
+ <20220513142811.779331-2-jouni.hogander@intel.com>
+In-Reply-To: <20220513142811.779331-2-jouni.hogander@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.100]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <1DEAF5A7671E9A46A40E9D46CE010184@intel.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v6] drm/i915/display: disable HPD workers before
- display driver unregister
+Subject: Re: [Intel-gfx] [PATCH v5 1/2] drm/i915/psr: Use full update In
+ case of area calculation fails
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,100 +77,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Handling HPD during driver removal is pointless, and can cause different
-use-after-free/concurrency issues:
-1. Setup of deferred fbdev after fbdev unregistration.
-2. Access to DP-AUX after DP-AUX removal.
-
-Below stacktraces of both cases observed on CI:
-
-[272.634530] general protection fault, probably for non-canonical address 0x6b6b6b6b6b6b6b6b: 0000 [#1] PREEMPT SMP NOPTI
-[272.634536] CPU: 0 PID: 6030 Comm: i915_selftest Tainted: G     U            5.18.0-rc5-CI_DRM_11603-g12dccf4f5eef+ #1
-[272.634541] Hardware name: Intel Corporation Raptor Lake Client Platform/RPL-S ADP-S DDR5 UDIMM CRB, BIOS RPLSFWI1.R00.2397.A01.2109300731 09/30/2021
-[272.634545] RIP: 0010:fb_do_apertures_overlap.part.14+0x26/0x60
-...
-[272.634582] Call Trace:
-[272.634583]  <TASK>
-[272.634585]  do_remove_conflicting_framebuffers+0x59/0xa0
-[272.634589]  remove_conflicting_framebuffers+0x2d/0xc0
-[272.634592]  remove_conflicting_pci_framebuffers+0xc8/0x110
-[272.634595]  drm_aperture_remove_conflicting_pci_framebuffers+0x52/0x70
-[272.634604]  i915_driver_probe+0x63a/0xdd0 [i915]
-
-[283.405824] cpu_latency_qos_update_request called for unknown object
-[283.405866] WARNING: CPU: 2 PID: 240 at kernel/power/qos.c:296 cpu_latency_qos_update_request+0x2d/0x100
-[283.405912] CPU: 2 PID: 240 Comm: kworker/u64:9 Not tainted 5.18.0-rc6-Patchwork_103738v3-g1672d1c43e43+ #1
-[283.405915] Hardware name: Intel Corporation Raptor Lake Client Platform/RPL-S ADP-S DDR5 UDIMM CRB, BIOS RPLSFWI1.R00.2397.A01.2109300731 09/30/2021
-[283.405916] Workqueue: i915-dp i915_digport_work_func [i915]
-[283.406020] RIP: 0010:cpu_latency_qos_update_request+0x2d/0x100
-...
-[283.406040] Call Trace:
-[283.406041]  <TASK>
-[283.406044]  intel_dp_aux_xfer+0x60e/0x8e0 [i915]
-[283.406131]  ? finish_swait+0x80/0x80
-[283.406139]  intel_dp_aux_transfer+0xc5/0x2b0 [i915]
-[283.406218]  drm_dp_dpcd_access+0x79/0x130 [drm_display_helper]
-[283.406227]  drm_dp_dpcd_read+0xe2/0xf0 [drm_display_helper]
-[283.406233]  intel_dp_hpd_pulse+0x134/0x570 [i915]
-[283.406308]  ? __down_killable+0x70/0x140
-[283.406313]  i915_digport_work_func+0xba/0x150 [i915]
-
-Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
----
-Hi all,
-
-This is my Nth attempt to solve some old CI bug[1].
-v-2: caused issues in kms code [2],
-v-1: revealed that not only fbdev does not like HPD on removal [3],
-v3: lacks drm_kms_helper_poll_disable[4]
-v4: added dump_stack to detect late fb registration
-v5: added intel_dp_mst_suspend to stop late fb registration
-v6: removed dump_stack with hope everything is handled
-
-Moreover this is quite rare bug, but due to specific configuration
-of one of CI machines it appears there very frequently.
-Forgive me spamming the list.
-
-[1]: https://gitlab.freedesktop.org/drm/intel/-/issues/5329
-[2]: https://patchwork.freedesktop.org/series/103621/
-[3]: https://patchwork.freedesktop.org/series/103738/
-[4]: https://patchwork.freedesktop.org/series/103811/
-
-Regards
-Andrzej
----
- drivers/gpu/drm/i915/display/intel_display.c | 11 ++++-------
- 1 file changed, 4 insertions(+), 7 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 806d50b302ab92..007bc6daef7d31 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -10486,13 +10486,6 @@ void intel_modeset_driver_remove_noirq(struct drm_i915_private *i915)
- 	 */
- 	intel_hpd_poll_fini(i915);
- 
--	/*
--	 * MST topology needs to be suspended so we don't have any calls to
--	 * fbdev after it's finalized. MST will be destroyed later as part of
--	 * drm_mode_config_cleanup()
--	 */
--	intel_dp_mst_suspend(i915);
--
- 	/* poll work can call into fbdev, hence clean that up afterwards */
- 	intel_fbdev_fini(i915);
- 
-@@ -10584,6 +10577,10 @@ void intel_display_driver_unregister(struct drm_i915_private *i915)
- 	if (!HAS_DISPLAY(i915))
- 		return;
- 
-+	intel_dp_mst_suspend(i915);
-+	intel_hpd_cancel_work(i915);
-+	drm_kms_helper_poll_disable(&i915->drm);
-+
- 	intel_fbdev_unregister(i915);
- 	intel_audio_deinit(i915);
- 
--- 
-2.25.1
-
+T24gRnJpLCAyMDIyLTA1LTEzIGF0IDE3OjI4ICswMzAwLCBKb3VuaSBIw7ZnYW5kZXIgd3JvdGU6
+DQo+IEN1cnJlbnRseSB3ZSBoYXZlIHNvbWUgY29ybmVyIGNhc2VzIHdoZXJlIGFyZWEgY2FsY3Vs
+YXRpb24gZmFpbHMuICBGb3INCj4gdGhlc2Ugc2VsIGZldGNoIGFyZWEgY2FsY3VsYXRpb24gZW5k
+cyB1cCBoYXZpbmcgdXBkYXRlIGFyZWEgYXMgeTEgPSAwLA0KPiB5MiA9IDQuIEluc3RlYWQgb2Yg
+dGhlc2UgdmFsdWVzIHNhZmVyIG9wdGlvbiBpcyBmdWxsIHVwZGF0ZS4NCj4gDQo+IE9uZSBvZiBz
+dWNoIGZvciBleGFtcGxlIGlzIGJpZyBmYiB3aXRoIG9mZnNldC4gV2UgZG9uJ3QgaGF2ZSB1c2Fi
+bGUNCj4gb2Zmc2V0IGluIHBzcjJfc2VsX2ZldGNoX3VwZGF0ZS4gQ3VycmVudGx5IGl0J3Mgb3Bl
+biB3aGF0IGlzIHRoZQ0KPiBwcm9wZXIgd2F5IHRvIGZpeCB0aGlzIGNvcm5lciBjYXNlLiBVc2Ug
+ZnVsbCB1cGRhdGUgZm9yIG5vdy4NCj4gDQo+IHYyOiBDb21taXQgbWVzc2FnZSBtb2RpZmllZA0K
+PiB2MzogUHJpbnQgb3V0IGRlYnVnIGluZm8gb25jZSB3aGVuIGFyZWEgY2FsY3VsYXRpb24gZmFp
+bHMNCj4gdjQ6IFVzZSBkcm1faW5mb19vbmNlDQo+IHY1OiBwaXBlQSAtPiAicGlwZSAlYyIsIHBp
+cGVfbmFtZShjcnRjLXBpcGUpDQo+IA0KDQpSZXZpZXdlZC1ieTogSm9zw6kgUm9iZXJ0byBkZSBT
+b3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+DQoNCj4gQ2M6IEpvc8OpIFJvYmVydG8gZGUgU291
+emEgPGpvc2Uuc291emFAaW50ZWwuY29tPg0KPiBDYzogTWlrYSBLYWhvbGEgPG1pa2Eua2Fob2xh
+QGludGVsLmNvbT4NCj4gU2lnbmVkLW9mZi1ieTogSm91bmkgSMO2Z2FuZGVyIDxqb3VuaS5ob2dh
+bmRlckBpbnRlbC5jb20+DQo+IC0tLQ0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
+bnRlbF9wc3IuYyB8IDE0ICsrKysrKysrKysrKysrDQo+ICAxIGZpbGUgY2hhbmdlZCwgMTQgaW5z
+ZXJ0aW9ucygrKQ0KPiANCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
+YXkvaW50ZWxfcHNyLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5j
+DQo+IGluZGV4IDA2ZGI0MDdlMjc0OS4uZmVjZGFhZWFjMzllIDEwMDY0NA0KPiAtLS0gYS9kcml2
+ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1
+L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMNCj4gQEAgLTE2ODUsNiArMTY4NSw3IEBAIHN0
+YXRpYyBib29sIHBzcjJfc2VsX2ZldGNoX3BpcGVfc3RhdGVfc3VwcG9ydGVkKGNvbnN0IHN0cnVj
+dCBpbnRlbF9jcnRjX3N0YXRlICpjDQo+ICBpbnQgaW50ZWxfcHNyMl9zZWxfZmV0Y2hfdXBkYXRl
+KHN0cnVjdCBpbnRlbF9hdG9taWNfc3RhdGUgKnN0YXRlLA0KPiAgCQkJCXN0cnVjdCBpbnRlbF9j
+cnRjICpjcnRjKQ0KPiAgew0KPiArCXN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiA9
+IHRvX2k5MTUoc3RhdGUtPmJhc2UuZGV2KTsNCj4gIAlzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAq
+Y3J0Y19zdGF0ZSA9IGludGVsX2F0b21pY19nZXRfbmV3X2NydGNfc3RhdGUoc3RhdGUsIGNydGMp
+Ow0KPiAgCXN0cnVjdCBkcm1fcmVjdCBwaXBlX2NsaXAgPSB7IC54MSA9IDAsIC55MSA9IC0xLCAu
+eDIgPSBJTlRfTUFYLCAueTIgPSAtMSB9Ow0KPiAgCXN0cnVjdCBpbnRlbF9wbGFuZV9zdGF0ZSAq
+bmV3X3BsYW5lX3N0YXRlLCAqb2xkX3BsYW5lX3N0YXRlOw0KPiBAQCAtMTc3MCw2ICsxNzcxLDE5
+IEBAIGludCBpbnRlbF9wc3IyX3NlbF9mZXRjaF91cGRhdGUoc3RydWN0IGludGVsX2F0b21pY19z
+dGF0ZSAqc3RhdGUsDQo+ICAJCWNsaXBfYXJlYV91cGRhdGUoJnBpcGVfY2xpcCwgJmRhbWFnZWRf
+YXJlYSk7DQo+ICAJfQ0KPiAgDQo+ICsJLyoNCj4gKwkgKiBUT0RPOiBGb3Igbm93IHdlIGFyZSBq
+dXN0IHVzaW5nIGZ1bGwgdXBkYXRlIGluIGNhc2UNCj4gKwkgKiBzZWxlY3RpdmUgZmV0Y2ggYXJl
+YSBjYWxjdWxhdGlvbiBmYWlscy4gVG8gb3B0aW1pemUgdGhpcyB3ZQ0KPiArCSAqIHNob3VsZCBp
+ZGVudGlmeSBjYXNlcyB3aGVyZSB0aGlzIGhhcHBlbnMgYW5kIGZpeCB0aGUgYXJlYQ0KPiArCSAq
+IGNhbGN1bGF0aW9uIGZvciB0aG9zZS4NCj4gKwkgKi8NCj4gKwlpZiAocGlwZV9jbGlwLnkxID09
+IC0xKSB7DQo+ICsJCWRybV9pbmZvX29uY2UoJmRldl9wcml2LT5kcm0sDQo+ICsJCQkgICAgICAi
+U2VsZWN0aXZlIGZldGNoIGFyZWEgY2FsY3VsYXRpb24gZmFpbGVkIGluIHBpcGUgJWNcbiIsDQo+
+ICsJCQkgICAgICBwaXBlX25hbWUoY3J0Yy0+cGlwZSkpOw0KPiArCQlmdWxsX3VwZGF0ZSA9IHRy
+dWU7DQo+ICsJfQ0KPiArDQo+ICAJaWYgKGZ1bGxfdXBkYXRlKQ0KPiAgCQlnb3RvIHNraXBfc2Vs
+X2ZldGNoX3NldF9sb29wOw0KPiAgDQoNCg==
