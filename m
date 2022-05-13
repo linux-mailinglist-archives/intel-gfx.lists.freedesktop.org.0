@@ -2,51 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 010D35261E3
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 May 2022 14:30:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 33C925261E7
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 May 2022 14:31:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4199A10FAA4;
-	Fri, 13 May 2022 12:30:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4DF5510FAED;
+	Fri, 13 May 2022 12:31:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C852810FAA4
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 May 2022 12:30:51 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7074C10FAD0;
+ Fri, 13 May 2022 12:31:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1652445051; x=1683981051;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Hxzszqo0+0GYDFdeVf7kAaPMss8fmZRgx+jwbutYDvg=;
- b=JSqctW6t0UQfdR9z0VsfKttsrDgogGznd9c53WJqCsdv95TRQNysuC3g
- /xtiAVcM53mUrLWXLNRNjR/G7WJbTc5UUoSgdr6sFUr7ome0hOZFpFdlK
- VObYVJYemlDHn+iwitvgTnseHDdMBAaUG4C0DLp+tX8kMwGIrA57lM1ZJ
- UY1wdLIteAvcLGwUcc0d9G57hOwgQRR8Z8aDo56elEXN6w5KZ/8KDNMfZ
- jgT+TOwKNthez4B3mTC6gj6zJ6kuontENnqiKQokmDc+Er5Oj1uDcyHfL
- gL8YOd0xkSAq2mqzPTrw10Klkjzwi/wF/jOaMUcO8Dhr16mfI/gCYztEm A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10345"; a="333328362"
-X-IronPort-AV: E=Sophos;i="5.91,221,1647327600"; d="scan'208";a="333328362"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 May 2022 05:30:51 -0700
-X-IronPort-AV: E=Sophos;i="5.91,221,1647327600"; d="scan'208";a="595200738"
-Received: from dvkewale-mobl1.gar.corp.intel.com (HELO
- jhogande-mobl1.ger.corp.intel.com) ([10.249.33.181])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 May 2022 05:30:50 -0700
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 13 May 2022 15:30:27 +0300
-Message-Id: <20220513123027.655313-3-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220513123027.655313-1-jouni.hogander@intel.com>
-References: <20220513123027.655313-1-jouni.hogander@intel.com>
+ t=1652445066; x=1683981066;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=p8mNLUEsri1ddcLBB/uzvSFjyNl3p+Jqy9usZYjWXAY=;
+ b=mplLcxb2bTD8HwBWl4cd6ZzNFyxZGdFTeCXIF1JjBzHbtNySy2XjdZza
+ ERLcrRbmFZdZk8dmMALl7cfPR4lH0kSoxgc+7f8PHrTXtx7EhA7K8IW2f
+ DRk2J0nWFxyGFHlD/iYTw9KjFzw4QWrZR6sYTJBpwWmDgNdIrB8NSXtDh
+ GmLfw2v4SnbjKNiC8RP+u9JbL+KRWSjE6IyUfXitx5u4BktShHmdBhXgx
+ eBSZZ+PBQ3px/BEZG8B7PPVNWyvfJriYZpyxmg+fXnpM2bDA6ac5Cr11e
+ yT1oYXEdZxmUj/QEMmf2MEBHnH9QXASeacEY+rAbuHJQwW8hhu1eAU/cs w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10345"; a="267887517"
+X-IronPort-AV: E=Sophos;i="5.91,221,1647327600"; d="scan'208";a="267887517"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 May 2022 05:31:05 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.91,221,1647327600"; d="scan'208";a="624849747"
+Received: from linux.intel.com ([10.54.29.200])
+ by fmsmga008.fm.intel.com with ESMTP; 13 May 2022 05:31:05 -0700
+Received: from [10.249.145.163] (unknown [10.249.145.163])
+ by linux.intel.com (Postfix) with ESMTP id DB043580A88;
+ Fri, 13 May 2022 05:31:01 -0700 (PDT)
+Message-ID: <08039c07-a32e-7725-bc98-db49eefb3e86@intel.com>
+Date: Fri, 13 May 2022 15:31:00 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4 2/2] drm/i915: Ensure damage clip area is
- within pipe area
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Content-Language: en-US
+To: Ramalingam C <ramalingam.c@intel.com>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>
+References: <20220502141508.2327-1-ramalingam.c@intel.com>
+From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+In-Reply-To: <20220502141508.2327-1-ramalingam.c@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v3] uapi/drm/i915: Document memory residency
+ and Flat-CCS capability of obj
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,101 +64,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Kenneth Graunke <kenneth@whitecape.org>, Matthew Auld <matthew.auld@intel.com>,
+ mesa-dev@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Current update area calculation is not handling situation where
-e.g. cursor plane is fully or partially outside pipe area.
+On 02/05/2022 17:15, Ramalingam C wrote:
+> Capture the impact of memory region preference list of the objects, on
+> their memory residency and Flat-CCS capability.
+>
+> v2:
+>    Fix the Flat-CCS capability of an obj with {lmem, smem} preference
+>    list [Thomas]
+> v3:
+>    Reworded the doc [Matt]
+>
+> Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
+> cc: Matthew Auld <matthew.auld@intel.com>
+> cc: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
+> cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+> cc: Jon Bloomfield <jon.bloomfield@intel.com>
+> cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+> cc: Kenneth Graunke <kenneth@whitecape.org>
+> cc: mesa-dev@lists.freedesktop.org
+> cc: Jordan Justen <jordan.l.justen@intel.com>
+> cc: Tony Ye <tony.ye@intel.com>
+> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+> ---
+>   include/uapi/drm/i915_drm.h | 16 ++++++++++++++++
+>   1 file changed, 16 insertions(+)
+>
+> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+> index a2def7b27009..b7e1c2fe08dc 100644
+> --- a/include/uapi/drm/i915_drm.h
+> +++ b/include/uapi/drm/i915_drm.h
+> @@ -3443,6 +3443,22 @@ struct drm_i915_gem_create_ext {
+>    * At which point we get the object handle in &drm_i915_gem_create_ext.handle,
+>    * along with the final object size in &drm_i915_gem_create_ext.size, which
+>    * should account for any rounding up, if required.
+> + *
+> + * Note that userspace has no means of knowing the current backing region
+> + * for objects where @num_regions is larger than one. The kernel will only
+> + * ensure that the priority order of the @regions array is honoured, either
+> + * when initially placing the object, or when moving memory around due to
+> + * memory pressure
+> + *
+> + * On Flat-CCS capable HW, compression is supported for the objects residing
+> + * in I915_MEMORY_CLASS_DEVICE. When such objects (compressed) has other
+> + * memory class in @regions and migrated (by I915, due to memory
+> + * constrain) to the non I915_MEMORY_CLASS_DEVICE region, then I915 needs to
+> + * decompress the content. But I915 dosen't have the required information to
+> + * decompress the userspace compressed objects.
+> + *
+> + * So I915 supports Flat-CCS, only on the objects which can reside only on
+> + * I915_MEMORY_CLASS_DEVICE regions.
 
-Fix this by checking damage area against pipe_src area using
-drm_rect_intersect.
 
-v2: Set x1 and x2 in damaged_area initialization
-v3: Move drm_rect_intersect into clip_area_update
-v4: draw_area -> pipe_src
+I think it's fine to assume Flat-CSS surface will always be in lmem.
 
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/5440
-Cc: José Roberto de Souza <jose.souza@intel.com>
-Cc: Mika Kahola <mika.kahola@intel.com>
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
----
- drivers/gpu/drm/i915/display/intel_psr.c | 23 ++++++++++++++++-------
- 1 file changed, 16 insertions(+), 7 deletions(-)
+I see no issue for the Anv Vulkan driver.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 1f031ebc1456..18058252037d 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1618,8 +1618,12 @@ static void psr2_man_trk_ctl_calc(struct intel_crtc_state *crtc_state,
- }
- 
- static void clip_area_update(struct drm_rect *overlap_damage_area,
--			     struct drm_rect *damage_area)
-+			     struct drm_rect *damage_area,
-+			     struct drm_rect *pipe_src)
- {
-+	if (!drm_rect_intersect(damage_area, pipe_src))
-+		return;
-+
- 	if (overlap_damage_area->y1 == -1) {
- 		overlap_damage_area->y1 = damage_area->y1;
- 		overlap_damage_area->y2 = damage_area->y2;
-@@ -1709,7 +1713,8 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
- 	 */
- 	for_each_oldnew_intel_plane_in_state(state, plane, old_plane_state,
- 					     new_plane_state, i) {
--		struct drm_rect src, damaged_area = { .y1 = -1 };
-+		struct drm_rect src, damaged_area = { .x1 = 0, .y1 = -1,
-+						      .x2 = INT_MAX };
- 		struct drm_atomic_helper_damage_iter iter;
- 		struct drm_rect clip;
- 
-@@ -1736,20 +1741,23 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
- 			if (old_plane_state->uapi.visible) {
- 				damaged_area.y1 = old_plane_state->uapi.dst.y1;
- 				damaged_area.y2 = old_plane_state->uapi.dst.y2;
--				clip_area_update(&pipe_clip, &damaged_area);
-+				clip_area_update(&pipe_clip, &damaged_area,
-+						 &crtc_state->pipe_src);
- 			}
- 
- 			if (new_plane_state->uapi.visible) {
- 				damaged_area.y1 = new_plane_state->uapi.dst.y1;
- 				damaged_area.y2 = new_plane_state->uapi.dst.y2;
--				clip_area_update(&pipe_clip, &damaged_area);
-+				clip_area_update(&pipe_clip, &damaged_area,
-+						 &crtc_state->pipe_src);
- 			}
- 			continue;
- 		} else if (new_plane_state->uapi.alpha != old_plane_state->uapi.alpha) {
- 			/* If alpha changed mark the whole plane area as damaged */
- 			damaged_area.y1 = new_plane_state->uapi.dst.y1;
- 			damaged_area.y2 = new_plane_state->uapi.dst.y2;
--			clip_area_update(&pipe_clip, &damaged_area);
-+			clip_area_update(&pipe_clip, &damaged_area,
-+					 &crtc_state->pipe_src);
- 			continue;
- 		}
- 
-@@ -1760,7 +1768,8 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
- 						   &new_plane_state->uapi);
- 		drm_atomic_for_each_plane_damage(&iter, &clip) {
- 			if (drm_rect_intersect(&clip, &src))
--				clip_area_update(&damaged_area, &clip);
-+				clip_area_update(&damaged_area, &clip,
-+						 &crtc_state->pipe_src);
- 		}
- 
- 		if (damaged_area.y1 == -1)
-@@ -1768,7 +1777,7 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
- 
- 		damaged_area.y1 += new_plane_state->uapi.dst.y1 - src.y1;
- 		damaged_area.y2 += new_plane_state->uapi.dst.y1 - src.y1;
--		clip_area_update(&pipe_clip, &damaged_area);
-+		clip_area_update(&pipe_clip, &damaged_area, &crtc_state->pipe_src);
- 	}
- 
- 	/*
--- 
-2.25.1
+
+Maybe Nanley or Ken can speak for the Iris GL driver?
+
+
+-Lionel
+
+
+>    */
+>   struct drm_i915_gem_create_ext_memory_regions {
+>   	/** @base: Extension link. See struct i915_user_extension. */
+
 
