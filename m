@@ -1,48 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A96F5525942
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 May 2022 03:10:20 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A03352596C
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 May 2022 03:37:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 485FB10F3D3;
-	Fri, 13 May 2022 01:10:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8395D10FA8D;
+	Fri, 13 May 2022 01:37:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 949DA10F3D3
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 May 2022 01:10:16 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 552A110FA7C
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 May 2022 01:37:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1652404216; x=1683940216;
+ t=1652405825; x=1683941825;
  h=from:to:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=W6kGk0ECfrm1H83+u6lnr0FiGJUaZ5RZlI2Ib0Cu6sM=;
- b=OWtD8bDKR3syhRdx/4LN/A/2cQtYARE3hy29ZEX8G1Pm0YoeL+R/K4gy
- V9hXFfWzxNjsbsjjfd1nAc98VoTHJPLY7EZG9+Am8+JBGgkHIAhV5tqyI
- Pu9CNCcrj1RIcpHtpKUw3mkewlUJWCYq//fqja2JqbOyCbQTYGhIJZEv8
- sGD2nVoZugTSIU8gZu/yxU6PBLhitTdKcQyx9rZIa/TMKekeEZorYgLhy
- CVjfeaQSBSkOqn9CR+mVc/bpNjna5iyPQBFDvQJ3y1hz5eS6HEFhI+Z2V
- LK0P73aq2eUau1gCyCaCbGSTiaGNH1C3MjTJ4ZzacEBwTGz8CbmsNL3HP w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10345"; a="252226994"
-X-IronPort-AV: E=Sophos;i="5.91,221,1647327600"; d="scan'208";a="252226994"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2022 18:10:15 -0700
-X-IronPort-AV: E=Sophos;i="5.91,221,1647327600"; d="scan'208";a="572763905"
+ bh=20hbXSbI7vg7Qj+CInEhLG0Rsu5hOwDbH5FGy6FpBHc=;
+ b=gJ/KYXmHoovKTyOmaBf502UtHDAMNFTS1jlBStUOJVzLXFL7o1dbv1d9
+ sPGXs4Gt+xtpiNqR0J5y76XkgHr3fTrHUO7MNO/UbDpxO13+/oGyW4TM9
+ MUiowu4pEXax5+KEeIQzxHuC2OfvUBYPJjVt30NF3I0xIl5Pv8WcVVxg/
+ holHf8FMrfUbk0cCEbTRiOA82iYhcpvg4AT4NViCgy88Ie6rlgYOk7OXq
+ IBUxJ7ISWaq7+ELB/xyk3pvY9zgBZHhbNR3BigiFFnlZ793Behelrpc8x
+ vWvtauKYzcWjgTLX61Flp3n3C5QUIuCRRtS2LXWOexN8NZvkYefuDuHju g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10345"; a="257728755"
+X-IronPort-AV: E=Sophos;i="5.91,221,1647327600"; d="scan'208";a="257728755"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 May 2022 18:37:04 -0700
+X-IronPort-AV: E=Sophos;i="5.91,221,1647327600"; d="scan'208";a="671111014"
 Received: from orsosgc001.jf.intel.com ([10.165.21.154])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2022 18:10:15 -0700
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 May 2022 18:37:04 -0700
 From: Ashutosh Dixit <ashutosh.dixit@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 12 May 2022 18:10:10 -0700
-Message-Id: <20220513011010.73236-1-ashutosh.dixit@intel.com>
+Date: Thu, 12 May 2022 18:36:52 -0700
+Message-Id: <cover.1652405421.git.ashutosh.dixit@intel.com>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH i-g-t] tests/i915_pm_freq_mult: New test for
- media freq factor
+Subject: [Intel-gfx] [PATCH v6 0/7] drm/i915: Media freq factor and per-gt
+ enhancements/fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,196 +57,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-XEHPSDV and DG2/ATS-M allow media IP blocks to run at frequencies different
-from the GT frequency. i915 exposes sysfs controls for these frequency
-multipliers. IGT's introduced in this patch exercise and verify these
-per-gt (gt/gtN) sysfs controls starting with the media freq factor (factor
-and multiplier terms are used interchangeably).
+Some recent Intel dGfx platforms allow media IP to work at a different
+frequency from the base GT. This patch series exposes sysfs controls for
+this functionality in the new per-gt sysfs. Some enhancements and fixes to
+previous per-gt functionality are also included to complete the new
+functionality:
+* Patches 1 and 2 implement basic sysfs controls for media freq
+* Patch 3 extends previous pcode functions for multiple gt's
+* Patch 4 inits pcode on different gt's
+* Patch 5 adds a couple of pcode helpers
+* Patch 6 uses the new pcode functions to retrieve media RP0/RPn freq
+* Patch 7 fixes memory leaks in the previous per-gt sysfs implementation
+  and some code refactoring
 
-v2: Added igt_describe's and s/igt_info/igt_debug/  (Kamil)
-v3: Change test name from i915_pm_disag_freq to i915_pm_freq_mult (Kamil)
-    Remove .defaults and media_RPx sysfs controls for first merege
+IGT tests for this new functionality have also been posted at:
 
-Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
-Reviewed-by: Kamil Konieczny <kamil.konieczny@linux.intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
----
- tests/i915/i915_pm_freq_mult.c | 146 +++++++++++++++++++++++++++++++++
- tests/meson.build              |   8 ++
- 2 files changed, 154 insertions(+)
- create mode 100644 tests/i915/i915_pm_freq_mult.c
+  https://patchwork.freedesktop.org/series/103175/
 
-diff --git a/tests/i915/i915_pm_freq_mult.c b/tests/i915/i915_pm_freq_mult.c
-new file mode 100644
-index 000000000000..f7ec74a9f897
---- /dev/null
-+++ b/tests/i915/i915_pm_freq_mult.c
-@@ -0,0 +1,146 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2022 Intel Corporation
-+ */
-+
-+#include <sys/types.h>
-+#include <sys/stat.h>
-+#include <fcntl.h>
-+
-+#include "i915/gem.h"
-+#include "igt.h"
-+#include "igt_sysfs.h"
-+
-+IGT_TEST_DESCRIPTION(
-+	"Tests for sysfs controls (or multipliers) for IP blocks which run at "
-+	"frequencies different from the main GT frequency."
-+);
-+
-+#define FREQ_SCALE_FACTOR	0.00390625f	/* 1.0f / 256 */
-+
-+/*
-+ * Firmware interfaces are not completely synchronous, a delay is needed
-+ * before the requested freq is actually set.
-+ * Media ratio read back after set will mismatch if this value is too small
-+ */
-+#define wait_freq_set()	usleep(100000)
-+
-+static int i915 = -1;
-+const intel_ctx_t *ctx;
-+uint64_t ahnd;
-+
-+static void spin_all(void)
-+{
-+	igt_spin_t *spin = igt_spin_new(i915, .ahnd = ahnd, .ctx = ctx, .engine = ALL_ENGINES,
-+					.flags = IGT_SPIN_POLL_RUN);
-+
-+	/* Wait till at least one spinner starts */
-+	igt_spin_busywait_until_started(spin);
-+}
-+
-+static void setup_freq(int gt, int dir)
-+{
-+	int rp0, rp1, rpn, min, max, act, media;
-+
-+	ctx = intel_ctx_create_all_physical(i915);
-+	ahnd = get_reloc_ahnd(i915, ctx->id);
-+
-+	/* Spin on all engines to jack freq up to max */
-+	spin_all();
-+	wait_freq_set();
-+
-+	/* Print some debug information */
-+	rp0 = igt_sysfs_get_u32(dir, "rps_RP0_freq_mhz");
-+	rp1 = igt_sysfs_get_u32(dir, "rps_RP1_freq_mhz");
-+	rpn = igt_sysfs_get_u32(dir, "rps_RPn_freq_mhz");
-+	min = igt_sysfs_get_u32(dir, "rps_min_freq_mhz");
-+	max = igt_sysfs_get_u32(dir, "rps_max_freq_mhz");
-+	act = igt_sysfs_get_u32(dir, "rps_act_freq_mhz");
-+
-+	igt_debug("RP0 MHz: %d, RP1 MHz: %d, RPn MHz: %d, min MHz: %d, max MHz: %d, act MHz: %d\n", rp0, rp1, rpn, min, max, act);
-+
-+	if (igt_sysfs_has_attr(dir, "media_freq_factor")) {
-+		media = igt_sysfs_get_u32(dir, "media_freq_factor");
-+		igt_debug("media ratio: %.2f\n", media * FREQ_SCALE_FACTOR);
-+	}
-+}
-+
-+static void cleanup(int dir)
-+{
-+	igt_free_spins(i915);
-+	put_ahnd(ahnd);
-+	intel_ctx_destroy(i915, ctx);
-+	gem_quiescent_gpu(i915);
-+}
-+
-+static void media_freq(int gt, int dir)
-+{
-+	float scale;
-+
-+	igt_require(igt_sysfs_has_attr(dir, "media_freq_factor"));
-+
-+	igt_sysfs_scanf(dir, "media_freq_factor.scale", "%g", &scale);
-+	igt_assert_eq(scale, FREQ_SCALE_FACTOR);
-+
-+	setup_freq(gt, dir);
-+	igt_debug("media ratio value 0.0 represents dynamic mode\n");
-+
-+	/*
-+	 * Media freq ratio modes supported are: dynamic (0), 1:2 (128) and
-+	 * 1:1 (256). Setting dynamic (0) can return any of the three
-+	 * modes. Fixed ratio modes should return the same value.
-+	 */
-+	for (int v = 256; v >= 0; v -= 64) {
-+		int getv, ret;
-+
-+		/*
-+		 * Check that we can set the mode. Ratios other than 1:2
-+		 * and 1:1 are not supported.
-+		 */
-+		ret = igt_sysfs_printf(dir, "media_freq_factor", "%u", v);
-+		if (ret <= 0) {
-+			igt_debug("Media ratio %.2f is not supported\n", v * scale);
-+			continue;
-+		}
-+
-+		wait_freq_set();
-+
-+		getv = igt_sysfs_get_u32(dir, "media_freq_factor");
-+
-+		igt_debug("media ratio set: %.2f, media ratio get: %.2f\n",
-+			  v * scale, getv * scale);
-+
-+		/*
-+		 * Skip validation in dynamic mode since the returned media
-+		 * ratio and freq are platform dependent and not clearly defined
-+		 */
-+		if (v)
-+			igt_assert_eq(getv, v);
-+	}
-+
-+	cleanup(dir);
-+}
-+
-+igt_main
-+{
-+	int dir, gt;
-+
-+	igt_fixture {
-+		i915 = drm_open_driver(DRIVER_INTEL);
-+
-+		/* Frequency multipliers are not simulated. */
-+		igt_require(!igt_run_in_simulation());
-+	}
-+
-+	igt_describe("Tests for media frequency factor sysfs");
-+	igt_subtest_with_dynamic("media-freq") {
-+		for_each_sysfs_gt_dirfd(i915, dir, gt) {
-+			igt_dynamic_f("gt%d", gt)
-+				media_freq(gt, dir);
-+		}
-+	}
-+
-+	igt_fixture {
-+		close(i915);
-+	}
-+}
-diff --git a/tests/meson.build b/tests/meson.build
-index fb0f1e37f633..70c3c9118c3b 100644
---- a/tests/meson.build
-+++ b/tests/meson.build
-@@ -368,6 +368,14 @@ test_executables += executable('gem_mmap_offset',
- 	   install : true)
- test_list += 'gem_mmap_offset'
- 
-+test_executables += executable('i915_pm_freq_mult',
-+	   join_paths('i915', 'i915_pm_freq_mult.c'),
-+	   dependencies : test_deps + [ lib_igt_perf ],
-+	   install_dir : libexecdir,
-+	   install_rpath : libexecdir_rpathdir,
-+	   install : true)
-+test_list += 'i915_pm_freq_mult'
-+
- test_executables += executable('i915_pm_rc6_residency',
- 	   join_paths('i915', 'i915_pm_rc6_residency.c'),
- 	   dependencies : test_deps + [ lib_igt_perf ],
+Test-with: 20220513011500.73460-1-ashutosh.dixit@intel.com
+
+v2: Fixed commit author on patches 5 and 6 (Rodrigo)
+    Added new patch 4
+v3: Expose pcode functions in terms of uncore rather than gt (Jani/Rodrigo)
+v4: Retain previous pcode function names to eliminate
+    needless #defines (Rodrigo)
+v5: Add new patch 4 and remove last two patches in the v4 series which will
+    be submitted later. Other mostly minor fixes from code review
+v6: Identical to v5, only update "Test-with:" since CI did not pick up
+    previous "Test-with:" probably because it was old
+
+Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Cc: Andi Shyti <andi.shyti@linux.intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
+
+Ashutosh Dixit (5):
+  drm/i915: Introduce has_media_ratio_mode
+  drm/i915/gt: Add media freq factor to per-gt sysfs
+  drm/i915/pcode: Extend pcode functions for multiple gt's
+  drm/i915/pcode: Init pcode on different gt's
+  drm/i915/gt: Fix memory leaks in per-gt sysfs
+
+Dale B Stimson (2):
+  drm/i915/pcode: Add a couple of pcode helpers
+  drm/i915/gt: Add media RP0/RPn to per-gt sysfs
+
+ drivers/gpu/drm/i915/display/hsw_ips.c        |   4 +-
+ drivers/gpu/drm/i915/display/intel_bw.c       |   6 +-
+ drivers/gpu/drm/i915/display/intel_cdclk.c    |  16 +-
+ .../drm/i915/display/intel_display_power.c    |   2 +-
+ .../i915/display/intel_display_power_well.c   |   4 +-
+ drivers/gpu/drm/i915/display/intel_hdcp.c     |   2 +-
+ drivers/gpu/drm/i915/gt/intel_gt.c            |   1 +
+ drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c |   4 +-
+ drivers/gpu/drm/i915/gt/intel_gt_regs.h       |   1 +
+ drivers/gpu/drm/i915/gt/intel_gt_sysfs.c      |  29 ++-
+ drivers/gpu/drm/i915/gt/intel_gt_sysfs.h      |   6 +-
+ drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c   | 177 ++++++++++++++++++
+ drivers/gpu/drm/i915/gt/intel_gt_types.h      |   3 +
+ drivers/gpu/drm/i915/gt/intel_llc.c           |   3 +-
+ drivers/gpu/drm/i915/gt/intel_rc6.c           |   4 +-
+ drivers/gpu/drm/i915/gt/intel_rps.c           |   4 +-
+ drivers/gpu/drm/i915/gt/selftest_llc.c        |   2 +-
+ drivers/gpu/drm/i915/gt/selftest_rps.c        |   2 +-
+ .../drm/i915/gt/uc/abi/guc_actions_slpc_abi.h |   6 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c   |  20 ++
+ drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h   |   1 +
+ .../gpu/drm/i915/gt/uc/intel_guc_slpc_types.h |   3 +
+ drivers/gpu/drm/i915/i915_driver.c            |  20 +-
+ drivers/gpu/drm/i915/i915_drv.h               |   2 +
+ drivers/gpu/drm/i915/i915_pci.c               |   2 +
+ drivers/gpu/drm/i915/i915_reg.h               |  11 ++
+ drivers/gpu/drm/i915/i915_sysfs.c             |   2 +
+ drivers/gpu/drm/i915/intel_device_info.h      |   1 +
+ drivers/gpu/drm/i915/intel_dram.c             |   2 +-
+ drivers/gpu/drm/i915/intel_pcode.c            |  93 +++++----
+ drivers/gpu/drm/i915/intel_pcode.h            |  20 +-
+ drivers/gpu/drm/i915/intel_pm.c               |  10 +-
+ 32 files changed, 363 insertions(+), 100 deletions(-)
+
 -- 
 2.34.1
 
