@@ -1,59 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 983D7527FDA
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 May 2022 10:39:49 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37A35528091
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 May 2022 11:11:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 74AE210F727;
-	Mon, 16 May 2022 08:39:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7770C10EF05;
+	Mon, 16 May 2022 09:11:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 27E5910EEE7;
- Mon, 16 May 2022 08:39:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F418510EF05
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 May 2022 09:11:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1652690384; x=1684226384;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=5CTdwfcLiJMPMwuDed5a3j7rUbf91iVNCdTl8e6u4sU=;
- b=nMNVFrvviprGNwph/MooV7XEOPblJgmIa847cGDzu+NVfjsYyX4xZYLJ
- MZEECbZFcZ3rvHWbbC8EVZAOjFaLwc2R9Z/iXaj4stcQ5p/YY3jz+ljT+
- 4hSRnUo6Mt+WDnaNd/A0DTERI1dV+VhwLVwrUr0yKsz8yASSqoKUL4xEv
- ZzGpJR3DRD6NEBOs9F7MI46HbLV6JOvh9rLdXlFS9tsl0Z/T39GqRTO7l
- yp55O8l2fJ+3G9fQV7wBKODGwQaYH3HE0rE+95oaUvjb9gqSRK2/ertf3
- a4bY+DtS2xA0u5Dcs9hdun2zXu9Fzc+KRfjCQZP4q2zoDRZ5ZYoizRwTQ Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10348"; a="269594801"
-X-IronPort-AV: E=Sophos;i="5.91,229,1647327600"; d="scan'208";a="269594801"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ t=1652692298; x=1684228298;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=3jveAccv5LS7WbpOf8IYIN1HjuU45v/EQg9WCG+UHDs=;
+ b=V6zM3o5AwOm4hE7EDt5mDsyT2upt1kcO97qXRtp1b3qYporYY0Zg5wH6
+ Z0XAH1MkhT/t8EgOr7iTOghgObZAgjleR9Q2PJE1SoN/Gj0gBxL3w5wme
+ wkTU40deMoj/dUX26+WlNGzQGBUWpAD097k6VEUXmeDTovIFtN0Vo2iK0
+ FjVKOhIejs/fuN1jA/YSjNRxnbbtEhOwDJ112vj7p/SSFSuVtv2OkAjaB
+ xMw2oThZOXNj6KVuccD1K0zlOEFac73i7fI4rRDzt6iXlKSLxN1pHUIv9
+ VzAvWonV/67wFSkqjwM4fnMdspnau2+HkiTbi/NJtodUb6dEG9AvWR1N4 Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10348"; a="269602328"
+X-IronPort-AV: E=Sophos;i="5.91,229,1647327600"; d="scan'208";a="269602328"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2022 01:39:43 -0700
-X-IronPort-AV: E=Sophos;i="5.91,229,1647327600"; d="scan'208";a="568223809"
-Received: from jrozansk-mobl.ger.corp.intel.com (HELO localhost)
- ([10.249.130.253])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2022 01:39:40 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Murthy, Arun R" <arun.r.murthy@intel.com>, "Modem, Bhanuprakash"
- <bhanuprakash.modem@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org"
- <dri-devel@lists.freedesktop.org>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>, "ville.syrjala@linux.intel.com"
- <ville.syrjala@linux.intel.com>, "harry.wentland@amd.com"
- <harry.wentland@amd.com>, "Sharma, Swati2" <swati2.sharma@intel.com>
-In-Reply-To: <DM6PR11MB31779A2700030C710CDAC877BAED9@DM6PR11MB3177.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220411095129.1652096-1-bhanuprakash.modem@intel.com>
- <20220411095129.1652096-3-bhanuprakash.modem@intel.com>
- <DM6PR11MB31779A2700030C710CDAC877BAED9@DM6PR11MB3177.namprd11.prod.outlook.com>
-Date: Mon, 16 May 2022 11:39:37 +0300
-Message-ID: <87lev1hnw6.fsf@intel.com>
+ 16 May 2022 02:11:38 -0700
+X-IronPort-AV: E=Sophos;i="5.91,229,1647327600"; d="scan'208";a="522370442"
+Received: from vkasired-desk2.fm.intel.com ([10.105.128.127])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 May 2022 02:11:37 -0700
+From: Vivek Kasireddy <vivek.kasireddy@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 16 May 2022 01:54:00 -0700
+Message-Id: <20220516085402.3591249-1-vivek.kasireddy@intel.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [V2 2/3] drm/i915/display/debug: Expose crtc
- current bpc via debugfs
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v1 0/2] drm/i915/tc: Prevent system hang when
+ modesetting disconnected Type-C ports
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,44 +58,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 12 Apr 2022, "Murthy, Arun R" <arun.r.murthy@intel.com> wrote:
->> -----Original Message-----
->> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of
->> Bhanuprakash Modem
->> Sent: Monday, April 11, 2022 3:21 PM
->> To: intel-gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org; am=
-d-
->> gfx@lists.freedesktop.org; jani.nikula@linux.intel.com;
->> ville.syrjala@linux.intel.com; harry.wentland@amd.com; Sharma, Swati2
->> <swati2.sharma@intel.com>
->> Subject: [Intel-gfx] [V2 2/3] drm/i915/display/debug: Expose crtc curren=
-t bpc
->> via debugfs
->>=20
->> This new debugfs will expose the currently using bpc by crtc.
->> It is very useful for verifying whether we enter the correct output colo=
-r depth
->> from IGT.
->>=20
->> This patch will also add the connector's max supported bpc to
->> "i915_display_info" debugfs.
->>=20
->> Example:
->> cat /sys/kernel/debug/dri/0/crtc-0/i915_current_bpc
->> Current: 8
->>=20
->> Cc: Jani Nikula <jani.nikula@linux.intel.com>
->> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->> Cc: Uma Shankar <uma.shankar@intel.com>
->> Signed-off-by: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
->
-> Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
+The following two patches try to prevent a system hang when a modeset
+is forced by userspace (Weston) on legacy Type-C ports that are
+disconnected. This issue was accidentally discovered while trying
+to modeset one of the HDMI ports on the TGL based Gigabyte system
+(https://www.gigabyte.com/Mini-PcBarebone/GB-BSi3-1115G4-rev-10#ov)
+using the following Weston settings (configured via weston.ini):
 
-Acked-by: Jani Nikula <jani.nikula@intel.com>
+[output]
+name=HDMI-A-3
+mode=173.00 1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync
+force-on=true
 
-for merging this via drm-misc-next.
+Entering the name of the HDMI connector incorrectly above (for example
+HDMI-A-3 (disconnected) instead of HDMI-A-2 (connected)) lead to 
+warnings in the log followed by a system hang. To fix this issue,
+the first patch prevents the selection of TBT PLL for legacy Type-C
+ports and the second one rejects any attempts to modeset disconnected
+Type-C ports.
 
+Cc: Imre Deak <imre.deak@intel.com>
+Cc: José Roberto de Souza <jose.souza@intel.com>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
+Vivek Kasireddy (2):
+  drm/i915/tc: Don't default disconnected legacy Type-C ports to TBT
+    mode
+  drm/i915: Reject the atomic modeset if an associated Type-C port is
+    disconnected
 
---=20
-Jani Nikula, Intel Open Source Graphics Center
+ drivers/gpu/drm/i915/display/intel_atomic.c | 20 ++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_tc.c     |  3 ++-
+ 2 files changed, 22 insertions(+), 1 deletion(-)
+
+-- 
+2.35.1
+
