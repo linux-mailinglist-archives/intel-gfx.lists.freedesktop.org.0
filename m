@@ -1,39 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 805C3528431
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 May 2022 14:29:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB03D528432
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 May 2022 14:29:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A251410E80B;
-	Mon, 16 May 2022 12:29:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F65C10EBA7;
+	Mon, 16 May 2022 12:29:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F3BB10EA8A
- for <intel-gfx@lists.freedesktop.org>; Mon, 16 May 2022 12:29:10 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 80B6210EBA7
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 May 2022 12:29:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1652704150; x=1684240150;
+ t=1652704179; x=1684240179;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=YcEyXMV/MNhGDgX7wMsPtvkJzCQJp1Xdt5z3CEoGXSQ=;
- b=NN6eOWEuSMRUwv53wsBe6bqODmluM2VEcD6TgNk05Q/ONu1u+PWAqpG7
- f9ow2XyFrYfX7tNjWjrAVhuxqsXkJaiWFo2M6h/mZ5bjQBIuAdl26RZAH
- VeWJG/k18YDoSytyEdrlnJO8w0PYnz6TXHlaW2V7ZOEEr8gs3wUcgJ/pM
- tDY1GzQNgfd7L+sT4Jf0mHkn4DcRg5Ygx99WAh2CdVnaX5iRS9Z19Yf/R
- oV72iGl4xJ+3r4UbGmNH+6FnYWs5UF+RqNTIprf+MuEjHVfElYjsKlnsV
- A8Ef8gqTrXFCYZ86bLW+dqN4ZWrOkbB7mHX04iT+PHPq2rNpW52+k67Tu w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10348"; a="250710623"
-X-IronPort-AV: E=Sophos;i="5.91,229,1647327600"; d="scan'208";a="250710623"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2022 05:29:09 -0700
-X-IronPort-AV: E=Sophos;i="5.91,229,1647327600"; d="scan'208";a="568293865"
+ bh=6Y8yGDeaQOBKmItE2qKGaziziX+sGWu4KUaATFH/uIw=;
+ b=Unoi6Rk8Hx7TvTYv+ro1Jj0KOab4gs0mK2aqXmqLDKAx5ZkCflbJqgtP
+ mNKj9hDqmpalnlhOQEjgLxhsnn15ki2vt/iQlAwQtxewVlxMEn4uqWntl
+ iD6l4BhRlVln0XsWUd8z0DdcW/YoV7VhUz73iaNwbzBdfksMDcXtyL5+Z
+ TzgCcaNsyA/YwzuXhw8qWFb5yoVmhTmC8w+I+Qlk58bNCD1B0fpNi9Els
+ y1SM11nxYbcqf6voXwJ6hcW1EECEq8Xjmny8LAJqbUCiCYXDsekYNTn0B
+ irzOxcui0rCHqMmCUEIiXFCh6tkzBA64SYXHWp/aSggd7TnVlDQME3kWG g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10348"; a="252883166"
+X-IronPort-AV: E=Sophos;i="5.91,229,1647327600"; d="scan'208";a="252883166"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 May 2022 05:29:39 -0700
+X-IronPort-AV: E=Sophos;i="5.91,229,1647327600"; d="scan'208";a="596496508"
 Received: from akuriata-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.249.145.127])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2022 05:29:08 -0700
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 May 2022 05:29:37 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
@@ -41,8 +41,8 @@ In-Reply-To: <20220503182242.18797-6-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20220503182242.18797-1-ville.syrjala@linux.intel.com>
  <20220503182242.18797-6-ville.syrjala@linux.intel.com>
-Date: Mon, 16 May 2022 15:29:05 +0300
-Message-ID: <874k1phd9q.fsf@intel.com>
+Date: Mon, 16 May 2022 15:29:34 +0300
+Message-ID: <871qwthd8x.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -67,11 +67,11 @@ On Tue, 03 May 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
 > Deduplicate the crtc_ timigns comparisons.
+
+*timings
+
 >
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-
 > ---
 >  drivers/gpu/drm/i915/display/intel_display.c | 45 ++++++++------------
 >  1 file changed, 18 insertions(+), 27 deletions(-)
