@@ -1,53 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 409ED52844E
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 May 2022 14:39:16 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2582C528450
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 May 2022 14:39:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F57510E151;
-	Mon, 16 May 2022 12:39:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6DD3010E39D;
+	Mon, 16 May 2022 12:39:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 37D4010E151
- for <intel-gfx@lists.freedesktop.org>; Mon, 16 May 2022 12:39:13 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 14EED10E39D
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 May 2022 12:39:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1652704753; x=1684240753;
+ t=1652704793; x=1684240793;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=BlDZf8KUwMtDt5ZQ11vZ8tyICbC0T78lrEd4Q00Eww4=;
- b=QOXp9zvnOGrv/kr853Ebnhi/q4IfnfL15bhB81+9kmtVAClEVaq26wN9
- jprJOlsbuqTMIAM2x7EnRk6TIhNaQ6/qw7U2W7rWzF/LLqI4CWxVxk7TB
- L9m3DooOA7PZSize+TnqM5/qzu01A8kL0HNEDq4Nmx9dZ4Qtz91lFhMzw
- ugXt8PsN0bzGQXNEDwmMEwv/xjjC/dcV+oYE3ELUDGSE/PwNtOEd5cprk
- rs4MvDtg0sn2Lec8WQGtYxUD1DYJSgX/htC4zDIyasIDanQ2SMIYX8dOB
- c/61/Zs8JRSrOsE6YRZamHGscbiIekOX9CLiUxPZJRnpLXAnFT0pgQaV8 w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10348"; a="251332296"
-X-IronPort-AV: E=Sophos;i="5.91,229,1647327600"; d="scan'208";a="251332296"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2022 05:39:12 -0700
-X-IronPort-AV: E=Sophos;i="5.91,229,1647327600"; d="scan'208";a="596499545"
+ bh=uXCmHxopgj4VBx/N9qUm0u2+4BNHlmafYAorVxij2xk=;
+ b=Y9qY1MYLtQ04ptRUh7TACERUxKd0brvAV3esRnfCkEDgdeVnK9pp1+GM
+ 1otn4ObvQSiiarFp++ef1ogY34nkBMpBWYRJKG3c/8/C1UIPkxuI36tkO
+ 1OkVL6MwlT+DTr8WB+1vJXRZLHW/XWMnWXWF81AO4v+UEWWtGMDaC51td
+ hfykDuqjJ1XVq9meNhJDtcpzcQZ/HVZavOLl8sWfukebLrwWsMpxt3b4V
+ za/b3lZEhcqyUUYNmaLgrxHMme8EyMfxo7soSmVBE0YteU3EiveVtfOcL
+ 5kn+Y409OnlPoIdOxDch9lR2pY3udVdkjkMlAY28gDf5/iQ3rWENRkOXS w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10348"; a="296080665"
+X-IronPort-AV: E=Sophos;i="5.91,229,1647327600"; d="scan'208";a="296080665"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 May 2022 05:39:52 -0700
+X-IronPort-AV: E=Sophos;i="5.91,229,1647327600"; d="scan'208";a="568296903"
 Received: from akuriata-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.249.145.127])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2022 05:39:11 -0700
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 May 2022 05:39:51 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220503182242.18797-8-ville.syrjala@linux.intel.com>
+In-Reply-To: <20220503182242.18797-9-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20220503182242.18797-1-ville.syrjala@linux.intel.com>
- <20220503182242.18797-8-ville.syrjala@linux.intel.com>
-Date: Mon, 16 May 2022 15:39:08 +0300
-Message-ID: <87v8u5fy8j.fsf@intel.com>
+ <20220503182242.18797-9-ville.syrjala@linux.intel.com>
+Date: Mon, 16 May 2022 15:39:48 +0300
+Message-ID: <87sfp9fy7f.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 07/26] drm/i915: Adjust
- intel_modeset_pipe_config() & co. calling convention
+Subject: Re: [Intel-gfx] [PATCH 08/26] drm/i915: s/pipe_config/crtc_state/
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,174 +65,217 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Tue, 03 May 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> Use the state+crtc calling convention for intel_modeset_pipe_config()
-> and othere related functions. Many of these need the full atomic state
-> anyway so passing it all the way through is just nicer than having to
-> worry about whether it can actually be extracted from eg. the crtc
-> state passed in.
+> Rename some of the 'pipe_config's to the more modern
+> 'crtc_state'.
 >
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
 > ---
->  drivers/gpu/drm/i915/display/intel_display.c | 48 ++++++++++----------
->  1 file changed, 25 insertions(+), 23 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_display.c | 62 ++++++++++----------
+>  1 file changed, 31 insertions(+), 31 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
 rm/i915/display/intel_display.c
-> index 1093665122a4..4615cf3564eb 100644
+> index 4615cf3564eb..ac476976dc0b 100644
 > --- a/drivers/gpu/drm/i915/display/intel_display.c
 > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -2811,9 +2811,11 @@ static int intel_crtc_compute_pipe_mode(struct int=
-el_crtc_state *crtc_state)
->  	return 0;
->  }
->=20=20
-> -static int intel_crtc_compute_config(struct intel_crtc *crtc,
-> -				     struct intel_crtc_state *crtc_state)
-> +static int intel_crtc_compute_config(struct intel_atomic_state *state,
-> +				     struct intel_crtc *crtc)
->  {
-> +	struct intel_crtc_state *crtc_state =3D
-> +		intel_atomic_get_new_crtc_state(state, crtc);
->  	int ret;
->=20=20
->  	ret =3D intel_crtc_compute_pipe_src(crtc_state);
-> @@ -5052,11 +5054,12 @@ compute_sink_pipe_bpp(const struct drm_connector_=
-state *conn_state,
->  }
+> @@ -5013,10 +5013,10 @@ static void intel_modeset_update_connector_atomic=
+_state(struct drm_device *dev)
 >=20=20
 >  static int
-> -compute_baseline_pipe_bpp(struct intel_crtc *crtc,
-> -			  struct intel_crtc_state *pipe_config)
-> +compute_baseline_pipe_bpp(struct intel_atomic_state *state,
-> +			  struct intel_crtc *crtc)
+>  compute_sink_pipe_bpp(const struct drm_connector_state *conn_state,
+> -		      struct intel_crtc_state *pipe_config)
+> +		      struct intel_crtc_state *crtc_state)
+>  {
+>  	struct drm_connector *connector =3D conn_state->connector;
+> -	struct drm_i915_private *i915 =3D to_i915(pipe_config->uapi.crtc->dev);
+> +	struct drm_i915_private *i915 =3D to_i915(crtc_state->uapi.crtc->dev);
+>  	const struct drm_display_info *info =3D &connector->display_info;
+>  	int bpp;
+>=20=20
+> @@ -5038,16 +5038,16 @@ compute_sink_pipe_bpp(const struct drm_connector_=
+state *conn_state,
+>  		return -EINVAL;
+>  	}
+>=20=20
+> -	if (bpp < pipe_config->pipe_bpp) {
+> +	if (bpp < crtc_state->pipe_bpp) {
+>  		drm_dbg_kms(&i915->drm,
+>  			    "[CONNECTOR:%d:%s] Limiting display bpp to %d instead of "
+>  			    "EDID bpp %d, requested bpp %d, max platform bpp %d\n",
+>  			    connector->base.id, connector->name,
+>  			    bpp, 3 * info->bpc,
+>  			    3 * conn_state->max_requested_bpc,
+> -			    pipe_config->pipe_bpp);
+> +			    crtc_state->pipe_bpp);
+>=20=20
+> -		pipe_config->pipe_bpp =3D bpp;
+> +		crtc_state->pipe_bpp =3D bpp;
+>  	}
+>=20=20
+>  	return 0;
+> @@ -5058,7 +5058,7 @@ compute_baseline_pipe_bpp(struct intel_atomic_state=
+ *state,
+>  			  struct intel_crtc *crtc)
 >  {
 >  	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
-> -	struct drm_atomic_state *state =3D pipe_config->uapi.state;
-> +	struct intel_crtc_state *pipe_config =3D
-> +		intel_atomic_get_new_crtc_state(state, crtc);
+> -	struct intel_crtc_state *pipe_config =3D
+> +	struct intel_crtc_state *crtc_state =3D
+>  		intel_atomic_get_new_crtc_state(state, crtc);
 >  	struct drm_connector *connector;
 >  	struct drm_connector_state *connector_state;
->  	int bpp, i;
-> @@ -5072,7 +5075,7 @@ compute_baseline_pipe_bpp(struct intel_crtc *crtc,
->  	pipe_config->pipe_bpp =3D bpp;
+> @@ -5072,7 +5072,7 @@ compute_baseline_pipe_bpp(struct intel_atomic_state=
+ *state,
+>  	else
+>  		bpp =3D 8*3;
+>=20=20
+> -	pipe_config->pipe_bpp =3D bpp;
+> +	crtc_state->pipe_bpp =3D bpp;
 >=20=20
 >  	/* Clamp display bpp to connector max bpp */
-> -	for_each_new_connector_in_state(state, connector, connector_state, i) {
-> +	for_each_new_connector_in_state(&state->base, connector, connector_stat=
+>  	for_each_new_connector_in_state(&state->base, connector, connector_stat=
 e, i) {
->  		int ret;
->=20=20
+> @@ -5081,7 +5081,7 @@ compute_baseline_pipe_bpp(struct intel_atomic_state=
+ *state,
 >  		if (connector_state->crtc !=3D &crtc->base)
-> @@ -5632,18 +5635,18 @@ intel_crtc_prepare_cleared_state(struct intel_ato=
-mic_state *state,
+>  			continue;
 >=20=20
->  static int
->  intel_modeset_pipe_config(struct intel_atomic_state *state,
-> -			  struct intel_crtc_state *pipe_config)
-> +			  struct intel_crtc *crtc)
+> -		ret =3D compute_sink_pipe_bpp(connector_state, pipe_config);
+> +		ret =3D compute_sink_pipe_bpp(connector_state, crtc_state);
+>  		if (ret)
+>  			return ret;
+>  	}
+> @@ -5638,7 +5638,7 @@ intel_modeset_pipe_config(struct intel_atomic_state=
+ *state,
+>  			  struct intel_crtc *crtc)
 >  {
-> -	struct drm_crtc *crtc =3D pipe_config->uapi.crtc;
-> -	struct drm_i915_private *i915 =3D to_i915(pipe_config->uapi.crtc->dev);
-> +	struct drm_i915_private *i915 =3D to_i915(crtc->base.dev);
-> +	struct intel_crtc_state *pipe_config =3D
-> +		intel_atomic_get_new_crtc_state(state, crtc);
+>  	struct drm_i915_private *i915 =3D to_i915(crtc->base.dev);
+> -	struct intel_crtc_state *pipe_config =3D
+> +	struct intel_crtc_state *crtc_state =3D
+>  		intel_atomic_get_new_crtc_state(state, crtc);
 >  	struct drm_connector *connector;
 >  	struct drm_connector_state *connector_state;
->  	int pipe_src_w, pipe_src_h;
+> @@ -5646,28 +5646,28 @@ intel_modeset_pipe_config(struct intel_atomic_sta=
+te *state,
 >  	int base_bpp, ret, i;
 >  	bool retry =3D true;
 >=20=20
-> -	pipe_config->cpu_transcoder =3D
-> -		(enum transcoder) to_intel_crtc(crtc)->pipe;
-> +	pipe_config->cpu_transcoder =3D (enum transcoder) crtc->pipe;
+> -	pipe_config->cpu_transcoder =3D (enum transcoder) crtc->pipe;
+> +	crtc_state->cpu_transcoder =3D (enum transcoder) crtc->pipe;
 >=20=20
->  	pipe_config->framestart_delay =3D 1;
+> -	pipe_config->framestart_delay =3D 1;
+> +	crtc_state->framestart_delay =3D 1;
 >=20=20
-> @@ -5660,8 +5663,7 @@ intel_modeset_pipe_config(struct intel_atomic_state=
- *state,
+>  	/*
+>  	 * Sanitize sync polarity flags based on requested ones. If neither
+>  	 * positive or negative polarity is requested, treat this as meaning
+>  	 * negative polarity.
+>  	 */
+> -	if (!(pipe_config->hw.adjusted_mode.flags &
+> +	if (!(crtc_state->hw.adjusted_mode.flags &
+>  	      (DRM_MODE_FLAG_PHSYNC | DRM_MODE_FLAG_NHSYNC)))
+> -		pipe_config->hw.adjusted_mode.flags |=3D DRM_MODE_FLAG_NHSYNC;
+> +		crtc_state->hw.adjusted_mode.flags |=3D DRM_MODE_FLAG_NHSYNC;
+>=20=20
+> -	if (!(pipe_config->hw.adjusted_mode.flags &
+> +	if (!(crtc_state->hw.adjusted_mode.flags &
 >  	      (DRM_MODE_FLAG_PVSYNC | DRM_MODE_FLAG_NVSYNC)))
->  		pipe_config->hw.adjusted_mode.flags |=3D DRM_MODE_FLAG_NVSYNC;
+> -		pipe_config->hw.adjusted_mode.flags |=3D DRM_MODE_FLAG_NVSYNC;
+> +		crtc_state->hw.adjusted_mode.flags |=3D DRM_MODE_FLAG_NVSYNC;
 >=20=20
-> -	ret =3D compute_baseline_pipe_bpp(to_intel_crtc(crtc),
-> -					pipe_config);
-> +	ret =3D compute_baseline_pipe_bpp(state, crtc);
+>  	ret =3D compute_baseline_pipe_bpp(state, crtc);
 >  	if (ret)
 >  		return ret;
 >=20=20
-> @@ -5684,10 +5686,10 @@ intel_modeset_pipe_config(struct intel_atomic_sta=
+> -	base_bpp =3D pipe_config->pipe_bpp;
+> +	base_bpp =3D crtc_state->pipe_bpp;
+>=20=20
+>  	/*
+>  	 * Determine the real pipe dimensions. Note that stereo modes can
+> @@ -5677,9 +5677,9 @@ intel_modeset_pipe_config(struct intel_atomic_state=
+ *state,
+>  	 * computation to clearly distinguish it from the adjusted mode, which
+>  	 * can be changed by the connectors in the below retry loop.
+>  	 */
+> -	drm_mode_get_hv_timing(&pipe_config->hw.mode,
+> +	drm_mode_get_hv_timing(&crtc_state->hw.mode,
+>  			       &pipe_src_w, &pipe_src_h);
+> -	drm_rect_init(&pipe_config->pipe_src, 0, 0,
+> +	drm_rect_init(&crtc_state->pipe_src, 0, 0,
+>  		      pipe_src_w, pipe_src_h);
+>=20=20
+>  	for_each_new_connector_in_state(&state->base, connector, connector_stat=
+e, i) {
+> @@ -5700,20 +5700,20 @@ intel_modeset_pipe_config(struct intel_atomic_sta=
 te *state,
->  		struct intel_encoder *encoder =3D
->  			to_intel_encoder(connector_state->best_encoder);
+>  		 * hooks so that the hooks can use this information safely.
+>  		 */
+>  		if (encoder->compute_output_type)
+> -			pipe_config->output_types |=3D
+> -				BIT(encoder->compute_output_type(encoder, pipe_config,
+> +			crtc_state->output_types |=3D
+> +				BIT(encoder->compute_output_type(encoder, crtc_state,
+>  								 connector_state));
+>  		else
+> -			pipe_config->output_types |=3D BIT(encoder->type);
+> +			crtc_state->output_types |=3D BIT(encoder->type);
+>  	}
 >=20=20
-> -		if (connector_state->crtc !=3D crtc)
-> +		if (connector_state->crtc !=3D &crtc->base)
+>  encoder_retry:
+>  	/* Ensure the port clock defaults are reset when retrying. */
+> -	pipe_config->port_clock =3D 0;
+> -	pipe_config->pixel_multiplier =3D 1;
+> +	crtc_state->port_clock =3D 0;
+> +	crtc_state->pixel_multiplier =3D 1;
+>=20=20
+>  	/* Fill in default crtc timings, allow encoders to overwrite them. */
+> -	drm_mode_set_crtcinfo(&pipe_config->hw.adjusted_mode,
+> +	drm_mode_set_crtcinfo(&crtc_state->hw.adjusted_mode,
+>  			      CRTC_STEREO_DOUBLE);
+>=20=20
+>  	/* Pass our mode to the connectors and the CRTC to give them a chance to
+> @@ -5727,7 +5727,7 @@ intel_modeset_pipe_config(struct intel_atomic_state=
+ *state,
+>  		if (connector_state->crtc !=3D &crtc->base)
 >  			continue;
 >=20=20
-> -		if (!check_single_encoder_cloning(state, to_intel_crtc(crtc), encoder)=
-) {
-> +		if (!check_single_encoder_cloning(state, crtc, encoder)) {
->  			drm_dbg_kms(&i915->drm,
->  				    "rejecting invalid cloning configuration\n");
->  			return -EINVAL;
-> @@ -5722,7 +5724,7 @@ intel_modeset_pipe_config(struct intel_atomic_state=
+> -		ret =3D encoder->compute_config(encoder, pipe_config,
+> +		ret =3D encoder->compute_config(encoder, crtc_state,
+>  					      connector_state);
+>  		if (ret =3D=3D -EDEADLK)
+>  			return ret;
+> @@ -5739,9 +5739,9 @@ intel_modeset_pipe_config(struct intel_atomic_state=
  *state,
->  		struct intel_encoder *encoder =3D
->  			to_intel_encoder(connector_state->best_encoder);
 >=20=20
-> -		if (connector_state->crtc !=3D crtc)
-> +		if (connector_state->crtc !=3D &crtc->base)
->  			continue;
+>  	/* Set default port clock if not overwritten by the encoder. Needs to be
+>  	 * done afterwards in case the encoder adjusts the mode. */
+> -	if (!pipe_config->port_clock)
+> -		pipe_config->port_clock =3D pipe_config->hw.adjusted_mode.crtc_clock
+> -			* pipe_config->pixel_multiplier;
+> +	if (!crtc_state->port_clock)
+> +		crtc_state->port_clock =3D crtc_state->hw.adjusted_mode.crtc_clock
+> +			* crtc_state->pixel_multiplier;
 >=20=20
->  		ret =3D encoder->compute_config(encoder, pipe_config,
-> @@ -5741,7 +5743,7 @@ intel_modeset_pipe_config(struct intel_atomic_state=
- *state,
->  		pipe_config->port_clock =3D pipe_config->hw.adjusted_mode.crtc_clock
->  			* pipe_config->pixel_multiplier;
->=20=20
-> -	ret =3D intel_crtc_compute_config(to_intel_crtc(crtc), pipe_config);
-> +	ret =3D intel_crtc_compute_config(state, crtc);
+>  	ret =3D intel_crtc_compute_config(state, crtc);
 >  	if (ret =3D=3D -EDEADLK)
->  		return ret;
->  	if (ret =3D=3D -EAGAIN) {
-> @@ -5772,11 +5774,11 @@ intel_modeset_pipe_config(struct intel_atomic_sta=
+> @@ -5764,11 +5764,11 @@ intel_modeset_pipe_config(struct intel_atomic_sta=
 te *state,
+>  	 * only enable it on 6bpc panels and when its not a compliance
+>  	 * test requesting 6bpc video pattern.
+>  	 */
+> -	pipe_config->dither =3D (pipe_config->pipe_bpp =3D=3D 6*3) &&
+> -		!pipe_config->dither_force_disable;
+> +	crtc_state->dither =3D (crtc_state->pipe_bpp =3D=3D 6*3) &&
+> +		!crtc_state->dither_force_disable;
+>  	drm_dbg_kms(&i915->drm,
+>  		    "hw max bpp: %i, pipe bpp: %i, dithering: %i\n",
+> -		    base_bpp, pipe_config->pipe_bpp, pipe_config->dither);
+> +		    base_bpp, crtc_state->pipe_bpp, crtc_state->dither);
+>=20=20
+>  	return 0;
 >  }
->=20=20
->  static int
-> -intel_modeset_pipe_config_late(struct intel_crtc_state *crtc_state)
-> +intel_modeset_pipe_config_late(struct intel_atomic_state *state,
-> +			       struct intel_crtc *crtc)
->  {
-> -	struct intel_atomic_state *state =3D
-> -		to_intel_atomic_state(crtc_state->uapi.state);
-> -	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
-> +	struct intel_crtc_state *crtc_state =3D
-> +		intel_atomic_get_new_crtc_state(state, crtc);
->  	struct drm_connector_state *conn_state;
->  	struct drm_connector *connector;
->  	int i;
-> @@ -7705,7 +7707,7 @@ static int intel_atomic_check(struct drm_device *de=
-v,
->  		if (!new_crtc_state->hw.enable)
->  			continue;
->=20=20
-> -		ret =3D intel_modeset_pipe_config(state, new_crtc_state);
-> +		ret =3D intel_modeset_pipe_config(state, crtc);
->  		if (ret)
->  			goto fail;
->=20=20
-> @@ -7719,7 +7721,7 @@ static int intel_atomic_check(struct drm_device *de=
-v,
->  		if (!intel_crtc_needs_modeset(new_crtc_state))
->  			continue;
->=20=20
-> -		ret =3D intel_modeset_pipe_config_late(new_crtc_state);
-> +		ret =3D intel_modeset_pipe_config_late(state, crtc);
->  		if (ret)
->  			goto fail;
 
 --=20
 Jani Nikula, Intel Open Source Graphics Center
