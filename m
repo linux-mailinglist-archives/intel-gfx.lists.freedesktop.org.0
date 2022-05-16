@@ -1,153 +1,64 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B519F5292E1
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 May 2022 23:30:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7234A5293E7
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 May 2022 00:56:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4AC2110E1C9;
-	Mon, 16 May 2022 21:30:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B6A0D10E590;
+	Mon, 16 May 2022 22:56:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B779D10E1C9;
- Mon, 16 May 2022 21:30:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1652736635; x=1684272635;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=ji87ob0D8PlkeajM7oCokKTO/3ta04TSuyEe7TSvsBQ=;
- b=EqeZahU4ZnHoHoLnnxNnFM0bPOqsIFhB5fkHz2tu1YZpnRim01O383/y
- cmFu8QuP7mIhu2ik5isArbNJnJClcTAQRLVzHQRCqMrno43uT44A1WCu4
- ApDQs6utZUjdJ1Q1LGFdbF4KZaHTj1Yoe9HjGdNH08n8VLderJLwQLDYf
- 11/nAJ+8DcOdq01hMgm+I1mKbJeqb/vVYzgq4G3JDfgIAdEjhmUh8MyRc
- 0tGLLRv9AF4vq9A3K1tHe+4QO8/BbboZKuZWcoYr2HvhAFNyUgOoTvYC1
- 7Be6+N4tEZduCM8jxXd7VyZgMx7FGBemJzU/BvykEKgoOpzw/16HgLq0w g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10349"; a="357380952"
-X-IronPort-AV: E=Sophos;i="5.91,231,1647327600"; d="scan'208";a="357380952"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2022 14:30:35 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,231,1647327600"; d="scan'208";a="626144234"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by fmsmga008.fm.intel.com with ESMTP; 16 May 2022 14:30:35 -0700
-Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Mon, 16 May 2022 14:30:34 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27 via Frontend Transport; Mon, 16 May 2022 14:30:34 -0700
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com (104.47.73.168)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2308.27; Mon, 16 May 2022 14:30:34 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=aC//GJG9rhihlo0ZXXJph9eHoUwdGIaAMyIfcNgZDXvXe81pPa6OwEkm9qoCLE/Gk9Ox/kPJi3g5BCqTDhpfKt+oPSyWPIaeeo3ksyfTxUx3iA9Qcx+Co2a/julmccUsFMMNhILoAPhSG6e2UU9dkLiJUut+h2sLQd3ui6Nmd50Ik7w6wU/gRiOHycDSRl9p0LUgGw7YjkrZ71mqomPxI3hf9LITFWQ7adBqN2hAIA7btX3Wd8xegXB7p9KOZPIsk+EAaqOM/Ffo59AZ6c9vMKsf0YBjm6mDGxTscrmMItn57gL1MnAEZke3fNUJKw5jp8hJ7PHqzdGBNZZOQvzm8A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=V1krlOwxkYk8aL1Ao3bnXtUNns7He6IO9jcBAlhhNLQ=;
- b=kzVTOaW38iHmrfkUiInhPB3o6DBZm39XaP26EhzvzeJkkpiM1ZNWYo88IiEnPpMwA8lXuSbE4lGWSOCGySqkC0M/vdErutUvhBdA2lc7je+bWzlJkxPleXaG8uxzUbZYdySL5Fgicy9SUL5+fXG1I53gWPRE6FNiHaer6QsmkrwxBqgLrxDmc+rxOGLSTovMg7L3ivyrnzJbzz/zFRftqZcTJKsRYTIDPlKjOF4kgWHR6maw/GmT5jhIFGXfKoQk12qCvQablmu40P7o5rGFj1vq+GUM13HOcZXCvIMbJE5xz6HRyp1IS8OXXehlUjygXdBqSeHUWWvrY/iiv4UB0A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BY5PR11MB3911.namprd11.prod.outlook.com (2603:10b6:a03:18d::29)
- by SN6PR11MB3357.namprd11.prod.outlook.com (2603:10b6:805:c2::15)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5250.18; Mon, 16 May
- 2022 21:30:32 +0000
-Received: from BY5PR11MB3911.namprd11.prod.outlook.com
- ([fe80::ac18:95e3:c184:f976]) by BY5PR11MB3911.namprd11.prod.outlook.com
- ([fe80::ac18:95e3:c184:f976%6]) with mapi id 15.20.5250.018; Mon, 16 May 2022
- 21:30:32 +0000
-Message-ID: <da1059c9-31be-f546-6ca0-26697a450d67@intel.com>
-Date: Mon, 16 May 2022 14:30:29 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Firefox/91.0 Thunderbird/91.8.1
-Content-Language: en-GB
-To: Alan Previn <alan.previn.teres.alexis@intel.com>,
- <intel-gfx@lists.freedesktop.org>
-References: <20220507045847.862261-1-alan.previn.teres.alexis@intel.com>
- <20220507045847.862261-2-alan.previn.teres.alexis@intel.com>
-From: John Harrison <john.c.harrison@intel.com>
-In-Reply-To: <20220507045847.862261-2-alan.previn.teres.alexis@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BY5PR03CA0019.namprd03.prod.outlook.com
- (2603:10b6:a03:1e0::29) To BY5PR11MB3911.namprd11.prod.outlook.com
- (2603:10b6:a03:18d::29)
+Received: from mail-io1-xd2f.google.com (mail-io1-xd2f.google.com
+ [IPv6:2607:f8b0:4864:20::d2f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 45C6110E6E4;
+ Mon, 16 May 2022 22:56:50 +0000 (UTC)
+Received: by mail-io1-xd2f.google.com with SMTP id q203so1804195iod.0;
+ Mon, 16 May 2022 15:56:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=qcZZHg+TLqIZsJwY0xT23BgALoUDhOorLW9Ut6wOSOw=;
+ b=FqvigUMS8JGQuCA1Nsz2ZCQW0CGL3/J+5HWxfwlJkBB+UD2M1w5l1guOsm4XdY8k/W
+ WgCsM8XzRwK+/bIP+d2+9ScKj8PHlGPJ1NS6rD85hbumfsuEfqXAqYJg1LrGn3oLCdK2
+ 3YrkXF2ps9m5n1IxyBNEVCtPHeTXpNFBejUIASmi8jsanEGgyVyJtU/lcKRvoYGeqc93
+ Fh3/9oFFW5CCoI354AHf6i0PlZUmIffGcw9GPuf8C2zyHoB2+5Px+mHNmPxg2xss+v09
+ P7+mkOG/dOsAgj84+bp0J0Hzac+r1XdD0yCCcc8NcCDTTbVTYmaTa3/JCujLwAxtyJPv
+ xasA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=qcZZHg+TLqIZsJwY0xT23BgALoUDhOorLW9Ut6wOSOw=;
+ b=59R0AEsNjC6aETYxaQiQ8uvGHeiZsLgyyRRVJ7llKtV/LB/RYnc9A/EOzSf5TndqBD
+ dnvl6mwH+DhhJI1szmErLpakg0SF5CmsI/YwjdLStyj4D1xIlz8kuYALLA7Pw5aHfiPM
+ B8fz8ShT7dd2V8sN4ZBsTLWjYBv2sp8VeuRUQeOqNCzkIjzlYszj0iz/oLG++rIZjo7I
+ Rk1LqbJ3dEuZqtqH7DsZSAwe+JZGUACcEExyhK1UhtSV8Fjx5N+5jIRaVtQNH3Gvwa53
+ KsTknVbxuHS2EvOnNmWbGoHFRp9KJIYB9dYee5c16ES0iy0TOd6oHtPS5XO3PWZnbreh
+ 0IbA==
+X-Gm-Message-State: AOAM530wACE/EZ8WK8iq+Ei6FYKtWzZ6pn4xqcHlYAOujjvKdD5n/b/9
+ 6/JrvAsp9WOM+uMtgWoVgXo=
+X-Google-Smtp-Source: ABdhPJy5J7Mt2Dw8Hniu35JQaJ+4z10SEom9QpdbA6SOCZgC0kdiBY6n9OBegQMCb5L4wG4Q1Di/8A==
+X-Received: by 2002:a02:b804:0:b0:32d:fc36:b397 with SMTP id
+ o4-20020a02b804000000b0032dfc36b397mr10079451jam.271.1652741809030; 
+ Mon, 16 May 2022 15:56:49 -0700 (PDT)
+Received: from frodo.hsd1.co.comcast.net ([2601:284:8204:2010::dd9f])
+ by smtp.googlemail.com with ESMTPSA id
+ k26-20020a02661a000000b0032b74686763sm3133949jac.76.2022.05.16.15.56.47
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 16 May 2022 15:56:48 -0700 (PDT)
+From: Jim Cromie <jim.cromie@gmail.com>
+To: jbaron@akamai.com, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-gvt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Date: Mon, 16 May 2022 16:56:13 -0600
+Message-Id: <20220516225640.3102269-1-jim.cromie@gmail.com>
+X-Mailer: git-send-email 2.35.3
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: e0fcc6bd-939f-4bd0-85fe-08da37834e89
-X-MS-TrafficTypeDiagnostic: SN6PR11MB3357:EE_
-X-Microsoft-Antispam-PRVS: <SN6PR11MB3357F1C4AF1FCCE9024270A8BDCF9@SN6PR11MB3357.namprd11.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: /BOcQ0+Os6zS6GpALpser7MLB/uOCqpw4thVhWQU+kx0dQFFRG7Yh5Pa8jrNwjxeEFU3qtUb4CE/jMSHt4OQUL3DoX8agzy+QYXNNjE/0CAk+pn5RlNjTRvt2wHj5iZ6pnX5QNZJtCJwJ8ctKZ2koVMOu85bA033ZRAAIAbzkvksX7GER6XqFPY4k6fKig45v8aV6SFU1paFJj9bgVpL6fpb0VI6tKoBLron1glZvEfaQmuAAqiAa/L6ibOw2Cmeh7P3CX16AQMzX6Iu1pZawSM4wZrdu0HO90qXQfqajB+n6bAyGcgcQdF1J2ThbX6WA9eSjuawniJ3kTl7QLVzTqGxcjPVpJZ0uaRLbvD/e2Ab16nfRulLWz44oFaAWanoqf0tQmsKS0KVgdfCrG0xxHxqyBBXBkvrJmhBE8/XcDKf2jjjb+CzwwzK2NBtulIRiAOvxz9hxGiCTCA/4W3anFtyenESSgmfd7SHdXKfrDB7Y59lm+ceuYwqEnutJ5qPPoxnzqPmxeokfiFtrdwFfuEcQ+MFMCX8YtIurFeYMsS0X/CqEqyOpS+FTnmB+/a3hHn5efh0yC1oBMb7WvRbh0tccPIGQkPvif/evcNuFHky8LOOf0wufuEVTP4KVY59dPSoZ7zeJXXBBRi/EeoSp6ZMkF5+Y5fiHs7HVgPgZ99ZGb+/v+yfRzpxJ46G22qR5xdVAbie/3iJn9dCbw5iAOFhbGm8es/GdNSTOXKQ3Yo=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BY5PR11MB3911.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230001)(366004)(36756003)(31686004)(6506007)(186003)(316002)(2906002)(508600001)(6486002)(82960400001)(53546011)(26005)(6512007)(38100700002)(450100002)(6666004)(66946007)(66476007)(8676002)(4326008)(66556008)(2616005)(8936002)(5660300002)(31696002)(83380400001)(86362001)(43740500002)(45980500001);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SXpRbXo0VG5KRHhPTnpmeDJYaCtCdFFYMTRwMDFJZDFVbE1IQlZBSEg5ampV?=
- =?utf-8?B?WFZ5Kyt5bWhRdmlhZEpJQ1ZLZjg0YXJsdXVTVWhXSDh3S0R6OWVKd0JWb1BH?=
- =?utf-8?B?VmViTlE2c0dMSXJxbm55Rld2YjJ2SnZ2cmJxMm42M0tHakNOTjhic0RaQ28x?=
- =?utf-8?B?K1BsaEx0Z2d3K0Q4aHNqclloNncvOVltTUZBeGJzLzl6UkszZGFEK2Z4OEVY?=
- =?utf-8?B?U0NsNVAzRTdFOVhFUDc1WEVsWkI2eXhkNnlzeHhGSjV0aWd4MnVGTk90a1Qr?=
- =?utf-8?B?TURmYk02NlBUMGM0ZjFDeFR3MDlVQ2dqdFV5eUE1ZXV4TGcwMFpqS0paamds?=
- =?utf-8?B?Q1Fsc3l5Q0duMUNBU3AyZlJwdTZBSXhFUkgvSUhpVmJHdUowa3djWWRTMm5t?=
- =?utf-8?B?bG9wSmcxWFk5UWQvLzRYYUg1NjMxMDE0RWdOS0NReU8yQ1FUWmkzK1Rxdy8r?=
- =?utf-8?B?ZjhpVmV2N0FYNkFZM2dSTjNwMzQ1MnZZa2d3VFYvRmtLTlpDMVRjY0VoT2tS?=
- =?utf-8?B?WnQ1UXNVdU16Z0FENVZwM0gwTnY2TEVKQUNWcGFnYTZraHpFTVFySU9HNVBK?=
- =?utf-8?B?ZjNwQlBzWGpKWTU5RFRxOWFvb0k3UVkxdjFlSXh2Z1Y4L1JScjc1VjhzZjdz?=
- =?utf-8?B?WE9pazZEQnNJeVZUVDhaNnlwbWEzMnZubmJUU0J6T09wWmlzZHE0NFJDNVJt?=
- =?utf-8?B?WFhkbDNOTkZ1NllNYXZZclNtK1ZvS1oxT2l6aVplYWxnZDVST0M2ZGFJaWxL?=
- =?utf-8?B?ZkZEL3dxRXpKLy9leGNVTk9jZ1VWQXRHNHlPb0JnOS85Qmh4alFuK1RxSjIy?=
- =?utf-8?B?elFsMVhkNXlHUTNiZGdlZ0hWalpOZ0N2YTFmVTZJdi94eEd5bjNUWVJiSTY1?=
- =?utf-8?B?Y1FIazBCMll5RWE5ZEUzeGJUTFFEQlR5bzN1eXI2SXMzandUZFIvb05VcXFz?=
- =?utf-8?B?eEVYRmxkYjBkWktmYjdjVmpFd1ZhSVQ2Q01mT1drdVI3WmE3WVUwb3FsWHpn?=
- =?utf-8?B?UlczNnYrclpGVDdHY2FTaStDWGVNTUVjRmo4eWN3TWFnTWlxd2RoNXU5RC95?=
- =?utf-8?B?YnZoUnhjM3l6d1JmVWxxOHpna3NxQ0dxNGxUQ0JwTklsU0ZTYXA5ZWRPeWVW?=
- =?utf-8?B?MFN2MzdCcjltSGZ2bzNmTVpDNkdlNkx5amtHS0tsK1AyRlFmZDBvRCtvaUpW?=
- =?utf-8?B?a0g4Znk5MXZQUkwyMGFZdnJ0akxhTGRVWFlUMUM2NitHa0FaRUx4WnlvRVRr?=
- =?utf-8?B?LzlQVTdLK0QxUSt2N3Y2YmVqQUM5eDRIZEdFdmVDUXhWZ0hncGZrVTkwNzBr?=
- =?utf-8?B?Q0w2U2hvVUIvcXVFSW5rU1dQVTNMQU1heUNHczBJUVJ6dmtQNFd3eUpJSit6?=
- =?utf-8?B?b1BUcHJSczNSRTVBTWI2TlRPaXdaRGZUZ2tCZTR4eHdzblJBVWVZSC9HVGVF?=
- =?utf-8?B?Zjh1ZWxDWDVFeHlCRVBYeWF6RDZxVWQxZWYzL0t0YVExT1hESXdmSm5MUkFU?=
- =?utf-8?B?UFZQRm5pUGhzYW12SUpub0dhRnc3VktlMi9NMWRoaUpZZXB2RjhtczA0OGpZ?=
- =?utf-8?B?Um9RdkNFeVkxZ3piNysyWE0waVNHWTdseGcyOW9SMHp4MFBBY0lkQWtranNj?=
- =?utf-8?B?Z2ZMcVJMK1Vvdk9NOStKbDJyVEZCdEtFa2dqZC81Y2x1Q3E2K1dFQjYxZ01R?=
- =?utf-8?B?THUvRnZZMVNvRzBOMUt6OU1zNXNGbytKOUR2elZ0US9JcXpwclUwRkhaK09z?=
- =?utf-8?B?RmtTSE9rRHdzbzlpVGpVZk1Cd2krSjRWZDZ6Y1pJMTBmelJaL3c3QUtzT3kz?=
- =?utf-8?B?RjN0MmhJbWVYWTVqWXpsS25UeFN6cHBua1VONExoekZVeVhMbHp5S1lUSE1t?=
- =?utf-8?B?UUdKTEpWL3hMdXZvUFlLbi9FS0ladktWZGdCK0ZuUTExUHRZL1NZOVRLdFh4?=
- =?utf-8?B?R040Y0Mzb0NlaTl3azBLSlI3aDZiTUVwWlRISG1XMWJzMTJlZEtJMTlobTZp?=
- =?utf-8?B?UDRBU1pQY2dJM1d4K25OemFYMUg1UDg4bFU2VG1GTElaclJCb2ZueEQxS2lu?=
- =?utf-8?B?TkxHTmFVaS9ZTXVGY21JcGl6S0tmZXpibklpUmdDTWtjZDdKYlJCQTZRbTU0?=
- =?utf-8?B?VEtYbEx5SXFuS3lTV25sMnhINFowMEFxU0VLa2tpaE5qMnJpSVdzeUk0T0JL?=
- =?utf-8?B?Qk5RY1RkWVNyQXREVVNXSmU2YnRKNXRZaGhmZWUrcHYrZTRXK2wwWmhyM0Zj?=
- =?utf-8?B?RmZ1aTZlN3gyTVM5Nm1BVlUvSHBWWUpJRmhxOXRkMHhnWWlOQ2JnNWQrdVNQ?=
- =?utf-8?B?NHpjaXBObE5hOFczRE52MEQzSkVhbDk5QlJRMit6dU5kTTJ3cnZYU0JOVGxO?=
- =?utf-8?Q?c9Ro6tQGMG94VxRo=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: e0fcc6bd-939f-4bd0-85fe-08da37834e89
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB3911.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 May 2022 21:30:32.7506 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 4dn2uPi2AiAykD9AsoOI97BEJjgc7fMrOBIq+mE3tU1jxzF4v85M+hN+6WRjfQTuOqcz9wrL7RD1MoaXuUzsh66JNAdjSxo1J43/J5AwKrE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR11MB3357
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 1/1] drm/i915/guc: Remove unnecessary GuC
- err capture noise
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [RFC PATCH v2 00/27] DRM.debug on DYNAMIC_DEBUG,
+ add trace events
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -160,133 +71,434 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Cc: quic_saipraka@quicinc.com, catalin.marinas@arm.com,
+ Chris Wilson <chris@chris-wilson.co.uk>, will@kernel.org,
+ David Airlie <airlied@gmail.com>, maz@kernel.org, mingo@redhat.com,
+ daniel.vetter@ffwll.ch, quic_psodagud@quicinc.com, arnd@arndb.de,
+ linux-arm-msm@vger.kernel.org, rostedt@goodmis.org,
+ Pekka Paalanen <ppaalanen@gmail.com>, mathieu.desnoyers@efficios.com,
+ linux-arm-kernel@lists.infradead.org, jim.cromie@gmail.com,
+ gregkh@linuxfoundation.org, Thomas Zimmermann <tzimmermann@suse.de>,
+ seanpaul@chromium.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 5/6/2022 21:58, Alan Previn wrote:
-> GuC error capture blurts some debug messages about empty
-> register lists for certain register types on engines during
-> firmware initialization.
->
-> These are not errors or warnings, so get rid of them.
->
-> Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
-Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
+DRM.debug API is 23 macros, issuing 10 exclusive categories of debug
+messages.  By rough count, they are used 5140 times in the kernel.
+These all call drm_dbg or drm_devdbg, which call drm_debug_enabled(),
+which checks bits in global __drm_debug.  Some of these are page-flips
+and vblanks, and get called often.
 
-> ---
->   .../gpu/drm/i915/gt/uc/intel_guc_capture.c    | 77 +------------------
->   1 file changed, 2 insertions(+), 75 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
-> index c4e25966d3e9..97a32e610c30 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
-> @@ -420,72 +420,6 @@ guc_capture_get_device_reglist(struct intel_guc *guc)
->   	return default_lists;
->   }
->   
-> -static const char *
-> -__stringify_owner(u32 owner)
-> -{
-> -	switch (owner) {
-> -	case GUC_CAPTURE_LIST_INDEX_PF:
-> -		return "PF";
-> -	case GUC_CAPTURE_LIST_INDEX_VF:
-> -		return "VF";
-> -	default:
-> -		return "unknown";
-> -	}
-> -
-> -	return "";
-> -}
-> -
-> -static const char *
-> -__stringify_type(u32 type)
-> -{
-> -	switch (type) {
-> -	case GUC_CAPTURE_LIST_TYPE_GLOBAL:
-> -		return "Global";
-> -	case GUC_CAPTURE_LIST_TYPE_ENGINE_CLASS:
-> -		return "Class";
-> -	case GUC_CAPTURE_LIST_TYPE_ENGINE_INSTANCE:
-> -		return "Instance";
-> -	default:
-> -		return "unknown";
-> -	}
-> -
-> -	return "";
-> -}
-> -
-> -static const char *
-> -__stringify_engclass(u32 class)
-> -{
-> -	switch (class) {
-> -	case GUC_RENDER_CLASS:
-> -		return "Render";
-> -	case GUC_VIDEO_CLASS:
-> -		return "Video";
-> -	case GUC_VIDEOENHANCE_CLASS:
-> -		return "VideoEnhance";
-> -	case GUC_BLITTER_CLASS:
-> -		return "Blitter";
-> -	case GUC_COMPUTE_CLASS:
-> -		return "Compute";
-> -	default:
-> -		return "unknown";
-> -	}
-> -
-> -	return "";
-> -}
-> -
-> -static void
-> -guc_capture_warn_with_list_info(struct drm_i915_private *i915, char *msg,
-> -				u32 owner, u32 type, u32 classid)
-> -{
-> -	if (type == GUC_CAPTURE_LIST_TYPE_GLOBAL)
-> -		drm_dbg(&i915->drm, "GuC-capture: %s for %s %s-Registers.\n", msg,
-> -			__stringify_owner(owner), __stringify_type(type));
-> -	else
-> -		drm_dbg(&i915->drm, "GuC-capture: %s for %s %s-Registers on %s-Engine\n", msg,
-> -			__stringify_owner(owner), __stringify_type(type),
-> -			__stringify_engclass(classid));
-> -}
-> -
->   static int
->   guc_capture_list_init(struct intel_guc *guc, u32 owner, u32 type, u32 classid,
->   		      struct guc_mmio_reg *ptr, u16 num_entries)
-> @@ -501,11 +435,8 @@ guc_capture_list_init(struct intel_guc *guc, u32 owner, u32 type, u32 classid,
->   		return -ENODEV;
->   
->   	match = guc_capture_get_one_list(reglists, owner, type, classid);
-> -	if (!match) {
-> -		guc_capture_warn_with_list_info(i915, "Missing register list init", owner, type,
-> -						classid);
-> +	if (!match)
->   		return -ENODATA;
-> -	}
->   
->   	for (i = 0; i < num_entries && i < match->num_regs; ++i) {
->   		ptr[i].offset = match->list[i].reg.reg;
-> @@ -556,7 +487,6 @@ int
->   intel_guc_capture_getlistsize(struct intel_guc *guc, u32 owner, u32 type, u32 classid,
->   			      size_t *size)
->   {
-> -	struct drm_i915_private *i915 = guc_to_gt(guc)->i915;
->   	struct intel_guc_state_capture *gc = guc->capture;
->   	struct __guc_capture_ads_cache *cache = &gc->ads_cache[owner][type][classid];
->   	int num_regs;
-> @@ -570,11 +500,8 @@ intel_guc_capture_getlistsize(struct intel_guc *guc, u32 owner, u32 type, u32 cl
->   	}
->   
->   	num_regs = guc_cap_list_num_regs(gc, owner, type, classid);
-> -	if (!num_regs) {
-> -		guc_capture_warn_with_list_info(i915, "Missing register list size",
-> -						owner, type, classid);
-> +	if (!num_regs)
->   		return -ENODATA;
-> -	}
->   
->   	*size = PAGE_ALIGN((sizeof(struct guc_debug_capture_list)) +
->   			   (num_regs * sizeof(struct guc_mmio_reg)));
+DYNAMIC_DEBUG (with CONFIG_JUMP_LABEL) is built to avoid this kind of
+work, with NOOPd jump/callsites.
+
+This patchset is RFC because:
+- it touches 2.5 subsystems: dyndbg, drm, tracefs (new events)
+- dyndbg class support is built for drm, needs it for validation
+- new api, used by drm
+- big memory impact, with 5100 new pr-debug callsites.
+- drm class bikeshedding opportunities
+- others, names etc.
+
+DYNAMIC_DEBUG:
+
+Adapt to directly represent 32 exclusive classes / categories.
+All existing users get _CLASS_DFLT:31, reserving 0-30 for opt-in.
+
+dynamic_debug_register_classes(): Tells dyndbg that caller/client is
+using .class_id's 0..N, and wants them exposed and manipulatable with
+names: DRM_UT_KMS etc.
+
+Client invokes DYNAMIC_DEBUG_CLASSES to define the name->id map,
+then registers it during its initialization.
+
+Then, when a dyndbg command-query has "class FOO":
+
+ echo class DRM_UT_KMS +p > /proc/dynamic_debug/control
+
+ddebug_change() will 1st ddebug_validate_classname() for each module,
+using its registered class-maps; only modules which know DRM_UT_KMS
+will get those callsite adjustments.  This "protects" each module's
+class-id space, unlike "class 4" query syntax.
+
+Add bitmap support for:
+  echo 0x02 > /sys/module/drm/parameters/debug
+
+Add symbolic bitmap, because we have the class-names:
+  echo +DRM_UT_KMS,+DRM_UT_ATOMIC > /sys/module/drm/parameters/debug
+
+Add test_dynamic_debug, to prove out the API.
+
+ which is (used 3x to prove class-id ranges):
+  - DYNAMIC_DEBUG_CLASSES(var, ... [3 class-name-literals each])
+  - dynamic_debug_register_classes(var)
+  - dynamic_debug_unregister_classes(var)
+ also (6x):
+  +module_param_cb(<node-name>, &param_ops_dyndbg_classes, /[pt][123]_bitmap/, 0600);
+
+Bits 0,1,2 of each of the 6 bitmaps control the 3 named classes in
+each of 3 groups, toggling their p,T bits respectively.
+
+RFC:
+
+dynamic_debug_register_classes() cannot act early enough to be in
+effect at module-load.  So this will not work as you'd reasonably
+expect:
+
+  modprobe test_dynamic_debug dyndbg='+pfm; class FOO +pfmlt'
+
+The 1st query:+pfm will be enabled during load, but in the 2nd query,
+"class FOO" will be unknown at load time.  Early class enablement
+would be nice.  DYNAMIC_DEBUG_CLASSES is a static initializer, which
+is certainly early enough, but Im missing a trick, suggestions?
+
+Wildcarding on classname is possible, maybe useful:
+
+   echo +DRM_UT_\* > /sys/module/drm/parameters/debug
+
+If contemplated in earnest, it should consider the difference between
+"DRM_*" and "*_KMS", wrt observing across class hierarchies, as well
+as decide whether that echo means 1st match, or all matching names.
+
+__pr_debug_cls(cls, fmt,...) is just for testing, drm doesnt need it.
+
+
+DRM adaptation:
+
+Basically, these patches add another layer of macro indirection, which
+by CONFIG_DRM_USE_DYNAMIC_DEBUG=y, wraps drm_*dbg() in dyndbg's callsite
+Factory macro, and adds the new descriptor arg to the funcs.
+
+With these patches, drm.debugs appear as controllable *pr-dbg* callsites:
+
+[   11.804352] dyndbg: register_classes: drm
+[   11.920715] dyndbg: 234 debug prints in module drm_kms_helper
+[   11.932135] dyndbg:   2 debug prints in module ttm
+[   11.936119] dyndbg:   8 debug prints in module video
+[   12.537543] dyndbg: 1756 debug prints in module i915
+[   12.555045] dyndbg: register_classes: i915
+[   12.666727] AMD-Vi: AMD IOMMUv2 functionality not available on this ..
+[   13.735310] dyndbg: 3859 debug prints in module amdgpu
+
+amdgpu's large count includes:
+   582  direct uses/mentions of pr_debug
+    43  defns of DC_LOG_*, which use either pr_debug or DRM_DEBUG_*
+ ~1000  uses of DC_LOG_*
+  1116  uses of dml_print in drivers/gpu/drm/amd
+    15  drm_dbg_\\w+ drivers/gpu/drm/amd
+   273  DRM_DEBUG_\\w+ drivers/gpu/drm/amd    
+
+i915 has:
+  1072  drm_dbg_\\w+ drivers/gpu/drm/i915/ | wc  -l
+   200  DRM_DEBUG_\\w+ drivers/gpu/drm/i915/
+    46  pr_debug drivers/gpu/drm/i915/
+   144  gvt_dbg_\\w+ drivers/gpu/drm/i915/gvt, using pr_debug
+
+This impacts the data footprint, so everything new/drm is dependent on
+DRM_USE_DYNAMIC_DEBUG=y.
+
+RFC for DRM:
+
+- decoration flags "fmlt" do not work on drm_*dbg().
+  (drm_*dbg() dont use pr_debug, they *become* one flavor of them)
+  this could (should?) be added, and maybe tailored for drm.
+  some of the device prefixes are very long, a "d" flag could optionalize them.
+
+- api use needs review wrt drm life-cycle.
+  enum drm_debug_category and DYNAMIC_DEBUG_CLASSES could be together?
+
+- class-names could stand review, perhaps extension
+  "drm:core:" etc have appeared (maybe just from me)
+  or a "plan" to look at it later
+
+- i915 & amdgpu have pr_debugs (DC_LOG_*, gvt_dbg_*) that have
+class-ish prefixes that are separate from, but similar to DRM_UT_*,
+and could stand review and possible unification with reformed or
+extended drm categories.
+
+- the change to enum drm_debug_category from bitmask values to 0..31
+  means that we foreclose this possiblility:
+
+   drm_dbg(DRM_UT_CORE|DRM_UT_KMS, "wierd double-cat experiment");
+
+- nouveau has very few drm.debug calls,
+  has NV_DEBUG, VMM_DEBUG, nvkm_printk_, I havent looked deeply.
+
+DYNDBG/DRM -> TRACEFS
+
+My 1st try was motivated by Sean Paul's patch - DRM.trace:
+https://patchwork.freedesktop.org/patch/445549/?series=78133&rev=5
+
+Those used trace_printk, so were not good for upstream.
+
+Vincent Whitchurch's code:
+https://lore.kernel.org/lkml/20200721141105.16034-1-vincent.whitchurch@axis.com/
+
+added similar features, by sending printk:console events from dyndbg.
+It met with a good reception from Steve Rostedt, so I re-started with
+that.
+
+The biggest addition (from UI viewpoint) is 4 new trace-events, 2 each
+from dyndbg (pr_debug, dev_dbg) and drm (drm_dbg, drm_dev_dbg); 2 have
+dev, other 2 avoid storing nulls.  Im unsure that 4 distinctions is
+valuable, but it seemed most obvious to reflect them straight thru to
+tracefs.
+
+RFC: the event/message formats are a bit of a mash-up; 
+
+in /sys/kernel/tracing:
+drm/drm_debug/format:print fmt: "%s", __get_str(msg)
+drm/drm_devdbg/format:print fmt: "cat:%d, %s %s", \
+	REC->drm_debug_category, dev_name(REC->dev), __get_str(msg)
+
+The 1st prints just the mesg itself, 2nd prints category as int;
+it'd be better if DRM.class-name replaced (not just augmented) the
+event-name "drm_devdbg" in the trace, is that possible ?
+
+dyndbg/prdbg/format:
+print fmt: "%s.%s %s", REC->desc->modname, REC->desc->function, __get_str(msg)
+dyndbg/devdbg/format:
+print fmt: "%s.%s %s", REC->desc->modname, REC->desc->function, __get_str(msg)
+
+These add a prefix string similar to dyndbg's decorations, except they
+don't use dyndbg's "fmlt" decoration flags.
+
+There are also 3 vblank trace-events already,
+  declared in: drivers/gpu/drm/drm_trace.h
+15:TRACE_EVENT(drm_vblank_event,
+35:TRACE_EVENT(drm_vblank_event_queued,
+52:TRACE_EVENT(drm_vblank_event_delivered,
+
+STATUS
+
+kernel-test-robot tested this patchset (on 5.18-rc6).
+github:[jimc:blead] BUILD SUCCESS 6c59e52ac81dd81ac7da4522a5e15b7ac488d5b5
+May 15, 2022, 8:39 AM (1 day ago)
+
+
+Ive been testing, mostly on virtme, mostly with this:
+#!/bin/bash
+
+# test class FOO handling of dynamic-debug
+
+alias lmt='modprobe test_dynamic_debug dyndbg=+pmf'
+alias rmt='rmmod test_dynamic_debug'
+alias look='grep test_dynamic_debug /proc/dynamic_debug/control'
+
+lookfor() {
+    grep $1 /proc/dynamic_debug/control
+}
+
+vx() {
+    echo $* > /sys/module/dynamic_debug/parameters/verbose
+}
+
+# amdgpu has ~2200 pr-debugs (before drm-debug-on-dyndbg),
+# use them to prove modprobe <mod> dyndbg=+p works
+
+test_param_dyndbg() {
+
+    modprobe amdgpu dyndbg=+pfm
+    let count=$(grep =pmf /proc/dynamic_debug/control | grep amdgpu | wc -l)
+
+    if [ $count -gt 200 ] ; then
+	echo amdgpu has $count pr-dbgs
+	return 0
+    else
+	echo failed $count
+	return -1
+    fi
+}
+out=$(test_param_dyndbg)
+echo out:$out $?
+[ $? -eq 0 ] || exit $?
+
+qry_cmd() {
+    echo "QCMD: $*   >control" >&2
+    echo $* > /proc/dynamic_debug/control
+}
+
+# enable dyndbg tracing
+dynable() {
+    grep -P \\d $SKT/events/dyndbg/{.,*}/enable
+    echo 1 > $SKT/events/dyndbg/enable
+    grep -P \\d $SKT/events/dyndbg/{.,*}/enable
+}
+
+# enable drm tracing
+drmable() {
+    grep -P \\d $SKT/events/drm/{.,*}/enable
+    echo 1 > $SKT/events/drm/enable
+    grep -P \\d $SKT/events/drm/{.,*}/enable
+}
+
+function doit() {
+    cat /sys/module/test_dynamic_debug/parameters/do_prints
+}
+
+# test class FOO behavior of test_dynamic_debug module
+ttest_module__() {
+    flg=$1
+    dmesg -C
+    modprobe test_dynamic_debug dyndbg=+pfm
+    doit
+
+    for cls in FOO BAR BUZZ; do
+	qry_cmd module test_dynamic_debug class $cls $flg
+	doit
+    done
+    doit
+
+    for cls in Foo Bar Buzz; do
+	qry_cmd module test_dynamic_debug class $cls $flg
+	doit
+    done
+    doit
+
+    for cls in bing bong boom; do
+	qry_cmd module test_dynamic_debug class $cls $flg
+	doit
+    done
+    doit
+
+    dmesg | grep class
+}
+
+ttest_module() {
+
+    ttest_module__ +p
+    ttest_module__ -p
+
+    #ttest_module__ +T
+    #ttest_module__ -T
+}
+
+#dynable
+#drmable
+
+ttest_module
+grep test_dyn /proc/dynamic_debug/control
+
+
+# use/test bitmaps
+
+set_tddm_() {
+    val=$1;
+    knob=$2;
+    echo "TDDM: $val >$knob" >&2
+    echo $val > /sys/module/test_dynamic_debug/parameters/$knob
+    cat /sys/module/test_dynamic_debug/parameters/$knob
+}
+
+CLS_1="FOO -FOO +FOO -FOO BAR -BAR +BAR -BAR BUZZ -BUZZ +BUZZ -BUZZ"
+CLS_2=" Foo  Bar  Buzz -Foo -Bar -Buzz +Foo +Bar +Buzz -Foo -Bar -Buzz"
+CLS_3=" bing bong boom -bing -bong -boom +bing +bong +boom -bing -bong -boom"
+
+tddm_sysnode_classes__() {
+    targ=$1
+    shift
+    cls=$*
+    for bitsym in $cls;
+    do
+	set_tddm_ $bitsym $targ
+    done
+}
+
+# work all 3 sysfs bitmaps
+
+for sysnode in c1_syslog_bits c2_syslog_bits c3_syslog_bits;
+do
+    for val in 0 1 2 4 8 0;
+    do
+	tddm_sysnode_classes__ $sysnode $val
+    done
+done
+
+tddm_sysnode_classes__ c1_syslog_bits $CLS_1
+tddm_sysnode_classes__ c2_syslog_bits $CLS_2
+tddm_sysnode_classes__ c3_syslog_bits $CLS_3
+
+echo "show unknown: c3-names on c1-knob" >&2
+tddm_sysnode_classes__ c1_trace_bits $CLS_3
+
+echo "flags look inverted" >&2
+tddm_sysnode_classes__ c1_syslog_bits $CLS_1
+
+CLS_1_=FOO,-FOO,+FOO,-FOO,BAR,-BAR,+BAR,-BAR,BUZZ,-BUZZ,+BUZZ,-BUZZ
+CLS_2_=Foo,Bar,Buzz,-Foo,-Bar,-Buzz,+Foo,+Bar,+Buzz,-Foo,-Bar,-Buzz
+# leading err doesnt wreck the rest
+CLS_3_=,bing,bong,boom,-bing,-bong,-boom,+bing,+bong,+boom,-bing,-bong,-boom
+
+tddm_sysnode_classes__ c1_syslog_bits $CLS_1_
+tddm_sysnode_classes__ c2_syslog_bits $CLS_2_
+tddm_sysnode_classes__ c3_syslog_bits $CLS_3_
+
+
+Cc: Sean Paul <seanpaul@chromium.org>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: David Airlie <airlied@gmail.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Pekka Paalanen <ppaalanen@gmail.com>
+Cc: Rob Clark <robdclark@gmail.com>
+Cc: Steven Rostedt <rostedt@goodmis.org>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Steven Rostedt <rostedt@goodmis.org>
+
+Jim Cromie (27):
+  dyndbg: fix static_branch manipulation
+  dyndbg: show both old and new in change-info
+  dyndbg: fix module.dyndbg handling
+  dyndbg: drop EXPORTed dynamic_debug_exec_queries
+  dyndbg: add exclusive class_id to pr_debug callsites
+  dyndbg: add dynamic_debug_(un)register_classes
+  dyndbg: validate class FOO on module
+  dyndbg: add drm.debug style bitmap support
+  Doc/dyndbg: document new class class_name query support
+  dyndbg: let query-modname override defaulting modname
+  dyndbg: support symbolic class-names in bitmap
+  dyndbg: change zero-or-one classes-map to maps list
+  dyndbg: add __pr_debug_cls(class, fmt, ...)
+  dyndbg: add test_dynamic_debug module
+  drm: POC drm on dyndbg - map class-names to drm_debug_category's
+  drm/print: POC drm on dyndbg - use bitmap
+  drm_print: condense enum drm_debug_category
+  drm_print: interpose drm_*dbg with forwarding macros
+  drm_print: wrap drm_*_dbg in dyndbg descriptor factory macro
+  drm_print: refine drm_debug_enabled for jump-label
+  drm_print: prefer bare printk KERN_DEBUG on generic fn
+  drm_print: add _ddebug desc to drm_*dbg prototypes
+  dyndbg: add _DPRINTK_FLAGS_ENABLED
+  dyndbg: add _DPRINTK_FLAGS_TRACE
+  dyndbg: add write-events-to-tracefs code
+  dyndbg: 4 new trace-events: pr_debug, dev_dbg, drm_{,dev}debug
+  dyndbg/drm: POC add tracebits sysfs-knob
+
+ .../admin-guide/dynamic-debug-howto.rst       |  12 +
+ MAINTAINERS                                   |   1 +
+ drivers/gpu/drm/Kconfig                       |  12 +
+ drivers/gpu/drm/Makefile                      |   2 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c       |   3 +
+ drivers/gpu/drm/drm_drv.c                     |   5 +
+ drivers/gpu/drm/drm_print.c                   |  69 ++-
+ drivers/gpu/drm/i915/i915_module.c            |  11 +
+ drivers/gpu/drm/nouveau/nouveau_drm.c         |   4 +
+ include/drm/drm_drv.h                         |  26 +
+ include/drm/drm_print.h                       |  84 ++-
+ include/linux/dynamic_debug.h                 | 136 ++++-
+ include/trace/events/drm.h                    |  68 +++
+ include/trace/events/dyndbg.h                 |  74 +++
+ lib/Kconfig.debug                             |  11 +
+ lib/Makefile                                  |   1 +
+ lib/dynamic_debug.c                           | 487 +++++++++++++++---
+ lib/test_dynamic_debug.c                      | 172 +++++++
+ 18 files changed, 1049 insertions(+), 129 deletions(-)
+ create mode 100644 include/trace/events/drm.h
+ create mode 100644 include/trace/events/dyndbg.h
+ create mode 100644 lib/test_dynamic_debug.c
+
+-- 
+2.35.1
 
