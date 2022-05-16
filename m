@@ -1,53 +1,64 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9CA85284F5
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 May 2022 15:08:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F79E5284FF
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 May 2022 15:10:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C4CE10FC4B;
-	Mon, 16 May 2022 13:08:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A32610FCDF;
+	Mon, 16 May 2022 13:10:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E03910FC29
- for <intel-gfx@lists.freedesktop.org>; Mon, 16 May 2022 13:08:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1652706496; x=1684242496;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=LbERdKKzOUcn6vtsyGXoF1qu3F0W5TZ6Ww4WGUiG060=;
- b=Sx+e8PrAPcdF0PhevfLQWvonXMlsi55C671LwJG8fhrzX4n18uIoahCo
- 9qOhRf0CwVIsni8GR7W3W9Cm1tbQzP3s3Pq7jEh8wRxcKMdw01EQwGpRY
- SgbQi3TiulMo6NwoltZLOJUexf8R7dwD+vvVvpTVmxHl5Y+SlFUernO5h
- mGKgfuvt5skebV4m78RwiBaNLKaSWbJPKQ68pkoMN8WQEcdMEQgxdfdyl
- wbt2hDPkh9DnoqKxZXVSP8tQepdDRC9A4dNsx8YQEbBv6H0JVOLsX9PwV
- uAtZZRoZA2bHX0h99/oQBeSKCpkNAa0AGKJIH1tedOtujgltArmYxVvn4 A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10348"; a="270952840"
-X-IronPort-AV: E=Sophos;i="5.91,229,1647327600"; d="scan'208";a="270952840"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2022 06:08:09 -0700
-X-IronPort-AV: E=Sophos;i="5.91,229,1647327600"; d="scan'208";a="568309229"
-Received: from akuriata-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.249.145.127])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2022 06:08:07 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220503182242.18797-5-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220503182242.18797-1-ville.syrjala@linux.intel.com>
- <20220503182242.18797-5-ville.syrjala@linux.intel.com>
-Date: Mon, 16 May 2022 16:07:59 +0300
-Message-ID: <87ee0tfwwg.fsf@intel.com>
+Received: from mail-oi1-x22c.google.com (mail-oi1-x22c.google.com
+ [IPv6:2607:f8b0:4864:20::22c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7111810FCBD;
+ Mon, 16 May 2022 13:10:26 +0000 (UTC)
+Received: by mail-oi1-x22c.google.com with SMTP id w123so18520654oiw.5;
+ Mon, 16 May 2022 06:10:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=sender:date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=CaF92eBKzl8YhqaTS1Tzg7cnBN+wgBVFhVH+tqOT7PI=;
+ b=q0OW4Ll0d1esJg4Bsi1gSdlTXNns+dyRXpjhWwy3TYP4n4qr8/NV4nZJZKjjduBKRi
+ cA/1ac5Z/Sme7x9B3srXyZPtmX5SKG2ovm3cO9mWg1RmnkOoPJ3oT1jhhOpvYVxSxOtK
+ EETC7rAwge3lFdAza0DWk9nk5BgdUO+u4Mgw7bEh4ZYJNK3Aeh9oPPg2Ig7eRjDoosqU
+ UzYV1++XIwCfe0WO0MlnNE9IF9nupMaem9yK2ia5n1v/9WBmbIxEnxV0yjVXGEaFXtPd
+ F/Q36d9JPkZFcTSysTH5PQ0es9AeN0p4TfoGPkBlB9oAT02H+Hc1mjA9INBnW3qT0TLE
+ TCwA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+ :references:mime-version:content-disposition
+ :content-transfer-encoding:in-reply-to;
+ bh=CaF92eBKzl8YhqaTS1Tzg7cnBN+wgBVFhVH+tqOT7PI=;
+ b=kYZEGePwTZDBlUQPHa89PuLX4bt1lB3wAbdKNTLvyLtX/2L17bwq5fB878M3kaXPGT
+ zNlJ/oed8oXF0acF/iB0XKomyLfAUOA/DPmKGgJMeRCGfkcHj098piCOt+6av88qjA0U
+ mKOEZJ6SweKbEgYnnYUC20nzldDXHRMoTazF8TfrgVBiNoNxedELJ4o3V660bu784a/N
+ xh/NdXnMvF2QnoU+r/vKiKoaTLz5nK7W09Ehy24NbGyCRdpBD2rbCV7vy0U3RdBtHsih
+ uJKuh9GnsLvzcWKMlh1iJzSNWgHhJBZQmT7Bulvr/Bi+NQ2NdHi32MBvFW02PGzx8mFZ
+ 7a6A==
+X-Gm-Message-State: AOAM533GbK67mx7Bi8K3LhDlzZHNSzs3bnDYYzgcaBrbMkOK9hnprVSj
+ Vzam/EKf5pxkpNKrViDpeEU=
+X-Google-Smtp-Source: ABdhPJzuSlHddEfPdlSooNCiKn9gKqW9iethwrrpTKVRacgUq5xfLq0fJvrzlLVkrWbJmB72AUE4Hw==
+X-Received: by 2002:a05:6808:148a:b0:326:c71a:f33c with SMTP id
+ e10-20020a056808148a00b00326c71af33cmr12758233oiw.153.1652706625572; 
+ Mon, 16 May 2022 06:10:25 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+ by smtp.gmail.com with ESMTPSA id
+ r3-20020acac103000000b00325cda1ff95sm3795450oif.20.2022.05.16.06.10.24
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 16 May 2022 06:10:24 -0700 (PDT)
+Date: Mon, 16 May 2022 06:10:23 -0700
+From: Guenter Roeck <linux@roeck-us.net>
+To: Arnd Bergmann <arnd@kernel.org>
+Message-ID: <20220516131023.GA2329080@roeck-us.net>
+References: <20220228103142.3301082-1-arnd@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 04/26] drm/i915: Reassign DPLLs only for
- crtcs going throug .compute_config()
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220228103142.3301082-1-arnd@kernel.org>
+Subject: Re: [Intel-gfx] [PATCH] [v2] Kbuild: move to -std=gnu11
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,101 +71,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: linux-arm-kernel@lists.infradead.org,
+ Michal Marek <michal.lkml@markovi.net>, linux-doc@vger.kernel.org,
+ Arnd Bergmann <arnd@arndb.de>, Jonathan Corbet <corbet@lwn.net>,
+ linux-staging@lists.linux.dev, Masahiro Yamada <masahiroy@kernel.org>,
+ llvm@lists.linux.dev, Nick Desaulniers <ndesaulniers@google.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ greybus-dev@lists.linaro.org, Alex Shi <alexs@kernel.org>,
+ Federico Vaga <federico.vaga@vaga.pv.it>, Hu Haowen <src.res@email.cn>,
+ intel-gfx@lists.freedesktop.org, linux-btrfs@vger.kernel.org,
+ Linus Torvalds <torvalds@linux-foundation.org>,
+ linux-doc-tw-discuss@lists.sourceforge.net, linux-kbuild@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 03 May 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> Only reassign the pipe's DPLL if it's going through a full
-> .compute_config() cycle. If OTOH it's just getting modeset
-> eg. in order to change cdclk there doesn't seem much point in
-> picking a new DPLL for it.
->
-> This should also prevent .get_dplls() from seeing a funky port_clock
-> for DP even in cases where the readout produces a non-standard
-> clock and we (for some reason) have decided to not fully recompute
-> the state to remedy the situation.
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+On Mon, Feb 28, 2022 at 11:27:43AM +0100, Arnd Bergmann wrote:
+> From: Arnd Bergmann <arnd@arndb.de>
+> 
+> During a patch discussion, Linus brought up the option of changing
+> the C standard version from gnu89 to gnu99, which allows using variable
+> declaration inside of a for() loop. While the C99, C11 and later standards
+> introduce many other features, most of these are already available in
+> gnu89 as GNU extensions as well.
 
-A bit unsure if I can appreciate all the subtleties here, but
+The downside is that backporting affected patches to older kernel branches
+now fails with error messages such as
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+mm/kfence/core.c: In function ‘kfence_init_pool’:
+mm/kfence/core.c:595:2: error: ‘for’ loop initial declarations are only allowed in C99 or C11 mode
 
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 17 +----------------
->  drivers/gpu/drm/i915/display/intel_dpll.c    |  6 ++----
->  2 files changed, 3 insertions(+), 20 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
-rm/i915/display/intel_display.c
-> index 5e50e0d56088..7d488d320762 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -6955,20 +6955,6 @@ intel_crtc_update_active_timings(const struct inte=
-l_crtc_state *crtc_state)
->  	}
->  }
->=20=20
-> -static void intel_modeset_clear_plls(struct intel_atomic_state *state)
-> -{
-> -	struct intel_crtc_state *new_crtc_state;
-> -	struct intel_crtc *crtc;
-> -	int i;
-> -
-> -	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
-> -		if (!intel_crtc_needs_modeset(new_crtc_state))
-> -			continue;
-> -
-> -		intel_release_shared_dplls(state, crtc);
-> -	}
-> -}
-> -
->  /*
->   * This implements the workaround described in the "notes" section of th=
-e mode
->   * set sequence documentation. When going from no pipes or single pipe to
-> @@ -7802,6 +7788,7 @@ static int intel_atomic_check(struct drm_device *de=
-v,
->  			if (ret)
->  				goto fail;
->=20=20
-> +			intel_release_shared_dplls(state, crtc);
->  			continue;
->  		}
->=20=20
-> @@ -7849,8 +7836,6 @@ static int intel_atomic_check(struct drm_device *de=
-v,
->  		ret =3D intel_modeset_calc_cdclk(state);
->  		if (ret)
->  			return ret;
-> -
-> -		intel_modeset_clear_plls(state);
->  	}
->=20=20
->  	ret =3D intel_atomic_check_crtcs(state);
-> diff --git a/drivers/gpu/drm/i915/display/intel_dpll.c b/drivers/gpu/drm/=
-i915/display/intel_dpll.c
-> index 2b3f72550e5a..afd30c6cc34c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dpll.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dpll.c
-> @@ -1436,11 +1436,9 @@ int intel_dpll_crtc_get_shared_dpll(struct intel_a=
-tomic_state *state,
->  	int ret;
->=20=20
->  	drm_WARN_ON(&i915->drm, !intel_crtc_needs_modeset(crtc_state));
-> +	drm_WARN_ON(&i915->drm, !crtc_state->hw.enable && crtc_state->shared_dp=
-ll);
->=20=20
-> -	if (drm_WARN_ON(&i915->drm, crtc_state->shared_dpll))
-> -		return 0;
-> -
-> -	if (!crtc_state->hw.enable)
-> +	if (!crtc_state->hw.enable || crtc_state->shared_dpll)
->  		return 0;
->=20=20
->  	if (!i915->dpll_funcs->crtc_get_shared_dpll)
+Just something to keep in mind when writing patches.
 
---=20
-Jani Nikula, Intel Open Source Graphics Center
+Guenter
