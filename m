@@ -2,54 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 950C6527DC5
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 May 2022 08:48:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B633527E84
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 May 2022 09:26:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 033BF112B0D;
-	Mon, 16 May 2022 06:48:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2E841125F0;
+	Mon, 16 May 2022 07:26:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A523112B0A;
- Mon, 16 May 2022 06:48:19 +0000 (UTC)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 2CA6D1F8FE;
- Mon, 16 May 2022 06:48:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
- t=1652683698; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=/VxwhfMGZJ/R43Jur0qAAkcbyv2KGM6CayzfM3eb9a8=;
- b=RcnRSwyIGPt8PoOuYWjSpDBz2UdEitRp5Aw2hFzHEIBgAmZlt+AcinzUsD55eyGVw3zftf
- EMJGT5arOKRs2/lEVOZDk6XYviFicQOusz+6bewbpQUCbo+0cmabdfTTtaiJCvjRusH2Xf
- AM6lbbp1htGMA2UJjys8sUxR7RQDI98=
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id B64FA13ADC;
- Mon, 16 May 2022 06:48:17 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id eNy9KrHzgWK3PAAAMHmgww
- (envelope-from <jgross@suse.com>); Mon, 16 May 2022 06:48:17 +0000
-Message-ID: <55436ae1-8255-1898-00df-51261080cd41@suse.com>
-Date: Mon, 16 May 2022 08:48:17 +0200
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E28CF1124D3
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 May 2022 07:26:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1652685960; x=1684221960;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=+WcjX+WaF2VlA0wZSaVl5TSg9LjTLxk3kRIcttQsFZQ=;
+ b=HiI0uHCwAC/aVKZflPdzMX+GXGUBOr2fDAAIWTrrRAtBTVNhpsssGAEF
+ sRpi+7JgkIiq8zQ4mwSZ9OQHuS0VfofPcZKZbq2nAMXMWsvaA28bHeQ10
+ L0cZjSPgOf2nzuSDk1g6r56IIhdAWS3r4nXi4IyM1L8gWZAO+HItJS3BA
+ CJVfeNAjmAaZM/54TBJ5U5QEDj/dREQZGCXY6Rw7aM4LA/irh82FIt2d3
+ NuhGPdR5PsKvbSVfaEQK9NWzNFT+i9Yna5GcoiTfuYUUejcI1vTCizEcu
+ ZMeeHAzAMw1A8+0yha1YxZmmAL8YNVRx7NxBRH+OlxOY+5sOWIWSF0SRa g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10348"; a="270454825"
+X-IronPort-AV: E=Sophos;i="5.91,229,1647327600"; d="scan'208";a="270454825"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 May 2022 00:25:58 -0700
+X-IronPort-AV: E=Sophos;i="5.91,229,1647327600"; d="scan'208";a="596390975"
+Received: from adelinem-mobl1.gar.corp.intel.com (HELO [10.249.34.77])
+ ([10.249.34.77])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 May 2022 00:25:56 -0700
+Message-ID: <9fb19476-f685-02c4-e7ca-b81a5fac5c85@linux.intel.com>
+Date: Mon, 16 May 2022 09:25:51 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
 Content-Language: en-US
-To: Demi Marie Obenour <demi@invisiblethingslab.com>,
- Xen developer discussion <xen-devel@lists.xenproject.org>
-References: <Yn/Tgj1Ehs/BdpHp@itl-email>
-From: Juergen Gross <jgross@suse.com>
-In-Reply-To: <Yn/Tgj1Ehs/BdpHp@itl-email>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="------------E3p00huEUrrTJ9brwKFwwior"
-Subject: Re: [Intel-gfx] Hang in 5.17.4+ that appears to be due to Xen
+To: Matt Roper <matthew.d.roper@intel.com>, Nirmoy Das <nirmoy.das@intel.com>
+References: <20220513084754.10601-1-nirmoy.das@intel.com>
+ <Yn6fUXoih5wjrz3p@mdroper-desk1.amr.corp.intel.com>
+From: "Das, Nirmoy" <nirmoy.das@linux.intel.com>
+In-Reply-To: <Yn6fUXoih5wjrz3p@mdroper-desk1.amr.corp.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v3] drm/i915: Enable Tile4 tiling mode
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,149 +60,414 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- =?UTF-8?Q?Marek_Marczykowski-G=c3=b3recki?= <marmarek@invisiblethingslab.com>,
- linux-kernel@vger.kernel.org,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Boris Ostrovski <boris.ostrovsky@oracle.com>
+Cc: krishnaiah.bommu@intel.com, intel-gfx@lists.freedesktop.org,
+ matthew.auld@intel.com, chris.p.wilson@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------E3p00huEUrrTJ9brwKFwwior
-Content-Type: multipart/mixed; boundary="------------oH2iaJ0jTX0y0uRnsowBQVfz";
- protected-headers="v1"
-From: Juergen Gross <jgross@suse.com>
-To: Demi Marie Obenour <demi@invisiblethingslab.com>,
- Xen developer discussion <xen-devel@lists.xenproject.org>
-Cc: Boris Ostrovski <boris.ostrovsky@oracle.com>,
- =?UTF-8?Q?Marek_Marczykowski-G=c3=b3recki?=
- <marmarek@invisiblethingslab.com>, linux-kernel@vger.kernel.org,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>
-Message-ID: <55436ae1-8255-1898-00df-51261080cd41@suse.com>
-Subject: Re: Hang in 5.17.4+ that appears to be due to Xen
-References: <Yn/Tgj1Ehs/BdpHp@itl-email>
-In-Reply-To: <Yn/Tgj1Ehs/BdpHp@itl-email>
 
---------------oH2iaJ0jTX0y0uRnsowBQVfz
-Content-Type: multipart/mixed; boundary="------------WKi2f0oZMCLjThKhlF63EhgJ"
+On 5/13/2022 8:11 PM, Matt Roper wrote:
+> On Fri, May 13, 2022 at 10:47:54AM +0200, Nirmoy Das wrote:
+>> From: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
+>>
+>> Enable Tile4 tiling mode on platform that supports
+>> Tile4 but no TileY like DG2.
+> Drive-by comment:  the patch description doesn't match what the code is
+> actually doing.  Tile4 is already enabled on these platforms (e.g., see
+> "drm/i915/dg2: Tile 4 plane format support").
 
---------------WKi2f0oZMCLjThKhlF63EhgJ
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: base64
 
-T24gMTQuMDUuMjIgMTc6NTUsIERlbWkgTWFyaWUgT2Jlbm91ciB3cm90ZToNCj4gSW4gaHR0
-cHM6Ly9naXRodWIuY29tL1F1YmVzT1MvcXViZXMtaXNzdWVzL2lzc3Vlcy83NDgxLCBhIHVz
-ZXIgcmVwb3J0ZWQNCj4gdGhhdCBYb3JnIGxvY2tlZCB1cCB3aGVuIHJlc2l6aW5nIGEgVk0g
-d2luZG93LiAgV2hpbGUgSSBkbyBub3QgaGF2ZSB0aGUNCj4gc2FtZSBoYXJkd2FyZSB0aGUg
-dXNlciBkb2VzIGFuZCB0aHVzIGNhbm5vdCByZXByb2R1Y2UgdGhlIGJ1ZywgdGhlIHN0YWNr
-DQo+IHRyYWNlIHNlZW1zIHRvIGluZGljYXRlIGEgZGVhZGxvY2sgYmV0d2VlbiB4ZW5fZ250
-ZGV2IGFuZCBpOTE1LiAgSXQNCj4gYXBwZWFycyB0aGF0IGdudHRhYl91bm1hcF9yZWZzX3N5
-bmMoKSBpcyB3YWl0aW5nIGZvciBpOTE1IHRvIGZyZWUgdGhlDQo+IHBhZ2VzLCB3aGlsZSBp
-OTE1IGlzIHdhaXRpbmcgZm9yIHRoZSBNTVUgbm90aWZpZXIgdGhhdCBjYWxsZWQNCj4gZ250
-dGFiX3VubWFwX3JlZnNfc3luYygpIHRvIHJldHVybi4gIFJlc3VsdDogZGVhZGxvY2suDQo+
-IA0KPiBUaGUgcHJvYmxlbSBhcHBlYXJzIHRvIGJlIHRoYXQgYSBtYXBwZWQgZ3JhbnQgaW4g
-UFYgbW9kZSB3aWxsIHN0YXkgaW4NCj4gdGhlIOKAnGludmFsaWRhdGluZ+KAnSBzdGF0ZSB1
-bnRpbCBpdCBpcyBmcmVlZC4gIFdoaWxlIE1NVSBub3RpZmllcnMgYXJlDQo+IGFsbG93ZWQg
-dG8gc2xlZXAsIGl0IGFwcGVhcnMgdGhhdCB0aGV5IGNhbm5vdCB3YWl0IGZvciB0aGUgcGFn
-ZSB0byBiZQ0KPiBmcmVlZCwgYXMgaXMgaGFwcGVuaW5nIGhlcmUuICBUaGF0IHNhaWQsIEkg
-YW0gbm90IHZlcnkgZmFtaWxpYXIgd2l0aA0KPiB0aGlzIGNvZGUsIHNvIG15IGRpYWdub3Np
-cyBtaWdodCBiZSBpbmNvcnJlY3QuDQoNCkFsbCBJIGNhbiBzYXkgZm9yIG5vdyBpcyB0aGF0
-IHlvdXIgcGF0Y2ggc2VlbXMgdG8gYmUgaW50cm9kdWNpbmcgYSB1c2UgYWZ0ZXINCmZyZWUg
-aXNzdWUsIGFzIHRoZSBwYXJhbWV0ZXJzIG9mIHRoZSBkZWxheWVkIHdvcmsgbWlnaHQgZ2V0
-IGZyZWVkIG5vdyBiZWZvcmUNCnRoZSBkZWxheWVkIHdvcmsgaXMgYmVpbmcgZXhlY3V0ZWQu
-DQoNCkkgZG9uJ3Qga25vdyB3aHkgdGhpcyBpcyBoYXBwZW5pbmcgb25seSB3aXRoIHJhdGhl
-ciByZWNlbnQga2VybmVscywgYXMgdGhlDQpsYXN0IGdudGRldiBjaGFuZ2VzIGluIHRoaXMg
-YXJlYSBoYXZlIGJlZW4gbWFkZSBpbiBrZXJuZWwgNC4xMy4NCg0KSSdkIHN1Z2dlc3QgdG8g
-bG9vayBhdCBpOTE1LCBhcyBxdWl0ZSBzb21lIHdvcmsgaGFzIGhhcHBlbmVkIGluIHRoZSBj
-b2RlDQp2aXNpYmxlIGluIHlvdXIgc3RhY2sgYmFja3RyYWNlcyByYXRoZXIgcmVjZW50bHku
-IE1heWJlIGl0IHdvdWxkIGJlIHBvc3NpYmxlDQp0byBmcmVlIHRoZSBwYWdlcyBpbiBpOTE1
-IGJlZm9yZSBjYWxsaW5nIHRoZSBNTVUgbm90aWZpZXI/DQoNCkFkZGluZyB0aGUgaTkxNSBt
-YWludGFpbmVycy4NCg0KDQpKdWVyZ2VuDQo=
---------------WKi2f0oZMCLjThKhlF63EhgJ
-Content-Type: application/pgp-keys; name="OpenPGP_0xB0DE9DD628BF132F.asc"
-Content-Disposition: attachment; filename="OpenPGP_0xB0DE9DD628BF132F.asc"
-Content-Description: OpenPGP public key
-Content-Transfer-Encoding: quoted-printable
+This is meant to enable tile4 mode for selftest. I will update and resend.
 
------BEGIN PGP PUBLIC KEY BLOCK-----
 
-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
-jR/i1DG86lem3iBDXzXsZDn8R38=3D
-=3D2wuH
------END PGP PUBLIC KEY BLOCK-----
+Thanks,
 
---------------WKi2f0oZMCLjThKhlF63EhgJ--
+Nirmoy
 
---------------oH2iaJ0jTX0y0uRnsowBQVfz--
-
---------------E3p00huEUrrTJ9brwKFwwior
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
-
------BEGIN PGP SIGNATURE-----
-
-wsB5BAABCAAjFiEEhRJncuj2BJSl0Jf3sN6d1ii/Ey8FAmKB87EFAwAAAAAACgkQsN6d1ii/Ey+C
-tQf/SGMmi/nRrYjUWG8qfocSmDp74/8ZPIwH5Mm3EjGlPbv7Rclq+7DwpgDWkFfXp2XDVqP1liWC
-jkC1jfmAWXVyREfrgLwM2FpuS3Lr+tnpXhds3f9oBthWrW92gbVFNzyZ2tQBmWFw99DJDcJ+gXtq
-3XVcspqAIwCz3RWF2v65HnPbQd3fHA9vHp7wtJP1syO25ZyNiAj7HZmWdISZ6EgAhYOtVeZN2Ux8
-mUMlalT18ACunsolrLIa6UV0JqYVrkvTAy0Tqas31mnMEBIMPrFmkmxL/iHNwnVR3ooVelddSsn5
-xcRc6SUsZ22X9Fdqh+n2a2USnJdh7BAWWchlymJmDg==
-=kaAe
------END PGP SIGNATURE-----
-
---------------E3p00huEUrrTJ9brwKFwwior--
+>
+> This patch appears to just be updating selftest code, not enabling
+> anything new.
+>
+>
+> Matt
+>
+>> v3: add a function to find X-tile availability for a platform.
+>> v2: disable X-tile for iGPU in fastblit
+>>      fix checkpath --strict warnings
+>>
+>> Signed-off-by: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
+>> Co-developed-by: Nirmoy Das <nirmoy.das@intel.com>
+>> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+>> ---
+>>   .../i915/gem/selftests/i915_gem_client_blt.c  | 250 ++++++++++++++----
+>>   drivers/gpu/drm/i915/gt/intel_gpu_commands.h  |  22 ++
+>>   2 files changed, 227 insertions(+), 45 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_client_blt.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_client_blt.c
+>> index ddd0772fd828..3cfc621ef363 100644
+>> --- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_client_blt.c
+>> +++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_client_blt.c
+>> @@ -6,6 +6,7 @@
+>>   #include "i915_selftest.h"
+>>   
+>>   #include "gt/intel_context.h"
+>> +#include "gt/intel_engine_regs.h"
+>>   #include "gt/intel_engine_user.h"
+>>   #include "gt/intel_gpu_commands.h"
+>>   #include "gt/intel_gt.h"
+>> @@ -18,10 +19,71 @@
+>>   #include "huge_gem_object.h"
+>>   #include "mock_context.h"
+>>   
+>> +#define OW_SIZE 16                      /* in bytes */
+>> +#define F_SUBTILE_SIZE 64               /* in bytes */
+>> +#define F_TILE_WIDTH 128                /* in bytes */
+>> +#define F_TILE_HEIGHT 32                /* in pixels */
+>> +#define F_SUBTILE_WIDTH  OW_SIZE        /* in bytes */
+>> +#define F_SUBTILE_HEIGHT 4              /* in pixels */
+>> +
+>> +static int linear_x_y_to_ftiled_pos(int x, int y, u32 stride, int bpp)
+>> +{
+>> +	int tile_base;
+>> +	int tile_x, tile_y;
+>> +	int swizzle, subtile;
+>> +	int pixel_size = bpp / 8;
+>> +	int pos;
+>> +
+>> +	/*
+>> +	 * Subtile remapping for F tile. Note that map[a]==b implies map[b]==a
+>> +	 * so we can use the same table to tile and until.
+>> +	 */
+>> +	static const u8 f_subtile_map[] = {
+>> +		 0,  1,  2,  3,  8,  9, 10, 11,
+>> +		 4,  5,  6,  7, 12, 13, 14, 15,
+>> +		16, 17, 18, 19, 24, 25, 26, 27,
+>> +		20, 21, 22, 23, 28, 29, 30, 31,
+>> +		32, 33, 34, 35, 40, 41, 42, 43,
+>> +		36, 37, 38, 39, 44, 45, 46, 47,
+>> +		48, 49, 50, 51, 56, 57, 58, 59,
+>> +		52, 53, 54, 55, 60, 61, 62, 63
+>> +	};
+>> +
+>> +	x *= pixel_size;
+>> +	/*
+>> +	 * Where does the 4k tile start (in bytes)?  This is the same for Y and
+>> +	 * F so we can use the Y-tile algorithm to get to that point.
+>> +	 */
+>> +	tile_base =
+>> +		y / F_TILE_HEIGHT * stride * F_TILE_HEIGHT +
+>> +		x / F_TILE_WIDTH * 4096;
+>> +
+>> +	/* Find pixel within tile */
+>> +	tile_x = x % F_TILE_WIDTH;
+>> +	tile_y = y % F_TILE_HEIGHT;
+>> +
+>> +	/* And figure out the subtile within the 4k tile */
+>> +	subtile = tile_y / F_SUBTILE_HEIGHT * 8 + tile_x / F_SUBTILE_WIDTH;
+>> +
+>> +	/* Swizzle the subtile number according to the bspec diagram */
+>> +	swizzle = f_subtile_map[subtile];
+>> +
+>> +	/* Calculate new position */
+>> +	pos = tile_base +
+>> +		swizzle * F_SUBTILE_SIZE +
+>> +		tile_y % F_SUBTILE_HEIGHT * OW_SIZE +
+>> +		tile_x % F_SUBTILE_WIDTH;
+>> +
+>> +	GEM_BUG_ON(!IS_ALIGNED(pos, pixel_size));
+>> +
+>> +	return pos / pixel_size * 4;
+>> +}
+>> +
+>>   enum client_tiling {
+>>   	CLIENT_TILING_LINEAR,
+>>   	CLIENT_TILING_X,
+>>   	CLIENT_TILING_Y,
+>> +	CLIENT_TILING_4,
+>>   	CLIENT_NUM_TILING_TYPES
+>>   };
+>>   
+>> @@ -45,6 +107,36 @@ struct tiled_blits {
+>>   	u32 height;
+>>   };
+>>   
+>> +static bool supports_x_tiling(const struct drm_i915_private *i915)
+>> +{
+>> +	int gen = GRAPHICS_VER(i915);
+>> +
+>> +	if (gen < 12)
+>> +		return true;
+>> +
+>> +	if (!HAS_LMEM(i915) || IS_DG1(i915))
+>> +		return false;
+>> +
+>> +	return true;
+>> +}
+>> +
+>> +static bool fast_blit_ok(const struct blit_buffer *buf)
+>> +{
+>> +	int gen = GRAPHICS_VER(buf->vma->vm->i915);
+>> +
+>> +	if (gen < 9)
+>> +		return false;
+>> +
+>> +	if (gen < 12)
+>> +		return true;
+>> +
+>> +	/* filter out platforms with unsupported X-tile support in fastblit */
+>> +	if (buf->tiling == CLIENT_TILING_X && !supports_x_tiling(buf->vma->vm->i915))
+>> +		return false;
+>> +
+>> +	return true;
+>> +}
+>> +
+>>   static int prepare_blit(const struct tiled_blits *t,
+>>   			struct blit_buffer *dst,
+>>   			struct blit_buffer *src,
+>> @@ -59,51 +151,103 @@ static int prepare_blit(const struct tiled_blits *t,
+>>   	if (IS_ERR(cs))
+>>   		return PTR_ERR(cs);
+>>   
+>> -	*cs++ = MI_LOAD_REGISTER_IMM(1);
+>> -	*cs++ = i915_mmio_reg_offset(BCS_SWCTRL);
+>> -	cmd = (BCS_SRC_Y | BCS_DST_Y) << 16;
+>> -	if (src->tiling == CLIENT_TILING_Y)
+>> -		cmd |= BCS_SRC_Y;
+>> -	if (dst->tiling == CLIENT_TILING_Y)
+>> -		cmd |= BCS_DST_Y;
+>> -	*cs++ = cmd;
+>> -
+>> -	cmd = MI_FLUSH_DW;
+>> -	if (ver >= 8)
+>> -		cmd++;
+>> -	*cs++ = cmd;
+>> -	*cs++ = 0;
+>> -	*cs++ = 0;
+>> -	*cs++ = 0;
+>> -
+>> -	cmd = XY_SRC_COPY_BLT_CMD | BLT_WRITE_RGBA | (8 - 2);
+>> -	if (ver >= 8)
+>> -		cmd += 2;
+>> -
+>> -	src_pitch = t->width * 4;
+>> -	if (src->tiling) {
+>> -		cmd |= XY_SRC_COPY_BLT_SRC_TILED;
+>> -		src_pitch /= 4;
+>> -	}
+>> +	if (fast_blit_ok(dst) && fast_blit_ok(src)) {
+>> +		struct intel_gt *gt = t->ce->engine->gt;
+>> +		u32 src_tiles = 0, dst_tiles = 0;
+>> +		u32 src_4t = 0, dst_4t = 0;
+>> +
+>> +		/* Need to program BLIT_CCTL if it is not done previously
+>> +		 * before using XY_FAST_COPY_BLT
+>> +		 */
+>> +		*cs++ = MI_LOAD_REGISTER_IMM(1);
+>> +		*cs++ = i915_mmio_reg_offset(BLIT_CCTL(t->ce->engine->mmio_base));
+>> +		*cs++ = (BLIT_CCTL_SRC_MOCS(gt->mocs.uc_index) |
+>> +			 BLIT_CCTL_DST_MOCS(gt->mocs.uc_index));
+>> +
+>> +		src_pitch = t->width; /* in dwords */
+>> +		if (src->tiling == CLIENT_TILING_4) {
+>> +			src_tiles = XY_FAST_COPY_BLT_D0_SRC_TILE_MODE(YMAJOR);
+>> +			src_4t = XY_FAST_COPY_BLT_D1_SRC_TILE4;
+>> +		} else if (src->tiling == CLIENT_TILING_Y) {
+>> +			src_tiles = XY_FAST_COPY_BLT_D0_SRC_TILE_MODE(YMAJOR);
+>> +		} else if (src->tiling == CLIENT_TILING_X) {
+>> +			src_tiles = XY_FAST_COPY_BLT_D0_SRC_TILE_MODE(TILE_X);
+>> +		} else {
+>> +			src_pitch *= 4; /* in bytes */
+>> +		}
+>>   
+>> -	dst_pitch = t->width * 4;
+>> -	if (dst->tiling) {
+>> -		cmd |= XY_SRC_COPY_BLT_DST_TILED;
+>> -		dst_pitch /= 4;
+>> -	}
+>> +		dst_pitch = t->width; /* in dwords */
+>> +		if (dst->tiling == CLIENT_TILING_4) {
+>> +			dst_tiles = XY_FAST_COPY_BLT_D0_DST_TILE_MODE(YMAJOR);
+>> +			dst_4t = XY_FAST_COPY_BLT_D1_DST_TILE4;
+>> +		} else if (dst->tiling == CLIENT_TILING_Y) {
+>> +			dst_tiles = XY_FAST_COPY_BLT_D0_DST_TILE_MODE(YMAJOR);
+>> +		} else if (dst->tiling == CLIENT_TILING_X) {
+>> +			dst_tiles = XY_FAST_COPY_BLT_D0_DST_TILE_MODE(TILE_X);
+>> +		} else {
+>> +			dst_pitch *= 4; /* in bytes */
+>> +		}
+>>   
+>> -	*cs++ = cmd;
+>> -	*cs++ = BLT_DEPTH_32 | BLT_ROP_SRC_COPY | dst_pitch;
+>> -	*cs++ = 0;
+>> -	*cs++ = t->height << 16 | t->width;
+>> -	*cs++ = lower_32_bits(dst->vma->node.start);
+>> -	if (use_64b_reloc)
+>> +		*cs++ = GEN9_XY_FAST_COPY_BLT_CMD | (10 - 2) |
+>> +			src_tiles | dst_tiles;
+>> +		*cs++ = src_4t | dst_4t | BLT_DEPTH_32 | dst_pitch;
+>> +		*cs++ = 0;
+>> +		*cs++ = t->height << 16 | t->width;
+>> +		*cs++ = lower_32_bits(dst->vma->node.start);
+>>   		*cs++ = upper_32_bits(dst->vma->node.start);
+>> -	*cs++ = 0;
+>> -	*cs++ = src_pitch;
+>> -	*cs++ = lower_32_bits(src->vma->node.start);
+>> -	if (use_64b_reloc)
+>> +		*cs++ = 0;
+>> +		*cs++ = src_pitch;
+>> +		*cs++ = lower_32_bits(src->vma->node.start);
+>>   		*cs++ = upper_32_bits(src->vma->node.start);
+>> +	} else {
+>> +		if (ver >= 6) {
+>> +			*cs++ = MI_LOAD_REGISTER_IMM(1);
+>> +			*cs++ = i915_mmio_reg_offset(BCS_SWCTRL);
+>> +			cmd = (BCS_SRC_Y | BCS_DST_Y) << 16;
+>> +			if (src->tiling == CLIENT_TILING_Y)
+>> +				cmd |= BCS_SRC_Y;
+>> +			if (dst->tiling == CLIENT_TILING_Y)
+>> +				cmd |= BCS_DST_Y;
+>> +			*cs++ = cmd;
+>> +
+>> +			cmd = MI_FLUSH_DW;
+>> +			if (ver >= 8)
+>> +				cmd++;
+>> +			*cs++ = cmd;
+>> +			*cs++ = 0;
+>> +			*cs++ = 0;
+>> +			*cs++ = 0;
+>> +		}
+>> +
+>> +		cmd = XY_SRC_COPY_BLT_CMD | BLT_WRITE_RGBA | (8 - 2);
+>> +		if (ver >= 8)
+>> +			cmd += 2;
+>> +
+>> +		src_pitch = t->width * 4;
+>> +		if (src->tiling) {
+>> +			cmd |= XY_SRC_COPY_BLT_SRC_TILED;
+>> +			src_pitch /= 4;
+>> +		}
+>> +
+>> +		dst_pitch = t->width * 4;
+>> +		if (dst->tiling) {
+>> +			cmd |= XY_SRC_COPY_BLT_DST_TILED;
+>> +			dst_pitch /= 4;
+>> +		}
+>> +
+>> +		*cs++ = cmd;
+>> +		*cs++ = BLT_DEPTH_32 | BLT_ROP_SRC_COPY | dst_pitch;
+>> +		*cs++ = 0;
+>> +		*cs++ = t->height << 16 | t->width;
+>> +		*cs++ = lower_32_bits(dst->vma->node.start);
+>> +		if (use_64b_reloc)
+>> +			*cs++ = upper_32_bits(dst->vma->node.start);
+>> +		*cs++ = 0;
+>> +		*cs++ = src_pitch;
+>> +		*cs++ = lower_32_bits(src->vma->node.start);
+>> +		if (use_64b_reloc)
+>> +			*cs++ = upper_32_bits(src->vma->node.start);
+>> +	}
+>>   
+>>   	*cs++ = MI_BATCH_BUFFER_END;
+>>   
+>> @@ -181,7 +325,13 @@ static int tiled_blits_create_buffers(struct tiled_blits *t,
+>>   
+>>   		t->buffers[i].vma = vma;
+>>   		t->buffers[i].tiling =
+>> -			i915_prandom_u32_max_state(CLIENT_TILING_Y + 1, prng);
+>> +			i915_prandom_u32_max_state(CLIENT_NUM_TILING_TYPES, prng);
+>> +
+>> +		/* Platforms support either TileY or Tile4, not both */
+>> +		if (HAS_4TILE(i915) && t->buffers[i].tiling == CLIENT_TILING_Y)
+>> +			t->buffers[i].tiling = CLIENT_TILING_4;
+>> +		else if (!HAS_4TILE(i915) && t->buffers[i].tiling == CLIENT_TILING_4)
+>> +			t->buffers[i].tiling = CLIENT_TILING_Y;
+>>   	}
+>>   
+>>   	return 0;
+>> @@ -206,7 +356,8 @@ static u64 swizzle_bit(unsigned int bit, u64 offset)
+>>   static u64 tiled_offset(const struct intel_gt *gt,
+>>   			u64 v,
+>>   			unsigned int stride,
+>> -			enum client_tiling tiling)
+>> +			enum client_tiling tiling,
+>> +			int x_pos, int y_pos)
+>>   {
+>>   	unsigned int swizzle;
+>>   	u64 x, y;
+>> @@ -216,7 +367,12 @@ static u64 tiled_offset(const struct intel_gt *gt,
+>>   
+>>   	y = div64_u64_rem(v, stride, &x);
+>>   
+>> -	if (tiling == CLIENT_TILING_X) {
+>> +	if (tiling == CLIENT_TILING_4) {
+>> +		v = linear_x_y_to_ftiled_pos(x_pos, y_pos, stride, 32);
+>> +
+>> +		/* no swizzling for f-tiling */
+>> +		swizzle = I915_BIT_6_SWIZZLE_NONE;
+>> +	} else if (tiling == CLIENT_TILING_X) {
+>>   		v = div64_u64_rem(y, 8, &y) * stride * 8;
+>>   		v += y * 512;
+>>   		v += div64_u64_rem(x, 512, &x) << 12;
+>> @@ -259,6 +415,7 @@ static const char *repr_tiling(enum client_tiling tiling)
+>>   	case CLIENT_TILING_LINEAR: return "linear";
+>>   	case CLIENT_TILING_X: return "X";
+>>   	case CLIENT_TILING_Y: return "Y";
+>> +	case CLIENT_TILING_4: return "F";
+>>   	default: return "unknown";
+>>   	}
+>>   }
+>> @@ -284,7 +441,7 @@ static int verify_buffer(const struct tiled_blits *t,
+>>   	} else {
+>>   		u64 v = tiled_offset(buf->vma->vm->gt,
+>>   				     p * 4, t->width * 4,
+>> -				     buf->tiling);
+>> +				     buf->tiling, x, y);
+>>   
+>>   		if (vaddr[v / sizeof(*vaddr)] != buf->start_val + p)
+>>   			ret = -EINVAL;
+>> @@ -504,6 +661,9 @@ static int tiled_blits_bounce(struct tiled_blits *t, struct rnd_state *prng)
+>>   	if (err)
+>>   		return err;
+>>   
+>> +	/* Simulating GTT eviction of the same buffer / layout */
+>> +	t->buffers[2].tiling = t->buffers[0].tiling;
+>> +
+>>   	/* Reposition so that we overlap the old addresses, and slightly off */
+>>   	err = tiled_blit(t,
+>>   			 &t->buffers[2], t->hole + t->align,
+>> diff --git a/drivers/gpu/drm/i915/gt/intel_gpu_commands.h b/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
+>> index 556bca3be804..246ab8f7bf57 100644
+>> --- a/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
+>> +++ b/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
+>> @@ -236,6 +236,28 @@
+>>   #define   XY_FAST_COLOR_BLT_DW		16
+>>   #define   XY_FAST_COLOR_BLT_MOCS_MASK	GENMASK(27, 21)
+>>   #define   XY_FAST_COLOR_BLT_MEM_TYPE_SHIFT 31
+>> +
+>> +#define   XY_FAST_COPY_BLT_D0_SRC_TILING_MASK     REG_GENMASK(21, 20)
+>> +#define   XY_FAST_COPY_BLT_D0_DST_TILING_MASK     REG_GENMASK(14, 13)
+>> +#define   XY_FAST_COPY_BLT_D0_SRC_TILE_MODE(mode)  \
+>> +	REG_FIELD_PREP(XY_FAST_COPY_BLT_D0_SRC_TILING_MASK, mode)
+>> +#define   XY_FAST_COPY_BLT_D0_DST_TILE_MODE(mode)  \
+>> +	REG_FIELD_PREP(XY_FAST_COPY_BLT_D0_DST_TILING_MASK, mode)
+>> +#define     LINEAR				0
+>> +#define     TILE_X				0x1
+>> +#define     XMAJOR				0x1
+>> +#define     YMAJOR				0x2
+>> +#define     TILE_64			0x3
+>> +#define   XY_FAST_COPY_BLT_D1_SRC_TILE4	REG_BIT(31)
+>> +#define   XY_FAST_COPY_BLT_D1_DST_TILE4	REG_BIT(30)
+>> +#define BLIT_CCTL_SRC_MOCS_MASK  REG_GENMASK(6, 0)
+>> +#define BLIT_CCTL_DST_MOCS_MASK  REG_GENMASK(14, 8)
+>> +/* Note:  MOCS value = (index << 1) */
+>> +#define BLIT_CCTL_SRC_MOCS(idx) \
+>> +	REG_FIELD_PREP(BLIT_CCTL_SRC_MOCS_MASK, (idx) << 1)
+>> +#define BLIT_CCTL_DST_MOCS(idx) \
+>> +	REG_FIELD_PREP(BLIT_CCTL_DST_MOCS_MASK, (idx) << 1)
+>> +
+>>   #define SRC_COPY_BLT_CMD		(2 << 29 | 0x43 << 22)
+>>   #define GEN9_XY_FAST_COPY_BLT_CMD	(2 << 29 | 0x42 << 22)
+>>   #define XY_SRC_COPY_BLT_CMD		(2 << 29 | 0x53 << 22)
+>> -- 
+>> 2.35.1
+>>
