@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CD1052848A
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 May 2022 14:50:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B9ADE528495
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 May 2022 14:52:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 17FBD10E936;
-	Mon, 16 May 2022 12:50:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D8CFF10F5D0;
+	Mon, 16 May 2022 12:52:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7718F10EF6A
- for <intel-gfx@lists.freedesktop.org>; Mon, 16 May 2022 12:50:44 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F73410F5D7
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 May 2022 12:52:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1652705444; x=1684241444;
+ t=1652705525; x=1684241525;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=tBRCM+WfqBICbRZFHLciB0OhOte1YzY994jEpWAc5ww=;
- b=F4wN/CgozOFaNaDaW6sL08vuCJYmgy2CA+qIZPaPqi/WO5poS8THsIAs
- Tii/ZU/dK7u97Fhz10KueVEsYcFhPKdaP/TZylO61H1hD0s9YYz8uhXXb
- AQz23gL6JJ7I65akJt7IBrP2Y+S+WA7gflQcIpOzNC7DHmMPDvgdRu6BD
- S6yljHYA2gaTwKisqOKJ1yo6NPw37jNNiZDCSquD5zAgfIgfDjicZcXYF
- G5TGeMY4/bRAcHkwcV5DdShorzjRoKD6QD26rSOaewJ7sv2qmpWWUD4YN
- ISbZ08o3xqj2s4Tns75PQkbSFuZdLIW+m0gJutzeGJOemqRMmBjCelJpT A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10348"; a="270771584"
-X-IronPort-AV: E=Sophos;i="5.91,229,1647327600"; d="scan'208";a="270771584"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2022 05:50:41 -0700
-X-IronPort-AV: E=Sophos;i="5.91,229,1647327600"; d="scan'208";a="596503142"
+ bh=DbR1o53VZ5EKxnu9g04rtavx2bS9eZ5+5FPjy0j/Jlc=;
+ b=h4lR/m91mxH4A8Eb4vqhaVO5KSJ/vmHjJutDX38DN63lSPvwvPVuDsEL
+ MhyL2V1OXntb4xvOL9LEUE2ccBmQdKqdxCtw3Qrz3rJwbvdrKc1DNvzBH
+ OoCnaJ6L0lEphCQ2sdUrVac4E7txkA4C7Zlh7YKSFnNtlUNawBuiBtkq4
+ FEoYmNyg6Q2nqqbnM6wyyjj/8SgRVIbqK0RJKZYoKklNpXDO/AfK5VX4c
+ QvC2K7lSWu0bC+k0ghaNxY1A4zJi+slOy/5AzQT/dcvcjfC4weUYj5tOR
+ 085d3MVu3srKcrVm4Pw9SMwjNW+MX9MWoc7J1uLz9sJMlBrJaOmxu8kMd Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10348"; a="296083950"
+X-IronPort-AV: E=Sophos;i="5.91,229,1647327600"; d="scan'208";a="296083950"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 May 2022 05:52:04 -0700
+X-IronPort-AV: E=Sophos;i="5.91,229,1647327600"; d="scan'208";a="544344084"
 Received: from akuriata-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.249.145.127])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2022 05:50:39 -0700
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 May 2022 05:52:03 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220503182242.18797-12-ville.syrjala@linux.intel.com>
+In-Reply-To: <20220504212109.26369-1-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220503182242.18797-1-ville.syrjala@linux.intel.com>
- <20220503182242.18797-12-ville.syrjala@linux.intel.com>
-Date: Mon, 16 May 2022 15:50:36 +0300
-Message-ID: <87k0alfxpf.fsf@intel.com>
+References: <20220503182242.18797-12-ville.syrjala@linux.intel.com>
+ <20220504212109.26369-1-ville.syrjala@linux.intel.com>
+Date: Mon, 16 May 2022 15:52:00 +0300
+Message-ID: <87h75pfxn3.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 11/26] drm/i915: Introduce struct
+Subject: Re: [Intel-gfx] [PATCH v2 11/26] drm/i915: Introduce struct
  iclkip_params
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -63,18 +63,25 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 03 May 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+On Thu, 05 May 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
 > Pull the various iCLKIP parameters into a struct. Later on
 > we'll reuse this during the state computation to determine
 > the exact dotclock the hardware will be generating for us.
 >
+> v2: Don't lost the phaseinc calculation
+
+Oh noes, I didn't spot that in my review of v1. /o\
+
+What do I reply here now? R-b again?!
+
+>
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 > ---
 >  drivers/gpu/drm/i915/display/intel_crt.c      |  1 +
->  .../gpu/drm/i915/display/intel_pch_refclk.c   | 91 ++++++++++++-------
->  2 files changed, 57 insertions(+), 35 deletions(-)
+>  .../gpu/drm/i915/display/intel_pch_refclk.c   | 92 ++++++++++++-------
+>  2 files changed, 58 insertions(+), 35 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm/i=
 915/display/intel_crt.c
@@ -86,20 +93,12 @@ On Tue, 03 May 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 >  #include "intel_hotplug.h"
 >  #include "intel_pch_display.h"
 > +#include "intel_pch_refclk.h"
-
-Seems out of place.
-
-Otherwise,
-
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-
-
 >=20=20
 >  /* Here's the desired hotplug mode */
 >  #define ADPA_HOTPLUG_BITS (ADPA_CRT_HOTPLUG_PERIOD_128 |		\
 > diff --git a/drivers/gpu/drm/i915/display/intel_pch_refclk.c b/drivers/gp=
 u/drm/i915/display/intel_pch_refclk.c
-> index b688fd87e3da..6610160cf825 100644
+> index b688fd87e3da..752dab11667f 100644
 > --- a/drivers/gpu/drm/i915/display/intel_pch_refclk.c
 > +++ b/drivers/gpu/drm/i915/display/intel_pch_refclk.c
 > @@ -122,16 +122,29 @@ void lpt_disable_iclkip(struct drm_i915_private *de=
@@ -141,7 +140,7 @@ v_priv)
 >=20=20
 >  	/* The iCLK virtual clock root frequency is in MHz,
 >  	 * but the adjusted_mode->crtc_clock in KHz. To get the
-> @@ -139,50 +152,60 @@ void lpt_program_iclkip(const struct intel_crtc_sta=
+> @@ -139,50 +152,61 @@ void lpt_program_iclkip(const struct intel_crtc_sta=
 te *crtc_state)
 >  	 * convert the virtual clock precision to KHz here for higher
 >  	 * precision.
@@ -159,6 +158,7 @@ te *crtc_state)
 > +		p->desired_divisor =3D DIV_ROUND_CLOSEST(p->iclk_virtual_root_freq,
 > +						       clock << p->auxdiv);
 > +		p->divsel =3D (p->desired_divisor / p->iclk_pi_range) - 2;
+> +		p->phaseinc =3D p->desired_divisor % p->iclk_pi_range;
 >=20=20
 >  		/*
 >  		 * Near 20MHz is a corner case which is
@@ -221,7 +221,7 @@ te *crtc_state)
 >  	intel_sbi_write(dev_priv, SBI_SSCAUXDIV6, temp, SBI_ICLK);
 >=20=20
 >  	/* Enable modulator and associated divider */
-> @@ -200,15 +223,14 @@ void lpt_program_iclkip(const struct intel_crtc_sta=
+> @@ -200,15 +224,14 @@ void lpt_program_iclkip(const struct intel_crtc_sta=
 te *crtc_state)
 >=20=20
 >  int lpt_get_iclkip(struct drm_i915_private *dev_priv)
@@ -242,7 +242,7 @@ te *crtc_state)
 >  	mutex_lock(&dev_priv->sb_lock);
 >=20=20
 >  	temp =3D intel_sbi_read(dev_priv, SBI_SSCCTL6, SBI_ICLK);
-> @@ -218,21 +240,20 @@ int lpt_get_iclkip(struct drm_i915_private *dev_pri=
+> @@ -218,21 +241,20 @@ int lpt_get_iclkip(struct drm_i915_private *dev_pri=
 v)
 >  	}
 >=20=20
