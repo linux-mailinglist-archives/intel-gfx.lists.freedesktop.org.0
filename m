@@ -2,64 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 091AE528457
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 May 2022 14:40:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A8C852845B
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 May 2022 14:41:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D421310E72D;
-	Mon, 16 May 2022 12:40:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 90A2B10E811;
+	Mon, 16 May 2022 12:41:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com
- [IPv6:2607:f8b0:4864:20::434])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C9AF10E672
- for <intel-gfx@lists.freedesktop.org>; Mon, 16 May 2022 12:40:43 +0000 (UTC)
-Received: by mail-pf1-x434.google.com with SMTP id a11so13933289pff.1
- for <intel-gfx@lists.freedesktop.org>; Mon, 16 May 2022 05:40:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=fireburn-co-uk.20210112.gappssmtp.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=R1YUMQxCDcM35RTFnHhCw25BZ+U5YZ8RA6iC/sZIXQM=;
- b=RTFJlIvbLnDxPz2Cq8usHeaB7CDO/wxB7cGoo9eaKQNeDgzBlVJfgNkPlYwQfAr2GR
- iyMmLq7wntvMvijdTetEiExGCiDyVYsHHzpAjMAlS/Ts+UbhXPSlfCEMkyvIA+5CXeA2
- e146eXUmFSwH8sj+wO217P3mwAiyTfVDbk1Swm86w9WywfUcCTbeSevwniOimUWS/+yd
- E5cFtECswCHLtGA5hnl1DaH8RafYGi9hc9FcGxP1Wut9/xdUoY/tYBrmPemmdtdm95Am
- KRmi2o70bUWHT3veqp+X9TX4SpZVt4QY+fZpfRtH9yZmwX0qRErmAlDvT/moEZo88iJ6
- AUMQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=R1YUMQxCDcM35RTFnHhCw25BZ+U5YZ8RA6iC/sZIXQM=;
- b=ZfOz2PEwyyQ8c8EViyNZ5Y5ZkexgFSVhsRIG9z8PnuxIpTxx96+DI/kGOaTIEg6EhG
- tIPE1UtBBFlFWQ5NxEVV5uyG5ErvJp56Rvu3M1xiJdWfFwnUHJqEfRe7JJA5dvnmwGgO
- F2kvWskivEW+hHGT30WlWbNFAb3gZScEAS/P8VnQEIWZ5xLtixM1zV96XllvBDUKkquH
- 9aY0HFrM74u/K+/AN24Y0jEy6c8fwIf34lDWNCWJJqwoVSrdao7t4KX3CFZsni5rza/T
- R1rzL0k9cFA0VT5aA1jgM2WgtRsMBY64aXskHU+fMu0Edt0EcEmtr1gIgK1QqrDhL4uB
- fDzQ==
-X-Gm-Message-State: AOAM531Jysg8Dh+Qup27r7O++z+MSveXmTznUgzPqFMgWRNHwjPxnrys
- 4WEGL0MdY8o8mwxJYMQgq0J/qyUkNGL9+IEU6cow8Q==
-X-Google-Smtp-Source: ABdhPJwW/iMB4UKOH4RWN2ux9AWoZwCRIbMPHlHBLUJR5X2zjnmPqWybWNvc5+rNyDOOBG0FFiF0jvW2IHRHMA4LMdw=
-X-Received: by 2002:a63:7d04:0:b0:378:fb34:5162 with SMTP id
- y4-20020a637d04000000b00378fb345162mr15228776pgc.487.1652704842822; Mon, 16
- May 2022 05:40:42 -0700 (PDT)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E45010E811
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 May 2022 12:41:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1652704879; x=1684240879;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=H/8n8PPjm2NOu3JDvYDd5b+SIgBBaYyFz0ik319srr8=;
+ b=kUj/joofeWEBrsAAZfC6gdCzQFBnIxJyZXXiUhtPoAzX7ZDZt3yZCEND
+ tgDXB4REilgqqKZhdx4ZrtFv/9G1/O9pT15V8rwS495eL2iTM9x86ZeUQ
+ VdlpBi7LvODaZbMtpVnudHtmZQy8/5plpxw0ZJZJ+3a4t8nOIBWLHMSAb
+ q+yzcSPRhV6KCVdcp2AQsoZReYfHG7ByFX1pvO9AtKMs2zEyMBDT7ztsP
+ EPX0QOCA7+gZ3YRC13gt8reQUd+y9x/DAZZNkDXpaLkOw7tB14DUJNXOl
+ 9A9cVh1Xs85LstUhKpQ5+RVs6iS27rh/HD/TkQpJHqnE6FbOQFGSjnwTw A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10348"; a="331444418"
+X-IronPort-AV: E=Sophos;i="5.91,229,1647327600"; d="scan'208";a="331444418"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 May 2022 05:41:18 -0700
+X-IronPort-AV: E=Sophos;i="5.91,229,1647327600"; d="scan'208";a="699513672"
+Received: from akuriata-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.249.145.127])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 May 2022 05:41:17 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20220503182242.18797-10-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220503182242.18797-1-ville.syrjala@linux.intel.com>
+ <20220503182242.18797-10-ville.syrjala@linux.intel.com>
+Date: Mon, 16 May 2022 15:41:14 +0300
+Message-ID: <87pmkdfy51.fsf@intel.com>
 MIME-Version: 1.0
-References: <20220407054651.3924-1-Arunpravin.PaneerSelvam@amd.com>
- <CAHbf0-H5uE4RtZwY0L8Wz0VG6QnU1+E3yhg3fDFVc3n__=nrNQ@mail.gmail.com>
- <c0facbf4-0e14-fde5-4334-499135a36f0c@amd.com>
- <CAHbf0-FMqAA3vWx_uRDYG_vr=FX+tFoLAL6BZLDe5upv7KJqrg@mail.gmail.com>
- <CAHbf0-En606VT_HYDyeo6TtsfSZmR_+wsZaVgS4XiedLO9ndiA@mail.gmail.com>
- <8b99ca20-f711-ec32-0cd2-16fc52846ce0@amd.com>
- <CAHbf0-EzPP5gAyZQmxeAo3Ep0g-rO4XbDgEB_SdsR84xY+at9A@mail.gmail.com>
-In-Reply-To: <CAHbf0-EzPP5gAyZQmxeAo3Ep0g-rO4XbDgEB_SdsR84xY+at9A@mail.gmail.com>
-From: Mike Lothian <mike@fireburn.co.uk>
-Date: Mon, 16 May 2022 13:40:31 +0100
-Message-ID: <CAHbf0-G-rnvNXaXxMzkPerW6h=9vkxJyysUUV-oJV5UGD67KqA@mail.gmail.com>
-To: Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v12] drm/amdgpu: add drm buddy support to
- amdgpu
+Subject: Re: [Intel-gfx] [PATCH 09/26] drm/i915: Improve modeset debugs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,73 +59,100 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, alexander.deucher@amd.com,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- matthew.auld@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi
+On Tue, 03 May 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> Use the "[CRTC:%d:%s]'/etc. format for some of the modeset debugs
+> so we know more about what has happened during the modeset state
+> computation.
+>
+> Also tweak the connector bpp debug message a bit to make it less
+> confusing.
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-The merge window for 5.19 will probably be opening next week, has
-there been any progress with this bug?
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-Thanks
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c | 22 +++++++++++++-------
+>  1 file changed, 14 insertions(+), 8 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index ac476976dc0b..8d6cbfbaf20d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -5040,8 +5040,8 @@ compute_sink_pipe_bpp(const struct drm_connector_st=
+ate *conn_state,
+>=20=20
+>  	if (bpp < crtc_state->pipe_bpp) {
+>  		drm_dbg_kms(&i915->drm,
+> -			    "[CONNECTOR:%d:%s] Limiting display bpp to %d instead of "
+> -			    "EDID bpp %d, requested bpp %d, max platform bpp %d\n",
+> +			    "[CONNECTOR:%d:%s] Limiting display bpp to %d "
+> +			    "(EDID bpp %d, max requested bpp %d, max platform bpp %d)\n",
+>  			    connector->base.id, connector->name,
+>  			    bpp, 3 * info->bpc,
+>  			    3 * conn_state->max_requested_bpc,
+> @@ -5691,7 +5691,8 @@ intel_modeset_pipe_config(struct intel_atomic_state=
+ *state,
+>=20=20
+>  		if (!check_single_encoder_cloning(state, crtc, encoder)) {
+>  			drm_dbg_kms(&i915->drm,
+> -				    "rejecting invalid cloning configuration\n");
+> +				    "[ENCODER:%d:%s] rejecting invalid cloning configuration\n",
+> +				    encoder->base.base.id, encoder->base.name);
+>  			return -EINVAL;
+>  		}
+>=20=20
+> @@ -5732,7 +5733,8 @@ intel_modeset_pipe_config(struct intel_atomic_state=
+ *state,
+>  		if (ret =3D=3D -EDEADLK)
+>  			return ret;
+>  		if (ret < 0) {
+> -			drm_dbg_kms(&i915->drm, "Encoder config failure: %d\n", ret);
+> +			drm_dbg_kms(&i915->drm, "[ENCODER:%d:%s] config failure: %d\n",
+> +				    encoder->base.base.id, encoder->base.name, ret);
+>  			return ret;
+>  		}
+>  	}
+> @@ -5748,15 +5750,18 @@ intel_modeset_pipe_config(struct intel_atomic_sta=
+te *state,
+>  		return ret;
+>  	if (ret =3D=3D -EAGAIN) {
+>  		if (drm_WARN(&i915->drm, !retry,
+> -			     "loop in pipe configuration computation\n"))
+> +			     "[CRTC:%d:%s] loop in pipe configuration computation\n",
+> +			     crtc->base.base.id, crtc->base.name))
+>  			return -EINVAL;
+>=20=20
+> -		drm_dbg_kms(&i915->drm, "CRTC bw constrained, retrying\n");
+> +		drm_dbg_kms(&i915->drm, "[CRTC:%d:%s] bw constrained, retrying\n",
+> +			    crtc->base.base.id, crtc->base.name);
+>  		retry =3D false;
+>  		goto encoder_retry;
+>  	}
+>  	if (ret < 0) {
+> -		drm_dbg_kms(&i915->drm, "CRTC config failure: %d\n", ret);
+> +		drm_dbg_kms(&i915->drm, "[CRTC:%d:%s] config failure: %d\n",
+> +			    crtc->base.base.id, crtc->base.name, ret);
+>  		return ret;
+>  	}
+>=20=20
+> @@ -5767,7 +5772,8 @@ intel_modeset_pipe_config(struct intel_atomic_state=
+ *state,
+>  	crtc_state->dither =3D (crtc_state->pipe_bpp =3D=3D 6*3) &&
+>  		!crtc_state->dither_force_disable;
+>  	drm_dbg_kms(&i915->drm,
+> -		    "hw max bpp: %i, pipe bpp: %i, dithering: %i\n",
+> +		    "[CRTC:%d:%s] hw max bpp: %i, pipe bpp: %i, dithering: %i\n",
+> +		    crtc->base.base.id, crtc->base.name,
+>  		    base_bpp, crtc_state->pipe_bpp, crtc_state->dither);
+>=20=20
+>  	return 0;
 
-Mike
-
-On Mon, 2 May 2022 at 17:31, Mike Lothian <mike@fireburn.co.uk> wrote:
->
-> On Mon, 2 May 2022 at 16:54, Arunpravin Paneer Selvam
-> <arunpravin.paneerselvam@amd.com> wrote:
-> >
-> >
-> >
-> > On 5/2/2022 8:41 PM, Mike Lothian wrote:
-> > > On Wed, 27 Apr 2022 at 12:55, Mike Lothian <mike@fireburn.co.uk> wrot=
-e:
-> > >> On Tue, 26 Apr 2022 at 17:36, Christian K=C3=B6nig <christian.koenig=
-@amd.com> wrote:
-> > >>> Hi Mike,
-> > >>>
-> > >>> sounds like somehow stitching together the SG table for PRIME doesn=
-'t
-> > >>> work any more with this patch.
-> > >>>
-> > >>> Can you try with P2P DMA disabled?
-> > >> -CONFIG_PCI_P2PDMA=3Dy
-> > >> +# CONFIG_PCI_P2PDMA is not set
-> > >>
-> > >> If that's what you're meaning, then there's no difference, I'll uplo=
-ad
-> > >> my dmesg to the gitlab issue
-> > >>
-> > >>> Apart from that can you take a look Arun?
-> > >>>
-> > >>> Thanks,
-> > >>> Christian.
-> > > Hi
-> > >
-> > > Have you had any success in replicating this?
-> > Hi Mike,
-> > I couldn't replicate on my Raven APU machine. I see you have 2 cards
-> > initialized, one is Renoir
-> > and the other is Navy Flounder. Could you give some more details, are
-> > you running Gravity Mark
-> > on Renoir and what is your system RAM configuration?
-> > >
-> > > Cheers
-> > >
-> > > Mike
-> >
-> Hi
->
-> It's a PRIME laptop, it failed on the RENOIR too, it caused a lockup,
-> but systemd managed to capture it, I'll attach it to the issue
->
-> I've got 64GB RAM, the 6800M has 12GB VRAM
->
-> Cheers
->
-> Mike
+--=20
+Jani Nikula, Intel Open Source Graphics Center
