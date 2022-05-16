@@ -2,51 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2582C528450
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 May 2022 14:39:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 091AE528457
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 May 2022 14:40:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6DD3010E39D;
-	Mon, 16 May 2022 12:39:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D421310E72D;
+	Mon, 16 May 2022 12:40:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 14EED10E39D
- for <intel-gfx@lists.freedesktop.org>; Mon, 16 May 2022 12:39:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1652704793; x=1684240793;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=uXCmHxopgj4VBx/N9qUm0u2+4BNHlmafYAorVxij2xk=;
- b=Y9qY1MYLtQ04ptRUh7TACERUxKd0brvAV3esRnfCkEDgdeVnK9pp1+GM
- 1otn4ObvQSiiarFp++ef1ogY34nkBMpBWYRJKG3c/8/C1UIPkxuI36tkO
- 1OkVL6MwlT+DTr8WB+1vJXRZLHW/XWMnWXWF81AO4v+UEWWtGMDaC51td
- hfykDuqjJ1XVq9meNhJDtcpzcQZ/HVZavOLl8sWfukebLrwWsMpxt3b4V
- za/b3lZEhcqyUUYNmaLgrxHMme8EyMfxo7soSmVBE0YteU3EiveVtfOcL
- 5kn+Y409OnlPoIdOxDch9lR2pY3udVdkjkMlAY28gDf5/iQ3rWENRkOXS w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10348"; a="296080665"
-X-IronPort-AV: E=Sophos;i="5.91,229,1647327600"; d="scan'208";a="296080665"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2022 05:39:52 -0700
-X-IronPort-AV: E=Sophos;i="5.91,229,1647327600"; d="scan'208";a="568296903"
-Received: from akuriata-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.249.145.127])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2022 05:39:51 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220503182242.18797-9-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220503182242.18797-1-ville.syrjala@linux.intel.com>
- <20220503182242.18797-9-ville.syrjala@linux.intel.com>
-Date: Mon, 16 May 2022 15:39:48 +0300
-Message-ID: <87sfp9fy7f.fsf@intel.com>
+Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com
+ [IPv6:2607:f8b0:4864:20::434])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C9AF10E672
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 May 2022 12:40:43 +0000 (UTC)
+Received: by mail-pf1-x434.google.com with SMTP id a11so13933289pff.1
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 May 2022 05:40:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=fireburn-co-uk.20210112.gappssmtp.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=R1YUMQxCDcM35RTFnHhCw25BZ+U5YZ8RA6iC/sZIXQM=;
+ b=RTFJlIvbLnDxPz2Cq8usHeaB7CDO/wxB7cGoo9eaKQNeDgzBlVJfgNkPlYwQfAr2GR
+ iyMmLq7wntvMvijdTetEiExGCiDyVYsHHzpAjMAlS/Ts+UbhXPSlfCEMkyvIA+5CXeA2
+ e146eXUmFSwH8sj+wO217P3mwAiyTfVDbk1Swm86w9WywfUcCTbeSevwniOimUWS/+yd
+ E5cFtECswCHLtGA5hnl1DaH8RafYGi9hc9FcGxP1Wut9/xdUoY/tYBrmPemmdtdm95Am
+ KRmi2o70bUWHT3veqp+X9TX4SpZVt4QY+fZpfRtH9yZmwX0qRErmAlDvT/moEZo88iJ6
+ AUMQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=R1YUMQxCDcM35RTFnHhCw25BZ+U5YZ8RA6iC/sZIXQM=;
+ b=ZfOz2PEwyyQ8c8EViyNZ5Y5ZkexgFSVhsRIG9z8PnuxIpTxx96+DI/kGOaTIEg6EhG
+ tIPE1UtBBFlFWQ5NxEVV5uyG5ErvJp56Rvu3M1xiJdWfFwnUHJqEfRe7JJA5dvnmwGgO
+ F2kvWskivEW+hHGT30WlWbNFAb3gZScEAS/P8VnQEIWZ5xLtixM1zV96XllvBDUKkquH
+ 9aY0HFrM74u/K+/AN24Y0jEy6c8fwIf34lDWNCWJJqwoVSrdao7t4KX3CFZsni5rza/T
+ R1rzL0k9cFA0VT5aA1jgM2WgtRsMBY64aXskHU+fMu0Edt0EcEmtr1gIgK1QqrDhL4uB
+ fDzQ==
+X-Gm-Message-State: AOAM531Jysg8Dh+Qup27r7O++z+MSveXmTznUgzPqFMgWRNHwjPxnrys
+ 4WEGL0MdY8o8mwxJYMQgq0J/qyUkNGL9+IEU6cow8Q==
+X-Google-Smtp-Source: ABdhPJwW/iMB4UKOH4RWN2ux9AWoZwCRIbMPHlHBLUJR5X2zjnmPqWybWNvc5+rNyDOOBG0FFiF0jvW2IHRHMA4LMdw=
+X-Received: by 2002:a63:7d04:0:b0:378:fb34:5162 with SMTP id
+ y4-20020a637d04000000b00378fb345162mr15228776pgc.487.1652704842822; Mon, 16
+ May 2022 05:40:42 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+References: <20220407054651.3924-1-Arunpravin.PaneerSelvam@amd.com>
+ <CAHbf0-H5uE4RtZwY0L8Wz0VG6QnU1+E3yhg3fDFVc3n__=nrNQ@mail.gmail.com>
+ <c0facbf4-0e14-fde5-4334-499135a36f0c@amd.com>
+ <CAHbf0-FMqAA3vWx_uRDYG_vr=FX+tFoLAL6BZLDe5upv7KJqrg@mail.gmail.com>
+ <CAHbf0-En606VT_HYDyeo6TtsfSZmR_+wsZaVgS4XiedLO9ndiA@mail.gmail.com>
+ <8b99ca20-f711-ec32-0cd2-16fc52846ce0@amd.com>
+ <CAHbf0-EzPP5gAyZQmxeAo3Ep0g-rO4XbDgEB_SdsR84xY+at9A@mail.gmail.com>
+In-Reply-To: <CAHbf0-EzPP5gAyZQmxeAo3Ep0g-rO4XbDgEB_SdsR84xY+at9A@mail.gmail.com>
+From: Mike Lothian <mike@fireburn.co.uk>
+Date: Mon, 16 May 2022 13:40:31 +0100
+Message-ID: <CAHbf0-G-rnvNXaXxMzkPerW6h=9vkxJyysUUV-oJV5UGD67KqA@mail.gmail.com>
+To: Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 08/26] drm/i915: s/pipe_config/crtc_state/
+Subject: Re: [Intel-gfx] [PATCH v12] drm/amdgpu: add drm buddy support to
+ amdgpu
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,223 +72,73 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, alexander.deucher@amd.com,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ matthew.auld@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 03 May 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> Rename some of the 'pipe_config's to the more modern
-> 'crtc_state'.
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+Hi
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+The merge window for 5.19 will probably be opening next week, has
+there been any progress with this bug?
 
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 62 ++++++++++----------
->  1 file changed, 31 insertions(+), 31 deletions(-)
+Thanks
+
+Mike
+
+On Mon, 2 May 2022 at 17:31, Mike Lothian <mike@fireburn.co.uk> wrote:
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
-rm/i915/display/intel_display.c
-> index 4615cf3564eb..ac476976dc0b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -5013,10 +5013,10 @@ static void intel_modeset_update_connector_atomic=
-_state(struct drm_device *dev)
->=20=20
->  static int
->  compute_sink_pipe_bpp(const struct drm_connector_state *conn_state,
-> -		      struct intel_crtc_state *pipe_config)
-> +		      struct intel_crtc_state *crtc_state)
->  {
->  	struct drm_connector *connector =3D conn_state->connector;
-> -	struct drm_i915_private *i915 =3D to_i915(pipe_config->uapi.crtc->dev);
-> +	struct drm_i915_private *i915 =3D to_i915(crtc_state->uapi.crtc->dev);
->  	const struct drm_display_info *info =3D &connector->display_info;
->  	int bpp;
->=20=20
-> @@ -5038,16 +5038,16 @@ compute_sink_pipe_bpp(const struct drm_connector_=
-state *conn_state,
->  		return -EINVAL;
->  	}
->=20=20
-> -	if (bpp < pipe_config->pipe_bpp) {
-> +	if (bpp < crtc_state->pipe_bpp) {
->  		drm_dbg_kms(&i915->drm,
->  			    "[CONNECTOR:%d:%s] Limiting display bpp to %d instead of "
->  			    "EDID bpp %d, requested bpp %d, max platform bpp %d\n",
->  			    connector->base.id, connector->name,
->  			    bpp, 3 * info->bpc,
->  			    3 * conn_state->max_requested_bpc,
-> -			    pipe_config->pipe_bpp);
-> +			    crtc_state->pipe_bpp);
->=20=20
-> -		pipe_config->pipe_bpp =3D bpp;
-> +		crtc_state->pipe_bpp =3D bpp;
->  	}
->=20=20
->  	return 0;
-> @@ -5058,7 +5058,7 @@ compute_baseline_pipe_bpp(struct intel_atomic_state=
- *state,
->  			  struct intel_crtc *crtc)
->  {
->  	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
-> -	struct intel_crtc_state *pipe_config =3D
-> +	struct intel_crtc_state *crtc_state =3D
->  		intel_atomic_get_new_crtc_state(state, crtc);
->  	struct drm_connector *connector;
->  	struct drm_connector_state *connector_state;
-> @@ -5072,7 +5072,7 @@ compute_baseline_pipe_bpp(struct intel_atomic_state=
- *state,
->  	else
->  		bpp =3D 8*3;
->=20=20
-> -	pipe_config->pipe_bpp =3D bpp;
-> +	crtc_state->pipe_bpp =3D bpp;
->=20=20
->  	/* Clamp display bpp to connector max bpp */
->  	for_each_new_connector_in_state(&state->base, connector, connector_stat=
-e, i) {
-> @@ -5081,7 +5081,7 @@ compute_baseline_pipe_bpp(struct intel_atomic_state=
- *state,
->  		if (connector_state->crtc !=3D &crtc->base)
->  			continue;
->=20=20
-> -		ret =3D compute_sink_pipe_bpp(connector_state, pipe_config);
-> +		ret =3D compute_sink_pipe_bpp(connector_state, crtc_state);
->  		if (ret)
->  			return ret;
->  	}
-> @@ -5638,7 +5638,7 @@ intel_modeset_pipe_config(struct intel_atomic_state=
- *state,
->  			  struct intel_crtc *crtc)
->  {
->  	struct drm_i915_private *i915 =3D to_i915(crtc->base.dev);
-> -	struct intel_crtc_state *pipe_config =3D
-> +	struct intel_crtc_state *crtc_state =3D
->  		intel_atomic_get_new_crtc_state(state, crtc);
->  	struct drm_connector *connector;
->  	struct drm_connector_state *connector_state;
-> @@ -5646,28 +5646,28 @@ intel_modeset_pipe_config(struct intel_atomic_sta=
-te *state,
->  	int base_bpp, ret, i;
->  	bool retry =3D true;
->=20=20
-> -	pipe_config->cpu_transcoder =3D (enum transcoder) crtc->pipe;
-> +	crtc_state->cpu_transcoder =3D (enum transcoder) crtc->pipe;
->=20=20
-> -	pipe_config->framestart_delay =3D 1;
-> +	crtc_state->framestart_delay =3D 1;
->=20=20
->  	/*
->  	 * Sanitize sync polarity flags based on requested ones. If neither
->  	 * positive or negative polarity is requested, treat this as meaning
->  	 * negative polarity.
->  	 */
-> -	if (!(pipe_config->hw.adjusted_mode.flags &
-> +	if (!(crtc_state->hw.adjusted_mode.flags &
->  	      (DRM_MODE_FLAG_PHSYNC | DRM_MODE_FLAG_NHSYNC)))
-> -		pipe_config->hw.adjusted_mode.flags |=3D DRM_MODE_FLAG_NHSYNC;
-> +		crtc_state->hw.adjusted_mode.flags |=3D DRM_MODE_FLAG_NHSYNC;
->=20=20
-> -	if (!(pipe_config->hw.adjusted_mode.flags &
-> +	if (!(crtc_state->hw.adjusted_mode.flags &
->  	      (DRM_MODE_FLAG_PVSYNC | DRM_MODE_FLAG_NVSYNC)))
-> -		pipe_config->hw.adjusted_mode.flags |=3D DRM_MODE_FLAG_NVSYNC;
-> +		crtc_state->hw.adjusted_mode.flags |=3D DRM_MODE_FLAG_NVSYNC;
->=20=20
->  	ret =3D compute_baseline_pipe_bpp(state, crtc);
->  	if (ret)
->  		return ret;
->=20=20
-> -	base_bpp =3D pipe_config->pipe_bpp;
-> +	base_bpp =3D crtc_state->pipe_bpp;
->=20=20
->  	/*
->  	 * Determine the real pipe dimensions. Note that stereo modes can
-> @@ -5677,9 +5677,9 @@ intel_modeset_pipe_config(struct intel_atomic_state=
- *state,
->  	 * computation to clearly distinguish it from the adjusted mode, which
->  	 * can be changed by the connectors in the below retry loop.
->  	 */
-> -	drm_mode_get_hv_timing(&pipe_config->hw.mode,
-> +	drm_mode_get_hv_timing(&crtc_state->hw.mode,
->  			       &pipe_src_w, &pipe_src_h);
-> -	drm_rect_init(&pipe_config->pipe_src, 0, 0,
-> +	drm_rect_init(&crtc_state->pipe_src, 0, 0,
->  		      pipe_src_w, pipe_src_h);
->=20=20
->  	for_each_new_connector_in_state(&state->base, connector, connector_stat=
-e, i) {
-> @@ -5700,20 +5700,20 @@ intel_modeset_pipe_config(struct intel_atomic_sta=
-te *state,
->  		 * hooks so that the hooks can use this information safely.
->  		 */
->  		if (encoder->compute_output_type)
-> -			pipe_config->output_types |=3D
-> -				BIT(encoder->compute_output_type(encoder, pipe_config,
-> +			crtc_state->output_types |=3D
-> +				BIT(encoder->compute_output_type(encoder, crtc_state,
->  								 connector_state));
->  		else
-> -			pipe_config->output_types |=3D BIT(encoder->type);
-> +			crtc_state->output_types |=3D BIT(encoder->type);
->  	}
->=20=20
->  encoder_retry:
->  	/* Ensure the port clock defaults are reset when retrying. */
-> -	pipe_config->port_clock =3D 0;
-> -	pipe_config->pixel_multiplier =3D 1;
-> +	crtc_state->port_clock =3D 0;
-> +	crtc_state->pixel_multiplier =3D 1;
->=20=20
->  	/* Fill in default crtc timings, allow encoders to overwrite them. */
-> -	drm_mode_set_crtcinfo(&pipe_config->hw.adjusted_mode,
-> +	drm_mode_set_crtcinfo(&crtc_state->hw.adjusted_mode,
->  			      CRTC_STEREO_DOUBLE);
->=20=20
->  	/* Pass our mode to the connectors and the CRTC to give them a chance to
-> @@ -5727,7 +5727,7 @@ intel_modeset_pipe_config(struct intel_atomic_state=
- *state,
->  		if (connector_state->crtc !=3D &crtc->base)
->  			continue;
->=20=20
-> -		ret =3D encoder->compute_config(encoder, pipe_config,
-> +		ret =3D encoder->compute_config(encoder, crtc_state,
->  					      connector_state);
->  		if (ret =3D=3D -EDEADLK)
->  			return ret;
-> @@ -5739,9 +5739,9 @@ intel_modeset_pipe_config(struct intel_atomic_state=
- *state,
->=20=20
->  	/* Set default port clock if not overwritten by the encoder. Needs to be
->  	 * done afterwards in case the encoder adjusts the mode. */
-> -	if (!pipe_config->port_clock)
-> -		pipe_config->port_clock =3D pipe_config->hw.adjusted_mode.crtc_clock
-> -			* pipe_config->pixel_multiplier;
-> +	if (!crtc_state->port_clock)
-> +		crtc_state->port_clock =3D crtc_state->hw.adjusted_mode.crtc_clock
-> +			* crtc_state->pixel_multiplier;
->=20=20
->  	ret =3D intel_crtc_compute_config(state, crtc);
->  	if (ret =3D=3D -EDEADLK)
-> @@ -5764,11 +5764,11 @@ intel_modeset_pipe_config(struct intel_atomic_sta=
-te *state,
->  	 * only enable it on 6bpc panels and when its not a compliance
->  	 * test requesting 6bpc video pattern.
->  	 */
-> -	pipe_config->dither =3D (pipe_config->pipe_bpp =3D=3D 6*3) &&
-> -		!pipe_config->dither_force_disable;
-> +	crtc_state->dither =3D (crtc_state->pipe_bpp =3D=3D 6*3) &&
-> +		!crtc_state->dither_force_disable;
->  	drm_dbg_kms(&i915->drm,
->  		    "hw max bpp: %i, pipe bpp: %i, dithering: %i\n",
-> -		    base_bpp, pipe_config->pipe_bpp, pipe_config->dither);
-> +		    base_bpp, crtc_state->pipe_bpp, crtc_state->dither);
->=20=20
->  	return 0;
->  }
-
---=20
-Jani Nikula, Intel Open Source Graphics Center
+> On Mon, 2 May 2022 at 16:54, Arunpravin Paneer Selvam
+> <arunpravin.paneerselvam@amd.com> wrote:
+> >
+> >
+> >
+> > On 5/2/2022 8:41 PM, Mike Lothian wrote:
+> > > On Wed, 27 Apr 2022 at 12:55, Mike Lothian <mike@fireburn.co.uk> wrot=
+e:
+> > >> On Tue, 26 Apr 2022 at 17:36, Christian K=C3=B6nig <christian.koenig=
+@amd.com> wrote:
+> > >>> Hi Mike,
+> > >>>
+> > >>> sounds like somehow stitching together the SG table for PRIME doesn=
+'t
+> > >>> work any more with this patch.
+> > >>>
+> > >>> Can you try with P2P DMA disabled?
+> > >> -CONFIG_PCI_P2PDMA=3Dy
+> > >> +# CONFIG_PCI_P2PDMA is not set
+> > >>
+> > >> If that's what you're meaning, then there's no difference, I'll uplo=
+ad
+> > >> my dmesg to the gitlab issue
+> > >>
+> > >>> Apart from that can you take a look Arun?
+> > >>>
+> > >>> Thanks,
+> > >>> Christian.
+> > > Hi
+> > >
+> > > Have you had any success in replicating this?
+> > Hi Mike,
+> > I couldn't replicate on my Raven APU machine. I see you have 2 cards
+> > initialized, one is Renoir
+> > and the other is Navy Flounder. Could you give some more details, are
+> > you running Gravity Mark
+> > on Renoir and what is your system RAM configuration?
+> > >
+> > > Cheers
+> > >
+> > > Mike
+> >
+> Hi
+>
+> It's a PRIME laptop, it failed on the RENOIR too, it caused a lockup,
+> but systemd managed to capture it, I'll attach it to the issue
+>
+> I've got 64GB RAM, the 6800M has 12GB VRAM
+>
+> Cheers
+>
+> Mike
