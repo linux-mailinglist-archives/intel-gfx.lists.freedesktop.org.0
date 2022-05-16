@@ -1,42 +1,68 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3268E528566
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 May 2022 15:31:15 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A3935286CB
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 May 2022 16:20:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 870BA1121DA;
-	Mon, 16 May 2022 13:31:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 83C3210E0CA;
+	Mon, 16 May 2022 14:19:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D9A1F1121C1;
- Mon, 16 May 2022 13:31:09 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id BAB16B81203;
- Mon, 16 May 2022 13:31:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE183C385AA;
- Mon, 16 May 2022 13:31:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1652707866;
- bh=ptJJdl6/90C/9ngs0R9TLu4hatZEKH+NyjqZBwan/o8=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=DZdQ9mfTQBflmQWi4epCej7EPYBxF8pZ7ebsvN/YIJF+sYxkmOOFEk2UPrsR8cEht
- 3uUxwAXuxDSNr9DxG7VT5s0In462yrkGVBwDmjy5o3BYTodwXeF+/Aae318fGsFIdD
- i6z511NzSGuxWHwP1TkBEGg+0ZsPsSzYb/5QWego=
-Date: Mon, 16 May 2022 15:31:03 +0200
-From: Greg KH <gregkh@linuxfoundation.org>
-To: Guenter Roeck <linux@roeck-us.net>
-Message-ID: <YoJSF8T5K9pPx3Ap@kroah.com>
-References: <20220228103142.3301082-1-arnd@kernel.org>
- <20220516131023.GA2329080@roeck-us.net>
+Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com
+ [IPv6:2607:f8b0:4864:20::22b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 426C110E349;
+ Mon, 16 May 2022 14:19:58 +0000 (UTC)
+Received: by mail-oi1-x22b.google.com with SMTP id q8so18733768oif.13;
+ Mon, 16 May 2022 07:19:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=sender:message-id:date:mime-version:user-agent:subject
+ :content-language:to:cc:references:from:in-reply-to
+ :content-transfer-encoding;
+ bh=Mpj75KaCiBDC1z0Gq3wmQiK0bCjZ+/g+r2qV0jF0QRs=;
+ b=h7hGFYuETN0Js7lA4HRVafJbtT3J3KaiOp2PQl9zOveXQ58rogRbhMTVG+EEvFEUGm
+ mgiDgExHRSy3NmnDXGWIG/eqz8sOxhVtpQ6zdEtd6pXK3aHPuSX8NvSDLFQn8q3SxzKn
+ qPbJoCpOhtLyQtknnmObrNRPcp65M/9lc5+nMQH9EZ6DJ9zvyrxEPJUqB4ZpHgN65UT/
+ pZ6wxDTkwgT5vkbieo6BPojGLMCZK/KMf51dzWWT6GmojtBDWnBo2DB6cb2VCY+ARVbR
+ DGTOsgB1Jn3+eY0XLFzfo/yyoRwisMfFzPLHaOR+iwIgr/tYqlQaBS1PasQQKYWGO8WS
+ WSEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:sender:message-id:date:mime-version:user-agent
+ :subject:content-language:to:cc:references:from:in-reply-to
+ :content-transfer-encoding;
+ bh=Mpj75KaCiBDC1z0Gq3wmQiK0bCjZ+/g+r2qV0jF0QRs=;
+ b=CHh+IhmGza7/WyoxqTP6BkjXA/Vsy8346Yp17i57EGECEnutxAeFp66PVissBKTE9r
+ S8UVtPFJmQOJ2yVbVQQWnV6nRGZkx7UQMM03ybJTyAs3HQ5NpUkm5pLIU+gFzwDzyD/L
+ bJGn+cFvRjY9AKAteplVcoE8XMb/S/3bGlnFOF1nxUdaZAKxWbOzAVzmoNel1rfBJ/PX
+ CKrBbYEvLmSl5tvJbmZkmTJbo/lozujTtkVZqbkbQs8DAJwkHfi/F5hFmsxYJoR8LRHy
+ a+ejTlDEdaZPFqh3i2jKSUAG0qg+bRYkrMUwWTWBDO2IjtZ5ZjMtOkbaQQMKXxZPuY+U
+ wJzw==
+X-Gm-Message-State: AOAM530tk6RnoEKuM6C92J+ZYPBhYeH6Nr30+3l0VQ4vKAyRAbMJzvUT
+ bc4HJ0rZuVR9RweR69bU0pg=
+X-Google-Smtp-Source: ABdhPJzHIEB8K5ECnXXfF0FVsk0B1nV5R/BR/kSU8cshU+jwA1/3rjPaKr6PQiWtdpcKDnk1QewaaA==
+X-Received: by 2002:a05:6808:a11:b0:325:e5c1:5912 with SMTP id
+ n17-20020a0568080a1100b00325e5c15912mr8321388oij.204.1652710797515; 
+ Mon, 16 May 2022 07:19:57 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c?
+ ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+ by smtp.gmail.com with ESMTPSA id
+ i1-20020a9d6241000000b005b22a0d826csm3916917otk.1.2022.05.16.07.19.54
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 16 May 2022 07:19:56 -0700 (PDT)
+Message-ID: <9510474d-5555-42b3-5a9c-90e3078df499@roeck-us.net>
+Date: Mon, 16 May 2022 07:19:53 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Content-Language: en-US
+To: Greg KH <gregkh@linuxfoundation.org>
+References: <20220228103142.3301082-1-arnd@kernel.org>
+ <20220516131023.GA2329080@roeck-us.net> <YoJSF8T5K9pPx3Ap@kroah.com>
+From: Guenter Roeck <linux@roeck-us.net>
+In-Reply-To: <YoJSF8T5K9pPx3Ap@kroah.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220516131023.GA2329080@roeck-us.net>
 Subject: Re: [Intel-gfx] [greybus-dev] Re: [PATCH] [v2] Kbuild: move to
  -std=gnu11
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -65,29 +91,32 @@ Cc: Arnd Bergmann <arnd@kernel.org>, Michal Marek <michal.lkml@markovi.net>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, May 16, 2022 at 06:10:23AM -0700, Guenter Roeck wrote:
-> On Mon, Feb 28, 2022 at 11:27:43AM +0100, Arnd Bergmann wrote:
-> > From: Arnd Bergmann <arnd@arndb.de>
-> > 
-> > During a patch discussion, Linus brought up the option of changing
-> > the C standard version from gnu89 to gnu99, which allows using variable
-> > declaration inside of a for() loop. While the C99, C11 and later standards
-> > introduce many other features, most of these are already available in
-> > gnu89 as GNU extensions as well.
+On 5/16/22 06:31, Greg KH wrote:
+> On Mon, May 16, 2022 at 06:10:23AM -0700, Guenter Roeck wrote:
+>> On Mon, Feb 28, 2022 at 11:27:43AM +0100, Arnd Bergmann wrote:
+>>> From: Arnd Bergmann <arnd@arndb.de>
+>>>
+>>> During a patch discussion, Linus brought up the option of changing
+>>> the C standard version from gnu89 to gnu99, which allows using variable
+>>> declaration inside of a for() loop. While the C99, C11 and later standards
+>>> introduce many other features, most of these are already available in
+>>> gnu89 as GNU extensions as well.
+>>
+>> The downside is that backporting affected patches to older kernel branches
+>> now fails with error messages such as
+>>
+>> mm/kfence/core.c: In function ‘kfence_init_pool’:
+>> mm/kfence/core.c:595:2: error: ‘for’ loop initial declarations are only allowed in C99 or C11 mode
+>>
+>> Just something to keep in mind when writing patches.
 > 
-> The downside is that backporting affected patches to older kernel branches
-> now fails with error messages such as
+> I just ran across this very issue on this commit.  It's an easy fixup
+> for 5.17.y to make this work, so I did that in my tree.  If this gets to
+> be too much, we might need to reconsider adding c11 to older stable
+> kernels.
 > 
-> mm/kfence/core.c: In function ‘kfence_init_pool’:
-> mm/kfence/core.c:595:2: error: ‘for’ loop initial declarations are only allowed in C99 or C11 mode
-> 
-> Just something to keep in mind when writing patches.
 
-I just ran across this very issue on this commit.  It's an easy fixup
-for 5.17.y to make this work, so I did that in my tree.  If this gets to
-be too much, we might need to reconsider adding c11 to older stable
-kernels.
+I think I'll do just that for ChromeOS; I don't want to have to deal
+with the backports, and we are using recent compilers anyway.
 
-thanks,
-
-greg k-h
+Guenter
