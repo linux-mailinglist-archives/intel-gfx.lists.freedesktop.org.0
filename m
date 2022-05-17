@@ -1,51 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 966EA52AAD7
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 May 2022 20:32:14 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D08AD52AAE9
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 May 2022 20:32:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1EB18897FD;
-	Tue, 17 May 2022 18:32:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 470A610ECED;
+	Tue, 17 May 2022 18:32:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D6CAD897FD
- for <intel-gfx@lists.freedesktop.org>; Tue, 17 May 2022 18:32:05 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3AD9C10ECED;
+ Tue, 17 May 2022 18:32:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1652812325; x=1684348325;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=JhOAYfF6O+gtf8G7sy/cZRgcaPU2MwFOWeztBYagb7M=;
- b=QTaXrkjFpXZpwnlWw1rGc+w/ZlxOG2JQbW9cpFHAN7psa8QJlTWyuFEp
- y5VIvvxkdNKWRNO9FPi0l7+akTbEKqyC1fz/Gxq4y6l9UMwQLGLeiVoTG
- Uzwb06vwss38IcXhNdQBcEKBs48Uf/OhVOoN59pq71AAqcTF39z22KZmy
- Mn3A0wLxS9jUkgP/3qKqmN/t40UyiEwkbRhZBCiW2dqc+wTwhI6MjYCUZ
- uJBl1LLlh4VvKEDEoUXb/J/SExl2WTxjlEs0tDcXj0wLStqwleGvSXUMp
- altgUEeUVYlE2TmAv6FBV3dBk+t/RM+qaBv7sg9lbqORJQm0/YrQAztgg A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10350"; a="258845005"
-X-IronPort-AV: E=Sophos;i="5.91,233,1647327600"; d="scan'208";a="258845005"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 May 2022 11:31:58 -0700
-X-IronPort-AV: E=Sophos;i="5.91,233,1647327600"; d="scan'208";a="713996012"
-Received: from mdnavare-mobl1.jf.intel.com ([10.165.21.211])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 May 2022 11:31:58 -0700
-Date: Tue, 17 May 2022 11:31:46 -0700
-From: "Navare, Manasi" <manasi.d.navare@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Message-ID: <20220517183146.GB34204@mdnavare-mobl1.jf.intel.com>
-References: <20220511224728.459724-1-manasi.d.navare@intel.com>
- <20220512195204.472582-1-manasi.d.navare@intel.com>
+ t=1652812358; x=1684348358;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=kUVTCldVCbM52DlbUHCrnTY/9mOx58Rd9QKElP5m6do=;
+ b=ZOgVXM6zCDy/Nhm+5ZDga+KPTeHsYj4/UH/HDbLmUSfNZB5OULr9YHwu
+ JGOdTh4xix4ztW6m3vG+KRuldUBN9nrvGe333IZhghODY6vyeo79Dw98p
+ E4nxmy1AG8PG2KX90WB9UQO3+XgvssRkam6kg1SRl8IGGokPfmqkHZ76V
+ 4LCJ9e0HSMuq8UCwFX6WOTr7quUxRDqgYUHEzdM8t9Zb4IX6Au2aETjuK
+ 8Ex4X317oGmngH49sxghJJvkMtngR1Z9k8V1jDigdTN8ZQr+X2G/NGzMl
+ 4Vn9qc5Bc/cODdVmkjWJTKvT7OG8CB/oxfFKK8PMWtjlutZSt5D1Cy1/V w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10350"; a="251179146"
+X-IronPort-AV: E=Sophos;i="5.91,233,1647327600"; d="scan'208";a="251179146"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 May 2022 11:32:37 -0700
+X-IronPort-AV: E=Sophos;i="5.91,233,1647327600"; d="scan'208";a="597287372"
+Received: from nvishwa1-desk.sc.intel.com ([172.25.29.76])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-SHA;
+ 17 May 2022 11:32:37 -0700
+From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ daniel.vetter@intel.com
+Date: Tue, 17 May 2022 11:32:09 -0700
+Message-Id: <20220517183212.20274-1-niranjana.vishwanathapura@intel.com>
+X-Mailer: git-send-email 2.21.0.rc0.32.g243a4c7e27
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220512195204.472582-1-manasi.d.navare@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/display: Add a separate
- crtc_enable hook for SKL+
+Subject: [Intel-gfx] [RFC v3 0/3] drm/doc/rfc: i915 VM_BIND feature design +
+ uapi
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,151 +55,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: thomas.hellstrom@intel.com, chris.p.wilson@intel.com,
+ christian.koenig@amd.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Jani, I have cleaned up the hsw_crtc_enable now removing the unused
-function calls.
-Could you please take a look?
+This is the i915 driver VM_BIND feature design RFC patch series along
+with the required uapi definition and description of intended use cases.
 
-Regards
-Manasi
+v2: Updated design and uapi, more documentation.
+v3: Add more documentation and proper kernel-doc formatting with cross
+    references (including missing i915_drm uapi kernel-docs which are
+    required) as per review comments from Daniel.
 
+Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 
-On Thu, May 12, 2022 at 12:52:04PM -0700, Manasi Navare wrote:
-> Currently we reuse hsw_crtc_enable for SKL+ platforms.
-> But this has added a lot of platform checks for SKL+ platforms.
-> So its time to move the code to a separate crtc_enable hook
-> for SKL+ platforms.
-> 
-> No functional changes here.
-> 
-> v2: Cleanup hsw_crtc_enable (Jani N)
-> 
-> Suggested-by: Jani Nikula <jani.nikula@intel.com>
-> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 64 ++++++++++++++++----
->  1 file changed, 52 insertions(+), 12 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index 806d50b302ab..70cde34aca10 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -1895,13 +1895,13 @@ static void hsw_configure_cpu_transcoder(const struct intel_crtc_state *crtc_sta
->  	hsw_set_transconf(crtc_state);
->  }
->  
-> -static void hsw_crtc_enable(struct intel_atomic_state *state,
-> +static void skl_crtc_enable(struct intel_atomic_state *state,
->  			    struct intel_crtc *crtc)
->  {
->  	const struct intel_crtc_state *new_crtc_state =
->  		intel_atomic_get_new_crtc_state(state, crtc);
->  	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-> -	enum pipe pipe = crtc->pipe, hsw_workaround_pipe;
-> +	enum pipe pipe = crtc->pipe;
->  	enum transcoder cpu_transcoder = new_crtc_state->cpu_transcoder;
->  	bool psl_clkgate_wa;
->  
-> @@ -1925,8 +1925,7 @@ static void hsw_crtc_enable(struct intel_atomic_state *state,
->  		intel_uncompressed_joiner_enable(new_crtc_state);
->  
->  	intel_set_pipe_src_size(new_crtc_state);
-> -	if (DISPLAY_VER(dev_priv) >= 9 || IS_BROADWELL(dev_priv))
-> -		bdw_set_pipemisc(new_crtc_state);
-> +	bdw_set_pipemisc(new_crtc_state);
->  
->  	if (!intel_crtc_is_bigjoiner_slave(new_crtc_state) &&
->  	    !transcoder_is_dsi(cpu_transcoder))
-> @@ -1940,10 +1939,7 @@ static void hsw_crtc_enable(struct intel_atomic_state *state,
->  	if (psl_clkgate_wa)
->  		glk_pipe_scaler_clock_gating_wa(dev_priv, pipe, true);
->  
-> -	if (DISPLAY_VER(dev_priv) >= 9)
-> -		skl_pfit_enable(new_crtc_state);
-> -	else
-> -		ilk_pfit_enable(new_crtc_state);
-> +	skl_pfit_enable(new_crtc_state);
->  
->  	/*
->  	 * On ILK+ LUT must be loaded before the pipe is running but with
-> @@ -1952,9 +1948,6 @@ static void hsw_crtc_enable(struct intel_atomic_state *state,
->  	intel_color_load_luts(new_crtc_state);
->  	intel_color_commit_noarm(new_crtc_state);
->  	intel_color_commit_arm(new_crtc_state);
-> -	/* update DSPCNTR to configure gamma/csc for pipe bottom color */
-> -	if (DISPLAY_VER(dev_priv) < 9)
-> -		intel_disable_primary_plane(new_crtc_state);
->  
->  	hsw_set_linetime_wm(new_crtc_state);
->  
-> @@ -1972,6 +1965,53 @@ static void hsw_crtc_enable(struct intel_atomic_state *state,
->  		intel_crtc_wait_for_next_vblank(crtc);
->  		glk_pipe_scaler_clock_gating_wa(dev_priv, pipe, false);
->  	}
-> +}
-> +
-> +static void hsw_crtc_enable(struct intel_atomic_state *state,
-> +			    struct intel_crtc *crtc)
-> +{
-> +	const struct intel_crtc_state *new_crtc_state =
-> +		intel_atomic_get_new_crtc_state(state, crtc);
-> +	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-> +	enum pipe hsw_workaround_pipe;
-> +	enum transcoder cpu_transcoder = new_crtc_state->cpu_transcoder;
-> +
-> +	if (drm_WARN_ON(&dev_priv->drm, crtc->active))
-> +		return;
-> +
-> +	intel_encoders_pre_pll_enable(state, crtc);
-> +
-> +	if (new_crtc_state->shared_dpll)
-> +		intel_enable_shared_dpll(new_crtc_state);
-> +
-> +	intel_encoders_pre_enable(state, crtc);
-> +
-> +	intel_set_pipe_src_size(new_crtc_state);
-> +	if (IS_BROADWELL(dev_priv))
-> +		bdw_set_pipemisc(new_crtc_state);
-> +
-> +	if (!transcoder_is_dsi(cpu_transcoder))
-> +		hsw_configure_cpu_transcoder(new_crtc_state);
-> +
-> +	crtc->active = true;
-> +
-> +	ilk_pfit_enable(new_crtc_state);
-> +
-> +	/*
-> +	 * On ILK+ LUT must be loaded before the pipe is running but with
-> +	 * clocks enabled
-> +	 */
-> +	intel_color_load_luts(new_crtc_state);
-> +	intel_color_commit_noarm(new_crtc_state);
-> +	intel_color_commit_arm(new_crtc_state);
-> +	/* update DSPCNTR to configure gamma/csc for pipe bottom color */
-> +	intel_disable_primary_plane(new_crtc_state);
-> +
-> +	hsw_set_linetime_wm(new_crtc_state);
-> +
-> +	intel_initial_watermarks(state, crtc);
-> +
-> +	intel_encoders_enable(state, crtc);
->  
->  	/* If we change the relative order between pipe/planes enabling, we need
->  	 * to change the workaround. */
-> @@ -9231,7 +9271,7 @@ static const struct drm_mode_config_funcs intel_mode_funcs = {
->  
->  static const struct drm_i915_display_funcs skl_display_funcs = {
->  	.get_pipe_config = hsw_get_pipe_config,
-> -	.crtc_enable = hsw_crtc_enable,
-> +	.crtc_enable = skl_crtc_enable,
->  	.crtc_disable = hsw_crtc_disable,
->  	.commit_modeset_enables = skl_commit_modeset_enables,
->  	.get_initial_plane_config = skl_get_initial_plane_config,
-> -- 
-> 2.35.1
-> 
+Niranjana Vishwanathapura (3):
+  drm/doc/rfc: VM_BIND feature design document
+  drm/i915: Update i915 uapi documentation
+  drm/doc/rfc: VM_BIND uapi definition
+
+ Documentation/driver-api/dma-buf.rst   |   2 +
+ Documentation/gpu/rfc/i915_vm_bind.h   | 399 +++++++++++++++++++++++++
+ Documentation/gpu/rfc/i915_vm_bind.rst | 304 +++++++++++++++++++
+ Documentation/gpu/rfc/index.rst        |   4 +
+ include/uapi/drm/i915_drm.h            | 153 +++++++---
+ 5 files changed, 825 insertions(+), 37 deletions(-)
+ create mode 100644 Documentation/gpu/rfc/i915_vm_bind.h
+ create mode 100644 Documentation/gpu/rfc/i915_vm_bind.rst
+
+-- 
+2.21.0.rc0.32.g243a4c7e27
+
