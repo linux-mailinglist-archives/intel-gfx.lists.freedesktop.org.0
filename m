@@ -2,32 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB2B55295DF
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 May 2022 02:10:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A5C15295F6
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 May 2022 02:21:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A05F810E6D0;
-	Tue, 17 May 2022 00:10:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE0F710E032;
+	Tue, 17 May 2022 00:20:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4798810E365;
- Tue, 17 May 2022 00:10:49 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3E93110E032;
+ Tue, 17 May 2022 00:20:58 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 2971CA7DFF;
- Tue, 17 May 2022 00:10:49 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7868494118991615763=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id 35FE7AADD7;
+ Tue, 17 May 2022 00:20:58 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Teres Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com>
-Date: Tue, 17 May 2022 00:10:49 -0000
-Message-ID: <165274624912.31031.6363932829988876123@emeril.freedesktop.org>
+To: "Jim Cromie" <jim.cromie@gmail.com>
+Date: Tue, 17 May 2022 00:20:58 -0000
+Message-ID: <165274685818.31034.14224239417969369359@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20220507045847.862261-1-alan.previn.teres.alexis@intel.com>
-In-Reply-To: <20220507045847.862261-1-alan.previn.teres.alexis@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgUmVt?=
- =?utf-8?q?ove_unnecessary_GuC_err_capture_noise_=28rev2=29?=
+References: <20220516225640.3102269-1-jim.cromie@gmail.com>
+In-Reply-To: <20220516225640.3102269-1-jim.cromie@gmail.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_DRM=2Edebug_on_DYNAMIC=5FDEBUG=2C_add_trace_events?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,238 +45,288 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============7868494118991615763==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Remove unnecessary GuC err capture noise (rev2)
-URL   : https://patchwork.freedesktop.org/series/103709/
-State : success
+Series: DRM.debug on DYNAMIC_DEBUG, add trace events
+URL   : https://patchwork.freedesktop.org/series/104052/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_11661 -> Patchwork_103709v2
-====================================================
+Error: dim checkpatch failed
+9b925049d3f8 dyndbg: fix static_branch manipulation
+7a33c56c8d24 dyndbg: show both old and new in change-info
+3838cafa7f32 dyndbg: fix module.dyndbg handling
+d0c698a826fb dyndbg: drop EXPORTed dynamic_debug_exec_queries
+323eeca8bd78 dyndbg: add exclusive class_id to pr_debug callsites
+-:85: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'id' - possible side-effects?
+#85: FILE: include/linux/dynamic_debug.h:139:
++#define __dynamic_func_call_cls(id, cls, fmt, func, ...) do {	\
++	DEFINE_DYNAMIC_DEBUG_METADATA_CLS(id, cls, fmt);	\
++	if (DYNAMIC_DEBUG_BRANCH(id))				\
++		func(&id, ##__VA_ARGS__);			\
+ } while (0)
 
-Summary
--------
+-:95: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'id' - possible side-effects?
+#95: FILE: include/linux/dynamic_debug.h:145:
++#define __dynamic_func_call_no_desc_cls(id, cls, fmt, func, ...) do {	\
++	DEFINE_DYNAMIC_DEBUG_METADATA_CLS(id, cls, fmt);		\
++	if (DYNAMIC_DEBUG_BRANCH(id))					\
++		func(__VA_ARGS__);					\
+ } while (0)
 
-  **SUCCESS**
+total: 0 errors, 0 warnings, 2 checks, 101 lines checked
+b00e307b0e6c dyndbg: add dynamic_debug_(un)register_classes
+1dbc3121df14 dyndbg: validate class FOO on module
+0444535e4efd dyndbg: add drm.debug style bitmap support
+-:135: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
+#135: FILE: lib/dynamic_debug.c:646:
++	for (i = 0; i < dcp->map->length; i++) {
++
 
-  No regressions found.
+total: 0 errors, 0 warnings, 1 checks, 122 lines checked
+100ca6d47784 Doc/dyndbg: document new class class_name query support
+8a28855c36d5 dyndbg: let query-modname override defaulting modname
+da5aa3351514 dyndbg: support symbolic class-names in bitmap
+7ef98167d65f dyndbg: change zero-or-one classes-map to maps list
+b9a15e133de2 dyndbg: add __pr_debug_cls(class, fmt, ...)
+-:26: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'fmt' - possible side-effects?
+#26: FILE: include/linux/dynamic_debug.h:219:
++#define dynamic_pr_debug_cls(cls, fmt, ...)				\
++	_dynamic_func_call_cls(cls, fmt, __dynamic_pr_debug,		\
++			   pr_fmt(fmt), ##__VA_ARGS__)
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103709v2/index.html
+total: 0 errors, 0 warnings, 1 checks, 19 lines checked
+488ac7361b58 dyndbg: add test_dynamic_debug module
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 10, in <module>
+    import git
+ModuleNotFoundError: No module named 'git'
+-:98: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#98: 
+new file mode 100644
 
-Participating hosts (42 -> 41)
-------------------------------
+-:160: WARNING:EXPORT_SYMBOL: EXPORT_SYMBOL(foo); should immediately follow its function/variable
+#160: FILE: lib/test_dynamic_debug.c:58:
++EXPORT_SYMBOL(bits_1p);
 
-  Additional (1): bat-dg2-8 
-  Missing    (2): fi-hsw-4770 bat-dg1-5 
+-:161: WARNING:EXPORT_SYMBOL: EXPORT_SYMBOL(foo); should immediately follow its function/variable
+#161: FILE: lib/test_dynamic_debug.c:59:
++EXPORT_SYMBOL(bits_1t);
 
-Known issues
-------------
+-:177: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#177: FILE: lib/test_dynamic_debug.c:75:
++
++
 
-  Here are the changes found in Patchwork_103709v2 that come from known issues:
+-:178: CHECK:CAMELCASE: Avoid CamelCase: <Foo>
+#178: FILE: lib/test_dynamic_debug.c:76:
++enum cat2 { Foo = 8, Bar, Buzz };
 
-### IGT changes ###
+-:178: CHECK:CAMELCASE: Avoid CamelCase: <Bar>
+#178: FILE: lib/test_dynamic_debug.c:76:
++enum cat2 { Foo = 8, Bar, Buzz };
 
-#### Issues hit ####
+-:178: CHECK:CAMELCASE: Avoid CamelCase: <Buzz>
+#178: FILE: lib/test_dynamic_debug.c:76:
++enum cat2 { Foo = 8, Bar, Buzz };
 
-  * igt@i915_selftest@live@hangcheck:
-    - fi-bdw-5557u:       NOTRUN -> [INCOMPLETE][1] ([i915#3921])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103709v2/fi-bdw-5557u/igt@i915_selftest@live@hangcheck.html
+-:183: WARNING:EXPORT_SYMBOL: EXPORT_SYMBOL(foo); should immediately follow its function/variable
+#183: FILE: lib/test_dynamic_debug.c:81:
++EXPORT_SYMBOL(bits_2p);
 
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - bat-dg1-6:          NOTRUN -> [SKIP][2] ([fdo#111827])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103709v2/bat-dg1-6/igt@kms_chamelium@common-hpd-after-suspend.html
+-:184: WARNING:EXPORT_SYMBOL: EXPORT_SYMBOL(foo); should immediately follow its function/variable
+#184: FILE: lib/test_dynamic_debug.c:82:
++EXPORT_SYMBOL(bits_2t);
 
-  
-#### Possible fixes ####
+-:200: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#200: FILE: lib/test_dynamic_debug.c:98:
++
++
 
-  * igt@gem_exec_suspend@basic-s0@smem:
-    - {fi-ehl-2}:         [DMESG-WARN][3] ([i915#5122]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11661/fi-ehl-2/igt@gem_exec_suspend@basic-s0@smem.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103709v2/fi-ehl-2/igt@gem_exec_suspend@basic-s0@smem.html
+-:206: WARNING:EXPORT_SYMBOL: EXPORT_SYMBOL(foo); should immediately follow its function/variable
+#206: FILE: lib/test_dynamic_debug.c:104:
++EXPORT_SYMBOL(bits_3p);
 
-  * igt@i915_selftest@live@gt_engines:
-    - bat-dg1-6:          [INCOMPLETE][5] ([i915#4418]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11661/bat-dg1-6/igt@i915_selftest@live@gt_engines.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103709v2/bat-dg1-6/igt@i915_selftest@live@gt_engines.html
+-:207: WARNING:EXPORT_SYMBOL: EXPORT_SYMBOL(foo); should immediately follow its function/variable
+#207: FILE: lib/test_dynamic_debug.c:105:
++EXPORT_SYMBOL(bits_3t);
 
-  * igt@i915_selftest@live@gtt:
-    - fi-bdw-5557u:       [INCOMPLETE][7] ([i915#5685]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11661/fi-bdw-5557u/igt@i915_selftest@live@gtt.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103709v2/fi-bdw-5557u/igt@i915_selftest@live@gtt.html
+total: 0 errors, 7 warnings, 5 checks, 203 lines checked
+1fca523c7a63 drm: POC drm on dyndbg - map class-names to drm_debug_category's
+-:97: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#97: FILE: drivers/gpu/drm/i915/i915_module.c:51:
++}
++static void i915_ddebug_classes_unregister(void)
 
-  * igt@i915_selftest@live@requests:
-    - {bat-dg2-9}:        [DMESG-WARN][9] ([i915#5763]) -> [PASS][10] +12 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11661/bat-dg2-9/igt@i915_selftest@live@requests.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103709v2/bat-dg2-9/igt@i915_selftest@live@requests.html
+total: 0 errors, 0 warnings, 1 checks, 96 lines checked
+2f8b28f3616e drm/print: POC drm on dyndbg - use bitmap
+062c73ac0661 drm_print: condense enum drm_debug_category
+7699f77d2bfc drm_print: interpose drm_*dbg with forwarding macros
+-:80: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#80: FILE: include/drm/drm_print.h:343:
++void __drm_dev_dbg(const struct device *dev, enum drm_debug_category category,
+ 		 const char *format, ...);
 
-  * igt@kms_busy@basic@modeset:
-    - bat-adlp-4:         [DMESG-WARN][11] ([i915#3576]) -> [PASS][12] +2 similar issues
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11661/bat-adlp-4/igt@kms_busy@basic@modeset.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103709v2/bat-adlp-4/igt@kms_busy@basic@modeset.html
+total: 0 errors, 0 warnings, 1 checks, 59 lines checked
+cf749a29838e drm_print: wrap drm_*_dbg in dyndbg descriptor factory macro
+-:83: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'fmt' - possible side-effects?
+#83: FILE: include/drm/drm_print.h:395:
++#define drm_dev_dbg(dev, cat, fmt, ...)				\
++	_dynamic_func_call_no_desc(fmt, __drm_dev_dbg,			\
++				   dev, cat, fmt, ##__VA_ARGS__)
 
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
+-:97: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'fmt' - possible side-effects?
+#97: FILE: include/drm/drm_print.h:508:
++#define __drm_dbg(cat, fmt, ...)					\
++	_dynamic_func_call_no_desc(fmt, ___drm_dbg,			\
++				   cat, fmt, ##__VA_ARGS__)
 
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1155]: https://gitlab.freedesktop.org/drm/intel/issues/1155
-  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
-  [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
-  [i915#3547]: https://gitlab.freedesktop.org/drm/intel/issues/3547
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#3576]: https://gitlab.freedesktop.org/drm/intel/issues/3576
-  [i915#3595]: https://gitlab.freedesktop.org/drm/intel/issues/3595
-  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
-  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
-  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
-  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
-  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-  [i915#4212]: https://gitlab.freedesktop.org/drm/intel/issues/4212
-  [i915#4213]: https://gitlab.freedesktop.org/drm/intel/issues/4213
-  [i915#4215]: https://gitlab.freedesktop.org/drm/intel/issues/4215
-  [i915#4418]: https://gitlab.freedesktop.org/drm/intel/issues/4418
-  [i915#4579]: https://gitlab.freedesktop.org/drm/intel/issues/4579
-  [i915#4873]: https://gitlab.freedesktop.org/drm/intel/issues/4873
-  [i915#5122]: https://gitlab.freedesktop.org/drm/intel/issues/5122
-  [i915#5190]: https://gitlab.freedesktop.org/drm/intel/issues/5190
-  [i915#5274]: https://gitlab.freedesktop.org/drm/intel/issues/5274
-  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
-  [i915#5685]: https://gitlab.freedesktop.org/drm/intel/issues/5685
-  [i915#5763]: https://gitlab.freedesktop.org/drm/intel/issues/5763
-  [i915#5885]: https://gitlab.freedesktop.org/drm/intel/issues/5885
+total: 0 errors, 0 warnings, 2 checks, 61 lines checked
+06823fbcf6b5 drm_print: refine drm_debug_enabled for jump-label
+135cac4ddf6d drm_print: prefer bare printk KERN_DEBUG on generic fn
+-:49: WARNING:PREFER_PR_LEVEL: Prefer [subsystem eg: netdev]_dbg([subsystem]dev, ... then dev_dbg(dev, ... then pr_debug(...  to printk(KERN_DEBUG ...
+#49: FILE: drivers/gpu/drm/drm_print.c:174:
++	printk(KERN_DEBUG "%s %pV", p->prefix, vaf);
+
+total: 0 errors, 1 warnings, 0 checks, 17 lines checked
+0f9de5bc809f drm_print: add _ddebug desc to drm_*dbg prototypes
+-:56: WARNING:PREFER_DEV_LEVEL: Prefer dev_dbg(... to dev_printk(KERN_DEBUG, ...
+#56: FILE: drivers/gpu/drm/drm_print.c:284:
++			dev_printk(KERN_DEBUG, dev, "[" DRM_NAME ":%ps] %pV",
+
+-:60: WARNING:PREFER_PR_LEVEL: Prefer [subsystem eg: netdev]_dbg([subsystem]dev, ... then dev_dbg(dev, ... then pr_debug(...  to printk(KERN_DEBUG ...
+#60: FILE: drivers/gpu/drm/drm_print.c:288:
++			printk(KERN_DEBUG "[" DRM_NAME ":%ps] %pV",
+
+total: 0 errors, 2 warnings, 0 checks, 91 lines checked
+2962dd40ded0 dyndbg: add _DPRINTK_FLAGS_ENABLED
+a94e9b4c4296 dyndbg: add _DPRINTK_FLAGS_TRACE
+4cfbc43dc308 dyndbg: add write-events-to-tracefs code
+-:28: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#28: 
+  https://lore.kernel.org/lkml/20200825153338.17061-1-vincent.whitchurch@axis.com/
+
+-:168: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
+#168: FILE: lib/dynamic_debug.c:849:
++{
++
+
+-:259: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#259: FILE: lib/dynamic_debug.c:942:
++		ddebug_dev_printk(flags, dev->dev.parent,
++				   "%s%s %s %s%s: %pV",
+
+-:269: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#269: FILE: lib/dynamic_debug.c:950:
++		ddebug_printk(flags, KERN_DEBUG "%s%s: %pV",
++			       netdev_name(dev), netdev_reg_state(dev), &vaf);
+
+-:273: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#273: FILE: lib/dynamic_debug.c:953:
++		ddebug_printk(flags, KERN_DEBUG "(NULL net_device): %pV",
++			       &vaf);
+
+total: 0 errors, 1 warnings, 4 checks, 254 lines checked
+d7e672d096dc dyndbg: 4 new trace-events: pr_debug, dev_dbg, drm_{, dev}debug
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 10, in <module>
+    import git
+ModuleNotFoundError: No module named 'git'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 10, in <module>
+    import git
+ModuleNotFoundError: No module named 'git'
+-:81: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#81: 
+new file mode 100644
+
+-:101: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#101: FILE: include/trace/events/drm.h:16:
++	    TP_STRUCT__entry(
+
+-:106: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#106: FILE: include/trace/events/drm.h:21:
++	    TP_fast_assign(
+
+-:107: WARNING:TABSTOP: Statements should start on a tabstop
+#107: FILE: include/trace/events/drm.h:22:
++		    int len;
+
+-:113: WARNING:TABSTOP: Statements should start on a tabstop
+#113: FILE: include/trace/events/drm.h:28:
++		    if (len > 0 && (__get_str(msg)[len - 1] == '\n'))
+
+-:113: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (20, 28)
+#113: FILE: include/trace/events/drm.h:28:
++		    if (len > 0 && (__get_str(msg)[len - 1] == '\n'))
++			    len -= 1;
+
+-:127: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#127: FILE: include/trace/events/drm.h:42:
++	    TP_STRUCT__entry(
+
+-:133: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#133: FILE: include/trace/events/drm.h:48:
++	    TP_fast_assign(
+
+-:134: WARNING:TABSTOP: Statements should start on a tabstop
+#134: FILE: include/trace/events/drm.h:49:
++		    int len;
+
+-:141: WARNING:TABSTOP: Statements should start on a tabstop
+#141: FILE: include/trace/events/drm.h:56:
++		    if (len > 0 && (__get_str(msg)[len - 1] == '\n'))
+
+-:141: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (20, 28)
+#141: FILE: include/trace/events/drm.h:56:
++		    if (len > 0 && (__get_str(msg)[len - 1] == '\n'))
++			    len -= 1;
+
+-:175: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#175: FILE: include/trace/events/dyndbg.h:16:
++	    TP_STRUCT__entry(
+
+-:180: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#180: FILE: include/trace/events/dyndbg.h:21:
++	    TP_fast_assign(
+
+-:187: WARNING:TABSTOP: Statements should start on a tabstop
+#187: FILE: include/trace/events/dyndbg.h:28:
++		    if (len > 0 && (text[len - 1] == '\n'))
+
+-:187: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (20, 28)
+#187: FILE: include/trace/events/dyndbg.h:28:
++		    if (len > 0 && (text[len - 1] == '\n'))
++			    len -= 1;
+
+-:205: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#205: FILE: include/trace/events/dyndbg.h:46:
++	    TP_STRUCT__entry(
+
+-:211: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#211: FILE: include/trace/events/dyndbg.h:52:
++	    TP_fast_assign(
+
+-:213: CHECK:SPACING: No space is necessary after a cast
+#213: FILE: include/trace/events/dyndbg.h:54:
++		    __entry->dev = (struct device *) dev;
+
+-:219: WARNING:TABSTOP: Statements should start on a tabstop
+#219: FILE: include/trace/events/dyndbg.h:60:
++		    if (len > 0 && (text[len - 1] == '\n'))
+
+-:219: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (20, 28)
+#219: FILE: include/trace/events/dyndbg.h:60:
++		    if (len > 0 && (text[len - 1] == '\n'))
++			    len -= 1;
+
+-:350: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#350: FILE: lib/dynamic_debug.c:912:
++		ddebug_printk(descriptor, KERN_DEBUG "(NULL device *): %pV",
++			       &vaf);
+
+total: 0 errors, 11 warnings, 10 checks, 358 lines checked
+52b67f942764 dyndbg/drm: POC add tracebits sysfs-knob
 
 
-Build changes
--------------
-
-  * Linux: CI_DRM_11661 -> Patchwork_103709v2
-
-  CI-20190529: 20190529
-  CI_DRM_11661: f0d63dbb9c4ebcb646fd41c0e810d60ff7c7d11e @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6473: 64723cd44c1cd2f8b8263e3b3681c99f05a1b499 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_103709v2: f0d63dbb9c4ebcb646fd41c0e810d60ff7c7d11e @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-63138c91bdec drm/i915/guc: Remove unnecessary GuC err capture noise
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103709v2/index.html
-
---===============7868494118991615763==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Remove unnecessary GuC err capture noise (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/103709/">https://patchwork.freedesktop.org/series/103709/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103709v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103709v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11661 -&gt; Patchwork_103709v2</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103709v2/index.html</p>
-<h2>Participating hosts (42 -&gt; 41)</h2>
-<p>Additional (1): bat-dg2-8 <br />
-  Missing    (2): fi-hsw-4770 bat-dg1-5 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_103709v2 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103709v2/fi-bdw-5557u/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
-<ul>
-<li>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103709v2/bat-dg1-6/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0@smem:</p>
-<ul>
-<li>{fi-ehl-2}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11661/fi-ehl-2/igt@gem_exec_suspend@basic-s0@smem.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5122">i915#5122</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103709v2/fi-ehl-2/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_engines:</p>
-<ul>
-<li>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11661/bat-dg1-6/igt@i915_selftest@live@gt_engines.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4418">i915#4418</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103709v2/bat-dg1-6/igt@i915_selftest@live@gt_engines.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gtt:</p>
-<ul>
-<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11661/fi-bdw-5557u/igt@i915_selftest@live@gtt.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5685">i915#5685</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103709v2/fi-bdw-5557u/igt@i915_selftest@live@gtt.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>{bat-dg2-9}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11661/bat-dg2-9/igt@i915_selftest@live@requests.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5763">i915#5763</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103709v2/bat-dg2-9/igt@i915_selftest@live@requests.html">PASS</a> +12 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_busy@basic@modeset:</p>
-<ul>
-<li>bat-adlp-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11661/bat-adlp-4/igt@kms_busy@basic@modeset.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103709v2/bat-adlp-4/igt@kms_busy@basic@modeset.html">PASS</a> +2 similar issues</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11661 -&gt; Patchwork_103709v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11661: f0d63dbb9c4ebcb646fd41c0e810d60ff7c7d11e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6473: 64723cd44c1cd2f8b8263e3b3681c99f05a1b499 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_103709v2: f0d63dbb9c4ebcb646fd41c0e810d60ff7c7d11e @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>63138c91bdec drm/i915/guc: Remove unnecessary GuC err capture noise</p>
-
-</body>
-</html>
-
---===============7868494118991615763==--
