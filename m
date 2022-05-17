@@ -1,33 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3419B52961A
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 May 2022 02:37:32 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2A23529655
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 May 2022 02:58:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4336D10E008;
-	Tue, 17 May 2022 00:37:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D0C3910E17F;
+	Tue, 17 May 2022 00:58:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5DD9610E008;
- Tue, 17 May 2022 00:37:27 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 52B42A00A0;
- Tue, 17 May 2022 00:37:27 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5494072625640805699=="
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C607E10E158;
+ Tue, 17 May 2022 00:58:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1652749083; x=1684285083;
+ h=date:from:to:cc:subject:message-id:mime-version:
+ content-transfer-encoding;
+ bh=000D+w6c9+o/iIArI5e5AkAY8TBtbH1cExDaLUDxzdY=;
+ b=Htj/9S75a/s9aZSrctH6y7k8IY1VyTizTI9u8LpxNDFGRoQvrSzbfRTx
+ aL7L1o9p6ACMXBR8DMWqHQKDg3okQYCSX0PQsDk5IVZDJnISktAe2Tn9q
+ Wzwm/DKRWO0HIOZL7vyF06g82iPWzPTVPKqOSQK0/ArusTZhWof+Alo7O
+ rOVd6dMOTn8hy7+YwqV3R9JJ8W6UV8P4pAw8GB2L5ZrOVY+Xnp/3k5Qlo
+ F4Yd+Ui0wvDk+twuBQ0UqDtYyjYv+H+5ySaXUkKVUZ/mO5jrpHOzvS1Dj
+ xyfyqEdtjY9Ee/Db7aQJ7+OF2bqcROKrYMqnZcN/IQ7rC3E+ezQma5EZp Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10349"; a="253062064"
+X-IronPort-AV: E=Sophos;i="5.91,231,1647327600"; d="scan'208";a="253062064"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 May 2022 17:58:02 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.91,231,1647327600"; d="scan'208";a="555525387"
+Received: from lkp-server02.sh.intel.com (HELO 242b25809ac7) ([10.239.97.151])
+ by orsmga002.jf.intel.com with ESMTP; 16 May 2022 17:57:58 -0700
+Received: from kbuild by 242b25809ac7 with local (Exim 4.95)
+ (envelope-from <lkp@intel.com>) id 1nqlXB-0000SL-T8;
+ Tue, 17 May 2022 00:57:57 +0000
+Date: Tue, 17 May 2022 08:56:57 +0800
+From: kernel test robot <lkp@intel.com>
+To: Andrew Morton <akpm@linux-foundation.org>
+Message-ID: <6282f2d9.GP5VHNfZqwSMzmr+%lkp@intel.com>
+User-Agent: Heirloom mailx 12.5 6/20/10
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jim Cromie" <jim.cromie@gmail.com>
-Date: Tue, 17 May 2022 00:37:27 -0000
-Message-ID: <165274784731.31033.3127911483311928698@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220516225640.3102269-1-jim.cromie@gmail.com>
-In-Reply-To: <20220516225640.3102269-1-jim.cromie@gmail.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgRFJN?=
- =?utf-8?q?=2Edebug_on_DYNAMIC=5FDEBUG=2C_add_trace_events?=
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+Subject: [Intel-gfx] [linux-next:master] BUILD REGRESSION
+ 3f7bdc402fb06f897ff1f492a2d42e1f7c2efedb
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,335 +58,353 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: linux-fbdev@vger.kernel.org, kvm@vger.kernel.org, linux-pm@vger.kernel.org,
+ netdev@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org,
+ Linux Memory Management List <linux-mm@kvack.org>,
+ amd-gfx@lists.freedesktop.org, bpf@vger.kernel.org, linux-omap@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5494072625640805699==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+tree/branch: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git master
+branch HEAD: 3f7bdc402fb06f897ff1f492a2d42e1f7c2efedb  Add linux-next specific files for 20220516
 
-== Series Details ==
+Error/Warning reports:
 
-Series: DRM.debug on DYNAMIC_DEBUG, add trace events
-URL   : https://patchwork.freedesktop.org/series/104052/
-State : success
+https://lore.kernel.org/linux-mm/202204291924.vTGZmerI-lkp@intel.com
+https://lore.kernel.org/linux-mm/202205041248.WgCwPcEV-lkp@intel.com
+https://lore.kernel.org/linux-mm/202205122113.uLKzd3SZ-lkp@intel.com
+https://lore.kernel.org/linux-mm/202205150051.3RzuooAG-lkp@intel.com
+https://lore.kernel.org/linux-mm/202205150117.sd6HzBVm-lkp@intel.com
+https://lore.kernel.org/llvm/202205170327.TVBbIsh2-lkp@intel.com
+https://lore.kernel.org/llvm/202205170352.5YjuBP5H-lkp@intel.com
 
-== Summary ==
+Error/Warning: (recently discovered and may have been fixed)
 
-CI Bug Log - changes from CI_DRM_11661 -> Patchwork_104052v1
-====================================================
+<command-line>: fatal error: ./include/generated/utsrelease.h: No such file or directory
+ERROR: modpost: "__udivdi3" [drivers/mtd/parsers/scpart.ko] undefined!
+arch/riscv/include/asm/tlbflush.h:23:2: error: expected assembly-time absolute expression
+arch/x86/kvm/pmu.h:20:32: warning: 'vmx_icl_pebs_cpu' defined but not used [-Wunused-const-variable=]
+drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c:1364:5: warning: no previous prototype for 'amdgpu_discovery_get_mall_info' [-Wmissing-prototypes]
+drivers/gpu/drm/amd/amdgpu/soc21.c:171:6: warning: no previous prototype for 'soc21_grbm_select' [-Wmissing-prototypes]
+drivers/gpu/drm/solomon/ssd130x-spi.c:154:35: warning: 'ssd130x_spi_table' defined but not used [-Wunused-const-variable=]
+drivers/video/fbdev/omap/hwa742.c:492:5: warning: no previous prototype for 'hwa742_update_window_async' [-Wmissing-prototypes]
+fs/buffer.c:2254:5: warning: stack frame size (2152) exceeds limit (1024) in 'block_read_full_folio' [-Wframe-larger-than]
+fs/ntfs/aops.c:378:12: warning: stack frame size (2216) exceeds limit (1024) in 'ntfs_read_folio' [-Wframe-larger-than]
+kernel/trace/fgraph.c:37:12: warning: no previous prototype for 'ftrace_enable_ftrace_graph_caller' [-Wmissing-prototypes]
+kernel/trace/fgraph.c:46:12: warning: no previous prototype for 'ftrace_disable_ftrace_graph_caller' [-Wmissing-prototypes]
 
-Summary
--------
+Unverified Error/Warning (likely false positive, please contact us if interested):
 
-  **SUCCESS**
+Error: Section .bss not empty in prom_init.c
+Makefile:686: arch/h8300/Makefile: No such file or directory
+arch/Kconfig:10: can't open file "arch/h8300/Kconfig"
+arch/arm64/kvm/pmu.c:9:46: warning: tentative definition of variable with internal linkage has incomplete non-array type 'typeof(struct kvm_pmu_events)' (aka 'struct kvm_pmu_events') [-Wtentative-definition-incomplete-type]
+drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_link_dp.c:5102:14: warning: variable 'allow_lttpr_non_transparent_mode' set but not used [-Wunused-but-set-variable]
+drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_link_dp.c:5147:6: warning: no previous prototype for 'dp_parse_lttpr_mode' [-Wmissing-prototypes]
+drivers/gpu/drm/bridge/adv7511/adv7511.h:229:17: warning: 'ADV7511_REG_CEC_RX_FRAME_HDR' defined but not used [-Wunused-const-variable=]
+drivers/gpu/drm/bridge/adv7511/adv7511.h:235:17: warning: 'ADV7511_REG_CEC_RX_FRAME_LEN' defined but not used [-Wunused-const-variable=]
+drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c:46 sysfs_gt_attribute_w_func() error: uninitialized symbol 'ret'.
+drivers/opp/core.c:1499:13: warning: Uninitialized variable: iter->rate [uninitvar]
+drivers/opp/core.c:1533:14: warning: Uninitialized variable: temp->removed [uninitvar]
+drivers/opp/core.c:2682:16: warning: Uninitialized variable: tmp_opp->rate [uninitvar]
+drivers/opp/core.c:365:12: warning: Uninitialized variable: opp->available [uninitvar]
+drivers/opp/core.c:442:17: warning: Uninitialized variable: temp_opp->available [uninitvar]
+drivers/opp/core.c:491:17: warning: Uninitialized variable: temp_opp->level [uninitvar]
+drivers/opp/core.c:60:26: warning: Uninitialized variables: opp_table.node, opp_table.lazy, opp_table.head, opp_table.dev_list, opp_table.opp_list, opp_table.kref, opp_table.lock, opp_table.np, opp_table.clock_latency_ns_max, opp_table.voltage_tolerance_v1, opp_table.parsed_static_opps, opp_table.shared_opp, opp_table.current_rate, opp_table.current_opp, opp_table.suspend_opp, opp_table.genpd_virt_dev_lock, opp_table.genpd_virt_devs, opp_table.required_opp_tables, opp_table.required_opp_count, opp_table.supported_hw, opp_table.supported_hw_count, opp_table.prop_name, opp_table.clk, opp_table.regulators, opp_table.regulator_count, opp_table.paths, opp_table.path_count, opp_table.enabled, opp_table.genpd_performance_state, opp_table.is_genpd, opp_table.set_opp, opp_table.sod_supplies, opp_table.set_opp_data [uninitvar]
+kernel/bpf/verifier.c:5354 process_kptr_func() warn: passing zero to 'PTR_ERR'
+make[1]: *** No rule to make target 'arch/h8300/Makefile'.
+mm/shmem.c:1910 shmem_getpage_gfp() warn: should '(((1) << 12) / 512) << folio_order(folio)' be a 64 bit type?
+{standard input}:1991: Error: unknown pseudo-op: `.lc'
 
-  No regressions found.
+Error/Warning ids grouped by kconfigs:
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104052v1/index.html
+gcc_recent_errors
+|-- alpha-allyesconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc_link_dp.c:warning:no-previous-prototype-for-dp_parse_lttpr_mode
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc_link_dp.c:warning:variable-allow_lttpr_non_transparent_mode-set-but-not-used
+|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_discovery.c:warning:no-previous-prototype-for-amdgpu_discovery_get_mall_info
+|   `-- drivers-gpu-drm-amd-amdgpu-soc21.c:warning:no-previous-prototype-for-soc21_grbm_select
+|-- arc-allyesconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc_link_dp.c:warning:no-previous-prototype-for-dp_parse_lttpr_mode
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc_link_dp.c:warning:variable-allow_lttpr_non_transparent_mode-set-but-not-used
+|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_discovery.c:warning:no-previous-prototype-for-amdgpu_discovery_get_mall_info
+|   `-- drivers-gpu-drm-amd-amdgpu-soc21.c:warning:no-previous-prototype-for-soc21_grbm_select
+|-- arm-allmodconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc_link_dp.c:warning:no-previous-prototype-for-dp_parse_lttpr_mode
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc_link_dp.c:warning:variable-allow_lttpr_non_transparent_mode-set-but-not-used
+|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_discovery.c:warning:no-previous-prototype-for-amdgpu_discovery_get_mall_info
+|   |-- drivers-gpu-drm-amd-amdgpu-soc21.c:warning:no-previous-prototype-for-soc21_grbm_select
+|   `-- drivers-video-fbdev-omap-hwa742.c:warning:no-previous-prototype-for-hwa742_update_window_async
+|-- arm-allyesconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc_link_dp.c:warning:no-previous-prototype-for-dp_parse_lttpr_mode
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc_link_dp.c:warning:variable-allow_lttpr_non_transparent_mode-set-but-not-used
+|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_discovery.c:warning:no-previous-prototype-for-amdgpu_discovery_get_mall_info
+|   |-- drivers-gpu-drm-amd-amdgpu-soc21.c:warning:no-previous-prototype-for-soc21_grbm_select
+|   `-- drivers-video-fbdev-omap-hwa742.c:warning:no-previous-prototype-for-hwa742_update_window_async
+|-- arm64-allyesconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc_link_dp.c:warning:no-previous-prototype-for-dp_parse_lttpr_mode
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc_link_dp.c:warning:variable-allow_lttpr_non_transparent_mode-set-but-not-used
+|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_discovery.c:warning:no-previous-prototype-for-amdgpu_discovery_get_mall_info
+|   `-- drivers-gpu-drm-amd-amdgpu-soc21.c:warning:no-previous-prototype-for-soc21_grbm_select
+|-- h8300-allyesconfig
+|   |-- Makefile:arch-h8300-Makefile:No-such-file-or-directory
+|   |-- arch-Kconfig:can-t-open-file-arch-h8300-Kconfig
+|   `-- make:No-rule-to-make-target-arch-h8300-Makefile-.
+|-- h8300-randconfig-r001-20220516
+|   |-- Makefile:arch-h8300-Makefile:No-such-file-or-directory
+|   |-- arch-Kconfig:can-t-open-file-arch-h8300-Kconfig
+|   `-- make:No-rule-to-make-target-arch-h8300-Makefile-.
+|-- i386-allyesconfig
+|   |-- arch-x86-kvm-pmu.h:warning:vmx_icl_pebs_cpu-defined-but-not-used
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc_link_dp.c:warning:no-previous-prototype-for-dp_parse_lttpr_mode
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc_link_dp.c:warning:variable-allow_lttpr_non_transparent_mode-set-but-not-used
+|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_discovery.c:warning:no-previous-prototype-for-amdgpu_discovery_get_mall_info
+|   |-- drivers-gpu-drm-amd-amdgpu-soc21.c:warning:no-previous-prototype-for-soc21_grbm_select
+|   |-- drivers-gpu-drm-bridge-adv7511-adv7511.h:warning:ADV7511_REG_CEC_RX_FRAME_HDR-defined-but-not-used
+|   |-- drivers-gpu-drm-bridge-adv7511-adv7511.h:warning:ADV7511_REG_CEC_RX_FRAME_LEN-defined-but-not-used
+|   `-- drivers-gpu-drm-solomon-ssd13-spi.c:warning:ssd13_spi_table-defined-but-not-used
+|-- i386-debian-10.3
+|   `-- arch-x86-kvm-pmu.h:warning:vmx_icl_pebs_cpu-defined-but-not-used
+|-- i386-debian-10.3-kselftests
+|   `-- arch-x86-kvm-pmu.h:warning:vmx_icl_pebs_cpu-defined-but-not-used
+|-- i386-randconfig-a011-20220516
+|   |-- drivers-gpu-drm-bridge-adv7511-adv7511.h:warning:ADV7511_REG_CEC_RX_FRAME_HDR-defined-but-not-used
+|   `-- drivers-gpu-drm-bridge-adv7511-adv7511.h:warning:ADV7511_REG_CEC_RX_FRAME_LEN-defined-but-not-used
+|-- i386-randconfig-m021-20220516
+|   |-- kernel-bpf-verifier.c-process_kptr_func()-warn:passing-zero-to-PTR_ERR
+|   `-- mm-shmem.c-shmem_getpage_gfp()-warn:should-((()-)-)-folio_order(folio)-be-a-bit-type
+|-- ia64-allmodconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc_link_dp.c:warning:no-previous-prototype-for-dp_parse_lttpr_mode
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc_link_dp.c:warning:variable-allow_lttpr_non_transparent_mode-set-but-not-used
+|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_discovery.c:warning:no-previous-prototype-for-amdgpu_discovery_get_mall_info
+|   `-- drivers-gpu-drm-amd-amdgpu-soc21.c:warning:no-previous-prototype-for-soc21_grbm_select
+|-- ia64-randconfig-r005-20220516
+|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_discovery.c:warning:no-previous-prototype-for-amdgpu_discovery_get_mall_info
+|   `-- drivers-gpu-drm-amd-amdgpu-soc21.c:warning:no-previous-prototype-for-soc21_grbm_select
+|-- microblaze-randconfig-s031-20220516
+|   |-- kernel-trace-fgraph.c:warning:no-previous-prototype-for-ftrace_disable_ftrace_graph_caller
+|   `-- kernel-trace-fgraph.c:warning:no-previous-prototype-for-ftrace_enable_ftrace_graph_caller
+|-- mips-allmodconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc_link_dp.c:warning:no-previous-prototype-for-dp_parse_lttpr_mode
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc_link_dp.c:warning:variable-allow_lttpr_non_transparent_mode-set-but-not-used
+|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_discovery.c:warning:no-previous-prototype-for-amdgpu_discovery_get_mall_info
+|   `-- drivers-gpu-drm-amd-amdgpu-soc21.c:warning:no-previous-prototype-for-soc21_grbm_select
+|-- mips-allyesconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc_link_dp.c:warning:no-previous-prototype-for-dp_parse_lttpr_mode
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc_link_dp.c:warning:variable-allow_lttpr_non_transparent_mode-set-but-not-used
+|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_discovery.c:warning:no-previous-prototype-for-amdgpu_discovery_get_mall_info
+|   `-- drivers-gpu-drm-amd-amdgpu-soc21.c:warning:no-previous-prototype-for-soc21_grbm_select
+|-- parisc-allyesconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc_link_dp.c:warning:no-previous-prototype-for-dp_parse_lttpr_mode
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc_link_dp.c:warning:variable-allow_lttpr_non_transparent_mode-set-but-not-used
+|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_discovery.c:warning:no-previous-prototype-for-amdgpu_discovery_get_mall_info
+|   `-- drivers-gpu-drm-amd-amdgpu-soc21.c:warning:no-previous-prototype-for-soc21_grbm_select
+|-- powerpc-allmodconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc_link_dp.c:warning:no-previous-prototype-for-dp_parse_lttpr_mode
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc_link_dp.c:warning:variable-allow_lttpr_non_transparent_mode-set-but-not-used
+|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_discovery.c:warning:no-previous-prototype-for-amdgpu_discovery_get_mall_info
+|   `-- drivers-gpu-drm-amd-amdgpu-soc21.c:warning:no-previous-prototype-for-soc21_grbm_select
+|-- powerpc-allyesconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc_link_dp.c:warning:no-previous-prototype-for-dp_parse_lttpr_mode
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc_link_dp.c:warning:variable-allow_lttpr_non_transparent_mode-set-but-not-used
+|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_discovery.c:warning:no-previous-prototype-for-amdgpu_discovery_get_mall_info
+|   `-- drivers-gpu-drm-amd-amdgpu-soc21.c:warning:no-previous-prototype-for-soc21_grbm_select
+|-- powerpc-randconfig-c004-20220516
+|   `-- command-line:fatal-error:.-include-generated-utsrelease.h:No-such-file-or-directory
+|-- powerpc64-randconfig-r011-20220516
+|   `-- Error:Section-.bss-not-empty-in-prom_init.c
+|-- riscv-allmodconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc_link_dp.c:warning:no-previous-prototype-for-dp_parse_lttpr_mode
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc_link_dp.c:warning:variable-allow_lttpr_non_transparent_mode-set-but-not-used
+|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_discovery.c:warning:no-previous-prototype-for-amdgpu_discovery_get_mall_info
+|   `-- drivers-gpu-drm-amd-amdgpu-soc21.c:warning:no-previous-prototype-for-soc21_grbm_select
+|-- riscv-allyesconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc_link_dp.c:warning:no-previous-prototype-for-dp_parse_lttpr_mode
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc_link_dp.c:warning:variable-allow_lttpr_non_transparent_mode-set-but-not-used
+|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_discovery.c:warning:no-previous-prototype-for-amdgpu_discovery_get_mall_info
+|   `-- drivers-gpu-drm-amd-amdgpu-soc21.c:warning:no-previous-prototype-for-soc21_grbm_select
+|-- s390-allyesconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc_link_dp.c:warning:no-previous-prototype-for-dp_parse_lttpr_mode
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc_link_dp.c:warning:variable-allow_lttpr_non_transparent_mode-set-but-not-used
+|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_discovery.c:warning:no-previous-prototype-for-amdgpu_discovery_get_mall_info
+|   `-- drivers-gpu-drm-amd-amdgpu-soc21.c:warning:no-previous-prototype-for-soc21_grbm_select
+|-- sh-allmodconfig
+|   `-- standard-input:Error:unknown-pseudo-op:lc
+|-- sparc-allyesconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc_link_dp.c:warning:no-previous-prototype-for-dp_parse_lttpr_mode
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc_link_dp.c:warning:variable-allow_lttpr_non_transparent_mode-set-but-not-used
+|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_discovery.c:warning:no-previous-prototype-for-amdgpu_discovery_get_mall_info
+|   `-- drivers-gpu-drm-amd-amdgpu-soc21.c:warning:no-previous-prototype-for-soc21_grbm_select
+|-- x86_64-allyesconfig
+|   |-- arch-x86-kvm-pmu.h:warning:vmx_icl_pebs_cpu-defined-but-not-used
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc_link_dp.c:warning:no-previous-prototype-for-dp_parse_lttpr_mode
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc_link_dp.c:warning:variable-allow_lttpr_non_transparent_mode-set-but-not-used
+|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_discovery.c:warning:no-previous-prototype-for-amdgpu_discovery_get_mall_info
+|   |-- drivers-gpu-drm-amd-amdgpu-soc21.c:warning:no-previous-prototype-for-soc21_grbm_select
+|   |-- drivers-gpu-drm-bridge-adv7511-adv7511.h:warning:ADV7511_REG_CEC_RX_FRAME_HDR-defined-but-not-used
+|   |-- drivers-gpu-drm-bridge-adv7511-adv7511.h:warning:ADV7511_REG_CEC_RX_FRAME_LEN-defined-but-not-used
+|   `-- drivers-gpu-drm-solomon-ssd13-spi.c:warning:ssd13_spi_table-defined-but-not-used
+|-- x86_64-kexec
+|   `-- arch-x86-kvm-pmu.h:warning:vmx_icl_pebs_cpu-defined-but-not-used
+|-- x86_64-randconfig-a012-20220516
+|   |-- drivers-gpu-drm-bridge-adv7511-adv7511.h:warning:ADV7511_REG_CEC_RX_FRAME_HDR-defined-but-not-used
+|   `-- drivers-gpu-drm-bridge-adv7511-adv7511.h:warning:ADV7511_REG_CEC_RX_FRAME_LEN-defined-but-not-used
+|-- x86_64-randconfig-a014-20220516
+|   `-- arch-x86-kvm-pmu.h:warning:vmx_icl_pebs_cpu-defined-but-not-used
+|-- x86_64-randconfig-c002-20220516
+|   `-- command-line:fatal-error:.-include-generated-utsrelease.h:No-such-file-or-directory
+|-- x86_64-randconfig-m001-20220516
+|   |-- drivers-gpu-drm-i915-gt-intel_gt_sysfs_pm.c-sysfs_gt_attribute_w_func()-error:uninitialized-symbol-ret-.
+|   `-- kernel-bpf-verifier.c-process_kptr_func()-warn:passing-zero-to-PTR_ERR
+|-- x86_64-rhel-8.3
+|   `-- arch-x86-kvm-pmu.h:warning:vmx_icl_pebs_cpu-defined-but-not-used
+|-- x86_64-rhel-8.3-func
+|   `-- arch-x86-kvm-pmu.h:warning:vmx_icl_pebs_cpu-defined-but-not-used
+|-- x86_64-rhel-8.3-kselftests
+|   `-- arch-x86-kvm-pmu.h:warning:vmx_icl_pebs_cpu-defined-but-not-used
+|-- x86_64-rhel-8.3-kunit
+|   `-- arch-x86-kvm-pmu.h:warning:vmx_icl_pebs_cpu-defined-but-not-used
+|-- x86_64-rhel-8.3-syz
+|   `-- arch-x86-kvm-pmu.h:warning:vmx_icl_pebs_cpu-defined-but-not-used
+|-- xtensa-allyesconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc_link_dp.c:warning:no-previous-prototype-for-dp_parse_lttpr_mode
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc_link_dp.c:warning:variable-allow_lttpr_non_transparent_mode-set-but-not-used
+|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_discovery.c:warning:no-previous-prototype-for-amdgpu_discovery_get_mall_info
+|   `-- drivers-gpu-drm-amd-amdgpu-soc21.c:warning:no-previous-prototype-for-soc21_grbm_select
+`-- xtensa-randconfig-p002-20220516
+    |-- drivers-opp-core.c:warning:Uninitialized-variable:iter-rate-uninitvar
+    |-- drivers-opp-core.c:warning:Uninitialized-variable:opp-available-uninitvar
+    |-- drivers-opp-core.c:warning:Uninitialized-variable:temp-removed-uninitvar
+    |-- drivers-opp-core.c:warning:Uninitialized-variable:temp_opp-available-uninitvar
+    |-- drivers-opp-core.c:warning:Uninitialized-variable:temp_opp-level-uninitvar
+    |-- drivers-opp-core.c:warning:Uninitialized-variable:tmp_opp-rate-uninitvar
+    `-- drivers-opp-core.c:warning:Uninitialized-variables:opp_table.node-opp_table.lazy-opp_table.head-opp_table.dev_list-opp_table.opp_list-opp_table.kref-opp_table.lock-opp_table.np-opp_table.clock_latency
 
-Participating hosts (42 -> 43)
-------------------------------
+clang_recent_errors
+|-- arm64-randconfig-r001-20220516
+|   `-- arch-arm64-kvm-pmu.c:warning:tentative-definition-of-variable-with-internal-linkage-has-incomplete-non-array-type-typeof(struct-kvm_pmu_events)-(aka-struct-kvm_pmu_events-)
+|-- hexagon-randconfig-r045-20220516
+|   |-- fs-buffer.c:warning:stack-frame-size-()-exceeds-limit-()-in-block_read_full_folio
+|   `-- fs-ntfs-aops.c:warning:stack-frame-size-()-exceeds-limit-()-in-ntfs_read_folio
+|-- i386-randconfig-r004-20220516
+|   `-- ERROR:__udivdi3-drivers-mtd-parsers-scpart.ko-undefined
+`-- riscv-randconfig-r036-20220516
+    `-- arch-riscv-include-asm-tlbflush.h:error:expected-assembly-time-absolute-expression
 
-  Additional (2): bat-dg2-8 bat-adlm-1 
-  Missing    (1): bat-dg2-9 
+elapsed time: 728m
 
-Known issues
-------------
+configs tested: 104
+configs skipped: 3
 
-  Here are the changes found in Patchwork_104052v1 that come from known issues:
+gcc tested configs:
+arm                              allmodconfig
+arm                              allyesconfig
+arm                                 defconfig
+arm64                               defconfig
+arm64                            allyesconfig
+i386                 randconfig-c001-20220516
+ia64                          tiger_defconfig
+mips                            gpr_defconfig
+mips                       bmips_be_defconfig
+arm                        spear6xx_defconfig
+powerpc                       maple_defconfig
+sh                 kfr2r09-romimage_defconfig
+mips                         db1xxx_defconfig
+powerpc                      cm5200_defconfig
+sh                           se7619_defconfig
+xtensa                  audio_kc705_defconfig
+sh                           se7780_defconfig
+sh                           se7705_defconfig
+powerpc                     sequoia_defconfig
+ia64                             allmodconfig
+ia64                                defconfig
+ia64                             allyesconfig
+m68k                             allyesconfig
+m68k                             allmodconfig
+m68k                                defconfig
+alpha                               defconfig
+csky                                defconfig
+alpha                            allyesconfig
+nios2                            allyesconfig
+h8300                            allyesconfig
+arc                                 defconfig
+sh                               allmodconfig
+xtensa                           allyesconfig
+parisc                              defconfig
+s390                             allmodconfig
+parisc                           allyesconfig
+s390                                defconfig
+s390                             allyesconfig
+parisc64                            defconfig
+i386                   debian-10.3-kselftests
+i386                              debian-10.3
+i386                                defconfig
+i386                             allyesconfig
+sparc                            allyesconfig
+sparc                               defconfig
+nios2                               defconfig
+arc                              allyesconfig
+mips                             allyesconfig
+mips                             allmodconfig
+powerpc                           allnoconfig
+powerpc                          allmodconfig
+powerpc                          allyesconfig
+x86_64               randconfig-a012-20220516
+x86_64               randconfig-a011-20220516
+x86_64               randconfig-a013-20220516
+x86_64               randconfig-a014-20220516
+x86_64               randconfig-a016-20220516
+x86_64               randconfig-a015-20220516
+i386                 randconfig-a011-20220516
+i386                 randconfig-a013-20220516
+i386                 randconfig-a015-20220516
+i386                 randconfig-a012-20220516
+i386                 randconfig-a016-20220516
+i386                 randconfig-a014-20220516
+arc                  randconfig-r043-20220516
+riscv                randconfig-r042-20220516
+s390                 randconfig-r044-20220516
+riscv                             allnoconfig
+riscv                            allyesconfig
+riscv                            allmodconfig
+riscv                    nommu_k210_defconfig
+riscv                          rv32_defconfig
+riscv                    nommu_virt_defconfig
+riscv                               defconfig
+um                             i386_defconfig
+um                           x86_64_defconfig
+x86_64                              defconfig
+x86_64                           allyesconfig
+x86_64                    rhel-8.3-kselftests
+x86_64                                  kexec
+x86_64                           rhel-8.3-syz
+x86_64                          rhel-8.3-func
+x86_64                               rhel-8.3
+x86_64                         rhel-8.3-kunit
 
-### IGT changes ###
+clang tested configs:
+arm                         orion5x_defconfig
+arm                       aspeed_g4_defconfig
+powerpc                      katmai_defconfig
+powerpc                   microwatt_defconfig
+powerpc                     akebono_defconfig
+powerpc                    mvme5100_defconfig
+i386                 randconfig-a003-20220516
+i386                 randconfig-a001-20220516
+i386                 randconfig-a004-20220516
+i386                 randconfig-a006-20220516
+i386                 randconfig-a002-20220516
+i386                 randconfig-a005-20220516
+x86_64               randconfig-a002-20220516
+x86_64               randconfig-a001-20220516
+x86_64               randconfig-a003-20220516
+x86_64               randconfig-a005-20220516
+x86_64               randconfig-a004-20220516
+x86_64               randconfig-a006-20220516
+hexagon              randconfig-r045-20220516
+hexagon              randconfig-r041-20220516
 
-#### Issues hit ####
-
-  * igt@i915_selftest@live@gt_pm:
-    - fi-tgl-1115g4:      [PASS][1] -> [DMESG-FAIL][2] ([i915#3987])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11661/fi-tgl-1115g4/igt@i915_selftest@live@gt_pm.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104052v1/fi-tgl-1115g4/igt@i915_selftest@live@gt_pm.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-bdw-5557u:       NOTRUN -> [INCOMPLETE][3] ([i915#3921])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104052v1/fi-bdw-5557u/igt@i915_selftest@live@hangcheck.html
-
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][4] ([fdo#109271] / [fdo#111827])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104052v1/fi-kbl-soraka/igt@kms_chamelium@common-hpd-after-suspend.html
-    - bat-dg1-6:          NOTRUN -> [SKIP][5] ([fdo#111827])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104052v1/bat-dg1-6/igt@kms_chamelium@common-hpd-after-suspend.html
-    - fi-blb-e6850:       NOTRUN -> [SKIP][6] ([fdo#109271])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104052v1/fi-blb-e6850/igt@kms_chamelium@common-hpd-after-suspend.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][7] ([fdo#109271])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104052v1/fi-kbl-soraka/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_engines:
-    - bat-dg1-6:          [INCOMPLETE][8] ([i915#4418]) -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11661/bat-dg1-6/igt@i915_selftest@live@gt_engines.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104052v1/bat-dg1-6/igt@i915_selftest@live@gt_engines.html
-
-  * igt@i915_selftest@live@gtt:
-    - fi-bdw-5557u:       [INCOMPLETE][10] ([i915#5685]) -> [PASS][11]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11661/fi-bdw-5557u/igt@i915_selftest@live@gtt.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104052v1/fi-bdw-5557u/igt@i915_selftest@live@gtt.html
-
-  * igt@i915_selftest@live@requests:
-    - fi-blb-e6850:       [DMESG-FAIL][12] ([i915#4528]) -> [PASS][13]
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11661/fi-blb-e6850/igt@i915_selftest@live@requests.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104052v1/fi-blb-e6850/igt@i915_selftest@live@requests.html
-
-  * igt@kms_busy@basic@flip:
-    - {bat-adlp-6}:       [DMESG-WARN][14] ([i915#3576]) -> [PASS][15] +1 similar issue
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11661/bat-adlp-6/igt@kms_busy@basic@flip.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104052v1/bat-adlp-6/igt@kms_busy@basic@flip.html
-
-  * igt@kms_busy@basic@modeset:
-    - bat-adlp-4:         [DMESG-WARN][16] ([i915#3576]) -> [PASS][17] +2 similar issues
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11661/bat-adlp-4/igt@kms_busy@basic@modeset.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104052v1/bat-adlp-4/igt@kms_busy@basic@modeset.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1155]: https://gitlab.freedesktop.org/drm/intel/issues/1155
-  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
-  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
-  [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
-  [i915#3547]: https://gitlab.freedesktop.org/drm/intel/issues/3547
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#3576]: https://gitlab.freedesktop.org/drm/intel/issues/3576
-  [i915#3595]: https://gitlab.freedesktop.org/drm/intel/issues/3595
-  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
-  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
-  [i915#3987]: https://gitlab.freedesktop.org/drm/intel/issues/3987
-  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
-  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
-  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-  [i915#4212]: https://gitlab.freedesktop.org/drm/intel/issues/4212
-  [i915#4213]: https://gitlab.freedesktop.org/drm/intel/issues/4213
-  [i915#4215]: https://gitlab.freedesktop.org/drm/intel/issues/4215
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4418]: https://gitlab.freedesktop.org/drm/intel/issues/4418
-  [i915#4528]: https://gitlab.freedesktop.org/drm/intel/issues/4528
-  [i915#4579]: https://gitlab.freedesktop.org/drm/intel/issues/4579
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#4873]: https://gitlab.freedesktop.org/drm/intel/issues/4873
-  [i915#5190]: https://gitlab.freedesktop.org/drm/intel/issues/5190
-  [i915#5274]: https://gitlab.freedesktop.org/drm/intel/issues/5274
-  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
-  [i915#5685]: https://gitlab.freedesktop.org/drm/intel/issues/5685
-  [i915#5763]: https://gitlab.freedesktop.org/drm/intel/issues/5763
-  [i915#5801]: https://gitlab.freedesktop.org/drm/intel/issues/5801
-  [i915#5879]: https://gitlab.freedesktop.org/drm/intel/issues/5879
-  [i915#5885]: https://gitlab.freedesktop.org/drm/intel/issues/5885
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_11661 -> Patchwork_104052v1
-
-  CI-20190529: 20190529
-  CI_DRM_11661: f0d63dbb9c4ebcb646fd41c0e810d60ff7c7d11e @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6473: 64723cd44c1cd2f8b8263e3b3681c99f05a1b499 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_104052v1: f0d63dbb9c4ebcb646fd41c0e810d60ff7c7d11e @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-8b6d0399d99f dyndbg/drm: POC add tracebits sysfs-knob
-39b62567ffd7 dyndbg: 4 new trace-events: pr_debug, dev_dbg, drm_{, dev}debug
-d29e003c5bd0 dyndbg: add write-events-to-tracefs code
-1ce22bfdc3d3 dyndbg: add _DPRINTK_FLAGS_TRACE
-bdd1228bf40d dyndbg: add _DPRINTK_FLAGS_ENABLED
-c41c1d35cd45 drm_print: add _ddebug desc to drm_*dbg prototypes
-d07bc397ae96 drm_print: prefer bare printk KERN_DEBUG on generic fn
-4e1dfab0aa21 drm_print: refine drm_debug_enabled for jump-label
-c5c3f788ed01 drm_print: wrap drm_*_dbg in dyndbg descriptor factory macro
-c81add96aef7 drm_print: interpose drm_*dbg with forwarding macros
-77b7c8a163d7 drm_print: condense enum drm_debug_category
-451972407ce3 drm/print: POC drm on dyndbg - use bitmap
-6a72203b2856 drm: POC drm on dyndbg - map class-names to drm_debug_category's
-9f6de83719fb dyndbg: add test_dynamic_debug module
-b60310dbe0f0 dyndbg: add __pr_debug_cls(class, fmt, ...)
-8ea9abcec80d dyndbg: change zero-or-one classes-map to maps list
-46f0b5eaae3a dyndbg: support symbolic class-names in bitmap
-0855101f32ae dyndbg: let query-modname override defaulting modname
-0bdf97041b98 Doc/dyndbg: document new class class_name query support
-a4972715ab78 dyndbg: add drm.debug style bitmap support
-4b24bd57ae91 dyndbg: validate class FOO on module
-d43324ae48d0 dyndbg: add dynamic_debug_(un)register_classes
-8756d8e1dc31 dyndbg: add exclusive class_id to pr_debug callsites
-27c4cda19231 dyndbg: drop EXPORTed dynamic_debug_exec_queries
-b86966e95441 dyndbg: fix module.dyndbg handling
-6c6e62c28eb6 dyndbg: show both old and new in change-info
-88d7a0414164 dyndbg: fix static_branch manipulation
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104052v1/index.html
-
---===============5494072625640805699==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>DRM.debug on DYNAMIC_DEBUG, add trace events</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/104052/">https://patchwork.freedesktop.org/series/104052/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104052v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104052v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11661 -&gt; Patchwork_104052v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104052v1/index.html</p>
-<h2>Participating hosts (42 -&gt; 43)</h2>
-<p>Additional (2): bat-dg2-8 bat-adlm-1 <br />
-  Missing    (1): bat-dg2-9 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_104052v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_pm:</p>
-<ul>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11661/fi-tgl-1115g4/igt@i915_selftest@live@gt_pm.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104052v1/fi-tgl-1115g4/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3987">i915#3987</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104052v1/fi-bdw-5557u/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
-<ul>
-<li>
-<p>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104052v1/fi-kbl-soraka/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</p>
-</li>
-<li>
-<p>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104052v1/bat-dg1-6/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</p>
-</li>
-<li>
-<p>fi-blb-e6850:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104052v1/fi-blb-e6850/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104052v1/fi-kbl-soraka/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_engines:</p>
-<ul>
-<li>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11661/bat-dg1-6/igt@i915_selftest@live@gt_engines.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4418">i915#4418</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104052v1/bat-dg1-6/igt@i915_selftest@live@gt_engines.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gtt:</p>
-<ul>
-<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11661/fi-bdw-5557u/igt@i915_selftest@live@gtt.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5685">i915#5685</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104052v1/fi-bdw-5557u/igt@i915_selftest@live@gtt.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11661/fi-blb-e6850/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104052v1/fi-blb-e6850/igt@i915_selftest@live@requests.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_busy@basic@flip:</p>
-<ul>
-<li>{bat-adlp-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11661/bat-adlp-6/igt@kms_busy@basic@flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104052v1/bat-adlp-6/igt@kms_busy@basic@flip.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_busy@basic@modeset:</p>
-<ul>
-<li>bat-adlp-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11661/bat-adlp-4/igt@kms_busy@basic@modeset.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104052v1/bat-adlp-4/igt@kms_busy@basic@modeset.html">PASS</a> +2 similar issues</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11661 -&gt; Patchwork_104052v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11661: f0d63dbb9c4ebcb646fd41c0e810d60ff7c7d11e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6473: 64723cd44c1cd2f8b8263e3b3681c99f05a1b499 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_104052v1: f0d63dbb9c4ebcb646fd41c0e810d60ff7c7d11e @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>8b6d0399d99f dyndbg/drm: POC add tracebits sysfs-knob<br />
-39b62567ffd7 dyndbg: 4 new trace-events: pr_debug, dev_dbg, drm_{, dev}debug<br />
-d29e003c5bd0 dyndbg: add write-events-to-tracefs code<br />
-1ce22bfdc3d3 dyndbg: add <em>DPRINTK_FLAGS_TRACE<br />
-bdd1228bf40d dyndbg: add _DPRINTK_FLAGS_ENABLED<br />
-c41c1d35cd45 drm_print: add _ddebug desc to drm</em><em>dbg prototypes<br />
-d07bc397ae96 drm_print: prefer bare printk KERN_DEBUG on generic fn<br />
-4e1dfab0aa21 drm_print: refine drm_debug_enabled for jump-label<br />
-c5c3f788ed01 drm_print: wrap drm_</em><em>dbg in dyndbg descriptor factory macro<br />
-c81add96aef7 drm_print: interpose drm</em>*dbg with forwarding macros<br />
-77b7c8a163d7 drm_print: condense enum drm_debug_category<br />
-451972407ce3 drm/print: POC drm on dyndbg - use bitmap<br />
-6a72203b2856 drm: POC drm on dyndbg - map class-names to drm_debug_category's<br />
-9f6de83719fb dyndbg: add test_dynamic_debug module<br />
-b60310dbe0f0 dyndbg: add __pr_debug_cls(class, fmt, ...)<br />
-8ea9abcec80d dyndbg: change zero-or-one classes-map to maps list<br />
-46f0b5eaae3a dyndbg: support symbolic class-names in bitmap<br />
-0855101f32ae dyndbg: let query-modname override defaulting modname<br />
-0bdf97041b98 Doc/dyndbg: document new class class_name query support<br />
-a4972715ab78 dyndbg: add drm.debug style bitmap support<br />
-4b24bd57ae91 dyndbg: validate class FOO on module<br />
-d43324ae48d0 dyndbg: add dynamic_debug_(un)register_classes<br />
-8756d8e1dc31 dyndbg: add exclusive class_id to pr_debug callsites<br />
-27c4cda19231 dyndbg: drop EXPORTed dynamic_debug_exec_queries<br />
-b86966e95441 dyndbg: fix module.dyndbg handling<br />
-6c6e62c28eb6 dyndbg: show both old and new in change-info<br />
-88d7a0414164 dyndbg: fix static_branch manipulation</p>
-
-</body>
-</html>
-
---===============5494072625640805699==--
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
