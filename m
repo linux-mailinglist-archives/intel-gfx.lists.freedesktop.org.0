@@ -1,51 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26D44529ACC
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 May 2022 09:29:50 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A047529AEF
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 May 2022 09:35:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 17EAF10EC13;
-	Tue, 17 May 2022 07:29:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6EB9B112C38;
+	Tue, 17 May 2022 07:35:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 03D0B10E704;
- Tue, 17 May 2022 07:29:40 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E0B33112BB3;
+ Tue, 17 May 2022 07:35:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1652772581; x=1684308581;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=47wqMRcnDaGWvswNaOsXUw9o4XU7V0zxTrd58y+tsU8=;
- b=j2ZFa6upQj7aQ/k0N2kFX7gAsB58RNBsX2sgFdq7n00qhITs5mfhTu6W
- eBoyS5YlZtNEn8mwcGEYplZZdw5C/pTylNVbF/5GD8kow0lhGUcKU0I/k
- 6RTzpGfyjHCuTm0Nwk85L5duiHGL1YtTsE4FZomgZ4+KQuCq9bGaAiIIo
- MYQH8W0HCeQphV/DvLdeE4Jc7TN/IW9P95zMdRxNuccjpULWUtW0YRNce
- q6am2/eIvlSA7YwdXEYDNQLgeQp9KSEoOE7LhW5zao6ypLndbpr8XZkWW
- 6STfCJv35Va9IHka6GnTzXKmY3k6peUFCKIVe9JDd5fL14PaUlIFcc/Rb g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10349"; a="271039319"
-X-IronPort-AV: E=Sophos;i="5.91,232,1647327600"; d="scan'208";a="271039319"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 May 2022 00:29:40 -0700
-X-IronPort-AV: E=Sophos;i="5.91,232,1647327600"; d="scan'208";a="544777206"
-Received: from bhanu-nuclab.iind.intel.com ([10.145.162.173])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 May 2022 00:29:38 -0700
-From: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
-To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- manasi.d.navare@intel.com
-Date: Tue, 17 May 2022 12:56:36 +0530
-Message-Id: <20220517072636.3516381-3-bhanuprakash.modem@intel.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220517072636.3516381-1-bhanuprakash.modem@intel.com>
-References: <20220517072636.3516381-1-bhanuprakash.modem@intel.com>
+ t=1652772947; x=1684308947;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=d6imrCBiGBbVz2D/NUzP92KgMzg0Fvwm4TsGR5xbZNw=;
+ b=R4OmfO6oM7sMQUIPuO56Jc1lzNYm6YMVUMZvjvc8HXczts4TSjtfgUMq
+ 2i9ByWOrnHh/OzDMC1A2pA80sM5JHKzuTlrdFSkNTPvRvaEBQKWTbZ9dW
+ q8baQ1WN7H2Zou0yDw0KdoiOpKl9IPgXuksoMX+5O8deuT5BdXP8AoahK
+ l88aOuLV4CwXmx4SByDEaF4D1iPHS3hvTSv9noXacIijRDqJWOWbjBaNH
+ 9/oWAGxBsfyDsIcukkU/W6PjrUQhFUQFBUmi3N3hND/wiQqDxGrxZ8T0H
+ s2yBE4NmKe3Sw2ugUfNCgGjQOwlu6plz1YyJSfKdnQIeaG4xFGvGk1lZ3 w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10349"; a="296371655"
+X-IronPort-AV: E=Sophos;i="5.91,232,1647327600"; d="scan'208";a="296371655"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 May 2022 00:35:35 -0700
+X-IronPort-AV: E=Sophos;i="5.91,232,1647327600"; d="scan'208";a="596991454"
+Received: from aghafar-mobl1.ger.corp.intel.com (HELO [10.213.210.37])
+ ([10.213.210.37])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 May 2022 00:35:33 -0700
+Message-ID: <d7310d85-4e8e-6b3b-2ec5-3a56bb9babeb@linux.intel.com>
+Date: Tue, 17 May 2022 08:35:31 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Content-Language: en-US
+To: Randy Dunlap <rdunlap@infradead.org>,
+ Stephen Rothwell <sfr@canb.auug.org.au>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>
+References: <20220516205718.2c5a52f9@canb.auug.org.au>
+ <1af2e702-2ea4-02ad-7682-e39cee20cc13@infradead.org>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <1af2e702-2ea4-02ad-7682-e39cee20cc13@infradead.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [RFC V3 2/2] drm/i915/vrr: Set drm crtc vrr_enabled
- property
+Subject: Re: [Intel-gfx] linux-next: Tree for May 16
+ (drm/i915/gt/intel_gt_sysfs_pm.c)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,48 +64,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This function sets the vrr_enabled property for crtc based
-on the platform support and the request from userspace.
 
-V2: Check for platform support before updating the prop.
-V3: Don't attach vrr_enabled prop, as it is alreay attached.
+Hi,
 
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Cc: Manasi Navare <manasi.d.navare@intel.com>
-Signed-off-by: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
----
- drivers/gpu/drm/i915/display/intel_vrr.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+On 16/05/2022 22:22, Randy Dunlap wrote:
+> 
+> 
+> On 5/16/22 03:57, Stephen Rothwell wrote:
+>> Hi all,
+>>
+>> Changes since 20220513:
+>>
+> 
+> on i386:
+> 
+>    CC      drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.o
+> ../drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c: In function ‘act_freq_mhz_show’:
+> ../drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c:276:20: error: implicit declaration of function ‘sysfs_gt_attribute_r_max_func’ [-Werror=implicit-function-declaration]
+>    u32 actual_freq = sysfs_gt_attribute_r_max_func(dev, attr,
+>                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> ../drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c: In function ‘boost_freq_mhz_store’:
+> ../drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c:327:9: error: implicit declaration of function ‘sysfs_gt_attribute_w_func’ [-Werror=implicit-function-declaration]
+>    return sysfs_gt_attribute_w_func(dev, attr,
+>           ^~~~~~~~~~~~~~~~~~~~~~~~~
+> ../drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c: In function ‘min_freq_mhz_show’:
+> ../drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c:416:17: error: implicit declaration of function ‘sysfs_gt_attribute_r_min_func’ [-Werror=implicit-function-declaration]
+>    u32 min_freq = sysfs_gt_attribute_r_min_func(dev, attr,
+>                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> cc1: some warnings being treated as errors
+> 
+> 
+> Full randconfig file is attached.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index 396f2f994fa0..7263b35550de 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.c
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -160,6 +160,10 @@ void intel_vrr_enable(struct intel_encoder *encoder,
- 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
- 	u32 trans_vrr_ctl;
- 
-+	if (HAS_VRR(dev_priv))
-+		drm_mode_crtc_set_vrr_enabled_property(crtc_state->uapi.crtc,
-+						       crtc_state->vrr.enable);
-+
- 	if (!crtc_state->vrr.enable)
- 		return;
- 
-@@ -211,6 +215,10 @@ void intel_vrr_disable(const struct intel_crtc_state *old_crtc_state)
- 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
- 	enum transcoder cpu_transcoder = old_crtc_state->cpu_transcoder;
- 
-+	if (HAS_VRR(dev_priv))
-+		drm_mode_crtc_set_vrr_enabled_property(old_crtc_state->uapi.crtc,
-+						       false);
-+
- 	if (!old_crtc_state->vrr.enable)
- 		return;
- 
--- 
-2.35.1
+There is a fix for this in 09708b6d82ef ("drm/i915/gt: Fix build error 
+without CONFIG_PM") queued up, waiting for the next pull request, which 
+the plan was to send out next week or so. Is that okay?
 
+Regards,
+
+Tvrtko
