@@ -2,32 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62CCD529C51
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 May 2022 10:26:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AA456529C68
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 May 2022 10:29:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF0EB10EA7F;
-	Tue, 17 May 2022 08:25:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6434610E4EA;
+	Tue, 17 May 2022 08:29:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id CBA5E10EA7F;
- Tue, 17 May 2022 08:25:58 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C1E81AA0ED;
- Tue, 17 May 2022 08:25:58 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7778830577936939878=="
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E9A8310E48F;
+ Tue, 17 May 2022 08:29:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1652776178; x=1684312178;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=3qrJvXow0w71OAPsKJh6thKPQ5+81qCNfc1shw7n1gY=;
+ b=Kq6bmZ1OZi/NNnybLLMCmSujHExGQfhrDUyv218xkxbei9uVXAH+oFDs
+ 2Sl9qjcUzNEtgAn4ZCfkBDYZG5eoAUlRtsFrhi4as/2VzI29c1S0XEw2x
+ Zxx9X0tixksJH7wD+p0GA2+rdC1SgSKCDMQOjQI58lZ2AZQo/XGdF+Dq7
+ VSDecSSVNw4fo9UqLnRxiMiG0UMgV2EVhqeCn6xSa7iFhPc6S+Za/bUW/
+ T+VcsH7XiVujmJ6ffYVRh+7XjygkD2vzLJCAvXhQN/4tN4oTZFdcMGBlx
+ dYE8Ea94PWsKvn5m7THzx5CaKBq1fdhUKLnPzf+1EnRB1jFwX0FAZ7YVw w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10349"; a="268692001"
+X-IronPort-AV: E=Sophos;i="5.91,232,1647327600"; d="scan'208";a="268692001"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 May 2022 01:29:38 -0700
+X-IronPort-AV: E=Sophos;i="5.91,232,1647327600"; d="scan'208";a="597014435"
+Received: from aghafar-mobl1.ger.corp.intel.com (HELO [10.213.210.37])
+ ([10.213.210.37])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 May 2022 01:29:34 -0700
+Message-ID: <bcea3c24-b9a4-f889-94ad-40c668ab42ac@linux.intel.com>
+Date: Tue, 17 May 2022 09:29:33 +0100
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Bhanuprakash Modem" <bhanuprakash.modem@intel.com>
-Date: Tue, 17 May 2022 08:25:58 -0000
-Message-ID: <165277595878.31031.18316335418066313077@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220517072636.3516381-1-bhanuprakash.modem@intel.com>
-In-Reply-To: <20220517072636.3516381-1-bhanuprakash.modem@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgQXR0?=
- =?utf-8?q?ach_and_Set_vrr=5Fenabled_property_=28rev3=29?=
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Content-Language: en-US
+To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20220516181152.1236708-1-matthew.auld@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <20220516181152.1236708-1-matthew.auld@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v3] drm/doc: add rfc section for small BAR
+ uapi
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,286 +61,310 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
+ Kenneth Graunke <kenneth@whitecape.org>, dri-devel@lists.freedesktop.org,
+ Daniel Vetter <daniel.vetter@ffwll.ch>, mesa-dev@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============7778830577936939878==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
+On 16/05/2022 19:11, Matthew Auld wrote:
+> Add an entry for the new uapi needed for small BAR on DG2+.
+> 
+> v2:
+>    - Some spelling fixes and other small tweaks. (Akeem & Thomas)
+>    - Rework error capture interactions, including no longer needing
+>      NEEDS_CPU_ACCESS for objects marked for capture. (Thomas)
+>    - Add probed_cpu_visible_size. (Lionel)
+> v3:
+>    - Drop the vma query for now.
+>    - Add unallocated_cpu_visible_size as part of the region query.
+>    - Improve the docs some more, including documenting the expected
+>      behaviour on older kernels, since this came up in some offline
+>      discussion.
+> 
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+> Cc: Jon Bloomfield <jon.bloomfield@intel.com>
+> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+> Cc: Jon Bloomfield <jon.bloomfield@intel.com>
+> Cc: Jordan Justen <jordan.l.justen@intel.com>
+> Cc: Kenneth Graunke <kenneth@whitecape.org>
+> Cc: Akeem G Abodunrin <akeem.g.abodunrin@intel.com>
+> Cc: mesa-dev@lists.freedesktop.org
+> ---
+>   Documentation/gpu/rfc/i915_small_bar.h   | 164 +++++++++++++++++++++++
+>   Documentation/gpu/rfc/i915_small_bar.rst |  47 +++++++
+>   Documentation/gpu/rfc/index.rst          |   4 +
+>   3 files changed, 215 insertions(+)
+>   create mode 100644 Documentation/gpu/rfc/i915_small_bar.h
+>   create mode 100644 Documentation/gpu/rfc/i915_small_bar.rst
+> 
+> diff --git a/Documentation/gpu/rfc/i915_small_bar.h b/Documentation/gpu/rfc/i915_small_bar.h
+> new file mode 100644
+> index 000000000000..4079d287750b
+> --- /dev/null
+> +++ b/Documentation/gpu/rfc/i915_small_bar.h
+> @@ -0,0 +1,164 @@
+> +/**
+> + * struct __drm_i915_memory_region_info - Describes one region as known to the
+> + * driver.
+> + *
+> + * Note this is using both struct drm_i915_query_item and struct drm_i915_query.
+> + * For this new query we are adding the new query id DRM_I915_QUERY_MEMORY_REGIONS
+> + * at &drm_i915_query_item.query_id.
+> + */
+> +struct __drm_i915_memory_region_info {
+> +	/** @region: The class:instance pair encoding */
+> +	struct drm_i915_gem_memory_class_instance region;
+> +
+> +	/** @rsvd0: MBZ */
+> +	__u32 rsvd0;
+> +
+> +	/** @probed_size: Memory probed by the driver (-1 = unknown) */
+> +	__u64 probed_size;
 
-Series: Attach and Set vrr_enabled property (rev3)
-URL   : https://patchwork.freedesktop.org/series/102978/
-State : failure
+Is -1 possible today or when it will be? For system memory it appears 
+zeroes are returned today so that has to stay I think. Does it 
+effectively mean userspace has to consider both 0 and -1 as unknown is 
+the question.
 
-== Summary ==
+> +
+> +	/**
+> +	 * @unallocated_size: Estimate of memory remaining (-1 = unknown)
+> +	 *
+> +	 * Note this is only currently tracked for I915_MEMORY_CLASS_DEVICE
+> +	 * regions, and also requires CAP_PERFMON or CAP_SYS_ADMIN to get
+> +	 * reliable accounting. Without this(or if this an older kernel) the
 
-CI Bug Log - changes from CI_DRM_11662 -> Patchwork_102978v3
-====================================================
+s/if this an/if this is an/
 
-Summary
--------
+Also same question as above about -1.
 
-  **FAILURE**
+> +	 * value here will always match the @probed_size.
+> +	 */
+> +	__u64 unallocated_size;
+> +
+> +	union {
+> +		/** @rsvd1: MBZ */
+> +		__u64 rsvd1[8];
+> +		struct {
+> +			/**
+> +			 * @probed_cpu_visible_size: Memory probed by the driver
+> +			 * that is CPU accessible. (-1 = unknown).
 
-  Serious unknown changes coming with Patchwork_102978v3 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_102978v3, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+Also question about -1. In this case this could be done since the field 
+is yet to be added but I am curious if it ever can be -1.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102978v3/index.html
+> +			 *
+> +			 * This will be always be <= @probed_size, and the
+> +			 * remainder(if there is any) will not be CPU
+> +			 * accessible.
+> +			 *
+> +			 * On systems without small BAR, the @probed_size will
+> +			 * always equal the @probed_cpu_visible_size, since all
+> +			 * of it will be CPU accessible.
+> +			 *
+> +			 * Note that if the value returned here is zero, then
+> +			 * this must be an old kernel which lacks the relevant
+> +			 * small-bar uAPI support(including
 
-Participating hosts (43 -> 10)
-------------------------------
+I have noticed you prefer no space before parentheses throughout the 
+text so I guess it's just my preference to have it. Very nitpicky even 
+if I am right so up to you.
 
-  ERROR: It appears as if the changes made in Patchwork_102978v3 prevented too many machines from booting.
+> +			 * I915_GEM_CREATE_EXT_FLAG_NEEDS_CPU_ACCESS), but on
+> +			 * such systems we should never actually end up with a
+> +			 * small BAR configuration, assuming we are able to load
+> +			 * the kernel module. Hence it should be safe to treat
+> +			 * this the same as when @probed_cpu_visible_size ==
+> +			 * @probed_size.
+> +			 */
+> +			__u64 probed_cpu_visible_size;
+> +
+> +			/**
+> +			 * @unallocated_cpu_visible_size: Estimate of CPU
+> +			 * visible memory remaining (-1 = unknown).
+> +			 *
+> +			 * Note this is only currently tracked for
+> +			 * I915_MEMORY_CLASS_DEVICE regions, and also requires
+> +			 * CAP_PERFMON or CAP_SYS_ADMIN to get reliable
+> +			 * accounting. Without this the value here will always
+> +			 * equal the @probed_cpu_visible_size.
+> +			 */
+> +			__u64 unallocated_cpu_visible_size;
+> +		};
+> +	};
+> +};
+> +
+> +/**
+> + * struct __drm_i915_gem_create_ext - Existing gem_create behaviour, with added
+> + * extension support using struct i915_user_extension.
+> + *
+> + * Note that new buffer flags should be added here, at least for the stuff that
+> + * is immutable. Previously we would have two ioctls, one to create the object
+> + * with gem_create, and another to apply various parameters, however this
+> + * creates some ambiguity for the params which are considered immutable. Also in
+> + * general we're phasing out the various SET/GET ioctls.
+> + */
+> +struct __drm_i915_gem_create_ext {
+> +	/**
+> +	 * @size: Requested size for the object.
+> +	 *
+> +	 * The (page-aligned) allocated size for the object will be returned.
+> +	 *
+> +	 * Note that for some devices we have might have further minimum
+> +	 * page-size restrictions(larger than 4K), like for device local-memory.
+> +	 * However in general the final size here should always reflect any
+> +	 * rounding up, if for example using the I915_GEM_CREATE_EXT_MEMORY_REGIONS
+> +	 * extension to place the object in device local-memory.
 
-  Additional (1): bat-dg2-8 
-  Missing    (34): fi-kbl-soraka fi-rkl-11600 fi-rkl-guc fi-bdw-gvtdvm fi-apl-guc fi-snb-2520m fi-pnv-d510 fi-blb-e6850 fi-skl-6600u fi-snb-2600 fi-bxt-dsi fi-bdw-5557u fi-bsw-n3050 fi-adl-ddr5 fi-bwr-2160 fi-hsw-g3258 fi-ilk-650 fi-hsw-4770 fi-ivb-3770 fi-elk-e7500 fi-bsw-nick fi-skl-6700k2 fi-kbl-7567u fi-tgl-dsi fi-skl-guc fi-cfl-8700k fi-glk-j4005 fi-ehl-2 fi-jsl-1 fi-tgl-1115g4 fi-cfl-guc fi-kbl-guc fi-cfl-8109u fi-bsw-kefka 
+Is it defined how rounding up works when a list of regions is given 
+(like smem+lmem) and should that be explicitly mentioned here?
 
-Possible new issues
--------------------
+> +	 */
+> +	__u64 size;
 
-  Here are the unknown changes that may have been introduced in Patchwork_102978v3:
+Blank line here (etc below) maybe to match the previous doc block?
 
-### IGT changes ###
+Regards,
 
-#### Possible regressions ####
+Tvrtko
 
-  * igt@kms_force_connector_basic@force-connector-state:
-    - bat-dg1-5:          [PASS][1] -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11662/bat-dg1-5/igt@kms_force_connector_basic@force-connector-state.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102978v3/bat-dg1-5/igt@kms_force_connector_basic@force-connector-state.html
-
-  
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@kms_force_connector_basic@force-connector-state:
-    - {bat-dg2-8}:        NOTRUN -> [DMESG-WARN][3]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102978v3/bat-dg2-8/igt@kms_force_connector_basic@force-connector-state.html
-
-  * igt@runner@aborted:
-    - {bat-rpls-2}:       [FAIL][4] ([i915#4312]) -> [FAIL][5]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11662/bat-rpls-2/igt@runner@aborted.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102978v3/bat-rpls-2/igt@runner@aborted.html
-    - {bat-adln-1}:       NOTRUN -> [FAIL][6]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102978v3/bat-adln-1/igt@runner@aborted.html
-    - {bat-adlp-6}:       NOTRUN -> [FAIL][7]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102978v3/bat-adlp-6/igt@runner@aborted.html
-    - {bat-jsl-2}:        NOTRUN -> [FAIL][8]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102978v3/bat-jsl-2/igt@runner@aborted.html
-    - {bat-jsl-1}:        NOTRUN -> [FAIL][9]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102978v3/bat-jsl-1/igt@runner@aborted.html
-    - {bat-dg2-9}:        NOTRUN -> [FAIL][10]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102978v3/bat-dg2-9/igt@runner@aborted.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_102978v3 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - bat-dg1-5:          NOTRUN -> [SKIP][11] ([fdo#111827])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102978v3/bat-dg1-5/igt@kms_chamelium@common-hpd-after-suspend.html
-
-  * igt@runner@aborted:
-    - bat-adlp-4:         NOTRUN -> [FAIL][12] ([i915#5457])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102978v3/bat-adlp-4/igt@runner@aborted.html
-
-  
-#### Warnings ####
-
-  * igt@runner@aborted:
-    - bat-dg1-6:          [FAIL][13] ([i915#4312] / [i915#5257]) -> [FAIL][14] ([i915#5257])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11662/bat-dg1-6/igt@runner@aborted.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102978v3/bat-dg1-6/igt@runner@aborted.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
-  [i915#3595]: https://gitlab.freedesktop.org/drm/intel/issues/3595
-  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
-  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
-  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-  [i915#4212]: https://gitlab.freedesktop.org/drm/intel/issues/4212
-  [i915#4213]: https://gitlab.freedesktop.org/drm/intel/issues/4213
-  [i915#4215]: https://gitlab.freedesktop.org/drm/intel/issues/4215
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#5190]: https://gitlab.freedesktop.org/drm/intel/issues/5190
-  [i915#5257]: https://gitlab.freedesktop.org/drm/intel/issues/5257
-  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
-  [i915#5457]: https://gitlab.freedesktop.org/drm/intel/issues/5457
-  [i915#5763]: https://gitlab.freedesktop.org/drm/intel/issues/5763
-
-
-Build changes
--------------
-
-  * IGT: IGT_6474 -> IGTPW_6978
-  * Linux: CI_DRM_11662 -> Patchwork_102978v3
-
-  CI-20190529: 20190529
-  CI_DRM_11662: 38bc558d7aba4f111c5cf767bfdd89c722ba0415 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGTPW_6978: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_6978/index.html
-  IGT_6474: f4731438344390afe165ac41ee9e2a2e77e3d932 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_102978v3: 38bc558d7aba4f111c5cf767bfdd89c722ba0415 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-d701843b91cc drm/i915/vrr: Set drm crtc vrr_enabled property
-15bab6a8a298 drm/vrr: Attach vrr_enabled property to the drm crtc
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102978v3/index.html
-
---===============7778830577936939878==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Attach and Set vrr_enabled property (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/102978/">https://patchwork.freedesktop.org/series/102978/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102978v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102978v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11662 -&gt; Patchwork_102978v3</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_102978v3 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_102978v3, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102978v3/index.html</p>
-<h2>Participating hosts (43 -&gt; 10)</h2>
-<p>ERROR: It appears as if the changes made in Patchwork_102978v3 prevented too many machines from booting.</p>
-<p>Additional (1): bat-dg2-8 <br />
-  Missing    (34): fi-kbl-soraka fi-rkl-11600 fi-rkl-guc fi-bdw-gvtdvm fi-apl-guc fi-snb-2520m fi-pnv-d510 fi-blb-e6850 fi-skl-6600u fi-snb-2600 fi-bxt-dsi fi-bdw-5557u fi-bsw-n3050 fi-adl-ddr5 fi-bwr-2160 fi-hsw-g3258 fi-ilk-650 fi-hsw-4770 fi-ivb-3770 fi-elk-e7500 fi-bsw-nick fi-skl-6700k2 fi-kbl-7567u fi-tgl-dsi fi-skl-guc fi-cfl-8700k fi-glk-j4005 fi-ehl-2 fi-jsl-1 fi-tgl-1115g4 fi-cfl-guc fi-kbl-guc fi-cfl-8109u fi-bsw-kefka </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_102978v3:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@kms_force_connector_basic@force-connector-state:<ul>
-<li>bat-dg1-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11662/bat-dg1-5/igt@kms_force_connector_basic@force-connector-state.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102978v3/bat-dg1-5/igt@kms_force_connector_basic@force-connector-state.html">DMESG-WARN</a></li>
-</ul>
-</li>
-</ul>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>
-<p>igt@kms_force_connector_basic@force-connector-state:</p>
-<ul>
-<li>{bat-dg2-8}:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102978v3/bat-dg2-8/igt@kms_force_connector_basic@force-connector-state.html">DMESG-WARN</a></li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>
-<p>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11662/bat-rpls-2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102978v3/bat-rpls-2/igt@runner@aborted.html">FAIL</a></p>
-</li>
-<li>
-<p>{bat-adln-1}:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102978v3/bat-adln-1/igt@runner@aborted.html">FAIL</a></p>
-</li>
-<li>
-<p>{bat-adlp-6}:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102978v3/bat-adlp-6/igt@runner@aborted.html">FAIL</a></p>
-</li>
-<li>
-<p>{bat-jsl-2}:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102978v3/bat-jsl-2/igt@runner@aborted.html">FAIL</a></p>
-</li>
-<li>
-<p>{bat-jsl-1}:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102978v3/bat-jsl-1/igt@runner@aborted.html">FAIL</a></p>
-</li>
-<li>
-<p>{bat-dg2-9}:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102978v3/bat-dg2-9/igt@runner@aborted.html">FAIL</a></p>
-</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_102978v3 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
-<ul>
-<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102978v3/bat-dg1-5/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>bat-adlp-4:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102978v3/bat-adlp-4/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5457">i915#5457</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@runner@aborted:<ul>
-<li>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11662/bat-dg1-6/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5257">i915#5257</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_102978v3/bat-dg1-6/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5257">i915#5257</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_6474 -&gt; IGTPW_6978</li>
-<li>Linux: CI_DRM_11662 -&gt; Patchwork_102978v3</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11662: 38bc558d7aba4f111c5cf767bfdd89c722ba0415 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGTPW_6978: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_6978/index.html<br />
-  IGT_6474: f4731438344390afe165ac41ee9e2a2e77e3d932 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_102978v3: 38bc558d7aba4f111c5cf767bfdd89c722ba0415 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>d701843b91cc drm/i915/vrr: Set drm crtc vrr_enabled property<br />
-15bab6a8a298 drm/vrr: Attach vrr_enabled property to the drm crtc</p>
-
-</body>
-</html>
-
---===============7778830577936939878==--
+> +	/**
+> +	 * @handle: Returned handle for the object.
+> +	 *
+> +	 * Object handles are nonzero.
+> +	 */
+> +	__u32 handle;
+> +	/**
+> +	 * @flags: Optional flags.
+> +	 *
+> +	 * Supported values:
+> +	 *
+> +	 * I915_GEM_CREATE_EXT_FLAG_NEEDS_CPU_ACCESS - Signal to the kernel that
+> +	 * the object will need to be accessed via the CPU.
+> +	 *
+> +	 * Only valid when placing objects in I915_MEMORY_CLASS_DEVICE, and only
+> +	 * strictly required on configurations where some subset of the device
+> +	 * memory is directly visible/mappable through the CPU(which we also
+> +	 * call small BAR), like on some DG2+ systems. Note that this is quite
+> +	 * undesirable, but due to various factors like the client CPU, BIOS etc
+> +	 * it's something we can expect to see in the wild. See struct
+> +	 * __drm_i915_memory_region_info.probed_cpu_visible_size for how to
+> +	 * determine if this system applies.
+> +	 *
+> +	 * Note that one of the placements MUST be I915_MEMORY_CLASS_SYSTEM, to
+> +	 * ensure the kernel can always spill the allocation to system memory,
+> +	 * if the object can't be allocated in the mappable part of
+> +	 * I915_MEMORY_CLASS_DEVICE.
+> +	 *
+> +	 * Also note that since the kernel only supports flat-CCS on objects
+> +	 * that can *only* be placed in I915_MEMORY_CLASS_DEVICE, we therefore
+> +	 * don't support I915_GEM_CREATE_EXT_FLAG_NEEDS_CPU_ACCESS together with
+> +	 * flat-CCS.
+> +	 *
+> +	 * Without this hint, the kernel will assume that non-mappable
+> +	 * I915_MEMORY_CLASS_DEVICE is preferred for this object. Note that the
+> +	 * kernel can still migrate the object to the mappable part, as a last
+> +	 * resort, if userspace ever CPU faults this object, but this might be
+> +	 * expensive, and so ideally should be avoided.
+> +	 *
+> +	 * On older kernels, where usage of this flag results in an error, since
+> +	 * we lack the relevant small BAR uAPI(see also struct
+> +	 * __drm_i915_memory_region_info.probed_cpu_visible_size) it should
+> +	 * NEVER be possible to end up with a small BAR configuration, assuming
+> +	 * we can also successfully load the i915 kernel module. In such cases
+> +	 * the entire I915_MEMORY_CLASS_DEVICE region will be CPU accessible,
+> +	 * and as such there are zero restrictions on where the object can be
+> +	 * placed.
+> +	 */
+> +#define I915_GEM_CREATE_EXT_FLAG_NEEDS_CPU_ACCESS (1 << 0)
+> +	__u32 flags;
+> +	/**
+> +	 * @extensions: The chain of extensions to apply to this object.
+> +	 *
+> +	 * This will be useful in the future when we need to support several
+> +	 * different extensions, and we need to apply more than one when
+> +	 * creating the object. See struct i915_user_extension.
+> +	 *
+> +	 * If we don't supply any extensions then we get the same old gem_create
+> +	 * behaviour.
+> +	 *
+> +	 * For I915_GEM_CREATE_EXT_MEMORY_REGIONS usage see
+> +	 * struct drm_i915_gem_create_ext_memory_regions.
+> +	 *
+> +	 * For I915_GEM_CREATE_EXT_PROTECTED_CONTENT usage see
+> +	 * struct drm_i915_gem_create_ext_protected_content.
+> +	 */
+> +#define I915_GEM_CREATE_EXT_MEMORY_REGIONS 0
+> +#define I915_GEM_CREATE_EXT_PROTECTED_CONTENT 1
+> +	__u64 extensions;
+> +};
+> diff --git a/Documentation/gpu/rfc/i915_small_bar.rst b/Documentation/gpu/rfc/i915_small_bar.rst
+> new file mode 100644
+> index 000000000000..a322481cea8b
+> --- /dev/null
+> +++ b/Documentation/gpu/rfc/i915_small_bar.rst
+> @@ -0,0 +1,47 @@
+> +==========================
+> +I915 Small BAR RFC Section
+> +==========================
+> +Starting from DG2 we will have resizable BAR support for device local-memory(i.e
+> +I915_MEMORY_CLASS_DEVICE), but in some cases the final BAR size might still be
+> +smaller than the total probed_size. In such cases, only some subset of
+> +I915_MEMORY_CLASS_DEVICE will be CPU accessible(for example the first 256M),
+> +while the remainder is only accessible via the GPU.
+> +
+> +I915_GEM_CREATE_EXT_FLAG_NEEDS_CPU_ACCESS flag
+> +----------------------------------------------
+> +New gem_create_ext flag to tell the kernel that a BO will require CPU access.
+> +This becomes important when placing an object in I915_MEMORY_CLASS_DEVICE, where
+> +underneath the device has a small BAR, meaning only some portion of it is CPU
+> +accessible. Without this flag the kernel will assume that CPU access is not
+> +required, and prioritize using the non-CPU visible portion of
+> +I915_MEMORY_CLASS_DEVICE.
+> +
+> +.. kernel-doc:: Documentation/gpu/rfc/i915_small_bar.h
+> +   :functions: __drm_i915_gem_create_ext
+> +
+> +probed_cpu_visible_size attribute
+> +---------------------------------
+> +New struct__drm_i915_memory_region attribute which returns the total size of the
+> +CPU accessible portion, for the particular region. This should only be
+> +applicable for I915_MEMORY_CLASS_DEVICE. We also report the
+> +unallocated_cpu_visible_size, alongside the unallocated_size.
+> +
+> +Vulkan will need this as part of creating a separate VkMemoryHeap with the
+> +VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT set, to represent the CPU visible portion,
+> +where the total size of the heap needs to be known. It also wants to be able to
+> +give a rough estimate of how memory can potentially be allocated.
+> +
+> +.. kernel-doc:: Documentation/gpu/rfc/i915_small_bar.h
+> +   :functions: __drm_i915_memory_region_info
+> +
+> +Error Capture restrictions
+> +--------------------------
+> +With error capture we have two new restrictions:
+> +
+> +    1) Error capture is best effort on small BAR systems; if the pages are not
+> +    CPU accessible, at the time of capture, then the kernel is free to skip
+> +    trying to capture them.
+> +
+> +    2) On discrete we now reject error capture on recoverable contexts. In the
+> +    future the kernel may want to blit during error capture, when for example
+> +    something is not currently CPU accessible.
+> diff --git a/Documentation/gpu/rfc/index.rst b/Documentation/gpu/rfc/index.rst
+> index 91e93a705230..5a3bd3924ba6 100644
+> --- a/Documentation/gpu/rfc/index.rst
+> +++ b/Documentation/gpu/rfc/index.rst
+> @@ -23,3 +23,7 @@ host such documentation:
+>   .. toctree::
+>   
+>       i915_scheduler.rst
+> +
+> +.. toctree::
+> +
+> +    i915_small_bar.rst
