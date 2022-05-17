@@ -2,56 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A047529AEF
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 May 2022 09:35:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 69BC5529C1A
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 May 2022 10:17:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6EB9B112C38;
-	Tue, 17 May 2022 07:35:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B4F2C112F4A;
+	Tue, 17 May 2022 08:17:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E0B33112BB3;
- Tue, 17 May 2022 07:35:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1652772947; x=1684308947;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=d6imrCBiGBbVz2D/NUzP92KgMzg0Fvwm4TsGR5xbZNw=;
- b=R4OmfO6oM7sMQUIPuO56Jc1lzNYm6YMVUMZvjvc8HXczts4TSjtfgUMq
- 2i9ByWOrnHh/OzDMC1A2pA80sM5JHKzuTlrdFSkNTPvRvaEBQKWTbZ9dW
- q8baQ1WN7H2Zou0yDw0KdoiOpKl9IPgXuksoMX+5O8deuT5BdXP8AoahK
- l88aOuLV4CwXmx4SByDEaF4D1iPHS3hvTSv9noXacIijRDqJWOWbjBaNH
- 9/oWAGxBsfyDsIcukkU/W6PjrUQhFUQFBUmi3N3hND/wiQqDxGrxZ8T0H
- s2yBE4NmKe3Sw2ugUfNCgGjQOwlu6plz1YyJSfKdnQIeaG4xFGvGk1lZ3 w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10349"; a="296371655"
-X-IronPort-AV: E=Sophos;i="5.91,232,1647327600"; d="scan'208";a="296371655"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 May 2022 00:35:35 -0700
-X-IronPort-AV: E=Sophos;i="5.91,232,1647327600"; d="scan'208";a="596991454"
-Received: from aghafar-mobl1.ger.corp.intel.com (HELO [10.213.210.37])
- ([10.213.210.37])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 May 2022 00:35:33 -0700
-Message-ID: <d7310d85-4e8e-6b3b-2ec5-3a56bb9babeb@linux.intel.com>
-Date: Tue, 17 May 2022 08:35:31 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3F392112F47;
+ Tue, 17 May 2022 08:17:29 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 350E5A363D;
+ Tue, 17 May 2022 08:17:29 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Content-Language: en-US
-To: Randy Dunlap <rdunlap@infradead.org>,
- Stephen Rothwell <sfr@canb.auug.org.au>,
- Linux Next Mailing List <linux-next@vger.kernel.org>
-References: <20220516205718.2c5a52f9@canb.auug.org.au>
- <1af2e702-2ea4-02ad-7682-e39cee20cc13@infradead.org>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <1af2e702-2ea4-02ad-7682-e39cee20cc13@infradead.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] linux-next: Tree for May 16
- (drm/i915/gt/intel_gt_sysfs_pm.c)
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Bhanuprakash Modem" <bhanuprakash.modem@intel.com>
+Date: Tue, 17 May 2022 08:17:29 -0000
+Message-ID: <165277544921.31033.4098516021107532873@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220517072636.3516381-1-bhanuprakash.modem@intel.com>
+In-Reply-To: <20220517072636.3516381-1-bhanuprakash.modem@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Attach_and_Set_vrr=5Fenabled_property_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,49 +40,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
-Hi,
+Series: Attach and Set vrr_enabled property (rev3)
+URL   : https://patchwork.freedesktop.org/series/102978/
+State : warning
 
-On 16/05/2022 22:22, Randy Dunlap wrote:
-> 
-> 
-> On 5/16/22 03:57, Stephen Rothwell wrote:
->> Hi all,
->>
->> Changes since 20220513:
->>
-> 
-> on i386:
-> 
->    CC      drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.o
-> ../drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c: In function ‘act_freq_mhz_show’:
-> ../drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c:276:20: error: implicit declaration of function ‘sysfs_gt_attribute_r_max_func’ [-Werror=implicit-function-declaration]
->    u32 actual_freq = sysfs_gt_attribute_r_max_func(dev, attr,
->                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> ../drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c: In function ‘boost_freq_mhz_store’:
-> ../drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c:327:9: error: implicit declaration of function ‘sysfs_gt_attribute_w_func’ [-Werror=implicit-function-declaration]
->    return sysfs_gt_attribute_w_func(dev, attr,
->           ^~~~~~~~~~~~~~~~~~~~~~~~~
-> ../drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c: In function ‘min_freq_mhz_show’:
-> ../drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c:416:17: error: implicit declaration of function ‘sysfs_gt_attribute_r_min_func’ [-Werror=implicit-function-declaration]
->    u32 min_freq = sysfs_gt_attribute_r_min_func(dev, attr,
->                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> cc1: some warnings being treated as errors
-> 
-> 
-> Full randconfig file is attached.
+== Summary ==
 
-There is a fix for this in 09708b6d82ef ("drm/i915/gt: Fix build error 
-without CONFIG_PM") queued up, waiting for the next pull request, which 
-the plan was to send out next week or so. Is that okay?
+Error: dim checkpatch failed
+ca69c64ffb44 drm/vrr: Attach vrr_enabled property to the drm crtc
+-:81: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#81: FILE: drivers/gpu/drm/drm_mode_config.c:327:
++	prop = drm_property_create_bool(dev, DRM_MODE_PROP_ATOMIC,
+ 			"VRR_ENABLED");
 
-Regards,
+total: 0 errors, 0 warnings, 1 checks, 50 lines checked
+3cebf977fa06 drm/i915/vrr: Set drm crtc vrr_enabled property
+-:13: WARNING:TYPO_SPELLING: 'alreay' may be misspelled - perhaps 'already'?
+#13: 
+V3: Don't attach vrr_enabled prop, as it is alreay attached.
+                                            ^^^^^^
 
-Tvrtko
+total: 0 errors, 1 warnings, 0 checks, 20 lines checked
+
+
