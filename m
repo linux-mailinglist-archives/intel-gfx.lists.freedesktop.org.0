@@ -2,51 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC12D529D00
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 May 2022 10:55:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D3504529D8F
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 May 2022 11:12:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0437610EDDF;
-	Tue, 17 May 2022 08:55:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 88DBC10FB62;
+	Tue, 17 May 2022 09:12:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 83F1110EBC5;
- Tue, 17 May 2022 08:55:27 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AFEEB10FBE9;
+ Tue, 17 May 2022 09:12:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1652777727; x=1684313727;
+ t=1652778737; x=1684314737;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=2kTz02PzuchZ7r98h00Lzc5vRt+W23iwN3F2KWOomZ0=;
- b=a5KG9R3i1H+zfq3XV2AU3RPtfRxRZc1Yk9j/0JgjgoTibh8+UfdLxshb
- hlAWYsKBds/60glb2nKGJpK77I4aNPwRA14wR+SPkgaTX4GZJQgsAjrpV
- XrCiL5u8/O8VqfPg/zZ0JcNHETKjAyGRL2ugKYWQluv0aXqbNnaXlDnsv
- TJAtWYNfFGIqjgSmqgPjNNhYqJITNRfEH5TGfW6XKf0TincUNnNaczvN5
- icR3V0WEDlz3EjT61tUeQluZlP+PGL8Q0qbEhQYTO4EUnLsF7bvlTXx8h
- yUWrMLXyPP54wjyYR9zzyg/MSFYuuB+GNlrI0Acm7BAzYRnT9vWQ2C7DA A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10349"; a="334161979"
-X-IronPort-AV: E=Sophos;i="5.91,232,1647327600"; d="scan'208";a="334161979"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 May 2022 01:55:26 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,232,1647327600"; d="scan'208";a="672757774"
-Received: from linux.intel.com ([10.54.29.200])
- by fmsmga002.fm.intel.com with ESMTP; 17 May 2022 01:55:25 -0700
-Received: from [10.249.145.221] (unknown [10.249.145.221])
- by linux.intel.com (Postfix) with ESMTP id 162FC580713;
- Tue, 17 May 2022 01:55:21 -0700 (PDT)
-Message-ID: <a60771bd-4f02-ca46-b202-5685c8df1393@intel.com>
-Date: Tue, 17 May 2022 11:55:20 +0300
+ bh=bgFNAzLdoUo7kXkueYvStDwnBvDrtSkswshfJ+65cvI=;
+ b=bZbE9D22YGMgrNJujIDjyJPYTX0tsUbQdns0AT1Elq2M8bsgEfprSNOQ
+ kIdjAc5uYdCJAxrfXxS20QhVYvWDNiE1Ve392N72g6mCxRG9EV7ApGf1t
+ Qi9gZiSOkCF+r2+E3XMgAWrIxQ61dsQEiuDzVX18+JuP8JdjhM+Fpp8bf
+ AYrofV/+RrbDD57TY69Ok9WivGLfajvQ7wVDPxirGdzUeZ08XRatKYyUf
+ pxxWHHRu/wFuUEdGBeaEhebyuRPon3FFtFei03pTU+u7WeiaHtFNpDJKa
+ UbIKTLbsQOlLk8Qdk0fZxyq13W3073B5XGx1R7ZJfUhlGczlE5NbFodb1 A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10349"; a="270813548"
+X-IronPort-AV: E=Sophos;i="5.91,232,1647327600"; d="scan'208";a="270813548"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 May 2022 02:12:17 -0700
+X-IronPort-AV: E=Sophos;i="5.91,232,1647327600"; d="scan'208";a="816810202"
+Received: from kanesean-mobl.ger.corp.intel.com (HELO [10.252.16.201])
+ ([10.252.16.201])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 May 2022 02:12:14 -0700
+Message-ID: <1d47a8f0-c9bd-101d-ad45-f65d1a314912@intel.com>
+Date: Tue, 17 May 2022 10:12:12 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Content-Language: en-US
+ Firefox/91.0 Thunderbird/91.8.0
+Content-Language: en-GB
 To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
+ intel-gfx@lists.freedesktop.org
 References: <20220516181152.1236708-1-matthew.auld@intel.com>
  <bcea3c24-b9a4-f889-94ad-40c668ab42ac@linux.intel.com>
-From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+From: Matthew Auld <matthew.auld@intel.com>
 In-Reply-To: <bcea3c24-b9a4-f889-94ad-40c668ab42ac@linux.intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
@@ -65,13 +63,13 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
- dri-devel@lists.freedesktop.org, Kenneth Graunke <kenneth@whitecape.org>,
+ Kenneth Graunke <kenneth@whitecape.org>, dri-devel@lists.freedesktop.org,
  Daniel Vetter <daniel.vetter@ffwll.ch>, mesa-dev@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 17/05/2022 11:29, Tvrtko Ursulin wrote:
->
+On 17/05/2022 09:29, Tvrtko Ursulin wrote:
+> 
 > On 16/05/2022 19:11, Matthew Auld wrote:
 >> Add an entry for the new uapi needed for small BAR on DG2+.
 >>
@@ -133,46 +131,33 @@ On 17/05/2022 11:29, Tvrtko Ursulin wrote:
 >> +
 >> +    /** @probed_size: Memory probed by the driver (-1 = unknown) */
 >> +    __u64 probed_size;
->
+> 
 > Is -1 possible today or when it will be? For system memory it appears 
 > zeroes are returned today so that has to stay I think. Does it 
 > effectively mean userspace has to consider both 0 and -1 as unknown is 
 > the question.
 
+It looks like it just returns the totalram_pages(). So at the moment 
+nothing ever currently returns -1 or 0. Maybe that was a mistake for 
+I915_MEMORY_SYSTEM.
 
-I raised this on v2. As far as I can tell there are no situation where 
-we would get -1.
-
-Is it really probed_size=0 on smem?? It's not the case on the internal 
-branch.
-
-Anv is not currently handling that case.
-
-
-I would very much like to not deal with 0 for smem.
-
-It really makes it easier for userspace rather than having to fish 
-information from 2 different places and on top of dealing with multiple 
-kernel versions.
-
-
--Lionel
-
-
->
+> 
 >> +
 >> +    /**
 >> +     * @unallocated_size: Estimate of memory remaining (-1 = unknown)
 >> +     *
 >> +     * Note this is only currently tracked for I915_MEMORY_CLASS_DEVICE
 >> +     * regions, and also requires CAP_PERFMON or CAP_SYS_ADMIN to get
->> +     * reliable accounting. Without this(or if this an older kernel) 
->> the
->
+>> +     * reliable accounting. Without this(or if this an older kernel) the
+> 
 > s/if this an/if this is an/
->
+> 
 > Also same question as above about -1.
->
+
+This should be the same as above, since this will give the same value as 
+probed_size, or give the real avail value for lmem.
+
+> 
 >> +     * value here will always match the @probed_size.
 >> +     */
 >> +    __u64 unallocated_size;
@@ -184,10 +169,15 @@ kernel versions.
 >> +            /**
 >> +             * @probed_cpu_visible_size: Memory probed by the driver
 >> +             * that is CPU accessible. (-1 = unknown).
->
-> Also question about -1. In this case this could be done since the 
-> field is yet to be added but I am curious if it ever can be -1.
->
+> 
+> Also question about -1. In this case this could be done since the field 
+> is yet to be added but I am curious if it ever can be -1.
+
+I was just going to make this the same as probed_size for system memory. 
+But we could use -1 here instead. What do you think? Same for 
+unallocated below.
+
+> 
 >> +             *
 >> +             * This will be always be <= @probed_size, and the
 >> +             * remainder(if there is any) will not be CPU
@@ -200,11 +190,14 @@ kernel versions.
 >> +             * Note that if the value returned here is zero, then
 >> +             * this must be an old kernel which lacks the relevant
 >> +             * small-bar uAPI support(including
->
+> 
 > I have noticed you prefer no space before parentheses throughout the 
 > text so I guess it's just my preference to have it. Very nitpicky even 
 > if I am right so up to you.
->
+
+Ok, will change :)
+
+> 
 >> +             * I915_GEM_CREATE_EXT_FLAG_NEEDS_CPU_ACCESS), but on
 >> +             * such systems we should never actually end up with a
 >> +             * small BAR configuration, assuming we are able to load
@@ -258,19 +251,26 @@ kernel versions.
 >> +     * rounding up, if for example using the 
 >> I915_GEM_CREATE_EXT_MEMORY_REGIONS
 >> +     * extension to place the object in device local-memory.
->
+> 
 > Is it defined how rounding up works when a list of regions is given 
 > (like smem+lmem) and should that be explicitly mentioned here?
->
+
+Yes, it uses the largest minimum page-size for the set of regions when 
+doing the round_up. Will tweak.
+
+> 
 >> +     */
 >> +    __u64 size;
->
+> 
 > Blank line here (etc below) maybe to match the previous doc block?
->
+
+Ok, will tweak. Thanks for the comments and suggestions.
+
+> 
 > Regards,
->
+> 
 > Tvrtko
->
+> 
 >> +    /**
 >> +     * @handle: Returned handle for the object.
 >> +     *
@@ -290,8 +290,7 @@ kernel versions.
 >> and only
 >> +     * strictly required on configurations where some subset of the 
 >> device
->> +     * memory is directly visible/mappable through the CPU(which we 
->> also
+>> +     * memory is directly visible/mappable through the CPU(which we also
 >> +     * call small BAR), like on some DG2+ systems. Note that this is 
 >> quite
 >> +     * undesirable, but due to various factors like the client CPU, 
@@ -307,8 +306,7 @@ kernel versions.
 >> +     * if the object can't be allocated in the mappable part of
 >> +     * I915_MEMORY_CLASS_DEVICE.
 >> +     *
->> +     * Also note that since the kernel only supports flat-CCS on 
->> objects
+>> +     * Also note that since the kernel only supports flat-CCS on objects
 >> +     * that can *only* be placed in I915_MEMORY_CLASS_DEVICE, we 
 >> therefore
 >> +     * don't support I915_GEM_CREATE_EXT_FLAG_NEEDS_CPU_ACCESS 
@@ -318,8 +316,8 @@ kernel versions.
 >> +     * Without this hint, the kernel will assume that non-mappable
 >> +     * I915_MEMORY_CLASS_DEVICE is preferred for this object. Note 
 >> that the
->> +     * kernel can still migrate the object to the mappable part, as 
->> a last
+>> +     * kernel can still migrate the object to the mappable part, as a 
+>> last
 >> +     * resort, if userspace ever CPU faults this object, but this 
 >> might be
 >> +     * expensive, and so ideally should be avoided.
@@ -343,8 +341,7 @@ kernel versions.
 >> +    /**
 >> +     * @extensions: The chain of extensions to apply to this object.
 >> +     *
->> +     * This will be useful in the future when we need to support 
->> several
+>> +     * This will be useful in the future when we need to support several
 >> +     * different extensions, and we need to apply more than one when
 >> +     * creating the object. See struct i915_user_extension.
 >> +     *
@@ -374,17 +371,17 @@ kernel versions.
 >> +==========================
 >> +Starting from DG2 we will have resizable BAR support for device 
 >> local-memory(i.e
->> +I915_MEMORY_CLASS_DEVICE), but in some cases the final BAR size 
->> might still be
+>> +I915_MEMORY_CLASS_DEVICE), but in some cases the final BAR size might 
+>> still be
 >> +smaller than the total probed_size. In such cases, only some subset of
->> +I915_MEMORY_CLASS_DEVICE will be CPU accessible(for example the 
->> first 256M),
+>> +I915_MEMORY_CLASS_DEVICE will be CPU accessible(for example the first 
+>> 256M),
 >> +while the remainder is only accessible via the GPU.
 >> +
 >> +I915_GEM_CREATE_EXT_FLAG_NEEDS_CPU_ACCESS flag
 >> +----------------------------------------------
->> +New gem_create_ext flag to tell the kernel that a BO will require 
->> CPU access.
+>> +New gem_create_ext flag to tell the kernel that a BO will require CPU 
+>> access.
 >> +This becomes important when placing an object in 
 >> I915_MEMORY_CLASS_DEVICE, where
 >> +underneath the device has a small BAR, meaning only some portion of 
@@ -407,8 +404,8 @@ kernel versions.
 >> +
 >> +Vulkan will need this as part of creating a separate VkMemoryHeap 
 >> with the
->> +VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT set, to represent the CPU 
->> visible portion,
+>> +VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT set, to represent the CPU visible 
+>> portion,
 >> +where the total size of the heap needs to be known. It also wants to 
 >> be able to
 >> +give a rough estimate of how memory can potentially be allocated.
@@ -428,8 +425,8 @@ kernel versions.
 >> +
 >> +    2) On discrete we now reject error capture on recoverable 
 >> contexts. In the
->> +    future the kernel may want to blit during error capture, when 
->> for example
+>> +    future the kernel may want to blit during error capture, when for 
+>> example
 >> +    something is not currently CPU accessible.
 >> diff --git a/Documentation/gpu/rfc/index.rst 
 >> b/Documentation/gpu/rfc/index.rst
@@ -438,10 +435,8 @@ kernel versions.
 >> +++ b/Documentation/gpu/rfc/index.rst
 >> @@ -23,3 +23,7 @@ host such documentation:
 >>   .. toctree::
->>         i915_scheduler.rst
+>>       i915_scheduler.rst
 >> +
 >> +.. toctree::
 >> +
 >> +    i915_small_bar.rst
-
-
