@@ -2,43 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66C5E52B3AE
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 May 2022 09:39:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A09952B418
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 May 2022 09:51:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB21F113E13;
-	Wed, 18 May 2022 07:39:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4DCFB113E82;
+	Wed, 18 May 2022 07:50:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [IPv6:2607:7c80:54:e::133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1343F1124FA;
- Wed, 18 May 2022 07:39:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=In-Reply-To:Content-Type:MIME-Version
- :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=P5UqBAHM0WQnE0g9GWkUw6qeNdkfJBe6hJymXR6R360=; b=zP2u3zx4Nqx82fjyBoNHLz6AOY
- fHpXQJ24sWyjJtbHiAfCUHkKqWlu+/N5+S0QbL3dxp8min4ZnwWiMdlFcvfoW1l3rHL6lvSU8JyPu
- tI3TV57NNnj4Bq/keqxZOTeeF9+9ZA4sWjS7BtUPWhT9DC+xFJLcsYPpuaji0p2/Oxwir7jvsuX/U
- y9dpkmCJOjq2ER5XK5/faIeJxiQU9bZ+mnUsplo/ChCMm+unL1KWLS94bBjJDlzxjHqeD1l6dxzdJ
- VudQgLy9jb8GOsrg3Fazw16gK5iNYGZFgwlNxo8CYGkPD+FAuZ8uZSZp9jKMhuX8XVLWsUSQokF10
- K34xQl0g==;
-Received: from hch by bombadil.infradead.org with local (Exim 4.94.2 #2 (Red
- Hat Linux)) id 1nrEHV-00084D-Sx; Wed, 18 May 2022 07:39:41 +0000
-Date: Wed, 18 May 2022 00:39:41 -0700
-From: Christoph Hellwig <hch@infradead.org>
-To: Jason Gunthorpe <jgg@nvidia.com>
-Message-ID: <YoSivTU7nivO9FMD@infradead.org>
-References: <20220517180851.166538-1-mjrosato@linux.ibm.com>
- <20220517180851.166538-2-mjrosato@linux.ibm.com>
- <20220517185643.GY1343366@nvidia.com>
+X-Greylist: delayed 348 seconds by postgrey-1.36 at gabe;
+ Wed, 18 May 2022 07:50:53 UTC
+Received: from mail.skyhub.de (mail.skyhub.de [IPv6:2a01:4f8:190:11c2::b:1457])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7AF67113E80;
+ Wed, 18 May 2022 07:50:53 +0000 (UTC)
+Received: from zn.tnic (p200300ea974657d0329c23fffea6a903.dip0.t-ipconnect.de
+ [IPv6:2003:ea:9746:57d0:329c:23ff:fea6:a903])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 527C91EC0666;
+ Wed, 18 May 2022 09:44:58 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
+ t=1652859898;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=a8Szr4z7U3LLWZpmFRmG29wYOgRi5MD6X+p5qsug0OA=;
+ b=Pob2AA/6Vhjy47GRjAV39j87RoTblM7SFu97DnhIry+QeDLbyAQdHuDrgFDWIiEnpC4bm/
+ Xi/iAffzZviq9amZHlIwnWlB180E1+Fa+9cjED1quaEIpjZb08y2XM+M/dfSOZpW8uPJ98
+ G1U8sQiSeFJI7pnTBmLcMFUjPrbkZYw=
+Date: Wed, 18 May 2022 09:44:52 +0200
+From: Borislav Petkov <bp@alien8.de>
+To: Randy Dunlap <rdunlap@infradead.org>
+Message-ID: <YoSj9O/6yA0nn/xW@zn.tnic>
+References: <20220405151517.29753-1-bp@alien8.de>
+ <20220405151517.29753-12-bp@alien8.de>
+ <78e67e42-7e1e-e9fa-036d-441168100731@infradead.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20220517185643.GY1343366@nvidia.com>
-X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
- bombadil.infradead.org. See http://www.infradead.org/rpr.html
-Subject: Re: [Intel-gfx] [PATCH 1/1] vfio: remove VFIO_GROUP_NOTIFY_SET_KVM
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <78e67e42-7e1e-e9fa-036d-441168100731@infradead.org>
+Subject: Re: [Intel-gfx] [PATCH 11/11] drm/i915: Fix undefined behavior due
+ to shift overflowing the constant
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,23 +56,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jjherne@linux.ibm.com, akrowiak@linux.ibm.com, kvm@vger.kernel.org,
- Matthew Rosato <mjrosato@linux.ibm.com>, hch@infradead.org,
- linux-s390@vger.kernel.org, intel-gfx@lists.freedesktop.org, cohuck@redhat.com,
- linux-kernel@vger.kernel.org, pasic@linux.ibm.com, borntraeger@linux.ibm.com,
- intel-gvt-dev@lists.freedesktop.org
+Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
+ LKML <linux-kernel@vger.kernel.org>, dri-devel@lists.freedesktop.org,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
->  	if (device->ops->flags & VFIO_DEVICE_NEEDS_KVM)
->  	{
+On Tue, May 17, 2022 at 04:05:46PM -0700, Randy Dunlap wrote:
+> 
+> 
+> On 4/5/22 08:15, Borislav Petkov wrote:
+> > From: Borislav Petkov <bp@suse.de>
+> > 
+> > Fix:
+> > 
+> >   In file included from <command-line>:0:0:
+> >   drivers/gpu/drm/i915/gt/uc/intel_guc.c: In function ‘intel_guc_send_mmio’:
+> >   ././include/linux/compiler_types.h:352:38: error: call to ‘__compiletime_assert_1047’ \
+> >   declared with attribute error: FIELD_PREP: mask is not constant
+> >     _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
+> > 
+> > and other build errors due to shift overflowing values.
+> > 
+> > See https://lore.kernel.org/r/YkwQ6%2BtIH8GQpuct@zn.tnic for the gory
+> > details as to why it triggers with older gccs only.
+> > 
+> 
+> Acked-by: Randy Dunlap <rdunlap@infradead.org>
+> Tested-by: Randy Dunlap <rdunlap@infradead.org>
+> 
+> Is this merged anywhere?
 
-Nit: this is not the normal brace placement.
+It's state is "new" in their patchwork:
 
-But what is you diff against anyway?  The one Matthew sent did away
-with the VFIO_DEVICE_NEEDS_KVM flags, which does the wrong thing for
-zpci, so it can't be that..
+https://patchwork.freedesktop.org/patch/480756/
 
-Also if we want to do major code movement, it really needs to go into
-a separate patch or patches, as the combinations of all these moves
-with actual code changes is almost unreadable.
+so I guess not yet.
+
+> It could/should at least be in linux-next so that other people
+> don't waste time on it.
+
+-ETOOMANYPATCHES I guess. :-\
+
+-- 
+Regards/Gruss,
+    Boris.
+
+https://people.kernel.org/tglx/notes-about-netiquette
