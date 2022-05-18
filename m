@@ -1,47 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB65F52B9ED
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 May 2022 14:37:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B21D52BB40
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 May 2022 14:54:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5268010F404;
-	Wed, 18 May 2022 12:37:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 32BDE10E19E;
+	Wed, 18 May 2022 12:53:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EEDBF10F404
- for <intel-gfx@lists.freedesktop.org>; Wed, 18 May 2022 12:37:57 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C40A810E19E
+ for <intel-gfx@lists.freedesktop.org>; Wed, 18 May 2022 12:53:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1652877477; x=1684413477;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=dA2Ybv49GIlxRbNGiFFt+QEwJl7kBj6I4mgEoMlYvXk=;
- b=hOGiPywtw/GDTervDMxR04qQFVCvS3AQvIXS3wv/5zB7phVgDTkllk+8
- y+coLu7Kw42tQkR+gufBq8GdPH2x2rkTIDAMmtGh39UEsPrGrL2xxZgHz
- NQu+y5HfLqA10ngZSuHAB27KnM1NpgFYn7GAau6Z+R38U4fl3Y2vVSbY1
- ZGP+4dZR7ppQXOplzNGX11QVzJ3QZzo1lrvFTwJsGLOtWsWe3mH5/ZgPh
- YeLX8A8n2h57BQGa9egvJjkRJ+H7UbIl4vo72ZmCx4Nqv1PzXhlQRdGRc
- XZQznTyKTgC8MRgenxEalQOA7I6j30hrJPNKyqaHzB+oDF6R4Cni0HcfI w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10350"; a="269231812"
-X-IronPort-AV: E=Sophos;i="5.91,234,1647327600"; d="scan'208";a="269231812"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 May 2022 05:37:57 -0700
-X-IronPort-AV: E=Sophos;i="5.91,234,1647327600"; d="scan'208";a="742303857"
-Received: from nirmoyda-desk.igk.intel.com ([10.102.13.19])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 May 2022 05:37:55 -0700
-From: Nirmoy Das <nirmoy.das@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 18 May 2022 14:37:36 +0200
-Message-Id: <20220518123736.16847-1-nirmoy.das@intel.com>
-X-Mailer: git-send-email 2.35.1
+ t=1652878436; x=1684414436;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=fF2aRdNASMDRbhvKtOXgxfAP3tzckkMF/TprPvkkpsk=;
+ b=CXAzLBP9oc2pFYoIdtG5rrSusrPHvc9hME3+V5KLEYjERc8XZ5yADok1
+ /5EUb1kYnfkt7ejDo4MGWkx1i0+0nzRHAoR49bkzrrNJFzki3q7yY6ukP
+ 8ryd7JCHTV1X33oUtjm4su8Q0y2KiK5GzXtC30TDQzpm5r0SgEtCUpYdV
+ yj6CH/aUWYNXOl0VLZ/FrPMZLHrrFVQZWhvMjKJWWoqnA2w4UEjZSjrEB
+ lUtGyc/MPCd0vkugXZ+bRAHksF1GHXZwsCA2uSoRciCyOTFmk8w5GyDLn
+ yarf5hVgJ+HDwjLub76CrJAgS/i5ahamYLc+HPuPoxsEir8dIjClpdjHk g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10350"; a="259224265"
+X-IronPort-AV: E=Sophos;i="5.91,234,1647327600"; d="scan'208";a="259224265"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 May 2022 05:53:45 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.91,234,1647327600"; d="scan'208";a="575061858"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.163])
+ by fmsmga007.fm.intel.com with SMTP; 18 May 2022 05:53:42 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 18 May 2022 15:53:41 +0300
+Date: Wed, 18 May 2022 15:53:41 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <YoTsVS5AaJfNe9hE@intel.com>
+References: <20220518113315.1305027-1-jani.nikula@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: Individualize fences before adding to
- dma_resv obj
+In-Reply-To: <20220518113315.1305027-1-jani.nikula@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/reg: fix undefined behavior
+ due to shift overflowing the constant
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,103 +60,79 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: thomas.hellstrom@intel.com, matthew.auld@intel.com,
- chris.p.wilson@intel.com, nirmoy.das@intel.com
+Cc: intel-gfx@lists.freedesktop.org, Borislav Petkov <bp@suse.de>,
+ Randy Dunlap <rdunlap@infradead.org>, Ruiqi GONG <gongruiqi1@huawei.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-_i915_vma_move_to_active() can receive > 1 fences for
-multiple batch buffers submission. Because dma_resv_add_fence()
-can only accept one fence at a time, change _i915_vma_move_to_active()
-to be aware of multiple fences so that it can add individual
-fences to the dma resv object.
+On Wed, May 18, 2022 at 02:33:14PM +0300, Jani Nikula wrote:
+> Use REG_GENMASK() and REG_FIELD_PREP() to avoid errors due to
+> -fsanitize=shift.
 
-v3: dma_resv_reserve_fences is not cumulative so pass num_fences.
-v2: make sure to reserve enough fence slots before adding.
+I presume it's just unhappy about shifting into the sign bit?
 
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/5614
-Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
----
- drivers/gpu/drm/i915/i915_vma.c | 47 +++++++++++++++++++--------------
- 1 file changed, 27 insertions(+), 20 deletions(-)
+Changes look correct:
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-index 4f6db539571a..4a5222fc3a4a 100644
---- a/drivers/gpu/drm/i915/i915_vma.c
-+++ b/drivers/gpu/drm/i915/i915_vma.c
-@@ -23,6 +23,7 @@
-  */
- 
- #include <linux/sched/mm.h>
-+#include <linux/dma-fence-array.h>
- #include <drm/drm_gem.h>
- 
- #include "display/intel_frontbuffer.h"
-@@ -1823,6 +1824,20 @@ int _i915_vma_move_to_active(struct i915_vma *vma,
- 	if (unlikely(err))
- 		return err;
- 
-+	/* Reserve fences slot early to prevent an allocation after preparing
-+	 * the workload and associating fences with dma_resv.
-+	 */
-+	if (fence && !(flags & __EXEC_OBJECT_NO_RESERVE)) {
-+		struct dma_fence *curr;
-+		int idx;
-+
-+		dma_fence_array_for_each(curr, idx, fence)
-+			;
-+		err = dma_resv_reserve_fences(vma->obj->base.resv, idx);
-+		if (unlikely(err))
-+			return err;
-+	}
-+
- 	if (flags & EXEC_OBJECT_WRITE) {
- 		struct intel_frontbuffer *front;
- 
-@@ -1832,31 +1847,23 @@ int _i915_vma_move_to_active(struct i915_vma *vma,
- 				i915_active_add_request(&front->write, rq);
- 			intel_frontbuffer_put(front);
- 		}
-+	}
- 
--		if (!(flags & __EXEC_OBJECT_NO_RESERVE)) {
--			err = dma_resv_reserve_fences(vma->obj->base.resv, 1);
--			if (unlikely(err))
--				return err;
--		}
-+	if (fence) {
-+		struct dma_fence *curr;
-+		enum dma_resv_usage usage;
-+		int idx;
- 
--		if (fence) {
--			dma_resv_add_fence(vma->obj->base.resv, fence,
--					   DMA_RESV_USAGE_WRITE);
-+		obj->read_domains = 0;
-+		if (flags & EXEC_OBJECT_WRITE) {
-+			usage = DMA_RESV_USAGE_WRITE;
- 			obj->write_domain = I915_GEM_DOMAIN_RENDER;
--			obj->read_domains = 0;
--		}
--	} else {
--		if (!(flags & __EXEC_OBJECT_NO_RESERVE)) {
--			err = dma_resv_reserve_fences(vma->obj->base.resv, 1);
--			if (unlikely(err))
--				return err;
-+		} else {
-+			usage = DMA_RESV_USAGE_READ;
- 		}
- 
--		if (fence) {
--			dma_resv_add_fence(vma->obj->base.resv, fence,
--					   DMA_RESV_USAGE_READ);
--			obj->write_domain = 0;
--		}
-+		dma_fence_array_for_each(curr, idx, fence)
-+			dma_resv_add_fence(vma->obj->base.resv, curr, usage);
- 	}
- 
- 	if (flags & EXEC_OBJECT_NEEDS_FENCE && vma->fence)
+> 
+> References: https://lore.kernel.org/r/20220405151517.29753-12-bp@alien8.de
+> Reported-by: Borislav Petkov <bp@suse.de>
+> Reported-by: Ruiqi GONG <gongruiqi1@huawei.com>
+> Cc: Randy Dunlap <rdunlap@infradead.org>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/i915/i915_reg.h | 32 ++++++++++++++++----------------
+>  1 file changed, 16 insertions(+), 16 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index 321a08281a3f..dff3f88d8090 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -7607,25 +7607,25 @@ enum skl_power_gate {
+>  #define _PORT_CLK_SEL_A			0x46100
+>  #define _PORT_CLK_SEL_B			0x46104
+>  #define PORT_CLK_SEL(port) _MMIO_PORT(port, _PORT_CLK_SEL_A, _PORT_CLK_SEL_B)
+> -#define  PORT_CLK_SEL_LCPLL_2700	(0 << 29)
+> -#define  PORT_CLK_SEL_LCPLL_1350	(1 << 29)
+> -#define  PORT_CLK_SEL_LCPLL_810		(2 << 29)
+> -#define  PORT_CLK_SEL_SPLL		(3 << 29)
+> -#define  PORT_CLK_SEL_WRPLL(pll)	(((pll) + 4) << 29)
+> -#define  PORT_CLK_SEL_WRPLL1		(4 << 29)
+> -#define  PORT_CLK_SEL_WRPLL2		(5 << 29)
+> -#define  PORT_CLK_SEL_NONE		(7 << 29)
+> -#define  PORT_CLK_SEL_MASK		(7 << 29)
+> +#define  PORT_CLK_SEL_MASK		REG_GENMASK(31, 29)
+> +#define  PORT_CLK_SEL_LCPLL_2700	REG_FIELD_PREP(PORT_CLK_SEL_MASK, 0)
+> +#define  PORT_CLK_SEL_LCPLL_1350	REG_FIELD_PREP(PORT_CLK_SEL_MASK, 1)
+> +#define  PORT_CLK_SEL_LCPLL_810		REG_FIELD_PREP(PORT_CLK_SEL_MASK, 2)
+> +#define  PORT_CLK_SEL_SPLL		REG_FIELD_PREP(PORT_CLK_SEL_MASK, 3)
+> +#define  PORT_CLK_SEL_WRPLL(pll)	REG_FIELD_PREP(PORT_CLK_SEL_MASK, 4 + (pll))
+> +#define  PORT_CLK_SEL_WRPLL1		REG_FIELD_PREP(PORT_CLK_SEL_MASK, 4)
+> +#define  PORT_CLK_SEL_WRPLL2		REG_FIELD_PREP(PORT_CLK_SEL_MASK, 5)
+> +#define  PORT_CLK_SEL_NONE		REG_FIELD_PREP(PORT_CLK_SEL_MASK, 7)
+>  
+>  /* On ICL+ this is the same as PORT_CLK_SEL, but all bits change. */
+>  #define DDI_CLK_SEL(port)		PORT_CLK_SEL(port)
+> -#define  DDI_CLK_SEL_NONE		(0x0 << 28)
+> -#define  DDI_CLK_SEL_MG			(0x8 << 28)
+> -#define  DDI_CLK_SEL_TBT_162		(0xC << 28)
+> -#define  DDI_CLK_SEL_TBT_270		(0xD << 28)
+> -#define  DDI_CLK_SEL_TBT_540		(0xE << 28)
+> -#define  DDI_CLK_SEL_TBT_810		(0xF << 28)
+> -#define  DDI_CLK_SEL_MASK		(0xF << 28)
+> +#define  DDI_CLK_SEL_MASK		REG_GENMASK(31, 28)
+> +#define  DDI_CLK_SEL_NONE		REG_FIELD_PREP(DDI_CLK_SEL_MASK, 0x0)
+> +#define  DDI_CLK_SEL_MG			REG_FIELD_PREP(DDI_CLK_SEL_MASK, 0x8)
+> +#define  DDI_CLK_SEL_TBT_162		REG_FIELD_PREP(DDI_CLK_SEL_MASK, 0xC)
+> +#define  DDI_CLK_SEL_TBT_270		REG_FIELD_PREP(DDI_CLK_SEL_MASK, 0xD)
+> +#define  DDI_CLK_SEL_TBT_540		REG_FIELD_PREP(DDI_CLK_SEL_MASK, 0xE)
+> +#define  DDI_CLK_SEL_TBT_810		REG_FIELD_PREP(DDI_CLK_SEL_MASK, 0xF)
+>  
+>  /* Transcoder clock selection */
+>  #define _TRANS_CLK_SEL_A		0x46140
+> -- 
+> 2.30.2
+
 -- 
-2.35.1
-
+Ville Syrjälä
+Intel
