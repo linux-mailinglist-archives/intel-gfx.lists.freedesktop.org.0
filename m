@@ -1,59 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF8E652B9EC
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 May 2022 14:37:04 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB65F52B9ED
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 May 2022 14:37:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC55E10F410;
-	Wed, 18 May 2022 12:37:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5268010F404;
+	Wed, 18 May 2022 12:37:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 95FFA10F40B
- for <intel-gfx@lists.freedesktop.org>; Wed, 18 May 2022 12:36:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1652877418;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=ZnwAbpuf8out8csgmDT/1EJa0Dp/wEa0FwZfSMt3EgU=;
- b=fAbahCo0YATze7pzVH1o8kv8t2+O6shAnWtV7O3l+vYgAgsIInJZhPpdGOfkijssluul6p
- yO+N2GsWiInu8ajvGLErUteZWsrzu/deO/4AnbVZ/6qvedK39vMNl65Z5lJquHa54MV9ky
- y8f2A6fNIAWzZup1inISYRJpFrFM4p4=
-Received: from mimecast-mx02.redhat.com (mx3-rdu2.redhat.com
- [66.187.233.73]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-382-rJch5im4PDmw0Q0Y98zPcg-1; Wed, 18 May 2022 08:36:52 -0400
-X-MC-Unique: rJch5im4PDmw0Q0Y98zPcg-1
-Received: from smtp.corp.redhat.com (int-mx01.intmail.prod.int.rdu2.redhat.com
- [10.11.54.1])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx02.redhat.com (Postfix) with ESMTPS id AC5BF398CA60;
- Wed, 18 May 2022 12:36:51 +0000 (UTC)
-Received: from starship (unknown [10.40.192.55])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 0B23940CF8EE;
- Wed, 18 May 2022 12:36:45 +0000 (UTC)
-Message-ID: <670fdf36585b1bf7c367cff4ab0653f4c7de8808.camel@redhat.com>
-From: Maxim Levitsky <mlevitsk@redhat.com>
-To: Chao Gao <chao.gao@intel.com>
-Date: Wed, 18 May 2022 15:36:44 +0300
-In-Reply-To: <20220518115056.GA18087@gao-cwp>
-References: <20220427200314.276673-1-mlevitsk@redhat.com>
- <20220427200314.276673-3-mlevitsk@redhat.com>
- <20220518082811.GA8765@gao-cwp>
- <8c78939bf01a98554696add10e17b07631d97a28.camel@redhat.com>
- <20220518115056.GA18087@gao-cwp>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.36.5 (3.36.5-2.fc32) 
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EEDBF10F404
+ for <intel-gfx@lists.freedesktop.org>; Wed, 18 May 2022 12:37:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1652877477; x=1684413477;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=dA2Ybv49GIlxRbNGiFFt+QEwJl7kBj6I4mgEoMlYvXk=;
+ b=hOGiPywtw/GDTervDMxR04qQFVCvS3AQvIXS3wv/5zB7phVgDTkllk+8
+ y+coLu7Kw42tQkR+gufBq8GdPH2x2rkTIDAMmtGh39UEsPrGrL2xxZgHz
+ NQu+y5HfLqA10ngZSuHAB27KnM1NpgFYn7GAau6Z+R38U4fl3Y2vVSbY1
+ ZGP+4dZR7ppQXOplzNGX11QVzJ3QZzo1lrvFTwJsGLOtWsWe3mH5/ZgPh
+ YeLX8A8n2h57BQGa9egvJjkRJ+H7UbIl4vo72ZmCx4Nqv1PzXhlQRdGRc
+ XZQznTyKTgC8MRgenxEalQOA7I6j30hrJPNKyqaHzB+oDF6R4Cni0HcfI w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10350"; a="269231812"
+X-IronPort-AV: E=Sophos;i="5.91,234,1647327600"; d="scan'208";a="269231812"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 May 2022 05:37:57 -0700
+X-IronPort-AV: E=Sophos;i="5.91,234,1647327600"; d="scan'208";a="742303857"
+Received: from nirmoyda-desk.igk.intel.com ([10.102.13.19])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 May 2022 05:37:55 -0700
+From: Nirmoy Das <nirmoy.das@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 18 May 2022 14:37:36 +0200
+Message-Id: <20220518123736.16847-1-nirmoy.das@intel.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Scanned-By: MIMEDefang 2.84 on 10.11.54.1
-Subject: Re: [Intel-gfx] [RFC PATCH v3 02/19] KVM: x86: inhibit APICv/AVIC
- when the guest and/or host changes apic id/base from the defaults.
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915: Individualize fences before adding to
+ dma_resv obj
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,97 +54,103 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Wanpeng Li <wanpengli@tencent.com>, kvm@vger.kernel.org,
- David Airlie <airlied@linux.ie>, Dave Hansen <dave.hansen@linux.intel.com>,
- dri-devel@lists.freedesktop.org, "H. Peter
- Anvin" <hpa@zytor.com>, Brijesh Singh <brijesh.singh@amd.com>,
- Joerg Roedel <joro@8bytes.org>, x86@kernel.org, Ingo Molnar <mingo@redhat.com>,
- Tom Lendacky <thomas.lendacky@amd.com>, intel-gfx@lists.freedesktop.org,
- Borislav Petkov <bp@alien8.de>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Gleixner <tglx@linutronix.de>, intel-gvt-dev@lists.freedesktop.org,
- Jim Mattson <jmattson@google.com>, Sean Christopherson <seanjc@google.com>,
- linux-kernel@vger.kernel.org, Paolo Bonzini <pbonzini@redhat.com>,
- Vitaly Kuznetsov <vkuznets@redhat.com>
+Cc: thomas.hellstrom@intel.com, matthew.auld@intel.com,
+ chris.p.wilson@intel.com, nirmoy.das@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 2022-05-18 at 19:51 +0800, Chao Gao wrote:
-> On Wed, May 18, 2022 at 12:50:27PM +0300, Maxim Levitsky wrote:
-> > > > struct kvm_arch {
-> > > > @@ -1258,6 +1260,7 @@ struct kvm_arch {
-> > > > 	hpa_t	hv_root_tdp;
-> > > > 	spinlock_t hv_root_tdp_lock;
-> > > > #endif
-> > > > +	bool apic_id_changed;
-> > > 
-> > > What's the value of this boolean? No one reads it.
-> > 
-> > I use it in later patches to kill the guest during nested VM entry 
-> > if it attempts to use nested AVIC after any vCPU changed APIC ID.
-> > 
-> > I mentioned this boolean in the commit description.
-> > 
-> > This boolean avoids the need to go over all vCPUs and checking
-> > if they still have the initial apic id.
-> 
-> Do you want to kill the guest if APIC base got changed? If yes,
-> you can check if APICV_INHIBIT_REASON_RO_SETTINGS is set and save
-> the boolean.
+_i915_vma_move_to_active() can receive > 1 fences for
+multiple batch buffers submission. Because dma_resv_add_fence()
+can only accept one fence at a time, change _i915_vma_move_to_active()
+to be aware of multiple fences so that it can add individual
+fences to the dma resv object.
 
-Yep, I thrown in the apic base just because I can. It doesn't matter to 
-my nested AVIC logic at all, but since it is also something that guests
-don't change, I also don't care if this will lead to inhibit and
-killing the guest if it attempts to use nested AVIC.
+v3: dma_resv_reserve_fences is not cumulative so pass num_fences.
+v2: make sure to reserve enough fence slots before adding.
 
-That boolean should have the same value as the APICV_INHIBIT_REASON_RO_SETTINGS
-inhibit, so yes I can instead check if the inhibit is active.
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/5614
+Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+---
+ drivers/gpu/drm/i915/i915_vma.c | 47 +++++++++++++++++++--------------
+ 1 file changed, 27 insertions(+), 20 deletions(-)
 
-I don't know if that is cleaner that this boolean though, individual
-inhibit value is currently not something that anybody uses in logic.
-
-Best regards,
-	Maxim Levitsky
-
-
-> 
-> > In the future maybe we can introduce a more generic 'taint'
-> > bitmap with various flags like that, indicating that the guest
-> > did something unexpected.
-> > 
-> > BTW, the other option in regard to the nested AVIC is just to ignore this issue completely.
-> > The code itself always uses vcpu_id's, thus regardless of when/how often the guest changes
-> > its apic ids, my code would just use the initial APIC ID values consistently.
-> > 
-> > In this case I won't need this boolean.
-> > 
-> > > > };
-> > > > 
-> > > > struct kvm_vm_stat {
-> > > > diff --git a/arch/x86/kvm/lapic.c b/arch/x86/kvm/lapic.c
-> > > > index 66b0eb0bda94e..8996675b3ef4c 100644
-> > > > --- a/arch/x86/kvm/lapic.c
-> > > > +++ b/arch/x86/kvm/lapic.c
-> > > > @@ -2038,6 +2038,19 @@ static void apic_manage_nmi_watchdog(struct kvm_lapic *apic, u32 lvt0_val)
-> > > > 	}
-> > > > }
-> > > > 
-> > > > +static void kvm_lapic_check_initial_apic_id(struct kvm_lapic *apic)
-> > > > +{
-> > > > +	if (kvm_apic_has_initial_apic_id(apic))
-> > > > +		return;
-> > > > +
-> > > > +	pr_warn_once("APIC ID change is unsupported by KVM");
-> > > 
-> > > It is misleading because changing xAPIC ID is supported by KVM; it just
-> > > isn't compatible with APICv. Probably this pr_warn_once() should be
-> > > removed.
-> > 
-> > Honestly since nobody uses this feature, I am not sure if to call this supported,
-> > I am sure that KVM has more bugs in regard of using non standard APIC ID.
-> > This warning might hopefuly make someone complain about it if this
-> > feature is actually used somewhere.
-> 
-> Now I got you. It is fine to me.
-> 
-
+diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
+index 4f6db539571a..4a5222fc3a4a 100644
+--- a/drivers/gpu/drm/i915/i915_vma.c
++++ b/drivers/gpu/drm/i915/i915_vma.c
+@@ -23,6 +23,7 @@
+  */
+ 
+ #include <linux/sched/mm.h>
++#include <linux/dma-fence-array.h>
+ #include <drm/drm_gem.h>
+ 
+ #include "display/intel_frontbuffer.h"
+@@ -1823,6 +1824,20 @@ int _i915_vma_move_to_active(struct i915_vma *vma,
+ 	if (unlikely(err))
+ 		return err;
+ 
++	/* Reserve fences slot early to prevent an allocation after preparing
++	 * the workload and associating fences with dma_resv.
++	 */
++	if (fence && !(flags & __EXEC_OBJECT_NO_RESERVE)) {
++		struct dma_fence *curr;
++		int idx;
++
++		dma_fence_array_for_each(curr, idx, fence)
++			;
++		err = dma_resv_reserve_fences(vma->obj->base.resv, idx);
++		if (unlikely(err))
++			return err;
++	}
++
+ 	if (flags & EXEC_OBJECT_WRITE) {
+ 		struct intel_frontbuffer *front;
+ 
+@@ -1832,31 +1847,23 @@ int _i915_vma_move_to_active(struct i915_vma *vma,
+ 				i915_active_add_request(&front->write, rq);
+ 			intel_frontbuffer_put(front);
+ 		}
++	}
+ 
+-		if (!(flags & __EXEC_OBJECT_NO_RESERVE)) {
+-			err = dma_resv_reserve_fences(vma->obj->base.resv, 1);
+-			if (unlikely(err))
+-				return err;
+-		}
++	if (fence) {
++		struct dma_fence *curr;
++		enum dma_resv_usage usage;
++		int idx;
+ 
+-		if (fence) {
+-			dma_resv_add_fence(vma->obj->base.resv, fence,
+-					   DMA_RESV_USAGE_WRITE);
++		obj->read_domains = 0;
++		if (flags & EXEC_OBJECT_WRITE) {
++			usage = DMA_RESV_USAGE_WRITE;
+ 			obj->write_domain = I915_GEM_DOMAIN_RENDER;
+-			obj->read_domains = 0;
+-		}
+-	} else {
+-		if (!(flags & __EXEC_OBJECT_NO_RESERVE)) {
+-			err = dma_resv_reserve_fences(vma->obj->base.resv, 1);
+-			if (unlikely(err))
+-				return err;
++		} else {
++			usage = DMA_RESV_USAGE_READ;
+ 		}
+ 
+-		if (fence) {
+-			dma_resv_add_fence(vma->obj->base.resv, fence,
+-					   DMA_RESV_USAGE_READ);
+-			obj->write_domain = 0;
+-		}
++		dma_fence_array_for_each(curr, idx, fence)
++			dma_resv_add_fence(vma->obj->base.resv, curr, usage);
+ 	}
+ 
+ 	if (flags & EXEC_OBJECT_NEEDS_FENCE && vma->fence)
+-- 
+2.35.1
 
