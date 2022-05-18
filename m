@@ -1,51 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45ECD52B949
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 May 2022 14:05:47 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF8E652B9EC
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 May 2022 14:37:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 97B5410E0F9;
-	Wed, 18 May 2022 12:05:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC55E10F410;
+	Wed, 18 May 2022 12:37:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C49B710E0F9
- for <intel-gfx@lists.freedesktop.org>; Wed, 18 May 2022 12:05:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1652875543; x=1684411543;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=wv7RrV/4dU+ULYz1m95jPMu6IbE4Pppzko4hN0vt5oA=;
- b=DGnjrJ6Nb1THAMVraMl8I9JX0R2rMUiUcbtADkKSYIlInLiurxJ9EMZN
- Ylz8SlVAfNNaaZtydJJS41wiMnZHvw3L+1IPkUYmkqQRtj3Pngg9WAfHB
- FaOBfEYEvayH9v2Ap2lWkiXJGDOFXj8TbWsuzhAT9oXlzhpGgdYzB8FHQ
- 2IrnpcqRi6oZ3NYy2M7HkJYk49QzDKMxiaij/0Z4SOyjcyc3xzloL9Q6T
- AzavRXOBGuKQxH9yBudl9gK+7fS8BBz8RMJoXAbne5kt/D6qQRgGBpnGQ
- Uk0k5iZ0dj5lH1PrEOjg/fS1ufdnUcJAasfsixiyzxYfDJBwPamoS16Hw g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10350"; a="271768014"
-X-IronPort-AV: E=Sophos;i="5.91,234,1647327600"; d="scan'208";a="271768014"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 May 2022 05:05:43 -0700
-X-IronPort-AV: E=Sophos;i="5.91,234,1647327600"; d="scan'208";a="700574618"
-Received: from unknown (HELO intel.com) ([10.237.72.65])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 May 2022 05:05:41 -0700
-Date: Wed, 18 May 2022 15:05:44 +0300
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <20220518120544.GA28397@intel.com>
-References: <20220518105946.28179-1-stanislav.lisovskiy@intel.com>
- <87ee0rdq01.fsf@intel.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 95FFA10F40B
+ for <intel-gfx@lists.freedesktop.org>; Wed, 18 May 2022 12:36:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1652877418;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=ZnwAbpuf8out8csgmDT/1EJa0Dp/wEa0FwZfSMt3EgU=;
+ b=fAbahCo0YATze7pzVH1o8kv8t2+O6shAnWtV7O3l+vYgAgsIInJZhPpdGOfkijssluul6p
+ yO+N2GsWiInu8ajvGLErUteZWsrzu/deO/4AnbVZ/6qvedK39vMNl65Z5lJquHa54MV9ky
+ y8f2A6fNIAWzZup1inISYRJpFrFM4p4=
+Received: from mimecast-mx02.redhat.com (mx3-rdu2.redhat.com
+ [66.187.233.73]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-382-rJch5im4PDmw0Q0Y98zPcg-1; Wed, 18 May 2022 08:36:52 -0400
+X-MC-Unique: rJch5im4PDmw0Q0Y98zPcg-1
+Received: from smtp.corp.redhat.com (int-mx01.intmail.prod.int.rdu2.redhat.com
+ [10.11.54.1])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx02.redhat.com (Postfix) with ESMTPS id AC5BF398CA60;
+ Wed, 18 May 2022 12:36:51 +0000 (UTC)
+Received: from starship (unknown [10.40.192.55])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 0B23940CF8EE;
+ Wed, 18 May 2022 12:36:45 +0000 (UTC)
+Message-ID: <670fdf36585b1bf7c367cff4ab0653f4c7de8808.camel@redhat.com>
+From: Maxim Levitsky <mlevitsk@redhat.com>
+To: Chao Gao <chao.gao@intel.com>
+Date: Wed, 18 May 2022 15:36:44 +0300
+In-Reply-To: <20220518115056.GA18087@gao-cwp>
+References: <20220427200314.276673-1-mlevitsk@redhat.com>
+ <20220427200314.276673-3-mlevitsk@redhat.com>
+ <20220518082811.GA8765@gao-cwp>
+ <8c78939bf01a98554696add10e17b07631d97a28.camel@redhat.com>
+ <20220518115056.GA18087@gao-cwp>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.36.5 (3.36.5-2.fc32) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87ee0rdq01.fsf@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Write zero wms if we disable
- planes for icl+
+Content-Transfer-Encoding: 7bit
+X-Scanned-By: MIMEDefang 2.84 on 10.11.54.1
+Subject: Re: [Intel-gfx] [RFC PATCH v3 02/19] KVM: x86: inhibit APICv/AVIC
+ when the guest and/or host changes apic id/base from the defaults.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,127 +66,97 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Wanpeng Li <wanpengli@tencent.com>, kvm@vger.kernel.org,
+ David Airlie <airlied@linux.ie>, Dave Hansen <dave.hansen@linux.intel.com>,
+ dri-devel@lists.freedesktop.org, "H. Peter
+ Anvin" <hpa@zytor.com>, Brijesh Singh <brijesh.singh@amd.com>,
+ Joerg Roedel <joro@8bytes.org>, x86@kernel.org, Ingo Molnar <mingo@redhat.com>,
+ Tom Lendacky <thomas.lendacky@amd.com>, intel-gfx@lists.freedesktop.org,
+ Borislav Petkov <bp@alien8.de>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Gleixner <tglx@linutronix.de>, intel-gvt-dev@lists.freedesktop.org,
+ Jim Mattson <jmattson@google.com>, Sean Christopherson <seanjc@google.com>,
+ linux-kernel@vger.kernel.org, Paolo Bonzini <pbonzini@redhat.com>,
+ Vitaly Kuznetsov <vkuznets@redhat.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, May 18, 2022 at 02:44:30PM +0300, Jani Nikula wrote:
-> On Wed, 18 May 2022, Stanislav Lisovskiy <stanislav.lisovskiy@intel.com> wrote:
-> > Otherwise we seem to get FIFO underruns. It is being disabled
-> > anyway, so kind of logical to write those as zeroes, even if
-> > disabling is temporary.
-> >
-> > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> > ---
-> >  .../drm/i915/display/skl_universal_plane.c    |  2 +-
-> >  drivers/gpu/drm/i915/intel_pm.c               | 46 +++++++++++++++++++
-> >  drivers/gpu/drm/i915/intel_pm.h               |  2 +
-> >  3 files changed, 49 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> > index caa03324a733..c0251189c042 100644
-> > --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> > +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> > @@ -633,7 +633,7 @@ icl_plane_disable_arm(struct intel_plane *plane,
-> >  	if (icl_is_hdr_plane(dev_priv, plane_id))
-> >  		intel_de_write_fw(dev_priv, PLANE_CUS_CTL(pipe, plane_id), 0);
-> >  
-> > -	skl_write_plane_wm(plane, crtc_state);
-> > +	skl_write_zero_plane_wm(plane, crtc_state);
-> >  
-> >  	intel_psr2_disable_plane_sel_fetch(plane, crtc_state);
-> >  	intel_de_write_fw(dev_priv, PLANE_CTL(pipe, plane_id), 0);
-> > diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-> > index ee0047fdc95d..2470c037bfae 100644
-> > --- a/drivers/gpu/drm/i915/intel_pm.c
-> > +++ b/drivers/gpu/drm/i915/intel_pm.c
-> > @@ -5885,6 +5885,52 @@ void skl_write_plane_wm(struct intel_plane *plane,
-> >  				    PLANE_NV12_BUF_CFG(pipe, plane_id), ddb_y);
-> >  }
-> >  
-> > +void skl_write_zero_plane_wm(struct intel_plane *plane,
-> > +			     const struct intel_crtc_state *crtc_state)
-> > +{
-> > +	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
-> > +	int level, max_level = ilk_wm_max_level(dev_priv);
-> > +	enum plane_id plane_id = plane->id;
-> > +	enum pipe pipe = plane->pipe;
-> > +	struct skl_pipe_wm pipe_wm;
-> > +	const struct skl_ddb_entry *ddb =
-> > +		&crtc_state->wm.skl.plane_ddb[plane_id];
-> > +	const struct skl_ddb_entry *ddb_y =
-> > +		&crtc_state->wm.skl.plane_ddb_y[plane_id];
-> > +
-> > +	for (level = 0; level <= max_level; level++) {
+On Wed, 2022-05-18 at 19:51 +0800, Chao Gao wrote:
+> On Wed, May 18, 2022 at 12:50:27PM +0300, Maxim Levitsky wrote:
+> > > > struct kvm_arch {
+> > > > @@ -1258,6 +1260,7 @@ struct kvm_arch {
+> > > > 	hpa_t	hv_root_tdp;
+> > > > 	spinlock_t hv_root_tdp_lock;
+> > > > #endif
+> > > > +	bool apic_id_changed;
+> > > 
+> > > What's the value of this boolean? No one reads it.
+> > 
+> > I use it in later patches to kill the guest during nested VM entry 
+> > if it attempts to use nested AVIC after any vCPU changed APIC ID.
+> > 
+> > I mentioned this boolean in the commit description.
+> > 
+> > This boolean avoids the need to go over all vCPUs and checking
+> > if they still have the initial apic id.
 > 
-> Not your doing here, but why have we adopted this error prone inclusive
-> max that always makes you take a double look in the for loops?!
-> 
-> BR,
-> Jani.
+> Do you want to kill the guest if APIC base got changed? If yes,
+> you can check if APICV_INHIBIT_REASON_RO_SETTINGS is set and save
+> the boolean.
 
-No clue, really. It seems to be used same way all over the place in
-intel_pm.c. I was suggesting there is some smart reasoning behind this,
-so simply follow the common approach.
+Yep, I thrown in the apic base just because I can. It doesn't matter to 
+my nested AVIC logic at all, but since it is also something that guests
+don't change, I also don't care if this will lead to inhibit and
+killing the guest if it attempts to use nested AVIC.
 
-For me it is more confusing that apparently it is called "ilk_*" which
-is IronLake probably, however we use it everywhere.
-I would call it simple i915_wm_max_level and make it determine itself based on
-dev_priv which platform it is..
+That boolean should have the same value as the APICV_INHIBIT_REASON_RO_SETTINGS
+inhibit, so yes I can instead check if the inhibit is active.
 
-Stan
+I don't know if that is cleaner that this boolean though, individual
+inhibit value is currently not something that anybody uses in logic.
 
+Best regards,
+	Maxim Levitsky
 
 
 > 
-> > +		pipe_wm.planes[plane_id].wm[level].blocks = 0;
-> > +		pipe_wm.planes[plane_id].wm[level].lines = 0;
-> > +	}
-> > +
-> > +	pipe_wm.planes[plane_id].trans_wm.blocks = 0;
-> > +	pipe_wm.planes[plane_id].trans_wm.lines = 0;
-> > +
-> > +	for (level = 0; level <= max_level; level++)
-> > +		skl_write_wm_level(dev_priv, PLANE_WM(pipe, plane_id, level),
-> > +				   skl_plane_wm_level(&pipe_wm, plane_id, level));
-> > +
-> > +	skl_write_wm_level(dev_priv, PLANE_WM_TRANS(pipe, plane_id),
-> > +			   skl_plane_trans_wm(&pipe_wm, plane_id));
-> > +
-> > +	if (HAS_HW_SAGV_WM(dev_priv)) {
-> > +		const struct skl_plane_wm *wm = &pipe_wm.planes[plane_id];
-> > +
-> > +		skl_write_wm_level(dev_priv, PLANE_WM_SAGV(pipe, plane_id),
-> > +				   &wm->sagv.wm0);
-> > +		skl_write_wm_level(dev_priv, PLANE_WM_SAGV_TRANS(pipe, plane_id),
-> > +				   &wm->sagv.trans_wm);
-> > +	}
-> > +
-> > +	skl_ddb_entry_write(dev_priv,
-> > +			    PLANE_BUF_CFG(pipe, plane_id), ddb);
-> > +
-> > +	if (DISPLAY_VER(dev_priv) < 11)
-> > +		skl_ddb_entry_write(dev_priv,
-> > +				    PLANE_NV12_BUF_CFG(pipe, plane_id), ddb_y);
-> > +}
-> > +
-> > +
-> >  void skl_write_cursor_wm(struct intel_plane *plane,
-> >  			 const struct intel_crtc_state *crtc_state)
-> >  {
-> > diff --git a/drivers/gpu/drm/i915/intel_pm.h b/drivers/gpu/drm/i915/intel_pm.h
-> > index 50604cf7398c..fb0ac4f143ab 100644
-> > --- a/drivers/gpu/drm/i915/intel_pm.h
-> > +++ b/drivers/gpu/drm/i915/intel_pm.h
-> > @@ -61,6 +61,8 @@ bool skl_wm_level_equals(const struct skl_wm_level *l1,
-> >  bool skl_ddb_allocation_overlaps(const struct skl_ddb_entry *ddb,
-> >  				 const struct skl_ddb_entry *entries,
-> >  				 int num_entries, int ignore_idx);
-> > +void skl_write_zero_plane_wm(struct intel_plane *plane,
-> > +			     const struct intel_crtc_state *crtc_state);
-> >  void skl_write_plane_wm(struct intel_plane *plane,
-> >  			const struct intel_crtc_state *crtc_state);
-> >  void skl_write_cursor_wm(struct intel_plane *plane,
+> > In the future maybe we can introduce a more generic 'taint'
+> > bitmap with various flags like that, indicating that the guest
+> > did something unexpected.
+> > 
+> > BTW, the other option in regard to the nested AVIC is just to ignore this issue completely.
+> > The code itself always uses vcpu_id's, thus regardless of when/how often the guest changes
+> > its apic ids, my code would just use the initial APIC ID values consistently.
+> > 
+> > In this case I won't need this boolean.
+> > 
+> > > > };
+> > > > 
+> > > > struct kvm_vm_stat {
+> > > > diff --git a/arch/x86/kvm/lapic.c b/arch/x86/kvm/lapic.c
+> > > > index 66b0eb0bda94e..8996675b3ef4c 100644
+> > > > --- a/arch/x86/kvm/lapic.c
+> > > > +++ b/arch/x86/kvm/lapic.c
+> > > > @@ -2038,6 +2038,19 @@ static void apic_manage_nmi_watchdog(struct kvm_lapic *apic, u32 lvt0_val)
+> > > > 	}
+> > > > }
+> > > > 
+> > > > +static void kvm_lapic_check_initial_apic_id(struct kvm_lapic *apic)
+> > > > +{
+> > > > +	if (kvm_apic_has_initial_apic_id(apic))
+> > > > +		return;
+> > > > +
+> > > > +	pr_warn_once("APIC ID change is unsupported by KVM");
+> > > 
+> > > It is misleading because changing xAPIC ID is supported by KVM; it just
+> > > isn't compatible with APICv. Probably this pr_warn_once() should be
+> > > removed.
+> > 
+> > Honestly since nobody uses this feature, I am not sure if to call this supported,
+> > I am sure that KVM has more bugs in regard of using non standard APIC ID.
+> > This warning might hopefuly make someone complain about it if this
+> > feature is actually used somewhere.
 > 
-> -- 
-> Jani Nikula, Intel Open Source Graphics Center
+> Now I got you. It is fine to me.
+> 
+
+
