@@ -2,111 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9380E52BDAF
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 May 2022 17:12:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FCAF52BDB2
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 May 2022 17:19:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7BC1B10F034;
-	Wed, 18 May 2022 15:12:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7AEF910ED2E;
+	Wed, 18 May 2022 15:19:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com
- (mail-sn1anam02on2051.outbound.protection.outlook.com [40.107.96.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 43F8F10E2FC;
- Wed, 18 May 2022 15:12:51 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=gSSMBKvXfLjeITBsv0vmD/+sVos8ZgS2+TKe4AtrLPILeMy/3rGR2k9Pn/vdvUMIUJOM8zVHumLlWgl99TpVgPlOU6nqebIxtOoUqkKOx2nuAYr3UPaslmtSkwy2/y+ETLZIHJK7wsBgMLhEY/FhpjoB0SBzFMCELc6tG5McwM2uhqhT+/0ssb7KQfO1bOIm3rVjUkqOzFOOF346WoxO1nNuvmejHGMky/AIA2LKDMIP8zBGjHyuYaVLL1RwwmZPf6DGgsQmU88TYQSuLOhCYZ78Le7bOfPsarz27Ly/ESn6MbSTm+3QbLRBbQDUWHMUnylfFWq69H2ew+SclJolvw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wTGsz5wxR/hbfwvCtwIMRLzkaQrTyy4FyPBgjvizNmw=;
- b=QFi5Ye/2rCyImWvCAz7jHs0f3rLocdwuCjv/eEJONPg1qdxl+TWh79gFIFK2i0Dmz0UWzlcyCIeGRpgXJ8jMCX2r8qL3Wrj5Py/frziSjSd0q997peDq6wnRpbNIopQ7byL4rO2KmGLPfqWuvxM+7wZnGb7EDFm0sG3aHIEwcodY5RyJIN08YkPzaContLxfSY833U0XsCxiijWmTJOxT/1STHTOVNW/CFx2CFslORT4pEjOhV03ID3BuaJYJFL9kDqun+QgTXdJpYWphb9PN2LFSdvXgU6tSS5rac5+l+9hcz2hYuFoVBi4mcguGdXi01sBlW4eX0SRN4MZnu6Dgw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wTGsz5wxR/hbfwvCtwIMRLzkaQrTyy4FyPBgjvizNmw=;
- b=ULdX2/EXygPf8TXdAejoeAh42Y4coNVTvmNNIGcBErEjjWeTq8nEtP6+IU2H3Q3w/48SJXGbwSulGs3cN7uxW+gHHq8ZhP1fQV7vFfdrcrDc8TLjy9Di+FIbON7MbfobaX/wI/MksE+hgWk7m5YcfrTdHM6JItpClG1fldQTGvNic9/mTEkfQ2cS6Bf386jQ+IUMgxtkpb8KpxIgn1zNEClpVmBUXtL3VqUq6LyBuXsoSnY8q7K1beIcyfn3Fuy0vkHt/0XamxNK+DwV2ltzystHFKe7cqoD/ABproBb8OdxvzW2wg4JHtIlwg7dRj+Bz0PVaJGidWPkZB0ceDbW0Q==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from MN2PR12MB4192.namprd12.prod.outlook.com (2603:10b6:208:1d5::15)
- by BN8PR12MB2931.namprd12.prod.outlook.com (2603:10b6:408:6d::25)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5273.13; Wed, 18 May
- 2022 15:12:48 +0000
-Received: from MN2PR12MB4192.namprd12.prod.outlook.com
- ([fe80::ec2d:9167:1b47:2db2]) by MN2PR12MB4192.namprd12.prod.outlook.com
- ([fe80::ec2d:9167:1b47:2db2%7]) with mapi id 15.20.5273.014; Wed, 18 May 2022
- 15:12:48 +0000
-Date: Wed, 18 May 2022 12:12:47 -0300
-From: Jason Gunthorpe <jgg@nvidia.com>
-To: Matthew Rosato <mjrosato@linux.ibm.com>
-Message-ID: <20220518151247.GI1343366@nvidia.com>
-References: <20220517180851.166538-1-mjrosato@linux.ibm.com>
- <20220517180851.166538-2-mjrosato@linux.ibm.com>
- <2e51b388-48d0-4689-07f4-65f607dbce59@linux.ibm.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2e51b388-48d0-4689-07f4-65f607dbce59@linux.ibm.com>
-X-ClientProxiedBy: BLAPR03CA0093.namprd03.prod.outlook.com
- (2603:10b6:208:32a::8) To MN2PR12MB4192.namprd12.prod.outlook.com
- (2603:10b6:208:1d5::15)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F159B10ED2E
+ for <intel-gfx@lists.freedesktop.org>; Wed, 18 May 2022 15:19:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1652887169; x=1684423169;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=UIvRc2jz/gI9bhig/fKm/VJzVEtOiByKP9FPaxPVcBw=;
+ b=Ii7u/5SncNFXvD4ibkIWwZ5TmzfLd2V6Odu8TvXwFyWDPBRPag80mIIj
+ tlZSoWs29P2dX0iNVUzYsM5HT3GxlFK6t1ZeXKz3Tptqe1FP/XbGewENW
+ nrgdMiME4BR5NFqSKTRo/4gT4YcG09lVM4yKyCnDSaPvII8IgmlIb5QpH
+ qniFiPI3nzoykV5p0MnTvS7Y2GW9iLmeiGxJyazBHL6DKA47eVQPukjhD
+ YjJVcfR9/vll24idkqyJVpcnMmBDUyOkjmid9cShEsvUuLXG5vbkwecwh
+ 1KCdlhIkTTH2lbboM2g+1om/O2Q2xXjg3rTf0eim/ADKdVwWSKg++TDgk g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10351"; a="270548569"
+X-IronPort-AV: E=Sophos;i="5.91,235,1647327600"; d="scan'208";a="270548569"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 May 2022 08:19:29 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.91,235,1647327600"; d="scan'208";a="556369148"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orsmga002.jf.intel.com with ESMTP; 18 May 2022 08:19:28 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27; Wed, 18 May 2022 08:19:27 -0700
+Received: from fmsmsx610.amr.corp.intel.com ([10.18.126.90]) by
+ fmsmsx610.amr.corp.intel.com ([10.18.126.90]) with mapi id 15.01.2308.027;
+ Wed, 18 May 2022 08:19:27 -0700
+From: "Gupta, Anshuman" <anshuman.gupta@intel.com>
+To: =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Thread-Topic: [Intel-gfx] [PATCH 7/7] drm/i915/rpm: Enable D3Cold VRAM SR
+ Support
+Thread-Index: AQHYarhFaf2Lz77KB0+k0zlcOVePMq0lI2iA//+ZN4A=
+Date: Wed, 18 May 2022 15:19:27 +0000
+Message-ID: <ee7969aef0594aa7bb9d76e8e657db6e@intel.com>
+References: <20220518130716.10936-1-anshuman.gupta@intel.com>
+ <20220518130716.10936-8-anshuman.gupta@intel.com>
+ <YoT/iw8w06n+ITP4@intel.com>
+In-Reply-To: <YoT/iw8w06n+ITP4@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 11.6.401.20
+dlp-reaction: no-action
+x-originating-ip: [10.22.254.132]
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 0648f6e1-938c-4de5-5a37-08da38e0de67
-X-MS-TrafficTypeDiagnostic: BN8PR12MB2931:EE_
-X-Microsoft-Antispam-PRVS: <BN8PR12MB29316D4D84DE88C99AEDE9B6C2D19@BN8PR12MB2931.namprd12.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: I30a7tiJoE7nybazReDU8lkxpsCR+nE/H5B+FFu/zeVnLpw0NjP0c4UaDIOG3R9bl9XMRnIx4uWoaYjCOYiLHFx3qYmVg51gAhSWFoBVRmXnprCxxPQyXjNv7tPufrP9PfVTq27vTf8tr0kqfLVEaY711TEfPN7kCp/SMjLhh8O/S5j7CET7yN+x4SE9fa3cSLZBsZaMzk+jvAuVLaasSWD8rDV65hMhk9oyVwORIig0hfvQwr5nlEHZWyJ/oKzv6OoebL7Os793HVnvGGH6BEw6oRRoAJTsxL+8tYcgXDNRQXgG6cJlyPgn0DewO9rkTsdL6Br2S4eJlevAWlz8kXSIF7sseVNSvbm4ZbMOf9/JpqEqbCerIqggomu/J0HUo+b7VivXbs5sX0cDHZpUBkmhB3I2k+cyx5Gcd0MFf+goK09dNMfIZ/aYvfwHHxfbD0A0li+2GSABCYWGVmMQ2e8WNXnXJjUNTil5jsrdKmn2r2zmm55ltX0Vmd39c17efpU6W+OXyoBcyAobSC8s4Nk2V61Av9D4B/96Z7q5ndulrz//2lgOwkkHQq+Z+hhWpEKAGCoBA0mlMpG0+NCjAEDaEOrEqc2OKBkdnuS+kLTqFiXC2VtyIE6GGG7dEJ2P9gHtOs6pKS8EHTyppQvfOw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN2PR12MB4192.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230001)(4636009)(366004)(53546011)(33656002)(36756003)(6506007)(1076003)(6512007)(83380400001)(6486002)(26005)(8676002)(4326008)(66476007)(66556008)(38100700002)(2616005)(508600001)(7416002)(8936002)(6916009)(86362001)(316002)(2906002)(186003)(5660300002)(66946007);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?aTJwgm1jQ9CCs8YbRNzM7qyuwkEmzvBXUeyQATbuL3NhMdKnZtCvWK3bF6ei?=
- =?us-ascii?Q?haqiyZ2Pp2WyXvC+bJTWLsSQVkiE1RxVe2cZy2q8LDVXFej8bvi9zxENfusp?=
- =?us-ascii?Q?bDw70aG3Yx37zzlrODLOB+7g2jAcalWexC+D0MqwEA9m6eNb2x1jKxDr/cu1?=
- =?us-ascii?Q?+yl00NcqSAgu19mLJscJXsHY8xUW/hPjiXHYY6I7RBsgr3YrBaIfFLWjaMn0?=
- =?us-ascii?Q?ERc2WlDwlEorXeNLLMJzhxrleQOEIX19m4oAc56P5kl3yzSqDiLYW6+4hBED?=
- =?us-ascii?Q?VRz2Wen3ipi7UcDvOpP5RkcAhxyDJMYhyxuY3IgjsY9qT7qrYnpub7JMcYXd?=
- =?us-ascii?Q?SOxqSWNEnK3aGNlSucfgEMm8ConT1R5UvQ+B5JNNPwsNjLPkw8hMkqb9apmh?=
- =?us-ascii?Q?d8A96SnVNjhwrMh3q1KesfjMWukErIk3Wg0fSy7AlDg5iBeHWOxeyeFojm4F?=
- =?us-ascii?Q?Hob07/i8q940eCrDSglaClgRrjBb9iiDrTqg3Jlrzxc3SPbv0TDQLkCQpa5V?=
- =?us-ascii?Q?Y51atY+iOyrj5XpFAqfPFNgu7Vx6229sml6woHnfO/5lnkDh18PnugCi2gDZ?=
- =?us-ascii?Q?g60rY9XuUPBMErFYDGeGayCoXjtgDC/q+oVdZl9NVoiINTgyDSaYWZHLIpHW?=
- =?us-ascii?Q?56Wr75CdOe0nZSUC/4JgOzQzTIXe+8GztD6UOPJLaXVjK2HMao0cGVIetW4i?=
- =?us-ascii?Q?7nUJEx1HWzIyheyP8ydzms2BP4pGcIIe1dFsNoF4mF2R7VNx4LZyTODuv9B4?=
- =?us-ascii?Q?daqyLD7kC6IQSQgWUoQiODT+DyUbrT4Xdq1vukZyUCkIoTpSD++iDyiXB0gy?=
- =?us-ascii?Q?c56C0eAyLS2+DCo2w/sXv0cMJ6223wOxmC23uhEXSthW7JW2+rv68ULJPUJ3?=
- =?us-ascii?Q?x3dwLbAs7BDatviUtSZI97GEWoP6BVHjhG/gBtwbcI+wFbG3w7UUytSqYTML?=
- =?us-ascii?Q?JAGd7Nm/bf5LsvQeo24vkoIls1RDkEv9A3Eleu6o4ooXBlS3/E71Xl1rC5A+?=
- =?us-ascii?Q?f1vrBsCRF3mlEYPO2BLWuXK9ZRtitfdRRy80CRSEtTak+RJqMxzcjLrKwKF5?=
- =?us-ascii?Q?rWe1wgRpTx/QeyFTB61H6IT2/To1HgPhz9G9x+dP4KSTbywu+beICeDPHMtZ?=
- =?us-ascii?Q?rSnLBrj0H2ENc42kND6eQsq37KOaPT1+6LvsHrXV7Tt7Cl3Ab37eVYHHX++Z?=
- =?us-ascii?Q?gpngL86/rOimKvFrWy5bDs7KlFwYKYnPl0oD8TREE+b9YG6AiO8P3F4syjzV?=
- =?us-ascii?Q?cJ5BXzbbvU4EHOaDrBv+cGYJ/O40lXQgUUjUwh+EW+wcZc3a1w4E38fr4Evn?=
- =?us-ascii?Q?mowd0ZGDA1tqto7OMkrGzoaOt+6b2RPwSkmnFHVp2Zxr5C8DYoL8FzF+pMS7?=
- =?us-ascii?Q?PX/hzycCcW5L/8KWEoETXJ6V8d4mfQE8SHY6fS8b9d5S7f+aL1jYi4QYz3aC?=
- =?us-ascii?Q?QeaqYDD1U3VzX663qneX3yqoy7pMBzMVgN5VaTB1FuOcrxYz04mezO79O2/Q?=
- =?us-ascii?Q?3cA7yxt8vQo8HJiBYp+kw0r3WESrB1FxZ/V6gFisXlBxwg1C9l8YfD7PVcVV?=
- =?us-ascii?Q?JTncL6meHtPHlIKsjw4nM3sE++kEqLPAtNgroAvS9AB2tj3+5t/um9YOyuMK?=
- =?us-ascii?Q?aqyMGt8z0DYra6wgEVadOciDKHZ+hl69vymkNky/xhIQ+kEguJxGxsKPqSH6?=
- =?us-ascii?Q?vEaEoTdjI+e3S//J8M70QQAw7y3D4UsjvPiJ/vOj42ohbQJ1PE7NYms0KwYr?=
- =?us-ascii?Q?l/i9H07d0g=3D=3D?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0648f6e1-938c-4de5-5a37-08da38e0de67
-X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB4192.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 May 2022 15:12:48.2428 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Ur2wD2C+vfI4Da+JJ+v1NdVjt5a/iIH5AIP5TzNyCKIP6AEmZenfO++Fj2zakJb/
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB2931
-Subject: Re: [Intel-gfx] [PATCH 1/1] vfio: remove VFIO_GROUP_NOTIFY_SET_KVM
+Subject: Re: [Intel-gfx] [PATCH 7/7] drm/i915/rpm: Enable D3Cold VRAM SR
+ Support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -119,53 +76,126 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jjherne@linux.ibm.com, akrowiak@linux.ibm.com, kvm@vger.kernel.org,
- hch@infradead.org, linux-s390@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- cohuck@redhat.com, linux-kernel@vger.kernel.org, pasic@linux.ibm.com,
- borntraeger@linux.ibm.com, intel-gvt-dev@lists.freedesktop.org
+Cc: "Nikula, Jani" <jani.nikula@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Wilson,
+ Chris P" <chris.p.wilson@intel.com>, "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, May 18, 2022 at 10:37:48AM -0400, Matthew Rosato wrote:
-> On 5/17/22 2:08 PM, Matthew Rosato wrote:
-> > Rather than relying on a notifier for associating the KVM with
-> > the group, let's assume that the association has already been
-> > made prior to device_open.  The first time a device is opened
-> > associate the group KVM with the device.
-> > 
-> > Suggested-by: Jason Gunthorpe <jgg@nvidia.com>
-> > Signed-off-by: Matthew Rosato <mjrosato@linux.ibm.com>
-> 
-> ...
-> 
-> > diff --git a/drivers/vfio/vfio.c b/drivers/vfio/vfio.c
-> > index cfcff7764403..c5d421eda275 100644
-> > +++ b/drivers/vfio/vfio.c
-> > @@ -10,6 +10,7 @@
-> >    * Author: Tom Lyon, pugs@cisco.com
-> >    */
-> > +#include "linux/kvm_host.h"
-> >   #include <linux/cdev.h>
-> >   #include <linux/compat.h>
-> >   #include <linux/device.h>
-> > @@ -1083,6 +1084,13 @@ static struct file *vfio_device_open(struct vfio_device *device)
-> >   	mutex_lock(&device->dev_set->lock);
-> >   	device->open_count++;
-> > +	down_write(&device->group->group_rwsem);
-> > +	if (device->open_count == 1 && device->group->kvm) {
-> > +		device->kvm = device->group->kvm;
-> > +		kvm_get_kvm(device->kvm);
-> 
-> Did some more compile testing, since vfio has no hard kvm dependency,
-> kvm_get_kvm and kvm_put_kvm are an issue if KVM is a module while vfio is
-> built-in...
 
-Ugh, my other plan was to have the driver itself capture the kvm, ie
-we lock the group_rwsem to keep the group->kvm valid and then pass the
-kvm to open_device in some way, then the driver can kvm_get_kvm() it
 
-Alternatively, I don't know why kvm_get_kvm() is an exported symbol
-when it is just calling refcount_inc() - inlining it would be an
-improvement I think.
-
-Jason
+> -----Original Message-----
+> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Sent: Wednesday, May 18, 2022 7:46 PM
+> To: Gupta, Anshuman <anshuman.gupta@intel.com>
+> Cc: intel-gfx@lists.freedesktop.org; Nikula, Jani <jani.nikula@intel.com>=
+;
+> Wilson, Chris P <chris.p.wilson@intel.com>; Vivi, Rodrigo
+> <rodrigo.vivi@intel.com>
+> Subject: Re: [Intel-gfx] [PATCH 7/7] drm/i915/rpm: Enable D3Cold VRAM SR
+> Support
+>=20
+> On Wed, May 18, 2022 at 06:37:16PM +0530, Anshuman Gupta wrote:
+> > Intel Client DGFX card supports D3Cold with two option.
+> > D3Cold-off zero watt, D3Cold-VRAM Self Refresh.
+> >
+> > i915 requires to evict the lmem objects to smem in order to support
+> > D3Cold-Off, which increases i915 the suspend/resume latency. Enabling
+> > VRAM Self Refresh feature optimize the latency with additional power
+> > cost which required to retain the lmem.
+> >
+> > Adding intel_runtime_idle (runtime_idle callback) to enable VRAM_SR,
+> > it will be used for policy to choose between D3Cold-off vs
+> > D3Cold-VRAM_SR.
+> >
+> > Since we have introduced i915 runtime_idle callback.
+> > It need to be warranted that Runtime PM Core invokes runtime_idle
+> > callback when runtime usages count becomes zero. That requires to use
+> > pm_runtime_put instead of pm_runtime_put_autosuspend.
+> >
+> > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > Cc: Chris Wilson <chris.p.wilson@intel.com>
+> > Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/i915_driver.c      | 26 +++++++++++++++++++++++++
+> >  drivers/gpu/drm/i915/intel_runtime_pm.c |  3 +--
+> >  2 files changed, 27 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/i915_driver.c
+> > b/drivers/gpu/drm/i915/i915_driver.c
+> > index 5a9d5529fc90..bbb11c632799 100644
+> > --- a/drivers/gpu/drm/i915/i915_driver.c
+> > +++ b/drivers/gpu/drm/i915/i915_driver.c
+> > @@ -1541,6 +1541,31 @@ static int i915_pm_restore(struct device *kdev)
+> >  	return i915_pm_resume(kdev);
+> >  }
+> >
+> > +static int intel_runtime_idle(struct device *kdev) {
+> > +	struct drm_i915_private *dev_priv =3D kdev_to_i915(kdev);
+> > +	int ret =3D 1;
+> > +
+> > +	if (!HAS_LMEM_SR(dev_priv)) {
+> > +		/*TODO: Prepare for D3Cold-Off */
+> > +		goto out;
+> > +	}
+> > +
+> > +	disable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
+> > +
+> > +	ret =3D intel_pm_vram_sr(dev_priv, true)
+>=20
+> I don't get why this idle callback is here. Why aren't you just calling t=
+hat directly
+> from the suspend handler?
+We will be having a D3Cold policy in future to decide between D3Cold-VRAM_S=
+R and
+D3Cold-Off based upon lmem usages also  we need to evict the lmem content i=
+f=20
+D3cold-off option is used. It will be better to keep it in separate runtime=
+ idle call
+back to prepare the actual suspend.
+Thanks,
+Anshuman Gupta.
+>=20
+> > +	if (!ret)
+> > +		drm_dbg(&dev_priv->drm, "VRAM Self Refresh enabled\n");
+> > +
+> > +	enable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
+> > +
+> > +out:
+> > +	pm_runtime_mark_last_busy(kdev);
+> > +	pm_runtime_autosuspend(kdev);
+> > +
+> > +	return ret;
+> > +}
+> > +
+> >  static int intel_runtime_suspend(struct device *kdev)  {
+> >  	struct drm_i915_private *dev_priv =3D kdev_to_i915(kdev); @@ -1726,6
+> > +1751,7 @@ const struct dev_pm_ops i915_pm_ops =3D {
+> >  	.restore =3D i915_pm_restore,
+> >
+> >  	/* S0ix (via runtime suspend) event handlers */
+> > +	.runtime_idle =3D intel_runtime_idle,
+> >  	.runtime_suspend =3D intel_runtime_suspend,
+> >  	.runtime_resume =3D intel_runtime_resume,  }; diff --git
+> > a/drivers/gpu/drm/i915/intel_runtime_pm.c
+> > b/drivers/gpu/drm/i915/intel_runtime_pm.c
+> > index 6ed5786bcd29..4dade7e8a795 100644
+> > --- a/drivers/gpu/drm/i915/intel_runtime_pm.c
+> > +++ b/drivers/gpu/drm/i915/intel_runtime_pm.c
+> > @@ -492,8 +492,7 @@ static void __intel_runtime_pm_put(struct
+> > intel_runtime_pm *rpm,
+> >
+> >  	intel_runtime_pm_release(rpm, wakelock);
+> >
+> > -	pm_runtime_mark_last_busy(kdev);
+> > -	pm_runtime_put_autosuspend(kdev);
+> > +	pm_runtime_put(kdev);
+> >  }
+> >
+> >  /**
+> > --
+> > 2.26.2
+>=20
+> --
+> Ville Syrj=E4l=E4
+> Intel
