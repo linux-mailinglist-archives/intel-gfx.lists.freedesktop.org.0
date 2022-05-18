@@ -2,50 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C96752B49C
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 May 2022 10:28:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F6AE52B4AD
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 May 2022 10:38:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B01EB10EC1A;
-	Wed, 18 May 2022 08:28:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB9D5113EE8;
+	Wed, 18 May 2022 08:38:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB0C610EC1A;
- Wed, 18 May 2022 08:28:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1652862512; x=1684398512;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=5CA8FtuEdlmAndh2dvdGmeNEcE6jVfqnArBWtfSrmrA=;
- b=T77Ti53zY/cDro6twKpVk6a3ZYDPZrftjEvM7kSkp7WtVhjr9y0vL96h
- zyynd+J5uz0rMxptYFR+qu/u25bkhfiahlOVuYZ68KDm92qiadTI1Z6TH
- bGw1Q1OJlL3BH8YCztZU7eSDtFZtWMKDEVsTvrccDEm2z63brOET92W4j
- nhi6FZdQ2d1YFSoDcR1rvzGsyLzx1QkB/J4TW5U6R86DHlfAFiwtEIhD2
- eOdQ0Wh3LnrARM0D8R8NwSObMMrJgNsxVgM8eSS8xlPOopBJbe5XWOvO3
- s8IvVMYbodQ44zSjJB0JEDHx1S2vY57rhTfpB6pcz8/4vtFGtfvV6RrR3 Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10350"; a="296842855"
-X-IronPort-AV: E=Sophos;i="5.91,234,1647327600"; d="scan'208";a="296842855"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 May 2022 01:28:32 -0700
-X-IronPort-AV: E=Sophos;i="5.91,234,1647327600"; d="scan'208";a="523408190"
-Received: from gao-cwp.sh.intel.com (HELO gao-cwp) ([10.239.159.23])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 May 2022 01:28:25 -0700
-Date: Wed, 18 May 2022 16:28:17 +0800
-From: Chao Gao <chao.gao@intel.com>
-To: Maxim Levitsky <mlevitsk@redhat.com>
-Message-ID: <20220518082811.GA8765@gao-cwp>
-References: <20220427200314.276673-1-mlevitsk@redhat.com>
- <20220427200314.276673-3-mlevitsk@redhat.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 07D0C113EE8;
+ Wed, 18 May 2022 08:38:08 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id EDCF0A7DFC;
+ Wed, 18 May 2022 08:38:07 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6239695734021241730=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220427200314.276673-3-mlevitsk@redhat.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [RFC PATCH v3 02/19] KVM: x86: inhibit APICv/AVIC
- when the guest and/or host changes apic id/base from the defaults.
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
+Date: Wed, 18 May 2022 08:38:07 -0000
+Message-ID: <165286308793.21386.3401163672998476636@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220518074540.36398-1-jouni.hogander@intel.com>
+In-Reply-To: <20220518074540.36398-1-jouni.hogander@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Debugfs_statistics_interface_for_psr?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,145 +40,211 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Wanpeng Li <wanpengli@tencent.com>, kvm@vger.kernel.org,
- David Airlie <airlied@linux.ie>, Dave Hansen <dave.hansen@linux.intel.com>,
- dri-devel@lists.freedesktop.org, "H. Peter Anvin" <hpa@zytor.com>,
- Brijesh Singh <brijesh.singh@amd.com>, Joerg Roedel <joro@8bytes.org>,
- x86@kernel.org, Ingo Molnar <mingo@redhat.com>,
- Tom Lendacky <thomas.lendacky@amd.com>, intel-gfx@lists.freedesktop.org,
- Borislav Petkov <bp@alien8.de>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Gleixner <tglx@linutronix.de>, intel-gvt-dev@lists.freedesktop.org,
- Jim Mattson <jmattson@google.com>, Sean Christopherson <seanjc@google.com>,
- linux-kernel@vger.kernel.org, Paolo Bonzini <pbonzini@redhat.com>,
- Vitaly Kuznetsov <vkuznets@redhat.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Apr 27, 2022 at 11:02:57PM +0300, Maxim Levitsky wrote:
->Neither of these settings should be changed by the guest and it is
->a burden to support it in the acceleration code, so just inhibit
->it instead.
->
->Also add a boolean 'apic_id_changed' to indicate if apic id ever changed.
->
->Signed-off-by: Maxim Levitsky <mlevitsk@redhat.com>
->---
-> arch/x86/include/asm/kvm_host.h |  3 +++
-> arch/x86/kvm/lapic.c            | 25 ++++++++++++++++++++++---
-> arch/x86/kvm/lapic.h            |  8 ++++++++
-> 3 files changed, 33 insertions(+), 3 deletions(-)
->
->diff --git a/arch/x86/include/asm/kvm_host.h b/arch/x86/include/asm/kvm_host.h
->index 63eae00625bda..636df87542555 100644
->--- a/arch/x86/include/asm/kvm_host.h
->+++ b/arch/x86/include/asm/kvm_host.h
->@@ -1070,6 +1070,8 @@ enum kvm_apicv_inhibit {
-> 	APICV_INHIBIT_REASON_ABSENT,
-> 	/* AVIC is disabled because SEV doesn't support it */
-> 	APICV_INHIBIT_REASON_SEV,
->+	/* APIC ID and/or APIC base was changed by the guest */
->+	APICV_INHIBIT_REASON_RO_SETTINGS,
+--===============6239695734021241730==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-You need to add it to check_apicv_inhibit_reasons as well.
+== Series Details ==
 
-> };
-> 
-> struct kvm_arch {
->@@ -1258,6 +1260,7 @@ struct kvm_arch {
-> 	hpa_t	hv_root_tdp;
-> 	spinlock_t hv_root_tdp_lock;
-> #endif
->+	bool apic_id_changed;
+Series: drm/i915: Debugfs statistics interface for psr
+URL   : https://patchwork.freedesktop.org/series/104115/
+State : success
 
-What's the value of this boolean? No one reads it.
+== Summary ==
 
-> };
-> 
-> struct kvm_vm_stat {
->diff --git a/arch/x86/kvm/lapic.c b/arch/x86/kvm/lapic.c
->index 66b0eb0bda94e..8996675b3ef4c 100644
->--- a/arch/x86/kvm/lapic.c
->+++ b/arch/x86/kvm/lapic.c
->@@ -2038,6 +2038,19 @@ static void apic_manage_nmi_watchdog(struct kvm_lapic *apic, u32 lvt0_val)
-> 	}
-> }
-> 
->+static void kvm_lapic_check_initial_apic_id(struct kvm_lapic *apic)
->+{
->+	if (kvm_apic_has_initial_apic_id(apic))
->+		return;
->+
->+	pr_warn_once("APIC ID change is unsupported by KVM");
+CI Bug Log - changes from CI_DRM_11671 -> Patchwork_104115v1
+====================================================
 
-It is misleading because changing xAPIC ID is supported by KVM; it just
-isn't compatible with APICv. Probably this pr_warn_once() should be
-removed.
+Summary
+-------
 
->+
->+	kvm_set_apicv_inhibit(apic->vcpu->kvm,
->+			APICV_INHIBIT_REASON_RO_SETTINGS);
+  **SUCCESS**
 
-The indentation here looks incorrect to me.
-	kvm_set_apicv_inhibit(apic->vcpu->kvm,
-			      APICV_INHIBIT_REASON_RO_SETTINGS);
+  No regressions found.
 
->+
->+	apic->vcpu->kvm->arch.apic_id_changed = true;
->+}
->+
-> static int kvm_lapic_reg_write(struct kvm_lapic *apic, u32 reg, u32 val)
-> {
-> 	int ret = 0;
->@@ -2046,9 +2059,11 @@ static int kvm_lapic_reg_write(struct kvm_lapic *apic, u32 reg, u32 val)
-> 
-> 	switch (reg) {
-> 	case APIC_ID:		/* Local APIC ID */
->-		if (!apic_x2apic_mode(apic))
->+		if (!apic_x2apic_mode(apic)) {
->+
-> 			kvm_apic_set_xapic_id(apic, val >> 24);
->-		else
->+			kvm_lapic_check_initial_apic_id(apic);
->+		} else
-> 			ret = 1;
-> 		break;
-> 
->@@ -2335,8 +2350,11 @@ void kvm_lapic_set_base(struct kvm_vcpu *vcpu, u64 value)
-> 			     MSR_IA32_APICBASE_BASE;
-> 
-> 	if ((value & MSR_IA32_APICBASE_ENABLE) &&
->-	     apic->base_address != APIC_DEFAULT_PHYS_BASE)
->+	     apic->base_address != APIC_DEFAULT_PHYS_BASE) {
->+		kvm_set_apicv_inhibit(apic->vcpu->kvm,
->+				APICV_INHIBIT_REASON_RO_SETTINGS);
-> 		pr_warn_once("APIC base relocation is unsupported by KVM");
->+	}
-> }
-> 
-> void kvm_apic_update_apicv(struct kvm_vcpu *vcpu)
->@@ -2649,6 +2667,7 @@ static int kvm_apic_state_fixup(struct kvm_vcpu *vcpu,
-> 		}
-> 	}
-> 
->+	kvm_lapic_check_initial_apic_id(vcpu->arch.apic);
-> 	return 0;
-> }
-> 
->diff --git a/arch/x86/kvm/lapic.h b/arch/x86/kvm/lapic.h
->index 4e4f8a22754f9..b9c406d383080 100644
->--- a/arch/x86/kvm/lapic.h
->+++ b/arch/x86/kvm/lapic.h
->@@ -252,4 +252,12 @@ static inline u8 kvm_xapic_id(struct kvm_lapic *apic)
-> 	return kvm_lapic_get_reg(apic, APIC_ID) >> 24;
-> }
-> 
->+static inline bool kvm_apic_has_initial_apic_id(struct kvm_lapic *apic)
->+{
->+	if (apic_x2apic_mode(apic))
->+		return true;
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104115v1/index.html
 
-I suggest warning of x2apic mode:
-	if (WARN_ON_ONCE(apic_x2apic_mode(apic)))
+Participating hosts (44 -> 40)
+------------------------------
 
-Because it is weird that callers care about initial apic id when apic is
-in x2apic mode.
+  Missing    (4): bat-rpls-2 fi-rkl-11600 fi-icl-u2 bat-dg2-9 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_104115v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@gem_contexts:
+    - fi-bdw-5557u:       [PASS][1] -> [INCOMPLETE][2] ([i915#5502] / [i915#5801])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11671/fi-bdw-5557u/igt@i915_selftest@live@gem_contexts.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104115v1/fi-bdw-5557u/igt@i915_selftest@live@gem_contexts.html
+
+  * igt@i915_selftest@live@requests:
+    - fi-blb-e6850:       [PASS][3] -> [DMESG-FAIL][4] ([i915#4528])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11671/fi-blb-e6850/igt@i915_selftest@live@requests.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104115v1/fi-blb-e6850/igt@i915_selftest@live@requests.html
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-pnv-d510:        NOTRUN -> [SKIP][5] ([fdo#109271])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104115v1/fi-pnv-d510/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s0@smem:
+    - {fi-ehl-2}:         [DMESG-WARN][6] ([i915#5122]) -> [PASS][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11671/fi-ehl-2/igt@gem_exec_suspend@basic-s0@smem.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104115v1/fi-ehl-2/igt@gem_exec_suspend@basic-s0@smem.html
+
+  * igt@i915_selftest@live@gem:
+    - fi-pnv-d510:        [DMESG-FAIL][8] ([i915#4528]) -> [PASS][9]
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11671/fi-pnv-d510/igt@i915_selftest@live@gem.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104115v1/fi-pnv-d510/igt@i915_selftest@live@gem.html
+
+  * igt@i915_selftest@live@gt_timelines:
+    - {bat-adlm-1}:       [INCOMPLETE][10] ([i915#5801]) -> [PASS][11]
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11671/bat-adlm-1/igt@i915_selftest@live@gt_timelines.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104115v1/bat-adlm-1/igt@i915_selftest@live@gt_timelines.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#3576]: https://gitlab.freedesktop.org/drm/intel/issues/3576
+  [i915#4528]: https://gitlab.freedesktop.org/drm/intel/issues/4528
+  [i915#5122]: https://gitlab.freedesktop.org/drm/intel/issues/5122
+  [i915#5502]: https://gitlab.freedesktop.org/drm/intel/issues/5502
+  [i915#5763]: https://gitlab.freedesktop.org/drm/intel/issues/5763
+  [i915#5801]: https://gitlab.freedesktop.org/drm/intel/issues/5801
+  [i915#5885]: https://gitlab.freedesktop.org/drm/intel/issues/5885
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_11671 -> Patchwork_104115v1
+
+  CI-20190529: 20190529
+  CI_DRM_11671: 18756156cc1e97e635bcb4dd9da7d1465278f2c4 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6478: 7c3ceb08b633a66f77f42e596593de394da5dccc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_104115v1: 18756156cc1e97e635bcb4dd9da7d1465278f2c4 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+889d0e1fb48e drm/i915: Debugfs statistics interface for psr
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104115v1/index.html
+
+--===============6239695734021241730==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Debugfs statistics interface for psr</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/104115/">https://patchwork.freedesktop.org/series/104115/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104115v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104115v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11671 -&gt; Patchwork_104115v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104115v1/index.html</p>
+<h2>Participating hosts (44 -&gt; 40)</h2>
+<p>Missing    (4): bat-rpls-2 fi-rkl-11600 fi-icl-u2 bat-dg2-9 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_104115v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@gem_contexts:</p>
+<ul>
+<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11671/fi-bdw-5557u/igt@i915_selftest@live@gem_contexts.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104115v1/fi-bdw-5557u/igt@i915_selftest@live@gem_contexts.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5502">i915#5502</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5801">i915#5801</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@requests:</p>
+<ul>
+<li>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11671/fi-blb-e6850/igt@i915_selftest@live@requests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104115v1/fi-blb-e6850/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
+<ul>
+<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104115v1/fi-pnv-d510/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s0@smem:</p>
+<ul>
+<li>{fi-ehl-2}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11671/fi-ehl-2/igt@gem_exec_suspend@basic-s0@smem.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5122">i915#5122</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104115v1/fi-ehl-2/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gem:</p>
+<ul>
+<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11671/fi-pnv-d510/igt@i915_selftest@live@gem.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104115v1/fi-pnv-d510/igt@i915_selftest@live@gem.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_timelines:</p>
+<ul>
+<li>{bat-adlm-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11671/bat-adlm-1/igt@i915_selftest@live@gt_timelines.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5801">i915#5801</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104115v1/bat-adlm-1/igt@i915_selftest@live@gt_timelines.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11671 -&gt; Patchwork_104115v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11671: 18756156cc1e97e635bcb4dd9da7d1465278f2c4 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6478: 7c3ceb08b633a66f77f42e596593de394da5dccc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_104115v1: 18756156cc1e97e635bcb4dd9da7d1465278f2c4 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>889d0e1fb48e drm/i915: Debugfs statistics interface for psr</p>
+
+</body>
+</html>
+
+--===============6239695734021241730==--
