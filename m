@@ -2,43 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3F1052BB8D
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 May 2022 15:45:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 301E252BB9B
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 May 2022 15:53:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4AD6210E113;
-	Wed, 18 May 2022 13:45:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1AA8E10E4DA;
+	Wed, 18 May 2022 13:53:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [IPv6:2607:7c80:54:e::133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9313A10E113;
- Wed, 18 May 2022 13:45:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=In-Reply-To:Content-Type:MIME-Version
- :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=zHCFhRbJ5KoBP25J/EVA30nZjwejxa0UyBXdd6YAaF4=; b=OfkWNCZWsoLrWqd56zXTPhczAR
- Xu6/rWTNKrHA5cVITymYCU7C4/BuduKoFrwDVkllDtDmTwQwvpwjUrpdfRvTvtZo8yvfgrRuSRptz
- dGZzY66n3hdKJFC0dVStt35QHnrIiK2a4cQzs1nuLJ6CLQydPerstjr5JbjRj7wd7gXMeR4XR6Fyl
- lTd2H2/zzj/WYjDnSh3AMB/sqU3wUqKqGTptHwfo0ecsQnNijGsQ3L3sW4OrscH+mwB3FG0Q48r3G
- KNYWIuEvYvH1LmuYE5O//C/SHYngGuQagyk3HMLrbcTMYU/L6AP1FKnFK27sU4snqP8olMxHVwBBt
- SSqd4aWA==;
-Received: from hch by bombadil.infradead.org with local (Exim 4.94.2 #2 (Red
- Hat Linux)) id 1nrJzC-002LqV-JH; Wed, 18 May 2022 13:45:10 +0000
-Date: Wed, 18 May 2022 06:45:10 -0700
-From: Christoph Hellwig <hch@infradead.org>
-To: Juergen Gross <jgross@suse.com>
-Message-ID: <YoT4Zk/SxBgadq2b@infradead.org>
-References: <20220503132207.17234-1-jgross@suse.com>
- <20220503132207.17234-3-jgross@suse.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C91BA10E4DA
+ for <intel-gfx@lists.freedesktop.org>; Wed, 18 May 2022 13:52:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1652881978; x=1684417978;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=WxbZAKVRuSj4lrmcFDcKFnTvVzhsI0Ev9XBZ1TyxPzI=;
+ b=eF2LDJf/zam9sk8nYB/mW1TWpbN8CX/RFLHhyQ9yt3ZqhqP/LLBA3S+c
+ BKcHBTkfBacCd+OpV3IYTPF0GUWiu92/cxLI8yHFzJ3UwgO2Q9BW7n3Yz
+ pImFKazlpzHrVh+gEPkLicZvHEjAQUSJt4m+JMS31221DhheEMryn2lkO
+ XoBDw5bpPrWYM638RuKtWX1eHtm+VYTxWc8hM4Kw3ZvzduHNGoJ5AGBcP
+ V8kCNn3Ddxs13rB6vEG1dQCFnz7gOKDSIwguYn0OuASq5qk0tvG26ds/O
+ XdNjJIipGrQigXNoW/C2ZvldToccdtkiGUqy6kdTITVMcjnjDLv9uVTMV g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10350"; a="259249876"
+X-IronPort-AV: E=Sophos;i="5.91,235,1647327600"; d="scan'208";a="259249876"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 May 2022 06:52:58 -0700
+X-IronPort-AV: E=Sophos;i="5.91,235,1647327600"; d="scan'208";a="569480003"
+Received: from jwasiuki-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.249.133.47])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 May 2022 06:52:56 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+In-Reply-To: <YoTsVS5AaJfNe9hE@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220518113315.1305027-1-jani.nikula@intel.com>
+ <YoTsVS5AaJfNe9hE@intel.com>
+Date: Wed, 18 May 2022 16:52:53 +0300
+Message-ID: <878rqzdk22.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220503132207.17234-3-jgross@suse.com>
-X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
- bombadil.infradead.org. See http://www.infradead.org/rpr.html
-Subject: Re: [Intel-gfx] [PATCH 2/2] x86/pat: add functions to query
- specific cache mode availability
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/reg: fix undefined behavior
+ due to shift overflowing the constant
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,28 +59,91 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dave Hansen <dave.hansen@linux.intel.com>,
- Andy Lutomirski <luto@kernel.org>, Peter Zijlstra <peterz@infradead.org>,
- intel-gfx@lists.freedesktop.org, x86@kernel.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Ingo Molnar <mingo@redhat.com>,
- Borislav Petkov <bp@alien8.de>, jbeulich@suse.com,
- "H. Peter Anvin" <hpa@zytor.com>, xen-devel@lists.xenproject.org,
- Thomas Gleixner <tglx@linutronix.de>
+Cc: intel-gfx@lists.freedesktop.org, Borislav Petkov <bp@suse.de>,
+ Randy Dunlap <rdunlap@infradead.org>, Ruiqi GONG <gongruiqi1@huawei.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, May 03, 2022 at 03:22:07PM +0200, Juergen Gross wrote:
-> Some drivers are using pat_enabled() in order to test availability of
-> special caching modes (WC and UC-). This will lead to false negatives
-> in case the system was booted e.g. with the "nopat" variant and the
-> BIOS did setup the PAT MSR supporting the queried mode, or if the
-> system is running as a Xen PV guest.
-> 
-> Add test functions for those caching modes instead and use them at the
-> appropriate places.
-> 
-> For symmetry reasons export the already existing x86_has_pat_wp() for
-> modules, too.
+On Wed, 18 May 2022, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Wed, May 18, 2022 at 02:33:14PM +0300, Jani Nikula wrote:
+>> Use REG_GENMASK() and REG_FIELD_PREP() to avoid errors due to
+>> -fsanitize=3Dshift.
+>
+> I presume it's just unhappy about shifting into the sign bit?
 
-No, we never export unused functionality.
+Yeah, and apparently it also only happens on some GCC versions. *shrug*.
+
+>
+> Changes look correct:
+> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+
+Thanks,
+Jani.
+
+>
+>>=20
+>> References: https://lore.kernel.org/r/20220405151517.29753-12-bp@alien8.=
+de
+>> Reported-by: Borislav Petkov <bp@suse.de>
+>> Reported-by: Ruiqi GONG <gongruiqi1@huawei.com>
+>> Cc: Randy Dunlap <rdunlap@infradead.org>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/i915_reg.h | 32 ++++++++++++++++----------------
+>>  1 file changed, 16 insertions(+), 16 deletions(-)
+>>=20
+>> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915=
+_reg.h
+>> index 321a08281a3f..dff3f88d8090 100644
+>> --- a/drivers/gpu/drm/i915/i915_reg.h
+>> +++ b/drivers/gpu/drm/i915/i915_reg.h
+>> @@ -7607,25 +7607,25 @@ enum skl_power_gate {
+>>  #define _PORT_CLK_SEL_A			0x46100
+>>  #define _PORT_CLK_SEL_B			0x46104
+>>  #define PORT_CLK_SEL(port) _MMIO_PORT(port, _PORT_CLK_SEL_A, _PORT_CLK_=
+SEL_B)
+>> -#define  PORT_CLK_SEL_LCPLL_2700	(0 << 29)
+>> -#define  PORT_CLK_SEL_LCPLL_1350	(1 << 29)
+>> -#define  PORT_CLK_SEL_LCPLL_810		(2 << 29)
+>> -#define  PORT_CLK_SEL_SPLL		(3 << 29)
+>> -#define  PORT_CLK_SEL_WRPLL(pll)	(((pll) + 4) << 29)
+>> -#define  PORT_CLK_SEL_WRPLL1		(4 << 29)
+>> -#define  PORT_CLK_SEL_WRPLL2		(5 << 29)
+>> -#define  PORT_CLK_SEL_NONE		(7 << 29)
+>> -#define  PORT_CLK_SEL_MASK		(7 << 29)
+>> +#define  PORT_CLK_SEL_MASK		REG_GENMASK(31, 29)
+>> +#define  PORT_CLK_SEL_LCPLL_2700	REG_FIELD_PREP(PORT_CLK_SEL_MASK, 0)
+>> +#define  PORT_CLK_SEL_LCPLL_1350	REG_FIELD_PREP(PORT_CLK_SEL_MASK, 1)
+>> +#define  PORT_CLK_SEL_LCPLL_810		REG_FIELD_PREP(PORT_CLK_SEL_MASK, 2)
+>> +#define  PORT_CLK_SEL_SPLL		REG_FIELD_PREP(PORT_CLK_SEL_MASK, 3)
+>> +#define  PORT_CLK_SEL_WRPLL(pll)	REG_FIELD_PREP(PORT_CLK_SEL_MASK, 4 + =
+(pll))
+>> +#define  PORT_CLK_SEL_WRPLL1		REG_FIELD_PREP(PORT_CLK_SEL_MASK, 4)
+>> +#define  PORT_CLK_SEL_WRPLL2		REG_FIELD_PREP(PORT_CLK_SEL_MASK, 5)
+>> +#define  PORT_CLK_SEL_NONE		REG_FIELD_PREP(PORT_CLK_SEL_MASK, 7)
+>>=20=20
+>>  /* On ICL+ this is the same as PORT_CLK_SEL, but all bits change. */
+>>  #define DDI_CLK_SEL(port)		PORT_CLK_SEL(port)
+>> -#define  DDI_CLK_SEL_NONE		(0x0 << 28)
+>> -#define  DDI_CLK_SEL_MG			(0x8 << 28)
+>> -#define  DDI_CLK_SEL_TBT_162		(0xC << 28)
+>> -#define  DDI_CLK_SEL_TBT_270		(0xD << 28)
+>> -#define  DDI_CLK_SEL_TBT_540		(0xE << 28)
+>> -#define  DDI_CLK_SEL_TBT_810		(0xF << 28)
+>> -#define  DDI_CLK_SEL_MASK		(0xF << 28)
+>> +#define  DDI_CLK_SEL_MASK		REG_GENMASK(31, 28)
+>> +#define  DDI_CLK_SEL_NONE		REG_FIELD_PREP(DDI_CLK_SEL_MASK, 0x0)
+>> +#define  DDI_CLK_SEL_MG			REG_FIELD_PREP(DDI_CLK_SEL_MASK, 0x8)
+>> +#define  DDI_CLK_SEL_TBT_162		REG_FIELD_PREP(DDI_CLK_SEL_MASK, 0xC)
+>> +#define  DDI_CLK_SEL_TBT_270		REG_FIELD_PREP(DDI_CLK_SEL_MASK, 0xD)
+>> +#define  DDI_CLK_SEL_TBT_540		REG_FIELD_PREP(DDI_CLK_SEL_MASK, 0xE)
+>> +#define  DDI_CLK_SEL_TBT_810		REG_FIELD_PREP(DDI_CLK_SEL_MASK, 0xF)
+>>=20=20
+>>  /* Transcoder clock selection */
+>>  #define _TRANS_CLK_SEL_A		0x46140
+>> --=20
+>> 2.30.2
+
+--=20
+Jani Nikula, Intel Open Source Graphics Center
