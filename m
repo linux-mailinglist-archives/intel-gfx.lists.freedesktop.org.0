@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9569852BBBF
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 May 2022 16:15:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A9E0152BBEB
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 May 2022 16:15:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D7A4810E2A3;
-	Wed, 18 May 2022 14:15:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA38710E9E3;
+	Wed, 18 May 2022 14:15:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B83B10E2A3
- for <intel-gfx@lists.freedesktop.org>; Wed, 18 May 2022 14:15:15 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 24AD610E35F
+ for <intel-gfx@lists.freedesktop.org>; Wed, 18 May 2022 14:15:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1652883315; x=1684419315;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=InRZS07vRJcZRb4kV1ZihpFlCEm2PTIdQw3IDZoefps=;
- b=XlFKSvNhx1WuFJrIPt7iVKihUEaDyU8e++fIzGP1BbirxKaeQGqGKEw9
- MHNJQM3GaPh50Usz31vyeKipFw0EoBYzvccaRgBLwtXnUujAdYAh398Pb
- lWqOF2HfWzPXLbtRNpRvvBpbg0TSmPpLkZnUjdN3DAYG3GYvp5dXTwN5W
- 82FhbsVPxPH0Sa+RCWXVcd+SSkGfLHolgKWq7D/v3EW32Vj6UYKZ5fMEi
- pwHB3gZWB4g3gDMdVHf1NFCwQr+TA/HRxRWJjvjqLQU0WeGaTObUjTFGv
- g4tdfRi6biwb9hI+lgn/S5bEfa/E/C/jVUC4ipBw8n9LJ8drKS+qxm+Q4 A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10350"; a="334737679"
-X-IronPort-AV: E=Sophos;i="5.91,235,1647327600"; d="scan'208";a="334737679"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 May 2022 07:15:14 -0700
-X-IronPort-AV: E=Sophos;i="5.91,235,1647327600"; d="scan'208";a="742338807"
-Received: from jwasiuki-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.249.133.47])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 May 2022 07:15:12 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <fecf0889-c10b-3034-91d3-68add9cc9db1@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220518113315.1305027-1-jani.nikula@intel.com>
- <20220518113315.1305027-2-jani.nikula@intel.com>
- <fecf0889-c10b-3034-91d3-68add9cc9db1@intel.com>
-Date: Wed, 18 May 2022 17:15:09 +0300
-Message-ID: <875ym3dj0y.fsf@intel.com>
+ t=1652883353; x=1684419353;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=6bQo/M8s98Xr2Z1YvKKIilhWxFLEwJ6QT/JHRUvxNgw=;
+ b=h8xYQpM0lI0Ail3ZzOPLYSmNAxNd7X2PQ1efoyKMhygGzLh+4gWIu86V
+ y6OuB3m741wfrL4AG248F4hguxvrTwlQ0Cajj4MIHXK8pfjNL0rZoM9Ne
+ Iij/ks2hg6UfKpQHke4dlKEaZTDmKaCxYAnop46TplrLpZqPcws8XUI7m
+ R55Rg+chmzCmhTKdbfPJCaKO4Quv9mnEGSqTdWzHj76yvW6GK1nvf0UoL
+ d3M+J4GRQXskiS1JJ31rbmy1dWNQuByoF+NMnxjvpqHha9C5LW2YTt++/
+ CLQ12H6yyLj+VtT4krc9eHzKSekJMiGaMRQZPE1vLAFiJOlFEO7DFyDpw w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10350"; a="252210505"
+X-IronPort-AV: E=Sophos;i="5.91,235,1647327600"; d="scan'208";a="252210505"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 May 2022 07:15:52 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.91,235,1647327600"; d="scan'208";a="597815211"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.163])
+ by orsmga008.jf.intel.com with SMTP; 18 May 2022 07:15:39 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 18 May 2022 17:15:39 +0300
+Date: Wed, 18 May 2022 17:15:39 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Anshuman Gupta <anshuman.gupta@intel.com>
+Message-ID: <YoT/iw8w06n+ITP4@intel.com>
+References: <20220518130716.10936-1-anshuman.gupta@intel.com>
+ <20220518130716.10936-8-anshuman.gupta@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/uc: Fix undefined behavior due
- to shift overflowing the constant
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220518130716.10936-8-anshuman.gupta@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 7/7] drm/i915/rpm: Enable D3Cold VRAM SR
+ Support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,122 +61,103 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Randy Dunlap <rdunlap@infradead.org>, Borislav Petkov <bp@suse.de>,
- Ruiqi GONG <gongruiqi1@huawei.com>
+Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org,
+ Chris Wilson <chris.p.wilson@intel.com>, rodrigo.vivi@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 18 May 2022, Michal Wajdeczko <michal.wajdeczko@intel.com> wrote:
-> On 18.05.2022 13:33, Jani Nikula wrote:
->> From: Borislav Petkov <bp@suse.de>
->>=20
->> Fix:
->>=20
->>   In file included from <command-line>:0:0:
->>   drivers/gpu/drm/i915/gt/uc/intel_guc.c: In function =E2=80=98intel_guc=
-_send_mmio=E2=80=99:
->>   ././include/linux/compiler_types.h:352:38: error: call to =E2=80=98__c=
-ompiletime_assert_1047=E2=80=99 \
->>   declared with attribute error: FIELD_PREP: mask is not constant
->>     _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER=
-__)
->>=20
->> and other build errors due to shift overflowing values.
->>=20
->> See https://lore.kernel.org/r/YkwQ6%2BtIH8GQpuct@zn.tnic for the gory
->> details as to why it triggers with older gccs only.
->>=20
->> v2 by Jani:
->> - Drop the i915_reg.h changes
->>=20
->> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
->> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
->> Cc: Ruiqi GONG <gongruiqi1@huawei.com>
->> Cc: Randy Dunlap <rdunlap@infradead.org>
->> Signed-off-by: Borislav Petkov <bp@suse.de>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->>  drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h           | 2 +-
->>  drivers/gpu/drm/i915/gt/uc/abi/guc_communication_ctb_abi.h | 2 +-
->>  drivers/gpu/drm/i915/gt/uc/abi/guc_messages_abi.h          | 2 +-
->>  drivers/gpu/drm/i915/gt/uc/intel_guc_reg.h                 | 2 +-
->>  4 files changed, 4 insertions(+), 4 deletions(-)
->>=20
->> diff --git a/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h b/drivers/=
-gpu/drm/i915/gt/uc/abi/guc_actions_abi.h
->> index be9ac47fa9d0..4ef9990ed7f8 100644
->> --- a/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h
->> +++ b/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h
->> @@ -50,7 +50,7 @@
->>=20=20
->>  #define HOST2GUC_SELF_CFG_REQUEST_MSG_LEN		(GUC_HXG_REQUEST_MSG_MIN_LEN=
- + 3u)
->>  #define HOST2GUC_SELF_CFG_REQUEST_MSG_0_MBZ		GUC_HXG_REQUEST_MSG_0_DATA0
->> -#define HOST2GUC_SELF_CFG_REQUEST_MSG_1_KLV_KEY		(0xffff << 16)
->> +#define HOST2GUC_SELF_CFG_REQUEST_MSG_1_KLV_KEY		(0xffffU << 16)
->
-> nit: maybe for consistency we should update all these hex constants to
-> be explicitly marked as "unsigned" (as that was the intention) and also
-> maybe we should use lowercase "u" - but both that can be done later,
+On Wed, May 18, 2022 at 06:37:16PM +0530, Anshuman Gupta wrote:
+> Intel Client DGFX card supports D3Cold with two option.
+> D3Cold-off zero watt, D3Cold-VRAM Self Refresh.
+> 
+> i915 requires to evict the lmem objects to smem in order to
+> support D3Cold-Off, which increases i915 the suspend/resume
+> latency. Enabling VRAM Self Refresh feature optimize the
+> latency with additional power cost which required to retain
+> the lmem.
+> 
+> Adding intel_runtime_idle (runtime_idle callback) to enable
+> VRAM_SR, it will be used for policy to choose
+> between D3Cold-off vs D3Cold-VRAM_SR.
+> 
+> Since we have introduced i915 runtime_idle callback.
+> It need to be warranted that Runtime PM Core invokes runtime_idle
+> callback when runtime usages count becomes zero. That requires
+> to use pm_runtime_put instead of pm_runtime_put_autosuspend.
+> 
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: Chris Wilson <chris.p.wilson@intel.com>
+> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> ---
+>  drivers/gpu/drm/i915/i915_driver.c      | 26 +++++++++++++++++++++++++
+>  drivers/gpu/drm/i915/intel_runtime_pm.c |  3 +--
+>  2 files changed, 27 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+> index 5a9d5529fc90..bbb11c632799 100644
+> --- a/drivers/gpu/drm/i915/i915_driver.c
+> +++ b/drivers/gpu/drm/i915/i915_driver.c
+> @@ -1541,6 +1541,31 @@ static int i915_pm_restore(struct device *kdev)
+>  	return i915_pm_resume(kdev);
+>  }
+>  
+> +static int intel_runtime_idle(struct device *kdev)
+> +{
+> +	struct drm_i915_private *dev_priv = kdev_to_i915(kdev);
+> +	int ret = 1;
+> +
+> +	if (!HAS_LMEM_SR(dev_priv)) {
+> +		/*TODO: Prepare for D3Cold-Off */
+> +		goto out;
+> +	}
+> +
+> +	disable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
+> +
+> +	ret = intel_pm_vram_sr(dev_priv, true)
 
-For the guc reg stuff we should probably use REG_GENMASK() and
-REG_FIELD_PREP() instead, like I did for i915_reg.h. I just don't know
-about the plethora of other uc headers though...
+I don't get why this idle callback is here. Why aren't you just
+calling that directly from the suspend handler?
 
-> Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> +	if (!ret)
+> +		drm_dbg(&dev_priv->drm, "VRAM Self Refresh enabled\n");
+> +
+> +	enable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
+> +
+> +out:
+> +	pm_runtime_mark_last_busy(kdev);
+> +	pm_runtime_autosuspend(kdev);
+> +
+> +	return ret;
+> +}
+> +
+>  static int intel_runtime_suspend(struct device *kdev)
+>  {
+>  	struct drm_i915_private *dev_priv = kdev_to_i915(kdev);
+> @@ -1726,6 +1751,7 @@ const struct dev_pm_ops i915_pm_ops = {
+>  	.restore = i915_pm_restore,
+>  
+>  	/* S0ix (via runtime suspend) event handlers */
+> +	.runtime_idle = intel_runtime_idle,
+>  	.runtime_suspend = intel_runtime_suspend,
+>  	.runtime_resume = intel_runtime_resume,
+>  };
+> diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.c b/drivers/gpu/drm/i915/intel_runtime_pm.c
+> index 6ed5786bcd29..4dade7e8a795 100644
+> --- a/drivers/gpu/drm/i915/intel_runtime_pm.c
+> +++ b/drivers/gpu/drm/i915/intel_runtime_pm.c
+> @@ -492,8 +492,7 @@ static void __intel_runtime_pm_put(struct intel_runtime_pm *rpm,
+>  
+>  	intel_runtime_pm_release(rpm, wakelock);
+>  
+> -	pm_runtime_mark_last_busy(kdev);
+> -	pm_runtime_put_autosuspend(kdev);
+> +	pm_runtime_put(kdev);
+>  }
+>  
+>  /**
+> -- 
+> 2.26.2
 
-Thanks,
-Jani.
-
->
->>  #define HOST2GUC_SELF_CFG_REQUEST_MSG_1_KLV_LEN		(0xffff << 0)
->>  #define HOST2GUC_SELF_CFG_REQUEST_MSG_2_VALUE32		GUC_HXG_REQUEST_MSG_n_=
-DATAn
->>  #define HOST2GUC_SELF_CFG_REQUEST_MSG_3_VALUE64		GUC_HXG_REQUEST_MSG_n_=
-DATAn
->> diff --git a/drivers/gpu/drm/i915/gt/uc/abi/guc_communication_ctb_abi.h =
-b/drivers/gpu/drm/i915/gt/uc/abi/guc_communication_ctb_abi.h
->> index c9086a600bce..df83c1cc7c7a 100644
->> --- a/drivers/gpu/drm/i915/gt/uc/abi/guc_communication_ctb_abi.h
->> +++ b/drivers/gpu/drm/i915/gt/uc/abi/guc_communication_ctb_abi.h
->> @@ -82,7 +82,7 @@ static_assert(sizeof(struct guc_ct_buffer_desc) =3D=3D=
- 64);
->>  #define GUC_CTB_HDR_LEN				1u
->>  #define GUC_CTB_MSG_MIN_LEN			GUC_CTB_HDR_LEN
->>  #define GUC_CTB_MSG_MAX_LEN			256u
->> -#define GUC_CTB_MSG_0_FENCE			(0xffff << 16)
->> +#define GUC_CTB_MSG_0_FENCE			(0xffffU << 16)
->>  #define GUC_CTB_MSG_0_FORMAT			(0xf << 12)
->>  #define   GUC_CTB_FORMAT_HXG			0u
->>  #define GUC_CTB_MSG_0_RESERVED			(0xf << 8)
->> diff --git a/drivers/gpu/drm/i915/gt/uc/abi/guc_messages_abi.h b/drivers=
-/gpu/drm/i915/gt/uc/abi/guc_messages_abi.h
->> index 29ac823acd4c..7d5ba4d97d70 100644
->> --- a/drivers/gpu/drm/i915/gt/uc/abi/guc_messages_abi.h
->> +++ b/drivers/gpu/drm/i915/gt/uc/abi/guc_messages_abi.h
->> @@ -40,7 +40,7 @@
->>   */
->>=20=20
->>  #define GUC_HXG_MSG_MIN_LEN			1u
->> -#define GUC_HXG_MSG_0_ORIGIN			(0x1 << 31)
->> +#define GUC_HXG_MSG_0_ORIGIN			(0x1U << 31)
->>  #define   GUC_HXG_ORIGIN_HOST			0u
->>  #define   GUC_HXG_ORIGIN_GUC			1u
->>  #define GUC_HXG_MSG_0_TYPE			(0x7 << 28)
->> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_reg.h b/drivers/gpu/dr=
-m/i915/gt/uc/intel_guc_reg.h
->> index 2516705b9f36..8dc063f087eb 100644
->> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_reg.h
->> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_reg.h
->> @@ -28,7 +28,7 @@
->>  #define   GS_MIA_HALT_REQUESTED		  (0x02 << GS_MIA_SHIFT)
->>  #define   GS_MIA_ISR_ENTRY		  (0x04 << GS_MIA_SHIFT)
->>  #define   GS_AUTH_STATUS_SHIFT		30
->> -#define   GS_AUTH_STATUS_MASK		  (0x03 << GS_AUTH_STATUS_SHIFT)
->> +#define   GS_AUTH_STATUS_MASK		  (0x03U << GS_AUTH_STATUS_SHIFT)
->>  #define   GS_AUTH_STATUS_BAD		  (0x01 << GS_AUTH_STATUS_SHIFT)
->>  #define   GS_AUTH_STATUS_GOOD		  (0x02 << GS_AUTH_STATUS_SHIFT)
->>=20=20
-
---=20
-Jani Nikula, Intel Open Source Graphics Center
+-- 
+Ville Syrjälä
+Intel
