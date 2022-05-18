@@ -1,59 +1,92 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1586E52C0E8
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 May 2022 19:15:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 05E9452C107
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 May 2022 19:40:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE09210EB96;
-	Wed, 18 May 2022 17:15:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D6C8113E86;
+	Wed, 18 May 2022 17:40:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E32A710F3A3
- for <intel-gfx@lists.freedesktop.org>; Wed, 18 May 2022 17:15:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A4C2C113E85
+ for <intel-gfx@lists.freedesktop.org>; Wed, 18 May 2022 17:39:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1652894121;
+ s=mimecast20190719; t=1652895597;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=FxD9P4XnF1NnW2znaHobWArEduFPf/Vy60CUDQ3Fi/M=;
- b=WsDl4bOPbbzn9o4sMZ2lu1ajsyOL5GWjQ1EjoZ8h43gvidJGLiPlMVNYa5pQHB3LeuI4cw
- 9RzMX5BURRxg6O1obASiSGd7XnhuKEgeoSs67ynVsBy/ZnTo6IapKBeaI+pIdNcA9Mw4t6
- dvk/EBSq+Fmhwgji9exjafP96RXejO8=
-Received: from mimecast-mx02.redhat.com (mimecast-mx02.redhat.com
- [66.187.233.88]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=gDGt/Rg9AZsxvRBAhR5KeMESGNTYZAfpSxQWVhbVFk4=;
+ b=aHVEiwnWBk0+bNDlKvdW7YJL8Bd5u/UpHJTC2PfM55nP+om+NkEm0VXGBuZNeK82X3rl4J
+ Ew7sDpjXOoLfcc1oLhXwJ35SWlMepEk+k5JiJtlxWBT1FFIgftvQoE3VIiTCuemUn0i6Pd
+ Uy+QcSCH/pJfN66S78Rl3JqSYjGJhc0=
+Received: from mail-vs1-f70.google.com (mail-vs1-f70.google.com
+ [209.85.217.70]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-399-UGKIbxl-PHS4oIRfLhl59Q-1; Wed, 18 May 2022 13:15:14 -0400
-X-MC-Unique: UGKIbxl-PHS4oIRfLhl59Q-1
-Received: from smtp.corp.redhat.com (int-mx08.intmail.prod.int.rdu2.redhat.com
- [10.11.54.8])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 639851801388;
- Wed, 18 May 2022 17:15:13 +0000 (UTC)
-Received: from starship (unknown [10.40.192.55])
- by smtp.corp.redhat.com (Postfix) with ESMTP id CDFC1C202D1;
- Wed, 18 May 2022 17:15:07 +0000 (UTC)
-Message-ID: <d009abe5488440e8e7e990a027868f3d29577b44.camel@redhat.com>
-From: Maxim Levitsky <mlevitsk@redhat.com>
-To: Sean Christopherson <seanjc@google.com>
-Date: Wed, 18 May 2022 20:15:06 +0300
-In-Reply-To: <YoUTMsnFS+bSED+5@google.com>
-References: <20220427200314.276673-1-mlevitsk@redhat.com>
- <20220427200314.276673-3-mlevitsk@redhat.com>
- <20220518082811.GA8765@gao-cwp>
- <8c78939bf01a98554696add10e17b07631d97a28.camel@redhat.com>
- <YoUTMsnFS+bSED+5@google.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.36.5 (3.36.5-2.fc32) 
+ us-mta-25-s5GBMVAiN-K-I3zk8rrFsQ-1; Wed, 18 May 2022 13:39:56 -0400
+X-MC-Unique: s5GBMVAiN-K-I3zk8rrFsQ-1
+Received: by mail-vs1-f70.google.com with SMTP id
+ e19-20020a056102045300b00335d8bc89deso267912vsq.13
+ for <intel-gfx@lists.freedesktop.org>; Wed, 18 May 2022 10:39:56 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+ :references:organization:user-agent:mime-version
+ :content-transfer-encoding;
+ bh=gDGt/Rg9AZsxvRBAhR5KeMESGNTYZAfpSxQWVhbVFk4=;
+ b=WTwbVyIFVVelRzv0CED6oJhtgDH2bTGmVm5UhqtNxZxShn9OODIsB+lAWLAn6r4PmL
+ 9zozqa7AlMLcFGVF5lYxnuxf7knWYZAr09N2+/ltHvoW6CZpXN7Nf6SNXRsRAeaIYfUG
+ Z2RVuGROAQSvrlsTwpzg6w2qzX05PvivefIPnmG4ejXZ2O73GR3/GUEsQsqCzFTtWPta
+ o6GUOvpRQ95MM1muzP/M/n9pvTD0KBXE6x88X767EJVyY2C1qcmQXr2bAgzWpDa7f9yF
+ mBCnYYFSJ2dCGOp/3u+UrcOZl3pTM3DbpIv1aFFtkt0WhGIkVbkxSg+m7977D60Tq5ie
+ /0xA==
+X-Gm-Message-State: AOAM533LBXZtYhgxKkhN02APmKYqZZAoQzcadYMGYap/eYYVsMYLO6Ix
+ ByzbA+yOFY1NKKl3i+MlGTnjMYF1DZ5araxWNTXeg8IFYFoNzLprm09RHL7nrgB+2XW4R8mbt4V
+ MY7440AoPISJ5h4tQbm38aFPFe7eX
+X-Received: by 2002:a05:6102:3706:b0:335:80be:bdf8 with SMTP id
+ s6-20020a056102370600b0033580bebdf8mr527614vst.17.1652895595673; 
+ Wed, 18 May 2022 10:39:55 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJy+wcU/dWMJlXfe/1930TJzCPdcc6Su+ICGYsTy4q9ZBSUQnSN+lF31nL1TGBauw8+rrCkI6g==
+X-Received: by 2002:a05:6102:3706:b0:335:80be:bdf8 with SMTP id
+ s6-20020a056102370600b0033580bebdf8mr527593vst.17.1652895595399; 
+ Wed, 18 May 2022 10:39:55 -0700 (PDT)
+Received: from [192.168.8.138] (static-71-184-137-158.bstnma.ftas.verizon.net.
+ [71.184.137.158]) by smtp.gmail.com with ESMTPSA id
+ 143-20020a1f1995000000b0034e6f1fd055sm246132vkz.31.2022.05.18.10.39.53
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 18 May 2022 10:39:54 -0700 (PDT)
+Message-ID: <0c9c2c59ca9c351769921c47beb49dda79ddd5de.camel@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+To: Hans de Goede <hdegoede@redhat.com>, Ben Skeggs <bskeggs@redhat.com>, 
+ Karol Herbst <kherbst@redhat.com>, Daniel Dadap <ddadap@nvidia.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>,  Thomas Zimmermann <tzimmermann@suse.de>, Jani Nikula
+ <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, Alex Deucher
+ <alexander.deucher@amd.com>, Christian =?ISO-8859-1?Q?K=F6nig?=
+ <christian.koenig@amd.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>, Xinhui
+ <Xinhui.Pan@amd.com>, "Rafael J . Wysocki" <rafael@kernel.org>, Mika
+ Westerberg <mika.westerberg@linux.intel.com>, Mark Gross
+ <markgross@kernel.org>, Andy Shevchenko <andy@kernel.org>
+Date: Wed, 18 May 2022 13:39:52 -0400
+In-Reply-To: <20220517152331.16217-13-hdegoede@redhat.com>
+References: <20220517152331.16217-1-hdegoede@redhat.com>
+ <20220517152331.16217-13-hdegoede@redhat.com>
+Organization: Red Hat Inc.
+User-Agent: Evolution 3.42.4 (3.42.4-2.fc35)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Scanned-By: MIMEDefang 2.85 on 10.11.54.8
-Subject: Re: [Intel-gfx] [RFC PATCH v3 02/19] KVM: x86: inhibit APICv/AVIC
- when the guest and/or host changes apic id/base from the defaults.
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=lyude@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH 12/14] drm/nouveau: Register ACPI video
+ backlight when nv_backlight registration fails
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,51 +99,68 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Wanpeng Li <wanpengli@tencent.com>, kvm@vger.kernel.org,
- David Airlie <airlied@linux.ie>, Dave Hansen <dave.hansen@linux.intel.com>,
- dri-devel@lists.freedesktop.org, "H. Peter
- Anvin" <hpa@zytor.com>, Brijesh Singh <brijesh.singh@amd.com>,
- Joerg Roedel <joro@8bytes.org>, x86@kernel.org, Ingo Molnar <mingo@redhat.com>,
- Chao Gao <chao.gao@intel.com>, Tom Lendacky <thomas.lendacky@amd.com>,
- intel-gfx@lists.freedesktop.org, Borislav Petkov <bp@alien8.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Gleixner <tglx@linutronix.de>,
- intel-gvt-dev@lists.freedesktop.org, Jim Mattson <jmattson@google.com>,
- linux-kernel@vger.kernel.org, Paolo Bonzini <pbonzini@redhat.com>,
- Vitaly Kuznetsov <vkuznets@redhat.com>
+Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
+ intel-gfx <intel-gfx@lists.freedesktop.org>, amd-gfx@lists.freedesktop.org,
+ platform-driver-x86@vger.kernel.org, linux-acpi@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Len Brown <lenb@kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 2022-05-18 at 15:39 +0000, Sean Christopherson wrote:
-> On Wed, May 18, 2022, Maxim Levitsky wrote:
-> > On Wed, 2022-05-18 at 16:28 +0800, Chao Gao wrote:
-> > > > struct kvm_arch {
-> > > > @@ -1258,6 +1260,7 @@ struct kvm_arch {
-> > > > 	hpa_t	hv_root_tdp;
-> > > > 	spinlock_t hv_root_tdp_lock;
-> > > > #endif
-> > > > +	bool apic_id_changed;
-> > > 
-> > > What's the value of this boolean? No one reads it.
-> > 
-> > I use it in later patches to kill the guest during nested VM entry 
-> > if it attempts to use nested AVIC after any vCPU changed APIC ID.
+On Tue, 2022-05-17 at 17:23 +0200, Hans de Goede wrote:
+> Typically the acpi_video driver will initialize before nouveau, which
+> used to cause /sys/class/backlight/acpi_video0 to get registered and then
+> nouveau would register its own nv_backlight device later. After which
+> the drivers/acpi/video_detect.c code unregistered the acpi_video0 device
+> to avoid there being 2 backlight devices.
 > 
-> Then the flag should be introduced in the later patch, because (a) it's dead code
-> if that patch is never merged and (b) it's impossible to review this patch for
-> correctness without seeing the usage, e.g. setting apic_id_changed isn't guarded
-> with a lock and so the usage may or may not be susceptible to races.
-
-I can't disagree with you on this, this was just somewhat a hack I wasn't sure
-(and not yet 100% sure I will move forward with) so I cut this corner.
-
-Thanks for the review!
-
-Best regards,
-	Maxim Levitsky
-
+> This means that userspace used to briefly see 2 devices and the
+> disappearing of acpi_video0 after a brief time confuses the systemd
+> backlight level save/restore code, see e.g.:
+> https://bbs.archlinux.org/viewtopic.php?id=269920
 > 
-> > > > +	apic->vcpu->kvm->arch.apic_id_changed = true;
-> > > > +}
-> > > > +
+> To fix this the ACPI video code has been modified to make backlight class
+> device registration a separate step, relying on the drm/kms driver to
+> ask for the acpi_video backlight registration after it is done setting up
+> its native backlight device.
+> 
+> Add a call to the new acpi_video_register_backlight() when native backlight
+> device registration has failed / was skipped to ensure that there is a
+> backlight device available before the drm_device gets registered with
+> userspace.
+> 
+> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+> ---
+>  drivers/gpu/drm/nouveau/nouveau_backlight.c | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_backlight.c
+> b/drivers/gpu/drm/nouveau/nouveau_backlight.c
+> index f56ff797c78c..0ae8793357a4 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_backlight.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_backlight.c
+> @@ -436,6 +436,13 @@ nouveau_backlight_init(struct drm_connector *connector)
+>  
+>  fail_alloc:
+>         kfree(bl);
+> +       /*
+> +        * If we get here we have an internal panel, but no nv_backlight,
+> +        * try registering an ACPI video backlight device instead.
+> +        */
+> +       if (ret == 0)
+> +               acpi_video_register_backlight();
 
+Assuming we don't need to return the value of acpi_video_register_backlight()
+here:
+
+Reviewed-by: Lyude Paul <lyude@redhat.com>
+
+> +
+>         return ret;
+>  }
+>  
+
+-- 
+Cheers,
+ Lyude Paul (she/her)
+ Software Engineer at Red Hat
 
