@@ -2,48 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2CF352CFD7
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 May 2022 11:55:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0355952D0A1
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 May 2022 12:35:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A32C11B329;
-	Thu, 19 May 2022 09:55:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 60AB111A4DD;
+	Thu, 19 May 2022 10:35:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 77A4511B327;
- Thu, 19 May 2022 09:54:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B011311A45A
+ for <intel-gfx@lists.freedesktop.org>; Thu, 19 May 2022 10:35:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1652954099; x=1684490099;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=XsbZCYbBbnba1CBDltDOxPXUjcKxWpMBUmL7u9S8k94=;
- b=VCHvlOEp5EkWFdhgPH0Icjj+1N+XTc298xcHjdRoLDwmG6fXIgky7nwT
- 72Nst1gVBf8/KnwMhvU4o42lqt/LAjLp868iHorqIW7ZnQKvNZJo/WqCp
- DXk9la5xD2KteOv0UcE7izIO8G6jzelThh2fYxP3F7ou2HByL7g1vAyyu
- /xb88RAUuLRKA6KTOLxN4Ybtpo/oNto+WbMZsrA/MEbRkFgNYTxoLzaES
- t9QRuyLEFt03m0kX8k4pltBykw75MOszM/QEJ1pDUJvYRIAvOO73+QHi7
- 0Iy2KuOk52sx1pgPK3P5VIJFnSZ2+Y+h6z5HS5ZGPNHS9bqgj9/f20nPV A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10351"; a="252019988"
-X-IronPort-AV: E=Sophos;i="5.91,237,1647327600"; d="scan'208";a="252019988"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ t=1652956538; x=1684492538;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=7QtMkOSYBtOeUqJeIq4wUqasqRvEQZhN3gBVqkD+3AE=;
+ b=FXxN9hq4RLpwZXw336XER/QsJzhix+Itd9QLnNmdLu+VeQkR10LAT/+H
+ 9PB43bvyZXwjaZfiqJQbReAawPsl4czdBl87YhRCGVaafis2dVIm1TGLK
+ gbA6YZH7fzq1vHDrk/ehiT1pmYnXy1hAU2FJ89jO7tvW4sqWkbmNhr0lx
+ ZCh+2Kw3RuyUKV9cIkzZyD5zmv3lnvj3272WM/Qzp0rw2r5YVXufVx8le
+ xqL+3ChyNDiQ9EjeZC5NBkTyTk/y5EJ5haAowOPZBEv6yZGWkSpajycbr
+ XOgPfkOMBLomLApt1IDNoM6+7mHhinMim5uUDijPquS/sng/sfO52NgwS g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10351"; a="252033589"
+X-IronPort-AV: E=Sophos;i="5.91,237,1647327600"; d="scan'208";a="252033589"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2022 02:54:58 -0700
-X-IronPort-AV: E=Sophos;i="5.91,237,1647327600"; d="scan'208";a="606404200"
-Received: from bhanu-nuclab.iind.intel.com ([10.145.162.173])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2022 02:54:55 -0700
-From: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
-To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org
-Date: Thu, 19 May 2022 15:21:49 +0530
-Message-Id: <20220519095149.3560034-4-bhanuprakash.modem@intel.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220519095149.3560034-1-bhanuprakash.modem@intel.com>
-References: <20220519095149.3560034-1-bhanuprakash.modem@intel.com>
+ 19 May 2022 03:35:38 -0700
+X-IronPort-AV: E=Sophos;i="5.91,237,1647327600"; d="scan'208";a="661629174"
+Received: from wangyaqi-mobl.ger.corp.intel.com (HELO [10.213.199.90])
+ ([10.213.199.90])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 May 2022 03:35:37 -0700
+Message-ID: <305aa71f-ac4e-b1bb-cd1e-de54f066eebb@linux.intel.com>
+Date: Thu, 19 May 2022 11:35:21 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Content-Language: en-US
+To: =?UTF-8?Q?Jos=c3=a9_Roberto_de_Souza?= <jose.souza@intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20220505193524.276400-1-jose.souza@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <20220505193524.276400-1-jose.souza@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [CI 3/3] drm/amd/display: Move connector debugfs to drm
+Subject: Re: [Intel-gfx] [PATCH CI 1/7] drm/i915: Drop has_gt_uc from device
+ info
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,174 +62,101 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Harry Wentland <harry.wentland@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-As drm_connector already have the display_info, instead of creating
-"output_bpc" debugfs in vendor specific driver, move the logic to
-the drm layer.
 
-This patch will also move "Current" bpc to the crtc debugfs from
-connector debugfs, since we are getting this info from crtc_state.
+On 05/05/2022 20:35, José Roberto de Souza wrote:
+> No need to have this parameter in intel_device_info struct
+> as all platforms with graphics version 9 or newer has graphics
+> microcontroller.
+> 
+> As a side effect of the of removal this flag, it will not be printed
+> in dmesg during driver load anymore and developers will have to rely
+> on to check the macro and compare with platform being used and IP
+> versions of it.
 
-Cc: Harry Wentland <harry.wentland@amd.com>
-Cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-Signed-off-by: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
-Reported-by: kernel test robot <lkp@intel.com>
-Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
-Reviewed-by: Harry Wentland <harry.wentland@amd.com>
-Acked-by: Harry Wentland <harry.wentland@amd.com>
----
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  4 --
- .../amd/display/amdgpu_dm/amdgpu_dm_debugfs.c | 38 +++++++------------
- .../amd/display/amdgpu_dm/amdgpu_dm_debugfs.h |  2 -
- 3 files changed, 13 insertions(+), 31 deletions(-)
+We have decided to revert this series for now until consensus on the 
+direction and potentially individual conversions can be reached.
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index f9ce8cb45e6d..dae0b772865c 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -6617,14 +6617,12 @@ dm_crtc_duplicate_state(struct drm_crtc *crtc)
- 	return &state->base;
- }
+I've sent the revert patches and will merge them once they pass CI.
 
--#ifdef CONFIG_DRM_AMD_SECURE_DISPLAY
- static int amdgpu_dm_crtc_late_register(struct drm_crtc *crtc)
- {
- 	crtc_debugfs_init(crtc);
+Regards,
 
- 	return 0;
- }
--#endif
+Tvrtko
 
- static inline int dm_set_vupdate_irq(struct drm_crtc *crtc, bool enable)
- {
-@@ -6722,9 +6720,7 @@ static const struct drm_crtc_funcs amdgpu_dm_crtc_funcs = {
- 	.enable_vblank = dm_enable_vblank,
- 	.disable_vblank = dm_disable_vblank,
- 	.get_vblank_timestamp = drm_crtc_vblank_helper_get_vblank_timestamp,
--#if defined(CONFIG_DRM_AMD_SECURE_DISPLAY)
- 	.late_register = amdgpu_dm_crtc_late_register,
--#endif
- };
-
- static enum drm_connector_status
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-index 188039f14544..78f3974ef7b8 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-@@ -873,28 +873,18 @@ static int psr_capability_show(struct seq_file *m, void *data)
- }
-
- /*
-- * Returns the current and maximum output bpc for the connector.
-- * Example usage: cat /sys/kernel/debug/dri/0/DP-1/output_bpc
-+ * Returns the current bpc for the crtc.
-+ * Example usage: cat /sys/kernel/debug/dri/0/crtc-0/amdgpu_current_bpc
-  */
--static int output_bpc_show(struct seq_file *m, void *data)
-+static int amdgpu_current_bpc_show(struct seq_file *m, void *data)
- {
--	struct drm_connector *connector = m->private;
--	struct drm_device *dev = connector->dev;
--	struct drm_crtc *crtc = NULL;
-+	struct drm_crtc *crtc = m->private;
-+	struct drm_device *dev = crtc->dev;
- 	struct dm_crtc_state *dm_crtc_state = NULL;
- 	int res = -ENODEV;
- 	unsigned int bpc;
-
- 	mutex_lock(&dev->mode_config.mutex);
--	drm_modeset_lock(&dev->mode_config.connection_mutex, NULL);
--
--	if (connector->state == NULL)
--		goto unlock;
--
--	crtc = connector->state->crtc;
--	if (crtc == NULL)
--		goto unlock;
--
- 	drm_modeset_lock(&crtc->mutex, NULL);
- 	if (crtc->state == NULL)
- 		goto unlock;
-@@ -924,18 +914,15 @@ static int output_bpc_show(struct seq_file *m, void *data)
- 	}
-
- 	seq_printf(m, "Current: %u\n", bpc);
--	seq_printf(m, "Maximum: %u\n", connector->display_info.bpc);
- 	res = 0;
-
- unlock:
--	if (crtc)
--		drm_modeset_unlock(&crtc->mutex);
--
--	drm_modeset_unlock(&dev->mode_config.connection_mutex);
-+	drm_modeset_unlock(&crtc->mutex);
- 	mutex_unlock(&dev->mode_config.mutex);
-
- 	return res;
- }
-+DEFINE_SHOW_ATTRIBUTE(amdgpu_current_bpc);
-
- /*
-  * Example usage:
-@@ -2541,7 +2528,6 @@ static int target_backlight_show(struct seq_file *m, void *unused)
- DEFINE_SHOW_ATTRIBUTE(dp_dsc_fec_support);
- DEFINE_SHOW_ATTRIBUTE(dmub_fw_state);
- DEFINE_SHOW_ATTRIBUTE(dmub_tracebuffer);
--DEFINE_SHOW_ATTRIBUTE(output_bpc);
- DEFINE_SHOW_ATTRIBUTE(dp_lttpr_status);
- #ifdef CONFIG_DRM_AMD_DC_HDCP
- DEFINE_SHOW_ATTRIBUTE(hdcp_sink_capability);
-@@ -2788,7 +2774,6 @@ static const struct {
- 	const struct file_operations *fops;
- } connector_debugfs_entries[] = {
- 		{"force_yuv420_output", &force_yuv420_output_fops},
--		{"output_bpc", &output_bpc_fops},
- 		{"trigger_hotplug", &trigger_hotplug_debugfs_fops},
- 		{"internal_display", &internal_display_fops}
- };
-@@ -3172,9 +3157,10 @@ static int crc_win_update_get(void *data, u64 *val)
-
- DEFINE_DEBUGFS_ATTRIBUTE(crc_win_update_fops, crc_win_update_get,
- 			 crc_win_update_set, "%llu\n");
--
-+#endif
- void crtc_debugfs_init(struct drm_crtc *crtc)
- {
-+#ifdef CONFIG_DRM_AMD_SECURE_DISPLAY
- 	struct dentry *dir = debugfs_lookup("crc", crtc->debugfs_entry);
-
- 	if (!dir)
-@@ -3190,9 +3176,11 @@ void crtc_debugfs_init(struct drm_crtc *crtc)
- 				   &crc_win_y_end_fops);
- 	debugfs_create_file_unsafe("crc_win_update", 0644, dir, crtc,
- 				   &crc_win_update_fops);
--
--}
- #endif
-+	debugfs_create_file("amdgpu_current_bpc", 0644, crtc->debugfs_entry,
-+			    crtc, &amdgpu_current_bpc_fops);
-+}
-+
- /*
-  * Writes DTN log state to the user supplied buffer.
-  * Example usage: cat /sys/kernel/debug/dri/0/amdgpu_dm_dtn_log
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.h
-index 3366cb644053..071200473c27 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.h
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.h
-@@ -31,8 +31,6 @@
-
- void connector_debugfs_init(struct amdgpu_dm_connector *connector);
- void dtn_debugfs_init(struct amdgpu_device *adev);
--#if defined(CONFIG_DRM_AMD_SECURE_DISPLAY)
- void crtc_debugfs_init(struct drm_crtc *crtc);
--#endif
-
- #endif
---
-2.35.1
-
+> Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+> Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+> ---
+>   drivers/gpu/drm/i915/i915_drv.h          | 2 +-
+>   drivers/gpu/drm/i915/i915_gpu_error.c    | 2 +-
+>   drivers/gpu/drm/i915/i915_pci.c          | 3 ---
+>   drivers/gpu/drm/i915/intel_device_info.h | 1 -
+>   4 files changed, 2 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> index 2dddc27a1b0ed..af3967149b2d2 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -1355,7 +1355,7 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+>    */
+>   #define HAS_FLAT_CCS(dev_priv)   (INTEL_INFO(dev_priv)->has_flat_ccs)
+>   
+> -#define HAS_GT_UC(dev_priv)	(INTEL_INFO(dev_priv)->has_gt_uc)
+> +#define HAS_GT_UC(dev_priv)	(GRAPHICS_VER(dev_priv) >= 9)
+>   
+>   #define HAS_POOLED_EU(dev_priv)	(INTEL_INFO(dev_priv)->has_pooled_eu)
+>   
+> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
+> index 0512c66fa4f3f..5bd9cb8998527 100644
+> --- a/drivers/gpu/drm/i915/i915_gpu_error.c
+> +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
+> @@ -2008,7 +2008,7 @@ __i915_gpu_coredump(struct intel_gt *gt, intel_engine_mask_t engine_mask, u32 du
+>   			return ERR_PTR(-ENOMEM);
+>   		}
+>   
+> -		if (INTEL_INFO(i915)->has_gt_uc) {
+> +		if (HAS_GT_UC(i915)) {
+>   			error->gt->uc = gt_record_uc(error->gt, compress);
+>   			if (error->gt->uc) {
+>   				if (dump_flags & CORE_DUMP_FLAG_IS_GUC_CAPTURE)
+> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+> index 498708b33924f..6d4e2c4292f3b 100644
+> --- a/drivers/gpu/drm/i915/i915_pci.c
+> +++ b/drivers/gpu/drm/i915/i915_pci.c
+> @@ -644,7 +644,6 @@ static const struct intel_device_info chv_info = {
+>   	GEN(9), \
+>   	GEN9_DEFAULT_PAGE_SIZES, \
+>   	.display.has_dmc = 1, \
+> -	.has_gt_uc = 1, \
+>   	.display.has_hdcp = 1, \
+>   	.display.has_ipc = 1, \
+>   	.display.has_psr = 1, \
+> @@ -705,7 +704,6 @@ static const struct intel_device_info skl_gt4_info = {
+>   	.has_rps = true, \
+>   	.display.has_dp_mst = 1, \
+>   	.has_logical_ring_contexts = 1, \
+> -	.has_gt_uc = 1, \
+>   	.dma_mask_size = 39, \
+>   	.ppgtt_type = INTEL_PPGTT_FULL, \
+>   	.ppgtt_size = 48, \
+> @@ -1008,7 +1006,6 @@ static const struct intel_device_info adl_p_info = {
+>   	.has_64bit_reloc = 1, \
+>   	.has_flat_ccs = 1, \
+>   	.has_global_mocs = 1, \
+> -	.has_gt_uc = 1, \
+>   	.has_llc = 1, \
+>   	.has_logical_ring_contexts = 1, \
+>   	.has_logical_ring_elsq = 1, \
+> diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
+> index e7d2cf7d65c85..dcc8c63ae6ed4 100644
+> --- a/drivers/gpu/drm/i915/intel_device_info.h
+> +++ b/drivers/gpu/drm/i915/intel_device_info.h
+> @@ -146,7 +146,6 @@ enum intel_ppgtt_type {
+>   	func(has_4tile); \
+>   	func(has_flat_ccs); \
+>   	func(has_global_mocs); \
+> -	func(has_gt_uc); \
+>   	func(has_heci_pxp); \
+>   	func(has_heci_gscfi); \
+>   	func(has_guc_deprivilege); \
