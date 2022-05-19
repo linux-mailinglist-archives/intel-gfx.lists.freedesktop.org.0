@@ -1,50 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35C4452CF01
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 May 2022 11:08:41 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F19052CF29
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 May 2022 11:16:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A39A911B11F;
-	Thu, 19 May 2022 09:08:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7344111B174;
+	Thu, 19 May 2022 09:16:46 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5182011B121;
- Thu, 19 May 2022 09:08:20 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B2C7A11B168;
+ Thu, 19 May 2022 09:16:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1652951300; x=1684487300;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=wwP1ksR/6Ok7OZe5W/BoGiQBDHGuq8r7iW0ClAQe9cc=;
- b=O10lYcj/X0Iu8lN8RpwMkyxWLmLoGN3aWK/RhT/8eQ/Hr8HSc8eT7UPo
- zjgaOLxfdtYbJ9OJTMl+tMAvHImXmzwjp3pqe2i5IT8jFo7D3oPV+PEEo
- ZkaO5i3X0MlGuIjtrphBhTUk8rttluXJc4Krvas4n02X1uQyW+pi4cAw1
- 4KFOiWq5BzQR9qB7l8Xx1DCUHS7lFrbU8KLwVxJWWVb3JhHswdP7D8xeC
- EqZ8MG4qCqPkqiMGdzX/RtVNbo69+9yzrtq29iiR7WqV8VrNLz5dFTZ5h
- vhjMSQqXl8MJUVKv2sfJCGVOSGjY7bzgVABiilOPr62ucdvhHdwCUYTHZ w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10351"; a="358511927"
-X-IronPort-AV: E=Sophos;i="5.91,237,1647327600"; d="scan'208";a="358511927"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2022 02:08:20 -0700
-X-IronPort-AV: E=Sophos;i="5.91,237,1647327600"; d="scan'208";a="639699301"
-Received: from wangyaqi-mobl.ger.corp.intel.com (HELO tursulin-mobl2.home)
- ([10.213.199.90])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2022 02:08:18 -0700
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: Intel-gfx@lists.freedesktop.org
-Date: Thu, 19 May 2022 10:08:02 +0100
-Message-Id: <20220519090802.1294691-8-tvrtko.ursulin@linux.intel.com>
-X-Mailer: git-send-email 2.32.0
+ t=1652951804; x=1684487804;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=VDPzy+NLDn7xNPBlLszl23YikyEz2vzx9AIZnJ08J14=;
+ b=cFOTuV8G91oAF0OTLNTuqD9GbyH4Nd0Its1RzSzMQlv19A6fEZq54hxc
+ Nx0TNoSViDd9oaphZSBeI7tJ+Pi+Wp2cFScQuXNux8yw6r/ylM8kaICuP
+ UX3mVqATxzrdzb56MXz/QurD+dGfIEpFRegjHxYUtiXgEhXRhH0pz0Oqt
+ PVdPFC52CX1XO8x45iVLznppXqOjiBx7PjxJCdpRPvj83XhVJv2DWw8pr
+ K9kCpwK1d+XamQcHR6of57RpI8EEBRVHUzYMbMlKv9O1XtyB/n1FaeNC5
+ vjN/nGkvXrF3JFEdhv8iJXEy5aRoIWDKLnnaH2YY1i4DjmgtZ4aekBlBH w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10351"; a="259686321"
+X-IronPort-AV: E=Sophos;i="5.91,237,1647327600"; d="scan'208";a="259686321"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 May 2022 02:16:44 -0700
+X-IronPort-AV: E=Sophos;i="5.91,237,1647327600"; d="scan'208";a="545996613"
+Received: from tszulist-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.249.146.157])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 May 2022 02:16:42 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Intel-gfx@lists.freedesktop.org
 In-Reply-To: <20220519090802.1294691-1-tvrtko.ursulin@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20220519090802.1294691-1-tvrtko.ursulin@linux.intel.com>
+Date: Thu, 19 May 2022 12:16:39 +0300
+Message-ID: <87k0ahdgqw.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 7/7] Revert "drm/i915: Drop has_gt_uc from
- device info"
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH 0/7] Revert some refactoring patches
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,90 +57,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+On Thu, 19 May 2022, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
+> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>
+> As agreed on the mailing list and between the maintainers more consensus is
+> needed on the topic.
 
-This reverts commit 222ff6db8a0dcb86f2bb65fc8656aec635a737a6.
-
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Acked-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
 Acked-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/i915_drv.h          | 2 +-
- drivers/gpu/drm/i915/i915_gpu_error.c    | 2 +-
- drivers/gpu/drm/i915/i915_pci.c          | 3 +++
- drivers/gpu/drm/i915/intel_device_info.h | 1 +
- 4 files changed, 6 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 3a2db27cbe1c..b389674b5210 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -1356,7 +1356,7 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
-  */
- #define HAS_FLAT_CCS(dev_priv)   (INTEL_INFO(dev_priv)->has_flat_ccs)
- 
--#define HAS_GT_UC(dev_priv)	(GRAPHICS_VER(dev_priv) >= 9)
-+#define HAS_GT_UC(dev_priv)	(INTEL_INFO(dev_priv)->has_gt_uc)
- 
- #define HAS_POOLED_EU(dev_priv)	(INTEL_INFO(dev_priv)->has_pooled_eu)
- 
-diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
-index 5bd9cb899852..0512c66fa4f3 100644
---- a/drivers/gpu/drm/i915/i915_gpu_error.c
-+++ b/drivers/gpu/drm/i915/i915_gpu_error.c
-@@ -2008,7 +2008,7 @@ __i915_gpu_coredump(struct intel_gt *gt, intel_engine_mask_t engine_mask, u32 du
- 			return ERR_PTR(-ENOMEM);
- 		}
- 
--		if (HAS_GT_UC(i915)) {
-+		if (INTEL_INFO(i915)->has_gt_uc) {
- 			error->gt->uc = gt_record_uc(error->gt, compress);
- 			if (error->gt->uc) {
- 				if (dump_flags & CORE_DUMP_FLAG_IS_GUC_CAPTURE)
-diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-index 938c18321ef8..07722cdf63ac 100644
---- a/drivers/gpu/drm/i915/i915_pci.c
-+++ b/drivers/gpu/drm/i915/i915_pci.c
-@@ -644,6 +644,7 @@ static const struct intel_device_info chv_info = {
- 	GEN(9), \
- 	GEN9_DEFAULT_PAGE_SIZES, \
- 	.display.has_dmc = 1, \
-+	.has_gt_uc = 1, \
- 	.display.has_hdcp = 1, \
- 	.display.has_ipc = 1, \
- 	.display.has_psr = 1, \
-@@ -704,6 +705,7 @@ static const struct intel_device_info skl_gt4_info = {
- 	.has_rps = true, \
- 	.display.has_dp_mst = 1, \
- 	.has_logical_ring_contexts = 1, \
-+	.has_gt_uc = 1, \
- 	.dma_mask_size = 39, \
- 	.ppgtt_type = INTEL_PPGTT_FULL, \
- 	.ppgtt_size = 48, \
-@@ -1006,6 +1008,7 @@ static const struct intel_device_info adl_p_info = {
- 	.has_64bit_reloc = 1, \
- 	.has_flat_ccs = 1, \
- 	.has_global_mocs = 1, \
-+	.has_gt_uc = 1, \
- 	.has_llc = 1, \
- 	.has_logical_ring_contexts = 1, \
- 	.has_logical_ring_elsq = 1, \
-diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
-index ecc3403c2aa9..09e33296157a 100644
---- a/drivers/gpu/drm/i915/intel_device_info.h
-+++ b/drivers/gpu/drm/i915/intel_device_info.h
-@@ -146,6 +146,7 @@ enum intel_ppgtt_type {
- 	func(has_4tile); \
- 	func(has_flat_ccs); \
- 	func(has_global_mocs); \
-+	func(has_gt_uc); \
- 	func(has_heci_pxp); \
- 	func(has_heci_gscfi); \
- 	func(has_guc_deprivilege); \
+>
+> Tvrtko Ursulin (7):
+>   Revert "drm/i915: Drop has_psr from device info"
+>   Revert "drm/i915: Drop has_dp_mst from device info"
+>   Revert "drm/i915: Drop has_ddi from device info"
+>   Revert "drm/i915: Drop has_logical_ring_elsq from device info"
+>   Revert "drm/i915: Drop has_reset_engine from device info"
+>   Revert "drm/i915: Drop has_rc6 from device info"
+>   Revert "drm/i915: Drop has_gt_uc from device info"
+>
+>  drivers/gpu/drm/i915/gt/intel_reset.c    |  2 +-
+>  drivers/gpu/drm/i915/i915_drv.h          | 16 ++++++-------
+>  drivers/gpu/drm/i915/i915_gpu_error.c    |  2 +-
+>  drivers/gpu/drm/i915/i915_pci.c          | 29 +++++++++++++++++++++++-
+>  drivers/gpu/drm/i915/intel_device_info.h |  7 ++++++
+>  5 files changed, 44 insertions(+), 12 deletions(-)
+
 -- 
-2.32.0
-
+Jani Nikula, Intel Open Source Graphics Center
