@@ -2,54 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0355952D0A1
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 May 2022 12:35:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E14D52D0D0
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 May 2022 12:51:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 60AB111A4DD;
-	Thu, 19 May 2022 10:35:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC48B11A284;
+	Thu, 19 May 2022 10:51:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B011311A45A
- for <intel-gfx@lists.freedesktop.org>; Thu, 19 May 2022 10:35:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1652956538; x=1684492538;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=7QtMkOSYBtOeUqJeIq4wUqasqRvEQZhN3gBVqkD+3AE=;
- b=FXxN9hq4RLpwZXw336XER/QsJzhix+Itd9QLnNmdLu+VeQkR10LAT/+H
- 9PB43bvyZXwjaZfiqJQbReAawPsl4czdBl87YhRCGVaafis2dVIm1TGLK
- gbA6YZH7fzq1vHDrk/ehiT1pmYnXy1hAU2FJ89jO7tvW4sqWkbmNhr0lx
- ZCh+2Kw3RuyUKV9cIkzZyD5zmv3lnvj3272WM/Qzp0rw2r5YVXufVx8le
- xqL+3ChyNDiQ9EjeZC5NBkTyTk/y5EJ5haAowOPZBEv6yZGWkSpajycbr
- XOgPfkOMBLomLApt1IDNoM6+7mHhinMim5uUDijPquS/sng/sfO52NgwS g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10351"; a="252033589"
-X-IronPort-AV: E=Sophos;i="5.91,237,1647327600"; d="scan'208";a="252033589"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2022 03:35:38 -0700
-X-IronPort-AV: E=Sophos;i="5.91,237,1647327600"; d="scan'208";a="661629174"
-Received: from wangyaqi-mobl.ger.corp.intel.com (HELO [10.213.199.90])
- ([10.213.199.90])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2022 03:35:37 -0700
-Message-ID: <305aa71f-ac4e-b1bb-cd1e-de54f066eebb@linux.intel.com>
-Date: Thu, 19 May 2022 11:35:21 +0100
+Received: from mail-qt1-x836.google.com (mail-qt1-x836.google.com
+ [IPv6:2607:f8b0:4864:20::836])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E930211A16A;
+ Thu, 19 May 2022 10:51:02 +0000 (UTC)
+Received: by mail-qt1-x836.google.com with SMTP id u35so4476171qtc.13;
+ Thu, 19 May 2022 03:51:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=c4O1oOgQR4Kv4FhhMi078PAReDESxrGJjsVloSpbOSE=;
+ b=McyIfy7gPmUGAPdX/GL8f9xuCPAEwIBxzOf8A/NJLF1rYzRi7QWDdyO0Q0tGejwJSX
+ mLcoA/YxcgxMUxBIQRRBXhCIQe9GIa4aoaOMjf77jbNb7lWGVskzyH8K5wIXDFiOswGA
+ azBxBS1NUOav8chzpbcp2Vf/ko+umXUx2F04eWeGKOnYElhVlSuJdCgpNtILlXZF+I20
+ aHD/l76m89c3PHdV9pdvmi1PMsroHVmWw0aoWiFK3B2QiR1GXYmD0YKRteEbOB8ULE72
+ 7E0BRmf3wabOX2ALCvp7uNtiJokqzPR0axQaH/BOYNO3J3EOLLilnZ5LyrGL9P2GzL4j
+ U9Fw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=c4O1oOgQR4Kv4FhhMi078PAReDESxrGJjsVloSpbOSE=;
+ b=PTbj7tpWS2CDs49TPSO4yrgviCqUYQCaK4+bGaCriPGwGT60i6PbGFhm0G/+hhV9VO
+ I9crq069F+C/drIPqtoVccmsgR4z50ADY3Bqn5tUnVXI+GXOVZW+JEQdbtZRkLSTsOtT
+ Bfj+bf2PVCEnrHczc0Ss1EidAbcOamXhfJ10HYZuFzq+FBNRG0xHC1vmjziahCler8W8
+ vi6g9qnYcyQ1r8wAZ5SXQeILnPSL/qypMkU0AgqwC4IyKt5baClOYBW822jLlaaXYmXt
+ A2dWWuMD9LSR1iOv5xhNVg9VveHLm7ttDpw6Efspd5E06T5WNV8xRiQSPCihlVp0GNSa
+ UH2g==
+X-Gm-Message-State: AOAM530PD1uFJdan1pTchuu3RiOSYL0PdH0JWMCz802tBwPJ5pkxUauE
+ 6uZ0nuQT3XIv3eadTPOCRk1kWMcoootId/i2C54=
+X-Google-Smtp-Source: ABdhPJyZmv6hTUj3vsWvJRXN81mWJ2JIzYVv1kTw0R63LyRTGWwLQfKgQR040nIsScGnT1KE1wOc90x1/3e2j76X/8I=
+X-Received: by 2002:a05:622a:1a20:b0:2f7:3b31:7cba with SMTP id
+ f32-20020a05622a1a2000b002f73b317cbamr3288671qtb.689.1652957461795; Thu, 19
+ May 2022 03:51:01 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Content-Language: en-US
-To: =?UTF-8?Q?Jos=c3=a9_Roberto_de_Souza?= <jose.souza@intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20220505193524.276400-1-jose.souza@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20220505193524.276400-1-jose.souza@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH CI 1/7] drm/i915: Drop has_gt_uc from device
- info
+References: <20220519095508.115203-1-christian.koenig@amd.com>
+In-Reply-To: <20220519095508.115203-1-christian.koenig@amd.com>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Thu, 19 May 2022 11:50:35 +0100
+Message-ID: <CAM0jSHOP=vyuiWOaWqo5k3G+KbAEB2HhCZKgA1VScqZknZPEyg@mail.gmail.com>
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] (no subject)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,101 +64,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ ML dri-devel <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Thu, 19 May 2022 at 10:55, Christian K=C3=B6nig
+<ckoenig.leichtzumerken@gmail.com> wrote:
+>
+> Just sending that out once more to intel-gfx to let the CI systems take
+> a look.
 
-On 05/05/2022 20:35, José Roberto de Souza wrote:
-> No need to have this parameter in intel_device_info struct
-> as all platforms with graphics version 9 or newer has graphics
-> microcontroller.
-> 
-> As a side effect of the of removal this flag, it will not be printed
-> in dmesg during driver load anymore and developers will have to rely
-> on to check the macro and compare with platform being used and IP
-> versions of it.
+If all went well it should normally appear at [1][2], if CI was able
+to pick up the series.
 
-We have decided to revert this series for now until consensus on the 
-direction and potentially individual conversions can be reached.
+Since it's not currently there, I assume it's temporarily stuck in the
+moderation queue, assuming you are not subscribed to intel-gfx ml? If
+so, perhaps consider subscribing at [3] and then disable receiving any
+mail from the ml, so you get full use of CI without getting spammed.
 
-I've sent the revert patches and will merge them once they pass CI.
+[1] https://intel-gfx-ci.01.org/queue/index.html
+[2] https://patchwork.freedesktop.org/project/intel-gfx/series/
+[3] https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
-Regards,
-
-Tvrtko
-
-> Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
-> Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
-> ---
->   drivers/gpu/drm/i915/i915_drv.h          | 2 +-
->   drivers/gpu/drm/i915/i915_gpu_error.c    | 2 +-
->   drivers/gpu/drm/i915/i915_pci.c          | 3 ---
->   drivers/gpu/drm/i915/intel_device_info.h | 1 -
->   4 files changed, 2 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> index 2dddc27a1b0ed..af3967149b2d2 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -1355,7 +1355,7 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
->    */
->   #define HAS_FLAT_CCS(dev_priv)   (INTEL_INFO(dev_priv)->has_flat_ccs)
->   
-> -#define HAS_GT_UC(dev_priv)	(INTEL_INFO(dev_priv)->has_gt_uc)
-> +#define HAS_GT_UC(dev_priv)	(GRAPHICS_VER(dev_priv) >= 9)
->   
->   #define HAS_POOLED_EU(dev_priv)	(INTEL_INFO(dev_priv)->has_pooled_eu)
->   
-> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
-> index 0512c66fa4f3f..5bd9cb8998527 100644
-> --- a/drivers/gpu/drm/i915/i915_gpu_error.c
-> +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
-> @@ -2008,7 +2008,7 @@ __i915_gpu_coredump(struct intel_gt *gt, intel_engine_mask_t engine_mask, u32 du
->   			return ERR_PTR(-ENOMEM);
->   		}
->   
-> -		if (INTEL_INFO(i915)->has_gt_uc) {
-> +		if (HAS_GT_UC(i915)) {
->   			error->gt->uc = gt_record_uc(error->gt, compress);
->   			if (error->gt->uc) {
->   				if (dump_flags & CORE_DUMP_FLAG_IS_GUC_CAPTURE)
-> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-> index 498708b33924f..6d4e2c4292f3b 100644
-> --- a/drivers/gpu/drm/i915/i915_pci.c
-> +++ b/drivers/gpu/drm/i915/i915_pci.c
-> @@ -644,7 +644,6 @@ static const struct intel_device_info chv_info = {
->   	GEN(9), \
->   	GEN9_DEFAULT_PAGE_SIZES, \
->   	.display.has_dmc = 1, \
-> -	.has_gt_uc = 1, \
->   	.display.has_hdcp = 1, \
->   	.display.has_ipc = 1, \
->   	.display.has_psr = 1, \
-> @@ -705,7 +704,6 @@ static const struct intel_device_info skl_gt4_info = {
->   	.has_rps = true, \
->   	.display.has_dp_mst = 1, \
->   	.has_logical_ring_contexts = 1, \
-> -	.has_gt_uc = 1, \
->   	.dma_mask_size = 39, \
->   	.ppgtt_type = INTEL_PPGTT_FULL, \
->   	.ppgtt_size = 48, \
-> @@ -1008,7 +1006,6 @@ static const struct intel_device_info adl_p_info = {
->   	.has_64bit_reloc = 1, \
->   	.has_flat_ccs = 1, \
->   	.has_global_mocs = 1, \
-> -	.has_gt_uc = 1, \
->   	.has_llc = 1, \
->   	.has_logical_ring_contexts = 1, \
->   	.has_logical_ring_elsq = 1, \
-> diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
-> index e7d2cf7d65c85..dcc8c63ae6ed4 100644
-> --- a/drivers/gpu/drm/i915/intel_device_info.h
-> +++ b/drivers/gpu/drm/i915/intel_device_info.h
-> @@ -146,7 +146,6 @@ enum intel_ppgtt_type {
->   	func(has_4tile); \
->   	func(has_flat_ccs); \
->   	func(has_global_mocs); \
-> -	func(has_gt_uc); \
->   	func(has_heci_pxp); \
->   	func(has_heci_gscfi); \
->   	func(has_guc_deprivilege); \
+>
+> No functional change compared to the last version.
+>
+> Christian.
+>
+>
