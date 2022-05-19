@@ -2,50 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A23A252DF89
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 May 2022 23:46:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1ABC452DFCE
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 May 2022 00:03:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D0F110E34E;
-	Thu, 19 May 2022 21:46:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 68D3110E115;
+	Thu, 19 May 2022 22:03:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A2E8510E15A;
- Thu, 19 May 2022 21:46:44 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2DDCD10E056;
+ Thu, 19 May 2022 22:03:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1652996804; x=1684532804;
+ t=1652997833; x=1684533833;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=Sa4M5VYb/V0ooZN0pwsFGyLhaPFaCG1gLYioyNINpss=;
- b=YAORx/0JXcB7irEgsHrZVuuxzJISYwYw1T/4ODXmte82bTldcLnS6IJr
- oUzSq/Fk1YD5CWf+dGynWWdKIq7uf74m6EP3fNF5Ul3OS/ed1PVVfmVqq
- Tem2lKUvQp/YPyVYTJBlLHQ9Y5v3DbDqq60FIw4EeRYm10pigkb7mMMgJ
- p1VLfQB5/YZuzHOptVlOtYAKo6D02zcKLryB6/iJBavIVznseigXmDXA6
- Q+Bb9X2l6kGvzusAvTn+3Mn+MnqF6karTaNGufZn846/gJcAQdHggCrUr
- ZfoVY/JRBPnzes6+u10LUQMMfTrkc52FnjKw+3plAfQEqmJUuWUysvTQp Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10352"; a="335439281"
-X-IronPort-AV: E=Sophos;i="5.91,238,1647327600"; d="scan'208";a="335439281"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2022 14:46:44 -0700
-X-IronPort-AV: E=Sophos;i="5.91,238,1647327600"; d="scan'208";a="570445189"
+ bh=nEJpi71kkST6HOpHEsRnRPz+IMUSLuxmUQ/c/6L/384=;
+ b=GCqJJY0oYDZulvpa5Lg21YOnlY4nZB4cOR54uCgZL4ytgc/RvdBnDw05
+ ZZscRs4wca5DqjTnpzREvATbXkjh1IBgsNhT+h8e8b6aPvYtqrlBdiExt
+ DuLsPnT3gQX8e4rNBvRdkTy7GzbZOiXDfqKZGXRojWCT6BgMmTxxVJd4/
+ iUe7Oqs88cYwtSeLqz7hss1PDWjYI4lguSUqRf6/bJU0NlPqTy6sqG5oS
+ VT/Y07JJsvyjsFCACpXzmy0xPHjGdHQz0Kl1BMdzTfaEMKMdUhjU4cuDf
+ klYzCB1cp/1Ia9SCX8zzPjTCnP6lADiKQ9S1BbMw/pwcoPqLFg4mBqI+u Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10352"; a="259972005"
+X-IronPort-AV: E=Sophos;i="5.91,238,1647327600"; d="scan'208";a="259972005"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 May 2022 15:03:52 -0700
+X-IronPort-AV: E=Sophos;i="5.91,238,1647327600"; d="scan'208";a="598831950"
 Received: from annahenx-mobl.ger.corp.intel.com (HELO intel.com)
  ([10.252.37.182])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2022 14:46:42 -0700
-Date: Thu, 19 May 2022 23:46:38 +0200
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 May 2022 15:03:47 -0700
+Date: Fri, 20 May 2022 00:03:44 +0200
 From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Thomas =?iso-8859-15?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-Message-ID: <Yoa6vqN/BOfoF53j@intel.intel>
-References: <20220512094045.792373-1-thomas.hellstrom@linux.intel.com>
+To: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>
+Message-ID: <Yoa+wBHpVjCBZjH0@intel.intel>
+References: <20220318233938.149744-1-andi.shyti@linux.intel.com>
+ <20220318233938.149744-4-andi.shyti@linux.intel.com>
+ <218ed800-d267-fc6c-2e07-233d1519f2b6@intel.com>
+ <c29bd965-eaff-5767-34a4-1eee27a7fe3f@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-15
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220512094045.792373-1-thomas.hellstrom@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix vm use-after-free in vma
- destruction
+In-Reply-To: <c29bd965-eaff-5767-34a4-1eee27a7fe3f@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v7 3/7] drm/i915: Prepare for multiple GTs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,48 +60,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>,
- dri-devel@lists.freedesktop.org
+Cc: Intel GFX <intel-gfx@lists.freedesktop.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ DRI Devel <dri-devel@lists.freedesktop.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>, Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Thomas,
+Hi Daniele,
 
-On Thu, May 12, 2022 at 11:40:45AM +0200, Thomas Hellström wrote:
-> In vma destruction, the following race may occur:
-> 
-> Thread 1:	    		  Thread 2:
-> i915_vma_destroy();
-> 
->   ...
->   list_del_init(vma->vm_link);
->   ...
->   mutex_unlock(vma->vm->mutex);
-> 				  __i915_vm_release();
-> release_references();
-> 
-> And in release_reference() we dereference vma->vm to get to the
-> vm gt pointer, leadin go a use-after free.
+> > > @@ -909,6 +903,8 @@ int i915_driver_probe(struct pci_dev *pdev,
+> > > const struct pci_device_id *ent)
+> > >       i915_ggtt_driver_late_release(i915);
+> > >   out_cleanup_mmio:
+> > >       i915_driver_mmio_release(i915);
+> > > +out_tiles_cleanup:
+> > > +    intel_gt_release_all(i915);
+> > 
+> > We don't seem to call intel_gt_release_all() from driver_release(), so
+> > we might be leaking something there. I wanted to send a patch to add the
+> > call at the same place in the flow as in this error path, but then I
+> > noticed that i915_driver_late_release(), which we call a few lines
+> > below, calls intel_gt_driver_late_release_all(), which seems to expect
+> > that the GTs are still allocated, so we probably need to flip the order
+> > those are called in, or move the cleanup code from late_release() to
+> > late_release_all() (or vice versa).
+> > Andi, can you have a look at this?
 
-leading to
+well spotted! I will check it.
 
-[...]
+> Ping! :)
 
-> -static void release_references(struct i915_vma *vma, bool vm_ddestroy)
-> +static void release_references(struct i915_vma *vma, struct intel_gt *gt,
-> +			       bool vm_ddestroy)
->  {
->  	struct drm_i915_gem_object *obj = vma->obj;
-> -	struct intel_gt *gt = vma->vm->gt;
->  
->  	GEM_BUG_ON(i915_vma_is_active(vma));
+Sorry for taking so long for replying. I'm on it, now.
 
-but then we have
-
-	if (vm_ddestroy)
-		i915_vm_resv_put(vma->vm);
-
-were we reference to a freed vm, right? Do we need to check it
-here, as well?
-
+Thank you,
 Andi
