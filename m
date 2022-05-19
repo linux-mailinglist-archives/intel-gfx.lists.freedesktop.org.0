@@ -2,52 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1ABC452DFCE
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 May 2022 00:03:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BE2552DFF5
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 May 2022 00:29:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 68D3110E115;
-	Thu, 19 May 2022 22:03:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4552C11A923;
+	Thu, 19 May 2022 22:29:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2DDCD10E056;
- Thu, 19 May 2022 22:03:53 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B1BA111A923
+ for <intel-gfx@lists.freedesktop.org>; Thu, 19 May 2022 22:29:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1652997833; x=1684533833;
+ t=1652999387; x=1684535387;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=nEJpi71kkST6HOpHEsRnRPz+IMUSLuxmUQ/c/6L/384=;
- b=GCqJJY0oYDZulvpa5Lg21YOnlY4nZB4cOR54uCgZL4ytgc/RvdBnDw05
- ZZscRs4wca5DqjTnpzREvATbXkjh1IBgsNhT+h8e8b6aPvYtqrlBdiExt
- DuLsPnT3gQX8e4rNBvRdkTy7GzbZOiXDfqKZGXRojWCT6BgMmTxxVJd4/
- iUe7Oqs88cYwtSeLqz7hss1PDWjYI4lguSUqRf6/bJU0NlPqTy6sqG5oS
- VT/Y07JJsvyjsFCACpXzmy0xPHjGdHQz0Kl1BMdzTfaEMKMdUhjU4cuDf
- klYzCB1cp/1Ia9SCX8zzPjTCnP6lADiKQ9S1BbMw/pwcoPqLFg4mBqI+u Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10352"; a="259972005"
-X-IronPort-AV: E=Sophos;i="5.91,238,1647327600"; d="scan'208";a="259972005"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2022 15:03:52 -0700
-X-IronPort-AV: E=Sophos;i="5.91,238,1647327600"; d="scan'208";a="598831950"
-Received: from annahenx-mobl.ger.corp.intel.com (HELO intel.com)
- ([10.252.37.182])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2022 15:03:47 -0700
-Date: Fri, 20 May 2022 00:03:44 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>
-Message-ID: <Yoa+wBHpVjCBZjH0@intel.intel>
-References: <20220318233938.149744-1-andi.shyti@linux.intel.com>
- <20220318233938.149744-4-andi.shyti@linux.intel.com>
- <218ed800-d267-fc6c-2e07-233d1519f2b6@intel.com>
- <c29bd965-eaff-5767-34a4-1eee27a7fe3f@intel.com>
+ bh=IdPQybgzSCwmB+kZXE4U3IIIMlTnzA+JBod8tH22qB0=;
+ b=BsRDhfQYQVcq6gT1nWLAE1jcibEJ4wC7QXOnj3pZuQyAmmK6a859XK7F
+ oz+DmnQNjl+DJKT4UiOYKYNVfFle9OLfhtghE5QZjzLE4kqza5oEToYaA
+ 8PElZTa/Ayzm0l4cOPdDrsJ3Uxz6/yDzpUiJ/yIaDyQkVkPHe8UGBWDb4
+ Vcr7f00svkd4D62ItLBMVbpzSarWFTsaS0n+J0We7mT5M4YEfTyxKPj76
+ bdSywbSMHYR5oLz+4K7zGKNHQKEnANO0iGyk0CviEIUhG1LZfViohDK3N
+ VbWa8tUgvB1Rapqf1jp+uGuBdNBuvdNThsZ2T7AKsck45GSJyZLhCk9a8 A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10352"; a="272529544"
+X-IronPort-AV: E=Sophos;i="5.91,238,1647327600"; d="scan'208";a="272529544"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 May 2022 15:29:47 -0700
+X-IronPort-AV: E=Sophos;i="5.91,238,1647327600"; d="scan'208";a="570463436"
+Received: from stkachuk-mobl2.amr.corp.intel.com (HELO ldmartin-desk2)
+ ([10.251.23.35])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 May 2022 15:29:46 -0700
+Date: Thu, 19 May 2022 15:29:46 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: "Piorkowski, Piotr" <piotr.piorkowski@intel.com>
+Message-ID: <20220519222946.mzt5fhkkorpf3dpg@ldmartin-desk2>
+X-Patchwork-Hint: comment
+References: <20220120113049.213361-1-piotr.piorkowski@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-15
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <c29bd965-eaff-5767-34a4-1eee27a7fe3f@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v7 3/7] drm/i915: Prepare for multiple GTs
+In-Reply-To: <20220120113049.213361-1-piotr.piorkowski@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Sanitycheck PCI BARs on probe
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,38 +58,115 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel GFX <intel-gfx@lists.freedesktop.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- DRI Devel <dri-devel@lists.freedesktop.org>,
- Chris Wilson <chris@chris-wilson.co.uk>, Matthew Auld <matthew.auld@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Daniele,
+On Thu, Jan 20, 2022 at 12:30:49PM +0100, Piorkowski, Piotr wrote:
+>From: Piotr Piórkowski <piotr.piorkowski@intel.com>
+>
+>For proper operation of i915 we need usable PCI BARs:
+> - GTTMMADDR BAR 0 (1 for GEN2)
+> - GFXMEM BAR 2.
+>Lets check before we start the i915 probe that these BARs are set,
+>and that they have a size greater than 0.
+>
+>Signed-off-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
+>Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>Cc: Jani Nikula <jani.nikula@linux.intel.com>
 
-> > > @@ -909,6 +903,8 @@ int i915_driver_probe(struct pci_dev *pdev,
-> > > const struct pci_device_id *ent)
-> > >       i915_ggtt_driver_late_release(i915);
-> > >   out_cleanup_mmio:
-> > >       i915_driver_mmio_release(i915);
-> > > +out_tiles_cleanup:
-> > > +    intel_gt_release_all(i915);
-> > 
-> > We don't seem to call intel_gt_release_all() from driver_release(), so
-> > we might be leaking something there. I wanted to send a patch to add the
-> > call at the same place in the flow as in this error path, but then I
-> > noticed that i915_driver_late_release(), which we call a few lines
-> > below, calls intel_gt_driver_late_release_all(), which seems to expect
-> > that the GTs are still allocated, so we probably need to flip the order
-> > those are called in, or move the cleanup code from late_release() to
-> > late_release_all() (or vice versa).
-> > Andi, can you have a look at this?
+This sounds reasonable to me... should catch issues in which the BIOS
+didn't assign resources properly, PCI subsystem tried to reassign them
+and we ended up left withou a BAR.
 
-well spotted! I will check it.
++Matt Auld who is working on small BAR recovery... slightly related.
+Does this look ok?
 
-> Ping! :)
+Acked-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-Sorry for taking so long for replying. I'm on it, now.
+thanks
+Lucas De Marchi
 
-Thank you,
-Andi
+
+>---
+> drivers/gpu/drm/i915/i915_pci.c         | 33 +++++++++++++++++++++++++
+> drivers/gpu/drm/i915/intel_pci_config.h |  5 ++++
+> 2 files changed, 38 insertions(+)
+>
+>diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+>index 8261b6455747..ad60c69d9dd8 100644
+>--- a/drivers/gpu/drm/i915/i915_pci.c
+>+++ b/drivers/gpu/drm/i915/i915_pci.c
+>@@ -29,6 +29,8 @@
+> #include "i915_drv.h"
+> #include "i915_pci.h"
+>
+>+#include "intel_pci_config.h"
+>+
+> #define PLATFORM(x) .platform = (x)
+> #define GEN(x) \
+> 	.graphics.ver = (x), \
+>@@ -1181,6 +1183,34 @@ static bool force_probe(u16 device_id, const char *devices)
+> 	return ret;
+> }
+>
+>+static bool __pci_resource_valid(struct pci_dev *pdev, int bar)
+>+{
+>+	if (!pci_resource_flags(pdev, bar))
+>+		return false;
+>+
+>+	if (pci_resource_flags(pdev, bar) & IORESOURCE_UNSET)
+>+		return false;
+>+
+>+	if (!pci_resource_len(pdev, bar))
+>+		return false;
+>+
+>+	return true;
+>+}
+>+
+>+static bool intel_bars_valid(struct pci_dev *pdev, struct intel_device_info *intel_info)
+>+{
+>+	const int gttmmaddr_bar = intel_info->graphics.ver == 2 ? GEN2_GTTMMADR_BAR : GTTMMADR_BAR;
+>+	const int gfxmem_bar = GFXMEM_BAR;
+>+
+>+	if (!__pci_resource_valid(pdev, gttmmaddr_bar))
+>+		return false;
+>+
+>+	if (!__pci_resource_valid(pdev, gfxmem_bar))
+>+		return false;
+>+
+>+	return true;
+>+}
+>+
+> static int i915_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+> {
+> 	struct intel_device_info *intel_info =
+>@@ -1206,6 +1236,9 @@ static int i915_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+> 	if (PCI_FUNC(pdev->devfn))
+> 		return -ENODEV;
+>
+>+	if (!intel_bars_valid(pdev, intel_info))
+>+		return -ENODEV;
+>+
+> 	/* Detect if we need to wait for other drivers early on */
+> 	if (intel_modeset_probe_defer(pdev))
+> 		return -EPROBE_DEFER;
+>diff --git a/drivers/gpu/drm/i915/intel_pci_config.h b/drivers/gpu/drm/i915/intel_pci_config.h
+>index 12cd9d4f23de..c08fd5d48ada 100644
+>--- a/drivers/gpu/drm/i915/intel_pci_config.h
+>+++ b/drivers/gpu/drm/i915/intel_pci_config.h
+>@@ -6,6 +6,11 @@
+> #ifndef __INTEL_PCI_CONFIG_H__
+> #define __INTEL_PCI_CONFIG_H__
+>
+>+/* PCI BARs */
+>+#define GTTMMADR_BAR				0
+>+#define GEN2_GTTMMADR_BAR			1
+>+#define GFXMEM_BAR				2
+>+
+> /* BSM in include/drm/i915_drm.h */
+>
+> #define MCHBAR_I915				0x44
+>-- 
+>2.25.1
+>
