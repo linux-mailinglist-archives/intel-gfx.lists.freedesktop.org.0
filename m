@@ -2,73 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A17E052CDE0
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 May 2022 10:06:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6052552CE47
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 May 2022 10:25:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2EFE511AFB4;
-	Thu, 19 May 2022 08:06:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8BC6F10F431;
+	Thu, 19 May 2022 08:25:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from wout1-smtp.messagingengine.com (wout1-smtp.messagingengine.com
- [64.147.123.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D469D11AFB2;
- Thu, 19 May 2022 08:06:04 +0000 (UTC)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
- by mailout.west.internal (Postfix) with ESMTP id 5BC383200939;
- Thu, 19 May 2022 04:06:00 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
- by compute5.internal (MEProxy); Thu, 19 May 2022 04:06:01 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
- :cc:content-type:date:date:from:from:in-reply-to:message-id
- :mime-version:reply-to:sender:subject:subject:to:to; s=fm3; t=
- 1652947559; x=1653033959; bh=36NEu9n6vCbbb7rTJz5ZZx0qkleGrUAN5Xt
- yxUg02G4=; b=r7GzPFnTKRB6T+O92lzs3S6/dxqsvpe1nqYIu+2ggJkM1pe2RPt
- AxZNucihUgvY/w0nUOVOOf95SsV7AGF2Qumj9aA4PvBqrN+Fj6V2kAVApAZtGxy9
- EPXsDZMdV5HefavGhTiGpXqOVkXQO0zYXMkPFx3NKKrSMRArzFANjH8I2IWVIZZF
- 88Sd875tZNYypgwl9pQitGYKHcHyxRcekFn4X5kEQHSs11I3sb70N0VnL0iD2Dvb
- 1s0eijGeRgoXH5E7FbwffWPRR2hYmvIQzOC1m1+QBHOpZRV+gGus0SwPyk08XWo2
- AQvyiG+yXDAfpDMG47wUkM0Mwcec0PIpZzQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
- :feedback-id:from:from:in-reply-to:message-id:mime-version
- :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1652947559; x=
- 1653033959; bh=36NEu9n6vCbbb7rTJz5ZZx0qkleGrUAN5XtyxUg02G4=; b=D
- WuMcrMQ3o2JTJAKwSf7rk9vY1pLLL6NgjjTy9+FUsNmgVOeRA3wT4nzoyKRxGdOa
- FGmFCes5LTUdJ2meY7Oxk9aFcVQpgpSKJ+EmKg/OqBaaES/SyQODPs87NtcCt/NI
- uq431YbvLyPMj057fnR20TqgdvXCp8l2cjPHvsRMvFL/3fFnHxXUA0JUqKfl4RLU
- u6LYBfHNcfKrRZyg5UkTp9C8i1VyC3L1G+qF5islVnVGkN29ZshoCatrGaej/27X
- wuyro+vVnpmsDXhnzlHHXh2xtaaqrtnmnBca2T7Boef24pgQNAi7RI+r7rga52uu
- Op9qCvQ9a59AjVr8i+CVg==
-X-ME-Sender: <xms:Z_qFYk8CG9AkbhzQMLJOg5qZR9uzaM25T1ofQith2gbUp7r5BE0FHg>
- <xme:Z_qFYssRXcrA-h6FbzYQ4f_3YhcvQOINBhPLgSpYGN4ca9oaBDeQgokVN-A6l9m6k
- OPSxOBrur_tFapEH60>
-X-ME-Received: <xmr:Z_qFYqBNITATkWcv1GLPoSyppuJP1_yTrGbYuaLFzXScjTgBPeqTGXJIsvifJNp9ZFLM7Dr6jicHE-R-Iil-7B0Jl6-li4_qWWJoJ5A>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedriedtgdduvdekucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
- uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
- cujfgurhepfffhvfevuffkgggtugesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
- ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
- gvrhhnpeeuieehjefhieevtdehudfftdetgfdtuedvvdeugeetgfevgeevudegffduveej
- ieenucffohhmrghinhepfhhrvggvuggvshhkthhophdrohhrghenucevlhhushhtvghruf
- hiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdr
- thgvtghh
-X-ME-Proxy: <xmx:Z_qFYkc5T_7lCfKxdpIAIOlrCTjb20tzEP02lgm1M5TakTMDFAxsEg>
- <xmx:Z_qFYpPx6BBHM1nRi_RmkTFuLickfTuOwjCSJLHCib2lIuY0S7gNyg>
- <xmx:Z_qFYumJoypObvAWxWO1V93SOlR7UxDkGoRFog4z5iLqOD1qL5unWQ>
- <xmx:Z_qFYqEOC0TSUKDgEA5rSbsthDB7jMCFAIzjxiTunyzZ1z-ifxtCyA>
-Feedback-ID: i8771445c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 19 May 2022 04:05:59 -0400 (EDT)
-Date: Thu, 19 May 2022 10:05:56 +0200
-From: Maxime Ripard <maxime@cerno.tech>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20220519080556.42p52cya4u6y3kps@houat>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 826FC10FDAF
+ for <intel-gfx@lists.freedesktop.org>; Thu, 19 May 2022 08:25:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1652948753; x=1684484753;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=6y0I+dTXnRZJ4xUg2SLdh45EvBZIkq8Sat+wIqUXmcI=;
+ b=VB3PZ9JPO1CyvqCiK9a7Sc1537OTWVflgw1SRaCdYPPSAhrYYgcX4Vd/
+ NHsWWZ1tOoZKQb2WzUj625qOBS92NP2mavA91o57VDRBBdg/+7ZtETNtl
+ 0eoRDp1QTJqu5pCmPfdwJOOH1apteably/DerI99sOC28trv2OB5EdpJQ
+ Iny4PwH+yd5TrpfsdOPiJgOu5SbjDCoXyECUcPbsxZb//B8d/7q1cCiAZ
+ Dsha/GLygjpLmGmxEl0cWlDr9vukegPkhP4kPOXAOBeDIvWdguyVwPe8x
+ 6ExC3GXrhfrJgvFeOIOUeKhqF0MALs8wGY3eVJiE1gUmktBGEHfgbGqZW A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10351"; a="270915045"
+X-IronPort-AV: E=Sophos;i="5.91,237,1647327600"; d="scan'208";a="270915045"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 May 2022 01:25:52 -0700
+X-IronPort-AV: E=Sophos;i="5.91,237,1647327600"; d="scan'208";a="598434518"
+Received: from tszulist-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.249.146.157])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 May 2022 01:25:50 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+In-Reply-To: <878rqzdk22.fsf@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220518113315.1305027-1-jani.nikula@intel.com>
+ <YoTsVS5AaJfNe9hE@intel.com> <878rqzdk22.fsf@intel.com>
+Date: Thu, 19 May 2022 11:25:47 +0300
+Message-ID: <87wneic4j8.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="3if6d3mzxbig65ik"
-Content-Disposition: inline
-Subject: [Intel-gfx] [PULL] drm-misc-next-fixes
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/reg: fix undefined behavior
+ due to shift overflowing the constant
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,58 +59,99 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, Borislav Petkov <bp@suse.de>,
+ Randy Dunlap <rdunlap@infradead.org>, Ruiqi GONG <gongruiqi1@huawei.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Wed, 18 May 2022, Jani Nikula <jani.nikula@intel.com> wrote:
+> On Wed, 18 May 2022, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.c=
+om> wrote:
+>> On Wed, May 18, 2022 at 02:33:14PM +0300, Jani Nikula wrote:
+>>> Use REG_GENMASK() and REG_FIELD_PREP() to avoid errors due to
+>>> -fsanitize=3Dshift.
+>>
+>> I presume it's just unhappy about shifting into the sign bit?
+>
+> Yeah, and apparently it also only happens on some GCC versions. *shrug*.
+>
+>>
+>> Changes look correct:
+>> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> Thanks,
+> Jani.
 
---3if6d3mzxbig65ik
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+And pushed 1/2 to drm-intel-next.
 
-Hi Daniel, Dave,
+BR,
+Jani.
 
-Here's this week drm-misc-next-fixes PR
 
-Maxime
+>
+>>
+>>>=20
+>>> References: https://lore.kernel.org/r/20220405151517.29753-12-bp@alien8=
+.de
+>>> Reported-by: Borislav Petkov <bp@suse.de>
+>>> Reported-by: Ruiqi GONG <gongruiqi1@huawei.com>
+>>> Cc: Randy Dunlap <rdunlap@infradead.org>
+>>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>>> ---
+>>>  drivers/gpu/drm/i915/i915_reg.h | 32 ++++++++++++++++----------------
+>>>  1 file changed, 16 insertions(+), 16 deletions(-)
+>>>=20
+>>> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i91=
+5_reg.h
+>>> index 321a08281a3f..dff3f88d8090 100644
+>>> --- a/drivers/gpu/drm/i915/i915_reg.h
+>>> +++ b/drivers/gpu/drm/i915/i915_reg.h
+>>> @@ -7607,25 +7607,25 @@ enum skl_power_gate {
+>>>  #define _PORT_CLK_SEL_A			0x46100
+>>>  #define _PORT_CLK_SEL_B			0x46104
+>>>  #define PORT_CLK_SEL(port) _MMIO_PORT(port, _PORT_CLK_SEL_A, _PORT_CLK=
+_SEL_B)
+>>> -#define  PORT_CLK_SEL_LCPLL_2700	(0 << 29)
+>>> -#define  PORT_CLK_SEL_LCPLL_1350	(1 << 29)
+>>> -#define  PORT_CLK_SEL_LCPLL_810		(2 << 29)
+>>> -#define  PORT_CLK_SEL_SPLL		(3 << 29)
+>>> -#define  PORT_CLK_SEL_WRPLL(pll)	(((pll) + 4) << 29)
+>>> -#define  PORT_CLK_SEL_WRPLL1		(4 << 29)
+>>> -#define  PORT_CLK_SEL_WRPLL2		(5 << 29)
+>>> -#define  PORT_CLK_SEL_NONE		(7 << 29)
+>>> -#define  PORT_CLK_SEL_MASK		(7 << 29)
+>>> +#define  PORT_CLK_SEL_MASK		REG_GENMASK(31, 29)
+>>> +#define  PORT_CLK_SEL_LCPLL_2700	REG_FIELD_PREP(PORT_CLK_SEL_MASK, 0)
+>>> +#define  PORT_CLK_SEL_LCPLL_1350	REG_FIELD_PREP(PORT_CLK_SEL_MASK, 1)
+>>> +#define  PORT_CLK_SEL_LCPLL_810		REG_FIELD_PREP(PORT_CLK_SEL_MASK, 2)
+>>> +#define  PORT_CLK_SEL_SPLL		REG_FIELD_PREP(PORT_CLK_SEL_MASK, 3)
+>>> +#define  PORT_CLK_SEL_WRPLL(pll)	REG_FIELD_PREP(PORT_CLK_SEL_MASK, 4 +=
+ (pll))
+>>> +#define  PORT_CLK_SEL_WRPLL1		REG_FIELD_PREP(PORT_CLK_SEL_MASK, 4)
+>>> +#define  PORT_CLK_SEL_WRPLL2		REG_FIELD_PREP(PORT_CLK_SEL_MASK, 5)
+>>> +#define  PORT_CLK_SEL_NONE		REG_FIELD_PREP(PORT_CLK_SEL_MASK, 7)
+>>>=20=20
+>>>  /* On ICL+ this is the same as PORT_CLK_SEL, but all bits change. */
+>>>  #define DDI_CLK_SEL(port)		PORT_CLK_SEL(port)
+>>> -#define  DDI_CLK_SEL_NONE		(0x0 << 28)
+>>> -#define  DDI_CLK_SEL_MG			(0x8 << 28)
+>>> -#define  DDI_CLK_SEL_TBT_162		(0xC << 28)
+>>> -#define  DDI_CLK_SEL_TBT_270		(0xD << 28)
+>>> -#define  DDI_CLK_SEL_TBT_540		(0xE << 28)
+>>> -#define  DDI_CLK_SEL_TBT_810		(0xF << 28)
+>>> -#define  DDI_CLK_SEL_MASK		(0xF << 28)
+>>> +#define  DDI_CLK_SEL_MASK		REG_GENMASK(31, 28)
+>>> +#define  DDI_CLK_SEL_NONE		REG_FIELD_PREP(DDI_CLK_SEL_MASK, 0x0)
+>>> +#define  DDI_CLK_SEL_MG			REG_FIELD_PREP(DDI_CLK_SEL_MASK, 0x8)
+>>> +#define  DDI_CLK_SEL_TBT_162		REG_FIELD_PREP(DDI_CLK_SEL_MASK, 0xC)
+>>> +#define  DDI_CLK_SEL_TBT_270		REG_FIELD_PREP(DDI_CLK_SEL_MASK, 0xD)
+>>> +#define  DDI_CLK_SEL_TBT_540		REG_FIELD_PREP(DDI_CLK_SEL_MASK, 0xE)
+>>> +#define  DDI_CLK_SEL_TBT_810		REG_FIELD_PREP(DDI_CLK_SEL_MASK, 0xF)
+>>>=20=20
+>>>  /* Transcoder clock selection */
+>>>  #define _TRANS_CLK_SEL_A		0x46140
+>>> --=20
+>>> 2.30.2
 
-drm-misc-next-fixes-2022-05-19:
-A device tree binding change for Rockchip VOP2
-The following changes since commit 6071c4c2a319da360b0bf2bc397d4fefad10b2c8:
-
-  drm/qxl: add drm_gem_plane_helper_prepare_fb (2022-05-05 12:30:10 +0200)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-fixes-2022-05-19
-
-for you to fetch changes up to 5ee8c8f930ba7d20717c4fc2d9f1ce0e757d1155:
-
-  drm/rockchip: Change register space names in vop2 (2022-05-17 00:16:33 +0200)
-
-----------------------------------------------------------------
-A device tree binding change for Rockchip VOP2
-
-----------------------------------------------------------------
-Sascha Hauer (2):
-      dt-bindings: display: rockchip: make reg-names mandatory for VOP2
-      drm/rockchip: Change register space names in vop2
-
- .../devicetree/bindings/display/rockchip/rockchip-vop2.yaml       | 8 +++++++-
- drivers/gpu/drm/rockchip/rockchip_drm_vop2.c                      | 4 ++--
- 2 files changed, 9 insertions(+), 3 deletions(-)
-
---3if6d3mzxbig65ik
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYoX6ZAAKCRDj7w1vZxhR
-xfscAP4sBPQZkrxtH1zNtkrWA+BJIN2WBHeT4U+x8LixEOvTFQD8DpGWfb1e5ktu
-JuoUrW1cnH/TfK9zpLT2/JVQle8niQw=
-=R96Q
------END PGP SIGNATURE-----
-
---3if6d3mzxbig65ik--
+--=20
+Jani Nikula, Intel Open Source Graphics Center
