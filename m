@@ -2,50 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BE2552DFF5
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 May 2022 00:29:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AD90E52E00D
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 May 2022 00:35:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4552C11A923;
-	Thu, 19 May 2022 22:29:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6CED011AA03;
+	Thu, 19 May 2022 22:35:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B1BA111A923
- for <intel-gfx@lists.freedesktop.org>; Thu, 19 May 2022 22:29:47 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BC92611AA00;
+ Thu, 19 May 2022 22:35:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1652999387; x=1684535387;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=IdPQybgzSCwmB+kZXE4U3IIIMlTnzA+JBod8tH22qB0=;
- b=BsRDhfQYQVcq6gT1nWLAE1jcibEJ4wC7QXOnj3pZuQyAmmK6a859XK7F
- oz+DmnQNjl+DJKT4UiOYKYNVfFle9OLfhtghE5QZjzLE4kqza5oEToYaA
- 8PElZTa/Ayzm0l4cOPdDrsJ3Uxz6/yDzpUiJ/yIaDyQkVkPHe8UGBWDb4
- Vcr7f00svkd4D62ItLBMVbpzSarWFTsaS0n+J0We7mT5M4YEfTyxKPj76
- bdSywbSMHYR5oLz+4K7zGKNHQKEnANO0iGyk0CviEIUhG1LZfViohDK3N
- VbWa8tUgvB1Rapqf1jp+uGuBdNBuvdNThsZ2T7AKsck45GSJyZLhCk9a8 A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10352"; a="272529544"
-X-IronPort-AV: E=Sophos;i="5.91,238,1647327600"; d="scan'208";a="272529544"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2022 15:29:47 -0700
-X-IronPort-AV: E=Sophos;i="5.91,238,1647327600"; d="scan'208";a="570463436"
-Received: from stkachuk-mobl2.amr.corp.intel.com (HELO ldmartin-desk2)
- ([10.251.23.35])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2022 15:29:46 -0700
-Date: Thu, 19 May 2022 15:29:46 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: "Piorkowski, Piotr" <piotr.piorkowski@intel.com>
-Message-ID: <20220519222946.mzt5fhkkorpf3dpg@ldmartin-desk2>
-X-Patchwork-Hint: comment
-References: <20220120113049.213361-1-piotr.piorkowski@intel.com>
+ t=1652999739; x=1684535739;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=PHKAsX9pfjklkk6bTEdUjgP+Wh96UOMdmVwKeXu2Bg0=;
+ b=c67fSZfe4XZkSymbNXxgxZ1HycqK212zS+gbT2V2nhCBFKqCWbRyUgFf
+ Ts6psmy39bmktit4jihQQMih5JVNGU8n0TVRxlfVN/v321EbxXI+qUKUe
+ G59bx0AqFQWgl5VtEOPYsIy8IE3LMOCGwHkLdhWj5Sil6bB+EIQfkFdQB
+ SyQ1tkv72lwmO/zEwj+TKyTBN1aG/wpCab7Z7jseHCUG96584S88On2MM
+ HfggPwThbYB4vIlLNNPnQEYYpscIff3fGg7DOIvvXO6Rk2nHani1kLV4g
+ d9lRNjQVhFyOWEX1AeD6ZKzHwGlwiPh3D/sRiHnUwmc2iK1OCdHlJ6CBX A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10352"; a="252919875"
+X-IronPort-AV: E=Sophos;i="5.91,238,1647327600"; d="scan'208";a="252919875"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 May 2022 15:35:38 -0700
+X-IronPort-AV: E=Sophos;i="5.91,238,1647327600"; d="scan'208";a="743170820"
+Received: from lab-ah.igk.intel.com ([10.91.215.196])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 May 2022 15:35:36 -0700
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Fri, 20 May 2022 00:35:20 +0200
+Message-Id: <20220519223520.3935225-1-andrzej.hajda@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Disposition: inline
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220120113049.213361-1-piotr.piorkowski@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Sanitycheck PCI BARs on probe
+Subject: [Intel-gfx] [PATCH RESEND v6] drm/i915/display: disable HPD workers
+ before display driver unregister
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,115 +57,94 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jan 20, 2022 at 12:30:49PM +0100, Piorkowski, Piotr wrote:
->From: Piotr Piórkowski <piotr.piorkowski@intel.com>
->
->For proper operation of i915 we need usable PCI BARs:
-> - GTTMMADDR BAR 0 (1 for GEN2)
-> - GFXMEM BAR 2.
->Lets check before we start the i915 probe that these BARs are set,
->and that they have a size greater than 0.
->
->Signed-off-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
->Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
->Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Handling HPD during driver removal is pointless, and can cause different
+use-after-free/concurrency issues:
+1. Setup of deferred fbdev after fbdev unregistration.
+2. Access to DP-AUX after DP-AUX removal.
 
-This sounds reasonable to me... should catch issues in which the BIOS
-didn't assign resources properly, PCI subsystem tried to reassign them
-and we ended up left withou a BAR.
+Below stacktraces of both cases observed on CI:
 
-+Matt Auld who is working on small BAR recovery... slightly related.
-Does this look ok?
+[272.634530] general protection fault, probably for non-canonical address 0x6b6b6b6b6b6b6b6b: 0000 [#1] PREEMPT SMP NOPTI
+[272.634536] CPU: 0 PID: 6030 Comm: i915_selftest Tainted: G     U            5.18.0-rc5-CI_DRM_11603-g12dccf4f5eef+ #1
+[272.634541] Hardware name: Intel Corporation Raptor Lake Client Platform/RPL-S ADP-S DDR5 UDIMM CRB, BIOS RPLSFWI1.R00.2397.A01.2109300731 09/30/2021
+[272.634545] RIP: 0010:fb_do_apertures_overlap.part.14+0x26/0x60
+...
+[272.634582] Call Trace:
+[272.634583]  <TASK>
+[272.634585]  do_remove_conflicting_framebuffers+0x59/0xa0
+[272.634589]  remove_conflicting_framebuffers+0x2d/0xc0
+[272.634592]  remove_conflicting_pci_framebuffers+0xc8/0x110
+[272.634595]  drm_aperture_remove_conflicting_pci_framebuffers+0x52/0x70
+[272.634604]  i915_driver_probe+0x63a/0xdd0 [i915]
 
-Acked-by: Lucas De Marchi <lucas.demarchi@intel.com>
+[283.405824] cpu_latency_qos_update_request called for unknown object
+[283.405866] WARNING: CPU: 2 PID: 240 at kernel/power/qos.c:296 cpu_latency_qos_update_request+0x2d/0x100
+[283.405912] CPU: 2 PID: 240 Comm: kworker/u64:9 Not tainted 5.18.0-rc6-Patchwork_103738v3-g1672d1c43e43+ #1
+[283.405915] Hardware name: Intel Corporation Raptor Lake Client Platform/RPL-S ADP-S DDR5 UDIMM CRB, BIOS RPLSFWI1.R00.2397.A01.2109300731 09/30/2021
+[283.405916] Workqueue: i915-dp i915_digport_work_func [i915]
+[283.406020] RIP: 0010:cpu_latency_qos_update_request+0x2d/0x100
+...
+[283.406040] Call Trace:
+[283.406041]  <TASK>
+[283.406044]  intel_dp_aux_xfer+0x60e/0x8e0 [i915]
+[283.406131]  ? finish_swait+0x80/0x80
+[283.406139]  intel_dp_aux_transfer+0xc5/0x2b0 [i915]
+[283.406218]  drm_dp_dpcd_access+0x79/0x130 [drm_display_helper]
+[283.406227]  drm_dp_dpcd_read+0xe2/0xf0 [drm_display_helper]
+[283.406233]  intel_dp_hpd_pulse+0x134/0x570 [i915]
+[283.406308]  ? __down_killable+0x70/0x140
+[283.406313]  i915_digport_work_func+0xba/0x150 [i915]
 
-thanks
-Lucas De Marchi
+Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+---
+Hi all,
 
+This is resend of [1]. For unknown reason CC-ing ppl did not work,
+so I've decided to resend. I hope this time it will work.
+The patch was already succesfully tested by CI (rev6, rev7 of [1]).
 
->---
-> drivers/gpu/drm/i915/i915_pci.c         | 33 +++++++++++++++++++++++++
-> drivers/gpu/drm/i915/intel_pci_config.h |  5 ++++
-> 2 files changed, 38 insertions(+)
->
->diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
->index 8261b6455747..ad60c69d9dd8 100644
->--- a/drivers/gpu/drm/i915/i915_pci.c
->+++ b/drivers/gpu/drm/i915/i915_pci.c
->@@ -29,6 +29,8 @@
-> #include "i915_drv.h"
-> #include "i915_pci.h"
->
->+#include "intel_pci_config.h"
->+
-> #define PLATFORM(x) .platform = (x)
-> #define GEN(x) \
-> 	.graphics.ver = (x), \
->@@ -1181,6 +1183,34 @@ static bool force_probe(u16 device_id, const char *devices)
-> 	return ret;
-> }
->
->+static bool __pci_resource_valid(struct pci_dev *pdev, int bar)
->+{
->+	if (!pci_resource_flags(pdev, bar))
->+		return false;
->+
->+	if (pci_resource_flags(pdev, bar) & IORESOURCE_UNSET)
->+		return false;
->+
->+	if (!pci_resource_len(pdev, bar))
->+		return false;
->+
->+	return true;
->+}
->+
->+static bool intel_bars_valid(struct pci_dev *pdev, struct intel_device_info *intel_info)
->+{
->+	const int gttmmaddr_bar = intel_info->graphics.ver == 2 ? GEN2_GTTMMADR_BAR : GTTMMADR_BAR;
->+	const int gfxmem_bar = GFXMEM_BAR;
->+
->+	if (!__pci_resource_valid(pdev, gttmmaddr_bar))
->+		return false;
->+
->+	if (!__pci_resource_valid(pdev, gfxmem_bar))
->+		return false;
->+
->+	return true;
->+}
->+
-> static int i915_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
-> {
-> 	struct intel_device_info *intel_info =
->@@ -1206,6 +1236,9 @@ static int i915_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
-> 	if (PCI_FUNC(pdev->devfn))
-> 		return -ENODEV;
->
->+	if (!intel_bars_valid(pdev, intel_info))
->+		return -ENODEV;
->+
-> 	/* Detect if we need to wait for other drivers early on */
-> 	if (intel_modeset_probe_defer(pdev))
-> 		return -EPROBE_DEFER;
->diff --git a/drivers/gpu/drm/i915/intel_pci_config.h b/drivers/gpu/drm/i915/intel_pci_config.h
->index 12cd9d4f23de..c08fd5d48ada 100644
->--- a/drivers/gpu/drm/i915/intel_pci_config.h
->+++ b/drivers/gpu/drm/i915/intel_pci_config.h
->@@ -6,6 +6,11 @@
-> #ifndef __INTEL_PCI_CONFIG_H__
-> #define __INTEL_PCI_CONFIG_H__
->
->+/* PCI BARs */
->+#define GTTMMADR_BAR				0
->+#define GEN2_GTTMMADR_BAR			1
->+#define GFXMEM_BAR				2
->+
-> /* BSM in include/drm/i915_drm.h */
->
-> #define MCHBAR_I915				0x44
->-- 
->2.25.1
->
+[1]: https://patchwork.freedesktop.org/series/103811/
+
+Regards
+Andrzej
+---
+ drivers/gpu/drm/i915/display/intel_display.c | 11 ++++-------
+ 1 file changed, 4 insertions(+), 7 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 806d50b302ab92..007bc6daef7d31 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -10486,13 +10486,6 @@ void intel_modeset_driver_remove_noirq(struct drm_i915_private *i915)
+ 	 */
+ 	intel_hpd_poll_fini(i915);
+ 
+-	/*
+-	 * MST topology needs to be suspended so we don't have any calls to
+-	 * fbdev after it's finalized. MST will be destroyed later as part of
+-	 * drm_mode_config_cleanup()
+-	 */
+-	intel_dp_mst_suspend(i915);
+-
+ 	/* poll work can call into fbdev, hence clean that up afterwards */
+ 	intel_fbdev_fini(i915);
+ 
+@@ -10584,6 +10577,10 @@ void intel_display_driver_unregister(struct drm_i915_private *i915)
+ 	if (!HAS_DISPLAY(i915))
+ 		return;
+ 
++	intel_dp_mst_suspend(i915);
++	intel_hpd_cancel_work(i915);
++	drm_kms_helper_poll_disable(&i915->drm);
++
+ 	intel_fbdev_unregister(i915);
+ 	intel_audio_deinit(i915);
+ 
+-- 
+2.25.1
+
