@@ -1,55 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF1D552E883
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 May 2022 11:15:39 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB7BF52E8A6
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 May 2022 11:21:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DFB0910EB16;
-	Fri, 20 May 2022 09:15:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E4E5610F0E7;
+	Fri, 20 May 2022 09:21:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A56C510E99C;
- Fri, 20 May 2022 09:15:36 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A5A1310F34F;
+ Fri, 20 May 2022 09:21:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1653038136; x=1684574136;
+ t=1653038463; x=1684574463;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=7bqeTnQSercfdoIv7GPfGGYKU1mOpW+k3TZlf1B/vdU=;
- b=h+VTSjGMuIgUQkvkJQixKMK0veuSd57UBaJHNXH9N+hSogC2liVw/SOk
- dkiGyV7lYHSathdGVFwNAhRZPapsay+/+md7bltGBFXLcafHNH1DHI7Pa
- gIWNF/8rIwND6eJcH12i/XJjiVWoBxFWHr19O6xVAFkE7MTbuVm/lUgC8
- XemEl8UUIVY8XrK6+tECp9iTfaSmTdB7L2gQ4/Tdk05yJ2BQeO77Wl+LH
- /qMETDc4aw6iPryA3kRxfNYGhe0QwaZz6CjwNRSAMoNRJrGda5Bz+NtvX
- hQOZdE80xtzKHtVZLpKf7+/sz9+XTgul3aWIhbiqIRc7SgO43PIMcpj8F g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10352"; a="254604091"
-X-IronPort-AV: E=Sophos;i="5.91,238,1647327600"; d="scan'208";a="254604091"
+ bh=BxoZeceK7Oq40NKTHSyuOahbYJXD/cDDN5OJOkqkGXs=;
+ b=AjVGPzBjm29dLWeETjPc1db3ADW8mqh+U1viw7zmGK0X2HiA+ITdsQgq
+ fuqI5Uhsdh0J8u6wbOMqLG2q5gbwBoAx/H++vx2gpzCBnc6bsnvkBDWgv
+ aik4fDHXWuRwKhggxEiu8CpM020TAAhfftRiRC8qm6xPGwEPV3GFzTDec
+ 5jWirCauZ9V4gMo6qEepu1F7wZ01hwf61vwcQf3XMdwGE8hVLpNRyRKic
+ b9ro4DdsqzZpvBUYRTrhIPe/sDkYuwjs2Vw79VcLQiS953NOEeNV4c4C9
+ 8T10XKJFC2isPMqjMVJMZbbiSEPNd3mwofNM/CFgM9t07Xjj1gEP6gUuI g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10352"; a="260131181"
+X-IronPort-AV: E=Sophos;i="5.91,238,1647327600"; d="scan'208";a="260131181"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 May 2022 02:15:36 -0700
-X-IronPort-AV: E=Sophos;i="5.91,238,1647327600"; d="scan'208";a="570719159"
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 May 2022 02:21:03 -0700
+X-IronPort-AV: E=Sophos;i="5.91,238,1647327600"; d="scan'208";a="570720845"
 Received: from bpower2-mobl2.ger.corp.intel.com (HELO [10.213.200.132])
  ([10.213.200.132])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 May 2022 02:15:34 -0700
-Message-ID: <4123b22d-5018-bb08-4ae0-99140225dc1a@linux.intel.com>
-Date: Fri, 20 May 2022 10:15:32 +0100
+ 20 May 2022 02:21:02 -0700
+Message-ID: <75d7a224-9395-4a18-8e34-a6e86d7dc4cd@linux.intel.com>
+Date: Fri, 20 May 2022 10:21:00 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
 Content-Language: en-US
 To: Matt Roper <matthew.d.roper@intel.com>, intel-gfx@lists.freedesktop.org
 References: <20220517032005.2694737-1-matthew.d.roper@intel.com>
- <20220517032005.2694737-3-matthew.d.roper@intel.com>
+ <20220517032005.2694737-4-matthew.d.roper@intel.com>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-In-Reply-To: <20220517032005.2694737-3-matthew.d.roper@intel.com>
+In-Reply-To: <20220517032005.2694737-4-matthew.d.roper@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v2 2/6] drm/i915/xehp: Drop GETPARAM lookups
- of I915_PARAM_[SUB]SLICE_MASK
+Subject: Re: [Intel-gfx] [PATCH v2 3/6] drm/i915/sseu: Simplify gen11+ SSEU
+ handling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,57 +68,160 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
 On 17/05/2022 04:20, Matt Roper wrote:
-> Slice/subslice/EU information should be obtained via the topology
-> queries provided by the I915_QUERY interface; let's turn off support for
-> the old GETPARAM lookups on Xe_HP and beyond where we can't return
-> meaningful values.
-> 
-> The slice mask lookup is meaningless since Xe_HP doesn't support
-> traditional slices (and we make no attempt to return the various new
-> units like gslices, cslices, mslices, etc.) here.
-> 
-> The subslice mask lookup is even more problematic; given the distinct
-> masks for geometry vs compute purposes, the combined mask returned here
-> is likely not what userspace would want to act upon anyway.  The value
-> is also limited to 32-bits by the nature of the GETPARAM ioctl which is
-> sufficient for the initial Xe_HP platforms, but is unable to convey the
-> larger masks that will be needed on other upcoming platforms.  Finally,
-> the value returned here becomes even less meaningful when used on
-> multi-tile platforms where each tile will have its own masks.
+> Although gen11 and gen12 architectures supported the concept of multiple
+> slices, in practice all the platforms that were actually designed only
+> had a single slice (i.e., note the parameters to 'intel_sseu_set_info'
+> that we pass for each platform).  We can simplify the code slightly by
+> dropping the multi-slice logic from gen11+ platforms.
 > 
 > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 > ---
->   drivers/gpu/drm/i915/i915_getparam.c | 8 ++++++++
->   1 file changed, 8 insertions(+)
+>   drivers/gpu/drm/i915/gt/intel_sseu.c | 80 ++++++++++++++--------------
+>   1 file changed, 40 insertions(+), 40 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/i915_getparam.c b/drivers/gpu/drm/i915/i915_getparam.c
-> index c12a0adefda5..ac9767c56619 100644
-> --- a/drivers/gpu/drm/i915/i915_getparam.c
-> +++ b/drivers/gpu/drm/i915/i915_getparam.c
-> @@ -148,11 +148,19 @@ int i915_getparam_ioctl(struct drm_device *dev, void *data,
->   		value = intel_engines_has_context_isolation(i915);
->   		break;
->   	case I915_PARAM_SLICE_MASK:
-> +		/* Not supported from Xe_HP onward; use topology queries */
-> +		if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 50))
-> +			return -EINVAL;
+> diff --git a/drivers/gpu/drm/i915/gt/intel_sseu.c b/drivers/gpu/drm/i915/gt/intel_sseu.c
+> index b5fd479a7b85..ade3e1805782 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_sseu.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_sseu.c
+> @@ -119,52 +119,37 @@ static u16 compute_eu_total(const struct sseu_dev_info *sseu)
+>   	return total;
+>   }
+>   
+> -static u32 get_ss_stride_mask(struct sseu_dev_info *sseu, u8 s, u32 ss_en)
+> -{
+> -	u32 ss_mask;
+> -
+> -	ss_mask = ss_en >> (s * sseu->max_subslices);
+> -	ss_mask &= GENMASK(sseu->max_subslices - 1, 0);
+> -
+> -	return ss_mask;
+> -}
+> -
+> -static void gen11_compute_sseu_info(struct sseu_dev_info *sseu, u8 s_en,
+> +static void gen11_compute_sseu_info(struct sseu_dev_info *sseu,
+>   				    u32 g_ss_en, u32 c_ss_en, u16 eu_en)
+>   {
+> -	int s, ss;
+> +	u32 valid_ss_mask = GENMASK(sseu->max_subslices - 1, 0);
+> +	int ss;
+>   
+>   	/* g_ss_en/c_ss_en represent entire subslice mask across all slices */
+>   	GEM_BUG_ON(sseu->max_slices * sseu->max_subslices >
+>   		   sizeof(g_ss_en) * BITS_PER_BYTE);
+>   
+> -	for (s = 0; s < sseu->max_slices; s++) {
+> -		if ((s_en & BIT(s)) == 0)
+> -			continue;
+> +	sseu->slice_mask |= BIT(0);
+>   
+> -		sseu->slice_mask |= BIT(s);
+> -
+> -		/*
+> -		 * XeHP introduces the concept of compute vs geometry DSS. To
+> -		 * reduce variation between GENs around subslice usage, store a
+> -		 * mask for both the geometry and compute enabled masks since
+> -		 * userspace will need to be able to query these masks
+> -		 * independently.  Also compute a total enabled subslice count
+> -		 * for the purposes of selecting subslices to use in a
+> -		 * particular GEM context.
+> -		 */
+> -		intel_sseu_set_subslices(sseu, s, sseu->compute_subslice_mask,
+> -					 get_ss_stride_mask(sseu, s, c_ss_en));
+> -		intel_sseu_set_subslices(sseu, s, sseu->geometry_subslice_mask,
+> -					 get_ss_stride_mask(sseu, s, g_ss_en));
+> -		intel_sseu_set_subslices(sseu, s, sseu->subslice_mask,
+> -					 get_ss_stride_mask(sseu, s,
+> -							    g_ss_en | c_ss_en));
+> +	/*
+> +	 * XeHP introduces the concept of compute vs geometry DSS. To reduce
+> +	 * variation between GENs around subslice usage, store a mask for both
+> +	 * the geometry and compute enabled masks since userspace will need to
+> +	 * be able to query these masks independently.  Also compute a total
+> +	 * enabled subslice count for the purposes of selecting subslices to
+> +	 * use in a particular GEM context.
+> +	 */
+> +	intel_sseu_set_subslices(sseu, 0, sseu->compute_subslice_mask,
+> +				 c_ss_en & valid_ss_mask);
+> +	intel_sseu_set_subslices(sseu, 0, sseu->geometry_subslice_mask,
+> +				 g_ss_en & valid_ss_mask);
+> +	intel_sseu_set_subslices(sseu, 0, sseu->subslice_mask,
+> +				 (g_ss_en | c_ss_en) & valid_ss_mask);
 > +
->   		value = sseu->slice_mask;
->   		if (!value)
->   			return -ENODEV;
->   		break;
->   	case I915_PARAM_SUBSLICE_MASK:
-> +		/* Not supported from Xe_HP onward; use topology queries */
-> +		if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 50))
-> +			return -EINVAL;
-> +
->   		/* Only copy bits from the first slice */
->   		memcpy(&value, sseu->subslice_mask,
->   		       min(sseu->ss_stride, (u8)sizeof(value)));
+> +	for (ss = 0; ss < sseu->max_subslices; ss++)
+> +		if (intel_sseu_has_subslice(sseu, 0, ss))
+> +			sseu_set_eus(sseu, 0, ss, eu_en);
+>   
+> -		for (ss = 0; ss < sseu->max_subslices; ss++)
+> -			if (intel_sseu_has_subslice(sseu, s, ss))
+> -				sseu_set_eus(sseu, s, ss, eu_en);
+> -	}
+>   	sseu->eu_per_subslice = hweight16(eu_en);
+>   	sseu->eu_total = compute_eu_total(sseu);
+>   }
+> @@ -196,7 +181,7 @@ static void xehp_sseu_info_init(struct intel_gt *gt)
+>   		if (eu_en_fuse & BIT(eu))
+>   			eu_en |= BIT(eu * 2) | BIT(eu * 2 + 1);
+>   
+> -	gen11_compute_sseu_info(sseu, 0x1, g_dss_en, c_dss_en, eu_en);
+> +	gen11_compute_sseu_info(sseu, g_dss_en, c_dss_en, eu_en);
+>   }
+>   
+>   static void gen12_sseu_info_init(struct intel_gt *gt)
+> @@ -216,8 +201,15 @@ static void gen12_sseu_info_init(struct intel_gt *gt)
+>   	 */
+>   	intel_sseu_set_info(sseu, 1, 6, 16);
+>   
+> +	/*
+> +	 * Although gen12 architecture supported multiple slices, TGL, RKL,
+> +	 * DG1, and ADL only had a single slice.
+> +	 */
+>   	s_en = intel_uncore_read(uncore, GEN11_GT_SLICE_ENABLE) &
+>   		GEN11_GT_S_ENA_MASK;
+> +	if (s_en != 0x1)
+> +		drm_dbg(&gt->i915->drm, "Slice mask %#x is not the expected 0x1!\n",
 
-Just in case lets run this by Jordan and Lionel since it affects DG2. 
-Anyone else on the userspace side who might be affected?
+I'd make these drm_warn - drm_dbg feels pointless. Possibly even 
+drm_WARN_ON since it is supposed to be an impossible condition which 
+needs to be super loud if it happens.
 
 Regards,
 
 Tvrtko
+
+> +			s_en);
+>   
+>   	g_dss_en = intel_uncore_read(uncore, GEN12_GT_GEOMETRY_DSS_ENABLE);
+>   
+> @@ -229,7 +221,7 @@ static void gen12_sseu_info_init(struct intel_gt *gt)
+>   		if (eu_en_fuse & BIT(eu))
+>   			eu_en |= BIT(eu * 2) | BIT(eu * 2 + 1);
+>   
+> -	gen11_compute_sseu_info(sseu, s_en, g_dss_en, 0, eu_en);
+> +	gen11_compute_sseu_info(sseu, g_dss_en, 0, eu_en);
+>   
+>   	/* TGL only supports slice-level power gating */
+>   	sseu->has_slice_pg = 1;
+> @@ -248,14 +240,22 @@ static void gen11_sseu_info_init(struct intel_gt *gt)
+>   	else
+>   		intel_sseu_set_info(sseu, 1, 8, 8);
+>   
+> +	/*
+> +	 * Although gen11 architecture supported multiple slices, ICL and
+> +	 * EHL/JSL only had a single slice in practice.
+> +	 */
+>   	s_en = intel_uncore_read(uncore, GEN11_GT_SLICE_ENABLE) &
+>   		GEN11_GT_S_ENA_MASK;
+> +	if (s_en != 0x1)
+> +		drm_dbg(&gt->i915->drm, "Slice mask %#x is not the expected 0x1!\n",
+> +			s_en);
+> +
+>   	ss_en = ~intel_uncore_read(uncore, GEN11_GT_SUBSLICE_DISABLE);
+>   
+>   	eu_en = ~(intel_uncore_read(uncore, GEN11_EU_DISABLE) &
+>   		  GEN11_EU_DIS_MASK);
+>   
+> -	gen11_compute_sseu_info(sseu, s_en, ss_en, 0, eu_en);
+> +	gen11_compute_sseu_info(sseu, ss_en, 0, eu_en);
+>   
+>   	/* ICL has no power gating restrictions. */
+>   	sseu->has_slice_pg = 1;
