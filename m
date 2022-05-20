@@ -1,52 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5133052F49A
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 May 2022 22:42:43 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02EC552F5F9
+	for <lists+intel-gfx@lfdr.de>; Sat, 21 May 2022 01:04:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E9B610E512;
-	Fri, 20 May 2022 20:42:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D568510EC4B;
+	Fri, 20 May 2022 23:04:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 021B110E512;
- Fri, 20 May 2022 20:42:40 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 845AB10EB8E;
+ Fri, 20 May 2022 23:04:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1653079361; x=1684615361;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=kxo40n+56M15FDOQoRl0gr0bB7E9LzLiW1zJVSjYl8k=;
- b=Ejoauvcbx/4yqdJR/fVQK7dyvhfUHAjw9NTt5cJ1Xgh4fMMa3+0BtI+8
- 0FHYapV+b0EGzLfynPQdiKVyIgNJOoH+ajlgNk6USNp4tBNdUOtomRe7a
- 2x2/RopQgLfPfZoW0KLdSIzZS9c/GgliEPXx/S2Czwdo4EFn26IHWcmof
- KDXuTTSszBjGE4mDLzm7bFka/Z3FrzJOyBUPsvNL0TYS8cPgLBOOq8Wzi
- 2mJTKjgBRMY4XfdAtnMZsNpfk6zJU5VhkoUdGUxqzBO3Tq5RtHIyJgkvX
- 0PhXW50JZ66Javf5BdGZ6R25mTZWqWuXKt3j4Y7e6wcl05BUrUma0itrD w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10353"; a="270315675"
-X-IronPort-AV: E=Sophos;i="5.91,240,1647327600"; d="scan'208";a="270315675"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 May 2022 13:42:40 -0700
-X-IronPort-AV: E=Sophos;i="5.91,240,1647327600"; d="scan'208";a="628347507"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 May 2022 13:42:40 -0700
-Date: Fri, 20 May 2022 13:42:39 -0700
+ t=1653087860; x=1684623860;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=uKz8QC19P3LkSc4xuZkAZEMyRxaJeZ8NRJZqYxmhVuA=;
+ b=bWWGiLFWPsAOWyq0Z5OVOBocCG/c7kLwqSP0WlQAmIOrW2NFyqGGF9mG
+ ztCCWSreinBDaBif5QQgQ3bA+/wQt1y0qrxy/VtbAJ9oqz6LZNMdOQLrk
+ 4AUbt2yC5qyUlRInmFa4RE1Qq/m/rC/WNOubc4+j/DevHb+BQhT2n858b
+ oHHWQ09e3nbQK0wfQxyTBvnrjgHPoQw/ULMmk9+OSu2fazCUKgG2/nULb
+ mf0E2gu79d9oqLsO7G/MupwJLZMQs7V1kPEGj6ywIbBs/6I+RXyA4495q
+ 13jCGSO9UlfteIJzQ626UaiwlkyqdIK7fr90waZgdWS2OYnMROI1lJPhI w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10353"; a="272472168"
+X-IronPort-AV: E=Sophos;i="5.91,240,1647327600"; d="scan'208";a="272472168"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 May 2022 16:04:18 -0700
+X-IronPort-AV: E=Sophos;i="5.91,240,1647327600"; d="scan'208";a="599482022"
+Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 May 2022 16:04:14 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <Yof9PwfBVpWnMqIn@mdroper-desk1.amr.corp.intel.com>
-References: <20220517032005.2694737-1-matthew.d.roper@intel.com>
- <20220517032005.2694737-3-matthew.d.roper@intel.com>
- <4123b22d-5018-bb08-4ae0-99140225dc1a@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 20 May 2022 16:04:02 -0700
+Message-Id: <20220520230408.3787166-1-matthew.d.roper@intel.com>
+X-Mailer: git-send-email 2.35.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <4123b22d-5018-bb08-4ae0-99140225dc1a@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH v2 2/6] drm/i915/xehp: Drop GETPARAM lookups
- of I915_PARAM_[SUB]SLICE_MASK
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v4 0/6] i915: SSEU handling updates
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,95 +53,103 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, May 20, 2022 at 10:15:32AM +0100, Tvrtko Ursulin wrote:
-> 
-> On 17/05/2022 04:20, Matt Roper wrote:
-> > Slice/subslice/EU information should be obtained via the topology
-> > queries provided by the I915_QUERY interface; let's turn off support for
-> > the old GETPARAM lookups on Xe_HP and beyond where we can't return
-> > meaningful values.
-> > 
-> > The slice mask lookup is meaningless since Xe_HP doesn't support
-> > traditional slices (and we make no attempt to return the various new
-> > units like gslices, cslices, mslices, etc.) here.
-> > 
-> > The subslice mask lookup is even more problematic; given the distinct
-> > masks for geometry vs compute purposes, the combined mask returned here
-> > is likely not what userspace would want to act upon anyway.  The value
-> > is also limited to 32-bits by the nature of the GETPARAM ioctl which is
-> > sufficient for the initial Xe_HP platforms, but is unable to convey the
-> > larger masks that will be needed on other upcoming platforms.  Finally,
-> > the value returned here becomes even less meaningful when used on
-> > multi-tile platforms where each tile will have its own masks.
-> > 
-> > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-> > ---
-> >   drivers/gpu/drm/i915/i915_getparam.c | 8 ++++++++
-> >   1 file changed, 8 insertions(+)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/i915_getparam.c b/drivers/gpu/drm/i915/i915_getparam.c
-> > index c12a0adefda5..ac9767c56619 100644
-> > --- a/drivers/gpu/drm/i915/i915_getparam.c
-> > +++ b/drivers/gpu/drm/i915/i915_getparam.c
-> > @@ -148,11 +148,19 @@ int i915_getparam_ioctl(struct drm_device *dev, void *data,
-> >   		value = intel_engines_has_context_isolation(i915);
-> >   		break;
-> >   	case I915_PARAM_SLICE_MASK:
-> > +		/* Not supported from Xe_HP onward; use topology queries */
-> > +		if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 50))
-> > +			return -EINVAL;
-> > +
-> >   		value = sseu->slice_mask;
-> >   		if (!value)
-> >   			return -ENODEV;
-> >   		break;
-> >   	case I915_PARAM_SUBSLICE_MASK:
-> > +		/* Not supported from Xe_HP onward; use topology queries */
-> > +		if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 50))
-> > +			return -EINVAL;
-> > +
-> >   		/* Only copy bits from the first slice */
-> >   		memcpy(&value, sseu->subslice_mask,
-> >   		       min(sseu->ss_stride, (u8)sizeof(value)));
-> 
-> Just in case lets run this by Jordan and Lionel since it affects DG2. Anyone
-> else on the userspace side who might be affected?
+This series reworks i915's internal handling of slice/subslice/EU (SSEU)
+data to represent platforms like Xe_HP in a more natural manner and to
+prepare for future platforms where the masks will need to grow in size.
+One key idea of this series is that although we have a fixed ABI to
+convey SSEU data to userspace (i.e., multiple u8[] arrays with data
+stored at different strides), we don't need to use this cumbersome
+format for the driver's own internal storage.  As long as we can convert
+into the uapi form properly when responding to the I915_QUERY ioctl,
+it's preferable to use an internal storage format that's easier for the
+driver to work with.
 
-When I grep'd Mesa, I found two uses of I915_PARAM_SLICE_MASK and
-I915_PARAM_SUBSLICE_MASK:
+Another key point here is that we're reaching the point where subslice
+(DSS) masks will soon not fit within simple u32/u64 integer values.
+Xe_HP SDV and DG2 platforms today have subslice (DSS) masks that are 32
+bits, which maxes out the current storage of a u32.  With PVC the masks
+are represented by a pair of 32-bit registers, requiring a bump up to at
+least 64-bits of storage internally.  We could switch to u64 for that in
+the short term, but since we already know that upcoming architectures
+intend to provide DSS fuse bits via three or more registers it's best to
+switch to a representation that's more future-proof but still easy to
+work with in the driver code.  To accomodate this, we start storing our
+subslice mask for Xe_HP and beyond in a new typedef that can be
+processed by the linux/bitmap.h operations.
 
- * oa_metrics_kernel_support:  The topology query is used on gen10+ so
-   the getparam code is only called on gen9 and below
+Finally, since no userspace for Xe_HP or beyond is using the legacy
+I915_GETPARAM ioctl lookups for I915_PARAM_SLICE_MASK and
+I915_PARAM_SUBSLICE_MASK (since they've migrated to the more flexible
+I915_QUERY ioctl that can return more than a simple u32 value), we take
+the opportunity to officially drop support for those GETPARAM lookups on
+modern platforms.  Maintaining support for these GETPARAM lookups don't
+make sense for a number of reasons:
 
- * getparam_topology:  Invoked via intel_get_device_info_from_fd().  The
-   topology query is attempted first.  Only if that fails _and_ we're on
-   a pre-gen10 platform does it fall back to GETPARAM.
+ * Traditional slices no longer exist, and newer ideas like gslices,
+   cslices, mslices, etc. aren't something userspace needs to query
+   since it can be inferred from other information.
+ * The GETPARAM ioctl doesn't have a way to distinguish between geometry
+   subslice masks and compute subslice masks, which are distinct on
+   Xe_HP and beyond.
+ * The I915_GETPARAM ioctl is limited to returning a 32-bit value, so
+   when subslice masks begin to exceed 32-bits (on PVC), it simply can't
+   return the entire mask.
+ * The GETPARAM ioctl doesn't have a way to give sensible information
+   for multi-tile devices.
 
-I also checked https://github.com/intel/compute-runtime and only see
-these being issued in one place:
+v2:
+ - Switch to union of hsw/xehp formats to keep the representation in a
+   natural format for different types of hardware.
+ - Avoid accessing internals of intel_sseu_ss_mask_t directly outside of
+   intel_sseu.[ch].
+ - Include PVC SSEU which needs the larger SS mask storage enabled by
+   this series.
 
- * HwInfoConfig::configureHwInfoDrm:  Only used if drm->queryTopology()
-   returns a failure first.
+v3:
+ - Correct a BIT(s) typo that should have been BIT(ss), causing
+   incorrect handling on gen9 platforms.
+
+v4:
+ - Eliminate sseu->{ss,eu}_stride fields and just calculate the proper
+   value in the UAPI code that needs them.
+ - Handle unwanted ~u8 sign extension at the callsite instead of inside
+   sseu_set_eus.
+ - Use BITMAP_BITS() macro rather than passing I915_MAX_SS_FUSE_BITS
+   around directly to bitmap operations.
+ - Improved debugfs / dmesg reporting for Xe_HP dumps
+ - Various assertion check improvements.
+
+Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 
 
-I think those are the only relevant userspace for SSEU topology, so as
-far as I can tell nobody is still relying on the legacy getparams by the
-time we get to Xe_HP hardware.
+Matt Roper (6):
+  drm/i915/xehp: Use separate sseu init function
+  drm/i915/xehp: Drop GETPARAM lookups of I915_PARAM_[SUB]SLICE_MASK
+  drm/i915/sseu: Simplify gen11+ SSEU handling
+  drm/i915/sseu: Don't try to store EU mask internally in UAPI format
+  drm/i915/sseu: Disassociate internal subslice mask representation from
+    uapi
+  drm/i915/pvc: Add SSEU changes
 
-
-Matt
-
-> 
-> Regards,
-> 
-> Tvrtko
+ drivers/gpu/drm/i915/gem/i915_gem_context.c  |   5 +-
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c    |   4 +-
+ drivers/gpu/drm/i915/gt/intel_gt.c           |  12 +-
+ drivers/gpu/drm/i915/gt/intel_gt_regs.h      |   1 +
+ drivers/gpu/drm/i915/gt/intel_sseu.c         | 450 ++++++++++++-------
+ drivers/gpu/drm/i915/gt/intel_sseu.h         |  94 ++--
+ drivers/gpu/drm/i915/gt/intel_sseu_debugfs.c |  30 +-
+ drivers/gpu/drm/i915/gt/intel_workarounds.c  |  24 +-
+ drivers/gpu/drm/i915/i915_drv.h              |   2 +
+ drivers/gpu/drm/i915/i915_getparam.c         |  11 +-
+ drivers/gpu/drm/i915/i915_pci.c              |   3 +-
+ drivers/gpu/drm/i915/i915_query.c            |  26 +-
+ drivers/gpu/drm/i915/intel_device_info.h     |   1 +
+ 13 files changed, 398 insertions(+), 265 deletions(-)
 
 -- 
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
+2.35.3
+
