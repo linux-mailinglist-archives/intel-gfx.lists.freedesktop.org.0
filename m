@@ -1,49 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C191252F3B8
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 May 2022 21:21:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5133052F49A
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 May 2022 22:42:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2FB4F10EE7D;
-	Fri, 20 May 2022 19:21:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E9B610E512;
+	Fri, 20 May 2022 20:42:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C47E510EE7D
- for <intel-gfx@lists.freedesktop.org>; Fri, 20 May 2022 19:20:59 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 021B110E512;
+ Fri, 20 May 2022 20:42:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1653074459; x=1684610459;
+ t=1653079361; x=1684615361;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=ZxSc/BfD4vU2ZO9b03yUUbFMHDarZX1QOk0rACns5as=;
- b=Bz288rYSKLIqy8OFIvuyHl73JfoSiNrRFI1kg8oZ+kTye9piCquu4VGA
- UEK9jbSF/LsF3WePdbUVfmbinlCGlsrV6ncIIOYfg6EXuiD87Cxy81mq6
- 9E59uhRZCjE5/xP7KidpWJ7hJCUl1+hKPrlv2GYNYdfnjr2iEMRp3CMNX
- waoLfaPflhg/0FT5rIimzuUSgeIoV/VnnaKvO+RYPuPbBp7npNKs7Fus6
- oQSZWQ6qlB7oOSh7auJGutqAzn5ccZV5fBy3d4F0Fr6OKGAgm6ABZsb/H
- 0GZJ30d8KT4J7eo3nGDTNDr9cQvckNdjQNvu6fDqwhbX6DaovVxUH/RMk A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10353"; a="272414259"
-X-IronPort-AV: E=Sophos;i="5.91,240,1647327600"; d="scan'208";a="272414259"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 May 2022 12:20:59 -0700
-X-IronPort-AV: E=Sophos;i="5.91,240,1647327600"; d="scan'208";a="743638609"
+ bh=kxo40n+56M15FDOQoRl0gr0bB7E9LzLiW1zJVSjYl8k=;
+ b=Ejoauvcbx/4yqdJR/fVQK7dyvhfUHAjw9NTt5cJ1Xgh4fMMa3+0BtI+8
+ 0FHYapV+b0EGzLfynPQdiKVyIgNJOoH+ajlgNk6USNp4tBNdUOtomRe7a
+ 2x2/RopQgLfPfZoW0KLdSIzZS9c/GgliEPXx/S2Czwdo4EFn26IHWcmof
+ KDXuTTSszBjGE4mDLzm7bFka/Z3FrzJOyBUPsvNL0TYS8cPgLBOOq8Wzi
+ 2mJTKjgBRMY4XfdAtnMZsNpfk6zJU5VhkoUdGUxqzBO3Tq5RtHIyJgkvX
+ 0PhXW50JZ66Javf5BdGZ6R25mTZWqWuXKt3j4Y7e6wcl05BUrUma0itrD w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10353"; a="270315675"
+X-IronPort-AV: E=Sophos;i="5.91,240,1647327600"; d="scan'208";a="270315675"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 May 2022 13:42:40 -0700
+X-IronPort-AV: E=Sophos;i="5.91,240,1647327600"; d="scan'208";a="628347507"
 Received: from mdroper-desk1.fm.intel.com (HELO
  mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 May 2022 12:20:58 -0700
-Date: Fri, 20 May 2022 12:20:57 -0700
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 May 2022 13:42:40 -0700
+Date: Fri, 20 May 2022 13:42:39 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Message-ID: <YofqGVyLsHVFPEQo@mdroper-desk1.amr.corp.intel.com>
-References: <20220511083121.3729202-1-ankit.k.nautiyal@intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Message-ID: <Yof9PwfBVpWnMqIn@mdroper-desk1.amr.corp.intel.com>
+References: <20220517032005.2694737-1-matthew.d.roper@intel.com>
+ <20220517032005.2694737-3-matthew.d.roper@intel.com>
+ <4123b22d-5018-bb08-4ae0-99140225dc1a@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220511083121.3729202-1-ankit.k.nautiyal@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dg2: Support 4k@30 on HDMI
+In-Reply-To: <4123b22d-5018-bb08-4ae0-99140225dc1a@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH v2 2/6] drm/i915/xehp: Drop GETPARAM lookups
+ of I915_PARAM_[SUB]SLICE_MASK
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,85 +59,92 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, May 11, 2022 at 02:01:21PM +0530, Ankit Nautiyal wrote:
-> From: Vandita Kulkarni <vandita.kulkarni@intel.com>
+On Fri, May 20, 2022 at 10:15:32AM +0100, Tvrtko Ursulin wrote:
 > 
-> This patch adds a fix to support 297MHz of dot clock by calculating
-> the pll values using synopsis algorithm.
-> This will help to support 4k@30 mode for HDMI monitors on DG2.
+> On 17/05/2022 04:20, Matt Roper wrote:
+> > Slice/subslice/EU information should be obtained via the topology
+> > queries provided by the I915_QUERY interface; let's turn off support for
+> > the old GETPARAM lookups on Xe_HP and beyond where we can't return
+> > meaningful values.
+> > 
+> > The slice mask lookup is meaningless since Xe_HP doesn't support
+> > traditional slices (and we make no attempt to return the various new
+> > units like gslices, cslices, mslices, etc.) here.
+> > 
+> > The subslice mask lookup is even more problematic; given the distinct
+> > masks for geometry vs compute purposes, the combined mask returned here
+> > is likely not what userspace would want to act upon anyway.  The value
+> > is also limited to 32-bits by the nature of the GETPARAM ioctl which is
+> > sufficient for the initial Xe_HP platforms, but is unable to convey the
+> > larger masks that will be needed on other upcoming platforms.  Finally,
+> > the value returned here becomes even less meaningful when used on
+> > multi-tile platforms where each tile will have its own masks.
+> > 
+> > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+> > ---
+> >   drivers/gpu/drm/i915/i915_getparam.c | 8 ++++++++
+> >   1 file changed, 8 insertions(+)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/i915_getparam.c b/drivers/gpu/drm/i915/i915_getparam.c
+> > index c12a0adefda5..ac9767c56619 100644
+> > --- a/drivers/gpu/drm/i915/i915_getparam.c
+> > +++ b/drivers/gpu/drm/i915/i915_getparam.c
+> > @@ -148,11 +148,19 @@ int i915_getparam_ioctl(struct drm_device *dev, void *data,
+> >   		value = intel_engines_has_context_isolation(i915);
+> >   		break;
+> >   	case I915_PARAM_SLICE_MASK:
+> > +		/* Not supported from Xe_HP onward; use topology queries */
+> > +		if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 50))
+> > +			return -EINVAL;
+> > +
+> >   		value = sseu->slice_mask;
+> >   		if (!value)
+> >   			return -ENODEV;
+> >   		break;
+> >   	case I915_PARAM_SUBSLICE_MASK:
+> > +		/* Not supported from Xe_HP onward; use topology queries */
+> > +		if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 50))
+> > +			return -EINVAL;
+> > +
+> >   		/* Only copy bits from the first slice */
+> >   		memcpy(&value, sseu->subslice_mask,
+> >   		       min(sseu->ss_stride, (u8)sizeof(value)));
 > 
-> Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_snps_phy.c | 31 +++++++++++++++++++
->  1 file changed, 31 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_snps_phy.c b/drivers/gpu/drm/i915/display/intel_snps_phy.c
-> index 0dd4775e8195..ec1700dd3bc6 100644
-> --- a/drivers/gpu/drm/i915/display/intel_snps_phy.c
-> +++ b/drivers/gpu/drm/i915/display/intel_snps_phy.c
-> @@ -517,6 +517,36 @@ static const struct intel_mpllb_state dg2_hdmi_148_5 = {
->  		REG_FIELD_PREP(SNPS_PHY_MPLLB_SSC_UP_SPREAD, 1),
->  };
->  
-> +/* values in the below table are calculted using the algo */
-> +static const struct intel_mpllb_state dg2_hdmi_297 = {
-> +	.clock = 297000,
-> +	.ref_control =
-> +		REG_FIELD_PREP(SNPS_PHY_REF_CONTROL_REF_RANGE, 3),
-> +	.mpllb_cp =
-> +		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_INT, 6) |
-> +		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_PROP, 14) |
-> +		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_INT_GS, 64) |
-> +		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_PROP_GS, 124),
-> +	.mpllb_div =
-> +		REG_FIELD_PREP(SNPS_PHY_MPLLB_DIV5_CLK_EN, 1) |
-> +		REG_FIELD_PREP(SNPS_PHY_MPLLB_TX_CLK_DIV, 1) |
-> +		REG_FIELD_PREP(SNPS_PHY_MPLLB_PMIX_EN, 1) |
-> +		REG_FIELD_PREP(SNPS_PHY_MPLLB_V2I, 2),
+> Just in case lets run this by Jordan and Lionel since it affects DG2. Anyone
+> else on the userspace side who might be affected?
 
-When I calculate these tables out by hand, I also have
+When I grep'd Mesa, I found two uses of I915_PARAM_SLICE_MASK and
+I915_PARAM_SUBSLICE_MASK:
 
-        REG_FIELD_PREP(SNPS_PHY_MPLLB_FREQ_VCO, 3)
+ * oa_metrics_kernel_support:  The topology query is used on gen10+ so
+   the getparam code is only called on gen9 and below
 
-as part of mpllb_div.  Can you double check that?
+ * getparam_topology:  Invoked via intel_get_device_info_from_fd().  The
+   topology query is attempted first.  Only if that fails _and_ we're on
+   a pre-gen10 platform does it fall back to GETPARAM.
+
+I also checked https://github.com/intel/compute-runtime and only see
+these being issued in one place:
+
+ * HwInfoConfig::configureHwInfoDrm:  Only used if drm->queryTopology()
+   returns a failure first.
+
+
+I think those are the only relevant userspace for SSEU topology, so as
+far as I can tell nobody is still relying on the legacy getparams by the
+time we get to Xe_HP hardware.
 
 
 Matt
 
-> +	.mpllb_div2 =
-> +		REG_FIELD_PREP(SNPS_PHY_MPLLB_REF_CLK_DIV, 1) |
-> +		REG_FIELD_PREP(SNPS_PHY_MPLLB_MULTIPLIER, 86) |
-> +		REG_FIELD_PREP(SNPS_PHY_MPLLB_HDMI_DIV, 1),
-> +	.mpllb_fracn1 =
-> +		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_CGG_UPDATE_EN, 1) |
-> +		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_EN, 1) |
-> +		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_DEN, 65535),
-> +	.mpllb_fracn2 =
-> +		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_QUOT, 26214) |
-> +		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_REM, 26214),
-> +	.mpllb_sscen =
-> +		REG_FIELD_PREP(SNPS_PHY_MPLLB_SSC_UP_SPREAD, 1),
-> +};
-> +
->  static const struct intel_mpllb_state dg2_hdmi_594 = {
->  	.clock = 594000,
->  	.ref_control =
-> @@ -551,6 +581,7 @@ static const struct intel_mpllb_state * const dg2_hdmi_tables[] = {
->  	&dg2_hdmi_27_0,
->  	&dg2_hdmi_74_25,
->  	&dg2_hdmi_148_5,
-> +	&dg2_hdmi_297,
->  	&dg2_hdmi_594,
->  	NULL,
->  };
-> -- 
-> 2.25.1
 > 
+> Regards,
+> 
+> Tvrtko
 
 -- 
 Matt Roper
