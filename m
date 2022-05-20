@@ -1,44 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B48952E45D
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 May 2022 07:33:47 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FF3552E476
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 May 2022 07:44:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4985C10EB9D;
-	Fri, 20 May 2022 05:33:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F7A411B25B;
+	Fri, 20 May 2022 05:44:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [IPv6:2607:7c80:54:e::133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BEBD510E605;
- Fri, 20 May 2022 05:33:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=In-Reply-To:Content-Type:MIME-Version
- :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=M7NmYC/Iylm9myghHwqILim55SAUt9QrM+UZYk0eJlw=; b=iTRcYTOvhEdVV51lLDf6QZYcjj
- FcqmaXZnopcFHUJw9Dh/KCjy4JXxOX3g6wOK7BWkoPbuqAEOMh9lmKWSSa/lbfHOAo6WDGbEc0eJu
- GvXENhFDPGBOT3j8PhAvYulPs1/uB7pCAKWtd4PsRD+h/GR73uZi7ZvQE/+pRPIScsIfknh+XPkit
- bxGvFELHkQnZ2mbuoNLoz3Dogoue0FU4lc1t94t85qnQrvvrWJenQF3chMlGiDC0Fp/y9LdSGhaxf
- 6FBrmE6lR/sCBYCQmIkaxAB0som6zb5Vtd1s3Y2pnjF+D2q2JAy/HLGY+s23cr/2UyZ8mVnw7rdXN
- +zEA27mg==;
-Received: from hch by bombadil.infradead.org with local (Exim 4.94.2 #2 (Red
- Hat Linux)) id 1nrvGb-00AciW-D8; Fri, 20 May 2022 05:33:37 +0000
-Date: Thu, 19 May 2022 22:33:37 -0700
-From: Christoph Hellwig <hch@infradead.org>
-To: Matthew Rosato <mjrosato@linux.ibm.com>
-Message-ID: <YocoMdqLv0s3GV2f@infradead.org>
-References: <20220519183311.582380-1-mjrosato@linux.ibm.com>
- <20220519183311.582380-2-mjrosato@linux.ibm.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 32E8811B257;
+ Fri, 20 May 2022 05:44:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1653025457; x=1684561457;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=AeJ3MjFKN/wjXXZTYpdl90oq2PK3OEXdCdRO2O/w3rE=;
+ b=Roz7joE9tPzxinb/5f3MUNYGTdoebjbvXHTqn5krUvRmsY6psEqcR5sE
+ eHaJMZyotYgURD8wierRNhwCT0nQkx0/eVlQ/k1f9Hhv5t4VigPd/OH5n
+ VTo1jfdeWSCt2Gbcm/QvPc/4cwdqEZWiIULXlSyv29eBVhbdmjI/IBy//
+ z4CcGRYkqxDZ6OZ7pz4sWPOS9igEJ6NzwXlZzFonTVaPi5MDog9IDTQBI
+ yeYbeItiDCOXuK0xRn6HFwKo5KPHbuZBsJUIEO/Xe/C9pZBR+a2kIsWzX
+ cY26vG75sfEQowyN04ywxstDPRb0Mi733grPS939o6/f5fjXklecleOr0 A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10352"; a="297807626"
+X-IronPort-AV: E=Sophos;i="5.91,238,1647327600"; d="scan'208";a="297807626"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 May 2022 22:44:16 -0700
+X-IronPort-AV: E=Sophos;i="5.91,238,1647327600"; d="scan'208";a="599025483"
+Received: from kscholl-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.53.49])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 May 2022 22:44:12 -0700
+Date: Fri, 20 May 2022 08:44:10 +0300
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <YocqqvG6PbYx3QgJ@jlahtine-mobl.ger.corp.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220519183311.582380-2-mjrosato@linux.ibm.com>
-X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
- bombadil.infradead.org. See http://www.infradead.org/rpr.html
-Subject: Re: [Intel-gfx] [PATCH v3 1/1] vfio: remove
- VFIO_GROUP_NOTIFY_SET_KVM
+Subject: [Intel-gfx] [PULL] drm-intel-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,14 +53,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jjherne@linux.ibm.com, akrowiak@linux.ibm.com, kvm@vger.kernel.org,
- hch@infradead.org, linux-s390@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- cohuck@redhat.com, linux-kernel@vger.kernel.org, pasic@linux.ibm.com,
- jgg@nvidia.com, borntraeger@linux.ibm.com, intel-gvt-dev@lists.freedesktop.org,
- Christoph Hellwig <hch@lst.de>
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Looks good:
+Hi Dave & Daniel,
 
-Reviewed-by: Christoph Hellwig <hch@lst.de>
+Here's the previous PR + additional fix for regression #5806: GPU hangs
+and display artifacts on 5.18-rc3 on Intel GM45.
+
+Was also discussed here:
+
+https://lore.kernel.org/all/CAHk-=wj0gHsG6iw3D8ufptm9a_dvTSqrrOFY9WopObbYbyuwnA@mail.gmail.com/
+
+Regards, Joonas
+
+***
+
+drm-intel-fixes-2022-05-20:
+
+- Previous PR + fix for #5806: GPU hangs and display artifacts on 5.18-rc3 on Intel GM45
+
+The following changes since commit 42226c989789d8da4af1de0c31070c96726d990c:
+
+  Linux 5.18-rc7 (2022-05-15 18:08:58 -0700)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-fixes-2022-05-20
+
+for you to fetch changes up to 7b1d6924f27ba24b9e47abb9bd53d0bbc430a835:
+
+  drm/i915: Use i915_gem_object_ggtt_pin_ww for reloc_iomap (2022-05-19 12:49:49 +0300)
+
+----------------------------------------------------------------
+- Previous PR + fix for #5806: GPU hangs and display artifacts on 5.18-rc3 on Intel GM45
+
+----------------------------------------------------------------
+Anusha Srivatsa (1):
+      drm/i915/dmc: Add MMIO range restrictions
+
+Maarten Lankhorst (1):
+      drm/i915: Use i915_gem_object_ggtt_pin_ww for reloc_iomap
+
+Umesh Nerlige Ramappa (1):
+      i915/guc/reset: Make __guc_reset_context aware of guilty engines
+
+ drivers/gpu/drm/i915/display/intel_dmc.c          | 44 +++++++++++++++++++++++
+ drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c    |  6 ++--
+ drivers/gpu/drm/i915/gt/intel_reset.c             |  2 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc.h            |  2 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 16 ++++-----
+ drivers/gpu/drm/i915/gt/uc/intel_uc.c             |  2 +-
+ drivers/gpu/drm/i915/gt/uc/intel_uc.h             |  2 +-
+ drivers/gpu/drm/i915/i915_reg.h                   | 16 +++++++++
+ 8 files changed, 74 insertions(+), 16 deletions(-)
