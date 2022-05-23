@@ -2,46 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D22BA53112B
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 May 2022 15:45:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5591153112E
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 May 2022 15:46:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1DD1810F738;
-	Mon, 23 May 2022 13:45:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8BCB710F9F6;
+	Mon, 23 May 2022 13:46:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CCA3A10F6DF
- for <intel-gfx@lists.freedesktop.org>; Mon, 23 May 2022 13:45:18 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 95F8510F95C
+ for <intel-gfx@lists.freedesktop.org>; Mon, 23 May 2022 13:46:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1653313518; x=1684849518;
+ t=1653313577; x=1684849577;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=cbyrC6Hy/tM1khG8gbMUH7OQ0o9gBLo9IWfu3dfLGBw=;
- b=Z622mFgdWJj6K7fwWEmmhZKaHvdWmhrILKDmxIa7qK1BgmGfpvThv3YA
- 3CE2SeMLpFoGPV/XQT4RdwM17qcyYMg/y3tfGq5a73XmCr1p5fnV7fyXf
- xn7128Me+PUB32QBsh9GEdIPKhDmaWuOmiyujT+Q5cTWl7vn3uX3Z2RqO
- /WrGsyXVdoy2fgUbDxYn5HmUy26pSg77S+Wi4k/alOjaTyfK++/M7lIio
- MBingeL/IoYXOwpI17JaH/GYUrIGO6LdakkIcqCXjj9qaklTtLW/k8OC0
- rJZc1SOA/ouYRGDQWsLsrO6Cv55MAU3fG6VwyCJL5s+hc1aner3KLUQvm Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10355"; a="336283203"
-X-IronPort-AV: E=Sophos;i="5.91,246,1647327600"; d="scan'208";a="336283203"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2022 06:45:18 -0700
-X-IronPort-AV: E=Sophos;i="5.91,246,1647327600"; d="scan'208";a="600655705"
+ bh=usU9TX4TCM115or8MzKVVoIA8+6BWt/a6fQg8qnWnx0=;
+ b=NnSLkf5STvMpBzJjLdmRyWs6CToU9AUTf4+9q403Le8XZOxoFPYQCzsc
+ A9JmtIT7yG6l5Tr6ED9HLE0qfKbmFCoB9RymOCtE9QHeBtYBzwKC8EUen
+ lGCDL/U3zsQIFJMaw9HesREZGnJghzAnMixRFfhcJk0LsfhvsD9p2jvu/
+ MADl8Ah+DqMrxAEErVAnOll2Z1ev7zPX28hQSgZtX8rbsyuv86XW4wueE
+ gkPMgbV03i8bCd7GULLMrvBHNPeKEKMBlPVNKxbmSK7UUcvC97mT7Ak77
+ mA2vOfxx7yubX1ITAg4mTHuBa9iVELlspxfPkzrgFZmHhk9SLzMt6U1y7 A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10355"; a="253726111"
+X-IronPort-AV: E=Sophos;i="5.91,246,1647327600"; d="scan'208";a="253726111"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 May 2022 06:46:17 -0700
+X-IronPort-AV: E=Sophos;i="5.91,246,1647327600"; d="scan'208";a="572107094"
 Received: from ksadlows-mobl.ger.corp.intel.com (HELO localhost)
  ([10.249.135.186])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2022 06:45:16 -0700
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 May 2022 06:46:15 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Badal Nilawar <badal.nilawar@intel.com>, intel-gfx@lists.freedesktop.org
 In-Reply-To: <20220523110841.1151431-2-badal.nilawar@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20220523110841.1151431-1-badal.nilawar@intel.com>
  <20220523110841.1151431-2-badal.nilawar@intel.com>
-Date: Mon, 23 May 2022 16:45:13 +0300
-Message-ID: <877d6cbbx2.fsf@intel.com>
+Date: Mon, 23 May 2022 16:46:12 +0300
+Message-ID: <874k1gbbvf.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -98,6 +98,9 @@ cumentation/ABI/testing/sysfs-driver-intel-i915-hwmon
 > +What:		/sys/devices/.../hwmon/hwmon<i>/power1_max
 > +Date:		June 2021
 > +KernelVersion:	5.14
+
+Please check the dates and versions in all these files.
+
 > +Contact:	dri-devel@lists.freedesktop.org
 > +Description:	RW. Card reactive sustained  (PL1/Tau) power limit in micro=
 watts.
@@ -124,11 +127,6 @@ watts.
 >  	select RELAY
 >  	select IRQ_WORK
 > +	select HWMON
-
-Is this really what we want, though? Maybe depends on, or make it work
-with either setting. See Documentation/kbuild/kconfig-language.rst on
-select.
-
 >  	# i915 depends on ACPI_VIDEO when ACPI is enabled
 >  	# but for select to work, need to select ACPI_VIDEO's dependencies, ick
 >  	select BACKLIGHT_CLASS_DEVICE if ACPI
@@ -188,9 +186,6 @@ drv.h
 >=20=20
 > +	struct i915_hwmon *hwmon;
 > +
-
-That should need a forward declaration.
-
 >  	/* Abstract the submission mechanism (legacy ringbuffer or execlists) a=
 way */
 >  	struct intel_gt gt0;
@@ -632,16 +627,10 @@ a;
 > +
 > +/*
 > + * Copyright =C2=A9 2020 Intel Corporation
-
-It's 2022.
-
 > + */
 > +
 > +#ifndef __INTEL_HWMON_H__
 > +#define __INTEL_HWMON_H__
-
-Does not match the file name.
-
 > +
 > +#include <linux/types.h>
 > +#include <linux/mutex.h>
@@ -674,17 +663,9 @@ Does not match the file name.
 > +
 > +	int scl_shift_power;
 > +};
-
-AFAICT all of the above can be placed in i915_hwmon.c. You only store
-the pointer in struct drm_i915_private. Hide this stuff whenever you
-can. This lets you clean up the includes and forward declarations too.
-
 > +
 > +void i915_hwmon_register(struct drm_i915_private *i915);
 > +void i915_hwmon_unregister(struct drm_i915_private *i915);
-
-Blank line here.
-
 > +#endif
 > diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
 reg.h
@@ -713,9 +694,6 @@ as
 > +#define   PKG_MAX_WIN			GENMASK_ULL(54, 48)
 > +#define     PKG_MAX_WIN_Y		GENMASK_ULL(54, 53)
 > +#define     PKG_MAX_WIN_X		GENMASK_ULL(52, 48)
-
-REG_GENMASK64().
-
 >=20=20
 >  #define CHV_CLK_CTL1			_MMIO(0x101100)
 >  #define VLV_CLK_CTL2			_MMIO(0x101104)
