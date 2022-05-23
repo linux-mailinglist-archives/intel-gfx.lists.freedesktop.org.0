@@ -1,33 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7F0B531D39
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 May 2022 23:00:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 268A6531D8D
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 May 2022 23:16:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4A0A81120BB;
-	Mon, 23 May 2022 21:00:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 78002112287;
+	Mon, 23 May 2022 21:16:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id B1D8A1120BB;
- Mon, 23 May 2022 21:00:51 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id ADB9BAADD4;
- Mon, 23 May 2022 21:00:51 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1F35A112281;
+ Mon, 23 May 2022 21:16:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1653340592; x=1684876592;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=Wdlu5qAck4K8hVuNjoIxo+xDWRf/YlAeklV60KNVFGU=;
+ b=bj6q13pMD0nuFDNZSsVPhuiMm4wt4CxGrQ9hRSlZ8Cts5uEVdYb29L60
+ H3AyDoJwTNjdYWUHlYnza2IzXy9WbKOyPf407FFgYEjxPKNKvsUoecmS4
+ IxLepQ6qzVEIIxHHLlmeLQu7BXsBdPXG/qHBdSdANQT5iXEFU6mGcBzZp
+ /mKS7D3eN/4NlNH40GyNbxWQJpo0zZ5YrvfaiUvHWorVh5gVzRLdGedtK
+ njKf1LpQxIx2GhiSO8ojdAB41D2huET6/593jc4UKAZxFYDlkADRKxyOg
+ PyG1G3YlFHd0qU4OqRs5bmNeHEOU0jnrbCl3pgLvVcxoRpqnzr8mhJJHB A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10356"; a="273353241"
+X-IronPort-AV: E=Sophos;i="5.91,247,1647327600"; d="scan'208";a="273353241"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 May 2022 14:16:15 -0700
+X-IronPort-AV: E=Sophos;i="5.91,247,1647327600"; d="scan'208";a="744934688"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 May 2022 14:16:15 -0700
+Date: Mon, 23 May 2022 14:16:13 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+Message-ID: <Yov5nSWY/uksVjp1@mdroper-desk1.amr.corp.intel.com>
+References: <20220523075116.207677-1-balasubramani.vivekanandan@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Roper" <matthew.d.roper@intel.com>
-Date: Mon, 23 May 2022 21:00:51 -0000
-Message-ID: <165333965170.9282.16531366564291976821@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220520230408.3787166-1-matthew.d.roper@intel.com>
-In-Reply-To: <20220520230408.3787166-1-matthew.d.roper@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?i915=3A_SSEU_handling_updates_=28rev2=29?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220523075116.207677-1-balasubramani.vivekanandan@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/hwconfig: Report no hwconfig
+ support on ADL-N
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,21 +57,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, May 23, 2022 at 01:21:16PM +0530, Balasubramani Vivekanandan wrote:
+> ADL-N being a subplatform of ADL-P, it lacks support for hwconfig
+> table. Explicit check added to skip ADL-N.
+> 
+> Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 
-Series: i915: SSEU handling updates (rev2)
-URL   : https://patchwork.freedesktop.org/series/104244/
-State : warning
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
-== Summary ==
+> ---
+>  drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.c
+> index 79c66b6b51a3..5aaa3948de74 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.c
+> @@ -94,7 +94,7 @@ static int guc_hwconfig_fill_buffer(struct intel_guc *guc, struct intel_hwconfig
+>  
+>  static bool has_table(struct drm_i915_private *i915)
+>  {
+> -	if (IS_ALDERLAKE_P(i915))
+> +	if (IS_ALDERLAKE_P(i915) && !IS_ADLP_N(i915))
+>  		return true;
+>  	if (IS_DG2(i915))
+>  		return true;
+> -- 
+> 2.25.1
+> 
 
-Error: dim sparse failed
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
-
-
+-- 
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
