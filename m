@@ -2,51 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA89F532807
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 May 2022 12:41:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E1C1A532872
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 May 2022 13:02:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C97B10F563;
-	Tue, 24 May 2022 10:41:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 81EA410F559;
+	Tue, 24 May 2022 11:02:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 687A810F558;
- Tue, 24 May 2022 10:41:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1653388871; x=1684924871;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=m3JtCU5ZZfSmTvjoFXepJKjGW+Y13lPCL3zJPAOyLJ8=;
- b=aNhDi3MZbyGaWhjPSxzMEyatf4+QqvH5aC8b+NutPbFwaSCns5mNcvgD
- 6qAd6VMhtM7ynceAcHXB+DgafxO/ohtv9z7HF1vhkokEIx6QsQnoNYLvC
- SeoCDRuT35XuCuuw0b8x6pPH5TLwv07zVOr7LTYD+9LX8jzR9BtzB7ydm
- tjkIX703TA4VauFQdS2GRXXSRt5QeaJ9yTnvniKtetH9W1qNQ/JYsrSVA
- 2HBaKSHglB+0VB1vjWjk4YEQM6h+VxErK8HxbR0ss6PmsL0SiiG4RQZKu
- x1XGJj3TMG2PC5fsU3PM/picK5YnX2zQWGAYYvJn5wHtEho1f30HjSH38 w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10356"; a="273607417"
-X-IronPort-AV: E=Sophos;i="5.91,248,1647327600"; d="scan'208";a="273607417"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 May 2022 03:41:11 -0700
-X-IronPort-AV: E=Sophos;i="5.91,248,1647327600"; d="scan'208";a="676304995"
-Received: from zychseba-mobl.ger.corp.intel.com (HELO localhost)
- ([10.249.136.104])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 May 2022 03:41:08 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: dri-devel@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Date: Tue, 24 May 2022 13:39:35 +0300
-Message-Id: <8b7bf6b190aa8b9463a47006e1308b253139112a.1653381821.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <cover.1653381821.git.jani.nikula@intel.com>
-References: <cover.1653381821.git.jani.nikula@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B006A10F555;
+ Tue, 24 May 2022 11:02:30 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id A5FCAA00CC;
+ Tue, 24 May 2022 11:02:30 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v1 13/13] drm/todo: add entry for converting the
- subsystem to struct drm_edid
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Tue, 24 May 2022 11:02:30 -0000
+Message-ID: <165339015065.14320.11498071858439022734@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <cover.1653381821.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1653381821.git.jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/edid=3A_expand_on_struct_drm=5Fedid_usage?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,56 +40,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, David Airlie <airlied@linux.ie>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We need to stop duplicating EDID validation and parsing all over the
-subsystem in various broken ways.
+== Series Details ==
 
-Cc: David Airlie <airlied@linux.ie>
-Cc: Daniel Vetter <daniel@ffwll.ch>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- Documentation/gpu/todo.rst | 25 +++++++++++++++++++++++++
- 1 file changed, 25 insertions(+)
+Series: drm/edid: expand on struct drm_edid usage
+URL   : https://patchwork.freedesktop.org/series/104309/
+State : warning
 
-diff --git a/Documentation/gpu/todo.rst b/Documentation/gpu/todo.rst
-index 513b20ccef1e..982e4e29825f 100644
---- a/Documentation/gpu/todo.rst
-+++ b/Documentation/gpu/todo.rst
-@@ -480,6 +480,31 @@ Contact: Thomas Zimmermann <tzimmermann@suse.de>
- 
- Level: Starter
- 
-+Convert core and drivers from struct edid to struct drm_edid
-+------------------------------------------------------------
-+
-+Go through all drivers and drm core KMS code to convert all raw struct edid
-+usage to the opaque struct drm_edid. See commit e4ccf9a777d3 ("drm/edid: add
-+struct drm_edid container") for rationale.
-+
-+Convert drm_get_edid() and drm_do_get_edid() usage to drm_edid_read(),
-+drm_edid_read_ddc(), or drm_edid_read_custom().
-+
-+Convert drm_add_edid_modes() and drm_connector_update_edid_property() to
-+drm_edid_connector_update(). See drm_helper_probe_get_modes() for reference for
-+converting the ->get_modes() hooks.
-+
-+Convert decentralized, direct struct edid parsing to centralized parsing in
-+drm_edid.c. Prefer one-time parsing as part of drm_edid_connector_update() and
-+storing the result in drm_connector->display_info over adding individual,
-+exported parser functions.
-+
-+During the transition period, it may be necessary to use drm_edid_raw(), but do
-+use it sparingly. Eventually, all of them need to go.
-+
-+Contact: Jani Nikula <jani.nikula@intel.com>
-+
-+Level: Intermediate
- 
- Core refactorings
- =================
--- 
-2.30.2
+== Summary ==
+
+Error: dim checkpatch failed
+b8427e0da67f drm/edid: add block count and data helper functions for drm_edid
+77f40495d3e1 drm/edid: keep track of alloc size in drm_do_get_edid()
+e5215f6adce1 drm/edid: add new interfaces around struct drm_edid
+-:320: WARNING:LONG_LINE: line length of 118 exceeds 100 columns
+#320: FILE: include/drm/drm_edid.h:591:
++					    int (*read_block)(void *context, u8 *buf, unsigned int block, size_t len),
+
+total: 0 errors, 1 warnings, 0 checks, 291 lines checked
+c3d9eeb29af8 drm/edid: add drm_edid_connector_update()
+dafd9f6bcb68 drm/probe-helper: abstract .get_modes() connector helper call
+f84ce12be004 drm/probe-helper: make .get_modes() optional, add default action
+a4b185749eca drm/probe-helper: add .get_edid() callback
+3766c2b5154e drm/edid: add drm_edid_raw() to access the raw EDID data
+db9189e6b617 drm/i915/edid: convert DP, HDMI and LVDS to drm_edid
+-:256: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "drm_edid"
+#256: FILE: drivers/gpu/drm/i915/display/intel_hdmi.c:2429:
++	intel_hdmi_dp_dual_mode_detect(connector, drm_edid != NULL);
+
+total: 0 errors, 0 warnings, 1 checks, 300 lines checked
+3efc0a0e941b drm/edid: do invalid block filtering in-place
+f9f6a03e8733 drm/edid: add HF-EEODB support to EDID read and allocation
+820655b13081 drm/edid: take HF-EEODB extension count into account
+8f94d9ed7f40 drm/todo: add entry for converting the subsystem to struct drm_edid
+
 
