@@ -2,48 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91161532876
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 May 2022 13:03:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EB5D53287D
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 May 2022 13:05:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2947E10EC31;
-	Tue, 24 May 2022 11:03:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D2A2910EF53;
+	Tue, 24 May 2022 11:05:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E1A810E9DB;
- Tue, 24 May 2022 11:03:37 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6783010EF4C
+ for <intel-gfx@lists.freedesktop.org>; Tue, 24 May 2022 11:05:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1653390217; x=1684926217;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=CntG2zT79s+rUqc/RwF4HmNc6O2cBy1aTPUYDsYRjjE=;
- b=dh2PDazC+Hias72hL+YjkQm+4NV8DToFrS9UKRxKmiS3wgYrkk72n1tB
- 4HB9DvustuCf75leTsWV2XTHhp/g+hpBKnjrdGuwzenebYvPq94XzybWQ
- s1zPvooRPuxUqQc58hHj1Cq7cjoBqvpzVDjfb98Wbo4j8xSw5I9hLE9wb
- tRHKJV2SdjpVuqjKnF7vHEArIBNa7kuAcpq7eJf2rKGc5fr5CAZ5dQyk1
- VdQKcyihYFN9IuqXbLDzGRljMC7A+9nwHXaUA/KRi9xsK8iRezZJCDrWe
- y61FScKe9PRfstwWtCrQcDW0AHHOXQVMLSQa0AVm+V4d3ZYUIquxtL5Bu A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10356"; a="334144541"
-X-IronPort-AV: E=Sophos;i="5.91,248,1647327600"; d="scan'208";a="334144541"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 May 2022 04:03:37 -0700
-X-IronPort-AV: E=Sophos;i="5.91,248,1647327600"; d="scan'208";a="745175110"
-Received: from zychseba-mobl.ger.corp.intel.com (HELO localhost)
- ([10.249.136.104])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 May 2022 04:03:33 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Julia Lawall <Julia.Lawall@inria.fr>
-In-Reply-To: <20220521111145.81697-90-Julia.Lawall@inria.fr>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220521111145.81697-90-Julia.Lawall@inria.fr>
-Date: Tue, 24 May 2022 14:03:29 +0300
-Message-ID: <87ee0jw5tq.fsf@intel.com>
+ t=1653390309; x=1684926309;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=daZtR50XIQkpVL27VKf1PjAPNX1b1CIHqPQJ87J6GHQ=;
+ b=FsCByO22gcw/DJjKJ46chf7VbOtGLNYGE6tUzUnbyaEFMO4Ljn1vL4UL
+ wQO2PvwUo9Gd4pxeKndV+1yUgwueg/3N+xIyJWma7iYvARkYzeknkLb68
+ syYOK1gBxeyhLm1+LGBDdO/uvui718gj5TpVZFGr4Kk/p4h28QvGTy0TR
+ d7MRUqgGg/5rpI5auLGKVfn3VHREQa7vr74rZo7+qikMVZG4V4nxHj8sI
+ yNm9yIrMEkPoeZMJLq9RVFkASGU8rRB0a6uPoP34YX1zk+x0x393uUs50
+ /7+So5K4zpAVa8IGozDNEiN5Hw19M1eYXNMXFsvZHhEIYebufveV2jUmA A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10356"; a="298816304"
+X-IronPort-AV: E=Sophos;i="5.91,248,1647327600"; d="scan'208";a="298816304"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 May 2022 04:05:08 -0700
+X-IronPort-AV: E=Sophos;i="5.91,248,1647327600"; d="scan'208";a="601172721"
+Received: from nirmoyda-desk.igk.intel.com ([10.102.13.19])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 May 2022 04:05:06 -0700
+From: Nirmoy Das <nirmoy.das@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 24 May 2022 13:05:00 +0200
+Message-Id: <20220524110500.26630-1-nirmoy.das@intel.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: fix typos in comments
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915: Individualize fences before adding to
+ dma_resv obj
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,84 +54,141 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
- kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: thomas.hellstrom@intel.com, matthew.auld@intel.com,
+ chris.p.wilson@intel.com, nirmoy.das@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sat, 21 May 2022, Julia Lawall <Julia.Lawall@inria.fr> wrote:
-> Spelling mistakes (triple letters) in comments.
-> Detected with the help of Coccinelle.
->
-> Signed-off-by: Julia Lawall <Julia.Lawall@inria.fr>
+_i915_vma_move_to_active() can receive > 1 fences for
+multiple batch buffers submission. Because dma_resv_add_fence()
+can only accept one fence at a time, change _i915_vma_move_to_active()
+to be aware of multiple fences so that it can add individual
+fences to the dma resv object.
 
-Thanks, pushed to drm-intel-next.
+v4: Reserve fences for composite_fence on multi-batch contexts and
+    also reserve fence slots to composite_fence for each VMAs.
+v3: dma_resv_reserve_fences is not cumulative so pass num_fences.
+v2: make sure to reserve enough fence slots before adding.
 
-BR,
-Jani.
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/5614
+Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+---
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 10 +++-
+ drivers/gpu/drm/i915/i915_vma.c               | 47 +++++++++++--------
+ 2 files changed, 36 insertions(+), 21 deletions(-)
 
->
-> ---
->  drivers/gpu/drm/i915/display/intel_color.c           |    2 +-
->  drivers/gpu/drm/i915/display/intel_pps.c             |    2 +-
->  drivers/gpu/drm/i915/gt/intel_execlists_submission.c |    2 +-
->  drivers/gpu/drm/i915/gt/uc/intel_guc_log.c           |    2 +-
->  4 files changed, 4 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
-> index 34128c9c635c..a27ce874a9e8 100644
-> --- a/drivers/gpu/drm/i915/display/intel_color.c
-> +++ b/drivers/gpu/drm/i915/display/intel_color.c
-> @@ -1638,7 +1638,7 @@ static u32 icl_gamma_mode(const struct intel_crtc_state *crtc_state)
->  	/*
->  	 * Enable 10bit gamma for D13
->  	 * ToDo: Extend to Logarithmic Gamma once the new UAPI
-> -	 * is acccepted and implemented by a userspace consumer
-> +	 * is accepted and implemented by a userspace consumer
->  	 */
->  	else if (DISPLAY_VER(i915) >= 13)
->  		gamma_mode |= GAMMA_MODE_MODE_10BIT;
-> diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
-> index 5a598dd06039..4bc0563dde92 100644
-> --- a/drivers/gpu/drm/i915/display/intel_pps.c
-> +++ b/drivers/gpu/drm/i915/display/intel_pps.c
-> @@ -509,7 +509,7 @@ static void wait_panel_power_cycle(struct intel_dp *intel_dp)
->  
->  	drm_dbg_kms(&i915->drm, "Wait for panel power cycle\n");
->  
-> -	/* take the difference of currrent time and panel power off time
-> +	/* take the difference of current time and panel power off time
->  	 * and then make panel wait for t11_t12 if needed. */
->  	panel_power_on_time = ktime_get_boottime();
->  	panel_power_off_duration = ktime_ms_delta(panel_power_on_time, intel_dp->pps.panel_power_off_time);
-> diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> index 86f7a9ac1c39..aa0d2bbbbcc4 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> @@ -1350,7 +1350,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
->  			 * submission. If we don't cancel the timer now,
->  			 * we will see that the timer has expired and
->  			 * reschedule the tasklet; continually until the
-> -			 * next context switch or other preeemption event.
-> +			 * next context switch or other preemption event.
->  			 *
->  			 * Since we have decided to reschedule based on
->  			 * consumption of this timeslice, if we submit the
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
-> index 78d2989fe917..02311ad90264 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
-> @@ -588,7 +588,7 @@ int intel_guc_log_relay_open(struct intel_guc_log *log)
->  	/*
->  	 * We require SSE 4.1 for fast reads from the GuC log buffer and
->  	 * it should be present on the chipsets supporting GuC based
-> -	 * submisssions.
-> +	 * submissions.
->  	 */
->  	if (!i915_has_memcpy_from_wc()) {
->  		ret = -ENXIO;
->
-
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+index b279588c0672..56539f7b0978 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+@@ -1010,7 +1010,8 @@ static int eb_validate_vmas(struct i915_execbuffer *eb)
+ 			}
+ 		}
+ 
+-		err = dma_resv_reserve_fences(vma->obj->base.resv, 1);
++		/* Reserve enough slots to accommodate composite fences */
++		err = dma_resv_reserve_fences(vma->obj->base.resv, eb->num_batches);
+ 		if (err)
+ 			return err;
+ 
+@@ -3146,6 +3147,7 @@ eb_composite_fence_create(struct i915_execbuffer *eb, int out_fence_fd)
+ 	struct dma_fence_array *fence_array;
+ 	struct dma_fence **fences;
+ 	unsigned int i;
++	int err;
+ 
+ 	GEM_BUG_ON(!intel_context_is_parent(eb->context));
+ 
+@@ -3154,6 +3156,12 @@ eb_composite_fence_create(struct i915_execbuffer *eb, int out_fence_fd)
+ 		return ERR_PTR(-ENOMEM);
+ 
+ 	for_each_batch_create_order(eb, i) {
++		err = dma_resv_reserve_fences(eb->batches[i]->vma->obj->base.resv, eb->num_batches);
++		if (err) {
++			kfree(fences);
++			return ERR_PTR(err);
++		}
++
+ 		fences[i] = &eb->requests[i]->fence;
+ 		__set_bit(I915_FENCE_FLAG_COMPOSITE,
+ 			  &eb->requests[i]->fence.flags);
+diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
+index 4f6db539571a..4a5222fc3a4a 100644
+--- a/drivers/gpu/drm/i915/i915_vma.c
++++ b/drivers/gpu/drm/i915/i915_vma.c
+@@ -23,6 +23,7 @@
+  */
+ 
+ #include <linux/sched/mm.h>
++#include <linux/dma-fence-array.h>
+ #include <drm/drm_gem.h>
+ 
+ #include "display/intel_frontbuffer.h"
+@@ -1823,6 +1824,20 @@ int _i915_vma_move_to_active(struct i915_vma *vma,
+ 	if (unlikely(err))
+ 		return err;
+ 
++	/* Reserve fences slot early to prevent an allocation after preparing
++	 * the workload and associating fences with dma_resv.
++	 */
++	if (fence && !(flags & __EXEC_OBJECT_NO_RESERVE)) {
++		struct dma_fence *curr;
++		int idx;
++
++		dma_fence_array_for_each(curr, idx, fence)
++			;
++		err = dma_resv_reserve_fences(vma->obj->base.resv, idx);
++		if (unlikely(err))
++			return err;
++	}
++
+ 	if (flags & EXEC_OBJECT_WRITE) {
+ 		struct intel_frontbuffer *front;
+ 
+@@ -1832,31 +1847,23 @@ int _i915_vma_move_to_active(struct i915_vma *vma,
+ 				i915_active_add_request(&front->write, rq);
+ 			intel_frontbuffer_put(front);
+ 		}
++	}
+ 
+-		if (!(flags & __EXEC_OBJECT_NO_RESERVE)) {
+-			err = dma_resv_reserve_fences(vma->obj->base.resv, 1);
+-			if (unlikely(err))
+-				return err;
+-		}
++	if (fence) {
++		struct dma_fence *curr;
++		enum dma_resv_usage usage;
++		int idx;
+ 
+-		if (fence) {
+-			dma_resv_add_fence(vma->obj->base.resv, fence,
+-					   DMA_RESV_USAGE_WRITE);
++		obj->read_domains = 0;
++		if (flags & EXEC_OBJECT_WRITE) {
++			usage = DMA_RESV_USAGE_WRITE;
+ 			obj->write_domain = I915_GEM_DOMAIN_RENDER;
+-			obj->read_domains = 0;
+-		}
+-	} else {
+-		if (!(flags & __EXEC_OBJECT_NO_RESERVE)) {
+-			err = dma_resv_reserve_fences(vma->obj->base.resv, 1);
+-			if (unlikely(err))
+-				return err;
++		} else {
++			usage = DMA_RESV_USAGE_READ;
+ 		}
+ 
+-		if (fence) {
+-			dma_resv_add_fence(vma->obj->base.resv, fence,
+-					   DMA_RESV_USAGE_READ);
+-			obj->write_domain = 0;
+-		}
++		dma_fence_array_for_each(curr, idx, fence)
++			dma_resv_add_fence(vma->obj->base.resv, curr, usage);
+ 	}
+ 
+ 	if (flags & EXEC_OBJECT_NEEDS_FENCE && vma->fence)
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.35.1
+
