@@ -2,76 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 693C2532E93
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 May 2022 18:07:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B827F532E99
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 May 2022 18:08:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7EB7C10E277;
-	Tue, 24 May 2022 16:07:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A4BC810E2B7;
+	Tue, 24 May 2022 16:08:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C8D3510E277
- for <intel-gfx@lists.freedesktop.org>; Tue, 24 May 2022 16:07:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1653408473;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=AjP5JPsp4sTeptQO7etKphezL1GL7XatlC7yllc+qq4=;
- b=YYHo6JPzLGip/zkzRKXd3un8eklLqA+u4PQ0G5pcNG+Wrc0MTPOXx33YBliU2TcdtMta8I
- Tu1aAh2PsWC+J8Mx8ogFWEHOVXTKgjXkL1Ou9udD4K2HOLkmJQah8hIspLPOp9R+C44BD6
- BWhMr/00Hr8uLE+834GahK+4dVnJtQU=
-Received: from mail-il1-f199.google.com (mail-il1-f199.google.com
- [209.85.166.199]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-650-oiYbI32pNL-WNCBzI3Q6HA-1; Tue, 24 May 2022 12:07:48 -0400
-X-MC-Unique: oiYbI32pNL-WNCBzI3Q6HA-1
-Received: by mail-il1-f199.google.com with SMTP id
- q6-20020a056e0215c600b002c2c4091914so11042034ilu.14
- for <intel-gfx@lists.freedesktop.org>; Tue, 24 May 2022 09:07:47 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
- :references:organization:mime-version:content-transfer-encoding;
- bh=AjP5JPsp4sTeptQO7etKphezL1GL7XatlC7yllc+qq4=;
- b=PAAZd6vUI2TG8a3arH9lILMjxHQo2e5/QGMmL1oIQinJFvXFFPkf9zzcxWLLl+bINW
- TjKr1avCGMF/xBwsa5bOaoj0c5Br1YifeaT252HPwM3vABpGgGOud4HSlQhNfjPpBbCz
- yh5arxh7N8OYbxHtdj1Krstf0U9w2MeXCFmTcVf8VQ+dGEheh6s0G6c01QbsTkXt/+9B
- VK4TJgHEkGFYqOGvWcTvYF/WIaAn3XM2TJCx3hMkkCWFMlz7XT22Tx8OEyZV+GUqY6fV
- BqYEhoKk3aEliQtqhwQxietGabOdCnbFwuocg760Wy85lJZb5+s+JN/+qOpU0PzEMd7+
- ug8w==
-X-Gm-Message-State: AOAM533mr2e712erpQpA17c2eYfgGTZjAmvz1iRhrhWme2xDYeDUPAFH
- WUEtD7E4YYycQrm8179HumPi5yUmFzj3vfhJxYO/tKrREiX4AVvntUzu3cgAaBsRTsOcGQYaiEr
- o/mqCfPKWV/LJdv8DDh7GQPMCEK+Y
-X-Received: by 2002:a05:6e02:170a:b0:2d1:3f8b:ad75 with SMTP id
- u10-20020a056e02170a00b002d13f8bad75mr13606332ill.135.1653408467263; 
- Tue, 24 May 2022 09:07:47 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJyDXCFqahhgZhF13j/01JuWAI9TkKwryMIBDz+Ojod8ivP2jLD7vfDSwtL6uq0vKB4eb0olaw==
-X-Received: by 2002:a05:6e02:170a:b0:2d1:3f8b:ad75 with SMTP id
- u10-20020a056e02170a00b002d13f8bad75mr13606312ill.135.1653408467062; 
- Tue, 24 May 2022 09:07:47 -0700 (PDT)
-Received: from redhat.com ([38.15.36.239]) by smtp.gmail.com with ESMTPSA id
- m15-20020a056e021c2f00b002cde6e352d5sm4628333ilh.31.2022.05.24.09.07.46
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 24 May 2022 09:07:46 -0700 (PDT)
-Date: Tue, 24 May 2022 10:07:45 -0600
-From: Alex Williamson <alex.williamson@redhat.com>
-To: Matthew Rosato <mjrosato@linux.ibm.com>
-Message-ID: <20220524100745.006a3635.alex.williamson@redhat.com>
-In-Reply-To: <20220519183311.582380-1-mjrosato@linux.ibm.com>
-References: <20220519183311.582380-1-mjrosato@linux.ibm.com>
-Organization: Red Hat
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2190510E2B7
+ for <intel-gfx@lists.freedesktop.org>; Tue, 24 May 2022 16:08:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1653408518; x=1684944518;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=5/oi4H/fboTBiku2B9FjFi4DsKEwuE6SFE3y+OYpFB8=;
+ b=W0sOzoxUcGNlp6EqVXunkwWLkh/ty1J+Md8QBBGdw3M6xAqCvzcKQKru
+ JAnxyYNiZO7XwZ3p23bN9NsgnTwwxwsmab78fSfc0v54wRaU/R3aapetd
+ xXebvCPYC2bTcwOzrCZjrSQ5AjQBMTKpsZeSuQc0AvslLtrGlrDHqnXHU
+ 0ngleTInlHA8/1+Dz6uop2jTRasRkx467utYPlV4DMW0FBu6H47jAPg2y
+ zIaPvUNvwgRvE6XA/Gk4sbDGDKJSWm1R1cXVpMbdyQ4y1aKyYQTJHa+ZN
+ Bn1QKsyQBQuEO/83bjbiu1yRH4ZMyty7Dmp711DQJPdXzjN6HIbUof92G g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10357"; a="298893543"
+X-IronPort-AV: E=Sophos;i="5.91,248,1647327600"; d="scan'208";a="298893543"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 May 2022 09:08:37 -0700
+X-IronPort-AV: E=Sophos;i="5.91,248,1647327600"; d="scan'208";a="548532999"
+Received: from ideak-desk.fi.intel.com ([10.237.72.175])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 May 2022 09:08:35 -0700
+Date: Tue, 24 May 2022 19:08:15 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: "Kasireddy, Vivek" <vivek.kasireddy@intel.com>
+Message-ID: <Yo0C7yUpdSBdnyof@ideak-desk.fi.intel.com>
+References: <20220516085402.3591249-1-vivek.kasireddy@intel.com>
+ <20220516085402.3591249-3-vivek.kasireddy@intel.com>
+ <YoIfQQLpeKnVHzEp@ideak-desk.fi.intel.com>
+ <6117cb32773745e980bc02bfab96bb21@intel.com>
+ <YoYnzRo6gbF416Ek@ideak-desk.fi.intel.com>
+ <a0e6dca24e6a4b92b5870592aaeff05a@intel.com>
+ <YotuSk4x8kcwX+Mk@ideak-desk.fi.intel.com>
+ <68eff4780929468a97e68e40780b0cd5@intel.com>
 MIME-Version: 1.0
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=alex.williamson@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v3 0/1] vfio: remove
- VFIO_GROUP_NOTIFY_SET_KVM
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <68eff4780929468a97e68e40780b0cd5@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v1 2/2] drm/i915: Reject the atomic modeset
+ if an associated Type-C port is disconnected
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,63 +63,134 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jjherne@linux.ibm.com, akrowiak@linux.ibm.com, kvm@vger.kernel.org,
- hch@infradead.org, linux-s390@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- cohuck@redhat.com, linux-kernel@vger.kernel.org, pasic@linux.ibm.com,
- jgg@nvidia.com, borntraeger@linux.ibm.com, intel-gvt-dev@lists.freedesktop.org
+Reply-To: imre.deak@intel.com
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 19 May 2022 14:33:10 -0400
-Matthew Rosato <mjrosato@linux.ibm.com> wrote:
+On Tue, May 24, 2022 at 11:29:54AM +0300, Kasireddy, Vivek wrote:
+> Hi Imre,
+> 
+> > On Fri, May 20, 2022 at 10:28:31AM +0300, Kasireddy, Vivek wrote:
+> > > Hi Imre,
+> > > [...]
+> > > > > > > @@ -131,6 +137,20 @@ int intel_digital_connector_atomic_check(struct
+> > drm_connector *conn,
+> > > > > > >
+> > > > > > >  	crtc_state = drm_atomic_get_new_crtc_state(state, new_state->crtc);
+> > > > > > >
+> > > > > > > +	/*
+> > > > > > > +	 * The spec says that it is not safe to use a disconnected Type-C port.
+> > > > > > > +	 * Therefore, check to see if this connector is connected and reject
+> > > > > > > +	 * the modeset if there is no sink detected.
+> > > > > > > +	 */
+> > > > > > > +	if (dig_port && !dig_port->connected(encoder) &&
+> > > > > >
+> > > > > > This check is racy, as right after dig_port->connected() returns true,
+> > > > > > the port can become disconnected.
+> > > > >
+> > > > > [Kasireddy, Vivek] Given that, do you think the only way to reliably determine
+> > > > > if the Type-C port has a sink is to check the live status and ignore dig_port-
+> > >tc_mode?
+> > > > >
+> > > > > If that is the case, should I just add a function pointer to dig_port to call
+> > > > > tc_port_live_status_mask()? Or, should I just change intel_tc_port_connected()
+> > > > > to ignore dig_port->tc_mode like below:
+> > > > > @@ -764,8 +764,7 @@ bool intel_tc_port_connected(struct intel_encoder
+> > *encoder)
+> > > > >
+> > > > >         intel_tc_port_lock(dig_port);
+> > > > >
+> > > > > -       is_connected = tc_port_live_status_mask(dig_port) &
+> > > > > -                      BIT(dig_port->tc_mode);
+> > > > > +       is_connected = tc_port_live_status_mask(dig_port);
+> > > > >
+> > > > > Or, are there any other elegant ways that you can think of to determine whether
+> > > > > a tc port has a sink or not?
+> > > >
+> > > > I meant that I don't think there is a way to prevent a modeset on a
+> > > > disconnected port.
+> > >
+> > > But we need to find a way right given that the spec clearly states that the driver
+> > > must not use or access (PHY/FIA registers of) a disconnected tc port.
+> > 
+> > The driver does not access the PHY/FIA regs on a disconnected port/PHY.
+>
+> [Kasireddy, Vivek] I think it does after the first patch in this series is applied if
+> the userspace (Weston) forces a modeset on a disconnected tc legacy port (HDMI).
+> For instance, some of the FIA/PHY regs accesses I noticed include programming
+> the lane count (intel_tc_port_set_fia_lane_count() called by intel_ddi_pre_pll_enable()),
+> reading the pin assignment mask (intel_tc_port_get_pin_assignment_mask() called
+> by icl_program_mg_dp_mode() which is called by intel_ddi_pre_enable_hdmi()), etc.
 
-> As discussed in this thread:
-> 
-> https://lore.kernel.org/kvm/20220516172734.GE1343366@nvidia.com/
-> 
-> Let's remove VFIO_GROUP_NOTIFY_SET_KVM and instead assume the association
-> has already been established prior to device_open.  For the types today
-> that need a KVM (GVT, vfio-ap) these will fail if a KVM is not found.
-> Looking ahead, vfio-pci-zdev will optionally want the KVM association
-> (enable hardware assists) but it will not be a hard requirement (still
-> want to allow other, non-KVM userspace usage). 
-> 
-> This is built on top of vfio-next and tested with s390x-pci
-> (zdev-kvm series) and vfio-ap (GVT changes are compile-tested only)
-> 
-> Changes for v3:
-> - merge branches under if (device->open_count == 1) (Kevin)
-> - move device->open_count-- out from group_rwsem (Kevin)
-> - drop null KVM check (Christoph)
-> - remove extra kvm_{get,put}_kvm from vfio_ap_ops, it was already getting
->   a reference (Jason)
-> - Add comment about kvm reference in vfio.h (Jason)
-> - Return -EINVAL if !kvm for vfio-ap (Tony)
-> 
-> Changes for v2:
-> - gvt no longer needs release_work, get rid of it (Christoph)
-> - a few compile fixes for gvt
-> - update commit to mention fixes gvt oops (Jason)
-> - s/down_write/down_read/ in a few spots (Jason)
-> - avoid kvm build dependency by holding group read lock over device
->   open/close and put the onus on the driver to obtain a reference if
->   it will actually use the kvm pointer.  Document the requirement,
->   use lockdep_assert to ensure lock is held during register_notifer;
->   today all callers are from driver open_device. 
-> 
-> Matthew Rosato (1):
->   vfio: remove VFIO_GROUP_NOTIFY_SET_KVM
-> 
->  drivers/gpu/drm/i915/gvt/gtt.c        |  4 +-
->  drivers/gpu/drm/i915/gvt/gvt.h        |  3 -
->  drivers/gpu/drm/i915/gvt/kvmgt.c      | 82 ++++++--------------------
->  drivers/s390/crypto/vfio_ap_ops.c     | 35 ++---------
->  drivers/s390/crypto/vfio_ap_private.h |  3 -
->  drivers/vfio/vfio.c                   | 83 ++++++++++-----------------
->  include/linux/vfio.h                  |  6 +-
->  7 files changed, 57 insertions(+), 159 deletions(-)
+The FW/HW will setup a legacy TC port's PHY once during system boot and
+resume, so I don't see any problem modesetting those later, regardless
+of a sink being plugged on them or not. We need the first patch which
+fixes a bug selecting the wrong PLL.
 
-Applied to vfio next branch for v5.19.  Thanks,
+> Of-course, these accesses would probably not occur if the disconnected tc port
+> defaults to TBT mode but this brings other problems like I described in the
+> commit description of the first patch and the cover letter.
+>  
+> > > > Live status is what provides the connected state, but
+> > > > it can change right after it is read out.
+> > >
+> > > Does this change happen after giving up the ownership (in
+> > > icl_tc_phy_disconnect)?
+> > 
+> > The HPD live status changes whenever a user plugs/unplugs a sink.
+> > 
+> > > But shouldn't we distinguish between the cases where we are
+> > > deliberately disconnecting the phy for power-savings reason vs when
+> > > the port actually becomes disconnected? The port can still be
+> > > considered connected in the former case right?
+> > 
+> > The driver - based on the spec - needs to avoid accessing the PHY/FIA
+> > regs whenever the PHY is disconnected either by FW/HW (because the user
+> > unplugged the sink) or the driver (during the suspend, modeset disable
+> > sequence).
+>
+> [Kasireddy, Vivek] Regardless of whether the PHY/FIA regs are accessed or
+> not, I don't think the driver should let the userspace's modeset to succeed on
+> a disconnected tc port. Do you not agree?
 
-Alex
+I don't think a modeset can or should be prevented if the user unplugs a
+monitor midway.
 
+> > > Under what other situations would the live status change or become
+> > > unreliable after the port has a connected sink?
+> > 
+> > It's not unreliable, it reflects the state of a sink being plugged to
+> > the connector or not.
+>
+> [Kasireddy, Vivek] Ok, assuming that the state of the sink is "connected"
+> during intel_atomic_check() phase (which is where this patch checks for
+> connected status), are you concerned about the case where the user may
+> unplug the sink before we get to the intel_atomic_commit() phase? Is
+> this what you meant when you said this earlier: "This check is racy, as
+> right after dig_port->connected() returns true, the port can become
+> disconnected"? I am just trying to figure out the scenarios when this
+> might happen.
+
+Yes, checking the HPD live state and attempting to prevent a modeset
+based on it doesn't work as this state can change at any moment. I don't
+see a reason either why this should be done.
+
+> > > And, since we rely on SDEISR to detect the live status for tc legacy
+> > > ports, could this not be considered reliable?
+> > 
+> > Changes in the HPD live status is used as a hint to user space to
+> > follow up with connector detection and modeset enable/disable requests
+> > as necessary.
+>
+> [Kasireddy, Vivek] Right, that is the ideal case but user/userspace can commit
+> mistakes where for example they can assume that HDMI-A-1 is connected 
+> (while it is not) instead of HDMI-A-3 which is the one actually connected.
+> During such cases, I think the driver should not let the userspace hang the
+> system or lead to unexpected states and instead should return an error.
+
+I can't see a problem modesetting a TC connector, when there is no sink
+connected to it or the sink gets unplugged at an arbitrary time during
+the modeset.
+
+--Imre
