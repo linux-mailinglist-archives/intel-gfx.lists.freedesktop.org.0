@@ -2,163 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7946532ED0
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 May 2022 18:20:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AFB8C532F95
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 May 2022 19:25:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C7C8E10E0D0;
-	Tue, 24 May 2022 16:20:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D293E10F0E2;
+	Tue, 24 May 2022 17:25:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F64310E0D0
- for <intel-gfx@lists.freedesktop.org>; Tue, 24 May 2022 16:20:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0551A10EC90;
+ Tue, 24 May 2022 17:25:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1653409232; x=1684945232;
- h=from:to:subject:date:message-id:references:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=mp4AncSpCJG+a3BxkqvfJaOxkWm2e5pnEuqy77Nw/PI=;
- b=OPqPwd8dFOS4bNpdT3XZCbQsn4Nh9ARbLuMee84wbzYQRiWAVTGyznYg
- 4qgYw+b3nkgpjxOLDM0jVupPA2XOQhF2EGYPUC29ifJrtPauvWixr97nR
- IsHrllSltRV+AAIQNYQuuBKhBEdv8VjIpCvD/8plPlgKHavo4A1S6+s2l
- bpEaaQ+fusYcw+ebzwrSlNHmRF5A7OZd0o8TRt5cIJHRok9Fam4g6kGnA
- 5HXVr+4woxVBFn2KkXUkQ191i49mkPQq/9N/1OxxWFcjY0eHiNhYMBUKO
- 0K2QYCQlJCI3Iy5kEi2VbGn1+3WlVWo0clvhB1rafETO1oypiosSNH+33 w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10357"; a="273572304"
-X-IronPort-AV: E=Sophos;i="5.91,248,1647327600"; d="scan'208";a="273572304"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ t=1653413106; x=1684949106;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=klU7H/x+fm5XZK7+mQ1gmxIbbprVSpP4hv+K4zTN+6c=;
+ b=MG1Njyrbe9f7bgO/yddvULAVaM1Febmzgxdpk7UQf4diKaN5sb3h7N68
+ bWBqqjeOfp9Rj+SNzobzWNn307YahMkanb2A1D6CsTW9QjprfU81+j67O
+ saS4KY8aEgySkVAVH8r9FaeLruRGrK4ndlBg3GIVSRMjYXXd96K5b+WeM
+ rr3Xcbceh7BfrUgLvNLo+yJRoOrBVn0Z2Migl5zMTNuxtttJVchdtHQ/M
+ K3Qlyt0DfVmgTQo8YNkLGWxi1bDaqDWeKLjZrsvv0mKI1AmKVDnlxTDpo
+ U3ufyQGPrA0csuboey42YLB3ZysonN1opEJTu7tgMOqOoEZmE4orCo1Gy w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10357"; a="273590875"
+X-IronPort-AV: E=Sophos;i="5.91,248,1647327600"; d="scan'208";a="273590875"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 May 2022 09:20:30 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,248,1647327600"; d="scan'208";a="526467055"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by orsmga003.jf.intel.com with ESMTP; 24 May 2022 09:20:30 -0700
-Received: from fmsmsx607.amr.corp.intel.com (10.18.126.87) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Tue, 24 May 2022 09:20:29 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx607.amr.corp.intel.com (10.18.126.87) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Tue, 24 May 2022 09:20:29 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27 via Frontend Transport; Tue, 24 May 2022 09:20:29 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.171)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2308.27; Tue, 24 May 2022 09:20:29 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EGjCZCgow44fVRIPHtlB6bhyHUAvlgl3goAIpPyzW8z+0Iyi2hBjn6XdQWHFfzLKkTMbulD3kjaHLh/oMMRHuFpeLdftnoNpsYK38PAqntbBZSJJNNafCS36dqqnXK+J8vtNZwMQ9CLy79l+yR9CQepfxHU0TafFZzqJ4yg/wOIXwLQq/qeU3tWYZRFeMseZJA/rNjbsdNsLYn+xG7trqzXWBk1jWKWm0hUuPuSrlYdeahOVkyHNLnfJY5FcQtU5DY9rlLmLwc436SPs23lptur7JZan7jSx+4xEKQVHBY7M+ibYIdWMiaV/VeoSAeeetmWtM9NyI71UO4OK053Qdg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mp4AncSpCJG+a3BxkqvfJaOxkWm2e5pnEuqy77Nw/PI=;
- b=VzrZ/47N3eNTe8o8LVmX9VvyXFg0dDw1zzvAM0hYewbXMIQte2p95SlgSiEMBCzO8oy2y3lTWWOptOMub390EJ+HBhM5bnvsBhjxsB/smpbYwwvh2ZE6iTZRhrUbSN0sUQWAt5pgSxRlCOafycF0bNQxPR8DI3YbsHm6EgodfTiKRZ8jSImGJHm+znrusPbaHTHZXMW3ju537fVvgsM+40LL/bX1YYQ6d5mExJqo5Fm1mRsaptrmEEy6lJy1Wmnzn6Bi4wWUhyp6GBuFlGE1EpZ4tjbm8iQjcKtjP+zhawFtlC4tXOt7Yxzb3/XmnC2Xhj91gQ1EsCyg9EAsQySNaw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM4PR11MB6213.namprd11.prod.outlook.com (2603:10b6:8:ae::17) by
- CH2PR11MB4342.namprd11.prod.outlook.com (2603:10b6:610:3b::19) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5273.19; Tue, 24 May 2022 16:20:24 +0000
-Received: from DM4PR11MB6213.namprd11.prod.outlook.com
- ([fe80::c8ac:46fb:f02f:e5ad]) by DM4PR11MB6213.namprd11.prod.outlook.com
- ([fe80::c8ac:46fb:f02f:e5ad%9]) with mapi id 15.20.5273.023; Tue, 24 May 2022
- 16:20:24 +0000
-From: "Vudum, Lakshminarayana" <lakshminarayana.vudum@intel.com>
-To: "Roper, Matthew D" <matthew.d.roper@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: =?utf-8?B?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgaTkxNTogU1NFVSBoYW5kbGlu?=
- =?utf-8?Q?g_updates_(rev2)?=
-Thread-Index: AQHYbv1UWaWeW7nCj06VYWuKSn5rcq0uGcrw
-Date: Tue, 24 May 2022 16:20:24 +0000
-Message-ID: <DM4PR11MB62139A5C59B89E09F47596EAECD79@DM4PR11MB6213.namprd11.prod.outlook.com>
-References: <20220520230408.3787166-1-matthew.d.roper@intel.com>
- <165334101320.9281.12824970684177033061@emeril.freedesktop.org>
- <YowZaLiRYIWEMWcl@mdroper-desk1.amr.corp.intel.com>
-In-Reply-To: <YowZaLiRYIWEMWcl@mdroper-desk1.amr.corp.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.6.500.17
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: c1846909-fc8f-4e1e-487c-08da3da14e9d
-x-ms-traffictypediagnostic: CH2PR11MB4342:EE_
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-microsoft-antispam-prvs: <CH2PR11MB43421741AD85B0A6D41ED2D0ECD79@CH2PR11MB4342.namprd11.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: gnuRU5iaQUBkgFWg9g47+H3llmMKL0g9IfGOdu9B0CDrAhUNEecweHQokWaO0TCQbHhjiWnEIVehjjIN2mRn0mGHhJwJfV3LXH4BHbXAuGofrl0COZgKWIzGvaU5/hSsuFkFeBGGVjVVzHFgR6gCfYOxXPe158h+KezO7Uix2842w960WKxt8H2Pl5VZ9Eyf5bIwgOyf14PHcKWFFcuhoP8f65jBEOvJfCdK8pQ+grlCZs+X705EWPsGToRtPmLC6g9yjOrdGejF6M9JqfeLENYi0mSKW523pzrTC6OZ2jE3lBpTDaTAC31yMfFIaxsODLM2tp4/Rv3YNK5jPGLeqbrmTLUT1UGlsgKH9afyz0rRCYjlNwf6cC8yv1TwxjWVIG+5zPANjYEZIpM6Q8EKqD7utKjykx7gmoVS8gtOySsJQTQj4T8B6dMNuaxgI6BC8WXXEKknFC7o4NFB1KiTrVPG6DPC+AeTRL9xYOocxGCoYOeGHvM3chDp/T/9Zmyk5CdvcpV3O4V8Ryl0xAZDg4khcpGgQyJ3JIaVtiIoKOdbnZ6VbD8QeCbXxw9P9r4baqQv/KZZDjZLGeC7qS6E+5mZ3b3pI323zqt3+J0Jvgj/ASRLd+TrrnNp+Pi78Ag7RBWDqRgJpQGwMzmeGmfxYHJAIaxCXf0K+/RMKbNl/iXKt1QkM4J16zm528wj+p2jqH+Pqf2Kz+gcM5klzXDyRnFPghVW7/B/P9SBpIJjBd21DN4N5Jj4hZwdlxqoTATzmb7fkw9NsppT1fnSxaTyOTfMo+aGNBIjwAfRHANcf8rbzjzHar3Dg+1dUjbNzqGi
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB6213.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230001)(366004)(508600001)(76116006)(186003)(83380400001)(38100700002)(8936002)(86362001)(66556008)(52536014)(64756008)(66476007)(66446008)(66946007)(38070700005)(5660300002)(2906002)(7696005)(82960400001)(15650500001)(122000001)(9686003)(6506007)(53546011)(966005)(316002)(110136005)(26005)(71200400001)(33656002)(55016003);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?OUdiV3YxMzdXd2ZXbkpZajA3dUVBSVFnK29aOHZBSlV4S0JwOG1lSWFZTlQr?=
- =?utf-8?B?VW00TDhFL2dkMUhGaU5aNHdLQkNMZyswbkZ0bFM2bmszd3gxcUtZV2MyZUJC?=
- =?utf-8?B?dTJsS1RqZ05WL3lQa21pYXl3Z1QvUWJ2UGRwYTc3V3UwZHo4M1prQ3NSZ1pp?=
- =?utf-8?B?REZpQlRicXpGSGdMOTN2dGRvYmtLSWVmS2wrZVJXWThDd2hWVjJUR0RUUStj?=
- =?utf-8?B?Q3VmTEc2RHZuTml2VExMTjZlU0JuMjZhWG5lZEVYZGFSeWN6OGxMSFVkby8z?=
- =?utf-8?B?MXFwZ1dSVUxuZjROdHc1SEVzTytWMHl3UW9MVzhEOFFnV3RMRk1CZDBOakgr?=
- =?utf-8?B?aHM1ejg2Q0Rqb0I0VmZOazdJMlVWRmxPQTdhZnBMbnNvcUlVVXNrM2F2VExT?=
- =?utf-8?B?aGpvbnRPYmQ3ckY1a09PVi9hdnhhYXYxVlh6c0FxSlFHU253Q2tVTk1uN0E4?=
- =?utf-8?B?ajZDNDVYb3hqT09NYWUyRkpBTGFpZ3BzTzhucEx1cUc4YTVYY1dJWTA5UzJu?=
- =?utf-8?B?YXRXR2pPcHB2NGZ2VTgyTVlwZkpsS2F1NTBSR3FTTmovaVJOZEJyUlY5Zm5t?=
- =?utf-8?B?b0Job0ZXQnp2TnJnU2lJUTY0Qi96SHJ3VnNxQmZkVmx5NGhlZmNOUzhxaFp0?=
- =?utf-8?B?Vzl1QWlCNDdodEpIZlNxdk4yOXJvQWRFUnpxeGk1Unc5T245THA2a0RHV0sr?=
- =?utf-8?B?THBjMTZheXZXVmJMZEtYRzJHRG8vYm1EK2RYWk1ScUx2ZEJZUXB0amU1L0tq?=
- =?utf-8?B?ZExlRjNpRzQ4UU1ZRzh1RHVvQTludkN6WkY2aHREZTV3dkJJa0dOeDNSYWRT?=
- =?utf-8?B?RmZraTJLVjl6enFodEJYMUpoakdKNCtlK2U2bDg2QXVsMGMzaEFWWDUxeU5y?=
- =?utf-8?B?ZHFzcEhzMG5vdWRXM3pxeTRsUUh1bUJ4YUhadzM5VnVsYkl4ZEYrL05vbVdh?=
- =?utf-8?B?Q0VwWkdUN2xlNTdpN0pUWXVwN3Y0cTFMcS9EZVFnNVROeHF2MzQwY1NyYTNj?=
- =?utf-8?B?Q21ndDhQbG80aldtM1dJZzNJTGM0bjhOYUl2ZkFyMThPR2ZtT0NkeURQUXND?=
- =?utf-8?B?eXMwNWwvVVJ3NjNrVmJldTJ3cW1KbUVmTW9vYVJlK2RrL1Q2V1gvd2hPY29a?=
- =?utf-8?B?TUJvSDV0MGppODVOanhka1dqZ0t3SkQxZnpUQzRQRlpQcGF2clQ1YVdpOWFV?=
- =?utf-8?B?RUFGZHYrL3JHYVZRczB5cEd1dHVlMU90MW9UVmhCTnRjUkdDZlYwZnhzL0I4?=
- =?utf-8?B?YmdDaGJGeVk2WW5ieGJrMWcwTnNOYzlFMnNZbC9qOTh2UzFpUVZ3M1RweHkz?=
- =?utf-8?B?dW44Q2tiQTg2VDJ1aEQrUHp6Q242cUdQMXBXOEdORVRYTVVpREdkNEFUbHF6?=
- =?utf-8?B?M0FYa2c4N2hWazB1Z0p5RlUxS0lYeldGaStHYzQzTTJrUEwvUGRoODRoc2Z4?=
- =?utf-8?B?N2hiZVkrdDE4VWdOYUZOcG44Q1FPUXBBcWNld3l5UlFzd3BIUmhyREJZMHhY?=
- =?utf-8?B?Slh1dWU0bHBHSWV6VWlweXh3QlIwOVZJeTN2TGFoV1lCNGRrczBINDlFMzQ3?=
- =?utf-8?B?Mis1a2R1bkhIMmRSUW5MUHpJcmRoSGFZbVpxbXVQMWU5Q0NqRVR2NDhFOEJW?=
- =?utf-8?B?alZkRUI5VEpqemlPamVvcFoxMnRiNk5Oa3g5ZnBWbEI4OUtEa1RwSUowVzZ3?=
- =?utf-8?B?bUw5WkQ5dVluc1B5aVp1SkIvUUtLcEViZWdDMzVRUndFSWc0N2lpQTlkZldy?=
- =?utf-8?B?YURER2VTSkpCTFh4WHcvN2lFY2NvL2ZCVFJpSXkxOUhnb3FIUmYxMW9vYUJR?=
- =?utf-8?B?NDB0Zjl4UmRnZnlvdWRQVTFYbGY4QTJLOC9YR3A0TWRwdFdHUWdPd0h6WWly?=
- =?utf-8?B?eG9RVGU5bnp1QmVPVzRjQmdQTmtFVVZTUVd4cWtoazZ1SkVudFpxWkJ1RzNK?=
- =?utf-8?B?bytJRk5PUGJ2MVYxOW9rdGdrVURIVy96S3dBaXg1U2gybUltU1k1eVBxSm9t?=
- =?utf-8?B?SlFaRnEreStGZW1VNjM2WCs3TXl3YmxFUFRIU2x3dE04N2F6UzNFSTgwTzdG?=
- =?utf-8?B?QlIxaGNSQXhoZVhEc2dmdk5Lb3F4QXdxSzYwQTROTlI5T1ZpSmdSMkxCRi9p?=
- =?utf-8?B?TGRpcFRvNFBIcldkUWlJdGJwSXBSRlZmYlQ3MUtnYVJERGRiQXNOaUJBQXhT?=
- =?utf-8?B?cWdBcTljTGxITmhPcG1hZVJ0eGlxcUhKU2hKTDJHNnRDdVVvLzdBeGVRRVFj?=
- =?utf-8?B?WnNXZkw0MVFuSng3d3RJbEVUNGtzM2pzN3F5WjFHamx0Zm05Uy9PUmExcm10?=
- =?utf-8?B?R3BrcDdXTWlkY0RPZU04RDBmNS9WaTJnY1luTmJ5OXFNYTZKS05mTDFiT29O?=
- =?utf-8?Q?qOqFCUphcjIZbTkM=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ 24 May 2022 10:25:05 -0700
+X-IronPort-AV: E=Sophos;i="5.91,248,1647327600"; d="scan'208";a="676456107"
+Received: from iucastil-mobl1.amr.corp.intel.com (HELO msatwood-mobl)
+ ([10.212.91.173])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 May 2022 10:25:04 -0700
+Date: Tue, 24 May 2022 10:25:00 -0700
+From: Matt Atwood <matthew.s.atwood@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Message-ID: <Yo0U7PnotsweRfqI@msatwood-mobl>
+References: <20220511060228.1179450-1-matthew.d.roper@intel.com>
+ <20220511060228.1179450-2-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB6213.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c1846909-fc8f-4e1e-487c-08da3da14e9d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 May 2022 16:20:24.3681 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 6bix819i3IlsUvVlLTrqDL4TQGa4B4aZMkBnctKcpw1+bQF3pN2T3BbJNpeOVQM4N0rd1ZNBFAfgHQNpGmkNGm1SiM0deblAOy6O1gUKm5M=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR11MB4342
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgaTkx?=
- =?utf-8?q?5=3A_SSEU_handling_updates_=28rev2=29?=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20220511060228.1179450-2-matthew.d.roper@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v3 1/5] drm/i915/uncore: Reorganize and
+ document shadow and forcewake tables
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -171,167 +59,208 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Q0k6IGJvb3QgdGVzdCBmYWlsdXJlIHNlZW1zIHRvIGZhaWwgYWx3YXlzIGluIHRoZSBzYW1lIG1h
-bm5lci4NCmh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9wLm9yZy9kcm0vaW50ZWwvLS9pc3N1ZXMv
-NjA3NA0KQkRXOiBDSTpCb290IC0gZmFpbCAtIE5vIHdhcm5pbmdzL2Vycm9ycw0KDQpJIGJlbGll
-dmUgdGhlIHNoYXJkcyBmYWlsdXJlcyBpcyB1bnJlbGF0ZWQgKGFzIHRoZXJlIG5vIGxvZ3MpIHRv
-IHRoaXMgcGF0Y2guIFNvIEkgY3JlYXRlZCBhIGdlbmVyaWMgYnVnIGZvciBHRU45IHRvIHRyYWNr
-IG9mIGZhaWx1cmVzIHRoYXQgZG9lc24ndCBoYXZlIGxvZ3MuIFRoaXMgYnVnIHdpbGwgYmUgcmV2
-aWV3ZWQgd2Vla2x5IGJ5IHRoZSB0ZWFtLg0KaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3Ry
-ZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTA0MjQ0djIvc2hhcmQtc2tsMy9pZ3RAaTkxNV9zZWxmdGVz
-dEBsaXZlQGRtYWJ1Zi5odG1sDQpodHRwczovL2dpdGxhYi5mcmVlZGVza3RvcC5vcmcvZHJtL2lu
-dGVsLy0vaXNzdWVzLzYwNzUNCg0KDQpUaGFua3MsDQpMYWtzaG1pLg0KDQoNCi0tLS0tT3JpZ2lu
-YWwgTWVzc2FnZS0tLS0tDQpGcm9tOiBSb3BlciwgTWF0dGhldyBEIDxtYXR0aGV3LmQucm9wZXJA
-aW50ZWwuY29tPiANClNlbnQ6IE1vbmRheSwgTWF5IDIzLCAyMDIyIDQ6MzIgUE0NClRvOiBpbnRl
-bC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnDQpDYzogVnVkdW0sIExha3NobWluYXJheWFuYSA8
-bGFrc2htaW5hcmF5YW5hLnZ1ZHVtQGludGVsLmNvbT4NClN1YmplY3Q6IFJlOiDinJcgRmkuQ0ku
-QkFUOiBmYWlsdXJlIGZvciBpOTE1OiBTU0VVIGhhbmRsaW5nIHVwZGF0ZXMgKHJldjIpDQoNCk9u
-IE1vbiwgTWF5IDIzLCAyMDIyIGF0IDA5OjIzOjMzUE0gKzAwMDAsIFBhdGNod29yayB3cm90ZToN
-Cj4gPT0gU2VyaWVzIERldGFpbHMgPT0NCj4gDQo+IFNlcmllczogaTkxNTogU1NFVSBoYW5kbGlu
-ZyB1cGRhdGVzIChyZXYyKQ0KPiBVUkwgICA6IGh0dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNrdG9w
-Lm9yZy9zZXJpZXMvMTA0MjQ0Lw0KPiBTdGF0ZSA6IGZhaWx1cmUNCj4gDQo+ID09IFN1bW1hcnkg
-PT0NCj4gDQo+IENJIEJ1ZyBMb2cgLSBjaGFuZ2VzIGZyb20gQ0lfRFJNXzExNjkzIC0+IFBhdGNo
-d29ya18xMDQyNDR2MiANCj4gPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PQ0KPiANCj4gU3VtbWFyeQ0KPiAtLS0tLS0tDQo+IA0KPiAgICoqRkFJTFVS
-RSoqDQo+IA0KPiAgIFNlcmlvdXMgdW5rbm93biBjaGFuZ2VzIGNvbWluZyB3aXRoIFBhdGNod29y
-a18xMDQyNDR2MiBhYnNvbHV0ZWx5IG5lZWQgdG8gYmUNCj4gICB2ZXJpZmllZCBtYW51YWxseS4N
-Cj4gICANCj4gICBJZiB5b3UgdGhpbmsgdGhlIHJlcG9ydGVkIGNoYW5nZXMgaGF2ZSBub3RoaW5n
-IHRvIGRvIHdpdGggdGhlIGNoYW5nZXMNCj4gICBpbnRyb2R1Y2VkIGluIFBhdGNod29ya18xMDQy
-NDR2MiwgcGxlYXNlIG5vdGlmeSB5b3VyIGJ1ZyB0ZWFtIHRvIGFsbG93IHRoZW0NCj4gICB0byBk
-b2N1bWVudCB0aGlzIG5ldyBmYWlsdXJlIG1vZGUsIHdoaWNoIHdpbGwgcmVkdWNlIGZhbHNlIHBv
-c2l0aXZlcyBpbiBDSS4NCj4gDQo+ICAgRXh0ZXJuYWwgVVJMOiANCj4gaHR0cHM6Ly9pbnRlbC1n
-ZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTA0MjQ0djIvaW5kZXguaHRtbA0K
-PiANCj4gUGFydGljaXBhdGluZyBob3N0cyAoNDQgLT4gNDUpDQo+IC0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLQ0KPiANCj4gICBBZGRpdGlvbmFsICgyKTogZmktaWNsLXUyIGZpLXRnbC11
-MiANCj4gICBNaXNzaW5nICAgICgxKTogZmktaHN3LTQ3NzAgDQo+IA0KPiBQb3NzaWJsZSBuZXcg
-aXNzdWVzDQo+IC0tLS0tLS0tLS0tLS0tLS0tLS0NCj4gDQo+ICAgSGVyZSBhcmUgdGhlIHVua25v
-d24gY2hhbmdlcyB0aGF0IG1heSBoYXZlIGJlZW4gaW50cm9kdWNlZCBpbiBQYXRjaHdvcmtfMTA0
-MjQ0djI6DQo+IA0KPiAjIyMgQ0kgY2hhbmdlcyAjIyMNCj4gDQo+ICMjIyMgUG9zc2libGUgcmVn
-cmVzc2lvbnMgIyMjIw0KPiANCj4gICAqIGJvb3Q6DQo+ICAgICAtIGZpLWJkdy01NTU3dTogICAg
-ICAgW1BBU1NdWzFdIC0+IFtGQUlMXVsyXQ0KPiAgICBbMV06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNp
-LjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzExNjkzL2ZpLWJkdy01NTU3dS9ib290Lmh0bWwN
-Cj4gICAgWzJdOiANCj4gaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9Q
-YXRjaHdvcmtfMTA0MjQ0djIvZmktYmR3LTU1NQ0KPiA3dS9ib290Lmh0bWwNCg0KSSBkb24ndCBz
-ZWUgYSBib290IGZhaWx1cmUgaGVyZT8gIEl0IGxvb2tzIGxpa2UgaTkxNSBsb2FkZWQgc3VjY2Vz
-c2Z1bGx5LCB3aXRob3V0IGVycm9ycy4gIEl0IGFsc28gbG9va3MgbGlrZSBtb3JlIHRlc3RzIHJh
-biBzdWNjZXNzZnVsbHkgb24gdGhlIG1hY2hpbmUgYWZ0ZXIgdGhhdCBhcyB3ZWxsLg0KDQoNCk1h
-dHQNCg0KPiANCj4gICANCj4gS25vd24gaXNzdWVzDQo+IC0tLS0tLS0tLS0tLQ0KPiANCj4gICBI
-ZXJlIGFyZSB0aGUgY2hhbmdlcyBmb3VuZCBpbiBQYXRjaHdvcmtfMTA0MjQ0djIgdGhhdCBjb21l
-IGZyb20ga25vd24gaXNzdWVzOg0KPiANCj4gIyMjIElHVCBjaGFuZ2VzICMjIw0KPiANCj4gIyMj
-IyBJc3N1ZXMgaGl0ICMjIyMNCj4gDQo+ICAgKiBpZ3RAZ2VtX2V4ZWNfZ3R0ZmlsbEBiYXNpYzoN
-Cj4gICAgIC0gZmktaWNsLXUyOiAgICAgICAgICBOT1RSVU4gLT4gW0lOQ09NUExFVEVdWzNdIChb
-aTkxNSM0ODkwXSkNCj4gICAgWzNdOiANCj4gaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3Ry
-ZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTA0MjQ0djIvZmktaWNsLXUyLw0KPiBpZ3RAZ2VtX2V4ZWNf
-Z3R0ZmlsbEBiYXNpYy5odG1sDQo+IA0KPiAgICogaWd0QGdlbV9odWNfY29weUBodWMtY29weToN
-Cj4gICAgIC0gZmktdGdsLXUyOiAgICAgICAgICBOT1RSVU4gLT4gW1NLSVBdWzRdIChbaTkxNSMy
-MTkwXSkNCj4gICAgWzRdOiANCj4gaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJt
-LXRpcC9QYXRjaHdvcmtfMTA0MjQ0djIvZmktdGdsLXUyLw0KPiBpZ3RAZ2VtX2h1Y19jb3B5QGh1
-Yy1jb3B5Lmh0bWwNCj4gDQo+ICAgKiBpZ3RAaTkxNV9zZWxmdGVzdEBsaXZlQGhhbmdjaGVjazoN
-Cj4gICAgIC0gYmF0LWRnMS02OiAgICAgICAgICBbUEFTU11bNV0gLT4gW0RNRVNHLUZBSUxdWzZd
-IChbaTkxNSM0NDk0XSAvIFtpOTE1IzQ5NTddKQ0KPiAgICBbNV06IGh0dHBzOi8vaW50ZWwtZ2Z4
-LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzExNjkzL2JhdC1kZzEtNi9pZ3RAaTkxNV9z
-ZWxmdGVzdEBsaXZlQGhhbmdjaGVjay5odG1sDQo+ICAgIFs2XTogaHR0cHM6Ly9pbnRlbC1nZngt
-Y2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTA0MjQ0djIvYmF0LWRnMS02L2lndEBp
-OTE1X3NlbGZ0ZXN0QGxpdmVAaGFuZ2NoZWNrLmh0bWwNCj4gICAgIC0gZmktc25iLTI2MDA6ICAg
-ICAgICBbUEFTU11bN10gLT4gW0lOQ09NUExFVEVdWzhdIChbaTkxNSMzOTIxXSkNCj4gICAgWzdd
-OiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL0NJX0RSTV8xMTY5My9m
-aS1zbmItMjYwMC9pZ3RAaTkxNV9zZWxmdGVzdEBsaXZlQGhhbmdjaGVjay5odG1sDQo+ICAgIFs4
-XTogDQo+IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3Jr
-XzEwNDI0NHYyL2ZpLXNuYi0yNjANCj4gMC9pZ3RAaTkxNV9zZWxmdGVzdEBsaXZlQGhhbmdjaGVj
-ay5odG1sDQo+IA0KPiAgICogaWd0QGttc19idXN5QGJhc2ljQGZsaXA6DQo+ICAgICAtIGZpLXRn
-bC11MjogICAgICAgICAgTk9UUlVOIC0+IFtETUVTRy1XQVJOXVs5XSAoW2k5MTUjNDAyXSkgKzMg
-c2ltaWxhciBpc3N1ZXMNCj4gICAgWzldOiANCj4gaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3Jn
-L3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTA0MjQ0djIvZmktdGdsLXUyLw0KPiBpZ3RAa21zX2J1
-c3lAYmFzaWNAZmxpcC5odG1sDQo+IA0KPiAgICogaWd0QGttc19jaGFtZWxpdW1AZHAtaHBkLWZh
-c3Q6DQo+ICAgICAtIGZpLXRnbC11MjogICAgICAgICAgTk9UUlVOIC0+IFtTS0lQXVsxMF0gKFtm
-ZG8jMTA5Mjg0XSAvIFtmZG8jMTExODI3XSkgKzcgc2ltaWxhciBpc3N1ZXMNCj4gICAgWzEwXTog
-DQo+IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzEw
-NDI0NHYyL2ZpLXRnbC11Mi8NCj4gaWd0QGttc19jaGFtZWxpdW1AZHAtaHBkLWZhc3QuaHRtbA0K
-PiANCj4gICAqIGlndEBrbXNfY3Vyc29yX2xlZ2FjeUBiYXNpYy1idXN5LWZsaXAtYmVmb3JlLWN1
-cnNvci1hdG9taWM6DQo+ICAgICAtIGZpLXRnbC11MjogICAgICAgICAgTk9UUlVOIC0+IFtTS0lQ
-XVsxMV0gKFtpOTE1IzQxMDNdKSArMSBzaW1pbGFyIGlzc3VlDQo+ICAgIFsxMV06IA0KPiBodHRw
-czovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xMDQyNDR2Mi9m
-aS10Z2wtdTIvDQo+IGlndEBrbXNfY3Vyc29yX2xlZ2FjeUBiYXNpYy1idXN5LWZsaXAtYmVmb3Jl
-LWN1cnNvci1hdG9taWMuaHRtbA0KPiANCj4gICAqIGlndEBrbXNfZmxpcEBiYXNpYy1mbGlwLXZz
-LW1vZGVzZXRAYi1lZHAxOg0KPiAgICAgLSBiYXQtYWRscC00OiAgICAgICAgIFtQQVNTXVsxMl0g
-LT4gW0RNRVNHLVdBUk5dWzEzXSAoW2k5MTUjMzU3Nl0pDQo+ICAgIFsxMl06IGh0dHBzOi8vaW50
-ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzExNjkzL2JhdC1hZGxwLTQvaWd0
-QGttc19mbGlwQGJhc2ljLWZsaXAtdnMtbW9kZXNldEBiLWVkcDEuaHRtbA0KPiAgICBbMTNdOiAN
-Cj4gaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTA0
-MjQ0djIvYmF0LWFkbHAtNA0KPiAvaWd0QGttc19mbGlwQGJhc2ljLWZsaXAtdnMtbW9kZXNldEBi
-LWVkcDEuaHRtbA0KPiANCj4gICAqIGlndEBrbXNfZm9yY2VfY29ubmVjdG9yX2Jhc2ljQGZvcmNl
-LWxvYWQtZGV0ZWN0Og0KPiAgICAgLSBmaS10Z2wtdTI6ICAgICAgICAgIE5PVFJVTiAtPiBbU0tJ
-UF1bMTRdIChbZmRvIzEwOTI4NV0pDQo+ICAgIFsxNF06IA0KPiBodHRwczovL2ludGVsLWdmeC1j
-aS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xMDQyNDR2Mi9maS10Z2wtdTIvDQo+IGln
-dEBrbXNfZm9yY2VfY29ubmVjdG9yX2Jhc2ljQGZvcmNlLWxvYWQtZGV0ZWN0Lmh0bWwNCj4gDQo+
-ICAgKiBpZ3RAa21zX3NldG1vZGVAYmFzaWMtY2xvbmUtc2luZ2xlLWNydGM6DQo+ICAgICAtIGZp
-LXRnbC11MjogICAgICAgICAgTk9UUlVOIC0+IFtTS0lQXVsxNV0gKFtpOTE1IzM1NTVdKQ0KPiAg
-ICBbMTVdOiANCj4gaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRj
-aHdvcmtfMTA0MjQ0djIvZmktdGdsLXUyLw0KPiBpZ3RAa21zX3NldG1vZGVAYmFzaWMtY2xvbmUt
-c2luZ2xlLWNydGMuaHRtbA0KPiANCj4gICAqIGlndEBwcmltZV92Z2VtQGJhc2ljLXVzZXJwdHI6
-DQo+ICAgICAtIGZpLXRnbC11MjogICAgICAgICAgTk9UUlVOIC0+IFtTS0lQXVsxNl0gKFtpOTE1
-IzMzMDFdKQ0KPiAgICBbMTZdOiANCj4gaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUv
-ZHJtLXRpcC9QYXRjaHdvcmtfMTA0MjQ0djIvZmktdGdsLXUyLw0KPiBpZ3RAcHJpbWVfdmdlbUBi
-YXNpYy11c2VycHRyLmh0bWwNCj4gDQo+ICAgKiBpZ3RAcnVubmVyQGFib3J0ZWQ6DQo+ICAgICAt
-IGZpLWljbC11MjogICAgICAgICAgTk9UUlVOIC0+IFtGQUlMXVsxN10gKFtpOTE1IzQzMTJdKQ0K
-PiAgICBbMTddOiANCj4gaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9Q
-YXRjaHdvcmtfMTA0MjQ0djIvZmktaWNsLXUyLw0KPiBpZ3RAcnVubmVyQGFib3J0ZWQuaHRtbA0K
-PiANCj4gICANCj4gIyMjIyBQb3NzaWJsZSBmaXhlcyAjIyMjDQo+IA0KPiAgICogaWd0QGdlbV9l
-eGVjX3N1c3BlbmRAYmFzaWMtczBAc21lbToNCj4gICAgIC0ge2ZpLWVobC0yfTogICAgICAgICBb
-RE1FU0ctV0FSTl1bMThdIChbaTkxNSM1MTIyXSkgLT4gW1BBU1NdWzE5XQ0KPiAgICBbMThdOiBo
-dHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL0NJX0RSTV8xMTY5My9maS1l
-aGwtMi9pZ3RAZ2VtX2V4ZWNfc3VzcGVuZEBiYXNpYy1zMEBzbWVtLmh0bWwNCj4gICAgWzE5XTog
-DQo+IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzEw
-NDI0NHYyL2ZpLWVobC0yL2kNCj4gZ3RAZ2VtX2V4ZWNfc3VzcGVuZEBiYXNpYy1zMEBzbWVtLmh0
-bWwNCj4gDQo+ICAgKiBpZ3RAa21zX2ZsaXBAYmFzaWMtcGxhaW4tZmxpcEBhLWVkcDE6DQo+ICAg
-ICAtIGJhdC1hZGxwLTQ6ICAgICAgICAgW0RNRVNHLVdBUk5dWzIwXSAoW2k5MTUjMzU3Nl0pIC0+
-IFtQQVNTXVsyMV0gKzIgc2ltaWxhciBpc3N1ZXMNCj4gICAgWzIwXTogaHR0cHM6Ly9pbnRlbC1n
-ZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1fMTE2OTMvYmF0LWFkbHAtNC9pZ3RAa21z
-X2ZsaXBAYmFzaWMtcGxhaW4tZmxpcEBhLWVkcDEuaHRtbA0KPiAgICBbMjFdOiANCj4gaHR0cHM6
-Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTA0MjQ0djIvYmF0
-LWFkbHAtNA0KPiAvaWd0QGttc19mbGlwQGJhc2ljLXBsYWluLWZsaXBAYS1lZHAxLmh0bWwNCj4g
-DQo+ICAgDQo+ICAge25hbWV9OiBUaGlzIGVsZW1lbnQgaXMgc3VwcHJlc3NlZC4gVGhpcyBtZWFu
-cyBpdCBpcyBpZ25vcmVkIHdoZW4gY29tcHV0aW5nDQo+ICAgICAgICAgICB0aGUgc3RhdHVzIG9m
-IHRoZSBkaWZmZXJlbmNlIChTVUNDRVNTLCBXQVJOSU5HLCBvciBGQUlMVVJFKS4NCj4gDQo+ICAg
-W2ZkbyMxMDkyODRdOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9p
-ZD0xMDkyODQNCj4gICBbZmRvIzEwOTI4NV06IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcv
-c2hvd19idWcuY2dpP2lkPTEwOTI4NQ0KPiAgIFtmZG8jMTExODI3XTogaHR0cHM6Ly9idWdzLmZy
-ZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTExODI3DQo+ICAgW2k5MTUjMjE5MF06IGh0
-dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9wLm9yZy9kcm0vaW50ZWwvaXNzdWVzLzIxOTANCj4gICBb
-aTkxNSMzMzAxXTogaHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2RybS9pbnRlbC9pc3N1
-ZXMvMzMwMQ0KPiAgIFtpOTE1IzM1NTVdOiBodHRwczovL2dpdGxhYi5mcmVlZGVza3RvcC5vcmcv
-ZHJtL2ludGVsL2lzc3Vlcy8zNTU1DQo+ICAgW2k5MTUjMzU3Nl06IGh0dHBzOi8vZ2l0bGFiLmZy
-ZWVkZXNrdG9wLm9yZy9kcm0vaW50ZWwvaXNzdWVzLzM1NzYNCj4gICBbaTkxNSMzOTIxXTogaHR0
-cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2RybS9pbnRlbC9pc3N1ZXMvMzkyMQ0KPiAgIFtp
-OTE1IzQwMl06IGh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9wLm9yZy9kcm0vaW50ZWwvaXNzdWVz
-LzQwMg0KPiAgIFtpOTE1IzQxMDNdOiBodHRwczovL2dpdGxhYi5mcmVlZGVza3RvcC5vcmcvZHJt
-L2ludGVsL2lzc3Vlcy80MTAzDQo+ICAgW2k5MTUjNDMxMl06IGh0dHBzOi8vZ2l0bGFiLmZyZWVk
-ZXNrdG9wLm9yZy9kcm0vaW50ZWwvaXNzdWVzLzQzMTINCj4gICBbaTkxNSM0NDk0XTogaHR0cHM6
-Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2RybS9pbnRlbC9pc3N1ZXMvNDQ5NA0KPiAgIFtpOTE1
-IzQ4OTBdOiBodHRwczovL2dpdGxhYi5mcmVlZGVza3RvcC5vcmcvZHJtL2ludGVsL2lzc3Vlcy80
-ODkwDQo+ICAgW2k5MTUjNDk1N106IGh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9wLm9yZy9kcm0v
-aW50ZWwvaXNzdWVzLzQ5NTcNCj4gICBbaTkxNSM1MTIyXTogaHR0cHM6Ly9naXRsYWIuZnJlZWRl
-c2t0b3Aub3JnL2RybS9pbnRlbC9pc3N1ZXMvNTEyMg0KPiANCj4gDQo+IEJ1aWxkIGNoYW5nZXMN
-Cj4gLS0tLS0tLS0tLS0tLQ0KPiANCj4gICAqIExpbnV4OiBDSV9EUk1fMTE2OTMgLT4gUGF0Y2h3
-b3JrXzEwNDI0NHYyDQo+IA0KPiAgIENJLTIwMTkwNTI5OiAyMDE5MDUyOQ0KPiAgIENJX0RSTV8x
-MTY5MzogMTQyODliYzgxMzA5YjIxMjZmNGJhOWYzMzk4MzdkYWNmMzRkZGY5YyBAIGdpdDovL2Fu
-b25naXQuZnJlZWRlc2t0b3Aub3JnL2dmeC1jaS9saW51eA0KPiAgIElHVF82NDg1OiA1MTY2Mzkx
-N2I0MGQzNjA4NmNjMWM1NTVjZTRmNjdiMjI5Mzc2OTRkIEAgaHR0cHM6Ly9naXRsYWIuZnJlZWRl
-c2t0b3Aub3JnL2RybS9pZ3QtZ3B1LXRvb2xzLmdpdA0KPiAgIFBhdGNod29ya18xMDQyNDR2Mjog
-MTQyODliYzgxMzA5YjIxMjZmNGJhOWYzMzk4MzdkYWNmMzRkZGY5YyBAIA0KPiBnaXQ6Ly9hbm9u
-Z2l0LmZyZWVkZXNrdG9wLm9yZy9nZngtY2kvbGludXgNCj4gDQo+IA0KPiAjIyMgTGludXggY29t
-bWl0cw0KPiANCj4gZTMxMDAxNDZlOWRiIGRybS9pOTE1L3B2YzogQWRkIFNTRVUgY2hhbmdlcw0K
-PiA5MjBkZGUyMzk3ZTQgZHJtL2k5MTUvc3NldTogRGlzYXNzb2NpYXRlIGludGVybmFsIHN1YnNs
-aWNlIG1hc2sgDQo+IHJlcHJlc2VudGF0aW9uIGZyb20gdWFwaQ0KPiA2NzIyNGZhNTgwMjMgZHJt
-L2k5MTUvc3NldTogRG9uJ3QgdHJ5IHRvIHN0b3JlIEVVIG1hc2sgaW50ZXJuYWxseSBpbiANCj4g
-VUFQSSBmb3JtYXQNCj4gZWMzZDMyMGY1YjQ5IGRybS9pOTE1L3NzZXU6IFNpbXBsaWZ5IGdlbjEx
-KyBTU0VVIGhhbmRsaW5nDQo+IGYwMDMxNGRjYWIxNCBkcm0vaTkxNS94ZWhwOiBEcm9wIEdFVFBB
-UkFNIGxvb2t1cHMgb2YgDQo+IEk5MTVfUEFSQU1fW1NVQl1TTElDRV9NQVNLIDVlZGNkMGE0ZGE1
-ZiBkcm0vaTkxNS94ZWhwOiBVc2Ugc2VwYXJhdGUgDQo+IHNzZXUgaW5pdCBmdW5jdGlvbg0KPiAN
-Cj4gPT0gTG9ncyA9PQ0KPiANCj4gRm9yIG1vcmUgZGV0YWlscyBzZWU6IA0KPiBodHRwczovL2lu
-dGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xMDQyNDR2Mi9pbmRleC5o
-dG1sDQoNCi0tDQpNYXR0IFJvcGVyDQpHcmFwaGljcyBTb2Z0d2FyZSBFbmdpbmVlcg0KVlRULU9T
-R0MgUGxhdGZvcm0gRW5hYmxlbWVudA0KSW50ZWwgQ29ycG9yYXRpb24NCg==
+On Tue, May 10, 2022 at 11:02:24PM -0700, Matt Roper wrote:
+> Let's reorganize some of the forcewake/shadow handling in intel_uncore.c
+> and consolidate the cargo-cult comments on each table into more general
+> comments that apply to all tables.
+> 
+> We'll probably move forcewake handling to its own dedicated file in the
+> near future and further enhance this with true kerneldoc.  But this is a
+> good intermediate step to help clarify the behavior a bit.
+> 
+> Cc: Stuart Summers <stuart.summers@intel.com>
+Reviewed-by: Matt Atwood <matthew.s.atwood@intel.com>
+> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+> ---
+>  drivers/gpu/drm/i915/intel_uncore.c | 125 ++++++++++++++++++----------
+>  1 file changed, 80 insertions(+), 45 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/intel_uncore.c
+> index 83517a703eb6..095e071e4053 100644
+> --- a/drivers/gpu/drm/i915/intel_uncore.c
+> +++ b/drivers/gpu/drm/i915/intel_uncore.c
+> @@ -938,36 +938,32 @@ find_fw_domain(struct intel_uncore *uncore, u32 offset)
+>  	return entry->domains;
+>  }
+>  
+> -#define GEN_FW_RANGE(s, e, d) \
+> -	{ .start = (s), .end = (e), .domains = (d) }
+> -
+> -/* *Must* be sorted by offset ranges! See intel_fw_table_check(). */
+> -static const struct intel_forcewake_range __vlv_fw_ranges[] = {
+> -	GEN_FW_RANGE(0x2000, 0x3fff, FORCEWAKE_RENDER),
+> -	GEN_FW_RANGE(0x5000, 0x7fff, FORCEWAKE_RENDER),
+> -	GEN_FW_RANGE(0xb000, 0x11fff, FORCEWAKE_RENDER),
+> -	GEN_FW_RANGE(0x12000, 0x13fff, FORCEWAKE_MEDIA),
+> -	GEN_FW_RANGE(0x22000, 0x23fff, FORCEWAKE_MEDIA),
+> -	GEN_FW_RANGE(0x2e000, 0x2ffff, FORCEWAKE_RENDER),
+> -	GEN_FW_RANGE(0x30000, 0x3ffff, FORCEWAKE_MEDIA),
+> -};
+> -
+> -#define __fwtable_reg_read_fw_domains(uncore, offset) \
+> -({ \
+> -	enum forcewake_domains __fwd = 0; \
+> -	if (NEEDS_FORCE_WAKE((offset))) \
+> -		__fwd = find_fw_domain(uncore, offset); \
+> -	__fwd; \
+> -})
+> +/*
+> + * Shadowed register tables describe special register ranges that i915 is
+> + * allowed to write to without acquiring forcewake.  If these registers' power
+> + * wells are down, the hardware will save values written by i915 to a shadow
+> + * copy and automatically transfer them into the real register the next time
+> + * the power well is woken up.  Shadowing only applies to writes; forcewake
+> + * must still be acquired when reading from registers in these ranges.
+> + *
+> + * The documentation for shadowed registers is somewhat spotty on older
+> + * platforms.  However missing registers from these lists is non-fatal; it just
+> + * means we'll wake up the hardware for some register accesses where we didn't
+> + * really need to.
+> + *
+> + * The ranges listed in these tables must be sorted by offset.
+> + *
+> + * When adding new tables here, please also add them to
+> + * intel_shadow_table_check() in selftests/intel_uncore.c so that they will be
+> + * scanned for obvious mistakes or typos by the selftests.
+> + */
+>  
+> -/* *Must* be sorted by offset! See intel_shadow_table_check(). */
+>  static const struct i915_range gen8_shadowed_regs[] = {
+>  	{ .start =  0x2030, .end =  0x2030 },
+>  	{ .start =  0xA008, .end =  0xA00C },
+>  	{ .start = 0x12030, .end = 0x12030 },
+>  	{ .start = 0x1a030, .end = 0x1a030 },
+>  	{ .start = 0x22030, .end = 0x22030 },
+> -	/* TODO: Other registers are not yet used */
+>  };
+>  
+>  static const struct i915_range gen11_shadowed_regs[] = {
+> @@ -1107,11 +1103,71 @@ gen6_reg_write_fw_domains(struct intel_uncore *uncore, i915_reg_t reg)
+>  	return FORCEWAKE_RENDER;
+>  }
+>  
+> +#define __fwtable_reg_read_fw_domains(uncore, offset) \
+> +({ \
+> +	enum forcewake_domains __fwd = 0; \
+> +	if (NEEDS_FORCE_WAKE((offset))) \
+> +		__fwd = find_fw_domain(uncore, offset); \
+> +	__fwd; \
+> +})
+> +
+> +#define __fwtable_reg_write_fw_domains(uncore, offset) \
+> +({ \
+> +	enum forcewake_domains __fwd = 0; \
+> +	const u32 __offset = (offset); \
+> +	if (NEEDS_FORCE_WAKE((__offset)) && !is_shadowed(uncore, __offset)) \
+> +		__fwd = find_fw_domain(uncore, __offset); \
+> +	__fwd; \
+> +})
+> +
+> +#define GEN_FW_RANGE(s, e, d) \
+> +	{ .start = (s), .end = (e), .domains = (d) }
+> +
+> +/*
+> + * All platforms' forcewake tables below must be sorted by offset ranges.
+> + * Furthermore, new forcewake tables added should be "watertight" and have
+> + * no gaps between ranges.
+> + *
+> + * When there are multiple consecutive ranges listed in the bspec with
+> + * the same forcewake domain, it is customary to combine them into a single
+> + * row in the tables below to keep the tables small and lookups fast.
+> + * Likewise, reserved/unused ranges may be combined with the preceding and/or
+> + * following ranges since the driver will never be making MMIO accesses in
+> + * those ranges.
+> + *
+> + * For example, if the bspec were to list:
+> + *
+> + *    ...
+> + *    0x1000 - 0x1fff:  GT
+> + *    0x2000 - 0x2cff:  GT
+> + *    0x2d00 - 0x2fff:  unused/reserved
+> + *    0x3000 - 0xffff:  GT
+> + *    ...
+> + *
+> + * these could all be represented by a single line in the code:
+> + *
+> + *   GEN_FW_RANGE(0x1000, 0xffff, FORCEWAKE_GT)
+> + *
+> + * When adding new forcewake tables here, please also add them to
+> + * intel_uncore_mock_selftests in selftests/intel_uncore.c so that they will be
+> + * scanned for obvious mistakes or typos by the selftests.
+> + */
+> +
+>  static const struct intel_forcewake_range __gen6_fw_ranges[] = {
+>  	GEN_FW_RANGE(0x0, 0x3ffff, FORCEWAKE_RENDER),
+>  };
+>  
+> -/* *Must* be sorted by offset ranges! See intel_fw_table_check(). */
+> +static const struct intel_forcewake_range __vlv_fw_ranges[] = {
+> +	GEN_FW_RANGE(0x2000, 0x3fff, FORCEWAKE_RENDER),
+> +	GEN_FW_RANGE(0x5000, 0x7fff, FORCEWAKE_RENDER),
+> +	GEN_FW_RANGE(0xb000, 0x11fff, FORCEWAKE_RENDER),
+> +	GEN_FW_RANGE(0x12000, 0x13fff, FORCEWAKE_MEDIA),
+> +	GEN_FW_RANGE(0x22000, 0x23fff, FORCEWAKE_MEDIA),
+> +	GEN_FW_RANGE(0x2e000, 0x2ffff, FORCEWAKE_RENDER),
+> +	GEN_FW_RANGE(0x30000, 0x3ffff, FORCEWAKE_MEDIA),
+> +};
+> +
+> +
+>  static const struct intel_forcewake_range __chv_fw_ranges[] = {
+>  	GEN_FW_RANGE(0x2000, 0x3fff, FORCEWAKE_RENDER),
+>  	GEN_FW_RANGE(0x4000, 0x4fff, FORCEWAKE_RENDER | FORCEWAKE_MEDIA),
+> @@ -1131,16 +1187,6 @@ static const struct intel_forcewake_range __chv_fw_ranges[] = {
+>  	GEN_FW_RANGE(0x30000, 0x37fff, FORCEWAKE_MEDIA),
+>  };
+>  
+> -#define __fwtable_reg_write_fw_domains(uncore, offset) \
+> -({ \
+> -	enum forcewake_domains __fwd = 0; \
+> -	const u32 __offset = (offset); \
+> -	if (NEEDS_FORCE_WAKE((__offset)) && !is_shadowed(uncore, __offset)) \
+> -		__fwd = find_fw_domain(uncore, __offset); \
+> -	__fwd; \
+> -})
+> -
+> -/* *Must* be sorted by offset ranges! See intel_fw_table_check(). */
+>  static const struct intel_forcewake_range __gen9_fw_ranges[] = {
+>  	GEN_FW_RANGE(0x0, 0xaff, FORCEWAKE_GT),
+>  	GEN_FW_RANGE(0xb00, 0x1fff, 0), /* uncore range */
+> @@ -1176,7 +1222,6 @@ static const struct intel_forcewake_range __gen9_fw_ranges[] = {
+>  	GEN_FW_RANGE(0x30000, 0x3ffff, FORCEWAKE_MEDIA),
+>  };
+>  
+> -/* *Must* be sorted by offset ranges! See intel_fw_table_check(). */
+>  static const struct intel_forcewake_range __gen11_fw_ranges[] = {
+>  	GEN_FW_RANGE(0x0, 0x1fff, 0), /* uncore range */
+>  	GEN_FW_RANGE(0x2000, 0x26ff, FORCEWAKE_RENDER),
+> @@ -1215,14 +1260,6 @@ static const struct intel_forcewake_range __gen11_fw_ranges[] = {
+>  	GEN_FW_RANGE(0x1d4000, 0x1dbfff, 0)
+>  };
+>  
+> -/*
+> - * *Must* be sorted by offset ranges! See intel_fw_table_check().
+> - *
+> - * Note that the spec lists several reserved/unused ranges that don't
+> - * actually contain any registers.  In the table below we'll combine those
+> - * reserved ranges with either the preceding or following range to keep the
+> - * table small and lookups fast.
+> - */
+>  static const struct intel_forcewake_range __gen12_fw_ranges[] = {
+>  	GEN_FW_RANGE(0x0, 0x1fff, 0), /*
+>  		0x0   -  0xaff: reserved
+> @@ -1327,8 +1364,6 @@ static const struct intel_forcewake_range __gen12_fw_ranges[] = {
+>  /*
+>   * Graphics IP version 12.55 brings a slight change to the 0xd800 range,
+>   * switching it from the GT domain to the render domain.
+> - *
+> - * *Must* be sorted by offset ranges! See intel_fw_table_check().
+>   */
+>  #define XEHP_FWRANGES(FW_RANGE_D800)					\
+>  	GEN_FW_RANGE(0x0, 0x1fff, 0), /*					\
+> -- 
+> 2.35.1
+> 
