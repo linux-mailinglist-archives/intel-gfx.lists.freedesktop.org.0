@@ -1,46 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56223533424
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 May 2022 01:59:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18A45533427
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 May 2022 02:00:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7591510E29E;
-	Tue, 24 May 2022 23:59:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A2A010E29E;
+	Wed, 25 May 2022 00:00:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0FE4D10E29E;
- Tue, 24 May 2022 23:59:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1653436759; x=1684972759;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=rtpJwwAy5VXKeTiRNQKVq843YOp/n/x6dFdM0pYgrJw=;
- b=AGv4BeB92s9a1BIY7wYAcXQW7vK386kqaxMXIzTZ5mrYA1DN4x/ejjuU
- tCd9p8j/tZHNL5sB7ShXpHTviqf1MDZb7A0nY+CL3C6YrH/XzSBwpGMWy
- BbHfV8BNK9HyD45EYgTUZOIxEZDSIberliOuluHUr2m0qTXdtqUdnab+T
- Zu1FP95dLRkndJb1+b0BY1x71tyY8yirlv9NR4bsnbw8wc9B/pNKMqJ1R
- XgS0aQFZzy5Ul3ueabMXO81kJc0Ec9e4BJ2a0MeouQ9VXIjEFpQ68WIOp
- k4L1FHO7KFNFTYL7N9XnuvCzs1z0E/QW5k0gbB8OP7xHpjUj5JTw+5RXm w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10357"; a="255739766"
-X-IronPort-AV: E=Sophos;i="5.91,250,1647327600"; d="scan'208";a="255739766"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 May 2022 16:59:18 -0700
-X-IronPort-AV: E=Sophos;i="5.91,250,1647327600"; d="scan'208";a="676627410"
-Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 May 2022 16:59:18 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 24 May 2022 16:59:06 -0700
-Message-Id: <20220524235906.529771-1-matthew.d.roper@intel.com>
-X-Mailer: git-send-email 2.35.3
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1AA7510E29E;
+ Wed, 25 May 2022 00:00:27 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id F3C70A73C7;
+ Wed, 25 May 2022 00:00:26 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/hwconfig: Future-proof platform checks
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+Date: Wed, 25 May 2022 00:00:26 -0000
+Message-ID: <165343682699.16574.694370023568656209@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <cover.1653321034.git.ashutosh.dixit@intel.com>
+In-Reply-To: <cover.1653321034.git.ashutosh.dixit@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Media_freq_factor_and_per-gt_enhancements/fixes?=
+ =?utf-8?q?_=28rev9=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,35 +41,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PVC also has a hwconfig table.  Actually the current expectation is that
-all future platforms will have hwconfig, so let's just change the
-condition to an IP version check so that we don't need to keep updating
-this for each new platform that shows up.
+== Series Details ==
 
-Cc: John Harrison <john.c.harrison@intel.com>
-Cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Series: drm/i915: Media freq factor and per-gt enhancements/fixes (rev9)
+URL   : https://patchwork.freedesktop.org/series/102665/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.c
-index 5aaa3948de74..4781fccc2687 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.c
-@@ -96,7 +96,7 @@ static bool has_table(struct drm_i915_private *i915)
- {
- 	if (IS_ALDERLAKE_P(i915) && !IS_ADLP_N(i915))
- 		return true;
--	if (IS_DG2(i915))
-+	if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 55))
- 		return true;
- 
- 	return false;
--- 
-2.35.3
+== Summary ==
+
+Error: dim checkpatch failed
+63e0ab0ed664 drm/i915/gt: Add media freq factor to per-gt sysfs
+2e706c2fdf7e drm/i915/pcode: Init pcode on different gt's
+7fd38d4f289e drm/i915/gt: Add media RP0/RPn to per-gt sysfs
+-:83: CHECK:CAMELCASE: Avoid CamelCase: <media_RPn_freq_mhz>
+#83: FILE: drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c:720:
++static DEVICE_ATTR_RO(media_RPn_freq_mhz);
+
+-:89: CHECK:CAMELCASE: Avoid CamelCase: <dev_attr_media_RPn_freq_mhz>
+#89: FILE: drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c:726:
++	&dev_attr_media_RPn_freq_mhz.attr,
+
+total: 0 errors, 0 warnings, 2 checks, 80 lines checked
+e18539ed7c20 drm/i915/gt: Fix memory leaks in per-gt sysfs
+
 
