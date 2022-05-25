@@ -1,52 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99C9D5342BE
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 May 2022 20:14:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD02B5342C7
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 May 2022 20:16:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 292DB10E03C;
-	Wed, 25 May 2022 18:14:22 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0DCF810E14C;
+	Wed, 25 May 2022 18:16:04 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B492910E023;
- Wed, 25 May 2022 18:14:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE82910E14C
+ for <intel-gfx@lists.freedesktop.org>; Wed, 25 May 2022 18:16:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1653502459; x=1685038459;
+ t=1653502562; x=1685038562;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=r/VY9eddmTm+/1KRYap7tXwmOb/FRNXW6/mhUir4ODc=;
- b=SS6C3NJ07W+eyLnz0zuDPGbSOu9gSulEvZ0Nf48FgGAxGoG7tlEt0xkm
- wVs8kcOStA23gUgMCe8fgIvOKRfn+vgIIVUljhZ+rUiyurQYwIfXg9Dz9
- ahqfqqF6jsbPOY/5j8MMyxckLVKx5BksaU1XFHUh5eCUE//qDxGUnELwp
- N7tlVnmd2a6DGvCEeEU0R6M4Q8MlksIpn7ycduavtzOBunRp60jVxoH1f
- m3YMzkQLCKUpsFepUxyyj2eB4g1LielaH4pS9hk3d+W+ZpWRlPyQzMB/w
- Mel39Un1ajeqW1faIlzj9Njjdho1l7gjTX6Nf1j1I96KECwftIeEYQxts g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10358"; a="255960672"
-X-IronPort-AV: E=Sophos;i="5.91,250,1647327600"; d="scan'208";a="255960672"
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=p17Z0XUIrG2aUgZKGuZ5DddsTTjgRvX9z4LVGcS4Pro=;
+ b=KfLZYDBvGV7X7uWZkbQnB2lXoMBe02cfuq1pn+Y+KYeTJsbMiSXjYTO2
+ dHth4Gj3tRNcbNgUtwEGjmjEk8BP0MlNsmhUrvSSfI4AP5XXJr6xmUmsE
+ 7GT7rzcsMpbsuTZGgj123hIzf01TF2Nfir/Pc5PGNcrQr3rz9cyub352Y
+ IdBXibBh11VMa2Caa1zgGdlN/oUCz2h607H9PGRH9DbiIrIqk/zg2bxeO
+ 7+QqFExGFa9TBjW/8yMq4UEJQC3tEL2+6Wd0DLooVc84kjbWuPiZiP84g
+ wLZXtR463jp8rIrTR0X6AEd1G7bn5YaGW+c962irMM92tctOf3k7Rn3yp Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10358"; a="255961137"
+X-IronPort-AV: E=Sophos;i="5.91,250,1647327600"; d="scan'208";a="255961137"
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 May 2022 11:14:19 -0700
-X-IronPort-AV: E=Sophos;i="5.91,250,1647327600"; d="scan'208";a="745864521"
-Received: from nazirhos-mobl1.amr.corp.intel.com (HELO ldmartin-desk2)
- ([10.212.165.86])
+ 25 May 2022 11:16:02 -0700
+X-IronPort-AV: E=Sophos;i="5.91,250,1647327600"; d="scan'208";a="745865305"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 May 2022 11:14:18 -0700
-Date: Wed, 25 May 2022 11:14:17 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <20220525181417.wnilka4bigyi5fle@ldmartin-desk2>
-References: <20220524094339.1692212-1-tvrtko.ursulin@linux.intel.com>
- <Yo0bBxHBH8cZcnN4@mdroper-desk1.amr.corp.intel.com>
- <f37468b3-1066-ee4b-fb5b-7664fd180fd6@linux.intel.com>
+ 25 May 2022 11:16:02 -0700
+Date: Wed, 25 May 2022 11:16:00 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <Yo5yYEtyYe4tyZiw@mdroper-desk1.amr.corp.intel.com>
+References: <20220503182242.18797-1-ville.syrjala@linux.intel.com>
+ <20220503182242.18797-24-ville.syrjala@linux.intel.com>
+ <87fskxu9w0.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <f37468b3-1066-ee4b-fb5b-7664fd180fd6@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dg2: Catch and log more unexpected
- values in DG1_MSTR_TILE_INTR
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <87fskxu9w0.fsf@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 23/26] drm/i915: Require an exact DP link
+ freq match for the DG2 PLL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,71 +60,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, May 25, 2022 at 05:03:13PM +0100, Tvrtko Ursulin wrote:
->
->On 24/05/2022 18:51, Matt Roper wrote:
->>On Tue, May 24, 2022 at 10:43:39AM +0100, Tvrtko Ursulin wrote:
->>>From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>>
->>>Catch and log any garbage in the register, including no tiles marked, or
->>>multiple tiles marked.
->>>
->>>Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>>Cc: Matt Roper <matthew.d.roper@intel.com>
->>>---
->>>We caught garbage in DG1_MSTR_TILE_INTR with DG2 (actual value 0xF9D2C008)
->>>during glmark and more badness. So I thought lets log all possible failure
->>>modes from here and also use per device logging.
->>>---
->>>  drivers/gpu/drm/i915/i915_irq.c | 33 ++++++++++++++++++++++-----------
->>>  drivers/gpu/drm/i915/i915_reg.h |  1 +
->>>  2 files changed, 23 insertions(+), 11 deletions(-)
->>>
->>>diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
->>>index 73cebc6aa650..79853d3fc1ed 100644
->>>--- a/drivers/gpu/drm/i915/i915_irq.c
->>>+++ b/drivers/gpu/drm/i915/i915_irq.c
->>>@@ -2778,24 +2778,30 @@ static irqreturn_t dg1_irq_handler(int irq, void *arg)
->>>  	u32 gu_misc_iir;
->>>  	if (!intel_irqs_enabled(i915))
->>>-		return IRQ_NONE;
->>>+		goto none;
->>>  	master_tile_ctl = dg1_master_intr_disable(regs);
->>>-	if (!master_tile_ctl) {
->>>-		dg1_master_intr_enable(regs);
->>>-		return IRQ_NONE;
->>>+	if (!master_tile_ctl)
->>>+		goto enable_none;
->>>+
->>>+	if (master_tile_ctl & ~(DG1_MSTR_IRQ | DG1_MSTR_TILE_MASK)) {
->>>+		drm_warn(&i915->drm, "Garbage in master_tile_ctl: 0x%08x!\n",
->>>+			 master_tile_ctl);
->>
->>I know we have a bunch of them already, but shouldn't we be avoiding
->>printk-based stuff like this inside interrupt handlers?  Should we be
->>migrating all these error messages over to trace_printk or something
->>similar that's safer to use?
->
->Not sure - I kind of think some really unexpected and worrying 
->situations should be loud and on by default. Risk is then spam if not 
->ratelimited. Maybe we should instead ratelimit most errors/warnings 
->coming for irq handlers?
->
->In this particular case at least DRM_ERROR with no device info is the 
->odd one out in the entire file so I'd suggest changing at least that, 
->if the rest of my changes is of questionable benefit.
+On Wed, May 25, 2022 at 02:30:55PM +0300, Jani Nikula wrote:
+> On Tue, 03 May 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> >
+> > No idea why the DG2 PLL DP link frequency calculation is allowing
+> > a non-exact match. That makes no sense so get rid of it.
+> 
+> Cc: Matt.
+> 
+> This also makes the hdmi link rate check in the same function redundant.
+> 
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+> 
 
-I'd rather remove the printk's from irq rather than adding more. At the very
-least, they should be the _once variant or ratelimited. One of the few
-cases to even deserve a unlikely(), even to document this shouldn't
-really be happening.
+I don't remember any specific reason the code was written this way, so
+the change looks okay to me.
 
-Our irq handlers (particularly on dgfx and multi-gt) are already too
-long running... I don't like making them any onger or slower.
+Acked-by: Matt Roper <matthew.d.roper@intel.com>
 
+> 
+> >
+> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_snps_phy.c | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_snps_phy.c b/drivers/gpu/drm/i915/display/intel_snps_phy.c
+> > index 0dd4775e8195..877f9a4bd7a5 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_snps_phy.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_snps_phy.c
+> > @@ -597,7 +597,7 @@ int intel_mpllb_calc_state(struct intel_crtc_state *crtc_state,
+> >  		return -EINVAL;
+> >  
+> >  	for (i = 0; tables[i]; i++) {
+> > -		if (crtc_state->port_clock <= tables[i]->clock) {
+> > +		if (crtc_state->port_clock == tables[i]->clock) {
+> >  			crtc_state->mpllb_state = *tables[i];
+> >  			return 0;
+> >  		}
+> 
+> -- 
+> Jani Nikula, Intel Open Source Graphics Center
 
-Lucas De Marchi
+-- 
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
