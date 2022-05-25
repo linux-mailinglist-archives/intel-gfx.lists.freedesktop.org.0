@@ -1,48 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 957DC533DA3
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 May 2022 15:19:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFFCE533DA2
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 May 2022 15:19:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9EABE10EE8B;
-	Wed, 25 May 2022 13:19:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C25110ED5D;
+	Wed, 25 May 2022 13:19:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2864C10EDF2
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 59F7710F392
  for <intel-gfx@lists.freedesktop.org>; Wed, 25 May 2022 13:19:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1653484765; x=1685020765;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=+rcXVlA9Pcn6YO7ucIYDYkKvhuSiaQgHK3keh1UPHdk=;
- b=Vyh6NSD6tvDFlRWO2RsXBbuNIabQh8Z80jPCugqwn92HIK5p4dWkgn6q
- lNvL0SHDs5wy6pe7y9UTO/Dcb31+ve0nO3q0Vj/1SPZPqPsKzF24qqdb2
- u1sznDI3eJhdeTcY+Dr4OGs7+ycRZmX6OXjYcWwJHZocdxmJXpMOcBf0q
- Cs3geAkRpZ8Ob7DxDpbsmP7V0go/UKAfRV3eQOet6yqJilmY0XCKX7c/Q
- HXfQ3AWANc2EoxjXNzQj8oH8WJZK2Y3TPeu7PwfwqKPe0//K/b+aoLZs2
- mrrUpI1F0AL5G1reU9UTvLSpxZvgeoPWC+RTKf83zaC+Yc7zC+HbKzKlN Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10357"; a="334454931"
-X-IronPort-AV: E=Sophos;i="5.91,250,1647327600"; d="scan'208";a="334454931"
+ bh=42J121jJYe7URaZri0ucOrvJPDpAISejQVIChktn6Cs=;
+ b=RvRmlaaHq0UMG6zobXJQU7GacgIGWPh7C5smBG7ukU54XujA6FC1/ZVR
+ 6iLSChznUgpv3WxJ2jLwwV+aW8UCiRV0ymsikG0Fp9oNb71UU5o8FFFqS
+ loPmjL4xkw5CNN/xaBjQU6KZ8t/RUv2jiiTB44hQ0sYjVZKzsanezaoAw
+ f3NYFQsLnmF145zVlEh8JA4kAdovKXyEgxpX0tXClscL6uWyol5lgk/Q4
+ d7JbYHbAaftKTRfTxha6t3ZO0AAjmw5t0y/R3LNMtJW43erTcj8gcG6Mb
+ zE1qCx3Xiw3kS9BLNy0bB1lQtM3G7EvkimI0kjLIYToe6SrqwUQlJRy9k A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10357"; a="334454932"
+X-IronPort-AV: E=Sophos;i="5.91,250,1647327600"; d="scan'208";a="334454932"
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  25 May 2022 06:19:24 -0700
-X-IronPort-AV: E=Sophos;i="5.91,250,1647327600"; d="scan'208";a="676864801"
+X-IronPort-AV: E=Sophos;i="5.91,250,1647327600"; d="scan'208";a="676864804"
 Received: from orsosgc001.jf.intel.com ([10.165.21.154])
  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  25 May 2022 06:19:24 -0700
 From: Ashutosh Dixit <ashutosh.dixit@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 25 May 2022 06:19:19 -0700
-Message-Id: <45e34127a79e808f6582db8afb77f2f728a446e6.1653484574.git.ashutosh.dixit@intel.com>
+Date: Wed, 25 May 2022 06:19:20 -0700
+Message-Id: <a6f6686517c85fba61a0c45097f5bb4fe7e257fb.1653484574.git.ashutosh.dixit@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <cover.1653484574.git.ashutosh.dixit@intel.com>
 References: <cover.1653484574.git.ashutosh.dixit@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 3/4] drm/i915/gt: Add media RP0/RPn to per-gt
+Subject: [Intel-gfx] [PATCH 4/4] drm/i915/gt: Fix memory leaks in per-gt
  sysfs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -59,118 +59,154 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Dale B Stimson <dale.b.stimson@intel.com>
+All kmalloc'd kobjects need a kobject_put() to free memory. For example in
+previous code, kobj_gt_release() never gets called. The requirement of
+kobject_put() now results in a slightly different code organization.
 
-Retrieve RP0 and RPn freq for media IP from PCODE and display in per-gt
-sysfs. This patch adds the following files to gt/gtN sysfs:
-* media_RP0_freq_mhz
-* media_RPn_freq_mhz
+v2: s/gtn/gt/ (Andi)
 
-v2: Fixed commit author (Rodrigo)
-v3: Convert to new uncore interface for pcode functions
-v4: Adapt to intel_pcode.* function rename
-v5: #include "intel_pcode.h" in alphabetical order (Tvrtko)
-
-Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Signed-off-by: Dale B Stimson <dale.b.stimson@intel.com>
+Fixes: b770bcfae9ad ("drm/i915/gt: create per-tile sysfs interface")
 Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+Acked-by: Andrzej Hajda <andrzej.hajda@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c | 47 +++++++++++++++++++++
- drivers/gpu/drm/i915/i915_reg.h             |  8 ++++
- 2 files changed, 55 insertions(+)
+ drivers/gpu/drm/i915/gt/intel_gt.c       |  1 +
+ drivers/gpu/drm/i915/gt/intel_gt_sysfs.c | 29 ++++++++++--------------
+ drivers/gpu/drm/i915/gt/intel_gt_sysfs.h |  6 +----
+ drivers/gpu/drm/i915/gt/intel_gt_types.h |  3 +++
+ drivers/gpu/drm/i915/i915_sysfs.c        |  2 ++
+ 5 files changed, 19 insertions(+), 22 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
-index 081a17f5ca33..ae8a8f725f01 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
-@@ -14,6 +14,7 @@
- #include "intel_gt_regs.h"
- #include "intel_gt_sysfs.h"
- #include "intel_gt_sysfs_pm.h"
-+#include "intel_pcode.h"
- #include "intel_rc6.h"
- #include "intel_rps.h"
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
+index 034182f85501..0a3931c011c6 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+@@ -790,6 +790,7 @@ void intel_gt_driver_unregister(struct intel_gt *gt)
+ {
+ 	intel_wakeref_t wakeref;
  
-@@ -670,13 +671,59 @@ static ssize_t media_freq_factor_store(struct device *dev,
- 	return err ?: count;
++	intel_gt_sysfs_unregister(gt);
+ 	intel_rps_driver_unregister(&gt->rps);
+ 	intel_gsc_fini(&gt->gsc);
+ 
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_sysfs.c b/drivers/gpu/drm/i915/gt/intel_gt_sysfs.c
+index 8ec8bc660c8c..9e4ebf53379b 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_sysfs.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt_sysfs.c
+@@ -24,7 +24,7 @@ bool is_object_gt(struct kobject *kobj)
+ 
+ static struct intel_gt *kobj_to_gt(struct kobject *kobj)
+ {
+-	return container_of(kobj, struct kobj_gt, base)->gt;
++	return container_of(kobj, struct intel_gt, sysfs_gt);
  }
  
-+static ssize_t media_RP0_freq_mhz_show(struct device *dev,
-+				       struct device_attribute *attr,
-+				       char *buff)
-+{
-+	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(dev, attr->attr.name);
-+	u32 val;
-+	int err;
-+
-+	err = snb_pcode_read_p(gt->uncore, XEHPSDV_PCODE_FREQUENCY_CONFIG,
-+			       PCODE_MBOX_FC_SC_READ_FUSED_P0,
-+			       PCODE_MBOX_DOMAIN_MEDIAFF, &val);
-+
-+	if (err)
-+		return err;
-+
-+	/* Fused media RP0 read from pcode is in units of 50 MHz */
-+	val *= GT_FREQUENCY_MULTIPLIER;
-+
-+	return sysfs_emit(buff, "%u\n", val);
-+}
-+
-+static ssize_t media_RPn_freq_mhz_show(struct device *dev,
-+				       struct device_attribute *attr,
-+				       char *buff)
-+{
-+	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(dev, attr->attr.name);
-+	u32 val;
-+	int err;
-+
-+	err = snb_pcode_read_p(gt->uncore, XEHPSDV_PCODE_FREQUENCY_CONFIG,
-+			       PCODE_MBOX_FC_SC_READ_FUSED_PN,
-+			       PCODE_MBOX_DOMAIN_MEDIAFF, &val);
-+
-+	if (err)
-+		return err;
-+
-+	/* Fused media RPn read from pcode is in units of 50 MHz */
-+	val *= GT_FREQUENCY_MULTIPLIER;
-+
-+	return sysfs_emit(buff, "%u\n", val);
-+}
-+
- static DEVICE_ATTR_RW(media_freq_factor);
- static struct device_attribute dev_attr_media_freq_factor_scale =
- 	__ATTR(media_freq_factor.scale, 0444, freq_factor_scale_show, NULL);
-+static DEVICE_ATTR_RO(media_RP0_freq_mhz);
-+static DEVICE_ATTR_RO(media_RPn_freq_mhz);
+ struct intel_gt *intel_gt_sysfs_get_drvdata(struct device *dev,
+@@ -72,9 +72,9 @@ static struct attribute *id_attrs[] = {
+ };
+ ATTRIBUTE_GROUPS(id);
  
- static const struct attribute *media_perf_power_attrs[] = {
- 	&dev_attr_media_freq_factor.attr,
- 	&dev_attr_media_freq_factor_scale.attr,
-+	&dev_attr_media_RP0_freq_mhz.attr,
-+	&dev_attr_media_RPn_freq_mhz.attr,
- 	NULL
++/* A kobject needs a release() method even if it does nothing */
+ static void kobj_gt_release(struct kobject *kobj)
+ {
+-	kfree(kobj);
+ }
+ 
+ static struct kobj_type kobj_gt_type = {
+@@ -85,8 +85,6 @@ static struct kobj_type kobj_gt_type = {
+ 
+ void intel_gt_sysfs_register(struct intel_gt *gt)
+ {
+-	struct kobj_gt *kg;
+-
+ 	/*
+ 	 * We need to make things right with the
+ 	 * ABI compatibility. The files were originally
+@@ -98,25 +96,22 @@ void intel_gt_sysfs_register(struct intel_gt *gt)
+ 	if (gt_is_root(gt))
+ 		intel_gt_sysfs_pm_init(gt, gt_get_parent_obj(gt));
+ 
+-	kg = kzalloc(sizeof(*kg), GFP_KERNEL);
+-	if (!kg)
++	/* init and xfer ownership to sysfs tree */
++	if (kobject_init_and_add(&gt->sysfs_gt, &kobj_gt_type,
++				 gt->i915->sysfs_gt, "gt%d", gt->info.id))
+ 		goto exit_fail;
+ 
+-	kobject_init(&kg->base, &kobj_gt_type);
+-	kg->gt = gt;
+-
+-	/* xfer ownership to sysfs tree */
+-	if (kobject_add(&kg->base, gt->i915->sysfs_gt, "gt%d", gt->info.id))
+-		goto exit_kobj_put;
+-
+-	intel_gt_sysfs_pm_init(gt, &kg->base);
++	intel_gt_sysfs_pm_init(gt, &gt->sysfs_gt);
+ 
+ 	return;
+ 
+-exit_kobj_put:
+-	kobject_put(&kg->base);
+-
+ exit_fail:
++	kobject_put(&gt->sysfs_gt);
+ 	drm_warn(&gt->i915->drm,
+ 		 "failed to initialize gt%d sysfs root\n", gt->info.id);
+ }
++
++void intel_gt_sysfs_unregister(struct intel_gt *gt)
++{
++	kobject_put(&gt->sysfs_gt);
++}
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_sysfs.h b/drivers/gpu/drm/i915/gt/intel_gt_sysfs.h
+index 9471b26752cf..a99aa7e8b01a 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_sysfs.h
++++ b/drivers/gpu/drm/i915/gt/intel_gt_sysfs.h
+@@ -13,11 +13,6 @@
+ 
+ struct intel_gt;
+ 
+-struct kobj_gt {
+-	struct kobject base;
+-	struct intel_gt *gt;
+-};
+-
+ bool is_object_gt(struct kobject *kobj);
+ 
+ struct drm_i915_private *kobj_to_i915(struct kobject *kobj);
+@@ -28,6 +23,7 @@ intel_gt_create_kobj(struct intel_gt *gt,
+ 		     const char *name);
+ 
+ void intel_gt_sysfs_register(struct intel_gt *gt);
++void intel_gt_sysfs_unregister(struct intel_gt *gt);
+ struct intel_gt *intel_gt_sysfs_get_drvdata(struct device *dev,
+ 					    const char *name);
+ 
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_types.h b/drivers/gpu/drm/i915/gt/intel_gt_types.h
+index 097e10291f2d..993f003dad1d 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_gt_types.h
+@@ -225,6 +225,9 @@ struct intel_gt {
+ 	} mocs;
+ 
+ 	struct intel_pxp pxp;
++
++	/* gt/gtN sysfs */
++	struct kobject sysfs_gt;
  };
  
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index d8579ab9384c..0a5064e32284 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -6804,6 +6804,14 @@
- #define     DG1_UNCORE_GET_INIT_STATUS		0x0
- #define     DG1_UNCORE_INIT_STATUS_COMPLETE	0x1
- #define GEN12_PCODE_READ_SAGV_BLOCK_TIME_US	0x23
-+#define   XEHPSDV_PCODE_FREQUENCY_CONFIG		0x6e	/* xehpsdv, pvc */
-+/* XEHPSDV_PCODE_FREQUENCY_CONFIG sub-commands (param1) */
-+#define     PCODE_MBOX_FC_SC_READ_FUSED_P0	0x0
-+#define     PCODE_MBOX_FC_SC_READ_FUSED_PN	0x1
-+/* PCODE_MBOX_DOMAIN_* - mailbox domain IDs */
-+/*   XEHPSDV_PCODE_FREQUENCY_CONFIG param2 */
-+#define     PCODE_MBOX_DOMAIN_NONE		0x0
-+#define     PCODE_MBOX_DOMAIN_MEDIAFF		0x3
- #define GEN6_PCODE_DATA				_MMIO(0x138128)
- #define   GEN6_PCODE_FREQ_IA_RATIO_SHIFT	8
- #define   GEN6_PCODE_FREQ_RING_RATIO_SHIFT	16
+ enum intel_gt_scratch_field {
+diff --git a/drivers/gpu/drm/i915/i915_sysfs.c b/drivers/gpu/drm/i915/i915_sysfs.c
+index 8521daba212a..3f06106cdcf5 100644
+--- a/drivers/gpu/drm/i915/i915_sysfs.c
++++ b/drivers/gpu/drm/i915/i915_sysfs.c
+@@ -259,4 +259,6 @@ void i915_teardown_sysfs(struct drm_i915_private *dev_priv)
+ 
+ 	device_remove_bin_file(kdev,  &dpf_attrs_1);
+ 	device_remove_bin_file(kdev,  &dpf_attrs);
++
++	kobject_put(dev_priv->sysfs_gt);
+ }
 -- 
 2.34.1
 
