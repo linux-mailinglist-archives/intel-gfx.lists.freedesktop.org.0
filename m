@@ -2,40 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD437533647
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 May 2022 06:55:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DF110533648
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 May 2022 06:56:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C124112A19;
-	Wed, 25 May 2022 04:55:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 15454112A19;
+	Wed, 25 May 2022 04:56:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 20F5B112A18
- for <intel-gfx@lists.freedesktop.org>; Wed, 25 May 2022 04:55:36 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7AA4E112A19
+ for <intel-gfx@lists.freedesktop.org>; Wed, 25 May 2022 04:56:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1653454537; x=1684990537;
+ t=1653454606; x=1684990606;
  h=date:message-id:from:to:cc:subject:in-reply-to:
  references:mime-version;
- bh=TSyruhE6Th2O2FTb7qDrS+3c4pwTraDyYAvjak9rXhE=;
- b=A839BYBwtU+o/9Wck/0YAiSuJSD7bVGiDypqYtM3TEvSE892BflwDQib
- JXZE0jcp8ItOYpMdndIGJ6ukEoW9rfFkOYeCLEDEJrhcdfxTIBlqnqYYx
- Fa+OUeVmNfN4JfJQYFGPr1R0IPG5xiRrPkHt+zS/YwlcKMCj8iBSaEA5o
- R9BJwit37NKDW5gTx37lJpUc5UYCd39ZXUUxlUm5ONwB17QPWmLtwPzkj
- SB7qSGD7pzCQRtKLsF9qrDjL8n7kq4sSvnNiGSxSQ5RyV4wOU0MLo/Nz+
- Loj9nsgS9WVuzzQhQsQHm2/nX0/SD/jkPnR7WDB091P9UgR3/DwBFJRnC A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10357"; a="336770208"
-X-IronPort-AV: E=Sophos;i="5.91,250,1647327600"; d="scan'208";a="336770208"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 May 2022 21:55:35 -0700
-X-IronPort-AV: E=Sophos;i="5.91,250,1647327600"; d="scan'208";a="820584668"
+ bh=BocpHQWZWkneI6WhXjUnX0LlM4VLnadfYhsBHFiP0mg=;
+ b=brWPKO7iPzwROhA5JGc8DE0lmZvtEwyhFoECLs+EtgPyiQEB1HRYJIc+
+ lozB35jYTf2pzzV2JZmSrtUGHZgiuvqV9SinUUraQInkJBKG6iGKKFxi0
+ /MMM9i/L8n5Lus7JsqBDmypBeAG7/nC52/QIeA2iy3gXj+B+XsSCWf553
+ NIgZq1Wc+xNFHp0dWKl+rkTvEYbZjVkKY++v/1SVSNdItf6xKZ8ziUGP+
+ NO6Cmk575Mxoyl2qxnJWKd6R93XKEDAKp9koyBEZwu3GdlVDvpedezr1h
+ cMs5B5ytlHbsgfw70LiCQiERLm7n8N5wPS3QetAm0wwyziW3uQzP2bTpK Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10357"; a="271291761"
+X-IronPort-AV: E=Sophos;i="5.91,250,1647327600"; d="scan'208";a="271291761"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 May 2022 21:56:46 -0700
+X-IronPort-AV: E=Sophos;i="5.91,250,1647327600"; d="scan'208";a="559410259"
 Received: from adixit-mobl1.amr.corp.intel.com (HELO adixit-arch.intel.com)
  ([10.209.88.118])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 May 2022 21:55:34 -0700
-Date: Tue, 24 May 2022 21:55:23 -0700
-Message-ID: <87v8tutdms.wl-ashutosh.dixit@intel.com>
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 May 2022 21:56:45 -0700
+Date: Tue, 24 May 2022 21:56:42 -0700
+Message-ID: <87tu9etdkl.wl-ashutosh.dixit@intel.com>
 From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
 To: Badal Nilawar <badal.nilawar@intel.com>
 In-Reply-To: <20220523110841.1151431-3-badal.nilawar@intel.com>
@@ -65,53 +65,12 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On Mon, 23 May 2022 04:08:40 -0700, Badal Nilawar wrote:
 >
-> diff --git a/drivers/gpu/drm/i915/i915_hwmon.c b/drivers/gpu/drm/i915/i915_hwmon.c
-> index b94c11f2517f..b35c4de73f30 100644
-> --- a/drivers/gpu/drm/i915/i915_hwmon.c
-> +++ b/drivers/gpu/drm/i915/i915_hwmon.c
-> @@ -18,8 +18,10 @@
->  /*
->   * SF_* - scale factors for particular quantities according to hwmon spec.
->   * - power  - microwatts
-> + * - energy - microjoules
->   */
->  #define SF_POWER	1000000
-> +#define SF_ENERGY	1000000
+> From: Dale B Stimson <dale.b.stimson@intel.com>
 >
->  #define FIELD_SHIFT(__mask)				    \
->	(BUILD_BUG_ON_ZERO(!__builtin_constant_p(__mask)) + \
-> @@ -94,6 +96,136 @@ _field_scale_and_write(struct i915_hwmon_drvdata *ddat, i915_reg_t rgadr,
->					 bits_to_clear, bits_to_set);
->  }
->
-> +/*
-> + * _i915_energy1_input_sub - A custom function to obtain energy1_input.
-> + * Use a custom function instead of the usual hwmon helpers in order to
-> + * guarantee 64-bits of result to user-space.
+> As part of the System Managemenent Interface (SMI), use the HWMON
+> subsystem to display energy utilization
 
-We need to look into whether energy needs to be a custom interface or can
-it just be the standard interface. The justification for custom interface
-is that energy needs to be a u64 but the standard interface is already a
-long which is at least 63 bits already. So the question is is that extra
-bit needed which justifies a custom interface?
-
-> + * Units are microjoules.
-> + *
-> + * The underlying hardware register is 32-bits and is subject to overflow.
-> + * This function compensates for overflow of the 32-bit register by detecting
-> + * wrap-around and incrementing an overflow counter.
-> + * This only works if the register is sampled often enough to avoid
-> + * missing an instance of overflow - achieved either by repeated
-> + * queries through the API, or via a possible timer (future - TBD) that
-> + * ensures values are read often enough to catch all overflows.
-> + *
-> + * How long before overflow?  For example, with an example scaling bit
-> + * shift of 14 bits (see register *PACKAGE_POWER_SKU_UNIT) and a power draw of
-> + * 1000 watts, the 32-bit counter will overflow in approximately 4.36 minutes.
-> + *
-> + * Examples:
-> + *    1 watt:  (2^32 >> 14) /    1 W / (60 * 60 * 24) secs/day -> 3 days
-> + * 1000 watts: (2^32 >> 14) / 1000 W / 60             secs/min -> 4.36 minutes
-
-We need to "sample" the energy often enough to avoid 32 bit counter
-overflow. But that can be a later patch.
+Energy seems to be hardly ever exposed in the kernel. Searching for
+'hwmon_energy' shows only a single hit in drivers/hwmon/scmi-hwmon.c. We
+should see if there are real consumers for this and the reason for exposing
+this.
