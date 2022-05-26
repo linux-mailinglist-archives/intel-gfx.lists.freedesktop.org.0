@@ -2,73 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 012AA534C3A
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 May 2022 11:05:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E3AA534C7B
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 May 2022 11:27:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 75B8210EAC8;
-	Thu, 26 May 2022 09:05:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B3A5C10EF25;
+	Thu, 26 May 2022 09:27:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from out2-smtp.messagingengine.com (out2-smtp.messagingengine.com
- [66.111.4.26])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B434610EAC8;
- Thu, 26 May 2022 09:05:38 +0000 (UTC)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
- by mailout.nyi.internal (Postfix) with ESMTP id 2492E5C00E0;
- Thu, 26 May 2022 05:05:36 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
- by compute5.internal (MEProxy); Thu, 26 May 2022 05:05:36 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
- :cc:content-type:date:date:from:from:in-reply-to:message-id
- :mime-version:reply-to:sender:subject:subject:to:to; s=fm3; t=
- 1653555936; x=1653642336; bh=pFj+7WO1SOJz0ZXjigSsoFbHLjS7TjhY+yv
- REBYg6J8=; b=fYqBH5IfvkB3qu1T0bzOyOP+miDiSriLbrNGHjncVzoO+/ECh31
- bgY2nWPPdKyt0RmO6hAT5X9x5y6/PDc8L+/Pvtj1zhk9ctXCDtmo4gjCQgT5aMZJ
- mlcpe2c6VI+YnyyOKCEnjheHfopE62SKErm0LHI7dMJl3ejdXsBk7cmzU15dNHdc
- e7P+IXDcGUfJpPQcU12m/ewSXq4qTrdcK2yE0urHt154JyZl6Cd+lTIb/fM/Ritw
- N3CNPA5MECOTT2CbctGqGN06l9FTpltnssdkMis74RQmvlfhfR9GunoIa8YjEsyb
- CotTNySuCBTyTFOs30r/kWHhtcz13fcDAzw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
- :feedback-id:from:from:in-reply-to:message-id:mime-version
- :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1653555936; x=
- 1653642336; bh=pFj+7WO1SOJz0ZXjigSsoFbHLjS7TjhY+yvREBYg6J8=; b=e
- /3rr5Gjy/Bycch+dvWMi1X8ikNEoQX7etjr0T46ypxXr8c0I/cnXWbL2nxja1O2M
- 8fv3P3/fKb6NJVAAdmeWBPR0aiWpQ9VtZKgPtFxdUIg02Rbm6dBz38ho77nEicAt
- yi3QQCgVAmLw+LoHnMF/md/8n9WV7UQG86fFPYGT2Gd5fDvXZ+IvAiOz16Knr/eP
- cqApw/kelWDzOMKPRkBL989bk+Sr31w0/eScikiB4f9eTCH1fd493zaZ/Y1lkW4q
- 4JD1uKPpojj++BdedsMu0JY14kpApEYqiCVFj1Fm3aMbwgoK68z6A/kH1hi+NgYm
- rJT9zIGms5C4DhctAcukQ==
-X-ME-Sender: <xms:30KPYjYOs-0RXxDqQE41tlNMnjPPFD5ukmn8um-1FLnyISrQlgeQ4w>
- <xme:30KPYiatv0nGajRW2vDKHDV-KjBY3iR7olp187erdkgLrHTtobjQqj0we2FFkuWkU
- IG0AFJYhEk2fJNiQtk>
-X-ME-Received: <xmr:30KPYl81lSZNS2JjnNv-a78yDXAFZuWnpgVmxJK_k02QEUsC1ng10tbhpsUzswhngHjW_Z_MwP7unWLkea53azqgOB1mqMP53YLkDiY>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrjeejgddtlecutefuodetggdotefrodftvf
- curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
- uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
- fjughrpeffhffvvefukfggtggusehgtderredttddvnecuhfhrohhmpeforgigihhmvgcu
- tfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrthhtvg
- hrnhepueeiheejhfeivedtheduffdttefgtdeuvddvueegtefgveegvedugeffudevjeei
- necuffhomhgrihhnpehfrhgvvgguvghskhhtohhprdhorhhgnecuvehluhhsthgvrhfuih
- iivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordht
- vggthh
-X-ME-Proxy: <xmx:30KPYpp_8lWNcaMff_mfPmwXvvbTHtj_MWRSXBe93BbIWrV0YL8vhg>
- <xmx:30KPYup0IOEGjA5spiwUuuEeoYi2KhBmhesXaWU8fmRKx0zxQOuVCw>
- <xmx:30KPYvSfejj8asWvKNonopByLu5-nElj_Ryc3ujEcSG6bo6fIJ3KjQ>
- <xmx:4EKPYrgVlrTLX6t5GXT_HCp72soRjZ_8GRAY3ZtalCG1ljiF0UdKSw>
-Feedback-ID: i8771445c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 26 May 2022 05:05:35 -0400 (EDT)
-Date: Thu, 26 May 2022 11:05:32 +0200
-From: Maxime Ripard <maxime@cerno.tech>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20220526090532.nvhlmwev5qgln3nb@houat>
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 796AE10F1AF
+ for <intel-gfx@lists.freedesktop.org>; Thu, 26 May 2022 09:27:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1653557257; x=1685093257;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=wVuOGmvUwTqzRIBaAjDx2KA+eTw7wSLKG7NPAn+b2lE=;
+ b=RkHrGgFCp4GUPd4prsV9iur7lAAhOXT9Kw0Oo2zapGbg55rGOfQVhTqF
+ 0nQdTqZZSuxGp5DrFtn91XW7guIwBVuHVaBHXGWLmw4KKGFzdqxCHvRBL
+ +Ik7YvMYsyCz7cUoOsSsmnkQZdYNqCMFuIzj80IZ52VQHNvD5BmQExcI1
+ gP//sSy1HfcJkJhUnPfa5kANN9Ve+lT+VXjwTNlCyKt91SkDGwJ0agbNQ
+ H/TlzXxMUaEX6e+Muk4Tw7MRLB8QdEZZC+33l2WeXk5tutklsYne4IspN
+ 17hL4fEDN31kdGiMagZuGx4+7twdEmv7dluChSrleZXcfe1Ry0TJNAM2X g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10358"; a="254595894"
+X-IronPort-AV: E=Sophos;i="5.91,252,1647327600"; d="scan'208";a="254595894"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2022 02:27:36 -0700
+X-IronPort-AV: E=Sophos;i="5.91,252,1647327600"; d="scan'208";a="664852653"
+Received: from tursulin-mobl.ger.corp.intel.com (HELO [10.252.4.248])
+ ([10.252.4.248])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2022 02:27:35 -0700
+Message-ID: <2c138486-fa2e-867c-33ac-3e7837a8481a@intel.com>
+Date: Thu, 26 May 2022 10:27:33 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="32d6m4fojbj5xljq"
-Content-Disposition: inline
-Subject: [Intel-gfx] [PULL] drm-misc-fixes
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Firefox/91.0 Thunderbird/91.9.0
+Content-Language: en-GB
+To: Nirmoy Das <nirmoy.das@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20220525095955.15371-1-nirmoy.das@intel.com>
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20220525095955.15371-1-nirmoy.das@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v6] drm/i915: Individualize fences before
+ adding to dma_resv obj
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,64 +60,124 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: thomas.hellstrom@intel.com, chris.p.wilson@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On 25/05/2022 10:59, Nirmoy Das wrote:
+> _i915_vma_move_to_active() can receive > 1 fences for
+> multiple batch buffers submission. Because dma_resv_add_fence()
+> can only accept one fence at a time, change _i915_vma_move_to_active()
+> to be aware of multiple fences so that it can add individual
+> fences to the dma resv object.
+> 
+> v6: fix multi-line comment.
+> v5: remove double fence reservation for batch VMAs.
+> v4: Reserve fences for composite_fence on multi-batch contexts and
+>      also reserve fence slots to composite_fence for each VMAs.
+> v3: dma_resv_reserve_fences is not cumulative so pass num_fences.
+> v2: make sure to reserve enough fence slots before adding.
+> 
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/5614
+> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 
---32d6m4fojbj5xljq
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Do we need Fixes: ?
 
-Hi Daniel, Dave,
-
-Here's this week drm-misc-fixes PR.
-
-Maxime
-
-drm-misc-fixes-2022-05-26:
-A use-after-free fix for panfrost, and a DT invalid configuration fix for
-ti-sn65dsi83
-The following changes since commit 6e03b13cc7d9427c2c77feed1549191015615202:
-
-  drm/dp/mst: fix a possible memory leak in fetch_monitor_name() (2022-05-17 15:56:18 -0400)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2022-05-26
-
-for you to fetch changes up to 6e516faf04317db2c46cbec4e3b78b4653a5b109:
-
-  drm/panfrost: Job should reference MMU not file_priv (2022-05-25 09:14:22 +0100)
-
-----------------------------------------------------------------
-A use-after-free fix for panfrost, and a DT invalid configuration fix for
-ti-sn65dsi83
-
-----------------------------------------------------------------
-Marek Vasut (1):
-      drm/bridge: ti-sn65dsi83: Handle dsi_lanes == 0 as invalid
-
-Steven Price (1):
-      drm/panfrost: Job should reference MMU not file_priv
-
- drivers/gpu/drm/bridge/ti-sn65dsi83.c   | 2 +-
- drivers/gpu/drm/panfrost/panfrost_drv.c | 5 +++--
- drivers/gpu/drm/panfrost/panfrost_job.c | 6 +++---
- drivers/gpu/drm/panfrost/panfrost_job.h | 2 +-
- 4 files changed, 8 insertions(+), 7 deletions(-)
-
---32d6m4fojbj5xljq
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYo9C2wAKCRDj7w1vZxhR
-xc3zAQCNGP7xktDmUynaCW84jLAqAQlvKYnXqVxXEwDhq6iM9gD6Ar0h9oD5O+Sv
-lniSFuPd2MnqHp0khJmKYZgTbEdRnwI=
-=K1ck
------END PGP SIGNATURE-----
-
---32d6m4fojbj5xljq--
+> ---
+>   .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |  3 +-
+>   drivers/gpu/drm/i915/i915_vma.c               | 48 +++++++++++--------
+>   2 files changed, 30 insertions(+), 21 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> index b279588c0672..8880d38d36b6 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> @@ -1010,7 +1010,8 @@ static int eb_validate_vmas(struct i915_execbuffer *eb)
+>   			}
+>   		}
+>   
+> -		err = dma_resv_reserve_fences(vma->obj->base.resv, 1);
+> +		/* Reserve enough slots to accommodate composite fences */
+> +		err = dma_resv_reserve_fences(vma->obj->base.resv, eb->num_batches);
+>   		if (err)
+>   			return err;
+>   
+> diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
+> index 4f6db539571a..0bffb70b3c5f 100644
+> --- a/drivers/gpu/drm/i915/i915_vma.c
+> +++ b/drivers/gpu/drm/i915/i915_vma.c
+> @@ -23,6 +23,7 @@
+>    */
+>   
+>   #include <linux/sched/mm.h>
+> +#include <linux/dma-fence-array.h>
+>   #include <drm/drm_gem.h>
+>   
+>   #include "display/intel_frontbuffer.h"
+> @@ -1823,6 +1824,21 @@ int _i915_vma_move_to_active(struct i915_vma *vma,
+>   	if (unlikely(err))
+>   		return err;
+>   
+> +	/*
+> +	 * Reserve fences slot early to prevent an allocation after preparing
+> +	 * the workload and associating fences with dma_resv.
+> +	 */
+> +	if (fence && !(flags & __EXEC_OBJECT_NO_RESERVE)) {
+> +		struct dma_fence *curr;
+> +		int idx;
+> +
+> +		dma_fence_array_for_each(curr, idx, fence)
+> +			;
+> +		err = dma_resv_reserve_fences(vma->obj->base.resv, idx);
+> +		if (unlikely(err))
+> +			return err;
+> +	}
+> +
+>   	if (flags & EXEC_OBJECT_WRITE) {
+>   		struct intel_frontbuffer *front;
+>   
+> @@ -1832,31 +1848,23 @@ int _i915_vma_move_to_active(struct i915_vma *vma,
+>   				i915_active_add_request(&front->write, rq);
+>   			intel_frontbuffer_put(front);
+>   		}
+> +	}
+>   
+> -		if (!(flags & __EXEC_OBJECT_NO_RESERVE)) {
+> -			err = dma_resv_reserve_fences(vma->obj->base.resv, 1);
+> -			if (unlikely(err))
+> -				return err;
+> -		}
+> +	if (fence) {
+> +		struct dma_fence *curr;
+> +		enum dma_resv_usage usage;
+> +		int idx;
+>   
+> -		if (fence) {
+> -			dma_resv_add_fence(vma->obj->base.resv, fence,
+> -					   DMA_RESV_USAGE_WRITE);
+> +		obj->read_domains = 0;
+> +		if (flags & EXEC_OBJECT_WRITE) {
+> +			usage = DMA_RESV_USAGE_WRITE;
+>   			obj->write_domain = I915_GEM_DOMAIN_RENDER;
+> -			obj->read_domains = 0;
+> -		}
+> -	} else {
+> -		if (!(flags & __EXEC_OBJECT_NO_RESERVE)) {
+> -			err = dma_resv_reserve_fences(vma->obj->base.resv, 1);
+> -			if (unlikely(err))
+> -				return err;
+> +		} else {
+> +			usage = DMA_RESV_USAGE_READ;
+>   		}
+>   
+> -		if (fence) {
+> -			dma_resv_add_fence(vma->obj->base.resv, fence,
+> -					   DMA_RESV_USAGE_READ);
+> -			obj->write_domain = 0;
+> -		}
+> +		dma_fence_array_for_each(curr, idx, fence)
+> +			dma_resv_add_fence(vma->obj->base.resv, curr, usage);
+>   	}
+>   
+>   	if (flags & EXEC_OBJECT_NEEDS_FENCE && vma->fence)
