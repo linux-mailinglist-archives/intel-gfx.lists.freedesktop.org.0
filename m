@@ -2,51 +2,78 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE39A53474C
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 May 2022 02:08:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 77149534759
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 May 2022 02:11:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F0A1110F698;
-	Thu, 26 May 2022 00:08:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B6D610F74F;
+	Thu, 26 May 2022 00:11:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 38EBE10F698;
- Thu, 26 May 2022 00:08:27 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A6D610F74F
+ for <intel-gfx@lists.freedesktop.org>; Thu, 26 May 2022 00:11:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1653523707; x=1685059707;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=tmwrit1dgQxdQl6Jk490SmR8Scnt8+kfrNYjj+boFjg=;
- b=MgT0EzAF+0mV26n1J5RcJ8kinbovJq5Di4OQEbMez+ZzjEymNy66yKbB
- xwAfuqez7wrYDe4G8mB3hlIvUlarYFNrB8538i4r3jR4yL6/zUvT+PWPi
- ciPyHKHi36dPRnM/01Vl086RfGw7uLzU8GFzO23x/IpSWEHD7b1bHQB2+
- MZqGzkISvH12CwVYnUfTYSknU1gZKv1tDyZeHuqBe6kuCIam6sNm/z6CE
- CZ2uiZMMl7Qrc9BttR6X41LOOXynvR3rgOvQJX2brBnm6WqXlwZTRiuH5
- j4D1BkDNOze7jTDi3IQROcjiIqG8dIAl6H/aybHnEDHRS8txj7yzgrBa3 g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10358"; a="273696458"
-X-IronPort-AV: E=Sophos;i="5.91,252,1647327600"; d="scan'208";a="273696458"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 May 2022 17:08:25 -0700
+ t=1653523891; x=1685059891;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=2rabF13CBj0PdVy8b0nEOQ53MCJn1s010Dz97yS2DXg=;
+ b=ZvVvOjky5ktrihzEMuzRvvp83FGIlCk6p4Hq4zPGdP3Rc2i34qVr+L6v
+ 62ohL55Rohsdio/w/ojQEhfA853ECRM5I8/xafmAvsaxBL3ra6cbR/DoI
+ 3Lh4XYHGQEOdaw0GeRvpQK1izJbZ3dFkodP9g4O8z8PDXMBqTaHz8AkbC
+ 7fr5rIzDybnc4ll9J+dMKBDRXNhWFZqGQk6qjfLhcIxRpIWMecDTRbQaN
+ 9tJojc9476BPAUOoVVbFtCe3ZUJhLBotFiLNdFh0LW72zavv0Mwbo7yfk
+ VndoYeV0C9bSynkkmH4jf2vJtS0XregP7Tok2OL/8Jcdb9sSjfDfpPoTK Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10358"; a="337021549"
+X-IronPort-AV: E=Sophos;i="5.91,252,1647327600"; d="scan'208";a="337021549"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 May 2022 17:11:30 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,252,1647327600"; d="scan'208";a="642595075"
-Received: from lkp-server01.sh.intel.com (HELO db63a1be7222) ([10.239.97.150])
- by fmsmga004.fm.intel.com with ESMTP; 25 May 2022 17:08:22 -0700
-Received: from kbuild by db63a1be7222 with local (Exim 4.95)
- (envelope-from <lkp@intel.com>) id 1nu137-0003R7-Pc;
- Thu, 26 May 2022 00:08:21 +0000
-Date: Thu, 26 May 2022 08:08:14 +0800
-From: kernel test robot <lkp@intel.com>
-To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
-Message-ID: <202205260728.itOPg4qx-lkp@intel.com>
-References: <20220525184337.491763-9-matthew.auld@intel.com>
+X-IronPort-AV: E=Sophos;i="5.91,252,1647327600"; d="scan'208";a="901730667"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by fmsmga005.fm.intel.com with ESMTP; 25 May 2022 17:11:21 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27; Wed, 25 May 2022 17:11:20 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27; Wed, 25 May 2022 17:11:20 -0700
+Received: from orsmsx611.amr.corp.intel.com ([10.22.229.24]) by
+ ORSMSX611.amr.corp.intel.com ([10.22.229.24]) with mapi id 15.01.2308.027;
+ Wed, 25 May 2022 17:11:20 -0700
+From: "Kasireddy, Vivek" <vivek.kasireddy@intel.com>
+To: "Deak, Imre" <imre.deak@intel.com>
+Thread-Topic: [Intel-gfx] [PATCH v1 2/2] drm/i915: Reject the atomic modeset
+ if an associated Type-C port is disconnected
+Thread-Index: AQHYaQTzXwLlPdkwqEG7fOawjIhIF60huRWAgAJ0k8CAAlpRgP///4WwgAZKYwD//9DEEIACEZyAgAFDYRA=
+Date: Thu, 26 May 2022 00:11:20 +0000
+Message-ID: <7727ede08b364d4db75ff5a0270d3785@intel.com>
+References: <20220516085402.3591249-1-vivek.kasireddy@intel.com>
+ <20220516085402.3591249-3-vivek.kasireddy@intel.com>
+ <YoIfQQLpeKnVHzEp@ideak-desk.fi.intel.com>
+ <6117cb32773745e980bc02bfab96bb21@intel.com>
+ <YoYnzRo6gbF416Ek@ideak-desk.fi.intel.com>
+ <a0e6dca24e6a4b92b5870592aaeff05a@intel.com>
+ <YotuSk4x8kcwX+Mk@ideak-desk.fi.intel.com>
+ <68eff4780929468a97e68e40780b0cd5@intel.com>
+ <Yo0C7yUpdSBdnyof@ideak-desk.fi.intel.com>
+In-Reply-To: <Yo0C7yUpdSBdnyof@ideak-desk.fi.intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 11.6.500.17
+dlp-reaction: no-action
+x-originating-ip: [10.1.200.100]
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220525184337.491763-9-matthew.auld@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 08/10] drm/i915/uapi: disable capturing
- objects on recoverable contexts
+Subject: Re: [Intel-gfx] [PATCH v1 2/2] drm/i915: Reject the atomic modeset
+ if an associated Type-C port is disconnected
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,169 +86,180 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- kbuild-all@lists.01.org, Daniel Vetter <daniel.vetter@ffwll.ch>,
- llvm@lists.linux.dev, dri-devel@lists.freedesktop.org,
- Kenneth Graunke <kenneth@whitecape.org>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Matthew,
+Hi Imre,
 
-Thank you for the patch! Yet something to improve:
+> On Tue, May 24, 2022 at 11:29:54AM +0300, Kasireddy, Vivek wrote:
+> > Hi Imre,
+> >
+> > > On Fri, May 20, 2022 at 10:28:31AM +0300, Kasireddy, Vivek wrote:
+> > > > Hi Imre,
+> > > > [...]
+> > > > > > > > @@ -131,6 +137,20 @@ int intel_digital_connector_atomic_che=
+ck(struct
+> > > drm_connector *conn,
+> > > > > > > >
+> > > > > > > >  	crtc_state =3D drm_atomic_get_new_crtc_state(state, new_s=
+tate-
+> >crtc);
+> > > > > > > >
+> > > > > > > > +	/*
+> > > > > > > > +	 * The spec says that it is not safe to use a disconnecte=
+d Type-C port.
+> > > > > > > > +	 * Therefore, check to see if this connector is connected=
+ and reject
+> > > > > > > > +	 * the modeset if there is no sink detected.
+> > > > > > > > +	 */
+> > > > > > > > +	if (dig_port && !dig_port->connected(encoder) &&
+> > > > > > >
+> > > > > > > This check is racy, as right after dig_port->connected() retu=
+rns true,
+> > > > > > > the port can become disconnected.
+> > > > > >
+> > > > > > [Kasireddy, Vivek] Given that, do you think the only way to rel=
+iably determine
+> > > > > > if the Type-C port has a sink is to check the live status and i=
+gnore dig_port-
+> > > >tc_mode?
+> > > > > >
+> > > > > > If that is the case, should I just add a function pointer to di=
+g_port to call
+> > > > > > tc_port_live_status_mask()? Or, should I just change intel_tc_p=
+ort_connected()
+> > > > > > to ignore dig_port->tc_mode like below:
+> > > > > > @@ -764,8 +764,7 @@ bool intel_tc_port_connected(struct intel_e=
+ncoder
+> > > *encoder)
+> > > > > >
+> > > > > >         intel_tc_port_lock(dig_port);
+> > > > > >
+> > > > > > -       is_connected =3D tc_port_live_status_mask(dig_port) &
+> > > > > > -                      BIT(dig_port->tc_mode);
+> > > > > > +       is_connected =3D tc_port_live_status_mask(dig_port);
+> > > > > >
+> > > > > > Or, are there any other elegant ways that you can think of to d=
+etermine whether
+> > > > > > a tc port has a sink or not?
+> > > > >
+> > > > > I meant that I don't think there is a way to prevent a modeset on=
+ a
+> > > > > disconnected port.
+> > > >
+> > > > But we need to find a way right given that the spec clearly states =
+that the driver
+> > > > must not use or access (PHY/FIA registers of) a disconnected tc por=
+t.
+> > >
+> > > The driver does not access the PHY/FIA regs on a disconnected port/PH=
+Y.
+> >
+> > [Kasireddy, Vivek] I think it does after the first patch in this series=
+ is applied if
+> > the userspace (Weston) forces a modeset on a disconnected tc legacy por=
+t (HDMI).
+> > For instance, some of the FIA/PHY regs accesses I noticed include progr=
+amming
+> > the lane count (intel_tc_port_set_fia_lane_count() called by intel_ddi_=
+pre_pll_enable()),
+> > reading the pin assignment mask (intel_tc_port_get_pin_assignment_mask(=
+) called
+> > by icl_program_mg_dp_mode() which is called by intel_ddi_pre_enable_hdm=
+i()), etc.
+>=20
+> The FW/HW will setup a legacy TC port's PHY once during system boot and
+> resume, so I don't see any problem modesetting those later, regardless
+> of a sink being plugged on them or not. We need the first patch which
+> fixes a bug selecting the wrong PLL.
+>=20
+> > Of-course, these accesses would probably not occur if the disconnected =
+tc port
+> > defaults to TBT mode but this brings other problems like I described in=
+ the
+> > commit description of the first patch and the cover letter.
+> >
+> > > > > Live status is what provides the connected state, but
+> > > > > it can change right after it is read out.
+> > > >
+> > > > Does this change happen after giving up the ownership (in
+> > > > icl_tc_phy_disconnect)?
+> > >
+> > > The HPD live status changes whenever a user plugs/unplugs a sink.
+> > >
+> > > > But shouldn't we distinguish between the cases where we are
+> > > > deliberately disconnecting the phy for power-savings reason vs when
+> > > > the port actually becomes disconnected? The port can still be
+> > > > considered connected in the former case right?
+> > >
+> > > The driver - based on the spec - needs to avoid accessing the PHY/FIA
+> > > regs whenever the PHY is disconnected either by FW/HW (because the us=
+er
+> > > unplugged the sink) or the driver (during the suspend, modeset disabl=
+e
+> > > sequence).
+> >
+> > [Kasireddy, Vivek] Regardless of whether the PHY/FIA regs are accessed =
+or
+> > not, I don't think the driver should let the userspace's modeset to suc=
+ceed on
+> > a disconnected tc port. Do you not agree?
+>=20
+> I don't think a modeset can or should be prevented if the user unplugs a
+> monitor midway.
+>=20
+> > > > Under what other situations would the live status change or become
+> > > > unreliable after the port has a connected sink?
+> > >
+> > > It's not unreliable, it reflects the state of a sink being plugged to
+> > > the connector or not.
+> >
+> > [Kasireddy, Vivek] Ok, assuming that the state of the sink is "connecte=
+d"
+> > during intel_atomic_check() phase (which is where this patch checks for
+> > connected status), are you concerned about the case where the user may
+> > unplug the sink before we get to the intel_atomic_commit() phase? Is
+> > this what you meant when you said this earlier: "This check is racy, as
+> > right after dig_port->connected() returns true, the port can become
+> > disconnected"? I am just trying to figure out the scenarios when this
+> > might happen.
+>=20
+> Yes, checking the HPD live state and attempting to prevent a modeset
+> based on it doesn't work as this state can change at any moment. I don't
+> see a reason either why this should be done.
+>=20
+> > > > And, since we rely on SDEISR to detect the live status for tc legac=
+y
+> > > > ports, could this not be considered reliable?
+> > >
+> > > Changes in the HPD live status is used as a hint to user space to
+> > > follow up with connector detection and modeset enable/disable request=
+s
+> > > as necessary.
+> >
+> > [Kasireddy, Vivek] Right, that is the ideal case but user/userspace can=
+ commit
+> > mistakes where for example they can assume that HDMI-A-1 is connected
+> > (while it is not) instead of HDMI-A-3 which is the one actually connect=
+ed.
+> > During such cases, I think the driver should not let the userspace hang=
+ the
+> > system or lead to unexpected states and instead should return an error.
+>=20
+> I can't see a problem modesetting a TC connector, when there is no sink
+> connected to it or the sink gets unplugged at an arbitrary time during
+> the modeset.
+[Kasireddy, Vivek] I think modesetting a TC connector with no sink connecte=
+d
+would be equivalent to "using" it which is against what the spec says: "Dis=
+play
+software must not use a disconnected port".
 
-[auto build test ERROR on drm-tip/drm-tip]
-[also build test ERROR on v5.18 next-20220525]
-[cannot apply to drm-intel/for-linux-next drm/drm-next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+Anyway, let me send a v2 of the first patch to include your suggestion.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Matthew-Auld/small-BAR-uapi-bits/20220526-024641
-base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
-config: i386-randconfig-a004 (https://download.01.org/0day-ci/archive/20220526/202205260728.itOPg4qx-lkp@intel.com/config)
-compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project d52a6e75b0c402c7f3b42a2b1b2873f151220947)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/fdc3574e30bb0fdfdc9569fa42d369b1fae41e9e
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Matthew-Auld/small-BAR-uapi-bits/20220526-024641
-        git checkout fdc3574e30bb0fdfdc9569fa42d369b1fae41e9e
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 SHELL=/bin/bash
+Thanks,
+Vivek
 
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>):
-
->> drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:3429:6: error: assigning to 'int' from incompatible type 'void'
-           err = eb_capture_stage(&eb);
-               ^ ~~~~~~~~~~~~~~~~~~~~~
-   1 error generated.
-
-
-vim +3429 drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-
-  3384	
-  3385		if (args->flags & I915_EXEC_FENCE_OUT) {
-  3386			out_fence_fd = get_unused_fd_flags(O_CLOEXEC);
-  3387			if (out_fence_fd < 0) {
-  3388				err = out_fence_fd;
-  3389				goto err_in_fence;
-  3390			}
-  3391		}
-  3392	
-  3393		err = eb_create(&eb);
-  3394		if (err)
-  3395			goto err_out_fence;
-  3396	
-  3397		GEM_BUG_ON(!eb.lut_size);
-  3398	
-  3399		err = eb_select_context(&eb);
-  3400		if (unlikely(err))
-  3401			goto err_destroy;
-  3402	
-  3403		err = eb_select_engine(&eb);
-  3404		if (unlikely(err))
-  3405			goto err_context;
-  3406	
-  3407		err = eb_lookup_vmas(&eb);
-  3408		if (err) {
-  3409			eb_release_vmas(&eb, true);
-  3410			goto err_engine;
-  3411		}
-  3412	
-  3413		i915_gem_ww_ctx_init(&eb.ww, true);
-  3414	
-  3415		err = eb_relocate_parse(&eb);
-  3416		if (err) {
-  3417			/*
-  3418			 * If the user expects the execobject.offset and
-  3419			 * reloc.presumed_offset to be an exact match,
-  3420			 * as for using NO_RELOC, then we cannot update
-  3421			 * the execobject.offset until we have completed
-  3422			 * relocation.
-  3423			 */
-  3424			args->flags &= ~__EXEC_HAS_RELOC;
-  3425			goto err_vma;
-  3426		}
-  3427	
-  3428		ww_acquire_done(&eb.ww.ctx);
-> 3429		err = eb_capture_stage(&eb);
-  3430		if (err)
-  3431			goto err_vma;
-  3432	
-  3433		out_fence = eb_requests_create(&eb, in_fence, out_fence_fd);
-  3434		if (IS_ERR(out_fence)) {
-  3435			err = PTR_ERR(out_fence);
-  3436			out_fence = NULL;
-  3437			if (eb.requests[0])
-  3438				goto err_request;
-  3439			else
-  3440				goto err_vma;
-  3441		}
-  3442	
-  3443		err = eb_submit(&eb);
-  3444	
-  3445	err_request:
-  3446		eb_requests_get(&eb);
-  3447		err = eb_requests_add(&eb, err);
-  3448	
-  3449		if (eb.fences)
-  3450			signal_fence_array(&eb, eb.composite_fence ?
-  3451					   eb.composite_fence :
-  3452					   &eb.requests[0]->fence);
-  3453	
-  3454		if (out_fence) {
-  3455			if (err == 0) {
-  3456				fd_install(out_fence_fd, out_fence->file);
-  3457				args->rsvd2 &= GENMASK_ULL(31, 0); /* keep in-fence */
-  3458				args->rsvd2 |= (u64)out_fence_fd << 32;
-  3459				out_fence_fd = -1;
-  3460			} else {
-  3461				fput(out_fence->file);
-  3462			}
-  3463		}
-  3464	
-  3465		if (unlikely(eb.gem_context->syncobj)) {
-  3466			drm_syncobj_replace_fence(eb.gem_context->syncobj,
-  3467						  eb.composite_fence ?
-  3468						  eb.composite_fence :
-  3469						  &eb.requests[0]->fence);
-  3470		}
-  3471	
-  3472		if (!out_fence && eb.composite_fence)
-  3473			dma_fence_put(eb.composite_fence);
-  3474	
-  3475		eb_requests_put(&eb);
-  3476	
-  3477	err_vma:
-  3478		eb_release_vmas(&eb, true);
-  3479		WARN_ON(err == -EDEADLK);
-  3480		i915_gem_ww_ctx_fini(&eb.ww);
-  3481	
-  3482		if (eb.batch_pool)
-  3483			intel_gt_buffer_pool_put(eb.batch_pool);
-  3484	err_engine:
-  3485		eb_put_engine(&eb);
-  3486	err_context:
-  3487		i915_gem_context_put(eb.gem_context);
-  3488	err_destroy:
-  3489		eb_destroy(&eb);
-  3490	err_out_fence:
-  3491		if (out_fence_fd != -1)
-  3492			put_unused_fd(out_fence_fd);
-  3493	err_in_fence:
-  3494		dma_fence_put(in_fence);
-  3495	err_ext:
-  3496		put_fence_array(eb.fences, eb.num_fences);
-  3497		return err;
-  3498	}
-  3499	
-
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+>=20
+> --Imre
