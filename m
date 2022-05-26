@@ -2,47 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E3AA534C7B
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 May 2022 11:27:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F81E534CE5
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 May 2022 12:00:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B3A5C10EF25;
-	Thu, 26 May 2022 09:27:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E492410E0E9;
+	Thu, 26 May 2022 10:00:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 796AE10F1AF
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 May 2022 09:27:37 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5151710E0E9
+ for <intel-gfx@lists.freedesktop.org>; Thu, 26 May 2022 10:00:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1653557257; x=1685093257;
+ t=1653559251; x=1685095251;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=wVuOGmvUwTqzRIBaAjDx2KA+eTw7wSLKG7NPAn+b2lE=;
- b=RkHrGgFCp4GUPd4prsV9iur7lAAhOXT9Kw0Oo2zapGbg55rGOfQVhTqF
- 0nQdTqZZSuxGp5DrFtn91XW7guIwBVuHVaBHXGWLmw4KKGFzdqxCHvRBL
- +Ik7YvMYsyCz7cUoOsSsmnkQZdYNqCMFuIzj80IZ52VQHNvD5BmQExcI1
- gP//sSy1HfcJkJhUnPfa5kANN9Ve+lT+VXjwTNlCyKt91SkDGwJ0agbNQ
- H/TlzXxMUaEX6e+Muk4Tw7MRLB8QdEZZC+33l2WeXk5tutklsYne4IspN
- 17hL4fEDN31kdGiMagZuGx4+7twdEmv7dluChSrleZXcfe1Ry0TJNAM2X g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10358"; a="254595894"
-X-IronPort-AV: E=Sophos;i="5.91,252,1647327600"; d="scan'208";a="254595894"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2022 02:27:36 -0700
-X-IronPort-AV: E=Sophos;i="5.91,252,1647327600"; d="scan'208";a="664852653"
-Received: from tursulin-mobl.ger.corp.intel.com (HELO [10.252.4.248])
- ([10.252.4.248])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2022 02:27:35 -0700
-Message-ID: <2c138486-fa2e-867c-33ac-3e7837a8481a@intel.com>
-Date: Thu, 26 May 2022 10:27:33 +0100
+ bh=HVwFhJDCBI6b8hYuH0/W8kTrNFjco8Qmuk2d6nn/55E=;
+ b=Qi33mrjHVL1U6jap2C481B+6dtwcRC5WQpvuNI+rjjRlGU9D0C1pFdJy
+ OTtgsaMVAbRh3/bnpxx1x+ph/KnTn29qGbRbYfItuBQOuxLQyTqpZxVsr
+ 41kR8CJAHnMVsVdKlbU9MZdFrpEHyh6gegAu32WqV1efApbdVyI4Nb63i
+ xm6s8xXqU9aA4E8+LfACC4F8q5DvSMMvQneXMIv5SqqsTskUJ1tB4BouH
+ 6jG/O76imgZCDlt5OAoU5BtWSqm82EtrJXIj1XkrVBrdtemrfeqBr2Pfc
+ jBtloRwE9sjh34uKd0CkOSaRQRMfMUGyjA++h/nZVP0QmvOPqPCL2yqCM Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10358"; a="274212748"
+X-IronPort-AV: E=Sophos;i="5.91,252,1647327600"; d="scan'208";a="274212748"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2022 03:00:50 -0700
+X-IronPort-AV: E=Sophos;i="5.91,252,1647327600"; d="scan'208";a="602965935"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.26.62])
+ ([10.213.26.62])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2022 03:00:47 -0700
+Message-ID: <60879aa1-f0d5-1cdd-91cb-b394099db3c3@intel.com>
+Date: Thu, 26 May 2022 12:00:45 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Firefox/91.0 Thunderbird/91.9.0
-Content-Language: en-GB
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Firefox/91.0 Thunderbird/91.9.1
+Content-Language: en-US
 To: Nirmoy Das <nirmoy.das@intel.com>, intel-gfx@lists.freedesktop.org
 References: <20220525095955.15371-1-nirmoy.das@intel.com>
-From: Matthew Auld <matthew.auld@intel.com>
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
 In-Reply-To: <20220525095955.15371-1-nirmoy.das@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
@@ -60,11 +62,12 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: thomas.hellstrom@intel.com, chris.p.wilson@intel.com
+Cc: thomas.hellstrom@intel.com, matthew.auld@intel.com,
+ chris.p.wilson@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 25/05/2022 10:59, Nirmoy Das wrote:
+On 25.05.2022 11:59, Nirmoy Das wrote:
 > _i915_vma_move_to_active() can receive > 1 fences for
 > multiple batch buffers submission. Because dma_resv_add_fence()
 > can only accept one fence at a time, change _i915_vma_move_to_active()
@@ -80,10 +83,6 @@ On 25/05/2022 10:59, Nirmoy Das wrote:
 > 
 > Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/5614
 > Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
-
-Do we need Fixes: ?
-
 > ---
 >   .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |  3 +-
 >   drivers/gpu/drm/i915/i915_vma.c               | 48 +++++++++++--------
@@ -129,6 +128,17 @@ Do we need Fixes: ?
 > +
 > +		dma_fence_array_for_each(curr, idx, fence)
 > +			;
+
+This look little odd.
+Maybe we could add helper to dma core to get fences count, different story.
+
+Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+
+Regards
+Andrzej
+
+
+
 > +		err = dma_resv_reserve_fences(vma->obj->base.resv, idx);
 > +		if (unlikely(err))
 > +			return err;
@@ -181,3 +191,4 @@ Do we need Fixes: ?
 >   	}
 >   
 >   	if (flags & EXEC_OBJECT_NEEDS_FENCE && vma->fence)
+
