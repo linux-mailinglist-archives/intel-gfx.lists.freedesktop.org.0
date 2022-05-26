@@ -1,33 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBC7A5353B4
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 May 2022 20:58:49 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71B025353BA
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 May 2022 21:01:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2AAFC10E22B;
-	Thu, 26 May 2022 18:58:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CAD2210E28C;
+	Thu, 26 May 2022 19:01:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1CD1210E22B;
- Thu, 26 May 2022 18:58:46 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0FF0EAADD5;
- Thu, 26 May 2022 18:58:46 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C65DA89ABE
+ for <intel-gfx@lists.freedesktop.org>; Thu, 26 May 2022 19:01:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1653591676; x=1685127676;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=LBcpkd0AxIyGAgZ50cJxhK6bSbNi3oVn723FcX0WMQY=;
+ b=JyA18J8ueY5SdDh71g2m7Kn50FSdFzSlnuHOB4OLZ+rjB5q2+UpIvD4R
+ 1Ctf1fjEutIVj5TyL38tWQ6LD4NFoEahOY0xG2ZSQTv3CLKNhaLqW6wNw
+ QGCo0n2+RWmM5DcrNrSRYDhBbUD981qWUErwNFpiv2ilNkaRvbbtPIkVh
+ xa5awdXZZTE96frcmtqZmh1bAmQdg2HP16DKiIXjiLAJgQMpXIZ2vR5pF
+ O6OTLLCawc/Ir6iLw7hb4MDjlZPMKderXwSzGsOXwfirUdiOBkzqUhXPf
+ C4RyudHxoe+EuNwsKNDOKKje+2D/KIxRbyEQndV2baN7FYYjGdJhGsVLp A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10359"; a="273978986"
+X-IronPort-AV: E=Sophos;i="5.91,252,1647327600"; d="scan'208";a="273978986"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2022 12:00:49 -0700
+X-IronPort-AV: E=Sophos;i="5.91,252,1647327600"; d="scan'208";a="574034400"
+Received: from orsosgc001.jf.intel.com ([10.165.21.154])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2022 12:00:49 -0700
+From: Ashutosh Dixit <ashutosh.dixit@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 26 May 2022 12:00:42 -0700
+Message-Id: <cover.1653591227.git.ashutosh.dixit@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ashutosh Dixit" <ashutosh.dixit@intel.com>
-Date: Thu, 26 May 2022 18:58:46 -0000
-Message-ID: <165359152603.19751.172950198672758096@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <cover.1653589699.git.ashutosh.dixit@intel.com>
-In-Reply-To: <cover.1653589699.git.ashutosh.dixit@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?drm/i915/gt=3A_Expose_per_gt_defaults_in_sysfs?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2 0/3] drm/i915/gt: Expose per gt defaults in
+ sysfs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,21 +54,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Create a gt/gtN/.defaults directory (similar to
+engine/<engine-name>/.defaults) to expose default parameter values for each
+gt in sysfs. This allows userspace to restore default parameter values
+after they may have changed.
 
-Series: drm/i915/gt: Expose per gt defaults in sysfs
-URL   : https://patchwork.freedesktop.org/series/104422/
-State : warning
+Patch 1: Creates the gt/gtN/.defaults directory
+Patch 2: Adds per-gt RPS defaults to gt/gtN/.defaults
+Patch 3: Adds media_freq_factor to gt/gtN/.defaults
 
-== Summary ==
+Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Cc: Andi Shyti <andi.shyti@linux.intel.com>
+Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 
-Error: dim sparse failed
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
+Ashutosh Dixit (3):
+  drm/i915/gt: Create gt/gtN/.defaults for per gt sysfs defaults
+  drm/i915/gt: Expose per-gt RPS defaults in sysfs
+  drm/i915/gt: Expose default value for media_freq_factor in per-gt
+    sysfs
 
+ drivers/gpu/drm/i915/gt/intel_gt_sysfs.c    | 10 ++--
+ drivers/gpu/drm/i915/gt/intel_gt_sysfs.h    |  6 ++
+ drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c | 64 +++++++++++++++++++++
+ drivers/gpu/drm/i915/gt/intel_gt_types.h    | 11 ++++
+ drivers/gpu/drm/i915/gt/intel_rps.c         |  3 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c | 19 ++++--
+ 6 files changed, 103 insertions(+), 10 deletions(-)
+
+-- 
+2.34.1
 
