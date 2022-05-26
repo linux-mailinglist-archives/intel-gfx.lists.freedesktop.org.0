@@ -1,57 +1,74 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E6F9534BDD
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 May 2022 10:39:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 012AA534C3A
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 May 2022 11:05:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5157E10ED44;
-	Thu, 26 May 2022 08:39:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 75B8210EAC8;
+	Thu, 26 May 2022 09:05:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4903110E59E
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 May 2022 08:39:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1653554396; x=1685090396;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=19apU3dwNsX83/1kK5Il34LNMsq2Umgm+6W8aO06xfQ=;
- b=NLlcTLhHN5EasLdnmcQThN1dhrMp90cJOacXvnUHXqLXsgtY+/aKz8LZ
- D7cNJo5Yof0KCrRDpCkXnm38KgwEhB3sGyNKRu5TDW59xn2OIp88oEeHK
- paHfWf9222etQRZsdaqmqxp/27RVhZQyWPrYRl2TEo9AS0MvW+lb0rk2p
- VqpClPd2PLizkMFBA9p3HsDAiNX8+IC2TOUg/YpEXWkQ9+fFP74rY0pXe
- 3tpTUA7YyQfjmtJyRK/vbJtl8Gd0W9VDwSqCWHvfcLnYPm0bYYvEwnZQ0
- Tjiqav6UWz8gplErC2rq7w9jFIR1RsPddg6XdkXYpbyfS6AciB5ayjjDC A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10358"; a="334725772"
-X-IronPort-AV: E=Sophos;i="5.91,252,1647327600"; d="scan'208";a="334725772"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2022 01:39:55 -0700
-X-IronPort-AV: E=Sophos;i="5.91,252,1647327600"; d="scan'208";a="664836050"
-Received: from tkinch-mobl.ger.corp.intel.com (HELO [10.213.214.182])
- ([10.213.214.182])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2022 01:39:54 -0700
-Message-ID: <fb8e48f7-dcd9-56fe-f329-97053d8e0126@linux.intel.com>
-Date: Thu, 26 May 2022 09:39:53 +0100
+Received: from out2-smtp.messagingengine.com (out2-smtp.messagingengine.com
+ [66.111.4.26])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B434610EAC8;
+ Thu, 26 May 2022 09:05:38 +0000 (UTC)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+ by mailout.nyi.internal (Postfix) with ESMTP id 2492E5C00E0;
+ Thu, 26 May 2022 05:05:36 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+ by compute5.internal (MEProxy); Thu, 26 May 2022 05:05:36 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+ :cc:content-type:date:date:from:from:in-reply-to:message-id
+ :mime-version:reply-to:sender:subject:subject:to:to; s=fm3; t=
+ 1653555936; x=1653642336; bh=pFj+7WO1SOJz0ZXjigSsoFbHLjS7TjhY+yv
+ REBYg6J8=; b=fYqBH5IfvkB3qu1T0bzOyOP+miDiSriLbrNGHjncVzoO+/ECh31
+ bgY2nWPPdKyt0RmO6hAT5X9x5y6/PDc8L+/Pvtj1zhk9ctXCDtmo4gjCQgT5aMZJ
+ mlcpe2c6VI+YnyyOKCEnjheHfopE62SKErm0LHI7dMJl3ejdXsBk7cmzU15dNHdc
+ e7P+IXDcGUfJpPQcU12m/ewSXq4qTrdcK2yE0urHt154JyZl6Cd+lTIb/fM/Ritw
+ N3CNPA5MECOTT2CbctGqGN06l9FTpltnssdkMis74RQmvlfhfR9GunoIa8YjEsyb
+ CotTNySuCBTyTFOs30r/kWHhtcz13fcDAzw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+ :feedback-id:from:from:in-reply-to:message-id:mime-version
+ :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1653555936; x=
+ 1653642336; bh=pFj+7WO1SOJz0ZXjigSsoFbHLjS7TjhY+yvREBYg6J8=; b=e
+ /3rr5Gjy/Bycch+dvWMi1X8ikNEoQX7etjr0T46ypxXr8c0I/cnXWbL2nxja1O2M
+ 8fv3P3/fKb6NJVAAdmeWBPR0aiWpQ9VtZKgPtFxdUIg02Rbm6dBz38ho77nEicAt
+ yi3QQCgVAmLw+LoHnMF/md/8n9WV7UQG86fFPYGT2Gd5fDvXZ+IvAiOz16Knr/eP
+ cqApw/kelWDzOMKPRkBL989bk+Sr31w0/eScikiB4f9eTCH1fd493zaZ/Y1lkW4q
+ 4JD1uKPpojj++BdedsMu0JY14kpApEYqiCVFj1Fm3aMbwgoK68z6A/kH1hi+NgYm
+ rJT9zIGms5C4DhctAcukQ==
+X-ME-Sender: <xms:30KPYjYOs-0RXxDqQE41tlNMnjPPFD5ukmn8um-1FLnyISrQlgeQ4w>
+ <xme:30KPYiatv0nGajRW2vDKHDV-KjBY3iR7olp187erdkgLrHTtobjQqj0we2FFkuWkU
+ IG0AFJYhEk2fJNiQtk>
+X-ME-Received: <xmr:30KPYl81lSZNS2JjnNv-a78yDXAFZuWnpgVmxJK_k02QEUsC1ng10tbhpsUzswhngHjW_Z_MwP7unWLkea53azqgOB1mqMP53YLkDiY>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrjeejgddtlecutefuodetggdotefrodftvf
+ curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+ uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+ fjughrpeffhffvvefukfggtggusehgtderredttddvnecuhfhrohhmpeforgigihhmvgcu
+ tfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrthhtvg
+ hrnhepueeiheejhfeivedtheduffdttefgtdeuvddvueegtefgveegvedugeffudevjeei
+ necuffhomhgrihhnpehfrhgvvgguvghskhhtohhprdhorhhgnecuvehluhhsthgvrhfuih
+ iivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordht
+ vggthh
+X-ME-Proxy: <xmx:30KPYpp_8lWNcaMff_mfPmwXvvbTHtj_MWRSXBe93BbIWrV0YL8vhg>
+ <xmx:30KPYup0IOEGjA5spiwUuuEeoYi2KhBmhesXaWU8fmRKx0zxQOuVCw>
+ <xmx:30KPYvSfejj8asWvKNonopByLu5-nElj_Ryc3ujEcSG6bo6fIJ3KjQ>
+ <xmx:4EKPYrgVlrTLX6t5GXT_HCp72soRjZ_8GRAY3ZtalCG1ljiF0UdKSw>
+Feedback-ID: i8771445c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 26 May 2022 05:05:35 -0400 (EDT)
+Date: Thu, 26 May 2022 11:05:32 +0200
+From: Maxime Ripard <maxime@cerno.tech>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20220526090532.nvhlmwev5qgln3nb@houat>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Content-Language: en-US
-To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-References: <cover.1652405421.git.ashutosh.dixit@intel.com>
- <a44eef23-282d-1739-cc05-bedcb8e991fc@linux.intel.com>
- <877d6ahvkd.wl-ashutosh.dixit@intel.com>
- <87v8ts7lw4.wl-ashutosh.dixit@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <87v8ts7lw4.wl-ashutosh.dixit@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v6 0/7] drm/i915: Media freq factor and
- per-gt enhancements/fixes
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="32d6m4fojbj5xljq"
+Content-Disposition: inline
+Subject: [Intel-gfx] [PULL] drm-misc-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,52 +81,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 26/05/2022 09:12, Dixit, Ashutosh wrote:
-> On Wed, 25 May 2022 01:21:06 -0700, Dixit, Ashutosh wrote:
->>
->> On Mon, 23 May 2022 01:57:51 -0700, Tvrtko Ursulin wrote:
->>>
->>> On 13/05/2022 02:36, Ashutosh Dixit wrote:
->>>> Some recent Intel dGfx platforms allow media IP to work at a different
->>>> frequency from the base GT. This patch series exposes sysfs controls for
->>>> this functionality in the new per-gt sysfs. Some enhancements and fixes to
->>>> previous per-gt functionality are also included to complete the new
->>>> functionality:
->>>> * Patches 1 and 2 implement basic sysfs controls for media freq
->>>> * Patch 3 extends previous pcode functions for multiple gt's
->>>> * Patch 4 inits pcode on different gt's
->>>> * Patch 5 adds a couple of pcode helpers
->>>> * Patch 6 uses the new pcode functions to retrieve media RP0/RPn freq
->>>> * Patch 7 fixes memory leaks in the previous per-gt sysfs implementation
->>>>     and some code refactoring
->>>
->>> Patches 1, 3 and 5 have been merged to drm-intel-next, and then branch
->>> cross-merged into drm-intel-gt-next.
->>>
->>> You can try re-sending the rest of the series now and see if that goes
->>> smoothly.
->>
->> I sent the patches out Mon but am struggling to get a satisfactory CI run
->> from what it looks like are CI issues (CI runs were fine on previous
->> versions). Will update after we have successful CI. Thanks.
-> 
-> Hi Tvrtko,
-> 
-> We now have CI results. They look good to me (except that there is a false
-> positive). In case you think this is good enough to merge these patches
-> now:
-> 
-> https://patchwork.freedesktop.org/series/102665/#rev10
+--32d6m4fojbj5xljq
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Pushed, with no conflicts even! :)
+Hi Daniel, Dave,
 
-Regards,
+Here's this week drm-misc-fixes PR.
 
-Tvrtko
+Maxime
 
+drm-misc-fixes-2022-05-26:
+A use-after-free fix for panfrost, and a DT invalid configuration fix for
+ti-sn65dsi83
+The following changes since commit 6e03b13cc7d9427c2c77feed1549191015615202:
 
+  drm/dp/mst: fix a possible memory leak in fetch_monitor_name() (2022-05-17 15:56:18 -0400)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2022-05-26
+
+for you to fetch changes up to 6e516faf04317db2c46cbec4e3b78b4653a5b109:
+
+  drm/panfrost: Job should reference MMU not file_priv (2022-05-25 09:14:22 +0100)
+
+----------------------------------------------------------------
+A use-after-free fix for panfrost, and a DT invalid configuration fix for
+ti-sn65dsi83
+
+----------------------------------------------------------------
+Marek Vasut (1):
+      drm/bridge: ti-sn65dsi83: Handle dsi_lanes == 0 as invalid
+
+Steven Price (1):
+      drm/panfrost: Job should reference MMU not file_priv
+
+ drivers/gpu/drm/bridge/ti-sn65dsi83.c   | 2 +-
+ drivers/gpu/drm/panfrost/panfrost_drv.c | 5 +++--
+ drivers/gpu/drm/panfrost/panfrost_job.c | 6 +++---
+ drivers/gpu/drm/panfrost/panfrost_job.h | 2 +-
+ 4 files changed, 8 insertions(+), 7 deletions(-)
+
+--32d6m4fojbj5xljq
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYo9C2wAKCRDj7w1vZxhR
+xc3zAQCNGP7xktDmUynaCW84jLAqAQlvKYnXqVxXEwDhq6iM9gD6Ar0h9oD5O+Sv
+lniSFuPd2MnqHp0khJmKYZgTbEdRnwI=
+=K1ck
+-----END PGP SIGNATURE-----
+
+--32d6m4fojbj5xljq--
