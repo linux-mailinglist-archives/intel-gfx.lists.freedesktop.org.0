@@ -2,48 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11AEA5352D3
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 May 2022 19:43:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EC14553535F
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 May 2022 20:35:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E49E10E735;
-	Thu, 26 May 2022 17:43:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 371D810E44A;
+	Thu, 26 May 2022 18:35:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4D93610E735
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 May 2022 17:43:23 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6124010E5C8
+ for <intel-gfx@lists.freedesktop.org>; Thu, 26 May 2022 18:35:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1653587003; x=1685123003;
- h=date:from:to:subject:message-id:references:mime-version:
- in-reply-to; bh=+0XdELP6SlEsh9bjU25/oYU23AISWe3Wt+O8k9piAI0=;
- b=YVDAvmYDLLmaupZ4QqnoCNTvWF7mk2Ly8LqJ63ZFYQ8ihIIN59AdtsOg
- NTbJK3UXiexmgC1fDk0Bup2rN8T20hb89p+rhhENHSXhOcL7HPpmIbQbW
- ejpnx7bemV/53v4ltSp/LwCs2xswsmg3IrkDALOhk0PGp5eOhzmC8i9gw
- 91r5i80PjFWh82isXZb1YRsu+iIkyOHyanNbDsllAXeQd7CpugdGFbnrr
- leourkbHqYE2WxrULj4cP5Q04HEKWTNCHe9cQdRZH2CoAQTnaLxlE/BnQ
- dZXTamn0B7oN9+P9zC0jSFih+Xjf5AndJZsemqiptNVldPSnnEwArA9Nc w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10359"; a="274233604"
-X-IronPort-AV: E=Sophos;i="5.91,252,1647327600"; d="scan'208";a="274233604"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2022 10:43:22 -0700
-X-IronPort-AV: E=Sophos;i="5.91,252,1647327600"; d="scan'208";a="718359255"
-Received: from msatwood-mobl.jf.intel.com (HELO msatwood-mobl) ([10.24.12.99])
- by fmsmga001-auth.fm.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 May 2022 10:43:22 -0700
-Date: Thu, 26 May 2022 10:43:18 -0700
-From: Matt Atwood <matthew.s.atwood@intel.com>
-To: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>,
- intel-gfx@lists.freedesktop.org
-Message-ID: <Yo+8NlbnV1tUBp7H@msatwood-mobl>
-References: <20220526064935.969225-1-balasubramani.vivekanandan@intel.com>
+ t=1653590142; x=1685126142;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=+EUocINekoqFeNtHdyaRpia9wZM7qan0E8dYjr6lPcI=;
+ b=WEPmkhokc2yGJUfvnAgvy9mcvcb3h6nlWiKeRJTmzm/R6O+ghRNDvpTL
+ jPotCAhNjtm42pq/rGeH6ZpjT/jSC2Q7c2hM132+TZlgab3wqUNcP8B/y
+ V/3UucDzsAiEtSRnWmPLpn3UYqxiOcQbIjPkW4Rucu+JEluMjclOWCVKA
+ AqQmdywWCBEYRz2oeGWgIGNlYQ5jeNnIFbr0waumWWXzq+2N3Tl8xdBTa
+ ewxP9pmdmebxE3IUNrTqRwBfOvGXw7lZk/VnCai0keIEPdKjoUWHfiUBV
+ tDTJtzuuJJnh2OEuvjOQqMHbxQH9f88/jBcskhuQTZa3Jf6em6exOPTHZ A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10359"; a="360635475"
+X-IronPort-AV: E=Sophos;i="5.91,252,1647327600"; d="scan'208";a="360635475"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2022 11:35:41 -0700
+X-IronPort-AV: E=Sophos;i="5.91,252,1647327600"; d="scan'208";a="609831388"
+Received: from orsosgc001.jf.intel.com ([10.165.21.154])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2022 11:35:41 -0700
+From: Ashutosh Dixit <ashutosh.dixit@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 26 May 2022 11:35:33 -0700
+Message-Id: <cover.1653589699.git.ashutosh.dixit@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20220526064935.969225-1-balasubramani.vivekanandan@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display/adl_p: Updates to HDMI
- combo PHY voltage swing table
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 0/2] drm/i915/gt: Expose per gt defaults in sysfs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,58 +56,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, May 26, 2022 at 12:19:35PM +0530, Balasubramani Vivekanandan wrote:
-> New updates to HDMI combo PHY voltage swing tables. Actually with this
-> update (bspec updated on 08/17/2021), the values are reverted back to be
-> same as icelake for HDMI combo PHY.
-> 
-> Bspec: 49291
-Reviewed-by: Matt Atwood <matthew.s.atwood@intel.com>
-> Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-> ---
->  .../drm/i915/display/intel_ddi_buf_trans.c    | 22 +------------------
->  1 file changed, 1 insertion(+), 21 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-> index 85f58dd3df72..5cae1d19bcbb 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-> @@ -878,26 +878,6 @@ static const struct intel_ddi_buf_trans adls_combo_phy_trans_edp_hbr3 = {
->  	.num_entries = ARRAY_SIZE(_adls_combo_phy_trans_edp_hbr3),
->  };
->  
-> -static const union intel_ddi_buf_trans_entry _adlp_combo_phy_trans_hdmi[] = {
-> -							/* NT mV Trans mV    db   */
-> -	{ .icl = { 0x6, 0x60, 0x3F, 0x00, 0x00 } },	/*  400    400      0.0 */
-> -	{ .icl = { 0x6, 0x68, 0x3F, 0x00, 0x00 } },	/*  500    500      0.0 */
-> -	{ .icl = { 0xA, 0x73, 0x3F, 0x00, 0x00 } },	/*  650    650      0.0 ALS */
-> -	{ .icl = { 0xA, 0x78, 0x3F, 0x00, 0x00 } },	/*  800    800      0.0 */
-> -	{ .icl = { 0xB, 0x7F, 0x3F, 0x00, 0x00 } },	/* 1000   1000      0.0 Re-timer */
-> -	{ .icl = { 0xB, 0x7F, 0x3B, 0x00, 0x04 } },	/* Full    Red     -1.5 */
-> -	{ .icl = { 0xB, 0x7F, 0x39, 0x00, 0x06 } },	/* Full    Red     -1.8 */
-> -	{ .icl = { 0xB, 0x7F, 0x37, 0x00, 0x08 } },	/* Full    Red     -2.0 CRLS */
-> -	{ .icl = { 0xB, 0x7F, 0x35, 0x00, 0x0A } },	/* Full    Red     -2.5 */
-> -	{ .icl = { 0xB, 0x7F, 0x33, 0x00, 0x0C } },	/* Full    Red     -3.0 */
-> -};
-> -
-> -static const struct intel_ddi_buf_trans adlp_combo_phy_trans_hdmi = {
-> -	.entries = _adlp_combo_phy_trans_hdmi,
-> -	.num_entries = ARRAY_SIZE(_adlp_combo_phy_trans_hdmi),
-> -	.hdmi_default_entry = ARRAY_SIZE(_adlp_combo_phy_trans_hdmi) - 1,
-> -};
-> -
->  static const union intel_ddi_buf_trans_entry _adlp_combo_phy_trans_dp_hbr[] = {
->  							/* NT mV Trans mV db    */
->  	{ .icl = { 0xA, 0x35, 0x3F, 0x00, 0x00 } },	/* 350   350      0.0   */
-> @@ -1556,7 +1536,7 @@ adlp_get_combo_buf_trans(struct intel_encoder *encoder,
->  			 int *n_entries)
->  {
->  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
-> -		return intel_get_buf_trans(&adlp_combo_phy_trans_hdmi, n_entries);
-> +		return intel_get_buf_trans(&icl_combo_phy_trans_hdmi, n_entries);
->  	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP))
->  		return adlp_get_combo_buf_trans_edp(encoder, crtc_state, n_entries);
->  	else
-> -- 
-> 2.25.1
-> 
+Create a gt/gtN/.defaults directory (similar to
+engine/<engine-name>/.defaults) to expose default parameter values for each
+gt in sysfs. This allows userspace to restore default parameter values
+after they may have changed.
+
+Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+
+Ashutosh Dixit (2):
+  drm/i915/gt: Expose per-gt RPS defaults in sysfs
+  drm/i915/gt: Expose default value for media_freq_factor in per-gt
+    sysfs
+
+ drivers/gpu/drm/i915/gt/intel_gt_sysfs.c    | 10 +--
+ drivers/gpu/drm/i915/gt/intel_gt_sysfs.h    |  6 ++
+ drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c | 69 +++++++++++++++++++++
+ drivers/gpu/drm/i915/gt/intel_gt_types.h    | 11 ++++
+ drivers/gpu/drm/i915/gt/intel_rps.c         |  3 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c | 19 ++++--
+ 6 files changed, 108 insertions(+), 10 deletions(-)
+
+-- 
+2.34.1
+
