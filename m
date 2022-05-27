@@ -2,40 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 206705364C8
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 May 2022 17:38:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 73AC85365AF
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 May 2022 18:08:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 585C310F7CB;
-	Fri, 27 May 2022 15:37:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A94810FA31;
+	Fri, 27 May 2022 16:08:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2DCF110F7CB
- for <intel-gfx@lists.freedesktop.org>; Fri, 27 May 2022 15:37:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3EC2610FA31
+ for <intel-gfx@lists.freedesktop.org>; Fri, 27 May 2022 16:08:19 +0000 (UTC)
 Received: from [127.0.0.1] (localhost [127.0.0.1])
- (Authenticated sender: alarumbe) with ESMTPSA id D53751F46384
+ (Authenticated sender: alarumbe) with ESMTPSA id F0D5A1F46403
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1653665876;
- bh=yPngH8QZpec4WtQ1CMvIU4dSmYfFAea4Tp/q9heggdU=;
+ s=mail; t=1653667698;
+ bh=GEs8rfL3dWnDbhelA7zgKkfU6cFViwlbmmn4WW1Jvjg=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=iw/NV5fvqVUTJhLB9B/4n9yXc8w+aJNgtTaV23l2IvIU4+s85Apr1FZjmRFf1svSS
- TOOvc01N7RZNpq/yUNsjNR94zY1oTay7ghUkMAItFXryblBHuzok2YMMchZzY3nT8W
- vgsElsQxZtjucqLE86gB1i0dWuWF8p8wcHBt7/B07mxUVa4hb8VKW1Ab2lNyoyx0Zl
- MTktIID2XAjF32zyjc8C0CTKbwjSI1jPGweLVKyxDv6SE6/0D72oXqZy8dicS9snhS
- Lt89aiLIGwpurfg8InKOrmWzUGYLafuLOgKs1bQOn/B019s3cgwT0UnyOzu/4Rh+dA
- gWifSoLmZj3Ew==
-Date: Fri, 27 May 2022 16:37:53 +0100
+ b=Pf/L0JNUv8ZRIefqEh2GkiqN1kJfKC0bJzwSfXRv2J9ByMsdKYnd+nh7CR7XUviNe
+ hjyzurQ58ixomp/fUqXJsb1Exl7lq1FCexok/VFaT+oDOUDhc7Q58Wgb+eEgw1lh7L
+ +K1GRs1PmD+VDEa3iSsLZtSYf6ZWCUVBBQ2FsXTkIKmcihOFOa+RdBrQix0iNT2pDf
+ +qsF5NjhHgjiz6W2iRoVOdn58n9VhbZeskOrfNo0OUvtJmiQEVplPB5ofm4F2rU856
+ GT0I6dFvHC0OZ229UXP1ZIzUOJrEJX6aHmFpnA0kxo/zfIQCDXZB8JNny5JCO3deKJ
+ 7pR9OBiG6AYqA==
+Date: Fri, 27 May 2022 17:08:16 +0100
 From: Adrian Larumbe <adrian.larumbe@collabora.com>
-To: Matthew Auld <matthew.william.auld@gmail.com>
-Message-ID: <20220527153753.3imu2lrhsnljotvt@sobremesa>
+To: "Ruhl, Michael J" <michael.j.ruhl@intel.com>
+Message-ID: <20220527160816.6it3epuvppx7phw5@sobremesa>
 References: <20220517204513.429930-1-adrian.larumbe@collabora.com>
- <CAM0jSHP4A2dCxabkFC38=4-8sX4GnC-5jyUx-hzyN9u1noU0fw@mail.gmail.com>
+ <20220517204513.429930-2-adrian.larumbe@collabora.com>
+ <DM5PR11MB13247CDAD675303087053B6BC1CE9@DM5PR11MB1324.namprd11.prod.outlook.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <CAM0jSHP4A2dCxabkFC38=4-8sX4GnC-5jyUx-hzyN9u1noU0fw@mail.gmail.com>
-Subject: Re: [Intel-gfx] [RFC PATCH v2 0/1] Replace shmem memory region and
- object backend
+In-Reply-To: <DM5PR11MB13247CDAD675303087053B6BC1CE9@DM5PR11MB1324.namprd11.prod.outlook.com>
+Subject: Re: [Intel-gfx] [RFC PATCH v2 1/1] drm/i915: Replace shmem memory
+ region and object backend with TTM
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,97 +49,221 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 18.05.2022 16:00, Matthew Auld wrote:
-> On Tue, 17 May 2022 at 21:45, Adrian Larumbe
-> <adrian.larumbe@collabora.com> wrote:
+On 17.05.2022 21:39, Ruhl, Michael J wrote:
+> >-----Original Message-----
+> >From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of
+> >Adrian Larumbe
+> >Sent: Tuesday, May 17, 2022 4:45 PM
+> >To: daniel@ffwll.ch; intel-gfx@lists.freedesktop.org
+> >Cc: adrian.larumbe@collabora.com
+> >Subject: [Intel-gfx] [RFC PATCH v2 1/1] drm/i915: Replace shmem memory
+> >region and object backend with TTM
 > >
-> > This patch is a second attempt at eliminating the old shmem memory region
-> > and GEM object backend, in favour of a TTM-based one that is able to manage
-> > objects placed on both system and local memory.
+> >Remove shmem region and object backend code as they are now
+> >unnecessary.
+> >In the case of objects placed in SMEM and backed by kernel shmem files, the
+> >file pointer has to be retrieved from the ttm_tt structure, so change this
+> >as well. This means accessing an shmem-backed BO's file pointer requires
+> >getting its pages beforehand, unlike in the old shmem backend.
 > >
-> > Questions addressed since previous revision:
+> >Expand TTM BO creation by handling devices with no LLC so that their
+> >caching and coherency properties are set accordingly.
 > >
-> > * Creating an anonymous vfs mount for shmem files in TTM
-> > * Fixing LLC caching properties and bit 17 swizzling before setting a TTM
-> > bo's pages when calling get_pages
-> > * Added handling of phys backend from TTM functions
-> > * Added pread callback to TTM gem object backend
-> > * In shmem_create_from_object, ensuring an shmem object we just got a filp
-> > for has its pages marked dirty and accessed. Otherwise, the engine won't be
-> > able to read the initial state and a GPU hung will ensue
+> >Adapt phys backend to put pages of original shmem object in a 'TTM way',
+> >also making sure its pages are put when a TTM shmem object has no struct
+> >page.
 > >
-> > However, one of the issues persists:
+> >Signed-off-by: Adrian Larumbe <adrian.larumbe@collabora.com>
+> >---
+> > drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c   |  12 +-
+> > drivers/gpu/drm/i915/gem/i915_gem_mman.c     |  32 +-
+> > drivers/gpu/drm/i915/gem/i915_gem_object.h   |   4 +-
+> > drivers/gpu/drm/i915/gem/i915_gem_phys.c     |  32 +-
+> > drivers/gpu/drm/i915/gem/i915_gem_shmem.c    | 390 +------------------
+> > drivers/gpu/drm/i915/gem/i915_gem_ttm.c      | 267 ++++++++++++-
+> > drivers/gpu/drm/i915/gem/i915_gem_ttm.h      |   3 +
+> > drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c |   9 +-
+> > drivers/gpu/drm/i915/gt/shmem_utils.c        |  64 ++-
+> > drivers/gpu/drm/i915/intel_memory_region.c   |   7 +-
+> > 10 files changed, 398 insertions(+), 422 deletions(-)
 > >
-> > Many GPU hungs in machines of GEN <= 5. My assumption is this has something
-> >  to do with a caching pitfall, but everywhere across the TTM backend code
-> >  I've tried to handle object creation and getting its pages with the same
-> >  set of caching and coherency properties as in the old shmem backend.
+> >diff --git a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
+> >b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
+> >index f5062d0c6333..de04ce4210b3 100644
+> >--- a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
+> >+++ b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
+> >@@ -12,6 +12,7 @@
+> > #include <asm/smp.h>
+> >
+> > #include "gem/i915_gem_dmabuf.h"
+> >+#include "gem/i915_gem_ttm.h"
+> > #include "i915_drv.h"
+> > #include "i915_gem_object.h"
+> > #include "i915_scatterlist.h"
+> >@@ -94,22 +95,25 @@ static int i915_gem_dmabuf_mmap(struct dma_buf
+> >*dma_buf, struct vm_area_struct *
+> > {
+> > 	struct drm_i915_gem_object *obj = dma_buf_to_obj(dma_buf);
+> > 	struct drm_i915_private *i915 = to_i915(obj->base.dev);
+> >+	struct file *filp = i915_gem_ttm_get_filep(obj);
+> > 	int ret;
+> >
+> >+	GEM_BUG_ON(obj->base.import_attach != NULL);
+> >+
+> > 	if (obj->base.size < vma->vm_end - vma->vm_start)
+> > 		return -EINVAL;
+> >
+> > 	if (HAS_LMEM(i915))
+> > 		return drm_gem_prime_mmap(&obj->base, vma);
 > 
-> Some thoughts in case it's helpful:
-> 
-> - We still look to be trampling the cache_level etc after object
-> creation. AFAICT i915_ttm_adjust_gem_after_move can be called in
-> various places after creation.
+> Since all of the devices that will have device memory will be true for HAS_LMEM,
+> won't your code path always go to drm_gem_prime_mmap()?
 
-I traced this function so that I could see everywhere it was being called when
-running some IGT tests and kmscube, and the only place it was setting a caching
-coherence value other than none was in init_status_page, where I915_CACHE_LLC is
-picked as the cache coherency mode even for machines that do not have
-it. However this code was already present before my changes and didn't seem to
-cause any issues, so I don't think it's involved.
+This makes me wonder, how was mapping of a dmabuf BO working before, in the case
+of DG2 and DG1, when an object is smem-bound, and therefore backed by shmem?
 
-> - The i915_ttm_pwrite hook won't play nice on non-llc platforms, since
-> it doesn't force a clflush or keep track of the writes with
-> cache_dirty. The existing ->shmem_pwrite hook only works because we
-> are guaranteed to have not yet populated the mm.pages, and on non-llc
-> platforms we always force a clflush in __set_pages(). In
-> i915_ttm_pwrite we are now just calling pin_pages() and then writing
-> through the page-cache without forcing a clflush, or ensuring that we
-> leave cache_dirty set. Also AFAIK the whole point of shmem_pwrite was
-> to avoid needing to populate the entire object like when calling
-> pin_pages(). Would it make sense to just fallback to using
-> i915_gem_shmem_pwrite, which should already take care of the required
-> flushing?
-> 
-> For reference a common usage pattern is something like:
-> 
-> bb = gem_create() <-- assume non-llc so must be CACHE_NONE
-> gem_write(bb, BATCH_BUFFER_END) <-- might use cached pwrite internally
-> execbuf(bb) <-- doesn't see BATCH_BUFFER_END if we don't clflush
+I guess in this case it might be more sensible to control for the case that it's
+an lmem-only object on a discrete platform as follows:
 
-It turns out this was the underlying issue causing machines GEN <= 5 to break in
-pretty much every single test. It seems that for older hardware, IGT tests would
-pick pwrite as the preferred method for filling BO's from UM, so my code wasn't
-calling clfush after getting the pages and writing the UM pointer data into the
-shmem file.
+static int i915_gem_dmabuf_mmap(struct dma_buf *dma_buf, struct vm_area_struct *vma)
+{
+	struct drm_i915_gem_object *obj = dma_buf_to_obj(dma_buf);
+	struct drm_i915_private *i915 = to_i915(obj->base.dev);
+	struct ttm_buffer_object *bo = i915_gem_to_ttm(obj);
+	struct file *filp = i915_gem_ttm_get_filep(obj);
+	int ret;
 
-The way I fixed it was creating an shmem file for this and other cases when it's
-required by the existing code, but without getting the pages.  In a way, I just
-cut through the usual TTM populate path and instance an shmem object so that I
-can avoid caching issues.
+	if (obj->base.size < vma->vm_end - vma->vm_start)
+		return -EINVAL;
 
-Thanks a lot for catching this one!
+	if (IS_DGFX(i915) && i915_ttm_cpu_maps_iomem(bo->resource))
+		return drm_gem_prime_mmap(&obj->base, vma);
 
+	if (IS_ERR(filp))
+		return PTR_ERR(filp);
+
+	ret = call_mmap(filp, vma);
+	if (ret)
+		return ret;
+
+	vma_set_file(vma, filp);
+
+	return 0;
+}
+
+> >-	if (!obj->base.filp)
+> >+	if (!filp)
+> > 		return -ENODEV;
 > >
-> > Adrian Larumbe (1):
-> >   drm/i915: Replace shmem memory region and object backend with TTM
+> >-	ret = call_mmap(obj->base.filp, vma);
+> >+	ret = call_mmap(filp, vma);
+> > 	if (ret)
+> > 		return ret;
 > >
-> >  drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c   |  12 +-
-> >  drivers/gpu/drm/i915/gem/i915_gem_mman.c     |  32 +-
-> >  drivers/gpu/drm/i915/gem/i915_gem_object.h   |   4 +-
-> >  drivers/gpu/drm/i915/gem/i915_gem_phys.c     |  32 +-
-> >  drivers/gpu/drm/i915/gem/i915_gem_shmem.c    | 390 +------------------
-> >  drivers/gpu/drm/i915/gem/i915_gem_ttm.c      | 267 ++++++++++++-
-> >  drivers/gpu/drm/i915/gem/i915_gem_ttm.h      |   3 +
-> >  drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c |   9 +-
-> >  drivers/gpu/drm/i915/gt/shmem_utils.c        |  64 ++-
-> >  drivers/gpu/drm/i915/intel_memory_region.c   |   7 +-
-> >  10 files changed, 398 insertions(+), 422 deletions(-)
+> >-	vma_set_file(vma, obj->base.filp);
+> >+	vma_set_file(vma, filp);
 > >
-> > --
-> > 2.35.1
+> > 	return 0;
+> > }
+> >@@ -224,6 +228,8 @@ struct dma_buf *i915_gem_prime_export(struct
+> >drm_gem_object *gem_obj, int flags)
+> > 	exp_info.priv = gem_obj;
+> > 	exp_info.resv = obj->base.resv;
+> >
+> >+	GEM_BUG_ON(obj->base.import_attach != NULL);
+> >+
+> > 	if (obj->ops->dmabuf_export) {
+> > 		int ret = obj->ops->dmabuf_export(obj);
+> > 		if (ret)
+> >diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+> >b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+> >index 0c5c43852e24..d963cf35fdc9 100644
+> >--- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+> >+++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+> >@@ -64,7 +64,9 @@ i915_gem_mmap_ioctl(struct drm_device *dev, void
+> >*data,
+> > 	struct drm_i915_private *i915 = to_i915(dev);
+> > 	struct drm_i915_gem_mmap *args = data;
+> > 	struct drm_i915_gem_object *obj;
+> >+	struct file *filp;
+> > 	unsigned long addr;
+> >+	int ret;
+> >
+> > 	/*
+> > 	 * mmap ioctl is disallowed for all discrete platforms,
+> >@@ -83,12 +85,20 @@ i915_gem_mmap_ioctl(struct drm_device *dev, void
+> >*data,
+> > 	if (!obj)
+> > 		return -ENOENT;
+> >
+> >-	/* prime objects have no backing filp to GEM mmap
+> >-	 * pages from.
+> >-	 */
+> >-	if (!obj->base.filp) {
+> >-		addr = -ENXIO;
+> >-		goto err;
+> >+	if (obj->base.import_attach)
+> >+		filp = obj->base.filp;
+> 
+> Why is this now ok?  This is the imported object. And it used to give an error.
+> 
+> If you are importing from a different device, (i.e. an amd device is exporting
+> the object, and you are i915 here), can you even do this?
+> 
+> My understanding was that mmaping was only for the exported object.
+> 
+> Has this changed?
 
+You're right here, I completely misunderstood how this function is meant to deal
+with imported objects. This arose as a consequence of the file pointer being
+moved into the ttm_tt structure from the base DRM object.
+
+The way I now check for the case that it's an imported object and therefore this
+function should throw back an error is as follows:
+
+/* prime objects have no backing filp to GEM mmap
+ * pages from.
+ */
+if (obj->base.import_attach) {
+	GEM_WARN_ON(obj->base.filp != NULL);
+	addr = -ENXIO;
+	goto err;
+}
+
+I believe the import_attach member has to be set for all imported
+members. However, this just made me think, what would happen in the case we want
+to mat a BO that we have exported for another driver to use? The import_attach
+field would be set so my code would return with an error, even though we should
+be in full control of mmaping it.
+
+Maybe by allowing the function to go forward in case the base GEM object's dma-buf
+operations are the same as our driver's:
+
+i915_gem_dmabuf.c:
+
+const struct dma_buf_ops *i915_get_dmabuf_ops(void) {
+        return &i915_dmabuf_ops;
+}
+
+i915_gem_mman.c:
+
+/* prime objects have no backing filp to GEM mmap
+ * pages from.
+ */
+if (obj->base.import_attach &&
+    obj->base.dma_buf->ops != i915_get_dmabuf_ops()) {
+	GEM_WARN_ON(obj->base.filp != NULL);
+	addr = -ENXIO;
+	goto err;
+}
+
+> Thanks,
+> 
+> Mike
+
+Cheers,
+Adrian
