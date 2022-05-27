@@ -2,49 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45F23535EAB
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 May 2022 12:51:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 04CB8535EAC
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 May 2022 12:51:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 039D010EF35;
-	Fri, 27 May 2022 10:50:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B46E610EF4E;
+	Fri, 27 May 2022 10:50:58 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 95CA710E066;
- Fri, 27 May 2022 10:50:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B76310EF4E;
+ Fri, 27 May 2022 10:50:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1653648652; x=1685184652;
+ t=1653648654; x=1685184654;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Wsuymuwxlq2BN9bs/rjeDMAwrcGerv+qNnnnby9Xed8=;
- b=K3Pheesb70drROIE1LKoE4szu0AtigbpVdua6XrsYrPK/dm/3nqVPdy/
- rmCspYjnV3MPmeNmQi6UOJx/IXNL1JlpSSADAhS1Pttz74etZSwmXXpdo
- PKzh7VJisZnS7fLUf4azxSD5474bBSvZZB+GbliuhBBms2SP18+KIFuKf
- kIKd0aTFkEHAVWQKSeD5wXEvKPzuJIPUbsZy2IuKXgILz1OGGcSyTLuaF
- BfqKsmqMwzFTBAXaVkjLz5yczspd1XUiHgpfUdI54MvZibNIN3OF6o1zC
- GGMLyVEZQzC8aCLU59KxEoeiKVRIKnnwIxOxbJKxj+zgmg25yMU2eDUKc Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10359"; a="262066135"
-X-IronPort-AV: E=Sophos;i="5.91,255,1647327600"; d="scan'208";a="262066135"
+ bh=FSiKACiRGQtkHjcw1RluOzxMa/YKxVziVMudDTg5gec=;
+ b=QgP5Dtc1dyshoAie5BhjDDAGZ8c159AfMGHZ3yEs8AbqWY7VGP1uKCdL
+ hcjidS/e57ayjMBmROCT9wAe2Dowh29RpnUjY6gOb3gqwLjh55fP9U8Te
+ 9UwN3ed9ixEfk3PU42yZYGjnyEwis/9c8WbUo3xYRjFOiAHKNdMzb2vU3
+ MRVom+gRnM19g7efumPKYSvrC/KTcpHUY6hOS6Tbm2zQEhBXd0k6mdpHI
+ B0L+ZkU0ILNnx7TT5+xXkbxHaNc475mE3jXhHtbrBjq0MNlrCJiC9VKYz
+ HUR5t66BT6S/O9WvvFzA/R05HiGtZZYdL2qmoz+o+ltkLtJTCPtQOn/A3 w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10359"; a="262066139"
+X-IronPort-AV: E=Sophos;i="5.91,255,1647327600"; d="scan'208";a="262066139"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2022 03:50:52 -0700
-X-IronPort-AV: E=Sophos;i="5.91,255,1647327600"; d="scan'208";a="550155692"
+ 27 May 2022 03:50:53 -0700
+X-IronPort-AV: E=Sophos;i="5.91,255,1647327600"; d="scan'208";a="550155699"
 Received: from dnanduri-mobl.ger.corp.intel.com (HELO tursulin-mobl2.home)
  ([10.213.215.174])
  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2022 03:50:51 -0700
+ 27 May 2022 03:50:52 -0700
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 To: igt-dev@lists.freedesktop.org
-Date: Fri, 27 May 2022 11:50:41 +0100
-Message-Id: <20220527105042.2233128-2-tvrtko.ursulin@linux.intel.com>
+Date: Fri, 27 May 2022 11:50:42 +0100
+Message-Id: <20220527105042.2233128-3-tvrtko.ursulin@linux.intel.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20220527105042.2233128-1-tvrtko.ursulin@linux.intel.com>
 References: <20220527105042.2233128-1-tvrtko.ursulin@linux.intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH i-g-t 2/3] lib/drm_fdinfo: Ensure buffer is null
- terminated
+Subject: [Intel-gfx] [PATCH i-g-t 3/3] intel_gpu_top: Free all memory on exit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,59 +63,131 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-Ensure buffer is null terminated at the point where the read ended and not
-at the end of the whole buffer. Otherwise string parsing can stray into
-un-initialised memory.
+Be nice and explicitly free all memory on exit.
+
+Also fix a Valgrind reported unitilised conditional jump.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Petri Latvala <petri.latvala@intel.com>
 ---
- lib/igt_drm_fdinfo.c | 8 ++++----
- lib/igt_drm_fdinfo.h | 4 ++--
- 2 files changed, 6 insertions(+), 6 deletions(-)
+ tools/intel_gpu_top.c | 51 +++++++++++++++++++++++++++++++++++--------
+ 1 file changed, 42 insertions(+), 9 deletions(-)
 
-diff --git a/lib/igt_drm_fdinfo.c b/lib/igt_drm_fdinfo.c
-index b422f67a4ace..250d9e8917f2 100644
---- a/lib/igt_drm_fdinfo.c
-+++ b/lib/igt_drm_fdinfo.c
-@@ -44,12 +44,12 @@ static size_t read_fdinfo(char *buf, const size_t sz, int at, const char *name)
- 	if (fd < 0)
- 		return 0;
- 
--	buf[sz - 1] = 0;
--	count = read(fd, buf, sz);
--	buf[sz - 1] = 0;
-+	count = read(fd, buf, sz - 1);
-+	if (count > 0)
-+		buf[count - 1] = 0;
- 	close(fd);
- 
--	return count;
-+	return count > 0 ? count : 0;
+diff --git a/tools/intel_gpu_top.c b/tools/intel_gpu_top.c
+index 26986a822bb7..997aff582ff7 100644
+--- a/tools/intel_gpu_top.c
++++ b/tools/intel_gpu_top.c
+@@ -437,6 +437,36 @@ static struct engines *discover_engines(char *device)
+ 	return engines;
  }
  
- static int parse_engine(char *line, struct drm_client_fdinfo *info,
-diff --git a/lib/igt_drm_fdinfo.h b/lib/igt_drm_fdinfo.h
-index 5db63e28b07e..8759471615bd 100644
---- a/lib/igt_drm_fdinfo.h
-+++ b/lib/igt_drm_fdinfo.h
-@@ -46,7 +46,7 @@ struct drm_client_fdinfo {
-  * igt_parse_drm_fdinfo: Parses the drm fdinfo file
-  *
-  * @drm_fd: DRM file descriptor
-- * @info: Structure to populate with read data
-+ * @info: Structure to populate with read data. Must be zeroed.
-  *
-  * Returns the number of valid drm fdinfo keys found or zero if not all
-  * mandatory keys were present or no engines found.
-@@ -58,7 +58,7 @@ unsigned int igt_parse_drm_fdinfo(int drm_fd, struct drm_client_fdinfo *info);
-  *
-  * @dir: File descriptor pointing to /proc/pid/fdinfo directory
-  * @fd: String representation of the file descriptor number to parse.
-- * @info: Structure to populate with read data
-+ * @info: Structure to populate with read data. Must be zeroed.
-  *
-  * Returns the number of valid drm fdinfo keys found or zero if not all
-  * mandatory keys were present or no engines found.
++static void free_engines(struct engines *engines)
++{
++	struct pmu_counter **pmu, *free_list[] = {
++		&engines->r_gpu,
++		&engines->r_pkg,
++		&engines->imc_reads,
++		&engines->imc_writes,
++		NULL
++	};
++	unsigned int i;
++
++	for (pmu = &free_list[0]; *pmu; pmu++) {
++		if ((*pmu)->present)
++			free((char *)(*pmu)->units);
++	}
++
++	for (i = 0; i < engines->num_engines; i++) {
++		struct engine *engine = engine_ptr(engines, i);
++
++		free((char *)engine->name);
++		free((char *)engine->short_name);
++		free((char *)engine->display_name);
++	}
++
++	closedir(engines->root);
++
++	free(engines->class);
++	free(engines);
++}
++
+ #define _open_pmu(type, cnt, pmu, fd) \
+ ({ \
+ 	int fd__; \
+@@ -1073,7 +1103,7 @@ static size_t freadat2buf(char *buf, const size_t sz, DIR *at, const char *name)
+ 	return count;
+ }
+ 
+-static struct clients *scan_clients(struct clients *clients)
++static struct clients *scan_clients(struct clients *clients, bool display)
+ {
+ 	struct dirent *proc_dent;
+ 	struct client *c;
+@@ -1181,7 +1211,7 @@ next:
+ 			break;
+ 	}
+ 
+-	return display_clients(clients);
++	return display ? display_clients(clients) : clients;
+ }
+ 
+ static const char *bars[] = { " ", "▏", "▎", "▍", "▌", "▋", "▊", "▉", "█" };
+@@ -2391,7 +2421,7 @@ static void process_stdin(unsigned int timeout_us)
+ 
+ static bool has_drm_fdinfo(const struct igt_device_card *card)
+ {
+-	struct drm_client_fdinfo info;
++	struct drm_client_fdinfo info = { };
+ 	unsigned int cnt;
+ 	int fd;
+ 
+@@ -2572,7 +2602,7 @@ int main(int argc, char **argv)
+ 	}
+ 
+ 	pmu_sample(engines);
+-	scan_clients(clients);
++	scan_clients(clients, false);
+ 	codename = igt_device_get_pretty_name(&card, false);
+ 
+ 	while (!stop_top) {
+@@ -2599,7 +2629,7 @@ int main(int argc, char **argv)
+ 		pmu_sample(engines);
+ 		t = (double)(engines->ts.cur - engines->ts.prev) / 1e9;
+ 
+-		disp_clients = scan_clients(clients);
++		disp_clients = scan_clients(clients, true);
+ 
+ 		if (stop_top)
+ 			break;
+@@ -2649,21 +2679,24 @@ int main(int argc, char **argv)
+ 			pops->close_struct();
+ 		}
+ 
+-		if (stop_top)
+-			break;
+-
+ 		if (disp_clients != clients)
+ 			free_clients(disp_clients);
+ 
++		if (stop_top)
++			break;
++
+ 		if (output_mode == INTERACTIVE)
+ 			process_stdin(period_us);
+ 		else
+ 			usleep(period_us);
+ 	}
+ 
++	if (clients)
++		free_clients(clients);
++
+ 	free(codename);
+ err:
+-	free(engines);
++	free_engines(engines);
+ 	free(pmu_device);
+ exit:
+ 	igt_devices_free();
 -- 
 2.32.0
 
