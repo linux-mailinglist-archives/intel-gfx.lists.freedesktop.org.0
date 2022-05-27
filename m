@@ -2,41 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4016535C34
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 May 2022 10:58:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ADA3B535D07
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 May 2022 11:09:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 97DB510E440;
-	Fri, 27 May 2022 08:58:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 14B8910EF4E;
+	Fri, 27 May 2022 09:09:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C46010E440;
- Fri, 27 May 2022 08:58:44 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1A62910EF48;
+ Fri, 27 May 2022 09:09:35 +0000 (UTC)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 14A3F61DA1;
- Fri, 27 May 2022 08:58:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 323BAC385A9;
- Fri, 27 May 2022 08:58:41 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 3FE3C61DE6;
+ Fri, 27 May 2022 09:09:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A761C385B8;
+ Fri, 27 May 2022 09:09:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1653641921;
- bh=zMEPRIvOxtolvSGdfKNn72JhOSa8qO+tUa865Q5G3/Y=;
+ s=k20201202; t=1653642573;
+ bh=bES5tOhJ++GeKlJcRtlWQOd/879zYMEsJsfOCJP4Bgs=;
  h=From:To:Cc:Subject:Date:From;
- b=rdMZQoOjHQst6A7c3TSCYMcgxXrNlvMsRL5cC3Va6gX1ySpnr3rFzdHu9491KTshy
- vBMX5vShoMgR/qyXD6nWh3iF/PI0jttJFAkEs/jEqlCCekkFGwHMDIMdCcKcxLIGRN
- 7OafZKxEHOD5VK3Zck6qmduMjDfoQMmysKxy9gz8j3kM9kRGiDyrfxbDFADjTSb7gu
- PO3Z7/OqvfiYYOk7lMwASYO3yF2c4BfVNtuGenzEfm5mZE4/Bx4lmPAXJ/BIdsjln8
- DoUl4CNCnPJYhWVGckVHOet2PHH2oaxa4b8ZTrxJ8LbVUU7o6QH1h/4O23Ez85BFap
- z8H7f9IT4C2YA==
+ b=VbS1JMH/Wlp7ysFxnOoANd9rG3VsFEAbhYnbg5CLGGdbSrVHuuztfdEmzQJfmcAK6
+ Js/ZGD+gBvq34X4WCURQ5mZGTJT0ZWBrcgUzJDeR4nVPQLSXcc/pX7Flwni2MqfF03
+ UHl7/msvaZ+/rK/67ti/ZHPa3yFEuzJn0dkgpJA/IFc9rKlTLbbOrwTQ1qDKIw9ZN3
+ W0jjMn4AFYFxKpR+JEy5jFW8TUE71cLiDUR0PdTw5sgIKnSD9/eXPp5Yi5ma0Rc7q+
+ n3K7DFRnYibsCiddsToPHvxKh5r/JyTvNQbYggBlBW8DTWnZde8LgqkIQHKbnXA8hP
+ 3YopCQsW4TVqw==
 Received: from mchehab by mail.kernel.org with local (Exim 4.95)
- (envelope-from <mchehab@kernel.org>) id 1nuVnn-008Jvo-P8;
- Fri, 27 May 2022 10:58:35 +0200
+ (envelope-from <mchehab@kernel.org>) id 1nuVyM-008KD3-TZ;
+ Fri, 27 May 2022 11:09:30 +0200
 From: Mauro Carvalho Chehab <mchehab@kernel.org>
-To: Daniel Vetter <daniel@ffwll.ch>
-Date: Fri, 27 May 2022 10:58:34 +0200
-Message-Id: <8c1571f1a642c5c462da9f662aaab271756ca735.1653641899.git.mchehab@kernel.org>
+To: 
+Date: Fri, 27 May 2022 11:09:29 +0200
+Message-Id: <b6417c5bf1b0ee8e093712264f325bd1268ed1e4.1653642514.git.mchehab@kernel.org>
 X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -54,9 +53,8 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: David Airlie <airlied@linux.ie>, Daniel Vetter <daniel.vetter@ffwll.ch>,
- dri-devel@lists.freedesktop.org,
- Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
- Matthew Auld <matthew.auld@intel.com>, Dave Airlie <airlied@redhat.com>,
+ dri-devel@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>,
+ Dave Airlie <airlied@redhat.com>,
  Sushma Venkatesh Reddy <sushma.venkatesh.reddy@intel.com>,
  Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
  Lucas De Marchi <lucas.demarchi@intel.com>,
@@ -65,8 +63,6 @@ Cc: David Airlie <airlied@linux.ie>, Daniel Vetter <daniel.vetter@ffwll.ch>,
  linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-
-From: Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
 
 i915 selftest hangcheck is causing the i915 driver timeouts, as
 reported by Intel CI:
@@ -118,9 +114,12 @@ Cc: Jani Nikula <jani.nikula@intel.com>
 Cc: stable@vger.kernel.org # Kernel 5.17 and upper
 
 Fixes: 494c2c9b630e ("drm/i915: Flush TLBs before releasing backing store")
-Signed-off-by: Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
 Signed-off-by: Mauro Carvalho Chehab <mchehab@kernel.org>
 ---
+
+Patch resent, as the first version was using an old email. That's what happens
+when writing patches on old test machines ;-)
+
  drivers/gpu/drm/i915/gt/intel_gt.c | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
@@ -143,4 +142,5 @@ index 034182f85501..7965a77e5046 100644
  
 -- 
 2.36.1
+
 
