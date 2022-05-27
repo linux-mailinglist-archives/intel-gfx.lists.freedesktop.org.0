@@ -1,50 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04CB8535EAC
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 May 2022 12:51:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 062D0535EB3
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 May 2022 12:55:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B46E610EF4E;
-	Fri, 27 May 2022 10:50:58 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1B76310EF4E;
- Fri, 27 May 2022 10:50:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2683010E066;
+	Fri, 27 May 2022 10:55:57 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4420D10E066;
+ Fri, 27 May 2022 10:55:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1653648654; x=1685184654;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=FSiKACiRGQtkHjcw1RluOzxMa/YKxVziVMudDTg5gec=;
- b=QgP5Dtc1dyshoAie5BhjDDAGZ8c159AfMGHZ3yEs8AbqWY7VGP1uKCdL
- hcjidS/e57ayjMBmROCT9wAe2Dowh29RpnUjY6gOb3gqwLjh55fP9U8Te
- 9UwN3ed9ixEfk3PU42yZYGjnyEwis/9c8WbUo3xYRjFOiAHKNdMzb2vU3
- MRVom+gRnM19g7efumPKYSvrC/KTcpHUY6hOS6Tbm2zQEhBXd0k6mdpHI
- B0L+ZkU0ILNnx7TT5+xXkbxHaNc475mE3jXhHtbrBjq0MNlrCJiC9VKYz
- HUR5t66BT6S/O9WvvFzA/R05HiGtZZYdL2qmoz+o+ltkLtJTCPtQOn/A3 w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10359"; a="262066139"
-X-IronPort-AV: E=Sophos;i="5.91,255,1647327600"; d="scan'208";a="262066139"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2022 03:50:53 -0700
-X-IronPort-AV: E=Sophos;i="5.91,255,1647327600"; d="scan'208";a="550155699"
-Received: from dnanduri-mobl.ger.corp.intel.com (HELO tursulin-mobl2.home)
+ t=1653648956; x=1685184956;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=Yc4S0u2C2VhURypEc36HrClevcfxM811/nQDJ6YeXwQ=;
+ b=LosCs00tdiDokxzpAiT1l1udtO319vEwXFFRiC1kZago+EWrbB/YgvDD
+ uecHdGNB+/NTFd6Spm4DiJYGQmMKWC61TD2Io5/X/cnGkoj1CxWdfPGnc
+ mWgJSA7MiG5iDu0QQSFRSFpNCxsIvlOavqVnnfnyDwXF6SjYVpCI6snjH
+ MtPPTWSaMu+jU8D5oQmTdJ5SIO2txr288AaaeqNH98o9rWvAscSbXch8n
+ xh9nImndfhztJu6mc5gEO5yGwHErrcXDBBMnRX5dc3elUuIkjv936UNmv
+ jNCs/M4J0qNmkH7bl0ubarufsIscnFi9EDcSEU/rzvu+tsgPEmxEx1YsD g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10359"; a="274550278"
+X-IronPort-AV: E=Sophos;i="5.91,255,1647327600"; d="scan'208";a="274550278"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 May 2022 03:55:55 -0700
+X-IronPort-AV: E=Sophos;i="5.91,255,1647327600"; d="scan'208";a="574524669"
+Received: from dnanduri-mobl.ger.corp.intel.com (HELO [10.213.215.174])
  ([10.213.215.174])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2022 03:50:52 -0700
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: igt-dev@lists.freedesktop.org
-Date: Fri, 27 May 2022 11:50:42 +0100
-Message-Id: <20220527105042.2233128-3-tvrtko.ursulin@linux.intel.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220527105042.2233128-1-tvrtko.ursulin@linux.intel.com>
-References: <20220527105042.2233128-1-tvrtko.ursulin@linux.intel.com>
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 May 2022 03:55:44 -0700
+Message-ID: <d981f429-d01f-4576-2e5c-0ae153d24df1@linux.intel.com>
+Date: Fri, 27 May 2022 11:55:42 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH i-g-t 3/3] intel_gpu_top: Free all memory on exit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Content-Language: en-US
+To: Mauro Carvalho Chehab <mchehab@kernel.org>
+References: <b6417c5bf1b0ee8e093712264f325bd1268ed1e4.1653642514.git.mchehab@kernel.org>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <b6417c5bf1b0ee8e093712264f325bd1268ed1e4.1653642514.git.mchehab@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: don't flush TLB on GEN8
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,137 +60,101 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-gfx@lists.freedesktop.org
+Cc: David Airlie <airlied@linux.ie>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ dri-devel@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>,
+ Dave Airlie <airlied@redhat.com>,
+ Sushma Venkatesh Reddy <sushma.venkatesh.reddy@intel.com>,
+ Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, mauro.chehab@linux.intel.com,
+ linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-Be nice and explicitly free all memory on exit.
+On 27/05/2022 10:09, Mauro Carvalho Chehab wrote:
+> i915 selftest hangcheck is causing the i915 driver timeouts, as
+> reported by Intel CI:
+> 
+> 	http://gfx-ci.fi.intel.com/cibuglog-ng/issuefilterassoc/24297?query_key=42a999f48fa6ecce068bc8126c069be7c31153b4
+> 
+> When such test runs, the only output is:
+> 
+> 	[   68.811639] i915: Performing live selftests with st_random_seed=0xe138eac7 st_timeout=500
+> 	[   68.811792] i915: Running hangcheck
+> 	[   68.811859] i915: Running intel_hangcheck_live_selftests/igt_hang_sanitycheck
+> 	[   68.816910] i915 0000:00:02.0: [drm] Cannot find any crtc or sizes
+> 	[   68.841597] i915: Running intel_hangcheck_live_selftests/igt_reset_nop
+> 	[   69.346347] igt_reset_nop: 80 resets
+> 	[   69.362695] i915: Running intel_hangcheck_live_selftests/igt_reset_nop_engine
+> 	[   69.863559] igt_reset_nop_engine(rcs0): 709 resets
+> 	[   70.364924] igt_reset_nop_engine(bcs0): 903 resets
+> 	[   70.866005] igt_reset_nop_engine(vcs0): 659 resets
+> 	[   71.367934] igt_reset_nop_engine(vcs1): 549 resets
+> 	[   71.869259] igt_reset_nop_engine(vecs0): 553 resets
+> 	[   71.882592] i915: Running intel_hangcheck_live_selftests/igt_reset_idle_engine
+> 	[   72.383554] rcs0: Completed 16605 idle resets
+> 	[   72.884599] bcs0: Completed 18641 idle resets
+> 	[   73.385592] vcs0: Completed 17517 idle resets
+> 	[   73.886658] vcs1: Completed 15474 idle resets
+> 	[   74.387600] vecs0: Completed 17983 idle resets
+> 	[   74.387667] i915: Running intel_hangcheck_live_selftests/igt_reset_active_engine
+> 	[   74.889017] rcs0: Completed 747 active resets
+> 	[   75.174240] intel_engine_reset(bcs0) failed, err:-110
+> 	[   75.174301] bcs0: Completed 525 active resets
+> 
+> After that, the machine just silently hangs.
+> 
+> The root cause is that the flush TLB logic is not working as
+> expected on GEN8.
+> 
+> Tested on an Intel NUC5i7RYB with an i7-5557U Broadwell CPU.
+> 
+> This patch partially reverts the logic by skipping GEN8 from
+> the TLB cache flush.
 
-Also fix a Valgrind reported unitilised conditional jump.
+Since I am pretty sure no such failures were spotted when merging the 
+feature I assume the failure is sporadic and/or limited to some 
+configurations? Do you have any details there? Because it is an 
+important security issue we should not revert it lightly.
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Petri Latvala <petri.latvala@intel.com>
----
- tools/intel_gpu_top.c | 51 +++++++++++++++++++++++++++++++++++--------
- 1 file changed, 42 insertions(+), 9 deletions(-)
+Regards,
 
-diff --git a/tools/intel_gpu_top.c b/tools/intel_gpu_top.c
-index 26986a822bb7..997aff582ff7 100644
---- a/tools/intel_gpu_top.c
-+++ b/tools/intel_gpu_top.c
-@@ -437,6 +437,36 @@ static struct engines *discover_engines(char *device)
- 	return engines;
- }
- 
-+static void free_engines(struct engines *engines)
-+{
-+	struct pmu_counter **pmu, *free_list[] = {
-+		&engines->r_gpu,
-+		&engines->r_pkg,
-+		&engines->imc_reads,
-+		&engines->imc_writes,
-+		NULL
-+	};
-+	unsigned int i;
-+
-+	for (pmu = &free_list[0]; *pmu; pmu++) {
-+		if ((*pmu)->present)
-+			free((char *)(*pmu)->units);
-+	}
-+
-+	for (i = 0; i < engines->num_engines; i++) {
-+		struct engine *engine = engine_ptr(engines, i);
-+
-+		free((char *)engine->name);
-+		free((char *)engine->short_name);
-+		free((char *)engine->display_name);
-+	}
-+
-+	closedir(engines->root);
-+
-+	free(engines->class);
-+	free(engines);
-+}
-+
- #define _open_pmu(type, cnt, pmu, fd) \
- ({ \
- 	int fd__; \
-@@ -1073,7 +1103,7 @@ static size_t freadat2buf(char *buf, const size_t sz, DIR *at, const char *name)
- 	return count;
- }
- 
--static struct clients *scan_clients(struct clients *clients)
-+static struct clients *scan_clients(struct clients *clients, bool display)
- {
- 	struct dirent *proc_dent;
- 	struct client *c;
-@@ -1181,7 +1211,7 @@ next:
- 			break;
- 	}
- 
--	return display_clients(clients);
-+	return display ? display_clients(clients) : clients;
- }
- 
- static const char *bars[] = { " ", "▏", "▎", "▍", "▌", "▋", "▊", "▉", "█" };
-@@ -2391,7 +2421,7 @@ static void process_stdin(unsigned int timeout_us)
- 
- static bool has_drm_fdinfo(const struct igt_device_card *card)
- {
--	struct drm_client_fdinfo info;
-+	struct drm_client_fdinfo info = { };
- 	unsigned int cnt;
- 	int fd;
- 
-@@ -2572,7 +2602,7 @@ int main(int argc, char **argv)
- 	}
- 
- 	pmu_sample(engines);
--	scan_clients(clients);
-+	scan_clients(clients, false);
- 	codename = igt_device_get_pretty_name(&card, false);
- 
- 	while (!stop_top) {
-@@ -2599,7 +2629,7 @@ int main(int argc, char **argv)
- 		pmu_sample(engines);
- 		t = (double)(engines->ts.cur - engines->ts.prev) / 1e9;
- 
--		disp_clients = scan_clients(clients);
-+		disp_clients = scan_clients(clients, true);
- 
- 		if (stop_top)
- 			break;
-@@ -2649,21 +2679,24 @@ int main(int argc, char **argv)
- 			pops->close_struct();
- 		}
- 
--		if (stop_top)
--			break;
--
- 		if (disp_clients != clients)
- 			free_clients(disp_clients);
- 
-+		if (stop_top)
-+			break;
-+
- 		if (output_mode == INTERACTIVE)
- 			process_stdin(period_us);
- 		else
- 			usleep(period_us);
- 	}
- 
-+	if (clients)
-+		free_clients(clients);
-+
- 	free(codename);
- err:
--	free(engines);
-+	free_engines(engines);
- 	free(pmu_device);
- exit:
- 	igt_devices_free();
--- 
-2.32.0
+Tvrtko
 
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Cc: Sushma Venkatesh Reddy <sushma.venkatesh.reddy@intel.com>
+> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+> Cc: Dave Airlie <airlied@redhat.com>
+> Cc: Jon Bloomfield <jon.bloomfield@intel.com>
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Cc: stable@vger.kernel.org # Kernel 5.17 and upper
+> 
+> Fixes: 494c2c9b630e ("drm/i915: Flush TLBs before releasing backing store")
+> Signed-off-by: Mauro Carvalho Chehab <mchehab@kernel.org>
+> ---
+> 
+> Patch resent, as the first version was using an old email. That's what happens
+> when writing patches on old test machines ;-)
+> 
+>   drivers/gpu/drm/i915/gt/intel_gt.c | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
+> index 034182f85501..7965a77e5046 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+> @@ -1191,10 +1191,10 @@ void intel_gt_invalidate_tlbs(struct intel_gt *gt)
+>   	if (GRAPHICS_VER(i915) == 12) {
+>   		regs = gen12_regs;
+>   		num = ARRAY_SIZE(gen12_regs);
+> -	} else if (GRAPHICS_VER(i915) >= 8 && GRAPHICS_VER(i915) <= 11) {
+> +	} else if (GRAPHICS_VER(i915) > 8 && GRAPHICS_VER(i915) <= 11) {
+>   		regs = gen8_regs;
+>   		num = ARRAY_SIZE(gen8_regs);
+> -	} else if (GRAPHICS_VER(i915) < 8) {
+> +	} else if (GRAPHICS_VER(i915) <= 8) {
+>   		return;
+>   	}
+>   
