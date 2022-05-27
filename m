@@ -2,52 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72B0A535C2E
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 May 2022 10:54:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A4016535C34
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 May 2022 10:58:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF2C410E588;
-	Fri, 27 May 2022 08:54:20 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 38D4E10E588;
- Fri, 27 May 2022 08:54:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1653641659; x=1685177659;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=TBMKLtw76BMLWKnCn6R7QwYjsCFBckyEXlA+kSMi8Yo=;
- b=WgoqYBpMwf19Vyky3DQG+aSMsbJQ1qUAAo2WVtCqA3luC2q8lM4NpOfE
- VVnVBlgL9J9GYQMzRggeAKWSCfUT2jesSx2yXTMQVYSz7t5/TbGAOXyiU
- URvJ51C+t5J5wZ6GuBb0dX+PD8f1LURg4Axy5DaXUY7zyTesaB4LmbwkS
- jrfL9g0L12+hyG2NCEiql1rwg/Tc7JA8SAaM2EUuqO4LUPUaojPvmDN6R
- So8aMOqTXkeqSshwv9E8Wz6uKmZ67BZM0CqekFqC+MPzyBIEj2nT2lpem
- dosm7K6y8jDqy+B2HKwlZ/VM5weLHklwNkkrb42UVeUrCF9AMD7Qs6ShO Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10359"; a="271997520"
-X-IronPort-AV: E=Sophos;i="5.91,254,1647327600"; d="scan'208";a="271997520"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2022 01:54:17 -0700
-X-IronPort-AV: E=Sophos;i="5.91,254,1647327600"; d="scan'208";a="550110697"
-Received: from thrakatuluk.fi.intel.com (HELO thrakatuluk) ([10.237.72.90])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2022 01:54:16 -0700
-Received: from platvala by thrakatuluk with local (Exim 4.94.2)
- (envelope-from <petri.latvala@intel.com>)
- id 1nuVhR-000uDz-Sc; Fri, 27 May 2022 11:52:01 +0300
-Date: Fri, 27 May 2022 11:52:01 +0300
-From: Petri Latvala <petri.latvala@intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <YpCRMT+Q9/ujewRq@platvala-desk.ger.corp.intel.com>
-References: <20220527075304.2226456-1-tvrtko.ursulin@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 97DB510E440;
+	Fri, 27 May 2022 08:58:45 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from dfw.source.kernel.org (dfw.source.kernel.org
+ [IPv6:2604:1380:4641:c500::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C46010E440;
+ Fri, 27 May 2022 08:58:44 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 14A3F61DA1;
+ Fri, 27 May 2022 08:58:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 323BAC385A9;
+ Fri, 27 May 2022 08:58:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1653641921;
+ bh=zMEPRIvOxtolvSGdfKNn72JhOSa8qO+tUa865Q5G3/Y=;
+ h=From:To:Cc:Subject:Date:From;
+ b=rdMZQoOjHQst6A7c3TSCYMcgxXrNlvMsRL5cC3Va6gX1ySpnr3rFzdHu9491KTshy
+ vBMX5vShoMgR/qyXD6nWh3iF/PI0jttJFAkEs/jEqlCCekkFGwHMDIMdCcKcxLIGRN
+ 7OafZKxEHOD5VK3Zck6qmduMjDfoQMmysKxy9gz8j3kM9kRGiDyrfxbDFADjTSb7gu
+ PO3Z7/OqvfiYYOk7lMwASYO3yF2c4BfVNtuGenzEfm5mZE4/Bx4lmPAXJ/BIdsjln8
+ DoUl4CNCnPJYhWVGckVHOet2PHH2oaxa4b8ZTrxJ8LbVUU7o6QH1h/4O23Ez85BFap
+ z8H7f9IT4C2YA==
+Received: from mchehab by mail.kernel.org with local (Exim 4.95)
+ (envelope-from <mchehab@kernel.org>) id 1nuVnn-008Jvo-P8;
+ Fri, 27 May 2022 10:58:35 +0200
+From: Mauro Carvalho Chehab <mchehab@kernel.org>
+To: Daniel Vetter <daniel@ffwll.ch>
+Date: Fri, 27 May 2022 10:58:34 +0200
+Message-Id: <8c1571f1a642c5c462da9f662aaab271756ca735.1653641899.git.mchehab@kernel.org>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220527075304.2226456-1-tvrtko.ursulin@linux.intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH i-g-t] intel_gpu_top: Don't show client
- header if no kernel support
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915: don't flush TLB on GEN8
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,75 +53,94 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, Intel-gfx@lists.freedesktop.org
+Cc: David Airlie <airlied@linux.ie>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ dri-devel@lists.freedesktop.org,
+ Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+ Matthew Auld <matthew.auld@intel.com>, Dave Airlie <airlied@redhat.com>,
+ Sushma Venkatesh Reddy <sushma.venkatesh.reddy@intel.com>,
+ Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, mauro.chehab@linux.intel.com,
+ linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, May 27, 2022 at 08:53:04AM +0100, Tvrtko Ursulin wrote:
-> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> 
-> On kernels without support for the feature we should skip showing the
-> clients header to avoid confusing users.
-> 
-> Simply briefly open a render node to the selected device during init and
-> look if the relevant fields are present in the fdinfo data.
-> 
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Issue: https://gitlab.freedesktop.org/drm/igt-gpu-tools/-/issues/120
-> ---
->  tools/intel_gpu_top.c | 22 ++++++++++++++++++++--
->  1 file changed, 20 insertions(+), 2 deletions(-)
-> 
-> diff --git a/tools/intel_gpu_top.c b/tools/intel_gpu_top.c
-> index 1984c10dca29..26986a822bb7 100644
-> --- a/tools/intel_gpu_top.c
-> +++ b/tools/intel_gpu_top.c
-> @@ -2389,6 +2389,23 @@ static void process_stdin(unsigned int timeout_us)
->  		process_normal_stdin();
->  }
->  
-> +static bool has_drm_fdinfo(const struct igt_device_card *card)
-> +{
-> +	struct drm_client_fdinfo info;
-> +	unsigned int cnt;
-> +	int fd;
-> +
-> +	fd = open(card->render, O_RDWR);
-> +	if (fd < 0)
-> +		return false;
-> +
-> +	cnt = igt_parse_drm_fdinfo(fd, &info);
-> +
-> +	close(fd);
-> +
-> +	return cnt > 0;
-> +}
-> +
->  static void show_help_screen(void)
->  {
->  	printf(
-> @@ -2545,8 +2562,9 @@ int main(int argc, char **argv)
->  
->  	ret = EXIT_SUCCESS;
->  
-> -	clients = init_clients(card.pci_slot_name[0] ?
-> -			       card.pci_slot_name : IGPU_PCI);
-> +	if (has_drm_fdinfo(&card))
-> +		clients = init_clients(card.pci_slot_name[0] ?
-> +				       card.pci_slot_name : IGPU_PCI);
+From: Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
 
-Checked all usage of 'clients' below this, and everything handles NULL
-properly.
+i915 selftest hangcheck is causing the i915 driver timeouts, as
+reported by Intel CI:
 
-That said, nothing seems to free() it, am I reading that correctly?
+	http://gfx-ci.fi.intel.com/cibuglog-ng/issuefilterassoc/24297?query_key=42a999f48fa6ecce068bc8126c069be7c31153b4
 
-Anyway, that can be left for another patch, this change is
-Reviewed-by: Petri Latvala <petri.latvala@intel.com>
+When such test runs, the only output is:
 
+	[   68.811639] i915: Performing live selftests with st_random_seed=0xe138eac7 st_timeout=500
+	[   68.811792] i915: Running hangcheck
+	[   68.811859] i915: Running intel_hangcheck_live_selftests/igt_hang_sanitycheck
+	[   68.816910] i915 0000:00:02.0: [drm] Cannot find any crtc or sizes
+	[   68.841597] i915: Running intel_hangcheck_live_selftests/igt_reset_nop
+	[   69.346347] igt_reset_nop: 80 resets
+	[   69.362695] i915: Running intel_hangcheck_live_selftests/igt_reset_nop_engine
+	[   69.863559] igt_reset_nop_engine(rcs0): 709 resets
+	[   70.364924] igt_reset_nop_engine(bcs0): 903 resets
+	[   70.866005] igt_reset_nop_engine(vcs0): 659 resets
+	[   71.367934] igt_reset_nop_engine(vcs1): 549 resets
+	[   71.869259] igt_reset_nop_engine(vecs0): 553 resets
+	[   71.882592] i915: Running intel_hangcheck_live_selftests/igt_reset_idle_engine
+	[   72.383554] rcs0: Completed 16605 idle resets
+	[   72.884599] bcs0: Completed 18641 idle resets
+	[   73.385592] vcs0: Completed 17517 idle resets
+	[   73.886658] vcs1: Completed 15474 idle resets
+	[   74.387600] vecs0: Completed 17983 idle resets
+	[   74.387667] i915: Running intel_hangcheck_live_selftests/igt_reset_active_engine
+	[   74.889017] rcs0: Completed 747 active resets
+	[   75.174240] intel_engine_reset(bcs0) failed, err:-110
+	[   75.174301] bcs0: Completed 525 active resets
 
->  	init_engine_classes(engines);
->  	if (clients) {
->  		clients->num_classes = engines->num_classes;
-> -- 
-> 2.32.0
-> 
+After that, the machine just silently hangs.
+
+The root cause is that the flush TLB logic is not working as
+expected on GEN8.
+
+Tested on an Intel NUC5i7RYB with an i7-5557U Broadwell CPU.
+
+This patch partially reverts the logic by skipping GEN8 from
+the TLB cache flush.
+
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Sushma Venkatesh Reddy <sushma.venkatesh.reddy@intel.com>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Dave Airlie <airlied@redhat.com>
+Cc: Jon Bloomfield <jon.bloomfield@intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: stable@vger.kernel.org # Kernel 5.17 and upper
+
+Fixes: 494c2c9b630e ("drm/i915: Flush TLBs before releasing backing store")
+Signed-off-by: Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
+Signed-off-by: Mauro Carvalho Chehab <mchehab@kernel.org>
+---
+ drivers/gpu/drm/i915/gt/intel_gt.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
+index 034182f85501..7965a77e5046 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+@@ -1191,10 +1191,10 @@ void intel_gt_invalidate_tlbs(struct intel_gt *gt)
+ 	if (GRAPHICS_VER(i915) == 12) {
+ 		regs = gen12_regs;
+ 		num = ARRAY_SIZE(gen12_regs);
+-	} else if (GRAPHICS_VER(i915) >= 8 && GRAPHICS_VER(i915) <= 11) {
++	} else if (GRAPHICS_VER(i915) > 8 && GRAPHICS_VER(i915) <= 11) {
+ 		regs = gen8_regs;
+ 		num = ARRAY_SIZE(gen8_regs);
+-	} else if (GRAPHICS_VER(i915) < 8) {
++	} else if (GRAPHICS_VER(i915) <= 8) {
+ 		return;
+ 	}
+ 
+-- 
+2.36.1
+
