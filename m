@@ -2,62 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA7C15378DD
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 May 2022 12:09:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D3E345379F5
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 May 2022 13:34:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C5A0910E1CF;
-	Mon, 30 May 2022 10:09:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3209B10E416;
+	Mon, 30 May 2022 11:34:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 46B3810E1CF;
- Mon, 30 May 2022 10:09:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1653905365; x=1685441365;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=jvEQo2hR+MafbUkkbBqczoq0zg0Lmw32pAXxQ9XdKRM=;
- b=FW1HRnhexrvx/GT4+z++eZazrRB1JtzsjswfN4lfbqNRx3z4gSbPmNEs
- tQr9JxF5BADxzusSObHaey5rKw64zqyly3GRLtPAsVAZSvEaO4l+R/MvS
- HdwFtWnOhc2GWgl4gTl5RFkYkj/wC8n9CYUD0JeBn31rB455jfGCOwhvw
- Q/k+dmjR2dobjmkeKnlYdsLnaEeVknO5HV+MeaSstwsqWrfKgbKg7cj2D
- 16RPwqzaEgnosdvFv2tmhJNI01mH5HcO6mocgeaP41EY3bxJO7wrK9eKk
- Wh3SNbrxC+21ULOjQDHnvME/CpG+CUxOxlf1S4cOOMNyr2DplJRteTS1u Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10362"; a="275048823"
-X-IronPort-AV: E=Sophos;i="5.91,262,1647327600"; d="scan'208";a="275048823"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 May 2022 03:09:24 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,262,1647327600"; d="scan'208";a="611378309"
-Received: from linux.intel.com ([10.54.29.200])
- by orsmga001.jf.intel.com with ESMTP; 30 May 2022 03:09:24 -0700
-Received: from [10.249.137.127] (unknown [10.249.137.127])
- by linux.intel.com (Postfix) with ESMTP id EF099580ADE;
- Mon, 30 May 2022 03:09:22 -0700 (PDT)
-Message-ID: <442b3a43-2b8b-e9be-6ee4-b4b2357c8cf0@intel.com>
-Date: Mon, 30 May 2022 13:09:21 +0300
+Received: from mail-vs1-xe35.google.com (mail-vs1-xe35.google.com
+ [IPv6:2607:f8b0:4864:20::e35])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 12F1010E416
+ for <intel-gfx@lists.freedesktop.org>; Mon, 30 May 2022 11:34:54 +0000 (UTC)
+Received: by mail-vs1-xe35.google.com with SMTP id z6so10587489vsp.0
+ for <intel-gfx@lists.freedesktop.org>; Mon, 30 May 2022 04:34:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=qavSBhjyJguHpZQtpsLoQunCmJj0UaxeZNUkFbvKHQI=;
+ b=nylRUfykXAR4BPxN2kUQcQBx4UFaWucm9OU50Q26J8eVjUxEfey2e3vXkpeXlJPdBw
+ yk04wEP2nFeCYhiVSzO2zQEQN7BleasMfad4K+q10YYI80QpMv9sXRHHxhDiw+J4mjqe
+ y47MsyfOZhDnFZ0lbA46oIfYX2KDrn8RZ59ME=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=qavSBhjyJguHpZQtpsLoQunCmJj0UaxeZNUkFbvKHQI=;
+ b=j5lXHg15zTilt+8vwFRbsg4QCodPvYBr6BG5XCkZJu+xVTUGONxldj8j4Zjg9Uxgwl
+ YlnvW6lvZtfK5+5U0lYekp/OfMwFU4R6+llw1IbLye4jzOVnnw500PK3K9R5TAH3Q7wz
+ jxm4nqbfLYv6aDGkcNf6shHecDcjeCeKRMNFroLL77BqdQF8UBz210Nbs6nJ4f9msaqQ
+ ZkjDuPyH0rlnyqSpRP47LdXHBhBLUjzjATtcrmpOt2Q06ie2yywa+yLjFkpgsDujiZLD
+ v44oPbMaIm0qANgKBw3bzfNGBOLHRoJjekxkznm/HDg4ywJNmJJ32SJIeJsfGBb0DnbF
+ svzQ==
+X-Gm-Message-State: AOAM531nsidFkL6EgJjbs9Kgay9MuVP1pls3XGpbHXBOThnhvKB5Eb4i
+ x3HDdd29Y98lWnq9V5Q27EhtiJsZYVjpAMOraNewuw==
+X-Google-Smtp-Source: ABdhPJz7U/gg2bILW7eDQUEq+WiZSAg270VcwmISAU4Df/YG59TiLQ7aY2VN1tkTv7lkJuqBw4E/tvdvjiwMPfduP50=
+X-Received: by 2002:a05:6102:1008:b0:335:e260:9ff1 with SMTP id
+ q8-20020a056102100800b00335e2609ff1mr21708870vsp.32.1653910493009; Mon, 30
+ May 2022 04:34:53 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Content-Language: en-US
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-References: <20220209182600.434803-1-christian.koenig@amd.com>
- <2bf6b110-cd85-e17f-e9c5-69e5e7eedd0d@intel.com>
- <dbdb02cb-26fa-4f08-b125-c4a850e73780@gmail.com>
- <d97d1700-4f05-a78c-aa3c-d4c52226d0ca@intel.com>
- <996331e1-4442-7b43-b3f4-24bd6861eacd@intel.com>
- <419c9bff-4292-3062-b7f2-efeb64b9e79f@gmail.com>
- <20220525215933.m4yhm3b653gt4knp@ldmartin-desk2>
- <b54b2cc7-f511-e6ce-72fa-da5c8cd5e7b4@gmail.com>
-From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-In-Reply-To: <b54b2cc7-f511-e6ce-72fa-da5c8cd5e7b4@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] drm/syncobj: flatten dma_fence_chains on
- transfer
+References: <20220530081910.3947168-1-hsinyi@chromium.org>
+ <a8d1fe13-e747-016a-2d45-bfb50f23f2d9@redhat.com>
+In-Reply-To: <a8d1fe13-e747-016a-2d45-bfb50f23f2d9@redhat.com>
+From: Hsin-Yi Wang <hsinyi@chromium.org>
+Date: Mon, 30 May 2022 19:34:27 +0800
+Message-ID: <CAJMQK-iM-ip7edA2mBOhp-8maWKG5+kTceZUM5U6BOLLBq1H4Q@mail.gmail.com>
+To: Hans de Goede <hdegoede@redhat.com>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] [PATCH v10 0/4] Separate panel orientation property
+ creating and value setting
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,138 +61,91 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: thomas.hellstrom@linux.intel.com, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, daniel.vetter@ffwll.ch
+Cc: devicetree@vger.kernel.org, David Airlie <airlied@linux.ie>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Rob Clark <robdclark@chromium.org>, amd-gfx@lists.freedesktop.org,
+ Harry Wentland <harry.wentland@amd.com>,
+ Chun-Kuang Hu <chunkuang.hu@kernel.org>, intel-gfx@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Stephen Boyd <swboyd@chromium.org>,
+ Rob Herring <robh+dt@kernel.org>, linux-mediatek@lists.infradead.org,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ linux-arm-kernel@lists.infradead.org, Simon Ser <contact@emersion.fr>,
+ Douglas Anderson <dianders@chromium.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Alex Deucher <alexander.deucher@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 30/05/2022 12:52, Christian König wrote:
-> Am 25.05.22 um 23:59 schrieb Lucas De Marchi:
->> On Wed, May 25, 2022 at 12:38:51PM +0200, Christian König wrote:
->>> Am 25.05.22 um 11:35 schrieb Lionel Landwerlin:
->>>> [SNIP]
->>>>
->>>> Err... Let's double check with my colleagues.
->>>>
->>>> It seems we're running into a test failure in IGT with this patch, 
->>>> but now I have doubts that it's where the problem lies.
->>>
->>> Yeah, exactly that's what I couldn't understand as well.
->>>
->>> What you describe above should still work fine.
->>>
->>> Thanks for taking a look into this,
->>> Christian.
->>
->> With some additional prints:
->>
->> [  210.742634] Console: switching to colour dummy device 80x25
->> [  210.742686] [IGT] syncobj_timeline: executing
->> [  210.756988] [IGT] syncobj_timeline: starting subtest 
->> transfer-timeline-point
->> [  210.757364] [drm:drm_syncobj_transfer_ioctl] *ERROR* adding fence0 
->> signaled=1
->> [  210.764543] [drm:drm_syncobj_transfer_ioctl] *ERROR* resulting 
->> array fence signaled=0
->> [  210.800469] [IGT] syncobj_timeline: exiting, ret=98
->> [  210.825426] Console: switching to colour frame buffer device 240x67
->>
->>
->> still learning this part of the code but AFAICS the problem is because
->> when we are creating the array, the 'signaled' doesn't propagate to the
->> array.
+On Mon, May 30, 2022 at 4:53 PM Hans de Goede <hdegoede@redhat.com> wrote:
 >
-> Yeah, but that is intentionally. The array should only signal when 
-> requested.
+> Hi,
 >
-> I still don't get what the test case here is checking.
+> On 5/30/22 10:19, Hsin-Yi Wang wrote:
+> > Some drivers, eg. mtk_drm and msm_drm, rely on the panel to set the
+> > orientation. Panel calls drm_connector_set_panel_orientation() to create
+> > orientation property and sets the value. However, connector properties
+> > can't be created after drm_dev_register() is called. The goal is to
+> > separate the orientation property creation, so drm drivers can create it
+> > earlier before drm_dev_register().
+>
+> Sorry for jumping in pretty late in the discussion (based on the v10
+> I seem to have missed this before).
+>
+> This sounds to me like the real issue here is that drm_dev_register()
+> is getting called too early?
+>
+Right.
 
+> To me it seems sensible to delay calling drm_dev_register() and
+> thus allowing userspace to start detecting available displays +
+> features until after the panel has been probed.
+>
 
-There must be something I don't know about fence arrays.
+Most panels set this value very late, in .get_modes callback (since it
+is when the connector is known), though the value was known during
+panel probe.
 
-You seem to say that creating an array of signaled fences will not make 
-the array signaled.
+I think we can also let drm check if they have remote panel nodes: If
+there is a panel and the panel sets the orientation, let the drm read
+this value and set the property. Does this workflow sound reasonable?
 
+The corresponding patch to implement this:
+https://patchwork.kernel.org/project/linux-mediatek/patch/20220530113033.124072-1-hsinyi@chromium.org/
 
-This is the situation with this IGT test.
+Thanks
 
-We started with a syncobj with point 1 & 2 signaled.
-
-We take point 2 and import it as a new point 3 on the same syncobj.
-
-We expect point 3 to be signaled as well and it's not.
-
-
-Thanks,
-
-
--Lionel
-
-
+> I see a devicetree patch in this series, so I guess that the panel
+> is described in devicetree. Especially in the case of devicetree
+> I would expect the kernel to have enough info to do the right
+> thing and make sure the panel is probed before calling
+> drm_dev_register() ?
 >
 > Regards,
-> Christian.
 >
->>
->> dma_fence_array_create() {
->>     ...
->>     atomic_set(&array->num_pending, signal_on_any ? 1 : num_fences);
->>     ...
->> }
->>
->> This is not considering the fact that some of the fences could already
->> have been signaled as is the case in the 
->> igt@syncobj_timeline@transfer-timeline-point
->> test. See 
->> https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11693/shard-dg1-12/igt@syncobj_timeline@transfer-timeline-point.html
->>
->> Quick patch on this function fixes it for me:
->>
->> ---------8<----------------
->> Subject: [PATCH] dma-buf: Honor already signaled fences on array 
->> creation
->>
->> When creating an array, array->num_pending is marked with the number of
->> fences. However the fences could alredy have been signaled. Propagate
->> num_pending to the array by looking at each individual fence the array
->> contains.
->>
->> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
->> ---
->>  drivers/dma-buf/dma-fence-array.c | 11 ++++++++++-
->>  1 file changed, 10 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/dma-buf/dma-fence-array.c 
->> b/drivers/dma-buf/dma-fence-array.c
->> index 5c8a7084577b..32f491c32fa0 100644
->> --- a/drivers/dma-buf/dma-fence-array.c
->> +++ b/drivers/dma-buf/dma-fence-array.c
->> @@ -158,6 +158,8 @@ struct dma_fence_array 
->> *dma_fence_array_create(int num_fences,
->>  {
->>      struct dma_fence_array *array;
->>      size_t size = sizeof(*array);
->> +    unsigned num_pending = 0;
->> +    struct dma_fence **f;
->>
->>      WARN_ON(!num_fences || !fences);
->>
->> @@ -173,7 +175,14 @@ struct dma_fence_array 
->> *dma_fence_array_create(int num_fences,
->>      init_irq_work(&array->work, irq_dma_fence_array_work);
->>
->>      array->num_fences = num_fences;
->> -    atomic_set(&array->num_pending, signal_on_any ? 1 : num_fences);
->> +
->> +    for (f = fences; f < fences + num_fences; f++)
->> +        num_pending += !dma_fence_is_signaled(*f);
->> +
->> +    if (signal_on_any)
->> +        num_pending = !!num_pending;
->> +
->> +    atomic_set(&array->num_pending, num_pending);
->>      array->fences = fences;
->>
->>      array->base.error = PENDING_ERROR;
+> Hans
 >
-
+>
+>
+>
+> >
+> > After this series, drm_connector_set_panel_orientation() works like
+> > before. It won't affect existing callers of
+> > drm_connector_set_panel_orientation(). The only difference is that
+> > some drm drivers can call drm_connector_init_panel_orientation_property()
+> > earlier.
+> >
+> > Hsin-Yi Wang (4):
+> >   gpu: drm: separate panel orientation property creating and value
+> >     setting
+> >   drm/mediatek: init panel orientation property
+> >   drm/msm: init panel orientation property
+> >   arm64: dts: mt8183: Add panel rotation
+> >
+> >  .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi |  1 +
+> >  drivers/gpu/drm/drm_connector.c               | 58 ++++++++++++++-----
+> >  drivers/gpu/drm/mediatek/mtk_dsi.c            |  7 +++
+> >  drivers/gpu/drm/msm/dsi/dsi_manager.c         |  4 ++
+> >  include/drm/drm_connector.h                   |  2 +
+> >  5 files changed, 59 insertions(+), 13 deletions(-)
+> >
+>
