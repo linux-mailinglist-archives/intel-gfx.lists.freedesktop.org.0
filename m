@@ -2,61 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F301E537674
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 May 2022 10:19:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FCCA53769E
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 May 2022 10:44:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 95C7C10E242;
-	Mon, 30 May 2022 08:19:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E379E10E304;
+	Mon, 30 May 2022 08:44:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com
- [IPv6:2607:f8b0:4864:20::536])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E0AF10E307
- for <intel-gfx@lists.freedesktop.org>; Mon, 30 May 2022 08:19:38 +0000 (UTC)
-Received: by mail-pg1-x536.google.com with SMTP id j191so2284718pgd.3
- for <intel-gfx@lists.freedesktop.org>; Mon, 30 May 2022 01:19:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=0FDANzoD+ved+kLqkfGfvHR/pdrWdYCkcffUnS1gfwU=;
- b=EGj3J9IVTCdQAdPBammRVILB8q1w15Xcl7B4hV147t6lruwgmdowastMDeg50FrM4A
- Ds9V3H86IryQlC6KV4iX5TGgLG04/0gOrc6j1Y31gCWhI534zZoCg93dEK211ACoOi5q
- 2fxY2lyR/VS+yq2eiIqTUPtlHMbj067JlnVoA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=0FDANzoD+ved+kLqkfGfvHR/pdrWdYCkcffUnS1gfwU=;
- b=N9jwMRLa2V+aerkKKHTc5my+FbKHwtL8/XPQIhzVRekZTTxNAB5e8LYtfJ7IlT10ZF
- lPs4dAFXtPbdXtFujzfouWfKB0k8/Cx49BN2gnYjOGZ4lOcgeKKTUcJmthL4gZpEFdjg
- x99w1An3xmCURr40qJWp3adx2tWzVqV3FC5Xj6mtn9dE8x7KTULRzmmaDbf/dxPFX7wj
- Zgjp9Gc3oA6snWuSoi4dRN27XL1A5qUzPWz2vhJgB/CAttF/EaDwoygYKY6ky7siV0xa
- QEB997CXfauVvqP4iiJAU0pACkGclnI9Vmh56NNPZPq/SRUZzPRXVSNpGtR75vcwdYhn
- D2og==
-X-Gm-Message-State: AOAM532vcdD6D+mU7flLhvkVAkYGSvxk5PiRrBCptJQVeGrLFRddAu/0
- 7OGLVWArdy1baMC4B3uG37yj4w==
-X-Google-Smtp-Source: ABdhPJxC6hh+IA2nmnrMvgr7EIZHEawv5NbrZ/B9hfbxzJ5J4ENWWvjvBaWIFpEhTfiwlYPQDqCDTQ==
-X-Received: by 2002:a65:4183:0:b0:3fc:1370:9c37 with SMTP id
- a3-20020a654183000000b003fc13709c37mr4005861pgq.4.1653898777736; 
- Mon, 30 May 2022 01:19:37 -0700 (PDT)
-Received: from hsinyi-z840.tpe.corp.google.com
- ([2401:fa00:1:10:ae1c:3d63:abec:1097])
- by smtp.gmail.com with ESMTPSA id
- m1-20020a170902f64100b001618b70dcc9sm8537900plg.101.2022.05.30.01.19.33
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 30 May 2022 01:19:37 -0700 (PDT)
-From: Hsin-Yi Wang <hsinyi@chromium.org>
-To: dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Date: Mon, 30 May 2022 16:19:10 +0800
-Message-Id: <20220530081910.3947168-5-hsinyi@chromium.org>
-X-Mailer: git-send-email 2.36.1.124.g0e6072fb45-goog
-In-Reply-To: <20220530081910.3947168-1-hsinyi@chromium.org>
-References: <20220530081910.3947168-1-hsinyi@chromium.org>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id CCA9310E304;
+ Mon, 30 May 2022 08:44:06 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C585BAADD6;
+ Mon, 30 May 2022 08:44:06 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v10 4/4] arm64: dts: mt8183: Add panel rotation
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Hsin-Yi Wang" <hsinyi@chromium.org>
+Date: Mon, 30 May 2022 08:44:06 -0000
+Message-ID: <165390024678.17900.3899042545011534357@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220530081910.3947168-1-hsinyi@chromium.org>
+In-Reply-To: <20220530081910.3947168-1-hsinyi@chromium.org>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Separate_panel_orientation_property_creating_and_value_sett?=
+ =?utf-8?q?ing_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,38 +41,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rob Clark <robdclark@chromium.org>, Chun-Kuang Hu <chunkuang.hu@kernel.org>,
- Harry Wentland <harry.wentland@amd.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Douglas Anderson <dianders@chromium.org>,
- Maxime Ripard <mripard@kernel.org>, Stephen Boyd <swboyd@chromium.org>,
- Alex Deucher <alexander.deucher@amd.com>, Rob Herring <robh+dt@kernel.org>,
- linux-mediatek@lists.infradead.org, Thomas Zimmermann <tzimmermann@suse.de>,
- Simon Ser <contact@emersion.fr>, Matthias Brugger <matthias.bgg@gmail.com>,
- linux-arm-kernel@lists.infradead.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-krane, kakadu, and kodama boards have a default panel rotation.
+== Series Details ==
 
-Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-Reviewed-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Tested-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
----
- arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+Series: Separate panel orientation property creating and value setting (rev2)
+URL   : https://patchwork.freedesktop.org/series/101530/
+State : warning
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-index 8d5bf73a9099..f0dd5a06629d 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-@@ -276,6 +276,7 @@ panel: panel@0 {
- 		avee-supply = <&ppvarp_lcd>;
- 		pp1800-supply = <&pp1800_lcd>;
- 		backlight = <&backlight_lcd0>;
-+		rotation = <270>;
- 		port {
- 			panel_in: endpoint {
- 				remote-endpoint = <&dsi_out>;
--- 
-2.36.1.124.g0e6072fb45-goog
+== Summary ==
+
+Error: dim checkpatch failed
+bf8654ee2da6 gpu: drm: separate panel orientation property creating and value setting
+-:130: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#130: FILE: drivers/gpu/drm/drm_connector.c:2389:
++ * ^Icreate the connector's panel orientation property$
+
+-:141: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#141: FILE: drivers/gpu/drm/drm_connector.c:2400:
++int drm_connector_init_panel_orientation_property(
+
+-:147: ERROR:SPACING: space required before the open parenthesis '('
+#147: FILE: drivers/gpu/drm/drm_connector.c:2406:
++	if(dev->mode_config.panel_orientation_property)
+
+-:151: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#151: FILE: drivers/gpu/drm/drm_connector.c:2410:
++	prop = drm_property_create_enum(dev, DRM_MODE_PROP_IMMUTABLE,
++			"panel orientation",
+
+-:176: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#176: FILE: include/drm/drm_connector.h:1805:
++int drm_connector_init_panel_orientation_property(
+
+total: 1 errors, 1 warnings, 3 checks, 99 lines checked
+fb63fbb19c0d drm/mediatek: init panel orientation property
+24e07972d2f3 drm/msm: init panel orientation property
+205b521cb9de arm64: dts: mt8183: Add panel rotation
+
 
