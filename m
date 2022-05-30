@@ -1,52 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDDAB537A65
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 May 2022 14:10:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2B4C537A87
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 May 2022 14:18:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E600A10E633;
-	Mon, 30 May 2022 12:10:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BBD6310E638;
+	Mon, 30 May 2022 12:18:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8AC0A10E633
- for <intel-gfx@lists.freedesktop.org>; Mon, 30 May 2022 12:10:03 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8540D10E638
+ for <intel-gfx@lists.freedesktop.org>; Mon, 30 May 2022 12:18:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1653912603; x=1685448603;
+ t=1653913115; x=1685449115;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=9LsP1LR55KSe8rBBsoWJRo/8ILwfqjbMD2DeJ5NLfRg=;
- b=iPRwJVDAtHy9oAQnswU9Zj5fqo7ZSswpz26Psjlq+a7kPsm3HdJmFnmH
- /i4mQBuNpxWsYvw89Zn+CO61uv2jTojT2Wf/ofWvgmafgs0q1JU/z2Xc0
- qddg37YrB/BL43jegUvmLfcmXepg/BlFfHg75WEUoL7HEZ1NlQT3GABgc
- ATnTQLFI6Rgm9tixFNEzxex1tbKF2+Rhj34STGBP2r5/LViJCZ80Hh36O
- 0dVbBdaKn1GtrsJBOgHYy/PalFYm0z+Joqno1oYL2MUBeNTEm13Fqs+Ya
- hpz8syUZ7yIPafre4c2suuVu8TMnBD81lNdCrcAgcEnXSaqGEXa0zKuxK w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10362"; a="254858735"
-X-IronPort-AV: E=Sophos;i="5.91,262,1647327600"; d="scan'208";a="254858735"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 May 2022 05:10:02 -0700
-X-IronPort-AV: E=Sophos;i="5.91,262,1647327600"; d="scan'208";a="750951562"
+ bh=D6vFZToc2R04wegQfYzjrVM94pwGoh6+/mmmMlNEvZw=;
+ b=cqhhF2FgZZberSH8M7VdyaqNtlJVJHTHABiElOvkSBUeDJ7wcCR3NdIh
+ mcwQkJ42G9gHC5SuV6IixS3boFHdnw1Fl+CSohCC0VYtHWBkR5jJdZeAU
+ PG0vU8c8EV4QJq3jjEgnkaBgHVnaWIlHF1vH3vth4vCHM8pzt+uJb5Xlo
+ sg7neOs6ubH9w9gOuc7bUICcVnvtMhJJi2Ahc1VTCG/9ZrghhVjXBmcou
+ SkjnAxIDZr7P63wMDg/eFnnejHozCDDp3Gv2wUf7R6GcguqcvNd33kU+v
+ +vvwD9K/2DWNUH7OFR4SK4NagyH3AF+BqNua+upgcD7ky0nd7yk4PqD4p A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10362"; a="273798511"
+X-IronPort-AV: E=Sophos;i="5.91,262,1647327600"; d="scan'208";a="273798511"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 May 2022 05:18:34 -0700
+X-IronPort-AV: E=Sophos;i="5.91,262,1647327600"; d="scan'208";a="575911068"
 Received: from jkuna-mobl.ger.corp.intel.com (HELO localhost)
  ([10.249.150.228])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 May 2022 05:10:00 -0700
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 May 2022 05:18:33 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220503182242.18797-27-ville.syrjala@linux.intel.com>
+In-Reply-To: <20220527204949.2264-2-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220503182242.18797-1-ville.syrjala@linux.intel.com>
- <20220503182242.18797-27-ville.syrjala@linux.intel.com>
-Date: Mon, 30 May 2022 15:09:58 +0300
-Message-ID: <87tu97rzl5.fsf@intel.com>
+References: <20220527204949.2264-1-ville.syrjala@linux.intel.com>
+ <20220527204949.2264-2-ville.syrjala@linux.intel.com>
+Date: Mon, 30 May 2022 15:18:30 +0300
+Message-ID: <87r14brz6x.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 26/26] drm/i915: Round TMDS clock to nearest
+Subject: Re: [Intel-gfx] [PATCH 1/6] drm/i915: Parse VRR capability from VBT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,56 +62,106 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 03 May 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+On Fri, 27 May 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> Use round-to-nearest behavour when calculating the TMDS clock.
-> Matches what we co for most other clock related things.
-
-*do
-
-Acked-by: Jani Nikula <jani.nikula@intel.com>
-
-
+> VBT seems to have an extra flag for VRR vs. not. Let's consult
+> that for eDP panels.
 >
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_ddi.c  | 3 ++-
->  drivers/gpu/drm/i915/display/intel_hdmi.c | 2 +-
->  2 files changed, 3 insertions(+), 2 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_bios.c     |  5 +++++
+>  .../drm/i915/display/intel_display_types.h    |  2 ++
+>  drivers/gpu/drm/i915/display/intel_vrr.c      | 22 ++++++++++++++-----
+>  3 files changed, 23 insertions(+), 6 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
-915/display/intel_ddi.c
-> index 0cf2d4fba6a8..8b3e6ae85a08 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -330,7 +330,8 @@ int intel_crtc_dotclock(const struct intel_crtc_state=
- *pipe_config)
->  		dotclock =3D intel_dotclock_calculate(pipe_config->port_clock,
->  						    &pipe_config->dp_m_n);
->  	else if (pipe_config->has_hdmi_sink && pipe_config->pipe_bpp > 24)
-> -		dotclock =3D pipe_config->port_clock * 24 / pipe_config->pipe_bpp;
-> +		dotclock =3D DIV_ROUND_CLOSEST(pipe_config->port_clock * 24,
-> +					     pipe_config->pipe_bpp);
->  	else
->  		dotclock =3D pipe_config->port_clock;
+> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/=
+i915/display/intel_bios.c
+> index 337277ae3dae..0774238e429b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bios.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
+> @@ -1293,6 +1293,8 @@ parse_power_conservation_features(struct drm_i915_p=
+rivate *i915,
+>  	const struct bdb_lfp_power *power;
+>  	u8 panel_type =3D panel->vbt.panel_type;
 >=20=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/=
-i915/display/intel_hdmi.c
-> index 1ae09431f53a..0b04b3800cd4 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> @@ -1891,7 +1891,7 @@ int intel_hdmi_tmds_clock(int clock, int bpc, bool =
-ycbcr420_output)
->  	 *  1.5x for 12bpc
->  	 *  1.25x for 10bpc
->  	 */
-> -	return clock * bpc / 8;
-> +	return DIV_ROUND_CLOSEST(clock * bpc, 8);
+> +	panel->vbt.vrr =3D true; /* matches Windows behaviour */
+> +
+>  	if (i915->vbt.version < 228)
+>  		return;
+>=20=20
+> @@ -1313,6 +1315,9 @@ parse_power_conservation_features(struct drm_i915_p=
+rivate *i915,
+>=20=20
+>  	if (i915->vbt.version >=3D 232)
+>  		panel->vbt.edp.hobl =3D power->hobl & BIT(panel_type);
+> +
+> +	if (i915->vbt.version >=3D 233)
+> +		panel->vbt.vrr =3D power->vrr_feature_enabled & BIT(panel_type);
 >  }
 >=20=20
->  static bool intel_hdmi_source_bpc_possible(struct drm_i915_private *i915=
-, int bpc)
+>  static void
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
+/gpu/drm/i915/display/intel_display_types.h
+> index a27d66fd4383..7a76ba1a3b47 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -294,6 +294,8 @@ struct intel_vbt_panel_data {
+>  	unsigned int lvds_dither:1;
+>  	unsigned int bios_lvds_val; /* initial [PCH_]LVDS reg val in VBIOS */
+>=20=20
+> +	bool vrr;
+> +
+>  	u8 seamless_drrs_min_refresh_rate;
+>  	enum drrs_type drrs_type;
+>=20=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i=
+915/display/intel_vrr.c
+> index 081e52dd6c4e..04250a0fec3c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+> @@ -15,19 +15,29 @@ bool intel_vrr_is_capable(struct intel_connector *con=
+nector)
+>  	struct drm_i915_private *i915 =3D to_i915(connector->base.dev);
+>  	struct intel_dp *intel_dp;
+>=20=20
+> -	if (connector->base.connector_type !=3D DRM_MODE_CONNECTOR_eDP &&
+> -	    connector->base.connector_type !=3D DRM_MODE_CONNECTOR_DisplayPort)
+> -		return false;
+> -
+> -	intel_dp =3D intel_attached_dp(connector);
+>  	/*
+>  	 * DP Sink is capable of VRR video timings if
+>  	 * Ignore MSA bit is set in DPCD.
+>  	 * EDID monitor range also should be atleast 10 for reasonable
+>  	 * Adaptive Sync or Variable Refresh Rate end user experience.
+>  	 */
+> +	switch (connector->base.connector_type) {
+> +	case DRM_MODE_CONNECTOR_eDP:
+> +		if (!connector->panel.vbt.vrr)
+> +			return false;
+> +		fallthrough;
+> +	case DRM_MODE_CONNECTOR_DisplayPort:
+> +		intel_dp =3D intel_attached_dp(connector);
+> +
+> +		if (!drm_dp_sink_can_do_video_without_timing_msa(intel_dp->dpcd))
+> +			return false;
+> +
+> +		break;
+> +	default:
+> +		return false;
+> +	}
+> +
+>  	return HAS_VRR(i915) &&
+
+Feels like !HAS_VRR() should be an early return at the top. But that's
+not part of this patch.
+
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+
+> -		drm_dp_sink_can_do_video_without_timing_msa(intel_dp->dpcd) &&
+>  		info->monitor_range.max_vfreq - info->monitor_range.min_vfreq > 10;
+>  }
 
 --=20
 Jani Nikula, Intel Open Source Graphics Center
