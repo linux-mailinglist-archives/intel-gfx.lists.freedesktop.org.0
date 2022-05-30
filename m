@@ -1,51 +1,72 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 439FF53739B
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 May 2022 04:40:15 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id F31FD537424
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 May 2022 06:44:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6924D10E22E;
-	Mon, 30 May 2022 02:40:13 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A8D510E1FF;
- Mon, 30 May 2022 02:40:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1CB0310E101;
+	Mon, 30 May 2022 04:44:43 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2071B10E839
+ for <intel-gfx@lists.freedesktop.org>; Mon, 30 May 2022 04:44:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1653878411; x=1685414411;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=VH9Ac6j2zJEKnLbl4nEyt4ebwXWIMcHyFIJDmaWFKq0=;
- b=Eqs0pgsSoStugy8jwj2q+hTSLILTMMHUSCxx6FN+7+N4OILQnC/5KkpW
- X2Qhgb945mPplynEXOQfLgSoluO6p9DTW2iDr9kcKsoo5DO0qe0eu17p0
- 1O+x49Yl0p1uwsmJ8nsktnFdD8pQUOGjU33oGhEFI18tFFX6wNEYZp4oq
- VGFreQ8C+PPKMdenenNnt2O8B/GDGTyd4suDtX+/7BS/q5kfQOCIf46P5
- 9tDLb6P5bU5yEN2GLEdiz95ruBKOxNiWn+gvekMAyi8PmhJipIP79EwoJ
- Q3Kg8hdWsLNozwTRKboD+HRnocrTviejbsbZ8Ya2PmXtGj5ldkFk5O2Ww w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10362"; a="255363797"
-X-IronPort-AV: E=Sophos;i="5.91,261,1647327600"; d="scan'208";a="255363797"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2022 19:40:11 -0700
-X-IronPort-AV: E=Sophos;i="5.91,261,1647327600"; d="scan'208";a="575728472"
-Received: from rshamets-mobl.ger.corp.intel.com (HELO localhost)
- ([10.213.26.144])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2022 19:40:09 -0700
-Date: Mon, 30 May 2022 04:40:06 +0200
-From: Zbigniew =?utf-8?Q?Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <YpQuhjGGOVBBHrkt@zkempczy-mobl2>
-References: <20220527105042.2233128-1-tvrtko.ursulin@linux.intel.com>
+ t=1653885881; x=1685421881;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=hku5S29/oKfYWMH6qo+Oy5SKHMe6Ezb8TzaPDHc9jj0=;
+ b=nmz7c8pikWyd6sDttit4PXNjTcymIGF02SNgksr9BDQcZv2keNVbjgiI
+ AT8S0nTCFN76BOKOrQ7c+FFLwCG+gLFaEtk0Nxw85dRo048sPStfehfD7
+ gau3bpcwZnnjdnvPoUf6f5dlf9y2e1/EzReuFYE+bx8+R6F0IAK5IQ1WF
+ OpZqD00uZYnbVJKXvJG4c1O98TjVQ5+2hoG3Dj9ngy3jLXqKA2jUJ8tdN
+ 9YsVPYHjWCfP2ZAcZZGNRSGaBmmvtjIQZAjb7Nqn0NN8cv+I9BU/qIPPZ
+ BFJio4rpfsEUTZOT4aJlEBLNVYIk6grsp3Fp5Qrwp4g+I4KseuiVFHiU7 w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10362"; a="262508556"
+X-IronPort-AV: E=Sophos;i="5.91,261,1647327600"; d="scan'208";a="262508556"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2022 21:44:40 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.91,261,1647327600"; d="scan'208";a="705995270"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orsmga004.jf.intel.com with ESMTP; 29 May 2022 21:44:40 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27; Sun, 29 May 2022 21:44:39 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27; Sun, 29 May 2022 21:44:39 -0700
+Received: from fmsmsx610.amr.corp.intel.com ([10.18.126.90]) by
+ fmsmsx610.amr.corp.intel.com ([10.18.126.90]) with mapi id 15.01.2308.027;
+ Sun, 29 May 2022 21:44:39 -0700
+From: "Gupta, Anshuman" <anshuman.gupta@intel.com>
+To: "Nikula, Jani" <jani.nikula@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>, "Roper, Matthew D"
+ <matthew.d.roper@intel.com>
+Thread-Topic: [PATCH 3/7] drm/i915/dg2: DG2 MBD config
+Thread-Index: AQHYarg/c9jrXjH9c0+i2Od1sFFkU60mZRAAgBCC4yA=
+Date: Mon, 30 May 2022 04:44:38 +0000
+Message-ID: <4299ea60a4c74ea0806d78b09de0b6c6@intel.com>
+References: <20220518130716.10936-1-anshuman.gupta@intel.com>
+ <20220518130716.10936-4-anshuman.gupta@intel.com> <87h75ldg9t.fsf@intel.com>
+In-Reply-To: <87h75ldg9t.fsf@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 11.6.500.17
+dlp-reaction: no-action
+x-originating-ip: [10.223.10.1]
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220527105042.2233128-1-tvrtko.ursulin@linux.intel.com>
-Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t 1/3] lib/igt_device_scan:
- Free filtered devices in igt_devices_free
+Subject: Re: [Intel-gfx] [PATCH 3/7] drm/i915/dg2: DG2 MBD config
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,51 +79,89 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, Intel-gfx@lists.freedesktop.org
+Cc: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, May 27, 2022 at 11:50:40AM +0100, Tvrtko Ursulin wrote:
-> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> 
-> Fix a possible oversight.
 
-Yes, properly coded in igt_device_scan() only. Thanks for spotting this.
 
-> 
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> ---
->  lib/igt_device_scan.c | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/lib/igt_device_scan.c b/lib/igt_device_scan.c
-> index 3c23fe0eb520..a30433ae2cff 100644
-> --- a/lib/igt_device_scan.c
-> +++ b/lib/igt_device_scan.c
-> @@ -814,6 +814,11 @@ void igt_devices_free(void)
->  		igt_device_free(dev);
->  		free(dev);
->  	}
-> +
-> +	igt_list_for_each_entry_safe(dev, tmp, &igt_devs.filtered, link) {
-> +		igt_list_del(&dev->link);
-> +		free(dev);
-> +	}
-
-Small nit - I would change the order (filtered list I would remove first).
-igt_device_free() also frees dev->devnode, ... so if we would change the 
-code to be more "parallel" it would be better to avoid use-after-free.
-
-With this:
-
-Reviewed-by: Zbigniew Kempczyński <zbigniew.kempczynski@intel.com>
-
---
-Zbigniew
-
->  }
->  
->  /**
-> -- 
-> 2.32.0
-> 
+> -----Original Message-----
+> From: Nikula, Jani <jani.nikula@intel.com>
+> Sent: Thursday, May 19, 2022 2:57 PM
+> To: Gupta, Anshuman <anshuman.gupta@intel.com>; intel-
+> gfx@lists.freedesktop.org
+> Cc: Nilawar, Badal <badal.nilawar@intel.com>; Ewins, Jon
+> <jon.ewins@intel.com>; Vivi, Rodrigo <rodrigo.vivi@intel.com>; Deak, Imre
+> <imre.deak@intel.com>; Gupta, Anshuman <anshuman.gupta@intel.com>
+> Subject: Re: [PATCH 3/7] drm/i915/dg2: DG2 MBD config
+>=20
+> On Wed, 18 May 2022, Anshuman Gupta <anshuman.gupta@intel.com> wrote:
+> > Add DG2 Motherboard Down Config check support.
+> >
+> > BSpec: 44477
+> > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_opregion.c | 2 ++
+> >  drivers/gpu/drm/i915/i915_drv.h               | 9 +++++++++
+> >  2 files changed, 11 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_opregion.c
+> > b/drivers/gpu/drm/i915/display/intel_opregion.c
+> > index 3dcd54517b89..dec7628522c5 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_opregion.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_opregion.c
+> > @@ -1271,6 +1271,8 @@ intel_opregion_vram_sr_required(struct
+> > drm_i915_private *i915)
+> >
+> >  	if (IS_DG1(i915))
+> >  		return intel_opregion_dg1_mbd_config(i915);
+> > +	else if (IS_DG2_MBD(i915))
+> > +		return true;
+> >
+> >  	return false;
+> >  }
+> > diff --git a/drivers/gpu/drm/i915/i915_drv.h
+> > b/drivers/gpu/drm/i915/i915_drv.h index 10f273800645..c5ecc490dced
+> > 100644
+> > --- a/drivers/gpu/drm/i915/i915_drv.h
+> > +++ b/drivers/gpu/drm/i915/i915_drv.h
+> > @@ -1071,6 +1071,15 @@ IS_SUBPLATFORM(const struct drm_i915_private
+> *i915,
+> >  	IS_SUBPLATFORM(dev_priv, INTEL_DG2, INTEL_SUBPLATFORM_G11)
+> #define
+> > IS_DG2_G12(dev_priv) \
+> >  	IS_SUBPLATFORM(dev_priv, INTEL_DG2, INTEL_SUBPLATFORM_G12)
+> > +/*
+> > + * FIXME: Need to define a new SUBPLATFORM
+> INTEL_SUBPLATFORM_DG2_MBD
+> > + * for PCI id range 5690..5695, but G10, G11 SUBPLATFROM conflicts
+> > + * with those pci id range.
+> > + */
+> > +#define DG2_MBD_CONFIG_MASK	GENMASK(7, 4)
+> > +#define DG2_MBD_CONFIG_VAL
+> 	FIELD_PREP(DG2_MBD_CONFIG_MASK, 9)
+> > +#define IS_DG2_MBD(dev_priv) (IS_DG2(dev_priv) && \
+> > +			      (INTEL_DEVID(dev_priv) &
+> DG2_MBD_CONFIG_MASK) =3D=3D
+> > +DG2_MBD_CONFIG_VAL)
+>=20
+> No. Please don't do *any* magic masking or comparison of PCI ID bits or
+> bitfields.
+Hi Matt,
+We need to distinguish between DG2 NB MBD and rest such that i915 can figur=
+e out opregion vram_sr is requires for the DG2 platform.  Could you please =
+suggestion on that.
+Thanks,
+Anshuman Gupta.
+>=20
+> BR,
+> Jani.
+>=20
+> >  #define IS_ADLS_RPLS(dev_priv) \
+> >  	IS_SUBPLATFORM(dev_priv, INTEL_ALDERLAKE_S,
+> INTEL_SUBPLATFORM_RPL)
+> > #define IS_ADLP_N(dev_priv) \
+>=20
+> --
+> Jani Nikula, Intel Open Source Graphics Center
