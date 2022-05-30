@@ -1,87 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0D1053776A
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 May 2022 11:01:16 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA6B353777F
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 May 2022 11:08:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E93F110E375;
-	Mon, 30 May 2022 09:01:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F195F10E047;
+	Mon, 30 May 2022 09:08:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E32B10E375
- for <intel-gfx@lists.freedesktop.org>; Mon, 30 May 2022 09:01:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1653901273;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=j8JZgcij+gKnMYf8fKHUKx+imL3jnW+UtIPfMaKpnr0=;
- b=excobCexiXKpMfMOg1ncSjNIU4LBlNVVX3Yjt9eIAng3uT+uUXaOEx9RwT8tXnQlVtYJpy
- Tp0o920zywcgBKvPHlQu6/CBXYdIZvy1VZbVqWlczZH+X3ccLtddbe8f+ctj8S52Kdjf18
- dPRjw9YJplOe32kP5s9X5p2oejU0M6E=
-Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com
- [209.85.208.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-190-1cYfawuOOPmKmapEJLW4mQ-1; Mon, 30 May 2022 05:01:12 -0400
-X-MC-Unique: 1cYfawuOOPmKmapEJLW4mQ-1
-Received: by mail-ed1-f70.google.com with SMTP id
- co13-20020a0564020c0d00b0042dc9ef4f01so2881949edb.16
- for <intel-gfx@lists.freedesktop.org>; Mon, 30 May 2022 02:01:11 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:from:to:cc:references:in-reply-to
- :content-transfer-encoding;
- bh=j8JZgcij+gKnMYf8fKHUKx+imL3jnW+UtIPfMaKpnr0=;
- b=4iLLcqjyjMPX7UvuAXW6fkajtSpCfHVIposbfQRgIiN+H01u4QOBTN16JE8Zan+3Oq
- rahSprA6BQ7qVuUUJO39KJZu1j5JTki8Nq2+xOUWlySbvpCGQKM8fSWIn8IXxnWMM3oR
- hbazkXl3kfbOyr+ezPrTj20DUKZVnAwR2Fj7RBno5Ac5egJOkWasMPCWgG8B7WXEqYdP
- rF8jSR/GRQj/KEtihz+s0CC/iu/jkMREpLgYeRULb9eT927EKS7JP5iUAdmS8+4ORRLi
- tSlTSmrr9JiAV/FQL8dg4lYcb84zHyC8wNROHGkxBKJbbZGFeNgHnfGvkf5Pw1VqtPf5
- POeQ==
-X-Gm-Message-State: AOAM531NjEDMuwTPU6EJoqC/CcnQs/Yjl08khDRepVzMm0MTqOH9ztDd
- bJ/AeA2ggyuXk+RE+AZOmrUOg9vIM7uAD1eFeBncVmuQlpslBAZJRKjEQSqtvEiIXpDxqyEnM1d
- FHbSGUaZboOenl3Abda5ixzVwoyKO
-X-Received: by 2002:a17:906:f88f:b0:6fe:f872:f3af with SMTP id
- lg15-20020a170906f88f00b006fef872f3afmr29691592ejb.627.1653901270677; 
- Mon, 30 May 2022 02:01:10 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJw5DlWNOsVX1VM8ucBtn1pO6Mh+8c28hLgjehjeqRui77jXCNk66Axf0S6mekQOhS/6hZ/F4w==
-X-Received: by 2002:a17:906:f88f:b0:6fe:f872:f3af with SMTP id
- lg15-20020a170906f88f00b006fef872f3afmr29691553ejb.627.1653901270378; 
- Mon, 30 May 2022 02:01:10 -0700 (PDT)
-Received: from ?IPV6:2001:1c00:c1e:bf00:d69d:5353:dba5:ee81?
- (2001-1c00-0c1e-bf00-d69d-5353-dba5-ee81.cable.dynamic.v6.ziggo.nl.
- [2001:1c00:c1e:bf00:d69d:5353:dba5:ee81])
- by smtp.gmail.com with ESMTPSA id
- e21-20020a1709061e9500b006fee27d471csm3808574ejj.150.2022.05.30.02.01.09
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 30 May 2022 02:01:09 -0700 (PDT)
-Message-ID: <09c12a48-534f-e6b8-eaef-f05874087d35@redhat.com>
-Date: Mon, 30 May 2022 11:01:09 +0200
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0632510E047;
+ Mon, 30 May 2022 09:08:42 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id F226DA47DF;
+ Mon, 30 May 2022 09:08:41 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5109305666935898006=="
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-From: Hans de Goede <hdegoede@redhat.com>
-To: Hsin-Yi Wang <hsinyi@chromium.org>, dri-devel@lists.freedesktop.org,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Hsin-Yi Wang" <hsinyi@chromium.org>
+Date: Mon, 30 May 2022 09:08:41 -0000
+Message-ID: <165390172196.17903.8861049562845051948@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
 References: <20220530081910.3947168-1-hsinyi@chromium.org>
- <20220530081910.3947168-2-hsinyi@chromium.org>
- <3ae6d7d1-fcf2-a769-5e4d-f80328ae06fe@redhat.com>
-In-Reply-To: <3ae6d7d1-fcf2-a769-5e4d-f80328ae06fe@redhat.com>
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=hdegoede@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v10 1/4] gpu: drm: separate panel
- orientation property creating and value setting
+In-Reply-To: <20220530081910.3947168-1-hsinyi@chromium.org>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgU2Vw?=
+ =?utf-8?q?arate_panel_orientation_property_creating_and_value_setting_=28?=
+ =?utf-8?q?rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,226 +41,505 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rob Clark <robdclark@chromium.org>, Chun-Kuang Hu <chunkuang.hu@kernel.org>,
- Harry Wentland <harry.wentland@amd.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Douglas Anderson <dianders@chromium.org>,
- Maxime Ripard <mripard@kernel.org>, Stephen Boyd <swboyd@chromium.org>,
- Alex Deucher <alexander.deucher@amd.com>, Rob Herring <robh+dt@kernel.org>,
- linux-mediatek@lists.infradead.org, Thomas Zimmermann <tzimmermann@suse.de>,
- Simon Ser <contact@emersion.fr>, Matthias Brugger <matthias.bgg@gmail.com>,
- linux-arm-kernel@lists.infradead.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+--===============5109305666935898006==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 5/30/22 10:57, Hans de Goede wrote:
-> Hi,
-> 
-> On 5/30/22 10:19, Hsin-Yi Wang wrote:
->> drm_dev_register() sets connector->registration_state to
->> DRM_CONNECTOR_REGISTERED and dev->registered to true. If
->> drm_connector_set_panel_orientation() is first called after
->> drm_dev_register(), it will fail several checks and results in following
->> warning.
->>
->> Add a function to create panel orientation property and set default value
->> to UNKNOWN, so drivers can call this function to init the property earlier
->> , and let the panel set the real value later.
->>
->> [    4.480976] ------------[ cut here ]------------
->> [    4.485603] WARNING: CPU: 5 PID: 369 at drivers/gpu/drm/drm_mode_object.c:45 __drm_mode_object_add+0xb4/0xbc
->> <snip>
->> [    4.609772] Call trace:
->> [    4.612208]  __drm_mode_object_add+0xb4/0xbc
->> [    4.616466]  drm_mode_object_add+0x20/0x2c
->> [    4.620552]  drm_property_create+0xdc/0x174
->> [    4.624723]  drm_property_create_enum+0x34/0x98
->> [    4.629241]  drm_connector_set_panel_orientation+0x64/0xa0
->> [    4.634716]  boe_panel_get_modes+0x88/0xd8
->> [    4.638802]  drm_panel_get_modes+0x2c/0x48
->> [    4.642887]  panel_bridge_get_modes+0x1c/0x28
->> [    4.647233]  drm_bridge_connector_get_modes+0xa0/0xd4
->> [    4.652273]  drm_helper_probe_single_connector_modes+0x218/0x700
->> [    4.658266]  drm_mode_getconnector+0x1b4/0x45c
->> [    4.662699]  drm_ioctl_kernel+0xac/0x128
->> [    4.666611]  drm_ioctl+0x268/0x410
->> [    4.670002]  drm_compat_ioctl+0xdc/0xf0
->> [    4.673829]  __arm64_compat_sys_ioctl+0xc8/0x100
->> [    4.678436]  el0_svc_common+0xf4/0x1c0
->> [    4.682174]  do_el0_svc_compat+0x28/0x3c
->> [    4.686088]  el0_svc_compat+0x10/0x1c
->> [    4.689738]  el0_sync_compat_handler+0xa8/0xcc
->> [    4.694171]  el0_sync_compat+0x178/0x180
->> [    4.698082] ---[ end trace b4f2db9d9c88610b ]---
->> [    4.702721] ------------[ cut here ]------------
->> [    4.707329] WARNING: CPU: 5 PID: 369 at drivers/gpu/drm/drm_mode_object.c:243 drm_object_attach_property+0x48/0xb8
->> <snip>
->> [    4.833830] Call trace:
->> [    4.836266]  drm_object_attach_property+0x48/0xb8
->> [    4.840958]  drm_connector_set_panel_orientation+0x84/0xa0
->> [    4.846432]  boe_panel_get_modes+0x88/0xd8
->> [    4.850516]  drm_panel_get_modes+0x2c/0x48
->> [    4.854600]  panel_bridge_get_modes+0x1c/0x28
->> [    4.858946]  drm_bridge_connector_get_modes+0xa0/0xd4
->> [    4.863984]  drm_helper_probe_single_connector_modes+0x218/0x700
->> [    4.869978]  drm_mode_getconnector+0x1b4/0x45c
->> [    4.874410]  drm_ioctl_kernel+0xac/0x128
->> [    4.878320]  drm_ioctl+0x268/0x410
->> [    4.881711]  drm_compat_ioctl+0xdc/0xf0
->> [    4.885536]  __arm64_compat_sys_ioctl+0xc8/0x100
->> [    4.890142]  el0_svc_common+0xf4/0x1c0
->> [    4.893879]  do_el0_svc_compat+0x28/0x3c
->> [    4.897791]  el0_svc_compat+0x10/0x1c
->> [    4.901441]  el0_sync_compat_handler+0xa8/0xcc
->> [    4.905873]  el0_sync_compat+0x178/0x180
->> [    4.909783] ---[ end trace b4f2db9d9c88610c ]---
->>
->> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
->> Reviewed-by: Sean Paul <seanpaul@chromium.org>
->> ---
->> v9->v10: rebase to latest linux-next.
->> v9: https://patchwork.kernel.org/project/linux-mediatek/patch/20220318074825.3359978-2-hsinyi@chromium.org/
->> v8: https://patchwork.kernel.org/project/linux-mediatek/patch/20220208084234.1684930-1-hsinyi@chromium.org/
->> v7: https://patchwork.kernel.org/project/linux-mediatek/patch/20220208073714.1540390-1-hsinyi@chromium.org/
->> ---
->>  drivers/gpu/drm/drm_connector.c | 58 +++++++++++++++++++++++++--------
->>  include/drm/drm_connector.h     |  2 ++
->>  2 files changed, 47 insertions(+), 13 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
->> index 1c48d162c77e..d68cc78f6684 100644
->> --- a/drivers/gpu/drm/drm_connector.c
->> +++ b/drivers/gpu/drm/drm_connector.c
->> @@ -1252,7 +1252,7 @@ static const struct drm_prop_enum_list dp_colorspaces[] = {
->>   *	INPUT_PROP_DIRECT) will still map 1:1 to the actual LCD panel
->>   *	coordinates, so if userspace rotates the picture to adjust for
->>   *	the orientation it must also apply the same transformation to the
->> - *	touchscreen input coordinates. This property is initialized by calling
->> + *	touchscreen input coordinates. This property value is set by calling
->>   *	drm_connector_set_panel_orientation() or
->>   *	drm_connector_set_panel_orientation_with_quirk()
->>   *
->> @@ -2310,8 +2310,8 @@ EXPORT_SYMBOL(drm_connector_set_vrr_capable_property);
->>   * @connector: connector for which to set the panel-orientation property.
->>   * @panel_orientation: drm_panel_orientation value to set
->>   *
->> - * This function sets the connector's panel_orientation and attaches
->> - * a "panel orientation" property to the connector.
->> + * This function sets the connector's panel_orientation value. If the property
->> + * doesn't exist, it will try to create one.
->>   *
->>   * Calling this function on a connector where the panel_orientation has
->>   * already been set is a no-op (e.g. the orientation has been overridden with
->> @@ -2343,18 +2343,13 @@ int drm_connector_set_panel_orientation(
->>  
->>  	prop = dev->mode_config.panel_orientation_property;
->>  	if (!prop) {
->> -		prop = drm_property_create_enum(dev, DRM_MODE_PROP_IMMUTABLE,
->> -				"panel orientation",
->> -				drm_panel_orientation_enum_list,
->> -				ARRAY_SIZE(drm_panel_orientation_enum_list));
->> -		if (!prop)
->> +		if (drm_connector_init_panel_orientation_property(connector) < 0)
->>  			return -ENOMEM;
->> -
->> -		dev->mode_config.panel_orientation_property = prop;
->> +		prop = dev->mode_config.panel_orientation_property;
->>  	}
->>  
->> -	drm_object_attach_property(&connector->base, prop,
->> -				   info->panel_orientation);
->> +	drm_object_property_set_value(&connector->base, prop,
->> +				      info->panel_orientation);
->>  	return 0;
->>  }
->>  EXPORT_SYMBOL(drm_connector_set_panel_orientation);
->> @@ -2362,7 +2357,7 @@ EXPORT_SYMBOL(drm_connector_set_panel_orientation);
->>  /**
->>   * drm_connector_set_panel_orientation_with_quirk - set the
->>   *	connector's panel_orientation after checking for quirks
->> - * @connector: connector for which to init the panel-orientation property.
->> + * @connector: connector for which to set the panel-orientation property.
->>   * @panel_orientation: drm_panel_orientation value to set
->>   * @width: width in pixels of the panel, used for panel quirk detection
->>   * @height: height in pixels of the panel, used for panel quirk detection
->> @@ -2389,6 +2384,43 @@ int drm_connector_set_panel_orientation_with_quirk(
->>  }
->>  EXPORT_SYMBOL(drm_connector_set_panel_orientation_with_quirk);
->>  
->> +/**
->> + * drm_connector_init_panel_orientation_property -
->> + * 	create the connector's panel orientation property
->> + *
->> + * This function attaches a "panel orientation" property to the connector
->> + * and initializes its value to DRM_MODE_PANEL_ORIENTATION_UNKNOWN.
->> + *
->> + * The value of the property can be set by drm_connector_set_panel_orientation()
->> + * or drm_connector_set_panel_orientation_with_quirk() later.
->> + *
->> + * Returns:
->> + * Zero on success, negative errno on failure.
->> + */
->> +int drm_connector_init_panel_orientation_property(
->> +	struct drm_connector *connector)
->> +{
->> +	struct drm_device *dev = connector->dev;
->> +	struct drm_property *prop;
->> +
->> +	if(dev->mode_config.panel_orientation_property)
->> +		return 0;
->> +
->> +	prop = drm_property_create_enum(dev, DRM_MODE_PROP_IMMUTABLE,
->> +			"panel orientation",
->> +			drm_panel_orientation_enum_list,
->> +			ARRAY_SIZE(drm_panel_orientation_enum_list));
->> +	if (!prop)
->> +		return -ENOMEM;
->> +
->> +	dev->mode_config.panel_orientation_property = prop;
->> +	drm_object_attach_property(&connector->base, prop,
->> +				   DRM_MODE_PANEL_ORIENTATION_UNKNOWN);
-> 
-> DRM_MODE_PANEL_ORIENTATION_UNKNOWN is -1 which is not a valid value
-> for an enum. IOW when the panel-orientation is DRM_MODE_PANEL_ORIENTATION_UNKNOWN
-> then the property should not be created on the drm-connector object at all.
+== Series Details ==
 
-p.s. note that the original drm_connector_set_panel_orientation() avoids
-ever creating the property when the orientation is unknown because of
-this bit of code near the top of the function:
+Series: Separate panel orientation property creating and value setting (rev2)
+URL   : https://patchwork.freedesktop.org/series/101530/
+State : failure
 
-        /* Don't attach the property if the orientation is unknown */
-        if (panel_orientation == DRM_MODE_PANEL_ORIENTATION_UNKNOWN)
-                return 0;
+== Summary ==
 
-> Which brings us back to what I said in reply to the coverletter,
-> it seems that you have a probe ordering problem here; and fixing that
-> issue would make this patch-set unnecessary.
+CI Bug Log - changes from CI_DRM_11705 -> Patchwork_101530v2
+====================================================
 
-Regards,
+Summary
+-------
 
-Hans
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_101530v2 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_101530v2, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/index.html
+
+Participating hosts (42 -> 46)
+------------------------------
+
+  Additional (4): bat-dg2-8 fi-rkl-11600 fi-bsw-nick fi-tgl-u2 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_101530v2:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@prime_self_import@basic-with_one_bo_two_files:
+    - fi-kbl-soraka:      [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11705/fi-kbl-soraka/igt@prime_self_import@basic-with_one_bo_two_files.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/fi-kbl-soraka/igt@prime_self_import@basic-with_one_bo_two_files.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_101530v2 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-tgl-u2:          NOTRUN -> [SKIP][3] ([i915#2190])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/fi-tgl-u2/igt@gem_huc_copy@huc-copy.html
+    - fi-rkl-11600:       NOTRUN -> [SKIP][4] ([i915#2190])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/fi-rkl-11600/igt@gem_huc_copy@huc-copy.html
+
+  * igt@gem_lmem_swapping@basic:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][5] ([i915#4613]) +3 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/fi-rkl-11600/igt@gem_lmem_swapping@basic.html
+
+  * igt@gem_lmem_swapping@parallel-random-engines:
+    - fi-bsw-nick:        NOTRUN -> [SKIP][6] ([fdo#109271]) +48 similar issues
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/fi-bsw-nick/igt@gem_lmem_swapping@parallel-random-engines.html
+
+  * igt@gem_tiled_pread_basic:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][7] ([i915#3282])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/fi-rkl-11600/igt@gem_tiled_pread_basic.html
+
+  * igt@i915_pm_backlight@basic-brightness:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][8] ([i915#3012])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/fi-rkl-11600/igt@i915_pm_backlight@basic-brightness.html
+
+  * igt@i915_selftest@live@gem:
+    - fi-blb-e6850:       NOTRUN -> [DMESG-FAIL][9] ([i915#4528])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/fi-blb-e6850/igt@i915_selftest@live@gem.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - bat-dg1-6:          [PASS][10] -> [DMESG-FAIL][11] ([i915#4494] / [i915#4957])
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11705/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
+
+  * igt@i915_suspend@basic-s2idle-without-i915:
+    - fi-bdw-gvtdvm:      NOTRUN -> [INCOMPLETE][12] ([i915#4817])
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/fi-bdw-gvtdvm/igt@i915_suspend@basic-s2idle-without-i915.html
+
+  * igt@i915_suspend@basic-s3-without-i915:
+    - fi-rkl-11600:       NOTRUN -> [INCOMPLETE][13] ([i915#5982])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html
+
+  * igt@kms_chamelium@hdmi-edid-read:
+    - fi-tgl-u2:          NOTRUN -> [SKIP][14] ([fdo#109284] / [fdo#111827]) +7 similar issues
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/fi-tgl-u2/igt@kms_chamelium@hdmi-edid-read.html
+    - fi-rkl-11600:       NOTRUN -> [SKIP][15] ([fdo#111827]) +7 similar issues
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/fi-rkl-11600/igt@kms_chamelium@hdmi-edid-read.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-bsw-nick:        NOTRUN -> [SKIP][16] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/fi-bsw-nick/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
+    - fi-tgl-u2:          NOTRUN -> [SKIP][17] ([i915#4103]) +1 similar issue
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/fi-tgl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+    - fi-rkl-11600:       NOTRUN -> [SKIP][18] ([i915#4070] / [i915#4103]) +1 similar issue
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/fi-rkl-11600/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+
+  * igt@kms_flip@basic-flip-vs-modeset@a-edp1:
+    - fi-tgl-u2:          NOTRUN -> [DMESG-WARN][19] ([i915#402]) +2 similar issues
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/fi-tgl-u2/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html
+
+  * igt@kms_flip@basic-flip-vs-modeset@b-edp1:
+    - bat-adlp-4:         [PASS][20] -> [DMESG-WARN][21] ([i915#3576]) +1 similar issue
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11705/bat-adlp-4/igt@kms_flip@basic-flip-vs-modeset@b-edp1.html
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/bat-adlp-4/igt@kms_flip@basic-flip-vs-modeset@b-edp1.html
+
+  * igt@kms_force_connector_basic@force-load-detect:
+    - fi-tgl-u2:          NOTRUN -> [SKIP][22] ([fdo#109285])
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/fi-tgl-u2/igt@kms_force_connector_basic@force-load-detect.html
+    - fi-rkl-11600:       NOTRUN -> [SKIP][23] ([fdo#109285] / [i915#4098])
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/fi-rkl-11600/igt@kms_force_connector_basic@force-load-detect.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][24] ([i915#4070] / [i915#533])
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/fi-rkl-11600/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
+
+  * igt@kms_psr@primary_page_flip:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][25] ([i915#1072]) +3 similar issues
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/fi-rkl-11600/igt@kms_psr@primary_page_flip.html
+
+  * igt@kms_setmode@basic-clone-single-crtc:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][26] ([i915#3555] / [i915#4098])
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/fi-rkl-11600/igt@kms_setmode@basic-clone-single-crtc.html
+    - fi-tgl-u2:          NOTRUN -> [SKIP][27] ([i915#3555])
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/fi-tgl-u2/igt@kms_setmode@basic-clone-single-crtc.html
+
+  * igt@prime_vgem@basic-read:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][28] ([fdo#109295] / [i915#3291] / [i915#3708]) +2 similar issues
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/fi-rkl-11600/igt@prime_vgem@basic-read.html
+
+  * igt@prime_vgem@basic-userptr:
+    - fi-tgl-u2:          NOTRUN -> [SKIP][29] ([fdo#109295] / [i915#3301])
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/fi-tgl-u2/igt@prime_vgem@basic-userptr.html
+    - fi-rkl-11600:       NOTRUN -> [SKIP][30] ([fdo#109295] / [i915#3301] / [i915#3708])
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/fi-rkl-11600/igt@prime_vgem@basic-userptr.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@coherency:
+    - {bat-dg2-9}:        [DMESG-WARN][31] ([i915#5763]) -> [PASS][32] +5 similar issues
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11705/bat-dg2-9/igt@i915_selftest@live@coherency.html
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/bat-dg2-9/igt@i915_selftest@live@coherency.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bdw-gvtdvm:      [INCOMPLETE][33] ([i915#2940] / [i915#5801]) -> [PASS][34]
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11705/fi-bdw-gvtdvm/igt@i915_selftest@live@execlists.html
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/fi-bdw-gvtdvm/igt@i915_selftest@live@execlists.html
+
+  * igt@i915_selftest@live@requests:
+    - fi-blb-e6850:       [DMESG-FAIL][35] ([i915#4528]) -> [PASS][36]
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11705/fi-blb-e6850/igt@i915_selftest@live@requests.html
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/fi-blb-e6850/igt@i915_selftest@live@requests.html
+
+  * igt@kms_busy@basic@flip:
+    - bat-adlp-4:         [DMESG-WARN][37] ([i915#3576]) -> [PASS][38] +1 similar issue
+   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11705/bat-adlp-4/igt@kms_busy@basic@flip.html
+   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/bat-adlp-4/igt@kms_busy@basic@flip.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109284]: https://bugs.freedesktop.org/show_bug.cgi?id=109284
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#109295]: https://bugs.freedesktop.org/show_bug.cgi?id=109295
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
+  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
+  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
+  [i915#3012]: https://gitlab.freedesktop.org/drm/intel/issues/3012
+  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
+  [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
+  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
+  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
+  [i915#3576]: https://gitlab.freedesktop.org/drm/intel/issues/3576
+  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#4070]: https://gitlab.freedesktop.org/drm/intel/issues/4070
+  [i915#4098]: https://gitlab.freedesktop.org/drm/intel/issues/4098
+  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
+  [i915#4528]: https://gitlab.freedesktop.org/drm/intel/issues/4528
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#4817]: https://gitlab.freedesktop.org/drm/intel/issues/4817
+  [i915#4957]: https://gitlab.freedesktop.org/drm/intel/issues/4957
+  [i915#5122]: https://gitlab.freedesktop.org/drm/intel/issues/5122
+  [i915#5171]: https://gitlab.freedesktop.org/drm/intel/issues/5171
+  [i915#5174]: https://gitlab.freedesktop.org/drm/intel/issues/5174
+  [i915#5181]: https://gitlab.freedesktop.org/drm/intel/issues/5181
+  [i915#5190]: https://gitlab.freedesktop.org/drm/intel/issues/5190
+  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
+  [i915#5606]: https://gitlab.freedesktop.org/drm/intel/issues/5606
+  [i915#5703]: https://gitlab.freedesktop.org/drm/intel/issues/5703
+  [i915#5763]: https://gitlab.freedesktop.org/drm/intel/issues/5763
+  [i915#5775]: https://gitlab.freedesktop.org/drm/intel/issues/5775
+  [i915#5801]: https://gitlab.freedesktop.org/drm/intel/issues/5801
+  [i915#5903]: https://gitlab.freedesktop.org/drm/intel/issues/5903
+  [i915#5982]: https://gitlab.freedesktop.org/drm/intel/issues/5982
 
 
->> +
->> +	return 0;
->> +}
->> +EXPORT_SYMBOL(drm_connector_init_panel_orientation_property);
->> +
->>  static const struct drm_prop_enum_list privacy_screen_enum[] = {
->>  	{ PRIVACY_SCREEN_DISABLED,		"Disabled" },
->>  	{ PRIVACY_SCREEN_ENABLED,		"Enabled" },
->> diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
->> index 3ac4bf87f257..f0681091c617 100644
->> --- a/include/drm/drm_connector.h
->> +++ b/include/drm/drm_connector.h
->> @@ -1802,6 +1802,8 @@ int drm_connector_set_panel_orientation_with_quirk(
->>  	struct drm_connector *connector,
->>  	enum drm_panel_orientation panel_orientation,
->>  	int width, int height);
->> +int drm_connector_init_panel_orientation_property(
->> +	struct drm_connector *connector);
->>  int drm_connector_attach_max_bpc_property(struct drm_connector *connector,
->>  					  int min, int max);
->>  void drm_connector_create_privacy_screen_properties(struct drm_connector *conn);
+Build changes
+-------------
 
+  * Linux: CI_DRM_11705 -> Patchwork_101530v2
+
+  CI-20190529: 20190529
+  CI_DRM_11705: 18a2e6dbca526f996da04741cf5ef169e810a50e @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6495: 7e2033da45f024a0348e6034fcb7f70a91b80ee9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_101530v2: 18a2e6dbca526f996da04741cf5ef169e810a50e @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+01d561b9bb95 arm64: dts: mt8183: Add panel rotation
+21530cae4fa3 drm/msm: init panel orientation property
+a026c392838a drm/mediatek: init panel orientation property
+d1faead57b36 gpu: drm: separate panel orientation property creating and value setting
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/index.html
+
+--===============5109305666935898006==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Separate panel orientation property creating and value setting (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/101530/">https://patchwork.freedesktop.org/series/101530/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11705 -&gt; Patchwork_101530v2</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_101530v2 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_101530v2, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/index.html</p>
+<h2>Participating hosts (42 -&gt; 46)</h2>
+<p>Additional (4): bat-dg2-8 fi-rkl-11600 fi-bsw-nick fi-tgl-u2 </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_101530v2:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@prime_self_import@basic-with_one_bo_two_files:<ul>
+<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11705/fi-kbl-soraka/igt@prime_self_import@basic-with_one_bo_two_files.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/fi-kbl-soraka/igt@prime_self_import@basic-with_one_bo_two_files.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_101530v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>
+<p>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/fi-tgl-u2/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</p>
+</li>
+<li>
+<p>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/fi-rkl-11600/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@basic:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/fi-rkl-11600/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
+<ul>
+<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/fi-bsw-nick/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +48 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_tiled_pread_basic:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/fi-rkl-11600/igt@gem_tiled_pread_basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3282">i915#3282</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_backlight@basic-brightness:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/fi-rkl-11600/igt@i915_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3012">i915#3012</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gem:</p>
+<ul>
+<li>fi-blb-e6850:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/fi-blb-e6850/igt@i915_selftest@live@gem.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11705/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_suspend@basic-s2idle-without-i915:</p>
+<ul>
+<li>fi-bdw-gvtdvm:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/fi-bdw-gvtdvm/igt@i915_suspend@basic-s2idle-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4817">i915#4817</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_suspend@basic-s3-without-i915:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5982">i915#5982</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@hdmi-edid-read:</p>
+<ul>
+<li>
+<p>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/fi-tgl-u2/igt@kms_chamelium@hdmi-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109284">fdo#109284</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +7 similar issues</p>
+</li>
+<li>
+<p>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/fi-rkl-11600/igt@kms_chamelium@hdmi-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +7 similar issues</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@hdmi-hpd-fast:</p>
+<ul>
+<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/fi-bsw-nick/igt@kms_chamelium@hdmi-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
+<ul>
+<li>
+<p>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/fi-tgl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a>) +1 similar issue</p>
+</li>
+<li>
+<p>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/fi-rkl-11600/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4070">i915#4070</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a>) +1 similar issue</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-modeset@a-edp1:</p>
+<ul>
+<li>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/fi-tgl-u2/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-modeset@b-edp1:</p>
+<ul>
+<li>bat-adlp-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11705/bat-adlp-4/igt@kms_flip@basic-flip-vs-modeset@b-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/bat-adlp-4/igt@kms_flip@basic-flip-vs-modeset@b-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-load-detect:</p>
+<ul>
+<li>
+<p>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/fi-tgl-u2/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</p>
+</li>
+<li>
+<p>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/fi-rkl-11600/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4098">i915#4098</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/fi-rkl-11600/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4070">i915#4070</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@primary_page_flip:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/fi-rkl-11600/igt@kms_psr@primary_page_flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_setmode@basic-clone-single-crtc:</p>
+<ul>
+<li>
+<p>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/fi-rkl-11600/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4098">i915#4098</a>)</p>
+</li>
+<li>
+<p>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/fi-tgl-u2/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-read:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/fi-rkl-11600/igt@prime_vgem@basic-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109295">fdo#109295</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3291">i915#3291</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-userptr:</p>
+<ul>
+<li>
+<p>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/fi-tgl-u2/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109295">fdo#109295</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a>)</p>
+</li>
+<li>
+<p>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/fi-rkl-11600/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109295">fdo#109295</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@coherency:</p>
+<ul>
+<li>{bat-dg2-9}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11705/bat-dg2-9/igt@i915_selftest@live@coherency.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5763">i915#5763</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/bat-dg2-9/igt@i915_selftest@live@coherency.html">PASS</a> +5 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bdw-gvtdvm:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11705/fi-bdw-gvtdvm/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5801">i915#5801</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/fi-bdw-gvtdvm/igt@i915_selftest@live@execlists.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@requests:</p>
+<ul>
+<li>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11705/fi-blb-e6850/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/fi-blb-e6850/igt@i915_selftest@live@requests.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_busy@basic@flip:</p>
+<ul>
+<li>bat-adlp-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11705/bat-adlp-4/igt@kms_busy@basic@flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101530v2/bat-adlp-4/igt@kms_busy@basic@flip.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11705 -&gt; Patchwork_101530v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11705: 18a2e6dbca526f996da04741cf5ef169e810a50e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6495: 7e2033da45f024a0348e6034fcb7f70a91b80ee9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_101530v2: 18a2e6dbca526f996da04741cf5ef169e810a50e @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>01d561b9bb95 arm64: dts: mt8183: Add panel rotation<br />
+21530cae4fa3 drm/msm: init panel orientation property<br />
+a026c392838a drm/mediatek: init panel orientation property<br />
+d1faead57b36 gpu: drm: separate panel orientation property creating and value setting</p>
+
+</body>
+</html>
+
+--===============5109305666935898006==--
