@@ -1,148 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 075F9537E44
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 May 2022 15:56:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07809538682
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 May 2022 19:05:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3515A10ECEF;
-	Mon, 30 May 2022 13:56:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E5DB10F16D;
+	Mon, 30 May 2022 17:05:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2040.outbound.protection.outlook.com [40.107.93.40])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 59AA510ECEF;
- Mon, 30 May 2022 13:56:51 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=gWhkfLs65iVQv0+mt9DfStWvXbcYjJJ5myovjcMm7Ta3TEc8sSAcaV4LMo2zqgR+vBqlLNSmRFohsrgyUsInoYd5+DGRszdinu+j5JN+Xf2DodW8bD1gWPlFV+09sBT7KNW5tj5QK2Sh4oW6W7OvKobFwceAn2zhioyqZvp6ITO7GoCZru13szVhTy/SqLqdOzvnjDJEZPrsIEvj9MRDMvKZdmgVMSDX7TapjTXFLfMCDFS9t41YHC2Rt7uqLOXdqQX0y/hDmGh1BLsIY1BOr9PBEJm+YzyhdStVZuqHnFtbsI9ytqL41Qk48Xt7IXUHFv9zqx86VgkV+m6QsooteQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8Ln1IYHCrBrCaQS84rnoFBpWZLwjNyjzT+nTzcBkppU=;
- b=TbDgXJLIzJ1kD4HWYPsJhR7NFIxy3EhpXBGRzWXRJdA4R8akIE0mNkcsrvmfJAz4lulPj/sMPPQCa/9zrqiPCA+lhI0aTBQeVYGWHd0De7sUI2icHwV3YNIvWbvf7F6eexVOC6VIOcrzEFUQ4jUwj6+OZblwN/sO+6hsT8BfeLQMu2cBA7RslLAZK/5iloKeLLBiuNayQMhCPPCyoz4eHYyB6nJfv6m/A8/7UTuzzIieWcZh8zFnJvg1HxT0pvKs+4DKhFdae82/DR+biXmDn5S2wzlmCAtrhxEcYdanTas5gH0ADqC6dlTi+0rj+6RGs2XUqijMEibtP/AabWFOCA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8Ln1IYHCrBrCaQS84rnoFBpWZLwjNyjzT+nTzcBkppU=;
- b=13ehhYFfxSWwAGsLkIAQffpe4EG92IwRz4RVTkutxhpU6BCWdggdvfHywDUQDBskAdXfedmF+60Eub0upNf3famO8vYXRRxBpWsIgBxw8OR00s4Jvx8/Uaap5BBkXQrjccQMwNUdkxi+myiNcPi9scswbsI3ZxJspipPqOUWjAQ=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BN8PR12MB3587.namprd12.prod.outlook.com (2603:10b6:408:43::13)
- by MW2PR12MB2441.namprd12.prod.outlook.com (2603:10b6:907:f::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5293.13; Mon, 30 May
- 2022 13:41:26 +0000
-Received: from BN8PR12MB3587.namprd12.prod.outlook.com
- ([fe80::7146:65ee:8fd3:dd03]) by BN8PR12MB3587.namprd12.prod.outlook.com
- ([fe80::7146:65ee:8fd3:dd03%4]) with mapi id 15.20.5293.019; Mon, 30 May 2022
- 13:41:25 +0000
-Message-ID: <02e7946b-34ca-b48e-1ba6-e7b63740a2d9@amd.com>
-Date: Mon, 30 May 2022 15:41:13 +0200
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6AB2810F16D;
+ Mon, 30 May 2022 17:05:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1653930311; x=1685466311;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=zIXjxULTglrK6wOg8sEfr+qLEcpHGeXA7PkcPJbOx1Q=;
+ b=TAlxxceD1nbBKsPN6hPPvNh353F8H6RSDIwWGxQQH2E8talgvEIPxl+d
+ T7wtyW26sOsgqpC1dUqO9G4BV2NomNwkDcssDqqxKx1ukfTYXx9wpXdSN
+ wu8PUt31Ne4wJeoGBHH3HDeLthxJh9omR/eIX8LXlmrsfbsyZdGOa7mW/
+ PHJ4mhyYz+aNsp8kzriIthkZQzVve5Qgw94SM7JSuUR0bU/c+QUJ7SpBx
+ D1xwPj0i+PNbUGiOrk6ddQ/GXTterwnFZih0t7/s6BFoquh2F8y3V6OWn
+ zoBKKhlm01+KgnnMSjTbcgA6fe9AUlNSfjDwOyyO6WMaiacFPO/xxCaxC A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10363"; a="361422467"
+X-IronPort-AV: E=Sophos;i="5.91,263,1647327600"; d="scan'208";a="361422467"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 May 2022 10:05:10 -0700
+X-IronPort-AV: E=Sophos;i="5.91,263,1647327600"; d="scan'208";a="632686971"
+Received: from dairecol-mobl2.ger.corp.intel.com (HELO [10.213.233.68])
+ ([10.213.233.68])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 May 2022 10:05:08 -0700
+Message-ID: <9bc69924-1da1-d756-40d4-d88aaab689c1@intel.com>
+Date: Mon, 30 May 2022 18:05:06 +0100
+MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Content-Language: en-US
-To: Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- David Airlie <airlied@linux.ie>, Gerd Hoffmann <kraxel@redhat.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>, Chia-I Wu
- <olvaffe@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Gert Wollny <gert.wollny@collabora.com>,
- Gustavo Padovan <gustavo.padovan@collabora.com>,
- Daniel Stone <daniel@fooishbar.org>,
- Tomeu Vizoso <tomeu.vizoso@collabora.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Steven Price <steven.price@arm.com>,
- Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
- Rob Clark <robdclark@gmail.com>, Emil Velikov <emil.l.velikov@gmail.com>,
- Robin Murphy <robin.murphy@arm.com>, Qiang Yu <yuq825@gmail.com>,
- Sumit Semwal <sumit.semwal@linaro.org>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- Thierry Reding <thierry.reding@gmail.com>, Tomasz Figa <tfiga@chromium.org>,
- Marek Szyprowski <m.szyprowski@samsung.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-References: <20220526235040.678984-1-dmitry.osipenko@collabora.com>
- <20220526235040.678984-15-dmitry.osipenko@collabora.com>
- <0a02a31d-a256-4ca4-0e35-e2ea1868a8ae@amd.com>
- <e6e17c52-43c2-064b-500e-325bb3ba3b2c@collabora.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-In-Reply-To: <e6e17c52-43c2-064b-500e-325bb3ba3b2c@collabora.com>
+ Firefox/91.0 Thunderbird/91.9.1
+Content-Language: en-GB
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20220525184337.491763-1-matthew.auld@intel.com>
+ <20220525184337.491763-4-matthew.auld@intel.com>
+ <db5b82b1-4eb0-0d26-eaa8-b814b0de4dc0@linux.intel.com>
+ <4acbf57d-fe19-8e6a-2521-5557bf842e54@intel.com>
+ <c9affa00-1d47-094a-4b21-bdd1522c02c7@linux.intel.com>
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <c9affa00-1d47-094a-4b21-bdd1522c02c7@linux.intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: AM6P193CA0085.EURP193.PROD.OUTLOOK.COM
- (2603:10a6:209:88::26) To BN8PR12MB3587.namprd12.prod.outlook.com
- (2603:10b6:408:43::13)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: c1ffce7a-8d23-4703-3cdb-08da42421776
-X-MS-TrafficTypeDiagnostic: MW2PR12MB2441:EE_
-X-Microsoft-Antispam-PRVS: <MW2PR12MB2441DBAE277206CC9B13C10D83DD9@MW2PR12MB2441.namprd12.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: iSW1wIoCn3nNFjZJBQ1vVHTV4DmbG7Pguh9zjakZuKfexezjAX9RzSr2q+jzbmy/pmZffq8/LpakTy5pBFcDAworhdC/7/i1vg8M76wK2hEcPOwrV+FPaB0gaA3b6ou5npDbyKmelZ9o+gLFGHSLYIU3WyrL1hcJOBI0x7269ze2XOmr65aRKKBRAOAKFE4eIofz0U1UsWLiaEW0mrxY+Ee15EUJ9ZYZ7ne4rzcGPgLsjOZfmF1QS+iCcpOmzeAI1mF0VzgjkT2h/p2o378+qIb0XPuGI0LsIwQne/y/bTWmX/uTsfwGfCD/X/eeNHuhGHUiawshG6purNZ3P/Gl01dBkomujtNqIs4WPJ4hS8GG22IvqjY7uC6dSKRf0cAq+4oyD/bzGNx4Q4Bov2KbPdu5eIkBJW6xmWZ06K5fQTS7KXP8+OlfnC761AirGjBvz7OEMdYQLCUVfPFRK07BX1r/misEdHCvyzWxfVu4F3iPlUe9On/qIFBrlz96lVC7reTmjbqZYQ1NIzFyNZhTvLrNDWr41V/dYj1meGasC4tGClUxRG/YlcJavEGJkX8mQDrlI/5fKT2RfGg6CU/wyQL9Tm6vuZ7hvtx8BOGDpoCXe1C3NpyFm0l0PU9dOkkHLMLsjlMILagVF1RYcItVWeef0wAN6sD52qXCXlEyWYwn5QL67/wSMGPmDIw7dy+c2nimlRzNxOJ1lrB1RZvmzLHGeK9QjXGqgL1dNa/xWsf/zWxEnElUKJib5NRQGmJm
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN8PR12MB3587.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230001)(4636009)(366004)(508600001)(83380400001)(110136005)(66574015)(6666004)(6506007)(8936002)(7406005)(5660300002)(38100700002)(66476007)(66946007)(86362001)(26005)(66556008)(53546011)(186003)(7416002)(6486002)(36756003)(2616005)(8676002)(6512007)(31686004)(4326008)(31696002)(2906002)(921005)(316002)(43740500002)(45980500001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?L0pPUFVQVUgyMjFNaVg2cE5QdUJjWG5Xb3FTOUlsNUhlRjVkMSsyRGM0NTNr?=
- =?utf-8?B?TU8xbURXdlZSRXh2TnhlanJramY2R0V2VDIvR2VzVnVqTlRLbWdkMTlFVnhp?=
- =?utf-8?B?OG44WGpBd0pRaHd5eXhTZmFHL0M4UUM0ZWtJVzFuSEUwQVZnT0d6QWFQYlc0?=
- =?utf-8?B?U1BsbkxtUytQV2hyaGtXVUdDY1FlQ1AwZTRvTDRkdENETGZtZ1Vwd0JvZFBU?=
- =?utf-8?B?emw4MUhDZmNhTWE3R3BwUVg1RzJ6bnQzejdhMG15MTNvcU9FWTAxdEJ1bkVl?=
- =?utf-8?B?TVlsb1pYTnlvYmtqTE5kK3lDU2Fld2lZSm15UkgzdmFEMmFkeEJLTUdoN255?=
- =?utf-8?B?TFR4TWRwSkw4cysyOXFTUUxsWTFrMndXTWxiajVJdmdwN3ZpNWVEZ0pubzkx?=
- =?utf-8?B?dHMxR0hidHZUKzlZbm1UZC9LOFFNQUJrdW80dnY3Q2dQK1F6NS82NHN5bVZs?=
- =?utf-8?B?RTFYWm5HOXN5SzB1Vjkyb2NHQVkxMWRkNU5jM2l5eU1NMVhUSWRFTkhHZ3Ra?=
- =?utf-8?B?dVBtRFJNbGt2RitTV1laQnBtdnkreGdRd0JocFFaVDlHSTFnMEpiMFVBUWoz?=
- =?utf-8?B?Mk14TkVXZDNoQlY1OXNYMGtQR09ZM29uTVdyVUJMeHp0MW0zMXlCdVphZ3do?=
- =?utf-8?B?dnBraTliZTZUMitDR0ZsUnF4ZE9VRy9vUzgwL1R3UVhMdi9OeXNhallkbTNK?=
- =?utf-8?B?eWl1b1pIREJrandSd21WeVd6VmhQTE9MaWJqZFA2eUlKNkltWi8vV1ZMRlpj?=
- =?utf-8?B?NmxvbXVEL0EvRW5NWlMzYWNyM2t4YTh0MmEwZE5MS0xsNVVVU0tqUGNIV2Zy?=
- =?utf-8?B?SlhNZldFaWN5eE01Vit3c2pMYlpxV09ZcExOcXpPYjltdDZwVGozT2FKSkpu?=
- =?utf-8?B?d3dnYTIrZVlmRXZPeklEYUg1Y21TUFE1ZTJEUGJabWE4NnpmMFNXeE9zTlhI?=
- =?utf-8?B?ZVY0cjBaeTMzalRYR2MyZisrRkNmL05BMEIrWXJxTlB0SzEwVEZPdi9TQW53?=
- =?utf-8?B?NkNnU1h2elNBcHBrRExlRzBSTVZPOW85Y2pEWE02NE9wTEg1bFhOL1ZvZ2Mv?=
- =?utf-8?B?Z0JIdnQ5Sld1OW53U0R5YTY2R294Y0ZrQTVERWl2QWJ5MVFMVHYzcXcrUk96?=
- =?utf-8?B?eEtTM3NPRzBmRGxNTk5ub2NrYUF1azRhS09LM0hEaSs0ZENZbVozWXBmR0t1?=
- =?utf-8?B?NE9RbDJzRDQxRkxHWDRSWHBDOFdyVkZXejJqZ2RHeHAySTFRL1pSTHlnWGhY?=
- =?utf-8?B?WExMYjBsRlpXTWNMTFZGUXdRMCswNjVHQU4zT2Rta2Y0YklUN0YvYVlVb0ti?=
- =?utf-8?B?VGVLY3YrNCtCVEFVbEJNb1h3YXJRMGZESERmS0w5ZFNWRTJXTTJKdy9WZi9x?=
- =?utf-8?B?VVU2VG1hbllJeW9CcFZGSTJNQlV1akJyenBQMThncW4zaTR4dit4KzRVQ3Er?=
- =?utf-8?B?WUlnUy90clRXS2MrNVV3WFBFWis1YWZRTFNUMnlNNWJWNElWaGdGU2hJUUZR?=
- =?utf-8?B?V0RFSCtNRTFnQTVHMEFqSDJMenBzYTluVkZwWlRmR1VLVWpXRkQxWmFUVEdk?=
- =?utf-8?B?ZmpnakorY0puZ2lKQ0JjVE4wSzMySVNTL0dBK0pFN0ZTWmM2YmVnNVZyLzNy?=
- =?utf-8?B?Q09zbUR5cjZtMXI4M1JmMlV0eWdFZTBrd1VZR0ZRbnZObkxjRHM3Q1pqWml1?=
- =?utf-8?B?d2E4czZZbjFwWFBaZ3VjWW1vWmYrOWFCNDdraEVqV3pFOTVqeThSbTdrcHpo?=
- =?utf-8?B?emVDNmd1MXJIZHd1MkplZGVJY001cSs4ZHFSaTg4ZHl4OS9zOVJMa0Q4dVNt?=
- =?utf-8?B?dnRFUUVnbkJCNkRaUFFKdGFuMTd2c0ZpSHdMLzN1MTUrUTJkdlVxY0V3SFFv?=
- =?utf-8?B?UHhaWlZUN1ZWQ3pmanYyVWc2eUo2by9qbDBnYm42YTRFQVM1TjdhMVM0M05P?=
- =?utf-8?B?M1RIQ1k1VE5MbUdhSHIyanBSdENHYTUwMWtTMjN0VndqVUl4REZBanV2V1hN?=
- =?utf-8?B?MzlueVd0dGZzM3M1MERRWlMyUStwTHpGbDczZ2JWMHhsd3NsaE93OTAyd2lW?=
- =?utf-8?B?WVFRdkJSdHpMSmxMWHZSYkw0ajZOWm5tRURiRnF4SWU3SUdNZ05VRDhCcWlF?=
- =?utf-8?B?Y0xycnVtejF1MXZWZ0p4Yzljem9KTzhJOXdMR3pLc1VMUEpwYjFYK0M0ZnA3?=
- =?utf-8?B?b2QycFAxTmJQUHRtRFcwcVM3dUFmUjgvamVsenVjM0pXb2lvSHJBMFA2RXBu?=
- =?utf-8?B?dS81TFRDK3ltdW1WSDF4b0x3K1lvNHZ5Zk40cEdRNCtSeGVFN2Z5cjBWQjZZ?=
- =?utf-8?B?eUVSU1c4eUErVUZwdVJlVXV4R1hxdElUOXJ1UEZyTHR4VEg2djdiQT09?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c1ffce7a-8d23-4703-3cdb-08da42421776
-X-MS-Exchange-CrossTenant-AuthSource: BN8PR12MB3587.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 May 2022 13:41:25.6964 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: bKlBf/nVEJ1X9nxM5Oz0JjeCcNh0J4+oP26sfpG5+KmhP4Sme4vWuenl2MB9dIje
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB2441
-Subject: Re: [Intel-gfx] [PATCH v6 14/22] dma-buf: Introduce new locking
- convention
+Subject: Re: [Intel-gfx] [PATCH 03/10] drm/i915/uapi: expose the avail
+ tracking
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -155,119 +65,272 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
- linaro-mm-sig@lists.linaro.org, amd-gfx@lists.freedesktop.org,
- linux-tegra@vger.kernel.org, Dmitry Osipenko <digetx@gmail.com>,
- kernel@collabora.com, linux-media@vger.kernel.org
+Cc: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
+ Kenneth Graunke <kenneth@whitecape.org>, dri-devel@lists.freedesktop.org,
+ Daniel Vetter <daniel.vetter@ffwll.ch>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dmitry,
-
-Am 30.05.22 um 15:26 schrieb Dmitry Osipenko:
-> Hello Christian,
->
-> On 5/30/22 09:50, Christian König wrote:
->> Hi Dmitry,
+On 26/05/2022 09:33, Tvrtko Ursulin wrote:
+> 
+> On 26/05/2022 09:10, Matthew Auld wrote:
+>> On 26/05/2022 08:58, Tvrtko Ursulin wrote:
+>>>
+>>> On 25/05/2022 19:43, Matthew Auld wrote:
+>>>> Vulkan would like to have a rough measure of how much device memory can
+>>>> in theory be allocated. Also add unallocated_cpu_visible_size to track
+>>>> the visible portion, in case the device is using small BAR.
+>>>
+>>> I have concerns here that it isn't useful and could even be 
+>>> counter-productive. If we give unprivileged access it may be 
+>>> considered a side channel, but if we "lie" (report total region size) 
+>>> to unprivileged clients (like in this patch), then they don't 
+>>> co-operate well and end trashing.
+>>>
+>>> Is Vulkan really sure it wants this and why?
 >>
->> First of all please separate out this patch from the rest of the series,
->> since this is a complex separate structural change.
-> I assume all the patches will go via the DRM tree in the end since the
-> rest of the DRM patches in this series depend on this dma-buf change.
-> But I see that separation may ease reviewing of the dma-buf changes, so
-> let's try it.
+>> Lionel pointed out: 
+>> https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_EXT_memory_budget.html 
+> 
+> 
+> So this query would provide 
+> VkPhysicalDeviceMemoryBudgetPropertiesEXT::heapBudget. Apart that it 
+> wouldn't since we thought to lie. And apart that it's text says:
+> 
+> """
+> ...how much total memory from each heap the current process can use at 
+> any given time, before allocations may start failing or causing 
+> performance degradation. The values may change based on other activity 
+> in the system that is outside the scope and control of the Vulkan 
+> implementation.
+> """
+> 
+> It acknowledges itself in the second sentence that the first sentence is 
+> questionable.
+> 
+> And VkPhysicalDeviceMemoryBudgetPropertiesEXT::heapUsage would be still 
+> missing and would maybe come via fdinfo? Or you plan to add it to this 
+> same query later?
 
-That sounds like you are underestimating a bit how much trouble this 
-will be.
+IIUC the heapUsage is something like per app usage, which already looks 
+to be tracked in anv, although I don't think it knows if stuff is 
+actually resident or not. The heapBudget looks to then be roughly the 
+heapUsage + info.unallocated.
 
->> I have tried this before and failed because catching all the locks in
->> the right code paths are very tricky. So expect some fallout from this
->> and make sure the kernel test robot and CI systems are clean.
-> Sure, I'll fix up all the reported things in the next iteration.
->
-> BTW, have you ever posted yours version of the patch? Will be great if
-> we could compare the changed code paths.
+> 
+> I like to source knowledge of best practices from the long established 
+> world of CPU scheduling and process memory management. Is anyone aware 
+> of this kind of techniques there - applications actively looking at free 
+> memory data from /proc/meminfo and dynamically adjusting their runtime 
+> behaviour based on it? And that they are not single application on a 
+> dedicated system type of things.
+> 
+> Or perhaps this Vk extension is envisaged for exactly those kind of 
+> scenarios? However if so then userspace can know all this data from 
+> probed size and the data set it created.
+> 
+>> Also note that the existing behaviour was to lie. I'm not sure what's 
+>> the best option here.
+> 
+> Uapi reserved -1 for unknown so we could do that?
 
-No, I never even finished creating it after realizing how much work it 
-would be.
+AFAICT we can do that for the info.unallocated_cpu_visible, but not for 
+the existing info.unallocated without maybe breaking something?
 
->>> This patch introduces new locking convention for dma-buf users. From now
->>> on all dma-buf importers are responsible for holding dma-buf reservation
->>> lock around operations performed over dma-bufs.
+> 
+> Regards,
+> 
+> Tvrtko
+> 
 >>>
->>> This patch implements the new dma-buf locking convention by:
+>>> Regards,
 >>>
->>>     1. Making dma-buf API functions to take the reservation lock.
+>>> Tvrtko
 >>>
->>>     2. Adding new locked variants of the dma-buf API functions for drivers
->>>        that need to manage imported dma-bufs under the held lock.
->> Instead of adding new locked variants please mark all variants which
->> expect to be called without a lock with an _unlocked postfix.
->>
->> This should make it easier to remove those in a follow up patch set and
->> then fully move the locking into the importer.
-> Do we really want to move all the locks to the importers? Seems the
-> majority of drivers should be happy with the dma-buf helpers handling
-> the locking for them.
-
-Yes, I clearly think so.
-
->
->>>     3. Converting all drivers to the new locking scheme.
->> I have strong doubts that you got all of them. At least radeon and
->> nouveau should grab the reservation lock in their ->attach callbacks
->> somehow.
-> Radeon and Nouveau use gem_prime_import_sg_table() and they take resv
-> lock already, seems they should be okay (?)
-
-You are looking at the wrong side. You need to fix the export code path, 
-not the import ones.
-
-See for example attach on radeon works like this 
-drm_gem_map_attach->drm_gem_pin->radeon_gem_prime_pin->radeon_bo_reserve->ttm_bo_reserve->dma_resv_lock.
-
-Same for nouveau and probably a few other exporters as well. That will 
-certainly cause a deadlock if you don't fix it.
-
-I strongly suggest to do this step by step, first attach/detach and then 
-the rest.
-
-Regards,
-Christian.
-
->
-> I assume all the basics should covered in this v6. At minimum Intel,
-> Tegra, Panfrost, Lima and Rockchip drivers should be good. If I missed
-> something, then please let me know and I'll correct it.
->
->>> Signed-off-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
->>> ---
->>>    drivers/dma-buf/dma-buf.c                     | 270 +++++++++++-------
->>>    drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c       |   6 +-
->>>    drivers/gpu/drm/drm_client.c                  |   4 +-
->>>    drivers/gpu/drm/drm_gem.c                     |  33 +++
->>>    drivers/gpu/drm/drm_gem_framebuffer_helper.c  |   6 +-
->>>    drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c    |  10 +-
->>>    drivers/gpu/drm/qxl/qxl_object.c              |  17 +-
->>>    drivers/gpu/drm/qxl/qxl_prime.c               |   4 +-
->>>    .../common/videobuf2/videobuf2-dma-contig.c   |  11 +-
->>>    .../media/common/videobuf2/videobuf2-dma-sg.c |  11 +-
->>>    .../common/videobuf2/videobuf2-vmalloc.c      |  11 +-
->>>    include/drm/drm_gem.h                         |   3 +
->>>    include/linux/dma-buf.h                       |  14 +-
->>>    13 files changed, 241 insertions(+), 159 deletions(-)
->>>
->>> diff --git a/drivers/dma-buf/dma-buf.c b/drivers/dma-buf/dma-buf.c
->>> index 32f55640890c..64a9909ccfa2 100644
->>> --- a/drivers/dma-buf/dma-buf.c
->>> +++ b/drivers/dma-buf/dma-buf.c
->>> @@ -552,7 +552,6 @@ struct dma_buf *dma_buf_export(const struct
->>> dma_buf_export_info *exp_info)
->>>        file->f_mode |= FMODE_LSEEK;
->>>        dmabuf->file = file;
->>>    -    mutex_init(&dmabuf->lock);
->> Please make removing dmabuf->lock a separate change.
-> Alright
->
-
+>>>> Testcase: igt@i915_query@query-regions-unallocated
+>>>> Testcase: igt@i915_query@query-regions-sanity-check
+>>>> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+>>>> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+>>>> Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+>>>> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+>>>> Cc: Jon Bloomfield <jon.bloomfield@intel.com>
+>>>> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+>>>> Cc: Jordan Justen <jordan.l.justen@intel.com>
+>>>> Cc: Kenneth Graunke <kenneth@whitecape.org>
+>>>> Cc: Akeem G Abodunrin <akeem.g.abodunrin@intel.com>
+>>>> ---
+>>>>   drivers/gpu/drm/i915/i915_query.c             | 10 +++++-
+>>>>   drivers/gpu/drm/i915/i915_ttm_buddy_manager.c | 20 ++++++++++++
+>>>>   drivers/gpu/drm/i915/i915_ttm_buddy_manager.h |  3 ++
+>>>>   drivers/gpu/drm/i915/intel_memory_region.c    | 14 +++++++++
+>>>>   drivers/gpu/drm/i915/intel_memory_region.h    |  3 ++
+>>>>   include/uapi/drm/i915_drm.h                   | 31 
+>>>> ++++++++++++++++++-
+>>>>   6 files changed, 79 insertions(+), 2 deletions(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/i915/i915_query.c 
+>>>> b/drivers/gpu/drm/i915/i915_query.c
+>>>> index 9aa0b28aa6ee..e095c55f4d4b 100644
+>>>> --- a/drivers/gpu/drm/i915/i915_query.c
+>>>> +++ b/drivers/gpu/drm/i915/i915_query.c
+>>>> @@ -502,7 +502,15 @@ static int query_memregion_info(struct 
+>>>> drm_i915_private *i915,
+>>>>           else
+>>>>               info.probed_cpu_visible_size = mr->total;
+>>>> -        info.unallocated_size = mr->avail;
+>>>> +        if (perfmon_capable()) {
+>>>> +            intel_memory_region_avail(mr,
+>>>> +                          &info.unallocated_size,
+>>>> +                          &info.unallocated_cpu_visible_size);
+>>>> +        } else {
+>>>> +            info.unallocated_size = info.probed_size;
+>>>> +            info.unallocated_cpu_visible_size =
+>>>> +                info.probed_cpu_visible_size;
+>>>> +        }
+>>>>           if (__copy_to_user(info_ptr, &info, sizeof(info)))
+>>>>               return -EFAULT;
+>>>> diff --git a/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c 
+>>>> b/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c
+>>>> index a5109548abc0..aa5c91e44438 100644
+>>>> --- a/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c
+>>>> +++ b/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c
+>>>> @@ -365,6 +365,26 @@ u64 i915_ttm_buddy_man_visible_size(struct 
+>>>> ttm_resource_manager *man)
+>>>>       return bman->visible_size;
+>>>>   }
+>>>> +/**
+>>>> + * i915_ttm_buddy_man_visible_size - Query the avail tracking for 
+>>>> the manager.
+>>>> + *
+>>>> + * @man: The buddy allocator ttm manager
+>>>> + * @avail: The total available memory in pages for the entire manager.
+>>>> + * @visible_avail: The total available memory in pages for the CPU 
+>>>> visible
+>>>> + * portion. Note that this will always give the same value as 
+>>>> @avail on
+>>>> + * configurations that don't have a small BAR.
+>>>> + */
+>>>> +void i915_ttm_buddy_man_avail(struct ttm_resource_manager *man,
+>>>> +                 u64 *avail, u64 *visible_avail)
+>>>> +{
+>>>> +    struct i915_ttm_buddy_manager *bman = to_buddy_manager(man);
+>>>> +
+>>>> +    mutex_lock(&bman->lock);
+>>>> +    *avail = bman->mm.avail >> PAGE_SHIFT;
+>>>> +    *visible_avail = bman->visible_avail;
+>>>> +    mutex_unlock(&bman->lock);
+>>>> +}
+>>>> +
+>>>>   #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
+>>>>   void i915_ttm_buddy_man_force_visible_size(struct 
+>>>> ttm_resource_manager *man,
+>>>>                          u64 size)
+>>>> diff --git a/drivers/gpu/drm/i915/i915_ttm_buddy_manager.h 
+>>>> b/drivers/gpu/drm/i915/i915_ttm_buddy_manager.h
+>>>> index 52d9586d242c..d64620712830 100644
+>>>> --- a/drivers/gpu/drm/i915/i915_ttm_buddy_manager.h
+>>>> +++ b/drivers/gpu/drm/i915/i915_ttm_buddy_manager.h
+>>>> @@ -61,6 +61,9 @@ int i915_ttm_buddy_man_reserve(struct 
+>>>> ttm_resource_manager *man,
+>>>>   u64 i915_ttm_buddy_man_visible_size(struct ttm_resource_manager 
+>>>> *man);
+>>>> +void i915_ttm_buddy_man_avail(struct ttm_resource_manager *man,
+>>>> +                  u64 *avail, u64 *avail_visible);
+>>>> +
+>>>>   #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
+>>>>   void i915_ttm_buddy_man_force_visible_size(struct 
+>>>> ttm_resource_manager *man,
+>>>>                          u64 size);
+>>>> diff --git a/drivers/gpu/drm/i915/intel_memory_region.c 
+>>>> b/drivers/gpu/drm/i915/intel_memory_region.c
+>>>> index e38d2db1c3e3..94ee26e99549 100644
+>>>> --- a/drivers/gpu/drm/i915/intel_memory_region.c
+>>>> +++ b/drivers/gpu/drm/i915/intel_memory_region.c
+>>>> @@ -279,6 +279,20 @@ void intel_memory_region_set_name(struct 
+>>>> intel_memory_region *mem,
+>>>>       va_end(ap);
+>>>>   }
+>>>> +void intel_memory_region_avail(struct intel_memory_region *mr,
+>>>> +                   u64 *avail, u64 *visible_avail)
+>>>> +{
+>>>> +    if (mr->type == INTEL_MEMORY_LOCAL) {
+>>>> +        i915_ttm_buddy_man_avail(mr->region_private,
+>>>> +                     avail, visible_avail);
+>>>> +        *avail <<= PAGE_SHIFT;
+>>>> +        *visible_avail <<= PAGE_SHIFT;
+>>>> +    } else {
+>>>> +        *avail = mr->total;
+>>>> +        *visible_avail = mr->total;
+>>>> +    }
+>>>> +}
+>>>> +
+>>>>   void intel_memory_region_destroy(struct intel_memory_region *mem)
+>>>>   {
+>>>>       int ret = 0;
+>>>> diff --git a/drivers/gpu/drm/i915/intel_memory_region.h 
+>>>> b/drivers/gpu/drm/i915/intel_memory_region.h
+>>>> index 3d8378c1b447..2214f251bec3 100644
+>>>> --- a/drivers/gpu/drm/i915/intel_memory_region.h
+>>>> +++ b/drivers/gpu/drm/i915/intel_memory_region.h
+>>>> @@ -127,6 +127,9 @@ int intel_memory_region_reserve(struct 
+>>>> intel_memory_region *mem,
+>>>>   void intel_memory_region_debug(struct intel_memory_region *mr,
+>>>>                      struct drm_printer *printer);
+>>>> +void intel_memory_region_avail(struct intel_memory_region *mr,
+>>>> +                   u64 *avail, u64 *visible_avail);
+>>>> +
+>>>>   struct intel_memory_region *
+>>>>   i915_gem_ttm_system_setup(struct drm_i915_private *i915,
+>>>>                 u16 type, u16 instance);
+>>>> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+>>>> index 9df419a45244..e30f31a440b3 100644
+>>>> --- a/include/uapi/drm/i915_drm.h
+>>>> +++ b/include/uapi/drm/i915_drm.h
+>>>> @@ -3228,7 +3228,15 @@ struct drm_i915_memory_region_info {
+>>>>        */
+>>>>       __u64 probed_size;
+>>>> -    /** @unallocated_size: Estimate of memory remaining (-1 = 
+>>>> unknown) */
+>>>> +    /**
+>>>> +     * @unallocated_size: Estimate of memory remaining (-1 = unknown)
+>>>> +     *
+>>>> +     * Requires CAP_PERFMON or CAP_SYS_ADMIN to get reliable 
+>>>> accounting.
+>>>> +     * Without this (or if this is an older kernel) the value here 
+>>>> will
+>>>> +     * always equal the @probed_size. Note this is only currently 
+>>>> tracked
+>>>> +     * for I915_MEMORY_CLASS_DEVICE regions (for other types the 
+>>>> value here
+>>>> +     * will always equal the @probed_size).
+>>>> +     */
+>>>>       __u64 unallocated_size;
+>>>>       union {
+>>>> @@ -3262,6 +3270,27 @@ struct drm_i915_memory_region_info {
+>>>>                * @probed_size.
+>>>>                */
+>>>>               __u64 probed_cpu_visible_size;
+>>>> +
+>>>> +            /**
+>>>> +             * @unallocated_cpu_visible_size: Estimate of CPU
+>>>> +             * visible memory remaining (-1 = unknown).
+>>>> +             *
+>>>> +             * Note this is only tracked for
+>>>> +             * I915_MEMORY_CLASS_DEVICE regions (for other types the
+>>>> +             * value here will always equal the
+>>>> +             * @probed_cpu_visible_size).
+>>>> +             *
+>>>> +             * Requires CAP_PERFMON or CAP_SYS_ADMIN to get reliable
+>>>> +             * accounting.  Without this the value here will always
+>>>> +             * equal the @probed_cpu_visible_size. Note this is only
+>>>> +             * currently tracked for I915_MEMORY_CLASS_DEVICE
+>>>> +             * regions (for other types the value here will also
+>>>> +             * always equal the @probed_cpu_visible_size).
+>>>> +             *
+>>>> +             * If this is an older kernel the value here will be
+>>>> +             * zero, see also @probed_cpu_visible_size.
+>>>> +             */
+>>>> +            __u64 unallocated_cpu_visible_size;
+>>>>           };
+>>>>       };
+>>>>   };
