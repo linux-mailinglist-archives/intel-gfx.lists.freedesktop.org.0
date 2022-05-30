@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07809538682
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 May 2022 19:05:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 06F045387A0
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 May 2022 20:59:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E5DB10F16D;
-	Mon, 30 May 2022 17:05:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EACCB10E0D8;
+	Mon, 30 May 2022 18:58:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6AB2810F16D;
- Mon, 30 May 2022 17:05:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1653930311; x=1685466311;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=zIXjxULTglrK6wOg8sEfr+qLEcpHGeXA7PkcPJbOx1Q=;
- b=TAlxxceD1nbBKsPN6hPPvNh353F8H6RSDIwWGxQQH2E8talgvEIPxl+d
- T7wtyW26sOsgqpC1dUqO9G4BV2NomNwkDcssDqqxKx1ukfTYXx9wpXdSN
- wu8PUt31Ne4wJeoGBHH3HDeLthxJh9omR/eIX8LXlmrsfbsyZdGOa7mW/
- PHJ4mhyYz+aNsp8kzriIthkZQzVve5Qgw94SM7JSuUR0bU/c+QUJ7SpBx
- D1xwPj0i+PNbUGiOrk6ddQ/GXTterwnFZih0t7/s6BFoquh2F8y3V6OWn
- zoBKKhlm01+KgnnMSjTbcgA6fe9AUlNSfjDwOyyO6WMaiacFPO/xxCaxC A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10363"; a="361422467"
-X-IronPort-AV: E=Sophos;i="5.91,263,1647327600"; d="scan'208";a="361422467"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 May 2022 10:05:10 -0700
-X-IronPort-AV: E=Sophos;i="5.91,263,1647327600"; d="scan'208";a="632686971"
-Received: from dairecol-mobl2.ger.corp.intel.com (HELO [10.213.233.68])
- ([10.213.233.68])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 May 2022 10:05:08 -0700
-Message-ID: <9bc69924-1da1-d756-40d4-d88aaab689c1@intel.com>
-Date: Mon, 30 May 2022 18:05:06 +0100
+Received: from mail-qk1-x72b.google.com (mail-qk1-x72b.google.com
+ [IPv6:2607:f8b0:4864:20::72b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F33510E0D8
+ for <intel-gfx@lists.freedesktop.org>; Mon, 30 May 2022 18:58:57 +0000 (UTC)
+Received: by mail-qk1-x72b.google.com with SMTP id m68so11529qkb.9
+ for <intel-gfx@lists.freedesktop.org>; Mon, 30 May 2022 11:58:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=1kcoF/Rq6araXXFWdbL06S3OA/1EVhb4SZRZ/GXK6us=;
+ b=LD7jgKi5Ou40+3Ycfk8/Z+evQ3BymqFe52TkZ6bHdPzVpK2yo4BSdLBIKj2bKHLYSc
+ hA2heneQWDBCW0yJgOkyoka5DZPF9U+WvAuoJwlS3suWCJHj9IdfBKectSF0zkmob+2v
+ aRqPp4RClr7nEfUvIboDxPzLeT/3co+uPNOIfo+jQmnWabRokjxU80U0jWwKrMDb9tys
+ pgc+DnNQoCXQq0wUo29vNsvUVmWmYEenSp4WvOVQfVGrTCg1Ho5ag8s5we/G2RWl63lM
+ kXhtQEfHH0pOxQceuw1vaNGDLYruq0sFAZWqv/AP1qfGFeobmKnCi5p6E7T8ggwYOlUC
+ wQlg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=1kcoF/Rq6araXXFWdbL06S3OA/1EVhb4SZRZ/GXK6us=;
+ b=jLrAd54snMgXph81I2Tbvuz2xbleZpS45+wZF48kk6Iif3dCbbaPIdu5cLLHKBOJLI
+ bPZnj/OSAzWZQtRlurgMToZnHVG+Yf9ptX/hW2t0tDH2oA6NH4UJLfrPE2umQL4/rqXe
+ KbJGaozMZ5M9a+41frndKbUJkWstbGHb2TTzEKf1NzmTSB73EDrz1cIPdEVBJTkDVW5H
+ +X1S3vBV5xPEGf1drru5hcgG/p8eZ9QV9K1xVEyZ3PReb+Zukn+shI6Y4g67s4eufC9/
+ LomqTF++jYwFF2EVmFGc1AggvpN+Fqp2X2GTrDObtVBse5atIYs3q7gwv4lqdtzGE9MG
+ 1srQ==
+X-Gm-Message-State: AOAM53227XfxBZKhg3AYW3jPtylMm+cpS3r6hmKgPj4iGpltRC83BSNH
+ zo1Efrdxc20SJVodiQI0e+wjXVUVBq6WP+uPjBQ=
+X-Google-Smtp-Source: ABdhPJyVYOMx4gziOa9WAHYhaI75E6oxXeWKQSg+tLmJt3rFRXpW82yPsUfKn8mMjitKunz8l+cVPxNPKxdrklFurOw=
+X-Received: by 2002:a05:620a:4084:b0:6a0:4561:399f with SMTP id
+ f4-20020a05620a408400b006a04561399fmr38635855qko.569.1653937136097; Mon, 30
+ May 2022 11:58:56 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Firefox/91.0 Thunderbird/91.9.1
-Content-Language: en-GB
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20220525184337.491763-1-matthew.auld@intel.com>
- <20220525184337.491763-4-matthew.auld@intel.com>
- <db5b82b1-4eb0-0d26-eaa8-b814b0de4dc0@linux.intel.com>
- <4acbf57d-fe19-8e6a-2521-5557bf842e54@intel.com>
- <c9affa00-1d47-094a-4b21-bdd1522c02c7@linux.intel.com>
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <c9affa00-1d47-094a-4b21-bdd1522c02c7@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 03/10] drm/i915/uapi: expose the avail
- tracking
+References: <20220517204513.429930-1-adrian.larumbe@collabora.com>
+ <CAM0jSHP4A2dCxabkFC38=4-8sX4GnC-5jyUx-hzyN9u1noU0fw@mail.gmail.com>
+ <20220527153753.3imu2lrhsnljotvt@sobremesa>
+In-Reply-To: <20220527153753.3imu2lrhsnljotvt@sobremesa>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Mon, 30 May 2022 19:58:29 +0100
+Message-ID: <CAM0jSHP3WqtbWj-Q0QziRvCW=PF6c1MW2SKA0hT5dWQzs07Wfw@mail.gmail.com>
+To: Adrian Larumbe <adrian.larumbe@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] [RFC PATCH v2 0/1] Replace shmem memory region and
+ object backend
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,272 +65,116 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
- Kenneth Graunke <kenneth@whitecape.org>, dri-devel@lists.freedesktop.org,
- Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 26/05/2022 09:33, Tvrtko Ursulin wrote:
-> 
-> On 26/05/2022 09:10, Matthew Auld wrote:
->> On 26/05/2022 08:58, Tvrtko Ursulin wrote:
->>>
->>> On 25/05/2022 19:43, Matthew Auld wrote:
->>>> Vulkan would like to have a rough measure of how much device memory can
->>>> in theory be allocated. Also add unallocated_cpu_visible_size to track
->>>> the visible portion, in case the device is using small BAR.
->>>
->>> I have concerns here that it isn't useful and could even be 
->>> counter-productive. If we give unprivileged access it may be 
->>> considered a side channel, but if we "lie" (report total region size) 
->>> to unprivileged clients (like in this patch), then they don't 
->>> co-operate well and end trashing.
->>>
->>> Is Vulkan really sure it wants this and why?
->>
->> Lionel pointed out: 
->> https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_EXT_memory_budget.html 
-> 
-> 
-> So this query would provide 
-> VkPhysicalDeviceMemoryBudgetPropertiesEXT::heapBudget. Apart that it 
-> wouldn't since we thought to lie. And apart that it's text says:
-> 
-> """
-> ...how much total memory from each heap the current process can use at 
-> any given time, before allocations may start failing or causing 
-> performance degradation. The values may change based on other activity 
-> in the system that is outside the scope and control of the Vulkan 
-> implementation.
-> """
-> 
-> It acknowledges itself in the second sentence that the first sentence is 
-> questionable.
-> 
-> And VkPhysicalDeviceMemoryBudgetPropertiesEXT::heapUsage would be still 
-> missing and would maybe come via fdinfo? Or you plan to add it to this 
-> same query later?
+On Fri, 27 May 2022 at 16:37, Adrian Larumbe
+<adrian.larumbe@collabora.com> wrote:
+>
+> On 18.05.2022 16:00, Matthew Auld wrote:
+> > On Tue, 17 May 2022 at 21:45, Adrian Larumbe
+> > <adrian.larumbe@collabora.com> wrote:
+> > >
+> > > This patch is a second attempt at eliminating the old shmem memory region
+> > > and GEM object backend, in favour of a TTM-based one that is able to manage
+> > > objects placed on both system and local memory.
+> > >
+> > > Questions addressed since previous revision:
+> > >
+> > > * Creating an anonymous vfs mount for shmem files in TTM
+> > > * Fixing LLC caching properties and bit 17 swizzling before setting a TTM
+> > > bo's pages when calling get_pages
+> > > * Added handling of phys backend from TTM functions
+> > > * Added pread callback to TTM gem object backend
+> > > * In shmem_create_from_object, ensuring an shmem object we just got a filp
+> > > for has its pages marked dirty and accessed. Otherwise, the engine won't be
+> > > able to read the initial state and a GPU hung will ensue
+> > >
+> > > However, one of the issues persists:
+> > >
+> > > Many GPU hungs in machines of GEN <= 5. My assumption is this has something
+> > >  to do with a caching pitfall, but everywhere across the TTM backend code
+> > >  I've tried to handle object creation and getting its pages with the same
+> > >  set of caching and coherency properties as in the old shmem backend.
+> >
+> > Some thoughts in case it's helpful:
+> >
+> > - We still look to be trampling the cache_level etc after object
+> > creation. AFAICT i915_ttm_adjust_gem_after_move can be called in
+> > various places after creation.
+>
+> I traced this function so that I could see everywhere it was being called when
+> running some IGT tests and kmscube, and the only place it was setting a caching
+> coherence value other than none was in init_status_page, where I915_CACHE_LLC is
+> picked as the cache coherency mode even for machines that do not have
+> it. However this code was already present before my changes and didn't seem to
+> cause any issues, so I don't think it's involved.
 
-IIUC the heapUsage is something like per app usage, which already looks 
-to be tracked in anv, although I don't think it knows if stuff is 
-actually resident or not. The heapBudget looks to then be roughly the 
-heapUsage + info.unallocated.
+Yeah, I guess it's a different issue, but we still need to somehow
+ensure we never trample the cache_level etc on integrated platforms
+after object creation. On non-LLC platforms(not discrete) it's normal
+to set CACHE_LLC for certain types of buffers. And even on LLC
+platforms it's normal to set CACHE_NONE, like for display buffers,
+since the display engine is not coherent.
 
-> 
-> I like to source knowledge of best practices from the long established 
-> world of CPU scheduling and process memory management. Is anyone aware 
-> of this kind of techniques there - applications actively looking at free 
-> memory data from /proc/meminfo and dynamically adjusting their runtime 
-> behaviour based on it? And that they are not single application on a 
-> dedicated system type of things.
-> 
-> Or perhaps this Vk extension is envisaged for exactly those kind of 
-> scenarios? However if so then userspace can know all this data from 
-> probed size and the data set it created.
-> 
->> Also note that the existing behaviour was to lie. I'm not sure what's 
->> the best option here.
-> 
-> Uapi reserved -1 for unknown so we could do that?
+For reference we can have something like:
 
-AFAICT we can do that for the info.unallocated_cpu_visible, but not for 
-the existing info.unallocated without maybe breaking something?
+bb = gem_create() <-- assume non-llc so must be CACHE_NONE
+gem_set_caching(bb, CACHED) <-- should now be CACHE_LLC/L3
+ptr = mmap_wb(bb); *ptr = BATCH_BUFFER_END <-- gem_after_move() resets
+to CACHE_NONE
+execbuf(bb) <-- doesn't see the BATCH_BUFFER_END
 
-> 
-> Regards,
-> 
-> Tvrtko
-> 
->>>
->>> Regards,
->>>
->>> Tvrtko
->>>
->>>> Testcase: igt@i915_query@query-regions-unallocated
->>>> Testcase: igt@i915_query@query-regions-sanity-check
->>>> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
->>>> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->>>> Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
->>>> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
->>>> Cc: Jon Bloomfield <jon.bloomfield@intel.com>
->>>> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
->>>> Cc: Jordan Justen <jordan.l.justen@intel.com>
->>>> Cc: Kenneth Graunke <kenneth@whitecape.org>
->>>> Cc: Akeem G Abodunrin <akeem.g.abodunrin@intel.com>
->>>> ---
->>>>   drivers/gpu/drm/i915/i915_query.c             | 10 +++++-
->>>>   drivers/gpu/drm/i915/i915_ttm_buddy_manager.c | 20 ++++++++++++
->>>>   drivers/gpu/drm/i915/i915_ttm_buddy_manager.h |  3 ++
->>>>   drivers/gpu/drm/i915/intel_memory_region.c    | 14 +++++++++
->>>>   drivers/gpu/drm/i915/intel_memory_region.h    |  3 ++
->>>>   include/uapi/drm/i915_drm.h                   | 31 
->>>> ++++++++++++++++++-
->>>>   6 files changed, 79 insertions(+), 2 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/i915/i915_query.c 
->>>> b/drivers/gpu/drm/i915/i915_query.c
->>>> index 9aa0b28aa6ee..e095c55f4d4b 100644
->>>> --- a/drivers/gpu/drm/i915/i915_query.c
->>>> +++ b/drivers/gpu/drm/i915/i915_query.c
->>>> @@ -502,7 +502,15 @@ static int query_memregion_info(struct 
->>>> drm_i915_private *i915,
->>>>           else
->>>>               info.probed_cpu_visible_size = mr->total;
->>>> -        info.unallocated_size = mr->avail;
->>>> +        if (perfmon_capable()) {
->>>> +            intel_memory_region_avail(mr,
->>>> +                          &info.unallocated_size,
->>>> +                          &info.unallocated_cpu_visible_size);
->>>> +        } else {
->>>> +            info.unallocated_size = info.probed_size;
->>>> +            info.unallocated_cpu_visible_size =
->>>> +                info.probed_cpu_visible_size;
->>>> +        }
->>>>           if (__copy_to_user(info_ptr, &info, sizeof(info)))
->>>>               return -EFAULT;
->>>> diff --git a/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c 
->>>> b/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c
->>>> index a5109548abc0..aa5c91e44438 100644
->>>> --- a/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c
->>>> +++ b/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c
->>>> @@ -365,6 +365,26 @@ u64 i915_ttm_buddy_man_visible_size(struct 
->>>> ttm_resource_manager *man)
->>>>       return bman->visible_size;
->>>>   }
->>>> +/**
->>>> + * i915_ttm_buddy_man_visible_size - Query the avail tracking for 
->>>> the manager.
->>>> + *
->>>> + * @man: The buddy allocator ttm manager
->>>> + * @avail: The total available memory in pages for the entire manager.
->>>> + * @visible_avail: The total available memory in pages for the CPU 
->>>> visible
->>>> + * portion. Note that this will always give the same value as 
->>>> @avail on
->>>> + * configurations that don't have a small BAR.
->>>> + */
->>>> +void i915_ttm_buddy_man_avail(struct ttm_resource_manager *man,
->>>> +                 u64 *avail, u64 *visible_avail)
->>>> +{
->>>> +    struct i915_ttm_buddy_manager *bman = to_buddy_manager(man);
->>>> +
->>>> +    mutex_lock(&bman->lock);
->>>> +    *avail = bman->mm.avail >> PAGE_SHIFT;
->>>> +    *visible_avail = bman->visible_avail;
->>>> +    mutex_unlock(&bman->lock);
->>>> +}
->>>> +
->>>>   #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
->>>>   void i915_ttm_buddy_man_force_visible_size(struct 
->>>> ttm_resource_manager *man,
->>>>                          u64 size)
->>>> diff --git a/drivers/gpu/drm/i915/i915_ttm_buddy_manager.h 
->>>> b/drivers/gpu/drm/i915/i915_ttm_buddy_manager.h
->>>> index 52d9586d242c..d64620712830 100644
->>>> --- a/drivers/gpu/drm/i915/i915_ttm_buddy_manager.h
->>>> +++ b/drivers/gpu/drm/i915/i915_ttm_buddy_manager.h
->>>> @@ -61,6 +61,9 @@ int i915_ttm_buddy_man_reserve(struct 
->>>> ttm_resource_manager *man,
->>>>   u64 i915_ttm_buddy_man_visible_size(struct ttm_resource_manager 
->>>> *man);
->>>> +void i915_ttm_buddy_man_avail(struct ttm_resource_manager *man,
->>>> +                  u64 *avail, u64 *avail_visible);
->>>> +
->>>>   #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
->>>>   void i915_ttm_buddy_man_force_visible_size(struct 
->>>> ttm_resource_manager *man,
->>>>                          u64 size);
->>>> diff --git a/drivers/gpu/drm/i915/intel_memory_region.c 
->>>> b/drivers/gpu/drm/i915/intel_memory_region.c
->>>> index e38d2db1c3e3..94ee26e99549 100644
->>>> --- a/drivers/gpu/drm/i915/intel_memory_region.c
->>>> +++ b/drivers/gpu/drm/i915/intel_memory_region.c
->>>> @@ -279,6 +279,20 @@ void intel_memory_region_set_name(struct 
->>>> intel_memory_region *mem,
->>>>       va_end(ap);
->>>>   }
->>>> +void intel_memory_region_avail(struct intel_memory_region *mr,
->>>> +                   u64 *avail, u64 *visible_avail)
->>>> +{
->>>> +    if (mr->type == INTEL_MEMORY_LOCAL) {
->>>> +        i915_ttm_buddy_man_avail(mr->region_private,
->>>> +                     avail, visible_avail);
->>>> +        *avail <<= PAGE_SHIFT;
->>>> +        *visible_avail <<= PAGE_SHIFT;
->>>> +    } else {
->>>> +        *avail = mr->total;
->>>> +        *visible_avail = mr->total;
->>>> +    }
->>>> +}
->>>> +
->>>>   void intel_memory_region_destroy(struct intel_memory_region *mem)
->>>>   {
->>>>       int ret = 0;
->>>> diff --git a/drivers/gpu/drm/i915/intel_memory_region.h 
->>>> b/drivers/gpu/drm/i915/intel_memory_region.h
->>>> index 3d8378c1b447..2214f251bec3 100644
->>>> --- a/drivers/gpu/drm/i915/intel_memory_region.h
->>>> +++ b/drivers/gpu/drm/i915/intel_memory_region.h
->>>> @@ -127,6 +127,9 @@ int intel_memory_region_reserve(struct 
->>>> intel_memory_region *mem,
->>>>   void intel_memory_region_debug(struct intel_memory_region *mr,
->>>>                      struct drm_printer *printer);
->>>> +void intel_memory_region_avail(struct intel_memory_region *mr,
->>>> +                   u64 *avail, u64 *visible_avail);
->>>> +
->>>>   struct intel_memory_region *
->>>>   i915_gem_ttm_system_setup(struct drm_i915_private *i915,
->>>>                 u16 type, u16 instance);
->>>> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
->>>> index 9df419a45244..e30f31a440b3 100644
->>>> --- a/include/uapi/drm/i915_drm.h
->>>> +++ b/include/uapi/drm/i915_drm.h
->>>> @@ -3228,7 +3228,15 @@ struct drm_i915_memory_region_info {
->>>>        */
->>>>       __u64 probed_size;
->>>> -    /** @unallocated_size: Estimate of memory remaining (-1 = 
->>>> unknown) */
->>>> +    /**
->>>> +     * @unallocated_size: Estimate of memory remaining (-1 = unknown)
->>>> +     *
->>>> +     * Requires CAP_PERFMON or CAP_SYS_ADMIN to get reliable 
->>>> accounting.
->>>> +     * Without this (or if this is an older kernel) the value here 
->>>> will
->>>> +     * always equal the @probed_size. Note this is only currently 
->>>> tracked
->>>> +     * for I915_MEMORY_CLASS_DEVICE regions (for other types the 
->>>> value here
->>>> +     * will always equal the @probed_size).
->>>> +     */
->>>>       __u64 unallocated_size;
->>>>       union {
->>>> @@ -3262,6 +3270,27 @@ struct drm_i915_memory_region_info {
->>>>                * @probed_size.
->>>>                */
->>>>               __u64 probed_cpu_visible_size;
->>>> +
->>>> +            /**
->>>> +             * @unallocated_cpu_visible_size: Estimate of CPU
->>>> +             * visible memory remaining (-1 = unknown).
->>>> +             *
->>>> +             * Note this is only tracked for
->>>> +             * I915_MEMORY_CLASS_DEVICE regions (for other types the
->>>> +             * value here will always equal the
->>>> +             * @probed_cpu_visible_size).
->>>> +             *
->>>> +             * Requires CAP_PERFMON or CAP_SYS_ADMIN to get reliable
->>>> +             * accounting.  Without this the value here will always
->>>> +             * equal the @probed_cpu_visible_size. Note this is only
->>>> +             * currently tracked for I915_MEMORY_CLASS_DEVICE
->>>> +             * regions (for other types the value here will also
->>>> +             * always equal the @probed_cpu_visible_size).
->>>> +             *
->>>> +             * If this is an older kernel the value here will be
->>>> +             * zero, see also @probed_cpu_visible_size.
->>>> +             */
->>>> +            __u64 unallocated_cpu_visible_size;
->>>>           };
->>>>       };
->>>>   };
+>
+> > - The i915_ttm_pwrite hook won't play nice on non-llc platforms, since
+> > it doesn't force a clflush or keep track of the writes with
+> > cache_dirty. The existing ->shmem_pwrite hook only works because we
+> > are guaranteed to have not yet populated the mm.pages, and on non-llc
+> > platforms we always force a clflush in __set_pages(). In
+> > i915_ttm_pwrite we are now just calling pin_pages() and then writing
+> > through the page-cache without forcing a clflush, or ensuring that we
+> > leave cache_dirty set. Also AFAIK the whole point of shmem_pwrite was
+> > to avoid needing to populate the entire object like when calling
+> > pin_pages(). Would it make sense to just fallback to using
+> > i915_gem_shmem_pwrite, which should already take care of the required
+> > flushing?
+> >
+> > For reference a common usage pattern is something like:
+> >
+> > bb = gem_create() <-- assume non-llc so must be CACHE_NONE
+> > gem_write(bb, BATCH_BUFFER_END) <-- might use cached pwrite internally
+> > execbuf(bb) <-- doesn't see BATCH_BUFFER_END if we don't clflush
+>
+> It turns out this was the underlying issue causing machines GEN <= 5 to break in
+> pretty much every single test. It seems that for older hardware, IGT tests would
+> pick pwrite as the preferred method for filling BO's from UM, so my code wasn't
+> calling clfush after getting the pages and writing the UM pointer data into the
+> shmem file.
+>
+> The way I fixed it was creating an shmem file for this and other cases when it's
+> required by the existing code, but without getting the pages.  In a way, I just
+> cut through the usual TTM populate path and instance an shmem object so that I
+> can avoid caching issues.
+>
+> Thanks a lot for catching this one!
+>
+> > >
+> > > Adrian Larumbe (1):
+> > >   drm/i915: Replace shmem memory region and object backend with TTM
+> > >
+> > >  drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c   |  12 +-
+> > >  drivers/gpu/drm/i915/gem/i915_gem_mman.c     |  32 +-
+> > >  drivers/gpu/drm/i915/gem/i915_gem_object.h   |   4 +-
+> > >  drivers/gpu/drm/i915/gem/i915_gem_phys.c     |  32 +-
+> > >  drivers/gpu/drm/i915/gem/i915_gem_shmem.c    | 390 +------------------
+> > >  drivers/gpu/drm/i915/gem/i915_gem_ttm.c      | 267 ++++++++++++-
+> > >  drivers/gpu/drm/i915/gem/i915_gem_ttm.h      |   3 +
+> > >  drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c |   9 +-
+> > >  drivers/gpu/drm/i915/gt/shmem_utils.c        |  64 ++-
+> > >  drivers/gpu/drm/i915/intel_memory_region.c   |   7 +-
+> > >  10 files changed, 398 insertions(+), 422 deletions(-)
+> > >
+> > > --
+> > > 2.35.1
+>
