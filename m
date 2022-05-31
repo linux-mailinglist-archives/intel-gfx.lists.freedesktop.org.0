@@ -2,50 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4724C5396E1
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 May 2022 21:19:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B0D2F5397FB
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 May 2022 22:32:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D5DB810E42E;
-	Tue, 31 May 2022 19:19:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 56DC310E3C4;
+	Tue, 31 May 2022 20:32:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 61C5910E39D
- for <intel-gfx@lists.freedesktop.org>; Tue, 31 May 2022 19:19:07 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6821F10E585
+ for <intel-gfx@lists.freedesktop.org>; Tue, 31 May 2022 20:32:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1654024747; x=1685560747;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=e03HOvjbq//gENqSxK+kmO+CdhaExqgD4PngYsTZk0w=;
- b=TsX9BmLXt705EWMmkSe8Rf2nsILh/f8ZB2z/vDJ2V/1YeRNdK/ujLDRP
- 6qR4ZT/IYfMuGpG1iKlkRYtDhCARgekkf1+n5HO2iP8oic56jPfo4VEKV
- HcHDUJ1tUlK86HWq7SWR9+c4v5AARZu13ejKg9VokCMFYq/RTty/tnRKX
- qOAOuVVssZes9R9XJSseEAYR/oOz52KcwHuGd+BK1Qral/G5a26uSlfU4
- PP9t/ZggjSYQEY4RTLuuMQaQx4KXe1wr+tGldhC8T2SaJ/MTjApkRzTEf
- zzHiKIUupeBUTzMv7lpv57W2KFJHET9Km+kX1wKL4/s1CwnrZtjBcx3hP Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10364"; a="262994977"
-X-IronPort-AV: E=Sophos;i="5.91,266,1647327600"; d="scan'208";a="262994977"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 May 2022 12:19:06 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,266,1647327600"; d="scan'208";a="551938080"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.163])
- by orsmga006.jf.intel.com with SMTP; 31 May 2022 12:19:04 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 31 May 2022 22:19:03 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 31 May 2022 22:18:44 +0300
-Message-Id: <20220531191844.11313-7-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220531191844.11313-1-ville.syrjala@linux.intel.com>
-References: <20220531191844.11313-1-ville.syrjala@linux.intel.com>
+ t=1654029172; x=1685565172;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=wm4rtTxEjec1htLIiyaDczsgN9v8j+mbKmr7r4hFuwI=;
+ b=filDa3uZIqyydz+/FnVue2GB7ol+8hL8quyyCq9R8a0LH+qCB1HS5ZG1
+ YKg3awWHXZJFZAc8NReWqex/yAOApqayg6Q7TAFada+PYQ8/RQHqIWoSg
+ g58Re1X0JJ547sOpca4fvNl6gs43cBEWwPALzWiYjA0HPCSN5Hpgvok4n
+ /yAjsTbgQ6DTYhLtLe6PdFeQOSdF5kB+BDMvgXxogdX1WAiCNYMUljulU
+ 7FJ6Yc6AzmKbS9bSYrw2uZFxd7M9BvU5sAwyCHarP/OtXtLoPNd3/Dkq1
+ LhokGbD5XmfkMBlR/dAC8zoeY7LYZH/4q9YuTKmUv95FAvj9Fz4V8OAuA Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10364"; a="257447945"
+X-IronPort-AV: E=Sophos;i="5.91,266,1647327600"; d="scan'208";a="257447945"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 May 2022 13:32:51 -0700
+X-IronPort-AV: E=Sophos;i="5.91,266,1647327600"; d="scan'208";a="755247405"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.13.84])
+ ([10.213.13.84])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 May 2022 13:32:50 -0700
+Message-ID: <1ce32d32-8c7d-ea6a-448d-cd4913d11a77@intel.com>
+Date: Tue, 31 May 2022 22:32:47 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 6/6] drm/i915: Treat DMRRS as static DRRS
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Firefox/91.0 Thunderbird/91.9.1
+Content-Language: en-US
+To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20220531162527.1062319-1-jani.nikula@intel.com>
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <20220531162527.1062319-1-jani.nikula@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [RESEND] drm/i915/display: stop using BUG()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,74 +61,190 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+On 31.05.2022 18:25, Jani Nikula wrote:
+> Avoid bringing the entire machine down even if there's a bug that
+> shouldn't happen, but won't corrupt the system either. Log them loudly
+> and limp on.
+> 
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-Some machines declare DRRS type = seamless, DRRS = no, DMRRS = yes.
-I *think* DMRRS stands for "dynamcic media refresh rate", and
-I suspect the way it's meant to work is that it lets the driver
-switch refresh rates to match the frame rate for media playback.
-Obviously for us all that kind of policy stuff is entirely up to
-userspace, so the only thing we may do is make the extra refresh
-rate(s) available.
+All BUG() cases seems to be converted.
 
-So let's treat this case as just static DRRS for now. In the
-future We might want to differentiate the "seamless w/ downclocking"
-vs. "seamless w/o downclocking" cases so that we could do seamless
-refresh rate changes for systems that only claim to support DMRRS.
+Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
 
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/125
-Acked-by: Jani Nikula <jani.nikula@intel.com>
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_bios.c | 24 +++++++++++++++++++----
- 1 file changed, 20 insertions(+), 4 deletions(-)
+Regards
+Andrzej
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index 0774238e429b..c42b9e7d0dce 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.c
-+++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -1279,8 +1279,16 @@ parse_panel_driver_features(struct drm_i915_private *i915,
- 		 * static DRRS is 0 and DRRS not supported is represented by
- 		 * driver->drrs_enabled=false
- 		 */
--		if (!driver->drrs_enabled)
--			panel->vbt.drrs_type = DRRS_TYPE_NONE;
-+		if (!driver->drrs_enabled && panel->vbt.drrs_type != DRRS_TYPE_NONE) {
-+			/*
-+			 * FIXME Should DMRRS perhaps be treated as seamless
-+			 * but without the automatic downclocking?
-+			 */
-+			if (driver->dmrrs_enabled)
-+				panel->vbt.drrs_type = DRRS_TYPE_STATIC;
-+			else
-+				panel->vbt.drrs_type = DRRS_TYPE_NONE;
-+		}
- 
- 		panel->vbt.psr.enable = driver->psr_enabled;
- 	}
-@@ -1310,8 +1318,16 @@ parse_power_conservation_features(struct drm_i915_private *i915,
- 	 * static DRRS is 0 and DRRS not supported is represented by
- 	 * power->drrs & BIT(panel_type)=false
- 	 */
--	if (!(power->drrs & BIT(panel_type)))
--		panel->vbt.drrs_type = DRRS_TYPE_NONE;
-+	if (!(power->drrs & BIT(panel_type)) && panel->vbt.drrs_type != DRRS_TYPE_NONE) {
-+		/*
-+		 * FIXME Should DMRRS perhaps be treated as seamless
-+		 * but without the automatic downclocking?
-+		 */
-+		if (power->dmrrs & BIT(panel_type))
-+			panel->vbt.drrs_type = DRRS_TYPE_STATIC;
-+		else
-+			panel->vbt.drrs_type = DRRS_TYPE_NONE;
-+	}
- 
- 	if (i915->vbt.version >= 232)
- 		panel->vbt.edp.hobl = power->hobl & BIT(panel_type);
--- 
-2.35.1
+> ---
+>   drivers/gpu/drm/i915/display/intel_ddi.c      | 11 ++++++-----
+>   drivers/gpu/drm/i915/display/intel_display.c  | 19 +++++++++++--------
+>   .../drm/i915/display/intel_display_types.h    | 15 +++++++++------
+>   3 files changed, 26 insertions(+), 19 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> index 333871cf3a2c..915e8e3e8f38 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -455,6 +455,9 @@ intel_ddi_transcoder_func_reg_val_get(struct intel_encoder *encoder,
+>   		temp |= TRANS_DDI_SELECT_PORT(port);
+>   
+>   	switch (crtc_state->pipe_bpp) {
+> +	default:
+> +		MISSING_CASE(crtc_state->pipe_bpp);
+> +		fallthrough;
+>   	case 18:
+>   		temp |= TRANS_DDI_BPC_6;
+>   		break;
+> @@ -467,8 +470,6 @@ intel_ddi_transcoder_func_reg_val_get(struct intel_encoder *encoder,
+>   	case 36:
+>   		temp |= TRANS_DDI_BPC_12;
+>   		break;
+> -	default:
+> -		BUG();
+>   	}
+>   
+>   	if (crtc_state->hw.adjusted_mode.flags & DRM_MODE_FLAG_PVSYNC)
+> @@ -478,6 +479,9 @@ intel_ddi_transcoder_func_reg_val_get(struct intel_encoder *encoder,
+>   
+>   	if (cpu_transcoder == TRANSCODER_EDP) {
+>   		switch (pipe) {
+> +		default:
+> +			MISSING_CASE(pipe);
+> +			fallthrough;
+>   		case PIPE_A:
+>   			/* On Haswell, can only use the always-on power well for
+>   			 * eDP when not using the panel fitter, and when not
+> @@ -494,9 +498,6 @@ intel_ddi_transcoder_func_reg_val_get(struct intel_encoder *encoder,
+>   		case PIPE_C:
+>   			temp |= TRANS_DDI_EDP_INPUT_C_ONOFF;
+>   			break;
+> -		default:
+> -			BUG();
+> -			break;
+>   		}
+>   	}
+>   
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 806d50b302ab..e6a84d97718f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -500,6 +500,9 @@ void vlv_wait_port_ready(struct drm_i915_private *dev_priv,
+>   	i915_reg_t dpll_reg;
+>   
+>   	switch (dig_port->base.port) {
+> +	default:
+> +		MISSING_CASE(dig_port->base.port);
+> +		fallthrough;
+>   	case PORT_B:
+>   		port_mask = DPLL_PORTB_READY_MASK;
+>   		dpll_reg = DPLL(0);
+> @@ -513,8 +516,6 @@ void vlv_wait_port_ready(struct drm_i915_private *dev_priv,
+>   		port_mask = DPLL_PORTD_READY_MASK;
+>   		dpll_reg = DPIO_PHY_STATUS;
+>   		break;
+> -	default:
+> -		BUG();
+>   	}
+>   
+>   	if (intel_de_wait_for_register(dev_priv, dpll_reg,
+> @@ -3157,6 +3158,10 @@ static void i9xx_set_pipeconf(const struct intel_crtc_state *crtc_state)
+>   				    PIPECONF_DITHER_TYPE_SP;
+>   
+>   		switch (crtc_state->pipe_bpp) {
+> +		default:
+> +			/* Case prevented by intel_choose_pipe_bpp_dither. */
+> +			MISSING_CASE(crtc_state->pipe_bpp);
+> +			fallthrough;
+>   		case 18:
+>   			pipeconf |= PIPECONF_BPC_6;
+>   			break;
+> @@ -3166,9 +3171,6 @@ static void i9xx_set_pipeconf(const struct intel_crtc_state *crtc_state)
+>   		case 30:
+>   			pipeconf |= PIPECONF_BPC_10;
+>   			break;
+> -		default:
+> -			/* Case prevented by intel_choose_pipe_bpp_dither. */
+> -			BUG();
+>   		}
+>   	}
+>   
+> @@ -3464,6 +3466,10 @@ static void ilk_set_pipeconf(const struct intel_crtc_state *crtc_state)
+>   	val = 0;
+>   
+>   	switch (crtc_state->pipe_bpp) {
+> +	default:
+> +		/* Case prevented by intel_choose_pipe_bpp_dither. */
+> +		MISSING_CASE(crtc_state->pipe_bpp);
+> +		fallthrough;
+>   	case 18:
+>   		val |= PIPECONF_BPC_6;
+>   		break;
+> @@ -3476,9 +3482,6 @@ static void ilk_set_pipeconf(const struct intel_crtc_state *crtc_state)
+>   	case 36:
+>   		val |= PIPECONF_BPC_12;
+>   		break;
+> -	default:
+> -		/* Case prevented by intel_choose_pipe_bpp_dither. */
+> -		BUG();
+>   	}
+>   
+>   	if (crtc_state->dither)
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index a27d66fd4383..37c25364350c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1798,13 +1798,14 @@ static inline enum dpio_channel
+>   vlv_dig_port_to_channel(struct intel_digital_port *dig_port)
+>   {
+>   	switch (dig_port->base.port) {
+> +	default:
+> +		MISSING_CASE(dig_port->base.port);
+> +		fallthrough;
+>   	case PORT_B:
+>   	case PORT_D:
+>   		return DPIO_CH0;
+>   	case PORT_C:
+>   		return DPIO_CH1;
+> -	default:
+> -		BUG();
+>   	}
+>   }
+>   
+> @@ -1812,13 +1813,14 @@ static inline enum dpio_phy
+>   vlv_dig_port_to_phy(struct intel_digital_port *dig_port)
+>   {
+>   	switch (dig_port->base.port) {
+> +	default:
+> +		MISSING_CASE(dig_port->base.port);
+> +		fallthrough;
+>   	case PORT_B:
+>   	case PORT_C:
+>   		return DPIO_PHY0;
+>   	case PORT_D:
+>   		return DPIO_PHY1;
+> -	default:
+> -		BUG();
+>   	}
+>   }
+>   
+> @@ -1826,13 +1828,14 @@ static inline enum dpio_channel
+>   vlv_pipe_to_channel(enum pipe pipe)
+>   {
+>   	switch (pipe) {
+> +	default:
+> +		MISSING_CASE(pipe);
+> +		fallthrough;
+>   	case PIPE_A:
+>   	case PIPE_C:
+>   		return DPIO_CH0;
+>   	case PIPE_B:
+>   		return DPIO_CH1;
+> -	default:
+> -		BUG();
+>   	}
+>   }
+>   
 
