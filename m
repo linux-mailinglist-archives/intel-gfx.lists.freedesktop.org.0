@@ -2,32 +2,82 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6892E538F50
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 May 2022 12:53:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1161A538F5B
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 May 2022 12:56:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E1B6510EA59;
-	Tue, 31 May 2022 10:53:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3AC32112868;
+	Tue, 31 May 2022 10:56:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 06B7610EA98;
- Tue, 31 May 2022 10:53:32 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id F1C76AADD5;
- Tue, 31 May 2022 10:53:31 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5705050506335090356=="
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5306111286E
+ for <intel-gfx@lists.freedesktop.org>; Tue, 31 May 2022 10:56:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1653994606;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=5AMEdZHq6r8jK1K5fClop/kDp2DOnuh5RSKQmQhnlmo=;
+ b=C2eES+l/dXwru1vP0ZJTC8D2kkFc1fpGn4czJDV4moEQxNt5S/il66fhtQ1PjPoPSBxsXd
+ fsBuW35Hhr9GdLwzY5aq+txXqEw8HrtGXe5PuIUK6UHagdEqsRPWCkE0GFqpwWwnNyIC2T
+ o2Z+joTNtERN3YuoArSEH4QKsFQoMrA=
+Received: from mail-lf1-f72.google.com (mail-lf1-f72.google.com
+ [209.85.167.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-7-M7_P2iBnMO2-xnU9bcXqng-1; Tue, 31 May 2022 06:56:45 -0400
+X-MC-Unique: M7_P2iBnMO2-xnU9bcXqng-1
+Received: by mail-lf1-f72.google.com with SMTP id
+ k6-20020a0565123d8600b0047863fc54b9so6574812lfv.16
+ for <intel-gfx@lists.freedesktop.org>; Tue, 31 May 2022 03:56:45 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+ :content-language:to:cc:references:from:in-reply-to
+ :content-transfer-encoding;
+ bh=5AMEdZHq6r8jK1K5fClop/kDp2DOnuh5RSKQmQhnlmo=;
+ b=kLi4AM+97kf1eEUl/Ejjjs7kvDaWjJGrkH2vaZlXpwUBFLEcbBfHag6IeEC9v00iIu
+ UMmTw7AVAlisBX5MU50JqkH9r22pSqg7KxsB+nYYEYkp8XiBx2SdQ2mVd/fWonExqXkd
+ N0LWPpswJ1QA70zOfGOkIySnwRNhJY49zjtsxHDVeOlZjINpaTz7b2P9TyfgXd4p2VYi
+ fQq6/O3MOtj8kzRvsjq1yzUtB7nAWonCl1zAYpT89kP5aOz9Ajdx3LLnm3Mkc8HkY9LG
+ 1GPo4uvYq6mXwBrhrDClEYyXDGU0rHfBTZF3+rSgZ/CaLE8IgXpi52b7tZY0bzDXIfGI
+ qY0g==
+X-Gm-Message-State: AOAM530hmP1KynC23XIo/thxzbIZbgs9eUZ7IuL4rOXsJkQlCGDlCCrl
+ sqUXW05juP2S9Rmba7HoVceIj0IzrJ6rNxed0+0mQgaZqPH+hlzqcvsk739LtkNVBwlbTqlJhz0
+ nZR8Mk3lfGMprhyUDqgcdh0Oq45Ph
+X-Received: by 2002:a2e:8958:0:b0:255:48a6:b34f with SMTP id
+ b24-20020a2e8958000000b0025548a6b34fmr9086917ljk.32.1653994603707; 
+ Tue, 31 May 2022 03:56:43 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzT/kJtZFCGg6vVnaOEu+TAnTzoEpR9/PyP/37VarQ8+j7ln571wRc5ni+laLwliCYrgww7xA==
+X-Received: by 2002:a2e:8958:0:b0:255:48a6:b34f with SMTP id
+ b24-20020a2e8958000000b0025548a6b34fmr9086904ljk.32.1653994603496; 
+ Tue, 31 May 2022 03:56:43 -0700 (PDT)
+Received: from [10.101.1.23] (ip-185-104-137-32.ptr.icomera.net.
+ [185.104.137.32]) by smtp.gmail.com with ESMTPSA id
+ s22-20020a2e9c16000000b0025567cf8633sm16866lji.85.2022.05.31.03.56.36
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 31 May 2022 03:56:42 -0700 (PDT)
+Message-ID: <5ba0b86a-fa9c-ed97-3b43-7814599deab5@redhat.com>
+Date: Tue, 31 May 2022 12:56:18 +0200
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "William Tseng" <william.tseng@intel.com>
-Date: Tue, 31 May 2022 10:53:31 -0000
-Message-ID: <165399441196.17346.9731007147516803565@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220531101322.26757-1-william.tseng@intel.com>
-In-Reply-To: <20220531101322.26757-1-william.tseng@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/edid=3A_ignore_the_CEA_modes_not_defined_in_CEA-861-D?=
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.0
+To: Hsin-Yi Wang <hsinyi@chromium.org>
+References: <20220530081910.3947168-1-hsinyi@chromium.org>
+ <a8d1fe13-e747-016a-2d45-bfb50f23f2d9@redhat.com>
+ <CAJMQK-iM-ip7edA2mBOhp-8maWKG5+kTceZUM5U6BOLLBq1H4Q@mail.gmail.com>
+From: Hans de Goede <hdegoede@redhat.com>
+In-Reply-To: <CAJMQK-iM-ip7edA2mBOhp-8maWKG5+kTceZUM5U6BOLLBq1H4Q@mail.gmail.com>
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=hdegoede@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v10 0/4] Separate panel orientation property
+ creating and value setting
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,289 +90,135 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: devicetree@vger.kernel.org, David Airlie <airlied@linux.ie>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Rob Clark <robdclark@chromium.org>, amd-gfx@lists.freedesktop.org,
+ Harry Wentland <harry.wentland@amd.com>,
+ Chun-Kuang Hu <chunkuang.hu@kernel.org>, intel-gfx@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Stephen Boyd <swboyd@chromium.org>,
+ Rob Herring <robh+dt@kernel.org>, linux-mediatek@lists.infradead.org,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ linux-arm-kernel@lists.infradead.org, Simon Ser <contact@emersion.fr>,
+ Douglas Anderson <dianders@chromium.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Alex Deucher <alexander.deucher@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5705050506335090356==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi,
 
-== Series Details ==
+On 5/30/22 13:34, Hsin-Yi Wang wrote:
+> On Mon, May 30, 2022 at 4:53 PM Hans de Goede <hdegoede@redhat.com> wrote:
+>>
+>> Hi,
+>>
+>> On 5/30/22 10:19, Hsin-Yi Wang wrote:
+>>> Some drivers, eg. mtk_drm and msm_drm, rely on the panel to set the
+>>> orientation. Panel calls drm_connector_set_panel_orientation() to create
+>>> orientation property and sets the value. However, connector properties
+>>> can't be created after drm_dev_register() is called. The goal is to
+>>> separate the orientation property creation, so drm drivers can create it
+>>> earlier before drm_dev_register().
+>>
+>> Sorry for jumping in pretty late in the discussion (based on the v10
+>> I seem to have missed this before).
+>>
+>> This sounds to me like the real issue here is that drm_dev_register()
+>> is getting called too early?
+>>
+> Right.
+> 
+>> To me it seems sensible to delay calling drm_dev_register() and
+>> thus allowing userspace to start detecting available displays +
+>> features until after the panel has been probed.
+>>
+> 
+> Most panels set this value very late, in .get_modes callback (since it
+> is when the connector is known), though the value was known during
+> panel probe.
 
-Series: drm/edid: ignore the CEA modes not defined in CEA-861-D
-URL   : https://patchwork.freedesktop.org/series/104539/
-State : success
+Hmm I would expect the main drm/kms driver to register the drm_connector
+object after probing the panel, right ?
 
-== Summary ==
+So maybe this is a problem with the panel API? How about adding 
+separate callback to the panel API to get the orientation, which the
+main drm/kms driver can then call before registering the connector ?
 
-CI Bug Log - changes from CI_DRM_11710 -> Patchwork_104539v1
-====================================================
+And then have the main drm/kms driver call
+drm_connector_set_panel_orientation() with the returned orientation
+on the connecter before registering it.
 
-Summary
--------
-
-  **WARNING**
-
-  Minor unknown changes coming with Patchwork_104539v1 need to be verified
-  manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_104539v1, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104539v1/index.html
-
-Participating hosts (46 -> 41)
-------------------------------
-
-  Missing    (5): fi-kbl-soraka bat-dg2-8 bat-adlm-1 fi-hsw-4770 bat-adln-1 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_104539v1:
-
-### IGT changes ###
-
-#### Warnings ####
-
-  * igt@debugfs_test@read_all_entries:
-    - fi-apl-guc:         [DMESG-WARN][1] ([i915#5595]) -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11710/fi-apl-guc/igt@debugfs_test@read_all_entries.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104539v1/fi-apl-guc/igt@debugfs_test@read_all_entries.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_104539v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@gt_mocs:
-    - fi-rkl-guc:         [PASS][3] -> [DMESG-WARN][4] ([i915#5790])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11710/fi-rkl-guc/igt@i915_selftest@live@gt_mocs.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104539v1/fi-rkl-guc/igt@i915_selftest@live@gt_mocs.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-bdw-5557u:       NOTRUN -> [INCOMPLETE][5] ([i915#3921])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104539v1/fi-bdw-5557u/igt@i915_selftest@live@hangcheck.html
-
-  * igt@i915_selftest@live@requests:
-    - fi-pnv-d510:        [PASS][6] -> [DMESG-FAIL][7] ([i915#4528])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11710/fi-pnv-d510/igt@i915_selftest@live@requests.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104539v1/fi-pnv-d510/igt@i915_selftest@live@requests.html
-
-  * igt@i915_suspend@basic-s2idle-without-i915:
-    - bat-dg1-6:          NOTRUN -> [INCOMPLETE][8] ([i915#6011])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104539v1/bat-dg1-6/igt@i915_suspend@basic-s2idle-without-i915.html
-
-  * igt@runner@aborted:
-    - fi-pnv-d510:        NOTRUN -> [FAIL][9] ([fdo#109271] / [i915#2403] / [i915#4312])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104539v1/fi-pnv-d510/igt@runner@aborted.html
-    - fi-rkl-11600:       NOTRUN -> [FAIL][10] ([i915#2029] / [i915#4312])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104539v1/fi-rkl-11600/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_engines:
-    - bat-dg1-6:          [INCOMPLETE][11] ([i915#4418]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11710/bat-dg1-6/igt@i915_selftest@live@gt_engines.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104539v1/bat-dg1-6/igt@i915_selftest@live@gt_engines.html
-
-  * igt@i915_selftest@live@gt_pm:
-    - fi-tgl-1115g4:      [DMESG-FAIL][13] ([i915#3987]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11710/fi-tgl-1115g4/igt@i915_selftest@live@gt_pm.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104539v1/fi-tgl-1115g4/igt@i915_selftest@live@gt_pm.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-dg1-5:          [DMESG-FAIL][15] ([i915#4494] / [i915#4957]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11710/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104539v1/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
-
-  * igt@i915_selftest@live@mman:
-    - fi-bdw-5557u:       [INCOMPLETE][17] ([i915#5704]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11710/fi-bdw-5557u/igt@i915_selftest@live@mman.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104539v1/fi-bdw-5557u/igt@i915_selftest@live@mman.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#2029]: https://gitlab.freedesktop.org/drm/intel/issues/2029
-  [i915#2403]: https://gitlab.freedesktop.org/drm/intel/issues/2403
-  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
-  [i915#3987]: https://gitlab.freedesktop.org/drm/intel/issues/3987
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4418]: https://gitlab.freedesktop.org/drm/intel/issues/4418
-  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
-  [i915#4528]: https://gitlab.freedesktop.org/drm/intel/issues/4528
-  [i915#4957]: https://gitlab.freedesktop.org/drm/intel/issues/4957
-  [i915#5122]: https://gitlab.freedesktop.org/drm/intel/issues/5122
-  [i915#5595]: https://gitlab.freedesktop.org/drm/intel/issues/5595
-  [i915#5704]: https://gitlab.freedesktop.org/drm/intel/issues/5704
-  [i915#5790]: https://gitlab.freedesktop.org/drm/intel/issues/5790
-  [i915#6011]: https://gitlab.freedesktop.org/drm/intel/issues/6011
+The new get_orientation callback for the panel should of course
+be optional (IOW amy be NULL), so we probably want a small
+helper for drivers using panel (sub)drivers to take care of
+the process of getting the panel orientation from the panel
+(if supported) and then setting it on the connector.
 
 
-Build changes
--------------
+> I think we can also let drm check if they have remote panel nodes: If
+> there is a panel and the panel sets the orientation, let the drm read
+> this value and set the property. Does this workflow sound reasonable?
+> 
+> The corresponding patch to implement this:
+> https://patchwork.kernel.org/project/linux-mediatek/patch/20220530113033.124072-1-hsinyi@chromium.org/
 
-  * Linux: CI_DRM_11710 -> Patchwork_104539v1
+That is a suprisingly small patch (which is good). I guess that
+my suggestion to add a new panel driver callback to get
+the orientation would be a bit bigget then this. Still I think
+that that would be a bit cleaner, as it would also solve this
+for cases where the orientation comes from the panel itself
+(through say some EDID extenstion) rather then from devicetree.
 
-  CI-20190529: 20190529
-  CI_DRM_11710: d2798c4b9213f0d14080bdeef58e692a2c01a0bf @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6500: de4c6076a0f38ad3522b08931748f59d59a925ce @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_104539v1: d2798c4b9213f0d14080bdeef58e692a2c01a0bf @ git://anongit.freedesktop.org/gfx-ci/linux
+Still I think either way should be acceptable upstream.
 
+Opinions from other drm devs on the above are very much welcome!
 
-### Linux commits
+Your small patch nicely avoids the probe ordering problem,
+so it is much better then this patch series.
 
-fe43e9e1de1c drm/edid: ignore the CEA modes not defined in CEA-861-D
+Regards,
 
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104539v1/index.html
-
---===============5705050506335090356==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+Hans
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/edid: ignore the CEA modes not defined in CEA-861-D</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/104539/">https://patchwork.freedesktop.org/series/104539/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104539v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104539v1/index.html</a></td></tr>
+> 
+> Thanks
+> 
+>> I see a devicetree patch in this series, so I guess that the panel
+>> is described in devicetree. Especially in the case of devicetree
+>> I would expect the kernel to have enough info to do the right
+>> thing and make sure the panel is probed before calling
+>> drm_dev_register() ?
+>>
+>> Regards,
+>>
+>> Hans
+>>
+>>
+>>
+>>
+>>>
+>>> After this series, drm_connector_set_panel_orientation() works like
+>>> before. It won't affect existing callers of
+>>> drm_connector_set_panel_orientation(). The only difference is that
+>>> some drm drivers can call drm_connector_init_panel_orientation_property()
+>>> earlier.
+>>>
+>>> Hsin-Yi Wang (4):
+>>>   gpu: drm: separate panel orientation property creating and value
+>>>     setting
+>>>   drm/mediatek: init panel orientation property
+>>>   drm/msm: init panel orientation property
+>>>   arm64: dts: mt8183: Add panel rotation
+>>>
+>>>  .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi |  1 +
+>>>  drivers/gpu/drm/drm_connector.c               | 58 ++++++++++++++-----
+>>>  drivers/gpu/drm/mediatek/mtk_dsi.c            |  7 +++
+>>>  drivers/gpu/drm/msm/dsi/dsi_manager.c         |  4 ++
+>>>  include/drm/drm_connector.h                   |  2 +
+>>>  5 files changed, 59 insertions(+), 13 deletions(-)
+>>>
+>>
+> 
 
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11710 -&gt; Patchwork_104539v1</h1>
-<h2>Summary</h2>
-<p><strong>WARNING</strong></p>
-<p>Minor unknown changes coming with Patchwork_104539v1 need to be verified<br />
-  manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_104539v1, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104539v1/index.html</p>
-<h2>Participating hosts (46 -&gt; 41)</h2>
-<p>Missing    (5): fi-kbl-soraka bat-dg2-8 bat-adlm-1 fi-hsw-4770 bat-adln-1 </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_104539v1:</p>
-<h3>IGT changes</h3>
-<h4>Warnings</h4>
-<ul>
-<li>igt@debugfs_test@read_all_entries:<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11710/fi-apl-guc/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5595">i915#5595</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104539v1/fi-apl-guc/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_104539v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_mocs:</p>
-<ul>
-<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11710/fi-rkl-guc/igt@i915_selftest@live@gt_mocs.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104539v1/fi-rkl-guc/igt@i915_selftest@live@gt_mocs.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5790">i915#5790</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104539v1/fi-bdw-5557u/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11710/fi-pnv-d510/igt@i915_selftest@live@requests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104539v1/fi-pnv-d510/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_suspend@basic-s2idle-without-i915:</p>
-<ul>
-<li>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104539v1/bat-dg1-6/igt@i915_suspend@basic-s2idle-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6011">i915#6011</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>
-<p>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104539v1/fi-pnv-d510/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2403">i915#2403</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
-</li>
-<li>
-<p>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104539v1/fi-rkl-11600/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2029">i915#2029</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_engines:</p>
-<ul>
-<li>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11710/bat-dg1-6/igt@i915_selftest@live@gt_engines.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4418">i915#4418</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104539v1/bat-dg1-6/igt@i915_selftest@live@gt_engines.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_pm:</p>
-<ul>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11710/fi-tgl-1115g4/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3987">i915#3987</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104539v1/fi-tgl-1115g4/igt@i915_selftest@live@gt_pm.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>bat-dg1-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11710/bat-dg1-5/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104539v1/bat-dg1-5/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@mman:</p>
-<ul>
-<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11710/fi-bdw-5557u/igt@i915_selftest@live@mman.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5704">i915#5704</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104539v1/fi-bdw-5557u/igt@i915_selftest@live@mman.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11710 -&gt; Patchwork_104539v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11710: d2798c4b9213f0d14080bdeef58e692a2c01a0bf @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6500: de4c6076a0f38ad3522b08931748f59d59a925ce @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_104539v1: d2798c4b9213f0d14080bdeef58e692a2c01a0bf @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>fe43e9e1de1c drm/edid: ignore the CEA modes not defined in CEA-861-D</p>
-
-</body>
-</html>
-
---===============5705050506335090356==--
