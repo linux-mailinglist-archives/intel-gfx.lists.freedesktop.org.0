@@ -1,55 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD415539376
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 May 2022 17:00:16 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE7FE539424
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 May 2022 17:40:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 41A6910F384;
-	Tue, 31 May 2022 15:00:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 28F7710EE21;
+	Tue, 31 May 2022 15:40:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 689FC10F378
- for <intel-gfx@lists.freedesktop.org>; Tue, 31 May 2022 15:00:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7CADA10F1E1
+ for <intel-gfx@lists.freedesktop.org>; Tue, 31 May 2022 15:40:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1654009209; x=1685545209;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=zePdRt06r/YYFFQbRu6abQns04bDKxGMa7oVHG16MXo=;
- b=XD6El5ONrofHMpzmSEc5uvV020AOOTH+v89K8zl73E8kI+uedQF1zScj
- QWjZm6RQ+u3DYfVKLLntlVNoUdEijJ80rY/6bJb8xTdmLWZ/vb25KJpDS
- ecwf1XZijb0mPUG/dYQ9dZBhak4w98oL0JCo0rssSeSQAEfBmTg6Q9UVs
- /ERFa1ULBnfb2CpZ6ALlk56DZ0ZsaS4gDctAH/oGVLc4ZohDhg+dhvwBK
- 5ofbfu9Y2avE+8QJSUJJacgRBuyY0Y9X1zNzFZioRNrqKAj2jEh1bxuWF
- DxXjkLa9X6r+NuvlhIOijU7EDjSUkEYKMvIVZewMx1YRWvp0aaHM2cHmf w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10364"; a="272846470"
-X-IronPort-AV: E=Sophos;i="5.91,265,1647327600"; d="scan'208";a="272846470"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ t=1654011604; x=1685547604;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=XDCRwQz9f4joE1OPnBc5jKFGBDhQZuh0IiUXv0zNbiA=;
+ b=nXQA02JLmWa1EaUMufQkzgZpJxLlLcAqtMpOCBJM7FxPAtFyj34q3K91
+ RnaFlQRuQIHuSFF6V9XEBrK3XzBPTc82bO3QpmPV0yzdHe3TDXM7jwdtH
+ hlj3zZWJvv6V/RQfobwX2kjdlskYvGiX41viM6T/f1QOV+x+ppruu94Pf
+ o9mFxlvs5jXWzIyP2sgNsooxT6iKtX2oIZomTEi8LmgrNKgWvC6sJOWSy
+ NeiX6vnAfgoa5glXH8OHUmFCifiinvh+K0yczYHyvyFa/TlCZVykKufDQ
+ ebcv2wBoDvm/ZCD3jx7NdttU7KrPqq3dLLw2yxgV5OGiN8MVV+fWijDLF g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10364"; a="272863571"
+X-IronPort-AV: E=Sophos;i="5.91,265,1647327600"; d="scan'208";a="272863571"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 May 2022 08:00:08 -0700
-X-IronPort-AV: E=Sophos;i="5.91,265,1647327600"; d="scan'208";a="755062538"
-Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.13.84])
- ([10.213.13.84])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 May 2022 08:00:05 -0700
-Message-ID: <bba2681d-429e-1e21-95f3-00d1ba93078c@intel.com>
-Date: Tue, 31 May 2022 17:00:01 +0200
+ 31 May 2022 08:39:53 -0700
+X-IronPort-AV: E=Sophos;i="5.91,265,1647327600"; d="scan'208";a="611885135"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 May 2022 08:39:53 -0700
+Date: Tue, 31 May 2022 08:39:51 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: "Gupta, Anshuman" <anshuman.gupta@intel.com>
+Message-ID: <YpY2xylbCpH/6KBB@mdroper-desk1.amr.corp.intel.com>
+References: <20220518130716.10936-1-anshuman.gupta@intel.com>
+ <20220518130716.10936-4-anshuman.gupta@intel.com>
+ <87h75ldg9t.fsf@intel.com>
+ <4299ea60a4c74ea0806d78b09de0b6c6@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Firefox/91.0 Thunderbird/91.9.1
-Content-Language: en-US
-To: William Tseng <william.tseng@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20220531101322.26757-1-william.tseng@intel.com>
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
- Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <20220531101322.26757-1-william.tseng@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] drm/edid: ignore the CEA modes not defined
- in CEA-861-D
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <4299ea60a4c74ea0806d78b09de0b6c6@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 3/7] drm/i915/dg2: DG2 MBD config
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,106 +59,117 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Wayne Lin <waynelin@amd.com>
+Cc: "Nikula, Jani" <jani.nikula@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Vivi,
+ Rodrigo" <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 31.05.2022 12:13, William Tseng wrote:
-> This is a workaround for HDMI 1.4 sink which has a CEA mode with higher vic
-> than what is defined in CEA-861-D.
+On Sun, May 29, 2022 at 09:44:38PM -0700, Gupta, Anshuman wrote:
 > 
-> As an example, a HDMI 1.4 sink has the video format 2560x1080p to be
-> displayed and the video format is indicated by both SVD (with vic 90 and
-> pictuure aspect ratio 64:27) and DTD.  When connecting to such sink,
-> source can't output the video format in SVD because an error is returned by
-> drm_hdmi_avi_infoframe_from_display_mode(), which can't fill the infoframe
-> with pictuure aspect ratio 64:27 and the vic, which is originally 90 and is
-> changed to 0 by drm_mode_cea_vic().
 > 
-> To work around it, this patch ignores such CEA modes in do_cea_modes() so
-> the modes won't be processed in drm_hdmi_avi_infoframe_from_display_mode().
-> And only the video format in DTD can be dispalyed.
-> 
-> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Cc: Wayne Lin <waynelin@amd.com>
-> Cc: Lee Shawn C <shawn.c.lee@intel.com>
-> Signed-off-by: William Tseng <william.tseng@intel.com>
-> ---
->   drivers/gpu/drm/drm_edid.c | 39 +++++++++++++++++++++++++-------------
->   1 file changed, 26 insertions(+), 13 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
-> index bc43e1b32092..a93f68878bfd 100644
-> --- a/drivers/gpu/drm/drm_edid.c
-> +++ b/drivers/gpu/drm/drm_edid.c
-> @@ -3982,6 +3982,19 @@ drm_display_mode_from_cea_vic(struct drm_device *dev,
->   }
->   EXPORT_SYMBOL(drm_display_mode_from_cea_vic);
->   
-> +static bool is_hdmi2_sink(const struct drm_connector *connector)
-> +{
-> +	/*
-> +	 * FIXME: sil-sii8620 doesn't have a connector around when
-> +	 * we need one, so we have to be prepared for a NULL connector.
-> +	 */
-> +	if (!connector)
-> +		return true;
-> +
-> +	return connector->display_info.hdmi.scdc.supported ||
-> +		connector->display_info.color_formats & DRM_COLOR_FORMAT_YCBCR420;
-> +}
-> +
->   static int
->   do_cea_modes(struct drm_connector *connector, const u8 *db, u8 len)
->   {
-> @@ -3993,6 +4006,19 @@ do_cea_modes(struct drm_connector *connector, const u8 *db, u8 len)
->   
->   		mode = drm_display_mode_from_vic_index(connector, db, len, i);
->   		if (mode) {
-> +			u8 vic = svd_to_vic(db[i]);
-> +
-> +			if (!drm_valid_cea_vic(vic))
-> +				continue;
+> > -----Original Message-----
+> > From: Nikula, Jani <jani.nikula@intel.com>
+> > Sent: Thursday, May 19, 2022 2:57 PM
+> > To: Gupta, Anshuman <anshuman.gupta@intel.com>; intel-
+> > gfx@lists.freedesktop.org
+> > Cc: Nilawar, Badal <badal.nilawar@intel.com>; Ewins, Jon
+> > <jon.ewins@intel.com>; Vivi, Rodrigo <rodrigo.vivi@intel.com>; Deak, Imre
+> > <imre.deak@intel.com>; Gupta, Anshuman <anshuman.gupta@intel.com>
+> > Subject: Re: [PATCH 3/7] drm/i915/dg2: DG2 MBD config
+> > 
+> > On Wed, 18 May 2022, Anshuman Gupta <anshuman.gupta@intel.com> wrote:
+> > > Add DG2 Motherboard Down Config check support.
+> > >
+> > > BSpec: 44477
+> > > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > > Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_opregion.c | 2 ++
+> > >  drivers/gpu/drm/i915/i915_drv.h               | 9 +++++++++
+> > >  2 files changed, 11 insertions(+)
+> > >
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_opregion.c
+> > > b/drivers/gpu/drm/i915/display/intel_opregion.c
+> > > index 3dcd54517b89..dec7628522c5 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_opregion.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_opregion.c
+> > > @@ -1271,6 +1271,8 @@ intel_opregion_vram_sr_required(struct
+> > > drm_i915_private *i915)
+> > >
+> > >  	if (IS_DG1(i915))
+> > >  		return intel_opregion_dg1_mbd_config(i915);
+> > > +	else if (IS_DG2_MBD(i915))
+> > > +		return true;
+> > >
+> > >  	return false;
+> > >  }
+> > > diff --git a/drivers/gpu/drm/i915/i915_drv.h
+> > > b/drivers/gpu/drm/i915/i915_drv.h index 10f273800645..c5ecc490dced
+> > > 100644
+> > > --- a/drivers/gpu/drm/i915/i915_drv.h
+> > > +++ b/drivers/gpu/drm/i915/i915_drv.h
+> > > @@ -1071,6 +1071,15 @@ IS_SUBPLATFORM(const struct drm_i915_private
+> > *i915,
+> > >  	IS_SUBPLATFORM(dev_priv, INTEL_DG2, INTEL_SUBPLATFORM_G11)
+> > #define
+> > > IS_DG2_G12(dev_priv) \
+> > >  	IS_SUBPLATFORM(dev_priv, INTEL_DG2, INTEL_SUBPLATFORM_G12)
+> > > +/*
+> > > + * FIXME: Need to define a new SUBPLATFORM
+> > INTEL_SUBPLATFORM_DG2_MBD
+> > > + * for PCI id range 5690..5695, but G10, G11 SUBPLATFROM conflicts
+> > > + * with those pci id range.
+> > > + */
+> > > +#define DG2_MBD_CONFIG_MASK	GENMASK(7, 4)
+> > > +#define DG2_MBD_CONFIG_VAL
+> > 	FIELD_PREP(DG2_MBD_CONFIG_MASK, 9)
+> > > +#define IS_DG2_MBD(dev_priv) (IS_DG2(dev_priv) && \
+> > > +			      (INTEL_DEVID(dev_priv) &
+> > DG2_MBD_CONFIG_MASK) ==
+> > > +DG2_MBD_CONFIG_VAL)
+> > 
+> > No. Please don't do *any* magic masking or comparison of PCI ID bits or
+> > bitfields.
+> Hi Matt,
+> We need to distinguish between DG2 NB MBD and rest such that i915 can
+> figure out opregion vram_sr is requires for the DG2 platform.  Could
+> you please suggestion on that.
 
-It duplicates check from drm_display_mode_from_vic_index
+If you truly need to distinguish a specific sub-type of DG2, then
+creating a proper subplatform (with its own list of PCI IDs, matched in
+intel_device_info_subplatform_init() is the way to go.  As far as I
+recall, it should be okay to have multiple subplatform bits set for a
+platform, so for example you can have both the G11 and a MBD subplatform
+bits set on a device and they can each be tested independently without
+interfering with each other.
 
-> +
-> +			/*
-> +			 * HDMI 1.4 VIC range: 1 <= VIC <= 64 (CEA-861-D) but
-> +			 * HDMI 2.0 VIC range: 1 <= VIC <= 107 (CEA-861-F). So we
-> +			 * have to make sure we dont break HDMI 1.4 sinks.
-> +			 */
-> +			if (!is_hdmi2_sink(connector) && vic > 64)
-> +				continue;
+I'm not too familiar with the feature you're working on here.  Is there
+a way we can detect whether it's supported by querying the pcode?  Or
+what happens if you send your pcode request on a platform that doesn't
+support it?  Do you just get a regular error back so that the driver
+would know to give up and move on, or would it actually cause some kind
+of behavioral problem?
 
-So maybe adding this check to drm_display_mode_from_vic_index would be 
-enough?
 
-Regards
-Andrzej
+Matt
 
-> +
->   			/*
->   			 * YCBCR420 capability block contains a bitmap which
->   			 * gives the index of CEA modes from CEA VDB, which
-> @@ -5846,19 +5872,6 @@ void drm_set_preferred_mode(struct drm_connector *connector,
->   }
->   EXPORT_SYMBOL(drm_set_preferred_mode);
->   
-> -static bool is_hdmi2_sink(const struct drm_connector *connector)
-> -{
-> -	/*
-> -	 * FIXME: sil-sii8620 doesn't have a connector around when
-> -	 * we need one, so we have to be prepared for a NULL connector.
-> -	 */
-> -	if (!connector)
-> -		return true;
-> -
-> -	return connector->display_info.hdmi.scdc.supported ||
-> -		connector->display_info.color_formats & DRM_COLOR_FORMAT_YCBCR420;
-> -}
-> -
->   static u8 drm_mode_hdmi_vic(const struct drm_connector *connector,
->   			    const struct drm_display_mode *mode)
->   {
+> Thanks,
+> Anshuman Gupta.
+> > 
+> > BR,
+> > Jani.
+> > 
+> > >  #define IS_ADLS_RPLS(dev_priv) \
+> > >  	IS_SUBPLATFORM(dev_priv, INTEL_ALDERLAKE_S,
+> > INTEL_SUBPLATFORM_RPL)
+> > > #define IS_ADLP_N(dev_priv) \
+> > 
+> > --
+> > Jani Nikula, Intel Open Source Graphics Center
 
+-- 
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
