@@ -2,56 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54ED853A003
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Jun 2022 11:03:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 26CBB53A04C
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Jun 2022 11:27:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 516CE10E3D7;
-	Wed,  1 Jun 2022 09:03:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6412B10E66B;
+	Wed,  1 Jun 2022 09:27:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com
- [IPv6:2a00:1450:4864:20::62c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5952010E22A;
- Wed,  1 Jun 2022 09:03:04 +0000 (UTC)
-Received: by mail-ej1-x62c.google.com with SMTP id y19so2363220ejq.6;
- Wed, 01 Jun 2022 02:03:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com
+ [IPv6:2607:f8b0:4864:20::536])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8653A10E520
+ for <intel-gfx@lists.freedesktop.org>; Wed,  1 Jun 2022 09:27:29 +0000 (UTC)
+Received: by mail-pg1-x536.google.com with SMTP id 129so1391717pgc.2
+ for <intel-gfx@lists.freedesktop.org>; Wed, 01 Jun 2022 02:27:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
  :cc:content-transfer-encoding;
- bh=RwXE16fRNY9JBNkXk6bLTiLoBYX4V4QKVYCobAwSTiY=;
- b=JRWG/j8WRnEb3FrZnql/hSj1rrNvaG9M3a2JrqFuBjoyLwmFWRuOHAilOGwnZpMOB/
- Qn5VHeOEeWJ0th0KhsjiyyXqdRSSTm31oOooclbVeZF0y9sIrX2uEfXDGcY/vPRSrKnU
- VRKyitroTRjIE8556p3ojKZI8i/d5Uuwdlv24prlcf/gUhVAKBu45FBAE9KZpcXnokqp
- jSa76U736kDD8bpI4iJuGOrkhe+Cao2sizWf3eBhQvzLdnxWrgamxmJd9K8GWybLHhul
- Vd4rjoDjX0Yg9zaqBqBoQxv3iz60WxNU0RwZqG1lAgPNLiKAHj/t5nvyAWBD0tch25mV
- U76Q==
+ bh=FQKjGdHAdslJkazyUX8MnPpWOb0qPSiFo8Q2p07MgUQ=;
+ b=F9Bb6WmCXe9/R0yLgWTXRmWI7cHU1vy60dY3ezfMjKSSsQTK0KYg2oJ1RxG9qtRG/0
+ vchifc9GdpgfKb2+o8fT3PL5/+1c37t4gyyoeRw9QjadYaSuC85rtPt8rAZBUmU9fo15
+ plpCg+YzpK05ERtIDc/FZVho1EBDW/JanjXWo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc:content-transfer-encoding;
- bh=RwXE16fRNY9JBNkXk6bLTiLoBYX4V4QKVYCobAwSTiY=;
- b=cs4pcDVLvDjWbFchYSPI5DWglFQHPKPRPQczqDzRJ7gOfo9aPEBN2zKbgGu9WIE/+7
- VEqNb99eEo0A2aH8casSu/6x49200REXwhrrGLURNo+caREFztfbCAXBdwFl4+MdTJH0
- XeF/vchiUBb5U1JIqRrbd3qN4tYDFd+58Y8d6tS1mexiRkdXIQFCs0KZZXxVbXmJHBIb
- aoAqhqsbbkWfCNnN9WuKDG1wE8uKR43Xik2fhyku6i7LQBQHQgWFFpdTXeQ4DQBtNwKW
- kWmsqgrwu+kRwWqJLI4gtnkhBugqDIWf0U1nPiIZc7UBj8lrpg5G6vMFi8220DcRHPdT
- ruWg==
-X-Gm-Message-State: AOAM533Cl9OR//d60JARot8Ze1Vevp4GG/VFwk/x3NCtUInz+6bWXdCk
- YjwAuTilI5mwFD24EZ74uvCAEr2WrH47QSgMZuI=
-X-Google-Smtp-Source: ABdhPJw/SrI2dxHoiRDTovZKAKGMvQJ0a40NEKWmc9JJ7HdioQQ8gzukigNLPpqjX+o7KblPixa+zo4+DL1HGA9hMkg=
-X-Received: by 2002:a17:907:9605:b0:6f5:c66:7c13 with SMTP id
- gb5-20020a170907960500b006f50c667c13mr56231246ejc.66.1654074182706; Wed, 01
- Jun 2022 02:03:02 -0700 (PDT)
+ bh=FQKjGdHAdslJkazyUX8MnPpWOb0qPSiFo8Q2p07MgUQ=;
+ b=4jyxDFaDHFwztG/EatCQXsHl/EZ+YGa87wGtGO5CBQ4DhiuI2shlobzQ2SDxpIJVnM
+ CdkRj5zzCcK229chp1pKYzmzspzTA7Qh/PIrnLGJr/rIoOpjP3ffX9a1GB0qcesonJiz
+ SDIm0RY1h9CAY83LZ3Sskh8elCLFqOicWNVivOcGJILdQgS9oK9zpSvCY2xnww/3l5rs
+ G5pculzFam8gXwJ5uVOQH3QnTiFyuLabx02Q74Gy0mpvuw6M8tyuTRpyyJcBrw0RPjIF
+ 4U8oFCaSKUeO2yoLLgalNgKSMGO2wLjhH9vl66xrAR2pXF+hnrIFWZiMAQSfpaVwKk08
+ hcQQ==
+X-Gm-Message-State: AOAM532jOUtf0jvCHS6WSaYMR+Ogr1HpSu7pd0h2z0o0AYSAzz3l+6m6
+ bqNZA3IYnAl4ogkvUIMqtA55iZGPa23VjC7dgvdbRA==
+X-Google-Smtp-Source: ABdhPJw3Cl7Gv4p9NiEw7jKbv9qGIbZuFcyCf0TBryc4WxWQTqvFUUlFHvGQHfL0RcKuAVwYoPZ0w6PgcPc0VjGx27o=
+X-Received: by 2002:a63:e43:0:b0:3fb:ca8e:616d with SMTP id
+ 3-20020a630e43000000b003fbca8e616dmr18837597pgo.443.1654075648939; Wed, 01
+ Jun 2022 02:27:28 -0700 (PDT)
 MIME-Version: 1.0
 References: <20220517183212.20274-1-niranjana.vishwanathapura@intel.com>
  <20220517183212.20274-4-niranjana.vishwanathapura@intel.com>
  <e4e1989c314d3958d58010431515ea371935d0c3.camel@intel.com>
  <20220523191943.GH4461@nvishwa1-DESK>
-In-Reply-To: <20220523191943.GH4461@nvishwa1-DESK>
-From: Dave Airlie <airlied@gmail.com>
-Date: Wed, 1 Jun 2022 19:02:51 +1000
-Message-ID: <CAPM=9tzcYL5kwv18cfq5NzE00jwHuwTj_L73NVgE8vdcBgrQww@mail.gmail.com>
-To: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+ <CAPM=9tzcYL5kwv18cfq5NzE00jwHuwTj_L73NVgE8vdcBgrQww@mail.gmail.com>
+In-Reply-To: <CAPM=9tzcYL5kwv18cfq5NzE00jwHuwTj_L73NVgE8vdcBgrQww@mail.gmail.com>
+From: Daniel Vetter <daniel@ffwll.ch>
+Date: Wed, 1 Jun 2022 11:27:17 +0200
+Message-ID: <CAKMK7uFt23yZxGJfuZ71ngNw-46yvyed8LaQCQ1ksq73MLGEug@mail.gmail.com>
+To: Dave Airlie <airlied@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 Subject: Re: [Intel-gfx] [RFC v3 3/3] drm/doc/rfc: VM_BIND uapi definition
@@ -77,118 +75,146 @@ Cc: "Zanoni, Paulo R" <paulo.r.zanoni@intel.com>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 24 May 2022 at 05:20, Niranjana Vishwanathapura
-<niranjana.vishwanathapura@intel.com> wrote:
+On Wed, 1 Jun 2022 at 11:03, Dave Airlie <airlied@gmail.com> wrote:
 >
-> On Thu, May 19, 2022 at 04:07:30PM -0700, Zanoni, Paulo R wrote:
-> >On Tue, 2022-05-17 at 11:32 -0700, Niranjana Vishwanathapura wrote:
-> >> VM_BIND and related uapi definitions
-> >>
-> >> v2: Ensure proper kernel-doc formatting with cross references.
-> >>     Also add new uapi and documentation as per review comments
-> >>     from Daniel.
-> >>
-> >> Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@in=
-tel.com>
-> >> ---
-> >>  Documentation/gpu/rfc/i915_vm_bind.h | 399 ++++++++++++++++++++++++++=
-+
-> >>  1 file changed, 399 insertions(+)
-> >>  create mode 100644 Documentation/gpu/rfc/i915_vm_bind.h
-> >>
-> >> diff --git a/Documentation/gpu/rfc/i915_vm_bind.h b/Documentation/gpu/=
-rfc/i915_vm_bind.h
-> >> new file mode 100644
-> >> index 000000000000..589c0a009107
-> >> --- /dev/null
-> >> +++ b/Documentation/gpu/rfc/i915_vm_bind.h
-> >> @@ -0,0 +1,399 @@
-> >> +/* SPDX-License-Identifier: MIT */
-> >> +/*
-> >> + * Copyright =C2=A9 2022 Intel Corporation
-> >> + */
-> >> +
-> >> +/**
-> >> + * DOC: I915_PARAM_HAS_VM_BIND
-> >> + *
-> >> + * VM_BIND feature availability.
-> >> + * See typedef drm_i915_getparam_t param.
-> >> + */
-> >> +#define I915_PARAM_HAS_VM_BIND               57
-> >> +
-> >> +/**
-> >> + * DOC: I915_VM_CREATE_FLAGS_USE_VM_BIND
-> >> + *
-> >> + * Flag to opt-in for VM_BIND mode of binding during VM creation.
-> >> + * See struct drm_i915_gem_vm_control flags.
-> >> + *
-> >> + * A VM in VM_BIND mode will not support the older execbuff mode of b=
-inding.
-> >> + * In VM_BIND mode, execbuff ioctl will not accept any execlist (ie.,=
- the
-> >> + * &drm_i915_gem_execbuffer2.buffer_count must be 0).
-> >> + * Also, &drm_i915_gem_execbuffer2.batch_start_offset and
-> >> + * &drm_i915_gem_execbuffer2.batch_len must be 0.
-> >> + * DRM_I915_GEM_EXECBUFFER_EXT_BATCH_ADDRESSES extension must be prov=
-ided
-> >> + * to pass in the batch buffer addresses.
-> >> + *
-> >> + * Additionally, I915_EXEC_NO_RELOC, I915_EXEC_HANDLE_LUT and
-> >> + * I915_EXEC_BATCH_FIRST of &drm_i915_gem_execbuffer2.flags must be 0
-> >> + * (not used) in VM_BIND mode. I915_EXEC_USE_EXTENSIONS flag must alw=
-ays be
-> >> + * set (See struct drm_i915_gem_execbuffer_ext_batch_addresses).
-> >> + * The buffers_ptr, buffer_count, batch_start_offset and batch_len fi=
-elds
-> >> + * of struct drm_i915_gem_execbuffer2 are also not used and must be 0=
-.
-> >> + */
+> On Tue, 24 May 2022 at 05:20, Niranjana Vishwanathapura
+> <niranjana.vishwanathapura@intel.com> wrote:
 > >
-> >From that description, it seems we have:
+> > On Thu, May 19, 2022 at 04:07:30PM -0700, Zanoni, Paulo R wrote:
+> > >On Tue, 2022-05-17 at 11:32 -0700, Niranjana Vishwanathapura wrote:
+> > >> VM_BIND and related uapi definitions
+> > >>
+> > >> v2: Ensure proper kernel-doc formatting with cross references.
+> > >>     Also add new uapi and documentation as per review comments
+> > >>     from Daniel.
+> > >>
+> > >> Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@=
+intel.com>
+> > >> ---
+> > >>  Documentation/gpu/rfc/i915_vm_bind.h | 399 ++++++++++++++++++++++++=
++++
+> > >>  1 file changed, 399 insertions(+)
+> > >>  create mode 100644 Documentation/gpu/rfc/i915_vm_bind.h
+> > >>
+> > >> diff --git a/Documentation/gpu/rfc/i915_vm_bind.h b/Documentation/gp=
+u/rfc/i915_vm_bind.h
+> > >> new file mode 100644
+> > >> index 000000000000..589c0a009107
+> > >> --- /dev/null
+> > >> +++ b/Documentation/gpu/rfc/i915_vm_bind.h
+> > >> @@ -0,0 +1,399 @@
+> > >> +/* SPDX-License-Identifier: MIT */
+> > >> +/*
+> > >> + * Copyright =C2=A9 2022 Intel Corporation
+> > >> + */
+> > >> +
+> > >> +/**
+> > >> + * DOC: I915_PARAM_HAS_VM_BIND
+> > >> + *
+> > >> + * VM_BIND feature availability.
+> > >> + * See typedef drm_i915_getparam_t param.
+> > >> + */
+> > >> +#define I915_PARAM_HAS_VM_BIND               57
+> > >> +
+> > >> +/**
+> > >> + * DOC: I915_VM_CREATE_FLAGS_USE_VM_BIND
+> > >> + *
+> > >> + * Flag to opt-in for VM_BIND mode of binding during VM creation.
+> > >> + * See struct drm_i915_gem_vm_control flags.
+> > >> + *
+> > >> + * A VM in VM_BIND mode will not support the older execbuff mode of=
+ binding.
+> > >> + * In VM_BIND mode, execbuff ioctl will not accept any execlist (ie=
+., the
+> > >> + * &drm_i915_gem_execbuffer2.buffer_count must be 0).
+> > >> + * Also, &drm_i915_gem_execbuffer2.batch_start_offset and
+> > >> + * &drm_i915_gem_execbuffer2.batch_len must be 0.
+> > >> + * DRM_I915_GEM_EXECBUFFER_EXT_BATCH_ADDRESSES extension must be pr=
+ovided
+> > >> + * to pass in the batch buffer addresses.
+> > >> + *
+> > >> + * Additionally, I915_EXEC_NO_RELOC, I915_EXEC_HANDLE_LUT and
+> > >> + * I915_EXEC_BATCH_FIRST of &drm_i915_gem_execbuffer2.flags must be=
+ 0
+> > >> + * (not used) in VM_BIND mode. I915_EXEC_USE_EXTENSIONS flag must a=
+lways be
+> > >> + * set (See struct drm_i915_gem_execbuffer_ext_batch_addresses).
+> > >> + * The buffers_ptr, buffer_count, batch_start_offset and batch_len =
+fields
+> > >> + * of struct drm_i915_gem_execbuffer2 are also not used and must be=
+ 0.
+> > >> + */
+> > >
+> > >From that description, it seems we have:
+> > >
+> > >struct drm_i915_gem_execbuffer2 {
+> > >        __u64 buffers_ptr;              -> must be 0 (new)
+> > >        __u32 buffer_count;             -> must be 0 (new)
+> > >        __u32 batch_start_offset;       -> must be 0 (new)
+> > >        __u32 batch_len;                -> must be 0 (new)
+> > >        __u32 DR1;                      -> must be 0 (old)
+> > >        __u32 DR4;                      -> must be 0 (old)
+> > >        __u32 num_cliprects; (fences)   -> must be 0 since using exten=
+sions
+> > >        __u64 cliprects_ptr; (fences, extensions) -> contains an actua=
+l pointer!
+> > >        __u64 flags;                    -> some flags must be 0 (new)
+> > >        __u64 rsvd1; (context info)     -> repurposed field (old)
+> > >        __u64 rsvd2;                    -> unused
+> > >};
+> > >
+> > >Based on that, why can't we just get drm_i915_gem_execbuffer3 instead
+> > >of adding even more complexity to an already abused interface? While
+> > >the Vulkan-like extension thing is really nice, I don't think what
+> > >we're doing here is extending the ioctl usage, we're completely
+> > >changing how the base struct should be interpreted based on how the VM
+> > >was created (which is an entirely different ioctl).
+> > >
+> > >From Rusty Russel's API Design grading, drm_i915_gem_execbuffer2 is
+> > >already at -6 without these changes. I think after vm_bind we'll need
+> > >to create a -11 entry just to deal with this ioctl.
+> > >
 > >
-> >struct drm_i915_gem_execbuffer2 {
-> >        __u64 buffers_ptr;              -> must be 0 (new)
-> >        __u32 buffer_count;             -> must be 0 (new)
-> >        __u32 batch_start_offset;       -> must be 0 (new)
-> >        __u32 batch_len;                -> must be 0 (new)
-> >        __u32 DR1;                      -> must be 0 (old)
-> >        __u32 DR4;                      -> must be 0 (old)
-> >        __u32 num_cliprects; (fences)   -> must be 0 since using extensi=
-ons
-> >        __u64 cliprects_ptr; (fences, extensions) -> contains an actual =
-pointer!
-> >        __u64 flags;                    -> some flags must be 0 (new)
-> >        __u64 rsvd1; (context info)     -> repurposed field (old)
-> >        __u64 rsvd2;                    -> unused
-> >};
-> >
-> >Based on that, why can't we just get drm_i915_gem_execbuffer3 instead
-> >of adding even more complexity to an already abused interface? While
-> >the Vulkan-like extension thing is really nice, I don't think what
-> >we're doing here is extending the ioctl usage, we're completely
-> >changing how the base struct should be interpreted based on how the VM
-> >was created (which is an entirely different ioctl).
-> >
-> >From Rusty Russel's API Design grading, drm_i915_gem_execbuffer2 is
-> >already at -6 without these changes. I think after vm_bind we'll need
-> >to create a -11 entry just to deal with this ioctl.
-> >
+> > The only change here is removing the execlist support for VM_BIND
+> > mode (other than natual extensions).
+> > Adding a new execbuffer3 was considered, but I think we need to be care=
+ful
+> > with that as that goes beyond the VM_BIND support, including any future
+> > requirements (as we don't want an execbuffer4 after VM_BIND).
 >
-> The only change here is removing the execlist support for VM_BIND
-> mode (other than natual extensions).
-> Adding a new execbuffer3 was considered, but I think we need to be carefu=
-l
-> with that as that goes beyond the VM_BIND support, including any future
-> requirements (as we don't want an execbuffer4 after VM_BIND).
+> Why not? it's not like adding extensions here is really that different
+> than adding new ioctls.
+>
+> I definitely think this deserves an execbuffer3 without even
+> considering future requirements. Just  to burn down the old
+> requirements and pointless fields.
+>
+> Make execbuffer3 be vm bind only, no relocs, no legacy bits, leave the
+> older sw on execbuf2 for ever.
 
-Why not? it's not like adding extensions here is really that different
-than adding new ioctls.
+I guess another point in favour of execbuf3 would be that it's less
+midlayer. If we share the entry point then there's quite a few vfuncs
+needed to cleanly split out the vm_bind paths from the legacy
+reloc/softping paths.
 
-I definitely think this deserves an execbuffer3 without even
-considering future requirements. Just  to burn down the old
-requirements and pointless fields.
+If we invert this and do execbuf3, then there's the existing ioctl
+vfunc, and then we share code (where it even makes sense, probably
+request setup/submit need to be shared, anything else is probably
+cleaner to just copypaste) with the usual helper approach.
 
-Make execbuffer3 be vm bind only, no relocs, no legacy bits, leave the
-older sw on execbuf2 for ever.
+Also that would guarantee that really none of the old concepts like
+i915_active on the vma or vma open counts and all that stuff leaks
+into the new vm_bind execbuf.
 
-Dave.
+Finally I also think that copypasting would make backporting easier,
+or at least more flexible, since it should make it easier to have the
+upstream vm_bind co-exist with all the other things we have. Without
+huge amounts of conflicts (or at least much less) that pushing a pile
+of vfuncs into the existing code would cause.
+
+So maybe we should do this?
+-Daniel
+--=20
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
