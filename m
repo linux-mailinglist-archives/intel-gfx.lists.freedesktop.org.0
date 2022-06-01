@@ -2,45 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CB79539F4C
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Jun 2022 10:22:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E04C539F4D
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Jun 2022 10:22:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C69B4113519;
-	Wed,  1 Jun 2022 08:22:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 518A011351F;
+	Wed,  1 Jun 2022 08:22:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5F06711351A
- for <intel-gfx@lists.freedesktop.org>; Wed,  1 Jun 2022 08:22:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DDE8311351A
+ for <intel-gfx@lists.freedesktop.org>; Wed,  1 Jun 2022 08:22:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1654071769; x=1685607769;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=WNohmDNv95ODKYgZUtPK2XnzAVp5SgAPvcMzwOrhK8E=;
- b=Y9f6fmcV1sfVBjMu/hBvFJ1QFeYh6HiOInf1o7BVpO5QPGxeLIuMYsGl
- odGl4eZIX7Z080oBjUkLUelU7apBWPCBnUL2lWUFye7c3lZK2s4J5OGJp
- QGRTAQa/laDK51rVfypw6kw8OLm2nrA9J/GTMTZ/TILMtI9K6e9YeblIF
- vC5A0YuoQzknMauBeejjh48rCReUyvXPHIyWG/EI1f7/0oERCKmvGRt32
- LBQurB47SUlVfnSi12qbbFca2P7jWwq3zkaNn31KHEgZ0bZhO/kZvJ+TM
- x2KXwPcKgjIPFTd54phzi4IIbz78cOeYd4RnkzfSdLWRg/+VmpUAfc9jc w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10364"; a="273079830"
-X-IronPort-AV: E=Sophos;i="5.91,266,1647327600"; d="scan'208";a="273079830"
+ t=1654071773; x=1685607773;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=nGsddchMZDEgXhwhY9DYTxS/GFWfbr95MOCQKxHKHso=;
+ b=OeaNzWb6n2vii5ObeUjXJwtM0PEjYpCVEWg9lgI73PPJMy9bNJzRisg9
+ UciNiWrZU+HXMgXzMA+CEfqzMKbtEbvz3BnppMkV6ackzTlBL/XaDGG5V
+ AQ9AS2bGCuvrjThE4hERt47EwiMkjY/x2/4EDshOsSU+NVXJ8vvhKP+Fg
+ 2oWV/+D5M5pOJM9zwdixhLaTG5IH00mZF2KEkCH4slbyAoJ2EoXQPqve9
+ IGwh+AaZJqlvdI0FrXewpvckGkaeCKNSIXuPm0623DBOUsvlT58iTT7Ge
+ 6pXxP9SZemboHwvTY43vsl9bPMkw4DG1rTxB8beBy9/uCu5HhIdaqfloc Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10364"; a="273079864"
+X-IronPort-AV: E=Sophos;i="5.91,266,1647327600"; d="scan'208";a="273079864"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2022 01:22:48 -0700
+ 01 Jun 2022 01:22:53 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,266,1647327600"; d="scan'208";a="581477324"
+X-IronPort-AV: E=Sophos;i="5.91,266,1647327600"; d="scan'208";a="581477339"
 Received: from kandpal.iind.intel.com ([10.190.239.32])
- by fmsmga007.fm.intel.com with ESMTP; 01 Jun 2022 01:22:46 -0700
+ by fmsmga007.fm.intel.com with ESMTP; 01 Jun 2022 01:22:51 -0700
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  1 Jun 2022 13:51:58 +0530
-Message-Id: <20220601082200.368911-1-suraj.kandpal@intel.com>
+Date: Wed,  1 Jun 2022 13:51:59 +0530
+Message-Id: <20220601082200.368911-2-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220601082200.368911-1-suraj.kandpal@intel.com>
+References: <20220601082200.368911-1-suraj.kandpal@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [RFC PATCH 0/2] i915 writeback enablement
+Subject: [Intel-gfx] [RFC PATCH 1/2] drm/i915: Define WD trancoder for i915
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,51 +59,64 @@ Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-With this we try to enable writeback feature keeping with the drm_core
-drm_writeback framework but to do this we have to create a drm_encoder and
-drm_connector which is not present in intel_connector and intel_encoder
-which causes all our iterators to bug out as they assume any drm_encoder
-and drm_connector will naturally be embedded in the intel_ counterpart
-structures but this cannot be acheived from drm_writeback_connector as
-the drm_encoder and drm_connector fields in the structure are pointers
-which does not allow us to embed them in our intel_ structures.I have 
-tried to change some iterators and show what further changes may look
-like but this will happen any and every place for_each_intel_encoder or
-for_each_intel_connector_ is going to be used.I would like suggestions
-on if moving forward with this approach would be useful or if the
-private i915 framework mentioned below sounds more practical.
-We previously tried to change the drm_connector and drm_encoder fields
-into pointer in the drm_writeback_connector structure but faced a huge 
-backlash from community.
-Other than this approach we have another solution which won't be as much
-of a work and will require minimal changes is where we take the whole
-drm_writeback framework that is being used pull it into i915 making it
-private and change the encoder and connector fields to pointers. The
-approach has been floated in below series
-[1] https://patchwork.freedesktop.org/series/103417/
-Suraj Kandpal (2):
-  drm/i915: Define WD trancoder for i915
-  drm/i915: Enabling WD Transcoder
+Adding WD Types, WD transcoder to enum list and WD Transcoder offsets
 
- drivers/gpu/drm/i915/Makefile                 |   1 +
- drivers/gpu/drm/i915/display/intel_acpi.c     |   1 +
- drivers/gpu/drm/i915/display/intel_display.c  | 369 +++++++--
- drivers/gpu/drm/i915/display/intel_display.h  |  23 +
- .../drm/i915/display/intel_display_types.h    |  30 +
- drivers/gpu/drm/i915/display/intel_dpll.c     |   6 +
- drivers/gpu/drm/i915/display/intel_opregion.c |   3 +
- .../gpu/drm/i915/display/intel_wb_connector.h |  20 +
- drivers/gpu/drm/i915/display/intel_wd.c       | 748 ++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_wd.h       |  84 ++
- drivers/gpu/drm/i915/i915_drv.h               |   4 +
- drivers/gpu/drm/i915/i915_irq.c               |   8 +-
- drivers/gpu/drm/i915/i915_pci.c               |   7 +-
- drivers/gpu/drm/i915/i915_reg.h               | 139 ++++
- 14 files changed, 1395 insertions(+), 48 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/display/intel_wb_connector.h
- create mode 100644 drivers/gpu/drm/i915/display/intel_wd.c
- create mode 100644 drivers/gpu/drm/i915/display/intel_wd.h
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.h       | 6 ++++++
+ drivers/gpu/drm/i915/display/intel_display_types.h | 1 +
+ drivers/gpu/drm/i915/i915_reg.h                    | 2 ++
+ 3 files changed, 9 insertions(+)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+index 187910d94ec6..62dc26b3bf76 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.h
++++ b/drivers/gpu/drm/i915/display/intel_display.h
+@@ -119,6 +119,8 @@ enum transcoder {
+ 	TRANSCODER_DSI_1,
+ 	TRANSCODER_DSI_A = TRANSCODER_DSI_0,	/* legacy DSI */
+ 	TRANSCODER_DSI_C = TRANSCODER_DSI_1,	/* legacy DSI */
++	TRANSCODER_WD_0,
++	TRANSCODER_WD_1,
+ 
+ 	I915_MAX_TRANSCODERS
+ };
+@@ -140,6 +142,10 @@ static inline const char *transcoder_name(enum transcoder transcoder)
+ 		return "DSI A";
+ 	case TRANSCODER_DSI_C:
+ 		return "DSI C";
++	case TRANSCODER_WD_0:
++		return "WD 0";
++	case TRANSCODER_WD_1:
++		return "WD 1";
+ 	default:
+ 		return "<invalid>";
+ 	}
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index a27d66fd4383..eeadf5c160ac 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -78,6 +78,7 @@ enum intel_output_type {
+ 	INTEL_OUTPUT_DSI = 9,
+ 	INTEL_OUTPUT_DDI = 10,
+ 	INTEL_OUTPUT_DP_MST = 11,
++	INTEL_OUTPUT_WD = 12,
+ };
+ 
+ enum hdmi_force_audio {
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 0a5064e32284..cfd0a0c13703 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -2053,6 +2053,8 @@
+ #define TRANSCODER_EDP_OFFSET 0x6f000
+ #define TRANSCODER_DSI0_OFFSET	0x6b000
+ #define TRANSCODER_DSI1_OFFSET	0x6b800
++#define TRANSCODER_WD0_OFFSET	0x6e000
++#define TRANSCODER_WD1_OFFSET	0x6e800
+ 
+ #define HTOTAL(trans)		_MMIO_TRANS2(trans, _HTOTAL_A)
+ #define HBLANK(trans)		_MMIO_TRANS2(trans, _HBLANK_A)
 -- 
 2.35.1
 
