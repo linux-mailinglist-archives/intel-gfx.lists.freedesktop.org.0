@@ -1,51 +1,81 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0F9853C098
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jun 2022 00:06:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C59953C0F6
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jun 2022 00:47:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 06BFD10F9D0;
-	Thu,  2 Jun 2022 22:06:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7DBB41139EA;
+	Thu,  2 Jun 2022 22:47:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE3A610F9D0
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Jun 2022 22:06:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1654207569; x=1685743569;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=7StNUS7U3kD8c2YnymAvon7mx1I+YYRE0QRHdNwN1Ws=;
- b=gtqpGDZ7jVi3OOWJkLswQln2FYkzBDCevh4169F7C9tu8B7aarShoGHd
- WXcGXsutiKH5hcKCf6HSBnKavK6ju46pSdrDOLf0T3PEIQ3WsGK8bJrCd
- VyexlAeTXQbQCL3ZOKGMdj4m8MSU/ptt1aaTg4PXMVuUdW2MPgyn069vV
- nyrKErME4AMVnbtlr1NGzxLdc1TCkzhp0jKr504OXy2j/AyVq9oG2P04q
- 915tdPFQo0s4SX1EVYxoW/esjQXtW20wHSz4rSeTBkSEg2mx06pR//rM+
- eRm7aCGPNch+i4/2VLHm8Z834PWNmsoJeeP4TXmqrhEiAd35FwcyObFJL A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10366"; a="275829597"
-X-IronPort-AV: E=Sophos;i="5.91,272,1647327600"; d="scan'208";a="275829597"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jun 2022 15:05:58 -0700
-X-IronPort-AV: E=Sophos;i="5.91,272,1647327600"; d="scan'208";a="721497421"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jun 2022 15:05:58 -0700
-Date: Thu, 2 Jun 2022 15:05:57 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
-Message-ID: <Ypk0RdDBBI8eC4C6@mdroper-desk1.amr.corp.intel.com>
-References: <20220602201730.199418-1-jose.souza@intel.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E42C113B45
+ for <intel-gfx@lists.freedesktop.org>; Thu,  2 Jun 2022 22:47:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1654210054;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=qM7RSO4/tzFo13g+8+xYBdsTDduUl6xGQcpX/+XbDM4=;
+ b=C8VY3sfgf+QqFzTfAWSlevr4HxHruEzDT8FkhnBGW8S75FRcf3Z2zrkES/pzpxUKJyxKJT
+ y438dYmOaS2aP11dg1Xt+SOB7sue5sS1GBIu53YQzIF+7h2tVolfnKIOl6B4/NLzgXc6b5
+ 6w8Qtxg7K+l63hj9WyNRpwI7yAF6m90=
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com
+ [209.85.222.199]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-631-3D8z9YmbO66YGX6MmcxqhQ-1; Thu, 02 Jun 2022 18:47:32 -0400
+X-MC-Unique: 3D8z9YmbO66YGX6MmcxqhQ-1
+Received: by mail-qk1-f199.google.com with SMTP id
+ f20-20020a05620a12f400b006a36317a58aso4733167qkl.6
+ for <intel-gfx@lists.freedesktop.org>; Thu, 02 Jun 2022 15:47:32 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:message-id:subject:from:to:cc:date:organization
+ :user-agent:mime-version:content-transfer-encoding;
+ bh=qM7RSO4/tzFo13g+8+xYBdsTDduUl6xGQcpX/+XbDM4=;
+ b=q8IjjPlKsF++Nil/DVa3UihCi+stFkXqjA+ezORQV00saDEWA4Jd1gvFOJ9xDQEgx2
+ CCdut4Y7EDaYA1NFESRVJE+W9eak4UCWZtn4v4WjZu6USS/Wu/yuErKC0o4sRQsg9/Tq
+ UQ3tZrRhLLazc5x0y+JGvb90kyVxgjQrfsx2bD0O5CJXTMpoz0a+/EwcgONggE8SZSlX
+ 8dIYKGKyr8CbmKMcnRClJGjB/jZSed49vfM0yBTwgB3bNDhKrpVTv3NO/9XgDqk5MwUS
+ Sa3zTF145U9EwItwIBfoWLfzeFMlhn/47prdrYYr79LrnsLkuZFyZVyVF5gJ5y3+upmX
+ Pe6w==
+X-Gm-Message-State: AOAM533HW+D5u+0lLdUFqQCFOCxKGTLU0IkaaiC8E8aiBE1scmfIU9hR
+ wzYJyik/IssenYkm3bHHkmX2maWOMMa694fsE5JfP/PZtxAEmxP7520wH0S5Pl+f35o51Drixg1
+ JJIr/1HiTAC0C1CHR7RMsGW3ZsamA
+X-Received: by 2002:a05:620a:25cb:b0:6a1:136:a7ed with SMTP id
+ y11-20020a05620a25cb00b006a10136a7edmr4702923qko.531.1654210052056; 
+ Thu, 02 Jun 2022 15:47:32 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwpnm1UyzEEBtWAnuoHs5dkbiAxvr8+KtajlKCD6hPVaJaiWLzEVDhYIlzllPONobjHXa8Z3g==
+X-Received: by 2002:a05:620a:25cb:b0:6a1:136:a7ed with SMTP id
+ y11-20020a05620a25cb00b006a10136a7edmr4702907qko.531.1654210051816; 
+ Thu, 02 Jun 2022 15:47:31 -0700 (PDT)
+Received: from [192.168.8.138] (static-71-184-137-158.bstnma.ftas.verizon.net.
+ [71.184.137.158]) by smtp.gmail.com with ESMTPSA id
+ f6-20020a05622a104600b002f39b99f6a3sm4086110qte.61.2022.06.02.15.47.30
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 02 Jun 2022 15:47:31 -0700 (PDT)
+Message-ID: <d717d5e385e0f64e0168695ea2f693ec9db2e28a.camel@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+To: events@lists.x.org, xorg-devel@lists.freedesktop.org, 
+ wayland-devel@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ mesa-dev@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, 
+ etnaviv@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
+ nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ libre-soc-dev@lists.libre-soc.org
+Date: Thu, 02 Jun 2022 18:47:29 -0400
+Organization: Red Hat Inc.
+User-Agent: Evolution 3.42.4 (3.42.4-2.fc35)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=lyude@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220602201730.199418-1-jose.souza@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display/fbc: Do not apply WA
- 22014263786 to DG2
+Subject: [Intel-gfx] XDC 2022: Registration & Call for Presentations still
+ open!
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,44 +88,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: board@foundation.x.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jun 02, 2022 at 01:17:30PM -0700, Jos� Roberto de Souza wrote:
-> This workaround brings some regressions to DG2 and if really necessary
-> for DG2 an alternative workaround will be implemented.
-> 
-> BSpec: 54077
-> Signed-off-by: Jos� Roberto de Souza <jose.souza@intel.com>
+Hello! This is just a reminder that the CFP for XDC in 2022 is still open!
 
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+The 2022 X.Org Developers Conference is being held in conjunction with
+the 2022 Wine Developers Conference.  This is a meeting to bring
+together developers working on all things open graphics (Linux kernel,
+Mesa, DRM, Wayland, X11, etc.) as well as developers for the Wine
+Project, a key consumer of open graphics.
 
-> ---
->  drivers/gpu/drm/i915/display/intel_fbc.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-> index bbdc34a23d548..8b807284cde1f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-> @@ -813,8 +813,8 @@ static void intel_fbc_program_cfb(struct intel_fbc *fbc)
->  
->  static void intel_fbc_program_workarounds(struct intel_fbc *fbc)
->  {
-> -	/* Wa_22014263786:icl,jsl,tgl,dg1,rkl,adls,dg2,adlp */
-> -	if (DISPLAY_VER(fbc->i915) >= 11)
-> +	/* Wa_22014263786:icl,jsl,tgl,dg1,rkl,adls,adlp */
-> +	if (DISPLAY_VER(fbc->i915) >= 11 && !IS_DG2(fbc->i915))
->  		intel_de_rmw(fbc->i915, ILK_DPFC_CHICKEN(fbc->id), 0,
->  			     DPFC_CHICKEN_FORCE_SLB_INVALIDATION);
->  }
-> -- 
-> 2.36.1
-> 
+Registration & Call for Proposals are now open for both XDC 2022 and
+WineConf 2022, which will take place on October 4-6, 2022 in
+Minneapolis, Minnesota, USA. 
 
--- 
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
+https://xdc2022.x.org
+ 
+As usual, the conference is free of charge and open to the general
+public. If you plan on attending, please make sure to register as early
+as possible!
+ 
+In order to register as attendee, you will therefore need to do it via
+the XDC website:
+ 
+https://indico.freedesktop.org/event/2/registrations/2/
+ 
+In addition to registration, the CfP is now open for talks, workshops
+and demos at XDC 2022. While any serious proposal will be gratefully
+considered, topics of interest to X.Org and freedesktop.org developers
+are encouraged. The program focus is on new development, ongoing
+challenges and anything else that will spark discussions among
+attendees in the hallway track.
+ 
+We are open to talks across all layers of the graphics stack, from the
+kernel to desktop environments / graphical applications and about how
+to make things better for the developers who build them. Head to the
+CfP page to learn more: 
+ 
+https://indico.freedesktop.org/event/2/abstracts/
+ 
+The deadline for submissions is Monday July 4th, 2022.
+ 
+Check out our Reimbursement Policy to accept speaker
+expenses for X.Org events like XDC 2022:
+ 
+https://www.x.org/wiki/XorgFoundation/Policies/Reimbursement/
+
+If you have any questions, please send me an email to
+xdc@codeweavers.com, adding on CC the X.org board (board
+at foundation.x.org).
+ 
+And don't forget, you can follow us on Twitter for all the latest
+updates and to stay connected:
+ 
+https://twitter.com/XOrgDevConf
+
+Best regards,
+Lyude Paul, on behalf of X.org
+
