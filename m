@@ -1,69 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25EC653BB28
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jun 2022 16:49:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8838553BB58
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jun 2022 17:07:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 659A11121CF;
-	Thu,  2 Jun 2022 14:49:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE6CF112A11;
+	Thu,  2 Jun 2022 15:07:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2FA1B1121CF;
- Thu,  2 Jun 2022 14:49:19 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD79D112A11
+ for <intel-gfx@lists.freedesktop.org>; Thu,  2 Jun 2022 15:07:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1654181359; x=1685717359;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-id:content-transfer-encoding: mime-version;
- bh=7hEFZyqEtwCZ4XnM2tYNq6KlFI35pVVVzypnGcc7ET4=;
- b=abixNZb8S/Q0TlPxrowr9bP1kIGXiOH+YQHaFuFdiLF1j2mff5AHfq+Q
- JpSgNqPEJ/YY+EmKAKQPDrSd94jO5noddGQYi7Yq/CV6Lc0MwdPPn3G+d
- eNMyzVMU8KSpxAvJUhvi2ZgPIGs5JlyxpaKV2fEuRjtNQBlh6LKJvxMeu
- tWapmhVm8jubls3YcvydVQ1p/gsG+QQCQEiM/7fzNieCNQyt1yEB/1dNc
- /TnpJ2VyjwR1KXfuFAl6n11xwzZFGc6CCXrow1xCfb1Y/QCDS5WOoX+g/
- /oyEAawa/yf/7f0KnvKu4JhSB6pVMS1tVqtnT39N1uaFEwE4ogLYLbuA2 Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10365"; a="274773265"
-X-IronPort-AV: E=Sophos;i="5.91,271,1647327600"; d="scan'208";a="274773265"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jun 2022 07:49:18 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,271,1647327600"; d="scan'208";a="668007065"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by FMSMGA003.fm.intel.com with ESMTP; 02 Jun 2022 07:49:18 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Thu, 2 Jun 2022 07:49:18 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Thu, 2 Jun 2022 07:49:17 -0700
-Received: from fmsmsx612.amr.corp.intel.com ([10.18.126.92]) by
- fmsmsx612.amr.corp.intel.com ([10.18.126.92]) with mapi id 15.01.2308.027;
- Thu, 2 Jun 2022 07:49:17 -0700
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "Roper, Matthew D" <matthew.d.roper@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH] drm/i915: Add extra registers to GPU error dump
-Thread-Index: AQHYdfuOdcYjLkv+kkaE9LBEQD/IBK08qT2A
-Date: Thu, 2 Jun 2022 14:49:17 +0000
-Message-ID: <fd2abbd7b440e1c93edba64dda9e1524e291646c.camel@intel.com>
-References: <20220601210646.615946-1-matthew.d.roper@intel.com>
-In-Reply-To: <20220601210646.615946-1-matthew.d.roper@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.100]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <4EDB941CC0086542868FC29D4875F850@intel.com>
-Content-Transfer-Encoding: base64
+ t=1654182431; x=1685718431;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=Z0JScq4oZZ8myP+jDXSHryj3zrehjYESvWwneqCj1Hk=;
+ b=iSH8gksHQTqSqJzBaJDlq3OdqHvpEbnkdMlBPk/hUlOBmBc4eH8KuImj
+ j31S7s3X5wHg1neYzUQle6qXffMrYwu9/5mR1xiVD83NZLaNvVB5rHbr9
+ 1jKPl++T4o2I9LRgDwIDjwUYoRZSIIDXdeNQAgbSbgNgG6aJttMqpcCxj
+ xJY8GhBV1txeIa+iBp5hvJCHdjxdMogKu+RThQ+UlQNnudhFHvjEV/0M8
+ KY7V32RxnJmniVsLuvZjlL2a/YPzaNUuN6FLCB/Xh5NvTcliNaL4N2oaF
+ kDYdlwjEiy9Igp5tviglpVbCLIXZC/FTY1gQ+uOe9PzWxpAsoBkWSddU7 A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10365"; a="256455033"
+X-IronPort-AV: E=Sophos;i="5.91,271,1647327600"; d="scan'208";a="256455033"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jun 2022 08:07:11 -0700
+X-IronPort-AV: E=Sophos;i="5.91,271,1647327600"; d="scan'208";a="606884751"
+Received: from fbackhou-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.46.4])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jun 2022 08:07:08 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Animesh Manna <animesh.manna@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20220602141850.21301-2-animesh.manna@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220602141850.21301-1-animesh.manna@intel.com>
+ <20220602141850.21301-2-animesh.manna@intel.com>
+Date: Thu, 02 Jun 2022 18:07:06 +0300
+Message-ID: <87ilpjp0it.fsf@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Add extra registers to GPU error
- dump
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [RFC PATCH 1/5] drm/i915/bios: calculate drrs mode
+ using panel index for dual LFP
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,96 +58,226 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCAyMDIyLTA2LTAxIGF0IDE0OjA2IC0wNzAwLCBNYXR0IFJvcGVyIHdyb3RlOg0KPiBG
-cm9tOiBTdHVhcnQgU3VtbWVycyA8c3R1YXJ0LnN1bW1lcnNAaW50ZWwuY29tPg0KPiANCj4gT3Vy
-IGludGVybmFsIHRlYW1zIGhhdmUgaWRlbnRpZmllZCBhIGZldyBhZGRpdGlvbmFsIGVuZ2luZSBy
-ZWdpc3RlcnMNCj4gdGhhdCBhcmUgd29ydGggaW5zcGVjdGluZyBpbiBlcnJvciBzdGF0ZSBkdW1w
-cyBkdXJpbmcgZGV2ZWxvcG1lbnQgJg0KPiBkZWJ1Zy4gIExldCdzIGNhcHR1cmUgYW5kIHByaW50
-IHRoZW0gYXMgcGFydCBvZiBvdXIgZXJyb3IgZHVtcC4NCj4gDQo+IEZvciBzaW1wbGljaXR5IHdl
-J2xsIGp1c3QgZHVtcCB0aGVzZSByZWdpc3RlcnMgb24gZ2VuMTEgYW5kIGJleW9uZC4NCj4gTW9z
-dCBvZiB0aGVzZSByZWdpc3RlcnMgaGF2ZSBleGlzdGVkIHNpbmNlIGVhcmxpZXIgcGxhdGZvcm1z
-IChlLmcuLCBnZW42DQo+IG9yIGdlbjcpIGJ1dCB3ZXJlIGluaXRpYWxseSBpbnRyb2R1Y2VkIG9u
-bHkgZm9yIGEgc3Vic2V0IG9mIHRoZQ0KPiBwbGF0Zm9ybXMnIGVuZ2luZXM7IGdlbjExIHNlZW1z
-IHRvIGJlIHdoZXJlIHRoZXkgYmVjYW1lIGF2YWlsYWJsZSBvbiBhbGwNCj4gZW5naW5lcy4NCg0K
-UmV2aWV3ZWQtYnk6IEpvc8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwuY29t
-Pg0KDQo+IA0KPiBTaWduZWQtb2ZmLWJ5OiBTdHVhcnQgU3VtbWVycyA8c3R1YXJ0LnN1bW1lcnNA
-aW50ZWwuY29tPg0KPiBTaWduZWQtb2ZmLWJ5OiBNYXR0IFJvcGVyIDxtYXR0aGV3LmQucm9wZXJA
-aW50ZWwuY29tPg0KPiAtLS0NCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2VuZ2lu
-ZV9yZWdzLmggfCAgNSArKysrKw0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9ncHVfZXJy
-b3IuYyAgICAgICB8IDE5ICsrKysrKysrKysrKysrKysrKysNCj4gIGRyaXZlcnMvZ3B1L2RybS9p
-OTE1L2k5MTVfZ3B1X2Vycm9yLmggICAgICAgfCAgNyArKysrKysrDQo+ICAzIGZpbGVzIGNoYW5n
-ZWQsIDMxIGluc2VydGlvbnMoKykNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9ndC9pbnRlbF9lbmdpbmVfcmVncy5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50
-ZWxfZW5naW5lX3JlZ3MuaA0KPiBpbmRleCA0NGRlMTBjZjc4MzcuLjg4OWYwZGYzOTQwYiAxMDA2
-NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfZW5naW5lX3JlZ3MuaA0K
-PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9lbmdpbmVfcmVncy5oDQo+IEBA
-IC04LDYgKzgsNyBAQA0KPiAgDQo+ICAjaW5jbHVkZSAiaTkxNV9yZWdfZGVmcy5oIg0KPiAgDQo+
-ICsjZGVmaW5lIFJJTkdfRVhDQyhiYXNlKQkJCQlfTU1JTygoYmFzZSkgKyAweDI4KQ0KPiAgI2Rl
-ZmluZSBSSU5HX1RBSUwoYmFzZSkJCQkJX01NSU8oKGJhc2UpICsgMHgzMCkNCj4gICNkZWZpbmUg
-ICBUQUlMX0FERFIJCQkJMHgwMDFGRkZGOA0KPiAgI2RlZmluZSBSSU5HX0hFQUQoYmFzZSkJCQkJ
-X01NSU8oKGJhc2UpICsgMHgzNCkNCj4gQEAgLTEzMyw2ICsxMzQsOCBAQA0KPiAgCQkoUkVHX0ZJ
-RUxEX1BSRVAoQkxJVF9DQ1RMX0RTVF9NT0NTX01BU0ssIChkc3QpIDw8IDEpIHwgXA0KPiAgCQkg
-UkVHX0ZJRUxEX1BSRVAoQkxJVF9DQ1RMX1NSQ19NT0NTX01BU0ssIChzcmMpIDw8IDEpKQ0KPiAg
-DQo+ICsjZGVmaW5lIFJJTkdfQ1NDTURPUChiYXNlKQkJCV9NTUlPKChiYXNlKSArIDB4MjBjKQ0K
-PiArDQo+ICAvKg0KPiAgICogQ01EX0NDVEwgcmVhZC93cml0ZSBmaWVsZHMgdGFrZSBhIE1PQ1Mg
-dmFsdWUgYW5kIF9ub3RfIGEgdGFibGUgaW5kZXguDQo+ICAgKiBUaGUgbHNiIG9mIGVhY2ggY2Fu
-IGJlIGNvbnNpZGVyZWQgYSBzZXBhcmF0ZSBlbmFibGluZyBiaXQgZm9yIGVuY3J5cHRpb24uDQo+
-IEBAIC0xNDksNiArMTUyLDcgQEANCj4gIAkJIFJFR19GSUVMRF9QUkVQKENNRF9DQ1RMX1JFQURf
-T1ZFUlJJREVfTUFTSywgKHJlYWQpIDw8IDEpKQ0KPiAgDQo+ICAjZGVmaW5lIFJJTkdfUFJFRElD
-QVRFX1JFU1VMVChiYXNlKQkJX01NSU8oKGJhc2UpICsgMHgzYjgpIC8qIGdlbjEyKyAqLw0KPiAr
-DQo+ICAjZGVmaW5lIE1JX1BSRURJQ0FURV9SRVNVTFRfMihiYXNlKQkJX01NSU8oKGJhc2UpICsg
-MHgzYmMpDQo+ICAjZGVmaW5lICAgTE9XRVJfU0xJQ0VfRU5BQkxFRAkJCSgxIDw8IDApDQo+ICAj
-ZGVmaW5lICAgTE9XRVJfU0xJQ0VfRElTQUJMRUQJCQkoMCA8PCAwKQ0KPiBAQCAtMTcyLDYgKzE3
-Niw3IEBADQo+ICAjZGVmaW5lCSAgQ1RYX0NUUkxfRU5HSU5FX0NUWF9TQVZFX0lOSElCSVQJUkVH
-X0JJVCgyKQ0KPiAgI2RlZmluZQkgIENUWF9DVFJMX0lOSElCSVRfU1lOX0NUWF9TV0lUQ0gJUkVH
-X0JJVCgzKQ0KPiAgI2RlZmluZQkgIEdFTjEyX0NUWF9DVFJMX09BUl9DT05URVhUX0VOQUJMRQlS
-RUdfQklUKDgpDQo+ICsjZGVmaW5lIFJJTkdfQ1RYX1NSX0NUTChiYXNlKQkJCV9NTUlPKChiYXNl
-KSArIDB4MjQ0KQ0KPiAgI2RlZmluZSBSSU5HX1NFTUFfV0FJVF9QT0xMKGJhc2UpCQlfTU1JTygo
-YmFzZSkgKyAweDI0YykNCj4gICNkZWZpbmUgR0VOOF9SSU5HX1BEUF9VRFcoYmFzZSwgbikJCV9N
-TUlPKChiYXNlKSArIDB4MjcwICsgKG4pICogOCArIDQpDQo+ICAjZGVmaW5lIEdFTjhfUklOR19Q
-RFBfTERXKGJhc2UsIG4pCQlfTU1JTygoYmFzZSkgKyAweDI3MCArIChuKSAqIDgpDQo+IGRpZmYg
-LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2dwdV9lcnJvci5jIGIvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvaTkxNV9ncHVfZXJyb3IuYw0KPiBpbmRleCAwNTEyYzY2ZmE0ZjMuLmJmZjhh
-MTExNDI0YSAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9ncHVfZXJy
-b3IuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2dwdV9lcnJvci5jDQo+IEBA
-IC01ODEsNiArNTgxLDE1IEBAIHN0YXRpYyB2b2lkIGVycm9yX3ByaW50X2VuZ2luZShzdHJ1Y3Qg
-ZHJtX2k5MTVfZXJyb3Jfc3RhdGVfYnVmICptLA0KPiAgCQllcnJfcHJpbnRmKG0sICIgIFJDIFBT
-TUk6IDB4JTA4eFxuIiwgZWUtPnJjX3BzbWkpOw0KPiAgCQllcnJfcHJpbnRmKG0sICIgIEZBVUxU
-X1JFRzogMHglMDh4XG4iLCBlZS0+ZmF1bHRfcmVnKTsNCj4gIAl9DQo+ICsJaWYgKEdSQVBISUNT
-X1ZFUihtLT5pOTE1KSA+PSAxMSkgew0KPiArCQllcnJfcHJpbnRmKG0sICIgIE5PUElEOiAweCUw
-OHhcbiIsIGVlLT5ub3BpZCk7DQo+ICsJCWVycl9wcmludGYobSwgIiAgRVhDQzogMHglMDh4XG4i
-LCBlZS0+ZXhjYyk7DQo+ICsJCWVycl9wcmludGYobSwgIiAgQ01EX0NDVEw6IDB4JTA4eFxuIiwg
-ZWUtPmNtZF9jY3RsKTsNCj4gKwkJZXJyX3ByaW50ZihtLCAiICBDU0NNRE9QOiAweCUwOHhcbiIs
-IGVlLT5jc2NtZG9wKTsNCj4gKwkJZXJyX3ByaW50ZihtLCAiICBDVFhfU1JfQ1RMOiAweCUwOHhc
-biIsIGVlLT5jdHhfc3JfY3RsKTsNCj4gKwkJZXJyX3ByaW50ZihtLCAiICBETUFfRkFERFJfSEk6
-IDB4JTA4eFxuIiwgZWUtPmRtYV9mYWRkcl9oaSk7DQo+ICsJCWVycl9wcmludGYobSwgIiAgRE1B
-X0ZBRERSX0xPOiAweCUwOHhcbiIsIGVlLT5kbWFfZmFkZHJfbG8pOw0KPiArCX0NCj4gIAlpZiAo
-SEFTX1BQR1RUKG0tPmk5MTUpKSB7DQo+ICAJCWVycl9wcmludGYobSwgIiAgR0ZYX01PREU6IDB4
-JTA4eFxuIiwgZWUtPnZtX2luZm8uZ2Z4X21vZGUpOw0KPiAgDQo+IEBAIC0xMjI0LDYgKzEyMzMs
-MTYgQEAgc3RhdGljIHZvaWQgZW5naW5lX3JlY29yZF9yZWdpc3RlcnMoc3RydWN0IGludGVsX2Vu
-Z2luZV9jb3JlZHVtcCAqZWUpDQo+ICAJCWVlLT5pcGVociA9IEVOR0lORV9SRUFEKGVuZ2luZSwg
-SVBFSFIpOw0KPiAgCX0NCj4gIA0KPiArCWlmIChHUkFQSElDU19WRVIoaTkxNSkgPj0gMTEpIHsN
-Cj4gKwkJZWUtPmNtZF9jY3RsID0gRU5HSU5FX1JFQUQoZW5naW5lLCBSSU5HX0NNRF9DQ1RMKTsN
-Cj4gKwkJZWUtPmNzY21kb3AgPSBFTkdJTkVfUkVBRChlbmdpbmUsIFJJTkdfQ1NDTURPUCk7DQo+
-ICsJCWVlLT5jdHhfc3JfY3RsID0gRU5HSU5FX1JFQUQoZW5naW5lLCBSSU5HX0NUWF9TUl9DVEwp
-Ow0KPiArCQllZS0+ZG1hX2ZhZGRyX2hpID0gRU5HSU5FX1JFQUQoZW5naW5lLCBSSU5HX0RNQV9G
-QUREX1VEVyk7DQo+ICsJCWVlLT5kbWFfZmFkZHJfbG8gPSBFTkdJTkVfUkVBRChlbmdpbmUsIFJJ
-TkdfRE1BX0ZBREQpOw0KPiArCQllZS0+bm9waWQgPSBFTkdJTkVfUkVBRChlbmdpbmUsIFJJTkdf
-Tk9QSUQpOw0KPiArCQllZS0+ZXhjYyA9IEVOR0lORV9SRUFEKGVuZ2luZSwgUklOR19FWENDKTsN
-Cj4gKwl9DQo+ICsNCj4gIAlpbnRlbF9lbmdpbmVfZ2V0X2luc3Rkb25lKGVuZ2luZSwgJmVlLT5p
-bnN0ZG9uZSk7DQo+ICANCj4gIAllZS0+aW5zdHBtID0gRU5HSU5FX1JFQUQoZW5naW5lLCBSSU5H
-X0lOU1RQTSk7DQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2dwdV9l
-cnJvci5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9ncHVfZXJyb3IuaA0KPiBpbmRleCBh
-NjExYWJhY2Q5YzIuLjU1YTE0M2I5MmQxMCAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvaTkxNV9ncHVfZXJyb3IuaA0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1
-X2dwdV9lcnJvci5oDQo+IEBAIC04NCw2ICs4NCwxMyBAQCBzdHJ1Y3QgaW50ZWxfZW5naW5lX2Nv
-cmVkdW1wIHsNCj4gIAl1MzIgZmF1bHRfcmVnOw0KPiAgCXU2NCBmYWRkcjsNCj4gIAl1MzIgcmNf
-cHNtaTsgLyogc2xlZXAgc3RhdGUgKi8NCj4gKwl1MzIgbm9waWQ7DQo+ICsJdTMyIGV4Y2M7DQo+
-ICsJdTMyIGNtZF9jY3RsOw0KPiArCXUzMiBjc2NtZG9wOw0KPiArCXUzMiBjdHhfc3JfY3RsOw0K
-PiArCXUzMiBkbWFfZmFkZHJfaGk7DQo+ICsJdTMyIGRtYV9mYWRkcl9sbzsNCj4gIAlzdHJ1Y3Qg
-aW50ZWxfaW5zdGRvbmUgaW5zdGRvbmU7DQo+ICANCj4gIAkvKiBHdUMgbWF0Y2hlZCBjYXB0dXJl
-LWxpc3RzIGluZm8gKi8NCg0K
+On Thu, 02 Jun 2022, Animesh Manna <animesh.manna@intel.com> wrote:
+> Dual LFP may have different panel and based on panel index
+> respective 2 bits store the drrs mode info for each panel. So panel
+> index is used for deriving drrs mode of the rspective panel.
+>
+> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/icl_dsi.c        |  2 +-
+>  drivers/gpu/drm/i915/display/intel_bios.c     | 45 +++++++++++++++++--
+>  drivers/gpu/drm/i915/display/intel_bios.h     |  3 +-
+>  drivers/gpu/drm/i915/display/intel_dp.c       |  3 +-
+>  drivers/gpu/drm/i915/display/intel_lvds.c     |  3 +-
+>  drivers/gpu/drm/i915/display/intel_sdvo.c     |  2 +-
+>  drivers/gpu/drm/i915/display/intel_vbt_defs.h |  4 ++
+>  drivers/gpu/drm/i915/display/vlv_dsi.c        |  2 +-
+>  8 files changed, 52 insertions(+), 12 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
+> index 3b5305c219ba..b3aa430abd03 100644
+> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
+> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+> @@ -2050,7 +2050,7 @@ void icl_dsi_init(struct drm_i915_private *dev_priv)
+>  	/* attach connector to encoder */
+>  	intel_connector_attach_encoder(intel_connector, encoder);
+>  
+> -	intel_bios_init_panel(dev_priv, &intel_connector->panel, NULL);
+> +	intel_bios_init_panel(dev_priv, intel_connector, NULL);
+>  
+>  	mutex_lock(&dev->mode_config.mutex);
+>  	intel_panel_add_vbt_lfp_fixed_mode(intel_connector);
+> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+> index 337277ae3dae..78eaf6255599 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bios.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
+> @@ -747,7 +747,8 @@ static int get_panel_type(struct drm_i915_private *i915,
+>  static void
+>  parse_panel_options(struct drm_i915_private *i915,
+>  		    struct intel_panel *panel,
+> -		    const struct edid *edid)
+> +		    const struct edid *edid,
+> +		    int panel_index)
+>  {
+>  	const struct bdb_lvds_options *lvds_options;
+>  	int panel_type;
+> @@ -764,7 +765,7 @@ parse_panel_options(struct drm_i915_private *i915,
+>  	panel->vbt.panel_type = panel_type;
+>  
+>  	drrs_mode = (lvds_options->dps_panel_type_bits
+> -				>> (panel_type * 2)) & MODE_MASK;
+> +				>> (panel_index * 2)) & MODE_MASK;
+
+It's the get_panel_type() call that needs to take the panel number into
+account, and return the panel specific panel_type from there. After
+that, it's stored in panel->vbt.panel_type and it'll be used
+everywere. DRRS is not a special case.
+
+>  	/*
+>  	 * VBT has static DRRS = 0 and seamless DRRS = 2.
+>  	 * The below piece of code is required to adjust vbt.drrs_type
+> @@ -3069,13 +3070,49 @@ void intel_bios_init(struct drm_i915_private *i915)
+>  	kfree(oprom_vbt);
+>  }
+>  
+> +static int
+> +get_lfp_panel_index(struct drm_i915_private *i915, int lfp_panel_instance)
+> +{
+> +	const struct bdb_lvds_options *lvds_options;
+> +
+> +	lvds_options = find_section(i915, BDB_LVDS_OPTIONS);
+> +	if (!lvds_options)
+> +		return -1;
+> +
+> +	switch (lfp_panel_instance) {
+> +	case 1:
+> +		return lvds_options->panel_type;
+> +	case 2:
+> +		return lvds_options->panel_type2;
+> +	default:
+> +		break;
+> +	}
+> +
+> +	return -1;
+> +}
+
+Nah, it's not this simple. See get_panel_type(). Either of the
+panel_type fields could be 0xff to indicate PNPID based lookup.
+
+> +
+>  void intel_bios_init_panel(struct drm_i915_private *i915,
+> -			   struct intel_panel *panel,
+> +			   struct intel_connector *intel_connector,
+>  			   const struct edid *edid)
+>  {
+> +	struct intel_panel *panel = &intel_connector->panel;
+> +	struct intel_encoder *encoder = intel_connector->encoder;
+> +	const struct intel_bios_encoder_data *devdata = i915->vbt.ports[encoder->port];
+
+This might be NULL, we don't initialize ports for all platforms.
+
+
+> +	int lfp_inst = 0, panel_index;
+> +
+>  	init_vbt_panel_defaults(panel);
+>  
+> -	parse_panel_options(i915, panel, edid);
+> +	if (devdata->child.handle == HANDLE_LFP_1)
+> +		lfp_inst = 1;
+> +	else if (devdata->child.handle == HANDLE_LFP_2)
+> +		lfp_inst = 2;
+> +
+> +	if (lfp_inst == 0)
+> +		return;
+> +
+> +	panel_index = get_lfp_panel_index(i915, lfp_inst);
+> +
+> +	parse_panel_options(i915, panel, edid, panel_index);
+>  	parse_generic_dtd(i915, panel);
+>  	parse_lfp_data(i915, panel);
+>  	parse_lfp_backlight(i915, panel);
+> diff --git a/drivers/gpu/drm/i915/display/intel_bios.h b/drivers/gpu/drm/i915/display/intel_bios.h
+> index b112200ae0a0..e4c268495547 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bios.h
+> +++ b/drivers/gpu/drm/i915/display/intel_bios.h
+> @@ -37,6 +37,7 @@ struct edid;
+>  struct intel_bios_encoder_data;
+>  struct intel_crtc_state;
+>  struct intel_encoder;
+> +struct intel_connector;
+>  struct intel_panel;
+>  enum port;
+>  
+> @@ -233,7 +234,7 @@ struct mipi_pps_data {
+>  
+>  void intel_bios_init(struct drm_i915_private *dev_priv);
+>  void intel_bios_init_panel(struct drm_i915_private *dev_priv,
+> -			   struct intel_panel *panel,
+> +			   struct intel_connector *intel_connector,
+>  			   const struct edid *edid);
+>  void intel_bios_fini_panel(struct intel_panel *panel);
+>  void intel_bios_driver_remove(struct drm_i915_private *dev_priv);
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 1bc1f6458e81..3e9b4263e1bc 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -5213,8 +5213,7 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
+>  	}
+>  	intel_connector->edid = edid;
+>  
+> -	intel_bios_init_panel(dev_priv, &intel_connector->panel,
+> -			      IS_ERR(edid) ? NULL : edid);
+> +	intel_bios_init_panel(dev_priv, intel_connector, IS_ERR(edid) ? NULL : edid);
+>  
+>  	intel_panel_add_edid_fixed_modes(intel_connector,
+>  					 intel_connector->panel.vbt.drrs_type != DRRS_TYPE_NONE);
+> diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c b/drivers/gpu/drm/i915/display/intel_lvds.c
+> index 595f03343939..2c60267f9d37 100644
+> --- a/drivers/gpu/drm/i915/display/intel_lvds.c
+> +++ b/drivers/gpu/drm/i915/display/intel_lvds.c
+> @@ -967,8 +967,7 @@ void intel_lvds_init(struct drm_i915_private *dev_priv)
+>  	}
+>  	intel_connector->edid = edid;
+>  
+> -	intel_bios_init_panel(dev_priv, &intel_connector->panel,
+> -			      IS_ERR(edid) ? NULL : edid);
+> +	intel_bios_init_panel(dev_priv, intel_connector, IS_ERR(edid) ? NULL : edid);
+>  
+>  	/* Try EDID first */
+>  	intel_panel_add_edid_fixed_modes(intel_connector,
+> diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
+> index d9de2c4d67a7..3b7fe117bc5b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_sdvo.c
+> +++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
+> @@ -2901,7 +2901,7 @@ intel_sdvo_lvds_init(struct intel_sdvo *intel_sdvo, int device)
+>  	if (!intel_sdvo_create_enhance_property(intel_sdvo, intel_sdvo_connector))
+>  		goto err;
+>  
+> -	intel_bios_init_panel(i915, &intel_connector->panel, NULL);
+> +	intel_bios_init_panel(i915, intel_connector, NULL);
+>  
+>  	/*
+>  	 * Fetch modes from VBT. For SDVO prefer the VBT mode since some
+> diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
+> index 4b98bab3b890..fbda64e3a34d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
+> +++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
+> @@ -349,6 +349,10 @@ enum vbt_gmbus_ddi {
+>  #define BDB_230_VBT_DP_MAX_LINK_RATE_UHBR13P5	6
+>  #define BDB_230_VBT_DP_MAX_LINK_RATE_UHBR20	7
+>  
+> +/* VBT info for DUAL LFP */
+> +#define HANDLE_LFP_1 0x0008
+> +#define HANDLE_LFP_2 0x0080
+
+Please move these before the DEVICE_TYPE_* macros, and name
+DEVICE_HANDLE_*. The comment should refer to device handles, and there's
+no need to mention VBT or dual LFP.
+
+BR,
+Jani.
+
+> +
+>  /*
+>   * The child device config, aka the display device data structure, provides a
+>   * description of a port and its configuration on the platform.
+> diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
+> index abda0888c8d4..114e4f89f198 100644
+> --- a/drivers/gpu/drm/i915/display/vlv_dsi.c
+> +++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
+> @@ -1926,7 +1926,7 @@ void vlv_dsi_init(struct drm_i915_private *dev_priv)
+>  
+>  	intel_dsi->panel_power_off_time = ktime_get_boottime();
+>  
+> -	intel_bios_init_panel(dev_priv, &intel_connector->panel, NULL);
+> +	intel_bios_init_panel(dev_priv, intel_connector, NULL);
+>  
+>  	if (intel_connector->panel.vbt.dsi.config->dual_link)
+>  		intel_dsi->ports = BIT(PORT_A) | BIT(PORT_C);
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
