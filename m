@@ -1,51 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3E1353BB9B
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jun 2022 17:32:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A85D353BC19
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jun 2022 18:08:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0CF9110EAC3;
-	Thu,  2 Jun 2022 15:32:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0425710E08C;
+	Thu,  2 Jun 2022 16:08:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A22F10EAC3
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Jun 2022 15:32:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1654183960; x=1685719960;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=44N2qLAgXC2Iy1NlXna9+Ajd8XqYlkaWL7VILN374zw=;
- b=d5RHFJCyBQXeMX8BGfQFrbIy2mdrkNYvuSBHSzT6anVjFtURiuedIjcr
- YLi38D4pdc6hSCOtdWI+/5Vr6Vcx+xd+MGtrWYKWtC1OYDVJDOotrgTi3
- sGn5VDqGEFzkQKvQFFLFXj9E/+dmZ5vyE9fLkwIvgXD07ZYluuH48nbuz
- KJWKd2qZNman/KwCqv0TBBthI6xiFIve1eEF+cFpaYMckYO5PUHCnBuph
- z9u32qdpjtKNEmxLSqJF2WliiEsqlyYhSXJiT0pLZh55wwvy3gR9MajAH
- mP3UIq3K+ZVlx5DLhjZpJzwOw7xUbptWZYgTrJRP3uTiWgM8ukVZHSZn0 A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10366"; a="276058589"
-X-IronPort-AV: E=Sophos;i="5.91,271,1647327600"; d="scan'208";a="276058589"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jun 2022 08:32:39 -0700
-X-IronPort-AV: E=Sophos;i="5.91,271,1647327600"; d="scan'208";a="707609748"
-Received: from fbackhou-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.46.4])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jun 2022 08:32:37 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Animesh Manna <animesh.manna@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220602141850.21301-6-animesh.manna@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220602141850.21301-1-animesh.manna@intel.com>
- <20220602141850.21301-6-animesh.manna@intel.com>
-Date: Thu, 02 Jun 2022 18:32:34 +0300
-Message-ID: <874k13ozcd.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id DBF5310E077;
+ Thu,  2 Jun 2022 16:08:53 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id D3BD7AA3D8;
+ Thu,  2 Jun 2022 16:08:53 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [RFC PATCH 5/5] drm/i915/display/tgl+: Use PPS
- index from vbt
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Animesh Manna" <animesh.manna@intel.com>
+Date: Thu, 02 Jun 2022 16:08:53 -0000
+Message-ID: <165418613383.17949.3966825829823750105@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220602141850.21301-1-animesh.manna@intel.com>
+In-Reply-To: <20220602141850.21301-1-animesh.manna@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Dual_LFP/EDP_enablement?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,53 +40,30 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Nischal Varide <nischal.varide@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 02 Jun 2022, Animesh Manna <animesh.manna@intel.com> wrote:
-> From: Nischal Varide <nischal.varide@intel.com>
->
-> Tigerlake and newer has two instances of PPS, to support up to two
-> eDP panels.
->
-> Signed-off-by: Nischal Varide <nischal.varide@intel.com>
-> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_pps.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
-> index 1b21a341962f..52cb5be4e901 100644
-> --- a/drivers/gpu/drm/i915/display/intel_pps.c
-> +++ b/drivers/gpu/drm/i915/display/intel_pps.c
-> @@ -365,7 +365,8 @@ static void intel_pps_get_registers(struct intel_dp *intel_dp,
->  
->  	memset(regs, 0, sizeof(*regs));
->  
-> -	if (IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv))
-> +	if (IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv) ||
-> +	    DISPLAY_VER(dev_priv) >= 12)
->  		pps_idx = bxt_power_sequencer_idx(intel_dp);
+== Series Details ==
 
-There are two things that need to be checked, but I don't have the time
-right now:
+Series: Dual LFP/EDP enablement
+URL   : https://patchwork.freedesktop.org/series/104663/
+State : warning
 
-- We'll probably need this *before* we've parsed the panel specific info
-  from VBT. Ville has looked into this somewhat with the PNPID panel
-  type stuff.
+== Summary ==
 
-- bxt_power_sequencer_idx() does pps_init_registers() which has always
-  struck me as a really odd place to do it. As if we don't know when the
-  first time we do it is, so we do it there just in case.
+Error: dim checkpatch failed
+45c6598f2be3 drm/i915/bios: calculate drrs mode using panel index for dual LFP
+0416548d3850 drm/i915/display: Use panel index to parse panel timing for dual EDP
+99a11ed67734 drm/i915/display: Use panel index to parse lfp backlight
+733a6bde7af9 drm/i915/display: prepend connector name to the backlight
+-:21: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#21: FILE: drivers/gpu/drm/i915/display/intel_backlight.c:971:
++	name = kasprintf(GFP_KERNEL, "%s.intel_backlight",
++			connector->base.name);
 
-BR,
-Jani.
+total: 0 errors, 0 warnings, 1 checks, 8 lines checked
+11643f55c70f drm/i915/display/tgl+: Use PPS index from vbt
 
 
-
->  	else if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
->  		pps_idx = vlv_power_sequencer_pipe(intel_dp);
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
