@@ -2,47 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9430753BD4A
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jun 2022 19:21:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C166753BD7B
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jun 2022 19:44:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 951B3112945;
-	Thu,  2 Jun 2022 17:21:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D78E11131B7;
+	Thu,  2 Jun 2022 17:44:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D18310FF82;
- Thu,  2 Jun 2022 17:21:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1654190494; x=1685726494;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=gYWKGA6ps5rljbFrsqByZrK10Cher6WfzAT/+WCg2qU=;
- b=kGGBs4ZgfaMxk35m83TFxKYO3C99PBPYPrNpB6DHvIk7OaPQugwDCUpG
- 49oSKlDyq8pk4HprjR+gSL2p53KZitOmWcNKpsK3iWO8Y0l5byN7xGe8z
- 1cDI39zuC/vL2isxRL1p6jL+x76eJ7CiRGxWpcfAeJtirChr+iWfZM5zg
- A9Kn4Bs3YR44Pv13U3xrFLds/glEJ5dy76CuMHCkbkVtlHTBK9IQI+6cb
- aGioqludlSesHu7/llENHUbIZSXGxpj+f9nQ0sWFVqDmIs/sb9Mpx4y07
- cnkWgCrYqkGyw2JJQJSvdE87jiql7jx9LCzTsT7NVUVl1F27YoN0RfhuT w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10366"; a="362391105"
-X-IronPort-AV: E=Sophos;i="5.91,271,1647327600"; d="scan'208";a="362391105"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jun 2022 10:21:34 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,271,1647327600"; d="scan'208";a="721392067"
-Received: from dbstims-dev.fm.intel.com ([10.1.27.167])
- by fmsmga001.fm.intel.com with ESMTP; 02 Jun 2022 10:21:34 -0700
-From: Zhanjun Dong <zhanjun.dong@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Thu,  2 Jun 2022 10:21:19 -0700
-Message-Id: <20220602172119.96324-1-zhanjun.dong@intel.com>
-X-Mailer: git-send-email 2.36.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E29D11131B7;
+ Thu,  2 Jun 2022 17:44:19 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id DA4D6A66C9;
+ Thu,  2 Jun 2022 17:44:19 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/guc: Check ctx while waiting for
- response
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Zhanjun Dong" <zhanjun.dong@intel.com>
+Date: Thu, 02 Jun 2022 17:44:19 -0000
+Message-ID: <165419185986.17949.14028771230458331570@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220602172119.96324-1-zhanjun.dong@intel.com>
+In-Reply-To: <20220602172119.96324-1-zhanjun.dong@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/guc=3A_Check_ctx_while_waiting_for_response?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,82 +40,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Zhanjun Dong <zhanjun.dong@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
+
+Series: drm/i915/guc: Check ctx while waiting for response
+URL   : https://patchwork.freedesktop.org/series/104672/
+State : warning
+
+== Summary ==
+
+Error: dim checkpatch failed
+b5d975cdaf5a drm/i915/guc: Check ctx while waiting for response
+-:6: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#6: 
 We are seeing error message of "No response for request". Some cases happened
-while waiting for response and reset/suspend action was triggered. In this
-case, no response is not an error, active requests will be cancelled.
 
-This patch will handle this condition and change the error message into
-debug message.
-
-Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
----
- drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c | 21 ++++++++++++++-------
- 1 file changed, 14 insertions(+), 7 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-index f01325cd1b62..a30a388877e2 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-@@ -467,7 +467,7 @@ static int ct_write(struct intel_guc_ct *ct,
-  * *	0 response received (status is valid)
-  * *	-ETIMEDOUT no response within hardcoded timeout
-  */
--static int wait_for_ct_request_update(struct ct_request *req, u32 *status)
-+static int wait_for_ct_request_update(struct ct_request *req, u32 *status, struct intel_guc_ct *ct)
- {
- 	int err;
- 
-@@ -481,12 +481,14 @@ static int wait_for_ct_request_update(struct ct_request *req, u32 *status)
- #define GUC_CTB_RESPONSE_TIMEOUT_SHORT_MS 10
- #define GUC_CTB_RESPONSE_TIMEOUT_LONG_MS 1000
- #define done \
--	(FIELD_GET(GUC_HXG_MSG_0_ORIGIN, READ_ONCE(req->status)) == \
-+	(!intel_guc_ct_enabled(ct) || FIELD_GET(GUC_HXG_MSG_0_ORIGIN, READ_ONCE(req->status)) == \
- 	 GUC_HXG_ORIGIN_GUC)
- 	err = wait_for_us(done, GUC_CTB_RESPONSE_TIMEOUT_SHORT_MS);
- 	if (err)
- 		err = wait_for(done, GUC_CTB_RESPONSE_TIMEOUT_LONG_MS);
- #undef done
-+	if (!intel_guc_ct_enabled(ct))
-+		err = -ECANCELED;
- 
- 	*status = req->status;
- 	return err;
-@@ -703,11 +705,15 @@ static int ct_send(struct intel_guc_ct *ct,
- 
- 	intel_guc_notify(ct_to_guc(ct));
- 
--	err = wait_for_ct_request_update(&request, status);
-+	err = wait_for_ct_request_update(&request, status, ct);
- 	g2h_release_space(ct, GUC_CTB_HXG_MSG_MAX_LEN);
- 	if (unlikely(err)) {
--		CT_ERROR(ct, "No response for request %#x (fence %u)\n",
--			 action[0], request.fence);
-+		if (unlikely(err == ECANCELED))
+-:56: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#56: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c:713:
 +			CT_DEBUG(ct, "Request %#x (fence %u) cancelled as CTB is disabled\n",
 +				action[0], request.fence);
-+		else
+
+-:59: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#59: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c:716:
 +			CT_ERROR(ct, "No response for request %#x (fence %u)\n",
 +				action[0], request.fence);
- 		goto unlink;
- 	}
- 
-@@ -771,8 +777,9 @@ int intel_guc_ct_send(struct intel_guc_ct *ct, const u32 *action, u32 len,
- 
- 	ret = ct_send(ct, action, len, response_buf, response_buf_size, &status);
- 	if (unlikely(ret < 0)) {
--		CT_ERROR(ct, "Sending action %#x failed (%pe) status=%#X\n",
--			 action[0], ERR_PTR(ret), status);
-+		if (likely(ret != ECANCELED))
+
+-:71: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#71: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c:782:
 +			CT_ERROR(ct, "Sending action %#x failed (%pe) status=%#X\n",
 +				action[0], ERR_PTR(ret), status);
- 	} else if (unlikely(ret)) {
- 		CT_DEBUG(ct, "send action %#x returned %d (%#x)\n",
- 			 action[0], ret, ret);
--- 
-2.36.0
+
+total: 0 errors, 1 warnings, 3 checks, 52 lines checked
+
 
