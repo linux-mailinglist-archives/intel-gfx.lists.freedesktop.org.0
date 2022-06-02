@@ -1,59 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C4D053B31C
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jun 2022 07:42:24 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DDEE53B607
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jun 2022 11:27:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C0031133D6;
-	Thu,  2 Jun 2022 05:42:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B06FE10FDD5;
+	Thu,  2 Jun 2022 09:27:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 615E61133D4;
- Thu,  2 Jun 2022 05:42:18 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C63CE10FE3C
+ for <intel-gfx@lists.freedesktop.org>; Thu,  2 Jun 2022 09:27:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1654148538; x=1685684538;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=cAigtFrYpjM8aiEGkIP9ue5YoGZzqzs6qR3NKEHgUcM=;
- b=Gm/Vd0WIki4f7EmQFtSvyYJPYyNX3V9vuSymK5K6AwgA2dz7Oz2mFcEB
- rM8+aCVb5sun/OpD8IWw880Ns8Bn/bri7AIkHInzx46vxP3XDGTmvVkTB
- lBP0d1cWZ4hqPQqTL7yR8Syr+WLiy54qqopesyeoEovtcJ8J/zC0mtNpV
- tooyU1f7FZTbzaK0Z3m9QcGR/qXK/aRIOUBC+aK6HJLctotxN7bK2OM0S
- ZQcDyU837bm7oCMEWndYWlapUyMRhgpZAHPw0GMl8QUU7wPHTszvFHw2t
- 1hONia9tAnOWW3TIRk8LrZKI4aZLN2eA8n5Bzm6gxZnrcQQq0AK5hYQKu w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10365"; a="273397985"
-X-IronPort-AV: E=Sophos;i="5.91,270,1647327600"; d="scan'208";a="273397985"
+ t=1654162046; x=1685698046;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=F7CK43ViKt7jWxbvJ8qyK6COkJP/ofS3Jx0taDJqa1I=;
+ b=JPdXy8PMlTccOCpeElMX1e0CDrEhl4vavy505cMnuLyTcHi2XofnkUAF
+ STKeZtbOx0jV2u2x2uS1KybPPsEV3dkaEfT1CcVFt5R3kkoiKedYaQZQj
+ qZp9/94L41IEnsQZkWPQbXG6CudKF8hPZ8gEGkBaNeO7/l+p0k2qH/kf5
+ RC/Ri6Rw5zDgRN+p2r++PYcQmQJLAuxBS0qje0kASC+ThbfJKlelZcATP
+ SFm5oafrjpslK8o4SsoY3uWcfeQXQgdC7Z7U2CsA9A3itb6xR0+pJs7D+
+ I4MBdwCwMrIPoHJfnAKesGyitWL7ze+Ii+wXw3nAaDb72qMztg826JjC3 A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10365"; a="263527919"
+X-IronPort-AV: E=Sophos;i="5.91,270,1647327600"; d="scan'208";a="263527919"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2022 22:42:16 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,270,1647327600"; d="scan'208";a="606659316"
-Received: from linux.intel.com ([10.54.29.200])
- by orsmga008.jf.intel.com with ESMTP; 01 Jun 2022 22:42:16 -0700
-Received: from [10.249.138.186] (aakhrem-mobl.ger.corp.intel.com
- [10.249.138.186])
- by linux.intel.com (Postfix) with ESMTP id 2C20D580931;
- Wed,  1 Jun 2022 22:42:13 -0700 (PDT)
-Message-ID: <2508922c-dae7-af05-0feb-9c4b63411a8c@intel.com>
-Date: Thu, 2 Jun 2022 08:42:13 +0300
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jun 2022 02:27:26 -0700
+X-IronPort-AV: E=Sophos;i="5.91,270,1647327600"; d="scan'208";a="606752293"
+Received: from fbackhou-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.46.4])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jun 2022 02:27:24 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20220601151907.18725-2-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220601151907.18725-1-ville.syrjala@linux.intel.com>
+ <20220601151907.18725-2-ville.syrjala@linux.intel.com>
+Date: Thu, 02 Jun 2022 12:27:21 +0300
+Message-ID: <87sfonpg92.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Content-Language: en-US
-To: Matthew Brost <matthew.brost@intel.com>
-References: <20220517183212.20274-1-niranjana.vishwanathapura@intel.com>
- <20220517183212.20274-2-niranjana.vishwanathapura@intel.com>
- <43746609-4f60-f347-5934-6680516297dd@intel.com>
- <20220601211849.GA30517@jons-linux-dev-box>
-From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-In-Reply-To: <20220601211849.GA30517@jons-linux-dev-box>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [RFC v3 1/3] drm/doc/rfc: VM_BIND feature design
- document
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915: Initialize eDP source rates
+ after per-panel VBT parsing
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,115 +60,79 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- thomas.hellstrom@intel.com, chris.p.wilson@intel.com, daniel.vetter@intel.com,
- christian.koenig@amd.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 02/06/2022 00:18, Matthew Brost wrote:
-> On Wed, Jun 01, 2022 at 05:25:49PM +0300, Lionel Landwerlin wrote:
->> On 17/05/2022 21:32, Niranjana Vishwanathapura wrote:
->>> +VM_BIND/UNBIND ioctl will immediately start binding/unbinding the mapping in an
->>> +async worker. The binding and unbinding will work like a special GPU engine.
->>> +The binding and unbinding operations are serialized and will wait on specified
->>> +input fences before the operation and will signal the output fences upon the
->>> +completion of the operation. Due to serialization, completion of an operation
->>> +will also indicate that all previous operations are also complete.
->> I guess we should avoid saying "will immediately start binding/unbinding" if
->> there are fences involved.
->>
->> And the fact that it's happening in an async worker seem to imply it's not
->> immediate.
->>
->>
->> I have a question on the behavior of the bind operation when no input fence
->> is provided. Let say I do :
->>
->> VM_BIND (out_fence=fence1)
->>
->> VM_BIND (out_fence=fence2)
->>
->> VM_BIND (out_fence=fence3)
->>
->>
->> In what order are the fences going to be signaled?
->>
->> In the order of VM_BIND ioctls? Or out of order?
->>
->> Because you wrote "serialized I assume it's : in order
->>
->>
->> One thing I didn't realize is that because we only get one "VM_BIND" engine,
->> there is a disconnect from the Vulkan specification.
->>
->> In Vulkan VM_BIND operations are serialized but per engine.
->>
->> So you could have something like this :
->>
->> VM_BIND (engine=rcs0, in_fence=fence1, out_fence=fence2)
->>
->> VM_BIND (engine=ccs0, in_fence=fence3, out_fence=fence4)
->>
-> Question - let's say this done after the above operations:
+On Wed, 01 Jun 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> EXEC (engine=ccs0, in_fence=NULL, out_fence=NULL)
+> We'll need to know the VBT panel_type before we can determine the
+> maximum link rate for eDP. To that end move
+> intel_dp_set_source_rates() & co. to be called after the per-panel
+> VBT parsing has been done.
 >
-> Is the exec ordered with respected to bind (i.e. would fence3 & 4 be
-> signaled before the exec starts)?
->
-> Matt
+> I'm not immediately spotting anything that would consult the link
+> rate arrays before this, so seems safe enough.
 
+Cc: Imre
 
-Hi Matt,
+I guess these are some of the reasons we have them there:
 
- From the vulkan point of view, everything is serialized within an 
-engine (we map that to a VkQueue).
+3f61ef9777c0 ("drm/i915/dp: Ensure sink rate values are always valid")
+bedcaddadd22 ("drm/i915/dp: Ensure sink/link max lane count values are alwa=
+ys valid")
+9ad87de47356 ("drm/i915/dp: Ensure max link params are always valid")
 
-So with :
+But I can't see why they'd need to be so early. *knocks wood*
 
-EXEC (engine=ccs0, in_fence=NULL, out_fence=NULL)
-VM_BIND (engine=ccs0, in_fence=fence3, out_fence=fence4)
-
-EXEC completes first then VM_BIND executes.
-
-
-To be even clearer :
-
-EXEC (engine=ccs0, in_fence=fence2, out_fence=NULL)
-VM_BIND (engine=ccs0, in_fence=fence3, out_fence=fence4)
-
-
-EXEC will wait until fence2 is signaled.
-Once fence2 is signaled, EXEC proceeds, finishes and only after it is done, VM_BIND executes.
-
-It would kind of like having the VM_BIND operation be another batch executed from the ringbuffer buffer.
-
--Lionel
-
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
 >
->> fence1 is not signaled
->>
->> fence3 is signaled
->>
->> So the second VM_BIND will proceed before the first VM_BIND.
->>
->>
->> I guess we can deal with that scenario in userspace by doing the wait
->> ourselves in one thread per engines.
->>
->> But then it makes the VM_BIND input fences useless.
->>
->>
->> Daniel : what do you think? Should be rework this or just deal with wait
->> fences in userspace?
->>
->>
->> Sorry I noticed this late.
->>
->>
->> -Lionel
->>
->>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 10 ++++------
+>  1 file changed, 4 insertions(+), 6 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
+15/display/intel_dp.c
+> index b8e2d3cd4d68..03af93ef9e93 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -2852,9 +2852,6 @@ intel_edp_init_dpcd(struct intel_dp *intel_dp)
+>  		intel_dp_set_sink_rates(intel_dp);
+>  	intel_dp_set_max_sink_lane_count(intel_dp);
+>=20=20
+> -	intel_dp_set_common_rates(intel_dp);
+> -	intel_dp_reset_max_link_params(intel_dp);
+> -
+>  	/* Read the eDP DSC DPCD registers */
+>  	if (DISPLAY_VER(dev_priv) >=3D 10)
+>  		intel_dp_get_dsc_sink_cap(intel_dp);
+> @@ -5342,11 +5339,8 @@ intel_dp_init_connector(struct intel_digital_port =
+*dig_port,
+>  		type =3D DRM_MODE_CONNECTOR_DisplayPort;
+>  	}
+>=20=20
+> -	intel_dp_set_source_rates(intel_dp);
+>  	intel_dp_set_default_sink_rates(intel_dp);
+>  	intel_dp_set_default_max_sink_lane_count(intel_dp);
+> -	intel_dp_set_common_rates(intel_dp);
+> -	intel_dp_reset_max_link_params(intel_dp);
+>=20=20
+>  	if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
+>  		intel_dp->pps.active_pipe =3D vlv_active_pipe(intel_dp);
+> @@ -5384,6 +5378,10 @@ intel_dp_init_connector(struct intel_digital_port =
+*dig_port,
+>  		goto fail;
+>  	}
+>=20=20
+> +	intel_dp_set_source_rates(intel_dp);
+> +	intel_dp_set_common_rates(intel_dp);
+> +	intel_dp_reset_max_link_params(intel_dp);
+> +
+>  	intel_dp_add_properties(intel_dp, connector);
+>=20=20
+>  	if (is_hdcp_supported(dev_priv, port) && !intel_dp_is_edp(intel_dp)) {
 
+--=20
+Jani Nikula, Intel Open Source Graphics Center
