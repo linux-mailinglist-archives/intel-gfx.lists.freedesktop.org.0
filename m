@@ -1,48 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F29C153BF83
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jun 2022 22:17:39 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1431153BFCB
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jun 2022 22:25:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 405911130A9;
-	Thu,  2 Jun 2022 20:17:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 52015113501;
+	Thu,  2 Jun 2022 20:25:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE5CB1130A3
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Jun 2022 20:17:37 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 62BF9113501;
+ Thu,  2 Jun 2022 20:25:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1654201057; x=1685737057;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=2E4Sl42ZaJ5mnbh2+v9Psz9OG7AAeOECDNhlROxCOo4=;
- b=DP4cGzBFHNNgrpBlfDnmXNiNL8fp6mpQXmfKrV2QR2DdUxFp5qL0UKjH
- nFptUeF6ZLf2lBldkNIsMc/m6CF8lVLYKFNtR6s7bduet7NPLlfjjWxCa
- qzYeNniHMfS43K3AfKPTLYOO62VH/BMMKr6OySsaSR0LIeeoYPI4XO9dh
- /2kwra3aekeB0sI4PjKvgd7xSnvlt0ITJPNmn/nQVgvpII+eFWcmz6wsO
- 5Pt2PabSv95bQbsOVwzhMv61JHU81fOMxopx4WAbN87Iw0fu08uUjJGpB
- ohFTq3GLoY76RpeCRx4Sdvinqkyoe+yVZvmrquPWyGcT7qvXPn1d6o8NH g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10366"; a="301439004"
-X-IronPort-AV: E=Sophos;i="5.91,272,1647327600"; d="scan'208";a="301439004"
+ t=1654201528; x=1685737528;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=F9EhYOs1fUd8XX6eoXjPmfaTjq8s4qu/WA/SfJsjn+A=;
+ b=TxgZdAEU5Ht9Xm8qquijv84eMfWkoEQ5b6+CH/lYg418GQNHXI532te2
+ 1zZhaHJXBz4a0V5VnYFiTJvMjGAEhJBO7Twd9akCEc1CgdJNiv7GJUzzJ
+ 0HNynQ+1HnmerTMCfZwKzl8mGKFXeRywlB3iO+PrKcVa5x90dzPIMvbRV
+ RZutyU1j54D+nW+vRxZJR+TrBXuREOE1edn7a6NyeapDA7bSWjALRBiID
+ FJivIqplWjwmL7rax6OkWTxmPS1AgayUt9ohj56xhV3jF8vhvICF7fFQU
+ dCouf1nKLoLQ1KXvNVmjxQaM9olRqIdhSRk18M9T9IfM1XFXemgL9rVmP g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10366"; a="276083785"
+X-IronPort-AV: E=Sophos;i="5.91,272,1647327600"; d="scan'208";a="276083785"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jun 2022 13:17:37 -0700
-X-IronPort-AV: E=Sophos;i="5.91,272,1647327600"; d="scan'208";a="530729470"
-Received: from josouza-mobl2.fso.intel.com ([10.230.19.134])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jun 2022 13:25:13 -0700
+X-IronPort-AV: E=Sophos;i="5.91,272,1647327600"; d="scan'208";a="530732025"
+Received: from nvishwa1-desk.sc.intel.com (HELO nvishwa1-DESK) ([172.25.29.76])
  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jun 2022 13:17:35 -0700
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  2 Jun 2022 13:17:30 -0700
-Message-Id: <20220602201730.199418-1-jose.souza@intel.com>
-X-Mailer: git-send-email 2.36.1
+ 02 Jun 2022 13:25:12 -0700
+Date: Thu, 2 Jun 2022 13:24:54 -0700
+From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Message-ID: <20220602202453.GR4461@nvishwa1-DESK>
+References: <20220517183212.20274-1-niranjana.vishwanathapura@intel.com>
+ <20220517183212.20274-2-niranjana.vishwanathapura@intel.com>
+ <43746609-4f60-f347-5934-6680516297dd@intel.com>
+ <20220601211849.GA30517@jons-linux-dev-box>
+ <2508922c-dae7-af05-0feb-9c4b63411a8c@intel.com>
+ <20220602162245.GA15751@jons-linux-dev-box>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/display/fbc: Do not apply WA
- 22014263786 to DG2
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20220602162245.GA15751@jons-linux-dev-box>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [RFC v3 1/3] drm/doc/rfc: VM_BIND feature design
+ document
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,33 +62,139 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: chris.p.wilson@intel.com, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, thomas.hellstrom@intel.com,
+ daniel.vetter@intel.com, christian.koenig@amd.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This workaround brings some regressions to DG2 and if really necessary
-for DG2 an alternative workaround will be implemented.
+On Thu, Jun 02, 2022 at 09:22:46AM -0700, Matthew Brost wrote:
+>On Thu, Jun 02, 2022 at 08:42:13AM +0300, Lionel Landwerlin wrote:
+>> On 02/06/2022 00:18, Matthew Brost wrote:
+>> > On Wed, Jun 01, 2022 at 05:25:49PM +0300, Lionel Landwerlin wrote:
+>> > > On 17/05/2022 21:32, Niranjana Vishwanathapura wrote:
+>> > > > +VM_BIND/UNBIND ioctl will immediately start binding/unbinding the mapping in an
+>> > > > +async worker. The binding and unbinding will work like a special GPU engine.
+>> > > > +The binding and unbinding operations are serialized and will wait on specified
+>> > > > +input fences before the operation and will signal the output fences upon the
+>> > > > +completion of the operation. Due to serialization, completion of an operation
+>> > > > +will also indicate that all previous operations are also complete.
+>> > > I guess we should avoid saying "will immediately start binding/unbinding" if
+>> > > there are fences involved.
+>> > >
+>> > > And the fact that it's happening in an async worker seem to imply it's not
+>> > > immediate.
+>> > >
+>> > >
+>> > > I have a question on the behavior of the bind operation when no input fence
+>> > > is provided. Let say I do :
+>> > >
+>> > > VM_BIND (out_fence=fence1)
+>> > >
+>> > > VM_BIND (out_fence=fence2)
+>> > >
+>> > > VM_BIND (out_fence=fence3)
+>> > >
+>> > >
+>> > > In what order are the fences going to be signaled?
+>> > >
+>> > > In the order of VM_BIND ioctls? Or out of order?
+>> > >
+>> > > Because you wrote "serialized I assume it's : in order
+>> > >
+>> > >
+>> > > One thing I didn't realize is that because we only get one "VM_BIND" engine,
+>> > > there is a disconnect from the Vulkan specification.
+>> > >
+>> > > In Vulkan VM_BIND operations are serialized but per engine.
+>> > >
+>> > > So you could have something like this :
+>> > >
+>> > > VM_BIND (engine=rcs0, in_fence=fence1, out_fence=fence2)
+>> > >
+>> > > VM_BIND (engine=ccs0, in_fence=fence3, out_fence=fence4)
+>> > >
+>> > Question - let's say this done after the above operations:
+>> >
+>> > EXEC (engine=ccs0, in_fence=NULL, out_fence=NULL)
+>> >
+>> > Is the exec ordered with respected to bind (i.e. would fence3 & 4 be
+>> > signaled before the exec starts)?
+>> >
+>> > Matt
+>>
+>>
+>> Hi Matt,
+>>
+>> From the vulkan point of view, everything is serialized within an engine (we
+>> map that to a VkQueue).
+>>
+>> So with :
+>>
+>> EXEC (engine=ccs0, in_fence=NULL, out_fence=NULL)
+>> VM_BIND (engine=ccs0, in_fence=fence3, out_fence=fence4)
+>>
+>> EXEC completes first then VM_BIND executes.
+>>
+>>
+>> To be even clearer :
+>>
+>> EXEC (engine=ccs0, in_fence=fence2, out_fence=NULL)
+>> VM_BIND (engine=ccs0, in_fence=fence3, out_fence=fence4)
+>>
+>>
+>> EXEC will wait until fence2 is signaled.
+>> Once fence2 is signaled, EXEC proceeds, finishes and only after it is done, VM_BIND executes.
+>>
+>> It would kind of like having the VM_BIND operation be another batch executed from the ringbuffer buffer.
+>>
+>
+>Yea this makes sense. I think of VM_BINDs as more or less just another
+>version of an EXEC and this fits with that.
+>
 
-BSpec: 54077
-Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
----
- drivers/gpu/drm/i915/display/intel_fbc.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Note that VM_BIND itself can bind while and EXEC (GPU job) is running.
+(Say, getting binds ready for next submission). It is up to user though,
+how to use it.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index bbdc34a23d548..8b807284cde1f 100644
---- a/drivers/gpu/drm/i915/display/intel_fbc.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -813,8 +813,8 @@ static void intel_fbc_program_cfb(struct intel_fbc *fbc)
- 
- static void intel_fbc_program_workarounds(struct intel_fbc *fbc)
- {
--	/* Wa_22014263786:icl,jsl,tgl,dg1,rkl,adls,dg2,adlp */
--	if (DISPLAY_VER(fbc->i915) >= 11)
-+	/* Wa_22014263786:icl,jsl,tgl,dg1,rkl,adls,adlp */
-+	if (DISPLAY_VER(fbc->i915) >= 11 && !IS_DG2(fbc->i915))
- 		intel_de_rmw(fbc->i915, ILK_DPFC_CHICKEN(fbc->id), 0,
- 			     DPFC_CHICKEN_FORCE_SLB_INVALIDATION);
- }
--- 
-2.36.1
+>In practice I don't think we can share a ring but we should be able to
+>present an engine (again likely a gem context in i915) to the user that
+>orders VM_BINDs / EXECs if that is what Vulkan expects, at least I think.
+>
 
+I have responded in the other thread on this.
+
+Niranjana
+
+>Hopefully Niranjana + Daniel agree.
+>
+>Matt
+>
+>> -Lionel
+>>
+>>
+>> >
+>> > > fence1 is not signaled
+>> > >
+>> > > fence3 is signaled
+>> > >
+>> > > So the second VM_BIND will proceed before the first VM_BIND.
+>> > >
+>> > >
+>> > > I guess we can deal with that scenario in userspace by doing the wait
+>> > > ourselves in one thread per engines.
+>> > >
+>> > > But then it makes the VM_BIND input fences useless.
+>> > >
+>> > >
+>> > > Daniel : what do you think? Should be rework this or just deal with wait
+>> > > fences in userspace?
+>> > >
+>> > >
+>> > > Sorry I noticed this late.
+>> > >
+>> > >
+>> > > -Lionel
+>> > >
+>> > >
+>>
