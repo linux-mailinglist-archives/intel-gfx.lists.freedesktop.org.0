@@ -2,50 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFE4B53BB68
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jun 2022 17:12:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A45553BB6D
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jun 2022 17:13:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1889C112D02;
-	Thu,  2 Jun 2022 15:12:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E1936112D6D;
+	Thu,  2 Jun 2022 15:13:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A218A112D35
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Jun 2022 15:12:09 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 036FF112D02
+ for <intel-gfx@lists.freedesktop.org>; Thu,  2 Jun 2022 15:13:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1654182729; x=1685718729;
+ t=1654182803; x=1685718803;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=UQ7eivHvBaoJMO5WIZ8i8sEacyUJ9uSxgRUnr6JI36E=;
- b=aSkv1eOwXLAiWn29WvtKIBpenhJHv4UhkPznOML8BBweAcGmj79gMdyq
- XDYbbSguh8369G1L8tAVHO0DOFoQke+g521Y+egmZW4d8tTnTkxirSycP
- OwySKyyx4ONtN9fZVeb6/puaYqaUb+gDIPw66D3vnyEI3IUY01wu5+tuy
- ecICtCu4ao+GTpK2YDf/c/JSLZBFUo2YTEHqZUgepKf0q2oBDf7FomcPG
- J5QcJZQfpCoKvA0UxRcu4snsa5jecBGCOUTSxFh4vxEZI1kMgjApRvGwd
- pXJMMiAFv1dtAcaXfGB5G4Bxyv6b/Tb30DT/XMjkd/+PfklwuouVCyejk w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10366"; a="274781173"
-X-IronPort-AV: E=Sophos;i="5.91,271,1647327600"; d="scan'208";a="274781173"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jun 2022 08:12:08 -0700
-X-IronPort-AV: E=Sophos;i="5.91,271,1647327600"; d="scan'208";a="606887141"
+ bh=dgfFp9MBXyNizI/bcjfbyUKSXevgER6AIOk5oQ/HZas=;
+ b=ZeWjTvkRpMFlMVc7UhDLtiKyDfLmSNxiZyPtmvTjQGuImGOlLj0Lhuhi
+ CXeitIkqwjVdQtStPFYtXjSmYG/2CEXGWDOC/Qi/Q9+oP0oLlu7LfI5Ye
+ 6EDMvbmRx3YVZ3xf4tW/pLnzWv04+Pn12xmawKY8TZXwQbZs5F9al9HtY
+ mF5c3CDLAQltvXNTmMjsUlyy9EOpWdPVrcPsll2rTmessiQvtunbxN22a
+ EIgek6g2GLJWVuLznQjWyEqAqrqp2qJ3WpuSa3jSsVtq6nXIEULgbZOzF
+ wUkCELT6thwXImojsz/ZhEYbp0tXLnUCD9HDVDvL18cUSVkDxOwBuMJeo g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10366"; a="255844455"
+X-IronPort-AV: E=Sophos;i="5.91,271,1647327600"; d="scan'208";a="255844455"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jun 2022 08:13:05 -0700
+X-IronPort-AV: E=Sophos;i="5.91,271,1647327600"; d="scan'208";a="577549812"
 Received: from fbackhou-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.46.4])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jun 2022 08:12:05 -0700
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jun 2022 08:13:03 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: Animesh Manna <animesh.manna@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220602141850.21301-3-animesh.manna@intel.com>
+In-Reply-To: <20220602141850.21301-4-animesh.manna@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20220602141850.21301-1-animesh.manna@intel.com>
- <20220602141850.21301-3-animesh.manna@intel.com>
-Date: Thu, 02 Jun 2022 18:12:03 +0300
-Message-ID: <87czfrp0ak.fsf@intel.com>
+ <20220602141850.21301-4-animesh.manna@intel.com>
+Date: Thu, 02 Jun 2022 18:13:00 +0300
+Message-ID: <87a6avp08z.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-Subject: Re: [Intel-gfx] [RFC PATCH 2/5] drm/i915/display: Use panel index
- to parse panel timing for dual EDP
+Subject: Re: [Intel-gfx] [RFC PATCH 3/5] drm/i915/display: Use panel index
+ to parse lfp backlight
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,113 +62,94 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On Thu, 02 Jun 2022, Animesh Manna <animesh.manna@intel.com> wrote:
-> There will be separate entry for eack LFP in VBT. Panel index is
-> used for deriving panel timing info of the respective panel.
+> There will be separate entry of backlight info for each
+> LFP in VBT. Panel index is used for deriving backlight info
+> of the respective panel.
 
-This is completely unnecessary once you handle panel_type properly as
-explained in reply to the previous patch.
+Same here, unnecessary. panel_type *is* panel index.
 
 BR,
 Jani.
 
-
 >
 > Signed-off-by: Animesh Manna <animesh.manna@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_bios.c | 26 ++++++++++++-----------
->  1 file changed, 14 insertions(+), 12 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_bios.c | 21 +++++++++------------
+>  1 file changed, 9 insertions(+), 12 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-> index 78eaf6255599..943c5584f242 100644
+> index 943c5584f242..34160dc6b092 100644
 > --- a/drivers/gpu/drm/i915/display/intel_bios.c
 > +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-> @@ -793,16 +793,16 @@ static void
->  parse_lfp_panel_dtd(struct drm_i915_private *i915,
->  		    struct intel_panel *panel,
->  		    const struct bdb_lvds_lfp_data *lvds_lfp_data,
-> -		    const struct bdb_lvds_lfp_data_ptrs *lvds_lfp_data_ptrs)
-> +		    const struct bdb_lvds_lfp_data_ptrs *lvds_lfp_data_ptrs,
+> @@ -957,11 +957,11 @@ parse_generic_dtd(struct drm_i915_private *i915,
+>  
+>  static void
+>  parse_lfp_backlight(struct drm_i915_private *i915,
+> -		    struct intel_panel *panel)
+> +		    struct intel_panel *panel,
 > +		    int panel_index)
 >  {
->  	const struct lvds_dvo_timing *panel_dvo_timing;
->  	const struct lvds_fp_timing *fp_timing;
->  	struct drm_display_mode *panel_fixed_mode;
+>  	const struct bdb_lfp_backlight_data *backlight_data;
+>  	const struct lfp_backlight_data_entry *entry;
 > -	int panel_type = panel->vbt.panel_type;
+>  	u16 level;
 >  
->  	panel_dvo_timing = get_lvds_dvo_timing(lvds_lfp_data,
->  					       lvds_lfp_data_ptrs,
-> -					       panel_type);
-> +					       panel_index);
->  
->  	panel_fixed_mode = kzalloc(sizeof(*panel_fixed_mode), GFP_KERNEL);
->  	if (!panel_fixed_mode)
-> @@ -818,7 +818,7 @@ parse_lfp_panel_dtd(struct drm_i915_private *i915,
->  
->  	fp_timing = get_lvds_fp_timing(lvds_lfp_data,
->  				       lvds_lfp_data_ptrs,
-> -				       panel_type);
-> +				       panel_index);
->  
->  	/* check the resolution, just to be sure */
->  	if (fp_timing->x_res == panel_fixed_mode->hdisplay &&
-> @@ -832,7 +832,8 @@ parse_lfp_panel_dtd(struct drm_i915_private *i915,
->  
->  static void
->  parse_lfp_data(struct drm_i915_private *i915,
-> -	       struct intel_panel *panel)
-> +	       struct intel_panel *panel,
-> +	       int panel_index)
->  {
->  	const struct bdb_lvds_lfp_data *data;
->  	const struct bdb_lvds_lfp_data_tail *tail;
-> @@ -848,7 +849,7 @@ parse_lfp_data(struct drm_i915_private *i915,
->  		return;
->  
->  	if (!panel->vbt.lfp_lvds_vbt_mode)
-> -		parse_lfp_panel_dtd(i915, panel, data, ptrs);
-> +		parse_lfp_panel_dtd(i915, panel, data, ptrs, panel_index);
->  
->  	tail = get_lfp_data_tail(data, ptrs);
->  	if (!tail)
-> @@ -865,7 +866,8 @@ parse_lfp_data(struct drm_i915_private *i915,
->  
->  static void
->  parse_generic_dtd(struct drm_i915_private *i915,
-> -		  struct intel_panel *panel)
-> +		  struct intel_panel *panel,
-> +		  int panel_index)
->  {
->  	const struct bdb_generic_dtd *generic_dtd;
->  	const struct generic_dtd_entry *dtd;
-> @@ -900,14 +902,14 @@ parse_generic_dtd(struct drm_i915_private *i915,
->  
->  	num_dtd = (get_blocksize(generic_dtd) -
->  		   sizeof(struct bdb_generic_dtd)) / generic_dtd->gdtd_size;
-> -	if (panel->vbt.panel_type >= num_dtd) {
-> +	if (panel_index >= num_dtd) {
->  		drm_err(&i915->drm,
->  			"Panel type %d not found in table of %d DTD's\n",
-> -			panel->vbt.panel_type, num_dtd);
-> +			panel_index, num_dtd);
+>  	backlight_data = find_section(i915, BDB_LVDS_BACKLIGHT);
+> @@ -975,7 +975,7 @@ parse_lfp_backlight(struct drm_i915_private *i915,
 >  		return;
 >  	}
 >  
-> -	dtd = &generic_dtd->dtd[panel->vbt.panel_type];
-> +	dtd = &generic_dtd->dtd[panel_index];
+> -	entry = &backlight_data->data[panel_type];
+> +	entry = &backlight_data->data[panel_index];
 >  
->  	panel_fixed_mode = kzalloc(sizeof(*panel_fixed_mode), GFP_KERNEL);
->  	if (!panel_fixed_mode)
-> @@ -3113,8 +3115,8 @@ void intel_bios_init_panel(struct drm_i915_private *i915,
->  	panel_index = get_lfp_panel_index(i915, lfp_inst);
+>  	panel->vbt.backlight.present = entry->type == BDB_BACKLIGHT_TYPE_PWM;
+>  	if (!panel->vbt.backlight.present) {
+> @@ -999,7 +999,7 @@ parse_lfp_backlight(struct drm_i915_private *i915,
+>  		if (get_blocksize(backlight_data) >= exp_size) {
+>  			const struct lfp_backlight_control_method *method;
 >  
+> -			method = &backlight_data->backlight_control[panel_type];
+> +			method = &backlight_data->backlight_control[panel_index];
+>  			panel->vbt.backlight.type = method->type;
+>  			panel->vbt.backlight.controller = method->controller;
+>  		}
+> @@ -1012,11 +1012,11 @@ parse_lfp_backlight(struct drm_i915_private *i915,
+>  		u16 min_level;
+>  		bool scale;
+>  
+> -		level = backlight_data->brightness_level[panel_type].level;
+> -		min_level = backlight_data->brightness_min_level[panel_type].level;
+> +		level = backlight_data->brightness_level[panel_index].level;
+> +		min_level = backlight_data->brightness_min_level[panel_index].level;
+>  
+>  		if (i915->vbt.version >= 236)
+> -			scale = backlight_data->brightness_precision_bits[panel_type] == 16;
+> +			scale = backlight_data->brightness_precision_bits[panel_index] == 16;
+>  		else
+>  			scale = level > 255;
+>  
+> @@ -1028,11 +1028,8 @@ parse_lfp_backlight(struct drm_i915_private *i915,
+>  			level = 255;
+>  		}
+>  		panel->vbt.backlight.min_brightness = min_level;
+> -
+> -		panel->vbt.backlight.brightness_precision_bits =
+> -			backlight_data->brightness_precision_bits[panel_type];
+>  	} else {
+> -		level = backlight_data->level[panel_type];
+> +		level = backlight_data->level[panel_index];
+>  		panel->vbt.backlight.min_brightness = entry->min_brightness;
+>  	}
+>  
+> @@ -3117,7 +3114,7 @@ void intel_bios_init_panel(struct drm_i915_private *i915,
 >  	parse_panel_options(i915, panel, edid, panel_index);
-> -	parse_generic_dtd(i915, panel);
-> -	parse_lfp_data(i915, panel);
-> +	parse_generic_dtd(i915, panel, panel_index);
-> +	parse_lfp_data(i915, panel, panel_index);
->  	parse_lfp_backlight(i915, panel);
+>  	parse_generic_dtd(i915, panel, panel_index);
+>  	parse_lfp_data(i915, panel, panel_index);
+> -	parse_lfp_backlight(i915, panel);
+> +	parse_lfp_backlight(i915, panel, panel_index);
 >  	parse_sdvo_panel_data(i915, panel);
 >  	parse_panel_driver_features(i915, panel);
+>  	parse_power_conservation_features(i915, panel);
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
