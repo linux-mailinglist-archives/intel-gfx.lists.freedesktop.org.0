@@ -2,73 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02B2953C7C6
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jun 2022 11:44:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F2B353C838
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jun 2022 12:14:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E9FCA112E17;
-	Fri,  3 Jun 2022 09:43:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D1CDD10F21A;
+	Fri,  3 Jun 2022 10:14:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 31CE6112E15
- for <intel-gfx@lists.freedesktop.org>; Fri,  3 Jun 2022 09:43:58 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8D2FC10F21A
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 Jun 2022 10:14:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1654249438; x=1685785438;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=uq6D+bGFHMAvjoWsvmizZQ8uK1tC7SXeNh7yZq1giCI=;
- b=inna0/nEVCTy68RUhm16BpvvRvNh6a84roAgqAfLdJCHd3PtMffrbFfw
- LyycT/xEaWw+PSEVj0CT4uznP0nybj6/66eqI+6n/A78rz11oSeMnJUis
- UTwI0C6LU54k1fQDVpbnjw0rZF9doEpgENhKoVRnrfooqcZt3IwtiNnR7
- ltHLfyjGwKk/f+J2iN32XkYbohWsJhRX7SRwx8I6h6IH3zqSsoSPCeCRQ
- I0W+/AhamIRoRYhrcQlpi7c6RsUdgaGekY5r3fa6rK4OMYoiIVI42DVPQ
- zyLD3vVqhSaKQyl2VufJ5EpmL1Cfu23iyfIlzKZpz9HZsnFKkBltkI3Jp w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10366"; a="275016103"
-X-IronPort-AV: E=Sophos;i="5.91,274,1647327600"; d="scan'208";a="275016103"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2022 02:43:57 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,274,1647327600"; d="scan'208";a="668388681"
-Received: from fmsmsx605.amr.corp.intel.com ([10.18.126.85])
- by FMSMGA003.fm.intel.com with ESMTP; 03 Jun 2022 02:43:57 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx605.amr.corp.intel.com (10.18.126.85) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Fri, 3 Jun 2022 02:43:57 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Fri, 3 Jun 2022 02:43:57 -0700
-Received: from fmsmsx612.amr.corp.intel.com ([10.18.126.92]) by
- fmsmsx612.amr.corp.intel.com ([10.18.126.92]) with mapi id 15.01.2308.027;
- Fri, 3 Jun 2022 02:43:57 -0700
-From: "Manna, Animesh" <animesh.manna@intel.com>
-To: "Nikula, Jani" <jani.nikula@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [RFC PATCH 1/5] drm/i915/bios: calculate drrs mode using panel
- index for dual LFP
-Thread-Index: AQHYdovs73tMDKsY90eSl28qWzidNK08rRkAgAABJICAALc+cA==
-Date: Fri, 3 Jun 2022 09:43:56 +0000
-Message-ID: <2740862c35ac40cc90d4a3840388ada3@intel.com>
-References: <20220602141850.21301-1-animesh.manna@intel.com>
- <20220602141850.21301-2-animesh.manna@intel.com> <87ilpjp0it.fsf@intel.com>
- <87fsknp0c0.fsf@intel.com>
-In-Reply-To: <87fsknp0c0.fsf@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-version: 11.6.500.17
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-x-originating-ip: [10.223.10.1]
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ t=1654251264; x=1685787264;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=fgZYxczEKRLJCuPz1+TzpNo5Lx2OGGXoLbrheMrtKlo=;
+ b=kV5jfGSyj/h2kQEfXKyzgSQVpzl/ZebHtrCMkBAPazBnT3UXg+ddFIYS
+ 9h0qwrIz9HuV/mvh/a8Y6/L6OFAQUyLLo+x9wa6dX6wAvrdZUeWCyVEA/
+ nk5d8J5Rby2msB3q3fIAB4RPolxMtdFPmU8l5YIK3d8BPpDYtT720WLfL
+ ZFpe/Wyz6dxqMPj1agzBLYYK+uuUVodpFaNdxqw3A8eNnuez7EVivgtsD
+ +xm400kS6H0q4lqg686vj0bGvSM+pswBFzXVXagRBtCRYpyS2EDhqWcdx
+ CT7Q6kribzJS8GiPc/0h+IYUlNQAAmYLRyMRf41PUwvQozoFR6oKKS+de A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10366"; a="256081970"
+X-IronPort-AV: E=Sophos;i="5.91,274,1647327600"; d="scan'208";a="256081970"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jun 2022 03:14:24 -0700
+X-IronPort-AV: E=Sophos;i="5.91,274,1647327600"; d="scan'208";a="721694708"
+Received: from kaszymec-mobl1.ger.corp.intel.com (HELO
+ jhogande-mobl1.ger.corp.intel.com) ([10.249.38.113])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jun 2022 03:14:22 -0700
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri,  3 Jun 2022 13:14:09 +0300
+Message-Id: <20220603101411.3087789-1-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [RFC PATCH 1/5] drm/i915/bios: calculate drrs mode
- using panel index for dual LFP
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 0/2] Disable connector polling for a headless sku
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,272 +59,22 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+This patch set disables connector polling when entering runtime
+suspend for headless sku to prevent waking it up again when poll
+is performed.
 
+Cc: Imre Deak <imre.deak@intel.com>
+Cc: Anshuman Gupta <anshuman.gupta@intel.com>
 
-> -----Original Message-----
-> From: Nikula, Jani <jani.nikula@intel.com>
-> Sent: Thursday, June 2, 2022 8:41 PM
-> To: Manna, Animesh <animesh.manna@intel.com>; intel-
-> gfx@lists.freedesktop.org
-> Cc: ville.syrjala@linux.intel.com; Shankar, Uma <uma.shankar@intel.com>;
-> Manna, Animesh <animesh.manna@intel.com>
-> Subject: Re: [RFC PATCH 1/5] drm/i915/bios: calculate drrs mode using pan=
-el
-> index for dual LFP
->=20
-> On Thu, 02 Jun 2022, Jani Nikula <jani.nikula@intel.com> wrote:
-> > On Thu, 02 Jun 2022, Animesh Manna <animesh.manna@intel.com> wrote:
-> >> Dual LFP may have different panel and based on panel index respective
-> >> 2 bits store the drrs mode info for each panel. So panel index is
-> >> used for deriving drrs mode of the rspective panel.
-> >>
-> >> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
-> >> ---
-> >>  drivers/gpu/drm/i915/display/icl_dsi.c        |  2 +-
-> >>  drivers/gpu/drm/i915/display/intel_bios.c     | 45 +++++++++++++++++-=
--
-> >>  drivers/gpu/drm/i915/display/intel_bios.h     |  3 +-
-> >>  drivers/gpu/drm/i915/display/intel_dp.c       |  3 +-
-> >>  drivers/gpu/drm/i915/display/intel_lvds.c     |  3 +-
-> >>  drivers/gpu/drm/i915/display/intel_sdvo.c     |  2 +-
-> >>  drivers/gpu/drm/i915/display/intel_vbt_defs.h |  4 ++
-> >>  drivers/gpu/drm/i915/display/vlv_dsi.c        |  2 +-
-> >>  8 files changed, 52 insertions(+), 12 deletions(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c
-> >> b/drivers/gpu/drm/i915/display/icl_dsi.c
-> >> index 3b5305c219ba..b3aa430abd03 100644
-> >> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
-> >> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-> >> @@ -2050,7 +2050,7 @@ void icl_dsi_init(struct drm_i915_private
-> *dev_priv)
-> >>  	/* attach connector to encoder */
-> >>  	intel_connector_attach_encoder(intel_connector, encoder);
-> >>
-> >> -	intel_bios_init_panel(dev_priv, &intel_connector->panel, NULL);
-> >> +	intel_bios_init_panel(dev_priv, intel_connector, NULL);
-> >>
-> >>  	mutex_lock(&dev->mode_config.mutex);
-> >>  	intel_panel_add_vbt_lfp_fixed_mode(intel_connector);
-> >> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c
-> >> b/drivers/gpu/drm/i915/display/intel_bios.c
-> >> index 337277ae3dae..78eaf6255599 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_bios.c
-> >> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-> >> @@ -747,7 +747,8 @@ static int get_panel_type(struct drm_i915_private
-> >> *i915,  static void  parse_panel_options(struct drm_i915_private
-> >> *i915,
-> >>  		    struct intel_panel *panel,
-> >> -		    const struct edid *edid)
-> >> +		    const struct edid *edid,
-> >> +		    int panel_index)
-> >>  {
-> >>  	const struct bdb_lvds_options *lvds_options;
-> >>  	int panel_type;
-> >> @@ -764,7 +765,7 @@ parse_panel_options(struct drm_i915_private *i915,
-> >>  	panel->vbt.panel_type =3D panel_type;
-> >>
-> >>  	drrs_mode =3D (lvds_options->dps_panel_type_bits
-> >> -				>> (panel_type * 2)) & MODE_MASK;
-> >> +				>> (panel_index * 2)) & MODE_MASK;
-> >
-> > It's the get_panel_type() call that needs to take the panel number
-> > into account, and return the panel specific panel_type from there.
-> > After that, it's stored in panel->vbt.panel_type and it'll be used
-> > everywere. DRRS is not a special case.
-> >
-> >>  	/*
-> >>  	 * VBT has static DRRS =3D 0 and seamless DRRS =3D 2.
-> >>  	 * The below piece of code is required to adjust vbt.drrs_type @@
-> >> -3069,13 +3070,49 @@ void intel_bios_init(struct drm_i915_private *i91=
-5)
-> >>  	kfree(oprom_vbt);
-> >>  }
-> >>
-> >> +static int
-> >> +get_lfp_panel_index(struct drm_i915_private *i915, int
-> >> +lfp_panel_instance) {
-> >> +	const struct bdb_lvds_options *lvds_options;
-> >> +
-> >> +	lvds_options =3D find_section(i915, BDB_LVDS_OPTIONS);
-> >> +	if (!lvds_options)
-> >> +		return -1;
-> >> +
-> >> +	switch (lfp_panel_instance) {
-> >> +	case 1:
-> >> +		return lvds_options->panel_type;
-> >> +	case 2:
-> >> +		return lvds_options->panel_type2;
-> >> +	default:
-> >> +		break;
-> >> +	}
-> >> +
-> >> +	return -1;
-> >> +}
-> >
-> > Nah, it's not this simple. See get_panel_type(). Either of the
-> > panel_type fields could be 0xff to indicate PNPID based lookup.
-> >
-> >> +
-> >>  void intel_bios_init_panel(struct drm_i915_private *i915,
-> >> -			   struct intel_panel *panel,
-> >> +			   struct intel_connector *intel_connector,
-> >>  			   const struct edid *edid)
-> >>  {
-> >> +	struct intel_panel *panel =3D &intel_connector->panel;
-> >> +	struct intel_encoder *encoder =3D intel_connector->encoder;
-> >> +	const struct intel_bios_encoder_data *devdata =3D
-> >> +i915->vbt.ports[encoder->port];
-> >
-> > This might be NULL, we don't initialize ports for all platforms.
-> >
-> >
-> >> +	int lfp_inst =3D 0, panel_index;
-> >> +
-> >>  	init_vbt_panel_defaults(panel);
-> >>
-> >> -	parse_panel_options(i915, panel, edid);
-> >> +	if (devdata->child.handle =3D=3D HANDLE_LFP_1)
-> >> +		lfp_inst =3D 1;
-> >> +	else if (devdata->child.handle =3D=3D HANDLE_LFP_2)
-> >> +		lfp_inst =3D 2;
-> >> +
-> >> +	if (lfp_inst =3D=3D 0)
-> >> +		return;
-> >> +
-> >> +	panel_index =3D get_lfp_panel_index(i915, lfp_inst);
-> >> +
-> >> +	parse_panel_options(i915, panel, edid, panel_index);
->=20
-> Also, none of this handling should happen here. Just pass devdata on to
-> parse_panel_options(), and pass it on further to get_panel_type(), which =
-should
-> be the single point of truth for figuring out the panel type.
+Jouni Högander (2):
+  drm/i915/opregion: add function to check if headless sku
+  drm/i915: do not start connector polling when headless sku
 
-Ok, will do in next version.
-Thank Jani for review.
+ drivers/gpu/drm/i915/display/intel_hotplug.c  |  3 ++-
+ drivers/gpu/drm/i915/display/intel_opregion.c | 12 ++++++++++++
+ drivers/gpu/drm/i915/display/intel_opregion.h |  7 +++++++
+ 3 files changed, 21 insertions(+), 1 deletion(-)
 
-Regards,
-Animesh
+-- 
+2.25.1
 
->=20
-> >>  	parse_generic_dtd(i915, panel);
-> >>  	parse_lfp_data(i915, panel);
-> >>  	parse_lfp_backlight(i915, panel);
-> >> diff --git a/drivers/gpu/drm/i915/display/intel_bios.h
-> >> b/drivers/gpu/drm/i915/display/intel_bios.h
-> >> index b112200ae0a0..e4c268495547 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_bios.h
-> >> +++ b/drivers/gpu/drm/i915/display/intel_bios.h
-> >> @@ -37,6 +37,7 @@ struct edid;
-> >>  struct intel_bios_encoder_data;
-> >>  struct intel_crtc_state;
-> >>  struct intel_encoder;
-> >> +struct intel_connector;
-> >>  struct intel_panel;
-> >>  enum port;
-> >>
-> >> @@ -233,7 +234,7 @@ struct mipi_pps_data {
-> >>
-> >>  void intel_bios_init(struct drm_i915_private *dev_priv);  void
-> >> intel_bios_init_panel(struct drm_i915_private *dev_priv,
-> >> -			   struct intel_panel *panel,
-> >> +			   struct intel_connector *intel_connector,
-> >>  			   const struct edid *edid);
-> >>  void intel_bios_fini_panel(struct intel_panel *panel);  void
-> >> intel_bios_driver_remove(struct drm_i915_private *dev_priv); diff
-> >> --git a/drivers/gpu/drm/i915/display/intel_dp.c
-> >> b/drivers/gpu/drm/i915/display/intel_dp.c
-> >> index 1bc1f6458e81..3e9b4263e1bc 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> >> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> >> @@ -5213,8 +5213,7 @@ static bool intel_edp_init_connector(struct
-> intel_dp *intel_dp,
-> >>  	}
-> >>  	intel_connector->edid =3D edid;
-> >>
-> >> -	intel_bios_init_panel(dev_priv, &intel_connector->panel,
-> >> -			      IS_ERR(edid) ? NULL : edid);
-> >> +	intel_bios_init_panel(dev_priv, intel_connector, IS_ERR(edid) ?
-> >> +NULL : edid);
-> >>
-> >>  	intel_panel_add_edid_fixed_modes(intel_connector,
-> >>  					 intel_connector->panel.vbt.drrs_type
-> !=3D DRRS_TYPE_NONE); diff
-> >> --git a/drivers/gpu/drm/i915/display/intel_lvds.c
-> >> b/drivers/gpu/drm/i915/display/intel_lvds.c
-> >> index 595f03343939..2c60267f9d37 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_lvds.c
-> >> +++ b/drivers/gpu/drm/i915/display/intel_lvds.c
-> >> @@ -967,8 +967,7 @@ void intel_lvds_init(struct drm_i915_private
-> *dev_priv)
-> >>  	}
-> >>  	intel_connector->edid =3D edid;
-> >>
-> >> -	intel_bios_init_panel(dev_priv, &intel_connector->panel,
-> >> -			      IS_ERR(edid) ? NULL : edid);
-> >> +	intel_bios_init_panel(dev_priv, intel_connector, IS_ERR(edid) ?
-> >> +NULL : edid);
-> >>
-> >>  	/* Try EDID first */
-> >>  	intel_panel_add_edid_fixed_modes(intel_connector,
-> >> diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c
-> >> b/drivers/gpu/drm/i915/display/intel_sdvo.c
-> >> index d9de2c4d67a7..3b7fe117bc5b 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_sdvo.c
-> >> +++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
-> >> @@ -2901,7 +2901,7 @@ intel_sdvo_lvds_init(struct intel_sdvo *intel_sd=
-vo,
-> int device)
-> >>  	if (!intel_sdvo_create_enhance_property(intel_sdvo,
-> intel_sdvo_connector))
-> >>  		goto err;
-> >>
-> >> -	intel_bios_init_panel(i915, &intel_connector->panel, NULL);
-> >> +	intel_bios_init_panel(i915, intel_connector, NULL);
-> >>
-> >>  	/*
-> >>  	 * Fetch modes from VBT. For SDVO prefer the VBT mode since some
-> >> diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-> >> b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-> >> index 4b98bab3b890..fbda64e3a34d 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-> >> +++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-> >> @@ -349,6 +349,10 @@ enum vbt_gmbus_ddi {
-> >>  #define BDB_230_VBT_DP_MAX_LINK_RATE_UHBR13P5	6
-> >>  #define BDB_230_VBT_DP_MAX_LINK_RATE_UHBR20	7
-> >>
-> >> +/* VBT info for DUAL LFP */
-> >> +#define HANDLE_LFP_1 0x0008
-> >> +#define HANDLE_LFP_2 0x0080
-> >
-> > Please move these before the DEVICE_TYPE_* macros, and name
-> > DEVICE_HANDLE_*. The comment should refer to device handles, and
-> > there's no need to mention VBT or dual LFP.
-> >
-> > BR,
-> > Jani.
-> >
-> >> +
-> >>  /*
-> >>   * The child device config, aka the display device data structure, pr=
-ovides a
-> >>   * description of a port and its configuration on the platform.
-> >> diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c
-> >> b/drivers/gpu/drm/i915/display/vlv_dsi.c
-> >> index abda0888c8d4..114e4f89f198 100644
-> >> --- a/drivers/gpu/drm/i915/display/vlv_dsi.c
-> >> +++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
-> >> @@ -1926,7 +1926,7 @@ void vlv_dsi_init(struct drm_i915_private
-> >> *dev_priv)
-> >>
-> >>  	intel_dsi->panel_power_off_time =3D ktime_get_boottime();
-> >>
-> >> -	intel_bios_init_panel(dev_priv, &intel_connector->panel, NULL);
-> >> +	intel_bios_init_panel(dev_priv, intel_connector, NULL);
-> >>
-> >>  	if (intel_connector->panel.vbt.dsi.config->dual_link)
-> >>  		intel_dsi->ports =3D BIT(PORT_A) | BIT(PORT_C);
->=20
-> --
-> Jani Nikula, Intel Open Source Graphics Center
