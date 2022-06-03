@@ -1,52 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE83F53CA8C
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jun 2022 15:20:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E414153CB47
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jun 2022 16:03:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 116F310E16B;
-	Fri,  3 Jun 2022 13:20:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5406E10E093;
+	Fri,  3 Jun 2022 14:03:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 56EBE10E16B
- for <intel-gfx@lists.freedesktop.org>; Fri,  3 Jun 2022 13:19:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1654262399; x=1685798399;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=Gxye36KI7xRiIbHZ6F/F1nBtPct1i/MSWbvVyQ7xwro=;
- b=cL59d+CLSTRdBaGhe3Mc6EGRwNpNKovCI9ABB1WA7uojMZA/o3SBrsiI
- UZKBMpfm8NbpvL3IPYQtCsTIH/TJ4zRAT+OZgt0oPqJWRTe245a417KN/
- FMpP3UTpVBmb0QG0WOHCKhOduZUmMPoVcFeIMNiQNSzKQejAgJVV9D6wh
- NQY0y334Kswn7eVNcmGgx21+T7J9rtnKNdz3fpAZE8z0fP/UjCj6QGF89
- ii81crCZSyoluag38w9V+ouO1KrW3WQs6rGEurJNK0C7MeLWhVpNLyZcV
- Qf/508llI+XBj+AJREhhplBW/qmZZywpGbhLe21NF42oQ+OEJklFquwyR A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10366"; a="256725433"
-X-IronPort-AV: E=Sophos;i="5.91,274,1647327600"; d="scan'208";a="256725433"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2022 06:19:58 -0700
-X-IronPort-AV: E=Sophos;i="5.91,274,1647327600"; d="scan'208";a="607394986"
-Received: from richardf-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.55.27])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2022 06:19:55 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220603093830.1529520-1-gwan-gyeong.mun@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220603093830.1529520-1-gwan-gyeong.mun@intel.com>
-Date: Fri, 03 Jun 2022 16:19:52 +0300
-Message-ID: <87h751opdz.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9BCFF10E093;
+ Fri,  3 Jun 2022 14:03:55 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 3BA6DAAA91;
+ Fri,  3 Jun 2022 14:03:55 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 0/6] Fixes integer overflow or integer
- truncation issues in page lookups,
- ttm place configuration and scatterlist creation
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Fri, 03 Jun 2022 14:03:55 -0000
+Message-ID: <165426503524.17721.226209667722174762@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <cover.1654261471.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1654261471.git.jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_i915=5Fdrv=2Eh_=26_i915=5Fgem=2Eh_header_refact?=
+ =?utf-8?q?oring?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,24 +41,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: thomas.hellstrom@linux.intel.com, chris@chris-wilson.co.uk,
- matthew.auld@intel.com, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 03 Jun 2022, Gwan-gyeong Mun <gwan-gyeong.mun@intel.com> wrote:
-> This patch series fixes integer overflow or integer truncation issues in
-> page lookups, ttm place configuration and scatterlist creation, etc.
-> We need to check that we avoid integer overflows when looking up a page,
-> and so fix all the instances where we have mistakenly used a plain integer
-> instead of a more suitable long.
+== Series Details ==
 
-So when are we going to start moving the helpers, both existing and the
-ones being added here, from i915_utils.h to proper kernel headers? We
-just keep adding more and more. This needs to stop.
+Series: drm/i915: i915_drv.h & i915_gem.h header refactoring
+URL   : https://patchwork.freedesktop.org/series/104725/
+State : warning
 
-BR,
-Jani.
+== Summary ==
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+Error: dim checkpatch failed
+a53c0ec4baf9 drm/i915/tasklet: separate local hacks around struct tasklet_struct
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 10, in <module>
+    import git
+ModuleNotFoundError: No module named 'git'
+-:86: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#86: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 99 lines checked
+36fc7e4e5220 drm/i915/debug: add new i915_debug.h for debug asserts
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 10, in <module>
+    import git
+ModuleNotFoundError: No module named 'git'
+-:217: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#217: 
+new file mode 100644
+
+-:240: WARNING:AVOID_BUG: Avoid crashing the kernel - try using WARN_ON & recovery code rather than BUG() or BUG_ON()
+#240: FILE: drivers/gpu/drm/i915/i915_debug.h:19:
++#define __GEM_BUG(cond) BUG()
+
+-:246: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'condition' - possible side-effects?
+#246: FILE: drivers/gpu/drm/i915/i915_debug.h:25:
++#define GEM_BUG_ON(condition) do { if (unlikely((condition))) {	\
++		GEM_TRACE_ERR("%s:%d GEM_BUG_ON(%s)\n", \
++			      __func__, __LINE__, __stringify(condition)); \
++		GEM_TRACE_DUMP(); \
++		__GEM_BUG(condition); \
++		} \
++	} while(0)
+
+-:252: ERROR:SPACING: space required before the open parenthesis '('
+#252: FILE: drivers/gpu/drm/i915/i915_debug.h:31:
++	} while(0)
+
+-:268: WARNING:TRACE_PRINTK: Do not use trace_printk() in production code (this can be ignored if built only with a debug config option)
+#268: FILE: drivers/gpu/drm/i915/i915_debug.h:47:
++#define GEM_TRACE(...) trace_printk(__VA_ARGS__)
+
+-:271: WARNING:TRACE_PRINTK: Do not use trace_printk() in production code (this can be ignored if built only with a debug config option)
+#271: FILE: drivers/gpu/drm/i915/i915_debug.h:50:
++	trace_printk(__VA_ARGS__);					\
+
+total: 1 errors, 4 warnings, 1 checks, 324 lines checked
+0e80aecf3ea3 drm/i915: un-inline i915_gem_drain_* functions
+-:100: WARNING:LINE_SPACING: Missing a blank line after declarations
+#100: FILE: drivers/gpu/drm/i915/i915_gem.c:1118:
++	int pass = 3;
++	do {
+
+total: 0 errors, 1 warnings, 0 checks, 89 lines checked
+2eba81a7f23c drm/i915/gem: split out the gem stuff from i915_drv.h
+7f30c36d225f drm/i915/drv: drop intel_bios.h include
+7add9ee46d1c drm/i915/client: only include what's needed
+994605eb20fd drm/i915/utils: throw out unused stuff
+
+
