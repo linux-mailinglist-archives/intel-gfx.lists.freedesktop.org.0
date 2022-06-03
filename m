@@ -2,51 +2,73 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 299D353CD2B
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jun 2022 18:26:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B16F053CD47
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jun 2022 18:32:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC89D10FB83;
-	Fri,  3 Jun 2022 16:25:54 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1AA6C10FB83;
- Fri,  3 Jun 2022 16:25:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B991112E49;
+	Fri,  3 Jun 2022 16:32:49 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7176C1130BA
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 Jun 2022 16:32:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1654273554; x=1685809554;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=dXIwmkRV2mgnS+hRM+3QwFJBOymlz53d9wIC6u3S6uI=;
- b=A655TBZrTfTT1IMrAS1YB7fQfUh8cclWQVkEb2GobwWhjZ3rCptaWAkx
- U59j//zY4oR5OPztIiZrD7u4AHfGXsqXSID2zdguzuKJKYDpL6h09bU9L
- TmbfAwlrmVK+cmuCMrHy0T7oqK6aFurgNLTI6DntX65shxy3Ra8rJYLkL
- Z25I2WMt59vb82FMAHudAue90y6VVqGAHbe2bnxGNzpMLwAPti73NcRE7
- 6lYy95cunR+MHZXmeMpfig2vPIlPiWXZVPD1ovB2cO2MRcJJXRuvDO5Kg
- uQAQjKMxkwIGKPdPmGOta94urXULwxuaUsOFPNwF7h5zPxe2BVkF1cUq7 g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10367"; a="273853175"
-X-IronPort-AV: E=Sophos;i="5.91,275,1647327600"; d="scan'208";a="273853175"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2022 09:25:53 -0700
+ t=1654273968; x=1685809968;
+ h=from:to:subject:date:message-id:references:in-reply-to:
+ content-id:content-transfer-encoding:mime-version;
+ bh=D2Z/yU0r84BHasKs7DkSiTCoNXVo/k8MQwuYE9IJzPc=;
+ b=AbbA1HWcUjKxndifo95Ae+Tc9acANZ5qmv/QgwAi57fnxXX1GO8dLB6K
+ AdhCOwXUOQVP+AoQqQq+QHFuJWaIQCKDPbC0myjDc6Vm6MwpYM7oiHuzx
+ 9enjwXyXrKDLqOEhEdyS/8fUnhQ3v6A2Djsp8yzE3P31eg/ucXXLCnLsm
+ daxJSfKavtZd2GdXmjV303vE5gpKBHvABzymeCvJZDih/c04txhcL31Bu
+ cktXKlGxA1Rjylubr2X/LYNg7MSsT/rkaWm0IV7WK6VeJGSuxj48OUfTY
+ 8vJss15sXihXVphfvoqneHtbXOw8cjwo6Ra2fBATfZze4cGTDK0LnxusX A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10367"; a="263946799"
+X-IronPort-AV: E=Sophos;i="5.91,275,1647327600"; d="scan'208";a="263946799"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jun 2022 09:32:44 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,275,1647327600"; d="scan'208";a="563850911"
-Received: from relo-linux-5.jf.intel.com ([10.165.21.134])
- by orsmga002.jf.intel.com with ESMTP; 03 Jun 2022 09:25:52 -0700
-From: John.C.Harrison@Intel.com
-To: IGT-Dev@Lists.FreeDesktop.Org
-Date: Fri,  3 Jun 2022 09:25:52 -0700
-Message-Id: <20220603162552.2254187-4-John.C.Harrison@Intel.com>
-X-Mailer: git-send-email 2.36.0
-In-Reply-To: <20220603162552.2254187-1-John.C.Harrison@Intel.com>
-References: <20220603162552.2254187-1-John.C.Harrison@Intel.com>
+X-IronPort-AV: E=Sophos;i="5.91,275,1647327600"; d="scan'208";a="721810114"
+Received: from fmsmsx605.amr.corp.intel.com ([10.18.126.85])
+ by fmsmga001.fm.intel.com with ESMTP; 03 Jun 2022 09:32:44 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx605.amr.corp.intel.com (10.18.126.85) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27; Fri, 3 Jun 2022 09:32:44 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27; Fri, 3 Jun 2022 09:32:43 -0700
+Received: from fmsmsx612.amr.corp.intel.com ([10.18.126.92]) by
+ fmsmsx612.amr.corp.intel.com ([10.18.126.92]) with mapi id 15.01.2308.027;
+ Fri, 3 Jun 2022 09:32:43 -0700
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Hogander, Jouni" <jouni.hogander@intel.com>, "jani.nikula@linux.intel.com"
+ <jani.nikula@linux.intel.com>
+Thread-Topic: [Intel-gfx] [PATCH 1/2] drm/i915/opregion: add function to check
+ if headless sku
+Thread-Index: AQHYdzLK8UjJiA9xg02ohQjugVdPQa0+FgmAgAAInwCAADdiAA==
+Date: Fri, 3 Jun 2022 16:32:43 +0000
+Message-ID: <0069e1028bfccf5f1c3f7b8d8a129c202f4cf764.camel@intel.com>
+References: <20220603101411.3087789-1-jouni.hogander@intel.com>
+ <20220603101411.3087789-2-jouni.hogander@intel.com>
+ <87k09xor2e.fsf@intel.com>
+ <eeac0a25543a75cbeb39eaa61a1abbfdcfb94a6f.camel@intel.com>
+In-Reply-To: <eeac0a25543a75cbeb39eaa61a1abbfdcfb94a6f.camel@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.100]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <ED7F9205B81FF944A5F8448BD9D59A11@intel.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
- Swindon SN3 1RJ
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v5 i-g-t 3/3] tests/i915/query: Query,
- parse and validate the hwconfig table
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/opregion: add function to
+ check if headless sku
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,359 +81,83 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-GFX@Lists.FreeDesktop.Org,
- Slawomir Milczarek <slawomir.milczarek@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-
-Newer platforms have an embedded table giving details about that
-platform's hardware configuration. This table can be retrieved from
-the KMD via the existing query API. So add a test for it as both an
-example of how to fetch the table and to validate the contents as much
-as is possible.
-
-Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-Cc: Slawomir Milczarek <slawomir.milczarek@intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
----
- lib/intel_hwconfig_types.h | 118 ++++++++++++++++++++++++
- tests/i915/i915_query.c    | 180 +++++++++++++++++++++++++++++++++++++
- 2 files changed, 298 insertions(+)
- create mode 100644 lib/intel_hwconfig_types.h
-
-diff --git a/lib/intel_hwconfig_types.h b/lib/intel_hwconfig_types.h
-new file mode 100644
-index 000000000000..d5db217afba2
---- /dev/null
-+++ b/lib/intel_hwconfig_types.h
-@@ -0,0 +1,118 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2022 Intel Corporation
-+ */
-+
-+#ifndef _INTEL_HWCONFIG_TYPES_H_
-+#define _INTEL_HWCONFIG_TYPES_H_
-+
-+#include "intel_chipset.h"
-+
-+/**
-+ * enum intel_hwconfig - Global definition of hwconfig table attributes
-+ *
-+ * Intel devices provide a KLV (Key/Length/Value) table containing
-+ * the static hardware configuration for that platform.
-+ * This enum defines the current attribute keys for this KLV.
-+ */
-+enum intel_hwconfig {
-+	INTEL_HWCONFIG_MAX_SLICES_SUPPORTED = 1,
-+	INTEL_HWCONFIG_MAX_DUAL_SUBSLICES_SUPPORTED,		/* 2 */
-+	INTEL_HWCONFIG_MAX_NUM_EU_PER_DSS,			/* 3 */
-+	INTEL_HWCONFIG_NUM_PIXEL_PIPES,				/* 4 */
-+	INTEL_HWCONFIG_DEPRECATED_MAX_NUM_GEOMETRY_PIPES,	/* 5 */
-+	INTEL_HWCONFIG_DEPRECATED_L3_CACHE_SIZE_IN_KB,		/* 6 */
-+	INTEL_HWCONFIG_DEPRECATED_L3_BANK_COUNT,		/* 7 */
-+	INTEL_HWCONFIG_L3_CACHE_WAYS_SIZE_IN_BYTES,		/* 8 */
-+	INTEL_HWCONFIG_L3_CACHE_WAYS_PER_SECTOR,		/* 9 */
-+	INTEL_HWCONFIG_MAX_MEMORY_CHANNELS,			/* 10 */
-+	INTEL_HWCONFIG_MEMORY_TYPE,				/* 11 */
-+	INTEL_HWCONFIG_CACHE_TYPES,                             /* 12 */
-+	INTEL_HWCONFIG_LOCAL_MEMORY_PAGE_SIZES_SUPPORTED,	/* 13 */
-+	INTEL_HWCONFIG_DEPRECATED_SLM_SIZE_IN_KB,		/* 14 */
-+	INTEL_HWCONFIG_NUM_THREADS_PER_EU,			/* 15 */
-+	INTEL_HWCONFIG_TOTAL_VS_THREADS,			/* 16 */
-+	INTEL_HWCONFIG_TOTAL_GS_THREADS,			/* 17 */
-+	INTEL_HWCONFIG_TOTAL_HS_THREADS,			/* 18 */
-+	INTEL_HWCONFIG_TOTAL_DS_THREADS,			/* 19 */
-+	INTEL_HWCONFIG_TOTAL_VS_THREADS_POCS,			/* 20 */
-+	INTEL_HWCONFIG_TOTAL_PS_THREADS,			/* 21 */
-+	INTEL_HWCONFIG_DEPRECATED_MAX_FILL_RATE,		/* 22 */
-+	INTEL_HWCONFIG_MAX_RCS,					/* 23 */
-+	INTEL_HWCONFIG_MAX_CCS,					/* 24 */
-+	INTEL_HWCONFIG_MAX_VCS,					/* 25 */
-+	INTEL_HWCONFIG_MAX_VECS,				/* 26 */
-+	INTEL_HWCONFIG_MAX_COPY_CS,				/* 27 */
-+	INTEL_HWCONFIG_DEPRECATED_URB_SIZE_IN_KB,		/* 28 */
-+	INTEL_HWCONFIG_MIN_VS_URB_ENTRIES,			/* 29 */
-+	INTEL_HWCONFIG_MAX_VS_URB_ENTRIES,			/* 30 */
-+	INTEL_HWCONFIG_MIN_PCS_URB_ENTRIES,			/* 31 */
-+	INTEL_HWCONFIG_MAX_PCS_URB_ENTRIES,			/* 32 */
-+	INTEL_HWCONFIG_MIN_HS_URB_ENTRIES,			/* 33 */
-+	INTEL_HWCONFIG_MAX_HS_URB_ENTRIES,			/* 34 */
-+	INTEL_HWCONFIG_MIN_GS_URB_ENTRIES,			/* 35 */
-+	INTEL_HWCONFIG_MAX_GS_URB_ENTRIES,			/* 36 */
-+	INTEL_HWCONFIG_MIN_DS_URB_ENTRIES,			/* 37 */
-+	INTEL_HWCONFIG_MAX_DS_URB_ENTRIES,			/* 38 */
-+	INTEL_HWCONFIG_PUSH_CONSTANT_URB_RESERVED_SIZE,		/* 39 */
-+	INTEL_HWCONFIG_POCS_PUSH_CONSTANT_URB_RESERVED_SIZE,	/* 40 */
-+	INTEL_HWCONFIG_URB_REGION_ALIGNMENT_SIZE_IN_BYTES,	/* 41 */
-+	INTEL_HWCONFIG_URB_ALLOCATION_SIZE_UNITS_IN_BYTES,	/* 42 */
-+	INTEL_HWCONFIG_MAX_URB_SIZE_CCS_IN_BYTES,		/* 43 */
-+	INTEL_HWCONFIG_VS_MIN_DEREF_BLOCK_SIZE_HANDLE_COUNT,	/* 44 */
-+	INTEL_HWCONFIG_DS_MIN_DEREF_BLOCK_SIZE_HANDLE_COUNT,	/* 45 */
-+	INTEL_HWCONFIG_NUM_RT_STACKS_PER_DSS,			/* 46 */
-+	INTEL_HWCONFIG_MAX_URB_STARTING_ADDRESS,		/* 47 */
-+	INTEL_HWCONFIG_MIN_CS_URB_ENTRIES,			/* 48 */
-+	INTEL_HWCONFIG_MAX_CS_URB_ENTRIES,			/* 49 */
-+	INTEL_HWCONFIG_L3_ALLOC_PER_BANK_URB,			/* 50 */
-+	INTEL_HWCONFIG_L3_ALLOC_PER_BANK_REST,			/* 51 */
-+	INTEL_HWCONFIG_L3_ALLOC_PER_BANK_DC,			/* 52 */
-+	INTEL_HWCONFIG_L3_ALLOC_PER_BANK_RO,			/* 53 */
-+	INTEL_HWCONFIG_L3_ALLOC_PER_BANK_Z,			/* 54 */
-+	INTEL_HWCONFIG_L3_ALLOC_PER_BANK_COLOR,			/* 55 */
-+	INTEL_HWCONFIG_L3_ALLOC_PER_BANK_UNIFIED_TILE_CACHE,	/* 56 */
-+	INTEL_HWCONFIG_L3_ALLOC_PER_BANK_COMMAND_BUFFER,	/* 57 */
-+	INTEL_HWCONFIG_L3_ALLOC_PER_BANK_RW,			/* 58 */
-+	INTEL_HWCONFIG_MAX_NUM_L3_CONFIGS,			/* 59 */
-+	INTEL_HWCONFIG_BINDLESS_SURFACE_OFFSET_BIT_COUNT,	/* 60 */
-+	INTEL_HWCONFIG_RESERVED_CCS_WAYS,			/* 61 */
-+	INTEL_HWCONFIG_CSR_SIZE_IN_MB,				/* 62 */
-+	INTEL_HWCONFIG_GEOMETRY_PIPES_PER_SLICE,		/* 63 */
-+	INTEL_HWCONFIG_L3_BANK_SIZE_IN_KB,			/* 64 */
-+	INTEL_HWCONFIG_SLM_SIZE_PER_DSS,			/* 65 */
-+	INTEL_HWCONFIG_MAX_PIXEL_FILL_RATE_PER_SLICE,		/* 66 */
-+	INTEL_HWCONFIG_MAX_PIXEL_FILL_RATE_PER_DSS,		/* 67 */
-+	INTEL_HWCONFIG_URB_SIZE_PER_SLICE_IN_KB,		/* 68 */
-+	INTEL_HWCONFIG_URB_SIZE_PER_L3_BANK_COUNT_IN_KB,	/* 69 */
-+	INTEL_HWCONFIG_MAX_SUBSLICE,				/* 70 */
-+	INTEL_HWCONFIG_MAX_EU_PER_SUBSLICE,			/* 71 */
-+	INTEL_HWCONFIG_RAMBO_L3_BANK_SIZE_IN_KB,		/* 72 */
-+	INTEL_HWCONFIG_SLM_SIZE_PER_SS_IN_KB,			/* 73 */
-+	INTEL_HWCONFIG_NUM_HBM_STACKS_PER_TILE,			/* 74 */
-+	INTEL_HWCONFIG_NUM_CHANNELS_PER_HBM_STACK,		/* 75 */
-+	INTEL_HWCONFIG_HBM_CHANNEL_WIDTH_IN_BYTES,		/* 76 */
-+	INTEL_HWCONFIG_MIN_TASK_URB_ENTRIES,			/* 77 */
-+	INTEL_HWCONFIG_MAX_TASK_URB_ENTRIES,			/* 78 */
-+	INTEL_HWCONFIG_MIN_MESH_URB_ENTRIES,			/* 79 */
-+	INTEL_HWCONFIG_MAX_MESH_URB_ENTRIES,			/* 80 */
-+	__INTEL_HWCONFIG_KEY_LIMIT
-+};
-+
-+enum {
-+	INTEL_HWCONFIG_MEMORY_TYPE_LPDDR4 = 0,
-+	INTEL_HWCONFIG_MEMORY_TYPE_LPDDR5,
-+	INTEL_HWCONFIG_MEMORY_TYPE_HBM2,
-+	INTEL_HWCONFIG_MEMORY_TYPE_HBM2e,
-+	INTEL_HWCONFIG_MEMORY_TYPE_GDDR6,
-+	__INTEL_HWCONFIG_MEMORY_TYPE_LIMIT
-+};
-+
-+enum {
-+	INTEL_HWCONFIG_CACHE_TYPE_L3 = 0,
-+	INTEL_HWCONFIG_CACHE_TYPE_LLC,
-+	INTEL_HWCONFIG_CACHE_TYPE_EDRAM,
-+	__INTEL_HWCONFIG_CACHE_TYPE_LIMIT
-+};
-+
-+#endif /* _INTEL_HWCONFIG_TYPES_H_ */
-diff --git a/tests/i915/i915_query.c b/tests/i915/i915_query.c
-index 35a91d245ec1..f160769f52f1 100644
---- a/tests/i915/i915_query.c
-+++ b/tests/i915/i915_query.c
-@@ -22,6 +22,7 @@
-  */
- 
- #include "igt.h"
-+#include "intel_hwconfig_types.h"
- 
- #include <limits.h>
- 
-@@ -912,6 +913,181 @@ static void test_query_geometry_subslices(int fd)
- 	}
- }
- 
-+static const char * const hwconfig_keys[] = {
-+	[INTEL_HWCONFIG_MAX_SLICES_SUPPORTED] = "Maximum number of Slices",
-+	[INTEL_HWCONFIG_MAX_DUAL_SUBSLICES_SUPPORTED] = "Maximum number of DSS",
-+	[INTEL_HWCONFIG_MAX_NUM_EU_PER_DSS] = "Maximum number of EUs per DSS",
-+	[INTEL_HWCONFIG_NUM_PIXEL_PIPES] = "Pixel Pipes",
-+	[INTEL_HWCONFIG_DEPRECATED_MAX_NUM_GEOMETRY_PIPES] = "[DEPRECATED] Geometry Pipes",
-+	[INTEL_HWCONFIG_DEPRECATED_L3_CACHE_SIZE_IN_KB] = "[DEPRECATED] L3 Size (in KB)",
-+	[INTEL_HWCONFIG_DEPRECATED_L3_BANK_COUNT] = "[DEPRECATED] L3 Bank Count",
-+	[INTEL_HWCONFIG_L3_CACHE_WAYS_SIZE_IN_BYTES] = "L3 Cache Ways Size (in bytes)",
-+	[INTEL_HWCONFIG_L3_CACHE_WAYS_PER_SECTOR] = "L3 Cache Ways Per Sector",
-+	[INTEL_HWCONFIG_MAX_MEMORY_CHANNELS] = "Memory Channels",
-+	[INTEL_HWCONFIG_MEMORY_TYPE] = "Memory type",
-+	[INTEL_HWCONFIG_CACHE_TYPES] = "Cache types",
-+	[INTEL_HWCONFIG_LOCAL_MEMORY_PAGE_SIZES_SUPPORTED] = "Local memory page size",
-+	[INTEL_HWCONFIG_DEPRECATED_SLM_SIZE_IN_KB] = "[DEPRECATED] SLM Size (in KB)",
-+	[INTEL_HWCONFIG_NUM_THREADS_PER_EU] = "Num thread per EU",
-+	[INTEL_HWCONFIG_TOTAL_VS_THREADS] = "Maximum Vertex Shader threads",
-+	[INTEL_HWCONFIG_TOTAL_GS_THREADS] = "Maximum Geometry Shader threads",
-+	[INTEL_HWCONFIG_TOTAL_HS_THREADS] = "Maximum Hull Shader threads",
-+	[INTEL_HWCONFIG_TOTAL_DS_THREADS] = "Maximum Domain Shader threads",
-+	[INTEL_HWCONFIG_TOTAL_VS_THREADS_POCS] = "Maximum Vertex Shader Threads for POCS",
-+	[INTEL_HWCONFIG_TOTAL_PS_THREADS] = "Maximum Pixel Shader Threads",
-+	[INTEL_HWCONFIG_DEPRECATED_MAX_FILL_RATE] = "[DEPRECATED] Maximum pixel rate for Fill",
-+	[INTEL_HWCONFIG_MAX_RCS] = "MaxRCS",
-+	[INTEL_HWCONFIG_MAX_CCS] = "MaxCCS",
-+	[INTEL_HWCONFIG_MAX_VCS] = "MaxVCS",
-+	[INTEL_HWCONFIG_MAX_VECS] = "MaxVECS",
-+	[INTEL_HWCONFIG_MAX_COPY_CS] = "MaxCopyCS",
-+	[INTEL_HWCONFIG_DEPRECATED_URB_SIZE_IN_KB] = "[DEPRECATED] URB Size (in KB)",
-+	[INTEL_HWCONFIG_MIN_VS_URB_ENTRIES] = "The minimum number of VS URB entries.",
-+	[INTEL_HWCONFIG_MAX_VS_URB_ENTRIES] = "The maximum number of VS URB entries.",
-+	[INTEL_HWCONFIG_MIN_PCS_URB_ENTRIES] = "The minimum number of PCS URB entries",
-+	[INTEL_HWCONFIG_MAX_PCS_URB_ENTRIES] = "The maximum number of PCS URB entries",
-+	[INTEL_HWCONFIG_MIN_HS_URB_ENTRIES] = "The minimum number of HS URB entries",
-+	[INTEL_HWCONFIG_MAX_HS_URB_ENTRIES] = "The maximum number of HS URB entries",
-+	[INTEL_HWCONFIG_MIN_GS_URB_ENTRIES] = "The minimum number of GS URB entries",
-+	[INTEL_HWCONFIG_MAX_GS_URB_ENTRIES] = "The maximum number of GS URB entries",
-+	[INTEL_HWCONFIG_MIN_DS_URB_ENTRIES] = "The minimum number of DS URB Entries",
-+	[INTEL_HWCONFIG_MAX_DS_URB_ENTRIES] = "The maximum number of DS URB Entries",
-+	[INTEL_HWCONFIG_PUSH_CONSTANT_URB_RESERVED_SIZE] = "Push Constant URB Reserved Size (in bytes)",
-+	[INTEL_HWCONFIG_POCS_PUSH_CONSTANT_URB_RESERVED_SIZE] = "POCS Push Constant URB Reserved Size (in bytes)",
-+	[INTEL_HWCONFIG_URB_REGION_ALIGNMENT_SIZE_IN_BYTES] = "URB Region Alignment Size (in bytes)",
-+	[INTEL_HWCONFIG_URB_ALLOCATION_SIZE_UNITS_IN_BYTES] = "URB Allocation Size Units (in bytes)",
-+	[INTEL_HWCONFIG_MAX_URB_SIZE_CCS_IN_BYTES] = "Max URB Size CCS (in bytes)",
-+	[INTEL_HWCONFIG_VS_MIN_DEREF_BLOCK_SIZE_HANDLE_COUNT] = "VS Min Deref BlockSize Handle Count",
-+	[INTEL_HWCONFIG_DS_MIN_DEREF_BLOCK_SIZE_HANDLE_COUNT] = "DS Min Deref Block Size Handle Count",
-+	[INTEL_HWCONFIG_NUM_RT_STACKS_PER_DSS] = "Num RT Stacks Per DSS",
-+	[INTEL_HWCONFIG_MAX_URB_STARTING_ADDRESS] = "Max URB Starting Address",
-+	[INTEL_HWCONFIG_MIN_CS_URB_ENTRIES] = "Min CS URB Entries",
-+	[INTEL_HWCONFIG_MAX_CS_URB_ENTRIES] = "Max CS URB Entries",
-+	[INTEL_HWCONFIG_L3_ALLOC_PER_BANK_URB] = "L3 Alloc Per Bank - URB",
-+	[INTEL_HWCONFIG_L3_ALLOC_PER_BANK_REST] = "L3 Alloc Per Bank - Rest",
-+	[INTEL_HWCONFIG_L3_ALLOC_PER_BANK_DC] = "L3 Alloc Per Bank - DC",
-+	[INTEL_HWCONFIG_L3_ALLOC_PER_BANK_RO] = "L3 Alloc Per Bank - RO",
-+	[INTEL_HWCONFIG_L3_ALLOC_PER_BANK_Z] = "L3 Alloc Per Bank - Z",
-+	[INTEL_HWCONFIG_L3_ALLOC_PER_BANK_COLOR] = "L3 Alloc Per Bank - Color",
-+	[INTEL_HWCONFIG_L3_ALLOC_PER_BANK_UNIFIED_TILE_CACHE] = "L3 Alloc Per Bank - Unified Tile Cache",
-+	[INTEL_HWCONFIG_L3_ALLOC_PER_BANK_COMMAND_BUFFER] = "L3 Alloc Per Bank - Command Buffer",
-+	[INTEL_HWCONFIG_L3_ALLOC_PER_BANK_RW] = "L3 Alloc Per Bank - RW",
-+	[INTEL_HWCONFIG_MAX_NUM_L3_CONFIGS] = "Num L3 Configs",
-+	[INTEL_HWCONFIG_BINDLESS_SURFACE_OFFSET_BIT_COUNT] = "Bindless Surface Offset Bit Count",
-+	[INTEL_HWCONFIG_RESERVED_CCS_WAYS] = "Reserved CCS ways",
-+	[INTEL_HWCONFIG_CSR_SIZE_IN_MB] = "CSR Size (in MB)",
-+	[INTEL_HWCONFIG_GEOMETRY_PIPES_PER_SLICE] = "Geometry pipes per slice",
-+	[INTEL_HWCONFIG_L3_BANK_SIZE_IN_KB] = "L3 bank size (in KB)",
-+	[INTEL_HWCONFIG_SLM_SIZE_PER_DSS] = "SLM size per DSS",
-+	[INTEL_HWCONFIG_MAX_PIXEL_FILL_RATE_PER_SLICE] = "Max pixel fill rate per slice",
-+	[INTEL_HWCONFIG_MAX_PIXEL_FILL_RATE_PER_DSS] = "Max pixel fill rate per DSS",
-+	[INTEL_HWCONFIG_URB_SIZE_PER_SLICE_IN_KB] = "URB size per slice (in KB)",
-+	[INTEL_HWCONFIG_URB_SIZE_PER_L3_BANK_COUNT_IN_KB] = "URB size per L3 bank count (in KB)",
-+	[INTEL_HWCONFIG_MAX_SUBSLICE] = "Max subslices",
-+	[INTEL_HWCONFIG_MAX_EU_PER_SUBSLICE] = "Max EUs per subslice",
-+	[INTEL_HWCONFIG_RAMBO_L3_BANK_SIZE_IN_KB] = "RAMBO L3 bank size (in KB)",
-+	[INTEL_HWCONFIG_SLM_SIZE_PER_SS_IN_KB] = "SLM size per SS (in KB)",
-+	[INTEL_HWCONFIG_NUM_HBM_STACKS_PER_TILE] = "Num HBM Stacks Per Tile",
-+	[INTEL_HWCONFIG_NUM_CHANNELS_PER_HBM_STACK] = "Num Channels Per HBM Stack",
-+	[INTEL_HWCONFIG_HBM_CHANNEL_WIDTH_IN_BYTES] = "HBM Channel Width (in bytes)",
-+	[INTEL_HWCONFIG_MIN_TASK_URB_ENTRIES] = "Min Task URB Entries",
-+	[INTEL_HWCONFIG_MAX_TASK_URB_ENTRIES] = "Max Task URB Entries",
-+	[INTEL_HWCONFIG_MIN_MESH_URB_ENTRIES] = "Min Mesh URB Entries",
-+	[INTEL_HWCONFIG_MAX_MESH_URB_ENTRIES] = "Max Mesh URB Entries",
-+};
-+
-+static const char * const hwconfig_memtypes[] = {
-+	[INTEL_HWCONFIG_MEMORY_TYPE_LPDDR4] = "LPDDR4",
-+	[INTEL_HWCONFIG_MEMORY_TYPE_LPDDR5] = "LPDDR5",
-+	[INTEL_HWCONFIG_MEMORY_TYPE_HBM2] = "HBM2",
-+	[INTEL_HWCONFIG_MEMORY_TYPE_HBM2e] = "HBM2e",
-+	[INTEL_HWCONFIG_MEMORY_TYPE_GDDR6] = "GDDR6",
-+};
-+
-+static const char * const hwconfig_cachetypes[] = {
-+	[INTEL_HWCONFIG_CACHE_TYPE_L3] = "L3",
-+	[INTEL_HWCONFIG_CACHE_TYPE_LLC] = "LLC",
-+	[INTEL_HWCONFIG_CACHE_TYPE_EDRAM] = "EDRAM",
-+};
-+
-+static void query_parse_and_validate_hwconfig_table(int i915)
-+{
-+	struct drm_i915_query_item item = {
-+		.query_id = DRM_I915_QUERY_HWCONFIG_BLOB,
-+	};
-+	uint32_t *data, value;
-+	int i = 0;
-+	int len, j, max_words, table_size;
-+
-+	igt_assert(ARRAY_SIZE(hwconfig_keys) == __INTEL_HWCONFIG_KEY_LIMIT);
-+	igt_assert(ARRAY_SIZE(hwconfig_memtypes) == __INTEL_HWCONFIG_MEMORY_TYPE_LIMIT);
-+	igt_assert(ARRAY_SIZE(hwconfig_cachetypes) == __INTEL_HWCONFIG_CACHE_TYPE_LIMIT);
-+
-+	i915_query_items(i915, &item, 1);
-+	table_size = item.length;
-+	igt_require(table_size > 0);
-+
-+	data = malloc(table_size);
-+	igt_assert(data);
-+	memset(data, 0, table_size);
-+	item.data_ptr = to_user_pointer(data);
-+
-+	i915_query_items(i915, &item, 1);
-+	igt_assert(item.length == table_size);
-+	igt_info("Table size = %d bytes\n", table_size);
-+	igt_assert(table_size > 0);
-+
-+	/* HWConfig table is a list of KLV sets */
-+	max_words = table_size / sizeof(uint32_t);
-+	igt_assert(max_words * sizeof(uint32_t) == table_size);
-+	while (i < max_words) {
-+		/* Attribute ID zero is invalid */
-+		igt_assert(data[i] > 0);
-+		igt_assert(data[i] < __INTEL_HWCONFIG_KEY_LIMIT);
-+
-+		len = data[i + 1];
-+		igt_assert(len > 0);
-+		igt_assert((i + 2 + len) <= max_words);
-+
-+		igt_info("[%2d] %s: ", data[i], hwconfig_keys[data[i]]);
-+
-+		value = data[i + 2];
-+		switch (data[i]) {
-+		case INTEL_HWCONFIG_MEMORY_TYPE:
-+			igt_assert(len == 1);
-+			igt_assert(value < __INTEL_HWCONFIG_MEMORY_TYPE_LIMIT);
-+			igt_info("%s\n", hwconfig_memtypes[value]);
-+			break;
-+
-+		case INTEL_HWCONFIG_CACHE_TYPES:
-+			igt_assert(len == 1);
-+
-+			if (!value)
-+				igt_info("-\n");
-+
-+			j = 0;
-+			while (value) {
-+				if (value & BIT(j)) {
-+					value &= ~BIT(j);
-+					igt_assert(j < __INTEL_HWCONFIG_CACHE_TYPE_LIMIT);
-+					igt_info("%s%s", hwconfig_cachetypes[j], value ? ", " : "\n");
-+				}
-+			}
-+			break;
-+
-+		default:
-+			for (j = i + 2; j < i + 1 + len; j++)
-+				igt_info("%d, ", data[j]);
-+			igt_info("%d\n", data[j]);
-+		}
-+
-+		/* Advance to next key */
-+		i += 2 + len;
-+	}
-+
-+	free(data);
-+}
-+
- igt_main
- {
- 	int fd = -1;
-@@ -998,6 +1174,10 @@ igt_main
- 			engines(fd);
- 	}
- 
-+	igt_describe("Test DRM_I915_QUERY_HWCONFIG_BLOB query");
-+	igt_subtest("hwconfig_table")
-+		query_parse_and_validate_hwconfig_table(fd);
-+
- 	igt_fixture {
- 		close(fd);
- 	}
--- 
-2.36.0
-
+T24gRnJpLCAyMDIyLTA2LTAzIGF0IDEzOjE0ICswMDAwLCBIb2dhbmRlciwgSm91bmkgd3JvdGU6
+DQo+IE9uIEZyaSwgMjAyMi0wNi0wMyBhdCAxNTo0MyArMDMwMCwgSmFuaSBOaWt1bGEgd3JvdGU6
+DQo+ID4gT24gRnJpLCAwMyBKdW4gMjAyMiwgSm91bmkgSMO2Z2FuZGVyIDxqb3VuaS5ob2dhbmRl
+ckBpbnRlbC5jb20+IHdyb3RlOg0KPiA+ID4gRXhwb3J0IGhlYWRsZXNzIHNrdSBiaXQgKGJpdCAx
+MykgZnJvbSBvcHJlZ2lvbi0+aGVhZGVyLT5wY29uIGFzIGFuDQo+ID4gPiBpbnRlcmZhY2UgdG8g
+Y2hlY2sgaWYgb3VyIGRldmljZSBpcyBoZWFkbGVzcyBjb25maWd1cmF0aW9uLg0KPiA+ID4gDQo+
+ID4gPiBCc3BlYzogNTM0NDENCj4gPiA+IFNpZ25lZC1vZmYtYnk6IEpvdW5pIEjDtmdhbmRlciA8
+am91bmkuaG9nYW5kZXJAaW50ZWwuY29tPg0KPiA+ID4gLS0tDQo+ID4gPiAgZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9vcHJlZ2lvbi5jIHwgMTIgKysrKysrKysrKysrDQo+ID4g
+PiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9vcHJlZ2lvbi5oIHwgIDcgKysr
+KysrKw0KPiA+ID4gIDIgZmlsZXMgY2hhbmdlZCwgMTkgaW5zZXJ0aW9ucygrKQ0KPiA+ID4gDQo+
+ID4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9vcHJl
+Z2lvbi5jDQo+ID4gPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfb3ByZWdp
+b24uYw0KPiA+ID4gaW5kZXggZjMxZThjM2Y4Y2UwLi5lYWIzZjJlNmI3ODYgMTAwNjQ0DQo+ID4g
+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX29wcmVnaW9uLmMNCj4g
+PiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfb3ByZWdpb24uYw0K
+PiA+ID4gQEAgLTUzLDYgKzUzLDggQEANCj4gPiA+ICAjZGVmaW5lIE1CT1hfQVNMRV9FWFQJCUJJ
+VCg0KQkvKiBNYWlsYm94ICM1ICovDQo+ID4gPiAgI2RlZmluZSBNQk9YX0JBQ0tMSUdIVAkJQklU
+KDUpCS8qIE1haWxib3ggIzINCj4gPiA+ICh2YWxpZCBmcm9tIHYzLngpICovDQo+ID4gPiAgDQo+
+ID4gPiArI2RlZmluZSBQQ09OX0hFQURMRVNTX1NLVQlCSVQoMTMpDQo+ID4gDQo+ID4gSGVyZSB3
+ZSBnbyBhZ2Fpbi4NCj4gPiANCj4gPiBXaGF0IGRvZXMgaGVhZGxlc3MgbWVhbiBoZXJlPyBUaGUg
+c3BlYyBkb2VzIG5vdCBzYXkuIERvZXMgaXQgaGF2ZQ0KPiA+IGRpc3BsYXkgaGFyZHdhcmU/IEFw
+cGFyZW50bHkgeWVzLCBzaW5jZSBvdGhlcndpc2Ugd2Ugd291bGRuJ3QgYmUNCj4gPiBoZXJlLg0K
+PiANCj4gVGhpcyBpcyBmb3IgaHlicmlkIHNldHVwIHdpdGggc2V2ZXJhbCBkaXNwbGF5IGh3IGFu
+ZCB0aGUgcGFuZWwgd29udCBiZQ0KPiBjb25uZWN0ZWQgaW50byBkZXZpY2UgZHJpdmVuIGJ5IGk5
+MTUgZHJpdmVyLg0KPiANCj4gPiBXZSBoYXZlIElOVEVMX0RJU1BMQVlfRU5BQkxFRCgpIHdoaWNo
+IHNob3VsZCBkbyB0aGUgcmlnaHQgdGhpbmcgd2hlbg0KPiA+IHlvdQ0KPiA+IGRvIGhhdmUgZGlz
+cGxheSBoYXJkd2FyZSBhbmQgaGF2ZSBkb25lIG91dHB1dCBzZXR1cCBldGMuIGJ1dCB3YW50IHRv
+DQo+ID4gZm9yY2UgdGhlbSBkaXNjb25uZWN0ZWQsIGkuZS4geW91IHRha2UgdGhlIGhhcmR3YXJl
+IG92ZXIgcHJvcGVybHksDQo+ID4gYnV0DQo+ID4gcHV0IGl0IHRvIHNsZWVwIGZvciBwb3dlciBz
+YXZpbmdzLg0KPiA+IA0KPiA+IE1heWJlIHdlIHNob3VsZCBib2x0IHRoaXMgb3ByZWdpb24gY2hl
+Y2sgaW4gdGhhdCBtYWNybz8NCj4gPiANCj4gPiBNYXliZSB3ZSBuZWVkIHRvIHVzZSBJTlRFTF9E
+SVNQTEFZX0VOQUJMRUQoKSBhbHNvIHRvIHByZXZlbnQgcG9sbGluZy4NCj4gDQo+IFRoYW5rIHlv
+dSBmb3IgcG9pbnRpbmcgdGhpcyBvdXQuIEhBU19ESVNQTEFZIEkgYWxyZWFkeSBub3RpY2UgYW5k
+IGl0J3MNCj4gbm90IHN1aXRhYmxlIGZvciB3aGF0IHdlIHdhbnQgaGVyZS4gSSB0aGluayBib2x0
+aW5nIHRoaXMgY2hlY2sgaW50bw0KPiBJTlRFTF9ESVNQTEFZX0VOQUJMRUQgYXMgeW91IHN1Z2dl
+c3RlZCBpcyBlbm91Z2guIFRoYXQgd2lsbCBwcmV2ZW50DQo+IHdha2luZyB1cCB0aGUgaHcgaW50
+byBEMCBzdGF0ZSBmb3IgcG9sbGluZy4NCg0KQSBoZWFkbGVzcyBza3Ugc2hvdWxkIG5vdCBoYXZl
+IGFueSBEREkgcG9ydHMgZW5hYmxlZCwgbXVjaCBlYXNpZXIgY2hlY2sgZm9yIHRoYXQuDQoNCj4g
+DQo+ID4gDQo+ID4gSSBjZXJ0YWlubHkgd291bGQgbm90IHdhbnQgdG8gYWRkIGFub3RoZXIgbW9k
+ZSB0aGF0J3Mgc2VwYXJhdGUgZnJvbQ0KPiA+IEhBU19ESVNQTEFZKCkgYW5kIElOVEVMX0RJU1BM
+QVlfRU5BQkxFRCgpLg0KPiANCj4gTm8gbmVlZCBmb3IgdGhpcy4gSSB0aGluayB3ZSBjYW4gZ28g
+d2l0aCBJTlRFTF9ESVNQTEFZX0VOQUJMRUQuDQo+ID4gDQo+ID4gPiArDQo+ID4gPiAgc3RydWN0
+IG9wcmVnaW9uX2hlYWRlciB7DQo+ID4gPiAgCXU4IHNpZ25hdHVyZVsxNl07DQo+ID4gPiAgCXUz
+MiBzaXplOw0KPiA+ID4gQEAgLTExMzUsNiArMTEzNywxNiBAQCBzdHJ1Y3QgZWRpZCAqaW50ZWxf
+b3ByZWdpb25fZ2V0X2VkaWQoc3RydWN0DQo+ID4gPiBpbnRlbF9jb25uZWN0b3IgKmludGVsX2Nv
+bm5lY3RvcikNCj4gPiA+ICAJcmV0dXJuIG5ld19lZGlkOw0KPiA+ID4gIH0NCj4gPiA+ICANCj4g
+PiA+ICtib29sIGludGVsX29wcmVnaW9uX2hlYWRsZXNzX3NrdShzdHJ1Y3QgZHJtX2k5MTVfcHJp
+dmF0ZSAqaTkxNSkNCj4gPiA+ICt7DQo+ID4gPiArCXN0cnVjdCBpbnRlbF9vcHJlZ2lvbiAqb3By
+ZWdpb24gPSAmaTkxNS0+b3ByZWdpb247DQo+ID4gPiArDQo+ID4gPiArCWlmICghb3ByZWdpb24t
+PmhlYWRlcikNCj4gPiA+ICsJCXJldHVybiBmYWxzZTsNCj4gPiA+ICsNCj4gPiA+ICsJcmV0dXJu
+IG9wcmVnaW9uLT5oZWFkZXItPnBjb24gJiBQQ09OX0hFQURMRVNTX1NLVTsNCj4gPiANCj4gPiBX
+ZSBzaG91bGQgcHJvYmFibHkgc3RhcnQgY2hlY2tpbmcgZm9yIG9wcmVnaW9uIHZlcnNpb24gZm9y
+IHRoaXMgc3R1ZmYNCj4gPiB0b28uDQo+ID4gDQo+IA0KPiBZZXMsIEkgd2lsbCBkbyB0aGlzIGNo
+YW5nZS4NCj4gDQo+ID4gDQo+ID4gQlIsDQo+ID4gSmFuaS4NCj4gPiANCj4gPiA+ICt9DQo+ID4g
+PiArDQo+ID4gPiAgdm9pZCBpbnRlbF9vcHJlZ2lvbl9yZWdpc3RlcihzdHJ1Y3QgZHJtX2k5MTVf
+cHJpdmF0ZSAqaTkxNSkNCj4gPiA+ICB7DQo+ID4gPiAgCXN0cnVjdCBpbnRlbF9vcHJlZ2lvbiAq
+b3ByZWdpb24gPSAmaTkxNS0+b3ByZWdpb247DQo+ID4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9vcHJlZ2lvbi5oDQo+ID4gPiBiL2RyaXZlcnMvZ3B1
+L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfb3ByZWdpb24uaA0KPiA+ID4gaW5kZXggODJjYzBiYTM0
+YWY3Li41YWQ5NmUxZDgyNzggMTAwNjQ0DQo+ID4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkx
+NS9kaXNwbGF5L2ludGVsX29wcmVnaW9uLmgNCj4gPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2Rpc3BsYXkvaW50ZWxfb3ByZWdpb24uaA0KPiA+ID4gQEAgLTc2LDYgKzc2LDggQEAgaW50
+IGludGVsX29wcmVnaW9uX25vdGlmeV9hZGFwdGVyKHN0cnVjdA0KPiA+ID4gZHJtX2k5MTVfcHJp
+dmF0ZSAqZGV2X3ByaXYsDQo+ID4gPiAgaW50IGludGVsX29wcmVnaW9uX2dldF9wYW5lbF90eXBl
+KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlDQo+ID4gPiAqZGV2X3ByaXYpOw0KPiA+ID4gIHN0cnVj
+dCBlZGlkICppbnRlbF9vcHJlZ2lvbl9nZXRfZWRpZChzdHJ1Y3QgaW50ZWxfY29ubmVjdG9yDQo+
+ID4gPiAqY29ubmVjdG9yKTsNCj4gPiA+ICANCj4gPiA+ICtib29sIGludGVsX29wcmVnaW9uX2hl
+YWRsZXNzX3NrdShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSk7DQo+ID4gPiArDQo+ID4g
+PiAgI2Vsc2UgLyogQ09ORklHX0FDUEkqLw0KPiA+ID4gIA0KPiA+ID4gIHN0YXRpYyBpbmxpbmUg
+aW50IGludGVsX29wcmVnaW9uX3NldHVwKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlDQo+ID4gPiAq
+ZGV2X3ByaXYpDQo+ID4gPiBAQCAtMTI3LDYgKzEyOSwxMSBAQCBpbnRlbF9vcHJlZ2lvbl9nZXRf
+ZWRpZChzdHJ1Y3QgaW50ZWxfY29ubmVjdG9yDQo+ID4gPiAqY29ubmVjdG9yKQ0KPiA+ID4gIAly
+ZXR1cm4gTlVMTDsNCj4gPiA+ICB9DQo+ID4gPiAgDQo+ID4gPiArYm9vbCBpbnRlbF9vcHJlZ2lv
+bl9oZWFkbGVzc19za3Uoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUpDQo+ID4gPiArew0K
+PiA+ID4gKwlyZXR1cm4gZmFsc2U7DQo+ID4gPiArfQ0KPiA+ID4gKw0KPiA+ID4gICNlbmRpZiAv
+KiBDT05GSUdfQUNQSSAqLw0KPiA+ID4gIA0KPiA+ID4gICNlbmRpZg0KPiANCg0K
