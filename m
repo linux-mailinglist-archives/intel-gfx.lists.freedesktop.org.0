@@ -2,53 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F1D253CDE9
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jun 2022 19:13:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E41153D29A
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jun 2022 22:04:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7039E112072;
-	Fri,  3 Jun 2022 17:13:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B8F2710E8C3;
+	Fri,  3 Jun 2022 20:04:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB253112072;
- Fri,  3 Jun 2022 17:13:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1654276432; x=1685812432;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=DkFHuG3v9/ZzHiPlXux73uUpYW2NHRrn7Edjy4vHP/g=;
- b=TfQZ2B0OTKbmuzy6lFEBAzjCCNPtIJ29nlCmQr/3jzDW2wWfetQMfhuF
- SApwG8vsYI1BoNA3eLHjnB7tEAOkVNkS3hLRMelr2nVTX7MLh3o6/6Kdp
- IZ1+7IA639UB/MmsnX2mmPqA49miElCROf34NA4xnWXjgJSaSRMpU36H7
- 81rBgQg021tieWsjVVCYY9id3vEpqaWhvbg9CaOmJvvMmWjQgbBMyrGsO
- UgE694V0Z/HCapsLlI3JbYDd7pw8TKkRNXjKvRBGel5Xsl36CfaHEOkEx
- OCUTRanBgLo04v5Ig2Sc97bSIudX8rdxGNwsMvXRRweLzAfJPZaThST+d g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10367"; a="263956957"
-X-IronPort-AV: E=Sophos;i="5.91,275,1647327600"; d="scan'208";a="263956957"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2022 10:13:52 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,275,1647327600"; d="scan'208";a="668531090"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.163])
- by FMSMGA003.fm.intel.com with SMTP; 03 Jun 2022 10:13:49 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 03 Jun 2022 20:13:48 +0300
-Date: Fri, 3 Jun 2022 20:13:48 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <YppBTAFXSNgaoymG@intel.com>
-References: <cover.1653381821.git.jani.nikula@intel.com>
- <7451127fb889f9d2ed723a6d83e033d6a5196354.1653381821.git.jani.nikula@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 57DC710E6C6;
+ Fri,  3 Jun 2022 20:04:52 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 4EACBAADD3;
+ Fri,  3 Jun 2022 20:04:52 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3844039211811036484=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <7451127fb889f9d2ed723a6d83e033d6a5196354.1653381821.git.jani.nikula@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v1 11/13] drm/edid: add HF-EEODB support to
- EDID read and allocation
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Fri, 03 Jun 2022 20:04:52 -0000
+Message-ID: <165428669229.17722.11270103445304935538@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <cover.1654261471.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1654261471.git.jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_i915=5Fdrv=2Eh_=26_i915=5Fgem=2Eh_header_refactoring?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,177 +40,319 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, May 24, 2022 at 01:39:33PM +0300, Jani Nikula wrote:
-> HDMI 2.1 section 10.3.6 defines an HDMI Forum EDID Extension Override
-> Data Block, which may contain a different extension count than the base
-> block claims. Add support for reading more EDID data if available. The
-> extra blocks aren't parsed yet, though.
-> 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/drm_edid.c | 81 ++++++++++++++++++++++++++++++++++++--
->  1 file changed, 78 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
-> index 5e0a91da565e..ba0c880dc133 100644
-> --- a/drivers/gpu/drm/drm_edid.c
-> +++ b/drivers/gpu/drm/drm_edid.c
-> @@ -1581,6 +1581,15 @@ static bool version_greater(const struct drm_edid *drm_edid,
->  		(edid->version == version && edid->revision > revision);
->  }
->  
-> +static int edid_hfeeodb_extension_block_count(const struct edid *edid);
-> +
-> +static int edid_hfeeodb_block_count(const struct edid *edid)
-> +{
-> +	int eeodb = edid_hfeeodb_extension_block_count(edid);
-> +
-> +	return eeodb ? eeodb + 1 : 0;
-> +}
-> +
->  static int edid_extension_block_count(const struct edid *edid)
->  {
->  	return edid->extensions;
-> @@ -2026,6 +2035,11 @@ static struct edid *edid_filter_invalid_blocks(struct edid *edid,
->  	struct edid *new;
->  	int i, valid_blocks = 0;
->  
-> +	/*
-> +	 * Note: If the EDID uses HF-EEODB, but has invalid blocks, we'll revert
-> +	 * back to regular extension count here. We don't want to start
-> +	 * modifying the HF-EEODB extension too.
-> +	 */
->  	for (i = 0; i < edid_block_count(edid); i++) {
->  		const void *src_block = edid_block_data(edid, i);
->  
-> @@ -2235,7 +2249,7 @@ static struct edid *_drm_do_get_edid(struct drm_connector *connector,
->  				     size_t *size)
->  {
->  	enum edid_block_status status;
-> -	int i, invalid_blocks = 0;
-> +	int i, num_blocks, invalid_blocks = 0;
->  	struct edid *edid, *new;
->  	size_t alloc_size = EDID_LENGTH;
->  
-> @@ -2277,7 +2291,8 @@ static struct edid *_drm_do_get_edid(struct drm_connector *connector,
->  		goto fail;
->  	edid = new;
->  
-> -	for (i = 1; i < edid_block_count(edid); i++) {
-> +	num_blocks = edid_block_count(edid);
-> +	for (i = 1; i < num_blocks; i++) {
->  		void *block = (void *)edid_block_data(edid, i);
->  
->  		status = edid_block_read(block, i, read_block, context);
-> @@ -2288,11 +2303,31 @@ static struct edid *_drm_do_get_edid(struct drm_connector *connector,
->  			if (status == EDID_BLOCK_READ_FAIL)
->  				goto fail;
->  			invalid_blocks++;
-> +		} else if (i == 1) {
-> +			/*
-> +			 * If the first EDID extension is a CTA extension, and
-> +			 * the first Data Block is HF-EEODB, override the
-> +			 * extension block count.
-> +			 *
-> +			 * Note: HF-EEODB could specify a smaller extension
-> +			 * count too, but we can't risk allocating a smaller
-> +			 * amount.
-> +			 */
-> +			int eeodb = edid_hfeeodb_block_count(edid);
-> +
-> +			if (eeodb > num_blocks) {
-> +				num_blocks = eeodb;
-> +				alloc_size = edid_size_by_blocks(num_blocks);
-> +				new = krealloc(edid, alloc_size, GFP_KERNEL);
-> +				if (!new)
-> +					goto fail;
-> +				edid = new;
-> +			}
->  		}
->  	}
->  
->  	if (invalid_blocks) {
-> -		connector_bad_edid(connector, edid, edid_block_count(edid));
-> +		connector_bad_edid(connector, edid, num_blocks);
->  
->  		edid = edid_filter_invalid_blocks(edid, &alloc_size);
->  	}
-> @@ -3825,6 +3860,7 @@ static int add_detailed_modes(struct drm_connector *connector,
->  #define CTA_EXT_DB_HDR_STATIC_METADATA	6
->  #define CTA_EXT_DB_420_VIDEO_DATA	14
->  #define CTA_EXT_DB_420_VIDEO_CAP_MAP	15
-> +#define CTA_EXT_DB_HF_EEODB		0x78
->  #define CTA_EXT_DB_HF_SCDB		0x79
->  
->  #define EDID_BASIC_AUDIO	(1 << 6)
-> @@ -4868,6 +4904,12 @@ static bool cea_db_is_hdmi_forum_vsdb(const struct cea_db *db)
->  		cea_db_payload_len(db) >= 7;
->  }
->  
-> +static bool cea_db_is_hdmi_forum_eeodb(const void *db)
-> +{
-> +	return cea_db_is_extended_tag(db, CTA_EXT_DB_HF_EEODB) &&
-> +		cea_db_payload_len(db) >= 2;
-> +}
-> +
->  static bool cea_db_is_microsoft_vsdb(const struct cea_db *db)
->  {
->  	return cea_db_is_vendor(db, MICROSOFT_IEEE_OUI) &&
-> @@ -4902,6 +4944,39 @@ static bool cea_db_is_hdmi_hdr_metadata_block(const struct cea_db *db)
->  		cea_db_payload_len(db) >= 3;
->  }
->  
-> +/*
-> + * Get the HF-EEODB override extension block count from EDID.
-> + *
-> + * The passed in EDID may be partially read, as long as it has at least two
-> + * blocks (base block and one extension block) if EDID extension count is > 0.
-> + *
-> + * References:
-> + * - HDMI 2.1 section 10.3.6 HDMI Forum EDID Extension Override Data Block
-> + */
-> +static int edid_hfeeodb_extension_block_count(const struct edid *edid)
-> +{
-> +	const u8 *cta;
-> +
-> +	/* No extensions according to base block, no HF-EEODB. */
-> +	if (!edid_extension_block_count(edid))
-> +		return 0;
-> +
-> +	/* HF-EEODB is always in the first EDID extension block only */
-> +	cta = edid_extension_block_data(edid, 0);
-> +	if (edid_block_tag(cta) != CEA_EXT || cea_revision(cta) < 3)
-> +		return 0;
-> +
-> +	/*
-> +	 * Sinks that include the HF-EEODB in their E-EDID shall include one and
-> +	 * only one instance of the HF-EEODB in the E-EDID, occupying bytes 4
-> +	 * through 6 of Block 1 of the E-EDID.
-> +	 */
-> +	if (!cea_db_is_hdmi_forum_eeodb(&cta[4]))
-> +		return 0;
+--===============3844039211811036484==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Still not a big fan of these hardcoded things. Not sure if there's any
-easy way to just use the normal iterators at this point when we don't
-really know the full composition of the EDID yet. If not then I guess
-we'll have to use some hardcoded stuff. What we definitely seem to be
-missing here are size checks, for both the whoe data block collection,
-and the specific data block payload.
+== Series Details ==
 
-> +
-> +	return cta[4 + 2];
-> +}
-> +
->  static void drm_parse_y420cmdb_bitmap(struct drm_connector *connector,
->  				      const u8 *db)
->  {
-> -- 
-> 2.30.2
+Series: drm/i915: i915_drv.h & i915_gem.h header refactoring
+URL   : https://patchwork.freedesktop.org/series/104725/
+State : success
 
--- 
-Ville Syrjälä
-Intel
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_11726 -> Patchwork_104725v1
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104725v1/index.html
+
+Participating hosts (43 -> 44)
+------------------------------
+
+  Additional (4): bat-adln-1 fi-kbl-x1275 bat-dg2-9 bat-atsm-1 
+  Missing    (3): bat-dg2-8 bat-jsl-2 fi-hsw-4770 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_104725v1:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@i915_suspend@basic-s2idle-without-i915:
+    - {bat-adln-1}:       NOTRUN -> [DMESG-WARN][1] +1 similar issue
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104725v1/bat-adln-1/igt@i915_suspend@basic-s2idle-without-i915.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - {bat-adln-1}:       NOTRUN -> [SKIP][2] +19 similar issues
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104725v1/bat-adln-1/igt@kms_frontbuffer_tracking@basic.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_104725v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-kbl-x1275:       NOTRUN -> [SKIP][3] ([fdo#109271] / [i915#2190])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104725v1/fi-kbl-x1275/igt@gem_huc_copy@huc-copy.html
+
+  * igt@gem_lmem_swapping@verify-random:
+    - fi-kbl-x1275:       NOTRUN -> [SKIP][4] ([fdo#109271] / [i915#4613]) +3 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104725v1/fi-kbl-x1275/igt@gem_lmem_swapping@verify-random.html
+
+  * igt@i915_selftest@live@gt_engines:
+    - bat-dg1-6:          [PASS][5] -> [INCOMPLETE][6] ([i915#4418])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11726/bat-dg1-6/igt@i915_selftest@live@gt_engines.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104725v1/bat-dg1-6/igt@i915_selftest@live@gt_engines.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - bat-dg1-5:          [PASS][7] -> [DMESG-FAIL][8] ([i915#4494] / [i915#4957])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11726/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104725v1/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
+
+  * igt@i915_selftest@live@requests:
+    - fi-blb-e6850:       [PASS][9] -> [DMESG-FAIL][10] ([i915#4528])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11726/fi-blb-e6850/igt@i915_selftest@live@requests.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104725v1/fi-blb-e6850/igt@i915_selftest@live@requests.html
+
+  * igt@kms_chamelium@dp-hpd-fast:
+    - fi-kbl-x1275:       NOTRUN -> [SKIP][11] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104725v1/fi-kbl-x1275/igt@kms_chamelium@dp-hpd-fast.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
+    - fi-kbl-x1275:       NOTRUN -> [SKIP][12] ([fdo#109271] / [i915#533])
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104725v1/fi-kbl-x1275/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
+
+  * igt@prime_vgem@basic-userptr:
+    - fi-kbl-x1275:       NOTRUN -> [SKIP][13] ([fdo#109271]) +12 similar issues
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104725v1/fi-kbl-x1275/igt@prime_vgem@basic-userptr.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#109295]: https://bugs.freedesktop.org/show_bug.cgi?id=109295
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#1155]: https://gitlab.freedesktop.org/drm/intel/issues/1155
+  [i915#1836]: https://gitlab.freedesktop.org/drm/intel/issues/1836
+  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
+  [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
+  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
+  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
+  [i915#3595]: https://gitlab.freedesktop.org/drm/intel/issues/3595
+  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
+  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
+  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
+  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
+  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+  [i915#4212]: https://gitlab.freedesktop.org/drm/intel/issues/4212
+  [i915#4213]: https://gitlab.freedesktop.org/drm/intel/issues/4213
+  [i915#4215]: https://gitlab.freedesktop.org/drm/intel/issues/4215
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4418]: https://gitlab.freedesktop.org/drm/intel/issues/4418
+  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
+  [i915#4528]: https://gitlab.freedesktop.org/drm/intel/issues/4528
+  [i915#4579]: https://gitlab.freedesktop.org/drm/intel/issues/4579
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#4873]: https://gitlab.freedesktop.org/drm/intel/issues/4873
+  [i915#4957]: https://gitlab.freedesktop.org/drm/intel/issues/4957
+  [i915#5174]: https://gitlab.freedesktop.org/drm/intel/issues/5174
+  [i915#5190]: https://gitlab.freedesktop.org/drm/intel/issues/5190
+  [i915#5274]: https://gitlab.freedesktop.org/drm/intel/issues/5274
+  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
+  [i915#5763]: https://gitlab.freedesktop.org/drm/intel/issues/5763
+  [i915#5874]: https://gitlab.freedesktop.org/drm/intel/issues/5874
+  [i915#5885]: https://gitlab.freedesktop.org/drm/intel/issues/5885
+  [i915#5903]: https://gitlab.freedesktop.org/drm/intel/issues/5903
+  [i915#6077]: https://gitlab.freedesktop.org/drm/intel/issues/6077
+  [i915#6092]: https://gitlab.freedesktop.org/drm/intel/issues/6092
+  [i915#6093]: https://gitlab.freedesktop.org/drm/intel/issues/6093
+  [i915#6094]: https://gitlab.freedesktop.org/drm/intel/issues/6094
+  [i915#6099]: https://gitlab.freedesktop.org/drm/intel/issues/6099
+  [i915#6133]: https://gitlab.freedesktop.org/drm/intel/issues/6133
+  [i915#6134]: https://gitlab.freedesktop.org/drm/intel/issues/6134
+  [i915#6135]: https://gitlab.freedesktop.org/drm/intel/issues/6135
+  [i915#6136]: https://gitlab.freedesktop.org/drm/intel/issues/6136
+  [i915#6137]: https://gitlab.freedesktop.org/drm/intel/issues/6137
+  [i915#6138]: https://gitlab.freedesktop.org/drm/intel/issues/6138
+  [i915#6166]: https://gitlab.freedesktop.org/drm/intel/issues/6166
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_11726 -> Patchwork_104725v1
+
+  CI-20190529: 20190529
+  CI_DRM_11726: 74ea63ad8ffc71b8345436147517253dcabd4793 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6505: edb1a467fb622b23b927e28ff603fa43851fea97 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_104725v1: 74ea63ad8ffc71b8345436147517253dcabd4793 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+3dec0c78220d drm/i915/utils: throw out unused stuff
+7c40950c5aa2 drm/i915/client: only include what's needed
+0b6284165596 drm/i915/drv: drop intel_bios.h include
+3461f78c0bb4 drm/i915/gem: split out the gem stuff from i915_drv.h
+626f04d45b1a drm/i915: un-inline i915_gem_drain_* functions
+c4a305977c75 drm/i915/debug: add new i915_debug.h for debug asserts
+b7e296002411 drm/i915/tasklet: separate local hacks around struct tasklet_struct
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104725v1/index.html
+
+--===============3844039211811036484==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: i915_drv.h &amp; i915_gem.h header refactoring</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/104725/">https://patchwork.freedesktop.org/series/104725/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104725v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104725v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11726 -&gt; Patchwork_104725v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104725v1/index.html</p>
+<h2>Participating hosts (43 -&gt; 44)</h2>
+<p>Additional (4): bat-adln-1 fi-kbl-x1275 bat-dg2-9 bat-atsm-1 <br />
+  Missing    (3): bat-dg2-8 bat-jsl-2 fi-hsw-4770 </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_104725v1:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>
+<p>igt@i915_suspend@basic-s2idle-without-i915:</p>
+<ul>
+<li>{bat-adln-1}:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104725v1/bat-adln-1/igt@i915_suspend@basic-s2idle-without-i915.html">DMESG-WARN</a> +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>{bat-adln-1}:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104725v1/bat-adln-1/igt@kms_frontbuffer_tracking@basic.html">SKIP</a> +19 similar issues</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_104725v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-kbl-x1275:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104725v1/fi-kbl-x1275/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@verify-random:</p>
+<ul>
+<li>fi-kbl-x1275:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104725v1/fi-kbl-x1275/igt@gem_lmem_swapping@verify-random.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_engines:</p>
+<ul>
+<li>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11726/bat-dg1-6/igt@i915_selftest@live@gt_engines.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104725v1/bat-dg1-6/igt@i915_selftest@live@gt_engines.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4418">i915#4418</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>bat-dg1-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11726/bat-dg1-5/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104725v1/bat-dg1-5/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@requests:</p>
+<ul>
+<li>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11726/fi-blb-e6850/igt@i915_selftest@live@requests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104725v1/fi-blb-e6850/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-hpd-fast:</p>
+<ul>
+<li>fi-kbl-x1275:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104725v1/fi-kbl-x1275/igt@kms_chamelium@dp-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
+<ul>
+<li>fi-kbl-x1275:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104725v1/fi-kbl-x1275/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-userptr:</p>
+<ul>
+<li>fi-kbl-x1275:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104725v1/fi-kbl-x1275/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +12 similar issues</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11726 -&gt; Patchwork_104725v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11726: 74ea63ad8ffc71b8345436147517253dcabd4793 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6505: edb1a467fb622b23b927e28ff603fa43851fea97 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_104725v1: 74ea63ad8ffc71b8345436147517253dcabd4793 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>3dec0c78220d drm/i915/utils: throw out unused stuff<br />
+7c40950c5aa2 drm/i915/client: only include what's needed<br />
+0b6284165596 drm/i915/drv: drop intel_bios.h include<br />
+3461f78c0bb4 drm/i915/gem: split out the gem stuff from i915_drv.h<br />
+626f04d45b1a drm/i915: un-inline i915_gem_drain_* functions<br />
+c4a305977c75 drm/i915/debug: add new i915_debug.h for debug asserts<br />
+b7e296002411 drm/i915/tasklet: separate local hacks around struct tasklet_struct</p>
+
+</body>
+</html>
+
+--===============3844039211811036484==--
