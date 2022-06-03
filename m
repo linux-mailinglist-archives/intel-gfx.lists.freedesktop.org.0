@@ -1,51 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF16C53C183
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jun 2022 02:54:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8355A53C184
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jun 2022 02:54:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA96310F312;
-	Fri,  3 Jun 2022 00:54:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0474810F344;
+	Fri,  3 Jun 2022 00:54:08 +0000 (UTC)
 X-Original-To: Intel-GFX@lists.freedesktop.org
 Delivered-To: Intel-GFX@lists.freedesktop.org
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C77C10F075;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E24F10E7E4;
  Fri,  3 Jun 2022 00:54:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1654217645; x=1685753645;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=zP8ro3LcQji6riGpKrHisl6Bfaw5IvpY+84Oz4zaon4=;
- b=BpkXaqn9QrMwdvxPAC/orm7i9S+btAt2tczOOZ0p+t2ahijrsJBRU93m
- yegkfa3FI3a8zEIQu1S6av5gtQkDgKgzWv96N0Aih4zi0He+ftyX+/5ri
- Pd274tgbXJpkHLBvdNLkenPnq/eFOte1nClHTWPJ/TR/LtsO9jutQJML4
- 1JGSP5JK0BRpVqDYkIkNWpM+z+dQLyPV3MSnS+ybByVNP3rUfJ/O7qbK5
- q88B5GsEZlPCEqwhQTjYZetUSalVblnYcltAjXnW/nfEdDg8oTrMcwE3u
- 4Azhsk/XqfxygI726F4RfSvUbYK8jDVBy0KfWlgqdscqcxbBYYHknFbeM Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10366"; a="339174841"
-X-IronPort-AV: E=Sophos;i="5.91,273,1647327600"; d="scan'208";a="339174841"
+ bh=JJIIT3wXfo61SIDl0+/6447iM1Y33tboksnvm9J5v6o=;
+ b=Z74AmP1BcfdDJ367cG2exY9YWBGG131W6Etg7ml2/W95b9WWKm7Ldikc
+ 9sf8PCbpmtOd11FgYNEvXERZOEcIH6dLkizKSPgNRQc74D7giVKr4G6hn
+ uCv1vOyaRe6z+2doj71tlh//qSXr/E8JFevNraxC3m5ZqQzv1732aDEEN
+ /NXnW4FXvD4bkEqpFBKLTGxS5BBEUXwVOdC2+eP3MfvNNNlHQmkULGHSm
+ BZYOJO6tUhPCiAyLc5YEErJhLOyir/ppoBH61qwPGW7AkSZOYiyH8KtEr
+ gw/n7TEwUOKm/9DQKjXjrLNGH5hhMP38noJlymG6Gcxjrf6EjkopGiT4Y Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10366"; a="339174842"
+X-IronPort-AV: E=Sophos;i="5.91,273,1647327600"; d="scan'208";a="339174842"
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  02 Jun 2022 17:54:04 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,273,1647327600"; d="scan'208";a="707827186"
+X-IronPort-AV: E=Sophos;i="5.91,273,1647327600"; d="scan'208";a="707827189"
 Received: from relo-linux-5.jf.intel.com ([10.165.21.134])
  by orsmga004.jf.intel.com with ESMTP; 02 Jun 2022 17:54:04 -0700
 From: John.C.Harrison@Intel.com
 To: IGT-Dev@Lists.FreeDesktop.Org
-Date: Thu,  2 Jun 2022 17:54:03 -0700
-Message-Id: <20220603005404.2209038-2-John.C.Harrison@Intel.com>
+Date: Thu,  2 Jun 2022 17:54:04 -0700
+Message-Id: <20220603005404.2209038-3-John.C.Harrison@Intel.com>
 X-Mailer: git-send-email 2.36.0
 In-Reply-To: <20220603005404.2209038-1-John.C.Harrison@Intel.com>
 References: <20220603005404.2209038-1-John.C.Harrison@Intel.com>
 MIME-Version: 1.0
 Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
  Swindon SN3 1RJ
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 i-g-t 1/2] include/drm-uapi: Update to latest
- i915_drm.h
+Subject: [Intel-gfx] [PATCH v3 i-g-t 2/2] tests/i915/query: Query,
+ parse and validate the hwconfig table
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,622 +59,358 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-GFX@Lists.FreeDesktop.Org
+Cc: Intel-GFX@Lists.FreeDesktop.Org,
+ Slawomir Milczarek <slawomir.milczarek@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: John Harrison <John.C.Harrison@Intel.com>
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-Update to the latest master version of the DRM UAPI header file.
+Newer platforms have an embedded table giving details about that
+platform's hardware configuration. This table can be retrieved from
+the KMD via the existing query API. So add a test for it as both an
+example of how to fetch the table and to validate the contents as much
+as is possible.
 
-NB: Had to remove '__user' keywords as they do not appear to be
-supported outside of kernel builds.
-
+Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+Cc: Slawomir Milczarek <slawomir.milczarek@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- include/drm-uapi/i915_drm.h | 410 ++++++++++++++++++++++++++++--------
- 1 file changed, 318 insertions(+), 92 deletions(-)
+ lib/intel_hwconfig_types.h | 118 ++++++++++++++++++++++++
+ tests/i915/i915_query.c    | 179 +++++++++++++++++++++++++++++++++++++
+ 2 files changed, 297 insertions(+)
+ create mode 100644 lib/intel_hwconfig_types.h
 
-diff --git a/include/drm-uapi/i915_drm.h b/include/drm-uapi/i915_drm.h
-index 9c9e1afa61ba..5d4166eb80a3 100644
---- a/include/drm-uapi/i915_drm.h
-+++ b/include/drm-uapi/i915_drm.h
-@@ -24,8 +24,8 @@
-  *
-  */
- 
--#ifndef _I915_DRM_H_
--#define _I915_DRM_H_
-+#ifndef _UAPI_I915_DRM_H_
-+#define _UAPI_I915_DRM_H_
- 
- #include "drm.h"
- 
-@@ -75,7 +75,7 @@ extern "C" {
-  * redefine the interface more easily than an ever growing struct of
-  * increasing complexity, and for large parts of that interface to be
-  * entirely optional. The downside is more pointer chasing; chasing across
-- * the boundary with pointers encapsulated inside u64.
-+ * the __user boundary with pointers encapsulated inside u64.
-  *
-  * Example chaining:
-  *
-@@ -154,25 +154,77 @@ enum i915_mocs_table_index {
- 	I915_MOCS_CACHED,
- };
- 
--/*
-+/**
-+ * enum drm_i915_gem_engine_class - uapi engine type enumeration
-+ *
-  * Different engines serve different roles, and there may be more than one
-- * engine serving each role. enum drm_i915_gem_engine_class provides a
-- * classification of the role of the engine, which may be used when requesting
-- * operations to be performed on a certain subset of engines, or for providing
-- * information about that group.
-+ * engine serving each role.  This enum provides a classification of the role
-+ * of the engine, which may be used when requesting operations to be performed
-+ * on a certain subset of engines, or for providing information about that
-+ * group.
-  */
- enum drm_i915_gem_engine_class {
-+	/**
-+	 * @I915_ENGINE_CLASS_RENDER:
-+	 *
-+	 * Render engines support instructions used for 3D, Compute (GPGPU),
-+	 * and programmable media workloads.  These instructions fetch data and
-+	 * dispatch individual work items to threads that operate in parallel.
-+	 * The threads run small programs (called "kernels" or "shaders") on
-+	 * the GPU's execution units (EUs).
-+	 */
- 	I915_ENGINE_CLASS_RENDER	= 0,
-+
-+	/**
-+	 * @I915_ENGINE_CLASS_COPY:
-+	 *
-+	 * Copy engines (also referred to as "blitters") support instructions
-+	 * that move blocks of data from one location in memory to another,
-+	 * or that fill a specified location of memory with fixed data.
-+	 * Copy engines can perform pre-defined logical or bitwise operations
-+	 * on the source, destination, or pattern data.
-+	 */
- 	I915_ENGINE_CLASS_COPY		= 1,
-+
-+	/**
-+	 * @I915_ENGINE_CLASS_VIDEO:
-+	 *
-+	 * Video engines (also referred to as "bit stream decode" (BSD) or
-+	 * "vdbox") support instructions that perform fixed-function media
-+	 * decode and encode.
-+	 */
- 	I915_ENGINE_CLASS_VIDEO		= 2,
-+
-+	/**
-+	 * @I915_ENGINE_CLASS_VIDEO_ENHANCE:
-+	 *
-+	 * Video enhancement engines (also referred to as "vebox") support
-+	 * instructions related to image enhancement.
-+	 */
- 	I915_ENGINE_CLASS_VIDEO_ENHANCE	= 3,
- 
--	/* should be kept compact */
-+	/**
-+	 * @I915_ENGINE_CLASS_COMPUTE:
-+	 *
-+	 * Compute engines support a subset of the instructions available
-+	 * on render engines:  compute engines support Compute (GPGPU) and
-+	 * programmable media workloads, but do not support the 3D pipeline.
-+	 */
-+	I915_ENGINE_CLASS_COMPUTE	= 4,
-+
-+	/* Values in this enum should be kept compact. */
- 
-+	/**
-+	 * @I915_ENGINE_CLASS_INVALID:
-+	 *
-+	 * Placeholder value to represent an invalid engine class assignment.
-+	 */
- 	I915_ENGINE_CLASS_INVALID	= -1
- };
- 
--/*
-+/**
-+ * struct i915_engine_class_instance - Engine class/instance identifier
-+ *
-  * There may be more than one engine fulfilling any role within the system.
-  * Each engine of a class is given a unique instance number and therefore
-  * any engine can be specified by its class:instance tuplet. APIs that allow
-@@ -180,10 +232,21 @@ enum drm_i915_gem_engine_class {
-  * for this identification.
-  */
- struct i915_engine_class_instance {
--	__u16 engine_class; /* see enum drm_i915_gem_engine_class */
--	__u16 engine_instance;
-+	/**
-+	 * @engine_class:
-+	 *
-+	 * Engine class from enum drm_i915_gem_engine_class
-+	 */
-+	__u16 engine_class;
- #define I915_ENGINE_CLASS_INVALID_NONE -1
- #define I915_ENGINE_CLASS_INVALID_VIRTUAL -2
-+
-+	/**
-+	 * @engine_instance:
-+	 *
-+	 * Engine instance.
-+	 */
-+	__u16 engine_instance;
- };
- 
- /**
-@@ -1118,10 +1181,16 @@ struct drm_i915_gem_exec_object2 {
- 	/**
- 	 * When the EXEC_OBJECT_PINNED flag is specified this is populated by
- 	 * the user with the GTT offset at which this object will be pinned.
-+	 *
- 	 * When the I915_EXEC_NO_RELOC flag is specified this must contain the
- 	 * presumed_offset of the object.
-+	 *
- 	 * During execbuffer2 the kernel populates it with the value of the
- 	 * current GTT offset of the object, for future presumed_offset writes.
-+	 *
-+	 * See struct drm_i915_gem_create_ext for the rules when dealing with
-+	 * alignment restrictions with I915_MEMORY_CLASS_DEVICE, on devices with
-+	 * minimum page sizes, like DG2.
- 	 */
- 	__u64 offset;
- 
-@@ -2221,7 +2290,7 @@ struct i915_context_engines_parallel_submit {
- 	 */
- 	struct i915_engine_class_instance engines[0];
- 
--} __attribute__((packed));
-+} __packed;
- 
- #define I915_DEFINE_CONTEXT_ENGINES_PARALLEL_SUBMIT(name__, N__) struct { \
- 	struct i915_user_extension base; \
-@@ -2594,7 +2663,7 @@ struct drm_i915_perf_open_param {
-  * Change metrics_set captured by a stream.
-  *
-  * If the stream is bound to a specific context, the configuration change
-- * will performed __inline__ with that context such that it takes effect before
-+ * will performed inline with that context such that it takes effect before
-  * the next execbuf submission.
-  *
-  * Returns the previously bound metrics set id, or a negative error code.
-@@ -2651,24 +2720,65 @@ enum drm_i915_perf_record_type {
- 	DRM_I915_PERF_RECORD_MAX /* non-ABI */
- };
- 
--/*
-+/**
-+ * struct drm_i915_perf_oa_config
-+ *
-  * Structure to upload perf dynamic configuration into the kernel.
-  */
- struct drm_i915_perf_oa_config {
--	/** String formatted like "%08x-%04x-%04x-%04x-%012x" */
-+	/**
-+	 * @uuid:
-+	 *
-+	 * String formatted like "%\08x-%\04x-%\04x-%\04x-%\012x"
-+	 */
- 	char uuid[36];
- 
-+	/**
-+	 * @n_mux_regs:
-+	 *
-+	 * Number of mux regs in &mux_regs_ptr.
-+	 */
- 	__u32 n_mux_regs;
-+
-+	/**
-+	 * @n_boolean_regs:
-+	 *
-+	 * Number of boolean regs in &boolean_regs_ptr.
-+	 */
- 	__u32 n_boolean_regs;
-+
-+	/**
-+	 * @n_flex_regs:
-+	 *
-+	 * Number of flex regs in &flex_regs_ptr.
-+	 */
- 	__u32 n_flex_regs;
- 
--	/*
--	 * These fields are pointers to tuples of u32 values (register address,
--	 * value). For example the expected length of the buffer pointed by
--	 * mux_regs_ptr is (2 * sizeof(u32) * n_mux_regs).
-+	/**
-+	 * @mux_regs_ptr:
-+	 *
-+	 * Pointer to tuples of u32 values (register address, value) for mux
-+	 * registers.  Expected length of buffer is (2 * sizeof(u32) *
-+	 * &n_mux_regs).
- 	 */
- 	__u64 mux_regs_ptr;
-+
-+	/**
-+	 * @boolean_regs_ptr:
-+	 *
-+	 * Pointer to tuples of u32 values (register address, value) for mux
-+	 * registers.  Expected length of buffer is (2 * sizeof(u32) *
-+	 * &n_boolean_regs).
-+	 */
- 	__u64 boolean_regs_ptr;
-+
-+	/**
-+	 * @flex_regs_ptr:
-+	 *
-+	 * Pointer to tuples of u32 values (register address, value) for mux
-+	 * registers.  Expected length of buffer is (2 * sizeof(u32) *
-+	 * &n_flex_regs).
-+	 */
- 	__u64 flex_regs_ptr;
- };
- 
-@@ -2679,12 +2789,24 @@ struct drm_i915_perf_oa_config {
-  * @data_ptr is also depends on the specific @query_id.
-  */
- struct drm_i915_query_item {
--	/** @query_id: The id for this query */
-+	/**
-+	 * @query_id:
-+	 *
-+	 * The id for this query.  Currently accepted query IDs are:
-+	 *  - %DRM_I915_QUERY_TOPOLOGY_INFO (see struct drm_i915_query_topology_info)
-+	 *  - %DRM_I915_QUERY_ENGINE_INFO (see struct drm_i915_engine_info)
-+	 *  - %DRM_I915_QUERY_PERF_CONFIG (see struct drm_i915_query_perf_config)
-+	 *  - %DRM_I915_QUERY_MEMORY_REGIONS (see struct drm_i915_query_memory_regions)
-+	 *  - %DRM_I915_QUERY_HWCONFIG_BLOB (see `GuC HWCONFIG blob uAPI`)
-+	 *  - %DRM_I915_QUERY_GEOMETRY_SUBSLICES (see struct drm_i915_query_topology_info)
-+	 */
- 	__u64 query_id;
--#define DRM_I915_QUERY_TOPOLOGY_INFO    1
--#define DRM_I915_QUERY_ENGINE_INFO	2
--#define DRM_I915_QUERY_PERF_CONFIG      3
--#define DRM_I915_QUERY_MEMORY_REGIONS   4
-+#define DRM_I915_QUERY_TOPOLOGY_INFO		1
-+#define DRM_I915_QUERY_ENGINE_INFO		2
-+#define DRM_I915_QUERY_PERF_CONFIG		3
-+#define DRM_I915_QUERY_MEMORY_REGIONS		4
-+#define DRM_I915_QUERY_HWCONFIG_BLOB		5
-+#define DRM_I915_QUERY_GEOMETRY_SUBSLICES	6
- /* Must be kept compact -- no holes and well documented */
- 
- 	/**
-@@ -2700,14 +2822,17 @@ struct drm_i915_query_item {
- 	/**
- 	 * @flags:
- 	 *
--	 * When query_id == DRM_I915_QUERY_TOPOLOGY_INFO, must be 0.
-+	 * When &query_id == %DRM_I915_QUERY_TOPOLOGY_INFO, must be 0.
- 	 *
--	 * When query_id == DRM_I915_QUERY_PERF_CONFIG, must be one of the
-+	 * When &query_id == %DRM_I915_QUERY_PERF_CONFIG, must be one of the
- 	 * following:
- 	 *
--	 *	- DRM_I915_QUERY_PERF_CONFIG_LIST
--	 *      - DRM_I915_QUERY_PERF_CONFIG_DATA_FOR_UUID
--	 *      - DRM_I915_QUERY_PERF_CONFIG_FOR_UUID
-+	 *	- %DRM_I915_QUERY_PERF_CONFIG_LIST
-+	 *      - %DRM_I915_QUERY_PERF_CONFIG_DATA_FOR_UUID
-+	 *      - %DRM_I915_QUERY_PERF_CONFIG_FOR_UUID
-+	 *
-+	 * When &query_id == %DRM_I915_QUERY_GEOMETRY_SUBSLICES must contain
-+	 * a struct i915_engine_class_instance that references a render engine.
- 	 */
- 	__u32 flags;
- #define DRM_I915_QUERY_PERF_CONFIG_LIST          1
-@@ -2765,66 +2890,112 @@ struct drm_i915_query {
- 	__u64 items_ptr;
- };
- 
--/*
-- * Data written by the kernel with query DRM_I915_QUERY_TOPOLOGY_INFO :
-- *
-- * data: contains the 3 pieces of information :
-- *
-- * - the slice mask with one bit per slice telling whether a slice is
-- *   available. The availability of slice X can be queried with the following
-- *   formula :
-- *
-- *           (data[X / 8] >> (X % 8)) & 1
-- *
-- * - the subslice mask for each slice with one bit per subslice telling
-- *   whether a subslice is available. Gen12 has dual-subslices, which are
-- *   similar to two gen11 subslices. For gen12, this array represents dual-
-- *   subslices. The availability of subslice Y in slice X can be queried
-- *   with the following formula :
-- *
-- *           (data[subslice_offset +
-- *                 X * subslice_stride +
-- *                 Y / 8] >> (Y % 8)) & 1
-- *
-- * - the EU mask for each subslice in each slice with one bit per EU telling
-- *   whether an EU is available. The availability of EU Z in subslice Y in
-- *   slice X can be queried with the following formula :
-+/**
-+ * struct drm_i915_query_topology_info
-  *
-- *           (data[eu_offset +
-- *                 (X * max_subslices + Y) * eu_stride +
-- *                 Z / 8] >> (Z % 8)) & 1
-+ * Describes slice/subslice/EU information queried by
-+ * %DRM_I915_QUERY_TOPOLOGY_INFO
-  */
- struct drm_i915_query_topology_info {
--	/*
-+	/**
-+	 * @flags:
-+	 *
- 	 * Unused for now. Must be cleared to zero.
- 	 */
- 	__u16 flags;
- 
-+	/**
-+	 * @max_slices:
-+	 *
-+	 * The number of bits used to express the slice mask.
-+	 */
- 	__u16 max_slices;
-+
-+	/**
-+	 * @max_subslices:
-+	 *
-+	 * The number of bits used to express the subslice mask.
-+	 */
- 	__u16 max_subslices;
-+
-+	/**
-+	 * @max_eus_per_subslice:
-+	 *
-+	 * The number of bits in the EU mask that correspond to a single
-+	 * subslice's EUs.
-+	 */
- 	__u16 max_eus_per_subslice;
- 
--	/*
-+	/**
-+	 * @subslice_offset:
-+	 *
- 	 * Offset in data[] at which the subslice masks are stored.
- 	 */
- 	__u16 subslice_offset;
- 
--	/*
-+	/**
-+	 * @subslice_stride:
-+	 *
- 	 * Stride at which each of the subslice masks for each slice are
- 	 * stored.
- 	 */
- 	__u16 subslice_stride;
- 
--	/*
-+	/**
-+	 * @eu_offset:
-+	 *
- 	 * Offset in data[] at which the EU masks are stored.
- 	 */
- 	__u16 eu_offset;
- 
--	/*
-+	/**
-+	 * @eu_stride:
-+	 *
- 	 * Stride at which each of the EU masks for each subslice are stored.
- 	 */
- 	__u16 eu_stride;
- 
-+	/**
-+	 * @data:
-+	 *
-+	 * Contains 3 pieces of information :
-+	 *
-+	 * - The slice mask with one bit per slice telling whether a slice is
-+	 *   available. The availability of slice X can be queried with the
-+	 *   following formula :
-+	 *
-+	 *   .. code:: c
-+	 *
-+	 *      (data[X / 8] >> (X % 8)) & 1
-+	 *
-+	 *   Starting with Xe_HP platforms, Intel hardware no longer has
-+	 *   traditional slices so i915 will always report a single slice
-+	 *   (hardcoded slicemask = 0x1) which contains all of the platform's
-+	 *   subslices.  I.e., the mask here does not reflect any of the newer
-+	 *   hardware concepts such as "gslices" or "cslices" since userspace
-+	 *   is capable of inferring those from the subslice mask.
-+	 *
-+	 * - The subslice mask for each slice with one bit per subslice telling
-+	 *   whether a subslice is available.  Starting with Gen12 we use the
-+	 *   term "subslice" to refer to what the hardware documentation
-+	 *   describes as a "dual-subslices."  The availability of subslice Y
-+	 *   in slice X can be queried with the following formula :
-+	 *
-+	 *   .. code:: c
-+	 *
-+	 *      (data[subslice_offset + X * subslice_stride + Y / 8] >> (Y % 8)) & 1
-+	 *
-+	 * - The EU mask for each subslice in each slice, with one bit per EU
-+	 *   telling whether an EU is available. The availability of EU Z in
-+	 *   subslice Y in slice X can be queried with the following formula :
-+	 *
-+	 *   .. code:: c
-+	 *
-+	 *      (data[eu_offset +
-+	 *            (X * max_subslices + Y) * eu_stride +
-+	 *            Z / 8
-+	 *       ] >> (Z % 8)) & 1
-+	 */
- 	__u8 data[];
- };
- 
-@@ -2945,52 +3116,68 @@ struct drm_i915_query_engine_info {
- 	struct drm_i915_engine_info engines[];
- };
- 
--/*
-- * Data written by the kernel with query DRM_I915_QUERY_PERF_CONFIG.
-+/**
-+ * struct drm_i915_query_perf_config
-+ *
-+ * Data written by the kernel with query %DRM_I915_QUERY_PERF_CONFIG and
-+ * %DRM_I915_QUERY_GEOMETRY_SUBSLICES.
-  */
- struct drm_i915_query_perf_config {
- 	union {
--		/*
--		 * When query_item.flags == DRM_I915_QUERY_PERF_CONFIG_LIST, i915 sets
--		 * this fields to the number of configurations available.
-+		/**
-+		 * @n_configs:
-+		 *
-+		 * When &drm_i915_query_item.flags ==
-+		 * %DRM_I915_QUERY_PERF_CONFIG_LIST, i915 sets this fields to
-+		 * the number of configurations available.
- 		 */
- 		__u64 n_configs;
- 
--		/*
--		 * When query_id == DRM_I915_QUERY_PERF_CONFIG_DATA_FOR_ID,
--		 * i915 will use the value in this field as configuration
--		 * identifier to decide what data to write into config_ptr.
-+		/**
-+		 * @config:
-+		 *
-+		 * When &drm_i915_query_item.flags ==
-+		 * %DRM_I915_QUERY_PERF_CONFIG_DATA_FOR_ID, i915 will use the
-+		 * value in this field as configuration identifier to decide
-+		 * what data to write into config_ptr.
- 		 */
- 		__u64 config;
- 
--		/*
--		 * When query_id == DRM_I915_QUERY_PERF_CONFIG_DATA_FOR_UUID,
--		 * i915 will use the value in this field as configuration
--		 * identifier to decide what data to write into config_ptr.
-+		/**
-+		 * @uuid:
-+		 *
-+		 * When &drm_i915_query_item.flags ==
-+		 * %DRM_I915_QUERY_PERF_CONFIG_DATA_FOR_UUID, i915 will use the
-+		 * value in this field as configuration identifier to decide
-+		 * what data to write into config_ptr.
- 		 *
- 		 * String formatted like "%08x-%04x-%04x-%04x-%012x"
- 		 */
- 		char uuid[36];
- 	};
- 
--	/*
-+	/**
-+	 * @flags:
-+	 *
- 	 * Unused for now. Must be cleared to zero.
- 	 */
- 	__u32 flags;
- 
--	/*
--	 * When query_item.flags == DRM_I915_QUERY_PERF_CONFIG_LIST, i915 will
--	 * write an array of __u64 of configuration identifiers.
-+	/**
-+	 * @data:
- 	 *
--	 * When query_item.flags == DRM_I915_QUERY_PERF_CONFIG_DATA, i915 will
--	 * write a struct drm_i915_perf_oa_config. If the following fields of
--	 * drm_i915_perf_oa_config are set not set to 0, i915 will write into
--	 * the associated pointers the values of submitted when the
-+	 * When &drm_i915_query_item.flags == %DRM_I915_QUERY_PERF_CONFIG_LIST,
-+	 * i915 will write an array of __u64 of configuration identifiers.
-+	 *
-+	 * When &drm_i915_query_item.flags == %DRM_I915_QUERY_PERF_CONFIG_DATA,
-+	 * i915 will write a struct drm_i915_perf_oa_config. If the following
-+	 * fields of struct drm_i915_perf_oa_config are not set to 0, i915 will
-+	 * write into the associated pointers the values of submitted when the
- 	 * configuration was created :
- 	 *
--	 *         - n_mux_regs
--	 *         - n_boolean_regs
--	 *         - n_flex_regs
-+	 *  - &drm_i915_perf_oa_config.n_mux_regs
-+	 *  - &drm_i915_perf_oa_config.n_boolean_regs
-+	 *  - &drm_i915_perf_oa_config.n_flex_regs
- 	 */
- 	__u8 data[];
- };
-@@ -3128,6 +3315,16 @@ struct drm_i915_query_memory_regions {
- 	struct drm_i915_memory_region_info regions[];
- };
- 
-+/**
-+ * DOC: GuC HWCONFIG blob uAPI
-+ *
-+ * The GuC produces a blob with information about the current device.
-+ * i915 reads this blob from GuC and makes it available via this uAPI.
-+ *
-+ * The format and meaning of the blob content are documented in the
-+ * Programmer's Reference Manual.
+diff --git a/lib/intel_hwconfig_types.h b/lib/intel_hwconfig_types.h
+new file mode 100644
+index 000000000000..d5db217afba2
+--- /dev/null
++++ b/lib/intel_hwconfig_types.h
+@@ -0,0 +1,118 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2022 Intel Corporation
 + */
 +
- /**
-  * struct drm_i915_gem_create_ext - Existing gem_create behaviour, with added
-  * extension support using struct i915_user_extension.
-@@ -3144,11 +3341,40 @@ struct drm_i915_gem_create_ext {
- 	 *
- 	 * The (page-aligned) allocated size for the object will be returned.
- 	 *
--	 * Note that for some devices we have might have further minimum
--	 * page-size restrictions(larger than 4K), like for device local-memory.
--	 * However in general the final size here should always reflect any
--	 * rounding up, if for example using the I915_GEM_CREATE_EXT_MEMORY_REGIONS
--	 * extension to place the object in device local-memory.
-+	 *
-+	 * DG2 64K min page size implications:
-+	 *
-+	 * On discrete platforms, starting from DG2, we have to contend with GTT
-+	 * page size restrictions when dealing with I915_MEMORY_CLASS_DEVICE
-+	 * objects.  Specifically the hardware only supports 64K or larger GTT
-+	 * page sizes for such memory. The kernel will already ensure that all
-+	 * I915_MEMORY_CLASS_DEVICE memory is allocated using 64K or larger page
-+	 * sizes underneath.
-+	 *
-+	 * Note that the returned size here will always reflect any required
-+	 * rounding up done by the kernel, i.e 4K will now become 64K on devices
-+	 * such as DG2.
-+	 *
-+	 * Special DG2 GTT address alignment requirement:
-+	 *
-+	 * The GTT alignment will also need to be at least 2M for such objects.
-+	 *
-+	 * Note that due to how the hardware implements 64K GTT page support, we
-+	 * have some further complications:
-+	 *
-+	 *   1) The entire PDE (which covers a 2MB virtual address range), must
-+	 *   contain only 64K PTEs, i.e mixing 4K and 64K PTEs in the same
-+	 *   PDE is forbidden by the hardware.
-+	 *
-+	 *   2) We still need to support 4K PTEs for I915_MEMORY_CLASS_SYSTEM
-+	 *   objects.
-+	 *
-+	 * To keep things simple for userland, we mandate that any GTT mappings
-+	 * must be aligned to and rounded up to 2MB. The kernel will internally
-+	 * pad them out to the next 2MB boundary. As this only wastes virtual
-+	 * address space and avoids userland having to copy any needlessly
-+	 * complicated PDE sharing scheme (coloring) and only affects DG2, this
-+	 * is deemed to be a good compromise.
- 	 */
- 	__u64 size;
- 	/**
-@@ -3282,4 +3508,4 @@ struct drm_i915_gem_create_ext_protected_content {
- }
- #endif
++#ifndef _INTEL_HWCONFIG_TYPES_H_
++#define _INTEL_HWCONFIG_TYPES_H_
++
++#include "intel_chipset.h"
++
++/**
++ * enum intel_hwconfig - Global definition of hwconfig table attributes
++ *
++ * Intel devices provide a KLV (Key/Length/Value) table containing
++ * the static hardware configuration for that platform.
++ * This enum defines the current attribute keys for this KLV.
++ */
++enum intel_hwconfig {
++	INTEL_HWCONFIG_MAX_SLICES_SUPPORTED = 1,
++	INTEL_HWCONFIG_MAX_DUAL_SUBSLICES_SUPPORTED,		/* 2 */
++	INTEL_HWCONFIG_MAX_NUM_EU_PER_DSS,			/* 3 */
++	INTEL_HWCONFIG_NUM_PIXEL_PIPES,				/* 4 */
++	INTEL_HWCONFIG_DEPRECATED_MAX_NUM_GEOMETRY_PIPES,	/* 5 */
++	INTEL_HWCONFIG_DEPRECATED_L3_CACHE_SIZE_IN_KB,		/* 6 */
++	INTEL_HWCONFIG_DEPRECATED_L3_BANK_COUNT,		/* 7 */
++	INTEL_HWCONFIG_L3_CACHE_WAYS_SIZE_IN_BYTES,		/* 8 */
++	INTEL_HWCONFIG_L3_CACHE_WAYS_PER_SECTOR,		/* 9 */
++	INTEL_HWCONFIG_MAX_MEMORY_CHANNELS,			/* 10 */
++	INTEL_HWCONFIG_MEMORY_TYPE,				/* 11 */
++	INTEL_HWCONFIG_CACHE_TYPES,                             /* 12 */
++	INTEL_HWCONFIG_LOCAL_MEMORY_PAGE_SIZES_SUPPORTED,	/* 13 */
++	INTEL_HWCONFIG_DEPRECATED_SLM_SIZE_IN_KB,		/* 14 */
++	INTEL_HWCONFIG_NUM_THREADS_PER_EU,			/* 15 */
++	INTEL_HWCONFIG_TOTAL_VS_THREADS,			/* 16 */
++	INTEL_HWCONFIG_TOTAL_GS_THREADS,			/* 17 */
++	INTEL_HWCONFIG_TOTAL_HS_THREADS,			/* 18 */
++	INTEL_HWCONFIG_TOTAL_DS_THREADS,			/* 19 */
++	INTEL_HWCONFIG_TOTAL_VS_THREADS_POCS,			/* 20 */
++	INTEL_HWCONFIG_TOTAL_PS_THREADS,			/* 21 */
++	INTEL_HWCONFIG_DEPRECATED_MAX_FILL_RATE,		/* 22 */
++	INTEL_HWCONFIG_MAX_RCS,					/* 23 */
++	INTEL_HWCONFIG_MAX_CCS,					/* 24 */
++	INTEL_HWCONFIG_MAX_VCS,					/* 25 */
++	INTEL_HWCONFIG_MAX_VECS,				/* 26 */
++	INTEL_HWCONFIG_MAX_COPY_CS,				/* 27 */
++	INTEL_HWCONFIG_DEPRECATED_URB_SIZE_IN_KB,		/* 28 */
++	INTEL_HWCONFIG_MIN_VS_URB_ENTRIES,			/* 29 */
++	INTEL_HWCONFIG_MAX_VS_URB_ENTRIES,			/* 30 */
++	INTEL_HWCONFIG_MIN_PCS_URB_ENTRIES,			/* 31 */
++	INTEL_HWCONFIG_MAX_PCS_URB_ENTRIES,			/* 32 */
++	INTEL_HWCONFIG_MIN_HS_URB_ENTRIES,			/* 33 */
++	INTEL_HWCONFIG_MAX_HS_URB_ENTRIES,			/* 34 */
++	INTEL_HWCONFIG_MIN_GS_URB_ENTRIES,			/* 35 */
++	INTEL_HWCONFIG_MAX_GS_URB_ENTRIES,			/* 36 */
++	INTEL_HWCONFIG_MIN_DS_URB_ENTRIES,			/* 37 */
++	INTEL_HWCONFIG_MAX_DS_URB_ENTRIES,			/* 38 */
++	INTEL_HWCONFIG_PUSH_CONSTANT_URB_RESERVED_SIZE,		/* 39 */
++	INTEL_HWCONFIG_POCS_PUSH_CONSTANT_URB_RESERVED_SIZE,	/* 40 */
++	INTEL_HWCONFIG_URB_REGION_ALIGNMENT_SIZE_IN_BYTES,	/* 41 */
++	INTEL_HWCONFIG_URB_ALLOCATION_SIZE_UNITS_IN_BYTES,	/* 42 */
++	INTEL_HWCONFIG_MAX_URB_SIZE_CCS_IN_BYTES,		/* 43 */
++	INTEL_HWCONFIG_VS_MIN_DEREF_BLOCK_SIZE_HANDLE_COUNT,	/* 44 */
++	INTEL_HWCONFIG_DS_MIN_DEREF_BLOCK_SIZE_HANDLE_COUNT,	/* 45 */
++	INTEL_HWCONFIG_NUM_RT_STACKS_PER_DSS,			/* 46 */
++	INTEL_HWCONFIG_MAX_URB_STARTING_ADDRESS,		/* 47 */
++	INTEL_HWCONFIG_MIN_CS_URB_ENTRIES,			/* 48 */
++	INTEL_HWCONFIG_MAX_CS_URB_ENTRIES,			/* 49 */
++	INTEL_HWCONFIG_L3_ALLOC_PER_BANK_URB,			/* 50 */
++	INTEL_HWCONFIG_L3_ALLOC_PER_BANK_REST,			/* 51 */
++	INTEL_HWCONFIG_L3_ALLOC_PER_BANK_DC,			/* 52 */
++	INTEL_HWCONFIG_L3_ALLOC_PER_BANK_RO,			/* 53 */
++	INTEL_HWCONFIG_L3_ALLOC_PER_BANK_Z,			/* 54 */
++	INTEL_HWCONFIG_L3_ALLOC_PER_BANK_COLOR,			/* 55 */
++	INTEL_HWCONFIG_L3_ALLOC_PER_BANK_UNIFIED_TILE_CACHE,	/* 56 */
++	INTEL_HWCONFIG_L3_ALLOC_PER_BANK_COMMAND_BUFFER,	/* 57 */
++	INTEL_HWCONFIG_L3_ALLOC_PER_BANK_RW,			/* 58 */
++	INTEL_HWCONFIG_MAX_NUM_L3_CONFIGS,			/* 59 */
++	INTEL_HWCONFIG_BINDLESS_SURFACE_OFFSET_BIT_COUNT,	/* 60 */
++	INTEL_HWCONFIG_RESERVED_CCS_WAYS,			/* 61 */
++	INTEL_HWCONFIG_CSR_SIZE_IN_MB,				/* 62 */
++	INTEL_HWCONFIG_GEOMETRY_PIPES_PER_SLICE,		/* 63 */
++	INTEL_HWCONFIG_L3_BANK_SIZE_IN_KB,			/* 64 */
++	INTEL_HWCONFIG_SLM_SIZE_PER_DSS,			/* 65 */
++	INTEL_HWCONFIG_MAX_PIXEL_FILL_RATE_PER_SLICE,		/* 66 */
++	INTEL_HWCONFIG_MAX_PIXEL_FILL_RATE_PER_DSS,		/* 67 */
++	INTEL_HWCONFIG_URB_SIZE_PER_SLICE_IN_KB,		/* 68 */
++	INTEL_HWCONFIG_URB_SIZE_PER_L3_BANK_COUNT_IN_KB,	/* 69 */
++	INTEL_HWCONFIG_MAX_SUBSLICE,				/* 70 */
++	INTEL_HWCONFIG_MAX_EU_PER_SUBSLICE,			/* 71 */
++	INTEL_HWCONFIG_RAMBO_L3_BANK_SIZE_IN_KB,		/* 72 */
++	INTEL_HWCONFIG_SLM_SIZE_PER_SS_IN_KB,			/* 73 */
++	INTEL_HWCONFIG_NUM_HBM_STACKS_PER_TILE,			/* 74 */
++	INTEL_HWCONFIG_NUM_CHANNELS_PER_HBM_STACK,		/* 75 */
++	INTEL_HWCONFIG_HBM_CHANNEL_WIDTH_IN_BYTES,		/* 76 */
++	INTEL_HWCONFIG_MIN_TASK_URB_ENTRIES,			/* 77 */
++	INTEL_HWCONFIG_MAX_TASK_URB_ENTRIES,			/* 78 */
++	INTEL_HWCONFIG_MIN_MESH_URB_ENTRIES,			/* 79 */
++	INTEL_HWCONFIG_MAX_MESH_URB_ENTRIES,			/* 80 */
++	__INTEL_HWCONFIG_KEY_LIMIT
++};
++
++enum {
++	INTEL_HWCONFIG_MEMORY_TYPE_LPDDR4 = 0,
++	INTEL_HWCONFIG_MEMORY_TYPE_LPDDR5,
++	INTEL_HWCONFIG_MEMORY_TYPE_HBM2,
++	INTEL_HWCONFIG_MEMORY_TYPE_HBM2e,
++	INTEL_HWCONFIG_MEMORY_TYPE_GDDR6,
++	__INTEL_HWCONFIG_MEMORY_TYPE_LIMIT
++};
++
++enum {
++	INTEL_HWCONFIG_CACHE_TYPE_L3 = 0,
++	INTEL_HWCONFIG_CACHE_TYPE_LLC,
++	INTEL_HWCONFIG_CACHE_TYPE_EDRAM,
++	__INTEL_HWCONFIG_CACHE_TYPE_LIMIT
++};
++
++#endif /* _INTEL_HWCONFIG_TYPES_H_ */
+diff --git a/tests/i915/i915_query.c b/tests/i915/i915_query.c
+index 246a979af72a..c47a74117d8d 100644
+--- a/tests/i915/i915_query.c
++++ b/tests/i915/i915_query.c
+@@ -22,6 +22,7 @@
+  */
  
--#endif /* _I915_DRM_H_ */
-+#endif /* _UAPI_I915_DRM_H_ */
+ #include "igt.h"
++#include "intel_hwconfig_types.h"
+ 
+ #include <limits.h>
+ 
+@@ -912,6 +913,181 @@ static void test_query_geometry_subslices(int fd)
+ 	}
+ }
+ 
++static const char * const hwconfig_keys[] = {
++	[INTEL_HWCONFIG_MAX_SLICES_SUPPORTED] = "Maximum number of Slices",
++	[INTEL_HWCONFIG_MAX_DUAL_SUBSLICES_SUPPORTED] = "Maximum number of DSS",
++	[INTEL_HWCONFIG_MAX_NUM_EU_PER_DSS] = "Maximum number of EUs per DSS",
++	[INTEL_HWCONFIG_NUM_PIXEL_PIPES] = "Pixel Pipes",
++	[INTEL_HWCONFIG_DEPRECATED_MAX_NUM_GEOMETRY_PIPES] = "[DEPRECATED] Geometry Pipes",
++	[INTEL_HWCONFIG_DEPRECATED_L3_CACHE_SIZE_IN_KB] = "[DEPRECATED] L3 Size (in KB)",
++	[INTEL_HWCONFIG_DEPRECATED_L3_BANK_COUNT] = "[DEPRECATED] L3 Bank Count",
++	[INTEL_HWCONFIG_L3_CACHE_WAYS_SIZE_IN_BYTES] = "L3 Cache Ways Size (in bytes)",
++	[INTEL_HWCONFIG_L3_CACHE_WAYS_PER_SECTOR] = "L3 Cache Ways Per Sector",
++	[INTEL_HWCONFIG_MAX_MEMORY_CHANNELS] = "Memory Channels",
++	[INTEL_HWCONFIG_MEMORY_TYPE] = "Memory type",
++	[INTEL_HWCONFIG_CACHE_TYPES] = "Cache types",
++	[INTEL_HWCONFIG_LOCAL_MEMORY_PAGE_SIZES_SUPPORTED] = "Local memory page size",
++	[INTEL_HWCONFIG_DEPRECATED_SLM_SIZE_IN_KB] = "[DEPRECATED] SLM Size (in KB)",
++	[INTEL_HWCONFIG_NUM_THREADS_PER_EU] = "Num thread per EU",
++	[INTEL_HWCONFIG_TOTAL_VS_THREADS] = "Maximum Vertex Shader threads",
++	[INTEL_HWCONFIG_TOTAL_GS_THREADS] = "Maximum Geometry Shader threads",
++	[INTEL_HWCONFIG_TOTAL_HS_THREADS] = "Maximum Hull Shader threads",
++	[INTEL_HWCONFIG_TOTAL_DS_THREADS] = "Maximum Domain Shader threads",
++	[INTEL_HWCONFIG_TOTAL_VS_THREADS_POCS] = "Maximum Vertex Shader Threads for POCS",
++	[INTEL_HWCONFIG_TOTAL_PS_THREADS] = "Maximum Pixel Shader Threads",
++	[INTEL_HWCONFIG_DEPRECATED_MAX_FILL_RATE] = "[DEPRECATED] Maximum pixel rate for Fill",
++	[INTEL_HWCONFIG_MAX_RCS] = "MaxRCS",
++	[INTEL_HWCONFIG_MAX_CCS] = "MaxCCS",
++	[INTEL_HWCONFIG_MAX_VCS] = "MaxVCS",
++	[INTEL_HWCONFIG_MAX_VECS] = "MaxVECS",
++	[INTEL_HWCONFIG_MAX_COPY_CS] = "MaxCopyCS",
++	[INTEL_HWCONFIG_DEPRECATED_URB_SIZE_IN_KB] = "[DEPRECATED] URB Size (in KB)",
++	[INTEL_HWCONFIG_MIN_VS_URB_ENTRIES] = "The minimum number of VS URB entries.",
++	[INTEL_HWCONFIG_MAX_VS_URB_ENTRIES] = "The maximum number of VS URB entries.",
++	[INTEL_HWCONFIG_MIN_PCS_URB_ENTRIES] = "The minimum number of PCS URB entries",
++	[INTEL_HWCONFIG_MAX_PCS_URB_ENTRIES] = "The maximum number of PCS URB entries",
++	[INTEL_HWCONFIG_MIN_HS_URB_ENTRIES] = "The minimum number of HS URB entries",
++	[INTEL_HWCONFIG_MAX_HS_URB_ENTRIES] = "The maximum number of HS URB entries",
++	[INTEL_HWCONFIG_MIN_GS_URB_ENTRIES] = "The minimum number of GS URB entries",
++	[INTEL_HWCONFIG_MAX_GS_URB_ENTRIES] = "The maximum number of GS URB entries",
++	[INTEL_HWCONFIG_MIN_DS_URB_ENTRIES] = "The minimum number of DS URB Entries",
++	[INTEL_HWCONFIG_MAX_DS_URB_ENTRIES] = "The maximum number of DS URB Entries",
++	[INTEL_HWCONFIG_PUSH_CONSTANT_URB_RESERVED_SIZE] = "Push Constant URB Reserved Size (in bytes)",
++	[INTEL_HWCONFIG_POCS_PUSH_CONSTANT_URB_RESERVED_SIZE] = "POCS Push Constant URB Reserved Size (in bytes)",
++	[INTEL_HWCONFIG_URB_REGION_ALIGNMENT_SIZE_IN_BYTES] = "URB Region Alignment Size (in bytes)",
++	[INTEL_HWCONFIG_URB_ALLOCATION_SIZE_UNITS_IN_BYTES] = "URB Allocation Size Units (in bytes)",
++	[INTEL_HWCONFIG_MAX_URB_SIZE_CCS_IN_BYTES] = "Max URB Size CCS (in bytes)",
++	[INTEL_HWCONFIG_VS_MIN_DEREF_BLOCK_SIZE_HANDLE_COUNT] = "VS Min Deref BlockSize Handle Count",
++	[INTEL_HWCONFIG_DS_MIN_DEREF_BLOCK_SIZE_HANDLE_COUNT] = "DS Min Deref Block Size Handle Count",
++	[INTEL_HWCONFIG_NUM_RT_STACKS_PER_DSS] = "Num RT Stacks Per DSS",
++	[INTEL_HWCONFIG_MAX_URB_STARTING_ADDRESS] = "Max URB Starting Address",
++	[INTEL_HWCONFIG_MIN_CS_URB_ENTRIES] = "Min CS URB Entries",
++	[INTEL_HWCONFIG_MAX_CS_URB_ENTRIES] = "Max CS URB Entries",
++	[INTEL_HWCONFIG_L3_ALLOC_PER_BANK_URB] = "L3 Alloc Per Bank - URB",
++	[INTEL_HWCONFIG_L3_ALLOC_PER_BANK_REST] = "L3 Alloc Per Bank - Rest",
++	[INTEL_HWCONFIG_L3_ALLOC_PER_BANK_DC] = "L3 Alloc Per Bank - DC",
++	[INTEL_HWCONFIG_L3_ALLOC_PER_BANK_RO] = "L3 Alloc Per Bank - RO",
++	[INTEL_HWCONFIG_L3_ALLOC_PER_BANK_Z] = "L3 Alloc Per Bank - Z",
++	[INTEL_HWCONFIG_L3_ALLOC_PER_BANK_COLOR] = "L3 Alloc Per Bank - Color",
++	[INTEL_HWCONFIG_L3_ALLOC_PER_BANK_UNIFIED_TILE_CACHE] = "L3 Alloc Per Bank - Unified Tile Cache",
++	[INTEL_HWCONFIG_L3_ALLOC_PER_BANK_COMMAND_BUFFER] = "L3 Alloc Per Bank - Command Buffer",
++	[INTEL_HWCONFIG_L3_ALLOC_PER_BANK_RW] = "L3 Alloc Per Bank - RW",
++	[INTEL_HWCONFIG_MAX_NUM_L3_CONFIGS] = "Num L3 Configs",
++	[INTEL_HWCONFIG_BINDLESS_SURFACE_OFFSET_BIT_COUNT] = "Bindless Surface Offset Bit Count",
++	[INTEL_HWCONFIG_RESERVED_CCS_WAYS] = "Reserved CCS ways",
++	[INTEL_HWCONFIG_CSR_SIZE_IN_MB] = "CSR Size (in MB)",
++	[INTEL_HWCONFIG_GEOMETRY_PIPES_PER_SLICE] = "Geometry pipes per slice",
++	[INTEL_HWCONFIG_L3_BANK_SIZE_IN_KB] = "L3 bank size (in KB)",
++	[INTEL_HWCONFIG_SLM_SIZE_PER_DSS] = "SLM size per DSS",
++	[INTEL_HWCONFIG_MAX_PIXEL_FILL_RATE_PER_SLICE] = "Max pixel fill rate per slice",
++	[INTEL_HWCONFIG_MAX_PIXEL_FILL_RATE_PER_DSS] = "Max pixel fill rate per DSS",
++	[INTEL_HWCONFIG_URB_SIZE_PER_SLICE_IN_KB] = "URB size per slice (in KB)",
++	[INTEL_HWCONFIG_URB_SIZE_PER_L3_BANK_COUNT_IN_KB] = "URB size per L3 bank count (in KB)",
++	[INTEL_HWCONFIG_MAX_SUBSLICE] = "Max subslices",
++	[INTEL_HWCONFIG_MAX_EU_PER_SUBSLICE] = "Max EUs per subslice",
++	[INTEL_HWCONFIG_RAMBO_L3_BANK_SIZE_IN_KB] = "RAMBO L3 bank size (in KB)",
++	[INTEL_HWCONFIG_SLM_SIZE_PER_SS_IN_KB] = "SLM size per SS (in KB)",
++	[INTEL_HWCONFIG_NUM_HBM_STACKS_PER_TILE] = "Num HBM Stacks Per Tile",
++	[INTEL_HWCONFIG_NUM_CHANNELS_PER_HBM_STACK] = "Num Channels Per HBM Stack",
++	[INTEL_HWCONFIG_HBM_CHANNEL_WIDTH_IN_BYTES] = "HBM Channel Width (in bytes)",
++	[INTEL_HWCONFIG_MIN_TASK_URB_ENTRIES] = "Min Task URB Entries",
++	[INTEL_HWCONFIG_MAX_TASK_URB_ENTRIES] = "Max Task URB Entries",
++	[INTEL_HWCONFIG_MIN_MESH_URB_ENTRIES] = "Min Mesh URB Entries",
++	[INTEL_HWCONFIG_MAX_MESH_URB_ENTRIES] = "Max Mesh URB Entries",
++};
++
++static const char * const hwconfig_memtypes[] = {
++	[INTEL_HWCONFIG_MEMORY_TYPE_LPDDR4] = "LPDDR4",
++	[INTEL_HWCONFIG_MEMORY_TYPE_LPDDR5] = "LPDDR5",
++	[INTEL_HWCONFIG_MEMORY_TYPE_HBM2] = "HBM2",
++	[INTEL_HWCONFIG_MEMORY_TYPE_HBM2e] = "HBM2e",
++	[INTEL_HWCONFIG_MEMORY_TYPE_GDDR6] = "GDDR6",
++};
++
++static const char * const hwconfig_cachetypes[] = {
++	[INTEL_HWCONFIG_CACHE_TYPE_L3] = "L3",
++	[INTEL_HWCONFIG_CACHE_TYPE_LLC] = "LLC",
++	[INTEL_HWCONFIG_CACHE_TYPE_EDRAM] = "EDRAM",
++};
++
++static void query_parse_and_validate_hwconfig_table(int i915)
++{
++	struct drm_i915_query_item item = {
++		.query_id = DRM_I915_QUERY_HWCONFIG_BLOB,
++	};
++	uint32_t *data, value;
++	int i = 0;
++	int len, j, max_words, table_size;
++
++	igt_assert(ARRAY_SIZE(hwconfig_keys) == __INTEL_HWCONFIG_KEY_LIMIT);
++	igt_assert(ARRAY_SIZE(hwconfig_memtypes) == __INTEL_HWCONFIG_MEMORY_TYPE_LIMIT);
++	igt_assert(ARRAY_SIZE(hwconfig_cachetypes) == __INTEL_HWCONFIG_CACHE_TYPE_LIMIT);
++
++	i915_query_items(i915, &item, 1);
++	table_size = item.length;
++	igt_require(table_size > 0);
++
++	data = malloc(table_size);
++	igt_assert(data);
++	memset(data, 0, table_size);
++	item.data_ptr = to_user_pointer(data);
++
++	i915_query_items(i915, &item, 1);
++	igt_assert(item.length == table_size);
++	igt_info("Table size = %d bytes\n", table_size);
++	igt_assert(table_size > 0);
++
++	/* HWConfig table is a list of KLV sets */
++	max_words = table_size / sizeof(uint32_t);
++	igt_assert(max_words * sizeof(uint32_t) == table_size);
++	while (i < max_words) {
++		/* Attribute ID zero is invalid */
++		igt_assert(data[i] > 0);
++		igt_assert(data[i] < __INTEL_HWCONFIG_KEY_LIMIT);
++
++		len = data[i + 1];
++		igt_assert(len > 0);
++		igt_assert((i + 2 + len) <= max_words);
++
++		igt_info("[%2d] %s: ", data[i], hwconfig_keys[data[i]]);
++
++		value = data[i + 2];
++		switch (data[i]) {
++		case INTEL_HWCONFIG_MEMORY_TYPE:
++			igt_assert(len == 1);
++			igt_assert(value < __INTEL_HWCONFIG_MEMORY_TYPE_LIMIT);
++			igt_info("%s\n", hwconfig_memtypes[value]);
++			break;
++
++		case INTEL_HWCONFIG_CACHE_TYPES:
++			igt_assert(len == 1);
++
++			if (!value)
++				igt_info("-\n");
++
++			j = 0;
++			while (value) {
++				if (value & BIT(j)) {
++					value &= ~BIT(j);
++					igt_assert(j < __INTEL_HWCONFIG_CACHE_TYPE_LIMIT);
++					igt_info("%s%s", hwconfig_cachetypes[j], value ? ", " : "\n");
++				}
++			}
++			break;
++
++		default:
++			for (j = i + 2; j < i + 1 + len; j++)
++				igt_info("%d, ", data[j]);
++			igt_info("%d\n", data[j]);
++		}
++
++		/* Advance to next key */
++		i += 2 + len;
++	}
++
++	free(data);
++}
++
+ igt_main
+ {
+ 	int fd = -1;
+@@ -986,6 +1162,9 @@ igt_main
+ 			engines(fd);
+ 	}
+ 
++	igt_subtest("hwconfig_table")
++		query_parse_and_validate_hwconfig_table(fd);
++
+ 	igt_fixture {
+ 		close(fd);
+ 	}
 -- 
 2.36.0
 
