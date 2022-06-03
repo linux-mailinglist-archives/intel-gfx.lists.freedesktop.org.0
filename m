@@ -2,33 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FA8553CB48
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jun 2022 16:04:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FE3953CB78
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jun 2022 16:26:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F032910E20E;
-	Fri,  3 Jun 2022 14:03:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD67810E559;
+	Fri,  3 Jun 2022 14:26:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 11E1B10E20E;
- Fri,  3 Jun 2022 14:03:58 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0E47AAADE3;
- Fri,  3 Jun 2022 14:03:58 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3571210E559;
+ Fri,  3 Jun 2022 14:26:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1654266375; x=1685802375;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-id:content-transfer-encoding: mime-version;
+ bh=L0ZyruoUX0xeeqVEacvovAPS/Pr+PJVDsOxo8aeKrSA=;
+ b=i45idksQOsibLhgIbOO2jxOJKbAYOYu0nhxk/hf++fQzp9qK0YdFSTB/
+ lJumLGm5RQ0zKeGWiU/M2hijs3Ynhaovziq+V4VWDkmzhFfRJKyOCwCES
+ oAez5punzxSOTSRY9kOtm3imJfrwIDkGOqoQyYGgxK7WgoSEsLNIL5tEz
+ PpkbmXwltGeVCGo55/f1TrQo3u8yxRVEnF0AyaJAhWDDAQ0WeNimaDJG8
+ FVy43FK34tpwEYnHP16+4HeQa4fSHECxdYux+r4SxzswYQafjPNd7tD/C
+ lFcydCEccQlxBqzfF3df3EFxq1D2yRgRx1Rg5caZ/G9TiHuKNmc7ND4Sv w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10366"; a="301634841"
+X-IronPort-AV: E=Sophos;i="5.91,274,1647327600"; d="scan'208";a="301634841"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jun 2022 07:26:14 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.91,274,1647327600"; d="scan'208";a="824743686"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by fmsmga006.fm.intel.com with ESMTP; 03 Jun 2022 07:26:14 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27; Fri, 3 Jun 2022 07:26:14 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27; Fri, 3 Jun 2022 07:26:13 -0700
+Received: from fmsmsx612.amr.corp.intel.com ([10.18.126.92]) by
+ fmsmsx612.amr.corp.intel.com ([10.18.126.92]) with mapi id 15.01.2308.027;
+ Fri, 3 Jun 2022 07:26:13 -0700
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "Roper, Matthew D" <matthew.d.roper@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [PATCH] drm/i915/pvc: GuC depriv applies to PVC
+Thread-Index: AQHYdti+jzwFZxNcdUakH9OcRXm8i60+M2cA
+Date: Fri, 3 Jun 2022 14:26:13 +0000
+Message-ID: <1d9962984a84999de2130f188c302758ec5e0bb7.camel@intel.com>
+References: <20220602233019.1659283-1-matthew.d.roper@intel.com>
+In-Reply-To: <20220602233019.1659283-1-matthew.d.roper@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.100]
 Content-Type: text/plain; charset="utf-8"
+Content-ID: <4B00DD4745AFAF428B7CFDCA53C3558B@intel.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Fri, 03 Jun 2022 14:03:58 -0000
-Message-ID: <165426503805.17720.11622905502203514895@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <cover.1654261471.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1654261471.git.jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?drm/i915=3A_i915=5Fdrv=2Eh_=26_i915=5Fgem=2Eh_header_refactorin?=
- =?utf-8?q?g?=
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/pvc: GuC depriv applies to PVC
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,21 +75,22 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: drm/i915: i915_drv.h & i915_gem.h header refactoring
-URL   : https://patchwork.freedesktop.org/series/104725/
-State : warning
-
-== Summary ==
-
-Error: dim sparse failed
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
-
-
+T24gVGh1LCAyMDIyLTA2LTAyIGF0IDE2OjMwIC0wNzAwLCBNYXR0IFJvcGVyIHdyb3RlOg0KPiBX
+ZSBtaXNzZWQgdGhpcyBzZXR0aW5nIGluIHRoZSBpbml0aWFsIGRldmljZSBpbmZvIHBhdGNoJ3Mg
+ZGVmaW5pdGlvbiBvZg0KPiBYRV9IUENfRkVBVFVSRVMuDQoNClJldmlld2VkLWJ5OiBKb3PDqSBS
+b2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4NCg0KPiANCj4gU2lnbmVkLW9m
+Zi1ieTogTWF0dCBSb3BlciA8bWF0dGhldy5kLnJvcGVyQGludGVsLmNvbT4NCj4gLS0tDQo+ICBk
+cml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3BjaS5jIHwgMSArDQo+ICAxIGZpbGUgY2hhbmdlZCwg
+MSBpbnNlcnRpb24oKykNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9p
+OTE1X3BjaS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9wY2kuYw0KPiBpbmRleCAwNDdh
+NmUzMjYwMzEuLmE1YTFhNzY0NzMyMCAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5
+MTUvaTkxNV9wY2kuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3BjaS5jDQo+
+IEBAIC0xMDg5LDYgKzEwODksNyBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IGludGVsX2RldmljZV9p
+bmZvIGF0c19tX2luZm8gPSB7DQo+ICAJWEVfSFBfRkVBVFVSRVMsIFwNCj4gIAkuZG1hX21hc2tf
+c2l6ZSA9IDUyLCBcDQo+ICAJLmhhc18zZF9waXBlbGluZSA9IDAsIFwNCj4gKwkuaGFzX2d1Y19k
+ZXByaXZpbGVnZSA9IDEsIFwNCj4gIAkuaGFzX2wzX2Njc19yZWFkID0gMSwgXA0KPiAgCS5oYXNf
+b25lX2V1X3Blcl9mdXNlX2JpdCA9IDENCj4gIA0KDQo=
