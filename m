@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A07453C6B4
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jun 2022 10:01:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 91BF653C6B9
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jun 2022 10:03:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 240AF10EE0D;
-	Fri,  3 Jun 2022 08:01:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D59C310F2A9;
+	Fri,  3 Jun 2022 08:03:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6798310EE0D
- for <intel-gfx@lists.freedesktop.org>; Fri,  3 Jun 2022 08:01:21 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF36C10F2A9
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 Jun 2022 08:03:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1654243281; x=1685779281;
+ t=1654243381; x=1685779381;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=X15NL/4wdI3Z4k+ODHcSKtSGjNUavh4LTtrqdsxEhfs=;
- b=eSpozI7VubLyzF3RVvMlue/YDp9aNTKV8dy/o5cmcQGE+uX0RLNHHqA+
- CWTP26M00e5K97vAlkYaHzFXhKvgjVij4plrOCZqMbsLDjPdFwsxE/nfh
- 2wTJY4BuQZLIKYso6UtflZmPIy2V3/D/rmsAEtIBO6XqGbNTkm8e+SNno
- mp04gPcNWjnbbGDCEp73eMHTBr9jTPsA3nvBBextAwmr7Vaqiqp7DZ02O
- omyMDpXrO/fU0wuE0SNH6BPhO72HNL80y3uhMAD9ynZuPtu35kJcRndlW
- RXZbQevrVnNDWmQpGt77W0aI4gsf1J2n/Hi+c9+RA4JoD0ydLnMybFv5f A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10366"; a="273761429"
-X-IronPort-AV: E=Sophos;i="5.91,274,1647327600"; d="scan'208";a="273761429"
+ bh=At5ImlfvT4Hulv2/7hA9YPZS4Da5/CoC0FyVHw7jwXU=;
+ b=gFrtzoO/i89RgHc5JJByOMoFgrfGawNgYKXYYodkYKyBfsicYZLOFl6u
+ ba8YRE4dzaYLLFyoWmOPoSimqFWz5udfZdB0o8kZNgsi4l4giy2HUpk7a
+ V0NSXzHITfDK6dgLUq1omb847iCZj6B0O0mSLIVJHhA//vGdHQ61K39EO
+ zhDdQHU5ML1gj2QkCY1+robf8cnFBkxYBvWX/LoMJVbBo/Y8eUji4UX7t
+ AYDSqpp56l4ZmTwv/xsyeBLFIZgPf3c7ENmjOQucOfLyCwXxZDbIj+AmZ
+ 3aMIja4JfX/KjiHSsa4ImPK3FEOwiuBzNIY2K5NjAM0w1Mt2108wmqf26 Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10366"; a="256677507"
+X-IronPort-AV: E=Sophos;i="5.91,274,1647327600"; d="scan'208";a="256677507"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2022 01:01:20 -0700
-X-IronPort-AV: E=Sophos;i="5.91,274,1647327600"; d="scan'208";a="607284836"
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jun 2022 01:03:01 -0700
+X-IronPort-AV: E=Sophos;i="5.91,274,1647327600"; d="scan'208";a="607285346"
 Received: from richardf-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.55.27])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2022 01:01:19 -0700
+ 03 Jun 2022 01:02:59 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220602205649.11283-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20220602205723.11341-1-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220601151907.18725-3-ville.syrjala@linux.intel.com>
- <20220602205649.11283-1-ville.syrjala@linux.intel.com>
-Date: Fri, 03 Jun 2022 11:01:16 +0300
-Message-ID: <87sfomnpkj.fsf@intel.com>
+References: <20220601151907.18725-4-ville.syrjala@linux.intel.com>
+ <20220602205723.11341-1-ville.syrjala@linux.intel.com>
+Date: Fri, 03 Jun 2022 11:02:56 +0300
+Message-ID: <87pmjqnphr.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v2 2/3] drm/i915: Update eDP fast link
- training link rate parsing
+Subject: Re: [Intel-gfx] [PATCH v2 3/3] drm/i915: Parse max link rate from
+ the eDP BDB block
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,87 +66,119 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Thu, 02 Jun 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> We're not parsing the 5.4 Gbps value for the old eDP fast link
-> training link rate, nor are we parsing the new fast link training
-> link rate field. Remedy both.
+> The eDP BDB block has gained yet another max link rate field.
+> Let's parse it and consult it during the source rate filtering.
 >
-> Also we'll now use the actual link rate instead of the DPCD BW
-> register value.
+> v2: *20 instead of *2 to get the correct units (Jani)
+
+Failed to mention the same issue here as in the previous patch, but
+yeah. :)
+
+BR,
+Jani.
+
 >
-> Note that we're not even using this information for anything
-> currently, so should perhaps just nuke it all unless someone
-> is planning on implementing fast link training finally...
->
-> v2: Stop using the DPCD BW values (Jani)
->     *20 instead of *2 to get the rate in correct units (Jani)
->
-> Cc: Jani Nikula <jani.nikula@intel.com>
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-
 > ---
->  drivers/gpu/drm/i915/display/intel_bios.c     | 32 ++++++++++++-------
+>  drivers/gpu/drm/i915/display/intel_bios.c     |  4 ++++
+>  .../drm/i915/display/intel_display_types.h    |  1 +
+>  drivers/gpu/drm/i915/display/intel_dp.c       | 23 +++++++++++++++++--
 >  drivers/gpu/drm/i915/display/intel_vbt_defs.h |  1 +
->  2 files changed, 21 insertions(+), 12 deletions(-)
+>  4 files changed, 27 insertions(+), 2 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/=
 i915/display/intel_bios.c
-> index c42b9e7d0dce..425e91d8cd2f 100644
+> index 425e91d8cd2f..aaea27fe5d16 100644
 > --- a/drivers/gpu/drm/i915/display/intel_bios.c
 > +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-> @@ -1367,18 +1367,26 @@ parse_edp(struct drm_i915_private *i915,
+> @@ -1461,6 +1461,10 @@ parse_edp(struct drm_i915_private *i915,
 >=20=20
->  	panel->vbt.edp.pps =3D *edp_pps;
+>  	panel->vbt.edp.drrs_msa_timing_delay =3D
+>  		(edp->sdrrs_msa_timing_delay >> (panel_type * 2)) & 3;
+> +
+> +	if (i915->vbt.version >=3D 244)
+> +		panel->vbt.edp.max_link_rate =3D
+> +			edp->edp_max_port_link_rate[panel_type] * 20;
+>  }
 >=20=20
-> -	switch (edp_link_params->rate) {
-> -	case EDP_RATE_1_62:
-> -		panel->vbt.edp.rate =3D DP_LINK_BW_1_62;
-> -		break;
-> -	case EDP_RATE_2_7:
-> -		panel->vbt.edp.rate =3D DP_LINK_BW_2_7;
-> -		break;
-> -	default:
-> -		drm_dbg_kms(&i915->drm,
-> -			    "VBT has unknown eDP link rate value %u\n",
-> -			     edp_link_params->rate);
-> -		break;
-> +	if (i915->vbt.version >=3D 224) {
-> +		panel->vbt.edp.rate =3D
-> +			edp->edp_fast_link_training_rate[panel_type] * 20;
-> +	} else {
-> +		switch (edp_link_params->rate) {
-> +		case EDP_RATE_1_62:
-> +			panel->vbt.edp.rate =3D 162000;
-> +			break;
-> +		case EDP_RATE_2_7:
-> +			panel->vbt.edp.rate =3D 270000;
-> +			break;
-> +		case EDP_RATE_5_4:
-> +			panel->vbt.edp.rate =3D 540000;
-> +			break;
-> +		default:
-> +			drm_dbg_kms(&i915->drm,
-> +				    "VBT has unknown eDP link rate value %u\n",
-> +				    edp_link_params->rate);
-> +			break;
-> +		}
+>  static void
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
+/gpu/drm/i915/display/intel_display_types.h
+> index 9b44358e8d9e..8b0949b6dc75 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -300,6 +300,7 @@ struct intel_vbt_panel_data {
+>  	enum drrs_type drrs_type;
+>=20=20
+>  	struct {
+> +		int max_link_rate;
+>  		int rate;
+>  		int lanes;
+>  		int preemphasis;
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
+15/display/intel_dp.c
+> index 03af93ef9e93..8ff875ab3b37 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -408,6 +408,26 @@ static int ehl_max_source_rate(struct intel_dp *inte=
+l_dp)
+>  	return 810000;
+>  }
+>=20=20
+> +static int vbt_max_link_rate(struct intel_dp *intel_dp)
+> +{
+> +	struct intel_encoder *encoder =3D &dp_to_dig_port(intel_dp)->base;
+> +	int max_rate;
+> +
+> +	max_rate =3D intel_bios_dp_max_link_rate(encoder);
+> +
+> +	if (intel_dp_is_edp(intel_dp)) {
+> +		struct intel_connector *connector =3D intel_dp->attached_connector;
+> +		int edp_max_rate =3D connector->panel.vbt.edp.max_link_rate;
+> +
+> +		if (max_rate && edp_max_rate)
+> +			max_rate =3D min(max_rate, edp_max_rate);
+> +		else if (edp_max_rate)
+> +			max_rate =3D edp_max_rate;
+> +	}
+> +
+> +	return max_rate;
+> +}
+> +
+>  static void
+>  intel_dp_set_source_rates(struct intel_dp *intel_dp)
+>  {
+> @@ -429,7 +449,6 @@ intel_dp_set_source_rates(struct intel_dp *intel_dp)
+>  		162000, 270000
+>  	};
+>  	struct intel_digital_port *dig_port =3D dp_to_dig_port(intel_dp);
+> -	struct intel_encoder *encoder =3D &dig_port->base;
+>  	struct drm_i915_private *dev_priv =3D to_i915(dig_port->base.base.dev);
+>  	const int *source_rates;
+>  	int size, max_rate =3D 0, vbt_max_rate;
+> @@ -465,7 +484,7 @@ intel_dp_set_source_rates(struct intel_dp *intel_dp)
+>  		size =3D ARRAY_SIZE(g4x_rates);
 >  	}
 >=20=20
->  	switch (edp_link_params->lanes) {
+> -	vbt_max_rate =3D intel_bios_dp_max_link_rate(encoder);
+> +	vbt_max_rate =3D vbt_max_link_rate(intel_dp);
+>  	if (max_rate && vbt_max_rate)
+>  		max_rate =3D min(max_rate, vbt_max_rate);
+>  	else if (vbt_max_rate)
 > diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/=
 drm/i915/display/intel_vbt_defs.h
-> index 14f1e1cc92c5..58aee0a040cf 100644
+> index 58aee0a040cf..f8e5097222f2 100644
 > --- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
 > +++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-> @@ -638,6 +638,7 @@ struct bdb_sdvo_panel_dtds {
->  #define EDP_30BPP	2
->  #define EDP_RATE_1_62	0
->  #define EDP_RATE_2_7	1
-> +#define EDP_RATE_5_4	2
->  #define EDP_LANE_1	0
->  #define EDP_LANE_2	1
->  #define EDP_LANE_4	3
+> @@ -697,6 +697,7 @@ struct bdb_edp {
+>  	u16 apical_enable;					/* 203 */
+>  	struct edp_apical_params apical_params[16];		/* 203 */
+>  	u16 edp_fast_link_training_rate[16];			/* 224 */
+> +	u16 edp_max_port_link_rate[16];				/* 244 */
+>  } __packed;
+>=20=20
+>  /*
 
 --=20
 Jani Nikula, Intel Open Source Graphics Center
