@@ -1,43 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A752A53C83F
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jun 2022 12:14:32 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 256E253C840
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jun 2022 12:14:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E5AFB10F5F8;
-	Fri,  3 Jun 2022 10:14:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADF3810F67A;
+	Fri,  3 Jun 2022 10:14:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E129110F5F8
- for <intel-gfx@lists.freedesktop.org>; Fri,  3 Jun 2022 10:14:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2755910F67A
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 Jun 2022 10:14:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1654251269; x=1685787269;
+ t=1654251272; x=1685787272;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=hg2BGAoJGcYiB6mRDJKqmVi9eRHMfScgi4ogePCJxMQ=;
- b=gkabHzp4K1oT99ZE4jEtWUdXnosEzcYSP1OZncxFZqZj9LEcrEd8z3KJ
- AVw7tsq/9gGU8EMaZTTE03K/6AqpQ3LXHpjFGtqH97E4w1iFkqIV1KkFT
- VHMqQqj/gwP9otgi2j4m97GL87pjCw7Jd8uEcrn/V+Tj/ktlMjaWZoS6E
- oGKXstCRO7fgNJQxrjgPskTt/nWFTrx1Bb9WvBtD2GMspfEyABHHvQwDp
- cWmSLiuti5MO3H6zrc37hR3iD2bPNFTu/FB/ofBOVPz5esn6P5nX6S/Ub
- iM5Wzg7ZSF1xOlwv54eb76/rN+DAxMu/qBZR1yMZyn1zC5pdch2oCS+qL A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10366"; a="256081984"
-X-IronPort-AV: E=Sophos;i="5.91,274,1647327600"; d="scan'208";a="256081984"
+ bh=stBzEHhyB56FVDffEB1FUA8zSnN4jOUVb/Fqt9aMlRI=;
+ b=P2h0vS2Y7+cHuhrSnngXJ6N7t3rLRIoRvx0ghMdbUm5NCVZBGlCZ0oiV
+ HfutU5igDK02hgqxCwGKX3oan1v3H8/aG/cUUQQ3GSJquEdxDI9vRM3cG
+ BWQuYFIlwD9e2nV3B1WW2RyY+OE5YA/S6UGXe536yrsrytxo7A3aAGkT5
+ /BfkVq+uRLTLeSFk/fgrJSs8cETHkCdxoBxNYTwtdWZdtSpmHTaBoI6Pz
+ AURoA0EFD+WmCKlrmOLHwusmt2Mw9hMNai5n1IYYQEU6pxtJzqozQjPUU
+ CsxgURpHYzkLm9oGoVQFeMcvLOUNAc0lDhC7ZnmPLvDZWwSw5/BGO+wE0 g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10366"; a="256081997"
+X-IronPort-AV: E=Sophos;i="5.91,274,1647327600"; d="scan'208";a="256081997"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2022 03:14:28 -0700
-X-IronPort-AV: E=Sophos;i="5.91,274,1647327600"; d="scan'208";a="721694720"
+ 03 Jun 2022 03:14:32 -0700
+X-IronPort-AV: E=Sophos;i="5.91,274,1647327600"; d="scan'208";a="721694729"
 Received: from kaszymec-mobl1.ger.corp.intel.com (HELO
  jhogande-mobl1.ger.corp.intel.com) ([10.249.38.113])
  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2022 03:14:27 -0700
+ 03 Jun 2022 03:14:30 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri,  3 Jun 2022 13:14:10 +0300
-Message-Id: <20220603101411.3087789-2-jouni.hogander@intel.com>
+Date: Fri,  3 Jun 2022 13:14:11 +0300
+Message-Id: <20220603101411.3087789-3-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220603101411.3087789-1-jouni.hogander@intel.com>
 References: <20220603101411.3087789-1-jouni.hogander@intel.com>
@@ -45,8 +45,8 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 1/2] drm/i915/opregion: add function to check if
- headless sku
+Subject: [Intel-gfx] [PATCH 2/2] drm/i915: do not start connector polling
+ when headless sku
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,71 +62,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Export headless sku bit (bit 13) from opregion->header->pcon as an
-interface to check if our device is headless configuration.
+Connector polling is waking up the polled device. Polling
+is unnecessary if our device is known to not have display.
 
-Bspec: 53441
+Fix this and Save some power by disabling starting connector
+polling when we are having headless sku. Use information from
+opregion.
+
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_opregion.c | 12 ++++++++++++
- drivers/gpu/drm/i915/display/intel_opregion.h |  7 +++++++
- 2 files changed, 19 insertions(+)
+ drivers/gpu/drm/i915/display/intel_hotplug.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_opregion.c b/drivers/gpu/drm/i915/display/intel_opregion.c
-index f31e8c3f8ce0..eab3f2e6b786 100644
---- a/drivers/gpu/drm/i915/display/intel_opregion.c
-+++ b/drivers/gpu/drm/i915/display/intel_opregion.c
-@@ -53,6 +53,8 @@
- #define MBOX_ASLE_EXT		BIT(4)	/* Mailbox #5 */
- #define MBOX_BACKLIGHT		BIT(5)	/* Mailbox #2 (valid from v3.x) */
- 
-+#define PCON_HEADLESS_SKU	BIT(13)
-+
- struct opregion_header {
- 	u8 signature[16];
- 	u32 size;
-@@ -1135,6 +1137,16 @@ struct edid *intel_opregion_get_edid(struct intel_connector *intel_connector)
- 	return new_edid;
- }
- 
-+bool intel_opregion_headless_sku(struct drm_i915_private *i915)
-+{
-+	struct intel_opregion *opregion = &i915->opregion;
-+
-+	if (!opregion->header)
-+		return false;
-+
-+	return opregion->header->pcon & PCON_HEADLESS_SKU;
-+}
-+
- void intel_opregion_register(struct drm_i915_private *i915)
+diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.c b/drivers/gpu/drm/i915/display/intel_hotplug.c
+index 8204126d17f9..555278ec7667 100644
+--- a/drivers/gpu/drm/i915/display/intel_hotplug.c
++++ b/drivers/gpu/drm/i915/display/intel_hotplug.c
+@@ -668,7 +668,8 @@ static void i915_hpd_poll_init_work(struct work_struct *work)
+  */
+ void intel_hpd_poll_enable(struct drm_i915_private *dev_priv)
  {
- 	struct intel_opregion *opregion = &i915->opregion;
-diff --git a/drivers/gpu/drm/i915/display/intel_opregion.h b/drivers/gpu/drm/i915/display/intel_opregion.h
-index 82cc0ba34af7..5ad96e1d8278 100644
---- a/drivers/gpu/drm/i915/display/intel_opregion.h
-+++ b/drivers/gpu/drm/i915/display/intel_opregion.h
-@@ -76,6 +76,8 @@ int intel_opregion_notify_adapter(struct drm_i915_private *dev_priv,
- int intel_opregion_get_panel_type(struct drm_i915_private *dev_priv);
- struct edid *intel_opregion_get_edid(struct intel_connector *connector);
+-	if (!HAS_DISPLAY(dev_priv))
++	if (!HAS_DISPLAY(dev_priv) ||
++	    intel_opregion_headless_sku(dev_priv))
+ 		return;
  
-+bool intel_opregion_headless_sku(struct drm_i915_private *i915);
-+
- #else /* CONFIG_ACPI*/
- 
- static inline int intel_opregion_setup(struct drm_i915_private *dev_priv)
-@@ -127,6 +129,11 @@ intel_opregion_get_edid(struct intel_connector *connector)
- 	return NULL;
- }
- 
-+bool intel_opregion_headless_sku(struct drm_i915_private *i915)
-+{
-+	return false;
-+}
-+
- #endif /* CONFIG_ACPI */
- 
- #endif
+ 	WRITE_ONCE(dev_priv->hotplug.poll_enabled, true);
 -- 
 2.25.1
 
