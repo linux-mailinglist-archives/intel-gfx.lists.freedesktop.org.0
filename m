@@ -2,27 +2,27 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C0F853D4B9
-	for <lists+intel-gfx@lfdr.de>; Sat,  4 Jun 2022 03:54:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C77B753D4BA
+	for <lists+intel-gfx@lfdr.de>; Sat,  4 Jun 2022 03:56:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E5FB610E8E4;
-	Sat,  4 Jun 2022 01:53:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0AA2910E30E;
+	Sat,  4 Jun 2022 01:56:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 06DB510E781;
- Sat,  4 Jun 2022 01:53:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 44C9C10E30E;
+ Sat,  4 Jun 2022 01:56:16 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 02B9DA363D;
- Sat,  4 Jun 2022 01:53:57 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 3D830A66C8;
+ Sat,  4 Jun 2022 01:56:16 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============7058015891853635187=="
+ boundary="===============5442065017531479987=="
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Souza, Jose" <jose.souza@intel.com>
-Date: Sat, 04 Jun 2022 01:53:57 -0000
-Message-ID: <165430763700.17739.9743431847928448620@emeril.freedesktop.org>
+Date: Sat, 04 Jun 2022 01:56:16 -0000
+Message-ID: <165430777622.17741.16541271252158976187@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20220602201730.199418-1-jose.souza@intel.com>
 In-Reply-To: <20220602201730.199418-1-jose.souza@intel.com>
@@ -46,7 +46,7 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============7058015891853635187==
+--===============5442065017531479987==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -203,7 +203,7 @@ Build changes
 
 For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104678v2/index.html
 
---===============7058015891853635187==
+--===============5442065017531479987==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -347,4 +347,4 @@ Content-Transfer-Encoding: 7bit
 </body>
 </html>
 
---===============7058015891853635187==--
+--===============5442065017531479987==--
