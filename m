@@ -2,55 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F05EC53E55C
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Jun 2022 17:21:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 03ECA53E5BE
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Jun 2022 18:37:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3719A10E4A0;
-	Mon,  6 Jun 2022 15:21:21 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 425F510E4A0;
- Mon,  6 Jun 2022 15:21:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 436D811A867;
+	Mon,  6 Jun 2022 16:37:23 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 00C1E11A867
+ for <intel-gfx@lists.freedesktop.org>; Mon,  6 Jun 2022 16:37:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1654528880; x=1686064880;
+ t=1654533441; x=1686069441;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=4ZLsW+SwFXbxc6x029bjWr9Qjkceb1C8H6/sp2yQu6k=;
- b=XhKelTVqA+S1aE0CaJv4260mz58nEPGAyfaL4B0nzJwJdUIq11AlhLSt
- NLD9WckEct6PC41oJOEFW+VblR2NkdjmBWaYUltLx5jPuHFY7rwzM0AQK
- zuvnpklqpWlPdNRdRjxMUmj2Nnch9AU8yTkPZF1GTdj5sCSqWUyJPwstc
- H43ck3NphBLoO+brRjWe2bmNctVCK1sGcToFjKQ3JaxGN869Sp99IHsgg
- tTzpuMjFD7DqeTtAoDz+c4BuoREOZbyRD1I/CwNryHZHQ9a2hUc3JuVeK
- 4NIVK3TUUgFG9NcILvJ57XfCeARb0ioElP80PGSYV201hnt9+ZD4Cpqtl g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10370"; a="276703889"
-X-IronPort-AV: E=Sophos;i="5.91,280,1647327600"; d="scan'208";a="276703889"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jun 2022 08:21:19 -0700
-X-IronPort-AV: E=Sophos;i="5.91,280,1647327600"; d="scan'208";a="669524109"
+ bh=ksV7r6qwrAiFg5nJbQRHF2bp4/nzRSgNgqXsAx+FJRY=;
+ b=Yhkbr6LAI1qgXviORaTBSIK3kr4TZZj6hkM9uq5DioIC5pbB9c47mPQy
+ Nl6grZTZydAPX2WUe5hKF6dEcKf5/ck3OEGThdGdOFLdyUpBVIblWXpgF
+ LtaSnn542l3ZGnGJy/Twd/VhBqoMM19MjvPj2EAbWRxx1whF+u55DAslB
+ rieZElnMFkI6a4L8pnxMIotjSxbvQ9zBI5AiIpMuOasVRkkTWrwknK8UF
+ dizvSCo8toOf1PK9Q5vj4CGgEeloLTE5rCw/ONTG3ScgaiPXryWdGOHs4
+ nULXzj9KaujwylqT7SSa7U68l5aNexIfVlhIEtowVC0D39dXhdjZAlHkz Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10370"; a="256505655"
+X-IronPort-AV: E=Sophos;i="5.91,280,1647327600"; d="scan'208";a="256505655"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jun 2022 09:37:21 -0700
+X-IronPort-AV: E=Sophos;i="5.91,280,1647327600"; d="scan'208";a="564979371"
 Received: from mdroper-desk1.fm.intel.com (HELO
  mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jun 2022 08:21:19 -0700
-Date: Mon, 6 Jun 2022 08:21:18 -0700
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jun 2022 09:37:20 -0700
+Date: Mon, 6 Jun 2022 09:37:19 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <Yp4bblojY+tq66VD@mdroper-desk1.amr.corp.intel.com>
-References: <20220524094339.1692212-1-tvrtko.ursulin@linux.intel.com>
- <Yo0bBxHBH8cZcnN4@mdroper-desk1.amr.corp.intel.com>
- <f37468b3-1066-ee4b-fb5b-7664fd180fd6@linux.intel.com>
- <Yo5v7/pLw4eF8xxw@mdroper-desk1.amr.corp.intel.com>
- <53ebd108-c9db-0673-f2c8-5a237dbf354a@linux.intel.com>
- <YpEbfVS5y+yYUddP@mdroper-desk1.amr.corp.intel.com>
- <68da9005-f741-0068-05ce-fbc6674469eb@linux.intel.com>
+To: Anshuman Gupta <anshuman.gupta@intel.com>
+Message-ID: <Yp4tP3ogHnNPLlY9@mdroper-desk1.amr.corp.intel.com>
+References: <20220606060324.1618-1-anshuman.gupta@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <68da9005-f741-0068-05ce-fbc6674469eb@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dg2: Catch and log more unexpected
- values in DG1_MSTR_TILE_INTR
+In-Reply-To: <20220606060324.1618-1-anshuman.gupta@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/dg2: Add Wa_14015795083
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,196 +56,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jun 06, 2022 at 12:55:20PM +0100, Tvrtko Ursulin wrote:
+On Mon, Jun 06, 2022 at 11:33:24AM +0530, Anshuman Gupta wrote:
+> i915 must disable Render DOP clock gating globally.
 > 
-> On 27/05/2022 19:42, Matt Roper wrote:
-> > On Thu, May 26, 2022 at 11:18:17AM +0100, Tvrtko Ursulin wrote:
-> > > On 25/05/2022 19:05, Matt Roper wrote:
-> > > > On Wed, May 25, 2022 at 05:03:13PM +0100, Tvrtko Ursulin wrote:
-> > > > > 
-> > > > > On 24/05/2022 18:51, Matt Roper wrote:
-> > > > > > On Tue, May 24, 2022 at 10:43:39AM +0100, Tvrtko Ursulin wrote:
-> > > > > > > From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> > > > > > > 
-> > > > > > > Catch and log any garbage in the register, including no tiles marked, or
-> > > > > > > multiple tiles marked.
-> > > > > > > 
-> > > > > > > Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> > > > > > > Cc: Matt Roper <matthew.d.roper@intel.com>
-> > > > > > > ---
-> > > > > > > We caught garbage in DG1_MSTR_TILE_INTR with DG2 (actual value 0xF9D2C008)
-> > > > > > > during glmark and more badness. So I thought lets log all possible failure
-> > > > > > > modes from here and also use per device logging.
-> > > > > > > ---
-> > > > > > >     drivers/gpu/drm/i915/i915_irq.c | 33 ++++++++++++++++++++++-----------
-> > > > > > >     drivers/gpu/drm/i915/i915_reg.h |  1 +
-> > > > > > >     2 files changed, 23 insertions(+), 11 deletions(-)
-> > > > > > > 
-> > > > > > > diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-> > > > > > > index 73cebc6aa650..79853d3fc1ed 100644
-> > > > > > > --- a/drivers/gpu/drm/i915/i915_irq.c
-> > > > > > > +++ b/drivers/gpu/drm/i915/i915_irq.c
-> > > > > > > @@ -2778,24 +2778,30 @@ static irqreturn_t dg1_irq_handler(int irq, void *arg)
-> > > > > > >     	u32 gu_misc_iir;
-> > > > > > >     	if (!intel_irqs_enabled(i915))
-> > > > > > > -		return IRQ_NONE;
-> > > > > > > +		goto none;
-> > > > > > >     	master_tile_ctl = dg1_master_intr_disable(regs);
-> > > > > > > -	if (!master_tile_ctl) {
-> > > > > > > -		dg1_master_intr_enable(regs);
-> > > > > > > -		return IRQ_NONE;
-> > > > > > > +	if (!master_tile_ctl)
-> > > > > > > +		goto enable_none;
-> > > > > > > +
-> > > > > > > +	if (master_tile_ctl & ~(DG1_MSTR_IRQ | DG1_MSTR_TILE_MASK)) {
-> > > > > > > +		drm_warn(&i915->drm, "Garbage in master_tile_ctl: 0x%08x!\n",
-> > > > > > > +			 master_tile_ctl);
-> > > > > > 
-> > > > > > I know we have a bunch of them already, but shouldn't we be avoiding
-> > > > > > printk-based stuff like this inside interrupt handlers?  Should we be
-> > > > > > migrating all these error messages over to trace_printk or something
-> > > > > > similar that's safer to use?
-> > > > > 
-> > > > > Not sure - I kind of think some really unexpected and worrying situations
-> > > > > should be loud and on by default. Risk is then spam if not ratelimited.
-> > > > > Maybe we should instead ratelimit most errors/warnings coming for irq
-> > > > > handlers?
-> > > > 
-> > > > It's not the risk of spam that's the problem, but rather that
-> > > > printk-based stuff eventually calls into the console code to flush its
-> > > > buffers.  That's way more overhead than you want in an interrupt handler
-> > > > so it's bad on its own, but if you're using something slow like a serial
-> > > > console, it becomes even more of a problem.
-> > > 
-> > > Is it a problem for messages which we never expect to see?
-> > 
-> > Kind of.  While not as catastrophic, it's the same argument for why we
-> > don't use BUG() anymore...when the impossible does manage to happen
-> > there's unnecessary collateral damage on things outside of graphics.  If
-> > we're adding huge delays inside an interrupt handler (while other
-> > interrupts are disabled) that impacts the system-wide usability, not
-> > just our own driver.
-> > 
-> > I'd also argue that these messages actually are semi-expected.  Random
-> > bits being set shouldn't happen, but in the world of dgpu's, we do
-> > occasionally see cases where the PCI link itself goes down for reasons
-> > outside our control and then all registers read back as 0xFFFFFFFF,
-> > which will probably trigger error messages here (as well as a bunch of
-> > other places).
+> B.Spec: 52621
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Cc: Badal Nilawar <badal.nilawar@intel.com>
+> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_gt_regs.h     | 1 +
+>  drivers/gpu/drm/i915/gt/intel_workarounds.c | 5 +++++
+>  2 files changed, 6 insertions(+)
 > 
-> Could you expand a bit on what is semi-expected and when? I mean the
-> circumstances of PCI link going down. We certainly don't have any code to
-> survive that.
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+> index 58e9b464d564..55a291ab5536 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+> @@ -630,6 +630,7 @@
+>  
+>  #define GEN7_MISCCPCTL				_MMIO(0x9424)
+>  #define   GEN7_DOP_CLOCK_GATE_ENABLE		(1 << 0)
+> +#define   GEN12_DOP_CLOCK_GATE_RENDER_ENABLE    (1 << 1)
 
-Yeah, I'm referring to the "Lost access to MMIO BAR" errors; in the past
-most of them have ultimately been tracked down to bugs in early
-firmware, so flashing an updated IFWI/BIOS onto the device usually
-solved the problems.  Generally those buggy firmwares are an internal
-problem that never make it into the wild, but I think we have also seen
-cases where they get triggered by physical/electrical problems on a
-specific part; that can potentially happen to anyone who's unlucky
-enough to get a defective/damaged unit.
+We should use a tab (instead of spaces) between the register name and
+the bit definition.  We should probably switch to 'REG_BIT' notation for
+new bits being added too.
 
-Basically "hardware returns all F's" happens because the CPU initiates
-an MMIO transaction with the hardware, the hardware fails to produce any
-response (possibly due to failing hardware, possibly due to
-firmware/BIOS bugs), so 0xFFFFFFFF gets returned as an autocompletion to
-prevent the CPU core from hanging.
+>  #define   GEN8_DOP_CLOCK_GATE_CFCLK_ENABLE	(1 << 2)
+>  #define   GEN8_DOP_CLOCK_GATE_GUC_ENABLE	(1 << 4)
+>  #define   GEN8_DOP_CLOCK_GATE_MEDIA_ENABLE	(1 << 6)
+> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> index a604bc7c0701..b957dec64eee 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> @@ -1489,6 +1489,11 @@ dg2_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wal)
+>  	 * performance guide section.
+>  	 */
+>  	wa_write_or(wal, GEN12_SQCM, EN_32B_ACCESS);
+> +
+> +	/*
+> +	 * Wa_14015795083
+> +	 */
 
-It looks like we still have a few open here:
-https://gitlab.freedesktop.org/search?search=%22Lost+access+to+MMIO+BAR%22&group_id=2642&project_id=4519&scope=issues&search_code=false&snippets=false&repository_ref=&nav_source=navbar
+We can just use a single-line comment here.
 
-and there are some features on specific platforms we haven't turned on
-yet because they also trigger these failures (which is still under
-debug).
+Aside from these cosmetic issues (and the formatting of 'Bspec' that
+Jani noted),
 
-We don't/can't really do much to handle these problems in i915 today
-except printing the 'lost access' error so that we know to ignore
-whatever kinds of bogus errors we get after that point (usually lots of
-messages about forcewake failing to clear, engine/GuC reset failing to
-complete, etc.).  But aside from i915 being broken, the rest of the
-platform should generally continue to work, so you can still access the
-machine over the network, save logs to disk, etc.
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
 
-Matt
-
+> +	wa_write_clr(wal, GEN7_MISCCPCTL, GEN12_DOP_CLOCK_GATE_RENDER_ENABLE);
+>  }
+>  
+>  static void
+> -- 
+> 2.26.2
 > 
-> > > > While the unexpected bits in the master tile register are strange and
-> > > > may point to a bigger problem somewhere else, they're also harmless on
-> > > > their own since we should just ignore those bits and only process the
-> > > > valid tiles.
-> > > 
-> > > Yes, I was expecting that a patch belonging to multi-tile enablement would
-> > > be incoming soon, which would be changing:
-> > > 
-> > > +	if (REG_FIELD_GET(DG1_MSTR_TILE_MASK, master_tile_ctl) !=
-> > > +	    DG1_MSTR_TILE(0)) {
-> > > +		drm_warn(&i915->drm, "Unexpected irq from tile %u!\n",
-> > > +			 ilog2(REG_FIELD_GET(DG1_MSTR_TILE_MASK,
-> > > +					     master_tile_ctl)));
-> > > +		goto enable_none;
-> > >   	}
-> > > 
-> > >  From this patch, into something completely different like walking bit by
-> > > bit, handling the present tiles, and warning on unexpected ones. What should
-> > > remain though is warning on no tiles signaled (which what we saw, together
-> > > with garbage in reserved bits).
-> > 
-> > Yeah.  Although I still feel the interrupt handler should really just be
-> > flagging the errors so that the actual prints themselves can happen
-> > outside the interrupt.
-> > 
-> > > 
-> > > > > In this particular case at least DRM_ERROR with no device info is the odd
-> > > > > one out in the entire file so I'd suggest changing at least that, if the
-> > > > > rest of my changes is of questionable benefit.
-> > > > 
-> > > > Changing DRM_ERROR -> drm_err would probably be fine in the short term
-> > > > since it doesn't really make us any worse off.  Changing to drm_warn
-> > > > might not be great since we're generating a lot more lines of output and
-> > > 
-> > > Sorry I don't follow - why does replacing drm_err with drm_warn generate (a
-> > > lot) more lines of output?
-> > 
-> > Sorry, my mistake; I had it in my mind that we were talking about a
-> > drm_WARN_ON rather than just drm_warn (i.e., including a big stacktrace
-> > and such).  DRM_ERROR -> drm_warn alone shouldn't have any extra
-> > negative impact.
-> > 
-> > > 
-> > > But it can be drm_err for all I care, I don't think we really have
-> > > consistent story between errors and warnings in this area.
-> > > 
-> > > > probably multiplying the already bad overhead that shouldn't be
-> > > > happening in an interrupt handler.  But if we could update the interrupt
-> > > > handler to just save away the details and do the actual drm_warn later,
-> > > > outside the interrupt handler code, that would be okay.  We should
-> > > > probably work toward something like that for all of our interrupt
-> > > > handler warning/error messages.
-> > > 
-> > > Not sure I agree - for messages which we don't expect to see it doesn't
-> > > really matter that there will be overhead when they are hit. Presumably bad
-> > > things are already happening there so spending effort to optimise those path
-> > > is questionable.
-> > 
-> > Something bad is happening to graphics is we hit one of these cases.
-> > But if we start doing prints while interrupts are disabled, we start
-> > having more of a negative impact on the rest of the system too.
-> 
-> Truly for the case of this particular patch I don't think we should care.
-> Rate limiting should be all that is needed in the short term to strike a
-> balance between effort and benefit. But lets first clarify the PCI link
-> going down problem.
-> 
-> Regards,
-> 
-> Tvrtko
 
 -- 
 Matt Roper
