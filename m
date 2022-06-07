@@ -1,52 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C6415418C5
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Jun 2022 23:17:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C9365419B2
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Jun 2022 23:26:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8CFA010F900;
-	Tue,  7 Jun 2022 21:17:53 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9DC9B10F19A;
- Tue,  7 Jun 2022 21:17:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 053C310E2A9;
+	Tue,  7 Jun 2022 21:26:14 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 927DA10E2A9;
+ Tue,  7 Jun 2022 21:26:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1654636668; x=1686172668;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=8PuWmfwsx1Ch21l880TIjPNgtw8M+b31Y6lvW8kDGO8=;
- b=YWBDCdpqJNDWJMCUJE4kGk6k6bl5IXbuJue2xp3VnYuz6X/2FQrIEVoQ
- oTXuXl8QiprLE0uCTqHoy8db3Wr1DAlTpog1iQoegKRYnpeUZlNwEBdhZ
- C8emSq+xu4ABCTGe2wpjwCa2JiOOPct0MhxwM5TY118JcBOKNN3a+JmG0
- wLuXHq4Erh1LPvKfHaMMXjJEBHLa5Df62DBxU7k0pEmEq0NINPjwnDlN/
- dj/tTlw0xmAvY+zYMUF8mKkDo7c3itWDGueSaUstCvBtc1qwYY8jOyuES
- SwcQBeO6ckZb4Lm/Jgzi3dymbPP/5AyXbKoqmeKKJ//Zfljhprs/l9ivG Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10371"; a="275524250"
-X-IronPort-AV: E=Sophos;i="5.91,284,1647327600"; d="scan'208";a="275524250"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jun 2022 14:17:48 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,284,1647327600"; d="scan'208";a="826557519"
-Received: from relo-linux-5.jf.intel.com ([10.165.21.134])
- by fmsmga006.fm.intel.com with ESMTP; 07 Jun 2022 14:17:48 -0700
-From: John.C.Harrison@Intel.com
-To: IGT-Dev@Lists.FreeDesktop.Org
-Date: Tue,  7 Jun 2022 14:17:47 -0700
-Message-Id: <20220607211747.3335656-4-John.C.Harrison@Intel.com>
-X-Mailer: git-send-email 2.36.0
-In-Reply-To: <20220607211747.3335656-1-John.C.Harrison@Intel.com>
-References: <20220607211747.3335656-1-John.C.Harrison@Intel.com>
+ t=1654637172; x=1686173172;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=R6bMbowlyFrD5CKqTHglILgd6IZr6XmCprk99Wk5hYA=;
+ b=LAMlWvEzG0IhTKuzbpaqW6/bqHmxTQ/GqgAEGOu/ZWrBBVMoNhf+4VSg
+ bzwMwnaXmkaMQvTQ2k1eknPL1TPg7eO/HMEhYtadJElJZKgn7h4TqOR/B
+ DqUjrEav03H1ub3d8eWkAmjbcaf9YtwllbPwUUYiZVuZnuzXsuOk/ZBrw
+ JCIUpRGUqTiJcTFdqb6bUlSDVkWrNZXSi9LmmWdx4MVbYP408KPDphGRa
+ xmhqWYZ6VMdZn0yLLrhNjvj7DkxlK29rSFy7KlC1wOM04fdz2Gd6tbeQm
+ UEjtVbiGbqKai64hgBDmg/15++ZBcKLhC53COIw7HQNN5GGvbokRgiopp Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10371"; a="257193089"
+X-IronPort-AV: E=Sophos;i="5.91,284,1647327600"; d="scan'208";a="257193089"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jun 2022 14:26:12 -0700
+X-IronPort-AV: E=Sophos;i="5.91,284,1647327600"; d="scan'208";a="609374259"
+Received: from nvishwa1-desk.sc.intel.com (HELO nvishwa1-DESK) ([172.25.29.76])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jun 2022 14:26:11 -0700
+Date: Tue, 7 Jun 2022 14:25:53 -0700
+From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Message-ID: <20220607212552.GX4461@nvishwa1-DESK>
+References: <20220517183212.20274-1-niranjana.vishwanathapura@intel.com>
+ <20220517183212.20274-4-niranjana.vishwanathapura@intel.com>
+ <e4e1989c314d3958d58010431515ea371935d0c3.camel@intel.com>
+ <20220523191943.GH4461@nvishwa1-DESK>
+ <CAPM=9tzcYL5kwv18cfq5NzE00jwHuwTj_L73NVgE8vdcBgrQww@mail.gmail.com>
+ <CAKMK7uFt23yZxGJfuZ71ngNw-46yvyed8LaQCQ1ksq73MLGEug@mail.gmail.com>
+ <20220602050833.GP4461@nvishwa1-DESK>
+ <20220603065330.GT4461@nvishwa1-DESK>
+ <d15da726-82d1-da01-fec8-7c86866f9d54@linux.intel.com>
 MIME-Version: 1.0
-Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
- Swindon SN3 1RJ
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v6 i-g-t 3/3] tests/i915/query: Query,
- parse and validate the hwconfig table
+In-Reply-To: <d15da726-82d1-da01-fec8-7c86866f9d54@linux.intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [RFC v3 3/3] drm/doc/rfc: VM_BIND uapi definition
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,359 +65,279 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-GFX@Lists.FreeDesktop.Org,
- Slawomir Milczarek <slawomir.milczarek@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: "Zanoni, Paulo R" <paulo.r.zanoni@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "Hellstrom, Thomas" <thomas.hellstrom@intel.com>, "Wilson,
+ Chris P" <chris.p.wilson@intel.com>, "Vetter,
+ Daniel" <daniel.vetter@intel.com>,
+ "christian.koenig@amd.com" <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+On Tue, Jun 07, 2022 at 11:42:08AM +0100, Tvrtko Ursulin wrote:
+>
+>On 03/06/2022 07:53, Niranjana Vishwanathapura wrote:
+>>On Wed, Jun 01, 2022 at 10:08:35PM -0700, Niranjana Vishwanathapura wrote:
+>>>On Wed, Jun 01, 2022 at 11:27:17AM +0200, Daniel Vetter wrote:
+>>>>On Wed, 1 Jun 2022 at 11:03, Dave Airlie <airlied@gmail.com> wrote:
+>>>>>
+>>>>>On Tue, 24 May 2022 at 05:20, Niranjana Vishwanathapura
+>>>>><niranjana.vishwanathapura@intel.com> wrote:
+>>>>>>
+>>>>>>On Thu, May 19, 2022 at 04:07:30PM -0700, Zanoni, Paulo R wrote:
+>>>>>>>On Tue, 2022-05-17 at 11:32 -0700, Niranjana Vishwanathapura wrote:
+>>>>>>>> VM_BIND and related uapi definitions
+>>>>>>>>
+>>>>>>>> v2: Ensure proper kernel-doc formatting with cross references.
+>>>>>>>>     Also add new uapi and documentation as per review comments
+>>>>>>>>     from Daniel.
+>>>>>>>>
+>>>>>>>> Signed-off-by: Niranjana Vishwanathapura 
+>>>>>><niranjana.vishwanathapura@intel.com>
+>>>>>>>> ---
+>>>>>>>>  Documentation/gpu/rfc/i915_vm_bind.h | 399 
+>>>>>>+++++++++++++++++++++++++++
+>>>>>>>>  1 file changed, 399 insertions(+)
+>>>>>>>>  create mode 100644 Documentation/gpu/rfc/i915_vm_bind.h
+>>>>>>>>
+>>>>>>>> diff --git a/Documentation/gpu/rfc/i915_vm_bind.h 
+>>>>>>b/Documentation/gpu/rfc/i915_vm_bind.h
+>>>>>>>> new file mode 100644
+>>>>>>>> index 000000000000..589c0a009107
+>>>>>>>> --- /dev/null
+>>>>>>>> +++ b/Documentation/gpu/rfc/i915_vm_bind.h
+>>>>>>>> @@ -0,0 +1,399 @@
+>>>>>>>> +/* SPDX-License-Identifier: MIT */
+>>>>>>>> +/*
+>>>>>>>> + * Copyright © 2022 Intel Corporation
+>>>>>>>> + */
+>>>>>>>> +
+>>>>>>>> +/**
+>>>>>>>> + * DOC: I915_PARAM_HAS_VM_BIND
+>>>>>>>> + *
+>>>>>>>> + * VM_BIND feature availability.
+>>>>>>>> + * See typedef drm_i915_getparam_t param.
+>>>>>>>> + */
+>>>>>>>> +#define I915_PARAM_HAS_VM_BIND               57
+>>>>>>>> +
+>>>>>>>> +/**
+>>>>>>>> + * DOC: I915_VM_CREATE_FLAGS_USE_VM_BIND
+>>>>>>>> + *
+>>>>>>>> + * Flag to opt-in for VM_BIND mode of binding during VM creation.
+>>>>>>>> + * See struct drm_i915_gem_vm_control flags.
+>>>>>>>> + *
+>>>>>>>> + * A VM in VM_BIND mode will not support the older 
+>>>>>>execbuff mode of binding.
+>>>>>>>> + * In VM_BIND mode, execbuff ioctl will not accept any 
+>>>>>>execlist (ie., the
+>>>>>>>> + * &drm_i915_gem_execbuffer2.buffer_count must be 0).
+>>>>>>>> + * Also, &drm_i915_gem_execbuffer2.batch_start_offset and
+>>>>>>>> + * &drm_i915_gem_execbuffer2.batch_len must be 0.
+>>>>>>>> + * DRM_I915_GEM_EXECBUFFER_EXT_BATCH_ADDRESSES extension 
+>>>>>>must be provided
+>>>>>>>> + * to pass in the batch buffer addresses.
+>>>>>>>> + *
+>>>>>>>> + * Additionally, I915_EXEC_NO_RELOC, I915_EXEC_HANDLE_LUT and
+>>>>>>>> + * I915_EXEC_BATCH_FIRST of 
+>>>>>>&drm_i915_gem_execbuffer2.flags must be 0
+>>>>>>>> + * (not used) in VM_BIND mode. I915_EXEC_USE_EXTENSIONS 
+>>>>>>flag must always be
+>>>>>>>> + * set (See struct drm_i915_gem_execbuffer_ext_batch_addresses).
+>>>>>>>> + * The buffers_ptr, buffer_count, batch_start_offset and 
+>>>>>>batch_len fields
+>>>>>>>> + * of struct drm_i915_gem_execbuffer2 are also not used 
+>>>>>>and must be 0.
+>>>>>>>> + */
+>>>>>>>
+>>>>>>>From that description, it seems we have:
+>>>>>>>
+>>>>>>>struct drm_i915_gem_execbuffer2 {
+>>>>>>>        __u64 buffers_ptr;              -> must be 0 (new)
+>>>>>>>        __u32 buffer_count;             -> must be 0 (new)
+>>>>>>>        __u32 batch_start_offset;       -> must be 0 (new)
+>>>>>>>        __u32 batch_len;                -> must be 0 (new)
+>>>>>>>        __u32 DR1;                      -> must be 0 (old)
+>>>>>>>        __u32 DR4;                      -> must be 0 (old)
+>>>>>>>        __u32 num_cliprects; (fences)   -> must be 0 since 
+>>>>>>using extensions
+>>>>>>>        __u64 cliprects_ptr; (fences, extensions) -> 
+>>>>>>contains an actual pointer!
+>>>>>>>        __u64 flags;                    -> some flags must be 0 (new)
+>>>>>>>        __u64 rsvd1; (context info)     -> repurposed field (old)
+>>>>>>>        __u64 rsvd2;                    -> unused
+>>>>>>>};
+>>>>>>>
+>>>>>>>Based on that, why can't we just get drm_i915_gem_execbuffer3 instead
+>>>>>>>of adding even more complexity to an already abused interface? While
+>>>>>>>the Vulkan-like extension thing is really nice, I don't think what
+>>>>>>>we're doing here is extending the ioctl usage, we're completely
+>>>>>>>changing how the base struct should be interpreted based on 
+>>>>>>how the VM
+>>>>>>>was created (which is an entirely different ioctl).
+>>>>>>>
+>>>>>>>From Rusty Russel's API Design grading, drm_i915_gem_execbuffer2 is
+>>>>>>>already at -6 without these changes. I think after vm_bind we'll need
+>>>>>>>to create a -11 entry just to deal with this ioctl.
+>>>>>>>
+>>>>>>
+>>>>>>The only change here is removing the execlist support for VM_BIND
+>>>>>>mode (other than natual extensions).
+>>>>>>Adding a new execbuffer3 was considered, but I think we need 
+>>>>>>to be careful
+>>>>>>with that as that goes beyond the VM_BIND support, including 
+>>>>>>any future
+>>>>>>requirements (as we don't want an execbuffer4 after VM_BIND).
+>>>>>
+>>>>>Why not? it's not like adding extensions here is really that different
+>>>>>than adding new ioctls.
+>>>>>
+>>>>>I definitely think this deserves an execbuffer3 without even
+>>>>>considering future requirements. Just  to burn down the old
+>>>>>requirements and pointless fields.
+>>>>>
+>>>>>Make execbuffer3 be vm bind only, no relocs, no legacy bits, leave the
+>>>>>older sw on execbuf2 for ever.
+>>>>
+>>>>I guess another point in favour of execbuf3 would be that it's less
+>>>>midlayer. If we share the entry point then there's quite a few vfuncs
+>>>>needed to cleanly split out the vm_bind paths from the legacy
+>>>>reloc/softping paths.
+>>>>
+>>>>If we invert this and do execbuf3, then there's the existing ioctl
+>>>>vfunc, and then we share code (where it even makes sense, probably
+>>>>request setup/submit need to be shared, anything else is probably
+>>>>cleaner to just copypaste) with the usual helper approach.
+>>>>
+>>>>Also that would guarantee that really none of the old concepts like
+>>>>i915_active on the vma or vma open counts and all that stuff leaks
+>>>>into the new vm_bind execbuf.
+>>>>
+>>>>Finally I also think that copypasting would make backporting easier,
+>>>>or at least more flexible, since it should make it easier to have the
+>>>>upstream vm_bind co-exist with all the other things we have. Without
+>>>>huge amounts of conflicts (or at least much less) that pushing a pile
+>>>>of vfuncs into the existing code would cause.
+>>>>
+>>>>So maybe we should do this?
+>>>
+>>>Thanks Dave, Daniel.
+>>>There are a few things that will be common between execbuf2 and
+>>>execbuf3, like request setup/submit (as you said), fence handling 
+>>>(timeline fences, fence array, composite fences), engine 
+>>>selection,
+>>>etc. Also, many of the 'flags' will be there in execbuf3 also (but
+>>>bit position will differ).
+>>>But I guess these should be fine as the suggestion here is to
+>>>copy-paste the execbuff code and having a shared code where possible.
+>>>Besides, we can stop supporting some older feature in execbuff3
+>>>(like fence array in favor of newer timeline fences), which will
+>>>further reduce common code.
+>>>
+>>>Ok, I will update this series by adding execbuf3 and send out soon.
+>>>
+>>
+>>Does this sound reasonable?
+>>
+>>struct drm_i915_gem_execbuffer3 {
+>>        __u32 ctx_id;        /* previously execbuffer2.rsvd1 */
+>>
+>>        __u32 batch_count;
+>>        __u64 batch_addr_ptr;    /* Pointer to an array of batch gpu 
+>>virtual addresses */
+>
+>Casual stumble upon..
+>
+>Alternatively you could embed N pointers to make life a bit easier for 
+>both userspace and kernel side. Yes, but then "N batch buffers should 
+>be enough for everyone" problem.. :)
+>
 
-Newer platforms have an embedded table giving details about that
-platform's hardware configuration. This table can be retrieved from
-the KMD via the existing query API. So add a test for it as both an
-example of how to fetch the table and to validate the contents as much
-as is possible.
+Thanks Tvrtko,
+Yes, hence the batch_addr_ptr.
 
-Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-Cc: Slawomir Milczarek <slawomir.milczarek@intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
----
- lib/intel_hwconfig_types.h | 118 ++++++++++++++++++++++++
- tests/i915/i915_query.c    | 180 +++++++++++++++++++++++++++++++++++++
- 2 files changed, 298 insertions(+)
- create mode 100644 lib/intel_hwconfig_types.h
+>>
+>>        __u64 flags;
+>>#define I915_EXEC3_RING_MASK              (0x3f)
+>>#define I915_EXEC3_DEFAULT                (0<<0)
+>>#define I915_EXEC3_RENDER                 (1<<0)
+>>#define I915_EXEC3_BSD                    (2<<0)
+>>#define I915_EXEC3_BLT                    (3<<0)
+>>#define I915_EXEC3_VEBOX                  (4<<0)
+>>
+>>#define I915_EXEC3_SECURE               (1<<6)
+>>#define I915_EXEC3_IS_PINNED            (1<<7)
+>>
+>>#define I915_EXEC3_BSD_SHIFT     (8)
+>>#define I915_EXEC3_BSD_MASK      (3 << I915_EXEC3_BSD_SHIFT)
+>>#define I915_EXEC3_BSD_DEFAULT   (0 << I915_EXEC3_BSD_SHIFT)
+>>#define I915_EXEC3_BSD_RING1     (1 << I915_EXEC3_BSD_SHIFT)
+>>#define I915_EXEC3_BSD_RING2     (2 << I915_EXEC3_BSD_SHIFT)
+>
+>I'd suggest legacy engine selection is unwanted, especially not with 
+>the convoluted BSD1/2 flags. Can we just require context with engine 
+>map and index? Or if default context has to be supported then I'd 
+>suggest ...class_instance for that mode.
+>
 
-diff --git a/lib/intel_hwconfig_types.h b/lib/intel_hwconfig_types.h
-new file mode 100644
-index 000000000000..d5db217afba2
---- /dev/null
-+++ b/lib/intel_hwconfig_types.h
-@@ -0,0 +1,118 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright Â© 2022 Intel Corporation
-+ */
-+
-+#ifndef _INTEL_HWCONFIG_TYPES_H_
-+#define _INTEL_HWCONFIG_TYPES_H_
-+
-+#include "intel_chipset.h"
-+
-+/**
-+ * enum intel_hwconfig - Global definition of hwconfig table attributes
-+ *
-+ * Intel devices provide a KLV (Key/Length/Value) table containing
-+ * the static hardware configuration for that platform.
-+ * This enum defines the current attribute keys for this KLV.
-+ */
-+enum intel_hwconfig {
-+	INTEL_HWCONFIG_MAX_SLICES_SUPPORTED = 1,
-+	INTEL_HWCONFIG_MAX_DUAL_SUBSLICES_SUPPORTED,		/* 2 */
-+	INTEL_HWCONFIG_MAX_NUM_EU_PER_DSS,			/* 3 */
-+	INTEL_HWCONFIG_NUM_PIXEL_PIPES,				/* 4 */
-+	INTEL_HWCONFIG_DEPRECATED_MAX_NUM_GEOMETRY_PIPES,	/* 5 */
-+	INTEL_HWCONFIG_DEPRECATED_L3_CACHE_SIZE_IN_KB,		/* 6 */
-+	INTEL_HWCONFIG_DEPRECATED_L3_BANK_COUNT,		/* 7 */
-+	INTEL_HWCONFIG_L3_CACHE_WAYS_SIZE_IN_BYTES,		/* 8 */
-+	INTEL_HWCONFIG_L3_CACHE_WAYS_PER_SECTOR,		/* 9 */
-+	INTEL_HWCONFIG_MAX_MEMORY_CHANNELS,			/* 10 */
-+	INTEL_HWCONFIG_MEMORY_TYPE,				/* 11 */
-+	INTEL_HWCONFIG_CACHE_TYPES,                             /* 12 */
-+	INTEL_HWCONFIG_LOCAL_MEMORY_PAGE_SIZES_SUPPORTED,	/* 13 */
-+	INTEL_HWCONFIG_DEPRECATED_SLM_SIZE_IN_KB,		/* 14 */
-+	INTEL_HWCONFIG_NUM_THREADS_PER_EU,			/* 15 */
-+	INTEL_HWCONFIG_TOTAL_VS_THREADS,			/* 16 */
-+	INTEL_HWCONFIG_TOTAL_GS_THREADS,			/* 17 */
-+	INTEL_HWCONFIG_TOTAL_HS_THREADS,			/* 18 */
-+	INTEL_HWCONFIG_TOTAL_DS_THREADS,			/* 19 */
-+	INTEL_HWCONFIG_TOTAL_VS_THREADS_POCS,			/* 20 */
-+	INTEL_HWCONFIG_TOTAL_PS_THREADS,			/* 21 */
-+	INTEL_HWCONFIG_DEPRECATED_MAX_FILL_RATE,		/* 22 */
-+	INTEL_HWCONFIG_MAX_RCS,					/* 23 */
-+	INTEL_HWCONFIG_MAX_CCS,					/* 24 */
-+	INTEL_HWCONFIG_MAX_VCS,					/* 25 */
-+	INTEL_HWCONFIG_MAX_VECS,				/* 26 */
-+	INTEL_HWCONFIG_MAX_COPY_CS,				/* 27 */
-+	INTEL_HWCONFIG_DEPRECATED_URB_SIZE_IN_KB,		/* 28 */
-+	INTEL_HWCONFIG_MIN_VS_URB_ENTRIES,			/* 29 */
-+	INTEL_HWCONFIG_MAX_VS_URB_ENTRIES,			/* 30 */
-+	INTEL_HWCONFIG_MIN_PCS_URB_ENTRIES,			/* 31 */
-+	INTEL_HWCONFIG_MAX_PCS_URB_ENTRIES,			/* 32 */
-+	INTEL_HWCONFIG_MIN_HS_URB_ENTRIES,			/* 33 */
-+	INTEL_HWCONFIG_MAX_HS_URB_ENTRIES,			/* 34 */
-+	INTEL_HWCONFIG_MIN_GS_URB_ENTRIES,			/* 35 */
-+	INTEL_HWCONFIG_MAX_GS_URB_ENTRIES,			/* 36 */
-+	INTEL_HWCONFIG_MIN_DS_URB_ENTRIES,			/* 37 */
-+	INTEL_HWCONFIG_MAX_DS_URB_ENTRIES,			/* 38 */
-+	INTEL_HWCONFIG_PUSH_CONSTANT_URB_RESERVED_SIZE,		/* 39 */
-+	INTEL_HWCONFIG_POCS_PUSH_CONSTANT_URB_RESERVED_SIZE,	/* 40 */
-+	INTEL_HWCONFIG_URB_REGION_ALIGNMENT_SIZE_IN_BYTES,	/* 41 */
-+	INTEL_HWCONFIG_URB_ALLOCATION_SIZE_UNITS_IN_BYTES,	/* 42 */
-+	INTEL_HWCONFIG_MAX_URB_SIZE_CCS_IN_BYTES,		/* 43 */
-+	INTEL_HWCONFIG_VS_MIN_DEREF_BLOCK_SIZE_HANDLE_COUNT,	/* 44 */
-+	INTEL_HWCONFIG_DS_MIN_DEREF_BLOCK_SIZE_HANDLE_COUNT,	/* 45 */
-+	INTEL_HWCONFIG_NUM_RT_STACKS_PER_DSS,			/* 46 */
-+	INTEL_HWCONFIG_MAX_URB_STARTING_ADDRESS,		/* 47 */
-+	INTEL_HWCONFIG_MIN_CS_URB_ENTRIES,			/* 48 */
-+	INTEL_HWCONFIG_MAX_CS_URB_ENTRIES,			/* 49 */
-+	INTEL_HWCONFIG_L3_ALLOC_PER_BANK_URB,			/* 50 */
-+	INTEL_HWCONFIG_L3_ALLOC_PER_BANK_REST,			/* 51 */
-+	INTEL_HWCONFIG_L3_ALLOC_PER_BANK_DC,			/* 52 */
-+	INTEL_HWCONFIG_L3_ALLOC_PER_BANK_RO,			/* 53 */
-+	INTEL_HWCONFIG_L3_ALLOC_PER_BANK_Z,			/* 54 */
-+	INTEL_HWCONFIG_L3_ALLOC_PER_BANK_COLOR,			/* 55 */
-+	INTEL_HWCONFIG_L3_ALLOC_PER_BANK_UNIFIED_TILE_CACHE,	/* 56 */
-+	INTEL_HWCONFIG_L3_ALLOC_PER_BANK_COMMAND_BUFFER,	/* 57 */
-+	INTEL_HWCONFIG_L3_ALLOC_PER_BANK_RW,			/* 58 */
-+	INTEL_HWCONFIG_MAX_NUM_L3_CONFIGS,			/* 59 */
-+	INTEL_HWCONFIG_BINDLESS_SURFACE_OFFSET_BIT_COUNT,	/* 60 */
-+	INTEL_HWCONFIG_RESERVED_CCS_WAYS,			/* 61 */
-+	INTEL_HWCONFIG_CSR_SIZE_IN_MB,				/* 62 */
-+	INTEL_HWCONFIG_GEOMETRY_PIPES_PER_SLICE,		/* 63 */
-+	INTEL_HWCONFIG_L3_BANK_SIZE_IN_KB,			/* 64 */
-+	INTEL_HWCONFIG_SLM_SIZE_PER_DSS,			/* 65 */
-+	INTEL_HWCONFIG_MAX_PIXEL_FILL_RATE_PER_SLICE,		/* 66 */
-+	INTEL_HWCONFIG_MAX_PIXEL_FILL_RATE_PER_DSS,		/* 67 */
-+	INTEL_HWCONFIG_URB_SIZE_PER_SLICE_IN_KB,		/* 68 */
-+	INTEL_HWCONFIG_URB_SIZE_PER_L3_BANK_COUNT_IN_KB,	/* 69 */
-+	INTEL_HWCONFIG_MAX_SUBSLICE,				/* 70 */
-+	INTEL_HWCONFIG_MAX_EU_PER_SUBSLICE,			/* 71 */
-+	INTEL_HWCONFIG_RAMBO_L3_BANK_SIZE_IN_KB,		/* 72 */
-+	INTEL_HWCONFIG_SLM_SIZE_PER_SS_IN_KB,			/* 73 */
-+	INTEL_HWCONFIG_NUM_HBM_STACKS_PER_TILE,			/* 74 */
-+	INTEL_HWCONFIG_NUM_CHANNELS_PER_HBM_STACK,		/* 75 */
-+	INTEL_HWCONFIG_HBM_CHANNEL_WIDTH_IN_BYTES,		/* 76 */
-+	INTEL_HWCONFIG_MIN_TASK_URB_ENTRIES,			/* 77 */
-+	INTEL_HWCONFIG_MAX_TASK_URB_ENTRIES,			/* 78 */
-+	INTEL_HWCONFIG_MIN_MESH_URB_ENTRIES,			/* 79 */
-+	INTEL_HWCONFIG_MAX_MESH_URB_ENTRIES,			/* 80 */
-+	__INTEL_HWCONFIG_KEY_LIMIT
-+};
-+
-+enum {
-+	INTEL_HWCONFIG_MEMORY_TYPE_LPDDR4 = 0,
-+	INTEL_HWCONFIG_MEMORY_TYPE_LPDDR5,
-+	INTEL_HWCONFIG_MEMORY_TYPE_HBM2,
-+	INTEL_HWCONFIG_MEMORY_TYPE_HBM2e,
-+	INTEL_HWCONFIG_MEMORY_TYPE_GDDR6,
-+	__INTEL_HWCONFIG_MEMORY_TYPE_LIMIT
-+};
-+
-+enum {
-+	INTEL_HWCONFIG_CACHE_TYPE_L3 = 0,
-+	INTEL_HWCONFIG_CACHE_TYPE_LLC,
-+	INTEL_HWCONFIG_CACHE_TYPE_EDRAM,
-+	__INTEL_HWCONFIG_CACHE_TYPE_LIMIT
-+};
-+
-+#endif /* _INTEL_HWCONFIG_TYPES_H_ */
-diff --git a/tests/i915/i915_query.c b/tests/i915/i915_query.c
-index 6c73f60aedcd..b545fb4aebbf 100644
---- a/tests/i915/i915_query.c
-+++ b/tests/i915/i915_query.c
-@@ -22,6 +22,7 @@
-  */
- 
- #include "igt.h"
-+#include "intel_hwconfig_types.h"
- 
- #include <limits.h>
- 
-@@ -912,6 +913,181 @@ static void test_query_geometry_subslices(int fd)
- 	}
- }
- 
-+static const char * const hwconfig_keys[] = {
-+	[INTEL_HWCONFIG_MAX_SLICES_SUPPORTED] = "Maximum number of Slices",
-+	[INTEL_HWCONFIG_MAX_DUAL_SUBSLICES_SUPPORTED] = "Maximum number of DSS",
-+	[INTEL_HWCONFIG_MAX_NUM_EU_PER_DSS] = "Maximum number of EUs per DSS",
-+	[INTEL_HWCONFIG_NUM_PIXEL_PIPES] = "Pixel Pipes",
-+	[INTEL_HWCONFIG_DEPRECATED_MAX_NUM_GEOMETRY_PIPES] = "[DEPRECATED] Geometry Pipes",
-+	[INTEL_HWCONFIG_DEPRECATED_L3_CACHE_SIZE_IN_KB] = "[DEPRECATED] L3 Size (in KB)",
-+	[INTEL_HWCONFIG_DEPRECATED_L3_BANK_COUNT] = "[DEPRECATED] L3 Bank Count",
-+	[INTEL_HWCONFIG_L3_CACHE_WAYS_SIZE_IN_BYTES] = "L3 Cache Ways Size (in bytes)",
-+	[INTEL_HWCONFIG_L3_CACHE_WAYS_PER_SECTOR] = "L3 Cache Ways Per Sector",
-+	[INTEL_HWCONFIG_MAX_MEMORY_CHANNELS] = "Memory Channels",
-+	[INTEL_HWCONFIG_MEMORY_TYPE] = "Memory type",
-+	[INTEL_HWCONFIG_CACHE_TYPES] = "Cache types",
-+	[INTEL_HWCONFIG_LOCAL_MEMORY_PAGE_SIZES_SUPPORTED] = "Local memory page size",
-+	[INTEL_HWCONFIG_DEPRECATED_SLM_SIZE_IN_KB] = "[DEPRECATED] SLM Size (in KB)",
-+	[INTEL_HWCONFIG_NUM_THREADS_PER_EU] = "Num thread per EU",
-+	[INTEL_HWCONFIG_TOTAL_VS_THREADS] = "Maximum Vertex Shader threads",
-+	[INTEL_HWCONFIG_TOTAL_GS_THREADS] = "Maximum Geometry Shader threads",
-+	[INTEL_HWCONFIG_TOTAL_HS_THREADS] = "Maximum Hull Shader threads",
-+	[INTEL_HWCONFIG_TOTAL_DS_THREADS] = "Maximum Domain Shader threads",
-+	[INTEL_HWCONFIG_TOTAL_VS_THREADS_POCS] = "Maximum Vertex Shader Threads for POCS",
-+	[INTEL_HWCONFIG_TOTAL_PS_THREADS] = "Maximum Pixel Shader Threads",
-+	[INTEL_HWCONFIG_DEPRECATED_MAX_FILL_RATE] = "[DEPRECATED] Maximum pixel rate for Fill",
-+	[INTEL_HWCONFIG_MAX_RCS] = "MaxRCS",
-+	[INTEL_HWCONFIG_MAX_CCS] = "MaxCCS",
-+	[INTEL_HWCONFIG_MAX_VCS] = "MaxVCS",
-+	[INTEL_HWCONFIG_MAX_VECS] = "MaxVECS",
-+	[INTEL_HWCONFIG_MAX_COPY_CS] = "MaxCopyCS",
-+	[INTEL_HWCONFIG_DEPRECATED_URB_SIZE_IN_KB] = "[DEPRECATED] URB Size (in KB)",
-+	[INTEL_HWCONFIG_MIN_VS_URB_ENTRIES] = "The minimum number of VS URB entries.",
-+	[INTEL_HWCONFIG_MAX_VS_URB_ENTRIES] = "The maximum number of VS URB entries.",
-+	[INTEL_HWCONFIG_MIN_PCS_URB_ENTRIES] = "The minimum number of PCS URB entries",
-+	[INTEL_HWCONFIG_MAX_PCS_URB_ENTRIES] = "The maximum number of PCS URB entries",
-+	[INTEL_HWCONFIG_MIN_HS_URB_ENTRIES] = "The minimum number of HS URB entries",
-+	[INTEL_HWCONFIG_MAX_HS_URB_ENTRIES] = "The maximum number of HS URB entries",
-+	[INTEL_HWCONFIG_MIN_GS_URB_ENTRIES] = "The minimum number of GS URB entries",
-+	[INTEL_HWCONFIG_MAX_GS_URB_ENTRIES] = "The maximum number of GS URB entries",
-+	[INTEL_HWCONFIG_MIN_DS_URB_ENTRIES] = "The minimum number of DS URB Entries",
-+	[INTEL_HWCONFIG_MAX_DS_URB_ENTRIES] = "The maximum number of DS URB Entries",
-+	[INTEL_HWCONFIG_PUSH_CONSTANT_URB_RESERVED_SIZE] = "Push Constant URB Reserved Size (in bytes)",
-+	[INTEL_HWCONFIG_POCS_PUSH_CONSTANT_URB_RESERVED_SIZE] = "POCS Push Constant URB Reserved Size (in bytes)",
-+	[INTEL_HWCONFIG_URB_REGION_ALIGNMENT_SIZE_IN_BYTES] = "URB Region Alignment Size (in bytes)",
-+	[INTEL_HWCONFIG_URB_ALLOCATION_SIZE_UNITS_IN_BYTES] = "URB Allocation Size Units (in bytes)",
-+	[INTEL_HWCONFIG_MAX_URB_SIZE_CCS_IN_BYTES] = "Max URB Size CCS (in bytes)",
-+	[INTEL_HWCONFIG_VS_MIN_DEREF_BLOCK_SIZE_HANDLE_COUNT] = "VS Min Deref BlockSize Handle Count",
-+	[INTEL_HWCONFIG_DS_MIN_DEREF_BLOCK_SIZE_HANDLE_COUNT] = "DS Min Deref Block Size Handle Count",
-+	[INTEL_HWCONFIG_NUM_RT_STACKS_PER_DSS] = "Num RT Stacks Per DSS",
-+	[INTEL_HWCONFIG_MAX_URB_STARTING_ADDRESS] = "Max URB Starting Address",
-+	[INTEL_HWCONFIG_MIN_CS_URB_ENTRIES] = "Min CS URB Entries",
-+	[INTEL_HWCONFIG_MAX_CS_URB_ENTRIES] = "Max CS URB Entries",
-+	[INTEL_HWCONFIG_L3_ALLOC_PER_BANK_URB] = "L3 Alloc Per Bank - URB",
-+	[INTEL_HWCONFIG_L3_ALLOC_PER_BANK_REST] = "L3 Alloc Per Bank - Rest",
-+	[INTEL_HWCONFIG_L3_ALLOC_PER_BANK_DC] = "L3 Alloc Per Bank - DC",
-+	[INTEL_HWCONFIG_L3_ALLOC_PER_BANK_RO] = "L3 Alloc Per Bank - RO",
-+	[INTEL_HWCONFIG_L3_ALLOC_PER_BANK_Z] = "L3 Alloc Per Bank - Z",
-+	[INTEL_HWCONFIG_L3_ALLOC_PER_BANK_COLOR] = "L3 Alloc Per Bank - Color",
-+	[INTEL_HWCONFIG_L3_ALLOC_PER_BANK_UNIFIED_TILE_CACHE] = "L3 Alloc Per Bank - Unified Tile Cache",
-+	[INTEL_HWCONFIG_L3_ALLOC_PER_BANK_COMMAND_BUFFER] = "L3 Alloc Per Bank - Command Buffer",
-+	[INTEL_HWCONFIG_L3_ALLOC_PER_BANK_RW] = "L3 Alloc Per Bank - RW",
-+	[INTEL_HWCONFIG_MAX_NUM_L3_CONFIGS] = "Num L3 Configs",
-+	[INTEL_HWCONFIG_BINDLESS_SURFACE_OFFSET_BIT_COUNT] = "Bindless Surface Offset Bit Count",
-+	[INTEL_HWCONFIG_RESERVED_CCS_WAYS] = "Reserved CCS ways",
-+	[INTEL_HWCONFIG_CSR_SIZE_IN_MB] = "CSR Size (in MB)",
-+	[INTEL_HWCONFIG_GEOMETRY_PIPES_PER_SLICE] = "Geometry pipes per slice",
-+	[INTEL_HWCONFIG_L3_BANK_SIZE_IN_KB] = "L3 bank size (in KB)",
-+	[INTEL_HWCONFIG_SLM_SIZE_PER_DSS] = "SLM size per DSS",
-+	[INTEL_HWCONFIG_MAX_PIXEL_FILL_RATE_PER_SLICE] = "Max pixel fill rate per slice",
-+	[INTEL_HWCONFIG_MAX_PIXEL_FILL_RATE_PER_DSS] = "Max pixel fill rate per DSS",
-+	[INTEL_HWCONFIG_URB_SIZE_PER_SLICE_IN_KB] = "URB size per slice (in KB)",
-+	[INTEL_HWCONFIG_URB_SIZE_PER_L3_BANK_COUNT_IN_KB] = "URB size per L3 bank count (in KB)",
-+	[INTEL_HWCONFIG_MAX_SUBSLICE] = "Max subslices",
-+	[INTEL_HWCONFIG_MAX_EU_PER_SUBSLICE] = "Max EUs per subslice",
-+	[INTEL_HWCONFIG_RAMBO_L3_BANK_SIZE_IN_KB] = "RAMBO L3 bank size (in KB)",
-+	[INTEL_HWCONFIG_SLM_SIZE_PER_SS_IN_KB] = "SLM size per SS (in KB)",
-+	[INTEL_HWCONFIG_NUM_HBM_STACKS_PER_TILE] = "Num HBM Stacks Per Tile",
-+	[INTEL_HWCONFIG_NUM_CHANNELS_PER_HBM_STACK] = "Num Channels Per HBM Stack",
-+	[INTEL_HWCONFIG_HBM_CHANNEL_WIDTH_IN_BYTES] = "HBM Channel Width (in bytes)",
-+	[INTEL_HWCONFIG_MIN_TASK_URB_ENTRIES] = "Min Task URB Entries",
-+	[INTEL_HWCONFIG_MAX_TASK_URB_ENTRIES] = "Max Task URB Entries",
-+	[INTEL_HWCONFIG_MIN_MESH_URB_ENTRIES] = "Min Mesh URB Entries",
-+	[INTEL_HWCONFIG_MAX_MESH_URB_ENTRIES] = "Max Mesh URB Entries",
-+};
-+
-+static const char * const hwconfig_memtypes[] = {
-+	[INTEL_HWCONFIG_MEMORY_TYPE_LPDDR4] = "LPDDR4",
-+	[INTEL_HWCONFIG_MEMORY_TYPE_LPDDR5] = "LPDDR5",
-+	[INTEL_HWCONFIG_MEMORY_TYPE_HBM2] = "HBM2",
-+	[INTEL_HWCONFIG_MEMORY_TYPE_HBM2e] = "HBM2e",
-+	[INTEL_HWCONFIG_MEMORY_TYPE_GDDR6] = "GDDR6",
-+};
-+
-+static const char * const hwconfig_cachetypes[] = {
-+	[INTEL_HWCONFIG_CACHE_TYPE_L3] = "L3",
-+	[INTEL_HWCONFIG_CACHE_TYPE_LLC] = "LLC",
-+	[INTEL_HWCONFIG_CACHE_TYPE_EDRAM] = "EDRAM",
-+};
-+
-+static void query_parse_and_validate_hwconfig_table(int i915)
-+{
-+	struct drm_i915_query_item item = {
-+		.query_id = DRM_I915_QUERY_HWCONFIG_BLOB,
-+	};
-+	uint32_t *data, value;
-+	int i = 0;
-+	int len, j, max_words, table_size;
-+
-+	igt_assert(ARRAY_SIZE(hwconfig_keys) == __INTEL_HWCONFIG_KEY_LIMIT);
-+	igt_assert(ARRAY_SIZE(hwconfig_memtypes) == __INTEL_HWCONFIG_MEMORY_TYPE_LIMIT);
-+	igt_assert(ARRAY_SIZE(hwconfig_cachetypes) == __INTEL_HWCONFIG_CACHE_TYPE_LIMIT);
-+
-+	i915_query_items(i915, &item, 1);
-+	table_size = item.length;
-+	igt_require(table_size > 0);
-+
-+	data = malloc(table_size);
-+	igt_assert(data);
-+	memset(data, 0, table_size);
-+	item.data_ptr = to_user_pointer(data);
-+
-+	i915_query_items(i915, &item, 1);
-+	igt_assert(item.length == table_size);
-+	igt_info("Table size = %d bytes\n", table_size);
-+	igt_assert(table_size > 0);
-+
-+	/* HWConfig table is a list of KLV sets */
-+	max_words = table_size / sizeof(uint32_t);
-+	igt_assert(max_words * sizeof(uint32_t) == table_size);
-+	while (i < max_words) {
-+		/* Attribute ID zero is invalid */
-+		igt_assert(data[i] > 0);
-+		igt_assert(data[i] < __INTEL_HWCONFIG_KEY_LIMIT);
-+
-+		len = data[i + 1];
-+		igt_assert(len > 0);
-+		igt_assert((i + 2 + len) <= max_words);
-+
-+		igt_info("[%2d] %s: ", data[i], hwconfig_keys[data[i]]);
-+
-+		value = data[i + 2];
-+		switch (data[i]) {
-+		case INTEL_HWCONFIG_MEMORY_TYPE:
-+			igt_assert(len == 1);
-+			igt_assert(value < __INTEL_HWCONFIG_MEMORY_TYPE_LIMIT);
-+			igt_info("%s\n", hwconfig_memtypes[value]);
-+			break;
-+
-+		case INTEL_HWCONFIG_CACHE_TYPES:
-+			igt_assert(len == 1);
-+
-+			if (!value)
-+				igt_info("-\n");
-+
-+			j = 0;
-+			while (value) {
-+				if (value & BIT(j)) {
-+					value &= ~BIT(j);
-+					igt_assert(j < __INTEL_HWCONFIG_CACHE_TYPE_LIMIT);
-+					igt_info("%s%s", hwconfig_cachetypes[j], value ? ", " : "\n");
-+				}
-+			}
-+			break;
-+
-+		default:
-+			for (j = i + 2; j < i + 1 + len; j++)
-+				igt_info("%d, ", data[j]);
-+			igt_info("%d\n", data[j]);
-+		}
-+
-+		/* Advance to next key */
-+		i += 2 + len;
-+	}
-+
-+	free(data);
-+}
-+
- igt_main
- {
- 	int fd = -1;
-@@ -998,6 +1174,10 @@ igt_main
- 			engines(fd);
- 	}
- 
-+	igt_describe("Test DRM_I915_QUERY_HWCONFIG_BLOB query");
-+	igt_subtest("hwconfig_table")
-+		query_parse_and_validate_hwconfig_table(fd);
-+
- 	igt_fixture {
- 		close(fd);
- 	}
--- 
-2.36.0
+Ok, I will be happy to remove it and only support contexts with
+engine map, if UMDs agree on that.
 
+>>#define I915_EXEC3_FENCE_IN             (1<<10)
+>>#define I915_EXEC3_FENCE_OUT            (1<<11)
+>>#define I915_EXEC3_FENCE_SUBMIT         (1<<12)
+>
+>People are likely to object to submit fence since generic mechanism to 
+>align submissions was rejected.
+>
+
+Ok, again, I can remove it if UMDs are ok with it.
+
+>>
+>>        __u64 in_out_fence;        /* previously execbuffer2.rsvd2 */
+>
+>New ioctl you can afford dedicated fields.
+>
+
+Yes, but as I asked below, I am not sure if we need this or the
+timeline fence arry extension we have is good enough.
+
+>In any case I suggest you involve UMD folks in designing it.
+>
+
+Yah.
+Paulo, Lionel, Jason, Daniel, can you comment on these regarding
+what will UMD need in execbuf3 and what can be removed?
+
+Thanks,
+Niranjana
+
+>Regards,
+>
+>Tvrtko
+>
+>>
+>>        __u64 extensions;        /* currently only for 
+>>DRM_I915_GEM_EXECBUFFER_EXT_TIMELINE_FENCES */
+>>};
+>>
+>>With this, user can pass in batch addresses and count directly,
+>>instead of as an extension (as this rfc series was proposing).
+>>
+>>I have removed many of the flags which were either legacy or not
+>>applicable to BM_BIND mode.
+>>I have also removed fence array support (execbuffer2.cliprects_ptr)
+>>as we have timeline fence array support. Is that fine?
+>>Do we still need FENCE_IN/FENCE_OUT/FENCE_SUBMIT support?
+>>
+>>Any thing else needs to be added or removed?
+>>
+>>Niranjana
+>>
+>>>Niranjana
+>>>
+>>>>-Daniel
+>>>>-- 
+>>>>Daniel Vetter
+>>>>Software Engineer, Intel Corporation
+>>>>http://blog.ffwll.ch
