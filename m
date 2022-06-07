@@ -2,50 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D11A75418BE
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Jun 2022 23:17:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C6415418C5
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Jun 2022 23:17:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC73510F42B;
-	Tue,  7 Jun 2022 21:17:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8CFA010F900;
+	Tue,  7 Jun 2022 21:17:53 +0000 (UTC)
 X-Original-To: Intel-GFX@lists.freedesktop.org
 Delivered-To: Intel-GFX@lists.freedesktop.org
 Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 513CE10F396;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9DC9B10F19A;
  Tue,  7 Jun 2022 21:17:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1654636668; x=1686172668;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=uXUsGKbxwTeP63JIa6E+3OVa6NeQKH4iteF4N18vCaw=;
- b=TbpwrkKcqx5ND2SplnnX4xUborqyLmlp1EGvVBJUX9jq8zCMBkcMad3/
- 9dup+qGZ0YZFw24bzkNHACXEWYePF5hNtSOmT6YbyCazOSkc0WVjru5Ih
- p1upPL6KfKwOqNyDGSgsHalwiS7sWmVB3xJYR8+3bG5+ldLytc9bPGk9y
- NFfm+TrmgQKQ6/ZF5niU9iLjr0+s+dUoK0/6qxzhKGtiL/qs8A1qJppCl
- msjYhdkQZbtRyJWhNUeJOkMBUo7bFy1Khh5NkcQKNhlKQP+LM+JsAjLVc
- wgDzjDSO9idfhpfHqcOaKwDOG28cjNeieHtnShxQz0yoOjOw+xT4Pi1vt w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10371"; a="275524249"
-X-IronPort-AV: E=Sophos;i="5.91,284,1647327600"; d="scan'208";a="275524249"
+ bh=8PuWmfwsx1Ch21l880TIjPNgtw8M+b31Y6lvW8kDGO8=;
+ b=YWBDCdpqJNDWJMCUJE4kGk6k6bl5IXbuJue2xp3VnYuz6X/2FQrIEVoQ
+ oTXuXl8QiprLE0uCTqHoy8db3Wr1DAlTpog1iQoegKRYnpeUZlNwEBdhZ
+ C8emSq+xu4ABCTGe2wpjwCa2JiOOPct0MhxwM5TY118JcBOKNN3a+JmG0
+ wLuXHq4Erh1LPvKfHaMMXjJEBHLa5Df62DBxU7k0pEmEq0NINPjwnDlN/
+ dj/tTlw0xmAvY+zYMUF8mKkDo7c3itWDGueSaUstCvBtc1qwYY8jOyuES
+ SwcQBeO6ckZb4Lm/Jgzi3dymbPP/5AyXbKoqmeKKJ//Zfljhprs/l9ivG Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10371"; a="275524250"
+X-IronPort-AV: E=Sophos;i="5.91,284,1647327600"; d="scan'208";a="275524250"
 Received: from fmsmga006.fm.intel.com ([10.253.24.20])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 Jun 2022 14:17:48 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,284,1647327600"; d="scan'208";a="826557516"
+X-IronPort-AV: E=Sophos;i="5.91,284,1647327600"; d="scan'208";a="826557519"
 Received: from relo-linux-5.jf.intel.com ([10.165.21.134])
- by fmsmga006.fm.intel.com with ESMTP; 07 Jun 2022 14:17:47 -0700
+ by fmsmga006.fm.intel.com with ESMTP; 07 Jun 2022 14:17:48 -0700
 From: John.C.Harrison@Intel.com
 To: IGT-Dev@Lists.FreeDesktop.Org
-Date: Tue,  7 Jun 2022 14:17:46 -0700
-Message-Id: <20220607211747.3335656-3-John.C.Harrison@Intel.com>
+Date: Tue,  7 Jun 2022 14:17:47 -0700
+Message-Id: <20220607211747.3335656-4-John.C.Harrison@Intel.com>
 X-Mailer: git-send-email 2.36.0
 In-Reply-To: <20220607211747.3335656-1-John.C.Harrison@Intel.com>
 References: <20220607211747.3335656-1-John.C.Harrison@Intel.com>
 MIME-Version: 1.0
 Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
  Swindon SN3 1RJ
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v6 i-g-t 2/3] tests/i915/query: Add descriptions
- to existing tests
+Subject: [Intel-gfx] [PATCH v6 i-g-t 3/3] tests/i915/query: Query,
+ parse and validate the hwconfig table
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,97 +59,358 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-GFX@Lists.FreeDesktop.Org
+Cc: Intel-GFX@Lists.FreeDesktop.Org,
+ Slawomir Milczarek <slawomir.milczarek@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: John Harrison <John.C.Harrison@Intel.com>
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-None of the query tests had a description. So make some up.
+Newer platforms have an embedded table giving details about that
+platform's hardware configuration. This table can be retrieved from
+the KMD via the existing query API. So add a test for it as both an
+example of how to fetch the table and to validate the contents as much
+as is possible.
 
+Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-Reviewed-by: Kamil Konieczny <kamil.konieczny@linux.intel.com>
+Cc: Slawomir Milczarek <slawomir.milczarek@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- tests/i915/i915_query.c | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ lib/intel_hwconfig_types.h | 118 ++++++++++++++++++++++++
+ tests/i915/i915_query.c    | 180 +++++++++++++++++++++++++++++++++++++
+ 2 files changed, 298 insertions(+)
+ create mode 100644 lib/intel_hwconfig_types.h
 
+diff --git a/lib/intel_hwconfig_types.h b/lib/intel_hwconfig_types.h
+new file mode 100644
+index 000000000000..d5db217afba2
+--- /dev/null
++++ b/lib/intel_hwconfig_types.h
+@@ -0,0 +1,118 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2022 Intel Corporation
++ */
++
++#ifndef _INTEL_HWCONFIG_TYPES_H_
++#define _INTEL_HWCONFIG_TYPES_H_
++
++#include "intel_chipset.h"
++
++/**
++ * enum intel_hwconfig - Global definition of hwconfig table attributes
++ *
++ * Intel devices provide a KLV (Key/Length/Value) table containing
++ * the static hardware configuration for that platform.
++ * This enum defines the current attribute keys for this KLV.
++ */
++enum intel_hwconfig {
++	INTEL_HWCONFIG_MAX_SLICES_SUPPORTED = 1,
++	INTEL_HWCONFIG_MAX_DUAL_SUBSLICES_SUPPORTED,		/* 2 */
++	INTEL_HWCONFIG_MAX_NUM_EU_PER_DSS,			/* 3 */
++	INTEL_HWCONFIG_NUM_PIXEL_PIPES,				/* 4 */
++	INTEL_HWCONFIG_DEPRECATED_MAX_NUM_GEOMETRY_PIPES,	/* 5 */
++	INTEL_HWCONFIG_DEPRECATED_L3_CACHE_SIZE_IN_KB,		/* 6 */
++	INTEL_HWCONFIG_DEPRECATED_L3_BANK_COUNT,		/* 7 */
++	INTEL_HWCONFIG_L3_CACHE_WAYS_SIZE_IN_BYTES,		/* 8 */
++	INTEL_HWCONFIG_L3_CACHE_WAYS_PER_SECTOR,		/* 9 */
++	INTEL_HWCONFIG_MAX_MEMORY_CHANNELS,			/* 10 */
++	INTEL_HWCONFIG_MEMORY_TYPE,				/* 11 */
++	INTEL_HWCONFIG_CACHE_TYPES,                             /* 12 */
++	INTEL_HWCONFIG_LOCAL_MEMORY_PAGE_SIZES_SUPPORTED,	/* 13 */
++	INTEL_HWCONFIG_DEPRECATED_SLM_SIZE_IN_KB,		/* 14 */
++	INTEL_HWCONFIG_NUM_THREADS_PER_EU,			/* 15 */
++	INTEL_HWCONFIG_TOTAL_VS_THREADS,			/* 16 */
++	INTEL_HWCONFIG_TOTAL_GS_THREADS,			/* 17 */
++	INTEL_HWCONFIG_TOTAL_HS_THREADS,			/* 18 */
++	INTEL_HWCONFIG_TOTAL_DS_THREADS,			/* 19 */
++	INTEL_HWCONFIG_TOTAL_VS_THREADS_POCS,			/* 20 */
++	INTEL_HWCONFIG_TOTAL_PS_THREADS,			/* 21 */
++	INTEL_HWCONFIG_DEPRECATED_MAX_FILL_RATE,		/* 22 */
++	INTEL_HWCONFIG_MAX_RCS,					/* 23 */
++	INTEL_HWCONFIG_MAX_CCS,					/* 24 */
++	INTEL_HWCONFIG_MAX_VCS,					/* 25 */
++	INTEL_HWCONFIG_MAX_VECS,				/* 26 */
++	INTEL_HWCONFIG_MAX_COPY_CS,				/* 27 */
++	INTEL_HWCONFIG_DEPRECATED_URB_SIZE_IN_KB,		/* 28 */
++	INTEL_HWCONFIG_MIN_VS_URB_ENTRIES,			/* 29 */
++	INTEL_HWCONFIG_MAX_VS_URB_ENTRIES,			/* 30 */
++	INTEL_HWCONFIG_MIN_PCS_URB_ENTRIES,			/* 31 */
++	INTEL_HWCONFIG_MAX_PCS_URB_ENTRIES,			/* 32 */
++	INTEL_HWCONFIG_MIN_HS_URB_ENTRIES,			/* 33 */
++	INTEL_HWCONFIG_MAX_HS_URB_ENTRIES,			/* 34 */
++	INTEL_HWCONFIG_MIN_GS_URB_ENTRIES,			/* 35 */
++	INTEL_HWCONFIG_MAX_GS_URB_ENTRIES,			/* 36 */
++	INTEL_HWCONFIG_MIN_DS_URB_ENTRIES,			/* 37 */
++	INTEL_HWCONFIG_MAX_DS_URB_ENTRIES,			/* 38 */
++	INTEL_HWCONFIG_PUSH_CONSTANT_URB_RESERVED_SIZE,		/* 39 */
++	INTEL_HWCONFIG_POCS_PUSH_CONSTANT_URB_RESERVED_SIZE,	/* 40 */
++	INTEL_HWCONFIG_URB_REGION_ALIGNMENT_SIZE_IN_BYTES,	/* 41 */
++	INTEL_HWCONFIG_URB_ALLOCATION_SIZE_UNITS_IN_BYTES,	/* 42 */
++	INTEL_HWCONFIG_MAX_URB_SIZE_CCS_IN_BYTES,		/* 43 */
++	INTEL_HWCONFIG_VS_MIN_DEREF_BLOCK_SIZE_HANDLE_COUNT,	/* 44 */
++	INTEL_HWCONFIG_DS_MIN_DEREF_BLOCK_SIZE_HANDLE_COUNT,	/* 45 */
++	INTEL_HWCONFIG_NUM_RT_STACKS_PER_DSS,			/* 46 */
++	INTEL_HWCONFIG_MAX_URB_STARTING_ADDRESS,		/* 47 */
++	INTEL_HWCONFIG_MIN_CS_URB_ENTRIES,			/* 48 */
++	INTEL_HWCONFIG_MAX_CS_URB_ENTRIES,			/* 49 */
++	INTEL_HWCONFIG_L3_ALLOC_PER_BANK_URB,			/* 50 */
++	INTEL_HWCONFIG_L3_ALLOC_PER_BANK_REST,			/* 51 */
++	INTEL_HWCONFIG_L3_ALLOC_PER_BANK_DC,			/* 52 */
++	INTEL_HWCONFIG_L3_ALLOC_PER_BANK_RO,			/* 53 */
++	INTEL_HWCONFIG_L3_ALLOC_PER_BANK_Z,			/* 54 */
++	INTEL_HWCONFIG_L3_ALLOC_PER_BANK_COLOR,			/* 55 */
++	INTEL_HWCONFIG_L3_ALLOC_PER_BANK_UNIFIED_TILE_CACHE,	/* 56 */
++	INTEL_HWCONFIG_L3_ALLOC_PER_BANK_COMMAND_BUFFER,	/* 57 */
++	INTEL_HWCONFIG_L3_ALLOC_PER_BANK_RW,			/* 58 */
++	INTEL_HWCONFIG_MAX_NUM_L3_CONFIGS,			/* 59 */
++	INTEL_HWCONFIG_BINDLESS_SURFACE_OFFSET_BIT_COUNT,	/* 60 */
++	INTEL_HWCONFIG_RESERVED_CCS_WAYS,			/* 61 */
++	INTEL_HWCONFIG_CSR_SIZE_IN_MB,				/* 62 */
++	INTEL_HWCONFIG_GEOMETRY_PIPES_PER_SLICE,		/* 63 */
++	INTEL_HWCONFIG_L3_BANK_SIZE_IN_KB,			/* 64 */
++	INTEL_HWCONFIG_SLM_SIZE_PER_DSS,			/* 65 */
++	INTEL_HWCONFIG_MAX_PIXEL_FILL_RATE_PER_SLICE,		/* 66 */
++	INTEL_HWCONFIG_MAX_PIXEL_FILL_RATE_PER_DSS,		/* 67 */
++	INTEL_HWCONFIG_URB_SIZE_PER_SLICE_IN_KB,		/* 68 */
++	INTEL_HWCONFIG_URB_SIZE_PER_L3_BANK_COUNT_IN_KB,	/* 69 */
++	INTEL_HWCONFIG_MAX_SUBSLICE,				/* 70 */
++	INTEL_HWCONFIG_MAX_EU_PER_SUBSLICE,			/* 71 */
++	INTEL_HWCONFIG_RAMBO_L3_BANK_SIZE_IN_KB,		/* 72 */
++	INTEL_HWCONFIG_SLM_SIZE_PER_SS_IN_KB,			/* 73 */
++	INTEL_HWCONFIG_NUM_HBM_STACKS_PER_TILE,			/* 74 */
++	INTEL_HWCONFIG_NUM_CHANNELS_PER_HBM_STACK,		/* 75 */
++	INTEL_HWCONFIG_HBM_CHANNEL_WIDTH_IN_BYTES,		/* 76 */
++	INTEL_HWCONFIG_MIN_TASK_URB_ENTRIES,			/* 77 */
++	INTEL_HWCONFIG_MAX_TASK_URB_ENTRIES,			/* 78 */
++	INTEL_HWCONFIG_MIN_MESH_URB_ENTRIES,			/* 79 */
++	INTEL_HWCONFIG_MAX_MESH_URB_ENTRIES,			/* 80 */
++	__INTEL_HWCONFIG_KEY_LIMIT
++};
++
++enum {
++	INTEL_HWCONFIG_MEMORY_TYPE_LPDDR4 = 0,
++	INTEL_HWCONFIG_MEMORY_TYPE_LPDDR5,
++	INTEL_HWCONFIG_MEMORY_TYPE_HBM2,
++	INTEL_HWCONFIG_MEMORY_TYPE_HBM2e,
++	INTEL_HWCONFIG_MEMORY_TYPE_GDDR6,
++	__INTEL_HWCONFIG_MEMORY_TYPE_LIMIT
++};
++
++enum {
++	INTEL_HWCONFIG_CACHE_TYPE_L3 = 0,
++	INTEL_HWCONFIG_CACHE_TYPE_LLC,
++	INTEL_HWCONFIG_CACHE_TYPE_EDRAM,
++	__INTEL_HWCONFIG_CACHE_TYPE_LIMIT
++};
++
++#endif /* _INTEL_HWCONFIG_TYPES_H_ */
 diff --git a/tests/i915/i915_query.c b/tests/i915/i915_query.c
-index 246a979af72a..6c73f60aedcd 100644
+index 6c73f60aedcd..b545fb4aebbf 100644
 --- a/tests/i915/i915_query.c
 +++ b/tests/i915/i915_query.c
-@@ -923,34 +923,41 @@ igt_main
- 		devid = intel_get_drm_devid(fd);
+@@ -22,6 +22,7 @@
+  */
+ 
+ #include "igt.h"
++#include "intel_hwconfig_types.h"
+ 
+ #include <limits.h>
+ 
+@@ -912,6 +913,181 @@ static void test_query_geometry_subslices(int fd)
  	}
+ }
  
-+	igt_describe("Test response to an invalid query call");
- 	igt_subtest("query-garbage")
- 		test_query_garbage(fd);
- 
-+	igt_describe("Test response to invalid DRM_I915_QUERY_TOPOLOGY_INFO query");
- 	igt_subtest("query-topology-garbage-items") {
- 		igt_require(query_topology_supported(fd));
- 		test_query_topology_garbage_items(fd);
- 	}
- 
-+	igt_describe("Guardband test for DRM_I915_QUERY_TOPOLOGY_INFO query");
- 	igt_subtest("query-topology-kernel-writes") {
- 		igt_require(query_topology_supported(fd));
- 		test_query_topology_kernel_writes(fd);
- 	}
- 
-+	igt_describe("Verify DRM_I915_QUERY_TOPOLOGY_INFO query fails when it is not supported");
- 	igt_subtest("query-topology-unsupported") {
- 		igt_require(!query_topology_supported(fd));
- 		test_query_topology_unsupported(fd);
- 	}
- 
-+	igt_describe("Compare new DRM_I915_QUERY_TOPOLOGY_INFO query with legacy (sub)slice getparams");
- 	igt_subtest("query-topology-coherent-slice-mask") {
- 		igt_require(query_topology_supported(fd));
- 		test_query_topology_coherent_slice_mask(fd);
- 	}
- 
-+	igt_describe("More compare new DRM_I915_QUERY_TOPOLOGY_INFO query with legacy (sub)slice getparams");
- 	igt_subtest("query-topology-matches-eu-total") {
- 		igt_require(query_topology_supported(fd));
- 		test_query_topology_matches_eu_total(fd);
- 	}
- 
-+	igt_describe("Verify DRM_I915_QUERY_TOPOLOGY_INFO query against hardcoded known values for certain platforms");
- 	igt_subtest("query-topology-known-pci-ids") {
- 		igt_require(query_topology_supported(fd));
- 		igt_require(IS_HASWELL(devid) || IS_BROADWELL(devid) ||
-@@ -959,16 +966,19 @@ igt_main
- 		test_query_topology_known_pci_ids(fd, devid);
- 	}
- 
-+	igt_describe("Test DRM_I915_QUERY_GEOMETRY_SUBSLICES query");
- 	igt_subtest("test-query-geometry-subslices") {
- 		igt_require(query_geometry_subslices_supported(fd));
- 		test_query_geometry_subslices(fd);
- 	}
- 
-+	igt_describe("Dodgy returned data tests for DRM_I915_QUERY_MEMORY_REGIONS");
- 	igt_subtest("query-regions-garbage-items") {
- 		igt_require(query_regions_supported(fd));
- 		test_query_regions_garbage_items(fd);
- 	}
- 
-+	igt_describe("Basic tests for DRM_I915_QUERY_MEMORY_REGIONS");
- 	igt_subtest("query-regions-sanity-check") {
- 		igt_require(query_regions_supported(fd));
- 		test_query_regions_sanity_check(fd);
-@@ -979,9 +989,11 @@ igt_main
- 			igt_require(query_engine_info_supported(fd));
- 		}
- 
-+		igt_describe("Negative tests for DRM_I915_QUERY_ENGINE_INFO");
- 		igt_subtest("engine-info-invalid")
- 			engines_invalid(fd);
- 
-+		igt_describe("Positive tests for DRM_I915_QUERY_ENGINE_INFO");
- 		igt_subtest("engine-info")
++static const char * const hwconfig_keys[] = {
++	[INTEL_HWCONFIG_MAX_SLICES_SUPPORTED] = "Maximum number of Slices",
++	[INTEL_HWCONFIG_MAX_DUAL_SUBSLICES_SUPPORTED] = "Maximum number of DSS",
++	[INTEL_HWCONFIG_MAX_NUM_EU_PER_DSS] = "Maximum number of EUs per DSS",
++	[INTEL_HWCONFIG_NUM_PIXEL_PIPES] = "Pixel Pipes",
++	[INTEL_HWCONFIG_DEPRECATED_MAX_NUM_GEOMETRY_PIPES] = "[DEPRECATED] Geometry Pipes",
++	[INTEL_HWCONFIG_DEPRECATED_L3_CACHE_SIZE_IN_KB] = "[DEPRECATED] L3 Size (in KB)",
++	[INTEL_HWCONFIG_DEPRECATED_L3_BANK_COUNT] = "[DEPRECATED] L3 Bank Count",
++	[INTEL_HWCONFIG_L3_CACHE_WAYS_SIZE_IN_BYTES] = "L3 Cache Ways Size (in bytes)",
++	[INTEL_HWCONFIG_L3_CACHE_WAYS_PER_SECTOR] = "L3 Cache Ways Per Sector",
++	[INTEL_HWCONFIG_MAX_MEMORY_CHANNELS] = "Memory Channels",
++	[INTEL_HWCONFIG_MEMORY_TYPE] = "Memory type",
++	[INTEL_HWCONFIG_CACHE_TYPES] = "Cache types",
++	[INTEL_HWCONFIG_LOCAL_MEMORY_PAGE_SIZES_SUPPORTED] = "Local memory page size",
++	[INTEL_HWCONFIG_DEPRECATED_SLM_SIZE_IN_KB] = "[DEPRECATED] SLM Size (in KB)",
++	[INTEL_HWCONFIG_NUM_THREADS_PER_EU] = "Num thread per EU",
++	[INTEL_HWCONFIG_TOTAL_VS_THREADS] = "Maximum Vertex Shader threads",
++	[INTEL_HWCONFIG_TOTAL_GS_THREADS] = "Maximum Geometry Shader threads",
++	[INTEL_HWCONFIG_TOTAL_HS_THREADS] = "Maximum Hull Shader threads",
++	[INTEL_HWCONFIG_TOTAL_DS_THREADS] = "Maximum Domain Shader threads",
++	[INTEL_HWCONFIG_TOTAL_VS_THREADS_POCS] = "Maximum Vertex Shader Threads for POCS",
++	[INTEL_HWCONFIG_TOTAL_PS_THREADS] = "Maximum Pixel Shader Threads",
++	[INTEL_HWCONFIG_DEPRECATED_MAX_FILL_RATE] = "[DEPRECATED] Maximum pixel rate for Fill",
++	[INTEL_HWCONFIG_MAX_RCS] = "MaxRCS",
++	[INTEL_HWCONFIG_MAX_CCS] = "MaxCCS",
++	[INTEL_HWCONFIG_MAX_VCS] = "MaxVCS",
++	[INTEL_HWCONFIG_MAX_VECS] = "MaxVECS",
++	[INTEL_HWCONFIG_MAX_COPY_CS] = "MaxCopyCS",
++	[INTEL_HWCONFIG_DEPRECATED_URB_SIZE_IN_KB] = "[DEPRECATED] URB Size (in KB)",
++	[INTEL_HWCONFIG_MIN_VS_URB_ENTRIES] = "The minimum number of VS URB entries.",
++	[INTEL_HWCONFIG_MAX_VS_URB_ENTRIES] = "The maximum number of VS URB entries.",
++	[INTEL_HWCONFIG_MIN_PCS_URB_ENTRIES] = "The minimum number of PCS URB entries",
++	[INTEL_HWCONFIG_MAX_PCS_URB_ENTRIES] = "The maximum number of PCS URB entries",
++	[INTEL_HWCONFIG_MIN_HS_URB_ENTRIES] = "The minimum number of HS URB entries",
++	[INTEL_HWCONFIG_MAX_HS_URB_ENTRIES] = "The maximum number of HS URB entries",
++	[INTEL_HWCONFIG_MIN_GS_URB_ENTRIES] = "The minimum number of GS URB entries",
++	[INTEL_HWCONFIG_MAX_GS_URB_ENTRIES] = "The maximum number of GS URB entries",
++	[INTEL_HWCONFIG_MIN_DS_URB_ENTRIES] = "The minimum number of DS URB Entries",
++	[INTEL_HWCONFIG_MAX_DS_URB_ENTRIES] = "The maximum number of DS URB Entries",
++	[INTEL_HWCONFIG_PUSH_CONSTANT_URB_RESERVED_SIZE] = "Push Constant URB Reserved Size (in bytes)",
++	[INTEL_HWCONFIG_POCS_PUSH_CONSTANT_URB_RESERVED_SIZE] = "POCS Push Constant URB Reserved Size (in bytes)",
++	[INTEL_HWCONFIG_URB_REGION_ALIGNMENT_SIZE_IN_BYTES] = "URB Region Alignment Size (in bytes)",
++	[INTEL_HWCONFIG_URB_ALLOCATION_SIZE_UNITS_IN_BYTES] = "URB Allocation Size Units (in bytes)",
++	[INTEL_HWCONFIG_MAX_URB_SIZE_CCS_IN_BYTES] = "Max URB Size CCS (in bytes)",
++	[INTEL_HWCONFIG_VS_MIN_DEREF_BLOCK_SIZE_HANDLE_COUNT] = "VS Min Deref BlockSize Handle Count",
++	[INTEL_HWCONFIG_DS_MIN_DEREF_BLOCK_SIZE_HANDLE_COUNT] = "DS Min Deref Block Size Handle Count",
++	[INTEL_HWCONFIG_NUM_RT_STACKS_PER_DSS] = "Num RT Stacks Per DSS",
++	[INTEL_HWCONFIG_MAX_URB_STARTING_ADDRESS] = "Max URB Starting Address",
++	[INTEL_HWCONFIG_MIN_CS_URB_ENTRIES] = "Min CS URB Entries",
++	[INTEL_HWCONFIG_MAX_CS_URB_ENTRIES] = "Max CS URB Entries",
++	[INTEL_HWCONFIG_L3_ALLOC_PER_BANK_URB] = "L3 Alloc Per Bank - URB",
++	[INTEL_HWCONFIG_L3_ALLOC_PER_BANK_REST] = "L3 Alloc Per Bank - Rest",
++	[INTEL_HWCONFIG_L3_ALLOC_PER_BANK_DC] = "L3 Alloc Per Bank - DC",
++	[INTEL_HWCONFIG_L3_ALLOC_PER_BANK_RO] = "L3 Alloc Per Bank - RO",
++	[INTEL_HWCONFIG_L3_ALLOC_PER_BANK_Z] = "L3 Alloc Per Bank - Z",
++	[INTEL_HWCONFIG_L3_ALLOC_PER_BANK_COLOR] = "L3 Alloc Per Bank - Color",
++	[INTEL_HWCONFIG_L3_ALLOC_PER_BANK_UNIFIED_TILE_CACHE] = "L3 Alloc Per Bank - Unified Tile Cache",
++	[INTEL_HWCONFIG_L3_ALLOC_PER_BANK_COMMAND_BUFFER] = "L3 Alloc Per Bank - Command Buffer",
++	[INTEL_HWCONFIG_L3_ALLOC_PER_BANK_RW] = "L3 Alloc Per Bank - RW",
++	[INTEL_HWCONFIG_MAX_NUM_L3_CONFIGS] = "Num L3 Configs",
++	[INTEL_HWCONFIG_BINDLESS_SURFACE_OFFSET_BIT_COUNT] = "Bindless Surface Offset Bit Count",
++	[INTEL_HWCONFIG_RESERVED_CCS_WAYS] = "Reserved CCS ways",
++	[INTEL_HWCONFIG_CSR_SIZE_IN_MB] = "CSR Size (in MB)",
++	[INTEL_HWCONFIG_GEOMETRY_PIPES_PER_SLICE] = "Geometry pipes per slice",
++	[INTEL_HWCONFIG_L3_BANK_SIZE_IN_KB] = "L3 bank size (in KB)",
++	[INTEL_HWCONFIG_SLM_SIZE_PER_DSS] = "SLM size per DSS",
++	[INTEL_HWCONFIG_MAX_PIXEL_FILL_RATE_PER_SLICE] = "Max pixel fill rate per slice",
++	[INTEL_HWCONFIG_MAX_PIXEL_FILL_RATE_PER_DSS] = "Max pixel fill rate per DSS",
++	[INTEL_HWCONFIG_URB_SIZE_PER_SLICE_IN_KB] = "URB size per slice (in KB)",
++	[INTEL_HWCONFIG_URB_SIZE_PER_L3_BANK_COUNT_IN_KB] = "URB size per L3 bank count (in KB)",
++	[INTEL_HWCONFIG_MAX_SUBSLICE] = "Max subslices",
++	[INTEL_HWCONFIG_MAX_EU_PER_SUBSLICE] = "Max EUs per subslice",
++	[INTEL_HWCONFIG_RAMBO_L3_BANK_SIZE_IN_KB] = "RAMBO L3 bank size (in KB)",
++	[INTEL_HWCONFIG_SLM_SIZE_PER_SS_IN_KB] = "SLM size per SS (in KB)",
++	[INTEL_HWCONFIG_NUM_HBM_STACKS_PER_TILE] = "Num HBM Stacks Per Tile",
++	[INTEL_HWCONFIG_NUM_CHANNELS_PER_HBM_STACK] = "Num Channels Per HBM Stack",
++	[INTEL_HWCONFIG_HBM_CHANNEL_WIDTH_IN_BYTES] = "HBM Channel Width (in bytes)",
++	[INTEL_HWCONFIG_MIN_TASK_URB_ENTRIES] = "Min Task URB Entries",
++	[INTEL_HWCONFIG_MAX_TASK_URB_ENTRIES] = "Max Task URB Entries",
++	[INTEL_HWCONFIG_MIN_MESH_URB_ENTRIES] = "Min Mesh URB Entries",
++	[INTEL_HWCONFIG_MAX_MESH_URB_ENTRIES] = "Max Mesh URB Entries",
++};
++
++static const char * const hwconfig_memtypes[] = {
++	[INTEL_HWCONFIG_MEMORY_TYPE_LPDDR4] = "LPDDR4",
++	[INTEL_HWCONFIG_MEMORY_TYPE_LPDDR5] = "LPDDR5",
++	[INTEL_HWCONFIG_MEMORY_TYPE_HBM2] = "HBM2",
++	[INTEL_HWCONFIG_MEMORY_TYPE_HBM2e] = "HBM2e",
++	[INTEL_HWCONFIG_MEMORY_TYPE_GDDR6] = "GDDR6",
++};
++
++static const char * const hwconfig_cachetypes[] = {
++	[INTEL_HWCONFIG_CACHE_TYPE_L3] = "L3",
++	[INTEL_HWCONFIG_CACHE_TYPE_LLC] = "LLC",
++	[INTEL_HWCONFIG_CACHE_TYPE_EDRAM] = "EDRAM",
++};
++
++static void query_parse_and_validate_hwconfig_table(int i915)
++{
++	struct drm_i915_query_item item = {
++		.query_id = DRM_I915_QUERY_HWCONFIG_BLOB,
++	};
++	uint32_t *data, value;
++	int i = 0;
++	int len, j, max_words, table_size;
++
++	igt_assert(ARRAY_SIZE(hwconfig_keys) == __INTEL_HWCONFIG_KEY_LIMIT);
++	igt_assert(ARRAY_SIZE(hwconfig_memtypes) == __INTEL_HWCONFIG_MEMORY_TYPE_LIMIT);
++	igt_assert(ARRAY_SIZE(hwconfig_cachetypes) == __INTEL_HWCONFIG_CACHE_TYPE_LIMIT);
++
++	i915_query_items(i915, &item, 1);
++	table_size = item.length;
++	igt_require(table_size > 0);
++
++	data = malloc(table_size);
++	igt_assert(data);
++	memset(data, 0, table_size);
++	item.data_ptr = to_user_pointer(data);
++
++	i915_query_items(i915, &item, 1);
++	igt_assert(item.length == table_size);
++	igt_info("Table size = %d bytes\n", table_size);
++	igt_assert(table_size > 0);
++
++	/* HWConfig table is a list of KLV sets */
++	max_words = table_size / sizeof(uint32_t);
++	igt_assert(max_words * sizeof(uint32_t) == table_size);
++	while (i < max_words) {
++		/* Attribute ID zero is invalid */
++		igt_assert(data[i] > 0);
++		igt_assert(data[i] < __INTEL_HWCONFIG_KEY_LIMIT);
++
++		len = data[i + 1];
++		igt_assert(len > 0);
++		igt_assert((i + 2 + len) <= max_words);
++
++		igt_info("[%2d] %s: ", data[i], hwconfig_keys[data[i]]);
++
++		value = data[i + 2];
++		switch (data[i]) {
++		case INTEL_HWCONFIG_MEMORY_TYPE:
++			igt_assert(len == 1);
++			igt_assert(value < __INTEL_HWCONFIG_MEMORY_TYPE_LIMIT);
++			igt_info("%s\n", hwconfig_memtypes[value]);
++			break;
++
++		case INTEL_HWCONFIG_CACHE_TYPES:
++			igt_assert(len == 1);
++
++			if (!value)
++				igt_info("-\n");
++
++			j = 0;
++			while (value) {
++				if (value & BIT(j)) {
++					value &= ~BIT(j);
++					igt_assert(j < __INTEL_HWCONFIG_CACHE_TYPE_LIMIT);
++					igt_info("%s%s", hwconfig_cachetypes[j], value ? ", " : "\n");
++				}
++			}
++			break;
++
++		default:
++			for (j = i + 2; j < i + 1 + len; j++)
++				igt_info("%d, ", data[j]);
++			igt_info("%d\n", data[j]);
++		}
++
++		/* Advance to next key */
++		i += 2 + len;
++	}
++
++	free(data);
++}
++
+ igt_main
+ {
+ 	int fd = -1;
+@@ -998,6 +1174,10 @@ igt_main
  			engines(fd);
+ 	}
+ 
++	igt_describe("Test DRM_I915_QUERY_HWCONFIG_BLOB query");
++	igt_subtest("hwconfig_table")
++		query_parse_and_validate_hwconfig_table(fd);
++
+ 	igt_fixture {
+ 		close(fd);
  	}
 -- 
 2.36.0
