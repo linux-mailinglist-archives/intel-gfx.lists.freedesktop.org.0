@@ -2,70 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8033153FC7E
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Jun 2022 12:55:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C207653FD1E
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Jun 2022 13:15:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD89811AAD4;
-	Tue,  7 Jun 2022 10:55:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7FDC010E12A;
+	Tue,  7 Jun 2022 11:15:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2A7C3112747
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Jun 2022 10:55:41 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D364810E12A;
+ Tue,  7 Jun 2022 11:14:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1654599341; x=1686135341;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=wujO4WO1+Y//1i22w262hSZctQf62b6p40SlgQuyYDE=;
- b=NTvWOn+Hdo50bBQJeSaOTvyH0GueiCdPvMib52pMx8v7xqkiywfJcG+l
- hkmzTY9uKN+u+V79u1udXJYvzGc/dOs5uUxeZv2iEFTaQ0u+mo9huND+F
- wfe5Oh1npyQ4BR8NdMex+5nTXTXPbrefpUcXeKYWdVhzKAvbvGgAMcrnZ
- XupNldzDq+y7Lx34swsbFu1F6SCjVKEg4V4e1k6YtGmiTGSyyZ2e2IKf3
- 9BumT/lKlkJd/TLhLnN+Xy6SUK6HoduBjxBhZcy4ith8YEgmqITbvqMEf
- m+i6c6+456vCVjqrLlqVY1vYj5eBuEgCEhpfZodnBDf40XY8WfCeH/pGH g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10370"; a="274253709"
-X-IronPort-AV: E=Sophos;i="5.91,283,1647327600"; d="scan'208";a="274253709"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jun 2022 03:55:40 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,283,1647327600"; d="scan'208";a="826306684"
-Received: from fmsmsx605.amr.corp.intel.com ([10.18.126.85])
- by fmsmga006.fm.intel.com with ESMTP; 07 Jun 2022 03:55:40 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx605.amr.corp.intel.com (10.18.126.85) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Tue, 7 Jun 2022 03:55:40 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Tue, 7 Jun 2022 03:55:39 -0700
-Received: from fmsmsx610.amr.corp.intel.com ([10.18.126.90]) by
- fmsmsx610.amr.corp.intel.com ([10.18.126.90]) with mapi id 15.01.2308.027;
- Tue, 7 Jun 2022 03:55:39 -0700
-From: "Gupta, Anshuman" <anshuman.gupta@intel.com>
-To: Luca Coelho <luca@coelho.fi>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH] drm/i915/dgfx: Disable d3cold Correctly
-Thread-Index: AQHYeaC9WiVmbskgUEqcLzfRrS6PI61C49WA//+QJrA=
-Date: Tue, 7 Jun 2022 10:55:39 +0000
-Message-ID: <e7b0bd1acd484312a72935100b7d8e68@intel.com>
-References: <20220606122656.31479-1-anshuman.gupta@intel.com>
- <345f478e6917f39e68cce331250cf1003e73142d.camel@coelho.fi>
-In-Reply-To: <345f478e6917f39e68cce331250cf1003e73142d.camel@coelho.fi>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.6.500.17
-dlp-reaction: no-action
-x-originating-ip: [10.223.10.1]
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ t=1654600499; x=1686136499;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=Q4DD6Gu/aSRDkzAQ+tgk8rapaBwE5igmzYyTcbz+tGw=;
+ b=DnPvdK+4GYhvIxcRFS9alPedcRvIHE7OB1ObvCmr1yTWkNMB/W72tAmJ
+ FAWkGjKuFmDXpPCjShZNawVue8NK0/a7ZD9WtxlN/0N0hpXwKOurJsio2
+ JTXO5t+pDzxt/2yQsw3N5D4tm5Nn3fFb9mHcFtISx8tqU3ONoKbVeqLZf
+ BmB/s7NBtGASOwF/qZFItg0QZbAJw26dGGSSWSjhW69dt8IKlwbo8jhCY
+ KXKnU6t0npLFoYhOJZfVEX5UYv0ypVCFKzRAXLlS43uasMEyndZEBWCDB
+ M8tvEgBdqf3fYX7Xx8OIES9VTMfwegi+P/PJpSk85PW4FW7fjOpJ+NI7j A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10370"; a="259463685"
+X-IronPort-AV: E=Sophos;i="5.91,283,1647327600"; d="scan'208";a="259463685"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jun 2022 04:14:59 -0700
+X-IronPort-AV: E=Sophos;i="5.91,283,1647327600"; d="scan'208";a="636081446"
+Received: from gknielse-mobl.amr.corp.intel.com (HELO localhost)
+ ([10.252.57.112])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jun 2022 04:14:57 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+In-Reply-To: <Ypjv3k6tbHjOtGOB@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1653381821.git.jani.nikula@intel.com>
+ <a38b2547f43e827a401a4123744edbb402e9f4d7.1653381821.git.jani.nikula@intel.com>
+ <Ypjv3k6tbHjOtGOB@intel.com>
+Date: Tue, 07 Jun 2022 14:14:54 +0300
+Message-ID: <87mteopvwx.fsf@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dgfx: Disable d3cold Correctly
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH v1 06/13] drm/probe-helper: make
+ .get_modes() optional, add default action
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,29 +60,90 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
+Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogTHVjYSBDb2VsaG8gPGx1
-Y2FAY29lbGhvLmZpPg0KPiBTZW50OiBNb25kYXksIEp1bmUgNiwgMjAyMiA3OjUzIFBNDQo+IFRv
-OiBHdXB0YSwgQW5zaHVtYW4gPGFuc2h1bWFuLmd1cHRhQGludGVsLmNvbT47IGludGVsLQ0KPiBn
-ZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnDQo+IENjOiBWaXZpLCBSb2RyaWdvIDxyb2RyaWdvLnZp
-dmlAaW50ZWwuY29tPg0KPiBTdWJqZWN0OiBSZTogW0ludGVsLWdmeF0gW1BBVENIXSBkcm0vaTkx
-NS9kZ2Z4OiBEaXNhYmxlIGQzY29sZCBDb3JyZWN0bHkNCj4gDQo+IE9uIE1vbiwgMjAyMi0wNi0w
-NiBhdCAxNzo1NiArMDUzMCwgQW5zaHVtYW4gR3VwdGEgd3JvdGU6DQo+ID4gQ3VycmVudGx5IGk5
-MTUgZGlzYWJsZXMgZDNjb2xkIGZvciBpOTE1IHBjaSBkZXYuDQo+ID4gVGhpcyBibG9ja3MgRDMg
-Zm9yIGk5MTUgZ2Z4IHBjaSB1cHN0cmVhbSBicmlkZ2UgKFZTUCkuDQo+ID4gTGV0J3MgZGlzYWJs
-ZSBkM2NvbGQgYXQgZ2Z4IHJvb3QgcG9ydCB0byBtYWtlIHN1cmUgdGhhdA0KPiA+IGk5MTUgZ2Z4
-IFZTUCBjYW4gdHJhbnNpdGlvbiB0byBEMyB0byBzYXZlIHNvbWUgcG93ZXIuDQo+IA0KPiAobml0
-KSBJdCdzIGJldHRlciB0byB1c2UgaW1wZXJhdGl2ZSBpbiB0aGUgY29tbWl0IG1lc3NhZ2UsIHNv
-ICJEaXNhYmxlIGQzY29sZCBhdA0KPiBnZnggcm9vdCBwb3J0Li4uIiB3b3VsZCBiZSBlYXNpZXIg
-dG8gcmVhZC4NClRoYW5rcyBmb3IgY29tbWVudCwgaSB3aWxsIGZpeCB0aGlzLA0KPiANCj4gQWxz
-bywgZnJvbSB0aGUgY29kZSwgaXQncyBjbGVhciB0aGF0IHlvdSdyZSBkaXNhYmxpbmcgZDNjb2xk
-IGluIHRoZSByb290IG5vdywNCj4gaW5zdGVhZCBvZiBpbiB0aGUgcGRldiBpdHNlbGYuICBCdXQg
-eW91IGRvbid0IGV4cGxhaW4gd2h5IHlvdSBtb3ZlZCB0aGUNCj4gZW5hYmxpbmcvZGlzYWJsaW5n
-IHRvIGh3X3Byb2JlIGFuZCByZW1vdmVfaHcgZnJvbSB0aGUgYWN0dWFsIFBNIGNhbGxzLi4uDQpX
-ZSBkb24ndCBuZWVkIHRvIGRpc2FibGUvZW5hYmxlIHJvb3QgcG9ydCBkM2NvbGQgbXVsdGlwbGUg
-dGltZXMgaW4gUE0gc3VzcGVuZCBoYW5kbGVycywgZG9pbmcgdGhpcw0KaW4gcHJvYmUgc2hvdWxk
-IGJlIHN1ZmZpY2UuDQoNClJlZ2FyZHMsDQpBbnNodW1hbiBHdXB0YS4NCj4gDQo+IC0tDQo+IENo
-ZWVycywNCj4gTHVjYS4NCg==
+On Thu, 02 Jun 2022, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Tue, May 24, 2022 at 01:39:28PM +0300, Jani Nikula wrote:
+>> Add default action when .get_modes() not set. This also defines what a
+>> .get_modes() hook should do.
+>>=20
+>> Cc: David Airlie <airlied@linux.ie>
+>> Cc: Daniel Vetter <daniel@ffwll.ch>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>>  drivers/gpu/drm/drm_probe_helper.c       | 14 +++++++++++++-
+>>  include/drm/drm_modeset_helper_vtables.h |  4 ++++
+>>  2 files changed, 17 insertions(+), 1 deletion(-)
+>>=20
+>> diff --git a/drivers/gpu/drm/drm_probe_helper.c b/drivers/gpu/drm/drm_pr=
+obe_helper.c
+>> index 836bcd5b4cb6..9df17f0ae225 100644
+>> --- a/drivers/gpu/drm/drm_probe_helper.c
+>> +++ b/drivers/gpu/drm/drm_probe_helper.c
+>> @@ -360,7 +360,19 @@ static int drm_helper_probe_get_modes(struct drm_co=
+nnector *connector)
+>>  		connector->helper_private;
+>>  	int count;
+>>=20=20
+>> -	count =3D connector_funcs->get_modes(connector);
+>> +	if (connector_funcs->get_modes) {
+>> +		count =3D connector_funcs->get_modes(connector);
+>> +	} else {
+>> +		const struct drm_edid *drm_edid;
+>> +
+>> +		/* Note: This requires connector->ddc is set */
+>> +		drm_edid =3D drm_edid_read(connector);
+>> +
+>> +		/* Update modes etc. from the EDID */
+>> +		count =3D drm_edid_connector_update(connector, drm_edid);
+>> +
+>> +		drm_edid_free(drm_edid);
+>> +	}
+>
+> Not really a huge fan of this automagic fallback. I think I'd prefer
+> to keep it mandatory and just provide this as a helper for drivers to
+> plug into the right spot. Otherwise I'm sure I'll forget how this works
+> and then I'll be confused when I see a connector withput any apparent
+> .get_modes() implementation.
+
+Fair enough.
+
+I'm not sure how useful that is going to be, though, at least not for
+i915. If we add a .get_edid hook, where would you bolt that? It doesn't
+feel right to set a .get_modes hook to a default function that goes on
+to call a .get_edid hook. Or what do you think?
+
+BR,
+Jani.
+
+>
+>>=20=20
+>>  	/*
+>>  	 * Fallback for when DDC probe failed in drm_get_edid() and thus skipp=
+ed
+>> diff --git a/include/drm/drm_modeset_helper_vtables.h b/include/drm/drm_=
+modeset_helper_vtables.h
+>> index fafa70ac1337..b4402bc64e57 100644
+>> --- a/include/drm/drm_modeset_helper_vtables.h
+>> +++ b/include/drm/drm_modeset_helper_vtables.h
+>> @@ -894,6 +894,10 @@ struct drm_connector_helper_funcs {
+>>  	 * libraries always call this with the &drm_mode_config.connection_mut=
+ex
+>>  	 * held. Because of this it's safe to inspect &drm_connector->state.
+>>  	 *
+>> +	 * This callback is optional. By default, it reads the EDID using
+>> +	 * drm_edid_read() and updates the connector display info, modes, and
+>> +	 * properties using drm_edid_connector_update().
+>> +	 *
+>>  	 * RETURNS:
+>>  	 *
+>>  	 * The number of modes added by calling drm_mode_probed_add().
+>> --=20
+>> 2.30.2
+
+--=20
+Jani Nikula, Intel Open Source Graphics Center
