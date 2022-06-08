@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D84285428B5
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jun 2022 09:58:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DC315428D5
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jun 2022 10:04:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 571F410EAF8;
-	Wed,  8 Jun 2022 07:58:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CAB4610E765;
+	Wed,  8 Jun 2022 08:04:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 88B4810EAF8;
- Wed,  8 Jun 2022 07:58:23 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8042910EF76
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Jun 2022 08:04:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1654675103; x=1686211103;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=MeOTcz6iIXfAzDKM0e6D2di0B3Ii2Uw7f+6UCR21Gfw=;
- b=PPpYMxE30SGEUn2zS39EBD4C6c+/wErcFmvqel5d6iyswgVkIR0U+x6b
- 6D488TaSmzPmj+O8dSP/X/SlZ/nGjI+k3vu7odg1GhWRbnim1mv0OjK1c
- YBqBU6FopVZVcGOFR+ayx8sJrq40UMKJaTOnjEDD6AaRW3SPedtuR4oWc
- /hGodYyL4mvEw7S0al3kMpS4hGH3FP5c/UmWoxNjclhe/8vCksQAanpRU
- 0MBVVWhN1YFXFsxBLOxL00Fns17/pIVTw2t5eYeeZ/viuYXTJXn40W/kj
- bTi+GHQAsvL4SQB+/fOrRhwAyI/utmI19/JiwP31H6hxuzqAGBYqlrWn8 g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10371"; a="256635334"
-X-IronPort-AV: E=Sophos;i="5.91,285,1647327600"; d="scan'208";a="256635334"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jun 2022 00:58:20 -0700
-X-IronPort-AV: E=Sophos;i="5.91,285,1647327600"; d="scan'208";a="636662192"
-Received: from jkosticx-mobl.amr.corp.intel.com (HELO localhost)
- ([10.252.58.130])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jun 2022 00:58:18 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: John Harrison <john.c.harrison@intel.com>, Vinay Belgaumkar
- <vinay.belgaumkar@intel.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-In-Reply-To: <2fc2a62f-4146-c738-3c68-ca70c64e8c29@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220515060506.22084-1-vinay.belgaumkar@intel.com>
- <874k1pj4bi.fsf@intel.com>
- <2f66b35c-e7a1-fb48-e490-566b05f9a03b@intel.com>
- <2fc2a62f-4146-c738-3c68-ca70c64e8c29@intel.com>
-Date: Wed, 08 Jun 2022 10:58:16 +0300
-Message-ID: <871qvzpox3.fsf@intel.com>
+ t=1654675463; x=1686211463;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=yO1sJ4oXM+Z/RsAmhxdOjVWfsc2IlPmFDjF8ub7yrUM=;
+ b=CXDD8N7V7ODFMd97SV6f1TNJLD29QHODrIsXPQ+lwKL19MPrCDt3SELm
+ Kd3EwndzKcUvoYci5gPUOFpm0akScCV8C/s1oRdCKpWZiGNssAYzUKhQl
+ tt9Pz77hHO3RczkvcH7r6Sj6Ccccw3/Y/+OWGcwFQ2su9n7CCSrLd8WEh
+ 0VqYPt9NdG6EXwSV2pKij8KBOTkOin5bB0jkT2mzrSfQegJ/PByRiG8OF
+ v8wQDB2zj1/7Zj+1p2AV+f7UBQtm2z9DSkHFG11TWt4hsNqd+m3fiXJsY
+ xPhc6pKCY5PqNiTVDAAZPar0fjzoeT4Wd8D2r+JvCtfuIYChPRQVjQumN A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10371"; a="275575605"
+X-IronPort-AV: E=Sophos;i="5.91,285,1647327600"; d="scan'208";a="275575605"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jun 2022 01:04:23 -0700
+X-IronPort-AV: E=Sophos;i="5.91,285,1647327600"; d="scan'208";a="907535178"
+Received: from jking17-mobl.ger.corp.intel.com (HELO [10.213.193.156])
+ ([10.213.193.156])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jun 2022 01:04:22 -0700
+Message-ID: <d2ae121b-e50e-6665-1500-2ef870ea98ac@linux.intel.com>
+Date: Wed, 8 Jun 2022 09:04:20 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/guc/slpc: Use non-blocking H2G for
- waitboost
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Content-Language: en-US
+To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20220516081015.1058987-1-jani.nikula@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <20220516081015.1058987-1-jani.nikula@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/overlay: remove redundant
+ GEM_BUG_ON()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,13 +64,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 07 Jun 2022, John Harrison <john.c.harrison@intel.com> wrote:
-> Oops. Just saw your follow up message. No worries!
 
-Again, sorry for the noise, and for wasting your time!
+On 16/05/2022 09:10, Jani Nikula wrote:
+> There's an early return for !engine->kernel_context.
+> 
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>   drivers/gpu/drm/i915/display/intel_overlay.c | 2 --
+>   1 file changed, 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_overlay.c b/drivers/gpu/drm/i915/display/intel_overlay.c
+> index ee46561b5ae8..79ed8bd04a07 100644
+> --- a/drivers/gpu/drm/i915/display/intel_overlay.c
+> +++ b/drivers/gpu/drm/i915/display/intel_overlay.c
+> @@ -1399,8 +1399,6 @@ void intel_overlay_setup(struct drm_i915_private *dev_priv)
+>   
+>   	overlay->i915 = dev_priv;
+>   	overlay->context = engine->kernel_context;
+> -	GEM_BUG_ON(!overlay->context);
+> -
+>   	overlay->color_key = 0x0101fe;
+>   	overlay->color_key_enabled = true;
+>   	overlay->brightness = -19;
 
-BR,
-Jani.
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+Regards,
+
+Tvrtko
