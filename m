@@ -1,54 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DC315428D5
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jun 2022 10:04:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94C885428DA
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jun 2022 10:06:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CAB4610E765;
-	Wed,  8 Jun 2022 08:04:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B3D8A10E5CD;
+	Wed,  8 Jun 2022 08:06:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8042910EF76
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Jun 2022 08:04:23 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EC9C810E5CD
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Jun 2022 08:06:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1654675463; x=1686211463;
+ t=1654675610; x=1686211610;
  h=message-id:date:mime-version:subject:to:references:from:
  in-reply-to:content-transfer-encoding;
- bh=yO1sJ4oXM+Z/RsAmhxdOjVWfsc2IlPmFDjF8ub7yrUM=;
- b=CXDD8N7V7ODFMd97SV6f1TNJLD29QHODrIsXPQ+lwKL19MPrCDt3SELm
- Kd3EwndzKcUvoYci5gPUOFpm0akScCV8C/s1oRdCKpWZiGNssAYzUKhQl
- tt9Pz77hHO3RczkvcH7r6Sj6Ccccw3/Y/+OWGcwFQ2su9n7CCSrLd8WEh
- 0VqYPt9NdG6EXwSV2pKij8KBOTkOin5bB0jkT2mzrSfQegJ/PByRiG8OF
- v8wQDB2zj1/7Zj+1p2AV+f7UBQtm2z9DSkHFG11TWt4hsNqd+m3fiXJsY
- xPhc6pKCY5PqNiTVDAAZPar0fjzoeT4Wd8D2r+JvCtfuIYChPRQVjQumN A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10371"; a="275575605"
-X-IronPort-AV: E=Sophos;i="5.91,285,1647327600"; d="scan'208";a="275575605"
+ bh=mW1PPccn0lIPbDVAWwkeOj1XnJlvD8tnVWRMur2wTTQ=;
+ b=JZkmX9FxsK88mwlxo2Ok4Jl3LHnC7CQnN0o3M3HHV+mxfNZt2a9G1lqE
+ Mm9Gs/iYiSIE0YER2N/IbJEDiaNuV0XpLSRd9NK0O3w0L+coaWyhxYy8f
+ Kb5Zr1GBHvc+BiHnnGnFpnn76SP9hyamjYAsOjKtiDb9g2d1ZQeo4mjJs
+ /tjUuHJ5UKTK0e7OSwn2v8Lv6doxLpI+7bxaMPe0K+Nlny+MGhkLl/UDm
+ +l7goBc7BwgG4qfg3vcoGrAu0UByXuqjsrFwguPUmFvky1Lfy9tI3/zia
+ klq55lnfH22csqMzwts740Ys0OEEb/OBoTUrpKNF+f2fn1SKQEFCv3tpY Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10371"; a="274337396"
+X-IronPort-AV: E=Sophos;i="5.91,285,1647327600"; d="scan'208";a="274337396"
 Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jun 2022 01:04:23 -0700
-X-IronPort-AV: E=Sophos;i="5.91,285,1647327600"; d="scan'208";a="907535178"
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jun 2022 01:06:50 -0700
+X-IronPort-AV: E=Sophos;i="5.91,285,1647327600"; d="scan'208";a="907536590"
 Received: from jking17-mobl.ger.corp.intel.com (HELO [10.213.193.156])
  ([10.213.193.156])
  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jun 2022 01:04:22 -0700
-Message-ID: <d2ae121b-e50e-6665-1500-2ef870ea98ac@linux.intel.com>
-Date: Wed, 8 Jun 2022 09:04:20 +0100
+ 08 Jun 2022 01:06:49 -0700
+Message-ID: <7b62505a-95a0-25ab-9299-e349453e49f5@linux.intel.com>
+Date: Wed, 8 Jun 2022 09:06:48 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.9.1
 Content-Language: en-US
 To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20220516081015.1058987-1-jani.nikula@intel.com>
+References: <20220506120405.2582372-1-jani.nikula@intel.com>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-In-Reply-To: <20220516081015.1058987-1-jani.nikula@intel.com>
+In-Reply-To: <20220506120405.2582372-1-jani.nikula@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/overlay: remove redundant
- GEM_BUG_ON()
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/pxp: fix sparse warning for not
+ declared symbol
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,29 +65,43 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 16/05/2022 09:10, Jani Nikula wrote:
-> There's an early return for !engine->kernel_context.
+On 06/05/2022 13:04, Jani Nikula wrote:
+> Fix:
+> 
+> drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c:61:6: warning: symbol
+> 'intel_pxp_debugfs_register' was not declared. Should it be static?
+> 
+> Sort and remove the redundant pxp prefixes from the includes while at
+> it.
 > 
 > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 > ---
->   drivers/gpu/drm/i915/display/intel_overlay.c | 2 --
->   1 file changed, 2 deletions(-)
+>   drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c | 5 +++--
+>   1 file changed, 3 insertions(+), 2 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_overlay.c b/drivers/gpu/drm/i915/display/intel_overlay.c
-> index ee46561b5ae8..79ed8bd04a07 100644
-> --- a/drivers/gpu/drm/i915/display/intel_overlay.c
-> +++ b/drivers/gpu/drm/i915/display/intel_overlay.c
-> @@ -1399,8 +1399,6 @@ void intel_overlay_setup(struct drm_i915_private *dev_priv)
+> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c b/drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c
+> index c9da1015eb42..e888b5124a07 100644
+> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c
+> @@ -9,9 +9,10 @@
+>   #include <drm/drm_print.h>
 >   
->   	overlay->i915 = dev_priv;
->   	overlay->context = engine->kernel_context;
-> -	GEM_BUG_ON(!overlay->context);
-> -
->   	overlay->color_key = 0x0101fe;
->   	overlay->color_key_enabled = true;
->   	overlay->brightness = -19;
+>   #include "gt/intel_gt_debugfs.h"
+> -#include "pxp/intel_pxp.h"
+> -#include "pxp/intel_pxp_irq.h"
+>   #include "i915_drv.h"
+> +#include "intel_pxp.h"
+> +#include "intel_pxp_debugfs.h"
+> +#include "intel_pxp_irq.h"
+>   
+>   static int pxp_info_show(struct seq_file *m, void *data)
+>   {
 
 Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+
+Lets try to copy domain owners when doing cleanups to lessen the 
+maintainer load, since it appears people are not really scanning the 
+upstream mailing list these days. :(
 
 Regards,
 
