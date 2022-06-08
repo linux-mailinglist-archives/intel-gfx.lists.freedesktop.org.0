@@ -1,51 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C050E54287F
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jun 2022 09:51:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D84285428B5
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jun 2022 09:58:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0184F10EF22;
-	Wed,  8 Jun 2022 07:51:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 571F410EAF8;
+	Wed,  8 Jun 2022 07:58:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E91310EF41;
- Wed,  8 Jun 2022 07:51:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 88B4810EAF8;
+ Wed,  8 Jun 2022 07:58:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1654674715; x=1686210715;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=qmjoXBya/xuRKVcpsmrxxAGjY4QwcSSNUNsZtHLH6vA=;
- b=Pg7+dmXkDzuKX7R1h4Jpro7vNpWT691mD76Qrmr1Z+uXfJK+7OSX1nRO
- rMF28AgT/yIM0717gxST16I4eiHWe2OqEosSB3dlh6Brnkz+0znDgzyDE
- ihNVWvb+73kexR3g7de1e/rh6tPsCSORaY/EuHXMYZ8RMkVrG/TODISIh
- JGMk4Forb3EftGAmRqlj+eEZ6C/IISoSMn2cFWjiFlLUYepb28Olm09yc
- cooy+1D/wrQ8lKKCRl+actk8NmVh46J4JPyDL4VSgICCFYcj2enBJTaDi
- voU5ATvQGrZFE7JvQU/MNQQDBMYADX1As28SlVgUCB32iUQ+AaQGVn//4 w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10371"; a="256634434"
-X-IronPort-AV: E=Sophos;i="5.91,285,1647327600"; d="scan'208";a="256634434"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ t=1654675103; x=1686211103;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=MeOTcz6iIXfAzDKM0e6D2di0B3Ii2Uw7f+6UCR21Gfw=;
+ b=PPpYMxE30SGEUn2zS39EBD4C6c+/wErcFmvqel5d6iyswgVkIR0U+x6b
+ 6D488TaSmzPmj+O8dSP/X/SlZ/nGjI+k3vu7odg1GhWRbnim1mv0OjK1c
+ YBqBU6FopVZVcGOFR+ayx8sJrq40UMKJaTOnjEDD6AaRW3SPedtuR4oWc
+ /hGodYyL4mvEw7S0al3kMpS4hGH3FP5c/UmWoxNjclhe/8vCksQAanpRU
+ 0MBVVWhN1YFXFsxBLOxL00Fns17/pIVTw2t5eYeeZ/viuYXTJXn40W/kj
+ bTi+GHQAsvL4SQB+/fOrRhwAyI/utmI19/JiwP31H6hxuzqAGBYqlrWn8 g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10371"; a="256635334"
+X-IronPort-AV: E=Sophos;i="5.91,285,1647327600"; d="scan'208";a="256635334"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jun 2022 00:51:55 -0700
-X-IronPort-AV: E=Sophos;i="5.91,285,1647327600"; d="scan'208";a="826808327"
+ 08 Jun 2022 00:58:20 -0700
+X-IronPort-AV: E=Sophos;i="5.91,285,1647327600"; d="scan'208";a="636662192"
 Received: from jkosticx-mobl.amr.corp.intel.com (HELO localhost)
  ([10.252.58.130])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jun 2022 00:51:53 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: dri-devel@lists.freedesktop.org
-Date: Wed,  8 Jun 2022 10:50:45 +0300
-Message-Id: <c6b45097910d806c25c346ecbe9894cab58f9956.1654674560.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <cover.1654674560.git.jani.nikula@intel.com>
-References: <cover.1654674560.git.jani.nikula@intel.com>
-MIME-Version: 1.0
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jun 2022 00:58:18 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: John Harrison <john.c.harrison@intel.com>, Vinay Belgaumkar
+ <vinay.belgaumkar@intel.com>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+In-Reply-To: <2fc2a62f-4146-c738-3c68-ca70c64e8c29@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 15/15] drm/todo: add entry for converting the
- subsystem to struct drm_edid
+References: <20220515060506.22084-1-vinay.belgaumkar@intel.com>
+ <874k1pj4bi.fsf@intel.com>
+ <2f66b35c-e7a1-fb48-e490-566b05f9a03b@intel.com>
+ <2fc2a62f-4146-c738-3c68-ca70c64e8c29@intel.com>
+Date: Wed, 08 Jun 2022 10:58:16 +0300
+Message-ID: <871qvzpox3.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/guc/slpc: Use non-blocking H2G for
+ waitboost
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,59 +61,16 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, David Airlie <airlied@linux.ie>,
- intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We need to stop duplicating EDID validation and parsing all over the
-subsystem in various broken ways.
+On Tue, 07 Jun 2022, John Harrison <john.c.harrison@intel.com> wrote:
+> Oops. Just saw your follow up message. No worries!
 
-v2: Update to reflect drm_connector_helper_get_modes()
+Again, sorry for the noise, and for wasting your time!
 
-Cc: David Airlie <airlied@linux.ie>
-Cc: Daniel Vetter <daniel@ffwll.ch>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- Documentation/gpu/todo.rst | 25 +++++++++++++++++++++++++
- 1 file changed, 25 insertions(+)
+BR,
+Jani.
 
-diff --git a/Documentation/gpu/todo.rst b/Documentation/gpu/todo.rst
-index 513b20ccef1e..04ef31e3405f 100644
---- a/Documentation/gpu/todo.rst
-+++ b/Documentation/gpu/todo.rst
-@@ -480,6 +480,31 @@ Contact: Thomas Zimmermann <tzimmermann@suse.de>
- 
- Level: Starter
- 
-+Convert core and drivers from struct edid to struct drm_edid
-+------------------------------------------------------------
-+
-+Go through all drivers and drm core KMS code to convert all raw struct edid
-+usage to the opaque struct drm_edid. See commit e4ccf9a777d3 ("drm/edid: add
-+struct drm_edid container") for rationale.
-+
-+Convert drm_get_edid() and drm_do_get_edid() usage to drm_edid_read(),
-+drm_edid_read_ddc(), or drm_edid_read_custom().
-+
-+Convert drm_add_edid_modes() and drm_connector_update_edid_property() to
-+drm_edid_connector_update(). See drm_connector_helper_get_modes() for reference
-+for converting the ->get_modes() hooks.
-+
-+Convert decentralized, direct struct edid parsing to centralized parsing in
-+drm_edid.c. Prefer one-time parsing as part of drm_edid_connector_update() and
-+storing the result in drm_connector->display_info over adding individual,
-+exported parser functions.
-+
-+During the transition period, it may be necessary to use drm_edid_raw(), but do
-+use it sparingly. Eventually, all of them need to go.
-+
-+Contact: Jani Nikula <jani.nikula@intel.com>
-+
-+Level: Intermediate
- 
- Core refactorings
- =================
 -- 
-2.30.2
-
+Jani Nikula, Intel Open Source Graphics Center
