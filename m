@@ -2,46 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DA2F545886
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jun 2022 01:20:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D66D45458AC
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jun 2022 01:36:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E01212AC4F;
-	Thu,  9 Jun 2022 23:20:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D59312AE57;
+	Thu,  9 Jun 2022 23:36:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3262112AC1A;
- Thu,  9 Jun 2022 23:20:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1654816822; x=1686352822;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=R+Fo1R+Cx7Kjh3MFvBqzlSN0LIqhrzUE8y5UbCpsfyo=;
- b=DI+CXSEZJXqB07RuZil0ouezelCDnF0lDkSJZP2qyXZsxW3ExuZeSVK1
- cNNcQoUVDei757yprDWMxL35wOh3r1g0nAtfv7OqE4dq06tCo6H58py2J
- wbdOPMYXeJfZFZwFTJQP84kuyeIzisCgYXD7VQxpWaUqjWyNqKSgo3tC9
- l/IX5lSGxWX6p1ySGxw9dOr0OGmMLr5XOD2ybgd68J4JzXtoKMvAwl65O
- i335AHrQrUPPUAJUkmJtUKfzpw3/ooL4R+aezQ7HPKVUrrv6S392cv0TD
- M5XQizJDybnxleU6cJe0jbFpz+b/OFUWJyI4jp6pt5rHrwbiPWnWiGzac A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10373"; a="278257503"
-X-IronPort-AV: E=Sophos;i="5.91,288,1647327600"; d="scan'208";a="278257503"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2022 16:20:21 -0700
-X-IronPort-AV: E=Sophos;i="5.91,288,1647327600"; d="scan'208";a="908586197"
-Received: from lucas-s2600cw.jf.intel.com ([10.165.21.202])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2022 16:20:21 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Thu,  9 Jun 2022 16:20:21 -0700
-Message-Id: <20220609232020.2292649-1-lucas.demarchi@intel.com>
-X-Mailer: git-send-email 2.36.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 272BB12AD64;
+ Thu,  9 Jun 2022 23:36:36 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1B926A66C8;
+ Thu,  9 Jun 2022 23:36:36 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] iosys-map: Add word-sized reads
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Date: Thu, 09 Jun 2022 23:36:36 -0000
+Message-ID: <165481779607.17375.2917353082839551210@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220609232020.2292649-1-lucas.demarchi@intel.com>
+In-Reply-To: <20220609232020.2292649-1-lucas.demarchi@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_iosys-map=3A_Add_word-sized_reads?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,106 +40,95 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: daniel.vetter@ffwll.ch, Lucas De Marchi <lucas.demarchi@intel.com>,
- christian.koenig@amd.com, tzimmermann@suse.de,
- Chris Wilson <chris@chris-wilson.co.uk>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Instead of always falling back to memcpy_fromio() for any size, prefer
-using read{b,w,l}(). When reading struct members it's common to read
-individual integer variables individually. Going through memcpy_fromio()
-for each of them poses a high penalty.
+== Series Details ==
 
-Employ a similar trick as __seqprop() by using _Generic() to generate
-only the specific call based on a type-compatible variable.
+Series: iosys-map: Add word-sized reads
+URL   : https://patchwork.freedesktop.org/series/104947/
+State : warning
 
-For a pariticular i915 workload producing GPU context switches,
-__get_engine_usage_record() is particularly hot since the engine usage
-is read from device local memory with dgfx, possibly multiple times
-since it's racy. Test execution time for this test shows a ~12.5%
-improvement with DG2:
+== Summary ==
 
-Before:
-	nrepeats = 1000; min = 7.63243e+06; max = 1.01817e+07;
-	median = 9.52548e+06; var = 526149;
-After:
-	nrepeats = 1000; min = 7.03402e+06; max = 8.8832e+06;
-	median = 8.33955e+06; var = 333113;
-
-Other things attempted that didn't prove very useful:
-1) Change the _Generic() on x86 to just dereference the memory address
-2) Change __get_engine_usage_record() to do just 1 read per loop,
-   comparing with the previous value read
-3) Change __get_engine_usage_record() to access the fields directly as it
-   was before the conversion to iosys-map
-
-(3) did gave a small improvement (~3%), but doesn't seem to scale well
-to other similar cases in the driver.
-
-Additional test by Chris Wilson using gem_create from igt with some
+Error: dim checkpatch failed
+9f93e9ff5930 iosys-map: Add word-sized reads
+-:38: WARNING:TYPO_SPELLING: 'accidentaly' may be misspelled - perhaps 'accidentally'?
+#38: 
 changes to track object creation time. This happens to accidentaly
-stress this code path:
+                                                       ^^^^^^^^^^^
 
-	Pre iosys_map conversion of engine busyness:
-	lmem0: Creating    262144 4KiB objects took 59274.2ms
-
-	Unpatched:
-	lmem0: Creating    262144 4KiB objects took 108830.2ms
-
-	With readl (this patch):
-	lmem0: Creating    262144 4KiB objects took 61348.6ms
-
-	s/readl/READ_ONCE/
-	lmem0: Creating    262144 4KiB objects took 61333.2ms
-
-So we do take a little bit more time than before the conversion, but
-that is due to other factors: bringing the READ_ONCE back would be as
-good as just doing this conversion.
-
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
-
-If this is acceptable we should probably add the write counterpart, too.
-Sending here only the read for now since this fixes the issue we are
-seeing and to gather feedback.
-
- include/linux/iosys-map.h | 26 ++++++++++++++++++++++----
- 1 file changed, 22 insertions(+), 4 deletions(-)
-
-diff --git a/include/linux/iosys-map.h b/include/linux/iosys-map.h
-index e69a002d5aa4..4ae3e459419e 100644
---- a/include/linux/iosys-map.h
-+++ b/include/linux/iosys-map.h
-@@ -333,6 +333,20 @@ static inline void iosys_map_memset(struct iosys_map *dst, size_t offset,
- 		memset(dst->vaddr + offset, value, len);
- }
- 
-+#ifdef CONFIG_64BIT
-+#define __iosys_map_rd_io_u64_case(val_, vaddr_iomem_)			\
+-:69: ERROR:SPACING: spaces required around that ':' (ctx:VxW)
+#69: FILE: include/linux/iosys-map.h:338:
 +	u64: val_ = readq(vaddr_iomem_),
-+#else
-+#define __iosys_map_u64_case(val_, vaddr_iomem_)
-+#endif
-+
+ 	   ^
+
+-:69: WARNING:INDENTED_LABEL: labels should not be indented
+#69: FILE: include/linux/iosys-map.h:338:
++	u64: val_ = readq(vaddr_iomem_),
+
+-:74: CHECK:CAMELCASE: Avoid CamelCase: <_Generic>
+#74: FILE: include/linux/iosys-map.h:343:
++#define __iosys_map_rd_io(val__, vaddr_iomem__, type__) _Generic(val__,	\
+
+-:74: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'val__' - possible side-effects?
+#74: FILE: include/linux/iosys-map.h:343:
 +#define __iosys_map_rd_io(val__, vaddr_iomem__, type__) _Generic(val__,	\
 +	u8: val__ = readb(vaddr_iomem__),				\
 +	u16: val__ = readw(vaddr_iomem__),				\
 +	u32: val__ = readl(vaddr_iomem__),				\
 +	__iosys_map_rd_io_u64_case(val__, vaddr_iomem__)		\
 +	default: memcpy_fromio(&(val__), vaddr_iomem__, sizeof(val__)))
-+
- /**
-  * iosys_map_rd - Read a C-type value from the iosys_map
-  *
-@@ -346,10 +360,14 @@ static inline void iosys_map_memset(struct iosys_map *dst, size_t offset,
-  * Returns:
-  * The value read from the mapping.
-  */
--#define iosys_map_rd(map__, offset__, type__) ({			\
--	type__ val;							\
--	iosys_map_memcpy_from(&val, map__, offset__, sizeof(val));	\
--	val;								\
+
+-:74: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'vaddr_iomem__' - possible side-effects?
+#74: FILE: include/linux/iosys-map.h:343:
++#define __iosys_map_rd_io(val__, vaddr_iomem__, type__) _Generic(val__,	\
++	u8: val__ = readb(vaddr_iomem__),				\
++	u16: val__ = readw(vaddr_iomem__),				\
++	u32: val__ = readl(vaddr_iomem__),				\
++	__iosys_map_rd_io_u64_case(val__, vaddr_iomem__)		\
++	default: memcpy_fromio(&(val__), vaddr_iomem__, sizeof(val__)))
+
+-:75: ERROR:SPACING: spaces required around that ':' (ctx:VxW)
+#75: FILE: include/linux/iosys-map.h:344:
++	u8: val__ = readb(vaddr_iomem__),				\
+ 	  ^
+
+-:75: WARNING:INDENTED_LABEL: labels should not be indented
+#75: FILE: include/linux/iosys-map.h:344:
++	u8: val__ = readb(vaddr_iomem__),				\
+
+-:76: ERROR:SPACING: spaces required around that ':' (ctx:VxW)
+#76: FILE: include/linux/iosys-map.h:345:
++	u16: val__ = readw(vaddr_iomem__),				\
+ 	   ^
+
+-:76: WARNING:INDENTED_LABEL: labels should not be indented
+#76: FILE: include/linux/iosys-map.h:345:
++	u16: val__ = readw(vaddr_iomem__),				\
+
+-:77: ERROR:SPACING: spaces required around that ':' (ctx:VxW)
+#77: FILE: include/linux/iosys-map.h:346:
++	u32: val__ = readl(vaddr_iomem__),				\
+ 	   ^
+
+-:77: WARNING:INDENTED_LABEL: labels should not be indented
+#77: FILE: include/linux/iosys-map.h:346:
++	u32: val__ = readl(vaddr_iomem__),				\
+
+-:79: ERROR:SPACING: spaces required around that ':' (ctx:VxW)
+#79: FILE: include/linux/iosys-map.h:348:
++	default: memcpy_fromio(&(val__), vaddr_iomem__, sizeof(val__)))
+ 	       ^
+
+-:79: ERROR:TRAILING_STATEMENTS: trailing statements should be on next line
+#79: FILE: include/linux/iosys-map.h:348:
++	default: memcpy_fromio(&(val__), vaddr_iomem__, sizeof(val__)))
+
+-:92: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'map__' - possible side-effects?
+#92: FILE: include/linux/iosys-map.h:363:
 +#define iosys_map_rd(map__, offset__, type__) ({				\
 +	type__ val;								\
 +	if ((map__)->is_iomem) {						\
@@ -163,8 +138,43 @@ index e69a002d5aa4..4ae3e459419e 100644
 +	}									\
 +	val;									\
  })
- 
- /**
--- 
-2.36.1
+
+-:92: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'offset__' - possible side-effects?
+#92: FILE: include/linux/iosys-map.h:363:
++#define iosys_map_rd(map__, offset__, type__) ({				\
++	type__ val;								\
++	if ((map__)->is_iomem) {						\
++		__iosys_map_rd_io(val, (map__)->vaddr_iomem + offset__, type__);\
++	} else {								\
++		memcpy(&val, (map__)->vaddr + offset__, sizeof(val));		\
++	}									\
++	val;									\
+ })
+
+-:92: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'offset__' may be better as '(offset__)' to avoid precedence issues
+#92: FILE: include/linux/iosys-map.h:363:
++#define iosys_map_rd(map__, offset__, type__) ({				\
++	type__ val;								\
++	if ((map__)->is_iomem) {						\
++		__iosys_map_rd_io(val, (map__)->vaddr_iomem + offset__, type__);\
++	} else {								\
++		memcpy(&val, (map__)->vaddr + offset__, sizeof(val));		\
++	}									\
++	val;									\
+ })
+
+-:92: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'type__' - possible side-effects?
+#92: FILE: include/linux/iosys-map.h:363:
++#define iosys_map_rd(map__, offset__, type__) ({				\
++	type__ val;								\
++	if ((map__)->is_iomem) {						\
++		__iosys_map_rd_io(val, (map__)->vaddr_iomem + offset__, type__);\
++	} else {								\
++		memcpy(&val, (map__)->vaddr + offset__, sizeof(val));		\
++	}									\
++	val;									\
+ })
+
+total: 6 errors, 5 warnings, 7 checks, 38 lines checked
+
 
