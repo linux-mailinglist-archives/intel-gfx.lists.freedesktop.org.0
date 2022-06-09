@@ -1,60 +1,74 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BDEE544735
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jun 2022 11:19:31 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4BBA544848
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jun 2022 12:08:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB2131124BC;
-	Thu,  9 Jun 2022 09:19:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 62761113809;
+	Thu,  9 Jun 2022 10:07:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 75AF01124C2;
- Thu,  9 Jun 2022 09:19:27 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 75F7A61B97;
- Thu,  9 Jun 2022 09:19:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8870CC34114;
- Thu,  9 Jun 2022 09:19:25 +0000 (UTC)
-Authentication-Results: smtp.kernel.org;
- dkim=pass (1024-bit key) header.d=zx2c4.com header.i=@zx2c4.com
- header.b="UArqgGwg"
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=zx2c4.com; s=20210105; 
- t=1654766363;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=9Er+J+1CnioC8hdj/XQvRCbloD3JhuE8VxkclGA3cDU=;
- b=UArqgGwgUA80BX6wygtiHrtrGaBpi4I/llidG47Rs1pUnUVEbj2b5CzaAtabQs//Y/nebm
- idd3GoeHvSgYhOi1c6tRom4DsWoC8p05ju0dhGaokHqKXG/eMETulR9Kuan29EDI9eFtAh
- OmmGeM2ZtfSmKqo/qYaXLRqZ13bNtYE=
-Received: by mail.zx2c4.com (ZX2C4 Mail Server) with ESMTPSA id 454bf9b7
- (TLSv1.3:AEAD-AES256-GCM-SHA384:256:NO); 
- Thu, 9 Jun 2022 09:19:23 +0000 (UTC)
-Received: by mail-yw1-f181.google.com with SMTP id
- 00721157ae682-2ef5380669cso234430807b3.9; 
- Thu, 09 Jun 2022 02:19:23 -0700 (PDT)
-X-Gm-Message-State: AOAM532a36WKabFcNvr8/UJ8xo4qNhsKoTdscMZv7xXFr7EUrJGQLJnk
- k1rsn5jWmZTQ/fRWU/T5XxlQDsDSGbDONpNJoqg=
-X-Google-Smtp-Source: ABdhPJzAqE1avOsz4vImNc+NoFNBR2NTgG8AidXBx3PTt0RlNB5opM9XHUDXRrl4E82/TtT/ere1kN4UlOxz/iclkN0=
-X-Received: by 2002:a81:4887:0:b0:30c:40bd:3e7b with SMTP id
- v129-20020a814887000000b0030c40bd3e7bmr42817771ywa.396.1654766362745; Thu, 09
- Jun 2022 02:19:22 -0700 (PDT)
+Received: from out1-smtp.messagingengine.com (out1-smtp.messagingengine.com
+ [66.111.4.25])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C262C113783;
+ Thu,  9 Jun 2022 10:07:57 +0000 (UTC)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+ by mailout.nyi.internal (Postfix) with ESMTP id EF4375C014B;
+ Thu,  9 Jun 2022 06:07:56 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+ by compute5.internal (MEProxy); Thu, 09 Jun 2022 06:07:56 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+ :cc:content-type:date:date:from:from:in-reply-to:message-id
+ :mime-version:reply-to:sender:subject:subject:to:to; s=fm1; t=
+ 1654769276; x=1654855676; bh=f1FVNivSAW6w18p7eCpNqBRpqJHkTr+yPcZ
+ kyLc+V/Q=; b=kBp1Guo7bZ54mogYWfF8Af+dnNoOHKx0rY6+O36G8Qwo1dSKiV5
+ qQaXEFBZZYIUtiuGfOfHDSAPyhPCsoh0qUrXQc786WCN5YrzralBNx5uNejo9Zjz
+ qL8wCooTwQjm/Y04gqPSe+/D1Mze0DEBIqaYGgNN+AsYaxItFTDY1xT4OUuKu+Ky
+ 7Q6BK36IuSm3CBh8GCHelskwIsirfWP2YydWfF94/9BImw5rGDwfT/anAjNEj1SU
+ qSLzwxXvov0msnEPsJp8dTI2DmDJ49UcFSFB9nCD+nKkdmKpQO31a1HysrZVXct9
+ z/dY+EMiUdZY/uI2Vo0UBv+8TZrzggAA5EQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+ :feedback-id:from:from:in-reply-to:message-id:mime-version
+ :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1654769276; x=
+ 1654855676; bh=f1FVNivSAW6w18p7eCpNqBRpqJHkTr+yPcZkyLc+V/Q=; b=P
+ kYTbLtiyFSMWIiHX44tsQgSGBYI2vhbfXoKXftVeVuts+A9K3WD+rWPJJLum0OEg
+ ZYQqmOah7cfHB5pEsqCURGffYC8+Y71ayha+5xUMD7q0cvdcR0V2MdjuEOaFaYp5
+ RMY28fQozZjk/WC6wPpx+dX2lHer2pUebtWLCVkWjNNvD14rQJUbYKiQaYg9damT
+ IVw9gtR1q7lbZmWoRZcRNwdhkO5fhs6FK23jAemYbHFhm/MDCzoBQJXbFg+Jj8CE
+ AmpjJHEgkxdjmsOxlfq7+e6Sn8ISQlOLGMqL87iGeZHcL8bNBUsb8BmYcEf+vv5C
+ RGgwJrUm5azP/NFCg4yiw==
+X-ME-Sender: <xms:fMahYj8igzyfq9mq-obJSLSGAHU_4iqbsrxWAC6jkO4Gmrd7bZ3FcQ>
+ <xme:fMahYvtKpBAbB0HLVIRJ3Rmys9XazBUyTFTkekL-EJrUYXK2dPK4m9RIKgmjVN2UK
+ W6-oTq8atPQTt6izbk>
+X-ME-Received: <xmr:fMahYhDHFXJ9szKM2LT_DUba1QgA1EG1ElmKgmku453Tb1QBigCftmv9Ynv_ApFip9eI12ogyEMNJ7yfCX04IZB1vhgBtwROHkmI-eI>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedruddtledgvddtucetufdoteggodetrfdotf
+ fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+ uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+ cujfgurhepfffhvfevuffkgggtugesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
+ ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+ gvrhhnpeeuieehjefhieevtdehudfftdetgfdtuedvvdeugeetgfevgeevudegffduveej
+ ieenucffohhmrghinhepfhhrvggvuggvshhkthhophdrohhrghenucevlhhushhtvghruf
+ hiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdr
+ thgvtghh
+X-ME-Proxy: <xmx:fMahYveNwcvkw6hM9Iyxbi1v3_rhvGI1grsgBNL_65OmAX8WvnIeow>
+ <xmx:fMahYoMg7fThsGUbeDIgqXpArdzpRaUMVFnizphNqXX9ySWGecBdQQ>
+ <xmx:fMahYhkm12d3OGmudbufpysza8TuD7h8P3JcSHrcxGXABs9MetddCQ>
+ <xmx:fMahYpHZOHYb8GiSHK_k3ttUGkRhAKMGV6sF6YPwoV0JumisLmNA5Q>
+Feedback-ID: i8771445c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 9 Jun 2022 06:07:56 -0400 (EDT)
+Date: Thu, 9 Jun 2022 12:07:54 +0200
+From: Maxime Ripard <maxime@cerno.tech>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20220609100754.kvrkjy67gqabjuee@houat>
 MIME-Version: 1.0
-References: <CAHmME9oyjj2cHjyqUrDQHQ1+YBafhBvj0utpU4kox6YK0gcT6w@mail.gmail.com>
- <DM8PR11MB5655E231601FD2195816F017E0A79@DM8PR11MB5655.namprd11.prod.outlook.com>
-In-Reply-To: <DM8PR11MB5655E231601FD2195816F017E0A79@DM8PR11MB5655.namprd11.prod.outlook.com>
-From: "Jason A. Donenfeld" <Jason@zx2c4.com>
-Date: Thu, 9 Jun 2022 11:19:11 +0200
-X-Gmail-Original-Message-ID: <CAHmME9r=vhjhKbqGuhfa6TK=GJKx4wJ7RNHrkeW-ncEcvgHhiw@mail.gmail.com>
-Message-ID: <CAHmME9r=vhjhKbqGuhfa6TK=GJKx4wJ7RNHrkeW-ncEcvgHhiw@mail.gmail.com>
-To: "Saarinen, Jani" <jani.saarinen@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] i915 w/5.19: wild flickering glitching technicolor
- pyrotechnics on resumption from suspend
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="z5qqkj5p3qkumxi3"
+Content-Disposition: inline
+Subject: [Intel-gfx] [PULL] drm-misc-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,9 +81,84 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Done. https://gitlab.freedesktop.org/drm/intel/-/issues/6205
+
+--z5qqkj5p3qkumxi3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+Hi Daniel, Dave,
+
+Here's this week drm-misc-fixes PR
+
+Maxime
+
+drm-misc-fixes-2022-06-09:
+One fix to handle DT errors in ti-sn65dsi83, a fix for a use-after-free in
+panfrost, two fixes for panel self-refresh handling, and one to fix
+multiple output support on AST.
+The following changes since commit f2906aa863381afb0015a9eb7fefad885d4e5a56:
+
+  Linux 5.19-rc1 (2022-06-05 17:18:54 -0700)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2022-06-09
+
+for you to fetch changes up to 477277c7fd43d48ae68cbdcaa7c0f82024a87421:
+
+  drm/ast: Support multiple outputs (2022-06-09 10:27:49 +0200)
+
+----------------------------------------------------------------
+One fix to handle DT errors in ti-sn65dsi83, a fix for a use-after-free in
+panfrost, two fixes for panel self-refresh handling, and one to fix
+multiple output support on AST.
+
+----------------------------------------------------------------
+Brian Norris (2):
+      drm/bridge: analogix_dp: Support PSR-exit to disable transition
+      drm/atomic: Force bridge self-refresh-exit on CRTC switch
+
+Marek Vasut (1):
+      drm/bridge: ti-sn65dsi83: Handle dsi_lanes == 0 as invalid
+
+Maxime Ripard (1):
+      Merge v5.19-rc1 into drm-misc-fixes
+
+Steven Price (1):
+      drm/panfrost: Job should reference MMU not file_priv
+
+Thomas Zimmermann (1):
+      drm/ast: Support multiple outputs
+
+ drivers/gpu/drm/ast/ast_dp.c                       |  5 ++-
+ drivers/gpu/drm/ast/ast_dp501.c                    |  2 +-
+ drivers/gpu/drm/ast/ast_drv.h                      |  9 +++--
+ drivers/gpu/drm/ast/ast_main.c                     | 21 +++++------
+ drivers/gpu/drm/ast/ast_mode.c                     | 38 +++++++++++---------
+ drivers/gpu/drm/ast/ast_post.c                     |  2 +-
+ drivers/gpu/drm/bridge/analogix/analogix_dp_core.c | 42 +++++++++++++++++++---
+ drivers/gpu/drm/bridge/ti-sn65dsi83.c              |  2 +-
+ drivers/gpu/drm/drm_atomic_helper.c                | 16 +++++++--
+ drivers/gpu/drm/panfrost/panfrost_drv.c            |  5 +--
+ drivers/gpu/drm/panfrost/panfrost_job.c            |  6 ++--
+ drivers/gpu/drm/panfrost/panfrost_job.h            |  2 +-
+ 12 files changed, 100 insertions(+), 50 deletions(-)
+
+--z5qqkj5p3qkumxi3
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYqHGegAKCRDj7w1vZxhR
+xZs5AQDYGRx/0R7I5H15naD7uzHVVhqjKJi2Aqh4h/vwC4nUxwD/Qc5+JPq1OAo9
+lsd0e8EQ4KrwgTfCjG+PF/hVpGlS1wI=
+=YSUp
+-----END PGP SIGNATURE-----
+
+--z5qqkj5p3qkumxi3--
