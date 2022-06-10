@@ -1,52 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 086A9545931
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jun 2022 02:33:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0212B545944
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jun 2022 02:44:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1FEB110FE52;
-	Fri, 10 Jun 2022 00:33:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99B6410E812;
+	Fri, 10 Jun 2022 00:44:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4405D10FE52
- for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jun 2022 00:33:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1654821232; x=1686357232;
- h=date:from:to:subject:message-id:references:mime-version:
- in-reply-to; bh=ZP9ivb8IClW2sbfddRDBMtEYv0Om+lTtVhXTp3TihFM=;
- b=iShGs/gEpqujhThEEL9fWAmIqQeHwNbvOxIkMmGfYbYqnuxKGp0EpZO+
- rOTJkRiwQ0lit/7rwRuZhs/zWbuWoVJNK5KCmlZB3JQIZM8SnhNohDHOj
- euHKpU0dCSbWzkGfLIcl0pvu+3SBPAmjgUxffIa1Xm43XOhg53HgR29i5
- cw+m80lLhtn+VYzEDWRZy1UZiyx23sjthMpAja7tBeO7Xih4AL5oqwSwX
- xkWPUSwI1Oa3JTJrQeQJdOfXObK5Yd4aE67is7qTPY5gc8oBqPD/JflNv
- rKUtRniBR6tk71wUxhoxur/tTtkqhRA2nOq/lwDPz/wNZcxjAM3x7Wiux w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10373"; a="278273647"
-X-IronPort-AV: E=Sophos;i="5.91,288,1647327600"; d="scan'208";a="278273647"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2022 17:33:51 -0700
-X-IronPort-AV: E=Sophos;i="5.91,288,1647327600"; d="scan'208";a="671584484"
-Received: from orsosgc001.jf.intel.com ([10.165.21.154])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2022 17:33:51 -0700
-Date: Thu, 9 Jun 2022 17:33:51 -0700
-From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Message-ID: <20220610003351.GB48807@orsosgc001.jf.intel.com>
-References: <20220610002454.945126-1-umesh.nerlige.ramappa@intel.com>
+Received: from gandalf.ozlabs.org (mail.ozlabs.org
+ [IPv6:2404:9400:2221:ea00::3])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F130B10F75E
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jun 2022 00:44:15 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4LK2K13shsz4xZ0;
+ Fri, 10 Jun 2022 10:44:05 +1000 (AEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
+ s=201702; t=1654821847;
+ bh=z5V4Kzg505bmetiWUu8deQBFvo/TnO9WAFuswm4qLfE=;
+ h=Date:From:To:Cc:Subject:From;
+ b=GAT56PA56PKZFF/+5hXfVt7MwON0elT30oY3ENoKyFkX4xuv5l1l7NEKKDLNW16wi
+ VSjtFWevJ47/SsbFQ7AO6zMdWnGGprmljgxDUYhbpE2XiGMz/UMPS0Qw4VwlcUJK7c
+ oqAqJ7FSrpZqfIr7ae0dLQsV+9hnKgmGeRDEZXwfCzmrZaHvmCaAnBer0RUxKIVO6/
+ kQcczSdCnUF/Q45sN/BUl4JCr61I9cOuxklu9HvqhxcTaRtZwvzZuS7PiWgU3BJpO/
+ QDdGgI3D+zu43ItuAvpzY/wDs7InvINHnoaU0RzqkZpY+woTlTsbdrijmbsVnk7JXh
+ FwaJDKwUz2bhg==
+Date: Fri, 10 Jun 2022 10:44:03 +1000
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
+ <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>
+Message-ID: <20220610104403.02453bdb@canb.auug.org.au>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20220610002454.945126-1-umesh.nerlige.ramappa@intel.com>
-User-Agent: Mutt/1.12.1 (2019-06-15)
-Subject: Re: [Intel-gfx] [PATCH] For execlists backend,
- current implementation of Wa_22011802037 is to stop the CS before
- doing a reset of the engine. This WA was further extended to wait for any
- pending MI FORCE WAKEUPs before issuing a reset. Add the extended steps in
- the execlist path of reset.
+Content-Type: multipart/signed; boundary="Sig_//n1q_nVPZI353vHmpReO.BO";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
+Subject: [Intel-gfx] linux-next: manual merge of the drm-misc tree with
+ Linus' tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,27 +51,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: =?UTF-8?B?SsOpcsO0bWU=?= Pouiller <jerome.pouiller@silabs.com>,
+ Jason Ekstrand <jason.ekstrand@collabora.com>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Jason Ekstrand <jason.ekstrand@intel.com>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Simon Ser <contact@emersion.fr>,
+ Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Commit title messed up, please ignore this one.
+--Sig_//n1q_nVPZI353vHmpReO.BO
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-Umesh
+Hi all,
 
-On Thu, Jun 09, 2022 at 05:24:54PM -0700, Nerlige Ramappa, Umesh wrote:
->From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
->
->In addition, extend the WA to gen11.
->
->v2: (Tvrtko)
->- Clarify comments, commit message, fix typos
->- Use IS_GRAPHICS_VER for gen 11/12 checks
->
->v3: (Daneile)
->- Drop changes to intel_ring_submission since WA does not apply to it
->- Log an error if MSG IDLE is not defined for an engine
->
->Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
->Fixes: f6aa0d713c88 ("drm/i915: Add Wa_22011802037 force cs halt")
->Acked-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Today's linux-next merge of the drm-misc tree got a conflict in:
+
+  include/uapi/linux/dma-buf.h
+
+between commit:
+
+  7c3e9fcad9c7 ("dma-buf: fix use of DMA_BUF_SET_NAME_{A,B} in userspace")
+
+from Linus' tree and commits:
+
+  20e10881a043 ("dma-buf: Add an API for exporting sync files (v14)")
+  594740497e99 ("dma-buf: Add an API for importing sync files (v10)")
+
+from the drm-misc tree.
+
+I fixed it up (see below) and can carry the fix as necessary. This
+is now fixed as far as linux-next is concerned, but any non trivial
+conflicts should be mentioned to your upstream maintainer when your tree
+is submitted for merging.  You may also want to consider cooperating
+with the maintainer of the conflicting tree to minimise any particularly
+complex conflicts.
+
+--=20
+Cheers,
+Stephen Rothwell
+
+diff --cc include/uapi/linux/dma-buf.h
+index b1523cb8ab30,30fb8834aa3c..000000000000
+--- a/include/uapi/linux/dma-buf.h
++++ b/include/uapi/linux/dma-buf.h
+@@@ -92,7 -174,9 +174,9 @@@ struct dma_buf_import_sync_file=20
+   * between them in actual uapi, they're just different numbers.
+   */
+  #define DMA_BUF_SET_NAME	_IOW(DMA_BUF_BASE, 1, const char *)
+ -#define DMA_BUF_SET_NAME_A	_IOW(DMA_BUF_BASE, 1, u32)
+ -#define DMA_BUF_SET_NAME_B	_IOW(DMA_BUF_BASE, 1, u64)
+ +#define DMA_BUF_SET_NAME_A	_IOW(DMA_BUF_BASE, 1, __u32)
+ +#define DMA_BUF_SET_NAME_B	_IOW(DMA_BUF_BASE, 1, __u64)
++ #define DMA_BUF_IOCTL_EXPORT_SYNC_FILE	_IOWR(DMA_BUF_BASE, 2, struct dma_=
+buf_export_sync_file)
++ #define DMA_BUF_IOCTL_IMPORT_SYNC_FILE	_IOW(DMA_BUF_BASE, 3, struct dma_b=
+uf_import_sync_file)
+ =20
+  #endif
+
+--Sig_//n1q_nVPZI353vHmpReO.BO
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmKik9MACgkQAVBC80lX
+0Gz0UQf+If52KGnDNPV8aqFJ40yP0mwNtBGMkc6Nh2Qyi2ag1uUk/NE5ncbOwlo1
+bbV2b26RGai+ioUJwA3t0AXAfO+M/uSbeKmrBoAh5sLpavykLtVTi5zGltqNZ1Fi
+AqxE9tkOqJNxTCzpqY/VUcSNAnKx/L3b1orKI3YkqaPawWcrB5JSw6zkPXpM0pHl
+sMp77SSVQTxCpUT810jJ0AV3aaSVGnmol0GECQpB2qp4B6n6xaIwDu0o3k10oBlT
+t49weWXmCL4F0DDSsxwfPw6H8Xe+5DmVT+cNpXHkAOrwDfAgPutQ1nsnFMoCGdV9
+iKZ9B1PPTsyhQwzROCjeR8QCc5g0ag==
+=T98u
+-----END PGP SIGNATURE-----
+
+--Sig_//n1q_nVPZI353vHmpReO.BO--
