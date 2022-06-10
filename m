@@ -1,54 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 690F9546B16
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jun 2022 18:56:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3098E546B99
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jun 2022 19:22:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C033D10E132;
-	Fri, 10 Jun 2022 16:56:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 791EC10E905;
+	Fri, 10 Jun 2022 17:22:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3516910E132
- for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jun 2022 16:56:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1654880169; x=1686416169;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=FbpiqdUzYHf7tmm4wHDdJas9unAWtSVuTCs3VwF7SXQ=;
- b=i4gCRcMviQ87YKzk4XDRS5YdP2eRU+b7h7VqD7zz7PiyO2yiwblW1rbC
- 5A9JdSjS47/HwgwbjTFdY35ei96tEO5EviccYj56tY8UZfxWOFdWLabnH
- XTEbMQFjqq3s/ExtF/GrdLNuagtJP5597Ru4GaaVPvxZNpk+n4yUBmlD0
- PVFbGFs1AJFQ8dNMEr+9NJVT0CCxEOjwExi/9hv9lx4wgGhkTcSxbyQr4
- tZFjpJYIZo6kxL0CugHmMqgJ9d24xtjlP04JMCJCw1ny6EotUQoKWvL/K
- r5GWejJmf4vzCDSujMjLNcq24lTSILMgup9l2maiNHgOP9EpcRXpSqw+w w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10374"; a="278817658"
-X-IronPort-AV: E=Sophos;i="5.91,290,1647327600"; d="scan'208";a="278817658"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2022 09:56:08 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,290,1647327600"; d="scan'208";a="671930070"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.163])
- by FMSMGA003.fm.intel.com with SMTP; 10 Jun 2022 09:56:05 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 10 Jun 2022 19:56:04 +0300
-Date: Fri, 10 Jun 2022 19:56:04 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <YqN3pJfgnZR97SrK@intel.com>
-References: <20220609181014.21694-1-animesh.manna@intel.com>
- <87tu8szt4b.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id BAB6E10E1AC;
+ Fri, 10 Jun 2022 17:22:32 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B1CEDAA0EB;
+ Fri, 10 Jun 2022 17:22:32 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3908688231747081588=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <87tu8szt4b.fsf@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/bios: calculate panel type as
- per child device index in VBT
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
+Date: Fri, 10 Jun 2022 17:22:32 -0000
+Message-ID: <165488175271.16747.15662317194071713309@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220610085429.52935-1-jouni.hogander@intel.com>
+In-Reply-To: <20220610085429.52935-1-jouni.hogander@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgRGlz?=
+ =?utf-8?q?able_connector_polling_for_a_headless_sku_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,215 +40,197 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jun 10, 2022 at 01:54:12PM +0300, Jani Nikula wrote:
-> On Thu, 09 Jun 2022, Animesh Manna <animesh.manna@intel.com> wrote:
-> > Each LFP may have different panel type which is stored in LFP data
-> > data block. Based on the child device index respective panel-type/
-> > panel-type2 field will be used.
-> >
-> > v1: Initial rfc verion.
-> > v2: Based on review comments from Jani,
-> > - Used panel-type instead addition panel-index variable.
-> > - DEVICE_HANDLE_* name changed and placed before DEVICE_TYPE_*
-> > macro.
-> >
-> > Signed-off-by: Animesh Manna <animesh.manna@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/icl_dsi.c        |  2 +-
-> >  drivers/gpu/drm/i915/display/intel_bios.c     | 40 +++++++++++++------
-> >  drivers/gpu/drm/i915/display/intel_bios.h     |  3 +-
-> >  drivers/gpu/drm/i915/display/intel_dp.c       |  3 +-
-> >  drivers/gpu/drm/i915/display/intel_lvds.c     |  3 +-
-> >  drivers/gpu/drm/i915/display/intel_sdvo.c     |  2 +-
-> >  drivers/gpu/drm/i915/display/intel_vbt_defs.h |  4 ++
-> >  drivers/gpu/drm/i915/display/vlv_dsi.c        |  2 +-
-> >  8 files changed, 39 insertions(+), 20 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-> > index 3b5305c219ba..b3aa430abd03 100644
-> > --- a/drivers/gpu/drm/i915/display/icl_dsi.c
-> > +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-> > @@ -2050,7 +2050,7 @@ void icl_dsi_init(struct drm_i915_private *dev_priv)
-> >  	/* attach connector to encoder */
-> >  	intel_connector_attach_encoder(intel_connector, encoder);
-> >  
-> > -	intel_bios_init_panel(dev_priv, &intel_connector->panel, NULL);
-> > +	intel_bios_init_panel(dev_priv, intel_connector, NULL);
-> >  
-> >  	mutex_lock(&dev->mode_config.mutex);
-> >  	intel_panel_add_vbt_lfp_fixed_mode(intel_connector);
-> > diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-> > index aaea27fe5d16..f74e63823c08 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_bios.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-> > @@ -604,13 +604,15 @@ get_lfp_data_tail(const struct bdb_lvds_lfp_data *data,
-> >  }
-> >  
-> >  static int opregion_get_panel_type(struct drm_i915_private *i915,
-> > -				   const struct edid *edid)
-> > +				   const struct edid *edid,
-> > +				   const struct intel_bios_encoder_data *devdata)
-> >  {
-> >  	return intel_opregion_get_panel_type(i915);
-> >  }
-> >  
-> >  static int vbt_get_panel_type(struct drm_i915_private *i915,
-> > -			      const struct edid *edid)
-> > +			      const struct edid *edid,
-> > +			      const struct intel_bios_encoder_data *devdata)
-> 
-> This is nitpicking, but semantically feels like the devdata parameter
-> should be before edid.
-> 
-> >  {
-> >  	const struct bdb_lvds_options *lvds_options;
-> >  
-> > @@ -625,11 +627,17 @@ static int vbt_get_panel_type(struct drm_i915_private *i915,
-> >  		return -1;
-> >  	}
-> >  
-> > -	return lvds_options->panel_type;
-> > +	if (devdata->child.handle == DEVICE_HANDLE_LFP1)
-> > +		return lvds_options->panel_type;
-> > +	else if (devdata->child.handle == DEVICE_HANDLE_LFP2)
-> > +		return lvds_options->panel_type2;
-> > +	else
-> > +		return -1;
-> 
-> Not all legacy panels have encoder data (i.e. VBT child device
-> config). I'd go for something like this:
-> 
-> 	if (devdata && devdata->child.handle == DEVICE_HANDLE_LFP2)
-> 		return lvds_options->panel_type2;
-> 
-> 	drm_WARN_ON(&i915->drm, devdata && devdata->child.handle != DEVICE_HANDLE_LFP1)
-> 
-> 	return lvds_options->panel_type;
-> 
-> I don't know if that's going to lead to a bunch of warnings, but I'd
-> want to know. Or we can demote it to drm_dbg_kms(), now or later.
+--===============3908688231747081588==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I went through my VBT stash and looks like handle==LFP1 should
-hold for everything (even my ancient i830 has that). So I'd go
-with a WARN.
+== Series Details ==
 
-> >  }
-> >  
-> >  static int pnpid_get_panel_type(struct drm_i915_private *i915,
-> > -				const struct edid *edid)
-> > +				const struct edid *edid,
-> > +				const struct intel_bios_encoder_data *devdata)
-> >  {
-> >  	const struct bdb_lvds_lfp_data *data;
-> >  	const struct bdb_lvds_lfp_data_ptrs *ptrs;
-> > @@ -675,7 +683,8 @@ static int pnpid_get_panel_type(struct drm_i915_private *i915,
-> >  }
-> >  
-> >  static int fallback_get_panel_type(struct drm_i915_private *i915,
-> > -				   const struct edid *edid)
-> > +				   const struct edid *edid,
-> > +				   const struct intel_bios_encoder_data *devdata)
-> >  {
-> >  	return 0;
-> >  }
-> > @@ -688,12 +697,14 @@ enum panel_type {
-> >  };
-> >  
-> >  static int get_panel_type(struct drm_i915_private *i915,
-> > -			  const struct edid *edid)
-> > +			  const struct edid *edid,
-> > +			  const struct intel_bios_encoder_data *devdata)
-> >  {
-> >  	struct {
-> >  		const char *name;
-> >  		int (*get_panel_type)(struct drm_i915_private *i915,
-> > -				      const struct edid *edid);
-> > +				      const struct edid *edid,
-> > +				      const struct intel_bios_encoder_data *devdata);
-> >  		int panel_type;
-> >  	} panel_types[] = {
-> >  		[PANEL_TYPE_OPREGION] = {
-> > @@ -716,7 +727,7 @@ static int get_panel_type(struct drm_i915_private *i915,
-> >  	int i;
-> >  
-> >  	for (i = 0; i < ARRAY_SIZE(panel_types); i++) {
-> > -		panel_types[i].panel_type = panel_types[i].get_panel_type(i915, edid);
-> > +		panel_types[i].panel_type = panel_types[i].get_panel_type(i915, edid, devdata);
-> >  
-> >  		drm_WARN_ON(&i915->drm, panel_types[i].panel_type > 0xf &&
-> >  			    panel_types[i].panel_type != 0xff);
-> > @@ -747,7 +758,8 @@ static int get_panel_type(struct drm_i915_private *i915,
-> >  static void
-> >  parse_panel_options(struct drm_i915_private *i915,
-> >  		    struct intel_panel *panel,
-> > -		    const struct edid *edid)
-> > +		    const struct edid *edid,
-> > +		    const struct intel_bios_encoder_data *devdata)
-> >  {
-> >  	const struct bdb_lvds_options *lvds_options;
-> >  	int panel_type;
-> > @@ -759,7 +771,7 @@ parse_panel_options(struct drm_i915_private *i915,
-> >  
-> >  	panel->vbt.lvds_dither = lvds_options->pixel_dither;
-> >  
-> > -	panel_type = get_panel_type(i915, edid);
-> > +	panel_type = get_panel_type(i915, edid, devdata);
-> >  
-> >  	panel->vbt.panel_type = panel_type;
-> >  
-> > @@ -3103,12 +3115,16 @@ void intel_bios_init(struct drm_i915_private *i915)
-> >  }
-> >  
-> >  void intel_bios_init_panel(struct drm_i915_private *i915,
-> > -			   struct intel_panel *panel,
-> > +			   struct intel_connector *intel_connector,
-> >  			   const struct edid *edid)
-> >  {
-> > +	struct intel_panel *panel = &intel_connector->panel;
-> > +	struct intel_encoder *encoder = intel_connector->encoder;
-> 
-> At least vlv_dsi_init() calls intel_bios_init_panel() before setting
-> intel_connector->encoder, which would oops on the next line.
+Series: Disable connector polling for a headless sku (rev3)
+URL   : https://patchwork.freedesktop.org/series/104711/
+State : success
 
-The different order of stuff for vlv_dsi_init() vs. icl_dsi_init()
-is rather annoying. Some kind of unification effort might be nice.
+== Summary ==
 
-> 
-> > +	const struct intel_bios_encoder_data *devdata = i915->vbt.ports[encoder->port];
-> > +
-> 
-> intel_bios_init_panel() gets called:
-> 
-> * On platforms/outputs where encoder->port does not make sense,
->   e.g. intel_lvds_init() sets it to PORT_NONE.
-> 
-> * On platforms where i915->vbt.ports[] is not initialized at all. See
->   has_ddi_port_info().
-> 
-> * On platforms/outputs where i915->vbt.ports[] is not
->   initialized. Specifically, DSI is not handled by parse_ddi_port()
->   because on VLV, at least in theory, the DSI ports can coexist and
->   collide with other ports.
-> 
-> I'm wondering if maybe it's best to have the caller figure out const
-> struct intel_bios_encoder_data *, and pass that along. If it's not
-> possible, just pass NULL. For DP on DDI platforms it's already set in
-> encoder->devdata. (We should basically set that on all platforms where
-> it's available, but we're not there yet.)
-> 
-> This should work trivially for the immediate goal of enabling multiple
-> eDP panels, and be compatible with enabling multiple DSI or combo
-> eDP/DSI panels in the future once we've figured out how to fix devdata
-> for DSI.
-> 
-> Ville, thoughts?
+CI Bug Log - changes from CI_DRM_11753 -> Patchwork_104711v3
+====================================================
 
-Sounds reasonable enough to me.
+Summary
+-------
 
--- 
-Ville Syrjälä
-Intel
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104711v3/index.html
+
+Participating hosts (42 -> 42)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_104711v3 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - bat-adlp-4:         [PASS][1] -> [DMESG-WARN][2] ([i915#3576])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11753/bat-adlp-4/igt@i915_pm_rpm@module-reload.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104711v3/bat-adlp-4/igt@i915_pm_rpm@module-reload.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s0@smem:
+    - {fi-ehl-2}:         [DMESG-WARN][3] ([i915#5122]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11753/fi-ehl-2/igt@gem_exec_suspend@basic-s0@smem.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104711v3/fi-ehl-2/igt@gem_exec_suspend@basic-s0@smem.html
+
+  * igt@i915_selftest@live@gem:
+    - {bat-dg2-9}:        [DMESG-WARN][5] ([i915#5763]) -> [PASS][6] +3 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11753/bat-dg2-9/igt@i915_selftest@live@gem.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104711v3/bat-dg2-9/igt@i915_selftest@live@gem.html
+
+  * igt@kms_busy@basic@flip:
+    - bat-adlp-4:         [DMESG-WARN][7] ([i915#3576]) -> [PASS][8] +1 similar issue
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11753/bat-adlp-4/igt@kms_busy@basic@flip.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104711v3/bat-adlp-4/igt@kms_busy@basic@flip.html
+    - {bat-adlp-6}:       [DMESG-WARN][9] ([i915#3576]) -> [PASS][10] +1 similar issue
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11753/bat-adlp-6/igt@kms_busy@basic@flip.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104711v3/bat-adlp-6/igt@kms_busy@basic@flip.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#3576]: https://gitlab.freedesktop.org/drm/intel/issues/3576
+  [i915#5122]: https://gitlab.freedesktop.org/drm/intel/issues/5122
+  [i915#5270]: https://gitlab.freedesktop.org/drm/intel/issues/5270
+  [i915#5763]: https://gitlab.freedesktop.org/drm/intel/issues/5763
+  [i915#5885]: https://gitlab.freedesktop.org/drm/intel/issues/5885
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_11753 -> Patchwork_104711v3
+
+  CI-20190529: 20190529
+  CI_DRM_11753: cb89eb64792fd1a78c5ffc473f7e208b88e62fad @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6518: 0189ca288f7188e60f5eda356b190040bf8ec704 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_104711v3: cb89eb64792fd1a78c5ffc473f7e208b88e62fad @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+80a59ec60f85 drm/i915: Do not start connector polling on headless sku
+ba1d44c8e682 drm/i915: Do not start connector polling if display is disabled
+3a60d0d8810f drm/i915/opregion: add function to check if headless sku
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104711v3/index.html
+
+--===============3908688231747081588==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Disable connector polling for a headless sku (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/104711/">https://patchwork.freedesktop.org/series/104711/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104711v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104711v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11753 -&gt; Patchwork_104711v3</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104711v3/index.html</p>
+<h2>Participating hosts (42 -&gt; 42)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_104711v3 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_pm_rpm@module-reload:<ul>
+<li>bat-adlp-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11753/bat-adlp-4/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104711v3/bat-adlp-4/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s0@smem:</p>
+<ul>
+<li>{fi-ehl-2}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11753/fi-ehl-2/igt@gem_exec_suspend@basic-s0@smem.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5122">i915#5122</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104711v3/fi-ehl-2/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gem:</p>
+<ul>
+<li>{bat-dg2-9}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11753/bat-dg2-9/igt@i915_selftest@live@gem.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5763">i915#5763</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104711v3/bat-dg2-9/igt@i915_selftest@live@gem.html">PASS</a> +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_busy@basic@flip:</p>
+<ul>
+<li>
+<p>bat-adlp-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11753/bat-adlp-4/igt@kms_busy@basic@flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104711v3/bat-adlp-4/igt@kms_busy@basic@flip.html">PASS</a> +1 similar issue</p>
+</li>
+<li>
+<p>{bat-adlp-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11753/bat-adlp-6/igt@kms_busy@basic@flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104711v3/bat-adlp-6/igt@kms_busy@basic@flip.html">PASS</a> +1 similar issue</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11753 -&gt; Patchwork_104711v3</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11753: cb89eb64792fd1a78c5ffc473f7e208b88e62fad @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6518: 0189ca288f7188e60f5eda356b190040bf8ec704 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_104711v3: cb89eb64792fd1a78c5ffc473f7e208b88e62fad @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>80a59ec60f85 drm/i915: Do not start connector polling on headless sku<br />
+ba1d44c8e682 drm/i915: Do not start connector polling if display is disabled<br />
+3a60d0d8810f drm/i915/opregion: add function to check if headless sku</p>
+
+</body>
+</html>
+
+--===============3908688231747081588==--
