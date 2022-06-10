@@ -2,48 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88A8A5464A0
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jun 2022 12:54:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 559705464FE
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jun 2022 13:01:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E151210E038;
-	Fri, 10 Jun 2022 10:54:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E58910E98B;
+	Fri, 10 Jun 2022 11:01:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1424310E00D
- for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jun 2022 10:54:17 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3431B10E960;
+ Fri, 10 Jun 2022 11:01:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1654858457; x=1686394457;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=tOkeO991P0n+kMp/nMXWkCT/9DXb6KPNqb6x3shPJEc=;
- b=g7XWXzITNHtncDKNew/3GoBtRnCjP2Hy8WeJCEaxV1u2RUOYCEH50+y9
- ixuvwB35l/8MqQmS5qALahuyebCOY/ccJ68jJHQQBn76XWBcdtUui5QSi
- a0nAAQWTEWzFHfihDfabexp2kg7Fdu5bAkJ1iZqS2Jymln1vSE5NKErso
- nQZ3+jYJtlJHkiCbzEMjH9vKOKm0EDhSMWKG/uyFyA/rFJKztmMR/nn0I
- ig09KpzKpCGdcKy9Y6NvKm2kXaIfGbX3QDmz4vLV+ydWlqAfOPwZQ0IoG
- S1GxyuMlhwmSySSLEDaJm/aeAD+1FYgc+Sq5vH5gq6wT+Zt6PQpeg0Z5w Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10373"; a="277629342"
-X-IronPort-AV: E=Sophos;i="5.91,290,1647327600"; d="scan'208";a="277629342"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2022 03:54:16 -0700
-X-IronPort-AV: E=Sophos;i="5.91,290,1647327600"; d="scan'208";a="638076013"
-Received: from vrao2-mobl1.gar.corp.intel.com (HELO localhost) ([10.252.58.80])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2022 03:54:14 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Animesh Manna <animesh.manna@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220609181014.21694-1-animesh.manna@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220609181014.21694-1-animesh.manna@intel.com>
-Date: Fri, 10 Jun 2022 13:54:12 +0300
-Message-ID: <87tu8szt4b.fsf@intel.com>
+ t=1654858891; x=1686394891;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=Wp7I7oSp7+iK07qX18AE4oA4B1K6/topAwQFkeCoZK0=;
+ b=JRR61M9kNXDqWAdg8Pe6miNZMTn63HFNnRGPLHH3WgVcpz31i8Q4G/Z8
+ FhrvrfdErUwBkMMHnaYNYKNtS6sgWxlluQzSbicnUtl2egPEHH5YJjIdU
+ ItXk9gIyn3kcL3nwzAjjQnWdPzUcQnAhmzpnUqqHM8ow0RPEe5q81e0jB
+ D2RaPdO17weIyDN4d3RV30S4Oaw0IuQ7CFH+Zyd7ZtCKw9cFxs+kNP9gK
+ 0yHiDC9Xp3/wS30wHMOvEXneta1ZozDno1Tsc7rx8odetHmmYDUiPrqu6
+ YmOY3aLgB6LJu2lTCRjoHfcDQ7RNFSk8JnJsKVTsdA/XFV3IW7pbggqjr Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10373"; a="258030189"
+X-IronPort-AV: E=Sophos;i="5.91,290,1647327600"; d="scan'208";a="258030189"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jun 2022 04:01:30 -0700
+X-IronPort-AV: E=Sophos;i="5.91,290,1647327600"; d="scan'208";a="581026260"
+Received: from gsidhu-mobl.ger.corp.intel.com (HELO [10.213.235.160])
+ ([10.213.235.160])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jun 2022 04:01:26 -0700
+Message-ID: <2054192a-b664-03c1-9733-707c71098430@intel.com>
+Date: Fri, 10 Jun 2022 12:01:24 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/bios: calculate panel type as
- per child device index in VBT
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Firefox/91.0 Thunderbird/91.10.0
+Content-Language: en-GB
+To: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ daniel.vetter@intel.com
+References: <20220610070711.32407-1-niranjana.vishwanathapura@intel.com>
+ <20220610070711.32407-3-niranjana.vishwanathapura@intel.com>
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20220610070711.32407-3-niranjana.vishwanathapura@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915: Update i915 uapi documentation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,305 +62,369 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: paulo.r.zanoni@intel.com, chris.p.wilson@intel.com,
+ thomas.hellstrom@intel.com, christian.koenig@amd.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 09 Jun 2022, Animesh Manna <animesh.manna@intel.com> wrote:
-> Each LFP may have different panel type which is stored in LFP data
-> data block. Based on the child device index respective panel-type/
-> panel-type2 field will be used.
->
-> v1: Initial rfc verion.
-> v2: Based on review comments from Jani,
-> - Used panel-type instead addition panel-index variable.
-> - DEVICE_HANDLE_* name changed and placed before DEVICE_TYPE_*
-> macro.
->
-> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+On 10/06/2022 08:07, Niranjana Vishwanathapura wrote:
+> Add some missing i915 upai documentation which the new
+> i915 VM_BIND feature documentation will be refer to.
+> 
+> Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+
+This one looks to be standalone. If no objections should we go ahead and 
+merge this one?
+
 > ---
->  drivers/gpu/drm/i915/display/icl_dsi.c        |  2 +-
->  drivers/gpu/drm/i915/display/intel_bios.c     | 40 +++++++++++++------
->  drivers/gpu/drm/i915/display/intel_bios.h     |  3 +-
->  drivers/gpu/drm/i915/display/intel_dp.c       |  3 +-
->  drivers/gpu/drm/i915/display/intel_lvds.c     |  3 +-
->  drivers/gpu/drm/i915/display/intel_sdvo.c     |  2 +-
->  drivers/gpu/drm/i915/display/intel_vbt_defs.h |  4 ++
->  drivers/gpu/drm/i915/display/vlv_dsi.c        |  2 +-
->  8 files changed, 39 insertions(+), 20 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-> index 3b5305c219ba..b3aa430abd03 100644
-> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
-> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-> @@ -2050,7 +2050,7 @@ void icl_dsi_init(struct drm_i915_private *dev_priv)
->  	/* attach connector to encoder */
->  	intel_connector_attach_encoder(intel_connector, encoder);
->  
-> -	intel_bios_init_panel(dev_priv, &intel_connector->panel, NULL);
-> +	intel_bios_init_panel(dev_priv, intel_connector, NULL);
->  
->  	mutex_lock(&dev->mode_config.mutex);
->  	intel_panel_add_vbt_lfp_fixed_mode(intel_connector);
-> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-> index aaea27fe5d16..f74e63823c08 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bios.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-> @@ -604,13 +604,15 @@ get_lfp_data_tail(const struct bdb_lvds_lfp_data *data,
->  }
->  
->  static int opregion_get_panel_type(struct drm_i915_private *i915,
-> -				   const struct edid *edid)
-> +				   const struct edid *edid,
-> +				   const struct intel_bios_encoder_data *devdata)
->  {
->  	return intel_opregion_get_panel_type(i915);
->  }
->  
->  static int vbt_get_panel_type(struct drm_i915_private *i915,
-> -			      const struct edid *edid)
-> +			      const struct edid *edid,
-> +			      const struct intel_bios_encoder_data *devdata)
-
-This is nitpicking, but semantically feels like the devdata parameter
-should be before edid.
-
->  {
->  	const struct bdb_lvds_options *lvds_options;
->  
-> @@ -625,11 +627,17 @@ static int vbt_get_panel_type(struct drm_i915_private *i915,
->  		return -1;
->  	}
->  
-> -	return lvds_options->panel_type;
-> +	if (devdata->child.handle == DEVICE_HANDLE_LFP1)
-> +		return lvds_options->panel_type;
-> +	else if (devdata->child.handle == DEVICE_HANDLE_LFP2)
-> +		return lvds_options->panel_type2;
-> +	else
-> +		return -1;
-
-Not all legacy panels have encoder data (i.e. VBT child device
-config). I'd go for something like this:
-
-	if (devdata && devdata->child.handle == DEVICE_HANDLE_LFP2)
-		return lvds_options->panel_type2;
-
-	drm_WARN_ON(&i915->drm, devdata && devdata->child.handle != DEVICE_HANDLE_LFP1)
-
-	return lvds_options->panel_type;
-
-I don't know if that's going to lead to a bunch of warnings, but I'd
-want to know. Or we can demote it to drm_dbg_kms(), now or later.
-
->  }
->  
->  static int pnpid_get_panel_type(struct drm_i915_private *i915,
-> -				const struct edid *edid)
-> +				const struct edid *edid,
-> +				const struct intel_bios_encoder_data *devdata)
->  {
->  	const struct bdb_lvds_lfp_data *data;
->  	const struct bdb_lvds_lfp_data_ptrs *ptrs;
-> @@ -675,7 +683,8 @@ static int pnpid_get_panel_type(struct drm_i915_private *i915,
->  }
->  
->  static int fallback_get_panel_type(struct drm_i915_private *i915,
-> -				   const struct edid *edid)
-> +				   const struct edid *edid,
-> +				   const struct intel_bios_encoder_data *devdata)
->  {
->  	return 0;
->  }
-> @@ -688,12 +697,14 @@ enum panel_type {
->  };
->  
->  static int get_panel_type(struct drm_i915_private *i915,
-> -			  const struct edid *edid)
-> +			  const struct edid *edid,
-> +			  const struct intel_bios_encoder_data *devdata)
->  {
->  	struct {
->  		const char *name;
->  		int (*get_panel_type)(struct drm_i915_private *i915,
-> -				      const struct edid *edid);
-> +				      const struct edid *edid,
-> +				      const struct intel_bios_encoder_data *devdata);
->  		int panel_type;
->  	} panel_types[] = {
->  		[PANEL_TYPE_OPREGION] = {
-> @@ -716,7 +727,7 @@ static int get_panel_type(struct drm_i915_private *i915,
->  	int i;
->  
->  	for (i = 0; i < ARRAY_SIZE(panel_types); i++) {
-> -		panel_types[i].panel_type = panel_types[i].get_panel_type(i915, edid);
-> +		panel_types[i].panel_type = panel_types[i].get_panel_type(i915, edid, devdata);
->  
->  		drm_WARN_ON(&i915->drm, panel_types[i].panel_type > 0xf &&
->  			    panel_types[i].panel_type != 0xff);
-> @@ -747,7 +758,8 @@ static int get_panel_type(struct drm_i915_private *i915,
->  static void
->  parse_panel_options(struct drm_i915_private *i915,
->  		    struct intel_panel *panel,
-> -		    const struct edid *edid)
-> +		    const struct edid *edid,
-> +		    const struct intel_bios_encoder_data *devdata)
->  {
->  	const struct bdb_lvds_options *lvds_options;
->  	int panel_type;
-> @@ -759,7 +771,7 @@ parse_panel_options(struct drm_i915_private *i915,
->  
->  	panel->vbt.lvds_dither = lvds_options->pixel_dither;
->  
-> -	panel_type = get_panel_type(i915, edid);
-> +	panel_type = get_panel_type(i915, edid, devdata);
->  
->  	panel->vbt.panel_type = panel_type;
->  
-> @@ -3103,12 +3115,16 @@ void intel_bios_init(struct drm_i915_private *i915)
->  }
->  
->  void intel_bios_init_panel(struct drm_i915_private *i915,
-> -			   struct intel_panel *panel,
-> +			   struct intel_connector *intel_connector,
->  			   const struct edid *edid)
->  {
-> +	struct intel_panel *panel = &intel_connector->panel;
-> +	struct intel_encoder *encoder = intel_connector->encoder;
-
-At least vlv_dsi_init() calls intel_bios_init_panel() before setting
-intel_connector->encoder, which would oops on the next line.
-
-> +	const struct intel_bios_encoder_data *devdata = i915->vbt.ports[encoder->port];
+>   include/uapi/drm/i915_drm.h | 203 ++++++++++++++++++++++++++++--------
+>   1 file changed, 158 insertions(+), 45 deletions(-)
+> 
+> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+> index de49b68b4fc8..9cf3bf47c7f2 100644
+> --- a/include/uapi/drm/i915_drm.h
+> +++ b/include/uapi/drm/i915_drm.h
+> @@ -751,14 +751,27 @@ typedef struct drm_i915_irq_wait {
+>   
+>   /* Must be kept compact -- no holes and well documented */
+>   
+> -typedef struct drm_i915_getparam {
+> +/**
+> + * struct drm_i915_getparam - Driver parameter query structure.
+> + */
+> +struct drm_i915_getparam {
+> +	/** @param: Driver parameter to query. */
+>   	__s32 param;
+> -	/*
 > +
-
-intel_bios_init_panel() gets called:
-
-* On platforms/outputs where encoder->port does not make sense,
-  e.g. intel_lvds_init() sets it to PORT_NONE.
-
-* On platforms where i915->vbt.ports[] is not initialized at all. See
-  has_ddi_port_info().
-
-* On platforms/outputs where i915->vbt.ports[] is not
-  initialized. Specifically, DSI is not handled by parse_ddi_port()
-  because on VLV, at least in theory, the DSI ports can coexist and
-  collide with other ports.
-
-I'm wondering if maybe it's best to have the caller figure out const
-struct intel_bios_encoder_data *, and pass that along. If it's not
-possible, just pass NULL. For DP on DDI platforms it's already set in
-encoder->devdata. (We should basically set that on all platforms where
-it's available, but we're not there yet.)
-
-This should work trivially for the immediate goal of enabling multiple
-eDP panels, and be compatible with enabling multiple DSI or combo
-eDP/DSI panels in the future once we've figured out how to fix devdata
-for DSI.
-
-Ville, thoughts?
-
-
-BR,
-Jani.
-
-
->  	init_vbt_panel_defaults(panel);
->  
-> -	parse_panel_options(i915, panel, edid);
-> +	parse_panel_options(i915, panel, edid, devdata);
->  	parse_generic_dtd(i915, panel);
->  	parse_lfp_data(i915, panel);
->  	parse_lfp_backlight(i915, panel);
-> diff --git a/drivers/gpu/drm/i915/display/intel_bios.h b/drivers/gpu/drm/i915/display/intel_bios.h
-> index b112200ae0a0..e4c268495547 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bios.h
-> +++ b/drivers/gpu/drm/i915/display/intel_bios.h
-> @@ -37,6 +37,7 @@ struct edid;
->  struct intel_bios_encoder_data;
->  struct intel_crtc_state;
->  struct intel_encoder;
-> +struct intel_connector;
->  struct intel_panel;
->  enum port;
->  
-> @@ -233,7 +234,7 @@ struct mipi_pps_data {
->  
->  void intel_bios_init(struct drm_i915_private *dev_priv);
->  void intel_bios_init_panel(struct drm_i915_private *dev_priv,
-> -			   struct intel_panel *panel,
-> +			   struct intel_connector *intel_connector,
->  			   const struct edid *edid);
->  void intel_bios_fini_panel(struct intel_panel *panel);
->  void intel_bios_driver_remove(struct drm_i915_private *dev_priv);
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 2fac76bcf06d..8c41ba016cd2 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -5224,8 +5224,7 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
->  	}
->  	intel_connector->edid = edid;
->  
-> -	intel_bios_init_panel(dev_priv, &intel_connector->panel,
-> -			      IS_ERR(edid) ? NULL : edid);
-> +	intel_bios_init_panel(dev_priv, intel_connector, IS_ERR(edid) ? NULL : edid);
->  
->  	intel_panel_add_edid_fixed_modes(intel_connector,
->  					 intel_connector->panel.vbt.drrs_type != DRRS_TYPE_NONE,
-> diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c b/drivers/gpu/drm/i915/display/intel_lvds.c
-> index e55802b45461..39a5e919eb06 100644
-> --- a/drivers/gpu/drm/i915/display/intel_lvds.c
-> +++ b/drivers/gpu/drm/i915/display/intel_lvds.c
-> @@ -967,8 +967,7 @@ void intel_lvds_init(struct drm_i915_private *dev_priv)
->  	}
->  	intel_connector->edid = edid;
->  
-> -	intel_bios_init_panel(dev_priv, &intel_connector->panel,
-> -			      IS_ERR(edid) ? NULL : edid);
-> +	intel_bios_init_panel(dev_priv, intel_connector, IS_ERR(edid) ? NULL : edid);
->  
->  	/* Try EDID first */
->  	intel_panel_add_edid_fixed_modes(intel_connector,
-> diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
-> index 2b78a790e1b6..c4ad943e84f5 100644
-> --- a/drivers/gpu/drm/i915/display/intel_sdvo.c
-> +++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
-> @@ -2901,7 +2901,7 @@ intel_sdvo_lvds_init(struct intel_sdvo *intel_sdvo, int device)
->  	if (!intel_sdvo_create_enhance_property(intel_sdvo, intel_sdvo_connector))
->  		goto err;
->  
-> -	intel_bios_init_panel(i915, &intel_connector->panel, NULL);
-> +	intel_bios_init_panel(i915, intel_connector, NULL);
->  
->  	/*
->  	 * Fetch modes from VBT. For SDVO prefer the VBT mode since some
-> diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-> index f8e5097222f2..31f5994f81de 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-> +++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-> @@ -182,6 +182,10 @@ struct bdb_general_features {
->  #define GPIO_PIN_ADD_DDC	0x04 /* "ADDCARD DDC GPIO pins" */
->  #define GPIO_PIN_ADD_DDC_I2C	0x06 /* "ADDCARD DDC/I2C GPIO pins" */
->  
-> +/* Device handle */
-> +#define DEVICE_HANDLE_LFP1	0x0008
-> +#define DEVICE_HANDLE_LFP2	0x0080
+> +	/**
+> +	 * @value: Address of memory where queried value should be put.
+> +	 *
+>   	 * WARNING: Using pointers instead of fixed-size u64 means we need to write
+>   	 * compat32 code. Don't repeat this mistake.
+>   	 */
+>   	int __user *value;
+> -} drm_i915_getparam_t;
+> +};
 > +
->  /* Pre 915 */
->  #define DEVICE_TYPE_NONE	0x00
->  #define DEVICE_TYPE_CRT		0x01
-> diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
-> index abda0888c8d4..114e4f89f198 100644
-> --- a/drivers/gpu/drm/i915/display/vlv_dsi.c
-> +++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
-> @@ -1926,7 +1926,7 @@ void vlv_dsi_init(struct drm_i915_private *dev_priv)
->  
->  	intel_dsi->panel_power_off_time = ktime_get_boottime();
->  
-> -	intel_bios_init_panel(dev_priv, &intel_connector->panel, NULL);
-> +	intel_bios_init_panel(dev_priv, intel_connector, NULL);
->  
->  	if (intel_connector->panel.vbt.dsi.config->dual_link)
->  		intel_dsi->ports = BIT(PORT_A) | BIT(PORT_C);
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
+> +/**
+> + * typedef drm_i915_getparam_t - Driver parameter query structure.
+> + * See struct drm_i915_getparam.
+> + */
+> +typedef struct drm_i915_getparam drm_i915_getparam_t;
+>   
+>   /* Ioctl to set kernel params:
+>    */
+> @@ -1239,76 +1252,119 @@ struct drm_i915_gem_exec_object2 {
+>   	__u64 rsvd2;
+>   };
+>   
+> +/**
+> + * struct drm_i915_gem_exec_fence - An input or output fence for the execbuf
+> + * ioctl.
+> + *
+> + * The request will wait for input fence to signal before submission.
+> + *
+> + * The returned output fence will be signaled after the completion of the
+> + * request.
+> + */
+>   struct drm_i915_gem_exec_fence {
+> -	/**
+> -	 * User's handle for a drm_syncobj to wait on or signal.
+> -	 */
+> +	/** @handle: User's handle for a drm_syncobj to wait on or signal. */
+>   	__u32 handle;
+>   
+> +	/**
+> +	 * @flags: Supported flags are:
+> +	 *
+> +	 * I915_EXEC_FENCE_WAIT:
+> +	 * Wait for the input fence before request submission.
+> +	 *
+> +	 * I915_EXEC_FENCE_SIGNAL:
+> +	 * Return request completion fence as output
+> +	 */
+> +	__u32 flags;
+>   #define I915_EXEC_FENCE_WAIT            (1<<0)
+>   #define I915_EXEC_FENCE_SIGNAL          (1<<1)
+>   #define __I915_EXEC_FENCE_UNKNOWN_FLAGS (-(I915_EXEC_FENCE_SIGNAL << 1))
+> -	__u32 flags;
+>   };
+>   
+> -/*
+> - * See drm_i915_gem_execbuffer_ext_timeline_fences.
+> - */
+> -#define DRM_I915_GEM_EXECBUFFER_EXT_TIMELINE_FENCES 0
+> -
+> -/*
+> +/**
+> + * struct drm_i915_gem_execbuffer_ext_timeline_fences - Timeline fences
+> + * for execbuf ioctl.
+> + *
+>    * This structure describes an array of drm_syncobj and associated points for
+>    * timeline variants of drm_syncobj. It is invalid to append this structure to
+>    * the execbuf if I915_EXEC_FENCE_ARRAY is set.
+>    */
+>   struct drm_i915_gem_execbuffer_ext_timeline_fences {
+> +#define DRM_I915_GEM_EXECBUFFER_EXT_TIMELINE_FENCES 0
+> +	/** @base: Extension link. See struct i915_user_extension. */
+>   	struct i915_user_extension base;
+>   
+>   	/**
+> -	 * Number of element in the handles_ptr & value_ptr arrays.
+> +	 * @fence_count: Number of elements in the @handles_ptr & @value_ptr
+> +	 * arrays.
+>   	 */
+>   	__u64 fence_count;
+>   
+>   	/**
+> -	 * Pointer to an array of struct drm_i915_gem_exec_fence of length
+> -	 * fence_count.
+> +	 * @handles_ptr: Pointer to an array of struct drm_i915_gem_exec_fence
+> +	 * of length @fence_count.
+>   	 */
+>   	__u64 handles_ptr;
+>   
+>   	/**
+> -	 * Pointer to an array of u64 values of length fence_count. Values
+> -	 * must be 0 for a binary drm_syncobj. A Value of 0 for a timeline
+> -	 * drm_syncobj is invalid as it turns a drm_syncobj into a binary one.
+> +	 * @values_ptr: Pointer to an array of u64 values of length
+> +	 * @fence_count.
+> +	 * Values must be 0 for a binary drm_syncobj. A Value of 0 for a
+> +	 * timeline drm_syncobj is invalid as it turns a drm_syncobj into a
+> +	 * binary one.
+>   	 */
+>   	__u64 values_ptr;
+>   };
+>   
+> +/**
+> + * struct drm_i915_gem_execbuffer2 - Structure for DRM_I915_GEM_EXECBUFFER2
+> + * ioctl.
+> + */
+>   struct drm_i915_gem_execbuffer2 {
+> -	/**
+> -	 * List of gem_exec_object2 structs
+> -	 */
+> +	/** @buffers_ptr: Pointer to a list of gem_exec_object2 structs */
+>   	__u64 buffers_ptr;
+> +
+> +	/** @buffer_count: Number of elements in @buffers_ptr array */
+>   	__u32 buffer_count;
+>   
+> -	/** Offset in the batchbuffer to start execution from. */
+> +	/**
+> +	 * @batch_start_offset: Offset in the batchbuffer to start execution
+> +	 * from.
+> +	 */
+>   	__u32 batch_start_offset;
+> -	/** Bytes used in batchbuffer from batch_start_offset */
+> +
+> +	/**
+> +	 * @batch_len: Length in bytes of the batch buffer, starting from the
+> +	 * @batch_start_offset. If 0, length is assumed to be the batch buffer
+> +	 * object size.
+> +	 */
+>   	__u32 batch_len;
+> +
+> +	/** @DR1: deprecated */
+>   	__u32 DR1;
+> +
+> +	/** @DR4: deprecated */
+>   	__u32 DR4;
+> +
+> +	/** @num_cliprects: See @cliprects_ptr */
+>   	__u32 num_cliprects;
+> +
+>   	/**
+> -	 * This is a struct drm_clip_rect *cliprects if I915_EXEC_FENCE_ARRAY
+> -	 * & I915_EXEC_USE_EXTENSIONS are not set.
+> +	 * @cliprects_ptr: Kernel clipping was a DRI1 misfeature.
+> +	 *
+> +	 * It is invalid to use this field if I915_EXEC_FENCE_ARRAY or
+> +	 * I915_EXEC_USE_EXTENSIONS flags are not set.
+>   	 *
+>   	 * If I915_EXEC_FENCE_ARRAY is set, then this is a pointer to an array
+> -	 * of struct drm_i915_gem_exec_fence and num_cliprects is the length
+> -	 * of the array.
+> +	 * of &drm_i915_gem_exec_fence and @num_cliprects is the length of the
+> +	 * array.
+>   	 *
+>   	 * If I915_EXEC_USE_EXTENSIONS is set, then this is a pointer to a
+> -	 * single struct i915_user_extension and num_cliprects is 0.
+> +	 * single &i915_user_extension and num_cliprects is 0.
+>   	 */
+>   	__u64 cliprects_ptr;
+> +
+> +	/** @flags: Execbuf flags */
+> +	__u64 flags;
+>   #define I915_EXEC_RING_MASK              (0x3f)
+>   #define I915_EXEC_DEFAULT                (0<<0)
+>   #define I915_EXEC_RENDER                 (1<<0)
+> @@ -1326,10 +1382,6 @@ struct drm_i915_gem_execbuffer2 {
+>   #define I915_EXEC_CONSTANTS_REL_GENERAL (0<<6) /* default */
+>   #define I915_EXEC_CONSTANTS_ABSOLUTE 	(1<<6)
+>   #define I915_EXEC_CONSTANTS_REL_SURFACE (2<<6) /* gen4/5 only */
+> -	__u64 flags;
+> -	__u64 rsvd1; /* now used for context info */
+> -	__u64 rsvd2;
+> -};
+>   
+>   /** Resets the SO write offset registers for transform feedback on gen7. */
+>   #define I915_EXEC_GEN7_SOL_RESET	(1<<8)
+> @@ -1432,9 +1484,23 @@ struct drm_i915_gem_execbuffer2 {
+>    * drm_i915_gem_execbuffer_ext enum.
+>    */
+>   #define I915_EXEC_USE_EXTENSIONS	(1 << 21)
+> -
+>   #define __I915_EXEC_UNKNOWN_FLAGS (-(I915_EXEC_USE_EXTENSIONS << 1))
+>   
+> +	/** @rsvd1: Context id */
+> +	__u64 rsvd1;
+> +
+> +	/**
+> +	 * @rsvd2: in and out sync_file file descriptors.
+> +	 *
+> +	 * When I915_EXEC_FENCE_IN or I915_EXEC_FENCE_SUBMIT flag is set, the
+> +	 * lower 32 bits of this field will have the in sync_file fd (input).
+> +	 *
+> +	 * When I915_EXEC_FENCE_OUT flag is set, the upper 32 bits of this
+> +	 * field will have the out sync_file fd (output).
+> +	 */
+> +	__u64 rsvd2;
+> +};
+> +
+>   #define I915_EXEC_CONTEXT_ID_MASK	(0xffffffff)
+>   #define i915_execbuffer2_set_context_id(eb2, context) \
+>   	(eb2).rsvd1 = context & I915_EXEC_CONTEXT_ID_MASK
+> @@ -1814,19 +1880,56 @@ struct drm_i915_gem_context_create {
+>   	__u32 pad;
+>   };
+>   
+> +/**
+> + * struct drm_i915_gem_context_create_ext - Structure for creating contexts.
+> + */
+>   struct drm_i915_gem_context_create_ext {
+> -	__u32 ctx_id; /* output: id of new context*/
+> +	/** @ctx_id: Id of the created context (output) */
+> +	__u32 ctx_id;
+> +
+> +	/**
+> +	 * @flags: Supported flags are:
+> +	 *
+> +	 * I915_CONTEXT_CREATE_FLAGS_USE_EXTENSIONS:
+> +	 * Extensions may be appended to this structure and driver must check
+> +	 * for those. See @extensions.
+> +	 *
+> +	 * I915_CONTEXT_CREATE_FLAGS_SINGLE_TIMELINE:
+> +	 * Created context will have single timeline.
+> +	 */
+>   	__u32 flags;
+>   #define I915_CONTEXT_CREATE_FLAGS_USE_EXTENSIONS	(1u << 0)
+>   #define I915_CONTEXT_CREATE_FLAGS_SINGLE_TIMELINE	(1u << 1)
+>   #define I915_CONTEXT_CREATE_FLAGS_UNKNOWN \
+>   	(-(I915_CONTEXT_CREATE_FLAGS_SINGLE_TIMELINE << 1))
+> +
+> +	/**
+> +	 * @extensions: Zero-terminated chain of extensions.
+> +	 *
+> +	 * I915_CONTEXT_CREATE_EXT_SETPARAM:
+> +	 * Context parameter to set or query during context creation.
+> +	 * See struct drm_i915_gem_context_create_ext_setparam.
+> +	 *
+> +	 * I915_CONTEXT_CREATE_EXT_CLONE:
+> +	 * This extension has been removed. On the off chance someone somewhere
+> +	 * has attempted to use it, never re-use this extension number.
+> +	 */
+>   	__u64 extensions;
+> +#define I915_CONTEXT_CREATE_EXT_SETPARAM 0
+> +#define I915_CONTEXT_CREATE_EXT_CLONE 1
+>   };
+>   
+> +/**
+> + * struct drm_i915_gem_context_param - Context parameter to set or query.
+> + */
+>   struct drm_i915_gem_context_param {
+> +	/** @ctx_id: Context id */
+>   	__u32 ctx_id;
+> +
+> +	/** @size: Size of the parameter @value
+>   	__u32 size;
+> +
+> +	/** @param: Parameter to set or query */
+>   	__u64 param;
+>   #define I915_CONTEXT_PARAM_BAN_PERIOD	0x1
+>   /* I915_CONTEXT_PARAM_NO_ZEROMAP has been removed.  On the off chance
+> @@ -1973,6 +2076,7 @@ struct drm_i915_gem_context_param {
+>   #define I915_CONTEXT_PARAM_PROTECTED_CONTENT    0xd
+>   /* Must be kept compact -- no holes and well documented */
+>   
+> +	/** @value: Context parameter value to be set or queried */
+>   	__u64 value;
+>   };
+>   
+> @@ -2371,23 +2475,29 @@ struct i915_context_param_engines {
+>   	struct i915_engine_class_instance engines[N__]; \
+>   } __attribute__((packed)) name__
+>   
+> +/**
+> + * struct drm_i915_gem_context_create_ext_setparam - Context parameter
+> + * to set or query during context creation.
+> + */
+>   struct drm_i915_gem_context_create_ext_setparam {
+> -#define I915_CONTEXT_CREATE_EXT_SETPARAM 0
+> +	/** @base: Extension link. See struct i915_user_extension. */
+>   	struct i915_user_extension base;
+> +
+> +	/**
+> +	 * @param: Context parameter to set or query.
+> +	 * See struct drm_i915_gem_context_param.
+> +	 */
+>   	struct drm_i915_gem_context_param param;
+>   };
+>   
+> -/* This API has been removed.  On the off chance someone somewhere has
+> - * attempted to use it, never re-use this extension number.
+> - */
+> -#define I915_CONTEXT_CREATE_EXT_CLONE 1
+> -
+>   struct drm_i915_gem_context_destroy {
+>   	__u32 ctx_id;
+>   	__u32 pad;
+>   };
+>   
+> -/*
+> +/**
+> + * struct drm_i915_gem_vm_control - Structure to create or destroy VM.
+> + *
+>    * DRM_I915_GEM_VM_CREATE -
+>    *
+>    * Create a new virtual memory address space (ppGTT) for use within a context
+> @@ -2397,20 +2507,23 @@ struct drm_i915_gem_context_destroy {
+>    * The id of new VM (bound to the fd) for use with I915_CONTEXT_PARAM_VM is
+>    * returned in the outparam @id.
+>    *
+> - * No flags are defined, with all bits reserved and must be zero.
+> - *
+>    * An extension chain maybe provided, starting with @extensions, and terminated
+>    * by the @next_extension being 0. Currently, no extensions are defined.
+>    *
+>    * DRM_I915_GEM_VM_DESTROY -
+>    *
+> - * Destroys a previously created VM id, specified in @id.
+> + * Destroys a previously created VM id, specified in @vm_id.
+>    *
+>    * No extensions or flags are allowed currently, and so must be zero.
+>    */
+>   struct drm_i915_gem_vm_control {
+> +	/** @extensions: Zero-terminated chain of extensions. */
+>   	__u64 extensions;
+> +
+> +	/** @flags: reserved for future usage, currently MBZ */
+>   	__u32 flags;
+> +
+> +	/** @vm_id: Id of the VM created or to be destroyed */
+>   	__u32 vm_id;
+>   };
+>   
