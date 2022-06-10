@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0893545F75
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jun 2022 10:40:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C3E355460AF
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jun 2022 11:00:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC21411BE75;
-	Fri, 10 Jun 2022 08:40:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE0BF11B056;
+	Fri, 10 Jun 2022 09:00:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7661811BE75;
- Fri, 10 Jun 2022 08:40:32 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9970511A694;
+ Fri, 10 Jun 2022 08:59:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1654850432; x=1686386432;
+ t=1654851599; x=1686387599;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=fMjoC6Yj47tAcF6bz8z/zoIMZZZquj5vEfRwg2acQQM=;
- b=Jmr8BHnyxEtNkWSfP73ruc+U9QzLNN7+CZtrRUgXRbXeQ6REIo5CIA1i
- rgoQgcAp52g2eucH/dxwkYBTwi9ceUMQZFlnMIKsnR4QFEHVcwjwWDWLH
- qCLXYqoIQ0hI7Mz4x8i9pdFNrTM02ZEUGhfY/MNVOUpplCbZGzwk4HVLa
- TXapsRo7dx7nqhFotldo+RY5olLdPQuxdAe2xwKKi82DMR9mPSjDn8OGt
- Bua+d4zFAV3958+hy8iBgHCjc4TdIEq+5ezdf9qHwYMeOWOipBXL31zBr
- jNC1jB6M21p6ml7opQPiOUj8Tfw5XQbjgXpbHZv4wcr5QFQ2cZRBGwfBn Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10373"; a="339316636"
-X-IronPort-AV: E=Sophos;i="5.91,288,1647327600"; d="scan'208";a="339316636"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2022 01:40:31 -0700
-X-IronPort-AV: E=Sophos;i="5.91,288,1647327600"; d="scan'208";a="724864666"
+ bh=+XJODBYZpAAJReqs2h0GvwEm6OI/z9yTHuYAT3gY7Hc=;
+ b=MfGDmHH5b3ifGXSO5jCrtCuenIjkTDjNc3kIFFD8fbfUqzkmjQvwy6Ql
+ iMHaep2DbByUgUZK+21h6nHEhVLlbaUdX2sQZneOOA1Myp8+r8pETtHIQ
+ iSAEl5XNe58DbPg77fbdcaPkdrfKpsSyaDs3gGAFxREJKTKKtKWrELJoS
+ FX+Hrq1pjG3y/QsQH/64JMVTQO94ONZ0rBTyexvyfIPHpI3++r0tJAhb3
+ GzcMm2fh1C8biv8AkMdqSaK7wDiGZr9h2U7ER8Rjx8LZq6v2gmO0sQkD4
+ u2o3omb6nRyl1A47fcVy4E3UOIo6F7mPSrxGv7esYfbOb1jOb1ns62bzX g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10373"; a="363895734"
+X-IronPort-AV: E=Sophos;i="5.91,288,1647327600"; d="scan'208";a="363895734"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jun 2022 01:59:59 -0700
+X-IronPort-AV: E=Sophos;i="5.91,288,1647327600"; d="scan'208";a="649729498"
 Received: from jons-linux-dev-box.fm.intel.com (HELO jons-linux-dev-box)
  ([10.1.27.20])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2022 01:40:31 -0700
-Date: Fri, 10 Jun 2022 01:34:12 -0700
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jun 2022 01:59:59 -0700
+Date: Fri, 10 Jun 2022 01:53:40 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Message-ID: <20220610083411.GA20474@jons-linux-dev-box>
-References: <20220517183212.20274-1-niranjana.vishwanathapura@intel.com>
- <20220517183212.20274-4-niranjana.vishwanathapura@intel.com>
+Message-ID: <20220610085340.GA20978@jons-linux-dev-box>
+References: <20220610070711.32407-1-niranjana.vishwanathapura@intel.com>
+ <20220610070711.32407-4-niranjana.vishwanathapura@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220517183212.20274-4-niranjana.vishwanathapura@intel.com>
+In-Reply-To: <20220610070711.32407-4-niranjana.vishwanathapura@intel.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [RFC v3 3/3] drm/doc/rfc: VM_BIND uapi definition
+Subject: Re: [Intel-gfx] [PATCH 3/3] drm/doc/rfc: VM_BIND uapi definition
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,31 +59,28 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, chris.p.wilson@intel.com,
- thomas.hellstrom@intel.com, dri-devel@lists.freedesktop.org,
- daniel.vetter@intel.com, christian.koenig@amd.com
+Cc: paulo.r.zanoni@intel.com, intel-gfx@lists.freedesktop.org,
+ chris.p.wilson@intel.com, thomas.hellstrom@intel.com,
+ dri-devel@lists.freedesktop.org, daniel.vetter@intel.com,
+ christian.koenig@amd.com, matthew.auld@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, May 17, 2022 at 11:32:12AM -0700, Niranjana Vishwanathapura wrote:
+On Fri, Jun 10, 2022 at 12:07:11AM -0700, Niranjana Vishwanathapura wrote:
 > VM_BIND and related uapi definitions
-> 
-> v2: Ensure proper kernel-doc formatting with cross references.
->     Also add new uapi and documentation as per review comments
->     from Daniel.
 > 
 > Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 > ---
->  Documentation/gpu/rfc/i915_vm_bind.h | 399 +++++++++++++++++++++++++++
->  1 file changed, 399 insertions(+)
+>  Documentation/gpu/rfc/i915_vm_bind.h | 490 +++++++++++++++++++++++++++
+>  1 file changed, 490 insertions(+)
 >  create mode 100644 Documentation/gpu/rfc/i915_vm_bind.h
 > 
 > diff --git a/Documentation/gpu/rfc/i915_vm_bind.h b/Documentation/gpu/rfc/i915_vm_bind.h
 > new file mode 100644
-> index 000000000000..589c0a009107
+> index 000000000000..9fc854969cfb
 > --- /dev/null
 > +++ b/Documentation/gpu/rfc/i915_vm_bind.h
-> @@ -0,0 +1,399 @@
+> @@ -0,0 +1,490 @@
 > +/* SPDX-License-Identifier: MIT */
 > +/*
 > + * Copyright © 2022 Intel Corporation
@@ -94,6 +91,9 @@ On Tue, May 17, 2022 at 11:32:12AM -0700, Niranjana Vishwanathapura wrote:
 > + *
 > + * VM_BIND feature availability.
 > + * See typedef drm_i915_getparam_t param.
+> + * bit[0]: If set, VM_BIND is supported, otherwise not.
+> + * bits[8-15]: VM_BIND implementation version.
+> + * version 0 will not have VM_BIND/UNBIND timeline fence array support.
 > + */
 > +#define I915_PARAM_HAS_VM_BIND		57
 > +
@@ -103,20 +103,10 @@ On Tue, May 17, 2022 at 11:32:12AM -0700, Niranjana Vishwanathapura wrote:
 > + * Flag to opt-in for VM_BIND mode of binding during VM creation.
 > + * See struct drm_i915_gem_vm_control flags.
 > + *
-> + * A VM in VM_BIND mode will not support the older execbuff mode of binding.
-> + * In VM_BIND mode, execbuff ioctl will not accept any execlist (ie., the
-> + * &drm_i915_gem_execbuffer2.buffer_count must be 0).
-> + * Also, &drm_i915_gem_execbuffer2.batch_start_offset and
-> + * &drm_i915_gem_execbuffer2.batch_len must be 0.
-> + * DRM_I915_GEM_EXECBUFFER_EXT_BATCH_ADDRESSES extension must be provided
-> + * to pass in the batch buffer addresses.
+> + * The older execbuf2 ioctl will not support VM_BIND mode of operation.
+> + * For VM_BIND mode, we have new execbuf3 ioctl which will not accept any
+> + * execlist (See struct drm_i915_gem_execbuffer3 for more details).
 > + *
-> + * Additionally, I915_EXEC_NO_RELOC, I915_EXEC_HANDLE_LUT and
-> + * I915_EXEC_BATCH_FIRST of &drm_i915_gem_execbuffer2.flags must be 0
-> + * (not used) in VM_BIND mode. I915_EXEC_USE_EXTENSIONS flag must always be
-> + * set (See struct drm_i915_gem_execbuffer_ext_batch_addresses).
-> + * The buffers_ptr, buffer_count, batch_start_offset and batch_len fields
-> + * of struct drm_i915_gem_execbuffer2 are also not used and must be 0.
 > + */
 > +#define I915_VM_CREATE_FLAGS_USE_VM_BIND	(1 << 0)
 > +
@@ -133,22 +123,21 @@ On Tue, May 17, 2022 at 11:32:12AM -0700, Niranjana Vishwanathapura wrote:
 > + * Compute contexts need to use user/memory fence.
 > + *
 > + * So, long running contexts do not support output fences. Hence,
-> + * I915_EXEC_FENCE_OUT (See &drm_i915_gem_execbuffer2.flags and
-> + * I915_EXEC_FENCE_SIGNAL (See &drm_i915_gem_exec_fence.flags) are expected
-> + * to be not used.
-> + *
-> + * DRM_I915_GEM_WAIT ioctl call is also not supported for objects mapped
-> + * to long running contexts.
+> + * I915_EXEC_FENCE_SIGNAL (See &drm_i915_gem_exec_fence.flags) is expected
+> + * to be not used. DRM_I915_GEM_WAIT ioctl call is also not supported for
+> + * objects mapped to long running contexts.
 > + */
 > +#define I915_CONTEXT_CREATE_FLAGS_LONG_RUNNING   (1u << 2)
 > +
 > +/* VM_BIND related ioctls */
 > +#define DRM_I915_GEM_VM_BIND		0x3d
 > +#define DRM_I915_GEM_VM_UNBIND		0x3e
-> +#define DRM_I915_GEM_WAIT_USER_FENCE	0x3f
+> +#define DRM_I915_GEM_EXECBUFFER3	0x3f
+> +#define DRM_I915_GEM_WAIT_USER_FENCE	0x40
 > +
 > +#define DRM_IOCTL_I915_GEM_VM_BIND		DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_VM_BIND, struct drm_i915_gem_vm_bind)
 > +#define DRM_IOCTL_I915_GEM_VM_UNBIND		DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_VM_UNBIND, struct drm_i915_gem_vm_bind)
+> +#define DRM_IOCTL_I915_GEM_EXECBUFFER3		DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_EXECBUFFER3, struct drm_i915_gem_execbuffer3)
 > +#define DRM_IOCTL_I915_GEM_WAIT_USER_FENCE	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_WAIT_USER_FENCE, struct drm_i915_gem_wait_user_fence)
 > +
 > +/**
@@ -161,10 +150,27 @@ On Tue, May 17, 2022 at 11:32:12AM -0700, Niranjana Vishwanathapura wrote:
 > + * be mapped to whole object or a section of the object (partial binding).
 > + * Multiple VA mappings can be created to the same section of the object
 > + * (aliasing).
+> + *
+> + * The @queue_idx specifies the queue to use for binding. Same queue can be
+> + * used for both VM_BIND and VM_UNBIND calls. All submitted bind and unbind
+> + * operations in a queue are performed in the order of submission.
+> + *
+> + * The @start, @offset and @length should be 4K page aligned. However the DG2
+> + * and XEHPSDV has 64K page size for device local-memory and has compact page
+> + * table. On those platforms, for binding device local-memory objects, the
+> + * @start should be 2M aligned, @offset and @length should be 64K aligned.
+> + * Also, on those platforms, it is not allowed to bind an device local-memory
+> + * object and a system memory object in a single 2M section of VA range.
 > + */
 > +struct drm_i915_gem_vm_bind {
 > +	/** @vm_id: VM (address space) id to bind */
 > +	__u32 vm_id;
+> +
+> +	/** @queue_idx: Index of queue for binding */
+> +	__u32 queue_idx;
+> +
+> +	/** @rsvd: Reserved, MBZ */
+> +	__u32 rsvd;
 > +
 > +	/** @handle: Object handle */
 > +	__u32 handle;
@@ -177,9 +183,14 @@ On Tue, May 17, 2022 at 11:32:12AM -0700, Niranjana Vishwanathapura wrote:
 > +
 > +	/** @length: Length of mapping to bind */
 > +	__u64 length;
+
+This probably isn't needed. We are never going to unbind a subset of a
+VMA are we? That being said it can't hurt as a sanity check (e.g.
+internal vma->length == user unbind length).
+
 > +
 > +	/**
-> +	 * @flags: Supported flags are,
+> +	 * @flags: Supported flags are:
 > +	 *
 > +	 * I915_GEM_VM_BIND_READONLY:
 > +	 * Mapping is read-only.
@@ -191,8 +202,21 @@ On Tue, May 17, 2022 at 11:32:12AM -0700, Niranjana Vishwanathapura wrote:
 > +#define I915_GEM_VM_BIND_READONLY    (1 << 0)
 > +#define I915_GEM_VM_BIND_CAPTURE     (1 << 1)
 > +
-> +	/** @extensions: 0-terminated chain of extensions for this mapping. */
+> +	/**
+> +	 * @extensions: 0-terminated chain of extensions for this operation.
+> +	 *
+> +	 * I915_VM_BIND_EXT_TIMELINE_FENCES:
+> +	 * Specifies an array of input or output timeline fences for this
+> +	 * binding operation. See struct drm_i915_vm_bind_ext_timeline_fences.
+> +	 *
+> +	 * I915_VM_BIND_EXT_USER_FENCES:
+> +	 * Specifies an array of input or output user fences for this
+> +	 * binding operation. See struct drm_i915_vm_bind_ext_user_fence.
+> +	 * This is required for compute contexts.
+> +	 */
 > +	__u64 extensions;
+> +#define I915_VM_BIND_EXT_TIMELINE_FENCES	0
+> +#define I915_VM_BIND_EXT_USER_FENCES		1
 > +};
 > +
 > +/**
@@ -203,30 +227,45 @@ On Tue, May 17, 2022 at 11:32:12AM -0700, Niranjana Vishwanathapura wrote:
 > + * specified address space (VM). The specified VA range must match one of the
 > + * mappings created with the VM_BIND ioctl. TLB is flushed upon unbind
 > + * completion.
+> + *
+> + * The @queue_idx specifies the queue to use for unbinding.
+> + * See struct drm_i915_gem_vm_unbind for more information on @queue_idx.
+> + *
+> + * The @start and @length musy specify a unique mapping bound with VM_BIND
+> + * ioctl.
 > + */
 > +struct drm_i915_gem_vm_unbind {
 > +	/** @vm_id: VM (address space) id to bind */
 > +	__u32 vm_id;
 > +
-> +	/** @rsvd: Reserved for future use; must be zero. */
-> +	__u32 rsvd;
+> +	/** @queue_idx: Index of queue for unbinding */
+> +	__u32 queue_idx;
 > +
 > +	/** @start: Virtual Address start to unbind */
 > +	__u64 start;
 > +
 > +	/** @length: Length of mapping to unbind */
 > +	__u64 length;
-
-This probably isn't needed. We are never going to unbind a subset of a
-VMA are we? That being said it can't hurt as a sanity check (e.g.
-internal vma->length == user unbind length).
-
 > +
-> +	/** @flags: reserved for future usage, currently MBZ */
+> +	/** @flags: Reserved for future usage, currently MBZ */
 > +	__u64 flags;
 > +
-> +	/** @extensions: 0-terminated chain of extensions for this mapping. */
+> +	/**
+> +	 * @extensions: 0-terminated chain of extensions for this operation.
+> +	 *
+> +	 * I915_VM_UNBIND_EXT_TIMELINE_FENCES:
+> +	 * Specifies an array of input or output timeline fences for this
+> +	 * unbind operation.
+> +	 * It has same format as struct drm_i915_vm_bind_ext_timeline_fences.
+> +	 *
+> +	 * I915_VM_UNBIND_EXT_USER_FENCES:
+> +	 * Specifies an array of input or output user fences for this
+> +	 * unbind operation. This is required for compute contexts.
+> +	 * It has same format as struct drm_i915_vm_bind_ext_user_fence.
+> +	 */
 > +	__u64 extensions;
+> +#define I915_VM_UNBIND_EXT_TIMELINE_FENCES	0
+> +#define I915_VM_UNBIND_EXT_USER_FENCES		1
 > +};
 > +
 > +/**
@@ -244,7 +283,7 @@ internal vma->length == user unbind length).
 > +	__u32 handle;
 > +
 > +	/**
-> +	 * @flags: Supported flags are,
+> +	 * @flags: Supported flags are:
 > +	 *
 > +	 * I915_VM_BIND_FENCE_WAIT:
 > +	 * Wait for the input fence before binding/unbinding
@@ -267,7 +306,6 @@ internal vma->length == user unbind length).
 > + * can be input or output fences (See struct drm_i915_vm_bind_fence).
 > + */
 > +struct drm_i915_vm_bind_ext_timeline_fences {
-> +#define I915_VM_BIND_EXT_timeline_FENCES	0
 > +	/** @base: Extension link. See struct i915_user_extension. */
 > +	struct i915_user_extension base;
 > +
@@ -312,7 +350,7 @@ internal vma->length == user unbind length).
 > +	__u64 val;
 > +
 > +	/**
-> +	 * @flags: Supported flags are,
+> +	 * @flags: Supported flags are:
 > +	 *
 > +	 * I915_VM_BIND_USER_FENCE_WAIT:
 > +	 * Wait for the input fence before binding/unbinding
@@ -335,7 +373,6 @@ internal vma->length == user unbind length).
 > + * (See struct drm_i915_vm_bind_user_fence).
 > + */
 > +struct drm_i915_vm_bind_ext_user_fence {
-> +#define I915_VM_BIND_EXT_USER_FENCES	1
 > +	/** @base: Extension link. See struct i915_user_extension. */
 > +	struct i915_user_extension base;
 > +
@@ -347,6 +384,113 @@ internal vma->length == user unbind length).
 > +	 * struct drm_i915_vm_bind_user_fence of length @fence_count.
 > +	 */
 > +	__u64 user_fence_ptr;
+> +};
+> +
+> +/**
+> + * struct drm_i915_gem_execbuffer3 - Structure for DRM_I915_GEM_EXECBUFFER3
+> + * ioctl.
+> + *
+> + * DRM_I915_GEM_EXECBUFFER3 ioctl only works in VM_BIND mode and VM_BIND mode
+> + * only works with this ioctl for submission.
+> + * See I915_VM_CREATE_FLAGS_USE_VM_BIND.
+> + */
+> +struct drm_i915_gem_execbuffer3 {
+> +	/**
+> +	 * @ctx_id: Context id
+> +	 *
+> +	 * Only contexts with user engine map are allowed.
+> +	 */
+> +	__u32 ctx_id;
+> +
+> +	/**
+> +	 * @engine_idx: Engine index
+> +	 *
+> +	 * An index in the user engine map of the context specified by @ctx_id.
+> +	 */
+> +	__u32 engine_idx;
+> +
+> +	/** @rsvd1: Reserved, MBZ */
+> +	__u32 rsvd1;
+> +
+> +	/**
+> +	 * @batch_count: Number of batches in @batch_address array.
+> +	 *
+> +	 * 0 is invalid. For parallel submission, it should be equal to the
+> +	 * number of (parallel) engines involved in that submission.
+> +	 */
+> +	__u32 batch_count;
+> +
+> +	/**
+> +	 * @batch_address: Array of batch gpu virtual addresses.
+> +	 *
+> +	 * If @batch_count is 1, then it is the gpu virtual address of the
+> +	 * batch buffer. If @batch_count > 1, then it is a pointer to an array
+> +	 * of batch buffer gpu virtual addresses.
+> +	 */
+> +	__u64 batch_address;
+> +
+> +	/**
+> +	 * @flags: Supported flags are:
+> +	 *
+> +	 * I915_EXEC3_SECURE:
+> +	 * Request a privileged ("secure") batch buffer/s.
+> +	 * It is only available for DRM_ROOT_ONLY | DRM_MASTER processes.
+> +	 */
+> +	__u64 flags;
+> +#define I915_EXEC3_SECURE	(1<<0)
+> +
+> +	/** @rsvd2: Reserved, MBZ */
+> +	__u64 rsvd2;
+> +
+> +	/**
+> +	 * @extensions: Zero-terminated chain of extensions.
+> +	 *
+> +	 * DRM_I915_GEM_EXECBUFFER3_EXT_TIMELINE_FENCES:
+> +	 * It has same format as DRM_I915_GEM_EXECBUFFER_EXT_TIMELINE_FENCES.
+> +	 * See struct drm_i915_gem_execbuffer_ext_timeline_fences.
+> +	 * 
+> +	 * DRM_I915_GEM_EXECBUFFER3_EXT_USER_FENCE:
+> +	 * First level batch completion signaling extension.
+> +	 * See struct drm_i915_gem_execbuffer3_ext_user_fence.
+> +	 */
+> +	__u64 extensions;
+> +#define DRM_I915_GEM_EXECBUFFER3_EXT_TIMELINE_FENCES	0
+> +#define DRM_I915_GEM_EXECBUFFER3_EXT_USER_FENCE		1
+> +};
+> +
+> +/**
+> + * struct drm_i915_gem_execbuffer3_ext_user_fence - First level batch completion
+> + * signaling extension.
+> + *
+> + * This extension allows user to attach a user fence (@addr, @value pair) to
+> + * execbuf3, to be signaled by the command streamer after the completion of first
+> + * level batch, by writing the @value at specified @addr and triggering an
+> + * interrupt.
+> + * User can either poll for this user fence to signal or can also wait on it
+> + * with i915_gem_wait_user_fence ioctl.
+> + * This is very much usefaul for long running contexts where waiting on dma-fence
+> + * by user (like i915_gem_wait ioctl) is not supported.
+> + */
+> +struct drm_i915_gem_execbuffer3_ext_user_fence {
+> +	/** @base: Extension link. See struct i915_user_extension. */
+> +	struct i915_user_extension base;
+> +
+> +	/**
+> +	 * @addr: User/Memory fence qword aligned GPU virtual address.
+> +	 *
+> +	 * Address has to be a valid GPU virtual address at the time of
+> +	 * first level batch completion.
+> +	 */
+> +	__u64 addr;
+> +
+> +	/**
+> +	 * @value: User/Memory fence Value to be written to above address
+> +	 * after first level batch completes.
+> +	 */
+> +	__u64 value;
+> +
+> +	/** @rsvd: Reserved, MBZ */
+> +	__u64 rsvd;
 > +};
 > +
 
@@ -383,62 +527,6 @@ operation /w in/out fences).
 
 Matt
 
-> +/**
-> + * struct drm_i915_gem_execbuffer_ext_batch_addresses - Array of batch buffer
-> + * gpu virtual addresses.
-> + *
-> + * In the execbuff ioctl (See struct drm_i915_gem_execbuffer2), this extension
-> + * must always be appended in the VM_BIND mode and it will be an error to
-> + * append this extension in older non-VM_BIND mode.
-> + */
-> +struct drm_i915_gem_execbuffer_ext_batch_addresses {
-> +#define DRM_I915_GEM_EXECBUFFER_EXT_BATCH_ADDRESSES	1
-> +	/** @base: Extension link. See struct i915_user_extension. */
-> +	struct i915_user_extension base;
-> +
-> +	/** @count: Number of addresses in the addr array. */
-> +	__u32 count;
-> +
-> +	/** @addr: An array of batch gpu virtual addresses. */
-> +	__u64 addr[0];
-> +};
-> +
-> +/**
-> + * struct drm_i915_gem_execbuffer_ext_user_fence - First level batch completion
-> + * signaling extension.
-> + *
-> + * This extension allows user to attach a user fence (@addr, @value pair) to an
-> + * execbuf to be signaled by the command streamer after the completion of first
-> + * level batch, by writing the @value at specified @addr and triggering an
-> + * interrupt.
-> + * User can either poll for this user fence to signal or can also wait on it
-> + * with i915_gem_wait_user_fence ioctl.
-> + * This is very much usefaul for long running contexts where waiting on dma-fence
-> + * by user (like i915_gem_wait ioctl) is not supported.
-> + */
-> +struct drm_i915_gem_execbuffer_ext_user_fence {
-> +#define DRM_I915_GEM_EXECBUFFER_EXT_USER_FENCE		2
-> +	/** @base: Extension link. See struct i915_user_extension. */
-> +	struct i915_user_extension base;
-> +
-> +	/**
-> +	 * @addr: User/Memory fence qword aligned GPU virtual address.
-> +	 *
-> +	 * Address has to be a valid GPU virtual address at the time of
-> +	 * first level batch completion.
-> +	 */
-> +	__u64 addr;
-> +
-> +	/**
-> +	 * @value: User/Memory fence Value to be written to above address
-> +	 * after first level batch completes.
-> +	 */
-> +	__u64 value;
-> +
-> +	/** @rsvd: Reserved for future extensions, MBZ */
-> +	__u64 rsvd;
-> +};
-> +
 > +/**
 > + * struct drm_i915_gem_create_ext_vm_private - Extension to make the object
 > + * private to the specified VM.
@@ -490,7 +578,7 @@ Matt
 > +#define I915_UFENCE_WAIT_AFTER   7
 > +
 > +	/**
-> +	 * @flags: Supported flags are,
+> +	 * @flags: Supported flags are:
 > +	 *
 > +	 * I915_UFENCE_WAIT_SOFT:
 > +	 *
