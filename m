@@ -1,54 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9188A546CD4
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jun 2022 20:58:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49DA8546D15
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jun 2022 21:15:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CCD2E10E421;
-	Fri, 10 Jun 2022 18:58:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C5EDA1124C9;
+	Fri, 10 Jun 2022 19:15:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0128F10E421;
- Fri, 10 Jun 2022 18:58:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D897310EB7A;
+ Fri, 10 Jun 2022 19:15:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1654887500; x=1686423500;
+ t=1654888511; x=1686424511;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=TFTUfa302tvVz+u5KAsxdw2I2H3RPoBI2UySHe6ZrcI=;
- b=Q+yATk94TmBDp0d3KRB3qeZo1iKlyesJepiUNRotWvVf4xqFa9SsdUvy
- dj6ntFpKj3h3oquK3iwOz5ImLfL/Kr5VVK6yjVzRR1bRFQATgAQe7h/Zc
- iiJwDHAowMAgwcbTFjrJYoanfE9B+ZJP9LRbIYGb/6D25lCUjn9X9rF4u
- WSQNLIGkhXh1tSxW+9O1mDFtZnirUjYNU/tIteYfyOIn851IDQ6U8gFiL
- 4VE8IIuD35GyEoOwjFeBed47GoGpI2Qp3m4BABHsLYE8LESptSZ5mXQAR
- jGAyncptVl97XzHtP0sWFTWmyJvm6AIzcBSADIPlAEifybhxL8Wkwo+OP w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10374"; a="266486400"
-X-IronPort-AV: E=Sophos;i="5.91,291,1647327600"; d="scan'208";a="266486400"
+ bh=guwXRPDjtY4POkFmBP/DOdt9XNOVmFgJ+EodoLqaSzA=;
+ b=OUgy3+JXIdyeEw+RY+wsyaPPwlpSTYxMas4AjV++NqDjIA2xrIB9W0ls
+ r9SXKLm4vIu+4f5GRKThy0MHMWw7ZF9FkgcYb7Si2TLtp03fT5oyIyi7+
+ fRuxlHbIY4zoFudPW7Oid3hsFcWfOJfKSSDpkcVkNxqXViRJItkle53mm
+ Da24q6IWhTRQlAYYvSneMdjXVaSO+zr1GN5NrEn90fbO2jkKE1i4L8l8e
+ Z/eB7ICzQstD7c/aNyG/Ho9npr9vNaAbLUioadMBdUXn5Y3ixm1Re1PlU
+ pPHHoSd0oLyR5gvewpOWN20C6KpZXwQYj1c0vz4/XmGPfevhb8Hlzovhk A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10374"; a="266490043"
+X-IronPort-AV: E=Sophos;i="5.91,291,1647327600"; d="scan'208";a="266490043"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2022 11:58:19 -0700
+ 10 Jun 2022 12:15:10 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,291,1647327600"; d="scan'208";a="586339165"
+X-IronPort-AV: E=Sophos;i="5.91,291,1647327600"; d="scan'208";a="586347093"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.163])
- by fmsmga007.fm.intel.com with SMTP; 10 Jun 2022 11:58:16 -0700
+ by fmsmga007.fm.intel.com with SMTP; 10 Jun 2022 12:15:07 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 10 Jun 2022 21:58:15 +0300
-Date: Fri, 10 Jun 2022 21:58:15 +0300
+ Fri, 10 Jun 2022 22:15:06 +0300
+Date: Fri, 10 Jun 2022 22:15:06 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <YqOUR/siKAe8pIw5@intel.com>
+Message-ID: <YqOYOjtsboqHOgvv@intel.com>
 References: <cover.1654674560.git.jani.nikula@intel.com>
- <5339ab3249400a3c41001967e7ff2611b58e0425.1654674560.git.jani.nikula@intel.com>
+ <f10231299d274eefba4c584d1bdb18390dc53e32.1654674560.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <5339ab3249400a3c41001967e7ff2611b58e0425.1654674560.git.jani.nikula@intel.com>
+In-Reply-To: <f10231299d274eefba4c584d1bdb18390dc53e32.1654674560.git.jani.nikula@intel.com>
 X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v2 02/15] drm/edid: abstract cea data block
- collection size
+Subject: Re: [Intel-gfx] [PATCH v2 06/15] drm/edid: add
+ drm_edid_connector_update()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,69 +61,171 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jun 08, 2022 at 10:50:32AM +0300, Jani Nikula wrote:
-> Add a function to get the cea data block collection size.
+On Wed, Jun 08, 2022 at 10:50:36AM +0300, Jani Nikula wrote:
+> Add a new function drm_edid_connector_update() to replace the
+> combination of calls drm_connector_update_edid_property() and
+> drm_add_edid_modes(). Usually they are called in the drivers in this
+> order, however the former needs information from the latter.
 > 
-> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Since the new drm_edid_read*() functions no longer call the connector
+> updates directly, and the read and update are separated, we'll need this
+> new function for the connector update.
+> 
+> This is all in drm_edid.c simply to keep struct drm_edid opaque.
+> 
+> Cc: David Airlie <airlied@linux.ie>
+> Cc: Daniel Vetter <daniel@ffwll.ch>
 > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-
 > ---
->  drivers/gpu/drm/drm_edid.c | 24 +++++++++++++++++++++---
->  1 file changed, 21 insertions(+), 3 deletions(-)
+>  drivers/gpu/drm/drm_connector.c |  2 +
+>  drivers/gpu/drm/drm_edid.c      | 71 +++++++++++++++++++++++++++++++--
+>  include/drm/drm_edid.h          |  2 +
+>  3 files changed, 71 insertions(+), 4 deletions(-)
 > 
+> diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
+> index 1c48d162c77e..ae9c640a641a 100644
+> --- a/drivers/gpu/drm/drm_connector.c
+> +++ b/drivers/gpu/drm/drm_connector.c
+> @@ -2088,6 +2088,8 @@ EXPORT_SYMBOL(drm_connector_set_tile_property);
+>   * set the connector's tile property here. See drm_connector_set_tile_property()
+>   * for more details.
+>   *
+> + * This function is deprecated. Use drm_edid_connector_update() instead.
+> + *
+>   * Returns:
+>   * Zero on success, negative errno on failure.
+>   */
 > diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
-> index c57f6333ea7d..002816509fc8 100644
+> index 2bdaf1e34a9d..952724788963 100644
 > --- a/drivers/gpu/drm/drm_edid.c
 > +++ b/drivers/gpu/drm/drm_edid.c
-> @@ -4482,6 +4482,20 @@ __cea_db_iter_current_block(const struct cea_db_iter *iter)
->  	return NULL;
+> @@ -6143,8 +6143,8 @@ static int add_displayid_detailed_modes(struct drm_connector *connector,
+>  	return num_modes;
 >  }
 >  
-> +/*
-> + * References:
-> + * - CTA-861-H section 7.3.3 CTA Extension Version 3
+> -static int drm_edid_connector_update(struct drm_connector *connector,
+> -				     const struct drm_edid *drm_edid)
+> +static int _drm_edid_connector_update(struct drm_connector *connector,
+> +				      const struct drm_edid *drm_edid)
+>  {
+>  	int num_modes = 0;
+>  	u32 quirks;
+> @@ -6207,6 +6207,67 @@ static int drm_edid_connector_update(struct drm_connector *connector,
+>  	return num_modes;
+>  }
+>  
+> +static void _drm_update_tile_info(struct drm_connector *connector,
+> +				  const struct drm_edid *drm_edid);
+> +
+> +/**
+> + * drm_edid_connector_update - Update connector information from EDID
+> + * @connector: Connector
+> + * @drm_edid: EDID
+> + *
+> + * Update the connector mode list, display info, ELD, HDR metadata, relevant
+> + * properties, etc. from the passed in EDID.
+> + *
+> + * If EDID is NULL, reset the information.
+> + *
+> + * Return: The number of modes added or 0 if we couldn't find any.
 > + */
-> +static int cea_db_collection_size(const u8 *cta)
+> +int drm_edid_connector_update(struct drm_connector *connector,
+> +			      const struct drm_edid *drm_edid)
 > +{
-> +	u8 d = cta[2];
+> +	struct drm_device *dev = connector->dev;
+> +	const struct edid *old_edid = connector->edid_blob_ptr ?
+> +		connector->edid_blob_ptr->data : NULL;
+> +	const struct edid *edid = drm_edid ? drm_edid->edid : NULL;
+> +	size_t size = drm_edid ? drm_edid->size : 0;
+> +	int count, ret;
 > +
-> +	if (d < 4 || d > 127)
-> +		return 0;
+> +	count = _drm_edid_connector_update(connector, drm_edid);
 > +
-> +	return d - 4;
+> +	_drm_update_tile_info(connector, drm_edid);
+> +
+> +	if (old_edid && !drm_edid_are_equal(edid, old_edid)) {
+
+The old_edid check looks a bit odd. Can't really see why we'd not
+want to bump the epoch counter when we go from not having and EDID
+to having one. This issue already seems to exist in the current code,
+although that one also skips the epoch counter bump if the new EDID
+is missing, so even more odd.
+
+This also brings me to the slight annoynace of having this code
+duplicated in two places. I worry we'll end up accumulating different
+bugs in each copy. Can't we refactor to have just one copy?
+
+> +		connector->epoch_counter++;
+> +
+> +		drm_dbg_kms(dev, "[CONNECTOR:%d:%s] EDID changed, epoch counter %llu\n",
+> +			    connector->base.id, connector->name,
+> +			    connector->epoch_counter);
+> +	}
+> +
+> +	ret = drm_property_replace_global_blob(dev, &connector->edid_blob_ptr,
+> +					       size, edid,
+> +					       &connector->base,
+> +					       dev->mode_config.edid_property);
+> +	if (ret)
+> +		drm_dbg_kms(dev, "[CONNECTOR:%d:%s] EDID property update failed (%d)\n",
+> +			    connector->base.id, connector->name, ret);
+> +
+> +	ret = drm_object_property_set_value(&connector->base,
+> +					    dev->mode_config.non_desktop_property,
+> +					    connector->display_info.non_desktop);
+> +	if (ret)
+> +		drm_dbg_kms(dev, "[CONNECTOR:%d:%s] Non-desktop property update failed (%d)\n",
+> +			    connector->base.id, connector->name, ret);
+> +
+> +	ret = drm_connector_set_tile_property(connector);
+> +	if (ret)
+> +		drm_dbg_kms(dev, "[CONNECTOR:%d:%s] Tile property update failed (%d)\n",
+> +			    connector->base.id, connector->name, ret);
+> +
+> +	return count;
 > +}
+> +EXPORT_SYMBOL(drm_edid_connector_update);
 > +
->  /*
->   * References:
->   * - VESA E-EDID v1.4
-> @@ -4492,15 +4506,19 @@ static const void *__cea_db_iter_edid_next(struct cea_db_iter *iter)
->  	const u8 *ext;
->  
->  	drm_edid_iter_for_each(ext, &iter->edid_iter) {
-> +		int size;
-> +
->  		/* Only support CTA Extension revision 3+ */
->  		if (ext[0] != CEA_EXT || cea_revision(ext) < 3)
->  			continue;
->  
-> -		iter->index = 4;
-> -		iter->end = ext[2];
-> -		if (iter->end < 4 || iter->end > 127)
-> +		size = cea_db_collection_size(ext);
-> +		if (!size)
->  			continue;
->  
-> +		iter->index = 4;
-> +		iter->end = iter->index + size;
-> +
->  		return ext;
+>  /**
+>   * drm_add_edid_modes - add modes from EDID data, if available
+>   * @connector: connector we're probing
+> @@ -6216,6 +6277,8 @@ static int drm_edid_connector_update(struct drm_connector *connector,
+>   * &drm_display_info structure and ELD in @connector with any information which
+>   * can be derived from the edid.
+>   *
+> + * This function is deprecated. Use drm_edid_connector_update() instead.
+> + *
+>   * Return: The number of modes added or 0 if we couldn't find any.
+>   */
+>  int drm_add_edid_modes(struct drm_connector *connector, struct edid *edid)
+> @@ -6228,8 +6291,8 @@ int drm_add_edid_modes(struct drm_connector *connector, struct edid *edid)
+>  		edid = NULL;
 >  	}
+>  
+> -	return drm_edid_connector_update(connector,
+> -					 drm_edid_legacy_init(&drm_edid, edid));
+> +	return _drm_edid_connector_update(connector,
+> +					  drm_edid_legacy_init(&drm_edid, edid));
+>  }
+>  EXPORT_SYMBOL(drm_add_edid_modes);
+>  
+> diff --git a/include/drm/drm_edid.h b/include/drm/drm_edid.h
+> index 9d2d78135dee..aeb2fa95bc04 100644
+> --- a/include/drm/drm_edid.h
+> +++ b/include/drm/drm_edid.h
+> @@ -603,6 +603,8 @@ const struct drm_edid *drm_edid_read_ddc(struct drm_connector *connector,
+>  const struct drm_edid *drm_edid_read_custom(struct drm_connector *connector,
+>  					    int (*read_block)(void *context, u8 *buf, unsigned int block, size_t len),
+>  					    void *context);
+> +int drm_edid_connector_update(struct drm_connector *connector,
+> +			      const struct drm_edid *edid);
+>  const u8 *drm_find_edid_extension(const struct drm_edid *drm_edid,
+>  				  int ext_id, int *ext_index);
 >  
 > -- 
 > 2.30.2
