@@ -1,52 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C987545A43
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jun 2022 04:56:09 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E270545A56
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jun 2022 05:10:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1AF7A11B056;
-	Fri, 10 Jun 2022 02:56:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 71DE1113BEB;
+	Fri, 10 Jun 2022 03:10:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 11F4711B00B;
- Fri, 10 Jun 2022 02:56:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1654829762; x=1686365762;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=O0bL4sdftS81wR9WdNRMpX+rYzEHoW1ZVqEv1opZtjY=;
- b=UCuizI27B/O0qV6zeq/oBOFqF4L93hlVGF3eE1yT5hqTcMv3c+wXsU8h
- l7kBgZK0/ObHbJdwW3gI7YQExU/VgWvXadqAEXzi3/AA1/42eRlZWbx3l
- kR6K3zl90bOPU3yHLngR3cXKAzKCrGWThaEyTtIlcQCv+9BnKlCD3b2Et
- zUNZv18x/J0xKR/U0vWMbKfjU8+sw0V8tXIk9pMOBovTgl/rWtgXBSpX/
- zO9O9z3lz+SS/C2y1cJJILrCF22PuFqk+S14/4RGW+MG7JGa4R9GM3reh
- aVkXmUcdlwyV+3BR47qot5/+NpjYP8/Co7pfS8/ghv3dGRk3svPcbJGAb g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10373"; a="266261298"
-X-IronPort-AV: E=Sophos;i="5.91,288,1647327600"; d="scan'208";a="266261298"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2022 19:56:01 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,288,1647327600"; d="scan'208";a="616216426"
-Received: from lkp-server01.sh.intel.com (HELO 60dabacc1df6) ([10.239.97.150])
- by orsmga001.jf.intel.com with ESMTP; 09 Jun 2022 19:55:58 -0700
-Received: from kbuild by 60dabacc1df6 with local (Exim 4.95)
- (envelope-from <lkp@intel.com>) id 1nzUoX-000GdB-Ub;
- Fri, 10 Jun 2022 02:55:57 +0000
-Date: Fri, 10 Jun 2022 10:55:04 +0800
-From: kernel test robot <lkp@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Message-ID: <202206101010.IAvFUbqo-lkp@intel.com>
-References: <20220609232020.2292649-1-lucas.demarchi@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 20DD710E749;
+ Fri, 10 Jun 2022 03:10:17 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 0BB54AA0EB;
+ Fri, 10 Jun 2022 03:10:17 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0777213150086672821=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220609232020.2292649-1-lucas.demarchi@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] iosys-map: Add word-sized reads
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Animesh Manna" <animesh.manna@intel.com>
+Date: Fri, 10 Jun 2022 03:10:17 -0000
+Message-ID: <165483061701.16746.12691394546585154305@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220609181014.21694-1-animesh.manna@intel.com>
+In-Reply-To: <20220609181014.21694-1-animesh.manna@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/bios=3A_calculate_panel_type_as_per_child_device_index_in?=
+ =?utf-8?q?_VBT?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,335 +41,388 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kbuild-all@lists.01.org, daniel.vetter@ffwll.ch, llvm@lists.linux.dev,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>, tzimmermann@suse.de,
- christian.koenig@amd.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Lucas,
+--===============0777213150086672821==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Thank you for the patch! Yet something to improve:
+== Series Details ==
 
-[auto build test ERROR on drm-tip/drm-tip]
-[also build test ERROR on linus/master v5.19-rc1 next-20220609]
-[cannot apply to tegra-drm/drm/tegra/for-next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+Series: drm/i915/bios: calculate panel type as per child device index in VBT
+URL   : https://patchwork.freedesktop.org/series/104943/
+State : success
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Lucas-De-Marchi/iosys-map-Add-word-sized-reads/20220610-072113
-base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
-config: i386-randconfig-a013 (https://download.01.org/0day-ci/archive/20220610/202206101010.IAvFUbqo-lkp@intel.com/config)
-compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project 70d35fe1257e429266b83025997b400e9f79110e)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/7b9b2d6b8d738fe2857fa1a96f7f3c9d8c11e9cd
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Lucas-De-Marchi/iosys-map-Add-word-sized-reads/20220610-072113
-        git checkout 7b9b2d6b8d738fe2857fa1a96f7f3c9d8c11e9cd
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 SHELL=/bin/bash
+== Summary ==
 
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
+CI Bug Log - changes from CI_DRM_11749 -> Patchwork_104943v1
+====================================================
 
-All errors (new ones prefixed by >>):
+Summary
+-------
 
->> drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:1154:14: error: unknown type name '__iosys_map_rd_io_u64_case'
-                   *last_in = record_read(&rec_map, last_switch_in_stamp);
-                              ^
-   drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:1134:2: note: expanded from macro 'record_read'
-           iosys_map_rd_field(map_, 0, struct guc_engine_usage_record, field_)
-           ^
-   include/linux/iosys-map.h:452:2: note: expanded from macro 'iosys_map_rd_field'
-           iosys_map_rd(map__, struct_offset__ + offsetof(struct_type__, field__), \
-           ^
-   include/linux/iosys-map.h:366:3: note: expanded from macro 'iosys_map_rd'
-                   __iosys_map_rd_io(val, (map__)->vaddr_iomem + offset__, type__);\
-                   ^
-   include/linux/iosys-map.h:347:2: note: expanded from macro '__iosys_map_rd_io'
-           __iosys_map_rd_io_u64_case(val__, vaddr_iomem__)                \
-           ^
->> drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:1154:14: error: type-id cannot have a name
-   drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:1134:2: note: expanded from macro 'record_read'
-           iosys_map_rd_field(map_, 0, struct guc_engine_usage_record, field_)
-           ^
-   include/linux/iosys-map.h:452:2: note: expanded from macro 'iosys_map_rd_field'
-           iosys_map_rd(map__, struct_offset__ + offsetof(struct_type__, field__), \
-           ^
-   include/linux/iosys-map.h:366:21: note: expanded from macro 'iosys_map_rd'
-                   __iosys_map_rd_io(val, (map__)->vaddr_iomem + offset__, type__);\
-                                     ^
->> drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:1154:14: error: expected ')'
-   drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:1134:2: note: expanded from macro 'record_read'
-           iosys_map_rd_field(map_, 0, struct guc_engine_usage_record, field_)
-           ^
-   include/linux/iosys-map.h:452:2: note: expanded from macro 'iosys_map_rd_field'
-           iosys_map_rd(map__, struct_offset__ + offsetof(struct_type__, field__), \
-           ^
-   include/linux/iosys-map.h:366:3: note: expanded from macro 'iosys_map_rd'
-                   __iosys_map_rd_io(val, (map__)->vaddr_iomem + offset__, type__);\
-                   ^
-   include/linux/iosys-map.h:347:34: note: expanded from macro '__iosys_map_rd_io'
-           __iosys_map_rd_io_u64_case(val__, vaddr_iomem__)                \
-                                           ^
-   drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:1154:14: note: to match this '('
-   drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:1134:2: note: expanded from macro 'record_read'
-           iosys_map_rd_field(map_, 0, struct guc_engine_usage_record, field_)
-           ^
-   include/linux/iosys-map.h:452:2: note: expanded from macro 'iosys_map_rd_field'
-           iosys_map_rd(map__, struct_offset__ + offsetof(struct_type__, field__), \
-           ^
-   include/linux/iosys-map.h:366:3: note: expanded from macro 'iosys_map_rd'
-                   __iosys_map_rd_io(val, (map__)->vaddr_iomem + offset__, type__);\
-                   ^
-   include/linux/iosys-map.h:347:28: note: expanded from macro '__iosys_map_rd_io'
-           __iosys_map_rd_io_u64_case(val__, vaddr_iomem__)                \
-                                     ^
-   drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:1155:9: error: unknown type name '__iosys_map_rd_io_u64_case'
-                   *id = record_read(&rec_map, current_context_index);
-                         ^
-   drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:1134:2: note: expanded from macro 'record_read'
-           iosys_map_rd_field(map_, 0, struct guc_engine_usage_record, field_)
-           ^
-   include/linux/iosys-map.h:452:2: note: expanded from macro 'iosys_map_rd_field'
-           iosys_map_rd(map__, struct_offset__ + offsetof(struct_type__, field__), \
-           ^
-   include/linux/iosys-map.h:366:3: note: expanded from macro 'iosys_map_rd'
-                   __iosys_map_rd_io(val, (map__)->vaddr_iomem + offset__, type__);\
-                   ^
-   include/linux/iosys-map.h:347:2: note: expanded from macro '__iosys_map_rd_io'
-           __iosys_map_rd_io_u64_case(val__, vaddr_iomem__)                \
-           ^
-   drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:1155:9: error: type-id cannot have a name
-   drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:1134:2: note: expanded from macro 'record_read'
-           iosys_map_rd_field(map_, 0, struct guc_engine_usage_record, field_)
-           ^
-   include/linux/iosys-map.h:452:2: note: expanded from macro 'iosys_map_rd_field'
-           iosys_map_rd(map__, struct_offset__ + offsetof(struct_type__, field__), \
-           ^
-   include/linux/iosys-map.h:366:21: note: expanded from macro 'iosys_map_rd'
-                   __iosys_map_rd_io(val, (map__)->vaddr_iomem + offset__, type__);\
-                                     ^
-   drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:1155:9: error: expected ')'
-   drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:1134:2: note: expanded from macro 'record_read'
-           iosys_map_rd_field(map_, 0, struct guc_engine_usage_record, field_)
-           ^
-   include/linux/iosys-map.h:452:2: note: expanded from macro 'iosys_map_rd_field'
-           iosys_map_rd(map__, struct_offset__ + offsetof(struct_type__, field__), \
-           ^
-   include/linux/iosys-map.h:366:3: note: expanded from macro 'iosys_map_rd'
-                   __iosys_map_rd_io(val, (map__)->vaddr_iomem + offset__, type__);\
-                   ^
-   include/linux/iosys-map.h:347:34: note: expanded from macro '__iosys_map_rd_io'
-           __iosys_map_rd_io_u64_case(val__, vaddr_iomem__)                \
-                                           ^
-   drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:1155:9: note: to match this '('
-   drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:1134:2: note: expanded from macro 'record_read'
-           iosys_map_rd_field(map_, 0, struct guc_engine_usage_record, field_)
-           ^
-   include/linux/iosys-map.h:452:2: note: expanded from macro 'iosys_map_rd_field'
-           iosys_map_rd(map__, struct_offset__ + offsetof(struct_type__, field__), \
-           ^
-   include/linux/iosys-map.h:366:3: note: expanded from macro 'iosys_map_rd'
-                   __iosys_map_rd_io(val, (map__)->vaddr_iomem + offset__, type__);\
-                   ^
-   include/linux/iosys-map.h:347:28: note: expanded from macro '__iosys_map_rd_io'
-           __iosys_map_rd_io_u64_case(val__, vaddr_iomem__)                \
-                                     ^
-   drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:1156:12: error: unknown type name '__iosys_map_rd_io_u64_case'
-                   *total = record_read(&rec_map, total_runtime);
-                            ^
-   drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:1134:2: note: expanded from macro 'record_read'
-           iosys_map_rd_field(map_, 0, struct guc_engine_usage_record, field_)
-           ^
-   include/linux/iosys-map.h:452:2: note: expanded from macro 'iosys_map_rd_field'
-           iosys_map_rd(map__, struct_offset__ + offsetof(struct_type__, field__), \
-           ^
-   include/linux/iosys-map.h:366:3: note: expanded from macro 'iosys_map_rd'
-                   __iosys_map_rd_io(val, (map__)->vaddr_iomem + offset__, type__);\
-                   ^
-   include/linux/iosys-map.h:347:2: note: expanded from macro '__iosys_map_rd_io'
-           __iosys_map_rd_io_u64_case(val__, vaddr_iomem__)                \
-           ^
-   drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:1156:12: error: type-id cannot have a name
-   drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:1134:2: note: expanded from macro 'record_read'
-           iosys_map_rd_field(map_, 0, struct guc_engine_usage_record, field_)
-           ^
-   include/linux/iosys-map.h:452:2: note: expanded from macro 'iosys_map_rd_field'
-           iosys_map_rd(map__, struct_offset__ + offsetof(struct_type__, field__), \
-           ^
-   include/linux/iosys-map.h:366:21: note: expanded from macro 'iosys_map_rd'
-                   __iosys_map_rd_io(val, (map__)->vaddr_iomem + offset__, type__);\
---
->> drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c:165:6: error: unknown type name '__iosys_map_rd_io_u64_case'
-                      ads_blob_read(guc, policies.dpc_promote_time));
-                      ^
-   drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c:65:2: note: expanded from macro 'ads_blob_read'
-           iosys_map_rd_field(&(guc_)->ads_map, 0, struct __guc_ads_blob, field_)
-           ^
-   include/linux/iosys-map.h:452:2: note: expanded from macro 'iosys_map_rd_field'
-           iosys_map_rd(map__, struct_offset__ + offsetof(struct_type__, field__), \
-           ^
-   include/linux/iosys-map.h:366:3: note: expanded from macro 'iosys_map_rd'
-                   __iosys_map_rd_io(val, (map__)->vaddr_iomem + offset__, type__);\
-                   ^
-   include/linux/iosys-map.h:347:2: note: expanded from macro '__iosys_map_rd_io'
-           __iosys_map_rd_io_u64_case(val__, vaddr_iomem__)                \
-           ^
->> drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c:165:6: error: type-id cannot have a name
-   drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c:65:2: note: expanded from macro 'ads_blob_read'
-           iosys_map_rd_field(&(guc_)->ads_map, 0, struct __guc_ads_blob, field_)
-           ^
-   include/linux/iosys-map.h:452:2: note: expanded from macro 'iosys_map_rd_field'
-           iosys_map_rd(map__, struct_offset__ + offsetof(struct_type__, field__), \
-           ^
-   include/linux/iosys-map.h:366:21: note: expanded from macro 'iosys_map_rd'
-                   __iosys_map_rd_io(val, (map__)->vaddr_iomem + offset__, type__);\
-                                     ^
->> drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c:165:6: error: expected ')'
-   drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c:65:2: note: expanded from macro 'ads_blob_read'
-           iosys_map_rd_field(&(guc_)->ads_map, 0, struct __guc_ads_blob, field_)
-           ^
-   include/linux/iosys-map.h:452:2: note: expanded from macro 'iosys_map_rd_field'
-           iosys_map_rd(map__, struct_offset__ + offsetof(struct_type__, field__), \
-           ^
-   include/linux/iosys-map.h:366:3: note: expanded from macro 'iosys_map_rd'
-                   __iosys_map_rd_io(val, (map__)->vaddr_iomem + offset__, type__);\
-                   ^
-   include/linux/iosys-map.h:347:34: note: expanded from macro '__iosys_map_rd_io'
-           __iosys_map_rd_io_u64_case(val__, vaddr_iomem__)                \
-                                           ^
-   drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c:165:6: note: to match this '('
-   drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c:65:2: note: expanded from macro 'ads_blob_read'
-           iosys_map_rd_field(&(guc_)->ads_map, 0, struct __guc_ads_blob, field_)
-           ^
-   include/linux/iosys-map.h:452:2: note: expanded from macro 'iosys_map_rd_field'
-           iosys_map_rd(map__, struct_offset__ + offsetof(struct_type__, field__), \
-           ^
-   include/linux/iosys-map.h:366:3: note: expanded from macro 'iosys_map_rd'
-                   __iosys_map_rd_io(val, (map__)->vaddr_iomem + offset__, type__);\
-                   ^
-   include/linux/iosys-map.h:347:28: note: expanded from macro '__iosys_map_rd_io'
-           __iosys_map_rd_io_u64_case(val__, vaddr_iomem__)                \
-                                     ^
-   drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c:167:6: error: unknown type name '__iosys_map_rd_io_u64_case'
-                      ads_blob_read(guc, policies.max_num_work_items));
-                      ^
-   drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c:65:2: note: expanded from macro 'ads_blob_read'
-           iosys_map_rd_field(&(guc_)->ads_map, 0, struct __guc_ads_blob, field_)
-           ^
-   include/linux/iosys-map.h:452:2: note: expanded from macro 'iosys_map_rd_field'
-           iosys_map_rd(map__, struct_offset__ + offsetof(struct_type__, field__), \
-           ^
-   include/linux/iosys-map.h:366:3: note: expanded from macro 'iosys_map_rd'
-                   __iosys_map_rd_io(val, (map__)->vaddr_iomem + offset__, type__);\
-                   ^
-   include/linux/iosys-map.h:347:2: note: expanded from macro '__iosys_map_rd_io'
-           __iosys_map_rd_io_u64_case(val__, vaddr_iomem__)                \
-           ^
-   drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c:167:6: error: type-id cannot have a name
-   drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c:65:2: note: expanded from macro 'ads_blob_read'
-           iosys_map_rd_field(&(guc_)->ads_map, 0, struct __guc_ads_blob, field_)
-           ^
-   include/linux/iosys-map.h:452:2: note: expanded from macro 'iosys_map_rd_field'
-           iosys_map_rd(map__, struct_offset__ + offsetof(struct_type__, field__), \
-           ^
-   include/linux/iosys-map.h:366:21: note: expanded from macro 'iosys_map_rd'
-                   __iosys_map_rd_io(val, (map__)->vaddr_iomem + offset__, type__);\
-                                     ^
-   drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c:167:6: error: expected ')'
-   drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c:65:2: note: expanded from macro 'ads_blob_read'
-           iosys_map_rd_field(&(guc_)->ads_map, 0, struct __guc_ads_blob, field_)
-           ^
-   include/linux/iosys-map.h:452:2: note: expanded from macro 'iosys_map_rd_field'
-           iosys_map_rd(map__, struct_offset__ + offsetof(struct_type__, field__), \
-           ^
-   include/linux/iosys-map.h:366:3: note: expanded from macro 'iosys_map_rd'
-                   __iosys_map_rd_io(val, (map__)->vaddr_iomem + offset__, type__);\
-                   ^
-   include/linux/iosys-map.h:347:34: note: expanded from macro '__iosys_map_rd_io'
-           __iosys_map_rd_io_u64_case(val__, vaddr_iomem__)                \
-                                           ^
-   drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c:167:6: note: to match this '('
-   drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c:65:2: note: expanded from macro 'ads_blob_read'
-           iosys_map_rd_field(&(guc_)->ads_map, 0, struct __guc_ads_blob, field_)
-           ^
-   include/linux/iosys-map.h:452:2: note: expanded from macro 'iosys_map_rd_field'
-           iosys_map_rd(map__, struct_offset__ + offsetof(struct_type__, field__), \
-           ^
-   include/linux/iosys-map.h:366:3: note: expanded from macro 'iosys_map_rd'
-                   __iosys_map_rd_io(val, (map__)->vaddr_iomem + offset__, type__);\
-                   ^
-   include/linux/iosys-map.h:347:28: note: expanded from macro '__iosys_map_rd_io'
-           __iosys_map_rd_io_u64_case(val__, vaddr_iomem__)                \
-                                     ^
-   drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c:169:6: error: unknown type name '__iosys_map_rd_io_u64_case'
-                      ads_blob_read(guc, policies.global_flags));
-                      ^
-   drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c:65:2: note: expanded from macro 'ads_blob_read'
-           iosys_map_rd_field(&(guc_)->ads_map, 0, struct __guc_ads_blob, field_)
-           ^
-   include/linux/iosys-map.h:452:2: note: expanded from macro 'iosys_map_rd_field'
-           iosys_map_rd(map__, struct_offset__ + offsetof(struct_type__, field__), \
-           ^
-   include/linux/iosys-map.h:366:3: note: expanded from macro 'iosys_map_rd'
-                   __iosys_map_rd_io(val, (map__)->vaddr_iomem + offset__, type__);\
-                   ^
-   include/linux/iosys-map.h:347:2: note: expanded from macro '__iosys_map_rd_io'
-           __iosys_map_rd_io_u64_case(val__, vaddr_iomem__)                \
-           ^
-   drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c:169:6: error: type-id cannot have a name
-   drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c:65:2: note: expanded from macro 'ads_blob_read'
-           iosys_map_rd_field(&(guc_)->ads_map, 0, struct __guc_ads_blob, field_)
-           ^
-   include/linux/iosys-map.h:452:2: note: expanded from macro 'iosys_map_rd_field'
-           iosys_map_rd(map__, struct_offset__ + offsetof(struct_type__, field__), \
-           ^
-   include/linux/iosys-map.h:366:21: note: expanded from macro 'iosys_map_rd'
-                   __iosys_map_rd_io(val, (map__)->vaddr_iomem + offset__, type__);\
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104943v1/index.html
+
+Participating hosts (45 -> 42)
+------------------------------
+
+  Additional (1): bat-atsm-1 
+  Missing    (4): bat-adlm-1 fi-icl-u2 fi-bdw-samus bat-dg1-5 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_104943v1:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@fbdev@read:
+    - {bat-atsm-1}:       NOTRUN -> [SKIP][1] +4 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104943v1/bat-atsm-1/igt@fbdev@read.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_104943v1 that come from known issues:
+
+### CI changes ###
+
+#### Possible fixes ####
+
+  * boot:
+    - fi-skl-6700k2:      [FAIL][2] ([i915#5032]) -> [PASS][3]
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11749/fi-skl-6700k2/boot.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104943v1/fi-skl-6700k2/boot.html
+
+  
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-skl-6700k2:      NOTRUN -> [SKIP][4] ([fdo#109271] / [i915#2190])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104943v1/fi-skl-6700k2/igt@gem_huc_copy@huc-copy.html
+
+  * igt@gem_lmem_swapping@parallel-random-engines:
+    - fi-skl-6700k2:      NOTRUN -> [SKIP][5] ([fdo#109271] / [i915#4613]) +3 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104943v1/fi-skl-6700k2/igt@gem_lmem_swapping@parallel-random-engines.html
+
+  * igt@i915_selftest@live@gem:
+    - fi-pnv-d510:        NOTRUN -> [DMESG-FAIL][6] ([i915#4528])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104943v1/fi-pnv-d510/igt@i915_selftest@live@gem.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-hsw-4770:        [PASS][7] -> [INCOMPLETE][8] ([i915#3303] / [i915#4785])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11749/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104943v1/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+    - fi-snb-2600:        [PASS][9] -> [INCOMPLETE][10] ([i915#3921])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11749/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104943v1/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-hsw-g3258:       NOTRUN -> [SKIP][11] ([fdo#109271] / [fdo#111827])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104943v1/fi-hsw-g3258/igt@kms_chamelium@common-hpd-after-suspend.html
+    - fi-blb-e6850:       NOTRUN -> [SKIP][12] ([fdo#109271])
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104943v1/fi-blb-e6850/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-skl-6700k2:      NOTRUN -> [SKIP][13] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104943v1/fi-skl-6700k2/igt@kms_chamelium@dp-crc-fast.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
+    - fi-skl-6700k2:      NOTRUN -> [SKIP][14] ([fdo#109271] / [i915#533])
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104943v1/fi-skl-6700k2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
+
+  * igt@prime_vgem@basic-userptr:
+    - fi-skl-6700k2:      NOTRUN -> [SKIP][15] ([fdo#109271]) +11 similar issues
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104943v1/fi-skl-6700k2/igt@prime_vgem@basic-userptr.html
+
+  * igt@runner@aborted:
+    - fi-hsw-4770:        NOTRUN -> [FAIL][16] ([fdo#109271] / [i915#4312] / [i915#5594])
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104943v1/fi-hsw-4770/igt@runner@aborted.html
+    - fi-glk-dsi:         NOTRUN -> [FAIL][17] ([i915#5917])
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104943v1/fi-glk-dsi/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@coherency:
+    - {bat-dg2-9}:        [DMESG-WARN][18] ([i915#5763]) -> [PASS][19] +1 similar issue
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11749/bat-dg2-9/igt@i915_selftest@live@coherency.html
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104943v1/bat-dg2-9/igt@i915_selftest@live@coherency.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-hsw-g3258:       [INCOMPLETE][20] ([i915#4785]) -> [PASS][21]
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11749/fi-hsw-g3258/igt@i915_selftest@live@hangcheck.html
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104943v1/fi-hsw-g3258/igt@i915_selftest@live@hangcheck.html
+    - bat-dg1-6:          [DMESG-FAIL][22] ([i915#4494] / [i915#4957]) -> [PASS][23]
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11749/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104943v1/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
+
+  * igt@i915_selftest@live@requests:
+    - fi-pnv-d510:        [DMESG-FAIL][24] ([i915#4528]) -> [PASS][25]
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11749/fi-pnv-d510/igt@i915_selftest@live@requests.html
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104943v1/fi-pnv-d510/igt@i915_selftest@live@requests.html
+    - fi-blb-e6850:       [DMESG-FAIL][26] ([i915#4528]) -> [PASS][27]
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11749/fi-blb-e6850/igt@i915_selftest@live@requests.html
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104943v1/fi-blb-e6850/igt@i915_selftest@live@requests.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109295]: https://bugs.freedesktop.org/show_bug.cgi?id=109295
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#1836]: https://gitlab.freedesktop.org/drm/intel/issues/1836
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
+  [i915#3595]: https://gitlab.freedesktop.org/drm/intel/issues/3595
+  [i915#3690]: https://gitlab.freedesktop.org/drm/intel/issues/3690
+  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
+  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
+  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
+  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
+  [i915#4528]: https://gitlab.freedesktop.org/drm/intel/issues/4528
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
+  [i915#4957]: https://gitlab.freedesktop.org/drm/intel/issues/4957
+  [i915#5032]: https://gitlab.freedesktop.org/drm/intel/issues/5032
+  [i915#5122]: https://gitlab.freedesktop.org/drm/intel/issues/5122
+  [i915#5270]: https://gitlab.freedesktop.org/drm/intel/issues/5270
+  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
+  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
+  [i915#5594]: https://gitlab.freedesktop.org/drm/intel/issues/5594
+  [i915#5763]: https://gitlab.freedesktop.org/drm/intel/issues/5763
+  [i915#5885]: https://gitlab.freedesktop.org/drm/intel/issues/5885
+  [i915#5903]: https://gitlab.freedesktop.org/drm/intel/issues/5903
+  [i915#5917]: https://gitlab.freedesktop.org/drm/intel/issues/5917
+  [i915#6077]: https://gitlab.freedesktop.org/drm/intel/issues/6077
+  [i915#6078]: https://gitlab.freedesktop.org/drm/intel/issues/6078
+  [i915#6092]: https://gitlab.freedesktop.org/drm/intel/issues/6092
+  [i915#6093]: https://gitlab.freedesktop.org/drm/intel/issues/6093
+  [i915#6094]: https://gitlab.freedesktop.org/drm/intel/issues/6094
+  [i915#6099]: https://gitlab.freedesktop.org/drm/intel/issues/6099
+  [i915#6138]: https://gitlab.freedesktop.org/drm/intel/issues/6138
+  [i915#6166]: https://gitlab.freedesktop.org/drm/intel/issues/6166
+  [i915#6195]: https://gitlab.freedesktop.org/drm/intel/issues/6195
 
 
-vim +/__iosys_map_rd_io_u64_case +1154 drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+Build changes
+-------------
 
-77cdd054dd2ced Umesh Nerlige Ramappa 2021-10-26  1132  
-4801b99588a2e0 Lucas De Marchi       2022-02-16  1133  #define record_read(map_, field_) \
-4801b99588a2e0 Lucas De Marchi       2022-02-16  1134  	iosys_map_rd_field(map_, 0, struct guc_engine_usage_record, field_)
-4801b99588a2e0 Lucas De Marchi       2022-02-16  1135  
-512712a824de9b Umesh Nerlige Ramappa 2022-01-24  1136  /*
-512712a824de9b Umesh Nerlige Ramappa 2022-01-24  1137   * GuC updates shared memory and KMD reads it. Since this is not synchronized,
-512712a824de9b Umesh Nerlige Ramappa 2022-01-24  1138   * we run into a race where the value read is inconsistent. Sometimes the
-512712a824de9b Umesh Nerlige Ramappa 2022-01-24  1139   * inconsistency is in reading the upper MSB bytes of the last_in value when
-512712a824de9b Umesh Nerlige Ramappa 2022-01-24  1140   * this race occurs. 2 types of cases are seen - upper 8 bits are zero and upper
-512712a824de9b Umesh Nerlige Ramappa 2022-01-24  1141   * 24 bits are zero. Since these are non-zero values, it is non-trivial to
-512712a824de9b Umesh Nerlige Ramappa 2022-01-24  1142   * determine validity of these values. Instead we read the values multiple times
-512712a824de9b Umesh Nerlige Ramappa 2022-01-24  1143   * until they are consistent. In test runs, 3 attempts results in consistent
-512712a824de9b Umesh Nerlige Ramappa 2022-01-24  1144   * values. The upper bound is set to 6 attempts and may need to be tuned as per
-512712a824de9b Umesh Nerlige Ramappa 2022-01-24  1145   * any new occurences.
-512712a824de9b Umesh Nerlige Ramappa 2022-01-24  1146   */
-512712a824de9b Umesh Nerlige Ramappa 2022-01-24  1147  static void __get_engine_usage_record(struct intel_engine_cs *engine,
-512712a824de9b Umesh Nerlige Ramappa 2022-01-24  1148  				      u32 *last_in, u32 *id, u32 *total)
-77cdd054dd2ced Umesh Nerlige Ramappa 2021-10-26  1149  {
-4801b99588a2e0 Lucas De Marchi       2022-02-16  1150  	struct iosys_map rec_map = intel_guc_engine_usage_record_map(engine);
-512712a824de9b Umesh Nerlige Ramappa 2022-01-24  1151  	int i = 0;
-512712a824de9b Umesh Nerlige Ramappa 2022-01-24  1152  
-512712a824de9b Umesh Nerlige Ramappa 2022-01-24  1153  	do {
-4801b99588a2e0 Lucas De Marchi       2022-02-16 @1154  		*last_in = record_read(&rec_map, last_switch_in_stamp);
-4801b99588a2e0 Lucas De Marchi       2022-02-16  1155  		*id = record_read(&rec_map, current_context_index);
-4801b99588a2e0 Lucas De Marchi       2022-02-16  1156  		*total = record_read(&rec_map, total_runtime);
-512712a824de9b Umesh Nerlige Ramappa 2022-01-24  1157  
-4801b99588a2e0 Lucas De Marchi       2022-02-16  1158  		if (record_read(&rec_map, last_switch_in_stamp) == *last_in &&
-4801b99588a2e0 Lucas De Marchi       2022-02-16  1159  		    record_read(&rec_map, current_context_index) == *id &&
-4801b99588a2e0 Lucas De Marchi       2022-02-16  1160  		    record_read(&rec_map, total_runtime) == *total)
-512712a824de9b Umesh Nerlige Ramappa 2022-01-24  1161  			break;
-512712a824de9b Umesh Nerlige Ramappa 2022-01-24  1162  	} while (++i < 6);
-512712a824de9b Umesh Nerlige Ramappa 2022-01-24  1163  }
-512712a824de9b Umesh Nerlige Ramappa 2022-01-24  1164  
+  * Linux: CI_DRM_11749 -> Patchwork_104943v1
 
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+  CI-20190529: 20190529
+  CI_DRM_11749: cff8864e196ada5f7a1d0653f778fe352ded6885 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6518: 0189ca288f7188e60f5eda356b190040bf8ec704 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_104943v1: cff8864e196ada5f7a1d0653f778fe352ded6885 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+cf3833d48632 drm/i915/bios: calculate panel type as per child device index in VBT
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104943v1/index.html
+
+--===============0777213150086672821==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/bios: calculate panel type as per child device index in VBT</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/104943/">https://patchwork.freedesktop.org/series/104943/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104943v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104943v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11749 -&gt; Patchwork_104943v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104943v1/index.html</p>
+<h2>Participating hosts (45 -&gt; 42)</h2>
+<p>Additional (1): bat-atsm-1 <br />
+  Missing    (4): bat-adlm-1 fi-icl-u2 fi-bdw-samus bat-dg1-5 </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_104943v1:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@fbdev@read:<ul>
+<li>{bat-atsm-1}:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104943v1/bat-atsm-1/igt@fbdev@read.html">SKIP</a> +4 similar issues</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_104943v1 that come from known issues:</p>
+<h3>CI changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>boot:<ul>
+<li>fi-skl-6700k2:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11749/fi-skl-6700k2/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5032">i915#5032</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104943v1/fi-skl-6700k2/boot.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-skl-6700k2:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104943v1/fi-skl-6700k2/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
+<ul>
+<li>fi-skl-6700k2:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104943v1/fi-skl-6700k2/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gem:</p>
+<ul>
+<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104943v1/fi-pnv-d510/igt@i915_selftest@live@gem.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>
+<p>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11749/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104943v1/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>)</p>
+</li>
+<li>
+<p>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11749/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104943v1/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
+<ul>
+<li>
+<p>fi-hsw-g3258:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104943v1/fi-hsw-g3258/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</p>
+</li>
+<li>
+<p>fi-blb-e6850:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104943v1/fi-blb-e6850/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>fi-skl-6700k2:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104943v1/fi-skl-6700k2/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
+<ul>
+<li>fi-skl-6700k2:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104943v1/fi-skl-6700k2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-userptr:</p>
+<ul>
+<li>fi-skl-6700k2:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104943v1/fi-skl-6700k2/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +11 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>
+<p>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104943v1/fi-hsw-4770/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5594">i915#5594</a>)</p>
+</li>
+<li>
+<p>fi-glk-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104943v1/fi-glk-dsi/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5917">i915#5917</a>)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@coherency:</p>
+<ul>
+<li>{bat-dg2-9}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11749/bat-dg2-9/igt@i915_selftest@live@coherency.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5763">i915#5763</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104943v1/bat-dg2-9/igt@i915_selftest@live@coherency.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>
+<p>fi-hsw-g3258:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11749/fi-hsw-g3258/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104943v1/fi-hsw-g3258/igt@i915_selftest@live@hangcheck.html">PASS</a></p>
+</li>
+<li>
+<p>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11749/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104943v1/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">PASS</a></p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@requests:</p>
+<ul>
+<li>
+<p>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11749/fi-pnv-d510/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104943v1/fi-pnv-d510/igt@i915_selftest@live@requests.html">PASS</a></p>
+</li>
+<li>
+<p>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11749/fi-blb-e6850/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104943v1/fi-blb-e6850/igt@i915_selftest@live@requests.html">PASS</a></p>
+</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11749 -&gt; Patchwork_104943v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11749: cff8864e196ada5f7a1d0653f778fe352ded6885 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6518: 0189ca288f7188e60f5eda356b190040bf8ec704 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_104943v1: cff8864e196ada5f7a1d0653f778fe352ded6885 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>cf3833d48632 drm/i915/bios: calculate panel type as per child device index in VBT</p>
+
+</body>
+</html>
+
+--===============0777213150086672821==--
