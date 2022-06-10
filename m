@@ -1,44 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0212B545944
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jun 2022 02:44:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0B38545968
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jun 2022 03:03:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99B6410E812;
-	Fri, 10 Jun 2022 00:44:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B34AB89C6A;
+	Fri, 10 Jun 2022 01:03:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from gandalf.ozlabs.org (mail.ozlabs.org
- [IPv6:2404:9400:2221:ea00::3])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F130B10F75E
- for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jun 2022 00:44:15 +0000 (UTC)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4LK2K13shsz4xZ0;
- Fri, 10 Jun 2022 10:44:05 +1000 (AEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
- s=201702; t=1654821847;
- bh=z5V4Kzg505bmetiWUu8deQBFvo/TnO9WAFuswm4qLfE=;
- h=Date:From:To:Cc:Subject:From;
- b=GAT56PA56PKZFF/+5hXfVt7MwON0elT30oY3ENoKyFkX4xuv5l1l7NEKKDLNW16wi
- VSjtFWevJ47/SsbFQ7AO6zMdWnGGprmljgxDUYhbpE2XiGMz/UMPS0Qw4VwlcUJK7c
- oqAqJ7FSrpZqfIr7ae0dLQsV+9hnKgmGeRDEZXwfCzmrZaHvmCaAnBer0RUxKIVO6/
- kQcczSdCnUF/Q45sN/BUl4JCr61I9cOuxklu9HvqhxcTaRtZwvzZuS7PiWgU3BJpO/
- QDdGgI3D+zu43ItuAvpzY/wDs7InvINHnoaU0RzqkZpY+woTlTsbdrijmbsVnk7JXh
- FwaJDKwUz2bhg==
-Date: Fri, 10 Jun 2022 10:44:03 +1000
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
- <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>
-Message-ID: <20220610104403.02453bdb@canb.auug.org.au>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id AD9E4891FD;
+ Fri, 10 Jun 2022 01:03:30 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 99CE9A66C8;
+ Fri, 10 Jun 2022 01:03:30 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_//n1q_nVPZI353vHmpReO.BO";
- protocol="application/pgp-signature"; micalg=pgp-sha256
-Subject: [Intel-gfx] linux-next: manual merge of the drm-misc tree with
- Linus' tree
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nerlige Ramappa, Umesh" <umesh.nerlige.ramappa@intel.com>
+Date: Fri, 10 Jun 2022 01:03:30 -0000
+Message-ID: <165482301059.16748.3961372592445967277@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220610003252.945322-1-umesh.nerlige.ramappa@intel.com>
+In-Reply-To: <20220610003252.945322-1-umesh.nerlige.ramappa@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/i915/reset=3A_Add_additional_steps_for_Wa=5F22011802037_for?=
+ =?utf-8?q?_execlist_backend_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,81 +41,21 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?B?SsOpcsO0bWU=?= Pouiller <jerome.pouiller@silabs.com>,
- Jason Ekstrand <jason.ekstrand@collabora.com>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Jason Ekstrand <jason.ekstrand@intel.com>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- Simon Ser <contact@emersion.fr>,
- Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Sig_//n1q_nVPZI353vHmpReO.BO
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+== Series Details ==
 
-Hi all,
+Series: drm/i915/reset: Add additional steps for Wa_22011802037 for execlist backend (rev2)
+URL   : https://patchwork.freedesktop.org/series/103837/
+State : warning
 
-Today's linux-next merge of the drm-misc tree got a conflict in:
+== Summary ==
 
-  include/uapi/linux/dma-buf.h
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
-between commit:
 
-  7c3e9fcad9c7 ("dma-buf: fix use of DMA_BUF_SET_NAME_{A,B} in userspace")
-
-from Linus' tree and commits:
-
-  20e10881a043 ("dma-buf: Add an API for exporting sync files (v14)")
-  594740497e99 ("dma-buf: Add an API for importing sync files (v10)")
-
-from the drm-misc tree.
-
-I fixed it up (see below) and can carry the fix as necessary. This
-is now fixed as far as linux-next is concerned, but any non trivial
-conflicts should be mentioned to your upstream maintainer when your tree
-is submitted for merging.  You may also want to consider cooperating
-with the maintainer of the conflicting tree to minimise any particularly
-complex conflicts.
-
---=20
-Cheers,
-Stephen Rothwell
-
-diff --cc include/uapi/linux/dma-buf.h
-index b1523cb8ab30,30fb8834aa3c..000000000000
---- a/include/uapi/linux/dma-buf.h
-+++ b/include/uapi/linux/dma-buf.h
-@@@ -92,7 -174,9 +174,9 @@@ struct dma_buf_import_sync_file=20
-   * between them in actual uapi, they're just different numbers.
-   */
-  #define DMA_BUF_SET_NAME	_IOW(DMA_BUF_BASE, 1, const char *)
- -#define DMA_BUF_SET_NAME_A	_IOW(DMA_BUF_BASE, 1, u32)
- -#define DMA_BUF_SET_NAME_B	_IOW(DMA_BUF_BASE, 1, u64)
- +#define DMA_BUF_SET_NAME_A	_IOW(DMA_BUF_BASE, 1, __u32)
- +#define DMA_BUF_SET_NAME_B	_IOW(DMA_BUF_BASE, 1, __u64)
-+ #define DMA_BUF_IOCTL_EXPORT_SYNC_FILE	_IOWR(DMA_BUF_BASE, 2, struct dma_=
-buf_export_sync_file)
-+ #define DMA_BUF_IOCTL_IMPORT_SYNC_FILE	_IOW(DMA_BUF_BASE, 3, struct dma_b=
-uf_import_sync_file)
- =20
-  #endif
-
---Sig_//n1q_nVPZI353vHmpReO.BO
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmKik9MACgkQAVBC80lX
-0Gz0UQf+If52KGnDNPV8aqFJ40yP0mwNtBGMkc6Nh2Qyi2ag1uUk/NE5ncbOwlo1
-bbV2b26RGai+ioUJwA3t0AXAfO+M/uSbeKmrBoAh5sLpavykLtVTi5zGltqNZ1Fi
-AqxE9tkOqJNxTCzpqY/VUcSNAnKx/L3b1orKI3YkqaPawWcrB5JSw6zkPXpM0pHl
-sMp77SSVQTxCpUT810jJ0AV3aaSVGnmol0GECQpB2qp4B6n6xaIwDu0o3k10oBlT
-t49weWXmCL4F0DDSsxwfPw6H8Xe+5DmVT+cNpXHkAOrwDfAgPutQ1nsnFMoCGdV9
-iKZ9B1PPTsyhQwzROCjeR8QCc5g0ag==
-=T98u
------END PGP SIGNATURE-----
-
---Sig_//n1q_nVPZI353vHmpReO.BO--
