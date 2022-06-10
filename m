@@ -2,33 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CEE2546B9F
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jun 2022 19:24:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 70B67546BB4
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jun 2022 19:35:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3DE4810E249;
-	Fri, 10 Jun 2022 17:24:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A974710E2F7;
+	Fri, 10 Jun 2022 17:35:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1B9F810E076;
- Fri, 10 Jun 2022 17:24:34 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 10B40AA0EB;
- Fri, 10 Jun 2022 17:24:34 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2527342211971342945=="
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D98E010E275;
+ Fri, 10 Jun 2022 17:35:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1654882507; x=1686418507;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=d43e5TC+bc7iNjWBFu/zkReW9HV7lSnhJrhEHqSgkKk=;
+ b=VkpfocaGtvpF2HDivyDr1BLWUoa3vdEEYF8YuiSq4zcTapNn4WLV/jmn
+ 4SAf3oItpCb4xVTVRCFu12OiCkIwwtwxFSMBDGF3Ci1DtVDUkY65FBIEN
+ V4Le2QvlrTqUi0SwC13CIhqRggoesV78A2oIbeAl2E/CzAv2uY4FSjhUe
+ snY3rzV8XNSrHFSfa7OSUoMr4wTi12qm3u8qvA2yI1gnNHcF3SEkIvXty
+ UPFEy5GRCHSvPJZUrZIHo1/Gq26tWt0xhHErSGe6TwH1D6v/1zI+oNwka
+ LDOnAZbJ631yiLh1w7jrUp58hkyaxENfCru0qmp/o1BwsXkbhJXho8tuo w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10374"; a="341751743"
+X-IronPort-AV: E=Sophos;i="5.91,291,1647327600"; d="scan'208";a="341751743"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jun 2022 10:35:07 -0700
+X-IronPort-AV: E=Sophos;i="5.91,291,1647327600"; d="scan'208";a="671947302"
+Received: from lmgloor-mobl2.amr.corp.intel.com (HELO ldmartin-desk2)
+ ([10.251.11.231])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jun 2022 10:35:06 -0700
+Date: Fri, 10 Jun 2022 10:35:06 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>
+Message-ID: <20220610173506.rbyajhgebmp6qdwz@ldmartin-desk2>
+X-Patchwork-Hint: comment
+References: <20220609232020.2292649-1-lucas.demarchi@intel.com>
+ <4faac373-1a30-e1a0-0c33-e10e8fc6184c@amd.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Juha-Pekka Heikkila" <juhapekka.heikkila@gmail.com>
-Date: Fri, 10 Jun 2022 17:24:34 -0000
-Message-ID: <165488187403.16748.17297555331056680999@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220610121205.29645-1-juhapekka.heikkila@gmail.com>
-In-Reply-To: <20220610121205.29645-1-juhapekka.heikkila@gmail.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/3=5D_drm/i915/display=3A_Add_smem_fallba?=
- =?utf-8?q?ck_allocation_for_dpt?=
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <4faac373-1a30-e1a0-0c33-e10e8fc6184c@amd.com>
+Subject: Re: [Intel-gfx] [PATCH] iosys-map: Add word-sized reads
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,246 +59,136 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: daniel.vetter@ffwll.ch, intel-gfx@lists.freedesktop.org,
+ tzimmermann@suse.de, dri-devel@lists.freedesktop.org,
+ Chris Wilson <chris@chris-wilson.co.uk>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2527342211971342945==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, Jun 10, 2022 at 09:20:18AM +0200, Christian König wrote:
+>Am 10.06.22 um 01:20 schrieb Lucas De Marchi:
+>>Instead of always falling back to memcpy_fromio() for any size, prefer
+>>using read{b,w,l}(). When reading struct members it's common to read
+>>individual integer variables individually. Going through memcpy_fromio()
+>>for each of them poses a high penalty.
+>>
+>>Employ a similar trick as __seqprop() by using _Generic() to generate
+>>only the specific call based on a type-compatible variable.
+>>
+>>For a pariticular i915 workload producing GPU context switches,
+>>__get_engine_usage_record() is particularly hot since the engine usage
+>>is read from device local memory with dgfx, possibly multiple times
+>>since it's racy. Test execution time for this test shows a ~12.5%
+>>improvement with DG2:
+>>
+>>Before:
+>>	nrepeats = 1000; min = 7.63243e+06; max = 1.01817e+07;
+>>	median = 9.52548e+06; var = 526149;
+>>After:
+>>	nrepeats = 1000; min = 7.03402e+06; max = 8.8832e+06;
+>>	median = 8.33955e+06; var = 333113;
+>>
+>>Other things attempted that didn't prove very useful:
+>>1) Change the _Generic() on x86 to just dereference the memory address
+>>2) Change __get_engine_usage_record() to do just 1 read per loop,
+>>    comparing with the previous value read
+>>3) Change __get_engine_usage_record() to access the fields directly as it
+>>    was before the conversion to iosys-map
+>>
+>>(3) did gave a small improvement (~3%), but doesn't seem to scale well
+>>to other similar cases in the driver.
+>>
+>>Additional test by Chris Wilson using gem_create from igt with some
+>>changes to track object creation time. This happens to accidentaly
+>>stress this code path:
+>>
+>>	Pre iosys_map conversion of engine busyness:
+>>	lmem0: Creating    262144 4KiB objects took 59274.2ms
+>>
+>>	Unpatched:
+>>	lmem0: Creating    262144 4KiB objects took 108830.2ms
+>>
+>>	With readl (this patch):
+>>	lmem0: Creating    262144 4KiB objects took 61348.6ms
+>>
+>>	s/readl/READ_ONCE/
+>>	lmem0: Creating    262144 4KiB objects took 61333.2ms
+>>
+>>So we do take a little bit more time than before the conversion, but
+>>that is due to other factors: bringing the READ_ONCE back would be as
+>>good as just doing this conversion.
+>>
+>>Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>>---
+>>
+>>If this is acceptable we should probably add the write counterpart, too.
+>>Sending here only the read for now since this fixes the issue we are
+>>seeing and to gather feedback.
+>
+>As far as I can see looks sane to me, but the kernel test robot tears 
+>the patch apart.
+>
+>Probably just a typo somewhere in the 32bit handling.
 
-== Series Details ==
-
-Series: series starting with [1/3] drm/i915/display: Add smem fallback allocation for dpt
-URL   : https://patchwork.freedesktop.org/series/104983/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_11753 -> Patchwork_104983v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104983v1/index.html
-
-Participating hosts (42 -> 41)
-------------------------------
-
-  Missing    (1): fi-rkl-11600 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_104983v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-dg1-5:          [PASS][1] -> [DMESG-FAIL][2] ([i915#4494] / [i915#4957])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11753/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104983v1/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
-    - bat-dg1-6:          [PASS][3] -> [DMESG-FAIL][4] ([i915#4494] / [i915#4957])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11753/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104983v1/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
-
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-snb-2600:        NOTRUN -> [SKIP][5] ([fdo#109271] / [fdo#111827])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104983v1/fi-snb-2600/igt@kms_chamelium@common-hpd-after-suspend.html
-
-  * igt@kms_flip@basic-flip-vs-modeset@b-edp1:
-    - bat-adlp-4:         [PASS][6] -> [DMESG-WARN][7] ([i915#3576])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11753/bat-adlp-4/igt@kms_flip@basic-flip-vs-modeset@b-edp1.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104983v1/bat-adlp-4/igt@kms_flip@basic-flip-vs-modeset@b-edp1.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s0@smem:
-    - {fi-ehl-2}:         [DMESG-WARN][8] ([i915#5122]) -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11753/fi-ehl-2/igt@gem_exec_suspend@basic-s0@smem.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104983v1/fi-ehl-2/igt@gem_exec_suspend@basic-s0@smem.html
-
-  * igt@i915_selftest@live@coherency:
-    - {bat-dg2-9}:        [DMESG-WARN][10] ([i915#5763]) -> [PASS][11] +5 similar issues
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11753/bat-dg2-9/igt@i915_selftest@live@coherency.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104983v1/bat-dg2-9/igt@i915_selftest@live@coherency.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-snb-2600:        [INCOMPLETE][12] ([i915#3921]) -> [PASS][13]
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11753/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104983v1/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-
-  * igt@kms_busy@basic@flip:
-    - bat-adlp-4:         [DMESG-WARN][14] ([i915#3576]) -> [PASS][15]
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11753/bat-adlp-4/igt@kms_busy@basic@flip.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104983v1/bat-adlp-4/igt@kms_busy@basic@flip.html
-
-  * igt@kms_flip@basic-flip-vs-modeset@b-edp1:
-    - {bat-adlp-6}:       [DMESG-WARN][16] ([i915#3576]) -> [PASS][17] +1 similar issue
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11753/bat-adlp-6/igt@kms_flip@basic-flip-vs-modeset@b-edp1.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104983v1/bat-adlp-6/igt@kms_flip@basic-flip-vs-modeset@b-edp1.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#3576]: https://gitlab.freedesktop.org/drm/intel/issues/3576
-  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
-  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
-  [i915#4957]: https://gitlab.freedesktop.org/drm/intel/issues/4957
-  [i915#5122]: https://gitlab.freedesktop.org/drm/intel/issues/5122
-  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
-  [i915#5763]: https://gitlab.freedesktop.org/drm/intel/issues/5763
-  [i915#5903]: https://gitlab.freedesktop.org/drm/intel/issues/5903
+oh, yeah... after cleaning it up I renamed s/__iosys_map_u64_case/__iosys_map_rd_io_u64_case/
+to prepare for adding the write case and forgot the other side of the
+ifdef.
 
 
-Build changes
--------------
+>
+>Apart from that looks good to me.
 
-  * Linux: CI_DRM_11753 -> Patchwork_104983v1
+thanks
+Lucas De Marchi
 
-  CI-20190529: 20190529
-  CI_DRM_11753: cb89eb64792fd1a78c5ffc473f7e208b88e62fad @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6518: 0189ca288f7188e60f5eda356b190040bf8ec704 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_104983v1: cb89eb64792fd1a78c5ffc473f7e208b88e62fad @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-bc4c4c04b997 drm/i915: don't leak lmem mapping in vma_evict
-f66c0e810954 drm/i915: Fix i915_vma_pin_iomap()
-b541d913c978 drm/i915/display: Add smem fallback allocation for dpt
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104983v1/index.html
-
---===============2527342211971342945==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/3] drm/i915/display: Add smem fallback allocation for dpt</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/104983/">https://patchwork.freedesktop.org/series/104983/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104983v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104983v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11753 -&gt; Patchwork_104983v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104983v1/index.html</p>
-<h2>Participating hosts (42 -&gt; 41)</h2>
-<p>Missing    (1): fi-rkl-11600 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_104983v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>
-<p>bat-dg1-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11753/bat-dg1-5/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104983v1/bat-dg1-5/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>)</p>
-</li>
-<li>
-<p>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11753/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104983v1/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
-<ul>
-<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104983v1/fi-snb-2600/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-modeset@b-edp1:</p>
-<ul>
-<li>bat-adlp-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11753/bat-adlp-4/igt@kms_flip@basic-flip-vs-modeset@b-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104983v1/bat-adlp-4/igt@kms_flip@basic-flip-vs-modeset@b-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0@smem:</p>
-<ul>
-<li>{fi-ehl-2}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11753/fi-ehl-2/igt@gem_exec_suspend@basic-s0@smem.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5122">i915#5122</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104983v1/fi-ehl-2/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@coherency:</p>
-<ul>
-<li>{bat-dg2-9}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11753/bat-dg2-9/igt@i915_selftest@live@coherency.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5763">i915#5763</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104983v1/bat-dg2-9/igt@i915_selftest@live@coherency.html">PASS</a> +5 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11753/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104983v1/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_busy@basic@flip:</p>
-<ul>
-<li>bat-adlp-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11753/bat-adlp-4/igt@kms_busy@basic@flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104983v1/bat-adlp-4/igt@kms_busy@basic@flip.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-modeset@b-edp1:</p>
-<ul>
-<li>{bat-adlp-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11753/bat-adlp-6/igt@kms_flip@basic-flip-vs-modeset@b-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104983v1/bat-adlp-6/igt@kms_flip@basic-flip-vs-modeset@b-edp1.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11753 -&gt; Patchwork_104983v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11753: cb89eb64792fd1a78c5ffc473f7e208b88e62fad @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6518: 0189ca288f7188e60f5eda356b190040bf8ec704 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_104983v1: cb89eb64792fd1a78c5ffc473f7e208b88e62fad @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>bc4c4c04b997 drm/i915: don't leak lmem mapping in vma_evict<br />
-f66c0e810954 drm/i915: Fix i915_vma_pin_iomap()<br />
-b541d913c978 drm/i915/display: Add smem fallback allocation for dpt</p>
-
-</body>
-</html>
-
---===============2527342211971342945==--
+>
+>Regards,
+>Christian.
+>
+>>
+>>  include/linux/iosys-map.h | 26 ++++++++++++++++++++++----
+>>  1 file changed, 22 insertions(+), 4 deletions(-)
+>>
+>>diff --git a/include/linux/iosys-map.h b/include/linux/iosys-map.h
+>>index e69a002d5aa4..4ae3e459419e 100644
+>>--- a/include/linux/iosys-map.h
+>>+++ b/include/linux/iosys-map.h
+>>@@ -333,6 +333,20 @@ static inline void iosys_map_memset(struct iosys_map *dst, size_t offset,
+>>  		memset(dst->vaddr + offset, value, len);
+>>  }
+>>+#ifdef CONFIG_64BIT
+>>+#define __iosys_map_rd_io_u64_case(val_, vaddr_iomem_)			\
+>>+	u64: val_ = readq(vaddr_iomem_),
+>>+#else
+>>+#define __iosys_map_u64_case(val_, vaddr_iomem_)
+>>+#endif
+>>+
+>>+#define __iosys_map_rd_io(val__, vaddr_iomem__, type__) _Generic(val__,	\
+>>+	u8: val__ = readb(vaddr_iomem__),				\
+>>+	u16: val__ = readw(vaddr_iomem__),				\
+>>+	u32: val__ = readl(vaddr_iomem__),				\
+>>+	__iosys_map_rd_io_u64_case(val__, vaddr_iomem__)		\
+>>+	default: memcpy_fromio(&(val__), vaddr_iomem__, sizeof(val__)))
+>>+
+>>  /**
+>>   * iosys_map_rd - Read a C-type value from the iosys_map
+>>   *
+>>@@ -346,10 +360,14 @@ static inline void iosys_map_memset(struct iosys_map *dst, size_t offset,
+>>   * Returns:
+>>   * The value read from the mapping.
+>>   */
+>>-#define iosys_map_rd(map__, offset__, type__) ({			\
+>>-	type__ val;							\
+>>-	iosys_map_memcpy_from(&val, map__, offset__, sizeof(val));	\
+>>-	val;								\
+>>+#define iosys_map_rd(map__, offset__, type__) ({				\
+>>+	type__ val;								\
+>>+	if ((map__)->is_iomem) {						\
+>>+		__iosys_map_rd_io(val, (map__)->vaddr_iomem + offset__, type__);\
+>>+	} else {								\
+>>+		memcpy(&val, (map__)->vaddr + offset__, sizeof(val));		\
+>>+	}									\
+>>+	val;									\
+>>  })
+>>  /**
+>
