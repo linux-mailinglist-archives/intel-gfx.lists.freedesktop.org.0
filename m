@@ -1,50 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBB80545928
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jun 2022 02:25:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7581354592B
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jun 2022 02:32:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 092AC11B5CA;
-	Fri, 10 Jun 2022 00:25:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 097BA12BE41;
+	Fri, 10 Jun 2022 00:32:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B06412BDA0
- for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jun 2022 00:24:59 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 943EF12BE41
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jun 2022 00:32:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1654820699; x=1686356699;
+ t=1654821173; x=1686357173;
  h=from:to:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=EIZDGeoDoyRJq/125IAryKxsBpqlCJUHOg/ZBSmbY9E=;
- b=D+WmBLNs/EpwXPrCGyLOm5WhcuXC+3LyDzeNfuICYpMfyqOGbG4DzDUD
- ZDk0usmxbCMOh18AesNSwJjw6nX4W8CPfn24+lJp98N0cxdRL0qsxkv5e
- lkm94P3/tl6+icYdXD7HAm3sgVYLEZI6ae1zU4xcXR8oI51PWzJeyLHgF
- GgK2GGoD00TbPS9TABAXhlhqHIqoizxXXsYIpJVNrnRVskHRDB0683Ov5
- kHUxQjIrsnBeiGsNb31GIdOfv9OW8QVhIN8p14fjUUKKBrmnZUJoAUnl0
- mmETFSXbre6IJg8kxHTYZUzXSdHUYu96uJbQXYudglmPuily4CQUMGhNa A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10373"; a="260587890"
-X-IronPort-AV: E=Sophos;i="5.91,288,1647327600"; d="scan'208";a="260587890"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2022 17:24:59 -0700
-X-IronPort-AV: E=Sophos;i="5.91,288,1647327600"; d="scan'208";a="533847100"
+ bh=pRtcBQq2oB82qws6RmdqF/8LfYQbG/5DIM50+rb0D90=;
+ b=M5Pz0Vg/YNWdJj/406XDRnwjzrbWMu2+clVxDQrSDq60AmpvCRz9Yz6d
+ CsnqnO980LSFOY0f/pT0hR6Zxq0SjuIyViF0kOhx+05oGVcoltpzI8gYJ
+ iUCLkOskLOetlzRIH6Qt6fRgoA8aIebcwikyfABP2F3D7L0OXBCXQOqMK
+ V1pwwPm93hDRLgKUilSqyN0koRpWw5GlVmkxjQinaRXIExYmJI3t74fXx
+ P3E/74N3+3xdDWTnxsEes99ltGgLPubC1VMt6/pVULLes/gDHahi8o4GA
+ g6oNgLuMeNSRx65Z2I8DwCjH861ZonDq5l8wYoAB8K/afEysJn+iRcpwO w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10373"; a="274992061"
+X-IronPort-AV: E=Sophos;i="5.91,288,1647327600"; d="scan'208";a="274992061"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jun 2022 17:32:53 -0700
+X-IronPort-AV: E=Sophos;i="5.91,288,1647327600"; d="scan'208";a="616173455"
 Received: from unerlige-desk.jf.intel.com ([10.165.21.210])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2022 17:24:59 -0700
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jun 2022 17:32:52 -0700
 From: "Nerlige Ramappa, Umesh" <umesh.nerlige.ramappa@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu,  9 Jun 2022 17:24:54 -0700
-Message-Id: <20220610002454.945126-1-umesh.nerlige.ramappa@intel.com>
+Date: Thu,  9 Jun 2022 17:32:52 -0700
+Message-Id: <20220610003252.945322-1-umesh.nerlige.ramappa@intel.com>
 X-Mailer: git-send-email 2.35.3
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] For execlists backend,
- current implementation of Wa_22011802037 is to stop the CS before
- doing a reset of the engine. This WA was further extended to wait for any
- pending MI FORCE WAKEUPs before issuing a reset. Add the extended steps in
- the execlist path of reset.
+Subject: [Intel-gfx] [PATCH] drm/i915/reset: Add additional steps for
+ Wa_22011802037 for execlist backend
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,6 +58,11 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+
+For execlists backend, current implementation of Wa_22011802037 is to
+stop the CS before doing a reset of the engine. This WA was further
+extended to wait for any pending MI FORCE WAKEUPs before issuing a
+reset. Add the extended steps in the execlist path of reset.
 
 In addition, extend the WA to gen11.
 
