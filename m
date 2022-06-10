@@ -1,55 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 559705464FE
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jun 2022 13:01:37 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E85BF5465F0
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jun 2022 13:44:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E58910E98B;
-	Fri, 10 Jun 2022 11:01:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 47F3E10E918;
+	Fri, 10 Jun 2022 11:44:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3431B10E960;
- Fri, 10 Jun 2022 11:01:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1654858891; x=1686394891;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=Wp7I7oSp7+iK07qX18AE4oA4B1K6/topAwQFkeCoZK0=;
- b=JRR61M9kNXDqWAdg8Pe6miNZMTn63HFNnRGPLHH3WgVcpz31i8Q4G/Z8
- FhrvrfdErUwBkMMHnaYNYKNtS6sgWxlluQzSbicnUtl2egPEHH5YJjIdU
- ItXk9gIyn3kcL3nwzAjjQnWdPzUcQnAhmzpnUqqHM8ow0RPEe5q81e0jB
- D2RaPdO17weIyDN4d3RV30S4Oaw0IuQ7CFH+Zyd7ZtCKw9cFxs+kNP9gK
- 0yHiDC9Xp3/wS30wHMOvEXneta1ZozDno1Tsc7rx8odetHmmYDUiPrqu6
- YmOY3aLgB6LJu2lTCRjoHfcDQ7RNFSk8JnJsKVTsdA/XFV3IW7pbggqjr Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10373"; a="258030189"
-X-IronPort-AV: E=Sophos;i="5.91,290,1647327600"; d="scan'208";a="258030189"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2022 04:01:30 -0700
-X-IronPort-AV: E=Sophos;i="5.91,290,1647327600"; d="scan'208";a="581026260"
-Received: from gsidhu-mobl.ger.corp.intel.com (HELO [10.213.235.160])
- ([10.213.235.160])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2022 04:01:26 -0700
-Message-ID: <2054192a-b664-03c1-9733-707c71098430@intel.com>
-Date: Fri, 10 Jun 2022 12:01:24 +0100
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 349F910E918;
+ Fri, 10 Jun 2022 11:44:46 +0000 (UTC)
+Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
+ by smtp-out1.suse.de (Postfix) with ESMTP id B60B7220D8;
+ Fri, 10 Jun 2022 11:44:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
+ t=1654861484; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=c2yNehDhwyQqo17iHRnrFd5b2B4xhq7rJYv9z6HMzWs=;
+ b=h+J12/+6dA8PdIqRIwQ/dq8CBxwmkTtmJN+f1WSXzGepjWfdRUp6+83ihl6g6uUh9msQ3L
+ qwEBdbkyLPmTrWlEDIIcEPJJpJ7gw2yT7LTS2tkfBcUYqvZX9r9bfGgNgjmvM1nTYHbhA6
+ iZFt0rZqsig307bTfbxENF96s0p7l0Q=
+Received: from suse.cz (unknown [10.100.201.86])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by relay2.suse.de (Postfix) with ESMTPS id 48F442C141;
+ Fri, 10 Jun 2022 11:44:44 +0000 (UTC)
+Date: Fri, 10 Jun 2022 13:44:43 +0200
+From: Michal Hocko <mhocko@suse.com>
+To: Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>
+Message-ID: <YqMuq/ZrV8loC3jE@dhcp22.suse.cz>
+References: <20220531100007.174649-1-christian.koenig@amd.com>
+ <20220531100007.174649-4-christian.koenig@amd.com>
+ <YqG67sox6L64E6wV@dhcp22.suse.cz>
+ <77b99722-fc13-e5c5-c9be-7d4f3830859c@amd.com>
+ <YqHuH5brYFQUfW8l@dhcp22.suse.cz>
+ <26d3e1c7-d73c-cc95-54ef-58b2c9055f0c@gmail.com>
+ <YqIB0bavUeU8Abwl@dhcp22.suse.cz>
+ <d4a19481-7a9f-19bf-c270-d89baa0970fc@amd.com>
+ <YqIMmK18mb/+s5de@dhcp22.suse.cz>
+ <3f7d3d96-0858-fb6d-07a3-4c18964f888e@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Firefox/91.0 Thunderbird/91.10.0
-Content-Language: en-GB
-To: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- daniel.vetter@intel.com
-References: <20220610070711.32407-1-niranjana.vishwanathapura@intel.com>
- <20220610070711.32407-3-niranjana.vishwanathapura@intel.com>
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20220610070711.32407-3-niranjana.vishwanathapura@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915: Update i915 uapi documentation
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <3f7d3d96-0858-fb6d-07a3-4c18964f888e@gmail.com>
+Subject: Re: [Intel-gfx] [PATCH 03/13] mm: shmem: provide oom badness for
+ shmem files
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,369 +62,97 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: paulo.r.zanoni@intel.com, chris.p.wilson@intel.com,
- thomas.hellstrom@intel.com, christian.koenig@amd.com
+Cc: andrey.grodzovsky@amd.com, linux-mm@kvack.org,
+ nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ hughd@google.com, linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ linux-fsdevel@vger.kernel.org, viro@zeniv.linux.org.uk,
+ linux-tegra@vger.kernel.org, alexander.deucher@amd.com,
+ akpm@linux-foundation.org,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ linux-media@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 10/06/2022 08:07, Niranjana Vishwanathapura wrote:
-> Add some missing i915 upai documentation which the new
-> i915 VM_BIND feature documentation will be refer to.
+On Fri 10-06-22 12:58:53, Christian König wrote:
+> Am 09.06.22 um 17:07 schrieb Michal Hocko:
+> > On Thu 09-06-22 16:29:46, Christian König wrote:
+> > [...]
+> > > Is that a show stopper? How should we address this?
+> > This is a hard problem to deal with and I am not sure this simple
+> > solution is really a good fit. Not only because of the memcg side of
+> > things. I have my doubts that sparse files handling is ok as well.
 > 
-> Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
-
-This one looks to be standalone. If no objections should we go ahead and 
-merge this one?
-
-> ---
->   include/uapi/drm/i915_drm.h | 203 ++++++++++++++++++++++++++++--------
->   1 file changed, 158 insertions(+), 45 deletions(-)
+> Well I didn't claimed that this would be easy, we juts need to start
+> somewhere.
 > 
-> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-> index de49b68b4fc8..9cf3bf47c7f2 100644
-> --- a/include/uapi/drm/i915_drm.h
-> +++ b/include/uapi/drm/i915_drm.h
-> @@ -751,14 +751,27 @@ typedef struct drm_i915_irq_wait {
->   
->   /* Must be kept compact -- no holes and well documented */
->   
-> -typedef struct drm_i915_getparam {
-> +/**
-> + * struct drm_i915_getparam - Driver parameter query structure.
-> + */
-> +struct drm_i915_getparam {
-> +	/** @param: Driver parameter to query. */
->   	__s32 param;
-> -	/*
-> +
-> +	/**
-> +	 * @value: Address of memory where queried value should be put.
-> +	 *
->   	 * WARNING: Using pointers instead of fixed-size u64 means we need to write
->   	 * compat32 code. Don't repeat this mistake.
->   	 */
->   	int __user *value;
-> -} drm_i915_getparam_t;
-> +};
-> +
-> +/**
-> + * typedef drm_i915_getparam_t - Driver parameter query structure.
-> + * See struct drm_i915_getparam.
-> + */
-> +typedef struct drm_i915_getparam drm_i915_getparam_t;
->   
->   /* Ioctl to set kernel params:
->    */
-> @@ -1239,76 +1252,119 @@ struct drm_i915_gem_exec_object2 {
->   	__u64 rsvd2;
->   };
->   
-> +/**
-> + * struct drm_i915_gem_exec_fence - An input or output fence for the execbuf
-> + * ioctl.
-> + *
-> + * The request will wait for input fence to signal before submission.
-> + *
-> + * The returned output fence will be signaled after the completion of the
-> + * request.
-> + */
->   struct drm_i915_gem_exec_fence {
-> -	/**
-> -	 * User's handle for a drm_syncobj to wait on or signal.
-> -	 */
-> +	/** @handle: User's handle for a drm_syncobj to wait on or signal. */
->   	__u32 handle;
->   
-> +	/**
-> +	 * @flags: Supported flags are:
-> +	 *
-> +	 * I915_EXEC_FENCE_WAIT:
-> +	 * Wait for the input fence before request submission.
-> +	 *
-> +	 * I915_EXEC_FENCE_SIGNAL:
-> +	 * Return request completion fence as output
-> +	 */
-> +	__u32 flags;
->   #define I915_EXEC_FENCE_WAIT            (1<<0)
->   #define I915_EXEC_FENCE_SIGNAL          (1<<1)
->   #define __I915_EXEC_FENCE_UNKNOWN_FLAGS (-(I915_EXEC_FENCE_SIGNAL << 1))
-> -	__u32 flags;
->   };
->   
-> -/*
-> - * See drm_i915_gem_execbuffer_ext_timeline_fences.
-> - */
-> -#define DRM_I915_GEM_EXECBUFFER_EXT_TIMELINE_FENCES 0
-> -
-> -/*
-> +/**
-> + * struct drm_i915_gem_execbuffer_ext_timeline_fences - Timeline fences
-> + * for execbuf ioctl.
-> + *
->    * This structure describes an array of drm_syncobj and associated points for
->    * timeline variants of drm_syncobj. It is invalid to append this structure to
->    * the execbuf if I915_EXEC_FENCE_ARRAY is set.
->    */
->   struct drm_i915_gem_execbuffer_ext_timeline_fences {
-> +#define DRM_I915_GEM_EXECBUFFER_EXT_TIMELINE_FENCES 0
-> +	/** @base: Extension link. See struct i915_user_extension. */
->   	struct i915_user_extension base;
->   
->   	/**
-> -	 * Number of element in the handles_ptr & value_ptr arrays.
-> +	 * @fence_count: Number of elements in the @handles_ptr & @value_ptr
-> +	 * arrays.
->   	 */
->   	__u64 fence_count;
->   
->   	/**
-> -	 * Pointer to an array of struct drm_i915_gem_exec_fence of length
-> -	 * fence_count.
-> +	 * @handles_ptr: Pointer to an array of struct drm_i915_gem_exec_fence
-> +	 * of length @fence_count.
->   	 */
->   	__u64 handles_ptr;
->   
->   	/**
-> -	 * Pointer to an array of u64 values of length fence_count. Values
-> -	 * must be 0 for a binary drm_syncobj. A Value of 0 for a timeline
-> -	 * drm_syncobj is invalid as it turns a drm_syncobj into a binary one.
-> +	 * @values_ptr: Pointer to an array of u64 values of length
-> +	 * @fence_count.
-> +	 * Values must be 0 for a binary drm_syncobj. A Value of 0 for a
-> +	 * timeline drm_syncobj is invalid as it turns a drm_syncobj into a
-> +	 * binary one.
->   	 */
->   	__u64 values_ptr;
->   };
->   
-> +/**
-> + * struct drm_i915_gem_execbuffer2 - Structure for DRM_I915_GEM_EXECBUFFER2
-> + * ioctl.
-> + */
->   struct drm_i915_gem_execbuffer2 {
-> -	/**
-> -	 * List of gem_exec_object2 structs
-> -	 */
-> +	/** @buffers_ptr: Pointer to a list of gem_exec_object2 structs */
->   	__u64 buffers_ptr;
-> +
-> +	/** @buffer_count: Number of elements in @buffers_ptr array */
->   	__u32 buffer_count;
->   
-> -	/** Offset in the batchbuffer to start execution from. */
-> +	/**
-> +	 * @batch_start_offset: Offset in the batchbuffer to start execution
-> +	 * from.
-> +	 */
->   	__u32 batch_start_offset;
-> -	/** Bytes used in batchbuffer from batch_start_offset */
-> +
-> +	/**
-> +	 * @batch_len: Length in bytes of the batch buffer, starting from the
-> +	 * @batch_start_offset. If 0, length is assumed to be the batch buffer
-> +	 * object size.
-> +	 */
->   	__u32 batch_len;
-> +
-> +	/** @DR1: deprecated */
->   	__u32 DR1;
-> +
-> +	/** @DR4: deprecated */
->   	__u32 DR4;
-> +
-> +	/** @num_cliprects: See @cliprects_ptr */
->   	__u32 num_cliprects;
-> +
->   	/**
-> -	 * This is a struct drm_clip_rect *cliprects if I915_EXEC_FENCE_ARRAY
-> -	 * & I915_EXEC_USE_EXTENSIONS are not set.
-> +	 * @cliprects_ptr: Kernel clipping was a DRI1 misfeature.
-> +	 *
-> +	 * It is invalid to use this field if I915_EXEC_FENCE_ARRAY or
-> +	 * I915_EXEC_USE_EXTENSIONS flags are not set.
->   	 *
->   	 * If I915_EXEC_FENCE_ARRAY is set, then this is a pointer to an array
-> -	 * of struct drm_i915_gem_exec_fence and num_cliprects is the length
-> -	 * of the array.
-> +	 * of &drm_i915_gem_exec_fence and @num_cliprects is the length of the
-> +	 * array.
->   	 *
->   	 * If I915_EXEC_USE_EXTENSIONS is set, then this is a pointer to a
-> -	 * single struct i915_user_extension and num_cliprects is 0.
-> +	 * single &i915_user_extension and num_cliprects is 0.
->   	 */
->   	__u64 cliprects_ptr;
-> +
-> +	/** @flags: Execbuf flags */
-> +	__u64 flags;
->   #define I915_EXEC_RING_MASK              (0x3f)
->   #define I915_EXEC_DEFAULT                (0<<0)
->   #define I915_EXEC_RENDER                 (1<<0)
-> @@ -1326,10 +1382,6 @@ struct drm_i915_gem_execbuffer2 {
->   #define I915_EXEC_CONSTANTS_REL_GENERAL (0<<6) /* default */
->   #define I915_EXEC_CONSTANTS_ABSOLUTE 	(1<<6)
->   #define I915_EXEC_CONSTANTS_REL_SURFACE (2<<6) /* gen4/5 only */
-> -	__u64 flags;
-> -	__u64 rsvd1; /* now used for context info */
-> -	__u64 rsvd2;
-> -};
->   
->   /** Resets the SO write offset registers for transform feedback on gen7. */
->   #define I915_EXEC_GEN7_SOL_RESET	(1<<8)
-> @@ -1432,9 +1484,23 @@ struct drm_i915_gem_execbuffer2 {
->    * drm_i915_gem_execbuffer_ext enum.
->    */
->   #define I915_EXEC_USE_EXTENSIONS	(1 << 21)
-> -
->   #define __I915_EXEC_UNKNOWN_FLAGS (-(I915_EXEC_USE_EXTENSIONS << 1))
->   
-> +	/** @rsvd1: Context id */
-> +	__u64 rsvd1;
-> +
-> +	/**
-> +	 * @rsvd2: in and out sync_file file descriptors.
-> +	 *
-> +	 * When I915_EXEC_FENCE_IN or I915_EXEC_FENCE_SUBMIT flag is set, the
-> +	 * lower 32 bits of this field will have the in sync_file fd (input).
-> +	 *
-> +	 * When I915_EXEC_FENCE_OUT flag is set, the upper 32 bits of this
-> +	 * field will have the out sync_file fd (output).
-> +	 */
-> +	__u64 rsvd2;
-> +};
-> +
->   #define I915_EXEC_CONTEXT_ID_MASK	(0xffffffff)
->   #define i915_execbuffer2_set_context_id(eb2, context) \
->   	(eb2).rsvd1 = context & I915_EXEC_CONTEXT_ID_MASK
-> @@ -1814,19 +1880,56 @@ struct drm_i915_gem_context_create {
->   	__u32 pad;
->   };
->   
-> +/**
-> + * struct drm_i915_gem_context_create_ext - Structure for creating contexts.
-> + */
->   struct drm_i915_gem_context_create_ext {
-> -	__u32 ctx_id; /* output: id of new context*/
-> +	/** @ctx_id: Id of the created context (output) */
-> +	__u32 ctx_id;
-> +
-> +	/**
-> +	 * @flags: Supported flags are:
-> +	 *
-> +	 * I915_CONTEXT_CREATE_FLAGS_USE_EXTENSIONS:
-> +	 * Extensions may be appended to this structure and driver must check
-> +	 * for those. See @extensions.
-> +	 *
-> +	 * I915_CONTEXT_CREATE_FLAGS_SINGLE_TIMELINE:
-> +	 * Created context will have single timeline.
-> +	 */
->   	__u32 flags;
->   #define I915_CONTEXT_CREATE_FLAGS_USE_EXTENSIONS	(1u << 0)
->   #define I915_CONTEXT_CREATE_FLAGS_SINGLE_TIMELINE	(1u << 1)
->   #define I915_CONTEXT_CREATE_FLAGS_UNKNOWN \
->   	(-(I915_CONTEXT_CREATE_FLAGS_SINGLE_TIMELINE << 1))
-> +
-> +	/**
-> +	 * @extensions: Zero-terminated chain of extensions.
-> +	 *
-> +	 * I915_CONTEXT_CREATE_EXT_SETPARAM:
-> +	 * Context parameter to set or query during context creation.
-> +	 * See struct drm_i915_gem_context_create_ext_setparam.
-> +	 *
-> +	 * I915_CONTEXT_CREATE_EXT_CLONE:
-> +	 * This extension has been removed. On the off chance someone somewhere
-> +	 * has attempted to use it, never re-use this extension number.
-> +	 */
->   	__u64 extensions;
-> +#define I915_CONTEXT_CREATE_EXT_SETPARAM 0
-> +#define I915_CONTEXT_CREATE_EXT_CLONE 1
->   };
->   
-> +/**
-> + * struct drm_i915_gem_context_param - Context parameter to set or query.
-> + */
->   struct drm_i915_gem_context_param {
-> +	/** @ctx_id: Context id */
->   	__u32 ctx_id;
-> +
-> +	/** @size: Size of the parameter @value
->   	__u32 size;
-> +
-> +	/** @param: Parameter to set or query */
->   	__u64 param;
->   #define I915_CONTEXT_PARAM_BAN_PERIOD	0x1
->   /* I915_CONTEXT_PARAM_NO_ZEROMAP has been removed.  On the off chance
-> @@ -1973,6 +2076,7 @@ struct drm_i915_gem_context_param {
->   #define I915_CONTEXT_PARAM_PROTECTED_CONTENT    0xd
->   /* Must be kept compact -- no holes and well documented */
->   
-> +	/** @value: Context parameter value to be set or queried */
->   	__u64 value;
->   };
->   
-> @@ -2371,23 +2475,29 @@ struct i915_context_param_engines {
->   	struct i915_engine_class_instance engines[N__]; \
->   } __attribute__((packed)) name__
->   
-> +/**
-> + * struct drm_i915_gem_context_create_ext_setparam - Context parameter
-> + * to set or query during context creation.
-> + */
->   struct drm_i915_gem_context_create_ext_setparam {
-> -#define I915_CONTEXT_CREATE_EXT_SETPARAM 0
-> +	/** @base: Extension link. See struct i915_user_extension. */
->   	struct i915_user_extension base;
-> +
-> +	/**
-> +	 * @param: Context parameter to set or query.
-> +	 * See struct drm_i915_gem_context_param.
-> +	 */
->   	struct drm_i915_gem_context_param param;
->   };
->   
-> -/* This API has been removed.  On the off chance someone somewhere has
-> - * attempted to use it, never re-use this extension number.
-> - */
-> -#define I915_CONTEXT_CREATE_EXT_CLONE 1
-> -
->   struct drm_i915_gem_context_destroy {
->   	__u32 ctx_id;
->   	__u32 pad;
->   };
->   
-> -/*
-> +/**
-> + * struct drm_i915_gem_vm_control - Structure to create or destroy VM.
-> + *
->    * DRM_I915_GEM_VM_CREATE -
->    *
->    * Create a new virtual memory address space (ppGTT) for use within a context
-> @@ -2397,20 +2507,23 @@ struct drm_i915_gem_context_destroy {
->    * The id of new VM (bound to the fd) for use with I915_CONTEXT_PARAM_VM is
->    * returned in the outparam @id.
->    *
-> - * No flags are defined, with all bits reserved and must be zero.
-> - *
->    * An extension chain maybe provided, starting with @extensions, and terminated
->    * by the @next_extension being 0. Currently, no extensions are defined.
->    *
->    * DRM_I915_GEM_VM_DESTROY -
->    *
-> - * Destroys a previously created VM id, specified in @id.
-> + * Destroys a previously created VM id, specified in @vm_id.
->    *
->    * No extensions or flags are allowed currently, and so must be zero.
->    */
->   struct drm_i915_gem_vm_control {
-> +	/** @extensions: Zero-terminated chain of extensions. */
->   	__u64 extensions;
-> +
-> +	/** @flags: reserved for future usage, currently MBZ */
->   	__u32 flags;
-> +
-> +	/** @vm_id: Id of the VM created or to be destroyed */
->   	__u32 vm_id;
->   };
->   
+> Regarding the sparse file handling, how about using file->f_mapping->nrpages
+> as badness for shmem files?
+> 
+> That should give us the real number of pages allocated through this shmem
+> file and gracefully handles sparse files.
+
+Yes, this would be a better approximation.
+
+> > I do realize this is a long term problem and there is a demand for some
+> > solution at least. I am not sure how to deal with shared resources
+> > myself. The best approximation I can come up with is to limit the scope
+> > of the damage into a memcg context. One idea I was playing with (but
+> > never convinced myself it is really a worth) is to allow a new mode of
+> > the oom victim selection for the global oom event.
+
+And just for the clarity. I have mentioned global oom event here but the
+concept could be extended to per-memcg oom killer as well.
+
+> > It would be an opt in
+> > and the victim would be selected from the biggest leaf memcg (or kill
+> > the whole memcg if it has group_oom configured.
+> > 
+> > That would address at least some of the accounting issue because charges
+> > are better tracked than per process memory consumption. It is a crude
+> > and ugly hack and it doesn't solve the underlying problem as shared
+> > resources are not guaranteed to be freed when processes die but maybe it
+> > would be just slightly better than the existing scheme which is clearly
+> > lacking behind existing userspace.
+> 
+> Well, what is so bad at the approach of giving each process holding a
+> reference to some shared memory it's equal amount of badness even when the
+> processes belong to different memory control groups?
+
+I am not claiming this is wrong per se. It is just an approximation and
+it can surely be wrong in some cases (e.g. in those workloads where the
+share memory is mostly owned by one process while the shared content is
+consumed by many).
+
+The primary question is whether it actually helps much or what kind of
+scenarios it can help with and whether we can actually do better for
+those. Also do not forget that shared file memory is not the only thing
+to care about. What about the kernel memory used on behalf of processes?
+
+Just consider the above mentioned memcg driven model. It doesn't really
+require to chase specific files and do some arbitrary math to share the
+responsibility. It has a clear accounting and responsibility model.
+
+It shares the same underlying problem that the oom killing is not
+resource aware and therefore there is no guarantee that memory really
+gets freed.  But it allows sane configurations where shared resources do
+not cross memcg boundaries at least. With that in mind and oom_cgroup
+semantic you can get at least some semi-sane guarantees. Is it
+pefect? No, by any means. But I would expect it to be more predictable.
+
+Maybe we can come up with a saner model, but just going with per file
+stats sounds like a hard to predict and debug approach to me. OOM
+killing is a very disruptive operation and having random tasks killed
+just because they have mapped few pages from a shared resource sounds
+like a terrible thing to debug and explain to users.
+ 
+> If you really think that this would be a hard problem for upstreaming we
+> could as well keep the behavior for memcg as it is for now. We would just
+> need to adjust the paramters to oom_badness() a bit.
+
+Say we ignore the memcg side of things for now. How does it help long
+term? Special casing the global oom is not all that hard but any future
+change would very likely be disruptive with some semantic implications
+AFAICS.
+-- 
+Michal Hocko
+SUSE Labs
