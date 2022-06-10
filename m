@@ -1,56 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F70B5468D9
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jun 2022 16:53:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9008C546998
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jun 2022 17:41:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 44E9010F54F;
-	Fri, 10 Jun 2022 14:53:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3AFC110E6B4;
+	Fri, 10 Jun 2022 15:41:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qk1-x72a.google.com (mail-qk1-x72a.google.com
- [IPv6:2607:f8b0:4864:20::72a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1358F10F54F
- for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jun 2022 14:53:49 +0000 (UTC)
-Received: by mail-qk1-x72a.google.com with SMTP id p63so2866251qkd.10
- for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jun 2022 07:53:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=upknv2K3QmwDNPAZYxFarNiZBHKC7K0IKFPMx8jfco0=;
- b=RN1iJY2gf8oJLp0ClziPoexlKUqU8NB71PVHy/pkElxEbvOHaKHmotnXG0WGTy31Kr
- NkjXpjHr0QqBg9R9ch3SInBm4hOYzriM08TWDY8gCQ9W3TzF47uCW457jz/CBv5YkE47
- rTCcJxCIEQic9aLloHAvb+rE/N+vnjO5m5SycOvKyfcIxI3sAhItoofKWHkDMSDqiApz
- SdTypQmq9bRkyzwL5JdjQHujUeqKYDuwTg5wRdSmCuX0k/szIySvUigj9VGMgt0EnG5i
- NnH+UGf5TdYmET8nDH3Juy+Lr/RdimlohntyEP8HGuim2HAtSuqOudIXCvavfxb8X0dp
- KOYg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=upknv2K3QmwDNPAZYxFarNiZBHKC7K0IKFPMx8jfco0=;
- b=3XIog5fxNLbc68b6L4UAbepI12SWk0uIwtL/rIIndkIDkM7uphMm/QlJuFh53gUttS
- d7AyFOzKiyqSKadJmkupOM5lBTUk2NT3aEa8SKF97tvA3fiKY/m7R2eJKZSmU2+it3J+
- GFUvLdYM8drAxTmV3mwQsGwppZd2rtCaUQVHOQuCDB7xEJXfh8YBStjTuA4AhGJf0Wxd
- 9aBKRzSwaxym/ri2KenmZb2o9D3y/aI66wd+nYP7OE/XPHlBkkfuIfayLGUpvuJlRDBj
- R/FLOLSUxPSgEXieDzFMrB54N+9sbsIc9QFHgHZxuskX+iQBbLu2FosbstmrC3pRlJrW
- RkuA==
-X-Gm-Message-State: AOAM530iV+LqiAkR54vVVrNa+0orrRF5waqvXyR/r+zl5O1RezE3X1DA
- LJu81gwwHEBRldSlebo49riQgRE4YcIaQv7I4WbdalqvO/U=
-X-Google-Smtp-Source: ABdhPJzjjZ/KOwpOf7b6wEcTEzgsOd9RKyZZnwgKMQ5mzq5N4mtoEo2+dtAGi4gloRNYT/QTDPuGbKaVAmA/Kfz+inA=
-X-Received: by 2002:a05:620a:2a13:b0:6a7:3e08:abdc with SMTP id
- o19-20020a05620a2a1300b006a73e08abdcmr4064865qkp.593.1654872828140; Fri, 10
- Jun 2022 07:53:48 -0700 (PDT)
+X-Greylist: delayed 2589 seconds by postgrey-1.36 at gabe;
+ Fri, 10 Jun 2022 15:41:13 UTC
+Received: from www262.sakura.ne.jp (www262.sakura.ne.jp [202.181.97.72])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4902110E169
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jun 2022 15:41:13 +0000 (UTC)
+Received: from fsav312.sakura.ne.jp (fsav312.sakura.ne.jp [153.120.85.143])
+ by www262.sakura.ne.jp (8.15.2/8.15.2) with ESMTP id 25AEvepY091034;
+ Fri, 10 Jun 2022 23:57:40 +0900 (JST)
+ (envelope-from penguin-kernel@I-love.SAKURA.ne.jp)
+Received: from www262.sakura.ne.jp (202.181.97.72)
+ by fsav312.sakura.ne.jp (F-Secure/fsigk_smtp/550/fsav312.sakura.ne.jp);
+ Fri, 10 Jun 2022 23:57:40 +0900 (JST)
+X-Virus-Status: clean(F-Secure/fsigk_smtp/550/fsav312.sakura.ne.jp)
+Received: from [192.168.1.9] (M106072142033.v4.enabler.ne.jp [106.72.142.33])
+ (authenticated bits=0)
+ by www262.sakura.ne.jp (8.15.2/8.15.2) with ESMTPSA id 25AEvdZF091030
+ (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=NO);
+ Fri, 10 Jun 2022 23:57:40 +0900 (JST)
+ (envelope-from penguin-kernel@I-love.SAKURA.ne.jp)
+Message-ID: <bdf23a1c-0d89-c395-4a7a-2840ce5f639a@I-love.SAKURA.ne.jp>
+Date: Fri, 10 Jun 2022 23:57:36 +0900
 MIME-Version: 1.0
-References: <20220610121205.29645-1-juhapekka.heikkila@gmail.com>
- <20220610121205.29645-2-juhapekka.heikkila@gmail.com>
-In-Reply-To: <20220610121205.29645-2-juhapekka.heikkila@gmail.com>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Fri, 10 Jun 2022 15:53:21 +0100
-Message-ID: <CAM0jSHN+eOh_iMGT9wAOGKNCegjnrKA_5Cen8LE5NfBcZhD0CA@mail.gmail.com>
-To: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915: Fix i915_vma_pin_iomap()
+User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Content-Language: en-US
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+From: Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Subject: [Intel-gfx] How to convert drivers/gpu/drm/i915/ to use local
+ workqueue?
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,26 +55,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 10 Jun 2022 at 13:12, Juha-Pekka Heikkila
-<juhapekka.heikkila@gmail.com> wrote:
->
-> From: CQ Tang <cq.tang@intel.com>
->
-> Display might allocate a smem object and call
-> i915_vma_pin_iomap(), the existing code will fail.
->
-> This fix was suggested by Chris P Wilson, that we pin
-> the smem with i915_gem_object_pin_map_unlocked().
->
-> v2 (jheikkil): Change i915_gem_object_pin_map_unlocked to
->                i915_gem_object_pin_map
->
-> Signed-off-by: CQ Tang <cq.tang@intel.com>
-> Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-> Cc: Chris Wilson <chris.p.wilson@intel.com>
-> Cc: Jari Tahvanainen <jari.tahvanainen@intel.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+Hello.
+
+Like commit c4f135d643823a86 ("workqueue: Wrap flush_workqueue() using
+a macro") explains, we are removing flush_scheduled_work() calls. And now
+
+  drivers/gpu/drm/i915/display/intel_display.c
+  drivers/gpu/drm/i915/gt/selftest_execlists.c
+
+are the last flush_scheduled_work() callers which have no patch proposed.
+I want to make a patch like
+https://lkml.kernel.org/r/e9b95132-89cd-5cfc-1a09-966393c5ecb0@I-love.SAKURA.ne.jp
+but I couldn't understand how to interpret drivers/gpu/drm/i915/ part.
+
+
+
+There are many schedule_work()/schedule_delayed_work() callers within
+drivers/gpu/drm/i915/ directory.
+
+intel_modeset_driver_remove_noirq() in intel_display.c says
+
+        /* flush any delayed tasks or pending work */
+        flush_scheduled_work();
+
+but intel_display.c itself does not call schedule_delayed_work().
+Then, does this flush_scheduled_work() mean to wait all schedule_work()/schedule_delayed_work()
+calls inside drivers/gpu/drm/i915/ directory?
+
+wait_for_reset() in selftest_execlists.c says
+
+	flush_scheduled_work();
+
+but selftest_execlists.c itself does not call schedule_work()/schedule_delayed_work().
+Then, does this flush_scheduled_work() mean to wait all schedule_work()/schedule_delayed_work()
+calls inside drivers/gpu/drm/i915/ directory, by sharing a WQ created for
+intel_modeset_driver_remove_noirq() ?
