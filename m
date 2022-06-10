@@ -1,57 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F2D3546BCA
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jun 2022 19:44:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FF98546BCE
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jun 2022 19:45:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E522310E531;
-	Fri, 10 Jun 2022 17:44:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC36810E531;
+	Fri, 10 Jun 2022 17:45:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qv1-xf2e.google.com (mail-qv1-xf2e.google.com
- [IPv6:2607:f8b0:4864:20::f2e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A0BF10E531
- for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jun 2022 17:44:16 +0000 (UTC)
-Received: by mail-qv1-xf2e.google.com with SMTP id i19so4102qvu.13
- for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jun 2022 10:44:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=S2sBE3zRbmpgT6AxIaUV6PX3SQioL4nEuuSBq0R7yPI=;
- b=eaJ4wa1p0EhD6AniuLLqIyCMGFsu+KoKOgmSIuHfWbtCrMmJIwnyhrLxl/lPaM77Li
- 1MnZ0m/BD2KHCTNOCarBW99Fjv5B4OuZIqzbCEMJl3RimaNxU2hgeV7JvDUU5rQdaGN6
- o73e5Ur7a2hvTJ/4/AZbfPUHZIiYxgpA8pOeQWnKXT0BSWYOknXBAmbPBRXqnw5jATdM
- nzNoTV0e62dmfSEtL/MRBnZ5HYSoW0OwgRhptywtO9AanGoIiSgfSLGmxLXNTum+D5vd
- XfDFDG8SSqaz/VNPzjMZlVsQVNl6GoWZYyOYa7PV9p/wLHONmxi8QX5I5tF1y3KQKU5L
- 3Ovw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=S2sBE3zRbmpgT6AxIaUV6PX3SQioL4nEuuSBq0R7yPI=;
- b=UAZ6ujEFSFWnnskzAFSxxoioH0IRCDm3mCnyVUkHMKpeQWMmepkV1zZgYhlrkoJOSz
- q7KyFTfV4Uzt/OtbZMsQkL5KFK14pIEsbJ1KH8MzccEJ6I0biwK8Wnaiv6DYbu7PUKij
- YwtOzIpmLlTMmPkZNaqEYEewdTNOv+ou5dDp5nh/g8kZCeoLEL2gk/3CDwPuf2+iYT8R
- T80x/R/wc2jMkM7RfAtPZV398nXxRYWpEWAP2vWGmYfQPYfxRk1HWgWyJ5BulA3Dz9bA
- /efIDngzJ7ZpdYZTW9RLkFc6UjUavNL4pgUJ4APz+qW09cjZ7rtnHCFRi/VvJVRqWS8f
- 6tvQ==
-X-Gm-Message-State: AOAM53349DlStzHtAnR1ehGW0h/3pjICYvYxagebwp6vChfZeD60YNpD
- 9uYLFFMYP2Wj7HxMk0m+iKtiip7pkXtzDlzHOU8=
-X-Google-Smtp-Source: ABdhPJyCbuAy+xOozdb6WEyyPv52ae+wf4ljdDsjMsDmf6tkkmLQKlnrJVXLU8CePcpi6JEymg8qMmz1Hm9FcGnpewI=
-X-Received: by 2002:a05:6214:c4b:b0:46a:66a2:d72a with SMTP id
- r11-20020a0562140c4b00b0046a66a2d72amr26517648qvj.21.1654883055541; Fri, 10
- Jun 2022 10:44:15 -0700 (PDT)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3543B10E531;
+ Fri, 10 Jun 2022 17:45:17 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 2906AAA01E;
+ Fri, 10 Jun 2022 17:45:17 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4655967048917908509=="
 MIME-Version: 1.0
-References: <20220610121205.29645-1-juhapekka.heikkila@gmail.com>
- <20220610121205.29645-2-juhapekka.heikkila@gmail.com>
- <CAM0jSHN+eOh_iMGT9wAOGKNCegjnrKA_5Cen8LE5NfBcZhD0CA@mail.gmail.com>
-In-Reply-To: <CAM0jSHN+eOh_iMGT9wAOGKNCegjnrKA_5Cen8LE5NfBcZhD0CA@mail.gmail.com>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Fri, 10 Jun 2022 18:43:49 +0100
-Message-ID: <CAM0jSHPY8ehnuFe05QZEset1-10wfk_i0+63iYFEWXmwnugtaw@mail.gmail.com>
-To: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915: Fix i915_vma_pin_iomap()
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Andrzej Hajda" <andrzej.hajda@intel.com>
+Date: Fri, 10 Jun 2022 17:45:17 -0000
+Message-ID: <165488311716.16748.6190474932365778768@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220610160024.903701-1-andrzej.hajda@intel.com>
+In-Reply-To: <20220610160024.903701-1-andrzej.hajda@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/display=3A_disable_HPD_workers_before_display_driver_unre?=
+ =?utf-8?q?gister_=28rev9=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,37 +41,209 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 10 Jun 2022 at 15:53, Matthew Auld
-<matthew.william.auld@gmail.com> wrote:
->
-> On Fri, 10 Jun 2022 at 13:12, Juha-Pekka Heikkila
-> <juhapekka.heikkila@gmail.com> wrote:
-> >
-> > From: CQ Tang <cq.tang@intel.com>
-> >
-> > Display might allocate a smem object and call
-> > i915_vma_pin_iomap(), the existing code will fail.
-> >
-> > This fix was suggested by Chris P Wilson, that we pin
-> > the smem with i915_gem_object_pin_map_unlocked().
-> >
-> > v2 (jheikkil): Change i915_gem_object_pin_map_unlocked to
-> >                i915_gem_object_pin_map
-> >
-> > Signed-off-by: CQ Tang <cq.tang@intel.com>
-> > Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-> > Cc: Chris Wilson <chris.p.wilson@intel.com>
-> > Cc: Jari Tahvanainen <jari.tahvanainen@intel.com>
-> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+--===============4655967048917908509==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Although maybe consider putting this as patch 1, and then reword the
-commit title/message to be more like "drm/i915: extend
-i915_vma_iomap()" or so, which then becomes a prep patch for
-supporting the dpt fallback to smem. Otherwise it looks like this
-patch is basically just fixing the first patch to not trigger the
-WARN_ON(), which seems iffy IMO. Each patch by itself should ideally
-be functional.
+== Series Details ==
+
+Series: drm/i915/display: disable HPD workers before display driver unregister (rev9)
+URL   : https://patchwork.freedesktop.org/series/103811/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_11753 -> Patchwork_103811v9
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103811v9/index.html
+
+Participating hosts (42 -> 41)
+------------------------------
+
+  Missing    (1): bat-dg2-9 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_103811v9 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-hsw-4770:        [PASS][1] -> [INCOMPLETE][2] ([i915#4785])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11753/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103811v9/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-snb-2600:        NOTRUN -> [SKIP][3] ([fdo#109271] / [fdo#111827])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103811v9/fi-snb-2600/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  * igt@runner@aborted:
+    - fi-hsw-4770:        NOTRUN -> [FAIL][4] ([fdo#109271] / [i915#4312] / [i915#5594])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103811v9/fi-hsw-4770/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-snb-2600:        [INCOMPLETE][5] ([i915#3921]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11753/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103811v9/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_busy@basic@modeset:
+    - bat-adlp-4:         [DMESG-WARN][7] ([i915#3576]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11753/bat-adlp-4/igt@kms_busy@basic@modeset.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103811v9/bat-adlp-4/igt@kms_busy@basic@modeset.html
+    - {bat-adlp-6}:       [DMESG-WARN][9] ([i915#3576]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11753/bat-adlp-6/igt@kms_busy@basic@modeset.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103811v9/bat-adlp-6/igt@kms_busy@basic@modeset.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#3576]: https://gitlab.freedesktop.org/drm/intel/issues/3576
+  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
+  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
+  [i915#5594]: https://gitlab.freedesktop.org/drm/intel/issues/5594
+  [i915#5763]: https://gitlab.freedesktop.org/drm/intel/issues/5763
+  [i915#5885]: https://gitlab.freedesktop.org/drm/intel/issues/5885
+  [i915#5903]: https://gitlab.freedesktop.org/drm/intel/issues/5903
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_11753 -> Patchwork_103811v9
+
+  CI-20190529: 20190529
+  CI_DRM_11753: cb89eb64792fd1a78c5ffc473f7e208b88e62fad @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6518: 0189ca288f7188e60f5eda356b190040bf8ec704 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_103811v9: cb89eb64792fd1a78c5ffc473f7e208b88e62fad @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+eddf7e974920 drm/i915/display: disable HPD workers before display driver unregister
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103811v9/index.html
+
+--===============4655967048917908509==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: disable HPD workers before display driver unregister (rev9)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/103811/">https://patchwork.freedesktop.org/series/103811/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103811v9/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103811v9/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11753 -&gt; Patchwork_103811v9</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103811v9/index.html</p>
+<h2>Participating hosts (42 -&gt; 41)</h2>
+<p>Missing    (1): bat-dg2-9 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_103811v9 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11753/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103811v9/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
+<ul>
+<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103811v9/fi-snb-2600/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103811v9/fi-hsw-4770/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5594">i915#5594</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11753/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103811v9/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_busy@basic@modeset:</p>
+<ul>
+<li>
+<p>bat-adlp-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11753/bat-adlp-4/igt@kms_busy@basic@modeset.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103811v9/bat-adlp-4/igt@kms_busy@basic@modeset.html">PASS</a></p>
+</li>
+<li>
+<p>{bat-adlp-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11753/bat-adlp-6/igt@kms_busy@basic@modeset.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103811v9/bat-adlp-6/igt@kms_busy@basic@modeset.html">PASS</a></p>
+</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11753 -&gt; Patchwork_103811v9</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11753: cb89eb64792fd1a78c5ffc473f7e208b88e62fad @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6518: 0189ca288f7188e60f5eda356b190040bf8ec704 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_103811v9: cb89eb64792fd1a78c5ffc473f7e208b88e62fad @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>eddf7e974920 drm/i915/display: disable HPD workers before display driver unregister</p>
+
+</body>
+</html>
+
+--===============4655967048917908509==--
