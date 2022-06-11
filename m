@@ -1,47 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 530B4547098
-	for <lists+intel-gfx@lfdr.de>; Sat, 11 Jun 2022 02:46:04 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 686E45470B3
+	for <lists+intel-gfx@lfdr.de>; Sat, 11 Jun 2022 02:55:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC62410F1F5;
-	Sat, 11 Jun 2022 00:46:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B819F10E394;
+	Sat, 11 Jun 2022 00:55:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 02D9B10F161
- for <intel-gfx@lists.freedesktop.org>; Sat, 11 Jun 2022 00:45:59 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E35D10E394
+ for <intel-gfx@lists.freedesktop.org>; Sat, 11 Jun 2022 00:55:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1654908360; x=1686444360;
+ t=1654908934; x=1686444934;
  h=date:message-id:from:to:cc:subject:in-reply-to:
  references:mime-version;
- bh=waRhGMgvwIzKlovnWBRUe4fFnAr/qGkemdCZggkfvYo=;
- b=Md/7irg+w+BSQxmsooz+5FQbuRSOhWVXilKKTLqUFIQkdv+qo7XzNtHA
- zLdZgYUn64nHRreBaEwNuIa9KpEB7KAbNXN5BafGyPqdCrd/24z2uF+y3
- gHy4TQYOC0siLUd6IDeGrIDbZ3cAuD8PaAwBGVu/UQLXXta5USZtkzX4L
- d21ZybrceT3rwdOHFteogrwZSt4xqP/QElh1xuqJJJ1GwNqbCeT3FThJw
- O4zl0thLRwqltoIzU6IEidGaZwGseCBWhZppe+BcSIangBSgZgKSlMksi
- qOQIXlGgAv5o4q1fUBMzrPWkehTuFBrHkpnNb0sDRDU9O7PlP5J/2zmlG Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10374"; a="278591135"
-X-IronPort-AV: E=Sophos;i="5.91,292,1647327600"; d="scan'208";a="278591135"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2022 17:45:59 -0700
-X-IronPort-AV: E=Sophos;i="5.91,292,1647327600"; d="scan'208";a="711159687"
+ bh=Ghx03sOONpSaLJaiCwcRoJlsvQgcV95gw7VjAv/1/nY=;
+ b=F9lmUKlT4qHN/+25iNAIKUqzsO0+pdDOdSxq+AfdlM6ejuRJ/zfTDLol
+ kYieJEDnFXMd9fg4yxPjodTz4Xt7fWeek1TRDUiRKhafL7kOFytlog9ud
+ iX89VKocIRwo15e6JSSiw7xkdQhsrwOBcwTvzvb+F7YBzHYu7CU6XATsf
+ EwLofFHLjnLYpftCJnLBWsKeKbVf7oZDyADXUvq26Tfk1k/us3jXv5zw0
+ 7GvQ2NgfJAXvHx9xtNWjKIehxCI0oG2XE2nQEcvGVCt2mGqlgCvVIcA3H
+ wWCYs+nd+Jhblp0qSYncvAe0yYpXrWXb0gdV8mnxJmW8xIZI6Irm9MtYq g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10374"; a="260910018"
+X-IronPort-AV: E=Sophos;i="5.91,292,1647327600"; d="scan'208";a="260910018"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jun 2022 17:55:33 -0700
+X-IronPort-AV: E=Sophos;i="5.91,292,1647327600"; d="scan'208";a="586487140"
 Received: from adixit-mobl1.amr.corp.intel.com (HELO adixit-arch.intel.com)
  ([10.209.9.44])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2022 17:45:59 -0700
-Date: Fri, 10 Jun 2022 17:45:59 -0700
-Message-ID: <87a6akjad4.wl-ashutosh.dixit@intel.com>
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jun 2022 17:55:33 -0700
+Date: Fri, 10 Jun 2022 17:55:32 -0700
+Message-ID: <878rq4j9x7.wl-ashutosh.dixit@intel.com>
 From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
 To: Badal Nilawar <badal.nilawar@intel.com>
-In-Reply-To: <87bkv0jges.wl-ashutosh.dixit@intel.com>
+In-Reply-To: <20220523110841.1151431-4-badal.nilawar@intel.com>
 References: <20220523110841.1151431-1-badal.nilawar@intel.com>
  <20220523110841.1151431-4-badal.nilawar@intel.com>
- <87bkv0jges.wl-ashutosh.dixit@intel.com>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
  Emacs/28.1 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -65,54 +64,34 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 10 Jun 2022 15:35:23 -0700, Dixit, Ashutosh wrote:
+On Mon, 23 May 2022 04:08:41 -0700, Badal Nilawar wrote:
 >
-> On Mon, 23 May 2022 04:08:41 -0700, Badal Nilawar wrote:
-> >
-> > @@ -370,6 +386,41 @@ i915_power_write(struct i915_hwmon_drvdata *ddat, u32 attr, int chan, long val)
-> >	return ret;
-> >  }
-> >
-> > +static umode_t
-> > +i915_in_is_visible(const struct i915_hwmon_drvdata *ddat, u32 attr)
-> > +{
-> > +	struct drm_i915_private *i915 = ddat->dd_uncore->i915;
-> > +
-> > +	switch (attr) {
-> > +	case hwmon_in_input:
-> > +		return (IS_DG1(i915) || IS_DG2(i915)) ? 0444 : 0;
-> > +	default:
-> > +		return 0;
-> > +	}
-> > +
-> > +	return 0444;
->
-> Don't return 0444 by default, let's just delete this line (return 0 by
-> default from the switch statement).
->
-> > +}
-> > +
-> > +static int
-> > +i915_in_read(struct i915_hwmon_drvdata *ddat, u32 attr, long *val)
-> > +{
-> > +	struct i915_hwmon *hwmon = ddat->dd_hwmon;
-> > +	intel_wakeref_t wakeref;
-> > +	u32 reg_value;
-> > +
-> > +	switch (attr) {
-> > +	case hwmon_in_input:
-> > +		with_intel_runtime_pm(ddat->dd_uncore->rpm, wakeref)
-> > +			reg_value = intel_uncore_read(ddat->dd_uncore, hwmon->rg.gt_perf_status);
-> > +		*val = DIV_ROUND_CLOSEST(REG_FIELD_GET(GEN12_VOLTAGE_MASK, reg_value) * 25, 10);
-> > +		break;
-> > +	default:
-> > +		return -EOPNOTSUPP;
-> > +	}
-> > +
-> > +	return 0;
->
-> Don't return 0 by default, let's just delete this line (return -EOPNOTSUPP
-> by default from the switch statement).
+> +static int
+> +i915_in_read(struct i915_hwmon_drvdata *ddat, u32 attr, long *val)
+> +{
+> +	struct i915_hwmon *hwmon = ddat->dd_hwmon;
+> +	intel_wakeref_t wakeref;
+> +	u32 reg_value;
+> +
+> +	switch (attr) {
+> +	case hwmon_in_input:
+> +		with_intel_runtime_pm(ddat->dd_uncore->rpm, wakeref)
+> +			reg_value = intel_uncore_read(ddat->dd_uncore, hwmon->rg.gt_perf_status);
+> +		*val = DIV_ROUND_CLOSEST(REG_FIELD_GET(GEN12_VOLTAGE_MASK, reg_value) * 25, 10);
 
-Sorry this one is ok, or return 0 from 'case hwmon_in_input' and delete
-this line.
+A comment here that voltage is in units of 2.5 mV would be nice.
+
+> @@ -440,12 +495,14 @@ i915_hwmon_get_preregistration_info(struct drm_i915_private *i915)
+>		hwmon->rg.pkg_rapl_limit = PCU_PACKAGE_RAPL_LIMIT;
+>		hwmon->rg.energy_status_all = PCU_PACKAGE_ENERGY_STATUS;
+>		hwmon->rg.energy_status_tile = INVALID_MMIO_REG;
+> +		hwmon->rg.gt_perf_status = GEN12_RPSTAT1;
+>	} else {
+>		hwmon->rg.pkg_power_sku_unit = INVALID_MMIO_REG;
+>		hwmon->rg.pkg_power_sku = INVALID_MMIO_REG;
+>		hwmon->rg.pkg_rapl_limit = INVALID_MMIO_REG;
+>		hwmon->rg.energy_status_all = INVALID_MMIO_REG;
+>		hwmon->rg.energy_status_tile = INVALID_MMIO_REG;
+> +		hwmon->rg.gt_perf_status = INVALID_MMIO_REG;
+
+Looks like this is supportable on XEHPSDV too, so let's add that too.
