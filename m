@@ -2,54 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75E735480BE
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jun 2022 09:45:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 55EF554814C
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jun 2022 10:10:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F2AE10F108;
-	Mon, 13 Jun 2022 07:45:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 86B5D10E79F;
+	Mon, 13 Jun 2022 08:10:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8A30010F0FE;
- Mon, 13 Jun 2022 07:45:05 +0000 (UTC)
-Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
- by smtp-out1.suse.de (Postfix) with ESMTP id 2E50D21A93;
- Mon, 13 Jun 2022 07:45:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
- t=1655106304; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=5WMle8KoXV0j63rwJ5QZ4pysRjmykK+gll6/m96aiCQ=;
- b=FuLo+VOBBkI+oWNStM4seHkoiyK0Hr+aHMOvDiwt9GGELjWedVV4eVmmgJbe872jPvORqJ
- Vc5aqY4498GBGJEsynJOBtP7uacBYTxS6Qceg9YAfnVQkKLxppmCRYRI6VnRd0Ehidw6e7
- VkwY4jb2uXaKjgqii9bZJVgtGLmxSos=
-Received: from suse.cz (unknown [10.100.201.86])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by relay2.suse.de (Postfix) with ESMTPS id B0E0C2C141;
- Mon, 13 Jun 2022 07:45:03 +0000 (UTC)
-Date: Mon, 13 Jun 2022 09:45:01 +0200
-From: Michal Hocko <mhocko@suse.com>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>
-Message-ID: <Yqbq/Q5jz2ou87Jx@dhcp22.suse.cz>
-References: <YqHuH5brYFQUfW8l@dhcp22.suse.cz>
- <26d3e1c7-d73c-cc95-54ef-58b2c9055f0c@gmail.com>
- <YqIB0bavUeU8Abwl@dhcp22.suse.cz>
- <d4a19481-7a9f-19bf-c270-d89baa0970fc@amd.com>
- <YqIMmK18mb/+s5de@dhcp22.suse.cz>
- <3f7d3d96-0858-fb6d-07a3-4c18964f888e@gmail.com>
- <YqMuq/ZrV8loC3jE@dhcp22.suse.cz>
- <2e7e050e-04eb-0c0a-0675-d7f1c3ae7aed@amd.com>
- <YqNSSFQELx/LeEHR@dhcp22.suse.cz>
- <288528c3-411e-fb25-2f08-92d4bb9f1f13@gmail.com>
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7066010E79F
+ for <intel-gfx@lists.freedesktop.org>; Mon, 13 Jun 2022 08:10:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1655107843; x=1686643843;
+ h=message-id:date:mime-version:subject:to:references:cc:
+ from:in-reply-to:content-transfer-encoding;
+ bh=K2bFZh4JqPAsX5KmREZHAl/RloAF785qNR4SbBD7GVc=;
+ b=n+2q9YpF6aWuWFkHhQ9lstrjOm41Ha8hfm/wRGAnH9nbAUAUwJqEzFuG
+ J1UDGyH6+T9oodLO+HeQW4D2VQjhXxCq0ourpFbIRs4zVS6DePGvCoAek
+ tQV9ewpX8Sc5XJfnNpxaBYEGZswnlIZU8yCYXpGs4kQznGZ1DNjpm/T6q
+ I6Z7E5iZI3FTNKDLNjwvcyn0I2ht/h1xcJfK/t0v4YsWISXQ11yZyA457
+ z3Z1yMdjzBIJvpPeoIkn+6r6KE+38Yk1227UkXo6HxSnIXfsWnEjwDdT1
+ MO6BGfYzrNg0StY8cDmgGZp2TCY8I+pOWID2jciuoxz0nLF+51BfPNKKc g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10376"; a="258647639"
+X-IronPort-AV: E=Sophos;i="5.91,296,1647327600"; d="scan'208";a="258647639"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jun 2022 01:10:42 -0700
+X-IronPort-AV: E=Sophos;i="5.91,296,1647327600"; d="scan'208";a="651286024"
+Received: from npower-mobl.ger.corp.intel.com (HELO [10.213.222.108])
+ ([10.213.222.108])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jun 2022 01:10:41 -0700
+Message-ID: <e583609b-8ca6-d064-6afd-6d4eaf907e6c@linux.intel.com>
+Date: Mon, 13 Jun 2022 09:10:39 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <288528c3-411e-fb25-2f08-92d4bb9f1f13@gmail.com>
-Subject: Re: [Intel-gfx] [PATCH 03/13] mm: shmem: provide oom badness for
- shmem files
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Content-Language: en-US
+To: Alan Previn <alan.previn.teres.alexis@intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20220611172711.2154962-1-alan.previn.teres.alexis@intel.com>
+ <20220611172711.2154962-2-alan.previn.teres.alexis@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <20220611172711.2154962-2-alan.previn.teres.alexis@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [Intel-gfx 1/1] drm/i915/guc: Don't update engine
+ busyness stats too frequently
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,66 +63,78 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: andrey.grodzovsky@amd.com, linux-mm@kvack.org,
- nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- hughd@google.com, linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- linux-fsdevel@vger.kernel.org, viro@zeniv.linux.org.uk,
- linux-tegra@vger.kernel.org, alexander.deucher@amd.com,
- akpm@linux-foundation.org,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- linux-media@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sat 11-06-22 10:06:18, Christian König wrote:
-> Am 10.06.22 um 16:16 schrieb Michal Hocko:
-[...]
-> > > So what happens when a games over allocates texture resources is that your
-> > > whole desktop restarts because the compositor is killed. This obviously also
-> > > kills the game, but it would be much nice if we would be more selective
-> > > here.
-> > > 
-> > > For hardware rendering DMA-buf and GPU drivers are used, but for the
-> > > software fallback shmem files is what is used under the hood as far as I
-> > > know. And the underlying problem is the same for both.
-> > For shmem files the end user of the buffer can preallocate and so own
-> > the buffer and be accounted for it.
+
+On 11/06/2022 18:27, Alan Previn wrote:
+> Using igt's gem-create and with additional patches to track object
+> creation time, it was measured that guc_update_engine_gt_clks was
+> getting called over 188 thousand times in the span of 15 seconds
+> (running the test three times).
 > 
-> The problem is just that it can easily happen that one process is allocating
-> the resource and a different one freeing it.
+> Get a jiffies sample on every trigger and ensure we skip sampling
+> if we are being called too soon. Use half of the ping_delay as a
+> safe threshold.
 > 
-> So just imaging the following example: Process opens X window, get reference
-> to the handle of the buffer backing this window for drawing, tells X to
-> close the window again and then a bit later closes the buffer handle.
+> NOTE: with this change, the number of calls went down to just 14
+> over the same span of time (matching the original intent of running
+> about once every 24 seconds, at 19.2Mhz GT freq, per engine).
+
++ Umesh
+
+What is the effect on accuracy? AFAIR up to date clock was needed for 
+correct accounting of running contexts.
+
+Regards,
+
+Tvrtko
+
 > 
-> In this example the X server would be charged allocating the buffer and the
-> client (which is most likely in a different memcg group) is charged freeing
-> it.
-
-Thanks for the clarification.
-
-> I could of course add something to struct page to track which memcg (or
-> process) it was charged against, but extending struct page is most likely a
-> no-go.
-
-Struct page already maintains is memcg. The one which has charged it and
-it will stay constatnt throughout of the allocation lifetime (cgroup v1
-has a concept of the charge migration but this hasn't been adopted in
-v2).
-
-We have a concept of active_memcg which allows to charge against a
-different memcg than the allocating context. From your example above I
-do not think this is really usable for the described usecase as the X is
-not aware where the request comes from?
-
-> Alternative I could try to track the "owner" of a buffer (e.g. a shmem
-> file), but then it can happen that one processes creates the object and
-> another one is writing to it and actually allocating the memory.
-
-If you can enforce that the owner is really responsible for the
-allocation then all should be fine. That would require MAP_POPULATE like
-semantic and I suspect this is not really feasible with the existing
-userspace. It would be certainly hard to enforce for bad players.
--- 
-Michal Hocko
-SUSE Labs
+> Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
+> ---
+>   drivers/gpu/drm/i915/gt/intel_engine_types.h      | 10 ++++++++++
+>   drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c |  9 +++++++++
+>   2 files changed, 19 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+> index 2286f96f5f87..63f4ecdf1606 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+> @@ -323,6 +323,16 @@ struct intel_engine_guc_stats {
+>   	 * @start_gt_clk: GT clock time of last idle to active transition.
+>   	 */
+>   	u64 start_gt_clk;
+> +
+> +	/**
+> +	 * @last_jiffies: Jiffies at last actual stats collection time
+> +	 *
+> +	 * We use this timestamp to ensure we don't oversample the
+> +	 * stats because runtime power management events can trigger
+> +	 * stats collection at much higher rates than required.
+> +	 */
+> +	u64 last_jiffies;
+> +
+>   };
+>   
+>   struct intel_engine_cs {
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> index 5a1dfacf24ea..8f8bf6e40ccb 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> @@ -1167,6 +1167,15 @@ static void guc_update_engine_gt_clks(struct intel_engine_cs *engine)
+>   	struct intel_engine_guc_stats *stats = &engine->stats.guc;
+>   	struct intel_guc *guc = &engine->gt->uc.guc;
+>   	u32 last_switch, ctx_id, total;
+> +	u64 newjiffs;
+> +
+> +	/* Don't worry about jiffies wrap-around, a rare additional sample won't have any impact */
+> +	newjiffs = get_jiffies_64();
+> +	if (stats->last_jiffies && (newjiffs - stats->last_jiffies <
+> +	   (guc->timestamp.ping_delay << 1)))
+> +		return;
+> +
+> +	stats->last_jiffies = newjiffs;
+>   
+>   	lockdep_assert_held(&guc->timestamp.lock);
+>   
