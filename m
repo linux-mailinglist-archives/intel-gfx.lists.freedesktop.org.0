@@ -1,56 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55EF554814C
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jun 2022 10:10:46 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F99A548152
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jun 2022 10:13:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 86B5D10E79F;
-	Mon, 13 Jun 2022 08:10:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 40A6410E85E;
+	Mon, 13 Jun 2022 08:13:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7066010E79F
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Jun 2022 08:10:43 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A6F710E7FE;
+ Mon, 13 Jun 2022 08:13:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655107843; x=1686643843;
- h=message-id:date:mime-version:subject:to:references:cc:
- from:in-reply-to:content-transfer-encoding;
- bh=K2bFZh4JqPAsX5KmREZHAl/RloAF785qNR4SbBD7GVc=;
- b=n+2q9YpF6aWuWFkHhQ9lstrjOm41Ha8hfm/wRGAnH9nbAUAUwJqEzFuG
- J1UDGyH6+T9oodLO+HeQW4D2VQjhXxCq0ourpFbIRs4zVS6DePGvCoAek
- tQV9ewpX8Sc5XJfnNpxaBYEGZswnlIZU8yCYXpGs4kQznGZ1DNjpm/T6q
- I6Z7E5iZI3FTNKDLNjwvcyn0I2ht/h1xcJfK/t0v4YsWISXQ11yZyA457
- z3Z1yMdjzBIJvpPeoIkn+6r6KE+38Yk1227UkXo6HxSnIXfsWnEjwDdT1
- MO6BGfYzrNg0StY8cDmgGZp2TCY8I+pOWID2jciuoxz0nLF+51BfPNKKc g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10376"; a="258647639"
-X-IronPort-AV: E=Sophos;i="5.91,296,1647327600"; d="scan'208";a="258647639"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jun 2022 01:10:42 -0700
-X-IronPort-AV: E=Sophos;i="5.91,296,1647327600"; d="scan'208";a="651286024"
-Received: from npower-mobl.ger.corp.intel.com (HELO [10.213.222.108])
- ([10.213.222.108])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jun 2022 01:10:41 -0700
-Message-ID: <e583609b-8ca6-d064-6afd-6d4eaf907e6c@linux.intel.com>
-Date: Mon, 13 Jun 2022 09:10:39 +0100
+ t=1655108007; x=1686644007;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=q+bPSdzQfbFmfqWLyc7xxTr4bad3jJacb5pnIjLpiEI=;
+ b=H+cjFnV4kD4F6hwafs/mp4rv5f/w5NYaA6BtTKg7GGuxeOa7AfCiSCdQ
+ TkOGaRrEVLiCy4cA14N7TszjQzS6Mb5lg1YOkSaaIAoxxcnBIX8mYYu9t
+ uC/yMndSf9yrBsBTPhHoUZKOmAP2DPY6WpETc+kwqV8S6n9padptEoMQs
+ Vswl3ocKfBGx4q95Nlt2X8u3D+UUVhVVWn4i4sj2nyhfXDb8W0jtmT/CF
+ SnLzUh2tOpSqcyuryKpEmqaACkmkD5YmQJBtTWyeg8FTplWfGSv+9ae2e
+ suyfZghUbNwyuQ9NJFJKGRLg3Pou9wHq1l+tsBTmUAfvWJrGA/qzIL0g+ Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10376"; a="275740266"
+X-IronPort-AV: E=Sophos;i="5.91,296,1647327600"; d="scan'208";a="275740266"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jun 2022 01:13:13 -0700
+X-IronPort-AV: E=Sophos;i="5.91,296,1647327600"; d="scan'208";a="639603117"
+Received: from njascanu-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.47.149])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jun 2022 01:13:12 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20220611005711.596098-1-matthew.d.roper@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220611005711.596098-1-matthew.d.roper@intel.com>
+Date: Mon, 13 Jun 2022 11:13:09 +0300
+Message-ID: <87mtehyoa2.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Content-Language: en-US
-To: Alan Previn <alan.previn.teres.alexis@intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20220611172711.2154962-1-alan.previn.teres.alexis@intel.com>
- <20220611172711.2154962-2-alan.previn.teres.alexis@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20220611172711.2154962-2-alan.previn.teres.alexis@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [Intel-gfx 1/1] drm/i915/guc: Don't update engine
- busyness stats too frequently
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH 0/2] i915: Extract, polish,
+ and document multicast handling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,78 +57,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Fri, 10 Jun 2022, Matt Roper <matthew.d.roper@intel.com> wrote:
+> Multicast/replicated (MCR) registers on Intel hardware are a purely
+> GT-specific concept.  Rather than leaving MCR register handling spread
+> across several places throughout the driver (intel_uncore.c, intel_gt.c,
+> etc.) with confusing combinations of handler functions living in
+> different namespaces, let's consolidate it all into a single place
+> (intel_gt_mcr.c) and provide a more consistent and clearly-documented
+> interface for the rest of the driver to access such registers:
 
-On 11/06/2022 18:27, Alan Previn wrote:
-> Using igt's gem-create and with additional patches to track object
-> creation time, it was measured that guc_update_engine_gt_clks was
-> getting called over 188 thousand times in the span of 15 seconds
-> (running the test three times).
-> 
-> Get a jiffies sample on every trigger and ensure we skip sampling
-> if we are being called too soon. Use half of the ping_delay as a
-> safe threshold.
-> 
-> NOTE: with this change, the number of calls went down to just 14
-> over the same span of time (matching the original intent of running
-> about once every 24 seconds, at 19.2Mhz GT freq, per engine).
+I don't have the time for review, but overall this seems like a nice
+cleanup. Ack.
 
-+ Umesh
+As to documentation, I think usually documenting static functions using
+kernel-doc is excessive, and a short regular comment might suffice. On
+the other hand, the nice documentation doesn't show up anywhere, because
+you also need to bolt it to some .rst!
 
-What is the effect on accuracy? AFAIR up to date clock was needed for 
-correct accounting of running contexts.
+BR,
+Jani.
 
-Regards,
 
-Tvrtko
+>
+>  * intel_gt_mcr_read -- unicast read from specific instance
+>  * intel_gt_mcr_read_any[_fw] -- unicast read from any non-terminated
+>    instance
+>  * intel_gt_mcr_unicast_write -- unicast write to specific instance
+>  * intel_gt_mcr_multicast_write[_fw] -- multicast write to all instances
+>
+> Matt Roper (2):
+>   drm/i915/gt: Move multicast register handling to a dedicated file
+>   drm/i915/gt: Cleanup interface for MCR operations
+>
+>  drivers/gpu/drm/i915/Makefile               |   1 +
+>  drivers/gpu/drm/i915/gem/i915_gem_stolen.c  |   3 +-
+>  drivers/gpu/drm/i915/gt/intel_engine_cs.c   |  36 +-
+>  drivers/gpu/drm/i915/gt/intel_gt.c          | 297 +-----------
+>  drivers/gpu/drm/i915/gt/intel_gt.h          |  15 -
+>  drivers/gpu/drm/i915/gt/intel_gt_debugfs.c  |   3 +-
+>  drivers/gpu/drm/i915/gt/intel_gt_mcr.c      | 483 ++++++++++++++++++++
+>  drivers/gpu/drm/i915/gt/intel_gt_mcr.h      |  34 ++
+>  drivers/gpu/drm/i915/gt/intel_region_lmem.c |   5 +-
+>  drivers/gpu/drm/i915/gt/intel_workarounds.c |   9 +-
+>  drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c  |   3 +-
+>  drivers/gpu/drm/i915/i915_drv.h             |   2 -
+>  drivers/gpu/drm/i915/intel_uncore.c         | 112 -----
+>  drivers/gpu/drm/i915/intel_uncore.h         |   8 -
+>  14 files changed, 551 insertions(+), 460 deletions(-)
+>  create mode 100644 drivers/gpu/drm/i915/gt/intel_gt_mcr.c
+>  create mode 100644 drivers/gpu/drm/i915/gt/intel_gt_mcr.h
 
-> 
-> Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
-> ---
->   drivers/gpu/drm/i915/gt/intel_engine_types.h      | 10 ++++++++++
->   drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c |  9 +++++++++
->   2 files changed, 19 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-> index 2286f96f5f87..63f4ecdf1606 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-> @@ -323,6 +323,16 @@ struct intel_engine_guc_stats {
->   	 * @start_gt_clk: GT clock time of last idle to active transition.
->   	 */
->   	u64 start_gt_clk;
-> +
-> +	/**
-> +	 * @last_jiffies: Jiffies at last actual stats collection time
-> +	 *
-> +	 * We use this timestamp to ensure we don't oversample the
-> +	 * stats because runtime power management events can trigger
-> +	 * stats collection at much higher rates than required.
-> +	 */
-> +	u64 last_jiffies;
-> +
->   };
->   
->   struct intel_engine_cs {
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> index 5a1dfacf24ea..8f8bf6e40ccb 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> @@ -1167,6 +1167,15 @@ static void guc_update_engine_gt_clks(struct intel_engine_cs *engine)
->   	struct intel_engine_guc_stats *stats = &engine->stats.guc;
->   	struct intel_guc *guc = &engine->gt->uc.guc;
->   	u32 last_switch, ctx_id, total;
-> +	u64 newjiffs;
-> +
-> +	/* Don't worry about jiffies wrap-around, a rare additional sample won't have any impact */
-> +	newjiffs = get_jiffies_64();
-> +	if (stats->last_jiffies && (newjiffs - stats->last_jiffies <
-> +	   (guc->timestamp.ping_delay << 1)))
-> +		return;
-> +
-> +	stats->last_jiffies = newjiffs;
->   
->   	lockdep_assert_held(&guc->timestamp.lock);
->   
+-- 
+Jani Nikula, Intel Open Source Graphics Center
