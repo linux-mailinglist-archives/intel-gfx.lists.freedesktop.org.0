@@ -2,52 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5ECF95481F3
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jun 2022 10:37:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 960645482B3
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jun 2022 11:14:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8EEF710E031;
-	Mon, 13 Jun 2022 08:37:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E8D6A10E04C;
+	Mon, 13 Jun 2022 09:14:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F380E10E031;
- Mon, 13 Jun 2022 08:37:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655109471; x=1686645471;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=tc/QgwySnPCwvut+iCjaHkCRfv5cNtNMs74qWV3IgTs=;
- b=VLvpOzQqOF7rhApTUOj0vbP6rIp4eRcf8KqGoLcgsVvvU+j/EVQ3kpBT
- K1FJWT+R7gxTb4A7cXGpQcFWQRHAcnAPGSbz7CKnlIPrPmhf5zbsMrVx+
- 5s3NX64dsfPp3wMgOZ81ZH3u5BIP9vgr3aNB139kTaKtaZhDYppF21fvp
- jcvz6gDvBfflaY6nIqsLOmFqo6Jy426IhariQhiKzS3lbXsKAW8RzaNlh
- 0N9aQB1QxkWPYCO1iCl02Rb9RTaMMaTPiiCVWECBuBjh4tWh9aiBoYytf
- HFPgtgODCh3Fsk0/2yqNF4eARiRl/V+M86ttSjhSZI7jQCQpebFoennYr Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10376"; a="275746482"
-X-IronPort-AV: E=Sophos;i="5.91,296,1647327600"; d="scan'208";a="275746482"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jun 2022 01:37:50 -0700
-X-IronPort-AV: E=Sophos;i="5.91,296,1647327600"; d="scan'208";a="639613667"
-Received: from njascanu-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.47.149])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jun 2022 01:37:48 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-In-Reply-To: <YqOe0IJIIn7bxO4C@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1654674560.git.jani.nikula@intel.com>
- <5a6532a94cad6a79424f6d1918dbe7b7d607ac03.1654674560.git.jani.nikula@intel.com>
- <YqOe0IJIIn7bxO4C@intel.com>
-Date: Mon, 13 Jun 2022 11:37:46 +0300
-Message-ID: <87k09lyn51.fsf@intel.com>
+X-Greylist: delayed 347 seconds by postgrey-1.36 at gabe;
+ Mon, 13 Jun 2022 09:14:45 UTC
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org
+ [IPv6:2001:67c:2050:0:465::201])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C704A10E0EC;
+ Mon, 13 Jun 2022 09:14:45 +0000 (UTC)
+Received: from smtp202.mailbox.org (smtp202.mailbox.org
+ [IPv6:2001:67c:2050:b231:465::202])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4LM5N73Srsz9sZR;
+ Mon, 13 Jun 2022 11:08:55 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; t=1655111335;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=/diBHTT7FJGtxv9Ix4yOBCZ8RnU/aeUMZMRq1jZWVd0=;
+ b=Znxifht26gApX39S8dBdMlCkItNVWLXnXVPMEVWY3AG9zAT6gRrWMY9rhTZyANLJTCXA+T
+ /Py+ybJGqRWT/5GkeLRhJZiWzDalGM3ZvZadEpQEYyYCU21C9ACURqw1LrNyUVHsOxWjvx
+ 1p9izA8OmzrQ5cxuRmCiyhEfNhVce3b+LqtSrMJHG1exvU+qFVCJb9AZGKmxkawe7s4w+F
+ /Xrajo+QQRwLwU5ACiJOqV5anBx0ps2Y2wIrqp32YeXJCOeBwJm20EiuG6GVGM12Bl5Dy4
+ ebLpFyJ47wP6J1/GG07XltI+NvUdJKpT2sZ8ndEXg24vYNlBTBRianCdqohCbA==
+Message-ID: <51536e97-ca5f-abe4-b46c-ee3eb57f891e@mailbox.org>
+Date: Mon, 13 Jun 2022 11:08:52 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v2 05/15] drm/edid: add new interfaces
- around struct drm_edid
+Content-Language: en-CA
+To: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ Michal Hocko <mhocko@suse.com>, =?UTF-8?Q?Christian_K=c3=b6nig?=
+ <christian.koenig@amd.com>
+References: <YqG67sox6L64E6wV@dhcp22.suse.cz>
+ <77b99722-fc13-e5c5-c9be-7d4f3830859c@amd.com>
+ <YqHuH5brYFQUfW8l@dhcp22.suse.cz>
+ <26d3e1c7-d73c-cc95-54ef-58b2c9055f0c@gmail.com>
+ <YqIB0bavUeU8Abwl@dhcp22.suse.cz>
+ <d4a19481-7a9f-19bf-c270-d89baa0970fc@amd.com>
+ <YqIMmK18mb/+s5de@dhcp22.suse.cz>
+ <3f7d3d96-0858-fb6d-07a3-4c18964f888e@gmail.com>
+ <YqMuq/ZrV8loC3jE@dhcp22.suse.cz>
+ <2e7e050e-04eb-0c0a-0675-d7f1c3ae7aed@amd.com>
+ <YqNSSFQELx/LeEHR@dhcp22.suse.cz>
+ <288528c3-411e-fb25-2f08-92d4bb9f1f13@gmail.com>
+From: =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel.daenzer@mailbox.org>
+In-Reply-To: <288528c3-411e-fb25-2f08-92d4bb9f1f13@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-META: 577iphbxb4bs3945taqe58kkqzbs8imi
+X-MBO-RS-ID: 72e59480f2d70ddaf00
+X-Rspamd-Queue-Id: 4LM5N73Srsz9sZR
+Subject: Re: [Intel-gfx] [PATCH 03/13] mm: shmem: provide oom badness for
+ shmem files
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,399 +74,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
+Cc: andrey.grodzovsky@amd.com, linux-tegra@vger.kernel.org,
+ nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ hughd@google.com, linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ linux-mm@kvack.org, viro@zeniv.linux.org.uk, linux-fsdevel@vger.kernel.org,
+ alexander.deucher@amd.com, akpm@linux-foundation.org,
+ linux-media@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 10 Jun 2022, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Wed, Jun 08, 2022 at 10:50:35AM +0300, Jani Nikula wrote:
->> Add new functions drm_edid_read(), drm_edid_read_ddc(), and
->> drm_edid_read_custom() to replace drm_get_edid() and drm_do_get_edid()
->> for reading the EDID. The transition is expected to happen over a fairly
->> long time.
->>=20
->> Note that the new drm_edid_read*() functions do not do any of the
->> connector updates anymore. The reading and parsing will be completely
->> separated from each other.
->>=20
->> Add new functions drm_edid_alloc(), drm_edid_dup(), and drm_edid_free()
->> for allocating and freeing drm_edid containers.
->>=20
->> Cc: David Airlie <airlied@linux.ie>
->> Cc: Daniel Vetter <daniel@ffwll.ch>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->>  drivers/gpu/drm/drm_edid.c | 245 +++++++++++++++++++++++++++++++++----
->>  include/drm/drm_edid.h     |   9 ++
->>  2 files changed, 230 insertions(+), 24 deletions(-)
->>=20
->> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
->> index 2beaa48301c1..2bdaf1e34a9d 100644
->> --- a/drivers/gpu/drm/drm_edid.c
->> +++ b/drivers/gpu/drm/drm_edid.c
->> @@ -2226,29 +2226,9 @@ static enum edid_block_status edid_block_read(voi=
-d *block, unsigned int block_nu
->>  	return status;
->>  }
->>=20=20
->> -/**
->> - * drm_do_get_edid - get EDID data using a custom EDID block read funct=
-ion
->> - * @connector: connector we're probing
->> - * @read_block: EDID block read function
->> - * @context: private data passed to the block read function
->> - *
->> - * When the I2C adapter connected to the DDC bus is hidden behind a dev=
-ice that
->> - * exposes a different interface to read EDID blocks this function can =
-be used
->> - * to get EDID data using a custom block read function.
->> - *
->> - * As in the general case the DDC bus is accessible by the kernel at th=
-e I2C
->> - * level, drivers must make all reasonable efforts to expose it as an I=
-2C
->> - * adapter and use drm_get_edid() instead of abusing this function.
->> - *
->> - * The EDID may be overridden using debugfs override_edid or firmware E=
-DID
->> - * (drm_load_edid_firmware() and drm.edid_firmware parameter), in this =
-priority
->> - * order. Having either of them bypasses actual EDID reads.
->> - *
->> - * Return: Pointer to valid EDID or NULL if we couldn't find any.
->> - */
->> -struct edid *drm_do_get_edid(struct drm_connector *connector,
->> -			     read_block_fn read_block,
->> -			     void *context)
->> +static struct edid *_drm_do_get_edid(struct drm_connector *connector,
->> +				     read_block_fn read_block, void *context,
->> +				     size_t *size)
->>  {
->>  	enum edid_block_status status;
->>  	int i, invalid_blocks =3D 0;
->> @@ -2315,14 +2295,125 @@ struct edid *drm_do_get_edid(struct drm_connect=
-or *connector,
->>  	}
->>=20=20
->>  ok:
->> +	if (size)
->> +		*size =3D alloc_size;
->> +
->>  	return edid;
->>=20=20
->>  fail:
->>  	kfree(edid);
->>  	return NULL;
->>  }
->> +
->> +/**
->> + * drm_do_get_edid - get EDID data using a custom EDID block read funct=
-ion
->> + * @connector: connector we're probing
->> + * @read_block: EDID block read function
->> + * @context: private data passed to the block read function
->> + *
->> + * When the I2C adapter connected to the DDC bus is hidden behind a dev=
-ice that
->> + * exposes a different interface to read EDID blocks this function can =
-be used
->> + * to get EDID data using a custom block read function.
->> + *
->> + * As in the general case the DDC bus is accessible by the kernel at th=
-e I2C
->> + * level, drivers must make all reasonable efforts to expose it as an I=
-2C
->> + * adapter and use drm_get_edid() instead of abusing this function.
->> + *
->> + * The EDID may be overridden using debugfs override_edid or firmware E=
-DID
->> + * (drm_load_edid_firmware() and drm.edid_firmware parameter), in this =
-priority
->> + * order. Having either of them bypasses actual EDID reads.
->> + *
->> + * Return: Pointer to valid EDID or NULL if we couldn't find any.
->> + */
->> +struct edid *drm_do_get_edid(struct drm_connector *connector,
->> +			     read_block_fn read_block,
->> +			     void *context)
->> +{
->> +	return _drm_do_get_edid(connector, read_block, context, NULL);
->> +}
->>  EXPORT_SYMBOL_GPL(drm_do_get_edid);
->>=20=20
->> +/* Allocate struct drm_edid container *without* duplicating the edid da=
-ta */
->> +static const struct drm_edid *_drm_edid_alloc(const void *edid, size_t =
-size)
->> +{
->> +	struct drm_edid *drm_edid;
->> +
->> +	if (!edid || !size || size < EDID_LENGTH)
->> +		return NULL;
->> +
->> +	drm_edid =3D kzalloc(sizeof(*drm_edid), GFP_KERNEL);
->> +	if (drm_edid) {
->> +		drm_edid->edid =3D edid;
->> +		drm_edid->size =3D size;
->> +	}
->> +
->> +	return drm_edid;
->> +}
->> +
->> +/**
->> + * drm_edid_alloc - Allocate a new drm_edid container
->> + * @edid: Pointer to raw EDID data
->> + * @size: Size of memory allocated for EDID
->> + *
->> + * Allocate a new drm_edid container. Do not calculate edid size from e=
-did, pass
->> + * the actual size that has been allocated for the data. There is no va=
-lidation
->> + * of the raw EDID data against the size, but at least the EDID base bl=
-ock must
->> + * fit in the buffer.
->> + *
->> + * The returned pointer must be freed using drm_edid_free().
->> + *
->> + * Return: drm_edid container, or NULL on errors
->> + */
->> +const struct drm_edid *drm_edid_alloc(const void *edid, size_t size)
->> +{
->> +	const struct drm_edid *drm_edid;
->> +
->> +	if (!edid || !size || size < EDID_LENGTH)
->> +		return NULL;
->> +
->> +	edid =3D kmemdup(edid, size, GFP_KERNEL);
->> +	if (!edid)
->> +		return NULL;
->> +
->> +	drm_edid =3D _drm_edid_alloc(edid, size);
->> +	if (!drm_edid)
->> +		kfree(edid);
->> +
->> +	return drm_edid;
->> +}
->> +EXPORT_SYMBOL(drm_edid_alloc);
->> +
->> +/**
->> + * drm_edid_dup - Duplicate a drm_edid container
->> + * @drm_edid: EDID to duplicate
->> + *
->> + * The returned pointer must be freed using drm_edid_free().
->> + *
->> + * Returns: drm_edid container copy, or NULL on errors
->> + */
->> +const struct drm_edid *drm_edid_dup(const struct drm_edid *drm_edid)
->> +{
->> +	if (!drm_edid)
->> +		return NULL;
->> +
->> +	return drm_edid_alloc(drm_edid->edid, drm_edid->size);
->> +}
->> +EXPORT_SYMBOL(drm_edid_dup);
->> +
->> +/**
->> + * drm_edid_free - Free the drm_edid container
->> + * @drm_edid: EDID to free
->> + */
->> +void drm_edid_free(const struct drm_edid *drm_edid)
->> +{
->> +	if (!drm_edid)
->> +		return;
->> +
->> +	kfree(drm_edid->edid);
->> +	kfree(drm_edid);
->> +}
->> +EXPORT_SYMBOL(drm_edid_free);
->> +
->>  /**
->>   * drm_probe_ddc() - probe DDC presence
->>   * @adapter: I2C adapter to probe
->> @@ -2359,12 +2450,118 @@ struct edid *drm_get_edid(struct drm_connector =
-*connector,
->>  	if (connector->force =3D=3D DRM_FORCE_UNSPECIFIED && !drm_probe_ddc(ad=
-apter))
->>  		return NULL;
->>=20=20
->> -	edid =3D drm_do_get_edid(connector, drm_do_probe_ddc_edid, adapter);
->> +	edid =3D _drm_do_get_edid(connector, drm_do_probe_ddc_edid, adapter, N=
-ULL);
->>  	drm_connector_update_edid_property(connector, edid);
->>  	return edid;
->>  }
->>  EXPORT_SYMBOL(drm_get_edid);
->>=20=20
->> +/**
->> + * drm_edid_read_custom - Read EDID data using given EDID block read fu=
-nction
->> + * @connector: Connector to use
->> + * @read_block: EDID block read function
->> + * @context: Private data passed to the block read function
->> + *
->> + * When the I2C adapter connected to the DDC bus is hidden behind a dev=
-ice that
->> + * exposes a different interface to read EDID blocks this function can =
-be used
->> + * to get EDID data using a custom block read function.
->> + *
->> + * As in the general case the DDC bus is accessible by the kernel at th=
-e I2C
->> + * level, drivers must make all reasonable efforts to expose it as an I=
-2C
->> + * adapter and use drm_edid_read() or drm_edid_read_ddc() instead of ab=
-using
->> + * this function.
->> + *
->> + * The EDID may be overridden using debugfs override_edid or firmware E=
-DID
->> + * (drm_load_edid_firmware() and drm.edid_firmware parameter), in this =
-priority
->> + * order. Having either of them bypasses actual EDID reads.
->> + *
->> + * The returned pointer must be freed using drm_edid_free().
->> + *
->> + * Return: Pointer to EDID, or NULL if probe/read failed.
->> + */
->> +const struct drm_edid *drm_edid_read_custom(struct drm_connector *conne=
-ctor,
->> +					    read_block_fn read_block,
->> +					    void *context)
->> +{
->> +	const struct drm_edid *drm_edid;
->> +	struct edid *edid;
->> +	size_t size =3D 0;
->> +
->> +	edid =3D _drm_do_get_edid(connector, read_block, context, &size);
->> +	if (!edid)
->> +		return NULL;
->> +
->> +	/* Sanity check for now */
->> +	drm_WARN_ON(connector->dev, !size);
->> +
->> +	drm_edid =3D _drm_edid_alloc(edid, size);
->> +	if (!drm_edid)
->> +		kfree(edid);
->> +
->> +	return drm_edid;
->> +}
->> +EXPORT_SYMBOL(drm_edid_read_custom);
->> +
->> +/**
->> + * drm_edid_read_ddc - Read EDID data using given I2C adapter
->> + * @connector: Connector to use
->> + * @adapter: I2C adapter to use for DDC
->> + *
->> + * Read EDID using the given I2C adapter.
->> + *
->> + * The EDID may be overridden using debugfs override_edid or firmware E=
-DID
->> + * (drm_load_edid_firmware() and drm.edid_firmware parameter), in this =
-priority
->> + * order. Having either of them bypasses actual EDID reads.
->> + *
->> + * Prefer initializing connector->ddc with drm_connector_init_with_ddc(=
-) and
->> + * using drm_edid_read() instead of this function.
->> + *
->> + * The returned pointer must be freed using drm_edid_free().
->> + *
->> + * Return: Pointer to EDID, or NULL if probe/read failed.
->> + */
->> +const struct drm_edid *drm_edid_read_ddc(struct drm_connector *connecto=
-r,
->> +					 struct i2c_adapter *adapter)
->> +{
->> +	const struct drm_edid *drm_edid;
->> +
->> +	if (connector->force =3D=3D DRM_FORCE_OFF)
->> +		return NULL;
->> +
->> +	if (connector->force =3D=3D DRM_FORCE_UNSPECIFIED && !drm_probe_ddc(ad=
-apter))
->> +		return NULL;
->> +
->> +	drm_edid =3D drm_edid_read_custom(connector, drm_do_probe_ddc_edid, ad=
-apter);
->> +
->> +	/* Note: Do *not* call connector updates here. */
->> +
->> +	return drm_edid;
->> +}
->> +EXPORT_SYMBOL(drm_edid_read_ddc);
->> +
->> +/**
->> + * drm_edid_read - Read EDID data using connector's I2C adapter
->> + * @connector: Connector to use
->> + *
->> + * Read EDID using the connector's I2C adapter.
->> + *
->> + * The EDID may be overridden using debugfs override_edid or firmware E=
-DID
->> + * (drm_load_edid_firmware() and drm.edid_firmware parameter), in this =
-priority
->> + * order. Having either of them bypasses actual EDID reads.
->> + *
->> + * The returned pointer must be freed using drm_edid_free().
->> + *
->> + * Return: Pointer to EDID, or NULL if probe/read failed.
->> + */
->> +const struct drm_edid *drm_edid_read(struct drm_connector *connector)
->> +{
->> +	if (drm_WARN_ON(connector->dev, !connector->ddc))
->> +		return NULL;
->> +
->> +	return drm_edid_read_ddc(connector, connector->ddc);
->> +}
->> +EXPORT_SYMBOL(drm_edid_read);
->
-> I'm wondering if we need this drm_edid_read() vs. drm_edid_read_ddc()
-> split? Ie. are there cases where connector->ddc wouldn't be populated
-> for some reason but we still want to use drm_edid_read_ddc()?
+On 2022-06-11 10:06, Christian König wrote:
+> Am 10.06.22 um 16:16 schrieb Michal Hocko:
+>> [...]
+>>>> Just consider the above mentioned memcg driven model. It doesn't really
+>>>> require to chase specific files and do some arbitrary math to share the
+>>>> responsibility. It has a clear accounting and responsibility model.
+>>> Ok, how does that work then?
+>> The memory is accounted to whoever faults that memory in or to the
+>> allocating context if that is a kernel memory (in most situations).
+> 
+> That's what I had in mind as well. Problem with this approach is that file descriptors are currently not informed that they are shared between processes.
+> 
+> So to make this work we would need something like attach/detach to process in struct file_operations.
+> 
+> And as I noted, this happens rather often. For example a game which renders 120 frames per second needs to transfer 120 buffers per second between client and X.
 
-I want to promote initializing connector->ddc and using drm_edid_read()
-with that. However, for e.g. i915, HDMI is the only connector where we
-have connector->ddc initialized. I just didn't want to take on
-converting that part too, not yet, not as part of this series.
+FWIW, in the steady state, the game will cycle between a small (generally 2-5) set of buffers. The game will not cause new buffers to be exported & imported for every frame.
 
-BR,
-Jani.
+In general, I'd expect dma-buf export & import to happen relatively rarely, e.g. when a window is opened or resized.
 
 
->
->> +
->>  static u32 edid_extract_panel_id(const struct edid *edid)
->>  {
->>  	/*
->> diff --git a/include/drm/drm_edid.h b/include/drm/drm_edid.h
->> index 95ac09ef41b2..9d2d78135dee 100644
->> --- a/include/drm/drm_edid.h
->> +++ b/include/drm/drm_edid.h
->> @@ -594,6 +594,15 @@ drm_display_mode_from_cea_vic(struct drm_device *de=
-v,
->>  			      u8 video_code);
->>=20=20
->>  /* Interface based on struct drm_edid */
->> +const struct drm_edid *drm_edid_alloc(const void *edid, size_t size);
->> +const struct drm_edid *drm_edid_dup(const struct drm_edid *drm_edid);
->> +void drm_edid_free(const struct drm_edid *drm_edid);
->> +const struct drm_edid *drm_edid_read(struct drm_connector *connector);
->> +const struct drm_edid *drm_edid_read_ddc(struct drm_connector *connecto=
-r,
->> +					 struct i2c_adapter *adapter);
->> +const struct drm_edid *drm_edid_read_custom(struct drm_connector *conne=
-ctor,
->> +					    int (*read_block)(void *context, u8 *buf, unsigned int block, =
-size_t len),
->> +					    void *context);
->>  const u8 *drm_find_edid_extension(const struct drm_edid *drm_edid,
->>  				  int ext_id, int *ext_index);
->>=20=20
->> --=20
->> 2.30.2
-
---=20
-Jani Nikula, Intel Open Source Graphics Center
+-- 
+Earthling Michel Dänzer            |                  https://redhat.com
+Libre software enthusiast          |         Mesa and Xwayland developer
