@@ -1,51 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EECF549BAC
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jun 2022 20:37:32 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4340D549E48
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jun 2022 22:03:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4F88310F4E6;
-	Mon, 13 Jun 2022 18:37:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 18DDD10F798;
+	Mon, 13 Jun 2022 20:03:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4178910F337;
- Mon, 13 Jun 2022 18:37:27 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C48B10F797;
+ Mon, 13 Jun 2022 20:03:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655145447; x=1686681447;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=U9jXgIqSWzEreLwNqFdLRLyZ3mKIzt6CVZHylhsj50g=;
- b=Nrp2StHB7G6sFE3BMuYesIGpOnoNWvbyBMU3lIgpIyQXSU5yYcJeFIsR
- JqJfv1fED68Kl7SMS7wnQi+qmdcnpl/M4cWNSyZlWTGiDgMv07tgz/WDn
- kZ04v8xoAi7EQpCLXRplm4X2DEUpvW/vMzsWYnKPJN2YOXNLSGQNVyqIb
- 0wJgKJo/CD3rj57V+KLImBeUuBp62iQUPg/3k7N3Jf/2RpfQv8Z6mesfF
- C62QxJzxodGM8FwFAlD4VBMGE6n4wlqE+n5clXkZRqTM7AGj68suz+W/2
- W5NrJqijlqbI6Of9OuRSjv1sqxhJk0MldJQhakFT6HpAmfuUxOi0wrUWX A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10377"; a="267067173"
-X-IronPort-AV: E=Sophos;i="5.91,297,1647327600"; d="scan'208";a="267067173"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jun 2022 11:37:26 -0700
-X-IronPort-AV: E=Sophos;i="5.91,297,1647327600"; d="scan'208";a="761640711"
-Received: from samsonle-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
- ([10.209.108.28])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jun 2022 11:37:26 -0700
-Date: Mon, 13 Jun 2022 11:37:26 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <20220613183726.u6si5dcdbi2gw3qb@ldmartin-desk2>
-X-Patchwork-Hint: comment
-References: <20220609232020.2292649-1-lucas.demarchi@intel.com>
- <f7f86767-ad4a-0e62-c1af-a227d5709a54@suse.de>
+ t=1655150600; x=1686686600;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=wSmCcvgWtf4GY9G5S0S2OJpny7O6Y/mM/aQFhL7w3Ts=;
+ b=Kf4jafmiahBYOWvioXwKtwRPkUIIhmaL9fL5FVhwUrYeI/o4Xhr20+aO
+ EsEB2mZkGqLhRrIJzEHQ0ZS8nspb4ej6oYvnpS7fqlLpktfbeZmRgJ7gG
+ 4ZgTSykdJu7Q1R3FZgArNvoalekc+Bjtm1Lbb+qR21rnjZEr7ckYtPLOn
+ qlkPDWBgon3R02pFRwOKZiJT+//yCQNYM7DW1r1QLqSZdB1VnOMQWUW4c
+ ZPLjKjt8uYe/P67BNA5kLbbVsmKdWtwcUts6lWALDoiP1W+vCybxR8sgf
+ 78P+rRgMDIpVjlZKdq298HArWVAU+6IWDuG2PaonUvhYoY2IqEY/iKd4h g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10377"; a="275926884"
+X-IronPort-AV: E=Sophos;i="5.91,297,1647327600"; d="scan'208";a="275926884"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jun 2022 13:03:20 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.91,297,1647327600"; d="scan'208";a="673479120"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.163])
+ by FMSMGA003.fm.intel.com with SMTP; 13 Jun 2022 13:03:18 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 13 Jun 2022 23:03:17 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: dri-devel@lists.freedesktop.org
+Date: Mon, 13 Jun 2022 23:03:09 +0300
+Message-Id: <20220613200317.11305-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <f7f86767-ad4a-0e62-c1af-a227d5709a54@suse.de>
-Subject: Re: [Intel-gfx] [PATCH] iosys-map: Add word-sized reads
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 0/8] drm: Clean up drm_crtc.h
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,229 +56,266 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: daniel.vetter@ffwll.ch, intel-gfx@lists.freedesktop.org,
- christian.koenig@amd.com, dri-devel@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jun 13, 2022 at 12:58:52PM +0200, Thomas Zimmermann wrote:
->Hi Lucas
->
->Am 10.06.22 um 01:20 schrieb Lucas De Marchi:
->>Instead of always falling back to memcpy_fromio() for any size, prefer
->>using read{b,w,l}(). When reading struct members it's common to read
->>individual integer variables individually. Going through memcpy_fromio()
->>for each of them poses a high penalty.
->>
->>Employ a similar trick as __seqprop() by using _Generic() to generate
->>only the specific call based on a type-compatible variable.
->>
->>For a pariticular i915 workload producing GPU context switches,
->>__get_engine_usage_record() is particularly hot since the engine usage
->>is read from device local memory with dgfx, possibly multiple times
->>since it's racy. Test execution time for this test shows a ~12.5%
->>improvement with DG2:
->>
->>Before:
->>	nrepeats = 1000; min = 7.63243e+06; max = 1.01817e+07;
->>	median = 9.52548e+06; var = 526149;
->>After:
->>	nrepeats = 1000; min = 7.03402e+06; max = 8.8832e+06;
->>	median = 8.33955e+06; var = 333113;
->>
->>Other things attempted that didn't prove very useful:
->>1) Change the _Generic() on x86 to just dereference the memory address
->>2) Change __get_engine_usage_record() to do just 1 read per loop,
->>    comparing with the previous value read
->>3) Change __get_engine_usage_record() to access the fields directly as it
->>    was before the conversion to iosys-map
->>
->>(3) did gave a small improvement (~3%), but doesn't seem to scale well
->>to other similar cases in the driver.
->>
->>Additional test by Chris Wilson using gem_create from igt with some
->>changes to track object creation time. This happens to accidentaly
->>stress this code path:
->>
->>	Pre iosys_map conversion of engine busyness:
->>	lmem0: Creating    262144 4KiB objects took 59274.2ms
->>
->>	Unpatched:
->>	lmem0: Creating    262144 4KiB objects took 108830.2ms
->>
->>	With readl (this patch):
->>	lmem0: Creating    262144 4KiB objects took 61348.6ms
->>
->>	s/readl/READ_ONCE/
->>	lmem0: Creating    262144 4KiB objects took 61333.2ms
->>
->>So we do take a little bit more time than before the conversion, but
->>that is due to other factors: bringing the READ_ONCE back would be as
->>good as just doing this conversion.
->>
->>Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
->>---
->>
->>If this is acceptable we should probably add the write counterpart, too.
->>Sending here only the read for now since this fixes the issue we are
->>seeing and to gather feedback.
->
->That would not be a problem, but please only add functions that you use.
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-I sent v2 that includes the write as the second patch. We do use it,
-it's just not in the critical path.
+Eliminate unnecessary includes from drm_crtc.h to avoid
+pointless rebuilds of the entire universe when touching
+some random header.
 
-$ git grep iosys_map_wr drivers/
-drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c:     iosys_map_wr_field(&(guc_)->ads_map, 0, struct __guc_ads_blob,  \
-drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c:     iosys_map_wr_field(map_, 0, struct guc_gt_system_info, field_, val_)
+I didn't really feel like splitting this up per-driver since
+that would have ended up being metric ton of one liners.
+I'm thinking the conflicts (if any) should be trivial enough
+to deal with even with bigger patches.
 
->>  include/linux/iosys-map.h | 26 ++++++++++++++++++++++----
->>  1 file changed, 22 insertions(+), 4 deletions(-)
->>
->>diff --git a/include/linux/iosys-map.h b/include/linux/iosys-map.h
->>index e69a002d5aa4..4ae3e459419e 100644
->>--- a/include/linux/iosys-map.h
->>+++ b/include/linux/iosys-map.h
->>@@ -333,6 +333,20 @@ static inline void iosys_map_memset(struct iosys_map *dst, size_t offset,
->>  		memset(dst->vaddr + offset, value, len);
->>  }
->>+#ifdef CONFIG_64BIT
->>+#define __iosys_map_rd_io_u64_case(val_, vaddr_iomem_)			\
->>+	u64: val_ = readq(vaddr_iomem_),
->>+#else
->>+#define __iosys_map_u64_case(val_, vaddr_iomem_)
->>+#endif
->>+
->>+#define __iosys_map_rd_io(val__, vaddr_iomem__, type__) _Generic(val__,	\
->>+	u8: val__ = readb(vaddr_iomem__),				\
->>+	u16: val__ = readw(vaddr_iomem__),				\
->>+	u32: val__ = readl(vaddr_iomem__),				\
->>+	__iosys_map_rd_io_u64_case(val__, vaddr_iomem__)		\
->>+	default: memcpy_fromio(&(val__), vaddr_iomem__, sizeof(val__)))
->>+
->>  /**
->>   * iosys_map_rd - Read a C-type value from the iosys_map
->>   *
->>@@ -346,10 +360,14 @@ static inline void iosys_map_memset(struct iosys_map *dst, size_t offset,
->>   * Returns:
->>   * The value read from the mapping.
->>   */
->>-#define iosys_map_rd(map__, offset__, type__) ({			\
->>-	type__ val;							\
->>-	iosys_map_memcpy_from(&val, map__, offset__, sizeof(val));	\
->>-	val;								\
->>+#define iosys_map_rd(map__, offset__, type__) ({				\
->>+	type__ val;								\
->>+	if ((map__)->is_iomem) {						\
->>+		__iosys_map_rd_io(val, (map__)->vaddr_iomem + offset__, type__);\
->>+	} else {								\
->>+		memcpy(&val, (map__)->vaddr + offset__, sizeof(val));		\
->>+	}									\
->>+	val;									\
->
->To my knowledge, calls to readw/readl have alignment requirements on 
->some platforms, while memcpy_fromio() has none. Mixing memcpy() and 
->read*() sounds like a problem for subtle bugs. I'd prefer to at least 
->mitigate that to some extend.
->
->For each case in the _Generic statement, there should be an if/else 
->branch on is_iomem. Here's the example
->
->#define iosys_map_rd() \
->_Generic( (val__),
->  u8: {
->    if (map__)->is_iomem
->      val__ = readb()
->    else
->      val__ *(volatile u8*)(vaddr_iomem);
->  },
->  u16: {
->    if (map__)->is_iomem
->      val__ = readw()
->    else
->      val__ *(volatile u16*)(vaddr_iomem);
->  },
->  u32,
->  u64,
->  ...
->  default: {
->    if (map__)->is_iomem
->      mempy_fromio()
->    else
->      memcpy()
->  })
->
->Using volatile with system memory enforces single instructions or even 
->alignment on some platforms. While experimenting with framebuffer 
->updates, I've also found this to be faster then regular code. With 
->'volatile' the compiler generated a single movq instead of a number of 
->shorter movs. (But I won't promise anything. :)
+Also the cc list would have been massive so didn't do it.
+Hopefully enough people actually read dri-devel...
 
-Here I focused on making the *io* part faster instead of the system
-memory part faster since io is order of magnitudes slower and showing up
-on perf. Yes, we can also do it on the system memory part.
+Ville Syrjälä (8):
+  drm: Drop drm_edid.h from drm_crtc.h
+  drm: Drop drm_framebuffer.h from drm_crtc.h
+  drm: Drop drm_blend.h from drm_crtc.h
+  drm: Drop drm_connector.h from drm_crtc.h
+  drm: Remove unnecessary junk from drm_crtc.h
+  drm: Remove linux/fb.h from drm_crtc.h
+  drm: Remove linux/media-bus-format.h from drm_crtc.h
+  drm: Remove linux/i2c.h from drm_crtc.h
 
-Note that the READ_ONCE() I mentioned in the commit message does the
-volatile cast behind the scene. I also checked that the readl in the
-generated code expands to a mov instruction in 64-bit mode,
-which is correct.
+ drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h        |  1 +
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c   |  1 +
+ .../drm/amd/display/amdgpu_dm/amdgpu_dm_trace.h |  1 +
+ .../gpu/drm/arm/display/komeda/d71/d71_dev.c    |  1 +
+ drivers/gpu/drm/arm/display/komeda/komeda_kms.h |  1 +
+ .../drm/arm/display/komeda/komeda_pipeline.c    |  2 ++
+ .../gpu/drm/arm/display/komeda/komeda_plane.c   |  1 +
+ .../arm/display/komeda/komeda_wb_connector.c    |  1 +
+ drivers/gpu/drm/arm/hdlcd_crtc.c                |  1 +
+ drivers/gpu/drm/arm/malidp_crtc.c               |  1 +
+ drivers/gpu/drm/arm/malidp_mw.c                 |  2 ++
+ drivers/gpu/drm/arm/malidp_planes.c             |  2 ++
+ drivers/gpu/drm/armada/armada_510.c             |  1 +
+ drivers/gpu/drm/armada/armada_fb.h              |  2 ++
+ drivers/gpu/drm/aspeed/aspeed_gfx_crtc.c        |  1 +
+ drivers/gpu/drm/aspeed/aspeed_gfx_out.c         |  1 +
+ drivers/gpu/drm/ast/ast_mode.c                  |  1 +
+ drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_crtc.c  |  1 +
+ .../gpu/drm/atmel-hlcdc/atmel_hlcdc_output.c    |  1 +
+ drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_plane.c |  2 ++
+ .../gpu/drm/bridge/analogix/analogix_dp_core.c  |  1 +
+ .../gpu/drm/bridge/cadence/cdns-mhdp8546-core.c |  2 ++
+ drivers/gpu/drm/bridge/chipone-icn6211.c        |  1 +
+ drivers/gpu/drm/bridge/chrontel-ch7033.c        |  1 +
+ drivers/gpu/drm/bridge/display-connector.c      |  1 +
+ drivers/gpu/drm/bridge/fsl-ldb.c                |  1 +
+ drivers/gpu/drm/bridge/ite-it66121.c            |  1 +
+ drivers/gpu/drm/bridge/lontium-lt8912b.c        |  2 ++
+ drivers/gpu/drm/bridge/lontium-lt9211.c         |  1 +
+ drivers/gpu/drm/bridge/lontium-lt9611.c         |  2 ++
+ drivers/gpu/drm/bridge/lontium-lt9611uxc.c      |  1 +
+ drivers/gpu/drm/bridge/nwl-dsi.c                |  1 +
+ drivers/gpu/drm/bridge/parade-ps8640.c          |  1 +
+ drivers/gpu/drm/bridge/sii902x.c                |  1 +
+ drivers/gpu/drm/bridge/simple-bridge.c          |  1 +
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi.c       |  1 +
+ drivers/gpu/drm/bridge/tc358764.c               |  1 +
+ drivers/gpu/drm/bridge/tc358767.c               |  1 +
+ drivers/gpu/drm/bridge/tc358775.c               |  1 +
+ drivers/gpu/drm/bridge/ti-dlpc3433.c            |  1 +
+ drivers/gpu/drm/bridge/ti-sn65dsi83.c           |  1 +
+ drivers/gpu/drm/bridge/ti-tfp410.c              |  2 ++
+ drivers/gpu/drm/display/drm_dp_helper.c         |  2 ++
+ drivers/gpu/drm/display/drm_dp_mst_topology.c   |  1 +
+ drivers/gpu/drm/drm_atomic.c                    |  2 ++
+ drivers/gpu/drm/drm_atomic_helper.c             |  2 ++
+ drivers/gpu/drm/drm_atomic_state_helper.c       |  2 ++
+ drivers/gpu/drm/drm_atomic_uapi.c               |  1 +
+ drivers/gpu/drm/drm_bridge.c                    |  1 +
+ drivers/gpu/drm/drm_client_modeset.c            |  1 +
+ drivers/gpu/drm/drm_connector.c                 |  1 +
+ drivers/gpu/drm/drm_crtc.c                      |  2 ++
+ drivers/gpu/drm/drm_crtc_helper.c               |  1 +
+ drivers/gpu/drm/drm_damage_helper.c             |  1 +
+ drivers/gpu/drm/drm_fb_helper.c                 |  1 +
+ drivers/gpu/drm/drm_gem_atomic_helper.c         |  1 +
+ drivers/gpu/drm/drm_kms_helper_common.c         |  1 +
+ drivers/gpu/drm/drm_mipi_dbi.c                  |  2 ++
+ drivers/gpu/drm/drm_mode_config.c               |  1 +
+ drivers/gpu/drm/drm_modes.c                     |  2 ++
+ drivers/gpu/drm/drm_modeset_helper.c            |  1 +
+ drivers/gpu/drm/drm_of.c                        |  2 ++
+ drivers/gpu/drm/drm_writeback.c                 |  1 +
+ drivers/gpu/drm/exynos/exynos5433_drm_decon.c   |  2 ++
+ drivers/gpu/drm/exynos/exynos7_drm_decon.c      |  1 +
+ drivers/gpu/drm/exynos/exynos_dp.c              |  1 +
+ drivers/gpu/drm/exynos/exynos_drm_dpi.c         |  1 +
+ drivers/gpu/drm/exynos/exynos_drm_fb.c          |  1 +
+ drivers/gpu/drm/exynos/exynos_drm_fbdev.c       |  1 +
+ drivers/gpu/drm/exynos/exynos_drm_fimd.c        |  2 ++
+ drivers/gpu/drm/exynos/exynos_drm_ipp.c         |  1 +
+ drivers/gpu/drm/exynos/exynos_drm_plane.c       |  2 ++
+ drivers/gpu/drm/exynos/exynos_drm_scaler.c      |  1 +
+ drivers/gpu/drm/exynos/exynos_drm_vidi.c        |  1 +
+ drivers/gpu/drm/exynos/exynos_mixer.c           |  3 +++
+ drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_plane.c     |  1 +
+ drivers/gpu/drm/gma500/cdv_intel_dp.c           |  1 +
+ drivers/gpu/drm/gma500/framebuffer.c            |  1 +
+ drivers/gpu/drm/gma500/gma_display.c            |  1 +
+ drivers/gpu/drm/gma500/oaktrail_crtc.c          |  1 +
+ drivers/gpu/drm/gma500/oaktrail_hdmi.c          |  1 +
+ drivers/gpu/drm/gma500/oaktrail_lvds.c          |  1 +
+ drivers/gpu/drm/gma500/psb_intel_modes.c        |  2 ++
+ drivers/gpu/drm/gud/gud_connector.c             |  1 +
+ drivers/gpu/drm/gud/gud_drv.c                   |  1 +
+ drivers/gpu/drm/hisilicon/kirin/dw_drm_dsi.c    |  1 +
+ drivers/gpu/drm/hisilicon/kirin/kirin_drm_ade.c |  1 +
+ drivers/gpu/drm/i2c/tda998x_drv.c               |  1 +
+ drivers/gpu/drm/i915/display/i9xx_plane.c       |  1 +
+ drivers/gpu/drm/i915/display/intel_backlight.c  |  1 +
+ drivers/gpu/drm/i915/display/intel_cursor.c     |  1 +
+ .../gpu/drm/i915/display/intel_display_types.h  |  1 +
+ drivers/gpu/drm/i915/display/intel_dp.c         |  1 +
+ drivers/gpu/drm/i915/display/intel_fb.c         |  1 +
+ drivers/gpu/drm/i915/display/intel_fbc.c        |  1 +
+ drivers/gpu/drm/i915/display/intel_lspcon.c     |  1 +
+ drivers/gpu/drm/i915/display/intel_opregion.c   |  2 ++
+ drivers/gpu/drm/i915/display/intel_sprite.c     |  1 +
+ .../gpu/drm/i915/display/skl_universal_plane.c  |  1 +
+ drivers/gpu/drm/i915/intel_pm.c                 |  1 +
+ drivers/gpu/drm/imx/dcss/dcss-drv.c             |  1 +
+ drivers/gpu/drm/imx/dcss/dcss-plane.c           |  2 ++
+ drivers/gpu/drm/imx/imx-ldb.c                   |  2 ++
+ drivers/gpu/drm/imx/imx-tve.c                   |  1 +
+ drivers/gpu/drm/imx/ipuv3-plane.c               |  2 ++
+ drivers/gpu/drm/imx/parallel-display.c          |  2 ++
+ drivers/gpu/drm/kmb/kmb_dsi.c                   |  1 +
+ drivers/gpu/drm/kmb/kmb_plane.c                 |  2 ++
+ drivers/gpu/drm/logicvc/logicvc_layer.c         |  2 ++
+ drivers/gpu/drm/mcde/mcde_display.c             |  1 +
+ drivers/gpu/drm/mediatek/mtk_disp_ovl.c         |  2 ++
+ drivers/gpu/drm/mediatek/mtk_disp_rdma.c        |  2 ++
+ drivers/gpu/drm/mediatek/mtk_dpi.c              |  1 +
+ drivers/gpu/drm/mediatek/mtk_drm_plane.c        |  2 ++
+ drivers/gpu/drm/meson/meson_overlay.c           |  2 ++
+ drivers/gpu/drm/meson/meson_plane.c             |  2 ++
+ drivers/gpu/drm/mgag200/mgag200_mode.c          |  1 +
+ drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c        |  2 ++
+ drivers/gpu/drm/msm/disp/dpu1/dpu_formats.c     |  1 +
+ drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c         |  1 +
+ drivers/gpu/drm/msm/disp/dpu1/dpu_plane.c       |  2 ++
+ drivers/gpu/drm/msm/disp/mdp4/mdp4_plane.c      |  1 +
+ drivers/gpu/drm/msm/disp/mdp5/mdp5_crtc.c       |  1 +
+ drivers/gpu/drm/msm/disp/mdp5/mdp5_plane.c      |  2 ++
+ drivers/gpu/drm/msm/disp/mdp_format.c           |  2 ++
+ drivers/gpu/drm/msm/hdmi/hdmi_bridge.c          |  1 +
+ drivers/gpu/drm/msm/msm_debugfs.c               |  1 +
+ drivers/gpu/drm/msm/msm_fb.c                    |  1 +
+ drivers/gpu/drm/msm/msm_fbdev.c                 |  1 +
+ drivers/gpu/drm/mxsfb/mxsfb_kms.c               |  2 ++
+ drivers/gpu/drm/nouveau/dispnv50/wndw.c         |  1 +
+ drivers/gpu/drm/omapdrm/dss/hdmi4.c             |  1 +
+ drivers/gpu/drm/omapdrm/dss/hdmi5.c             |  1 +
+ drivers/gpu/drm/omapdrm/omap_debugfs.c          |  1 +
+ drivers/gpu/drm/omapdrm/omap_dmm_tiler.c        |  1 +
+ drivers/gpu/drm/omapdrm/omap_fb.c               |  2 ++
+ drivers/gpu/drm/omapdrm/omap_fbdev.c            |  1 +
+ drivers/gpu/drm/omapdrm/omap_plane.c            |  2 ++
+ drivers/gpu/drm/panel/panel-edp.c               |  1 +
+ .../drm/panel/panel-raspberrypi-touchscreen.c   |  1 +
+ drivers/gpu/drm/panel/panel-raydium-rm67191.c   |  1 +
+ drivers/gpu/drm/panel/panel-seiko-43wvf1g.c     |  1 +
+ drivers/gpu/drm/panel/panel-simple.c            |  3 +++
+ drivers/gpu/drm/pl111/pl111_display.c           |  2 ++
+ drivers/gpu/drm/pl111/pl111_drv.c               |  1 +
+ drivers/gpu/drm/pl111/pl111_versatile.c         |  2 ++
+ drivers/gpu/drm/qxl/qxl_display.c               |  2 ++
+ drivers/gpu/drm/qxl/qxl_draw.c                  |  1 +
+ drivers/gpu/drm/radeon/atombios_crtc.c          |  1 +
+ drivers/gpu/drm/radeon/evergreen.c              |  1 +
+ drivers/gpu/drm/radeon/r100.c                   |  1 +
+ drivers/gpu/drm/radeon/radeon_device.c          |  1 +
+ drivers/gpu/drm/radeon/radeon_display.c         |  1 +
+ drivers/gpu/drm/radeon/radeon_fb.c              |  1 +
+ drivers/gpu/drm/radeon/radeon_legacy_crtc.c     |  1 +
+ drivers/gpu/drm/radeon/rs600.c                  |  1 +
+ drivers/gpu/drm/radeon/rv770.c                  |  1 +
+ drivers/gpu/drm/rcar-du/rcar_du_encoder.c       |  1 +
+ drivers/gpu/drm/rcar-du/rcar_du_kms.c           |  1 +
+ drivers/gpu/drm/rcar-du/rcar_du_plane.c         |  2 ++
+ drivers/gpu/drm/rcar-du/rcar_du_vsp.c           |  2 ++
+ drivers/gpu/drm/rcar-du/rcar_du_writeback.c     |  2 ++
+ drivers/gpu/drm/rcar-du/rcar_lvds.c             |  1 +
+ drivers/gpu/drm/rockchip/rk3066_hdmi.c          |  1 +
+ drivers/gpu/drm/rockchip/rockchip_drm_fb.c      |  1 +
+ drivers/gpu/drm/rockchip/rockchip_drm_vop.c     |  2 ++
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.c    |  3 +++
+ drivers/gpu/drm/rockchip/rockchip_rgb.c         |  1 +
+ .../gpu/drm/selftests/test-drm_damage_helper.c  |  1 +
+ .../gpu/drm/selftests/test-drm_plane_helper.c   |  1 +
+ drivers/gpu/drm/solomon/ssd130x.c               |  2 ++
+ drivers/gpu/drm/sprd/sprd_dpu.c                 |  2 ++
+ drivers/gpu/drm/sti/sti_compositor.c            |  1 +
+ drivers/gpu/drm/sti/sti_cursor.c                |  1 +
+ drivers/gpu/drm/sti/sti_gdp.c                   |  2 ++
+ drivers/gpu/drm/sti/sti_hda.c                   |  1 +
+ drivers/gpu/drm/sti/sti_hdmi.c                  |  1 +
+ drivers/gpu/drm/sti/sti_hqvdp.c                 |  2 ++
+ drivers/gpu/drm/sti/sti_plane.c                 |  2 ++
+ drivers/gpu/drm/stm/ltdc.c                      |  4 ++++
+ drivers/gpu/drm/sun4i/sun4i_backend.c           |  2 ++
+ drivers/gpu/drm/sun4i/sun4i_framebuffer.c       |  1 +
+ drivers/gpu/drm/sun4i/sun4i_hdmi_enc.c          |  1 +
+ drivers/gpu/drm/sun4i/sun4i_layer.c             |  1 +
+ drivers/gpu/drm/sun4i/sun4i_tcon.c              |  1 +
+ drivers/gpu/drm/sun4i/sun4i_tcon.h              |  1 +
+ drivers/gpu/drm/sun4i/sun8i_mixer.c             |  1 +
+ drivers/gpu/drm/sun4i/sun8i_ui_layer.c          |  2 ++
+ drivers/gpu/drm/sun4i/sun8i_vi_layer.c          |  2 ++
+ drivers/gpu/drm/tegra/dc.c                      |  2 ++
+ drivers/gpu/drm/tegra/drm.c                     |  1 +
+ drivers/gpu/drm/tegra/fb.c                      |  1 +
+ drivers/gpu/drm/tegra/hub.c                     |  2 ++
+ drivers/gpu/drm/tegra/plane.c                   |  1 +
+ drivers/gpu/drm/tidss/tidss_dispc.c             |  3 +++
+ drivers/gpu/drm/tidss/tidss_plane.c             |  2 ++
+ drivers/gpu/drm/tilcdc/tilcdc_crtc.c            |  1 +
+ drivers/gpu/drm/tilcdc/tilcdc_panel.c           |  1 +
+ drivers/gpu/drm/tilcdc/tilcdc_plane.c           |  1 +
+ drivers/gpu/drm/tiny/arcpgu.c                   |  2 ++
+ drivers/gpu/drm/tiny/bochs.c                    |  2 ++
+ drivers/gpu/drm/tiny/cirrus.c                   |  2 ++
+ drivers/gpu/drm/tiny/gm12u320.c                 |  2 ++
+ drivers/gpu/drm/tiny/ili9225.c                  |  1 +
+ drivers/gpu/drm/tiny/repaper.c                  |  1 +
+ drivers/gpu/drm/tiny/st7586.c                   |  1 +
+ drivers/gpu/drm/tve200/tve200_display.c         |  1 +
+ drivers/gpu/drm/udl/udl_connector.c             |  1 +
+ drivers/gpu/drm/vboxvideo/vbox_mode.c           |  2 ++
+ drivers/gpu/drm/vc4/vc4_bo.c                    |  2 ++
+ drivers/gpu/drm/vc4/vc4_crtc.c                  |  1 +
+ drivers/gpu/drm/vc4/vc4_dpi.c                   |  1 +
+ drivers/gpu/drm/vc4/vc4_drv.h                   |  1 +
+ drivers/gpu/drm/vc4/vc4_kms.c                   |  1 +
+ drivers/gpu/drm/vc4/vc4_plane.c                 |  2 ++
+ drivers/gpu/drm/vc4/vc4_txp.c                   |  1 +
+ drivers/gpu/drm/virtio/virtgpu_display.c        |  1 +
+ drivers/gpu/drm/virtio/virtgpu_drv.h            |  1 +
+ drivers/gpu/drm/virtio/virtgpu_vq.c             |  2 ++
+ drivers/gpu/drm/vkms/vkms_drv.h                 |  1 +
+ drivers/gpu/drm/vkms/vkms_output.c              |  1 +
+ drivers/gpu/drm/vkms/vkms_writeback.c           |  1 +
+ drivers/gpu/drm/vmwgfx/vmwgfx_fb.c              |  1 +
+ drivers/gpu/drm/vmwgfx/vmwgfx_kms.c             |  2 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_kms.h             |  1 +
+ drivers/gpu/drm/xen/xen_drm_front_conn.c        |  1 +
+ drivers/gpu/drm/xen/xen_drm_front_kms.c         |  1 +
+ include/drm/drm_crtc.h                          | 17 ++---------------
+ include/drm/drm_encoder_slave.h                 |  2 ++
+ include/drm/drm_fb_helper.h                     |  1 +
+ 230 files changed, 309 insertions(+), 16 deletions(-)
 
->
->Within _Generic, for each type, a macro can generate the case. Like this
->
->#define __iosys_map_rd_case(__type, __map, __read) \
->  __type: if else ...
->
->In the case of u64, you can simply do
->
->#if CONFIG_64BIT
->#define __iosys_map_rd_case_u64(__map) \
->  __iosys_map_rc_case(u64, __map, readq)
->#else
->#define __iosys_map_rd_case_u64(__map)
->#endif
->
->and use that macro in the _Generic. On 64-bit systems, the case will 
->be there. Otherwise it will be empty.
+-- 
+2.35.1
 
-/me confused... this is what I did, no?
-
->
->The only user of iosys_map_rd() is i915. I quickly looked through the 
->usage and found no cases where the default memcpy could be used. It's 
->all structs with u32. (Right?)  If so, please remove the default case 
->with memcpy entirely.  This will result in clear compile-time errors 
->if a certain type is not supported.  There's still iosys_mem_memcpy() 
->for those who need it.
-
-yeah, I think we had cases copying the whole struct before. Just took a look
-and removing the default doesn't explodes the build, so we should be fine...
-although it may lead to build issue if we are trying to read a u64 on 32-bit
-since it won't fallback to memcpy by simply expanding the u64 case to nothing.
-
-Another thing not clear: how does moving the if/else inside the
-_Generic() help with unaligned accesses?
-
-For your suggestion on also handling system memory,  I was actually thinking on
-leaving the if/else where it is now and in future add a _Generic() for the
-system memory accesses (hence why my macro has he _io suffix):
-
-diff --git a/include/linux/iosys-map.h b/include/linux/iosys-map.h
-index d092d30f5812..0e758424088e 100644
---- a/include/linux/iosys-map.h
-+++ b/include/linux/iosys-map.h
-@@ -375,7 +375,7 @@ static inline void iosys_map_memset(struct iosys_map *dst, size_t offset,
-  	if ((map__)->is_iomem) {						\
-  		__iosys_map_rd_io(val, (map__)->vaddr_iomem + offset__, type__);\
-  	} else {								\
--		memcpy(&val, (map__)->vaddr + offset__, sizeof(val));		\
-+		__iosys_map_rd_sys(val, (map__)->vaddr_iomem + offset__, type__);\
-  	}									\
-  	val;									\
-  })
-
-it seems cleaner than adding the if/else to each case expanded by _Generic().
-
-thanks
-Lucas De Marchi
