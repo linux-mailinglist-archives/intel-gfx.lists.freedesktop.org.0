@@ -1,51 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB00454850B
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jun 2022 14:05:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D39F548510
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jun 2022 14:11:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 603DF10E44C;
-	Mon, 13 Jun 2022 12:05:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1279A10E44C;
+	Mon, 13 Jun 2022 12:11:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ams.source.kernel.org (ams.source.kernel.org
- [IPv6:2604:1380:4601:e00::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8804910E587;
- Mon, 13 Jun 2022 12:05:52 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D6DB10E15E;
+ Mon, 13 Jun 2022 12:11:21 +0000 (UTC)
+Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
+ by smtp-out2.suse.de (Postfix) with ESMTP id ED1C71F38A;
+ Mon, 13 Jun 2022 12:11:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
+ t=1655122279; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=cWi4yPYQYuWcLCZhlzRL/FUwfVjRk7PfFZtsphXFstQ=;
+ b=fWc9Ypl2KcwfmmeUMR5vxJsHU3nImiAo3Pbtm/FripjpX/mp8Fjs3Rh1gZ6Tn3ex0cZ3W+
+ 0OvfKRLBxncV3yGLDHAgrGqvdZlefo3rLxodVymu5Y4osdFhZqLOhmsWXnI11DWNlx/VZ0
+ h9lRYJlBhcSh3hyTWiqlBbym/yTUmaw=
+Received: from suse.cz (unknown [10.100.201.86])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 07595B80D3A;
- Mon, 13 Jun 2022 12:05:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C21FEC34114;
- Mon, 13 Jun 2022 12:05:48 +0000 (UTC)
-Authentication-Results: smtp.kernel.org;
- dkim=pass (1024-bit key) header.d=zx2c4.com header.i=@zx2c4.com
- header.b="OfX6t3CW"
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=zx2c4.com; s=20210105; 
- t=1655121947;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=ByYnF9j3FLadcXuK2jZpG7X4XVZluCb7LDeffa2/9ug=;
- b=OfX6t3CWYmdxen09J3purXW1S1gqtzth97oUb06pR824jHIMC/yiR/nnNS5nrXbXb4cm0q
- ZE34ExQY0qN+40ZPdVu7RiLf3LR2kfl98bwtcY6x6xBllzD9bzxRLv7VKSD8ORBDzOqyDU
- omX8+3Bs29Yi8cTabgujvDdl07zyTNg=
-Received: by mail.zx2c4.com (ZX2C4 Mail Server) with ESMTPSA id f83df531
- (TLSv1.3:AEAD-AES256-GCM-SHA384:256:NO); 
- Mon, 13 Jun 2022 12:05:46 +0000 (UTC)
-Date: Mon, 13 Jun 2022 14:05:41 +0200
-From: "Jason A. Donenfeld" <Jason@zx2c4.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <Yqcn/YjVFDzE86j7@zx2c4.com>
-References: <20220613102241.9236-1-Jason@zx2c4.com> <87edzszuvm.fsf@intel.com>
+ by relay2.suse.de (Postfix) with ESMTPS id 66AB32C141;
+ Mon, 13 Jun 2022 12:11:18 +0000 (UTC)
+Date: Mon, 13 Jun 2022 14:11:17 +0200
+From: Michal Hocko <mhocko@suse.com>
+To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Message-ID: <YqcpZY3Xx7Mk2ROH@dhcp22.suse.cz>
+References: <YqIB0bavUeU8Abwl@dhcp22.suse.cz>
+ <d4a19481-7a9f-19bf-c270-d89baa0970fc@amd.com>
+ <YqIMmK18mb/+s5de@dhcp22.suse.cz>
+ <3f7d3d96-0858-fb6d-07a3-4c18964f888e@gmail.com>
+ <YqMuq/ZrV8loC3jE@dhcp22.suse.cz>
+ <2e7e050e-04eb-0c0a-0675-d7f1c3ae7aed@amd.com>
+ <YqNSSFQELx/LeEHR@dhcp22.suse.cz>
+ <288528c3-411e-fb25-2f08-92d4bb9f1f13@gmail.com>
+ <Yqbq/Q5jz2ou87Jx@dhcp22.suse.cz>
+ <b8b9aba5-575e-8a34-e627-79bef4ed7f97@amd.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <87edzszuvm.fsf@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Re-add check for low
- voltage sku for max dp source rate
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <b8b9aba5-575e-8a34-e627-79bef4ed7f97@amd.com>
+Subject: Re: [Intel-gfx] [PATCH 03/13] mm: shmem: provide oom badness for
+ shmem files
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,50 +62,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org,
- dri-devel <dri-devel@lists.freedesktop.org>
+Cc: andrey.grodzovsky@amd.com, linux-mm@kvack.org,
+ nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ hughd@google.com, linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ linux-fsdevel@vger.kernel.org, viro@zeniv.linux.org.uk,
+ Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ linux-tegra@vger.kernel.org, alexander.deucher@amd.com,
+ akpm@linux-foundation.org, linux-media@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Jani,
-
-On Mon, Jun 13, 2022 at 02:05:17PM +0300, Jani Nikula wrote:
-> On Mon, 13 Jun 2022, "Jason A. Donenfeld" <Jason@zx2c4.com> wrote:
-> > This reverts commit 73867c8709b569cdd7fda67f01dfe02c8d055521, which, on
-> > an i7-11850H iGPU with a Thinkpad X1 Extreme Gen 4, attached to a LG
-> > LP160UQ1-SPB1 embedded panel, causes wild flickering glitching
-> > technicolor pyrotechnics on resumption from suspend. The display shows
-> > strobing colors in an utter disaster explosion of pantone, as though
-> > bombs were dropped on the leprechauns at the base of the rainbow.
-> >
-> > Rebooting the machine fixes the issue, presumably because the display is
-> > initialized by firmware rather than by i915. Otherwise, the GPU appears
-> > to work fine.
-> >
-> > Bisection traced it back to this commit, which makes sense given the
-> > issues.
+On Mon 13-06-22 13:50:28, Christian König wrote:
+> Am 13.06.22 um 09:45 schrieb Michal Hocko:
+> > On Sat 11-06-22 10:06:18, Christian König wrote:
+> > > Am 10.06.22 um 16:16 schrieb Michal Hocko:
+[...]
+> > > Alternative I could try to track the "owner" of a buffer (e.g. a shmem
+> > > file), but then it can happen that one processes creates the object and
+> > > another one is writing to it and actually allocating the memory.
+> > If you can enforce that the owner is really responsible for the
+> > allocation then all should be fine. That would require MAP_POPULATE like
+> > semantic and I suspect this is not really feasible with the existing
+> > userspace. It would be certainly hard to enforce for bad players.
 > 
-> Thanks for putting in the effort to bisect, and the patch.
+> I've tried this today and the result was: "BUG: Bad rss-counter state
+> mm:000000008751d9ff type:MM_FILEPAGES val:-571286".
 > 
-> As the commit message of the regressing commit suggests, the VBT (Video
-> BIOS Tables) should contain the info about max rates, filled in by the
-> OEM. Unfortunately, we were missing some of the checks,
-> e.g. 24b8b74eb2eb ("drm/i915: Parse max link rate from the eDP BDB
-> block") added to drm-intel-next just recently.
+> The problem is once more that files are not informed when the process
+> clones. So what happened is that somebody called fork() with an mm_struct
+> I've accounted my pages to. The result is just that we messed up the
+> rss_stats and  the the "BUG..." above.
 > 
-> Unfortunately, gitlab is down today so I can't check if you already
-> tried drm-tip [1]; that might be helpful. Also, attaching
-> /sys/kernel/debug/dri/0/i915_vbt might be useful to see if the
-> limitation is there.
-> 
-> If your system works with the limitations from VBT, *and* the commits
-> adding that support are trivial to backport to v5.19, I'm inclined to do
-> that instead of the revert. But obviously the revert is the way to go if
-> that doesn't happen.
+> The key difference between normal allocated pages and the resources here is
+> just that we are not bound to an mm_struct in any way.
 
-I checked with drm-tip last week when I filed the bug, and I just
-remerged the latest today, just in case there was anything new, and
-alas, the problem still occurs.
-
-Jason
-
+It is not really clear to me what exactly you have tried.
+-- 
+Michal Hocko
+SUSE Labs
