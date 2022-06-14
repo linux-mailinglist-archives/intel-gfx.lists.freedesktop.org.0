@@ -2,52 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89E2454A354
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jun 2022 02:57:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F52F54A36E
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jun 2022 03:09:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7996D10F903;
-	Tue, 14 Jun 2022 00:57:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8AE7710FBF6;
+	Tue, 14 Jun 2022 01:09:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B1E6210F77C;
- Tue, 14 Jun 2022 00:57:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655168229; x=1686704229;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=rQvvkQcPqldN3du0h4UGJIowhgpW7m2pjJkUpnxfqpo=;
- b=ZbBuISVOxCj0+uW3LsQhp8QvGY7aLulgjeQjqdmkVBo0JiQn8YWb3QIo
- 4Buh/K0pfjUO4hl099Z50RD3TXWXUWBIvGO++/1CQGLTx83OBrMwALPi6
- i9S9IoWwzVdC7rceBBvpvBO4RpReuHOFjRhL1fYbmXUEDlo2/44Ahrx/6
- 84lbyGL4YuiUWnQARtEFANBI4cYBDAPS1NFtC/k8j3kuF+zyy7iISnNpI
- /c8NTsLyJzmXvIIwHkZ6Dmgqr6S0rrHgjH0wkIutjojAm6+g5//7JSXlL
- zlYFQPweo6kyKOxEp59Y/rHJlta8IvfkuGYx3bURBj5Fy7ky4sQAZsQSw Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10377"; a="275992296"
-X-IronPort-AV: E=Sophos;i="5.91,298,1647327600"; d="scan'208";a="275992296"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jun 2022 17:57:09 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,298,1647327600"; d="scan'208";a="686362830"
-Received: from lkp-server01.sh.intel.com (HELO 60dabacc1df6) ([10.239.97.150])
- by fmsmga002.fm.intel.com with ESMTP; 13 Jun 2022 17:57:07 -0700
-Received: from kbuild by 60dabacc1df6 with local (Exim 4.95)
- (envelope-from <lkp@intel.com>) id 1o0uri-000LIn-Ap;
- Tue, 14 Jun 2022 00:57:06 +0000
-Date: Tue, 14 Jun 2022 08:56:11 +0800
-From: kernel test robot <lkp@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- dri-devel@lists.freedesktop.org
-Message-ID: <202206140805.EbEq2F87-lkp@intel.com>
-References: <20220613200317.11305-8-ville.syrjala@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 174B910FBF6;
+ Tue, 14 Jun 2022 01:09:10 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 0F342AA01E;
+ Tue, 14 Jun 2022 01:09:10 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5362843915602546357=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220613200317.11305-8-ville.syrjala@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH 7/8] drm: Remove linux/media-bus-format.h
- from drm_crtc.h
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Juha-Pekka Heikkila" <juhapekka.heikkila@gmail.com>
+Date: Tue, 14 Jun 2022 01:09:10 -0000
+Message-ID: <165516895003.12486.18295384461302881032@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220610121205.29645-1-juhapekka.heikkila@gmail.com>
+In-Reply-To: <20220610121205.29645-1-juhapekka.heikkila@gmail.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/3=5D_drm/i915/display=3A_Add_smem_fallba?=
+ =?utf-8?q?ck_allocation_for_dpt_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,262 +41,305 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, llvm@lists.linux.dev,
- kbuild-all@lists.01.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Ville,
+--===============5362843915602546357==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Thank you for the patch! Yet something to improve:
+== Series Details ==
 
-[auto build test ERROR on next-20220610]
-[cannot apply to drm/drm-next drm-exynos/exynos-drm-next drm-intel/for-linux-next v5.19-rc2 v5.19-rc1 v5.18 v5.19-rc2]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+Series: series starting with [1/3] drm/i915/display: Add smem fallback allocation for dpt (rev2)
+URL   : https://patchwork.freedesktop.org/series/104983/
+State : success
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Ville-Syrjala/drm-Clean-up-drm_crtc-h/20220614-040443
-base:    6d0c806803170f120f8cb97b321de7bd89d3a791
-config: arm64-randconfig-r004-20220613 (https://download.01.org/0day-ci/archive/20220614/202206140805.EbEq2F87-lkp@intel.com/config)
-compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project d378268ead93c85803c270277f0243737b536ae7)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # install arm64 cross compiling tool for clang build
-        # apt-get install binutils-aarch64-linux-gnu
-        # https://github.com/intel-lab-lkp/linux/commit/a94efb8736c53bd301f57ecaf952c154db64a56f
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Ville-Syrjala/drm-Clean-up-drm_crtc-h/20220614-040443
-        git checkout a94efb8736c53bd301f57ecaf952c154db64a56f
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm64 SHELL=/bin/bash drivers/gpu/drm/ingenic/
+== Summary ==
 
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
+CI Bug Log - changes from CI_DRM_11755 -> Patchwork_104983v2
+====================================================
 
-All errors (new ones prefixed by >>):
+Summary
+-------
 
-   drivers/gpu/drm/ingenic/ingenic-drm-drv.c:499:22: error: incomplete definition of type 'struct drm_framebuffer'
-                   new_plane_state->fb->format->format == DRM_FORMAT_C8;
-                   ~~~~~~~~~~~~~~~~~~~^
-   include/drm/drm_mode_config.h:83:9: note: forward declaration of 'struct drm_framebuffer'
-           struct drm_framebuffer *(*fb_create)(struct drm_device *dev,
-                  ^
-   drivers/gpu/drm/ingenic/ingenic-drm-drv.c:511:26: error: incomplete definition of type 'struct drm_framebuffer'
-                old_plane_state->fb->format->format != new_plane_state->fb->format->format))
-                ~~~~~~~~~~~~~~~~~~~^
-   include/drm/drm_mode_config.h:83:9: note: forward declaration of 'struct drm_framebuffer'
-           struct drm_framebuffer *(*fb_create)(struct drm_device *dev,
-                  ^
-   drivers/gpu/drm/ingenic/ingenic-drm-drv.c:511:65: error: incomplete definition of type 'struct drm_framebuffer'
-                old_plane_state->fb->format->format != new_plane_state->fb->format->format))
-                                                       ~~~~~~~~~~~~~~~~~~~^
-   include/drm/drm_mode_config.h:83:9: note: forward declaration of 'struct drm_framebuffer'
-           struct drm_framebuffer *(*fb_create)(struct drm_device *dev,
-                  ^
-   drivers/gpu/drm/ingenic/ingenic-drm-drv.c:677:21: error: incomplete definition of type 'struct drm_framebuffer'
-                   cpp = newstate->fb->format->cpp[0];
-                         ~~~~~~~~~~~~^
-   include/drm/drm_mode_config.h:83:9: note: forward declaration of 'struct drm_framebuffer'
-           struct drm_framebuffer *(*fb_create)(struct drm_device *dev,
-                  ^
-   drivers/gpu/drm/ingenic/ingenic-drm-drv.c:695:24: error: incomplete definition of type 'struct drm_framebuffer'
-                           switch (newstate->fb->format->format) {
-                                   ~~~~~~~~~~~~^
-   include/drm/drm_mode_config.h:83:9: note: forward declaration of 'struct drm_framebuffer'
-           struct drm_framebuffer *(*fb_create)(struct drm_device *dev,
-                  ^
-   drivers/gpu/drm/ingenic/ingenic-drm-drv.c:715:25: error: incomplete definition of type 'struct drm_framebuffer'
-                           fourcc = newstate->fb->format->format;
-                                    ~~~~~~~~~~~~^
-   include/drm/drm_mode_config.h:83:9: note: forward declaration of 'struct drm_framebuffer'
-           struct drm_framebuffer *(*fb_create)(struct drm_device *dev,
-                  ^
->> drivers/gpu/drm/ingenic/ingenic-drm-drv.c:765:9: error: use of undeclared identifier 'MEDIA_BUS_FMT_RGB565_1X16'
-                           case MEDIA_BUS_FMT_RGB565_1X16:
-                                ^
->> drivers/gpu/drm/ingenic/ingenic-drm-drv.c:768:9: error: use of undeclared identifier 'MEDIA_BUS_FMT_RGB666_1X18'
-                           case MEDIA_BUS_FMT_RGB666_1X18:
-                                ^
->> drivers/gpu/drm/ingenic/ingenic-drm-drv.c:771:9: error: use of undeclared identifier 'MEDIA_BUS_FMT_RGB888_1X24'
-                           case MEDIA_BUS_FMT_RGB888_1X24:
-                                ^
->> drivers/gpu/drm/ingenic/ingenic-drm-drv.c:774:9: error: use of undeclared identifier 'MEDIA_BUS_FMT_RGB888_3X8_DELTA'
-                           case MEDIA_BUS_FMT_RGB888_3X8_DELTA:
-                                ^
->> drivers/gpu/drm/ingenic/ingenic-drm-drv.c:777:9: error: use of undeclared identifier 'MEDIA_BUS_FMT_RGB888_3X8'
-                           case MEDIA_BUS_FMT_RGB888_3X8:
-                                ^
-   drivers/gpu/drm/ingenic/ingenic-drm-drv.c:813:7: error: use of undeclared identifier 'MEDIA_BUS_FMT_RGB888_3X8'
-           case MEDIA_BUS_FMT_RGB888_3X8:
-                ^
-   drivers/gpu/drm/ingenic/ingenic-drm-drv.c:814:7: error: use of undeclared identifier 'MEDIA_BUS_FMT_RGB888_3X8_DELTA'
-           case MEDIA_BUS_FMT_RGB888_3X8_DELTA:
-                ^
-   drivers/gpu/drm/ingenic/ingenic-drm-drv.c:827:7: error: use of undeclared identifier 'MEDIA_BUS_FMT_RGB565_1X16'
-           case MEDIA_BUS_FMT_RGB565_1X16:
-                ^
-   drivers/gpu/drm/ingenic/ingenic-drm-drv.c:828:7: error: use of undeclared identifier 'MEDIA_BUS_FMT_RGB666_1X18'
-           case MEDIA_BUS_FMT_RGB666_1X18:
-                ^
-   drivers/gpu/drm/ingenic/ingenic-drm-drv.c:829:7: error: use of undeclared identifier 'MEDIA_BUS_FMT_RGB888_1X24'
-           case MEDIA_BUS_FMT_RGB888_1X24:
-                ^
-   drivers/gpu/drm/ingenic/ingenic-drm-drv.c:845:7: error: use of undeclared identifier 'MEDIA_BUS_FMT_RGB888_1X24'
-           case MEDIA_BUS_FMT_RGB888_1X24:
-                ^
-   drivers/gpu/drm/ingenic/ingenic-drm-drv.c:846:7: error: use of undeclared identifier 'MEDIA_BUS_FMT_RGB666_1X18'
-           case MEDIA_BUS_FMT_RGB666_1X18:
-                ^
-   drivers/gpu/drm/ingenic/ingenic-drm-drv.c:847:7: error: use of undeclared identifier 'MEDIA_BUS_FMT_RGB565_1X16'
-           case MEDIA_BUS_FMT_RGB565_1X16:
-                ^
-   fatal error: too many errors emitted, stopping now [-ferror-limit=]
-   20 errors generated.
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104983v2/index.html
+
+Participating hosts (44 -> 41)
+------------------------------
+
+  Missing    (3): fi-cml-u2 bat-adlm-1 bat-jsl-2 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_104983v2 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-bdw-5557u:       NOTRUN -> [INCOMPLETE][1] ([i915#3921])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104983v2/fi-bdw-5557u/igt@i915_selftest@live@hangcheck.html
+
+  * igt@i915_selftest@live@requests:
+    - fi-blb-e6850:       [PASS][2] -> [DMESG-FAIL][3] ([i915#4528])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11755/fi-blb-e6850/igt@i915_selftest@live@requests.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104983v2/fi-blb-e6850/igt@i915_selftest@live@requests.html
+
+  * igt@kms_flip@basic-flip-vs-dpms@a-edp1:
+    - fi-tgl-u2:          [PASS][4] -> [DMESG-WARN][5] ([i915#402])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11755/fi-tgl-u2/igt@kms_flip@basic-flip-vs-dpms@a-edp1.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104983v2/fi-tgl-u2/igt@kms_flip@basic-flip-vs-dpms@a-edp1.html
+
+  * igt@kms_force_connector_basic@force-load-detect:
+    - fi-kbl-guc:         NOTRUN -> [SKIP][6] ([fdo#109271])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104983v2/fi-kbl-guc/igt@kms_force_connector_basic@force-load-detect.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c:
+    - bat-adlp-4:         [PASS][7] -> [DMESG-WARN][8] ([i915#3576]) +1 similar issue
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11755/bat-adlp-4/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104983v2/bat-adlp-4/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s0@smem:
+    - {fi-ehl-2}:         [DMESG-WARN][9] ([i915#5122]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11755/fi-ehl-2/igt@gem_exec_suspend@basic-s0@smem.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104983v2/fi-ehl-2/igt@gem_exec_suspend@basic-s0@smem.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-cfl-8109u:       [DMESG-FAIL][11] ([i915#62]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11755/fi-cfl-8109u/igt@i915_pm_rpm@module-reload.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104983v2/fi-cfl-8109u/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@coherency:
+    - {bat-dg2-9}:        [DMESG-WARN][13] ([i915#5763]) -> [PASS][14] +4 similar issues
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11755/bat-dg2-9/igt@i915_selftest@live@coherency.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104983v2/bat-dg2-9/igt@i915_selftest@live@coherency.html
+
+  * igt@i915_selftest@live@gem_contexts:
+    - fi-bdw-5557u:       [INCOMPLETE][15] ([i915#5502]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11755/fi-bdw-5557u/igt@i915_selftest@live@gem_contexts.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104983v2/fi-bdw-5557u/igt@i915_selftest@live@gem_contexts.html
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - {fi-jsl-1}:         [DMESG-FAIL][17] ([i915#5334]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11755/fi-jsl-1/igt@i915_selftest@live@gt_heartbeat.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104983v2/fi-jsl-1/igt@i915_selftest@live@gt_heartbeat.html
+
+  * igt@i915_selftest@live@late_gt_pm:
+    - fi-cfl-8109u:       [DMESG-WARN][19] ([i915#5904]) -> [PASS][20] +29 similar issues
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11755/fi-cfl-8109u/igt@i915_selftest@live@late_gt_pm.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104983v2/fi-cfl-8109u/igt@i915_selftest@live@late_gt_pm.html
+
+  * igt@i915_suspend@basic-s2idle-without-i915:
+    - fi-cfl-8109u:       [DMESG-WARN][21] ([i915#5904] / [i915#62]) -> [PASS][22]
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11755/fi-cfl-8109u/igt@i915_suspend@basic-s2idle-without-i915.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104983v2/fi-cfl-8109u/igt@i915_suspend@basic-s2idle-without-i915.html
+
+  * igt@kms_flip@basic-flip-vs-modeset@b-edp1:
+    - {bat-adlp-6}:       [DMESG-WARN][23] ([i915#3576]) -> [PASS][24] +1 similar issue
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11755/bat-adlp-6/igt@kms_flip@basic-flip-vs-modeset@b-edp1.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104983v2/bat-adlp-6/igt@kms_flip@basic-flip-vs-modeset@b-edp1.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-cfl-8109u:       [DMESG-WARN][25] ([i915#62]) -> [PASS][26] +15 similar issues
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11755/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104983v2/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#3576]: https://gitlab.freedesktop.org/drm/intel/issues/3576
+  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#4528]: https://gitlab.freedesktop.org/drm/intel/issues/4528
+  [i915#5122]: https://gitlab.freedesktop.org/drm/intel/issues/5122
+  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
+  [i915#5502]: https://gitlab.freedesktop.org/drm/intel/issues/5502
+  [i915#5763]: https://gitlab.freedesktop.org/drm/intel/issues/5763
+  [i915#5904]: https://gitlab.freedesktop.org/drm/intel/issues/5904
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
 
 
-vim +/MEDIA_BUS_FMT_RGB565_1X16 +765 drivers/gpu/drm/ingenic/ingenic-drm-drv.c
+Build changes
+-------------
 
-686d4b4b99afe79 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Cercueil 2020-09-27  653  
-90b86fcc47b4d18 drivers/gpu/drm/ingenic/ingenic-drm.c     Paul Cercueil 2019-06-03  654  static void ingenic_drm_plane_atomic_update(struct drm_plane *plane,
-977697e20b3d758 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Maxime Ripard 2021-02-19  655  					    struct drm_atomic_state *state)
-90b86fcc47b4d18 drivers/gpu/drm/ingenic/ingenic-drm.c     Paul Cercueil 2019-06-03  656  {
-3c9bea4ef32bdcd drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Cercueil 2020-07-16  657  	struct ingenic_drm *priv = drm_device_get_priv(plane->dev);
-4a791cb6d34f42e drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Cercueil 2021-05-23  658  	struct drm_plane_state *newstate = drm_atomic_get_new_plane_state(state, plane);
-4a791cb6d34f42e drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Cercueil 2021-05-23  659  	struct drm_plane_state *oldstate = drm_atomic_get_old_plane_state(state, plane);
-1bdb542da736e29 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Cercueil 2021-10-26  660  	unsigned int width, height, cpp, next_id, plane_id;
-6055466203df46a drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Cercueil 2021-10-26  661  	struct ingenic_drm_private_state *priv_state;
-686d4b4b99afe79 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Cercueil 2020-09-27  662  	struct drm_crtc_state *crtc_state;
-3c9bea4ef32bdcd drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Cercueil 2020-07-16  663  	struct ingenic_dma_hwdesc *hwdesc;
-354b051c5dcbeb3 drivers/gpu/drm/ingenic/ingenic-drm.c     Paul Cercueil 2019-12-10  664  	dma_addr_t addr;
-686d4b4b99afe79 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Cercueil 2020-09-27  665  	u32 fourcc;
-90b86fcc47b4d18 drivers/gpu/drm/ingenic/ingenic-drm.c     Paul Cercueil 2019-06-03  666  
-41016fe1028e4b0 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Maxime Ripard 2021-02-19  667  	if (newstate && newstate->fb) {
-4a791cb6d34f42e drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Cercueil 2021-05-23  668  		if (priv->soc_info->map_noncoherent)
-4a791cb6d34f42e drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Cercueil 2021-05-23  669  			drm_fb_cma_sync_non_coherent(&priv->drm, oldstate, newstate);
-4a791cb6d34f42e drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Cercueil 2021-05-23  670  
-41016fe1028e4b0 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Maxime Ripard 2021-02-19  671  		crtc_state = newstate->crtc->state;
-1bdb542da736e29 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Cercueil 2021-10-26  672  		plane_id = !!(priv->soc_info->has_osd && plane != &priv->f0);
-686d4b4b99afe79 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Cercueil 2020-09-27  673  
-41016fe1028e4b0 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Maxime Ripard 2021-02-19  674  		addr = drm_fb_cma_get_gem_addr(newstate->fb, newstate, 0);
-41016fe1028e4b0 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Maxime Ripard 2021-02-19  675  		width = newstate->src_w >> 16;
-41016fe1028e4b0 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Maxime Ripard 2021-02-19  676  		height = newstate->src_h >> 16;
-41016fe1028e4b0 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Maxime Ripard 2021-02-19  677  		cpp = newstate->fb->format->cpp[0];
-90b86fcc47b4d18 drivers/gpu/drm/ingenic/ingenic-drm.c     Paul Cercueil 2019-06-03  678  
-6055466203df46a drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Cercueil 2021-10-26  679  		priv_state = ingenic_drm_get_new_priv_state(priv, state);
-6055466203df46a drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Cercueil 2021-10-26  680  		next_id = (priv_state && priv_state->use_palette) ? HWDESC_PALETTE : plane_id;
-3c9bea4ef32bdcd drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Cercueil 2020-07-16  681  
-6055466203df46a drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Cercueil 2021-10-26  682  		hwdesc = &priv->dma_hwdescs->hwdesc[plane_id];
-3c9bea4ef32bdcd drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Cercueil 2020-07-16  683  		hwdesc->addr = addr;
-3c9bea4ef32bdcd drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Cercueil 2020-07-16  684  		hwdesc->cmd = JZ_LCD_CMD_EOF_IRQ | (width * height * cpp / 4);
-6055466203df46a drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Cercueil 2021-10-26  685  		hwdesc->next = dma_hwdesc_addr(priv, next_id);
-3c9bea4ef32bdcd drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Cercueil 2020-07-16  686  
-b807fd2c43fe008 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Boddie   2021-12-02  687  		if (priv->soc_info->use_extended_hwdesc) {
-b807fd2c43fe008 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Boddie   2021-12-02  688  			hwdesc->cmd |= JZ_LCD_CMD_FRM_ENABLE;
-b807fd2c43fe008 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Boddie   2021-12-02  689  
-b807fd2c43fe008 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Boddie   2021-12-02  690  			/* Extended 8-byte descriptor */
-b807fd2c43fe008 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Boddie   2021-12-02  691  			hwdesc->cpos = 0;
-b807fd2c43fe008 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Boddie   2021-12-02  692  			hwdesc->offsize = 0;
-b807fd2c43fe008 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Boddie   2021-12-02  693  			hwdesc->pagewidth = 0;
-b807fd2c43fe008 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Boddie   2021-12-02  694  
-b807fd2c43fe008 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Boddie   2021-12-02  695  			switch (newstate->fb->format->format) {
-b807fd2c43fe008 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Boddie   2021-12-02  696  			case DRM_FORMAT_XRGB1555:
-b807fd2c43fe008 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Boddie   2021-12-02  697  				hwdesc->cpos |= JZ_LCD_CPOS_RGB555;
-b807fd2c43fe008 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Boddie   2021-12-02  698  				fallthrough;
-b807fd2c43fe008 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Boddie   2021-12-02  699  			case DRM_FORMAT_RGB565:
-b807fd2c43fe008 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Boddie   2021-12-02  700  				hwdesc->cpos |= JZ_LCD_CPOS_BPP_15_16;
-b807fd2c43fe008 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Boddie   2021-12-02  701  				break;
-b807fd2c43fe008 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Boddie   2021-12-02  702  			case DRM_FORMAT_XRGB8888:
-b807fd2c43fe008 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Boddie   2021-12-02  703  				hwdesc->cpos |= JZ_LCD_CPOS_BPP_18_24;
-b807fd2c43fe008 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Boddie   2021-12-02  704  				break;
-b807fd2c43fe008 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Boddie   2021-12-02  705  			}
-b807fd2c43fe008 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Boddie   2021-12-02  706  			hwdesc->cpos |= (JZ_LCD_CPOS_COEFFICIENT_1 <<
-b807fd2c43fe008 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Boddie   2021-12-02  707  					 JZ_LCD_CPOS_COEFFICIENT_OFFSET);
-b807fd2c43fe008 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Boddie   2021-12-02  708  			hwdesc->dessize =
-b807fd2c43fe008 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Boddie   2021-12-02  709  				(0xff << JZ_LCD_DESSIZE_ALPHA_OFFSET) |
-b807fd2c43fe008 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Boddie   2021-12-02  710  				FIELD_PREP(JZ_LCD_DESSIZE_HEIGHT_MASK, height - 1) |
-b807fd2c43fe008 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Boddie   2021-12-02  711  				FIELD_PREP(JZ_LCD_DESSIZE_WIDTH_MASK, width - 1);
-b807fd2c43fe008 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Boddie   2021-12-02  712  		}
-b807fd2c43fe008 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Boddie   2021-12-02  713  
-686d4b4b99afe79 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Cercueil 2020-09-27  714  		if (drm_atomic_crtc_needs_modeset(crtc_state)) {
-41016fe1028e4b0 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Maxime Ripard 2021-02-19 @715  			fourcc = newstate->fb->format->format;
-686d4b4b99afe79 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Cercueil 2020-09-27  716  
-686d4b4b99afe79 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Cercueil 2020-09-27  717  			ingenic_drm_plane_config(priv->dev, plane, fourcc);
-686d4b4b99afe79 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Cercueil 2020-09-27  718  
-686d4b4b99afe79 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Cercueil 2020-09-27  719  			crtc_state->color_mgmt_changed = fourcc == DRM_FORMAT_C8;
-686d4b4b99afe79 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Cercueil 2020-09-27  720  		}
-686d4b4b99afe79 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Cercueil 2020-09-27  721  
-686d4b4b99afe79 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Cercueil 2020-09-27  722  		if (crtc_state->color_mgmt_changed)
-686d4b4b99afe79 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Cercueil 2020-09-27  723  			ingenic_drm_update_palette(priv, crtc_state->gamma_lut->data);
-90b86fcc47b4d18 drivers/gpu/drm/ingenic/ingenic-drm.c     Paul Cercueil 2019-06-03  724  	}
-354b051c5dcbeb3 drivers/gpu/drm/ingenic/ingenic-drm.c     Paul Cercueil 2019-12-10  725  }
-90b86fcc47b4d18 drivers/gpu/drm/ingenic/ingenic-drm.c     Paul Cercueil 2019-06-03  726  
-90b86fcc47b4d18 drivers/gpu/drm/ingenic/ingenic-drm.c     Paul Cercueil 2019-06-03  727  static void ingenic_drm_encoder_atomic_mode_set(struct drm_encoder *encoder,
-90b86fcc47b4d18 drivers/gpu/drm/ingenic/ingenic-drm.c     Paul Cercueil 2019-06-03  728  						struct drm_crtc_state *crtc_state,
-90b86fcc47b4d18 drivers/gpu/drm/ingenic/ingenic-drm.c     Paul Cercueil 2019-06-03  729  						struct drm_connector_state *conn_state)
-90b86fcc47b4d18 drivers/gpu/drm/ingenic/ingenic-drm.c     Paul Cercueil 2019-06-03  730  {
-c369cb27c267fe3 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Cercueil 2020-07-16  731  	struct ingenic_drm *priv = drm_device_get_priv(encoder->dev);
-90b86fcc47b4d18 drivers/gpu/drm/ingenic/ingenic-drm.c     Paul Cercueil 2019-06-03  732  	struct drm_display_mode *mode = &crtc_state->adjusted_mode;
-dded00395bdbd45 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Cercueil 2021-10-26  733  	struct ingenic_drm_bridge *bridge = to_ingenic_drm_bridge(encoder);
-ca459a7407a2f5c drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Cercueil 2020-11-19  734  	unsigned int cfg, rgbcfg = 0;
-dba8e987687f141 drivers/gpu/drm/ingenic/ingenic-drm.c     Paul Cercueil 2019-06-27  735  
-dded00395bdbd45 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Cercueil 2021-10-26  736  	priv->panel_is_sharp = bridge->bus_cfg.flags & DRM_BUS_FLAG_SHARP_SIGNALS;
-dba8e987687f141 drivers/gpu/drm/ingenic/ingenic-drm.c     Paul Cercueil 2019-06-27  737  
-dba8e987687f141 drivers/gpu/drm/ingenic/ingenic-drm.c     Paul Cercueil 2019-06-27  738  	if (priv->panel_is_sharp) {
-dba8e987687f141 drivers/gpu/drm/ingenic/ingenic-drm.c     Paul Cercueil 2019-06-27  739  		cfg = JZ_LCD_CFG_MODE_SPECIAL_TFT_1 | JZ_LCD_CFG_REV_POLARITY;
-dba8e987687f141 drivers/gpu/drm/ingenic/ingenic-drm.c     Paul Cercueil 2019-06-27  740  	} else {
-dba8e987687f141 drivers/gpu/drm/ingenic/ingenic-drm.c     Paul Cercueil 2019-06-27  741  		cfg = JZ_LCD_CFG_PS_DISABLE | JZ_LCD_CFG_CLS_DISABLE
-dba8e987687f141 drivers/gpu/drm/ingenic/ingenic-drm.c     Paul Cercueil 2019-06-27  742  		    | JZ_LCD_CFG_SPL_DISABLE | JZ_LCD_CFG_REV_DISABLE;
-dba8e987687f141 drivers/gpu/drm/ingenic/ingenic-drm.c     Paul Cercueil 2019-06-27  743  	}
-90b86fcc47b4d18 drivers/gpu/drm/ingenic/ingenic-drm.c     Paul Cercueil 2019-06-03  744  
-b807fd2c43fe008 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Boddie   2021-12-02  745  	if (priv->soc_info->use_extended_hwdesc)
-b807fd2c43fe008 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Boddie   2021-12-02  746  		cfg |= JZ_LCD_CFG_DESCRIPTOR_8;
-b807fd2c43fe008 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Boddie   2021-12-02  747  
-90b86fcc47b4d18 drivers/gpu/drm/ingenic/ingenic-drm.c     Paul Cercueil 2019-06-03  748  	if (mode->flags & DRM_MODE_FLAG_NHSYNC)
-90b86fcc47b4d18 drivers/gpu/drm/ingenic/ingenic-drm.c     Paul Cercueil 2019-06-03  749  		cfg |= JZ_LCD_CFG_HSYNC_ACTIVE_LOW;
-90b86fcc47b4d18 drivers/gpu/drm/ingenic/ingenic-drm.c     Paul Cercueil 2019-06-03  750  	if (mode->flags & DRM_MODE_FLAG_NVSYNC)
-90b86fcc47b4d18 drivers/gpu/drm/ingenic/ingenic-drm.c     Paul Cercueil 2019-06-03  751  		cfg |= JZ_LCD_CFG_VSYNC_ACTIVE_LOW;
-dded00395bdbd45 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Cercueil 2021-10-26  752  	if (bridge->bus_cfg.flags & DRM_BUS_FLAG_DE_LOW)
-90b86fcc47b4d18 drivers/gpu/drm/ingenic/ingenic-drm.c     Paul Cercueil 2019-06-03  753  		cfg |= JZ_LCD_CFG_DE_ACTIVE_LOW;
-dded00395bdbd45 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Cercueil 2021-10-26  754  	if (bridge->bus_cfg.flags & DRM_BUS_FLAG_PIXDATA_DRIVE_NEGEDGE)
-90b86fcc47b4d18 drivers/gpu/drm/ingenic/ingenic-drm.c     Paul Cercueil 2019-06-03  755  		cfg |= JZ_LCD_CFG_PCLK_FALLING_EDGE;
-90b86fcc47b4d18 drivers/gpu/drm/ingenic/ingenic-drm.c     Paul Cercueil 2019-06-03  756  
-dba8e987687f141 drivers/gpu/drm/ingenic/ingenic-drm.c     Paul Cercueil 2019-06-27  757  	if (!priv->panel_is_sharp) {
-dded00395bdbd45 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Cercueil 2021-10-26  758  		if (conn_state->connector->connector_type == DRM_MODE_CONNECTOR_TV) {
-90b86fcc47b4d18 drivers/gpu/drm/ingenic/ingenic-drm.c     Paul Cercueil 2019-06-03  759  			if (mode->flags & DRM_MODE_FLAG_INTERLACE)
-90b86fcc47b4d18 drivers/gpu/drm/ingenic/ingenic-drm.c     Paul Cercueil 2019-06-03  760  				cfg |= JZ_LCD_CFG_MODE_TV_OUT_I;
-90b86fcc47b4d18 drivers/gpu/drm/ingenic/ingenic-drm.c     Paul Cercueil 2019-06-03  761  			else
-90b86fcc47b4d18 drivers/gpu/drm/ingenic/ingenic-drm.c     Paul Cercueil 2019-06-03  762  				cfg |= JZ_LCD_CFG_MODE_TV_OUT_P;
-90b86fcc47b4d18 drivers/gpu/drm/ingenic/ingenic-drm.c     Paul Cercueil 2019-06-03  763  		} else {
-dded00395bdbd45 drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Cercueil 2021-10-26  764  			switch (bridge->bus_cfg.format) {
-90b86fcc47b4d18 drivers/gpu/drm/ingenic/ingenic-drm.c     Paul Cercueil 2019-06-03 @765  			case MEDIA_BUS_FMT_RGB565_1X16:
-90b86fcc47b4d18 drivers/gpu/drm/ingenic/ingenic-drm.c     Paul Cercueil 2019-06-03  766  				cfg |= JZ_LCD_CFG_MODE_GENERIC_16BIT;
-90b86fcc47b4d18 drivers/gpu/drm/ingenic/ingenic-drm.c     Paul Cercueil 2019-06-03  767  				break;
-90b86fcc47b4d18 drivers/gpu/drm/ingenic/ingenic-drm.c     Paul Cercueil 2019-06-03 @768  			case MEDIA_BUS_FMT_RGB666_1X18:
-90b86fcc47b4d18 drivers/gpu/drm/ingenic/ingenic-drm.c     Paul Cercueil 2019-06-03  769  				cfg |= JZ_LCD_CFG_MODE_GENERIC_18BIT;
-90b86fcc47b4d18 drivers/gpu/drm/ingenic/ingenic-drm.c     Paul Cercueil 2019-06-03  770  				break;
-90b86fcc47b4d18 drivers/gpu/drm/ingenic/ingenic-drm.c     Paul Cercueil 2019-06-03 @771  			case MEDIA_BUS_FMT_RGB888_1X24:
-90b86fcc47b4d18 drivers/gpu/drm/ingenic/ingenic-drm.c     Paul Cercueil 2019-06-03  772  				cfg |= JZ_LCD_CFG_MODE_GENERIC_24BIT;
-90b86fcc47b4d18 drivers/gpu/drm/ingenic/ingenic-drm.c     Paul Cercueil 2019-06-03  773  				break;
-ca459a7407a2f5c drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Cercueil 2020-11-19 @774  			case MEDIA_BUS_FMT_RGB888_3X8_DELTA:
-ca459a7407a2f5c drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Cercueil 2020-11-19  775  				rgbcfg = JZ_LCD_RGBC_EVEN_GBR | JZ_LCD_RGBC_ODD_RGB;
-ca459a7407a2f5c drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Cercueil 2020-11-19  776  				fallthrough;
-8721215c7ef9282 drivers/gpu/drm/ingenic/ingenic-drm.c     Paul Cercueil 2019-06-27 @777  			case MEDIA_BUS_FMT_RGB888_3X8:
-8721215c7ef9282 drivers/gpu/drm/ingenic/ingenic-drm.c     Paul Cercueil 2019-06-27  778  				cfg |= JZ_LCD_CFG_MODE_8BIT_SERIAL;
-8721215c7ef9282 drivers/gpu/drm/ingenic/ingenic-drm.c     Paul Cercueil 2019-06-27  779  				break;
-90b86fcc47b4d18 drivers/gpu/drm/ingenic/ingenic-drm.c     Paul Cercueil 2019-06-03  780  			default:
-90b86fcc47b4d18 drivers/gpu/drm/ingenic/ingenic-drm.c     Paul Cercueil 2019-06-03  781  				break;
-90b86fcc47b4d18 drivers/gpu/drm/ingenic/ingenic-drm.c     Paul Cercueil 2019-06-03  782  			}
-90b86fcc47b4d18 drivers/gpu/drm/ingenic/ingenic-drm.c     Paul Cercueil 2019-06-03  783  		}
-dba8e987687f141 drivers/gpu/drm/ingenic/ingenic-drm.c     Paul Cercueil 2019-06-27  784  	}
-90b86fcc47b4d18 drivers/gpu/drm/ingenic/ingenic-drm.c     Paul Cercueil 2019-06-03  785  
-90b86fcc47b4d18 drivers/gpu/drm/ingenic/ingenic-drm.c     Paul Cercueil 2019-06-03  786  	regmap_write(priv->map, JZ_REG_LCD_CFG, cfg);
-ca459a7407a2f5c drivers/gpu/drm/ingenic/ingenic-drm-drv.c Paul Cercueil 2020-11-19  787  	regmap_write(priv->map, JZ_REG_LCD_RGBC, rgbcfg);
-90b86fcc47b4d18 drivers/gpu/drm/ingenic/ingenic-drm.c     Paul Cercueil 2019-06-03  788  }
-90b86fcc47b4d18 drivers/gpu/drm/ingenic/ingenic-drm.c     Paul Cercueil 2019-06-03  789  
+  * Linux: CI_DRM_11755 -> Patchwork_104983v2
 
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+  CI-20190529: 20190529
+  CI_DRM_11755: 65b93b94d6bc932ed60bb3fd9d68242db25b1f3b @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6522: 5be5a1a1f168a59614101b77385f05f12ec7d30a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_104983v2: 65b93b94d6bc932ed60bb3fd9d68242db25b1f3b @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+4f8848bdee0c drm/i915: don't leak lmem mapping in vma_evict
+127656184032 drm/i915: Fix i915_vma_pin_iomap()
+06aab7a16216 drm/i915/display: Add smem fallback allocation for dpt
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104983v2/index.html
+
+--===============5362843915602546357==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/3] drm/i915/display: Add smem fallback allocation for dpt (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/104983/">https://patchwork.freedesktop.org/series/104983/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104983v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104983v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11755 -&gt; Patchwork_104983v2</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104983v2/index.html</p>
+<h2>Participating hosts (44 -&gt; 41)</h2>
+<p>Missing    (3): fi-cml-u2 bat-adlm-1 bat-jsl-2 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_104983v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104983v2/fi-bdw-5557u/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@requests:</p>
+<ul>
+<li>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11755/fi-blb-e6850/igt@i915_selftest@live@requests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104983v2/fi-blb-e6850/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-dpms@a-edp1:</p>
+<ul>
+<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11755/fi-tgl-u2/igt@kms_flip@basic-flip-vs-dpms@a-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104983v2/fi-tgl-u2/igt@kms_flip@basic-flip-vs-dpms@a-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-load-detect:</p>
+<ul>
+<li>fi-kbl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104983v2/fi-kbl-guc/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c:</p>
+<ul>
+<li>bat-adlp-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11755/bat-adlp-4/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104983v2/bat-adlp-4/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s0@smem:</p>
+<ul>
+<li>{fi-ehl-2}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11755/fi-ehl-2/igt@gem_exec_suspend@basic-s0@smem.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5122">i915#5122</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104983v2/fi-ehl-2/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11755/fi-cfl-8109u/igt@i915_pm_rpm@module-reload.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104983v2/fi-cfl-8109u/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@coherency:</p>
+<ul>
+<li>{bat-dg2-9}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11755/bat-dg2-9/igt@i915_selftest@live@coherency.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5763">i915#5763</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104983v2/bat-dg2-9/igt@i915_selftest@live@coherency.html">PASS</a> +4 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gem_contexts:</p>
+<ul>
+<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11755/fi-bdw-5557u/igt@i915_selftest@live@gem_contexts.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5502">i915#5502</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104983v2/fi-bdw-5557u/igt@i915_selftest@live@gem_contexts.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>{fi-jsl-1}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11755/fi-jsl-1/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104983v2/fi-jsl-1/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@late_gt_pm:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11755/fi-cfl-8109u/igt@i915_selftest@live@late_gt_pm.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5904">i915#5904</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104983v2/fi-cfl-8109u/igt@i915_selftest@live@late_gt_pm.html">PASS</a> +29 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_suspend@basic-s2idle-without-i915:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11755/fi-cfl-8109u/igt@i915_suspend@basic-s2idle-without-i915.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5904">i915#5904</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104983v2/fi-cfl-8109u/igt@i915_suspend@basic-s2idle-without-i915.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-modeset@b-edp1:</p>
+<ul>
+<li>{bat-adlp-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11755/bat-adlp-6/igt@kms_flip@basic-flip-vs-modeset@b-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104983v2/bat-adlp-6/igt@kms_flip@basic-flip-vs-modeset@b-edp1.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11755/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104983v2/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html">PASS</a> +15 similar issues</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11755 -&gt; Patchwork_104983v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11755: 65b93b94d6bc932ed60bb3fd9d68242db25b1f3b @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6522: 5be5a1a1f168a59614101b77385f05f12ec7d30a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_104983v2: 65b93b94d6bc932ed60bb3fd9d68242db25b1f3b @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>4f8848bdee0c drm/i915: don't leak lmem mapping in vma_evict<br />
+127656184032 drm/i915: Fix i915_vma_pin_iomap()<br />
+06aab7a16216 drm/i915/display: Add smem fallback allocation for dpt</p>
+
+</body>
+</html>
+
+--===============5362843915602546357==--
