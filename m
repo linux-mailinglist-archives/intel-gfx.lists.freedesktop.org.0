@@ -1,50 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66FEF54B1C4
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jun 2022 14:58:20 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5201C54B213
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jun 2022 15:12:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 51CC410F802;
-	Tue, 14 Jun 2022 12:58:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B3C1210FA3D;
+	Tue, 14 Jun 2022 13:12:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D38CA10F83F;
- Tue, 14 Jun 2022 12:58:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655211491; x=1686747491;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=0aXUfNRHFgtqOBcJX+7+alis/BBGRFvAQfSmJxvvsM4=;
- b=CW2La0BRfYsT0OyAT9+Fyww7jWkdYyHrwGyDuBFYbw/OND9ypoOIyVoA
- jilab6agkh77Fv7Yd+xBjUIL67czfq7EFmlbJVqNzVYFJQZ8bbvDTPArY
- Y0gOg0dE8krqp2Pz3Uz4gq9mozcT4m/vYy9JaZzSEDSGu3la6Sd0JXBJh
- xshE+9P1mLSRfkjAbZ+2g2P7MujlDg8AxKGbFMGDYDt/uTt+ZZt82b3ow
- adniT7IPHefIKAI6vW4UuL6R5MnjLiIBja98ISEzZdkDqn0LXz/zog4XV
- gaKZGkGhX0fPwXEfr+18ZtwHsatoH5aBKYJjePu8St50OVIvEgBM8auUz Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10377"; a="261637237"
-X-IronPort-AV: E=Sophos;i="5.91,300,1647327600"; d="scan'208";a="261637237"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jun 2022 05:58:11 -0700
-X-IronPort-AV: E=Sophos;i="5.91,300,1647327600"; d="scan'208";a="673861551"
-Received: from ideak-desk.fi.intel.com ([10.237.72.175])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jun 2022 05:58:09 -0700
-Date: Tue, 14 Jun 2022 15:58:06 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <YqiF3k/gyy2Axtwz@ideak-desk.fi.intel.com>
-References: <20220614094537.885472-1-imre.deak@intel.com>
- <87sfo7xw5g.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id CE67710FA3D;
+ Tue, 14 Jun 2022 13:12:17 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C61D6A00CC;
+ Tue, 14 Jun 2022 13:12:17 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87sfo7xw5g.fsf@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/dp/mst: Read the extended DPCD
- capabilities during system resume
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "William Tseng" <william.tseng@intel.com>
+Date: Tue, 14 Jun 2022 13:12:17 -0000
+Message-ID: <165521233777.12486.7133467690423738979@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220614082732.2228-1-william.tseng@intel.com>
+In-Reply-To: <20220614082732.2228-1-william.tseng@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/dsi=3A_add_payload_receiving_code?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,70 +40,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jun 14, 2022 at 03:32:59PM +0300, Jani Nikula wrote:
-> On Tue, 14 Jun 2022, Imre Deak <imre.deak@intel.com> wrote:
-> > The WD22TB4 Thunderbolt dock at least will revert its DP_MAX_LINK_RATE
-> > from HBR3 to HBR2 after system suspend/resume if the DP_DP13_DPCD_REV
-> > registers are not read subsequently also as required.
-> 
-> Does it actually change the behaviour depending on whether the dpcd is
-> read or not, or is this just about the resume path overwriting mgr->dpcd
-> with stuff from DP_DPCD_REV?
+== Series Details ==
 
-Yes, the reading out DP_DP13_DPCD_REV has a side-effect, see
-https://gitlab.freedesktop.org/drm/intel/-/issues/5292#note_1343399
+Series: drm/i915/dsi: add payload receiving code
+URL   : https://patchwork.freedesktop.org/series/105096/
+State : warning
 
-> drm_dp_mst_topology_mgr_set_mst() does use drm_dp_read_dpcd_caps() for
-> reading the caps, which would normally set mgr->dpcd from
-> DP_DP13_DPCD_REV.
+== Summary ==
 
-Right, but at that point DP_DP13_DPCD_REV returns HBR2 w/o this change.
+Error: dim checkpatch failed
+c041108e8df4 drm/i915/dsi: add payload receiving code
+-:27: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#27: FILE: drivers/gpu/drm/i915/display/icl_dsi.c:205:
++static int dsi_read_pkt_payld(struct intel_dsi_host *host,
++			    u8 *rx_buf, size_t rx_len)
 
-> BR,
-> Jani.
-> 
-> >
-> > Fix this by reading DP_DP13_DPCD_REV registers as well, matching what is
-> > done during connector detection. While at it also fix up the same call
-> > in drm_dp_mst_dump_topology().
-> >
-> > Cc: Lyude Paul <lyude@redhat.com>
-> > Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/5292
-> > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > ---
-> >  drivers/gpu/drm/display/drm_dp_mst_topology.c | 7 ++-----
-> >  1 file changed, 2 insertions(+), 5 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/display/drm_dp_mst_topology.c b/drivers/gpu/drm/display/drm_dp_mst_topology.c
-> > index 67b3b9697da7f..18f2b6075b780 100644
-> > --- a/drivers/gpu/drm/display/drm_dp_mst_topology.c
-> > +++ b/drivers/gpu/drm/display/drm_dp_mst_topology.c
-> > @@ -3860,9 +3860,7 @@ int drm_dp_mst_topology_mgr_resume(struct drm_dp_mst_topology_mgr *mgr,
-> >  	if (!mgr->mst_primary)
-> >  		goto out_fail;
-> >  
-> > -	ret = drm_dp_dpcd_read(mgr->aux, DP_DPCD_REV, mgr->dpcd,
-> > -			       DP_RECEIVER_CAP_SIZE);
-> > -	if (ret != DP_RECEIVER_CAP_SIZE) {
-> > +	if (drm_dp_read_dpcd_caps(mgr->aux, mgr->dpcd) < 0) {
-> >  		drm_dbg_kms(mgr->dev, "dpcd read failed - undocked during suspend?\n");
-> >  		goto out_fail;
-> >  	}
-> > @@ -4911,8 +4909,7 @@ void drm_dp_mst_dump_topology(struct seq_file *m,
-> >  		u8 buf[DP_PAYLOAD_TABLE_SIZE];
-> >  		int ret;
-> >  
-> > -		ret = drm_dp_dpcd_read(mgr->aux, DP_DPCD_REV, buf, DP_RECEIVER_CAP_SIZE);
-> > -		if (ret) {
-> > +		if (drm_dp_read_dpcd_caps(mgr->aux, buf) < 0) {
-> >  			seq_printf(m, "dpcd read failed\n");
-> >  			goto out;
-> >  		}
-> 
-> -- 
-> Jani Nikula, Intel Open Source Graphics Center
+-:75: CHECK:SPACING: spaces preferred around that '*' (ctx:VxV)
+#75: FILE: drivers/gpu/drm/i915/display/icl_dsi.c:253:
++	payld_read = min(rx_len, (size_t)4*payld_dw);
+ 	                                  ^
+
+-:78: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
+#78: FILE: drivers/gpu/drm/i915/display/icl_dsi.c:256:
++	for (i = 0; i < payld_read; i++) {
++
+
+-:82: CHECK:SPACING: spaces preferred around that '%' (ctx:VxV)
+#82: FILE: drivers/gpu/drm/i915/display/icl_dsi.c:260:
++		*(rx_buf + i) = (payld_data >> (8 * (i%4))) & 0xff;
+ 		                                      ^
+
+total: 0 errors, 0 warnings, 4 checks, 111 lines checked
+
+
