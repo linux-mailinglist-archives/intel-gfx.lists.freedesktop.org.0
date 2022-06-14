@@ -2,159 +2,160 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7E8554B4B0
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jun 2022 17:30:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3580F54B4CB
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jun 2022 17:35:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1819D1126FE;
-	Tue, 14 Jun 2022 15:30:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7522E112732;
+	Tue, 14 Jun 2022 15:35:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D21C41126FE
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Jun 2022 15:30:43 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC745112735;
+ Tue, 14 Jun 2022 15:35:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655220643; x=1686756643;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=KWdsj/tX3U74bvUq38aHefuJQCy8tE+yYNADwheMWmY=;
- b=KUtCwxtkuVqWX3AWv6t5jluZBJ2IFy8bHJb5Xy/+yLBsCPk0sLifuL3Z
- 1TE2ZE9ohmc7ihjsBCk4aeo/BTEGNJDJdMw+MIrch20ufNMPDpCHOmpNv
- wXiL+08Ph3mAYLZTml3mGya6KjjMg629S/FChScsM5WhyzNYhpZVbX02u
- 25ZBMN7nbgHnoceWGNHLm9487YhhS/6jNqg9iKFB2zN26fefj5k9LSTVA
- M97kaBVbuQOMkFrmpi1YEDkA0SER2IXSvE0AtHlyXIeziSUb3he1H4hsR
- iwdjF7HPgs7vUQnJ5em0K6dQHJe2z90XCa8GWalD0O8rOCF3zuFgP71Xl A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10378"; a="267337494"
-X-IronPort-AV: E=Sophos;i="5.91,300,1647327600"; d="scan'208";a="267337494"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jun 2022 08:30:43 -0700
+ t=1655220917; x=1686756917;
+ h=from:to:subject:date:message-id:references:in-reply-to:
+ content-id:content-transfer-encoding:mime-version;
+ bh=pz7OTfgQTfDGR9CguN0XPn7YtjtXAYShCyupEsSHlis=;
+ b=S3Y4xxrwxmtU/2OjboZpCdhWi1xs+YQJ9S3oQFFH9Z/8r2uBHLp4Yubn
+ ICci8XooUey2m1RHocFgMQuuxg6fnPCOnoOBHCyCp8HD/dCHAt9dxddba
+ QBi8N+l8adP1U4bflKqAFvnu94aS0ocJt4+jOB0rbjLp7Qfy1j/f63+z6
+ muLUbw2uzqZTBMV1uEoX0DDTBLyzF0fBP8jbpW+5hIvaacBnB6NRBq3Ql
+ t65aDKb6hQhNOu7n8XAKZGIXiLkv7qsoDjAvrVQBY+WejD8A1urqgV2ex
+ Uw/AM9gCwM8+oLRBPP2Y3q0HKFo1ZjzF2bUdH9kbKVi0V5B5Qzc6cx9KS A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10378"; a="277439615"
+X-IronPort-AV: E=Sophos;i="5.91,300,1647327600"; d="scan'208";a="277439615"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jun 2022 08:35:17 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,300,1647327600"; d="scan'208";a="640433967"
-Received: from fmsmsx606.amr.corp.intel.com ([10.18.126.86])
- by fmsmga008.fm.intel.com with ESMTP; 14 Jun 2022 08:30:42 -0700
-Received: from fmsmsx604.amr.corp.intel.com (10.18.126.84) by
- fmsmsx606.amr.corp.intel.com (10.18.126.86) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="5.91,300,1647327600"; d="scan'208";a="652102505"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.229.17])
+ by fmsmga004.fm.intel.com with ESMTP; 14 Jun 2022 08:35:17 -0700
+Received: from orsmsx609.amr.corp.intel.com (10.22.229.22) by
+ ORSMSX604.amr.corp.intel.com (10.22.229.17) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Tue, 14 Jun 2022 08:30:42 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx604.amr.corp.intel.com (10.18.126.84) with Microsoft SMTP Server
+ 15.1.2308.27; Tue, 14 Jun 2022 08:35:16 -0700
+Received: from orsmsx602.amr.corp.intel.com (10.22.229.15) by
+ ORSMSX609.amr.corp.intel.com (10.22.229.22) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27 via Frontend Transport; Tue, 14 Jun 2022 08:30:42 -0700
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.175)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ 15.1.2308.27; Tue, 14 Jun 2022 08:35:16 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27 via Frontend Transport; Tue, 14 Jun 2022 08:35:16 -0700
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com (104.47.57.46) by
+ edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2308.27; Tue, 14 Jun 2022 08:30:40 -0700
+ 15.1.2308.27; Tue, 14 Jun 2022 08:35:01 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=awNQuCL+uKZ3iA3qaF6uQJdL8Q7dm/0k0vjRMGIZRiSlqhDt5WoxzVeELOMcU+pwmDobkLMJ0ugnCVw5m+P4vAKiglFbZnClXF+5Qypj16tyQY9CAE3WZC+y5y881H3w8/KsqHglnTg+H62+3xeaIUhk07xJ6IzvMmEqZG1X2KgLcyxDgUMQm8foH5WXo/9UZxdIhxtAjUDWdqysuleHJPz6ayavcaVQyqXQlSw3drVMzx6RH1P4aTO2oUKMx/da4oAmZ4dfnQ2/rKWfXFSGwZt2hFrHulYxjKWFlrVrB5kl94fssbGOCT3v6uc4UqLfH46b2KWEm8BRQRLBAUskSQ==
+ b=B6PrE33yioa5EDR71vzTLlfp/5G9TrtDOsLe8QK5xG8d34h4ir8CDkgJNtYE7NcvoXVMqOm18cpuNts5+8hzdeU61+lZWgT28ntNICEvul9i3o+DhpCqY+jS9GN1EvGSI5Wx1hjIY+kR6zI/0icIhEC/W+FlRFMR+iuQUJBbTshvC5a3rvNEQMcVpfJhWHB7daYdVKj7/6SmYv3GgIh9YIXnWiig79GJ5a4nB1T48g/juBu9GtBYwgNnT5WG9lgpGNKVSBqLZxtUwl3hvx16lTNphTToO4cbRM2mr1rF7astvrl6wkti9RM6OnjA+dY2zpMJ9teCFhZhxBrTaRf6Ng==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=BvCt5l2cF0o7TSIHYLRiBESA4Jw+r/VBy0D0eGyAvKI=;
- b=Md7iB/vV2wWePsuXO/wyxHNYwghRvedG3C17Y9FhK+xstg4QsSpoBKIoCGGTMf4CEs0LpJg4X10xYG085sQBvIjIm/JgLBxIbFEeGytntSMP2HJZ9R0EO38gnZuuA3Eavrs1YFTQ9b7nVSBzRxEpI2n7nK4H04y8Yb73XE4Rit269BvgE19tj7feqeeyZ3NWU6YL/d0nHhH9dVpFKtt6XaoEFqtVl7ErJrwtJVTxF5YBWIHK8J27NgpTh4kwiTs5V+R46n+vwY7Y3eofij3scIU4rltvI6KRMtchzAKCH0yvpu8bOm4i98AoHETeO6OHiJCZVWKU/PdS2b/FCkhrDg==
+ bh=pz7OTfgQTfDGR9CguN0XPn7YtjtXAYShCyupEsSHlis=;
+ b=AQ5OT5pNItRLkbx52skFXh0j5K+sdpC1s3N6FZLPs281H+VMlDrO6ClOVh1MILTCuNiKzAVUGHmRYAnK5mD9uefUgvwAI/ThsIvlHbj12Ry3+j1ArU4Aw4UIOu0KvgeNpIU0vZyBMmXJOLxCANUmgn1l97Er8vYMWlueYF1p4eaZr0vKwhhG3cPxY13eUDVI3z3mvCRrzYJhLrRGUQS29SC+PdJQe6Ma/NKDG4EUBd7GF1JIOBfjKnC+VHTzEljRYaaaPaDVGDsV709OiEpCbfRI/yfBIm8y+5F0EK6+epCN/xUCfLbpSz0bUC1qKm9BEWvCnCVoUm4h13n2EE1gxA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB5488.namprd11.prod.outlook.com (2603:10b6:5:39d::5) by
- SA0PR11MB4607.namprd11.prod.outlook.com (2603:10b6:806:9b::19) with
+Received: from DM8PR11MB5751.namprd11.prod.outlook.com (2603:10b6:8:12::16) by
+ BL0PR11MB3171.namprd11.prod.outlook.com (2603:10b6:208:62::23) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5332.13; Tue, 14 Jun 2022 15:30:32 +0000
-Received: from DM4PR11MB5488.namprd11.prod.outlook.com
- ([fe80::b907:4e16:92da:b2cf]) by DM4PR11MB5488.namprd11.prod.outlook.com
- ([fe80::b907:4e16:92da:b2cf%2]) with mapi id 15.20.5332.022; Tue, 14 Jun 2022
- 15:30:32 +0000
-Message-ID: <4a7f6abe-e479-a3d9-8615-e52a2863733c@intel.com>
-Date: Tue, 14 Jun 2022 08:30:28 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
+ 15.20.5332.12; Tue, 14 Jun 2022 15:34:59 +0000
+Received: from DM8PR11MB5751.namprd11.prod.outlook.com
+ ([fe80::61bd:a251:1543:93d7]) by DM8PR11MB5751.namprd11.prod.outlook.com
+ ([fe80::61bd:a251:1543:93d7%5]) with mapi id 15.20.5332.023; Tue, 14 Jun 2022
+ 15:34:59 +0000
+From: "Teres Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com>
+To: "Dong, Zhanjun" <zhanjun.dong@intel.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH] drm/i915/guc: Check ctx while waiting for
+ response
+Thread-Index: AQHYdqVQk1+fUItLJk2o9+HAOcjZDa1PG3qA
+Date: Tue, 14 Jun 2022 15:34:59 +0000
+Message-ID: <987fa3d7ae7e494b65dd7e017c4c20a1c9f72fd4.camel@intel.com>
+References: <20220602172119.96324-1-zhanjun.dong@intel.com>
+In-Reply-To: <20220602172119.96324-1-zhanjun.dong@intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- <intel-gfx@lists.freedesktop.org>
-References: <20220609231955.3632596-1-daniele.ceraolospurio@intel.com>
- <dbc2ad75-1248-8d53-281d-f0a308733972@linux.intel.com>
- <7ede8090-bfbf-17a7-31f6-24e844a70673@intel.com>
- <a0860c06-4aba-deff-9101-aecdd8c14a02@linux.intel.com>
- <d6bc42f5-86c1-3bc9-d731-2bd0a978ece5@intel.com>
- <f50ee482-ed77-a644-095f-b2a988306de2@linux.intel.com>
- <7b394930-e6fb-8dc6-ba63-352f7a623b97@intel.com>
- <4d44c67a-4a38-fa53-6709-d5f206a9b0db@linux.intel.com>
- <e90f9dd1-7229-f958-d2e6-6fc4ec5a866b@intel.com>
- <954db3a4-e8c9-e157-5211-aceec87dfd9d@linux.intel.com>
-From: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>
-In-Reply-To: <954db3a4-e8c9-e157-5211-aceec87dfd9d@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: BYAPR02CA0038.namprd02.prod.outlook.com
- (2603:10b6:a03:54::15) To DM4PR11MB5488.namprd11.prod.outlook.com
- (2603:10b6:5:39d::5)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 07074283-808b-4f94-8108-08da4e1ad0c5
-X-MS-TrafficTypeDiagnostic: SA0PR11MB4607:EE_
-X-Microsoft-Antispam-PRVS: <SA0PR11MB46075F364D259C59CADA8C7FF4AA9@SA0PR11MB4607.namprd11.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 9JNMyN0UUgHfJlyjisaB4hvzxM8guZd9AHn2uQbonAOnLCk5zQSZIW4x6xmi+mU7dO8oI7sZeR1Hh4wyKJkTadH/6XMoOHKT0xJWbmgwwnA9PC3bNgs5n4fg890FAElIdvpkUeiwsjBHOEU89G+R0rDdh14fCJnJgOoenJBS42CVK6Pptk8SmxAVdqbHhhLiSV6KrvlxKi2yXk/JvBY8IvO4YWKuTh69Y+tjPvD+C8L2S/bqTh0VV3/N5fhegiZu1YW/LWvoZBtWkWeJexPmO/21Xwh79onCmXMGzAIRGBDmN5G3pSZexLoeqJPpJyrimI6UXOWaaWWl1X1asm9QPO6EYzE7oohgZH8ehQCDvDqOT/PyrOlarVwxBMzpHdpDvxIraWpSzDZowQ2FxBYQHOYXPojMjxAk6ks0chqefxNmSDpeLYzjW9Sb1ghH4FqUlMjpEvkJfg5kvx6+CVPhIcnVvoRX46CmiO5oyC2ET2fkgYUCZnmztJ0sGw/Q2npX//g02pHRmkNigQWPw4ILqehn6OEs7Vd8GUN85FhTZ1oRjwhtaqKdVeLPUjXD53yRTKd9ugyRmwjAHgYSEl1Q2HLNxvzmQQJY+wbZwtPXKW7+p1XyvzeXcE5xLqec00eS54aZJffh5UQ8cbQYoO5HIeO1VqwUJfDzkL2+swPOTBfXIPp6AiQZRpeeg91A3iCFVvKhfpfmJTrZi+i16jVSpvuCceu4mumKPIMYIJ+GL7S6vT7ZDa82O1xra98e3A2WkfiYcUYDrmSRWHgYdD1uKg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5488.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230016)(366004)(83380400001)(2616005)(31686004)(186003)(38100700002)(36756003)(2906002)(8676002)(5660300002)(66556008)(66476007)(8936002)(66946007)(6512007)(6506007)(26005)(4326008)(54906003)(53546011)(6486002)(31696002)(6666004)(316002)(86362001)(508600001)(82960400001)(60764002)(45980500001)(43740500002);
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Evolution 3.36.5-0ubuntu1 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 9f8cf420-1c11-4892-4186-08da4e1b7149
+x-ms-traffictypediagnostic: BL0PR11MB3171:EE_
+x-microsoft-antispam-prvs: <BL0PR11MB3171EA5F271817EDA00084AE8AAA9@BL0PR11MB3171.namprd11.prod.outlook.com>
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: p2AviWhZ62H6+3Q1qf2mJYqedNCs5Bo8CdezXtCBhR0EekZc/mfiPMJHOaTlBe8ACm2GorTv07yGZnBSXkE8o9Zczs55dDPKvBtjHKrsQUHNzo/K7M8nRJONgk71DZ4hwvXTsWWwpexnv15eNQSUL43gIVhKawnt1hFQsxkA2/TciB4BrS9EW8A1/eRA/lFVJ3qD8hF9tihNxjkdMcqSYkrbKTuzMfv53dPCKY4KG8Xs6nleo7AVzdC7VP5uKyXJ8r+ilNPpOJl1nawW9toa01lPDlJ1eQPOGsu8oa/S9BuYZMMqf6o2BFlXfqMXMlAwZxhsamgY7HNaHoCJzZ4eVeABXuUwWHHgMck5lmjD+9FuYMgRW9Cmf7MF3NnZnrKiE4wOW948xtt+rqOPte0M5Ane7psjXA0VMoSeDQbi7lqRmy9MM4LAX2B0yMei6DhIRyuu6LPjl6Tm9zzoygoLaIMUFpczFMKTgCJ7G/x7pAbjDP4EzreFd1N2jcXnjOXPs6zU/cqieqQUgE5iRNvZpk7w8DbLvpHAAgZbevWySfo7t4Ec/wHUuIsEisBzEimFBNITtVjMS/cFCpO9mABqzbfcB23tx/cIewVtPq1x1w3lkxl07bFBejVml1XGJeZqO7IKcubj6zdXOBXp9FEWg7B38B17uZKybdIJCFDDbCSvhwlq/V6UPx6kriEHlZ+rqPToJ20Zn6RfUFsfU3aue4QoGucnVvlVs3oDeEJnAoJ2qLp2fcwoq4X5yKhf1Zx8
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM8PR11MB5751.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230016)(366004)(2906002)(5660300002)(36756003)(38070700005)(6506007)(86362001)(38100700002)(82960400001)(26005)(110136005)(122000001)(6512007)(83380400001)(508600001)(6486002)(2616005)(71200400001)(64756008)(66476007)(450100002)(66556008)(66446008)(186003)(76116006)(8936002)(66946007)(8676002)(91956017)(316002)(69900200002);
  DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MkNoS1NMS0h6aHJRekxwY1FMYXdtVktkWkVhajdYMFo4L3RaaHhjSm1YdCtO?=
- =?utf-8?B?ZEp1N0x2eUp4TzFWdWdTanp4WldzM0E0UHZDSE9vL0x5Q1FDb2dZempEN3Fz?=
- =?utf-8?B?RXVxZFdMSGJneDhRaVJ0TE1Gc0x1NlpBWGtnM0xyNEN3bmM1VmpCa1AzNUdF?=
- =?utf-8?B?cEpSWjBSWmpQelpOSFVvM3FvWWc4RWZrYjQ0NU1RRFAzUWRpNjFBekNNQTJn?=
- =?utf-8?B?NXlEbm9LKzZEdHhON3RYT1prUjRjd3ZrMk9OVElvOUJNZThScDBJZG50NFor?=
- =?utf-8?B?eGdVNkxnMEJ5b2tWRUR4emZoZlFXd21EaUNtZUIvb3E1c3dhai9id1BUQ0FF?=
- =?utf-8?B?OHcyWkxkRHBLS0g1WnBHbGhJMllTZHRMVlB2Q0VvaXNqdXozRWI0dkpSSzNU?=
- =?utf-8?B?T2lkNmEzcnFEaE9TNEFoVkpNTkttd2pqd2xPNmlCL2ZNbXUzK2ZTZFltZnBE?=
- =?utf-8?B?ZHN6UkgwL1VQWVpveUFnNDRjQnRXZnJkNmo4MUU4WWdKTzRvdGRxblc2bHpK?=
- =?utf-8?B?czArdHZmOU14TmwyRzdCQ1JyMG82SFhDeVlrSng1NGVxWTVJd1VWeUo5cjJX?=
- =?utf-8?B?VGhNRU9oUysrL0FoZnNESnhKazM1OE56anY2T0NWTWovUTBoUTI0b3VPL3Jp?=
- =?utf-8?B?SU1pR1BwNzhJaXo3MTZJT0hNVTcvVGI4NU1BN09GNmJHSUdudGd1K3Z3UVFo?=
- =?utf-8?B?VFpBQlo3VUdGZnhZdDREbG1kaDE1eTFqQWJoTDVIbW1icGVGQlNTK2ZqUlUv?=
- =?utf-8?B?Nzc3cStUak93RURYMnljNmZMWWNmZVVQNXJnaFJDUnAveGhoRStRamZlWmVh?=
- =?utf-8?B?SEl2eCt5WjdvdzZhZ0psQ2tNWGUwT0FBdk5uVmYyVkF5TC9DMytkMGZaOWhr?=
- =?utf-8?B?NktZVFlpL0Y2NlZDNzZuUzBKVldvTlBUVzk5U0txMXQxQWszaTgxMHZneENV?=
- =?utf-8?B?R1YzejM4cTB4eGFSV1ZHandvcjlQSkVpY0lJcTIrbzJjUFNtc2Qrc1VKbmgw?=
- =?utf-8?B?cm9TQU90RTlOSHQyVWo4b01XMW1IcWJtWlcydEcvVEFSRGpnU2RVcXlOcTdI?=
- =?utf-8?B?b0tZb29zSVBCZUZqditoTXlMR3NTa0FwZmFaU21sYnFRckhma205KytzR0dw?=
- =?utf-8?B?dTlGL0orV2FQb0p6bktHZjRxcGwyb1drQmtzbVZ2TVBraXV5T2o5SDhFcjZa?=
- =?utf-8?B?eHdCbGY2aHlSa1ZnSW1IK0dKQnhYYTBZWElvL1kzaGpHMDZ2Y21Ic21qSWNk?=
- =?utf-8?B?L0VOZnkzcDI0KzJoSnBpU0hMd2E1N3MzdlZlQUZqVk9MS0pVS2hGZWxkNEhC?=
- =?utf-8?B?ckpROVdVaFRYUDlJYU9NWUR5Q3A0UktlT0t5ak05dG9YV0d1OG4rN2lqVjdM?=
- =?utf-8?B?RlhBd0EzRHVScU1uSmlNOVpnZjBMb2FuS3V6RWV3SENvakxvK1lFRU1ETDBX?=
- =?utf-8?B?Y1IxbnlyVU9CTi9KMW9rU3ZtK1VySXpUVEhzckJGQmV3RVB5cGVkcXV0UWlq?=
- =?utf-8?B?aWlQMU1lNnJZNDNRTEdqSWRKWHpYL2tyQ0Iwbk1aM2ZmemVHQ2sxeDJvNUtq?=
- =?utf-8?B?Zml1L1NSUEdSUFppU2UwMnBvWGFmbkVUT2hmbWtIMDg3TUdRVEVzakVWTldo?=
- =?utf-8?B?a1B6WDN4RmFYcGthYXo3OUt1ejFSSVlyalRNS09xa2dkNzlOQ3BNM2V0WHJw?=
- =?utf-8?B?ZzZtTWJTai9YaWlmeWxjQUNIZDN6UXlLc3lzMGFyUGx6UTZMMDVjNGhLWWQ2?=
- =?utf-8?B?RmtFc2FXZjlJbFBJYjZSSTdmTUthdXFka0Z3TjY2eERPcWVNOTRPdDd2Z2Fu?=
- =?utf-8?B?TC91MjVKZU9KLzJ2Y2piVDAvY0xQMEM0Z1ZxSi9Tc3dJR0RwakpGRlpaajJQ?=
- =?utf-8?B?OEhhRlpMVThmUW50SnFUQ205UmZJTTQvWDFXSmdNREx2bWZ6K3B1RlphY3Az?=
- =?utf-8?B?NkRDb2txUHZPOWhFeHpkY1hqMlhSQTJEQ3lTaWY4djRsY29wY3F1YlovcGlN?=
- =?utf-8?B?bkMyM0dkLzN2VFJoRVZJSDVPbmxzdUw0ZGt2dmNkS3ZWamZqeVNHK1Y3WmZo?=
- =?utf-8?B?L2h5dm5KMVRpNWNYa2hybEwzaER3VXVUNUd5NEg5a0JOZElsODcyekthaU5G?=
- =?utf-8?B?NHkwZXZ5RXN2Nk1MU3I5ZGJBTENFNGwwRFlYMldhblQ4Z1ZwU05GdFNXaGp4?=
- =?utf-8?B?THh5MlZjRzhNMHVzb2FGbFZXVXFXRkcwZWs3YTlLMEx6U1FhNFM0a0tLLzVp?=
- =?utf-8?B?Y2NhMmhxdzZIREN5YUFuVDY1YXZRd1BoSDZxMnV5eDFqSU9uZFZUdUhVOG1s?=
- =?utf-8?B?WTZibHZhcDd2VFhpSFFiWktJZHN5bXQwSXhIZFVLR1hNdU44T09qUU9pZ0Vz?=
- =?utf-8?Q?VywAHVzQ0goFVWUm4auhX3gjQbq8Gr1J2Fbho?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 07074283-808b-4f94-8108-08da4e1ad0c5
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5488.namprd11.prod.outlook.com
+x-ms-exchange-antispam-messagedata-chunkcount: 2
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?dnhPbkNjQ2NCOUo0TyttTFJEV0Q0NjFUTFo5V3R3dnJyRWlXRUp6SlNPUUZo?=
+ =?utf-8?B?ZFc2eU10aE9VV0FqZE5XemtPZytxQXQxWlExYzZyeS9IVGZlOUtNZ1dnbkx3?=
+ =?utf-8?B?RmsrT3FEalBEcHdSSjBFNDJzZ21WTmREOVMzd0g3TG5JK1lJSlU1Q1dWVE1P?=
+ =?utf-8?B?OFRLZXJ0aWUwTng5amNaaHlCR0NhSWxpZGUrVVlGYktpc2JsYjZqMklIUW50?=
+ =?utf-8?B?TVYzVW9aeTZHNTJhNUNWRGd0RDdRWDQ3dGVQTlo5Rm85SzNSY2pIWW01RFRZ?=
+ =?utf-8?B?U0xzU0dWa013UkVsb2FNdGdFbFU3N3h0bFpUajdyNnBRV01qVGhQRkZ3eDVY?=
+ =?utf-8?B?SElWQ0tUYllpUXI2aVl2Ry9pM1FFcmM4UitpOUhBUDcrZEJHOWw0Y0pzMUNh?=
+ =?utf-8?B?K0czczJHNXMyQjhiSnpJS1ZZekZWNk4vWWtRZE5zYjNYbWFMZXZLbUh1a1J5?=
+ =?utf-8?B?dWJlOUpCKzZkbEpxbS9FM1VLYUJxdFFQN283RkFORUFpS1loRjZORWZqMWI3?=
+ =?utf-8?B?Ry96WUpQNXhrK2NDWTZNU2RLUkpWZTVPY1VDaDVHSmczKzk0cHMwSDVXY1Uv?=
+ =?utf-8?B?aTF1aWd5T1BjUTFFRUtxMkROYTI5Mkk4WVJTenRwNFVvOFlBcXErRTlJVXQr?=
+ =?utf-8?B?Z2VPZkZUM3VZa0Y1THV6TTdmcE9lNlRWTzkvSUlEVVkzbzlaNUNWeWhuREhu?=
+ =?utf-8?B?LzdEb1ZJOFhtejFrR0ZSNUJ3NVk2ZmszejZkNXR6a3ptZDlZOGdrTHlqQlBj?=
+ =?utf-8?B?ZjFMQWNPQXE1Y1AydTJLZHo3aXJtbFZsc3I0UlVKOXFiN2xUOTZuV2tXKzNm?=
+ =?utf-8?B?NEFtdkZUeGZtTktiVEVOSE11TGtNQ25OQi84WjlLOFZ4dUkzcEpmaE1nakRQ?=
+ =?utf-8?B?dkM3djJtcnFZeWhxQndQc1gwWHFMRnFRa2I5T2ovYmo3VDhabERtc1ZTTk5l?=
+ =?utf-8?B?Rm1BMUFEck12NDlIM3plWDhZR2V2RlVxcXplWmVtMDAxdy9XYysybWNLYTBF?=
+ =?utf-8?B?blJ3MTFNVnh4T3FpY1hQeVgzWFlzOEtmb2JGSWt4dkR3eXlkRkVwRzRVa2pr?=
+ =?utf-8?B?RHJEMUFvbmZPT0cvcnF4UXJZWUl3OVFPY1IvYURRT2VLYmRuU1JoaWVSWVlI?=
+ =?utf-8?B?MGRlWUY1THhTMVBzZ0FmRDY0aDRyRi9vdU5CNm5oWmdRMjZBU0FZaFNqVW1y?=
+ =?utf-8?B?MzB2eXgveERpUjl6U2dDMUljQUh5RG1SMVFiRy9xR3dyR3JBbnUrNmd1UmUr?=
+ =?utf-8?B?UngyeHNyWndZeHplKzVKSGxLQ3VKOVp5dGxpQ09pTmdCUVUxSEFEQUlIaXli?=
+ =?utf-8?B?Umd0U05lZURsUG5XbUc0cXh6MHNOUFdFZUMrNEJFOGZyWDFUK1o2elNsQnRM?=
+ =?utf-8?B?dURMUXhkRFFRejhtdHpkVUFORkVYbUVwVFdGMmVkU0NtTTBRZmVpMnNMM3I2?=
+ =?utf-8?B?anFkSmxjQXc2RTNTaXlHTlVjT284THZRQ01jelFCL2dpMUQxR29IZEZEWnJV?=
+ =?utf-8?B?SjFvL2VmaVNPbUpTQVliUThmU2hVdlVHeDBtUFlvTzRKZDZMVWIwZXhSaTFZ?=
+ =?utf-8?B?dnJkcW5xN0ZNVGFDZjg2T1RNcEJ5NnNWTnBqS1lFeFdPR3NTcGx0SFdheWxJ?=
+ =?utf-8?B?SDlMTXBVR0NSRlJVWTlJdGVTMHEyRm05TW40U2RsenlxU2hOckdNV1F5Z0lp?=
+ =?utf-8?B?RnMzSlRtWEwrR3lLV2dIYXc1ckUyRnVCTVgvTy85ekZXOEhuakZ3NDdxaUJu?=
+ =?utf-8?B?dkhpTWdSVUtMSWFCMGRBVE04YmlpWWxHN2pkMkN4VFBOK2JvYlFYb290YnBi?=
+ =?utf-8?B?REwrWjlaVUllS0J6azM0UnYzNmQ4Mnd3VldCSXFqRVpQcW9PdUUxbnVWVU9J?=
+ =?utf-8?B?ZXRycnhyOUhXdGt2OU9zdS9NL056Y0Evc0V1aUlvZVhoTGR5RnJPOWxSS0k3?=
+ =?utf-8?B?cmJTZDJ2L0hjK1BvT25zQjlIdEZmdmJPaTRrRUh4b25RbE1jVjM1N2s3Vm1C?=
+ =?utf-8?B?bjM0SHVpUjJEbHJqekpzZG15ZDhCKzJwbWkxNjZHbzBaTDV5L1Q1SmN1TUs5?=
+ =?utf-8?B?WElldmJ1LzFIQWdxWlQraXVZWVVOZlhtZHl5d3Q1dXM2UzNKYkZQOUsvNlAx?=
+ =?utf-8?B?L2w3TUNNbEVycjJtOVNWcmkrZHVxZDl4MDExOFVwRk1GWHlOVFUyNU50dUZr?=
+ =?utf-8?B?aXk5WmJ1SDFrcEt5bmEvZ3hnakMydGQzM3JBc05lMXhwV2RTNmdZN0NrQTNL?=
+ =?utf-8?B?Wk9veGNhMW5ldTZVTW1FMUI4K1Yxcnh5TDQ0L3JSNGFVQXV1K0o5SVl3NnNT?=
+ =?utf-8?B?Z25rRFIxWEJZc2w4RFBYeStFUVBqTmp5K2pBU2RvMGVNTHhtNlY3cm5xb3ox?=
+ =?utf-8?Q?W57BAEHIktmsL28+bIM90AUfGaBs/6yAt5xuZi8Y5jHZX?=
+x-ms-exchange-antispam-messagedata-1: nzYnQL3n85oX5g==
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <33656C699AFC37429772DEE3675F497F@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jun 2022 15:30:31.6150 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: vsXrASHZRwEa0D7BhYmbAxVA/49SqMYI57be/fCwLRc/n547Fw56A0b8jT0dkYyzbQYuka7TpiI19SC1R918XyALqyPJRCCSz/4yj7ImD/M=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR11MB4607
+X-MS-Exchange-CrossTenant-AuthSource: DM8PR11MB5751.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9f8cf420-1c11-4892-4186-08da4e1b7149
+X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Jun 2022 15:34:59.7587 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 9qGNrRE30YeLq8hrLgzDMDWZOM2N3udh0cWOqpzqQ+94yf62ZJYW/c7aF3v20QL2+PRmkS1iyj3CXljrl9mdxGGSnGfpgClXnMc+KIKK/7QGMv14JThR7lR53EtpI2K5
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR11MB3171
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 00/15] HuC loading for DG2
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/guc: Check ctx while waiting for
+ response
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -167,234 +168,70 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alexander Usyskin <alexander.usyskin@intel.com>,
- alan.previn.teres.alexis@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-
-On 6/14/2022 12:44 AM, Tvrtko Ursulin wrote:
->
-> On 13/06/2022 19:13, Ceraolo Spurio, Daniele wrote:
->> On 6/13/2022 10:39 AM, Tvrtko Ursulin wrote:
->>> On 13/06/2022 18:06, Ceraolo Spurio, Daniele wrote:
->>>> On 6/13/2022 9:56 AM, Tvrtko Ursulin wrote:
->>>>> On 13/06/2022 17:41, Ceraolo Spurio, Daniele wrote:
->>>>>> On 6/13/2022 9:31 AM, Tvrtko Ursulin wrote:
->>>>>>>
->>>>>>> On 13/06/2022 16:39, Ceraolo Spurio, Daniele wrote:
->>>>>>>> On 6/13/2022 1:16 AM, Tvrtko Ursulin wrote:
->>>>>>>>>
->>>>>>>>> On 10/06/2022 00:19, Daniele Ceraolo Spurio wrote:
->>>>>>>>>> On DG2, HuC loading is performed by the GSC, via a PXP 
->>>>>>>>>> command. The load
->>>>>>>>>> operation itself is relatively simple (just send a message to 
->>>>>>>>>> the GSC
->>>>>>>>>> with the physical address of the HuC in LMEM), but there are 
->>>>>>>>>> timing
->>>>>>>>>> changes that requires special attention. In particular, to 
->>>>>>>>>> send a PXP
->>>>>>>>>> command we need to first export the GSC driver and then wait 
->>>>>>>>>> for the
->>>>>>>>>> mei-gsc and mei-pxp modules to start, which means that HuC 
->>>>>>>>>> load will
->>>>>>>>>> complete after i915 load is complete. This means that there 
->>>>>>>>>> is a small
->>>>>>>>>> window of time after i915 is registered and before HuC is loaded
->>>>>>>>>> during which userspace could submit and/or checking the HuC 
->>>>>>>>>> load status,
->>>>>>>>>> although this is quite unlikely to happen (HuC is usually 
->>>>>>>>>> loaded before
->>>>>>>>>> kernel init/resume completes).
->>>>>>>>>> We've consulted with the media team in regards to how to 
->>>>>>>>>> handle this and
->>>>>>>>>> they've asked us to do the following:
->>>>>>>>>>
->>>>>>>>>> 1) Report HuC as loaded in the getparam IOCTL even if load is 
->>>>>>>>>> still in
->>>>>>>>>> progress. The media driver uses the IOCTL as a way to check 
->>>>>>>>>> if HuC is
->>>>>>>>>> enabled and then includes a secondary check in the batches to 
->>>>>>>>>> get the
->>>>>>>>>> actual status, so doing it this way allows userspace to keep 
->>>>>>>>>> working
->>>>>>>>>> without changes.
->>>>>>>>>>
->>>>>>>>>> 2) Stall all userspace VCS submission until HuC is loaded. 
->>>>>>>>>> Stalls are
->>>>>>>>>> expected to be very rare (if any), due to the fact that HuC 
->>>>>>>>>> is usually
->>>>>>>>>> loaded before kernel init/resume is completed.
->>>>>>>>>
->>>>>>>>> Motivation to add these complications into i915 are not clear 
->>>>>>>>> to me here. I mean there is no HuC on DG2 _yet_ is the premise 
->>>>>>>>> of the series, right? So no backwards compatibility concerns. 
->>>>>>>>> In this case why jump through the hoops and not let userspace 
->>>>>>>>> handle all of this by just leaving the getparam return the 
->>>>>>>>> true status?
->>>>>>>>
->>>>>>>> The main areas impacted by the fact that we can't guarantee 
->>>>>>>> that HuC load is complete when i915 starts accepting 
->>>>>>>> submissions are boot and suspend/resume, with the latter being 
->>>>>>>> the main problem; GT reset is not a concern because HuC now 
->>>>>>>> survives it. A suspend/resume can be transparent to userspace 
->>>>>>>> and therefore the HuC status can temporarily flip from loaded 
->>>>>>>> to not without userspace knowledge, especially if we start 
->>>>>>>> going into deeper suspend states and start causing HuC resets 
->>>>>>>> when we go into runtime suspend. Note that this is different 
->>>>>>>> from what happens during GT reset for older platforms, because 
->>>>>>>> in that scenario we guarantee that HuC reload is complete 
->>>>>>>> before we restart the submission back-end, so userspace doesn't 
->>>>>>>> notice that the HuC status change. We had an internal 
->>>>>>>> discussion about this problem with both media and i915 archs 
->>>>>>>> and the conclusion was that the best option is for i915 to 
->>>>>>>> stall media submission while HuC (re-)load is in progress.
->>>>>>>
->>>>>>> Resume is potentialy a good reason - I did not pick up on that 
->>>>>>> from the cover letter. I read the statement about the unlikely 
->>>>>>> and small window where HuC is not loaded during kernel 
->>>>>>> init/resume and I guess did not pick up on the resume part.
->>>>>>>
->>>>>>> Waiting for GSC to load HuC from i915 resume is not an option?
->>>>>>
->>>>>> GSC is an aux device exported by i915, so AFAIU GSC resume can't 
->>>>>> start until i915 resume completes.
->>>>>
->>>>> I'll dig into this in the next few days since I want to understand 
->>>>> how exactly it works. Or someone can help explain.
->>>>>
->>>>> If in the end conclusion will be that i915 resume indeed cannot 
->>>>> wait for GSC, then I think auto-blocking of queued up contexts on 
->>>>> media engines indeed sounds unavoidable. Otherwise, as you 
->>>>> explained, user experience post resume wouldn't be good.
->>>>
->>>> Even if we could implement a wait, I'm not sure we should. GSC 
->>>> resume and HuC reload takes ~300ms in most cases, I don't think we 
->>>> want to block within the i915 resume path for that long.
->>>
->>> Yeah maybe not. But entertaining the idea that it is technically 
->>> possible to block - we could perhaps add uapi for userspace to mark 
->>> contexts which want HuC access. Then track if there are any such 
->>> contexts with outstanding submissions and only wait in resume if 
->>> there are. If that would end up significantly less code on the i915 
->>> side to maintain is an open.
->>>
->>> What would be the end result from users point of view in case where 
->>> it suspended during video playback? The proposed solution from this 
->>> series sees the video stuck after resume. Maybe compositor blocks as 
->>> well since I am not sure how well they handle one window not 
->>> providing new data. Probably depends on the compositor.
->>>
->>> And then with a simpler solution definitely the whole resume would 
->>> be delayed by 300ms.
->>>
->>> With my ChromeOS hat the stalled media engines does sound like a 
->>> better solution. But with the maintainer hat I'd like all options 
->>> evaluated since there is attractiveness if a good enough solution 
->>> can be achieved with significantly less kernel code.
->>>
->>> You say 300ms is typical time for HuC load. How long it is on other 
->>> platforms? If much faster then why is it so slow here?
->>
->> The GSC itself has to come out of suspend before it can perform the 
->> load, which takes a few tens of ms I believe. AFAIU the GSC is also 
->> slower in processing the HuC load and auth compared to the legacy 
->> path. The GSC FW team gave a 250ms limit for the time the GSC FW 
->> needs from start of the resume flow to HuC load complete, so I bumped 
->> that to ~300ms to account for all other SW interactions, plus a bit 
->> of buffer. Note that a bit of the SW overhead is caused by the fact 
->> that we have 2 mei modules in play here: mei-gsc, which manages the 
->> GSC device itself (including resume), and mei-pxp, which owns the pxp 
->> messaging, including HuC load.
->
-> And how long on other platforms (not DG2) do you know? Presumably 
-> there the wait is on the i915 resume path?
-
-I don't have "official" expected load times at hand, but looking at the 
-BAT boot logs for this series for DG1 I see it takes ~10 ms to load both 
-GuC and HuC:
-
-<7>[    8.157838] i915 0000:03:00.0: [drm:intel_huc_init [i915]] GSC 
-loads huc=no
-<6>[    8.158632] i915 0000:03:00.0: [drm] GuC firmware 
-i915/dg1_guc_70.1.1.bin version 70.1
-<6>[    8.158634] i915 0000:03:00.0: [drm] HuC firmware 
-i915/dg1_huc_7.9.3.bin version 7.9
-<7>[    8.164255] i915 0000:03:00.0: [drm:guc_enable_communication 
-[i915]] GuC communication enabled
-<6>[    8.166111] i915 0000:03:00.0: [drm] HuC authenticated
-
-Note that we increase the GT frequency all the way to the max before 
-starting the FW load, which speeds things up.
-
->
->>>>> However, do we really need to lie in the getparam? How about 
->>>>> extend or add a new one to separate the loading vs loaded states? 
->>>>> Since userspace does not support DG2 HuC yet this should be doable.
->>>>
->>>> I don't really have a preference here. The media team asked us to 
->>>> do it this way because they wouldn't have a use for the different 
->>>> "in progress" and "done" states. If they're ok with having separate 
->>>> flags that's fine by me.
->>>> Tony, any feedback here?
->>>
->>> We don't even have any docs in i915_drm.h in terms of what it means:
->>>
->>> #define I915_PARAM_HUC_STATUS         42
->>>
->>> Seems to be a boolean. Status false vs true? Could you add some docs?
->>
->> There is documentation above intel_huc_check_status(), which is also 
->> updated in this series. I can move that to i915_drm.h.
->
-> That would be great, thanks.
->
-> And with so rich return codes already documented and exposed via uapi 
-> - would we really need to add anything new for DG2 apart for userspace 
-> to know that if zero is returned (not a negative error value) it 
-> should retry? I mean is there another negative error missing which 
-> would prevent zero transitioning to one?
-
-I think if the auth fails we currently return 0, because the uc state in 
-that case would be "TRANSFERRED", i.e. DMA complete but not fully 
-enabled. I don't have anything against changing the FW state to "ERROR" 
-in this scenario and leave the 0 to mean "not done yet", but I'd prefer 
-the media team to comment on their needs for this IOCTL before 
-committing to anything.
-
-Daniele
-
->
-> Regards,
->
-> Tvrtko
->
->>
->> Daniele
->>
->>>
->>> Regards,
->>>
->>> Tvrtko
->>>
->>>>
->>>> Thanks,
->>>> Daniele
->>>>
->>>>>
->>>>>>> Will there be runtime suspend happening on the GSC device behind 
->>>>>>> i915's back, or i915 and GSC will always be able to transition 
->>>>>>> the states in tandem?
->>>>>>
->>>>>> They're always in sync. The GSC is part of the same HW PCI device 
->>>>>> as the rest of the GPU, so they change HW state together.
->>>>>
->>>>> Okay thanks, I wasn't sure if it is the same or separate device.
->>>>>
->>>>> Regards,
->>>>>
->>>>> Tvrtko
->>>>
->>
-
+Q2FuJ3Qgc2VlIGFueXRoaW5nIHdyb25nIHdpdGggdGhpcy4NCkkgY29uc2lkZXIgdGhpcyBvbmx5
+IGEgTklULCBzbyBmZWVsIDogbm90IHN1cmUgaWYgLUVDQU5DRUxMRUQgaXMgcmVmbGVjdGl2ZSBv
+ZiB0aGUgImN0IHNlcnZpY2UgYmVpbmcgdGVtcG9yYXJpbHkgZG93biINCmFzIG9wcG9zZWQgdG8g
+dGhlICJyZXF1ZXN0ZXIgY2FuY2VsbGluZyIuIFBlcmhhcHMgYSAtRVBJUEUgb3IgLUVBR0FJTiAo
+aWYgd2UgZ290IHRoaXMgZmFyLCB3ZSBrbm93IHdlIGFyZSBwcm9iYWJseSBtaWQtDQpyZXNldCkg
+Pz8gKGlmIG5vdCBhbHJlYWR5IHVzZWQgZWxzZXdoZXJlIGFsb25nIHRoaXMgY2FsbHN0YWNrKS4g
+RWxzZSA6DQoNClJldmlld2VkLWJ5OiBBbGFuIFByZXZpbiA8YWxhbi5wcmV2aW4udGVyZXMuYWxl
+eGlzQGludGVsLmNvbT4NCg0KLi4uYWxhbg0KDQoNCk9uIFRodSwgMjAyMi0wNi0wMiBhdCAxMDoy
+MSAtMDcwMCwgWmhhbmp1biBEb25nIHdyb3RlOg0KPiBXZSBhcmUgc2VlaW5nIGVycm9yIG1lc3Nh
+Z2Ugb2YgIk5vIHJlc3BvbnNlIGZvciByZXF1ZXN0Ii4gU29tZSBjYXNlcyBoYXBwZW5lZA0KPiB3
+aGlsZSB3YWl0aW5nIGZvciByZXNwb25zZSBhbmQgcmVzZXQvc3VzcGVuZCBhY3Rpb24gd2FzIHRy
+aWdnZXJlZC4gSW4gdGhpcw0KPiBjYXNlLCBubyByZXNwb25zZSBpcyBub3QgYW4gZXJyb3IsIGFj
+dGl2ZSByZXF1ZXN0cyB3aWxsIGJlIGNhbmNlbGxlZC4NCj4gDQo+IFRoaXMgcGF0Y2ggd2lsbCBo
+YW5kbGUgdGhpcyBjb25kaXRpb24gYW5kIGNoYW5nZSB0aGUgZXJyb3IgbWVzc2FnZSBpbnRvDQo+
+IGRlYnVnIG1lc3NhZ2UuDQo+IA0KPiBTaWduZWQtb2ZmLWJ5OiBaaGFuanVuIERvbmcgPHpoYW5q
+dW4uZG9uZ0BpbnRlbC5jb20+DQo+IC0tLQ0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMv
+aW50ZWxfZ3VjX2N0LmMgfCAyMSArKysrKysrKysrKysrKy0tLS0tLS0NCj4gIDEgZmlsZSBjaGFu
+Z2VkLCAxNCBpbnNlcnRpb25zKCspLCA3IGRlbGV0aW9ucygtKQ0KPiANCj4gZGlmZiAtLWdpdCBh
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX2d1Y19jdC5jIGIvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjX2N0LmMNCj4gaW5kZXggZjAxMzI1Y2QxYjYyLi5hMzBh
+Mzg4ODc3ZTIgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVs
+X2d1Y19jdC5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX2d1Y19j
+dC5jDQo+IEBAIC00NjcsNyArNDY3LDcgQEAgc3RhdGljIGludCBjdF93cml0ZShzdHJ1Y3QgaW50
+ZWxfZ3VjX2N0ICpjdCwNCj4gICAqICoJMCByZXNwb25zZSByZWNlaXZlZCAoc3RhdHVzIGlzIHZh
+bGlkKQ0KPiAgICogKgktRVRJTUVET1VUIG5vIHJlc3BvbnNlIHdpdGhpbiBoYXJkY29kZWQgdGlt
+ZW91dA0KPiAgICovDQo+IC1zdGF0aWMgaW50IHdhaXRfZm9yX2N0X3JlcXVlc3RfdXBkYXRlKHN0
+cnVjdCBjdF9yZXF1ZXN0ICpyZXEsIHUzMiAqc3RhdHVzKQ0KPiArc3RhdGljIGludCB3YWl0X2Zv
+cl9jdF9yZXF1ZXN0X3VwZGF0ZShzdHJ1Y3QgY3RfcmVxdWVzdCAqcmVxLCB1MzIgKnN0YXR1cywg
+c3RydWN0IGludGVsX2d1Y19jdCAqY3QpDQo+ICB7DQo+ICAJaW50IGVycjsNCj4gIA0KPiBAQCAt
+NDgxLDEyICs0ODEsMTQgQEAgc3RhdGljIGludCB3YWl0X2Zvcl9jdF9yZXF1ZXN0X3VwZGF0ZShz
+dHJ1Y3QgY3RfcmVxdWVzdCAqcmVxLCB1MzIgKnN0YXR1cykNCj4gICNkZWZpbmUgR1VDX0NUQl9S
+RVNQT05TRV9USU1FT1VUX1NIT1JUX01TIDEwDQo+ICAjZGVmaW5lIEdVQ19DVEJfUkVTUE9OU0Vf
+VElNRU9VVF9MT05HX01TIDEwMDANCj4gICNkZWZpbmUgZG9uZSBcDQo+IC0JKEZJRUxEX0dFVChH
+VUNfSFhHX01TR18wX09SSUdJTiwgUkVBRF9PTkNFKHJlcS0+c3RhdHVzKSkgPT0gXA0KPiArCSgh
+aW50ZWxfZ3VjX2N0X2VuYWJsZWQoY3QpIHx8IEZJRUxEX0dFVChHVUNfSFhHX01TR18wX09SSUdJ
+TiwgUkVBRF9PTkNFKHJlcS0+c3RhdHVzKSkgPT0gXA0KPiAgCSBHVUNfSFhHX09SSUdJTl9HVUMp
+DQo+ICAJZXJyID0gd2FpdF9mb3JfdXMoZG9uZSwgR1VDX0NUQl9SRVNQT05TRV9USU1FT1VUX1NI
+T1JUX01TKTsNCj4gIAlpZiAoZXJyKQ0KPiAgCQllcnIgPSB3YWl0X2Zvcihkb25lLCBHVUNfQ1RC
+X1JFU1BPTlNFX1RJTUVPVVRfTE9OR19NUyk7DQo+ICAjdW5kZWYgZG9uZQ0KPiArCWlmICghaW50
+ZWxfZ3VjX2N0X2VuYWJsZWQoY3QpKQ0KPiArCQllcnIgPSAtRUNBTkNFTEVEOw0KPiAgDQo+ICAJ
+KnN0YXR1cyA9IHJlcS0+c3RhdHVzOw0KPiAgCXJldHVybiBlcnI7DQo+IEBAIC03MDMsMTEgKzcw
+NSwxNSBAQCBzdGF0aWMgaW50IGN0X3NlbmQoc3RydWN0IGludGVsX2d1Y19jdCAqY3QsDQo+ICAN
+Cj4gIAlpbnRlbF9ndWNfbm90aWZ5KGN0X3RvX2d1YyhjdCkpOw0KPiAgDQo+IC0JZXJyID0gd2Fp
+dF9mb3JfY3RfcmVxdWVzdF91cGRhdGUoJnJlcXVlc3QsIHN0YXR1cyk7DQo+ICsJZXJyID0gd2Fp
+dF9mb3JfY3RfcmVxdWVzdF91cGRhdGUoJnJlcXVlc3QsIHN0YXR1cywgY3QpOw0KPiAgCWcyaF9y
+ZWxlYXNlX3NwYWNlKGN0LCBHVUNfQ1RCX0hYR19NU0dfTUFYX0xFTik7DQo+ICAJaWYgKHVubGlr
+ZWx5KGVycikpIHsNCj4gLQkJQ1RfRVJST1IoY3QsICJObyByZXNwb25zZSBmb3IgcmVxdWVzdCAl
+I3ggKGZlbmNlICV1KVxuIiwNCj4gLQkJCSBhY3Rpb25bMF0sIHJlcXVlc3QuZmVuY2UpOw0KPiAr
+CQlpZiAodW5saWtlbHkoZXJyID09IEVDQU5DRUxFRCkpDQo+ICsJCQlDVF9ERUJVRyhjdCwgIlJl
+cXVlc3QgJSN4IChmZW5jZSAldSkgY2FuY2VsbGVkIGFzIENUQiBpcyBkaXNhYmxlZFxuIiwNCj4g
+KwkJCQlhY3Rpb25bMF0sIHJlcXVlc3QuZmVuY2UpOw0KPiArCQllbHNlDQo+ICsJCQlDVF9FUlJP
+UihjdCwgIk5vIHJlc3BvbnNlIGZvciByZXF1ZXN0ICUjeCAoZmVuY2UgJXUpXG4iLA0KPiArCQkJ
+CWFjdGlvblswXSwgcmVxdWVzdC5mZW5jZSk7DQo+ICAJCWdvdG8gdW5saW5rOw0KPiAgCX0NCj4g
+IA0KPiBAQCAtNzcxLDggKzc3Nyw5IEBAIGludCBpbnRlbF9ndWNfY3Rfc2VuZChzdHJ1Y3QgaW50
+ZWxfZ3VjX2N0ICpjdCwgY29uc3QgdTMyICphY3Rpb24sIHUzMiBsZW4sDQo+ICANCj4gIAlyZXQg
+PSBjdF9zZW5kKGN0LCBhY3Rpb24sIGxlbiwgcmVzcG9uc2VfYnVmLCByZXNwb25zZV9idWZfc2l6
+ZSwgJnN0YXR1cyk7DQo+ICAJaWYgKHVubGlrZWx5KHJldCA8IDApKSB7DQo+IC0JCUNUX0VSUk9S
+KGN0LCAiU2VuZGluZyBhY3Rpb24gJSN4IGZhaWxlZCAoJXBlKSBzdGF0dXM9JSNYXG4iLA0KPiAt
+CQkJIGFjdGlvblswXSwgRVJSX1BUUihyZXQpLCBzdGF0dXMpOw0KPiArCQlpZiAobGlrZWx5KHJl
+dCAhPSBFQ0FOQ0VMRUQpKQ0KPiArCQkJQ1RfRVJST1IoY3QsICJTZW5kaW5nIGFjdGlvbiAlI3gg
+ZmFpbGVkICglcGUpIHN0YXR1cz0lI1hcbiIsDQo+ICsJCQkJYWN0aW9uWzBdLCBFUlJfUFRSKHJl
+dCksIHN0YXR1cyk7DQo+ICAJfSBlbHNlIGlmICh1bmxpa2VseShyZXQpKSB7DQo+ICAJCUNUX0RF
+QlVHKGN0LCAic2VuZCBhY3Rpb24gJSN4IHJldHVybmVkICVkICglI3gpXG4iLA0KPiAgCQkJIGFj
+dGlvblswXSwgcmV0LCByZXQpOw0KPiAtLSANCj4gMi4zNi4wDQo+IA0KDQo=
