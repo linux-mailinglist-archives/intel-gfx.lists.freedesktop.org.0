@@ -1,60 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2961F54B70F
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jun 2022 19:02:24 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E77A154B76B
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jun 2022 19:14:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C2EA310FE7F;
-	Tue, 14 Jun 2022 17:02:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 40B1910FE7F;
+	Tue, 14 Jun 2022 17:14:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1B15F10FE9F;
- Tue, 14 Jun 2022 17:02:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655226138; x=1686762138;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=VJPxBcCqbta3LHDMImPOOKgqT6f6cRyJELq4oQN0uHk=;
- b=BWmT/Sbubh18mDdT2n1mv23mvmeQkQ2n5pxWcMeHxeSnkJ6x5THP+m/1
- Z7xwaFwOOIVUt5Oj1h8Xt1lkpWDKvui6s5PP6dUq+Vh4EJB4nIucA93cI
- X8cavQHtpdcwaWbZsVz4i5WCTg/8GXCQ/iPAh0Sgt8okVL+szZ2BqYwtC
- cGDedq8jW0z0y5YjmPQPVsD/1S57DvX4zyLrK65Vs7Eju1BiXRmhsHWo8
- S2iZvvO52/9Ucot0jNgbr57Vb42uuwNrnJB/RK7GnwPEJRGKJETbrIepZ
- GP3puYLzvEODdIR2iQ+uFKReXk4YVCvIS68/e4795abWJ2Qg6fC4GQv2h g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10378"; a="342642070"
-X-IronPort-AV: E=Sophos;i="5.91,300,1647327600"; d="scan'208";a="342642070"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jun 2022 10:01:51 -0700
-X-IronPort-AV: E=Sophos;i="5.91,300,1647327600"; d="scan'208";a="535645546"
-Received: from nvishwa1-desk.sc.intel.com (HELO nvishwa1-DESK) ([172.25.29.76])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jun 2022 10:01:51 -0700
-Date: Tue, 14 Jun 2022 10:01:32 -0700
-From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-To: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-Message-ID: <20220614170131.GN376@nvishwa1-DESK>
-References: <CAOFGe97UDd2S+LdKeOWubFvc4cNy6KbRTtCPKUbwd8PnZPuvMQ@mail.gmail.com>
- <54fb6c28-7954-123e-edd6-ba6c15b6d36e@intel.com>
- <20220609193150.GG4461@nvishwa1-DESK>
- <891017f7-e276-66a1-dd9b-cbebc8f8a00d@intel.com>
- <20220610075434.GA376@nvishwa1-DESK>
- <df9795c0-3b73-fe79-134b-4bd9a3890059@intel.com>
- <20220610174228.GE376@nvishwa1-DESK>
- <BN6PR11MB1633E5329618944A94D5D0A792AB9@BN6PR11MB1633.namprd11.prod.outlook.com>
- <20220613180237.GJ376@nvishwa1-DESK>
- <e028b21b-a2bb-9649-06b0-9139462d107a@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 25CE610FC6D;
+ Tue, 14 Jun 2022 17:14:43 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1DADEAADDB;
+ Tue, 14 Jun 2022 17:14:43 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1607651688981729036=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <e028b21b-a2bb-9649-06b0-9139462d107a@intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [RFC v3 1/3] drm/doc/rfc: VM_BIND feature design
- document
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
+Date: Tue, 14 Jun 2022 17:14:43 -0000
+Message-ID: <165522688311.12483.2595775828458858663@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220614123049.16183-1-stanislav.lisovskiy@intel.com>
+In-Reply-To: <20220614123049.16183-1-stanislav.lisovskiy@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgQnVt?=
+ =?utf-8?q?p_up_CDCLK_for_DG2?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,934 +40,473 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Wilson, Chris P" <chris.p.wilson@intel.com>,
- Intel GFX <intel-gfx@lists.freedesktop.org>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>, "Hellstrom,
- Thomas" <thomas.hellstrom@intel.com>, "Vetter,
- Daniel" <daniel.vetter@intel.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jun 14, 2022 at 10:04:00AM +0300, Lionel Landwerlin wrote:
->On 13/06/2022 21:02, Niranjana Vishwanathapura wrote:
->>On Mon, Jun 13, 2022 at 06:33:07AM -0700, Zeng, Oak wrote:
->>>
->>>
->>>Regards,
->>>Oak
->>>
->>>>-----Original Message-----
->>>>From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On 
->>>>Behalf Of Niranjana
->>>>Vishwanathapura
->>>>Sent: June 10, 2022 1:43 PM
->>>>To: Landwerlin, Lionel G <lionel.g.landwerlin@intel.com>
->>>>Cc: Intel GFX <intel-gfx@lists.freedesktop.org>; Maling list - 
->>>>DRI developers <dri-
->>>>devel@lists.freedesktop.org>; Hellstrom, Thomas 
->>>><thomas.hellstrom@intel.com>;
->>>>Wilson, Chris P <chris.p.wilson@intel.com>; Vetter, Daniel
->>>><daniel.vetter@intel.com>; Christian König <christian.koenig@amd.com>
->>>>Subject: Re: [Intel-gfx] [RFC v3 1/3] drm/doc/rfc: VM_BIND 
->>>>feature design
->>>>document
->>>>
->>>>On Fri, Jun 10, 2022 at 11:18:14AM +0300, Lionel Landwerlin wrote:
->>>>>On 10/06/2022 10:54, Niranjana Vishwanathapura wrote:
->>>>>>On Fri, Jun 10, 2022 at 09:53:24AM +0300, Lionel Landwerlin wrote:
->>>>>>>On 09/06/2022 22:31, Niranjana Vishwanathapura wrote:
->>>>>>>>On Thu, Jun 09, 2022 at 05:49:09PM +0300, Lionel Landwerlin wrote:
->>>>>>>>>  On 09/06/2022 00:55, Jason Ekstrand wrote:
->>>>>>>>>
->>>>>>>>>    On Wed, Jun 8, 2022 at 4:44 PM Niranjana Vishwanathapura
->>>>>>>>> <niranjana.vishwanathapura@intel.com> wrote:
->>>>>>>>>
->>>>>>>>>      On Wed, Jun 08, 2022 at 08:33:25AM +0100, Tvrtko 
->>>>Ursulin wrote:
->>>>>>>>>      >
->>>>>>>>>      >
->>>>>>>>>      >On 07/06/2022 22:32, Niranjana Vishwanathapura wrote:
->>>>>>>>>      >>On Tue, Jun 07, 2022 at 11:18:11AM -0700, Niranjana
->>>>>>>>>Vishwanathapura
->>>>>>>>>      wrote:
->>>>>>>>>      >>>On Tue, Jun 07, 2022 at 12:12:03PM -0500, Jason
->>>>>>>>>Ekstrand wrote:
->>>>>>>>>      >>>> On Fri, Jun 3, 2022 at 6:52 PM Niranjana 
->>>>Vishwanathapura
->>>>>>>>>      >>>> <niranjana.vishwanathapura@intel.com> wrote:
->>>>>>>>>      >>>>
->>>>>>>>>      >>>>   On Fri, Jun 03, 2022 at 10:20:25AM +0300, Lionel
->>>>>>>>>Landwerlin
->>>>>>>>>      wrote:
->>>>>>>>>      >>>>   >   On 02/06/2022 23:35, Jason Ekstrand wrote:
->>>>>>>>>      >>>>   >
->>>>>>>>>      >>>>   >     On Thu, Jun 2, 2022 at 3:11 PM Niranjana
->>>>>>>>>Vishwanathapura
->>>>>>>>>      >>>>   > <niranjana.vishwanathapura@intel.com> wrote:
->>>>>>>>>      >>>>   >
->>>>>>>>>      >>>>   >       On Wed, Jun 01, 2022 at 01:28:36PM 
->>>>-0700, Matthew
->>>>>>>>>      >>>>Brost wrote:
->>>>>>>>>      >>>>   >       >On Wed, Jun 01, 2022 at 05:25:49PM 
->>>>+0300, Lionel
->>>>>>>>>      Landwerlin
->>>>>>>>>      >>>>   wrote:
->>>>>>>>>      >>>>   > >> On 17/05/2022 21:32, Niranjana Vishwanathapura
->>>>>>>>>      wrote:
->>>>>>>>>      >>>>   > >> > +VM_BIND/UNBIND ioctl will immediately start
->>>>>>>>>      >>>>   binding/unbinding
->>>>>>>>>      >>>>   >       the mapping in an
->>>>>>>>>      >>>>   > >> > +async worker. The binding and
->>>>>>>>>unbinding will
->>>>>>>>>      >>>>work like a
->>>>>>>>>      >>>>   special
->>>>>>>>>      >>>>   >       GPU engine.
->>>>>>>>>      >>>>   > >> > +The binding and unbinding operations are
->>>>>>>>>      serialized and
->>>>>>>>>      >>>>   will
->>>>>>>>>      >>>>   >       wait on specified
->>>>>>>>>      >>>>   > >> > +input fences before the operation
->>>>>>>>>and will signal
->>>>>>>>>      the
->>>>>>>>>      >>>>   output
->>>>>>>>>      >>>>   >       fences upon the
->>>>>>>>>      >>>>   > >> > +completion of the operation. Due to
->>>>>>>>>      serialization,
->>>>>>>>>      >>>>   completion of
->>>>>>>>>      >>>>   >       an operation
->>>>>>>>>      >>>>   > >> > +will also indicate that all
->>>>>>>>>previous operations
->>>>>>>>>      >>>>are also
->>>>>>>>>      >>>>   > complete.
->>>>>>>>>      >>>>   > >>
->>>>>>>>>      >>>>   > >> I guess we should avoid saying "will
->>>>>>>>>immediately
->>>>>>>>>      start
->>>>>>>>>      >>>>   > binding/unbinding" if
->>>>>>>>>      >>>>   > >> there are fences involved.
->>>>>>>>>      >>>>   > >>
->>>>>>>>>      >>>>   > >> And the fact that it's happening in an async
->>>>>>>>>      >>>>worker seem to
->>>>>>>>>      >>>>   imply
->>>>>>>>>      >>>>   >       it's not
->>>>>>>>>      >>>>   > >> immediate.
->>>>>>>>>      >>>>   > >>
->>>>>>>>>      >>>>   >
->>>>>>>>>      >>>>   >       Ok, will fix.
->>>>>>>>>      >>>>   >       This was added because in earlier design
->>>>>>>>>binding was
->>>>>>>>>      deferred
->>>>>>>>>      >>>>   until
->>>>>>>>>      >>>>   >       next execbuff.
->>>>>>>>>      >>>>   >       But now it is non-deferred (immediate in
->>>>>>>>>that sense).
->>>>>>>>>      >>>>But yah,
->>>>>>>>>      >>>>   this is
->>>>>>>>>      >>>>   > confusing
->>>>>>>>>      >>>>   >       and will fix it.
->>>>>>>>>      >>>>   >
->>>>>>>>>      >>>>   > >>
->>>>>>>>>      >>>>   > >> I have a question on the behavior of the bind
->>>>>>>>>      >>>>operation when
->>>>>>>>>      >>>>   no
->>>>>>>>>      >>>>   >       input fence
->>>>>>>>>      >>>>   > >> is provided. Let say I do :
->>>>>>>>>      >>>>   > >>
->>>>>>>>>      >>>>   > >> VM_BIND (out_fence=fence1)
->>>>>>>>>      >>>>   > >>
->>>>>>>>>      >>>>   > >> VM_BIND (out_fence=fence2)
->>>>>>>>>      >>>>   > >>
->>>>>>>>>      >>>>   > >> VM_BIND (out_fence=fence3)
->>>>>>>>>      >>>>   > >>
->>>>>>>>>      >>>>   > >>
->>>>>>>>>      >>>>   > >> In what order are the fences going to
->>>>>>>>>be signaled?
->>>>>>>>>      >>>>   > >>
->>>>>>>>>      >>>>   > >> In the order of VM_BIND ioctls? Or out
->>>>>>>>>of order?
->>>>>>>>>      >>>>   > >>
->>>>>>>>>      >>>>   > >> Because you wrote "serialized I assume
->>>>>>>>>it's : in
->>>>>>>>>      order
->>>>>>>>>      >>>>   > >>
->>>>>>>>>      >>>>   >
->>>>>>>>>      >>>>   >       Yes, in the order of VM_BIND/UNBIND
->>>>>>>>>ioctls. Note that
->>>>>>>>>      >>>>bind and
->>>>>>>>>      >>>>   unbind
->>>>>>>>>      >>>>   >       will use
->>>>>>>>>      >>>>   >       the same queue and hence are ordered.
->>>>>>>>>      >>>>   >
->>>>>>>>>      >>>>   > >>
->>>>>>>>>      >>>>   > >> One thing I didn't realize is that
->>>>>>>>>because we only
->>>>>>>>>      get one
->>>>>>>>>      >>>>   > "VM_BIND" engine,
->>>>>>>>>      >>>>   > >> there is a disconnect from the Vulkan
->>>>>>>>>specification.
->>>>>>>>>      >>>>   > >>
->>>>>>>>>      >>>>   > >> In Vulkan VM_BIND operations are
->>>>>>>>>serialized but
->>>>>>>>>      >>>>per engine.
->>>>>>>>>      >>>>   > >>
->>>>>>>>>      >>>>   > >> So you could have something like this :
->>>>>>>>>      >>>>   > >>
->>>>>>>>>      >>>>   > >> VM_BIND (engine=rcs0, in_fence=fence1,
->>>>>>>>>      out_fence=fence2)
->>>>>>>>>      >>>>   > >>
->>>>>>>>>      >>>>   > >> VM_BIND (engine=ccs0, in_fence=fence3,
->>>>>>>>>      out_fence=fence4)
->>>>>>>>>      >>>>   > >>
->>>>>>>>>      >>>>   > >>
->>>>>>>>>      >>>>   > >> fence1 is not signaled
->>>>>>>>>      >>>>   > >>
->>>>>>>>>      >>>>   > >> fence3 is signaled
->>>>>>>>>      >>>>   > >>
->>>>>>>>>      >>>>   > >> So the second VM_BIND will proceed before the
->>>>>>>>>      >>>>first VM_BIND.
->>>>>>>>>      >>>>   > >>
->>>>>>>>>      >>>>   > >>
->>>>>>>>>      >>>>   > >> I guess we can deal with that scenario in
->>>>>>>>>      >>>>userspace by doing
->>>>>>>>>      >>>>   the
->>>>>>>>>      >>>>   >       wait
->>>>>>>>>      >>>>   > >> ourselves in one thread per engines.
->>>>>>>>>      >>>>   > >>
->>>>>>>>>      >>>>   > >> But then it makes the VM_BIND input
->>>>>>>>>fences useless.
->>>>>>>>>      >>>>   > >>
->>>>>>>>>      >>>>   > >>
->>>>>>>>>      >>>>   > >> Daniel : what do you think? Should be
->>>>>>>>>rework this or
->>>>>>>>>      just
->>>>>>>>>      >>>>   deal with
->>>>>>>>>      >>>>   >       wait
->>>>>>>>>      >>>>   > >> fences in userspace?
->>>>>>>>>      >>>>   > >>
->>>>>>>>>      >>>>   >       >
->>>>>>>>>      >>>>   >       >My opinion is rework this but make the
->>>>>>>>>ordering via
->>>>>>>>>      >>>>an engine
->>>>>>>>>      >>>>   param
->>>>>>>>>      >>>>   > optional.
->>>>>>>>>      >>>>   >       >
->>>>>>>>>      >>>>   > >e.g. A VM can be configured so all binds
->>>>>>>>>are ordered
->>>>>>>>>      >>>>within the
->>>>>>>>>      >>>>   VM
->>>>>>>>>      >>>>   >       >
->>>>>>>>>      >>>>   > >e.g. A VM can be configured so all binds
->>>>>>>>>accept an
->>>>>>>>>      engine
->>>>>>>>>      >>>>   argument
->>>>>>>>>      >>>>   >       (in
->>>>>>>>>      >>>>   > >the case of the i915 likely this is a
->>>>>>>>>gem context
->>>>>>>>>      >>>>handle) and
->>>>>>>>>      >>>>   binds
->>>>>>>>>      >>>>   > >ordered with respect to that engine.
->>>>>>>>>      >>>>   >       >
->>>>>>>>>      >>>>   > >This gives UMDs options as the later
->>>>>>>>>likely consumes
->>>>>>>>>      >>>>more KMD
->>>>>>>>>      >>>>   > resources
->>>>>>>>>      >>>>   >       >so if a different UMD can live with 
->>>>binds being
->>>>>>>>>      >>>>ordered within
->>>>>>>>>      >>>>   the VM
->>>>>>>>>      >>>>   > >they can use a mode consuming less resources.
->>>>>>>>>      >>>>   >       >
->>>>>>>>>      >>>>   >
->>>>>>>>>      >>>>   >       I think we need to be careful here if we
->>>>>>>>>are looking
->>>>>>>>>      for some
->>>>>>>>>      >>>>   out of
->>>>>>>>>      >>>>   > (submission) order completion of vm_bind/unbind.
->>>>>>>>>      >>>>   > In-order completion means, in a batch of
->>>>>>>>>binds and
->>>>>>>>>      >>>>unbinds to be
->>>>>>>>>      >>>>   > completed in-order, user only needs to specify
->>>>>>>>>      >>>>in-fence for the
->>>>>>>>>      >>>>   >       first bind/unbind call and the our-fence
->>>>>>>>>for the last
->>>>>>>>>      >>>>   bind/unbind
->>>>>>>>>      >>>>   >       call. Also, the VA released by an unbind
->>>>>>>>>call can be
->>>>>>>>>      >>>>re-used by
->>>>>>>>>      >>>>   >       any subsequent bind call in that 
->>>>in-order batch.
->>>>>>>>>      >>>>   >
->>>>>>>>>      >>>>   >       These things will break if
->>>>>>>>>binding/unbinding were to
->>>>>>>>>      >>>>be allowed
->>>>>>>>>      >>>>   to
->>>>>>>>>      >>>>   >       go out of order (of submission) and user
->>>>>>>>>need to be
->>>>>>>>>      extra
->>>>>>>>>      >>>>   careful
->>>>>>>>>      >>>>   >       not to run into pre-mature triggereing of
->>>>>>>>>out-fence and
->>>>>>>>>      bind
->>>>>>>>>      >>>>   failing
->>>>>>>>>      >>>>   >       as VA is still in use etc.
->>>>>>>>>      >>>>   >
->>>>>>>>>      >>>>   >       Also, VM_BIND binds the provided 
->>>>mapping on the
->>>>>>>>>      specified
->>>>>>>>>      >>>>   address
->>>>>>>>>      >>>>   >       space
->>>>>>>>>      >>>>   >       (VM). So, the uapi is not engine/context
->>>>>>>>>specific.
->>>>>>>>>      >>>>   >
->>>>>>>>>      >>>>   >       We can however add a 'queue' to the uapi
->>>>>>>>>which can be
->>>>>>>>>      >>>>one from
->>>>>>>>>      >>>>   the
->>>>>>>>>      >>>>   > pre-defined queues,
->>>>>>>>>      >>>>   > I915_VM_BIND_QUEUE_0
->>>>>>>>>      >>>>   > I915_VM_BIND_QUEUE_1
->>>>>>>>>      >>>>   >       ...
->>>>>>>>>      >>>>   > I915_VM_BIND_QUEUE_(N-1)
->>>>>>>>>      >>>>   >
->>>>>>>>>      >>>>   >       KMD will spawn an async work queue for
->>>>>>>>>each queue which
->>>>>>>>>      will
->>>>>>>>>      >>>>   only
->>>>>>>>>      >>>>   >       bind the mappings on that queue in the 
->>>>order of
->>>>>>>>>      submission.
->>>>>>>>>      >>>>   >       User can assign the queue to per engine
->>>>>>>>>or anything
->>>>>>>>>      >>>>like that.
->>>>>>>>>      >>>>   >
->>>>>>>>>      >>>>   >       But again here, user need to be 
->>>>careful and not
->>>>>>>>>      >>>>deadlock these
->>>>>>>>>      >>>>   >       queues with circular dependency of fences.
->>>>>>>>>      >>>>   >
->>>>>>>>>      >>>>   >       I prefer adding this later an as
->>>>>>>>>extension based on
->>>>>>>>>      >>>>whether it
->>>>>>>>>      >>>>   >       is really helping with the implementation.
->>>>>>>>>      >>>>   >
->>>>>>>>>      >>>>   >     I can tell you right now that having
->>>>>>>>>everything on a
->>>>>>>>>      single
->>>>>>>>>      >>>>   in-order
->>>>>>>>>      >>>>   >     queue will not get us the perf we want.
->>>>>>>>>What vulkan
->>>>>>>>>      >>>>really wants
->>>>>>>>>      >>>>   is one
->>>>>>>>>      >>>>   >     of two things:
->>>>>>>>>      >>>>   >      1. No implicit ordering of VM_BIND 
->>>>ops.  They just
->>>>>>>>>      happen in
->>>>>>>>>      >>>>   whatever
->>>>>>>>>      >>>>   >     their dependencies are resolved and we
->>>>>>>>>ensure ordering
->>>>>>>>>      >>>>ourselves
->>>>>>>>>      >>>>   by
->>>>>>>>>      >>>>   >     having a syncobj in the VkQueue.
->>>>>>>>>      >>>>   >      2. The ability to create multiple VM_BIND
->>>>>>>>>queues.  We
->>>>>>>>>      need at
->>>>>>>>>      >>>>   least 2
->>>>>>>>>      >>>>   >     but I don't see why there needs to be a
->>>>>>>>>limit besides
->>>>>>>>>      >>>>the limits
->>>>>>>>>      >>>>   the
->>>>>>>>>      >>>>   >     i915 API already has on the number of
->>>>>>>>>engines.  Vulkan
->>>>>>>>>      could
->>>>>>>>>      >>>>   expose
->>>>>>>>>      >>>>   >     multiple sparse binding queues to the
->>>>>>>>>client if it's not
->>>>>>>>>      >>>>   arbitrarily
->>>>>>>>>      >>>>   >     limited.
->>>>>>>>>      >>>>
->>>>>>>>>      >>>>   Thanks Jason, Lionel.
->>>>>>>>>      >>>>
->>>>>>>>>      >>>>   Jason, what are you referring to when you say
->>>>>>>>>"limits the i915
->>>>>>>>>      API
->>>>>>>>>      >>>>   already
->>>>>>>>>      >>>>   has on the number of engines"? I am not sure if
->>>>>>>>>there is such
->>>>>>>>>      an uapi
->>>>>>>>>      >>>>   today.
->>>>>>>>>      >>>>
->>>>>>>>>      >>>> There's a limit of something like 64 total engines
->>>>>>>>>today based on
->>>>>>>>>      the
->>>>>>>>>      >>>> number of bits we can cram into the exec flags in
->>>>>>>>>execbuffer2.  I
->>>>>>>>>      think
->>>>>>>>>      >>>> someone had an extended version that allowed more
->>>>>>>>>but I ripped it
->>>>>>>>>      out
->>>>>>>>>      >>>> because no one was using it.  Of course,
->>>>>>>>>execbuffer3 might not
->>>>>>>>>      >>>>have that
->>>>>>>>>      >>>> problem at all.
->>>>>>>>>      >>>>
->>>>>>>>>      >>>
->>>>>>>>>      >>>Thanks Jason.
->>>>>>>>>      >>>Ok, I am not sure which exec flag is that, but yah,
->>>>>>>>>execbuffer3
->>>>>>>>>      probably
->>>>>>>>>      >>>will not have this limiation. So, we need to define a
->>>>>>>>>      VM_BIND_MAX_QUEUE
->>>>>>>>>      >>>and somehow export it to user (I am thinking of
->>>>>>>>>embedding it in
->>>>>>>>>      >>>I915_PARAM_HAS_VM_BIND. bits[0]->HAS_VM_BIND, 
->>>>bits[1-3]->'n'
->>>>>>>>>      meaning 2^n
->>>>>>>>>      >>>queues.
->>>>>>>>>      >>
->>>>>>>>>      >>Ah, I think you are waking about I915_EXEC_RING_MASK
->>>>>>>>>(0x3f) which
->>>>>>>>>      execbuf3
->>>>>>>>>
->>>>>>>>>    Yup!  That's exactly the limit I was talking about.
->>>>>>>>>
->>>>>>>>>      >>will also have. So, we can simply define in vm_bind/unbind
->>>>>>>>>      structures,
->>>>>>>>>      >>
->>>>>>>>>      >>#define I915_VM_BIND_MAX_QUEUE   64
->>>>>>>>>      >>        __u32 queue;
->>>>>>>>>      >>
->>>>>>>>>      >>I think that will keep things simple.
->>>>>>>>>      >
->>>>>>>>>      >Hmmm? What does execbuf2 limit has to do with how 
->>>>many engines
->>>>>>>>>      >hardware can have? I suggest not to do that.
->>>>>>>>>      >
->>>>>>>>>      >Change with added this:
->>>>>>>>>      >
->>>>>>>>>      >       if (set.num_engines > I915_EXEC_RING_MASK + 1)
->>>>>>>>>      >               return -EINVAL;
->>>>>>>>>      >
->>>>>>>>>      >To context creation needs to be undone and so let users
->>>>>>>>>create engine
->>>>>>>>>      >maps with all hardware engines, and let execbuf3 access
->>>>>>>>>them all.
->>>>>>>>>      >
->>>>>>>>>
->>>>>>>>>      Earlier plan was to carry I915_EXEC_RING_MAP (0x3f) to
->>>>>>>>>execbuff3 also.
->>>>>>>>>      Hence, I was using the same limit for VM_BIND queues
->>>>>>>>>(64, or 65 if we
->>>>>>>>>      make it N+1).
->>>>>>>>>      But, as discussed in other thread of this RFC series, we
->>>>>>>>>are planning
->>>>>>>>>      to drop this I915_EXEC_RING_MAP in execbuff3. So, 
->>>>there won't be
->>>>>>>>>      any uapi that limits the number of engines (and hence
->>>>>>>>>the vm_bind
->>>>>>>>>      queues
->>>>>>>>>      need to be supported).
->>>>>>>>>
->>>>>>>>>      If we leave the number of vm_bind queues to be 
->>>>arbitrarily large
->>>>>>>>>      (__u32 queue_idx) then, we need to have a hashmap for
->>>>>>>>>queue (a wq,
->>>>>>>>>      work_item and a linked list) lookup from the user
->>>>>>>>>specified queue
->>>>>>>>>      index.
->>>>>>>>>      Other option is to just put some hard limit (say 64 or
->>>>>>>>>65) and use
->>>>>>>>>      an array of queues in VM (each created upon first use).
->>>>>>>>>I prefer this.
->>>>>>>>>
->>>>>>>>>    I don't get why a VM_BIND queue is any different from any
->>>>>>>>>other queue or
->>>>>>>>>    userspace-visible kernel object.  But I'll leave those
->>>>>>>>>details up to
->>>>>>>>>    danvet or whoever else might be reviewing the implementation.
->>>>>>>>>    --Jason
->>>>>>>>>
->>>>>>>>>  I kind of agree here. Wouldn't be simpler to have the bind
->>>>>>>>>queue created
->>>>>>>>>  like the others when we build the engine map?
->>>>>>>>>
->>>>>>>>>  For userspace it's then just matter of selecting the right
->>>>>>>>>queue ID when
->>>>>>>>>  submitting.
->>>>>>>>>
->>>>>>>>>  If there is ever a possibility to have this work on the GPU,
->>>>>>>>>it would be
->>>>>>>>>  all ready.
->>>>>>>>>
->>>>>>>>
->>>>>>>>I did sync offline with Matt Brost on this.
->>>>>>>>We can add a VM_BIND engine class and let user create VM_BIND
->>>>>>>>engines (queues).
->>>>>>>>The problem is, in i915 engine creating interface is bound to
->>>>>>>>gem_context.
->>>>>>>>So, in vm_bind ioctl, we would need both context_id and
->>>>>>>>queue_idx for proper
->>>>>>>>lookup of the user created engine. This is bit ackward as 
->>>>vm_bind is an
->>>>>>>>interface to VM (address space) and has nothing to do with 
->>>>gem_context.
->>>>>>>
->>>>>>>
->>>>>>>A gem_context has a single vm object right?
->>>>>>>
->>>>>>>Set through I915_CONTEXT_PARAM_VM at creation or given a default
->>>>>>>one if not.
->>>>>>>
->>>>>>>So it's just like picking up the vm like it's done at execbuffer
->>>>>>>time right now : eb->context->vm
->>>>>>>
->>>>>>
->>>>>>Are you suggesting replacing 'vm_id' with 'context_id' in the
->>>>>>VM_BIND/UNBIND
->>>>>>ioctl and probably call it CONTEXT_BIND/UNBIND, because VM can be
->>>>>>obtained
->>>>>>from the context?
->>>>>
->>>>>
->>>>>Yes, because if we go for engines, they're associated with a context
->>>>>and so also associated with the VM bound to the context.
->>>>>
->>>>
->>>>Hmm...context doesn't sould like the right interface. It should be
->>>>VM and engine (independent of context). Engine can be virtual or soft
->>>>engine (kernel thread), each with its own queue. We can add an 
->>>>interface
->>>>to create such engines (independent of context). But we are anway
->>>>implicitly creating it when user uses a new queue_idx. If in future
->>>>we have hardware engines for VM_BIND operation, we can have that
->>>>explicit inteface to create engine instances and the queue_index
->>>>in vm_bind/unbind will point to those engines.
->>>>Anyone has any thoughts? Daniel?
->>>
->>>Exposing gem_context or intel_context to user space is a strange 
->>>concept to me. A context represent some hw resources that is used 
->>>to complete certain task. User space should care allocate some 
->>>resources (memory, queues) and submit tasks to queues. But user 
->>>space doesn't care how certain task is mapped to a HW context - 
->>>driver/guc should take care of this.
->>>
->>>So a cleaner interface to me is: user space create a vm,  create 
->>>gem object, vm_bind it to a vm; allocate queues (internally 
->>>represent compute or blitter HW. Queue can be virtual to user) for 
->>>this vm; submit tasks to queues. User can create multiple queues 
->>>under one vm. One queue is only for one vm.
->>>
->>>I915 driver/guc manage the hw compute or blitter resources which 
->>>is transparent to user space. When i915 or guc decide to schedule 
->>>a queue (run tasks on that queue), a HW engine will be pick up and 
->>>set up properly for the vm of that queue (ie., switch to page 
->>>tables of that vm) - this is a context switch.
->>>
->>>From vm_bind perspective, it simply bind a gem_object to a vm. 
->>>Engine/queue is not a parameter to vm_bind, as any engine can be 
->>>pick up by i915/guc to execute a task using the vm bound va.
->>>
->>>I didn't completely follow the discussion here. Just share some 
->>>thoughts.
->>>
->>
->>Yah, I agree.
->>
->>Lionel,
->>How about we define the queue as
->>union {
->>       __u32 queue_idx;
->>       __u64 rsvd;
->>}
->>
->>If required, we can extend by expanding the 'rsvd' field to <ctx_id, 
->>queue_idx> later
->>with a flag.
->>
->>Niranjana
->
->
->I did not really understand Oak's comment nor what you're suggesting 
->here to be honest.
->
->
->First the GEM context is already exposed to userspace. It's explicitly 
->created by userpace with DRM_IOCTL_I915_GEM_CONTEXT_CREATE.
->
->We give the GEM context id in every execbuffer we do with 
->drm_i915_gem_execbuffer2::rsvd1.
->
->It's still in the new execbuffer3 proposal being discussed.
->
->
->Second, the GEM context is also where we set the VM with 
->I915_CONTEXT_PARAM_VM.
->
->
->Third, the GEM context also has the list of engines with 
->I915_CONTEXT_PARAM_ENGINES.
->
+--===============1607651688981729036==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Yes, the execbuf and engine map creation are tied to gem_context.
-(which probably is not the best interface.)
+== Series Details ==
 
->
->So it makes sense to me to dispatch the vm_bind operation to a GEM 
->context, to a given vm_bind queue, because it's got all the 
->information required :
->
->    - the list of new vm_bind queues
->
->    - the vm that is going to be modified
->
+Series: Bump up CDCLK for DG2
+URL   : https://patchwork.freedesktop.org/series/105110/
+State : failure
 
-But the operation is performed here on the address space (VM) which
-can have multiple gem_contexts referring to it. So, VM is the right
-interface here. We need not 'gem_context'ify it.
+== Summary ==
 
-All we need is multiple queue support for the address space (VM).
-Going to gem_context for that just because we have engine creation
-support there seems unnecessay and not correct to me.
+CI Bug Log - changes from CI_DRM_11757 -> Patchwork_105110v1
+====================================================
 
->
->Otherwise where do the vm_bind queues live?
->
->In the i915/drm fd object?
->
->That would mean that all the GEM contexts are sharing the same vm_bind 
->queues.
->
+Summary
+-------
 
-Not all, only the gem contexts that are using the same address space (VM).
-But to me the right way to describe would be that "VM will be using those
-queues".
+  **FAILURE**
 
-Niranjana
+  Serious unknown changes coming with Patchwork_105110v1 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_105110v1, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
->
->intel_context or GuC are internal details we're not concerned about.
->
->I don't really see the connection with the GEM context.
->
->
->Maybe Oak has a different use case than Vulkan.
->
->
->-Lionel
->
->
->>
->>>Regards,
->>>Oak
->>>
->>>>
->>>>Niranjana
->>>>
->>>>>
->>>>>>I think the interface is clean as a interface to VM. It is 
->>>>only that we
->>>>>>don't have a clean way to create a raw VM_BIND engine (not
->>>>>>associated with
->>>>>>any context) with i915 uapi.
->>>>>>May be we can add such an interface, but I don't think that is 
->>>>worth it
->>>>>>(we might as well just use a queue_idx in VM_BIND/UNBIND ioctl as I
->>>>>>mentioned
->>>>>>above).
->>>>>>Anyone has any thoughts?
->>>>>>
->>>>>>>
->>>>>>>>Another problem is, if two VMs are binding with the same defined
->>>>>>>>engine,
->>>>>>>>binding on VM1 can get unnecessary blocked by binding on VM2
->>>>>>>>(which may be
->>>>>>>>waiting on its in_fence).
->>>>>>>
->>>>>>>
->>>>>>>Maybe I'm missing something, but how can you have 2 vm objects
->>>>>>>with a single gem_context right now?
->>>>>>>
->>>>>>
->>>>>>No, we don't have 2 VMs for a gem_context.
->>>>>>Say if ctx1 with vm1 and ctx2 with vm2.
->>>>>>First vm_bind call was for vm1 with q_idx 1 in ctx1 engine map.
->>>>>>Second vm_bind call was for vm2 with q_idx 2 in ctx2 engine map. If
->>>>>>those two queue indicies points to same underlying vm_bind engine,
->>>>>>then the second vm_bind call gets blocked until the first 
->>>>vm_bind call's
->>>>>>'in' fence is triggered and bind completes.
->>>>>>
->>>>>>With per VM queues, this is not a problem as two VMs will not endup
->>>>>>sharing same queue.
->>>>>>
->>>>>>BTW, I just posted a updated PATCH series.
->>>>>>https://www.spinics.net/lists/dri-devel/msg350483.html
->>>>>>
->>>>>>Niranjana
->>>>>>
->>>>>>>
->>>>>>>>
->>>>>>>>So, my preference here is to just add a 'u32 queue' index in
->>>>>>>>vm_bind/unbind
->>>>>>>>ioctl, and the queues are per VM.
->>>>>>>>
->>>>>>>>Niranjana
->>>>>>>>
->>>>>>>>>  Thanks,
->>>>>>>>>
->>>>>>>>>  -Lionel
->>>>>>>>>
->>>>>>>>>
->>>>>>>>>      Niranjana
->>>>>>>>>
->>>>>>>>>      >Regards,
->>>>>>>>>      >
->>>>>>>>>      >Tvrtko
->>>>>>>>>      >
->>>>>>>>>      >>
->>>>>>>>>      >>Niranjana
->>>>>>>>>      >>
->>>>>>>>>      >>>
->>>>>>>>>      >>>>   I am trying to see how many queues we need and
->>>>>>>>>don't want it to
->>>>>>>>>      be
->>>>>>>>>      >>>>   arbitrarily
->>>>>>>>>      >>>>   large and unduely blow up memory usage and
->>>>>>>>>complexity in i915
->>>>>>>>>      driver.
->>>>>>>>>      >>>>
->>>>>>>>>      >>>> I expect a Vulkan driver to use at most 2 in the
->>>>>>>>>vast majority
->>>>>>>>>      >>>>of cases. I
->>>>>>>>>      >>>> could imagine a client wanting to create more 
->>>>than 1 sparse
->>>>>>>>>      >>>>queue in which
->>>>>>>>>      >>>> case, it'll be N+1 but that's unlikely. As far as
->>>>>>>>>complexity
->>>>>>>>>      >>>>goes, once
->>>>>>>>>      >>>> you allow two, I don't think the complexity is 
->>>>going up by
->>>>>>>>>      >>>>allowing N.  As
->>>>>>>>>      >>>> for memory usage, creating more queues means more
->>>>>>>>>memory.  That's
->>>>>>>>>      a
->>>>>>>>>      >>>> trade-off that userspace can make. Again, the
->>>>>>>>>expected number
->>>>>>>>>      >>>>here is 1
->>>>>>>>>      >>>> or 2 in the vast majority of cases so I don't think
->>>>>>>>>you need to
->>>>>>>>>      worry.
->>>>>>>>>      >>>
->>>>>>>>>      >>>Ok, will start with n=3 meaning 8 queues.
->>>>>>>>>      >>>That would require us create 8 workqueues.
->>>>>>>>>      >>>We can change 'n' later if required.
->>>>>>>>>      >>>
->>>>>>>>>      >>>Niranjana
->>>>>>>>>      >>>
->>>>>>>>>      >>>>
->>>>>>>>>      >>>>   >     Why? Because Vulkan has two basic kind of bind
->>>>>>>>>      >>>>operations and we
->>>>>>>>>      >>>>   don't
->>>>>>>>>      >>>>   >     want any dependencies between them:
->>>>>>>>>      >>>>   >      1. Immediate.  These happen right after BO
->>>>>>>>>creation or
->>>>>>>>>      >>>>maybe as
->>>>>>>>>      >>>>   part of
->>>>>>>>>      >>>>   > vkBindImageMemory() or VkBindBufferMemory().  These
->>>>>>>>>      >>>>don't happen
->>>>>>>>>      >>>>   on a
->>>>>>>>>      >>>>   >     queue and we don't want them serialized
->>>>>>>>>with anything.       To
->>>>>>>>>      >>>>   synchronize
->>>>>>>>>      >>>>   >     with submit, we'll have a syncobj in the
->>>>>>>>>VkDevice which
->>>>>>>>>      is
->>>>>>>>>      >>>>   signaled by
->>>>>>>>>      >>>>   >     all immediate bind operations and make
->>>>>>>>>submits wait on
->>>>>>>>>      it.
->>>>>>>>>      >>>>   >      2. Queued (sparse): These happen on a
->>>>>>>>>VkQueue which may
->>>>>>>>>      be the
->>>>>>>>>      >>>>   same as
->>>>>>>>>      >>>>   >     a render/compute queue or may be its own
->>>>>>>>>queue.  It's up
->>>>>>>>>      to us
->>>>>>>>>      >>>>   what we
->>>>>>>>>      >>>>   >     want to advertise.  From the Vulkan API
->>>>>>>>>PoV, this is like
->>>>>>>>>      any
->>>>>>>>>      >>>>   other
->>>>>>>>>      >>>>   >     queue. Operations on it wait on and signal
->>>>>>>>>semaphores.       If we
->>>>>>>>>      >>>>   have a
->>>>>>>>>      >>>>   >     VM_BIND engine, we'd provide syncobjs to 
->>>>wait and
->>>>>>>>>      >>>>signal just like
->>>>>>>>>      >>>>   we do
->>>>>>>>>      >>>>   >     in execbuf().
->>>>>>>>>      >>>>   >     The important thing is that we don't want
->>>>>>>>>one type of
->>>>>>>>>      >>>>operation to
->>>>>>>>>      >>>>   block
->>>>>>>>>      >>>>   >     on the other.  If immediate binds are
->>>>>>>>>blocking on sparse
->>>>>>>>>      binds,
->>>>>>>>>      >>>>   it's
->>>>>>>>>      >>>>   >     going to cause over-synchronization issues.
->>>>>>>>>      >>>>   >     In terms of the internal implementation, I
->>>>>>>>>know that
->>>>>>>>>      >>>>there's going
->>>>>>>>>      >>>>   to be
->>>>>>>>>      >>>>   >     a lock on the VM and that we can't actually
->>>>>>>>>do these
->>>>>>>>>      things in
->>>>>>>>>      >>>>   > parallel.  That's fine. Once the dma_fences have
->>>>>>>>>      signaled and
->>>>>>>>>      >>>>   we're
->>>>>>>>>      >>>>
->>>>>>>>>      >>>>   Thats correct. It is like a single VM_BIND 
->>>>engine with
->>>>>>>>>      >>>>multiple queues
->>>>>>>>>      >>>>   feeding to it.
->>>>>>>>>      >>>>
->>>>>>>>>      >>>> Right.  As long as the queues themselves are
->>>>>>>>>independent and
->>>>>>>>>      >>>>can block on
->>>>>>>>>      >>>> dma_fences without holding up other queues, I think
->>>>>>>>>we're fine.
->>>>>>>>>      >>>>
->>>>>>>>>      >>>>   > unblocked to do the bind operation, I don't care if
->>>>>>>>>      >>>>there's a bit
->>>>>>>>>      >>>>   of
->>>>>>>>>      >>>>   > synchronization due to locking.  That's
->>>>>>>>>expected.  What
->>>>>>>>>      >>>>we can't
->>>>>>>>>      >>>>   afford
->>>>>>>>>      >>>>   >     to have is an immediate bind operation
->>>>>>>>>suddenly blocking
->>>>>>>>>      on a
->>>>>>>>>      >>>>   sparse
->>>>>>>>>      >>>>   > operation which is blocked on a compute job
->>>>>>>>>that's going
->>>>>>>>>      to run
->>>>>>>>>      >>>>   for
->>>>>>>>>      >>>>   >     another 5ms.
->>>>>>>>>      >>>>
->>>>>>>>>      >>>>   As the VM_BIND queue is per VM, VM_BIND on one VM
->>>>>>>>>doesn't block
->>>>>>>>>      the
->>>>>>>>>      >>>>   VM_BIND
->>>>>>>>>      >>>>   on other VMs. I am not sure about usecases 
->>>>here, but just
->>>>>>>>>      wanted to
->>>>>>>>>      >>>>   clarify.
->>>>>>>>>      >>>>
->>>>>>>>>      >>>> Yes, that's what I would expect.
->>>>>>>>>      >>>> --Jason
->>>>>>>>>      >>>>
->>>>>>>>>      >>>>   Niranjana
->>>>>>>>>      >>>>
->>>>>>>>>      >>>>   >     For reference, Windows solves this by allowing
->>>>>>>>>      arbitrarily many
->>>>>>>>>      >>>>   paging
->>>>>>>>>      >>>>   >     queues (what they call a VM_BIND
->>>>>>>>>engine/queue).  That
->>>>>>>>>      >>>>design works
->>>>>>>>>      >>>>   >     pretty well and solves the problems in
->>>>>>>>>question.       >>>>Again, we could
->>>>>>>>>      >>>>   just
->>>>>>>>>      >>>>   >     make everything out-of-order and require
->>>>>>>>>using syncobjs
->>>>>>>>>      >>>>to order
->>>>>>>>>      >>>>   things
->>>>>>>>>      >>>>   >     as userspace wants. That'd be fine too.
->>>>>>>>>      >>>>   >     One more note while I'm here: danvet said
->>>>>>>>>something on
->>>>>>>>>      >>>>IRC about
->>>>>>>>>      >>>>   VM_BIND
->>>>>>>>>      >>>>   >     queues waiting for syncobjs to
->>>>>>>>>materialize.  We don't
->>>>>>>>>      really
->>>>>>>>>      >>>>   want/need
->>>>>>>>>      >>>>   >     this. We already have all the machinery in
->>>>>>>>>userspace to
->>>>>>>>>      handle
->>>>>>>>>      >>>>   > wait-before-signal and waiting for syncobj
->>>>>>>>>fences to
->>>>>>>>>      >>>>materialize
->>>>>>>>>      >>>>   and
->>>>>>>>>      >>>>   >     that machinery is on by default.  It 
->>>>would actually
->>>>>>>>>      >>>>take MORE work
->>>>>>>>>      >>>>   in
->>>>>>>>>      >>>>   >     Mesa to turn it off and take advantage of
->>>>>>>>>the kernel
->>>>>>>>>      >>>>being able to
->>>>>>>>>      >>>>   wait
->>>>>>>>>      >>>>   >     for syncobjs to materialize. Also, getting
->>>>>>>>>that right is
->>>>>>>>>      >>>>   ridiculously
->>>>>>>>>      >>>>   >     hard and I really don't want to get it
->>>>>>>>>wrong in kernel
->>>>>>>>>      >>>>space.   �� When we
->>>>>>>>>      >>>>   >     do memory fences, wait-before-signal will
->>>>>>>>>be a thing.  We
->>>>>>>>>      don't
->>>>>>>>>      >>>>   need to
->>>>>>>>>      >>>>   >     try and make it a thing for syncobj.
->>>>>>>>>      >>>>   >     --Jason
->>>>>>>>>      >>>>   >
->>>>>>>>>      >>>>   >   Thanks Jason,
->>>>>>>>>      >>>>   >
->>>>>>>>>      >>>>   >   I missed the bit in the Vulkan spec that
->>>>>>>>>we're allowed to
->>>>>>>>>      have a
->>>>>>>>>      >>>>   sparse
->>>>>>>>>      >>>>   >   queue that does not implement either graphics
->>>>>>>>>or compute
->>>>>>>>>      >>>>operations
->>>>>>>>>      >>>>   :
->>>>>>>>>      >>>>   >
->>>>>>>>>      >>>>   >     "While some implementations may include
->>>>>>>>>      >>>> VK_QUEUE_SPARSE_BINDING_BIT
->>>>>>>>>      >>>>   >     support in queue families that also include
->>>>>>>>>      >>>>   >
->>>>>>>>>      >>>>   > graphics and compute support, other
->>>>>>>>>implementations may
->>>>>>>>>      only
->>>>>>>>>      >>>>   expose a
->>>>>>>>>      >>>>   > VK_QUEUE_SPARSE_BINDING_BIT-only queue
->>>>>>>>>      >>>>   >
->>>>>>>>>      >>>>   > family."
->>>>>>>>>      >>>>   >
->>>>>>>>>      >>>>   >   So it can all be all a vm_bind engine that 
->>>>just does
->>>>>>>>>      bind/unbind
->>>>>>>>>      >>>>   > operations.
->>>>>>>>>      >>>>   >
->>>>>>>>>      >>>>   >   But yes we need another engine for the
->>>>>>>>>immediate/non-sparse
->>>>>>>>>      >>>>   operations.
->>>>>>>>>      >>>>   >
->>>>>>>>>      >>>>   >   -Lionel
->>>>>>>>>      >>>>   >
->>>>>>>>>      >>>>   >         >
->>>>>>>>>      >>>>   > Daniel, any thoughts?
->>>>>>>>>      >>>>   >
->>>>>>>>>      >>>>   > Niranjana
->>>>>>>>>      >>>>   >
->>>>>>>>>      >>>>   > >Matt
->>>>>>>>>      >>>>   >       >
->>>>>>>>>      >>>>   > >>
->>>>>>>>>      >>>>   > >> Sorry I noticed this late.
->>>>>>>>>      >>>>   > >>
->>>>>>>>>      >>>>   > >>
->>>>>>>>>      >>>>   > >> -Lionel
->>>>>>>>>      >>>>   > >>
->>>>>>>>>      >>>>   > >>
->>>>>>>
->>>>>>>
->>>>>
->
->
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/index.html
+
+Participating hosts (46 -> 44)
+------------------------------
+
+  Additional (2): fi-rkl-11600 bat-jsl-2 
+  Missing    (4): fi-ctg-p8600 bat-dg2-8 fi-bdw-samus fi-hsw-4200u 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_105110v1:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_pm_rps@basic-api:
+    - fi-kbl-soraka:      [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11757/fi-kbl-soraka/igt@i915_pm_rps@basic-api.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/fi-kbl-soraka/igt@i915_pm_rps@basic-api.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_105110v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][3] ([i915#2190])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/fi-rkl-11600/igt@gem_huc_copy@huc-copy.html
+
+  * igt@gem_lmem_swapping@basic:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][4] ([i915#4613]) +3 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/fi-rkl-11600/igt@gem_lmem_swapping@basic.html
+
+  * igt@gem_tiled_pread_basic:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][5] ([i915#3282])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/fi-rkl-11600/igt@gem_tiled_pread_basic.html
+
+  * igt@i915_pm_backlight@basic-brightness:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][6] ([i915#3012])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/fi-rkl-11600/igt@i915_pm_backlight@basic-brightness.html
+
+  * igt@i915_selftest@live@gem:
+    - fi-blb-e6850:       NOTRUN -> [DMESG-FAIL][7] ([i915#4528])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/fi-blb-e6850/igt@i915_selftest@live@gem.html
+
+  * igt@i915_selftest@live@gtt:
+    - fi-bdw-5557u:       [PASS][8] -> [DMESG-FAIL][9] ([i915#3674])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11757/fi-bdw-5557u/igt@i915_selftest@live@gtt.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/fi-bdw-5557u/igt@i915_selftest@live@gtt.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - bat-dg1-5:          [PASS][10] -> [DMESG-FAIL][11] ([i915#4494] / [i915#4957])
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11757/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
+
+  * igt@i915_suspend@basic-s2idle-without-i915:
+    - fi-bdw-gvtdvm:      NOTRUN -> [INCOMPLETE][12] ([i915#4817])
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/fi-bdw-gvtdvm/igt@i915_suspend@basic-s2idle-without-i915.html
+
+  * igt@i915_suspend@basic-s3-without-i915:
+    - fi-rkl-11600:       NOTRUN -> [INCOMPLETE][13] ([i915#5982])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html
+
+  * igt@kms_busy@basic@flip:
+    - bat-adlp-4:         [PASS][14] -> [DMESG-WARN][15] ([i915#3576]) +1 similar issue
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11757/bat-adlp-4/igt@kms_busy@basic@flip.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/bat-adlp-4/igt@kms_busy@basic@flip.html
+
+  * igt@kms_chamelium@hdmi-edid-read:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][16] ([fdo#111827]) +7 similar issues
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/fi-rkl-11600/igt@kms_chamelium@hdmi-edid-read.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][17] ([i915#4103]) +1 similar issue
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/fi-rkl-11600/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1:
+    - fi-tgl-u2:          [PASS][18] -> [DMESG-WARN][19] ([i915#402])
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11757/fi-tgl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/fi-tgl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html
+
+  * igt@kms_force_connector_basic@force-load-detect:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][20] ([fdo#109285] / [i915#4098])
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/fi-rkl-11600/igt@kms_force_connector_basic@force-load-detect.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][21] ([i915#533])
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/fi-rkl-11600/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
+
+  * igt@kms_psr@primary_page_flip:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][22] ([i915#1072]) +3 similar issues
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/fi-rkl-11600/igt@kms_psr@primary_page_flip.html
+
+  * igt@kms_setmode@basic-clone-single-crtc:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][23] ([i915#3555] / [i915#4098])
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/fi-rkl-11600/igt@kms_setmode@basic-clone-single-crtc.html
+
+  * igt@prime_vgem@basic-read:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][24] ([fdo#109295] / [i915#3291] / [i915#3708]) +2 similar issues
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/fi-rkl-11600/igt@prime_vgem@basic-read.html
+
+  * igt@prime_vgem@basic-userptr:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][25] ([fdo#109295] / [i915#3301] / [i915#3708])
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/fi-rkl-11600/igt@prime_vgem@basic-userptr.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bdw-gvtdvm:      [INCOMPLETE][26] ([i915#2940]) -> [PASS][27]
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11757/fi-bdw-gvtdvm/igt@i915_selftest@live@execlists.html
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/fi-bdw-gvtdvm/igt@i915_selftest@live@execlists.html
+
+  * igt@i915_selftest@live@gt_timelines:
+    - {bat-dg2-9}:        [DMESG-WARN][28] ([i915#5763]) -> [PASS][29] +6 similar issues
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11757/bat-dg2-9/igt@i915_selftest@live@gt_timelines.html
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/bat-dg2-9/igt@i915_selftest@live@gt_timelines.html
+
+  * igt@i915_selftest@live@requests:
+    - fi-blb-e6850:       [DMESG-FAIL][30] ([i915#4528]) -> [PASS][31]
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11757/fi-blb-e6850/igt@i915_selftest@live@requests.html
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/fi-blb-e6850/igt@i915_selftest@live@requests.html
+
+  * igt@kms_flip@basic-flip-vs-modeset@a-edp1:
+    - fi-tgl-u2:          [DMESG-WARN][32] ([i915#402]) -> [PASS][33]
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11757/fi-tgl-u2/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/fi-tgl-u2/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html
+
+  * igt@kms_flip@basic-flip-vs-modeset@b-edp1:
+    - bat-adlp-4:         [DMESG-WARN][34] ([i915#3576]) -> [PASS][35]
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11757/bat-adlp-4/igt@kms_flip@basic-flip-vs-modeset@b-edp1.html
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/bat-adlp-4/igt@kms_flip@basic-flip-vs-modeset@b-edp1.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-cfl-8109u:       [DMESG-FAIL][36] ([i915#62]) -> [PASS][37] +1 similar issue
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11757/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html
+   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a:
+    - fi-cfl-8109u:       [DMESG-WARN][38] ([i915#62]) -> [PASS][39] +13 similar issues
+   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11757/fi-cfl-8109u/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a.html
+   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/fi-cfl-8109u/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#109295]: https://bugs.freedesktop.org/show_bug.cgi?id=109295
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
+  [i915#3012]: https://gitlab.freedesktop.org/drm/intel/issues/3012
+  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
+  [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
+  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
+  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
+  [i915#3576]: https://gitlab.freedesktop.org/drm/intel/issues/3576
+  [i915#3674]: https://gitlab.freedesktop.org/drm/intel/issues/3674
+  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#4098]: https://gitlab.freedesktop.org/drm/intel/issues/4098
+  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
+  [i915#4528]: https://gitlab.freedesktop.org/drm/intel/issues/4528
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#4817]: https://gitlab.freedesktop.org/drm/intel/issues/4817
+  [i915#4957]: https://gitlab.freedesktop.org/drm/intel/issues/4957
+  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
+  [i915#5763]: https://gitlab.freedesktop.org/drm/intel/issues/5763
+  [i915#5903]: https://gitlab.freedesktop.org/drm/intel/issues/5903
+  [i915#5982]: https://gitlab.freedesktop.org/drm/intel/issues/5982
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#6227]: https://gitlab.freedesktop.org/drm/intel/issues/6227
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_11757 -> Patchwork_105110v1
+
+  CI-20190529: 20190529
+  CI_DRM_11757: da1e3835cdf5e8c449d1edeb993105efd7c8815d @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6524: 4b17146f2a0504db694eb89e19d7f9f7f5051983 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_105110v1: da1e3835cdf5e8c449d1edeb993105efd7c8815d @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+6d6956295e98 drm/i915/dg2: Bump up CDCLK for DG2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/index.html
+
+--===============1607651688981729036==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Bump up CDCLK for DG2</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/105110/">https://patchwork.freedesktop.org/series/105110/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11757 -&gt; Patchwork_105110v1</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_105110v1 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_105110v1, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/index.html</p>
+<h2>Participating hosts (46 -&gt; 44)</h2>
+<p>Additional (2): fi-rkl-11600 bat-jsl-2 <br />
+  Missing    (4): fi-ctg-p8600 bat-dg2-8 fi-bdw-samus fi-hsw-4200u </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_105110v1:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@i915_pm_rps@basic-api:<ul>
+<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11757/fi-kbl-soraka/igt@i915_pm_rps@basic-api.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/fi-kbl-soraka/igt@i915_pm_rps@basic-api.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_105110v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/fi-rkl-11600/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@basic:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/fi-rkl-11600/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_tiled_pread_basic:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/fi-rkl-11600/igt@gem_tiled_pread_basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3282">i915#3282</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_backlight@basic-brightness:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/fi-rkl-11600/igt@i915_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3012">i915#3012</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gem:</p>
+<ul>
+<li>fi-blb-e6850:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/fi-blb-e6850/igt@i915_selftest@live@gem.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gtt:</p>
+<ul>
+<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11757/fi-bdw-5557u/igt@i915_selftest@live@gtt.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/fi-bdw-5557u/igt@i915_selftest@live@gtt.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3674">i915#3674</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>bat-dg1-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11757/bat-dg1-5/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/bat-dg1-5/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_suspend@basic-s2idle-without-i915:</p>
+<ul>
+<li>fi-bdw-gvtdvm:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/fi-bdw-gvtdvm/igt@i915_suspend@basic-s2idle-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4817">i915#4817</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_suspend@basic-s3-without-i915:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5982">i915#5982</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_busy@basic@flip:</p>
+<ul>
+<li>bat-adlp-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11757/bat-adlp-4/igt@kms_busy@basic@flip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/bat-adlp-4/igt@kms_busy@basic@flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@hdmi-edid-read:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/fi-rkl-11600/igt@kms_chamelium@hdmi-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +7 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/fi-rkl-11600/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1:</p>
+<ul>
+<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11757/fi-tgl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/fi-tgl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-load-detect:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/fi-rkl-11600/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4098">i915#4098</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/fi-rkl-11600/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@primary_page_flip:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/fi-rkl-11600/igt@kms_psr@primary_page_flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_setmode@basic-clone-single-crtc:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/fi-rkl-11600/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4098">i915#4098</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-read:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/fi-rkl-11600/igt@prime_vgem@basic-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109295">fdo#109295</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3291">i915#3291</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-userptr:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/fi-rkl-11600/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109295">fdo#109295</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bdw-gvtdvm:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11757/fi-bdw-gvtdvm/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/fi-bdw-gvtdvm/igt@i915_selftest@live@execlists.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_timelines:</p>
+<ul>
+<li>{bat-dg2-9}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11757/bat-dg2-9/igt@i915_selftest@live@gt_timelines.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5763">i915#5763</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/bat-dg2-9/igt@i915_selftest@live@gt_timelines.html">PASS</a> +6 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@requests:</p>
+<ul>
+<li>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11757/fi-blb-e6850/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/fi-blb-e6850/igt@i915_selftest@live@requests.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-modeset@a-edp1:</p>
+<ul>
+<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11757/fi-tgl-u2/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/fi-tgl-u2/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-modeset@b-edp1:</p>
+<ul>
+<li>bat-adlp-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11757/bat-adlp-4/igt@kms_flip@basic-flip-vs-modeset@b-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/bat-adlp-4/igt@kms_flip@basic-flip-vs-modeset@b-edp1.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11757/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11757/fi-cfl-8109u/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105110v1/fi-cfl-8109u/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a.html">PASS</a> +13 similar issues</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11757 -&gt; Patchwork_105110v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11757: da1e3835cdf5e8c449d1edeb993105efd7c8815d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6524: 4b17146f2a0504db694eb89e19d7f9f7f5051983 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_105110v1: da1e3835cdf5e8c449d1edeb993105efd7c8815d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>6d6956295e98 drm/i915/dg2: Bump up CDCLK for DG2</p>
+
+</body>
+</html>
+
+--===============1607651688981729036==--
