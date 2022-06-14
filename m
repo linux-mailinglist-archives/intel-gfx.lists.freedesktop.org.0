@@ -1,49 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F74054B097
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jun 2022 14:30:37 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 744AF54B0A3
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jun 2022 14:33:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A2EBF10F98B;
-	Tue, 14 Jun 2022 12:30:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 946D98919E;
+	Tue, 14 Jun 2022 12:33:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 004EE10F98B
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Jun 2022 12:30:33 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D75648919E;
+ Tue, 14 Jun 2022 12:33:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655209834; x=1686745834;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=XoXmY/ahNbxNOTPHC/RsKTjtPEaIJ01CJNz09/XISWs=;
- b=M1F8PHPkjPm6nkX1WpCWppXdYQhrmRshapJ4icxZV9tN7jG1BxsBLgOg
- YdEjxvYam3N5+vcyzpr7BjlY80ks0H71E61GwOGYeAVjo3QP/RaHonlZ6
- dttRpI8S/il6wrjxqpnfUBK7ICMWGaOTml4UquflPTQol3AAfbAVQZbgO
- fOXGNMucOdeGgFVBt87G/NneuVUJp9ZWnlrZPXh6SiNOoK9pANyMkA/nP
- TjV3316fx2vQiXVdHE9TGgsrUHGKuVgAWPIH6WDcFk4gQFsQd+UKBBm2Q
- 647n8ALFQB3TGNK7/N2rAjevFDZqDOYgdPVe9h2rkysoIBL8VTSKRotLd A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10377"; a="279639557"
-X-IronPort-AV: E=Sophos;i="5.91,300,1647327600"; d="scan'208";a="279639557"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jun 2022 05:30:32 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,300,1647327600"; d="scan'208";a="640342107"
-Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
- ([10.237.72.65])
- by fmsmga008.fm.intel.com with ESMTP; 14 Jun 2022 05:30:30 -0700
-From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 14 Jun 2022 15:30:49 +0300
-Message-Id: <20220614123049.16183-2-stanislav.lisovskiy@intel.com>
-X-Mailer: git-send-email 2.24.1.485.gad05a3d8e5
-In-Reply-To: <20220614123049.16183-1-stanislav.lisovskiy@intel.com>
-References: <20220614123049.16183-1-stanislav.lisovskiy@intel.com>
+ t=1655209984; x=1686745984;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=mXYnzRfTNEuDLjW2bO7Ouhd7lIwVkMvdtCn+nTnldcA=;
+ b=gIhJOMoqXrNRSo3JY9DQgVFOofbrH4sMaIx57rqhLgRhL/H0ofz8SYyI
+ yvp6oPCbblhCN7mqsfAoS2sSnStrXKq/O+ml7IJprcXAzGhMfWVQIFd/f
+ AyOtQ/9Ex7paQkPuq8Fxv3MP2GhzYDm+Zk09GCfOte3AgDyPNgw8C64NU
+ k/jj2n7OjJZJDykZxlytAhVUFEoZ42PetrKT1RUdqe5l7UeukcMYXH54r
+ ugqX6qTOVKpLWYXrBR00Jb+359tOHb26gpNfLbXn0+DcgwAEibuqyU2cF
+ qGj/8XxR0ADBmB3vTUDI4W7LSVEkRd7fX6bt4o9zI4y3KNcxLXOeAOvcy A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10377"; a="278642515"
+X-IronPort-AV: E=Sophos;i="5.91,300,1647327600"; d="scan'208";a="278642515"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jun 2022 05:33:03 -0700
+X-IronPort-AV: E=Sophos;i="5.91,300,1647327600"; d="scan'208";a="588441260"
+Received: from nncongwa-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.32.178])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jun 2022 05:33:02 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Imre Deak <imre.deak@intel.com>, dri-devel@lists.freedesktop.org
+In-Reply-To: <20220614094537.885472-1-imre.deak@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220614094537.885472-1-imre.deak@intel.com>
+Date: Tue, 14 Jun 2022 15:32:59 +0300
+Message-ID: <87sfo7xw5g.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 1/1] drm/i915/dg2: Bump up CDCLK for DG2
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH] drm/dp/mst: Read the extended DPCD
+ capabilities during system resume
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,40 +57,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We seem to need this W/A same way as for TGL, in order
-to fix some of the underruns, which we currently have and
-those not related to PSR.
+On Tue, 14 Jun 2022, Imre Deak <imre.deak@intel.com> wrote:
+> The WD22TB4 Thunderbolt dock at least will revert its DP_MAX_LINK_RATE
+> from HBR3 to HBR2 after system suspend/resume if the DP_DP13_DPCD_REV
+> registers are not read subsequently also as required.
 
-Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
----
- drivers/gpu/drm/i915/display/intel_cdclk.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Does it actually change the behaviour depending on whether the dpcd is
+read or not, or is this just about the resume path overwriting mgr->dpcd
+with stuff from DP_DPCD_REV?
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 6e80162632dd..86a22c3766e5 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -2300,7 +2300,7 @@ int intel_crtc_compute_min_cdclk(const struct intel_crtc_state *crtc_state)
- 		min_cdclk = max(min_cdclk, (int)crtc_state->pixel_rate);
- 
- 	/*
--	 * HACK. Currently for TGL platforms we calculate
-+	 * HACK. Currently for TGL/DG2 platforms we calculate
- 	 * min_cdclk initially based on pixel_rate divided
- 	 * by 2, accounting for also plane requirements,
- 	 * however in some cases the lowest possible CDCLK
-@@ -2308,7 +2308,7 @@ int intel_crtc_compute_min_cdclk(const struct intel_crtc_state *crtc_state)
- 	 * Explicitly stating here that this seems to be currently
- 	 * rather a Hack, than final solution.
- 	 */
--	if (IS_TIGERLAKE(dev_priv)) {
-+	if (IS_TIGERLAKE(dev_priv) || IS_DG2(dev_priv)) {
- 		/*
- 		 * Clamp to max_cdclk_freq in case pixel rate is higher,
- 		 * in order not to break an 8K, but still leave W/A at place.
+drm_dp_mst_topology_mgr_set_mst() does use drm_dp_read_dpcd_caps() for
+reading the caps, which would normally set mgr->dpcd from
+DP_DP13_DPCD_REV.
+
+BR,
+Jani.
+
+>
+> Fix this by reading DP_DP13_DPCD_REV registers as well, matching what is
+> done during connector detection. While at it also fix up the same call
+> in drm_dp_mst_dump_topology().
+>
+> Cc: Lyude Paul <lyude@redhat.com>
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/5292
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> ---
+>  drivers/gpu/drm/display/drm_dp_mst_topology.c | 7 ++-----
+>  1 file changed, 2 insertions(+), 5 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/display/drm_dp_mst_topology.c b/drivers/gpu/drm/display/drm_dp_mst_topology.c
+> index 67b3b9697da7f..18f2b6075b780 100644
+> --- a/drivers/gpu/drm/display/drm_dp_mst_topology.c
+> +++ b/drivers/gpu/drm/display/drm_dp_mst_topology.c
+> @@ -3860,9 +3860,7 @@ int drm_dp_mst_topology_mgr_resume(struct drm_dp_mst_topology_mgr *mgr,
+>  	if (!mgr->mst_primary)
+>  		goto out_fail;
+>  
+> -	ret = drm_dp_dpcd_read(mgr->aux, DP_DPCD_REV, mgr->dpcd,
+> -			       DP_RECEIVER_CAP_SIZE);
+> -	if (ret != DP_RECEIVER_CAP_SIZE) {
+> +	if (drm_dp_read_dpcd_caps(mgr->aux, mgr->dpcd) < 0) {
+>  		drm_dbg_kms(mgr->dev, "dpcd read failed - undocked during suspend?\n");
+>  		goto out_fail;
+>  	}
+> @@ -4911,8 +4909,7 @@ void drm_dp_mst_dump_topology(struct seq_file *m,
+>  		u8 buf[DP_PAYLOAD_TABLE_SIZE];
+>  		int ret;
+>  
+> -		ret = drm_dp_dpcd_read(mgr->aux, DP_DPCD_REV, buf, DP_RECEIVER_CAP_SIZE);
+> -		if (ret) {
+> +		if (drm_dp_read_dpcd_caps(mgr->aux, buf) < 0) {
+>  			seq_printf(m, "dpcd read failed\n");
+>  			goto out;
+>  		}
+
 -- 
-2.24.1.485.gad05a3d8e5
-
+Jani Nikula, Intel Open Source Graphics Center
