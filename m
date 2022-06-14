@@ -2,32 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00E8954B697
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jun 2022 18:46:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 86BD554B707
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jun 2022 18:58:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 312C31128F9;
-	Tue, 14 Jun 2022 16:46:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 41A0410E958;
+	Tue, 14 Jun 2022 16:58:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3C60F1128D0;
- Tue, 14 Jun 2022 16:46:04 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 34F94A7E03;
- Tue, 14 Jun 2022 16:46:04 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2416205243637046658=="
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 164E710E958
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Jun 2022 16:58:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1655225927; x=1686761927;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=IzMoZrMYYI9p668dDIR97JhCkhyGiyE++R8tC3GzHac=;
+ b=nnyKe8Hg625Sny/ndKlxkLXrRq5+4F2m+5NL4cwWvvwfxhN/wokFpPkN
+ tHsR5O0MEFNkhPbjCDng/x6KlzTFcwyZ3vRocmVt4i3ahw4s0jY8fvUV8
+ 2YMrGqhR4Fb3dRO2IqGGXyaWZ/NfQNlFF9e5QK3IYnzcJrsQGJ+u1y3+p
+ eK8MUcFU/km+2AFSsXng3q/JVMqJ7SaKXiaaloRyWfOmxjRD/alEJj+Q1
+ PIbrtqWpCUzwTyE36hH1UHaKD3PH3gR7nTw1OixhLc4LUKJgq4+989FZO
+ Pricv6spkThGGNp9FAN7O4WrMQYxKxyRbyxxtzHdjnYJB/zv30xaW8UCW A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10378"; a="259132204"
+X-IronPort-AV: E=Sophos;i="5.91,300,1647327600"; d="scan'208";a="259132204"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jun 2022 09:58:46 -0700
+X-IronPort-AV: E=Sophos;i="5.91,300,1647327600"; d="scan'208";a="640477510"
+Received: from nncongwa-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.32.178])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jun 2022 09:58:26 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 14 Jun 2022 19:58:23 +0300
+Message-Id: <20220614165823.1250348-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
-Date: Tue, 14 Jun 2022 16:46:04 -0000
-Message-ID: <165522516418.12484.6409941199090512305@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220614122257.10925-1-stanislav.lisovskiy@intel.com>
-In-Reply-To: <20220614122257.10925-1-stanislav.lisovskiy@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgRG8g?=
- =?utf-8?q?not_enable_PSR2_if_no_active_planes?=
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/hdcp: split out hdcp registers to a
+ separate file
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,477 +57,604 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2416205243637046658==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Reduce the bloat of i915_reg.h.
+
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp_hdcp.c  |   1 +
+ drivers/gpu/drm/i915/display/intel_hdcp.c     |   1 +
+ .../gpu/drm/i915/display/intel_hdcp_regs.h    | 270 ++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_hdmi.c     |   1 +
+ drivers/gpu/drm/i915/i915_reg.h               | 259 -----------------
+ 5 files changed, 273 insertions(+), 259 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_hdcp_regs.h
+
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+index a7640dbcf00e..88689124c013 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+@@ -17,6 +17,7 @@
+ #include "intel_dp.h"
+ #include "intel_dp_hdcp.h"
+ #include "intel_hdcp.h"
++#include "intel_hdcp_regs.h"
+ 
+ static unsigned int transcoder_to_stream_enc_status(enum transcoder cpu_transcoder)
+ {
+diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+index 8ea66a2e1b09..c5e9e86bb4cb 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdcp.c
++++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+@@ -23,6 +23,7 @@
+ #include "intel_display_power_well.h"
+ #include "intel_display_types.h"
+ #include "intel_hdcp.h"
++#include "intel_hdcp_regs.h"
+ #include "intel_pcode.h"
+ 
+ #define KEY_LOAD_TRIES	5
+diff --git a/drivers/gpu/drm/i915/display/intel_hdcp_regs.h b/drivers/gpu/drm/i915/display/intel_hdcp_regs.h
+new file mode 100644
+index 000000000000..cbeab64e69d2
+--- /dev/null
++++ b/drivers/gpu/drm/i915/display/intel_hdcp_regs.h
+@@ -0,0 +1,270 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2022 Intel Corporation
++ */
++
++#ifndef __INTEL_HDCP_REGS_H__
++#define __INTEL_HDCP_REGS_H__
++
++#include "i915_reg_defs.h"
++
++/* HDCP Key Registers */
++#define HDCP_KEY_CONF			_MMIO(0x66c00)
++#define  HDCP_AKSV_SEND_TRIGGER		BIT(31)
++#define  HDCP_CLEAR_KEYS_TRIGGER	BIT(30)
++#define  HDCP_KEY_LOAD_TRIGGER		BIT(8)
++#define HDCP_KEY_STATUS			_MMIO(0x66c04)
++#define  HDCP_FUSE_IN_PROGRESS		BIT(7)
++#define  HDCP_FUSE_ERROR		BIT(6)
++#define  HDCP_FUSE_DONE			BIT(5)
++#define  HDCP_KEY_LOAD_STATUS		BIT(1)
++#define  HDCP_KEY_LOAD_DONE		BIT(0)
++#define HDCP_AKSV_LO			_MMIO(0x66c10)
++#define HDCP_AKSV_HI			_MMIO(0x66c14)
++
++/* HDCP Repeater Registers */
++#define HDCP_REP_CTL			_MMIO(0x66d00)
++#define  HDCP_TRANSA_REP_PRESENT	BIT(31)
++#define  HDCP_TRANSB_REP_PRESENT	BIT(30)
++#define  HDCP_TRANSC_REP_PRESENT	BIT(29)
++#define  HDCP_TRANSD_REP_PRESENT	BIT(28)
++#define  HDCP_DDIB_REP_PRESENT		BIT(30)
++#define  HDCP_DDIA_REP_PRESENT		BIT(29)
++#define  HDCP_DDIC_REP_PRESENT		BIT(28)
++#define  HDCP_DDID_REP_PRESENT		BIT(27)
++#define  HDCP_DDIF_REP_PRESENT		BIT(26)
++#define  HDCP_DDIE_REP_PRESENT		BIT(25)
++#define  HDCP_TRANSA_SHA1_M0		(1 << 20)
++#define  HDCP_TRANSB_SHA1_M0		(2 << 20)
++#define  HDCP_TRANSC_SHA1_M0		(3 << 20)
++#define  HDCP_TRANSD_SHA1_M0		(4 << 20)
++#define  HDCP_DDIB_SHA1_M0		(1 << 20)
++#define  HDCP_DDIA_SHA1_M0		(2 << 20)
++#define  HDCP_DDIC_SHA1_M0		(3 << 20)
++#define  HDCP_DDID_SHA1_M0		(4 << 20)
++#define  HDCP_DDIF_SHA1_M0		(5 << 20)
++#define  HDCP_DDIE_SHA1_M0		(6 << 20) /* Bspec says 5? */
++#define  HDCP_SHA1_BUSY			BIT(16)
++#define  HDCP_SHA1_READY		BIT(17)
++#define  HDCP_SHA1_COMPLETE		BIT(18)
++#define  HDCP_SHA1_V_MATCH		BIT(19)
++#define  HDCP_SHA1_TEXT_32		(1 << 1)
++#define  HDCP_SHA1_COMPLETE_HASH	(2 << 1)
++#define  HDCP_SHA1_TEXT_24		(4 << 1)
++#define  HDCP_SHA1_TEXT_16		(5 << 1)
++#define  HDCP_SHA1_TEXT_8		(6 << 1)
++#define  HDCP_SHA1_TEXT_0		(7 << 1)
++#define HDCP_SHA_V_PRIME_H0		_MMIO(0x66d04)
++#define HDCP_SHA_V_PRIME_H1		_MMIO(0x66d08)
++#define HDCP_SHA_V_PRIME_H2		_MMIO(0x66d0C)
++#define HDCP_SHA_V_PRIME_H3		_MMIO(0x66d10)
++#define HDCP_SHA_V_PRIME_H4		_MMIO(0x66d14)
++#define HDCP_SHA_V_PRIME(h)		_MMIO((0x66d04 + (h) * 4))
++#define HDCP_SHA_TEXT			_MMIO(0x66d18)
++
++/* HDCP Auth Registers */
++#define _PORTA_HDCP_AUTHENC		0x66800
++#define _PORTB_HDCP_AUTHENC		0x66500
++#define _PORTC_HDCP_AUTHENC		0x66600
++#define _PORTD_HDCP_AUTHENC		0x66700
++#define _PORTE_HDCP_AUTHENC		0x66A00
++#define _PORTF_HDCP_AUTHENC		0x66900
++#define _PORT_HDCP_AUTHENC(port, x)	_MMIO(_PICK(port, \
++					  _PORTA_HDCP_AUTHENC, \
++					  _PORTB_HDCP_AUTHENC, \
++					  _PORTC_HDCP_AUTHENC, \
++					  _PORTD_HDCP_AUTHENC, \
++					  _PORTE_HDCP_AUTHENC, \
++					  _PORTF_HDCP_AUTHENC) + (x))
++#define PORT_HDCP_CONF(port)		_PORT_HDCP_AUTHENC(port, 0x0)
++#define _TRANSA_HDCP_CONF		0x66400
++#define _TRANSB_HDCP_CONF		0x66500
++#define TRANS_HDCP_CONF(trans)		_MMIO_TRANS(trans, _TRANSA_HDCP_CONF, \
++						    _TRANSB_HDCP_CONF)
++#define HDCP_CONF(dev_priv, trans, port) \
++					(GRAPHICS_VER(dev_priv) >= 12 ? \
++					 TRANS_HDCP_CONF(trans) : \
++					 PORT_HDCP_CONF(port))
++
++#define  HDCP_CONF_CAPTURE_AN		BIT(0)
++#define  HDCP_CONF_AUTH_AND_ENC		(BIT(1) | BIT(0))
++#define PORT_HDCP_ANINIT(port)		_PORT_HDCP_AUTHENC(port, 0x4)
++#define _TRANSA_HDCP_ANINIT		0x66404
++#define _TRANSB_HDCP_ANINIT		0x66504
++#define TRANS_HDCP_ANINIT(trans)	_MMIO_TRANS(trans, \
++						    _TRANSA_HDCP_ANINIT, \
++						    _TRANSB_HDCP_ANINIT)
++#define HDCP_ANINIT(dev_priv, trans, port) \
++					(GRAPHICS_VER(dev_priv) >= 12 ? \
++					 TRANS_HDCP_ANINIT(trans) : \
++					 PORT_HDCP_ANINIT(port))
++
++#define PORT_HDCP_ANLO(port)		_PORT_HDCP_AUTHENC(port, 0x8)
++#define _TRANSA_HDCP_ANLO		0x66408
++#define _TRANSB_HDCP_ANLO		0x66508
++#define TRANS_HDCP_ANLO(trans)		_MMIO_TRANS(trans, _TRANSA_HDCP_ANLO, \
++						    _TRANSB_HDCP_ANLO)
++#define HDCP_ANLO(dev_priv, trans, port) \
++					(GRAPHICS_VER(dev_priv) >= 12 ? \
++					 TRANS_HDCP_ANLO(trans) : \
++					 PORT_HDCP_ANLO(port))
++
++#define PORT_HDCP_ANHI(port)		_PORT_HDCP_AUTHENC(port, 0xC)
++#define _TRANSA_HDCP_ANHI		0x6640C
++#define _TRANSB_HDCP_ANHI		0x6650C
++#define TRANS_HDCP_ANHI(trans)		_MMIO_TRANS(trans, _TRANSA_HDCP_ANHI, \
++						    _TRANSB_HDCP_ANHI)
++#define HDCP_ANHI(dev_priv, trans, port) \
++					(GRAPHICS_VER(dev_priv) >= 12 ? \
++					 TRANS_HDCP_ANHI(trans) : \
++					 PORT_HDCP_ANHI(port))
++
++#define PORT_HDCP_BKSVLO(port)		_PORT_HDCP_AUTHENC(port, 0x10)
++#define _TRANSA_HDCP_BKSVLO		0x66410
++#define _TRANSB_HDCP_BKSVLO		0x66510
++#define TRANS_HDCP_BKSVLO(trans)	_MMIO_TRANS(trans, \
++						    _TRANSA_HDCP_BKSVLO, \
++						    _TRANSB_HDCP_BKSVLO)
++#define HDCP_BKSVLO(dev_priv, trans, port) \
++					(GRAPHICS_VER(dev_priv) >= 12 ? \
++					 TRANS_HDCP_BKSVLO(trans) : \
++					 PORT_HDCP_BKSVLO(port))
++
++#define PORT_HDCP_BKSVHI(port)		_PORT_HDCP_AUTHENC(port, 0x14)
++#define _TRANSA_HDCP_BKSVHI		0x66414
++#define _TRANSB_HDCP_BKSVHI		0x66514
++#define TRANS_HDCP_BKSVHI(trans)	_MMIO_TRANS(trans, \
++						    _TRANSA_HDCP_BKSVHI, \
++						    _TRANSB_HDCP_BKSVHI)
++#define HDCP_BKSVHI(dev_priv, trans, port) \
++					(GRAPHICS_VER(dev_priv) >= 12 ? \
++					 TRANS_HDCP_BKSVHI(trans) : \
++					 PORT_HDCP_BKSVHI(port))
++
++#define PORT_HDCP_RPRIME(port)		_PORT_HDCP_AUTHENC(port, 0x18)
++#define _TRANSA_HDCP_RPRIME		0x66418
++#define _TRANSB_HDCP_RPRIME		0x66518
++#define TRANS_HDCP_RPRIME(trans)	_MMIO_TRANS(trans, \
++						    _TRANSA_HDCP_RPRIME, \
++						    _TRANSB_HDCP_RPRIME)
++#define HDCP_RPRIME(dev_priv, trans, port) \
++					(GRAPHICS_VER(dev_priv) >= 12 ? \
++					 TRANS_HDCP_RPRIME(trans) : \
++					 PORT_HDCP_RPRIME(port))
++
++#define PORT_HDCP_STATUS(port)		_PORT_HDCP_AUTHENC(port, 0x1C)
++#define _TRANSA_HDCP_STATUS		0x6641C
++#define _TRANSB_HDCP_STATUS		0x6651C
++#define TRANS_HDCP_STATUS(trans)	_MMIO_TRANS(trans, \
++						    _TRANSA_HDCP_STATUS, \
++						    _TRANSB_HDCP_STATUS)
++#define HDCP_STATUS(dev_priv, trans, port) \
++					(GRAPHICS_VER(dev_priv) >= 12 ? \
++					 TRANS_HDCP_STATUS(trans) : \
++					 PORT_HDCP_STATUS(port))
++
++#define  HDCP_STATUS_STREAM_A_ENC	BIT(31)
++#define  HDCP_STATUS_STREAM_B_ENC	BIT(30)
++#define  HDCP_STATUS_STREAM_C_ENC	BIT(29)
++#define  HDCP_STATUS_STREAM_D_ENC	BIT(28)
++#define  HDCP_STATUS_AUTH		BIT(21)
++#define  HDCP_STATUS_ENC		BIT(20)
++#define  HDCP_STATUS_RI_MATCH		BIT(19)
++#define  HDCP_STATUS_R0_READY		BIT(18)
++#define  HDCP_STATUS_AN_READY		BIT(17)
++#define  HDCP_STATUS_CIPHER		BIT(16)
++#define  HDCP_STATUS_FRAME_CNT(x)	(((x) >> 8) & 0xff)
++
++/* HDCP2.2 Registers */
++#define _PORTA_HDCP2_BASE		0x66800
++#define _PORTB_HDCP2_BASE		0x66500
++#define _PORTC_HDCP2_BASE		0x66600
++#define _PORTD_HDCP2_BASE		0x66700
++#define _PORTE_HDCP2_BASE		0x66A00
++#define _PORTF_HDCP2_BASE		0x66900
++#define _PORT_HDCP2_BASE(port, x)	_MMIO(_PICK((port), \
++					  _PORTA_HDCP2_BASE, \
++					  _PORTB_HDCP2_BASE, \
++					  _PORTC_HDCP2_BASE, \
++					  _PORTD_HDCP2_BASE, \
++					  _PORTE_HDCP2_BASE, \
++					  _PORTF_HDCP2_BASE) + (x))
++
++#define PORT_HDCP2_AUTH(port)		_PORT_HDCP2_BASE(port, 0x98)
++#define _TRANSA_HDCP2_AUTH		0x66498
++#define _TRANSB_HDCP2_AUTH		0x66598
++#define TRANS_HDCP2_AUTH(trans)		_MMIO_TRANS(trans, _TRANSA_HDCP2_AUTH, \
++						    _TRANSB_HDCP2_AUTH)
++#define   AUTH_LINK_AUTHENTICATED	BIT(31)
++#define   AUTH_LINK_TYPE		BIT(30)
++#define   AUTH_FORCE_CLR_INPUTCTR	BIT(19)
++#define   AUTH_CLR_KEYS			BIT(18)
++#define HDCP2_AUTH(dev_priv, trans, port) \
++					(GRAPHICS_VER(dev_priv) >= 12 ? \
++					 TRANS_HDCP2_AUTH(trans) : \
++					 PORT_HDCP2_AUTH(port))
++
++#define PORT_HDCP2_CTL(port)		_PORT_HDCP2_BASE(port, 0xB0)
++#define _TRANSA_HDCP2_CTL		0x664B0
++#define _TRANSB_HDCP2_CTL		0x665B0
++#define TRANS_HDCP2_CTL(trans)		_MMIO_TRANS(trans, _TRANSA_HDCP2_CTL, \
++						    _TRANSB_HDCP2_CTL)
++#define   CTL_LINK_ENCRYPTION_REQ	BIT(31)
++#define HDCP2_CTL(dev_priv, trans, port) \
++					(GRAPHICS_VER(dev_priv) >= 12 ? \
++					 TRANS_HDCP2_CTL(trans) : \
++					 PORT_HDCP2_CTL(port))
++
++#define PORT_HDCP2_STATUS(port)		_PORT_HDCP2_BASE(port, 0xB4)
++#define _TRANSA_HDCP2_STATUS		0x664B4
++#define _TRANSB_HDCP2_STATUS		0x665B4
++#define TRANS_HDCP2_STATUS(trans)	_MMIO_TRANS(trans, \
++						    _TRANSA_HDCP2_STATUS, \
++						    _TRANSB_HDCP2_STATUS)
++#define   LINK_TYPE_STATUS		BIT(22)
++#define   LINK_AUTH_STATUS		BIT(21)
++#define   LINK_ENCRYPTION_STATUS	BIT(20)
++#define HDCP2_STATUS(dev_priv, trans, port) \
++					(GRAPHICS_VER(dev_priv) >= 12 ? \
++					 TRANS_HDCP2_STATUS(trans) : \
++					 PORT_HDCP2_STATUS(port))
++
++#define _PIPEA_HDCP2_STREAM_STATUS	0x668C0
++#define _PIPEB_HDCP2_STREAM_STATUS	0x665C0
++#define _PIPEC_HDCP2_STREAM_STATUS	0x666C0
++#define _PIPED_HDCP2_STREAM_STATUS	0x667C0
++#define PIPE_HDCP2_STREAM_STATUS(pipe)		_MMIO(_PICK((pipe), \
++						      _PIPEA_HDCP2_STREAM_STATUS, \
++						      _PIPEB_HDCP2_STREAM_STATUS, \
++						      _PIPEC_HDCP2_STREAM_STATUS, \
++						      _PIPED_HDCP2_STREAM_STATUS))
++
++#define _TRANSA_HDCP2_STREAM_STATUS		0x664C0
++#define _TRANSB_HDCP2_STREAM_STATUS		0x665C0
++#define TRANS_HDCP2_STREAM_STATUS(trans)	_MMIO_TRANS(trans, \
++						    _TRANSA_HDCP2_STREAM_STATUS, \
++						    _TRANSB_HDCP2_STREAM_STATUS)
++#define   STREAM_ENCRYPTION_STATUS	BIT(31)
++#define   STREAM_TYPE_STATUS		BIT(30)
++#define HDCP2_STREAM_STATUS(dev_priv, trans, port) \
++					(GRAPHICS_VER(dev_priv) >= 12 ? \
++					 TRANS_HDCP2_STREAM_STATUS(trans) : \
++					 PIPE_HDCP2_STREAM_STATUS(pipe))
++
++#define _PORTA_HDCP2_AUTH_STREAM		0x66F00
++#define _PORTB_HDCP2_AUTH_STREAM		0x66F04
++#define PORT_HDCP2_AUTH_STREAM(port)	_MMIO_PORT(port, \
++						   _PORTA_HDCP2_AUTH_STREAM, \
++						   _PORTB_HDCP2_AUTH_STREAM)
++#define _TRANSA_HDCP2_AUTH_STREAM		0x66F00
++#define _TRANSB_HDCP2_AUTH_STREAM		0x66F04
++#define TRANS_HDCP2_AUTH_STREAM(trans)	_MMIO_TRANS(trans, \
++						    _TRANSA_HDCP2_AUTH_STREAM, \
++						    _TRANSB_HDCP2_AUTH_STREAM)
++#define   AUTH_STREAM_TYPE		BIT(31)
++#define HDCP2_AUTH_STREAM(dev_priv, trans, port) \
++					(GRAPHICS_VER(dev_priv) >= 12 ? \
++					 TRANS_HDCP2_AUTH_STREAM(trans) : \
++					 PORT_HDCP2_AUTH_STREAM(port))
++
++#endif /* __INTEL_HDCP_REGS_H__ */
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+index 1ae09431f53a..d163777edfcb 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.c
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+@@ -50,6 +50,7 @@
+ #include "intel_dp.h"
+ #include "intel_gmbus.h"
+ #include "intel_hdcp.h"
++#include "intel_hdcp_regs.h"
+ #include "intel_hdmi.h"
+ #include "intel_lspcon.h"
+ #include "intel_panel.h"
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 932bd6aa4a0a..eba539e73c91 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -6938,265 +6938,6 @@ enum skl_power_gate {
+ #define   ICL_AUX_ANAOVRD1_LDO_BYPASS	(1 << 7)
+ #define   ICL_AUX_ANAOVRD1_ENABLE	(1 << 0)
+ 
+-/* HDCP Key Registers */
+-#define HDCP_KEY_CONF			_MMIO(0x66c00)
+-#define  HDCP_AKSV_SEND_TRIGGER		BIT(31)
+-#define  HDCP_CLEAR_KEYS_TRIGGER	BIT(30)
+-#define  HDCP_KEY_LOAD_TRIGGER		BIT(8)
+-#define HDCP_KEY_STATUS			_MMIO(0x66c04)
+-#define  HDCP_FUSE_IN_PROGRESS		BIT(7)
+-#define  HDCP_FUSE_ERROR		BIT(6)
+-#define  HDCP_FUSE_DONE			BIT(5)
+-#define  HDCP_KEY_LOAD_STATUS		BIT(1)
+-#define  HDCP_KEY_LOAD_DONE		BIT(0)
+-#define HDCP_AKSV_LO			_MMIO(0x66c10)
+-#define HDCP_AKSV_HI			_MMIO(0x66c14)
+-
+-/* HDCP Repeater Registers */
+-#define HDCP_REP_CTL			_MMIO(0x66d00)
+-#define  HDCP_TRANSA_REP_PRESENT	BIT(31)
+-#define  HDCP_TRANSB_REP_PRESENT	BIT(30)
+-#define  HDCP_TRANSC_REP_PRESENT	BIT(29)
+-#define  HDCP_TRANSD_REP_PRESENT	BIT(28)
+-#define  HDCP_DDIB_REP_PRESENT		BIT(30)
+-#define  HDCP_DDIA_REP_PRESENT		BIT(29)
+-#define  HDCP_DDIC_REP_PRESENT		BIT(28)
+-#define  HDCP_DDID_REP_PRESENT		BIT(27)
+-#define  HDCP_DDIF_REP_PRESENT		BIT(26)
+-#define  HDCP_DDIE_REP_PRESENT		BIT(25)
+-#define  HDCP_TRANSA_SHA1_M0		(1 << 20)
+-#define  HDCP_TRANSB_SHA1_M0		(2 << 20)
+-#define  HDCP_TRANSC_SHA1_M0		(3 << 20)
+-#define  HDCP_TRANSD_SHA1_M0		(4 << 20)
+-#define  HDCP_DDIB_SHA1_M0		(1 << 20)
+-#define  HDCP_DDIA_SHA1_M0		(2 << 20)
+-#define  HDCP_DDIC_SHA1_M0		(3 << 20)
+-#define  HDCP_DDID_SHA1_M0		(4 << 20)
+-#define  HDCP_DDIF_SHA1_M0		(5 << 20)
+-#define  HDCP_DDIE_SHA1_M0		(6 << 20) /* Bspec says 5? */
+-#define  HDCP_SHA1_BUSY			BIT(16)
+-#define  HDCP_SHA1_READY		BIT(17)
+-#define  HDCP_SHA1_COMPLETE		BIT(18)
+-#define  HDCP_SHA1_V_MATCH		BIT(19)
+-#define  HDCP_SHA1_TEXT_32		(1 << 1)
+-#define  HDCP_SHA1_COMPLETE_HASH	(2 << 1)
+-#define  HDCP_SHA1_TEXT_24		(4 << 1)
+-#define  HDCP_SHA1_TEXT_16		(5 << 1)
+-#define  HDCP_SHA1_TEXT_8		(6 << 1)
+-#define  HDCP_SHA1_TEXT_0		(7 << 1)
+-#define HDCP_SHA_V_PRIME_H0		_MMIO(0x66d04)
+-#define HDCP_SHA_V_PRIME_H1		_MMIO(0x66d08)
+-#define HDCP_SHA_V_PRIME_H2		_MMIO(0x66d0C)
+-#define HDCP_SHA_V_PRIME_H3		_MMIO(0x66d10)
+-#define HDCP_SHA_V_PRIME_H4		_MMIO(0x66d14)
+-#define HDCP_SHA_V_PRIME(h)		_MMIO((0x66d04 + (h) * 4))
+-#define HDCP_SHA_TEXT			_MMIO(0x66d18)
+-
+-/* HDCP Auth Registers */
+-#define _PORTA_HDCP_AUTHENC		0x66800
+-#define _PORTB_HDCP_AUTHENC		0x66500
+-#define _PORTC_HDCP_AUTHENC		0x66600
+-#define _PORTD_HDCP_AUTHENC		0x66700
+-#define _PORTE_HDCP_AUTHENC		0x66A00
+-#define _PORTF_HDCP_AUTHENC		0x66900
+-#define _PORT_HDCP_AUTHENC(port, x)	_MMIO(_PICK(port, \
+-					  _PORTA_HDCP_AUTHENC, \
+-					  _PORTB_HDCP_AUTHENC, \
+-					  _PORTC_HDCP_AUTHENC, \
+-					  _PORTD_HDCP_AUTHENC, \
+-					  _PORTE_HDCP_AUTHENC, \
+-					  _PORTF_HDCP_AUTHENC) + (x))
+-#define PORT_HDCP_CONF(port)		_PORT_HDCP_AUTHENC(port, 0x0)
+-#define _TRANSA_HDCP_CONF		0x66400
+-#define _TRANSB_HDCP_CONF		0x66500
+-#define TRANS_HDCP_CONF(trans)		_MMIO_TRANS(trans, _TRANSA_HDCP_CONF, \
+-						    _TRANSB_HDCP_CONF)
+-#define HDCP_CONF(dev_priv, trans, port) \
+-					(GRAPHICS_VER(dev_priv) >= 12 ? \
+-					 TRANS_HDCP_CONF(trans) : \
+-					 PORT_HDCP_CONF(port))
+-
+-#define  HDCP_CONF_CAPTURE_AN		BIT(0)
+-#define  HDCP_CONF_AUTH_AND_ENC		(BIT(1) | BIT(0))
+-#define PORT_HDCP_ANINIT(port)		_PORT_HDCP_AUTHENC(port, 0x4)
+-#define _TRANSA_HDCP_ANINIT		0x66404
+-#define _TRANSB_HDCP_ANINIT		0x66504
+-#define TRANS_HDCP_ANINIT(trans)	_MMIO_TRANS(trans, \
+-						    _TRANSA_HDCP_ANINIT, \
+-						    _TRANSB_HDCP_ANINIT)
+-#define HDCP_ANINIT(dev_priv, trans, port) \
+-					(GRAPHICS_VER(dev_priv) >= 12 ? \
+-					 TRANS_HDCP_ANINIT(trans) : \
+-					 PORT_HDCP_ANINIT(port))
+-
+-#define PORT_HDCP_ANLO(port)		_PORT_HDCP_AUTHENC(port, 0x8)
+-#define _TRANSA_HDCP_ANLO		0x66408
+-#define _TRANSB_HDCP_ANLO		0x66508
+-#define TRANS_HDCP_ANLO(trans)		_MMIO_TRANS(trans, _TRANSA_HDCP_ANLO, \
+-						    _TRANSB_HDCP_ANLO)
+-#define HDCP_ANLO(dev_priv, trans, port) \
+-					(GRAPHICS_VER(dev_priv) >= 12 ? \
+-					 TRANS_HDCP_ANLO(trans) : \
+-					 PORT_HDCP_ANLO(port))
+-
+-#define PORT_HDCP_ANHI(port)		_PORT_HDCP_AUTHENC(port, 0xC)
+-#define _TRANSA_HDCP_ANHI		0x6640C
+-#define _TRANSB_HDCP_ANHI		0x6650C
+-#define TRANS_HDCP_ANHI(trans)		_MMIO_TRANS(trans, _TRANSA_HDCP_ANHI, \
+-						    _TRANSB_HDCP_ANHI)
+-#define HDCP_ANHI(dev_priv, trans, port) \
+-					(GRAPHICS_VER(dev_priv) >= 12 ? \
+-					 TRANS_HDCP_ANHI(trans) : \
+-					 PORT_HDCP_ANHI(port))
+-
+-#define PORT_HDCP_BKSVLO(port)		_PORT_HDCP_AUTHENC(port, 0x10)
+-#define _TRANSA_HDCP_BKSVLO		0x66410
+-#define _TRANSB_HDCP_BKSVLO		0x66510
+-#define TRANS_HDCP_BKSVLO(trans)	_MMIO_TRANS(trans, \
+-						    _TRANSA_HDCP_BKSVLO, \
+-						    _TRANSB_HDCP_BKSVLO)
+-#define HDCP_BKSVLO(dev_priv, trans, port) \
+-					(GRAPHICS_VER(dev_priv) >= 12 ? \
+-					 TRANS_HDCP_BKSVLO(trans) : \
+-					 PORT_HDCP_BKSVLO(port))
+-
+-#define PORT_HDCP_BKSVHI(port)		_PORT_HDCP_AUTHENC(port, 0x14)
+-#define _TRANSA_HDCP_BKSVHI		0x66414
+-#define _TRANSB_HDCP_BKSVHI		0x66514
+-#define TRANS_HDCP_BKSVHI(trans)	_MMIO_TRANS(trans, \
+-						    _TRANSA_HDCP_BKSVHI, \
+-						    _TRANSB_HDCP_BKSVHI)
+-#define HDCP_BKSVHI(dev_priv, trans, port) \
+-					(GRAPHICS_VER(dev_priv) >= 12 ? \
+-					 TRANS_HDCP_BKSVHI(trans) : \
+-					 PORT_HDCP_BKSVHI(port))
+-
+-#define PORT_HDCP_RPRIME(port)		_PORT_HDCP_AUTHENC(port, 0x18)
+-#define _TRANSA_HDCP_RPRIME		0x66418
+-#define _TRANSB_HDCP_RPRIME		0x66518
+-#define TRANS_HDCP_RPRIME(trans)	_MMIO_TRANS(trans, \
+-						    _TRANSA_HDCP_RPRIME, \
+-						    _TRANSB_HDCP_RPRIME)
+-#define HDCP_RPRIME(dev_priv, trans, port) \
+-					(GRAPHICS_VER(dev_priv) >= 12 ? \
+-					 TRANS_HDCP_RPRIME(trans) : \
+-					 PORT_HDCP_RPRIME(port))
+-
+-#define PORT_HDCP_STATUS(port)		_PORT_HDCP_AUTHENC(port, 0x1C)
+-#define _TRANSA_HDCP_STATUS		0x6641C
+-#define _TRANSB_HDCP_STATUS		0x6651C
+-#define TRANS_HDCP_STATUS(trans)	_MMIO_TRANS(trans, \
+-						    _TRANSA_HDCP_STATUS, \
+-						    _TRANSB_HDCP_STATUS)
+-#define HDCP_STATUS(dev_priv, trans, port) \
+-					(GRAPHICS_VER(dev_priv) >= 12 ? \
+-					 TRANS_HDCP_STATUS(trans) : \
+-					 PORT_HDCP_STATUS(port))
+-
+-#define  HDCP_STATUS_STREAM_A_ENC	BIT(31)
+-#define  HDCP_STATUS_STREAM_B_ENC	BIT(30)
+-#define  HDCP_STATUS_STREAM_C_ENC	BIT(29)
+-#define  HDCP_STATUS_STREAM_D_ENC	BIT(28)
+-#define  HDCP_STATUS_AUTH		BIT(21)
+-#define  HDCP_STATUS_ENC		BIT(20)
+-#define  HDCP_STATUS_RI_MATCH		BIT(19)
+-#define  HDCP_STATUS_R0_READY		BIT(18)
+-#define  HDCP_STATUS_AN_READY		BIT(17)
+-#define  HDCP_STATUS_CIPHER		BIT(16)
+-#define  HDCP_STATUS_FRAME_CNT(x)	(((x) >> 8) & 0xff)
+-
+-/* HDCP2.2 Registers */
+-#define _PORTA_HDCP2_BASE		0x66800
+-#define _PORTB_HDCP2_BASE		0x66500
+-#define _PORTC_HDCP2_BASE		0x66600
+-#define _PORTD_HDCP2_BASE		0x66700
+-#define _PORTE_HDCP2_BASE		0x66A00
+-#define _PORTF_HDCP2_BASE		0x66900
+-#define _PORT_HDCP2_BASE(port, x)	_MMIO(_PICK((port), \
+-					  _PORTA_HDCP2_BASE, \
+-					  _PORTB_HDCP2_BASE, \
+-					  _PORTC_HDCP2_BASE, \
+-					  _PORTD_HDCP2_BASE, \
+-					  _PORTE_HDCP2_BASE, \
+-					  _PORTF_HDCP2_BASE) + (x))
+-
+-#define PORT_HDCP2_AUTH(port)		_PORT_HDCP2_BASE(port, 0x98)
+-#define _TRANSA_HDCP2_AUTH		0x66498
+-#define _TRANSB_HDCP2_AUTH		0x66598
+-#define TRANS_HDCP2_AUTH(trans)		_MMIO_TRANS(trans, _TRANSA_HDCP2_AUTH, \
+-						    _TRANSB_HDCP2_AUTH)
+-#define   AUTH_LINK_AUTHENTICATED	BIT(31)
+-#define   AUTH_LINK_TYPE		BIT(30)
+-#define   AUTH_FORCE_CLR_INPUTCTR	BIT(19)
+-#define   AUTH_CLR_KEYS			BIT(18)
+-#define HDCP2_AUTH(dev_priv, trans, port) \
+-					(GRAPHICS_VER(dev_priv) >= 12 ? \
+-					 TRANS_HDCP2_AUTH(trans) : \
+-					 PORT_HDCP2_AUTH(port))
+-
+-#define PORT_HDCP2_CTL(port)		_PORT_HDCP2_BASE(port, 0xB0)
+-#define _TRANSA_HDCP2_CTL		0x664B0
+-#define _TRANSB_HDCP2_CTL		0x665B0
+-#define TRANS_HDCP2_CTL(trans)		_MMIO_TRANS(trans, _TRANSA_HDCP2_CTL, \
+-						    _TRANSB_HDCP2_CTL)
+-#define   CTL_LINK_ENCRYPTION_REQ	BIT(31)
+-#define HDCP2_CTL(dev_priv, trans, port) \
+-					(GRAPHICS_VER(dev_priv) >= 12 ? \
+-					 TRANS_HDCP2_CTL(trans) : \
+-					 PORT_HDCP2_CTL(port))
+-
+-#define PORT_HDCP2_STATUS(port)		_PORT_HDCP2_BASE(port, 0xB4)
+-#define _TRANSA_HDCP2_STATUS		0x664B4
+-#define _TRANSB_HDCP2_STATUS		0x665B4
+-#define TRANS_HDCP2_STATUS(trans)	_MMIO_TRANS(trans, \
+-						    _TRANSA_HDCP2_STATUS, \
+-						    _TRANSB_HDCP2_STATUS)
+-#define   LINK_TYPE_STATUS		BIT(22)
+-#define   LINK_AUTH_STATUS		BIT(21)
+-#define   LINK_ENCRYPTION_STATUS	BIT(20)
+-#define HDCP2_STATUS(dev_priv, trans, port) \
+-					(GRAPHICS_VER(dev_priv) >= 12 ? \
+-					 TRANS_HDCP2_STATUS(trans) : \
+-					 PORT_HDCP2_STATUS(port))
+-
+-#define _PIPEA_HDCP2_STREAM_STATUS	0x668C0
+-#define _PIPEB_HDCP2_STREAM_STATUS	0x665C0
+-#define _PIPEC_HDCP2_STREAM_STATUS	0x666C0
+-#define _PIPED_HDCP2_STREAM_STATUS	0x667C0
+-#define PIPE_HDCP2_STREAM_STATUS(pipe)		_MMIO(_PICK((pipe), \
+-						      _PIPEA_HDCP2_STREAM_STATUS, \
+-						      _PIPEB_HDCP2_STREAM_STATUS, \
+-						      _PIPEC_HDCP2_STREAM_STATUS, \
+-						      _PIPED_HDCP2_STREAM_STATUS))
+-
+-#define _TRANSA_HDCP2_STREAM_STATUS		0x664C0
+-#define _TRANSB_HDCP2_STREAM_STATUS		0x665C0
+-#define TRANS_HDCP2_STREAM_STATUS(trans)	_MMIO_TRANS(trans, \
+-						    _TRANSA_HDCP2_STREAM_STATUS, \
+-						    _TRANSB_HDCP2_STREAM_STATUS)
+-#define   STREAM_ENCRYPTION_STATUS	BIT(31)
+-#define   STREAM_TYPE_STATUS		BIT(30)
+-#define HDCP2_STREAM_STATUS(dev_priv, trans, port) \
+-					(GRAPHICS_VER(dev_priv) >= 12 ? \
+-					 TRANS_HDCP2_STREAM_STATUS(trans) : \
+-					 PIPE_HDCP2_STREAM_STATUS(pipe))
+-
+-#define _PORTA_HDCP2_AUTH_STREAM		0x66F00
+-#define _PORTB_HDCP2_AUTH_STREAM		0x66F04
+-#define PORT_HDCP2_AUTH_STREAM(port)	_MMIO_PORT(port, \
+-						   _PORTA_HDCP2_AUTH_STREAM, \
+-						   _PORTB_HDCP2_AUTH_STREAM)
+-#define _TRANSA_HDCP2_AUTH_STREAM		0x66F00
+-#define _TRANSB_HDCP2_AUTH_STREAM		0x66F04
+-#define TRANS_HDCP2_AUTH_STREAM(trans)	_MMIO_TRANS(trans, \
+-						    _TRANSA_HDCP2_AUTH_STREAM, \
+-						    _TRANSB_HDCP2_AUTH_STREAM)
+-#define   AUTH_STREAM_TYPE		BIT(31)
+-#define HDCP2_AUTH_STREAM(dev_priv, trans, port) \
+-					(GRAPHICS_VER(dev_priv) >= 12 ? \
+-					 TRANS_HDCP2_AUTH_STREAM(trans) : \
+-					 PORT_HDCP2_AUTH_STREAM(port))
+-
+ /* Per-pipe DDI Function Control */
+ #define _TRANS_DDI_FUNC_CTL_A		0x60400
+ #define _TRANS_DDI_FUNC_CTL_B		0x61400
+-- 
+2.30.2
 
-== Series Details ==
-
-Series: Do not enable PSR2 if no active planes
-URL   : https://patchwork.freedesktop.org/series/105109/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_11757 -> Patchwork_105109v1
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_105109v1 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_105109v1, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/index.html
-
-Participating hosts (46 -> 45)
-------------------------------
-
-  Additional (2): fi-rkl-11600 bat-jsl-2 
-  Missing    (3): fi-ctg-p8600 fi-bdw-samus fi-hsw-4200u 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_105109v1:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@debugfs_test@read_all_entries:
-    - fi-kbl-guc:         [PASS][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11757/fi-kbl-guc/igt@debugfs_test@read_all_entries.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/fi-kbl-guc/igt@debugfs_test@read_all_entries.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_105109v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-rkl-11600:       NOTRUN -> [SKIP][3] ([i915#2190])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/fi-rkl-11600/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@basic:
-    - fi-rkl-11600:       NOTRUN -> [SKIP][4] ([i915#4613]) +3 similar issues
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/fi-rkl-11600/igt@gem_lmem_swapping@basic.html
-
-  * igt@gem_tiled_pread_basic:
-    - fi-rkl-11600:       NOTRUN -> [SKIP][5] ([i915#3282])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/fi-rkl-11600/igt@gem_tiled_pread_basic.html
-
-  * igt@i915_pm_backlight@basic-brightness:
-    - fi-rkl-11600:       NOTRUN -> [SKIP][6] ([i915#3012])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/fi-rkl-11600/igt@i915_pm_backlight@basic-brightness.html
-
-  * igt@i915_selftest@live@gem:
-    - fi-blb-e6850:       NOTRUN -> [DMESG-FAIL][7] ([i915#4528])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/fi-blb-e6850/igt@i915_selftest@live@gem.html
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-kbl-8809g:       [PASS][8] -> [DMESG-FAIL][9] ([i915#5334])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11757/fi-kbl-8809g/igt@i915_selftest@live@gt_heartbeat.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/fi-kbl-8809g/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-dg1-6:          [PASS][10] -> [DMESG-FAIL][11] ([i915#4494] / [i915#4957])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11757/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
-
-  * igt@i915_selftest@live@reset:
-    - fi-bdw-5557u:       [PASS][12] -> [INCOMPLETE][13] ([i915#6000])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11757/fi-bdw-5557u/igt@i915_selftest@live@reset.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/fi-bdw-5557u/igt@i915_selftest@live@reset.html
-
-  * igt@i915_suspend@basic-s2idle-without-i915:
-    - fi-bdw-gvtdvm:      NOTRUN -> [INCOMPLETE][14] ([i915#4817])
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/fi-bdw-gvtdvm/igt@i915_suspend@basic-s2idle-without-i915.html
-
-  * igt@i915_suspend@basic-s3-without-i915:
-    - fi-rkl-11600:       NOTRUN -> [INCOMPLETE][15] ([i915#5982])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html
-
-  * igt@kms_chamelium@hdmi-edid-read:
-    - fi-rkl-11600:       NOTRUN -> [SKIP][16] ([fdo#111827]) +7 similar issues
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/fi-rkl-11600/igt@kms_chamelium@hdmi-edid-read.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - fi-rkl-11600:       NOTRUN -> [SKIP][17] ([i915#4103]) +1 similar issue
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/fi-rkl-11600/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - fi-rkl-11600:       NOTRUN -> [SKIP][18] ([fdo#109285] / [i915#4098])
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/fi-rkl-11600/igt@kms_force_connector_basic@force-load-detect.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
-    - fi-rkl-11600:       NOTRUN -> [SKIP][19] ([i915#533])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/fi-rkl-11600/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
-
-  * igt@kms_psr@primary_page_flip:
-    - fi-rkl-11600:       NOTRUN -> [SKIP][20] ([i915#1072]) +3 similar issues
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/fi-rkl-11600/igt@kms_psr@primary_page_flip.html
-
-  * igt@kms_setmode@basic-clone-single-crtc:
-    - fi-rkl-11600:       NOTRUN -> [SKIP][21] ([i915#3555] / [i915#4098])
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/fi-rkl-11600/igt@kms_setmode@basic-clone-single-crtc.html
-
-  * igt@prime_vgem@basic-read:
-    - fi-rkl-11600:       NOTRUN -> [SKIP][22] ([fdo#109295] / [i915#3291] / [i915#3708]) +2 similar issues
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/fi-rkl-11600/igt@prime_vgem@basic-read.html
-
-  * igt@prime_vgem@basic-userptr:
-    - fi-rkl-11600:       NOTRUN -> [SKIP][23] ([fdo#109295] / [i915#3301] / [i915#3708])
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/fi-rkl-11600/igt@prime_vgem@basic-userptr.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s0@smem:
-    - {fi-ehl-2}:         [DMESG-WARN][24] ([i915#5122]) -> [PASS][25]
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11757/fi-ehl-2/igt@gem_exec_suspend@basic-s0@smem.html
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/fi-ehl-2/igt@gem_exec_suspend@basic-s0@smem.html
-
-  * igt@i915_selftest@live@execlists:
-    - fi-bdw-gvtdvm:      [INCOMPLETE][26] ([i915#2940]) -> [PASS][27]
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11757/fi-bdw-gvtdvm/igt@i915_selftest@live@execlists.html
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/fi-bdw-gvtdvm/igt@i915_selftest@live@execlists.html
-
-  * igt@i915_selftest@live@requests:
-    - fi-blb-e6850:       [DMESG-FAIL][28] ([i915#4528]) -> [PASS][29]
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11757/fi-blb-e6850/igt@i915_selftest@live@requests.html
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/fi-blb-e6850/igt@i915_selftest@live@requests.html
-
-  * igt@i915_selftest@live@uncore:
-    - {bat-dg2-9}:        [DMESG-WARN][30] ([i915#5763]) -> [PASS][31]
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11757/bat-dg2-9/igt@i915_selftest@live@uncore.html
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/bat-dg2-9/igt@i915_selftest@live@uncore.html
-
-  * igt@kms_flip@basic-flip-vs-modeset@a-edp1:
-    - fi-tgl-u2:          [DMESG-WARN][32] ([i915#402]) -> [PASS][33] +1 similar issue
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11757/fi-tgl-u2/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/fi-tgl-u2/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html
-
-  * igt@kms_flip@basic-flip-vs-modeset@b-edp1:
-    - bat-adlp-4:         [DMESG-WARN][34] ([i915#3576]) -> [PASS][35] +1 similar issue
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11757/bat-adlp-4/igt@kms_flip@basic-flip-vs-modeset@b-edp1.html
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/bat-adlp-4/igt@kms_flip@basic-flip-vs-modeset@b-edp1.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-cfl-8109u:       [DMESG-FAIL][36] ([i915#62]) -> [PASS][37] +1 similar issue
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11757/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a:
-    - fi-cfl-8109u:       [DMESG-WARN][38] ([i915#62]) -> [PASS][39] +13 similar issues
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11757/fi-cfl-8109u/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a.html
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/fi-cfl-8109u/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#109295]: https://bugs.freedesktop.org/show_bug.cgi?id=109295
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
-  [i915#3012]: https://gitlab.freedesktop.org/drm/intel/issues/3012
-  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
-  [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
-  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#3576]: https://gitlab.freedesktop.org/drm/intel/issues/3576
-  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#4098]: https://gitlab.freedesktop.org/drm/intel/issues/4098
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
-  [i915#4528]: https://gitlab.freedesktop.org/drm/intel/issues/4528
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#4817]: https://gitlab.freedesktop.org/drm/intel/issues/4817
-  [i915#4957]: https://gitlab.freedesktop.org/drm/intel/issues/4957
-  [i915#5122]: https://gitlab.freedesktop.org/drm/intel/issues/5122
-  [i915#5270]: https://gitlab.freedesktop.org/drm/intel/issues/5270
-  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
-  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
-  [i915#5763]: https://gitlab.freedesktop.org/drm/intel/issues/5763
-  [i915#5903]: https://gitlab.freedesktop.org/drm/intel/issues/5903
-  [i915#5982]: https://gitlab.freedesktop.org/drm/intel/issues/5982
-  [i915#6000]: https://gitlab.freedesktop.org/drm/intel/issues/6000
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#6227]: https://gitlab.freedesktop.org/drm/intel/issues/6227
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_11757 -> Patchwork_105109v1
-
-  CI-20190529: 20190529
-  CI_DRM_11757: da1e3835cdf5e8c449d1edeb993105efd7c8815d @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6524: 4b17146f2a0504db694eb89e19d7f9f7f5051983 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_105109v1: da1e3835cdf5e8c449d1edeb993105efd7c8815d @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-b7381543dcf2 drm/i915: Do not enable PSR2/selective fetch if there are no planes
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/index.html
-
---===============2416205243637046658==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Do not enable PSR2 if no active planes</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/105109/">https://patchwork.freedesktop.org/series/105109/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11757 -&gt; Patchwork_105109v1</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_105109v1 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_105109v1, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/index.html</p>
-<h2>Participating hosts (46 -&gt; 45)</h2>
-<p>Additional (2): fi-rkl-11600 bat-jsl-2 <br />
-  Missing    (3): fi-ctg-p8600 fi-bdw-samus fi-hsw-4200u </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_105109v1:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@debugfs_test@read_all_entries:<ul>
-<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11757/fi-kbl-guc/igt@debugfs_test@read_all_entries.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/fi-kbl-guc/igt@debugfs_test@read_all_entries.html">FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_105109v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/fi-rkl-11600/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@basic:</p>
-<ul>
-<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/fi-rkl-11600/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_tiled_pread_basic:</p>
-<ul>
-<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/fi-rkl-11600/igt@gem_tiled_pread_basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3282">i915#3282</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_backlight@basic-brightness:</p>
-<ul>
-<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/fi-rkl-11600/igt@i915_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3012">i915#3012</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gem:</p>
-<ul>
-<li>fi-blb-e6850:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/fi-blb-e6850/igt@i915_selftest@live@gem.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-kbl-8809g:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11757/fi-kbl-8809g/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/fi-kbl-8809g/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11757/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@reset:</p>
-<ul>
-<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11757/fi-bdw-5557u/igt@i915_selftest@live@reset.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/fi-bdw-5557u/igt@i915_selftest@live@reset.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6000">i915#6000</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_suspend@basic-s2idle-without-i915:</p>
-<ul>
-<li>fi-bdw-gvtdvm:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/fi-bdw-gvtdvm/igt@i915_suspend@basic-s2idle-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4817">i915#4817</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_suspend@basic-s3-without-i915:</p>
-<ul>
-<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5982">i915#5982</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-edid-read:</p>
-<ul>
-<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/fi-rkl-11600/igt@kms_chamelium@hdmi-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +7 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
-<ul>
-<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/fi-rkl-11600/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/fi-rkl-11600/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4098">i915#4098</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
-<ul>
-<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/fi-rkl-11600/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@primary_page_flip:</p>
-<ul>
-<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/fi-rkl-11600/igt@kms_psr@primary_page_flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic-clone-single-crtc:</p>
-<ul>
-<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/fi-rkl-11600/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4098">i915#4098</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-read:</p>
-<ul>
-<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/fi-rkl-11600/igt@prime_vgem@basic-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109295">fdo#109295</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3291">i915#3291</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-userptr:</p>
-<ul>
-<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/fi-rkl-11600/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109295">fdo#109295</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0@smem:</p>
-<ul>
-<li>{fi-ehl-2}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11757/fi-ehl-2/igt@gem_exec_suspend@basic-s0@smem.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5122">i915#5122</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/fi-ehl-2/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-bdw-gvtdvm:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11757/fi-bdw-gvtdvm/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/fi-bdw-gvtdvm/igt@i915_selftest@live@execlists.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11757/fi-blb-e6850/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/fi-blb-e6850/igt@i915_selftest@live@requests.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@uncore:</p>
-<ul>
-<li>{bat-dg2-9}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11757/bat-dg2-9/igt@i915_selftest@live@uncore.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5763">i915#5763</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/bat-dg2-9/igt@i915_selftest@live@uncore.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-modeset@a-edp1:</p>
-<ul>
-<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11757/fi-tgl-u2/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/fi-tgl-u2/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-modeset@b-edp1:</p>
-<ul>
-<li>bat-adlp-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11757/bat-adlp-4/igt@kms_flip@basic-flip-vs-modeset@b-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/bat-adlp-4/igt@kms_flip@basic-flip-vs-modeset@b-edp1.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11757/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11757/fi-cfl-8109u/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105109v1/fi-cfl-8109u/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a.html">PASS</a> +13 similar issues</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11757 -&gt; Patchwork_105109v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11757: da1e3835cdf5e8c449d1edeb993105efd7c8815d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6524: 4b17146f2a0504db694eb89e19d7f9f7f5051983 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_105109v1: da1e3835cdf5e8c449d1edeb993105efd7c8815d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>b7381543dcf2 drm/i915: Do not enable PSR2/selective fetch if there are no planes</p>
-
-</body>
-</html>
-
---===============2416205243637046658==--
