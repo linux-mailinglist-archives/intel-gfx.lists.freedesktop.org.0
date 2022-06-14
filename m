@@ -2,61 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E2AE54AAD6
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jun 2022 09:45:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 937DB54AB33
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jun 2022 09:56:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 476F510E032;
-	Tue, 14 Jun 2022 07:45:01 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8A10810E032
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Jun 2022 07:44:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B9A710E7D6;
+	Tue, 14 Jun 2022 07:56:01 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 97B1B10E7D6;
+ Tue, 14 Jun 2022 07:56:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655192699; x=1686728699;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=tzZhCd4uzFfOXJJoDnOwotDPXK6HPeE8Bmv5FUxG3xA=;
- b=IcgDxaa8bwB6ZfUEfAq7pV1ZG3MJhvSyZzAZfEZwOI7luyoCIvTOkawU
- q3svNeZ9MTBaRsHU5la2vXa0saETZZvmRpLN3+f+SaL9GoIziXirtQnij
- HTFrQ2kMepA6DobTp3R/dAb0Mm8SxDcy5kgOAHIwoaUKBmKAv5DC8Caj1
- G/1dSX3lx8o1oA5o4Wh40Y4aQJHpBdGTrV9hGkPZjSLVomImTOVYUIraP
- Uc35gx6fLsIdJZFADp0qgMitbZ7GWJsGylxgZO3ESlNU0OpbJKoeUT8m5
- i1v7ZD8cOhm8DVSkLItYe4uxbjf1eS9Vt35ZAMB47dBShO9+iyazqhZ1J A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10377"; a="258373459"
-X-IronPort-AV: E=Sophos;i="5.91,299,1647327600"; d="scan'208";a="258373459"
+ t=1655193360; x=1686729360;
+ h=message-id:date:mime-version:subject:from:to:cc:
+ references:in-reply-to:content-transfer-encoding;
+ bh=ltD/SHykF4KwSMRMZFJuue6WXCej+a0mjqpWw3Dwyx4=;
+ b=GfCxRuI/YGLGFEqE1pu/tGuLjCwobX7CuFDPuWFvmAFhQZqfHUYSs1TJ
+ l5YkKmtigoxKdRQnT/X7oyUWF7GAQ4h7EeG6qti7JGsSIstRlwbOceEvN
+ cImMP9//6JW7JLfUReRf0otk3S52AUP4HAhLD6jrLVh94PKgJLipNdSjE
+ Vj3q8MGfSE47rFVsCCpObVsDhHg5L9OD0eeIh3aSH4ucia6hOTF9TyT1R
+ 5zs/rIqyLOTgPhVJgnX5QY91K1rASqt4nhRpeuBAN2GmNte26NAqcvj3K
+ MRaTLVxY8rb5AMwOdZllucxRBHQAbwWl2NFIYfj1AZ3txa2TgDO29OBGE g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10377"; a="279582960"
+X-IronPort-AV: E=Sophos;i="5.91,299,1647327600"; d="scan'208";a="279582960"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jun 2022 00:44:59 -0700
-X-IronPort-AV: E=Sophos;i="5.91,299,1647327600"; d="scan'208";a="640200141"
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jun 2022 00:55:51 -0700
+X-IronPort-AV: E=Sophos;i="5.91,299,1647327600"; d="scan'208";a="640204763"
 Received: from snkalval-mobl2.amr.corp.intel.com (HELO [10.212.46.198])
  ([10.212.46.198])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jun 2022 00:44:52 -0700
-Message-ID: <954db3a4-e8c9-e157-5211-aceec87dfd9d@linux.intel.com>
-Date: Tue, 14 Jun 2022 08:44:50 +0100
+ 14 Jun 2022 00:55:50 -0700
+Message-ID: <18c8927e-dc7c-61e0-6e5f-65837c2444b3@linux.intel.com>
+Date: Tue, 14 Jun 2022 08:55:48 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
 Content-Language: en-US
-To: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20220609231955.3632596-1-daniele.ceraolospurio@intel.com>
- <dbc2ad75-1248-8d53-281d-f0a308733972@linux.intel.com>
- <7ede8090-bfbf-17a7-31f6-24e844a70673@intel.com>
- <a0860c06-4aba-deff-9101-aecdd8c14a02@linux.intel.com>
- <d6bc42f5-86c1-3bc9-d731-2bd0a978ece5@intel.com>
- <f50ee482-ed77-a644-095f-b2a988306de2@linux.intel.com>
- <7b394930-e6fb-8dc6-ba63-352f7a623b97@intel.com>
- <4d44c67a-4a38-fa53-6709-d5f206a9b0db@linux.intel.com>
- <e90f9dd1-7229-f958-d2e6-6fc4ec5a866b@intel.com>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: Andrzej Hajda <andrzej.hajda@intel.com>, Intel-gfx@lists.freedesktop.org
+References: <20220527072452.2225610-1-tvrtko.ursulin@linux.intel.com>
+ <fa45f87d-9aa1-a36d-631b-2363a95a7665@intel.com>
+ <d91647ec-c941-0f99-5cdc-0fe7ac1c0d07@linux.intel.com>
 Organization: Intel Corporation UK Plc
-In-Reply-To: <e90f9dd1-7229-f958-d2e6-6fc4ec5a866b@intel.com>
+In-Reply-To: <d91647ec-c941-0f99-5cdc-0fe7ac1c0d07@linux.intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 00/15] HuC loading for DG2
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Improve user experience and
+ driver robustness under SIGINT or similar
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,202 +63,390 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alexander Usyskin <alexander.usyskin@intel.com>,
- alan.previn.teres.alexis@intel.com
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 13/06/2022 19:13, Ceraolo Spurio, Daniele wrote:
-> On 6/13/2022 10:39 AM, Tvrtko Ursulin wrote:
->> On 13/06/2022 18:06, Ceraolo Spurio, Daniele wrote:
->>> On 6/13/2022 9:56 AM, Tvrtko Ursulin wrote:
->>>> On 13/06/2022 17:41, Ceraolo Spurio, Daniele wrote:
->>>>> On 6/13/2022 9:31 AM, Tvrtko Ursulin wrote:
->>>>>>
->>>>>> On 13/06/2022 16:39, Ceraolo Spurio, Daniele wrote:
->>>>>>> On 6/13/2022 1:16 AM, Tvrtko Ursulin wrote:
->>>>>>>>
->>>>>>>> On 10/06/2022 00:19, Daniele Ceraolo Spurio wrote:
->>>>>>>>> On DG2, HuC loading is performed by the GSC, via a PXP command. 
->>>>>>>>> The load
->>>>>>>>> operation itself is relatively simple (just send a message to 
->>>>>>>>> the GSC
->>>>>>>>> with the physical address of the HuC in LMEM), but there are 
->>>>>>>>> timing
->>>>>>>>> changes that requires special attention. In particular, to send 
->>>>>>>>> a PXP
->>>>>>>>> command we need to first export the GSC driver and then wait 
->>>>>>>>> for the
->>>>>>>>> mei-gsc and mei-pxp modules to start, which means that HuC load 
->>>>>>>>> will
->>>>>>>>> complete after i915 load is complete. This means that there is 
->>>>>>>>> a small
->>>>>>>>> window of time after i915 is registered and before HuC is loaded
->>>>>>>>> during which userspace could submit and/or checking the HuC 
->>>>>>>>> load status,
->>>>>>>>> although this is quite unlikely to happen (HuC is usually 
->>>>>>>>> loaded before
->>>>>>>>> kernel init/resume completes).
->>>>>>>>> We've consulted with the media team in regards to how to handle 
->>>>>>>>> this and
->>>>>>>>> they've asked us to do the following:
->>>>>>>>>
->>>>>>>>> 1) Report HuC as loaded in the getparam IOCTL even if load is 
->>>>>>>>> still in
->>>>>>>>> progress. The media driver uses the IOCTL as a way to check if 
->>>>>>>>> HuC is
->>>>>>>>> enabled and then includes a secondary check in the batches to 
->>>>>>>>> get the
->>>>>>>>> actual status, so doing it this way allows userspace to keep 
->>>>>>>>> working
->>>>>>>>> without changes.
->>>>>>>>>
->>>>>>>>> 2) Stall all userspace VCS submission until HuC is loaded. 
->>>>>>>>> Stalls are
->>>>>>>>> expected to be very rare (if any), due to the fact that HuC is 
->>>>>>>>> usually
->>>>>>>>> loaded before kernel init/resume is completed.
->>>>>>>>
->>>>>>>> Motivation to add these complications into i915 are not clear to 
->>>>>>>> me here. I mean there is no HuC on DG2 _yet_ is the premise of 
->>>>>>>> the series, right? So no backwards compatibility concerns. In 
->>>>>>>> this case why jump through the hoops and not let userspace 
->>>>>>>> handle all of this by just leaving the getparam return the true 
->>>>>>>> status?
->>>>>>>
->>>>>>> The main areas impacted by the fact that we can't guarantee that 
->>>>>>> HuC load is complete when i915 starts accepting submissions are 
->>>>>>> boot and suspend/resume, with the latter being the main problem; 
->>>>>>> GT reset is not a concern because HuC now survives it. A 
->>>>>>> suspend/resume can be transparent to userspace and therefore the 
->>>>>>> HuC status can temporarily flip from loaded to not without 
->>>>>>> userspace knowledge, especially if we start going into deeper 
->>>>>>> suspend states and start causing HuC resets when we go into 
->>>>>>> runtime suspend. Note that this is different from what happens 
->>>>>>> during GT reset for older platforms, because in that scenario we 
->>>>>>> guarantee that HuC reload is complete before we restart the 
->>>>>>> submission back-end, so userspace doesn't notice that the HuC 
->>>>>>> status change. We had an internal discussion about this problem 
->>>>>>> with both media and i915 archs and the conclusion was that the 
->>>>>>> best option is for i915 to stall media submission while HuC 
->>>>>>> (re-)load is in progress.
->>>>>>
->>>>>> Resume is potentialy a good reason - I did not pick up on that 
->>>>>> from the cover letter. I read the statement about the unlikely and 
->>>>>> small window where HuC is not loaded during kernel init/resume and 
->>>>>> I guess did not pick up on the resume part.
->>>>>>
->>>>>> Waiting for GSC to load HuC from i915 resume is not an option?
->>>>>
->>>>> GSC is an aux device exported by i915, so AFAIU GSC resume can't 
->>>>> start until i915 resume completes.
->>>>
->>>> I'll dig into this in the next few days since I want to understand 
->>>> how exactly it works. Or someone can help explain.
->>>>
->>>> If in the end conclusion will be that i915 resume indeed cannot wait 
->>>> for GSC, then I think auto-blocking of queued up contexts on media 
->>>> engines indeed sounds unavoidable. Otherwise, as you explained, user 
->>>> experience post resume wouldn't be good.
->>>
->>> Even if we could implement a wait, I'm not sure we should. GSC resume 
->>> and HuC reload takes ~300ms in most cases, I don't think we want to 
->>> block within the i915 resume path for that long.
->>
->> Yeah maybe not. But entertaining the idea that it is technically 
->> possible to block - we could perhaps add uapi for userspace to mark 
->> contexts which want HuC access. Then track if there are any such 
->> contexts with outstanding submissions and only wait in resume if there 
->> are. If that would end up significantly less code on the i915 side to 
->> maintain is an open.
->>
->> What would be the end result from users point of view in case where it 
->> suspended during video playback? The proposed solution from this 
->> series sees the video stuck after resume. Maybe compositor blocks as 
->> well since I am not sure how well they handle one window not providing 
->> new data. Probably depends on the compositor.
->>
->> And then with a simpler solution definitely the whole resume would be 
->> delayed by 300ms.
->>
->> With my ChromeOS hat the stalled media engines does sound like a 
->> better solution. But with the maintainer hat I'd like all options 
->> evaluated since there is attractiveness if a good enough solution can 
->> be achieved with significantly less kernel code.
->>
->> You say 300ms is typical time for HuC load. How long it is on other 
->> platforms? If much faster then why is it so slow here?
-> 
-> The GSC itself has to come out of suspend before it can perform the 
-> load, which takes a few tens of ms I believe. AFAIU the GSC is also 
-> slower in processing the HuC load and auth compared to the legacy path. 
-> The GSC FW team gave a 250ms limit for the time the GSC FW needs from 
-> start of the resume flow to HuC load complete, so I bumped that to 
-> ~300ms to account for all other SW interactions, plus a bit of buffer. 
-> Note that a bit of the SW overhead is caused by the fact that we have 2 
-> mei modules in play here: mei-gsc, which manages the GSC device itself 
-> (including resume), and mei-pxp, which owns the pxp messaging, including 
-> HuC load.
-
-And how long on other platforms (not DG2) do you know? Presumably there 
-the wait is on the i915 resume path?
-
->>>> However, do we really need to lie in the getparam? How about extend 
->>>> or add a new one to separate the loading vs loaded states? Since 
->>>> userspace does not support DG2 HuC yet this should be doable.
->>>
->>> I don't really have a preference here. The media team asked us to do 
->>> it this way because they wouldn't have a use for the different "in 
->>> progress" and "done" states. If they're ok with having separate flags 
->>> that's fine by me.
->>> Tony, any feedback here?
->>
->> We don't even have any docs in i915_drm.h in terms of what it means:
->>
->> #define I915_PARAM_HUC_STATUS         42
->>
->> Seems to be a boolean. Status false vs true? Could you add some docs?
-> 
-> There is documentation above intel_huc_check_status(), which is also 
-> updated in this series. I can move that to i915_drm.h.
-
-That would be great, thanks.
-
-And with so rich return codes already documented and exposed via uapi - 
-would we really need to add anything new for DG2 apart for userspace to 
-know that if zero is returned (not a negative error value) it should 
-retry? I mean is there another negative error missing which would 
-prevent zero transitioning to one?
+Final call to raise objections.
 
 Regards,
 
 Tvrtko
 
+On 07/06/2022 09:36, Tvrtko Ursulin wrote:
 > 
-> Daniele
+> On 27/05/2022 13:07, Andrzej Hajda wrote:
+>> On 27.05.2022 09:24, Tvrtko Ursulin wrote:
+>>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>>
+>>> We have long standing customer complaints that pressing Ctrl-C (or to 
+>>> the
+>>> effect of) causes engine resets with otherwise well behaving programs.
+>>>
+>>> Not only is logging engine resets during normal operation not desirable
+>>> since it creates support incidents, but more fundamentally we should 
+>>> avoid
+>>> going the engine reset path when we can since any engine reset 
+>>> introduces
+>>> a chance of harming an innocent context.
+>>>
+>>> Reason for this undesirable behaviour is that the driver currently does
+>>> not distinguish between banned contexts and non-persistent contexts 
+>>> which
+>>> have been closed.
+>>>
+>>> To fix this we add the distinction between the two reasons for revoking
+>>> contexts, which then allows the strict timeout only be applied to 
+>>> banned,
+>>> while innocent contexts (well behaving) can preempt cleanly and exit
+>>> without triggering the engine reset path.
+>>>
+>>> Note that the added context exiting category applies both to closed non-
+>>> persistent context, and any exiting context when hangcheck has been
+>>> disabled by the user.
+>>>
+>>> At the same time we rename the backend operation from 'ban' to 'revoke'
+>>> which more accurately describes the actual semantics. (There is no 
+>>> ban at
+>>> the backend level since banning is a concept driven by the scheduling
+>>> frontend. Backends are simply able to revoke a running context so that
+>>> is the more appropriate name chosen.)
+>>>
+>>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>> ---
+>>>   drivers/gpu/drm/i915/gem/i915_gem_context.c   | 23 +++++++++++------
+>>>   drivers/gpu/drm/i915/gt/intel_context.c       | 24 ++++++++++++++++++
+>>>   drivers/gpu/drm/i915/gt/intel_context.h       | 25 +++++++++++++------
+>>>   drivers/gpu/drm/i915/gt/intel_context_types.h |  4 ++-
+>>>   .../drm/i915/gt/intel_execlists_submission.c  |  6 ++---
+>>>   .../gpu/drm/i915/gt/intel_ring_submission.c   |  7 +++---
+>>>   .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 15 ++++++-----
+>>>   drivers/gpu/drm/i915/i915_request.c           |  2 +-
+>>>   8 files changed, 77 insertions(+), 29 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c 
+>>> b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+>>> index ab4c5ab28e4d..6b171c89b1b3 100644
+>>> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
+>>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+>>> @@ -1367,7 +1367,8 @@ static struct intel_engine_cs 
+>>> *active_engine(struct intel_context *ce)
+>>>       return engine;
+>>>   }
+>>> -static void kill_engines(struct i915_gem_engines *engines, bool ban)
+>>> +static void
+>>> +kill_engines(struct i915_gem_engines *engines, bool exit, bool 
+>>> persistent)
+>>>   {
+>>>       struct i915_gem_engines_iter it;
+>>>       struct intel_context *ce;
+>>> @@ -1381,9 +1382,15 @@ static void kill_engines(struct 
+>>> i915_gem_engines *engines, bool ban)
+>>>        */
+>>>       for_each_gem_engine(ce, engines, it) {
+>>>           struct intel_engine_cs *engine;
+>>> +        bool skip = false;
+>>> -        if (ban && intel_context_ban(ce, NULL))
+>>> -            continue;
+>>> +        if (exit)
+>>> +            skip = intel_context_set_exiting(ce);
+>>> +        else if (!persistent)
+>>> +            skip = intel_context_exit_nonpersistent(ce, NULL);
+>>> +
+>>> +        if (skip)
+>>> +            continue; /* Already marked. */
+>>
+>> why not:
+>>      if (exit && intel_context_set_exiting(ce))
+>>          continue;
+>>      else if (!persistent && intel_context_exit_nonpersistent(ce, NULL)
+>>          continue;
+> 
+> Just so I can put the "already marked" comment on single line.
 > 
 >>
->> Regards,
->>
->> Tvrtko
->>
->>>
->>> Thanks,
->>> Daniele
->>>
->>>>
->>>>>> Will there be runtime suspend happening on the GSC device behind 
->>>>>> i915's back, or i915 and GSC will always be able to transition the 
->>>>>> states in tandem?
->>>>>
->>>>> They're always in sync. The GSC is part of the same HW PCI device 
->>>>> as the rest of the GPU, so they change HW state together.
->>>>
->>>> Okay thanks, I wasn't sure if it is the same or separate device.
->>>>
->>>> Regards,
->>>>
->>>> Tvrtko
->>>
+>> Anyway:
+>> Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
 > 
+> Thanks!
+> 
+> John, Daniel - you had reservations against the older version of this 
+> patch AFAIR. This time round I believe I conceptually simplified it by 
+> doing a clean separation of contexts which should not be scheduled any 
+> more becuase they want it so, versus the ones we banned. That is, the 
+> patch stops abusing the banned status for contexts which haven't been 
+> (banned). This allows to only apply the strict preempt timeout to 
+> banned, while there is no reason to add any new timeout values for the 
+> rest.
+> 
+> Any objections to this version?
+> 
+> Regards,
+> 
+> Tvrtko
+> 
+>>
+>> Regards
+>> Andrzej
+>>
+>>>           /*
+>>>            * Check the current active state of this context; if we
+>>> @@ -1395,7 +1402,7 @@ static void kill_engines(struct 
+>>> i915_gem_engines *engines, bool ban)
+>>>           engine = active_engine(ce);
+>>>           /* First attempt to gracefully cancel the context */
+>>> -        if (engine && !__cancel_engine(engine) && ban)
+>>> +        if (engine && !__cancel_engine(engine) && (exit || 
+>>> !persistent))
+>>>               /*
+>>>                * If we are unable to send a preemptive pulse to bump
+>>>                * the context from the GPU, we have to resort to a full
+>>> @@ -1407,8 +1414,6 @@ static void kill_engines(struct 
+>>> i915_gem_engines *engines, bool ban)
+>>>   static void kill_context(struct i915_gem_context *ctx)
+>>>   {
+>>> -    bool ban = (!i915_gem_context_is_persistent(ctx) ||
+>>> -            !ctx->i915->params.enable_hangcheck);
+>>>       struct i915_gem_engines *pos, *next;
+>>>       spin_lock_irq(&ctx->stale.lock);
+>>> @@ -1421,7 +1426,8 @@ static void kill_context(struct 
+>>> i915_gem_context *ctx)
+>>>           spin_unlock_irq(&ctx->stale.lock);
+>>> -        kill_engines(pos, ban);
+>>> +        kill_engines(pos, !ctx->i915->params.enable_hangcheck,
+>>> +                 i915_gem_context_is_persistent(ctx));
+>>>           spin_lock_irq(&ctx->stale.lock);
+>>>           GEM_BUG_ON(i915_sw_fence_signaled(&pos->fence));
+>>> @@ -1467,7 +1473,8 @@ static void engines_idle_release(struct 
+>>> i915_gem_context *ctx,
+>>>   kill:
+>>>       if (list_empty(&engines->link)) /* raced, already closed */
+>>> -        kill_engines(engines, true);
+>>> +        kill_engines(engines, true,
+>>> +                 i915_gem_context_is_persistent(ctx));
+>>>       i915_sw_fence_commit(&engines->fence);
+>>>   }
+>>> diff --git a/drivers/gpu/drm/i915/gt/intel_context.c 
+>>> b/drivers/gpu/drm/i915/gt/intel_context.c
+>>> index 4070cb5711d8..654a092ed3d6 100644
+>>> --- a/drivers/gpu/drm/i915/gt/intel_context.c
+>>> +++ b/drivers/gpu/drm/i915/gt/intel_context.c
+>>> @@ -601,6 +601,30 @@ u64 intel_context_get_avg_runtime_ns(struct 
+>>> intel_context *ce)
+>>>       return avg;
+>>>   }
+>>> +bool intel_context_ban(struct intel_context *ce, struct i915_request 
+>>> *rq)
+>>> +{
+>>> +    bool ret = intel_context_set_banned(ce);
+>>> +
+>>> +    trace_intel_context_ban(ce);
+>>> +
+>>> +    if (ce->ops->revoke)
+>>> +        ce->ops->revoke(ce, rq,
+>>> +                INTEL_CONTEXT_BANNED_PREEMPT_TIMEOUT_MS);
+>>> +
+>>> +    return ret;
+>>> +}
+>>> +
+>>> +bool intel_context_exit_nonpersistent(struct intel_context *ce,
+>>> +                      struct i915_request *rq)
+>>> +{
+>>> +    bool ret = intel_context_set_exiting(ce);
+>>> +
+>>> +    if (ce->ops->revoke)
+>>> +        ce->ops->revoke(ce, rq, ce->engine->props.preempt_timeout_ms);
+>>> +
+>>> +    return ret;
+>>> +}
+>>> +
+>>>   #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
+>>>   #include "selftest_context.c"
+>>>   #endif
+>>> diff --git a/drivers/gpu/drm/i915/gt/intel_context.h 
+>>> b/drivers/gpu/drm/i915/gt/intel_context.h
+>>> index b7d3214d2cdd..8e2d70630c49 100644
+>>> --- a/drivers/gpu/drm/i915/gt/intel_context.h
+>>> +++ b/drivers/gpu/drm/i915/gt/intel_context.h
+>>> @@ -25,6 +25,8 @@
+>>>                ##__VA_ARGS__);                    \
+>>>   } while (0)
+>>> +#define INTEL_CONTEXT_BANNED_PREEMPT_TIMEOUT_MS (1)
+>>> +
+>>>   struct i915_gem_ww_ctx;
+>>>   void intel_context_init(struct intel_context *ce,
+>>> @@ -309,18 +311,27 @@ static inline bool 
+>>> intel_context_set_banned(struct intel_context *ce)
+>>>       return test_and_set_bit(CONTEXT_BANNED, &ce->flags);
+>>>   }
+>>> -static inline bool intel_context_ban(struct intel_context *ce,
+>>> -                     struct i915_request *rq)
+>>> +bool intel_context_ban(struct intel_context *ce, struct i915_request 
+>>> *rq);
+>>> +
+>>> +static inline bool intel_context_is_schedulable(const struct 
+>>> intel_context *ce)
+>>>   {
+>>> -    bool ret = intel_context_set_banned(ce);
+>>> +    return !test_bit(CONTEXT_EXITING, &ce->flags) &&
+>>> +           !test_bit(CONTEXT_BANNED, &ce->flags);
+>>> +}
+>>> -    trace_intel_context_ban(ce);
+>>> -    if (ce->ops->ban)
+>>> -        ce->ops->ban(ce, rq);
+>>> +static inline bool intel_context_is_exiting(const struct 
+>>> intel_context *ce)
+>>> +{
+>>> +    return test_bit(CONTEXT_EXITING, &ce->flags);
+>>> +}
+>>> -    return ret;
+>>> +static inline bool intel_context_set_exiting(struct intel_context *ce)
+>>> +{
+>>> +    return test_and_set_bit(CONTEXT_EXITING, &ce->flags);
+>>>   }
+>>> +bool intel_context_exit_nonpersistent(struct intel_context *ce,
+>>> +                      struct i915_request *rq);
+>>> +
+>>>   static inline bool
+>>>   intel_context_force_single_submission(const struct intel_context *ce)
+>>>   {
+>>> diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h 
+>>> b/drivers/gpu/drm/i915/gt/intel_context_types.h
+>>> index 09f82545789f..d2d75d9c0c8d 100644
+>>> --- a/drivers/gpu/drm/i915/gt/intel_context_types.h
+>>> +++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
+>>> @@ -40,7 +40,8 @@ struct intel_context_ops {
+>>>       int (*alloc)(struct intel_context *ce);
+>>> -    void (*ban)(struct intel_context *ce, struct i915_request *rq);
+>>> +    void (*revoke)(struct intel_context *ce, struct i915_request *rq,
+>>> +               unsigned int preempt_timeout_ms);
+>>>       int (*pre_pin)(struct intel_context *ce, struct i915_gem_ww_ctx 
+>>> *ww, void **vaddr);
+>>>       int (*pin)(struct intel_context *ce, void *vaddr);
+>>> @@ -122,6 +123,7 @@ struct intel_context {
+>>>   #define CONTEXT_GUC_INIT        10
+>>>   #define CONTEXT_PERMA_PIN        11
+>>>   #define CONTEXT_IS_PARKING        12
+>>> +#define CONTEXT_EXITING            13
+>>>       struct {
+>>>           u64 timeout_us;
+>>> diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c 
+>>> b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+>>> index a4510b5c0c3d..ad72e2c5c4e7 100644
+>>> --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+>>> +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+>>> @@ -480,9 +480,9 @@ __execlists_schedule_in(struct i915_request *rq)
+>>>       if (unlikely(intel_context_is_closed(ce) &&
+>>>                !intel_engine_has_heartbeat(engine)))
+>>> -        intel_context_set_banned(ce);
+>>> +        intel_context_set_exiting(ce);
+>>> -    if (unlikely(intel_context_is_banned(ce) || bad_request(rq)))
+>>> +    if (unlikely(!intel_context_is_schedulable(ce) || bad_request(rq)))
+>>>           reset_active(rq, engine);
+>>>       if (IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM))
+>>> @@ -1243,7 +1243,7 @@ static unsigned long 
+>>> active_preempt_timeout(struct intel_engine_cs *engine,
+>>>       /* Force a fast reset for terminated contexts (ignoring sysfs!) */
+>>>       if (unlikely(intel_context_is_banned(rq->context) || 
+>>> bad_request(rq)))
+>>> -        return 1;
+>>> +        return INTEL_CONTEXT_BANNED_PREEMPT_TIMEOUT_MS;
+>>>       return READ_ONCE(engine->props.preempt_timeout_ms);
+>>>   }
+>>> diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c 
+>>> b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+>>> index f8f279a195c0..d5d6f1fadcae 100644
+>>> --- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+>>> +++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+>>> @@ -598,8 +598,9 @@ static void ring_context_reset(struct 
+>>> intel_context *ce)
+>>>       clear_bit(CONTEXT_VALID_BIT, &ce->flags);
+>>>   }
+>>> -static void ring_context_ban(struct intel_context *ce,
+>>> -                 struct i915_request *rq)
+>>> +static void ring_context_revoke(struct intel_context *ce,
+>>> +                struct i915_request *rq,
+>>> +                unsigned int preempt_timeout_ms)
+>>>   {
+>>>       struct intel_engine_cs *engine;
+>>> @@ -634,7 +635,7 @@ static const struct intel_context_ops 
+>>> ring_context_ops = {
+>>>       .cancel_request = ring_context_cancel_request,
+>>> -    .ban = ring_context_ban,
+>>> +    .revoke = ring_context_revoke,
+>>>       .pre_pin = ring_context_pre_pin,
+>>>       .pin = ring_context_pin,
+>>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c 
+>>> b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+>>> index 5a1dfacf24ea..e62ea35513ea 100644
+>>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+>>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+>>> @@ -2790,7 +2790,9 @@ static void 
+>>> __guc_context_set_preemption_timeout(struct intel_guc *guc,
+>>>       __guc_context_set_context_policies(guc, &policy, true);
+>>>   }
+>>> -static void guc_context_ban(struct intel_context *ce, struct 
+>>> i915_request *rq)
+>>> +static void
+>>> +guc_context_revoke(struct intel_context *ce, struct i915_request *rq,
+>>> +           unsigned int preempt_timeout_ms)
+>>>   {
+>>>       struct intel_guc *guc = ce_to_guc(ce);
+>>>       struct intel_runtime_pm *runtime_pm =
+>>> @@ -2829,7 +2831,8 @@ static void guc_context_ban(struct 
+>>> intel_context *ce, struct i915_request *rq)
+>>>            * gets kicked off the HW ASAP.
+>>>            */
+>>>           with_intel_runtime_pm(runtime_pm, wakeref) {
+>>> -            __guc_context_set_preemption_timeout(guc, guc_id, 1);
+>>> +            __guc_context_set_preemption_timeout(guc, guc_id,
+>>> +                                 preempt_timeout_ms);
+>>>               __guc_context_sched_disable(guc, ce, guc_id);
+>>>           }
+>>>       } else {
+>>> @@ -2837,7 +2840,7 @@ static void guc_context_ban(struct 
+>>> intel_context *ce, struct i915_request *rq)
+>>>               with_intel_runtime_pm(runtime_pm, wakeref)
+>>>                   __guc_context_set_preemption_timeout(guc,
+>>>                                        ce->guc_id.id,
+>>> -                                     1);
+>>> +                                     preempt_timeout_ms);
+>>>           spin_unlock_irqrestore(&ce->guc_state.lock, flags);
+>>>       }
+>>>   }
+>>> @@ -3190,7 +3193,7 @@ static const struct intel_context_ops 
+>>> guc_context_ops = {
+>>>       .unpin = guc_context_unpin,
+>>>       .post_unpin = guc_context_post_unpin,
+>>> -    .ban = guc_context_ban,
+>>> +    .revoke = guc_context_revoke,
+>>>       .cancel_request = guc_context_cancel_request,
+>>> @@ -3439,7 +3442,7 @@ static const struct intel_context_ops 
+>>> virtual_guc_context_ops = {
+>>>       .unpin = guc_virtual_context_unpin,
+>>>       .post_unpin = guc_context_post_unpin,
+>>> -    .ban = guc_context_ban,
+>>> +    .revoke = guc_context_revoke,
+>>>       .cancel_request = guc_context_cancel_request,
+>>> @@ -3528,7 +3531,7 @@ static const struct intel_context_ops 
+>>> virtual_parent_context_ops = {
+>>>       .unpin = guc_parent_context_unpin,
+>>>       .post_unpin = guc_context_post_unpin,
+>>> -    .ban = guc_context_ban,
+>>> +    .revoke = guc_context_revoke,
+>>>       .cancel_request = guc_context_cancel_request,
+>>> diff --git a/drivers/gpu/drm/i915/i915_request.c 
+>>> b/drivers/gpu/drm/i915/i915_request.c
+>>> index 73d5195146b0..c3937640b119 100644
+>>> --- a/drivers/gpu/drm/i915/i915_request.c
+>>> +++ b/drivers/gpu/drm/i915/i915_request.c
+>>> @@ -611,7 +611,7 @@ bool __i915_request_submit(struct i915_request 
+>>> *request)
+>>>           goto active;
+>>>       }
+>>> -    if (unlikely(intel_context_is_banned(request->context)))
+>>> +    if (unlikely(!intel_context_is_schedulable(request->context)))
+>>>           i915_request_set_error_once(request, -EIO);
+>>>       if (unlikely(fatal_error(request->fence.error)))
+>>
