@@ -2,53 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54C0354D037
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jun 2022 19:42:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D76154D054
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jun 2022 19:48:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9245D1127B7;
-	Wed, 15 Jun 2022 17:42:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 927A1112800;
+	Wed, 15 Jun 2022 17:48:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BFD591127C1
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Jun 2022 17:42:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655314931; x=1686850931;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=nZq4N1S4n/5AInu7n5RVgy3ZYRY4ub2FUuK2h3cFOG0=;
- b=ThA6xK7XhsGz2J3dS9ANkX3dh82O9Vu0w1Zym2ShgsGxSUK+KB6zbfva
- QjZYoRGlwruWtrypggBbG9aDF3dqjkZbQxK+O72acGw4Jsmn531LUhfK5
- rsAArYYyjqdCfZIqyUsPKHVok2NLQSUjPN3OkTjwDV43wsnFrx4ZHCkHi
- 3m+gVjuz1uVNblXmEPdwOMJ5yfuTO+R48D4FhNRv8K0fhWQiEtjAoAe16
- n1g+Oc6hAq1oatb1xdBXfEegaXCXp2glbwpa/JbH9SKFw37psTl5ObTsb
- Z0MqH0T63djLHrbD57rIbY7HixbeewK8JvrQFjilm9XEidNbYsL4hHMK5 Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10379"; a="267740672"
-X-IronPort-AV: E=Sophos;i="5.91,302,1647327600"; d="scan'208";a="267740672"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2022 10:42:09 -0700
-X-IronPort-AV: E=Sophos;i="5.91,302,1647327600"; d="scan'208";a="911784855"
-Received: from orsosgc001.jf.intel.com ([10.165.21.154])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2022 10:42:09 -0700
-Date: Wed, 15 Jun 2022 10:42:08 -0700
-From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <20220615174208.GL48807@orsosgc001.jf.intel.com>
-References: <20220614004616.45561-1-umesh.nerlige.ramappa@intel.com>
- <2d4f5fd5-a2d2-68ac-d7ae-bc81b14327bc@linux.intel.com>
- <20220614163257.GF48807@orsosgc001.jf.intel.com>
- <979dcbee-5c3e-e14f-f31e-ddcf3edd8a5f@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 97D03112800;
+ Wed, 15 Jun 2022 17:48:49 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 8B345A00A0;
+ Wed, 15 Jun 2022 17:48:49 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0163209744385462533=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <979dcbee-5c3e-e14f-f31e-ddcf3edd8a5f@linux.intel.com>
-User-Agent: Mutt/1.12.1 (2019-06-15)
-Subject: Re: [Intel-gfx] [PATCH] i915/pmu: Wire GuC backend to per-client
- busyness
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mauro Carvalho Chehab" <mchehab@kernel.org>
+Date: Wed, 15 Jun 2022 17:48:49 -0000
+Message-ID: <165531532953.14600.418665714813900886@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <cover.1655306128.git.mchehab@kernel.org>
+In-Reply-To: <cover.1655306128.git.mchehab@kernel.org>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgRml4?=
+ =?utf-8?q?_TLB_invalidate_issues_with_Broadwell?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,179 +40,322 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jun 15, 2022 at 08:08:40AM +0100, Tvrtko Ursulin wrote:
->
->On 14/06/2022 17:32, Umesh Nerlige Ramappa wrote:
->>On Tue, Jun 14, 2022 at 02:30:42PM +0100, Tvrtko Ursulin wrote:
->>>
->>>On 14/06/2022 01:46, Nerlige Ramappa, Umesh wrote:
->>>>From: John Harrison <John.C.Harrison@Intel.com>
->>>>
->>>>GuC provides engine_id and last_switch_in ticks for an active 
->>>>context in the
->>>>pphwsp. The context image provides a 32 bit total ticks which is 
->>>>the accumulated
->>>>by the context (a.k.a. context[CTX_TIMESTAMP]). This information 
->>>>is used to
->>>>calculate the context busyness as follows:
->>>>
->>>>If the engine_id is valid, then busyness is the sum of 
->>>>accumulated total ticks
->>>>and active ticks. Active ticks is calculated with current gt 
->>>>time as reference.
->>>>
->>>>If engine_id is invalid, busyness is equal to accumulated total ticks.
->>>>
->>>>Since KMD (CPU) retrieves busyness data from 2 sources - GPU and GuC, a
->>>>potential race was highlighted in an earlier review that can 
->>>>lead to double
->>>>accounting of busyness. While the solution to this is a wip, 
->>>>busyness is still
->>>>usable for platforms running GuC submission.
->>>>
->>>>Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
->>>>Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
->>>>---
->>>> drivers/gpu/drm/i915/gt/intel_context.c       | 11 +++-
->>>> drivers/gpu/drm/i915/gt/intel_context.h       |  6 +-
->>>> drivers/gpu/drm/i915/gt/intel_context_types.h |  3 +
->>>> drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h   |  5 ++
->>>> .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 55 ++++++++++++++++++-
->>>> drivers/gpu/drm/i915/i915_drm_client.c        |  6 +-
->>>> 6 files changed, 75 insertions(+), 11 deletions(-)
->>>>
->>>>diff --git a/drivers/gpu/drm/i915/gt/intel_context.c 
->>>>b/drivers/gpu/drm/i915/gt/intel_context.c
->>>>index 4070cb5711d8..a49f313db911 100644
->>>>--- a/drivers/gpu/drm/i915/gt/intel_context.c
->>>>+++ b/drivers/gpu/drm/i915/gt/intel_context.c
->>>>@@ -576,16 +576,23 @@ void 
->>>>intel_context_bind_parent_child(struct intel_context *parent,
->>>>     child->parallel.parent = parent;
->>>> }
->>>>-u64 intel_context_get_total_runtime_ns(const struct intel_context *ce)
->>>>+u64 intel_context_get_total_runtime_ns(struct intel_context *ce)
->>>> {
->>>>     u64 total, active;
->>>>+    if (ce->ops->update_stats)
->>>>+        ce->ops->update_stats(ce);
->>>>+
->>>>     total = ce->stats.runtime.total;
->>>>     if (ce->ops->flags & COPS_RUNTIME_CYCLES)
->>>>         total *= ce->engine->gt->clock_period_ns;
->>>>     active = READ_ONCE(ce->stats.active);
->>>>-    if (active)
->>>>+    /*
->>>>+     * GuC backend returns the actual time the context was 
->>>>active, so skip
->>>>+     * the calculation here for GuC.
->>>>+     */
->>>>+    if (active && !intel_engine_uses_guc(ce->engine))
->>>
->>>What is the point of looking at ce->stats.active in GuC mode? I 
->>>see that guc_context_update_stats/__guc_context_update_clks 
->>>touches it, but I can't spot that there is a purpose to it. This 
->>>is the only conditional reading it but it is short-circuited in 
->>>GuC case.
->>>
->>>Also, since a GuC only vfunc (update_stats) has been added, I 
->>>wonder why not just fork the whole runtime query 
->>>(ce->get_total_runtime_ns). I think that would end up cleaner.
->>>
->>>>         active = intel_context_clock() - active;
->>>>     return total + active;
->>
->>In case of GuC the active is used directly here since the active 
->>updated in update_stats is equal to the active time of the context 
->>already. I will look into separate vfunc.
->
->Ah right, I misread something. But yes, I think a separate vfunc will 
->look cleaner. Another option (instead of vfunc) is a similar flag to 
->control the express the flavour of active?
+--===============0163209744385462533==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Flag does sound simpler. The guc context ops can have something like 
-COPS_RUNTIME_ACTIVE_TOTAL that means total active time.
+== Series Details ==
 
->
->>>>diff --git a/drivers/gpu/drm/i915/gt/intel_context.h 
->>>>b/drivers/gpu/drm/i915/gt/intel_context.h
->>>>index b7d3214d2cdd..5fc7c19ab29b 100644
->>>>--- a/drivers/gpu/drm/i915/gt/intel_context.h
->>>>+++ b/drivers/gpu/drm/i915/gt/intel_context.h
->>>>@@ -56,7 +56,7 @@ static inline bool 
->>>>intel_context_is_parent(struct intel_context *ce)
->>>>     return !!ce->parallel.number_children;
->>>> }
->>
->>snip
->>
->>>>+static void __guc_context_update_clks(struct intel_context *ce)
->>>>+{
->>>>+    struct intel_guc *guc = ce_to_guc(ce);
->>>>+    struct intel_gt *gt = ce->engine->gt;
->>>>+    u32 *pphwsp, last_switch, engine_id;
->>>>+    u64 start_gt_clk = 0, active = 0;
->>>
->>>No need to init these two.
->>>
->>>>+    unsigned long flags;
->>>>+    ktime_t unused;
->>>>+
->>>>+    spin_lock_irqsave(&guc->timestamp.lock, flags);
->>>>+
->>>>+    pphwsp = ((void *)ce->lrc_reg_state) - LRC_STATE_OFFSET;
->>>>+    last_switch = READ_ONCE(pphwsp[PPHWSP_GUC_CONTEXT_USAGE_STAMP_LO]);
->>>>+    engine_id = READ_ONCE(pphwsp[PPHWSP_GUC_CONTEXT_USAGE_ENGINE_ID]);
->>>>+
->>>>+    guc_update_pm_timestamp(guc, &unused);
->>>>+
->>>>+    if (engine_id != 0xffffffff && last_switch) {
->>>>+        start_gt_clk = READ_ONCE(ce->stats.runtime.start_gt_clk);
->>>>+        __extend_last_switch(guc, &start_gt_clk, last_switch);
->>>>+        active = intel_gt_clock_interval_to_ns(gt, 
->>>>guc->timestamp.gt_stamp - start_gt_clk);
->>>>+        WRITE_ONCE(ce->stats.runtime.start_gt_clk, start_gt_clk);
->>>>+        WRITE_ONCE(ce->stats.active, active);
->>>>+    } else {
->>>>+        lrc_update_runtime(ce);
->>>
->>>Why is this called from here? Presumably it was called already 
->>>from guc_context_unpin if here code things context is not active. 
->>>Or will be called shortly, once context save is done.
->>
->>guc_context_unpin is only called in the path of ce->sched_disable. 
->>The sched_disable is implemented in GuC (H2G message). Once the 
->>corresponding G2H response is received, the context is actually 
->>unpinned, eventually calling guc_context_unpin. Also the context may 
->>not necessarily be disabled after each context exit.
->
->So if I understand correctly, lrc runtime is only updated if someone 
->is reading the busyness and not as part of normal context state 
->transitions?
+Series: Fix TLB invalidate issues with Broadwell
+URL   : https://patchwork.freedesktop.org/series/105167/
+State : success
 
-If you mean context_in/out events (like csb interrupts), only GuC can 
-see those events. KMD has no visibility into that. These 3 paths call 
-lrc_update_runtime.
+== Summary ==
 
-user query: (engine_id != 0xffffffff && last_switch) translates to GuC 
-being within context_in and context_out events, so updating it outside 
-of this window is one way to report the correct busyness.
+CI Bug Log - changes from CI_DRM_11761 -> Patchwork_105167v1
+====================================================
 
-worker: guc_timestamp_ping()  also updates context stats (infrequently) 
-for all contexts primarily to take care of overflows.
+Summary
+-------
 
-context unpin: Existing code calls lrc_update_runtime only when 
-unpinning the context which takes care of accumulating busyness when 
-requests are retired.
+  **SUCCESS**
 
-Thanks,
-Umesh
+  No regressions found.
 
->
->Regards,
->
->Tvrtko
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105167v1/index.html
+
+Participating hosts (42 -> 41)
+------------------------------
+
+  Additional (1): bat-jsl-2 
+  Missing    (2): bat-dg2-9 fi-kbl-guc 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_105167v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - bat-adlp-4:         [PASS][1] -> [DMESG-WARN][2] ([i915#3576]) +2 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11761/bat-adlp-4/igt@i915_pm_rpm@module-reload.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105167v1/bat-adlp-4/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@gt_engines:
+    - bat-dg1-5:          [PASS][3] -> [INCOMPLETE][4] ([i915#4418])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11761/bat-dg1-5/igt@i915_selftest@live@gt_engines.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105167v1/bat-dg1-5/igt@i915_selftest@live@gt_engines.html
+
+  * igt@i915_selftest@live@gt_mocs:
+    - fi-rkl-guc:         [PASS][5] -> [DMESG-WARN][6] ([i915#5790])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11761/fi-rkl-guc/igt@i915_selftest@live@gt_mocs.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105167v1/fi-rkl-guc/igt@i915_selftest@live@gt_mocs.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - bat-dg1-6:          NOTRUN -> [DMESG-FAIL][7] ([i915#4494] / [i915#4957])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105167v1/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
+
+  * igt@i915_suspend@basic-s2idle-without-i915:
+    - bat-dg1-6:          NOTRUN -> [INCOMPLETE][8] ([i915#6011])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105167v1/bat-dg1-6/igt@i915_suspend@basic-s2idle-without-i915.html
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-pnv-d510:        NOTRUN -> [SKIP][9] ([fdo#109271])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105167v1/fi-pnv-d510/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  * igt@kms_flip@basic-plain-flip@a-edp1:
+    - fi-tgl-u2:          [PASS][10] -> [DMESG-WARN][11] ([i915#402])
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11761/fi-tgl-u2/igt@kms_flip@basic-plain-flip@a-edp1.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105167v1/fi-tgl-u2/igt@kms_flip@basic-plain-flip@a-edp1.html
+
+  * igt@runner@aborted:
+    - fi-bdw-5557u:       NOTRUN -> [FAIL][12] ([i915#4312])
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105167v1/fi-bdw-5557u/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@gem:
+    - fi-pnv-d510:        [DMESG-FAIL][13] ([i915#4528]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11761/fi-pnv-d510/igt@i915_selftest@live@gem.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105167v1/fi-pnv-d510/igt@i915_selftest@live@gem.html
+
+  * igt@i915_selftest@live@gt_engines:
+    - bat-dg1-6:          [INCOMPLETE][15] ([i915#4418]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11761/bat-dg1-6/igt@i915_selftest@live@gt_engines.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105167v1/bat-dg1-6/igt@i915_selftest@live@gt_engines.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-bdw-5557u:       [INCOMPLETE][17] ([i915#3921]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11761/fi-bdw-5557u/igt@i915_selftest@live@hangcheck.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105167v1/fi-bdw-5557u/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_busy@basic@flip:
+    - {bat-adlp-6}:       [DMESG-WARN][19] ([i915#3576]) -> [PASS][20]
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11761/bat-adlp-6/igt@kms_busy@basic@flip.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105167v1/bat-adlp-6/igt@kms_busy@basic@flip.html
+
+  * igt@kms_flip@basic-flip-vs-modeset@a-edp1:
+    - fi-tgl-u2:          [DMESG-WARN][21] ([i915#402]) -> [PASS][22]
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11761/fi-tgl-u2/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105167v1/fi-tgl-u2/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c:
+    - bat-adlp-4:         [DMESG-WARN][23] ([i915#3576]) -> [PASS][24]
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11761/bat-adlp-4/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105167v1/bat-adlp-4/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#109295]: https://bugs.freedesktop.org/show_bug.cgi?id=109295
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
+  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
+  [i915#3576]: https://gitlab.freedesktop.org/drm/intel/issues/3576
+  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4418]: https://gitlab.freedesktop.org/drm/intel/issues/4418
+  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
+  [i915#4528]: https://gitlab.freedesktop.org/drm/intel/issues/4528
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#4957]: https://gitlab.freedesktop.org/drm/intel/issues/4957
+  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
+  [i915#5790]: https://gitlab.freedesktop.org/drm/intel/issues/5790
+  [i915#5903]: https://gitlab.freedesktop.org/drm/intel/issues/5903
+  [i915#6011]: https://gitlab.freedesktop.org/drm/intel/issues/6011
+  [i915#6227]: https://gitlab.freedesktop.org/drm/intel/issues/6227
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_11761 -> Patchwork_105167v1
+
+  CI-20190529: 20190529
+  CI_DRM_11761: ec90bfe7e13f9a75f02b7f409c8f23911e551b9f @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6529: b96bf5a0307fc0bdbf6c8e86872817306e102883 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_105167v1: ec90bfe7e13f9a75f02b7f409c8f23911e551b9f @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+bdb931865fc1 drm/i915/gt: Serialize TLB invalidates with GT resets
+c028d9cb4966 drm/i915/gt: Serialize GRDOM access between multiple engine resets
+80dde7b33084 drm/i915/gt: Only invalidate TLBs exposed to user manipulation
+7503afbec552 drm/i915/gt: Skip TLB invalidations once wedged
+9f278bd15a39 drm/i915/gt: Invalidate TLB of the OA unit at TLB invalidations
+6902d7385cee drm/i915/gt: Ignore TLB invalidations on idle engines
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105167v1/index.html
+
+--===============0163209744385462533==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Fix TLB invalidate issues with Broadwell</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/105167/">https://patchwork.freedesktop.org/series/105167/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105167v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105167v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11761 -&gt; Patchwork_105167v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105167v1/index.html</p>
+<h2>Participating hosts (42 -&gt; 41)</h2>
+<p>Additional (1): bat-jsl-2 <br />
+  Missing    (2): bat-dg2-9 fi-kbl-guc </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_105167v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>bat-adlp-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11761/bat-adlp-4/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105167v1/bat-adlp-4/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_engines:</p>
+<ul>
+<li>bat-dg1-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11761/bat-dg1-5/igt@i915_selftest@live@gt_engines.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105167v1/bat-dg1-5/igt@i915_selftest@live@gt_engines.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4418">i915#4418</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_mocs:</p>
+<ul>
+<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11761/fi-rkl-guc/igt@i915_selftest@live@gt_mocs.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105167v1/fi-rkl-guc/igt@i915_selftest@live@gt_mocs.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5790">i915#5790</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105167v1/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_suspend@basic-s2idle-without-i915:</p>
+<ul>
+<li>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105167v1/bat-dg1-6/igt@i915_suspend@basic-s2idle-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6011">i915#6011</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
+<ul>
+<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105167v1/fi-pnv-d510/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-plain-flip@a-edp1:</p>
+<ul>
+<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11761/fi-tgl-u2/igt@kms_flip@basic-plain-flip@a-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105167v1/fi-tgl-u2/igt@kms_flip@basic-plain-flip@a-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105167v1/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@gem:</p>
+<ul>
+<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11761/fi-pnv-d510/igt@i915_selftest@live@gem.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105167v1/fi-pnv-d510/igt@i915_selftest@live@gem.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_engines:</p>
+<ul>
+<li>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11761/bat-dg1-6/igt@i915_selftest@live@gt_engines.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4418">i915#4418</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105167v1/bat-dg1-6/igt@i915_selftest@live@gt_engines.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11761/fi-bdw-5557u/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105167v1/fi-bdw-5557u/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_busy@basic@flip:</p>
+<ul>
+<li>{bat-adlp-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11761/bat-adlp-6/igt@kms_busy@basic@flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105167v1/bat-adlp-6/igt@kms_busy@basic@flip.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-modeset@a-edp1:</p>
+<ul>
+<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11761/fi-tgl-u2/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105167v1/fi-tgl-u2/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c:</p>
+<ul>
+<li>bat-adlp-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11761/bat-adlp-4/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105167v1/bat-adlp-4/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11761 -&gt; Patchwork_105167v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11761: ec90bfe7e13f9a75f02b7f409c8f23911e551b9f @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6529: b96bf5a0307fc0bdbf6c8e86872817306e102883 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_105167v1: ec90bfe7e13f9a75f02b7f409c8f23911e551b9f @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>bdb931865fc1 drm/i915/gt: Serialize TLB invalidates with GT resets<br />
+c028d9cb4966 drm/i915/gt: Serialize GRDOM access between multiple engine resets<br />
+80dde7b33084 drm/i915/gt: Only invalidate TLBs exposed to user manipulation<br />
+7503afbec552 drm/i915/gt: Skip TLB invalidations once wedged<br />
+9f278bd15a39 drm/i915/gt: Invalidate TLB of the OA unit at TLB invalidations<br />
+6902d7385cee drm/i915/gt: Ignore TLB invalidations on idle engines</p>
+
+</body>
+</html>
+
+--===============0163209744385462533==--
