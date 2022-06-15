@@ -2,48 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7008554CCD0
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jun 2022 17:28:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4884554CCCD
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jun 2022 17:28:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D052112243;
-	Wed, 15 Jun 2022 15:27:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 32FA5112215;
+	Wed, 15 Jun 2022 15:27:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE8A4112185;
- Wed, 15 Jun 2022 15:27:48 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org
+ [IPv6:2604:1380:4641:c500::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A925D1121DD;
+ Wed, 15 Jun 2022 15:27:47 +0000 (UTC)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 4EF2DB81F0C;
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 347EB61728;
  Wed, 15 Jun 2022 15:27:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ECDEDC34115;
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 075C2C341C4;
  Wed, 15 Jun 2022 15:27:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
  s=k20201202; t=1655306866;
- bh=d5dFQ9NHsAkSm+gLQzVN8kPNqSNsxZsVoyo0jFhjNL0=;
+ bh=ArrWWi9aGs9TPTpy73ldENPFG9RCYJiCftXoVPyfiXA=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=LXQf8xhEcd/2SP9lwnz0ukumi2OpBNyaaWzqoWEweJNDGmokgwGwt3y1sppwNHyQ7
- Rzxzuq4qly/kJRh9TpXSJs/vZ4SSwYySPo6oCtR3lSb9i2ZGukCYt4ukqKgYmFIxCi
- 4RYwiBl2BDFOyJEqVGqfPdTjg/wDJ2XcvxfPYlQ/2GwAx3ebFWcSy330pPk76hRvDv
- m1eLCgWxxKsmve7jSKKvt972JvLb/DQ1dXV3QlwxS2UNwbNxjFozXlJyyu8o8WPTFV
- KO/BfNu64ZOcJb9+Gdm3qMvPUeiwovYMC/uqNJ7oIVn1Y+/K4J48asEamxxyleAP/i
- 6fvv0mYBklH9w==
+ b=g+Z9a8tBUvrdOq9En5CSui7C1egHykyAomklROUSNevyZlUzrxdBtW+8Jg/Sbs3dx
+ B/frSxNCMCV1HpkQb3FUy9yPEHvE/C4Fgcscb6nwZk2wud73DWJQmGG+ZnZeaMqoqj
+ S4tTuphrd2FjPf2ytW5WMFAYIzf4OoLS6qhqVzgqnTBXWADmBbQnxh9XrDdAC5v4o8
+ DKszVAokucAtHdAzZu2vvm0TGcdwwfuXbJEyhSwPMcZQ73CL7YMWu1oShtibuLPhCx
+ +43Tz0HKhqsADIEkozMT7BH7OSAxi6O3sxqaB4RdVWT2S1xvBhG2DqLK/O3jJNGX25
+ 2jkOkUinAk7vQ==
 Received: from mchehab by mail.kernel.org with local (Exim 4.95)
- (envelope-from <mchehab@kernel.org>) id 1o1Uvm-00A4Jj-EX;
+ (envelope-from <mchehab@kernel.org>) id 1o1Uvm-00A4Jm-FD;
  Wed, 15 Jun 2022 16:27:42 +0100
 From: Mauro Carvalho Chehab <mchehab@kernel.org>
 To: 
-Date: Wed, 15 Jun 2022 16:27:37 +0100
-Message-Id: <9d9e663ca8e97becf04e1d4c8cb8a9a1f397a5f1.1655306128.git.mchehab@kernel.org>
+Date: Wed, 15 Jun 2022 16:27:38 +0100
+Message-Id: <387b9a8d3e719ad2db4fce56c0bfc0f909fd6df6.1655306128.git.mchehab@kernel.org>
 X-Mailer: git-send-email 2.36.1
 In-Reply-To: <cover.1655306128.git.mchehab@kernel.org>
 References: <cover.1655306128.git.mchehab@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 3/6] drm/i915/gt: Skip TLB invalidations once
- wedged
+Subject: [Intel-gfx] [PATCH 4/6] drm/i915/gt: Only invalidate TLBs exposed
+ to user manipulation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,24 +57,24 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
- Chris Wilson <chris.p.wilson@intel.com>, Matthew Auld <matthew.auld@intel.com>,
- Dave Airlie <airlied@redhat.com>,
+Cc: mauro.chehab@linux.intel.com,
  =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
+ David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Chris Wilson <chris.p.wilson@intel.com>,
  Thomas Hellstrom <thomas.hellstrom@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, mauro.chehab@linux.intel.com,
- =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
- linux-kernel@vger.kernel.org, stable@vger.kernel.org
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Dave Airlie <airlied@redhat.com>,
+ stable@vger.kernel.org, Mauro Carvalho Chehab <mchehab@kernel.org>,
+ intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Chris Wilson <chris.p.wilson@intel.com>
 
-Skip all further TLB invalidations once the device is wedged and
-had been reset, as, on such cases, it can no longer process instructions
-on the GPU and the user no longer has access to the TLB's in each engine.
+Don't flush TLBs when the buffer is only used in the GGTT under full
+control of the kernel, as there's no risk of of concurrent access
+and stale access from prefetch.
+
+We only need to invalidate the TLB if they are accessible by the user.
 
 Fixes: 7938d61591d3 ("drm/i915: Flush TLBs before releasing backing store")
 
@@ -87,23 +88,23 @@ Signed-off-by: Mauro Carvalho Chehab <mchehab@kernel.org>
 
 See [PATCH 0/6] at: https://lore.kernel.org/all/cover.1655306128.git.mchehab@kernel.org/
 
- drivers/gpu/drm/i915/gt/intel_gt.c | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/gpu/drm/i915/i915_vma.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-index 61b7ec5118f9..fb4fd5273ca4 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-@@ -1226,6 +1226,9 @@ void intel_gt_invalidate_tlbs(struct intel_gt *gt)
- 	if (I915_SELFTEST_ONLY(gt->awake == -ENODEV))
- 		return;
+diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
+index 0bffb70b3c5f..7989986161e8 100644
+--- a/drivers/gpu/drm/i915/i915_vma.c
++++ b/drivers/gpu/drm/i915/i915_vma.c
+@@ -537,7 +537,8 @@ int i915_vma_bind(struct i915_vma *vma,
+ 				   bind_flags);
+ 	}
  
-+	if (intel_gt_is_wedged(gt))
-+		return;
-+
- 	if (GRAPHICS_VER(i915) == 12) {
- 		regs = gen12_regs;
- 		num = ARRAY_SIZE(gen12_regs);
+-	set_bit(I915_BO_WAS_BOUND_BIT, &vma->obj->flags);
++	if (bind_flags & I915_VMA_LOCAL_BIND)
++		set_bit(I915_BO_WAS_BOUND_BIT, &vma->obj->flags);
+ 
+ 	atomic_or(bind_flags, &vma->flags);
+ 	return 0;
 -- 
 2.36.1
 
