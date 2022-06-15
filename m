@@ -2,53 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D25954D22D
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jun 2022 21:57:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0154F54D1D7
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jun 2022 21:44:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 974AA112B32;
-	Wed, 15 Jun 2022 19:57:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 33AA3112898;
+	Wed, 15 Jun 2022 19:44:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mailrelay4-1.pub.mailoutpod1-cph3.one.com
- (mailrelay4-1.pub.mailoutpod1-cph3.one.com [46.30.210.185])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AFDA3112B32
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Jun 2022 19:57:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ravnborg.org; s=rsa1;
- h=in-reply-to:content-transfer-encoding:content-type:mime-version:references:
- message-id:subject:cc:to:from:date:from;
- bh=rcSIp+mSllGd5cv72D6VQoK7SYAr/EgAE5nvrkmkTVM=;
- b=XScx3JaSv8SP6oI0YjPkPVXek5BohCYOeSV2Yn3EP6h9a65xx7Kiwy9ECl0d11+nSoAyZOihfuGH7
- +xOWz72bNkukes6pvl3tVhUvIufMnMa6IlXcfzK+vnrtWoMETm/8unseb+cTwGa6J+oC+5zSmKudgR
- Tvk3PANEYO7h2UgXM6q5QOLRzuECgVX3BfwjVPRicp5w0WI8gHWg8PnlogU0elt3AC+0c11iGUUzTY
- 7AtYAHUFNFcXkdlX8bX1UDFDzFE9IM90vIE8f/LOco5trd6QnKqMJi34gL/HG6P5sm5vaEzZDkQlvp
- /8dDLz638L7KKeZ2V3OFWV6HLPP1gkQ==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed;
- d=ravnborg.org; s=ed1;
- h=in-reply-to:content-transfer-encoding:content-type:mime-version:references:
- message-id:subject:cc:to:from:date:from;
- bh=rcSIp+mSllGd5cv72D6VQoK7SYAr/EgAE5nvrkmkTVM=;
- b=rVQYE+yfFgaf2us1gk4dlZAFCqDx+MQKMm9qOHYIV1lj87XIMg4CsRIE5mBu4QXKbYCkEHH0Y8+Qd
- vem7KXOBg==
-X-HalOne-Cookie: ea440e9c9a1d4a607de862fcc0121b8816512f81
-X-HalOne-ID: 1fa70b4e-ece3-11ec-8232-d0431ea8bb10
-Received: from mailproxy4.cst.dirpod3-cph3.one.com
- (80-162-45-141-cable.dk.customer.tdc.net [80.162.45.141])
- by mailrelay4.pub.mailoutpod1-cph3.one.com (Halon) with ESMTPSA
- id 1fa70b4e-ece3-11ec-8232-d0431ea8bb10;
- Wed, 15 Jun 2022 19:41:17 +0000 (UTC)
-Date: Wed, 15 Jun 2022 21:41:16 +0200
-From: Sam Ravnborg <sam@ravnborg.org>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <Yqo13HbMvVJ5FDkj@ravnborg.org>
-References: <20220613200317.11305-3-ville.syrjala@linux.intel.com>
- <20220614095449.29311-1-ville.syrjala@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 82FC810E50F;
+ Wed, 15 Jun 2022 19:44:08 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 61EBAA7E03;
+ Wed, 15 Jun 2022 19:44:08 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2230859870203879721=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220614095449.29311-1-ville.syrjala@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH v3 2/8] drm: Drop drm_framebuffer.h from
- drm_crtc.h
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Wed, 15 Jun 2022 19:44:08 -0000
+Message-ID: <165532224835.14600.10360056664950258429@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <cover.1655297182.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1655297182.git.jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/display=3A_split_out_verifation=2C_compare_and_dump_from_?=
+ =?utf-8?q?intel=5Fdisplay=2Ec?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,1758 +41,1457 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jun 14, 2022 at 12:54:49PM +0300, Ville Syrjala wrote:
-> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> 
-> drm_crtc.h has no need for drm_frambuffer.h, so don't include it.
-> Avoids useless rebuilds of the entire universe when
-> touching drm_framebuffer.h.
-> 
-> Quite a few placs do currently depend on drm_framebuffer.h without
-> actually including it directly. All of those need to be fixed
-> up.
-> 
-> v2: Fix up msm some more
-> v2: Deal with ingenic and shmobile as well
-> 
-> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Acked-by: Sam Ravnborg <sam@ravnborg.org>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h                 | 1 +
->  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_trace.h  | 1 +
->  drivers/gpu/drm/arm/display/komeda/komeda_wb_connector.c | 1 +
->  drivers/gpu/drm/arm/hdlcd_crtc.c                         | 1 +
->  drivers/gpu/drm/arm/malidp_crtc.c                        | 1 +
->  drivers/gpu/drm/arm/malidp_mw.c                          | 1 +
->  drivers/gpu/drm/arm/malidp_planes.c                      | 1 +
->  drivers/gpu/drm/armada/armada_fb.h                       | 2 ++
->  drivers/gpu/drm/aspeed/aspeed_gfx_crtc.c                 | 1 +
->  drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_plane.c          | 1 +
->  drivers/gpu/drm/drm_atomic.c                             | 1 +
->  drivers/gpu/drm/drm_atomic_helper.c                      | 1 +
->  drivers/gpu/drm/drm_atomic_state_helper.c                | 1 +
->  drivers/gpu/drm/drm_atomic_uapi.c                        | 1 +
->  drivers/gpu/drm/drm_crtc.c                               | 1 +
->  drivers/gpu/drm/drm_crtc_helper.c                        | 1 +
->  drivers/gpu/drm/drm_damage_helper.c                      | 1 +
->  drivers/gpu/drm/drm_fb_helper.c                          | 1 +
->  drivers/gpu/drm/drm_gem_atomic_helper.c                  | 1 +
->  drivers/gpu/drm/drm_mipi_dbi.c                           | 1 +
->  drivers/gpu/drm/drm_mode_config.c                        | 1 +
->  drivers/gpu/drm/drm_modeset_helper.c                     | 1 +
->  drivers/gpu/drm/drm_writeback.c                          | 1 +
->  drivers/gpu/drm/exynos/exynos5433_drm_decon.c            | 1 +
->  drivers/gpu/drm/exynos/exynos7_drm_decon.c               | 1 +
->  drivers/gpu/drm/exynos/exynos_drm_fb.c                   | 1 +
->  drivers/gpu/drm/exynos/exynos_drm_fbdev.c                | 1 +
->  drivers/gpu/drm/exynos/exynos_drm_fimd.c                 | 1 +
->  drivers/gpu/drm/exynos/exynos_drm_plane.c                | 1 +
->  drivers/gpu/drm/exynos/exynos_drm_vidi.c                 | 1 +
->  drivers/gpu/drm/exynos/exynos_mixer.c                    | 1 +
->  drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_plane.c              | 1 +
->  drivers/gpu/drm/gma500/framebuffer.c                     | 1 +
->  drivers/gpu/drm/gma500/gma_display.c                     | 1 +
->  drivers/gpu/drm/gma500/oaktrail_crtc.c                   | 1 +
->  drivers/gpu/drm/hisilicon/kirin/kirin_drm_ade.c          | 1 +
->  drivers/gpu/drm/i915/display/intel_display_types.h       | 1 +
->  drivers/gpu/drm/imx/dcss/dcss-plane.c                    | 1 +
->  drivers/gpu/drm/imx/ipuv3-plane.c                        | 1 +
->  drivers/gpu/drm/ingenic/ingenic-drm-drv.c                | 1 +
->  drivers/gpu/drm/ingenic/ingenic-ipu.c                    | 1 +
->  drivers/gpu/drm/kmb/kmb_plane.c                          | 1 +
->  drivers/gpu/drm/logicvc/logicvc_layer.c                  | 1 +
->  drivers/gpu/drm/mcde/mcde_display.c                      | 1 +
->  drivers/gpu/drm/mediatek/mtk_disp_ovl.c                  | 1 +
->  drivers/gpu/drm/mediatek/mtk_disp_rdma.c                 | 2 ++
->  drivers/gpu/drm/mediatek/mtk_drm_plane.c                 | 1 +
->  drivers/gpu/drm/meson/meson_overlay.c                    | 1 +
->  drivers/gpu/drm/meson/meson_plane.c                      | 1 +
->  drivers/gpu/drm/mgag200/mgag200_mode.c                   | 1 +
->  drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c                 | 1 +
->  drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys_wb.c      | 2 ++
->  drivers/gpu/drm/msm/disp/dpu1/dpu_formats.c              | 1 +
->  drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c                  | 1 +
->  drivers/gpu/drm/msm/disp/dpu1/dpu_plane.c                | 1 +
->  drivers/gpu/drm/msm/disp/mdp4/mdp4_plane.c               | 1 +
->  drivers/gpu/drm/msm/disp/mdp5/mdp5_plane.c               | 1 +
->  drivers/gpu/drm/msm/disp/mdp_format.c                    | 2 ++
->  drivers/gpu/drm/msm/msm_debugfs.c                        | 1 +
->  drivers/gpu/drm/msm/msm_fb.c                             | 1 +
->  drivers/gpu/drm/msm/msm_fbdev.c                          | 1 +
->  drivers/gpu/drm/mxsfb/mxsfb_kms.c                        | 1 +
->  drivers/gpu/drm/omapdrm/omap_debugfs.c                   | 1 +
->  drivers/gpu/drm/omapdrm/omap_fb.c                        | 1 +
->  drivers/gpu/drm/omapdrm/omap_fbdev.c                     | 1 +
->  drivers/gpu/drm/omapdrm/omap_plane.c                     | 1 +
->  drivers/gpu/drm/pl111/pl111_display.c                    | 1 +
->  drivers/gpu/drm/pl111/pl111_drv.c                        | 1 +
->  drivers/gpu/drm/pl111/pl111_versatile.c                  | 2 ++
->  drivers/gpu/drm/qxl/qxl_display.c                        | 1 +
->  drivers/gpu/drm/qxl/qxl_draw.c                           | 1 +
->  drivers/gpu/drm/radeon/atombios_crtc.c                   | 1 +
->  drivers/gpu/drm/radeon/evergreen.c                       | 1 +
->  drivers/gpu/drm/radeon/r100.c                            | 1 +
->  drivers/gpu/drm/radeon/radeon_device.c                   | 1 +
->  drivers/gpu/drm/radeon/radeon_display.c                  | 1 +
->  drivers/gpu/drm/radeon/radeon_fb.c                       | 1 +
->  drivers/gpu/drm/radeon/radeon_legacy_crtc.c              | 1 +
->  drivers/gpu/drm/radeon/rs600.c                           | 1 +
->  drivers/gpu/drm/radeon/rv770.c                           | 1 +
->  drivers/gpu/drm/rcar-du/rcar_du_kms.c                    | 1 +
->  drivers/gpu/drm/rcar-du/rcar_du_plane.c                  | 1 +
->  drivers/gpu/drm/rcar-du/rcar_du_vsp.c                    | 1 +
->  drivers/gpu/drm/rcar-du/rcar_du_writeback.c              | 1 +
->  drivers/gpu/drm/rockchip/rockchip_drm_fb.c               | 1 +
->  drivers/gpu/drm/rockchip/rockchip_drm_vop.c              | 1 +
->  drivers/gpu/drm/rockchip/rockchip_drm_vop2.c             | 1 +
->  drivers/gpu/drm/selftests/test-drm_damage_helper.c       | 1 +
->  drivers/gpu/drm/selftests/test-drm_plane_helper.c        | 1 +
->  drivers/gpu/drm/shmobile/shmob_drm_crtc.c                | 1 +
->  drivers/gpu/drm/shmobile/shmob_drm_kms.c                 | 1 +
->  drivers/gpu/drm/shmobile/shmob_drm_plane.c               | 1 +
->  drivers/gpu/drm/solomon/ssd130x.c                        | 1 +
->  drivers/gpu/drm/sprd/sprd_dpu.c                          | 1 +
->  drivers/gpu/drm/sti/sti_cursor.c                         | 1 +
->  drivers/gpu/drm/sti/sti_gdp.c                            | 1 +
->  drivers/gpu/drm/sti/sti_hqvdp.c                          | 1 +
->  drivers/gpu/drm/sti/sti_plane.c                          | 1 +
->  drivers/gpu/drm/stm/ltdc.c                               | 1 +
->  drivers/gpu/drm/sun4i/sun4i_backend.c                    | 1 +
->  drivers/gpu/drm/sun4i/sun8i_mixer.c                      | 1 +
->  drivers/gpu/drm/sun4i/sun8i_ui_layer.c                   | 1 +
->  drivers/gpu/drm/sun4i/sun8i_vi_layer.c                   | 1 +
->  drivers/gpu/drm/tegra/dc.c                               | 1 +
->  drivers/gpu/drm/tegra/drm.c                              | 1 +
->  drivers/gpu/drm/tegra/fb.c                               | 1 +
->  drivers/gpu/drm/tegra/hub.c                              | 1 +
->  drivers/gpu/drm/tegra/plane.c                            | 1 +
->  drivers/gpu/drm/tidss/tidss_dispc.c                      | 1 +
->  drivers/gpu/drm/tidss/tidss_plane.c                      | 1 +
->  drivers/gpu/drm/tilcdc/tilcdc_crtc.c                     | 1 +
->  drivers/gpu/drm/tilcdc/tilcdc_plane.c                    | 1 +
->  drivers/gpu/drm/tiny/arcpgu.c                            | 1 +
->  drivers/gpu/drm/tiny/bochs.c                             | 1 +
->  drivers/gpu/drm/tiny/cirrus.c                            | 1 +
->  drivers/gpu/drm/tiny/gm12u320.c                          | 1 +
->  drivers/gpu/drm/tiny/ili9225.c                           | 1 +
->  drivers/gpu/drm/tiny/repaper.c                           | 1 +
->  drivers/gpu/drm/tiny/st7586.c                            | 1 +
->  drivers/gpu/drm/tve200/tve200_display.c                  | 1 +
->  drivers/gpu/drm/vboxvideo/vbox_mode.c                    | 1 +
->  drivers/gpu/drm/vc4/vc4_bo.c                             | 2 ++
->  drivers/gpu/drm/vc4/vc4_crtc.c                           | 1 +
->  drivers/gpu/drm/vc4/vc4_kms.c                            | 1 +
->  drivers/gpu/drm/vc4/vc4_plane.c                          | 1 +
->  drivers/gpu/drm/vc4/vc4_txp.c                            | 1 +
->  drivers/gpu/drm/virtio/virtgpu_drv.h                     | 1 +
->  drivers/gpu/drm/vkms/vkms_drv.h                          | 1 +
->  drivers/gpu/drm/vmwgfx/vmwgfx_kms.h                      | 1 +
->  drivers/gpu/drm/xen/xen_drm_front_conn.c                 | 1 +
->  drivers/gpu/drm/xen/xen_drm_front_kms.c                  | 1 +
->  include/drm/drm_crtc.h                                   | 2 +-
->  132 files changed, 138 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h
-> index f80b4838cea1..450d32ccd69d 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h
-> @@ -37,6 +37,7 @@
->  #include <drm/drm_fixed.h>
->  #include <drm/drm_crtc_helper.h>
->  #include <drm/drm_fb_helper.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_plane_helper.h>
->  #include <drm/drm_probe_helper.h>
->  #include <linux/i2c.h>
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_trace.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_trace.h
-> index fdcaea22b456..d3bc9dc21771 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_trace.h
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_trace.h
-> @@ -34,6 +34,7 @@
->  #include <drm/drm_crtc.h>
->  #include <drm/drm_plane.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_encoder.h>
->  #include <drm/drm_atomic.h>
->  
-> diff --git a/drivers/gpu/drm/arm/display/komeda/komeda_wb_connector.c b/drivers/gpu/drm/arm/display/komeda/komeda_wb_connector.c
-> index ce4b760a691b..ebccb74306a7 100644
-> --- a/drivers/gpu/drm/arm/display/komeda/komeda_wb_connector.c
-> +++ b/drivers/gpu/drm/arm/display/komeda/komeda_wb_connector.c
-> @@ -4,6 +4,7 @@
->   * Author: James.Qian.Wang <james.qian.wang@arm.com>
->   *
->   */
-> +#include <drm/drm_framebuffer.h>
->  #include "komeda_dev.h"
->  #include "komeda_kms.h"
->  
-> diff --git a/drivers/gpu/drm/arm/hdlcd_crtc.c b/drivers/gpu/drm/arm/hdlcd_crtc.c
-> index 7adb065169e9..afc9cd856501 100644
-> --- a/drivers/gpu/drm/arm/hdlcd_crtc.c
-> +++ b/drivers/gpu/drm/arm/hdlcd_crtc.c
-> @@ -20,6 +20,7 @@
->  #include <drm/drm_crtc.h>
->  #include <drm/drm_fb_cma_helper.h>
->  #include <drm/drm_fb_helper.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_cma_helper.h>
->  #include <drm/drm_of.h>
->  #include <drm/drm_plane_helper.h>
-> diff --git a/drivers/gpu/drm/arm/malidp_crtc.c b/drivers/gpu/drm/arm/malidp_crtc.c
-> index b5928b52e279..962730772b2f 100644
-> --- a/drivers/gpu/drm/arm/malidp_crtc.c
-> +++ b/drivers/gpu/drm/arm/malidp_crtc.c
-> @@ -14,6 +14,7 @@
->  #include <drm/drm_atomic.h>
->  #include <drm/drm_atomic_helper.h>
->  #include <drm/drm_crtc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_print.h>
->  #include <drm/drm_probe_helper.h>
->  #include <drm/drm_vblank.h>
-> diff --git a/drivers/gpu/drm/arm/malidp_mw.c b/drivers/gpu/drm/arm/malidp_mw.c
-> index 43de2ac8f27e..b5b2bbec7851 100644
-> --- a/drivers/gpu/drm/arm/malidp_mw.c
-> +++ b/drivers/gpu/drm/arm/malidp_mw.c
-> @@ -12,6 +12,7 @@
->  #include <drm/drm_fb_cma_helper.h>
->  #include <drm/drm_edid.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_cma_helper.h>
->  #include <drm/drm_probe_helper.h>
->  #include <drm/drm_writeback.h>
-> diff --git a/drivers/gpu/drm/arm/malidp_planes.c b/drivers/gpu/drm/arm/malidp_planes.c
-> index 338cec4a3fff..63bccc619193 100644
-> --- a/drivers/gpu/drm/arm/malidp_planes.c
-> +++ b/drivers/gpu/drm/arm/malidp_planes.c
-> @@ -14,6 +14,7 @@
->  #include <drm/drm_drv.h>
->  #include <drm/drm_fb_cma_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_cma_helper.h>
->  #include <drm/drm_gem_framebuffer_helper.h>
->  #include <drm/drm_plane_helper.h>
-> diff --git a/drivers/gpu/drm/armada/armada_fb.h b/drivers/gpu/drm/armada/armada_fb.h
-> index 7dda5f2a0af4..c5bc53d7e0c4 100644
-> --- a/drivers/gpu/drm/armada/armada_fb.h
-> +++ b/drivers/gpu/drm/armada/armada_fb.h
-> @@ -5,6 +5,8 @@
->  #ifndef ARMADA_FB_H
->  #define ARMADA_FB_H
->  
-> +#include <drm/drm_framebuffer.h>
-> +
->  struct armada_framebuffer {
->  	struct drm_framebuffer	fb;
->  	uint8_t			fmt;
-> diff --git a/drivers/gpu/drm/aspeed/aspeed_gfx_crtc.c b/drivers/gpu/drm/aspeed/aspeed_gfx_crtc.c
-> index 827e62c1daba..f3788d7d82d6 100644
-> --- a/drivers/gpu/drm/aspeed/aspeed_gfx_crtc.c
-> +++ b/drivers/gpu/drm/aspeed/aspeed_gfx_crtc.c
-> @@ -9,6 +9,7 @@
->  #include <drm/drm_device.h>
->  #include <drm/drm_fb_cma_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_atomic_helper.h>
->  #include <drm/drm_gem_cma_helper.h>
->  #include <drm/drm_panel.h>
-> diff --git a/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_plane.c b/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_plane.c
-> index a077d93c78d7..b76d6be3f305 100644
-> --- a/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_plane.c
-> +++ b/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_plane.c
-> @@ -13,6 +13,7 @@
->  #include <drm/drm_atomic_helper.h>
->  #include <drm/drm_fb_cma_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_cma_helper.h>
->  #include <drm/drm_plane_helper.h>
->  
-> diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_atomic.c
-> index 58c0283fb6b0..8e0a77547c1d 100644
-> --- a/drivers/gpu/drm/drm_atomic.c
-> +++ b/drivers/gpu/drm/drm_atomic.c
-> @@ -37,6 +37,7 @@
->  #include <drm/drm_drv.h>
->  #include <drm/drm_file.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_mode.h>
->  #include <drm/drm_print.h>
->  #include <drm/drm_writeback.h>
-> diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_atomic_helper.c
-> index 987e4b212e9f..abbeb42976b9 100644
-> --- a/drivers/gpu/drm/drm_atomic_helper.c
-> +++ b/drivers/gpu/drm/drm_atomic_helper.c
-> @@ -35,6 +35,7 @@
->  #include <drm/drm_damage_helper.h>
->  #include <drm/drm_device.h>
->  #include <drm/drm_drv.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_atomic_helper.h>
->  #include <drm/drm_plane_helper.h>
->  #include <drm/drm_print.h>
-> diff --git a/drivers/gpu/drm/drm_atomic_state_helper.c b/drivers/gpu/drm/drm_atomic_state_helper.c
-> index 3b6d3bdbd099..c968b3b4d5de 100644
-> --- a/drivers/gpu/drm/drm_atomic_state_helper.c
-> +++ b/drivers/gpu/drm/drm_atomic_state_helper.c
-> @@ -30,6 +30,7 @@
->  #include <drm/drm_connector.h>
->  #include <drm/drm_crtc.h>
->  #include <drm/drm_device.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_plane.h>
->  #include <drm/drm_print.h>
->  #include <drm/drm_vblank.h>
-> diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atomic_uapi.c
-> index 434f3d4cb8a2..79730fa1dd8e 100644
-> --- a/drivers/gpu/drm/drm_atomic_uapi.c
-> +++ b/drivers/gpu/drm/drm_atomic_uapi.c
-> @@ -29,6 +29,7 @@
->  
->  #include <drm/drm_atomic_uapi.h>
->  #include <drm/drm_atomic.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_print.h>
->  #include <drm/drm_drv.h>
->  #include <drm/drm_writeback.h>
-> diff --git a/drivers/gpu/drm/drm_crtc.c b/drivers/gpu/drm/drm_crtc.c
-> index 26a77a735905..e8a3a0706387 100644
-> --- a/drivers/gpu/drm/drm_crtc.c
-> +++ b/drivers/gpu/drm/drm_crtc.c
-> @@ -38,6 +38,7 @@
->  #include <drm/drm_crtc.h>
->  #include <drm/drm_edid.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_managed.h>
->  #include <drm/drm_modeset_lock.h>
->  #include <drm/drm_atomic.h>
-> diff --git a/drivers/gpu/drm/drm_crtc_helper.c b/drivers/gpu/drm/drm_crtc_helper.c
-> index b632825654a9..8a6d54515f92 100644
-> --- a/drivers/gpu/drm/drm_crtc_helper.c
-> +++ b/drivers/gpu/drm/drm_crtc_helper.c
-> @@ -44,6 +44,7 @@
->  #include <drm/drm_encoder.h>
->  #include <drm/drm_fb_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_plane_helper.h>
->  #include <drm/drm_print.h>
->  #include <drm/drm_vblank.h>
-> diff --git a/drivers/gpu/drm/drm_damage_helper.c b/drivers/gpu/drm/drm_damage_helper.c
-> index 8eeff0c7bdd4..937b699ac2a8 100644
-> --- a/drivers/gpu/drm/drm_damage_helper.c
-> +++ b/drivers/gpu/drm/drm_damage_helper.c
-> @@ -33,6 +33,7 @@
->  #include <drm/drm_atomic.h>
->  #include <drm/drm_damage_helper.h>
->  #include <drm/drm_device.h>
-> +#include <drm/drm_framebuffer.h>
->  
->  static void convert_clip_rect_to_rect(const struct drm_clip_rect *src,
->  				      struct drm_mode_rect *dest,
-> diff --git a/drivers/gpu/drm/drm_fb_helper.c b/drivers/gpu/drm/drm_fb_helper.c
-> index 5ad2b6a2778c..5e9c373e6b88 100644
-> --- a/drivers/gpu/drm/drm_fb_helper.c
-> +++ b/drivers/gpu/drm/drm_fb_helper.c
-> @@ -43,6 +43,7 @@
->  #include <drm/drm_drv.h>
->  #include <drm/drm_fb_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_print.h>
->  #include <drm/drm_vblank.h>
->  
-> diff --git a/drivers/gpu/drm/drm_gem_atomic_helper.c b/drivers/gpu/drm/drm_gem_atomic_helper.c
-> index f16d60217c6c..b6a0110eb64a 100644
-> --- a/drivers/gpu/drm/drm_gem_atomic_helper.c
-> +++ b/drivers/gpu/drm/drm_gem_atomic_helper.c
-> @@ -5,6 +5,7 @@
->  
->  #include <drm/drm_atomic_state_helper.h>
->  #include <drm/drm_atomic_uapi.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem.h>
->  #include <drm/drm_gem_atomic_helper.h>
->  #include <drm/drm_gem_framebuffer_helper.h>
-> diff --git a/drivers/gpu/drm/drm_mipi_dbi.c b/drivers/gpu/drm/drm_mipi_dbi.c
-> index 09e4edb5a992..0eda9dcb0e52 100644
-> --- a/drivers/gpu/drm/drm_mipi_dbi.c
-> +++ b/drivers/gpu/drm/drm_mipi_dbi.c
-> @@ -18,6 +18,7 @@
->  #include <drm/drm_file.h>
->  #include <drm/drm_format_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem.h>
->  #include <drm/drm_gem_framebuffer_helper.h>
->  #include <drm/drm_mipi_dbi.h>
-> diff --git a/drivers/gpu/drm/drm_mode_config.c b/drivers/gpu/drm/drm_mode_config.c
-> index 37b4b9f0e468..59b34f07cfce 100644
-> --- a/drivers/gpu/drm/drm_mode_config.c
-> +++ b/drivers/gpu/drm/drm_mode_config.c
-> @@ -25,6 +25,7 @@
->  #include <drm/drm_drv.h>
->  #include <drm/drm_encoder.h>
->  #include <drm/drm_file.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_managed.h>
->  #include <drm/drm_mode_config.h>
->  #include <drm/drm_print.h>
-> diff --git a/drivers/gpu/drm/drm_modeset_helper.c b/drivers/gpu/drm/drm_modeset_helper.c
-> index da483125e063..0f08319453b2 100644
-> --- a/drivers/gpu/drm/drm_modeset_helper.c
-> +++ b/drivers/gpu/drm/drm_modeset_helper.c
-> @@ -23,6 +23,7 @@
->  #include <drm/drm_atomic_helper.h>
->  #include <drm/drm_fb_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_modeset_helper.h>
->  #include <drm/drm_plane_helper.h>
->  #include <drm/drm_print.h>
-> diff --git a/drivers/gpu/drm/drm_writeback.c b/drivers/gpu/drm/drm_writeback.c
-> index 99fd15d1b366..a031c335bdb9 100644
-> --- a/drivers/gpu/drm/drm_writeback.c
-> +++ b/drivers/gpu/drm/drm_writeback.c
-> @@ -14,6 +14,7 @@
->  #include <drm/drm_crtc.h>
->  #include <drm/drm_device.h>
->  #include <drm/drm_drv.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_modeset_helper_vtables.h>
->  #include <drm/drm_property.h>
->  #include <drm/drm_writeback.h>
-> diff --git a/drivers/gpu/drm/exynos/exynos5433_drm_decon.c b/drivers/gpu/drm/exynos/exynos5433_drm_decon.c
-> index b5001db7a95c..6cf98a1ca83b 100644
-> --- a/drivers/gpu/drm/exynos/exynos5433_drm_decon.c
-> +++ b/drivers/gpu/drm/exynos/exynos5433_drm_decon.c
-> @@ -18,6 +18,7 @@
->  #include <linux/regmap.h>
->  
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_vblank.h>
->  
->  #include "exynos_drm_crtc.h"
-> diff --git a/drivers/gpu/drm/exynos/exynos7_drm_decon.c b/drivers/gpu/drm/exynos/exynos7_drm_decon.c
-> index c04264f70ad1..3047edf355b5 100644
-> --- a/drivers/gpu/drm/exynos/exynos7_drm_decon.c
-> +++ b/drivers/gpu/drm/exynos/exynos7_drm_decon.c
-> @@ -20,6 +20,7 @@
->  #include <video/of_videomode.h>
->  
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_vblank.h>
->  #include <drm/exynos_drm.h>
->  
-> diff --git a/drivers/gpu/drm/exynos/exynos_drm_fb.c b/drivers/gpu/drm/exynos/exynos_drm_fb.c
-> index 79fa3649185c..97f2dee2db29 100644
-> --- a/drivers/gpu/drm/exynos/exynos_drm_fb.c
-> +++ b/drivers/gpu/drm/exynos/exynos_drm_fb.c
-> @@ -12,6 +12,7 @@
->  #include <drm/drm_atomic_helper.h>
->  #include <drm/drm_crtc.h>
->  #include <drm/drm_fb_helper.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_fourcc.h>
->  #include <drm/drm_gem_framebuffer_helper.h>
->  #include <drm/drm_probe_helper.h>
-> diff --git a/drivers/gpu/drm/exynos/exynos_drm_fbdev.c b/drivers/gpu/drm/exynos/exynos_drm_fbdev.c
-> index 02c97b9ca926..767afd2bfa82 100644
-> --- a/drivers/gpu/drm/exynos/exynos_drm_fbdev.c
-> +++ b/drivers/gpu/drm/exynos/exynos_drm_fbdev.c
-> @@ -15,6 +15,7 @@
->  #include <drm/drm_crtc.h>
->  #include <drm/drm_fb_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_prime.h>
->  #include <drm/drm_probe_helper.h>
->  #include <drm/exynos_drm.h>
-> diff --git a/drivers/gpu/drm/exynos/exynos_drm_fimd.c b/drivers/gpu/drm/exynos/exynos_drm_fimd.c
-> index d5720fab510c..9a39ee87e58c 100644
-> --- a/drivers/gpu/drm/exynos/exynos_drm_fimd.c
-> +++ b/drivers/gpu/drm/exynos/exynos_drm_fimd.c
-> @@ -22,6 +22,7 @@
->  #include <video/samsung_fimd.h>
->  
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_vblank.h>
->  #include <drm/exynos_drm.h>
->  
-> diff --git a/drivers/gpu/drm/exynos/exynos_drm_plane.c b/drivers/gpu/drm/exynos/exynos_drm_plane.c
-> index df76bdee7dca..3460065ba484 100644
-> --- a/drivers/gpu/drm/exynos/exynos_drm_plane.c
-> +++ b/drivers/gpu/drm/exynos/exynos_drm_plane.c
-> @@ -7,6 +7,7 @@
->  
->  #include <drm/drm_atomic.h>
->  #include <drm/drm_atomic_helper.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_plane_helper.h>
->  #include <drm/exynos_drm.h>
->  
-> diff --git a/drivers/gpu/drm/exynos/exynos_drm_vidi.c b/drivers/gpu/drm/exynos/exynos_drm_vidi.c
-> index e5662bdcbbde..4d56c8c799c5 100644
-> --- a/drivers/gpu/drm/exynos/exynos_drm_vidi.c
-> +++ b/drivers/gpu/drm/exynos/exynos_drm_vidi.c
-> @@ -13,6 +13,7 @@
->  
->  #include <drm/drm_atomic_helper.h>
->  #include <drm/drm_edid.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_probe_helper.h>
->  #include <drm/drm_simple_kms_helper.h>
->  #include <drm/drm_vblank.h>
-> diff --git a/drivers/gpu/drm/exynos/exynos_mixer.c b/drivers/gpu/drm/exynos/exynos_mixer.c
-> index de06ac647284..7e9d4f9bba31 100644
-> --- a/drivers/gpu/drm/exynos/exynos_mixer.c
-> +++ b/drivers/gpu/drm/exynos/exynos_mixer.c
-> @@ -27,6 +27,7 @@
->  
->  #include <drm/drm_edid.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_vblank.h>
->  #include <drm/exynos_drm.h>
->  
-> diff --git a/drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_plane.c b/drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_plane.c
-> index 8fe953d6e0a9..0cd527f0c146 100644
-> --- a/drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_plane.c
-> +++ b/drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_plane.c
-> @@ -12,6 +12,7 @@
->  #include <drm/drm_crtc.h>
->  #include <drm/drm_fb_cma_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_cma_helper.h>
->  #include <drm/drm_plane_helper.h>
->  #include <drm/drm_probe_helper.h>
-> diff --git a/drivers/gpu/drm/gma500/framebuffer.c b/drivers/gpu/drm/gma500/framebuffer.c
-> index 0ac6ea5fd3a1..aa3ecf771fd3 100644
-> --- a/drivers/gpu/drm/gma500/framebuffer.c
-> +++ b/drivers/gpu/drm/gma500/framebuffer.c
-> @@ -21,6 +21,7 @@
->  #include <drm/drm_crtc.h>
->  #include <drm/drm_fb_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_framebuffer_helper.h>
->  
->  #include "framebuffer.h"
-> diff --git a/drivers/gpu/drm/gma500/gma_display.c b/drivers/gpu/drm/gma500/gma_display.c
-> index 34ec3fca09ba..bd40c040a2c9 100644
-> --- a/drivers/gpu/drm/gma500/gma_display.c
-> +++ b/drivers/gpu/drm/gma500/gma_display.c
-> @@ -12,6 +12,7 @@
->  
->  #include <drm/drm_crtc.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_vblank.h>
->  
->  #include "framebuffer.h"
-> diff --git a/drivers/gpu/drm/gma500/oaktrail_crtc.c b/drivers/gpu/drm/gma500/oaktrail_crtc.c
-> index 22398d34853a..6004390d647a 100644
-> --- a/drivers/gpu/drm/gma500/oaktrail_crtc.c
-> +++ b/drivers/gpu/drm/gma500/oaktrail_crtc.c
-> @@ -8,6 +8,7 @@
->  #include <linux/pm_runtime.h>
->  
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  
->  #include "framebuffer.h"
->  #include "gem.h"
-> diff --git a/drivers/gpu/drm/hisilicon/kirin/kirin_drm_ade.c b/drivers/gpu/drm/hisilicon/kirin/kirin_drm_ade.c
-> index 1ab94620776f..61c29c2834e6 100644
-> --- a/drivers/gpu/drm/hisilicon/kirin/kirin_drm_ade.c
-> +++ b/drivers/gpu/drm/hisilicon/kirin/kirin_drm_ade.c
-> @@ -26,6 +26,7 @@
->  #include <drm/drm_drv.h>
->  #include <drm/drm_fb_cma_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_cma_helper.h>
->  #include <drm/drm_plane_helper.h>
->  #include <drm/drm_probe_helper.h>
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index 8b0949b6dc75..0da9b208d56e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -38,6 +38,7 @@
->  #include <drm/drm_crtc.h>
->  #include <drm/drm_encoder.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_probe_helper.h>
->  #include <drm/drm_rect.h>
->  #include <drm/drm_vblank.h>
-> diff --git a/drivers/gpu/drm/imx/dcss/dcss-plane.c b/drivers/gpu/drm/imx/dcss/dcss-plane.c
-> index ac45d54acd4e..1bb770031a6b 100644
-> --- a/drivers/gpu/drm/imx/dcss/dcss-plane.c
-> +++ b/drivers/gpu/drm/imx/dcss/dcss-plane.c
-> @@ -6,6 +6,7 @@
->  #include <drm/drm_atomic.h>
->  #include <drm/drm_atomic_helper.h>
->  #include <drm/drm_fb_cma_helper.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_atomic_helper.h>
->  #include <drm/drm_gem_cma_helper.h>
->  
-> diff --git a/drivers/gpu/drm/imx/ipuv3-plane.c b/drivers/gpu/drm/imx/ipuv3-plane.c
-> index 36b32e8806e3..6919d5af7f62 100644
-> --- a/drivers/gpu/drm/imx/ipuv3-plane.c
-> +++ b/drivers/gpu/drm/imx/ipuv3-plane.c
-> @@ -9,6 +9,7 @@
->  #include <drm/drm_atomic_helper.h>
->  #include <drm/drm_fb_cma_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_atomic_helper.h>
->  #include <drm/drm_gem_cma_helper.h>
->  #include <drm/drm_managed.h>
-> diff --git a/drivers/gpu/drm/ingenic/ingenic-drm-drv.c b/drivers/gpu/drm/ingenic/ingenic-drm-drv.c
-> index 8eb0ad501a7b..2c559885347a 100644
-> --- a/drivers/gpu/drm/ingenic/ingenic-drm-drv.c
-> +++ b/drivers/gpu/drm/ingenic/ingenic-drm-drv.c
-> @@ -33,6 +33,7 @@
->  #include <drm/drm_fb_cma_helper.h>
->  #include <drm/drm_fb_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_atomic_helper.h>
->  #include <drm/drm_gem_framebuffer_helper.h>
->  #include <drm/drm_managed.h>
-> diff --git a/drivers/gpu/drm/ingenic/ingenic-ipu.c b/drivers/gpu/drm/ingenic/ingenic-ipu.c
-> index 2737fc521e15..32a50935aa6d 100644
-> --- a/drivers/gpu/drm/ingenic/ingenic-ipu.c
-> +++ b/drivers/gpu/drm/ingenic/ingenic-ipu.c
-> @@ -24,6 +24,7 @@
->  #include <drm/drm_drv.h>
->  #include <drm/drm_fb_cma_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_atomic_helper.h>
->  #include <drm/drm_gem_cma_helper.h>
->  #include <drm/drm_gem_framebuffer_helper.h>
-> diff --git a/drivers/gpu/drm/kmb/kmb_plane.c b/drivers/gpu/drm/kmb/kmb_plane.c
-> index 2735b8eb3537..d03b8b458a7e 100644
-> --- a/drivers/gpu/drm/kmb/kmb_plane.c
-> +++ b/drivers/gpu/drm/kmb/kmb_plane.c
-> @@ -10,6 +10,7 @@
->  #include <drm/drm_fb_cma_helper.h>
->  #include <drm/drm_fb_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_cma_helper.h>
->  #include <drm/drm_managed.h>
->  #include <drm/drm_plane_helper.h>
-> diff --git a/drivers/gpu/drm/logicvc/logicvc_layer.c b/drivers/gpu/drm/logicvc/logicvc_layer.c
-> index bae1c7f99569..e659884f50d6 100644
-> --- a/drivers/gpu/drm/logicvc/logicvc_layer.c
-> +++ b/drivers/gpu/drm/logicvc/logicvc_layer.c
-> @@ -11,6 +11,7 @@
->  #include <drm/drm_atomic_helper.h>
->  #include <drm/drm_fb_cma_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_plane.h>
->  #include <drm/drm_plane_helper.h>
->  #include <drm/drm_print.h>
-> diff --git a/drivers/gpu/drm/mcde/mcde_display.c b/drivers/gpu/drm/mcde/mcde_display.c
-> index ce12a36e2db4..4df477540d07 100644
-> --- a/drivers/gpu/drm/mcde/mcde_display.c
-> +++ b/drivers/gpu/drm/mcde/mcde_display.c
-> @@ -13,6 +13,7 @@
->  #include <drm/drm_device.h>
->  #include <drm/drm_fb_cma_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_atomic_helper.h>
->  #include <drm/drm_gem_cma_helper.h>
->  #include <drm/drm_mipi_dsi.h>
-> diff --git a/drivers/gpu/drm/mediatek/mtk_disp_ovl.c b/drivers/gpu/drm/mediatek/mtk_disp_ovl.c
-> index 70ab22964f3b..5e85f4dfec65 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_disp_ovl.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_disp_ovl.c
-> @@ -4,6 +4,7 @@
->   */
->  
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  
->  #include <linux/clk.h>
->  #include <linux/component.h>
-> diff --git a/drivers/gpu/drm/mediatek/mtk_disp_rdma.c b/drivers/gpu/drm/mediatek/mtk_disp_rdma.c
-> index 1be4caf9ff96..2cb90466798c 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_disp_rdma.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_disp_rdma.c
-> @@ -3,6 +3,8 @@
->   * Copyright (c) 2015 MediaTek Inc.
->   */
->  
-> +#include <drm/drm_fourcc.h>
-> +
->  #include <linux/clk.h>
->  #include <linux/component.h>
->  #include <linux/module.h>
-> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_plane.c b/drivers/gpu/drm/mediatek/mtk_drm_plane.c
-> index e5fae4ec2337..ce11e574340c 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_drm_plane.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_drm_plane.c
-> @@ -8,6 +8,7 @@
->  #include <drm/drm_atomic_helper.h>
->  #include <drm/drm_atomic_uapi.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_atomic_helper.h>
->  #include <drm/drm_plane_helper.h>
->  
-> diff --git a/drivers/gpu/drm/meson/meson_overlay.c b/drivers/gpu/drm/meson/meson_overlay.c
-> index dfef8afcc245..cd35a5e42528 100644
-> --- a/drivers/gpu/drm/meson/meson_overlay.c
-> +++ b/drivers/gpu/drm/meson/meson_overlay.c
-> @@ -12,6 +12,7 @@
->  #include <drm/drm_device.h>
->  #include <drm/drm_fb_cma_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_atomic_helper.h>
->  #include <drm/drm_gem_cma_helper.h>
->  #include <drm/drm_plane_helper.h>
-> diff --git a/drivers/gpu/drm/meson/meson_plane.c b/drivers/gpu/drm/meson/meson_plane.c
-> index 8640a8a8a469..cea53d8ea4ab 100644
-> --- a/drivers/gpu/drm/meson/meson_plane.c
-> +++ b/drivers/gpu/drm/meson/meson_plane.c
-> @@ -16,6 +16,7 @@
->  #include <drm/drm_device.h>
->  #include <drm/drm_fb_cma_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_atomic_helper.h>
->  #include <drm/drm_gem_cma_helper.h>
->  #include <drm/drm_plane_helper.h>
-> diff --git a/drivers/gpu/drm/mgag200/mgag200_mode.c b/drivers/gpu/drm/mgag200/mgag200_mode.c
-> index e339f50d6bc8..225cca2ed60e 100644
-> --- a/drivers/gpu/drm/mgag200/mgag200_mode.c
-> +++ b/drivers/gpu/drm/mgag200/mgag200_mode.c
-> @@ -17,6 +17,7 @@
->  #include <drm/drm_damage_helper.h>
->  #include <drm/drm_format_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_atomic_helper.h>
->  #include <drm/drm_gem_framebuffer_helper.h>
->  #include <drm/drm_plane_helper.h>
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
-> index b56f777dbd0e..01104a4f7af6 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
-> @@ -14,6 +14,7 @@
->  #include <drm/drm_atomic.h>
->  #include <drm/drm_crtc.h>
->  #include <drm/drm_flip_work.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_mode.h>
->  #include <drm/drm_probe_helper.h>
->  #include <drm/drm_rect.h>
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys_wb.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys_wb.c
-> index 59da348ff339..45846c7833e5 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys_wb.c
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys_wb.c
-> @@ -7,6 +7,8 @@
->  
->  #include <linux/debugfs.h>
->  
-> +#include <drm/drm_framebuffer.h>
-> +
->  #include "dpu_encoder_phys.h"
->  #include "dpu_formats.h"
->  #include "dpu_hw_top.h"
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_formats.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_formats.c
-> index 440ae93d7bd1..f436a1f3419d 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_formats.c
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_formats.c
-> @@ -5,6 +5,7 @@
->  #define pr_fmt(fmt)	"[drm:%s:%d] " fmt, __func__, __LINE__
->  
->  #include <uapi/drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  
->  #include "msm_media_info.h"
->  #include "dpu_kms.h"
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-> index e23e2552e802..7a21fd680b42 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-> @@ -16,6 +16,7 @@
->  
->  #include <drm/drm_crtc.h>
->  #include <drm/drm_file.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_vblank.h>
->  #include <drm/drm_writeback.h>
->  
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_plane.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_plane.c
-> index 5b5aef249390..7211e437e51f 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_plane.c
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_plane.c
-> @@ -13,6 +13,7 @@
->  #include <drm/drm_atomic.h>
->  #include <drm/drm_atomic_uapi.h>
->  #include <drm/drm_damage_helper.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_atomic_helper.h>
->  
->  #include "msm_drv.h"
-> diff --git a/drivers/gpu/drm/msm/disp/mdp4/mdp4_plane.c b/drivers/gpu/drm/msm/disp/mdp4/mdp4_plane.c
-> index 3e20f72d75ef..b689b618da78 100644
-> --- a/drivers/gpu/drm/msm/disp/mdp4/mdp4_plane.c
-> +++ b/drivers/gpu/drm/msm/disp/mdp4/mdp4_plane.c
-> @@ -7,6 +7,7 @@
->  #include <drm/drm_atomic.h>
->  #include <drm/drm_damage_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_atomic_helper.h>
->  
->  #include "mdp4_kms.h"
-> diff --git a/drivers/gpu/drm/msm/disp/mdp5/mdp5_plane.c b/drivers/gpu/drm/msm/disp/mdp5/mdp5_plane.c
-> index e8c47a4a1d31..a2fe90cdc256 100644
-> --- a/drivers/gpu/drm/msm/disp/mdp5/mdp5_plane.c
-> +++ b/drivers/gpu/drm/msm/disp/mdp5/mdp5_plane.c
-> @@ -8,6 +8,7 @@
->  #include <drm/drm_atomic.h>
->  #include <drm/drm_damage_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_atomic_helper.h>
->  #include <drm/drm_print.h>
->  
-> diff --git a/drivers/gpu/drm/msm/disp/mdp_format.c b/drivers/gpu/drm/msm/disp/mdp_format.c
-> index 5495d8b3f5b9..025595336f26 100644
-> --- a/drivers/gpu/drm/msm/disp/mdp_format.c
-> +++ b/drivers/gpu/drm/msm/disp/mdp_format.c
-> @@ -5,6 +5,8 @@
->   * Author: Rob Clark <robdclark@gmail.com>
->   */
->  
-> +#include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  
->  #include "msm_drv.h"
->  #include "mdp_kms.h"
-> diff --git a/drivers/gpu/drm/msm/msm_debugfs.c b/drivers/gpu/drm/msm/msm_debugfs.c
-> index ea2a20699cb4..7d2dab260f86 100644
-> --- a/drivers/gpu/drm/msm/msm_debugfs.c
-> +++ b/drivers/gpu/drm/msm/msm_debugfs.c
-> @@ -10,6 +10,7 @@
->  
->  #include <drm/drm_debugfs.h>
->  #include <drm/drm_file.h>
-> +#include <drm/drm_framebuffer.h>
->  
->  #include "msm_drv.h"
->  #include "msm_gpu.h"
-> diff --git a/drivers/gpu/drm/msm/msm_fb.c b/drivers/gpu/drm/msm/msm_fb.c
-> index 4269da268a4a..e3f61c39df69 100644
-> --- a/drivers/gpu/drm/msm/msm_fb.c
-> +++ b/drivers/gpu/drm/msm/msm_fb.c
-> @@ -8,6 +8,7 @@
->  #include <drm/drm_damage_helper.h>
->  #include <drm/drm_file.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_framebuffer_helper.h>
->  #include <drm/drm_probe_helper.h>
->  
-> diff --git a/drivers/gpu/drm/msm/msm_fbdev.c b/drivers/gpu/drm/msm/msm_fbdev.c
-> index 4c39ef9dd75d..46168eccfac4 100644
-> --- a/drivers/gpu/drm/msm/msm_fbdev.c
-> +++ b/drivers/gpu/drm/msm/msm_fbdev.c
-> @@ -8,6 +8,7 @@
->  #include <drm/drm_crtc.h>
->  #include <drm/drm_fb_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_prime.h>
->  
->  #include "msm_drv.h"
-> diff --git a/drivers/gpu/drm/mxsfb/mxsfb_kms.c b/drivers/gpu/drm/mxsfb/mxsfb_kms.c
-> index f021ab2c4520..7d38769821c3 100644
-> --- a/drivers/gpu/drm/mxsfb/mxsfb_kms.c
-> +++ b/drivers/gpu/drm/mxsfb/mxsfb_kms.c
-> @@ -21,6 +21,7 @@
->  #include <drm/drm_encoder.h>
->  #include <drm/drm_fb_cma_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_atomic_helper.h>
->  #include <drm/drm_gem_cma_helper.h>
->  #include <drm/drm_plane.h>
-> diff --git a/drivers/gpu/drm/omapdrm/omap_debugfs.c b/drivers/gpu/drm/omapdrm/omap_debugfs.c
-> index 2d3909a37f51..bfb2ccb40bd1 100644
-> --- a/drivers/gpu/drm/omapdrm/omap_debugfs.c
-> +++ b/drivers/gpu/drm/omapdrm/omap_debugfs.c
-> @@ -10,6 +10,7 @@
->  #include <drm/drm_debugfs.h>
->  #include <drm/drm_file.h>
->  #include <drm/drm_fb_helper.h>
-> +#include <drm/drm_framebuffer.h>
->  
->  #include "omap_drv.h"
->  #include "omap_dmm_tiler.h"
-> diff --git a/drivers/gpu/drm/omapdrm/omap_fb.c b/drivers/gpu/drm/omapdrm/omap_fb.c
-> index 895e66b08a81..0c4a17347fdc 100644
-> --- a/drivers/gpu/drm/omapdrm/omap_fb.c
-> +++ b/drivers/gpu/drm/omapdrm/omap_fb.c
-> @@ -8,6 +8,7 @@
->  
->  #include <drm/drm_modeset_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_framebuffer_helper.h>
->  
->  #include "omap_dmm_tiler.h"
-> diff --git a/drivers/gpu/drm/omapdrm/omap_fbdev.c b/drivers/gpu/drm/omapdrm/omap_fbdev.c
-> index 42eac6ad12bd..40706c5aad7b 100644
-> --- a/drivers/gpu/drm/omapdrm/omap_fbdev.c
-> +++ b/drivers/gpu/drm/omapdrm/omap_fbdev.c
-> @@ -9,6 +9,7 @@
->  #include <drm/drm_fb_helper.h>
->  #include <drm/drm_file.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  
->  #include "omap_drv.h"
->  
-> diff --git a/drivers/gpu/drm/omapdrm/omap_plane.c b/drivers/gpu/drm/omapdrm/omap_plane.c
-> index b83d91ec030a..1294b3328f09 100644
-> --- a/drivers/gpu/drm/omapdrm/omap_plane.c
-> +++ b/drivers/gpu/drm/omapdrm/omap_plane.c
-> @@ -9,6 +9,7 @@
->  #include <drm/drm_gem_atomic_helper.h>
->  #include <drm/drm_plane_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  
->  #include "omap_dmm_tiler.h"
->  #include "omap_drv.h"
-> diff --git a/drivers/gpu/drm/pl111/pl111_display.c b/drivers/gpu/drm/pl111/pl111_display.c
-> index 443e3b932322..ccf5f02b2962 100644
-> --- a/drivers/gpu/drm/pl111/pl111_display.c
-> +++ b/drivers/gpu/drm/pl111/pl111_display.c
-> @@ -16,6 +16,7 @@
->  
->  #include <drm/drm_fb_cma_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_atomic_helper.h>
->  #include <drm/drm_gem_cma_helper.h>
->  #include <drm/drm_vblank.h>
-> diff --git a/drivers/gpu/drm/pl111/pl111_drv.c b/drivers/gpu/drm/pl111/pl111_drv.c
-> index 520301b405f1..19a4324bd356 100644
-> --- a/drivers/gpu/drm/pl111/pl111_drv.c
-> +++ b/drivers/gpu/drm/pl111/pl111_drv.c
-> @@ -50,6 +50,7 @@
->  #include <drm/drm_drv.h>
->  #include <drm/drm_fb_cma_helper.h>
->  #include <drm/drm_fb_helper.h>
-> +#include <drm/drm_fourcc.h>
->  #include <drm/drm_gem_cma_helper.h>
->  #include <drm/drm_gem_framebuffer_helper.h>
->  #include <drm/drm_of.h>
-> diff --git a/drivers/gpu/drm/pl111/pl111_versatile.c b/drivers/gpu/drm/pl111/pl111_versatile.c
-> index bdd883f4f0da..efb01a554574 100644
-> --- a/drivers/gpu/drm/pl111/pl111_versatile.c
-> +++ b/drivers/gpu/drm/pl111/pl111_versatile.c
-> @@ -18,6 +18,8 @@
->  #include <linux/regmap.h>
->  #include <linux/vexpress.h>
->  
-> +#include <drm/drm_fourcc.h>
-> +
->  #include "pl111_versatile.h"
->  #include "pl111_drm.h"
->  
-> diff --git a/drivers/gpu/drm/qxl/qxl_display.c b/drivers/gpu/drm/qxl/qxl_display.c
-> index 43f89bfc4b72..2e8949863d6b 100644
-> --- a/drivers/gpu/drm/qxl/qxl_display.c
-> +++ b/drivers/gpu/drm/qxl/qxl_display.c
-> @@ -31,6 +31,7 @@
->  #include <drm/drm_atomic.h>
->  #include <drm/drm_atomic_helper.h>
->  #include <drm/drm_edid.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_framebuffer_helper.h>
->  #include <drm/drm_plane_helper.h>
->  #include <drm/drm_probe_helper.h>
-> diff --git a/drivers/gpu/drm/qxl/qxl_draw.c b/drivers/gpu/drm/qxl/qxl_draw.c
-> index a93de9e1977a..3a3e127ce297 100644
-> --- a/drivers/gpu/drm/qxl/qxl_draw.c
-> +++ b/drivers/gpu/drm/qxl/qxl_draw.c
-> @@ -23,6 +23,7 @@
->  #include <linux/iosys-map.h>
->  
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  
->  #include "qxl_drv.h"
->  #include "qxl_object.h"
-> diff --git a/drivers/gpu/drm/radeon/atombios_crtc.c b/drivers/gpu/drm/radeon/atombios_crtc.c
-> index c94e429e75f9..69f1bc073902 100644
-> --- a/drivers/gpu/drm/radeon/atombios_crtc.c
-> +++ b/drivers/gpu/drm/radeon/atombios_crtc.c
-> @@ -28,6 +28,7 @@
->  #include <drm/drm_fb_helper.h>
->  #include <drm/drm_fixed.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_vblank.h>
->  #include <drm/radeon_drm.h>
->  
-> diff --git a/drivers/gpu/drm/radeon/evergreen.c b/drivers/gpu/drm/radeon/evergreen.c
-> index 455f8036aa54..4f06356d9ce2 100644
-> --- a/drivers/gpu/drm/radeon/evergreen.c
-> +++ b/drivers/gpu/drm/radeon/evergreen.c
-> @@ -29,6 +29,7 @@
->  #include <drm/drm_vblank.h>
->  #include <drm/radeon_drm.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  
->  #include "atom.h"
->  #include "avivod.h"
-> diff --git a/drivers/gpu/drm/radeon/r100.c b/drivers/gpu/drm/radeon/r100.c
-> index 2dd85ba1faa2..d4f09ecc3d22 100644
-> --- a/drivers/gpu/drm/radeon/r100.c
-> +++ b/drivers/gpu/drm/radeon/r100.c
-> @@ -35,6 +35,7 @@
->  #include <drm/drm_device.h>
->  #include <drm/drm_file.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_vblank.h>
->  #include <drm/radeon_drm.h>
->  
-> diff --git a/drivers/gpu/drm/radeon/radeon_device.c b/drivers/gpu/drm/radeon/radeon_device.c
-> index 15692cb241fc..f508aefcf786 100644
-> --- a/drivers/gpu/drm/radeon/radeon_device.c
-> +++ b/drivers/gpu/drm/radeon/radeon_device.c
-> @@ -38,6 +38,7 @@
->  #include <drm/drm_crtc_helper.h>
->  #include <drm/drm_device.h>
->  #include <drm/drm_file.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_probe_helper.h>
->  #include <drm/radeon_drm.h>
->  
-> diff --git a/drivers/gpu/drm/radeon/radeon_display.c b/drivers/gpu/drm/radeon/radeon_display.c
-> index 57ff2b723c87..f12675e3d261 100644
-> --- a/drivers/gpu/drm/radeon/radeon_display.c
-> +++ b/drivers/gpu/drm/radeon/radeon_display.c
-> @@ -36,6 +36,7 @@
->  #include <drm/drm_edid.h>
->  #include <drm/drm_fb_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_framebuffer_helper.h>
->  #include <drm/drm_plane_helper.h>
->  #include <drm/drm_probe_helper.h>
-> diff --git a/drivers/gpu/drm/radeon/radeon_fb.c b/drivers/gpu/drm/radeon/radeon_fb.c
-> index ca382fbf7a86..6ccea51d4072 100644
-> --- a/drivers/gpu/drm/radeon/radeon_fb.c
-> +++ b/drivers/gpu/drm/radeon/radeon_fb.c
-> @@ -34,6 +34,7 @@
->  #include <drm/drm_crtc_helper.h>
->  #include <drm/drm_fb_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/radeon_drm.h>
->  
->  #include "radeon.h"
-> diff --git a/drivers/gpu/drm/radeon/radeon_legacy_crtc.c b/drivers/gpu/drm/radeon/radeon_legacy_crtc.c
-> index 8817fd033cd0..6072ed5f2dd3 100644
-> --- a/drivers/gpu/drm/radeon/radeon_legacy_crtc.c
-> +++ b/drivers/gpu/drm/radeon/radeon_legacy_crtc.c
-> @@ -28,6 +28,7 @@
->  #include <drm/drm_fb_helper.h>
->  #include <drm/drm_fixed.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_vblank.h>
->  #include <drm/radeon_drm.h>
->  
-> diff --git a/drivers/gpu/drm/radeon/rs600.c b/drivers/gpu/drm/radeon/rs600.c
-> index b87dd551e939..8cf87a0a2b2a 100644
-> --- a/drivers/gpu/drm/radeon/rs600.c
-> +++ b/drivers/gpu/drm/radeon/rs600.c
-> @@ -42,6 +42,7 @@
->  #include <drm/drm_device.h>
->  #include <drm/drm_vblank.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  
->  #include "atom.h"
->  #include "radeon.h"
-> diff --git a/drivers/gpu/drm/radeon/rv770.c b/drivers/gpu/drm/radeon/rv770.c
-> index 38796af4fadd..26fa9b095514 100644
-> --- a/drivers/gpu/drm/radeon/rv770.c
-> +++ b/drivers/gpu/drm/radeon/rv770.c
-> @@ -33,6 +33,7 @@
->  #include <drm/drm_device.h>
->  #include <drm/radeon_drm.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  
->  #include "atom.h"
->  #include "avivod.h"
-> diff --git a/drivers/gpu/drm/rcar-du/rcar_du_kms.c b/drivers/gpu/drm/rcar-du/rcar_du_kms.c
-> index 190dbb7f15dd..0f09e1ee0390 100644
-> --- a/drivers/gpu/drm/rcar-du/rcar_du_kms.c
-> +++ b/drivers/gpu/drm/rcar-du/rcar_du_kms.c
-> @@ -12,6 +12,7 @@
->  #include <drm/drm_crtc.h>
->  #include <drm/drm_device.h>
->  #include <drm/drm_fb_cma_helper.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_cma_helper.h>
->  #include <drm/drm_gem_framebuffer_helper.h>
->  #include <drm/drm_managed.h>
-> diff --git a/drivers/gpu/drm/rcar-du/rcar_du_plane.c b/drivers/gpu/drm/rcar-du/rcar_du_plane.c
-> index 5c1c7bb04f3f..7099eedf0ccb 100644
-> --- a/drivers/gpu/drm/rcar-du/rcar_du_plane.c
-> +++ b/drivers/gpu/drm/rcar-du/rcar_du_plane.c
-> @@ -13,6 +13,7 @@
->  #include <drm/drm_device.h>
->  #include <drm/drm_fb_cma_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_cma_helper.h>
->  #include <drm/drm_plane_helper.h>
->  
-> diff --git a/drivers/gpu/drm/rcar-du/rcar_du_vsp.c b/drivers/gpu/drm/rcar-du/rcar_du_vsp.c
-> index 8eb9b2b097ae..3f55d1d0d094 100644
-> --- a/drivers/gpu/drm/rcar-du/rcar_du_vsp.c
-> +++ b/drivers/gpu/drm/rcar-du/rcar_du_vsp.c
-> @@ -12,6 +12,7 @@
->  #include <drm/drm_crtc.h>
->  #include <drm/drm_fb_cma_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_atomic_helper.h>
->  #include <drm/drm_gem_cma_helper.h>
->  #include <drm/drm_managed.h>
-> diff --git a/drivers/gpu/drm/rcar-du/rcar_du_writeback.c b/drivers/gpu/drm/rcar-du/rcar_du_writeback.c
-> index db5b54b45fd3..4fd6067f6fb4 100644
-> --- a/drivers/gpu/drm/rcar-du/rcar_du_writeback.c
-> +++ b/drivers/gpu/drm/rcar-du/rcar_du_writeback.c
-> @@ -9,6 +9,7 @@
->  #include <drm/drm_device.h>
->  #include <drm/drm_edid.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_probe_helper.h>
->  #include <drm/drm_writeback.h>
->  
-> diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_fb.c b/drivers/gpu/drm/rockchip/rockchip_drm_fb.c
-> index 0d2cb4f3922b..092bf863110b 100644
-> --- a/drivers/gpu/drm/rockchip/rockchip_drm_fb.c
-> +++ b/drivers/gpu/drm/rockchip/rockchip_drm_fb.c
-> @@ -11,6 +11,7 @@
->  #include <drm/drm_damage_helper.h>
->  #include <drm/drm_fb_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_framebuffer_helper.h>
->  #include <drm/drm_probe_helper.h>
->  
-> diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop.c b/drivers/gpu/drm/rockchip/rockchip_drm_vop.c
-> index 74562d40f639..517a31c7078e 100644
-> --- a/drivers/gpu/drm/rockchip/rockchip_drm_vop.c
-> +++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop.c
-> @@ -23,6 +23,7 @@
->  #include <drm/drm_crtc.h>
->  #include <drm/drm_flip_work.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_atomic_helper.h>
->  #include <drm/drm_gem_framebuffer_helper.h>
->  #include <drm/drm_plane_helper.h>
-> diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-> index 6b72894e02d4..fe867263c7d9 100644
-> --- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-> +++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-> @@ -26,6 +26,7 @@
->  #include <drm/drm_crtc_helper.h>
->  #include <drm/drm_debugfs.h>
->  #include <drm/drm_flip_work.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_plane_helper.h>
->  #include <drm/drm_probe_helper.h>
->  #include <drm/drm_vblank.h>
-> diff --git a/drivers/gpu/drm/selftests/test-drm_damage_helper.c b/drivers/gpu/drm/selftests/test-drm_damage_helper.c
-> index 8d8d8e214c28..816e1464a98f 100644
-> --- a/drivers/gpu/drm/selftests/test-drm_damage_helper.c
-> +++ b/drivers/gpu/drm/selftests/test-drm_damage_helper.c
-> @@ -6,6 +6,7 @@
->  #define pr_fmt(fmt) "drm_damage_helper: " fmt
->  
->  #include <drm/drm_damage_helper.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_plane.h>
->  #include <drm/drm_drv.h>
->  
-> diff --git a/drivers/gpu/drm/selftests/test-drm_plane_helper.c b/drivers/gpu/drm/selftests/test-drm_plane_helper.c
-> index b61273e9c403..64e8938ab194 100644
-> --- a/drivers/gpu/drm/selftests/test-drm_plane_helper.c
-> +++ b/drivers/gpu/drm/selftests/test-drm_plane_helper.c
-> @@ -6,6 +6,7 @@
->  #define pr_fmt(fmt) "drm_plane_helper: " fmt
->  
->  #include <drm/drm_atomic_helper.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_plane_helper.h>
->  #include <drm/drm_modes.h>
->  
-> diff --git a/drivers/gpu/drm/shmobile/shmob_drm_crtc.c b/drivers/gpu/drm/shmobile/shmob_drm_crtc.c
-> index 03556dbfcafb..071a929e9fe3 100644
-> --- a/drivers/gpu/drm/shmobile/shmob_drm_crtc.c
-> +++ b/drivers/gpu/drm/shmobile/shmob_drm_crtc.c
-> @@ -14,6 +14,7 @@
->  #include <drm/drm_crtc_helper.h>
->  #include <drm/drm_fb_cma_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_cma_helper.h>
->  #include <drm/drm_plane_helper.h>
->  #include <drm/drm_probe_helper.h>
-> diff --git a/drivers/gpu/drm/shmobile/shmob_drm_kms.c b/drivers/gpu/drm/shmobile/shmob_drm_kms.c
-> index 7a866d6ce6bb..68d21be784aa 100644
-> --- a/drivers/gpu/drm/shmobile/shmob_drm_kms.c
-> +++ b/drivers/gpu/drm/shmobile/shmob_drm_kms.c
-> @@ -10,6 +10,7 @@
->  #include <drm/drm_crtc.h>
->  #include <drm/drm_crtc_helper.h>
->  #include <drm/drm_fb_cma_helper.h>
-> +#include <drm/drm_fourcc.h>
->  #include <drm/drm_gem_cma_helper.h>
->  #include <drm/drm_gem_framebuffer_helper.h>
->  #include <drm/drm_probe_helper.h>
-> diff --git a/drivers/gpu/drm/shmobile/shmob_drm_plane.c b/drivers/gpu/drm/shmobile/shmob_drm_plane.c
-> index cbc464f006b4..4763ea8e1af0 100644
-> --- a/drivers/gpu/drm/shmobile/shmob_drm_plane.c
-> +++ b/drivers/gpu/drm/shmobile/shmob_drm_plane.c
-> @@ -11,6 +11,7 @@
->  #include <drm/drm_crtc_helper.h>
->  #include <drm/drm_fb_cma_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_cma_helper.h>
->  
->  #include "shmob_drm_drv.h"
-> diff --git a/drivers/gpu/drm/solomon/ssd130x.c b/drivers/gpu/drm/solomon/ssd130x.c
-> index d2f314d32325..77f80b0d3a5e 100644
-> --- a/drivers/gpu/drm/solomon/ssd130x.c
-> +++ b/drivers/gpu/drm/solomon/ssd130x.c
-> @@ -24,6 +24,7 @@
->  #include <drm/drm_fb_cma_helper.h>
->  #include <drm/drm_fb_helper.h>
->  #include <drm/drm_format_helper.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_atomic_helper.h>
->  #include <drm/drm_gem_framebuffer_helper.h>
->  #include <drm/drm_gem_shmem_helper.h>
-> diff --git a/drivers/gpu/drm/sprd/sprd_dpu.c b/drivers/gpu/drm/sprd/sprd_dpu.c
-> index 1637203ea103..907d0c259c46 100644
-> --- a/drivers/gpu/drm/sprd/sprd_dpu.c
-> +++ b/drivers/gpu/drm/sprd/sprd_dpu.c
-> @@ -19,6 +19,7 @@
->  #include <drm/drm_atomic_helper.h>
->  #include <drm/drm_crtc_helper.h>
->  #include <drm/drm_fb_cma_helper.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_cma_helper.h>
->  #include <drm/drm_gem_framebuffer_helper.h>
->  #include <drm/drm_plane_helper.h>
-> diff --git a/drivers/gpu/drm/sti/sti_cursor.c b/drivers/gpu/drm/sti/sti_cursor.c
-> index 414c9973aa6d..1e9bd4241f10 100644
-> --- a/drivers/gpu/drm/sti/sti_cursor.c
-> +++ b/drivers/gpu/drm/sti/sti_cursor.c
-> @@ -12,6 +12,7 @@
->  #include <drm/drm_atomic.h>
->  #include <drm/drm_device.h>
->  #include <drm/drm_fb_cma_helper.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_cma_helper.h>
->  
->  #include "sti_compositor.h"
-> diff --git a/drivers/gpu/drm/sti/sti_gdp.c b/drivers/gpu/drm/sti/sti_gdp.c
-> index b58415f2e4d8..a1f78d52fb33 100644
-> --- a/drivers/gpu/drm/sti/sti_gdp.c
-> +++ b/drivers/gpu/drm/sti/sti_gdp.c
-> @@ -13,6 +13,7 @@
->  #include <drm/drm_device.h>
->  #include <drm/drm_fb_cma_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_cma_helper.h>
->  
->  #include "sti_compositor.h"
-> diff --git a/drivers/gpu/drm/sti/sti_hqvdp.c b/drivers/gpu/drm/sti/sti_hqvdp.c
-> index 2201a50353eb..b5ae5d217bc0 100644
-> --- a/drivers/gpu/drm/sti/sti_hqvdp.c
-> +++ b/drivers/gpu/drm/sti/sti_hqvdp.c
-> @@ -17,6 +17,7 @@
->  #include <drm/drm_device.h>
->  #include <drm/drm_fb_cma_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_cma_helper.h>
->  
->  #include "sti_compositor.h"
-> diff --git a/drivers/gpu/drm/sti/sti_plane.c b/drivers/gpu/drm/sti/sti_plane.c
-> index 173409cdb99e..59814663abc6 100644
-> --- a/drivers/gpu/drm/sti/sti_plane.c
-> +++ b/drivers/gpu/drm/sti/sti_plane.c
-> @@ -10,6 +10,7 @@
->  
->  #include <drm/drm_fb_cma_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_cma_helper.h>
->  
->  #include "sti_compositor.h"
-> diff --git a/drivers/gpu/drm/stm/ltdc.c b/drivers/gpu/drm/stm/ltdc.c
-> index 82fc454d3edf..e9c4ee8d84b3 100644
-> --- a/drivers/gpu/drm/stm/ltdc.c
-> +++ b/drivers/gpu/drm/stm/ltdc.c
-> @@ -28,6 +28,7 @@
->  #include <drm/drm_edid.h>
->  #include <drm/drm_fb_cma_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_atomic_helper.h>
->  #include <drm/drm_gem_cma_helper.h>
->  #include <drm/drm_of.h>
-> diff --git a/drivers/gpu/drm/sun4i/sun4i_backend.c b/drivers/gpu/drm/sun4i/sun4i_backend.c
-> index decd95ad519d..80ffc57bdc02 100644
-> --- a/drivers/gpu/drm/sun4i/sun4i_backend.c
-> +++ b/drivers/gpu/drm/sun4i/sun4i_backend.c
-> @@ -20,6 +20,7 @@
->  #include <drm/drm_crtc.h>
->  #include <drm/drm_fb_cma_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_cma_helper.h>
->  #include <drm/drm_plane_helper.h>
->  #include <drm/drm_probe_helper.h>
-> diff --git a/drivers/gpu/drm/sun4i/sun8i_mixer.c b/drivers/gpu/drm/sun4i/sun8i_mixer.c
-> index 875a1156c04e..648b38a73066 100644
-> --- a/drivers/gpu/drm/sun4i/sun8i_mixer.c
-> +++ b/drivers/gpu/drm/sun4i/sun8i_mixer.c
-> @@ -17,6 +17,7 @@
->  #include <drm/drm_atomic_helper.h>
->  #include <drm/drm_crtc.h>
->  #include <drm/drm_fb_cma_helper.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_cma_helper.h>
->  #include <drm/drm_plane_helper.h>
->  #include <drm/drm_probe_helper.h>
-> diff --git a/drivers/gpu/drm/sun4i/sun8i_ui_layer.c b/drivers/gpu/drm/sun4i/sun8i_ui_layer.c
-> index 4632dea2dc1e..005d939d4c14 100644
-> --- a/drivers/gpu/drm/sun4i/sun8i_ui_layer.c
-> +++ b/drivers/gpu/drm/sun4i/sun8i_ui_layer.c
-> @@ -14,6 +14,7 @@
->  #include <drm/drm_crtc.h>
->  #include <drm/drm_fb_cma_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_atomic_helper.h>
->  #include <drm/drm_gem_cma_helper.h>
->  #include <drm/drm_plane_helper.h>
-> diff --git a/drivers/gpu/drm/sun4i/sun8i_vi_layer.c b/drivers/gpu/drm/sun4i/sun8i_vi_layer.c
-> index f7d0b082d634..91b390594128 100644
-> --- a/drivers/gpu/drm/sun4i/sun8i_vi_layer.c
-> +++ b/drivers/gpu/drm/sun4i/sun8i_vi_layer.c
-> @@ -7,6 +7,7 @@
->  #include <drm/drm_atomic_helper.h>
->  #include <drm/drm_crtc.h>
->  #include <drm/drm_fb_cma_helper.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_atomic_helper.h>
->  #include <drm/drm_gem_cma_helper.h>
->  #include <drm/drm_plane_helper.h>
-> diff --git a/drivers/gpu/drm/tegra/dc.c b/drivers/gpu/drm/tegra/dc.c
-> index c6951cf5d2ca..d2fce67dfbfd 100644
-> --- a/drivers/gpu/drm/tegra/dc.c
-> +++ b/drivers/gpu/drm/tegra/dc.c
-> @@ -23,6 +23,7 @@
->  #include <drm/drm_atomic_helper.h>
->  #include <drm/drm_debugfs.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_plane_helper.h>
->  #include <drm/drm_vblank.h>
->  
-> diff --git a/drivers/gpu/drm/tegra/drm.c b/drivers/gpu/drm/tegra/drm.c
-> index 9464f522e257..4cdc8faf798f 100644
-> --- a/drivers/gpu/drm/tegra/drm.c
-> +++ b/drivers/gpu/drm/tegra/drm.c
-> @@ -18,6 +18,7 @@
->  #include <drm/drm_debugfs.h>
->  #include <drm/drm_drv.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_ioctl.h>
->  #include <drm/drm_prime.h>
->  #include <drm/drm_vblank.h>
-> diff --git a/drivers/gpu/drm/tegra/fb.c b/drivers/gpu/drm/tegra/fb.c
-> index c04dda8353fd..ed828de5ac01 100644
-> --- a/drivers/gpu/drm/tegra/fb.c
-> +++ b/drivers/gpu/drm/tegra/fb.c
-> @@ -10,6 +10,7 @@
->  #include <linux/console.h>
->  
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_framebuffer_helper.h>
->  #include <drm/drm_modeset_helper.h>
->  
-> diff --git a/drivers/gpu/drm/tegra/hub.c b/drivers/gpu/drm/tegra/hub.c
-> index b8d3174c04c9..b762ed7b6bb4 100644
-> --- a/drivers/gpu/drm/tegra/hub.c
-> +++ b/drivers/gpu/drm/tegra/hub.c
-> @@ -17,6 +17,7 @@
->  #include <drm/drm_atomic.h>
->  #include <drm/drm_atomic_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_probe_helper.h>
->  
->  #include "drm.h"
-> diff --git a/drivers/gpu/drm/tegra/plane.c b/drivers/gpu/drm/tegra/plane.c
-> index e0e6938c6200..d049b211c9b3 100644
-> --- a/drivers/gpu/drm/tegra/plane.c
-> +++ b/drivers/gpu/drm/tegra/plane.c
-> @@ -9,6 +9,7 @@
->  #include <drm/drm_atomic.h>
->  #include <drm/drm_atomic_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_atomic_helper.h>
->  #include <drm/drm_plane_helper.h>
->  
-> diff --git a/drivers/gpu/drm/tidss/tidss_dispc.c b/drivers/gpu/drm/tidss/tidss_dispc.c
-> index dae47853b728..592203c11811 100644
-> --- a/drivers/gpu/drm/tidss/tidss_dispc.c
-> +++ b/drivers/gpu/drm/tidss/tidss_dispc.c
-> @@ -23,6 +23,7 @@
->  
->  #include <drm/drm_fourcc.h>
->  #include <drm/drm_fb_cma_helper.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_cma_helper.h>
->  #include <drm/drm_panel.h>
->  
-> diff --git a/drivers/gpu/drm/tidss/tidss_plane.c b/drivers/gpu/drm/tidss/tidss_plane.c
-> index 217415ec8eea..23ac31879186 100644
-> --- a/drivers/gpu/drm/tidss/tidss_plane.c
-> +++ b/drivers/gpu/drm/tidss/tidss_plane.c
-> @@ -9,6 +9,7 @@
->  #include <drm/drm_crtc.h>
->  #include <drm/drm_crtc_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_fb_cma_helper.h>
->  #include <drm/drm_gem_atomic_helper.h>
->  
-> diff --git a/drivers/gpu/drm/tilcdc/tilcdc_crtc.c b/drivers/gpu/drm/tilcdc/tilcdc_crtc.c
-> index 0dae7d5806bb..509fbae8c9a6 100644
-> --- a/drivers/gpu/drm/tilcdc/tilcdc_crtc.c
-> +++ b/drivers/gpu/drm/tilcdc/tilcdc_crtc.c
-> @@ -14,6 +14,7 @@
->  #include <drm/drm_crtc.h>
->  #include <drm/drm_fb_cma_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_cma_helper.h>
->  #include <drm/drm_modeset_helper_vtables.h>
->  #include <drm/drm_print.h>
-> diff --git a/drivers/gpu/drm/tilcdc/tilcdc_plane.c b/drivers/gpu/drm/tilcdc/tilcdc_plane.c
-> index 74a5c8832229..960136518814 100644
-> --- a/drivers/gpu/drm/tilcdc/tilcdc_plane.c
-> +++ b/drivers/gpu/drm/tilcdc/tilcdc_plane.c
-> @@ -8,6 +8,7 @@
->  #include <drm/drm_plane_helper.h>
->  #include <drm/drm_atomic_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  
->  #include "tilcdc_drv.h"
->  
-> diff --git a/drivers/gpu/drm/tiny/arcpgu.c b/drivers/gpu/drm/tiny/arcpgu.c
-> index 9f434adfa487..7461cb401407 100644
-> --- a/drivers/gpu/drm/tiny/arcpgu.c
-> +++ b/drivers/gpu/drm/tiny/arcpgu.c
-> @@ -14,6 +14,7 @@
->  #include <drm/drm_fb_cma_helper.h>
->  #include <drm/drm_fb_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_cma_helper.h>
->  #include <drm/drm_gem_framebuffer_helper.h>
->  #include <drm/drm_module.h>
-> diff --git a/drivers/gpu/drm/tiny/bochs.c b/drivers/gpu/drm/tiny/bochs.c
-> index 21cc7258af1d..82364a0a7b18 100644
-> --- a/drivers/gpu/drm/tiny/bochs.c
-> +++ b/drivers/gpu/drm/tiny/bochs.c
-> @@ -9,6 +9,7 @@
->  #include <drm/drm_edid.h>
->  #include <drm/drm_fb_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_framebuffer_helper.h>
->  #include <drm/drm_gem_vram_helper.h>
->  #include <drm/drm_managed.h>
-> diff --git a/drivers/gpu/drm/tiny/cirrus.c b/drivers/gpu/drm/tiny/cirrus.c
-> index 152ea21468df..c4f5beea1f90 100644
-> --- a/drivers/gpu/drm/tiny/cirrus.c
-> +++ b/drivers/gpu/drm/tiny/cirrus.c
-> @@ -34,6 +34,7 @@
->  #include <drm/drm_file.h>
->  #include <drm/drm_format_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_atomic_helper.h>
->  #include <drm/drm_gem_framebuffer_helper.h>
->  #include <drm/drm_gem_shmem_helper.h>
-> diff --git a/drivers/gpu/drm/tiny/gm12u320.c b/drivers/gpu/drm/tiny/gm12u320.c
-> index e305efb1d6b9..7441d992a5d7 100644
-> --- a/drivers/gpu/drm/tiny/gm12u320.c
-> +++ b/drivers/gpu/drm/tiny/gm12u320.c
-> @@ -16,6 +16,7 @@
->  #include <drm/drm_file.h>
->  #include <drm/drm_format_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_atomic_helper.h>
->  #include <drm/drm_gem_framebuffer_helper.h>
->  #include <drm/drm_gem_shmem_helper.h>
-> diff --git a/drivers/gpu/drm/tiny/ili9225.c b/drivers/gpu/drm/tiny/ili9225.c
-> index cc92eb9f2a07..8d686eecd5f4 100644
-> --- a/drivers/gpu/drm/tiny/ili9225.c
-> +++ b/drivers/gpu/drm/tiny/ili9225.c
-> @@ -22,6 +22,7 @@
->  #include <drm/drm_fb_cma_helper.h>
->  #include <drm/drm_fb_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_atomic_helper.h>
->  #include <drm/drm_gem_cma_helper.h>
->  #include <drm/drm_managed.h>
-> diff --git a/drivers/gpu/drm/tiny/repaper.c b/drivers/gpu/drm/tiny/repaper.c
-> index a096fb8b83e9..013790c45d0a 100644
-> --- a/drivers/gpu/drm/tiny/repaper.c
-> +++ b/drivers/gpu/drm/tiny/repaper.c
-> @@ -28,6 +28,7 @@
->  #include <drm/drm_fb_cma_helper.h>
->  #include <drm/drm_fb_helper.h>
->  #include <drm/drm_format_helper.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_atomic_helper.h>
->  #include <drm/drm_gem_cma_helper.h>
->  #include <drm/drm_gem_framebuffer_helper.h>
-> diff --git a/drivers/gpu/drm/tiny/st7586.c b/drivers/gpu/drm/tiny/st7586.c
-> index 3f38faa1cd8c..8eddb020c43e 100644
-> --- a/drivers/gpu/drm/tiny/st7586.c
-> +++ b/drivers/gpu/drm/tiny/st7586.c
-> @@ -18,6 +18,7 @@
->  #include <drm/drm_fb_cma_helper.h>
->  #include <drm/drm_fb_helper.h>
->  #include <drm/drm_format_helper.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_atomic_helper.h>
->  #include <drm/drm_gem_cma_helper.h>
->  #include <drm/drm_gem_framebuffer_helper.h>
-> diff --git a/drivers/gpu/drm/tve200/tve200_display.c b/drivers/gpu/drm/tve200/tve200_display.c
-> index 17b8c8dd169d..771bad881714 100644
-> --- a/drivers/gpu/drm/tve200/tve200_display.c
-> +++ b/drivers/gpu/drm/tve200/tve200_display.c
-> @@ -17,6 +17,7 @@
->  
->  #include <drm/drm_fb_cma_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_atomic_helper.h>
->  #include <drm/drm_gem_cma_helper.h>
->  #include <drm/drm_panel.h>
-> diff --git a/drivers/gpu/drm/vboxvideo/vbox_mode.c b/drivers/gpu/drm/vboxvideo/vbox_mode.c
-> index 52eaa10712ec..8e3b3616bf09 100644
-> --- a/drivers/gpu/drm/vboxvideo/vbox_mode.c
-> +++ b/drivers/gpu/drm/vboxvideo/vbox_mode.c
-> @@ -18,6 +18,7 @@
->  #include <drm/drm_fb_helper.h>
->  #include <drm/drm_edid.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_atomic_helper.h>
->  #include <drm/drm_gem_framebuffer_helper.h>
->  #include <drm/drm_plane_helper.h>
-> diff --git a/drivers/gpu/drm/vc4/vc4_bo.c b/drivers/gpu/drm/vc4/vc4_bo.c
-> index 49c0f2ac868b..3700d737ee71 100644
-> --- a/drivers/gpu/drm/vc4/vc4_bo.c
-> +++ b/drivers/gpu/drm/vc4/vc4_bo.c
-> @@ -18,6 +18,8 @@
->  
->  #include <linux/dma-buf.h>
->  
-> +#include <drm/drm_fourcc.h>
-> +
->  #include "vc4_drv.h"
->  #include "uapi/drm/vc4_drm.h"
->  
-> diff --git a/drivers/gpu/drm/vc4/vc4_crtc.c b/drivers/gpu/drm/vc4/vc4_crtc.c
-> index 59b20c8f132b..0b80d84a92bd 100644
-> --- a/drivers/gpu/drm/vc4/vc4_crtc.c
-> +++ b/drivers/gpu/drm/vc4/vc4_crtc.c
-> @@ -38,6 +38,7 @@
->  #include <drm/drm_atomic_helper.h>
->  #include <drm/drm_atomic_uapi.h>
->  #include <drm/drm_fb_cma_helper.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_print.h>
->  #include <drm/drm_probe_helper.h>
->  #include <drm/drm_vblank.h>
-> diff --git a/drivers/gpu/drm/vc4/vc4_kms.c b/drivers/gpu/drm/vc4/vc4_kms.c
-> index c169bd72e53b..a1819df6c190 100644
-> --- a/drivers/gpu/drm/vc4/vc4_kms.c
-> +++ b/drivers/gpu/drm/vc4/vc4_kms.c
-> @@ -16,6 +16,7 @@
->  #include <drm/drm_atomic.h>
->  #include <drm/drm_atomic_helper.h>
->  #include <drm/drm_crtc.h>
-> +#include <drm/drm_fourcc.h>
->  #include <drm/drm_gem_framebuffer_helper.h>
->  #include <drm/drm_plane_helper.h>
->  #include <drm/drm_probe_helper.h>
-> diff --git a/drivers/gpu/drm/vc4/vc4_plane.c b/drivers/gpu/drm/vc4/vc4_plane.c
-> index b3438f4a81ce..3a1937af17ef 100644
-> --- a/drivers/gpu/drm/vc4/vc4_plane.c
-> +++ b/drivers/gpu/drm/vc4/vc4_plane.c
-> @@ -20,6 +20,7 @@
->  #include <drm/drm_atomic_uapi.h>
->  #include <drm/drm_fb_cma_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_atomic_helper.h>
->  #include <drm/drm_plane_helper.h>
->  
-> diff --git a/drivers/gpu/drm/vc4/vc4_txp.c b/drivers/gpu/drm/vc4/vc4_txp.c
-> index 3579d487402e..d20b0bc51a18 100644
-> --- a/drivers/gpu/drm/vc4/vc4_txp.c
-> +++ b/drivers/gpu/drm/vc4/vc4_txp.c
-> @@ -18,6 +18,7 @@
->  #include <drm/drm_edid.h>
->  #include <drm/drm_fb_cma_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_panel.h>
->  #include <drm/drm_probe_helper.h>
->  #include <drm/drm_vblank.h>
-> diff --git a/drivers/gpu/drm/virtio/virtgpu_drv.h b/drivers/gpu/drm/virtio/virtgpu_drv.h
-> index 0a194aaad419..f80664cf98d0 100644
-> --- a/drivers/gpu/drm/virtio/virtgpu_drv.h
-> +++ b/drivers/gpu/drm/virtio/virtgpu_drv.h
-> @@ -37,6 +37,7 @@
->  #include <drm/drm_encoder.h>
->  #include <drm/drm_fb_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem.h>
->  #include <drm/drm_gem_shmem_helper.h>
->  #include <drm/drm_ioctl.h>
-> diff --git a/drivers/gpu/drm/vkms/vkms_drv.h b/drivers/gpu/drm/vkms/vkms_drv.h
-> index 91e63b12f60f..1d60654b553b 100644
-> --- a/drivers/gpu/drm/vkms/vkms_drv.h
-> +++ b/drivers/gpu/drm/vkms/vkms_drv.h
-> @@ -6,6 +6,7 @@
->  #include <linux/hrtimer.h>
->  
->  #include <drm/drm.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem.h>
->  #include <drm/drm_gem_atomic_helper.h>
->  #include <drm/drm_encoder.h>
-> diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_kms.h b/drivers/gpu/drm/vmwgfx/vmwgfx_kms.h
-> index 1d1c8b82c898..7046dfd0d1c6 100644
-> --- a/drivers/gpu/drm/vmwgfx/vmwgfx_kms.h
-> +++ b/drivers/gpu/drm/vmwgfx/vmwgfx_kms.h
-> @@ -29,6 +29,7 @@
->  #define VMWGFX_KMS_H_
->  
->  #include <drm/drm_encoder.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_probe_helper.h>
->  
->  #include "vmwgfx_drv.h"
-> diff --git a/drivers/gpu/drm/xen/xen_drm_front_conn.c b/drivers/gpu/drm/xen/xen_drm_front_conn.c
-> index 44f1f70c0aed..a1ba6d3d0568 100644
-> --- a/drivers/gpu/drm/xen/xen_drm_front_conn.c
-> +++ b/drivers/gpu/drm/xen/xen_drm_front_conn.c
-> @@ -10,6 +10,7 @@
->  
->  #include <drm/drm_atomic_helper.h>
->  #include <drm/drm_drv.h>
-> +#include <drm/drm_fourcc.h>
->  #include <drm/drm_probe_helper.h>
->  
->  #include <video/videomode.h>
-> diff --git a/drivers/gpu/drm/xen/xen_drm_front_kms.c b/drivers/gpu/drm/xen/xen_drm_front_kms.c
-> index cfda74490765..dfa78a49a6d9 100644
-> --- a/drivers/gpu/drm/xen/xen_drm_front_kms.c
-> +++ b/drivers/gpu/drm/xen/xen_drm_front_kms.c
-> @@ -12,6 +12,7 @@
->  #include <drm/drm_atomic_helper.h>
->  #include <drm/drm_drv.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem.h>
->  #include <drm/drm_gem_atomic_helper.h>
->  #include <drm/drm_gem_framebuffer_helper.h>
-> diff --git a/include/drm/drm_crtc.h b/include/drm/drm_crtc.h
-> index 3e6e12bfc96d..042da23b166c 100644
-> --- a/include/drm/drm_crtc.h
-> +++ b/include/drm/drm_crtc.h
-> @@ -36,7 +36,6 @@
->  #include <drm/drm_modeset_lock.h>
->  #include <drm/drm_rect.h>
->  #include <drm/drm_mode_object.h>
-> -#include <drm/drm_framebuffer.h>
->  #include <drm/drm_modes.h>
->  #include <drm/drm_connector.h>
->  #include <drm/drm_device.h>
-> @@ -48,6 +47,7 @@
->  #include <drm/drm_mode_config.h>
->  
->  struct drm_device;
-> +struct drm_framebuffer;
->  struct drm_mode_set;
->  struct drm_file;
->  struct drm_clip_rect;
-> -- 
-> 2.35.1
+--===============2230859870203879721==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: drm/i915/display: split out verifation, compare and dump from intel_display.c
+URL   : https://patchwork.freedesktop.org/series/105156/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_11759_full -> Patchwork_105156v1_full
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (10 -> 12)
+------------------------------
+
+  Additional (2): shard-rkl shard-tglu 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_105156v1_full:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@device_reset@unbind-reset-rebind:
+    - {shard-rkl}:        NOTRUN -> [DMESG-WARN][1]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-rkl-2/igt@device_reset@unbind-reset-rebind.html
+
+  * igt@gem_render_copy@y-tiled-mc-ccs-to-y-tiled-ccs:
+    - {shard-rkl}:        NOTRUN -> [SKIP][2] +12 similar issues
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-rkl-5/igt@gem_render_copy@y-tiled-mc-ccs-to-y-tiled-ccs.html
+
+  * {igt@kms_dither@fb-8bpc-vs-panel-6bpc@pipe-a-hdmi-a-1}:
+    - {shard-tglu}:       NOTRUN -> [SKIP][3]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-tglu-1/igt@kms_dither@fb-8bpc-vs-panel-6bpc@pipe-a-hdmi-a-1.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_105156v1_full that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@device_reset@unbind-reset-rebind:
+    - shard-skl:          NOTRUN -> [DMESG-WARN][4] ([i915#1982])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-skl4/igt@device_reset@unbind-reset-rebind.html
+
+  * igt@drm_buddy@all@buddy_alloc_smoke:
+    - shard-skl:          [PASS][5] -> [INCOMPLETE][6] ([i915#5800])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/shard-skl9/igt@drm_buddy@all@buddy_alloc_smoke.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-skl6/igt@drm_buddy@all@buddy_alloc_smoke.html
+
+  * igt@gem_ccs@ctrl-surf-copy-new-ctx:
+    - shard-skl:          NOTRUN -> [SKIP][7] ([fdo#109271]) +189 similar issues
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-skl1/igt@gem_ccs@ctrl-surf-copy-new-ctx.html
+
+  * igt@gem_ctx_isolation@preservation-s3@vcs0:
+    - shard-kbl:          [PASS][8] -> [DMESG-WARN][9] ([i915#180]) +3 similar issues
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/shard-kbl6/igt@gem_ctx_isolation@preservation-s3@vcs0.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-kbl7/igt@gem_ctx_isolation@preservation-s3@vcs0.html
+
+  * igt@gem_ctx_persistence@smoketest:
+    - shard-iclb:         [PASS][10] -> [FAIL][11] ([i915#5099])
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/shard-iclb8/igt@gem_ctx_persistence@smoketest.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-iclb4/igt@gem_ctx_persistence@smoketest.html
+
+  * igt@gem_exec_balancer@parallel-contexts:
+    - shard-iclb:         [PASS][12] -> [SKIP][13] ([i915#4525])
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/shard-iclb2/igt@gem_exec_balancer@parallel-contexts.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-iclb3/igt@gem_exec_balancer@parallel-contexts.html
+
+  * igt@gem_exec_capture@pi@rcs0:
+    - shard-skl:          NOTRUN -> [INCOMPLETE][14] ([i915#3371])
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-skl1/igt@gem_exec_capture@pi@rcs0.html
+
+  * igt@gem_exec_fair@basic-none-share@rcs0:
+    - shard-tglb:         [PASS][15] -> [FAIL][16] ([i915#2842]) +1 similar issue
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/shard-tglb2/igt@gem_exec_fair@basic-none-share@rcs0.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-tglb2/igt@gem_exec_fair@basic-none-share@rcs0.html
+
+  * igt@gem_exec_fair@basic-none@vcs0:
+    - shard-apl:          [PASS][17] -> [FAIL][18] ([i915#2842]) +1 similar issue
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/shard-apl3/igt@gem_exec_fair@basic-none@vcs0.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-apl6/igt@gem_exec_fair@basic-none@vcs0.html
+
+  * igt@gem_lmem_swapping@verify-random:
+    - shard-skl:          NOTRUN -> [SKIP][19] ([fdo#109271] / [i915#4613]) +1 similar issue
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-skl6/igt@gem_lmem_swapping@verify-random.html
+
+  * igt@gem_pread@exhaustion:
+    - shard-skl:          NOTRUN -> [WARN][20] ([i915#2658])
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-skl4/igt@gem_pread@exhaustion.html
+
+  * igt@i915_module_load@load:
+    - shard-skl:          NOTRUN -> [SKIP][21] ([fdo#109271] / [i915#6227])
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-skl1/igt@i915_module_load@load.html
+
+  * igt@kms_async_flips@alternate-sync-async-flip@pipe-a-edp-1:
+    - shard-skl:          NOTRUN -> [FAIL][22] ([i915#2521])
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-skl4/igt@kms_async_flips@alternate-sync-async-flip@pipe-a-edp-1.html
+
+  * igt@kms_big_fb@x-tiled-addfb-size-offset-overflow:
+    - shard-skl:          NOTRUN -> [SKIP][23] ([fdo#109271] / [i915#1888])
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-skl4/igt@kms_big_fb@x-tiled-addfb-size-offset-overflow.html
+
+  * igt@kms_ccs@pipe-a-bad-aux-stride-y_tiled_gen12_rc_ccs_cc:
+    - shard-skl:          NOTRUN -> [SKIP][24] ([fdo#109271] / [i915#3886]) +7 similar issues
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-skl1/igt@kms_ccs@pipe-a-bad-aux-stride-y_tiled_gen12_rc_ccs_cc.html
+
+  * igt@kms_ccs@pipe-b-crc-primary-rotation-180-y_tiled_gen12_mc_ccs:
+    - shard-kbl:          NOTRUN -> [SKIP][25] ([fdo#109271] / [i915#3886]) +3 similar issues
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-kbl3/igt@kms_ccs@pipe-b-crc-primary-rotation-180-y_tiled_gen12_mc_ccs.html
+
+  * igt@kms_ccs@pipe-c-crc-primary-basic-y_tiled_gen12_mc_ccs:
+    - shard-apl:          NOTRUN -> [SKIP][26] ([fdo#109271] / [i915#3886]) +2 similar issues
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-apl2/igt@kms_ccs@pipe-c-crc-primary-basic-y_tiled_gen12_mc_ccs.html
+
+  * igt@kms_chamelium@hdmi-frame-dump:
+    - shard-kbl:          NOTRUN -> [SKIP][27] ([fdo#109271] / [fdo#111827]) +3 similar issues
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-kbl3/igt@kms_chamelium@hdmi-frame-dump.html
+
+  * igt@kms_color_chamelium@pipe-c-ctm-green-to-red:
+    - shard-apl:          NOTRUN -> [SKIP][28] ([fdo#109271] / [fdo#111827]) +2 similar issues
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-apl2/igt@kms_color_chamelium@pipe-c-ctm-green-to-red.html
+
+  * igt@kms_color_chamelium@pipe-d-ctm-0-25:
+    - shard-skl:          NOTRUN -> [SKIP][29] ([fdo#109271] / [fdo#111827]) +10 similar issues
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-skl1/igt@kms_color_chamelium@pipe-d-ctm-0-25.html
+
+  * igt@kms_content_protection@lic:
+    - shard-kbl:          NOTRUN -> [TIMEOUT][30] ([i915#1319])
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-kbl7/igt@kms_content_protection@lic.html
+
+  * igt@kms_cursor_crc@pipe-d-cursor-32x32-random:
+    - shard-apl:          NOTRUN -> [SKIP][31] ([fdo#109271]) +65 similar issues
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-apl2/igt@kms_cursor_crc@pipe-d-cursor-32x32-random.html
+
+  * igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions:
+    - shard-skl:          NOTRUN -> [FAIL][32] ([i915#2346])
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-skl1/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions.html
+
+  * igt@kms_cursor_legacy@pipe-d-torture-bo:
+    - shard-skl:          NOTRUN -> [SKIP][33] ([fdo#109271] / [i915#533]) +2 similar issues
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-skl1/igt@kms_cursor_legacy@pipe-d-torture-bo.html
+
+  * igt@kms_flip@flip-vs-expired-vblank-interruptible@c-edp1:
+    - shard-skl:          [PASS][34] -> [FAIL][35] ([i915#79])
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/shard-skl4/igt@kms_flip@flip-vs-expired-vblank-interruptible@c-edp1.html
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-skl9/igt@kms_flip@flip-vs-expired-vblank-interruptible@c-edp1.html
+
+  * igt@kms_flip@flip-vs-suspend-interruptible@b-dp1:
+    - shard-apl:          [PASS][36] -> [DMESG-WARN][37] ([i915#180]) +1 similar issue
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/shard-apl4/igt@kms_flip@flip-vs-suspend-interruptible@b-dp1.html
+   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-apl4/igt@kms_flip@flip-vs-suspend-interruptible@b-dp1.html
+
+  * igt@kms_flip@plain-flip-fb-recreate@c-edp1:
+    - shard-skl:          [PASS][38] -> [FAIL][39] ([i915#2122]) +1 similar issue
+   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/shard-skl10/igt@kms_flip@plain-flip-fb-recreate@c-edp1.html
+   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-skl2/igt@kms_flip@plain-flip-fb-recreate@c-edp1.html
+
+  * igt@kms_flip@plain-flip-ts-check-interruptible@b-edp1:
+    - shard-skl:          NOTRUN -> [FAIL][40] ([i915#2122])
+   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-skl1/igt@kms_flip@plain-flip-ts-check-interruptible@b-edp1.html
+
+  * igt@kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytile-downscaling:
+    - shard-iclb:         [PASS][41] -> [SKIP][42] ([i915#3701]) +1 similar issue
+   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/shard-iclb6/igt@kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytile-downscaling.html
+   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-iclb2/igt@kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytile-downscaling.html
+
+  * igt@kms_frontbuffer_tracking@fbcpsr-rgb565-draw-mmap-gtt:
+    - shard-kbl:          NOTRUN -> [SKIP][43] ([fdo#109271]) +96 similar issues
+   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-kbl7/igt@kms_frontbuffer_tracking@fbcpsr-rgb565-draw-mmap-gtt.html
+
+  * igt@kms_hdr@bpc-switch-suspend@pipe-a-dp-1:
+    - shard-kbl:          NOTRUN -> [DMESG-WARN][44] ([i915#180])
+   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-kbl7/igt@kms_hdr@bpc-switch-suspend@pipe-a-dp-1.html
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc-pipe-d-frame-sequence:
+    - shard-kbl:          NOTRUN -> [SKIP][45] ([fdo#109271] / [i915#533])
+   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-kbl7/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-d-frame-sequence.html
+    - shard-apl:          NOTRUN -> [SKIP][46] ([fdo#109271] / [i915#533])
+   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-apl2/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-d-frame-sequence.html
+
+  * igt@kms_plane_alpha_blend@pipe-c-alpha-transparent-fb:
+    - shard-skl:          NOTRUN -> [FAIL][47] ([i915#265])
+   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-skl4/igt@kms_plane_alpha_blend@pipe-c-alpha-transparent-fb.html
+
+  * igt@kms_plane_alpha_blend@pipe-c-constant-alpha-min:
+    - shard-skl:          NOTRUN -> [FAIL][48] ([fdo#108145] / [i915#265])
+   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-skl1/igt@kms_plane_alpha_blend@pipe-c-constant-alpha-min.html
+
+  * igt@kms_psr2_sf@cursor-plane-move-continuous-exceed-fully-sf:
+    - shard-skl:          NOTRUN -> [SKIP][49] ([fdo#109271] / [i915#658]) +1 similar issue
+   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-skl6/igt@kms_psr2_sf@cursor-plane-move-continuous-exceed-fully-sf.html
+
+  * igt@kms_psr2_sf@overlay-plane-update-sf-dmg-area:
+    - shard-kbl:          NOTRUN -> [SKIP][50] ([fdo#109271] / [i915#658]) +1 similar issue
+   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-kbl3/igt@kms_psr2_sf@overlay-plane-update-sf-dmg-area.html
+
+  * igt@kms_psr2_sf@primary-plane-update-sf-dmg-area-big-fb:
+    - shard-apl:          NOTRUN -> [SKIP][51] ([fdo#109271] / [i915#658]) +1 similar issue
+   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-apl2/igt@kms_psr2_sf@primary-plane-update-sf-dmg-area-big-fb.html
+
+  * igt@kms_psr@psr2_sprite_blt:
+    - shard-iclb:         [PASS][52] -> [SKIP][53] ([fdo#109441]) +2 similar issues
+   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/shard-iclb2/igt@kms_psr@psr2_sprite_blt.html
+   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-iclb7/igt@kms_psr@psr2_sprite_blt.html
+
+  * igt@kms_psr_stress_test@invalidate-primary-flip-overlay:
+    - shard-iclb:         [PASS][54] -> [SKIP][55] ([i915#5519])
+   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/shard-iclb3/igt@kms_psr_stress_test@invalidate-primary-flip-overlay.html
+   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-iclb6/igt@kms_psr_stress_test@invalidate-primary-flip-overlay.html
+
+  * igt@sw_sync@sync_merge_same:
+    - shard-skl:          NOTRUN -> [FAIL][56] ([i915#6140])
+   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-skl6/igt@sw_sync@sync_merge_same.html
+
+  * igt@sw_sync@sync_multi_timeline_wait:
+    - shard-kbl:          NOTRUN -> [FAIL][57] ([i915#6140])
+   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-kbl7/igt@sw_sync@sync_multi_timeline_wait.html
+
+  * igt@sysfs_clients@busy:
+    - shard-skl:          NOTRUN -> [SKIP][58] ([fdo#109271] / [i915#2994]) +2 similar issues
+   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-skl1/igt@sysfs_clients@busy.html
+
+  * igt@sysfs_clients@pidname:
+    - shard-apl:          NOTRUN -> [SKIP][59] ([fdo#109271] / [i915#2994])
+   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-apl2/igt@sysfs_clients@pidname.html
+    - shard-kbl:          NOTRUN -> [SKIP][60] ([fdo#109271] / [i915#2994])
+   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-kbl7/igt@sysfs_clients@pidname.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_balancer@parallel:
+    - shard-iclb:         [SKIP][61] ([i915#4525]) -> [PASS][62]
+   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/shard-iclb6/igt@gem_exec_balancer@parallel.html
+   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-iclb2/igt@gem_exec_balancer@parallel.html
+
+  * igt@gem_exec_fair@basic-none-solo@rcs0:
+    - shard-apl:          [FAIL][63] ([i915#2842]) -> [PASS][64]
+   [63]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/shard-apl1/igt@gem_exec_fair@basic-none-solo@rcs0.html
+   [64]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-apl1/igt@gem_exec_fair@basic-none-solo@rcs0.html
+
+  * igt@gem_exec_fair@basic-pace-share@rcs0:
+    - shard-tglb:         [FAIL][65] ([i915#2842]) -> [PASS][66]
+   [65]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/shard-tglb3/igt@gem_exec_fair@basic-pace-share@rcs0.html
+   [66]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-tglb6/igt@gem_exec_fair@basic-pace-share@rcs0.html
+
+  * igt@gem_exec_fair@basic-pace@vcs1:
+    - shard-kbl:          [FAIL][67] ([i915#2842]) -> [PASS][68]
+   [67]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/shard-kbl1/igt@gem_exec_fair@basic-pace@vcs1.html
+   [68]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-kbl3/igt@gem_exec_fair@basic-pace@vcs1.html
+
+  * igt@gem_exec_fair@basic-throttle@rcs0:
+    - shard-glk:          [FAIL][69] ([i915#2842]) -> [PASS][70]
+   [69]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/shard-glk3/igt@gem_exec_fair@basic-throttle@rcs0.html
+   [70]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-glk8/igt@gem_exec_fair@basic-throttle@rcs0.html
+
+  * igt@i915_pm_dc@dc6-psr:
+    - shard-iclb:         [FAIL][71] ([i915#454]) -> [PASS][72]
+   [71]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/shard-iclb6/igt@i915_pm_dc@dc6-psr.html
+   [72]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-iclb8/igt@i915_pm_dc@dc6-psr.html
+
+  * igt@kms_cursor_legacy@flip-vs-cursor-legacy:
+    - shard-skl:          [FAIL][73] ([i915#2346]) -> [PASS][74]
+   [73]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/shard-skl2/igt@kms_cursor_legacy@flip-vs-cursor-legacy.html
+   [74]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-skl7/igt@kms_cursor_legacy@flip-vs-cursor-legacy.html
+
+  * igt@kms_fbcon_fbt@fbc-suspend:
+    - shard-apl:          [INCOMPLETE][75] ([i915#180]) -> [PASS][76]
+   [75]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/shard-apl8/igt@kms_fbcon_fbt@fbc-suspend.html
+   [76]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-apl2/igt@kms_fbcon_fbt@fbc-suspend.html
+
+  * igt@kms_flip@flip-vs-expired-vblank-interruptible@c-dp1:
+    - shard-apl:          [FAIL][77] ([i915#79]) -> [PASS][78]
+   [77]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/shard-apl2/igt@kms_flip@flip-vs-expired-vblank-interruptible@c-dp1.html
+   [78]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-apl8/igt@kms_flip@flip-vs-expired-vblank-interruptible@c-dp1.html
+
+  * igt@kms_flip@flip-vs-suspend@a-dp1:
+    - shard-apl:          [DMESG-WARN][79] ([i915#180]) -> [PASS][80]
+   [79]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/shard-apl8/igt@kms_flip@flip-vs-suspend@a-dp1.html
+   [80]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-apl3/igt@kms_flip@flip-vs-suspend@a-dp1.html
+
+  * igt@kms_flip_scaled_crc@flip-32bpp-ytile-to-64bpp-ytile-downscaling:
+    - shard-iclb:         [SKIP][81] ([i915#3701]) -> [PASS][82]
+   [81]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/shard-iclb2/igt@kms_flip_scaled_crc@flip-32bpp-ytile-to-64bpp-ytile-downscaling.html
+   [82]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-iclb7/igt@kms_flip_scaled_crc@flip-32bpp-ytile-to-64bpp-ytile-downscaling.html
+
+  * igt@kms_flip_scaled_crc@flip-32bpp-ytile-to-64bpp-ytile-upscaling:
+    - shard-glk:          [FAIL][83] ([i915#4911]) -> [PASS][84]
+   [83]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/shard-glk8/igt@kms_flip_scaled_crc@flip-32bpp-ytile-to-64bpp-ytile-upscaling.html
+   [84]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-glk6/igt@kms_flip_scaled_crc@flip-32bpp-ytile-to-64bpp-ytile-upscaling.html
+
+  * igt@kms_hdr@bpc-switch-dpms@pipe-a-dp-1:
+    - shard-kbl:          [FAIL][85] ([i915#1188]) -> [PASS][86] +1 similar issue
+   [85]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/shard-kbl1/igt@kms_hdr@bpc-switch-dpms@pipe-a-dp-1.html
+   [86]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-kbl1/igt@kms_hdr@bpc-switch-dpms@pipe-a-dp-1.html
+
+  * igt@kms_plane@plane-panning-bottom-right-suspend@pipe-a-planes:
+    - shard-kbl:          [DMESG-WARN][87] ([i915#180]) -> [PASS][88] +2 similar issues
+   [87]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/shard-kbl4/igt@kms_plane@plane-panning-bottom-right-suspend@pipe-a-planes.html
+   [88]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-kbl6/igt@kms_plane@plane-panning-bottom-right-suspend@pipe-a-planes.html
+
+  * igt@kms_psr@psr2_primary_mmap_cpu:
+    - shard-iclb:         [SKIP][89] ([fdo#109441]) -> [PASS][90] +3 similar issues
+   [89]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/shard-iclb6/igt@kms_psr@psr2_primary_mmap_cpu.html
+   [90]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-iclb2/igt@kms_psr@psr2_primary_mmap_cpu.html
+
+  * igt@kms_psr_stress_test@invalidate-primary-flip-overlay:
+    - shard-tglb:         [SKIP][91] ([i915#5519]) -> [PASS][92]
+   [91]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/shard-tglb6/igt@kms_psr_stress_test@invalidate-primary-flip-overlay.html
+   [92]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-tglb7/igt@kms_psr_stress_test@invalidate-primary-flip-overlay.html
+
+  
+#### Warnings ####
+
+  * igt@gem_exec_balancer@parallel-ordering:
+    - shard-iclb:         [FAIL][93] ([i915#6117]) -> [SKIP][94] ([i915#4525])
+   [93]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/shard-iclb2/igt@gem_exec_balancer@parallel-ordering.html
+   [94]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-iclb7/igt@gem_exec_balancer@parallel-ordering.html
+
+  * igt@gem_exec_fair@basic-none-rrul@rcs0:
+    - shard-iclb:         [FAIL][95] ([i915#2852]) -> [FAIL][96] ([i915#2842])
+   [95]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/shard-iclb3/igt@gem_exec_fair@basic-none-rrul@rcs0.html
+   [96]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-iclb6/igt@gem_exec_fair@basic-none-rrul@rcs0.html
+
+  * igt@i915_pm_dc@dc3co-vpb-simulation:
+    - shard-iclb:         [SKIP][97] ([i915#588]) -> [SKIP][98] ([i915#658])
+   [97]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/shard-iclb2/igt@i915_pm_dc@dc3co-vpb-simulation.html
+   [98]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-iclb7/igt@i915_pm_dc@dc3co-vpb-simulation.html
+
+  * igt@kms_fbcon_fbt@fbc-suspend:
+    - shard-kbl:          [INCOMPLETE][99] ([i915#180]) -> [FAIL][100] ([i915#4767])
+   [99]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/shard-kbl1/igt@kms_fbcon_fbt@fbc-suspend.html
+   [100]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-kbl7/igt@kms_fbcon_fbt@fbc-suspend.html
+
+  * igt@kms_psr2_sf@overlay-plane-update-continuous-sf:
+    - shard-iclb:         [SKIP][101] ([i915#2920]) -> [SKIP][102] ([fdo#111068] / [i915#658]) +1 similar issue
+   [101]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/shard-iclb2/igt@kms_psr2_sf@overlay-plane-update-continuous-sf.html
+   [102]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-iclb3/igt@kms_psr2_sf@overlay-plane-update-continuous-sf.html
+
+  * igt@kms_psr2_sf@overlay-primary-update-sf-dmg-area:
+    - shard-iclb:         [SKIP][103] ([fdo#111068] / [i915#658]) -> [SKIP][104] ([i915#2920])
+   [103]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/shard-iclb6/igt@kms_psr2_sf@overlay-primary-update-sf-dmg-area.html
+   [104]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-iclb2/igt@kms_psr2_sf@overlay-primary-update-sf-dmg-area.html
+
+  * igt@kms_psr2_su@page_flip-nv12:
+    - shard-iclb:         [SKIP][105] ([fdo#109642] / [fdo#111068] / [i915#658]) -> [FAIL][106] ([i915#5939])
+   [105]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/shard-iclb5/igt@kms_psr2_su@page_flip-nv12.html
+   [106]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-iclb2/igt@kms_psr2_su@page_flip-nv12.html
+
+  * igt@runner@aborted:
+    - shard-skl:          [FAIL][107] ([i915#3002] / [i915#4312] / [i915#5257]) -> ([FAIL][108], [FAIL][109], [FAIL][110], [FAIL][111], [FAIL][112]) ([i915#2029] / [i915#3002] / [i915#4312] / [i915#5257])
+   [107]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/shard-skl2/igt@runner@aborted.html
+   [108]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-skl2/igt@runner@aborted.html
+   [109]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-skl2/igt@runner@aborted.html
+   [110]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-skl1/igt@runner@aborted.html
+   [111]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-skl4/igt@runner@aborted.html
+   [112]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-skl10/igt@runner@aborted.html
+    - shard-kbl:          ([FAIL][113], [FAIL][114], [FAIL][115], [FAIL][116], [FAIL][117], [FAIL][118]) ([i915#180] / [i915#3002] / [i915#4312] / [i915#5257] / [i915#92]) -> ([FAIL][119], [FAIL][120], [FAIL][121], [FAIL][122], [FAIL][123], [FAIL][124]) ([i915#180] / [i915#3002] / [i915#4312] / [i915#5257])
+   [113]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/shard-kbl1/igt@runner@aborted.html
+   [114]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/shard-kbl1/igt@runner@aborted.html
+   [115]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/shard-kbl1/igt@runner@aborted.html
+   [116]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/shard-kbl7/igt@runner@aborted.html
+   [117]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/shard-kbl4/igt@runner@aborted.html
+   [118]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/shard-kbl4/igt@runner@aborted.html
+   [119]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-kbl4/igt@runner@aborted.html
+   [120]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-kbl7/igt@runner@aborted.html
+   [121]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-kbl7/igt@runner@aborted.html
+   [122]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-kbl7/igt@runner@aborted.html
+   [123]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-kbl7/igt@runner@aborted.html
+   [124]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-kbl1/igt@runner@aborted.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#108145]: https://bugs.freedesktop.org/show_bug.cgi?id=108145
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109274]: https://bugs.freedesktop.org/show_bug.cgi?id=109274
+  [fdo#109279]: https://bugs.freedesktop.org/show_bug.cgi?id=109279
+  [fdo#109280]: https://bugs.freedesktop.org/show_bug.cgi?id=109280
+  [fdo#109283]: https://bugs.freedesktop.org/show_bug.cgi?id=109283
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#109289]: https://bugs.freedesktop.org/show_bug.cgi?id=109289
+  [fdo#109291]: https://bugs.freedesktop.org/show_bug.cgi?id=109291
+  [fdo#109295]: https://bugs.freedesktop.org/show_bug.cgi?id=109295
+  [fdo#109300]: https://bugs.freedesktop.org/show_bug.cgi?id=109300
+  [fdo#109302]: https://bugs.freedesktop.org/show_bug.cgi?id=109302
+  [fdo#109303]: https://bugs.freedesktop.org/show_bug.cgi?id=109303
+  [fdo#109307]: https://bugs.freedesktop.org/show_bug.cgi?id=109307
+  [fdo#109308]: https://bugs.freedesktop.org/show_bug.cgi?id=109308
+  [fdo#109309]: https://bugs.freedesktop.org/show_bug.cgi?id=109309
+  [fdo#109313]: https://bugs.freedesktop.org/show_bug.cgi?id=109313
+  [fdo#109314]: https://bugs.freedesktop.org/show_bug.cgi?id=109314
+  [fdo#109441]: https://bugs.freedesktop.org/show_bug.cgi?id=109441
+  [fdo#109506]: https://bugs.freedesktop.org/show_bug.cgi?id=109506
+  [fdo#109642]: https://bugs.freedesktop.org/show_bug.cgi?id=109642
+  [fdo#110189]: https://bugs.freedesktop.org/show_bug.cgi?id=110189
+  [fdo#110542]: https://bugs.freedesktop.org/show_bug.cgi?id=110542
+  [fdo#110723]: https://bugs.freedesktop.org/show_bug.cgi?id=110723
+  [fdo#111068]: https://bugs.freedesktop.org/show_bug.cgi?id=111068
+  [fdo#111314]: https://bugs.freedesktop.org/show_bug.cgi?id=111314
+  [fdo#111614]: https://bugs.freedesktop.org/show_bug.cgi?id=111614
+  [fdo#111615]: https://bugs.freedesktop.org/show_bug.cgi?id=111615
+  [fdo#111644]: https://bugs.freedesktop.org/show_bug.cgi?id=111644
+  [fdo#111656]: https://bugs.freedesktop.org/show_bug.cgi?id=111656
+  [fdo#111825]: https://bugs.freedesktop.org/show_bug.cgi?id=111825
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [fdo#112022]: https://bugs.freedesktop.org/show_bug.cgi?id=112022
+  [fdo#112283]: https://bugs.freedesktop.org/show_bug.cgi?id=112283
+  [i915#1063]: https://gitlab.freedesktop.org/drm/intel/issues/1063
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#1149]: https://gitlab.freedesktop.org/drm/intel/issues/1149
+  [i915#1155]: https://gitlab.freedesktop.org/drm/intel/issues/1155
+  [i915#1188]: https://gitlab.freedesktop.org/drm/intel/issues/1188
+  [i915#1257]: https://gitlab.freedesktop.org/drm/intel/issues/1257
+  [i915#1319]: https://gitlab.freedesktop.org/drm/intel/issues/1319
+  [i915#132]: https://gitlab.freedesktop.org/drm/intel/issues/132
+  [i915#1397]: https://gitlab.freedesktop.org/drm/intel/issues/1397
+  [i915#1769]: https://gitlab.freedesktop.org/drm/intel/issues/1769
+  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
+  [i915#1825]: https://gitlab.freedesktop.org/drm/intel/issues/1825
+  [i915#1836]: https://gitlab.freedesktop.org/drm/intel/issues/1836
+  [i915#1839]: https://gitlab.freedesktop.org/drm/intel/issues/1839
+  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
+  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
+  [i915#1850]: https://gitlab.freedesktop.org/drm/intel/issues/1850
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#1902]: https://gitlab.freedesktop.org/drm/intel/issues/1902
+  [i915#1911]: https://gitlab.freedesktop.org/drm/intel/issues/1911
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#2029]: https://gitlab.freedesktop.org/drm/intel/issues/2029
+  [i915#2122]: https://gitlab.freedesktop.org/drm/intel/issues/2122
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#2232]: https://gitlab.freedesktop.org/drm/intel/issues/2232
+  [i915#2346]: https://gitlab.freedesktop.org/drm/intel/issues/2346
+  [i915#2433]: https://gitlab.freedesktop.org/drm/intel/issues/2433
+  [i915#2435]: https://gitlab.freedesktop.org/drm/intel/issues/2435
+  [i915#2437]: https://gitlab.freedesktop.org/drm/intel/issues/2437
+  [i915#2521]: https://gitlab.freedesktop.org/drm/intel/issues/2521
+  [i915#2527]: https://gitlab.freedesktop.org/drm/intel/issues/2527
+  [i915#2530]: https://gitlab.freedesktop.org/drm/intel/issues/2530
+  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
+  [i915#2587]: https://gitlab.freedesktop.org/drm/intel/issues/2587
+  [i915#265]: https://gitlab.freedesktop.org/drm/intel/issues/265
+  [i915#2658]: https://gitlab.freedesktop.org/drm/intel/issues/2658
+  [i915#2672]: https://gitlab.freedesktop.org/drm/intel/issues/2672
+  [i915#2681]: https://gitlab.freedesktop.org/drm/intel/issues/2681
+  [i915#2705]: https://gitlab.freedesktop.org/drm/intel/issues/2705
+  [i915#280]: https://gitlab.freedesktop.org/drm/intel/issues/280
+  [i915#284]: https://gitlab.freedesktop.org/drm/intel/issues/284
+  [i915#2842]: https://gitlab.freedesktop.org/drm/intel/issues/2842
+  [i915#2852]: https://gitlab.freedesktop.org/drm/intel/issues/2852
+  [i915#2856]: https://gitlab.freedesktop.org/drm/intel/issues/2856
+  [i915#2920]: https://gitlab.freedesktop.org/drm/intel/issues/2920
+  [i915#2994]: https://gitlab.freedesktop.org/drm/intel/issues/2994
+  [i915#3002]: https://gitlab.freedesktop.org/drm/intel/issues/3002
+  [i915#3012]: https://gitlab.freedesktop.org/drm/intel/issues/3012
+  [i915#3116]: https://gitlab.freedesktop.org/drm/intel/issues/3116
+  [i915#3281]: https://gitlab.freedesktop.org/drm/intel/issues/3281
+  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
+  [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
+  [i915#3297]: https://gitlab.freedesktop.org/drm/intel/issues/3297
+  [i915#3299]: https://gitlab.freedesktop.org/drm/intel/issues/3299
+  [i915#3318]: https://gitlab.freedesktop.org/drm/intel/issues/3318
+  [i915#3319]: https://gitlab.freedesktop.org/drm/intel/issues/3319
+  [i915#3323]: https://gitlab.freedesktop.org/drm/intel/issues/3323
+  [i915#3359]: https://gitlab.freedesktop.org/drm/intel/issues/3359
+  [i915#3371]: https://gitlab.freedesktop.org/drm/intel/issues/3371
+  [i915#3376]: https://gitlab.freedesktop.org/drm/intel/issues/3376
+  [i915#3464]: https://gitlab.freedesktop.org/drm/intel/issues/3464
+  [i915#3469]: https://gitlab.freedesktop.org/drm/intel/issues/3469
+  [i915#3528]: https://gitlab.freedesktop.org/drm/intel/issues/3528
+  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
+  [i915#3558]: https://gitlab.freedesktop.org/drm/intel/issues/3558
+  [i915#3637]: https://gitlab.freedesktop.org/drm/intel/issues/3637
+  [i915#3639]: https://gitlab.freedesktop.org/drm/intel/issues/3639
+  [i915#3689]: https://gitlab.freedesktop.org/drm/intel/issues/3689
+  [i915#3701]: https://gitlab.freedesktop.org/drm/intel/issues/3701
+  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
+  [i915#3734]: https://gitlab.freedesktop.org/drm/intel/issues/3734
+  [i915#3742]: https://gitlab.freedesktop.org/drm/intel/issues/3742
+  [i915#3826]: https://gitlab.freedesktop.org/drm/intel/issues/3826
+  [i915#3840]: https://gitlab.freedesktop.org/drm/intel/issues/3840
+  [i915#3886]: https://gitlab.freedesktop.org/drm/intel/issues/3886
+  [i915#3955]: https://gitlab.freedesktop.org/drm/intel/issues/3955
+  [i915#3966]: https://gitlab.freedesktop.org/drm/intel/issues/3966
+  [i915#4070]: https://gitlab.freedesktop.org/drm/intel/issues/4070
+  [i915#4098]: https://gitlab.freedesktop.org/drm/intel/issues/4098
+  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+  [i915#426]: https://gitlab.freedesktop.org/drm/intel/issues/426
+  [i915#4270]: https://gitlab.freedesktop.org/drm/intel/issues/4270
+  [i915#4278]: https://gitlab.freedesktop.org/drm/intel/issues/4278
+  [i915#4281]: https://gitlab.freedesktop.org/drm/intel/issues/4281
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4369]: https://gitlab.freedesktop.org/drm/intel/issues/4369
+  [i915#4387]: https://gitlab.freedesktop.org/drm/intel/issues/4387
+  [i915#4525]: https://gitlab.freedesktop.org/drm/intel/issues/4525
+  [i915#454]: https://gitlab.freedesktop.org/drm/intel/issues/454
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#4767]: https://gitlab.freedesktop.org/drm/intel/issues/4767
+  [i915#4877]: https://gitlab.freedesktop.org/drm/intel/issues/4877
+  [i915#4893]: https://gitlab.freedesktop.org/drm/intel/issues/4893
+  [i915#4911]: https://gitlab.freedesktop.org/drm/intel/issues/4911
+  [i915#4991]: https://gitlab.freedesktop.org/drm/intel/issues/4991
+  [i915#5030]: https://gitlab.freedesktop.org/drm/intel/issues/5030
+  [i915#5099]: https://gitlab.freedesktop.org/drm/intel/issues/5099
+  [i915#5176]: https://gitlab.freedesktop.org/drm/intel/issues/5176
+  [i915#5235]: https://gitlab.freedesktop.org/drm/intel/issues/5235
+  [i915#5257]: https://gitlab.freedesktop.org/drm/intel/issues/5257
+  [i915#5286]: https://gitlab.freedesktop.org/drm/intel/issues/5286
+  [i915#5287]: https://gitlab.freedesktop.org/drm/intel/issues/5287
+  [i915#5288]: https://gitlab.freedesktop.org/drm/intel/issues/5288
+  [i915#5289]: https://gitlab.freedesktop.org/drm/intel/issues/5289
+  [i915#5325]: https://gitlab.freedesktop.org/drm/intel/issues/5325
+  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
+  [i915#5439]: https://gitlab.freedesktop.org/drm/intel/issues/5439
+  [i915#5461]: https://gitlab.freedesktop.org/drm/intel/issues/5461
+  [i915#5507]: https://gitlab.freedesktop.org/drm/intel/issues/5507
+  [i915#5519]: https://gitlab.freedesktop.org/drm/intel/issues/5519
+  [i915#5639]: https://gitlab.freedesktop.org/drm/intel/issues/5639
+  [i915#5723]: https://gitlab.freedesktop.org/drm/intel/issues/5723
+  [i915#5800]: https://gitlab.freedesktop.org/drm/intel/issues/5800
+  [i915#588]: https://gitlab.freedesktop.org/drm/intel/issues/588
+  [i915#5903]: https://gitlab.freedesktop.org/drm/intel/issues/5903
+  [i915#5939]: https://gitlab.freedesktop.org/drm/intel/issues/5939
+  [i915#6095]: https://gitlab.freedesktop.org/drm/intel/issues/6095
+  [i915#6117]: https://gitlab.freedesktop.org/drm/intel/issues/6117
+  [i915#6140]: https://gitlab.freedesktop.org/drm/intel/issues/6140
+  [i915#6141]: https://gitlab.freedesktop.org/drm/intel/issues/6141
+  [i915#6227]: https://gitlab.freedesktop.org/drm/intel/issues/6227
+  [i915#6230]: https://gitlab.freedesktop.org/drm/intel/issues/6230
+  [i915#6245]: https://gitlab.freedesktop.org/drm/intel/issues/6245
+  [i915#658]: https://gitlab.freedesktop.org/drm/intel/issues/658
+  [i915#79]: https://gitlab.freedesktop.org/drm/intel/issues/79
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_11759 -> Patchwork_105156v1
+
+  CI-20190529: 20190529
+  CI_DRM_11759: fa66b647ce886c01bbe1e9f3017a141e90d87539 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6529: b96bf5a0307fc0bdbf6c8e86872817306e102883 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_105156v1: fa66b647ce886c01bbe1e9f3017a141e90d87539 @ git://anongit.freedesktop.org/gfx-ci/linux
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/index.html
+
+--===============2230859870203879721==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+
+
+<!DOCTYPE html>
+<html xmlns=3D"http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id=3D"css-table-select" type=3D"text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: split out verifation, comp=
+are and dump from intel_display.c</td></tr>
+<tr><td><b>URL:</b></td><td><a href=3D"https://patchwork.freedesktop.org/se=
+ries/105156/">https://patchwork.freedesktop.org/series/105156/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href=3D"https://intel-gfx-ci.01.org/=
+tree/drm-tip/Patchwork_105156v1/index.html">https://intel-gfx-ci.01.org/tre=
+e/drm-tip/Patchwork_105156v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11759_full -&gt; Patchwork_105156v=
+1_full</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (10 -&gt; 12)</h2>
+<p>Additional (2): shard-rkl shard-tglu </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_=
+105156v1_full:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<=
+br />
+  They do not affect the overall result.</p>
+<ul>
+<li>
+<p>igt@device_reset@unbind-reset-rebind:</p>
+<ul>
+<li>{shard-rkl}:        NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_105156v1/shard-rkl-2/igt@device_reset@unbind-reset-=
+rebind.html">DMESG-WARN</a></li>
+</ul>
+</li>
+<li>
+<p>igt@gem_render_copy@y-tiled-mc-ccs-to-y-tiled-ccs:</p>
+<ul>
+<li>{shard-rkl}:        NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_105156v1/shard-rkl-5/igt@gem_render_copy@y-tiled-mc=
+-ccs-to-y-tiled-ccs.html">SKIP</a> +12 similar issues</li>
+</ul>
+</li>
+<li>
+<p>{igt@kms_dither@fb-8bpc-vs-panel-6bpc@pipe-a-hdmi-a-1}:</p>
+<ul>
+<li>{shard-tglu}:       NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_105156v1/shard-tglu-1/igt@kms_dither@fb-8bpc-vs-pan=
+el-6bpc@pipe-a-hdmi-a-1.html">SKIP</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_105156v1_full that come from kno=
+wn issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@device_reset@unbind-reset-rebind:</p>
+<ul>
+<li>shard-skl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_105156v1/shard-skl4/igt@device_reset@unbind-reset-r=
+ebind.html">DMESG-WARN</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i=
+ntel/issues/1982">i915#1982</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@drm_buddy@all@buddy_alloc_smoke:</p>
+<ul>
+<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_11759/shard-skl9/igt@drm_buddy@all@buddy_alloc_smoke.html">PASS</a>=
+ -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156=
+v1/shard-skl6/igt@drm_buddy@all@buddy_alloc_smoke.html">INCOMPLETE</a> (<a =
+href=3D"https://gitlab.freedesktop.org/drm/intel/issues/5800">i915#5800</a>=
+)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_ccs@ctrl-surf-copy-new-ctx:</p>
+<ul>
+<li>shard-skl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_105156v1/shard-skl1/igt@gem_ccs@ctrl-surf-copy-new-=
+ctx.html">SKIP</a> (<a href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=
+=3D109271">fdo#109271</a>) +189 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_ctx_isolation@preservation-s3@vcs0:</p>
+<ul>
+<li>shard-kbl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_11759/shard-kbl6/igt@gem_ctx_isolation@preservation-s3@vcs0.html">P=
+ASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork=
+_105156v1/shard-kbl7/igt@gem_ctx_isolation@preservation-s3@vcs0.html">DMESG=
+-WARN</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/180">=
+i915#180</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_ctx_persistence@smoketest:</p>
+<ul>
+<li>shard-iclb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_11759/shard-iclb8/igt@gem_ctx_persistence@smoketest.html">PASS</a> =
+-&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v=
+1/shard-iclb4/igt@gem_ctx_persistence@smoketest.html">FAIL</a> (<a href=3D"=
+https://gitlab.freedesktop.org/drm/intel/issues/5099">i915#5099</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_balancer@parallel-contexts:</p>
+<ul>
+<li>shard-iclb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_11759/shard-iclb2/igt@gem_exec_balancer@parallel-contexts.html">PAS=
+S</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_1=
+05156v1/shard-iclb3/igt@gem_exec_balancer@parallel-contexts.html">SKIP</a> =
+(<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/4525">i915#4525=
+</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_capture@pi@rcs0:</p>
+<ul>
+<li>shard-skl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_105156v1/shard-skl1/igt@gem_exec_capture@pi@rcs0.ht=
+ml">INCOMPLETE</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/iss=
+ues/3371">i915#3371</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fair@basic-none-share@rcs0:</p>
+<ul>
+<li>shard-tglb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_11759/shard-tglb2/igt@gem_exec_fair@basic-none-share@rcs0.html">PAS=
+S</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_1=
+05156v1/shard-tglb2/igt@gem_exec_fair@basic-none-share@rcs0.html">FAIL</a> =
+(<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/2842">i915#2842=
+</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fair@basic-none@vcs0:</p>
+<ul>
+<li>shard-apl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_11759/shard-apl3/igt@gem_exec_fair@basic-none@vcs0.html">PASS</a> -=
+&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1=
+/shard-apl6/igt@gem_exec_fair@basic-none@vcs0.html">FAIL</a> (<a href=3D"ht=
+tps://gitlab.freedesktop.org/drm/intel/issues/2842">i915#2842</a>) +1 simil=
+ar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@verify-random:</p>
+<ul>
+<li>shard-skl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_105156v1/shard-skl6/igt@gem_lmem_swapping@verify-ra=
+ndom.html">SKIP</a> (<a href=3D"https://bugs.freedesktop.org/show_bug.cgi?i=
+d=3D109271">fdo#109271</a> / <a href=3D"https://gitlab.freedesktop.org/drm/=
+intel/issues/4613">i915#4613</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_pread@exhaustion:</p>
+<ul>
+<li>shard-skl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_105156v1/shard-skl4/igt@gem_pread@exhaustion.html">=
+WARN</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/2658">=
+i915#2658</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_module_load@load:</p>
+<ul>
+<li>shard-skl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_105156v1/shard-skl1/igt@i915_module_load@load.html"=
+>SKIP</a> (<a href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109271=
+">fdo#109271</a> / <a href=3D"https://gitlab.freedesktop.org/drm/intel/issu=
+es/6227">i915#6227</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_async_flips@alternate-sync-async-flip@pipe-a-edp-1:</p>
+<ul>
+<li>shard-skl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_105156v1/shard-skl4/igt@kms_async_flips@alternate-s=
+ync-async-flip@pipe-a-edp-1.html">FAIL</a> (<a href=3D"https://gitlab.freed=
+esktop.org/drm/intel/issues/2521">i915#2521</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_big_fb@x-tiled-addfb-size-offset-overflow:</p>
+<ul>
+<li>shard-skl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_105156v1/shard-skl4/igt@kms_big_fb@x-tiled-addfb-si=
+ze-offset-overflow.html">SKIP</a> (<a href=3D"https://bugs.freedesktop.org/=
+show_bug.cgi?id=3D109271">fdo#109271</a> / <a href=3D"https://gitlab.freede=
+sktop.org/drm/intel/issues/1888">i915#1888</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_ccs@pipe-a-bad-aux-stride-y_tiled_gen12_rc_ccs_cc:</p>
+<ul>
+<li>shard-skl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_105156v1/shard-skl1/igt@kms_ccs@pipe-a-bad-aux-stri=
+de-y_tiled_gen12_rc_ccs_cc.html">SKIP</a> (<a href=3D"https://bugs.freedesk=
+top.org/show_bug.cgi?id=3D109271">fdo#109271</a> / <a href=3D"https://gitla=
+b.freedesktop.org/drm/intel/issues/3886">i915#3886</a>) +7 similar issues</=
+li>
+</ul>
+</li>
+<li>
+<p>igt@kms_ccs@pipe-b-crc-primary-rotation-180-y_tiled_gen12_mc_ccs:</p>
+<ul>
+<li>shard-kbl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_105156v1/shard-kbl3/igt@kms_ccs@pipe-b-crc-primary-=
+rotation-180-y_tiled_gen12_mc_ccs.html">SKIP</a> (<a href=3D"https://bugs.f=
+reedesktop.org/show_bug.cgi?id=3D109271">fdo#109271</a> / <a href=3D"https:=
+//gitlab.freedesktop.org/drm/intel/issues/3886">i915#3886</a>) +3 similar i=
+ssues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_ccs@pipe-c-crc-primary-basic-y_tiled_gen12_mc_ccs:</p>
+<ul>
+<li>shard-apl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_105156v1/shard-apl2/igt@kms_ccs@pipe-c-crc-primary-=
+basic-y_tiled_gen12_mc_ccs.html">SKIP</a> (<a href=3D"https://bugs.freedesk=
+top.org/show_bug.cgi?id=3D109271">fdo#109271</a> / <a href=3D"https://gitla=
+b.freedesktop.org/drm/intel/issues/3886">i915#3886</a>) +2 similar issues</=
+li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@hdmi-frame-dump:</p>
+<ul>
+<li>shard-kbl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_105156v1/shard-kbl3/igt@kms_chamelium@hdmi-frame-du=
+mp.html">SKIP</a> (<a href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=
+=3D109271">fdo#109271</a> / <a href=3D"https://bugs.freedesktop.org/show_bu=
+g.cgi?id=3D111827">fdo#111827</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_color_chamelium@pipe-c-ctm-green-to-red:</p>
+<ul>
+<li>shard-apl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_105156v1/shard-apl2/igt@kms_color_chamelium@pipe-c-=
+ctm-green-to-red.html">SKIP</a> (<a href=3D"https://bugs.freedesktop.org/sh=
+ow_bug.cgi?id=3D109271">fdo#109271</a> / <a href=3D"https://bugs.freedeskto=
+p.org/show_bug.cgi?id=3D111827">fdo#111827</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_color_chamelium@pipe-d-ctm-0-25:</p>
+<ul>
+<li>shard-skl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_105156v1/shard-skl1/igt@kms_color_chamelium@pipe-d-=
+ctm-0-25.html">SKIP</a> (<a href=3D"https://bugs.freedesktop.org/show_bug.c=
+gi?id=3D109271">fdo#109271</a> / <a href=3D"https://bugs.freedesktop.org/sh=
+ow_bug.cgi?id=3D111827">fdo#111827</a>) +10 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_content_protection@lic:</p>
+<ul>
+<li>shard-kbl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_105156v1/shard-kbl7/igt@kms_content_protection@lic.=
+html">TIMEOUT</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issu=
+es/1319">i915#1319</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-d-cursor-32x32-random:</p>
+<ul>
+<li>shard-apl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_105156v1/shard-apl2/igt@kms_cursor_crc@pipe-d-curso=
+r-32x32-random.html">SKIP</a> (<a href=3D"https://bugs.freedesktop.org/show=
+_bug.cgi?id=3D109271">fdo#109271</a>) +65 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions:</p>
+<ul>
+<li>shard-skl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_105156v1/shard-skl1/igt@kms_cursor_legacy@flip-vs-c=
+ursor-atomic-transitions.html">FAIL</a> (<a href=3D"https://gitlab.freedesk=
+top.org/drm/intel/issues/2346">i915#2346</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@pipe-d-torture-bo:</p>
+<ul>
+<li>shard-skl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_105156v1/shard-skl1/igt@kms_cursor_legacy@pipe-d-to=
+rture-bo.html">SKIP</a> (<a href=3D"https://bugs.freedesktop.org/show_bug.c=
+gi?id=3D109271">fdo#109271</a> / <a href=3D"https://gitlab.freedesktop.org/=
+drm/intel/issues/533">i915#533</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@flip-vs-expired-vblank-interruptible@c-edp1:</p>
+<ul>
+<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_11759/shard-skl4/igt@kms_flip@flip-vs-expired-vblank-interruptible@=
+c-edp1.html">PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm=
+-tip/Patchwork_105156v1/shard-skl9/igt@kms_flip@flip-vs-expired-vblank-inte=
+rruptible@c-edp1.html">FAIL</a> (<a href=3D"https://gitlab.freedesktop.org/=
+drm/intel/issues/79">i915#79</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@flip-vs-suspend-interruptible@b-dp1:</p>
+<ul>
+<li>shard-apl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_11759/shard-apl4/igt@kms_flip@flip-vs-suspend-interruptible@b-dp1.h=
+tml">PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Pat=
+chwork_105156v1/shard-apl4/igt@kms_flip@flip-vs-suspend-interruptible@b-dp1=
+.html">DMESG-WARN</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/=
+issues/180">i915#180</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@plain-flip-fb-recreate@c-edp1:</p>
+<ul>
+<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_11759/shard-skl10/igt@kms_flip@plain-flip-fb-recreate@c-edp1.html">=
+PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwor=
+k_105156v1/shard-skl2/igt@kms_flip@plain-flip-fb-recreate@c-edp1.html">FAIL=
+</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/2122">i915=
+#2122</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@plain-flip-ts-check-interruptible@b-edp1:</p>
+<ul>
+<li>shard-skl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_105156v1/shard-skl1/igt@kms_flip@plain-flip-ts-chec=
+k-interruptible@b-edp1.html">FAIL</a> (<a href=3D"https://gitlab.freedeskto=
+p.org/drm/intel/issues/2122">i915#2122</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytile-downscaling:</p>
+<ul>
+<li>shard-iclb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_11759/shard-iclb6/igt@kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp=
+-ytile-downscaling.html">PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.=
+org/tree/drm-tip/Patchwork_105156v1/shard-iclb2/igt@kms_flip_scaled_crc@fli=
+p-64bpp-ytile-to-32bpp-ytile-downscaling.html">SKIP</a> (<a href=3D"https:/=
+/gitlab.freedesktop.org/drm/intel/issues/3701">i915#3701</a>) +1 similar is=
+sue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@fbcpsr-rgb565-draw-mmap-gtt:</p>
+<ul>
+<li>shard-kbl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_105156v1/shard-kbl7/igt@kms_frontbuffer_tracking@fb=
+cpsr-rgb565-draw-mmap-gtt.html">SKIP</a> (<a href=3D"https://bugs.freedeskt=
+op.org/show_bug.cgi?id=3D109271">fdo#109271</a>) +96 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_hdr@bpc-switch-suspend@pipe-a-dp-1:</p>
+<ul>
+<li>shard-kbl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_105156v1/shard-kbl7/igt@kms_hdr@bpc-switch-suspend@=
+pipe-a-dp-1.html">DMESG-WARN</a> (<a href=3D"https://gitlab.freedesktop.org=
+/drm/intel/issues/180">i915#180</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@nonblocking-crc-pipe-d-frame-sequence:</p>
+<ul>
+<li>
+<p>shard-kbl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org/=
+tree/drm-tip/Patchwork_105156v1/shard-kbl7/igt@kms_pipe_crc_basic@nonblocki=
+ng-crc-pipe-d-frame-sequence.html">SKIP</a> (<a href=3D"https://bugs.freede=
+sktop.org/show_bug.cgi?id=3D109271">fdo#109271</a> / <a href=3D"https://git=
+lab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</p>
+</li>
+<li>
+<p>shard-apl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org/=
+tree/drm-tip/Patchwork_105156v1/shard-apl2/igt@kms_pipe_crc_basic@nonblocki=
+ng-crc-pipe-d-frame-sequence.html">SKIP</a> (<a href=3D"https://bugs.freede=
+sktop.org/show_bug.cgi?id=3D109271">fdo#109271</a> / <a href=3D"https://git=
+lab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_alpha_blend@pipe-c-alpha-transparent-fb:</p>
+<ul>
+<li>shard-skl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_105156v1/shard-skl4/igt@kms_plane_alpha_blend@pipe-=
+c-alpha-transparent-fb.html">FAIL</a> (<a href=3D"https://gitlab.freedeskto=
+p.org/drm/intel/issues/265">i915#265</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_alpha_blend@pipe-c-constant-alpha-min:</p>
+<ul>
+<li>shard-skl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_105156v1/shard-skl1/igt@kms_plane_alpha_blend@pipe-=
+c-constant-alpha-min.html">FAIL</a> (<a href=3D"https://bugs.freedesktop.or=
+g/show_bug.cgi?id=3D108145">fdo#108145</a> / <a href=3D"https://gitlab.free=
+desktop.org/drm/intel/issues/265">i915#265</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr2_sf@cursor-plane-move-continuous-exceed-fully-sf:</p>
+<ul>
+<li>shard-skl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_105156v1/shard-skl6/igt@kms_psr2_sf@cursor-plane-mo=
+ve-continuous-exceed-fully-sf.html">SKIP</a> (<a href=3D"https://bugs.freed=
+esktop.org/show_bug.cgi?id=3D109271">fdo#109271</a> / <a href=3D"https://gi=
+tlab.freedesktop.org/drm/intel/issues/658">i915#658</a>) +1 similar issue</=
+li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr2_sf@overlay-plane-update-sf-dmg-area:</p>
+<ul>
+<li>shard-kbl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_105156v1/shard-kbl3/igt@kms_psr2_sf@overlay-plane-u=
+pdate-sf-dmg-area.html">SKIP</a> (<a href=3D"https://bugs.freedesktop.org/s=
+how_bug.cgi?id=3D109271">fdo#109271</a> / <a href=3D"https://gitlab.freedes=
+ktop.org/drm/intel/issues/658">i915#658</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr2_sf@primary-plane-update-sf-dmg-area-big-fb:</p>
+<ul>
+<li>shard-apl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_105156v1/shard-apl2/igt@kms_psr2_sf@primary-plane-u=
+pdate-sf-dmg-area-big-fb.html">SKIP</a> (<a href=3D"https://bugs.freedeskto=
+p.org/show_bug.cgi?id=3D109271">fdo#109271</a> / <a href=3D"https://gitlab.=
+freedesktop.org/drm/intel/issues/658">i915#658</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr2_sprite_blt:</p>
+<ul>
+<li>shard-iclb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_11759/shard-iclb2/igt@kms_psr@psr2_sprite_blt.html">PASS</a> -&gt; =
+<a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shar=
+d-iclb7/igt@kms_psr@psr2_sprite_blt.html">SKIP</a> (<a href=3D"https://bugs=
+.freedesktop.org/show_bug.cgi?id=3D109441">fdo#109441</a>) +2 similar issue=
+s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr_stress_test@invalidate-primary-flip-overlay:</p>
+<ul>
+<li>shard-iclb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_11759/shard-iclb3/igt@kms_psr_stress_test@invalidate-primary-flip-o=
+verlay.html">PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm=
+-tip/Patchwork_105156v1/shard-iclb6/igt@kms_psr_stress_test@invalidate-prim=
+ary-flip-overlay.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/=
+drm/intel/issues/5519">i915#5519</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@sw_sync@sync_merge_same:</p>
+<ul>
+<li>shard-skl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_105156v1/shard-skl6/igt@sw_sync@sync_merge_same.htm=
+l">FAIL</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/614=
+0">i915#6140</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@sw_sync@sync_multi_timeline_wait:</p>
+<ul>
+<li>shard-kbl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_105156v1/shard-kbl7/igt@sw_sync@sync_multi_timeline=
+_wait.html">FAIL</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/i=
+ssues/6140">i915#6140</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@sysfs_clients@busy:</p>
+<ul>
+<li>shard-skl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_105156v1/shard-skl1/igt@sysfs_clients@busy.html">SK=
+IP</a> (<a href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109271">f=
+do#109271</a> / <a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/=
+2994">i915#2994</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@sysfs_clients@pidname:</p>
+<ul>
+<li>
+<p>shard-apl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org/=
+tree/drm-tip/Patchwork_105156v1/shard-apl2/igt@sysfs_clients@pidname.html">=
+SKIP</a> (<a href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109271"=
+>fdo#109271</a> / <a href=3D"https://gitlab.freedesktop.org/drm/intel/issue=
+s/2994">i915#2994</a>)</p>
+</li>
+<li>
+<p>shard-kbl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org/=
+tree/drm-tip/Patchwork_105156v1/shard-kbl7/igt@sysfs_clients@pidname.html">=
+SKIP</a> (<a href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109271"=
+>fdo#109271</a> / <a href=3D"https://gitlab.freedesktop.org/drm/intel/issue=
+s/2994">i915#2994</a>)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_exec_balancer@parallel:</p>
+<ul>
+<li>shard-iclb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_11759/shard-iclb6/igt@gem_exec_balancer@parallel.html">SKIP</a> (<a=
+ href=3D"https://gitlab.freedesktop.org/drm/intel/issues/4525">i915#4525</a=
+>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_1051=
+56v1/shard-iclb2/igt@gem_exec_balancer@parallel.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fair@basic-none-solo@rcs0:</p>
+<ul>
+<li>shard-apl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_11759/shard-apl1/igt@gem_exec_fair@basic-none-solo@rcs0.html">FAIL<=
+/a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/2842">i915#=
+2842</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwo=
+rk_105156v1/shard-apl1/igt@gem_exec_fair@basic-none-solo@rcs0.html">PASS</a=
+></li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fair@basic-pace-share@rcs0:</p>
+<ul>
+<li>shard-tglb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_11759/shard-tglb3/igt@gem_exec_fair@basic-pace-share@rcs0.html">FAI=
+L</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/2842">i91=
+5#2842</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patch=
+work_105156v1/shard-tglb6/igt@gem_exec_fair@basic-pace-share@rcs0.html">PAS=
+S</a></li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fair@basic-pace@vcs1:</p>
+<ul>
+<li>shard-kbl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_11759/shard-kbl1/igt@gem_exec_fair@basic-pace@vcs1.html">FAIL</a> (=
+<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/2842">i915#2842<=
+/a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_10=
+5156v1/shard-kbl3/igt@gem_exec_fair@basic-pace@vcs1.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fair@basic-throttle@rcs0:</p>
+<ul>
+<li>shard-glk:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_11759/shard-glk3/igt@gem_exec_fair@basic-throttle@rcs0.html">FAIL</=
+a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/2842">i915#2=
+842</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwor=
+k_105156v1/shard-glk8/igt@gem_exec_fair@basic-throttle@rcs0.html">PASS</a><=
+/li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_dc@dc6-psr:</p>
+<ul>
+<li>shard-iclb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_11759/shard-iclb6/igt@i915_pm_dc@dc6-psr.html">FAIL</a> (<a href=3D=
+"https://gitlab.freedesktop.org/drm/intel/issues/454">i915#454</a>) -&gt; <=
+a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard=
+-iclb8/igt@i915_pm_dc@dc6-psr.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@flip-vs-cursor-legacy:</p>
+<ul>
+<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_11759/shard-skl2/igt@kms_cursor_legacy@flip-vs-cursor-legacy.html">=
+FAIL</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/2346">=
+i915#2346</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Pa=
+tchwork_105156v1/shard-skl7/igt@kms_cursor_legacy@flip-vs-cursor-legacy.htm=
+l">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_fbcon_fbt@fbc-suspend:</p>
+<ul>
+<li>shard-apl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_11759/shard-apl8/igt@kms_fbcon_fbt@fbc-suspend.html">INCOMPLETE</a>=
+ (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/180">i915#180<=
+/a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_10=
+5156v1/shard-apl2/igt@kms_fbcon_fbt@fbc-suspend.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@flip-vs-expired-vblank-interruptible@c-dp1:</p>
+<ul>
+<li>shard-apl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_11759/shard-apl2/igt@kms_flip@flip-vs-expired-vblank-interruptible@=
+c-dp1.html">FAIL</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/i=
+ssues/79">i915#79</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/dr=
+m-tip/Patchwork_105156v1/shard-apl8/igt@kms_flip@flip-vs-expired-vblank-int=
+erruptible@c-dp1.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@flip-vs-suspend@a-dp1:</p>
+<ul>
+<li>shard-apl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_11759/shard-apl8/igt@kms_flip@flip-vs-suspend@a-dp1.html">DMESG-WAR=
+N</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/180">i915=
+#180</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwo=
+rk_105156v1/shard-apl3/igt@kms_flip@flip-vs-suspend@a-dp1.html">PASS</a></l=
+i>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip_scaled_crc@flip-32bpp-ytile-to-64bpp-ytile-downscaling:</p>
+<ul>
+<li>shard-iclb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_11759/shard-iclb2/igt@kms_flip_scaled_crc@flip-32bpp-ytile-to-64bpp=
+-ytile-downscaling.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.or=
+g/drm/intel/issues/3701">i915#3701</a>) -&gt; <a href=3D"https://intel-gfx-=
+ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-iclb7/igt@kms_flip_scaled_c=
+rc@flip-32bpp-ytile-to-64bpp-ytile-downscaling.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip_scaled_crc@flip-32bpp-ytile-to-64bpp-ytile-upscaling:</p>
+<ul>
+<li>shard-glk:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_11759/shard-glk8/igt@kms_flip_scaled_crc@flip-32bpp-ytile-to-64bpp-=
+ytile-upscaling.html">FAIL</a> (<a href=3D"https://gitlab.freedesktop.org/d=
+rm/intel/issues/4911">i915#4911</a>) -&gt; <a href=3D"https://intel-gfx-ci.=
+01.org/tree/drm-tip/Patchwork_105156v1/shard-glk6/igt@kms_flip_scaled_crc@f=
+lip-32bpp-ytile-to-64bpp-ytile-upscaling.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_hdr@bpc-switch-dpms@pipe-a-dp-1:</p>
+<ul>
+<li>shard-kbl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_11759/shard-kbl1/igt@kms_hdr@bpc-switch-dpms@pipe-a-dp-1.html">FAIL=
+</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/1188">i915=
+#1188</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchw=
+ork_105156v1/shard-kbl1/igt@kms_hdr@bpc-switch-dpms@pipe-a-dp-1.html">PASS<=
+/a> +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane@plane-panning-bottom-right-suspend@pipe-a-planes:</p>
+<ul>
+<li>shard-kbl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_11759/shard-kbl4/igt@kms_plane@plane-panning-bottom-right-suspend@p=
+ipe-a-planes.html">DMESG-WARN</a> (<a href=3D"https://gitlab.freedesktop.or=
+g/drm/intel/issues/180">i915#180</a>) -&gt; <a href=3D"https://intel-gfx-ci=
+.01.org/tree/drm-tip/Patchwork_105156v1/shard-kbl6/igt@kms_plane@plane-pann=
+ing-bottom-right-suspend@pipe-a-planes.html">PASS</a> +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr2_primary_mmap_cpu:</p>
+<ul>
+<li>shard-iclb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_11759/shard-iclb6/igt@kms_psr@psr2_primary_mmap_cpu.html">SKIP</a> =
+(<a href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109441">fdo#1094=
+41</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork=
+_105156v1/shard-iclb2/igt@kms_psr@psr2_primary_mmap_cpu.html">PASS</a> +3 s=
+imilar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr_stress_test@invalidate-primary-flip-overlay:</p>
+<ul>
+<li>shard-tglb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_11759/shard-tglb6/igt@kms_psr_stress_test@invalidate-primary-flip-o=
+verlay.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/=
+issues/5519">i915#5519</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tr=
+ee/drm-tip/Patchwork_105156v1/shard-tglb7/igt@kms_psr_stress_test@invalidat=
+e-primary-flip-overlay.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@gem_exec_balancer@parallel-ordering:</p>
+<ul>
+<li>shard-iclb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_11759/shard-iclb2/igt@gem_exec_balancer@parallel-ordering.html">FAI=
+L</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/6117">i91=
+5#6117</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patch=
+work_105156v1/shard-iclb7/igt@gem_exec_balancer@parallel-ordering.html">SKI=
+P</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/4525">i91=
+5#4525</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fair@basic-none-rrul@rcs0:</p>
+<ul>
+<li>shard-iclb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_11759/shard-iclb3/igt@gem_exec_fair@basic-none-rrul@rcs0.html">FAIL=
+</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/2852">i915=
+#2852</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchw=
+ork_105156v1/shard-iclb6/igt@gem_exec_fair@basic-none-rrul@rcs0.html">FAIL<=
+/a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/2842">i915#=
+2842</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_dc@dc3co-vpb-simulation:</p>
+<ul>
+<li>shard-iclb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_11759/shard-iclb2/igt@i915_pm_dc@dc3co-vpb-simulation.html">SKIP</a=
+> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/588">i915#588=
+</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_1=
+05156v1/shard-iclb7/igt@i915_pm_dc@dc3co-vpb-simulation.html">SKIP</a> (<a =
+href=3D"https://gitlab.freedesktop.org/drm/intel/issues/658">i915#658</a>)<=
+/li>
+</ul>
+</li>
+<li>
+<p>igt@kms_fbcon_fbt@fbc-suspend:</p>
+<ul>
+<li>shard-kbl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_11759/shard-kbl1/igt@kms_fbcon_fbt@fbc-suspend.html">INCOMPLETE</a>=
+ (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/180">i915#180<=
+/a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_10=
+5156v1/shard-kbl7/igt@kms_fbcon_fbt@fbc-suspend.html">FAIL</a> (<a href=3D"=
+https://gitlab.freedesktop.org/drm/intel/issues/4767">i915#4767</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr2_sf@overlay-plane-update-continuous-sf:</p>
+<ul>
+<li>shard-iclb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_11759/shard-iclb2/igt@kms_psr2_sf@overlay-plane-update-continuous-s=
+f.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issue=
+s/2920">i915#2920</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/dr=
+m-tip/Patchwork_105156v1/shard-iclb3/igt@kms_psr2_sf@overlay-plane-update-c=
+ontinuous-sf.html">SKIP</a> (<a href=3D"https://bugs.freedesktop.org/show_b=
+ug.cgi?id=3D111068">fdo#111068</a> / <a href=3D"https://gitlab.freedesktop.=
+org/drm/intel/issues/658">i915#658</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr2_sf@overlay-primary-update-sf-dmg-area:</p>
+<ul>
+<li>shard-iclb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_11759/shard-iclb6/igt@kms_psr2_sf@overlay-primary-update-sf-dmg-are=
+a.html">SKIP</a> (<a href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=
+=3D111068">fdo#111068</a> / <a href=3D"https://gitlab.freedesktop.org/drm/i=
+ntel/issues/658">i915#658</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_105156v1/shard-iclb2/igt@kms_psr2_sf@overlay-primar=
+y-update-sf-dmg-area.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.=
+org/drm/intel/issues/2920">i915#2920</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr2_su@page_flip-nv12:</p>
+<ul>
+<li>shard-iclb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_11759/shard-iclb5/igt@kms_psr2_su@page_flip-nv12.html">SKIP</a> (<a=
+ href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109642">fdo#109642<=
+/a> / <a href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111068">fdo=
+#111068</a> / <a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/65=
+8">i915#658</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/=
+Patchwork_105156v1/shard-iclb2/igt@kms_psr2_su@page_flip-nv12.html">FAIL</a=
+> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/5939">i915#59=
+39</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>
+<p>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/=
+CI_DRM_11759/shard-skl2/igt@runner@aborted.html">FAIL</a> (<a href=3D"https=
+://gitlab.freedesktop.org/drm/intel/issues/3002">i915#3002</a> / <a href=3D=
+"https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a> / <a h=
+ref=3D"https://gitlab.freedesktop.org/drm/intel/issues/5257">i915#5257</a>)=
+ -&gt; (<a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_10515=
+6v1/shard-skl2/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-=
+gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-skl2/igt@runner@aborted=
+.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchw=
+ork_105156v1/shard-skl1/igt@runner@aborted.html">FAIL</a>, <a href=3D"https=
+://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-skl4/igt@runne=
+r@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-t=
+ip/Patchwork_105156v1/shard-skl10/igt@runner@aborted.html">FAIL</a>) (<a hr=
+ef=3D"https://gitlab.freedesktop.org/drm/intel/issues/2029">i915#2029</a> /=
+ <a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/3002">i915#3002=
+</a> / <a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/4312">i91=
+5#4312</a> / <a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/525=
+7">i915#5257</a>)</p>
+</li>
+<li>
+<p>shard-kbl:          (<a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_11759/shard-kbl1/igt@runner@aborted.html">FAIL</a>, <a href=3D"http=
+s://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/shard-kbl1/igt@runner@abo=
+rted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI=
+_DRM_11759/shard-kbl1/igt@runner@aborted.html">FAIL</a>, <a href=3D"https:/=
+/intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/shard-kbl7/igt@runner@aborte=
+d.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DR=
+M_11759/shard-kbl4/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://in=
+tel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/shard-kbl4/igt@runner@aborted.h=
+tml">FAIL</a>) (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/=
+180">i915#180</a> / <a href=3D"https://gitlab.freedesktop.org/drm/intel/iss=
+ues/3002">i915#3002</a> / <a href=3D"https://gitlab.freedesktop.org/drm/int=
+el/issues/4312">i915#4312</a> / <a href=3D"https://gitlab.freedesktop.org/d=
+rm/intel/issues/5257">i915#5257</a> / <a href=3D"https://gitlab.freedesktop=
+.org/drm/intel/issues/92">i915#92</a>) -&gt; (<a href=3D"https://intel-gfx-=
+ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-kbl4/igt@runner@aborted.htm=
+l">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_=
+105156v1/shard-kbl7/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://i=
+ntel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-kbl7/igt@runner@ab=
+orted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/P=
+atchwork_105156v1/shard-kbl7/igt@runner@aborted.html">FAIL</a>, <a href=3D"=
+https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105156v1/shard-kbl7/igt@=
+runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/=
+drm-tip/Patchwork_105156v1/shard-kbl1/igt@runner@aborted.html">FAIL</a>) (<=
+a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/180">i915#180</a>=
+ / <a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/3002">i915#30=
+02</a> / <a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/4312">i=
+915#4312</a> / <a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/5=
+257">i915#5257</a>)</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when comput=
+ing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11759 -&gt; Patchwork_105156v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11759: fa66b647ce886c01bbe1e9f3017a141e90d87539 @ git://anongit.fr=
+eedesktop.org/gfx-ci/linux<br />
+  IGT_6529: b96bf5a0307fc0bdbf6c8e86872817306e102883 @ https://gitlab.freed=
+esktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_105156v1: fa66b647ce886c01bbe1e9f3017a141e90d87539 @ git://anon=
+git.freedesktop.org/gfx-ci/linux<br />
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.fre=
+edesktop.org/piglit</p>
+
+</body>
+</html>
+
+--===============2230859870203879721==--
