@@ -2,54 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22EC954C989
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jun 2022 15:15:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F402B54C9BE
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jun 2022 15:28:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6FEE210E8BD;
-	Wed, 15 Jun 2022 13:15:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E5F110E973;
+	Wed, 15 Jun 2022 13:28:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2130610E8BD;
- Wed, 15 Jun 2022 13:15:26 +0000 (UTC)
-Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
- by smtp-out1.suse.de (Postfix) with ESMTP id BF13A21BB9;
- Wed, 15 Jun 2022 13:15:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
- t=1655298924; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=17VEqNPV/TBk73G7tKfWD0AkIggznFYMqcz7zsD4S9c=;
- b=c5CplPzuxQh5gnp4bD34uWkKLEOaOc1Tpwslt5ARBi5fVdHjWZ4prxmWoQqcdCpqAG1Yor
- xmQuGVnUEOpCEt1XYqn7LUtFrFvMKUMl0YDT2F/jRq/vq+FW+bBxji/zHIwKJ8jaI2QMZs
- rqLOKCpvqZTZhxAjHRYVGQZVY5XNs10=
-Received: from suse.cz (unknown [10.100.201.86])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by relay2.suse.de (Postfix) with ESMTPS id 66BBD2C141;
- Wed, 15 Jun 2022 13:15:24 +0000 (UTC)
-Date: Wed, 15 Jun 2022 15:15:23 +0200
-From: Michal Hocko <mhocko@suse.com>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-Message-ID: <Yqnba1E2FSRVUATY@dhcp22.suse.cz>
-References: <YqMuq/ZrV8loC3jE@dhcp22.suse.cz>
- <2e7e050e-04eb-0c0a-0675-d7f1c3ae7aed@amd.com>
- <YqNSSFQELx/LeEHR@dhcp22.suse.cz>
- <288528c3-411e-fb25-2f08-92d4bb9f1f13@gmail.com>
- <Yqbq/Q5jz2ou87Jx@dhcp22.suse.cz>
- <b8b9aba5-575e-8a34-e627-79bef4ed7f97@amd.com>
- <YqcpZY3Xx7Mk2ROH@dhcp22.suse.cz>
- <34daa8ab-a9f4-8f7b-0ea7-821bc36b9497@gmail.com>
- <YqdFkfLVFUD5K6EK@dhcp22.suse.cz>
- <9e170201-35df-cfcc-8d07-2f9693278829@amd.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 98DC610E973
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Jun 2022 13:28:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1655299692; x=1686835692;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=kxpBoyv8ZZN01qEyLeUMt4lnYWB3QktD+4WkfsApWxs=;
+ b=LFkD0QFdtbsCe6yjckRoASG47WIaAtgh8ayJ69Y4L/JLOY4M00HmeVZF
+ /ecvh23IGdrLBXtkFL5njFrZnLxkiqVu9bUOsc3RQVLp4edLWIMfcLK2b
+ nHLqA5KIm9Wyho9Ne/MY9KIzRCQ7w4uPqrgPhaNp/oZBnCqGVYu5fzKNW
+ oOUpt7QfLUUz8VxKdQsTdWuITxXWy7wk8WjXpGjvs6LzVVdtVx5CYsrW1
+ cy9ZWK7mXrQUKQKYzaq9pummrClyK392eAHAph4aYnBz2nc0qXMCnTQHx
+ u8DASfGT0R/bpdG0hSL+fV1PES4huuBSfWN9YvZRaJKkYsevJUlXCCYNo w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10378"; a="276532016"
+X-IronPort-AV: E=Sophos;i="5.91,302,1647327600"; d="scan'208";a="276532016"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jun 2022 06:28:06 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.91,302,1647327600"; d="scan'208";a="571949795"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.163])
+ by orsmga002.jf.intel.com with SMTP; 15 Jun 2022 06:28:00 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 15 Jun 2022 16:27:59 +0300
+Date: Wed, 15 Jun 2022 16:27:59 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <YqneX9G0VVDqJvYC@intel.com>
+References: <cover.1655297182.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <9e170201-35df-cfcc-8d07-2f9693278829@amd.com>
-Subject: Re: [Intel-gfx] [PATCH 03/13] mm: shmem: provide oom badness for
- shmem files
+In-Reply-To: <cover.1655297182.git.jani.nikula@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 0/7] drm/i915/display: split out verifation,
+ compare and dump from intel_display.c
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,47 +60,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: andrey.grodzovsky@amd.com, linux-mm@kvack.org,
- nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- hughd@google.com, linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- linux-fsdevel@vger.kernel.org, viro@zeniv.linux.org.uk,
- Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>,
- linux-tegra@vger.kernel.org, alexander.deucher@amd.com,
- akpm@linux-foundation.org, linux-media@vger.kernel.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed 15-06-22 14:35:22, Christian König wrote:
-[...]
-> Even the classic mm_struct based accounting includes MM_SHMEMPAGES into the
-> badness. So accounting shared resources as badness to make a decision is
-> nothing new here.
-
-Yeah, it is nothing really new but it also doesn't mean it is an example
-worth following as this doesn't really work currently. Also please note
-that MM_SHMEMPAGES is counting at least something process specific as
-those pages are mapped in to the process (and with enough of wishful
-thinking unmapping can drop the last reference and free something up
-actually) . With generic per-file memory this is even more detached from
-process.
-
-> The difference is that this time the badness doesn't come from the memory
-> management subsystem, but rather from the I/O subsystem.
+On Wed, Jun 15, 2022 at 03:47:54PM +0300, Jani Nikula wrote:
+> The state verification and pipe config comparison/dumping are fairly
+> isolated pieces of code within intel_display.c. Move them to separate
+> files in a long overdue cleanup.
 > 
-> > This is also the reason why I am not really fan of the per file
-> > badness because it adds a notion of resource that is not process bound
-> > in general so it will add all sorts of weird runtime corner cases which
-> > are impossible to anticipate [*]. Maybe that will work in some scenarios
-> > but definitely not something to be done by default without users opting
-> > into that and being aware of consequences.
-> 
-> Would a kernel command line option to control the behavior be helpful here?
+> Jani Nikula (7):
+>   drm/i915/wm: move wm state verification to intel_pm.c
+>   drm/i915/dpll: move shared dpll state verification to intel_dpll_mgr.c
+>   drm/i915/mpllb: use I915_STATE_WARN() for state mismatch warnings
+>   drm/i915/mpllb: move mpllb state check to intel_snps_phy.c
 
-I am not sure what would be the proper way to control that that would be
-future extensible. Kernel command line is certainly and option but if we
-want to extend that to module like or eBPF interface then it wouldn't
-stand a future test very quickly.
+I'd perhaps go for foo_state_verify() naming convention. Would
+match the foo_state_dump() naming convention I suggested
+for the dumping stuff.
+
+Apart from that these ^ four are
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+
+>   drm/i915/display: split out modeset verification code
+
+I really hate some of that code. I guess hiding it is one option :P
+This one ^ is
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+
+>   drm/i915/display: split out pipe config compare to a separate file
+
+Not entirely sure I like moving this one. The fastset stuff
+within needs to stay in sync with the fastset codepaths which
+are in intel_display.c. Not sure if we risk more bugs if it's
+too well hidden...
+
+>   drm/i915/display: split out pipe config dump to a separate file
+> 
+>  drivers/gpu/drm/i915/Makefile                 |    3 +
+>  drivers/gpu/drm/i915/display/intel_display.c  | 1373 +----------------
+>  drivers/gpu/drm/i915/display/intel_display.h  |    3 +
+>  drivers/gpu/drm/i915/display/intel_dpll_mgr.c |   88 ++
+>  drivers/gpu/drm/i915/display/intel_dpll_mgr.h |    5 +
+>  .../drm/i915/display/intel_modeset_verify.c   |  247 +++
+>  .../drm/i915/display/intel_modeset_verify.h   |   21 +
+>  .../i915/display/intel_pipe_config_compare.c  |  581 +++++++
+>  .../i915/display/intel_pipe_config_compare.h  |   17 +
+>  .../drm/i915/display/intel_pipe_config_dump.c |  314 ++++
+>  .../drm/i915/display/intel_pipe_config_dump.h |   16 +
+>  drivers/gpu/drm/i915/display/intel_snps_phy.c |   43 +
+>  drivers/gpu/drm/i915/display/intel_snps_phy.h |    5 +-
+>  drivers/gpu/drm/i915/intel_pm.c               |  138 +-
+>  drivers/gpu/drm/i915/intel_pm.h               |   14 +-
+>  15 files changed, 1482 insertions(+), 1386 deletions(-)
+>  create mode 100644 drivers/gpu/drm/i915/display/intel_modeset_verify.c
+>  create mode 100644 drivers/gpu/drm/i915/display/intel_modeset_verify.h
+>  create mode 100644 drivers/gpu/drm/i915/display/intel_pipe_config_compare.c
+>  create mode 100644 drivers/gpu/drm/i915/display/intel_pipe_config_compare.h
+>  create mode 100644 drivers/gpu/drm/i915/display/intel_pipe_config_dump.c
+>  create mode 100644 drivers/gpu/drm/i915/display/intel_pipe_config_dump.h
+> 
+> -- 
+> 2.30.2
 
 -- 
-Michal Hocko
-SUSE Labs
+Ville Syrjälä
+Intel
