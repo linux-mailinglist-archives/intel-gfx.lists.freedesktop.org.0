@@ -1,55 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B709554D144
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jun 2022 20:59:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C342054D171
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jun 2022 21:16:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB6C51129DA;
-	Wed, 15 Jun 2022 18:59:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BFC2D10FAC9;
+	Wed, 15 Jun 2022 19:16:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8A6FB1129B7
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Jun 2022 18:59:55 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6156510FAC9;
+ Wed, 15 Jun 2022 19:16:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655319595; x=1686855595;
+ t=1655320610; x=1686856610;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=00lPYaLuQulCSzuXq1rFGhlWeJC432ItcBulvVGnKQ8=;
- b=lXOEKUDsBKn1ht2on5YTfIhJkUNM5oG6yTeqsW/XjcxXIoqEHflFsDP5
- ttUHu5q/+eGkn/5GAfKuoRW7DPD++se9WK0QHYfdqiyh0Hu/EiCf2q1WG
- QRr4hNkzB42a2iV1ZOurKdl8GTaM3VSC1HdCbMVJE9TIb+lNiA7qhHE2z
- SfYQqrrB20XKoC6oL/HdFCIMlUaq7YCmf1dcXj4ydPVtkrWV1a/gNioKZ
- zR7TvLmG9ZrrWYR8zNV7IVKTYvOc+PgQKDy8qoYzdbyTe9gq+8mnem1Lw
- +ahJwJz3Bl1iSqivu4Dr23tzxws+025j+tMA021fZQt+rdod9A2CmyrgJ w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10379"; a="340734630"
-X-IronPort-AV: E=Sophos;i="5.91,302,1647327600"; d="scan'208";a="340734630"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2022 11:59:55 -0700
-X-IronPort-AV: E=Sophos;i="5.91,302,1647327600"; d="scan'208";a="713081653"
-Received: from gkonidal-mobl2.amr.corp.intel.com (HELO ldmartin-desk2)
- ([10.212.170.1])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2022 11:59:54 -0700
-Date: Wed, 15 Jun 2022 11:59:53 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <20220615185953.bsbyr27jcchccvge@ldmartin-desk2>
-X-Patchwork-Hint: comment
-References: <20220611172711.2154962-1-alan.previn.teres.alexis@intel.com>
- <20220611172711.2154962-2-alan.previn.teres.alexis@intel.com>
- <20220614011024.GE48807@orsosgc001.jf.intel.com>
- <84534cf0-94f0-13e0-5fb3-332bee124a24@linux.intel.com>
+ bh=oVbScG/DWO8m78cbPhcP5qpY+C/RLXH24wD9sFc7X6U=;
+ b=lGzoiB4yNrDjP3S0ywD8GrAw8wv7Pvy+vup70GEa30mVI9CIAWtr9SF6
+ S6UpKllR20Af0a69ZEPf8sBAhaRGMzfjy+ygAp/fDicVGWwmSVKKY/e0O
+ LHUCZfbmF/2oT5TchpyOSuaQ+hyby7zVqsPGD7JtAJuPcXrw0KJ8D6I7T
+ tvCds1f1g2b24VDyS6VLH7kZdU4tNh1ApLii3Fq8b8gx2DUJm4SqYazWL
+ sTcn694ZkjBvilBxV1Hri8GCoAEJI+QH3PDaG4+dM5m1IWl41TOa4jHw0
+ vxDgVY6XADyACH898HE90sa/Zs5byhZdxO2Of16yH/mpGPtrAXs2ux7u1 A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10379"; a="279134408"
+X-IronPort-AV: E=Sophos;i="5.91,302,1647327600"; d="scan'208";a="279134408"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jun 2022 12:16:49 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.91,302,1647327600"; d="scan'208";a="583353008"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.163])
+ by orsmga007.jf.intel.com with SMTP; 15 Jun 2022 12:16:47 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 15 Jun 2022 22:16:46 +0300
+Date: Wed, 15 Jun 2022 22:16:46 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Andrzej Hajda <andrzej.hajda@intel.com>
+Message-ID: <YqowHjSqWoQZmRkQ@intel.com>
+References: <20220610160024.903701-1-andrzej.hajda@intel.com>
+ <YqOPdYtBRLz4aDIp@intel.com>
+ <e7c52485-7bc5-cf44-308a-a24e7175246c@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <84534cf0-94f0-13e0-5fb3-332bee124a24@linux.intel.com>
-Subject: Re: [Intel-gfx] [Intel-gfx 1/1] drm/i915/guc: Don't update engine
- busyness stats too frequently
+In-Reply-To: <e7c52485-7bc5-cf44-308a-a24e7175246c@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH v7] drm/i915/display: disable HPD workers
+ before display driver unregister
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,94 +62,143 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org,
- Alan Previn <alan.previn.teres.alexis@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jun 14, 2022 at 08:07:04AM +0100, Tvrtko Ursulin wrote:
->
->On 14/06/2022 02:10, Umesh Nerlige Ramappa wrote:
->>On Sat, Jun 11, 2022 at 10:27:11AM -0700, Alan Previn wrote:
->>>Using igt's gem-create and with additional patches to track object
->>>creation time, it was measured that guc_update_engine_gt_clks was
->>>getting called over 188 thousand times in the span of 15 seconds
->>>(running the test three times).
->>>
->>>Get a jiffies sample on every trigger and ensure we skip sampling
->>>if we are being called too soon. Use half of the ping_delay as a
->>>safe threshold.
->>>
->>>NOTE: with this change, the number of calls went down to just 14
->>>over the same span of time (matching the original intent of running
->>>about once every 24 seconds, at 19.2Mhz GT freq, per engine).
->>>
->>>Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
->>>---
->>>drivers/gpu/drm/i915/gt/intel_engine_types.h      | 10 ++++++++++
->>>drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c |  9 +++++++++
->>>2 files changed, 19 insertions(+)
->>>
->>>diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h 
->>>b/drivers/gpu/drm/i915/gt/intel_engine_types.h
->>>index 2286f96f5f87..63f4ecdf1606 100644
->>>--- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
->>>+++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
->>>@@ -323,6 +323,16 @@ struct intel_engine_guc_stats {
->>>     * @start_gt_clk: GT clock time of last idle to active transition.
->>>     */
->>>    u64 start_gt_clk;
->>>+
->>>+    /**
->>>+     * @last_jiffies: Jiffies at last actual stats collection time
->>>+     *
->>>+     * We use this timestamp to ensure we don't oversample the
->>>+     * stats because runtime power management events can trigger
->>>+     * stats collection at much higher rates than required.
->>>+     */
->>>+    u64 last_jiffies;
->>>+
->>>};
->>>
->>>struct intel_engine_cs {
->>>diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c 
->>>b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>>index 5a1dfacf24ea..8f8bf6e40ccb 100644
->>>--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>>+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>>@@ -1167,6 +1167,15 @@ static void 
->>>guc_update_engine_gt_clks(struct intel_engine_cs *engine)
->>
->>A user query will end up in guc_engine_busyness which will call 
->>guc_update_engine_gt_clks. Adding this logic here will affect 
->>accuracy.
->>The other place where guc_update_engine_gt_clks is called is in the 
->>ping worker, but that worker runs at 1/8th the wrap around time for 
->>the gt clocks (32 bit). The last I checked the wrap around was at 22 
->>seconds.
->>
->>That leaves only the gt_park path. fwiu, this path runs too 
->>frequently and here we are updating the busyness stats. That is 
->>causing the enormous PCI traffic (lmem accesses). Only this path 
->>needs to be fixed, as in just use the same logic in the 
->>intel_guc_busyness_park() to decide whether to call 
->>__update_guc_busyness_stats or not.
->
->Not updating the driver state in park will not negatively impact 
->accuracy in some scenarios? That needs to balanced against the 
->questions whether or not there are real world scenarios impacted by 
->the update cost or it is just for IGT.
+On Tue, Jun 14, 2022 at 05:06:40PM +0200, Andrzej Hajda wrote:
+> On 10.06.2022 20:37, Ville Syrjälä wrote:
+> > On Fri, Jun 10, 2022 at 06:00:24PM +0200, Andrzej Hajda wrote:
+> >> Handling HPD during driver removal is pointless, and can cause different
+> >> use-after-free/concurrency issues:
+> >> 1. Setup of deferred fbdev after fbdev unregistration.
+> >> 2. Access to DP-AUX after DP-AUX removal.
+> >>
+> >> Below stacktraces of both cases observed on CI:
+> >>
+> >> [272.634530] general protection fault, probably for non-canonical address 0x6b6b6b6b6b6b6b6b: 0000 [#1] PREEMPT SMP NOPTI
+> >> [272.634536] CPU: 0 PID: 6030 Comm: i915_selftest Tainted: G     U            5.18.0-rc5-CI_DRM_11603-g12dccf4f5eef+ #1
+> >> [272.634541] Hardware name: Intel Corporation Raptor Lake Client Platform/RPL-S ADP-S DDR5 UDIMM CRB, BIOS RPLSFWI1.R00.2397.A01.2109300731 09/30/2021
+> >> [272.634545] RIP: 0010:fb_do_apertures_overlap.part.14+0x26/0x60
+> >> ...
+> >> [272.634582] Call Trace:
+> >> [272.634583]  <TASK>
+> >> [272.634585]  do_remove_conflicting_framebuffers+0x59/0xa0
+> >> [272.634589]  remove_conflicting_framebuffers+0x2d/0xc0
+> >> [272.634592]  remove_conflicting_pci_framebuffers+0xc8/0x110
+> >> [272.634595]  drm_aperture_remove_conflicting_pci_framebuffers+0x52/0x70
+> >> [272.634604]  i915_driver_probe+0x63a/0xdd0 [i915]
+> >>
+> >> [283.405824] cpu_latency_qos_update_request called for unknown object
+> >> [283.405866] WARNING: CPU: 2 PID: 240 at kernel/power/qos.c:296 cpu_latency_qos_update_request+0x2d/0x100
+> >> [283.405912] CPU: 2 PID: 240 Comm: kworker/u64:9 Not tainted 5.18.0-rc6-Patchwork_103738v3-g1672d1c43e43+ #1
+> >> [283.405915] Hardware name: Intel Corporation Raptor Lake Client Platform/RPL-S ADP-S DDR5 UDIMM CRB, BIOS RPLSFWI1.R00.2397.A01.2109300731 09/30/2021
+> >> [283.405916] Workqueue: i915-dp i915_digport_work_func [i915]
+> >> [283.406020] RIP: 0010:cpu_latency_qos_update_request+0x2d/0x100
+> >> ...
+> >> [283.406040] Call Trace:
+> >> [283.406041]  <TASK>
+> >> [283.406044]  intel_dp_aux_xfer+0x60e/0x8e0 [i915]
+> >> [283.406131]  ? finish_swait+0x80/0x80
+> >> [283.406139]  intel_dp_aux_transfer+0xc5/0x2b0 [i915]
+> >> [283.406218]  drm_dp_dpcd_access+0x79/0x130 [drm_display_helper]
+> >> [283.406227]  drm_dp_dpcd_read+0xe2/0xf0 [drm_display_helper]
+> >> [283.406233]  intel_dp_hpd_pulse+0x134/0x570 [i915]
+> >> [283.406308]  ? __down_killable+0x70/0x140
+> >> [283.406313]  i915_digport_work_func+0xba/0x150 [i915]
+> >>
+> >> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+> >> ---
+> >> Hi All,
+> >>
+> >> I am not sure about changes in shutdown path, any comments welcome.
+> >> I suspect suspend path have also some common bits, but I am little
+> >> bit afraid of touching it.
+> >>
+> >> Changes:
+> >> v1 - v6:
+> >>      - chasing the bug appearing only on public CI.
+> >> v7:
+> >>      - shutdown path adjusted (suggested by Jani)
+> >>
+> >> Regards
+> >> Andrzej
+> >> ---
+> >>   drivers/gpu/drm/i915/display/intel_display.c | 11 ++++-------
+> >>   drivers/gpu/drm/i915/i915_driver.c           |  5 ++---
+> >>   2 files changed, 6 insertions(+), 10 deletions(-)
+> >>
+> >> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> >> index 186b37925d23f2..f9952ee8289fb2 100644
+> >> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> >> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> >> @@ -10490,13 +10490,6 @@ void intel_modeset_driver_remove_noirq(struct drm_i915_private *i915)
+> >>   	 */
+> >>   	intel_hpd_poll_fini(i915);
+> >>   
+> >> -	/*
+> >> -	 * MST topology needs to be suspended so we don't have any calls to
+> >> -	 * fbdev after it's finalized. MST will be destroyed later as part of
+> >> -	 * drm_mode_config_cleanup()
+> >> -	 */
+> >> -	intel_dp_mst_suspend(i915);
+> >> -
+> >>   	/* poll work can call into fbdev, hence clean that up afterwards */
+> >>   	intel_fbdev_fini(i915);
+> >>   
+> >> @@ -10588,6 +10581,10 @@ void intel_display_driver_unregister(struct drm_i915_private *i915)
+> >>   	if (!HAS_DISPLAY(i915))
+> >>   		return;
+> >>   
+> >> +	intel_dp_mst_suspend(i915);
+> >> +	intel_hpd_cancel_work(i915);
+> >> +	drm_kms_helper_poll_disable(&i915->drm);
+> >> +
+> >>   	intel_fbdev_unregister(i915);
+> >>   	intel_audio_deinit(i915);
+> >>   
+> >> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+> >> index d26dcca7e654aa..82cdccf072e2bc 100644
+> >> --- a/drivers/gpu/drm/i915/i915_driver.c
+> >> +++ b/drivers/gpu/drm/i915/i915_driver.c
+> >> @@ -1070,15 +1070,14 @@ void i915_driver_shutdown(struct drm_i915_private *i915)
+> >>   	i915_gem_suspend(i915);
+> >>   
+> >>   	if (HAS_DISPLAY(i915)) {
+> >> +		intel_dp_mst_suspend(i915);
+> >> +		intel_hpd_cancel_work(i915);
+> >>   		drm_kms_helper_poll_disable(&i915->drm);
+> >>   
+> >>   		drm_atomic_helper_shutdown(&i915->drm);
+> > 
+> > You can't suspend MST before this since this is what actually turns the
+> > displays off.
+> > 
+> > The real chicken and egg sitaation is due to MST sideband depending
+> > on HPD_IRQs to work, but we want to stop the rest of hotplug processing
+> > before we shut down the displays to make sure fbdev/etc. doesn't light
+> > them back up.
+> > 
+> > If we didn't have MST sidband we could just turn off hotplug interrupts
+> > ahead of time and flush the works, but with MST we need to keep the
+> > interrupts alive. So I suspect we need some kind of flag to indicate
+> > that at least full hotplug handling should not happen even though the
+> > hotplug interrupts are still enabled.
+> 
+> 
+> Thanks for explanation.
+> As usual, reality is more complicated than expectations :)
+> I was wondering about HPD during removal/shutdown/suspend.
+> - HPD-plug should be ignored.
+> - HPD-unplug probably should be handled - to avoid possible attempts to 
+> communicate to non-exisitng sinks.
+> So maybe at the beginning of removal/shutdown and maybe suspend we could 
+> perform kind of cold HPD-unplug? What do you think?
 
-there is, which was what motivated 
-https://patchwork.freedesktop.org/series/105011/ and in parallel Alan
-worked on this. I view both as orthogonal  thought. I used it to make
-the single-word-from-lmem faster, but if we can reduce
-the frequency this code path is called, it should be even better.
-Per Umesh's and your comment I'm unsure if we can... but if
-there is no user monitoring the usage, should we still be calling this?
-"Nobody is looking, why are we sampling?" kind of thought.
+Talking to non-existing sinks is perfectly normal. Happens every time
+you pulle the cable out.
 
-Summarizing the first patch in my series: it improved igt in ~50% and a
-real world case in ~12%
-
-Lucas De Marchi
+-- 
+Ville Syrjälä
+Intel
