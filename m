@@ -2,32 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4042954C511
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jun 2022 11:49:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D18E54C519
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jun 2022 11:50:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8FF9F89C18;
-	Wed, 15 Jun 2022 09:49:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 584E010F035;
+	Wed, 15 Jun 2022 09:49:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id B593D89C18;
- Wed, 15 Jun 2022 09:49:15 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id AC198A7E03;
- Wed, 15 Jun 2022 09:49:15 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7172487971594835303=="
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 50DAD10E6B0;
+ Wed, 15 Jun 2022 09:49:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1655286594; x=1686822594;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=0DmHyq5bxkQ+brBu0zHUgscDq7IyulAKo49ZXPSCI7w=;
+ b=OESgnS5ygSC2w6Az8/T142eeq4cTkYULOVZLwME1pQbbkyvIg+h5NBrg
+ kDdSaohTnHoy8zesPADsm2aeObTlwgWTJRoInMbHihgKkf0k7FtnGMQSa
+ +Vqh13xwJbTNVe5ZpkpIT0x6mx1Ue513m9CgHQebq+C7cwobz7n8GoZ0s
+ xclkJ5d0nr59lrdCe8i7vFqLykwAbtMK6y1BdOLj+6eyIoU/1DYF64ZGb
+ Dwr7CPUoFEdTxqaZAApzveMyKXGTFJXjx/TNKT850wpwhrIFvr6SjMDPD
+ /LSvnMNtKpDzeoHdF8SBPq4M4mAdmQ6TRNwi3RVmPp3Y6VWZjc2CWX8pZ Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10378"; a="279618120"
+X-IronPort-AV: E=Sophos;i="5.91,300,1647327600"; d="scan'208";a="279618120"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jun 2022 02:49:53 -0700
+X-IronPort-AV: E=Sophos;i="5.91,300,1647327600"; d="scan'208";a="911552129"
+Received: from nhanraha-mobl1.ger.corp.intel.com (HELO [10.213.196.47])
+ ([10.213.196.47])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jun 2022 02:49:50 -0700
+Message-ID: <4bb3b1a2-d2c4-adac-a3de-f1930f16eb8e@linux.intel.com>
+Date: Wed, 15 Jun 2022 10:49:48 +0100
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: priyanka.dandamudi@intel.com
-Date: Wed, 15 Jun 2022 09:49:15 -0000
-Message-ID: <165528655566.14603.8560057923118261359@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220615054306.1175736-1-priyanka.dandamudi@intel.com>
-In-Reply-To: <20220615054306.1175736-1-priyanka.dandamudi@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgQWRk?=
- =?utf-8?q?_support_for_LMEM_PCIe_resizable_bar?=
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Content-Language: en-US
+To: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+References: <e4e1989c314d3958d58010431515ea371935d0c3.camel@intel.com>
+ <20220523191943.GH4461@nvishwa1-DESK>
+ <CAPM=9tzcYL5kwv18cfq5NzE00jwHuwTj_L73NVgE8vdcBgrQww@mail.gmail.com>
+ <CAKMK7uFt23yZxGJfuZ71ngNw-46yvyed8LaQCQ1ksq73MLGEug@mail.gmail.com>
+ <20220602050833.GP4461@nvishwa1-DESK> <20220603065330.GT4461@nvishwa1-DESK>
+ <08e61393-d4ec-d35e-9b8f-41195365f179@intel.com>
+ <0603b682-a196-9324-5c96-3ab5a8487a53@linux.intel.com>
+ <577d8612-ae68-4b0d-7a28-f9ebb92020f6@intel.com>
+ <07a45817-7daf-eb4b-e420-05f02cb98b07@linux.intel.com>
+ <20220608204527.GA4461@nvishwa1-DESK>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <20220608204527.GA4461@nvishwa1-DESK>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [RFC v3 3/3] drm/doc/rfc: VM_BIND uapi definition
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,322 +69,287 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "Wilson, Chris P" <chris.p.wilson@intel.com>, "Zanoni,
+ Paulo R" <paulo.r.zanoni@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "Hellstrom, Thomas" <thomas.hellstrom@intel.com>, "Vetter,
+ Daniel" <daniel.vetter@intel.com>,
+ "christian.koenig@amd.com" <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============7172487971594835303==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
+On 08/06/2022 21:45, Niranjana Vishwanathapura wrote:
+> On Wed, Jun 08, 2022 at 09:54:24AM +0100, Tvrtko Ursulin wrote:
+>>
+>> On 08/06/2022 09:45, Lionel Landwerlin wrote:
+>>> On 08/06/2022 11:36, Tvrtko Ursulin wrote:
+>>>>
+>>>> On 08/06/2022 07:40, Lionel Landwerlin wrote:
+>>>>> On 03/06/2022 09:53, Niranjana Vishwanathapura wrote:
+>>>>>> On Wed, Jun 01, 2022 at 10:08:35PM -0700, Niranjana 
+>>>>>> Vishwanathapura wrote:
+>>>>>>> On Wed, Jun 01, 2022 at 11:27:17AM +0200, Daniel Vetter wrote:
+>>>>>>>> On Wed, 1 Jun 2022 at 11:03, Dave Airlie <airlied@gmail.com> wrote:
+>>>>>>>>>
+>>>>>>>>> On Tue, 24 May 2022 at 05:20, Niranjana Vishwanathapura
+>>>>>>>>> <niranjana.vishwanathapura@intel.com> wrote:
+>>>>>>>>>>
+>>>>>>>>>> On Thu, May 19, 2022 at 04:07:30PM -0700, Zanoni, Paulo R wrote:
+>>>>>>>>>>> On Tue, 2022-05-17 at 11:32 -0700, Niranjana 
+>>>>>>>>>> Vishwanathapura wrote:
+>>>>>>>>>>>> VM_BIND and related uapi definitions
+>>>>>>>>>>>>
+>>>>>>>>>>>> v2: Ensure proper kernel-doc formatting with cross references.
+>>>>>>>>>>>>      Also add new uapi and documentation as per review comments
+>>>>>>>>>>>>      from Daniel.
+>>>>>>>>>>>>
+>>>>>>>>>>>> Signed-off-by: Niranjana Vishwanathapura 
+>>>>>>>>>> <niranjana.vishwanathapura@intel.com>
+>>>>>>>>>>>> ---
+>>>>>>>>>>>>   Documentation/gpu/rfc/i915_vm_bind.h | 399 
+>>>>>>>>>> +++++++++++++++++++++++++++
+>>>>>>>>>>>>   1 file changed, 399 insertions(+)
+>>>>>>>>>>>>   create mode 100644 Documentation/gpu/rfc/i915_vm_bind.h
+>>>>>>>>>>>>
+>>>>>>>>>>>> diff --git a/Documentation/gpu/rfc/i915_vm_bind.h 
+>>>>>>>>>> b/Documentation/gpu/rfc/i915_vm_bind.h
+>>>>>>>>>>>> new file mode 100644
+>>>>>>>>>>>> index 000000000000..589c0a009107
+>>>>>>>>>>>> --- /dev/null
+>>>>>>>>>>>> +++ b/Documentation/gpu/rfc/i915_vm_bind.h
+>>>>>>>>>>>> @@ -0,0 +1,399 @@
+>>>>>>>>>>>> +/* SPDX-License-Identifier: MIT */
+>>>>>>>>>>>> +/*
+>>>>>>>>>>>> + * Copyright © 2022 Intel Corporation
+>>>>>>>>>>>> + */
+>>>>>>>>>>>> +
+>>>>>>>>>>>> +/**
+>>>>>>>>>>>> + * DOC: I915_PARAM_HAS_VM_BIND
+>>>>>>>>>>>> + *
+>>>>>>>>>>>> + * VM_BIND feature availability.
+>>>>>>>>>>>> + * See typedef drm_i915_getparam_t param.
+>>>>>>>>>>>> + */
+>>>>>>>>>>>> +#define I915_PARAM_HAS_VM_BIND 57
+>>>>>>>>>>>> +
+>>>>>>>>>>>> +/**
+>>>>>>>>>>>> + * DOC: I915_VM_CREATE_FLAGS_USE_VM_BIND
+>>>>>>>>>>>> + *
+>>>>>>>>>>>> + * Flag to opt-in for VM_BIND mode of binding 
+>>>>>>>>>> during VM creation.
+>>>>>>>>>>>> + * See struct drm_i915_gem_vm_control flags.
+>>>>>>>>>>>> + *
+>>>>>>>>>>>> + * A VM in VM_BIND mode will not support the older 
+>>>>>>>>>> execbuff mode of binding.
+>>>>>>>>>>>> + * In VM_BIND mode, execbuff ioctl will not accept 
+>>>>>>>>>> any execlist (ie., the
+>>>>>>>>>>>> + * &drm_i915_gem_execbuffer2.buffer_count must be 0).
+>>>>>>>>>>>> + * Also, &drm_i915_gem_execbuffer2.batch_start_offset and
+>>>>>>>>>>>> + * &drm_i915_gem_execbuffer2.batch_len must be 0.
+>>>>>>>>>>>> + * DRM_I915_GEM_EXECBUFFER_EXT_BATCH_ADDRESSES 
+>>>>>>>>>> extension must be provided
+>>>>>>>>>>>> + * to pass in the batch buffer addresses.
+>>>>>>>>>>>> + *
+>>>>>>>>>>>> + * Additionally, I915_EXEC_NO_RELOC, I915_EXEC_HANDLE_LUT and
+>>>>>>>>>>>> + * I915_EXEC_BATCH_FIRST of 
+>>>>>>>>>> &drm_i915_gem_execbuffer2.flags must be 0
+>>>>>>>>>>>> + * (not used) in VM_BIND mode. 
+>>>>>>>>>> I915_EXEC_USE_EXTENSIONS flag must always be
+>>>>>>>>>>>> + * set (See struct 
+>>>>>>>>>> drm_i915_gem_execbuffer_ext_batch_addresses).
+>>>>>>>>>>>> + * The buffers_ptr, buffer_count, 
+>>>>>>>>>> batch_start_offset and batch_len fields
+>>>>>>>>>>>> + * of struct drm_i915_gem_execbuffer2 are also not 
+>>>>>>>>>> used and must be 0.
+>>>>>>>>>>>> + */
+>>>>>>>>>>>
+>>>>>>>>>>> From that description, it seems we have:
+>>>>>>>>>>>
+>>>>>>>>>>> struct drm_i915_gem_execbuffer2 {
+>>>>>>>>>>>         __u64 buffers_ptr;              -> must be 0 (new)
+>>>>>>>>>>>         __u32 buffer_count;             -> must be 0 (new)
+>>>>>>>>>>>         __u32 batch_start_offset;       -> must be 0 (new)
+>>>>>>>>>>>         __u32 batch_len;                -> must be 0 (new)
+>>>>>>>>>>>         __u32 DR1;                      -> must be 0 (old)
+>>>>>>>>>>>         __u32 DR4;                      -> must be 0 (old)
+>>>>>>>>>>>         __u32 num_cliprects; (fences)   -> must be 0 
+>>>>>>>>>> since using extensions
+>>>>>>>>>>>         __u64 cliprects_ptr; (fences, extensions) -> 
+>>>>>>>>>> contains an actual pointer!
+>>>>>>>>>>>         __u64 flags;                    -> some flags 
+>>>>>>>>>> must be 0 (new)
+>>>>>>>>>>>         __u64 rsvd1; (context info)     -> repurposed field 
+>>>>>>>>>>> (old)
+>>>>>>>>>>>         __u64 rsvd2;                    -> unused
+>>>>>>>>>>> };
+>>>>>>>>>>>
+>>>>>>>>>>> Based on that, why can't we just get 
+>>>>>>>>>> drm_i915_gem_execbuffer3 instead
+>>>>>>>>>>> of adding even more complexity to an already abused 
+>>>>>>>>>> interface? While
+>>>>>>>>>>> the Vulkan-like extension thing is really nice, I don't think 
+>>>>>>>>>>> what
+>>>>>>>>>>> we're doing here is extending the ioctl usage, we're completely
+>>>>>>>>>>> changing how the base struct should be interpreted 
+>>>>>>>>>> based on how the VM
+>>>>>>>>>>> was created (which is an entirely different ioctl).
+>>>>>>>>>>>
+>>>>>>>>>>> From Rusty Russel's API Design grading, 
+>>>>>>>>>> drm_i915_gem_execbuffer2 is
+>>>>>>>>>>> already at -6 without these changes. I think after 
+>>>>>>>>>> vm_bind we'll need
+>>>>>>>>>>> to create a -11 entry just to deal with this ioctl.
+>>>>>>>>>>>
+>>>>>>>>>>
+>>>>>>>>>> The only change here is removing the execlist support for VM_BIND
+>>>>>>>>>> mode (other than natual extensions).
+>>>>>>>>>> Adding a new execbuffer3 was considered, but I think we need 
+>>>>>>>>>> to be careful
+>>>>>>>>>> with that as that goes beyond the VM_BIND support, including 
+>>>>>>>>>> any future
+>>>>>>>>>> requirements (as we don't want an execbuffer4 after VM_BIND).
+>>>>>>>>>
+>>>>>>>>> Why not? it's not like adding extensions here is really that 
+>>>>>>>>> different
+>>>>>>>>> than adding new ioctls.
+>>>>>>>>>
+>>>>>>>>> I definitely think this deserves an execbuffer3 without even
+>>>>>>>>> considering future requirements. Just  to burn down the old
+>>>>>>>>> requirements and pointless fields.
+>>>>>>>>>
+>>>>>>>>> Make execbuffer3 be vm bind only, no relocs, no legacy bits, 
+>>>>>>>>> leave the
+>>>>>>>>> older sw on execbuf2 for ever.
+>>>>>>>>
+>>>>>>>> I guess another point in favour of execbuf3 would be that it's less
+>>>>>>>> midlayer. If we share the entry point then there's quite a few 
+>>>>>>>> vfuncs
+>>>>>>>> needed to cleanly split out the vm_bind paths from the legacy
+>>>>>>>> reloc/softping paths.
+>>>>>>>>
+>>>>>>>> If we invert this and do execbuf3, then there's the existing ioctl
+>>>>>>>> vfunc, and then we share code (where it even makes sense, probably
+>>>>>>>> request setup/submit need to be shared, anything else is probably
+>>>>>>>> cleaner to just copypaste) with the usual helper approach.
+>>>>>>>>
+>>>>>>>> Also that would guarantee that really none of the old concepts like
+>>>>>>>> i915_active on the vma or vma open counts and all that stuff leaks
+>>>>>>>> into the new vm_bind execbuf.
+>>>>>>>>
+>>>>>>>> Finally I also think that copypasting would make backporting 
+>>>>>>>> easier,
+>>>>>>>> or at least more flexible, since it should make it easier to 
+>>>>>>>> have the
+>>>>>>>> upstream vm_bind co-exist with all the other things we have. 
+>>>>>>>> Without
+>>>>>>>> huge amounts of conflicts (or at least much less) that pushing a 
+>>>>>>>> pile
+>>>>>>>> of vfuncs into the existing code would cause.
+>>>>>>>>
+>>>>>>>> So maybe we should do this?
+>>>>>>>
+>>>>>>> Thanks Dave, Daniel.
+>>>>>>> There are a few things that will be common between execbuf2 and
+>>>>>>> execbuf3, like request setup/submit (as you said), fence handling 
+>>>>>>> (timeline fences, fence array, composite fences), engine selection,
+>>>>>>> etc. Also, many of the 'flags' will be there in execbuf3 also (but
+>>>>>>> bit position will differ).
+>>>>>>> But I guess these should be fine as the suggestion here is to
+>>>>>>> copy-paste the execbuff code and having a shared code where 
+>>>>>>> possible.
+>>>>>>> Besides, we can stop supporting some older feature in execbuff3
+>>>>>>> (like fence array in favor of newer timeline fences), which will
+>>>>>>> further reduce common code.
+>>>>>>>
+>>>>>>> Ok, I will update this series by adding execbuf3 and send out soon.
+>>>>>>>
+>>>>>>
+>>>>>> Does this sound reasonable?
+>>>>>
+>>>>>
+>>>>> Thanks for proposing this. Some comments below.
+>>>>>
+>>>>>
+>>>>>>
+>>>>>> struct drm_i915_gem_execbuffer3 {
+>>>>>>        __u32 ctx_id;        /* previously execbuffer2.rsvd1 */
+>>>>>>
+>>>>>>        __u32 batch_count;
+>>>>>>        __u64 batch_addr_ptr;    /* Pointer to an array of batch 
+>>>>>> gpu virtual addresses */
+>>>>>>
+>>>>>>        __u64 flags;
+>>>>>> #define I915_EXEC3_RING_MASK              (0x3f)
+>>>>>> #define I915_EXEC3_DEFAULT                (0<<0)
+>>>>>> #define I915_EXEC3_RENDER                 (1<<0)
+>>>>>> #define I915_EXEC3_BSD                    (2<<0)
+>>>>>> #define I915_EXEC3_BLT                    (3<<0)
+>>>>>> #define I915_EXEC3_VEBOX                  (4<<0)
+>>>>>
+>>>>>
+>>>>> Shouldn't we use the new engine selection uAPI instead?
+>>>>>
+>>>>> We can already create an engine map with I915_CONTEXT_PARAM_ENGINES 
+>>>>> in drm_i915_gem_context_create_ext_setparam.
+>>>>>
+>>>>> And you can also create virtual engines with the same extension.
+>>>>>
+>>>>> It feels like this could be a single u32 with the engine index (in 
+>>>>> the context engine map).
+>>>>
+>>>> Yes I said the same yesterday.
+>>>>
+>>>> Also note that as you can't any longer set engines on a default 
+>>>> context, question is whether userspace cares to use execbuf3 with it 
+>>>> (default context).
+>>>>
+>>>> If it does, it will need an alternative engine selection for that 
+>>>> case. I was proposing class:instance rather than legacy cumbersome 
+>>>> flags.
+>>>>
+>>>> If it does not, I  mean if the decision is to only allow execbuf3 
+>>>> with engine maps, then it leaves the default context a waste of 
+>>>> kernel memory in the execbuf3 future. :( Don't know what to do there..
+>>>>
+>>>> Regards,
+>>>>
+>>>> Tvrtko
+>>>
+>>>
+>>> Thanks Tvrtko, I only saw your reply after responding.
+>>>
+>>>
+>>> Both Iris & Anv create a context with engines (if kernel supports it) 
+>>> : 
+>>> https://gitlab.freedesktop.org/mesa/mesa/-/blob/main/src/intel/common/intel_gem.c#L73 
+>>>
+>>>
+>>>
+>>> I think we should be fine with just a single engine id and we don't 
+>>> care about the default context.
+>>
+>> I wonder if in this case we could stop creating the default context 
+>> starting from a future "gen"? Otherwise, with engine map only execbuf3 
+>> and execbuf3 only userspace, it would serve no purpose apart from 
+>> wasting kernel memory.
+>>
+> 
+> Thanks Tvrtko, Lionell.
+> 
+> I will be glad to remove these flags, just define a uint32 engine_id and
+> mandate a context with user engines map.
+> 
+> Regarding removing the default context, yah, it depends on from which gen
+> onwards we will only be supporting execbuf3 and execbuf2 is fully
+> deprecated. Till then, we will have to keep it I guess :(.
 
-Series: Add support for LMEM PCIe resizable bar
-URL   : https://patchwork.freedesktop.org/series/105142/
-State : success
+Forgot about this sub-thread.. I think it could be removed before 
+execbuf2 is fully deprecated. We can make that decision with any new 
+platform which needs UMD stack updates to be supported. But it is work 
+for us to adjust IGT so I am not hopeful anyone will tackle it. We will 
+just end up wasting memory.
 
-== Summary ==
+Regards,
 
-CI Bug Log - changes from CI_DRM_11759 -> Patchwork_105142v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105142v1/index.html
-
-Participating hosts (44 -> 41)
-------------------------------
-
-  Additional (1): bat-dg2-8 
-  Missing    (4): fi-kbl-soraka fi-bdw-samus bat-jsl-2 fi-apl-guc 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_105142v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-cfl-8109u:       [PASS][1] -> [DMESG-FAIL][2] ([i915#62])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/fi-cfl-8109u/igt@i915_pm_rpm@module-reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105142v1/fi-cfl-8109u/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live@gt_engines:
-    - bat-dg1-5:          [PASS][3] -> [INCOMPLETE][4] ([i915#4418])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/bat-dg1-5/igt@i915_selftest@live@gt_engines.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105142v1/bat-dg1-5/igt@i915_selftest@live@gt_engines.html
-
-  * igt@i915_selftest@live@gt_mocs:
-    - fi-rkl-guc:         [PASS][5] -> [DMESG-WARN][6] ([i915#5790])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/fi-rkl-guc/igt@i915_selftest@live@gt_mocs.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105142v1/fi-rkl-guc/igt@i915_selftest@live@gt_mocs.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-dg1-6:          [PASS][7] -> [DMESG-FAIL][8] ([i915#4494] / [i915#4957])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105142v1/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
-
-  * igt@i915_selftest@live@late_gt_pm:
-    - fi-cfl-8109u:       [PASS][9] -> [DMESG-WARN][10] ([i915#5904]) +11 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/fi-cfl-8109u/igt@i915_selftest@live@late_gt_pm.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105142v1/fi-cfl-8109u/igt@i915_selftest@live@late_gt_pm.html
-
-  * igt@i915_selftest@live@mman:
-    - fi-bdw-5557u:       [PASS][11] -> [INCOMPLETE][12] ([i915#5704])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/fi-bdw-5557u/igt@i915_selftest@live@mman.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105142v1/fi-bdw-5557u/igt@i915_selftest@live@mman.html
-
-  * igt@i915_suspend@basic-s2idle-without-i915:
-    - fi-cfl-8109u:       [PASS][13] -> [DMESG-WARN][14] ([i915#5904] / [i915#62])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/fi-cfl-8109u/igt@i915_suspend@basic-s2idle-without-i915.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105142v1/fi-cfl-8109u/igt@i915_suspend@basic-s2idle-without-i915.html
-
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-blb-e6850:       NOTRUN -> [SKIP][15] ([fdo#109271])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105142v1/fi-blb-e6850/igt@kms_chamelium@common-hpd-after-suspend.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-cfl-8109u:       [PASS][16] -> [DMESG-WARN][17] ([i915#62]) +15 similar issues
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105142v1/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - bat-adlp-4:         [DMESG-WARN][18] ([i915#3576]) -> [PASS][19] +1 similar issue
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/bat-adlp-4/igt@i915_pm_rpm@module-reload.html
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105142v1/bat-adlp-4/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-cfl-guc:         [DMESG-FAIL][20] ([i915#5334]) -> [PASS][21]
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/fi-cfl-guc/igt@i915_selftest@live@gt_heartbeat.html
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105142v1/fi-cfl-guc/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@i915_selftest@live@requests:
-    - fi-blb-e6850:       [DMESG-FAIL][22] ([i915#4528]) -> [PASS][23]
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/fi-blb-e6850/igt@i915_selftest@live@requests.html
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105142v1/fi-blb-e6850/igt@i915_selftest@live@requests.html
-
-  * igt@i915_selftest@live@slpc:
-    - {bat-dg2-9}:        [DMESG-WARN][24] ([i915#5763]) -> [PASS][25] +4 similar issues
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/bat-dg2-9/igt@i915_selftest@live@slpc.html
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105142v1/bat-dg2-9/igt@i915_selftest@live@slpc.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1155]: https://gitlab.freedesktop.org/drm/intel/issues/1155
-  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
-  [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#3576]: https://gitlab.freedesktop.org/drm/intel/issues/3576
-  [i915#3595]: https://gitlab.freedesktop.org/drm/intel/issues/3595
-  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
-  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
-  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
-  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-  [i915#4212]: https://gitlab.freedesktop.org/drm/intel/issues/4212
-  [i915#4213]: https://gitlab.freedesktop.org/drm/intel/issues/4213
-  [i915#4215]: https://gitlab.freedesktop.org/drm/intel/issues/4215
-  [i915#4418]: https://gitlab.freedesktop.org/drm/intel/issues/4418
-  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
-  [i915#4528]: https://gitlab.freedesktop.org/drm/intel/issues/4528
-  [i915#4579]: https://gitlab.freedesktop.org/drm/intel/issues/4579
-  [i915#4873]: https://gitlab.freedesktop.org/drm/intel/issues/4873
-  [i915#4957]: https://gitlab.freedesktop.org/drm/intel/issues/4957
-  [i915#5087]: https://gitlab.freedesktop.org/drm/intel/issues/5087
-  [i915#5174]: https://gitlab.freedesktop.org/drm/intel/issues/5174
-  [i915#5190]: https://gitlab.freedesktop.org/drm/intel/issues/5190
-  [i915#5274]: https://gitlab.freedesktop.org/drm/intel/issues/5274
-  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
-  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
-  [i915#5704]: https://gitlab.freedesktop.org/drm/intel/issues/5704
-  [i915#5763]: https://gitlab.freedesktop.org/drm/intel/issues/5763
-  [i915#5790]: https://gitlab.freedesktop.org/drm/intel/issues/5790
-  [i915#5885]: https://gitlab.freedesktop.org/drm/intel/issues/5885
-  [i915#5886]: https://gitlab.freedesktop.org/drm/intel/issues/5886
-  [i915#5903]: https://gitlab.freedesktop.org/drm/intel/issues/5903
-  [i915#5904]: https://gitlab.freedesktop.org/drm/intel/issues/5904
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#6227]: https://gitlab.freedesktop.org/drm/intel/issues/6227
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_11759 -> Patchwork_105142v1
-
-  CI-20190529: 20190529
-  CI_DRM_11759: fa66b647ce886c01bbe1e9f3017a141e90d87539 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6529: b96bf5a0307fc0bdbf6c8e86872817306e102883 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_105142v1: fa66b647ce886c01bbe1e9f3017a141e90d87539 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-8c03352b983f drm/i915: Add lmem_bar_size modparam
-b8d4b6c063c7 drm/i915: Add support for LMEM PCIe resizable bar
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105142v1/index.html
-
---===============7172487971594835303==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Add support for LMEM PCIe resizable bar</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/105142/">https://patchwork.freedesktop.org/series/105142/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105142v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105142v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11759 -&gt; Patchwork_105142v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105142v1/index.html</p>
-<h2>Participating hosts (44 -&gt; 41)</h2>
-<p>Additional (1): bat-dg2-8 <br />
-  Missing    (4): fi-kbl-soraka fi-bdw-samus bat-jsl-2 fi-apl-guc </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_105142v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/fi-cfl-8109u/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105142v1/fi-cfl-8109u/igt@i915_pm_rpm@module-reload.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_engines:</p>
-<ul>
-<li>bat-dg1-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/bat-dg1-5/igt@i915_selftest@live@gt_engines.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105142v1/bat-dg1-5/igt@i915_selftest@live@gt_engines.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4418">i915#4418</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_mocs:</p>
-<ul>
-<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/fi-rkl-guc/igt@i915_selftest@live@gt_mocs.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105142v1/fi-rkl-guc/igt@i915_selftest@live@gt_mocs.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5790">i915#5790</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105142v1/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@late_gt_pm:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/fi-cfl-8109u/igt@i915_selftest@live@late_gt_pm.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105142v1/fi-cfl-8109u/igt@i915_selftest@live@late_gt_pm.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5904">i915#5904</a>) +11 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@mman:</p>
-<ul>
-<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/fi-bdw-5557u/igt@i915_selftest@live@mman.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105142v1/fi-bdw-5557u/igt@i915_selftest@live@mman.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5704">i915#5704</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_suspend@basic-s2idle-without-i915:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/fi-cfl-8109u/igt@i915_suspend@basic-s2idle-without-i915.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105142v1/fi-cfl-8109u/igt@i915_suspend@basic-s2idle-without-i915.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5904">i915#5904</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
-<ul>
-<li>fi-blb-e6850:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105142v1/fi-blb-e6850/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105142v1/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a>) +15 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>bat-adlp-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/bat-adlp-4/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105142v1/bat-adlp-4/igt@i915_pm_rpm@module-reload.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-cfl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/fi-cfl-guc/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105142v1/fi-cfl-guc/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/fi-blb-e6850/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105142v1/fi-blb-e6850/igt@i915_selftest@live@requests.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@slpc:</p>
-<ul>
-<li>{bat-dg2-9}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11759/bat-dg2-9/igt@i915_selftest@live@slpc.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5763">i915#5763</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105142v1/bat-dg2-9/igt@i915_selftest@live@slpc.html">PASS</a> +4 similar issues</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11759 -&gt; Patchwork_105142v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11759: fa66b647ce886c01bbe1e9f3017a141e90d87539 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6529: b96bf5a0307fc0bdbf6c8e86872817306e102883 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_105142v1: fa66b647ce886c01bbe1e9f3017a141e90d87539 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>8c03352b983f drm/i915: Add lmem_bar_size modparam<br />
-b8d4b6c063c7 drm/i915: Add support for LMEM PCIe resizable bar</p>
-
-</body>
-</html>
-
---===============7172487971594835303==--
+Tvrtko
