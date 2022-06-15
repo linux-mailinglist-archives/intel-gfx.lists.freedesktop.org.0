@@ -2,50 +2,79 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F255054D24F
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jun 2022 22:08:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A17C554D27F
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jun 2022 22:26:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3BED0112BF7;
-	Wed, 15 Jun 2022 20:08:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 31C08112CDE;
+	Wed, 15 Jun 2022 20:26:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 840A0112BF7
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Jun 2022 20:08:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655323715; x=1686859715;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=S7NMnGTIfM2jkG+LdFL71xW44Y24coo/Xm5TwrfiI5w=;
- b=XRhMcfy2jxQsje52dPOgVZ1yiNTxVhBlNy+D5OapeuHTvW+9Og+MNE/u
- zo5/GucR4+aQZ3n45W/atMhm7piL+3ZP1HCMGMg3vda+zdjcHfrnalA7u
- sO6H+O+gjdWStjCeF/K8c3dg0flqJyB7vgyG5B0Deo8cikW92YULOxotA
- zD+czUXfA1T3sSt96yZGa7OMH7pRe7DS8VFnDCahVec3x1qFg7TUNLLaj
- Y5d+n9YhnGGJxTWP/xrT1x6FT1u4B8Hu7kaWYQ8AC3P/GCLw0GRs54OCo
- s9ROhMOV//wMCIbYDwY541dH0Xf1r5Du2/R41Rg+353a2fc0CzTdbQtwQ A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10379"; a="276663919"
-X-IronPort-AV: E=Sophos;i="5.91,302,1647327600"; d="scan'208";a="276663919"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2022 13:08:35 -0700
-X-IronPort-AV: E=Sophos;i="5.91,302,1647327600"; d="scan'208";a="589309118"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2022 13:08:34 -0700
-Date: Wed, 15 Jun 2022 13:08:33 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <Yqo8QUuk/A7Rvaks@mdroper-desk1.amr.corp.intel.com>
-References: <20220613201439.23341-1-ville.syrjala@linux.intel.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 39F3F112CD6
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Jun 2022 20:26:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1655324781;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=39qDr0lg6PwcbSbD7GVVUlGZ8d9yMQMoj4VB9lhwi8A=;
+ b=cu29BNSCTBAJcFnRca2xTb5vhiDN/wCkqYBU1nlDYuytQi1LXJVO66gHWnN+NXiKeiI/v5
+ HhDJrKzjhroX57o6Ha7cyPdhK2vNlVL6L1xvsHIhc683j6is+Kp8Lk4qUMa6xO9218ckI9
+ 3LVFipO3KUbssLsf3bzgSyl2vnXJSQ8=
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com
+ [209.85.222.197]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-637-pExYggpmMwyPu_iYSDiNJQ-1; Wed, 15 Jun 2022 16:26:19 -0400
+X-MC-Unique: pExYggpmMwyPu_iYSDiNJQ-1
+Received: by mail-qk1-f197.google.com with SMTP id
+ bi36-20020a05620a31a400b006a79f0706e5so6708773qkb.2
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Jun 2022 13:26:19 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+ :references:organization:user-agent:mime-version
+ :content-transfer-encoding;
+ bh=39qDr0lg6PwcbSbD7GVVUlGZ8d9yMQMoj4VB9lhwi8A=;
+ b=Zb6e//t2w4wJ5BJUaOQstY1ryo1Qnjfo9z9I9hgl0yncjBzfaX9a25wWusp40v0huM
+ j5YSRKv5YAayNqET7L+fGLqK0wxpKCio65uZMBnsS5Yod4vuM5sy0O5qULAGr+0ZIX9Z
+ 1jnBxjy32FUWlseA9ZfsQsPFIE1uLFJ9QruiC05H/9476el809aLizXpq3dOYRTvnQHt
+ /C0AQUBT99V6RlrA23zsvUGL3ouwgbd1GPuJBCgQUu/OsT2pZfFzUHvBHZPF7lkIyKtL
+ 5BFAClyJIxQV6AhEEyTz4TE9CQoqKmGXBW0S1rYoK14B/nB+NW0FY4U56UzEJmWglo0s
+ SGMA==
+X-Gm-Message-State: AJIora9O77LeJjAJjaqOsNhBI+9Q29s/2PklYNmETHyOvSt96t09s4Te
+ S7VvWWaeZD0KsZCGn3wu2x7qh8tP2K7I3dy9ZYj0sE0wfqIuXMOdokuHb80bYdMYBy05JYocXmW
+ BURNTKyi9uj+gtTIMTaQzLtHObNca
+X-Received: by 2002:ae9:e011:0:b0:6a6:a5c6:cafe with SMTP id
+ m17-20020ae9e011000000b006a6a5c6cafemr1208081qkk.717.1655324779371; 
+ Wed, 15 Jun 2022 13:26:19 -0700 (PDT)
+X-Google-Smtp-Source: AGRyM1u+67HCjvIcprrQcOUGJCUBW5R2J3f7knBB3E0n7AKLI135jKppbeAzrxSf+yru3pue0lGqdg==
+X-Received: by 2002:ae9:e011:0:b0:6a6:a5c6:cafe with SMTP id
+ m17-20020ae9e011000000b006a6a5c6cafemr1208070qkk.717.1655324779161; 
+ Wed, 15 Jun 2022 13:26:19 -0700 (PDT)
+Received: from [192.168.8.138] (static-71-184-137-158.bstnma.ftas.verizon.net.
+ [71.184.137.158]) by smtp.gmail.com with ESMTPSA id
+ g2-20020ac80702000000b00304f79b2bcfsm112024qth.49.2022.06.15.13.26.18
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 15 Jun 2022 13:26:18 -0700 (PDT)
+Message-ID: <fc2412480357b6bafdc4aff91109c40cf9f15fed.camel@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+To: Imre Deak <imre.deak@intel.com>, dri-devel@lists.freedesktop.org
+Date: Wed, 15 Jun 2022 16:26:17 -0400
+In-Reply-To: <20220614094537.885472-1-imre.deak@intel.com>
+References: <20220614094537.885472-1-imre.deak@intel.com>
+Organization: Red Hat Inc.
+User-Agent: Evolution 3.42.4 (3.42.4-2.fc35)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=lyude@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220613201439.23341-1-ville.syrjala@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Implement w/a 22010492432 for
- adl-s
+Subject: Re: [Intel-gfx] [PATCH] drm/dp/mst: Read the extended DPCD
+ capabilities during system resume
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,53 +87,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jun 13, 2022 at 11:14:39PM +0300, Ville Syrjala wrote:
-> From: Ville Syrj�l� <ville.syrjala@linux.intel.com>
-> 
-> adl-s needs the combo PLL DCO fraction w/a as well.
-> Get us slightly more accurate clock out of the PLL.
-> 
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Ville Syrj�l� <ville.syrjala@linux.intel.com>
+If you add a Cc: to stable@vger.kernel.org then this is:
 
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Lyude Paul <lyude@redhat.com>
 
+I assume you have the privileges to push this to drm-misc-next
+
+On Tue, 2022-06-14 at 12:45 +0300, Imre Deak wrote:
+> The WD22TB4 Thunderbolt dock at least will revert its DP_MAX_LINK_RATE
+> from HBR3 to HBR2 after system suspend/resume if the DP_DP13_DPCD_REV
+> registers are not read subsequently also as required.
+> 
+> Fix this by reading DP_DP13_DPCD_REV registers as well, matching what is
+> done during connector detection. While at it also fix up the same call
+> in drm_dp_mst_dump_topology().
+> 
+> Cc: Lyude Paul <lyude@redhat.com>
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/5292
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+>  drivers/gpu/drm/display/drm_dp_mst_topology.c | 7 ++-----
+>  1 file changed, 2 insertions(+), 5 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> index 64708e874b13..982e5b945680 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> @@ -2459,7 +2459,7 @@ static void icl_wrpll_params_populate(struct skl_wrpll_params *params,
->  }
->  
->  /*
-> - * Display WA #22010492432: ehl, tgl, adl-p
-> + * Display WA #22010492432: ehl, tgl, adl-s, adl-p
->   * Program half of the nominal DCO divider fraction value.
->   */
->  static bool
-> @@ -2467,7 +2467,7 @@ ehl_combo_pll_div_frac_wa_needed(struct drm_i915_private *i915)
->  {
->  	return ((IS_PLATFORM(i915, INTEL_ELKHARTLAKE) &&
->  		 IS_JSL_EHL_DISPLAY_STEP(i915, STEP_B0, STEP_FOREVER)) ||
-> -		 IS_TIGERLAKE(i915) || IS_ALDERLAKE_P(i915)) &&
-> +		 IS_TIGERLAKE(i915) || IS_ALDERLAKE_S(i915) || IS_ALDERLAKE_P(i915)) &&
->  		 i915->dpll.ref_clks.nssc == 38400;
->  }
->  
-> -- 
-> 2.35.1
-> 
+> diff --git a/drivers/gpu/drm/display/drm_dp_mst_topology.c
+> b/drivers/gpu/drm/display/drm_dp_mst_topology.c
+> index 67b3b9697da7f..18f2b6075b780 100644
+> --- a/drivers/gpu/drm/display/drm_dp_mst_topology.c
+> +++ b/drivers/gpu/drm/display/drm_dp_mst_topology.c
+> @@ -3860,9 +3860,7 @@ int drm_dp_mst_topology_mgr_resume(struct
+> drm_dp_mst_topology_mgr *mgr,
+>         if (!mgr->mst_primary)
+>                 goto out_fail;
+>  
+> -       ret = drm_dp_dpcd_read(mgr->aux, DP_DPCD_REV, mgr->dpcd,
+> -                              DP_RECEIVER_CAP_SIZE);
+> -       if (ret != DP_RECEIVER_CAP_SIZE) {
+> +       if (drm_dp_read_dpcd_caps(mgr->aux, mgr->dpcd) < 0) {
+>                 drm_dbg_kms(mgr->dev, "dpcd read failed - undocked during
+> suspend?\n");
+>                 goto out_fail;
+>         }
+> @@ -4911,8 +4909,7 @@ void drm_dp_mst_dump_topology(struct seq_file *m,
+>                 u8 buf[DP_PAYLOAD_TABLE_SIZE];
+>                 int ret;
+>  
+> -               ret = drm_dp_dpcd_read(mgr->aux, DP_DPCD_REV, buf,
+> DP_RECEIVER_CAP_SIZE);
+> -               if (ret) {
+> +               if (drm_dp_read_dpcd_caps(mgr->aux, buf) < 0) {
+>                         seq_printf(m, "dpcd read failed\n");
+>                         goto out;
+>                 }
 
 -- 
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
+Cheers,
+ Lyude Paul (she/her)
+ Software Engineer at Red Hat
+
