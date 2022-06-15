@@ -2,61 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D18E54C519
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jun 2022 11:50:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2854654C59B
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jun 2022 12:13:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 584E010F035;
-	Wed, 15 Jun 2022 09:49:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C41D10EA82;
+	Wed, 15 Jun 2022 10:13:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 50DAD10E6B0;
- Wed, 15 Jun 2022 09:49:54 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C17F810EA82
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Jun 2022 10:13:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655286594; x=1686822594;
+ t=1655287989; x=1686823989;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=0DmHyq5bxkQ+brBu0zHUgscDq7IyulAKo49ZXPSCI7w=;
- b=OESgnS5ygSC2w6Az8/T142eeq4cTkYULOVZLwME1pQbbkyvIg+h5NBrg
- kDdSaohTnHoy8zesPADsm2aeObTlwgWTJRoInMbHihgKkf0k7FtnGMQSa
- +Vqh13xwJbTNVe5ZpkpIT0x6mx1Ue513m9CgHQebq+C7cwobz7n8GoZ0s
- xclkJ5d0nr59lrdCe8i7vFqLykwAbtMK6y1BdOLj+6eyIoU/1DYF64ZGb
- Dwr7CPUoFEdTxqaZAApzveMyKXGTFJXjx/TNKT850wpwhrIFvr6SjMDPD
- /LSvnMNtKpDzeoHdF8SBPq4M4mAdmQ6TRNwi3RVmPp3Y6VWZjc2CWX8pZ Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10378"; a="279618120"
-X-IronPort-AV: E=Sophos;i="5.91,300,1647327600"; d="scan'208";a="279618120"
+ bh=F5DIXXKUNUrpRq6jaMCnJ2NOxcjJvLFPcWdsonVYOa8=;
+ b=RchSsB6Fro8mITQARGrUHPFJTvICglXv4WVcCjLixNoO6XDZa4frluWF
+ gSbHhuBzKnMUVYwW28mTjFykqeoTRKMTqEvyoq8BbWUWKFYoSBwKIyAlK
+ l0SqyjHQun/YBrnNO97I8wcciCk+7qmklVrEKqSbUveGAUilsQ85RIH5U
+ WCroWe0qTN6mdIa4Hix63pd8vAMnKdWw+14Df9zYD1CrpZxl3RRcLTNmu
+ +J/bkLv6UDNQNf3ERrsTcvxFLAXQkDYm0Rg+KyWvIzIJvx8TfJx8LFRkC
+ G1K9Vhl+oxUC9jUWy/X4gDRz8yK5BbAh91D2c9sk87XInechGnrHRC5+b w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10378"; a="258759030"
+X-IronPort-AV: E=Sophos;i="5.91,300,1647327600"; d="scan'208";a="258759030"
 Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2022 02:49:53 -0700
-X-IronPort-AV: E=Sophos;i="5.91,300,1647327600"; d="scan'208";a="911552129"
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jun 2022 03:13:09 -0700
+X-IronPort-AV: E=Sophos;i="5.91,300,1647327600"; d="scan'208";a="911562760"
 Received: from nhanraha-mobl1.ger.corp.intel.com (HELO [10.213.196.47])
  ([10.213.196.47])
  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2022 02:49:50 -0700
-Message-ID: <4bb3b1a2-d2c4-adac-a3de-f1930f16eb8e@linux.intel.com>
-Date: Wed, 15 Jun 2022 10:49:48 +0100
+ 15 Jun 2022 03:13:07 -0700
+Message-ID: <05a33039-ed2e-3364-6036-197955abacfc@linux.intel.com>
+Date: Wed, 15 Jun 2022 11:13:05 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
 Content-Language: en-US
-To: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-References: <e4e1989c314d3958d58010431515ea371935d0c3.camel@intel.com>
- <20220523191943.GH4461@nvishwa1-DESK>
- <CAPM=9tzcYL5kwv18cfq5NzE00jwHuwTj_L73NVgE8vdcBgrQww@mail.gmail.com>
- <CAKMK7uFt23yZxGJfuZ71ngNw-46yvyed8LaQCQ1ksq73MLGEug@mail.gmail.com>
- <20220602050833.GP4461@nvishwa1-DESK> <20220603065330.GT4461@nvishwa1-DESK>
- <08e61393-d4ec-d35e-9b8f-41195365f179@intel.com>
- <0603b682-a196-9324-5c96-3ab5a8487a53@linux.intel.com>
- <577d8612-ae68-4b0d-7a28-f9ebb92020f6@intel.com>
- <07a45817-7daf-eb4b-e420-05f02cb98b07@linux.intel.com>
- <20220608204527.GA4461@nvishwa1-DESK>
+To: "Ye, Tony" <tony.ye@intel.com>,
+ "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>,
+ intel-gfx@lists.freedesktop.org, "Zhang, Carl" <carl.zhang@intel.com>
+References: <20220609231955.3632596-1-daniele.ceraolospurio@intel.com>
+ <dbc2ad75-1248-8d53-281d-f0a308733972@linux.intel.com>
+ <7ede8090-bfbf-17a7-31f6-24e844a70673@intel.com>
+ <a0860c06-4aba-deff-9101-aecdd8c14a02@linux.intel.com>
+ <d6bc42f5-86c1-3bc9-d731-2bd0a978ece5@intel.com>
+ <f50ee482-ed77-a644-095f-b2a988306de2@linux.intel.com>
+ <7b394930-e6fb-8dc6-ba63-352f7a623b97@intel.com>
+ <4d44c67a-4a38-fa53-6709-d5f206a9b0db@linux.intel.com>
+ <e90f9dd1-7229-f958-d2e6-6fc4ec5a866b@intel.com>
+ <954db3a4-e8c9-e157-5211-aceec87dfd9d@linux.intel.com>
+ <4a7f6abe-e479-a3d9-8615-e52a2863733c@intel.com>
+ <c565a81a-d86c-a5fd-c97e-27bd1459da6e@intel.com>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-In-Reply-To: <20220608204527.GA4461@nvishwa1-DESK>
+In-Reply-To: <c565a81a-d86c-a5fd-c97e-27bd1459da6e@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [RFC v3 3/3] drm/doc/rfc: VM_BIND uapi definition
+Subject: Re: [Intel-gfx] [PATCH 00/15] HuC loading for DG2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,286 +73,239 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Wilson, Chris P" <chris.p.wilson@intel.com>, "Zanoni,
- Paulo R" <paulo.r.zanoni@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "Hellstrom, Thomas" <thomas.hellstrom@intel.com>, "Vetter,
- Daniel" <daniel.vetter@intel.com>,
- "christian.koenig@amd.com" <christian.koenig@amd.com>
+Cc: Alexander Usyskin <alexander.usyskin@intel.com>,
+ alan.previn.teres.alexis@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 08/06/2022 21:45, Niranjana Vishwanathapura wrote:
-> On Wed, Jun 08, 2022 at 09:54:24AM +0100, Tvrtko Ursulin wrote:
->>
->> On 08/06/2022 09:45, Lionel Landwerlin wrote:
->>> On 08/06/2022 11:36, Tvrtko Ursulin wrote:
->>>>
->>>> On 08/06/2022 07:40, Lionel Landwerlin wrote:
->>>>> On 03/06/2022 09:53, Niranjana Vishwanathapura wrote:
->>>>>> On Wed, Jun 01, 2022 at 10:08:35PM -0700, Niranjana 
->>>>>> Vishwanathapura wrote:
->>>>>>> On Wed, Jun 01, 2022 at 11:27:17AM +0200, Daniel Vetter wrote:
->>>>>>>> On Wed, 1 Jun 2022 at 11:03, Dave Airlie <airlied@gmail.com> wrote:
+On 15/06/2022 00:15, Ye, Tony wrote:
+> On 6/14/2022 8:30 AM, Ceraolo Spurio, Daniele wrote:
+>> On 6/14/2022 12:44 AM, Tvrtko Ursulin wrote:
+>>>
+>>> On 13/06/2022 19:13, Ceraolo Spurio, Daniele wrote:
+>>>> On 6/13/2022 10:39 AM, Tvrtko Ursulin wrote:
+>>>>> On 13/06/2022 18:06, Ceraolo Spurio, Daniele wrote:
+>>>>>> On 6/13/2022 9:56 AM, Tvrtko Ursulin wrote:
+>>>>>>> On 13/06/2022 17:41, Ceraolo Spurio, Daniele wrote:
+>>>>>>>> On 6/13/2022 9:31 AM, Tvrtko Ursulin wrote:
 >>>>>>>>>
->>>>>>>>> On Tue, 24 May 2022 at 05:20, Niranjana Vishwanathapura
->>>>>>>>> <niranjana.vishwanathapura@intel.com> wrote:
+>>>>>>>>> On 13/06/2022 16:39, Ceraolo Spurio, Daniele wrote:
+>>>>>>>>>> On 6/13/2022 1:16 AM, Tvrtko Ursulin wrote:
+>>>>>>>>>>>
+>>>>>>>>>>> On 10/06/2022 00:19, Daniele Ceraolo Spurio wrote:
+>>>>>>>>>>>> On DG2, HuC loading is performed by the GSC, via a PXP 
+>>>>>>>>>>>> command. The load
+>>>>>>>>>>>> operation itself is relatively simple (just send a message 
+>>>>>>>>>>>> to the GSC
+>>>>>>>>>>>> with the physical address of the HuC in LMEM), but there are 
+>>>>>>>>>>>> timing
+>>>>>>>>>>>> changes that requires special attention. In particular, to 
+>>>>>>>>>>>> send a PXP
+>>>>>>>>>>>> command we need to first export the GSC driver and then wait 
+>>>>>>>>>>>> for the
+>>>>>>>>>>>> mei-gsc and mei-pxp modules to start, which means that HuC 
+>>>>>>>>>>>> load will
+>>>>>>>>>>>> complete after i915 load is complete. This means that there 
+>>>>>>>>>>>> is a small
+>>>>>>>>>>>> window of time after i915 is registered and before HuC is 
+>>>>>>>>>>>> loaded
+>>>>>>>>>>>> during which userspace could submit and/or checking the HuC 
+>>>>>>>>>>>> load status,
+>>>>>>>>>>>> although this is quite unlikely to happen (HuC is usually 
+>>>>>>>>>>>> loaded before
+>>>>>>>>>>>> kernel init/resume completes).
+>>>>>>>>>>>> We've consulted with the media team in regards to how to 
+>>>>>>>>>>>> handle this and
+>>>>>>>>>>>> they've asked us to do the following:
+>>>>>>>>>>>>
+>>>>>>>>>>>> 1) Report HuC as loaded in the getparam IOCTL even if load 
+>>>>>>>>>>>> is still in
+>>>>>>>>>>>> progress. The media driver uses the IOCTL as a way to check 
+>>>>>>>>>>>> if HuC is
+>>>>>>>>>>>> enabled and then includes a secondary check in the batches 
+>>>>>>>>>>>> to get the
+>>>>>>>>>>>> actual status, so doing it this way allows userspace to keep 
+>>>>>>>>>>>> working
+>>>>>>>>>>>> without changes.
+>>>>>>>>>>>>
+>>>>>>>>>>>> 2) Stall all userspace VCS submission until HuC is loaded. 
+>>>>>>>>>>>> Stalls are
+>>>>>>>>>>>> expected to be very rare (if any), due to the fact that HuC 
+>>>>>>>>>>>> is usually
+>>>>>>>>>>>> loaded before kernel init/resume is completed.
+>>>>>>>>>>>
+>>>>>>>>>>> Motivation to add these complications into i915 are not clear 
+>>>>>>>>>>> to me here. I mean there is no HuC on DG2 _yet_ is the 
+>>>>>>>>>>> premise of the series, right? So no backwards compatibility 
+>>>>>>>>>>> concerns. In this case why jump through the hoops and not let 
+>>>>>>>>>>> userspace handle all of this by just leaving the getparam 
+>>>>>>>>>>> return the true status?
 >>>>>>>>>>
->>>>>>>>>> On Thu, May 19, 2022 at 04:07:30PM -0700, Zanoni, Paulo R wrote:
->>>>>>>>>>> On Tue, 2022-05-17 at 11:32 -0700, Niranjana 
->>>>>>>>>> Vishwanathapura wrote:
->>>>>>>>>>>> VM_BIND and related uapi definitions
->>>>>>>>>>>>
->>>>>>>>>>>> v2: Ensure proper kernel-doc formatting with cross references.
->>>>>>>>>>>>      Also add new uapi and documentation as per review comments
->>>>>>>>>>>>      from Daniel.
->>>>>>>>>>>>
->>>>>>>>>>>> Signed-off-by: Niranjana Vishwanathapura 
->>>>>>>>>> <niranjana.vishwanathapura@intel.com>
->>>>>>>>>>>> ---
->>>>>>>>>>>>   Documentation/gpu/rfc/i915_vm_bind.h | 399 
->>>>>>>>>> +++++++++++++++++++++++++++
->>>>>>>>>>>>   1 file changed, 399 insertions(+)
->>>>>>>>>>>>   create mode 100644 Documentation/gpu/rfc/i915_vm_bind.h
->>>>>>>>>>>>
->>>>>>>>>>>> diff --git a/Documentation/gpu/rfc/i915_vm_bind.h 
->>>>>>>>>> b/Documentation/gpu/rfc/i915_vm_bind.h
->>>>>>>>>>>> new file mode 100644
->>>>>>>>>>>> index 000000000000..589c0a009107
->>>>>>>>>>>> --- /dev/null
->>>>>>>>>>>> +++ b/Documentation/gpu/rfc/i915_vm_bind.h
->>>>>>>>>>>> @@ -0,0 +1,399 @@
->>>>>>>>>>>> +/* SPDX-License-Identifier: MIT */
->>>>>>>>>>>> +/*
->>>>>>>>>>>> + * Copyright © 2022 Intel Corporation
->>>>>>>>>>>> + */
->>>>>>>>>>>> +
->>>>>>>>>>>> +/**
->>>>>>>>>>>> + * DOC: I915_PARAM_HAS_VM_BIND
->>>>>>>>>>>> + *
->>>>>>>>>>>> + * VM_BIND feature availability.
->>>>>>>>>>>> + * See typedef drm_i915_getparam_t param.
->>>>>>>>>>>> + */
->>>>>>>>>>>> +#define I915_PARAM_HAS_VM_BIND 57
->>>>>>>>>>>> +
->>>>>>>>>>>> +/**
->>>>>>>>>>>> + * DOC: I915_VM_CREATE_FLAGS_USE_VM_BIND
->>>>>>>>>>>> + *
->>>>>>>>>>>> + * Flag to opt-in for VM_BIND mode of binding 
->>>>>>>>>> during VM creation.
->>>>>>>>>>>> + * See struct drm_i915_gem_vm_control flags.
->>>>>>>>>>>> + *
->>>>>>>>>>>> + * A VM in VM_BIND mode will not support the older 
->>>>>>>>>> execbuff mode of binding.
->>>>>>>>>>>> + * In VM_BIND mode, execbuff ioctl will not accept 
->>>>>>>>>> any execlist (ie., the
->>>>>>>>>>>> + * &drm_i915_gem_execbuffer2.buffer_count must be 0).
->>>>>>>>>>>> + * Also, &drm_i915_gem_execbuffer2.batch_start_offset and
->>>>>>>>>>>> + * &drm_i915_gem_execbuffer2.batch_len must be 0.
->>>>>>>>>>>> + * DRM_I915_GEM_EXECBUFFER_EXT_BATCH_ADDRESSES 
->>>>>>>>>> extension must be provided
->>>>>>>>>>>> + * to pass in the batch buffer addresses.
->>>>>>>>>>>> + *
->>>>>>>>>>>> + * Additionally, I915_EXEC_NO_RELOC, I915_EXEC_HANDLE_LUT and
->>>>>>>>>>>> + * I915_EXEC_BATCH_FIRST of 
->>>>>>>>>> &drm_i915_gem_execbuffer2.flags must be 0
->>>>>>>>>>>> + * (not used) in VM_BIND mode. 
->>>>>>>>>> I915_EXEC_USE_EXTENSIONS flag must always be
->>>>>>>>>>>> + * set (See struct 
->>>>>>>>>> drm_i915_gem_execbuffer_ext_batch_addresses).
->>>>>>>>>>>> + * The buffers_ptr, buffer_count, 
->>>>>>>>>> batch_start_offset and batch_len fields
->>>>>>>>>>>> + * of struct drm_i915_gem_execbuffer2 are also not 
->>>>>>>>>> used and must be 0.
->>>>>>>>>>>> + */
->>>>>>>>>>>
->>>>>>>>>>> From that description, it seems we have:
->>>>>>>>>>>
->>>>>>>>>>> struct drm_i915_gem_execbuffer2 {
->>>>>>>>>>>         __u64 buffers_ptr;              -> must be 0 (new)
->>>>>>>>>>>         __u32 buffer_count;             -> must be 0 (new)
->>>>>>>>>>>         __u32 batch_start_offset;       -> must be 0 (new)
->>>>>>>>>>>         __u32 batch_len;                -> must be 0 (new)
->>>>>>>>>>>         __u32 DR1;                      -> must be 0 (old)
->>>>>>>>>>>         __u32 DR4;                      -> must be 0 (old)
->>>>>>>>>>>         __u32 num_cliprects; (fences)   -> must be 0 
->>>>>>>>>> since using extensions
->>>>>>>>>>>         __u64 cliprects_ptr; (fences, extensions) -> 
->>>>>>>>>> contains an actual pointer!
->>>>>>>>>>>         __u64 flags;                    -> some flags 
->>>>>>>>>> must be 0 (new)
->>>>>>>>>>>         __u64 rsvd1; (context info)     -> repurposed field 
->>>>>>>>>>> (old)
->>>>>>>>>>>         __u64 rsvd2;                    -> unused
->>>>>>>>>>> };
->>>>>>>>>>>
->>>>>>>>>>> Based on that, why can't we just get 
->>>>>>>>>> drm_i915_gem_execbuffer3 instead
->>>>>>>>>>> of adding even more complexity to an already abused 
->>>>>>>>>> interface? While
->>>>>>>>>>> the Vulkan-like extension thing is really nice, I don't think 
->>>>>>>>>>> what
->>>>>>>>>>> we're doing here is extending the ioctl usage, we're completely
->>>>>>>>>>> changing how the base struct should be interpreted 
->>>>>>>>>> based on how the VM
->>>>>>>>>>> was created (which is an entirely different ioctl).
->>>>>>>>>>>
->>>>>>>>>>> From Rusty Russel's API Design grading, 
->>>>>>>>>> drm_i915_gem_execbuffer2 is
->>>>>>>>>>> already at -6 without these changes. I think after 
->>>>>>>>>> vm_bind we'll need
->>>>>>>>>>> to create a -11 entry just to deal with this ioctl.
->>>>>>>>>>>
->>>>>>>>>>
->>>>>>>>>> The only change here is removing the execlist support for VM_BIND
->>>>>>>>>> mode (other than natual extensions).
->>>>>>>>>> Adding a new execbuffer3 was considered, but I think we need 
->>>>>>>>>> to be careful
->>>>>>>>>> with that as that goes beyond the VM_BIND support, including 
->>>>>>>>>> any future
->>>>>>>>>> requirements (as we don't want an execbuffer4 after VM_BIND).
+>>>>>>>>>> The main areas impacted by the fact that we can't guarantee 
+>>>>>>>>>> that HuC load is complete when i915 starts accepting 
+>>>>>>>>>> submissions are boot and suspend/resume, with the latter being 
+>>>>>>>>>> the main problem; GT reset is not a concern because HuC now 
+>>>>>>>>>> survives it. A suspend/resume can be transparent to userspace 
+>>>>>>>>>> and therefore the HuC status can temporarily flip from loaded 
+>>>>>>>>>> to not without userspace knowledge, especially if we start 
+>>>>>>>>>> going into deeper suspend states and start causing HuC resets 
+>>>>>>>>>> when we go into runtime suspend. Note that this is different 
+>>>>>>>>>> from what happens during GT reset for older platforms, because 
+>>>>>>>>>> in that scenario we guarantee that HuC reload is complete 
+>>>>>>>>>> before we restart the submission back-end, so userspace 
+>>>>>>>>>> doesn't notice that the HuC status change. We had an internal 
+>>>>>>>>>> discussion about this problem with both media and i915 archs 
+>>>>>>>>>> and the conclusion was that the best option is for i915 to 
+>>>>>>>>>> stall media submission while HuC (re-)load is in progress.
 >>>>>>>>>
->>>>>>>>> Why not? it's not like adding extensions here is really that 
->>>>>>>>> different
->>>>>>>>> than adding new ioctls.
+>>>>>>>>> Resume is potentialy a good reason - I did not pick up on that 
+>>>>>>>>> from the cover letter. I read the statement about the unlikely 
+>>>>>>>>> and small window where HuC is not loaded during kernel 
+>>>>>>>>> init/resume and I guess did not pick up on the resume part.
 >>>>>>>>>
->>>>>>>>> I definitely think this deserves an execbuffer3 without even
->>>>>>>>> considering future requirements. Just  to burn down the old
->>>>>>>>> requirements and pointless fields.
->>>>>>>>>
->>>>>>>>> Make execbuffer3 be vm bind only, no relocs, no legacy bits, 
->>>>>>>>> leave the
->>>>>>>>> older sw on execbuf2 for ever.
+>>>>>>>>> Waiting for GSC to load HuC from i915 resume is not an option?
 >>>>>>>>
->>>>>>>> I guess another point in favour of execbuf3 would be that it's less
->>>>>>>> midlayer. If we share the entry point then there's quite a few 
->>>>>>>> vfuncs
->>>>>>>> needed to cleanly split out the vm_bind paths from the legacy
->>>>>>>> reloc/softping paths.
->>>>>>>>
->>>>>>>> If we invert this and do execbuf3, then there's the existing ioctl
->>>>>>>> vfunc, and then we share code (where it even makes sense, probably
->>>>>>>> request setup/submit need to be shared, anything else is probably
->>>>>>>> cleaner to just copypaste) with the usual helper approach.
->>>>>>>>
->>>>>>>> Also that would guarantee that really none of the old concepts like
->>>>>>>> i915_active on the vma or vma open counts and all that stuff leaks
->>>>>>>> into the new vm_bind execbuf.
->>>>>>>>
->>>>>>>> Finally I also think that copypasting would make backporting 
->>>>>>>> easier,
->>>>>>>> or at least more flexible, since it should make it easier to 
->>>>>>>> have the
->>>>>>>> upstream vm_bind co-exist with all the other things we have. 
->>>>>>>> Without
->>>>>>>> huge amounts of conflicts (or at least much less) that pushing a 
->>>>>>>> pile
->>>>>>>> of vfuncs into the existing code would cause.
->>>>>>>>
->>>>>>>> So maybe we should do this?
+>>>>>>>> GSC is an aux device exported by i915, so AFAIU GSC resume can't 
+>>>>>>>> start until i915 resume completes.
 >>>>>>>
->>>>>>> Thanks Dave, Daniel.
->>>>>>> There are a few things that will be common between execbuf2 and
->>>>>>> execbuf3, like request setup/submit (as you said), fence handling 
->>>>>>> (timeline fences, fence array, composite fences), engine selection,
->>>>>>> etc. Also, many of the 'flags' will be there in execbuf3 also (but
->>>>>>> bit position will differ).
->>>>>>> But I guess these should be fine as the suggestion here is to
->>>>>>> copy-paste the execbuff code and having a shared code where 
->>>>>>> possible.
->>>>>>> Besides, we can stop supporting some older feature in execbuff3
->>>>>>> (like fence array in favor of newer timeline fences), which will
->>>>>>> further reduce common code.
+>>>>>>> I'll dig into this in the next few days since I want to 
+>>>>>>> understand how exactly it works. Or someone can help explain.
 >>>>>>>
->>>>>>> Ok, I will update this series by adding execbuf3 and send out soon.
->>>>>>>
+>>>>>>> If in the end conclusion will be that i915 resume indeed cannot 
+>>>>>>> wait for GSC, then I think auto-blocking of queued up contexts on 
+>>>>>>> media engines indeed sounds unavoidable. Otherwise, as you 
+>>>>>>> explained, user experience post resume wouldn't be good.
 >>>>>>
->>>>>> Does this sound reasonable?
+>>>>>> Even if we could implement a wait, I'm not sure we should. GSC 
+>>>>>> resume and HuC reload takes ~300ms in most cases, I don't think we 
+>>>>>> want to block within the i915 resume path for that long.
 >>>>>
+>>>>> Yeah maybe not. But entertaining the idea that it is technically 
+>>>>> possible to block - we could perhaps add uapi for userspace to mark 
+>>>>> contexts which want HuC access. Then track if there are any such 
+>>>>> contexts with outstanding submissions and only wait in resume if 
+>>>>> there are. If that would end up significantly less code on the i915 
+>>>>> side to maintain is an open.
 >>>>>
->>>>> Thanks for proposing this. Some comments below.
+>>>>> What would be the end result from users point of view in case where 
+>>>>> it suspended during video playback? The proposed solution from this 
+>>>>> series sees the video stuck after resume. Maybe compositor blocks 
+>>>>> as well since I am not sure how well they handle one window not 
+>>>>> providing new data. Probably depends on the compositor.
 >>>>>
+>>>>> And then with a simpler solution definitely the whole resume would 
+>>>>> be delayed by 300ms.
 >>>>>
->>>>>>
->>>>>> struct drm_i915_gem_execbuffer3 {
->>>>>>        __u32 ctx_id;        /* previously execbuffer2.rsvd1 */
->>>>>>
->>>>>>        __u32 batch_count;
->>>>>>        __u64 batch_addr_ptr;    /* Pointer to an array of batch 
->>>>>> gpu virtual addresses */
->>>>>>
->>>>>>        __u64 flags;
->>>>>> #define I915_EXEC3_RING_MASK              (0x3f)
->>>>>> #define I915_EXEC3_DEFAULT                (0<<0)
->>>>>> #define I915_EXEC3_RENDER                 (1<<0)
->>>>>> #define I915_EXEC3_BSD                    (2<<0)
->>>>>> #define I915_EXEC3_BLT                    (3<<0)
->>>>>> #define I915_EXEC3_VEBOX                  (4<<0)
+>>>>> With my ChromeOS hat the stalled media engines does sound like a 
+>>>>> better solution. But with the maintainer hat I'd like all options 
+>>>>> evaluated since there is attractiveness if a good enough solution 
+>>>>> can be achieved with significantly less kernel code.
 >>>>>
->>>>>
->>>>> Shouldn't we use the new engine selection uAPI instead?
->>>>>
->>>>> We can already create an engine map with I915_CONTEXT_PARAM_ENGINES 
->>>>> in drm_i915_gem_context_create_ext_setparam.
->>>>>
->>>>> And you can also create virtual engines with the same extension.
->>>>>
->>>>> It feels like this could be a single u32 with the engine index (in 
->>>>> the context engine map).
+>>>>> You say 300ms is typical time for HuC load. How long it is on other 
+>>>>> platforms? If much faster then why is it so slow here?
 >>>>
->>>> Yes I said the same yesterday.
->>>>
->>>> Also note that as you can't any longer set engines on a default 
->>>> context, question is whether userspace cares to use execbuf3 with it 
->>>> (default context).
->>>>
->>>> If it does, it will need an alternative engine selection for that 
->>>> case. I was proposing class:instance rather than legacy cumbersome 
->>>> flags.
->>>>
->>>> If it does not, I  mean if the decision is to only allow execbuf3 
->>>> with engine maps, then it leaves the default context a waste of 
->>>> kernel memory in the execbuf3 future. :( Don't know what to do there..
->>>>
->>>> Regards,
->>>>
->>>> Tvrtko
+>>>> The GSC itself has to come out of suspend before it can perform the 
+>>>> load, which takes a few tens of ms I believe. AFAIU the GSC is also 
+>>>> slower in processing the HuC load and auth compared to the legacy 
+>>>> path. The GSC FW team gave a 250ms limit for the time the GSC FW 
+>>>> needs from start of the resume flow to HuC load complete, so I 
+>>>> bumped that to ~300ms to account for all other SW interactions, plus 
+>>>> a bit of buffer. Note that a bit of the SW overhead is caused by the 
+>>>> fact that we have 2 mei modules in play here: mei-gsc, which manages 
+>>>> the GSC device itself (including resume), and mei-pxp, which owns 
+>>>> the pxp messaging, including HuC load.
 >>>
->>>
->>> Thanks Tvrtko, I only saw your reply after responding.
->>>
->>>
->>> Both Iris & Anv create a context with engines (if kernel supports it) 
->>> : 
->>> https://gitlab.freedesktop.org/mesa/mesa/-/blob/main/src/intel/common/intel_gem.c#L73 
->>>
->>>
->>>
->>> I think we should be fine with just a single engine id and we don't 
->>> care about the default context.
+>>> And how long on other platforms (not DG2) do you know? Presumably 
+>>> there the wait is on the i915 resume path?
 >>
->> I wonder if in this case we could stop creating the default context 
->> starting from a future "gen"? Otherwise, with engine map only execbuf3 
->> and execbuf3 only userspace, it would serve no purpose apart from 
->> wasting kernel memory.
+>> I don't have "official" expected load times at hand, but looking at 
+>> the BAT boot logs for this series for DG1 I see it takes ~10 ms to 
+>> load both GuC and HuC:
 >>
+>> <7>[    8.157838] i915 0000:03:00.0: [drm:intel_huc_init [i915]] GSC 
+>> loads huc=no
+>> <6>[    8.158632] i915 0000:03:00.0: [drm] GuC firmware 
+>> i915/dg1_guc_70.1.1.bin version 70.1
+>> <6>[    8.158634] i915 0000:03:00.0: [drm] HuC firmware 
+>> i915/dg1_huc_7.9.3.bin version 7.9
+>> <7>[    8.164255] i915 0000:03:00.0: [drm:guc_enable_communication 
+>> [i915]] GuC communication enabled
+>> <6>[    8.166111] i915 0000:03:00.0: [drm] HuC authenticated
+>>
+>> Note that we increase the GT frequency all the way to the max before 
+>> starting the FW load, which speeds things up.
+>>
+>>>
+>>>>>>> However, do we really need to lie in the getparam? How about 
+>>>>>>> extend or add a new one to separate the loading vs loaded states? 
+>>>>>>> Since userspace does not support DG2 HuC yet this should be doable.
+>>>>>>
+>>>>>> I don't really have a preference here. The media team asked us to 
+>>>>>> do it this way because they wouldn't have a use for the different 
+>>>>>> "in progress" and "done" states. If they're ok with having 
+>>>>>> separate flags that's fine by me.
+>>>>>> Tony, any feedback here?
+>>>>>
+>>>>> We don't even have any docs in i915_drm.h in terms of what it means:
+>>>>>
+>>>>> #define I915_PARAM_HUC_STATUS         42
+>>>>>
+>>>>> Seems to be a boolean. Status false vs true? Could you add some docs?
+>>>>
+>>>> There is documentation above intel_huc_check_status(), which is also 
+>>>> updated in this series. I can move that to i915_drm.h.
+>>>
+>>> That would be great, thanks.
+>>>
+>>> And with so rich return codes already documented and exposed via uapi 
+>>> - would we really need to add anything new for DG2 apart for 
+>>> userspace to know that if zero is returned (not a negative error 
+>>> value) it should retry? I mean is there another negative error 
+>>> missing which would prevent zero transitioning to one?
+>>
+>> I think if the auth fails we currently return 0, because the uc state 
+>> in that case would be "TRANSFERRED", i.e. DMA complete but not fully 
+>> enabled. I don't have anything against changing the FW state to 
+>> "ERROR" in this scenario and leave the 0 to mean "not done yet", but 
+>> I'd prefer the media team to comment on their needs for this IOCTL 
+>> before committing to anything.
 > 
-> Thanks Tvrtko, Lionell.
 > 
-> I will be glad to remove these flags, just define a uint32 engine_id and
-> mandate a context with user engines map.
-> 
-> Regarding removing the default context, yah, it depends on from which gen
-> onwards we will only be supporting execbuf3 and execbuf2 is fully
-> deprecated. Till then, we will have to keep it I guess :(.
+> Currently media doesn't differentiate "delayed loading is in progress" 
+> with "HuC is authenticated and running". If the HuC authentication 
+> eventually fails, the user needs to check the debugfs to know the 
+> reason. IMHO, it's not a big problem as this is what we do even when the 
+> IOCTL returns non-zero values. + Carl to comment.
 
-Forgot about this sub-thread.. I think it could be removed before 
-execbuf2 is fully deprecated. We can make that decision with any new 
-platform which needs UMD stack updates to be supported. But it is work 
-for us to adjust IGT so I am not hopeful anyone will tackle it. We will 
-just end up wasting memory.
+(Side note - debugfs can be assumed to not exist so it is not interesting to users.)
+
+There isn't currently a "delayed loading is in progress" state, that's the discussion in this thread, if and how to add it.
+
+Getparam it currently documents these states:
+
+  -ENODEV if HuC is not present on this platform,
+  -EOPNOTSUPP if HuC firmware is disabled,
+  -ENOPKG if HuC firmware was not installed,
+  -ENOEXEC if HuC firmware is invalid or mismatched,
+  0 if HuC firmware is not running,
+  1 if HuC firmware is authenticated and running.
+
+This patch proposed to change this to:
+
+  1 if HuC firmware is authenticated and running or if delayed load is in progress,
+  0 if HuC firmware is not running and delayed load is not in progress
+
+Alternative idea is for DG2 (well in general) to add some more fine grained states, so that i915 does not have to use 1 for both running and loading. This may be adding a new error code for auth fails as Daniele mentioned. Then UMD can know that if 0 is returned and platform is DG2 it needs to query it again since it will transition to either 1 or error eventually. This would mean the non error states would be:
+
+  0 not running (aka loading)
+  1 running (and authenticated)
+
+@Daniele - one more thing - can you make sure in the series (if you haven't already) that if HuC status was in any error before suspend reload is not re-tried on resume? My thinking is that the error is likely to persist and we don't want to impose long delay on every resume afterwards. Makes sense to you?
+
+@Tony - one more question for the UMD. Or two.
+
+How prevalent is usage of HuC on DG2 depending on what codecs need it? Do you know in advance, before creating a GEM context, that HuC commands will be sent to the engine or this changes at runtime?
 
 Regards,
 
