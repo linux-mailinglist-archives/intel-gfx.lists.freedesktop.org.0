@@ -1,55 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BB3E54CC9F
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jun 2022 17:24:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2ECA854CCCB
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jun 2022 17:28:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD1E01120E0;
-	Wed, 15 Jun 2022 15:24:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11745112211;
+	Wed, 15 Jun 2022 15:27:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5205B11211A
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Jun 2022 15:24:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655306688; x=1686842688;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=3vPHvaKplrVcjTie5bPmBJ0ZptRJSnIRA/7Ly1Ck518=;
- b=MCRj44hl3r/gPWrvzr9PBAk/6+YphhksGm0RkIQy65uqw9TuOT3vv5Nj
- WXQz5hRjK/jkzxAVI7tQ6u0sGS0jO1HXnaXJMsolHdmnMAqIYJKmOkld8
- JbflrbIOH7g2pU0qUQC82bKIqXqiwKIrCSLNTB7u6w11zR6ppuLlJLSre
- A4WpwPGBhl6aDi7TKTeJAKa3GgosGrgBiVBb/wQ0+6QyH66Oj1faqwf67
- E9tjInRwkjjlzVv41FCn87qhj31h6qEMx7jYkeUOJzh0J3XiLwsYwGnL7
- rkEBhb5D0wozEtFQPcM37XcPxTdqFtB5tqM5A2SwtZYSv5rwCOjz7XJJO Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10378"; a="276570465"
-X-IronPort-AV: E=Sophos;i="5.91,302,1647327600"; d="scan'208";a="276570465"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2022 08:24:36 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,302,1647327600"; d="scan'208";a="589175926"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.163])
- by fmsmga007.fm.intel.com with SMTP; 15 Jun 2022 08:24:34 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 15 Jun 2022 18:24:33 +0300
-Date: Wed, 15 Jun 2022 18:24:33 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <Yqn5sfnFxypRCYBv@intel.com>
-References: <cover.1655297182.git.jani.nikula@intel.com>
- <YqneX9G0VVDqJvYC@intel.com> <878rpyxak6.fsf@intel.com>
- <875yl2x8i9.fsf@intel.com>
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E330B1121B6;
+ Wed, 15 Jun 2022 15:27:47 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 3891661727;
+ Wed, 15 Jun 2022 15:27:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0AC96C3411E;
+ Wed, 15 Jun 2022 15:27:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1655306866;
+ bh=za6XXTXlSO5nrJLYy1rtvLJPylpkekf8kTgLIY5cAts=;
+ h=From:To:Cc:Subject:Date:From;
+ b=cARUWPwSj3OREgsOA5jp6Q6lZIrXQOTUxGJKDSiCSwiW3GZNOyb8zjF0o1L+83oWA
+ O+h8HaQxKFQezSv6vLQedS41KF+H0o+YLTFl78wlbzXnHfRkF0QCKGvK8N//LROjtU
+ dQb2+swSxqDdQ0d2xDqlahKFVR6TUvfk9+/6PbSb4WyvsFX3NnIxXL+H2i+x7eYJcA
+ Imv01jXfonh8Xda27c5WVi0malHtrOcYWW94sA8y8piLFIJvEMsZKoH7hwESd8qQY8
+ JcT6ziT2UQdBfkiNRauRdngekgfilwuqyIHzYy3NoXTq88KZjByvBzljCEs8Dw4184
+ izBQuxjI8S3LA==
+Received: from mchehab by mail.kernel.org with local (Exim 4.95)
+ (envelope-from <mchehab@kernel.org>) id 1o1Uvm-00A4Ja-AR;
+ Wed, 15 Jun 2022 16:27:42 +0100
+From: Mauro Carvalho Chehab <mchehab@kernel.org>
+To: 
+Date: Wed, 15 Jun 2022 16:27:34 +0100
+Message-Id: <cover.1655306128.git.mchehab@kernel.org>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <875yl2x8i9.fsf@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 0/7] drm/i915/display: split out verifation,
- compare and dump from intel_display.c
+Subject: [Intel-gfx] [PATCH 0/6] Fix TLB invalidate issues with Broadwell
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,67 +53,82 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
+ Chris Wilson <chris.p.wilson@intel.com>, Matthew Auld <matthew.auld@intel.com>,
+ Dave Airlie <airlied@redhat.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>, intel-gfx@lists.freedesktop.org,
+ Thomas Hellstrom <thomas.hellstrom@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, mauro.chehab@linux.intel.com,
+ =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
+ linux-kernel@vger.kernel.org,
+ Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jun 15, 2022 at 06:15:58PM +0300, Jani Nikula wrote:
-> On Wed, 15 Jun 2022, Jani Nikula <jani.nikula@intel.com> wrote:
-> > On Wed, 15 Jun 2022, Ville Syrjälä <ville.syrjala@linux.intel.com> wrote:
-> >> On Wed, Jun 15, 2022 at 03:47:54PM +0300, Jani Nikula wrote:
-> >>> The state verification and pipe config comparison/dumping are fairly
-> >>> isolated pieces of code within intel_display.c. Move them to separate
-> >>> files in a long overdue cleanup.
-> >>> 
-> >>> Jani Nikula (7):
-> >>>   drm/i915/wm: move wm state verification to intel_pm.c
-> >>>   drm/i915/dpll: move shared dpll state verification to intel_dpll_mgr.c
-> >>>   drm/i915/mpllb: use I915_STATE_WARN() for state mismatch warnings
-> >>>   drm/i915/mpllb: move mpllb state check to intel_snps_phy.c
-> >>
-> >> I'd perhaps go for foo_state_verify() naming convention. Would
-> >> match the foo_state_dump() naming convention I suggested
-> >> for the dumping stuff.
-> >
-> > Roger.
-> >
-> >>
-> >> Apart from that these ^ four are
-> >> Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> >>
-> >>>   drm/i915/display: split out modeset verification code
-> >>
-> >> I really hate some of that code. I guess hiding it is one option :P
-> >> This one ^ is
-> >> Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> >
-> > Yeah, there's some weird stuff. For example we only call
-> > verify_encoder_state() only to verify it's disabled.
-> >
-> >>
-> >>>   drm/i915/display: split out pipe config compare to a separate file
-> >>
-> >> Not entirely sure I like moving this one. The fastset stuff
-> >> within needs to stay in sync with the fastset codepaths which
-> >> are in intel_display.c. Not sure if we risk more bugs if it's
-> >> too well hidden...
-> >
-> > Mixed feelings. The problem remains, the file is still too damn big, and
-> > it's hard to draw the lines what to extract. Maybe all the modeset code
-> > needs to be lifted, along with the config compare, but then I think that
-> > has too many dependencies to axe out cleanly. Damned if you do, damned
-> > if you don't.
-> 
-> I've also got a patch to move intel_modeset_setup_hw_state() and all the
-> static functions only it calls to another file. Do you also think that
-> needs to be together with the modeset code...?
+i915 selftest hangcheck is causing the i915 driver timeouts, as reported
+by Intel CI bot:
 
-Readout+sanitation... I guess that's pretty self contained so a fairly
-good candidate for moving out.
+	http://gfx-ci.fi.intel.com/cibuglog-ng/issuefilterassoc/24297?query_key=42a999f48fa6ecce068bc8126c069be7c31153b4
 
-Though it does mean I get to rebase my "nuke the legacy state pointers"
-branch at some point :/ Oh well, that's life.
+When such test runs, the only output is:
+
+	[   68.811639] i915: Performing live selftests with st_random_seed=0xe138eac7 st_timeout=500
+	[   68.811792] i915: Running hangcheck
+	[   68.811859] i915: Running intel_hangcheck_live_selftests/igt_hang_sanitycheck
+	[   68.816910] i915 0000:00:02.0: [drm] Cannot find any crtc or sizes
+	[   68.841597] i915: Running intel_hangcheck_live_selftests/igt_reset_nop
+	[   69.346347] igt_reset_nop: 80 resets
+	[   69.362695] i915: Running intel_hangcheck_live_selftests/igt_reset_nop_engine
+	[   69.863559] igt_reset_nop_engine(rcs0): 709 resets
+	[   70.364924] igt_reset_nop_engine(bcs0): 903 resets
+	[   70.866005] igt_reset_nop_engine(vcs0): 659 resets
+	[   71.367934] igt_reset_nop_engine(vcs1): 549 resets
+	[   71.869259] igt_reset_nop_engine(vecs0): 553 resets
+	[   71.882592] i915: Running intel_hangcheck_live_selftests/igt_reset_idle_engine
+	[   72.383554] rcs0: Completed 16605 idle resets
+	[   72.884599] bcs0: Completed 18641 idle resets
+	[   73.385592] vcs0: Completed 17517 idle resets
+	[   73.886658] vcs1: Completed 15474 idle resets
+	[   74.387600] vecs0: Completed 17983 idle resets
+	[   74.387667] i915: Running intel_hangcheck_live_selftests/igt_reset_active_engine
+	[   74.889017] rcs0: Completed 747 active resets
+	[   75.174240] intel_engine_reset(bcs0) failed, err:-110
+	[   75.174301] bcs0: Completed 525 active resets
+
+After that, the machine just silently hangs.
+
+Bisecting the issue, the patch that introduced the regression is:
+
+    7938d61591d3 ("drm/i915: Flush TLBs before releasing backing store")
+
+Reverting it fix the issues, but introduce other problems, as TLB
+won't be invalidated anymore. So, instead, let's fix the root cause.
+
+It turns that the TLB flush logic ends conflicting with i915 reset,
+which is called during selftest hangcheck. So, the TLB cache should
+be serialized, but other TLB fix patches are required for this one
+to work.
+
+Tested on an Intel NUC5i7RYB with an i7-5557U Broadwell CPU.
+
+Chris Wilson (6):
+  drm/i915/gt: Ignore TLB invalidations on idle engines
+  drm/i915/gt: Invalidate TLB of the OA unit at TLB invalidations
+  drm/i915/gt: Skip TLB invalidations once wedged
+  drm/i915/gt: Only invalidate TLBs exposed to user manipulation
+  drm/i915/gt: Serialize GRDOM access between multiple engine resets
+  drm/i915/gt: Serialize TLB invalidates with GT resets
+
+ drivers/gpu/drm/i915/gem/i915_gem_pages.c | 10 +++---
+ drivers/gpu/drm/i915/gt/intel_gt.c        | 43 +++++++++++++++++++----
+ drivers/gpu/drm/i915/gt/intel_gt_pm.h     |  3 ++
+ drivers/gpu/drm/i915/gt/intel_reset.c     | 37 ++++++++++++++-----
+ drivers/gpu/drm/i915/i915_vma.c           |  3 +-
+ 5 files changed, 75 insertions(+), 21 deletions(-)
 
 -- 
-Ville Syrjälä
-Intel
+2.36.1
+
+
