@@ -1,134 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66C6554CB39
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jun 2022 16:24:29 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8C3F54CB40
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jun 2022 16:25:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3858710E76F;
-	Wed, 15 Jun 2022 14:24:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C9A210E7D1;
+	Wed, 15 Jun 2022 14:25:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2058.outbound.protection.outlook.com [40.107.94.58])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 148AF10E6C8;
- Wed, 15 Jun 2022 14:24:24 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KgzTBN0h7QNZa2tjMtPDbcFlbT45D2mPxyncu80oearDePXgJrJRIv9kqpT0XrOE2QKaHNrDH59hZC+MCfyzdl/DOIj3FmF4Pqt+7PYZXRLxE8nt7kJp35NHt8C+3XiTwfC3FuE3gxE93U/WOmlyDXNmRX432axOXMQMkV8w3HI8b2Tg+yRh3Pg2Z6PeSVYdpNW+jC4HKZK8Y578D3lluXkKtSnUVuZI3ABnpYnz8Ddp76CfLYQAJPlRD65Gg7c7v3zd4KdMjiPETp+0BhP9cXYFCWWGSUlufcH6yJ58FM3P3BKZCLrL7sV92c04VjCIrrM0jo/TWdR1rdnmsnuWeQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DOvyYAqZDIMrja3KT4rYrszEU0Q89uhz/I9Lxm9kJhQ=;
- b=E4Gw8kkQATtkcytft9SOS8n2hPiDLgv3bt0QxzL2xvWVvMCme7d3ynxrTMk0Ro7y0+1CBQKPIETxw5LTuW9GhtpUWph9wvdnBV3Jpjhlf56qKn+9sp8r1Uwj4iKGRtr5CAK8Po0soPa0Q6CFhtA2AW7kQnRV3p8oEe8ljRI7VoPMLW3os47upaqZEHJ58/UYn8UbdjC0n4puNybkpyJdAa+XCUMNBp1yeiD7aRhKoegnQsRbO869xCqzXW03nkn/uF0MypasNDlf3jZIeDDhvuTfmLGmQHYpbeahNms7zp9i49SyO4biRf5/c4HrE21mHHSWyRcG660hqXx5AkOqjw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DOvyYAqZDIMrja3KT4rYrszEU0Q89uhz/I9Lxm9kJhQ=;
- b=zkUqGdeXVGRlPcKY8qr8wGxfi78M1cEWcMmv77WCcmKOAYT8pzcrfJOwbZSGy+L3pl25KGWLcKOLliDUN6xM4Ka/8++hUK2OmbzV+7oh6UvNqcCq+5k5horr3RYON0005XiQv46e5/NWtkAt6vlY4m5I06YaHqeBcEldhFzomZo=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BN8PR12MB3587.namprd12.prod.outlook.com (2603:10b6:408:43::13)
- by SN6PR12MB2733.namprd12.prod.outlook.com (2603:10b6:805:77::24)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5332.15; Wed, 15 Jun
- 2022 14:24:17 +0000
-Received: from BN8PR12MB3587.namprd12.prod.outlook.com
- ([fe80::e0fd:45cf:c701:2731]) by BN8PR12MB3587.namprd12.prod.outlook.com
- ([fe80::e0fd:45cf:c701:2731%6]) with mapi id 15.20.5353.014; Wed, 15 Jun 2022
- 14:24:17 +0000
-Message-ID: <3ef8af8b-2dfa-79cf-e7cd-8a3e5ec20d6c@amd.com>
-Date: Wed, 15 Jun 2022 16:24:10 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Content-Language: en-US
-To: Michal Hocko <mhocko@suse.com>
-References: <YqMuq/ZrV8loC3jE@dhcp22.suse.cz>
- <2e7e050e-04eb-0c0a-0675-d7f1c3ae7aed@amd.com>
- <YqNSSFQELx/LeEHR@dhcp22.suse.cz>
- <288528c3-411e-fb25-2f08-92d4bb9f1f13@gmail.com>
- <Yqbq/Q5jz2ou87Jx@dhcp22.suse.cz>
- <b8b9aba5-575e-8a34-e627-79bef4ed7f97@amd.com>
- <YqcpZY3Xx7Mk2ROH@dhcp22.suse.cz>
- <34daa8ab-a9f4-8f7b-0ea7-821bc36b9497@gmail.com>
- <YqdFkfLVFUD5K6EK@dhcp22.suse.cz>
- <9e170201-35df-cfcc-8d07-2f9693278829@amd.com>
- <Yqnba1E2FSRVUATY@dhcp22.suse.cz>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-In-Reply-To: <Yqnba1E2FSRVUATY@dhcp22.suse.cz>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: AS9PR06CA0491.eurprd06.prod.outlook.com
- (2603:10a6:20b:49b::15) To BN8PR12MB3587.namprd12.prod.outlook.com
- (2603:10b6:408:43::13)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3EE0410E76F
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Jun 2022 14:25:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1655303141; x=1686839141;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=WcyJ2x6vnm/I0t0P1+nCRlyzQdYYBoQMxywjXPvocw4=;
+ b=luoIipE/sfjTZustOMZUw2KNqAT/EF27JLf0Lr8TvxdKdOn0828CXuRg
+ +9MD8Zi9QST9KFkq3ESTAXSBkLMh8Vpdx/oXRjrlnCEypBfWN3IyrECnD
+ fvIK7Zio56OS/CPg7pgMStK2RRq3m8zavhzOphuxy+Bgwa0vxQsfOudcS
+ eu+fsS2W8vvP4Nwdcq5GDiPMufvxdrIc5jJla/CM+kG5hrKIWah3ycls6
+ eMs1z2p0Gd8c1od+Qxw645jlEmgNyWYjDnGtQqUi0rAHv5KPBUArcqwtM
+ 3ow746lSmf+LtjEb8Aeua87/htZu72iEJDY4WqfHV1lfYbNpcnq06osc3 Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10378"; a="304410027"
+X-IronPort-AV: E=Sophos;i="5.91,302,1647327600"; d="scan'208";a="304410027"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jun 2022 07:25:40 -0700
+X-IronPort-AV: E=Sophos;i="5.91,302,1647327600"; d="scan'208";a="589137496"
+Received: from jazuniga-mobl1.amr.corp.intel.com (HELO localhost)
+ ([10.252.33.103])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jun 2022 07:25:39 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+In-Reply-To: <YqnbJDC+lxfc4znH@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1655297182.git.jani.nikula@intel.com>
+ <f154a5c58d0a51286696b3d3b1407409067458ee.1655297182.git.jani.nikula@intel.com>
+ <YqnbJDC+lxfc4znH@intel.com>
+Date: Wed, 15 Jun 2022 17:25:36 +0300
+Message-ID: <87bkuuxau7.fsf@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: ddedf206-058f-4d4e-f885-08da4edababa
-X-MS-TrafficTypeDiagnostic: SN6PR12MB2733:EE_
-X-Microsoft-Antispam-PRVS: <SN6PR12MB27334D39829FDC2DBA46CF2983AD9@SN6PR12MB2733.namprd12.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: fEA4IY3qFPQhQHHzX/H20resZd0FS60QETjfrGXtpwc7pntRPuIJGh86DjMRnz8XUyVZZfVFAEAHgxVY991ZzzHv2DOBGeI5+D5amaPL4C/AynkuY+z+BUUmn0hSxnsvDDyGocDr6c+vAn8CqsVoWnEfhKiQxoEblkH3mLhZKp9D9kl6+YfdMsp6RcFBcYtln5PKc5WixLjPDQaz83x9RCbyRgB/kECiX7Jjq+1PzOJr9RVz0d2mNgbkEf/fOfhbugXxpGlvKqUROIRFHKwEQ0p4gd42/IWmJoWEZK+/6GvfmBe+TmGim/bzgbNGl7iBRiZckNzg1uXnI5GmEw64LYuW0qRbP6BgnTQfd7u58hKvdocv/kWj9i7b3SIwfHT8U3KgQNJuMLvIwcRVBTSVQiUXlfk3TIBDGz6Bhy4VHkg4t9vB1mMchpNYc8MkMSq5V+3IHv0GtOUbwPSFm/Q8QCd037h516/LTbl7Ofykla8DvcVNGlz3G4lT1f4hvpOpSb09cTCUrd8lVxWGapiQkPzdvsZGs+mvgpswaQGoGTrhi68TAT31gRYqrIhKHZ7KYBUC4eaEcnnXjdNMaOcxoZPz1ZsYqu9da4MBv/eYne6ZqdegFaZznA01tAXjtt9iFNzi6JIkwf9FyJL0oHh9KU+qKtSuU20qyuEN7/RWwACPWBDvecb6Hofz71f/9i8HaN2kVUA08vq7AlIm2VZz5FgRgCX0oIuC0GrCXtdRfmqYA9tiHGmwNyHmaMiEBUot
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN8PR12MB3587.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230016)(4636009)(366004)(7416002)(2906002)(31686004)(38100700002)(2616005)(36756003)(6486002)(508600001)(186003)(66476007)(66556008)(5660300002)(8936002)(6512007)(4326008)(83380400001)(6506007)(316002)(8676002)(6666004)(66946007)(6916009)(86362001)(66574015)(31696002)(45980500001)(43740500002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SXREL0ZQZ1hQN2UzUm9HbWhlL1dwdy9FT04vNDBQWTBEcnd5Z1NvOUhFb01M?=
- =?utf-8?B?SXZmSnRIMUt0NTZlYTBJaWduN1NVRURsMkNLRisrYTBQZE96L3JhdForVG81?=
- =?utf-8?B?K285MktqeG1TUDVkTUhQaFRTTG42MGptZURTRTNBN005UXRvVENTa0lnblFE?=
- =?utf-8?B?cXQwRXNDMkRkRTN2Sk04T2pZT3hzNVNWczJiQnZ1aE5yZjQwVER3NytldFRP?=
- =?utf-8?B?UEFpZEoyTFkvR0dCM3I2RVBsNS9aenlrUWo0WERVQ0pna0NSdURnVzNRc2Fv?=
- =?utf-8?B?RlRxenpscU1HdmNBVzUvWEU2SGpLdnFGZ1FJZlhUTldHWHlWdFBTTEZYc3Rs?=
- =?utf-8?B?dnJLRXdpcUw3WWlSaHRSMzNNY09qZnc2eXNVUkdkUGIxVEk0bVlrV2JnblRY?=
- =?utf-8?B?NURLT0RwZEZpQXZHTEJSOFBLWEpVeFBmTHZzd29qcUpXeTg1ckV2T3QySDJj?=
- =?utf-8?B?eXRNN3R2UjUyby9GTWl1Y2ttQXV3QmlYcVdObVN4Q0x2Tnc5cmE3Y3J2TTVa?=
- =?utf-8?B?MWdoVFY2c1luV3dyaEEyN003T2trNjA4eSt3VXdZSlhFdzYwK04xdWNaNElL?=
- =?utf-8?B?YlhlN2xQYXgwamFvVmVmQ2dpc0RyU3dVTWNUUTBIUlo5RWRDbjVWZnI0UHJy?=
- =?utf-8?B?V3huNStWdkpuREJhUEFLaGJaT2gzTXUvNWxrZHUwVi9meUZoOEI1WEI4N04v?=
- =?utf-8?B?NWJEcmswOHVXWm1VWFJCamlhdzg1WWZreFRUOEpmTENseE5ibExTdVRBQzFR?=
- =?utf-8?B?ZjV1UXJZcFR3c24rSjFSVCtUSkJSV3BSWStkdkpPQXYzU0dBcTc0V2xzM0x4?=
- =?utf-8?B?dHdzZ09kU1dmdWN3Z3lmbzRMNW5JR0U3Y0sybkZLZGdUcThaUDZMdEtYSkJL?=
- =?utf-8?B?anRWV2I4d3FnYmtpa3ZaeWt6NE9idS9pRzN1UVdtRWFpbkNhUndzMlNZR3V0?=
- =?utf-8?B?dWoycm9teUtEWEZ6NjVHc05xcUoxODJjMmJ6VG1oTzF1QTZhZmFISC8vV2oy?=
- =?utf-8?B?NXdNYXdPMjgvQjcrQ2V0WUhmL1JYTWFTZy9BL1J1S0RmWHdOSnJHdGprbXNV?=
- =?utf-8?B?a1V0WXNKVW10VjJNR2xoNmpDTDhLekl0QTc1MC9PaDJVZlVqekZobHd1SHU4?=
- =?utf-8?B?U2d5RWZEeG92M1AvRmo1c3B1MkdodGFQbEdUWERGS1U3VDNJd0dJQ2JXOGp3?=
- =?utf-8?B?dWovZXdXcC9mSFF4K2xUek5vdmplS3ZpWjk4dFAxSXlhWlR0RUROd245NTc2?=
- =?utf-8?B?V3R2eDNXTnErbWdmemhlWFJWVVE4bDlKeWcrc3MvclZTdGxDZ0R1VSsraHlS?=
- =?utf-8?B?WXBxSUFYcHhRajIrWklwaHFteFNGTGZ1Q09WTHN6eEs4aUw5Y0pOZUo4Q3Bl?=
- =?utf-8?B?VFV0YmZPeCtObGdNLzFCVkJ0SC9nMTlmMDRmNSt5UG9mb1p1aEhPejNaYWVG?=
- =?utf-8?B?UHV6RVdwS0EvNVJ2UEREdnpodEVCU2hXMzRBZ0diUU1QaG8xUHRPemFwNWlw?=
- =?utf-8?B?ek96OUgzL3d5T0l6YjE2eUtmVTFJdDc5bnVueStkTktaYWwwK2FLbDJISWhy?=
- =?utf-8?B?RTRNUnNuenFBZjdHb1lSUUpTU2FHRUN5Zkhqb2JrWk5OTlZCWTRIdWhlRGp6?=
- =?utf-8?B?V3ppQTZOcVZrbXVaQ0g1QUZMajY2QlBwa2hRQzV4T29qL1h5bzVzcVg3Z2xP?=
- =?utf-8?B?bDVLeC9QMTlzS2hqTVgvNGxBbGdkSG9sRGVETHh0c0RFVTNwZHlwYXB2T2x3?=
- =?utf-8?B?V0RjN3dZb3JvSHFjK0w5NWxlMXFuSXZhNHZvYlQ0L1dNUUlrZXBEa3RiUVZj?=
- =?utf-8?B?Rk4yMTlwTFdSWEg4V3ZaUUtUdy9tWWhRSnpNTUZGbEIyajFVVm5yTUl0Z0dQ?=
- =?utf-8?B?MkVLWEJ5ZFBYTXBvU3BiZlJwVjc4ci90alhNSWdjeDFQYzgzNFFkMGJqVjBn?=
- =?utf-8?B?UGdUYUh5TThPaC9VdUJVbXZITnVaWnZqYklaaFdCR0U0WkJiQ3RqYTBMNzJS?=
- =?utf-8?B?ekpOUzBmSVdKQ3Q5ZnRXazZwVlFrRTc3MDFFYmw1L2pXMEFxdWJ0Rm5tUGNx?=
- =?utf-8?B?Z3JjTFY3NUIwUVhnLzE4QlY4OVpheHVwNDV5akF6emNXSHVHbjAzRU8zRnZQ?=
- =?utf-8?B?a3l4b2JCZ3QybWhqOEQvb09BTkpnUmVJTlI2WjJaUUs4RFByVWZ3eGxUUHY1?=
- =?utf-8?B?YnVBcms2Z2dSVy9uZlovTDNPMlNsTFlLWnVwbkNqdFRSb3JEUnFQM2JBUVRo?=
- =?utf-8?B?R3FMYy81MHVmeTRqWENUY0JFd1Bmdll0N2RPTC83QVBWYWZieEdObHppU3NH?=
- =?utf-8?B?SzEvYnJ5THQ2Z3g3MUhzVGU3UG5KTWNtd1QwUU9Fam1ndHczRnNod1Z1R3lE?=
- =?utf-8?Q?KUrew6soKrMkCyPCI9caBWzCEgnvxLE/7+TSFNj2rQ/KU?=
-X-MS-Exchange-AntiSpam-MessageData-1: /Lro2J2aDa26xQ==
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ddedf206-058f-4d4e-f885-08da4edababa
-X-MS-Exchange-CrossTenant-AuthSource: BN8PR12MB3587.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jun 2022 14:24:17.1811 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: U0FmoRIJylMxGGYqevwxi4fBsLTyu90ftIgB8P9LV6lq/tMVAWixDRHYKfw6ItDD
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR12MB2733
-Subject: Re: [Intel-gfx] [PATCH 03/13] mm: shmem: provide oom badness for
- shmem files
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 7/7] drm/i915/display: split out pipe config
+ dump to a separate file
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -141,56 +60,821 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: andrey.grodzovsky@amd.com, linux-mm@kvack.org,
- nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- hughd@google.com, linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- linux-fsdevel@vger.kernel.org, viro@zeniv.linux.org.uk,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
- linux-tegra@vger.kernel.org, alexander.deucher@amd.com,
- akpm@linux-foundation.org, linux-media@vger.kernel.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Am 15.06.22 um 15:15 schrieb Michal Hocko:
-> On Wed 15-06-22 14:35:22, Christian König wrote:
-> [...]
->> Even the classic mm_struct based accounting includes MM_SHMEMPAGES into the
->> badness. So accounting shared resources as badness to make a decision is
->> nothing new here.
-> Yeah, it is nothing really new but it also doesn't mean it is an example
-> worth following as this doesn't really work currently. Also please note
-> that MM_SHMEMPAGES is counting at least something process specific as
-> those pages are mapped in to the process (and with enough of wishful
-> thinking unmapping can drop the last reference and free something up
-> actually) . With generic per-file memory this is even more detached from
-> process.
+On Wed, 15 Jun 2022, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Wed, Jun 15, 2022 at 03:48:01PM +0300, Jani Nikula wrote:
+>> Declutter intel_display.c by splitting out pipe config dumping to a
+>> separate file.
+>>=20
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/Makefile                 |   1 +
+>>  drivers/gpu/drm/i915/display/intel_display.c  | 311 +----------------
+>>  drivers/gpu/drm/i915/display/intel_display.h  |   3 -
+>>  .../drm/i915/display/intel_modeset_verify.c   |   5 +-
+>>  .../drm/i915/display/intel_pipe_config_dump.c | 314 ++++++++++++++++++
+>>  .../drm/i915/display/intel_pipe_config_dump.h |  16 +
+>>  6 files changed, 338 insertions(+), 312 deletions(-)
+>>  create mode 100644 drivers/gpu/drm/i915/display/intel_pipe_config_dump.c
+>>  create mode 100644 drivers/gpu/drm/i915/display/intel_pipe_config_dump.h
+>>=20
+>> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefi=
+le
+>> index 8b4e5c59ee70..d69881506dc7 100644
+>> --- a/drivers/gpu/drm/i915/Makefile
+>> +++ b/drivers/gpu/drm/i915/Makefile
+>> @@ -247,6 +247,7 @@ i915-y +=3D \
+>>  	display/intel_pch_display.o \
+>>  	display/intel_pch_refclk.o \
+>>  	display/intel_pipe_config_compare.o \
+>> +	display/intel_pipe_config_dump.o \
+>
+> I would like to get rid of the pipe_config naming here. Just
+> foo_state_dump() I guess would be good. That would sort of match
+> the core state_dump() midlayer, which we may want to a) demidlayer
+> and b) start to use at some point.
 
-But this is exactly the use case here. See I do have the 1% which is 
-shared between processes, but 99% of the allocations only one process 
-has a reference to them.
+I knew the naming would be a point of contention, but I was hoping for a
+concrete suggestion. Other than foo, that is. ;)
 
-So that wishful thinking that we can drop the last reference when we 
-kill this specific process is perfectly justified.
+BR,
+Jani.
 
-It can be that this doesn't fit all use cases for the shmem file, but it 
-certainly does for DRM and DMA-buf.
+>
+>>  	display/intel_plane_initial.o \
+>>  	display/intel_psr.o \
+>>  	display/intel_quirks.o \
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/=
+drm/i915/display/intel_display.c
+>> index 093ba6bde105..8741ae5e6108 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+>> @@ -106,6 +106,7 @@
+>>  #include "intel_pch_refclk.h"
+>>  #include "intel_pcode.h"
+>>  #include "intel_pipe_config_compare.h"
+>> +#include "intel_pipe_config_dump.h"
+>>  #include "intel_pipe_crc.h"
+>>  #include "intel_plane_initial.h"
+>>  #include "intel_pm.h"
+>> @@ -5059,310 +5060,6 @@ compute_baseline_pipe_bpp(struct intel_atomic_st=
+ate *state,
+>>  	return 0;
+>>  }
+>>=20=20
+>> -static void intel_dump_crtc_timings(struct drm_i915_private *i915,
+>> -				    const struct drm_display_mode *mode)
+>> -{
+>> -	drm_dbg_kms(&i915->drm, "crtc timings: %d %d %d %d %d %d %d %d %d, "
+>> -		    "type: 0x%x flags: 0x%x\n",
+>> -		    mode->crtc_clock,
+>> -		    mode->crtc_hdisplay, mode->crtc_hsync_start,
+>> -		    mode->crtc_hsync_end, mode->crtc_htotal,
+>> -		    mode->crtc_vdisplay, mode->crtc_vsync_start,
+>> -		    mode->crtc_vsync_end, mode->crtc_vtotal,
+>> -		    mode->type, mode->flags);
+>> -}
+>> -
+>> -static void
+>> -intel_dump_m_n_config(const struct intel_crtc_state *pipe_config,
+>> -		      const char *id, unsigned int lane_count,
+>> -		      const struct intel_link_m_n *m_n)
+>> -{
+>> -	struct drm_i915_private *i915 =3D to_i915(pipe_config->uapi.crtc->dev);
+>> -
+>> -	drm_dbg_kms(&i915->drm,
+>> -		    "%s: lanes: %i; data_m: %u, data_n: %u, link_m: %u, link_n: %u, t=
+u: %u\n",
+>> -		    id, lane_count,
+>> -		    m_n->data_m, m_n->data_n,
+>> -		    m_n->link_m, m_n->link_n, m_n->tu);
+>> -}
+>> -
+>> -static void
+>> -intel_dump_infoframe(struct drm_i915_private *dev_priv,
+>> -		     const union hdmi_infoframe *frame)
+>> -{
+>> -	if (!drm_debug_enabled(DRM_UT_KMS))
+>> -		return;
+>> -
+>> -	hdmi_infoframe_log(KERN_DEBUG, dev_priv->drm.dev, frame);
+>> -}
+>> -
+>> -static void
+>> -intel_dump_dp_vsc_sdp(struct drm_i915_private *dev_priv,
+>> -		      const struct drm_dp_vsc_sdp *vsc)
+>> -{
+>> -	if (!drm_debug_enabled(DRM_UT_KMS))
+>> -		return;
+>> -
+>> -	drm_dp_vsc_sdp_log(KERN_DEBUG, dev_priv->drm.dev, vsc);
+>> -}
+>> -
+>> -#define OUTPUT_TYPE(x) [INTEL_OUTPUT_ ## x] =3D #x
+>> -
+>> -static const char * const output_type_str[] =3D {
+>> -	OUTPUT_TYPE(UNUSED),
+>> -	OUTPUT_TYPE(ANALOG),
+>> -	OUTPUT_TYPE(DVO),
+>> -	OUTPUT_TYPE(SDVO),
+>> -	OUTPUT_TYPE(LVDS),
+>> -	OUTPUT_TYPE(TVOUT),
+>> -	OUTPUT_TYPE(HDMI),
+>> -	OUTPUT_TYPE(DP),
+>> -	OUTPUT_TYPE(EDP),
+>> -	OUTPUT_TYPE(DSI),
+>> -	OUTPUT_TYPE(DDI),
+>> -	OUTPUT_TYPE(DP_MST),
+>> -};
+>> -
+>> -#undef OUTPUT_TYPE
+>> -
+>> -static void snprintf_output_types(char *buf, size_t len,
+>> -				  unsigned int output_types)
+>> -{
+>> -	char *str =3D buf;
+>> -	int i;
+>> -
+>> -	str[0] =3D '\0';
+>> -
+>> -	for (i =3D 0; i < ARRAY_SIZE(output_type_str); i++) {
+>> -		int r;
+>> -
+>> -		if ((output_types & BIT(i)) =3D=3D 0)
+>> -			continue;
+>> -
+>> -		r =3D snprintf(str, len, "%s%s",
+>> -			     str !=3D buf ? "," : "", output_type_str[i]);
+>> -		if (r >=3D len)
+>> -			break;
+>> -		str +=3D r;
+>> -		len -=3D r;
+>> -
+>> -		output_types &=3D ~BIT(i);
+>> -	}
+>> -
+>> -	WARN_ON_ONCE(output_types !=3D 0);
+>> -}
+>> -
+>> -static const char * const output_format_str[] =3D {
+>> -	[INTEL_OUTPUT_FORMAT_RGB] =3D "RGB",
+>> -	[INTEL_OUTPUT_FORMAT_YCBCR420] =3D "YCBCR4:2:0",
+>> -	[INTEL_OUTPUT_FORMAT_YCBCR444] =3D "YCBCR4:4:4",
+>> -};
+>> -
+>> -static const char *output_formats(enum intel_output_format format)
+>> -{
+>> -	if (format >=3D ARRAY_SIZE(output_format_str))
+>> -		return "invalid";
+>> -	return output_format_str[format];
+>> -}
+>> -
+>> -static void intel_dump_plane_state(const struct intel_plane_state *plan=
+e_state)
+>> -{
+>> -	struct intel_plane *plane =3D to_intel_plane(plane_state->uapi.plane);
+>> -	struct drm_i915_private *i915 =3D to_i915(plane->base.dev);
+>> -	const struct drm_framebuffer *fb =3D plane_state->hw.fb;
+>> -
+>> -	if (!fb) {
+>> -		drm_dbg_kms(&i915->drm,
+>> -			    "[PLANE:%d:%s] fb: [NOFB], visible: %s\n",
+>> -			    plane->base.base.id, plane->base.name,
+>> -			    str_yes_no(plane_state->uapi.visible));
+>> -		return;
+>> -	}
+>> -
+>> -	drm_dbg_kms(&i915->drm,
+>> -		    "[PLANE:%d:%s] fb: [FB:%d] %ux%u format =3D %p4cc modifier =3D 0x=
+%llx, visible: %s\n",
+>> -		    plane->base.base.id, plane->base.name,
+>> -		    fb->base.id, fb->width, fb->height, &fb->format->format,
+>> -		    fb->modifier, str_yes_no(plane_state->uapi.visible));
+>> -	drm_dbg_kms(&i915->drm, "\trotation: 0x%x, scaler: %d\n",
+>> -		    plane_state->hw.rotation, plane_state->scaler_id);
+>> -	if (plane_state->uapi.visible)
+>> -		drm_dbg_kms(&i915->drm,
+>> -			    "\tsrc: " DRM_RECT_FP_FMT " dst: " DRM_RECT_FMT "\n",
+>> -			    DRM_RECT_FP_ARG(&plane_state->uapi.src),
+>> -			    DRM_RECT_ARG(&plane_state->uapi.dst));
+>> -}
+>> -
+>> -void intel_dump_pipe_config(const struct intel_crtc_state *pipe_config,
+>> -			    struct intel_atomic_state *state,
+>> -			    const char *context)
+>> -{
+>> -	struct intel_crtc *crtc =3D to_intel_crtc(pipe_config->uapi.crtc);
+>> -	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
+>> -	const struct intel_plane_state *plane_state;
+>> -	struct intel_plane *plane;
+>> -	char buf[64];
+>> -	int i;
+>> -
+>> -	drm_dbg_kms(&dev_priv->drm, "[CRTC:%d:%s] enable: %s %s\n",
+>> -		    crtc->base.base.id, crtc->base.name,
+>> -		    str_yes_no(pipe_config->hw.enable), context);
+>> -
+>> -	if (!pipe_config->hw.enable)
+>> -		goto dump_planes;
+>> -
+>> -	snprintf_output_types(buf, sizeof(buf), pipe_config->output_types);
+>> -	drm_dbg_kms(&dev_priv->drm,
+>> -		    "active: %s, output_types: %s (0x%x), output format: %s\n",
+>> -		    str_yes_no(pipe_config->hw.active),
+>> -		    buf, pipe_config->output_types,
+>> -		    output_formats(pipe_config->output_format));
+>> -
+>> -	drm_dbg_kms(&dev_priv->drm,
+>> -		    "cpu_transcoder: %s, pipe bpp: %i, dithering: %i\n",
+>> -		    transcoder_name(pipe_config->cpu_transcoder),
+>> -		    pipe_config->pipe_bpp, pipe_config->dither);
+>> -
+>> -	drm_dbg_kms(&dev_priv->drm, "MST master transcoder: %s\n",
+>> -		    transcoder_name(pipe_config->mst_master_transcoder));
+>> -
+>> -	drm_dbg_kms(&dev_priv->drm,
+>> -		    "port sync: master transcoder: %s, slave transcoder bitmask =3D 0=
+x%x\n",
+>> -		    transcoder_name(pipe_config->master_transcoder),
+>> -		    pipe_config->sync_mode_slaves_mask);
+>> -
+>> -	drm_dbg_kms(&dev_priv->drm, "bigjoiner: %s, pipes: 0x%x\n",
+>> -		    intel_crtc_is_bigjoiner_slave(pipe_config) ? "slave" :
+>> -		    intel_crtc_is_bigjoiner_master(pipe_config) ? "master" : "no",
+>> -		    pipe_config->bigjoiner_pipes);
+>> -
+>> -	drm_dbg_kms(&dev_priv->drm, "splitter: %s, link count %d, overlap %d\n=
+",
+>> -		    str_enabled_disabled(pipe_config->splitter.enable),
+>> -		    pipe_config->splitter.link_count,
+>> -		    pipe_config->splitter.pixel_overlap);
+>> -
+>> -	if (pipe_config->has_pch_encoder)
+>> -		intel_dump_m_n_config(pipe_config, "fdi",
+>> -				      pipe_config->fdi_lanes,
+>> -				      &pipe_config->fdi_m_n);
+>> -
+>> -	if (intel_crtc_has_dp_encoder(pipe_config)) {
+>> -		intel_dump_m_n_config(pipe_config, "dp m_n",
+>> -				      pipe_config->lane_count,
+>> -				      &pipe_config->dp_m_n);
+>> -		intel_dump_m_n_config(pipe_config, "dp m2_n2",
+>> -				      pipe_config->lane_count,
+>> -				      &pipe_config->dp_m2_n2);
+>> -	}
+>> -
+>> -	drm_dbg_kms(&dev_priv->drm, "framestart delay: %d, MSA timing delay: %=
+d\n",
+>> -		    pipe_config->framestart_delay, pipe_config->msa_timing_delay);
+>> -
+>> -	drm_dbg_kms(&dev_priv->drm,
+>> -		    "audio: %i, infoframes: %i, infoframes enabled: 0x%x\n",
+>> -		    pipe_config->has_audio, pipe_config->has_infoframe,
+>> -		    pipe_config->infoframes.enable);
+>> -
+>> -	if (pipe_config->infoframes.enable &
+>> -	    intel_hdmi_infoframe_enable(HDMI_PACKET_TYPE_GENERAL_CONTROL))
+>> -		drm_dbg_kms(&dev_priv->drm, "GCP: 0x%x\n",
+>> -			    pipe_config->infoframes.gcp);
+>> -	if (pipe_config->infoframes.enable &
+>> -	    intel_hdmi_infoframe_enable(HDMI_INFOFRAME_TYPE_AVI))
+>> -		intel_dump_infoframe(dev_priv, &pipe_config->infoframes.avi);
+>> -	if (pipe_config->infoframes.enable &
+>> -	    intel_hdmi_infoframe_enable(HDMI_INFOFRAME_TYPE_SPD))
+>> -		intel_dump_infoframe(dev_priv, &pipe_config->infoframes.spd);
+>> -	if (pipe_config->infoframes.enable &
+>> -	    intel_hdmi_infoframe_enable(HDMI_INFOFRAME_TYPE_VENDOR))
+>> -		intel_dump_infoframe(dev_priv, &pipe_config->infoframes.hdmi);
+>> -	if (pipe_config->infoframes.enable &
+>> -	    intel_hdmi_infoframe_enable(HDMI_INFOFRAME_TYPE_DRM))
+>> -		intel_dump_infoframe(dev_priv, &pipe_config->infoframes.drm);
+>> -	if (pipe_config->infoframes.enable &
+>> -	    intel_hdmi_infoframe_enable(HDMI_PACKET_TYPE_GAMUT_METADATA))
+>> -		intel_dump_infoframe(dev_priv, &pipe_config->infoframes.drm);
+>> -	if (pipe_config->infoframes.enable &
+>> -	    intel_hdmi_infoframe_enable(DP_SDP_VSC))
+>> -		intel_dump_dp_vsc_sdp(dev_priv, &pipe_config->infoframes.vsc);
+>> -
+>> -	drm_dbg_kms(&dev_priv->drm, "vrr: %s, vmin: %d, vmax: %d, pipeline ful=
+l: %d, guardband: %d flipline: %d, vmin vblank: %d, vmax vblank: %d\n",
+>> -		    str_yes_no(pipe_config->vrr.enable),
+>> -		    pipe_config->vrr.vmin, pipe_config->vrr.vmax,
+>> -		    pipe_config->vrr.pipeline_full, pipe_config->vrr.guardband,
+>> -		    pipe_config->vrr.flipline,
+>> -		    intel_vrr_vmin_vblank_start(pipe_config),
+>> -		    intel_vrr_vmax_vblank_start(pipe_config));
+>> -
+>> -	drm_dbg_kms(&dev_priv->drm, "requested mode: " DRM_MODE_FMT "\n",
+>> -		    DRM_MODE_ARG(&pipe_config->hw.mode));
+>> -	drm_dbg_kms(&dev_priv->drm, "adjusted mode: " DRM_MODE_FMT "\n",
+>> -		    DRM_MODE_ARG(&pipe_config->hw.adjusted_mode));
+>> -	intel_dump_crtc_timings(dev_priv, &pipe_config->hw.adjusted_mode);
+>> -	drm_dbg_kms(&dev_priv->drm, "pipe mode: " DRM_MODE_FMT "\n",
+>> -		    DRM_MODE_ARG(&pipe_config->hw.pipe_mode));
+>> -	intel_dump_crtc_timings(dev_priv, &pipe_config->hw.pipe_mode);
+>> -	drm_dbg_kms(&dev_priv->drm,
+>> -		    "port clock: %d, pipe src: " DRM_RECT_FMT ", pixel rate %d\n",
+>> -		    pipe_config->port_clock, DRM_RECT_ARG(&pipe_config->pipe_src),
+>> -		    pipe_config->pixel_rate);
+>> -
+>> -	drm_dbg_kms(&dev_priv->drm, "linetime: %d, ips linetime: %d\n",
+>> -		    pipe_config->linetime, pipe_config->ips_linetime);
+>> -
+>> -	if (DISPLAY_VER(dev_priv) >=3D 9)
+>> -		drm_dbg_kms(&dev_priv->drm,
+>> -			    "num_scalers: %d, scaler_users: 0x%x, scaler_id: %d\n",
+>> -			    crtc->num_scalers,
+>> -			    pipe_config->scaler_state.scaler_users,
+>> -			    pipe_config->scaler_state.scaler_id);
+>> -
+>> -	if (HAS_GMCH(dev_priv))
+>> -		drm_dbg_kms(&dev_priv->drm,
+>> -			    "gmch pfit: control: 0x%08x, ratios: 0x%08x, lvds border: 0x%08x=
+\n",
+>> -			    pipe_config->gmch_pfit.control,
+>> -			    pipe_config->gmch_pfit.pgm_ratios,
+>> -			    pipe_config->gmch_pfit.lvds_border_bits);
+>> -	else
+>> -		drm_dbg_kms(&dev_priv->drm,
+>> -			    "pch pfit: " DRM_RECT_FMT ", %s, force thru: %s\n",
+>> -			    DRM_RECT_ARG(&pipe_config->pch_pfit.dst),
+>> -			    str_enabled_disabled(pipe_config->pch_pfit.enabled),
+>> -			    str_yes_no(pipe_config->pch_pfit.force_thru));
+>> -
+>> -	drm_dbg_kms(&dev_priv->drm, "ips: %i, double wide: %i, drrs: %i\n",
+>> -		    pipe_config->ips_enabled, pipe_config->double_wide,
+>> -		    pipe_config->has_drrs);
+>> -
+>> -	intel_dpll_dump_hw_state(dev_priv, &pipe_config->dpll_hw_state);
+>> -
+>> -	if (IS_CHERRYVIEW(dev_priv))
+>> -		drm_dbg_kms(&dev_priv->drm,
+>> -			    "cgm_mode: 0x%x gamma_mode: 0x%x gamma_enable: %d csc_enable: %d=
+\n",
+>> -			    pipe_config->cgm_mode, pipe_config->gamma_mode,
+>> -			    pipe_config->gamma_enable, pipe_config->csc_enable);
+>> -	else
+>> -		drm_dbg_kms(&dev_priv->drm,
+>> -			    "csc_mode: 0x%x gamma_mode: 0x%x gamma_enable: %d csc_enable: %d=
+\n",
+>> -			    pipe_config->csc_mode, pipe_config->gamma_mode,
+>> -			    pipe_config->gamma_enable, pipe_config->csc_enable);
+>> -
+>> -	drm_dbg_kms(&dev_priv->drm, "degamma lut: %d entries, gamma lut: %d en=
+tries\n",
+>> -		    pipe_config->hw.degamma_lut ?
+>> -		    drm_color_lut_size(pipe_config->hw.degamma_lut) : 0,
+>> -		    pipe_config->hw.gamma_lut ?
+>> -		    drm_color_lut_size(pipe_config->hw.gamma_lut) : 0);
+>> -
+>> -dump_planes:
+>> -	if (!state)
+>> -		return;
+>> -
+>> -	for_each_new_intel_plane_in_state(state, plane, plane_state, i) {
+>> -		if (plane->pipe =3D=3D crtc->pipe)
+>> -			intel_dump_plane_state(plane_state);
+>> -	}
+>> -}
+>> -
+>>  static bool check_digital_port_conflicts(struct intel_atomic_state *sta=
+te)
+>>  {
+>>  	struct drm_device *dev =3D state->base.dev;
+>> @@ -6823,7 +6520,7 @@ static int intel_atomic_check(struct drm_device *d=
+ev,
+>>  		    !new_crtc_state->update_pipe)
+>>  			continue;
+>>=20=20
+>> -		intel_dump_pipe_config(new_crtc_state, state,
+>> +		intel_pipe_config_dump(new_crtc_state, state,
+>>  				       intel_crtc_needs_modeset(new_crtc_state) ?
+>>  				       "[modeset]" : "[fastset]");
+>>  	}
+>> @@ -6840,7 +6537,7 @@ static int intel_atomic_check(struct drm_device *d=
+ev,
+>>  	 */
+>>  	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
+>>  					    new_crtc_state, i)
+>> -		intel_dump_pipe_config(new_crtc_state, state, "[failed]");
+>> +		intel_pipe_config_dump(new_crtc_state, state, "[failed]");
+>>=20=20
+>>  	return ret;
+>>  }
+>> @@ -9320,7 +9017,7 @@ intel_modeset_setup_hw_state(struct drm_device *de=
+v,
+>>  			to_intel_crtc_state(crtc->base.state);
+>>=20=20
+>>  		intel_sanitize_crtc(crtc, ctx);
+>> -		intel_dump_pipe_config(crtc_state, NULL, "[setup_hw_state]");
+>> +		intel_pipe_config_dump(crtc_state, NULL, "[setup_hw_state]");
+>>  	}
+>>=20=20
+>>  	intel_modeset_update_connector_atomic_state(dev);
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/=
+drm/i915/display/intel_display.h
+>> index e827c84ece56..68477eb82049 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_display.h
+>> @@ -560,9 +560,6 @@ bool intel_crtc_is_bigjoiner_master(const struct int=
+el_crtc_state *crtc_state);
+>>  u8 intel_crtc_bigjoiner_slave_pipes(const struct intel_crtc_state *crtc=
+_state);
+>>  struct intel_crtc *intel_master_crtc(const struct intel_crtc_state *crt=
+c_state);
+>>  bool intel_crtc_get_pipe_config(struct intel_crtc_state *crtc_state);
+>> -void intel_dump_pipe_config(const struct intel_crtc_state *pipe_config,
+>> -			    struct intel_atomic_state *state,
+>> -			    const char *context);
+>>=20=20
+>>  void intel_plane_destroy(struct drm_plane *plane);
+>>  void intel_enable_transcoder(const struct intel_crtc_state *new_crtc_st=
+ate);
+>> diff --git a/drivers/gpu/drm/i915/display/intel_modeset_verify.c b/drive=
+rs/gpu/drm/i915/display/intel_modeset_verify.c
+>> index fd752c61d854..de034ccef289 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_modeset_verify.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_modeset_verify.c
+>> @@ -15,6 +15,7 @@
+>>  #include "intel_fdi.h"
+>>  #include "intel_modeset_verify.h"
+>>  #include "intel_pipe_config_compare.h"
+>> +#include "intel_pipe_config_dump.h"
+>>  #include "intel_pm.h"
+>>  #include "intel_snps_phy.h"
+>>=20=20
+>> @@ -217,8 +218,8 @@ verify_crtc_state(struct intel_crtc *crtc,
+>>  	if (!intel_pipe_config_compare(new_crtc_state,
+>>  				       pipe_config, false)) {
+>>  		I915_STATE_WARN(1, "pipe state doesn't match!\n");
+>> -		intel_dump_pipe_config(pipe_config, NULL, "[hw state]");
+>> -		intel_dump_pipe_config(new_crtc_state, NULL, "[sw state]");
+>> +		intel_pipe_config_dump(pipe_config, NULL, "[hw state]");
+>> +		intel_pipe_config_dump(new_crtc_state, NULL, "[sw state]");
+>>  	}
+>>  }
+>>=20=20
+>> diff --git a/drivers/gpu/drm/i915/display/intel_pipe_config_dump.c b/dri=
+vers/gpu/drm/i915/display/intel_pipe_config_dump.c
+>> new file mode 100644
+>> index 000000000000..c290cf009407
+>> --- /dev/null
+>> +++ b/drivers/gpu/drm/i915/display/intel_pipe_config_dump.c
+>> @@ -0,0 +1,314 @@
+>> +// SPDX-License-Identifier: MIT
+>> +/*
+>> + * Copyright =C2=A9 2022 Intel Corporation
+>> + */
+>> +
+>> +#include "i915_drv.h"
+>> +#include "intel_display_types.h"
+>> +#include "intel_hdmi.h"
+>> +#include "intel_pipe_config_dump.h"
+>> +#include "intel_vrr.h"
+>> +
+>> +static void intel_dump_crtc_timings(struct drm_i915_private *i915,
+>> +				    const struct drm_display_mode *mode)
+>> +{
+>> +	drm_dbg_kms(&i915->drm, "crtc timings: %d %d %d %d %d %d %d %d %d, "
+>> +		    "type: 0x%x flags: 0x%x\n",
+>> +		    mode->crtc_clock,
+>> +		    mode->crtc_hdisplay, mode->crtc_hsync_start,
+>> +		    mode->crtc_hsync_end, mode->crtc_htotal,
+>> +		    mode->crtc_vdisplay, mode->crtc_vsync_start,
+>> +		    mode->crtc_vsync_end, mode->crtc_vtotal,
+>> +		    mode->type, mode->flags);
+>> +}
+>> +
+>> +static void
+>> +intel_dump_m_n_config(const struct intel_crtc_state *pipe_config,
+>> +		      const char *id, unsigned int lane_count,
+>> +		      const struct intel_link_m_n *m_n)
+>> +{
+>> +	struct drm_i915_private *i915 =3D to_i915(pipe_config->uapi.crtc->dev);
+>> +
+>> +	drm_dbg_kms(&i915->drm,
+>> +		    "%s: lanes: %i; data_m: %u, data_n: %u, link_m: %u, link_n: %u, t=
+u: %u\n",
+>> +		    id, lane_count,
+>> +		    m_n->data_m, m_n->data_n,
+>> +		    m_n->link_m, m_n->link_n, m_n->tu);
+>> +}
+>> +
+>> +static void
+>> +intel_dump_infoframe(struct drm_i915_private *dev_priv,
+>> +		     const union hdmi_infoframe *frame)
+>> +{
+>> +	if (!drm_debug_enabled(DRM_UT_KMS))
+>> +		return;
+>> +
+>> +	hdmi_infoframe_log(KERN_DEBUG, dev_priv->drm.dev, frame);
+>> +}
+>> +
+>> +static void
+>> +intel_dump_dp_vsc_sdp(struct drm_i915_private *dev_priv,
+>> +		      const struct drm_dp_vsc_sdp *vsc)
+>> +{
+>> +	if (!drm_debug_enabled(DRM_UT_KMS))
+>> +		return;
+>> +
+>> +	drm_dp_vsc_sdp_log(KERN_DEBUG, dev_priv->drm.dev, vsc);
+>> +}
+>> +
+>> +#define OUTPUT_TYPE(x) [INTEL_OUTPUT_ ## x] =3D #x
+>> +
+>> +static const char * const output_type_str[] =3D {
+>> +	OUTPUT_TYPE(UNUSED),
+>> +	OUTPUT_TYPE(ANALOG),
+>> +	OUTPUT_TYPE(DVO),
+>> +	OUTPUT_TYPE(SDVO),
+>> +	OUTPUT_TYPE(LVDS),
+>> +	OUTPUT_TYPE(TVOUT),
+>> +	OUTPUT_TYPE(HDMI),
+>> +	OUTPUT_TYPE(DP),
+>> +	OUTPUT_TYPE(EDP),
+>> +	OUTPUT_TYPE(DSI),
+>> +	OUTPUT_TYPE(DDI),
+>> +	OUTPUT_TYPE(DP_MST),
+>> +};
+>> +
+>> +#undef OUTPUT_TYPE
+>> +
+>> +static void snprintf_output_types(char *buf, size_t len,
+>> +				  unsigned int output_types)
+>> +{
+>> +	char *str =3D buf;
+>> +	int i;
+>> +
+>> +	str[0] =3D '\0';
+>> +
+>> +	for (i =3D 0; i < ARRAY_SIZE(output_type_str); i++) {
+>> +		int r;
+>> +
+>> +		if ((output_types & BIT(i)) =3D=3D 0)
+>> +			continue;
+>> +
+>> +		r =3D snprintf(str, len, "%s%s",
+>> +			     str !=3D buf ? "," : "", output_type_str[i]);
+>> +		if (r >=3D len)
+>> +			break;
+>> +		str +=3D r;
+>> +		len -=3D r;
+>> +
+>> +		output_types &=3D ~BIT(i);
+>> +	}
+>> +
+>> +	WARN_ON_ONCE(output_types !=3D 0);
+>> +}
+>> +
+>> +static const char * const output_format_str[] =3D {
+>> +	[INTEL_OUTPUT_FORMAT_RGB] =3D "RGB",
+>> +	[INTEL_OUTPUT_FORMAT_YCBCR420] =3D "YCBCR4:2:0",
+>> +	[INTEL_OUTPUT_FORMAT_YCBCR444] =3D "YCBCR4:4:4",
+>> +};
+>> +
+>> +static const char *output_formats(enum intel_output_format format)
+>> +{
+>> +	if (format >=3D ARRAY_SIZE(output_format_str))
+>> +		return "invalid";
+>> +	return output_format_str[format];
+>> +}
+>> +
+>> +static void intel_dump_plane_state(const struct intel_plane_state *plan=
+e_state)
+>> +{
+>> +	struct intel_plane *plane =3D to_intel_plane(plane_state->uapi.plane);
+>> +	struct drm_i915_private *i915 =3D to_i915(plane->base.dev);
+>> +	const struct drm_framebuffer *fb =3D plane_state->hw.fb;
+>> +
+>> +	if (!fb) {
+>> +		drm_dbg_kms(&i915->drm,
+>> +			    "[PLANE:%d:%s] fb: [NOFB], visible: %s\n",
+>> +			    plane->base.base.id, plane->base.name,
+>> +			    str_yes_no(plane_state->uapi.visible));
+>> +		return;
+>> +	}
+>> +
+>> +	drm_dbg_kms(&i915->drm,
+>> +		    "[PLANE:%d:%s] fb: [FB:%d] %ux%u format =3D %p4cc modifier =3D 0x=
+%llx, visible: %s\n",
+>> +		    plane->base.base.id, plane->base.name,
+>> +		    fb->base.id, fb->width, fb->height, &fb->format->format,
+>> +		    fb->modifier, str_yes_no(plane_state->uapi.visible));
+>> +	drm_dbg_kms(&i915->drm, "\trotation: 0x%x, scaler: %d\n",
+>> +		    plane_state->hw.rotation, plane_state->scaler_id);
+>> +	if (plane_state->uapi.visible)
+>> +		drm_dbg_kms(&i915->drm,
+>> +			    "\tsrc: " DRM_RECT_FP_FMT " dst: " DRM_RECT_FMT "\n",
+>> +			    DRM_RECT_FP_ARG(&plane_state->uapi.src),
+>> +			    DRM_RECT_ARG(&plane_state->uapi.dst));
+>> +}
+>> +
+>> +void intel_pipe_config_dump(const struct intel_crtc_state *pipe_config,
+>> +			    struct intel_atomic_state *state,
+>> +			    const char *context)
+>> +{
+>> +	struct intel_crtc *crtc =3D to_intel_crtc(pipe_config->uapi.crtc);
+>> +	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
+>> +	const struct intel_plane_state *plane_state;
+>> +	struct intel_plane *plane;
+>> +	char buf[64];
+>> +	int i;
+>> +
+>> +	drm_dbg_kms(&dev_priv->drm, "[CRTC:%d:%s] enable: %s %s\n",
+>> +		    crtc->base.base.id, crtc->base.name,
+>> +		    str_yes_no(pipe_config->hw.enable), context);
+>> +
+>> +	if (!pipe_config->hw.enable)
+>> +		goto dump_planes;
+>> +
+>> +	snprintf_output_types(buf, sizeof(buf), pipe_config->output_types);
+>> +	drm_dbg_kms(&dev_priv->drm,
+>> +		    "active: %s, output_types: %s (0x%x), output format: %s\n",
+>> +		    str_yes_no(pipe_config->hw.active),
+>> +		    buf, pipe_config->output_types,
+>> +		    output_formats(pipe_config->output_format));
+>> +
+>> +	drm_dbg_kms(&dev_priv->drm,
+>> +		    "cpu_transcoder: %s, pipe bpp: %i, dithering: %i\n",
+>> +		    transcoder_name(pipe_config->cpu_transcoder),
+>> +		    pipe_config->pipe_bpp, pipe_config->dither);
+>> +
+>> +	drm_dbg_kms(&dev_priv->drm, "MST master transcoder: %s\n",
+>> +		    transcoder_name(pipe_config->mst_master_transcoder));
+>> +
+>> +	drm_dbg_kms(&dev_priv->drm,
+>> +		    "port sync: master transcoder: %s, slave transcoder bitmask =3D 0=
+x%x\n",
+>> +		    transcoder_name(pipe_config->master_transcoder),
+>> +		    pipe_config->sync_mode_slaves_mask);
+>> +
+>> +	drm_dbg_kms(&dev_priv->drm, "bigjoiner: %s, pipes: 0x%x\n",
+>> +		    intel_crtc_is_bigjoiner_slave(pipe_config) ? "slave" :
+>> +		    intel_crtc_is_bigjoiner_master(pipe_config) ? "master" : "no",
+>> +		    pipe_config->bigjoiner_pipes);
+>> +
+>> +	drm_dbg_kms(&dev_priv->drm, "splitter: %s, link count %d, overlap %d\n=
+",
+>> +		    str_enabled_disabled(pipe_config->splitter.enable),
+>> +		    pipe_config->splitter.link_count,
+>> +		    pipe_config->splitter.pixel_overlap);
+>> +
+>> +	if (pipe_config->has_pch_encoder)
+>> +		intel_dump_m_n_config(pipe_config, "fdi",
+>> +				      pipe_config->fdi_lanes,
+>> +				      &pipe_config->fdi_m_n);
+>> +
+>> +	if (intel_crtc_has_dp_encoder(pipe_config)) {
+>> +		intel_dump_m_n_config(pipe_config, "dp m_n",
+>> +				      pipe_config->lane_count,
+>> +				      &pipe_config->dp_m_n);
+>> +		intel_dump_m_n_config(pipe_config, "dp m2_n2",
+>> +				      pipe_config->lane_count,
+>> +				      &pipe_config->dp_m2_n2);
+>> +	}
+>> +
+>> +	drm_dbg_kms(&dev_priv->drm, "framestart delay: %d, MSA timing delay: %=
+d\n",
+>> +		    pipe_config->framestart_delay, pipe_config->msa_timing_delay);
+>> +
+>> +	drm_dbg_kms(&dev_priv->drm,
+>> +		    "audio: %i, infoframes: %i, infoframes enabled: 0x%x\n",
+>> +		    pipe_config->has_audio, pipe_config->has_infoframe,
+>> +		    pipe_config->infoframes.enable);
+>> +
+>> +	if (pipe_config->infoframes.enable &
+>> +	    intel_hdmi_infoframe_enable(HDMI_PACKET_TYPE_GENERAL_CONTROL))
+>> +		drm_dbg_kms(&dev_priv->drm, "GCP: 0x%x\n",
+>> +			    pipe_config->infoframes.gcp);
+>> +	if (pipe_config->infoframes.enable &
+>> +	    intel_hdmi_infoframe_enable(HDMI_INFOFRAME_TYPE_AVI))
+>> +		intel_dump_infoframe(dev_priv, &pipe_config->infoframes.avi);
+>> +	if (pipe_config->infoframes.enable &
+>> +	    intel_hdmi_infoframe_enable(HDMI_INFOFRAME_TYPE_SPD))
+>> +		intel_dump_infoframe(dev_priv, &pipe_config->infoframes.spd);
+>> +	if (pipe_config->infoframes.enable &
+>> +	    intel_hdmi_infoframe_enable(HDMI_INFOFRAME_TYPE_VENDOR))
+>> +		intel_dump_infoframe(dev_priv, &pipe_config->infoframes.hdmi);
+>> +	if (pipe_config->infoframes.enable &
+>> +	    intel_hdmi_infoframe_enable(HDMI_INFOFRAME_TYPE_DRM))
+>> +		intel_dump_infoframe(dev_priv, &pipe_config->infoframes.drm);
+>> +	if (pipe_config->infoframes.enable &
+>> +	    intel_hdmi_infoframe_enable(HDMI_PACKET_TYPE_GAMUT_METADATA))
+>> +		intel_dump_infoframe(dev_priv, &pipe_config->infoframes.drm);
+>> +	if (pipe_config->infoframes.enable &
+>> +	    intel_hdmi_infoframe_enable(DP_SDP_VSC))
+>> +		intel_dump_dp_vsc_sdp(dev_priv, &pipe_config->infoframes.vsc);
+>> +
+>> +	drm_dbg_kms(&dev_priv->drm, "vrr: %s, vmin: %d, vmax: %d, pipeline ful=
+l: %d, guardband: %d flipline: %d, vmin vblank: %d, vmax vblank: %d\n",
+>> +		    str_yes_no(pipe_config->vrr.enable),
+>> +		    pipe_config->vrr.vmin, pipe_config->vrr.vmax,
+>> +		    pipe_config->vrr.pipeline_full, pipe_config->vrr.guardband,
+>> +		    pipe_config->vrr.flipline,
+>> +		    intel_vrr_vmin_vblank_start(pipe_config),
+>> +		    intel_vrr_vmax_vblank_start(pipe_config));
+>> +
+>> +	drm_dbg_kms(&dev_priv->drm, "requested mode: " DRM_MODE_FMT "\n",
+>> +		    DRM_MODE_ARG(&pipe_config->hw.mode));
+>> +	drm_dbg_kms(&dev_priv->drm, "adjusted mode: " DRM_MODE_FMT "\n",
+>> +		    DRM_MODE_ARG(&pipe_config->hw.adjusted_mode));
+>> +	intel_dump_crtc_timings(dev_priv, &pipe_config->hw.adjusted_mode);
+>> +	drm_dbg_kms(&dev_priv->drm, "pipe mode: " DRM_MODE_FMT "\n",
+>> +		    DRM_MODE_ARG(&pipe_config->hw.pipe_mode));
+>> +	intel_dump_crtc_timings(dev_priv, &pipe_config->hw.pipe_mode);
+>> +	drm_dbg_kms(&dev_priv->drm,
+>> +		    "port clock: %d, pipe src: " DRM_RECT_FMT ", pixel rate %d\n",
+>> +		    pipe_config->port_clock, DRM_RECT_ARG(&pipe_config->pipe_src),
+>> +		    pipe_config->pixel_rate);
+>> +
+>> +	drm_dbg_kms(&dev_priv->drm, "linetime: %d, ips linetime: %d\n",
+>> +		    pipe_config->linetime, pipe_config->ips_linetime);
+>> +
+>> +	if (DISPLAY_VER(dev_priv) >=3D 9)
+>> +		drm_dbg_kms(&dev_priv->drm,
+>> +			    "num_scalers: %d, scaler_users: 0x%x, scaler_id: %d\n",
+>> +			    crtc->num_scalers,
+>> +			    pipe_config->scaler_state.scaler_users,
+>> +			    pipe_config->scaler_state.scaler_id);
+>> +
+>> +	if (HAS_GMCH(dev_priv))
+>> +		drm_dbg_kms(&dev_priv->drm,
+>> +			    "gmch pfit: control: 0x%08x, ratios: 0x%08x, lvds border: 0x%08x=
+\n",
+>> +			    pipe_config->gmch_pfit.control,
+>> +			    pipe_config->gmch_pfit.pgm_ratios,
+>> +			    pipe_config->gmch_pfit.lvds_border_bits);
+>> +	else
+>> +		drm_dbg_kms(&dev_priv->drm,
+>> +			    "pch pfit: " DRM_RECT_FMT ", %s, force thru: %s\n",
+>> +			    DRM_RECT_ARG(&pipe_config->pch_pfit.dst),
+>> +			    str_enabled_disabled(pipe_config->pch_pfit.enabled),
+>> +			    str_yes_no(pipe_config->pch_pfit.force_thru));
+>> +
+>> +	drm_dbg_kms(&dev_priv->drm, "ips: %i, double wide: %i, drrs: %i\n",
+>> +		    pipe_config->ips_enabled, pipe_config->double_wide,
+>> +		    pipe_config->has_drrs);
+>> +
+>> +	intel_dpll_dump_hw_state(dev_priv, &pipe_config->dpll_hw_state);
+>> +
+>> +	if (IS_CHERRYVIEW(dev_priv))
+>> +		drm_dbg_kms(&dev_priv->drm,
+>> +			    "cgm_mode: 0x%x gamma_mode: 0x%x gamma_enable: %d csc_enable: %d=
+\n",
+>> +			    pipe_config->cgm_mode, pipe_config->gamma_mode,
+>> +			    pipe_config->gamma_enable, pipe_config->csc_enable);
+>> +	else
+>> +		drm_dbg_kms(&dev_priv->drm,
+>> +			    "csc_mode: 0x%x gamma_mode: 0x%x gamma_enable: %d csc_enable: %d=
+\n",
+>> +			    pipe_config->csc_mode, pipe_config->gamma_mode,
+>> +			    pipe_config->gamma_enable, pipe_config->csc_enable);
+>> +
+>> +	drm_dbg_kms(&dev_priv->drm, "degamma lut: %d entries, gamma lut: %d en=
+tries\n",
+>> +		    pipe_config->hw.degamma_lut ?
+>> +		    drm_color_lut_size(pipe_config->hw.degamma_lut) : 0,
+>> +		    pipe_config->hw.gamma_lut ?
+>> +		    drm_color_lut_size(pipe_config->hw.gamma_lut) : 0);
+>> +
+>> +dump_planes:
+>> +	if (!state)
+>> +		return;
+>> +
+>> +	for_each_new_intel_plane_in_state(state, plane, plane_state, i) {
+>> +		if (plane->pipe =3D=3D crtc->pipe)
+>> +			intel_dump_plane_state(plane_state);
+>> +	}
+>> +}
+>> diff --git a/drivers/gpu/drm/i915/display/intel_pipe_config_dump.h b/dri=
+vers/gpu/drm/i915/display/intel_pipe_config_dump.h
+>> new file mode 100644
+>> index 000000000000..20bbe11f0527
+>> --- /dev/null
+>> +++ b/drivers/gpu/drm/i915/display/intel_pipe_config_dump.h
+>> @@ -0,0 +1,16 @@
+>> +/* SPDX-License-Identifier: MIT */
+>> +/*
+>> + * Copyright =C2=A9 2022 Intel Corporation
+>> + */
+>> +
+>> +#ifndef __INTEL_PIPE_CONFIG_DUMP_H__
+>> +#define __INTEL_PIPE_CONFIG_DUMP_H__
+>> +
+>> +struct intel_crtc_state;
+>> +struct intel_atomic_state;
+>> +
+>> +void intel_pipe_config_dump(const struct intel_crtc_state *pipe_config,
+>> +			    struct intel_atomic_state *state,
+>> +			    const char *context);
+>> +
+>> +#endif /* __INTEL_PIPE_CONFIG_DUMP_H__ */
+>> --=20
+>> 2.30.2
 
->> The difference is that this time the badness doesn't come from the memory
->> management subsystem, but rather from the I/O subsystem.
->>
->>> This is also the reason why I am not really fan of the per file
->>> badness because it adds a notion of resource that is not process bound
->>> in general so it will add all sorts of weird runtime corner cases which
->>> are impossible to anticipate [*]. Maybe that will work in some scenarios
->>> but definitely not something to be done by default without users opting
->>> into that and being aware of consequences.
->> Would a kernel command line option to control the behavior be helpful here?
-> I am not sure what would be the proper way to control that that would be
-> future extensible. Kernel command line is certainly and option but if we
-> want to extend that to module like or eBPF interface then it wouldn't
-> stand a future test very quickly.
-
-Well kernel command lines are not really meant to be stable, aren't they?
-
-Regards,
-Christian.
+--=20
+Jani Nikula, Intel Open Source Graphics Center
