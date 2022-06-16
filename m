@@ -1,55 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB3BB54DB79
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jun 2022 09:25:52 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B605154DBB9
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jun 2022 09:33:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C371210E2B8;
-	Thu, 16 Jun 2022 07:25:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7ACCF892CC;
+	Thu, 16 Jun 2022 07:33:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 038F010E2B8;
- Thu, 16 Jun 2022 07:25:49 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 28D4710EC9C;
+ Thu, 16 Jun 2022 07:33:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655364350; x=1686900350;
+ t=1655364810; x=1686900810;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=laArYtF8mBOjJYoElswvAL3XNiFY/jmqVMM9+bukyLs=;
- b=N/D9J/pRNpjfivPeL0XRUtwuRrdTUTBvGwng7+95D1hxuMMSyMFTcqHj
- pwIStyJZr1OzPQqqIWbzLGfu1XbYofxqNhDp0mo7cC9dnjUPyxrZKOHEY
- PU4kt0/i+6tVRnou2FTqCkjBx/PbYca+16ORrOmdg/uNEmd7bKkBOK9f2
- 85JyWc9/7B8FSdeVpn3+dSpjuND0WYgckAXl2mbMyDjxfetZgRm9ReFe+
- dZjd7uEQjqK9LEqUxVCL2nt9qcurlY/KODYNDmNnNljJDXXlRIH1OghnA
- RvHkWhyNXw5/Ue+/p81eIp0g6CxvAFJ2MrS+UsAgl3PLPOWmCR3NivfF1 g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10379"; a="280221417"
-X-IronPort-AV: E=Sophos;i="5.91,304,1647327600"; d="scan'208";a="280221417"
+ bh=5fosfAjzAZBHADth+UjPo9ukq2bY8/4uhcqIhxkcAbw=;
+ b=fNyOhskVz4qlsHMfWtg4hhAyot8he3Qg/5d6zFprAj6sWrN+ML1D72FM
+ O5JxrUKGd0xIMq198kD5qJEKQbo14AzrUyckI95OnEB0swMQFicgiSjuz
+ WUTEN6K7OO4a9/kY+5Tf333YuAqYNGy0sYe4uuwepfUp4TGYiR6HtTEQF
+ moHHXiH8HBO+uxUEsDCVLGWr3GHZtHWWI0gEZ9/D/7HoXJ7sws5IbIAZm
+ Vm8V8jdD4RIyCBirPJQLrT4KDFjp9goP76qjoVp/LuNMcXWGWT4zc8nA4
+ vOXd7B2MMU3wUakeiwqY7cqIphdoqVgwbjK2bL4ShYX5qJhri5nCYmbIb A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10379"; a="279904336"
+X-IronPort-AV: E=Sophos;i="5.91,304,1647327600"; d="scan'208";a="279904336"
 Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2022 00:25:49 -0700
-X-IronPort-AV: E=Sophos;i="5.91,304,1647327600"; d="scan'208";a="912045889"
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2022 00:33:29 -0700
+X-IronPort-AV: E=Sophos;i="5.91,304,1647327600"; d="scan'208";a="912048023"
 Received: from mstokes1-mobl.ger.corp.intel.com (HELO [10.213.198.82])
  ([10.213.198.82])
  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2022 00:25:44 -0700
-Message-ID: <fb554850-e8f2-f136-fe80-4664719f8312@linux.intel.com>
-Date: Thu, 16 Jun 2022 08:25:42 +0100
+ 16 Jun 2022 00:33:25 -0700
+Message-ID: <7c29c710-64ee-6e87-afb4-6d6b51e26315@linux.intel.com>
+Date: Thu, 16 Jun 2022 08:33:24 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
 Content-Language: en-US
 To: Mauro Carvalho Chehab <mchehab@kernel.org>
 References: <cover.1655306128.git.mchehab@kernel.org>
- <9d9e663ca8e97becf04e1d4c8cb8a9a1f397a5f1.1655306128.git.mchehab@kernel.org>
+ <387b9a8d3e719ad2db4fce56c0bfc0f909fd6df6.1655306128.git.mchehab@kernel.org>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-In-Reply-To: <9d9e663ca8e97becf04e1d4c8cb8a9a1f397a5f1.1655306128.git.mchehab@kernel.org>
+In-Reply-To: <387b9a8d3e719ad2db4fce56c0bfc0f909fd6df6.1655306128.git.mchehab@kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 3/6] drm/i915/gt: Skip TLB invalidations
- once wedged
+Subject: Re: [Intel-gfx] [PATCH 4/6] drm/i915/gt: Only invalidate TLBs
+ exposed to user manipulation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,15 +62,13 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
- Chris Wilson <chris.p.wilson@intel.com>, Matthew Auld <matthew.auld@intel.com>,
- Dave Airlie <airlied@redhat.com>,
- =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
+Cc: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
+ mauro.chehab@linux.intel.com, David Airlie <airlied@linux.ie>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Chris Wilson <chris.p.wilson@intel.com>,
  Thomas Hellstrom <thomas.hellstrom@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, mauro.chehab@linux.intel.com,
- =?UTF-8?Q?Micha=c5=82_Winiarski?= <michal.winiarski@intel.com>,
- linux-kernel@vger.kernel.org, stable@vger.kernel.org
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Dave Airlie <airlied@redhat.com>,
+ stable@vger.kernel.org, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
@@ -78,15 +76,15 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On 15/06/2022 16:27, Mauro Carvalho Chehab wrote:
 > From: Chris Wilson <chris.p.wilson@intel.com>
 > 
-> Skip all further TLB invalidations once the device is wedged and
-> had been reset, as, on such cases, it can no longer process instructions
-> on the GPU and the user no longer has access to the TLB's in each engine.
+> Don't flush TLBs when the buffer is only used in the GGTT under full
+> control of the kernel, as there's no risk of of concurrent access
+> and stale access from prefetch.
+> 
+> We only need to invalidate the TLB if they are accessible by the user.
 > 
 > Fixes: 7938d61591d3 ("drm/i915: Flush TLBs before releasing backing store")
 
-Are there any real problems fixed or it's just a logical thing to do? 
-Not much harm tagging it as fixes in terms of process since it is tiny 
-but, again, wanting a clear picture.
+Same question as against the other patch - fix or optimisation?
 
 Regards,
 
@@ -102,20 +100,20 @@ Tvrtko
 > 
 > See [PATCH 0/6] at: https://lore.kernel.org/all/cover.1655306128.git.mchehab@kernel.org/
 > 
->   drivers/gpu/drm/i915/gt/intel_gt.c | 3 +++
->   1 file changed, 3 insertions(+)
+>   drivers/gpu/drm/i915/i915_vma.c | 3 ++-
+>   1 file changed, 2 insertions(+), 1 deletion(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-> index 61b7ec5118f9..fb4fd5273ca4 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-> @@ -1226,6 +1226,9 @@ void intel_gt_invalidate_tlbs(struct intel_gt *gt)
->   	if (I915_SELFTEST_ONLY(gt->awake == -ENODEV))
->   		return;
+> diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
+> index 0bffb70b3c5f..7989986161e8 100644
+> --- a/drivers/gpu/drm/i915/i915_vma.c
+> +++ b/drivers/gpu/drm/i915/i915_vma.c
+> @@ -537,7 +537,8 @@ int i915_vma_bind(struct i915_vma *vma,
+>   				   bind_flags);
+>   	}
 >   
-> +	if (intel_gt_is_wedged(gt))
-> +		return;
-> +
->   	if (GRAPHICS_VER(i915) == 12) {
->   		regs = gen12_regs;
->   		num = ARRAY_SIZE(gen12_regs);
+> -	set_bit(I915_BO_WAS_BOUND_BIT, &vma->obj->flags);
+> +	if (bind_flags & I915_VMA_LOCAL_BIND)
+> +		set_bit(I915_BO_WAS_BOUND_BIT, &vma->obj->flags);
+>   
+>   	atomic_or(bind_flags, &vma->flags);
+>   	return 0;
