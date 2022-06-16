@@ -2,32 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8758954E772
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jun 2022 18:41:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A70854E778
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jun 2022 18:42:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 545C811A564;
-	Thu, 16 Jun 2022 16:41:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CBF9B11A593;
+	Thu, 16 Jun 2022 16:41:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1AF7911A564;
- Thu, 16 Jun 2022 16:41:13 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 117BBAADD7;
- Thu, 16 Jun 2022 16:41:13 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ECAC011A594
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jun 2022 16:41:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1655397717; x=1686933717;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=rN7tJyluacETDalmMDGAex7bc8H3NFH0YHNyBUhgn7c=;
+ b=WcrlHoHtUlL4bogSiYvfMy4KkVu6z4jvv2efiqmb7lvWItOW5Q4D9zD4
+ cTF2u9OiI5OFNFsQUq/VZm/yR26WdrsK5lTfCaXtKZ6tWK3alEeC5JNL3
+ SGkahu3CEcMQA2afPNn6TTI0RlOvPHzlKJavuBo6YRvbi330zqVvOzRrK
+ 1YXvbCTAdeZlOoxm8fx7w9zA6welpjN1AM0LqsF323glceA8NlzKg8No1
+ CWaE/PZGABJxKfr6DM5D2vzgPIZ8IB5oByzhGuW3WoBIteJk3fhGO/Szl
+ RjqmaQZ7C28lTRbeEO71xKzLyZv3v2T6qQsS0t6RuMA91o3Q7DOZJQP87 g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10380"; a="259752728"
+X-IronPort-AV: E=Sophos;i="5.92,305,1650956400"; d="scan'208";a="259752728"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2022 09:41:57 -0700
+X-IronPort-AV: E=Sophos;i="5.92,305,1650956400"; d="scan'208";a="912234507"
+Received: from mstokes1-mobl.ger.corp.intel.com (HELO [10.213.198.82])
+ ([10.213.198.82])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2022 09:41:56 -0700
+Message-ID: <1a19781d-5d78-aa15-9578-44106433cbf9@linux.intel.com>
+Date: Thu, 16 Jun 2022 17:41:54 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Anshuman Gupta" <anshuman.gupta@intel.com>
-Date: Thu, 16 Jun 2022 16:41:13 -0000
-Message-ID: <165539767304.17457.14547349734166302016@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220616120106.24353-1-anshuman.gupta@intel.com>
-In-Reply-To: <20220616120106.24353-1-anshuman.gupta@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_DG2_VRAM=5FSR_Support_=28rev3=29?=
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Content-Language: en-US
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+References: <20220611172711.2154962-1-alan.previn.teres.alexis@intel.com>
+ <20220611172711.2154962-2-alan.previn.teres.alexis@intel.com>
+ <20220614011024.GE48807@orsosgc001.jf.intel.com>
+ <84534cf0-94f0-13e0-5fb3-332bee124a24@linux.intel.com>
+ <20220615185953.bsbyr27jcchccvge@ldmartin-desk2>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <20220615185953.bsbyr27jcchccvge@ldmartin-desk2>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [Intel-gfx 1/1] drm/i915/guc: Don't update engine
+ busyness stats too frequently
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,106 +65,104 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org,
+ Alan Previn <alan.previn.teres.alexis@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: DG2 VRAM_SR Support (rev3)
-URL   : https://patchwork.freedesktop.org/series/104128/
-State : warning
+On 15/06/2022 19:59, Lucas De Marchi wrote:
+> On Tue, Jun 14, 2022 at 08:07:04AM +0100, Tvrtko Ursulin wrote:
+>>
+>> On 14/06/2022 02:10, Umesh Nerlige Ramappa wrote:
+>>> On Sat, Jun 11, 2022 at 10:27:11AM -0700, Alan Previn wrote:
+>>>> Using igt's gem-create and with additional patches to track object
+>>>> creation time, it was measured that guc_update_engine_gt_clks was
+>>>> getting called over 188 thousand times in the span of 15 seconds
+>>>> (running the test three times).
+>>>>
+>>>> Get a jiffies sample on every trigger and ensure we skip sampling
+>>>> if we are being called too soon. Use half of the ping_delay as a
+>>>> safe threshold.
+>>>>
+>>>> NOTE: with this change, the number of calls went down to just 14
+>>>> over the same span of time (matching the original intent of running
+>>>> about once every 24 seconds, at 19.2Mhz GT freq, per engine).
+>>>>
+>>>> Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
+>>>> ---
+>>>> drivers/gpu/drm/i915/gt/intel_engine_types.h      | 10 ++++++++++
+>>>> drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c |  9 +++++++++
+>>>> 2 files changed, 19 insertions(+)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h 
+>>>> b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+>>>> index 2286f96f5f87..63f4ecdf1606 100644
+>>>> --- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
+>>>> +++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+>>>> @@ -323,6 +323,16 @@ struct intel_engine_guc_stats {
+>>>>      * @start_gt_clk: GT clock time of last idle to active transition.
+>>>>      */
+>>>>     u64 start_gt_clk;
+>>>> +
+>>>> +    /**
+>>>> +     * @last_jiffies: Jiffies at last actual stats collection time
+>>>> +     *
+>>>> +     * We use this timestamp to ensure we don't oversample the
+>>>> +     * stats because runtime power management events can trigger
+>>>> +     * stats collection at much higher rates than required.
+>>>> +     */
+>>>> +    u64 last_jiffies;
+>>>> +
+>>>> };
+>>>>
+>>>> struct intel_engine_cs {
+>>>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c 
+>>>> b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+>>>> index 5a1dfacf24ea..8f8bf6e40ccb 100644
+>>>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+>>>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+>>>> @@ -1167,6 +1167,15 @@ static void guc_update_engine_gt_clks(struct 
+>>>> intel_engine_cs *engine)
+>>>
+>>> A user query will end up in guc_engine_busyness which will call 
+>>> guc_update_engine_gt_clks. Adding this logic here will affect accuracy.
+>>> The other place where guc_update_engine_gt_clks is called is in the 
+>>> ping worker, but that worker runs at 1/8th the wrap around time for 
+>>> the gt clocks (32 bit). The last I checked the wrap around was at 22 
+>>> seconds.
+>>>
+>>> That leaves only the gt_park path. fwiu, this path runs too 
+>>> frequently and here we are updating the busyness stats. That is 
+>>> causing the enormous PCI traffic (lmem accesses). Only this path 
+>>> needs to be fixed, as in just use the same logic in the 
+>>> intel_guc_busyness_park() to decide whether to call 
+>>> __update_guc_busyness_stats or not.
+>>
+>> Not updating the driver state in park will not negatively impact 
+>> accuracy in some scenarios? That needs to balanced against the 
+>> questions whether or not there are real world scenarios impacted by 
+>> the update cost or it is just for IGT.
+> 
+> there is, which was what motivated 
+> https://patchwork.freedesktop.org/series/105011/ and in parallel Alan
+> worked on this. I view both as orthogonal  thought. I used it to make
+> the single-word-from-lmem faster, but if we can reduce
+> the frequency this code path is called, it should be even better.
+> Per Umesh's and your comment I'm unsure if we can... but if
+> there is no user monitoring the usage, should we still be calling this?
+> "Nobody is looking, why are we sampling?" kind of thought.
 
-== Summary ==
+Who did you find is doing the sampling in the real world use case? AFAIR 
+if one one is querying busyness, I thought there would only be the GuC 
+ping worker which runs extremely infrequently (to avoid some counter 
+overflow).
 
-Error: dim checkpatch failed
-ee513fcc2693 drm/i915/dgfx: OpRegion VRAM Self Refresh Support
-341133e9b9ad drm/i915/dg1: OpRegion PCON DG1 MBD config support
-b0e90ba1012b drm/i915/dg2: Add DG2_NB_MBD subplatform
--:108: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#108: FILE: include/drm/i915_pciids.h:696:
-+#define INTEL_DG2_G10_NB_MBD_IDS(info) \
- 	INTEL_VGA_DEVICE(0x5690, info), \
- 	INTEL_VGA_DEVICE(0x5691, info), \
-+	INTEL_VGA_DEVICE(0x5692, info)
+Regards,
 
--:108: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'info' - possible side-effects?
-#108: FILE: include/drm/i915_pciids.h:696:
-+#define INTEL_DG2_G10_NB_MBD_IDS(info) \
- 	INTEL_VGA_DEVICE(0x5690, info), \
- 	INTEL_VGA_DEVICE(0x5691, info), \
-+	INTEL_VGA_DEVICE(0x5692, info)
+Tvrtko
 
--:114: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#114: FILE: include/drm/i915_pciids.h:701:
-+#define INTEL_DG2_G11_NB_MBD_IDS(info) \
-+	INTEL_VGA_DEVICE(0x5693, info), \
-+	INTEL_VGA_DEVICE(0x5694, info), \
-+	INTEL_VGA_DEVICE(0x5695, info)
-
--:114: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'info' - possible side-effects?
-#114: FILE: include/drm/i915_pciids.h:701:
-+#define INTEL_DG2_G11_NB_MBD_IDS(info) \
-+	INTEL_VGA_DEVICE(0x5693, info), \
-+	INTEL_VGA_DEVICE(0x5694, info), \
-+	INTEL_VGA_DEVICE(0x5695, info)
-
--:119: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#119: FILE: include/drm/i915_pciids.h:706:
-+#define INTEL_DG2_G12_NB_MBD_IDS(info) \
-+	INTEL_VGA_DEVICE(0x5696, info), \
-+	INTEL_VGA_DEVICE(0x5697, info)
-
--:119: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'info' - possible side-effects?
-#119: FILE: include/drm/i915_pciids.h:706:
-+#define INTEL_DG2_G12_NB_MBD_IDS(info) \
-+	INTEL_VGA_DEVICE(0x5696, info), \
-+	INTEL_VGA_DEVICE(0x5697, info)
-
--:123: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#123: FILE: include/drm/i915_pciids.h:710:
-+#define INTEL_DG2_G10_IDS(info) \
- 	INTEL_VGA_DEVICE(0x56A0, info), \
- 	INTEL_VGA_DEVICE(0x56A1, info), \
- 	INTEL_VGA_DEVICE(0x56A2, info)
-
--:123: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'info' - possible side-effects?
-#123: FILE: include/drm/i915_pciids.h:710:
-+#define INTEL_DG2_G10_IDS(info) \
- 	INTEL_VGA_DEVICE(0x56A0, info), \
- 	INTEL_VGA_DEVICE(0x56A1, info), \
- 	INTEL_VGA_DEVICE(0x56A2, info)
-
-total: 4 errors, 0 warnings, 4 checks, 117 lines checked
-b835f2871301 drm/i915/dg2: DG2 MBD config
--:50: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'dev_priv' - possible side-effects?
-#50: FILE: drivers/gpu/drm/i915/i915_drv.h:1025:
-+#define IS_DG2_MBD(dev_priv) (IS_DG2_G10_NB_MBD(dev_priv) || IS_DG2_G11_NB_MBD(dev_priv) || \
-+			      IS_DG2_G12_NB_MBD(dev_priv))
-
-total: 0 errors, 0 warnings, 1 checks, 29 lines checked
-28151cba023d drm/i915/dgfx: Add has_lmem_sr
-78ead46ad383 drm/i915/dgfx: Setup VRAM SR with D3COLD
--:101: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#101: FILE: drivers/gpu/drm/i915/intel_pcode.c:271:
-+			      REG_FIELD_PREP(GEN6_PCODE_MB_COMMAND,
-+			      DG1_PCODE_D3_VRAM_SR) |
-
--:103: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#103: FILE: drivers/gpu/drm/i915/intel_pcode.c:273:
-+			      REG_FIELD_PREP(GEN6_PCODE_MB_PARAM1,
-+			      DG1_ENABLE_SR), 0); /* no data needed for this cmd */
-
-total: 0 errors, 0 warnings, 2 checks, 138 lines checked
-434f8395d301 drm/i915/rpm: Enable D3Cold VRAM SR Support
-3824ea24e1b1 drm/i915/xehpsdv: Store lmem region in gt
-993fde5ec166 drm/i915/rpm: d3cold Policy
--:73: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#73: FILE: drivers/gpu/drm/i915/i915_params.c:201:
-+i915_param_named_unsafe(d3cold_sr_lmem_threshold, int, 0400,
-+	"Enable Vidoe RAM Self refresh when size of lmem is greater to this threshold. "
-
-total: 0 errors, 0 warnings, 1 checks, 58 lines checked
-
-
+> Summarizing the first patch in my series: it improved igt in ~50% and a
+> real world case in ~12%
+> 
+> Lucas De Marchi
