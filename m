@@ -1,51 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86E3754E2F6
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jun 2022 16:07:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C50D54E326
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jun 2022 16:16:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F34E111A485;
-	Thu, 16 Jun 2022 14:07:02 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7478211A479;
- Thu, 16 Jun 2022 14:06:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7FE8810EA6E;
+	Thu, 16 Jun 2022 14:16:00 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 407E010F778;
+ Thu, 16 Jun 2022 14:15:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655388416; x=1686924416;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=v75tbkvEH+fGMtIgHnLhfnXQeHGAZlqO3JA4am++vqw=;
- b=C6ZWhK3LVhSKyahOaatP8z2UEcQrMd2iFHxhi5XYsmhkweMrvhB5Sv4p
- Ds8GcJFhVY+ZwVcoqejYxgHGxQueVY4GhK8gPbIG8zhZtn1TxzQkDUM8Y
- I7oPGDDT9cxTL1tufSdx4CKQ/HjVM3bAM4By16YaCGe0dXhHUF073lona
- 0QfQOcatNF3CaUaplJPHSjC2O4YwPHCOiUiupW1TtfaaBpGlbasBAx+uT
- MqE/KG4ELDQjX+nTj80FGAAuoha/n886yK56RddlX6ObM/oVl9N6oC+ch
- WModDsG0cMkYqBk56Q94wgQhcoAxnO2rMZnahyfDN7janfYvQc7bYyyOn g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10379"; a="304699203"
-X-IronPort-AV: E=Sophos;i="5.92,305,1650956400"; d="scan'208";a="304699203"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2022 07:06:52 -0700
-X-IronPort-AV: E=Sophos;i="5.92,305,1650956400"; d="scan'208";a="727907435"
-Received: from mstokes1-mobl.ger.corp.intel.com (HELO localhost.localdomain)
- ([10.213.198.82])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2022 07:06:51 -0700
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: igt-dev@lists.freedesktop.org
-Date: Thu, 16 Jun 2022 15:06:37 +0100
-Message-Id: <20220616140637.559194-9-tvrtko.ursulin@linux.intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220616140637.559194-1-tvrtko.ursulin@linux.intel.com>
-References: <20220616140637.559194-1-tvrtko.ursulin@linux.intel.com>
+ t=1655388959; x=1686924959;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=4zmo/sbXlXzHebgkhhDGcpCjyTWUtOUQjJRXTTazel4=;
+ b=Pbq72GAk5w4gbvfhmlGEfPHxdRhFKnBstSH0dwR1BJecpsGro4MgtPAD
+ okeAEk9UstyCcnYESqpeJ4lL72nFS0+WkKa4FG6Z7h8yWJ4j0vT5k2G12
+ fAZaeU4OQiwvSsobfpRNbe8AkkFanVSfLWjx7fv6kPb8fmI8/q1P6Uakw
+ YcFcYcXEHEFm/zvyCBRqTsJxHmb/dBrucfGVx0bDpAQg9jYv+WVAL+xjJ
+ K7+nR2V7e/5/qUXOb4W/sTCWc1/X4T0apwcLGrkxjLoeqflPE90OoqBRk
+ uo8YkGlKTbEthWP9T9IeiLgsOPuXVDopw51h7RcaM0r/rmeFji3sCn/ik A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10379"; a="276832357"
+X-IronPort-AV: E=Sophos;i="5.92,305,1650956400"; d="scan'208";a="276832357"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2022 07:15:58 -0700
+X-IronPort-AV: E=Sophos;i="5.92,305,1650956400"; d="scan'208";a="641558909"
+Received: from aamendol-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.33.35])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2022 07:15:56 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, Anshuman Gupta
+ <anshuman.gupta@intel.com>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+In-Reply-To: <784a071a-02c4-6a8a-0022-7f833841057b@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220616120106.24353-1-anshuman.gupta@intel.com>
+ <20220616120106.24353-4-anshuman.gupta@intel.com>
+ <784a071a-02c4-6a8a-0022-7f833841057b@linux.intel.com>
+Date: Thu, 16 Jun 2022 17:15:54 +0300
+Message-ID: <874k0kwv6t.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH i-g-t 8/8] gputop: Basic vendor agnostic GPU top
- tool
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH v2 3/9] drm/i915/dg2: Add DG2_NB_MBD
+ subplatform
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,316 +61,215 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rob Clark <robdclark@chromium.org>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
- Intel-gfx@lists.freedesktop.org
+Cc: rodrigo.vivi@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+On Thu, 16 Jun 2022, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
+> On 16/06/2022 13:01, Anshuman Gupta wrote:
+>> DG2 NB SKU need to distinguish between MBD and AIC to probe
+>> the VRAM Self Refresh feature support. Adding those sub platform
+>> accordingly.
+>> 
+>> Cc: Matt Roper <matthew.d.roper@intel.com>
+>> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/i915_drv.h          |  3 +++
+>>   drivers/gpu/drm/i915/intel_device_info.c | 21 +++++++++++++++++++++
+>>   drivers/gpu/drm/i915/intel_device_info.h | 11 +++++++----
+>>   include/drm/i915_pciids.h                | 23 ++++++++++++++++-------
+>>   4 files changed, 47 insertions(+), 11 deletions(-)
+>> 
+>> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+>> index a5bc6a774c5a..f1f8699eedfd 100644
+>> --- a/drivers/gpu/drm/i915/i915_drv.h
+>> +++ b/drivers/gpu/drm/i915/i915_drv.h
+>> @@ -1007,10 +1007,13 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+>>   #define IS_PONTEVECCHIO(dev_priv) IS_PLATFORM(dev_priv, INTEL_PONTEVECCHIO)
+>>   
+>>   #define IS_DG2_G10(dev_priv) \
+>> +	IS_SUBPLATFORM(dev_priv, INTEL_DG2, INTEL_SUBPLATFORM_G10_NB_MBD) || \
+>>   	IS_SUBPLATFORM(dev_priv, INTEL_DG2, INTEL_SUBPLATFORM_G10)
+>>   #define IS_DG2_G11(dev_priv) \
+>> +	IS_SUBPLATFORM(dev_priv, INTEL_DG2, INTEL_SUBPLATFORM_G11_NB_MBD) || \
+>>   	IS_SUBPLATFORM(dev_priv, INTEL_DG2, INTEL_SUBPLATFORM_G11)
+>>   #define IS_DG2_G12(dev_priv) \
+>> +	IS_SUBPLATFORM(dev_priv, INTEL_DG2, INTEL_SUBPLATFORM_G12_NB_MBD) || \
+>>   	IS_SUBPLATFORM(dev_priv, INTEL_DG2, INTEL_SUBPLATFORM_G12)
+>>   #define IS_ADLS_RPLS(dev_priv) \
+>>   	IS_SUBPLATFORM(dev_priv, INTEL_ALDERLAKE_S, INTEL_SUBPLATFORM_RPL)
+>> diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
+>> index f0bf23726ed8..93da555adc4e 100644
+>> --- a/drivers/gpu/drm/i915/intel_device_info.c
+>> +++ b/drivers/gpu/drm/i915/intel_device_info.c
+>> @@ -187,6 +187,18 @@ static const u16 subplatform_rpl_ids[] = {
+>>   	INTEL_RPLP_IDS(0),
+>>   };
+>>   
+>> +static const u16 subplatform_g10_mb_mbd_ids[] = {
+>> +	INTEL_DG2_G10_NB_MBD_IDS(0),
+>> +};
+>> +
+>> +static const u16 subplatform_g11_mb_mbd_ids[] = {
+>> +	INTEL_DG2_G11_NB_MBD_IDS(0),
+>> +};
+>> +
+>> +static const u16 subplatform_g12_mb_mbd_ids[] = {
+>> +	INTEL_DG2_G12_NB_MBD_IDS(0),
+>> +};
+>> +
+>>   static const u16 subplatform_g10_ids[] = {
+>>   	INTEL_DG2_G10_IDS(0),
+>>   	INTEL_ATS_M150_IDS(0),
+>> @@ -246,6 +258,15 @@ void intel_device_info_subplatform_init(struct drm_i915_private *i915)
+>>   	} else if (find_devid(devid, subplatform_rpl_ids,
+>>   			      ARRAY_SIZE(subplatform_rpl_ids))) {
+>>   		mask = BIT(INTEL_SUBPLATFORM_RPL);
+>> +	} else if (find_devid(devid, subplatform_g10_mb_mbd_ids,
+>> +			      ARRAY_SIZE(subplatform_g10_mb_mbd_ids))) {
+>> +		mask = BIT(INTEL_SUBPLATFORM_G10_NB_MBD);
+>> +	} else if (find_devid(devid, subplatform_g11_mb_mbd_ids,
+>> +			      ARRAY_SIZE(subplatform_g11_mb_mbd_ids))) {
+>> +		mask = BIT(INTEL_SUBPLATFORM_G11_NB_MBD);
+>> +	} else if (find_devid(devid, subplatform_g12_mb_mbd_ids,
+>> +			      ARRAY_SIZE(subplatform_g12_mb_mbd_ids))) {
+>> +		mask = BIT(INTEL_SUBPLATFORM_G12_NB_MBD);
+>>   	} else if (find_devid(devid, subplatform_g10_ids,
+>>   			      ARRAY_SIZE(subplatform_g10_ids))) {
+>>   		mask = BIT(INTEL_SUBPLATFORM_G10);
+>> diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
+>> index 08341174ee0a..c929e2d7e59c 100644
+>> --- a/drivers/gpu/drm/i915/intel_device_info.h
+>> +++ b/drivers/gpu/drm/i915/intel_device_info.h
+>> @@ -97,7 +97,7 @@ enum intel_platform {
+>>    * it is fine for the same bit to be used on multiple parent platforms.
+>>    */
+>>   
+>> -#define INTEL_SUBPLATFORM_BITS (3)
+>> +#define INTEL_SUBPLATFORM_BITS (6)
+>>   #define INTEL_SUBPLATFORM_MASK (BIT(INTEL_SUBPLATFORM_BITS) - 1)
+>>   
+>>   /* HSW/BDW/SKL/KBL/CFL */
+>> @@ -111,9 +111,12 @@ enum intel_platform {
+>>   #define INTEL_SUBPLATFORM_UY	(0)
+>>   
+>>   /* DG2 */
+>> -#define INTEL_SUBPLATFORM_G10	0
+>> -#define INTEL_SUBPLATFORM_G11	1
+>> -#define INTEL_SUBPLATFORM_G12	2
+>> +#define INTEL_SUBPLATFORM_G10_NB_MBD	0
+>> +#define INTEL_SUBPLATFORM_G11_NB_MBD	1
+>> +#define INTEL_SUBPLATFORM_G12_NB_MBD	2
+>> +#define INTEL_SUBPLATFORM_G10	3
+>> +#define INTEL_SUBPLATFORM_G11	4
+>> +#define INTEL_SUBPLATFORM_G12	5
+>
+> Ugh I feel this "breaks" the subplatform idea.. feels like it is just 
+> too many bits when two separate sets of information get tracked (Gxx 
+> plus MBD).
 
-Rudimentary vendor agnostic example of how lib_igt_drm_clients can be used
-to display a sorted by card and usage list of processes using GPUs.
+I think they could be specified independent of each other, though. The
+subplatform if-else ladder would have to be replaced with independent
+ifs. You'd have the G10/G11/G12 and 1 bit separately for MBD.
 
-Borrows a bit of code from intel_gpu_top but for now omits the fancy
-features like interactive functionality, card selection, client
-aggregation, sort modes, JSON output  and pretty engine names. Also no
-support for global GPU or system metrics.
+Only the macros for PCI IDs need to be separate (MBD vs not). You'll
+then have:
 
-On the other hand it shows clients from all DRM cards which
-intel_gpu_top does not do.
+static const u16 subplatform_g10_ids[] = {
+	INTEL_DG2_G10_IDS(0),
+	INTEL_DG2_G10_NB_MBD_IDS(0),
+	INTEL_ATS_M150_IDS(0),
+};
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Rob Clark <robdclark@chromium.org>
-Cc: Christian König <ckoenig.leichtzumerken@gmail.com>
----
- tools/gputop.c    | 260 ++++++++++++++++++++++++++++++++++++++++++++++
- tools/meson.build |   5 +
- 2 files changed, 265 insertions(+)
- create mode 100644 tools/gputop.c
+Ditto for g11 and g12, and separately:
 
-diff --git a/tools/gputop.c b/tools/gputop.c
-new file mode 100644
-index 000000000000..d259cac1ab17
---- /dev/null
-+++ b/tools/gputop.c
-@@ -0,0 +1,260 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2022 Intel Corporation
-+ */
-+
-+#include <assert.h>
-+#include <ctype.h>
-+#include <dirent.h>
-+#include <errno.h>
-+#include <fcntl.h>
-+#include <inttypes.h>
-+#include <limits.h>
-+#include <locale.h>
-+#include <math.h>
-+#include <poll.h>
-+#include <signal.h>
-+#include <stdint.h>
-+#include <stdio.h>
-+#include <stdlib.h>
-+#include <string.h>
-+#include <sys/ioctl.h>
-+#include <sys/stat.h>
-+#include <sys/types.h>
-+#include <unistd.h>
-+#include <termios.h>
-+#include <sys/sysmacros.h>
-+#include <stdbool.h>
-+
-+#include "igt_drm_clients.h"
-+#include "igt_drm_fdinfo.h"
-+
-+static const char *bars[] = { " ", "▏", "▎", "▍", "▌", "▋", "▊", "▉", "█" };
-+
-+static void n_spaces(const unsigned int n)
-+{
-+	unsigned int i;
-+
-+	for (i = 0; i < n; i++)
-+		putchar(' ');
-+}
-+
-+static void print_percentage_bar(double percent, int max_len)
-+{
-+	int bar_len, i, len = max_len - 2;
-+	const int w = 8;
-+
-+	assert(max_len > 0);
-+
-+	bar_len = ceil(w * percent * len / 100.0);
-+	if (bar_len > w * len)
-+		bar_len = w * len;
-+
-+	putchar('|');
-+
-+	for (i = bar_len; i >= w; i -= w)
-+		printf("%s", bars[w]);
-+	if (i)
-+		printf("%s", bars[i]);
-+
-+	len -= (bar_len + (w - 1)) / w;
-+	n_spaces(len);
-+
-+	putchar('|');
-+}
-+
-+static int
-+print_client_header(struct igt_drm_client *c, int lines, int con_w, int con_h,
-+		    int *engine_w)
-+{
-+	const char *pidname = "    PID               NAME ";
-+	int ret, len = strlen(pidname);
-+
-+	if (lines++ >= con_h || len >= con_w)
-+		return lines;
-+	printf("\033[7m");
-+	ret = printf("DRM minor %u", c->drm_minor);
-+	n_spaces(con_w - ret);
-+
-+	if (lines++ >= con_h)
-+		return lines;
-+	printf("\n%s", pidname);
-+
-+	if (c->engines->num_engines) {
-+		unsigned int i;
-+		int width;
-+
-+		*engine_w = width = (con_w - len) / c->engines->num_engines;
-+
-+		for (i = 0; i <= c->engines->max_engine_id; i++) {
-+			const char *name = c->engines->names[i];
-+			int name_len = strlen(name);
-+			int pad = (width - name_len) / 2;
-+			int spaces = width - pad - name_len;
-+
-+			if (!name)
-+				continue;
-+
-+			if (pad < 0 || spaces < 0)
-+				continue;
-+
-+			n_spaces(pad);
-+			printf("%s", name);
-+			n_spaces(spaces);
-+			len += pad + name_len + spaces;
-+		}
-+	}
-+
-+	n_spaces(con_w - len);
-+	printf("\033[0m\n");
-+
-+	return lines;
-+}
-+
-+
-+static bool
-+newheader(const struct igt_drm_client *c, const struct igt_drm_client *pc)
-+{
-+	return !pc || c->drm_minor != pc->drm_minor;
-+}
-+
-+static int
-+print_client(struct igt_drm_client *c, struct igt_drm_client **prevc,
-+	     double t, int lines, int con_w, int con_h,
-+	     unsigned int period_us, int *engine_w)
-+{
-+	unsigned int i;
-+
-+	/* Filter out idle clients. */
-+	if (!c->total_runtime || c->samples < 2)
-+		return lines;
-+
-+	/* Print header when moving to a different DRM card. */
-+	if (newheader(c, *prevc)) {
-+		lines = print_client_header(c, lines, con_w, con_h, engine_w);
-+		if (lines >= con_h)
-+			return lines;
-+	}
-+
-+	*prevc = c;
-+
-+	printf("%8u %17s ", c->pid, c->print_name);
-+	lines++;
-+
-+	for (i = 0; c->samples > 1 && i <= c->engines->max_engine_id; i++) {
-+		double pct;
-+
-+		if (!c->engines->capacity[i])
-+			continue;
-+
-+		pct = (double)c->val[i] / period_us / 1e3 * 100 /
-+		      c->engines->capacity[i];
-+
-+		/*
-+		 * Guard against fluctuations between our scanning period and
-+		 * GPU times as exported by the kernel in fdinfo.
-+		 */
-+		if (pct > 100.0)
-+			pct = 100.0;
-+
-+		print_percentage_bar(pct, *engine_w);
-+	}
-+
-+	putchar('\n');
-+
-+	return lines;
-+}
-+
-+static int
-+__client_id_cmp(const struct igt_drm_client *a,
-+		const struct igt_drm_client *b)
-+{
-+	if (a->id > b->id)
-+		return 1;
-+	else if (a->id < b->id)
-+		return -1;
-+	else
-+		return 0;
-+}
-+
-+static int client_cmp(const void *_a, const void *_b, void *unused)
-+{
-+	const struct igt_drm_client *a = _a;
-+	const struct igt_drm_client *b = _b;
-+	long val_a, val_b;
-+
-+	/* DRM cards into consecutive buckets first. */
-+	val_a = a->drm_minor;
-+	val_b = b->drm_minor;
-+	if (val_a > val_b)
-+		return 1;
-+	else if (val_b > val_a)
-+		return -1;
-+
-+	/*
-+	 * Within buckets sort by last sampling period aggregated runtime, with
-+	 * client id as a tie-breaker.
-+	 */
-+	val_a = a->last_runtime;
-+	val_b = b->last_runtime;
-+	if (val_a == val_b)
-+		return __client_id_cmp(a, b);
-+	else if (val_b > val_a)
-+		return 1;
-+	else
-+		return -1;
-+
-+}
-+
-+int main(int argc, char **argv)
-+{
-+	unsigned int period_us = 2e6;
-+	struct igt_drm_clients *clients = NULL;
-+	int con_w = -1, con_h = -1;
-+
-+	clients = igt_drm_clients_init(NULL);
-+	if (!clients)
-+		exit(1);
-+
-+	igt_drm_clients_scan(clients, NULL, NULL, 0);
-+
-+	for (;;) {
-+		struct igt_drm_client *c, *prevc = NULL;
-+		int i, engine_w = 0, lines = 0;
-+		struct winsize ws;
-+
-+		if (ioctl(0, TIOCGWINSZ, &ws) != -1) {
-+			con_w = ws.ws_col;
-+			con_h = ws.ws_row;
-+			if (con_w == 0 && con_h == 0) {
-+				/* Serial console. */
-+				con_w = 80;
-+				con_h = 24;
-+			}
-+		}
-+
-+		igt_drm_clients_scan(clients, NULL, NULL, 0);
-+		igt_drm_clients_sort(clients, client_cmp);
-+
-+		printf("\033[H\033[J");
-+
-+		igt_for_each_drm_client(clients, c, i) {
-+			assert(c->status != IGT_DRM_CLIENT_PROBE);
-+			if (c->status != IGT_DRM_CLIENT_ALIVE)
-+				break; /* Active clients are first in the array. */
-+
-+			lines = print_client(c, &prevc, (double)period_us / 1e6,
-+					     lines, con_w, con_h, period_us,
-+					     &engine_w);
-+			if (lines >= con_h)
-+				break;
-+		}
-+
-+		if (lines++ < con_h)
-+			printf("\n");
-+
-+		usleep(period_us);
-+	}
-+
-+	return 0;
-+}
-diff --git a/tools/meson.build b/tools/meson.build
-index ade00ee4df61..d5cb459b619d 100644
---- a/tools/meson.build
-+++ b/tools/meson.build
-@@ -70,6 +70,11 @@ if libudev.found()
- 		   install : true)
- endif
- 
-+executable('gputop', 'gputop.c',
-+           install : true,
-+           install_rpath : bindir_rpathdir,
-+           dependencies : [lib_igt_drm_clients,lib_igt_drm_fdinfo,math])
-+
- intel_l3_parity_src = [ 'intel_l3_parity.c', 'intel_l3_udev_listener.c' ]
- executable('intel_l3_parity', sources : intel_l3_parity_src,
- 	   dependencies : tool_deps,
+static const u16 subplatform_mbd_ids[] = {
+	INTEL_DG2_G10_NB_MBD_IDS(0),
+	INTEL_DG2_G11_NB_MBD_IDS(0),
+	INTEL_DG2_G12_NB_MBD_IDS(0),
+};
+
+The IS_DG2_G10() etc. macros would remain unchanged. IS_DG2_MBD() would
+only be IS_SUBPLATFORM(dev_priv, INTEL_DG2, INTEL_SUBPLATFORM_MBD).
+
+Main point is, a platform could belong to multiple independent
+subplatforms.
+
+Unless I'm missing something. ;)
+
+> How about a separate "is_mbd" flag in runtime_info? You can split the 
+> PCI IDs split as you have done, but do a search against the MBD ones and 
+> set the flag.
+
+What I dislike about this is that it's really not *runtime* info in any
+sense, and it adds another way to define platform features. And we
+already have too many.
+
+BR,
+Jani.
+
+
+>
+> Regards,
+>
+> Tvrtko
+>
+>>   
+>>   /* ADL */
+>>   #define INTEL_SUBPLATFORM_RPL	0
+>> diff --git a/include/drm/i915_pciids.h b/include/drm/i915_pciids.h
+>> index 4585fed4e41e..198be417bb2d 100644
+>> --- a/include/drm/i915_pciids.h
+>> +++ b/include/drm/i915_pciids.h
+>> @@ -693,32 +693,41 @@
+>>   	INTEL_VGA_DEVICE(0xA7A9, info)
+>>   
+>>   /* DG2 */
+>> -#define INTEL_DG2_G10_IDS(info) \
+>> +#define INTEL_DG2_G10_NB_MBD_IDS(info) \
+>>   	INTEL_VGA_DEVICE(0x5690, info), \
+>>   	INTEL_VGA_DEVICE(0x5691, info), \
+>> -	INTEL_VGA_DEVICE(0x5692, info), \
+>> +	INTEL_VGA_DEVICE(0x5692, info)
+>> +
+>> +#define INTEL_DG2_G11_NB_MBD_IDS(info) \
+>> +	INTEL_VGA_DEVICE(0x5693, info), \
+>> +	INTEL_VGA_DEVICE(0x5694, info), \
+>> +	INTEL_VGA_DEVICE(0x5695, info)
+>> +
+>> +#define INTEL_DG2_G12_NB_MBD_IDS(info) \
+>> +	INTEL_VGA_DEVICE(0x5696, info), \
+>> +	INTEL_VGA_DEVICE(0x5697, info)
+>> +
+>> +#define INTEL_DG2_G10_IDS(info) \
+>>   	INTEL_VGA_DEVICE(0x56A0, info), \
+>>   	INTEL_VGA_DEVICE(0x56A1, info), \
+>>   	INTEL_VGA_DEVICE(0x56A2, info)
+>>   
+>>   #define INTEL_DG2_G11_IDS(info) \
+>> -	INTEL_VGA_DEVICE(0x5693, info), \
+>> -	INTEL_VGA_DEVICE(0x5694, info), \
+>> -	INTEL_VGA_DEVICE(0x5695, info), \
+>>   	INTEL_VGA_DEVICE(0x56A5, info), \
+>>   	INTEL_VGA_DEVICE(0x56A6, info), \
+>>   	INTEL_VGA_DEVICE(0x56B0, info), \
+>>   	INTEL_VGA_DEVICE(0x56B1, info)
+>>   
+>>   #define INTEL_DG2_G12_IDS(info) \
+>> -	INTEL_VGA_DEVICE(0x5696, info), \
+>> -	INTEL_VGA_DEVICE(0x5697, info), \
+>>   	INTEL_VGA_DEVICE(0x56A3, info), \
+>>   	INTEL_VGA_DEVICE(0x56A4, info), \
+>>   	INTEL_VGA_DEVICE(0x56B2, info), \
+>>   	INTEL_VGA_DEVICE(0x56B3, info)
+>>   
+>>   #define INTEL_DG2_IDS(info) \
+>> +	INTEL_DG2_G10_NB_MBD_IDS(info), \
+>> +	INTEL_DG2_G11_NB_MBD_IDS(info), \
+>> +	INTEL_DG2_G12_NB_MBD_IDS(info), \
+>>   	INTEL_DG2_G10_IDS(info), \
+>>   	INTEL_DG2_G11_IDS(info), \
+>>   	INTEL_DG2_G12_IDS(info)
+
 -- 
-2.34.1
-
+Jani Nikula, Intel Open Source Graphics Center
