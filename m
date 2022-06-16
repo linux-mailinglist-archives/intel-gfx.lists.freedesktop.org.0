@@ -1,47 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40BDD54ED26
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jun 2022 00:13:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7D7154ED4F
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jun 2022 00:28:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6562010E6F0;
-	Thu, 16 Jun 2022 22:13:56 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 63C6210E6F0
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jun 2022 22:13:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7BEE810F6CE;
+	Thu, 16 Jun 2022 22:28:06 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6FE4A10F683;
+ Thu, 16 Jun 2022 22:28:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655417635; x=1686953635;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=PwHwZQZxxRiU6a2sOSkmCCllzT8aWNUoLzLGTjEprk4=;
- b=E9isjmYpE400uVgSs3HOQ1P7+tIDNZeJ3llkjDV9vVbTOPWlZs13/6ku
- DP4mMYNHXtYMgG5o33TulKjIhZnBluVwwYYpMY3wz3dvqXMPMr/3Rno3m
- dVQXzNr0HSt4bl/J4bnNNFFk+G0B+s6dw/DzqBq8Nr8Z8Ir7K6/VInFXl
- VZNmDFd71rNFPt+J4dOwhE0ZiLZgG0Ww7OCK3G1R+bD7SKSWA80m+48jl
- cHwRT9zvh3mIRs8/rVFaPMlwMi6InjRVmRVh5cmZ24SsmLK8q2NPeIWut
- MZ4WZTVO39LeOa3ZoVYyVLCy5DW9RWnU+eZDPxLNmmQ4XyMuYI1PpTl8y A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10380"; a="280396736"
-X-IronPort-AV: E=Sophos;i="5.92,306,1650956400"; d="scan'208";a="280396736"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2022 15:13:54 -0700
-X-IronPort-AV: E=Sophos;i="5.92,306,1650956400"; d="scan'208";a="653355759"
-Received: from dut042-dg2frd.fm.intel.com ([10.105.19.4])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2022 15:13:54 -0700
-From: "Nerlige Ramappa, Umesh" <umesh.nerlige.ramappa@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 16 Jun 2022 22:13:47 +0000
-Message-Id: <20220616221347.27621-1-umesh.nerlige.ramappa@intel.com>
-X-Mailer: git-send-email 2.25.1
+ t=1655418484; x=1686954484;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=3nFoiCs/i+b4saC1BZhajJGcgBHReiCbs/41b0uXmQI=;
+ b=H15JLc8bYGSiW420vU9X8jLbCFWvQABSieq0HwtZcJLEUbnZg2VijLsD
+ wjwvxwC4iYo2mFzZHrM/bTB0XqKdSyrXIOOLQGBb7EB3IhmRTOsXkY/zJ
+ xbiwNmuvA8o4CCkx3kbrY5pjg/e458ubGK6/DmgGvmczmYEJOe/jhx2WJ
+ TK8eI23O5CWGCJaHTwBNSfXN+H4U7CK1ynJ8J7ULPxdEm6XNoOviXWo1D
+ Up3nGINsqX406cKN4+1jQopX6VjA82u1STrYzP6PvdL2zr1qPXeDetB8l
+ fdbTpOXg2efOwNq1TPyrHcXrKCFZIJ1xbbU/9jDkf+e0C0jmsm+5YrELx Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10380"; a="259826506"
+X-IronPort-AV: E=Sophos;i="5.92,306,1650956400"; d="scan'208";a="259826506"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2022 15:28:03 -0700
+X-IronPort-AV: E=Sophos;i="5.92,306,1650956400"; d="scan'208";a="589841344"
+Received: from orsosgc001.jf.intel.com ([10.165.21.154])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2022 15:28:03 -0700
+Date: Thu, 16 Jun 2022 15:27:59 -0700
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Message-ID: <20220616222759.GA35313@orsosgc001.jf.intel.com>
+References: <20220616133203.278584-1-tvrtko.ursulin@linux.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] i915/pmu: Wire GuC backend to per-client
- busyness
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20220616133203.278584-1-tvrtko.ursulin@linux.intel.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
+Subject: Re: [Intel-gfx] [PATCH i-g-t] tests/drm_fdinfo: Test virtual engines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,312 +56,331 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: igt-dev@lists.freedesktop.org, Intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: John Harrison <John.C.Harrison@Intel.com>
+Thanks for adding these tests. I ran these with the kernel patch I had 
+posted for GuC support and updated the patch to work with virtual 
+engines - https://patchwork.freedesktop.org/series/105085/#rev3
 
-GuC provides engine_id and last_switch_in ticks for an active context in
-the pphwsp. The context image provides a 32 bit total ticks which is the
-accumulated by the context (a.k.a. context[CTX_TIMESTAMP]). This
-information is used to calculate the context busyness as follows:
+I have listed some changes I had to do in the below patch. With those 
+(or similar changes), this is:
 
-If the engine_id is valid, then busyness is the sum of accumulated total
-ticks and active ticks. Active ticks is calculated with current gt time
-as reference.
+Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 
-If engine_id is invalid, busyness is equal to accumulated total ticks.
+On Thu, Jun 16, 2022 at 02:32:03PM +0100, Tvrtko Ursulin wrote:
+>From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>
+>We need some coverage of the virtual engines.
+>
+>Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+>---
+> tests/i915/drm_fdinfo.c | 284 +++++++++++++++++++++++++++++++++++++++-
+> 1 file changed, 282 insertions(+), 2 deletions(-)
+>
+>diff --git a/tests/i915/drm_fdinfo.c b/tests/i915/drm_fdinfo.c
+>index 3475d35b23b9..0a42370d54ce 100644
+>--- a/tests/i915/drm_fdinfo.c
+>+++ b/tests/i915/drm_fdinfo.c
+>@@ -27,6 +27,7 @@
+> #include "igt_device.h"
+> #include "igt_drm_fdinfo.h"
+> #include "i915/gem.h"
+>+#include "i915/gem_vm.h"
+> #include "intel_ctx.h"
+>
+> IGT_TEST_DESCRIPTION("Test the i915 drm fdinfo data");
+>@@ -90,10 +91,10 @@ static igt_spin_t *__spin_poll(int fd, uint64_t ahnd, const intel_ctx_t *ctx,
+> 	struct igt_spin_factory opts = {
+> 		.ahnd = ahnd,
+> 		.ctx = ctx,
+>-		.engine = e->flags,
+>+		.engine = e ? e->flags : 0,
+> 	};
+>
+>-	if (gem_class_can_store_dword(fd, e->class))
+>+	if (!e || gem_class_can_store_dword(fd, e->class))
+> 		opts.flags |= IGT_SPIN_POLL_RUN;
+>
+> 	return __igt_spin_factory(fd, &opts);
+>@@ -440,6 +441,265 @@ all_busy_check_all(int gem_fd, const intel_ctx_t *ctx,
+> 	gem_quiescent_gpu(gem_fd);
+> }
+>
+>+static struct i915_engine_class_instance *
+>+list_engines(const intel_ctx_cfg_t *cfg,
+>+	     unsigned int class, unsigned int *out)
+>+{
+>+	struct i915_engine_class_instance *ci;
+>+	unsigned int count = 0, i;
+>+
+>+	ci = malloc(cfg->num_engines * sizeof(*ci));
+>+	igt_assert(ci);
+>+
+>+	for (i = 0; i < cfg->num_engines; i++) {
+>+		if (class == cfg->engines[i].engine_class)
+>+			ci[count++] = cfg->engines[i];
+>+	}
+>+
+>+	if (!count) {
+>+		free(ci);
+>+		ci = NULL;
+>+	}
+>+
+>+	*out = count;
+>+	return ci;
+>+}
+>+
+>+static size_t sizeof_load_balance(int count)
+>+{
+>+	return offsetof(struct i915_context_engines_load_balance,
+>+			engines[count]);
+>+}
+>+
+>+static size_t sizeof_param_engines(int count)
+>+{
+>+	return offsetof(struct i915_context_param_engines,
+>+			engines[count]);
+>+}
+>+
+>+#define alloca0(sz) ({ size_t sz__ = (sz); memset(alloca(sz__), 0, sz__); })
+>+
+>+static int __set_load_balancer(int i915, uint32_t ctx,
+>+			       const struct i915_engine_class_instance *ci,
+>+			       unsigned int count,
+>+			       void *ext)
+>+{
+>+	struct i915_context_engines_load_balance *balancer =
+>+		alloca0(sizeof_load_balance(count));
+>+	struct i915_context_param_engines *engines =
+>+		alloca0(sizeof_param_engines(count + 1));
+>+	struct drm_i915_gem_context_param p = {
+>+		.ctx_id = ctx,
+>+		.param = I915_CONTEXT_PARAM_ENGINES,
+>+		.size = sizeof_param_engines(count + 1),
+>+		.value = to_user_pointer(engines)
+>+	};
+>+
+>+	balancer->base.name = I915_CONTEXT_ENGINES_EXT_LOAD_BALANCE;
+>+	balancer->base.next_extension = to_user_pointer(ext);
+>+
+>+	igt_assert(count);
+>+	balancer->num_siblings = count;
+>+	memcpy(balancer->engines, ci, count * sizeof(*ci));
+>+
+>+	engines->extensions = to_user_pointer(balancer);
+>+	engines->engines[0].engine_class =
+>+		I915_ENGINE_CLASS_INVALID;
+>+	engines->engines[0].engine_instance =
+>+		I915_ENGINE_CLASS_INVALID_NONE;
+>+	memcpy(engines->engines + 1, ci, count * sizeof(*ci));
+>+
+>+	return __gem_context_set_param(i915, &p);
+>+}
+>+
+>+static void set_load_balancer(int i915, uint32_t ctx,
+>+			      const struct i915_engine_class_instance *ci,
+>+			      unsigned int count,
+>+			      void *ext)
+>+{
+>+	igt_assert_eq(__set_load_balancer(i915, ctx, ci, count, ext), 0);
+>+}
+>+
 
-Since KMD (CPU) retrieves busyness data from 2 sources - GPU and GuC, a
-potential race was highlighted in an earlier review that can lead to
-double accounting of busyness. While the solution to this is a wip,
-busyness is still usable for platforms running GuC submission.
+static void context_unban(int i915, uint32_t context_id)
+{
+	struct drm_i915_gem_context_param param = {
+		.ctx_id = context_id,
+		.param = I915_CONTEXT_PARAM_BANNABLE,
+		.value = 0,
+	};
 
-v2: (Tvrtko)
-- Use COPS_RUNTIME_ACTIVE_TOTAL
-- Add code comment for the race
-- Undo local variables initializations
+	gem_context_set_param(i915, &param);
+}
 
-v3:
-- Add support for virtual engines based on
-  https://patchwork.freedesktop.org/series/105227/
+>+static void
+>+virtual(int i915, const intel_ctx_cfg_t *base_cfg, unsigned int flags)
+>+{
+>+	intel_ctx_cfg_t cfg = {};
+>+
+>+	cfg.vm = gem_vm_create(i915);
+>+
+>+	for (int class = 0; class < 32; class++) {
+>+		struct i915_engine_class_instance *ci;
+>+		unsigned int count;
+>+
+>+		if (!gem_class_can_store_dword(i915, class))
+>+			continue;
+>+
+>+		ci = list_engines(base_cfg, class, &count);
+>+		if (!ci)
+>+			continue;
+>+
+>+		for (unsigned int pass = 0; pass < count; pass++) {
+>+			const intel_ctx_t *ctx;
+>+			unsigned long slept;
+>+			uint64_t ahnd, val;
+>+			igt_spin_t *spin;
+>+
+>+			igt_assert(sizeof(*ci) == sizeof(int));
+>+			igt_permute_array(ci, count, igt_exchange_int);
+>+
+>+			igt_debug("class %u, pass %u/%u...\n", class, pass, count);
+>+
+>+			ctx = intel_ctx_create(i915, &cfg);
 
-Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_context.c       | 12 +++-
- drivers/gpu/drm/i915/gt/intel_context.h       |  6 +-
- drivers/gpu/drm/i915/gt/intel_context_types.h |  6 ++
- drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h   |  5 ++
- .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 65 ++++++++++++++++++-
- drivers/gpu/drm/i915/i915_drm_client.c        |  6 +-
- 6 files changed, 89 insertions(+), 11 deletions(-)
+if (flags & FLAG_HANG)
+	context_unban(i915, ctx->id);
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
-index 4070cb5711d8..4a84146710e0 100644
---- a/drivers/gpu/drm/i915/gt/intel_context.c
-+++ b/drivers/gpu/drm/i915/gt/intel_context.c
-@@ -576,16 +576,24 @@ void intel_context_bind_parent_child(struct intel_context *parent,
- 	child->parallel.parent = parent;
- }
- 
--u64 intel_context_get_total_runtime_ns(const struct intel_context *ce)
-+u64 intel_context_get_total_runtime_ns(struct intel_context *ce)
- {
- 	u64 total, active;
- 
-+	if (ce->ops->update_stats)
-+		ce->ops->update_stats(ce);
-+
- 	total = ce->stats.runtime.total;
- 	if (ce->ops->flags & COPS_RUNTIME_CYCLES)
- 		total *= ce->engine->gt->clock_period_ns;
- 
- 	active = READ_ONCE(ce->stats.active);
--	if (active)
-+	/*
-+	 * When COPS_RUNTIME_ACTIVE_TOTAL is set for ce->cops, the backend
-+	 * already provides the total active time of the context, so skip this
-+	 * calculation when this flag is set.
-+	 */
-+	if (active && !(ce->ops->flags & COPS_RUNTIME_ACTIVE_TOTAL))
- 		active = intel_context_clock() - active;
- 
- 	return total + active;
-diff --git a/drivers/gpu/drm/i915/gt/intel_context.h b/drivers/gpu/drm/i915/gt/intel_context.h
-index b7d3214d2cdd..5fc7c19ab29b 100644
---- a/drivers/gpu/drm/i915/gt/intel_context.h
-+++ b/drivers/gpu/drm/i915/gt/intel_context.h
-@@ -56,7 +56,7 @@ static inline bool intel_context_is_parent(struct intel_context *ce)
- 	return !!ce->parallel.number_children;
- }
- 
--static inline bool intel_context_is_pinned(struct intel_context *ce);
-+static inline bool intel_context_is_pinned(const struct intel_context *ce);
- 
- static inline struct intel_context *
- intel_context_to_parent(struct intel_context *ce)
-@@ -116,7 +116,7 @@ static inline int intel_context_lock_pinned(struct intel_context *ce)
-  * Returns: true if the context is currently pinned for use by the GPU.
-  */
- static inline bool
--intel_context_is_pinned(struct intel_context *ce)
-+intel_context_is_pinned(const struct intel_context *ce)
- {
- 	return atomic_read(&ce->pin_count);
- }
-@@ -351,7 +351,7 @@ intel_context_clear_nopreempt(struct intel_context *ce)
- 	clear_bit(CONTEXT_NOPREEMPT, &ce->flags);
- }
- 
--u64 intel_context_get_total_runtime_ns(const struct intel_context *ce);
-+u64 intel_context_get_total_runtime_ns(struct intel_context *ce);
- u64 intel_context_get_avg_runtime_ns(struct intel_context *ce);
- 
- static inline u64 intel_context_clock(void)
-diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
-index 09f82545789f..797bb4242c18 100644
---- a/drivers/gpu/drm/i915/gt/intel_context_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
-@@ -38,6 +38,9 @@ struct intel_context_ops {
- #define COPS_RUNTIME_CYCLES_BIT 1
- #define COPS_RUNTIME_CYCLES BIT(COPS_RUNTIME_CYCLES_BIT)
- 
-+#define COPS_RUNTIME_ACTIVE_TOTAL_BIT 2
-+#define COPS_RUNTIME_ACTIVE_TOTAL BIT(COPS_RUNTIME_ACTIVE_TOTAL_BIT)
-+
- 	int (*alloc)(struct intel_context *ce);
- 
- 	void (*ban)(struct intel_context *ce, struct i915_request *rq);
-@@ -55,6 +58,8 @@ struct intel_context_ops {
- 
- 	void (*sched_disable)(struct intel_context *ce);
- 
-+	void (*update_stats)(struct intel_context *ce);
-+
- 	void (*reset)(struct intel_context *ce);
- 	void (*destroy)(struct kref *kref);
- 
-@@ -146,6 +151,7 @@ struct intel_context {
- 			struct ewma_runtime avg;
- 			u64 total;
- 			u32 last;
-+			u64 start_gt_clk;
- 			I915_SELFTEST_DECLARE(u32 num_underflow);
- 			I915_SELFTEST_DECLARE(u32 max_underflow);
- 		} runtime;
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
-index b3c9a9327f76..6231ad03e4eb 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
-@@ -196,6 +196,11 @@ static inline u8 guc_class_to_engine_class(u8 guc_class)
- 	return guc_class_engine_class_map[guc_class];
- }
- 
-+/* Per context engine usage stats: */
-+#define PPHWSP_GUC_CONTEXT_USAGE_STAMP_LO	(0x500 / sizeof(u32))
-+#define PPHWSP_GUC_CONTEXT_USAGE_STAMP_HI	(PPHWSP_GUC_CONTEXT_USAGE_STAMP_LO + 1)
-+#define PPHWSP_GUC_CONTEXT_USAGE_ENGINE_ID	(PPHWSP_GUC_CONTEXT_USAGE_STAMP_HI + 1)
-+
- /* Work item for submitting workloads into work queue of GuC. */
- struct guc_wq_item {
- 	u32 header;
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-index 5a1dfacf24ea..cbf3cbb983ce 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-@@ -378,7 +378,7 @@ static inline void set_context_guc_id_invalid(struct intel_context *ce)
- 	ce->guc_id.id = GUC_INVALID_CONTEXT_ID;
- }
- 
--static inline struct intel_guc *ce_to_guc(struct intel_context *ce)
-+static inline struct intel_guc *ce_to_guc(const struct intel_context *ce)
- {
- 	return &ce->engine->gt->uc.guc;
- }
-@@ -1323,13 +1323,16 @@ static void __update_guc_busyness_stats(struct intel_guc *guc)
- 	spin_unlock_irqrestore(&guc->timestamp.lock, flags);
- }
- 
-+static void __guc_context_update_clks(struct intel_context *ce);
- static void guc_timestamp_ping(struct work_struct *wrk)
- {
- 	struct intel_guc *guc = container_of(wrk, typeof(*guc),
- 					     timestamp.work.work);
- 	struct intel_uc *uc = container_of(guc, typeof(*uc), guc);
- 	struct intel_gt *gt = guc_to_gt(guc);
-+	struct intel_context *ce;
- 	intel_wakeref_t wakeref;
-+	unsigned long index;
- 	int srcu, ret;
- 
- 	/*
-@@ -1343,6 +1346,10 @@ static void guc_timestamp_ping(struct work_struct *wrk)
- 	with_intel_runtime_pm(&gt->i915->runtime_pm, wakeref)
- 		__update_guc_busyness_stats(guc);
- 
-+	/* adjust context stats for overflow */
-+	xa_for_each(&guc->context_lookup, index, ce)
-+		__guc_context_update_clks(ce);
-+
- 	intel_gt_reset_unlock(gt, srcu);
- 
- 	mod_delayed_work(system_highpri_wq, &guc->timestamp.work,
-@@ -1405,6 +1412,56 @@ void intel_guc_busyness_unpark(struct intel_gt *gt)
- 			 guc->timestamp.ping_delay);
- }
- 
-+static void __guc_context_update_clks(struct intel_context *ce)
-+{
-+	struct intel_guc *guc = ce_to_guc(ce);
-+	struct intel_gt *gt = ce->engine->gt;
-+	u32 *pphwsp, last_switch, engine_id;
-+	u64 start_gt_clk, active;
-+	unsigned long flags;
-+	ktime_t unused;
-+
-+	spin_lock_irqsave(&guc->timestamp.lock, flags);
-+
-+	/*
-+	 * GPU updates ce->lrc_reg_state[CTX_TIMESTAMP] when context is switched
-+	 * out, however GuC updates PPHWSP offsets below. Hence KMD (CPU)
-+	 * relies on GuC and GPU for busyness calculations. Due to this, A
-+	 * potential race was highlighted in an earlier review that can lead to
-+	 * double accounting of busyness. While the solution to this is a wip,
-+	 * busyness is still usable for platforms running GuC submission.
-+	 */
-+	pphwsp = ((void *)ce->lrc_reg_state) - LRC_STATE_OFFSET;
-+	last_switch = READ_ONCE(pphwsp[PPHWSP_GUC_CONTEXT_USAGE_STAMP_LO]);
-+	engine_id = READ_ONCE(pphwsp[PPHWSP_GUC_CONTEXT_USAGE_ENGINE_ID]);
-+
-+	guc_update_pm_timestamp(guc, &unused);
-+
-+	if (engine_id != 0xffffffff && last_switch) {
-+		start_gt_clk = READ_ONCE(ce->stats.runtime.start_gt_clk);
-+		__extend_last_switch(guc, &start_gt_clk, last_switch);
-+		active = intel_gt_clock_interval_to_ns(gt, guc->timestamp.gt_stamp - start_gt_clk);
-+		WRITE_ONCE(ce->stats.runtime.start_gt_clk, start_gt_clk);
-+		WRITE_ONCE(ce->stats.active, active);
-+	} else {
-+		lrc_update_runtime(ce);
-+	}
-+
-+	spin_unlock_irqrestore(&guc->timestamp.lock, flags);
-+}
-+
-+static void guc_context_update_stats(struct intel_context *ce)
-+{
-+	if (!intel_context_pin_if_active(ce)) {
-+		WRITE_ONCE(ce->stats.runtime.start_gt_clk, 0);
-+		WRITE_ONCE(ce->stats.active, 0);
-+		return;
-+	}
-+
-+	__guc_context_update_clks(ce);
-+	intel_context_unpin(ce);
-+}
-+
- static inline bool
- submission_disabled(struct intel_guc *guc)
- {
-@@ -2585,6 +2642,7 @@ static void guc_context_unpin(struct intel_context *ce)
- {
- 	struct intel_guc *guc = ce_to_guc(ce);
- 
-+	lrc_update_runtime(ce);
- 	unpin_guc_id(guc, ce);
- 	lrc_unpin(ce);
- 
-@@ -3183,6 +3241,7 @@ static void remove_from_context(struct i915_request *rq)
- }
- 
- static const struct intel_context_ops guc_context_ops = {
-+	.flags = COPS_RUNTIME_CYCLES | COPS_RUNTIME_ACTIVE_TOTAL,
- 	.alloc = guc_context_alloc,
- 
- 	.pre_pin = guc_context_pre_pin,
-@@ -3199,6 +3258,8 @@ static const struct intel_context_ops guc_context_ops = {
- 
- 	.sched_disable = guc_context_sched_disable,
- 
-+	.update_stats = guc_context_update_stats,
-+
- 	.reset = lrc_reset,
- 	.destroy = guc_context_destroy,
- 
-@@ -3432,6 +3493,7 @@ static int guc_virtual_context_alloc(struct intel_context *ce)
- }
- 
- static const struct intel_context_ops virtual_guc_context_ops = {
-+	.flags = COPS_RUNTIME_CYCLES | COPS_RUNTIME_ACTIVE_TOTAL,
- 	.alloc = guc_virtual_context_alloc,
- 
- 	.pre_pin = guc_virtual_context_pre_pin,
-@@ -3447,6 +3509,7 @@ static const struct intel_context_ops virtual_guc_context_ops = {
- 	.exit = guc_virtual_context_exit,
- 
- 	.sched_disable = guc_context_sched_disable,
-+	.update_stats = guc_context_update_stats,
- 
- 	.destroy = guc_context_destroy,
- 
-diff --git a/drivers/gpu/drm/i915/i915_drm_client.c b/drivers/gpu/drm/i915/i915_drm_client.c
-index 18d38cb59923..118db6f03f15 100644
---- a/drivers/gpu/drm/i915/i915_drm_client.c
-+++ b/drivers/gpu/drm/i915/i915_drm_client.c
-@@ -146,11 +146,7 @@ void i915_drm_client_fdinfo(struct seq_file *m, struct file *f)
- 		   PCI_SLOT(pdev->devfn), PCI_FUNC(pdev->devfn));
- 	seq_printf(m, "drm-client-id:\t%u\n", client->id);
- 
--	/*
--	 * Temporarily skip showing client engine information with GuC submission till
--	 * fetching engine busyness is implemented in the GuC submission backend
--	 */
--	if (GRAPHICS_VER(i915) < 8 || intel_uc_uses_guc_submission(&i915->gt0.uc))
-+	if (GRAPHICS_VER(i915) < 8)
- 		return;
- 
- 	for (i = 0; i < ARRAY_SIZE(uabi_class_names); i++)
--- 
-2.25.1
+>+			ahnd = get_reloc_ahnd(i915, ctx->id);
+>+
+>+			set_load_balancer(i915, ctx->id, ci, count, NULL);
+>+
+>+			if (flags & TEST_BUSY)
+>+				spin = spin_sync(i915, ahnd, ctx, NULL);
+>+			else
+>+				spin = NULL;
+>+
+>+			val = read_busy(i915, class);
+>+			slept = measured_usleep(batch_duration_ns / 1000);
+>+			if (flags & TEST_TRAILING_IDLE)
+>+				end_spin(i915, spin, flags);
+>+			val = read_busy(i915, class) - val;
+>+
+>+			if (flags & FLAG_HANG)
+>+				igt_force_gpu_reset(i915);
+>+			else
+>+				end_spin(i915, spin, FLAG_SYNC);
+>+
+>+			assert_within_epsilon(val,
+>+					      flags & TEST_BUSY ?
+>+					      slept : 0.0f,
+>+					      tolerance);
+>+
+>+			/* Check for idle after hang. */
+>+			if (flags & FLAG_HANG) {
+>+				gem_quiescent_gpu(i915);
+>+				igt_assert(!gem_bo_busy(i915, spin->handle));
+>+
+>+				val = read_busy(i915, class);
+>+				slept = measured_usleep(batch_duration_ns /
+>+							1000);
+>+				val = read_busy(i915, class) - val;
+>+
+>+				assert_within_epsilon(val, 0, tolerance);
+>+			}
+>+
+>+			igt_spin_free(i915, spin);
+>+			put_ahnd(ahnd);
+>+			intel_ctx_destroy(i915, ctx);
+>+
+>+			gem_quiescent_gpu(i915);
+>+		}
+>+
+>+		free(ci);
+>+	}
+>+}
+>+
+>+static void
+>+__virt_submit_spin(int i915, igt_spin_t *spin,
+>+		   const intel_ctx_t *ctx,
+>+		   int offset)
+>+{
+>+	struct drm_i915_gem_execbuffer2 eb = spin->execbuf;
+>+
+>+	eb.flags &= ~(0x3f | I915_EXEC_BSD_MASK);
+>+	eb.flags |= I915_EXEC_NO_RELOC;
+>+	eb.batch_start_offset += offset;
+>+	eb.rsvd1 = ctx->id;
+>+
+>+	gem_execbuf(i915, &eb);
+>+}
+>+
+>+static void
+>+virtual_all(int i915, const intel_ctx_cfg_t *base_cfg, unsigned int flags)
+>+{
+>+	const unsigned int num_engines = base_cfg->num_engines;
+>+	intel_ctx_cfg_t cfg = {};
+>+
+>+	cfg.vm = gem_vm_create(i915);
+>+
+>+	for (int class = 0; class < 32; class++) {
+>+		struct i915_engine_class_instance *ci;
+>+		const intel_ctx_t *ctx[num_engines];
+>+		igt_spin_t *spin = NULL;
+>+		unsigned int count;
+>+		unsigned long slept;
+>+		uint64_t val;
+>+
+>+		if (!gem_class_can_store_dword(i915, class))
+>+			continue;
+>+
+>+		ci = list_engines(base_cfg, class, &count);
+>+		if (!ci)
+>+			continue;
+>+		igt_assert(count <= num_engines);
+>+
+>+		if (count < 2)
+>+			continue;
+>+
+>+		igt_debug("class %u, %u engines...\n", class, count);
+>+
+>+		for (unsigned int i = 0; i < count; i++) {
+>+			uint64_t ahnd;
+>+
+>+			igt_assert(sizeof(*ci) == sizeof(int));
+>+			igt_permute_array(ci, count, igt_exchange_int);
+>+
+>+			ctx[i] = intel_ctx_create(i915, &cfg);
 
+if (flags & FLAG_HANG)
+	context_unban(i915, ctx[i]->id);
+
+>+			ahnd = get_reloc_ahnd(i915, ctx[i]->id);
+>+
+>+			set_load_balancer(i915, ctx[i]->id, ci, count, NULL);
+>+
+>+			if (spin)
+>+				__virt_submit_spin(i915, spin, ctx[i], 64);
+>+			else
+>+				spin = __spin_poll(i915, ahnd, ctx[i], NULL);
+>+		}
+>+
+>+		/* Small delay to allow engines to start. */
+>+		usleep(__spin_wait(i915, spin) * count / 1e3);
+>+
+>+		val = read_busy(i915, class);
+>+		slept = measured_usleep(batch_duration_ns / 1000);
+>+		if (flags & TEST_TRAILING_IDLE)
+>+			end_spin(i915, spin, flags);
+>+		val = read_busy(i915, class) - val;
+>+
+>+		if (flags & FLAG_HANG)
+>+			igt_force_gpu_reset(i915);
+>+		else
+>+			end_spin(i915, spin, FLAG_SYNC);
+>+
+>+		assert_within_epsilon(val, slept * count, tolerance);
+>+
+>+		/* Check for idle after hang. */
+>+		if (flags & FLAG_HANG) {
+>+			gem_quiescent_gpu(i915);
+>+			igt_assert(!gem_bo_busy(i915, spin->handle));
+>+
+>+			val = read_busy(i915, class);
+>+			slept = measured_usleep(batch_duration_ns /
+>+						1000);
+>+			val = read_busy(i915, class) - val;
+>+
+>+			assert_within_epsilon(val, 0, tolerance);
+>+		}
+>+
+>+		put_ahnd(spin->opts.ahnd);
+>+		igt_spin_free(i915, spin);
+
+The above 2 lines should be swapped.
+
+Regards,
+Umesh
