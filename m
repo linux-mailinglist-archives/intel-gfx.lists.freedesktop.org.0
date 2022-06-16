@@ -2,50 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD35154DF1C
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jun 2022 12:29:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E2D8154DF68
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jun 2022 12:47:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B2A8113EEB;
-	Thu, 16 Jun 2022 10:29:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 199C711A114;
+	Thu, 16 Jun 2022 10:47:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6BE4F113EEB
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jun 2022 10:29:37 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1096A11A114
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jun 2022 10:47:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655375377; x=1686911377;
+ t=1655376428; x=1686912428;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=4k4Ni2q/Bf+f+Pzi2ErXY6KK4EXy2EXgHcU1B5NsGqo=;
- b=I02akqR79YyGzEFwmhJDDKtI9ObZxOMmHAjc4NyK0L2/OTDqZtLtlm2a
- hNfG2L7ojJkAOo/TUr4HFNDgDxk3OlJrjEyjKXzI8MZ8/TF3ygZ0lqH68
- J5vlmd39CyKEQXLyqvMYG1BCmO/dpF/uSUQ++ta5BU/4KHdg+EAqoZYxT
- WZ77XunTC6rDbHSImmUCKn2soFpslS/8gcWynzjjcd/7bqihSyMaXmb1r
- F2Fqu8vFgXJ+5wLRdifiUl8aoXYFV276XABX7RroTzfaHwlbfX/VyJyi7
- cStgbpzfD0vClufQwoUck/HX4sjU46kg9UyKqk/dv6B63srKaAd5MNHJ7 Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10379"; a="365572373"
-X-IronPort-AV: E=Sophos;i="5.91,304,1647327600"; d="scan'208";a="365572373"
+ bh=T72YRkunLlCqHN+kD3w6DmfsmoSrbiMx5bddvGJCtNc=;
+ b=QlFhT9JcWCnfKwHZt7M2mbYvEsExJ0Vhf2O2/wYxYlljl1xRzEKI2cOb
+ qEmEupGxX2GLmEAwZAqlSydqpxW+vSj9xVAUhUXD1JOE7IiDIWP2y+VZH
+ RZqf93RqAB1haMJcc9XFv5MExHrC5y8QFNpRr6aYq85Js6iZ6LgnETjp1
+ Q5I6Ly2SKsTAEw8h/Qh2G8Yd1BoVYFSIRTGxWUWiN7rMLA7Et4Z2bhxU9
+ rJvIWe/hyGi6cPJOGcWsg0aQiUXfxDZJIv2Wtfv24b3GN8ccqBXkMMo4E
+ Ua1yyARpuchU40HPs3ztWqTFuA9axbT3dMCHBAAH6l/e++shXDZUt7Dyv g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10379"; a="259074849"
+X-IronPort-AV: E=Sophos;i="5.91,304,1647327600"; d="scan'208";a="259074849"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2022 03:29:36 -0700
-X-IronPort-AV: E=Sophos;i="5.91,304,1647327600"; d="scan'208";a="641481401"
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2022 03:47:07 -0700
+X-IronPort-AV: E=Sophos;i="5.91,304,1647327600"; d="scan'208";a="641486898"
 Received: from malashi-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.252.57.133])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2022 03:29:35 -0700
+ 16 Jun 2022 03:47:06 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220616095530.15024-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20220615151445.8531-1-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220616095530.15024-1-ville.syrjala@linux.intel.com>
-Date: Thu, 16 Jun 2022 13:29:32 +0300
-Message-ID: <87r13ox5o3.fsf@intel.com>
+References: <20220615151445.8531-1-ville.syrjala@linux.intel.com>
+Date: Thu, 16 Jun 2022 13:47:03 +0300
+Message-ID: <87o7ysx4uw.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Remove bogus LPT iCLKIP WARN
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/bios: Move panel_type stuff
+ out of parse_panel_options()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,44 +62,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 16 Jun 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+On Wed, 15 Jun 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> The WARN shouldn't have been added yet. For the moment the
-> clock that gets passed here is just what the user has requested
-> (via the modeline) and may not be exactly what iCLKIP can
-> generate.
+> Parsing the panel_type is a bit special and should be done
+> before we parse anything else potentially panel-specific from
+> the VBT. So move it out from parse_panel_options(). It doesn't
+> neet to be there anyway since it'll do its own LVDS options
+> block lookup.
 >
-> Later on the plan is to change things so that we already get
-> passed the exact clock here, at which point the WARN should
-> be reintroduced.
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_bios.c | 13 +++++--------
+>  1 file changed, 5 insertions(+), 8 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/=
+i915/display/intel_bios.c
+> index fb5f8a9f5ab5..df52f406e1ae 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bios.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
+> @@ -746,11 +746,10 @@ static int get_panel_type(struct drm_i915_private *=
+i915,
+>  /* Parse general panel options */
+>  static void
+>  parse_panel_options(struct drm_i915_private *i915,
+> -		    struct intel_panel *panel,
+> -		    const struct edid *edid)
+> +		    struct intel_panel *panel)
+>  {
+>  	const struct bdb_lvds_options *lvds_options;
+> -	int panel_type;
+> +	int panel_type =3D panel->vbt.panel_type;
+>  	int drrs_mode;
+>=20=20
+>  	lvds_options =3D find_section(i915, BDB_LVDS_OPTIONS);
+> @@ -759,10 +758,6 @@ parse_panel_options(struct drm_i915_private *i915,
+>=20=20
+>  	panel->vbt.lvds_dither =3D lvds_options->pixel_dither;
+>=20=20
+> -	panel_type =3D get_panel_type(i915, edid);
+> -
+> -	panel->vbt.panel_type =3D panel_type;
+> -
+>  	drrs_mode =3D (lvds_options->dps_panel_type_bits
+>  				>> (panel_type * 2)) & MODE_MASK;
+>  	/*
+> @@ -3117,7 +3112,9 @@ void intel_bios_init_panel(struct drm_i915_private =
+*i915,
+>  {
+>  	init_vbt_panel_defaults(panel);
+>=20=20
+> -	parse_panel_options(i915, panel, edid);
+> +	panel->vbt.panel_type =3D get_panel_type(i915, edid);
+> +
 
-Hmph, who reviwed that patch anyway?!
+I guess that could be parse_panel_type() that doesn't return
+anything. But this is fine too.
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
->
-> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/6246
-> Fixes: 97708335b04d ("drm/i915: Introduce struct iclkip_params")
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_pch_refclk.c | 1 -
->  1 file changed, 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_pch_refclk.c b/drivers/gp=
-u/drm/i915/display/intel_pch_refclk.c
-> index 752dab11667f..9934c8a9e240 100644
-> --- a/drivers/gpu/drm/i915/display/intel_pch_refclk.c
-> +++ b/drivers/gpu/drm/i915/display/intel_pch_refclk.c
-> @@ -179,7 +179,6 @@ void lpt_program_iclkip(const struct intel_crtc_state=
- *crtc_state)
->  	lpt_disable_iclkip(dev_priv);
->=20=20
->  	lpt_compute_iclkip(&p, clock);
-> -	drm_WARN_ON(&dev_priv->drm, lpt_iclkip_freq(&p) !=3D clock);
->=20=20
->  	/* This should not happen with any sane values */
->  	drm_WARN_ON(&dev_priv->drm, SBI_SSCDIVINTPHASE_DIVSEL(p.divsel) &
+> +	parse_panel_options(i915, panel);
+>  	parse_generic_dtd(i915, panel);
+>  	parse_lfp_data(i915, panel);
+>  	parse_lfp_backlight(i915, panel);
 
 --=20
 Jani Nikula, Intel Open Source Graphics Center
