@@ -1,39 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D80C54E573
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jun 2022 16:55:28 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01E9454E57F
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jun 2022 16:58:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8707211A478;
-	Thu, 16 Jun 2022 14:55:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C0B2311A449;
+	Thu, 16 Jun 2022 14:58:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C3AF311A449
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jun 2022 14:55:25 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 76E1B11A449
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jun 2022 14:57:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655391325; x=1686927325;
+ t=1655391443; x=1686927443;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=b0vsy1zRo/0UiLjGgSiV5SFIjtEiPa1e+ehbe7VYo64=;
- b=b7170vcwCTE6e2JijpCmOHRsEDWnfWlhg5zznHkpe1B3ucNZZwiKLHVx
- 89QLy9j78MYVrHEacuZPNMMzk6MmWn5OMqvzacWQDBbPW1lAjIkvn5CSa
- NuOKlkSvk1me+3MWazcD15gDw0ewUahN2GH+TBX7l9t4A9Sbp5m/WuJ66
- /miYJ7vALybL8jLLUmpHN7Horm9sUHL+eZY1YBjF3wMZ7MCGxn/FxvTBF
- VI0qG5hdXUiCIocMV+1tupDZoMKaQpuhviSK9BFrNwn9zPnLBQ9cF5qig
- oG2phdLm+BcGbJQSfkhUsZ8UqifLfigXRLTp0OXAO0QJCKfr0xybINyVl w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10379"; a="259727332"
-X-IronPort-AV: E=Sophos;i="5.92,305,1650956400"; d="scan'208";a="259727332"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2022 07:55:25 -0700
-X-IronPort-AV: E=Sophos;i="5.92,305,1650956400"; d="scan'208";a="641578720"
+ bh=IHcbLakUxXPtw4lxGA49Cp7l1bsscSZarH8Ycfwotnc=;
+ b=FOPej0c7ZC+b1/p0oVZlleoQ6/J315LP66jVNklN3Hja0R1NA2myuyTw
+ s5MtntPp7Z8aiYDsdyON10bQ0sp7AA4mU+Y0Hu/GV2zYOsBspVK2hQI8F
+ 6x6ciKzK9eceU27ENjh4W4CYWk9nzKsc3luy33KwkucDZdh78DPARKCeT
+ 6SRnTkvPyOUrVsY21n0EmTNRrXZqS5lBRU7CrZRoRxCch1d3/UQJeGspq
+ l5555QNIeDOeFVOEhJLH2RpHki7FzzbUFNyHTex1d4KDYeAq6lu4RwX/z
+ B523egkWHeRSfV82KDrVVJYjtn4Dk7zXlR4YJ35yJivo35+TMQL3k2jZH g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10379"; a="278061289"
+X-IronPort-AV: E=Sophos;i="5.92,305,1650956400"; d="scan'208";a="278061289"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2022 07:57:23 -0700
+X-IronPort-AV: E=Sophos;i="5.92,305,1650956400"; d="scan'208";a="589680169"
 Received: from aamendol-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.33.35])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2022 07:55:23 -0700
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2022 07:57:21 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: priyanka.dandamudi@intel.com, priyanka.dandamudi@intel.com,
  matthew.auld@intel.com, intel-gfx@lists.freedesktop.org
@@ -41,8 +41,8 @@ In-Reply-To: <20220616120509.1190329-2-priyanka.dandamudi@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20220616120509.1190329-1-priyanka.dandamudi@intel.com>
  <20220616120509.1190329-2-priyanka.dandamudi@intel.com>
-Date: Thu, 16 Jun 2022 17:55:21 +0300
-Message-ID: <87pmj8vesm.fsf@intel.com>
+Date: Thu, 16 Jun 2022 17:57:19 +0300
+Message-ID: <87mtecvepc.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -67,6 +67,17 @@ On Thu, 16 Jun 2022, priyanka.dandamudi@intel.com wrote:
 > From: Akeem G Abodunrin <akeem.g.abodunrin@intel.com>
 >
 > This patch adds support for the local memory PICe resizable bar, so that
+
+Please use imperative. "Add support ..."
+
+Please don't refer to "this patch".
+
+Please fix your git settings to not prefix with "i-g-t" when sending
+i915 changes.
+
+BR,
+Jani.
+
 > local memory can be resized to the maximum size supported by the device,
 > and mapped correctly to the PCIe memory bar. It is usual that GPU
 > devices expose only 256MB BARs primarily to be compatible with 32-bit
@@ -97,9 +108,6 @@ On Thu, 16 Jun 2022, priyanka.dandamudi@intel.com wrote:
 >  }
 >=20=20
 > +static void __release_bars(struct pci_dev *pdev)
-
-What's with the double underscores?=20
-
 > +{
 > +	int resno;
 > +
@@ -190,16 +198,6 @@ ing\n");
 > +	pci_assign_unassigned_bus_resources(pdev->bus);
 > +	pci_write_config_dword(pdev, PCI_COMMAND, pci_cmd);
 > +}
-
-Doesn't feel like the above code belongs in this file. The file is
-supposed to be very high level. The mchbar stuff is the only low level
-thing here, and that feels out of place too. Maybe this and the mchbar
-stuff belong in a new file.
-
-BR,
-Jani.
-
-
 > +
 >  /**
 >   * i915_driver_early_probe - setup state not requiring device access
