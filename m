@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4ABA554E553
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jun 2022 16:49:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D80C54E573
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jun 2022 16:55:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7C6CB10EAA6;
-	Thu, 16 Jun 2022 14:49:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8707211A478;
+	Thu, 16 Jun 2022 14:55:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0725610E9A4
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jun 2022 14:49:04 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C3AF311A449
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jun 2022 14:55:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655390944; x=1686926944;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=zDDrIxFD16JpkUNMOfqWwvvFAdNPTLO48yqV630ZtX8=;
- b=ejhLzruudrqMIRLrpUoBtgyIBnDlutaDfiEuFNfS+iUyh0brPCpeJe07
- yGzBWyEsZpxcPBq3xB4HtbQIxq7IFigV5ovIDLecQtYnlrhD4cPnTiZi4
- L7vkZ/IzJ2N4PAHa8LqCG1izDlcZxy9FpkFRxwRItwEucu4UOzz0/Opi+
- 4DkLXTBSHCspbzF+BQlxcSboMzmFNuYp0BXOQ0erXfehC+DSwFaYQ7QFU
- ueiwjveitjRXWQyjEeJ89LHKqBmGPCT1cXRB3mWEHQ5QyywukmxzGiyjp
- //aPFJtzHj6dfz5H8sXWlaB+BmH+F3OsNYXphtPIzaeTpAmrsShhkdV3a A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10379"; a="343222597"
-X-IronPort-AV: E=Sophos;i="5.92,305,1650956400"; d="scan'208";a="343222597"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2022 07:49:04 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,305,1650956400"; d="scan'208";a="831590927"
-Received: from lkp-server01.sh.intel.com (HELO 60dabacc1df6) ([10.239.97.150])
- by fmsmga006.fm.intel.com with ESMTP; 16 Jun 2022 07:49:03 -0700
-Received: from kbuild by 60dabacc1df6 with local (Exim 4.95)
- (envelope-from <lkp@intel.com>) id 1o1qnu-000OT1-J5;
- Thu, 16 Jun 2022 14:49:02 +0000
-Date: Thu, 16 Jun 2022 22:48:55 +0800
-From: kernel test robot <lkp@intel.com>
-To: Adrian Larumbe <adrian.larumbe@collabora.com>, daniel@ffwll.ch,
- intel-gfx@lists.freedesktop.org
-Message-ID: <202206162239.AM4QOO2c-lkp@intel.com>
-References: <20220614011350.122168-4-adrian.larumbe@collabora.com>
+ t=1655391325; x=1686927325;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=b0vsy1zRo/0UiLjGgSiV5SFIjtEiPa1e+ehbe7VYo64=;
+ b=b7170vcwCTE6e2JijpCmOHRsEDWnfWlhg5zznHkpe1B3ucNZZwiKLHVx
+ 89QLy9j78MYVrHEacuZPNMMzk6MmWn5OMqvzacWQDBbPW1lAjIkvn5CSa
+ NuOKlkSvk1me+3MWazcD15gDw0ewUahN2GH+TBX7l9t4A9Sbp5m/WuJ66
+ /miYJ7vALybL8jLLUmpHN7Horm9sUHL+eZY1YBjF3wMZ7MCGxn/FxvTBF
+ VI0qG5hdXUiCIocMV+1tupDZoMKaQpuhviSK9BFrNwn9zPnLBQ9cF5qig
+ oG2phdLm+BcGbJQSfkhUsZ8UqifLfigXRLTp0OXAO0QJCKfr0xybINyVl w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10379"; a="259727332"
+X-IronPort-AV: E=Sophos;i="5.92,305,1650956400"; d="scan'208";a="259727332"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2022 07:55:25 -0700
+X-IronPort-AV: E=Sophos;i="5.92,305,1650956400"; d="scan'208";a="641578720"
+Received: from aamendol-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.33.35])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2022 07:55:23 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: priyanka.dandamudi@intel.com, priyanka.dandamudi@intel.com,
+ matthew.auld@intel.com, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20220616120509.1190329-2-priyanka.dandamudi@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220616120509.1190329-1-priyanka.dandamudi@intel.com>
+ <20220616120509.1190329-2-priyanka.dandamudi@intel.com>
+Date: Thu, 16 Jun 2022 17:55:21 +0300
+Message-ID: <87pmj8vesm.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220614011350.122168-4-adrian.larumbe@collabora.com>
-Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915/ttm: remove shmem memory
- region and gem object backend
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH i-g-t 1/2] drm/i915: Add support for LMEM
+ PCIe resizable bar
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,56 +60,161 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: adrian.larumbe@collabora.com, kbuild-all@lists.01.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Adrian,
+On Thu, 16 Jun 2022, priyanka.dandamudi@intel.com wrote:
+> From: Akeem G Abodunrin <akeem.g.abodunrin@intel.com>
+>
+> This patch adds support for the local memory PICe resizable bar, so that
+> local memory can be resized to the maximum size supported by the device,
+> and mapped correctly to the PCIe memory bar. It is usual that GPU
+> devices expose only 256MB BARs primarily to be compatible with 32-bit
+> systems. So, those devices cannot claim larger memory BAR windows size due
+> to the system BIOS limitation. With this change, it would be possible to
+> reprogram the windows of the bridge directly above the requesting device
+> on the same BAR type.
+>
+> Signed-off-by: Akeem G Abodunrin <akeem.g.abodunrin@intel.com>
+> Signed-off-by: Micha=C5=82 Winiarski <michal.winiarski@intel.com>
+> Cc: Stuart Summers <stuart.summers@intel.com>
+> Cc: Michael J Ruhl <michael.j.ruhl@intel.com>
+> Cc: Prathap Kumar Valsan <prathap.kumar.valsan@intel.com>
+> Signed-off-by: Priyanka Dandamudi <priyanka.dandamudi@intel.com>
+> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+> ---
+>  drivers/gpu/drm/i915/i915_driver.c | 92 ++++++++++++++++++++++++++++++
+>  1 file changed, 92 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i9=
+15_driver.c
+> index d26dcca7e654..4bdb471cb2e2 100644
+> --- a/drivers/gpu/drm/i915/i915_driver.c
+> +++ b/drivers/gpu/drm/i915/i915_driver.c
+> @@ -303,6 +303,95 @@ static void sanitize_gpu(struct drm_i915_private *i9=
+15)
+>  		__intel_gt_reset(to_gt(i915), ALL_ENGINES);
+>  }
+>=20=20
+> +static void __release_bars(struct pci_dev *pdev)
 
-Thank you for the patch! Perhaps something to improve:
+What's with the double underscores?=20
 
-[auto build test WARNING on drm-tip/drm-tip]
+> +{
+> +	int resno;
+> +
+> +	for (resno =3D PCI_STD_RESOURCES; resno < PCI_STD_RESOURCE_END; resno++=
+) {
+> +		if (pci_resource_len(pdev, resno))
+> +			pci_release_resource(pdev, resno);
+> +	}
+> +}
+> +
+> +static void
+> +__resize_bar(struct drm_i915_private *i915, int resno, resource_size_t s=
+ize)
+> +{
+> +	struct pci_dev *pdev =3D to_pci_dev(i915->drm.dev);
+> +	int bar_size =3D pci_rebar_bytes_to_size(size);
+> +	int ret;
+> +
+> +	__release_bars(pdev);
+> +
+> +	ret =3D pci_resize_resource(pdev, resno, bar_size);
+> +	if (ret) {
+> +		drm_info(&i915->drm, "Failed to resize BAR%d to %dM (%pe)\n",
+> +			 resno, 1 << bar_size, ERR_PTR(ret));
+> +		return;
+> +	}
+> +
+> +	drm_info(&i915->drm, "BAR%d resized to %dM\n", resno, 1 << bar_size);
+> +}
+> +
+> +/* BAR size starts from 1MB - 2^20 */
+> +#define BAR_SIZE_SHIFT 20
+> +static resource_size_t
+> +__lmem_rebar_size(struct drm_i915_private *i915, int resno)
+> +{
+> +	struct pci_dev *pdev =3D to_pci_dev(i915->drm.dev);
+> +	u32 rebar =3D pci_rebar_get_possible_sizes(pdev, resno);
+> +	resource_size_t size;
+> +
+> +	if (!rebar)
+> +		return 0;
+> +
+> +	size =3D 1ULL << (__fls(rebar) + BAR_SIZE_SHIFT);
+> +
+> +	if (size <=3D pci_resource_len(pdev, resno))
+> +		return 0;
+> +
+> +	return size;
+> +}
+> +
+> +#define LMEM_BAR_NUM 2
+> +static void i915_resize_lmem_bar(struct drm_i915_private *i915)
+> +{
+> +	struct pci_dev *pdev =3D to_pci_dev(i915->drm.dev);
+> +	struct pci_bus *root =3D pdev->bus;
+> +	struct resource *root_res;
+> +	resource_size_t rebar_size =3D __lmem_rebar_size(i915, LMEM_BAR_NUM);
+> +	u32 pci_cmd;
+> +	int i;
+> +
+> +	if (!rebar_size)
+> +		return;
+> +
+> +	/* Find out if root bus contains 64bit memory addressing */
+> +	while (root->parent)
+> +		root =3D root->parent;
+> +
+> +	pci_bus_for_each_resource(root, root_res, i) {
+> +		if (root_res && root_res->flags & (IORESOURCE_MEM |
+> +					IORESOURCE_MEM_64) && root_res->start > 0x100000000ull)
+> +			break;
+> +	}
+> +
+> +	/* pci_resize_resource will fail anyways */
+> +	if (!root_res) {
+> +		drm_info(&i915->drm, "Can't resize LMEM BAR - platform support is miss=
+ing\n");
+> +		return;
+> +	}
+> +
+> +	/* First disable PCI memory decoding references */
+> +	pci_read_config_dword(pdev, PCI_COMMAND, &pci_cmd);
+> +	pci_write_config_dword(pdev, PCI_COMMAND,
+> +			       pci_cmd & ~PCI_COMMAND_MEMORY);
+> +
+> +	__resize_bar(i915, LMEM_BAR_NUM, rebar_size);
+> +
+> +	pci_assign_unassigned_bus_resources(pdev->bus);
+> +	pci_write_config_dword(pdev, PCI_COMMAND, pci_cmd);
+> +}
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Adrian-Larumbe/remove-shmem-backend-and-region-and-unify-them-with-TTM/20220614-091628
-base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
-config: x86_64-defconfig (https://download.01.org/0day-ci/archive/20220616/202206162239.AM4QOO2c-lkp@intel.com/config)
-compiler: gcc-11 (Debian 11.3.0-3) 11.3.0
-reproduce (this is a W=1 build):
-        # https://github.com/intel-lab-lkp/linux/commit/c04ba9928dafe2d5889457af0f770e96da5798e1
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Adrian-Larumbe/remove-shmem-backend-and-region-and-unify-them-with-TTM/20220614-091628
-        git checkout c04ba9928dafe2d5889457af0f770e96da5798e1
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        make W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash drivers/gpu/drm/i915/
+Doesn't feel like the above code belongs in this file. The file is
+supposed to be very high level. The mchbar stuff is the only low level
+thing here, and that feels out of place too. Maybe this and the mchbar
+stuff belong in a new file.
 
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
-
-All warnings (new ones prefixed by >>):
-
->> drivers/gpu/drm/i915/gem/i915_gem_ttm.c:1398: warning: expecting prototype for intel_region_ttm_shmem_init(). Prototype was for intel_region_ttm_init_shmem() instead
-   drivers/gpu/drm/i915/gem/i915_gem_ttm.c:1419: warning: Function parameter or member 'offset' not described in '__i915_gem_ttm_object_init'
-   drivers/gpu/drm/i915/gem/i915_gem_ttm.c:1419: warning: Function parameter or member 'page_size' not described in '__i915_gem_ttm_object_init'
+BR,
+Jani.
 
 
-vim +1398 drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> +
+>  /**
+>   * i915_driver_early_probe - setup state not requiring device access
+>   * @dev_priv: device private
+> @@ -852,6 +941,9 @@ int i915_driver_probe(struct pci_dev *pdev, const str=
+uct pci_device_id *ent)
+>=20=20
+>  	disable_rpm_wakeref_asserts(&i915->runtime_pm);
+>=20=20
+> +	if (HAS_LMEM(i915))
+> +		i915_resize_lmem_bar(i915);
+> +
+>  	intel_vgpu_detect(i915);
+>=20=20
+>  	ret =3D intel_gt_probe_all(i915);
 
-  1390	
-  1391	/**
-  1392	 * intel_region_ttm_shmem_init - Initialize a memory region for TTM.
-  1393	 * @mem: The region to initialize.
-  1394	 *
-  1395	 * Return: 0 on success, negative error code on failure.
-  1396	 */
-  1397	static int intel_region_ttm_init_shmem(struct intel_memory_region *mem)
-> 1398	{
-  1399		i915_gemfs_init(mem->i915);
-  1400	
-  1401		return 0; /* Don't error, we can simply fallback to the kernel mnt */
-  1402	}
-  1403	
-
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+--=20
+Jani Nikula, Intel Open Source Graphics Center
