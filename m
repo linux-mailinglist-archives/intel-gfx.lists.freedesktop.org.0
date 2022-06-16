@@ -2,67 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BD3C54DB47
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jun 2022 09:11:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7657854DB68
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jun 2022 09:21:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B5A210E886;
-	Thu, 16 Jun 2022 07:10:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 76A4E10E3D9;
+	Thu, 16 Jun 2022 07:21:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 850D110E886
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jun 2022 07:10:58 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2AD0510E3D9;
+ Thu, 16 Jun 2022 07:21:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655363458; x=1686899458;
+ t=1655364085; x=1686900085;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=KotsZhG03MgEuNvyZSJXF7USbi2526w42LrMPGHoz/8=;
- b=F1VsTB6/DWJ87Kur8WslyFdgw2md8doBBsDTu7P4aOzpbYWnZcFkQpuM
- 5vQO4o8j662eDJhfEUj01BvyXvUEWGa1+ly+2A39KJcjgtNtEPiwRxopP
- lCoqkfH7m3Jr8XBiKB13Z1mdESA4ev1ss075V7P477x8LJ22+Ajw4V063
- KKBaKAdVhuNcPLJ5YJma+LK3p0aFXNDa4mD0lRPXnv1/Tj32S+Qc/IsAf
- V802+Ca99himQjWqpNDbllJMfceBHLid3Ln7ZffFrEnsNmZY0EYPmAbzO
- ClX7xjDrecHrcAD8ikPnhh9j0050A/mI1sIvcoip0fgV82LI/LTFUT4XL g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10379"; a="267873917"
-X-IronPort-AV: E=Sophos;i="5.91,304,1647327600"; d="scan'208";a="267873917"
+ bh=1mYg0twpCDJWukAX9HNrHpjTtlZ93/AhW3DWmO6Usa8=;
+ b=FD7AoT249NIYqmd0L4+QnLWEFg3CtEjcy6a42dVTkPRo3Z/sScM0w7BC
+ P3zuy2N3IyGidiJnQBfgyn9/2g1JwsOhK1Hg1lrktJtPPAinvc8n/WCM0
+ vTVJPRHW9B8nWUWvbJTj+RBHRt1So9hNUJixma35pSy/1FQs2tl4oz6KX
+ bl5vHUvMQHQPbhaxRrMTSRGwvdmv+mxSoIc/m3KkMKmoQlWqTeOGzQCps
+ 6a+ItgX10kIxVaOBwb2eNv/xfUQb67Kxev2ORE6GR9Bd6puWdVTvveY3H
+ 0XDaviTJD1vAj7nVD2BRkM6UH567qKF8+iYRyPg+94cUicbKXWyQ8unJJ w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10379"; a="259649897"
+X-IronPort-AV: E=Sophos;i="5.91,304,1647327600"; d="scan'208";a="259649897"
 Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2022 00:10:57 -0700
-X-IronPort-AV: E=Sophos;i="5.91,304,1647327600"; d="scan'208";a="912042257"
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2022 00:21:24 -0700
+X-IronPort-AV: E=Sophos;i="5.91,304,1647327600"; d="scan'208";a="912044783"
 Received: from mstokes1-mobl.ger.corp.intel.com (HELO [10.213.198.82])
  ([10.213.198.82])
  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2022 00:10:55 -0700
-Message-ID: <94a7b33a-f31d-8c6c-cc28-73d3f4e2a1bd@linux.intel.com>
-Date: Thu, 16 Jun 2022 08:10:53 +0100
+ 16 Jun 2022 00:21:19 -0700
+Message-ID: <51e82b3b-b023-75dd-a039-e2941b426f1f@linux.intel.com>
+Date: Thu, 16 Jun 2022 08:21:17 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
 Content-Language: en-US
-To: "Ye, Tony" <tony.ye@intel.com>,
- "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>,
- intel-gfx@lists.freedesktop.org, "Zhang, Carl" <carl.zhang@intel.com>
-References: <20220609231955.3632596-1-daniele.ceraolospurio@intel.com>
- <dbc2ad75-1248-8d53-281d-f0a308733972@linux.intel.com>
- <7ede8090-bfbf-17a7-31f6-24e844a70673@intel.com>
- <a0860c06-4aba-deff-9101-aecdd8c14a02@linux.intel.com>
- <d6bc42f5-86c1-3bc9-d731-2bd0a978ece5@intel.com>
- <f50ee482-ed77-a644-095f-b2a988306de2@linux.intel.com>
- <7b394930-e6fb-8dc6-ba63-352f7a623b97@intel.com>
- <4d44c67a-4a38-fa53-6709-d5f206a9b0db@linux.intel.com>
- <e90f9dd1-7229-f958-d2e6-6fc4ec5a866b@intel.com>
- <954db3a4-e8c9-e157-5211-aceec87dfd9d@linux.intel.com>
- <4a7f6abe-e479-a3d9-8615-e52a2863733c@intel.com>
- <c565a81a-d86c-a5fd-c97e-27bd1459da6e@intel.com>
- <05a33039-ed2e-3364-6036-197955abacfc@linux.intel.com>
- <913becb5-7ffe-ca7b-7acd-71c2ee3ade23@intel.com>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>
+References: <cover.1655306128.git.mchehab@kernel.org>
+ <ce7ddc900a5421e577ef446b6834ee69663c2d9a.1655306128.git.mchehab@kernel.org>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-In-Reply-To: <913becb5-7ffe-ca7b-7acd-71c2ee3ade23@intel.com>
+In-Reply-To: <ce7ddc900a5421e577ef446b6834ee69663c2d9a.1655306128.git.mchehab@kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 00/15] HuC loading for DG2
+Subject: Re: [Intel-gfx] [PATCH 1/6] drm/i915/gt: Ignore TLB invalidations
+ on idle engines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,270 +62,168 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alexander Usyskin <alexander.usyskin@intel.com>,
- alan.previn.teres.alexis@intel.com
+Cc: David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
+ Chris Wilson <chris.p.wilson@intel.com>, Matthew Auld <matthew.auld@intel.com>,
+ Dave Airlie <airlied@redhat.com>,
+ =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>, intel-gfx@lists.freedesktop.org,
+ Thomas Hellstrom <thomas.hellstrom@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, mauro.chehab@linux.intel.com,
+ =?UTF-8?Q?Micha=c5=82_Winiarski?= <michal.winiarski@intel.com>,
+ linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 15/06/2022 17:14, Ye, Tony wrote:
-> On 6/15/2022 3:13 AM, Tvrtko Ursulin wrote:
->> On 15/06/2022 00:15, Ye, Tony wrote:
->>> On 6/14/2022 8:30 AM, Ceraolo Spurio, Daniele wrote:
->>>> On 6/14/2022 12:44 AM, Tvrtko Ursulin wrote:
->>>>>
->>>>> On 13/06/2022 19:13, Ceraolo Spurio, Daniele wrote:
->>>>>> On 6/13/2022 10:39 AM, Tvrtko Ursulin wrote:
->>>>>>> On 13/06/2022 18:06, Ceraolo Spurio, Daniele wrote:
->>>>>>>> On 6/13/2022 9:56 AM, Tvrtko Ursulin wrote:
->>>>>>>>> On 13/06/2022 17:41, Ceraolo Spurio, Daniele wrote:
->>>>>>>>>> On 6/13/2022 9:31 AM, Tvrtko Ursulin wrote:
->>>>>>>>>>>
->>>>>>>>>>> On 13/06/2022 16:39, Ceraolo Spurio, Daniele wrote:
->>>>>>>>>>>> On 6/13/2022 1:16 AM, Tvrtko Ursulin wrote:
->>>>>>>>>>>>>
->>>>>>>>>>>>> On 10/06/2022 00:19, Daniele Ceraolo Spurio wrote:
->>>>>>>>>>>>>> On DG2, HuC loading is performed by the GSC, via a PXP 
->>>>>>>>>>>>>> command. The load
->>>>>>>>>>>>>> operation itself is relatively simple (just send a message 
->>>>>>>>>>>>>> to the GSC
->>>>>>>>>>>>>> with the physical address of the HuC in LMEM), but there 
->>>>>>>>>>>>>> are timing
->>>>>>>>>>>>>> changes that requires special attention. In particular, to 
->>>>>>>>>>>>>> send a PXP
->>>>>>>>>>>>>> command we need to first export the GSC driver and then 
->>>>>>>>>>>>>> wait for the
->>>>>>>>>>>>>> mei-gsc and mei-pxp modules to start, which means that HuC 
->>>>>>>>>>>>>> load will
->>>>>>>>>>>>>> complete after i915 load is complete. This means that 
->>>>>>>>>>>>>> there is a small
->>>>>>>>>>>>>> window of time after i915 is registered and before HuC is 
->>>>>>>>>>>>>> loaded
->>>>>>>>>>>>>> during which userspace could submit and/or checking the 
->>>>>>>>>>>>>> HuC load status,
->>>>>>>>>>>>>> although this is quite unlikely to happen (HuC is usually 
->>>>>>>>>>>>>> loaded before
->>>>>>>>>>>>>> kernel init/resume completes).
->>>>>>>>>>>>>> We've consulted with the media team in regards to how to 
->>>>>>>>>>>>>> handle this and
->>>>>>>>>>>>>> they've asked us to do the following:
->>>>>>>>>>>>>>
->>>>>>>>>>>>>> 1) Report HuC as loaded in the getparam IOCTL even if load 
->>>>>>>>>>>>>> is still in
->>>>>>>>>>>>>> progress. The media driver uses the IOCTL as a way to 
->>>>>>>>>>>>>> check if HuC is
->>>>>>>>>>>>>> enabled and then includes a secondary check in the batches 
->>>>>>>>>>>>>> to get the
->>>>>>>>>>>>>> actual status, so doing it this way allows userspace to 
->>>>>>>>>>>>>> keep working
->>>>>>>>>>>>>> without changes.
->>>>>>>>>>>>>>
->>>>>>>>>>>>>> 2) Stall all userspace VCS submission until HuC is loaded. 
->>>>>>>>>>>>>> Stalls are
->>>>>>>>>>>>>> expected to be very rare (if any), due to the fact that 
->>>>>>>>>>>>>> HuC is usually
->>>>>>>>>>>>>> loaded before kernel init/resume is completed.
->>>>>>>>>>>>>
->>>>>>>>>>>>> Motivation to add these complications into i915 are not 
->>>>>>>>>>>>> clear to me here. I mean there is no HuC on DG2 _yet_ is 
->>>>>>>>>>>>> the premise of the series, right? So no backwards 
->>>>>>>>>>>>> compatibility concerns. In this case why jump through the 
->>>>>>>>>>>>> hoops and not let userspace handle all of this by just 
->>>>>>>>>>>>> leaving the getparam return the true status?
->>>>>>>>>>>>
->>>>>>>>>>>> The main areas impacted by the fact that we can't guarantee 
->>>>>>>>>>>> that HuC load is complete when i915 starts accepting 
->>>>>>>>>>>> submissions are boot and suspend/resume, with the latter 
->>>>>>>>>>>> being the main problem; GT reset is not a concern because 
->>>>>>>>>>>> HuC now survives it. A suspend/resume can be transparent to 
->>>>>>>>>>>> userspace and therefore the HuC status can temporarily flip 
->>>>>>>>>>>> from loaded to not without userspace knowledge, especially 
->>>>>>>>>>>> if we start going into deeper suspend states and start 
->>>>>>>>>>>> causing HuC resets when we go into runtime suspend. Note 
->>>>>>>>>>>> that this is different from what happens during GT reset for 
->>>>>>>>>>>> older platforms, because in that scenario we guarantee that 
->>>>>>>>>>>> HuC reload is complete before we restart the submission 
->>>>>>>>>>>> back-end, so userspace doesn't notice that the HuC status 
->>>>>>>>>>>> change. We had an internal discussion about this problem 
->>>>>>>>>>>> with both media and i915 archs and the conclusion was that 
->>>>>>>>>>>> the best option is for i915 to stall media submission while 
->>>>>>>>>>>> HuC (re-)load is in progress.
->>>>>>>>>>>
->>>>>>>>>>> Resume is potentialy a good reason - I did not pick up on 
->>>>>>>>>>> that from the cover letter. I read the statement about the 
->>>>>>>>>>> unlikely and small window where HuC is not loaded during 
->>>>>>>>>>> kernel init/resume and I guess did not pick up on the resume 
->>>>>>>>>>> part.
->>>>>>>>>>>
->>>>>>>>>>> Waiting for GSC to load HuC from i915 resume is not an option?
->>>>>>>>>>
->>>>>>>>>> GSC is an aux device exported by i915, so AFAIU GSC resume 
->>>>>>>>>> can't start until i915 resume completes.
->>>>>>>>>
->>>>>>>>> I'll dig into this in the next few days since I want to 
->>>>>>>>> understand how exactly it works. Or someone can help explain.
->>>>>>>>>
->>>>>>>>> If in the end conclusion will be that i915 resume indeed cannot 
->>>>>>>>> wait for GSC, then I think auto-blocking of queued up contexts 
->>>>>>>>> on media engines indeed sounds unavoidable. Otherwise, as you 
->>>>>>>>> explained, user experience post resume wouldn't be good.
->>>>>>>>
->>>>>>>> Even if we could implement a wait, I'm not sure we should. GSC 
->>>>>>>> resume and HuC reload takes ~300ms in most cases, I don't think 
->>>>>>>> we want to block within the i915 resume path for that long.
->>>>>>>
->>>>>>> Yeah maybe not. But entertaining the idea that it is technically 
->>>>>>> possible to block - we could perhaps add uapi for userspace to 
->>>>>>> mark contexts which want HuC access. Then track if there are any 
->>>>>>> such contexts with outstanding submissions and only wait in 
->>>>>>> resume if there are. If that would end up significantly less code 
->>>>>>> on the i915 side to maintain is an open.
->>>>>>>
->>>>>>> What would be the end result from users point of view in case 
->>>>>>> where it suspended during video playback? The proposed solution 
->>>>>>> from this series sees the video stuck after resume. Maybe 
->>>>>>> compositor blocks as well since I am not sure how well they 
->>>>>>> handle one window not providing new data. Probably depends on the 
->>>>>>> compositor.
->>>>>>>
->>>>>>> And then with a simpler solution definitely the whole resume 
->>>>>>> would be delayed by 300ms.
->>>>>>>
->>>>>>> With my ChromeOS hat the stalled media engines does sound like a 
->>>>>>> better solution. But with the maintainer hat I'd like all options 
->>>>>>> evaluated since there is attractiveness if a good enough solution 
->>>>>>> can be achieved with significantly less kernel code.
->>>>>>>
->>>>>>> You say 300ms is typical time for HuC load. How long it is on 
->>>>>>> other platforms? If much faster then why is it so slow here?
->>>>>>
->>>>>> The GSC itself has to come out of suspend before it can perform 
->>>>>> the load, which takes a few tens of ms I believe. AFAIU the GSC is 
->>>>>> also slower in processing the HuC load and auth compared to the 
->>>>>> legacy path. The GSC FW team gave a 250ms limit for the time the 
->>>>>> GSC FW needs from start of the resume flow to HuC load complete, 
->>>>>> so I bumped that to ~300ms to account for all other SW 
->>>>>> interactions, plus a bit of buffer. Note that a bit of the SW 
->>>>>> overhead is caused by the fact that we have 2 mei modules in play 
->>>>>> here: mei-gsc, which manages the GSC device itself (including 
->>>>>> resume), and mei-pxp, which owns the pxp messaging, including HuC 
->>>>>> load.
->>>>>
->>>>> And how long on other platforms (not DG2) do you know? Presumably 
->>>>> there the wait is on the i915 resume path?
->>>>
->>>> I don't have "official" expected load times at hand, but looking at 
->>>> the BAT boot logs for this series for DG1 I see it takes ~10 ms to 
->>>> load both GuC and HuC:
->>>>
->>>> <7>[    8.157838] i915 0000:03:00.0: [drm:intel_huc_init [i915]] GSC 
->>>> loads huc=no
->>>> <6>[    8.158632] i915 0000:03:00.0: [drm] GuC firmware 
->>>> i915/dg1_guc_70.1.1.bin version 70.1
->>>> <6>[    8.158634] i915 0000:03:00.0: [drm] HuC firmware 
->>>> i915/dg1_huc_7.9.3.bin version 7.9
->>>> <7>[    8.164255] i915 0000:03:00.0: [drm:guc_enable_communication 
->>>> [i915]] GuC communication enabled
->>>> <6>[    8.166111] i915 0000:03:00.0: [drm] HuC authenticated
->>>>
->>>> Note that we increase the GT frequency all the way to the max before 
->>>> starting the FW load, which speeds things up.
->>>>
->>>>>
->>>>>>>>> However, do we really need to lie in the getparam? How about 
->>>>>>>>> extend or add a new one to separate the loading vs loaded 
->>>>>>>>> states? Since userspace does not support DG2 HuC yet this 
->>>>>>>>> should be doable.
->>>>>>>>
->>>>>>>> I don't really have a preference here. The media team asked us 
->>>>>>>> to do it this way because they wouldn't have a use for the 
->>>>>>>> different "in progress" and "done" states. If they're ok with 
->>>>>>>> having separate flags that's fine by me.
->>>>>>>> Tony, any feedback here?
->>>>>>>
->>>>>>> We don't even have any docs in i915_drm.h in terms of what it means:
->>>>>>>
->>>>>>> #define I915_PARAM_HUC_STATUS         42
->>>>>>>
->>>>>>> Seems to be a boolean. Status false vs true? Could you add some 
->>>>>>> docs?
->>>>>>
->>>>>> There is documentation above intel_huc_check_status(), which is 
->>>>>> also updated in this series. I can move that to i915_drm.h.
->>>>>
->>>>> That would be great, thanks.
->>>>>
->>>>> And with so rich return codes already documented and exposed via 
->>>>> uapi - would we really need to add anything new for DG2 apart for 
->>>>> userspace to know that if zero is returned (not a negative error 
->>>>> value) it should retry? I mean is there another negative error 
->>>>> missing which would prevent zero transitioning to one?
->>>>
->>>> I think if the auth fails we currently return 0, because the uc 
->>>> state in that case would be "TRANSFERRED", i.e. DMA complete but not 
->>>> fully enabled. I don't have anything against changing the FW state 
->>>> to "ERROR" in this scenario and leave the 0 to mean "not done yet", 
->>>> but I'd prefer the media team to comment on their needs for this 
->>>> IOCTL before committing to anything.
->>>
->>>
->>> Currently media doesn't differentiate "delayed loading is in 
->>> progress" with "HuC is authenticated and running". If the HuC 
->>> authentication eventually fails, the user needs to check the debugfs 
->>> to know the reason. IMHO, it's not a big problem as this is what we 
->>> do even when the IOCTL returns non-zero values. + Carl to comment.
->>
->> (Side note - debugfs can be assumed to not exist so it is not 
->> interesting to users.)
->>
->> There isn't currently a "delayed loading is in progress" state, that's 
->> the discussion in this thread, if and how to add it.
->>
->> Getparam it currently documents these states:
->>
->>  -ENODEV if HuC is not present on this platform,
->>  -EOPNOTSUPP if HuC firmware is disabled,
->>  -ENOPKG if HuC firmware was not installed,
->>  -ENOEXEC if HuC firmware is invalid or mismatched,
->>  0 if HuC firmware is not running,
->>  1 if HuC firmware is authenticated and running.
->>
->> This patch proposed to change this to:
->>
->>  1 if HuC firmware is authenticated and running or if delayed load is 
->> in progress,
->>  0 if HuC firmware is not running and delayed load is not in progress
->>
->> Alternative idea is for DG2 (well in general) to add some more fine 
->> grained states, so that i915 does not have to use 1 for both running 
->> and loading. This may be adding a new error code for auth fails as 
->> Daniele mentioned. Then UMD can know that if 0 is returned and
->> platform is DG2 it needs to query it again since it will transition to 
->> either 1 or error eventually. This would mean the non error states 
->> would be:
->>
->>  0 not running (aka loading)
->>  1 running (and authenticated)
->>
->> @Daniele - one more thing - can you make sure in the series (if you 
->> haven't already) that if HuC status was in any error before suspend 
->> reload is not re-tried on resume? My thinking is that the error is 
->> likely to persist and we don't want to impose long delay on every 
->> resume afterwards. Makes sense to you?
->>
->> @Tony - one more question for the UMD. Or two.
->>
->> How prevalent is usage of HuC on DG2 depending on what codecs need it? 
->> Do you know in advance, before creating a GEM context, that HuC 
->> commands will be sent to the engine or this changes at runtime?
+On 15/06/2022 16:27, Mauro Carvalho Chehab wrote:
+> From: Chris Wilson <chris.p.wilson@intel.com>
 > 
-> HuC is needed for all codecs while HW bit rate control (CBR, VBR) is in 
-> use. It's also used by content protection. And UMD doesn't know if it 
-> will be used later at context creation time.
+> As an extension of the current skip TLB invalidations,
+> check if the device is powered down prior to any engine activity,
+> 
+> as, on such cases, all the TLBs were already invalidated, so an
+> explicit TLB invalidation is not needed.
+> 
+> This becomes more significant  with GuC, as it can only do so when
+> the connection to the GuC is awake.
+> 
+> Fixes: 7938d61591d3 ("drm/i915: Flush TLBs before releasing backing store")
 
-Bit rate control implies encode only? So encode and protected content 
-decode?
+Hmmm is this a fix or "an extension" as the commit text mentions both 
+options?! GuC angle does not appear relevant for upstream yet so is cc: 
+stable really required is the question.
 
 Regards,
 
 Tvrtko
+
+> 
+> Signed-off-by: Chris Wilson <chris.p.wilson@intel.com>
+> Cc: Fei Yang <fei.yang@intel.com>
+> Cc: Andi Shyti <andi.shyti@linux.intel.com>
+> Cc: stable@vger.kernel.org
+> Acked-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Signed-off-by: Mauro Carvalho Chehab <mchehab@kernel.org>
+> ---
+> 
+> See [PATCH 0/6] at: https://lore.kernel.org/all/cover.1655306128.git.mchehab@kernel.org/
+> 
+>   drivers/gpu/drm/i915/gem/i915_gem_pages.c | 10 +++++----
+>   drivers/gpu/drm/i915/gt/intel_gt.c        | 26 +++++++++++++++++------
+>   drivers/gpu/drm/i915/gt/intel_gt_pm.h     |  3 +++
+>   3 files changed, 28 insertions(+), 11 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pages.c b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
+> index 97c820eee115..6835279943df 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_pages.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
+> @@ -6,14 +6,15 @@
+>   
+>   #include <drm/drm_cache.h>
+>   
+> +#include "gt/intel_gt.h"
+> +#include "gt/intel_gt_pm.h"
+> +
+>   #include "i915_drv.h"
+>   #include "i915_gem_object.h"
+>   #include "i915_scatterlist.h"
+>   #include "i915_gem_lmem.h"
+>   #include "i915_gem_mman.h"
+>   
+> -#include "gt/intel_gt.h"
+> -
+>   void __i915_gem_object_set_pages(struct drm_i915_gem_object *obj,
+>   				 struct sg_table *pages,
+>   				 unsigned int sg_page_sizes)
+> @@ -217,10 +218,11 @@ __i915_gem_object_unset_pages(struct drm_i915_gem_object *obj)
+>   
+>   	if (test_and_clear_bit(I915_BO_WAS_BOUND_BIT, &obj->flags)) {
+>   		struct drm_i915_private *i915 = to_i915(obj->base.dev);
+> +		struct intel_gt *gt = to_gt(i915);
+>   		intel_wakeref_t wakeref;
+>   
+> -		with_intel_runtime_pm_if_active(&i915->runtime_pm, wakeref)
+> -			intel_gt_invalidate_tlbs(to_gt(i915));
+> +		with_intel_gt_pm_if_awake(gt, wakeref)
+> +			intel_gt_invalidate_tlbs(gt);
+>   	}
+>   
+>   	return pages;
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
+> index f33290358c51..d5ed6a6ac67c 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+> @@ -11,6 +11,7 @@
+>   
+>   #include "i915_drv.h"
+>   #include "intel_context.h"
+> +#include "intel_engine_pm.h"
+>   #include "intel_engine_regs.h"
+>   #include "intel_gt.h"
+>   #include "intel_gt_buffer_pool.h"
+> @@ -1216,6 +1217,7 @@ void intel_gt_invalidate_tlbs(struct intel_gt *gt)
+>   	struct drm_i915_private *i915 = gt->i915;
+>   	struct intel_uncore *uncore = gt->uncore;
+>   	struct intel_engine_cs *engine;
+> +	intel_engine_mask_t awake, tmp;
+>   	enum intel_engine_id id;
+>   	const i915_reg_t *regs;
+>   	unsigned int num = 0;
+> @@ -1239,12 +1241,27 @@ void intel_gt_invalidate_tlbs(struct intel_gt *gt)
+>   
+>   	GEM_TRACE("\n");
+>   
+> -	assert_rpm_wakelock_held(&i915->runtime_pm);
+> -
+>   	mutex_lock(&gt->tlb_invalidate_lock);
+>   	intel_uncore_forcewake_get(uncore, FORCEWAKE_ALL);
+>   
+> +	awake = 0;
+>   	for_each_engine(engine, gt, id) {
+> +		struct reg_and_bit rb;
+> +
+> +		if (!intel_engine_pm_is_awake(engine))
+> +			continue;
+> +
+> +		rb = get_reg_and_bit(engine, regs == gen8_regs, regs, num);
+> +		if (!i915_mmio_reg_offset(rb.reg))
+> +			continue;
+> +
+> +		intel_uncore_write_fw(uncore, rb.reg, rb.bit);
+> +		awake |= engine->mask;
+> +	}
+> +
+> +	for_each_engine_masked(engine, gt, awake, tmp) {
+> +		struct reg_and_bit rb;
+> +
+>   		/*
+>   		 * HW architecture suggest typical invalidation time at 40us,
+>   		 * with pessimistic cases up to 100us and a recommendation to
+> @@ -1252,13 +1269,8 @@ void intel_gt_invalidate_tlbs(struct intel_gt *gt)
+>   		 */
+>   		const unsigned int timeout_us = 100;
+>   		const unsigned int timeout_ms = 4;
+> -		struct reg_and_bit rb;
+>   
+>   		rb = get_reg_and_bit(engine, regs == gen8_regs, regs, num);
+> -		if (!i915_mmio_reg_offset(rb.reg))
+> -			continue;
+> -
+> -		intel_uncore_write_fw(uncore, rb.reg, rb.bit);
+>   		if (__intel_wait_for_register_fw(uncore,
+>   						 rb.reg, rb.bit, 0,
+>   						 timeout_us, timeout_ms,
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.h b/drivers/gpu/drm/i915/gt/intel_gt_pm.h
+> index bc898df7a48c..a334787a4939 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt_pm.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.h
+> @@ -55,6 +55,9 @@ static inline void intel_gt_pm_might_put(struct intel_gt *gt)
+>   	for (tmp = 1, intel_gt_pm_get(gt); tmp; \
+>   	     intel_gt_pm_put(gt), tmp = 0)
+>   
+> +#define with_intel_gt_pm_if_awake(gt, wf) \
+> +	for (wf = intel_gt_pm_get_if_awake(gt); wf; intel_gt_pm_put_async(gt), wf = 0)
+> +
+>   static inline int intel_gt_pm_wait_for_idle(struct intel_gt *gt)
+>   {
+>   	return intel_wakeref_wait_for_idle(&gt->wakeref);
