@@ -2,51 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A41054E150
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jun 2022 15:00:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2319054E158
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jun 2022 15:03:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F0A3E1132B5;
-	Thu, 16 Jun 2022 13:00:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 600FB11A595;
+	Thu, 16 Jun 2022 13:03:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A723A1132B5;
- Thu, 16 Jun 2022 13:00:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655384437; x=1686920437;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=Tr9gPWONPpUcdBTlI0PbbApbWb3nCJGm6NKoHc05MJ8=;
- b=bntyIO2wxjxb6gkX7kt8OOR7m3DjHphMRs2eqU7Y+TCxZ1OO2Il87ks4
- 0loTJyOByGIbowU+AwkLCHZCVCnzFAGJMDfWdLlLRoH4MY98hklHGyBMe
- 4JDjavyg6yKW+VWLdF1OcyUeWWG22XEv2Epx+L3UNnOETV44kSqNtMAj7
- akgTwTZfMNzMWQ6ZNfQw1F+8KFBG8Dqj1ZtEw05qHmhvn627ZqVDGNu5k
- GwjeMzyZXN3/VDCEz4ZA5zGHE98TeNLmqHsQ+U3w+uBsJJ6ans9RsMJx4
- QkzP1il6gKpyDxvH25ixwxV0LCQHM1F9/Elefyb0s6wbYvtJRmVX5FQaA Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10379"; a="267930319"
-X-IronPort-AV: E=Sophos;i="5.91,305,1647327600"; d="scan'208";a="267930319"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2022 06:00:37 -0700
-X-IronPort-AV: E=Sophos;i="5.91,305,1647327600"; d="scan'208";a="641527949"
-Received: from malashi-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.252.57.133])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2022 06:00:34 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Anshuman Gupta <anshuman.gupta@intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-In-Reply-To: <20220616120106.24353-3-anshuman.gupta@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220616120106.24353-1-anshuman.gupta@intel.com>
- <20220616120106.24353-3-anshuman.gupta@intel.com>
-Date: Thu, 16 Jun 2022 16:00:31 +0300
-Message-ID: <877d5gwyog.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 382B011A594;
+ Thu, 16 Jun 2022 13:03:17 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 2EE0FA0003;
+ Thu, 16 Jun 2022 13:03:17 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH v2 2/9] drm/i915/dg1: OpRegion PCON DG1 MBD
- config support
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Thu, 16 Jun 2022 13:03:17 -0000
+Message-ID: <165538459716.17456.7252586930841805926@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <cover.1655372759.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1655372759.git.jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_drm/i915/display=3A_split_out_verification=2C_h?=
+ =?utf-8?q?w_readout_and_dump_from_intel=5Fdisplay=2Ec?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,137 +41,132 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: rodrigo.vivi@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 16 Jun 2022, Anshuman Gupta <anshuman.gupta@intel.com> wrote:
-> DGFX cards support both Add in Card(AIC) and Mother Board Down(MBD)
-> configs. MBD config requires HOST BIOS GPIO toggling support
-> in order to enable/disable VRAM SR using ACPI OpRegion.
->
-> i915 requires to check OpRegion PCON MBD Config bits to
-> discover whether Gfx Card is MBD config before enabling
-> VRSR.
->
-> BSpec: 53440
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_opregion.c | 43 +++++++++++++++++++
->  drivers/gpu/drm/i915/display/intel_opregion.h |  6 +++
->  2 files changed, 49 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_opregion.c b/drivers/gpu/drm/i915/display/intel_opregion.c
-> index 11d8c5bb23ac..c8cdcde89dfc 100644
-> --- a/drivers/gpu/drm/i915/display/intel_opregion.c
-> +++ b/drivers/gpu/drm/i915/display/intel_opregion.c
-> @@ -53,6 +53,8 @@
->  #define MBOX_ASLE_EXT		BIT(4)	/* Mailbox #5 */
->  #define MBOX_BACKLIGHT		BIT(5)	/* Mailbox #2 (valid from v3.x) */
->  
-> +#define PCON_DG1_MBD_CONFIG				BIT(9)
-> +#define PCON_DG1_MBD_CONFIG_FIELD_VALID			BIT(10)
->  #define PCON_DGFX_BIOS_SUPPORTS_VRSR			BIT(11)
->  #define PCON_DGFX_BIOS_SUPPORTS_VRSR_FIELD_VALID	BIT(12)
->  #define PCON_HEADLESS_SKU	BIT(13)
-> @@ -1255,6 +1257,44 @@ void intel_opregion_unregister(struct drm_i915_private *i915)
->  	opregion->lid_state = NULL;
->  }
->  
-> +static bool intel_opregion_dg1_mbd_config(struct drm_i915_private *i915)
-> +{
-> +	struct intel_opregion *opregion = &i915->opregion;
-> +
-> +	if (!IS_DG1(i915))
-> +		return false;
-> +
-> +	if (!opregion)
+== Series Details ==
 
-Like in previous patch, opregion is always non-NULL. Check for
-!opregion->header.
+Series: drm/i915: drm/i915/display: split out verification, hw readout and dump from intel_display.c
+URL   : https://patchwork.freedesktop.org/series/105220/
+State : warning
 
-> +		return false;
-> +
-> +	if (opregion->header->pcon & PCON_DG1_MBD_CONFIG_FIELD_VALID)
-> +		return opregion->header->pcon & PCON_DG1_MBD_CONFIG;
-> +	else
-> +		return false;
-> +}
-> +
-> +/**
-> + * intel_opregion_vram_sr_required().
-> + * @i915 i915 device priv data.
-> + *
-> + * It checks whether a DGFX card is Mother Board Down config depending
-> + * on respective discrete platform.
-> + *
-> + * Returns:
-> + * It returns a boolean whether opregion vram_sr support is required.
-> + */
-> +bool
-> +intel_opregion_vram_sr_required(struct drm_i915_private *i915)
-> +{
-> +	if (!IS_DGFX(i915))
-> +		return false;
-> +
-> +	if (IS_DG1(i915))
-> +		return intel_opregion_dg1_mbd_config(i915);
+== Summary ==
 
-Only check for IS_DG1() here or in the function being called, not both.
+Error: dim checkpatch failed
+ab29d65b77e1 drm/i915/wm: move wm state verification to intel_pm.c
+d7c89dd74933 drm/i915/dpll: move shared dpll state verification to intel_dpll_mgr.c
+-:13: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#13: 
+v2: intel_shared_dpll_verify_state -> intel_shared_dpll_state_verify (Ville)
 
-> +
-> +	return false;
-> +}
-> +
->  /**
->   * intel_opregion_bios_supports_vram_sr() get HOST BIOS VRAM Self
->   * Refresh capability support.
-> @@ -1298,6 +1338,9 @@ void intel_opregion_vram_sr(struct drm_i915_private *i915, bool enable)
->  	if (!opregion)
->  		return;
->  
-> +	if (!intel_opregion_vram_sr_required(i915))
-> +		return;
+total: 0 errors, 1 warnings, 0 checks, 215 lines checked
+3fb0167385c7 drm/i915/mpllb: use I915_STATE_WARN() for state mismatch warnings
+-:32: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__name' - possible side-effects?
+#32: FILE: drivers/gpu/drm/i915/display/intel_display.c:6604:
++#define MPLLB_CHECK(__name)						\
++	I915_STATE_WARN(mpllb_sw_state->__name != mpllb_hw_state.__name,	\
++			"[CRTC:%d:%s] mismatch in MPLLB: %s (expected 0x%08x, found 0x%08x)", \
++			crtc->base.base.id, crtc->base.name,		\
++			__stringify(__name),				\
++			mpllb_sw_state->__name, mpllb_hw_state.__name)
 
-Feels like maybe this patch should be combined with the previous patch
-due to this dependency.
+-:32: CHECK:MACRO_ARG_PRECEDENCE: Macro argument '__name' may be better as '(__name)' to avoid precedence issues
+#32: FILE: drivers/gpu/drm/i915/display/intel_display.c:6604:
++#define MPLLB_CHECK(__name)						\
++	I915_STATE_WARN(mpllb_sw_state->__name != mpllb_hw_state.__name,	\
++			"[CRTC:%d:%s] mismatch in MPLLB: %s (expected 0x%08x, found 0x%08x)", \
++			crtc->base.base.id, crtc->base.name,		\
++			__stringify(__name),				\
++			mpllb_sw_state->__name, mpllb_hw_state.__name)
 
-> +
->  	if (drm_WARN(&i915->drm, !opregion->asle, "ASLE MAILBOX3 is not available\n"))
->  		return;
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_opregion.h b/drivers/gpu/drm/i915/display/intel_opregion.h
-> index 73c9d81d5ee6..ad40c97f9565 100644
-> --- a/drivers/gpu/drm/i915/display/intel_opregion.h
-> +++ b/drivers/gpu/drm/i915/display/intel_opregion.h
-> @@ -77,6 +77,7 @@ int intel_opregion_get_panel_type(struct drm_i915_private *dev_priv);
->  struct edid *intel_opregion_get_edid(struct intel_connector *connector);
->  bool intel_opregion_bios_supports_vram_sr(struct drm_i915_private *i915);
->  void intel_opregion_vram_sr(struct drm_i915_private *i915, bool enable);
-> +bool intel_opregion_vram_sr_required(struct drm_i915_private *i915);
->  
->  bool intel_opregion_headless_sku(struct drm_i915_private *i915);
->  
-> @@ -145,6 +146,11 @@ static void intel_opregion_vram_sr(struct drm_i915_private *i915, bool enable)
->  {
->  }
->  
-> +static bool intel_opregion_vram_sr_required(struct drm_i915_private *i915)
+total: 0 errors, 0 warnings, 2 checks, 20 lines checked
+2c6e11c59640 drm/i915/mpllb: move mpllb state check to intel_snps_phy.c
+-:108: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__name' - possible side-effects?
+#108: FILE: drivers/gpu/drm/i915/display/intel_snps_phy.c:835:
++#define MPLLB_CHECK(__name)						\
++	I915_STATE_WARN(mpllb_sw_state->__name != mpllb_hw_state.__name,	\
++			"[CRTC:%d:%s] mismatch in MPLLB: %s (expected 0x%08x, found 0x%08x)", \
++			crtc->base.base.id, crtc->base.name,		\
++			__stringify(__name),				\
++			mpllb_sw_state->__name, mpllb_hw_state.__name)
 
-static inline.
+-:108: CHECK:MACRO_ARG_PRECEDENCE: Macro argument '__name' may be better as '(__name)' to avoid precedence issues
+#108: FILE: drivers/gpu/drm/i915/display/intel_snps_phy.c:835:
++#define MPLLB_CHECK(__name)						\
++	I915_STATE_WARN(mpllb_sw_state->__name != mpllb_hw_state.__name,	\
++			"[CRTC:%d:%s] mismatch in MPLLB: %s (expected 0x%08x, found 0x%08x)", \
++			crtc->base.base.id, crtc->base.name,		\
++			__stringify(__name),				\
++			mpllb_sw_state->__name, mpllb_hw_state.__name)
 
-BR,
-Jani.
+total: 0 errors, 0 warnings, 2 checks, 121 lines checked
+2dc25c9664a8 drm/i915/display: split out modeset verification code
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 11, in <module>
+    import git
+ModuleNotFoundError: No module named 'git'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 11, in <module>
+    import git
+ModuleNotFoundError: No module named 'git'
+-:365: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#365: 
+new file mode 100644
 
-> +{
-> +	return false;
-> +}
-> +
->  #endif /* CONFIG_ACPI */
->  
->  #endif
+-:459: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#459: FILE: drivers/gpu/drm/i915/display/intel_modeset_verify.c:90:
++		int fdi_dotclock = intel_dotclock_calculate(intel_fdi_link_freq(dev_priv, pipe_config),
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+total: 0 errors, 2 warnings, 0 checks, 585 lines checked
+7ed4eeeef068 drm/i915/display: split out crtc state dump to a separate file
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 11, in <module>
+    import git
+ModuleNotFoundError: No module named 'git'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 11, in <module>
+    import git
+ModuleNotFoundError: No module named 'git'
+-:27: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#27: 
+new file mode 100644
+
+-:90: ERROR:BRACKET_SPACE: space prohibited before open square bracket '['
+#90: FILE: drivers/gpu/drm/i915/display/intel_crtc_state_dump.c:59:
++#define OUTPUT_TYPE(x) [INTEL_OUTPUT_ ## x] = #x
+
+total: 1 errors, 1 warnings, 0 checks, 708 lines checked
+6001a929f514 drm/i915/display: change who adds [] around crtc state dump context string
+24883fc54e92 drm/i915/display: rename dev_priv -> i915 in crtc state dump
+b8c70fc5cfcd drm/i915/display: split out hw state readout and sanitize
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 11, in <module>
+    import git
+ModuleNotFoundError: No module named 'git'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 11, in <module>
+    import git
+ModuleNotFoundError: No module named 'git'
+-:283: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#283: FILE: drivers/gpu/drm/i915/display/intel_display.c:7532:
++			intel_modeset_get_crtc_power_domains(new_crtc_state, &put_domains[crtc->pipe]);
+
+-:913: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#913: 
+new file mode 100644
+
+-:1388: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
+#1388: FILE: drivers/gpu/drm/i915/display/intel_modeset_setup.c:471:
++								 intel_crtc_bigjoiner_slave_pipes(crtc_state)) {
+
+-:1391: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#1391: FILE: drivers/gpu/drm/i915/display/intel_modeset_setup.c:474:
++					slave_crtc_state = to_intel_crtc_state(slave_crtc->base.state);
+
+total: 0 errors, 4 warnings, 0 checks, 1609 lines checked
+5a3aa1448abb drm/i915/display: some struct drm_i915_private *i915 conversions
+bb615290f6ce drm/i915/display: convert modeset setup to struct drm_i915_private *i915
+
+
