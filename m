@@ -2,53 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 194B654E362
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jun 2022 16:29:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D14954E369
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jun 2022 16:30:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 418761126B1;
-	Thu, 16 Jun 2022 14:29:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE1F710E357;
+	Thu, 16 Jun 2022 14:30:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 78DD51126B1
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jun 2022 14:29:05 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE08610E357;
+ Thu, 16 Jun 2022 14:30:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655389745; x=1686925745;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=WTFF2oh9tGl85qV+iEe5sM4YrernOICXGuz+idiuPAQ=;
- b=VGNc6sAbUGMsZK/sx2gRy3an1qoTTSf/ljA5Tyi2kssN+50KNyYTNNg6
- 95SKpfm0Qdgr91EMFHMsfTPP2s6C4CxWh8U/NIhKv5up5JAjBFgiZhUmh
- xpa5x0Qml/8M1vdwdYOw32LVlgImqESPGIUvNRNqrETW5QeW97eUs/esY
- DhQsRYp9/u/TD98JIO2vW4d+2wOtDI78wYv1nSfcRqrr6yjGA6i9Zf2/K
- 25BlQPmO/gZV082wocMH6fKm53VlYMbfx3bk5B6DFj/UUXo9EVbNBhIxo
- eRb20PELmkoO6m8ynO6ydBP4cQbERcX+9fYYzJ08+rlZnRkL2esDBniWe Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10379"; a="259721855"
-X-IronPort-AV: E=Sophos;i="5.92,305,1650956400"; d="scan'208";a="259721855"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2022 07:29:05 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,305,1650956400"; d="scan'208";a="575026813"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.163])
- by orsmga002.jf.intel.com with SMTP; 16 Jun 2022 07:29:02 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 16 Jun 2022 17:29:00 +0300
-Date: Thu, 16 Jun 2022 17:29:00 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <Yqs+LGQBJaqdbzYJ@intel.com>
-References: <20220615174851.20658-1-ville.syrjala@linux.intel.com>
- <87fsk4x4ll.fsf@intel.com>
+ t=1655389821; x=1686925821;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=J6v8J5QcgSyKWcIQxsj1OTlgv6v5a7w3ry5kyZmJgDs=;
+ b=XIsuuuupBM8I0ZH7k3H8pYBsjDwklrX2jsrm+GK/WFSsqbdClRGtomXR
+ JhQ5TAyjZO7iRshnxcSbhkJKRvcosOJabcnTbuLZONPgzdcIf9R+ctWNu
+ eBUA9YDihGbj2iFpTzg8ygEYkVHyDlmez2s/803dzl0QXZ4cJYBvrBHxU
+ UFQeEHuqjP0Wx387a2jbQOFyF99JBcXOwHX93N8xPXNxfEeQEysvxsWT8
+ tGky38FRruvtExPaFh/JmuRH9dHbzBWooogxJd13tU1aI0Mmd5R8k8o7V
+ fqcvGDk2EYj0PGOyEVORKPfsICpF+8UHeXlokxWkBYe/K9vmVvR52HJ6I w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10379"; a="280293034"
+X-IronPort-AV: E=Sophos;i="5.92,305,1650956400"; d="scan'208";a="280293034"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2022 07:30:19 -0700
+X-IronPort-AV: E=Sophos;i="5.92,305,1650956400"; d="scan'208";a="641566330"
+Received: from aamendol-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.33.35])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2022 07:30:18 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Anshuman Gupta <anshuman.gupta@intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+In-Reply-To: <20220616120106.24353-9-anshuman.gupta@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220616120106.24353-1-anshuman.gupta@intel.com>
+ <20220616120106.24353-9-anshuman.gupta@intel.com>
+Date: Thu, 16 Jun 2022 17:30:15 +0300
+Message-ID: <87y1xwvfyg.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <87fsk4x4ll.fsf@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: Extract
- intel_sanitize_fifo_underrun_reporting()
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH v2 8/9] drm/i915/xehpsdv: Store lmem region
+ in gt
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,30 +59,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Andi Shyti <andi.shyti@intel.com>, rodrigo.vivi@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jun 16, 2022 at 01:52:38PM +0300, Jani Nikula wrote:
-> On Wed, 15 Jun 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> >
-> > Pull the underrun status sanitation into its own helper.
-> >
-> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> 
-> On the series,
-> 
-> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+On Thu, 16 Jun 2022, Anshuman Gupta <anshuman.gupta@intel.com> wrote:
+> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>
+> Store a pointer to respective local memory region in intel_gt so it can be
+> used when memory local to a GT needs to be allocated.
+>
+> Cc: Andi Shyti <andi.shyti@intel.com>
+> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_gt.c       | 1 +
+>  drivers/gpu/drm/i915/gt/intel_gt_types.h | 3 +++
+>  2 files changed, 4 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
+> index f33290358c51..7a535f670ae1 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+> @@ -91,6 +91,7 @@ static int intel_gt_probe_lmem(struct intel_gt *gt)
+>  	GEM_BUG_ON(!HAS_REGION(i915, id));
+>  	GEM_BUG_ON(i915->mm.regions[id]);
+>  	i915->mm.regions[id] = mem;
+> +	gt->lmem = mem;
+>  
+>  	return 0;
+>  }
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_types.h b/drivers/gpu/drm/i915/gt/intel_gt_types.h
+> index df708802889d..cd7744eaaeaa 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt_types.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_types.h
+> @@ -23,6 +23,7 @@
+>  #include "intel_gt_buffer_pool_types.h"
+>  #include "intel_hwconfig.h"
+>  #include "intel_llc_types.h"
+> +#include "intel_memory_region.h"
 
-Thanks.
+Please never add includes in headers when a forward declaration is
+sufficient. I'm spending a lot of time trying to reduce the include
+dependencies we have.
 
-> 
-> I'll respin my state readout extraction on top of this once you've
-> merged.
+BR,
+Jani.
 
-Pushed now.
+>  #include "intel_reset_types.h"
+>  #include "intel_rc6_types.h"
+>  #include "intel_rps_types.h"
+> @@ -202,6 +203,8 @@ struct intel_gt {
+>  	 */
+>  	phys_addr_t phys_addr;
+>  
+> +	struct intel_memory_region *lmem;
+> +
+>  	struct intel_gt_info {
+>  		unsigned int id;
 
 -- 
-Ville Syrjälä
-Intel
+Jani Nikula, Intel Open Source Graphics Center
