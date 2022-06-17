@@ -1,33 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 181B954FE37
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jun 2022 22:20:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 040A454FE48
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jun 2022 22:25:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 48C6110F963;
-	Fri, 17 Jun 2022 20:20:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5CDD410E46B;
+	Fri, 17 Jun 2022 20:25:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4546E10FF13;
- Fri, 17 Jun 2022 20:20:50 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 3ECD6AADD4;
- Fri, 17 Jun 2022 20:20:50 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 22A2D10E110;
+ Fri, 17 Jun 2022 20:25:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1655497547; x=1687033547;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=+CboEOXkd8mucnJ3/yuaYbTTRlHgpSJ5XlPeFZhSh9U=;
+ b=NplAWOgm+fSqdXokwd/Q256JcotaBLWgDxYh6dcESmZ+L2VQZea7MRt3
+ rwrrKdonGCjDlqcDNEPavklL2TbkEQUHKsGUo2MuQK5cumUOho9zxH/Sg
+ nGybe5+HWMOz+ECTnIbeXmvfMH1R4N64cBuOQqFH1jxDZ/9fxoYYSDYSr
+ aKTAQHcSUo2ec67b6p5vjfxQtMDnNO9cwd1gmbfuRy7bdHP7KaXswPb/9
+ 5yPxPYf9AGuvqItS2hcDEl7gsaKhdZT74sbVDyI4iyEacvR1RF8IVYRbu
+ trG27u6yhgiWKugzMV/CoGFTcebyTbvmvvjQnM7zD7LZY7zHWObd5k40/ w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10380"; a="259401461"
+X-IronPort-AV: E=Sophos;i="5.92,306,1650956400"; d="scan'208";a="259401461"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jun 2022 13:25:46 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.92,306,1650956400"; d="scan'208";a="613670418"
+Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.27.27])
+ by orsmga008.jf.intel.com with ESMTP; 17 Jun 2022 13:25:46 -0700
+From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Fri, 17 Jun 2022 13:25:34 -0700
+Message-Id: <20220617202534.30609-1-vinay.belgaumkar@intel.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Robert Beckett" <bob.beckett@collabora.com>
-Date: Fri, 17 Jun 2022 20:20:50 -0000
-Message-ID: <165549725022.20134.10490035290223157808@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220617190516.2805572-1-bob.beckett@collabora.com>
-In-Reply-To: <20220617190516.2805572-1-bob.beckett@collabora.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?drm/i915=3A_ttm_for_stolen_=28rev2=29?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915: Add global forcewake status to drpc
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,21 +54,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+We have seen multiple RC6 issues where it is useful to know
+which global forcewake bits are set. Add this to the 'drpc'
+debugfs output.
 
-Series: drm/i915: ttm for stolen (rev2)
-URL   : https://patchwork.freedesktop.org/series/101396/
-State : warning
+Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c | 13 +++++++++++--
+ 1 file changed, 11 insertions(+), 2 deletions(-)
 
-== Summary ==
-
-Error: dim sparse failed
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
-
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
+index 90a440865037..2a157ca28dda 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
+@@ -96,18 +96,25 @@ static void print_rc6_res(struct seq_file *m,
+ 			   intel_rc6_residency_us(&gt->rc6, reg));
+ }
+ 
++static u32 mt_fwake_status(struct intel_uncore *uncore)
++{
++	return intel_uncore_read_fw(uncore, FORCEWAKE_MT);
++}
++
+ static int vlv_drpc(struct seq_file *m)
+ {
+ 	struct intel_gt *gt = m->private;
+ 	struct intel_uncore *uncore = gt->uncore;
+-	u32 rcctl1, pw_status;
++	u32 rcctl1, pw_status, mt_fwake;
+ 
++	mt_fwake = mt_fwake_status(uncore);
+ 	pw_status = intel_uncore_read(uncore, VLV_GTLC_PW_STATUS);
+ 	rcctl1 = intel_uncore_read(uncore, GEN6_RC_CONTROL);
+ 
+ 	seq_printf(m, "RC6 Enabled: %s\n",
+ 		   str_yes_no(rcctl1 & (GEN7_RC_CTL_TO_MODE |
+ 					GEN6_RC_CTL_EI_MODE(1))));
++	seq_printf(m, "Multi-threaded Forcewake: 0x%x\n", mt_fwake);
+ 	seq_printf(m, "Render Power Well: %s\n",
+ 		   (pw_status & VLV_GTLC_PW_RENDER_STATUS_MASK) ? "Up" : "Down");
+ 	seq_printf(m, "Media Power Well: %s\n",
+@@ -124,9 +131,10 @@ static int gen6_drpc(struct seq_file *m)
+ 	struct intel_gt *gt = m->private;
+ 	struct drm_i915_private *i915 = gt->i915;
+ 	struct intel_uncore *uncore = gt->uncore;
+-	u32 gt_core_status, rcctl1, rc6vids = 0;
++	u32 gt_core_status, mt_fwake, rcctl1, rc6vids = 0;
+ 	u32 gen9_powergate_enable = 0, gen9_powergate_status = 0;
+ 
++	mt_fwake = mt_fwake_status(uncore);
+ 	gt_core_status = intel_uncore_read_fw(uncore, GEN6_GT_CORE_STATUS);
+ 
+ 	rcctl1 = intel_uncore_read(uncore, GEN6_RC_CONTROL);
+@@ -178,6 +186,7 @@ static int gen6_drpc(struct seq_file *m)
+ 
+ 	seq_printf(m, "Core Power Down: %s\n",
+ 		   str_yes_no(gt_core_status & GEN6_CORE_CPD_STATE_MASK));
++	seq_printf(m, "Multi-threaded Forcewake: 0x%x\n", mt_fwake);
+ 	if (GRAPHICS_VER(i915) >= 9) {
+ 		seq_printf(m, "Render Power Well: %s\n",
+ 			   (gen9_powergate_status &
+-- 
+2.35.1
 
