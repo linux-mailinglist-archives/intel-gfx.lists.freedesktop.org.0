@@ -1,47 +1,72 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2070A54F6AE
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jun 2022 13:28:14 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4946D54F6C0
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jun 2022 13:33:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 62C1811ACDB;
-	Fri, 17 Jun 2022 11:28:12 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8922F11ACDB
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Jun 2022 11:28:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655465291; x=1687001291;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=qcZbWZnfTdRUs/NgJ1K3SIf5Irt+s43WTYzwU5rMD5Y=;
- b=n7NJv0vJlmdtShE15383BLO9yWQv07RqrJfbT+qSPUat8T7hdk5kvtfq
- 8px6UpeS9SojEEhmo8sKtLxH026nMpyac/pLTzH7YbVSYGXsm1SWbaMu3
- X4ZbNomvbgfqNJrb9zv4hs92W112JfM6Dc0RijWdWxYufl3NQlpv4yGhf
- bnSujgCdotGxrfYSqcUppGfpLMIdOoUUfodPaI/aOS7pQ1IeZg2HqU60d
- JAnFoxm1dNBBPZAzcfGbR97TbSCMo869wtOD2rwWK9xkFcAy5iXwoXJCS
- judnKsKKlnNfW4QnjrFtDlRwJkIMHrB8CDVa6FPR82Edw+v3UdVPOcj5D A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10380"; a="343447992"
-X-IronPort-AV: E=Sophos;i="5.92,306,1650956400"; d="scan'208";a="343447992"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2022 04:28:11 -0700
-X-IronPort-AV: E=Sophos;i="5.92,306,1650956400"; d="scan'208";a="653592576"
-Received: from ideak-desk.fi.intel.com ([10.237.72.175])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2022 04:28:09 -0700
-From: Imre Deak <imre.deak@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 17 Jun 2022 14:28:07 +0300
-Message-Id: <20220617112807.1586621-1-imre.deak@intel.com>
-X-Mailer: git-send-email 2.30.2
+	by gabe.freedesktop.org (Postfix) with ESMTP id 428D31122C6;
+	Fri, 17 Jun 2022 11:33:43 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com
+ [IPv6:2a00:1450:4864:20::536])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4DE641122C6;
+ Fri, 17 Jun 2022 11:33:42 +0000 (UTC)
+Received: by mail-ed1-x536.google.com with SMTP id g7so5824235eda.3;
+ Fri, 17 Jun 2022 04:33:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=message-id:date:mime-version:user-agent:subject:content-language:to
+ :cc:references:from:in-reply-to:content-transfer-encoding;
+ bh=6YfASpn5E5C8sIQ3ajjREAznnJQXtZu8ahb6sHkFNz0=;
+ b=Ot44739m82pp7MGdJSM/bC7bL62Z9saeGHwGTR2uwDLVBl15ZdsT1WWSUPNs56uaca
+ NNDU+Vf4wXEQc9w2WwafkBgacqsw6YyMPlmdQKmbXz2EC0Z2whZuXursdRwtS3obWQzf
+ 1dSpeQxJUwNp6/MB5/woKIz9Z74eMc+UbpciRPox6WaZpbs05fyKvochUlpeOk8aYF6I
+ pt1IlYEgaV7qcW7WnDZhYBOhPpYQgyKZaVY/qeDtMHkzMUimGKFZ/mZ/IhEkQEGImxpO
+ uuE5sRB1lMoEbIe8b/Cqj+ELq5d7Ch0Ccfv+wDd54w8hAAZsXeky52wnU3QwV6UvD0Lp
+ BnkA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+ :content-language:to:cc:references:from:in-reply-to
+ :content-transfer-encoding;
+ bh=6YfASpn5E5C8sIQ3ajjREAznnJQXtZu8ahb6sHkFNz0=;
+ b=rDyxpqy8WCzPhUKd8JY8cJoHgEXJJfvxMqxKlhhEOsEINU7EfXKMwGLqX8K2BeI8cj
+ BAA3ch65yeJiJnC3Q4Hs4yzoxcXGlS6oJQRRZVufUL8TCRdFvwS4eLgtTSk9PK+J6Koq
+ k07vc1CxxF6EiQzTzDNW+hm1IzElyaHVu8eguXM2KkMhuqXjMxsTaO6YJbbPzQBuDkIQ
+ ftF3zgeFbi9wdkcKpd1sg2GWV1hiKR47/pEDSPqrW9uY/ZHcY1FkEHrPXyw90zwqukXT
+ przmhcykgfl5xc3Iihr3k5dSHbYh34o99YaxV/aSsYAUDoVftehGxgT72hHXQD+X14uD
+ tSkQ==
+X-Gm-Message-State: AJIora82Rc4YHvukPnCD2+ld+ad5jB0QSsutBPDDYSefDEwJwpgxSjrt
+ n7zB24DJe7/F/2HT38VqzK0=
+X-Google-Smtp-Source: AGRyM1u2593YL3UdIOIb4dDZpHzdjkhEfR8UnMqx85C/nlhXnE5gAyavuUuhM1xmFZIHouIqayG0vA==
+X-Received: by 2002:a05:6402:380c:b0:42d:c1d8:616a with SMTP id
+ es12-20020a056402380c00b0042dc1d8616amr8012315edb.219.1655465620682; 
+ Fri, 17 Jun 2022 04:33:40 -0700 (PDT)
+Received: from ?IPV6:2a02:908:1256:79a0:837f:d646:3ccf:f1e?
+ ([2a02:908:1256:79a0:837f:d646:3ccf:f1e])
+ by smtp.gmail.com with ESMTPSA id
+ g18-20020a17090604d200b0070d9aad64a1sm1979447eja.208.2022.06.17.04.33.27
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 17 Jun 2022 04:33:29 -0700 (PDT)
+Message-ID: <64127964-4c0a-f486-42da-4b110405833e@gmail.com>
+Date: Fri, 17 Jun 2022 13:33:25 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Content-Language: en-US
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ igt-dev@lists.freedesktop.org
+References: <20220616140637.559194-1-tvrtko.ursulin@linux.intel.com>
+ <20220616140637.559194-9-tvrtko.ursulin@linux.intel.com>
+ <10f7350c-af49-c5b9-9fe5-bfd32131ac79@gmail.com>
+ <af41c69f-c79c-e7e0-43a1-053dd08faaa8@linux.intel.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+In-Reply-To: <af41c69f-c79c-e7e0-43a1-053dd08faaa8@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/tgl+: Fix HDMI transcoder clock vs.
- DDI BUF disabling order
+Subject: Re: [Intel-gfx] [PATCH i-g-t 8/8] gputop: Basic vendor agnostic GPU
+ top tool
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,40 +79,351 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sandeep K Lakkakula <sandeep.k.lakkakula@intel.com>
+Cc: Rob Clark <robdclark@chromium.org>, Intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Starting with TGL the disabling order of HDMI transcoder clock vs. DDI
-BUF has swapped, fix this. There hasn't been any issues seen related to
-this, but let's follow the spec.
+Am 17.06.22 um 12:09 schrieb Tvrtko Ursulin:
+>
+> On 17/06/2022 08:20, Christian König wrote:
+>> Am 16.06.22 um 16:06 schrieb Tvrtko Ursulin:
+>>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>>
+>>> Rudimentary vendor agnostic example of how lib_igt_drm_clients can 
+>>> be used
+>>> to display a sorted by card and usage list of processes using GPUs.
+>>>
+>>> Borrows a bit of code from intel_gpu_top but for now omits the fancy
+>>> features like interactive functionality, card selection, client
+>>> aggregation, sort modes, JSON output  and pretty engine names. Also no
+>>> support for global GPU or system metrics.
+>>>
+>>> On the other hand it shows clients from all DRM cards which
+>>> intel_gpu_top does not do.
+>>>
+>>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>> Cc: Rob Clark <robdclark@chromium.org>
+>>> Cc: Christian König <ckoenig.leichtzumerken@gmail.com>
+>>
+>> LGTM, Acked-by: Christian König <christian.koenig@amd.com>
+>
+> Thanks Christian,
+>
+> It is a very rudimentary tool, more a reference really. I keep hoping 
+> some UI/desktop folks actually pick up the idea and implement 
+> something nicer elsewhere. Or maybe it ends up me spending a little 
+> bit more time on it, to carry over some more functionality from 
+> intel_gpu_top.
+>
+> I see amdgpu patches are in - presumably that means gputop parses it 
+> and understands fine?
 
-Reported-by: Sandeep K Lakkakula <sandeep.k.lakkakula@intel.com>
-Signed-off-by: Imre Deak <imre.deak@intel.com>
----
- drivers/gpu/drm/i915/display/intel_ddi.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+At least the last time I tested it the tool worked like a charm.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 272e1bf6006be..4b874c31398a2 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -2691,10 +2691,14 @@ static void intel_ddi_post_disable_hdmi(struct intel_atomic_state *state,
- 	dig_port->set_infoframes(encoder, false,
- 				 old_crtc_state, old_conn_state);
- 
--	intel_ddi_disable_pipe_clock(old_crtc_state);
-+	if (DISPLAY_VER(dev_priv) < 12)
-+		intel_ddi_disable_pipe_clock(old_crtc_state);
- 
- 	intel_disable_ddi_buf(encoder, old_crtc_state);
- 
-+	if (DISPLAY_VER(dev_priv) >= 12)
-+		intel_ddi_disable_pipe_clock(old_crtc_state);
-+
- 	intel_display_power_put(dev_priv,
- 				dig_port->ddi_io_power_domain,
- 				fetch_and_zero(&dig_port->ddi_io_wakeref));
--- 
-2.30.2
+And yes, it's indeed rather useful.
+
+Regards,
+Christian.
+
+>
+> Regards,
+>
+> Tvrtko
+>
+>>> ---
+>>>   tools/gputop.c    | 260 
+>>> ++++++++++++++++++++++++++++++++++++++++++++++
+>>>   tools/meson.build |   5 +
+>>>   2 files changed, 265 insertions(+)
+>>>   create mode 100644 tools/gputop.c
+>>>
+>>> diff --git a/tools/gputop.c b/tools/gputop.c
+>>> new file mode 100644
+>>> index 000000000000..d259cac1ab17
+>>> --- /dev/null
+>>> +++ b/tools/gputop.c
+>>> @@ -0,0 +1,260 @@
+>>> +// SPDX-License-Identifier: MIT
+>>> +/*
+>>> + * Copyright © 2022 Intel Corporation
+>>> + */
+>>> +
+>>> +#include <assert.h>
+>>> +#include <ctype.h>
+>>> +#include <dirent.h>
+>>> +#include <errno.h>
+>>> +#include <fcntl.h>
+>>> +#include <inttypes.h>
+>>> +#include <limits.h>
+>>> +#include <locale.h>
+>>> +#include <math.h>
+>>> +#include <poll.h>
+>>> +#include <signal.h>
+>>> +#include <stdint.h>
+>>> +#include <stdio.h>
+>>> +#include <stdlib.h>
+>>> +#include <string.h>
+>>> +#include <sys/ioctl.h>
+>>> +#include <sys/stat.h>
+>>> +#include <sys/types.h>
+>>> +#include <unistd.h>
+>>> +#include <termios.h>
+>>> +#include <sys/sysmacros.h>
+>>> +#include <stdbool.h>
+>>> +
+>>> +#include "igt_drm_clients.h"
+>>> +#include "igt_drm_fdinfo.h"
+>>> +
+>>> +static const char *bars[] = { " ", "▏", "▎", "▍", "▌", "▋", "▊", 
+>>> "▉", "█" };
+>>> +
+>>> +static void n_spaces(const unsigned int n)
+>>> +{
+>>> +    unsigned int i;
+>>> +
+>>> +    for (i = 0; i < n; i++)
+>>> +        putchar(' ');
+>>> +}
+>>> +
+>>> +static void print_percentage_bar(double percent, int max_len)
+>>> +{
+>>> +    int bar_len, i, len = max_len - 2;
+>>> +    const int w = 8;
+>>> +
+>>> +    assert(max_len > 0);
+>>> +
+>>> +    bar_len = ceil(w * percent * len / 100.0);
+>>> +    if (bar_len > w * len)
+>>> +        bar_len = w * len;
+>>> +
+>>> +    putchar('|');
+>>> +
+>>> +    for (i = bar_len; i >= w; i -= w)
+>>> +        printf("%s", bars[w]);
+>>> +    if (i)
+>>> +        printf("%s", bars[i]);
+>>> +
+>>> +    len -= (bar_len + (w - 1)) / w;
+>>> +    n_spaces(len);
+>>> +
+>>> +    putchar('|');
+>>> +}
+>>> +
+>>> +static int
+>>> +print_client_header(struct igt_drm_client *c, int lines, int con_w, 
+>>> int con_h,
+>>> +            int *engine_w)
+>>> +{
+>>> +    const char *pidname = "    PID               NAME ";
+>>> +    int ret, len = strlen(pidname);
+>>> +
+>>> +    if (lines++ >= con_h || len >= con_w)
+>>> +        return lines;
+>>> +    printf("\033[7m");
+>>> +    ret = printf("DRM minor %u", c->drm_minor);
+>>> +    n_spaces(con_w - ret);
+>>> +
+>>> +    if (lines++ >= con_h)
+>>> +        return lines;
+>>> +    printf("\n%s", pidname);
+>>> +
+>>> +    if (c->engines->num_engines) {
+>>> +        unsigned int i;
+>>> +        int width;
+>>> +
+>>> +        *engine_w = width = (con_w - len) / c->engines->num_engines;
+>>> +
+>>> +        for (i = 0; i <= c->engines->max_engine_id; i++) {
+>>> +            const char *name = c->engines->names[i];
+>>> +            int name_len = strlen(name);
+>>> +            int pad = (width - name_len) / 2;
+>>> +            int spaces = width - pad - name_len;
+>>> +
+>>> +            if (!name)
+>>> +                continue;
+>>> +
+>>> +            if (pad < 0 || spaces < 0)
+>>> +                continue;
+>>> +
+>>> +            n_spaces(pad);
+>>> +            printf("%s", name);
+>>> +            n_spaces(spaces);
+>>> +            len += pad + name_len + spaces;
+>>> +        }
+>>> +    }
+>>> +
+>>> +    n_spaces(con_w - len);
+>>> +    printf("\033[0m\n");
+>>> +
+>>> +    return lines;
+>>> +}
+>>> +
+>>> +
+>>> +static bool
+>>> +newheader(const struct igt_drm_client *c, const struct 
+>>> igt_drm_client *pc)
+>>> +{
+>>> +    return !pc || c->drm_minor != pc->drm_minor;
+>>> +}
+>>> +
+>>> +static int
+>>> +print_client(struct igt_drm_client *c, struct igt_drm_client **prevc,
+>>> +         double t, int lines, int con_w, int con_h,
+>>> +         unsigned int period_us, int *engine_w)
+>>> +{
+>>> +    unsigned int i;
+>>> +
+>>> +    /* Filter out idle clients. */
+>>> +    if (!c->total_runtime || c->samples < 2)
+>>> +        return lines;
+>>> +
+>>> +    /* Print header when moving to a different DRM card. */
+>>> +    if (newheader(c, *prevc)) {
+>>> +        lines = print_client_header(c, lines, con_w, con_h, engine_w);
+>>> +        if (lines >= con_h)
+>>> +            return lines;
+>>> +    }
+>>> +
+>>> +    *prevc = c;
+>>> +
+>>> +    printf("%8u %17s ", c->pid, c->print_name);
+>>> +    lines++;
+>>> +
+>>> +    for (i = 0; c->samples > 1 && i <= c->engines->max_engine_id; 
+>>> i++) {
+>>> +        double pct;
+>>> +
+>>> +        if (!c->engines->capacity[i])
+>>> +            continue;
+>>> +
+>>> +        pct = (double)c->val[i] / period_us / 1e3 * 100 /
+>>> +              c->engines->capacity[i];
+>>> +
+>>> +        /*
+>>> +         * Guard against fluctuations between our scanning period and
+>>> +         * GPU times as exported by the kernel in fdinfo.
+>>> +         */
+>>> +        if (pct > 100.0)
+>>> +            pct = 100.0;
+>>> +
+>>> +        print_percentage_bar(pct, *engine_w);
+>>> +    }
+>>> +
+>>> +    putchar('\n');
+>>> +
+>>> +    return lines;
+>>> +}
+>>> +
+>>> +static int
+>>> +__client_id_cmp(const struct igt_drm_client *a,
+>>> +        const struct igt_drm_client *b)
+>>> +{
+>>> +    if (a->id > b->id)
+>>> +        return 1;
+>>> +    else if (a->id < b->id)
+>>> +        return -1;
+>>> +    else
+>>> +        return 0;
+>>> +}
+>>> +
+>>> +static int client_cmp(const void *_a, const void *_b, void *unused)
+>>> +{
+>>> +    const struct igt_drm_client *a = _a;
+>>> +    const struct igt_drm_client *b = _b;
+>>> +    long val_a, val_b;
+>>> +
+>>> +    /* DRM cards into consecutive buckets first. */
+>>> +    val_a = a->drm_minor;
+>>> +    val_b = b->drm_minor;
+>>> +    if (val_a > val_b)
+>>> +        return 1;
+>>> +    else if (val_b > val_a)
+>>> +        return -1;
+>>> +
+>>> +    /*
+>>> +     * Within buckets sort by last sampling period aggregated 
+>>> runtime, with
+>>> +     * client id as a tie-breaker.
+>>> +     */
+>>> +    val_a = a->last_runtime;
+>>> +    val_b = b->last_runtime;
+>>> +    if (val_a == val_b)
+>>> +        return __client_id_cmp(a, b);
+>>> +    else if (val_b > val_a)
+>>> +        return 1;
+>>> +    else
+>>> +        return -1;
+>>> +
+>>> +}
+>>> +
+>>> +int main(int argc, char **argv)
+>>> +{
+>>> +    unsigned int period_us = 2e6;
+>>> +    struct igt_drm_clients *clients = NULL;
+>>> +    int con_w = -1, con_h = -1;
+>>> +
+>>> +    clients = igt_drm_clients_init(NULL);
+>>> +    if (!clients)
+>>> +        exit(1);
+>>> +
+>>> +    igt_drm_clients_scan(clients, NULL, NULL, 0);
+>>> +
+>>> +    for (;;) {
+>>> +        struct igt_drm_client *c, *prevc = NULL;
+>>> +        int i, engine_w = 0, lines = 0;
+>>> +        struct winsize ws;
+>>> +
+>>> +        if (ioctl(0, TIOCGWINSZ, &ws) != -1) {
+>>> +            con_w = ws.ws_col;
+>>> +            con_h = ws.ws_row;
+>>> +            if (con_w == 0 && con_h == 0) {
+>>> +                /* Serial console. */
+>>> +                con_w = 80;
+>>> +                con_h = 24;
+>>> +            }
+>>> +        }
+>>> +
+>>> +        igt_drm_clients_scan(clients, NULL, NULL, 0);
+>>> +        igt_drm_clients_sort(clients, client_cmp);
+>>> +
+>>> +        printf("\033[H\033[J");
+>>> +
+>>> +        igt_for_each_drm_client(clients, c, i) {
+>>> +            assert(c->status != IGT_DRM_CLIENT_PROBE);
+>>> +            if (c->status != IGT_DRM_CLIENT_ALIVE)
+>>> +                break; /* Active clients are first in the array. */
+>>> +
+>>> +            lines = print_client(c, &prevc, (double)period_us / 1e6,
+>>> +                         lines, con_w, con_h, period_us,
+>>> +                         &engine_w);
+>>> +            if (lines >= con_h)
+>>> +                break;
+>>> +        }
+>>> +
+>>> +        if (lines++ < con_h)
+>>> +            printf("\n");
+>>> +
+>>> +        usleep(period_us);
+>>> +    }
+>>> +
+>>> +    return 0;
+>>> +}
+>>> diff --git a/tools/meson.build b/tools/meson.build
+>>> index ade00ee4df61..d5cb459b619d 100644
+>>> --- a/tools/meson.build
+>>> +++ b/tools/meson.build
+>>> @@ -70,6 +70,11 @@ if libudev.found()
+>>>              install : true)
+>>>   endif
+>>> +executable('gputop', 'gputop.c',
+>>> +           install : true,
+>>> +           install_rpath : bindir_rpathdir,
+>>> +           dependencies : 
+>>> [lib_igt_drm_clients,lib_igt_drm_fdinfo,math])
+>>> +
+>>>   intel_l3_parity_src = [ 'intel_l3_parity.c', 
+>>> 'intel_l3_udev_listener.c' ]
+>>>   executable('intel_l3_parity', sources : intel_l3_parity_src,
+>>>          dependencies : tool_deps,
+>>
 
