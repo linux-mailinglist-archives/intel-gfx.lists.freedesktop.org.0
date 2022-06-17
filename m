@@ -2,46 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 040A454FE48
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jun 2022 22:25:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D05E554FE53
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jun 2022 22:33:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5CDD410E46B;
-	Fri, 17 Jun 2022 20:25:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E3E8B10E06F;
+	Fri, 17 Jun 2022 20:32:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 22A2D10E110;
- Fri, 17 Jun 2022 20:25:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655497547; x=1687033547;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=+CboEOXkd8mucnJ3/yuaYbTTRlHgpSJ5XlPeFZhSh9U=;
- b=NplAWOgm+fSqdXokwd/Q256JcotaBLWgDxYh6dcESmZ+L2VQZea7MRt3
- rwrrKdonGCjDlqcDNEPavklL2TbkEQUHKsGUo2MuQK5cumUOho9zxH/Sg
- nGybe5+HWMOz+ECTnIbeXmvfMH1R4N64cBuOQqFH1jxDZ/9fxoYYSDYSr
- aKTAQHcSUo2ec67b6p5vjfxQtMDnNO9cwd1gmbfuRy7bdHP7KaXswPb/9
- 5yPxPYf9AGuvqItS2hcDEl7gsaKhdZT74sbVDyI4iyEacvR1RF8IVYRbu
- trG27u6yhgiWKugzMV/CoGFTcebyTbvmvvjQnM7zD7LZY7zHWObd5k40/ w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10380"; a="259401461"
-X-IronPort-AV: E=Sophos;i="5.92,306,1650956400"; d="scan'208";a="259401461"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2022 13:25:46 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,306,1650956400"; d="scan'208";a="613670418"
-Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.27.27])
- by orsmga008.jf.intel.com with ESMTP; 17 Jun 2022 13:25:46 -0700
-From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Fri, 17 Jun 2022 13:25:34 -0700
-Message-Id: <20220617202534.30609-1-vinay.belgaumkar@intel.com>
-X-Mailer: git-send-email 2.35.1
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E3FDC10E06F
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Jun 2022 20:32:57 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id BE415B82BC6;
+ Fri, 17 Jun 2022 20:32:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5542C3411B;
+ Fri, 17 Jun 2022 20:32:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1655497974;
+ bh=WjorfQwH6E8hN5MzDsY4aBtjcQ1w6h/bD/WKIu6wqaM=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:From;
+ b=NpWWaQDsQrlhRYE9Y5iLyRQtUhmGo3LRH69xMlAYg3ohixvolV91Z9JCv9WMv+OtF
+ F/vyYyVaXNSkq/CJC1f6298aNY31U11AtAwl3SII6a/nTFbvSn4Uk1Ow25kxAa1B9h
+ WoC01+iw2POKAaOyXn9OtnWSeqdK8BAC2z5BrkuQvnTgV8SuGpM/DOMd/rBy4CSjK1
+ g22L9kSZ3m8rcwax5SvU3xbN4wceW/WyQ3rnAuBL48T6itcJntc/509OwFafgc3noP
+ lFCGa3zityWCztPZmdAjznVM7kw84KbfkdoP/OMOZyzovHh9M5CERs/1qDfj1pjS7e
+ MWk8TaJn8HjYg==
+Date: Fri, 17 Jun 2022 15:32:52 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Message-ID: <20220617203252.GA1203491@bhelgaas>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: Add global forcewake status to drpc
+In-Reply-To: <20220617184441.7kbs4al7gmpxjuuy@ldmartin-desk2>
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: Add support for LMEM PCIe
+ resizable bar
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,69 +52,191 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: linux-pci@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ Sergei Miroshnichenko <s.miroshnichenko@yadro.com>,
+ linux-kernel@vger.kernel.org, priyanka.dandamudi@intel.com,
+ matthew.auld@intel.com, Bjorn Helgaas <bhelgaas@google.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We have seen multiple RC6 issues where it is useful to know
-which global forcewake bits are set. Add this to the 'drpc'
-debugfs output.
+[+cc Christian, author of pci_resize_resource(), Sergei, author of
+rebalancing patches]
 
-Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c | 13 +++++++++++--
- 1 file changed, 11 insertions(+), 2 deletions(-)
+Hi Lucas,
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
-index 90a440865037..2a157ca28dda 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
-@@ -96,18 +96,25 @@ static void print_rc6_res(struct seq_file *m,
- 			   intel_rc6_residency_us(&gt->rc6, reg));
- }
- 
-+static u32 mt_fwake_status(struct intel_uncore *uncore)
-+{
-+	return intel_uncore_read_fw(uncore, FORCEWAKE_MT);
-+}
-+
- static int vlv_drpc(struct seq_file *m)
- {
- 	struct intel_gt *gt = m->private;
- 	struct intel_uncore *uncore = gt->uncore;
--	u32 rcctl1, pw_status;
-+	u32 rcctl1, pw_status, mt_fwake;
- 
-+	mt_fwake = mt_fwake_status(uncore);
- 	pw_status = intel_uncore_read(uncore, VLV_GTLC_PW_STATUS);
- 	rcctl1 = intel_uncore_read(uncore, GEN6_RC_CONTROL);
- 
- 	seq_printf(m, "RC6 Enabled: %s\n",
- 		   str_yes_no(rcctl1 & (GEN7_RC_CTL_TO_MODE |
- 					GEN6_RC_CTL_EI_MODE(1))));
-+	seq_printf(m, "Multi-threaded Forcewake: 0x%x\n", mt_fwake);
- 	seq_printf(m, "Render Power Well: %s\n",
- 		   (pw_status & VLV_GTLC_PW_RENDER_STATUS_MASK) ? "Up" : "Down");
- 	seq_printf(m, "Media Power Well: %s\n",
-@@ -124,9 +131,10 @@ static int gen6_drpc(struct seq_file *m)
- 	struct intel_gt *gt = m->private;
- 	struct drm_i915_private *i915 = gt->i915;
- 	struct intel_uncore *uncore = gt->uncore;
--	u32 gt_core_status, rcctl1, rc6vids = 0;
-+	u32 gt_core_status, mt_fwake, rcctl1, rc6vids = 0;
- 	u32 gen9_powergate_enable = 0, gen9_powergate_status = 0;
- 
-+	mt_fwake = mt_fwake_status(uncore);
- 	gt_core_status = intel_uncore_read_fw(uncore, GEN6_GT_CORE_STATUS);
- 
- 	rcctl1 = intel_uncore_read(uncore, GEN6_RC_CONTROL);
-@@ -178,6 +186,7 @@ static int gen6_drpc(struct seq_file *m)
- 
- 	seq_printf(m, "Core Power Down: %s\n",
- 		   str_yes_no(gt_core_status & GEN6_CORE_CPD_STATE_MASK));
-+	seq_printf(m, "Multi-threaded Forcewake: 0x%x\n", mt_fwake);
- 	if (GRAPHICS_VER(i915) >= 9) {
- 		seq_printf(m, "Render Power Well: %s\n",
- 			   (gen9_powergate_status &
--- 
-2.35.1
+On Fri, Jun 17, 2022 at 11:44:41AM -0700, Lucas De Marchi wrote:
+> Cc'ing intel-pci, lkml, Bjorn
+> 
+> On Fri, Jun 17, 2022 at 11:32:37AM +0300, Jani Nikula wrote:
+> > On Thu, 16 Jun 2022, priyanka.dandamudi@intel.com wrote:
+> > > From: Akeem G Abodunrin <akeem.g.abodunrin@intel.com>
+> > > 
+> > > Add support for the local memory PICe resizable bar, so that
+> > > local memory can be resized to the maximum size supported by the device,
+> > > and mapped correctly to the PCIe memory bar. It is usual that GPU
+> > > devices expose only 256MB BARs primarily to be compatible with 32-bit
+> > > systems. So, those devices cannot claim larger memory BAR windows size due
+> > > to the system BIOS limitation. With this change, it would be possible to
+> > > reprogram the windows of the bridge directly above the requesting device
+> > > on the same BAR type.
+> 
+> There is a big caveat here that this may be too late as other drivers
+> may have already mapped their BARs - so probably too late in the pci scan
+> for it to be effective. In fact, after using this for a while, it seems
+> to fail too often, particularly on CFL systems.
 
+Help me understand the "too late" part.  Do you mean that there is
+enough available space for the max BAR size, but it's fragmented and
+therefore not usable?  And that if we could do something earlier,
+before drivers have claimed their devices, we might be able to compact
+the BARs of other devices to make a larger contiguous available space?
+
+That is theoretically possible, but I think the current
+pci_resize_resource() only supports resizing of the specified BAR and
+any upstream bridge windows.  I don't think it supports moving BARs of
+other devices.
+
+Sergei did some nice work that might help with this situation because
+it can move BARs around more generally.  It hasn't quite achieved
+critical mass yet, but maybe this would help get there:
+
+  https://lore.kernel.org/linux-pci/20201218174011.340514-1-s.miroshnichenko@yadro.com/
+
+If I understand Sergei's series correctly, this rebalancing actually
+cannot be done during enumeration because we only move BARs if a
+driver for the device indicates that it supports it, so there would be
+no requirement to do this early.
+
+> Do we have any alternative to be done in the PCI subsystem during the
+> scan?  There is other work in progress to allow i915 to use the rest of
+> the device memory even with a smaller BAR, but it would be better if we
+> can improve our chances of succeeding the resize.
+
+> > > Signed-off-by: Akeem G Abodunrin <akeem.g.abodunrin@intel.com>
+> > > Signed-off-by: Michał Winiarski <michal.winiarski@intel.com>
+> > > Cc: Stuart Summers <stuart.summers@intel.com>
+> > > Cc: Michael J Ruhl <michael.j.ruhl@intel.com>
+> > > Cc: Prathap Kumar Valsan <prathap.kumar.valsan@intel.com>
+> > > Signed-off-by: Priyanka Dandamudi <priyanka.dandamudi@intel.com>
+> > > Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+> > 
+> > Please see https://lore.kernel.org/r/87pmj8vesm.fsf@intel.com
+> > 
+> > > ---
+> > >  drivers/gpu/drm/i915/i915_driver.c | 92 ++++++++++++++++++++++++++++++
+> > >  1 file changed, 92 insertions(+)
+> > > 
+> > > diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+> > > index d26dcca7e654..4bdb471cb2e2 100644
+> > > --- a/drivers/gpu/drm/i915/i915_driver.c
+> > > +++ b/drivers/gpu/drm/i915/i915_driver.c
+> > > @@ -303,6 +303,95 @@ static void sanitize_gpu(struct drm_i915_private *i915)
+> > >  		__intel_gt_reset(to_gt(i915), ALL_ENGINES);
+> > >  }
+> > > 
+> > > +static void __release_bars(struct pci_dev *pdev)
+> > > +{
+> > > +	int resno;
+> > > +
+> > > +	for (resno = PCI_STD_RESOURCES; resno < PCI_STD_RESOURCE_END; resno++) {
+> > > +		if (pci_resource_len(pdev, resno))
+> > > +			pci_release_resource(pdev, resno);
+> > > +	}
+> > > +}
+> > > +
+> > > +static void
+> > > +__resize_bar(struct drm_i915_private *i915, int resno, resource_size_t size)
+> > > +{
+> > > +	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
+> > > +	int bar_size = pci_rebar_bytes_to_size(size);
+> > > +	int ret;
+> > > +
+> > > +	__release_bars(pdev);
+> > > +
+> > > +	ret = pci_resize_resource(pdev, resno, bar_size);
+> > > +	if (ret) {
+> > > +		drm_info(&i915->drm, "Failed to resize BAR%d to %dM (%pe)\n",
+> > > +			 resno, 1 << bar_size, ERR_PTR(ret));
+> > > +		return;
+> > > +	}
+> > > +
+> > > +	drm_info(&i915->drm, "BAR%d resized to %dM\n", resno, 1 << bar_size);
+> > > +}
+> > > +
+> > > +/* BAR size starts from 1MB - 2^20 */
+> > > +#define BAR_SIZE_SHIFT 20
+> > > +static resource_size_t
+> > > +__lmem_rebar_size(struct drm_i915_private *i915, int resno)
+> > > +{
+> > > +	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
+> > > +	u32 rebar = pci_rebar_get_possible_sizes(pdev, resno);
+> > > +	resource_size_t size;
+> > > +
+> > > +	if (!rebar)
+> > > +		return 0;
+> > > +
+> > > +	size = 1ULL << (__fls(rebar) + BAR_SIZE_SHIFT);
+> > > +
+> > > +	if (size <= pci_resource_len(pdev, resno))
+> > > +		return 0;
+> > > +
+> > > +	return size;
+> > > +}
+> > > +
+> > > +#define LMEM_BAR_NUM 2
+> > > +static void i915_resize_lmem_bar(struct drm_i915_private *i915)
+> > > +{
+> > > +	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
+> > > +	struct pci_bus *root = pdev->bus;
+> > > +	struct resource *root_res;
+> > > +	resource_size_t rebar_size = __lmem_rebar_size(i915, LMEM_BAR_NUM);
+> > > +	u32 pci_cmd;
+> > > +	int i;
+> > > +
+> > > +	if (!rebar_size)
+> > > +		return;
+> > > +
+> > > +	/* Find out if root bus contains 64bit memory addressing */
+> > > +	while (root->parent)
+> > > +		root = root->parent;
+> > > +
+> > > +	pci_bus_for_each_resource(root, root_res, i) {
+> > > +		if (root_res && root_res->flags & (IORESOURCE_MEM |
+> > > +					IORESOURCE_MEM_64) && root_res->start > 0x100000000ull)
+> > > +			break;
+> > > +	}
+> > > +
+> > > +	/* pci_resize_resource will fail anyways */
+> > > +	if (!root_res) {
+> > > +		drm_info(&i915->drm, "Can't resize LMEM BAR - platform support is missing\n");
+> > > +		return;
+> > > +	}
+> > > +
+> > > +	/* First disable PCI memory decoding references */
+> > > +	pci_read_config_dword(pdev, PCI_COMMAND, &pci_cmd);
+> > > +	pci_write_config_dword(pdev, PCI_COMMAND,
+> > > +			       pci_cmd & ~PCI_COMMAND_MEMORY);
+> > > +
+> > > +	__resize_bar(i915, LMEM_BAR_NUM, rebar_size);
+> > > +
+> > > +	pci_assign_unassigned_bus_resources(pdev->bus);
+> > > +	pci_write_config_dword(pdev, PCI_COMMAND, pci_cmd);
+> > > +}
+> > > +
+> > >  /**
+> > >   * i915_driver_early_probe - setup state not requiring device access
+> > >   * @dev_priv: device private
+> > > @@ -852,6 +941,9 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+> > > 
+> > >  	disable_rpm_wakeref_asserts(&i915->runtime_pm);
+> > > 
+> > > +	if (HAS_LMEM(i915))
+> > > +		i915_resize_lmem_bar(i915);
+> > > +
+> > >  	intel_vgpu_detect(i915);
+> > > 
+> > >  	ret = intel_gt_probe_all(i915);
+> > 
+> > -- 
+> > Jani Nikula, Intel Open Source Graphics Center
