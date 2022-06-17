@@ -1,41 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 932B954F04E
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jun 2022 06:43:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BBB9E54F057
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jun 2022 06:51:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C99011AE5E;
-	Fri, 17 Jun 2022 04:43:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 27FD911AEE4;
+	Fri, 17 Jun 2022 04:50:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C045E11AE5D;
- Fri, 17 Jun 2022 04:43:00 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0149511AEE5;
+ Fri, 17 Jun 2022 04:50:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655440980; x=1686976980;
+ t=1655441457; x=1686977457;
  h=date:message-id:from:to:cc:subject:in-reply-to:
  references:mime-version;
- bh=QYOca79q2BW+m1xwuIlXy1oPiukGp3VYzBu/GhD7ESQ=;
- b=fQi3XLkMLavf9rp8Ja+C+Fw7OEEumAzNOpZD1QbYR5/NsxEwK54K1/SS
- baq16x/biI7TK4MH1wVJPcwq3ajEAFyKWvcqYVi0pEKtW3vH43KHJdyC9
- aE5xy9c2IB5vPdstVCsXs7keVjibBHEZ9Wvmb3Voxzn3R1FSHXg/oG3wh
- +AerrOpK4XGUrw9jiS3+cYHrX1bK8E2+uisgymkP6njh3RTsc+y9ueecw
- qUAemDoJw7gkge6k+pRqXX7c2tz7w+m6Ywc3GXoOAgb3nhPZgFOQHHSjn
- 4iIkzACtbUsFsmeNMEXbdGalXXJNTwjlXuhDU7UWkQfmZQIp6zZEIDskQ Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10380"; a="341073373"
-X-IronPort-AV: E=Sophos;i="5.92,306,1650956400"; d="scan'208";a="341073373"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2022 21:43:00 -0700
-X-IronPort-AV: E=Sophos;i="5.92,306,1650956400"; d="scan'208";a="583902831"
+ bh=LAhnRfWUPa3MF9KyyB3HIOCYp9E4fYVlcR3NiP7pKnc=;
+ b=MbelyG1IDXXJf7P6ZUlqQRLFyGdmU/qzBWmmQb14dR19mXTFULKwojzR
+ xr8RNeuxhOfmeq/BSYedZ9NbPC+1x4LKkJQ7E/SpGvefKIjEmIidT8Jps
+ xL5g6OCYK2lCmlD5EQsJr8jZD2UIGWqdWi6DCnWYKFaHS6X0IsLX7qoJu
+ uxe1Y3DcZguifjmZZUNFbtKV61Ou/6qtyJg8ro1ViSQsd2wVd5+hE6vaY
+ XvRlDoLbpq/JT8WsR+C+MEUZNBCaPHXjYIR+JT2KDqfl/7enAkR4KDRmb
+ W1dBh0j6StK7YSaumakarncMHY96tkzXDOkPW2s7GtmpDJZ3P2Mz0v9Ii A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10380"; a="365771473"
+X-IronPort-AV: E=Sophos;i="5.92,306,1650956400"; d="scan'208";a="365771473"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2022 21:50:56 -0700
+X-IronPort-AV: E=Sophos;i="5.92,306,1650956400"; d="scan'208";a="641880939"
 Received: from adixit-mobl1.amr.corp.intel.com (HELO adixit-arch.intel.com)
  ([10.212.141.64])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2022 21:43:00 -0700
-Date: Thu, 16 Jun 2022 21:42:59 -0700
-Message-ID: <87mtebx5m4.wl-ashutosh.dixit@intel.com>
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2022 21:50:56 -0700
+Date: Thu, 16 Jun 2022 21:50:55 -0700
+Message-ID: <87letvx58w.wl-ashutosh.dixit@intel.com>
 From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
 To: Zhanjun Dong <zhanjun.dong@intel.com>
 In-Reply-To: <20220616220158.15778-1-zhanjun.dong@intel.com>
@@ -72,13 +72,28 @@ On Thu, 16 Jun 2022 15:01:59 -0700, Zhanjun Dong wrote:
 >
 > This patch will handle this condition and change the error message into
 > debug message.
-
-The convention we follow in drm is to record the version of the patch and
-what changed in that version.
-
-Generally I am ok with this version of the patch but still have a couple of
-questions.
-
+>
+> Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c | 24 ++++++++++++++++-------
+>  1 file changed, 17 insertions(+), 7 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+> index f01325cd1b62..f07a7666b1ad 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+> @@ -455,6 +455,7 @@ static int ct_write(struct intel_guc_ct *ct,
+>
+>  /**
+>   * wait_for_ct_request_update - Wait for CT request state update.
+> + * @ct:		pointer to CT
+>   * @req:	pointer to pending request
+>   * @status:	placeholder for status
+>   *
+> @@ -467,9 +468,10 @@ static int ct_write(struct intel_guc_ct *ct,
+>   * *	0 response received (status is valid)
+>   * *	-ETIMEDOUT no response within hardcoded timeout
+>   */
 > -static int wait_for_ct_request_update(struct ct_request *req, u32 *status)
 > +static int wait_for_ct_request_update(struct intel_guc_ct *ct, struct ct_request *req, u32 *status)
 >  {
@@ -102,66 +117,12 @@ questions.
 > +	if (!ct_enabled)
 > +		err = -ECANCELED;
 
-So we have the choice of either setting the request status here as I was
-suggesting earlier, e.g. as follows:
-
-	#define   GUC_HXG_TYPE_REQUEST_CANCELED        4u // unused value
+Actually here's an even simpler suggestion. We could just do:
 
 	if (!ct_enabled)
-		req->status = GUC_HXG_TYPE_REQUEST_CANCELED;
+		CT_DEBUG(ct, "Request %#x (fence %u) cancelled as CTB is disabled\n", ...);
 
-We would return 0 in this case and would check for the req->status value
-above where needed.
-
-Or we can return -ECANCELED. I don't know if -ECANCELED is the right value
-to return but whatever we return will have to be unique (ununsed elsewhere)
-since we are relying on the return value. -ECANCELED is unique so that part
-is ok.
-
-Do other reviewers have a preference whether we should set req->status or
-return a unique return value?
-
->	*status = req->status;
->	return err;
-> @@ -703,11 +708,15 @@ static int ct_send(struct intel_guc_ct *ct,
->
->	intel_guc_notify(ct_to_guc(ct));
->
-> -	err = wait_for_ct_request_update(&request, status);
-> +	err = wait_for_ct_request_update(ct, &request, status);
->	g2h_release_space(ct, GUC_CTB_HXG_MSG_MAX_LEN);
->	if (unlikely(err)) {
-> -		CT_ERROR(ct, "No response for request %#x (fence %u)\n",
-> -			 action[0], request.fence);
-> +		if (err == -ECANCELED)
-> +			CT_DEBUG(ct, "Request %#x (fence %u) cancelled as CTB is disabled\n",
-> +				 action[0], request.fence);
-> +		else
-> +			CT_ERROR(ct, "No response for request %#x (fence %u)\n",
-> +				 action[0], request.fence);
->		goto unlink;
->	}
->
-> @@ -771,8 +780,9 @@ int intel_guc_ct_send(struct intel_guc_ct *ct, const u32 *action, u32 len,
->
->	ret = ct_send(ct, action, len, response_buf, response_buf_size, &status);
->	if (unlikely(ret < 0)) {
-> -		CT_ERROR(ct, "Sending action %#x failed (%pe) status=%#X\n",
-> -			 action[0], ERR_PTR(ret), status);
-> +		if (ret != -ECANCELED)
-> +			CT_ERROR(ct, "Sending action %#x failed (%pe) status=%#X\n",
-> +				 action[0], ERR_PTR(ret), status);
-
-I am wondering why we even have this print and should we just delete it or
-convert it to CT_DEBUG(). The reason is that only error prints closest to
-where the actual error occurs are useful since they pin-point the error
-clearly. This to be seems to be a "second" print from a higher level
-function which does not seem particularly useful.
-
-
->	} else if (unlikely(ret)) {
->		CT_DEBUG(ct, "send action %#x returned %d (%#x)\n",
->			 action[0], ret, ret);
-> --
-> 2.36.0
->
+And return 0 as before. This way we won't have to make any changes in
+either ct_send() or intel_guc_ct_send(). So intel_guc_ct_enabled() just
+serves to get us out of the wait early and prevent the -ETIMEDOUT return
+(and 0 return avoids all the error messages we are trying to eliminate).
