@@ -1,50 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EA7954F395
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jun 2022 10:51:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E416D54F3A7
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jun 2022 10:54:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A9C5B11AB4E;
-	Fri, 17 Jun 2022 08:51:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 138C811AAD2;
+	Fri, 17 Jun 2022 08:54:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A34D11AB4D;
- Fri, 17 Jun 2022 08:51:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655455911; x=1686991911;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=7YpqZy5jywnIGnFwcEJydUXCIo68GYrPBsGFfhq8DBw=;
- b=ZuKyJYo+m8RUx151qNuYhI63dFSEuwPNzqpKzrlrn+GQiNtiKO4ogW2v
- ZdCkrtr3RE9+NLTcgvNS3NZOsSslq1XY5RX4puHBkjsHmcX7mEfpxnPJE
- STYiX7vmYYc6DyxRS92iQMnjGxloqRPh1nyPdCZnaNzMQmwfP9/OMRoBo
- Dr2HefpiExYWqx94SYy58OSWVbZyjlANIi90anIJTbAsDF6n/QeHd+z7u
- 87mF/dHdQiYhqNfv26KKPHHkvL+d/K2BSfB5hEPY6MT8vLaoIz/sjoIk1
- /FoAd2Fy8VFk/fDZjanOoIjb7Ao5pdcnk57VJGVZ0UZNvG/o2XvysQLGC w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10380"; a="277031609"
-X-IronPort-AV: E=Sophos;i="5.92,306,1650956400"; d="scan'208";a="277031609"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2022 01:51:51 -0700
-X-IronPort-AV: E=Sophos;i="5.92,306,1650956400"; d="scan'208";a="831958373"
-Received: from lucas-s2600cw.jf.intel.com ([10.165.21.202])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2022 01:51:50 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Fri, 17 Jun 2022 01:52:04 -0700
-Message-Id: <20220617085204.1678035-2-lucas.demarchi@intel.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220617085204.1678035-1-lucas.demarchi@intel.com>
-References: <20220617085204.1678035-1-lucas.demarchi@intel.com>
+Received: from bombadil.infradead.org (bombadil.infradead.org
+ [IPv6:2607:7c80:54:3::133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3000F11AACB;
+ Fri, 17 Jun 2022 08:54:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=bombadil.20210309; h=In-Reply-To:Content-Type:MIME-Version
+ :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=8nZ1ta+BsGc00ew4rYHJjg70RdBuVGkJ01/aKd/F76M=; b=22UofexgYSmp52aMwe+HIOOhvH
+ HYrP5hQF/Y99IdWt/OJ7frq9bDlj6D/Gp2E2LfXGLyDec9bdW3ElpSca05pMX63lDBDkaRyZilvm3
+ s0jUbrt1CiiZKRQ7vdxJZ9yVK90jEAwy2ITMbKKpviGKsecKQDJYrt7hAOD3RKzBVjb7fHmOaLxxP
+ cWKZd5500xnwfiechgxDSX2HIctMCobu1VuwMbdK3f6uiymnj2Jg8g0IZBPG77/wBQcXmkLcVlGR6
+ ssra39uhQZxgkJ+zs68oXh47Qe6h+fzmWqqiKHEwunXSUDLK/l3ieRfYn9Q5bYSjpMZjludDm3YY1
+ UaH6OBmw==;
+Received: from hch by bombadil.infradead.org with local (Exim 4.94.2 #2 (Red
+ Hat Linux)) id 1o27jx-006UvK-VQ; Fri, 17 Jun 2022 08:54:05 +0000
+Date: Fri, 17 Jun 2022 01:54:05 -0700
+From: Christoph Hellwig <hch@infradead.org>
+To: Nicolin Chen <nicolinc@nvidia.com>
+Message-ID: <YqxBLbu8yPJiwK6Z@infradead.org>
+References: <20220616235212.15185-1-nicolinc@nvidia.com>
+ <20220616235212.15185-7-nicolinc@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/2] iosys-map: Add per-word write
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220616235212.15185-7-nicolinc@nvidia.com>
+X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
+ bombadil.infradead.org. See http://www.infradead.org/rpr.html
+Subject: Re: [Intel-gfx] [RFT][PATCH v1 6/6] vfio: Replace phys_pfn with
+ phys_page for vfio_pin_pages()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,105 +51,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, christian.koenig@amd.com,
- tzimmermann@suse.de
+Cc: mjrosato@linux.ibm.com, linux-doc@vger.kernel.org, airlied@linux.ie,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ kwankhede@nvidia.com, vneethv@linux.ibm.com, agordeev@linux.ibm.com,
+ linux-s390@vger.kernel.org, kvm@vger.kernel.org, corbet@lwn.net,
+ pasic@linux.ibm.com, jgg@nvidia.com, borntraeger@linux.ibm.com,
+ intel-gfx@lists.freedesktop.org, jjherne@linux.ibm.com, farman@linux.ibm.com,
+ jchrist@linux.ibm.com, gor@linux.ibm.com, hca@linux.ibm.com,
+ freude@linux.ibm.com, rodrigo.vivi@intel.com,
+ intel-gvt-dev@lists.freedesktop.org, akrowiak@linux.ibm.com, cohuck@redhat.com,
+ oberpar@linux.ibm.com, svens@linux.ibm.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Like was done for read, provide the equivalent for write. Even if
-current users are not in the hot path, this should future-proof it.
+There is a bunch of code an comments in the iommu type1 code that
+suggest we can pin memory that is not page backed.  
 
-v2:
-  - Remove default from _Generic() - callers wanting to write more
-    than u64 should use iosys_map_memcpy_to()
-  - Add WRITE_ONCE() cases dereferencing the pointer when using system
-    memory
+>  int vfio_pin_pages(struct vfio_device *device, dma_addr_t iova,
+> +		   int npage, int prot, struct page **phys_page)
 
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-Reviewed-by: Reviewed-by: Christian König <christian.koenig@amd.com> # v1
----
- include/linux/iosys-map.h | 42 ++++++++++++++++++++++++++++++---------
- 1 file changed, 33 insertions(+), 9 deletions(-)
+I don't think phys_page makes much sense as an argument name.
+I'd just call this pages.
 
-diff --git a/include/linux/iosys-map.h b/include/linux/iosys-map.h
-index f59dd00ed202..580e14cd360c 100644
---- a/include/linux/iosys-map.h
-+++ b/include/linux/iosys-map.h
-@@ -337,9 +337,13 @@ static inline void iosys_map_memset(struct iosys_map *dst, size_t offset,
- #ifdef CONFIG_64BIT
- #define __iosys_map_rd_io_u64_case(val_, vaddr_iomem_)				\
- 	u64: val_ = readq(vaddr_iomem_)
-+#define __iosys_map_wr_io_u64_case(val_, vaddr_iomem_)			\
-+	u64: writeq(val_, vaddr_iomem_)
- #else
- #define __iosys_map_rd_io_u64_case(val_, vaddr_iomem_)				\
- 	u64: memcpy_fromio(&(val_), vaddr_iomem__, sizeof(u64))
-+#define __iosys_map_wr_io_u64_case(val_, vaddr_iomem_)			\
-+	u64: memcpy_toio(vaddr_iomem_, &(val_), sizeof(u64))
- #endif
- 
- #define __iosys_map_rd_io(val__, vaddr_iomem__, type__) _Generic(val__,		\
-@@ -354,6 +358,19 @@ static inline void iosys_map_memset(struct iosys_map *dst, size_t offset,
- 	val__ = READ_ONCE(*((type__ *)vaddr__));				\
- })
- 
-+#define __iosys_map_wr_io(val__, vaddr_iomem__, type__) _Generic(val__,		\
-+	u8: writeb(val__, vaddr_iomem__),					\
-+	u16: writew(val__, vaddr_iomem__),					\
-+	u32: writel(val__, vaddr_iomem__),					\
-+	__iosys_map_wr_io_u64_case(val__, vaddr_iomem__))
-+
-+#define __iosys_map_wr_sys(val__, vaddr__, type__) ({				\
-+	compiletime_assert(sizeof(type__) <= sizeof(u64),			\
-+			   "Unsupported access size for __iosys_map_wr_sys()"); \
-+	WRITE_ONCE(*((type__ *)vaddr__), val__);				\
-+})
-+
-+
- /**
-  * iosys_map_rd - Read a C-type value from the iosys_map
-  *
-@@ -386,12 +403,17 @@ static inline void iosys_map_memset(struct iosys_map *dst, size_t offset,
-  * @type__:	Type of the value being written
-  * @val__:	Value to write
-  *
-- * Write a C-type value to the iosys_map, handling possible un-aligned accesses
-- * to the mapping.
-+ * Write a C type value (u8, u16, u32 and u64) to the iosys_map. For other types
-+ * or if pointer may be unaligned (and problematic for the architecture
-+ * supported), use iosys_map_memcpy_to()
-  */
--#define iosys_map_wr(map__, offset__, type__, val__) ({			\
--	type__ val = (val__);						\
--	iosys_map_memcpy_to(map__, offset__, &val, sizeof(val));	\
-+#define iosys_map_wr(map__, offset__, type__, val__) ({				\
-+	type__ val = (val__);							\
-+	if ((map__)->is_iomem) {						\
-+		__iosys_map_wr_io(val, (map__)->vaddr_iomem + (offset__), type__);\
-+	} else {								\
-+		__iosys_map_wr_sys(val, (map__)->vaddr + (offset__), type__);	\
-+	}									\
- })
- 
- /**
-@@ -472,10 +494,12 @@ static inline void iosys_map_memset(struct iosys_map *dst, size_t offset,
-  * @field__:		Member of the struct to read
-  * @val__:		Value to write
-  *
-- * Write a value to the iosys_map considering its layout is described by a C struct
-- * starting at @struct_offset__. The field offset and size is calculated and the
-- * @val__ is written handling possible un-aligned memory accesses. Refer to
-- * iosys_map_rd_field() for expected usage and memory layout.
-+ * Write a value to the iosys_map considering its layout is described by a C
-+ * struct starting at @struct_offset__. The field offset and size is calculated
-+ * and the @val__ is written. If the field access would incur in un-aligned
-+ * access, then either iosys_map_memcpy_to() needs to be used or the
-+ * architecture must support it. Refer to iosys_map_rd_field() for expected
-+ * usage and memory layout.
-  */
- #define iosys_map_wr_field(map__, struct_offset__, struct_type__, field__, val__) ({	\
- 	struct_type__ *s;								\
--- 
-2.36.1
+> +			phys_page[i] = pfn_to_page(vpfn->pfn);
 
+Please store the actual page pointer in the vfio_pfn structure.
+
+>  		remote_vaddr = dma->vaddr + (iova - dma->iova);
+> -		ret = vfio_pin_page_external(dma, remote_vaddr, &phys_pfn[i],
+> +		ret = vfio_pin_page_external(dma, remote_vaddr, &phys_pfn,
+>  					     do_accounting);
+
+Please just return the actual page from vaddr_get_pfns through
+vfio_pin_pages_remote and vfio_pin_page_external, maybe even as a prep
+patch as that is a fair amount of churn.
