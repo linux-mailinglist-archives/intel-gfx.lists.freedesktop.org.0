@@ -2,54 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AE6F54F280
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jun 2022 10:07:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 015FD54F304
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jun 2022 10:32:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A990A10ED91;
-	Fri, 17 Jun 2022 08:06:55 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B7E1410ED91
- for <Intel-gfx@lists.freedesktop.org>; Fri, 17 Jun 2022 08:06:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E07EF10FAC1;
+	Fri, 17 Jun 2022 08:32:42 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CBE5610FAC1
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Jun 2022 08:32:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655453214; x=1686989214;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=MuMQNyRCfXKT7Th9H5mO6dwNhi58Rgv/NhDozT9x/PY=;
- b=FikjJVxcQ20CZC7+g0hivDRrzJi61SKuNSSQ+hrLk/uE5eekl2jf1SA+
- 5cRKkSHRfc/xTmPxLg247+pzwH5sxFHQyA0HhYl17UQpGQYWLps+c5wvt
- DQUGct43vrPc1vNjAynzot9Kcu4MaaTaw6Ok2Zji8Bkt0UuQzDxHnXbwP
- eryBRkPclLLs0Ff7/grvyzAlMZy3mNgt6HJCjm6EjQEHLYdnoFmUmoq/S
- G0fFmPV3OBq6/YLb1kOnQRxsexTo0vx3rB510ogxZkafj/mM9rlk3vLgK
- gb+GhjURvUN31FzTwtZuYh81MkbU9HiUEzJDNo6HB82c8M0X6PKYwXxpY Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10380"; a="268138999"
-X-IronPort-AV: E=Sophos;i="5.92,306,1650956400"; d="scan'208";a="268138999"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2022 01:06:53 -0700
-X-IronPort-AV: E=Sophos;i="5.92,306,1650956400"; d="scan'208";a="831943022"
-Received: from makierna-mobl1.ger.corp.intel.com (HELO [10.213.236.232])
- ([10.213.236.232])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2022 01:06:52 -0700
-Message-ID: <fbe6a20c-d796-7262-cdae-663aa2c4f8fd@linux.intel.com>
-Date: Fri, 17 Jun 2022 09:06:50 +0100
+ t=1655454761; x=1686990761;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=O2MHMxpJcUzeegzpp3Y+HCIR4hNYBAxpQF5RLOdflhs=;
+ b=PNxMYS2Lo1tAiWgU5LaRj+YK42VnWuC5IPkRX56J5QZxcWlMpy/f0bEF
+ xVUP6M71bzf9HvrWUzlvL4L85/JPaJW6VDT3gJAlODzjG+BcPZ1Cj2Ajp
+ r9vFxWXXmaqAJHRzOScuJK/HCMfjGLp+KtFe2MmdmRpGITggAKr9K3V9L
+ GuHmMYqUgFdEWEBpy0qYAluzYSJC2ti8MpEH4oPKCqDDEFgVHUXK9F2om
+ 8zpTXsH8eJPu9umzYF2COwq/ruQXPwxeOQaIsPzWZs6MwXlMg3pj7aaH8
+ Tu/RxjcJ7/yobGQqCfCX00IullVRGADMWE1d6dhyekU6ABdaG0KQCnfWQ g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10380"; a="277028280"
+X-IronPort-AV: E=Sophos;i="5.92,306,1650956400"; d="scan'208";a="277028280"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jun 2022 01:32:41 -0700
+X-IronPort-AV: E=Sophos;i="5.92,306,1650956400"; d="scan'208";a="641948469"
+Received: from dfischbe-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.34.67])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jun 2022 01:32:39 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: priyanka.dandamudi@intel.com, priyanka.dandamudi@intel.com,
+ matthew.auld@intel.com, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20220616151247.1192063-2-priyanka.dandamudi@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220616151247.1192063-1-priyanka.dandamudi@intel.com>
+ <20220616151247.1192063-2-priyanka.dandamudi@intel.com>
+Date: Fri, 17 Jun 2022 11:32:37 +0300
+Message-ID: <87fsk3vgey.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Content-Language: en-US
-To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-References: <20220616140056.559074-1-tvrtko.ursulin@linux.intel.com>
- <20220616141943.GM48807@orsosgc001.jf.intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20220616141943.GM48807@orsosgc001.jf.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/fdinfo: Don't show engine classes
- not present
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: Add support for LMEM PCIe
+ resizable bar
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,46 +60,151 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Thu, 16 Jun 2022, priyanka.dandamudi@intel.com wrote:
+> From: Akeem G Abodunrin <akeem.g.abodunrin@intel.com>
+>
+> Add support for the local memory PICe resizable bar, so that
+> local memory can be resized to the maximum size supported by the device,
+> and mapped correctly to the PCIe memory bar. It is usual that GPU
+> devices expose only 256MB BARs primarily to be compatible with 32-bit
+> systems. So, those devices cannot claim larger memory BAR windows size due
+> to the system BIOS limitation. With this change, it would be possible to
+> reprogram the windows of the bridge directly above the requesting device
+> on the same BAR type.
+>
+> Signed-off-by: Akeem G Abodunrin <akeem.g.abodunrin@intel.com>
+> Signed-off-by: Micha=C5=82 Winiarski <michal.winiarski@intel.com>
+> Cc: Stuart Summers <stuart.summers@intel.com>
+> Cc: Michael J Ruhl <michael.j.ruhl@intel.com>
+> Cc: Prathap Kumar Valsan <prathap.kumar.valsan@intel.com>
+> Signed-off-by: Priyanka Dandamudi <priyanka.dandamudi@intel.com>
+> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 
-On 16/06/2022 15:19, Umesh Nerlige Ramappa wrote:
-> On Thu, Jun 16, 2022 at 03:00:56PM +0100, Tvrtko Ursulin wrote:
->> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>
->> Stop displaying engine classes with no engines - it is not a huge problem
->> if they are shown, since the values will correctly be all zeroes, but it
->> does count as misleading.
->>
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->> Fixes: 055634e4b62f ("drm/i915: Expose client engine utilisation via 
->> fdinfo")
->> Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
->> ---
->> drivers/gpu/drm/i915/i915_drm_client.c | 5 +++--
->> 1 file changed, 3 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/i915_drm_client.c 
->> b/drivers/gpu/drm/i915/i915_drm_client.c
->> index 18d38cb59923..b09d1d386574 100644
->> --- a/drivers/gpu/drm/i915/i915_drm_client.c
->> +++ b/drivers/gpu/drm/i915/i915_drm_client.c
->> @@ -116,8 +116,9 @@ show_client_class(struct seq_file *m,
->>         total += busy_add(ctx, class);
->>     rcu_read_unlock();
->>
->> -    seq_printf(m, "drm-engine-%s:\t%llu ns\n",
->> -           uabi_class_names[class], total);
->> +    if (capacity)
->> +        seq_printf(m, "drm-engine-%s:\t%llu ns\n",
->> +               uabi_class_names[class], total);
-> 
-> Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Please see https://lore.kernel.org/r/87pmj8vesm.fsf@intel.com
 
-Thanks, pushed!
+> ---
+>  drivers/gpu/drm/i915/i915_driver.c | 92 ++++++++++++++++++++++++++++++
+>  1 file changed, 92 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i9=
+15_driver.c
+> index d26dcca7e654..4bdb471cb2e2 100644
+> --- a/drivers/gpu/drm/i915/i915_driver.c
+> +++ b/drivers/gpu/drm/i915/i915_driver.c
+> @@ -303,6 +303,95 @@ static void sanitize_gpu(struct drm_i915_private *i9=
+15)
+>  		__intel_gt_reset(to_gt(i915), ALL_ENGINES);
+>  }
+>=20=20
+> +static void __release_bars(struct pci_dev *pdev)
+> +{
+> +	int resno;
+> +
+> +	for (resno =3D PCI_STD_RESOURCES; resno < PCI_STD_RESOURCE_END; resno++=
+) {
+> +		if (pci_resource_len(pdev, resno))
+> +			pci_release_resource(pdev, resno);
+> +	}
+> +}
+> +
+> +static void
+> +__resize_bar(struct drm_i915_private *i915, int resno, resource_size_t s=
+ize)
+> +{
+> +	struct pci_dev *pdev =3D to_pci_dev(i915->drm.dev);
+> +	int bar_size =3D pci_rebar_bytes_to_size(size);
+> +	int ret;
+> +
+> +	__release_bars(pdev);
+> +
+> +	ret =3D pci_resize_resource(pdev, resno, bar_size);
+> +	if (ret) {
+> +		drm_info(&i915->drm, "Failed to resize BAR%d to %dM (%pe)\n",
+> +			 resno, 1 << bar_size, ERR_PTR(ret));
+> +		return;
+> +	}
+> +
+> +	drm_info(&i915->drm, "BAR%d resized to %dM\n", resno, 1 << bar_size);
+> +}
+> +
+> +/* BAR size starts from 1MB - 2^20 */
+> +#define BAR_SIZE_SHIFT 20
+> +static resource_size_t
+> +__lmem_rebar_size(struct drm_i915_private *i915, int resno)
+> +{
+> +	struct pci_dev *pdev =3D to_pci_dev(i915->drm.dev);
+> +	u32 rebar =3D pci_rebar_get_possible_sizes(pdev, resno);
+> +	resource_size_t size;
+> +
+> +	if (!rebar)
+> +		return 0;
+> +
+> +	size =3D 1ULL << (__fls(rebar) + BAR_SIZE_SHIFT);
+> +
+> +	if (size <=3D pci_resource_len(pdev, resno))
+> +		return 0;
+> +
+> +	return size;
+> +}
+> +
+> +#define LMEM_BAR_NUM 2
+> +static void i915_resize_lmem_bar(struct drm_i915_private *i915)
+> +{
+> +	struct pci_dev *pdev =3D to_pci_dev(i915->drm.dev);
+> +	struct pci_bus *root =3D pdev->bus;
+> +	struct resource *root_res;
+> +	resource_size_t rebar_size =3D __lmem_rebar_size(i915, LMEM_BAR_NUM);
+> +	u32 pci_cmd;
+> +	int i;
+> +
+> +	if (!rebar_size)
+> +		return;
+> +
+> +	/* Find out if root bus contains 64bit memory addressing */
+> +	while (root->parent)
+> +		root =3D root->parent;
+> +
+> +	pci_bus_for_each_resource(root, root_res, i) {
+> +		if (root_res && root_res->flags & (IORESOURCE_MEM |
+> +					IORESOURCE_MEM_64) && root_res->start > 0x100000000ull)
+> +			break;
+> +	}
+> +
+> +	/* pci_resize_resource will fail anyways */
+> +	if (!root_res) {
+> +		drm_info(&i915->drm, "Can't resize LMEM BAR - platform support is miss=
+ing\n");
+> +		return;
+> +	}
+> +
+> +	/* First disable PCI memory decoding references */
+> +	pci_read_config_dword(pdev, PCI_COMMAND, &pci_cmd);
+> +	pci_write_config_dword(pdev, PCI_COMMAND,
+> +			       pci_cmd & ~PCI_COMMAND_MEMORY);
+> +
+> +	__resize_bar(i915, LMEM_BAR_NUM, rebar_size);
+> +
+> +	pci_assign_unassigned_bus_resources(pdev->bus);
+> +	pci_write_config_dword(pdev, PCI_COMMAND, pci_cmd);
+> +}
+> +
+>  /**
+>   * i915_driver_early_probe - setup state not requiring device access
+>   * @dev_priv: device private
+> @@ -852,6 +941,9 @@ int i915_driver_probe(struct pci_dev *pdev, const str=
+uct pci_device_id *ent)
+>=20=20
+>  	disable_rpm_wakeref_asserts(&i915->runtime_pm);
+>=20=20
+> +	if (HAS_LMEM(i915))
+> +		i915_resize_lmem_bar(i915);
+> +
+>  	intel_vgpu_detect(i915);
+>=20=20
+>  	ret =3D intel_gt_probe_all(i915);
 
-Regards,
-
-Tvrtko
+--=20
+Jani Nikula, Intel Open Source Graphics Center
