@@ -1,79 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 985B6550027
-	for <lists+intel-gfx@lfdr.de>; Sat, 18 Jun 2022 00:48:05 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA581550050
+	for <lists+intel-gfx@lfdr.de>; Sat, 18 Jun 2022 01:05:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8520710EE40;
-	Fri, 17 Jun 2022 22:47:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 04E2610F64E;
+	Fri, 17 Jun 2022 23:05:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E324710EE4B
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Jun 2022 22:47:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1655506075;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=RKxbMuSx84e0qKVho6q+J9unBV9pl4MxbJagk7m/J3c=;
- b=ep62v58+oMuicAfSumyYR84OU5eMCbXgJa11PuKTYV4zUankUKVFEguxEhvoPfcgJfeTIX
- 0bqajKddH6Y756AWqEd28DW5gM/ZoDUN8alsvEvA8+faOhIcSNUHdobA3OGxKjnsXV9vBu
- 7O41aJkCHFFAx/g7oRdpkO1yiuUkdok=
-Received: from mail-il1-f199.google.com (mail-il1-f199.google.com
- [209.85.166.199]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-558-_mv8diGFNp2CEfnBDGzgZw-1; Fri, 17 Jun 2022 18:47:54 -0400
-X-MC-Unique: _mv8diGFNp2CEfnBDGzgZw-1
-Received: by mail-il1-f199.google.com with SMTP id
- y18-20020a927d12000000b002d3dd2a5d53so3486132ilc.0
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Jun 2022 15:47:54 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
- :references:organization:mime-version:content-transfer-encoding;
- bh=RKxbMuSx84e0qKVho6q+J9unBV9pl4MxbJagk7m/J3c=;
- b=vz0vNuyOV/nvBnqamzk99uYOvQ2JePbMTNNxKvIjYpimcR+o1az5YFY/2J+w+dKEnC
- M1ICHTfjXNeauzkR96SFsex2C3qVfzreIxoxx7/RUbJjb1d4n5kfFC8gpvuPBgLmT+qu
- 1SpDiNa7t0xqBr/WUE53203FGLj3I99u6p3wD4zzIVDyOESwGOK8aYHCniAf7UVcwH5B
- ZZ5D3MVaCF8xkt0LFj74cuBa6L0t5/HigIz1CNSuE4a4dcHhAI3RVvdGRMuCtmOg7KtP
- Gwnlz1Ui3FSXvKp2pCYMd+BsTBRXFcamgWcO3ytLne11cn1KeDsCcx+3yJ7P5OjMxTCQ
- YUHw==
-X-Gm-Message-State: AJIora9jJlRxv2IFMSQH33qr5YpRgGXLOWg5fR2Y0Mxp6hfjuAbZ+M0q
- HFOHaESRxoYHlSGWyAQPNwWGHUa9IA9FEULuar0o417P7+4lDcxCuVPQnrI9Q2RXVsKbVuw008H
- apPa+TYjJqN87q2q6TAjvWTbfLjO6
-X-Received: by 2002:a05:6638:c4b:b0:333:f06b:3b6c with SMTP id
- g11-20020a0566380c4b00b00333f06b3b6cmr6634470jal.46.1655506074173; 
- Fri, 17 Jun 2022 15:47:54 -0700 (PDT)
-X-Google-Smtp-Source: AGRyM1vz6Dt5FCCT3d+qged2m5qipE/eA4GR95e3L00ajT9WkKXttWTsiMH12QmfHfxKOxu1jO6Tkw==
-X-Received: by 2002:a05:6638:c4b:b0:333:f06b:3b6c with SMTP id
- g11-20020a0566380c4b00b00333f06b3b6cmr6634459jal.46.1655506073726; 
- Fri, 17 Jun 2022 15:47:53 -0700 (PDT)
-Received: from redhat.com ([38.15.36.239]) by smtp.gmail.com with ESMTPSA id
- g19-20020a925213000000b002d8f1269e97sm510242ilb.42.2022.06.17.15.47.52
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 17 Jun 2022 15:47:53 -0700 (PDT)
-Date: Fri, 17 Jun 2022 16:47:51 -0600
-From: Alex Williamson <alex.williamson@redhat.com>
-To: Jason Gunthorpe <jgg@nvidia.com>
-Message-ID: <20220617164751.7ceaac6e.alex.williamson@redhat.com>
-In-Reply-To: <20220617164230.049c59f4.alex.williamson@redhat.com>
-References: <0-v2-80aa110d03ce+24b-vfio_unmap_notif_jgg@nvidia.com>
- <1-v2-80aa110d03ce+24b-vfio_unmap_notif_jgg@nvidia.com>
- <20220617164230.049c59f4.alex.williamson@redhat.com>
-Organization: Red Hat
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A67FB10F5E5;
+ Fri, 17 Jun 2022 23:05:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1655507141; x=1687043141;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=X7DCPMJeupepCh2Wv1CGJkOG6QP0qdkHyVCX9BXyYx8=;
+ b=VZ0jeICCjK04Fp3P9S8evAPlQ8SlNvHtL6CHfFukPI3gbWx6tsM+nXth
+ wtmNqvt7wg/fVv6PVLXl2AXxFeCbzCeKBAgts2v9w4fjuFpUZUAUcAb3p
+ uof/7xy/FkWAbRkncuRWBiJPauQ2z8U/lD65T0bUnDToOL1A78n5N5IOo
+ nphlwZz3PKKPGkM1EJXhjp85c66FCCfk2fHjILpuSZ1IcNPErRPSEwKfU
+ j4SXyiGnN1PzMBwhGNW/zVOtBfUScwHFQEQnPJxo5mIIWejfIFcZ53vzv
+ nzVHRxWaTWZxQ4VnEb37sr3X4G8MEjvZKX3EqXxrPSFzCtXIzjCinBHpf A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10380"; a="279637439"
+X-IronPort-AV: E=Sophos;i="5.92,306,1650956400"; d="scan'208";a="279637439"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jun 2022 16:05:30 -0700
+X-IronPort-AV: E=Sophos;i="5.92,306,1650956400"; d="scan'208";a="713930132"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.202])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jun 2022 16:05:30 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 17 Jun 2022 16:05:58 -0700
+Message-Id: <20220617230559.2109427-1-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=alex.williamson@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v2 1/2] vfio: Replace the DMA unmapping
- notifier with a callback
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2 1/2] agp/intel: Rename intel-gtt symbols
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,290 +53,292 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kvm@vger.kernel.org, David Airlie <airlied@linux.ie>,
- dri-devel@lists.freedesktop.org, Vineeth Vijayan <vneethv@linux.ibm.com>,
- Alexander Gordeev <agordeev@linux.ibm.com>, Christoph Hellwig <hch@lst.de>,
- linux-s390@vger.kernel.org, Matthew Rosato <mjrosato@linux.ibm.com>,
- Halil Pasic <pasic@linux.ibm.com>,
- Christian Borntraeger <borntraeger@linux.ibm.com>,
- intel-gfx@lists.freedesktop.org, Jason Herne <jjherne@linux.ibm.com>,
- Eric Farman <farman@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>,
- Heiko Carstens <hca@linux.ibm.com>,
- Harald Freudenberger <freude@linux.ibm.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gvt-dev@lists.freedesktop.org,
- Tony Krowiak <akrowiak@linux.ibm.com>, Cornelia Huck <cohuck@redhat.com>,
- Peter Oberparleiter <oberpar@linux.ibm.com>,
- Sven Schnelle <svens@linux.ibm.com>
+Cc: David Airlie <airlied@linux.ie>, Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 17 Jun 2022 16:42:30 -0600
-Alex Williamson <alex.williamson@redhat.com> wrote:
+Exporting the symbols like intel_gtt_* creates some confusion inside
+i915 that has symbols named similarly. In an attempt to isolate
+platforms needing intel-gtt.ko, commit 7a5c922377b4 ("drm/i915/gt: Split
+intel-gtt functions by arch") moved way too much
+inside gt/intel_gt_gmch.c, even the functions that don't callout to this
+module. Rename the symbols to make the separation clear.
 
-> On Tue,  7 Jun 2022 20:02:11 -0300
-> Jason Gunthorpe <jgg@nvidia.com> wrote:
-> > diff --git a/drivers/vfio/vfio.c b/drivers/vfio/vfio.c
-> > index 61e71c1154be67..f005b644ab9e69 100644
-> > --- a/drivers/vfio/vfio.c
-> > +++ b/drivers/vfio/vfio.c
-> > @@ -1077,8 +1077,20 @@ static void vfio_device_unassign_container(struct vfio_device *device)
-> >  	up_write(&device->group->group_rwsem);
-> >  }
-> >  
-> > +static int vfio_iommu_notifier(struct notifier_block *nb, unsigned long action,
-> > +			       void *data)
-> > +{
-> > +	struct vfio_device *vfio_device =
-> > +		container_of(nb, struct vfio_device, iommu_nb);
-> > +	struct vfio_iommu_type1_dma_unmap *unmap = data;
-> > +
-> > +	vfio_device->ops->dma_unmap(vfio_device, unmap->iova, unmap->size);
-> > +	return NOTIFY_OK;
-> > +}
-> > +
-> >  static struct file *vfio_device_open(struct vfio_device *device)
-> >  {
-> > +	struct vfio_iommu_driver *iommu_driver;
-> >  	struct file *filep;
-> >  	int ret;
-> >  
-> > @@ -1109,6 +1121,18 @@ static struct file *vfio_device_open(struct vfio_device *device)
-> >  			if (ret)
-> >  				goto err_undo_count;
-> >  		}
-> > +
-> > +		iommu_driver = device->group->container->iommu_driver;
-> > +		if (device->ops->dma_unmap && iommu_driver &&
-> > +		    iommu_driver->ops->register_notifier) {
-> > +			unsigned long events = VFIO_IOMMU_NOTIFY_DMA_UNMAP;
-> > +
-> > +			device->iommu_nb.notifier_call = vfio_iommu_notifier;
-> > +			iommu_driver->ops->register_notifier(
-> > +				device->group->container->iommu_data, &events,
-> > +				&device->iommu_nb);
-> > +		}
-> > +
-> >  		up_read(&device->group->group_rwsem);
-> >  	}
-> >  	mutex_unlock(&device->dev_set->lock);
-> > @@ -1143,8 +1167,16 @@ static struct file *vfio_device_open(struct vfio_device *device)
-> >  err_close_device:
-> >  	mutex_lock(&device->dev_set->lock);
-> >  	down_read(&device->group->group_rwsem);
-> > -	if (device->open_count == 1 && device->ops->close_device)
-> > +	if (device->open_count == 1 && device->ops->close_device) {
-> >  		device->ops->close_device(device);
-> > +
-> > +		iommu_driver = device->group->container->iommu_driver;
-> > +		if (device->ops->dma_unmap && iommu_driver &&
-> > +		    iommu_driver->ops->register_notifier)  
-> 
-> Test for register_notifier callback...
-> 
-> > +			iommu_driver->ops->unregister_notifier(
-> > +				device->group->container->iommu_data,
-> > +				&device->iommu_nb);  
-> 
-> use unregister_notifier callback.  Same below.
-> 
-> > +	}
-> >  err_undo_count:
-> >  	device->open_count--;
-> >  	if (device->open_count == 0 && device->kvm)
-> > @@ -1339,12 +1371,20 @@ static const struct file_operations vfio_group_fops = {
-> >  static int vfio_device_fops_release(struct inode *inode, struct file *filep)
-> >  {
-> >  	struct vfio_device *device = filep->private_data;
-> > +	struct vfio_iommu_driver *iommu_driver;
-> >  
-> >  	mutex_lock(&device->dev_set->lock);
-> >  	vfio_assert_device_open(device);
-> >  	down_read(&device->group->group_rwsem);
-> >  	if (device->open_count == 1 && device->ops->close_device)
-> >  		device->ops->close_device(device);
-> > +
-> > +	iommu_driver = device->group->container->iommu_driver;
-> > +	if (device->ops->dma_unmap && iommu_driver &&
-> > +	    iommu_driver->ops->register_notifier)
-> > +		iommu_driver->ops->unregister_notifier(
-> > +			device->group->container->iommu_data,
-> > +			&device->iommu_nb);
-> >  	up_read(&device->group->group_rwsem);
-> >  	device->open_count--;
-> >  	if (device->open_count == 0)
-> > @@ -2027,90 +2067,6 @@ int vfio_dma_rw(struct vfio_device *device, dma_addr_t user_iova, void *data,
-> >  }
-> >  EXPORT_SYMBOL(vfio_dma_rw);
-> >  
-> > -static int vfio_register_iommu_notifier(struct vfio_group *group,
-> > -					unsigned long *events,
-> > -					struct notifier_block *nb)
-> > -{
-> > -	struct vfio_container *container;
-> > -	struct vfio_iommu_driver *driver;
-> > -	int ret;
-> > -
-> > -	lockdep_assert_held_read(&group->group_rwsem);
-> > -
-> > -	container = group->container;
-> > -	driver = container->iommu_driver;
-> > -	if (likely(driver && driver->ops->register_notifier))
-> > -		ret = driver->ops->register_notifier(container->iommu_data,
-> > -						     events, nb);
-> > -	else
-> > -		ret = -ENOTTY;
-> > -
-> > -	return ret;
-> > -}
-> > -
-> > -static int vfio_unregister_iommu_notifier(struct vfio_group *group,
-> > -					  struct notifier_block *nb)
-> > -{
-> > -	struct vfio_container *container;
-> > -	struct vfio_iommu_driver *driver;
-> > -	int ret;
-> > -
-> > -	lockdep_assert_held_read(&group->group_rwsem);
-> > -
-> > -	container = group->container;
-> > -	driver = container->iommu_driver;
-> > -	if (likely(driver && driver->ops->unregister_notifier))
-> > -		ret = driver->ops->unregister_notifier(container->iommu_data,
-> > -						       nb);
-> > -	else
-> > -		ret = -ENOTTY;
-> > -
-> > -	return ret;
-> > -}
-> > -
-> > -int vfio_register_notifier(struct vfio_device *device,
-> > -			   enum vfio_notify_type type, unsigned long *events,
-> > -			   struct notifier_block *nb)
-> > -{
-> > -	struct vfio_group *group = device->group;
-> > -	int ret;
-> > -
-> > -	if (!nb || !events || (*events == 0) ||
-> > -	    !vfio_assert_device_open(device))
-> > -		return -EINVAL;
-> > -
-> > -	switch (type) {
-> > -	case VFIO_IOMMU_NOTIFY:
-> > -		ret = vfio_register_iommu_notifier(group, events, nb);
-> > -		break;
-> > -	default:
-> > -		ret = -EINVAL;
-> > -	}
-> > -	return ret;
-> > -}
-> > -EXPORT_SYMBOL(vfio_register_notifier);
-> > -
-> > -int vfio_unregister_notifier(struct vfio_device *device,
-> > -			     enum vfio_notify_type type,
-> > -			     struct notifier_block *nb)
-> > -{
-> > -	struct vfio_group *group = device->group;
-> > -	int ret;
-> > -
-> > -	if (!nb || !vfio_assert_device_open(device))
-> > -		return -EINVAL;
-> > -
-> > -	switch (type) {
-> > -	case VFIO_IOMMU_NOTIFY:
-> > -		ret = vfio_unregister_iommu_notifier(group, nb);
-> > -		break;
-> > -	default:
-> > -		ret = -EINVAL;
-> > -	}
-> > -	return ret;
-> > -}
-> > -EXPORT_SYMBOL(vfio_unregister_notifier);
-> > -
-> >  /*
-> >   * Module/class support
-> >   */
-> > diff --git a/drivers/vfio/vfio.h b/drivers/vfio/vfio.h
-> > index a6713022115155..cb2e4e9baa8fe8 100644
-> > --- a/drivers/vfio/vfio.h
-> > +++ b/drivers/vfio/vfio.h
-> > @@ -33,6 +33,11 @@ enum vfio_iommu_notify_type {
-> >  	VFIO_IOMMU_CONTAINER_CLOSE = 0,
-> >  };
-> >  
-> > +/* events for register_notifier() */
-> > +enum {
-> > +	VFIO_IOMMU_NOTIFY_DMA_UNMAP = 1,
-> > +};  
-> 
-> Can't say I understand why this changed from BIT(0) to an enum, the
-> event mask is meant to be a bitfield.  Using the notifier all the way
-> to the device was meant to avoid future callbacks on the device.  If we
-> now have a dma_unmap on the device, should the whole infrastructure be
-> tailored to that one task?  For example a dma_unmap_nb on the device,
-> {un}register_dma_unmap_notifier on the iommu ops,
-> vfio_dma_unmap_notifier, etc?  Thanks,
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+---
+ drivers/char/agp/intel-gtt.c            | 58 ++++++++++++-------------
+ drivers/gpu/drm/i915/gt/intel_gt_gmch.c | 16 +++----
+ include/drm/intel-gtt.h                 | 24 +++++-----
+ 3 files changed, 49 insertions(+), 49 deletions(-)
 
-Ok, this all seems cleared up in the next patch, maybe there's a better
-intermediate step, but not worth bike shedding.  Thanks,
-
-Alex
-
-> > +
-> >  /**
-> >   * struct vfio_iommu_driver_ops - VFIO IOMMU driver callbacks
-> >   */
-> > diff --git a/include/linux/vfio.h b/include/linux/vfio.h
-> > index aa888cc517578e..b76623e3b92fca 100644
-> > --- a/include/linux/vfio.h
-> > +++ b/include/linux/vfio.h
-> > @@ -44,6 +44,7 @@ struct vfio_device {
-> >  	unsigned int open_count;
-> >  	struct completion comp;
-> >  	struct list_head group_next;
-> > +	struct notifier_block iommu_nb;
-> >  };
-> >  
-> >  /**
-> > @@ -60,6 +61,8 @@ struct vfio_device {
-> >   * @match: Optional device name match callback (return: 0 for no-match, >0 for
-> >   *         match, -errno for abort (ex. match with insufficient or incorrect
-> >   *         additional args)
-> > + * @dma_unmap: Called when userspace unmaps IOVA from the container
-> > + *             this device is attached to.
-> >   * @device_feature: Optional, fill in the VFIO_DEVICE_FEATURE ioctl
-> >   * @migration_set_state: Optional callback to change the migration state for
-> >   *         devices that support migration. It's mandatory for
-> > @@ -85,6 +88,7 @@ struct vfio_device_ops {
-> >  	int	(*mmap)(struct vfio_device *vdev, struct vm_area_struct *vma);
-> >  	void	(*request)(struct vfio_device *vdev, unsigned int count);
-> >  	int	(*match)(struct vfio_device *vdev, char *buf);
-> > +	void	(*dma_unmap)(struct vfio_device *vdev, u64 iova, u64 length);
-> >  	int	(*device_feature)(struct vfio_device *device, u32 flags,
-> >  				  void __user *arg, size_t argsz);
-> >  	struct file *(*migration_set_state)(
-> > @@ -154,23 +158,6 @@ extern int vfio_unpin_pages(struct vfio_device *device, unsigned long *user_pfn,
-> >  extern int vfio_dma_rw(struct vfio_device *device, dma_addr_t user_iova,
-> >  		       void *data, size_t len, bool write);
-> >  
-> > -/* each type has independent events */
-> > -enum vfio_notify_type {
-> > -	VFIO_IOMMU_NOTIFY = 0,
-> > -};
-> > -
-> > -/* events for VFIO_IOMMU_NOTIFY */
-> > -#define VFIO_IOMMU_NOTIFY_DMA_UNMAP	BIT(0)
-> > -
-> > -extern int vfio_register_notifier(struct vfio_device *device,
-> > -				  enum vfio_notify_type type,
-> > -				  unsigned long *required_events,
-> > -				  struct notifier_block *nb);
-> > -extern int vfio_unregister_notifier(struct vfio_device *device,
-> > -				    enum vfio_notify_type type,
-> > -				    struct notifier_block *nb);
-> > -
-> > -
-> >  /*
-> >   * Sub-module helpers
-> >   */  
-> 
+diff --git a/drivers/char/agp/intel-gtt.c b/drivers/char/agp/intel-gtt.c
+index 79a1b65527c2..fe7e2105e766 100644
+--- a/drivers/char/agp/intel-gtt.c
++++ b/drivers/char/agp/intel-gtt.c
+@@ -744,7 +744,7 @@ static void i830_write_entry(dma_addr_t addr, unsigned int entry,
+ 	writel_relaxed(addr | pte_flags, intel_private.gtt + entry);
+ }
+ 
+-bool intel_enable_gtt(void)
++bool intel_gmch_enable_gtt(void)
+ {
+ 	u8 __iomem *reg;
+ 
+@@ -787,7 +787,7 @@ bool intel_enable_gtt(void)
+ 
+ 	return true;
+ }
+-EXPORT_SYMBOL(intel_enable_gtt);
++EXPORT_SYMBOL(intel_gmch_enable_gtt);
+ 
+ static int i830_setup(void)
+ {
+@@ -821,8 +821,8 @@ static int intel_fake_agp_free_gatt_table(struct agp_bridge_data *bridge)
+ 
+ static int intel_fake_agp_configure(void)
+ {
+-	if (!intel_enable_gtt())
+-	    return -EIO;
++	if (!intel_gmch_enable_gtt())
++		return -EIO;
+ 
+ 	intel_private.clear_fake_agp = true;
+ 	agp_bridge->gart_bus_addr = intel_private.gma_bus_addr;
+@@ -844,20 +844,20 @@ static bool i830_check_flags(unsigned int flags)
+ 	return false;
+ }
+ 
+-void intel_gtt_insert_page(dma_addr_t addr,
+-			   unsigned int pg,
+-			   unsigned int flags)
++void intel_gmch_gtt_insert_page(dma_addr_t addr,
++				unsigned int pg,
++				unsigned int flags)
+ {
+ 	intel_private.driver->write_entry(addr, pg, flags);
+ 	readl(intel_private.gtt + pg);
+ 	if (intel_private.driver->chipset_flush)
+ 		intel_private.driver->chipset_flush();
+ }
+-EXPORT_SYMBOL(intel_gtt_insert_page);
++EXPORT_SYMBOL(intel_gmch_gtt_insert_page);
+ 
+-void intel_gtt_insert_sg_entries(struct sg_table *st,
+-				 unsigned int pg_start,
+-				 unsigned int flags)
++void intel_gmch_gtt_insert_sg_entries(struct sg_table *st,
++				      unsigned int pg_start,
++				      unsigned int flags)
+ {
+ 	struct scatterlist *sg;
+ 	unsigned int len, m;
+@@ -879,13 +879,13 @@ void intel_gtt_insert_sg_entries(struct sg_table *st,
+ 	if (intel_private.driver->chipset_flush)
+ 		intel_private.driver->chipset_flush();
+ }
+-EXPORT_SYMBOL(intel_gtt_insert_sg_entries);
++EXPORT_SYMBOL(intel_gmch_gtt_insert_sg_entries);
+ 
+ #if IS_ENABLED(CONFIG_AGP_INTEL)
+-static void intel_gtt_insert_pages(unsigned int first_entry,
+-				   unsigned int num_entries,
+-				   struct page **pages,
+-				   unsigned int flags)
++static void intel_gmch_gtt_insert_pages(unsigned int first_entry,
++					unsigned int num_entries,
++					struct page **pages,
++					unsigned int flags)
+ {
+ 	int i, j;
+ 
+@@ -905,7 +905,7 @@ static int intel_fake_agp_insert_entries(struct agp_memory *mem,
+ 	if (intel_private.clear_fake_agp) {
+ 		int start = intel_private.stolen_size / PAGE_SIZE;
+ 		int end = intel_private.gtt_mappable_entries;
+-		intel_gtt_clear_range(start, end - start);
++		intel_gmch_gtt_clear_range(start, end - start);
+ 		intel_private.clear_fake_agp = false;
+ 	}
+ 
+@@ -934,12 +934,12 @@ static int intel_fake_agp_insert_entries(struct agp_memory *mem,
+ 		if (ret != 0)
+ 			return ret;
+ 
+-		intel_gtt_insert_sg_entries(&st, pg_start, type);
++		intel_gmch_gtt_insert_sg_entries(&st, pg_start, type);
+ 		mem->sg_list = st.sgl;
+ 		mem->num_sg = st.nents;
+ 	} else
+-		intel_gtt_insert_pages(pg_start, mem->page_count, mem->pages,
+-				       type);
++		intel_gmch_gtt_insert_pages(pg_start, mem->page_count, mem->pages,
++					    type);
+ 
+ out:
+ 	ret = 0;
+@@ -949,7 +949,7 @@ static int intel_fake_agp_insert_entries(struct agp_memory *mem,
+ }
+ #endif
+ 
+-void intel_gtt_clear_range(unsigned int first_entry, unsigned int num_entries)
++void intel_gmch_gtt_clear_range(unsigned int first_entry, unsigned int num_entries)
+ {
+ 	unsigned int i;
+ 
+@@ -959,7 +959,7 @@ void intel_gtt_clear_range(unsigned int first_entry, unsigned int num_entries)
+ 	}
+ 	wmb();
+ }
+-EXPORT_SYMBOL(intel_gtt_clear_range);
++EXPORT_SYMBOL(intel_gmch_gtt_clear_range);
+ 
+ #if IS_ENABLED(CONFIG_AGP_INTEL)
+ static int intel_fake_agp_remove_entries(struct agp_memory *mem,
+@@ -968,7 +968,7 @@ static int intel_fake_agp_remove_entries(struct agp_memory *mem,
+ 	if (mem->page_count == 0)
+ 		return 0;
+ 
+-	intel_gtt_clear_range(pg_start, mem->page_count);
++	intel_gmch_gtt_clear_range(pg_start, mem->page_count);
+ 
+ 	if (intel_private.needs_dmar) {
+ 		intel_gtt_unmap_memory(mem->sg_list, mem->num_sg);
+@@ -1431,22 +1431,22 @@ int intel_gmch_probe(struct pci_dev *bridge_pdev, struct pci_dev *gpu_pdev,
+ }
+ EXPORT_SYMBOL(intel_gmch_probe);
+ 
+-void intel_gtt_get(u64 *gtt_total,
+-		   phys_addr_t *mappable_base,
+-		   resource_size_t *mappable_end)
++void intel_gmch_gtt_get(u64 *gtt_total,
++			phys_addr_t *mappable_base,
++			resource_size_t *mappable_end)
+ {
+ 	*gtt_total = intel_private.gtt_total_entries << PAGE_SHIFT;
+ 	*mappable_base = intel_private.gma_bus_addr;
+ 	*mappable_end = intel_private.gtt_mappable_entries << PAGE_SHIFT;
+ }
+-EXPORT_SYMBOL(intel_gtt_get);
++EXPORT_SYMBOL(intel_gmch_gtt_get);
+ 
+-void intel_gtt_chipset_flush(void)
++void intel_gmch_gtt_flush(void)
+ {
+ 	if (intel_private.driver->chipset_flush)
+ 		intel_private.driver->chipset_flush();
+ }
+-EXPORT_SYMBOL(intel_gtt_chipset_flush);
++EXPORT_SYMBOL(intel_gmch_gtt_flush);
+ 
+ void intel_gmch_remove(void)
+ {
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_gmch.c b/drivers/gpu/drm/i915/gt/intel_gt_gmch.c
+index 18e488672d1b..b1a6ff4c9377 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_gmch.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt_gmch.c
+@@ -134,7 +134,7 @@ static void gen5_ggtt_insert_page(struct i915_address_space *vm,
+ 	unsigned int flags = (cache_level == I915_CACHE_NONE) ?
+ 		AGP_USER_MEMORY : AGP_USER_CACHED_MEMORY;
+ 
+-	intel_gtt_insert_page(addr, offset >> PAGE_SHIFT, flags);
++	intel_gmch_gtt_insert_page(addr, offset >> PAGE_SHIFT, flags);
+ }
+ 
+ static void gen6_ggtt_insert_page(struct i915_address_space *vm,
+@@ -175,8 +175,8 @@ static void gen5_ggtt_insert_entries(struct i915_address_space *vm,
+ 	unsigned int flags = (cache_level == I915_CACHE_NONE) ?
+ 		AGP_USER_MEMORY : AGP_USER_CACHED_MEMORY;
+ 
+-	intel_gtt_insert_sg_entries(vma_res->bi.pages, vma_res->start >> PAGE_SHIFT,
+-				    flags);
++	intel_gmch_gtt_insert_sg_entries(vma_res->bi.pages, vma_res->start >> PAGE_SHIFT,
++					 flags);
+ }
+ 
+ /*
+@@ -306,18 +306,18 @@ static void bxt_vtd_ggtt_insert_entries__BKL(struct i915_address_space *vm,
+ 
+ void intel_gt_gmch_gen5_chipset_flush(struct intel_gt *gt)
+ {
+-	intel_gtt_chipset_flush();
++	intel_gmch_gtt_flush();
+ }
+ 
+ static void gmch_ggtt_invalidate(struct i915_ggtt *ggtt)
+ {
+-	intel_gtt_chipset_flush();
++	intel_gmch_gtt_flush();
+ }
+ 
+ static void gen5_ggtt_clear_range(struct i915_address_space *vm,
+ 					 u64 start, u64 length)
+ {
+-	intel_gtt_clear_range(start >> PAGE_SHIFT, length >> PAGE_SHIFT);
++	intel_gmch_gtt_clear_range(start >> PAGE_SHIFT, length >> PAGE_SHIFT);
+ }
+ 
+ static void gen6_ggtt_clear_range(struct i915_address_space *vm,
+@@ -494,7 +494,7 @@ int intel_gt_gmch_gen5_probe(struct i915_ggtt *ggtt)
+ 		return -EIO;
+ 	}
+ 
+-	intel_gtt_get(&ggtt->vm.total, &gmadr_base, &ggtt->mappable_end);
++	intel_gmch_gtt_get(&ggtt->vm.total, &gmadr_base, &ggtt->mappable_end);
+ 
+ 	ggtt->gmadr =
+ 		(struct resource)DEFINE_RES_MEM(gmadr_base, ggtt->mappable_end);
+@@ -647,7 +647,7 @@ int intel_gt_gmch_gen8_probe(struct i915_ggtt *ggtt)
+ 
+ int intel_gt_gmch_gen5_enable_hw(struct drm_i915_private *i915)
+ {
+-	if (GRAPHICS_VER(i915) < 6 && !intel_enable_gtt())
++	if (GRAPHICS_VER(i915) < 6 && !intel_gmch_enable_gtt())
+ 		return -EIO;
+ 
+ 	return 0;
+diff --git a/include/drm/intel-gtt.h b/include/drm/intel-gtt.h
+index 67530bfef129..cb0d5b7200c7 100644
+--- a/include/drm/intel-gtt.h
++++ b/include/drm/intel-gtt.h
+@@ -10,24 +10,24 @@ struct agp_bridge_data;
+ struct pci_dev;
+ struct sg_table;
+ 
+-void intel_gtt_get(u64 *gtt_total,
+-		   phys_addr_t *mappable_base,
+-		   resource_size_t *mappable_end);
++void intel_gmch_gtt_get(u64 *gtt_total,
++			phys_addr_t *mappable_base,
++			resource_size_t *mappable_end);
+ 
+ int intel_gmch_probe(struct pci_dev *bridge_pdev, struct pci_dev *gpu_pdev,
+ 		     struct agp_bridge_data *bridge);
+ void intel_gmch_remove(void);
+ 
+-bool intel_enable_gtt(void);
++bool intel_gmch_enable_gtt(void);
+ 
+-void intel_gtt_chipset_flush(void);
+-void intel_gtt_insert_page(dma_addr_t addr,
+-			   unsigned int pg,
+-			   unsigned int flags);
+-void intel_gtt_insert_sg_entries(struct sg_table *st,
+-				 unsigned int pg_start,
+-				 unsigned int flags);
+-void intel_gtt_clear_range(unsigned int first_entry, unsigned int num_entries);
++void intel_gmch_gtt_flush(void);
++void intel_gmch_gtt_insert_page(dma_addr_t addr,
++				unsigned int pg,
++				unsigned int flags);
++void intel_gmch_gtt_insert_sg_entries(struct sg_table *st,
++				      unsigned int pg_start,
++				      unsigned int flags);
++void intel_gmch_gtt_clear_range(unsigned int first_entry, unsigned int num_entries);
+ 
+ /* Special gtt memory types */
+ #define AGP_DCACHE_MEMORY	1
+-- 
+2.36.1
 
