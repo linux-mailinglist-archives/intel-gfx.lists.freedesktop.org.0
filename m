@@ -1,53 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFEA954F54A
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jun 2022 12:24:04 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F46A54F558
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jun 2022 12:28:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 36F9211A5DD;
-	Fri, 17 Jun 2022 10:24:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A09F112395;
+	Fri, 17 Jun 2022 10:28:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 55B9511A5DB;
- Fri, 17 Jun 2022 10:23:58 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B0720112395
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Jun 2022 10:28:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655461438; x=1686997438;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=N5ww0BN1kSc+RYwIHwSKTXsHTLOUpw39IUPnf+on/20=;
- b=Zx01EMEIzZu5Nvktxt53qaPAZTQRwAPxIBXJVvStxXagxsVXGoif5PGV
- 0YoTyrxnFk7h9oYnn99foWnL9s98Tj+bqDdVkJa4Jv3vMoh8G4Y0cyMqt
- fjDM7y7lcmwLnKUIdo4lP9TLjGSqCvukGlKckMEJw+exP6aObnZMjRDQR
- cFmuRqNhKUz4e09zIIZsgPwTnsRmib4R04FfAtX/Artau1RKaCRjQLN3D
- YNeFLNP94vkadzT6EXRjECgDpnXypUk9DeVVDhV3WZUIsRrpSwbcI5Z0x
- sPdeVdDPrcGKCzbHBqBn/wm4zSap9klxo8Vdj6dG5cOT3PG46ARa4HlMp g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10380"; a="279532856"
-X-IronPort-AV: E=Sophos;i="5.92,306,1650956400"; d="scan'208";a="279532856"
+ t=1655461734; x=1686997734;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=tHJIEBF/9et1tu+nob6FBcBBNlckZjB/8pE3BLNzrlQ=;
+ b=JR4/K1vWbAigpeJZDwDi+NtTpF58KcnDRYw0FxUyvYvY1F9Ei7qLDSBb
+ 953i+e+spCzWwSqO914L8VIJOj3cQmJPFZ6EiyYCw5IckNWu4ErhJbbVw
+ XKJRRai1n8uQi/xWuFVjaR5wYu4wl0jRqoYf4NbSyDdrnaxertmWf4rp/
+ Ms1Ukq9k+lVcYzwVP4FF2sVFV3G3FcZAZStfoL1hNsodqfQezekG289rq
+ TB8H+CjcDMLmTT7Ksyyf+B4StCSdzeNn8fUXBgHfS77+IsNJBOt6/Qmcs
+ L3vpyDKGJK1o+kRelwAHIDJ5UDWNf1GkG82KYjMVHju8Jo7Pf+E/Z2si1 Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10380"; a="280507655"
+X-IronPort-AV: E=Sophos;i="5.92,306,1650956400"; d="scan'208";a="280507655"
 Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2022 03:23:57 -0700
-X-IronPort-AV: E=Sophos;i="5.92,306,1650956400"; d="scan'208";a="831985965"
-Received: from makierna-mobl1.ger.corp.intel.com (HELO [10.213.236.232])
- ([10.213.236.232])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2022 03:23:56 -0700
-Message-ID: <e500c578-59be-02df-3be3-b9953f782b2e@linux.intel.com>
-Date: Fri, 17 Jun 2022 11:23:54 +0100
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jun 2022 03:28:54 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.92,306,1650956400"; d="scan'208";a="831986905"
+Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
+ by fmsmga006.fm.intel.com with ESMTP; 17 Jun 2022 03:28:51 -0700
+From: Animesh Manna <animesh.manna@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 17 Jun 2022 15:56:49 +0530
+Message-Id: <20220617102649.1581-1-animesh.manna@intel.com>
+X-Mailer: git-send-email 2.29.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Content-Language: en-US
-To: Lucas De Marchi <lucas.demarchi@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20220616224943.830393-1-lucas.demarchi@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20220616224943.830393-1-lucas.demarchi@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 1/2] agp/intel: Rename intel-gtt symbols
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v3] drm/i915/bios: calculate panel type as per
+ child device index in VBT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,295 +54,218 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org
+Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Each LFP may have different panel type which is stored in LFP data
+data block. Based on the child device index respective panel-type/
+panel-type2 field will be used.
 
-On 16/06/2022 23:49, Lucas De Marchi wrote:
-> Exporting the symbols like intel_gtt_* creates some confusion inside
-> i915 that has symbols named similarly. In an attempt to isolate
-> platforms needing intel-gtt.ko, commit 7a5c922377b4 ("drm/i915/gt: Split
-> intel-gtt functions by arch") moved way too much
-> inside gt/intel_gt_gmch.c, even the functions that don't callout to this
-> module. Rename the symbols to make the separation clear.
-> 
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> ---
->   drivers/char/agp/intel-gtt.c            | 58 ++++++++++++-------------
->   drivers/gpu/drm/i915/gt/intel_gt_gmch.c | 16 +++----
->   include/drm/intel-gtt.h                 | 24 +++++-----
->   3 files changed, 49 insertions(+), 49 deletions(-)
-> 
-> diff --git a/drivers/char/agp/intel-gtt.c b/drivers/char/agp/intel-gtt.c
-> index 79a1b65527c2..fe7e2105e766 100644
-> --- a/drivers/char/agp/intel-gtt.c
-> +++ b/drivers/char/agp/intel-gtt.c
-> @@ -744,7 +744,7 @@ static void i830_write_entry(dma_addr_t addr, unsigned int entry,
->   	writel_relaxed(addr | pte_flags, intel_private.gtt + entry);
->   }
->   
-> -bool intel_enable_gtt(void)
-> +bool intel_gmch_enable_gtt(void)
->   {
->   	u8 __iomem *reg;
->   
-> @@ -787,7 +787,7 @@ bool intel_enable_gtt(void)
->   
->   	return true;
->   }
-> -EXPORT_SYMBOL(intel_enable_gtt);
-> +EXPORT_SYMBOL(intel_gmch_enable_gtt);
->   
->   static int i830_setup(void)
->   {
-> @@ -821,8 +821,8 @@ static int intel_fake_agp_free_gatt_table(struct agp_bridge_data *bridge)
->   
->   static int intel_fake_agp_configure(void)
->   {
-> -	if (!intel_enable_gtt())
-> -	    return -EIO;
-> +	if (!intel_gmch_enable_gtt())
-> +		return -EIO;
->   
->   	intel_private.clear_fake_agp = true;
->   	agp_bridge->gart_bus_addr = intel_private.gma_bus_addr;
-> @@ -844,20 +844,20 @@ static bool i830_check_flags(unsigned int flags)
->   	return false;
->   }
->   
-> -void intel_gtt_insert_page(dma_addr_t addr,
-> -			   unsigned int pg,
-> -			   unsigned int flags)
-> +void intel_gmch_gtt_insert_page(dma_addr_t addr,
-> +				unsigned int pg,
-> +				unsigned int flags)
->   {
->   	intel_private.driver->write_entry(addr, pg, flags);
->   	readl(intel_private.gtt + pg);
->   	if (intel_private.driver->chipset_flush)
->   		intel_private.driver->chipset_flush();
->   }
-> -EXPORT_SYMBOL(intel_gtt_insert_page);
-> +EXPORT_SYMBOL(intel_gmch_gtt_insert_page);
->   
-> -void intel_gtt_insert_sg_entries(struct sg_table *st,
-> -				 unsigned int pg_start,
-> -				 unsigned int flags)
-> +void intel_gmch_gtt_insert_sg_entries(struct sg_table *st,
-> +				      unsigned int pg_start,
-> +				      unsigned int flags)
->   {
->   	struct scatterlist *sg;
->   	unsigned int len, m;
-> @@ -879,13 +879,13 @@ void intel_gtt_insert_sg_entries(struct sg_table *st,
->   	if (intel_private.driver->chipset_flush)
->   		intel_private.driver->chipset_flush();
->   }
-> -EXPORT_SYMBOL(intel_gtt_insert_sg_entries);
-> +EXPORT_SYMBOL(intel_gmch_gtt_insert_sg_entries);
->   
->   #if IS_ENABLED(CONFIG_AGP_INTEL)
-> -static void intel_gtt_insert_pages(unsigned int first_entry,
-> -				   unsigned int num_entries,
-> -				   struct page **pages,
-> -				   unsigned int flags)
-> +static void intel_gmch_gtt_insert_pages(unsigned int first_entry,
-> +					unsigned int num_entries,
-> +					struct page **pages,
-> +					unsigned int flags)
->   {
->   	int i, j;
->   
-> @@ -905,7 +905,7 @@ static int intel_fake_agp_insert_entries(struct agp_memory *mem,
->   	if (intel_private.clear_fake_agp) {
->   		int start = intel_private.stolen_size / PAGE_SIZE;
->   		int end = intel_private.gtt_mappable_entries;
-> -		intel_gtt_clear_range(start, end - start);
-> +		intel_gmch_gtt_clear_range(start, end - start);
->   		intel_private.clear_fake_agp = false;
->   	}
->   
-> @@ -934,12 +934,12 @@ static int intel_fake_agp_insert_entries(struct agp_memory *mem,
->   		if (ret != 0)
->   			return ret;
->   
-> -		intel_gtt_insert_sg_entries(&st, pg_start, type);
-> +		intel_gmch_gtt_insert_sg_entries(&st, pg_start, type);
->   		mem->sg_list = st.sgl;
->   		mem->num_sg = st.nents;
->   	} else
-> -		intel_gtt_insert_pages(pg_start, mem->page_count, mem->pages,
-> -				       type);
-> +		intel_gmch_gtt_insert_pages(pg_start, mem->page_count, mem->pages,
-> +					    type);
->   
->   out:
->   	ret = 0;
-> @@ -949,7 +949,7 @@ static int intel_fake_agp_insert_entries(struct agp_memory *mem,
->   }
->   #endif
->   
-> -void intel_gtt_clear_range(unsigned int first_entry, unsigned int num_entries)
-> +void intel_gmch_gtt_clear_range(unsigned int first_entry, unsigned int num_entries)
->   {
->   	unsigned int i;
->   
-> @@ -959,7 +959,7 @@ void intel_gtt_clear_range(unsigned int first_entry, unsigned int num_entries)
->   	}
->   	wmb();
->   }
-> -EXPORT_SYMBOL(intel_gtt_clear_range);
-> +EXPORT_SYMBOL(intel_gmch_gtt_clear_range);
->   
->   #if IS_ENABLED(CONFIG_AGP_INTEL)
->   static int intel_fake_agp_remove_entries(struct agp_memory *mem,
-> @@ -968,7 +968,7 @@ static int intel_fake_agp_remove_entries(struct agp_memory *mem,
->   	if (mem->page_count == 0)
->   		return 0;
->   
-> -	intel_gtt_clear_range(pg_start, mem->page_count);
-> +	intel_gmch_gtt_clear_range(pg_start, mem->page_count);
->   
->   	if (intel_private.needs_dmar) {
->   		intel_gtt_unmap_memory(mem->sg_list, mem->num_sg);
-> @@ -1431,22 +1431,22 @@ int intel_gmch_probe(struct pci_dev *bridge_pdev, struct pci_dev *gpu_pdev,
->   }
->   EXPORT_SYMBOL(intel_gmch_probe);
->   
-> -void intel_gtt_get(u64 *gtt_total,
-> -		   phys_addr_t *mappable_base,
-> -		   resource_size_t *mappable_end)
-> +void intel_gmch_gtt_get(u64 *gtt_total,
-> +			phys_addr_t *mappable_base,
-> +			resource_size_t *mappable_end)
->   {
->   	*gtt_total = intel_private.gtt_total_entries << PAGE_SHIFT;
->   	*mappable_base = intel_private.gma_bus_addr;
->   	*mappable_end = intel_private.gtt_mappable_entries << PAGE_SHIFT;
->   }
-> -EXPORT_SYMBOL(intel_gtt_get);
-> +EXPORT_SYMBOL(intel_gmch_gtt_get);
->   
-> -void intel_gtt_chipset_flush(void)
-> +void intel_gmch_gtt_flush(void)
->   {
->   	if (intel_private.driver->chipset_flush)
->   		intel_private.driver->chipset_flush();
->   }
-> -EXPORT_SYMBOL(intel_gtt_chipset_flush);
-> +EXPORT_SYMBOL(intel_gmch_gtt_flush);
->   
->   void intel_gmch_remove(void)
->   {
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_gmch.c b/drivers/gpu/drm/i915/gt/intel_gt_gmch.c
-> index 18e488672d1b..b1a6ff4c9377 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_gmch.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_gmch.c
-> @@ -134,7 +134,7 @@ static void gen5_ggtt_insert_page(struct i915_address_space *vm,
->   	unsigned int flags = (cache_level == I915_CACHE_NONE) ?
->   		AGP_USER_MEMORY : AGP_USER_CACHED_MEMORY;
->   
-> -	intel_gtt_insert_page(addr, offset >> PAGE_SHIFT, flags);
-> +	intel_gmch_gtt_insert_page(addr, offset >> PAGE_SHIFT, flags);
->   }
->   
->   static void gen6_ggtt_insert_page(struct i915_address_space *vm,
-> @@ -175,8 +175,8 @@ static void gen5_ggtt_insert_entries(struct i915_address_space *vm,
->   	unsigned int flags = (cache_level == I915_CACHE_NONE) ?
->   		AGP_USER_MEMORY : AGP_USER_CACHED_MEMORY;
->   
-> -	intel_gtt_insert_sg_entries(vma_res->bi.pages, vma_res->start >> PAGE_SHIFT,
-> -				    flags);
-> +	intel_gmch_gtt_insert_sg_entries(vma_res->bi.pages, vma_res->start >> PAGE_SHIFT,
-> +					 flags);
->   }
->   
->   /*
-> @@ -306,18 +306,18 @@ static void bxt_vtd_ggtt_insert_entries__BKL(struct i915_address_space *vm,
->   
->   void intel_gt_gmch_gen5_chipset_flush(struct intel_gt *gt)
->   {
-> -	intel_gtt_chipset_flush();
-> +	intel_gmch_gtt_flush();
->   }
->   
->   static void gmch_ggtt_invalidate(struct i915_ggtt *ggtt)
->   {
-> -	intel_gtt_chipset_flush();
-> +	intel_gmch_gtt_flush();
->   }
->   
->   static void gen5_ggtt_clear_range(struct i915_address_space *vm,
->   					 u64 start, u64 length)
->   {
-> -	intel_gtt_clear_range(start >> PAGE_SHIFT, length >> PAGE_SHIFT);
-> +	intel_gmch_gtt_clear_range(start >> PAGE_SHIFT, length >> PAGE_SHIFT);
->   }
->   
->   static void gen6_ggtt_clear_range(struct i915_address_space *vm,
-> @@ -494,7 +494,7 @@ int intel_gt_gmch_gen5_probe(struct i915_ggtt *ggtt)
->   		return -EIO;
->   	}
->   
-> -	intel_gtt_get(&ggtt->vm.total, &gmadr_base, &ggtt->mappable_end);
-> +	intel_gmch_gtt_get(&ggtt->vm.total, &gmadr_base, &ggtt->mappable_end);
->   
->   	ggtt->gmadr =
->   		(struct resource)DEFINE_RES_MEM(gmadr_base, ggtt->mappable_end);
-> @@ -647,7 +647,7 @@ int intel_gt_gmch_gen8_probe(struct i915_ggtt *ggtt)
->   
->   int intel_gt_gmch_gen5_enable_hw(struct drm_i915_private *i915)
->   {
-> -	if (GRAPHICS_VER(i915) < 6 && !intel_enable_gtt())
-> +	if (GRAPHICS_VER(i915) < 6 && !intel_gmch_enable_gtt())
->   		return -EIO;
->   
->   	return 0;
-> diff --git a/include/drm/intel-gtt.h b/include/drm/intel-gtt.h
-> index 67530bfef129..cb0d5b7200c7 100644
-> --- a/include/drm/intel-gtt.h
-> +++ b/include/drm/intel-gtt.h
-> @@ -10,24 +10,24 @@ struct agp_bridge_data;
->   struct pci_dev;
->   struct sg_table;
->   
-> -void intel_gtt_get(u64 *gtt_total,
-> -		   phys_addr_t *mappable_base,
-> -		   resource_size_t *mappable_end);
-> +void intel_gmch_gtt_get(u64 *gtt_total,
-> +			phys_addr_t *mappable_base,
-> +			resource_size_t *mappable_end);
->   
->   int intel_gmch_probe(struct pci_dev *bridge_pdev, struct pci_dev *gpu_pdev,
->   		     struct agp_bridge_data *bridge);
->   void intel_gmch_remove(void);
->   
-> -bool intel_enable_gtt(void);
-> +bool intel_gmch_enable_gtt(void);
->   
-> -void intel_gtt_chipset_flush(void);
-> -void intel_gtt_insert_page(dma_addr_t addr,
-> -			   unsigned int pg,
-> -			   unsigned int flags);
-> -void intel_gtt_insert_sg_entries(struct sg_table *st,
-> -				 unsigned int pg_start,
-> -				 unsigned int flags);
-> -void intel_gtt_clear_range(unsigned int first_entry, unsigned int num_entries);
-> +void intel_gmch_gtt_flush(void);
-> +void intel_gmch_gtt_insert_page(dma_addr_t addr,
-> +				unsigned int pg,
-> +				unsigned int flags);
-> +void intel_gmch_gtt_insert_sg_entries(struct sg_table *st,
-> +				      unsigned int pg_start,
-> +				      unsigned int flags);
-> +void intel_gmch_gtt_clear_range(unsigned int first_entry, unsigned int num_entries);
->   
->   /* Special gtt memory types */
->   #define AGP_DCACHE_MEMORY	1
+v1: Initial rfc verion.
+v2: Based on review comments from Jani,
+- Used panel-type instead addition panel-index variable.
+- DEVICE_HANDLE_* name changed and placed before DEVICE_TYPE_*
+macro.
+v3:
+- Passing intel_bios_encoder_data as argument of
+intel_bios_init_panel(). Passing NULL to indicate encoder is not
+initialized yet for dsi as current focus is to enable dual EDP. [Jani]
 
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+---
+ drivers/gpu/drm/i915/display/icl_dsi.c        |  2 +-
+ drivers/gpu/drm/i915/display/intel_bios.c     | 16 ++++++++++++++--
+ drivers/gpu/drm/i915/display/intel_bios.h     |  1 +
+ drivers/gpu/drm/i915/display/intel_dp.c       |  4 +++-
+ drivers/gpu/drm/i915/display/intel_lvds.c     |  2 +-
+ drivers/gpu/drm/i915/display/intel_sdvo.c     |  2 +-
+ drivers/gpu/drm/i915/display/intel_vbt_defs.h |  4 ++++
+ drivers/gpu/drm/i915/display/vlv_dsi.c        |  2 +-
+ 8 files changed, 26 insertions(+), 7 deletions(-)
 
-Regards,
+diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
+index 3b5305c219ba..5dcfa7feffa9 100644
+--- a/drivers/gpu/drm/i915/display/icl_dsi.c
++++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+@@ -2050,7 +2050,7 @@ void icl_dsi_init(struct drm_i915_private *dev_priv)
+ 	/* attach connector to encoder */
+ 	intel_connector_attach_encoder(intel_connector, encoder);
+ 
+-	intel_bios_init_panel(dev_priv, &intel_connector->panel, NULL);
++	intel_bios_init_panel(dev_priv, &intel_connector->panel, NULL, NULL);
+ 
+ 	mutex_lock(&dev->mode_config.mutex);
+ 	intel_panel_add_vbt_lfp_fixed_mode(intel_connector);
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+index 76e86358adb9..e97f1f979a48 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.c
++++ b/drivers/gpu/drm/i915/display/intel_bios.c
+@@ -604,12 +604,14 @@ get_lfp_data_tail(const struct bdb_lvds_lfp_data *data,
+ }
+ 
+ static int opregion_get_panel_type(struct drm_i915_private *i915,
++				   const struct intel_bios_encoder_data *devdata,
+ 				   const struct edid *edid)
+ {
+ 	return intel_opregion_get_panel_type(i915);
+ }
+ 
+ static int vbt_get_panel_type(struct drm_i915_private *i915,
++			      const struct intel_bios_encoder_data *devdata,
+ 			      const struct edid *edid)
+ {
+ 	const struct bdb_lvds_options *lvds_options;
+@@ -625,10 +627,16 @@ static int vbt_get_panel_type(struct drm_i915_private *i915,
+ 		return -1;
+ 	}
+ 
++	if (devdata && devdata->child.handle == DEVICE_HANDLE_LFP2)
++		return lvds_options->panel_type2;
++
++	drm_WARN_ON(&i915->drm, devdata && devdata->child.handle != DEVICE_HANDLE_LFP1);
++
+ 	return lvds_options->panel_type;
+ }
+ 
+ static int pnpid_get_panel_type(struct drm_i915_private *i915,
++				const struct intel_bios_encoder_data *devdata,
+ 				const struct edid *edid)
+ {
+ 	const struct bdb_lvds_lfp_data *data;
+@@ -675,6 +683,7 @@ static int pnpid_get_panel_type(struct drm_i915_private *i915,
+ }
+ 
+ static int fallback_get_panel_type(struct drm_i915_private *i915,
++				   const struct intel_bios_encoder_data *devdata,
+ 				   const struct edid *edid)
+ {
+ 	return 0;
+@@ -688,11 +697,13 @@ enum panel_type {
+ };
+ 
+ static int get_panel_type(struct drm_i915_private *i915,
++			  const struct intel_bios_encoder_data *devdata,
+ 			  const struct edid *edid)
+ {
+ 	struct {
+ 		const char *name;
+ 		int (*get_panel_type)(struct drm_i915_private *i915,
++				      const struct intel_bios_encoder_data *devdata,
+ 				      const struct edid *edid);
+ 		int panel_type;
+ 	} panel_types[] = {
+@@ -716,7 +727,7 @@ static int get_panel_type(struct drm_i915_private *i915,
+ 	int i;
+ 
+ 	for (i = 0; i < ARRAY_SIZE(panel_types); i++) {
+-		panel_types[i].panel_type = panel_types[i].get_panel_type(i915, edid);
++		panel_types[i].panel_type = panel_types[i].get_panel_type(i915, devdata, edid);
+ 
+ 		drm_WARN_ON(&i915->drm, panel_types[i].panel_type > 0xf &&
+ 			    panel_types[i].panel_type != 0xff);
+@@ -3127,11 +3138,12 @@ void intel_bios_init(struct drm_i915_private *i915)
+ 
+ void intel_bios_init_panel(struct drm_i915_private *i915,
+ 			   struct intel_panel *panel,
++			   const struct intel_bios_encoder_data *devdata,
+ 			   const struct edid *edid)
+ {
+ 	init_vbt_panel_defaults(panel);
+ 
+-	panel->vbt.panel_type = get_panel_type(i915, edid);
++	panel->vbt.panel_type = get_panel_type(i915, devdata, edid);
+ 
+ 	parse_panel_options(i915, panel);
+ 	parse_generic_dtd(i915, panel);
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.h b/drivers/gpu/drm/i915/display/intel_bios.h
+index b112200ae0a0..e47582b0de0a 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.h
++++ b/drivers/gpu/drm/i915/display/intel_bios.h
+@@ -234,6 +234,7 @@ struct mipi_pps_data {
+ void intel_bios_init(struct drm_i915_private *dev_priv);
+ void intel_bios_init_panel(struct drm_i915_private *dev_priv,
+ 			   struct intel_panel *panel,
++			   const struct intel_bios_encoder_data *devdata,
+ 			   const struct edid *edid);
+ void intel_bios_fini_panel(struct intel_panel *panel);
+ void intel_bios_driver_remove(struct drm_i915_private *dev_priv);
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 2fac76bcf06d..3590de9227d5 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -5171,6 +5171,7 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
+ 	bool has_dpcd;
+ 	enum pipe pipe = INVALID_PIPE;
+ 	struct edid *edid;
++	struct intel_bios_encoder_data *devdata;
+ 
+ 	if (!intel_dp_is_edp(intel_dp))
+ 		return true;
+@@ -5224,7 +5225,8 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
+ 	}
+ 	intel_connector->edid = edid;
+ 
+-	intel_bios_init_panel(dev_priv, &intel_connector->panel,
++	devdata = dev_priv->vbt.ports[intel_connector->encoder->port];
++	intel_bios_init_panel(dev_priv, &intel_connector->panel, devdata,
+ 			      IS_ERR(edid) ? NULL : edid);
+ 
+ 	intel_panel_add_edid_fixed_modes(intel_connector,
+diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c b/drivers/gpu/drm/i915/display/intel_lvds.c
+index e55802b45461..730480ac3300 100644
+--- a/drivers/gpu/drm/i915/display/intel_lvds.c
++++ b/drivers/gpu/drm/i915/display/intel_lvds.c
+@@ -967,7 +967,7 @@ void intel_lvds_init(struct drm_i915_private *dev_priv)
+ 	}
+ 	intel_connector->edid = edid;
+ 
+-	intel_bios_init_panel(dev_priv, &intel_connector->panel,
++	intel_bios_init_panel(dev_priv, &intel_connector->panel, NULL,
+ 			      IS_ERR(edid) ? NULL : edid);
+ 
+ 	/* Try EDID first */
+diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
+index 2b78a790e1b6..19122bc6d2ab 100644
+--- a/drivers/gpu/drm/i915/display/intel_sdvo.c
++++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
+@@ -2901,7 +2901,7 @@ intel_sdvo_lvds_init(struct intel_sdvo *intel_sdvo, int device)
+ 	if (!intel_sdvo_create_enhance_property(intel_sdvo, intel_sdvo_connector))
+ 		goto err;
+ 
+-	intel_bios_init_panel(i915, &intel_connector->panel, NULL);
++	intel_bios_init_panel(i915, &intel_connector->panel, NULL, NULL);
+ 
+ 	/*
+ 	 * Fetch modes from VBT. For SDVO prefer the VBT mode since some
+diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
+index 3766c09bd65d..509b0a419c20 100644
+--- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
++++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
+@@ -182,6 +182,10 @@ struct bdb_general_features {
+ #define GPIO_PIN_ADD_DDC	0x04 /* "ADDCARD DDC GPIO pins" */
+ #define GPIO_PIN_ADD_DDC_I2C	0x06 /* "ADDCARD DDC/I2C GPIO pins" */
+ 
++/* Device handle */
++#define DEVICE_HANDLE_LFP1	0x0008
++#define DEVICE_HANDLE_LFP2	0x0080
++
+ /* Pre 915 */
+ #define DEVICE_TYPE_NONE	0x00
+ #define DEVICE_TYPE_CRT		0x01
+diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
+index abda0888c8d4..b9b1fed99874 100644
+--- a/drivers/gpu/drm/i915/display/vlv_dsi.c
++++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
+@@ -1926,7 +1926,7 @@ void vlv_dsi_init(struct drm_i915_private *dev_priv)
+ 
+ 	intel_dsi->panel_power_off_time = ktime_get_boottime();
+ 
+-	intel_bios_init_panel(dev_priv, &intel_connector->panel, NULL);
++	intel_bios_init_panel(dev_priv, &intel_connector->panel, NULL, NULL);
+ 
+ 	if (intel_connector->panel.vbt.dsi.config->dual_link)
+ 		intel_dsi->ports = BIT(PORT_A) | BIT(PORT_C);
+-- 
+2.29.0
 
-Tvrtko
