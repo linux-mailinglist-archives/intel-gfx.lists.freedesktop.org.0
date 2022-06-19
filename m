@@ -2,37 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B92FD550AE2
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BFFF550AE1
 	for <lists+intel-gfx@lfdr.de>; Sun, 19 Jun 2022 15:37:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3340110E57F;
-	Sun, 19 Jun 2022 13:37:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB62A10E5A7;
+	Sun, 19 Jun 2022 13:37:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A230B10E57F
- for <intel-gfx@lists.freedesktop.org>; Sun, 19 Jun 2022 13:37:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D47710E5A7
+ for <intel-gfx@lists.freedesktop.org>; Sun, 19 Jun 2022 13:37:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655645857; x=1687181857;
+ t=1655645861; x=1687181861;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=gFxb3DcQUl/U8DKlf/jJ5rCfrBYHcpYDaXvWeq6hmMg=;
- b=FWhDbuDsMb/O1dqwni/f8dSKj8d7k9kUi0x9hTyYuQWCdsUGUxBsSW6M
- qc0VBiDW6CiJMhkXvAPFVP4hfe59lt5uDHUq2/sHmARwVEHQo5WxmnzjE
- M/MsJH3bdN3HL403fp/UIjHP6MCvSqi2f+dzvK+/U7WJXWyf4njS0IUjD
- b+B+ppREJ5hvy/S2aHh5bFatenWGaejW4/d6UC23bEt+2SFdNYZRXZb4v
- Ih9pzVPSizwk0jusVnOcOImxBfx9iFd8k8p116q8P0afjvUOTT/JHxXhj
- pAbf455jHTZJ8lF/NkLCx9ZuCoHp2ps5fc4ECSaMXfWPYQOZEnryJXjKy w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10380"; a="259552643"
-X-IronPort-AV: E=Sophos;i="5.92,306,1650956400"; d="scan'208";a="259552643"
+ bh=hK7yiUXp498V4zt6tzB6Sd6pGY/AmK3IGLLegWnAMsM=;
+ b=KpRJVzVDP0zC6k5got3cwKVhXM+uomONbYy/0T4ER8gwS+Ihv4DuVOJW
+ xd/VbOzfgSwxU8uNM0uGbHl2UPYqCeSxEnyOqAfEn5a/cS4KBTOJ99aY0
+ SIN7o+9MoOtzkkE3ZtFAO6vooTvFLsPntQk1pQcUbl37fAVv1+tkOg6cC
+ V5wIAoPGH2+382oUj2vdO1ZxlDnfNCh9d5f0Q6bS3mIuD6wA883Rc9kX7
+ d3gwgMlmFShMA9payQ0fPJggHMrD3xgSJfkZMYVjFm4Br/hF3/pw6nL0b
+ F5hhbuwBuvgV3UAJvJ9BGmZM85SJqqAja8hbwiDW2qoZKFuVGYpAKLUrZ w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10380"; a="259552649"
+X-IronPort-AV: E=Sophos;i="5.92,306,1650956400"; d="scan'208";a="259552649"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jun 2022 06:37:37 -0700
-X-IronPort-AV: E=Sophos;i="5.92,306,1650956400"; d="scan'208";a="676158462"
+ 19 Jun 2022 06:37:40 -0700
+X-IronPort-AV: E=Sophos;i="5.92,306,1650956400"; d="scan'208";a="676158473"
 Received: from sannilnx.jer.intel.com ([10.12.26.157])
  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jun 2022 06:37:34 -0700
+ 19 Jun 2022 06:37:37 -0700
 From: Alexander Usyskin <alexander.usyskin@intel.com>
 To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
  Jani Nikula <jani.nikula@linux.intel.com>,
@@ -40,15 +40,15 @@ To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
  Daniel Vetter <daniel@ffwll.ch>,
  Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Date: Sun, 19 Jun 2022 16:37:08 +0300
-Message-Id: <20220619133721.523546-2-alexander.usyskin@intel.com>
+Date: Sun, 19 Jun 2022 16:37:09 +0300
+Message-Id: <20220619133721.523546-3-alexander.usyskin@intel.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20220619133721.523546-1-alexander.usyskin@intel.com>
 References: <20220619133721.523546-1-alexander.usyskin@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 01/14] HAX: drm/i915: force INTEL_MEI_GSC on
- for CI
+Subject: [Intel-gfx] [PATCH v3 02/14] drm/i915/gsc: skip irq initialization
+ if using polling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,29 +68,63 @@ Cc: intel-gfx@lists.freedesktop.org,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+From: Vitaly Lubart <vitaly.lubart@intel.com>
 
-After the new config option is merged we'll enable it by default in the
-CI config, but for now just force it on via the i915 Kconfig so we can
-get pre-merge CI results for it.
+Some platforms require the host to poll on the
+GSC registers instead of relaying on the interrupts.
+For those platforms, irq initialization should be skipped
 
-Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Signed-off-by: Vitaly Lubart <vitaly.lubart@intel.com>
+Signed-off-by: Tomas Winkler <tomas.winkler@intel.com>
+Signed-off-by: Alexander Usyskin <alexander.usyskin@intel.com>
+Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 ---
- drivers/gpu/drm/i915/Kconfig.debug | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/i915/gt/intel_gsc.c | 10 +++++++---
+ 1 file changed, 7 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/Kconfig.debug b/drivers/gpu/drm/i915/Kconfig.debug
-index e7fd3e76f8a2..be4ef485d6c1 100644
---- a/drivers/gpu/drm/i915/Kconfig.debug
-+++ b/drivers/gpu/drm/i915/Kconfig.debug
-@@ -48,6 +48,7 @@ config DRM_I915_DEBUG
- 	select DRM_I915_DEBUG_RUNTIME_PM
- 	select DRM_I915_SW_FENCE_DEBUG_OBJECTS
- 	select DRM_I915_SELFTEST
-+	select INTEL_MEI_GSC
- 	select BROKEN # for prototype uAPI
- 	default n
- 	help
+diff --git a/drivers/gpu/drm/i915/gt/intel_gsc.c b/drivers/gpu/drm/i915/gt/intel_gsc.c
+index 0e494028b81d..e0236ff1d072 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gsc.c
++++ b/drivers/gpu/drm/i915/gt/intel_gsc.c
+@@ -40,6 +40,7 @@ struct gsc_def {
+ 	const char *name;
+ 	unsigned long bar;
+ 	size_t bar_size;
++	bool use_polling;
+ };
+ 
+ /* gsc resources and definitions (HECI1 and HECI2) */
+@@ -117,6 +118,10 @@ static void gsc_init_one(struct drm_i915_private *i915,
+ 		return;
+ 	}
+ 
++	/* skip irq initialization */
++	if (def->use_polling)
++		goto add_device;
++
+ 	intf->irq = irq_alloc_desc(0);
+ 	if (intf->irq < 0) {
+ 		drm_err(&i915->drm, "gsc irq error %d\n", intf->irq);
+@@ -129,6 +134,7 @@ static void gsc_init_one(struct drm_i915_private *i915,
+ 		goto fail;
+ 	}
+ 
++add_device:
+ 	adev = kzalloc(sizeof(*adev), GFP_KERNEL);
+ 	if (!adev)
+ 		goto fail;
+@@ -182,10 +188,8 @@ static void gsc_irq_handler(struct intel_gt *gt, unsigned int intf_id)
+ 		return;
+ 	}
+ 
+-	if (gt->gsc.intf[intf_id].irq < 0) {
+-		drm_err_ratelimited(&gt->i915->drm, "GSC irq: irq not set");
++	if (gt->gsc.intf[intf_id].irq < 0)
+ 		return;
+-	}
+ 
+ 	ret = generic_handle_irq(gt->gsc.intf[intf_id].irq);
+ 	if (ret)
 -- 
 2.32.0
 
