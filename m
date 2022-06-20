@@ -2,50 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDE89552298
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Jun 2022 19:09:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E4F95522BE
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Jun 2022 19:28:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5ACD610E25C;
-	Mon, 20 Jun 2022 17:08:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 116FE10EB94;
+	Mon, 20 Jun 2022 17:28:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2AD9F10E25C
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 Jun 2022 17:08:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655744936; x=1687280936;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=30uiG5gHbdxmumO1jc+HOZ6bzxkvnhCjVR+hkJKsDwg=;
- b=nfNhSBLZHBJBPaRqiArVTYaeis5K31UVGW++Omdx8YnSBbHM4KKD2K9E
- YhXs2HdsdKIePXdjDTpeFJh5xR9oPA3hE+Ue90FE9P4na5zon6Q8JHGoy
- 45e46CJIvNz+0muSOgQEnTMe1o2rmsvoR26dtS7Z9lSL/PLUBBDN6csNs
- KQHwxP5MG4bQdc9wphuY12li/Z5HYsTbewLd7n0Awpv/4WcmZFlONdnZr
- LDpp+L8SM9q/8J4YxhWXraUYPhP2VTtmLrWGWylbEnCAmEFCq3/dJygSa
- 2c/ZHzh2j9h796yLm9RVbWQND3oJYzDmbrK/8WiPXuGRoqp8zi697SMqX g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10384"; a="268662233"
-X-IronPort-AV: E=Sophos;i="5.92,207,1650956400"; d="scan'208";a="268662233"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jun 2022 10:08:55 -0700
-X-IronPort-AV: E=Sophos;i="5.92,207,1650956400"; d="scan'208";a="643202937"
-Received: from hkanchar-mobl.gar.corp.intel.com (HELO localhost)
- ([10.252.36.6])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jun 2022 10:08:53 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Animesh Manna <animesh.manna@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <87wndbu35r.fsf@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220620065138.5126-1-animesh.manna@intel.com>
- <87wndbu35r.fsf@intel.com>
-Date: Mon, 20 Jun 2022 20:08:51 +0300
-Message-ID: <87v8svs1ng.fsf@intel.com>
+Received: from mail-oa1-x2d.google.com (mail-oa1-x2d.google.com
+ [IPv6:2001:4860:4864:20::2d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9110D10EB94
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Jun 2022 17:28:40 +0000 (UTC)
+Received: by mail-oa1-x2d.google.com with SMTP id
+ 586e51a60fabf-fe023ab520so15252437fac.10
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Jun 2022 10:28:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=raf+3lxhnyY32v/N4Is/S0vUlCPN2qQOKR/3+Csi694=;
+ b=FhGZPzd0Sbe+HWyhVOSQGsV0kIDq71SDjzl1OA5+rsF6+D6WsNcBWYTHv8WaZqD2yW
+ 9Wru03Ca/N5Hdx53MqkKKwwaydmSnvFHM5P3MK9UUkMe68mI1GhlwJLS5WP/n7JAk79a
+ 8YZVtQR/c9sByX49GxO3r8MGyTOqXYTUe/kG0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=raf+3lxhnyY32v/N4Is/S0vUlCPN2qQOKR/3+Csi694=;
+ b=Yr0A0cCJmFxPRI1g2yrSUy+q36tJATQ8k1pBFi+3su+yxlr/VymzU+3GUV9QDUMJlj
+ WfoRfCX28PTBolAbnWfQxHIEdXvi3nNGufSUubrHZM5aYZOwbccbBmPJwVYqjK2MkL6K
+ bAu+YueMIeXlXQSraTABNm/70te6S5XBhKqxzvtbuxvbNu/t7MrbC+9d5oO2EuWqUSuD
+ 1pjarLsMFqgysN0wsGc6IFZ9HSdIcn/fCpvhHQPzBu7TksK2X4+RFVxZ2iDCM5uWfx8r
+ LBQ5o9TpFpBYOqT0j3ef9ymI2+TLsATvdRwehjSH2qdSodkq7XunFRRD+ULsMyTplAFJ
+ 7+aQ==
+X-Gm-Message-State: AJIora8UzUOV/J9Lhlpy9eKlvWh+L2IXfXyYsCjiyCvRbT3/XRoIu+67
+ 0h13//lg4L8kiuhL5r53NNgoolXZcu8LlKoQfmBN2A==
+X-Google-Smtp-Source: AGRyM1v288g60C06DcmS5JBw6+Y0w0TQc78+qVGISyv5d+89MTaHi4FifbUByZfIymMJNh5m8u1PsOs1rg5HcldJcSc=
+X-Received: by 2002:a05:6870:3053:b0:f3:2997:659a with SMTP id
+ u19-20020a056870305300b000f32997659amr13607020oau.7.1655746119831; Mon, 20
+ Jun 2022 10:28:39 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH v4] drm/i915/bios: calculate panel type as
- per child device index in VBT
+References: <0249066a-2e95-c21d-d16a-fba08c633c0b@lio96.de>
+ <f1a52ddc-5aad-cc76-282e-93206ae43477@amd.com>
+ <70395b22-1857-2a25-1472-17ce3df22607@lio96.de>
+ <6cd161d2-5caa-65c8-6b86-5992cc15d1af@amd.com>
+ <957926e6-2462-4c42-b57f-9cfbd9fe7024@lio96.de>
+ <27e6f4ec-0906-0d57-af9b-ebde534b68b3@amd.com>
+In-Reply-To: <27e6f4ec-0906-0d57-af9b-ebde534b68b3@amd.com>
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+Date: Mon, 20 Jun 2022 19:28:28 +0200
+Message-ID: <CAKMK7uECjGw2K3S=Rwtz7rq-pV+eqbD8rc5GAPiemXJN1ybTsA@mail.gmail.com>
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] Performance drop using deinterlace_vaapi on 5.19-rcX
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,235 +67,102 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Thomas Voegtle <tv@lio96.de>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 20 Jun 2022, Jani Nikula <jani.nikula@intel.com> wrote:
-> On Mon, 20 Jun 2022, Animesh Manna <animesh.manna@intel.com> wrote:
->> Each LFP may have different panel type which is stored in LFP data
->> data block. Based on the child device index respective panel-type/
->> panel-type2 field will be used.
->>
->> v1: Initial rfc verion.
->> v2: Based on review comments from Jani,
->> - Used panel-type instead addition panel-index variable.
->> - DEVICE_HANDLE_* name changed and placed before DEVICE_TYPE_*
->> macro.
->> v3:
->> - passing intel_bios_encoder_data as argument of
->> intel_bios_init_panel(). Passing NULL to indicate encoder is not
->> initialized yet for dsi as current focus is to enable dual EDP. [Jani]
->> v4:
->> - encoder->devdata used which is initialized before from vbt
->> structure. [Jani]
->>
->> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+On Mon, 20 Jun 2022 at 17:28, Christian K=C3=B6nig <christian.koenig@amd.co=
+m> wrote:
 >
-> LGTM, but I'd also like an ack from Ville too as he's been doing a bunch
-> of changes around this lately.
+> Hi Thomas,
 >
-> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-
-And pushed to drm-intel-next with Ville's IRC ack.
-
-BR,
-Jani.
-
-
+> Am 20.06.22 um 16:31 schrieb Thomas Voegtle:
+> > On Mon, 20 Jun 2022, Christian K=C3=B6nig wrote:
+> >
+> >> Am 20.06.22 um 13:40 schrieb Thomas Voegtle:
+> >>>  On Mon, 20 Jun 2022, Christian K=C3=B6nig wrote:
+> >>>
+> >>>>  Hi Thomas,
+> >>>>
+> >>>>  [moving vger to bcc]
+> >>>>
+> >>>>  mhm, sounds like something isn't running in parallel any more.
+> >>>>
+> >>>>  We usually don't test the multimedia engines for this but we do tes=
+t
+> >>>>  gfx+compute, so I'm really wondering what goes wrong here.
+> >>>>
+> >>>>  Could you run some tests for me? Additional to that I'm going to
+> >>>> raise
+> >>>>  that issue with our multimedia guys later today.
+> >>>
+> >>>  Yes, I can run some tests for you. Which tests?
+> >>
+> >> Try this as root:
+> >>
+> >> echo 1 >
+> >> /sys/kernel/debug/tracing/events/dma_fence/dma_fence_init/enable
+> >> echo 1 >
+> >> /sys/kernel/debug/tracing/events/dma_fence/dma_fence_signaled/enable
+> >> cat /sys/kernel/debug/tracing/trace_pipe > trace.log
+> >>
+> >> Then start the encoding in another shell, after it completed cancel
+> >> the cat with cntr+c and save the log file.
+> >>
+> >> Do this one with the old kernel and once with the new one.
+> >
+> >
+> > https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2F32h=
+.de%2Ftv%2F5.18.0-i5-trace.log.bz2&amp;data=3D05%7C01%7Cchristian.koenig%40=
+amd.com%7C41a052960a4d4f7dd38e08da52c99097%7C3dd8961fe4884e608e11a82d994e18=
+3d%7C0%7C0%7C637913323382588469%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDA=
+iLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=
+=3Dxv8vLUuBq37sBFcGxdua%2FnNQ51BiN1USn30ehP8bys0%3D&amp;reserved=3D0
+> > https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2F32h=
+.de%2Ftv%2F5.19.0-rc3-i5-trace.log.bz2&amp;data=3D05%7C01%7Cchristian.koeni=
+g%40amd.com%7C41a052960a4d4f7dd38e08da52c99097%7C3dd8961fe4884e608e11a82d99=
+4e183d%7C0%7C0%7C637913323382588469%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjA=
+wMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sda=
+ta=3DxuBVrQMQ%2FDK3Gv1qN%2FntJ9NjXOZxD6XVkmDCWfG4K44%3D&amp;reserved=3D0
+> >
+> >
+> > I hope I have done this correctly.
+> > All necessary tracing things switched on?
 >
+> Yeah, that looks like what I wanted to see.
 >
->> ---
->>  drivers/gpu/drm/i915/display/icl_dsi.c        |  2 +-
->>  drivers/gpu/drm/i915/display/intel_bios.c     | 16 ++++++++++++++--
->>  drivers/gpu/drm/i915/display/intel_bios.h     |  1 +
->>  drivers/gpu/drm/i915/display/intel_dp.c       |  3 ++-
->>  drivers/gpu/drm/i915/display/intel_lvds.c     |  2 +-
->>  drivers/gpu/drm/i915/display/intel_sdvo.c     |  2 +-
->>  drivers/gpu/drm/i915/display/intel_vbt_defs.h |  4 ++++
->>  drivers/gpu/drm/i915/display/vlv_dsi.c        |  2 +-
->>  8 files changed, 25 insertions(+), 7 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
->> index 3b5305c219ba..5dcfa7feffa9 100644
->> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
->> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
->> @@ -2050,7 +2050,7 @@ void icl_dsi_init(struct drm_i915_private *dev_priv)
->>  	/* attach connector to encoder */
->>  	intel_connector_attach_encoder(intel_connector, encoder);
->>  
->> -	intel_bios_init_panel(dev_priv, &intel_connector->panel, NULL);
->> +	intel_bios_init_panel(dev_priv, &intel_connector->panel, NULL, NULL);
->>  
->>  	mutex_lock(&dev->mode_config.mutex);
->>  	intel_panel_add_vbt_lfp_fixed_mode(intel_connector);
->> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
->> index 76e86358adb9..e97f1f979a48 100644
->> --- a/drivers/gpu/drm/i915/display/intel_bios.c
->> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
->> @@ -604,12 +604,14 @@ get_lfp_data_tail(const struct bdb_lvds_lfp_data *data,
->>  }
->>  
->>  static int opregion_get_panel_type(struct drm_i915_private *i915,
->> +				   const struct intel_bios_encoder_data *devdata,
->>  				   const struct edid *edid)
->>  {
->>  	return intel_opregion_get_panel_type(i915);
->>  }
->>  
->>  static int vbt_get_panel_type(struct drm_i915_private *i915,
->> +			      const struct intel_bios_encoder_data *devdata,
->>  			      const struct edid *edid)
->>  {
->>  	const struct bdb_lvds_options *lvds_options;
->> @@ -625,10 +627,16 @@ static int vbt_get_panel_type(struct drm_i915_private *i915,
->>  		return -1;
->>  	}
->>  
->> +	if (devdata && devdata->child.handle == DEVICE_HANDLE_LFP2)
->> +		return lvds_options->panel_type2;
->> +
->> +	drm_WARN_ON(&i915->drm, devdata && devdata->child.handle != DEVICE_HANDLE_LFP1);
->> +
->>  	return lvds_options->panel_type;
->>  }
->>  
->>  static int pnpid_get_panel_type(struct drm_i915_private *i915,
->> +				const struct intel_bios_encoder_data *devdata,
->>  				const struct edid *edid)
->>  {
->>  	const struct bdb_lvds_lfp_data *data;
->> @@ -675,6 +683,7 @@ static int pnpid_get_panel_type(struct drm_i915_private *i915,
->>  }
->>  
->>  static int fallback_get_panel_type(struct drm_i915_private *i915,
->> +				   const struct intel_bios_encoder_data *devdata,
->>  				   const struct edid *edid)
->>  {
->>  	return 0;
->> @@ -688,11 +697,13 @@ enum panel_type {
->>  };
->>  
->>  static int get_panel_type(struct drm_i915_private *i915,
->> +			  const struct intel_bios_encoder_data *devdata,
->>  			  const struct edid *edid)
->>  {
->>  	struct {
->>  		const char *name;
->>  		int (*get_panel_type)(struct drm_i915_private *i915,
->> +				      const struct intel_bios_encoder_data *devdata,
->>  				      const struct edid *edid);
->>  		int panel_type;
->>  	} panel_types[] = {
->> @@ -716,7 +727,7 @@ static int get_panel_type(struct drm_i915_private *i915,
->>  	int i;
->>  
->>  	for (i = 0; i < ARRAY_SIZE(panel_types); i++) {
->> -		panel_types[i].panel_type = panel_types[i].get_panel_type(i915, edid);
->> +		panel_types[i].panel_type = panel_types[i].get_panel_type(i915, devdata, edid);
->>  
->>  		drm_WARN_ON(&i915->drm, panel_types[i].panel_type > 0xf &&
->>  			    panel_types[i].panel_type != 0xff);
->> @@ -3127,11 +3138,12 @@ void intel_bios_init(struct drm_i915_private *i915)
->>  
->>  void intel_bios_init_panel(struct drm_i915_private *i915,
->>  			   struct intel_panel *panel,
->> +			   const struct intel_bios_encoder_data *devdata,
->>  			   const struct edid *edid)
->>  {
->>  	init_vbt_panel_defaults(panel);
->>  
->> -	panel->vbt.panel_type = get_panel_type(i915, edid);
->> +	panel->vbt.panel_type = get_panel_type(i915, devdata, edid);
->>  
->>  	parse_panel_options(i915, panel);
->>  	parse_generic_dtd(i915, panel);
->> diff --git a/drivers/gpu/drm/i915/display/intel_bios.h b/drivers/gpu/drm/i915/display/intel_bios.h
->> index b112200ae0a0..e47582b0de0a 100644
->> --- a/drivers/gpu/drm/i915/display/intel_bios.h
->> +++ b/drivers/gpu/drm/i915/display/intel_bios.h
->> @@ -234,6 +234,7 @@ struct mipi_pps_data {
->>  void intel_bios_init(struct drm_i915_private *dev_priv);
->>  void intel_bios_init_panel(struct drm_i915_private *dev_priv,
->>  			   struct intel_panel *panel,
->> +			   const struct intel_bios_encoder_data *devdata,
->>  			   const struct edid *edid);
->>  void intel_bios_fini_panel(struct intel_panel *panel);
->>  void intel_bios_driver_remove(struct drm_i915_private *dev_priv);
->> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
->> index 2fac76bcf06d..a0c826b64a1e 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dp.c
->> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
->> @@ -5168,6 +5168,7 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
->>  	struct drm_device *dev = &dev_priv->drm;
->>  	struct drm_connector *connector = &intel_connector->base;
->>  	struct drm_display_mode *fixed_mode;
->> +	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
->>  	bool has_dpcd;
->>  	enum pipe pipe = INVALID_PIPE;
->>  	struct edid *edid;
->> @@ -5225,7 +5226,7 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
->>  	intel_connector->edid = edid;
->>  
->>  	intel_bios_init_panel(dev_priv, &intel_connector->panel,
->> -			      IS_ERR(edid) ? NULL : edid);
->> +			      encoder->devdata, IS_ERR(edid) ? NULL : edid);
->>  
->>  	intel_panel_add_edid_fixed_modes(intel_connector,
->>  					 intel_connector->panel.vbt.drrs_type != DRRS_TYPE_NONE,
->> diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c b/drivers/gpu/drm/i915/display/intel_lvds.c
->> index e55802b45461..730480ac3300 100644
->> --- a/drivers/gpu/drm/i915/display/intel_lvds.c
->> +++ b/drivers/gpu/drm/i915/display/intel_lvds.c
->> @@ -967,7 +967,7 @@ void intel_lvds_init(struct drm_i915_private *dev_priv)
->>  	}
->>  	intel_connector->edid = edid;
->>  
->> -	intel_bios_init_panel(dev_priv, &intel_connector->panel,
->> +	intel_bios_init_panel(dev_priv, &intel_connector->panel, NULL,
->>  			      IS_ERR(edid) ? NULL : edid);
->>  
->>  	/* Try EDID first */
->> diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
->> index 2b78a790e1b6..19122bc6d2ab 100644
->> --- a/drivers/gpu/drm/i915/display/intel_sdvo.c
->> +++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
->> @@ -2901,7 +2901,7 @@ intel_sdvo_lvds_init(struct intel_sdvo *intel_sdvo, int device)
->>  	if (!intel_sdvo_create_enhance_property(intel_sdvo, intel_sdvo_connector))
->>  		goto err;
->>  
->> -	intel_bios_init_panel(i915, &intel_connector->panel, NULL);
->> +	intel_bios_init_panel(i915, &intel_connector->panel, NULL, NULL);
->>  
->>  	/*
->>  	 * Fetch modes from VBT. For SDVO prefer the VBT mode since some
->> diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
->> index 3766c09bd65d..509b0a419c20 100644
->> --- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
->> +++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
->> @@ -182,6 +182,10 @@ struct bdb_general_features {
->>  #define GPIO_PIN_ADD_DDC	0x04 /* "ADDCARD DDC GPIO pins" */
->>  #define GPIO_PIN_ADD_DDC_I2C	0x06 /* "ADDCARD DDC/I2C GPIO pins" */
->>  
->> +/* Device handle */
->> +#define DEVICE_HANDLE_LFP1	0x0008
->> +#define DEVICE_HANDLE_LFP2	0x0080
->> +
->>  /* Pre 915 */
->>  #define DEVICE_TYPE_NONE	0x00
->>  #define DEVICE_TYPE_CRT		0x01
->> diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
->> index abda0888c8d4..b9b1fed99874 100644
->> --- a/drivers/gpu/drm/i915/display/vlv_dsi.c
->> +++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
->> @@ -1926,7 +1926,7 @@ void vlv_dsi_init(struct drm_i915_private *dev_priv)
->>  
->>  	intel_dsi->panel_power_off_time = ktime_get_boottime();
->>  
->> -	intel_bios_init_panel(dev_priv, &intel_connector->panel, NULL);
->> +	intel_bios_init_panel(dev_priv, &intel_connector->panel, NULL, NULL);
->>  
->>  	if (intel_connector->panel.vbt.dsi.config->dual_link)
->>  		intel_dsi->ports = BIT(PORT_A) | BIT(PORT_C);
+> >
+> > I want to add that this is a headless machine. No monitor connected.
+> >
+>
+> I've just realized that you aren't even using any AMD GPU for
+> transcoding, so I have no idea why removing the AMD specific workaround
+> can cause a performance problem for i915.
+>
+> It must be somehow related to i915 now adding some additional
+> synchronization in between submissions.
+>
+> Adding the Intel mailing list, maybe somebody has a better idea.
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+Only thing I can spot is that we now pile up USAGE_WRITE fences, but
+beforehand they got replaced. Also the deinterlace stuff means libva
+uses render engine, so this kinda fits - without using the render
+engine it's just a single engine, and hence you should never have
+multiple write fences (not logically, but hsw is a ringbuffer and i915
+doesn't have a ringbuffer scheduler, so it's all in-order anyway and
+hence not possible to change something).
+
+This would mean that i915 is doing something silly (well not obeying
+the old dma_resv rules that any new exclusive fence must be a strict
+superset of all currently attached fences), which it totally is doing
+with the EXEC_OBJECT_ASYNC flag. But libva doesn't use that.
+
+So tbh I have no idea, but maybe a quick hack that tosses any old
+USAGE_WRITE fence like the old dma_resv_add_excl_fence did would sched
+some light?
+-Daniel
+--=20
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
