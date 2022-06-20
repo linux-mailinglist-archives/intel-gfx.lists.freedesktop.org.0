@@ -1,53 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB54F55120B
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Jun 2022 10:01:48 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A0CE55122B
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Jun 2022 10:08:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1AAD910E240;
-	Mon, 20 Jun 2022 08:01:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0EB3510E135;
+	Mon, 20 Jun 2022 08:08:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E402210E240;
- Mon, 20 Jun 2022 08:01:45 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8CE6110E0F8
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Jun 2022 08:08:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655712106; x=1687248106;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=PzjEgzrQXZUiTFdEnKuuDbqNCYkK1PDdygpNn6+9Fhk=;
- b=bWCCpvoPMl2wzhcpOwq6FV0UdrMpykRG0Lp3B8wHIrkWDWyENTynSkLG
- D/61U/yLnjx9yn+Y8PsEkegkNAn2O21TdU8NVk83DMiqcGFlKKfi54xrn
- dpRFlytLhIWAUSAJwDFFO4mXpHupl60i63O8LsCgZhavMoifAXpeIAptf
- R8lXt3zA5wSGgo3DeU4ZvVy4McRE9u8sQXWSxwt3eFbcbib2/6Bi0rOHS
- rhHSxOEGr3R3Z8aSh8N213M62olQxfcRZHt+1Shw0hV29TPrngdMRZhNx
- llJyHp7uLW9xMPPyoOaXvp3c0f+FFe3tLiljWs3dzkg/cI5XJxZrzKftI w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10380"; a="341514686"
-X-IronPort-AV: E=Sophos;i="5.92,306,1650956400"; d="scan'208";a="341514686"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jun 2022 01:01:45 -0700
-X-IronPort-AV: E=Sophos;i="5.92,306,1650956400"; d="scan'208";a="913547037"
-Received: from ksztyber-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.213.20.102])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jun 2022 01:01:43 -0700
-Date: Mon, 20 Jun 2022 10:01:41 +0200
-From: Kamil Konieczny <kamil.konieczny@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org, igt-dev@lists.freedesktop.org
-Message-ID: <YrApZYFmvFRwlW61@kamilkon-desk1>
-Mail-Followup-To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, igt-dev@lists.freedesktop.org,
- Tvrtko Ursulin <tvrtko.ursulin@intel.com>,
- Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-References: <20220617090828.568345-1-tvrtko.ursulin@linux.intel.com>
+ t=1655712532; x=1687248532;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=ceFWQJUzmnRQuVrL4RO6zRBQlAn8BIpTChObSgziNec=;
+ b=G+KIWhsJQH8cxfVb3CeOTBfiSP+0cDYVEcToBwmshfit8y3jm6HHLsk3
+ 5AqOaH1tBMiRABSYWexKw32Dj6zEtuwJBeGcBKG2pBk1wsrZ9837Wl3rH
+ LWxVNYKc6E4vb1OeIA0PgoehLsd9R95sziJQJbrPA3oR6h6KP1YOHV1OH
+ 10SP6OClfVAf1exJ17Xn046a/1xr8FZjmTg8aUJjsu/gWF4DfSmpAtEdA
+ /t7MEpBcR048MU2sJLB19qLV0D2jAUhbQPOJuGf2Zoffb2N00bZUAR/tA
+ Cl3y9OUR0BpJYyWSCdxdLs80u/8ohg2SPOPrgWAAfCxBncNIoCcDM8eRY A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10380"; a="268553766"
+X-IronPort-AV: E=Sophos;i="5.92,306,1650956400"; d="scan'208";a="268553766"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jun 2022 01:08:52 -0700
+X-IronPort-AV: E=Sophos;i="5.92,306,1650956400"; d="scan'208";a="643002074"
+Received: from hkanchar-mobl.gar.corp.intel.com (HELO localhost)
+ ([10.252.36.6])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jun 2022 01:08:49 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: William Tseng <william.tseng@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20220620075720.23274-1-william.tseng@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220616050348.24683-1-william.tseng@intel.com>
+ <20220620075720.23274-1-william.tseng@intel.com>
+Date: Mon, 20 Jun 2022 11:08:47 +0300
+Message-ID: <87zgi7u580.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20220617090828.568345-1-tvrtko.ursulin@linux.intel.com>
-Subject: Re: [Intel-gfx] [CI] tests/drm_fdinfo: Test virtual engines
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH v4] drm/i915/dsi: add payload receiving code
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,383 +58,169 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: William Tseng <william.tseng@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Tvrtko,
+On Mon, 20 Jun 2022, William Tseng <william.tseng@intel.com> wrote:
+> To support Host to read data from Peripheral after
+> a DCS read command is sent over DSI.
 
-On 2022-06-17 at 10:08:28 +0100, Tvrtko Ursulin wrote:
-> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> 
-> We need some coverage of the virtual engines.
-> 
-> v2:
->  * Mark contexts as "allow hang". (Umesh)
->  * Fix destruction order in virtual_all.
-> 
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-> Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+You keep resending this. Are you changing something? If yes, what?
+Where's the changelog?
+
+BR,
+Jani.
+
+
+>
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
+> Cc: Lee Shawn C <shawn.c.lee@intel.com>
+> Signed-off-by: William Tseng <william.tseng@intel.com>
 > ---
->  tests/i915/drm_fdinfo.c | 293 +++++++++++++++++++++++++++++++++++++++-
->  1 file changed, 291 insertions(+), 2 deletions(-)
-> 
-> diff --git a/tests/i915/drm_fdinfo.c b/tests/i915/drm_fdinfo.c
-> index 3475d35b23b9..65b8b8307c66 100644
-> --- a/tests/i915/drm_fdinfo.c
-> +++ b/tests/i915/drm_fdinfo.c
-> @@ -27,6 +27,7 @@
->  #include "igt_device.h"
->  #include "igt_drm_fdinfo.h"
->  #include "i915/gem.h"
-> +#include "i915/gem_vm.h"
->  #include "intel_ctx.h"
->  
->  IGT_TEST_DESCRIPTION("Test the i915 drm fdinfo data");
-> @@ -90,10 +91,10 @@ static igt_spin_t *__spin_poll(int fd, uint64_t ahnd, const intel_ctx_t *ctx,
->  	struct igt_spin_factory opts = {
->  		.ahnd = ahnd,
->  		.ctx = ctx,
-> -		.engine = e->flags,
-> +		.engine = e ? e->flags : 0,
->  	};
->  
-> -	if (gem_class_can_store_dword(fd, e->class))
-> +	if (!e || gem_class_can_store_dword(fd, e->class))
->  		opts.flags |= IGT_SPIN_POLL_RUN;
->  
->  	return __igt_spin_factory(fd, &opts);
-> @@ -440,6 +441,274 @@ all_busy_check_all(int gem_fd, const intel_ctx_t *ctx,
->  	gem_quiescent_gpu(gem_fd);
+>  drivers/gpu/drm/i915/display/icl_dsi.c      | 75 +++++++++++++++++++--
+>  drivers/gpu/drm/i915/display/icl_dsi_regs.h | 13 ++++
+>  2 files changed, 83 insertions(+), 5 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i91=
+5/display/icl_dsi.c
+> index 19bf717fd4cb..b2aa3c7902f3 100644
+> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
+> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+> @@ -201,6 +201,69 @@ static int dsi_send_pkt_hdr(struct intel_dsi_host *h=
+ost,
+>  	return 0;
 >  }
->  
-> +static struct i915_engine_class_instance *
-> +list_engines(const intel_ctx_cfg_t *cfg,
-> +	     unsigned int class, unsigned int *out)
+>=20=20
+> +static int dsi_read_pkt_payld(struct intel_dsi_host *host,
+> +			      u8 *rx_buf, size_t rx_len)
 > +{
-> +	struct i915_engine_class_instance *ci;
-> +	unsigned int count = 0, i;
+> +	struct intel_dsi *intel_dsi =3D host->intel_dsi;
+> +	struct drm_i915_private *dev_priv =3D to_i915(intel_dsi->base.base.dev);
+> +	enum transcoder dsi_trans =3D dsi_port_to_transcoder(host->port);
+> +	u32 tmp, /*hdr_data, */payld_data;
+> +	u32 payld_dw;
+> +	size_t payld_read;
+> +	u8 i;
 > +
-> +	ci = malloc(cfg->num_engines * sizeof(*ci));
-> +	igt_assert(ci);
-> +
-> +	for (i = 0; i < cfg->num_engines; i++) {
-> +		if (class == cfg->engines[i].engine_class)
-> +			ci[count++] = cfg->engines[i];
+> +	/* step2: place a BTA reque */
+> +	/* check if header credit available */
+> +	if (!wait_for_header_credits(dev_priv, dsi_trans, 1)) {
+> +		drm_err(&dev_priv->drm, "not ready to recive payload\n");
+> +		return -EBUSY;
 > +	}
 > +
-> +	if (!count) {
-> +		free(ci);
-> +		ci = NULL;
+> +	/* place BTA request */
+> +	tmp =3D intel_de_read(dev_priv, DSI_LP_MSG(dsi_trans));
+> +	tmp |=3D LINK_BTA;
+> +	intel_de_write(dev_priv, DSI_LP_MSG(dsi_trans), tmp);
+> +
+> +	tmp =3D intel_de_read(dev_priv, DSI_LP_MSG(dsi_trans));
+> +
+> +	/* step2a:  */
+> +	/* step2ai: set Turn-Around Timeout */
+> +	tmp =3D intel_de_read(dev_priv, DSI_TA_TO(dsi_trans));
+> +	tmp &=3D ~TA_TIMEOUT_VALUE_MASK;
+> +	tmp |=3D TA_TIMEOUT_VALUE(intel_dsi->turn_arnd_val);
+> +	intel_de_write(dev_priv, DSI_TA_TO(dsi_trans), tmp);
+> +
+> +	tmp =3D intel_de_read(dev_priv, DSI_TA_TO(dsi_trans));
+> +
+> +	/* step2aii: set maximum allowed time */
+> +	tmp =3D intel_de_read(dev_priv, DSI_LPRX_HOST_TO(dsi_trans));
+> +	tmp &=3D ~LPRX_TIMEOUT_VALUE_MASK;
+> +	tmp |=3D LPRX_TIMEOUT_VALUE(intel_dsi->lp_rx_timeout);
+> +	intel_de_write(dev_priv, DSI_LPRX_HOST_TO(dsi_trans), tmp);
+> +
+> +	tmp =3D intel_de_read(dev_priv, DSI_LPRX_HOST_TO(dsi_trans));
+> +
+> +	/* step4a: wait and read payload */
+> +	if (wait_for_us(((intel_de_read(dev_priv, DSI_CMD_RXCTL(dsi_trans)) &
+> +		NUMBER_RX_PLOAD_DW_MASK) >> NUMBER_RX_PLOAD_DW_SHIFT) > 0, 100000)) {
+> +		drm_err(&dev_priv->drm, "DSI fails to receive payload\n");
+> +		return -EBUSY;
 > +	}
 > +
-> +	*out = count;
-> +	return ci;
-> +}
+> +	tmp =3D intel_de_read(dev_priv, DSI_CMD_RXCTL(dsi_trans));
+> +	payld_dw =3D (tmp & NUMBER_RX_PLOAD_DW_MASK) >> NUMBER_RX_PLOAD_DW_SHIF=
+T;
+> +	payld_read =3D min(rx_len, (size_t)(4 * payld_dw));
 > +
-> +static size_t sizeof_load_balance(int count)
-> +{
-> +	return offsetof(struct i915_context_engines_load_balance,
-> +			engines[count]);
-> +}
+> +	for (i =3D 0; i < payld_read; i++) {
+> +		if ((i % 4) =3D=3D 0)
+> +			payld_data =3D intel_de_read(dev_priv, DSI_CMD_RXPYLD(dsi_trans));
 > +
-> +static size_t sizeof_param_engines(int count)
-> +{
-> +	return offsetof(struct i915_context_param_engines,
-> +			engines[count]);
-> +}
-> +
-> +#define alloca0(sz) ({ size_t sz__ = (sz); memset(alloca(sz__), 0, sz__); })
-> +
-> +static int __set_load_balancer(int i915, uint32_t ctx,
-> +			       const struct i915_engine_class_instance *ci,
-> +			       unsigned int count,
-> +			       void *ext)
-> +{
-> +	struct i915_context_engines_load_balance *balancer =
-> +		alloca0(sizeof_load_balance(count));
-> +	struct i915_context_param_engines *engines =
-> +		alloca0(sizeof_param_engines(count + 1));
-> +	struct drm_i915_gem_context_param p = {
-> +		.ctx_id = ctx,
-> +		.param = I915_CONTEXT_PARAM_ENGINES,
-> +		.size = sizeof_param_engines(count + 1),
-> +		.value = to_user_pointer(engines)
-> +	};
-> +
-> +	balancer->base.name = I915_CONTEXT_ENGINES_EXT_LOAD_BALANCE;
-> +	balancer->base.next_extension = to_user_pointer(ext);
-> +
-> +	igt_assert(count);
-> +	balancer->num_siblings = count;
-> +	memcpy(balancer->engines, ci, count * sizeof(*ci));
-> +
-> +	engines->extensions = to_user_pointer(balancer);
-> +	engines->engines[0].engine_class =
-> +		I915_ENGINE_CLASS_INVALID;
-> +	engines->engines[0].engine_instance =
-> +		I915_ENGINE_CLASS_INVALID_NONE;
-> +	memcpy(engines->engines + 1, ci, count * sizeof(*ci));
-> +
-> +	return __gem_context_set_param(i915, &p);
-> +}
-> +
-> +static void set_load_balancer(int i915, uint32_t ctx,
-> +			      const struct i915_engine_class_instance *ci,
-> +			      unsigned int count,
-> +			      void *ext)
-> +{
-> +	igt_assert_eq(__set_load_balancer(i915, ctx, ci, count, ext), 0);
-> +}
-> +
-> +static void
-> +virtual(int i915, const intel_ctx_cfg_t *base_cfg, unsigned int flags)
-> +{
-> +	intel_ctx_cfg_t cfg = {};
-> +
-> +	cfg.vm = gem_vm_create(i915);
-> +
-> +	for (int class = 0; class < 32; class++) {
-> +		struct i915_engine_class_instance *ci;
-> +		unsigned int count;
-> +
-> +		if (!gem_class_can_store_dword(i915, class))
-> +			continue;
-> +
-> +		ci = list_engines(base_cfg, class, &count);
-> +		if (!ci)
-> +			continue;
-> +
-> +		for (unsigned int pass = 0; pass < count; pass++) {
-> +			const intel_ctx_t *ctx;
-> +			unsigned long slept;
-> +			uint64_t ahnd, val;
-> +			igt_spin_t *spin;
-> +			igt_hang_t hang;
-> +
-> +			igt_assert(sizeof(*ci) == sizeof(int));
-> +			igt_permute_array(ci, count, igt_exchange_int);
-> +
-> +			igt_debug("class %u, pass %u/%u...\n", class, pass, count);
-> +
-> +			ctx = intel_ctx_create(i915, &cfg);
-> +			set_load_balancer(i915, ctx->id, ci, count, NULL);
-> +			if (flags & FLAG_HANG)
-> +				hang = igt_allow_hang(i915, ctx->id, 0);
-> +			ahnd = get_reloc_ahnd(i915, ctx->id);
-> +
-> +			if (flags & TEST_BUSY)
-> +				spin = spin_sync(i915, ahnd, ctx, NULL);
-> +			else
-> +				spin = NULL;
-> +
-> +			val = read_busy(i915, class);
-> +			slept = measured_usleep(batch_duration_ns / 1000);
-> +			if (flags & TEST_TRAILING_IDLE)
-> +				end_spin(i915, spin, flags);
-> +			val = read_busy(i915, class) - val;
-> +
-> +			if (flags & FLAG_HANG)
-> +				igt_force_gpu_reset(i915);
-> +			else
-> +				end_spin(i915, spin, FLAG_SYNC);
-> +
-> +			assert_within_epsilon(val,
-> +					      flags & TEST_BUSY ?
-> +					      slept : 0.0f,
-> +					      tolerance);
-> +
-> +			/* Check for idle after hang. */
-> +			if (flags & FLAG_HANG) {
-> +				gem_quiescent_gpu(i915);
-> +				igt_assert(!gem_bo_busy(i915, spin->handle));
-> +
-> +				val = read_busy(i915, class);
-> +				slept = measured_usleep(batch_duration_ns /
-> +							1000);
-> +				val = read_busy(i915, class) - val;
-> +
-> +				assert_within_epsilon(val, 0, tolerance);
-> +			}
-> +
-> +			igt_spin_free(i915, spin);
-> +			put_ahnd(ahnd);
-> +			if (flags & FLAG_HANG)
-> +				igt_disallow_hang(i915, hang);
-> +			intel_ctx_destroy(i915, ctx);
-> +
-> +			gem_quiescent_gpu(i915);
-> +		}
-> +
-> +		free(ci);
+> +		*(rx_buf + i) =3D (payld_data >> (8 * (i % 4))) & 0xff;
 > +	}
+> +
+> +	return (int)payld_read;
 > +}
 > +
-> +static void
-> +__virt_submit_spin(int i915, igt_spin_t *spin,
-> +		   const intel_ctx_t *ctx,
-> +		   int offset)
-> +{
-> +	struct drm_i915_gem_execbuffer2 eb = spin->execbuf;
+>  void icl_dsi_frame_update(struct intel_crtc_state *crtc_state)
+>  {
+>  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+> @@ -1078,8 +1141,8 @@ static void gen11_dsi_setup_timeouts(struct intel_e=
+ncoder *encoder,
+>  	mul =3D 8 * 1000000;
+>  	hs_tx_timeout =3D DIV_ROUND_UP(intel_dsi->hs_tx_timeout * mul,
+>  				     divisor);
+> -	lp_rx_timeout =3D DIV_ROUND_UP(intel_dsi->lp_rx_timeout * mul, divisor);
+> -	ta_timeout =3D DIV_ROUND_UP(intel_dsi->turn_arnd_val * mul, divisor);
+> +	lp_rx_timeout =3D intel_dsi->lp_rx_timeout;
+> +	ta_timeout =3D intel_dsi->turn_arnd_val;
+>=20=20
+>  	for_each_dsi_port(port, intel_dsi->ports) {
+>  		dsi_trans =3D dsi_port_to_transcoder(port);
+> @@ -1837,9 +1900,11 @@ static ssize_t gen11_dsi_host_transfer(struct mipi=
+_dsi_host *host,
+>  	if (ret < 0)
+>  		return ret;
+>=20=20
+> -	//TODO: add payload receive code if needed
+> -
+> -	ret =3D sizeof(dsi_pkt.header) + dsi_pkt.payload_length;
+> +	/* add payload receive code if needed */
+> +	if (msg->rx_buf && msg->rx_len > 0)
+> +		ret =3D dsi_read_pkt_payld(intel_dsi_host, msg->rx_buf, msg->rx_len);
+> +	else
+> +		ret =3D sizeof(dsi_pkt.header) + dsi_pkt.payload_length;
+>=20=20
+>  	return ret;
+>  }
+> diff --git a/drivers/gpu/drm/i915/display/icl_dsi_regs.h b/drivers/gpu/dr=
+m/i915/display/icl_dsi_regs.h
+> index f78f28b8dd94..a77a49b42d60 100644
+> --- a/drivers/gpu/drm/i915/display/icl_dsi_regs.h
+> +++ b/drivers/gpu/drm/i915/display/icl_dsi_regs.h
+> @@ -251,6 +251,18 @@
+>  #define  NUMBER_RX_PLOAD_DW_MASK	(0xff << 0)
+>  #define  NUMBER_RX_PLOAD_DW_SHIFT	0
+>=20=20
+> +#define _DSI_CMD_RXHDR_0		0x6b0e0
+> +#define _DSI_CMD_RXHDR_1		0x6b8e0
+> +#define DSI_CMD_RXHDR(tc)		_MMIO_DSI(tc,	\
+> +						  _DSI_CMD_RXHDR_0,\
+> +						  _DSI_CMD_RXHDR_1)
 > +
-> +	eb.flags &= ~(0x3f | I915_EXEC_BSD_MASK);
-> +	eb.flags |= I915_EXEC_NO_RELOC;
-> +	eb.batch_start_offset += offset;
-> +	eb.rsvd1 = ctx->id;
+> +#define _DSI_CMD_RXPYLD_0		0x6b0e4
+> +#define _DSI_CMD_RXPYLD_1		0x6b8e4
+> +#define DSI_CMD_RXPYLD(tc)		_MMIO_DSI(tc,	\
+> +						  _DSI_CMD_RXPYLD_0,\
+> +						  _DSI_CMD_RXPYLD_1)
 > +
-> +	gem_execbuf(i915, &eb);
-> +}
-> +
-> +static void
-> +virtual_all(int i915, const intel_ctx_cfg_t *base_cfg, unsigned int flags)
-> +{
-> +	const unsigned int num_engines = base_cfg->num_engines;
-> +	intel_ctx_cfg_t cfg = {};
-> +
-> +	cfg.vm = gem_vm_create(i915);
-> +
-> +	for (int class = 0; class < 32; class++) {
-> +		struct i915_engine_class_instance *ci;
-> +		const intel_ctx_t *ctx[num_engines];
-> +		igt_hang_t hang[num_engines];
-> +		igt_spin_t *spin = NULL;
-> +		unsigned int count;
-> +		unsigned long slept;
-> +		uint64_t val;
-> +
-> +		if (!gem_class_can_store_dword(i915, class))
-> +			continue;
-> +
-> +		ci = list_engines(base_cfg, class, &count);
-> +		if (!ci)
-> +			continue;
-> +		igt_assert(count <= num_engines);
-> +
-> +		if (count < 2)
-> +			continue;
-> +
-> +		igt_debug("class %u, %u engines...\n", class, count);
-> +
-> +		for (unsigned int i = 0; i < count; i++) {
-> +			uint64_t ahnd;
-> +
-> +			igt_assert(sizeof(*ci) == sizeof(int));
-> +			igt_permute_array(ci, count, igt_exchange_int);
-> +
-> +			ctx[i] = intel_ctx_create(i915, &cfg);
-> +			set_load_balancer(i915, ctx[i]->id, ci, count, NULL);
-> +			if (flags & FLAG_HANG)
-> +				hang[i] = igt_allow_hang(i915, ctx[i]->id, 0);
-> +			ahnd = get_reloc_ahnd(i915, ctx[i]->id);
-> +
-> +			if (spin)
-> +				__virt_submit_spin(i915, spin, ctx[i], 64);
-> +			else
-> +				spin = __spin_poll(i915, ahnd, ctx[i], NULL);
-> +		}
-> +
-> +		/* Small delay to allow engines to start. */
-> +		usleep(__spin_wait(i915, spin) * count / 1e3);
-> +
-> +		val = read_busy(i915, class);
-> +		slept = measured_usleep(batch_duration_ns / 1000);
-> +		if (flags & TEST_TRAILING_IDLE)
-> +			end_spin(i915, spin, flags);
-> +		val = read_busy(i915, class) - val;
-> +
-> +		if (flags & FLAG_HANG)
-> +			igt_force_gpu_reset(i915);
-> +		else
-> +			end_spin(i915, spin, FLAG_SYNC);
-> +
-> +		assert_within_epsilon(val, slept * count, tolerance);
-> +
-> +		/* Check for idle after hang. */
-> +		if (flags & FLAG_HANG) {
-> +			gem_quiescent_gpu(i915);
-> +			igt_assert(!gem_bo_busy(i915, spin->handle));
-> +
-> +			val = read_busy(i915, class);
-> +			slept = measured_usleep(batch_duration_ns /
-> +						1000);
-> +			val = read_busy(i915, class) - val;
-> +
-> +			assert_within_epsilon(val, 0, tolerance);
-> +		}
-> +
-> +		igt_spin_free(i915, spin);
-> +		put_ahnd(spin->opts.ahnd);
-> +		for (unsigned int i = 0; i < count; i++) {
-> +			if (flags & FLAG_HANG)
-> +				igt_disallow_hang(i915, hang[i]);
-> +			intel_ctx_destroy(i915, ctx[i]);
-> +		}
-> +
-> +		gem_quiescent_gpu(i915);
-> +
-> +		free(ci);
-> +	}
-> +}
-> +
->  #define test_each_engine(T, i915, ctx, e) \
->  	igt_subtest_with_dynamic(T) for_each_ctx_engine(i915, ctx, e) \
->  		igt_dynamic_f("%s", e->name)
-> @@ -489,15 +758,24 @@ igt_main
->  	test_each_engine("idle", i915, ctx, e)
->  		single(i915, ctx, e, 0);
->  
-> +	igt_subtest("virtual-idle")
-> +		virtual(i915, &ctx->cfg, 0);
-> +
->  	/**
->  	 * Test that a single engine reports load correctly.
->  	 */
->  	test_each_engine("busy", i915, ctx, e)
->  		single(i915, ctx, e, TEST_BUSY);
->  
-> +	igt_subtest("virtual-busy")
-> +		virtual(i915, &ctx->cfg, TEST_BUSY);
-> +
->  	test_each_engine("busy-idle", i915, ctx, e)
->  		single(i915, ctx, e, TEST_BUSY | TEST_TRAILING_IDLE);
->  
-> +	igt_subtest("virtual-busy-idle")
-> +		virtual(i915, &ctx->cfg, TEST_BUSY | TEST_TRAILING_IDLE);
-> +
->  	test_each_engine("busy-hang", i915, ctx, e) {
->  		igt_hang_t hang = igt_allow_hang(i915, ctx->id, 0);
->  
-> @@ -506,6 +784,9 @@ igt_main
->  		igt_disallow_hang(i915, hang);
->  	}
->  
-> +	igt_subtest("virtual-busy-hang")
-> +		virtual(i915, &ctx->cfg, TEST_BUSY | FLAG_HANG);
-> +
->  	/**
->  	 * Test that when one engine is loaded other report no
->  	 * load.
-> @@ -544,6 +825,14 @@ igt_main
->  		all_busy_check_all(i915, ctx, num_engines, classes, num_classes,
->  				   TEST_BUSY | TEST_TRAILING_IDLE);
->  
+>  #define _DSI_CMD_TXCTL_0		0x6b0d0
+>  #define _DSI_CMD_TXCTL_1		0x6b8d0
+>  #define DSI_CMD_TXCTL(tc)		_MMIO_DSI(tc,	\
+> @@ -294,6 +306,7 @@
+>  #define  LPTX_IN_PROGRESS		(1 << 17)
+>  #define  LINK_IN_ULPS			(1 << 16)
+>  #define  LINK_ULPS_TYPE_LP11		(1 << 8)
+> +#define  LINK_BTA			(1 << 1)
+>  #define  LINK_ENTER_ULPS		(1 << 0)
+>=20=20
+>  /* DSI timeout registers */
 
-Please add description to each new test you add.
-
-Regards,
-Kamil
-
-> +	igt_subtest("virtual-busy-all")
-> +		virtual_all(i915, &ctx->cfg, TEST_BUSY);
-> +
-> +	igt_subtest("virtual-busy-idle-all")
-> +		virtual_all(i915, &ctx->cfg, TEST_BUSY | TEST_TRAILING_IDLE);
-> +
-> +	igt_subtest("virtual-busy-hang-all")
-> +		virtual_all(i915, &ctx->cfg, TEST_BUSY | FLAG_HANG);
->  	/**
->  	 * Test for no cross-client contamination.
->  	 */
-> -- 
-> 2.34.1
-> 
+--=20
+Jani Nikula, Intel Open Source Graphics Center
