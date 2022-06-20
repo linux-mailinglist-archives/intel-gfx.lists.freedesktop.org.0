@@ -2,50 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E7515512F4
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Jun 2022 10:38:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 99B275512F5
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Jun 2022 10:38:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A451010E274;
-	Mon, 20 Jun 2022 08:38:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 108F010E2B3;
+	Mon, 20 Jun 2022 08:38:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CDA7710E274
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 Jun 2022 08:38:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EDAE710E2B3
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Jun 2022 08:38:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655714309; x=1687250309;
+ t=1655714311; x=1687250311;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Bx0ZvrlAPZ13uSv7Gapo3tL92ty5vqWX3uLWnd6cllU=;
- b=mMmgvi+oMnwq2CsE5g1oENO2w0VZFK9ogM8cPbe23jAU10VkISHHUkZB
- kD9XPpkcxJeh+KPzR4PE18+WEGys8MZAjamX55b7nA7kFJDrT8QDyi9zN
- CsZbuORj+wPF1roihuX0MErX41Hwz/OPRLF+pLuSTYa6pBZJbsc7uUl1M
- z+jpvt/apQPNtH3wCK7E+GtUApMwsrxrpJAbbZ8aAIIXaAMtFMYkt6toa
- Dg77DJThj4bBr/nrk6CFJAjIICcwAWo2FNHvRaRwpAVhAHdwAmoGPinFv
- Vk0p8QiPd4KYMvd0NijZTFOOFLfz2Am7u1VPHo6W5O0m9oir1eIbP8hAo Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10380"; a="305275628"
-X-IronPort-AV: E=Sophos;i="5.92,306,1650956400"; d="scan'208";a="305275628"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ bh=rQhDhRF96geiCBVV6jcHrvLCUEvD5gEAiTdueTrHDDo=;
+ b=a60/oHOLNO6RBsUIAH131Tey17hc4f8DJG8WT5LLGmPXmF2vh181G1uY
+ uu8ld/gDtlLQxIfRDugBsWsxindN7xpT4prONrvq+H6J+7RKurdkNY/+U
+ gqDwT0QjrxKgBED4BEdruJmSZGj9UhKcqojohyUwNfUTkuHNrr3jX2dsy
+ Ig6ryydCkPrmVFOStg8ViX+pW3XLUzDasRJJoqU3BCXiKiQzuTieLYYSD
+ Ei4AVx10+MFjXQsLTpbkJN+S7pl+hviz9BZn47trLNATV7rHnpufKCeZJ
+ PqcPF9B/SzndDyvr8bm11DPei7mRQvk9CRNg18cBWTxeT7VBcD/M6h+Ib A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10380"; a="305275654"
+X-IronPort-AV: E=Sophos;i="5.92,306,1650956400"; d="scan'208";a="305275654"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jun 2022 01:38:28 -0700
-X-IronPort-AV: E=Sophos;i="5.92,306,1650956400"; d="scan'208";a="833012693"
+ 20 Jun 2022 01:38:31 -0700
+X-IronPort-AV: E=Sophos;i="5.92,306,1650956400"; d="scan'208";a="913558854"
 Received: from hkanchar-mobl.gar.corp.intel.com (HELO localhost)
  ([10.252.36.6])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jun 2022 01:38:26 -0700
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jun 2022 01:38:30 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 20 Jun 2022 11:38:01 +0300
-Message-Id: <6b305ceebd1a0a36f3d08c1e21582b186debcb7a.1655712106.git.jani.nikula@intel.com>
+Date: Mon, 20 Jun 2022 11:38:02 +0300
+Message-Id: <1037cd2faeb2ad28be07dcb07afd4ec80a80e7a4.1655712106.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <cover.1655712106.git.jani.nikula@intel.com>
 References: <cover.1655712106.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 02/16] drm/i915: combine device info printing
- into one
+Subject: [Intel-gfx] [PATCH 03/16] drm/i915: add initial runtime info into
+ device info
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,110 +62,105 @@ Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We'll be moving info between static and runtime info. Combine the
-printing functions into one to keep the output sensible and (mostly)
-unchanged in the process.
+Add initial runtime info that we can copy to runtime info at i915
+creation time. This lets us define the initial values for runtime info
+statically while making it possible to change them runtime. This will be
+the new home for the current "const" device info members that are
+modified runtime anyway.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/i915_debugfs.c      |  3 +--
- drivers/gpu/drm/i915/i915_driver.c       |  4 ++--
- drivers/gpu/drm/i915/i915_gpu_error.c    |  3 +--
- drivers/gpu/drm/i915/intel_device_info.c | 11 ++++-------
- drivers/gpu/drm/i915/intel_device_info.h |  7 +++----
- 5 files changed, 11 insertions(+), 17 deletions(-)
+ drivers/gpu/drm/i915/i915_driver.c       |  7 +++-
+ drivers/gpu/drm/i915/intel_device_info.h | 41 +++++++++++++-----------
+ 2 files changed, 29 insertions(+), 19 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
-index 94e5c29d2ee3..d131703de3d9 100644
---- a/drivers/gpu/drm/i915/i915_debugfs.c
-+++ b/drivers/gpu/drm/i915/i915_debugfs.c
-@@ -66,8 +66,7 @@ static int i915_capabilities(struct seq_file *m, void *data)
- 
- 	seq_printf(m, "pch: %d\n", INTEL_PCH_TYPE(i915));
- 
--	intel_device_info_print_static(INTEL_INFO(i915), &p);
--	intel_device_info_print_runtime(RUNTIME_INFO(i915), &p);
-+	intel_device_info_print(INTEL_INFO(i915), RUNTIME_INFO(i915), &p);
- 	i915_print_iommu_status(i915, &p);
- 	intel_gt_info_print(&to_gt(i915)->info, &p);
- 	intel_driver_caps_print(&i915->caps, &p);
 diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index aeec3dfe3ebf..0b00a05f1a74 100644
+index 0b00a05f1a74..5969cc7805d3 100644
 --- a/drivers/gpu/drm/i915/i915_driver.c
 +++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -775,8 +775,8 @@ static void i915_welcome_messages(struct drm_i915_private *dev_priv)
- 					     INTEL_INFO(dev_priv)->platform),
- 			   GRAPHICS_VER(dev_priv));
+@@ -796,6 +796,7 @@ i915_driver_create(struct pci_dev *pdev, const struct pci_device_id *ent)
+ 	const struct intel_device_info *match_info =
+ 		(struct intel_device_info *)ent->driver_data;
+ 	struct intel_device_info *device_info;
++	struct intel_runtime_info *runtime;
+ 	struct drm_i915_private *i915;
  
--		intel_device_info_print_static(INTEL_INFO(dev_priv), &p);
--		intel_device_info_print_runtime(RUNTIME_INFO(dev_priv), &p);
-+		intel_device_info_print(INTEL_INFO(dev_priv),
-+					RUNTIME_INFO(dev_priv), &p);
- 		i915_print_iommu_status(dev_priv, &p);
- 		intel_gt_info_print(&to_gt(dev_priv)->info, &p);
- 	}
-diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
-index bff8a111424a..98e77fb02423 100644
---- a/drivers/gpu/drm/i915/i915_gpu_error.c
-+++ b/drivers/gpu/drm/i915/i915_gpu_error.c
-@@ -658,8 +658,7 @@ static void err_print_capabilities(struct drm_i915_error_state_buf *m,
- {
- 	struct drm_printer p = i915_error_printer(m);
+ 	i915 = devm_drm_dev_alloc(&pdev->dev, &i915_drm_driver,
+@@ -811,7 +812,11 @@ i915_driver_create(struct pci_dev *pdev, const struct pci_device_id *ent)
+ 	/* Setup the write-once "constant" device info */
+ 	device_info = mkwrite_device_info(i915);
+ 	memcpy(device_info, match_info, sizeof(*device_info));
+-	RUNTIME_INFO(i915)->device_id = pdev->device;
++
++	/* Initialize initial runtime info from static const data and pdev. */
++	runtime = RUNTIME_INFO(i915);
++	memcpy(runtime, &INTEL_INFO(i915)->__runtime, sizeof(*runtime));
++	runtime->device_id = pdev->device;
  
--	intel_device_info_print_static(&error->device_info, &p);
--	intel_device_info_print_runtime(&error->runtime_info, &p);
-+	intel_device_info_print(&error->device_info, &error->runtime_info, &p);
- 	intel_driver_caps_print(&error->driver_caps, &p);
+ 	return i915;
  }
- 
-diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
-index f0bf23726ed8..77f435dd5626 100644
---- a/drivers/gpu/drm/i915/intel_device_info.c
-+++ b/drivers/gpu/drm/i915/intel_device_info.c
-@@ -87,8 +87,9 @@ const char *intel_platform_name(enum intel_platform platform)
- 	return platform_names[platform];
- }
- 
--void intel_device_info_print_static(const struct intel_device_info *info,
--				    struct drm_printer *p)
-+void intel_device_info_print(const struct intel_device_info *info,
-+			     const struct intel_runtime_info *runtime,
-+			     struct drm_printer *p)
- {
- 	if (info->graphics.rel)
- 		drm_printf(p, "graphics version: %u.%02u\n", info->graphics.ver,
-@@ -121,12 +122,8 @@ void intel_device_info_print_static(const struct intel_device_info *info,
- #define PRINT_FLAG(name) drm_printf(p, "%s: %s\n", #name, str_yes_no(info->display.name))
- 	DEV_INFO_DISPLAY_FOR_EACH_FLAG(PRINT_FLAG);
- #undef PRINT_FLAG
--}
- 
--void intel_device_info_print_runtime(const struct intel_runtime_info *info,
--				     struct drm_printer *p)
--{
--	drm_printf(p, "rawclk rate: %u kHz\n", info->rawclk_freq);
-+	drm_printf(p, "rawclk rate: %u kHz\n", runtime->rawclk_freq);
- }
- 
- #undef INTEL_VGA_DEVICE
 diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
-index 08341174ee0a..b86f68866e35 100644
+index b86f68866e35..85385c98b9f4 100644
 --- a/drivers/gpu/drm/i915/intel_device_info.h
 +++ b/drivers/gpu/drm/i915/intel_device_info.h
-@@ -285,10 +285,9 @@ const char *intel_platform_name(enum intel_platform platform);
- void intel_device_info_subplatform_init(struct drm_i915_private *dev_priv);
- void intel_device_info_runtime_init(struct drm_i915_private *dev_priv);
+@@ -197,6 +197,27 @@ struct ip_version {
+ 	u8 rel;
+ };
  
--void intel_device_info_print_static(const struct intel_device_info *info,
--				    struct drm_printer *p);
--void intel_device_info_print_runtime(const struct intel_runtime_info *info,
--				     struct drm_printer *p);
-+void intel_device_info_print(const struct intel_device_info *info,
-+			     const struct intel_runtime_info *runtime,
-+			     struct drm_printer *p);
++struct intel_runtime_info {
++	/*
++	 * Platform mask is used for optimizing or-ed IS_PLATFORM calls into
++	 * into single runtime conditionals, and also to provide groundwork
++	 * for future per platform, or per SKU build optimizations.
++	 *
++	 * Array can be extended when necessary if the corresponding
++	 * BUILD_BUG_ON is hit.
++	 */
++	u32 platform_mask[2];
++
++	u16 device_id;
++
++	u8 num_sprites[I915_MAX_PIPES];
++	u8 num_scalers[I915_MAX_PIPES];
++
++	u32 rawclk_freq;
++
++	struct intel_step_info step;
++};
++
+ struct intel_device_info {
+ 	struct ip_version graphics;
+ 	struct ip_version media;
+@@ -252,27 +273,11 @@ struct intel_device_info {
+ 		u32 degamma_lut_tests;
+ 		u32 gamma_lut_tests;
+ 	} color;
+-};
  
- void intel_driver_caps_print(const struct intel_driver_caps *caps,
- 			     struct drm_printer *p);
+-struct intel_runtime_info {
+ 	/*
+-	 * Platform mask is used for optimizing or-ed IS_PLATFORM calls into
+-	 * into single runtime conditionals, and also to provide groundwork
+-	 * for future per platform, or per SKU build optimizations.
+-	 *
+-	 * Array can be extended when necessary if the corresponding
+-	 * BUILD_BUG_ON is hit.
++	 * Initial runtime info. Do not access outside of i915_driver_create().
+ 	 */
+-	u32 platform_mask[2];
+-
+-	u16 device_id;
+-
+-	u8 num_sprites[I915_MAX_PIPES];
+-	u8 num_scalers[I915_MAX_PIPES];
+-
+-	u32 rawclk_freq;
+-
+-	struct intel_step_info step;
++	const struct intel_runtime_info __runtime;
+ };
+ 
+ struct intel_driver_caps {
 -- 
 2.30.2
 
