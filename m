@@ -1,55 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D78A1552296
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Jun 2022 19:05:16 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDE89552298
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Jun 2022 19:09:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9318410E73C;
-	Mon, 20 Jun 2022 17:05:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5ACD610E25C;
+	Mon, 20 Jun 2022 17:08:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4699210E72F
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 Jun 2022 17:05:13 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2AD9F10E25C
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Jun 2022 17:08:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655744713; x=1687280713;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=/xhq5m76SN9XR+XqOwFhg8565RkDx4gHUW+OogOF2vI=;
- b=PGG/I4zNnrVw/LoVT4unrGE3Lck6sdlJ02vKfoXnm13b5zxcTrRBawlK
- FBQt5QSYBb4vsWDHrJmBATlSEUdMM0RjVHPxhTRIMbFQ1dq5+Q9TKOqDS
- h8EokL5DBlwCgXBrOXRi7vtsrTdmVRyX9kd2teuQXFpd7moUiJOD3Scui
- b4dvAO5BS/Y2GowHKXDuAJqwuRn1SFv+yj4dIKTHlrFDqHWAPJ54L2ANZ
- rGJP9gl2XVcGvk7I+hAhHOzvjd3quSqv5kTxLE1m0PYEBI7LYLv/47n8B
- jVRxa0qxzUIcjuz6katQPp1Z0gNSvPkB9QnlUwB6VZO1d8BWw/egbovCC Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10384"; a="280672768"
-X-IronPort-AV: E=Sophos;i="5.92,207,1650956400"; d="scan'208";a="280672768"
+ t=1655744936; x=1687280936;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=30uiG5gHbdxmumO1jc+HOZ6bzxkvnhCjVR+hkJKsDwg=;
+ b=nfNhSBLZHBJBPaRqiArVTYaeis5K31UVGW++Omdx8YnSBbHM4KKD2K9E
+ YhXs2HdsdKIePXdjDTpeFJh5xR9oPA3hE+Ue90FE9P4na5zon6Q8JHGoy
+ 45e46CJIvNz+0muSOgQEnTMe1o2rmsvoR26dtS7Z9lSL/PLUBBDN6csNs
+ KQHwxP5MG4bQdc9wphuY12li/Z5HYsTbewLd7n0Awpv/4WcmZFlONdnZr
+ LDpp+L8SM9q/8J4YxhWXraUYPhP2VTtmLrWGWylbEnCAmEFCq3/dJygSa
+ 2c/ZHzh2j9h796yLm9RVbWQND3oJYzDmbrK/8WiPXuGRoqp8zi697SMqX g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10384"; a="268662233"
+X-IronPort-AV: E=Sophos;i="5.92,207,1650956400"; d="scan'208";a="268662233"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jun 2022 10:05:12 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,207,1650956400"; d="scan'208";a="643201663"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.163])
- by fmsmga008.fm.intel.com with SMTP; 20 Jun 2022 10:05:10 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 20 Jun 2022 20:05:09 +0300
-Date: Mon, 20 Jun 2022 20:05:09 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <YrCoxUgSEuzl+Amp@intel.com>
-References: <20220617160510.2082-1-ville.syrjala@linux.intel.com>
- <20220617160510.2082-4-ville.syrjala@linux.intel.com>
- <87h74fu2l5.fsf@intel.com>
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jun 2022 10:08:55 -0700
+X-IronPort-AV: E=Sophos;i="5.92,207,1650956400"; d="scan'208";a="643202937"
+Received: from hkanchar-mobl.gar.corp.intel.com (HELO localhost)
+ ([10.252.36.6])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jun 2022 10:08:53 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Animesh Manna <animesh.manna@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <87wndbu35r.fsf@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220620065138.5126-1-animesh.manna@intel.com>
+ <87wndbu35r.fsf@intel.com>
+Date: Mon, 20 Jun 2022 20:08:51 +0300
+Message-ID: <87v8svs1ng.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <87h74fu2l5.fsf@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v2 03/16] drm/i915: Extract
- has_double_buffered_m_n()
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH v4] drm/i915/bios: calculate panel type as
+ per child device index in VBT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,106 +58,235 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jun 20, 2022 at 12:05:42PM +0300, Jani Nikula wrote:
-> On Fri, 17 Jun 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> >
-> > We have a couple of places that want to make distinction between
-> > double buffered M/N registers vs. the split M1/N1+M2/N2 registers.
-> > Add a helper for that.
-> >
-> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> 
-> Mhh. So why a function in intel_display.c instead of a macro in
-> i915_drv.h? Both are kind of cluttered, but at least in i915_drv.h it
-> would be among others.
-
-Doesn't feel quite right to me to put low level details like this
-into the i915 feature stuff. I'd rather keep it next to the
-implementation so I have all the relevant details in one place.
-
-For higher level stuff and features named in bspec the HAS_FOO()
-stuff feels more appropriate to me.
-
-But maybe that's just me.
-
-> 
-> I do think we should have a separate file for display feature check
-> macros, and move most if not all of the display related HAS_*() stuff
-> there from i915_drv.h.
-> 
-> So technically this does what it says on the box, and in that sense,
-> 
+On Mon, 20 Jun 2022, Jani Nikula <jani.nikula@intel.com> wrote:
+> On Mon, 20 Jun 2022, Animesh Manna <animesh.manna@intel.com> wrote:
+>> Each LFP may have different panel type which is stored in LFP data
+>> data block. Based on the child device index respective panel-type/
+>> panel-type2 field will be used.
+>>
+>> v1: Initial rfc verion.
+>> v2: Based on review comments from Jani,
+>> - Used panel-type instead addition panel-index variable.
+>> - DEVICE_HANDLE_* name changed and placed before DEVICE_TYPE_*
+>> macro.
+>> v3:
+>> - passing intel_bios_encoder_data as argument of
+>> intel_bios_init_panel(). Passing NULL to indicate encoder is not
+>> initialized yet for dsi as current focus is to enable dual EDP. [Jani]
+>> v4:
+>> - encoder->devdata used which is initialized before from vbt
+>> structure. [Jani]
+>>
+>> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+>
+> LGTM, but I'd also like an ack from Ville too as he's been doing a bunch
+> of changes around this lately.
+>
 > Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-> 
-> but I don't much like the example and precedence this function sets.
-> 
-> 
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_display.c | 7 ++++++-
-> >  drivers/gpu/drm/i915/display/intel_display.h | 1 +
-> >  drivers/gpu/drm/i915/display/intel_dp.c      | 3 +--
-> >  3 files changed, 8 insertions(+), 3 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> > index b24784c4522d..5559688047b3 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > @@ -2798,6 +2798,11 @@ static int intel_crtc_compute_config(struct intel_atomic_state *state,
-> >  	return 0;
-> >  }
-> >  
-> > +bool has_double_buffered_m_n(struct drm_i915_private *i915)
-> > +{
-> > +	return DISPLAY_VER(i915) >= 9 || IS_BROADWELL(i915);
-> > +}
-> > +
-> >  static void
-> >  intel_reduce_m_n_ratio(u32 *num, u32 *den)
-> >  {
-> > @@ -5900,7 +5905,7 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
-> >  	PIPE_CONF_CHECK_I(lane_count);
-> >  	PIPE_CONF_CHECK_X(lane_lat_optim_mask);
-> >  
-> > -	if (DISPLAY_VER(dev_priv) >= 9 || IS_BROADWELL(dev_priv)) {
-> > +	if (has_double_buffered_m_n(dev_priv)) {
-> >  		PIPE_CONF_CHECK_M_N_ALT(dp_m_n, dp_m2_n2);
-> >  	} else {
-> >  		PIPE_CONF_CHECK_M_N(dp_m_n);
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-> > index 2feb8ae5d5d4..44c88aadfc30 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.h
-> > @@ -543,6 +543,7 @@ int intel_atomic_add_affected_planes(struct intel_atomic_state *state,
-> >  				     struct intel_crtc *crtc);
-> >  u8 intel_calc_active_pipes(struct intel_atomic_state *state,
-> >  			   u8 active_pipes);
-> > +bool has_double_buffered_m_n(struct drm_i915_private *i915);
-> >  void intel_link_compute_m_n(u16 bpp, int nlanes,
-> >  			    int pixel_clock, int link_clock,
-> >  			    struct intel_link_m_n *m_n,
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> > index 2fac76bcf06d..75645508080a 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > @@ -1842,8 +1842,7 @@ intel_dp_compute_hdr_metadata_infoframe_sdp(struct intel_dp *intel_dp,
-> >  static bool cpu_transcoder_has_drrs(struct drm_i915_private *i915,
-> >  				    enum transcoder cpu_transcoder)
-> >  {
-> > -	/* M1/N1 is double buffered */
-> > -	if (DISPLAY_VER(i915) >= 9 || IS_BROADWELL(i915))
-> > +	if (has_double_buffered_m_n(i915))
-> >  		return true;
-> >  
-> >  	return intel_cpu_transcoder_has_m2_n2(i915, cpu_transcoder);
-> 
-> -- 
-> Jani Nikula, Intel Open Source Graphics Center
+
+And pushed to drm-intel-next with Ville's IRC ack.
+
+BR,
+Jani.
+
+
+>
+>
+>> ---
+>>  drivers/gpu/drm/i915/display/icl_dsi.c        |  2 +-
+>>  drivers/gpu/drm/i915/display/intel_bios.c     | 16 ++++++++++++++--
+>>  drivers/gpu/drm/i915/display/intel_bios.h     |  1 +
+>>  drivers/gpu/drm/i915/display/intel_dp.c       |  3 ++-
+>>  drivers/gpu/drm/i915/display/intel_lvds.c     |  2 +-
+>>  drivers/gpu/drm/i915/display/intel_sdvo.c     |  2 +-
+>>  drivers/gpu/drm/i915/display/intel_vbt_defs.h |  4 ++++
+>>  drivers/gpu/drm/i915/display/vlv_dsi.c        |  2 +-
+>>  8 files changed, 25 insertions(+), 7 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
+>> index 3b5305c219ba..5dcfa7feffa9 100644
+>> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
+>> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+>> @@ -2050,7 +2050,7 @@ void icl_dsi_init(struct drm_i915_private *dev_priv)
+>>  	/* attach connector to encoder */
+>>  	intel_connector_attach_encoder(intel_connector, encoder);
+>>  
+>> -	intel_bios_init_panel(dev_priv, &intel_connector->panel, NULL);
+>> +	intel_bios_init_panel(dev_priv, &intel_connector->panel, NULL, NULL);
+>>  
+>>  	mutex_lock(&dev->mode_config.mutex);
+>>  	intel_panel_add_vbt_lfp_fixed_mode(intel_connector);
+>> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+>> index 76e86358adb9..e97f1f979a48 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_bios.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
+>> @@ -604,12 +604,14 @@ get_lfp_data_tail(const struct bdb_lvds_lfp_data *data,
+>>  }
+>>  
+>>  static int opregion_get_panel_type(struct drm_i915_private *i915,
+>> +				   const struct intel_bios_encoder_data *devdata,
+>>  				   const struct edid *edid)
+>>  {
+>>  	return intel_opregion_get_panel_type(i915);
+>>  }
+>>  
+>>  static int vbt_get_panel_type(struct drm_i915_private *i915,
+>> +			      const struct intel_bios_encoder_data *devdata,
+>>  			      const struct edid *edid)
+>>  {
+>>  	const struct bdb_lvds_options *lvds_options;
+>> @@ -625,10 +627,16 @@ static int vbt_get_panel_type(struct drm_i915_private *i915,
+>>  		return -1;
+>>  	}
+>>  
+>> +	if (devdata && devdata->child.handle == DEVICE_HANDLE_LFP2)
+>> +		return lvds_options->panel_type2;
+>> +
+>> +	drm_WARN_ON(&i915->drm, devdata && devdata->child.handle != DEVICE_HANDLE_LFP1);
+>> +
+>>  	return lvds_options->panel_type;
+>>  }
+>>  
+>>  static int pnpid_get_panel_type(struct drm_i915_private *i915,
+>> +				const struct intel_bios_encoder_data *devdata,
+>>  				const struct edid *edid)
+>>  {
+>>  	const struct bdb_lvds_lfp_data *data;
+>> @@ -675,6 +683,7 @@ static int pnpid_get_panel_type(struct drm_i915_private *i915,
+>>  }
+>>  
+>>  static int fallback_get_panel_type(struct drm_i915_private *i915,
+>> +				   const struct intel_bios_encoder_data *devdata,
+>>  				   const struct edid *edid)
+>>  {
+>>  	return 0;
+>> @@ -688,11 +697,13 @@ enum panel_type {
+>>  };
+>>  
+>>  static int get_panel_type(struct drm_i915_private *i915,
+>> +			  const struct intel_bios_encoder_data *devdata,
+>>  			  const struct edid *edid)
+>>  {
+>>  	struct {
+>>  		const char *name;
+>>  		int (*get_panel_type)(struct drm_i915_private *i915,
+>> +				      const struct intel_bios_encoder_data *devdata,
+>>  				      const struct edid *edid);
+>>  		int panel_type;
+>>  	} panel_types[] = {
+>> @@ -716,7 +727,7 @@ static int get_panel_type(struct drm_i915_private *i915,
+>>  	int i;
+>>  
+>>  	for (i = 0; i < ARRAY_SIZE(panel_types); i++) {
+>> -		panel_types[i].panel_type = panel_types[i].get_panel_type(i915, edid);
+>> +		panel_types[i].panel_type = panel_types[i].get_panel_type(i915, devdata, edid);
+>>  
+>>  		drm_WARN_ON(&i915->drm, panel_types[i].panel_type > 0xf &&
+>>  			    panel_types[i].panel_type != 0xff);
+>> @@ -3127,11 +3138,12 @@ void intel_bios_init(struct drm_i915_private *i915)
+>>  
+>>  void intel_bios_init_panel(struct drm_i915_private *i915,
+>>  			   struct intel_panel *panel,
+>> +			   const struct intel_bios_encoder_data *devdata,
+>>  			   const struct edid *edid)
+>>  {
+>>  	init_vbt_panel_defaults(panel);
+>>  
+>> -	panel->vbt.panel_type = get_panel_type(i915, edid);
+>> +	panel->vbt.panel_type = get_panel_type(i915, devdata, edid);
+>>  
+>>  	parse_panel_options(i915, panel);
+>>  	parse_generic_dtd(i915, panel);
+>> diff --git a/drivers/gpu/drm/i915/display/intel_bios.h b/drivers/gpu/drm/i915/display/intel_bios.h
+>> index b112200ae0a0..e47582b0de0a 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_bios.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_bios.h
+>> @@ -234,6 +234,7 @@ struct mipi_pps_data {
+>>  void intel_bios_init(struct drm_i915_private *dev_priv);
+>>  void intel_bios_init_panel(struct drm_i915_private *dev_priv,
+>>  			   struct intel_panel *panel,
+>> +			   const struct intel_bios_encoder_data *devdata,
+>>  			   const struct edid *edid);
+>>  void intel_bios_fini_panel(struct intel_panel *panel);
+>>  void intel_bios_driver_remove(struct drm_i915_private *dev_priv);
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+>> index 2fac76bcf06d..a0c826b64a1e 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+>> @@ -5168,6 +5168,7 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
+>>  	struct drm_device *dev = &dev_priv->drm;
+>>  	struct drm_connector *connector = &intel_connector->base;
+>>  	struct drm_display_mode *fixed_mode;
+>> +	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
+>>  	bool has_dpcd;
+>>  	enum pipe pipe = INVALID_PIPE;
+>>  	struct edid *edid;
+>> @@ -5225,7 +5226,7 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
+>>  	intel_connector->edid = edid;
+>>  
+>>  	intel_bios_init_panel(dev_priv, &intel_connector->panel,
+>> -			      IS_ERR(edid) ? NULL : edid);
+>> +			      encoder->devdata, IS_ERR(edid) ? NULL : edid);
+>>  
+>>  	intel_panel_add_edid_fixed_modes(intel_connector,
+>>  					 intel_connector->panel.vbt.drrs_type != DRRS_TYPE_NONE,
+>> diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c b/drivers/gpu/drm/i915/display/intel_lvds.c
+>> index e55802b45461..730480ac3300 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_lvds.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_lvds.c
+>> @@ -967,7 +967,7 @@ void intel_lvds_init(struct drm_i915_private *dev_priv)
+>>  	}
+>>  	intel_connector->edid = edid;
+>>  
+>> -	intel_bios_init_panel(dev_priv, &intel_connector->panel,
+>> +	intel_bios_init_panel(dev_priv, &intel_connector->panel, NULL,
+>>  			      IS_ERR(edid) ? NULL : edid);
+>>  
+>>  	/* Try EDID first */
+>> diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
+>> index 2b78a790e1b6..19122bc6d2ab 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_sdvo.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
+>> @@ -2901,7 +2901,7 @@ intel_sdvo_lvds_init(struct intel_sdvo *intel_sdvo, int device)
+>>  	if (!intel_sdvo_create_enhance_property(intel_sdvo, intel_sdvo_connector))
+>>  		goto err;
+>>  
+>> -	intel_bios_init_panel(i915, &intel_connector->panel, NULL);
+>> +	intel_bios_init_panel(i915, &intel_connector->panel, NULL, NULL);
+>>  
+>>  	/*
+>>  	 * Fetch modes from VBT. For SDVO prefer the VBT mode since some
+>> diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
+>> index 3766c09bd65d..509b0a419c20 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
+>> @@ -182,6 +182,10 @@ struct bdb_general_features {
+>>  #define GPIO_PIN_ADD_DDC	0x04 /* "ADDCARD DDC GPIO pins" */
+>>  #define GPIO_PIN_ADD_DDC_I2C	0x06 /* "ADDCARD DDC/I2C GPIO pins" */
+>>  
+>> +/* Device handle */
+>> +#define DEVICE_HANDLE_LFP1	0x0008
+>> +#define DEVICE_HANDLE_LFP2	0x0080
+>> +
+>>  /* Pre 915 */
+>>  #define DEVICE_TYPE_NONE	0x00
+>>  #define DEVICE_TYPE_CRT		0x01
+>> diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
+>> index abda0888c8d4..b9b1fed99874 100644
+>> --- a/drivers/gpu/drm/i915/display/vlv_dsi.c
+>> +++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
+>> @@ -1926,7 +1926,7 @@ void vlv_dsi_init(struct drm_i915_private *dev_priv)
+>>  
+>>  	intel_dsi->panel_power_off_time = ktime_get_boottime();
+>>  
+>> -	intel_bios_init_panel(dev_priv, &intel_connector->panel, NULL);
+>> +	intel_bios_init_panel(dev_priv, &intel_connector->panel, NULL, NULL);
+>>  
+>>  	if (intel_connector->panel.vbt.dsi.config->dual_link)
+>>  		intel_dsi->ports = BIT(PORT_A) | BIT(PORT_C);
 
 -- 
-Ville Syrjälä
-Intel
+Jani Nikula, Intel Open Source Graphics Center
