@@ -2,54 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FCEA551165
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Jun 2022 09:22:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A760551189
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Jun 2022 09:31:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8384810F178;
-	Mon, 20 Jun 2022 07:22:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 95C1910E0FB;
+	Mon, 20 Jun 2022 07:31:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A904310F178;
- Mon, 20 Jun 2022 07:22:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655709766; x=1687245766;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=mpt0zhbUFqLJf8WVjMU5fjm59+8A5EgE2gCWbz7VT4o=;
- b=Y6qqRs8Rziu7JwXWo2pV/5cRi68k+Wb3NKe/upJv6wZ69emIo4Knd4oU
- j3mPyCqa2NH1X9MNb1sjFx4OlHTDUqP8jT4/duZdf1LWF31iY2nYLvZcr
- OJk1XP0rm/edXd34AeGHqPUqmqxlK8b2KSqdkjnBJQ3nQSgwubyNINsct
- VhLztko51g699LIkpjVSnBFkGiVMSJFtyvec8FBzpPqR1CoQYyxNzLr3Q
- hESiQQqXPowaOHuW/mEgF1PtCQF6WtX/xHjYXdRHVtM2hnHTY+XMQyRvw
- nMEYiWYSUu6h9rFNHawhpCktsig2Gv8FwvyhVkJNoRq9tig4j5wV8RZTh Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10380"; a="280882984"
-X-IronPort-AV: E=Sophos;i="5.92,306,1650956400"; d="scan'208";a="280882984"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jun 2022 00:22:46 -0700
-X-IronPort-AV: E=Sophos;i="5.92,306,1650956400"; d="scan'208";a="619997168"
-Received: from ahashmi-mobl.ger.corp.intel.com (HELO [10.249.254.225])
- ([10.249.254.225])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jun 2022 00:22:44 -0700
-Message-ID: <69097036fb05d93b0f4cbf96e49df55aad26df79.camel@linux.intel.com>
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>, Michael Cheng
- <michael.cheng@intel.com>
-Date: Mon, 20 Jun 2022 09:22:41 +0200
-In-Reply-To: <20220617233023.6y4itjzycqjcoqfa@ldmartin-desk2>
-References: <20220414181923.25631-1-michael.cheng@intel.com>
- <20220414181923.25631-2-michael.cheng@intel.com>
- <20220617233023.6y4itjzycqjcoqfa@ldmartin-desk2>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4 (3.40.4-5.fc34) 
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id AA09D10E0FB;
+ Mon, 20 Jun 2022 07:31:33 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 2DDB3A7DFC;
+ Mon, 20 Jun 2022 07:31:33 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7606037063611066629=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v2 1/1] i915/gem: drop wbinvd_on_all_cpus
- usage
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Manna, Animesh" <animesh.manna@intel.com>
+Date: Mon, 20 Jun 2022 07:31:33 -0000
+Message-ID: <165571029315.12732.12181998597185518190@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220620065138.5126-1-animesh.manna@intel.com>
+In-Reply-To: <20220620065138.5126-1-animesh.manna@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/bios=3A_calculate_panel_type_as_per_child_device_index_in?=
+ =?utf-8?q?_VBT_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,99 +41,185 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>,
- dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+--===============7606037063611066629==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On Fri, 2022-06-17 at 16:30 -0700, Lucas De Marchi wrote:
-> On Thu, Apr 14, 2022 at 11:19:23AM -0700, Michael Cheng wrote:
-> > Previous concern with using drm_clflush_sg was that we don't know
-> > what the
-> > sg_table is pointing to, thus the usage of wbinvd_on_all_cpus to
-> > flush
-> > everything at once to avoid paranoia.
-> 
-> humn... and now we know it is backed by struct pages? I'm not sure I
-> follow what we didn't know before and now we do.
-> 
-> Thomas / Matthew, could you take another look herer if it seems
-> correct
-> to you.
-> 
-> 
-No, this isn't correct. A dma-buf sg-table may not be backed by struct
-pages, and AFAIK, there is no way for the importer to tell, whether
-that's the case or not.
+== Series Details ==
 
-If we need to get rid of the wbinvd_on_all_cpus here, we need to use
-the dma_buf_vmap() function to obtain a virtual address and then use
-drm_clflush_virt_range() on that address. After that clflush, we can
-call dma_buf_vunmap(). This should work since x86 uses PIPT caches and
-a flush to a virtual range should flush all other virtual ranges
-pointing to the same pages as well.
+Series: drm/i915/bios: calculate panel type as per child device index in VBT (rev3)
+URL   : https://patchwork.freedesktop.org/series/104943/
+State : success
 
-/Thomas
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_11778 -> Patchwork_104943v3
+====================================================
 
-> thanks
-> Lucas De Marchi
-> 
-> 
-> > To make i915 more architecture-neutral and be less paranoid, lets
-> > attempt to
-> > use drm_clflush_sg to flush the pages for when the GPU wants to
-> > read
-> > from main memory.
-> > 
-> > Signed-off-by: Michael Cheng <michael.cheng@intel.com>
-> > ---
-> > drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c | 9 ++-------
-> > 1 file changed, 2 insertions(+), 7 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
-> > b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
-> > index f5062d0c6333..b0a5baaebc43 100644
-> > --- a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
-> > +++ b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
-> > @@ -8,6 +8,7 @@
-> > #include <linux/highmem.h>
-> > #include <linux/dma-resv.h>
-> > #include <linux/module.h>
-> > +#include <drm/drm_cache.h>
-> > 
-> > #include <asm/smp.h>
-> > 
-> > @@ -250,16 +251,10 @@ static int
-> > i915_gem_object_get_pages_dmabuf(struct drm_i915_gem_object *obj)
-> >          * DG1 is special here since it still snoops transactions
-> > even with
-> >          * CACHE_NONE. This is not the case with other HAS_SNOOP
-> > platforms. We
-> >          * might need to revisit this as we add new discrete
-> > platforms.
-> > -        *
-> > -        * XXX: Consider doing a vmap flush or something, where
-> > possible.
-> > -        * Currently we just do a heavy handed wbinvd_on_all_cpus()
-> > here since
-> > -        * the underlying sg_table might not even point to struct
-> > pages, so we
-> > -        * can't just call drm_clflush_sg or similar, like we do
-> > elsewhere in
-> > -        * the driver.
-> >          */
-> >         if (i915_gem_object_can_bypass_llc(obj) ||
-> >             (!HAS_LLC(i915) && !IS_DG1(i915)))
-> > -               wbinvd_on_all_cpus();
-> > +               drm_clflush_sg(pages);
-> > 
-> >         sg_page_sizes = i915_sg_dma_sizes(pages->sgl);
-> >         __i915_gem_object_set_pages(obj, pages, sg_page_sizes);
-> > -- 
-> > 2.25.1
-> > 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104943v3/index.html
+
+Participating hosts (35 -> 33)
+------------------------------
+
+  Missing    (2): fi-bdw-samus fi-tgl-u2 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_104943v3 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-snb-2600:        [PASS][1] -> [INCOMPLETE][2] ([i915#3921])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11778/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104943v3/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-cfl-8109u:       NOTRUN -> [SKIP][3] ([fdo#109271] / [fdo#111827])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104943v3/fi-cfl-8109u/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-cfl-8109u:       [DMESG-FAIL][4] ([i915#62]) -> [PASS][5]
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11778/fi-cfl-8109u/igt@i915_pm_rpm@module-reload.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104943v3/fi-cfl-8109u/igt@i915_pm_rpm@module-reload.html
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a-frame-sequence:
+    - fi-cfl-8109u:       [DMESG-WARN][6] ([i915#62]) -> [PASS][7] +15 similar issues
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11778/fi-cfl-8109u/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a-frame-sequence.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104943v3/fi-cfl-8109u/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a-frame-sequence.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
+  [i915#5134]: https://gitlab.freedesktop.org/drm/intel/issues/5134
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
 
 
+Build changes
+-------------
+
+  * Linux: CI_DRM_11778 -> Patchwork_104943v3
+
+  CI-20190529: 20190529
+  CI_DRM_11778: dd58ba5cb816d3e74056c3a28048893d8858ee7d @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6536: e3de4d32b7a509635fbff4d5131c05a7767699f7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_104943v3: dd58ba5cb816d3e74056c3a28048893d8858ee7d @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+f5f622359dd0 drm/i915/bios: calculate panel type as per child device index in VBT
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104943v3/index.html
+
+--===============7606037063611066629==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/bios: calculate panel type as per child device index in VBT (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/104943/">https://patchwork.freedesktop.org/series/104943/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104943v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104943v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11778 -&gt; Patchwork_104943v3</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104943v3/index.html</p>
+<h2>Participating hosts (35 -&gt; 33)</h2>
+<p>Missing    (2): fi-bdw-samus fi-tgl-u2 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_104943v3 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11778/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104943v3/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
+<ul>
+<li>fi-cfl-8109u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104943v3/fi-cfl-8109u/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11778/fi-cfl-8109u/igt@i915_pm_rpm@module-reload.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104943v3/fi-cfl-8109u/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a-frame-sequence:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11778/fi-cfl-8109u/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a-frame-sequence.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104943v3/fi-cfl-8109u/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a-frame-sequence.html">PASS</a> +15 similar issues</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11778 -&gt; Patchwork_104943v3</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11778: dd58ba5cb816d3e74056c3a28048893d8858ee7d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6536: e3de4d32b7a509635fbff4d5131c05a7767699f7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_104943v3: dd58ba5cb816d3e74056c3a28048893d8858ee7d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>f5f622359dd0 drm/i915/bios: calculate panel type as per child device index in VBT</p>
+
+</body>
+</html>
+
+--===============7606037063611066629==--
