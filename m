@@ -1,49 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF716552377
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Jun 2022 20:04:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D751C552378
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Jun 2022 20:04:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 376BF10F1AC;
-	Mon, 20 Jun 2022 18:03:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 06ACA10E474;
+	Mon, 20 Jun 2022 18:04:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1874B10F12E
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 Jun 2022 18:03:57 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2694A10E474
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Jun 2022 18:04:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655748237; x=1687284237;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=SQgQgA8ZD0JSxwz4cuzDroIDJTTh4vgrEsnMMCqYm5U=;
- b=BwEBOyniCnuFmwPKhd3M+8i7kXrjpUgfO/3XE3Dl1/81CKWIUbWiJauE
- gVyhAfEQpbtVR1APb/I2wDwyJ2loBgmrFogaaeT9TqO0T3Wv+2iFlvBq0
- gbhRpfz9RDJ4tJ1lAsnMj+xXNkgS+/nSm0E/z2BXRlrLyRRxWyZmojnOh
- /j4goL+lTLWLJL5k7mnJPC9Taem/KXtTCZVe8DrmFkahvHte349uzhQCL
- s+zVA4xsnb1Xg5wVLrKNRDiuf7cCmG/FHpBwfGYHLadjDWdRKM193i8rK
- 89vWi8lI1oePRefQZDWcW//7K6xqP1f1KiiZS95D9KMTwR4sPsETuLyWa w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10384"; a="260383833"
-X-IronPort-AV: E=Sophos;i="5.92,207,1650956400"; d="scan'208";a="260383833"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jun 2022 11:03:56 -0700
-X-IronPort-AV: E=Sophos;i="5.92,207,1650956400"; d="scan'208";a="643219506"
+ t=1655748241; x=1687284241;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=RO76mAgBB5dMOBYLAZR2z24xklUgvpoySR9MXAUMQcc=;
+ b=YExChK2TlEOTBuFAYDU0rbJhoW6n6FtrvWEIjwpJcgSbHuauHMNQ43YV
+ jyq/j//ma6O4vgBNeB6wELspc+spf19ZtQBYMAIJAU3ZawkRmQ7Brt0NJ
+ IFGKrJPhHgcGfsdeXiZabbdhrSoxXv27NjpMFCPcrgtj2Rz+JH2Iwfn0B
+ AQCj5sL++lexSYLRDYm1Yx8ZxO8WUWniriANs+IErLStyUfLWuH3XX3fn
+ rC/P59If/w4Iddm9NtbjzFRaA97NEfJhxywttsYnhV+CsvuQ+j8Sz131A
+ Fz7cF4P6CpJg6VNwAyqCJ5YTpqwgkzsKL//z4fXW1XsMh0WcDHMJZhTHt Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10384"; a="277498555"
+X-IronPort-AV: E=Sophos;i="5.92,207,1650956400"; d="scan'208";a="277498555"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jun 2022 11:04:00 -0700
+X-IronPort-AV: E=Sophos;i="5.92,207,1650956400"; d="scan'208";a="591279412"
 Received: from hkanchar-mobl.gar.corp.intel.com (HELO localhost)
  ([10.252.36.6])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jun 2022 11:03:55 -0700
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jun 2022 11:03:59 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 20 Jun 2022 21:03:49 +0300
-Message-Id: <cover.1655748056.git.jani.nikula@intel.com>
+Date: Mon, 20 Jun 2022 21:03:50 +0300
+Message-Id: <dc7e02a24fc231ef0fa3c4e84c01ebf19d61de2f.1655748056.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.30.2
+In-Reply-To: <cover.1655748056.git.jani.nikula@intel.com>
+References: <cover.1655748056.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [RFC 0/2] drm/i915: move display feature check macros
- out of i915_drv.h
+Subject: [Intel-gfx] [RFC 1/2] drm/i915/display: spread out HAS_*() feature
+ macros
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,44 +62,252 @@ Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Started pondering about this based on [1]. Spread out single-use and
-single-file-use HAS_*() macros, and move display macros to
-display/intel_display_features.h.
+Expand single-use display feature macros around device info flags
+in-place, and remove the macros.
 
-Food for thought at least. Doesn't look too bad tbh.
+Move display feature macros used in one file only into that file.
 
-BR,
-Jani.
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_bios.c    |  2 ++
+ drivers/gpu/drm/i915/display/intel_cdclk.c   |  2 ++
+ drivers/gpu/drm/i915/display/intel_cursor.c  |  2 ++
+ drivers/gpu/drm/i915/display/intel_dmc.c     |  2 ++
+ drivers/gpu/drm/i915/display/intel_dsb.c     |  2 +-
+ drivers/gpu/drm/i915/display/intel_gmbus.c   |  4 ++++
+ drivers/gpu/drm/i915/display/intel_overlay.c |  5 ++--
+ drivers/gpu/drm/i915/display/intel_psr.c     |  3 +++
+ drivers/gpu/drm/i915/i915_drv.h              | 25 --------------------
+ drivers/gpu/drm/i915/intel_pm.c              |  4 ++++
+ 10 files changed, 23 insertions(+), 28 deletions(-)
 
-
-[1] https://lore.kernel.org/r/YrCoxUgSEuzl+Amp@intel.com
-
-Jani Nikula (2):
-  drm/i915/display: spread out HAS_*() feature macros
-  drm/i915/display: add intel_display_features.h for feature check
-    macros
-
- drivers/gpu/drm/i915/display/intel_bios.c     |  2 +
- drivers/gpu/drm/i915/display/intel_cdclk.c    |  2 +
- drivers/gpu/drm/i915/display/intel_cursor.c   |  2 +
- .../drm/i915/display/intel_display_features.h | 37 ++++++++++++
- .../i915/display/intel_display_power_map.c    |  5 +-
- .../drm/i915/display/intel_display_types.h    |  1 +
- drivers/gpu/drm/i915/display/intel_dmc.c      |  2 +
- drivers/gpu/drm/i915/display/intel_dsb.c      |  2 +-
- drivers/gpu/drm/i915/display/intel_gmbus.c    |  4 ++
- .../gpu/drm/i915/display/intel_lpe_audio.c    |  1 +
- drivers/gpu/drm/i915/display/intel_overlay.c  |  5 +-
- drivers/gpu/drm/i915/display/intel_psr.c      |  3 +
- drivers/gpu/drm/i915/i915_drv.h               | 60 -------------------
- drivers/gpu/drm/i915/i915_suspend.c           |  1 +
- drivers/gpu/drm/i915/intel_device_info.c      |  1 +
- drivers/gpu/drm/i915/intel_dram.c             |  1 +
- drivers/gpu/drm/i915/intel_pch.c              |  1 +
- drivers/gpu/drm/i915/intel_pm.c               |  4 ++
- 18 files changed, 68 insertions(+), 66 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/display/intel_display_features.h
-
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+index e97f1f979a48..2786a2226d78 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.c
++++ b/drivers/gpu/drm/i915/display/intel_bios.c
+@@ -60,6 +60,8 @@
+  * that.
+  */
+ 
++#define HAS_LSPCON(__i915) (IS_DISPLAY_VER(__i915, 9, 10))
++
+ /* Wrapper for VBT child device config */
+ struct intel_bios_encoder_data {
+ 	struct drm_i915_private *i915;
+diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+index 6e80162632dd..1ba70d47407f 100644
+--- a/drivers/gpu/drm/i915/display/intel_cdclk.c
++++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+@@ -66,6 +66,8 @@
+  * dividers can be programmed correctly.
+  */
+ 
++#define HAS_CDCLK_CRAWL(__i915) (INTEL_INFO(__i915)->display.has_cdclk_crawl)
++
+ struct intel_cdclk_funcs {
+ 	void (*get_cdclk)(struct drm_i915_private *i915,
+ 			  struct intel_cdclk_config *cdclk_config);
+diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
+index 8c80de877605..9b38a61b7a6a 100644
+--- a/drivers/gpu/drm/i915/display/intel_cursor.c
++++ b/drivers/gpu/drm/i915/display/intel_cursor.c
+@@ -23,6 +23,8 @@
+ #include "intel_psr.h"
+ #include "intel_sprite.h"
+ 
++#define HAS_CUR_FBC(__i915) (!HAS_GMCH(__i915) && DISPLAY_VER(__i915) >= 7)
++
+ /* Cursor formats */
+ static const u32 intel_cursor_formats[] = {
+ 	DRM_FORMAT_ARGB8888,
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
+index fa9ef591b885..0480866f61d4 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc.c
++++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+@@ -38,6 +38,8 @@
+  * low-power state and comes back to normal.
+  */
+ 
++#define HAS_DMC(__i915) (INTEL_INFO(__i915)->display.has_dmc)
++
+ #define DMC_VERSION(major, minor)	((major) << 16 | (minor))
+ #define DMC_VERSION_MAJOR(version)	((version) >> 16)
+ #define DMC_VERSION_MINOR(version)	((version) & 0xffff)
+diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
+index c4affcb216fd..f94235fbd100 100644
+--- a/drivers/gpu/drm/i915/display/intel_dsb.c
++++ b/drivers/gpu/drm/i915/display/intel_dsb.c
+@@ -270,7 +270,7 @@ void intel_dsb_prepare(struct intel_crtc_state *crtc_state)
+ 	u32 *buf;
+ 	intel_wakeref_t wakeref;
+ 
+-	if (!HAS_DSB(i915))
++	if (!INTEL_INFO(i915)->display.has_dsb)
+ 		return;
+ 
+ 	dsb = kmalloc(sizeof(*dsb), GFP_KERNEL);
+diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu/drm/i915/display/intel_gmbus.c
+index a6ba7fb72339..b08e193777ce 100644
+--- a/drivers/gpu/drm/i915/display/intel_gmbus.c
++++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
+@@ -38,6 +38,10 @@
+ #include "intel_display_types.h"
+ #include "intel_gmbus.h"
+ 
++#define HAS_GMBUS_IRQ(__i915) (DISPLAY_VER(__i915) >= 4)
++#define HAS_GMBUS_BURST_READ(__i915) \
++	(DISPLAY_VER(__i915) >= 11 || IS_GEMINILAKE(__i915) || IS_KABYLAKE(__i915))
++
+ struct intel_gmbus {
+ 	struct i2c_adapter adapter;
+ #define GMBUS_FORCE_BIT_RETRY (1U << 31)
+diff --git a/drivers/gpu/drm/i915/display/intel_overlay.c b/drivers/gpu/drm/i915/display/intel_overlay.c
+index 79ed8bd04a07..fb67da08624a 100644
+--- a/drivers/gpu/drm/i915/display/intel_overlay.c
++++ b/drivers/gpu/drm/i915/display/intel_overlay.c
+@@ -1386,7 +1386,7 @@ void intel_overlay_setup(struct drm_i915_private *dev_priv)
+ 	struct intel_engine_cs *engine;
+ 	int ret;
+ 
+-	if (!HAS_OVERLAY(dev_priv))
++	if (!INTEL_INFO(dev_priv)->display.has_overlay)
+ 		return;
+ 
+ 	engine = to_gt(dev_priv)->engine[RCS0];
+@@ -1408,7 +1408,8 @@ void intel_overlay_setup(struct drm_i915_private *dev_priv)
+ 	i915_active_init(&overlay->last_flip,
+ 			 NULL, intel_overlay_last_flip_retire, 0);
+ 
+-	ret = get_registers(overlay, OVERLAY_NEEDS_PHYSICAL(dev_priv));
++	ret = get_registers(overlay,
++			    INTEL_INFO(dev_priv)->display.overlay_needs_physical);
+ 	if (ret)
+ 		goto out_free;
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index 7d61c55184e5..2fc9f2cd1896 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -84,6 +84,9 @@
+  * use page flips.
+  */
+ 
++#define HAS_PSR_HW_TRACKING(__i915) (INTEL_INFO(__i915)->display.has_psr_hw_tracking)
++#define HAS_PSR2_SEL_FETCH(__i915) (DISPLAY_VER(__i915) >= 12)
++
+ static bool psr_global_enabled(struct intel_dp *intel_dp)
+ {
+ 	struct intel_connector *connector = intel_dp->attached_connector;
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index c22f29c3faa0..1d9ba4cf9e01 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -292,8 +292,6 @@ i915_fence_timeout(const struct drm_i915_private *i915)
+ /* Amount of SAGV/QGV points, BSpec precisely defines this */
+ #define I915_NUM_QGV_POINTS 8
+ 
+-#define HAS_HW_SAGV_WM(i915) (DISPLAY_VER(i915) >= 13 && !IS_DGFX(i915))
+-
+ /* Amount of PSF GV points, BSpec precisely defines this */
+ #define I915_NUM_PSF_GV_POINTS 3
+ 
+@@ -874,8 +872,6 @@ static inline struct intel_gt *to_gt(struct drm_i915_private *i915)
+ 
+ #define INTEL_REVID(dev_priv)	(to_pci_dev((dev_priv)->drm.dev)->revision)
+ 
+-#define HAS_DSB(dev_priv)	(INTEL_INFO(dev_priv)->display.has_dsb)
+-
+ #define INTEL_DISPLAY_STEP(__i915) (RUNTIME_INFO(__i915)->step.display_step)
+ #define INTEL_GRAPHICS_STEP(__i915) (RUNTIME_INFO(__i915)->step.graphics_step)
+ #define INTEL_MEDIA_STEP(__i915) (RUNTIME_INFO(__i915)->step.media_step)
+@@ -1216,10 +1212,6 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+ 	((sizes) & ~INTEL_INFO(dev_priv)->page_sizes) == 0; \
+ })
+ 
+-#define HAS_OVERLAY(dev_priv)		 (INTEL_INFO(dev_priv)->display.has_overlay)
+-#define OVERLAY_NEEDS_PHYSICAL(dev_priv) \
+-		(INTEL_INFO(dev_priv)->display.overlay_needs_physical)
+-
+ /* Early gen2 have a totally busted CS tlb and require pinned batches. */
+ #define HAS_BROKEN_CS_TLB(dev_priv)	(IS_I830(dev_priv) || IS_I845G(dev_priv))
+ 
+@@ -1230,11 +1222,6 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+ #define NEEDS_WaRsDisableCoarsePowerGating(dev_priv)			\
+ 	(IS_SKL_GT3(dev_priv) || IS_SKL_GT4(dev_priv))
+ 
+-#define HAS_GMBUS_IRQ(dev_priv) (DISPLAY_VER(dev_priv) >= 4)
+-#define HAS_GMBUS_BURST_READ(dev_priv) (DISPLAY_VER(dev_priv) >= 11 || \
+-					IS_GEMINILAKE(dev_priv) || \
+-					IS_KABYLAKE(dev_priv))
+-
+ /* With the 945 and later, Y tiling got adjusted so that it was 32 128-byte
+  * rows, which changed the alignment requirements and fence programming.
+  */
+@@ -1243,22 +1230,16 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+ #define SUPPORTS_TV(dev_priv)		(INTEL_INFO(dev_priv)->display.supports_tv)
+ #define I915_HAS_HOTPLUG(dev_priv)	(INTEL_INFO(dev_priv)->display.has_hotplug)
+ 
+-#define HAS_FW_BLC(dev_priv)	(DISPLAY_VER(dev_priv) > 2)
+ #define HAS_FBC(dev_priv)	(INTEL_INFO(dev_priv)->display.fbc_mask != 0)
+-#define HAS_CUR_FBC(dev_priv)	(!HAS_GMCH(dev_priv) && DISPLAY_VER(dev_priv) >= 7)
+ 
+ #define HAS_IPS(dev_priv)	(IS_HSW_ULT(dev_priv) || IS_BROADWELL(dev_priv))
+ 
+ #define HAS_DP_MST(dev_priv)	(INTEL_INFO(dev_priv)->display.has_dp_mst)
+ #define HAS_DP20(dev_priv)	(IS_DG2(dev_priv))
+ 
+-#define HAS_CDCLK_CRAWL(dev_priv)	 (INTEL_INFO(dev_priv)->display.has_cdclk_crawl)
+ #define HAS_DDI(dev_priv)		 (INTEL_INFO(dev_priv)->display.has_ddi)
+ #define HAS_FPGA_DBG_UNCLAIMED(dev_priv) (INTEL_INFO(dev_priv)->display.has_fpga_dbg)
+ #define HAS_PSR(dev_priv)		 (INTEL_INFO(dev_priv)->display.has_psr)
+-#define HAS_PSR_HW_TRACKING(dev_priv) \
+-	(INTEL_INFO(dev_priv)->display.has_psr_hw_tracking)
+-#define HAS_PSR2_SEL_FETCH(dev_priv)	 (DISPLAY_VER(dev_priv) >= 12)
+ #define HAS_TRANSCODER(dev_priv, trans)	 ((INTEL_INFO(dev_priv)->display.cpu_transcoder_mask & BIT(trans)) != 0)
+ 
+ #define HAS_RC6(dev_priv)		 (INTEL_INFO(dev_priv)->has_rc6)
+@@ -1267,8 +1248,6 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+ 
+ #define HAS_RPS(dev_priv)	(INTEL_INFO(dev_priv)->has_rps)
+ 
+-#define HAS_DMC(dev_priv)	(INTEL_INFO(dev_priv)->display.has_dmc)
+-
+ #define HAS_HECI_PXP(dev_priv) \
+ 	(INTEL_INFO(dev_priv)->has_heci_pxp)
+ 
+@@ -1318,8 +1297,6 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+ 
+ #define HAS_GMCH(dev_priv) (INTEL_INFO(dev_priv)->display.has_gmch)
+ 
+-#define HAS_LSPCON(dev_priv) (IS_DISPLAY_VER(dev_priv, 9, 10))
+-
+ #define HAS_L3_CCS_READ(i915) (INTEL_INFO(i915)->has_l3_ccs_read)
+ 
+ /* DPF == dynamic parity feature */
+@@ -1353,8 +1330,6 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+ #define HAS_D12_PLANE_MINIMIZATION(dev_priv) (IS_ROCKETLAKE(dev_priv) || \
+ 					      IS_ALDERLAKE_S(dev_priv))
+ 
+-#define HAS_MBUS_JOINING(i915) (IS_ALDERLAKE_P(i915))
+-
+ #define HAS_3D_PIPELINE(i915)	(INTEL_INFO(i915)->has_3d_pipeline)
+ 
+ #define HAS_ONE_EU_PER_FUSE_BIT(i915)	(INTEL_INFO(i915)->has_one_eu_per_fuse_bit)
+diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
+index 174fab564d10..196b1ca5337d 100644
+--- a/drivers/gpu/drm/i915/intel_pm.c
++++ b/drivers/gpu/drm/i915/intel_pm.c
+@@ -57,6 +57,10 @@
+ #include "vlv_sideband.h"
+ #include "../../../platform/x86/intel_ips.h"
+ 
++#define HAS_HW_SAGV_WM(__i915) (DISPLAY_VER(__i915) >= 13 && !IS_DGFX(__i915))
++#define HAS_FW_BLC(__i915) (DISPLAY_VER(__i915) > 2)
++#define HAS_MBUS_JOINING(__i915) (IS_ALDERLAKE_P(__i915))
++
+ static void skl_sagv_disable(struct drm_i915_private *dev_priv);
+ 
+ struct drm_i915_clock_gating_funcs {
 -- 
 2.30.2
 
