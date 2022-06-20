@@ -2,50 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C9FE55231C
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Jun 2022 19:53:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A1FB55231D
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Jun 2022 19:53:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D3F2710EDDA;
-	Mon, 20 Jun 2022 17:53:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 03F2F10EDE3;
+	Mon, 20 Jun 2022 17:53:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 52AC910EDDA
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 Jun 2022 17:53:03 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6495110EDE3
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Jun 2022 17:53:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655747583; x=1687283583;
+ t=1655747586; x=1687283586;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=okAzGFS77a2ULJRi71UsY4uCNJClWIFvT+59e8k59vY=;
- b=b7aaGp3rnBjBO8cZnxNPWWB2fTtcTDEAWjREzAFUqT/3Kk4BSrcMKyVa
- Cl6JUyB0O6u/Nb6ODOy+Yie3/hsr4PtkKGB7sQYH8pRjDj2fqw6YIck5c
- pzj3hhyqrT0RamSRilMneM6niJZp4sly3kh0hc05qX2nU3NepJmSCkNWE
- cjZ/UD1ygM6rxq6Z7+LqBaVQeaEBR2e+obnwiX88+8DcP0PZ+oiL8DLXH
- 510yN74BqprWtrncSS6vcge6Bn/2MkUqkP/9FsFJQ4dfIsDZFYiR7yugn
- BIzZnMm2MbaClqvQC302EcxuYfs6Aa35mvbylnEW3UQRuQdLf9yYOTKlA A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10384"; a="259770575"
-X-IronPort-AV: E=Sophos;i="5.92,207,1650956400"; d="scan'208";a="259770575"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jun 2022 10:53:02 -0700
+ bh=987yc1SauKHTAGMI1RXeAW8QoOVhehKso72awLpQds4=;
+ b=N2NIllAFwfYw6kykTc41JHOL/LZxf3yY8d9i5oz7nYZCgRztoOmebj+w
+ 3/UnsfJ84NMvYd9XwzaIFH5QGZD/Rqri1DiweJxpdZAbsd0VAyZVbyPlf
+ 4DaM5YBHalRRm/+Bw18kShyd6Vu08OBNbBYY6NjBX/1IegP4mtge1kkID
+ 1vxKYPWo3uTXlV5f7j1lDIJCAuNs3k50a2f6E5KNpzhkdgu07JGhHoQXD
+ O2eN2I2MDA4XjaqHkFgZZ4XgwhSJMlijZ8whRsYArD0ufdcmQQcpEEgKb
+ 0zIQGzqxo6dlU/zOIbjMWOfntQyxgfDMGrGvm9zsNdl3wwe8Mp8VggI7P w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10384"; a="341633597"
+X-IronPort-AV: E=Sophos;i="5.92,207,1650956400"; d="scan'208";a="341633597"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jun 2022 10:53:05 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,207,1650956400"; d="scan'208";a="584757297"
+X-IronPort-AV: E=Sophos;i="5.92,207,1650956400"; d="scan'208";a="614466740"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.163])
- by orsmga002.jf.intel.com with SMTP; 20 Jun 2022 10:53:00 -0700
+ by orsmga008.jf.intel.com with SMTP; 20 Jun 2022 10:53:03 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 20 Jun 2022 20:52:59 +0300
+ Mon, 20 Jun 2022 20:53:03 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 20 Jun 2022 20:52:09 +0300
-Message-Id: <20220620175210.28788-17-ville.syrjala@linux.intel.com>
+Date: Mon, 20 Jun 2022 20:52:10 +0300
+Message-Id: <20220620175210.28788-18-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220620175210.28788-1-ville.syrjala@linux.intel.com>
 References: <20220620175210.28788-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 16/17] drm/i915: Use a fixed N value always
+Subject: [Intel-gfx] [PATCH v3 17/17] drm/i915: Round TMDS clock to nearest
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,181 +64,43 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Windows/BIOS always uses fixed N values. Let's match that
-behaviour.
+Use round-to-nearest behavour when calculating the TMDS clock.
+Matches what we do for most other clock related things.
 
-Allows us to also get rid of that constant_n quirk stuff.
-
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+Acked-by: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 36 +++++++++-----------
- drivers/gpu/drm/i915/display/intel_display.h |  2 +-
- drivers/gpu/drm/i915/display/intel_dp.c      | 10 +++---
- drivers/gpu/drm/i915/display/intel_dp_mst.c  |  3 +-
- drivers/gpu/drm/i915/display/intel_fdi.c     |  2 +-
- 5 files changed, 24 insertions(+), 29 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 3 ++-
+ drivers/gpu/drm/i915/display/intel_hdmi.c    | 2 +-
+ 2 files changed, 3 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 43c00f8b4057..5ec954b293a2 100644
+index 5ec954b293a2..c8a4e9e5f19b 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -2726,19 +2726,11 @@ intel_reduce_m_n_ratio(u32 *num, u32 *den)
- 	}
- }
- 
--static void compute_m_n(unsigned int m, unsigned int n,
--			u32 *ret_m, u32 *ret_n,
--			bool constant_n)
-+static void compute_m_n(u32 *ret_m, u32 *ret_n,
-+			u32 m, u32 n, u32 constant_n)
- {
--	/*
--	 * Several DP dongles in particular seem to be fussy about
--	 * too large link M/N values. Give N value as 0x8000 that
--	 * should be acceptable by specific devices. 0x8000 is the
--	 * specified fixed N value for asynchronous clock mode,
--	 * which the devices expect also in synchronous clock mode.
--	 */
- 	if (constant_n)
--		*ret_n = DP_LINK_CONSTANT_N_VALUE;
-+		*ret_n = constant_n;
+@@ -4494,7 +4494,8 @@ int intel_crtc_dotclock(const struct intel_crtc_state *pipe_config)
+ 		dotclock = intel_dotclock_calculate(pipe_config->port_clock,
+ 						    &pipe_config->dp_m_n);
+ 	else if (pipe_config->has_hdmi_sink && pipe_config->pipe_bpp > 24)
+-		dotclock = pipe_config->port_clock * 24 / pipe_config->pipe_bpp;
++		dotclock = DIV_ROUND_CLOSEST(pipe_config->port_clock * 24,
++					     pipe_config->pipe_bpp);
  	else
- 		*ret_n = min_t(unsigned int, roundup_pow_of_two(n), DATA_LINK_N_MAX);
+ 		dotclock = pipe_config->port_clock;
  
-@@ -2750,22 +2742,28 @@ void
- intel_link_compute_m_n(u16 bits_per_pixel, int nlanes,
- 		       int pixel_clock, int link_clock,
- 		       struct intel_link_m_n *m_n,
--		       bool constant_n, bool fec_enable)
-+		       bool fec_enable)
- {
- 	u32 data_clock = bits_per_pixel * pixel_clock;
- 
- 	if (fec_enable)
- 		data_clock = intel_dp_mode_to_fec_clock(data_clock);
- 
-+	/*
-+	 * Windows/BIOS uses fixed M/N values always. Follow suit.
-+	 *
-+	 * Also several DP dongles in particular seem to be fussy
-+	 * about too large link M/N values. Presumably the 20bit
-+	 * value used by Windows/BIOS is acceptable to everyone.
-+	 */
- 	m_n->tu = 64;
--	compute_m_n(data_clock,
--		    link_clock * nlanes * 8,
--		    &m_n->data_m, &m_n->data_n,
--		    constant_n);
-+	compute_m_n(&m_n->data_m, &m_n->data_n,
-+		    data_clock, link_clock * nlanes * 8,
-+		    0x8000000);
- 
--	compute_m_n(pixel_clock, link_clock,
--		    &m_n->link_m, &m_n->link_n,
--		    constant_n);
-+	compute_m_n(&m_n->link_m, &m_n->link_n,
-+		    pixel_clock, link_clock,
-+		    0x80000);
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+index 1ae09431f53a..0b04b3800cd4 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.c
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+@@ -1891,7 +1891,7 @@ int intel_hdmi_tmds_clock(int clock, int bpc, bool ycbcr420_output)
+ 	 *  1.5x for 12bpc
+ 	 *  1.25x for 10bpc
+ 	 */
+-	return clock * bpc / 8;
++	return DIV_ROUND_CLOSEST(clock * bpc, 8);
  }
  
- static void intel_panel_sanitize_ssc(struct drm_i915_private *dev_priv)
-diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-index 8610e17cc593..e00a6022acf8 100644
---- a/drivers/gpu/drm/i915/display/intel_display.h
-+++ b/drivers/gpu/drm/i915/display/intel_display.h
-@@ -547,7 +547,7 @@ u8 intel_calc_active_pipes(struct intel_atomic_state *state,
- void intel_link_compute_m_n(u16 bpp, int nlanes,
- 			    int pixel_clock, int link_clock,
- 			    struct intel_link_m_n *m_n,
--			    bool constant_n, bool fec_enable);
-+			    bool fec_enable);
- u32 intel_plane_fb_max_stride(struct drm_i915_private *dev_priv,
- 			      u32 pixel_format, u64 modifier);
- enum drm_mode_status
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 90fa8eda6911..40c451d1ee85 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -1930,7 +1930,7 @@ static bool can_enable_drrs(struct intel_connector *connector,
- static void
- intel_dp_drrs_compute_config(struct intel_connector *connector,
- 			     struct intel_crtc_state *pipe_config,
--			     int output_bpp, bool constant_n)
-+			     int output_bpp)
- {
- 	struct drm_i915_private *i915 = to_i915(connector->base.dev);
- 	const struct drm_display_mode *downclock_mode =
-@@ -1957,7 +1957,7 @@ intel_dp_drrs_compute_config(struct intel_connector *connector,
- 
- 	intel_link_compute_m_n(output_bpp, pipe_config->lane_count, pixel_clock,
- 			       pipe_config->port_clock, &pipe_config->dp_m2_n2,
--			       constant_n, pipe_config->fec_enable);
-+			       pipe_config->fec_enable);
- 
- 	/* FIXME: abstract this better */
- 	if (pipe_config->splitter.enable)
-@@ -2032,7 +2032,6 @@ intel_dp_compute_config(struct intel_encoder *encoder,
- 	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
- 	const struct drm_display_mode *fixed_mode;
- 	struct intel_connector *connector = intel_dp->attached_connector;
--	bool constant_n = drm_dp_has_quirk(&intel_dp->desc, DP_DPCD_QUIRK_CONSTANT_N);
- 	int ret = 0, output_bpp;
- 
- 	if (HAS_PCH_SPLIT(dev_priv) && !HAS_DDI(dev_priv) && encoder->port != PORT_A)
-@@ -2111,7 +2110,7 @@ intel_dp_compute_config(struct intel_encoder *encoder,
- 			       adjusted_mode->crtc_clock,
- 			       pipe_config->port_clock,
- 			       &pipe_config->dp_m_n,
--			       constant_n, pipe_config->fec_enable);
-+			       pipe_config->fec_enable);
- 
- 	/* FIXME: abstract this better */
- 	if (pipe_config->splitter.enable)
-@@ -2122,8 +2121,7 @@ intel_dp_compute_config(struct intel_encoder *encoder,
- 
- 	intel_vrr_compute_config(pipe_config, conn_state);
- 	intel_psr_compute_config(intel_dp, pipe_config, conn_state);
--	intel_dp_drrs_compute_config(connector, pipe_config,
--				     output_bpp, constant_n);
-+	intel_dp_drrs_compute_config(connector, pipe_config, output_bpp);
- 	intel_dp_compute_vsc_sdp(intel_dp, pipe_config, conn_state);
- 	intel_dp_compute_hdr_metadata_infoframe_sdp(intel_dp, pipe_config, conn_state);
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index 061b277e5ce7..00e55555091a 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -57,7 +57,6 @@ static int intel_dp_mst_compute_link_config(struct intel_encoder *encoder,
- 	struct drm_i915_private *i915 = to_i915(connector->base.dev);
- 	const struct drm_display_mode *adjusted_mode =
- 		&crtc_state->hw.adjusted_mode;
--	bool constant_n = drm_dp_has_quirk(&intel_dp->desc, DP_DPCD_QUIRK_CONSTANT_N);
- 	int bpp, slots = -EINVAL;
- 
- 	crtc_state->lane_count = limits->max_lane_count;
-@@ -93,7 +92,7 @@ static int intel_dp_mst_compute_link_config(struct intel_encoder *encoder,
- 			       adjusted_mode->crtc_clock,
- 			       crtc_state->port_clock,
- 			       &crtc_state->dp_m_n,
--			       constant_n, crtc_state->fec_enable);
-+			       crtc_state->fec_enable);
- 	crtc_state->dp_m_n.tu = slots;
- 
- 	return 0;
-diff --git a/drivers/gpu/drm/i915/display/intel_fdi.c b/drivers/gpu/drm/i915/display/intel_fdi.c
-index 67d2484afbaa..0dc6414a56c4 100644
---- a/drivers/gpu/drm/i915/display/intel_fdi.c
-+++ b/drivers/gpu/drm/i915/display/intel_fdi.c
-@@ -256,7 +256,7 @@ int ilk_fdi_compute_config(struct intel_crtc *crtc,
- 	pipe_config->fdi_lanes = lane;
- 
- 	intel_link_compute_m_n(pipe_config->pipe_bpp, lane, fdi_dotclock,
--			       link_bw, &pipe_config->fdi_m_n, false, false);
-+			       link_bw, &pipe_config->fdi_m_n, false);
- 
- 	ret = ilk_check_fdi_lanes(dev, crtc->pipe, pipe_config);
- 	if (ret == -EDEADLK)
+ static bool intel_hdmi_source_bpc_possible(struct drm_i915_private *i915, int bpc)
 -- 
 2.35.1
 
