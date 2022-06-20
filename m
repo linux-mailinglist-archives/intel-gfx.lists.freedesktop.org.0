@@ -1,60 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E4F95522BE
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Jun 2022 19:28:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB485552310
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Jun 2022 19:52:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 116FE10EB94;
-	Mon, 20 Jun 2022 17:28:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD6CF10ED8C;
+	Mon, 20 Jun 2022 17:52:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oa1-x2d.google.com (mail-oa1-x2d.google.com
- [IPv6:2001:4860:4864:20::2d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9110D10EB94
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 Jun 2022 17:28:40 +0000 (UTC)
-Received: by mail-oa1-x2d.google.com with SMTP id
- 586e51a60fabf-fe023ab520so15252437fac.10
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 Jun 2022 10:28:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=raf+3lxhnyY32v/N4Is/S0vUlCPN2qQOKR/3+Csi694=;
- b=FhGZPzd0Sbe+HWyhVOSQGsV0kIDq71SDjzl1OA5+rsF6+D6WsNcBWYTHv8WaZqD2yW
- 9Wru03Ca/N5Hdx53MqkKKwwaydmSnvFHM5P3MK9UUkMe68mI1GhlwJLS5WP/n7JAk79a
- 8YZVtQR/c9sByX49GxO3r8MGyTOqXYTUe/kG0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=raf+3lxhnyY32v/N4Is/S0vUlCPN2qQOKR/3+Csi694=;
- b=Yr0A0cCJmFxPRI1g2yrSUy+q36tJATQ8k1pBFi+3su+yxlr/VymzU+3GUV9QDUMJlj
- WfoRfCX28PTBolAbnWfQxHIEdXvi3nNGufSUubrHZM5aYZOwbccbBmPJwVYqjK2MkL6K
- bAu+YueMIeXlXQSraTABNm/70te6S5XBhKqxzvtbuxvbNu/t7MrbC+9d5oO2EuWqUSuD
- 1pjarLsMFqgysN0wsGc6IFZ9HSdIcn/fCpvhHQPzBu7TksK2X4+RFVxZ2iDCM5uWfx8r
- LBQ5o9TpFpBYOqT0j3ef9ymI2+TLsATvdRwehjSH2qdSodkq7XunFRRD+ULsMyTplAFJ
- 7+aQ==
-X-Gm-Message-State: AJIora8UzUOV/J9Lhlpy9eKlvWh+L2IXfXyYsCjiyCvRbT3/XRoIu+67
- 0h13//lg4L8kiuhL5r53NNgoolXZcu8LlKoQfmBN2A==
-X-Google-Smtp-Source: AGRyM1v288g60C06DcmS5JBw6+Y0w0TQc78+qVGISyv5d+89MTaHi4FifbUByZfIymMJNh5m8u1PsOs1rg5HcldJcSc=
-X-Received: by 2002:a05:6870:3053:b0:f3:2997:659a with SMTP id
- u19-20020a056870305300b000f32997659amr13607020oau.7.1655746119831; Mon, 20
- Jun 2022 10:28:39 -0700 (PDT)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A20AD10ED8C
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Jun 2022 17:52:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1655747545; x=1687283545;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Ezba5+WiEIjsSdYZ/udHMYuFWy5WqqxJ53viLq/kWjQ=;
+ b=OJelcTU5ojv5NolHkrZVHdEl46sbyuH4ehMuz0uEaqOW2RlJenHhIfhY
+ vLp6e+HFpFck2V29OPXVkgorAIXnK+YSJ4GaJ2Z9imlq+IoZDSuUfbjYD
+ C3lopXCjm/xRtJqxf91fgqMh+K78vAwlYZwG2xkdOJGcJm8ssJETXynNE
+ EdL6Lpcdq/K1yrUJsiPsUy1qmGcew1dyzr2/fMA+j3xot0D78rTsIsm/6
+ NbRs2Yvk8bGInZQLwW7oHPePtdOiPLZCoK/GIYfrTttTf0OzLNXoxM1Qq
+ X42WIUB6mg3W0UQlbim6GPlfPvHd7UjArA3T1DHoz4HwxEiJKOSTSlJxr Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10384"; a="305385482"
+X-IronPort-AV: E=Sophos;i="5.92,207,1650956400"; d="scan'208";a="305385482"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jun 2022 10:52:13 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.92,207,1650956400"; d="scan'208";a="689558590"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.163])
+ by fmsmga002.fm.intel.com with SMTP; 20 Jun 2022 10:52:11 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 20 Jun 2022 20:52:10 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 20 Jun 2022 20:51:53 +0300
+Message-Id: <20220620175210.28788-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-References: <0249066a-2e95-c21d-d16a-fba08c633c0b@lio96.de>
- <f1a52ddc-5aad-cc76-282e-93206ae43477@amd.com>
- <70395b22-1857-2a25-1472-17ce3df22607@lio96.de>
- <6cd161d2-5caa-65c8-6b86-5992cc15d1af@amd.com>
- <957926e6-2462-4c42-b57f-9cfbd9fe7024@lio96.de>
- <27e6f4ec-0906-0d57-af9b-ebde534b68b3@amd.com>
-In-Reply-To: <27e6f4ec-0906-0d57-af9b-ebde534b68b3@amd.com>
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-Date: Mon, 20 Jun 2022 19:28:28 +0200
-Message-ID: <CAKMK7uECjGw2K3S=Rwtz7rq-pV+eqbD8rc5GAPiemXJN1ybTsA@mail.gmail.com>
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] Performance drop using deinterlace_vaapi on 5.19-rcX
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v3 00/17] drm/i915: Make fastset not suck and
+ allow seamless M/N changes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,102 +57,84 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Thomas Voegtle <tv@lio96.de>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 20 Jun 2022 at 17:28, Christian K=C3=B6nig <christian.koenig@amd.co=
-m> wrote:
->
-> Hi Thomas,
->
-> Am 20.06.22 um 16:31 schrieb Thomas Voegtle:
-> > On Mon, 20 Jun 2022, Christian K=C3=B6nig wrote:
-> >
-> >> Am 20.06.22 um 13:40 schrieb Thomas Voegtle:
-> >>>  On Mon, 20 Jun 2022, Christian K=C3=B6nig wrote:
-> >>>
-> >>>>  Hi Thomas,
-> >>>>
-> >>>>  [moving vger to bcc]
-> >>>>
-> >>>>  mhm, sounds like something isn't running in parallel any more.
-> >>>>
-> >>>>  We usually don't test the multimedia engines for this but we do tes=
-t
-> >>>>  gfx+compute, so I'm really wondering what goes wrong here.
-> >>>>
-> >>>>  Could you run some tests for me? Additional to that I'm going to
-> >>>> raise
-> >>>>  that issue with our multimedia guys later today.
-> >>>
-> >>>  Yes, I can run some tests for you. Which tests?
-> >>
-> >> Try this as root:
-> >>
-> >> echo 1 >
-> >> /sys/kernel/debug/tracing/events/dma_fence/dma_fence_init/enable
-> >> echo 1 >
-> >> /sys/kernel/debug/tracing/events/dma_fence/dma_fence_signaled/enable
-> >> cat /sys/kernel/debug/tracing/trace_pipe > trace.log
-> >>
-> >> Then start the encoding in another shell, after it completed cancel
-> >> the cat with cntr+c and save the log file.
-> >>
-> >> Do this one with the old kernel and once with the new one.
-> >
-> >
-> > https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2F32h=
-.de%2Ftv%2F5.18.0-i5-trace.log.bz2&amp;data=3D05%7C01%7Cchristian.koenig%40=
-amd.com%7C41a052960a4d4f7dd38e08da52c99097%7C3dd8961fe4884e608e11a82d994e18=
-3d%7C0%7C0%7C637913323382588469%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDA=
-iLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=
-=3Dxv8vLUuBq37sBFcGxdua%2FnNQ51BiN1USn30ehP8bys0%3D&amp;reserved=3D0
-> > https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2F32h=
-.de%2Ftv%2F5.19.0-rc3-i5-trace.log.bz2&amp;data=3D05%7C01%7Cchristian.koeni=
-g%40amd.com%7C41a052960a4d4f7dd38e08da52c99097%7C3dd8961fe4884e608e11a82d99=
-4e183d%7C0%7C0%7C637913323382588469%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjA=
-wMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sda=
-ta=3DxuBVrQMQ%2FDK3Gv1qN%2FntJ9NjXOZxD6XVkmDCWfG4K44%3D&amp;reserved=3D0
-> >
-> >
-> > I hope I have done this correctly.
-> > All necessary tracing things switched on?
->
-> Yeah, that looks like what I wanted to see.
->
-> >
-> > I want to add that this is a headless machine. No monitor connected.
-> >
->
-> I've just realized that you aren't even using any AMD GPU for
-> transcoding, so I have no idea why removing the AMD specific workaround
-> can cause a performance problem for i915.
->
-> It must be somehow related to i915 now adding some additional
-> synchronization in between submissions.
->
-> Adding the Intel mailing list, maybe somebody has a better idea.
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Only thing I can spot is that we now pile up USAGE_WRITE fences, but
-beforehand they got replaced. Also the deinterlace stuff means libva
-uses render engine, so this kinda fits - without using the render
-engine it's just a single engine, and hence you should never have
-multiple write fences (not logically, but hsw is a ringbuffer and i915
-doesn't have a ringbuffer scheduler, so it's all in-order anyway and
-hence not possible to change something).
+And with fastset made to not suck we can consider allowing
+seameless M/N changes on eDP panels that support such things.
+I've given that a quick test here on a TGL and it seemed to work
+OK.
 
-This would mean that i915 is doing something silly (well not obeying
-the old dma_resv rules that any new exclusive fence must be a strict
-superset of all currently attached fences), which it totally is doing
-with the EXEC_OBJECT_ASYNC flag. But libva doesn't use that.
+The rough parts:
+- The DPLL stuff is kinda messy still, a lot of which is due to
+  the dpll_mgr vs. not depending on platform/output type. Maybe
+  it's finally time to start cleaning that mess up...
+- the port_dpll[] stuff probably needs to be reworked at some
+  point to make a bit more sense
+- fastboot I *think* should mostly keep working now that we
+  try to match the GOP/VBIOS M/N behaviour. FDI M/N vs. DPLL is
+  a bit of a challenge for the platforms where the encoder live
+  in the PCH, but I'm going to declare that as not so important
+- DSI clock handling is snafu
+- DP link computation policy might need a bit more work since we
+  may now consume more bandwidth than before on machines where
+  seamless M/N changes are possible
 
-So tbh I have no idea, but maybe a quick hack that tosses any old
-USAGE_WRITE fence like the old dma_resv_add_excl_fence did would sched
-some light?
--Daniel
---=20
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+I also did a quick smoke test through the series on tgl and
+snb in the hopes of keeping this at least mostly bisectable.
+
+Changes in v2:
+- bunch of stuff already merged
+- a bit more refactoring to make things nicer
+- Tweak the M/N rounding for fastboot
+- don't mess with the DP link rate on platforms (pre-BDW)
+  where we haven't implemented seamsless M/N chages
+Changes in v3:
+- Attempt to get the VLV/BXT DSI stuff to pass CI :/
+
+Ville Syrjälä (17):
+  drm/i915: Relocate intel_crtc_dotclock()
+  drm/i915: Shuffle some PLL code around
+  drm/i915: Extract HAS_DOUBLE_BUFFERED_M_N()
+  drm/i915/dsi: Extract {vlv,bxt}_get_pclk()
+  drm/i915: Do .crtc_compute_clock() earlier
+  drm/i915: Reassign DPLLs only for crtcs going throug .compute_config()
+  drm/i915: Feed the DPLL output freq back into crtc_state
+  drm/i915: Compute clocks earlier
+  drm/i915: Make M/N checks non-fuzzy
+  drm/i915: Make all clock checks non-fuzzy
+  drm/i915: Set active dpll early for icl+
+  drm/i915: Nuke fastet state copy hacks
+  drm/i915: Skip intel_modeset_pipe_config_late() if the pipe is not
+    enabled
+  drm/i915: Add intel_panel_highest_mode()
+  drm/i915: Allow M/N change during fastset on bdw+
+  drm/i915: Use a fixed N value always
+  drm/i915: Round TMDS clock to nearest
+
+ drivers/gpu/drm/i915/display/intel_crt.c      |   3 +
+ drivers/gpu/drm/i915/display/intel_ddi.c      |  22 --
+ drivers/gpu/drm/i915/display/intel_display.c  | 199 +++++++----------
+ drivers/gpu/drm/i915/display/intel_display.h  |   2 +-
+ .../drm/i915/display/intel_display_types.h    |   1 +
+ drivers/gpu/drm/i915/display/intel_dp.c       |  50 +++--
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |   3 +-
+ drivers/gpu/drm/i915/display/intel_dpll.c     |  69 +++++-
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 204 ++++++++++--------
+ drivers/gpu/drm/i915/display/intel_fdi.c      |   2 +-
+ drivers/gpu/drm/i915/display/intel_hdmi.c     |   2 +-
+ .../drm/i915/display/intel_modeset_verify.c   |   6 +-
+ drivers/gpu/drm/i915/display/intel_panel.c    |  15 ++
+ drivers/gpu/drm/i915/display/intel_panel.h    |   3 +
+ .../gpu/drm/i915/display/intel_pch_refclk.c   |  10 +
+ .../gpu/drm/i915/display/intel_pch_refclk.h   |   1 +
+ drivers/gpu/drm/i915/display/vlv_dsi.c        |  11 +-
+ drivers/gpu/drm/i915/display/vlv_dsi_pll.c    | 141 +++++++-----
+ drivers/gpu/drm/i915/i915_drv.h               |   2 +
+ 19 files changed, 420 insertions(+), 326 deletions(-)
+
+-- 
+2.35.1
+
