@@ -2,48 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3EFB5523DB
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Jun 2022 20:29:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C98A5523DD
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Jun 2022 20:29:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 94F8410F0EF;
-	Mon, 20 Jun 2022 18:29:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 52CCA10F10A;
+	Mon, 20 Jun 2022 18:29:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3ABE210F0E7
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 Jun 2022 18:29:20 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 71D9010F10A
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Jun 2022 18:29:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655749760; x=1687285760;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=R22Pa8+bKDMDldfwBZqbwmRKkZbSzKMgRH0cxs9Mz1s=;
- b=LQ9TBr67FnGZKqo/LXuwiBewAMzwv1+AXUz9KZ0uj5M2sO73nR38bTeX
- ZXb+9NXQwC2Iv/qeIKt9hVeu1PJdLq+7ZciJnttCh3tf5M5PX4rCfTKf3
- ocm3TrWNjU+X+zrSuz2eh9efnHlF0TNkiYkMIzraHCcmHqP29X3Nme3wA
- HgHGOKZIrPkjWsu9Llv+RXdiSG3CL3HtmTxDX3psxtDi9VlGMyuDp2pSY
- BW/bU8CFNPkiJJV1DI/cq8mRJtn+vSO7hBhdYcnsNU/87FMpjmFD76+SR
- L0KiMOLZftzUOkg7RNXZIl/E1TCtpVQ9dtmr1MXhSxo7mzvXb+9ziE2lL Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10384"; a="366277346"
-X-IronPort-AV: E=Sophos;i="5.92,207,1650956400"; d="scan'208";a="366277346"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jun 2022 11:29:19 -0700
+ t=1655749763; x=1687285763;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=1kHtQ7ymJ6W30t8v+CvPF9LBTi6s8sfgOaWI0sqKPyU=;
+ b=h2Mz/tfwz0MegJhIDAjdUyuzX3PBbFLk+fnljVLFcazd3aeBTN9sdl8q
+ 2WcnYtDN7IZmolbjBtqED4g65WjndA6u1X3lUd2SQnVbueZe7BuueoYVG
+ ll6OUghbfayvNsB0xgRnVNmbeZ3ghwkNUeerdUq3rIxWkrkJZbtLhxMMt
+ DtnsHxnIKWraNjIITzfKUGhrrIWZBAryPlWWrYLWR+g0FvPf9d83hAVqs
+ OBmbqGp7JMfVNlzF9/41BpkLtBb9YEfb4zxOhKmH+HeoneBaQwyTJN3kz
+ Vu8oEffqNAH/BAbKBrToXUi0QeW7H9cNdkvruTpNDM7K8WOOTCvaKOhRn A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10384"; a="281009869"
+X-IronPort-AV: E=Sophos;i="5.92,207,1650956400"; d="scan'208";a="281009869"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jun 2022 11:29:22 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,207,1650956400"; d="scan'208";a="676638815"
+X-IronPort-AV: E=Sophos;i="5.92,207,1650956400"; d="scan'208";a="643228765"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.163])
- by FMSMGA003.fm.intel.com with SMTP; 20 Jun 2022 11:29:17 -0700
+ by fmsmga008.fm.intel.com with SMTP; 20 Jun 2022 11:29:20 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 20 Jun 2022 21:29:17 +0300
+ Mon, 20 Jun 2022 21:29:20 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 20 Jun 2022 21:29:16 +0300
-Message-Id: <20220620182917.10765-1-ville.syrjala@linux.intel.com>
+Date: Mon, 20 Jun 2022 21:29:17 +0300
+Message-Id: <20220620182917.10765-2-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220620182917.10765-1-ville.syrjala@linux.intel.com>
+References: <20220620182917.10765-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 1/2] drm/i915/fbc: Move flip_pending assignmnt
+Subject: [Intel-gfx] [PATCH 2/2] drm/i915/fbc: Use lockdep_assert_held()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,44 +63,89 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Move the flip_pending assignment into __intel_fbc_post_update()
-from intel_fbc_post_update(). Now mirrors the pre_update() side.
+Replace the mutex_is_locked() stuff with lockdep_assert_held() since
+that's what it's there for.
 
-The only reason the assignment was in the higher level function
-is that we used to call __intel_fbc_post_update() from elsewhere
-as well. That got cleaned up in commit b39d2c620242 ("drm/i915/fbc:
-Call intel_fbc_activate() directly from frontbuffer flush")
+Asoo sprinkle these around so that we have more or less
+mirrored coverate for the enable vs. disable instead of the
+current situation where the asserts seem to be more or less
+randomly thrown around.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_fbc.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_fbc.c | 17 ++++++++++-------
+ 1 file changed, 10 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index 8b807284cde1..77669e03b9f7 100644
+index 77669e03b9f7..db1c0eb508fa 100644
 --- a/drivers/gpu/drm/i915/display/intel_fbc.c
 +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -1296,6 +1296,8 @@ static void __intel_fbc_post_update(struct intel_fbc *fbc)
+@@ -669,6 +669,7 @@ static void intel_fbc_nuke(struct intel_fbc *fbc)
+ {
+ 	struct drm_i915_private *i915 = fbc->i915;
  
- 	drm_WARN_ON(&i915->drm, !mutex_is_locked(&fbc->lock));
++	lockdep_assert_held(&fbc->lock);
+ 	drm_WARN_ON(&i915->drm, fbc->flip_pending);
  
-+	fbc->flip_pending = false;
+ 	trace_intel_fbc_nuke(fbc->state.plane);
+@@ -678,6 +679,8 @@ static void intel_fbc_nuke(struct intel_fbc *fbc)
+ 
+ static void intel_fbc_activate(struct intel_fbc *fbc)
+ {
++	lockdep_assert_held(&fbc->lock);
 +
- 	if (!fbc->busy_bits)
- 		intel_fbc_activate(fbc);
- 	else
-@@ -1317,10 +1319,8 @@ void intel_fbc_post_update(struct intel_atomic_state *state,
+ 	intel_fbc_hw_activate(fbc);
+ 	intel_fbc_nuke(fbc);
  
- 		mutex_lock(&fbc->lock);
+@@ -686,9 +689,7 @@ static void intel_fbc_activate(struct intel_fbc *fbc)
  
--		if (fbc->state.plane == plane) {
--			fbc->flip_pending = false;
-+		if (fbc->state.plane == plane)
- 			__intel_fbc_post_update(fbc);
--		}
+ static void intel_fbc_deactivate(struct intel_fbc *fbc, const char *reason)
+ {
+-	struct drm_i915_private *i915 = fbc->i915;
+-
+-	drm_WARN_ON(&i915->drm, !mutex_is_locked(&fbc->lock));
++	lockdep_assert_held(&fbc->lock);
  
- 		mutex_unlock(&fbc->lock);
- 	}
+ 	if (fbc->active)
+ 		intel_fbc_hw_deactivate(fbc);
+@@ -1220,6 +1221,8 @@ static bool __intel_fbc_pre_update(struct intel_atomic_state *state,
+ 	struct intel_fbc *fbc = plane->fbc;
+ 	bool need_vblank_wait = false;
+ 
++	lockdep_assert_held(&fbc->lock);
++
+ 	fbc->flip_pending = true;
+ 
+ 	if (intel_fbc_can_flip_nuke(state, crtc, plane))
+@@ -1277,7 +1280,7 @@ static void __intel_fbc_disable(struct intel_fbc *fbc)
+ 	struct drm_i915_private *i915 = fbc->i915;
+ 	struct intel_plane *plane = fbc->state.plane;
+ 
+-	drm_WARN_ON(&i915->drm, !mutex_is_locked(&fbc->lock));
++	lockdep_assert_held(&fbc->lock);
+ 	drm_WARN_ON(&i915->drm, fbc->active);
+ 
+ 	drm_dbg_kms(&i915->drm, "Disabling FBC on [PLANE:%d:%s]\n",
+@@ -1292,9 +1295,7 @@ static void __intel_fbc_disable(struct intel_fbc *fbc)
+ 
+ static void __intel_fbc_post_update(struct intel_fbc *fbc)
+ {
+-	struct drm_i915_private *i915 = fbc->i915;
+-
+-	drm_WARN_ON(&i915->drm, !mutex_is_locked(&fbc->lock));
++	lockdep_assert_held(&fbc->lock);
+ 
+ 	fbc->flip_pending = false;
+ 
+@@ -1430,6 +1431,8 @@ static void __intel_fbc_enable(struct intel_atomic_state *state,
+ 		intel_atomic_get_new_plane_state(state, plane);
+ 	struct intel_fbc *fbc = plane->fbc;
+ 
++	lockdep_assert_held(&fbc->lock);
++
+ 	if (fbc->state.plane) {
+ 		if (fbc->state.plane != plane)
+ 			return;
 -- 
 2.35.1
 
