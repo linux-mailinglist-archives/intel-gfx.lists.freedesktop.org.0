@@ -2,58 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27EB3551760
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Jun 2022 13:26:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 85B325518E4
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Jun 2022 14:29:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6FDE810E082;
-	Mon, 20 Jun 2022 11:26:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2685B10E1DA;
+	Mon, 20 Jun 2022 12:29:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F142610E078;
- Mon, 20 Jun 2022 11:26:25 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 83385B81092;
- Mon, 20 Jun 2022 11:26:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01348C3411C;
- Mon, 20 Jun 2022 11:26:22 +0000 (UTC)
-Authentication-Results: smtp.kernel.org;
- dkim=pass (1024-bit key) header.d=zx2c4.com header.i=@zx2c4.com
- header.b="YUu9wZ8p"
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=zx2c4.com; s=20210105; 
- t=1655724381;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=TOVLL150QNd38AYGM7SoGBB9k185tGI5xz/TT2kjB+A=;
- b=YUu9wZ8pg15f/UkqJvpukvPSVmLQlvNvZsk8NYCvlcSzBumoSLDPqsMmNYD5iUiF0OIG80
- biKurEEWUq2czo3TPJT57eYUPGg0jW6gFmWnexBKWj7O1jeGpcnhUQQMy1D0VxzjLw3eHJ
- A2a3PjyiJIoYzKCkgzwBZG0ukIJ1h/k=
-Received: by mail.zx2c4.com (ZX2C4 Mail Server) with ESMTPSA id d0b4f638
- (TLSv1.3:AEAD-AES256-GCM-SHA384:256:NO); 
- Mon, 20 Jun 2022 11:26:21 +0000 (UTC)
-Received: by mail-yb1-f174.google.com with SMTP id r3so18411850ybr.6;
- Mon, 20 Jun 2022 04:26:21 -0700 (PDT)
-X-Gm-Message-State: AJIora/5r565I4EkalpwZDPcHCUOzKjZShwZslufc6hsvq9hmROuBiAQ
- /v4aaSebaAL/tXjHopX3gE2Fy9sSDs6sJA+7jlQ=
-X-Google-Smtp-Source: AGRyM1u+MFU+mkGZfWohms1MUY8JXi39Tbqumt7dBEF5zME7BQ86Ng4DPlZmBric3xPKnQjy1koFBbB3EDp+K9yVSqw=
-X-Received: by 2002:a25:8d92:0:b0:656:a73e:a7f with SMTP id
- o18-20020a258d92000000b00656a73e0a7fmr23772353ybl.382.1655724380249; Mon, 20
- Jun 2022 04:26:20 -0700 (PDT)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C544910E12E;
+ Mon, 20 Jun 2022 12:29:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1655728172; x=1687264172;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=HxnFIZ1qhK1EQpSYlB6DHWoJIa81C0a9zYF6I+iK9kk=;
+ b=ObX+CmuHK6VCCIM2920cBDiGME6TXx2D4XeZBOKSmNiiTWMp/Llu33kv
+ prVVbAUPJsfWoHL5698Rk2KLZ833ALVc0xyc9tgJ0pZPM2O7URPOAi2xG
+ qp5apMIN3i07FgyPTeksx0aiOz5zVDDpaQ0cidQoRyxVyyxt6xHiCLalq
+ PORKueo1oJq/mxf5g7segSU0ocuGBoUDx9zUM7bVSjDQQ/AfKCL4GUhLw
+ Sqi2kK9AizbuNcbW+RiZEEcBjnD81hynLDVYRm6mYDNZpKC3pin1jAT1E
+ Qeh3QUlwxz3EUvnEt+s/rNgtY4YcEVcig29WPJsnGKoxvNfQuflR33ZF1 w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10380"; a="341564627"
+X-IronPort-AV: E=Sophos;i="5.92,306,1650956400"; d="scan'208";a="341564627"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jun 2022 05:29:32 -0700
+X-IronPort-AV: E=Sophos;i="5.92,306,1650956400"; d="scan'208";a="729365541"
+Received: from ahashmi-mobl.ger.corp.intel.com (HELO [10.249.254.225])
+ ([10.249.254.225])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jun 2022 05:29:30 -0700
+Message-ID: <c8401b9e-cc00-a459-7bb0-8861edb599de@linux.intel.com>
+Date: Mon, 20 Jun 2022 14:29:27 +0200
 MIME-Version: 1.0
-References: <20220613102241.9236-1-Jason@zx2c4.com>
-In-Reply-To: <20220613102241.9236-1-Jason@zx2c4.com>
-From: "Jason A. Donenfeld" <Jason@zx2c4.com>
-Date: Mon, 20 Jun 2022 13:26:09 +0200
-X-Gmail-Original-Message-ID: <CAHmME9q0QbuUR-11gkFG9PQpHrNfZk2b-Ja+tDnqbV13JCJ7+g@mail.gmail.com>
-Message-ID: <CAHmME9q0QbuUR-11gkFG9PQpHrNfZk2b-Ja+tDnqbV13JCJ7+g@mail.gmail.com>
-To: dri-devel <dri-devel@lists.freedesktop.org>,
- intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Re-add check for low
- voltage sku for max dp source rate
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Content-Language: en-US
+To: Andi Shyti <andi.shyti@linux.intel.com>
+References: <20220512094045.792373-1-thomas.hellstrom@linux.intel.com>
+ <Yoa6vqN/BOfoF53j@intel.intel>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+In-Reply-To: <Yoa6vqN/BOfoF53j@intel.intel>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix vm use-after-free in vma
+ destruction
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,13 +61,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Jani,
+Hi, Andi
 
-Do you plan to merge this revert?
+On 5/19/22 23:46, Andi Shyti wrote:
+> Hi Thomas,
+>
+> On Thu, May 12, 2022 at 11:40:45AM +0200, Thomas Hellström wrote:
+>> In vma destruction, the following race may occur:
+>>
+>> Thread 1:	    		  Thread 2:
+>> i915_vma_destroy();
+>>
+>>    ...
+>>    list_del_init(vma->vm_link);
+>>    ...
+>>    mutex_unlock(vma->vm->mutex);
+>> 				  __i915_vm_release();
+>> release_references();
+>>
+>> And in release_reference() we dereference vma->vm to get to the
+>> vm gt pointer, leadin go a use-after free.
+> leading to
+Thanks, will fix.
+>
+> [...]
+>
+>> -static void release_references(struct i915_vma *vma, bool vm_ddestroy)
+>> +static void release_references(struct i915_vma *vma, struct intel_gt *gt,
+>> +			       bool vm_ddestroy)
+>>   {
+>>   	struct drm_i915_gem_object *obj = vma->obj;
+>> -	struct intel_gt *gt = vma->vm->gt;
+>>   
+>>   	GEM_BUG_ON(i915_vma_is_active(vma));
+> but then we have
+>
+> 	if (vm_ddestroy)
+> 		i915_vm_resv_put(vma->vm);
+>
+> were we reference to a freed vm, right? Do we need to check it
+> here, as well?
 
-Thanks,
-Jason
+No, it's not needed, since if vm_ddestroy is true, we keep the vm alive 
+using the vm
+resv_ref until i915_vm_resv_put(). This is for the rare occasions where, 
+during vm destruction, we fail to grab an object reference and therefore 
+vma destruction is left for the object destructor. In those cases the 
+vma needs to keep the vm in memory for it to be able to grab the vm mutex.
+
+/Thomas
+
+
+
+
+>
+> Andi
