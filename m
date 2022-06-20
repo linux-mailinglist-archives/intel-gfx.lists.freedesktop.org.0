@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9BD555139A
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Jun 2022 11:02:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 00D855513AB
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Jun 2022 11:05:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 072F810EF8D;
-	Mon, 20 Jun 2022 09:02:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B56510F255;
+	Mon, 20 Jun 2022 09:05:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 62F6210F00A
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 Jun 2022 09:02:02 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2254310F265
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Jun 2022 09:05:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655715722; x=1687251722;
+ t=1655715946; x=1687251946;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=uRVHifNTxHhdCY+iouSeLriBpM+9ucceVZWgckwWH7Q=;
- b=dLaCjrJsQu36p9E+hIwqDOoQhlDlPtfEbAmVwQcFA2dq53/M/3aHv44z
- EV4GRpIi45b1/VrFPfNFKDgS6IF/eJv3ny+xUBC8fpTIi6yzcm1jJPvXg
- 0ZSAIYbH5nnej0Yck2skCNENj5Xy11AZgWcCZzYZV/f1AKSafIVCLOfJ2
- fa07E28RVa5CoaX++lnwcNvd9/wjNNUfff2vzwt3KMHkcWL8LuH5N2MWU
- RVPbEJEcIPL3EGZH67r72n9yPawc/a7VFIh3yNXgr3cWGYzJXkEYi2B89
- X5f36aIESFIhiKVBEeXgaPEX9cvM6dqhMH84ee0pMNrrJOr9046xQFCmv Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10380"; a="366168632"
-X-IronPort-AV: E=Sophos;i="5.92,306,1650956400"; d="scan'208";a="366168632"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jun 2022 02:02:01 -0700
-X-IronPort-AV: E=Sophos;i="5.92,306,1650956400"; d="scan'208";a="591084215"
+ bh=/Qx5AakFxH0G5hsjiYsgZ/USb237ECkJ8Dgct9xidt4=;
+ b=RTC8BfMc1jkv055Z3qh8hPM/Xq9f8KPM95zkpE4MIZWNZ5R7V3aVpvW4
+ OQI43vXRG3T1YU3gXTuK8PquDTcVwghV+A9LVEQx3MT/LxkgoTdZuvxTy
+ kVNoTMAWYSkPWoveq61paUsnkO0IdkEmCZHNHvnj2CeTSV8PiwVLCRqd1
+ 68N8GgB8EJ/eVK9b38F+/qpTK1ZHZdtp0Dn+g+okQTZCtsHIRgRMYIFub
+ t8VOOwKqVHp9MXNWV/LsIrm+5ms1Xe2uhmnzex9f96lvpa298T4B7sv0j
+ jvkArllTejwgeBu0H3EDthQj4yCm7Ycfjot94t2D3G8tm23DqjR/XmWoU A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10380"; a="277393539"
+X-IronPort-AV: E=Sophos;i="5.92,306,1650956400"; d="scan'208";a="277393539"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jun 2022 02:05:45 -0700
+X-IronPort-AV: E=Sophos;i="5.92,306,1650956400"; d="scan'208";a="643023811"
 Received: from hkanchar-mobl.gar.corp.intel.com (HELO localhost)
  ([10.252.36.6])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jun 2022 02:02:00 -0700
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jun 2022 02:05:44 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220617160510.2082-3-ville.syrjala@linux.intel.com>
+In-Reply-To: <20220617160510.2082-4-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20220617160510.2082-1-ville.syrjala@linux.intel.com>
- <20220617160510.2082-3-ville.syrjala@linux.intel.com>
-Date: Mon, 20 Jun 2022 12:01:58 +0300
-Message-ID: <87k09bu2rd.fsf@intel.com>
+ <20220617160510.2082-4-ville.syrjala@linux.intel.com>
+Date: Mon, 20 Jun 2022 12:05:42 +0300
+Message-ID: <87h74fu2l5.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v2 02/16] drm/i915: Shuffle some PLL code
- around
+Subject: Re: [Intel-gfx] [PATCH v2 03/16] drm/i915: Extract
+ has_double_buffered_m_n()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,244 +66,91 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Fri, 17 Jun 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> Shuffle some PLL functions around a bit to avoid ugle
-> forward declarations later on. No functional changes.
+> We have a couple of places that want to make distinction between
+> double buffered M/N registers vs. the split M1/N1+M2/N2 registers.
+> Add a helper for that.
 >
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
+Mhh. So why a function in intel_display.c instead of a macro in
+i915_drv.h? Both are kind of cluttered, but at least in i915_drv.h it
+would be among others.
+
+I do think we should have a separate file for display feature check
+macros, and move most if not all of the display related HAS_*() stuff
+there from i915_drv.h.
+
+So technically this does what it says on the box, and in that sense,
+
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
+but I don't much like the example and precedence this function sets.
+
+
 > ---
->  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 176 +++++++++---------
->  1 file changed, 88 insertions(+), 88 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_display.c | 7 ++++++-
+>  drivers/gpu/drm/i915/display/intel_display.h | 1 +
+>  drivers/gpu/drm/i915/display/intel_dp.c      | 3 +--
+>  3 files changed, 8 insertions(+), 3 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/=
-drm/i915/display/intel_dpll_mgr.c
-> index ddae7e42ac46..bfccc96f16fe 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> @@ -905,37 +905,6 @@ hsw_ddi_calculate_wrpll(int clock /* in Hz */,
->  	*r2_out =3D best.r2;
->  }
->=20=20
-> -static int
-> -hsw_ddi_wrpll_compute_dpll(struct intel_atomic_state *state,
-> -			   struct intel_crtc *crtc)
-> -{
-> -	struct intel_crtc_state *crtc_state =3D
-> -		intel_atomic_get_new_crtc_state(state, crtc);
-> -	unsigned int p, n2, r2;
-> -
-> -	hsw_ddi_calculate_wrpll(crtc_state->port_clock * 1000, &r2, &n2, &p);
-> -
-> -	crtc_state->dpll_hw_state.wrpll =3D
-> -		WRPLL_PLL_ENABLE | WRPLL_REF_LCPLL |
-> -		WRPLL_DIVIDER_REFERENCE(r2) | WRPLL_DIVIDER_FEEDBACK(n2) |
-> -		WRPLL_DIVIDER_POST(p);
-> -
-> -	return 0;
-> -}
-> -
-> -static struct intel_shared_dpll *
-> -hsw_ddi_wrpll_get_dpll(struct intel_atomic_state *state,
-> -		       struct intel_crtc *crtc)
-> -{
-> -	struct intel_crtc_state *crtc_state =3D
-> -		intel_atomic_get_new_crtc_state(state, crtc);
-> -
-> -	return intel_find_shared_dpll(state, crtc,
-> -				      &crtc_state->dpll_hw_state,
-> -				      BIT(DPLL_ID_WRPLL2) |
-> -				      BIT(DPLL_ID_WRPLL1));
-> -}
-> -
->  static int hsw_ddi_wrpll_get_freq(struct drm_i915_private *dev_priv,
->  				  const struct intel_shared_dpll *pll,
->  				  const struct intel_dpll_hw_state *pll_state)
-> @@ -976,6 +945,37 @@ static int hsw_ddi_wrpll_get_freq(struct drm_i915_pr=
-ivate *dev_priv,
->  	return (refclk * n / 10) / (p * r) * 2;
->  }
->=20=20
-> +static int
-> +hsw_ddi_wrpll_compute_dpll(struct intel_atomic_state *state,
-> +			   struct intel_crtc *crtc)
-> +{
-> +	struct intel_crtc_state *crtc_state =3D
-> +		intel_atomic_get_new_crtc_state(state, crtc);
-> +	unsigned int p, n2, r2;
-> +
-> +	hsw_ddi_calculate_wrpll(crtc_state->port_clock * 1000, &r2, &n2, &p);
-> +
-> +	crtc_state->dpll_hw_state.wrpll =3D
-> +		WRPLL_PLL_ENABLE | WRPLL_REF_LCPLL |
-> +		WRPLL_DIVIDER_REFERENCE(r2) | WRPLL_DIVIDER_FEEDBACK(n2) |
-> +		WRPLL_DIVIDER_POST(p);
-> +
-> +	return 0;
-> +}
-> +
-> +static struct intel_shared_dpll *
-> +hsw_ddi_wrpll_get_dpll(struct intel_atomic_state *state,
-> +		       struct intel_crtc *crtc)
-> +{
-> +	struct intel_crtc_state *crtc_state =3D
-> +		intel_atomic_get_new_crtc_state(state, crtc);
-> +
-> +	return intel_find_shared_dpll(state, crtc,
-> +				      &crtc_state->dpll_hw_state,
-> +				      BIT(DPLL_ID_WRPLL2) |
-> +				      BIT(DPLL_ID_WRPLL1));
-> +}
-> +
->  static int
->  hsw_ddi_lcpll_compute_dpll(struct intel_crtc_state *crtc_state)
->  {
-> @@ -1618,43 +1618,6 @@ skl_ddi_calculate_wrpll(int clock /* in Hz */,
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index b24784c4522d..5559688047b3 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -2798,6 +2798,11 @@ static int intel_crtc_compute_config(struct intel_=
+atomic_state *state,
 >  	return 0;
 >  }
 >=20=20
-> -static int skl_ddi_hdmi_pll_dividers(struct intel_crtc_state *crtc_state)
-> -{
-> -	struct drm_i915_private *i915 =3D to_i915(crtc_state->uapi.crtc->dev);
-> -	struct skl_wrpll_params wrpll_params =3D {};
-> -	u32 ctrl1, cfgcr1, cfgcr2;
-> -	int ret;
-> -
-> -	/*
-> -	 * See comment in intel_dpll_hw_state to understand why we always use 0
-> -	 * as the DPLL id in this function.
-> -	 */
-> -	ctrl1 =3D DPLL_CTRL1_OVERRIDE(0);
-> -
-> -	ctrl1 |=3D DPLL_CTRL1_HDMI_MODE(0);
-> -
-> -	ret =3D skl_ddi_calculate_wrpll(crtc_state->port_clock * 1000,
-> -				      i915->dpll.ref_clks.nssc, &wrpll_params);
-> -	if (ret)
-> -		return ret;
-> -
-> -	cfgcr1 =3D DPLL_CFGCR1_FREQ_ENABLE |
-> -		DPLL_CFGCR1_DCO_FRACTION(wrpll_params.dco_fraction) |
-> -		wrpll_params.dco_integer;
-> -
-> -	cfgcr2 =3D DPLL_CFGCR2_QDIV_RATIO(wrpll_params.qdiv_ratio) |
-> -		DPLL_CFGCR2_QDIV_MODE(wrpll_params.qdiv_mode) |
-> -		DPLL_CFGCR2_KDIV(wrpll_params.kdiv) |
-> -		DPLL_CFGCR2_PDIV(wrpll_params.pdiv) |
-> -		wrpll_params.central_freq;
-> -
-> -	crtc_state->dpll_hw_state.ctrl1 =3D ctrl1;
-> -	crtc_state->dpll_hw_state.cfgcr1 =3D cfgcr1;
-> -	crtc_state->dpll_hw_state.cfgcr2 =3D cfgcr2;
-> -
-> -	return 0;
-> -}
-> -
->  static int skl_ddi_wrpll_get_freq(struct drm_i915_private *i915,
->  				  const struct intel_shared_dpll *pll,
->  				  const struct intel_dpll_hw_state *pll_state)
-> @@ -1726,6 +1689,43 @@ static int skl_ddi_wrpll_get_freq(struct drm_i915_=
-private *i915,
->  	return dco_freq / (p0 * p1 * p2 * 5);
->  }
->=20=20
-> +static int skl_ddi_hdmi_pll_dividers(struct intel_crtc_state *crtc_state)
+> +bool has_double_buffered_m_n(struct drm_i915_private *i915)
 > +{
-> +	struct drm_i915_private *i915 =3D to_i915(crtc_state->uapi.crtc->dev);
-> +	struct skl_wrpll_params wrpll_params =3D {};
-> +	u32 ctrl1, cfgcr1, cfgcr2;
-> +	int ret;
-> +
-> +	/*
-> +	 * See comment in intel_dpll_hw_state to understand why we always use 0
-> +	 * as the DPLL id in this function.
-> +	 */
-> +	ctrl1 =3D DPLL_CTRL1_OVERRIDE(0);
-> +
-> +	ctrl1 |=3D DPLL_CTRL1_HDMI_MODE(0);
-> +
-> +	ret =3D skl_ddi_calculate_wrpll(crtc_state->port_clock * 1000,
-> +				      i915->dpll.ref_clks.nssc, &wrpll_params);
-> +	if (ret)
-> +		return ret;
-> +
-> +	cfgcr1 =3D DPLL_CFGCR1_FREQ_ENABLE |
-> +		DPLL_CFGCR1_DCO_FRACTION(wrpll_params.dco_fraction) |
-> +		wrpll_params.dco_integer;
-> +
-> +	cfgcr2 =3D DPLL_CFGCR2_QDIV_RATIO(wrpll_params.qdiv_ratio) |
-> +		DPLL_CFGCR2_QDIV_MODE(wrpll_params.qdiv_mode) |
-> +		DPLL_CFGCR2_KDIV(wrpll_params.kdiv) |
-> +		DPLL_CFGCR2_PDIV(wrpll_params.pdiv) |
-> +		wrpll_params.central_freq;
-> +
-> +	crtc_state->dpll_hw_state.ctrl1 =3D ctrl1;
-> +	crtc_state->dpll_hw_state.cfgcr1 =3D cfgcr1;
-> +	crtc_state->dpll_hw_state.cfgcr2 =3D cfgcr2;
-> +
-> +	return 0;
+> +	return DISPLAY_VER(i915) >=3D 9 || IS_BROADWELL(i915);
 > +}
 > +
->  static int
->  skl_ddi_dp_set_dpll_hw_state(struct intel_crtc_state *crtc_state)
+>  static void
+>  intel_reduce_m_n_ratio(u32 *num, u32 *den)
 >  {
-> @@ -2245,26 +2245,6 @@ static int bxt_ddi_set_dpll_hw_state(struct intel_=
-crtc_state *crtc_state,
->  	return 0;
->  }
+> @@ -5900,7 +5905,7 @@ intel_pipe_config_compare(const struct intel_crtc_s=
+tate *current_config,
+>  	PIPE_CONF_CHECK_I(lane_count);
+>  	PIPE_CONF_CHECK_X(lane_lat_optim_mask);
 >=20=20
-> -static int
-> -bxt_ddi_dp_set_dpll_hw_state(struct intel_crtc_state *crtc_state)
-> -{
-> -	struct dpll clk_div =3D {};
-> -
-> -	bxt_ddi_dp_pll_dividers(crtc_state, &clk_div);
-> -
-> -	return bxt_ddi_set_dpll_hw_state(crtc_state, &clk_div);
-> -}
-> -
-> -static int
-> -bxt_ddi_hdmi_set_dpll_hw_state(struct intel_crtc_state *crtc_state)
-> -{
-> -	struct dpll clk_div =3D {};
-> -
-> -	bxt_ddi_hdmi_pll_dividers(crtc_state, &clk_div);
-> -
-> -	return bxt_ddi_set_dpll_hw_state(crtc_state, &clk_div);
-> -}
-> -
->  static int bxt_ddi_pll_get_freq(struct drm_i915_private *i915,
->  				const struct intel_shared_dpll *pll,
->  				const struct intel_dpll_hw_state *pll_state)
-> @@ -2282,6 +2262,26 @@ static int bxt_ddi_pll_get_freq(struct drm_i915_pr=
-ivate *i915,
->  	return chv_calc_dpll_params(i915->dpll.ref_clks.nssc, &clock);
->  }
+> -	if (DISPLAY_VER(dev_priv) >=3D 9 || IS_BROADWELL(dev_priv)) {
+> +	if (has_double_buffered_m_n(dev_priv)) {
+>  		PIPE_CONF_CHECK_M_N_ALT(dp_m_n, dp_m2_n2);
+>  	} else {
+>  		PIPE_CONF_CHECK_M_N(dp_m_n);
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/d=
+rm/i915/display/intel_display.h
+> index 2feb8ae5d5d4..44c88aadfc30 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display.h
+> @@ -543,6 +543,7 @@ int intel_atomic_add_affected_planes(struct intel_ato=
+mic_state *state,
+>  				     struct intel_crtc *crtc);
+>  u8 intel_calc_active_pipes(struct intel_atomic_state *state,
+>  			   u8 active_pipes);
+> +bool has_double_buffered_m_n(struct drm_i915_private *i915);
+>  void intel_link_compute_m_n(u16 bpp, int nlanes,
+>  			    int pixel_clock, int link_clock,
+>  			    struct intel_link_m_n *m_n,
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
+15/display/intel_dp.c
+> index 2fac76bcf06d..75645508080a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -1842,8 +1842,7 @@ intel_dp_compute_hdr_metadata_infoframe_sdp(struct =
+intel_dp *intel_dp,
+>  static bool cpu_transcoder_has_drrs(struct drm_i915_private *i915,
+>  				    enum transcoder cpu_transcoder)
+>  {
+> -	/* M1/N1 is double buffered */
+> -	if (DISPLAY_VER(i915) >=3D 9 || IS_BROADWELL(i915))
+> +	if (has_double_buffered_m_n(i915))
+>  		return true;
 >=20=20
-> +static int
-> +bxt_ddi_dp_set_dpll_hw_state(struct intel_crtc_state *crtc_state)
-> +{
-> +	struct dpll clk_div =3D {};
-> +
-> +	bxt_ddi_dp_pll_dividers(crtc_state, &clk_div);
-> +
-> +	return bxt_ddi_set_dpll_hw_state(crtc_state, &clk_div);
-> +}
-> +
-> +static int
-> +bxt_ddi_hdmi_set_dpll_hw_state(struct intel_crtc_state *crtc_state)
-> +{
-> +	struct dpll clk_div =3D {};
-> +
-> +	bxt_ddi_hdmi_pll_dividers(crtc_state, &clk_div);
-> +
-> +	return bxt_ddi_set_dpll_hw_state(crtc_state, &clk_div);
-> +}
-> +
->  static int bxt_compute_dpll(struct intel_atomic_state *state,
->  			    struct intel_crtc *crtc,
->  			    struct intel_encoder *encoder)
+>  	return intel_cpu_transcoder_has_m2_n2(i915, cpu_transcoder);
 
 --=20
 Jani Nikula, Intel Open Source Graphics Center
