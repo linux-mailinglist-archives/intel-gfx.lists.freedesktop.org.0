@@ -1,58 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79EA0553ABE
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jun 2022 21:45:23 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2068B553AF9
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jun 2022 22:01:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 56CA810EB3B;
-	Tue, 21 Jun 2022 19:45:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C24D10FE29;
+	Tue, 21 Jun 2022 20:01:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2DE3110EB6E
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Jun 2022 19:45:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655840719; x=1687376719;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=vsbfVpxfgyqj2cCX1DPFNEi5ehN4eJRrw639yIQfgqk=;
- b=Ad2s9Wi6svCciI4F0OO60dBdgwoDnxKpZX3grD28SpmVIJ/pUWxuoINs
- 78rAYpU94LFec79DNyLtS3PkjDB6l6fo4Qw6jS+gvC9PGwD/93QU7wnTE
- wg78LGzQkh7AlsO/0E23eQD3hww4D5VpDcpkpzHDrEYWljKQephTzB3pI
- A8XMOVCdNJ/CTNEZSQHbiq6ka0XhS85m1Rs5yR3VwFi/qOBL28x/WFP/4
- g7i522oyny+e8CWIp1bf9zPwD0ZU1F9uqEfND6yBVSC3AgODqn7aev3ZX
- xoP7wCcbC5g1e2MV/yDkysbISgSC3/h28+93B0NB5Sw7LrzBo6JEs0lHF g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10385"; a="263252982"
-X-IronPort-AV: E=Sophos;i="5.92,210,1650956400"; d="scan'208";a="263252982"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jun 2022 12:45:15 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,210,1650956400"; d="scan'208";a="586075571"
-Received: from lkp-server02.sh.intel.com (HELO a67cc04a5eeb) ([10.239.97.151])
- by orsmga002.jf.intel.com with ESMTP; 21 Jun 2022 12:45:11 -0700
-Received: from kbuild by a67cc04a5eeb with local (Exim 4.95)
- (envelope-from <lkp@intel.com>) id 1o3joF-0000LD-7Q;
- Tue, 21 Jun 2022 19:45:11 +0000
-Date: Wed, 22 Jun 2022 03:44:22 +0800
-From: kernel test robot <lkp@intel.com>
-To: Tilak Tangudu <tilak.tangudu@intel.com>,
- intel-gfx@lists.freedesktop.org, jon.ewins@intel.com,
- rodrigo.vivi@intel.com, vinay.belgaumkar@intel.com,
- chris.p.wilson@intel.com, ashutosh.dixit@intel.com,
- badal.nilawar@intel.com, anshuman.gupta@intel.com,
- matthew.d.roper@intel.com, saurabhg.gupta@intel.com,
- Aravind.Iddamsetty@intel.com, Sujaritha.Sundaresan@intel.com
-Message-ID: <202206220303.UvbFJUZD-lkp@intel.com>
-References: <20220621123516.370479-10-tilak.tangudu@intel.com>
+Received: from madras.collabora.co.uk (madras.collabora.co.uk
+ [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7201710F5C6;
+ Tue, 21 Jun 2022 20:01:13 +0000 (UTC)
+Received: from hermes-devbox.fritz.box (82-71-8-225.dsl.in-addr.zen.co.uk
+ [82.71.8.225])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested) (Authenticated sender: bbeckett)
+ by madras.collabora.co.uk (Postfix) with ESMTPSA id CE89C6601795;
+ Tue, 21 Jun 2022 21:01:11 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1655841672;
+ bh=rWrjIyH1UrU5AZl0oNIAkNGBizb/FRgfR8mFNXvXnpg=;
+ h=From:To:Cc:Subject:Date:From;
+ b=HwA+7ra9y1nyEE2SGI7WFDO9jermLEg+2eN7brQeUHUG2IfIoJ8QB9PPzNregm43W
+ e/0JW7PvMfr+7jYNXI6b6RVSAWU49Q9R/HnzWXWRq0QwhZTL7IvHg5I0xa1EceKmiR
+ OCGyZ7R1//ied3sCvpX3aPp/vexWyrRV1KB2Pz4xF33wh6/Al8rvh/07uWjAKjTU36
+ 2HAEsG2zKZH/4gaqa8L8rbvxXe50Rk1n5+BFjxZmJhUmAznoBZt/OZGwPhg9rfHnHe
+ MG0qiYz7aULJlhTn1aw0nT5e2j9VnXVJ6hD14euMP/LQqzNtXh/b9YJM+zzWbuTQ6I
+ NiQxJ4nhpbXwA==
+From: Robert Beckett <bob.beckett@collabora.com>
+To: dri-devel@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Date: Tue, 21 Jun 2022 20:00:48 +0000
+Message-Id: <20220621200058.3536182-1-bob.beckett@collabora.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220621123516.370479-10-tilak.tangudu@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 09/11] drm/i915: Add
- i915_save/load_pci_state helpers
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v8 00/10] drm/i915: ttm for stolen
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,104 +52,82 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: llvm@lists.linux.dev, kbuild-all@lists.01.org
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ kernel@collabora.com, Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Tilak,
+This series refactors i915's stolen memory region to use ttm.
 
-Thank you for the patch! Perhaps something to improve:
+v2:	handle disabled stolen similar to legacy version.
+	relying on ttm to fail allocs works fine, but is dmesg noisy and causes testing
+	dmesg warning regressions.
 
-[auto build test WARNING on drm-tip/drm-tip]
+v3:	rebase to latest drm-tip.
+	fix v2 code refactor which could leave a buffer pinned.
+	locally passes fftl again now.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Tilak-Tangudu/drm-i915-Add-D3Cold-Off-support-for-runtime-pm/20220621-202453
-base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
-config: i386-randconfig-a004 (https://download.01.org/0day-ci/archive/20220622/202206220303.UvbFJUZD-lkp@intel.com/config)
-compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project af6d2a0b6825e71965f3e2701a63c239fa0ad70f)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/ad0aa2eb6293edc066466ecf3b82ce2e4e0a9636
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Tilak-Tangudu/drm-i915-Add-D3Cold-Off-support-for-runtime-pm/20220621-202453
-        git checkout ad0aa2eb6293edc066466ecf3b82ce2e4e0a9636
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 SHELL=/bin/bash drivers/gpu/drm/i915/
+v4:	- Allow memory regions creators to do allocation. Allows stolen region to track
+	  it's own reservations.
+	- Pre-reserve first page of stolen mem (add back WaSkipStolenMemoryFirstPage:bdw+)
+	- Improve commit descritpion for "drm/i915: sanitize mem_flags for stolen buffers"
+	- replace i915_gem_object_pin_pages_unlocked() call with manual locking and pinning.
+	  this avoids ww ctx class reuse during context creation -> ring vma obj alloc.
 
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
+v5:	- detect both types of stolen as stolen buffers in
+	  "drm/i915: sanitize mem_flags for stolen buffers"
+	- in stolen_object_init limit page size to mem region minimum.
+	  The range allocator expects the page_size to define the
+	  alignment
 
-All warnings (new ones prefixed by >>):
+v6:	- Share first 4 patches from ttm for internal series as generic
+	  i915 ttm fixes
+	- Drop patch 4 from v5. We don't need separate object ops just
+	  to satisfy test interfaces. The tests have now been fixed via
+	  checking whether the memory region is private to decide
+	  whether to mmap
+	- Add new buffer pin alloc flag to allow creation of buffers in
+	  their final ttm placement instead of deferring until
+	  get_pages. This fixes legacy fallback paths for buffer
+	  allocations during stolen memory pressure.
 
->> drivers/gpu/drm/i915/i915_driver.c:108:6: warning: no previous prototype for function 'i915_save_pci_state' [-Wmissing-prototypes]
-   bool i915_save_pci_state(struct pci_dev *pdev)
-        ^
-   drivers/gpu/drm/i915/i915_driver.c:108:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
-   bool i915_save_pci_state(struct pci_dev *pdev)
-   ^
-   static 
->> drivers/gpu/drm/i915/i915_driver.c:127:6: warning: no previous prototype for function 'i915_load_pci_state' [-Wmissing-prototypes]
-   void i915_load_pci_state(struct pci_dev *pdev)
-        ^
-   drivers/gpu/drm/i915/i915_driver.c:127:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
-   void i915_load_pci_state(struct pci_dev *pdev)
-   ^
-   static 
-   2 warnings generated.
+v7: 	- fix mock_region_get_pages() to correctly handle I915_BO_INVALID_OFFSET
 
+v8:	- Reserve I915_GEM_STOLEN_BIAS area from stolen
 
-vim +/i915_save_pci_state +108 drivers/gpu/drm/i915/i915_driver.c
+Robert Beckett (10):
+  drm/i915/ttm: dont trample cache_level overrides during ttm move
+  drm/i915: limit ttm to dma32 for i965G[M]
+  drm/i915/ttm: only trust snooping for dgfx when deciding default
+    cache_level
+  drm/i915/gem: selftest should not attempt mmap of private regions
+  drm/i915: instantiate ttm ranger manager for stolen memory
+  drm/i915: sanitize mem_flags for stolen buffers
+  drm/i915: ttm move/clear logic fix
+  drm/i915: allow memory region creators to alloc and free the region
+  drm/i915/ttm: add buffer pin on alloc flag
+  drm/i915: stolen memory use ttm backend
 
-   107	
- > 108	bool i915_save_pci_state(struct pci_dev *pdev)
-   109	{
-   110		struct drm_i915_private *i915 = pci_get_drvdata(pdev);
-   111	
-   112		if (pci_save_state(pdev))
-   113			return false;
-   114	
-   115		kfree(i915->pci_state);
-   116	
-   117		i915->pci_state = pci_store_saved_state(pdev);
-   118	
-   119		if (!i915->pci_state) {
-   120			drm_err(&i915->drm, "Failed to store PCI saved state\n");
-   121			return false;
-   122		}
-   123	
-   124		return true;
-   125	}
-   126	
- > 127	void i915_load_pci_state(struct pci_dev *pdev)
-   128	{
-   129		struct drm_i915_private *i915 = pci_get_drvdata(pdev);
-   130		int ret;
-   131	
-   132		if (!i915->pci_state)
-   133			return;
-   134	
-   135		ret = pci_load_saved_state(pdev, i915->pci_state);
-   136		if (!ret) {
-   137			pci_restore_state(pdev);
-   138		} else {
-   139			drm_warn(&i915->drm, "Failed to load PCI state, err:%d\n", ret);
-   140		}
-   141	}
-   142	static int i915_get_bridge_dev(struct drm_i915_private *dev_priv)
-   143	{
-   144		int domain = pci_domain_nr(to_pci_dev(dev_priv->drm.dev)->bus);
-   145	
-   146		dev_priv->bridge_dev =
-   147			pci_get_domain_bus_and_slot(domain, 0, PCI_DEVFN(0, 0));
-   148		if (!dev_priv->bridge_dev) {
-   149			drm_err(&dev_priv->drm, "bridge device not found\n");
-   150			return -EIO;
-   151		}
-   152		return 0;
-   153	}
-   154	
+ drivers/gpu/drm/i915/display/intel_fbc.c      |  78 ++--
+ drivers/gpu/drm/i915/gem/i915_gem_object.c    |   1 +
+ .../gpu/drm/i915/gem/i915_gem_object_types.h  |  16 +-
+ drivers/gpu/drm/i915/gem/i915_gem_stolen.c    | 441 +++++++-----------
+ drivers/gpu/drm/i915/gem/i915_gem_stolen.h    |  21 +-
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.c       |  29 +-
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.h       |   7 +
+ drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c  |  47 +-
+ .../drm/i915/gem/selftests/i915_gem_mman.c    |   3 +
+ drivers/gpu/drm/i915/gt/intel_rc6.c           |   4 +-
+ drivers/gpu/drm/i915/gt/selftest_reset.c      |  16 +-
+ drivers/gpu/drm/i915/i915_debugfs.c           |   7 +-
+ drivers/gpu/drm/i915/i915_drv.h               |   5 -
+ drivers/gpu/drm/i915/intel_memory_region.c    |  16 +-
+ drivers/gpu/drm/i915/intel_memory_region.h    |   2 +
+ drivers/gpu/drm/i915/intel_region_ttm.c       |  80 +++-
+ drivers/gpu/drm/i915/intel_region_ttm.h       |   8 +-
+ drivers/gpu/drm/i915/selftests/mock_region.c  |  12 +-
+ 18 files changed, 424 insertions(+), 369 deletions(-)
 
 -- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+2.25.1
+
