@@ -1,41 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A580F5531E3
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jun 2022 14:22:41 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE6985531E5
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jun 2022 14:22:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C950110ECCD;
-	Tue, 21 Jun 2022 12:22:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E6DB710EF32;
+	Tue, 21 Jun 2022 12:22:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E18A510ECB2
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Jun 2022 12:22:38 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D34EE10ECB2
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Jun 2022 12:22:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655814158; x=1687350158;
+ t=1655814161; x=1687350161;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=V7kpV9gGAaN9vX7VzMuTZ+hWKit8/dfpfzQazuRXF2w=;
- b=m21DmzaQzCs+hK/V4pRh8/u9BozMUvGIZTOkngEVkjoC6dnHNu4b3+0p
- fjo6mUb3/kHBhX2vZtBcEnBO6JGP97USvNQFF+TedZI5g8HY1RXLMaYmN
- 9Wk0dXh/4cHmZaIJBc41LpKX+uSb8sW0H2tnagndDoXNNUf3b5CbLk1Bx
- Vck3kL5aaijjFdCp5cCCgs4CZiJYyIXxiVWPzL5tH2WhxaLFazTwmWgSH
- jogk2u8u9lXF2aJwy1/MWtsUiRNf1RUPoyqXMSM9YFzHxygIUx0I0Q5Os
- +1rAEWP4IHZ5AUMo9A07Xm3hOYNhzLe9INoOx20YaeqyHVm4V9pMKwGce w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10384"; a="280835586"
-X-IronPort-AV: E=Sophos;i="5.92,209,1650956400"; d="scan'208";a="280835586"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jun 2022 05:22:38 -0700
+ bh=/4l9dvYZ24W2y9TVq9WPDMG1kNy2JgpNAiHQcivzfs8=;
+ b=RihTuADpeOhqYYmolkZuTjyYWUOX5owdOhMSb+YMCP6TSestRBEYlz00
+ mjQVCTKaGYYBDtrOba4+SxfwKe3djhmSII7EEU+nXj0YeuibpB1730f9P
+ tSvJZbiK2xJGrxBA18UL9cMg7VVgYtGzDJoJZ469C7kvfwq5JNhK5sJcv
+ v/nRX6x0e3zEGeCdQxN6JV8v2K5FVyUTzxtr1jPNU/Ub36uoZukPuXYol
+ OQqBlnUbvul3N/c8gDNY0KCjnV6UVTJAaBsrcRc8xJGjGptnj61dCqAQ8
+ sGrRqROFaC/ImN6R/5Q73AF2hGV4MbQEmU4sFrqQPneqRLPbz9DdTFyep Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10384"; a="277652903"
+X-IronPort-AV: E=Sophos;i="5.92,209,1650956400"; d="scan'208";a="277652903"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jun 2022 05:22:41 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,209,1650956400"; d="scan'208";a="585577565"
+X-IronPort-AV: E=Sophos;i="5.92,209,1650956400"; d="scan'208";a="591629699"
 Received: from irvmail001.ir.intel.com ([10.43.11.63])
- by orsmga002.jf.intel.com with ESMTP; 21 Jun 2022 05:22:35 -0700
+ by fmsmga007.fm.intel.com with ESMTP; 21 Jun 2022 05:22:38 -0700
 Received: from intel.com (tttangud-desk.iind.intel.com [10.145.144.118])
  by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
- 25LCMKjo013778; Tue, 21 Jun 2022 13:22:31 +0100
+ 25LCMKjp013778; Tue, 21 Jun 2022 13:22:35 +0100
 From: Tilak Tangudu <tilak.tangudu@intel.com>
 To: intel-gfx@lists.freedesktop.org, jon.ewins@intel.com,
  rodrigo.vivi@intel.com, vinay.belgaumkar@intel.com,
@@ -44,15 +44,15 @@ To: intel-gfx@lists.freedesktop.org, jon.ewins@intel.com,
  tilak.tangudu@intel.com, matthew.d.roper@intel.com,
  saurabhg.gupta@intel.com, Aravind.Iddamsetty@intel.com,
  Sujaritha.Sundaresan@intel.com
-Date: Tue, 21 Jun 2022 18:05:08 +0530
-Message-Id: <20220621123516.370479-4-tilak.tangudu@intel.com>
+Date: Tue, 21 Jun 2022 18:05:09 +0530
+Message-Id: <20220621123516.370479-5-tilak.tangudu@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220621123516.370479-1-tilak.tangudu@intel.com>
 References: <20220621123516.370479-1-tilak.tangudu@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 03/11] drm/i915: Avoid rpm helpers in
- intel_gt_suspend_late
+Subject: [Intel-gfx] [PATCH 04/11] drm/i915: Added is_intel_rpm_allowed
+ helper
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,141 +68,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Removed rpm helpers from intel_gt_suspend_late
-and added rpm helpers at below high level functions
--__intel_gt_disable
--live_gt_resume
-
-intel_gt_suspend_late is used in i915_gem_suspend_late
-and i915_gem_suspend_late need to avoid rpm helpers
-so added rpm helpers at higher level functions
--i915_gem_driver_remove
--i915_drm_suspend_late(already holds rpm wakeref)
--do_suspend (already holds rpm wakeref)
-
-Removed rpm helpers from intel_uc_suspend and
-acquired rpm wakref from above high functions.
+Added is_intel_rpm_allowed function to query the runtime_pm
+status and disllow during suspending and resuming.
 
 Signed-off-by: Tilak Tangudu <tilak.tangudu@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_gt.c       |  4 +++-
- drivers/gpu/drm/i915/gt/intel_gt_pm.c    | 11 ++++-------
- drivers/gpu/drm/i915/gt/selftest_gt_pm.c |  4 +++-
- drivers/gpu/drm/i915/gt/uc/intel_uc.c    |  9 +++------
- drivers/gpu/drm/i915/i915_gem.c          |  5 ++++-
- 5 files changed, 17 insertions(+), 16 deletions(-)
+ drivers/gpu/drm/i915/intel_runtime_pm.c | 15 +++++++++++++++
+ drivers/gpu/drm/i915/intel_runtime_pm.h |  1 +
+ 2 files changed, 16 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-index be9877c4b496..bb04ec32c54f 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-@@ -590,10 +590,12 @@ static int __engines_verify_workarounds(struct intel_gt *gt)
- 
- static void __intel_gt_disable(struct intel_gt *gt)
- {
-+	intel_wakeref_t wakeref = 0;
- 	intel_gt_set_wedged_on_fini(gt);
- 
- 	intel_gt_suspend_prepare(gt);
--	intel_gt_suspend_late(gt);
-+	with_intel_runtime_pm(gt->uncore->rpm, wakeref)
-+		intel_gt_suspend_late(gt);
- 
- 	GEM_BUG_ON(intel_gt_pm_is_awake(gt));
- }
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-index f553e2173bda..be99b01a0984 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-@@ -326,8 +326,6 @@ static suspend_state_t pm_suspend_target(void)
- 
- void intel_gt_suspend_late(struct intel_gt *gt)
- {
--	intel_wakeref_t wakeref;
--
- 	/* We expect to be idle already; but also want to be independent */
- 	wait_for_suspend(gt);
- 
-@@ -352,11 +350,10 @@ void intel_gt_suspend_late(struct intel_gt *gt)
- 	if (pm_suspend_target() == PM_SUSPEND_TO_IDLE)
- 		return;
- 
--	with_intel_runtime_pm(gt->uncore->rpm, wakeref) {
--		intel_rps_disable(&gt->rps);
--		intel_rc6_disable(&gt->rc6);
--		intel_llc_disable(&gt->llc);
--	}
-+	intel_rps_disable(&gt->rps);
-+	intel_rc6_disable(&gt->rc6);
-+	intel_llc_disable(&gt->llc);
-+
- 
- 	gt_sanitize(gt, false);
- 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_gt_pm.c b/drivers/gpu/drm/i915/gt/selftest_gt_pm.c
-index be94f863bdef..50f30a5295c4 100644
---- a/drivers/gpu/drm/i915/gt/selftest_gt_pm.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_gt_pm.c
-@@ -142,13 +142,15 @@ static int live_gt_clocks(void *arg)
- static int live_gt_resume(void *arg)
- {
- 	struct intel_gt *gt = arg;
-+	intel_wakeref_t wakeref = 0;
- 	IGT_TIMEOUT(end_time);
- 	int err;
- 
- 	/* Do several suspend/resume cycles to check we don't explode! */
- 	do {
- 		intel_gt_suspend_prepare(gt);
--		intel_gt_suspend_late(gt);
-+		with_intel_runtime_pm(gt->uncore->rpm, wakeref)
-+			intel_gt_suspend_late(gt);
- 
- 		if (gt->rc6.enabled) {
- 			pr_err("rc6 still enabled after suspend!\n");
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-index f2e7c82985ef..425ad2ef1644 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-@@ -652,17 +652,14 @@ void intel_uc_runtime_suspend(struct intel_uc *uc)
- void intel_uc_suspend(struct intel_uc *uc)
- {
- 	struct intel_guc *guc = &uc->guc;
--	intel_wakeref_t wakeref;
- 	int err;
- 
- 	if (!intel_guc_is_ready(guc))
- 		return;
- 
--	with_intel_runtime_pm(&uc_to_gt(uc)->i915->runtime_pm, wakeref) {
--		err = intel_guc_suspend(guc);
--		if (err)
--			DRM_DEBUG_DRIVER("Failed to suspend GuC, err=%d", err);
--	}
-+	err = intel_guc_suspend(guc);
-+	if (err)
-+		DRM_DEBUG_DRIVER("Failed to suspend GuC, err=%d", err);
+diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.c b/drivers/gpu/drm/i915/intel_runtime_pm.c
+index 6ed5786bcd29..3759a8596084 100644
+--- a/drivers/gpu/drm/i915/intel_runtime_pm.c
++++ b/drivers/gpu/drm/i915/intel_runtime_pm.c
+@@ -320,6 +320,21 @@ untrack_all_intel_runtime_pm_wakerefs(struct intel_runtime_pm *rpm)
  }
  
- static int __uc_resume(struct intel_uc *uc, bool enable_communication)
-diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
-index 702e5b89be22..bbe1dac2341c 100644
---- a/drivers/gpu/drm/i915/i915_gem.c
-+++ b/drivers/gpu/drm/i915/i915_gem.c
-@@ -1173,9 +1173,12 @@ void i915_gem_driver_unregister(struct drm_i915_private *i915)
- 
- void i915_gem_driver_remove(struct drm_i915_private *dev_priv)
- {
-+	intel_wakeref_t wakeref;
+ #endif
++static int intel_runtime_pm_status(struct intel_runtime_pm *rpm)
++{
++	return rpm->kdev->power.runtime_status;
++}
 +
- 	intel_wakeref_auto_fini(&to_gt(dev_priv)->ggtt->userfault_wakeref);
++bool is_intel_rpm_allowed(struct intel_runtime_pm *rpm)
++{
++	int rpm_status;
++
++	rpm_status = intel_runtime_pm_status(rpm);
++	if (rpm_status == RPM_RESUMING || rpm_status == RPM_SUSPENDING)
++		return false;
++	else
++		return true;
++}
  
--	i915_gem_suspend_late(dev_priv);
-+	with_intel_runtime_pm(&dev_priv->runtime_pm, wakeref)
-+		i915_gem_suspend_late(dev_priv);
- 	intel_gt_driver_remove(to_gt(dev_priv));
- 	dev_priv->uabi_engines = RB_ROOT;
+ static void
+ intel_runtime_pm_acquire(struct intel_runtime_pm *rpm, bool wakelock)
+diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.h b/drivers/gpu/drm/i915/intel_runtime_pm.h
+index d9160e3ff4af..99418c3a934a 100644
+--- a/drivers/gpu/drm/i915/intel_runtime_pm.h
++++ b/drivers/gpu/drm/i915/intel_runtime_pm.h
+@@ -173,6 +173,7 @@ void intel_runtime_pm_init_early(struct intel_runtime_pm *rpm);
+ void intel_runtime_pm_enable(struct intel_runtime_pm *rpm);
+ void intel_runtime_pm_disable(struct intel_runtime_pm *rpm);
+ void intel_runtime_pm_driver_release(struct intel_runtime_pm *rpm);
++bool is_intel_rpm_allowed(struct intel_runtime_pm *rpm);
  
+ intel_wakeref_t intel_runtime_pm_get(struct intel_runtime_pm *rpm);
+ intel_wakeref_t intel_runtime_pm_get_if_in_use(struct intel_runtime_pm *rpm);
 -- 
 2.25.1
 
