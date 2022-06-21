@@ -1,41 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C7BB5531EF
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jun 2022 14:23:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4C5D5531F0
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jun 2022 14:23:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5678310F0F0;
-	Tue, 21 Jun 2022 12:23:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E5E710F60E;
+	Tue, 21 Jun 2022 12:23:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6955D10F621
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Jun 2022 12:23:03 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D25F810F5C3
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Jun 2022 12:23:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655814183; x=1687350183;
+ t=1655814186; x=1687350186;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=JFl2oB3UEE105sonw21uOzIYdTiUlgSF2/FwxF9soHM=;
- b=jm1xct9+T6FOxEtyJKOPCCwkvEWMnYEIFDUSUFBfYYhsHCMril9YQBB9
- PgXnLBvAPf8SSF0IgAvr+6YDWHWLRXgbrBHIApOIUPayYn+EV/RjaUMzF
- /A/ILybAaVwxljX+6Eaw3BqHaz2GVSYa4vRMIBIWMXBBz50LvM8ECm7VU
- lWkZadQdDXG8q2x8cfeYbXab1NEVpowyFmbk8JRBN/+bIJC/en/6+GFqy
- L+p+gU87/66jYdjhgBH1vyRJxyR2r1JvfoZrdkvd2J4DtbNv7dZzl3dvy
- F6pdHOB0H7yTNZIY+f8hHW1TEWc4FOfP73NKm6Ak4xN1iNNhp2NQpfqTo Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10384"; a="366428438"
-X-IronPort-AV: E=Sophos;i="5.92,209,1650956400"; d="scan'208";a="366428438"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jun 2022 05:23:03 -0700
+ bh=tbXsZVxAdtXoHwxvHp+EtjP1sIogHXf4l5D2F85LtqU=;
+ b=mXnbIoXK844lQN/zy2mDJ2gzRsYv+Nku3WkfAq9gXXn+4Z1vyP81qH/S
+ NXf+G29hvbea1RTjf/FU15ZlHuxFPOuWEe9N7CtltSwmUS4CiFdcceY5f
+ sb8X5zFpDIDuyGrhF+FQyI7pQ7AeZjVzZct8lmLawcWatiw4AxYj2COrT
+ aTJ5hEEFgy8SKmjeYkUTMIx2CD1lp7zdmMEjo9bfzaj1MOSWNtpbpSewu
+ mtyFFc09TwnmJmuzaYd4fFrZ6jQjjDnxFYCXP61PrAP88TfiPuDXjoePe
+ V7oAsWDQekruOeOuYTZMoLeM6l13Aic2mK+CmBYvYgT/FB6ddQ+e/7ZDF Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10384"; a="280835686"
+X-IronPort-AV: E=Sophos;i="5.92,209,1650956400"; d="scan'208";a="280835686"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jun 2022 05:23:06 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,209,1650956400"; d="scan'208";a="585263433"
+X-IronPort-AV: E=Sophos;i="5.92,209,1650956400"; d="scan'208";a="591629744"
 Received: from irvmail001.ir.intel.com ([10.43.11.63])
- by orsmga007.jf.intel.com with ESMTP; 21 Jun 2022 05:23:00 -0700
+ by fmsmga007.fm.intel.com with ESMTP; 21 Jun 2022 05:23:03 -0700
 Received: from intel.com (tttangud-desk.iind.intel.com [10.145.144.118])
  by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
- 25LCMKjv013778; Tue, 21 Jun 2022 13:22:56 +0100
+ 25LCMKjw013778; Tue, 21 Jun 2022 13:22:59 +0100
 From: Tilak Tangudu <tilak.tangudu@intel.com>
 To: intel-gfx@lists.freedesktop.org, jon.ewins@intel.com,
  rodrigo.vivi@intel.com, vinay.belgaumkar@intel.com,
@@ -44,15 +44,14 @@ To: intel-gfx@lists.freedesktop.org, jon.ewins@intel.com,
  tilak.tangudu@intel.com, matthew.d.roper@intel.com,
  saurabhg.gupta@intel.com, Aravind.Iddamsetty@intel.com,
  Sujaritha.Sundaresan@intel.com
-Date: Tue, 21 Jun 2022 18:05:15 +0530
-Message-Id: <20220621123516.370479-11-tilak.tangudu@intel.com>
+Date: Tue, 21 Jun 2022 18:05:16 +0530
+Message-Id: <20220621123516.370479-12-tilak.tangudu@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220621123516.370479-1-tilak.tangudu@intel.com>
 References: <20220621123516.370479-1-tilak.tangudu@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 10/11] drm/i915: Guard rpm helpers at
- gt_park/unpark
+Subject: [Intel-gfx] [PATCH 11/11] drm/i915 : Add D3COLD OFF support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,63 +67,203 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Guard rpm helpers at gt_park/unpark with is_intel_rpm_allowed
-to guard (gt/engine)_pm_(get/put)
+Added lmem deep suspend/resume, which covers lmem
+eviction and added GT/GUC deep suspend/resume
+using i915_gem_backup_suspend, i915_gem_suspend_late
+and i915_gem_resume.
+
+Added HAS_D3COLD_OFF feature macro to use for
+D3COLD OFF feature
 
 Signed-off-by: Tilak Tangudu <tilak.tangudu@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_engine_cs.c |  9 ++++++---
- drivers/gpu/drm/i915/gt/intel_gt_pm.c     | 10 ++++++----
- 2 files changed, 12 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/i915/i915_driver.c       | 96 ++++++++++++++++++------
+ drivers/gpu/drm/i915/i915_drv.h          |  1 +
+ drivers/gpu/drm/i915/i915_pci.c          |  1 +
+ drivers/gpu/drm/i915/intel_device_info.h |  1 +
+ 4 files changed, 76 insertions(+), 23 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-index 136cc44c3deb..e353aa0c649b 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-@@ -1600,9 +1600,12 @@ bool intel_engines_are_idle(struct intel_gt *gt)
- 	if (intel_gt_is_wedged(gt))
- 		return true;
- 
--	/* Already parked (and passed an idleness test); must still be idle */
--	if (!READ_ONCE(gt->awake))
--		return true;
-+	/* Ignore gt->awake when rpm is not allowed as wakeref is not held at gt_unpark */
-+	if (is_intel_rpm_allowed(gt->uncore->rpm)) {
-+		/* Already parked (and passed an idleness test); must still be idle */
-+		if (!READ_ONCE(gt->awake))
-+			return true;
-+	}
- 
- 	for_each_engine(engine, gt, id) {
- 		if (!intel_engine_is_idle(engine))
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-index 9857b91194b7..12117cf7eb94 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-@@ -81,8 +81,10 @@ static int __gt_unpark(struct intel_wakeref *wf)
- 	 * Work around it by grabbing a GT IRQ power domain whilst there is any
- 	 * GT activity, preventing any DC state transitions.
+diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+index 669365c2958c..1ca45d933a4a 100644
+--- a/drivers/gpu/drm/i915/i915_driver.c
++++ b/drivers/gpu/drm/i915/i915_driver.c
+@@ -1609,9 +1609,21 @@ static int intel_runtime_suspend(struct device *kdev)
+ 	 * We are safe here against re-faults, since the fault handler takes
+ 	 * an RPM reference.
  	 */
--	gt->awake = intel_display_power_get(i915, POWER_DOMAIN_GT_IRQ);
--	GEM_BUG_ON(!gt->awake);
-+	if (is_intel_rpm_allowed(gt->uncore->rpm)) {
-+		gt->awake = intel_display_power_get(i915, POWER_DOMAIN_GT_IRQ);
-+		GEM_BUG_ON(!gt->awake);
+-	i915_gem_runtime_suspend(dev_priv);
++	if (HAS_D3COLD_OFF(dev_priv)) {
++		i915_gem_backup_suspend(dev_priv);
++		i915_ggtt_suspend(to_gt(dev_priv)->ggtt);
++		i915_gem_suspend_late(dev_priv);
++	} else {
++		i915_gem_runtime_suspend(dev_priv);
++		intel_gt_runtime_suspend(to_gt(dev_priv));
+ 
+-	intel_gt_runtime_suspend(to_gt(dev_priv));
++		/*
++		 * FIXME: Temporary hammer to avoid freezing the machine on our DGFX
++		 * This should be totally removed when we handle the pci states properly
++		 * on runtime PM and on s2idle cases.
++		 */
++		pci_d3cold_disable(pdev);
 +	}
  
- 	intel_rc6_unpark(&gt->rc6);
- 	intel_rps_unpark(&gt->rps);
-@@ -116,8 +118,8 @@ static int __gt_park(struct intel_wakeref *wf)
- 	intel_synchronize_irq(i915);
+ 	intel_runtime_pm_disable_interrupts(dev_priv);
  
- 	/* Defer dropping the display power well for 100ms, it's slow! */
--	GEM_BUG_ON(!wakeref);
--	intel_display_power_put_async(i915, POWER_DOMAIN_GT_IRQ, wakeref);
-+	if (wakeref)
-+		intel_display_power_put_async(i915, POWER_DOMAIN_GT_IRQ, wakeref);
+@@ -1641,12 +1653,6 @@ static int intel_runtime_suspend(struct device *kdev)
+ 		drm_err(&dev_priv->drm,
+ 			"Unclaimed access detected prior to suspending\n");
  
+-	/*
+-	 * FIXME: Temporary hammer to avoid freezing the machine on our DGFX
+-	 * This should be totally removed when we handle the pci states properly
+-	 * on runtime PM and on s2idle cases.
+-	 */
+-	pci_d3cold_disable(pdev);
+ 	rpm->suspended = true;
+ 
+ 	/*
+@@ -1662,14 +1668,18 @@ static int intel_runtime_suspend(struct device *kdev)
+ 		 */
+ 		intel_opregion_notify_adapter(dev_priv, PCI_D3hot);
+ 	} else {
+-		/*
+-		 * current versions of firmware which depend on this opregion
+-		 * notification have repurposed the D1 definition to mean
+-		 * "runtime suspended" vs. what you would normally expect (D3)
+-		 * to distinguish it from notifications that might be sent via
+-		 * the suspend path.
+-		 */
+-		intel_opregion_notify_adapter(dev_priv, PCI_D1);
++		if (HAS_D3COLD_OFF(dev_priv)) {
++			intel_opregion_suspend(dev_priv, PCI_D3cold);
++		} else {
++			/*
++			 * current versions of firmware which depend on this opregion
++			 * notification have repurposed the D1 definition to mean
++			 * "runtime suspended" vs. what you would normally expect (D3)
++			 * to distinguish it from notifications that might be sent via
++			 * the suspend path.
++			 */
++			intel_opregion_notify_adapter(dev_priv, PCI_D1);
++		}
+ 	}
+ 
+ 	assert_forcewakes_inactive(&dev_priv->uncore);
+@@ -1677,6 +1687,12 @@ static int intel_runtime_suspend(struct device *kdev)
+ 	if (!IS_VALLEYVIEW(dev_priv) && !IS_CHERRYVIEW(dev_priv))
+ 		intel_hpd_poll_enable(dev_priv);
+ 
++	if (HAS_D3COLD_OFF(dev_priv)) {
++		i915_save_pci_state(pdev);
++		pci_disable_device(pdev);
++		pci_set_power_state(pdev, PCI_D3cold);
++	}
++
+ 	drm_dbg(&dev_priv->drm, "Device suspended\n");
  	return 0;
  }
+@@ -1696,9 +1712,28 @@ static int intel_runtime_resume(struct device *kdev)
+ 	drm_WARN_ON_ONCE(&dev_priv->drm, atomic_read(&rpm->wakeref_count));
+ 	disable_rpm_wakeref_asserts(rpm);
+ 
+-	intel_opregion_notify_adapter(dev_priv, PCI_D0);
++	if (HAS_D3COLD_OFF(dev_priv)) {
++		ret = pci_set_power_state(pdev, PCI_D0);
++		if (ret) {
++			drm_err(&dev_priv->drm,
++				"failed to set PCI D0 power state (%d)\n", ret);
++			return ret;
++		}
++
++		i915_load_pci_state(pdev);
++
++		ret = pci_enable_device(pdev);
++		if (ret)
++			return ret;
++		pci_set_master(pdev);
++		intel_opregion_resume(dev_priv);
++	} else {
++		pci_d3cold_enable(pdev);
++		intel_opregion_notify_adapter(dev_priv, PCI_D0);
++	}
++
+ 	rpm->suspended = false;
+-	pci_d3cold_enable(pdev);
++
+ 	if (intel_uncore_unclaimed_mmio(&dev_priv->uncore))
+ 		drm_dbg(&dev_priv->drm,
+ 			"Unclaimed access during suspend, bios?\n");
+@@ -1711,12 +1746,27 @@ static int intel_runtime_resume(struct device *kdev)
+ 
+ 	intel_runtime_pm_enable_interrupts(dev_priv);
+ 
+-	/*
+-	 * No point of rolling back things in case of an error, as the best
+-	 * we can do is to hope that things will still work (and disable RPM).
+-	 */
+-	intel_gt_runtime_resume(to_gt(dev_priv));
++	if (HAS_D3COLD_OFF(dev_priv)) {
++		ret = i915_pcode_init(dev_priv);
++		if (ret)
++			return ret;
+ 
++		sanitize_gpu(dev_priv);
++		ret = i915_ggtt_enable_hw(dev_priv);
++		if (ret)
++			drm_err(&dev_priv->drm, "failed to re-enable GGTT\n");
++
++		i915_ggtt_resume(to_gt(dev_priv)->ggtt);
++
++		i915_gem_resume(dev_priv);
++
++	} else {
++		/*
++		 * No point of rolling back things in case of an error, as the best
++		 * we can do is to hope that things will still work (and disable RPM).
++		 */
++		intel_gt_runtime_resume(to_gt(dev_priv));
++	}
+ 	/*
+ 	 * On VLV/CHV display interrupts are part of the display
+ 	 * power well, so hpd is reinitialized from there. For
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index ec8c7a2af673..633d20c2372a 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -1300,6 +1300,7 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+ 
+ #define HAS_REGION(i915, i) (INTEL_INFO(i915)->memory_regions & (i))
+ #define HAS_LMEM(i915) HAS_REGION(i915, REGION_LMEM)
++#define HAS_D3COLD_OFF(i915) (INTEL_INFO(dev_priv)->has_d3cold_off)
+ 
+ /*
+  * Platform has the dedicated compression control state for each lmem surfaces
+diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+index 5e51fc29bb8b..749ccb14fd6f 100644
+--- a/drivers/gpu/drm/i915/i915_pci.c
++++ b/drivers/gpu/drm/i915/i915_pci.c
+@@ -1064,6 +1064,7 @@ static const struct intel_device_info xehpsdv_info = {
+ 	.has_guc_deprivilege = 1, \
+ 	.has_heci_pxp = 1, \
+ 	.needs_compact_pt = 1, \
++	.has_d3cold_off = 1, \
+ 	.has_media_ratio_mode = 1, \
+ 	.platform_engine_mask = \
+ 		BIT(RCS0) | BIT(BCS0) | \
+diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
+index 08341174ee0a..495c12d65c3e 100644
+--- a/drivers/gpu/drm/i915/intel_device_info.h
++++ b/drivers/gpu/drm/i915/intel_device_info.h
+@@ -140,6 +140,7 @@ enum intel_ppgtt_type {
+ 	/* Keep has_* in alphabetical order */ \
+ 	func(has_64bit_reloc); \
+ 	func(has_64k_pages); \
++	func(has_d3cold_off); \
+ 	func(needs_compact_pt); \
+ 	func(gpu_reset_clobbers_display); \
+ 	func(has_reset_engine); \
 -- 
 2.25.1
 
