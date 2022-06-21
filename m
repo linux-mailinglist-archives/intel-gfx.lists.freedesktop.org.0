@@ -1,55 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F723553257
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jun 2022 14:43:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75FC4553277
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jun 2022 14:49:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C7D9410EF32;
-	Tue, 21 Jun 2022 12:43:52 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1918310F644;
- Tue, 21 Jun 2022 12:43:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE0111124ED;
+	Tue, 21 Jun 2022 12:49:36 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A94741124ED
+ for <Intel-gfx@lists.freedesktop.org>; Tue, 21 Jun 2022 12:49:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655815432; x=1687351432;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=bTRliaJ1QuhLI6uzBBPpckKhWQBnYZPgE2RTbAoOPM4=;
- b=UOqEg+oA2X6GhcclsDUqejbM4H3IDYXDrxMcm3sVzY/fXez1vXL49aXA
- UbP0qwM1kAmlwyrZ9kcoOtIvq+qdkYRKrNeroAcCqF5VB2CN/KGePpvR9
- amTJVUTvDLKr7hHgdTXOBbgzVzHEB5CBcW243l8lJKMxVZeDaOiVNW+KE
- jbPmd7yc0aGqDB16ymnt1bqNzag/cg0PvXFXSrPB8k1gLGR1fqea1b8/F
- 5aa7wv0hr8qpBNBLeVAKLnSUafkPVN4H5DfD7odXVzkQLwWvyRQ0SZoK4
- ZiZOAqs5ja8p16bF2sZbNPfNOX0q5uiEtz2CFBXRGTNv6LmxwsFTI1dh1 Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10384"; a="280838997"
-X-IronPort-AV: E=Sophos;i="5.92,209,1650956400"; d="scan'208";a="280838997"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jun 2022 05:43:50 -0700
-X-IronPort-AV: E=Sophos;i="5.92,209,1650956400"; d="scan'208";a="655124002"
-Received: from thrakatuluk.fi.intel.com (HELO thrakatuluk) ([10.237.72.90])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jun 2022 05:43:46 -0700
-Received: from platvala by thrakatuluk with local (Exim 4.94.2)
- (envelope-from <petri.latvala@intel.com>)
- id 1o3dCb-0021eo-Uw; Tue, 21 Jun 2022 15:41:53 +0300
-Date: Tue, 21 Jun 2022 15:41:53 +0300
-From: Petri Latvala <petri.latvala@intel.com>
-To: Matthew Auld <matthew.auld@intel.com>
-Message-ID: <YrG8kUzR9a3zWWs7@platvala-desk.ger.corp.intel.com>
-References: <20220621103001.184373-1-matthew.auld@intel.com>
- <20220621103001.184373-7-matthew.auld@intel.com>
+ t=1655815775; x=1687351775;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=dnTU38CbeYlqhR9lI0TanU2wEb48oTssfKAVeQzn5/k=;
+ b=g07H74MvMd+zgAziY0kRr5M91N8fmLZpsWCNMUOThG3KvEpOVQF/o398
+ eRqwkM8i7v55ENJqNNxAejLgIm8Eg9r62EAAue+ly/WqOtPSaNV8YCSO1
+ ZIebErO/oFldlvbC50jwxWSkPtTxHryY2+z3Zm9ykyJTZeUVs7CsVP27p
+ fsnrakxgjbEA840svZ7yfcLK1BTUBfagKMmopSIDsJTlMJ+K3gdKMuSM5
+ Pdt2CMjxUR1scG0Y47SbMi1imk5IhHpyUabOAE+zi5JipsSoSh1z1m1k2
+ Wc+EDnpRnW9w6o3delc3HYvEGoFZegD3gmyQS03PEBG4cx8fX/y+jNMoB Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10384"; a="281169506"
+X-IronPort-AV: E=Sophos;i="5.92,209,1650956400"; d="scan'208";a="281169506"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jun 2022 05:49:35 -0700
+X-IronPort-AV: E=Sophos;i="5.92,209,1650956400"; d="scan'208";a="643610056"
+Received: from lapolka-mobl.amr.corp.intel.com (HELO localhost.localdomain)
+ ([10.209.139.96])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jun 2022 05:49:34 -0700
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: Intel-gfx@lists.freedesktop.org
+Date: Tue, 21 Jun 2022 13:49:26 +0100
+Message-Id: <20220621124926.615884-1-tvrtko.ursulin@linux.intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220621103001.184373-7-matthew.auld@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t v2 6/9] tests/i915/query:
- sanity check the unallocated tracking
+Subject: [Intel-gfx] [CI] drm/i915/gem: add missing else
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,367 +54,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jun 21, 2022 at 11:29:58AM +0100, Matthew Auld wrote:
-> Sanity both the unallocated_size & unallocated_cpu_visible_size tracking.
-> 
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
-> ---
->  tests/i915/i915_query.c | 274 +++++++++++++++++++++++++++++++++++++++-
->  1 file changed, 273 insertions(+), 1 deletion(-)
-> 
-> diff --git a/tests/i915/i915_query.c b/tests/i915/i915_query.c
-> index ea99dc8d..7fbee545 100644
-> --- a/tests/i915/i915_query.c
-> +++ b/tests/i915/i915_query.c
-> @@ -23,6 +23,8 @@
->  
->  #include "igt.h"
->  #include "intel_hwconfig_types.h"
-> +#include "i915/gem.h"
-> +#include "i915/gem_create.h"
->  
->  #include <limits.h>
->  
-> @@ -519,6 +521,36 @@ static bool query_regions_supported(int fd)
->   * Should be source compatible either way though.
->   */
->  #define probed_cpu_visible_size rsvd1[0]
-> +#define unallocated_cpu_visible_size rsvd1[1]
-> +static bool query_regions_unallocated_supported(int fd)
-> +{
-> +	struct drm_i915_query_memory_regions *regions;
-> +	struct drm_i915_query_item item;
-> +	int i, ret = false;
-> +
-> +	memset(&item, 0, sizeof(item));
-> +	item.query_id = DRM_I915_QUERY_MEMORY_REGIONS;
-> +	i915_query_items(fd, &item, 1);
-> +	igt_assert(item.length > 0);
-> +
-> +	regions = calloc(1, item.length);
-> +
-> +	item.data_ptr = to_user_pointer(regions);
-> +	i915_query_items(fd, &item, 1);
-> +
-> +	for (i = 0; i < regions->num_regions; i++) {
-> +		struct drm_i915_memory_region_info info = regions->regions[i];
-> +
-> +		if (info.unallocated_cpu_visible_size) {
-> +			ret = true;
-> +			break;
-> +		}
-> +	}
-> +
-> +	free(regions);
-> +	return ret;
-> +}
-> +
->  static void test_query_regions_garbage_items(int fd)
->  {
->  	struct drm_i915_query_memory_regions *regions;
-> @@ -559,8 +591,9 @@ static void test_query_regions_garbage_items(int fd)
->  
->  		/*
->  		 * rsvd1[0] : probed_cpu_visible_size
-> +		 * rsvd1[1] : unallocated_cpu_visible_size
->  		 */
-> -		for (j = 1; j < ARRAY_SIZE(info.rsvd1); j++)
-> +		for (j = 2; j < ARRAY_SIZE(info.rsvd1); j++)
->  			igt_assert_eq_u32(info.rsvd1[j], 0);
->  	}
->  
-> @@ -573,6 +606,46 @@ static void test_query_regions_garbage_items(int fd)
->  	free(regions);
->  }
->  
-> +struct object_handle {
-> +	uint32_t handle;
-> +	struct igt_list_head link;
-> +};
-> +
-> +static uint32_t batch_create_size(int fd, uint64_t size)
-> +{
-> +	const uint32_t bbe = MI_BATCH_BUFFER_END;
-> +	uint32_t handle;
-> +
-> +	handle = gem_create(fd, size);
-> +	gem_write(fd, handle, 0, &bbe, sizeof(bbe));
-> +
-> +	return handle;
-> +}
-> +
-> +static void upload(int fd, struct igt_list_head *handles, uint32_t num_handles)
-> +{
-> +	struct drm_i915_gem_exec_object2 *exec;
-> +	struct drm_i915_gem_execbuffer2 execbuf = {};
-> +	struct object_handle *iter;
-> +	uint32_t i;
-> +
-> +	exec = calloc(num_handles + 1,
-> +		      sizeof(struct drm_i915_gem_exec_object2));
-> +
-> +	i = 0;
-> +	igt_list_for_each_entry(iter, handles, link)
-> +		exec[i++].handle = iter->handle;
-> +
-> +	exec[i].handle = batch_create_size(fd, 4096);
-> +
-> +	execbuf.buffers_ptr = to_user_pointer(exec);
-> +	execbuf.buffer_count = num_handles + 1;
-> +
-> +	gem_execbuf(fd, &execbuf);
-> +	gem_close(fd, exec[i].handle);
-> +	free(exec);
-> +}
-> +
->  static void test_query_regions_sanity_check(int fd)
->  {
->  	struct drm_i915_query_memory_regions *regions;
-> @@ -605,8 +678,20 @@ static void test_query_regions_sanity_check(int fd)
->  
->  			igt_assert(info.probed_cpu_visible_size == 0 ||
->  				   info.probed_cpu_visible_size == info.probed_size);
-> +			igt_assert(info.unallocated_size == info.probed_size);
-> +			igt_assert(info.unallocated_cpu_visible_size == 0 ||
-> +				   info.unallocated_cpu_visible_size ==
-> +				   info.unallocated_size);
->  		} else {
->  			igt_assert(info.probed_cpu_visible_size <= info.probed_size);
-> +			igt_assert(info.unallocated_size <= info.probed_size);
-> +			if (info.probed_cpu_visible_size < info.probed_size) {
-> +				igt_assert(info.unallocated_cpu_visible_size <
-> +					   info.unallocated_size);
-> +			} else {
-> +				igt_assert(info.unallocated_cpu_visible_size ==
-> +					   info.unallocated_size);
-> +			}
->  		}
->  
->  		igt_assert(r1.memory_class == I915_MEMORY_CLASS_SYSTEM ||
-> @@ -623,6 +708,58 @@ static void test_query_regions_sanity_check(int fd)
->  			igt_assert(!(r1.memory_class == r2.memory_class &&
->  				     r1.memory_instance == r2.memory_instance));
->  		}
-> +
-> +		{
-> +			struct igt_list_head handles;
-> +			struct object_handle oh = {};
-> +
-> +			IGT_INIT_LIST_HEAD(&handles);
-> +
-> +			oh.handle =
-> +				gem_create_with_cpu_access_in_memory_regions
-> +				(fd, 4096,
-> +				 INTEL_MEMORY_REGION_ID(r1.memory_class,
-> +							r1.memory_instance));
-> +			igt_list_add(&oh.link, &handles);
-> +			upload(fd, &handles, 1);
-> +
-> +			/*
-> +			 * System wide metrics should be censored if we
-> +			 * lack the correct permissions.
-> +			 */
-> +			igt_fork(child, 1) {
-> +				igt_drop_root();
-> +
-> +				memset(regions, 0, item.length);
-> +				i915_query_items(fd, &item, 1);
-> +				info = regions->regions[i];
-> +
-> +				igt_assert(info.unallocated_cpu_visible_size ==
-> +					   info.probed_cpu_visible_size);
-> +				igt_assert(info.unallocated_size ==
-> +					   info.probed_size);
-> +			}
-> +
-> +			igt_waitchildren();
-> +
-> +			memset(regions, 0, item.length);
-> +			i915_query_items(fd, &item, 1);
-> +			info = regions->regions[i];
-> +
-> +			if (r1.memory_class == I915_MEMORY_CLASS_DEVICE) {
-> +				igt_assert(info.unallocated_cpu_visible_size <
-> +					   info.probed_cpu_visible_size);
-> +				igt_assert(info.unallocated_size <
-> +					   info.probed_size);
-> +			} else {
-> +				igt_assert(info.unallocated_cpu_visible_size ==
-> +					   info.probed_cpu_visible_size);
-> +				igt_assert(info.unallocated_size ==
-> +					   info.probed_size);
-> +			}
-> +
-> +			gem_close(fd, oh.handle);
-> +		}
->  	}
->  
->  	/* All devices should at least have system memory */
-> @@ -631,6 +768,134 @@ static void test_query_regions_sanity_check(int fd)
->  	free(regions);
->  }
->  
-> +#define rounddown(x, y) (x - (x % y))
-> +#define SZ_64K (1ULL << 16)
-> +
-> +static void fill_unallocated(int fd, struct drm_i915_query_item *item, int idx,
-> +			     bool cpu_access)
-> +{
-> +	struct drm_i915_memory_region_info new_info, old_info;
-> +	struct drm_i915_query_memory_regions *regions;
-> +	struct drm_i915_gem_memory_class_instance ci;
-> +	struct object_handle *iter, *tmp;
-> +	struct igt_list_head handles;
-> +	uint32_t num_handles;
-> +	uint64_t rem, total;
-> +	int id;
-> +
-> +	srand(time(NULL));
-> +
-> +	IGT_INIT_LIST_HEAD(&handles);
-> +
-> +	regions = (struct drm_i915_query_memory_regions *)item->data_ptr;
+From: katrinzhou <katrinzhou@tencent.com>
 
-from_user_pointer(item->data_ptr)
+Add missing else in set_proto_ctx_param() to fix coverity issue.
 
+Addresses-Coverity: ("Unused value")
+Fixes: d4433c7600f7 ("drm/i915/gem: Use the proto-context to handle create parameters (v5)")
+Suggested-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Signed-off-by: katrinzhou <katrinzhou@tencent.com>
+[tursulin: fixup alignment]
+---
+ drivers/gpu/drm/i915/gem/i915_gem_context.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+index e116f82fc37c..dabdfe09f5e5 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+@@ -933,8 +933,9 @@ static int set_proto_ctx_param(struct drm_i915_file_private *fpriv,
+ 	case I915_CONTEXT_PARAM_PERSISTENCE:
+ 		if (args->size)
+ 			ret = -EINVAL;
+-		ret = proto_context_set_persistence(fpriv->dev_priv, pc,
+-						    args->value);
++		else
++			ret = proto_context_set_persistence(fpriv->dev_priv, pc,
++							    args->value);
+ 		break;
+ 
+ 	case I915_CONTEXT_PARAM_PROTECTED_CONTENT:
 -- 
-Petri Latvala
+2.34.1
 
-
-> +	memset(regions, 0, item->length);
-> +	i915_query_items(fd, item, 1);
-> +	new_info = regions->regions[idx];
-> +	ci = new_info.region;
-> +
-> +	id = INTEL_MEMORY_REGION_ID(ci.memory_class, ci.memory_instance);
-> +
-> +	if (cpu_access)
-> +		rem = new_info.unallocated_cpu_visible_size / 4;
-> +	else
-> +		rem = new_info.unallocated_size / 4;
-> +
-> +	rem = rounddown(rem, SZ_64K);
-> +	igt_assert_neq(rem, 0);
-> +	num_handles = 0;
-> +	total = 0;
-> +	do {
-> +		struct object_handle *oh;
-> +		uint64_t size;
-> +
-> +		size = rand() % rem;
-> +		size = rounddown(size, SZ_64K);
-> +		size = max_t(uint64_t, size, SZ_64K);
-> +
-> +		oh = malloc(sizeof(struct object_handle));
-> +		if (cpu_access)
-> +			oh->handle = gem_create_with_cpu_access_in_memory_regions(fd, size, id);
-> +		else
-> +			oh->handle = gem_create_in_memory_region_list(fd, size, 0, &ci, 1);
-> +		igt_list_add(&oh->link, &handles);
-> +
-> +		num_handles++;
-> +		total += size;
-> +		rem -= size;
-> +	} while (rem);
-> +
-> +	upload(fd, &handles, num_handles);
-> +
-> +	old_info = new_info;
-> +	memset(regions, 0, item->length);
-> +	i915_query_items(fd, item, 1);
-> +	new_info = regions->regions[idx];
-> +
-> +	igt_assert_lte(new_info.unallocated_size,
-> +		       new_info.probed_size - total);
-> +	igt_assert_lt(new_info.unallocated_size, old_info.unallocated_size);
-> +	if (new_info.probed_cpu_visible_size ==
-> +	    new_info.probed_size) { /* full BAR */
-> +		igt_assert_eq(new_info.unallocated_cpu_visible_size,
-> +			      new_info.unallocated_size);
-> +	} else if (cpu_access) {
-> +		igt_assert_lt(new_info.unallocated_cpu_visible_size,
-> +			      old_info.unallocated_cpu_visible_size);
-> +		igt_assert_lte(new_info.unallocated_cpu_visible_size,
-> +			       new_info.probed_cpu_visible_size - total);
-> +	}
-> +
-> +	igt_debug("fill completed with idx=%d, total=%"PRIu64"KiB, num_handles=%u\n",
-> +		  idx, total >> 10, num_handles);
-> +
-> +	igt_list_for_each_entry_safe(iter, tmp, &handles, link) {
-> +		gem_close(fd, iter->handle);
-> +		free(iter);
-> +	}
-> +
-> +	igt_drop_caches_set(fd, DROP_ALL);
-> +
-> +	old_info = new_info;
-> +	memset(regions, 0, item->length);
-> +	i915_query_items(fd, item, 1);
-> +	new_info = regions->regions[idx];
-> +
-> +	igt_assert(new_info.unallocated_size >=
-> +		   old_info.unallocated_size + total);
-> +	if (cpu_access)
-> +		igt_assert(new_info.unallocated_cpu_visible_size >=
-> +			   old_info.unallocated_cpu_visible_size + total);
-> +}
-> +
-> +static void test_query_regions_unallocated(int fd)
-> +{
-> +	struct drm_i915_query_memory_regions *regions;
-> +	struct drm_i915_query_item item;
-> +	int i;
-> +
-> +	memset(&item, 0, sizeof(item));
-> +	item.query_id = DRM_I915_QUERY_MEMORY_REGIONS;
-> +	i915_query_items(fd, &item, 1);
-> +	igt_assert(item.length > 0);
-> +
-> +	regions = calloc(1, item.length);
-> +
-> +	item.data_ptr = to_user_pointer(regions);
-> +	i915_query_items(fd, &item, 1);
-> +
-> +	igt_assert(regions->num_regions);
-> +
-> +	for (i = 0; i < regions->num_regions; i++) {
-> +		struct drm_i915_memory_region_info info = regions->regions[i];
-> +		struct drm_i915_gem_memory_class_instance ci = info.region;
-> +
-> +		if (ci.memory_class == I915_MEMORY_CLASS_DEVICE) {
-> +			fill_unallocated(fd, &item, i, true);
-> +			fill_unallocated(fd, &item, i, false);
-> +		}
-> +	}
-> +}
-> +
->  static bool query_engine_info_supported(int fd)
->  {
->  	struct drm_i915_query_item item = {
-> @@ -1173,6 +1438,13 @@ igt_main
->  		test_query_regions_sanity_check(fd);
->  	}
->  
-> +	igt_describe("Sanity check the region unallocated tracking");
-> +	igt_subtest("query-regions-unallocated") {
-> +		igt_require(query_regions_supported(fd));
-> +		igt_require(query_regions_unallocated_supported(fd));
-> +		test_query_regions_unallocated(fd);
-> +	}
-> +
->  	igt_subtest_group {
->  		igt_fixture {
->  			igt_require(query_engine_info_supported(fd));
-> -- 
-> 2.36.1
-> 
