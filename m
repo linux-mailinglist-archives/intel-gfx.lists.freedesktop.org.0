@@ -1,57 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 719CC552B98
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jun 2022 09:17:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71BB7552C52
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jun 2022 09:48:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 142BC11277E;
-	Tue, 21 Jun 2022 07:17:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB721112807;
+	Tue, 21 Jun 2022 07:48:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 827AD11277E
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Jun 2022 07:17:33 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 91E3E112800;
+ Tue, 21 Jun 2022 07:48:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655795853; x=1687331853;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=ljBqo+A9lbrYBbqjLXuUNv6Y0ivZplsgeKuf6XyiGnk=;
- b=PPyIrNqP8OCVGtvGVzCgIlw4/RzznMqEvMb8TJ2pMIMzcm1cEJ1ffWub
- oMyA0aEsvHEf0d60gwHjAVmRo4urqoDboCoKRT7pS/ttzOMZMTCJUVd3/
- bJV1As9EJo+aOwEEZId1WTGH9pCdw4fj6Ek7JVWBi+gCmrWIhDKexk7NI
- NxRyApLJD6mPbNyf1j8HXqXXgQIpdM3Sk6fnc9HLoUgmmSEjuqz3qQKfV
- QCkYUp0dxP96XD1DxHsYrzKqgq+2vR+dxyOeo0CcdAWmRfiFcAVVrylPS
- fp1QCOfGIEafV2opw62V2pUPCgXN+vQ2kDMrl3cD4k4Qn7wUhWw1YJXdM Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10384"; a="280096680"
-X-IronPort-AV: E=Sophos;i="5.92,209,1650956400"; d="scan'208";a="280096680"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jun 2022 00:17:33 -0700
-X-IronPort-AV: E=Sophos;i="5.92,209,1650956400"; d="scan'208";a="643492456"
-Received: from rgrotewx-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.35.153])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jun 2022 00:17:31 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: "Murthy, Arun R" <arun.r.murthy@intel.com>, "Manna, Animesh"
- <animesh.manna@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-In-Reply-To: <DM6PR11MB31778B9F5ACB76E68A804074BAB39@DM6PR11MB3177.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220602141850.21301-1-animesh.manna@intel.com>
- <20220602141850.21301-5-animesh.manna@intel.com>
- <877d5zp03q.fsf@intel.com>
- <DM6PR11MB317731387DD58F011B998298BAA19@DM6PR11MB3177.namprd11.prod.outlook.com>
- <87wndynsat.fsf@intel.com>
- <DM6PR11MB31778B9F5ACB76E68A804074BAB39@DM6PR11MB3177.namprd11.prod.outlook.com>
-Date: Tue, 21 Jun 2022 10:17:28 +0300
-Message-ID: <87letqscxj.fsf@intel.com>
+ t=1655797701; x=1687333701;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=1o3EYbTpbgd5QipYqiu/4GXWQ1ks5o+4O3O/+SFVrXk=;
+ b=JTZSBUCJ7aDV/kh3bGgG7/gE7AbsHcPvUhpE5Lpc3auCQ4S884p21/Nd
+ DUma+WphhS56GQ2YNuk4EpzTGDP3JDAIsz9LvcpdSr6eIdfICJCrRiPRK
+ EXuHgGDmuAuvFW53ta+m0ki4qI6TOPEGphjps47F0R/YtwkST5lFsdA2Q
+ lAKOzeiez1OCsPCcc6EKoUKFGYXy3/uTSHOmV6RnKb98zrQmcaeOma+TF
+ C6o0dxndD5fzHdcAqumJEKVEw+jKKLHBQVTJr5HDjbUrJjrkuis3eiaHK
+ HNxCEvPpWEyGFsA/R9Gs9XQjHhFvY+3BV72knEtH2r7g933TBsl7A42vT A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10384"; a="278825074"
+X-IronPort-AV: E=Sophos;i="5.92,209,1650956400"; d="scan'208";a="278825074"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jun 2022 00:48:21 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.92,209,1650956400"; d="scan'208";a="729727279"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.163])
+ by fmsmga001.fm.intel.com with SMTP; 21 Jun 2022 00:48:18 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 21 Jun 2022 10:48:17 +0300
+Date: Tue, 21 Jun 2022 10:48:17 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Stephen Rothwell <sfr@canb.auug.org.au>
+Message-ID: <YrF3wfumVi3q3bFj@intel.com>
+References: <20220621123656.7a479ad9@canb.auug.org.au>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [RFC PATCH 4/5] drm/i915/display: prepend connector
- name to the backlight
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220621123656.7a479ad9@canb.auug.org.au>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] linux-next: build failure after merge of the
+ drm-misc tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,64 +60,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ DRI <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 21 Jun 2022, "Murthy, Arun R" <arun.r.murthy@intel.com> wrote:
->> On Fri, 03 Jun 2022, "Murthy, Arun R" <arun.r.murthy@intel.com> wrote:
->> >> On Thu, 02 Jun 2022, Animesh Manna <animesh.manna@intel.com>
->> wrote:
->> >> > From: Arun R Murthy <arun.r.murthy@intel.com>
->> >> >
->> >> > With the enablement of dual eDP, there will have to exist two
->> >> > entries of backlight sysfs file. In order to avoid sysfs file name
->> >> > duplication, the file names are prepended with the connector name.
->> >>
->> >> Fixed by 20f85ef89d94 ("drm/i915/backlight: use unique backlight
->> >> device
->> >> names") about a year ago.
->> >>
->> > This patches checks if the return value is -EEXIST and then acts accordingly,
->> but -EEXIST is not returned.
->> > struct kernfs_node *__kernfs_create_file(struct kernfs_node *parent,
->> >                                          const char *name,
->> >                                          umode_t mode, kuid_t uid, kgid_t gid,
->> >                                          loff_t size,
->> >                                          const struct kernfs_ops *ops,
->> >                                          void *priv, const void *ns,
->> >                                          struct lock_class_key *key) {
->> >         struct kernfs_node *kn;
->> >         unsigned flags;
->> >         int rc;
->> >
->> >         flags = KERNFS_FILE;
->> >
->> >         kn = kernfs_new_node(parent, name, (mode & S_IALLUGO) | S_IFREG,
->> >                              uid, gid, flags);
->> >         if (!kn)
->> >                 return ERR_PTR(-ENOMEM);
->> >
->> > So the condition check with not be satisfied and the backlight registration
->> will fail for the 2nd backlight device.
->>
->> But the file isn't added by kernfs_new_node(), it just allocates the node. See
->> the kernfs_add_one() later in __kernfs_create_file().
->>
-> Moreover now that we will be supporting dual display, wouldn't it
-> be better to have the same file naming convention for both the
-> displays?
-> Without this patch, the first backlight would create an interface
-> with name intel_backlight and for the second it would create as
-> "cardXX-XXX-backlight". There wont be any similarities in the
-> backlight naming convention.
-> Would it be better to maintain the same naming convention
-> across the displays?
+On Tue, Jun 21, 2022 at 12:36:56PM +1000, Stephen Rothwell wrote:
+> Hi all,
+> 
+> After merging the drm-misc tree, today's linux-next build (x86_64
+> allmodconfig) failed like this:
+> 
+> drivers/gpu/drm/xlnx/zynqmp_disp.c: In function 'zynqmp_disp_create_planes':
+> drivers/gpu/drm/xlnx/zynqmp_disp.c:1260:17: error: implicit declaration of function 'drm_plane_create_zpos_immutable_property'; did you mean 'drm_plane_create_scaling_filter_property'? [-Werror=implicit-function-declaration]
+>  1260 |                 drm_plane_create_zpos_immutable_property(&layer->plane, i);
+>       |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>       |                 drm_plane_create_scaling_filter_property
+> drivers/gpu/drm/xlnx/zynqmp_disp.c:1262:25: error: implicit declaration of function 'drm_plane_create_alpha_property'; did you mean 'drm_plane_create_color_properties'? [-Werror=implicit-function-declaration]
+>  1262 |                         drm_plane_create_alpha_property(&layer->plane);
+>       |                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>       |                         drm_plane_create_color_properties
+> cc1: all warnings being treated as errors
+> 
+> Presumably caused by one of the commits that dropped includes from
+> drm-ctrc.h.
+> 
+> I have used the drm-misc tree from next-20220620 for today.
 
-The old name can't be changed.
-
-BR,
-Jani.
-
+Sorry about that. Looks like my .config was missing some
+dependencies of the zynqmp driver so it wasn't getting built.
+I'll cook up a fix.
 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+Ville Syrjälä
+Intel
