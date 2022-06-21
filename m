@@ -1,51 +1,94 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E72A455306F
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jun 2022 13:06:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB9E4552F6D
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jun 2022 12:07:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 136AC1120C1;
-	Tue, 21 Jun 2022 11:06:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C52DD112A14;
+	Tue, 21 Jun 2022 10:06:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from out162-62-57-252.mail.qq.com (out162-62-57-252.mail.qq.com
- [162.62.57.252])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 21F1710E6D5;
- Thu, 16 Jun 2022 07:08:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
- t=1655363318; bh=idbdNC33xevN6ZtoUUFthqlXafvy0QHgWej1vQ9pQts=;
- h=From:To:Cc:Subject:Date;
- b=H2DwyA98gB/h2nxmsbNY1f8GBbHcSA0pKn5RpSiBY3AJ7V0EeAE5BmvuZs1Vjtbb9
- 0PsVeHCPb/UGXOx3BQqrfWy7VWsauEDqxAm8vjzjeHYcFW94TyDgonbchiiARb8r68
- lXIMX2rMQLHe8u6hlejrEG6u5ay1AUIYWzwNkhrs=
-Received: from localhost.localdomain ([116.128.244.169])
- by newxmesmtplogicsvrszc9.qq.com (NewEsmtp) with SMTP
- id 2232966F; Thu, 16 Jun 2022 15:08:35 +0800
-X-QQ-mid: xmsmtpt1655363315tej6e9lnp
-Message-ID: <tencent_7B226C4A9BC2B5EEB37B70C188B5015D290A@qq.com>
-X-QQ-XMAILINFO: NyTsQ4JOu2J2ieFjiGNA/unOwey1GGAlUSLHpJXyAVRP49p7+EVtr4jRMXeISA
- gFeP5u+V4vXkw/Yt7ev958v8MQJrU4sQAvcPyDaL7CrUaWZ3g8Y9tQ2yt+fFwPBLX3XFxW7yD3DR
- z7u5+rPjJNCeDlmlemFmPlGgbud49c/Ob/x+koMOg0co5eOBEo/N2cwOslvV9JOcXeR9GlP/EVM3
- pzUSypm3QYTz6dIq9WScfChPLxH04jfCxXSldZquAfYt4HchZDsagL05scG6xiPTt0DTRBgTxdFa
- bVtU5FUlS43+j95d0qm95xNJwlCfImTUsFhU6roX1e2X60pf4hQNd89potAJfC33DbrTDOznhFoa
- Z6Z9htQBGU0FFidK0jH7HH8R73OZt4/4yoAlj2J/gvLQmQuaWfyBWAvPMVL+C30XaeHpoTQukN+L
- qK/fewHTReEWE88A3bKD4QJmK6PKM6Qa4vy+t+yf7oMSX4bpoxIhQrsx5hKUT7BYwmyxs3tQQP0m
- fdUJdhC9lrJ18zjbKDgR1gUKnmColtts9Em5YjfJuACGXNvRmufVuxeFom1KTe1ChOH/4zcDGx3R
- c+G2SjTufWdH5PvzHdgb10IhCGZ8WKP52gfq3sBZY9fAOxrdqVY+vPxb++mGqi3cs2qmWg15LD6V
- lY9HSQWg4VchAvCh1YulyW5dmPKUP0+tUuUyNOe/mGIKA0RoXeLbZfelm0hDQJPjCSvH5veSHYIt
- xZ4PjoKds4pdRouCUBiTIBx3Ws45QOYb9dxHwkhQyquW0Z1Xn98kn1ir26HrMHeypdMh6lXalg51
- +XyJ8MrtszKTwg4naqBjryK0N9rheVmMZBD/DMe/i+glsrDmyDdFv6COysmR3dVVUE0HGi4N87Fa
- a+hp+9NvLm1hewoBt2/8HULyg8xWDh+q4ioQYSEdLw
-From: 1064094935@qq.com
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Date: Thu, 16 Jun 2022 15:08:03 +0800
-X-OQ-MSGID: <20220616070803.105901-1-1064094935@qq.com>
-X-Mailer: git-send-email 2.25.1
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E9FF112A14
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Jun 2022 10:06:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1655806013;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=OVKCPH4a0JKLpBoajp+D/luYrEgaQCvDF1hMTvEYmdY=;
+ b=M0Bpnn/4FeJBxPX2CuJWT3wvYizLMA8DmgcpL+CMHLaSIzX/NuC8kxAWvvnzwPRMs+Jje6
+ KzrJkFWp83eFxVe/kQhGxGxxzI/PeE12IxKbTb87WnOrKydC0ICwPfK/TSEznrm8MZcBJ+
+ h2P+DSCD6A5J2ztpjR1Y2IcIH+042po=
+Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com
+ [209.85.218.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-6-iAxgQTdENNW2_W9FBLxOXg-1; Tue, 21 Jun 2022 06:06:50 -0400
+X-MC-Unique: iAxgQTdENNW2_W9FBLxOXg-1
+Received: by mail-ej1-f70.google.com with SMTP id
+ l2-20020a170906078200b006fed42bfeacso4585479ejc.16
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Jun 2022 03:06:50 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+ :content-language:to:cc:references:from:in-reply-to
+ :content-transfer-encoding;
+ bh=OVKCPH4a0JKLpBoajp+D/luYrEgaQCvDF1hMTvEYmdY=;
+ b=FKqXmlFIgT+8692vmo+RkGElFOi1TD5wXRGeTWzky56/tFmqctRQiWMeHeLIRTalTi
+ RGwOzws6cMcoUeBNf5AMJnA3TA00eiME5eZNY173h3YiRoS5XVFQIu9N0vOTXaBLCZL2
+ O2/gIpP4yG+jdcGNYmpwovCOtvuSwsLkeu3EjuZtiGUIzuvSXQMkdQK8ng6Y545ObWqn
+ I010HXh7YJXLgdhv4+8rsvhD0JBgLJSYeq4fzdnpU1tT6vboIu7vnD8qXua7vkTSPOzq
+ od2ZOYwNnVaySh3ITRGT7bmkvh218KhAJKS2hmP54zGTeZ0wlhkF9baS4+ilCqyvoaJi
+ b6Lg==
+X-Gm-Message-State: AJIora8SGy8KX5HW02VQTcoisDqo0MQ72wp+DdhQGy2r8GUtNsXqKssd
+ 719ZPMqeF7TqK9xNgEMAfot5VllO4KCODG1TFYR24cySuRFmzeyM7ocBkQOFhOmnsqHI90PlWqC
+ 4mxi1OhQ4ECtnj7SAufG0xpvztqtI
+X-Received: by 2002:a17:907:7e90:b0:704:b67d:623e with SMTP id
+ qb16-20020a1709077e9000b00704b67d623emr24830599ejc.634.1655806009497; 
+ Tue, 21 Jun 2022 03:06:49 -0700 (PDT)
+X-Google-Smtp-Source: AGRyM1vfDU5HBc6eg5PVLcqUujSoxltFjtYrZOrHgADfRD8wTvWQQMXNdkhuwCq1OBqcEKcR1dzWmQ==
+X-Received: by 2002:a17:907:7e90:b0:704:b67d:623e with SMTP id
+ qb16-20020a1709077e9000b00704b67d623emr24830566ejc.634.1655806009205; 
+ Tue, 21 Jun 2022 03:06:49 -0700 (PDT)
+Received: from [10.1.0.34] ([31.137.219.240]) by smtp.gmail.com with ESMTPSA id
+ d13-20020a170906304d00b00704757b1debsm7329217ejd.9.2022.06.21.03.06.46
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 21 Jun 2022 03:06:48 -0700 (PDT)
+Message-ID: <7a9bec36-b699-4a5f-ba79-36806f3d36b5@redhat.com>
+Date: Tue, 21 Jun 2022 12:06:45 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Tue, 21 Jun 2022 11:06:26 +0000
-Subject: [Intel-gfx] [PATCH] drm/i915: Fix spelling typo in comment
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.0
+To: Jani Nikula <jani.nikula@linux.intel.com>, Ben Skeggs
+ <bskeggs@redhat.com>, Karol Herbst <kherbst@redhat.com>,
+ Lyude <lyude@redhat.com>, Daniel Dadap <ddadap@nvidia.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, "Rafael J . Wysocki"
+ <rafael@kernel.org>, Mika Westerberg <mika.westerberg@linux.intel.com>,
+ Mark Gross <markgross@kernel.org>, Andy Shevchenko <andy@kernel.org>
+References: <20220517152331.16217-1-hdegoede@redhat.com>
+ <20220517152331.16217-2-hdegoede@redhat.com> <87y1yzdxtk.fsf@intel.com>
+ <dc30ddc2-b00e-234e-5ec3-b1ea79c74082@redhat.com> <87pmk9dhe1.fsf@intel.com>
+From: Hans de Goede <hdegoede@redhat.com>
+In-Reply-To: <87pmk9dhe1.fsf@intel.com>
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=hdegoede@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH 01/14] ACPI: video: Add a native function
+ parameter to acpi_video_get_backlight_type()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,38 +101,125 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, pengfuyuan <pengfuyuan@kylinos.cn>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, k2ci <kernel-bot@kylinos.cn>
+Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
+ intel-gfx <intel-gfx@lists.freedesktop.org>, amd-gfx@lists.freedesktop.org,
+ platform-driver-x86@vger.kernel.org, linux-acpi@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Len Brown <lenb@kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: pengfuyuan <pengfuyuan@kylinos.cn>
+Hi,
 
-Fix spelling typo in comment.
+On 5/19/22 11:02, Jani Nikula wrote:
+> On Wed, 18 May 2022, Hans de Goede <hdegoede@redhat.com> wrote:
+>> Hi,
+>>
+>> On 5/18/22 10:55, Jani Nikula wrote:
+>>> On Tue, 17 May 2022, Hans de Goede <hdegoede@redhat.com> wrote:
+>>>> ATM on x86 laptops where we want userspace to use the acpi_video backlight
+>>>> device we often register both the GPU's native backlight device and
+>>>> acpi_video's firmware acpi_video# backlight device. This relies on
+>>>> userspace preferring firmware type backlight devices over native ones, but
+>>>> registering 2 backlight devices for a single display really is undesirable.
+>>>>
+>>>> On x86 laptops where the native GPU backlight device should be used,
+>>>> the registering of other backlight devices is avoided by their drivers
+>>>> using acpi_video_get_backlight_type() and only registering their backlight
+>>>> if the return value matches their type.
+>>>>
+>>>> acpi_video_get_backlight_type() uses
+>>>> backlight_device_get_by_type(BACKLIGHT_RAW) to determine if a native
+>>>> driver is available and will never return native if this returns
+>>>> false. This means that the GPU's native backlight registering code
+>>>> cannot just call acpi_video_get_backlight_type() to determine if it
+>>>> should register its backlight, since acpi_video_get_backlight_type() will
+>>>> never return native until the native backlight has already registered.
+>>>>
+>>>> To fix this add a native function parameter to
+>>>> acpi_video_get_backlight_type(), which when set to true will make
+>>>> acpi_video_get_backlight_type() behave as if a native backlight has
+>>>> already been registered.
+> 
+> Regarding the question below, this is the part that throws me off.
+> 
+>>>>
+>>>> Note that all current callers are updated to pass false for the new
+>>>> parameter, so this change in itself causes no functional changes.
+>>>
+>>>
+>>>> diff --git a/drivers/acpi/video_detect.c b/drivers/acpi/video_detect.c
+>>>> index becc198e4c22..0a06f0edd298 100644
+>>>> --- a/drivers/acpi/video_detect.c
+>>>> +++ b/drivers/acpi/video_detect.c
+>>>> @@ -17,12 +17,14 @@
+>>>>   * Otherwise vendor specific drivers like thinkpad_acpi, asus-laptop,
+>>>>   * sony_acpi,... can take care about backlight brightness.
+>>>>   *
+>>>> - * Backlight drivers can use acpi_video_get_backlight_type() to determine
+>>>> - * which driver should handle the backlight.
+>>>> + * Backlight drivers can use acpi_video_get_backlight_type() to determine which
+>>>> + * driver should handle the backlight. RAW/GPU-driver backlight drivers must
+>>>> + * pass true for the native function argument, other drivers must pass false.
+>>>>   *
+>>>>   * If CONFIG_ACPI_VIDEO is neither set as "compiled in" (y) nor as a module (m)
+>>>>   * this file will not be compiled and acpi_video_get_backlight_type() will
+>>>> - * always return acpi_backlight_vendor.
+>>>> + * return acpi_backlight_native when its native argument is true and
+>>>> + * acpi_backlight_vendor when it is false.
+>>>>   */
+>>>
+>>> Frankly, I think the boolean native parameter here, and at the call
+>>> sites, is confusing, and the slightly different explanations in the
+>>> commit message and comment here aren't helping.
+>>
+>> Can you elaborate the "slightly different explanations in the
+>> commit message and comment" part a bit (so that I can fix this) ?
+>>
+>>> I suggest adding a separate function that the native backlight drivers
+>>> should use. I think it's more obvious all around, and easier to document
+>>> too.
+>>
+>> Code wise I think this would mean renaming the original and
+>> then adding 2 wrappers, but that is fine with me. I've no real
+>> preference either way and I'm happy with adding a new variant of
+>> acpi_video_get_backlight_type() for the native backlight drivers
+>> any suggestion for a name ?
+> 
+> Alternatively, do the native backlight drivers have any need for the
+> actual backlight type information from acpi? They only need to be able
+> to ask if they should register themselves, right?
+> 
+> I understand this sounds like bikeshedding, but I'm trying to avoid
+> duplicating the conditions in the drivers where a single predicate
+> function call could be sufficient, and the complexity could be hidden in
+> acpi.
+> 
+> 	if (!acpi_video_backlight_use_native())
+> 		return;
 
-Reported-by: k2ci <kernel-bot@kylinos.cn>
-Signed-off-by: pengfuyuan <pengfuyuan@kylinos.cn>
----
- drivers/gpu/drm/i915/gem/i915_gem_tiling.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+acpi_video_backlight_use_native() sounds good, I like I will change
+this for v2. This also removes churn in all the other
+acpi_video_get_backlight_type() callers.
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_tiling.c b/drivers/gpu/drm/i915/gem/i915_gem_tiling.c
-index 80ac0db1ae8c..85518b28cd72 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_tiling.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_tiling.c
-@@ -114,7 +114,7 @@ u32 i915_gem_fence_alignment(struct drm_i915_private *i915, u32 size,
- 	return i915_gem_fence_size(i915, size, tiling, stride);
- }
- 
--/* Check pitch constriants for all chips & tiling formats */
-+/* Check pitch constraints for all chips & tiling formats */
- static bool
- i915_tiling_ok(struct drm_i915_gem_object *obj,
- 	       unsigned int tiling, unsigned int stride)
--- 
-2.25.1
+> Perhaps all the drivers/platform/x86/* backlight drivers could use:
+> 
+> 	if (acpi_video_backlight_use_vendor())
+> 		...
 
+Hmm, as part of the ractoring there also will be new apple_gmux
+and nvidia_wmi_ec types. I'm not sure about adding seperate functions
+for all of those vs get_type() != foo. I like get_type != foo because
+it makes clear that there will also be another caller somewhere
+where get_type == foo and that that one will rbe the one which
+actually gets to register its backlight.
 
-No virus found
-		Checked by Hillstone Network AntiVirus
+> You can still use the native parameter etc. internally, but just hide
+> the details from everyone else, and, hopefully, make it harder for them
+> to do silly things?
+
+Ack.
+
+Regards,
+
+Hans
+
