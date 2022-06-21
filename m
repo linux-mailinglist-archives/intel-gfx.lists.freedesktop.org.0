@@ -2,49 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14F5D553A0D
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jun 2022 21:11:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 76CC1553A60
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jun 2022 21:21:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E8EB10E955;
-	Tue, 21 Jun 2022 19:11:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B331910ED53;
+	Tue, 21 Jun 2022 19:21:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D30710E641
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Jun 2022 19:11:51 +0000 (UTC)
-Received: from [192.168.178.53] (82-71-8-225.dsl.in-addr.zen.co.uk
- [82.71.8.225])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested) (Authenticated sender: bbeckett)
- by madras.collabora.co.uk (Postfix) with ESMTPSA id 082ED6601657
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Jun 2022 20:11:50 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1655838710;
- bh=/wXYHhoWqH2tzZoIUEaOOeEhkLIlDVYSlRe39yynIvY=;
- h=Date:Subject:To:References:From:In-Reply-To:From;
- b=E+pAZGuYEU7yqHObU8KziapPh+2kX2UmzstwIhcNQxninFQZDrXJLkE2e5N8KQL8v
- gstZpHk9ypfQHsddzM/EAxHjYnEmzbfqI7e6X0DMxolnaQcJdJ0LrjwIirsk5yxWcX
- kujRQY4/bJ3LIzE/XpnMLs6w37ASfTJqYk1P74q50Dobnlqd3t0cRcyQxWK28XRD0E
- 2oriAh0dQOyArN/UjTbxq8jFhUP7tsTGH754wyQBP6VcdfAGPE7o/zad080SFM/qsG
- 7EY9w10WiF4a3xhpNU4OWslq9eiOrHTGBrwYhbc2KYev8Geb9hli8ovjL1iYvRk91x
- 3FvMiuDhmX2SA==
-Message-ID: <20dedda6-534b-b39e-fb35-8becc5c27043@collabora.com>
-Date: Tue, 21 Jun 2022 20:11:47 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Content-Language: en-US
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D3AA10ED53
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Jun 2022 19:21:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1655839272; x=1687375272;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=2ExLOYh2v1yo0CJupuU5uypxGyJeTxjojJEOzduuVQA=;
+ b=Riryh90b4zvcWtNk6tQmtM8Q+1ExeX3pBk6hcEKI+v7eFOxJBYKy+3VW
+ 91AtXF1CyU/32wHj1Yo1rX/DPSj4t4RqfoiDEkVn2Q12fzvy5XbUlHdl9
+ wSrHq6P3Byevx3BB4A4+jZHB0k7GlNAnkxAAqbAEirFZ6L0hWEiSqZspj
+ pVjwFY6cwiZLEZou/SjCAOg66MEmxhRHSB9x70LRD3ioB8uZq3gzGZq7t
+ te+iCTxJxpXusDLknWP86Huwv5AuGKT7GYNgmyOODm+Xs72m138PHAJ40
+ uOx1tFhwWQgc85F9P9tAHIXAD/dKZ/w4lV9E7TZEeFUCoTyJGSPwJl9WU Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10385"; a="341900119"
+X-IronPort-AV: E=Sophos;i="5.92,210,1650956400"; d="scan'208";a="341900119"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jun 2022 12:21:11 -0700
+X-IronPort-AV: E=Sophos;i="5.92,210,1650956400"; d="scan'208";a="655284199"
+Received: from unerlige-desk.jf.intel.com ([10.165.21.210])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jun 2022 12:21:11 -0700
+From: "Nerlige Ramappa, Umesh" <umesh.nerlige.ramappa@intel.com>
 To: intel-gfx@lists.freedesktop.org
-References: <20220620213340.3199605-1-bob.beckett@collabora.com>
- <165583307119.13647.9219456323624399121@emeril.freedesktop.org>
-From: Robert Beckett <bob.beckett@collabora.com>
-In-Reply-To: <165583307119.13647.9219456323624399121@emeril.freedesktop.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_ttm_for_stolen_=28rev5=29?=
+Date: Tue, 21 Jun 2022 12:21:05 -0700
+Message-Id: <20220621192105.2100585-1-umesh.nerlige.ramappa@intel.com>
+X-Mailer: git-send-email 2.35.3
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/reset: Add additional steps for
+ Wa_22011802037 for execlist backend
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,360 +57,294 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 
+For execlists backend, current implementation of Wa_22011802037 is to
+stop the CS before doing a reset of the engine. This WA was further
+extended to wait for any pending MI FORCE WAKEUPs before issuing a
+reset. Add the extended steps in the execlist path of reset.
 
-On 21/06/2022 18:37, Patchwork wrote:
-> *Patch Details*
-> *Series:*	drm/i915: ttm for stolen (rev5)
-> *URL:*	https://patchwork.freedesktop.org/series/101396/ 
-> <https://patchwork.freedesktop.org/series/101396/>
-> *State:*	failure
-> *Details:* 
-> https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101396v5/index.html 
-> <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101396v5/index.html>
-> 
-> 
->   CI Bug Log - changes from CI_DRM_11790 -> Patchwork_101396v5
-> 
-> 
->     Summary
-> 
-> *FAILURE*
-> 
-> Serious unknown changes coming with Patchwork_101396v5 absolutely need to be
-> verified manually.
-> 
-> If you think the reported changes have nothing to do with the changes
-> introduced in Patchwork_101396v5, please notify your bug team to allow them
-> to document this new failure mode, which will reduce false positives in CI.
-> 
-> External URL: 
-> https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101396v5/index.html
-> 
-> 
->     Participating hosts (40 -> 41)
-> 
-> Additional (2): fi-icl-u2 bat-dg2-9
-> Missing (1): fi-bdw-samus
-> 
-> 
->     Possible new issues
-> 
-> Here are the unknown changes that may have been introduced in 
-> Patchwork_101396v5:
-> 
-> 
->       IGT changes
-> 
-> 
->         Possible regressions
-> 
->   * igt@i915_selftest@live@reset:
->       o bat-adlp-4: PASS
->         <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11790/bat-adlp-4/igt@i915_selftest@live@reset.html>
->         -> DMESG-FAIL
->         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101396v5/bat-adlp-4/igt@i915_selftest@live@reset.html>
-> 
+In addition, extend the WA to gen11.
 
-I keep hitting clobbered pages during engine resets on bat-adlp-4.
-It seems to happen most of the time on that machine and occasionally on 
-bat-adlp-6.
+v2: (Tvrtko)
+- Clarify comments, commit message, fix typos
+- Use IS_GRAPHICS_VER for gen 11/12 checks
 
-Should bat-adlp-4 be considered an unreliable machine like bat-adlp-6 is 
-for now?
+v3: (Daneile)
+- Drop changes to intel_ring_submission since WA does not apply to it
+- Log an error if MSG IDLE is not defined for an engine
 
-Alternatively, seeing the history of this in
+Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Fixes: f6aa0d713c88 ("drm/i915: Add Wa_22011802037 force cs halt")
+Acked-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_engine.h        |  2 +
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     | 88 ++++++++++++++++++-
+ .../drm/i915/gt/intel_execlists_submission.c  |  7 ++
+ drivers/gpu/drm/i915/gt/uc/intel_guc.c        |  4 +-
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 81 ++---------------
+ 5 files changed, 103 insertions(+), 79 deletions(-)
 
-commit 3da3c5c1c9825c24168f27b021339e90af37e969 "drm/i915: Exclude low 
-pages (128KiB) of stolen from use"
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h b/drivers/gpu/drm/i915/gt/intel_engine.h
+index 1431f1e9dbee..04e435bce79b 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine.h
++++ b/drivers/gpu/drm/i915/gt/intel_engine.h
+@@ -201,6 +201,8 @@ int intel_ring_submission_setup(struct intel_engine_cs *engine);
+ int intel_engine_stop_cs(struct intel_engine_cs *engine);
+ void intel_engine_cancel_stop_cs(struct intel_engine_cs *engine);
+ 
++void intel_engine_wait_for_pending_mi_fw(struct intel_engine_cs *engine);
++
+ void intel_engine_set_hwsp_writemask(struct intel_engine_cs *engine, u32 mask);
+ 
+ u64 intel_engine_get_active_head(const struct intel_engine_cs *engine);
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+index 136cc44c3deb..283870c65991 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+@@ -1376,10 +1376,10 @@ static int __intel_engine_stop_cs(struct intel_engine_cs *engine,
+ 	intel_uncore_write_fw(uncore, mode, _MASKED_BIT_ENABLE(STOP_RING));
+ 
+ 	/*
+-	 * Wa_22011802037 : gen12, Prior to doing a reset, ensure CS is
++	 * Wa_22011802037 : gen11, gen12, Prior to doing a reset, ensure CS is
+ 	 * stopped, set ring stop bit and prefetch disable bit to halt CS
+ 	 */
+-	if (GRAPHICS_VER(engine->i915) == 12)
++	if (IS_GRAPHICS_VER(engine->i915, 11, 12))
+ 		intel_uncore_write_fw(uncore, RING_MODE_GEN7(engine->mmio_base),
+ 				      _MASKED_BIT_ENABLE(GEN12_GFX_PREFETCH_DISABLE));
+ 
+@@ -1402,6 +1402,18 @@ int intel_engine_stop_cs(struct intel_engine_cs *engine)
+ 		return -ENODEV;
+ 
+ 	ENGINE_TRACE(engine, "\n");
++	/*
++	 * TODO: Find out why occasionally stopping the CS times out. Seen
++	 * especially with gem_eio tests.
++	 *
++	 * Occasionally trying to stop the cs times out, but does not adversely
++	 * affect functionality. The timeout is set as a config parameter that
++	 * defaults to 100ms. In most cases the follow up operation is to wait
++	 * for pending MI_FORCE_WAKES. The assumption is that this timeout is
++	 * sufficient for any pending MI_FORCEWAKEs to complete. Once root
++	 * caused, the caller must check and handle the return from this
++	 * function.
++	 */
+ 	if (__intel_engine_stop_cs(engine, 1000, stop_timeout(engine))) {
+ 		ENGINE_TRACE(engine,
+ 			     "timed out on STOP_RING -> IDLE; HEAD:%04x, TAIL:%04x\n",
+@@ -1428,6 +1440,78 @@ void intel_engine_cancel_stop_cs(struct intel_engine_cs *engine)
+ 	ENGINE_WRITE_FW(engine, RING_MI_MODE, _MASKED_BIT_DISABLE(STOP_RING));
+ }
+ 
++static u32 __cs_pending_mi_force_wakes(struct intel_engine_cs *engine)
++{
++	static const i915_reg_t _reg[I915_NUM_ENGINES] = {
++		[RCS0] = MSG_IDLE_CS,
++		[BCS0] = MSG_IDLE_BCS,
++		[VCS0] = MSG_IDLE_VCS0,
++		[VCS1] = MSG_IDLE_VCS1,
++		[VCS2] = MSG_IDLE_VCS2,
++		[VCS3] = MSG_IDLE_VCS3,
++		[VCS4] = MSG_IDLE_VCS4,
++		[VCS5] = MSG_IDLE_VCS5,
++		[VCS6] = MSG_IDLE_VCS6,
++		[VCS7] = MSG_IDLE_VCS7,
++		[VECS0] = MSG_IDLE_VECS0,
++		[VECS1] = MSG_IDLE_VECS1,
++		[VECS2] = MSG_IDLE_VECS2,
++		[VECS3] = MSG_IDLE_VECS3,
++		[CCS0] = MSG_IDLE_CS,
++		[CCS1] = MSG_IDLE_CS,
++		[CCS2] = MSG_IDLE_CS,
++		[CCS3] = MSG_IDLE_CS,
++	};
++	u32 val;
++
++	if (!_reg[engine->id].reg) {
++		drm_err(&engine->i915->drm,
++			"MSG IDLE undefined for engine id %u\n", engine->id);
++		return 0;
++	}
++
++	val = intel_uncore_read(engine->uncore, _reg[engine->id]);
++
++	/* bits[29:25] & bits[13:9] >> shift */
++	return (val & (val >> 16) & MSG_IDLE_FW_MASK) >> MSG_IDLE_FW_SHIFT;
++}
++
++static void __gpm_wait_for_fw_complete(struct intel_gt *gt, u32 fw_mask)
++{
++	int ret;
++
++	/* Ensure GPM receives fw up/down after CS is stopped */
++	udelay(1);
++
++	/* Wait for forcewake request to complete in GPM */
++	ret =  __intel_wait_for_register_fw(gt->uncore,
++					    GEN9_PWRGT_DOMAIN_STATUS,
++					    fw_mask, fw_mask, 5000, 0, NULL);
++
++	/* Ensure CS receives fw ack from GPM */
++	udelay(1);
++
++	if (ret)
++		GT_TRACE(gt, "Failed to complete pending forcewake %d\n", ret);
++}
++
++/*
++ * Wa_22011802037:gen12: In addition to stopping the cs, we need to wait for any
++ * pending MI_FORCE_WAKEUP requests that the CS has initiated to complete. The
++ * pending status is indicated by bits[13:9] (masked by bits[29:25]) in the
++ * MSG_IDLE register. There's one MSG_IDLE register per reset domain. Since we
++ * are concerned only with the gt reset here, we use a logical OR of pending
++ * forcewakeups from all reset domains and then wait for them to complete by
++ * querying PWRGT_DOMAIN_STATUS.
++ */
++void intel_engine_wait_for_pending_mi_fw(struct intel_engine_cs *engine)
++{
++	u32 fw_pending = __cs_pending_mi_force_wakes(engine);
++
++	if (fw_pending)
++		__gpm_wait_for_fw_complete(engine->gt, fw_pending);
++}
++
+ /* NB: please notice the memset */
+ void intel_engine_get_instdone(const struct intel_engine_cs *engine,
+ 			       struct intel_instdone *instdone)
+diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+index ad72e2c5c4e7..4b909cb88cdf 100644
+--- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+@@ -2968,6 +2968,13 @@ static void execlists_reset_prepare(struct intel_engine_cs *engine)
+ 	ring_set_paused(engine, 1);
+ 	intel_engine_stop_cs(engine);
+ 
++	/*
++	 * Wa_22011802037:gen11/gen12: In addition to stopping the cs, we need
++	 * to wait for any pending mi force wakeups
++	 */
++	if (IS_GRAPHICS_VER(engine->i915, 11, 12))
++		intel_engine_wait_for_pending_mi_fw(engine);
++
+ 	engine->execlists.reset_ccid = active_ccid(engine);
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+index 35887cb53201..2706a8c65090 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+@@ -310,8 +310,8 @@ static u32 guc_ctl_wa_flags(struct intel_guc *guc)
+ 	if (IS_DG2(gt->i915))
+ 		flags |= GUC_WA_DUAL_QUEUE;
+ 
+-	/* Wa_22011802037: graphics version 12 */
+-	if (GRAPHICS_VER(gt->i915) == 12)
++	/* Wa_22011802037: graphics version 11/12 */
++	if (IS_GRAPHICS_VER(gt->i915, 11, 12))
+ 		flags |= GUC_WA_PRE_PARSER;
+ 
+ 	/* Wa_16011777198:dg2 */
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+index e62ea35513ea..ef68f15a1b66 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+@@ -1527,87 +1527,18 @@ static void guc_reset_state(struct intel_context *ce, u32 head, bool scrub)
+ 	lrc_update_regs(ce, engine, head);
+ }
+ 
+-static u32 __cs_pending_mi_force_wakes(struct intel_engine_cs *engine)
+-{
+-	static const i915_reg_t _reg[I915_NUM_ENGINES] = {
+-		[RCS0] = MSG_IDLE_CS,
+-		[BCS0] = MSG_IDLE_BCS,
+-		[VCS0] = MSG_IDLE_VCS0,
+-		[VCS1] = MSG_IDLE_VCS1,
+-		[VCS2] = MSG_IDLE_VCS2,
+-		[VCS3] = MSG_IDLE_VCS3,
+-		[VCS4] = MSG_IDLE_VCS4,
+-		[VCS5] = MSG_IDLE_VCS5,
+-		[VCS6] = MSG_IDLE_VCS6,
+-		[VCS7] = MSG_IDLE_VCS7,
+-		[VECS0] = MSG_IDLE_VECS0,
+-		[VECS1] = MSG_IDLE_VECS1,
+-		[VECS2] = MSG_IDLE_VECS2,
+-		[VECS3] = MSG_IDLE_VECS3,
+-		[CCS0] = MSG_IDLE_CS,
+-		[CCS1] = MSG_IDLE_CS,
+-		[CCS2] = MSG_IDLE_CS,
+-		[CCS3] = MSG_IDLE_CS,
+-	};
+-	u32 val;
+-
+-	if (!_reg[engine->id].reg)
+-		return 0;
+-
+-	val = intel_uncore_read(engine->uncore, _reg[engine->id]);
+-
+-	/* bits[29:25] & bits[13:9] >> shift */
+-	return (val & (val >> 16) & MSG_IDLE_FW_MASK) >> MSG_IDLE_FW_SHIFT;
+-}
+-
+-static void __gpm_wait_for_fw_complete(struct intel_gt *gt, u32 fw_mask)
+-{
+-	int ret;
+-
+-	/* Ensure GPM receives fw up/down after CS is stopped */
+-	udelay(1);
+-
+-	/* Wait for forcewake request to complete in GPM */
+-	ret =  __intel_wait_for_register_fw(gt->uncore,
+-					    GEN9_PWRGT_DOMAIN_STATUS,
+-					    fw_mask, fw_mask, 5000, 0, NULL);
+-
+-	/* Ensure CS receives fw ack from GPM */
+-	udelay(1);
+-
+-	if (ret)
+-		GT_TRACE(gt, "Failed to complete pending forcewake %d\n", ret);
+-}
+-
+-/*
+- * Wa_22011802037:gen12: In addition to stopping the cs, we need to wait for any
+- * pending MI_FORCE_WAKEUP requests that the CS has initiated to complete. The
+- * pending status is indicated by bits[13:9] (masked by bits[ 29:25]) in the
+- * MSG_IDLE register. There's one MSG_IDLE register per reset domain. Since we
+- * are concerned only with the gt reset here, we use a logical OR of pending
+- * forcewakeups from all reset domains and then wait for them to complete by
+- * querying PWRGT_DOMAIN_STATUS.
+- */
+ static void guc_engine_reset_prepare(struct intel_engine_cs *engine)
+ {
+-	u32 fw_pending;
+-
+-	if (GRAPHICS_VER(engine->i915) != 12)
++	if (!IS_GRAPHICS_VER(engine->i915, 11, 12))
+ 		return;
+ 
+-	/*
+-	 * Wa_22011802037
+-	 * TODO: Occasionally trying to stop the cs times out, but does not
+-	 * adversely affect functionality. The timeout is set as a config
+-	 * parameter that defaults to 100ms. Assuming that this timeout is
+-	 * sufficient for any pending MI_FORCEWAKEs to complete, ignore the
+-	 * timeout returned here until it is root caused.
+-	 */
+ 	intel_engine_stop_cs(engine);
+ 
+-	fw_pending = __cs_pending_mi_force_wakes(engine);
+-	if (fw_pending)
+-		__gpm_wait_for_fw_complete(engine->gt, fw_pending);
++	/*
++	 * Wa_22011802037:gen11/gen12: In addition to stopping the cs, we need
++	 * to wait for any pending mi force wakeups
++	 */
++	intel_engine_wait_for_pending_mi_fw(engine);
+ }
+ 
+ static void guc_reset_nop(struct intel_engine_cs *engine)
+-- 
+2.35.3
 
-could this be an indication that maybe the original issue is worse on 
-adlp machines?
-I have only ever seen page page 135 or 136 clobbered across many runs 
-via trybot, so it looks fairly consistent.
-Though excluding the use of over 540K of stolen might be too severe.
-
-
-> 
->         Suppressed
-> 
-> The following results come from untrusted machines, tests, or statuses.
-> They do not affect the overall result.
-> 
->   * igt@kms_busy@basic@flip:
->       o {bat-dg2-9}: NOTRUN -> DMESG-WARN
->         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101396v5/bat-dg2-9/igt@kms_busy@basic@flip.html>
-> 
-> 
->     Known issues
-> 
-> Here are the changes found in Patchwork_101396v5 that come from known 
-> issues:
-> 
-> 
->       IGT changes
-> 
-> 
->         Issues hit
-> 
->   *
-> 
->     igt@gem_huc_copy@huc-copy:
-> 
->       o fi-icl-u2: NOTRUN -> SKIP
->         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101396v5/fi-icl-u2/igt@gem_huc_copy@huc-copy.html>
->         (i915#2190 <https://gitlab.freedesktop.org/drm/intel/issues/2190>)
->   *
-> 
->     igt@gem_lmem_swapping@random-engines:
-> 
->       o fi-icl-u2: NOTRUN -> SKIP
->         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101396v5/fi-icl-u2/igt@gem_lmem_swapping@random-engines.html>
->         (i915#4613
->         <https://gitlab.freedesktop.org/drm/intel/issues/4613>) +3
->         similar issues
->   *
-> 
->     igt@i915_pm_rpm@module-reload:
-> 
->       o bat-adlp-4: PASS
->         <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11790/bat-adlp-4/igt@i915_pm_rpm@module-reload.html>
->         -> DMESG-WARN
->         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101396v5/bat-adlp-4/igt@i915_pm_rpm@module-reload.html>
->         (i915#1888
->         <https://gitlab.freedesktop.org/drm/intel/issues/1888> /
->         i915#3576 <https://gitlab.freedesktop.org/drm/intel/issues/3576>)
->   *
-> 
->     igt@i915_selftest@live@hangcheck:
-> 
->       o bat-dg1-6: PASS
->         <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11790/bat-dg1-6/igt@i915_selftest@live@hangcheck.html>
->         -> DMESG-FAIL
->         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101396v5/bat-dg1-6/igt@i915_selftest@live@hangcheck.html>
->         (i915#4494
->         <https://gitlab.freedesktop.org/drm/intel/issues/4494> /
->         i915#4957 <https://gitlab.freedesktop.org/drm/intel/issues/4957>)
->   *
-> 
->     igt@i915_suspend@basic-s3-without-i915:
-> 
->       o fi-icl-u2: NOTRUN -> SKIP
->         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101396v5/fi-icl-u2/igt@i915_suspend@basic-s3-without-i915.html>
->         (i915#5903 <https://gitlab.freedesktop.org/drm/intel/issues/5903>)
->   *
-> 
->     igt@kms_busy@basic@flip:
-> 
->       o bat-adlp-4: PASS
->         <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11790/bat-adlp-4/igt@kms_busy@basic@flip.html>
->         -> DMESG-WARN
->         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101396v5/bat-adlp-4/igt@kms_busy@basic@flip.html>
->         (i915#3576 <https://gitlab.freedesktop.org/drm/intel/issues/3576>)
->   *
-> 
->     igt@kms_chamelium@common-hpd-after-suspend:
-> 
->       o
-> 
->         fi-hsw-g3258: NOTRUN -> SKIP
->         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101396v5/fi-hsw-g3258/igt@kms_chamelium@common-hpd-after-suspend.html>
->         (fdo#109271
->         <https://bugs.freedesktop.org/show_bug.cgi?id=109271> /
->         fdo#111827 <https://bugs.freedesktop.org/show_bug.cgi?id=111827>)
-> 
->       o
-> 
->         fi-hsw-4770: NOTRUN -> SKIP
->         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101396v5/fi-hsw-4770/igt@kms_chamelium@common-hpd-after-suspend.html>
->         (fdo#109271
->         <https://bugs.freedesktop.org/show_bug.cgi?id=109271> /
->         fdo#111827 <https://bugs.freedesktop.org/show_bug.cgi?id=111827>)
-> 
->       o
-> 
->         fi-blb-e6850: NOTRUN -> SKIP
->         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101396v5/fi-blb-e6850/igt@kms_chamelium@common-hpd-after-suspend.html>
->         (fdo#109271 <https://bugs.freedesktop.org/show_bug.cgi?id=109271>)
-> 
->       o
-> 
->         fi-pnv-d510: NOTRUN -> SKIP
->         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101396v5/fi-pnv-d510/igt@kms_chamelium@common-hpd-after-suspend.html>
->         (fdo#109271 <https://bugs.freedesktop.org/show_bug.cgi?id=109271>)
-> 
->   *
-> 
->     igt@kms_chamelium@hdmi-hpd-fast:
-> 
->       o fi-icl-u2: NOTRUN -> SKIP
->         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101396v5/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html>
->         (fdo#111827
->         <https://bugs.freedesktop.org/show_bug.cgi?id=111827>) +8
->         similar issues
->   *
-> 
->     igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-> 
->       o fi-icl-u2: NOTRUN -> SKIP
->         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101396v5/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html>
->         (fdo#109278
->         <https://bugs.freedesktop.org/show_bug.cgi?id=109278> /
->         i915#4103
->         <https://gitlab.freedesktop.org/drm/intel/issues/4103>) +1
->         similar issue
->   *
-> 
->     igt@kms_flip@basic-flip-vs-modeset@a-edp1:
-> 
->       o fi-tgl-u2: PASS
->         <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11790/fi-tgl-u2/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html>
->         -> DMESG-WARN
->         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101396v5/fi-tgl-u2/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html>
->         (i915#402 <https://gitlab.freedesktop.org/drm/intel/issues/402>)
->         +1 similar issue
->   *
-> 
->     igt@kms_force_connector_basic@force-connector-state:
-> 
->       o fi-icl-u2: NOTRUN -> WARN
->         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101396v5/fi-icl-u2/igt@kms_force_connector_basic@force-connector-state.html>
->         (i915#6008 <https://gitlab.freedesktop.org/drm/intel/issues/6008>)
->   *
-> 
->     igt@kms_force_connector_basic@force-load-detect:
-> 
->       o fi-icl-u2: NOTRUN -> SKIP
->         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101396v5/fi-icl-u2/igt@kms_force_connector_basic@force-load-detect.html>
->         (fdo#109285 <https://bugs.freedesktop.org/show_bug.cgi?id=109285>)
->   *
-> 
->     igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
-> 
->       o fi-icl-u2: NOTRUN -> SKIP
->         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101396v5/fi-icl-u2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html>
->         (fdo#109278 <https://bugs.freedesktop.org/show_bug.cgi?id=109278>)
->   *
-> 
->     igt@kms_setmode@basic-clone-single-crtc:
-> 
->       o fi-icl-u2: NOTRUN -> SKIP
->         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101396v5/fi-icl-u2/igt@kms_setmode@basic-clone-single-crtc.html>
->         (i915#3555 <https://gitlab.freedesktop.org/drm/intel/issues/3555>)
->   *
-> 
->     igt@prime_vgem@basic-userptr:
-> 
->       o fi-icl-u2: NOTRUN -> SKIP
->         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101396v5/fi-icl-u2/igt@prime_vgem@basic-userptr.html>
->         (fdo#109295
->         <https://bugs.freedesktop.org/show_bug.cgi?id=109295> /
->         i915#3301 <https://gitlab.freedesktop.org/drm/intel/issues/3301>)
->   *
-> 
->     igt@runner@aborted:
-> 
->       o fi-cfl-guc: NOTRUN -> FAIL
->         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101396v5/fi-cfl-guc/igt@runner@aborted.html>
->         (i915#4312 <https://gitlab.freedesktop.org/drm/intel/issues/4312>)
-> 
-> 
->         Possible fixes
-> 
->   *
-> 
->     igt@i915_selftest@live@hangcheck:
-> 
->       o
-> 
->         fi-hsw-4770: INCOMPLETE
->         <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11790/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html>
->         (i915#3303
->         <https://gitlab.freedesktop.org/drm/intel/issues/3303> /
->         i915#4785
->         <https://gitlab.freedesktop.org/drm/intel/issues/4785>) -> PASS
->         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101396v5/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html>
-> 
->       o
-> 
->         fi-hsw-g3258: INCOMPLETE
->         <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11790/fi-hsw-g3258/igt@i915_selftest@live@hangcheck.html>
->         (i915#3303
->         <https://gitlab.freedesktop.org/drm/intel/issues/3303> /
->         i915#4785
->         <https://gitlab.freedesktop.org/drm/intel/issues/4785>) -> PASS
->         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101396v5/fi-hsw-g3258/igt@i915_selftest@live@hangcheck.html>
-> 
->   *
-> 
->     igt@i915_selftest@live@requests:
-> 
->       o
-> 
->         fi-blb-e6850: DMESG-FAIL
->         <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11790/fi-blb-e6850/igt@i915_selftest@live@requests.html>
->         (i915#4528
->         <https://gitlab.freedesktop.org/drm/intel/issues/4528>) -> PASS
->         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101396v5/fi-blb-e6850/igt@i915_selftest@live@requests.html>
-> 
->       o
-> 
->         fi-pnv-d510: DMESG-FAIL
->         <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11790/fi-pnv-d510/igt@i915_selftest@live@requests.html>
->         (i915#4528
->         <https://gitlab.freedesktop.org/drm/intel/issues/4528>) -> PASS
->         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101396v5/fi-pnv-d510/igt@i915_selftest@live@requests.html>
-> 
->   *
-> 
->     igt@kms_flip@basic-flip-vs-modeset@a-edp1:
-> 
->       o bat-adlp-4: DMESG-WARN
->         <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11790/bat-adlp-4/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html>
->         (i915#3576
->         <https://gitlab.freedesktop.org/drm/intel/issues/3576>) -> PASS
->         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101396v5/bat-adlp-4/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html>
->   *
-> 
->     igt@kms_flip@basic-plain-flip@a-edp1:
-> 
->       o {bat-adlp-6}: DMESG-WARN
->         <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11790/bat-adlp-6/igt@kms_flip@basic-plain-flip@a-edp1.html>
->         (i915#3576
->         <https://gitlab.freedesktop.org/drm/intel/issues/3576>) -> PASS
->         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101396v5/bat-adlp-6/igt@kms_flip@basic-plain-flip@a-edp1.html>
-> 
-> {name}: This element is suppressed. This means it is ignored when computing
-> the status of the difference (SUCCESS, WARNING, or FAILURE).
-> 
-> 
->     Build changes
-> 
->   * Linux: CI_DRM_11790 -> Patchwork_101396v5
-> 
-> CI-20190529: 20190529
-> CI_DRM_11790: a838c72d1e41413a5ace5e3cf2ada93c2e81f66b @ 
-> git://anongit.freedesktop.org/gfx-ci/linux
-> IGT_6537: 331658a8475c8b0c0f7ffe5268a7318ef83da34e @ 
-> https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-> Patchwork_101396v5: a838c72d1e41413a5ace5e3cf2ada93c2e81f66b @ 
-> git://anongit.freedesktop.org/gfx-ci/linux
-> 
-> 
->       Linux commits
-> 
-> cb4854cf1605 drm/i915: stolen memory use ttm backend
-> 25a96de09969 drm/i915/ttm: add buffer pin on alloc flag
-> ad58b349349b drm/i915: allow memory region creators to alloc and free 
-> the region
-> 785ff03c0542 drm/i915: ttm move/clear logic fix
-> d0902500e074 drm/i915: sanitize mem_flags for stolen buffers
-> 8a7630243d04 drm/i915: instantiate ttm ranger manager for stolen memory
-> 055ef33c2ac8 drm/i915/gem: selftest should not attempt mmap of private 
-> regions
-> eb22d2a146a5 drm/i915/ttm: only trust snooping for dgfx when deciding 
-> default cache_level
-> f02995012a97 drm/i915: limit ttm to dma32 for i965G[M]
-> 1770347378a1 drm/i915/ttm: dont trample cache_level overrides during ttm 
-> move
-> 
