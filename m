@@ -1,41 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 934295531E1
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jun 2022 14:22:34 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 556605531E2
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jun 2022 14:22:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C3B3610E6A6;
-	Tue, 21 Jun 2022 12:22:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A0B7010ECA9;
+	Tue, 21 Jun 2022 12:22:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 075A710E6A6
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Jun 2022 12:22:31 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 60C4C10EC81
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Jun 2022 12:22:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655814152; x=1687350152;
+ t=1655814155; x=1687350155;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=PHW9cJ84UtoFCQaZNypTW6ypAWIjTBefEGp/ykgpR+0=;
- b=NfTg7tlLo6Su3gMr0hslzmOelmmvMVBAPwEUx5oueqCpRcvv4eyV/16u
- 2G9dNFVxtiGCEK5UAxmSETwF1EWKStPgosaAtaJvHTuv3wb6zGjKQBcxI
- Ml9ByDE1klTeSGGfdcgX26RfLvIkRSjK2h5oyCfWmaZv8aJYwBGSGD+ZB
- +OwbRyrf4nNXYHEaVX01/uUSnFczTVXRFbsULqOBlXNOaeNh0uXR6VuBO
- 4m8pBz2HbI+5nGSL0lt5SGe3OMJ3k12awwa/xjBq9tBT5vcVZMNYoKHp0
- uCOsnCWgNj9OWpEeCmVhW46YCYMl5RCx5FtrUoSCIQQTdn09BtnkowMEb w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10384"; a="344096419"
-X-IronPort-AV: E=Sophos;i="5.92,209,1650956400"; d="scan'208";a="344096419"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jun 2022 05:22:31 -0700
+ bh=4u/Up6sfop3h8WtEzMoXhS4Kb9FwLoe886Egzera3Ls=;
+ b=i2GERgfyki0nMrUDIkrlkmg+tcSjg5aW5RcJmH4FKyFRmogqES2F9DK9
+ wRIyFyGNmtc7eL2TI95LcY+lMtiUlfWdcNBdKqbtsuaKX7+kIPpaDbbzG
+ V0n511JsGM21aWWVePofH0vjniAlll31Lc8BqkFnzyEYiv6Vqis6JVH87
+ Uh6zmeyQ5n4qP0Qn1B74KAhi7Sbp8mQp8EltwItqWGxn5D9neo1SQDzrl
+ fbj2GNLQ/sJkW1OBfGhKmW/ye8OmVnt1JirtVCYkUiFF6+yMXkV88QbEJ
+ nRfQB1vtViDshi7Psmuz2atWNoxB/EL45x471U5OainkJzUlm5FjUp/HL g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10384"; a="268823152"
+X-IronPort-AV: E=Sophos;i="5.92,209,1650956400"; d="scan'208";a="268823152"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jun 2022 05:22:34 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,209,1650956400"; d="scan'208";a="591629651"
+X-IronPort-AV: E=Sophos;i="5.92,209,1650956400"; d="scan'208";a="676976327"
 Received: from irvmail001.ir.intel.com ([10.43.11.63])
- by fmsmga007.fm.intel.com with ESMTP; 21 Jun 2022 05:22:28 -0700
+ by FMSMGA003.fm.intel.com with ESMTP; 21 Jun 2022 05:22:31 -0700
 Received: from intel.com (tttangud-desk.iind.intel.com [10.145.144.118])
  by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
- 25LCMKjm013778; Tue, 21 Jun 2022 13:22:24 +0100
+ 25LCMKjn013778; Tue, 21 Jun 2022 13:22:28 +0100
 From: Tilak Tangudu <tilak.tangudu@intel.com>
 To: intel-gfx@lists.freedesktop.org, jon.ewins@intel.com,
  rodrigo.vivi@intel.com, vinay.belgaumkar@intel.com,
@@ -44,15 +44,15 @@ To: intel-gfx@lists.freedesktop.org, jon.ewins@intel.com,
  tilak.tangudu@intel.com, matthew.d.roper@intel.com,
  saurabhg.gupta@intel.com, Aravind.Iddamsetty@intel.com,
  Sujaritha.Sundaresan@intel.com
-Date: Tue, 21 Jun 2022 18:05:06 +0530
-Message-Id: <20220621123516.370479-2-tilak.tangudu@intel.com>
+Date: Tue, 21 Jun 2022 18:05:07 +0530
+Message-Id: <20220621123516.370479-3-tilak.tangudu@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220621123516.370479-1-tilak.tangudu@intel.com>
 References: <20220621123516.370479-1-tilak.tangudu@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 01/11] drm/i915: Avoid rpm helpers in
- intel_guc_global_policies_update
+Subject: [Intel-gfx] [PATCH 02/11] drm/i915: Avoid rpm helpers in
+ intel_guc_slpc_set_media_ratio_mode
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,137 +68,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-1. Removed rpm helpers in intel_guc_global_policies_update
-and added rpm helpers in below higher level functions,
--intel_selftest_modify_policy
--intel_selftest_restore_policy
--notify_guc
--intel_uc_reset_finish calls intel_guc_global_policies_update
-via intel_guc_submission_reset_finish
-
-2. Removed rpm helpers in intel_guc_submission_reset_finish
-and added rpm helpers in below higher level functions,
-- at intel_uc_reset_finish in reset_finish
-- intel_gt_resume (already rpm wakeref is available)
+Removed rpm helpers from intel_guc_slpc_set_media_ratio_mode
+and added rpm helpers at below high level functions.
+-media_freq_factor_store
+-intel_guc_slpc_enable via intel_gt_init_hw (already rpm wakeref is hold)
 
 Signed-off-by: Tilak Tangudu <tilak.tangudu@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_reset.c               |  4 +++-
- drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c          |  5 +----
- drivers/gpu/drm/i915/i915_debugfs_params.c          |  7 +++++--
- .../drm/i915/selftests/intel_scheduler_helpers.c    | 13 +++++++++++--
- 4 files changed, 20 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c | 2 ++
+ drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c | 8 +++-----
+ 2 files changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
-index a5338c3fde7a..c8e05b48c14f 100644
---- a/drivers/gpu/drm/i915/gt/intel_reset.c
-+++ b/drivers/gpu/drm/i915/gt/intel_reset.c
-@@ -828,6 +828,7 @@ static void reset_finish(struct intel_gt *gt, intel_engine_mask_t awake)
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
+index ae8a8f725f01..b8f151044780 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
+@@ -648,6 +648,7 @@ static ssize_t media_freq_factor_store(struct device *dev,
  {
- 	struct intel_engine_cs *engine;
- 	enum intel_engine_id id;
+ 	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(dev, attr->attr.name);
+ 	struct intel_guc_slpc *slpc = &gt->uc.guc.slpc;
 +	intel_wakeref_t wakeref;
- 
- 	for_each_engine(engine, gt, id) {
- 		reset_finish_engine(engine);
-@@ -835,7 +836,8 @@ static void reset_finish(struct intel_gt *gt, intel_engine_mask_t awake)
- 			intel_engine_pm_put(engine);
- 	}
- 
--	intel_uc_reset_finish(&gt->uc);
-+	with_intel_runtime_pm(gt->uncore->rpm, wakeref)
-+		intel_uc_reset_finish(&gt->uc);
- }
- 
- static void nop_submit_request(struct i915_request *request)
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
-index ba7541f3ca61..3f24ad4cb2e1 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
-@@ -182,9 +182,7 @@ static int guc_action_policies_update(struct intel_guc *guc, u32 policy_offset)
- 
- int intel_guc_global_policies_update(struct intel_guc *guc)
- {
--	struct intel_gt *gt = guc_to_gt(guc);
- 	u32 scheduler_policies;
--	intel_wakeref_t wakeref;
- 	int ret;
- 
- 	if (iosys_map_is_null(&guc->ads_map))
-@@ -198,8 +196,7 @@ int intel_guc_global_policies_update(struct intel_guc *guc)
- 	if (!intel_guc_is_ready(guc))
- 		return 0;
- 
--	with_intel_runtime_pm(&gt->i915->runtime_pm, wakeref)
--		ret = guc_action_policies_update(guc, scheduler_policies);
-+	ret = guc_action_policies_update(guc, scheduler_policies);
- 
- 	return ret;
- }
-diff --git a/drivers/gpu/drm/i915/i915_debugfs_params.c b/drivers/gpu/drm/i915/i915_debugfs_params.c
-index 783c8676eee2..cf92c98fa81a 100644
---- a/drivers/gpu/drm/i915/i915_debugfs_params.c
-+++ b/drivers/gpu/drm/i915/i915_debugfs_params.c
-@@ -39,9 +39,12 @@ static int i915_param_int_open(struct inode *inode, struct file *file)
- static int notify_guc(struct drm_i915_private *i915)
- {
- 	int ret = 0;
-+	intel_wakeref_t wakeref;
- 
--	if (intel_uc_uses_guc_submission(&to_gt(i915)->uc))
--		ret = intel_guc_global_policies_update(&to_gt(i915)->uc.guc);
-+	if (intel_uc_uses_guc_submission(&to_gt(i915)->uc)) {
-+		with_intel_runtime_pm(to_gt(i915)->uncore->rpm, wakeref)
-+			ret = intel_guc_global_policies_update(&to_gt(i915)->uc.guc);
-+	}
- 
- 	return ret;
- }
-diff --git a/drivers/gpu/drm/i915/selftests/intel_scheduler_helpers.c b/drivers/gpu/drm/i915/selftests/intel_scheduler_helpers.c
-index 310fb83c527e..463a378f0abb 100644
---- a/drivers/gpu/drm/i915/selftests/intel_scheduler_helpers.c
-+++ b/drivers/gpu/drm/i915/selftests/intel_scheduler_helpers.c
-@@ -32,6 +32,7 @@ int intel_selftest_modify_policy(struct intel_engine_cs *engine,
- 
- {
+ 	u32 factor, mode;
  	int err;
-+	intel_wakeref_t wakeref;
  
- 	saved->reset = engine->i915->params.reset;
- 	saved->flags = engine->flags;
-@@ -66,7 +67,9 @@ int intel_selftest_modify_policy(struct intel_engine_cs *engine,
- 	if (!intel_engine_uses_guc(engine))
- 		return 0;
+@@ -663,6 +664,7 @@ static ssize_t media_freq_factor_store(struct device *dev,
+ 	if (mode > SLPC_MEDIA_RATIO_MODE_FIXED_ONE_TO_TWO)
+ 		return -EINVAL;
  
--	err = intel_guc_global_policies_update(&engine->gt->uc.guc);
-+	with_intel_runtime_pm(engine->gt->uncore->rpm, wakeref)
-+		err = intel_guc_global_policies_update(&engine->gt->uc.guc);
-+
- 	if (err)
- 		intel_selftest_restore_policy(engine, saved);
- 
-@@ -76,6 +79,9 @@ int intel_selftest_modify_policy(struct intel_engine_cs *engine,
- int intel_selftest_restore_policy(struct intel_engine_cs *engine,
- 				  struct intel_selftest_saved_policy *saved)
++	with_intel_runtime_pm(gt->uncore->rpm, wakeref)
+ 	err = intel_guc_slpc_set_media_ratio_mode(slpc, mode);
+ 	if (!err) {
+ 		slpc->media_ratio_mode = mode;
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
+index 2df31af70d63..9a8440378dc2 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
+@@ -510,16 +510,14 @@ int intel_guc_slpc_get_min_freq(struct intel_guc_slpc *slpc, u32 *val)
+ int intel_guc_slpc_set_media_ratio_mode(struct intel_guc_slpc *slpc, u32 val)
  {
-+	intel_wakeref_t wakeref;
-+	int ret;
-+
- 	/* Restore the original policies */
- 	engine->i915->params.reset = saved->reset;
- 	engine->flags = saved->flags;
-@@ -85,7 +91,10 @@ int intel_selftest_restore_policy(struct intel_engine_cs *engine,
- 	if (!intel_engine_uses_guc(engine))
- 		return 0;
+ 	struct drm_i915_private *i915 = slpc_to_i915(slpc);
+-	intel_wakeref_t wakeref;
+ 	int ret = 0;
  
--	return intel_guc_global_policies_update(&engine->gt->uc.guc);
-+	with_intel_runtime_pm(engine->gt->uncore->rpm, wakeref)
-+		ret = intel_guc_global_policies_update(&engine->gt->uc.guc);
-+
-+	return ret;
+ 	if (!HAS_MEDIA_RATIO_MODE(i915))
+ 		return -ENODEV;
+ 
+-	with_intel_runtime_pm(&i915->runtime_pm, wakeref)
+-		ret = slpc_set_param(slpc,
+-				     SLPC_PARAM_MEDIA_FF_RATIO_MODE,
+-				     val);
++	ret = slpc_set_param(slpc,
++			     SLPC_PARAM_MEDIA_FF_RATIO_MODE,
++			     val);
+ 	return ret;
  }
  
- int intel_selftest_wait_for_rq(struct i915_request *rq)
 -- 
 2.25.1
 
