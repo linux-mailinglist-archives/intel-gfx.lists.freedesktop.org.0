@@ -2,32 +2,77 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BE055532F9
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jun 2022 15:11:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D26955331F
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jun 2022 15:15:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B4DD410E8E1;
-	Tue, 21 Jun 2022 13:11:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CEABC10FB6C;
+	Tue, 21 Jun 2022 13:15:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 443E710E924;
- Tue, 21 Jun 2022 13:11:13 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 310C1A8169;
- Tue, 21 Jun 2022 13:11:13 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0075806530388023356=="
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 14BDB10FB6C
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Jun 2022 13:15:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1655817303; x=1687353303;
+ h=from:to:subject:date:message-id:references:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=YUYwtaXj9SgmqysmEbqusuW4kLxsRO+hkPFVMwMcPao=;
+ b=MjCuFl8otnsBFH8Flqi0ifozpecMYEiwso5VEy0dxrgcUKLPnQyuSY+W
+ h15Id6me4mndQPZ9/qCw/ThZaHvzuReD4U31jqOpalkDctAq4Ho+Udphc
+ Vtejga551iSo8RuH+seR+0vCNpspNc2+mSNV4Kl+lG2LqCrSEZ9OO3knh
+ tiq9m++jZetjvujBI8p4Kyfs8fXJMerhntsOAfUnKsV4mITHbi5Flucbt
+ UNApPDa64lEiSYILflFM7fJsUvxTUCkdVqu3wZ2verHCU025QXxZ9sRVI
+ PXog1bHu9BgEqv/P3TaEZcACjSwZEgjtKihsI7cn3WpSOPecP/ximRnzH w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10384"; a="277662631"
+X-IronPort-AV: E=Sophos;i="5.92,209,1650956400"; d="scan'208";a="277662631"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jun 2022 06:15:02 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.92,209,1650956400"; d="scan'208";a="562377939"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by orsmga006.jf.intel.com with ESMTP; 21 Jun 2022 06:15:02 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27; Tue, 21 Jun 2022 06:15:01 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27; Tue, 21 Jun 2022 06:15:01 -0700
+Received: from fmsmsx610.amr.corp.intel.com ([10.18.126.90]) by
+ fmsmsx610.amr.corp.intel.com ([10.18.126.90]) with mapi id 15.01.2308.027;
+ Tue, 21 Jun 2022 06:15:01 -0700
+From: "Gupta, Anshuman" <anshuman.gupta@intel.com>
+To: "Tangudu, Tilak" <tilak.tangudu@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Ewins,
+ Jon" <jon.ewins@intel.com>, "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
+ "Belgaumkar, Vinay" <vinay.belgaumkar@intel.com>, "Wilson, Chris P"
+ <chris.p.wilson@intel.com>, "Dixit, Ashutosh" <ashutosh.dixit@intel.com>,
+ "Nilawar, Badal" <badal.nilawar@intel.com>, "Roper, Matthew D"
+ <matthew.d.roper@intel.com>, "Gupta, saurabhg" <saurabhg.gupta@intel.com>,
+ "Iddamsetty, Aravind" <aravind.iddamsetty@intel.com>, "Sundaresan, Sujaritha"
+ <sujaritha.sundaresan@intel.com>
+Thread-Topic: [PATCH 11/11] drm/i915 : Add D3COLD OFF support
+Thread-Index: AQHYhWmpoAHxlKx4zkaJwPPxefxSn61Z0s1Q
+Date: Tue, 21 Jun 2022 13:15:00 +0000
+Message-ID: <8044338d379646c18fa48c82cba641b3@intel.com>
+References: <20220621123516.370479-1-tilak.tangudu@intel.com>
+ <20220621123516.370479-12-tilak.tangudu@intel.com>
+In-Reply-To: <20220621123516.370479-12-tilak.tangudu@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 11.6.500.17
+dlp-reaction: no-action
+x-originating-ip: [10.108.32.68]
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: 1064094935@qq.com
-Date: Tue, 21 Jun 2022 13:11:13 -0000
-Message-ID: <165581707316.13647.10047103172036636793@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <tencent_7B226C4A9BC2B5EEB37B70C188B5015D290A@qq.com>
-In-Reply-To: <tencent_7B226C4A9BC2B5EEB37B70C188B5015D290A@qq.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Fix_spelling_typo_in_comment?=
+Subject: Re: [Intel-gfx] [PATCH 11/11] drm/i915 : Add D3COLD OFF support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,218 +85,253 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0075806530388023356==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: drm/i915: Fix spelling typo in comment
-URL   : https://patchwork.freedesktop.org/series/105424/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_11788 -> Patchwork_105424v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105424v1/index.html
-
-Participating hosts (41 -> 40)
-------------------------------
-
-  Additional (2): bat-dg2-8 bat-dg2-9 
-  Missing    (3): fi-kbl-soraka fi-bdw-samus fi-pnv-d510 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_105424v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_busy@basic@flip:
-    - fi-tgl-u2:          [PASS][1] -> [DMESG-WARN][2] ([i915#402])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11788/fi-tgl-u2/igt@kms_busy@basic@flip.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105424v1/fi-tgl-u2/igt@kms_busy@basic@flip.html
-
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-snb-2600:        NOTRUN -> [SKIP][3] ([fdo#109271] / [fdo#111827])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105424v1/fi-snb-2600/igt@kms_chamelium@common-hpd-after-suspend.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-snb-2600:        [INCOMPLETE][4] ([i915#3921]) -> [PASS][5]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11788/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105424v1/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-
-  * igt@kms_flip@basic-flip-vs-modeset@b-edp1:
-    - {bat-adlp-6}:       [DMESG-WARN][6] ([i915#3576]) -> [PASS][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11788/bat-adlp-6/igt@kms_flip@basic-flip-vs-modeset@b-edp1.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105424v1/bat-adlp-6/igt@kms_flip@basic-flip-vs-modeset@b-edp1.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109278]: https://bugs.freedesktop.org/show_bug.cgi?id=109278
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#109295]: https://bugs.freedesktop.org/show_bug.cgi?id=109295
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1155]: https://gitlab.freedesktop.org/drm/intel/issues/1155
-  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
-  [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
-  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#3576]: https://gitlab.freedesktop.org/drm/intel/issues/3576
-  [i915#3595]: https://gitlab.freedesktop.org/drm/intel/issues/3595
-  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
-  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
-  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
-  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-  [i915#4212]: https://gitlab.freedesktop.org/drm/intel/issues/4212
-  [i915#4213]: https://gitlab.freedesktop.org/drm/intel/issues/4213
-  [i915#4215]: https://gitlab.freedesktop.org/drm/intel/issues/4215
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4579]: https://gitlab.freedesktop.org/drm/intel/issues/4579
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#4873]: https://gitlab.freedesktop.org/drm/intel/issues/4873
-  [i915#5122]: https://gitlab.freedesktop.org/drm/intel/issues/5122
-  [i915#5174]: https://gitlab.freedesktop.org/drm/intel/issues/5174
-  [i915#5190]: https://gitlab.freedesktop.org/drm/intel/issues/5190
-  [i915#5274]: https://gitlab.freedesktop.org/drm/intel/issues/5274
-  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
-  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
-  [i915#5763]: https://gitlab.freedesktop.org/drm/intel/issues/5763
-  [i915#5885]: https://gitlab.freedesktop.org/drm/intel/issues/5885
-  [i915#5903]: https://gitlab.freedesktop.org/drm/intel/issues/5903
 
 
-Build changes
--------------
+> -----Original Message-----
+> From: Tangudu, Tilak <tilak.tangudu@intel.com>
+> Sent: Tuesday, June 21, 2022 6:05 PM
+> To: intel-gfx@lists.freedesktop.org; Ewins, Jon <jon.ewins@intel.com>; Vi=
+vi,
+> Rodrigo <rodrigo.vivi@intel.com>; Belgaumkar, Vinay
+> <vinay.belgaumkar@intel.com>; Wilson, Chris P <chris.p.wilson@intel.com>;
+> Dixit, Ashutosh <ashutosh.dixit@intel.com>; Nilawar, Badal
+> <badal.nilawar@intel.com>; Gupta, Anshuman <anshuman.gupta@intel.com>;
+> Tangudu, Tilak <tilak.tangudu@intel.com>; Roper, Matthew D
+> <matthew.d.roper@intel.com>; Gupta, saurabhg <saurabhg.gupta@intel.com>;
+> Iddamsetty, Aravind <aravind.iddamsetty@intel.com>; Sundaresan, Sujaritha
+> <sujaritha.sundaresan@intel.com>
+> Subject: [PATCH 11/11] drm/i915 : Add D3COLD OFF support
+>=20
+> Added lmem deep suspend/resume, which covers lmem eviction and added
+> GT/GUC deep suspend/resume using i915_gem_backup_suspend,
+> i915_gem_suspend_late and i915_gem_resume.
+>=20
+> Added HAS_D3COLD_OFF feature macro to use for D3COLD OFF feature
+We don't need such Macro HAS_D3COLD_OFF , checking bridge pme capability fr=
+om D3Cold is sufficient,
+As it is a pci feature. You can refer below patch.
+https://patchwork.freedesktop.org/patch/489746/?series=3D104128&rev=3D3
 
-  * Linux: CI_DRM_11788 -> Patchwork_105424v1
+>=20
+> Signed-off-by: Tilak Tangudu <tilak.tangudu@intel.com>
+> ---
+>  drivers/gpu/drm/i915/i915_driver.c       | 96 ++++++++++++++++++------
+>  drivers/gpu/drm/i915/i915_drv.h          |  1 +
+>  drivers/gpu/drm/i915/i915_pci.c          |  1 +
+>  drivers/gpu/drm/i915/intel_device_info.h |  1 +
+>  4 files changed, 76 insertions(+), 23 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/i915_driver.c
+> b/drivers/gpu/drm/i915/i915_driver.c
+> index 669365c2958c..1ca45d933a4a 100644
+> --- a/drivers/gpu/drm/i915/i915_driver.c
+> +++ b/drivers/gpu/drm/i915/i915_driver.c
+> @@ -1609,9 +1609,21 @@ static int intel_runtime_suspend(struct device *kd=
+ev)
+>  	 * We are safe here against re-faults, since the fault handler takes
+>  	 * an RPM reference.
+>  	 */
+> -	i915_gem_runtime_suspend(dev_priv);
+> +	if (HAS_D3COLD_OFF(dev_priv)) {
+> +		i915_gem_backup_suspend(dev_priv);
+> +		i915_ggtt_suspend(to_gt(dev_priv)->ggtt);
+> +		i915_gem_suspend_late(dev_priv);
+> +	} else {
+> +		i915_gem_runtime_suspend(dev_priv);
+> +		intel_gt_runtime_suspend(to_gt(dev_priv));
+>=20
+> -	intel_gt_runtime_suspend(to_gt(dev_priv));
+> +		/*
+> +		 * FIXME: Temporary hammer to avoid freezing the machine on
+> our DGFX
+> +		 * This should be totally removed when we handle the pci states
+> properly
+> +		 * on runtime PM and on s2idle cases.
+> +		 */
+> +		pci_d3cold_disable(pdev);
+> +	}
+>=20
+>  	intel_runtime_pm_disable_interrupts(dev_priv);
+>=20
+> @@ -1641,12 +1653,6 @@ static int intel_runtime_suspend(struct device *kd=
+ev)
+>  		drm_err(&dev_priv->drm,
+>  			"Unclaimed access detected prior to suspending\n");
+>=20
+> -	/*
+> -	 * FIXME: Temporary hammer to avoid freezing the machine on our
+> DGFX
+> -	 * This should be totally removed when we handle the pci states
+> properly
+> -	 * on runtime PM and on s2idle cases.
+> -	 */
+> -	pci_d3cold_disable(pdev);
+>  	rpm->suspended =3D true;
+>=20
+>  	/*
+> @@ -1662,14 +1668,18 @@ static int intel_runtime_suspend(struct device
+> *kdev)
+>  		 */
+>  		intel_opregion_notify_adapter(dev_priv, PCI_D3hot);
+>  	} else {
+> -		/*
+> -		 * current versions of firmware which depend on this opregion
+> -		 * notification have repurposed the D1 definition to mean
+> -		 * "runtime suspended" vs. what you would normally expect
+> (D3)
+> -		 * to distinguish it from notifications that might be sent via
+> -		 * the suspend path.
+> -		 */
+> -		intel_opregion_notify_adapter(dev_priv, PCI_D1);
+> +		if (HAS_D3COLD_OFF(dev_priv)) {
+> +			intel_opregion_suspend(dev_priv, PCI_D3cold);
+This is not needed, this opregion mbox is already depreciated.
+> +		} else {
+> +			/*
+> +			 * current versions of firmware which depend on this
+> opregion
+> +			 * notification have repurposed the D1 definition to
+> mean
+> +			 * "runtime suspended" vs. what you would normally
+> expect (D3)
+> +			 * to distinguish it from notifications that might be sent
+> via
+> +			 * the suspend path.
+> +			 */
+> +			intel_opregion_notify_adapter(dev_priv, PCI_D1);
+> +		}
+>  	}
+>=20
+>  	assert_forcewakes_inactive(&dev_priv->uncore);
+> @@ -1677,6 +1687,12 @@ static int intel_runtime_suspend(struct device *kd=
+ev)
+>  	if (!IS_VALLEYVIEW(dev_priv) && !IS_CHERRYVIEW(dev_priv))
+>  		intel_hpd_poll_enable(dev_priv);
+>=20
+> +	if (HAS_D3COLD_OFF(dev_priv)) {
+> +		i915_save_pci_state(pdev);
+PCI core do save/restore state , do we need this ?
+> +		pci_disable_device(pdev);
+> +		pci_set_power_state(pdev, PCI_D3cold);
+We don't need to set the pci state as well,  as though pci config state, it=
+ can set up to max d3hot.
+> +	}
+> +
+>  	drm_dbg(&dev_priv->drm, "Device suspended\n");
+>  	return 0;
+>  }
+> @@ -1696,9 +1712,28 @@ static int intel_runtime_resume(struct device *kde=
+v)
+>  	drm_WARN_ON_ONCE(&dev_priv->drm, atomic_read(&rpm-
+> >wakeref_count));
+>  	disable_rpm_wakeref_asserts(rpm);
+>=20
+> -	intel_opregion_notify_adapter(dev_priv, PCI_D0);
+> +	if (HAS_D3COLD_OFF(dev_priv)) {
+> +		ret =3D pci_set_power_state(pdev, PCI_D0);
+> +		if (ret) {
+> +			drm_err(&dev_priv->drm,
+> +				"failed to set PCI D0 power state (%d)\n", ret);
+> +			return ret;
+> +		}
+> +
+> +		i915_load_pci_state(pdev);
+> +
+> +		ret =3D pci_enable_device(pdev);
+> +		if (ret)
+> +			return ret;
+> +		pci_set_master(pdev);
+> +		intel_opregion_resume(dev_priv);
+> +	} else {
+> +		pci_d3cold_enable(pdev);
+> +		intel_opregion_notify_adapter(dev_priv, PCI_D0);
+> +	}
+> +
+>  	rpm->suspended =3D false;
+> -	pci_d3cold_enable(pdev);
+> +
+>  	if (intel_uncore_unclaimed_mmio(&dev_priv->uncore))
+>  		drm_dbg(&dev_priv->drm,
+>  			"Unclaimed access during suspend, bios?\n"); @@ -
+> 1711,12 +1746,27 @@ static int intel_runtime_resume(struct device *kdev)
+>=20
+>  	intel_runtime_pm_enable_interrupts(dev_priv);
+>=20
+> -	/*
+> -	 * No point of rolling back things in case of an error, as the best
+> -	 * we can do is to hope that things will still work (and disable RPM).
+> -	 */
+> -	intel_gt_runtime_resume(to_gt(dev_priv));
+> +	if (HAS_D3COLD_OFF(dev_priv)) {
+> +		ret =3D i915_pcode_init(dev_priv);
+> +		if (ret)
+> +			return ret;
+>=20
+> +		sanitize_gpu(dev_priv);
+> +		ret =3D i915_ggtt_enable_hw(dev_priv);
+> +		if (ret)
+> +			drm_err(&dev_priv->drm, "failed to re-enable
+> GGTT\n");
+> +
+> +		i915_ggtt_resume(to_gt(dev_priv)->ggtt);
+> +
+> +		i915_gem_resume(dev_priv);
+> +
+> +	} else {
+> +		/*
+> +		 * No point of rolling back things in case of an error, as the best
+> +		 * we can do is to hope that things will still work (and disable
+> RPM).
+> +		 */
+> +		intel_gt_runtime_resume(to_gt(dev_priv));
+> +	}
+>  	/*
+>  	 * On VLV/CHV display interrupts are part of the display
+>  	 * power well, so hpd is reinitialized from there. For diff --git
+> a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h index
+> ec8c7a2af673..633d20c2372a 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -1300,6 +1300,7 @@ IS_SUBPLATFORM(const struct drm_i915_private
+> *i915,
+>=20
+>  #define HAS_REGION(i915, i) (INTEL_INFO(i915)->memory_regions & (i))
+> #define HAS_LMEM(i915) HAS_REGION(i915, REGION_LMEM)
+> +#define HAS_D3COLD_OFF(i915) (INTEL_INFO(dev_priv)->has_d3cold_off)
+>=20
+>  /*
+>   * Platform has the dedicated compression control state for each lmem su=
+rfaces
+> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_=
+pci.c
+> index 5e51fc29bb8b..749ccb14fd6f 100644
+> --- a/drivers/gpu/drm/i915/i915_pci.c
+> +++ b/drivers/gpu/drm/i915/i915_pci.c
+> @@ -1064,6 +1064,7 @@ static const struct intel_device_info xehpsdv_info =
+=3D {
+>  	.has_guc_deprivilege =3D 1, \
+>  	.has_heci_pxp =3D 1, \
+>  	.needs_compact_pt =3D 1, \
+> +	.has_d3cold_off =3D 1, \
+>  	.has_media_ratio_mode =3D 1, \
+>  	.platform_engine_mask =3D \
+>  		BIT(RCS0) | BIT(BCS0) | \
+> diff --git a/drivers/gpu/drm/i915/intel_device_info.h
+> b/drivers/gpu/drm/i915/intel_device_info.h
+> index 08341174ee0a..495c12d65c3e 100644
+> --- a/drivers/gpu/drm/i915/intel_device_info.h
+> +++ b/drivers/gpu/drm/i915/intel_device_info.h
+> @@ -140,6 +140,7 @@ enum intel_ppgtt_type {
+>  	/* Keep has_* in alphabetical order */ \
+>  	func(has_64bit_reloc); \
+>  	func(has_64k_pages); \
+> +	func(has_d3cold_off); \
+>  	func(needs_compact_pt); \
+>  	func(gpu_reset_clobbers_display); \
+>  	func(has_reset_engine); \
+> --
+> 2.25.1
 
-  CI-20190529: 20190529
-  CI_DRM_11788: ec6f2ba27fe4ed0f5f6aca3977f62793b65bb1b6 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6537: 331658a8475c8b0c0f7ffe5268a7318ef83da34e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_105424v1: ec6f2ba27fe4ed0f5f6aca3977f62793b65bb1b6 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-6378a1469bbf drm/i915: Fix spelling typo in comment
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105424v1/index.html
-
---===============0075806530388023356==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Fix spelling typo in comment</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/105424/">https://patchwork.freedesktop.org/series/105424/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105424v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105424v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11788 -&gt; Patchwork_105424v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105424v1/index.html</p>
-<h2>Participating hosts (41 -&gt; 40)</h2>
-<p>Additional (2): bat-dg2-8 bat-dg2-9 <br />
-  Missing    (3): fi-kbl-soraka fi-bdw-samus fi-pnv-d510 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_105424v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_busy@basic@flip:</p>
-<ul>
-<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11788/fi-tgl-u2/igt@kms_busy@basic@flip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105424v1/fi-tgl-u2/igt@kms_busy@basic@flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
-<ul>
-<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105424v1/fi-snb-2600/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11788/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105424v1/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-modeset@b-edp1:</p>
-<ul>
-<li>{bat-adlp-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11788/bat-adlp-6/igt@kms_flip@basic-flip-vs-modeset@b-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105424v1/bat-adlp-6/igt@kms_flip@basic-flip-vs-modeset@b-edp1.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11788 -&gt; Patchwork_105424v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11788: ec6f2ba27fe4ed0f5f6aca3977f62793b65bb1b6 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6537: 331658a8475c8b0c0f7ffe5268a7318ef83da34e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_105424v1: ec6f2ba27fe4ed0f5f6aca3977f62793b65bb1b6 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>6378a1469bbf drm/i915: Fix spelling typo in comment</p>
-
-</body>
-</html>
-
---===============0075806530388023356==--
