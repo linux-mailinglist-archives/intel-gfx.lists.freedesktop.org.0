@@ -1,57 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C53C554A56
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jun 2022 14:53:10 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6FEC554A5A
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jun 2022 14:55:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0609D1133CA;
-	Wed, 22 Jun 2022 12:53:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 397AC10E230;
+	Wed, 22 Jun 2022 12:55:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DFFDD1133CA
- for <intel-gfx@lists.freedesktop.org>; Wed, 22 Jun 2022 12:53:05 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DD5C210E230
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Jun 2022 12:55:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655902385; x=1687438385;
+ t=1655902509; x=1687438509;
  h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=z+pRrKADkf5Pzwb5K4w7f/f+/j2mm77gQDnBeSFq0s8=;
- b=Skm5di51jOr6Iaborv3kSWoUMSKaKxxSnH/1cSfopUPFAW/bss42qgCw
- abs0MTaxvdiuEqtqFZZfQ39LeYVOtN3Asapi/fnTxBG6lLWxmRghZEWH9
- e/2DDpbb5SgT6H7qM1Xgmv8vP6e4j9KaIvImZ/TUQxSKLAclmWkvPBfgV
- 4CTpOumfK230ywxmAavBmySxQghxROUhWI8xKphQLpUVYLSYasJN5lk2M
- 3LfDdeujJNZByWJeN/EeGIwd95jqtZn93qv1McvH2TljSJb8wqksziQbG
- lgO03m1zmfI+MskWmlhqF5r2fjeSotKIf0ZPABNEJx9UBLXUjDeSM1+G2 w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10385"; a="269127126"
-X-IronPort-AV: E=Sophos;i="5.92,212,1650956400"; d="scan'208";a="269127126"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jun 2022 05:53:05 -0700
-X-IronPort-AV: E=Sophos;i="5.92,212,1650956400"; d="scan'208";a="644181638"
+ mime-version; bh=M9MfF473vtLu1I+PwCAbqaPIALHYUWUVIvEcM5r7ceU=;
+ b=bJQRVBACOHU73xZkfT1eSg86ob5eWsbQ6H0H3f5E7QxURrVDqeSyruyv
+ Yu9TLs1TwMLH7TJrml87oDTHwfl/7ZYRcESpxLwkKrjigHZ2RdP5EpXfo
+ sgLy9gmrK/GoWMlOHSrGvWLb/sZaAKyr5JMoSE0RVrHtch7wZAcE98php
+ XEvBwdctxvMarAO79zLEyVmWKzAv+ekwKOZ0Nmk6dMfFQ8SWb5gib+QH3
+ FKZOgbFXwNIEJp4ZUDM/IR3N9CKfhOR795W48l99i5KOOdLXepo4OiQna
+ KBCktQ40+LS2s2TUvXamStki6x3ajNxlQw/rO5Qp07e5kAqctNjwdLmjh Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10385"; a="280453793"
+X-IronPort-AV: E=Sophos;i="5.92,212,1650956400"; d="scan'208";a="280453793"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jun 2022 05:55:09 -0700
+X-IronPort-AV: E=Sophos;i="5.92,212,1650956400"; d="scan'208";a="592172973"
 Received: from snowacki-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.59.111])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jun 2022 05:53:01 -0700
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jun 2022 05:55:06 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Tilak Tangudu <tilak.tangudu@intel.com>,
- intel-gfx@lists.freedesktop.org, jon.ewins@intel.com,
- rodrigo.vivi@intel.com, vinay.belgaumkar@intel.com,
- chris.p.wilson@intel.com, ashutosh.dixit@intel.com,
- badal.nilawar@intel.com, anshuman.gupta@intel.com,
- tilak.tangudu@intel.com, matthew.d.roper@intel.com,
- saurabhg.gupta@intel.com, Aravind.Iddamsetty@intel.com,
- Sujaritha.Sundaresan@intel.com
-In-Reply-To: <20220621123516.370479-6-tilak.tangudu@intel.com>
+To: "Tangudu, Tilak" <tilak.tangudu@intel.com>, "Gupta, Anshuman"
+ <anshuman.gupta@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>, "Ewins,
+ Jon" <jon.ewins@intel.com>, "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
+ "Belgaumkar, Vinay" <vinay.belgaumkar@intel.com>, "Wilson, Chris P"
+ <chris.p.wilson@intel.com>, "Dixit, Ashutosh" <ashutosh.dixit@intel.com>,
+ "Nilawar, Badal" <badal.nilawar@intel.com>, "Roper, Matthew D"
+ <matthew.d.roper@intel.com>, "Gupta, saurabhg" <saurabhg.gupta@intel.com>,
+ "Iddamsetty, Aravind" <aravind.iddamsetty@intel.com>, "Sundaresan,
+ Sujaritha" <sujaritha.sundaresan@intel.com>
+In-Reply-To: <DM4PR11MB52480BDD4014D227789713F4E2B39@DM4PR11MB5248.namprd11.prod.outlook.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20220621123516.370479-1-tilak.tangudu@intel.com>
- <20220621123516.370479-6-tilak.tangudu@intel.com>
-Date: Wed, 22 Jun 2022 15:52:59 +0300
-Message-ID: <8735fwsvv8.fsf@intel.com>
+ <20220621123516.370479-5-tilak.tangudu@intel.com>
+ <0f1834aa89ed4f6b89db4ee7eacdbd55@intel.com>
+ <DM4PR11MB52480BDD4014D227789713F4E2B39@DM4PR11MB5248.namprd11.prod.outlook.com>
+Date: Wed, 22 Jun 2022 15:55:03 +0300
+Message-ID: <87zgi4rh7c.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 05/11] drm/i915: Guard rpm helpers in gt
- helpers functions
+Subject: Re: [Intel-gfx] [PATCH 04/11] drm/i915: Added is_intel_rpm_allowed
+ helper
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,132 +71,112 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 21 Jun 2022, Tilak Tangudu <tilak.tangudu@intel.com> wrote:
-> Guard rpm helpers in gt_sanitize and intel_gt_set_wedged
-> with is_intel_rpm_allowed
->
-> Acquire rpm wakeref for higherlevel function i915_gem_resume
->
-> Signed-off-by: Tilak Tangudu <tilak.tangudu@intel.com>
-> ---
->  drivers/gpu/drm/i915/gt/intel_gt_pm.c | 12 ++++++------
->  drivers/gpu/drm/i915/gt/intel_reset.c | 10 +++++++---
->  drivers/gpu/drm/i915/i915_driver.c    |  4 +++-
->  3 files changed, 16 insertions(+), 10 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-> index be99b01a0984..9857b91194b7 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-> @@ -163,12 +163,14 @@ static void gt_sanitize(struct intel_gt *gt, bool force)
->  {
->  	struct intel_engine_cs *engine;
->  	enum intel_engine_id id;
-> -	intel_wakeref_t wakeref;
-> +	intel_wakeref_t wakeref = 0;
+On Tue, 21 Jun 2022, "Tangudu, Tilak" <tilak.tangudu@intel.com> wrote:
+>> -----Original Message-----
+>> From: Gupta, Anshuman <anshuman.gupta@intel.com>
+>> Sent: Tuesday, June 21, 2022 7:47 PM
+>> To: Tangudu, Tilak <tilak.tangudu@intel.com>; intel-gfx@lists.freedesktop.org;
+>> Ewins, Jon <jon.ewins@intel.com>; Vivi, Rodrigo <rodrigo.vivi@intel.com>;
+>> Belgaumkar, Vinay <vinay.belgaumkar@intel.com>; Wilson, Chris P
+>> <chris.p.wilson@intel.com>; Dixit, Ashutosh <ashutosh.dixit@intel.com>;
+>> Nilawar, Badal <badal.nilawar@intel.com>; Roper, Matthew D
+>> <matthew.d.roper@intel.com>; Gupta, saurabhg
+>> <saurabhg.gupta@intel.com>; Iddamsetty, Aravind
+>> <aravind.iddamsetty@intel.com>; Sundaresan, Sujaritha
+>> <sujaritha.sundaresan@intel.com>
+>> Subject: RE: [PATCH 04/11] drm/i915: Added is_intel_rpm_allowed helper
+>> 
+>> 
+>> 
+>> > -----Original Message-----
+>> > From: Tangudu, Tilak <tilak.tangudu@intel.com>
+>> > Sent: Tuesday, June 21, 2022 6:05 PM
+>> > To: intel-gfx@lists.freedesktop.org; Ewins, Jon <jon.ewins@intel.com>;
+>> > Vivi, Rodrigo <rodrigo.vivi@intel.com>; Belgaumkar, Vinay
+>> > <vinay.belgaumkar@intel.com>; Wilson, Chris P
+>> > <chris.p.wilson@intel.com>; Dixit, Ashutosh
+>> > <ashutosh.dixit@intel.com>; Nilawar, Badal <badal.nilawar@intel.com>;
+>> > Gupta, Anshuman <anshuman.gupta@intel.com>; Tangudu, Tilak
+>> > <tilak.tangudu@intel.com>; Roper, Matthew D
+>> > <matthew.d.roper@intel.com>; Gupta, saurabhg
+>> > <saurabhg.gupta@intel.com>; Iddamsetty, Aravind
+>> > <aravind.iddamsetty@intel.com>; Sundaresan, Sujaritha
+>> > <sujaritha.sundaresan@intel.com>
+>> > Subject: [PATCH 04/11] drm/i915: Added is_intel_rpm_allowed helper
+>> >
+>> > Added is_intel_rpm_allowed function to query the runtime_pm status and
+>> > disllow during suspending and resuming.
+>> This seems a hack,
+>> Not sure if we have better way to handle it.
+>> May be check this in intel_pm_runtime_{get,put} to keep entire code simple ?
+> Yes, that would be simple without code refactoring.
+> Checked the same with Chris, he suggested unbalancing of wakeref might popup
+> If used at intel_pm_runtime_{get,put}  . So used like this,
+>  @Wilson, Chris P , Please comment .
+> @Vivi, Rodrigo , Any suggestion ?
 
-We've got intel_wakeref_t to hide what it actually is. You shouldn't
-assume you can assign 0 to it or use wakeref in an if condition. You
-should treat it as opaque. You should assume the typedef could be
-switched to a struct and you shouldn't have to change the code using it.
+One option would be to track this in intel_wakeref_t, i.e. _get flags
+the case in the returned wakeref and _put skips in that case.
 
 BR,
 Jani.
 
+
 >  
->  	GT_TRACE(gt, "force:%s", str_yes_no(force));
->  
->  	/* Use a raw wakeref to avoid calling intel_display_power_get early */
-> -	wakeref = intel_runtime_pm_get(gt->uncore->rpm);
-> +	if (is_intel_rpm_allowed(gt->uncore->rpm))
-> +		wakeref = intel_runtime_pm_get(gt->uncore->rpm);
-> +
->  	intel_uncore_forcewake_get(gt->uncore, FORCEWAKE_ALL);
->  
->  	intel_gt_check_clock_frequency(gt);
-> @@ -207,7 +209,8 @@ static void gt_sanitize(struct intel_gt *gt, bool force)
->  	intel_rps_sanitize(&gt->rps);
->  
->  	intel_uncore_forcewake_put(gt->uncore, FORCEWAKE_ALL);
-> -	intel_runtime_pm_put(gt->uncore->rpm, wakeref);
-> +	if (wakeref)
-> +		intel_runtime_pm_put(gt->uncore->rpm, wakeref);
->  }
->  
->  void intel_gt_pm_fini(struct intel_gt *gt)
-> @@ -226,7 +229,6 @@ int intel_gt_resume(struct intel_gt *gt)
->  		return err;
->  
->  	GT_TRACE(gt, "\n");
-> -
->  	/*
->  	 * After resume, we may need to poke into the pinned kernel
->  	 * contexts to paper over any damage caused by the sudden suspend.
-> @@ -259,10 +261,8 @@ int intel_gt_resume(struct intel_gt *gt)
->  
->  	for_each_engine(engine, gt, id) {
->  		intel_engine_pm_get(engine);
-> -
->  		engine->serial++; /* kernel context lost */
->  		err = intel_engine_resume(engine);
-> -
->  		intel_engine_pm_put(engine);
->  		if (err) {
->  			drm_err(&gt->i915->drm,
-> diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
-> index c8e05b48c14f..55a1fd38c7c4 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_reset.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_reset.c
-> @@ -901,12 +901,14 @@ static void __intel_gt_set_wedged(struct intel_gt *gt)
->  
->  void intel_gt_set_wedged(struct intel_gt *gt)
->  {
-> -	intel_wakeref_t wakeref;
-> +	intel_wakeref_t wakeref = 0;
->  
->  	if (test_bit(I915_WEDGED, &gt->reset.flags))
->  		return;
->  
-> -	wakeref = intel_runtime_pm_get(gt->uncore->rpm);
-> +	if (is_intel_rpm_allowed(gt->uncore->rpm))
-> +		wakeref = intel_runtime_pm_get(gt->uncore->rpm);
-> +
->  	mutex_lock(&gt->reset.mutex);
->  
->  	if (GEM_SHOW_DEBUG()) {
-> @@ -926,7 +928,9 @@ void intel_gt_set_wedged(struct intel_gt *gt)
->  	__intel_gt_set_wedged(gt);
->  
->  	mutex_unlock(&gt->reset.mutex);
-> -	intel_runtime_pm_put(gt->uncore->rpm, wakeref);
-> +
-> +	if (wakeref)
-> +		intel_runtime_pm_put(gt->uncore->rpm, wakeref);
->  }
->  
->  static bool __intel_gt_unset_wedged(struct intel_gt *gt)
-> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-> index d26dcca7e654..60f6fcc6b71d 100644
-> --- a/drivers/gpu/drm/i915/i915_driver.c
-> +++ b/drivers/gpu/drm/i915/i915_driver.c
-> @@ -1263,6 +1263,7 @@ int i915_driver_suspend_switcheroo(struct drm_i915_private *i915,
->  static int i915_drm_resume(struct drm_device *dev)
->  {
->  	struct drm_i915_private *dev_priv = to_i915(dev);
-> +	intel_wakeref_t wakeref;
->  	int ret;
->  
->  	disable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
-> @@ -1303,7 +1304,8 @@ static int i915_drm_resume(struct drm_device *dev)
->  	if (HAS_DISPLAY(dev_priv))
->  		drm_mode_config_reset(dev);
->  
-> -	i915_gem_resume(dev_priv);
-> +	with_intel_runtime_pm(&dev_priv->runtime_pm, wakeref)
-> +		i915_gem_resume(dev_priv);
->  
->  	intel_modeset_init_hw(dev_priv);
->  	intel_init_clock_gating(dev_priv);
+>> >
+>> > Signed-off-by: Tilak Tangudu <tilak.tangudu@intel.com>
+>> > ---
+>> >  drivers/gpu/drm/i915/intel_runtime_pm.c | 15 +++++++++++++++
+>> > drivers/gpu/drm/i915/intel_runtime_pm.h |  1 +
+>> >  2 files changed, 16 insertions(+)
+>> >
+>> > diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.c
+>> > b/drivers/gpu/drm/i915/intel_runtime_pm.c
+>> > index 6ed5786bcd29..3759a8596084 100644
+>> > --- a/drivers/gpu/drm/i915/intel_runtime_pm.c
+>> > +++ b/drivers/gpu/drm/i915/intel_runtime_pm.c
+>> > @@ -320,6 +320,21 @@ untrack_all_intel_runtime_pm_wakerefs(struct
+>> > intel_runtime_pm *rpm)  }
+>> >
+>> >  #endif
+>> > +static int intel_runtime_pm_status(struct intel_runtime_pm *rpm) {
+>> > +return rpm->kdev->power.runtime_status; }
+>> This is racy in principal, we need a kdev->power lock here.
+>> Regards,
+>> Anshuman Gupta.
+>> > +
+>> > +bool is_intel_rpm_allowed(struct intel_runtime_pm *rpm) { int
+>> > +rpm_status;
+>> > +
+>> > +rpm_status = intel_runtime_pm_status(rpm); if (rpm_status ==
+>> > +RPM_RESUMING || rpm_status ==
+>> > RPM_SUSPENDING)
+>> > +return false;
+>> > +else
+>> > +return true;
+>> > +}
+>> >
+>> >  static void
+>> >  intel_runtime_pm_acquire(struct intel_runtime_pm *rpm, bool wakelock)
+>> > diff -- git a/drivers/gpu/drm/i915/intel_runtime_pm.h
+>> > b/drivers/gpu/drm/i915/intel_runtime_pm.h
+>> > index d9160e3ff4af..99418c3a934a 100644
+>> > --- a/drivers/gpu/drm/i915/intel_runtime_pm.h
+>> > +++ b/drivers/gpu/drm/i915/intel_runtime_pm.h
+>> > @@ -173,6 +173,7 @@ void intel_runtime_pm_init_early(struct
+>> > intel_runtime_pm *rpm);  void intel_runtime_pm_enable(struct
+>> > intel_runtime_pm *rpm);  void intel_runtime_pm_disable(struct
+>> > intel_runtime_pm *rpm);  void intel_runtime_pm_driver_release(struct
+>> > intel_runtime_pm *rpm);
+>> > +bool is_intel_rpm_allowed(struct intel_runtime_pm *rpm);
+>> >
+>> >  intel_wakeref_t intel_runtime_pm_get(struct intel_runtime_pm *rpm);
+>> > intel_wakeref_t intel_runtime_pm_get_if_in_use(struct intel_runtime_pm
+>> > *rpm);
+>> > --
+>> > 2.25.1
+>> 
+>
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
