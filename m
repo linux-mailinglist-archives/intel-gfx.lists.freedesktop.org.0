@@ -2,54 +2,71 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 044FF5553A7
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jun 2022 20:53:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 20B735553DF
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jun 2022 20:59:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 41F7C10E141;
-	Wed, 22 Jun 2022 18:53:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8238610E043;
+	Wed, 22 Jun 2022 18:59:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B973210E141;
- Wed, 22 Jun 2022 18:53:24 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 40BD710E043
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Jun 2022 18:59:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655924004; x=1687460004;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=EiiBb8yACuqbo9fMMl67Qns4he0MDZUNC6uXUf5TMIs=;
- b=bviqisn93dQEVEkkuKBnXpJfvRjWA8UtAhzcyokj1BdLnND/JeITV3RD
- CrrtGkzsW/wQEajG6Wl9hThPGO/wunOXcD1FBKnsKINcxbB0gG6T4ps01
- w1MceZZuJsVaxp7PelsIZ8WDNRrroTQtldvYployyCKfI8HVq+G73lNz3
- 7YivfMphJEJ+wgB6pq9QTozIYBR6amlcEE6afPR5/BwKYYHgG6vc47o7q
- FzTtBtUIC4LES43vL/kzHkeuarL+vxlhihPG353xjbj7rFYqeJ8W88qO/
- 7y9JN6ErWGDVGCN1sD29cjgOf/Ph7ku1o4gVV6zW68Wm1m1AJupPofe/3 A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10386"; a="342200055"
-X-IronPort-AV: E=Sophos;i="5.92,212,1650956400"; d="scan'208";a="342200055"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jun 2022 11:53:24 -0700
-X-IronPort-AV: E=Sophos;i="5.92,212,1650956400"; d="scan'208";a="914820274"
-Received: from nvishwa1-desk.sc.intel.com (HELO nvishwa1-DESK) ([172.25.29.76])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jun 2022 11:53:23 -0700
-Date: Wed, 22 Jun 2022 11:53:05 -0700
-From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <20220622185305.GA376@nvishwa1-DESK>
-References: <20220622035650.29256-1-niranjana.vishwanathapura@intel.com>
- <20220622035650.29256-4-niranjana.vishwanathapura@intel.com>
- <6ac2f495-8ead-4824-f9af-1c03fb3770c4@linux.intel.com>
- <20220622151229.GY376@nvishwa1-DESK>
- <b347fb63-5200-9f5c-b0d6-ca51b7a064f9@linux.intel.com>
- <20220622164445.GZ376@nvishwa1-DESK>
+ t=1655924382; x=1687460382;
+ h=from:to:subject:date:message-id:references:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=AHl5m8g4lTRUa1WWKdXH7X4wyIoBNobXna1JTGZF/uE=;
+ b=FpWUzJ6UyDb69sDhIzmExOBlBgXbo/kP7qIjdazmvMJGzRWydZvynOeP
+ cO8gxSMTqs51A66dPjOwXBgIHWuStfudssswCCF8t12bHdF3gBluEr/Io
+ WCicJnsP1aSl/kK7RN3ruKzctS/or0G+NbcnabMR1fou8hd7hD4WbSIWK
+ ZNNIsNiRnJyhrc6PecViEkR53UTA3dhYU6jiF1PIsxAxQNKUIPEKSw0Mh
+ hZxfp+msDyO7ZFhGDvXGrf/OSIDsowm4eIJ8PcnqVdJCEk4SZgZyOb9+r
+ WZG74KE9QkRXtRlN1lhQcPfdwao6W1afNNCeHmyllY/DHIGgDCgNiN9EU A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10386"; a="279283813"
+X-IronPort-AV: E=Sophos;i="5.92,212,1650956400"; d="scan'208";a="279283813"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jun 2022 11:59:41 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.92,212,1650956400"; d="scan'208";a="715529913"
+Received: from fmsmsx605.amr.corp.intel.com ([10.18.126.85])
+ by orsmga004.jf.intel.com with ESMTP; 22 Jun 2022 11:59:41 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx605.amr.corp.intel.com (10.18.126.85) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27; Wed, 22 Jun 2022 11:59:40 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27; Wed, 22 Jun 2022 11:59:40 -0700
+Received: from fmsmsx612.amr.corp.intel.com ([10.18.126.92]) by
+ fmsmsx612.amr.corp.intel.com ([10.18.126.92]) with mapi id 15.01.2308.027;
+ Wed, 22 Jun 2022 11:59:40 -0700
+From: "Shankar, Uma" <uma.shankar@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH] drm/i915: Eliminate PIPECONF RMWs from
+ .color_commit()
+Thread-Index: AQHYT2xYiCmNRcFE8EOhkJjbuHOzDK1cNUAg
+Date: Wed, 22 Jun 2022 18:59:40 +0000
+Message-ID: <16b67662ab8c4163adb3ebda5ed0ff90@intel.com>
+References: <20220413192607.27533-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20220413192607.27533-1-ville.syrjala@linux.intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.6.500.17
+x-originating-ip: [10.108.32.68]
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220622164445.GZ376@nvishwa1-DESK>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH v3 3/3] drm/doc/rfc: VM_BIND uapi definition
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Eliminate PIPECONF RMWs from
+ .color_commit()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,364 +79,128 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: paulo.r.zanoni@intel.com, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, thomas.hellstrom@intel.com,
- chris.p.wilson@intel.com, daniel.vetter@intel.com, christian.koenig@amd.com,
- matthew.auld@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jun 22, 2022 at 09:44:47AM -0700, Niranjana Vishwanathapura wrote:
->On Wed, Jun 22, 2022 at 04:57:17PM +0100, Tvrtko Ursulin wrote:
->>
->>On 22/06/2022 16:12, Niranjana Vishwanathapura wrote:
->>>On Wed, Jun 22, 2022 at 09:10:07AM +0100, Tvrtko Ursulin wrote:
->>>>
->>>>On 22/06/2022 04:56, Niranjana Vishwanathapura wrote:
->>>>>VM_BIND and related uapi definitions
->>>>>
->>>>>v2: Reduce the scope to simple Mesa use case.
->>>>>v3: Expand VM_UNBIND documentation and add
->>>>>    I915_GEM_VM_BIND/UNBIND_FENCE_VALID
->>>>>    and I915_GEM_VM_BIND_TLB_FLUSH flags.
->>>>>
->>>>>Signed-off-by: Niranjana Vishwanathapura 
->>>>><niranjana.vishwanathapura@intel.com>
->>>>>---
->>>>> Documentation/gpu/rfc/i915_vm_bind.h | 243 +++++++++++++++++++++++++++
->>>>> 1 file changed, 243 insertions(+)
->>>>> create mode 100644 Documentation/gpu/rfc/i915_vm_bind.h
->>>>>
->>>>>diff --git a/Documentation/gpu/rfc/i915_vm_bind.h 
->>>>>b/Documentation/gpu/rfc/i915_vm_bind.h
->>>>>new file mode 100644
->>>>>index 000000000000..fa23b2d7ec6f
->>>>>--- /dev/null
->>>>>+++ b/Documentation/gpu/rfc/i915_vm_bind.h
->>>>>@@ -0,0 +1,243 @@
->>>>>+/* SPDX-License-Identifier: MIT */
->>>>>+/*
->>>>>+ * Copyright © 2022 Intel Corporation
->>>>>+ */
->>>>>+
->>>>>+/**
->>>>>+ * DOC: I915_PARAM_HAS_VM_BIND
->>>>>+ *
->>>>>+ * VM_BIND feature availability.
->>>>>+ * See typedef drm_i915_getparam_t param.
->>>>>+ */
->>>>>+#define I915_PARAM_HAS_VM_BIND        57
->>>>>+
->>>>>+/**
->>>>>+ * DOC: I915_VM_CREATE_FLAGS_USE_VM_BIND
->>>>>+ *
->>>>>+ * Flag to opt-in for VM_BIND mode of binding during VM creation.
->>>>>+ * See struct drm_i915_gem_vm_control flags.
->>>>>+ *
->>>>>+ * The older execbuf2 ioctl will not support VM_BIND mode of operation.
->>>>>+ * For VM_BIND mode, we have new execbuf3 ioctl which will 
->>>>>not accept any
->>>>>+ * execlist (See struct drm_i915_gem_execbuffer3 for more details).
->>>>>+ *
->>>>>+ */
->>>>>+#define I915_VM_CREATE_FLAGS_USE_VM_BIND    (1 << 0)
->>>>>+
->>>>>+/* VM_BIND related ioctls */
->>>>>+#define DRM_I915_GEM_VM_BIND        0x3d
->>>>>+#define DRM_I915_GEM_VM_UNBIND        0x3e
->>>>>+#define DRM_I915_GEM_EXECBUFFER3    0x3f
->>>>>+
->>>>>+#define DRM_IOCTL_I915_GEM_VM_BIND        
->>>>>DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_VM_BIND, struct 
->>>>>drm_i915_gem_vm_bind)
->>>>>+#define DRM_IOCTL_I915_GEM_VM_UNBIND        
->>>>>DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_VM_UNBIND, struct 
->>>>>drm_i915_gem_vm_bind)
->>>>>+#define DRM_IOCTL_I915_GEM_EXECBUFFER3        
->>>>>DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_EXECBUFFER3, struct 
->>>>>drm_i915_gem_execbuffer3)
->>>>>+
->>>>>+/**
->>>>>+ * struct drm_i915_gem_vm_bind_fence - Bind/unbind completion 
->>>>>notification.
->>>>>+ *
->>>>>+ * A timeline out fence for vm_bind/unbind completion notification.
->>>>>+ */
->>>>>+struct drm_i915_gem_vm_bind_fence {
->>>>>+    /** @handle: User's handle for a drm_syncobj to signal. */
->>>>>+    __u32 handle;
->>>>>+
->>>>>+    /** @rsvd: Reserved, MBZ */
->>>>>+    __u32 rsvd;
->>>>>+
->>>>>+    /**
->>>>>+     * @value: A point in the timeline.
->>>>>+     * Value must be 0 for a binary drm_syncobj. A Value of 0 for a
->>>>>+     * timeline drm_syncobj is invalid as it turns a drm_syncobj into a
->>>>>+     * binary one.
->>>>>+     */
->>>>>+    __u64 value;
->>>>>+};
->>>>>+
->>>>>+/**
->>>>>+ * struct drm_i915_gem_vm_bind - VA to object mapping to bind.
->>>>>+ *
->>>>>+ * This structure is passed to VM_BIND ioctl and specifies 
->>>>>the mapping of GPU
->>>>>+ * virtual address (VA) range to the section of an object 
->>>>>that should be bound
->>>>>+ * in the device page table of the specified address space (VM).
->>>>>+ * The VA range specified must be unique (ie., not currently 
->>>>>bound) and can
->>>>>+ * be mapped to whole object or a section of the object 
->>>>>(partial binding).
->>>>>+ * Multiple VA mappings can be created to the same section of 
->>>>>the object
->>>>>+ * (aliasing).
->>>>>+ *
->>>>>+ * The @start, @offset and @length should be 4K page aligned. 
->>>>>However the DG2
->>>>>+ * and XEHPSDV has 64K page size for device local-memory and 
->>>>>has compact page
->>>>>+ * table. On those platforms, for binding device local-memory 
->>>>>objects, the
->>>>>+ * @start should be 2M aligned, @offset and @length should be 
->>>>>64K aligned.
->>>>
->>>>Should some error codes be documented and has the ability to 
->>>>programmatically probe the alignment restrictions been 
->>>>considered?
->>>>
->>>
->>>Currently what we have internally is that -EINVAL is returned if 
->>>the sart, offset
->>>and length are not aligned. If the specified mapping already 
->>>exits, we return
->>>-EEXIST. If there are conflicts in the VA range and VA range can't 
->>>be reserved,
->>>then -ENOSPC is returned. I can add this documentation here. But I 
->>>am worried
->>>that there will be more suggestions/feedback about error codes 
->>>while reviewing
->>>the code patch series, and we have to revisit it again.
->>
->>I'd still suggest documenting those three. It makes sense to explain 
->>to userspace what behaviour they will see if they get it wrong.
->>
->
->Ok.
-
-I have posted v4 with the fixes. I have simplified the error code a
-bit by removing EEXIST which is just a special case of ENOSPC.
-
-Niranjana
-
->
->>>>>+ * Also, on those platforms, it is not allowed to bind an 
->>>>>device local-memory
->>>>>+ * object and a system memory object in a single 2M section 
->>>>>of VA range.
->>>>
->>>>Text should be clear whether "not allowed" means there will be 
->>>>an error returned, or it will appear to work but bad things will 
->>>>happen.
->>>>
->>>
->>>Yah, error returned, will fix.
->>>
->>>>>+ */
->>>>>+struct drm_i915_gem_vm_bind {
->>>>>+    /** @vm_id: VM (address space) id to bind */
->>>>>+    __u32 vm_id;
->>>>>+
->>>>>+    /** @handle: Object handle */
->>>>>+    __u32 handle;
->>>>>+
->>>>>+    /** @start: Virtual Address start to bind */
->>>>>+    __u64 start;
->>>>>+
->>>>>+    /** @offset: Offset in object to bind */
->>>>>+    __u64 offset;
->>>>>+
->>>>>+    /** @length: Length of mapping to bind */
->>>>>+    __u64 length;
->>>>>+
->>>>>+    /**
->>>>>+     * @flags: Supported flags are:
->>>>>+     *
->>>>>+     * I915_GEM_VM_BIND_FENCE_VALID:
->>>>>+     * @fence is valid, needs bind completion notification.
->>>>>+     *
->>>>>+     * I915_GEM_VM_BIND_READONLY:
->>>>>+     * Mapping is read-only.
->>>>>+     *
->>>>>+     * I915_GEM_VM_BIND_CAPTURE:
->>>>>+     * Capture this mapping in the dump upon GPU error.
->>>>>+     *
->>>>>+     * I915_GEM_VM_BIND_TLB_FLUSH:
->>>>>+     * Flush the TLB for the specified range after bind completion.
->>>>>+     */
->>>>>+    __u64 flags;
->>>>>+#define I915_GEM_VM_BIND_FENCE_VALID    (1 << 0)
->>>>>+#define I915_GEM_VM_BIND_READONLY    (1 << 1)
->>>>>+#define I915_GEM_VM_BIND_CAPTURE    (1 << 2)
->>>>>+#define I915_GEM_VM_BIND_TLB_FLUSH    (1 << 2)
->>>>
->>>>What is the use case for allowing any random user to play with 
->>>>(global) TLB flushing?
->>>>
->>>
->>>I heard it from Daniel on intel-gfx, apparently it is a Mesa requirement.
->>
->>Okay I think that one needs clarifying.
->>
->
->After chatting with Jason, I think we can remove it for now and
->we can revisit it later if Mesa thinks it is required.
->
->>>>>+
->>>>>+    /** @fence: Timeline fence for bind completion signaling */
->>>>>+    struct drm_i915_gem_vm_bind_fence fence;
->>>>
->>>>As agreed the other day - please document in the main kerneldoc 
->>>>section that all (un)binds are executed asynchronously and out 
->>>>of order.
->>>>
->>>
->>>I have added it in the latest revision of .rst file.
->>
->>Right, but I'd say to mention it in the uapi docs.
->>
->
->Ok
->
->>>>>+
->>>>>+    /** @extensions: 0-terminated chain of extensions */
->>>>>+    __u64 extensions;
->>>>>+};
->>>>>+
->>>>>+/**
->>>>>+ * struct drm_i915_gem_vm_unbind - VA to object mapping to unbind.
->>>>>+ *
->>>>>+ * This structure is passed to VM_UNBIND ioctl and specifies 
->>>>>the GPU virtual
->>>>>+ * address (VA) range that should be unbound from the device 
->>>>>page table of the
->>>>>+ * specified address space (VM). The specified VA range must 
->>>>>match one of the
->>>>>+ * mappings created with the VM_BIND ioctl. TLB is flushed upon unbind
->>>>>+ * completion. The unbind operation will force unbind the specified
->>>>
->>>>Do we want to provide TLB flushing guarantees here and why? (As 
->>>>opposed to leaving them for implementation details.) If there is 
->>>>no implied order in either binds/unbinds, or between the two 
->>>>intermixed, then what is the point of guaranteeing a TLB flush 
->>>>on unbind completion?
->>>>
->>>
->>>I think we ensure that tlb is flushed before signaling the out fence
->>>of vm_unbind call, then user ensure corretness by staging submissions
->>>or vm_bind calls after vm_unbind out fence signaling.
->>
->>I don't see why is this required. Driver does not need to flush 
->>immediately on unbind for correctness/security and neither for the 
->>uapi contract. If there is no subsequent usage/bind then the flush 
->>is pointless. And if the user re-binds to same VA range, against an 
->>active VM, then perhaps the expectations need to be defined. Is this 
->>supported or user error or what.
->>
->
->After a vm_unbind, UMD can re-bind to same VA range against an active VM.
->Though I am not sue with Mesa usecase if that new mapping is required for
->running GPU job or it will be for the next submission. But ensuring the
->tlb flush upon unbind, KMD can ensure correctness.
->
->Note that on platforms with selective TLB invalidation, it is not
->as expensive as flushing the whole TLB. On platforms without selective
->tlb invalidation, we can put some optimization later as mentioned
->in the .rst file.
->
->Also note that UMDs can vm_unbind a mapping while VM is active.
->By flushing the tlb, we ensure there is no inadvertent access to
->mapping that no longer exists. I can add this to documentation.
->
->>>>range from
->>>>>+ * device page table without waiting for any GPU job to 
->>>>>complete. It is UMDs
->>>>>+ * responsibility to ensure the mapping is no longer in use 
->>>>>before calling
->>>>>+ * VM_UNBIND.
->>>>>+ *
->>>>>+ * The @start and @length musy specify a unique mapping bound 
->>>>>with VM_BIND
->>>>>+ * ioctl.
->>>>>+ */
->>>>>+struct drm_i915_gem_vm_unbind {
->>>>>+    /** @vm_id: VM (address space) id to bind */
->>>>>+    __u32 vm_id;
->>>>>+
->>>>>+    /** @rsvd: Reserved, MBZ */
->>>>>+    __u32 rsvd;
->>>>>+
->>>>>+    /** @start: Virtual Address start to unbind */
->>>>>+    __u64 start;
->>>>>+
->>>>>+    /** @length: Length of mapping to unbind */
->>>>>+    __u64 length;
->>>>>+
->>>>>+    /**
->>>>>+     * @flags: Supported flags are:
->>>>>+     *
->>>>>+     * I915_GEM_VM_UNBIND_FENCE_VALID:
->>>>>+     * @fence is valid, needs unbind completion notification.
->>>>>+     */
->>>>>+    __u64 flags;
->>>>>+#define I915_GEM_VM_UNBIND_FENCE_VALID    (1 << 0)
->>>>>+
->>>>>+    /** @fence: Timeline fence for unbind completion signaling */
->>>>>+    struct drm_i915_gem_vm_bind_fence fence;
->>>>
->>>>I am not sure the simplified ioctl story is super coherent. If 
->>>>everything is now fully async and out of order, but the input 
->>>>fence has been dropped, then how is userspace supposed to handle 
->>>>the address space? It will have to wait (in userspace) for 
->>>>unbinds to complete before submitting subsequent binds which use 
->>>>the same VA range.
->>>>
->>>
->>>Yah and Mesa appararently will be having the support to handle it.
->>>
->>>>Maybe that's passable, but then the fact execbuf3 has no input 
->>>>fence suggests a userspace wait between it and binds. And I am 
->>>>pretty sure historically those were always quite bad for 
->>>>performance.
->>>>
->>>
->>>execbuf3 has the input fence through timline fence array support.
->>
->>I think I confused the field in execbuf3 for for the output fence.. 
->>So that part is fine, async binds chained with input fence to 
->>execbuf3. Fire and forget for userspace.
->>
->>Although I then don't understand why execbuf3 wouldn't support an 
->>output fence? What mechanism is userspace supposed to use for that? 
->>Export a fence from batch buffer BO? That would be an extra ioctl so 
->>if we can avoid it why not?
->>
->
->execbuf3 supports out fence as well through timeline fence array.
->
->Niranjana
->
->>>>Presumably userspace clients are happy with no input fences or 
->>>>it was considered to costly to implement it?
->>>>
->>>
->>>Yah, apparently Mesa can work with no input fence. This helps us in
->>>focusing on rest of the VM_BIND feature delivery.
->>
->>Okay.
->>
->>Regards,
->>
->>Tvrtko
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogSW50ZWwtZ2Z4IDxpbnRl
+bC1nZngtYm91bmNlc0BsaXN0cy5mcmVlZGVza3RvcC5vcmc+IE9uIEJlaGFsZiBPZiBWaWxsZSBT
+eXJqYWxhDQo+IFNlbnQ6IFRodXJzZGF5LCBBcHJpbCAxNCwgMjAyMiAxMjo1NiBBTQ0KPiBUbzog
+aW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPiBTdWJqZWN0OiBbSW50ZWwtZ2Z4XSBb
+UEFUQ0hdIGRybS9pOTE1OiBFbGltaW5hdGUgUElQRUNPTkYgUk1XcyBmcm9tDQo+IC5jb2xvcl9j
+b21taXQoKQ0KPiANCj4gRnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4
+LmludGVsLmNvbT4NCj4gDQo+IEVsaW1pbmF0ZSB0aGUgUElQRUNPTkYgUk1XcyBmcm9tIC5jb21p
+dF9jb21taXQoKSBzbyB0aGF0IHdlIGNhbiBmaW5hbGx5IGRlY2xhcmUNCj4gdGhlIHdob2xlIHZi
+bGFuayBldmFkZSBwYXJ0IChhbmQgdGhlIG5vYXJtKCkgcGFydCkgb2YgdGhlIHBpcGUgY29tbWl0
+IGZyZWUgb2YNCj4gcmVnaXN0ZXIgcmVhZHMuIE9yIGF0IGxlYXN0IEkgaG9wZSB0aGF0J3MgdGhl
+IGxhc3QgcmVhZC4uLg0KPiANCj4gT25seSB0aGUgaTl4eC9pbGsgY29kZXBhdGhzIG5lZWQgdGhp
+cyBmb3Igbm93LCBidXQgbGV0J3MgYWRkIHRoZSBzYW1lIHRoaW5nIGZvciBoc3crDQo+IGp1c3Qg
+aW4gY2FzZSB3ZSB3YW50IHRvIHN0YXJ0IGNhbGxpbmcgdGhhdCBkdXJpbmcgZmFzdHNldHMgYXQg
+c29tZSBwb2ludCAoZWcuIHRvIGNoYW5nZQ0KPiBkaXRoZXJpbmcgc2V0dGluZ3MvZXRjLikuDQo+
+IA0KPiBTaG91bGQgb3BlbiB1cCB0aGUgd2F5IHRvIHN0YXJ0IGV4cGVyaW1lbnRpbmcgd2l0aCBk
+aWZmZXJlbnQgRFNCIHVzYWdlIGFwcHJvYWNoZXMNCj4gZm9yIHBpcGUgY29tbWl0cy4NCg0KTG9v
+a3MgR29vZCB0byBtZS4NClJldmlld2VkLWJ5OiBVbWEgU2hhbmthciA8dW1hLnNoYW5rYXJAaW50
+ZWwuY29tPg0KDQo+IFNpZ25lZC1vZmYtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFs
+YUBsaW51eC5pbnRlbC5jb20+DQo+IC0tLQ0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
+eS9pbnRlbF9jb2xvci5jICAgfCAyMSArKysrLS0tLS0tLS0tLQ0KPiAgZHJpdmVycy9ncHUvZHJt
+L2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMgfCAzMCArKysrKysrKysrKysrKy0tLS0tLQ0K
+PiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuaCB8ICAyICsrDQo+
+ICAzIGZpbGVzIGNoYW5nZWQsIDI5IGluc2VydGlvbnMoKyksIDI0IGRlbGV0aW9ucygtKQ0KPiAN
+Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfY29sb3Iu
+Yw0KPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfY29sb3IuYw0KPiBpbmRl
+eCAzNDEyOGM5YzYzNWMuLjYwNTMyZGQwZjlmNiAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jb2xvci5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2Rpc3BsYXkvaW50ZWxfY29sb3IuYw0KPiBAQCAtNTA1LDMwICs1MDUsMTkgQEAgc3RhdGlj
+IHZvaWQgaWxrX2NvbG9yX2NvbW1pdF9ub2FybShjb25zdCBzdHJ1Y3QNCj4gaW50ZWxfY3J0Y19z
+dGF0ZSAqY3J0Y19zdGF0ZSkNCj4gDQo+ICBzdGF0aWMgdm9pZCBpOXh4X2NvbG9yX2NvbW1pdF9h
+cm0oY29uc3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUpICB7DQo+IC0Jc3Ry
+dWN0IGludGVsX2NydGMgKmNydGMgPSB0b19pbnRlbF9jcnRjKGNydGNfc3RhdGUtPnVhcGkuY3J0
+Yyk7DQo+IC0Jc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2ID0gdG9faTkxNShjcnRj
+LT5iYXNlLmRldik7DQo+IC0JZW51bSBwaXBlIHBpcGUgPSBjcnRjLT5waXBlOw0KPiAtCXUzMiB2
+YWw7DQo+IC0NCj4gLQl2YWwgPSBpbnRlbF9kZV9yZWFkKGRldl9wcml2LCBQSVBFQ09ORihwaXBl
+KSk7DQo+IC0JdmFsICY9IH5QSVBFQ09ORl9HQU1NQV9NT0RFX01BU0tfSTlYWDsNCj4gLQl2YWwg
+fD0gUElQRUNPTkZfR0FNTUFfTU9ERShjcnRjX3N0YXRlLT5nYW1tYV9tb2RlKTsNCj4gLQlpbnRl
+bF9kZV93cml0ZShkZXZfcHJpdiwgUElQRUNPTkYocGlwZSksIHZhbCk7DQo+ICsJLyogdXBkYXRl
+IFBJUEVDT05GIEdBTU1BX01PREUgKi8NCj4gKwlpOXh4X3NldF9waXBlY29uZihjcnRjX3N0YXRl
+KTsNCj4gIH0NCj4gDQo+ICBzdGF0aWMgdm9pZCBpbGtfY29sb3JfY29tbWl0X2FybShjb25zdCBz
+dHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSkgIHsNCj4gIAlzdHJ1Y3QgaW50ZWxf
+Y3J0YyAqY3J0YyA9IHRvX2ludGVsX2NydGMoY3J0Y19zdGF0ZS0+dWFwaS5jcnRjKTsNCj4gIAlz
+dHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYgPSB0b19pOTE1KGNydGMtPmJhc2UuZGV2
+KTsNCj4gLQllbnVtIHBpcGUgcGlwZSA9IGNydGMtPnBpcGU7DQo+IC0JdTMyIHZhbDsNCj4gDQo+
+IC0JdmFsID0gaW50ZWxfZGVfcmVhZChkZXZfcHJpdiwgUElQRUNPTkYocGlwZSkpOw0KPiAtCXZh
+bCAmPSB+UElQRUNPTkZfR0FNTUFfTU9ERV9NQVNLX0lMSzsNCj4gLQl2YWwgfD0gUElQRUNPTkZf
+R0FNTUFfTU9ERShjcnRjX3N0YXRlLT5nYW1tYV9tb2RlKTsNCj4gLQlpbnRlbF9kZV93cml0ZShk
+ZXZfcHJpdiwgUElQRUNPTkYocGlwZSksIHZhbCk7DQo+ICsJLyogdXBkYXRlIFBJUEVDT05GIEdB
+TU1BX01PREUgKi8NCj4gKwlpbGtfc2V0X3BpcGVjb25mKGNydGNfc3RhdGUpOw0KPiANCj4gLQlp
+bnRlbF9kZV93cml0ZV9mdyhkZXZfcHJpdiwgUElQRV9DU0NfTU9ERShwaXBlKSwNCj4gKwlpbnRl
+bF9kZV93cml0ZV9mdyhkZXZfcHJpdiwgUElQRV9DU0NfTU9ERShjcnRjLT5waXBlKSwNCj4gIAkJ
+CSAgY3J0Y19zdGF0ZS0+Y3NjX21vZGUpOw0KPiAgfQ0KPiANCj4gZGlmZiAtLWdpdCBhL2RyaXZl
+cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jDQo+IGIvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMNCj4gaW5kZXggMjkwNDRjZjU4Yjg3Li5h
+YTI4MTQzMzJhZDkgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
+aW50ZWxfZGlzcGxheS5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
+ZWxfZGlzcGxheS5jDQo+IEBAIC0xMjIsOCArMTIyLDYgQEANCj4gDQo+ICBzdGF0aWMgdm9pZCBp
+bnRlbF9zZXRfdHJhbnNjb2Rlcl90aW1pbmdzKGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRl
+ICpjcnRjX3N0YXRlKTsNCj4gc3RhdGljIHZvaWQgaW50ZWxfc2V0X3BpcGVfc3JjX3NpemUoY29u
+c3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUpOyAtc3RhdGljDQo+IHZvaWQg
+aTl4eF9zZXRfcGlwZWNvbmYoY29uc3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3Rh
+dGUpOyAtc3RhdGljIHZvaWQNCj4gaWxrX3NldF9waXBlY29uZihjb25zdCBzdHJ1Y3QgaW50ZWxf
+Y3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSk7ICBzdGF0aWMgdm9pZA0KPiBoc3dfc2V0X3RyYW5zY29u
+Zihjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSk7ICBzdGF0aWMgdm9p
+ZA0KPiBiZHdfc2V0X3BpcGVtaXNjKGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpjcnRj
+X3N0YXRlKTsgIHN0YXRpYyB2b2lkDQo+IGlsa19wZml0X2VuYWJsZShjb25zdCBzdHJ1Y3QgaW50
+ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSk7IEBAIC0zMjA1LDE0ICszMjAzLDE4DQo+IEBAIHN0
+YXRpYyB2b2lkIGludGVsX2dldF9waXBlX3NyY19zaXplKHN0cnVjdCBpbnRlbF9jcnRjICpjcnRj
+LA0KPiAgCWludGVsX2JpZ2pvaW5lcl9hZGp1c3RfcGlwZV9zcmMocGlwZV9jb25maWcpOw0KPiAg
+fQ0KPiANCj4gLXN0YXRpYyB2b2lkIGk5eHhfc2V0X3BpcGVjb25mKGNvbnN0IHN0cnVjdCBpbnRl
+bF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlKQ0KPiArdm9pZCBpOXh4X3NldF9waXBlY29uZihjb25z
+dCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSkNCj4gIHsNCj4gIAlzdHJ1Y3Qg
+aW50ZWxfY3J0YyAqY3J0YyA9IHRvX2ludGVsX2NydGMoY3J0Y19zdGF0ZS0+dWFwaS5jcnRjKTsN
+Cj4gIAlzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYgPSB0b19pOTE1KGNydGMtPmJh
+c2UuZGV2KTsNCj4gIAl1MzIgcGlwZWNvbmYgPSAwOw0KPiANCj4gLQkvKiB3ZSBrZWVwIGJvdGgg
+cGlwZXMgZW5hYmxlZCBvbiA4MzAgKi8NCj4gLQlpZiAoSVNfSTgzMChkZXZfcHJpdikpDQo+ICsJ
+LyoNCj4gKwkgKiAtIFdlIGtlZXAgYm90aCBwaXBlcyBlbmFibGVkIG9uIDgzMA0KPiArCSAqIC0g
+RHVyaW5nIG1vZGVzZXQgdGhlIHBpcGUgaXMgc3RpbGwgZGlzYWJsZWQgYW5kIG11c3QgcmVtYWlu
+IHNvDQo+ICsJICogLSBEdXJpbmcgZmFzdHNldCB0aGUgcGlwZSBpcyBhbHJlYWR5IGVuYWJsZWQg
+YW5kIG11c3QgcmVtYWluIHNvDQo+ICsJICovDQo+ICsJaWYgKElTX0k4MzAoZGV2X3ByaXYpIHx8
+ICFpbnRlbF9jcnRjX25lZWRzX21vZGVzZXQoY3J0Y19zdGF0ZSkpDQo+ICAJCXBpcGVjb25mIHw9
+IFBJUEVDT05GX0VOQUJMRTsNCj4gDQo+ICAJaWYgKGNydGNfc3RhdGUtPmRvdWJsZV93aWRlKQ0K
+PiBAQCAtMzUyNCwxNCArMzUyNiwxOSBAQCBzdGF0aWMgYm9vbCBpOXh4X2dldF9waXBlX2NvbmZp
+ZyhzdHJ1Y3QgaW50ZWxfY3J0YyAqY3J0YywNCj4gIAlyZXR1cm4gcmV0Ow0KPiAgfQ0KPiANCj4g
+LXN0YXRpYyB2b2lkIGlsa19zZXRfcGlwZWNvbmYoY29uc3Qgc3RydWN0IGludGVsX2NydGNfc3Rh
+dGUgKmNydGNfc3RhdGUpDQo+ICt2b2lkIGlsa19zZXRfcGlwZWNvbmYoY29uc3Qgc3RydWN0IGlu
+dGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUpDQo+ICB7DQo+ICAJc3RydWN0IGludGVsX2NydGMg
+KmNydGMgPSB0b19pbnRlbF9jcnRjKGNydGNfc3RhdGUtPnVhcGkuY3J0Yyk7DQo+ICAJc3RydWN0
+IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2ID0gdG9faTkxNShjcnRjLT5iYXNlLmRldik7DQo+
+ICAJZW51bSBwaXBlIHBpcGUgPSBjcnRjLT5waXBlOw0KPiAtCXUzMiB2YWw7DQo+ICsJdTMyIHZh
+bCA9IDA7DQo+IA0KPiAtCXZhbCA9IDA7DQo+ICsJLyoNCj4gKwkgKiAtIER1cmluZyBtb2Rlc2V0
+IHRoZSBwaXBlIGlzIHN0aWxsIGRpc2FibGVkIGFuZCBtdXN0IHJlbWFpbiBzbw0KPiArCSAqIC0g
+RHVyaW5nIGZhc3RzZXQgdGhlIHBpcGUgaXMgYWxyZWFkeSBlbmFibGVkIGFuZCBtdXN0IHJlbWFp
+biBzbw0KPiArCSAqLw0KPiArCWlmICghaW50ZWxfY3J0Y19uZWVkc19tb2Rlc2V0KGNydGNfc3Rh
+dGUpKQ0KPiArCQl2YWwgfD0gUElQRUNPTkZfRU5BQkxFOw0KPiANCj4gIAlzd2l0Y2ggKGNydGNf
+c3RhdGUtPnBpcGVfYnBwKSB7DQo+ICAJY2FzZSAxODoNCj4gQEAgLTM1ODksNiArMzU5NiwxMyBA
+QCBzdGF0aWMgdm9pZCBoc3dfc2V0X3RyYW5zY29uZihjb25zdCBzdHJ1Y3QNCj4gaW50ZWxfY3J0
+Y19zdGF0ZSAqY3J0Y19zdGF0ZSkNCj4gIAllbnVtIHRyYW5zY29kZXIgY3B1X3RyYW5zY29kZXIg
+PSBjcnRjX3N0YXRlLT5jcHVfdHJhbnNjb2RlcjsNCj4gIAl1MzIgdmFsID0gMDsNCj4gDQo+ICsJ
+LyoNCj4gKwkgKiAtIER1cmluZyBtb2Rlc2V0IHRoZSBwaXBlIGlzIHN0aWxsIGRpc2FibGVkIGFu
+ZCBtdXN0IHJlbWFpbiBzbw0KPiArCSAqIC0gRHVyaW5nIGZhc3RzZXQgdGhlIHBpcGUgaXMgYWxy
+ZWFkeSBlbmFibGVkIGFuZCBtdXN0IHJlbWFpbiBzbw0KPiArCSAqLw0KPiArCWlmICghaW50ZWxf
+Y3J0Y19uZWVkc19tb2Rlc2V0KGNydGNfc3RhdGUpKQ0KPiArCQl2YWwgfD0gUElQRUNPTkZfRU5B
+QkxFOw0KPiArDQo+ICAJaWYgKElTX0hBU1dFTEwoZGV2X3ByaXYpICYmIGNydGNfc3RhdGUtPmRp
+dGhlcikNCj4gIAkJdmFsIHw9IFBJUEVDT05GX0RJVEhFUl9FTiB8IFBJUEVDT05GX0RJVEhFUl9U
+WVBFX1NQOw0KPiANCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
+aW50ZWxfZGlzcGxheS5oDQo+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9k
+aXNwbGF5LmgNCj4gaW5kZXggODY3ZmEyNDhmMDQyLi5lZTQ4ODIwNWM1ZmUgMTAwNjQ0DQo+IC0t
+LSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5oDQo+ICsrKyBi
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5oDQo+IEBAIC01NjEs
+NiArNTYxLDggQEAgdTggaW50ZWxfY3J0Y19iaWdqb2luZXJfc2xhdmVfcGlwZXMoY29uc3Qgc3Ry
+dWN0DQo+IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUpOyAgc3RydWN0IGludGVsX2NydGMg
+KmludGVsX21hc3Rlcl9jcnRjKGNvbnN0IHN0cnVjdA0KPiBpbnRlbF9jcnRjX3N0YXRlICpjcnRj
+X3N0YXRlKTsNCj4gDQo+ICB2b2lkIGludGVsX3BsYW5lX2Rlc3Ryb3koc3RydWN0IGRybV9wbGFu
+ZSAqcGxhbmUpOw0KPiArdm9pZCBpOXh4X3NldF9waXBlY29uZihjb25zdCBzdHJ1Y3QgaW50ZWxf
+Y3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSk7IHZvaWQNCj4gK2lsa19zZXRfcGlwZWNvbmYoY29uc3Qg
+c3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUpOw0KPiAgdm9pZCBpbnRlbF9lbmFi
+bGVfdHJhbnNjb2Rlcihjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqbmV3X2NydGNfc3Rh
+dGUpOyAgdm9pZA0KPiBpbnRlbF9kaXNhYmxlX3RyYW5zY29kZXIoY29uc3Qgc3RydWN0IGludGVs
+X2NydGNfc3RhdGUgKm9sZF9jcnRjX3N0YXRlKTsgIHZvaWQNCj4gaTgzMF9lbmFibGVfcGlwZShz
+dHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsIGVudW0gcGlwZSBwaXBlKTsNCj4gLS0N
+Cj4gMi4zNS4xDQoNCg==
