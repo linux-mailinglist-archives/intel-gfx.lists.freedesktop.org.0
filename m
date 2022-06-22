@@ -2,57 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FBA45545E4
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jun 2022 13:56:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C53C554A56
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jun 2022 14:53:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F3BD112B7E;
-	Wed, 22 Jun 2022 11:56:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0609D1133CA;
+	Wed, 22 Jun 2022 12:53:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B3B1B112B8F;
- Wed, 22 Jun 2022 11:56:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DFFDD1133CA
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Jun 2022 12:53:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655898971; x=1687434971;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=1jiO41cw5EB9KwYflgSuTIcwKXiyLAI7JCG04Edl/BM=;
- b=QB1JZ7yyrKR86c6Vd2wG0lO15Nv8KQgk52gwk7bPLUY2PUMlBJw5SCD/
- jzP+bIUiqniCC8tb0XctKX6+SoC2PuZFxQ0fIorI/IvCExu7g5MWZ6rDS
- w0Nvi0oFMhoiIL0uylr27dq7MJvMCWIL/wAL7y2boZMGedeW0gq0hOf1x
- cNcJ6Ucn9lMpkPN39yBGo1xv3NMrKmwag3GToYZtelfg73rnTGoNMpwgo
- bRY2DH1UAmIdeqpeDlB6BvQw9X1RhMjvci1+PuzUaUjxBaxUpyUy4uZrp
- JZnlURXOk2ODeVJSDXuEXNCYLjbvcG9ag00Xwa2rhZ6s3tw48mQo/cosk w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10385"; a="269116412"
-X-IronPort-AV: E=Sophos;i="5.92,212,1650956400"; d="scan'208";a="269116412"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ t=1655902385; x=1687438385;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=z+pRrKADkf5Pzwb5K4w7f/f+/j2mm77gQDnBeSFq0s8=;
+ b=Skm5di51jOr6Iaborv3kSWoUMSKaKxxSnH/1cSfopUPFAW/bss42qgCw
+ abs0MTaxvdiuEqtqFZZfQ39LeYVOtN3Asapi/fnTxBG6lLWxmRghZEWH9
+ e/2DDpbb5SgT6H7qM1Xgmv8vP6e4j9KaIvImZ/TUQxSKLAclmWkvPBfgV
+ 4CTpOumfK230ywxmAavBmySxQghxROUhWI8xKphQLpUVYLSYasJN5lk2M
+ 3LfDdeujJNZByWJeN/EeGIwd95jqtZn93qv1McvH2TljSJb8wqksziQbG
+ lgO03m1zmfI+MskWmlhqF5r2fjeSotKIf0ZPABNEJx9UBLXUjDeSM1+G2 w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10385"; a="269127126"
+X-IronPort-AV: E=Sophos;i="5.92,212,1650956400"; d="scan'208";a="269127126"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jun 2022 04:56:03 -0700
-X-IronPort-AV: E=Sophos;i="5.92,212,1650956400"; d="scan'208";a="690464617"
-Received: from wterliko-mobl.ger.corp.intel.com (HELO [10.249.254.201])
- ([10.249.254.201])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jun 2022 04:56:00 -0700
-Message-ID: <a2a439f677254260c3c4dd6369b8b478d3581889.camel@linux.intel.com>
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Robert Beckett <bob.beckett@collabora.com>, 
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, Jani
- Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>,  Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, David Airlie
- <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>
-Date: Wed, 22 Jun 2022 13:55:58 +0200
-In-Reply-To: <20220621200058.3536182-9-bob.beckett@collabora.com>
-References: <20220621200058.3536182-1-bob.beckett@collabora.com>
- <20220621200058.3536182-9-bob.beckett@collabora.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4 (3.40.4-5.fc34) 
+ 22 Jun 2022 05:53:05 -0700
+X-IronPort-AV: E=Sophos;i="5.92,212,1650956400"; d="scan'208";a="644181638"
+Received: from snowacki-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.59.111])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jun 2022 05:53:01 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Tilak Tangudu <tilak.tangudu@intel.com>,
+ intel-gfx@lists.freedesktop.org, jon.ewins@intel.com,
+ rodrigo.vivi@intel.com, vinay.belgaumkar@intel.com,
+ chris.p.wilson@intel.com, ashutosh.dixit@intel.com,
+ badal.nilawar@intel.com, anshuman.gupta@intel.com,
+ tilak.tangudu@intel.com, matthew.d.roper@intel.com,
+ saurabhg.gupta@intel.com, Aravind.Iddamsetty@intel.com,
+ Sujaritha.Sundaresan@intel.com
+In-Reply-To: <20220621123516.370479-6-tilak.tangudu@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220621123516.370479-1-tilak.tangudu@intel.com>
+ <20220621123516.370479-6-tilak.tangudu@intel.com>
+Date: Wed, 22 Jun 2022 15:52:59 +0300
+Message-ID: <8735fwsvv8.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v8 08/10] drm/i915: allow memory region
- creators to alloc and free the region
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH 05/11] drm/i915: Guard rpm helpers in gt
+ helpers functions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,94 +64,135 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kernel@collabora.com, Matthew Auld <matthew.auld@intel.com>,
- linux-kernel@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi, Bob,
-
-On Tue, 2022-06-21 at 20:00 +0000, Robert Beckett wrote:
-> add callbacks for alloc and free.
-> this allows region creators to allocate any extra storage they may
-> require.
-> 
-> Signed-off-by: Robert Beckett <bob.beckett@collabora.com>
-
-I think the correct solution here would be to, similar to ttm, export
-an alloc_reserved() or alloc_locked() interface, that simply skips the
-unlock at bo alloc time.
-
-Then the stolen alloc wrapper could simply pin as/if needed under the
-lock.
-
-/Thomas
-
-
-
+On Tue, 21 Jun 2022, Tilak Tangudu <tilak.tangudu@intel.com> wrote:
+> Guard rpm helpers in gt_sanitize and intel_gt_set_wedged
+> with is_intel_rpm_allowed
+>
+> Acquire rpm wakeref for higherlevel function i915_gem_resume
+>
+> Signed-off-by: Tilak Tangudu <tilak.tangudu@intel.com>
 > ---
->  drivers/gpu/drm/i915/intel_memory_region.c | 16 +++++++++++++---
->  drivers/gpu/drm/i915/intel_memory_region.h |  2 ++
->  2 files changed, 15 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/intel_memory_region.c
-> b/drivers/gpu/drm/i915/intel_memory_region.c
-> index e38d2db1c3e3..3da07a712f90 100644
-> --- a/drivers/gpu/drm/i915/intel_memory_region.c
-> +++ b/drivers/gpu/drm/i915/intel_memory_region.c
-> @@ -231,7 +231,10 @@ intel_memory_region_create(struct
-> drm_i915_private *i915,
->         struct intel_memory_region *mem;
->         int err;
->  
-> -       mem = kzalloc(sizeof(*mem), GFP_KERNEL);
-> +       if (ops->alloc)
-> +               mem = ops->alloc();
-> +       else
-> +               mem = kzalloc(sizeof(*mem), GFP_KERNEL);
->         if (!mem)
->                 return ERR_PTR(-ENOMEM);
->  
-> @@ -265,7 +268,10 @@ intel_memory_region_create(struct
-> drm_i915_private *i915,
->         if (mem->ops->release)
->                 mem->ops->release(mem);
->  err_free:
-> -       kfree(mem);
-> +       if (mem->ops->free)
-> +               mem->ops->free(mem);
-> +       else
-> +               kfree(mem);
->         return ERR_PTR(err);
->  }
->  
-> @@ -288,7 +294,11 @@ void intel_memory_region_destroy(struct
-> intel_memory_region *mem)
->  
->         GEM_WARN_ON(!list_empty_careful(&mem->objects.list));
->         mutex_destroy(&mem->objects.lock);
-> -       if (!ret)
-> +       if (ret)
-> +               return;
-> +       if (mem->ops->free)
-> +               mem->ops->free(mem);
-> +       else
->                 kfree(mem);
->  }
->  
-> diff --git a/drivers/gpu/drm/i915/intel_memory_region.h
-> b/drivers/gpu/drm/i915/intel_memory_region.h
-> index 3d8378c1b447..048955b5429f 100644
-> --- a/drivers/gpu/drm/i915/intel_memory_region.h
-> +++ b/drivers/gpu/drm/i915/intel_memory_region.h
-> @@ -61,6 +61,8 @@ struct intel_memory_region_ops {
->                            resource_size_t size,
->                            resource_size_t page_size,
->                            unsigned int flags);
-> +       struct intel_memory_region *(*alloc)(void);
-> +       void (*free)(struct intel_memory_region *mem);
->  };
->  
->  struct intel_memory_region {
+>  drivers/gpu/drm/i915/gt/intel_gt_pm.c | 12 ++++++------
+>  drivers/gpu/drm/i915/gt/intel_reset.c | 10 +++++++---
+>  drivers/gpu/drm/i915/i915_driver.c    |  4 +++-
+>  3 files changed, 16 insertions(+), 10 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+> index be99b01a0984..9857b91194b7 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+> @@ -163,12 +163,14 @@ static void gt_sanitize(struct intel_gt *gt, bool force)
+>  {
+>  	struct intel_engine_cs *engine;
+>  	enum intel_engine_id id;
+> -	intel_wakeref_t wakeref;
+> +	intel_wakeref_t wakeref = 0;
 
+We've got intel_wakeref_t to hide what it actually is. You shouldn't
+assume you can assign 0 to it or use wakeref in an if condition. You
+should treat it as opaque. You should assume the typedef could be
+switched to a struct and you shouldn't have to change the code using it.
 
+BR,
+Jani.
+
+>  
+>  	GT_TRACE(gt, "force:%s", str_yes_no(force));
+>  
+>  	/* Use a raw wakeref to avoid calling intel_display_power_get early */
+> -	wakeref = intel_runtime_pm_get(gt->uncore->rpm);
+> +	if (is_intel_rpm_allowed(gt->uncore->rpm))
+> +		wakeref = intel_runtime_pm_get(gt->uncore->rpm);
+> +
+>  	intel_uncore_forcewake_get(gt->uncore, FORCEWAKE_ALL);
+>  
+>  	intel_gt_check_clock_frequency(gt);
+> @@ -207,7 +209,8 @@ static void gt_sanitize(struct intel_gt *gt, bool force)
+>  	intel_rps_sanitize(&gt->rps);
+>  
+>  	intel_uncore_forcewake_put(gt->uncore, FORCEWAKE_ALL);
+> -	intel_runtime_pm_put(gt->uncore->rpm, wakeref);
+> +	if (wakeref)
+> +		intel_runtime_pm_put(gt->uncore->rpm, wakeref);
+>  }
+>  
+>  void intel_gt_pm_fini(struct intel_gt *gt)
+> @@ -226,7 +229,6 @@ int intel_gt_resume(struct intel_gt *gt)
+>  		return err;
+>  
+>  	GT_TRACE(gt, "\n");
+> -
+>  	/*
+>  	 * After resume, we may need to poke into the pinned kernel
+>  	 * contexts to paper over any damage caused by the sudden suspend.
+> @@ -259,10 +261,8 @@ int intel_gt_resume(struct intel_gt *gt)
+>  
+>  	for_each_engine(engine, gt, id) {
+>  		intel_engine_pm_get(engine);
+> -
+>  		engine->serial++; /* kernel context lost */
+>  		err = intel_engine_resume(engine);
+> -
+>  		intel_engine_pm_put(engine);
+>  		if (err) {
+>  			drm_err(&gt->i915->drm,
+> diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
+> index c8e05b48c14f..55a1fd38c7c4 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_reset.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_reset.c
+> @@ -901,12 +901,14 @@ static void __intel_gt_set_wedged(struct intel_gt *gt)
+>  
+>  void intel_gt_set_wedged(struct intel_gt *gt)
+>  {
+> -	intel_wakeref_t wakeref;
+> +	intel_wakeref_t wakeref = 0;
+>  
+>  	if (test_bit(I915_WEDGED, &gt->reset.flags))
+>  		return;
+>  
+> -	wakeref = intel_runtime_pm_get(gt->uncore->rpm);
+> +	if (is_intel_rpm_allowed(gt->uncore->rpm))
+> +		wakeref = intel_runtime_pm_get(gt->uncore->rpm);
+> +
+>  	mutex_lock(&gt->reset.mutex);
+>  
+>  	if (GEM_SHOW_DEBUG()) {
+> @@ -926,7 +928,9 @@ void intel_gt_set_wedged(struct intel_gt *gt)
+>  	__intel_gt_set_wedged(gt);
+>  
+>  	mutex_unlock(&gt->reset.mutex);
+> -	intel_runtime_pm_put(gt->uncore->rpm, wakeref);
+> +
+> +	if (wakeref)
+> +		intel_runtime_pm_put(gt->uncore->rpm, wakeref);
+>  }
+>  
+>  static bool __intel_gt_unset_wedged(struct intel_gt *gt)
+> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+> index d26dcca7e654..60f6fcc6b71d 100644
+> --- a/drivers/gpu/drm/i915/i915_driver.c
+> +++ b/drivers/gpu/drm/i915/i915_driver.c
+> @@ -1263,6 +1263,7 @@ int i915_driver_suspend_switcheroo(struct drm_i915_private *i915,
+>  static int i915_drm_resume(struct drm_device *dev)
+>  {
+>  	struct drm_i915_private *dev_priv = to_i915(dev);
+> +	intel_wakeref_t wakeref;
+>  	int ret;
+>  
+>  	disable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
+> @@ -1303,7 +1304,8 @@ static int i915_drm_resume(struct drm_device *dev)
+>  	if (HAS_DISPLAY(dev_priv))
+>  		drm_mode_config_reset(dev);
+>  
+> -	i915_gem_resume(dev_priv);
+> +	with_intel_runtime_pm(&dev_priv->runtime_pm, wakeref)
+> +		i915_gem_resume(dev_priv);
+>  
+>  	intel_modeset_init_hw(dev_priv);
+>  	intel_init_clock_gating(dev_priv);
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
