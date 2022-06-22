@@ -1,53 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 133F75545A8
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jun 2022 13:18:52 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F5545545C5
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jun 2022 13:37:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D30710F7AB;
-	Wed, 22 Jun 2022 11:18:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9275D1125D4;
+	Wed, 22 Jun 2022 11:37:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0118A10F79F
- for <intel-gfx@lists.freedesktop.org>; Wed, 22 Jun 2022 11:18:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1655896725;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=0sIsnfMpe4FJBTS0h3l7SV9v1TTfsWpjwvuPTBuEppw=;
- b=Cv3yC1+1TbRmuGhaik/2cFAel8UNydVmlNNaBjNG6NH7Mv92bKMLms6IVOGc5tnnAmDDkn
- qseI+Fch2wSIROb/w2/cHLJcOummH81ybgtnP4GnehJatEezneLtDotgK3Qw0nrtLdsfHv
- KHvLHfhPlSYZ99mh95zH4qF8cq5t1Ac=
-Received: from mimecast-mx02.redhat.com (mimecast-mx02.redhat.com
- [66.187.233.88]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-226-MFN3ONSFMUuoINxGAeGjBw-1; Wed, 22 Jun 2022 07:18:44 -0400
-X-MC-Unique: MFN3ONSFMUuoINxGAeGjBw-1
-Received: from smtp.corp.redhat.com (int-mx10.intmail.prod.int.rdu2.redhat.com
- [10.11.54.10])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 0D44383395C;
- Wed, 22 Jun 2022 11:18:44 +0000 (UTC)
-Received: from [10.43.17.54] (unknown [10.43.17.54])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 4E91840334F;
- Wed, 22 Jun 2022 11:18:43 +0000 (UTC)
-Message-ID: <584ae788-05e3-5824-8c85-cbb833677850@redhat.com>
-Date: Wed, 22 Jun 2022 13:18:42 +0200
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A7B471125D4;
+ Wed, 22 Jun 2022 11:37:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1655897842; x=1687433842;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=MtU2Y8dBdDnHq8H7yBgFCvaWxAPQx9yCl1KzbmITiaU=;
+ b=ZcHVA72wMRQv6n2p+0qgUGhhm7gmH1q8Xs+iu5NR7/hTHXXrirP+Qb0V
+ eSBb2qke1qzAaCDqmgiwwtl1gXk3IJ+8nOITw4UfgDIYd+3L4KcRG4n6W
+ pGOlqLDcCDZTM8ECAijqXwsNu45YZgdJGg4hKg+X7egPQDhd/u99aA5bM
+ v/0VeJgfITxThFEnHu9u/M8t6D/H9uIIKkKCdQnd97SvC43w3b7U8Q8mX
+ 8Jl/0meuXtNvQsRcc7lG2pnl95hVDoLxJ/aJ+fNR5iW0jwXoTaDoJGpOL
+ 7C6j2W+F05b7WXTChjgeFamy2ZX3PAwxv6f2uO0ChjqQoRuuGR6uLwTU1 w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10385"; a="269112735"
+X-IronPort-AV: E=Sophos;i="5.92,212,1650956400"; d="scan'208";a="269112735"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jun 2022 04:37:22 -0700
+X-IronPort-AV: E=Sophos;i="5.92,212,1650956400"; d="scan'208";a="690457834"
+Received: from wterliko-mobl.ger.corp.intel.com (HELO [10.249.254.201])
+ ([10.249.254.201])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jun 2022 04:37:19 -0700
+Message-ID: <5a190fb8c2e31ae434940f0d942debd32807b262.camel@linux.intel.com>
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Robert Beckett <bob.beckett@collabora.com>, 
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, Jani
+ Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>,  Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, David Airlie
+ <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>
+Date: Wed, 22 Jun 2022 13:37:16 +0200
+In-Reply-To: <20220621200058.3536182-5-bob.beckett@collabora.com>
+References: <20220621200058.3536182-1-bob.beckett@collabora.com>
+ <20220621200058.3536182-5-bob.beckett@collabora.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.4 (3.40.4-5.fc34) 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Firefox/91.0 Thunderbird/91.10.0
-Content-Language: en-US
-To: LKML <linux-kernel@vger.kernel.org>
-From: Zdenek Kabelac <zkabelac@redhat.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Scanned-By: MIMEDefang 2.85 on 10.11.54.10
-Subject: [Intel-gfx] i915: crash with 5.19-rc2
+Subject: Re: [Intel-gfx] [PATCH v8 04/10] drm/i915/gem: selftest should not
+ attempt mmap of private regions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,118 +65,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, chris@chris-wilson.co.uk
+Cc: kernel@collabora.com, Matthew Auld <matthew.auld@intel.com>,
+ linux-kernel@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hello
+On Tue, 2022-06-21 at 20:00 +0000, Robert Beckett wrote:
+> During testing make can_mmap consider whether the region is private.
+> 
+> Signed-off-by: Robert Beckett <bob.beckett@collabora.com>
 
-While somewhat oldish hw (T61, 4G, C2D) - I've now witnessed new crash with Xorg:
-
-(happened while reopening iconified Firefox window  - running 'standard' 
-rawhide -nodebug kernel 5.19.0-0.rc2.21.fc37.x86_64)
-
-  page:00000000577758b3 refcount:0 mapcount:0 mapping:0000000000000000 
-index:0x1 pfn:0x1192cc
-  flags: 0x17ffffc0000000(node=0|zone=2|lastcpupid=0x1fffff)
-  raw: 0017ffffc0000000 ffffe683c47171c8 ffff8fa3f79377a8 0000000000000000
-  raw: 0000000000000001 0000000000000000 00000000ffffffff 0000000000000000
-  page dumped because: VM_BUG_ON_FOLIO(!folio_test_locked(folio))
-  ------------[ cut here ]------------
-  kernel BUG at mm/shmem.c:708!
-  invalid opcode: 0000 [#1] PREEMPT SMP NOPTI
-  CPU: 1 PID: 42896 Comm: Xorg Not tainted 5.19.0-0.rc2.21.fc37.x86_64 #1
-  Hardware name: LENOVO 6464CTO/6464CTO, BIOS 7LETC9WW (2.29 ) 03/18/2011
-  RIP: 0010:shmem_add_to_page_cache+0x48e/0x500
-  Code: 01 0f 84 0a fc ff ff 48 8d 4a ff 31 d2 48 39 cb 0f 85 ff fb ff ff e9 
-f6 fb ff ff 48 c7 c6 70 01 64 bb 48 89 df e8 f2 99 01 00 <0f> 0b 48 c7 c6 a0 
-1b 64 bb 48 89 df e8 e1 99 01 00 0f 0b 48 8b 13
-  RSP: 0018:ffff9ce7c047f6b0 EFLAGS: 00010286
-  RAX: 000000000000003f RBX: ffffe683c464b300 RCX: 0000000000000000
-  RDX: 0000000000000001 RSI: ffffffffbb67b8e8 RDI: 00000000ffffffff
-  RBP: 0000000000023f97 R08: ffffffffbca122a0 R09: 64656b636f6c5f74
-  R10: 747365745f6f696c R11: 6f6621284f494c4f R12: 00000000001120d4
-  R13: ffff8fa2c6ae7890 R14: ffffe683c464b300 R15: 0000000000000001
-  FS:  00007fc1cea31380(0000) GS:ffff8fa3f7900000(0000) knlGS:0000000000000000
-  CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-  CR2: 00007f6972e228c8 CR3: 0000000104ba8000 CR4: 00000000000006e0
-  Call Trace:
-  <TASK>
-  shmem_swapin_folio+0x274/0x980
-  shmem_getpage_gfp+0x234/0x990
-  shmem_read_mapping_page_gfp+0x36/0xf0
-  shmem_sg_alloc_table+0x11b/0x250 [i915]
-  shmem_get_pages+0xaa/0x310 [i915]
-  __i915_gem_object_get_pages+0x31/0x40 [i915]
-  i915_vma_pin_ww+0x69d/0x920 [i915]
-  eb_validate_vmas+0x17d/0x7a0 [i915]
-  ? eb_pin_engine+0x262/0x2d0 [i915]
-  i915_gem_do_execbuffer+0xd43/0x2c00 [i915]
-  ? refill_obj_stock+0x102/0x1a0
-  ? unix_stream_read_generic+0x1ea/0xa60
-  ? unix_stream_read_generic+0x1ea/0xa60
-  ? _raw_spin_lock_irqsave+0x23/0x50
-  ? _atomic_dec_and_lock_irqsave+0x38/0x60
-  ? __active_retire+0xb7/0x100 [i915]
-  ? _raw_spin_unlock_irqrestore+0x23/0x40
-  ? dma_fence_signal+0x39/0x50
-  ? dma_resv_iter_walk_unlocked.part.0+0x164/0x170
-  i915_gem_execbuffer2_ioctl+0x115/0x270 [i915]
-  ? i915_gem_do_execbuffer+0x2c00/0x2c00 [i915]
-  drm_ioctl_kernel+0x9b/0x140
-  ? __check_object_size+0x47/0x260
-  drm_ioctl+0x21c/0x410
-  ? i915_gem_do_execbuffer+0x2c00/0x2c00 [i915]
-  ? exit_to_user_mode_prepare+0x17d/0x1f0
-  __x64_sys_ioctl+0x8a/0xc0
-  do_syscall_64+0x58/0x80
-  ? syscall_exit_to_user_mode+0x17/0x40
-  ? do_syscall_64+0x67/0x80
-  entry_SYSCALL_64_after_hwframe+0x46/0xb0
-  RIP: 0033:0x7fc1cf28da9f
-  Code: 00 48 89 44 24 18 31 c0 48 8d 44 24 60 c7 04 24 10 00 00 00 48 89 44 
-24 08 48 8d 44 24 20 48 89 44 24 10 b8 10 00 00 00 0f 05 <89> c2 3d 00 f0 ff 
-ff 77 18 48 8b 44 24 18 64 48 2b 04 25 28 00 00
-  RSP: 002b:00007ffe5f52e1c0 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
-  RAX: ffffffffffffffda RBX: 00007ffe5f52e250 RCX: 00007fc1cf28da9f
-  RDX: 00007ffe5f52e250 RSI: 0000000040406469 RDI: 000000000000000d
-  RBP: 000000000000000d R08: 00007fc1ce938410 R09: 00007fc1cf2fa4c0
-  R10: 0000000000000000 R11: 0000000000000246 R12: 000055e2dde0d340
-  R13: 0000000000000114 R14: 00007ffe5f52e250 R15: 00007fc1cdc49000
-  </TASK>
-  Modules linked in: tls rfcomm snd_seq_dummy snd_hrtimer xt_CHECKSUM 
-xt_MASQUERADE xt_conntrack ipt_REJECT nf_reject_ipv4 ip6table_mangle 
-ip6table_nat ip6table_filter ip6_tables iptable_mangle iptable_nat nf_nat 
-nf_conntrack nf_defrag_ipv6 nf_defrag_ipv4 iptable_filter ip_tables bridge stp 
-llc bnep binfmt_misc btusb btrtl btbcm btintel btmtk bluetooth ecdh_generic 
-snd_hda_codec_analog snd_hda_codec_generic iwl3945 iwlegacy coretemp kvm_intel 
-mac80211 snd_hda_intel snd_intel_dspcfg snd_intel_sdw_acpi libarc4 kvm 
-iTCO_wdt snd_hda_codec intel_pmc_bxt iTCO_vendor_support snd_hda_core 
-snd_hwdep snd_seq snd_seq_device cfg80211 irqbypass snd_pcm thinkpad_acpi 
-pcspkr joydev i2c_i801 snd_timer i2c_smbus ledtrig_audio wmi_bmof r592 
-platform_profile snd memstick rfkill lpc_ich soundcore acpi_cpufreq nfsd 
-auth_rpcgss nfs_acl lockd grace sunrpc fuse zram i915 sdhci_pci cqhci sdhci 
-drm_buddy drm_display_helper e1000e mmc_core cec serio_raw yenta_socket ttm 
-wmi video ata_generic pata_acpi
-  scsi_dh_rdac scsi_dh_emc scsi_dh_alua dm_multipath
-  ---[ end trace 0000000000000000 ]---
-  RIP: 0010:shmem_add_to_page_cache+0x48e/0x500
-  Code: 01 0f 84 0a fc ff ff 48 8d 4a ff 31 d2 48 39 cb 0f 85 ff fb ff ff e9 
-f6 fb ff ff 48 c7 c6 70 01 64 bb 48 89 df e8 f2 99 01 00 <0f> 0b 48 c7 c6 a0 
-1b 64 bb 48 89 df e8 e1 99 01 00 0f 0b 48 8b 13
-  RSP: 0018:ffff9ce7c047f6b0 EFLAGS: 00010286
-  RAX: 000000000000003f RBX: ffffe683c464b300 RCX: 0000000000000000
-  RDX: 0000000000000001 RSI: ffffffffbb67b8e8 RDI: 00000000ffffffff
-  RBP: 0000000000023f97 R08: ffffffffbca122a0 R09: 64656b636f6c5f74
-  R10: 747365745f6f696c R11: 6f6621284f494c4f R12: 00000000001120d4
-  R13: ffff8fa2c6ae7890 R14: ffffe683c464b300 R15: 0000000000000001
-  FS:  00007fc1cea31380(0000) GS:ffff8fa3f7900000(0000) knlGS:0000000000000000
-  CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-  CR2: 00007f6972e228c8 CR3: 0000000104ba8000 CR4: 00000000000006e0
+LGTM.
+Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 
 
-Regards
+> ---
+>  drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
+> b/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
+> index 5bc93a1ce3e3..76181e28c75e 100644
+> --- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
+> +++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
+> @@ -869,6 +869,9 @@ static bool can_mmap(struct drm_i915_gem_object
+> *obj, enum i915_mmap_type type)
+>         struct drm_i915_private *i915 = to_i915(obj->base.dev);
+>         bool no_map;
+>  
+> +       if (obj->mm.region && obj->mm.region->private)
+> +               return false;
+> +
+>         if (obj->ops->mmap_offset)
+>                 return type == I915_MMAP_TYPE_FIXED;
+>         else if (type == I915_MMAP_TYPE_FIXED)
 
-
-Zdenek
 
