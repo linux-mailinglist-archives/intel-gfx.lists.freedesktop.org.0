@@ -1,57 +1,60 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A0A25544C4
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jun 2022 11:05:35 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71D7F5544F5
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jun 2022 11:47:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8879010E1F2;
-	Wed, 22 Jun 2022 09:05:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2874E10FF6B;
+	Wed, 22 Jun 2022 09:47:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA7C010E1F2
- for <intel-gfx@lists.freedesktop.org>; Wed, 22 Jun 2022 09:05:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655888731; x=1687424731;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=msAj9T9aJMIO0dpl7zk7TblnhJ8VivuLDXedkt6k4TY=;
- b=S/0AxtDPtE10ekLxFwlq61fIWyxEG6UrfMHbDPJJWnEWar7CiVIZZxvC
- aFokptQXupUYWoUiH59bNUTYbvgM4hnioDPIevUPUHBtvIihkLL3XjN30
- /IdFjrEnPe0MrIImMvtYjrbjGSbLO2mOGXjcgTdm0+tvKq9riJs0SjBSV
- dgA1tAxXBtc0kU35pu4za7WFHPoPuenBtQ18iJKstwkZfgspMHQMizsrt
- R1Dqanf9f4LIupatclyDMEwztOfbTfeLsU2w7myoEyJUvjuFDsZ/Bud8i
- wAcNZp0RiJASA0J+D4BZdx5VV+pVQEgs6RyJQCoVmbxTgUnp74R7JaZ0y g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10385"; a="280409082"
-X-IronPort-AV: E=Sophos;i="5.92,212,1650956400"; d="scan'208";a="280409082"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jun 2022 02:05:30 -0700
-X-IronPort-AV: E=Sophos;i="5.92,212,1650956400"; d="scan'208";a="615089377"
-Received: from ebrazil-mobl1.amr.corp.intel.com (HELO [10.213.200.60])
- ([10.213.200.60])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jun 2022 02:05:29 -0700
-Message-ID: <2752282d-a28a-ef9b-8b27-2d84aee9c8bf@linux.intel.com>
-Date: Wed, 22 Jun 2022 10:05:28 +0100
+Received: from mail-qk1-x735.google.com (mail-qk1-x735.google.com
+ [IPv6:2607:f8b0:4864:20::735])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D89B710FF6B
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Jun 2022 09:47:17 +0000 (UTC)
+Received: by mail-qk1-x735.google.com with SMTP id p63so12090494qkd.10
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Jun 2022 02:47:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=Xu27xjFGd7RqreWXeGPYbCHy+3gA0nXLgTkM1ruEeAI=;
+ b=dhguqZtJ9kCOzytA/1u7kKrgwHMSBX54bVuhshBd+dNWoaVnf8Avgp6Cgsts4iLwMd
+ u/rUhRhzqk0uNylCM0nYDdBJ1CqWZa3CX+U3sZy+rpykZFIoNUPpfEog4tX8/h12yn4D
+ rboRmT2JLKXPxZ1RAWDsWRCaLjfCrMwvNMTJSLnuBo90xA2XVCWtd8Q9AvjnBMlVv1eK
+ 27DDIzTC5/PiRyiMSFDsRWJYMExxykseEUqAAHr8YwuT0W+QQCRyJBzeXqw2CCHzAA2y
+ WF8AfRI+KubqtyuJho+xZNJdU2wjct4x3RsIczKRysYOBTjry8yqxebYLdXziXBQcqe4
+ m1Ew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=Xu27xjFGd7RqreWXeGPYbCHy+3gA0nXLgTkM1ruEeAI=;
+ b=FclyHqCjNoPHj3wIBl6VmxhULAmlPcbBJYf60K4nztOQtvePU1Dk4une92LSuCVRFC
+ XDVoaoSv9M56o4w2u5otcll3BKSBU9rhVO/onb/7nKgCfHMcRPTdeFHpwVxcD9VIPPPd
+ vD+C5NSuWjihRxM3iPo2WlxJ6+APtvMyZ8bBDWNKja2Cj6dRVqvCuZ5wv0SAOsMgRVip
+ boUY9ED9F0teXbVQWYYohI40/BEUA1wBe0ffXwFAAOleLzvR/IyhXfpfwqWsbo/+phqY
+ /FNQ1iMx3GH+Aa0T2uxnYwazrvUP+9rfw9+bucnbwbNESTyhquXNQ4bH5WDfh85eiIh6
+ ZPXw==
+X-Gm-Message-State: AJIora+crT7rfh2isYEpeBl7oZ5LyGMp+HA6Zq4g7I+xRs38YTCgx9Jx
+ OYA6RXQzZOwgLjXqHEPlphFSBIT1zaEzrH8PoGKskFFracDll/mB
+X-Google-Smtp-Source: AGRyM1tW+XDxuahVnENqUUgMrdZiCSIpSWfx06KBaFPt9X2HdzqAm4aOHD6R/rXzpMRyG06t9qzRnT7wm1YxIsQm1CM=
+X-Received: by 2002:a05:620a:f05:b0:6a9:7122:edb1 with SMTP id
+ v5-20020a05620a0f0500b006a97122edb1mr1569978qkl.82.1655891237021; Wed, 22 Jun
+ 2022 02:47:17 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Content-Language: en-US
-To: Robert Beckett <bob.beckett@collabora.com>, intel-gfx@lists.freedesktop.org
-References: <20220620213340.3199605-1-bob.beckett@collabora.com>
- <165583307119.13647.9219456323624399121@emeril.freedesktop.org>
- <20dedda6-534b-b39e-fb35-8becc5c27043@collabora.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20dedda6-534b-b39e-fb35-8becc5c27043@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_ttm_for_stolen_=28rev5=29?=
+References: <20220616120509.1190329-1-priyanka.dandamudi@intel.com>
+ <20220616120509.1190329-2-priyanka.dandamudi@intel.com>
+ <87pmj8vesm.fsf@intel.com>
+In-Reply-To: <87pmj8vesm.fsf@intel.com>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Wed, 22 Jun 2022 10:46:50 +0100
+Message-ID: <CAM0jSHN=MsqYocfhDcM3WEACcce8MiU4fXAxpymxOf0Sr0J3Lw@mail.gmail.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH i-g-t 1/2] drm/i915: Add support for LMEM
+ PCIe resizable bar
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,105 +67,181 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: priyanka.dandamudi@intel.com,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Thu, 16 Jun 2022 at 15:55, Jani Nikula <jani.nikula@linux.intel.com> wro=
+te:
+>
+> On Thu, 16 Jun 2022, priyanka.dandamudi@intel.com wrote:
+> > From: Akeem G Abodunrin <akeem.g.abodunrin@intel.com>
+> >
+> > This patch adds support for the local memory PICe resizable bar, so tha=
+t
+> > local memory can be resized to the maximum size supported by the device=
+,
+> > and mapped correctly to the PCIe memory bar. It is usual that GPU
+> > devices expose only 256MB BARs primarily to be compatible with 32-bit
+> > systems. So, those devices cannot claim larger memory BAR windows size =
+due
+> > to the system BIOS limitation. With this change, it would be possible t=
+o
+> > reprogram the windows of the bridge directly above the requesting devic=
+e
+> > on the same BAR type.
+> >
+> > Signed-off-by: Akeem G Abodunrin <akeem.g.abodunrin@intel.com>
+> > Signed-off-by: Micha=C5=82 Winiarski <michal.winiarski@intel.com>
+> > Cc: Stuart Summers <stuart.summers@intel.com>
+> > Cc: Michael J Ruhl <michael.j.ruhl@intel.com>
+> > Cc: Prathap Kumar Valsan <prathap.kumar.valsan@intel.com>
+> > Signed-off-by: Priyanka Dandamudi <priyanka.dandamudi@intel.com>
+> > Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/i915_driver.c | 92 ++++++++++++++++++++++++++++++
+> >  1 file changed, 92 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/=
+i915_driver.c
+> > index d26dcca7e654..4bdb471cb2e2 100644
+> > --- a/drivers/gpu/drm/i915/i915_driver.c
+> > +++ b/drivers/gpu/drm/i915/i915_driver.c
+> > @@ -303,6 +303,95 @@ static void sanitize_gpu(struct drm_i915_private *=
+i915)
+> >               __intel_gt_reset(to_gt(i915), ALL_ENGINES);
+> >  }
+> >
+> > +static void __release_bars(struct pci_dev *pdev)
+>
+> What's with the double underscores?
+>
+> > +{
+> > +     int resno;
+> > +
+> > +     for (resno =3D PCI_STD_RESOURCES; resno < PCI_STD_RESOURCE_END; r=
+esno++) {
+> > +             if (pci_resource_len(pdev, resno))
+> > +                     pci_release_resource(pdev, resno);
+> > +     }
+> > +}
+> > +
+> > +static void
+> > +__resize_bar(struct drm_i915_private *i915, int resno, resource_size_t=
+ size)
+> > +{
+> > +     struct pci_dev *pdev =3D to_pci_dev(i915->drm.dev);
+> > +     int bar_size =3D pci_rebar_bytes_to_size(size);
+> > +     int ret;
+> > +
+> > +     __release_bars(pdev);
+> > +
+> > +     ret =3D pci_resize_resource(pdev, resno, bar_size);
+> > +     if (ret) {
+> > +             drm_info(&i915->drm, "Failed to resize BAR%d to %dM (%pe)=
+\n",
+> > +                      resno, 1 << bar_size, ERR_PTR(ret));
+> > +             return;
+> > +     }
+> > +
+> > +     drm_info(&i915->drm, "BAR%d resized to %dM\n", resno, 1 << bar_si=
+ze);
+> > +}
+> > +
+> > +/* BAR size starts from 1MB - 2^20 */
+> > +#define BAR_SIZE_SHIFT 20
+> > +static resource_size_t
+> > +__lmem_rebar_size(struct drm_i915_private *i915, int resno)
+> > +{
+> > +     struct pci_dev *pdev =3D to_pci_dev(i915->drm.dev);
+> > +     u32 rebar =3D pci_rebar_get_possible_sizes(pdev, resno);
+> > +     resource_size_t size;
+> > +
+> > +     if (!rebar)
+> > +             return 0;
+> > +
+> > +     size =3D 1ULL << (__fls(rebar) + BAR_SIZE_SHIFT);
+> > +
+> > +     if (size <=3D pci_resource_len(pdev, resno))
+> > +             return 0;
+> > +
+> > +     return size;
+> > +}
+> > +
+> > +#define LMEM_BAR_NUM 2
+> > +static void i915_resize_lmem_bar(struct drm_i915_private *i915)
+> > +{
+> > +     struct pci_dev *pdev =3D to_pci_dev(i915->drm.dev);
+> > +     struct pci_bus *root =3D pdev->bus;
+> > +     struct resource *root_res;
+> > +     resource_size_t rebar_size =3D __lmem_rebar_size(i915, LMEM_BAR_N=
+UM);
+> > +     u32 pci_cmd;
+> > +     int i;
+> > +
+> > +     if (!rebar_size)
+> > +             return;
+> > +
+> > +     /* Find out if root bus contains 64bit memory addressing */
+> > +     while (root->parent)
+> > +             root =3D root->parent;
+> > +
+> > +     pci_bus_for_each_resource(root, root_res, i) {
+> > +             if (root_res && root_res->flags & (IORESOURCE_MEM |
+> > +                                     IORESOURCE_MEM_64) && root_res->s=
+tart > 0x100000000ull)
+> > +                     break;
+> > +     }
+> > +
+> > +     /* pci_resize_resource will fail anyways */
+> > +     if (!root_res) {
+> > +             drm_info(&i915->drm, "Can't resize LMEM BAR - platform su=
+pport is missing\n");
+> > +             return;
+> > +     }
+> > +
+> > +     /* First disable PCI memory decoding references */
+> > +     pci_read_config_dword(pdev, PCI_COMMAND, &pci_cmd);
+> > +     pci_write_config_dword(pdev, PCI_COMMAND,
+> > +                            pci_cmd & ~PCI_COMMAND_MEMORY);
+> > +
+> > +     __resize_bar(i915, LMEM_BAR_NUM, rebar_size);
+> > +
+> > +     pci_assign_unassigned_bus_resources(pdev->bus);
+> > +     pci_write_config_dword(pdev, PCI_COMMAND, pci_cmd);
+> > +}
+>
+> Doesn't feel like the above code belongs in this file. The file is
+> supposed to be very high level. The mchbar stuff is the only low level
+> thing here, and that feels out of place too. Maybe this and the mchbar
+> stuff belong in a new file.
 
-On 21/06/2022 20:11, Robert Beckett wrote:
-> 
-> 
-> On 21/06/2022 18:37, Patchwork wrote:
->> *Patch Details*
->> *Series:*    drm/i915: ttm for stolen (rev5)
->> *URL:*    https://patchwork.freedesktop.org/series/101396/ 
->> <https://patchwork.freedesktop.org/series/101396/>
->> *State:*    failure
->> *Details:* 
->> https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101396v5/index.html 
->> <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101396v5/index.html>
->>
->>
->>   CI Bug Log - changes from CI_DRM_11790 -> Patchwork_101396v5
->>
->>
->>     Summary
->>
->> *FAILURE*
->>
->> Serious unknown changes coming with Patchwork_101396v5 absolutely need 
->> to be
->> verified manually.
->>
->> If you think the reported changes have nothing to do with the changes
->> introduced in Patchwork_101396v5, please notify your bug team to allow 
->> them
->> to document this new failure mode, which will reduce false positives 
->> in CI.
->>
->> External URL: 
->> https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101396v5/index.html
->>
->>
->>     Participating hosts (40 -> 41)
->>
->> Additional (2): fi-icl-u2 bat-dg2-9
->> Missing (1): fi-bdw-samus
->>
->>
->>     Possible new issues
->>
->> Here are the unknown changes that may have been introduced in 
->> Patchwork_101396v5:
->>
->>
->>       IGT changes
->>
->>
->>         Possible regressions
->>
->>   * igt@i915_selftest@live@reset:
->>       o bat-adlp-4: PASS
->>         
->> <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11790/bat-adlp-4/igt@i915_selftest@live@reset.html> 
->>
->>         -> DMESG-FAIL
->>         
->> <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101396v5/bat-adlp-4/igt@i915_selftest@live@reset.html> 
->>
->>
-> 
-> I keep hitting clobbered pages during engine resets on bat-adlp-4.
-> It seems to happen most of the time on that machine and occasionally on 
-> bat-adlp-6.
-> 
-> Should bat-adlp-4 be considered an unreliable machine like bat-adlp-6 is 
-> for now?
-> 
-> Alternatively, seeing the history of this in
-> 
-> commit 3da3c5c1c9825c24168f27b021339e90af37e969 "drm/i915: Exclude low 
-> pages (128KiB) of stolen from use"
-> 
-> could this be an indication that maybe the original issue is worse on 
-> adlp machines?
-> I have only ever seen page page 135 or 136 clobbered across many runs 
-> via trybot, so it looks fairly consistent.
-> Though excluding the use of over 540K of stolen might be too severe.
+Not sure about mchbar, but maybe i915_resize_lmem_bar() could be moved
+into gt/intel_region_lmem.[ch]? That's at least where the consumer of
+lmem-bar lives.
 
-Don't know but I see that on the latest version you even hit pages 165/166.
-
-Any history of hitting this in CI without your series? If not, are there 
-some other changes which could explain it? Are you touching the selftest 
-itself?
-
-Hexdump of the clobbered page looks quite complex. Especially 
-POISON_FREE. Any idea how that ends up there?
-
-Btw what is the benefit of converting stolen to start with? It's not 
-much of a backend since it just uses the drm range manager. So quite 
-thin and uneventful. Diffstats for the series also do not look like you 
-end up with much code reduction?
-
-Regards,
-
-Tvrtko
+>
+> BR,
+> Jani.
+>
+>
+> > +
+> >  /**
+> >   * i915_driver_early_probe - setup state not requiring device access
+> >   * @dev_priv: device private
+> > @@ -852,6 +941,9 @@ int i915_driver_probe(struct pci_dev *pdev, const s=
+truct pci_device_id *ent)
+> >
+> >       disable_rpm_wakeref_asserts(&i915->runtime_pm);
+> >
+> > +     if (HAS_LMEM(i915))
+> > +             i915_resize_lmem_bar(i915);
+> > +
+> >       intel_vgpu_detect(i915);
+> >
+> >       ret =3D intel_gt_probe_all(i915);
+>
+> --
+> Jani Nikula, Intel Open Source Graphics Center
