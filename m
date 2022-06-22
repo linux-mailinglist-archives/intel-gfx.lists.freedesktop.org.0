@@ -2,57 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F5545545C5
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jun 2022 13:37:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C41A65545DE
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jun 2022 13:50:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9275D1125D4;
-	Wed, 22 Jun 2022 11:37:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E68FF112971;
+	Wed, 22 Jun 2022 11:50:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A7B471125D4;
- Wed, 22 Jun 2022 11:37:22 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A5CFA112970;
+ Wed, 22 Jun 2022 11:50:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655897842; x=1687433842;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=MtU2Y8dBdDnHq8H7yBgFCvaWxAPQx9yCl1KzbmITiaU=;
- b=ZcHVA72wMRQv6n2p+0qgUGhhm7gmH1q8Xs+iu5NR7/hTHXXrirP+Qb0V
- eSBb2qke1qzAaCDqmgiwwtl1gXk3IJ+8nOITw4UfgDIYd+3L4KcRG4n6W
- pGOlqLDcCDZTM8ECAijqXwsNu45YZgdJGg4hKg+X7egPQDhd/u99aA5bM
- v/0VeJgfITxThFEnHu9u/M8t6D/H9uIIKkKCdQnd97SvC43w3b7U8Q8mX
- 8Jl/0meuXtNvQsRcc7lG2pnl95hVDoLxJ/aJ+fNR5iW0jwXoTaDoJGpOL
- 7C6j2W+F05b7WXTChjgeFamy2ZX3PAwxv6f2uO0ChjqQoRuuGR6uLwTU1 w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10385"; a="269112735"
-X-IronPort-AV: E=Sophos;i="5.92,212,1650956400"; d="scan'208";a="269112735"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jun 2022 04:37:22 -0700
-X-IronPort-AV: E=Sophos;i="5.92,212,1650956400"; d="scan'208";a="690457834"
-Received: from wterliko-mobl.ger.corp.intel.com (HELO [10.249.254.201])
- ([10.249.254.201])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jun 2022 04:37:19 -0700
-Message-ID: <5a190fb8c2e31ae434940f0d942debd32807b262.camel@linux.intel.com>
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Robert Beckett <bob.beckett@collabora.com>, 
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, Jani
- Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>,  Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, David Airlie
- <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>
-Date: Wed, 22 Jun 2022 13:37:16 +0200
-In-Reply-To: <20220621200058.3536182-5-bob.beckett@collabora.com>
-References: <20220621200058.3536182-1-bob.beckett@collabora.com>
- <20220621200058.3536182-5-bob.beckett@collabora.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4 (3.40.4-5.fc34) 
+ t=1655898622; x=1687434622;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=7DCJZo179ZL8Q7T4eOOlLWWxLxY1K5Hitxze+FvLZhA=;
+ b=VYCb+21W4QzZoiFR1btfoCFvScWbVl7i/3vx9hyzZcoCRmd7yQyjbiy6
+ BN9MbsZXg0qdBRQDKdI+1fKMH22pPvaEYz9stQk/NZ5EFd+f5DmGa4B58
+ LgSAYhl0LJIlLnlqqt9reUFNn3janspnRZGtwX157lcwtQ5GqHNEXI36h
+ A92GRrA1G9tgR4P2olKs0QUfsyg9q5KdU6QwdhUb90kb2YgmWa8+tRufQ
+ NrzAajUybauG45mAYM33NPwaEcuheUcbOiSJU+0AV437R5bTUdBlaPdZh
+ iiZKQZd10+0Yk9FtTGBAiN4mpBbByfR5NefN2mEOmdsP7PvgBtvTB8f85 Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10385"; a="344385528"
+X-IronPort-AV: E=Sophos;i="5.92,212,1650956400"; d="scan'208";a="344385528"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jun 2022 04:50:22 -0700
+X-IronPort-AV: E=Sophos;i="5.92,212,1650956400"; d="scan'208";a="914640176"
+Received: from snowacki-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.59.111])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jun 2022 04:50:18 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Date: Wed, 22 Jun 2022 14:50:16 +0300
+Message-ID: <87a6a4syrr.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v8 04/10] drm/i915/gem: selftest should not
- attempt mmap of private regions
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: [Intel-gfx] [PULL] drm-intel-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,39 +55,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kernel@collabora.com, Matthew Auld <matthew.auld@intel.com>,
- linux-kernel@vger.kernel.org
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 2022-06-21 at 20:00 +0000, Robert Beckett wrote:
-> During testing make can_mmap consider whether the region is private.
-> 
-> Signed-off-by: Robert Beckett <bob.beckett@collabora.com>
 
-LGTM.
-Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Hi Dave & Daniel -
 
+drm-intel-fixes-2022-06-22:
+drm/i915 fixes for v5.19-rc4:
+- Revert low voltage SKU check removal to fix display issues
+- Apply PLL DCO fraction workaround for ADL-S
+- Don't show engine classes not present in client fdinfo
 
-> ---
->  drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
-> b/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
-> index 5bc93a1ce3e3..76181e28c75e 100644
-> --- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
-> +++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
-> @@ -869,6 +869,9 @@ static bool can_mmap(struct drm_i915_gem_object
-> *obj, enum i915_mmap_type type)
->         struct drm_i915_private *i915 = to_i915(obj->base.dev);
->         bool no_map;
->  
-> +       if (obj->mm.region && obj->mm.region->private)
-> +               return false;
-> +
->         if (obj->ops->mmap_offset)
->                 return type == I915_MMAP_TYPE_FIXED;
->         else if (type == I915_MMAP_TYPE_FIXED)
+BR,
+Jani.
 
+The following changes since commit a111daf0c53ae91e71fd2bfe7497862d14132e3e:
 
+  Linux 5.19-rc3 (2022-06-19 15:06:47 -0500)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-fixes-2022-06-=
+22
+
+for you to fetch changes up to c7b28f52f406bc89d15ca0ccbc47994f979f2fcd:
+
+  drm/i915/display: Re-add check for low voltage sku for max dp source rate=
+ (2022-06-20 19:39:00 +0300)
+
+----------------------------------------------------------------
+drm/i915 fixes for v5.19-rc4:
+- Revert low voltage SKU check removal to fix display issues
+- Apply PLL DCO fraction workaround for ADL-S
+- Don't show engine classes not present in client fdinfo
+
+----------------------------------------------------------------
+Jason A. Donenfeld (1):
+      drm/i915/display: Re-add check for low voltage sku for max dp source =
+rate
+
+Tvrtko Ursulin (1):
+      drm/i915/fdinfo: Don't show engine classes not present
+
+Ville Syrj=C3=A4l=C3=A4 (1):
+      drm/i915: Implement w/a 22010492432 for adl-s
+
+ drivers/gpu/drm/i915/display/intel_dp.c       | 32 +++++++++++++++++++++++=
++---
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c |  4 ++--
+ drivers/gpu/drm/i915/i915_drm_client.c        |  5 +++--
+ 3 files changed, 34 insertions(+), 7 deletions(-)
+
+--=20
+Jani Nikula, Intel Open Source Graphics Center
