@@ -2,47 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A00C955535F
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jun 2022 20:38:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 17E6C555393
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jun 2022 20:51:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E82B010EE6F;
-	Wed, 22 Jun 2022 18:38:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5DDFB10E754;
+	Wed, 22 Jun 2022 18:51:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 11ABF10EE6F
- for <intel-gfx@lists.freedesktop.org>; Wed, 22 Jun 2022 18:38:46 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C5BEA10E28D;
+ Wed, 22 Jun 2022 18:51:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655923126; x=1687459126;
+ t=1655923868; x=1687459868;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=s5Ryf5t9Bmfi7J49mWsKTUlkC9UHyy9xXQC+JpxrduM=;
- b=Wk3v6eewdRk963yUA74GqBE9bc9Xi/YFqcu/q1PBw/V9DCxNQ4TJeY0+
- BDRLF9ppYScZdpeBt1mVjTaY6qUif+bXS+u+VBIbVF9Y/6IxQdrt3qL5v
- 6Uu8kYUPtfIodHHKE5ceVbRcmpc0qaBTieUoIFaHD81yjbzVDS0Y+3r0T
- uxc/BbxNTEAMosV6ehFJanFdDc5hHd99vRitLezWfpZxpQnn7jLhD09db
- v9tc8VLG9B1vcInmVunvQPL3TdMm/PEVKkxtY7Dqhg4L3Ee1EUecYZSKH
- d+XxzeY7OR0KjYFgoQ1Etz5GtUVuiC3q0A2tSk82nzmWUwPcs22Uwi0vf Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10386"; a="342197327"
-X-IronPort-AV: E=Sophos;i="5.92,212,1650956400"; d="scan'208";a="342197327"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jun 2022 11:38:45 -0700
-X-IronPort-AV: E=Sophos;i="5.92,212,1650956400"; d="scan'208";a="730489487"
-Received: from gkardara-mobl1.ger.corp.intel.com (HELO uxy.cgates.eltek)
- ([10.249.130.16])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jun 2022 11:38:43 -0700
-From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 22 Jun 2022 21:38:36 +0300
-Message-Id: <20220622183836.13825-1-lionel.g.landwerlin@intel.com>
-X-Mailer: git-send-email 2.32.0
+ bh=6knH9ww1X0wYx/mJv7c1V/griBQ7Mqls7RA9rvc5R/g=;
+ b=TLepWqwHPLBX3uWUrpLrLpeCYPP9TC3RIENAEvZkoUoAsXGVyjtlOhpn
+ R1sSTpdMVLYZn5pllaaog7StLtbJGa+4A3uMV+knq9cGWEo10FsSo+ilb
+ K/FgVusb26F6f259YRxpO8/6RxQrCw2IzXCDt23ZWGWYxp/86a+l6wdtX
+ +zihBOplqrQ8UtG+hfW4jAnVPBBqABk5GT9irEtH05ddp1OhSqIwx+Qha
+ k2vRS8irDpWNUz+0tnhq2/iKaibesQfZ1KQiantqLUOzpV4q/1ujtZW7V
+ cRcfwSk5EmkvsGDbmaSzvAB+Ak91DVTE+TnxL77Q1PHON9vDi2KjL01AW g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10386"; a="269236650"
+X-IronPort-AV: E=Sophos;i="5.92,212,1650956400"; d="scan'208";a="269236650"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jun 2022 11:51:08 -0700
+X-IronPort-AV: E=Sophos;i="5.92,212,1650956400"; d="scan'208";a="644344781"
+Received: from nvishwa1-desk.sc.intel.com ([172.25.29.76])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-SHA;
+ 22 Jun 2022 11:51:07 -0700
+From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Wed, 22 Jun 2022 11:50:44 -0700
+Message-Id: <20220622185047.3763-1-niranjana.vishwanathapura@intel.com>
+X-Mailer: git-send-email 2.21.0.rc0.32.g243a4c7e27
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/dg2: Add performance workaround
- 18019455067
+Subject: [Intel-gfx] [PATCH v4 0/3] drm/doc/rfc: i915 VM_BIND feature design
+ + uapi
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,45 +55,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: paulo.r.zanoni@intel.com, chris.p.wilson@intel.com,
+ thomas.hellstrom@intel.com, matthew.auld@intel.com, daniel.vetter@intel.com,
+ christian.koenig@amd.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is the recommended value for optimal performance.
+This is the i915 driver VM_BIND feature design RFC patch series along
+with the required uapi definition and description of intended use cases.
 
-Signed-off-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_gt_regs.h     | 3 +++
- drivers/gpu/drm/i915/gt/intel_workarounds.c | 3 +++
- 2 files changed, 6 insertions(+)
+v2: Reduce the scope to simple Mesa use case.
+    Remove all compute related uapi, vm_bind/unbind queue support and
+    only support a timeline out fence instead of an in/out timeline
+    fence array.
+v3: Expand documentation on dma-resv usage, TLB flushing, execbuf3 and
+    VM_UNBIND. Add FENCE_VALID and TLB_FLUSH flags.
+v4: Remove I915_GEM_VM_BIND_TLB_FLUSH flag and add additional
+    uapi documentation for vm_bind/unbind.
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-index 07ef111947b8c..a50b5790e434e 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-@@ -1112,6 +1112,9 @@
- #define   GEN12_PUSH_CONST_DEREF_HOLD_DIS	REG_BIT(8)
- 
- #define RT_CTRL					_MMIO(0xe530)
-+#define   NUMBER_OF_STACKIDS_512		(2 << 5)
-+#define   NUMBER_OF_STACKIDS_1024		(1 << 5)
-+#define   NUMBER_OF_STACKIDS_2048		(0 << 5)
- #define   DIS_NULL_QUERY			REG_BIT(10)
- 
- #define EU_PERF_CNTL1				_MMIO(0xe558)
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index 3213c593a55f4..a8a389d36986c 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -2106,6 +2106,9 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
- 		 * performance guide section.
- 		 */
- 		wa_write_or(wal, XEHP_L3SCQREG7, BLEND_FILL_CACHING_OPT_DIS);
-+
-+                /* Wa_18019455067:dg2 / BSpec 68331/54402 */
-+                wa_write_or(wal, RT_CTRL, NUMBER_OF_STACKIDS_512);
- 	}
- 
- 	if (IS_DG2_GRAPHICS_STEP(i915, G11, STEP_A0, STEP_B0)) {
+Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+
+Niranjana Vishwanathapura (3):
+  drm/doc/rfc: VM_BIND feature design document
+  drm/i915: Update i915 uapi documentation
+  drm/doc/rfc: VM_BIND uapi definition
+
+ Documentation/gpu/rfc/i915_vm_bind.h   | 252 +++++++++++++++++++++++++
+ Documentation/gpu/rfc/i915_vm_bind.rst | 245 ++++++++++++++++++++++++
+ Documentation/gpu/rfc/index.rst        |   4 +
+ include/uapi/drm/i915_drm.h            | 205 +++++++++++++++-----
+ 4 files changed, 661 insertions(+), 45 deletions(-)
+ create mode 100644 Documentation/gpu/rfc/i915_vm_bind.h
+ create mode 100644 Documentation/gpu/rfc/i915_vm_bind.rst
+
 -- 
-2.32.0
+2.21.0.rc0.32.g243a4c7e27
 
